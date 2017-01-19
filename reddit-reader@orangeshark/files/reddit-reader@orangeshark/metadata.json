@@ -1,0 +1,6 @@
+{
+    "uuid": "reddit-reader@orangeshark",
+    "name": "reddit reader desklet",
+    "description": "A desklet to read subreddits",
+    "prevent-decorations": true
+}

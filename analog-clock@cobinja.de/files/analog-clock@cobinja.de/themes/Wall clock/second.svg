@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   width="3"
+   height="63"
+   id="svg2"
+   inkscape:version="0.91 r"
+   sodipodi:docname="second.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="726"
+     inkscape:window-height="738"
+     id="namedview7"
+     showgrid="false"
+     inkscape:zoom="20.977778"
+     inkscape:cx="1.4807396"
+     inkscape:cy="57.320979"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
+  <defs
+     id="defs4" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <path
+     d="m 2.5085134,61.43669 c -1.17e-5,0.182949 -0.039559,0.337008 -0.1285339,0.491064 -0.098858,0.154054 -0.2075967,0.269593 -0.3657591,0.356238 C 1.8461734,62.380282 1.688014,62.418773 1.5100863,62.41876 1.3222748,62.418746 1.1641203,62.38022 1.0059695,62.283915 0.84782102,62.197245 0.72921003,62.081689 0.64025614,61.927619 0.54141829,61.77355 0.50188968,61.619485 0.50190143,61.436536 c 1.114e-5,-0.173318 0.0395596,-0.327377 0.13841782,-0.49106 0.0889738,-0.154055 0.20759889,-0.259962 0.36575925,-0.356242 0.1581624,-0.08664 0.3163218,-0.12515 0.5041334,-0.125136 0.1779275,1.5e-5 0.336082,0.03854 0.5041173,0.125215 0.1581507,0.09631 0.2668756,0.202228 0.3657134,0.356297 0.088953,0.163697 0.128482,0.317762 0.1284708,0.49108 l 0,0 z"
+     id="path65"
+     style="fill:#ff0000;stroke:none"
+     inkscape:connector-curvature="0" />
+  <rect
+     width="0.99436909"
+     height="60.768501"
+     x="1.0027958"
+     y="-0.010047971"
+     id="rect2992"
+     style="fill:#ff0000;stroke:none" />
+</svg>

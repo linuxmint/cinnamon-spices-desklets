@@ -1,0 +1,19 @@
+.clock-container{
+	color:#fff;
+	text-shadow: 1px 1px 2px #000;
+}
+.hour-container{}
+.date-container{
+	font-size: 15pt;
+	text-align: right;
+}
+.clock-hour-label{
+	font-size: 50pt;
+}
+.clock-min-label{
+	font-size: 25pt;
+}
+.clock-sec-label{
+	font-size: 10pt;
+}
+.clock-date-label{}

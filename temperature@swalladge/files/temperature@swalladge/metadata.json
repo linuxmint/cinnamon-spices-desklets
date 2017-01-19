@@ -1,0 +1,7 @@
+{
+    "dangerous": false,
+    "description": "Displays the current temperature from the temperature server.",
+    "prevent-decorations": false,
+    "uuid": "temperature@swalladge",
+    "name": "Temperature"
+}

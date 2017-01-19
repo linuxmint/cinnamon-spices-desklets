@@ -1,0 +1,32 @@
+{
+ "head" : {
+    "type" : "header",
+    "description" : "Style"
+ },
+ "color" : {
+    "type" : "colorchooser",
+    "default" : "white",
+    "description" : "The color for the lights:",
+    "tooltip" : "Select a new color for the lights"
+ },
+ "size" : {
+    "type" : "spinbutton",
+    "min" : 8,
+    "max" : 40,
+    "default" : 12,
+    "step" : 1,
+    "units" : "pixels",
+    "description" : "Light diameter:",
+    "tooltip" : "Select a diameter for the lights"
+ },
+ "head2" : {
+    "type" : "header",
+    "description" : "Format"
+ },
+ "show-seconds" : {
+    "type" : "checkbox",
+    "default" : true,
+    "description" : "Display seconds",
+    "tooltip" : "Show seconds in the binary display"
+ }
+}

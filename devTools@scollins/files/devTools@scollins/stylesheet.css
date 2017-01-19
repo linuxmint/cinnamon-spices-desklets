@@ -1,0 +1,85 @@
+.devtools-panel {
+    
+}
+
+.devtools-button {
+    padding: 3px;
+}
+
+.devtools-tab {
+    padding: 4px;
+}
+
+.devtools-tab:selected {
+    font-weight: bolder;
+}
+
+.devtools-tabBox {
+    padding: 3px;
+    spacing: 10px;
+}
+
+.devtools-panelButton {
+    padding: 3px;
+}
+
+/*.devtools-refreshBox {
+    padding: 3px;
+    spacin: 2px;
+}
+*/
+
+/*terminal*/
+.devtools-terminal-entry {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.devtools-terminal-processMainBox {
+    
+}
+
+.devtools-terminal-processBox {
+    
+}
+
+/*extensions*/
+.devtools-extension-mainBox {
+    
+}
+
+.devtools-extension-container {
+    
+}
+
+.devtools-extension-buttonBox {
+    padding: 3px;
+}
+
+.devtools-extension-instanceBox {
+    spacing: 20px;
+}
+
+/*windows*/
+.devtools-windows-mainBox {
+    
+}
+
+.devtools-windows-windowBox {
+    
+}
+
+.devtools-windows-icon {
+    
+}
+
+.devtools-windows-buttonBox {
+    padding: 3px;
+}
+
+.devtools-separator {
+    /*uncomment these lines to make separators disapear*/
+    /*-gradient-height: 0px;*/
+    /*-margin-horizontal: 0px;*/
+    /*height: 0px;*/
+}

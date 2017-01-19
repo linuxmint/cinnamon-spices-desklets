@@ -1,0 +1,1142 @@
+# Hungarian translation for bbcwx
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
+# This file is distributed under the same license as the bbcwx package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bbcwx\n"
+"Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
+"POT-Creation-Date: 2015-12-14 18:52+0000\n"
+"PO-Revision-Date: 2014-12-16 01:35+0000\n"
+"Last-Translator: Peter Toth <tothpeter13@freemail.hu>\n"
+"Language-Team: Hungarian <hu@li.org>\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2015-12-04 19:52+0000\n"
+"X-Generator: Launchpad (build 17862)\n"
+
+#. # Days of the week
+#: desklet.js:103
+msgid "Mon"
+msgstr "Hétf."
+
+#: desklet.js:103
+msgid "Tue"
+msgstr "Kedd"
+
+#: desklet.js:103
+msgid "Wed"
+msgstr "Szer."
+
+#: desklet.js:103
+msgid "Thu"
+msgstr "Csüt."
+
+#: desklet.js:103
+msgid "Fri"
+msgstr "Pént."
+
+#: desklet.js:103
+msgid "Sat"
+msgstr "Szom."
+
+#: desklet.js:103
+msgid "Sun"
+msgstr "Vas."
+
+#. # The desklet title
+#: desklet.js:179
+msgid "Weather"
+msgstr "Időjárás"
+
+#. # Link to Help file in context menu
+#: desklet.js:187
+msgid "Help"
+msgstr "Súgó"
+
+#. # Link to information on translating in context menu
+#: desklet.js:191
+msgid "Translate"
+msgstr "Fordítás"
+
+#. # Next five strings are labels for current conditions
+#: desklet.js:328 desklet.js:356
+msgid "Humidity:"
+msgstr "Páratartalom:"
+
+#. # Atmospheric pressure
+#: desklet.js:329 desklet.js:355
+msgid "Pressure:"
+msgstr "Légnyomás:"
+
+#: desklet.js:330
+msgid "Wind:"
+msgstr "Szél:"
+
+#: desklet.js:331
+msgid "Feels like:"
+msgstr "Hőérzet:"
+
+#: desklet.js:332
+msgid "Visibility:"
+msgstr "Látási viszonyok:"
+
+#. # Maximum temperature
+#: desklet.js:347
+msgid "Max:"
+msgstr "Legmagasabb hőmérséklet:"
+
+#. # Minimum temperature
+#: desklet.js:349
+msgid "Min:"
+msgstr "Legalacsonyabb hőmérséklet:"
+
+#. # Wind speed (English translation is "Wind:")
+#: desklet.js:351
+msgid "Wind speed:"
+msgstr "Szélerősség:"
+
+#. # Wind direction
+#: desklet.js:353
+msgid "Dir:"
+msgstr "Szélirány"
+
+#. # Credit the data supplier. A link to the data supplier appears to the
+#. right of this string
+#: desklet.js:395
+msgid "Data from "
+msgstr "Adatszolgáltató: "
+
+#. # Tooltip for refresh button
+#: desklet.js:407
+msgid "Refresh"
+msgstr "Időjárás frissítése"
+
+#. # Message if we fail to get weather data
+#: desklet.js:727
+msgid "No data available"
+msgstr "Nincs elérhető adat"
+
+#: desklet.js:760 desklet.js:827
+#, python-format
+msgid "Error: %s"
+msgstr "Hiba: %s"
+
+#: desklet.js:760 desklet.js:827
+msgid "No data"
+msgstr "Nincs adat!"
+
+#. # %s is replaced by place name
+#: desklet.js:862
+#, python-format
+msgid "Click for the full forecast for %s"
+msgstr "Kattintson ide a teljes előrejelzésért %s"
+
+#. # Units for temperature, degrees Fahrenheit. %f is replaced the value. NB:
+#. English translation uses unicode character u+2109
+#: desklet.js:1104
+#, python-format
+msgid "%fF"
+msgstr "%fF"
+
+#. # Units for temperature, degrees Celsius. %f is replaced the value. NB:
+#. English translation uses unicode character u+2103
+#: desklet.js:1106
+#, python-format
+msgid "%fC"
+msgstr "%fC"
+
+#. # wind speed, miles per hour. %f is replaced by the value
+#: desklet.js:1127
+#, python-format
+msgid "%fmph"
+msgstr "%fmph"
+
+#. # wind speed, knots. %f is replaced by the value
+#: desklet.js:1129
+#, python-format
+msgid "%fkn"
+msgstr "%fcsomó"
+
+#. # wind speed, kilometers per hour. %f is replaced by the value
+#: desklet.js:1131
+#, python-format
+msgid "%fkm/h"
+msgstr "%fkm/h"
+
+#. # wind speed, meters per second. %f is replaced by the value
+#: desklet.js:1133
+#, python-format
+msgid "%fm/s"
+msgstr "%fm/s"
+
+#. # pressure, millbars. %f is replaced by the value
+#: desklet.js:1167
+#, python-format
+msgid "%fmb"
+msgstr "%fmb"
+
+#. # pressure, inches of mercury. %f is replaced by the value
+#: desklet.js:1169
+#, python-format
+msgid "%fin"
+msgstr "%fhigany/inch"
+
+#. # pressure, mm of mercury. %f is replaced by the value
+#: desklet.js:1171
+#, python-format
+msgid "%fmm"
+msgstr "%fhigany/mm"
+
+#. # pressure, kilopascals. %f is replaced by the value
+#: desklet.js:1173
+#, python-format
+msgid "%fkPa"
+msgstr "%fkPa"
+
+#. # visibility, miles. %f is replaced by the value
+#: desklet.js:1224
+#, python-format
+msgid "%fmi"
+msgstr "%fmérföld"
+
+#. # visibility, nautical miles. %f is replaced by the value
+#: desklet.js:1226
+#, python-format
+msgid "%fnmi"
+msgstr "%ftengeri mérföld"
+
+#. # visibility, kilometers. %f is replaced by the value
+#: desklet.js:1228
+#, python-format
+msgid "%fkm"
+msgstr "%fkm"
+
+#. # Next 16 strings are for wind direction, compass points
+#: desklet.js:1452
+msgid "N"
+msgstr "Észak"
+
+#: desklet.js:1452
+msgid "NNE"
+msgstr "ÉszÉK"
+
+#: desklet.js:1452
+msgid "NE"
+msgstr "ÉszK"
+
+#: desklet.js:1452
+msgid "ENE"
+msgstr "KeÉK"
+
+#: desklet.js:1452
+msgid "E"
+msgstr "Kelet"
+
+#: desklet.js:1452
+msgid "ESE"
+msgstr "DéDK"
+
+#: desklet.js:1452
+msgid "SE"
+msgstr "DéK"
+
+#: desklet.js:1452
+msgid "SSE"
+msgstr "DéDNY"
+
+#: desklet.js:1452
+msgid "S"
+msgstr "Dél"
+
+#: desklet.js:1452
+msgid "SSW"
+msgstr "DéDNY"
+
+#: desklet.js:1452
+msgid "SW"
+msgstr "DéNY"
+
+#: desklet.js:1452
+msgid "WSW"
+msgstr "NYuDNY"
+
+#: desklet.js:1452
+msgid "W"
+msgstr "Nyugat"
+
+#: desklet.js:1452
+msgid "WNW"
+msgstr "NyuÉNY"
+
+#: desklet.js:1452
+msgid "NW"
+msgstr "ÉszNY"
+
+#: desklet.js:1452
+msgid "NNW"
+msgstr "ÉszÉNY"
+
+#: desklet.js:1485
+msgid "Tornado"
+msgstr "Tornádó"
+
+#: desklet.js:1486
+msgid "Tropical storm"
+msgstr "Trópusi vihar"
+
+#: desklet.js:1487
+msgid "Hurricane"
+msgstr "Hurrikán"
+
+#: desklet.js:1488
+msgid "Severe thunderstorms"
+msgstr "Erős zivatarok"
+
+#: desklet.js:1489
+msgid "Thunderstorms"
+msgstr "Zivatarok"
+
+#: desklet.js:1490 desklet.js:3506
+msgid "Mixed rain and snow"
+msgstr "Havas eső"
+
+#: desklet.js:1491
+msgid "Mixed rain and sleet"
+msgstr "Eső és ónos eső"
+
+#: desklet.js:1492
+msgid "Mixed snow and sleet"
+msgstr "Havazás és ónos eső"
+
+#: desklet.js:1493
+msgid "Freezing drizzle"
+msgstr "Jeges szitálás"
+
+#: desklet.js:1494 desklet.js:1788
+msgid "Drizzle"
+msgstr "Szitáló eső"
+
+#: desklet.js:1495
+msgid "Freezing rain"
+msgstr "Fagyos eső"
+
+#: desklet.js:1496 desklet.js:1497 desklet.js:3502
+msgid "Showers"
+msgstr "Záporok"
+
+#: desklet.js:1498
+msgid "Snow flurries"
+msgstr "Hózáporok"
+
+#: desklet.js:1499
+msgid "Light snow showers"
+msgstr "Gyenge hózáporok"
+
+#: desklet.js:1500
+msgid "Blowing snow"
+msgstr "Hófúvás"
+
+#: desklet.js:1501 desklet.js:3504 desklet.js:3510
+msgid "Snow"
+msgstr "Havazás"
+
+#: desklet.js:1502
+msgid "Hail"
+msgstr "Jégeső"
+
+#: desklet.js:1503 desklet.js:1793
+msgid "Sleet"
+msgstr "Ónos esőzés"
+
+#: desklet.js:1504
+msgid "Dust"
+msgstr "Por"
+
+#: desklet.js:1505
+msgid "Foggy"
+msgstr "Ködös idő"
+
+#: desklet.js:1506
+msgid "Haze"
+msgstr "Köd"
+
+#: desklet.js:1507
+msgid "Smoky"
+msgstr "Füstös"
+
+#: desklet.js:1508
+msgid "Blustery"
+msgstr "Erős széllökések"
+
+#: desklet.js:1509
+msgid "Windy"
+msgstr "Szeles"
+
+#: desklet.js:1510
+msgid "Cold"
+msgstr "Hideg"
+
+#: desklet.js:1511 desklet.js:3499
+msgid "Cloudy"
+msgstr "Felhős"
+
+#: desklet.js:1512 desklet.js:1513
+msgid "Mostly cloudy"
+msgstr "Nagyrészt felhős"
+
+#: desklet.js:1514 desklet.js:1515 desklet.js:1529
+msgid "Partly cloudy"
+msgstr "Részben felhős"
+
+#: desklet.js:1516
+msgid "Clear"
+msgstr "Tiszta idő"
+
+#: desklet.js:1517 desklet.js:1777
+msgid "Sunny"
+msgstr "Napos"
+
+#: desklet.js:1518 desklet.js:1519 desklet.js:3497
+msgid "Fair"
+msgstr "Szép idő"
+
+#: desklet.js:1520
+msgid "Mixed rain and hail"
+msgstr "Eső és jégeső"
+
+#: desklet.js:1521
+msgid "Hot"
+msgstr "Forróság"
+
+#: desklet.js:1522
+msgid "Isolated thunderstorms"
+msgstr "Elszigetelten zivatarok"
+
+#: desklet.js:1523
+msgid "Scattered thunderstorms"
+msgstr "Elszórtan zivatarok"
+
+#: desklet.js:1524 desklet.js:1525
+msgid "Scattered showers"
+msgstr "Elszórtan záporok"
+
+#: desklet.js:1526 desklet.js:1528
+msgid "Heavy snow"
+msgstr "Erős havazás"
+
+#: desklet.js:1527
+msgid "Scattered snow showers"
+msgstr "Elszórtan hózáporok"
+
+#: desklet.js:1530
+msgid "Thundershowers"
+msgstr "Zivatarok"
+
+#: desklet.js:1531 desklet.js:3505
+msgid "Snow showers"
+msgstr "Hózápor"
+
+#: desklet.js:1532
+msgid "Isolated thundershowers"
+msgstr "Elszórtan zivatarok"
+
+#: desklet.js:1533
+msgid "Not available"
+msgstr "Nem elérhető"
+
+#: desklet.js:1776 desklet.js:3496
+msgid "Clear Sky"
+msgstr "Felhőtlen égbolt"
+
+#: desklet.js:1778 desklet.js:3498
+msgid "Partly Cloudy"
+msgstr "Részben felhős"
+
+#: desklet.js:1779
+msgid "Sunny Intervals"
+msgstr "Szórványos napsütés"
+
+#: desklet.js:1780
+msgid "Sand Storm"
+msgstr "Por és Homokvihar"
+
+#: desklet.js:1781
+msgid "Mist"
+msgstr "Gyenge köd"
+
+#: desklet.js:1782 desklet.js:3500
+msgid "Fog"
+msgstr "Erősebb Köd"
+
+#: desklet.js:1783
+msgid "White Cloud"
+msgstr "Fehér felhő"
+
+#: desklet.js:1784
+msgid "Light Cloud"
+msgstr "Fátyolfelhő"
+
+#: desklet.js:1785
+msgid "Grey Cloud"
+msgstr "Szürke felhő"
+
+#: desklet.js:1786
+msgid "Thick Cloud"
+msgstr "Vastag felhőzet"
+
+#: desklet.js:1787
+msgid "Light Rain Shower"
+msgstr "Enyhe zápor"
+
+#: desklet.js:1789 desklet.js:3507 desklet.js:3511
+msgid "Light Rain"
+msgstr "Csendes eső"
+
+#: desklet.js:1790
+msgid "Heavy Rain Shower"
+msgstr "Erős záporeső"
+
+#: desklet.js:1791 desklet.js:3501 desklet.js:3509
+msgid "Heavy Rain"
+msgstr "Heves esőzés"
+
+#: desklet.js:1792
+msgid "Sleet Shower"
+msgstr "Ónos szitálás"
+
+#: desklet.js:1794
+msgid "Light Snow Shower"
+msgstr "Enyhe havas eső"
+
+#: desklet.js:1795 desklet.js:3508 desklet.js:3512
+msgid "Light Snow"
+msgstr "Enyhe havazás"
+
+#: desklet.js:1796
+msgid "Heavy Snow Shower"
+msgstr "Erős havas eső"
+
+#: desklet.js:1797
+msgid "Heavy Snow"
+msgstr "Erős havazás"
+
+#: desklet.js:1798 desklet.js:3503
+msgid "Thundery Shower"
+msgstr "Heves zápor"
+
+#: desklet.js:1799
+msgid "Thunder Storm"
+msgstr "Zápor, zivatar"
+
+#: desklet.js:1800
+msgid "Thunderstorm"
+msgstr "Vihar"
+
+#: desklet.js:1801
+msgid "Hazy"
+msgstr "Párás"
+
+#: desklet.js:1802
+msgid "Hail Shower"
+msgstr "Jeges eső"
+
+#: desklet.js:1803
+msgid "Rain"
+msgstr ""
+
+#. # direction of movement of pressure
+#: desklet.js:1987 desklet.js:2601
+msgid "Steady"
+msgstr "Állandó"
+
+#. # direction of movement of pressure
+#: desklet.js:1987 desklet.js:2597
+msgid "Rising"
+msgstr "Növekszik"
+
+#. # direction of movement of pressure
+#: desklet.js:1987 desklet.js:2599
+msgid "Falling"
+msgstr "Csökken"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->description
+msgid "Get displayed location from"
+msgstr "Megjelenítendő hely betöltése"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->tooltip
+msgid ""
+"The source of the text displayed as the current location. Yahoo! and Google "
+"may offer city names in other languages"
+msgstr ""
+"A megadott szöveg használata az aktuális hely megnevezéseként. Lehetséges, "
+"hogy a Yahoo! és a  Google felajánl város neveket egyéb nyelveken."
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->options
+msgid "Google"
+msgstr "Google"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->options
+#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->description
+msgid "Data service"
+msgstr "Az időjárás előrejelzés szolgáltatója"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->options
+msgid "Yahoo!"
+msgstr "Yahoo!"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->experimental_enabled->description
+msgid "Enable experimental features"
+msgstr "Kísérleti lehetőségek engedélyezése"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->experimental_enabled->tooltip
+msgid "Check this to enable experimental and buggy features"
+msgstr ""
+"Jelölje ki a kísérleti, nem tökéletesen működő lehetőségek engedélyezéséhez"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__cc__humidity->description
+msgid "Current humidity"
+msgstr "Aktuális páratartalom"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->display__cc__humidity->tooltip
+msgid "Check to display the current humidity"
+msgstr "Jelölje be az aktuális páratartalom megjelenítéséhez"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->refreshtime->description
+msgid "Refresh forecast every"
+msgstr "Az előrejelzés frissítése minden"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->refreshtime->tooltip
+msgid ""
+"Period between refreshing forecasts. Note that not all services support "
+"lower refresh times"
+msgstr ""
+"Frissítések közötti időintervallum. Kérjük vegye figyelembe, hogy nem "
+"mindegyik szolgáltatás támogatja az alacsony frissítési időintervallumokat."
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->refreshtime->units
+msgid "minutes"
+msgstr "percben"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->manuallocation->description
+msgid "Manually override displayed location"
+msgstr "A megjelenítendő hely manuális felülírása"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->manuallocation->tooltip
+msgid "Set your city name manually."
+msgstr "Állítsa be a városa nevét manuálisan."
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__cc__wind_speed->description
+msgid "Current wind"
+msgstr "Jelenlegi szél"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__cc__wind_speed->tooltip
+msgid "Check to display the current wind"
+msgstr "Jelölje be az aktuális széljárás megjelenítéséhez"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->tunits->description
+msgid "Temperature measurement unit"
+msgstr "A hőmérséklet mértékegysége"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->tunits->tooltip
+msgid "Measurement units used to display temperature"
+msgstr "Az a mértékegység amelyben megjelenítjük a hőmérsékletet"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->tunits->options
+msgid "Fahrenheit"
+msgstr "Fahrenheit fok"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->tunits->options
+msgid "Celsius"
+msgstr "Celsius-fok"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->textcolor->description
+msgid "Text color"
+msgstr "Szövegszín"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->textcolor->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Új szöveg szín választáshoz kattintson a gombra"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->border->description
+msgid "Show border"
+msgstr "Szegély mutatása"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->border->tooltip
+msgid "Check this to turn border on/off"
+msgstr "Szegély bekapcsolása/kikapcsolása"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->layout->description
+msgid "Layout"
+msgstr "Elhelyezkedés"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->layout->tooltip
+msgid "Set the overall layout of the desklet"
+msgstr "Válassza ki milyen elhelyezkedést szeretne"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->layout->options
+msgid "Horizontal"
+msgstr "Vízszintes elhelyezkedés"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->layout->options
+msgid "Vertical"
+msgstr "Függőleges elhelyezkedés"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->bgcolor->description
+msgid "Background color"
+msgstr "A háttér színe"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->bgcolor->tooltip
+msgid "Click the button to select a new background color"
+msgstr "Az új háttérszín kiválasztásához kattintson a gombra"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->description
+msgid "Anchor desklet by"
+msgstr "Desklet rögzítése"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->tooltip
+msgid ""
+"Select the point on the desklet to which it is anchored. This point will "
+"remain static as the desklet grows and shrinks"
+msgstr ""
+"Válasszon egy pontot a deskleten amely rögzítve lesz. Ez a pont állandó "
+"marad a desklet méretének növekedése és csökkenése esetén is."
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
+msgid "Bottom center"
+msgstr "Alsó-közép"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
+msgid "Default"
+msgstr "Alapértelmezés"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
+msgid "Left center"
+msgstr "Bal-közép"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
+msgid "Top right"
+msgstr "Jobb-fent"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
+msgid "Bottom left"
+msgstr "Bal-alsó"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
+msgid "Top left"
+msgstr "Bal-felső"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
+msgid "Right center"
+msgstr "Jobb-közép"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
+msgid "Bottom right"
+msgstr "Jobb-alsó"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
+msgid "Top center"
+msgstr "Fent-közép"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->top->description
+msgid "Weather configuration"
+msgstr "Az időjárás előrejelzés beállítása"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->description
+msgid "Pressure measurement unit"
+msgstr "A légnyomás mértékegysége"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->tooltip
+msgid "Measurement units used to display atmospheric pressure"
+msgstr "Az a mértékegység amelyben a légnyomást megjelenítjük"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->options
+msgid "in (Hg)"
+msgstr "inch(higany)"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->options
+msgid "mm (Hg)"
+msgstr "mm(higany)"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->options
+msgid "kPa"
+msgstr "kPa"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->options
+msgid "mb"
+msgstr "mb"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->styling->description
+msgid "Desklet style"
+msgstr "A Desklet stílusa"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__forecast__maximum_temperature->description
+msgid "Forecast maximum"
+msgstr "Előrejelzett legmagasabb hőmérséklet"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__forecast__maximum_temperature->tooltip
+msgid "Check to display the forecast maximum temperature"
+msgstr "Jelölje be az előrejelzett legmagasabb hőmérséklet megjelenítéséhez"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->description
+msgid "Wind speed measurement unit"
+msgstr "A szél sebesség mértékegysége"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->tooltip
+msgid "Measurement units used to display wind speed"
+msgstr "Az a mértékegység amelyben a szél sebességét megjelenítjük"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->options
+msgid "knots"
+msgstr "csomók"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->options
+msgid "m/s"
+msgstr "méter/sec"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->options
+msgid "km/h"
+msgstr "km/ó"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->options
+msgid "mph"
+msgstr "mérföld/óra"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__meta__country->description
+msgid "Country"
+msgstr "Ország"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->display__meta__country->tooltip
+msgid "Check to display the country"
+msgstr "Jelölje be az országnév megjelenítéséhez"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__cc__pressure->description
+msgid "Current pressure"
+msgstr "Aktuális légnyomás"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->display__cc__pressure->tooltip
+msgid "Check to display the current pressure"
+msgstr "Jelölje be az aktuális légnyomás megjelenítéséhez"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__forecast__wind_direction->description
+msgid "Forecast wind direction"
+msgstr "Előrejelzett szélirány"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__forecast__wind_direction->tooltip
+msgid "Check to display the forecast wind direction"
+msgstr "Jelölje be az előrejelzett szélirány megjelenítéséhez"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__cc__feelslike->description
+msgid "Current 'feels like'"
+msgstr "Aktuális \"hőérzet\""
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->display__cc__feelslike->tooltip
+msgid "Check to display the current apparent temperature"
+msgstr "Jelölje be az aktuális hőérzet megjelenítéséhez"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__forecast__humidity->description
+msgid "Forecast humidity"
+msgstr "Előrejelzett páratartalom"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__forecast__humidity->tooltip
+msgid "Check to display the forecast humidity"
+msgstr "Jelölje be az előrejelzett páratartalom megjelenítéséhez"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->userno->description
+msgid "Show forecast for"
+msgstr "Előrejelzés"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->userno->tooltip
+msgid ""
+"The number of days of forecast to display. Note that not all services "
+"support all values"
+msgstr ""
+"Az előrejelzett napok számának kiválasztása. Kérjük vegye figyelembe, nem "
+"minden szolgáltató jelzi előre az összes értéket"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->userno->units
+msgid "days"
+msgstr "napra"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->bordercolor->description
+msgid "Border color"
+msgstr "Szegélyszín"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->bordercolor->tooltip
+msgid ""
+"Select the color for the border. Only available if the 'Border' checkbox is "
+"enabled"
+msgstr ""
+"Válassza ki a szegély színét. Csak akkor elérhető ha a \"szegély\" "
+"jelölőnégyzetet bejelölte"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__forecast__wind_speed->description
+msgid "Forecast wind speed"
+msgstr "Szélerősség előrejelzése"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__forecast__wind_speed->tooltip
+msgid "Check to display the forecast wind speed"
+msgstr "Jelölje be az előrejelzett szélerősség megjelenítéséhez"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__cc__weather->description
+msgid "Current weather and icon"
+msgstr "Aktuális időjárás és időjárás ikon"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->display__cc__weather->tooltip
+msgid "Check to display the current weather and large icon"
+msgstr ""
+"Jelölje be az aktuális időjárás és a nagy időjárás ikon megjelenítéséhez"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->overrideTheme->description
+msgid "Override desktop theme (enables the settings below)"
+msgstr ""
+"Az asztal témájának felülírása (engedélyezi a lentebbi beállítások "
+"használatát)"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->overrideTheme->tooltip
+msgid ""
+"Check this to override the desktop theme and configure the appearance "
+"manually"
+msgstr ""
+"Jelőlje be az asztali téma felülírásához és állítsa be a megjelenést "
+"manuálisan"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->citystyle->description
+msgid "Bold city name"
+msgstr "Városnév félkövér betűkkel"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->citystyle->tooltip
+msgid "Check to display the city name in bold"
+msgstr "Jelölje be a félkövér karakterek használatához a városnévben"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__cc__visibility->description
+msgid "Current visibility"
+msgstr "Aktuális látótávolság"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__cc__visibility->tooltip
+msgid "Check to display the current visibility"
+msgstr "Jelölje be az aktuális látótávolság megjelenítéséhez"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__forecast__minimum_temperature->description
+msgid "Forecast minimum"
+msgstr "Előrejelzett legalacsonyabb hőmérséklet"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__forecast__minimum_temperature->tooltip
+msgid "Check to display the forecast minimum temperature"
+msgstr "Jelölje be az előrejelzett legalacsonyabb hőmérséklet megjelenítéséhez"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->locationlookups->description
+msgid "Location display settings"
+msgstr "Hely megjelenítési beállítások"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->apikey->description
+msgid "API key"
+msgstr "API kulcsok"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->apikey->tooltip
+msgid ""
+"Required for some services only. Enter your API key for your chosen service"
+msgstr ""
+"Csak néhány szolgáltatáshoz szükséges. Adja meg a választott szolgáltatáshoz "
+"az API kulcsot"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->tooltip
+msgid "Select the data service you wish to use"
+msgstr "Válassza ki a használni kívánt szolgáltatót"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
+msgid "Forecast.io (requires API key)"
+msgstr "Forecast.io (API kulcs szükséges)"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
+msgid "Wunderground (requires API key)"
+msgstr "Wunderground (API kulcs szükséges)"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
+msgid "meteoblue (requires API key)"
+msgstr ""
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
+msgid "BBC"
+msgstr "BBC"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
+msgid "Yahoo"
+msgstr "Yahoo!"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
+msgid "weather.com (deprecated)"
+msgstr "weather.com (helytelenített)"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
+msgid "World Weather Online (requires API key)"
+msgstr "World Weather Online (API kulcs szükséges)"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
+msgid "Open Weather Map"
+msgstr "Open Weather Map"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__forecast__pressure->description
+msgid "Forecast pressure"
+msgstr "Előrejelzett légnyomás"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__forecast__pressure->tooltip
+msgid "Check to display the forecast pressure"
+msgstr "Jelölje be az előrejelzett légnyomás megjelenítéséhez"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->zoom->description
+msgid "Zoom by"
+msgstr "Nagyítás"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->zoom->tooltip
+msgid "Change the size of the desklet"
+msgstr "Megváltoztatja a desklet méretét"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->zoom->units
+msgid "times"
+msgstr "szeresre"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->description
+msgid "Icon style"
+msgstr "Ikon stílusa"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->tooltip
+msgid "Select the style for the weather icons"
+msgstr "Válassza ki az időjárás ikon stílusát"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "Flat white"
+msgstr "Lapos fehér"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "Novacon"
+msgstr "Novacon"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "VClouds"
+msgstr "VClouds"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "Colorful"
+msgstr "Színesek"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "Light"
+msgstr "Világos"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "Meteocons 2"
+msgstr "Meteocons 2"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "Flat black"
+msgstr "Lapos fekete"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "Meteocons 1"
+msgstr "Meteocons 1"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "Dark"
+msgstr "Sötét"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "Sketchy"
+msgstr "Vázlatos"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "Flat colorful"
+msgstr "Lapos színes"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "User defined"
+msgstr "Felhasználó által megadott"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "Weezle"
+msgstr "Weezle"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->stationID->description
+msgid "Location"
+msgstr "Hely"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->stationID->tooltip
+msgid "Set your location here"
+msgstr "Itt állíthatja be a helyet"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->cornerradius->description
+msgid "Corner radius"
+msgstr "Saroklekerekítés sugara"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->cornerradius->tooltip
+msgid "Radius for rounding the desklet's corners"
+msgstr "A desklet saroklekerekítésének mértéke"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->cornerradius->units
+#. bbcwx@oak-wood.co.uk->settings-schema.json->borderwidth->units
+msgid "px"
+msgstr "pixel"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->transparency->description
+msgid "Transparency"
+msgstr "Áttetszőség"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->transparency->tooltip
+msgid "Set the transparency of the desklet"
+msgstr "A desklet áttetszőségének mértéke"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->display->description
+msgid ""
+"Optional items to display (not all options are supported by all services)"
+msgstr ""
+"Megjelenítendő adatok (nem minden szolgáltatónál érhető el az összes adat)"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->experimental->description
+msgid "Experimental and buggy features (read documentation!!)"
+msgstr ""
+"Kísérleti és nem hibátlan működésű lehetőségek (olvassa el a leírást!!)"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->borderwidth->description
+msgid "Border width"
+msgstr "Szegélyvastagság"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->borderwidth->tooltip
+msgid ""
+"Select the width of the border. Only available if the 'Border' checkbox is "
+"enabled"
+msgstr ""
+"Kiválaszthatja  a szegély vastagságát. Csak akkor elérhető ha bejelölte a "
+"\"Szegély\" jelölőnégyzetet"
+
+#. bbcwx@oak-wood.co.uk->metadata.json->name
+msgid "Weather Desklet"
+msgstr ""
+
+#. bbcwx@oak-wood.co.uk->metadata.json->description
+msgid "Display the weather from several web services on your desktop"
+msgstr ""

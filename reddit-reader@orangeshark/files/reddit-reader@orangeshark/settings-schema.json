@@ -1,0 +1,38 @@
+{
+    "subreddit": {
+        "default": "all",
+        "type": "entry",
+        "description": "Subreddit:",
+        "tooltip" : "supports multireddits and alterative sorting methods. eg: TheOnion+NotTheOnion, Linux/new and aww+worldnews/controversial"
+    },
+
+    "height": {
+        "default": 400,
+        "type": "spinbutton",
+        "min": 100,
+        "max": 1000,
+        "description": "Height:",
+        "units": "pixels",
+        "step": 50
+    },
+
+    "width": {
+        "default": 300,
+        "type": "spinbutton",
+        "min": 100,
+        "max": 1000,
+        "step": 50,
+        "description": "Width:",
+        "units": "pixels"
+    },
+
+    "refreshRate": {
+        "default": 5,
+        "type": "spinbutton",
+        "min": 1,
+        "max": 60,
+        "step": 1,
+        "description": "Refresh rate:",
+        "units": "minutes"
+    }
+}

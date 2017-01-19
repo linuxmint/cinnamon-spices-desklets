@@ -1,0 +1,6 @@
+{
+ "uuid": "commandOfTheDay@logg",
+ "name": "Command of the day desklet",
+ "description": "A desklet that displays arbitrary text output from commands",
+ "prevent-decorations": false
+}

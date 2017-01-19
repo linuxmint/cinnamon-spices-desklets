@@ -1,0 +1,661 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Drives-Manager v1.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-10-25 01:53-0500\n"
+"PO-Revision-Date: 2014-11-26 01:13-0600\n"
+"Last-Translator: spacy01 <spacy00001@gmail.com>\n"
+"Language-Team: spacy01 <spacy00001@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: bg\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#: desklet.js:95 system.js:480 system.js:492 system.js:502 util.js:125
+#, c-format
+msgid "Execution of '%s' failed:"
+msgstr "Изпълнението на '%s' се провали:"
+
+#: user-define
+msgid "locale/README"
+msgstr "locale/README"
+
+#: desklet.js:148 desklet.js:182 desklet.js:1159 desklet.js:1196
+#: desklet.js:1479 desklet.js:1561 desklet.js:1583 desklet.js:1594
+#: desklet.js:1603 desklet.js:1611 desklet.js:1916 desklet.js:1928
+#: desklet.js:1938 desklet.js:2097 desklet.js:2168 desklet.js:2255
+msgid "Failed of Drives Manager:"
+msgstr "Провал на мениджъра на дискове:"
+
+#: desklet.js:1159 desklet.js:1479 desklet.js:1916
+msgid "Can't find the default browser."
+msgstr "Браузъра по подразбиране не може да бъде намерен."
+
+#: desklet.js:1371 desklet.js:1909
+msgid "The device has been loaded."
+msgstr "Беше заредено устройство."
+
+#: desklet.js:1376 desklet.js:1934
+msgid "The device has been ejected."
+msgstr "Устройството беше извадено."
+
+#: desklet.js:1994
+msgid "Drives Manager need a pakage to use advance function."
+msgstr "Мениджъра на дискове се нуждае от пакет за тази функция."
+
+#: desklet.js:1994 desklet.js:2019
+msgid ""
+"If you do not want to install the package uncheck the option in the settings."
+msgstr "Ако не желаете да инсталирате пакета, отмаркирайте тази настройка."
+
+#: desklet.js:1994
+msgid "Do you want to install?"
+msgstr "Желаете ли да инсталирате?"
+
+#: desklet.js:1994 desklet.js:2008 desklet.js:2017 desklet.js:2029
+msgid "Yes"
+msgstr "Да"
+
+#: desklet.js:1994 desklet.js:2008 desklet.js:2021 desklet.js:2033
+msgid "No"
+msgstr "Не"
+
+#: desklet.js:2008
+msgid ""
+"Drives Manager requires that your account has permission to use advanced "
+"function."
+msgstr ""
+"Мениджъра на устройствата изисква Вашият акаунт да има правомощия за тази "
+"функция."
+
+#: desklet.js:2008 desklet.js:2031
+msgid ""
+"If you do not want to grant permissions uncheck the option in the settings."
+msgstr "Ако не искате да дадете правомощия, отмаркирайте тази настройка."
+
+#: desklet.js:2008
+msgid "Do you want to grant permissions?"
+msgstr "Желаете ли да дадете правомощия?"
+
+#: desklet.js:2019
+msgid "Please wait while installing pakage..."
+msgstr "Моля изчакайте, пакета се инсталира..."
+
+#: desklet.js:2019 desklet.js:2031 desklet.js:2041
+msgid "Cancel"
+msgstr "Отмени"
+
+#: desklet.js:2070
+msgid "Drives Manager"
+msgstr "Мениджър на дискове"
+
+#: desklet.js:2078
+msgid "Help"
+msgstr "Помощ"
+
+#: desklet.js:2767
+msgid "Show as Applet"
+msgstr "Покажи като аплет."
+
+#: applet.js:69
+msgid "Show as Desklet"
+msgstr "Покажи като десклет"
+
+#: system.js:79 system.js:92 system.js:101 system.js:408
+msgid "Error:"
+msgstr "Грешка:"
+
+#: system.js:79 system.js:92 system.js:503
+msgid "The communication need to be established first."
+msgstr "Нужно е първо да се установи връзка."
+
+#: system.js:101
+msgid "Can't localizing task."
+msgstr "Задачата не може да бъде локализирана."
+
+#: system.js:105
+msgid "Result is undefined:"
+msgstr "Резултата е неопределен:"
+
+#: system.js:45 system.js:62 system.js:126 system.js:354
+msgid "The communication can't be established:"
+msgstr "Не може да бъде установена връзка:"
+
+#: system.js:138 system.js:306 system.js:328 util.js:90
+msgid "Command not found."
+msgstr "Непозната команда."
+
+#: system.js:261
+msgid ""
+"Can't be found appropriate installer program. The Automatic installation "
+"can't be performed."
+msgstr ""
+"Не може да се намери подходяща програма за инсталиране. Не може да бъде "
+"извършена автоматична инсталация."
+
+#: system.js:272
+msgid ""
+"Can't be found an appropriate packages check program. The automatic "
+"installation cannot be performed."
+msgstr ""
+"Не може да се намери подходяща програма за проверка на пакети. Не може да "
+"бъде извършена автоматична инсталация."
+
+#: system.js:468
+msgid "You don't have any GUI program to get root permissions."
+msgstr "Вие нямате графична програма за даване на root права."
+
+#: util.js:117
+msgid "Could not parse command:"
+msgstr "Не може да се анализира командата:"
+
+#. drivesManager@lestcape->settings-schema.json->header-categories->description
+msgid "Categories:"
+msgstr "Категории:"
+
+#. drivesManager@lestcape->settings-schema.json->header-tools->description
+msgid "Tools:"
+msgstr "Инструменти:"
+
+#. drivesManager@lestcape->settings-schema.json->header-hdd-temp->description
+msgid "HDD temperature:"
+msgstr "Температура на диска:"
+
+#. drivesManager@lestcape->settings-schema.json->header-appearance->description
+msgid "Appearance:"
+msgstr "Външен вид:"
+
+#. drivesManager@lestcape->settings-schema.json->header-advanced-appearance->description
+msgid "Advanced Appearance:"
+msgstr "Разширен външен вид:"
+
+#. drivesManager@lestcape->settings-schema.json->theme->description
+msgid "Select icon theme:"
+msgstr "Избор на тема за иконките:"
+
+#. drivesManager@lestcape->settings-schema.json->theme->tooltip
+msgid "Select a theme to show icons."
+msgstr "Изберете вида на иконките."
+
+#. drivesManager@lestcape->settings-schema.json->theme->options
+msgid "Native"
+msgstr "Системна"
+
+#. drivesManager@lestcape->settings-schema.json->theme->options
+msgid "Symbolic"
+msgstr "Символна"
+
+#. drivesManager@lestcape->settings-schema.json->theme->options
+msgid "Blue"
+msgstr "Син"
+
+#. drivesManager@lestcape->settings-schema.json->theme->options
+msgid "Pink"
+msgstr "Розов"
+
+#. drivesManager@lestcape->settings-schema.json->theme->options
+msgid "Windows"
+msgstr "Уиндоус"
+
+#. drivesManager@lestcape->settings-schema.json->theme->options
+msgid "Ubuntu"
+msgstr "Убунту"
+
+#. drivesManager@lestcape->settings-schema.json->theme->options
+msgid "Mind"
+msgstr "Минт"
+
+#. drivesManager@lestcape->settings-schema.json->theme->options
+msgid "Metalic"
+msgstr "Металик"
+
+#. drivesManager@lestcape->settings-schema.json->theme->options
+msgid "Black"
+msgstr "Черен"
+
+#. drivesManager@lestcape->settings-schema.json->theme->options
+msgid "Linux"
+msgstr "Линукс"
+
+#. drivesManager@lestcape->settings-schema.json->theme->options
+msgid "Orange"
+msgstr "Оранжев"
+
+#. drivesManager@lestcape->settings-schema.json->theme->options
+msgid "Comic"
+msgstr "Комикс"
+
+#. drivesManager@lestcape->settings-schema.json->mainBox->description
+msgid "Show the main box."
+msgstr "Показване на основната рамка."
+
+#. drivesManager@lestcape->settings-schema.json->mainBox->tooltip
+msgid "Check this to make the main box visible/invisible."
+msgstr "Маркирайте, за да направите основната рамка видима."
+
+#. drivesManager@lestcape->settings-schema.json->driveBox->description
+msgid "Show the drive box."
+msgstr "Показване на устройствата в рамка."
+
+#. drivesManager@lestcape->settings-schema.json->driveBox->tooltip
+msgid "Check this to make the drive box visible/invisible."
+msgstr "Маркирайте, за да направите рамката на устройствата видима."
+
+#. drivesManager@lestcape->settings-schema.json->borderBoxWidth->description
+msgid "Border's box width:"
+msgstr "Широчина на рамката:"
+
+#. drivesManager@lestcape->settings-schema.json->borderBoxWidth->tooltip
+msgid "Increase or decrease the border's box width."
+msgstr "Увеличете или намалете рамката."
+
+#. drivesManager@lestcape->settings-schema.json->borderBoxColor->description
+msgid "Border's box color:"
+msgstr "Цвят на рамката:"
+
+#. drivesManager@lestcape->settings-schema.json->borderBoxColor->tooltip
+msgid "Set the custom border box's color."
+msgstr "Задайте цвят на рамката."
+
+#. drivesManager@lestcape->settings-schema.json->boxColor->description
+msgid "Box color:"
+msgstr "Цвят на кутията:"
+
+#. drivesManager@lestcape->settings-schema.json->boxColor->tooltip
+msgid "Set the custom box's color."
+msgstr "Задайте цвят на кутиите."
+
+#. drivesManager@lestcape->settings-schema.json->fixWidth->description
+msgid "Fixed width."
+msgstr "Фиксирана широчина."
+
+#. drivesManager@lestcape->settings-schema.json->fixWidth->tooltip
+msgid "Check this if you want to control the width of desklet."
+msgstr "Маркирайте, ако искате контрол над широчината на десклета."
+
+#. drivesManager@lestcape->settings-schema.json->width->description
+msgid "Width:"
+msgstr "Широчина:"
+
+#. drivesManager@lestcape->settings-schema.json->width->tooltip
+msgid "Increase or decrease the desklet width."
+msgstr "Увеличете или намалете широчината на десклета."
+
+#. drivesManager@lestcape->settings-schema.json->fixHeight->description
+msgid "Fixed height."
+msgstr "Фиксирана височина."
+
+#. drivesManager@lestcape->settings-schema.json->fixHeight->tooltip
+msgid "Check this if you want to control the height of desklet."
+msgstr "Маркирайте, ако искате контрол над височината на десклета."
+
+#. drivesManager@lestcape->settings-schema.json->height->description
+msgid "Height:"
+msgstr "Височина:"
+
+#. drivesManager@lestcape->settings-schema.json->height->tooltip
+msgid "Increase or decrease the desklet height."
+msgstr "Увеличете или намалете широчината на десклета."
+
+#. drivesManager@lestcape->settings-schema.json->enableAutoscroll->description
+msgid "Enable autoscrolling."
+msgstr "Включване на автоматичния скрол."
+
+#. drivesManager@lestcape->settings-schema.json->enableAutoscroll->tooltip
+msgid "Choose whether or not to enable smooth autoscrolling on the menu."
+msgstr "Изберете дали искате да включите автоматичния скрол."
+
+#. drivesManager@lestcape->settings-schema.json->scrollVisible->description
+msgid "Show the scrolling area."
+msgstr "Показване на скрола."
+
+#. drivesManager@lestcape->settings-schema.json->scrollVisible->tooltip
+msgid "Choose whether or not to show the scrolling area."
+msgstr "Изберете дали скрола да се вижда."
+
+#. drivesManager@lestcape->settings-schema.json->overrideTheme->description
+msgid "Override the Cinnamon theme properties."
+msgstr "Презаписване на темата на Cinnamon."
+
+#. drivesManager@lestcape->settings-schema.json->overrideTheme->tooltip
+msgid ""
+"Check this if you want to override the Cinnamon theme properties or not."
+msgstr "Маркирайте ако искате да презапишете тамата на Cinnamon."
+
+#. drivesManager@lestcape->settings-schema.json->fontColor->description
+msgid "Font color:"
+msgstr "Цвят на шрифта:"
+
+#. drivesManager@lestcape->settings-schema.json->fontColor->tooltip
+msgid "Set the custom text color."
+msgstr "Задайте цвят на текста."
+
+#. drivesManager@lestcape->settings-schema.json->textTopSize->description
+msgid "Font size top text:"
+msgstr "Размер на горния шрифт:"
+
+#. drivesManager@lestcape->settings-schema.json->textTopSize->tooltip
+msgid "Increase or decrease the font size of top text."
+msgstr "Увеличете или намалете размера на шрифта на горния текст."
+
+#. drivesManager@lestcape->settings-schema.json->textBottomSize->description
+msgid "Font size bottom text:"
+msgstr "Размер на долния шрифт:"
+
+#. drivesManager@lestcape->settings-schema.json->textBottomSize->tooltip
+msgid "Increase or decrease the font size of bottom text."
+msgstr "Увеличете или намалете размера на долния текст."
+
+#. drivesManager@lestcape->settings-schema.json->opacity->description
+msgid "Opacity:"
+msgstr "Прозрачност:"
+
+#. drivesManager@lestcape->settings-schema.json->opacity->tooltip
+msgid "Select a opacity percent."
+msgstr "Изберете процент на прозрачност."
+
+#. drivesManager@lestcape->settings-schema.json->speedMeter->description
+msgid "Show the Speed Meter."
+msgstr "Показване на скоростта. "
+
+#. drivesManager@lestcape->settings-schema.json->speedMeter->tooltip
+msgid "Check this to show the Speed Meter or not."
+msgstr "Маркирайте ако искате да се показва скоростта."
+
+#. drivesManager@lestcape->settings-schema.json->hardDrives->description
+msgid "Show the Hard Drives."
+msgstr "Показване на твърдите дискове."
+
+#. drivesManager@lestcape->settings-schema.json->hardDrives->tooltip
+msgid "Check this to show the Hard Drives or not."
+msgstr "Маркирайте ако искате твърдите дискове да се виждат."
+
+#. drivesManager@lestcape->settings-schema.json->opticalDrives->description
+msgid "Show the Optical Drives."
+msgstr "Показване на оптичните устройства."
+
+#. drivesManager@lestcape->settings-schema.json->opticalDrives->tooltip
+msgid "Check this to show the Optical Drives or not."
+msgstr "Маркирайте ако искате оптичните устройства да се виждат."
+
+#. drivesManager@lestcape->settings-schema.json->removableDrives->description
+msgid "Show the Removable Drives."
+msgstr "Показване на преносимите устройства."
+
+#. drivesManager@lestcape->settings-schema.json->removableDrives->tooltip
+msgid "Check this to show the Removable Drives or not."
+msgstr "Маркирайте ако искате преносимите устройства да се виждат."
+
+#. drivesManager@lestcape->settings-schema.json->fixedDrives->description
+msgid "Show the Fixed Drives."
+msgstr "Показване на фиксирани устройства."
+
+#. drivesManager@lestcape->settings-schema.json->fixedDrives->tooltip
+msgid "Check this to show the Fixed Drives or not."
+msgstr "Маркирайте ако искате фиксираните устройства да се виждат."
+
+#. drivesManager@lestcape->settings-schema.json->notDrives->description
+msgid "Show the Volumes without Drives."
+msgstr "Показване на  устройства без диск."
+
+#. drivesManager@lestcape->settings-schema.json->notDrives->tooltip
+msgid ""
+"Check this to show the Volumes without Drives (like ftp, sftp, iso images "
+"and more)."
+msgstr "Маркирайте ако искате устройства без диск да се виждат."
+
+#. drivesManager@lestcape->settings-schema.json->emptyDrives->description
+msgid "Show the Empty Drives."
+msgstr "Показване на празните устройства."
+
+#. drivesManager@lestcape->settings-schema.json->emptyDrives->tooltip
+msgid "Check this to show the Empty Drives or not."
+msgstr "Маркирайте ако искате празните устройства да се виждат."
+
+#. drivesManager@lestcape->settings-schema.json->meterTimeDelay->description
+msgid "File time transfer(Longer time means more precision):"
+msgstr "Време за прехвърляне на файлове(по-дълго време, по-голяма прецизност):"
+
+#. drivesManager@lestcape->settings-schema.json->meterTimeDelay->tooltip
+msgid "Increase or decrease the time between measurements file transfer speed."
+msgstr ""
+"Увеличете или намалете времето между измерванията на скоростта на файлов "
+"трансфер."
+
+#. drivesManager@lestcape->settings-schema.json->notMountSystem->description
+msgid "The O.S. do not automount the volume."
+msgstr "Без автоматично монтиране на устройствата."
+
+#. drivesManager@lestcape->settings-schema.json->notMountSystem->tooltip
+msgid ""
+"Check this to set in false the desktop.media-handling automount property of "
+"org.cinnamon and org.gnome."
+msgstr ""
+"Маркирайте ако искате да зададете false на  desktop.media-handling automount "
+"свойството на org.cinnamon и org.gnome."
+
+#. drivesManager@lestcape->settings-schema.json->mountConnect->description
+msgid "Drives Manager automount the volume."
+msgstr "Мениджъра на дискове автоматично ще монтира устройствата."
+
+#. drivesManager@lestcape->settings-schema.json->mountConnect->tooltip
+msgid ""
+"Check this if you want that Drives Manager can automount the volume when is "
+"ready."
+msgstr ""
+"Маркирайте ако искате Мениджъра на дискове да монтира устройствата, когато "
+"са готови."
+
+#. drivesManager@lestcape->settings-schema.json->notOpenSystem->description
+msgid "The O.S. do not auto open mount points."
+msgstr "Операционната система няма да отваря автоматично точките на монтиране."
+
+#. drivesManager@lestcape->settings-schema.json->notOpenSystem->tooltip
+msgid ""
+"Check this to set in false the desktop.media-handling automount-open "
+"property of org.cinnamon and org.gnome."
+msgstr ""
+"Маркирайте за да зададете false на desktop.media-handling automount-open "
+"свойството на rg.cinnamon и org.gnome."
+
+#. drivesManager@lestcape->settings-schema.json->openConnect->description
+msgid "Drives Manager auto open the mount points."
+msgstr "Мениджъра на дискове ще отваря автоматично точките на монтиране."
+
+#. drivesManager@lestcape->settings-schema.json->openConnect->tooltip
+msgid ""
+"Check this if you want that Drives Manager auto open the mount points when "
+"the volume was mounted."
+msgstr ""
+"Маркирайте ако искате Мениджъра на дискове да отваря автоматично "
+"устройствата, когато са монтирани."
+
+#. drivesManager@lestcape->settings-schema.json->openWith->description
+msgid "Open with:"
+msgstr "Отваряне с:"
+
+#. drivesManager@lestcape->settings-schema.json->openWith->tooltip
+msgid "Select the default browser."
+msgstr "Избор на браузър по подразбиране."
+
+#. drivesManager@lestcape->settings-schema.json->openWith->options
+msgid "Nemo"
+msgstr "Namo"
+
+#. drivesManager@lestcape->settings-schema.json->openWith->options
+msgid "Nautilus"
+msgstr "Nautilus"
+
+#. drivesManager@lestcape->settings-schema.json->capacityDetect->description
+msgid "Use the capacity detection."
+msgstr "Откриване на размера."
+
+#. drivesManager@lestcape->settings-schema.json->capacityDetect->tooltip
+msgid ""
+"Check this to use or not the capacity detection. When enabled using more "
+"CPU, but capacity changes are detected in the volumens mounted."
+msgstr ""
+"Маркирайте ако искате да открива размера. Включването ще увеличи "
+"използването на процесора, но промяната на размера на монтираните устройства "
+"ще бъде показвана."
+
+#. drivesManager@lestcape->settings-schema.json->unEjecting->description
+msgid ""
+"Don't eject Removable Drive (they can be reconnected without need to pull "
+"out of the connector)."
+msgstr ""
+"Без изваждане на преносимите устройства (те ще бъдат свързани повторно без "
+"да има нужда да се вадят.)"
+
+#. drivesManager@lestcape->settings-schema.json->unEjecting->tooltip
+msgid ""
+"Check this to use or not the option of don't eject Removable Drive. They can "
+"be reconnected without need to pull out of the connector if you this option "
+"is active."
+msgstr ""
+"Маркирайте за да използвате тази опция. Ако я активирате, преносимите "
+"устройства ще се свързват повторно, без да има нужда да се вадят."
+
+#. drivesManager@lestcape->settings-schema.json->unmountAll->description
+msgid "Unmount all mounted belonging to the same drive."
+msgstr "Демонтиране на всички монтирани, принадлежащи на едно устройство."
+
+#. drivesManager@lestcape->settings-schema.json->unmountAll->tooltip
+msgid ""
+"Check this to unmount all mounted belonging to the same drive. This avoid "
+"try to unplug a drive that still contains some mounted volumes."
+msgstr ""
+"Маркирайте за да демонтирате всички монтирани, принадлежащи на едно и също "
+"устройство. Така избягвате изваждането на устройство, което все още има "
+"монтирани дялове."
+
+#. drivesManager@lestcape->settings-schema.json->displayMessage->description
+msgid "Display a message when drives change."
+msgstr "Показване на съобщение, при промени в устройството."
+
+#. drivesManager@lestcape->settings-schema.json->displayMessage->tooltip
+msgid "Check this to display a message when a change occurs in the drives."
+msgstr ""
+"Маркирайте за да видите съобщение при направени промени, засягащи дисковете."
+
+#. drivesManager@lestcape->settings-schema.json->raiseKey->description
+msgid "Raise to top shorcut key."
+msgstr "Задаване на бързи клавиши."
+
+#. drivesManager@lestcape->settings-schema.json->raiseCenter->description
+msgid "Display in the center when the desklet is raised."
+msgstr "Показване в центъра, когато е фокусирано на десклета"
+
+#. drivesManager@lestcape->settings-schema.json->raiseCenter->tooltip
+msgid "Check this to display the desklet in the screen center, when is raised."
+msgstr "Маркирайте за да се показва десклета в центъра, когато е извикан."
+
+#. drivesManager@lestcape->settings-schema.json->hddTemp->description
+msgid "Use the temperature detection in the Hard drives."
+msgstr "Показване на температурата на твърдите дискове."
+
+#. drivesManager@lestcape->settings-schema.json->hddTemp->tooltip
+msgid ""
+"Check this to use or not the temperature detection in the hard drives (needs "
+"Udisk2)."
+msgstr ""
+"Маркирайте ако искате температурата на твърдите дискове да се показва (има "
+"нужда от Udisk2)."
+
+#. drivesManager@lestcape->settings-schema.json->hddTempSound->description
+msgid "Activate the temperature alarm sound."
+msgstr "Активирана на температурната аларма."
+
+#. drivesManager@lestcape->settings-schema.json->hddTempSound->tooltip
+msgid ""
+"Enabling this property activate a alarm sound when temperature reaches "
+"alarming levels."
+msgstr ""
+"Включването на това свойство активира алармен звук, когато температурата "
+"достигне тревожни нива."
+
+#. drivesManager@lestcape->settings-schema.json->normalHddColor->description
+msgid "Color to show warning when the temperature is Normal:"
+msgstr "Цвят на показване на нормалната температура:"
+
+#. drivesManager@lestcape->settings-schema.json->normalHddColor->tooltip
+msgid "Set the custom color of Normal temperature warning."
+msgstr "Задайте цвят на показване на нормалната температура."
+
+#. drivesManager@lestcape->settings-schema.json->warningHddColor->description
+msgid "Color to show warning when the temperature is High:"
+msgstr "Цвят на показване на висока температура:"
+
+#. drivesManager@lestcape->settings-schema.json->warningHddColor->tooltip
+msgid "Set the custom color of High temperature warning."
+msgstr "Задайте цвят на показване, когато температурата е висока."
+
+#. drivesManager@lestcape->settings-schema.json->critialHddColor->description
+msgid "Color to show warning when the temperature is Alarming:"
+msgstr "Цвят на показване на алармиращо висока температура:"
+
+#. drivesManager@lestcape->settings-schema.json->critialHddColor->tooltip
+msgid "Set the custom color of Alarming temperature warning."
+msgstr "Задайте цвят на показване, когато температурата е тревожно висока."
+
+#. drivesManager@lestcape->settings-schema.json->warningHddTemp->description
+msgid "Value of High temperature to display a warning:"
+msgstr "Стойност на високата температура, за показване на предупреждение:"
+
+#. drivesManager@lestcape->settings-schema.json->warningHddTemp->tooltip
+msgid "Set the custom High temperature value to display a warning."
+msgstr "Задаване при колко висока температура де се показва предупреждение."
+
+#. drivesManager@lestcape->settings-schema.json->criticalHddTemp->description
+msgid "Value of Alarming temperature to display a alarm:"
+msgstr "Стойност на алармиращата температура, за включване на аларма."
+
+#. drivesManager@lestcape->settings-schema.json->criticalHddTemp->tooltip
+msgid "Set the custom Alarming temperature value to display a alarm."
+msgstr "Задаване при колко висока температура да се включи алармата."
+
+#. drivesManager@lestcape->settings-schema.json->showAsApplet->description
+msgid "Show Drives Manager as Applet."
+msgstr "Покажи Мениджъра на дискове като аплет."
+
+#. drivesManager@lestcape->settings-schema.json->showAsApplet->tooltip
+msgid "Choose whether or not to show Drives Manager as Applet or Desklet."
+msgstr ""
+"Изберете дали Мениджъра на дискове да се показва като аплет, или като "
+"десклет."
+
+#. drivesManager@lestcape->settings-schema.json->appletSymbolic->description
+msgid "Show symbolic icons in the Applet."
+msgstr "Показване на символни иконки в аплета."
+
+#. drivesManager@lestcape->settings-schema.json->appletSymbolic->tooltip
+msgid "Check this if you want to show symbolic icons in the Applet."
+msgstr "Маркирайте ако искате аплета да има символни иконки."
+
+#. #-#-#-#-#  drives-manager.pot (PACKAGE VERSION)  #-#-#-#-#
+#. drivesManager@lestcape->settings-schema.json->borderBoxWidth->units
+#. #-#-#-#-#  drives-manager.pot (PACKAGE VERSION)  #-#-#-#-#
+#. drivesManager@lestcape->settings-schema.json->textTopSize->units
+#. #-#-#-#-#  drives-manager.pot (PACKAGE VERSION)  #-#-#-#-#
+#. drivesManager@lestcape->settings-schema.json->width->units
+#. #-#-#-#-#  drives-manager.pot (PACKAGE VERSION)  #-#-#-#-#
+#. drivesManager@lestcape->settings-schema.json->textButtonSize->units
+msgid "pixels"
+msgstr "пиксела"
+
+#. drivesManager@lestcape->settings-schema.json->warningHddTemp->units
+#. #-#-#-#-#  drives-manager.pot (PACKAGE VERSION)  #-#-#-#-#
+#. drivesManager@lestcape->settings-schema.json->criticalHddTemp->units
+msgid "celsius"
+msgstr "целзий"
+
+#. drivesManager@lestcape->settings-schema.json->meterTimeDelay->units
+msgid "seconds"
+msgstr "секунди"

@@ -1,0 +1,14 @@
+.clock-container{
+	color:#fff;
+	text-shadow: 1px 1px 2px #000;
+	padding: 4px 10px 4px 10px; 
+}
+
+.time-container{
+}
+
+.date-container{
+font-family:Tahoma;
+}
+
+.clock-date-label{}

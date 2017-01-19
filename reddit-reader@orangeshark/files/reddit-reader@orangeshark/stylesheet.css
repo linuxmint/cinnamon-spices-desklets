@@ -1,0 +1,44 @@
+.reddit-reader {
+    background-color: #fff;
+    border: 2px solid #808080;
+    color: #000;
+    padding: 5px;
+}
+
+.reddit-title-bar {
+    background-color: #cee3f8;
+    font-weight: bold;
+    padding: 5px 2px;
+    font-size: 1.5em;
+}
+
+.reddit-header-icon {
+    icon-size: 1em;
+}
+
+.reddit-title {
+
+}
+
+.reddit-subtitle {
+    padding-left: 10px;
+}
+
+.reddit-posts-box {
+
+}
+
+.reddit-post {
+    color: #336699;
+    padding: 5px 5px 0px 0px;
+}
+
+.reddit-post-box {
+    padding: 3px 0px 0px 0px;
+}
+
+.reddit-info-box {
+    color: #777;
+    font-size: 0.9em;
+    spacing: 3px;
+}

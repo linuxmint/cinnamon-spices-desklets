@@ -1,0 +1,667 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Drives-Manager v1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-10-25 01:53-0500\n"
+"PO-Revision-Date: 2014-09-19 16:32-0600\n"
+"Last-Translator: Lester Carballo Pérez <lestcape@gmail.com>\n"
+"Language-Team: lestcape <lestcape@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#: desklet.js:95 system.js:480 system.js:492 system.js:502 util.js:125
+#, c-format
+msgid "Execution of '%s' failed:"
+msgstr "La ejecución de '%s' a fallado:"
+
+#: user-define
+msgid "locale/README"
+msgstr "locale/LEEME"
+
+#: desklet.js:148 desklet.js:182 desklet.js:1159 desklet.js:1196
+#: desklet.js:1479 desklet.js:1561 desklet.js:1583 desklet.js:1594
+#: desklet.js:1603 desklet.js:1611 desklet.js:1916 desklet.js:1928
+#: desklet.js:1938 desklet.js:2097 desklet.js:2168 desklet.js:2255
+msgid "Failed of Drives Manager:"
+msgstr "Fallo de Drives Manager:"
+
+#: desklet.js:1159 desklet.js:1479 desklet.js:1916
+msgid "Can't find the default browser."
+msgstr "No se puede encontrar el explorador por defecto."
+
+#: desklet.js:1371 desklet.js:1909
+msgid "The device has been loaded."
+msgstr "El dispositivo fue conectado."
+
+#: desklet.js:1376 desklet.js:1934
+msgid "The device has been ejected."
+msgstr "El dispositivo fue retirado."
+
+#: desklet.js:1994
+msgid "Drives Manager need a pakage to use advance function."
+msgstr ""
+"Drives Manager necesita instalar un paquete para usar utilizar mecanismos "
+"avanzados."
+
+#: desklet.js:1994 desklet.js:2019
+msgid ""
+"If you do not want to install the package uncheck the option in the settings."
+msgstr "Si no desea instalar el paquete desmárquelo en la configuración."
+
+#: desklet.js:1994
+msgid "Do you want to install?"
+msgstr "¿Quiere instalarlo?"
+
+#: desklet.js:1994 desklet.js:2008 desklet.js:2017 desklet.js:2029
+msgid "Yes"
+msgstr "Si"
+
+#: desklet.js:1994 desklet.js:2008 desklet.js:2021 desklet.js:2033
+msgid "No"
+msgstr "No"
+
+#: desklet.js:2008
+msgid ""
+"Drives Manager requires that your account has permission to use advanced "
+"function."
+msgstr ""
+"Drives Manager necesita que su cuenta tenga permisos para usar los "
+"mecanismos avanzados."
+
+#: desklet.js:2008 desklet.js:2031
+msgid ""
+"If you do not want to grant permissions uncheck the option in the settings."
+msgstr ""
+"Si no desea conceder los permisos desmarque la opción en la configuración."
+
+#: desklet.js:2008
+msgid "Do you want to grant permissions?"
+msgstr "¿Quiere otorgar los permisos?"
+
+#: desklet.js:2019
+msgid "Please wait while installing pakage..."
+msgstr "Por favor espere para instalar el paquete..."
+
+#: desklet.js:2019 desklet.js:2031 desklet.js:2041
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: desklet.js:2070
+msgid "Drives Manager"
+msgstr "Drives Manager"
+
+#: desklet.js:2078
+msgid "Help"
+msgstr "Ayuda"
+
+#: desklet.js:2767
+msgid "Show as Applet"
+msgstr "Mostrar como Applet"
+
+#: applet.js:69
+msgid "Show as Desklet"
+msgstr "Mostrar como Desklet"
+
+#: system.js:79 system.js:92 system.js:101 system.js:408
+msgid "Error:"
+msgstr "Error:"
+
+#: system.js:79 system.js:92 system.js:503
+msgid "The communication need to be established first."
+msgstr "Se necesita iniciar antes la comunicación."
+
+#: system.js:101
+msgid "Can't localizing task."
+msgstr "No se puede localizar la tarea."
+
+#: system.js:105
+msgid "Result is undefined:"
+msgstr "El resultado es indefinido:"
+
+#: system.js:45 system.js:62 system.js:126 system.js:354
+msgid "The communication can't be established:"
+msgstr "No se puede establecer comunicación:"
+
+#: system.js:138 system.js:306 system.js:328 util.js:90
+msgid "Command not found."
+msgstr "Comando no encontrado"
+
+#: system.js:261
+msgid ""
+"Can't be found appropriate installer program. The Automatic installation "
+"can't be performed."
+msgstr ""
+"No se encontró ningún instalador apropiado. La instalación automática no "
+"puede ser realizada."
+
+#: system.js:272
+msgid ""
+"Can't be found an appropriate packages check program. The automatic "
+"installation cannot be performed."
+msgstr ""
+"No se encuentra ningún programa de verificación de paquetes. La instalación "
+"automática no se puede realizar."
+
+#: system.js:468
+msgid "You don't have any GUI program to get root permissions."
+msgstr ""
+"Usted no tiene ningún programa gráfico para obtener permisos de superusuario."
+
+#: util.js:117
+msgid "Could not parse command:"
+msgstr "No se pudo entender el comando:"
+
+#. drivesManager@lestcape->settings-schema.json->header-categories->description
+msgid "Categories:"
+msgstr "Categorías:"
+
+#. drivesManager@lestcape->settings-schema.json->header-tools->description
+msgid "Tools:"
+msgstr "Herramientas:"
+
+#. drivesManager@lestcape->settings-schema.json->header-hdd-temp->description
+msgid "HDD temperature:"
+msgstr "Temperatura del disco duro:"
+
+#. drivesManager@lestcape->settings-schema.json->header-appearance->description
+msgid "Appearance:"
+msgstr "Apariencia:"
+
+#. drivesManager@lestcape->settings-schema.json->header-advanced-appearance->description
+msgid "Advanced Appearance:"
+msgstr "Opciones avanzadas de apariencia:"
+
+#. drivesManager@lestcape->settings-schema.json->theme->description
+msgid "Select icon theme:"
+msgstr "Tema de iconos seleccionado:"
+
+#. drivesManager@lestcape->settings-schema.json->theme->tooltip
+msgid "Select a theme to show icons."
+msgstr "Selecciona el tema para mostrar los iconos."
+
+#. drivesManager@lestcape->settings-schema.json->theme->options
+msgid "Blue"
+msgstr "Blue"
+
+#. drivesManager@lestcape->settings-schema.json->theme->options
+msgid "Pink"
+msgstr "Pink"
+
+#. drivesManager@lestcape->settings-schema.json->theme->options
+msgid "Windows"
+msgstr "Windows"
+
+#. drivesManager@lestcape->settings-schema.json->theme->options
+msgid "Ubuntu"
+msgstr "Ubuntu"
+
+#. drivesManager@lestcape->settings-schema.json->theme->options
+msgid "Mind"
+msgstr "Mind"
+
+#. drivesManager@lestcape->settings-schema.json->theme->options
+msgid "Metalic"
+msgstr "Metalic"
+
+#. drivesManager@lestcape->settings-schema.json->theme->options
+msgid "Black"
+msgstr "Black"
+
+#. drivesManager@lestcape->settings-schema.json->theme->options
+msgid "Linux"
+msgstr "Linux"
+
+#. drivesManager@lestcape->settings-schema.json->theme->options
+msgid "Orange"
+msgstr "Orange"
+
+#. drivesManager@lestcape->settings-schema.json->theme->options
+msgid "Comic"
+msgstr "Comic"
+
+#. drivesManager@lestcape->settings-schema.json->mainBox->description
+msgid "Show the main box."
+msgstr "Mostrar la caja principal."
+
+#. drivesManager@lestcape->settings-schema.json->mainBox->tooltip
+msgid "Check this to make the main box visible/invisible."
+msgstr "Seleccione esto para poner la caja principal visible/invisible."
+
+#. drivesManager@lestcape->settings-schema.json->driveBox->description
+msgid "Show the drive box."
+msgstr "Mostrar la caja de los dispositivos."
+
+#. drivesManager@lestcape->settings-schema.json->driveBox->tooltip
+msgid "Check this to make the drive box visible/invisible."
+msgstr ""
+"Seleccione esto para poner la caja de los dispositivos visible/invisible."
+
+#. drivesManager@lestcape->settings-schema.json->borderBoxWidth->description
+msgid "Border's box width:"
+msgstr "Ancho de los bordes de las cajas:"
+
+#. drivesManager@lestcape->settings-schema.json->borderBoxWidth->tooltip
+msgid "Increase or decrease the border's box width."
+msgstr "Incrementar o disminuir el ancho de los bordes de las cajas."
+
+#. drivesManager@lestcape->settings-schema.json->borderBoxColor->description
+msgid "Border's box color:"
+msgstr "Color del borde de las cajas:"
+
+#. drivesManager@lestcape->settings-schema.json->borderBoxColor->tooltip
+msgid "Set the custom border box's color."
+msgstr "Selecciona el color del borde de las cajas."
+
+#. drivesManager@lestcape->settings-schema.json->boxColor->description
+msgid "Box color:"
+msgstr "Color de las cajas:"
+
+#. drivesManager@lestcape->settings-schema.json->boxColor->tooltip
+msgid "Set the custom box's color."
+msgstr "Selecciona el color de fondo de las cajas."
+
+#. drivesManager@lestcape->settings-schema.json->fixWidth->description
+msgid "Fixed width."
+msgstr "Controlar el ancho."
+
+#. drivesManager@lestcape->settings-schema.json->fixWidth->tooltip
+msgid "Check this if you want to control the width of desklet."
+msgstr "Seleccione esto para controlar el ancho del desklet."
+
+#. drivesManager@lestcape->settings-schema.json->width->description
+msgid "Width:"
+msgstr "Ancho:"
+
+#. drivesManager@lestcape->settings-schema.json->width->tooltip
+msgid "Increase or decrease the desklet width."
+msgstr "Incrementar o disminuir el ancho del desklet."
+
+#. drivesManager@lestcape->settings-schema.json->fixHeight->description
+msgid "Fixed height."
+msgstr "Controlar la altura."
+
+#. drivesManager@lestcape->settings-schema.json->fixHeight->tooltip
+msgid "Check this if you want to control the height of desklet."
+msgstr "Seleccione esto para controlar la altura del desklet."
+
+#. drivesManager@lestcape->settings-schema.json->height->description
+msgid "Height:"
+msgstr "Altura:"
+
+#. drivesManager@lestcape->settings-schema.json->height->tooltip
+msgid "Increase or decrease the desklet height."
+msgstr "Incrementar o disminuir la altura del desklet."
+
+#. drivesManager@lestcape->settings-schema.json->enableAutoscroll->description
+msgid "Enable autoscrolling."
+msgstr "Habilitar el desplazamiento automático."
+
+#. drivesManager@lestcape->settings-schema.json->enableAutoscroll->tooltip
+msgid "Choose whether or not to enable smooth autoscrolling on the menu."
+msgstr ""
+"Seleccione si desea activar o no el desplazamiento automático en el menú."
+
+#. drivesManager@lestcape->settings-schema.json->scrollVisible->description
+msgid "Show the scrolling area."
+msgstr "Mostrar el área de desplazamiento."
+
+#. drivesManager@lestcape->settings-schema.json->scrollVisible->tooltip
+msgid "Choose whether or not to show the scrolling area."
+msgstr "Seleccione si mostrar o no la zona de desplazamiento."
+
+#. drivesManager@lestcape->settings-schema.json->overrideTheme->description
+msgid "Override the Cinnamon theme properties."
+msgstr "Sobre escribir las propiedades del tema de Cinnamon."
+
+#. drivesManager@lestcape->settings-schema.json->overrideTheme->tooltip
+msgid ""
+"Check this if you want to override the Cinnamon theme properties or not."
+msgstr ""
+"Seleccione esta opción si usted desea anular las propiedades del tema de "
+"Cinnamon o no."
+
+#. drivesManager@lestcape->settings-schema.json->fontColor->description
+msgid "Font color:"
+msgstr "Color del texto:"
+
+#. drivesManager@lestcape->settings-schema.json->fontColor->tooltip
+msgid "Set the custom text color."
+msgstr "Elija el color del texto."
+
+#. drivesManager@lestcape->settings-schema.json->textTopSize->description
+msgid "Font size top text:"
+msgstr "Tamaño del texto superior:"
+
+#. drivesManager@lestcape->settings-schema.json->textTopSize->tooltip
+msgid "Increase or decrease the font size of top text."
+msgstr "Incrementar o disminuir el tamaño del texto superior."
+
+#. drivesManager@lestcape->settings-schema.json->textBottomSize->description
+msgid "Font size bottom text:"
+msgstr "Tamaño del texto inferior:"
+
+#. drivesManager@lestcape->settings-schema.json->textBottomSize->tooltip
+msgid "Increase or decrease the font size of bottom text."
+msgstr "Incrementar o disminuir el tamaño del texto inferior."
+
+#. drivesManager@lestcape->settings-schema.json->opacity->description
+msgid "Opacity:"
+msgstr "Opacidad:"
+
+#. drivesManager@lestcape->settings-schema.json->opacity->tooltip
+msgid "Select a opacity percent."
+msgstr "Seleccione el porciento de opacidad."
+
+#. drivesManager@lestcape->settings-schema.json->speedMeter->description
+msgid "Show the Speed Meter."
+msgstr "Mostrar la velocidad de transferencia."
+
+#. drivesManager@lestcape->settings-schema.json->speedMeter->tooltip
+msgid "Check this to show the Speed Meter or not."
+msgstr "Seleccione esto para mostrar la velocidad de transferencia o no."
+
+#. drivesManager@lestcape->settings-schema.json->hardDrives->description
+msgid "Show the Hard Drives."
+msgstr "Mostrar los Discos Duros."
+
+#. drivesManager@lestcape->settings-schema.json->hardDrives->tooltip
+msgid "Check this to show the Hard Drives or not."
+msgstr "Seleccione esto para mostrar los Discos Duros o no."
+
+#. drivesManager@lestcape->settings-schema.json->opticalDrives->description
+msgid "Show the Optical Drives."
+msgstr "Mostrar los Dispositivos Ópticos."
+
+#. drivesManager@lestcape->settings-schema.json->opticalDrives->tooltip
+msgid "Check this to show the Optical Drives or not."
+msgstr "Seleccione esto para mostrar los Dispositivos Ópticos o no."
+
+#. drivesManager@lestcape->settings-schema.json->removableDrives->description
+msgid "Show the Removable Drives."
+msgstr "Mostrar los Dispositivos Extraíbles."
+
+#. drivesManager@lestcape->settings-schema.json->removableDrives->tooltip
+msgid "Check this to show the Removable Drives or not."
+msgstr "Seleccione esto para mostrar los Dispositivos Extraíbles o no."
+
+#. drivesManager@lestcape->settings-schema.json->fixedDrives->description
+msgid "Show the Fixed Drives."
+msgstr "Mostrar los Dispositivos Electrificados."
+
+#. drivesManager@lestcape->settings-schema.json->fixedDrives->tooltip
+msgid "Check this to show the Fixed Drives or not."
+msgstr "Seleccione esto para mostrar los Dispositivos Electrificados o no."
+
+#. drivesManager@lestcape->settings-schema.json->notDrives->description
+msgid "Show the Volumes without Drives."
+msgstr "Mostrar los Dispositivos No Físicos."
+
+#. drivesManager@lestcape->settings-schema.json->notDrives->tooltip
+msgid ""
+"Check this to show the Volumes without Drives (like ftp, sftp, iso images "
+"and more)."
+msgstr ""
+"Seleccione esto para mostrar los Dispositivos No Físicos (como ftp, sftp, "
+"imágenes iso y más)."
+
+#. drivesManager@lestcape->settings-schema.json->emptyDrives->description
+msgid "Show the Empty Drives."
+msgstr "Mostrar los Dispositivos Vacíos."
+
+#. drivesManager@lestcape->settings-schema.json->emptyDrives->tooltip
+msgid "Check this to show the Empty Drives or not."
+msgstr "Seleccione esto para mostrar los Dispositivos Vacíos o no."
+
+#. drivesManager@lestcape->settings-schema.json->meterTimeDelay->description
+msgid "File time transfer(Longer time means more precision):"
+msgstr ""
+"Tiempo de transferencia de archivos (mas tiempo significa mas precisión):"
+
+#. drivesManager@lestcape->settings-schema.json->meterTimeDelay->tooltip
+msgid "Increase or decrease the time between measurements file transfer speed."
+msgstr ""
+"Aumentar o disminuir el tiempo entre las mediciones de velocidad en la "
+"transferencia de archivos."
+
+#. drivesManager@lestcape->settings-schema.json->notMountSystem->description
+msgid "The O.S. do not automount the volume."
+msgstr "El S.O. no montan automáticamente el volumen."
+
+#. drivesManager@lestcape->settings-schema.json->notMountSystem->tooltip
+msgid ""
+"Check this to set in false the desktop.media-handling automount property of "
+"org.cinnamon and org.gnome."
+msgstr ""
+"Active esta opción para establecer en falso la propiedad automount de "
+"desktop.media-handling de org.cinnamon y org.gnome."
+
+#. drivesManager@lestcape->settings-schema.json->mountConnect->description
+msgid "Drives Manager automount the volume."
+msgstr "Drives Manager monta automáticamente el volumen."
+
+#. drivesManager@lestcape->settings-schema.json->mountConnect->tooltip
+msgid ""
+"Check this if you want that Drives Manager can automount the volume when is "
+"ready."
+msgstr ""
+"Seleccione esta opción si desea que Drives Manager pueda montar "
+"automáticamente el volumen cuando está listo."
+
+#. drivesManager@lestcape->settings-schema.json->notOpenSystem->description
+msgid "The O.S. do not auto open mount points."
+msgstr "El S.O. no auto abre los puntos de montaje."
+
+#. drivesManager@lestcape->settings-schema.json->notOpenSystem->tooltip
+msgid ""
+"Check this to set in false the desktop.media-handling automount-open "
+"property of org.cinnamon and org.gnome."
+msgstr ""
+"Seleccione esto para establecer a falso la propiedad automount-open de "
+"desktop.media-handling, en org.cinnamon y org.gnome."
+
+#. drivesManager@lestcape->settings-schema.json->openConnect->description
+msgid "Drives Manager auto open the mount points."
+msgstr "Drives Manager auto abre los puntos de montaje."
+
+#. drivesManager@lestcape->settings-schema.json->openConnect->tooltip
+msgid ""
+"Check this if you want that Drives Manager auto open the mount points when "
+"the volume was mounted."
+msgstr ""
+"Seleccione esta opción si desea que Drives Manager, auto abra los puntos de "
+"montaje cuando se monte el volumen."
+
+#. drivesManager@lestcape->settings-schema.json->openWith->description
+msgid "Open with:"
+msgstr "Abrir con:"
+
+#. drivesManager@lestcape->settings-schema.json->openWith->tooltip
+msgid "Select the default browser."
+msgstr "Selecciona el explorador por defecto."
+
+#. drivesManager@lestcape->settings-schema.json->openWith->options
+msgid "Nemo"
+msgstr "Nemo"
+
+#. drivesManager@lestcape->settings-schema.json->openWith->options
+msgid "Nautilus"
+msgstr "Nautilus"
+
+#. drivesManager@lestcape->settings-schema.json->capacityDetect->description
+msgid "Use the capacity detection."
+msgstr "Detectar los cambios de capacidad."
+
+#. drivesManager@lestcape->settings-schema.json->capacityDetect->tooltip
+msgid ""
+"Check this to use or not the capacity detection. When enabled using more "
+"CPU, but capacity changes are detected in the volumens mounted."
+msgstr ""
+"Seleccione esto para detectar los cambios de capacidad de los dispositivos. "
+"Cuando se habilita usa algo de CPU, pero se pueden detectar los cambios de "
+"capacidad de los dispositivos montados."
+
+#. drivesManager@lestcape->settings-schema.json->unEjecting->description
+msgid ""
+"Don't eject Removable Drive (they can be reconnected without need to pull "
+"out of the connector)."
+msgstr ""
+"No apague los Dispositivos Extraíbles (puede volverlos a reconectar sin "
+"necesidad de extraerlos del conector)."
+
+#. drivesManager@lestcape->settings-schema.json->unEjecting->tooltip
+msgid ""
+"Check this to use or not the option of don't eject Removable Drive. They can "
+"be reconnected without need to pull out of the connector if you this option "
+"is active."
+msgstr ""
+"Seleccione esto para no apagar los Dispositivos Extraíbles. Si se marca "
+"puede volverlos a reconectar sin necesidad de extraerlos del conector."
+
+#. drivesManager@lestcape->settings-schema.json->unmountAll->description
+msgid "Unmount all mounted belonging to the same drive."
+msgstr ""
+"Desmontar todos los volúmenes montados pertenecientes a la misma unidad."
+
+#. drivesManager@lestcape->settings-schema.json->unmountAll->tooltip
+msgid ""
+"Check this to unmount all mounted belonging to the same drive. This avoid "
+"try to unplug a drive that still contains some mounted volumes."
+msgstr ""
+"Active esta opción para desmontar todos los volúmenes montados "
+"pertenecientes a la misma unidad. Esto evita tratar de desconectar una "
+"unidad que todavía contiene algunos volúmenes montados."
+
+#. drivesManager@lestcape->settings-schema.json->displayMessage->description
+msgid "Display a message when drives change."
+msgstr "Mostrar un mensaje cuando las unidades cambian."
+
+#. drivesManager@lestcape->settings-schema.json->displayMessage->tooltip
+msgid "Check this to display a message when a change occurs in the drives."
+msgstr ""
+"Active esta opción para mostrar un mensaje cuando se produce un cambio en "
+"las unidades."
+
+#. drivesManager@lestcape->settings-schema.json->raiseKey->description
+msgid "Tecla rápida para elevar el desklet."
+msgstr ""
+
+#. drivesManager@lestcape->settings-schema.json->raiseCenter->description
+msgid "Display in the center when the desklet is raised."
+msgstr "Mostrar en el centro cuando se eleva el desklet."
+
+#. drivesManager@lestcape->settings-schema.json->raiseCenter->tooltip
+msgid "Check this to display the desklet in the screen center, when is raised."
+msgstr ""
+"Active esta opción para mostrar el desklet cuando se eleva en el centro de "
+"la pantalla."
+
+#. drivesManager@lestcape->settings-schema.json->hddTemp->description
+msgid "Use the temperature detection in the Hard drives."
+msgstr "Usar la detección de temperatura de los Discos Duros."
+
+#. drivesManager@lestcape->settings-schema.json->hddTemp->tooltip
+msgid ""
+"Check this to use or not the temperature detection in the hard drives (needs "
+"Udisk2)."
+msgstr ""
+"Seleccione esto para usar la detección de temperatura de los Discos Duros "
+"(necesita Udisk2)."
+
+#. drivesManager@lestcape->settings-schema.json->hddTempSound->description
+msgid "Activate the temperature alarm sound."
+msgstr "Activar la alarma de temperatura con sonido."
+
+#. drivesManager@lestcape->settings-schema.json->hddTempSound->tooltip
+msgid ""
+"Enabling this property activate a alarm sound when temperature reaches "
+"alarming levels."
+msgstr ""
+"Si activa esta propiedad se escucha un sonido de alarma cuando se alcanza la "
+"temperatura Alarmante."
+
+#. drivesManager@lestcape->settings-schema.json->normalHddColor->description
+msgid "Color to show warning when the temperature is Normal:"
+msgstr "Color a mostrar cuando la temperatura es Normal:"
+
+#. drivesManager@lestcape->settings-schema.json->normalHddColor->tooltip
+msgid "Set the custom color of Normal temperature warning."
+msgstr "Selecciona el color a mostrar cuando la temperatura es Normal."
+
+#. drivesManager@lestcape->settings-schema.json->warningHddColor->description
+msgid "Color to show warning when the temperature is High:"
+msgstr "Color a mostrar cuando la temperatura es Alta:"
+
+#. drivesManager@lestcape->settings-schema.json->warningHddColor->tooltip
+msgid "Set the custom color of High temperature warning."
+msgstr "Selecciona el color a mostrar cuando la temperatura es Alta."
+
+#. drivesManager@lestcape->settings-schema.json->critialHddColor->description
+msgid "Color to show warning when the temperature is Alarming:"
+msgstr "Color a mostrar cuando la temperatura es Alarmante:"
+
+#. drivesManager@lestcape->settings-schema.json->critialHddColor->tooltip
+msgid "Set the custom color of Alarming temperature warning."
+msgstr "Selecciona el color a mostrar cuando la temperatura es Alarmante."
+
+#. drivesManager@lestcape->settings-schema.json->warningHddTemp->description
+msgid "Value of High temperature to display a warning:"
+msgstr "Valor de temperatura Alta:"
+
+#. drivesManager@lestcape->settings-schema.json->warningHddTemp->tooltip
+msgid "Set the custom High temperature value to display a warning."
+msgstr "Selecciona tu valor de temperatura Alta."
+
+#. drivesManager@lestcape->settings-schema.json->criticalHddTemp->description
+msgid "Value of Alarming temperature to display a alarm:"
+msgstr "Valor de temperatura Alarmante:"
+
+#. drivesManager@lestcape->settings-schema.json->criticalHddTemp->tooltip
+msgid "Set the custom Alarming temperature value to display a alarm."
+msgstr "Selecciona tu valor de temperatura Alarmante."
+
+#. drivesManager@lestcape->settings-schema.json->showAsApplet->description
+msgid "Show Drives Manager as Applet."
+msgstr "Mostrar Drives Manager como Applet."
+
+#. drivesManager@lestcape->settings-schema.json->showAsApplet->tooltip
+msgid "Choose whether or not to show Drives Manager as Applet or Desklet."
+msgstr "Seleccione si desea o no mostrar Drives Manager como applet o desklet."
+
+#. drivesManager@lestcape->settings-schema.json->appletSymbolic->description
+msgid "Show symbolic icons in the Applet."
+msgstr "Mostrar iconos simbólicos en el Applet."
+
+#. drivesManager@lestcape->settings-schema.json->appletSymbolic->tooltip
+msgid "Check this if you want to show symbolic icons in the Applet."
+msgstr ""
+"Seleccione esta opción si desea mostrar los iconos simbólicos en el applet."
+
+#. #-#-#-#-#  drives-manager.pot (PACKAGE VERSION)  #-#-#-#-#
+#. drivesManager@lestcape->settings-schema.json->borderBoxWidth->units
+#. #-#-#-#-#  drives-manager.pot (PACKAGE VERSION)  #-#-#-#-#
+#. drivesManager@lestcape->settings-schema.json->textTopSize->units
+#. #-#-#-#-#  drives-manager.pot (PACKAGE VERSION)  #-#-#-#-#
+#. drivesManager@lestcape->settings-schema.json->width->units
+#. #-#-#-#-#  drives-manager.pot (PACKAGE VERSION)  #-#-#-#-#
+#. drivesManager@lestcape->settings-schema.json->textButtonSize->units
+msgid "pixels"
+msgstr "píxeles"
+
+#. drivesManager@lestcape->settings-schema.json->warningHddTemp->units
+#. #-#-#-#-#  drives-manager.pot (PACKAGE VERSION)  #-#-#-#-#
+#. drivesManager@lestcape->settings-schema.json->criticalHddTemp->units
+msgid "celsius"
+msgstr "centígrados\t"
+
+#. drivesManager@lestcape->settings-schema.json->meterTimeDelay->units
+msgid "seconds"
+msgstr "segundos"

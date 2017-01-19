@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg7384"
+   height="16"
+   width="16"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="tan-inv-symbolic.svg">
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1022"
+     inkscape:window-height="622"
+     id="namedview8"
+     showgrid="false"
+     inkscape:zoom="14.75"
+     inkscape:cx="4.1399395"
+     inkscape:cy="5.1256096"
+     inkscape:window-x="0"
+     inkscape:window-y="26"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="g2996" />
+  <metadata
+     id="metadata90">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Gnome Symbolic Icon Theme</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <title
+     id="title9167">Gnome Symbolic Icon Theme</title>
+  <g
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#bebebe;fill-opacity:1;stroke:none;font-family:Meera;-inkscape-font-specification:Meera"
+     id="text3001"
+     transform="matrix(1.404664,0,0,1.404664,-3.2373119,-3.2373118)">
+    <g
+       id="g2986"
+       transform="translate(0.28465153,0)">
+      <g
+         id="g2996">
+        <g
+           id="g3033"
+           transform="translate(-0.1205875,0)">
+          <path
+             inkscape:connector-curvature="0"
+             id="path3063"
+             style="font-family:Meera;-inkscape-font-specification:Meera"
+             d="m 3.9163906,10.847658 c -0.6213144,0 -0.9319708,-0.265625 -0.9319695,-0.796875 l 0,-4.2187531 -0.7123673,0 0,-0.5917969 0.7123673,0 0,-1.5117187 0.6962991,0 0,1.5117187 0.8623393,0 0,0.5917969 -0.8623393,0 0,3.8320337 c -2e-6,0.3671894 0.1713942,0.5507824 0.51419,0.5507824 0.1392572,0 0.255307,-0.0059 0.3481493,-0.01758 l 0,0.591798 c -0.2428143,0.03906 -0.451704,0.05859 -0.6266689,0.05859" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path3065"
+             style="font-family:Meera;-inkscape-font-specification:Meera"
+             d="M 8.011787,10.847654 C 7.6477433,10.847653 7.4393238,10.555886 7.3865268,9.972349 6.9002107,10.555886 6.43474,10.847653 5.9901127,10.847654 5.6093972,10.847653 5.3023258,10.715385 5.0688956,10.450849 4.835465,10.186314 4.7187493,9.80118 4.71875,9.2954477 4.7187493,8.6535601 4.9104961,8.2100731 5.2939893,7.9649855 5.4190396,7.8871837 5.8636688,7.7626959 6.6278784,7.5915224 6.8140645,7.5487329 6.9502314,7.5098305 7.0363812,7.4748152 7.2058932,7.3892332 7.3128818,7.2783615 7.3573483,7.1421996 7.3712403,7.0760692 7.3781869,6.92435 7.3781907,6.6870416 7.3781869,6.1035101 7.0627781,5.8117423 6.4319625,5.8117375 5.8456061,5.8117423 5.5190812,6.1326868 5.4523884,6.774572 l -0.5460604,0 C 4.956353,5.6930901 5.4732294,5.1523473 6.456973,5.1523418 c 0.9726243,5.5e-6 1.4589378,0.4668338 1.4589412,1.4004865 l 0,3.2036127 c -3.4e-6,0.326781 0.1306061,0.490171 0.39183,0.490171 0.025008,0 0.056962,0 0.095873,0 l 0,0.507676 c -0.1584034,0.06224 -0.2890134,0.09337 -0.3918301,0.09337 M 7.3781907,7.8774551 C 7.2281245,7.9708241 7.0294314,8.0466832 6.7821084,8.1050341 6.6320443,8.1361591 6.4097297,8.1886771 6.1151649,8.2625889 5.5677133,8.4376519 5.2939878,8.7761025 5.2939893,9.2779416 5.2939878,9.90038 5.5718815,10.2116 6.1276701,10.2116 c 0.4696373,0 0.8239514,-0.206183 1.0629425,-0.618549 C 7.3156609,9.38298 7.3781869,9.1690164 7.3781907,8.9511614 l 0,-1.0737063" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path3067"
+             style="font-family:Meera;-inkscape-font-specification:Meera"
+             d="m 10.995282,10.847658 0,-3.865108 C 10.995279,6.6133021 10.917226,6.3243225 10.761067,6.1156103 10.604921,5.9069075 10.400833,5.8025537 10.148814,5.8025487 9.7844744,5.8025537 9.5023221,6.0112612 9.3023468,6.4286718 9.129766,6.7899007 9.0434728,7.2414314 9.0434737,7.7832651 l 0,3.0643929 -0.5300697,0 0,-5.5327629 0.4807604,0 0,1.1137767 c 0.372553,-0.85088 0.8177034,-1.2763222 1.3354526,-1.2763279 0.350636,5.7e-6 0.634159,0.1184071 0.850573,0.3552045 0.227365,0.2649032 0.341047,0.6381686 0.341052,1.119797 l 0,4.2203126 -0.52596,0" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path3185"
+             style="font-size:7.34445715px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;baseline-shift:super;fill:#bebebe;fill-opacity:1;stroke:none;font-family:Meera;-inkscape-font-specification:Meera"
+             d="m 11.270647,5.2841808 0,-0.4257221 0.972469,0 0,0.4257221 -0.972469,0" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path3187"
+             style="font-size:7.34445715px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;baseline-shift:super;fill:#bebebe;fill-opacity:1;stroke:none;font-family:Meera;-inkscape-font-specification:Meera"
+             d="m 13.073329,6.7100116 0,-2.9732966 -0.673965,0 0,-0.307466 c 0.281401,-0.0473 0.467967,-0.1182526 0.559694,-0.212861 0.07929,-0.090096 0.159357,-0.3018309 0.240203,-0.6352043 l 0.200557,0 0,4.1288279 -0.326489,0" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

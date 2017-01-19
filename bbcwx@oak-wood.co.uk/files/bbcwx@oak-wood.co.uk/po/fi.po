@@ -1,0 +1,1131 @@
+# Finnish translation for bbcwx
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
+# This file is distributed under the same license as the bbcwx package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bbcwx\n"
+"Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
+"POT-Creation-Date: 2015-12-14 18:52+0000\n"
+"PO-Revision-Date: 2015-03-21 16:28+0000\n"
+"Last-Translator: Ari Ervasti <ari.ervasti87@gmail.com>\n"
+"Language-Team: Finnish <fi@li.org>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2015-12-04 19:52+0000\n"
+"X-Generator: Launchpad (build 17862)\n"
+
+#. # Days of the week
+#: desklet.js:103
+msgid "Mon"
+msgstr "ma"
+
+#: desklet.js:103
+msgid "Tue"
+msgstr "ti"
+
+#: desklet.js:103
+msgid "Wed"
+msgstr "ke"
+
+#: desklet.js:103
+msgid "Thu"
+msgstr "to"
+
+#: desklet.js:103
+msgid "Fri"
+msgstr "pe"
+
+#: desklet.js:103
+msgid "Sat"
+msgstr "la"
+
+#: desklet.js:103
+msgid "Sun"
+msgstr "su"
+
+#. # The desklet title
+#: desklet.js:179
+msgid "Weather"
+msgstr "Sää"
+
+#. # Link to Help file in context menu
+#: desklet.js:187
+msgid "Help"
+msgstr "Ohje"
+
+#. # Link to information on translating in context menu
+#: desklet.js:191
+msgid "Translate"
+msgstr "Käännä"
+
+#. # Next five strings are labels for current conditions
+#: desklet.js:328 desklet.js:356
+msgid "Humidity:"
+msgstr "Kosteus:"
+
+#. # Atmospheric pressure
+#: desklet.js:329 desklet.js:355
+msgid "Pressure:"
+msgstr "Paine:"
+
+#: desklet.js:330
+msgid "Wind:"
+msgstr "Tuuli:"
+
+#: desklet.js:331
+msgid "Feels like:"
+msgstr "Tuntuu:"
+
+#: desklet.js:332
+msgid "Visibility:"
+msgstr "Näkyvyys:"
+
+#. # Maximum temperature
+#: desklet.js:347
+msgid "Max:"
+msgstr "Ylin:"
+
+#. # Minimum temperature
+#: desklet.js:349
+msgid "Min:"
+msgstr "Alin:"
+
+#. # Wind speed (English translation is "Wind:")
+#: desklet.js:351
+msgid "Wind speed:"
+msgstr "Tuulen nopeus:"
+
+#. # Wind direction
+#: desklet.js:353
+msgid "Dir:"
+msgstr "Suunta:"
+
+#. # Credit the data supplier. A link to the data supplier appears to the
+#. right of this string
+#: desklet.js:395
+msgid "Data from "
+msgstr "Lähde: "
+
+#. # Tooltip for refresh button
+#: desklet.js:407
+msgid "Refresh"
+msgstr "Päivitä"
+
+#. # Message if we fail to get weather data
+#: desklet.js:727
+msgid "No data available"
+msgstr "Tietoja ei saatavilla"
+
+#: desklet.js:760 desklet.js:827
+#, python-format
+msgid "Error: %s"
+msgstr "Virhe: %s"
+
+#: desklet.js:760 desklet.js:827
+msgid "No data"
+msgstr "Ei tietoja"
+
+#. # %s is replaced by place name
+#: desklet.js:862
+#, python-format
+msgid "Click for the full forecast for %s"
+msgstr "Klikkaa nähdäksesi koko ennusteen (%s)"
+
+#. # Units for temperature, degrees Fahrenheit. %f is replaced the value. NB:
+#. English translation uses unicode character u+2109
+#: desklet.js:1104
+#, python-format
+msgid "%fF"
+msgstr "%fF"
+
+#. # Units for temperature, degrees Celsius. %f is replaced the value. NB:
+#. English translation uses unicode character u+2103
+#: desklet.js:1106
+#, python-format
+msgid "%fC"
+msgstr "%fC"
+
+#. # wind speed, miles per hour. %f is replaced by the value
+#: desklet.js:1127
+#, python-format
+msgid "%fmph"
+msgstr "%fmph"
+
+#. # wind speed, knots. %f is replaced by the value
+#: desklet.js:1129
+#, python-format
+msgid "%fkn"
+msgstr "%fkn"
+
+#. # wind speed, kilometers per hour. %f is replaced by the value
+#: desklet.js:1131
+#, python-format
+msgid "%fkm/h"
+msgstr "%fkm/h"
+
+#. # wind speed, meters per second. %f is replaced by the value
+#: desklet.js:1133
+#, python-format
+msgid "%fm/s"
+msgstr "%fm/s"
+
+#. # pressure, millbars. %f is replaced by the value
+#: desklet.js:1167
+#, python-format
+msgid "%fmb"
+msgstr "%fmb"
+
+#. # pressure, inches of mercury. %f is replaced by the value
+#: desklet.js:1169
+#, python-format
+msgid "%fin"
+msgstr "%fin"
+
+#. # pressure, mm of mercury. %f is replaced by the value
+#: desklet.js:1171
+#, python-format
+msgid "%fmm"
+msgstr "%fmm"
+
+#. # pressure, kilopascals. %f is replaced by the value
+#: desklet.js:1173
+#, python-format
+msgid "%fkPa"
+msgstr "%fkPa"
+
+#. # visibility, miles. %f is replaced by the value
+#: desklet.js:1224
+#, python-format
+msgid "%fmi"
+msgstr "%fmi"
+
+#. # visibility, nautical miles. %f is replaced by the value
+#: desklet.js:1226
+#, python-format
+msgid "%fnmi"
+msgstr "%fnmi"
+
+#. # visibility, kilometers. %f is replaced by the value
+#: desklet.js:1228
+#, python-format
+msgid "%fkm"
+msgstr "%fkm"
+
+#. # Next 16 strings are for wind direction, compass points
+#: desklet.js:1452
+msgid "N"
+msgstr "N"
+
+#: desklet.js:1452
+msgid "NNE"
+msgstr "NNE"
+
+#: desklet.js:1452
+msgid "NE"
+msgstr "NE"
+
+#: desklet.js:1452
+msgid "ENE"
+msgstr "ENE"
+
+#: desklet.js:1452
+msgid "E"
+msgstr "E"
+
+#: desklet.js:1452
+msgid "ESE"
+msgstr "ESE"
+
+#: desklet.js:1452
+msgid "SE"
+msgstr "SE"
+
+#: desklet.js:1452
+msgid "SSE"
+msgstr "SSE"
+
+#: desklet.js:1452
+msgid "S"
+msgstr "S"
+
+#: desklet.js:1452
+msgid "SSW"
+msgstr "SSW"
+
+#: desklet.js:1452
+msgid "SW"
+msgstr "SW"
+
+#: desklet.js:1452
+msgid "WSW"
+msgstr "WSW"
+
+#: desklet.js:1452
+msgid "W"
+msgstr "W"
+
+#: desklet.js:1452
+msgid "WNW"
+msgstr "WNW"
+
+#: desklet.js:1452
+msgid "NW"
+msgstr "NW"
+
+#: desklet.js:1452
+msgid "NNW"
+msgstr "NNW"
+
+#: desklet.js:1485
+msgid "Tornado"
+msgstr "Trombi"
+
+#: desklet.js:1486
+msgid "Tropical storm"
+msgstr "Trooppinen myrsky"
+
+#: desklet.js:1487
+msgid "Hurricane"
+msgstr "Trooppinen hirmumyrsky"
+
+#: desklet.js:1488
+msgid "Severe thunderstorms"
+msgstr "Voimakkaita ukkosmyrskyjä"
+
+#: desklet.js:1489
+msgid "Thunderstorms"
+msgstr "Ukkosmyrskyjä"
+
+#: desklet.js:1490 desklet.js:3506
+msgid "Mixed rain and snow"
+msgstr "Räntäsadetta"
+
+#: desklet.js:1491
+msgid "Mixed rain and sleet"
+msgstr "Vesi- ja räntäsadetta"
+
+#: desklet.js:1492
+msgid "Mixed snow and sleet"
+msgstr "Lumi- ja räntäsadetta"
+
+#: desklet.js:1493
+msgid "Freezing drizzle"
+msgstr "Jäätävää tihkusadetta"
+
+#: desklet.js:1494 desklet.js:1788
+msgid "Drizzle"
+msgstr "Tihkusadetta"
+
+#: desklet.js:1495
+msgid "Freezing rain"
+msgstr "Jäätävää sadetta"
+
+#: desklet.js:1496 desklet.js:1497 desklet.js:3502
+msgid "Showers"
+msgstr "Sadekuuroja"
+
+#: desklet.js:1498
+msgid "Snow flurries"
+msgstr "Heikkoja lumikuuroja"
+
+#: desklet.js:1499
+msgid "Light snow showers"
+msgstr "Heikkoja lumikuuroja"
+
+#: desklet.js:1500
+msgid "Blowing snow"
+msgstr "Lumiatuiskua"
+
+#: desklet.js:1501 desklet.js:3504 desklet.js:3510
+msgid "Snow"
+msgstr "Lumisadetta"
+
+#: desklet.js:1502
+msgid "Hail"
+msgstr "Rakeita"
+
+#: desklet.js:1503 desklet.js:1793
+msgid "Sleet"
+msgstr "Räntäsadetta"
+
+#: desklet.js:1504
+msgid "Dust"
+msgstr "Tomua"
+
+#: desklet.js:1505
+msgid "Foggy"
+msgstr "Sumuista"
+
+#: desklet.js:1506
+msgid "Haze"
+msgstr "Autereista"
+
+#: desklet.js:1507
+msgid "Smoky"
+msgstr "Savuista"
+
+#: desklet.js:1508
+msgid "Blustery"
+msgstr "Puuskittaista tuulta"
+
+#: desklet.js:1509
+msgid "Windy"
+msgstr "Tuulista"
+
+#: desklet.js:1510
+msgid "Cold"
+msgstr "Kylmää"
+
+#: desklet.js:1511 desklet.js:3499
+msgid "Cloudy"
+msgstr "Pilvistä"
+
+#: desklet.js:1512 desklet.js:1513
+msgid "Mostly cloudy"
+msgstr "Melkein pilvistä"
+
+#: desklet.js:1514 desklet.js:1515 desklet.js:1529
+msgid "Partly cloudy"
+msgstr "Puolipilvistä"
+
+#: desklet.js:1516
+msgid "Clear"
+msgstr "Selkeää"
+
+#: desklet.js:1517 desklet.js:1777
+msgid "Sunny"
+msgstr "Selkeää"
+
+#: desklet.js:1518 desklet.js:1519 desklet.js:3497
+msgid "Fair"
+msgstr "Poutaa"
+
+#: desklet.js:1520
+msgid "Mixed rain and hail"
+msgstr "Sadetta ja rakeita"
+
+#: desklet.js:1521
+msgid "Hot"
+msgstr "Kuumaa"
+
+#: desklet.js:1522
+msgid "Isolated thunderstorms"
+msgstr "Paikallisia ukkosia"
+
+#: desklet.js:1523
+msgid "Scattered thunderstorms"
+msgstr "Hajanaisia ukkosia"
+
+#: desklet.js:1524 desklet.js:1525
+msgid "Scattered showers"
+msgstr "Hajanaisia kuurosateita"
+
+#: desklet.js:1526 desklet.js:1528
+msgid "Heavy snow"
+msgstr "Sakeaa lumisadetta"
+
+#: desklet.js:1527
+msgid "Scattered snow showers"
+msgstr "Hajanaisia lumikuuroja"
+
+#: desklet.js:1530
+msgid "Thundershowers"
+msgstr "Ukkoskuuroja"
+
+#: desklet.js:1531 desklet.js:3505
+msgid "Snow showers"
+msgstr "Lumikuuroja"
+
+#: desklet.js:1532
+msgid "Isolated thundershowers"
+msgstr "Paikallisia ukkoskuuroja"
+
+#: desklet.js:1533
+msgid "Not available"
+msgstr "Ei saatavilla"
+
+#: desklet.js:1776 desklet.js:3496
+msgid "Clear Sky"
+msgstr "Selkeää"
+
+#: desklet.js:1778 desklet.js:3498
+msgid "Partly Cloudy"
+msgstr "Puolipilvistä"
+
+#: desklet.js:1779
+msgid "Sunny Intervals"
+msgstr "Vaihtelevaa pilvisyyttä"
+
+#: desklet.js:1780
+msgid "Sand Storm"
+msgstr "Hiekkamyrsky"
+
+#: desklet.js:1781
+msgid "Mist"
+msgstr "Utua"
+
+#: desklet.js:1782 desklet.js:3500
+msgid "Fog"
+msgstr "Sumua"
+
+#: desklet.js:1783
+msgid "White Cloud"
+msgstr "Valkoista pilveä"
+
+#: desklet.js:1784
+msgid "Light Cloud"
+msgstr "Ohutta pilveä"
+
+#: desklet.js:1785
+msgid "Grey Cloud"
+msgstr "Harmaata pilveä"
+
+#: desklet.js:1786
+msgid "Thick Cloud"
+msgstr "Paksua pilveä"
+
+#: desklet.js:1787
+msgid "Light Rain Shower"
+msgstr "Heikkoja sadekuuroja"
+
+#: desklet.js:1789 desklet.js:3507 desklet.js:3511
+msgid "Light Rain"
+msgstr "Heikkoa sadetta"
+
+#: desklet.js:1790
+msgid "Heavy Rain Shower"
+msgstr "Rankkoja sadekuuroja"
+
+#: desklet.js:1791 desklet.js:3501 desklet.js:3509
+msgid "Heavy Rain"
+msgstr "Kaatosadetta"
+
+#: desklet.js:1792
+msgid "Sleet Shower"
+msgstr "Räntäkuuroja"
+
+#: desklet.js:1794
+msgid "Light Snow Shower"
+msgstr "Heikkoja lumikuuroja"
+
+#: desklet.js:1795 desklet.js:3508 desklet.js:3512
+msgid "Light Snow"
+msgstr "Heikkoa lumisadetta"
+
+#: desklet.js:1796
+msgid "Heavy Snow Shower"
+msgstr "Sakeita lumikuuroja"
+
+#: desklet.js:1797
+msgid "Heavy Snow"
+msgstr "Sankkaa lumisadetta"
+
+#: desklet.js:1798 desklet.js:3503
+msgid "Thundery Shower"
+msgstr "Ukkoskuuroja"
+
+#: desklet.js:1799
+msgid "Thunder Storm"
+msgstr "Ukkosta"
+
+#: desklet.js:1800
+msgid "Thunderstorm"
+msgstr "Ukkosta"
+
+#: desklet.js:1801
+msgid "Hazy"
+msgstr "Autereista"
+
+#: desklet.js:1802
+msgid "Hail Shower"
+msgstr "Raekuuro"
+
+#: desklet.js:1803
+msgid "Rain"
+msgstr ""
+
+#. # direction of movement of pressure
+#: desklet.js:1987 desklet.js:2601
+msgid "Steady"
+msgstr "Tasainen"
+
+#. # direction of movement of pressure
+#: desklet.js:1987 desklet.js:2597
+msgid "Rising"
+msgstr "Nouseva"
+
+#. # direction of movement of pressure
+#: desklet.js:1987 desklet.js:2599
+msgid "Falling"
+msgstr "Laskeva"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->description
+msgid "Get displayed location from"
+msgstr "Näytettävän sijainnin lähde"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->tooltip
+msgid ""
+"The source of the text displayed as the current location. Yahoo! and Google "
+"may offer city names in other languages"
+msgstr ""
+"Nykyisenä sijaintina esitettävän tekstin lähde. Yahoo! ja Google saattavat "
+"tarjota kaupunginnimiä muilla kielillä."
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->options
+msgid "Google"
+msgstr "Google"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->options
+#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->description
+msgid "Data service"
+msgstr "Säätietojen tarjoaja"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->options
+msgid "Yahoo!"
+msgstr "Yahoo!"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->experimental_enabled->description
+msgid "Enable experimental features"
+msgstr "Ota käyttöön kokeelliset ominaisuudet"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->experimental_enabled->tooltip
+msgid "Check this to enable experimental and buggy features"
+msgstr "Valitse tämä ottaaksesi käyttöön kokeellisia ja bugisia ominaisuuksia"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__cc__humidity->description
+msgid "Current humidity"
+msgstr "Ilmankosteus nyt"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->display__cc__humidity->tooltip
+msgid "Check to display the current humidity"
+msgstr "Näytä ilmankosteus tällä hetkellä"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->refreshtime->description
+msgid "Refresh forecast every"
+msgstr "Ennusteen päivitysväli"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->refreshtime->tooltip
+msgid ""
+"Period between refreshing forecasts. Note that not all services support "
+"lower refresh times"
+msgstr ""
+"Kuinka usein ennuste päivitetään. Kaikki lähteet eivät tue lyhyitä "
+"päivitysvälejä."
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->refreshtime->units
+msgid "minutes"
+msgstr "minuuttia"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->manuallocation->description
+msgid "Manually override displayed location"
+msgstr "Ohita automaattinen paikannimi"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->manuallocation->tooltip
+msgid "Set your city name manually."
+msgstr "Aseta paikan nimi itse"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__cc__wind_speed->description
+msgid "Current wind"
+msgstr "Tuuli nyt"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__cc__wind_speed->tooltip
+msgid "Check to display the current wind"
+msgstr "Näytä tuuli tällä hetkellä"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->tunits->description
+msgid "Temperature measurement unit"
+msgstr "Lämpötilan mittayksikkö"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->tunits->tooltip
+msgid "Measurement units used to display temperature"
+msgstr "Lämpötilan näyttämiseen käytettävät mittayksiköt"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->tunits->options
+msgid "Fahrenheit"
+msgstr "Fahrenheit"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->tunits->options
+msgid "Celsius"
+msgstr "Celsius"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->textcolor->description
+msgid "Text color"
+msgstr "Tekstin väri"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->textcolor->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Valitse tekstin väri painamalla nappia"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->border->description
+msgid "Show border"
+msgstr "Näytä reunus"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->border->tooltip
+msgid "Check this to turn border on/off"
+msgstr "Valitse tästä onko reunus käytössä"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->layout->description
+msgid "Layout"
+msgstr "Asettelu"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->layout->tooltip
+msgid "Set the overall layout of the desklet"
+msgstr "Valitse deskletin yleinen asettelu"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->layout->options
+msgid "Horizontal"
+msgstr "Vaakasuora"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->layout->options
+msgid "Vertical"
+msgstr "Pystysuora"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->bgcolor->description
+msgid "Background color"
+msgstr "Taustaväri"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->bgcolor->tooltip
+msgid "Click the button to select a new background color"
+msgstr "Valitse uusi taustaväri painamalla nappia"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->description
+msgid "Anchor desklet by"
+msgstr "Deskletin ankkuripiste"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->tooltip
+msgid ""
+"Select the point on the desklet to which it is anchored. This point will "
+"remain static as the desklet grows and shrinks"
+msgstr ""
+"Valitse mistä kohdasta desklet on ankkuroitu. Tämä kohta pysyy paikallaan "
+"deskletin koon muuttuessa."
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
+msgid "Bottom center"
+msgstr "Alareunan keskellä"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
+msgid "Default"
+msgstr "Oletus"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
+msgid "Left center"
+msgstr "Vasemman reunan keskellä"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
+msgid "Top right"
+msgstr "Oikea yläkulma"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
+msgid "Bottom left"
+msgstr "Vasen alakulma"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
+msgid "Top left"
+msgstr "Vasen yläkulma"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
+msgid "Right center"
+msgstr "Oikean reunan keskellä"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
+msgid "Bottom right"
+msgstr "Oikea alakulma"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
+msgid "Top center"
+msgstr "Yläreunan keskellä"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->top->description
+msgid "Weather configuration"
+msgstr "Sään asetukset"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->description
+msgid "Pressure measurement unit"
+msgstr "Ilmanpaineen mittayksikkö"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->tooltip
+msgid "Measurement units used to display atmospheric pressure"
+msgstr "Ilmanpaineen näyttämiseen käytettävät mittayksiköt"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->options
+msgid "in (Hg)"
+msgstr "in (Hg)"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->options
+msgid "mm (Hg)"
+msgstr "mm (Hg)"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->options
+msgid "kPa"
+msgstr "kPa"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->options
+msgid "mb"
+msgstr "mb"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->styling->description
+msgid "Desklet style"
+msgstr "Deskletin tyyli"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__forecast__maximum_temperature->description
+msgid "Forecast maximum"
+msgstr "Ennusteen ylin"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__forecast__maximum_temperature->tooltip
+msgid "Check to display the forecast maximum temperature"
+msgstr "Näytä ennusteen ylin lämpötila"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->description
+msgid "Wind speed measurement unit"
+msgstr "Tuulennopeuden mittayksikkö"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->tooltip
+msgid "Measurement units used to display wind speed"
+msgstr "Tuulen nopeuden näyttämiseen käytettävät mittayksiköt"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->options
+msgid "knots"
+msgstr "solmut"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->options
+msgid "m/s"
+msgstr "m/s"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->options
+msgid "km/h"
+msgstr "km/h"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->options
+msgid "mph"
+msgstr "mph"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__meta__country->description
+msgid "Country"
+msgstr "Maa"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->display__meta__country->tooltip
+msgid "Check to display the country"
+msgstr "Näytä maa"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__cc__pressure->description
+msgid "Current pressure"
+msgstr "Ilmanpaine nyt"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->display__cc__pressure->tooltip
+msgid "Check to display the current pressure"
+msgstr "Näytä ilmanpaine tällä hetkellä"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__forecast__wind_direction->description
+msgid "Forecast wind direction"
+msgstr "Ennusteen tuulen suunta"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__forecast__wind_direction->tooltip
+msgid "Check to display the forecast wind direction"
+msgstr "Näytä tuulen suunta ennusteessa"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__cc__feelslike->description
+msgid "Current 'feels like'"
+msgstr "'Tuntuu kuin' nyt"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->display__cc__feelslike->tooltip
+msgid "Check to display the current apparent temperature"
+msgstr "Näytä miltä tämänhetkinen lämpötila tuntuu"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__forecast__humidity->description
+msgid "Forecast humidity"
+msgstr "Ennusteen ilmankosteus"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__forecast__humidity->tooltip
+msgid "Check to display the forecast humidity"
+msgstr "Näytä ilmankosteus ennusteessa"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->userno->description
+msgid "Show forecast for"
+msgstr "Näytä ennuste"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->userno->tooltip
+msgid ""
+"The number of days of forecast to display. Note that not all services "
+"support all values"
+msgstr ""
+"Kuinka monelle päivälle ennuste näytetään. Kaikki tarjoajat eivät tue "
+"kaikkia arvoja."
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->userno->units
+msgid "days"
+msgstr "päivälle"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->bordercolor->description
+msgid "Border color"
+msgstr "Reunuksen väri"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->bordercolor->tooltip
+msgid ""
+"Select the color for the border. Only available if the 'Border' checkbox is "
+"enabled"
+msgstr "Valitse reunuksen väri. Toimii vain jos 'Reunus' on otettu käyttöön."
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__forecast__wind_speed->description
+msgid "Forecast wind speed"
+msgstr "Ennusteen tuulennopeus"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__forecast__wind_speed->tooltip
+msgid "Check to display the forecast wind speed"
+msgstr "Näytä tuulennopeus ennusteessa"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__cc__weather->description
+msgid "Current weather and icon"
+msgstr "Sää tällä hetkellä ja kuvake"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->display__cc__weather->tooltip
+msgid "Check to display the current weather and large icon"
+msgstr "Näytä tämänhetkinen säätila ja suuri kuvake"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->overrideTheme->description
+msgid "Override desktop theme (enables the settings below)"
+msgstr "Ohita työpöydän teema (mahdollistaa allaolevat asetukset)"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->overrideTheme->tooltip
+msgid ""
+"Check this to override the desktop theme and configure the appearance "
+"manually"
+msgstr "Ohita työpöydän teema ja tee ulkoasun asetukset käsin"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->citystyle->description
+msgid "Bold city name"
+msgstr "Lihavoitu kaupungin nimi"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->citystyle->tooltip
+msgid "Check to display the city name in bold"
+msgstr "Esitä kaupungin nimi lihavoituna"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__cc__visibility->description
+msgid "Current visibility"
+msgstr "Näkyvyys nyt"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__cc__visibility->tooltip
+msgid "Check to display the current visibility"
+msgstr "Näytä näkyvyys tällä hetkellä"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__forecast__minimum_temperature->description
+msgid "Forecast minimum"
+msgstr "Ennusteen alin"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__forecast__minimum_temperature->tooltip
+msgid "Check to display the forecast minimum temperature"
+msgstr "Näytä ennusteen alin lämpötila"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->locationlookups->description
+msgid "Location display settings"
+msgstr "Sijainnin näytön asetukset"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->apikey->description
+msgid "API key"
+msgstr "API-avain"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->apikey->tooltip
+msgid ""
+"Required for some services only. Enter your API key for your chosen service"
+msgstr ""
+"Tarvitaan vain joillain tarjoajilla. Syötä API-avaimesi valitsemallesi "
+"tarjoajalle."
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->tooltip
+msgid "Select the data service you wish to use"
+msgstr "Valitse haluamasi säätietojen tarjoaja"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
+msgid "Forecast.io (requires API key)"
+msgstr "Forecast.io (API-avain tarvitaan)"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
+msgid "Wunderground (requires API key)"
+msgstr "Wunderground (API-avain tarvitaan)"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
+msgid "meteoblue (requires API key)"
+msgstr ""
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
+msgid "BBC"
+msgstr "BBC"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
+msgid "Yahoo"
+msgstr "Yahoo"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
+msgid "weather.com (deprecated)"
+msgstr "weather.com (poistunut käytöstä)"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
+msgid "World Weather Online (requires API key)"
+msgstr "World Weather Online (API-avain tarvitaan)"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
+msgid "Open Weather Map"
+msgstr "Open Weather Map"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__forecast__pressure->description
+msgid "Forecast pressure"
+msgstr "Ennusteen ilmanpaine"
+
+#. bbcwx@oak-wood.co.uk->settings-
+#. schema.json->display__forecast__pressure->tooltip
+msgid "Check to display the forecast pressure"
+msgstr "Näytä ilmanpaine ennusteessa"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->zoom->description
+msgid "Zoom by"
+msgstr "Lähennä"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->zoom->tooltip
+msgid "Change the size of the desklet"
+msgstr "Muuta deskletin kokoa"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->zoom->units
+msgid "times"
+msgstr "-kertaiseksi"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->description
+msgid "Icon style"
+msgstr "Kuvakkeet"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->tooltip
+msgid "Select the style for the weather icons"
+msgstr "Valitse sääkuvakkeiden tyyli"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "Flat white"
+msgstr "Litteä valkoinen"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "Novacon"
+msgstr "Novacon"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "VClouds"
+msgstr "VClouds"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "Colorful"
+msgstr "Värikäs"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "Light"
+msgstr "Kevyt"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "Meteocons 2"
+msgstr "Meteocons 2"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "Flat black"
+msgstr "Litteä musta"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "Meteocons 1"
+msgstr "Meteocons 1"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "Dark"
+msgstr "Musta"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "Sketchy"
+msgstr "Luonnos"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "Flat colorful"
+msgstr "Litteä värikäs"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "User defined"
+msgstr "Käyttäjän määrittelemä"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
+msgid "Weezle"
+msgstr "Weezle"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->stationID->description
+msgid "Location"
+msgstr "Sijainti"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->stationID->tooltip
+msgid "Set your location here"
+msgstr "Aseta sijaintisi"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->cornerradius->description
+msgid "Corner radius"
+msgstr "Kulmien pyöristys"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->cornerradius->tooltip
+msgid "Radius for rounding the desklet's corners"
+msgstr "Deskletin kulmien pyöristyksen säde"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->cornerradius->units
+#. bbcwx@oak-wood.co.uk->settings-schema.json->borderwidth->units
+msgid "px"
+msgstr "pikseliä"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->transparency->description
+msgid "Transparency"
+msgstr "Läpinäkyvyys"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->transparency->tooltip
+msgid "Set the transparency of the desklet"
+msgstr "Aseta deskletin läpinäkyvyys"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->display->description
+msgid ""
+"Optional items to display (not all options are supported by all services)"
+msgstr "Näytön lisävalinnat (kaikki tarjoajat eivät tue kaikkia valintoja)"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->experimental->description
+msgid "Experimental and buggy features (read documentation!!)"
+msgstr "Kokeelliset ja bugiset ominaisuudet (lue dokumentaatio!!)"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->borderwidth->description
+msgid "Border width"
+msgstr "Reunuksen paksuus"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->borderwidth->tooltip
+msgid ""
+"Select the width of the border. Only available if the 'Border' checkbox is "
+"enabled"
+msgstr ""
+"Valitse reunuksen paksuus. Toimii vain jos 'Reunus' on otettu käyttöön."
+
+#. bbcwx@oak-wood.co.uk->metadata.json->name
+msgid "Weather Desklet"
+msgstr ""
+
+#. bbcwx@oak-wood.co.uk->metadata.json->description
+msgid "Display the weather from several web services on your desktop"
+msgstr ""

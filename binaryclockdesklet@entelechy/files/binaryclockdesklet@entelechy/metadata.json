@@ -1,0 +1,6 @@
+{
+ "uuid": "binaryclockdesklet@entelechy",
+ "name": "Binary clock desklet",
+ "description": "A desklet that displays the time in binary",
+ "minimum-decoration": 1
+}

@@ -1,0 +1,36 @@
+.news-reader {
+    padding: 5px;
+    border : 2px solid #ffffff;
+    background-color : rgba(0,0,0,0.7);
+    border-radius: 12px;
+}
+
+.news-title {
+    color : #fff;
+    font-weight: bold;
+}
+
+.news-box {
+
+}
+
+.news-content {
+    position : absolute;
+    color : #fff;
+    text-align : left;
+    padding-top : 10px;
+}
+
+.news-table-item {
+    padding-left : 2px;
+    padding-right : 5px;
+}
+
+.one-news-box {
+    color : #777;
+    padding : 3px 0px 0px 0px;
+}
+
+.one-news-box-label {
+    padding : 0px 0px 0px 5px;
+}

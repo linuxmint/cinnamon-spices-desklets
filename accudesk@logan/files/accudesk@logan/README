@@ -1,0 +1,37 @@
+Just an accuweather desklet. Hope you like it
+
+For Accuweather
+To find your location's code go to http://forecastfox.accuweather.com/adcbin/forecastfox/locate_city.asp?location=[your location here] and copy/paste the string insite the quotes
+examples:
+For new castle,uk
+http://forecastfox.accuweather.com/adcbin/forecastfox/locate_city.asp?location=new castle
+the code will be EUR|UK|UK813|New Castle|
+Be careful to pick the corect one when you'll have multiple results (i just picked one at random)
+For Neubrandenburg
+http://forecastfox.accuweather.com/adcbin/forecastfox/locate_city.asp?location=Neubrandenburg
+code will be EUR|DE|GM010|NEUBRANDENBURG|
+
+
+
+For yahoo weather use http://edg3.co.uk/snippets/weather-location-codes/ or zip codes for US.
+
+For weather.com go to weather.com search the weather for your location. Now, in the address bar you'll have your code. The code is right before the last slash
+examples:
+for new castle (uk)
+http://www.weather.com/weather/today/l/UKXX7141:1:UK =>code UKXX7141:1:UK
+for Beverly Hills (CA)
+http://www.weather.com/weather/today/l/USCA0090:1 ==>code is USCA0090:1
+
+For openweather you can type in your location or enter the id code.
+The code you'll find it by going to openweathermap.org search for your place and after you choose your location you'll have the code in adress bar after "city/".
+Added the posibility to change language for forecast (unfortunately the labels will stay in english). Just add space follow by your language code.
+Example: [code] ru --for rusian.
+         [code] fr --for french
+
+For supported languages check http://openweathermap.org/API for openweathermap and http://api.accuweather.com/developers/languages for accuweather* (watch out for "Expand" :D)
+
+Refresh time is 10+ min.
+
+You can switch the forecast for day and night by pressing the button left of accuweather text. 
+You can configure it by right click it in the desklets list or directly on desklet ->configure
+

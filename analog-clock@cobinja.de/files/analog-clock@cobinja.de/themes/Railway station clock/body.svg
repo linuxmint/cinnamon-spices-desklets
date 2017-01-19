@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   width="150"
+   height="150"
+   id="svg3908"
+   inkscape:version="0.91 r"
+   sodipodi:docname="body.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1157"
+     inkscape:window-height="882"
+     id="namedview62"
+     showgrid="false"
+     inkscape:zoom="3.14"
+     inkscape:cx="60.943909"
+     inkscape:cy="64.263208"
+     inkscape:window-x="100"
+     inkscape:window-y="101"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg3908" />
+  <defs
+     id="defs3910">
+    <filter
+       color-interpolation-filters="sRGB"
+       id="filter5519">
+      <feGaussianBlur
+         stdDeviation="0.91388041"
+         id="feGaussianBlur5521" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       id="filter5426">
+      <feGaussianBlur
+         stdDeviation="2.5940401"
+         id="feGaussianBlur5428" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter4320">
+      <feFlood
+         flood-opacity="0.498039"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood4322" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite1"
+         id="feComposite4324" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="3"
+         result="blur"
+         id="feGaussianBlur4326" />
+      <feOffset
+         dx="4"
+         dy="4"
+         result="offset"
+         id="feOffset4328" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="atop"
+         result="composite2"
+         id="feComposite4330" />
+    </filter>
+  </defs>
+  <metadata
+     id="metadata3913">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <ellipse
+     style="opacity:1;fill:#f9f9f9;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:7.1808877;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter4320)"
+     id="path4256"
+     cx="75.51284"
+     cy="71.975075"
+     rx="66.151947"
+     ry="66.503616"
+     transform="matrix(0.68849879,0.7772887,-0.77102299,0.68840937,78.185461,-32.288191)" />
+  <path
+     style="fill:none;fill-rule:evenodd;stroke:#333333;stroke-width:0.37;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 65.038488,50.869545 9.64651,-7.869525 9.737535,7.959172 -9.737746,7.511349 z"
+     id="path4746"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="ccccc" />
+  <path
+     style="fill:#1a1a1a;fill-rule:evenodd;stroke:#000000;stroke-width:0.15163355px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 70.902376,46.918099 0,0.8639 3.218484,-0.02979 0.07424,3.062834 -2.851137,-1.978994 -0.06661,5.618808 0.968668,0 0.01768,-3.801649 1.99039,1.300217 0.01358,4.341421 0.886189,-0.004 0.02943,-3.802148 2.602982,2.065111 -0.03125,-5.697152 -0.790631,0.02751 0,3.872641 -1.781101,-1.459686 0,-3.574747 3.093496,0 0,-0.804321 z"
+     id="path4748"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="ccccccccccccccccccccc" />
+</svg>

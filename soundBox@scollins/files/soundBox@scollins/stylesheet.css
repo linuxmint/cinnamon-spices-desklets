@@ -1,0 +1,39 @@
+@import url("themes/mint.css");
+@import url("themes/clean.css");
+@import url("themes/ghost.css");
+@import url("themes/ice.css");
+@import url("themes/forest.css");
+@import url("themes/mintx.css");
+@import url("themes/hot.css");
+
+.soundbox-slider {
+    -slider-active-height: 4px;
+    -slider-active-background-color: #ffffff;
+    min-height: 4px;
+    min-width: 150px;
+}
+
+.soundbox-volumeIcon {
+    icon-size: 16px;
+}
+
+.soundbox-appIcon {
+    icon-size: 20px;
+}
+
+.soundbox-playerIcon {
+    icon-size: 16px;
+}
+
+.soundbox-trackInfo-icon {
+    icon-size: 1em;
+}
+
+.soundbox-soundButton-icon {
+    icon-size: 24px;
+}
+
+.soundBox-contextMenuSection {
+    padding-left: 15px;
+}
+

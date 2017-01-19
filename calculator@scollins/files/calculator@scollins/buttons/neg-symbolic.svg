@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg7384"
+   height="16"
+   width="16"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="neg-symbolic.svg">
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1024"
+     inkscape:window-height="688"
+     id="namedview8"
+     showgrid="false"
+     inkscape:zoom="14.75"
+     inkscape:cx="16.498676"
+     inkscape:cy="12.329118"
+     inkscape:window-x="0"
+     inkscape:window-y="26"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg7384" />
+  <metadata
+     id="metadata90">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Gnome Symbolic Icon Theme</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <title
+     id="title9167">Gnome Symbolic Icon Theme</title>
+  <g
+     style="font-size:10.57851315px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#bebebe;fill-opacity:1;stroke:none;font-family:Rekha;-inkscape-font-specification:Rekha Medium"
+     id="text3001-5"
+     transform="translate(3.1864407,12.610169)" />
+  <g
+     transform="matrix(1.3266499,0,0,1.4890968,1.4999997,-8.73061)"
+     style="font-size:14.03398323px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#bebebe;fill-opacity:1;stroke:none;font-family:Rekha;-inkscape-font-specification:Rekha Medium"
+     id="text3001-5-7">
+    <path
+       d="m 10.176008,14.593148 -3.7688916,0 0,-0.671548 3.7688916,0 0,0.671548"
+       id="path2989"
+       inkscape:connector-curvature="0" />
+  </g>
+  <g
+     id="g3792"
+     transform="translate(-9.3813561,-3.4152538)">
+    <g
+       id="text3001-5-7-8"
+       style="font-size:14.03398323px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#bebebe;fill-opacity:1;stroke:none;font-family:Rekha;-inkscape-font-specification:Rekha Medium"
+       transform="matrix(1.3266499,0,0,1.4890968,1.8813558,-14.315356)">
+      <path
+         inkscape:connector-curvature="0"
+         id="path2989-9"
+         d="m 10.176008,14.593148 -3.7688916,0 0,-0.671548 3.7688916,0 0,0.671548" />
+    </g>
+    <g
+       id="text3001-5-7-5"
+       style="font-size:14.03398323px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#bebebe;fill-opacity:1;stroke:none;font-family:Rekha;-inkscape-font-specification:Rekha Medium"
+       transform="matrix(0,1.3266499,-1.4890968,0,34.111966,-4.0847462)">
+      <path
+         inkscape:connector-curvature="0"
+         id="path2989-92"
+         d="m 10.176008,14.593148 -3.7688916,0 0,-0.671548 3.7688916,0 0,0.671548" />
+    </g>
+  </g>
+  <rect
+     style="fill:#bebebe;fill-opacity:1;stroke:none"
+     id="rect3798"
+     width="16"
+     height="1"
+     x="-8"
+     y="10.813709"
+     transform="matrix(0.70710678,-0.70710678,0.70710678,0.70710678,0,0)" />
+</svg>

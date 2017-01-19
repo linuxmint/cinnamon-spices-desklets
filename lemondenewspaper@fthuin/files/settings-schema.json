@@ -1,0 +1,53 @@
+{
+    "head" : {
+        "type" : "header",
+        "description" : "Desklet Settings"
+    },
+
+    "height" : {
+        "default" : 300,
+        "type" : "spinbutton",
+        "min" : 50,
+        "max" : 1600,
+        "description" : "Height :",
+        "units" : "pixels",
+        "step" : 50
+    },
+
+    "width" : {
+        "default" : 350,
+        "type" : "spinbutton",
+        "min" : 50,
+        "max" : 1600,
+        "description" : "Width : ",
+        "units" : "pixels",
+        "step" : 50
+    },
+
+    "newsRefreshDelay" : {
+        "default" : 10,
+        "type" : "spinbutton",
+        "min" : 10,
+        "max" : 360,
+        "description" : "Refresh news database delay:",
+        "units" : "minutes",
+        "step" : 1
+    },
+
+    "newsDisplayRefreshDelay" : {
+        "default" : 30,
+        "type" : "spinbutton",
+        "min" : 10,
+        "max" : 600,
+        "description" : "Change news every :",
+        "units" : "seconds",
+        "step" : 1
+    },
+
+    "displayImages" : {
+        "default" : true,
+        "description" : "Display images",
+        "type" : "checkbox",
+        "tooltip" : "Check this if you want to show images with the content"
+    }
+}

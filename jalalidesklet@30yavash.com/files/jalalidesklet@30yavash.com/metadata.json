@@ -1,0 +1,11 @@
+{
+    "uuid": "jalalidesklet@30yavash.com", 
+    "dateFormat": "%A %d %B %Y", 
+    "description": "A fork desklet that displays the time and date in Jalali", 
+    "dateSize": "15pt", 
+    "name": "Jalali Time and Date Desklet", 
+    "timeSize": "40pt", 
+    "timeFormat": "%H:%M", 
+    "prevent-decorations": false, 
+    "last-edited": "1371648230"
+}

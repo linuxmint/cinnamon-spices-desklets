@@ -1,0 +1,132 @@
+Cinnamon Desklet: Drives Manager Version: v1.5
+
+Last version release date: 31 de Mayo de 2015.
+***
+Autor:     Lester Carballo Pérez (https://github.com/lestcape)
+Contacto:  lestcape@gmail.com
+Sitio Web: https://github.com/lestcape/Drives-Manager
+***
+
+--------------
+Gracias especiales a:
+--------------
+ - mtwebster (https://github.com/mtwebster)
+ - rgcjonas (https://github.com/rgcjonas)
+ - collins (https://github.com/collinss)
+
+--------------
+Autores de las traducciones a otros idiomas:
+--------------
+- Búlgaro(Bg):      Peyu Yovev (spacy01) (spacy00001@gmail.com)
+- Checo(Cs_Cz):     Kuba Vaněk(vanek.jakub4@seznam.cz)
+- Español(Es):      Lester Carballo Pérez(lestcape@gmail.com)
+- Ingles(En):       Lester Carballo Pérez(lestcape@gmail.com)
+
+--------------
+Habilidades incluidas:
+--------------
+1- Mostrar los diferentes volúmenes que contiene un dispositivo, estén o no montados actualmente.
+2- Los volúmenes pueden montarse y desmostarse con un simple clic.
+3- Si el volumen está montado usted podrá acceder al punto de montaje con su navegador preferido (Nemo o Nautilus) con un simple clic o automáticamente si así lo desea cuando el volumen se monte.
+4- El desklet cuenta con un amplio conjunto de posibilidades de configuración, que le permite adaptarse a casi todos los temas de escritorio.
+5- Mediante este desklet, se podrá monitorizar las temperaturas de sus discos duros e incluso activar una alarma, cuando algún disco sobrepase la temperatura que usted considere inaceptable. Se necesita para esta opción de udisk2.
+6- Se puede activar la opción de reconectar un dispositivo usb extraíble, sin la necesidad de quitarlo del conector. Tal cual USB Safely Removed lo hace en windows.
+7- Usted podrá también monitoriar la velocidad de lectura/escritura de los archivos en su sistema.
+8- Esta extensión puede ser un desklet y también un Applet.
+
+--------------
+Este programa es software libre:
+--------------
+Usted puede redistribuirlo y/o modificarlo bajo los términos de la Licencia General Pública GNU publicada por la Fundación de Software Libre, con los requerimientos de la versión 3 de la licencia, o (a su opción) alguna versión posterior.
+
+Este programa es distribuido en el presunto supuesto que es útil, pero SIN NINGUNA GARANTÍA; ni siquiera la garantía implícita MERCANTIL o de APTITUD PARA UN PROPÓSITO PARTICULAR. Vea la Licencia General Pública GNU para más detalles.
+
+Usted podría haber recibido una copia de la Licencia General Pública GNU junto con este programa, pero si no es el caso usted puede verla en: http://www.gnu.org/licenses/
+
+--------------
+Instrucciones de instalación:
+--------------
+1- Descargue este desklet desde su sitio web: https://github.com/lestcape/Drives-Manager
+2- Descomprima el archivo descargado y copie la carpeta drivesManager@lestcape en la dirección /home/USUARIO/.local/share/cinnamon/desklets/ donde USUARIO es el correspondiente a su usuario en su sistema operativo.
+3- Habilite el desklet en la Configuración de Cinnamon y úselo.
+
+--------------
+Agregar nuevos idiomas:
+--------------
+1- Instale el programa poedit.
+2- Abra con poedit el archivo default.po, que se encuentra en la carpeta /drivesManager@lestcape/locale/po
+3- Realise su traducción y envíela por correo a la dirección electrónica aquí presente o añádala directamente en el sitio web de este software.
+
+--------------
+Errores conocidos y requerimientos:
+--------------
+1- ¡Advertencia! Para utilizar la detección de la temperatura es necesario haber instalado udisks2. Los datos de temperatura del disco duro se obtienen directamente de udisks2. Por lo que necesita ubuntu 12.10 o superior, o un equivalente que venga con udisks2 o permita instalarlo.
+
+2 ¡Tenga cuidado! Cuando un dispositivo extraíble tiene más de una partición y está activa la opción de volver a conectar el dispositivo sin sacarlo del conector. Puede suceder que usted desenchufó un dispositivo que tienen montadas algunas particiones y por lo tanto usted puede perder algunos datos importantes, por lo que te recomiendo totalmente activar la opción de "Desmontar todos los volúmenes montados pertenecientes a la misma unidad". Por defecto está activa.
+
+--------------
+Registro de cambios:
+--------------
+1.6
+   - Se ha añadido soporte para cinnamon 2.6.
+   - Se amplió la opción simbólico a todos los iconos dentro del applet.
+
+1.5
+  - Se ha añadido el parámetro instance_id faltante que evita recordar los ajustes.
+  - Ahora al quitar el applet, cuando el desklet es mostrado como un applet, también elimina el desklet del escritorio.
+
+1.4
+  - Añadido el idioma Búlgaro, gracias a Peyu Yovev.
+
+1.3
+  - Drives Manager monta automáticamente los volúmenes.
+  - Solucionado el problema de fijar el ancho y el alto en el reinicio de Cinnamon.
+
+1.2-RTM
+  - Se están cambiando los iconos a svg.
+  - Añadido el idioma Checo(gracias a vanek.jakub4).
+  - El programa hddtemp fue reemplazado por Udisk2(gracias a rgcjonas).
+  - Añadido soporte para los temas de Cinnamon.
+  - Ahora se puede elegir si Drives Manager será un Applet o un Desklet.
+  - Los puntos de montaje ahora se abren con el navegador por defecto de su computadora.
+  - Se limitó la altura, para que no sobrepase la altura del monitor con un scroll.
+  - Se añadiron opciones para configurar el comportamiento del scroll.
+  - Eliminada la opción para abrir puntos de montaje con nemo o nautilus, en su lugar se habren con el navegador por defecto.
+  - Fue añadida una opción para auto desmontar simultaneamente todos los volumenes (evitar la perdida de datos por errores humanos).
+  - Las imagenes de medicion fueron sustituidas por una implementación interna. Se acabaron los parpadeos y ahora esto es configurable desde css.
+  - Reimplementado el automount-open, para utilizar el nuevo GSetting de Cinnamon (Nemo).
+  - Se ha añadido la categoría que falta de volúmenes sin unidades (como ftp, sftp, imágenes ISO y más).
+  - Disminución del uso de la CPU al mínimo.
+  - Se ha añadido una teclas de acceso directo para elevar o abrir el Desklet/Applet(gracias a collins).
+  - Se ha eliminado el manejo especial de unidades de CDROM, porque causa muchos conflictos y problemas.
+  - La configuración se ha mejorado y ahora se organiza por categorías.
+
+1.1-RTM
+  - Añadido un parámetro omitido en CriticalNotify.
+  - El proceso gjs para obtener la temperatura fue eliminado, dependia de gjs y quizas no estuviese instalado, fue remplazado por spaw con pipes.
+
+1.0-RTM
+   - Todo a sido reimplementado. Ahora el funcionamiento no retrasa el hilo principal de Cinnamon. El código fue optimizado para usar menos CPU.
+   - Internamente se soportan varios programas alternativos para tareas que requieren privilegios elevados: pkexec, gksu o kdesu.
+   - Fue añadida una herramienta para medir la velocidad de lectura/escritura en los discos.
+   - Ahora se puede ver la temperatura de los discos duros, gracias a la inclusión de soporte para hddtemp.
+   - Fue añadido el soporte para idiomas y luego actualizado en Cinnamon 2.0 por el mecanismo estándar implementado.
+   - Añadido el idioma Español.
+   - Se puede configurar cuanto tiempo de procesamiento y en que acciones se gasta el CPU de su computadora.
+   - Puede ahora reconectar los dispositivos extraíbles sin necesidad de quitarlos de su conector.  
+   - Añadido soporte para reconocer dispositivos que posean más de un volumen.
+   - Arreglados muchos problemas menores.
+
+0.1-Beta
+   - Lanzamiento inicial.
+
+--------------
+Sitio Web:
+--------------
+Para reportar problemas, pedir nuevas funcionalidades, agregar nuevos idiomas, iconos o cualquier cosa que usted desee sobre este desklet visite: 
+https://github.com/lestcape/Drives-Manager/issues
+
+
+Muchas gracias por usar este producto.
+Lester.
+

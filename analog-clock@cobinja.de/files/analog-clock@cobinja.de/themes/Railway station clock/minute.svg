@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   width="6"
+   height="80"
+   id="svg2"
+   inkscape:version="0.91 r"
+   sodipodi:docname="minute.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="914"
+     inkscape:window-height="902"
+     id="namedview7"
+     showgrid="false"
+     inkscape:zoom="8.25"
+     inkscape:cx="11.888328"
+     inkscape:cy="28.766307"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
+  <defs
+     id="defs4" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <path
+     inkscape:connector-curvature="0"
+     id="minutes"
+     d="m 3.1427212,0.28940151 2.73125,2.71772039 0,76.8113561 -5.46250006,0 0,-76.8113561 2.73125006,-2.71772039 z">
+    <animateTransform
+       repeatCount="indefinite"
+       accumulate="sum"
+       keyTimes="0; 1"
+       values="0; 6"
+       calcMode="discrete"
+       dur="1min"
+       begin="wallclock(00:00)"
+       type="rotate"
+       attributeType="XML"
+       attributeName="transform" />
+  </path>
+</svg>

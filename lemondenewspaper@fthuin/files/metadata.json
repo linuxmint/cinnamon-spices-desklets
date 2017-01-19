@@ -1,0 +1,6 @@
+{
+    "description": "A desklet that displays news from the world", 
+    "name": "LeMonde.fr Newspaper Unofficial", 
+    "prevent-decorations": true, 
+    "uuid": "lemondenewspaper@fthuin"
+}

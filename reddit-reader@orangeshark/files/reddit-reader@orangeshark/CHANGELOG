@@ -1,0 +1,15 @@
+v0.4 (2015-01-22)
+ - Fix a crashing bug
+
+v0.3 (2015-01-04)
+ - Add a link to subreddit for the post in infobar
+ - Add user agent to requests
+ - Disable the update log message
+
+v0.2 (2014-08-30)
+ - Add infobar with score, link to comments, and a link to poster (thanks robrobinbin)
+ - Fix update loop
+
+v0.1 (2014-08-27)
+ - Initial release
+ - Allows one subreddit to be displayed

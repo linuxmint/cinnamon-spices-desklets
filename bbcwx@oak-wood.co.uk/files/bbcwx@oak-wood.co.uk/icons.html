@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<style type="text/css">
+html, body, div, span, h1, h2, h3, p, a, em, pre, code { margin: 0;padding: 0; border: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline;}
+body {line-height: 1.5; margin: 1.4em 4em;}
+html { font-size:100.01%; }
+body {font-size: 11pt;color: #222;background: #fff;font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;}
+h1,h2,h3 { font-weight: normal; color: #111; }
+h1 { font-size: 20.2pt; line-height: 1; margin-bottom: 0.5em; }
+h2 { font-size: 15pt;  margin-bottom: 0.75em; }
+h3 { font-size: 13pt; font-weight: bold; font-style: normal; line-height: 1; margin-bottom: 0.2em; }
+p { margin: 0 0 1.5em; }
+pre { margin: 1.5em 0; white-space: pre; }
+pre,code { font: 1em 'andale mono', 'lucida console', monospace; line-height: 1.5; }
+a:focus, a:hover{ color: #000; }
+a {color: #009; text-decoration: underline; }
+strong { font-weight: bold; }
+img.iconsample {height: 50px; width: auto}
+table {border-collapse:collapse; border: none; margin: 15px auto;}
+td, th {padding: 10px 10px; font-size: 10pt}
+td.light {background-color: #666; color: #fff}
+</style>
+  <title>Weather Desklet Icons</title>
+  </head>
+  <body bgcolor="#ffffff" text="#000000">
+  <h1>Weather Desklet Icons</h1>
+<script type="text/javascript">
+<!--
+var icons = {
+  '00':'Tornado',
+  '01':'Hurricane / tropical storm',
+  '02':'Strong wind with rain',
+  '03':'Severe thunderstorms',
+  '04':'Thunderstorms',
+  '05':'Mixed rain and snow',
+  '06':'Mixed rain and sleet',
+  '07':'Mixed snow and sleet',
+  '08':'Freezing drizzle',
+  '09':'Drizzle',
+  '10':'Freezing rain',
+  '11':'Light rain',
+  '12':'Heavy rain',
+  '13':'Light snow',
+  '14':'Medium snow',
+  '15':'Blowing snow / blizzard',
+  '16':'Heavy snow',
+  '18':'Hail / sleet',
+  '19':'Dust',
+  '20':'Fog',
+  '21':'Hazy, night',
+  '22':'Hazy, day',
+  '23':'Blustery',
+  '24':'Windy',
+  '25':'Cold',
+  '26':'White cloud',
+  '26d':'Dark cloud',
+  '27':'Mostly cloudy (night)',
+  '28':'Mostly cloudy (day)',
+  '29':'Partly cloudy (night)',
+  '30':'Partly cloudy (day)',
+  '31':'Clear (night)',
+  '32':'Sunny',
+  '33':'Few clouds (night)',
+  '34':'Few clouds (day)',
+  '36':'Hot',
+  '37':'Thundery showers (day)',
+  '38':'Scattered thunderstorms',
+  '39':'Showers (day)',
+  '41':'Snow showers (day)',
+  '45':'Showers (night)',
+  '46':'Snow showers (night)',
+  '47':'Thundery showers (night)',
+  'na':'Unknown'
+};
+
+
+var iconsets = {
+  'user' : 'User defined',
+  'colourful' : 'Colourful', 
+  'dark' : 'Dark', 
+  'light' : 'Light', 
+  'flat_colourful' : 'Flat colourful', 
+  'flat_black' : 'Flat black', 
+  'flat_white' : 'Flat white', 
+  'sketchy' : 'Sketchy',
+  'novacon' : 'Novacon', 
+  'weezle' : 'Weezle',
+  'vclouds' : 'VClouds',
+  'meteo_outline' : 'Meteocons 1',
+  'meteo_filled' : 'Meteocons 2'
+}
+
+function keys(obj)
+{
+  var keys = [];
+  for(var key in obj)
+  {
+    if(obj.hasOwnProperty(key))
+    {
+        keys.push(key);
+    }
+  }
+  return keys;
+}
+
+function fetchMeta(iconset) {
+  xmlhttp=new XMLHttpRequest();
+  xmlhttp.open("GET","icons/" + iconset + "/iconmeta.json",false);
+  try {
+    xmlhttp.send();
+    response=xmlhttp.responseText; 
+    if (response) {
+      return JSON.parse(response);
+    } else {
+      var defmeta = new Object();
+      defmeta.aspect = 1;
+      defmeta.ext = 'png';
+      defmeta.map = new Object();
+      return defmeta;
+    }
+  } catch(e) {
+      var defmeta = new Object();
+      defmeta.aspect = 1;
+      defmeta.ext = 'png';
+      defmeta.map = new Object();
+      return defmeta;
+  }
+}
+
+var iconcodes = keys(icons).sort();
+var sets = keys(iconsets);
+
+var meta = new Object();
+var img;
+
+for(s=0; s<sets.length; s++) {
+  meta[sets[s]] = fetchMeta(sets[s]);
+}
+
+
+document.write("\n" + '<table style="background-color: rgba(147,184,74,0.6)">' + "\n<thead>\n");
+document.write("<tr>\n  " + '<th style="text-align: left">Code<\/th>' + "\n  " + '<th style="text-align: left">Description<\/th>' + "\n");
+for(s=0; s<sets.length; s++) {
+  document.write('  <th>' + iconsets[sets[s]] + "<\/th>\n");
+}
+document.write("<\/tr>\n<\/thead>\n<tbody>\n");
+for(i=0; i<iconcodes.length; i++) {
+  index=iconcodes[i];
+  document.write( "<tr>\n  <td>" + index + "<\/td>\n  <td>" + icons[index] + "<\/td>\n  ");
+  for(s=0; s<sets.length; s++) {
+    if (typeof meta[sets[s]].map[index] != 'undefined') {
+      img = 'icons/' + sets[s] + '/' + meta[sets[s]].map[index] + '.' + meta[sets[s]].ext;
+    } else {
+      img = 'icons/' + sets[s] + '/' + index + '.' + meta[sets[s]].ext;
+    }
+    document.write('<td><a href="' + img + '" title="View icon"><img src="' + img + '" alt="" class="iconsample" ><\/a><\/td>'  + "\n  ");
+  }
+  document.write("<\/tr>\n");
+}
+document.write("<\/tbody>\n<\/table>");
+// -->
+</script>
+<p><a href="help.html#credits">Credits</a></p>
+</body>
+</html>

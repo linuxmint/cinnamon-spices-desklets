@@ -1,0 +1,473 @@
+{
+    "separator-general-top": {
+       "type": "separator"
+    },
+    "header-general": {
+        "type": "header",
+        "description": "General:"
+    },
+    "separator-general-bottom": {
+       "type": "separator"
+    },
+    "multi-instance": {
+        "default": false,
+        "description": "Multiple Instances.",
+        "type": "checkbox",
+        "tooltip": "Check this if you want to have different instances of this desklet for each note."
+    },
+    "auto-hide-buttons": {
+        "default": false,
+        "description": "Auto hide buttons.",
+        "type": "checkbox",
+        "tooltip": "Check this if you want to autohide the action buttons when mouse is outside of the desklet."
+    },
+    "show-scroll": {
+        "default": true,
+        "description": "Show scrolling area.",
+        "type": "checkbox",
+        "tooltip": "Check this if you want to show the scrolling area or not."
+    },
+    "auto-scroll": {
+        "default": true,
+        "description": "Enable autoscrolling.",
+        "type": "checkbox",
+        "tooltip": "Check this if you want to enable smooth autoscrolling or not."
+    },
+    "raise-new-note": {
+        "default": false,
+        "description": "Raise the new note.",
+        "type": "checkbox",
+        "tooltip": "Check this if you want to raise the new note or not."
+    },
+    "separator-applet-top": {
+       "type": "separator"
+    },
+    "header-applet": {
+        "type": "header",
+        "description": "Applet Manager:"
+    },
+    "separator-applet-bottom": {
+       "type": "separator"
+    },
+    "applet-manager": {
+        "default": false,
+        "description": "Show Applet Manager.",
+        "type": "checkbox",
+        "tooltip": "Check this if you want to show the Applet Manager."
+    },
+    "applet-collapsed": {
+        "default": false,
+        "description": "Collapsed Applet Manager.",
+        "type": "checkbox",
+        "dependency": "applet-manager",
+        "indent": true,
+        "tooltip": "Check this if you want to collapsed the Applet Manager."
+    },
+    "applet-symbolic": {
+        "default": false,
+        "description": "Show symbolic icons in the Applet Manager.",
+        "type": "checkbox",
+        "dependency": "applet-manager",
+        "indent": true,
+        "tooltip": "Check this if you want to show symbolic icons in the Applet Manager."
+    },
+    "separator-layouts-top": {
+       "type": "separator"
+    },
+    "header-layouts": {
+        "type": "header",
+        "description": "Layouts:"
+    },
+    "separator-layouts-bottom": {
+       "type": "separator"
+    },
+    "stripe-layout": {
+        "type": "combobox",
+        "description": "Selected theme of paper sheet:",
+        "default": "none",
+        "tooltip": "Select a theme of paper sheet to show in Notes.",
+        "options": {
+            "None": "none",
+            "Simple Stripe": "simplestripe",
+            "Double Stripe": "doublestripe",
+            "Gridded Stripe": "griddedstripe"
+        }
+    },
+    "staples-layout": {
+        "type": "combobox",
+        "description": "Selected theme of staples:",
+        "default": "none",
+        "tooltip": "Select theme of staples to show in Notes.",
+        "options": {
+            "None": "none",
+            "Double Staple": "doublestaple",
+            "Border Staple": "borderstaple",
+            "Bright Staple": "brightstaple",
+            "Chain Staple": "chainstaple",
+            "Clamp Staple": "clampstaple",
+            "Clip Staple": "clipstaple",
+            "Offhanded Staple": "offhandedstaple",
+            "Tack Staple": "tackstaple",
+            "White Staple": "whitestaple"
+        }
+    },
+    "pencil-layout": {
+        "type": "combobox",
+        "description": "Selected theme of pencil:",
+        "default": "bluepencil",
+        "tooltip": "Select a theme of pencil to show in Notes.",
+        "options": {
+            "None": "none",
+            "Blue Pencil": "bluepencil",
+            "Yellow Pencil": "yellowpencil",
+            "Orange Pencil": "orangepencil",
+            "Black Pencil": "blackpencil"
+        }
+    },
+    "separator-shortcut-top": {
+       "type": "separator"
+    },
+    "header-shortcut": {
+        "type": "header",
+        "description": "Shortcut keys:"
+    },
+    "separator-shortcut-bottom": {
+       "type": "separator"
+    },
+    "raise-key": {
+        "type": "keybinding",
+        "description": "Shortcut key to raise the desklet to the top:",
+        "default": "<Super>n"
+    },
+    "hide-key": {
+        "type": "keybinding",
+        "description": "Shortcut key to hide the desklet:",
+        "default": "<Super>h"
+    },
+    "separator-size-top": {
+       "type": "separator"
+    },
+    "header-size": {
+        "type": "header",
+        "description": "Size:"
+    },
+    "separator-size-bottom": {
+       "type": "separator"
+    },
+    "fix-size": {
+        "default": false,
+        "description": "Fixed size.",
+        "type": "checkbox",
+        "tooltip": "Check this if you want to control the size of all instances."
+    },
+    "same-size": {
+        "default": true,
+        "description": "All instace have the same fixed size.",
+        "type": "checkbox",
+        "dependency": "fix-size",
+        "tooltip": "Check this if you want to have the same fixed size on all instances."
+    },
+    "width": {
+        "default": 220,
+        "type": "spinbutton",
+        "min": 200,
+        "max": 1600,
+        "description": "Width:",
+        "units": "pixels",
+        "step": 10,
+        "indent": true,
+        "dependency": "same-size",
+        "tooltip": "Increase or decrease the desklet width."
+    },
+    "height": {
+        "default": 120,
+        "type": "spinbutton",
+        "min": 80,
+        "max": 500,
+        "description": "Height:",
+        "units": "pixels",
+        "step": 10,
+        "indent": true,
+        "dependency": "same-size",
+        "tooltip": "Increase or decrease the desklet height."
+    },
+    "separator-appearance-top": {
+       "type": "separator"
+    },
+    "header-appearance": {
+        "type": "header",
+        "description": "Appearance:"
+    },
+    "separator-appearance-bottom": {
+       "type": "separator"
+    },
+    "text-size": {
+        "default": 12,
+        "type": "spinbutton",
+        "min": 10,
+        "max": 30,
+        "description": "Font size:",
+        "units": "pixels",
+        "step": 1,
+        "tooltip": "Increase or decrease the font size of Note text."
+    },
+    "font-family": {
+        "type": "combobox",
+        "description": "Font family:",
+        "default": "",
+        "tooltip": "Select a Font family to use in Notes.",
+        "options": {
+            "UnGraphic": "UnGraphic",
+            "TeXGyreCursor": "TeXGyreCursor",
+            "TeXGyreHerosCondensed": "TeXGyreHerosCondensed",
+            "UnDotum": "UnDotum",
+            "LMMonoLt10": "LMMonoLt10",
+            "GFS Porson": "GFS Porson",
+            "Century Schoolbook L": "Century Schoolbook L",
+            "Khmer OS System": "Khmer OS System",
+            "LMSansQuot8": "LMSansQuot8",
+            "msam10": "msam10",
+            "GentiumAlt": "GentiumAlt",
+            "UnDinaru": "UnDinaru",
+            "UnGungseo": "UnGungseo",
+            "Trebuchet MS": "Trebuchet MS",
+            "Mukti Narrow": "Mukti Narrow",
+            "Ume Mincho S3": "Ume Mincho S3",
+            "Andale Mono": "Andale Mono",
+            "Droid Sans Mono": "Droid Sans Mono",
+            "Webdings": "Webdings",
+            "TeXGyreAdventor": "TeXGyreAdventor",
+            "Ume P Gothic C4": "Ume P Gothic C4",
+            "Ume P Gothic C5": "Ume P Gothic C5",
+            "Ume P Gothic O5": "Ume P Gothic O5",
+            "Ume P Gothic S4": "Ume P Gothic S4",
+            "Ume P Gothic S5": "Ume P Gothic S5",
+            "Ume UI Gothic": "Ume UI Gothic",
+            "LMMonoSlant10": "LMMonoSlant10",
+            "Umpush": "Umpush",
+            "Droid Sans Thai": "Droid Sans Thai",
+            "Arial Black": "Arial Black",
+            "Purisa": "Purisa",
+            "msbm10": "msbm10",
+            "DejaVu Sans Mono": "DejaVu Sans Mono",
+            "GFS Artemisia": "GFS Artemisia",
+            "Norasi": "Norasi",
+            "Loma": "Loma",
+            "GFS Neohellenic": "GFS Neohellenic",
+            "Verdana": "Verdana",
+            "Gentium": "Gentium",
+            "mry_KacstQurn": "mry_KacstQurn",
+            "URW Palladio L": "URW Palladio L",
+            "TeXGyreSchola": "TeXGyreSchola",
+            "Phetsarath OT": "Phetsarath OT",
+            "Sawasdee": "Sawasdee",
+            "UnPilgi": "UnPilgi",
+            "Ume P Mincho S3": "Ume P Mincho S3",
+            "Tlwg Typist": "Tlwg Typist",
+            "URW Gothic L": "URW Gothic L",
+            "Dingbats": "Dingbats",
+            "URW Chancery L": "URW Chancery L",
+            "Ubuntu": "Ubuntu",
+            "FreeSerif": "FreeSerif",
+            "Times New Roman": "Times New Roman",
+            "Ume P Mincho": "Ume P Mincho",
+            "Ume Gothic": "Ume Gothic",
+            "GFS Didot": "GFS Didot",
+            "Ubuntu Condensed": "Ubuntu Condensed",
+            "DejaVu Sans": "DejaVu Sans",
+            "GFS Gazis": "GFS Gazis",
+            "DejaVu Serif": "DejaVu Serif",
+            "Ume Mincho": "Ume Mincho",
+            "Kinnari": "Kinnari",
+            "NanumMyeongjo": "NanumMyeongjo",
+            "LMSans10": "LMSans10",
+            "LMRoman10": "LMRoman10",
+            "TlwgMono": "TlwgMono",
+            "LMRomanDunh10": "LMRomanDunh10",
+            "Bitstream Charter": "Bitstream Charter",
+            "Comic Sans MS": "Comic Sans MS",
+            "Khmer OS": "Khmer OS",
+            "Liberation Sans Narrow": "Liberation Sans Narrow",
+            "Liberation Mono": "Liberation Mono",
+            "Courier 10 Pitch": "Courier 10 Pitch",
+            "Nimbus Sans L": "Nimbus Sans L",
+            "TlwgTypewriter": "TlwgTypewriter",
+            "TakaoPGothic": "TakaoPGothic",
+            "LMRomanDemi10": "LMRomanDemi10",
+            "Droid Serif": "Droid Serif",
+            "LMMonoCaps10": "LMMonoCaps10",
+            "Droid Sans Hebrew": "Droid Sans Hebrew",
+            "Droid Sans Fallback": "Droid Sans Fallback",
+            "LMMonoLtCond10": "LMMonoLtCond10",
+            "Nimbus Mono L": "Nimbus Mono L",
+            "Ume UI Gothic O5": "Ume UI Gothic O5",
+            "Liberation Serif": "Liberation Serif",
+            "Nimbus Roman No9 L": "Nimbus Roman No9 L",
+            "LMRomanUnsl10": "LMRomanUnsl10",
+            "Liberation Sans": "Liberation Sans",
+            "LMMono10": "LMMono10",
+            "FreeSans": "FreeSans",
+            "Georgia": "Georgia",
+            "Lohit Tamil": "Lohit Tamil",
+            "TeXGyrePagella": "TeXGyrePagella",
+            "Tlwg Typo": "Tlwg Typo",
+            "LMRomanCaps10": "LMRomanCaps10",
+            "UnBatang": "UnBatang",
+            "LMSansDemiCond10": "LMSansDemiCond10",
+            "Arial": "Arial",
+            "LMRomanSlant10": "LMRomanSlant10",
+            "Waree": "Waree",
+            "TeXGyreTermes": "TeXGyreTermes",
+            "gargi": "gargi",
+            "TeXGyreBonum": "TeXGyreBonum",
+            "Courier New": "Courier New",
+            "LMMonoProp10": "LMMonoProp10",
+            "Garuda": "Garuda",
+            "TeXGyreHeros": "TeXGyreHeros",
+            "Rekha": "Rekha",
+            "Impact": "Impact",
+            "URW Bookman L": "URW Bookman L",
+            "Ume P Gothic": "Ume P Gothic",
+            "LMMonoPropLt10": "LMMonoPropLt10",
+            "FreeMono": "FreeMono",
+            "Ubuntu Mono": "Ubuntu Mono",
+            "Ume Gothic C4": "Ume Gothic C4",
+            "Ume Gothic C5": "Ume Gothic C5",
+            "Ume Gothic O5": "Ume Gothic O5",
+            "Ume Gothic S4": "Ume Gothic S4",
+            "Ume Gothic S5": "Ume Gothic S5",
+            "Droid Sans": "Droid Sans",
+            "Sans": "Sans",
+            "Serif": "Serif",
+            "Monospace": "Monospace"
+        }
+    },
+    "symbolic-icons": {
+        "default": true,
+        "description": "Show symbolic icons.",
+        "type": "checkbox",
+        "tooltip": "Check this if you want to show symbolic instead full color icons."
+    },
+    "desklet-opacity": {
+        "type": "scale",
+        "default": 1.0,
+        "min": 0,
+        "max": 1,
+        "step": 0.05,
+        "description": "Opacity of the desklet:",
+        "tooltip": "Select the opacity of the desklet."
+    },
+    "boxes-opacity": {
+        "type": "scale",
+        "default": 1.0,
+        "min": 0,
+        "max": 1,
+        "step": 0.05,
+        "description": "Opacity of the boxes:",
+        "tooltip": "Select the opacity of the boxes."
+    },
+    "separator-advance-top": {
+       "type": "separator"
+    },
+    "header-advance": {
+        "type": "header",
+        "description": "Advance Appearance:"
+    },
+    "separator-advance-bottom": {
+       "type": "separator"
+    },
+    "override-theme": {
+        "default": false,
+        "description": "Override the Cinnamon theme properties.",
+        "type": "checkbox",
+        "tooltip": "Check this if you want to override the Cinnamon theme properties or not."
+    },
+    "override-text-box": {
+        "default": true,
+        "description": "Override all Cinnamon theme properties on the text box.",
+        "type": "checkbox",
+        "indent": true,
+        "dependency": "override-theme",
+        "tooltip": "Check this if you also want to override all Cinnamon theme properties on the text box or not."
+    },
+    "main-box-color": {
+        "type": "colorchooser",
+        "default": "rgb(0,0,0)",
+        "description": "Main box color:",
+        "indent": true,
+        "dependency": "override-theme",
+        "tooltip": "Set the custom main box's color."
+    },
+    "text-box-color": {
+        "type": "colorchooser",
+        "default": "rgb(255,255,255)",
+        "description": "Text box color:",
+        "indent": true,
+        "dependency": "override-theme",
+        "tooltip": "Set the custom text box's color."
+    },
+    "font-color": {
+        "type": "colorchooser",
+        "default": "rgb(0,0,0)",
+        "description": "Font color:",
+        "indent": true,
+        "dependency": "override-theme",
+        "tooltip": "Set the custom text color."
+    },
+    "selected-text-color": {
+        "type": "colorchooser",
+        "default": "rgb(128,128,128)",
+        "description": "Selected text color:",
+        "indent": true,
+        "dependency": "override-theme",
+        "tooltip": "Set the custom selected text color."
+    },
+    "border-box-width": {
+        "default": 1,
+        "type": "spinbutton",
+        "min": 0,
+        "max": 4,
+        "units": "pixels",
+        "step": 1,
+        "description": "Border's box width:",
+        "indent": true,
+        "dependency": "override-theme",
+        "tooltip": "Increase or decrease the border's box width."
+    },
+    "border-box-color": {
+        "type": "colorchooser",
+        "default": "white",
+        "description": "Border's box color:",
+        "indent": true,
+        "dependency": "override-theme",
+        "tooltip": "Set the custom border box's color."
+    },
+    "position-x": {
+        "type": "generic",
+        "default": 0
+    },
+    "position-y": {
+        "type": "generic",
+        "default": 0
+    },
+    "list-position": {
+        "type": "generic",
+        "default": ""
+    },
+    "list-size": {
+        "type": "generic",
+        "default": ""
+    },
+    "hide-text-box": {
+        "type": "generic",
+        "default": "false"
+    },
+    "list-hide-text-box": {
+        "type": "generic",
+        "default": ""
+    },
+    "applet-manager-order": {
+        "type": "generic",
+        "default": "panel1:right:0"
+    }
+}

@@ -1,0 +1,28 @@
+
+Weather Underground Cinnamon Desklet v0.1 - 16 June 2013
+
+The Desklet is a little raw at the moment because its my first attempt. I wrote it because I wanted to see local weather on my desktop. I'm sharing it in case it useful to anyone else especially as there do not seem to be many Cinammon Desklets yet. Its based on xkcd@rjanja.
+
+Adjust the following paramters in the metadata.json file which is stored in ~/.local/share/cinnamon/desklets/WeatherUnderground@nightflame:
+
+	"frequency": 500,
+	"stationID": "ISWINDON3",
+	"metric": "_metric",
+
+** REMEMBER TO LEAVE THE COMMAS IN!**
+
+fequency = time between weather updates in seconds.
+
+metric =  set to "_metric" for Metric units, set to "", for Imperial units.
+
+stationID = Weather Underground Station ID
+
+See http://www.wunderground.com/ for Station IDs.
+
+** After changing the settings you need to remove and re-add the Desklet **
+
+If I knew what I was doing I would update the config through the GUI. Maybe next version.
+
+-Steve
+ desklets [at] stargw [dot] eu
+ 

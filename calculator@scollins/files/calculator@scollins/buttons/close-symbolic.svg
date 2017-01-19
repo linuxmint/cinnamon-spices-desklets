@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg7384"
+   height="16"
+   width="16"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="close-symbolic.svg">
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1022"
+     inkscape:window-height="622"
+     id="namedview8"
+     showgrid="false"
+     inkscape:zoom="14.75"
+     inkscape:cx="-9.7627123"
+     inkscape:cy="5.1256096"
+     inkscape:window-x="0"
+     inkscape:window-y="26"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg7384" />
+  <metadata
+     id="metadata90">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Gnome Symbolic Icon Theme</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <title
+     id="title9167">Gnome Symbolic Icon Theme</title>
+  <g
+     transform="scale(1.0655456,0.93848635)"
+     style="font-size:16.74962997px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#bebebe;fill-opacity:1;stroke:none;font-family:Rekha;-inkscape-font-specification:Rekha Medium"
+     id="text3001">
+    <path
+       d="m 5.630918,1.0655455 1.3085648,0 c 0.8178496,1.2867668 1.4285125,2.5462592 1.8319908,3.778481 0.4089216,1.2322395 0.6133847,2.4562917 0.6133897,3.67216 -5e-6,1.2213313 -0.2044681,2.4508355 -0.6133897,3.6885175 -0.4034783,1.237684 -1.0141412,2.497177 -1.8319908,3.778481 l -1.3085648,0 C 6.3560789,14.734595 6.8958614,13.494186 7.250267,12.261953 7.610119,11.024272 7.7900464,9.7756842 7.7900499,8.5161865 7.7900464,7.2566994 7.610119,6.013564 7.250267,4.7867767 6.8958614,3.5600074 6.3560789,2.3195982 5.630918,1.0655455"
+       style="font-family:ori1Uni;-inkscape-font-specification:ori1Uni Medium"
+       id="path3040" />
+  </g>
+</svg>

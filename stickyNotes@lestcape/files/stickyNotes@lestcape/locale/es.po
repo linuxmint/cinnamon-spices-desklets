@@ -1,0 +1,489 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Sticky-Notes 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-11-08 21:29-0600\n"
+"PO-Revision-Date: 2014-11-21 19:28-0600\n"
+"Last-Translator: Lester Carballo Pérez <lestcape@gmail.com>\n"
+"Language-Team: lestcape <lestcape@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#: desklet.js:63
+msgid "Copy"
+msgstr "Copiar"
+
+#: desklet.js:68
+msgid "Paste"
+msgstr "Pegar"
+
+#: desklet.js:76
+msgid "Delete"
+msgstr "Eliminar"
+
+#: desklet.js:100
+msgid "Multiple Instances"
+msgstr "Instancias Múltiples"
+
+#: applet.js:138 applet.js:294 applet.js:172
+msgid "Show Notes"
+msgstr "Mostrar Notas"
+
+#: applet.js:185
+msgid "Sticky Notes Manager"
+msgstr "Manejador de Sticky Notes"
+
+#: desklet.js:144
+msgid "Sticky Notes"
+msgstr "Sticky Notes"
+
+#: desklet.js:146
+msgid "README"
+msgstr "LEEME"
+
+#: desklet.js:148
+msgid "Help"
+msgstr "Ayuda"
+
+#: desklet.js:151
+msgid "Website"
+msgstr "Sitio Web"
+
+#: desklet.js:183
+msgid "Error"
+msgstr "Error"
+
+#: desklet.js:187 desklet.js:487
+msgid "Type your note..."
+msgstr "Escriba su nota..."
+
+#: desklet.js:402
+msgid "Unsupported text size '%s'  to use the font '%s' in this theme."
+msgstr ""
+"El tamaño '%s' del texto no está soportado para ser usado en el tipo de "
+"letra '%s' para este tema."
+
+#: desklet.js:432
+msgid "Sticky Notes is hidden to be visible again please, press '%s'."
+msgstr ""
+"Sticky Notes está oculto, para volverlo a mostrar por favor presione '%s'."
+
+#: desklet.js:453
+msgid "Add new Note"
+msgstr "Añadir una Nota"
+
+#: desklet.js:455
+msgid "Raise Notes"
+msgstr "Elevar Notas"
+
+#: desklet.js:457
+msgid "Hide Notes"
+msgstr "Esconder Notas"
+
+#: desklet.js:458
+msgid "Collapse"
+msgstr "Contraer"
+
+#: desklet.js:459
+msgid "Expand"
+msgstr "Expandir"
+
+#: desklet.js:460
+msgid "Minimize or Maximize the Note"
+msgstr "Minimizar o maximizar la Nota"
+
+#: desklet.js:462
+msgid "Single Instance"
+msgstr "Una solo instancia"
+
+#: desklet.js:463
+msgid "Do you want to delete this note?"
+msgstr "¿Usted desea eliminar esta nota?"
+
+#: desklet.js:466
+msgid "Back Note"
+msgstr "Nota anterior"
+
+#: desklet.js:469
+msgid "Next Note"
+msgstr "Nota siguiente"
+
+#: desklet.js:474
+msgid "Configure..."
+msgstr "Configurar..."
+
+#: desklet.js:478
+msgid "Remove Note"
+msgstr "Eliminar Nota"
+
+#. #-#-#-#-#  default.pot (PACKAGE VERSION)  #-#-#-#-#
+#. notes@lestcape->settings-schema.json->borderBoxWidth->units
+#. #-#-#-#-#  default.pot (PACKAGE VERSION)  #-#-#-#-#
+#. notes@lestcape->settings-schema.json->textSize->units
+#. #-#-#-#-#  default.pot (PACKAGE VERSION)  #-#-#-#-#
+#. notes@lestcape->settings-schema.json->width->units
+msgid "pixels"
+msgstr "píxeles"
+
+#. notes@lestcape->settings-schema.json->header-general->description
+msgid "General:"
+msgstr "General:"
+
+#. notes@lestcape->settings-schema.json->header-general->description
+msgid "Applet Manager:"
+msgstr "Manejador Applet:"
+
+#. notes@lestcape->settings-schema.json->header-layouts->description
+msgid "Layouts:"
+msgstr "Diseños:"
+
+#. notes@lestcape->settings-schema.json->header-shortcut->description
+msgid "Shortcut keys:"
+msgstr "Teclas de acceso directo:"
+
+#. notes@lestcape->settings-schema.json->header-size->description
+msgid "Size:"
+msgstr "Tamaño:"
+
+#. notes@lestcape->settings-schema.json->header-appearance->description
+msgid "Appearance:"
+msgstr "Apariencia:"
+
+#. notes@lestcape->settings-schema.json->header-advance->description
+msgid "Advance Appearance:"
+msgstr "Apariencia Avanzada:"
+
+#. notes@lestcape->settings-schema.json->multi-instance->description
+msgid "Multiple Instances."
+msgstr "Instancias Múltiples."
+
+#. notes@lestcape->settings-schema.json->multi-instance->tooltip
+msgid ""
+"Check this if you want to have different instances of this desklet for each "
+"note."
+msgstr ""
+"Seleccione si desea tener diferentes instancias de este desklet para cada "
+"nota."
+
+#. notes@lestcape->settings-schema.json->auto-hide-buttonss->description
+msgid "Auto hide buttons."
+msgstr "Auto ocultar botones."
+
+#. notes@lestcape->settings-schema.json->auto-hide-buttons->tooltip
+msgid ""
+"Check this if you want to autohide the action buttons when mouse is outside "
+"of the desklet."
+msgstr ""
+"Seleccione si usted quiere que los botones de acciones se auto oculten "
+"cuando el cursor está afuera del área del desklet."
+
+#. notes@lestcape->settings-schema.json->stripe-layout->description
+msgid "Selected theme of paper sheet:"
+msgstr "Tema de la hoja de papel:"
+
+#. notes@lestcape->settings-schema.json->stripe-layout->tooltip
+msgid "Select a theme of paper sheet to show in Notes."
+msgstr "Seleccione un tema de la hoja de papel para mostrar en las Notas."
+
+#. notes@lestcape->settings-schema.json->staples-layout->description
+msgid "Selected theme of staples:"
+msgstr "Tema para las grapas:"
+
+#. notes@lestcape->settings-schema.json->staples-layout->tooltip
+msgid "Select theme of staples to show in Notes."
+msgstr "Seleccione un tema de grapas para mostrar en las Notas."
+
+#. notes@lestcape->settings-schema.json->pencil-layout->description
+msgid "Selected theme of pencil:"
+msgstr "Tema para el lápiz:"
+
+#. notes@lestcape->settings-schema.json->pencil-layout->tooltip
+msgid "Select a theme of pencil to show in Notes."
+msgstr "Seleccione un tema de lápiz para mostrar en las Notas."
+
+#. notes@lestcape->settings-schema.json->raise-key->description
+msgid "Shortcut key to raise the desklet to the top:"
+msgstr "Tecla de acceso directo para elevar el desklet:"
+
+#. notes@lestcape->settings-schema.json->hide-key->description
+msgid "Shortcut key to hide the desklet:"
+msgstr "Tecla de acceso directo para esconder el desklet:"
+
+#. notes@lestcape->settings-schema.json->fix-size->description
+msgid "Fixed size."
+msgstr "Ajustar el tamaño."
+
+#. notes@lestcape->settings-schema.json->fix-size->tooltip
+msgid "Check this if you want to control the size of all instances."
+msgstr ""
+"Seleccione esto si usted quiere tener el control sobre todas las instancias."
+
+#. notes@lestcape->settings-schema.json->same-size->description
+msgid "All instace have the same fixed size."
+msgstr "Todas las instancias tienen el mismo tamaño."
+
+#. notes@lestcape->settings-schema.json->same-size->tooltip
+msgid "Check this if you want to have the same fixed size on all instances."
+msgstr ""
+"Seleccione esto si usted quiere tener el mismo tamaño para todas las "
+"instancias."
+
+#. notes@lestcape->settings-schema.json->width->description
+msgid "Width:"
+msgstr "Ancho:"
+
+#. notes@lestcape->settings-schema.json->width->tooltip
+msgid "Increase or decrease the desklet width."
+msgstr "Incrementar o disminuir el ancho del desklet."
+
+#. notes@lestcape->settings-schema.json->height->description
+msgid "Height:"
+msgstr "Alto:"
+
+#. notes@lestcape->settings-schema.json->height->tooltip
+msgid "Increase or decrease the desklet height."
+msgstr "Incrementar o disminuir el alto del desklet."
+
+#. notes@lestcape->settings-schema.json->show-scroll->description
+msgid "Show scrolling area."
+msgstr "Mostrar el area del scroll."
+
+#. notes@lestcape->settings-schema.json->show-scroll->tooltip
+msgid "Check this if you want to show the scrolling area or not."
+msgstr "Seleccione esto si usted quiere mostrar el area del scroll o no."
+
+#. notes@lestcape->settings-schema.json->auto-scroll->description
+msgid "Enable autoscrolling."
+msgstr "Habilitar el auto-scroll."
+
+#. notes@lestcape->settings-schema.json->auto-scroll->tooltip
+msgid "Check this if you want to enable smooth autoscrolling or not."
+msgstr "Seleccione esto si usted desea habilitar el auto scroll o no."
+
+#. notes@lestcape->settings-schema.json->raise-new-note->description
+msgid "Raise the new note."
+msgstr "Elevar la nota nueva."
+
+#. notes@lestcape->settings-schema.json->raise-new-note->tooltip
+msgid "Check this if you want to raise the new note or not."
+msgstr "Seleccione esto si usted desea elevar la nueva nota o no."
+
+#. notes@lestcape->settings-schema.json->applet-manager->description
+msgid "Show Applet Manager."
+msgstr "Mostrar el Manejador Applet."
+
+#. notes@lestcape->settings-schema.json->applet-manager->tooltip
+msgid "Check this if you want to show the Applet Manager."
+msgstr "Seleccione esto si usted desea Mostrar el Manejador Applet."
+
+#. notes@lestcape->settings-schema.json->applet-collapsed->description
+msgid "Collapsed Applet Manager."
+msgstr "Expandir el Manejador Applet."
+
+#. notes@lestcape->settings-schema.json->applet-collapsed->tooltip
+msgid "Check this if you want to collapsed the Applet Manager."
+msgstr "Seleccione esto si usted desea expandir el Manejador Applet."
+
+#. notes@lestcape->settings-schema.json->applet-symbolic->description
+msgid "Show symbolic icons in the Applet Manager."
+msgstr "Mostrar iconos simbólicos en el Manejador Applet."
+
+#. notes@lestcape->settings-schema.json->applet-symbolic->tooltip
+msgid "Check this if you want to show symbolic icons in the Applet Manager."
+msgstr ""
+"Seleccione esto si usted mostrar iconos simbólicos en el Manejador Applet."
+
+#. notes@lestcape->settings-schema.json->text-size->description
+msgid "Font size:"
+msgstr "Tamaño de la fuente:"
+
+#. notes@lestcape->settings-schema.json->text-size->tooltip
+msgid "Increase or decrease the font size of Note text."
+msgstr "Incrementar o disminuir el tamaño de la fuente en la Nota."
+
+#. notes@lestcape->settings-schema.json->font-family->description
+msgid "Font family:"
+msgstr "Tipo de fuente:"
+
+#. notes@lestcape->settings-schema.json->font-family->tooltip
+msgid "Select a Font family to use in Notes."
+msgstr "Seleccione el tipo de fuente a usar en la nota."
+
+#. notes@lestcape->settings-schema.json->symbolic-icons->description
+msgid "Show symbolic icons."
+msgstr "Mostrar íconos simbólicos."
+
+#. notes@lestcape->settings-schema.json->symbolic-icons->tooltip
+msgid "Check this if you want to show symbolic instead full color icons."
+msgstr "Seleccionelo para mostrar íconos simbólicos en lugar de a todo color."
+
+#. notes@lestcape->settings-schema.json-override-theme->description
+msgid "Override the Cinnamon theme properties."
+msgstr "Sobre escribir las propiedades del tema de Cinnamon."
+
+#. notes@lestcape->settings-schema.json-override-theme->tooltip
+msgid ""
+"Check this if you want to override the Cinnamon theme properties or not."
+msgstr ""
+"Seleccione esta opción si usted desea anular las propiedades del tema de "
+"Cinnamon o no."
+
+#. notes@lestcape->settings-schema.json->override-text-box->description
+msgid "Override all Cinnamon theme properties on the text box."
+msgstr ""
+"Anular todas las propiedades del tema de Cinnamon en el cuadro de texto."
+
+#. notes@lestcape->settings-schema.json->override-text-box->tooltip
+msgid ""
+"Check this if you also want to override all Cinnamon theme properties on the "
+"text box or not."
+msgstr ""
+"Seleccione esta opción si también desea anular todos las propiedades del "
+"tema de Cinnamon en el cuadro de texto o no."
+
+#. notes@lestcape->settings-schema.json->desklet-opacity->description
+msgid "Opacity of the desklet:"
+msgstr "Opacidad del desklet:"
+
+#. notes@lestcape->settings-schema.json->desklet-opacity->tooltip
+msgid "Select the opacity of the desklet."
+msgstr "Seleccione la opacidad del desklet."
+
+#. notes@lestcape->settings-schema.json->boxes-opacity->description
+msgid "Opacity of the boxes:"
+msgstr "Opacidad de las cajas:"
+
+#. notes@lestcape->settings-schema.json->boxes-opacity->tooltip
+msgid "Select the opacity of the boxes."
+msgstr "Seleccione la opacidad de las cajas."
+
+#. notes@lestcape->settings-schema.json->main-box-color->description
+msgid "Main box color:"
+msgstr "Color de la caja principal:"
+
+#. notes@lestcape->settings-schema.json->main-box-color->tooltip
+msgid "Set the custom main box's color."
+msgstr "Seleccione el color para usar en la caja principal."
+
+#. notes@lestcape->settings-schema.json->text-box-color->description
+msgid "Text box color:"
+msgstr "Color de la caja de texto:"
+
+#. notes@lestcape->settings-schema.json->text-box-color->tooltip
+msgid "Set the custom text box's color."
+msgstr "Seleccione el color para usar en la caja de texto."
+
+#. notes@lestcape->settings-schema.json->font-color->description
+msgid "Font color:"
+msgstr "Color del texto:"
+
+#. notes@lestcape->settings-schema.json->font-color->tooltip
+msgid "Set the custom text color."
+msgstr "Seleccione el color del texto."
+
+#. notes@lestcape->settings-schema.json->selected-text-color->description
+msgid "Selected text color:"
+msgstr "Color del texto seleccionado:"
+
+#. notes@lestcape->settings-schema.json->selected-text-color->tooltip
+msgid "Set the custom selected text color."
+msgstr ""
+"Seleccione el color del texto a mostrar cuando se encuentre seleccionado."
+
+#. notes@lestcape->settings-schema.json->border-box-width->description
+msgid "Border's box width:"
+msgstr "Tamaño de los bordes de la caja:"
+
+#. notes@lestcape->settings-schema.json->border-box-width->tooltip
+msgid "Increase or decrease the border's box width."
+msgstr "Incrementar o disminuir el tamaño de los bordes de las cajas."
+
+#. notes@lestcape->settings-schema.json->border-box-color->description
+msgid "Border's box color:"
+msgstr "Color de los bordes de la caja:"
+
+#. notes@lestcape->settings-schema.json->border-box-color->tooltip
+msgid "Set the custom border box's color."
+msgstr "Seleccione el color por defecto de los bordes de la caja."
+
+#. #-#-#-#-#  default.pot (PACKAGE VERSION)  #-#-#-#-#
+#. notes@lestcape->settings-schema.json->stripe-layout->combobox->None
+#. #-#-#-#-#  default.pot (PACKAGE VERSION)  #-#-#-#-#
+#. notes@lestcape->settings-schema.json->staples-layout->combobox->None
+#. #-#-#-#-#  default.pot (PACKAGE VERSION)  #-#-#-#-#
+#. notes@lestcape->settings-schema.json->pencil-layout->combobox->None
+msgid "None"
+msgstr "Ninguno"
+
+#. notes@lestcape->settings-schema.json->stripe-layout->combobox->simplestripe
+msgid "Simple Stripe"
+msgstr "Raya Simple"
+
+#. notes@lestcape->settings-schema.json->stripe-layout->combobox->doublestripe
+msgid "Double Stripe"
+msgstr "Raya Doble"
+
+#. notes@lestcape->settings-schema.json->stripe-layout->combobox->griddedstripe
+msgid "Gridded Stripe"
+msgstr "Cuadriculado"
+
+#. notes@lestcape->settings-schema.json->staples-layout->combobox->doublestaple
+msgid "Double Staple"
+msgstr "Grapa Doble"
+
+#. notes@lestcape->settings-schema.json->staples-layout->combobox->borderstaple
+msgid "Border Staple"
+msgstr "Grapa de Bordes"
+
+#. notes@lestcape->settings-schema.json->staples-layout->combobox->brightstaple
+msgid "Bright Staple"
+msgstr "Grapa Luminosa"
+
+#. notes@lestcape->settings-schema.json->staples-layout->combobox->chainstaple
+msgid "Chain Staple"
+msgstr "Grapa de Cadena"
+
+#. notes@lestcape->settings-schema.json->staples-layout->combobox->clampstaple
+msgid "Clamp Staple"
+msgstr "Grapa Sujetadora"
+
+#. notes@lestcape->settings-schema.json->staples-layout->combobox->clipstaple
+msgid "Clip Staple"
+msgstr "Grapa de Presilla"
+
+#. notes@lestcape->settings-schema.json->staples-layout->combobox->offhandedstaple
+msgid "Offhanded Staple"
+msgstr "Grapa Común"
+
+#. notes@lestcape->settings-schema.json->staples-layout->combobox->tackstaple
+msgid "Tack Staple"
+msgstr "Grapa de Tachuela"
+
+#. notes@lestcape->settings-schema.json->staples-layout->combobox->whitestaple
+msgid "White Staple"
+msgstr "Grapa Blanca"
+
+#. notes@lestcape->settings-schema.json->pencil-layout->combobox->bluepencil
+msgid "Blue Pencil"
+msgstr "Lápiz Azul"
+
+#. notes@lestcape->settings-schema.json->pencil-layout->combobox->yellowpencil
+msgid "Yellow Pencil"
+msgstr "Lápiz Amarillo"
+
+#. notes@lestcape->settings-schema.json->pencil-layout->combobox->orangepencil
+msgid "Orange Pencil"
+msgstr "Lápiz Naranja"
+
+#. notes@lestcape->settings-schema.json->pencil-layout->combobox->blackpencil
+msgid "Black Pencil"
+msgstr "Lápiz Negro"

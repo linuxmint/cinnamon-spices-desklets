@@ -1,0 +1,62 @@
+{
+    "collapsedStartState": {
+        "type": "combobox",
+        "default": 0,
+        "description": "On startup",
+        "options": {
+            "Remember Previous State": 0,
+            "Show": 1,
+            "Collapse": 2
+        }
+    },
+    
+    "collapsed": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Collapsed"
+    },
+    
+    "lgOpen": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Open stand-alone Looking Glass (Melange)"
+    },
+    
+    "terminalOutputShow": {
+        "type": "checkbox",
+        "description": "Show process output on run",
+        "default": true,
+        "tooltip": "Uncheck to have it hidden initially"
+    },
+    
+    "xsessionHideOld": {
+        "type": "checkbox",
+        "description": "Hide old xsession errors",
+        "default": true,
+        "tooltip": "Setting this will only display entries posted since cinnamon was started (or restarted)"
+    },
+    
+    "raiseKey": {
+        "type": "keybinding",
+        "description": "Raise to top shorcut key",
+        "default": "<Super>v"
+    },
+    
+    "height": {
+        "type": "scale",
+        "description": "Height",
+        "min": 250,
+        "max": 750,
+        "step": 50,
+        "default": 600
+    },
+    
+    "width": {
+        "type": "scale",
+        "description": "Width",
+        "min": 500,
+        "max": 1000,
+        "step": 50,
+        "default": 700
+    }
+}

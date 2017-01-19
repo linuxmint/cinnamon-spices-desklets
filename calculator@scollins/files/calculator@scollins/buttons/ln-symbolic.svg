@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg7384"
+   height="16"
+   width="16"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="ln-symbolic.svg">
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1022"
+     inkscape:window-height="622"
+     id="namedview8"
+     showgrid="false"
+     inkscape:zoom="14.75"
+     inkscape:cx="-2.7118644"
+     inkscape:cy="5.1256096"
+     inkscape:window-x="0"
+     inkscape:window-y="26"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="g2985" />
+  <metadata
+     id="metadata90">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Gnome Symbolic Icon Theme</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <title
+     id="title9167">Gnome Symbolic Icon Theme</title>
+  <g
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#bebebe;fill-opacity:1;stroke:none;font-family:Meera;-inkscape-font-specification:Meera"
+     id="text3001">
+    <g
+       id="g2985"
+       transform="translate(-1.3316412,1.75)">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3267"
+         style="font-family:Meera;-inkscape-font-specification:Meera"
+         d="m 4.6466412,11.75 0,-11 1.271875,0 0,11 -1.271875,0" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3269"
+         style="font-family:Meera;-inkscape-font-specification:Meera"
+         d="m 12.416798,11.75 0,-5.5171876 c -8e-6,-0.5270771 -0.163289,-0.9395767 -0.489845,-1.2375 -0.326568,-0.2979095 -0.753391,-0.4468676 -1.280469,-0.446875 -0.7619828,7.4e-6 -1.3520863,0.2979238 -1.7703122,0.89375 -0.36094,0.5156309 -0.5414086,1.1601615 -0.5414061,1.9335938 l 0,4.3742188 -1.1085939,0 0,-7.8976563 1.0054689,0 0,1.5898437 c 0.7791635,-1.2145757 1.7101521,-1.8218668 2.7929683,-1.821875 0.733328,8.2e-6 1.326295,0.1690185 1.778908,0.5070313 0.475512,0.3781323 0.713272,0.9109443 0.713281,1.5984375 l 0,6.0242188 -1.1,0" />
+    </g>
+  </g>
+</svg>

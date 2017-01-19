@@ -1,0 +1,32 @@
+{
+    "head" : {
+        "type" : "header",
+        "description" : "Current Temperature Settings"
+    },
+
+    "height" : {
+        "default" : 100,
+        "type" : "spinbutton",
+        "min" : 50,
+        "max" : 1600,
+        "description" : "Height :",
+        "units" : "pixels",
+        "step" : 10
+    },
+
+    "width" : {
+        "default" : 300,
+        "type" : "spinbutton",
+        "min" : 50,
+        "max" : 1600,
+        "description" : "Width : ",
+        "units" : "pixels",
+        "step" : 10
+    },
+
+    "server" : {
+        "default" : "http://localhost:8888",
+        "type" : "entry",
+        "description" : "Server : "
+    }
+}

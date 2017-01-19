@@ -1,0 +1,38 @@
+{
+ "head" : {
+    "type" : "header",
+    "description" : "Style"
+ },
+ "color" : {
+    "type" : "colorchooser",
+    "default" : "white",
+    "description" : "Pip color:",
+    "tooltip" : "Select a color for pips only"
+ },
+ "pip-type" : {
+    "type" : "checkbox",
+    "default" : true,
+    "description" : "Use circles for pips",
+    "tooltip" : "Use circles or squares for pips"
+ },
+ "size" : {
+    "type" : "spinbutton",
+    "min" : 8,
+    "max" : 40,
+    "default" : 12,
+    "step" : 1,
+    "units" : "pixels",
+    "description" : "Pip size:",
+    "tooltip" : "Select a size/diameter for the pips"
+ },
+ "head2" : {
+    "type" : "header",
+    "description" : "Format"
+ },
+ "show-seconds" : {
+    "type" : "checkbox",
+    "default" : true,
+    "description" : "Display seconds",
+    "tooltip" : "Show seconds in the binary display"
+ }
+}
