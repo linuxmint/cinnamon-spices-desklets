@@ -1,8 +1,0 @@
-{
-    "uuid": "accudesk@logan", 
-    "max-instances": "3", 
-    "description": "AccuWeather Desklet", 
-    "name": "AccuWeather Desklet", 
-    "prevent-decorations": true, 
-    "last-edited": "1419803893"
-}
