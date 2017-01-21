@@ -1,0 +1,26 @@
+{
+    "devfile_capacity": {
+        "default": "file:///sys/class/power_supply/CMB1/capacity", 
+        "type": "filechooser", 
+        "description" : "Path to battery capacity file (device file)",
+        "tooltip": "/sys/class/power_supply/CMBx/capacity\nReplace x with battery number.",
+        "allow-none" : false
+    },
+    "devfile_plug": {
+        "default": "file:///sys/class/power_supply/AC/online", 
+        "type": "filechooser", 
+        "description" : "Path to 'is power online?'-file (device file)",
+        "tooltip": "/sys/class/power_supply/AC/online",
+        "allow-none" : false
+    },
+    "showpercent": {
+        "default": true,
+        "description": "Show battery capacity in percent",
+        "type" : "switch"
+    },
+    "showplug": {
+        "type": "switch",
+        "description": "Show plug icon when power supply is plugged in",
+        "default": true
+    }
+}
