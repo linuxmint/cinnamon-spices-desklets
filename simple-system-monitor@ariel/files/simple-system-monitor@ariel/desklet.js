@@ -93,6 +93,26 @@ Thermal.prototype = {
     }
 }
 
+FanSpeed = function() {
+    this._init.apply(this, arguments);
+};
+
+FanSpeed.prototype = {
+    _init: function(sensorFile) {
+		this.file = sensorFile;
+	},
+
+	refresh: function() {
+        if(GLib.file_test(this.file, 1<<4)){
+            let t_str = Cinnamon.get_file_contents_utf8_sync(this.file).split("\n")[0];
+            this.fanSpeed = parseInt(t_str);
+        }            
+        else 
+            global.logError("error reading: " + this.file);
+    }
+}
+
+
 
 Net = function () {
     this._init.apply(this, arguments);
@@ -202,24 +222,28 @@ MyDesklet.prototype = {
 		this.titleDownload = new St.Label({text: "Download:", style_class: "title"});
 		this.titleUpload = new St.Label({text: "Upload:", style_class: "title"});
 		this.titleTemperature = new St.Label({text: "Temperature:", style_class: "title"});
+		this.titleFanSpeed = new St.Label({text: "Fan:", style_class: "title"});
 
 		this.titles.add(this.titleCPU);
 		this.titles.add(this.titleMemory);
 		this.titles.add(this.titleDownload);
 		this.titles.add(this.titleUpload);
 		this.titles.add(this.titleTemperature);
+		this.titles.add(this.titleFanSpeed);
 
 		this.valueCPU = new St.Label({text: "0%", style_class: "value"});
 		this.valueMemory = new St.Label({text: "0GB", style_class: "value"});
 		this.valueDownload = new St.Label({text: "0B", style_class: "value"});
 		this.valueUpload = new St.Label({text: "0B", style_class: "value"});
 		this.valueTemperature = new St.Label({text: "0°C", style_class: "value"});
+		this.valueFanSpeed = new St.Label({text: "0RPM", style_class: "value"});
 
 		this.values.add(this.valueCPU);
 		this.values.add(this.valueMemory);
 		this.values.add(this.valueDownload);
 		this.values.add(this.valueUpload);
 		this.values.add(this.valueTemperature);
+		this.values.add(this.valueFanSpeed);
 		
 		this.mainContainer.add(this.titles);
 		this.mainContainer.add(this.values);
@@ -230,6 +254,7 @@ MyDesklet.prototype = {
 		this.memory = new Memory();
 		this.net = new Net();
 		this.thermal = new Thermal(this.metadata["thermal-file"]);
+		this.fanSpeed = new FanSpeed(this.metadata["fan-speed-file"]);
 		this._updateWidget();
     },
 
@@ -247,11 +272,13 @@ MyDesklet.prototype = {
 		this.memory.refresh();
 		this.thermal.refresh();
 		this.net.refresh();
+		this.fanSpeed.refresh();
 		this.valueCPU.text = this.cpu.used + "%";
 		this.valueMemory.text = this.memory.used + "GB";
 		this.valueDownload.text = this.net.downloadSpeed;
 		this.valueUpload.text = this.net.uploadSpeed;
 		this.valueTemperature.text = this.thermal.temperature + "°C";
+		this.valueFanSpeed.text = this.fanSpeed.fanSpeed + "RPM";
 	}
 }
 
