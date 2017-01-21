@@ -1,0 +1,53 @@
+/* battery body */
+.battery {
+	background-size: 140px 66px;
+	width: 140px; height: 66px;
+}
+.green {
+	background-image: url('img/bg_green.png');
+}
+.red {
+	background-image: url('img/bg_red.png');
+}
+.red-low {
+	background-image: url('img/bg_red_low.png');
+}
+.empty {
+	background-image: url('img/bg_empty.png');
+}
+
+.segment {
+	background-image: url(img/segment-green.png);
+	background-position: 14px 0px;
+	width: 140px; height: 66px;
+}
+
+/* label whichs show the capacity */
+.text {
+	color: white;
+	font-family: "DejaVu Sans", Sans-serif;
+	font-weight: 100;
+	font-size: 21px;
+
+	/* strange: only working after first mouse hover :-( */
+	/*text-shadow: 0px 0px 5px rgba(0,0,0,0.85);*/
+}
+
+/* icons on top of the battery */
+.symbol {
+	border: 1px solid transparent;
+	box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.85);
+}
+.warn {
+	background-image: url('img/warn.svg');
+	width: 40px; height: 40px;
+}
+.plug {
+	background-image: url('img/plug.svg');
+}
+.plug-visible {
+	width: 40px; height: 40px;
+}
+.plug-hidden {
+	width: 0px; height: 0px;
+}
