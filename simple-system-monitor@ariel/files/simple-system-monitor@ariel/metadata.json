@@ -1,10 +1,9 @@
 {
-    "description": "Shows some system status values", 
     "dangerous": true, 
-    "uuid": "simple-system-monitor@ariel", 
-    "last-edited": 1484836358, 
+    "description": "Shows some system status values", 
     "prevent-decorations": false, 
-    "thermal-file": "/sys/devices/virtual/thermal/thermal_zone0/temp", 
-    "fan-speed-file": "/sys/devices/virtual/hwmon/hwmon1/fan1_input",
-    "name": "Simple system monitor"
+    "uuid": "simple-system-monitor@ariel", 
+    "name": "Simple system monitor",
+	"thermal-file": "/sys/devices/virtual/thermal/thermal_zone0/temp",
+    "fan-speed-file": "/sys/devices/virtual/hwmon/hwmon1/fan1_input"
 }
