@@ -105,7 +105,7 @@ FanSpeed.prototype = {
 	refresh: function() {
         if(GLib.file_test(this.file, 1<<4)){
             let t_str = Cinnamon.get_file_contents_utf8_sync(this.file).split("\n")[0];
-            this.fanSpeed = parseInt(t_str);
+            this.rpm = parseInt(t_str);
         }            
         else 
             global.logError("error reading: " + this.file);
@@ -278,7 +278,7 @@ MyDesklet.prototype = {
 		this.valueDownload.text = this.net.downloadSpeed;
 		this.valueUpload.text = this.net.uploadSpeed;
 		this.valueTemperature.text = this.thermal.temperature + "°C";
-		this.valueFanSpeed.text = this.fanSpeed.fanSpeed + "RPM";
+		this.valueFanSpeed.text = this.fanSpeed.rpm + "RPM";
 	}
 }
 
