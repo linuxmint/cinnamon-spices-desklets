@@ -1,22 +1,22 @@
 {
     "devfile_capacity": {
-        "default": "file:///sys/class/power_supply/CMB1/capacity", 
+        "default": "", 
         "type": "filechooser", 
         "description" : "Path to battery capacity file (device file)",
-        "tooltip": "/sys/class/power_supply/CMBx/capacity\nReplace x with battery number.",
-        "allow-none" : false
+        "tooltip": "Choose your own capacity file e.g. for monitoring your secondary battery.\n\nDefault:\n/sys/class/power_supply/CMBx/capacity\n/sys/class/power_supply/BATx/capacity\n\nReplace x with battery number.",
+        "allow-none" : true
     },
     "devfile_plug": {
-        "default": "file:///sys/class/power_supply/AC/online", 
+        "default": "", 
         "type": "filechooser", 
         "description" : "Path to 'is power online?'-file (device file)",
-        "tooltip": "/sys/class/power_supply/AC/online",
-        "allow-none" : false
+        "tooltip": "Default:\n/sys/class/power_supply/AC/online\n/sys/class/power_supply/ACAD/online",
+        "allow-none" : true
     },
     "showpercent": {
-        "default": true,
+        "type" : "switch",
         "description": "Show battery capacity in percent",
-        "type" : "switch"
+        "default": true
     },
     "showplug": {
         "type": "switch",
