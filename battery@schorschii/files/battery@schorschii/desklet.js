@@ -1,3 +1,5 @@
+/* Version 1.1 */
+
 const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
 const Util = imports.misc.util;
@@ -55,18 +57,32 @@ MyDesklet.prototype = {
 
 	refresh: function() {
 		// default device files
-		var default_devfile_capacity = "/sys/class/power_supply/CMB1/capacity";
-		var default_devfile_plug = "/sys/class/power_supply/AC/online";
+		var default_devfile_capacity_1 = "/sys/class/power_supply/CMB1/capacity"; // kernel 3.x
+		var default_devfile_plug_1 = "/sys/class/power_supply/AC/online";
+		var default_devfile_capacity_2 = "/sys/class/power_supply/BAT1/capacity"; // kernel 4.x
+		var default_devfile_plug_2 = "/sys/class/power_supply/ACAD/online";
 
 		// get device files from settings
 		// remove "file://" because it's not supported by Cinnamon.get_file_contents_utf8_sync()
 		var result_devfile_capacity = this.devfile_capacity.replace("file://", "");
 		var result_devfile_plug = this.devfile_plug.replace("file://", "");
 
-		// fallback to defaults if settings were not present
-		if (result_devfile_capacity == false) {
-			result_devfile_capacity = default_devfile_capacity;
-			result_devfile_plug = default_devfile_plug;
+		// auto detect device files if settings were not present
+		if (result_devfile_capacity == "") {
+			try {
+				Cinnamon.get_file_contents_utf8_sync(default_devfile_capacity_1);
+				result_devfile_capacity = default_devfile_capacity_1;
+			} catch(ex) {
+				result_devfile_capacity = default_devfile_capacity_2;
+			}
+		}
+		if (result_devfile_plug == "") {
+			try {
+				Cinnamon.get_file_contents_utf8_sync(default_devfile_plug_1);
+				result_devfile_plug = default_devfile_plug_1;
+			} catch(ex) {
+				result_devfile_plug = default_devfile_plug_2;
+			}
 		}
 
 		// get current battery/power supply values
