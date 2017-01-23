@@ -8,7 +8,6 @@ const Mainloop = imports.mainloop;
 const Cairo = imports.cairo;
 const Clutter = imports.gi.Clutter;
 const Util = imports.misc.util;
-const Calendar = imports.ui.calendar;
 const UPowerGlib = imports.gi.UPowerGlib;
 const Settings = imports.ui.settings;
 
@@ -60,7 +59,11 @@ MyDesklet.prototype = {
         this.setContent(this._binaryClock);
         this.setHeader(_("Clock"));
         this._upClient = new UPowerGlib.Client();
-        this._upClient.connect('notify-resume', Lang.bind(this, this._updateClock));
+        try {
+            this._upClient.connect('notify-resume', Lang.bind(this, this._updateClock));
+        } catch (e) {
+            this._upClient.connect('notify::resume', Lang.bind(this, this._updateClock));
+        }
 
         this.on_setting_changed();
     },
