@@ -1,4 +1,58 @@
 {
+    "head0": {
+        "type": "header",
+        "description": "Settings for battery@schorschii   (Version 2.0)"
+    },
+
+    "head1": {
+        "type": "header",
+        "description": "Visual"
+    },
+    "showpercent": {
+        "type" : "switch",
+        "description": "Show battery capacity in percent",
+        "tooltip": "Battery capacity is only shown when plug/flash icon is not visible.",
+        "default": true
+    },
+    "showplug": {
+        "type": "switch",
+        "description": "Show plug/flash icon when power supply is plugged in",
+        "tooltip": "flash icon: power online and battery is charging\nplug icon: power online but battery is not charging",
+        "default": true
+    },
+    "div1": {
+        "type": "separator"
+    },
+    "hide-decorations": {
+        "type": "switch",
+        "description": "Hide decorations",
+        "default": false
+    },
+
+    "head2": {
+        "type": "header",
+        "description": "Custom desklet label (only visible if decorations are enabled)"
+    },
+    "use-custom-label": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Use a custom desklet label",
+        "tooltip": "Checking this box allows you to set a custom label in the field below.",
+        "value": false
+    },
+    "custom-label": {
+        "type": "entry",
+        "default": "Battery 1",
+        "description": "Custom desklet label",
+        "indent": true,
+        "dependency": "use-custom-label",
+        "tooltip": "Set your custom label here, e.g. for monitoring multiple batteries. This field is unavailable unless the checkbox above is enabled."
+    },
+
+    "head3": {
+        "type": "header",
+        "description": "Advanced"
+    },
     "devfile_capacity": {
         "default": "", 
         "type": "filechooser", 
@@ -6,21 +60,11 @@
         "tooltip": "Choose your own capacity file e.g. for monitoring your secondary battery.\n\nDefault:\n/sys/class/power_supply/CMBx/capacity\n/sys/class/power_supply/BATx/capacity\n\nReplace x with battery number.",
         "allow-none" : true
     },
-    "devfile_plug": {
+    "devfile_status": {
         "default": "", 
         "type": "filechooser", 
-        "description" : "Path to 'is power online?'-file (device file)",
-        "tooltip": "Default:\n/sys/class/power_supply/AC/online\n/sys/class/power_supply/ACAD/online",
+        "description" : "Path to battery status file (device file)",
+        "tooltip": "Choose your own status file e.g. for monitoring your secondary battery.\n\nDefault:\n/sys/class/power_supply/CMBx/status\n/sys/class/power_supply/BATx/status\n\nReplace x with battery number.",
         "allow-none" : true
-    },
-    "showpercent": {
-        "type" : "switch",
-        "description": "Show battery capacity in percent",
-        "default": true
-    },
-    "showplug": {
-        "type": "switch",
-        "description": "Show plug icon when power supply is plugged in",
-        "default": true
     }
 }

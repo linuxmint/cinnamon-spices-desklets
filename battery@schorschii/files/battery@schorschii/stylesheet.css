@@ -2,6 +2,12 @@
 .battery {
 	background-size: 140px 66px;
 	width: 140px; height: 66px;
+
+	border: 1px solid transparent; /* required for box-shadow */
+	box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.35);
+}
+.full {
+	background-image: url('img/bg_full.png');
 }
 .green {
 	background-image: url('img/bg_green.png');
@@ -16,38 +22,45 @@
 	background-image: url('img/bg_empty.png');
 }
 
+/* segment: green bar with variable width */
 .segment {
-	background-image: url(img/segment-green.png);
+	background-image: url('img/segment-green.png');
 	background-position: 14px 0px;
 	width: 140px; height: 66px;
 }
 
-/* label whichs show the capacity */
+/* label which shows the capacity */
 .text {
 	color: white;
 	font-family: "DejaVu Sans", Sans-serif;
 	font-weight: 100;
-	font-size: 21px;
+	font-size: 22px;
 
 	/* strange: only working after first mouse hover :-( */
 	/*text-shadow: 0px 0px 5px rgba(0,0,0,0.85);*/
 }
+.text-hidden {
+	width: 0px; height: 0px;
+}
 
 /* icons on top of the battery */
+.container {
+	padding: 0px 1px;
+}
 .symbol {
-	border: 1px solid transparent;
-	box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.85);
+	border: 1px solid transparent; /* required for box-shadow */
+	box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.7);
+	width: 40px; height: 40px;
 }
 .warn {
 	background-image: url('img/warn.svg');
-	width: 40px; height: 40px;
 }
 .plug {
 	background-image: url('img/plug.svg');
 }
-.plug-visible {
-	width: 40px; height: 40px;
+.flash {
+	background-image: url('img/flash.svg');
 }
-.plug-hidden {
+.hidden {
 	width: 0px; height: 0px;
 }
