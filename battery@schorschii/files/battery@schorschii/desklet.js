@@ -1,5 +1,3 @@
-/* Version 1.1 */
-
 const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
 const Util = imports.misc.util;
@@ -25,12 +23,14 @@ MyDesklet.prototype = {
 		// initialize settings
 		this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
 		this.settings.bind("devfile_capacity", "devfile_capacity", this.on_setting_changed);
-		this.settings.bind("devfile_plug", "devfile_plug", this.on_setting_changed);
+		this.settings.bind("devfile_status", "devfile_status", this.on_setting_changed);
 		this.settings.bind("showpercent", "showpercent", this.on_setting_changed);
 		this.settings.bind("showplug", "showplug", this.on_setting_changed);
+		this.settings.bind("hide-decorations", "hide_decorations", this.on_setting_changed);
+		this.settings.bind("use-custom-label", "use_custom_label", this.on_setting_changed);
+		this.settings.bind("custom-label", "custom_label", this.on_setting_changed);
 
 		// initialize desklet gui
-		this.setHeader(_("Battery"));
 		this.setupUI();
 	},
 
@@ -51,6 +51,9 @@ MyDesklet.prototype = {
 		// set root eleent
 		this.setContent(this.battery);
 
+		// set decoration settings
+		this.refreshDecoration();
+
 		// set initial values
 		this.refresh();
 	},
@@ -58,41 +61,53 @@ MyDesklet.prototype = {
 	refresh: function() {
 		// default device files
 		var default_devfile_capacity_1 = "/sys/class/power_supply/CMB1/capacity"; // kernel 3.x
-		var default_devfile_plug_1 = "/sys/class/power_supply/AC/online";
-		var default_devfile_capacity_2 = "/sys/class/power_supply/BAT1/capacity"; // kernel 4.x
-		var default_devfile_plug_2 = "/sys/class/power_supply/ACAD/online";
+		var default_devfile_status_1 = "/sys/class/power_supply/CMB1/status";
+		var default_devfile_capacity_2 = "/sys/class/power_supply/BAT0/capacity"; // kernel 4.x
+		var default_devfile_status_2 = "/sys/class/power_supply/BAT0/status";
+		var default_devfile_capacity_3 = "/sys/class/power_supply/BAT1/capacity";
+		var default_devfile_status_3 = "/sys/class/power_supply/BAT1/status";
 
 		// get device files from settings
 		// remove "file://" because it's not supported by Cinnamon.get_file_contents_utf8_sync()
 		var result_devfile_capacity = this.devfile_capacity.replace("file://", "");
-		var result_devfile_plug = this.devfile_plug.replace("file://", "");
+		var result_devfile_status = this.devfile_status.replace("file://", "");
 
-		// auto detect device files if settings were not present
+		// auto detect device files if settings were not set
 		if (result_devfile_capacity == "") {
 			try {
 				Cinnamon.get_file_contents_utf8_sync(default_devfile_capacity_1);
 				result_devfile_capacity = default_devfile_capacity_1;
 			} catch(ex) {
-				result_devfile_capacity = default_devfile_capacity_2;
+				try {
+					Cinnamon.get_file_contents_utf8_sync(default_devfile_capacity_2);
+					result_devfile_capacity = default_devfile_capacity_2;
+				} catch(ex) {
+					result_devfile_capacity = default_devfile_capacity_3;
+				}
 			}
 		}
-		if (result_devfile_plug == "") {
+		if (result_devfile_status == "") {
 			try {
-				Cinnamon.get_file_contents_utf8_sync(default_devfile_plug_1);
-				result_devfile_plug = default_devfile_plug_1;
+				Cinnamon.get_file_contents_utf8_sync(default_devfile_status_1);
+				result_devfile_status = default_devfile_status_1;
 			} catch(ex) {
-				result_devfile_plug = default_devfile_plug_2;
+				try {
+					Cinnamon.get_file_contents_utf8_sync(default_devfile_status_2);
+					result_devfile_status = default_devfile_status_2;
+				} catch(ex) {
+					result_devfile_status = default_devfile_status_3;
+				}
 			}
 		}
 
 		// get current battery/power supply values
 		var currentCapacity = 0;
-		var currentState = 1;
+		var currentState = "";
 		var currentError = 0;
 		try {
 			// read device files
 			currentCapacity = parseInt(Cinnamon.get_file_contents_utf8_sync(result_devfile_capacity));
-			currentState = parseInt(Cinnamon.get_file_contents_utf8_sync(result_devfile_plug));
+			currentState = Cinnamon.get_file_contents_utf8_sync(result_devfile_status).trim();
 		} catch(ex) {
 			// maybe the file does not exist because the battery was removed
 			currentError = 1;
@@ -101,7 +116,11 @@ MyDesklet.prototype = {
 		// set label text to current capacity
 		this.text.set_text(currentCapacity.toString() + "%");
 
-		if (currentCapacity > 20) {
+		if (currentCapacity > 95) {
+			// 95%-100%: show fixed full background and hide bar
+			this.battery.style_class = "battery full";
+			this.segment.style = "background-size: 0px 0px;";
+		} else if (currentCapacity > 20) {
 			// greater than 20%: show green background and a bar with variable length
 
 			// calc bar width
@@ -129,20 +148,28 @@ MyDesklet.prototype = {
 		if (currentError == 1) {
 			// error: warning icon and no label
 			this.plug.style_class = "symbol warn";
-			this.text.style = "color: transparent;"
+			this.text.style_class = "text text-hidden";
 		} else {
-			if (currentState == 1 && this.showplug == true) {
-				// power supply online and plug icon should be shown
-				this.plug.style_class = "symbol plug plug-visible";
-				this.text.style = "color: transparent;"
+			if (currentState == "Charging" && this.showplug == true) {
+				// power supply online, charging and icon should be shown
+				this.plug.style_class = "symbol flash";
+				this.text.style_class = "text text-hidden";
+			} else if ((currentState == "Not charging" || currentState == "Full" || currentState == "Unknown") && this.showplug == true) {
+				// power supply online, not charging (full) and icon should be shown
+				this.plug.style_class = "symbol plug";
+				this.text.style_class = "text text-hidden";
 			} else if (this.showpercent == true) {
-				// power supply offline and capacity should be shown
-				this.plug.style_class = "symbol plug plug-hidden";
-				this.text.style = "color: white;"
+				// power supply offline (= discharging) and capacity should be shown
+				this.plug.style_class = "symbol hidden";
+				this.text.style_class = "text";
+			} else if (this.showpercent == false) {
+				// power supply offline (= discharging) and capacity should not be shown
+				this.plug.style_class = "symbol hidden";
+				this.text.style_class = "text text-hidden";
 			} else {
-				// power supply offline and capacity should not be shown
-				this.plug.style_class = "symbol plug plug-hidden";
-				this.text.style = "color: transparent;"
+				// Unknown state
+				this.plug.style_class = "symbol warn";
+				this.text.style_class = "text text-hidden";
 			}
 		}
 
@@ -150,7 +177,22 @@ MyDesklet.prototype = {
 		this.timeout = Mainloop.timeout_add_seconds(2, Lang.bind(this, this.refresh));
 	},
 
+	refreshDecoration: function() {
+		// desklet label (header)
+		if (this.use_custom_label == true)
+			this.setHeader(this.custom_label)
+		else
+			this.setHeader(_("Battery"));
+
+		// prevent decorations?
+		this.metadata["prevent-decorations"] = this.hide_decorations;
+		this._updateDecoration();
+	},
+
 	on_setting_changed: function() {
+		// decoration settings changed
+		this.refreshDecoration();
+
 		// settings changed; instant refresh
 		Mainloop.source_remove(this.timeout);
 		this.refresh();
