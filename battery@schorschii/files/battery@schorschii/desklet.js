@@ -1,10 +1,12 @@
 const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
+const GLib = imports.gi.GLib;
 const Util = imports.misc.util;
 const Cinnamon = imports.gi.Cinnamon;
 const Mainloop = imports.mainloop;
 const Lang = imports.lang;
 const Settings = imports.ui.settings;
+const Main = imports.ui.main;
 
 function MyDesklet(metadata, desklet_id) {
 	this._init(metadata, desklet_id);
@@ -60,12 +62,16 @@ MyDesklet.prototype = {
 
 	refresh: function() {
 		// default device files
-		var default_devfile_capacity_1 = "/sys/class/power_supply/CMB1/capacity"; // kernel 3.x
-		var default_devfile_status_1 = "/sys/class/power_supply/CMB1/status";
-		var default_devfile_capacity_2 = "/sys/class/power_supply/BAT0/capacity"; // kernel 4.x
-		var default_devfile_status_2 = "/sys/class/power_supply/BAT0/status";
-		var default_devfile_capacity_3 = "/sys/class/power_supply/BAT1/capacity";
-		var default_devfile_status_3 = "/sys/class/power_supply/BAT1/status";
+		var default_devfiles_capacity = ['/sys/class/power_supply/CMB0/capacity',
+		                                 '/sys/class/power_supply/CMB1/capacity',
+		                                 '/sys/class/power_supply/BAT0/capacity',
+		                                 '/sys/class/power_supply/BAT1/capacity',
+		                                 '/sys/class/power_supply/BAT2/capacity'];
+		var default_devfiles_status = ['/sys/class/power_supply/CMB0/status',
+		                               '/sys/class/power_supply/CMB1/status',
+		                               '/sys/class/power_supply/BAT0/status',
+		                               '/sys/class/power_supply/BAT1/status',
+		                               '/sys/class/power_supply/BAT2/status'];
 
 		// get device files from settings
 		// remove "file://" because it's not supported by Cinnamon.get_file_contents_utf8_sync()
@@ -74,31 +80,30 @@ MyDesklet.prototype = {
 
 		// auto detect device files if settings were not set
 		if (result_devfile_capacity == "") {
-			try {
-				Cinnamon.get_file_contents_utf8_sync(default_devfile_capacity_1);
-				result_devfile_capacity = default_devfile_capacity_1;
-			} catch(ex) {
-				try {
-					Cinnamon.get_file_contents_utf8_sync(default_devfile_capacity_2);
-					result_devfile_capacity = default_devfile_capacity_2;
-				} catch(ex) {
-					result_devfile_capacity = default_devfile_capacity_3;
+			// iterate trough default devfiles ...
+			for (var i in default_devfiles_capacity) {
+				// ... and check if it exists
+				if (GLib.file_test(default_devfiles_capacity[i], GLib.FileTest.EXISTS) &&
+				   (!GLib.file_test(default_devfiles_capacity[i], GLib.FileTest.IS_DIR))) {
+					result_devfile_capacity = default_devfiles_capacity[i];
+					break;
 				}
 			}
 		}
 		if (result_devfile_status == "") {
-			try {
-				Cinnamon.get_file_contents_utf8_sync(default_devfile_status_1);
-				result_devfile_status = default_devfile_status_1;
-			} catch(ex) {
-				try {
-					Cinnamon.get_file_contents_utf8_sync(default_devfile_status_2);
-					result_devfile_status = default_devfile_status_2;
-				} catch(ex) {
-					result_devfile_status = default_devfile_status_3;
+			// iterate trough default devfiles ...
+			for (var i in default_devfiles_status) {
+				// ... and check if it exists
+				if (GLib.file_test(default_devfiles_status[i], GLib.FileTest.EXISTS) &&
+				   (!GLib.file_test(default_devfiles_status[i], GLib.FileTest.IS_DIR))) {
+					result_devfile_status = default_devfiles_status[i];
+					break;
 				}
 			}
 		}
+
+		// debug
+		//Main.notifyError(result_devfile_capacity, result_devfile_status);
 
 		// get current battery/power supply values
 		var currentCapacity = 0;
