@@ -178,14 +178,14 @@ CobiAnalogClock.prototype = {
     
     this._clockSize = this._settings.values["size"] * global.ui_scale;
     
-    this._clockActor = new St.Group();
+    this._clockActor = new St.Widget();
     
     this._tzLabel = new St.Label();
     
     this.setHeader(_("Clock"));
     this.setContent(this._clockActor);
     
-    this._loadClock();
+    this._onSizeChanged();
     
     let currentMillis = new Date().getMilliseconds();
     let timeoutMillis = (1000 - currentMillis) % 1000;
