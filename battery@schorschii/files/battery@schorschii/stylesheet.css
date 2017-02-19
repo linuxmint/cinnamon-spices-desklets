@@ -1,8 +1,5 @@
 /* battery body */
 .battery {
-	background-size: 140px 66px;
-	width: 140px; height: 66px;
-
 	border: 1px solid transparent; /* required for box-shadow */
 	box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.35);
 }
@@ -25,23 +22,20 @@
 /* segment: green bar with variable width */
 .segment {
 	background-image: url('img/segment-green.png');
-	background-position: 14px 0px;
-	width: 140px; height: 66px;
 }
+
 
 /* label which shows the capacity */
 .text {
 	color: white;
 	font-family: "DejaVu Sans", Sans-serif;
 	font-weight: 100;
-	font-size: 22px;
+	font-size: 24px;
 
 	/* strange: only working after first mouse hover :-( */
 	/*text-shadow: 0px 0px 5px rgba(0,0,0,0.85);*/
 }
-.text-hidden {
-	width: 0px; height: 0px;
-}
+
 
 /* icons on top of the battery */
 .container {
@@ -50,7 +44,6 @@
 .symbol {
 	border: 1px solid transparent; /* required for box-shadow */
 	box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.7);
-	width: 40px; height: 40px;
 }
 .warn {
 	background-image: url('img/warn.svg');
@@ -60,7 +53,4 @@
 }
 .flash {
 	background-image: url('img/flash.svg');
-}
-.hidden {
-	width: 0px; height: 0px;
 }
