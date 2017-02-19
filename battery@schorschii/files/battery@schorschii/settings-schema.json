@@ -1,7 +1,7 @@
 {
     "head0": {
         "type": "header",
-        "description": "Settings for battery@schorschii   (Version 2.1)"
+        "description": "Settings for battery@schorschii   (Version 2.2)"
     },
 
     "head1": {
@@ -20,13 +20,20 @@
         "tooltip": "flash icon: power online and battery is charging\nplug icon: power online but battery is not charging",
         "default": true
     },
-    "div1": {
-        "type": "separator"
-    },
     "hide-decorations": {
         "type": "switch",
         "description": "Hide decorations",
         "default": false
+    },
+    "scale-size": {
+        "type": "spinbutton",
+        "default": 1.0,
+        "min": 0.4,
+        "max": 2.0,
+        "step": 0.05,
+        "units": "scale factor",
+        "description": "Desklet size",
+        "tooltip": "Increase or decrease the size of the battery using this scale factor.\nBest appearance on 1.00 and 0.75. Use values greater than 1.00 only on high-res displays."
     },
 
     "head2": {
