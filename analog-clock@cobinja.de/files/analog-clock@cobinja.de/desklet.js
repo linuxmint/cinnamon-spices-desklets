@@ -189,7 +189,6 @@ CobiAnalogClock.prototype = {
     
     let currentMillis = new Date().getMilliseconds();
     let timeoutMillis = (1000 - currentMillis) % 1000;
-    this._timeoutId = Mainloop.timeout_add(timeoutMillis, Lang.bind(this, this._updateClock));
     
     this._signalManager.connect(global, "scale-changed", this._onSizeChanged);
     this._signalManager.connect(this._settings, "size-changed", this._onSizeChanged);
@@ -204,12 +203,17 @@ CobiAnalogClock.prototype = {
     
     this._upClient = new UPowerGlib.Client();
     try {
-      this._upClient.connect('notify-resume', Lang.bind(this, this._updateClock));
+      this._upClient.connect('notify-resume', Lang.bind(this, this._onPowerResume));
     }
     catch (e) {
-      this._upClient.connect('notify::resume', Lang.bind(this, this._updateClock));
+      this._upClient.connect('notify::resume', Lang.bind(this, this._onPowerResume));
     }
     this._onTimezoneChanged();
+  },
+  
+  _onPowerResume: function() {
+    this._initialUpdate = true;
+    this._updateClock();
   },
   
   _loadTheme: function() {
