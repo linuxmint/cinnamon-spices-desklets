@@ -4,5 +4,6 @@
     "prevent-decorations": false, 
     "uuid": "simple-system-monitor@ariel", 
     "name": "Simple system monitor",
-	"thermal-file": "/sys/devices/virtual/thermal/thermal_zone0/temp"
+	"thermal-file": "/sys/devices/virtual/thermal/thermal_zone0/temp",
+    "fan-speed-file": "/sys/devices/virtual/hwmon/hwmon1/fan1_input"
 }
