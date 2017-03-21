@@ -178,7 +178,7 @@ CobiAnalogClock.prototype = {
     
     this._clockSize = this._settings.values["size"] * global.ui_scale;
     
-    this._clockActor = new St.Widget();
+    this._clockActor = new St.Group();
     
     this._tzLabel = new St.Label();
     
