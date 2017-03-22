@@ -9,19 +9,19 @@
         "description": "Visual"
     },
     "showpercent": {
-        "type" : "switch",
+        "type" : "checkbox",
         "description": "Show battery capacity in percent",
         "tooltip": "Battery capacity is only shown when plug/flash icon is not visible.",
         "default": true
     },
     "showplug": {
-        "type": "switch",
+        "type": "checkbox",
         "description": "Show plug/flash icon when power supply is plugged in",
         "tooltip": "flash icon: power online and battery is charging\nplug icon: power online but battery is not charging",
         "default": true
     },
     "hide-decorations": {
-        "type": "switch",
+        "type": "checkbox",
         "description": "Hide decorations",
         "default": false
     },
