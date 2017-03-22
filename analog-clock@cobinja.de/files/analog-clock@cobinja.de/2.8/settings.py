@@ -152,7 +152,7 @@ class CobiAnalogClockSettings:
     self.lsTheme = Gtk.ListStore(GObject.TYPE_INT, GObject.TYPE_STRING)
     cbTheme = self.builder.get_object("cbTheme")
     # Load theme names
-    themeNames = getThemeNames(DESKLET_DIR + "/themes")
+    themeNames = getThemeNames(DESKLET_DIR + "/../themes")
     activeIndex = 0
     for i in range(0, len(themeNames)):
       themeName = themeNames[i]
