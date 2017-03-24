@@ -24,14 +24,14 @@ MyDesklet.prototype = {
 
 		// initialize settings
 		this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
-		this.settings.bind("devfile_capacity", "devfile_capacity", this.on_setting_changed);
-		this.settings.bind("devfile_status", "devfile_status", this.on_setting_changed);
-		this.settings.bind("showpercent", "showpercent", this.on_setting_changed);
-		this.settings.bind("showplug", "showplug", this.on_setting_changed);
-		this.settings.bind("hide-decorations", "hide_decorations", this.on_setting_changed);
-		this.settings.bind("use-custom-label", "use_custom_label", this.on_setting_changed);
-		this.settings.bind("custom-label", "custom_label", this.on_setting_changed);
-		this.settings.bind("scale-size", "scale_size", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "devfile_capacity", "devfile_capacity", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "devfile_status", "devfile_status", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "showpercent", "showpercent", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "showplug", "showplug", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hide_decorations", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "use-custom-label", "use_custom_label", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "custom-label", "custom_label", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scale_size", this.on_setting_changed);
 
 		// initialize desklet gui
 		this.setupUI();
