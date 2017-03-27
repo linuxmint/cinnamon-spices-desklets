@@ -1,3 +1,11 @@
+.devtools-mainBox {
+    border: solid 1px #555555;
+    border-radius: 5px;
+    background-color: #dddddd;
+    padding: 5px;
+    color: #000000;
+}
+
 .devtools-panel {
     
 }
@@ -6,80 +14,246 @@
     padding: 3px;
 }
 
+.devtools-button:hover {
+    background-color: #efefef;
+    border-radius: 5px;
+}
+
+.devtools-indented {
+    padding-left: 20px;
+}
+
+.devtools-contentButton {
+    text-decoration: underline;
+    padding: 3px;
+    border-radius: 5px;
+}
+
+.devtools-contentButton:hover {
+    background-color: #efefef;
+}
+
+.devtools-checkBox StBin {
+    width: 16px;
+    height: 16px;
+    padding: 3px;
+    background-image: url("buttons/checkbox-unchecked.svg");
+}
+
+.devtools-checkBox:focus StBin {
+    background-image: url("buttons/checkbox-unchecked.svg");
+}
+
+.devtools-checkBox:checked StBin {
+    background-image: url("buttons/checkbox-checked.svg");
+}
+
+.devtools-checkBox:focus:checked StBin {
+    background-image: url("buttons/checkbox-checked.svg");
+}
+
+/*tab*/
 .devtools-tab {
+    border: solid 1px #555555;
+    border-radius: 5px;
     padding: 4px;
+    width: 80px;
+}
+
+.devtools-tab:hover {
+    background-color: #efefef;
 }
 
 .devtools-tab:selected {
-    font-weight: bolder;
+    background-color: #99eeaa;
 }
 
-.devtools-tabBox {
-    padding: 3px;
-    spacing: 10px;
+.devtools-tab-scrollButton {
+    border: solid 1px #555555;
+    border-radius: 5px;
+    padding: 4px;
+    background-color: #efefef;
 }
 
-.devtools-panelButton {
-    padding: 3px;
+.devtools-tabPanels {
+    
 }
 
-/*.devtools-refreshBox {
+.devtools-tabScroll StBoxLayout {
     padding: 3px;
-    spacin: 2px;
+    spacing: 6px;
 }
-*/
+
+.devtools-tabScroll StScrollBar,
+.devtools-tabScroll StBin#trough,
+.devtools-tabScroll StButton#hhandle,
+.devtools-tabScroll StButton#hhandle:hover {
+    /*border-image: none;*/
+    /*background-image: none;*/
+    /*background-color: blue;*/
+    /*color: blue;*/
+    min-height: 0px;
+    /*width: 0px;*/
+}
 
 /*terminal*/
+.devtools-terminal-mainBox {
+    spacing: 5px;
+    padding: 5px;
+}
+
 .devtools-terminal-entry {
     background-color: #ffffff;
     color: #000000;
+    padding: 2px 4px 2px 4px;
+    font: 14px courier, monospace;
 }
 
-.devtools-terminal-processMainBox {
-    
+.devtools-terminal-processesBox {
+    spacing: 5px;
+    padding: 5px;
 }
 
 .devtools-terminal-processBox {
-    
-}
-
-/*extensions*/
-.devtools-extension-mainBox {
-    
-}
-
-.devtools-extension-container {
-    
-}
-
-.devtools-extension-buttonBox {
+    border: solid 1px #555555;
+    border-radius: 5px;
     padding: 3px;
 }
 
-.devtools-extension-instanceBox {
+/*extensions*/
+.devtools-extensions-mainBox {
+    spacing: 5px;
+    padding: 5px;
+}
+
+.devtools-extensions-container {
+    border: solid 1px #555555;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+.devtools-extensions-title {
+    font-weight: bold;
+}
+
+.devtools-extensions-icon {
+    padding: 0px 8px 0px 4px;
+}
+
+.devtools-extensions-buttonBox {
+    padding: 3px 3px 3px 8px;
+}
+
+.devtools-extensions-instanceBox {
     spacing: 20px;
 }
 
 /*windows*/
 .devtools-windows-mainBox {
-    
+    spacing: 5px;
+    padding: 5px;
 }
 
 .devtools-windows-windowBox {
-    
-}
-
-.devtools-windows-icon {
-    
-}
-
-.devtools-windows-buttonBox {
+    border: solid 1px #555555;
+    border-radius: 5px;
     padding: 3px;
 }
 
-.devtools-separator {
-    /*uncomment these lines to make separators disapear*/
-    /*-gradient-height: 0px;*/
-    /*-margin-horizontal: 0px;*/
-    /*height: 0px;*/
+.devtools-windows-icon {
+    padding: 0px 8px 0px 4px;
+}
+
+.devtools-windows-buttonBox {
+    padding: 3px 3px 3px 8px;
+}
+
+/*sandbox*/
+.devtools-sandbox-entryText {
+    border: solid 1px #555555;
+    border-radius: 5px;
+    background-color: #ffffff;
+    padding: 5px;
+    font: 14px courier, monospace;
+    color: #000000;
+    selected-color: white;
+}
+
+.devtools-sandbox-entryText StScrollBar {
+    min-width: 10px;
+}
+
+.devtools-sandbox-entryText StBin#trough {
+    background-color: transparent;
+}
+
+.devtools-sandbox-entryText StButton#vhandle {
+    background-color: #919191;
+    border-radius: 5px;
+}
+
+.devtools-sandbox-entryText StButton#vhandle:hover {
+    background-color: #B7B7B7;
+}
+
+.devtools-sandbox-buttonBox {
+    spacing: 5px;
+    padding-right: 5px;
+}
+
+.devtools-sandbox-button {
+    padding: 3px;
+    border: solid 1px #555555;
+    border-radius: 5px;
+}
+
+.devtools-sandbox-button:hover {
+    background-color: #efefef;
+}
+
+.devtools-sandbox-previewer {
+    padding: 10px;
+    border: solid 1px #555555;
+}
+
+.devtools-sandbox-tabs {
+    spacing: 15px;
+    padding: 5px;
+}
+
+.devtools-sandbox-tab {
+    border: solid 1px #555555;
+    border-radius: 4px;
+    padding: 3px 10px;
+}
+
+.devtools-sandbox-tab:hover {
+    background-color: #efefef;
+}
+
+.devtools-sandbox-tab:selected {
+    background-color: #99eeaa;
+}
+
+.devtools-sandbox-tab:hover:selected {
+    background-color: #bbffdd;
+}
+
+/*log*/
+.devtools-log-bottomBox {
+    spacing: 5px;
+}
+
+/*inspect*/
+.devtools-inspect-content {
+    spacing: 5px;
+}
+
+.devtools-inspect-scrollbox {
+    
+}
+
+.devtools-inspect-subtitle {
+    font-size: 20px;
+    padding-top: 3px;
 }

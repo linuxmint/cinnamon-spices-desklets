@@ -16,30 +16,16 @@
         "description": "Collapsed"
     },
     
-    "lgOpen": {
-        "type": "checkbox",
-        "default": false,
-        "description": "Open stand-alone Looking Glass (Melange)"
-    },
-    
-    "terminalOutputShow": {
-        "type": "checkbox",
-        "description": "Show process output on run",
-        "default": true,
-        "tooltip": "Uncheck to have it hidden initially"
-    },
-    
-    "xsessionHideOld": {
-        "type": "checkbox",
-        "description": "Hide old xsession errors",
-        "default": true,
-        "tooltip": "Setting this will only display entries posted since cinnamon was started (or restarted)"
-    },
-    
     "raiseKey": {
         "type": "keybinding",
         "description": "Raise to top shorcut key",
         "default": "<Super>v"
+    },
+    
+    "centerRaised": {
+        "type": "checkbox",
+        "description": "Center the desklet on the screen in raised mode",
+        "default": false
     },
     
     "height": {
@@ -58,5 +44,62 @@
         "max": 1000,
         "step": 50,
         "default": 700
+    },
+    
+    "sandboxHeader": {
+        "type": "textview",
+        "description": "Sandbox header",
+        "default": "const Cinnamon = imports.gi.Cinnamon;\nconst Clutter = imports.gi.Clutter;\nconst Gio = imports.gi.Gio;\nconst GLib = imports.gi.GLib;\nconst Gtk = imports.gi.Gtk;\nconst St = imports.gi.St;\nconst Main = imports.ui.main;\nconst Lang = imports.lang;\nconst Mainloop = imports.mainloop;\nconst Signals = imports.signals;",
+        "height": 100
+    },
+    
+    "xsessionHideOld": {
+        "type": "generic",
+        "default": true
+    },
+    
+    "clTimestamp": {
+        "type": "generic",
+        "default": true
+    },
+    
+    "clShowErrors": {
+        "type": "generic",
+        "default": true
+    },
+    
+    "clShowInfos": {
+        "type": "generic",
+        "default": true
+    },
+    
+    "clShowWarnings": {
+        "type": "generic",
+        "default": true
+    },
+    
+    "clShowTraces": {
+        "type": "generic",
+        "default": true
+    },
+    
+    "showApplet": {
+        "type": "generic",
+        "default": true
+    },
+    
+    "showDesklet": {
+        "type": "generic",
+        "default": true
+    },
+    
+    "showExtension": {
+        "type": "generic",
+        "default": true
+    },
+    
+    "showSearch provider": {
+        "type": "generic",
+        "default": true
     }
 }
