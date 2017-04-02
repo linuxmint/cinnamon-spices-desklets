@@ -1,9 +1,7 @@
 {
     "uuid": "clock@schorschii", 
     "max-instances": "10", 
-    "dangerous": false, 
     "description": "An analog clock desklet with smooth seconds hand and free choice of images.", 
     "name": "Analog Chronometer", 
-    "prevent-decorations": false, 
-    "last-edited": 1490361302
+    "prevent-decorations": false
 }
