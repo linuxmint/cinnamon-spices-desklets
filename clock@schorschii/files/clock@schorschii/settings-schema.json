@@ -1,0 +1,111 @@
+{
+    "head0": {
+        "type": "header",
+        "description": "Settings for clock@schorschii   (Version 1.0)"
+    },
+
+    "head1": {
+        "type": "header",
+        "description": "Visual"
+    },
+    "show-seconds-hand": {
+        "type": "checkbox",
+        "description": "Show seconds hand",
+        "tooltip": "Show or hide the seconds hand.",
+        "default": true
+    },
+    "smooth-seconds-hand": {
+        "type": "checkbox",
+        "description": "Smooth seconds hand",
+        "tooltip": "Use smooth seconds hand animation instead of refreshing it only every second.",
+        "default": true
+    },
+    "hide-decorations": {
+        "type": "checkbox",
+        "description": "Hide decorations",
+        "default": false
+    },
+    "scale-size": {
+        "type": "spinbutton",
+        "default": 1.0,
+        "min": 0.4,
+        "max": 2.0,
+        "step": 0.05,
+        "units": "scale factor",
+        "description": "Desklet size",
+        "tooltip": "Increase or decrease the size of the battery using this scale factor.\nBest appearance on 1.00 and 0.75. Use values greater than 1.00 only on high-res displays."
+    },
+
+    "head2": {
+        "type": "header",
+        "description": "Custom desklet label (only visible if decorations are enabled)"
+    },
+    "use-custom-label": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Use a custom desklet label",
+        "tooltip": "Checking this box allows you to set a custom label in the field below.",
+        "value": false
+    },
+    "custom-label": {
+        "type": "entry",
+        "default": "Clock 1",
+        "description": "Custom desklet label",
+        "indent": true,
+        "dependency": "use-custom-label",
+        "tooltip": "Set your custom label here, e.g. for multiple timezones. This field is unavailable unless the checkbox above is enabled."
+    },
+
+    "head3": {
+        "type": "header",
+        "description": "Timezone"
+    },
+    "use-custom-tz": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Use a custom timezone",
+        "tooltip": "Checking this box allows you to set a custom timezone in the field below.",
+        "value": false
+    },
+    "custom-tz": {
+        "type": "entry",
+        "default": "",
+        "description": "Custom time zone",
+        "indent": true,
+        "dependency": "custom-timezone",
+        "tooltip": "Enter your custom timezone here."
+    },
+
+    "head4": {
+        "type": "header",
+        "description": "Custom images"
+    },
+    "img-bg": {
+        "default": "", 
+        "type": "filechooser", 
+        "description" : "Background",
+        "tooltip": "Choose your own background image.",
+        "allow-none" : true
+    },
+    "img-s": {
+        "default": "", 
+        "type": "filechooser", 
+        "description" : "Seconds hand",
+        "tooltip": "Choose your own image for the seconds hand. Should be as big as the background image.",
+        "allow-none" : true
+    },
+    "img-m": {
+        "default": "", 
+        "type": "filechooser", 
+        "description" : "Minute hand",
+        "tooltip": "Choose your own image for the minute hand. Should be as big as the background image.",
+        "allow-none" : true
+    },
+    "img-h": {
+        "default": "", 
+        "type": "filechooser", 
+        "description" : "Hour hand",
+        "tooltip": "Choose your own image for the hour hand. Should be as big as the background image.",
+        "allow-none" : true
+    }
+}

@@ -1,0 +1,21 @@
+/* clock background */
+.clock_container {
+	border: 1px solid transparent; /* required for box-shadow */
+	box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.35);
+	background-image: url('img/bg.png');
+}
+
+/* pointers */
+.hand {
+	border: 1px solid transparent; /* required for box-shadow */
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.15);
+}
+.second_hand {
+	background-image: url('img/hand_s.png');
+}
+.minute_hand {
+	background-image: url('img/hand_m.png');
+}
+.hour_hand {
+	background-image: url('img/hand_h.png');
+}
