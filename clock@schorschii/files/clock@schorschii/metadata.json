@@ -1,7 +1,7 @@
 {
     "uuid": "clock@schorschii", 
     "max-instances": "10", 
-    "description": "An analog clock desklet with smooth seconds hand and free choice of images.", 
-    "name": "Analog Chronometer", 
-    "prevent-decorations": false
+    "description": "A scaleable analog clock desklet with smooth hands and free choice of images.", 
+    "prevent-decorations": false, 
+    "name": "Analog Chronometer"
 }

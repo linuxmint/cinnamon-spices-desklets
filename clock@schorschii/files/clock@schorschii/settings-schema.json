@@ -1,7 +1,7 @@
 {
     "head0": {
         "type": "header",
-        "description": "Settings for clock@schorschii   (Version 1.0)"
+        "description": "Settings for clock@schorschii   (Version 1.1)"
     },
 
     "head1": {
@@ -16,8 +16,8 @@
     },
     "smooth-seconds-hand": {
         "type": "checkbox",
-        "description": "Smooth seconds hand",
-        "tooltip": "Use smooth seconds hand animation instead of refreshing it only every second.",
+        "description": "Smooth hands",
+        "tooltip": "Use smooth animation for hour, minute and seconds hand instead of refreshing it only every second.",
         "default": true
     },
     "hide-decorations": {
@@ -25,15 +25,15 @@
         "description": "Hide decorations",
         "default": false
     },
-    "scale-size": {
+    "desklet-size": {
         "type": "spinbutton",
-        "default": 1.0,
-        "min": 0.4,
-        "max": 2.0,
-        "step": 0.05,
-        "units": "scale factor",
+        "default": 130,
+        "min": 10,
+        "max": 500,
+        "step": 2,
+        "units": "pixels",
         "description": "Desklet size",
-        "tooltip": "Increase or decrease the size of the battery using this scale factor.\nBest appearance on 1.00 and 0.75. Use values greater than 1.00 only on high-res displays."
+        "tooltip": "Increase or decrease the size of the clock."
     },
 
     "head2": {
