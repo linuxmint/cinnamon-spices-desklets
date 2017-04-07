@@ -218,7 +218,7 @@ CobiAnalogClock.prototype = {
   
   _loadTheme: function() {
     let themeName = this._settings.values["theme"];
-    let themesDir = Gio.file_new_for_path(DESKLET_DIR + "/themes");
+    let themesDir = Gio.file_new_for_path(DESKLET_DIR + "/../themes");
     let themeDir = themesDir.get_child(themeName);
     let metaDataFile = themeDir.get_child("metadata.json");
     let metaData = JSON.parse(Cinnamon.get_file_contents_utf8_sync(metaDataFile.get_path()));

@@ -8,7 +8,7 @@
     <property name="resizable">False</property>
     <property name="window_position">center</property>
     <property name="destroy_with_parent">True</property>
-    <property name="icon_name">preferences-system</property>
+    <property name="icon">icon.png</property>
     <property name="type_hint">normal</property>
     <signal name="destroy" handler="destroy" swapped="no"/>
     <child internal-child="vbox">
