@@ -3,6 +3,5 @@
   "name": "Analog clock desklet",
   "description": "An analog clock desklet",
   "max-instances": "100",
-  "dangerous": false,
   "multiversion": true
 }
