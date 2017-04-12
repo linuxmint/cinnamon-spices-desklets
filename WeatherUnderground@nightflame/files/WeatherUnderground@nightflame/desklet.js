@@ -18,6 +18,7 @@ const Clutter = imports.gi.Clutter;
 const GLib = imports.gi.GLib;
 const Tweener = imports.ui.tweener;
 const Util = imports.misc.util;
+const Dialog = imports.ui.modalDialog;
 
 const Tooltips = imports.ui.tooltips;
 const PopupMenu = imports.ui.popupMenu;
@@ -135,13 +136,16 @@ MyDesklet.prototype = {
 
 
 			this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-			this._menu.addAction(_("Help"), Lang.bind(this, function() {
-				Util.spawnCommandLine("xdg-open " + this.helpFile);
-			}));
-
 			// let dir_path = ;
 			// this.save_path = dir_path.replace('~', GLib.get_home_dir());
-			this.helpFile = GLib.get_home_dir() + "/.local/share/cinnamon/desklets/" + metadata["uuid"] + "/README";
+			this.helpFile = GLib.get_home_dir() + "/.local/share/cinnamon/desklets/" + metadata["uuid"] + "/README.md";
+			// this.helpMessage = GLib.get_file_contents(this.helpFile);
+			this.helpMessage = String(GLib.file_get_contents(this.helpFile)[1]);
+			this.helpDialog = new Dialog.NotifyDialog(this.helpMessage);
+			this._menu.addAction(_("Help"), Lang.bind(this, function() {
+					this.helpDialog.open();
+			}));
+
 
 			this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], this.desklet_id);
 			this.settings.bindProperty(Settings.BindingDirection.IN, "stationID", "stationID", function() {});
