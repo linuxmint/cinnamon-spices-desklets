@@ -1,0 +1,25 @@
+{
+  "stationID": {
+      "type": "entry",
+      "default": "KVAGLENA4",
+      "description": "Weather station ID from https://www.wunderground.com/ "
+  },
+  "units": {
+      "type": "radiogroup",
+      "default": "_metric",
+      "description": "Units",
+      "options": {
+        "imperial": "",
+        "metric": "_metric"
+      }
+  },
+  "period": {
+      "type": "spinbutton",
+      "default": 1800,
+      "min": 10,
+      "max": 1800,
+      "step": 20,
+      "units": "seconds",
+      "description": "Refresh Period"
+  }
+}

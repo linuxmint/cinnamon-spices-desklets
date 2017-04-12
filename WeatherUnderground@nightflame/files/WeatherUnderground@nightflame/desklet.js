@@ -1,7 +1,7 @@
 
 // Weather Under Ground Cinnamon Desklet v0.1 - 16 June 2013
 //
-// The Desklet is a little raw at the moment because its my first attempt. I wrote it because I wanted to see local weather on my desktop. 
+// The Desklet is a little raw at the moment because its my first attempt. I wrote it because I wanted to see local weather on my desktop.
 // I'm sharing it in case it useful to anyone else especially as there do not seem to be many Cinammon Desklets yet. Its based on xkcd@rjanja.
 //
 // -Steve
@@ -10,6 +10,8 @@
 const Gio = imports.gi.Gio;
 const St = imports.gi.St;
 const Desklet = imports.ui.desklet;
+const Settings = imports.ui.settings;
+
 const Lang = imports.lang;
 const Mainloop = imports.mainloop;
 const Clutter = imports.gi.Clutter;
@@ -20,12 +22,13 @@ const Util = imports.misc.util;
 const Tooltips = imports.ui.tooltips;
 const PopupMenu = imports.ui.popupMenu;
 const Cinnamon = imports.gi.Cinnamon;
-const Soup = imports.gi.Soup
+const Soup = imports.gi.Soup;
+
 let session = new Soup.SessionAsync();
 Soup.Session.prototype.add_feature.call(session, new Soup.ProxyResolverDefault());
 
-function MyDesklet(metadata){
-	this._init(metadata);
+function MyDesklet(metadata, desklet_id){
+	this._init(metadata, desklet_id);
 }
 
 MyDesklet.prototype = {
@@ -38,7 +41,7 @@ MyDesklet.prototype = {
 			base_stream:outFile.replace(null, false, Gio.FileCreateFlags.NONE, null)});
 
 		global.log("Downloading " + url);
-				  
+
 		var message = Soup.Message.new('GET', url);
 		session.queue_message(message, function(session, response) {
 			if (response.status_code !== Soup.KnownStatusCode.OK) {
@@ -66,7 +69,7 @@ MyDesklet.prototype = {
 	},
 
 	refresh: function() {
-		
+
 		if (this._timeoutId) {
 			Mainloop.source_remove(this._timeoutId);
 		}
@@ -75,14 +78,10 @@ MyDesklet.prototype = {
 		// this.save_path = dir_path.replace('~', GLib.get_home_dir());
 
 		let weatherImg = GLib.get_home_dir() + "/.cache/weather.png";
-		
-		
-		// this.download_file("http://banners.wunderground.com/cgi-bin/banner/ban/wxBanner?bannertype=pws250_metric&weatherstationcount=" + StationId , "/tmp/weather.png", Lang.bind(this, this.on_xkcd_downloaded));
-		this.download_file("http://banners.wunderground.com/cgi-bin/banner/ban/wxBanner?bannertype=pws250" + this.metric + "&weatherstationcount=" + this.stationID , weatherImg, Lang.bind(this, this.on_weather_downloaded));
-				
+		this.download_file("http://banners.wunderground.com/cgi-bin/banner/ban/wxBanner?bannertype=pws250" + this.units + "&weatherstationcount=" + this.stationID , weatherImg, Lang.bind(this, this.on_weather_downloaded));
+
 		return true;
 	},
-
 
 	//
 	// Callback
@@ -101,26 +100,22 @@ MyDesklet.prototype = {
 				});
 			})
 		});
-		
 
 		// let displayDate = new Date();
 		// let text = displayDate.toLocaleFormat('%H:%M');
 		// global.log("Weather Updated at " + text);
 	},
 
-
-		
-
-	_init: function(metadata){
-		try {            
+	_init: function(metadata, desklet_id) {
+		try {
 			Desklet.Desklet.prototype._init.call(this, metadata);
-			this.metadata = metadata
-			this.metric = this.metadata["metric"];
-			this.stationID = this.metadata["stationID"];
-			this.frequency = this.metadata["frequency"];
-						
+			this.desklet_id = desklet_id
+			this.units = metadata["units"];
+			this.stationID = metadata["stationID"];
+			this.period = metadata["period"];
+
 			global.log("StationID = " + this.stationID);
-						
+
 			global.log("Initialise weather.");
 			this.setHeader(_("Weather"));
 
@@ -128,49 +123,36 @@ MyDesklet.prototype = {
 			this._binLayout = new Clutter.BinLayout();
 			this._clutterBox = new Clutter.Box();
 			this._clutterTexture = new Clutter.Texture({
-				keep_aspect_ratio: true, 
-				filter_quality: this.metadata["quality"]});
+				keep_aspect_ratio: true,
+				filter_quality: metadata["quality"]});
 
 			this._clutterTexture.set_load_async(true);
 			this._clutterBox.set_layout_manager(this._binLayout);
-			this._clutterBox.set_width(this.metadata["width"]);
+			this._clutterBox.set_width(metadata["width"]);
 			this._clutterBox.add_actor(this._clutterTexture);
 			this._photoFrame.set_child(this._clutterBox);
 			this.setContent(this._photoFrame);
 
-			
-			this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-			
-			this._menu.addAction(_("Metric"), Lang.bind(this, function() {
-				this.metric = "_metric";
-				this.refresh();
-			}));
-			this._menu.addAction(_("Imperial"), Lang.bind(this, function() {
-				this.metric = "";
-				this.refresh();
-			}));
-			
-			this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-						
 
-			this._menu.addAction(_("Edit Config"), Lang.bind(this, function() {
-				Util.spawnCommandLine("xdg-open " + this.configFile);
-			}));
-			
+			this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
 			this._menu.addAction(_("Help"), Lang.bind(this, function() {
 				Util.spawnCommandLine("xdg-open " + this.helpFile);
 			}));
 
 			// let dir_path = ;
 			// this.save_path = dir_path.replace('~', GLib.get_home_dir());
-			this.configFile = GLib.get_home_dir() + "/.local/share/cinnamon/desklets/WeatherUnderground@nightflame/metadata.json";
-			this.helpFile = GLib.get_home_dir() + "/.local/share/cinnamon/desklets/WeatherUnderground@nightflame/README";
-			
+			this.helpFile = GLib.get_home_dir() + "/.local/share/cinnamon/desklets/" + metadata["uuid"] + "/README";
+
+			this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], this.desklet_id);
+			this.settings.bindProperty(Settings.BindingDirection.IN, "stationID", "stationID", function() {});
+			this.settings.bindProperty(Settings.BindingDirection.IN, "units", "units", function() {});
+			this.settings.bindProperty(Settings.BindingDirection.IN, "period", "period", function() {});
+
 			// Load for the first time
 			this._update();
 
 			global.w = this._photoFrame;
-			
+
 		}
 		catch (e) {
 			global.logError(e);
@@ -186,7 +168,7 @@ MyDesklet.prototype = {
 			global.log("Refresh.");
 			this.refresh();
 			// requeue this as an update every 5 mins
-			this._timeoutId = Mainloop.timeout_add_seconds(this.frequency, Lang.bind(this, this._update))
+			this._timeoutId = Mainloop.timeout_add_seconds(this.period, Lang.bind(this, this._update))
 		}
 		catch (e) {
 			global.logError(e);
@@ -196,7 +178,7 @@ MyDesklet.prototype = {
 	//
 	// Update weather when clicked
 	//
-	on_desklet_clicked: function(event){  
+	on_desklet_clicked: function(event){
 		try {
 			if (event.get_button() == 1) {
 				this._update();
@@ -206,13 +188,12 @@ MyDesklet.prototype = {
 			global.logError(e);
 		}
 	},
-	
-	
+
 	on_desklet_removed: function() {
 		let weatherImg = GLib.get_home_dir() + "/.cache/weather.png";
-		
+
 		// Delete the old file
-		try {  
+		try {
 			var f = Gio.File.new_for_path(weatherImg);
 			f.delete(null);
 			global.log("Delete " + weatherImg);
@@ -224,9 +205,7 @@ MyDesklet.prototype = {
 	}
 }
 
-
-
 function main(metadata, desklet_id){
-	let desklet = new MyDesklet(metadata);
+	let desklet = new MyDesklet(metadata, desklet_id);
 	return desklet;
 }
