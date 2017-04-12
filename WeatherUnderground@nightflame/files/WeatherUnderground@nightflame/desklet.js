@@ -136,14 +136,12 @@ MyDesklet.prototype = {
 
 
 			this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-			// let dir_path = ;
-			// this.save_path = dir_path.replace('~', GLib.get_home_dir());
-			this.helpFile = GLib.get_home_dir() + "/.local/share/cinnamon/desklets/" + metadata["uuid"] + "/README.md";
-			// this.helpMessage = GLib.get_file_contents(this.helpFile);
-			this.helpMessage = String(GLib.file_get_contents(this.helpFile)[1]);
-			this.helpDialog = new Dialog.NotifyDialog(this.helpMessage);
+			let helpFile = GLib.get_home_dir() + "/.local/share/cinnamon/desklets/" +
+				metadata["uuid"] + "/HELP.md";
+			this.helpMessage = String(GLib.file_get_contents(helpFile)[1]);
 			this._menu.addAction(_("Help"), Lang.bind(this, function() {
-					this.helpDialog.open();
+				this.helpDialog = new Dialog.NotifyDialog(this.helpMessage);
+				this.helpDialog.open();
 			}));
 
 
