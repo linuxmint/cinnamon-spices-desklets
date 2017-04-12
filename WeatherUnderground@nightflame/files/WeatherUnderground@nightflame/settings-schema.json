@@ -16,9 +16,9 @@
   "period": {
       "type": "spinbutton",
       "default": 1800,
-      "min": 10,
+      "min": 30,
       "max": 1800,
-      "step": 20,
+      "step": 10,
       "units": "seconds",
       "description": "Refresh Period"
   }

@@ -146,9 +146,9 @@ MyDesklet.prototype = {
 
 
 			this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], this.desklet_id);
-			this.settings.bindProperty(Settings.BindingDirection.IN, "stationID", "stationID", function() {});
-			this.settings.bindProperty(Settings.BindingDirection.IN, "units", "units", function() {});
-			this.settings.bindProperty(Settings.BindingDirection.IN, "period", "period", function() {});
+			this.settings.bindProperty(Settings.BindingDirection.IN, "stationID", "stationID", function() {	this._update(); });
+			this.settings.bindProperty(Settings.BindingDirection.IN, "units", "units", function() {	this._update(); });
+			this.settings.bindProperty(Settings.BindingDirection.IN, "period", "period", function() {	this._update(); });
 
 			// Load for the first time
 			this._update();
