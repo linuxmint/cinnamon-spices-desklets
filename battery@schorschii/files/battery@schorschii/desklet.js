@@ -7,6 +7,12 @@ const Mainloop = imports.mainloop;
 const Lang = imports.lang;
 const Settings = imports.ui.settings;
 const Main = imports.ui.main;
+const Clutter = imports.gi.Clutter;
+const GdkPixbuf = imports.gi.GdkPixbuf;
+const Cogl = imports.gi.Cogl;
+
+const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta["battery@schorschii"].path;
+
 
 function MyDesklet(metadata, desklet_id) {
 	this._init(metadata, desklet_id);
@@ -15,6 +21,28 @@ function MyDesklet(metadata, desklet_id) {
 function main(metadata, desklet_id) {
 	return new MyDesklet(metadata, desklet_id);
 }
+
+function getImageAtScale(imageFileName, width, height, width2 = 0, height2 = 0) {
+	if (width2 == 0 || height2 == 0) {
+		width2 = width;
+		height2 = height;
+	}
+
+	let pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(imageFileName, width, height);
+	let image = new Clutter.Image();
+	image.set_data(
+		pixBuf.get_pixels(),
+		pixBuf.get_has_alpha() ? Cogl.PixelFormat.RGBA_8888 : Cogl.PixelFormat.RGBA_888,
+		width, height,
+		pixBuf.get_rowstride()
+	);
+
+	let actor = new Clutter.Actor({width: width2, height: height2});
+	actor.set_content(image);
+
+	return actor;
+}
+
 
 MyDesklet.prototype = {
 	__proto__: Desklet.Desklet.prototype,
@@ -32,31 +60,29 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "use-custom-label", "use_custom_label", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "custom-label", "custom_label", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scale_size", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "bg-img", "bg_img", this.on_setting_changed);
 
 		// initialize desklet gui
 		this.setupUI();
 	},
 
 	setupUI: function() {
-		// set default sizes
-		this.default_size_font = 24;
-		this.default_size_battery_width = 140;
-		this.default_size_battery_height = 66;
+		// defaults and initial values
+		this.default_size_font = 25;
+		this.default_size_battery_width = 149;
+		this.default_size_battery_height = 74;
 		this.default_size_symbol = 36;
 		this.default_segment_offset = 14;
+		this.segment_size_factor = 0.875;
+		this.currentCapacity = 0;
+		this.currentCapacity_text = "";
+		this.symbol = "";
+		this.show_text = true;
+		this.lastCapacity = this.currentCapacity;
+		this.lastSymbol = this.symbol;
 
-		// create elements
-		this.battery = new St.Bin({style_class: 'battery green'}); // background
-		this.segment = new St.Bin({style_class: 'segment'}); // variable width bar (indicates capacity)
-		this.container = new St.Group({style_class: 'container'}); // container for icon and label
-		this.plug = new St.Bin({style_class: 'plug'}); // plug/warn icon
-		this.text = new St.Label({style_class: 'text'}); // displays capacity in precent
-
-		// add actor
-		this.battery.add_actor(this.segment);
-		this.segment.add_actor(this.container);
-		this.container.add_actor(this.plug);
-		this.container.add_actor(this.text);
+		// load images and set initial sizes
+		this.refreshSize(true);
 
 		// set root eleent
 		this.setContent(this.battery);
@@ -65,7 +91,6 @@ MyDesklet.prototype = {
 		this.refreshDecoration();
 
 		// set initial values
-		this.is_first_refresh = true;
 		this.refresh();
 	},
 
@@ -115,12 +140,12 @@ MyDesklet.prototype = {
 		//Main.notifyError(result_devfile_capacity, result_devfile_status);
 
 		// get current battery/power supply values
-		var currentCapacity = 0;
+		this.currentCapacity = 0;
 		var currentState = "";
 		var currentError = 0;
 		try {
 			// read device files
-			currentCapacity = parseInt(Cinnamon.get_file_contents_utf8_sync(result_devfile_capacity));
+			this.currentCapacity = parseInt(Cinnamon.get_file_contents_utf8_sync(result_devfile_capacity));
 			currentState = Cinnamon.get_file_contents_utf8_sync(result_devfile_status).trim();
 		} catch(ex) {
 			// maybe the file does not exist because the battery was removed
@@ -128,114 +153,114 @@ MyDesklet.prototype = {
 		}
 
 		// set label text to current capacity
-		this.text.set_text(currentCapacity.toString() + "%");
-
-		// background image decision
-		if (currentCapacity > 95) {
-			// 95%-100%: show fixed full background and hide bar
-			this.battery.style_class = "battery full";
-			this.segment_visible = false;
-		} else if (currentCapacity > 20) {
-			// greater than 20%: show green background and a bar with variable length
-
-			// calc bar width
-			this.batterySegmentMaxLength = 115;
-			this.batterySegmentLength = (this.batterySegmentMaxLength * currentCapacity / 100) * this.scale_size;
-
-			// set background and bar width
-			this.battery.style_class = "battery green";
-			this.segment_visible = true;
-		} else if (currentCapacity > 10) {
-			// greater than 10% but lower than 21%: show fixed red background and hide bar
-			this.battery.style_class = "battery red";
-			this.segment_visible = false;
-		} else if (currentCapacity > 0) {
-			// greater than 0% but lower than 11%: show fixed low red background and hide bar
-			this.battery.style_class = "battery red-low";
-			this.segment_visible = false;
-		} else if (currentCapacity == 0) {
-			// exactly 0%: show fixed empty background and hide bar
-			this.battery.style_class = "battery empty";
-			this.segment_visible = false;
-		}
+		this.currentCapacity_text = this.currentCapacity.toString() + "%";
 
 		// icon or label visibility decision
 		if (currentError == 1) {
 			// error: warning icon and no label
-			this.plug.style_class = "symbol warn";
-			this.symbol_visible = true;
-			this.text_visible = false;
+			this.symbol = "warn";
+			this.show_text = false;
 		} else {
 			if (currentState == "Charging" && this.showplug == true) {
 				// power supply online, charging and icon should be shown
-				this.plug.style_class = "symbol flash";
-				this.symbol_visible = true;
-				this.text_visible = false;
+				this.symbol = "flash";
+				this.show_text = false;
 			} else if ((currentState == "Not charging" || currentState == "Full" || currentState == "Unknown") && this.showplug == true) {
 				// power supply online, not charging (full) and icon should be shown
-				this.plug.style_class = "symbol plug";
-				this.symbol_visible = true;
-				this.text_visible = false;
+				this.symbol = "plug";
+				this.show_text = false;
 			} else if (this.showpercent == true) {
 				// power supply offline (= discharging) and capacity should be shown
-				this.plug.style_class = "symbol";
-				this.symbol_visible = false;
-				this.text_visible = true;
+				this.symbol = "";
+				this.show_text = true; // text visible
 			} else if (this.showpercent == false) {
 				// power supply offline (= discharging) and capacity should not be shown
-				this.plug.style_class = "symbol";
-				this.symbol_visible = false;
-				this.text_visible = false;
+				this.symbol = "";
+				this.show_text = false;
 			} else {
 				// Unknown state
-				this.plug.style_class = "symbol warn";
-				this.symbol_visible = true;
-				this.text_visible = false;
+				this.symbol = "warn";
+				this.show_text = false;
 			}
 		}
 
 		// set object sizes without recalc
-		this.refreshSize(this.is_first_refresh);
-		this.is_first_refresh = false;
+		this.refreshSize();
 
 		// refresh again in two seconds
 		this.timeout = Mainloop.timeout_add_seconds(2, Lang.bind(this, this.refresh));
 	},
 
-	refreshSize: function(recalc = true) {
-		if (recalc == true) {
+	refreshSize: function(forceRefresh = false) {
+		// only execute refresh if ...
+		if (this.lastCapacity != this.currentCapacity // ... capacity has changed
+			|| this.lastSymbol != this.symbol // ... symbol has changed
+			|| forceRefresh == true // ... it is a forced refresh
+		) {
+
 			// calc new sizes based on scale factor
 			this.new_size_font = this.default_size_font * this.scale_size;
-			this.new_size_battery_width = this.default_size_battery_width * this.scale_size;
-			this.new_size_battery_height = this.default_size_battery_height * this.scale_size;
-			this.new_size_symbol = this.default_size_symbol * this.scale_size;
-			this.new_segment_offset = this.default_segment_offset * this.scale_size;
-			if (this.new_segment_offset != this.default_segment_offset)
-				this.new_segment_offset --;
+			this.battery_width = this.default_size_battery_width * this.scale_size;
+			this.battery_height = this.default_size_battery_height * this.scale_size;
+			this.segment_height = this.battery_height * this.segment_size_factor;
+			this.segment_width = this.battery_width * this.segment_size_factor;
+			this.segment_top = 5 * this.scale_size;
+			this.segment_left = 10 * this.scale_size;
+			this.size_symbol = this.default_size_symbol * this.scale_size;
+			this.size_font = this.default_size_font * this.scale_size;
+			this.segment_width_max = this.segment_width * 0.95;
+			this.segment_width_calced = this.segment_width_max * (this.currentCapacity / 100);
 
-			// set new sizes
-			this.battery.style = "background-size: " + this.new_size_battery_width.toString() + "px " + this.new_size_battery_height.toString() + "px;" +
-			                     "width: " + this.new_size_battery_width.toString() + "px; height: " + this.new_size_battery_height.toString() + "px;";
-		}
+			// set images
+			let bar_img = "green.svg";
+			if (this.currentCapacity == 0) bar_img = "none.svg";
+			else if (this.currentCapacity <= 20) bar_img = "red.svg";
 
-		// set (new) sizes
-		if (this.segment_visible == true) {
-			this.segment.style = "background-size: " + this.batterySegmentLength.toString() + "px " + this.new_size_battery_height.toString() + "px;" +
-			                     "width: " + this.new_size_battery_width.toString() + "px; height: " + this.new_size_battery_height.toString() + "px;" +
-			                     "background-position: " + this.new_segment_offset.toString() + "px 0px;";
-		} else {
-			this.segment.style = "background-size: 0px 0px;";
-		}
-		if (this.symbol_visible == true) {
-			this.plug.style = "background-size: " + this.new_size_symbol.toString() + "px " + this.new_size_symbol.toString() + "px;" +
-			                  "width: " + this.new_size_symbol.toString() + "px; height: " + this.new_size_symbol.toString() + "px;";
-		} else {
-			this.plug.style = "width: 0px; height: 0px;";
-		}
-		if (this.text_visible == true) {
-			this.text.style = "font-size: " + this.new_size_font.toString() + "px;" + "width: auto; height: auto;";
-		} else {
-			this.text.style = "width: 0px; height: 0px;";
+			let symbol_img = "";
+			if (this.symbol == "warn")
+				symbol_img = "warn.svg";
+			else if (this.symbol == "plug")
+				symbol_img = "plug.svg";
+			else if (this.symbol == "flash")
+				symbol_img = "flash.svg";
+
+			if (this.bg_img == "")
+				this.bg_img = "bg_transparent.svg";
+
+			// create elements
+			this.battery = getImageAtScale(DESKLET_ROOT + "/img/" + this.bg_img, this.battery_width, this.battery_height); // background
+
+			this.segment = getImageAtScale(DESKLET_ROOT + "/img/" + bar_img, this.segment_width, this.segment_height, this.segment_width_calced, this.segment_height); // variable width bar (indicates capacity)
+			this.segment.set_position(this.segment_left, this.segment_top);
+
+			this.container = new St.Group(); // container for icon and label
+
+			if (symbol_img != "") {
+				this.plug = getImageAtScale(DESKLET_ROOT + "/img/" + symbol_img, this.size_symbol, this.size_symbol); // plug/warn icon
+				this.plug.set_position((this.segment_width / 2) - (this.size_symbol / 2), (this.segment_height / 2) - (this.size_symbol / 2));
+			}
+
+			this.text = new St.Label({style_class:"text"}); // displays capacity in precent
+			this.text.set_position((this.segment_width / 2) - ((this.size_font*this.currentCapacity_text.length/1.5) / 2), (this.segment_height / 2) - ((this.size_font*1) / 2));
+			this.text.style = "font-size: " + this.new_size_font.toString() + "px;";
+			if (this.show_text == true)
+				this.text.set_text(this.currentCapacity_text);
+			else
+				this.text.set_text("");
+
+			// add actor
+			this.battery.remove_all_children();
+			this.battery.add_actor(this.segment);
+			this.segment.add_actor(this.container);
+			if (symbol_img != "")
+				this.container.add_actor(this.plug);
+			this.container.add_actor(this.text);
+			this.setContent(this.battery);
+
+			// set last states
+			this.lastCapacity = this.currentCapacity;
+			this.lastSymbol = this.symbol;
+
 		}
 	},
 
@@ -260,7 +285,7 @@ MyDesklet.prototype = {
 		this.refresh();
 
 		// update size based on scale factor
-		this.refreshSize();
+		this.refreshSize(true);
 	},
 
 	on_desklet_removed: function() {

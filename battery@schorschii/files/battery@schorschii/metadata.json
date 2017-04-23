@@ -1,9 +1,6 @@
 {
-    "last-edited": 1487523302, 
     "max-instances": "10", 
-    "dangerous": false, 
     "description": "A battery desklet in iOS style with multi-battery support.", 
     "uuid": "battery@schorschii", 
-    "prevent-decorations": false, 
     "name": "Battery Level Indicator"
 }
