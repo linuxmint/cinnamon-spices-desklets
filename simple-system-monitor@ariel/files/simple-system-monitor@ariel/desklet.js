@@ -4,6 +4,15 @@ const Mainloop = imports.mainloop;
 const Lang = imports.lang;
 const GLib = imports.gi.GLib;
 const Cinnamon = imports.gi.Cinnamon;
+const Gettext = imports.gettext;
+const UUID = "simple-system-monitor@ariel";
+
+// l10n/translation support
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+
+function _(str) {
+  return Gettext.dgettext(UUID, str);
+}
 
 let missingDependencies = false;
 
@@ -81,16 +90,12 @@ Thermal = function() {
 Thermal.prototype = {
     _init: function(sensorFile) {
 		this.file = sensorFile;
-        this.degrees = 0;
-        this.info = "N/A";
-
 	},
 
 	refresh: function() {
         if(GLib.file_test(this.file, 1<<4)){
-            let t_str = Cinnamon.get_file_contents_utf8_sync(this.file).split("\n")[0];            
-            this.degrees = parseInt(t_str) / 1000;
-            this.info = this.degrees + "°C";
+            let t_str = Cinnamon.get_file_contents_utf8_sync(this.file).split("\n")[0];
+            this.temperature = parseInt(t_str) / 1000;
         }            
         else 
             global.logError("error reading: " + this.file);
@@ -112,7 +117,7 @@ Net.prototype = {
             let net_lines = Cinnamon.get_file_contents_utf8_sync('/proc/net/dev').split("\n");
             for (let i = 3; i < net_lines.length - 1 ; i++) {
                 let connection = net_lines[i].replace(/^\s+/g, '').split(":")[0];
-                if(Cinnamon.get_file_contents_utf8_sync('/sys/class/net/' + connection + '/operstate')
+                if(Cinnamon.get_file_contents_utf8_sync('/sys/class/net/' + ifc + '/operstate')
                 .replace(/\s/g, "") == "up" && 
                 connection.indexOf("br") < 0 && 
                 connection.indexOf("lo") < 0) {
@@ -201,11 +206,11 @@ MyDesklet.prototype = {
 		this.titles = new St.BoxLayout({vertical: true});
 		this.values = new St.BoxLayout({vertical: true});
 
-		this.titleCPU = new St.Label({text: "CPU:", style_class: "title"});
-		this.titleMemory = new St.Label({text: "Memory:", style_class: "title"});
-		this.titleDownload = new St.Label({text: "Download:", style_class: "title"});
-		this.titleUpload = new St.Label({text: "Upload:", style_class: "title"});
-		this.titleTemperature = new St.Label({text: "Temperature:", style_class: "title"});
+		this.titleCPU = new St.Label({text: _("CPU:"), style_class: "title"});
+		this.titleMemory = new St.Label({text: _("Memory:"), style_class: "title"});
+		this.titleDownload = new St.Label({text: _("Download:"), style_class: "title"});
+		this.titleUpload = new St.Label({text: _("Upload:"), style_class: "title"});
+		this.titleTemperature = new St.Label({text: _("Temperature:"), style_class: "title"});
 
 		this.titles.add(this.titleCPU);
 		this.titles.add(this.titleMemory);
@@ -255,7 +260,7 @@ MyDesklet.prototype = {
 		this.valueMemory.text = this.memory.used + "GB";
 		this.valueDownload.text = this.net.downloadSpeed;
 		this.valueUpload.text = this.net.uploadSpeed;
-		this.valueTemperature.text = this.thermal.info;
+		this.valueTemperature.text = this.thermal.temperature + "°C";
 	}
 }
 
@@ -281,3 +286,4 @@ function main(metadata, desklet_id) {
     else
     	return new MyDesklet(metadata, desklet_id);
 }
+
