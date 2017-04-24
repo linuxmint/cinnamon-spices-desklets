@@ -20,6 +20,7 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, GLib, Gio, GObject
 import os, sys
+import locale
 import json
 import collections
 
@@ -27,6 +28,9 @@ DESKLET_DIR = os.path.dirname(os.path.abspath(__file__))
 UI_FILE = DESKLET_DIR + "/settings.ui"
 
 UUID = "analog-clock@cobinja.de"
+
+localeDir = os.path.expanduser("~") + "/.local/share/locale"
+locale.bindtextdomain(UUID, localeDir)
 
 def getThemeNames(path):
   themeNames = [];
@@ -148,6 +152,7 @@ class CobiAnalogClockSettings:
     self.__settings = CobiSettings(instanceId)
     
     self.builder = Gtk.Builder()
+    self.builder.set_translation_domain(UUID)
     self.builder.add_from_file(UI_FILE)
     self.builder.connect_signals(self)
     
