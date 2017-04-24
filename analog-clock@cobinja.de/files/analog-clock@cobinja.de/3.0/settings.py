@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 #
 # settings.py
 # Copyright (C) 2013 Lars Mueller <cobinja@yahoo.de>
@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU General Public License along
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import gi
+gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, GLib, Gio, GObject
 import os, sys
 import json
@@ -322,6 +324,6 @@ def main():
     
 if __name__ == "__main__":
   if len(sys.argv) != 2:
-    print "Usage: settings.py <desklet_id>"
+    print("Usage: settings.py <desklet_id>")
     exit(0);
   main()
