@@ -15,6 +15,15 @@ const Soup = imports.gi.Soup
 let session = new Soup.SessionAsync();
 Soup.Session.prototype.add_feature.call(session, new Soup.ProxyResolverDefault());
 
+const Gettext = imports.gettext;
+const UUID = "xkcd@rjanja";
+
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale")
+
+function _(str) {
+  return Gettext.dgettext(UUID, str);
+}
+
 function MyDesklet(metadata){
     this._init(metadata);
 }
