@@ -3,7 +3,7 @@ const DeskletManager = imports.ui.deskletManager;
 const Main = imports.ui.main;
 const PopupMenu = imports.ui.popupMenu;
 const Settings = imports.ui.settings;
-
+const GLib = imports.gi.GLib;
 const Cinnamon = imports.gi.Cinnamon;
 const Clutter = imports.gi.Clutter;
 const St = imports.gi.St;
@@ -19,6 +19,14 @@ const SETTINGS_KEYS = ["hideSystray", "theme", "showInput", "showApps", "raiseKe
 let settings, actionManager;
 let desklet_raised = false;
 
+const Gettext = imports.gettext;
+const uuid = "soundBox@scollins";
+
+Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
+
+function _(str) {
+  return Gettext.dgettext(uuid, str);
+}
 
 function ButtonMenu(content) {
     this._init(content);

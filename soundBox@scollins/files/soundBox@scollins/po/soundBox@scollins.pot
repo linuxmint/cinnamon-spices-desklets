@@ -1,0 +1,285 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-25 23:21+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: desklet.js:303
+#. 2.5->desklet.js:308
+#. 2.8->desklet.js:307
+msgid "Launch Player"
+msgstr ""
+
+#: soundbox.js:624 soundbox.js:751
+msgid "Unmute"
+msgstr ""
+
+#: soundbox.js:632 soundbox.js:757
+msgid "Mute"
+msgstr ""
+
+#: soundbox.js:1019
+msgid "Show player"
+msgstr ""
+
+#: soundbox.js:1032
+msgid "Close player"
+msgstr ""
+
+#: soundbox.js:1146 soundbox.js:1321
+msgid "Unknown Title"
+msgstr ""
+
+#: soundbox.js:1148 soundbox.js:1319
+msgid "Unknown Album"
+msgstr ""
+
+#: soundbox.js:1150 soundbox.js:1317
+msgid "Unknown Artist"
+msgstr ""
+
+#: soundbox.js:1189
+msgid "Previous"
+msgstr ""
+
+#: soundbox.js:1195 soundbox.js:1370 soundbox.js:1375
+msgid "Play"
+msgstr ""
+
+#: soundbox.js:1200
+msgid "Stop"
+msgstr ""
+
+#: soundbox.js:1205
+msgid "Next"
+msgstr ""
+
+#: soundbox.js:1212
+msgid "Repeat"
+msgstr ""
+
+#: soundbox.js:1221
+msgid "Shuffle"
+msgstr ""
+
+#: soundbox.js:1263
+msgid "Repeat: Off"
+msgstr ""
+
+#: soundbox.js:1267
+msgid "Repeat: Track"
+msgstr ""
+
+#: soundbox.js:1271
+msgid "Repeat: All"
+msgstr ""
+
+#: soundbox.js:1279
+msgid "Shuffle: On"
+msgstr ""
+
+#: soundbox.js:1283
+msgid "Shuffle: Off"
+msgstr ""
+
+#: soundbox.js:1365
+msgid "Pause"
+msgstr ""
+
+#: soundbox.js:1493
+#. 2.5->soundbox.js:1493
+#. 2.8->soundbox.js:1493
+msgid "Output Devices"
+msgstr ""
+
+#: soundbox.js:1503
+#. 2.5->soundbox.js:1503
+#. 2.8->soundbox.js:1503
+msgid "Input Devices"
+msgstr ""
+
+#: soundbox.js:1511
+msgid "Sound Settings"
+msgstr ""
+
+#: soundbox.js:1519
+#. 2.5->soundbox.js:1519
+#. 2.8->soundbox.js:1519
+msgid "Volume: "
+msgstr ""
+
+#: soundbox.js:1548
+msgid "Previous Player"
+msgstr ""
+
+#: soundbox.js:1557
+msgid "Next Player"
+msgstr ""
+
+#. 2.5->settings-schema.json->compact->description
+#. 2.8->settings-schema.json->compact->description
+#. soundBox@scollins->settings-schema.json->compact->description
+msgid "Use compact layout"
+msgstr ""
+
+#. 2.5->settings-schema.json->showApps->description
+#. 2.8->settings-schema.json->showApps->description
+#. soundBox@scollins->settings-schema.json->showApps->description
+msgid "Show application volume controls"
+msgstr ""
+
+#. 2.5->settings-schema.json->hideSystray->description
+#. 2.8->settings-schema.json->hideSystray->description
+#. soundBox@scollins->settings-schema.json->hideSystray->description
+msgid "Hide system tray icons for compatible players"
+msgstr ""
+
+#. 2.5->settings-schema.json->showInput->description
+#. 2.8->settings-schema.json->showInput->description
+#. soundBox@scollins->settings-schema.json->showInput->description
+msgid "Show input volume controls"
+msgstr ""
+
+#. 2.5->settings-schema.json->exceedNormVolume->description
+#. 2.8->settings-schema.json->exceedNormVolume->description
+#. soundBox@scollins->settings-schema.json->exceedNormVolume->description
+msgid "Allow volume control to exceed 100% volume"
+msgstr ""
+
+#. 2.5->settings-schema.json->exceedNormVolume->tooltip
+#. 2.8->settings-schema.json->exceedNormVolume->tooltip
+#. soundBox@scollins->settings-schema.json->exceedNormVolume->tooltip
+msgid "Note: some applications don't sound good over 100% volume"
+msgstr ""
+
+#. 2.5->settings-schema.json->showArt->description
+#. 2.8->settings-schema.json->showArt->description
+#. soundBox@scollins->settings-schema.json->showArt->description
+msgid "Show album artwork"
+msgstr ""
+
+#. 2.5->settings-schema.json->centerRaised->description
+#. 2.8->settings-schema.json->centerRaised->description
+#. soundBox@scollins->settings-schema.json->centerRaised->description
+msgid "Center Soundbox on the screen in raised mode"
+msgstr ""
+
+#. 2.5->settings-schema.json->theme->description
+#. 2.8->settings-schema.json->theme->description
+#. soundBox@scollins->settings-schema.json->theme->description
+msgid "Theme"
+msgstr ""
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. soundBox@scollins->settings-schema.json->theme->options
+msgid "Ghost"
+msgstr ""
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. soundBox@scollins->settings-schema.json->theme->options
+msgid "Hot Rod"
+msgstr ""
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. soundBox@scollins->settings-schema.json->theme->options
+msgid "Ice"
+msgstr ""
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. soundBox@scollins->settings-schema.json->theme->options
+msgid "Mint-X"
+msgstr ""
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. soundBox@scollins->settings-schema.json->theme->options
+msgid "Forest"
+msgstr ""
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. soundBox@scollins->settings-schema.json->theme->options
+msgid "Clean"
+msgstr ""
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. soundBox@scollins->settings-schema.json->theme->options
+msgid "Camouflage (tries to blend in)"
+msgstr ""
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. soundBox@scollins->settings-schema.json->theme->options
+msgid "Mint"
+msgstr ""
+
+#. 2.5->settings-schema.json->artSize->description
+#. 2.8->settings-schema.json->artSize->description
+#. soundBox@scollins->settings-schema.json->artSize->description
+msgid "Artwork size"
+msgstr ""
+
+#. 2.5->settings-schema.json->appearance->description
+#. 2.8->settings-schema.json->appearance->description
+#. soundBox@scollins->settings-schema.json->appearance->description
+msgid "Appearance"
+msgstr ""
+
+#. 2.5->settings-schema.json->countUp->description
+#. 2.8->settings-schema.json->countUp->description
+#. soundBox@scollins->settings-schema.json->countUp->description
+msgid "Timer counts up"
+msgstr ""
+
+#. 2.5->settings-schema.json->raiseKey->description
+#. 2.8->settings-schema.json->raiseKey->description
+#. soundBox@scollins->settings-schema.json->raiseKey->description
+msgid "Raise to top shorcut key"
+msgstr ""
+
+#. soundBox@scollins->metadata.json->contributors
+msgid "Stephen Collins - Author"
+msgstr ""
+
+#. soundBox@scollins->metadata.json->contributors
+msgid "Bernard(zagortenay333) - Mint-x theme"
+msgstr ""
+
+#. soundBox@scollins->metadata.json->contributors
+msgid "Corbin(RavetcoFX) - Bugfix"
+msgstr ""
+
+#. soundBox@scollins->metadata.json->description
+msgid "A desklet to view sound settings and manage media controls"
+msgstr ""
+
+#. soundBox@scollins->metadata.json->comments
+msgid ""
+"Soundbox is an attractive and easy-to-use Desklet designed to control your "
+"volume and media players. It was originally forked from the Cinnamon sound "
+"applet, but has grown and evolved over time. Feel free to contribute by "
+"submitting pull requests, bug reports and feature requests to my github "
+"repo."
+msgstr ""
+
+#. soundBox@scollins->metadata.json->name
+msgid "Soundbox "
+msgstr ""
