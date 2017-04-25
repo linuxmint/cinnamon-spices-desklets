@@ -17,23 +17,23 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: applet.js:209
+#: applet.js:213
 msgid "CPU:"
 msgstr ""
 
-#: applet.js:210
+#: applet.js:214
 msgid "Memory:"
 msgstr ""
 
-#: applet.js:211
+#: applet.js:215
 msgid "Download:"
 msgstr ""
 
-#: applet.js:212
+#: applet.js:216
 msgid "Upload:"
 msgstr ""
 
-#: applet.js:213
+#: applet.js:217
 msgid "Temperature:"
 msgstr ""
 
