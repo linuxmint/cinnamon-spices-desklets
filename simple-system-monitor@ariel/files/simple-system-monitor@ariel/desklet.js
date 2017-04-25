@@ -4,6 +4,15 @@ const Mainloop = imports.mainloop;
 const Lang = imports.lang;
 const GLib = imports.gi.GLib;
 const Cinnamon = imports.gi.Cinnamon;
+const Gettext = imports.gettext;
+const UUID = "simple-system-monitor@ariel";
+
+// l10n/translation support
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+
+function _(str) {
+  return Gettext.dgettext(UUID, str);
+}
 
 let missingDependencies = false;
 
@@ -201,11 +210,11 @@ MyDesklet.prototype = {
 		this.titles = new St.BoxLayout({vertical: true});
 		this.values = new St.BoxLayout({vertical: true});
 
-		this.titleCPU = new St.Label({text: "CPU:", style_class: "title"});
-		this.titleMemory = new St.Label({text: "Memory:", style_class: "title"});
-		this.titleDownload = new St.Label({text: "Download:", style_class: "title"});
-		this.titleUpload = new St.Label({text: "Upload:", style_class: "title"});
-		this.titleTemperature = new St.Label({text: "Temperature:", style_class: "title"});
+		this.titleCPU = new St.Label({text: _("CPU:"), style_class: "title"});
+		this.titleMemory = new St.Label({text: _("Memory:"), style_class: "title"});
+		this.titleDownload = new St.Label({text: _("Download:"), style_class: "title"});
+		this.titleUpload = new St.Label({text: _("Upload:"), style_class: "title"});
+		this.titleTemperature = new St.Label({text: _("Temperature:"), style_class: "title"});
 
 		this.titles.add(this.titleCPU);
 		this.titles.add(this.titleMemory);
