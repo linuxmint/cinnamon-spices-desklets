@@ -48,6 +48,14 @@ const SUPPORT_SEEK = [
 let settings, actionManager;
 let normVolume, maxVolume;
 
+const Gettext = imports.gettext;
+const uuid = "soundBox@scollins";
+
+Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
+
+function _(str) {
+  return Gettext.dgettext(uuid, str);
+}
 
 function registerSystrayIcons(uuid) {
     if ( !Main.systrayManager ) {
@@ -1508,7 +1516,7 @@ SoundboxLayout.prototype = {
         this.volumeContent.destroy_all_children();
         
         //system volume controls
-        this.outputVolumeDisplay = new SystemVolumeDisplay("Volume: ", "audio-volume-");
+        this.outputVolumeDisplay = new SystemVolumeDisplay(_("Volume: "), "audio-volume-");
         this.volumeContent.add_actor(this.outputVolumeDisplay.actor);
         
         if ( settings.showInput ) {
