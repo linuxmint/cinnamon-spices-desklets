@@ -10,13 +10,22 @@ const St = imports.gi.St;
 const Lang = imports.lang;
 const Signals = imports.signals;
 const Util = imports.misc.util;
+const GLib = imports.gi.GLib;
+const Gettext = imports.gettext;
+const UUID = "calculator@scollins";
+
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale")
+
+function _(str) {
+  return Gettext.dgettext(UUID, str);
+}
 
 const GAMMA_PRECISION = 7;
 const GAMMA_CONSTANTS = [0.99999999999980993, 676.5203681218851, -1259.1392167224028,771.32342877765313, -176.61502916214059, 12.507343278686905, -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7];
 
 const SIMPLE_LAYOUT = [
-    [   {type: "cmd",     value: "back",  tooltip: "Back"},
-        {type: "cmd",     value: "reset", tooltip: "Reset"},
+    [   {type: "cmd",     value: "back",  tooltip: _("Back")},
+        {type: "cmd",     value: "reset", tooltip: _("Reset")},
         {type: "execute", value: "%"},
         {type: "operate", value: "add"}],
     [   {type: "append",  value: "7"},
@@ -38,15 +47,15 @@ const SIMPLE_LAYOUT = [
 ]
 
 const SCIENTIFIC_LAYOUT = [
-    [   {type: "cmd",     value: "back",  tooltip: "Back"},
-        {type: "cmd",     value: "del",   tooltip: "Clear Entry"},
-        {type: "cmd",     value: "reset", tooltip: "Reset"},
-        {type: "cmd",     value: "copy",  tooltip: "Copy to Clipboard"},
-        {type: "cmd",     value: "paste", tooltip: "Paste from Clipboard"},
-        {type: "cmd",     value: "invUp", tooltip: "Inverse",  inv: {type: "cmd",     value: "invDown"}}],
+    [   {type: "cmd",     value: "back",  tooltip: _("Back")},
+        {type: "cmd",     value: "del",   tooltip: _("Clear Entry")},
+        {type: "cmd",     value: "reset", tooltip: _("Reset")},
+        {type: "cmd",     value: "copy",  tooltip: _("Copy to Clipboard")},
+        {type: "cmd",     value: "paste", tooltip: _("Paste from Clipboard")},
+        {type: "cmd",     value: "invUp", tooltip: _("Inverse"),  inv: {type: "cmd",     value: "invDown"}}],
     [   {type: "opt1"},
         {type: "opt2"},
-        {type: "cmd",     value: "neg", tooltip: "Swap Sign"},
+        {type: "cmd",     value: "neg", tooltip: _("Swap Sign")},
         {type: "operate", value: "add"},
         {type: "execute", value: "square", inv: {type: "operate", value: "sqrt"}},
         {type: "operate", value: "sin",    inv: {type: "operate", value: "sin-inv"}}],
@@ -70,7 +79,7 @@ const SCIENTIFIC_LAYOUT = [
         {type: "execute", value: "x!"}],
     [   {type: "append",  value: "0"},
         {type: "append",  value: "."},
-        {type: "append",  value: "exp", tooltip: "Scientific Notation"},
+        {type: "append",  value: "exp", tooltip: _("Scientific Notation")},
         {type: "return"},
         {type: "execute", value: "%"},
         {type: "cmd",     value: "pi"}]
@@ -801,11 +810,11 @@ Button.prototype = {
         
         switch ( info.type ) {
             case "opt1":
-                if ( rpn ) this.info = {type: "cmd", value: "swap", tooltip: "Swap Entries"};
+                if ( rpn ) this.info = {type: "cmd", value: "swap", tooltip: _("Swap Entries")};
                 else this.info = {type: "cmd", value: "open"};
                 break;
             case "opt2":
-                if ( rpn ) this.info = {type: "cmd", value: "recip", tooltip: "Reciprocal"};
+                if ( rpn ) this.info = {type: "cmd", value: "recip", tooltip: _("Reciprocal")};
                 else this.info = {type: "cmd", value: "close"};
                 break;
             case "return":
@@ -1079,7 +1088,7 @@ myDesklet.prototype = {
         
         this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
         
-        this.rpnMenuItem = new PopupMenu.PopupMenuItem("RPN");
+        this.rpnMenuItem = new PopupMenu.PopupMenuItem(_("RPN"));
         this._menu.addMenuItem(this.rpnMenuItem);
         this.rpnMenuItem.connect("activate", Lang.bind(this, function() {
             this.rpn = !this.rpn;
@@ -1088,14 +1097,14 @@ myDesklet.prototype = {
         
         this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
         
-        this.layoutFFMenuItem = new PopupMenu.PopupMenuItem("4-Function");
+        this.layoutFFMenuItem = new PopupMenu.PopupMenuItem(_("4-Function"));
         this._menu.addMenuItem(this.layoutFFMenuItem);
         this.layoutFFMenuItem.connect("activate", Lang.bind(this, function() {
             this.layout = 1;
             this._buildInterface();
         }));
         
-        this.layoutSciMenuItem = new PopupMenu.PopupMenuItem("Scientific");
+        this.layoutSciMenuItem = new PopupMenu.PopupMenuItem(_("Scientific"));
         this._menu.addMenuItem(this.layoutSciMenuItem);
         this.layoutSciMenuItem.connect("activate", Lang.bind(this, function() {
             this.layout = 2;
