@@ -146,9 +146,17 @@ CobiAnalogClockSettings.prototype = {
     GLib.file_set_contents(this._settingsFile.get_path(), filedata, filedata.length);
   },
   
-  destroy: function() {
+  destroy: function(deleteConfig) {
     this._signalManager.disconnectAllSignals();
     this._monitor.cancel();
+    if (deleteConfig !== undefined && deleteConfig == true) {
+      let file = this._settingsFile;
+      file.delete(null, null);
+      file = file.get_parent(); // dir analog-clock@cobinja.de/
+      file.delete(null, null);
+      file = file.get_parent(); // dir ~/config/cobinja/
+      file.delete(null, null);
+    }
     this.values = null;
   }
 }
@@ -439,13 +447,13 @@ CobiAnalogClock.prototype = {
     return false;
   },
   
-  on_desklet_removed: function() {
+  on_desklet_removed: function(deleteConfig) {
     this._inRemoval = true;
     if (this._timeoutId != undefined) {
       Mainloop.source_remove(this._timeoutId);
     }
     this._signalManager.disconnectAllSignals();
-    this._settings.destroy();
+    this._settings.destroy(deleteConfig);
   }
 }
 
