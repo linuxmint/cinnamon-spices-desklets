@@ -18,23 +18,23 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: sv\n"
 
-#: applet.js:209
+#: applet.js:213
 msgid "CPU:"
 msgstr "CPU:"
 
-#: applet.js:210
+#: applet.js:214
 msgid "Memory:"
 msgstr "RAM:"
 
-#: applet.js:211
+#: applet.js:215
 msgid "Download:"
 msgstr "Laddar ner:"
 
-#: applet.js:212
+#: applet.js:216
 msgid "Upload:"
 msgstr "Laddar upp:"
 
-#: applet.js:213
+#: applet.js:217
 msgid "Temperature:"
 msgstr "Temperatur:"
 
