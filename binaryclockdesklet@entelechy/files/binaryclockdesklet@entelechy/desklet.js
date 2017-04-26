@@ -15,6 +15,18 @@ const M_PI = 3.141592654;
 const LINE_WIDTH = 1;
 const MARGIN = 5;
 
+const GLib = imports.gi.GLib;
+const Gettext = imports.gettext;
+const UUID = "binaryclockdesklet@entelechy";
+
+// l10n/translation support
+
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale")
+
+function _(str) {
+  return Gettext.dgettext(UUID, str);
+}
+
 function MyDesklet(metadata, desklet_id){
     this._init(metadata, desklet_id);
 }
