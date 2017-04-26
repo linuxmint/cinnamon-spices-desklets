@@ -5,6 +5,17 @@ const Desklet = imports.ui.desklet;
 
 const Lang = imports.lang;
 const Mainloop = imports.mainloop;
+const GLib = imports.gi.GLib;
+const Gettext = imports.gettext;
+const UUID = "clockTow@armandobs14";
+
+// l10n/translation support
+
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale")
+
+function _(str) {
+  return Gettext.dgettext(UUID, str);
+}
 
 function MyDesklet(metadata){
     this._init(metadata);
