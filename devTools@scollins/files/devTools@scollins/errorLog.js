@@ -16,6 +16,14 @@ const XSESSION_LOG_REFRESH_TIMEOUT = 10;
 
 let xsession_hide_old = true;
 
+const Gettext = imports.gettext;
+const uuid = "devTools@scollins";
+
+Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
+
+function _(str) {
+  return Gettext.dgettext(uuid, str);
+}
 
 function XSessionLogInterface(settings) {
     this._init(settings);
@@ -42,7 +50,7 @@ XSessionLogInterface.prototype = {
         let bottomBox = new St.BoxLayout({ style_class: "devtools-log-bottomBox" });
         this.panel.add_actor(bottomBox);
         
-        this.hideOld = new CheckBox.CheckBox("Hide old errors", { style_class: "devtools-checkBox" });
+        this.hideOld = new CheckBox.CheckBox(_("Hide old errors"), { style_class: "devtools-checkBox" });
         bottomBox.add_actor(this.hideOld.actor);
         this.hideOld.actor.checked = this.settings.getValue("xsessionHideOld");
         this.hideOld.actor.connect("clicked", Lang.bind(this, function() {
@@ -128,7 +136,7 @@ CinnamonLogInterface.prototype = {
         let bottomBox = new St.BoxLayout({ style_class: "devtools-log-bottomBox" });
         this.panel.add_actor(bottomBox);
         
-        this.showTimestamp = new CheckBox.CheckBox("Show Timestamp", { style_class: "devtools-checkBox" });
+        this.showTimestamp = new CheckBox.CheckBox(_("Show Timestamp"), { style_class: "devtools-checkBox" });
         bottomBox.add_actor(this.showTimestamp.actor);
         this.showTimestamp.actor.checked = this.settings.getValue("clTimestamp");
         this.showTimestamp.actor.connect("clicked", Lang.bind(this, function() {
@@ -136,7 +144,7 @@ CinnamonLogInterface.prototype = {
             this.getText();
         }));
         
-        this.infos = new CheckBox.CheckBox("Infos", { style_class: "devtools-checkBox" });
+        this.infos = new CheckBox.CheckBox(_("Infos"), { style_class: "devtools-checkBox" });
         bottomBox.add_actor(this.infos.actor);
         this.infos.actor.checked = this.settings.getValue("clShowInfos");
         this.infos.actor.connect("clicked", Lang.bind(this, function() {
@@ -144,7 +152,7 @@ CinnamonLogInterface.prototype = {
             this.getText();
         }));
         
-        this.warnings = new CheckBox.CheckBox("Warnings", { style_class: "devtools-checkBox" });
+        this.warnings = new CheckBox.CheckBox(_("Warnings"), { style_class: "devtools-checkBox" });
         bottomBox.add_actor(this.warnings.actor);
         this.warnings.actor.checked = this.settings.getValue("clShowWarnings");
         this.warnings.actor.connect("clicked", Lang.bind(this, function() {
@@ -152,7 +160,7 @@ CinnamonLogInterface.prototype = {
             this.getText();
         }));
         
-        this.errors = new CheckBox.CheckBox("Errors", { style_class: "devtools-checkBox" });
+        this.errors = new CheckBox.CheckBox(_("Errors"), { style_class: "devtools-checkBox" });
         bottomBox.add_actor(this.errors.actor);
         this.errors.actor.checked = this.settings.getValue("clShowErrors");
         this.errors.actor.connect("clicked", Lang.bind(this, function() {
@@ -160,7 +168,7 @@ CinnamonLogInterface.prototype = {
             this.getText();
         }));
         
-        this.traces = new CheckBox.CheckBox("Traces", { style_class: "devtools-checkBox" });
+        this.traces = new CheckBox.CheckBox(_("Traces"), { style_class: "devtools-checkBox" });
         bottomBox.add_actor(this.traces.actor);
         this.traces.actor.checked = this.settings.getValue("clShowTraces");
         this.traces.actor.connect("clicked", Lang.bind(this, function() {
@@ -174,7 +182,7 @@ CinnamonLogInterface.prototype = {
         let copyBox = new St.BoxLayout();
         copyButton.add_actor(copyBox);
         copyBox.add_actor(new St.Icon({ icon_name: "edit-copy", icon_size: 16, icon_type: St.IconType.SYMBOLIC }));
-        copyBox.add_actor(new St.Label({ text: "Copy" }));
+        copyBox.add_actor(new St.Label({ text: _("Copy") }));
         bottomBox.add_actor(copyButton);
         copyButton.connect("clicked", Lang.bind(this, this.copy));
         
