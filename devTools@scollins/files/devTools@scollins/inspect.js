@@ -19,6 +19,15 @@ const INSPECTABLE_TYPES = ["object","array","map","actor","window","applet","des
 
 let controller;
 
+const GLib = imports.gi.GLib;
+const Gettext = imports.gettext;
+const uuid = "devTools@scollins";
+
+Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
+
+function _(str) {
+  return Gettext.dgettext(uuid, str);
+}
 
 function addBorderPaintHook(actor) {
     let signalId = actor.connect_after('paint',
@@ -107,9 +116,9 @@ Inspector.prototype = {
     
     _updatePassthroughText: function() {
         if(this.passThroughEvents)
-            this._passThroughText.text = '(Press Pause or Control to disable event pass through)';
+            this._passThroughText.text = _("(Press Pause or Control to disable event pass through)");
         else
-            this._passThroughText.text = '(Press Pause or Control to enable event pass through)';
+            this._passThroughText.text = _("(Press Pause or Control to enable event pass through)");
     },
 
     _onCapturedEvent: function (actor, event) {
@@ -374,14 +383,14 @@ InspectInterface.prototype = {
     },
     
     generateArrayContent: function() {
-        this.contentBox.add_actor(new St.Label({ text: "Length", style_class: "devtools-inspect-subtitle" }));
+        this.contentBox.add_actor(new St.Label({ text: _("Length"), style_class: "devtools-inspect-subtitle" }));
         this.contentBox.add_actor(new St.Label({ text: String(this.target.length), style_class: "devtools-indented" }));
     },
 
     generateActorContent: function() {
         //parent actor
         let parent = this.target.get_parent();
-        this.contentBox.add_actor(new St.Label({ text: "Parent", style_class: "devtools-inspect-subtitle" }));
+        this.contentBox.add_actor(new St.Label({ text: _("Parent"), style_class: "devtools-inspect-subtitle" }));
         let parentBox = new St.BoxLayout({ style_class: "devtools-indented" });
         this.contentBox.add_actor(parentBox);
         if ( parent ) parentBox.add_actor(new ActorButton(parent, true).actor);
@@ -390,7 +399,7 @@ InspectInterface.prototype = {
         //child actors
         let children = this.target.get_children();
         
-        this.contentBox.add_actor(new St.Label({ text: "Children", style_class: "devtools-inspect-subtitle" }));
+        this.contentBox.add_actor(new St.Label({ text: _("Children"), style_class: "devtools-inspect-subtitle" }));
         if ( children.length > 0 ) {
             let childrenBox = new St.BoxLayout({ vertical: true, style_class: "devtools-indented" });
             this.contentBox.add_actor(childrenBox);
@@ -401,17 +410,17 @@ InspectInterface.prototype = {
         else this.contentBox.add_actor(new St.Label({ text: "none", style_class: "devtools-indented" }));
         
         //attributes
-        this.contentBox.add_actor(new St.Label({ text: "Height", style_class: "devtools-inspect-subtitle" }));
+        this.contentBox.add_actor(new St.Label({ text: _("Height"), style_class: "devtools-inspect-subtitle" }));
         this.contentBox.add_actor(new St.Label({ text: this.target.height+" px", style_class: "devtools-indented" }));
-        this.contentBox.add_actor(new St.Label({ text: "Width", style_class: "devtools-inspect-subtitle" }));
+        this.contentBox.add_actor(new St.Label({ text: _("Width"), style_class: "devtools-inspect-subtitle" }));
         this.contentBox.add_actor(new St.Label({ text: this.target.width+" px", style_class: "devtools-indented" }));
-        this.contentBox.add_actor(new St.Label({ text: "Visible", style_class: "devtools-inspect-subtitle" }));
+        this.contentBox.add_actor(new St.Label({ text: _("Visible"), style_class: "devtools-inspect-subtitle" }));
         this.contentBox.add_actor(new St.Label({ text: String(this.target.visible).capitalize(), style_class: "devtools-indented" }));
         
         if ( this.target instanceof St.Widget ) {
-            this.contentBox.add_actor(new St.Label({ text: "Style Class", style_class: "devtools-inspect-subtitle" }));
+            this.contentBox.add_actor(new St.Label({ text: _("Style Class"), style_class: "devtools-inspect-subtitle" }));
             let styleClass = this.target.style_class;
-            if ( !styleClass ) styleClass = "None"
+            if ( !styleClass ) styleClass = _("None")
             this.contentBox.add_actor(new St.Label({ text: styleClass, style_class: "devtools-indented" }));
         }
     },
@@ -419,13 +428,13 @@ InspectInterface.prototype = {
     generateWindowContent: function() {
         let app = Cinnamon.WindowTracker.get_default().get_window_app(this.target);
         
-        this.contentBox.add_actor(new St.Label({ text: "Title", style_class: "devtools-inspect-subtitle" }));
+        this.contentBox.add_actor(new St.Label({ text: _("Title"), style_class: "devtools-inspect-subtitle" }));
         this.contentBox.add_actor(new St.Label({ text: this.target.title, style_class: "devtools-indented" }));
         
-        this.contentBox.add_actor(new St.Label({ text: "Class", style_class: "devtools-inspect-subtitle" }));
+        this.contentBox.add_actor(new St.Label({ text: _("Class"), style_class: "devtools-inspect-subtitle" }));
         this.contentBox.add_actor(new St.Label({ text: this.target.get_wm_class(), style_class: "devtools-indented" }));
         
-        this.contentBox.add_actor(new St.Label({ text: "Workspace", style_class: "devtools-inspect-subtitle" }));
+        this.contentBox.add_actor(new St.Label({ text: _("Workspace"), style_class: "devtools-inspect-subtitle" }));
         let [wsMeta,wsName,wsId] = Windows.getWorkspaceForWindow(this.target);
         if ( wsMeta != null ) {
             let workspaceBox = new St.BoxLayout({ style_class: "devtools-indented" });
@@ -434,13 +443,13 @@ InspectInterface.prototype = {
         }
         else this.contentBox.add_actor(new St.Label({ text: wsName, style_class: "devtools-indented" }));
         
-        this.contentBox.add_actor(new St.Label({ text: "Monitor", style_class: "devtools-inspect-subtitle" }));
+        this.contentBox.add_actor(new St.Label({ text: _("Monitor"), style_class: "devtools-inspect-subtitle" }));
         this.contentBox.add_actor(new St.Label({ text: String(this.target.get_monitor()), style_class: "devtools-indented" }));
         
         let rect = this.target.get_rect();
-        this.contentBox.add_actor(new St.Label({ text: "Size", style_class: "devtools-inspect-subtitle" }));
+        this.contentBox.add_actor(new St.Label({ text: _("Size"), style_class: "devtools-inspect-subtitle" }));
         this.contentBox.add_actor(new St.Label({ text: rect.width+"px X "+rect.height+"px", style_class: "devtools-indented" }));
-        this.contentBox.add_actor(new St.Label({ text: "Position", style_class: "devtools-inspect-subtitle" }));
+        this.contentBox.add_actor(new St.Label({ text: _("Position"), style_class: "devtools-inspect-subtitle" }));
         this.contentBox.add_actor(new St.Label({ text: "x: "+rect.x+", y: "+rect.y, style_class: "devtools-indented" }));
     },
     
@@ -457,23 +466,23 @@ InspectInterface.prototype = {
     generateObjectContent: function() {
         let propText, itemText;
         if ( this.type == "array" ) {
-            propText = "Values";
-            itemText = "Index";
+            propText = _("Values");
+            itemText = _("Index");
         }
         else if ( this.type == "map" ) {
-            propText = "Map Elements";
-            itemText = "Key";
+            propText = _("Map Elements");
+            itemText = _("Key");
         }
         else {
-            propText = "Properties";
-            itemText = "Name";
+            propText = _("Properties");
+            itemText = _("Name");
         }
         this.contentBox.add_actor(new St.Label({ text: propText, style_class: "devtools-inspect-subtitle" }));
         this.propertiesTable = new St.Table({ homogeneous: false, clip_to_allocation: true, style_class: "devtools-inspect-table" });
         this.contentBox.add_actor(this.propertiesTable);
         this.propertiesTable.add(new St.Label({ text: itemText }), { row: 0, col: 0, min_width: 150 });
-        this.propertiesTable.add(new St.Label({ text: "Type" }), { row: 0, col: 1, min_width: 100 });
-        this.propertiesTable.add(new St.Label({ text: "Value" }), { row: 0, col: 2 });
+        this.propertiesTable.add(new St.Label({ text: _("Type") }), { row: 0, col: 1, min_width: 100 });
+        this.propertiesTable.add(new St.Label({ text: _("Value") }), { row: 0, col: 2 });
         this.propRowIndex = 1;
         this.propertiesBox = new St.BoxLayout({ vertical: true, style_class: "devtools-indented" });
         this.contentBox.add_actor(this.propertiesBox);
@@ -518,7 +527,7 @@ InspectInterface.prototype = {
         }
         else {
             text = new InspectButton(value, shortText).actor;
-            new Tooltips.Tooltip(text, "Inspect "+longText);
+            new Tooltips.Tooltip(text, _("Inspect") + " "+longText);
         }
         this.propertiesTable.add(text, { row: this.propRowIndex, col: 2, x_expand: false, x_align: St.Align.START });
         
