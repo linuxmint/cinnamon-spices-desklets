@@ -5,6 +5,16 @@ const Lang = imports.lang;
 const Mainloop = imports.mainloop;
 const Settings = imports.ui.settings;
 const St = imports.gi.St;
+const Gettext = imports.gettext;
+const uuid = "quoteOfTheDay@tinnu";
+
+// l10n/translation support
+
+Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
+
+function _(str) {
+  return Gettext.dgettext(uuid, str);
+}
 
 function MyDesklet(metadata, desklet_id) {
     this._init(metadata, desklet_id);
