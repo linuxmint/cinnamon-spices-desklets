@@ -146,6 +146,7 @@ MyDesklet.prototype = {
 		try {
 			// read device files
 			this.currentCapacity = parseInt(Cinnamon.get_file_contents_utf8_sync(result_devfile_capacity));
+			if (this.currentCapacity > 100) this.currentCapacity = 100; // fix for some batteries reporting values higher than 100
 			currentState = Cinnamon.get_file_contents_utf8_sync(result_devfile_status).trim();
 		} catch(ex) {
 			// maybe the file does not exist because the battery was removed
