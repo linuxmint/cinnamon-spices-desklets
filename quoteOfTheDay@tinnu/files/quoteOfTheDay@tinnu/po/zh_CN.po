@@ -20,7 +20,7 @@ msgstr ""
 
 #: desklet.js:32
 msgid "Quote of the day"
-msgstr "每天名言"
+msgstr "每日名言"
 
 #: desklet.js:52
 msgid "Copy"
@@ -28,11 +28,11 @@ msgstr "复制"
 
 #. quoteOfTheDay@tinnu->metadata.json->description
 msgid "A desklet that displays quotations from various sources"
-msgstr "显示来自各种来源的名言的小工具"
+msgstr "从各种来源显示名言的小工具"
 
 #. quoteOfTheDay@tinnu->metadata.json->name
 msgid "Quote of the day desklet"
-msgstr "每天名言小工具"
+msgstr "每日名言小工具"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->font-size->description
 msgid "Font size:"
