@@ -9,6 +9,15 @@ const TabPanel = imports.desklet.tabPanel;
 
 let controller;
 
+const GLib = imports.gi.GLib;
+const Gettext = imports.gettext;
+const uuid = "devTools@scollins";
+
+Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
+
+function _(str) {
+  return Gettext.dgettext(uuid, str);
+}
 
 function getWorkspaceForWindow(window) {
     if ( window.is_on_all_workspaces() ) return [null,"all",null];
@@ -57,17 +66,17 @@ WindowItem.prototype = {
             infoBox.add(table, { y_align: St.Align.MIDDLE, y_expand: false });
             
             //window title
-            table.add(new St.Label({ text: "Title:   " }), { row: 0, col: 0, col_span: 1,  x_expand: false, x_align: St.Align.START });
+            table.add(new St.Label({ text: _("Title") + ":   " }), { row: 0, col: 0, col_span: 1,  x_expand: false, x_align: St.Align.START });
             let title = new St.Label({ text: window.title, style_class: "devtools-windows-title" });
             table.add(title, { row: 0, col: 1, col_span: 1, x_expand: false, x_align: St.Align.START });
             
             //window class
-            table.add(new St.Label({ text: "Class:   " }), { row: 1, col: 0, col_span: 1, x_expand: false, x_align: St.Align.START });
+            table.add(new St.Label({ text: _("Class") + ":   " }), { row: 1, col: 0, col_span: 1, x_expand: false, x_align: St.Align.START });
             let wmClass = new St.Label({ text: window.get_wm_class() });
             table.add(wmClass, { row: 1, col: 1, col_span: 1, y_expand: true, x_expand: false, x_align: St.Align.START });
             
             //workspace
-            table.add(new St.Label({ text: "Workspace:   " }), { row: 2, col: 0, col_span: 1, x_expand: false, x_align: St.Align.START });
+            table.add(new St.Label({ text: _("Workspace") + ":   " }), { row: 2, col: 0, col_span: 1, x_expand: false, x_align: St.Align.START });
             let workspace = new St.Label({ text: wsName });
             table.add(workspace, { row: 2, col: 1, col_span: 1, x_expand: false, x_align: St.Align.START });
             
@@ -76,19 +85,19 @@ WindowItem.prototype = {
             this.actor.add_actor(buttonBox);
             
             //inspect window
-            let inspectButton = new St.Button({ label: "Inspect", x_align: St.Align.END, style_class: "devtools-contentButton" });
+            let inspectButton = new St.Button({ label: _("Inspect"), x_align: St.Align.END, style_class: "devtools-contentButton" });
             buttonBox.add_actor(inspectButton);
             inspectButton.connect("clicked", Lang.bind(this, this.inspect));
             
             //switch to
             if ( this.workspace ) {
-                let switchToButton = new St.Button({ label: "Switch to", x_align: St.Align.END, style_class: "devtools-contentButton" });
+                let switchToButton = new St.Button({ label: _("Switch to"), x_align: St.Align.END, style_class: "devtools-contentButton" });
                 buttonBox.add_actor(switchToButton);
                 switchToButton.connect("clicked", Lang.bind(this, this.switchTo));
             }
             
             //close
-            let closeButton = new St.Button({ label: "Close", x_align: St.Align.END, style_class: "devtools-contentButton" });
+            let closeButton = new St.Button({ label: _("Close"), x_align: St.Align.END, style_class: "devtools-contentButton" });
             buttonBox.add_actor(closeButton);
             closeButton.connect("clicked", Lang.bind(this, this.close));
             
