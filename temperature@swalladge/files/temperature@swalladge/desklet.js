@@ -14,8 +14,17 @@ const Soup = imports.gi.Soup;
 const Lang = imports.lang;
 const Settings = imports.ui.settings;
 const Mainloop = imports.mainloop;
+const GLib = imports.gi.GLib;
+const Gettext = imports.gettext;
+const uuid = "temperature@swalladge";
 
 var session = new Soup.SessionAsync();
+
+Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
+
+function _(str) {
+  return Gettext.dgettext(uuid, str);
+}
 
 function TheDesklet(metadata, desklet_id) {
     this._init(metadata, desklet_id);
@@ -68,7 +77,7 @@ TheDesklet.prototype = {
         if (this.current_temp !== null && this.current_temp !== undefined) {
           this.text.set_text(this.current_temp.toFixed(1).toString() + '°C');
         } else {
-          this.text.set_text('error');
+          this.text.set_text(_("error"));
         }
         
         this.window.add(this.text);
