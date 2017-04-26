@@ -18,6 +18,14 @@ const CollapseButton = imports.desklet.collapseButton;
 
 let controller;
 
+const Gettext = imports.gettext;
+const uuid = "devTools@scollins";
+
+Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
+
+function _(str) {
+  return Gettext.dgettext(uuid, str);
+}
 
 function ExtensionItem(meta, type) {
     this._init(meta, type);
@@ -33,7 +41,7 @@ ExtensionItem.prototype = {
             this.instances = [];
             for( let id in this.definitions ) this.instances.push(this.definitions[id]);
             let maxInstances = meta["max-instances"];
-            if ( maxInstances == -1 ) maxInstances = "Infinite";
+            if ( maxInstances == -1 ) maxInstances = _("Infinite");
             this.isMultiInstance = maxInstances && maxInstances != 1;
             
             this.actor = new St.BoxLayout({ style_class: "devtools-extensions-container" });
@@ -69,23 +77,23 @@ ExtensionItem.prototype = {
             //name
             let nameString = meta.name;
             if ( meta.version ) nameString += " " + meta.version;
-            table.add(new St.Label({ text: "Name:   " }), { row: 0, col: 0, col_span: 1,  x_expand: false, x_align: St.Align.START });
+            table.add(new St.Label({ text: _("Name") + ":   " }), { row: 0, col: 0, col_span: 1,  x_expand: false, x_align: St.Align.START });
             let name = new St.Label({ text: nameString + "        (" + this.uuid + ")", style: "color: blue;" });
             table.add(name, { row: 0, col: 1, col_span: 1, x_expand: false, x_align: St.Align.START });
             
             //description
-            table.add(new St.Label({ text: "Description:   " }), { row: 1, col: 0, col_span: 1, x_expand: false, x_align: St.Align.START });
+            table.add(new St.Label({ text: _("Description") + ":   " }), { row: 1, col: 0, col_span: 1, x_expand: false, x_align: St.Align.START });
             let description = new St.Label({ text: "" });
             table.add(description, { row: 1, col: 1, col_span: 1, y_expand: true, x_expand: false, x_align: St.Align.START });
             description.set_text(meta.description);
             
             //path
-            table.add(new St.Label({ text: "Path:   " }), { row: 2, col: 0, col_span: 1, x_expand: false, x_align: St.Align.START });
+            table.add(new St.Label({ text: _("Path") + ":   " }), { row: 2, col: 0, col_span: 1, x_expand: false, x_align: St.Align.START });
             let path = new St.Label({ text: meta.path });
             table.add(path, { row: 2, col: 1, col_span: 1, x_expand: false, x_align: St.Align.START });
             
             //status
-            table.add(new St.Label({ text: "Status:   " }), { row: 3, col: 0, col_span: 1, x_expand: false, x_align: St.Align.START });
+            table.add(new St.Label({ text: _("Status") + ":   " }), { row: 3, col: 0, col_span: 1, x_expand: false, x_align: St.Align.START });
             let status = new St.Label({ text: Extension.getMetaStateString(meta.state) });
             table.add(status, { row: 3, col: 1, col_span: 1, x_expand: false, x_align: St.Align.START });
             switch ( meta.state ) {
@@ -106,18 +114,18 @@ ExtensionItem.prototype = {
             this.actor.add_actor(buttonBox);
             
             //reload
-            let reloadButton = new St.Button({ label: "Reload", x_align: St.Align.END, style_class: "devtools-contentButton" });
+            let reloadButton = new St.Button({ label: _("Reload"), x_align: St.Align.END, style_class: "devtools-contentButton" });
             buttonBox.add_actor(reloadButton);
             reloadButton.connect("clicked", Lang.bind(this, this.reload));
             
             //remove
-            let removeButton = new St.Button({ label: "Remove", x_align: St.Align.END, style_class: "devtools-contentButton" });
+            let removeButton = new St.Button({ label: _("Remove"), x_align: St.Align.END, style_class: "devtools-contentButton" });
             buttonBox.add_actor(removeButton);
             removeButton.connect("clicked", Lang.bind(this, this.removeAll));
             
             /*check for multi-instance*/
             if ( this.isMultiInstance ) {
-                let instanceDropdown = new CollapseButton.CollapseButton("Instances: "+this.instances.length+" of "+maxInstances, false, null);
+                let instanceDropdown = new CollapseButton.CollapseButton(_("Instances") + ": "+this.instances.length+" "+_("of")+" "+maxInstances, false, null);
                 table.add(instanceDropdown.actor, { row: 4, col: 0, col_span: 2, x_expand: false, x_align: St.Align.START });
                 
                 let instancesContainer = new St.BoxLayout({ vertical: true });
@@ -133,17 +141,17 @@ ExtensionItem.prototype = {
                     instanceBox.add_actor(new St.Label({ text: "ID: "+id }));
                     
                     //highlight button
-                    let highlightButton = new St.Button({ label: "Highlight", style_class: "devtools-contentButton" });
+                    let highlightButton = new St.Button({ label: _("Highlight"), style_class: "devtools-contentButton" });
                     instanceBox.add_actor(highlightButton);
                     highlightButton.connect("clicked", Lang.bind(this, function() { this.highlight(id); }));
                     
                     //inspect button
-                    let inspectButton = new St.Button({ label: "Inspect", style_class: "devtools-contentButton" });
+                    let inspectButton = new St.Button({ label: _("Inspect"), style_class: "devtools-contentButton" });
                     instanceBox.add_actor(inspectButton);
                     inspectButton.connect("clicked", Lang.bind(this, this.inspect, id));
                     
                     //remove button
-                    let removeButton = new St.Button({ label: "Remove" });
+                    let removeButton = new St.Button({ label: _("Remove") });
                     instanceBox.add_actor(removeButton);
                     removeButton.connect("clicked", Lang.bind(this, function() { this.remove(id); }));
                 }
@@ -151,12 +159,12 @@ ExtensionItem.prototype = {
             else {
                 //highlight button
                 if ( this.type == Extension.Type.APPLET || this.type == Extension.Type.DESKLET ) {
-                    let highlightButton = new St.Button({ label: "Highlight", x_align: St.Align.END, style_class: "devtools-contentButton" });
+                    let highlightButton = new St.Button({ label: _("Highlight"), x_align: St.Align.END, style_class: "devtools-contentButton" });
                     buttonBox.add_actor(highlightButton);
                     highlightButton.connect("clicked", Lang.bind(this, function() { this.highlight(this.uuid); }));
                     
                     //inspect button
-                    let inspectButton = new St.Button({ label: "Inspect", x_align: St.Align.END, style_class: "devtools-contentButton" });
+                    let inspectButton = new St.Button({ label: _("Inspect"), x_align: St.Align.END, style_class: "devtools-contentButton" });
                     buttonBox.add_actor(inspectButton);
                     inspectButton.connect("clicked", Lang.bind(this, this.inspect, this.uuid));
                 }
@@ -164,7 +172,7 @@ ExtensionItem.prototype = {
             
             //link to settings
             if ( !meta["hide-configuration"] && GLib.file_test(meta.path + "/settings-schema.json", GLib.FileTest.EXISTS)) {
-                let settingsButton = new St.Button({ label: "Settings", x_align: St.Align.END, style_class: "devtools-contentButton" });
+                let settingsButton = new St.Button({ label: _("Settings"), x_align: St.Align.END, style_class: "devtools-contentButton" });
                 buttonBox.add_actor(settingsButton);
                 settingsButton.connect("clicked", Lang.bind(this, function() {
                     Util.spawnCommandLine("cinnamon-settings applets " + this.uuid);
@@ -238,7 +246,7 @@ function ExtensionInterface(controllerObj) {
 ExtensionInterface.prototype = {
     __proto__: TabPanel.TabPanelBase.prototype,
     
-    name: "Extensions",
+    name: _("Extensions"),
     
     _init: function(controllerObj) {
         controller = controllerObj;
@@ -257,7 +265,7 @@ ExtensionInterface.prototype = {
         this.checkBoxes = {};
         for ( let key in Extension.Type ) {
             let type = Extension.Type[key];
-            let checkbox = new CheckBox.CheckBox("Show "+type.name+"s", { style_class: "devtools-checkBox" });
+            let checkbox = new CheckBox.CheckBox(_("Show") + " "+type.name+"s", { style_class: "devtools-checkBox" });
             this.checkBoxes[type.name] = checkbox;
             bottomBox.add_actor(checkbox.actor);
             checkbox.actor.checked = controller.settings.getValue("show"+type.name);
