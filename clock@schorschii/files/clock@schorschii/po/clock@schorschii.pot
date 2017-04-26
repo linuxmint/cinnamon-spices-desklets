@@ -1,0 +1,159 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-26 17:40+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: desklet.js:178
+msgid "Clock"
+msgstr ""
+
+#. clock@schorschii->metadata.json->description
+msgid ""
+"A scaleable analog clock desklet with smooth hands and free choice of "
+"images."
+msgstr ""
+
+#. clock@schorschii->metadata.json->name
+msgid "Analog Chronometer"
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->head3->description
+msgid "Timezone"
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->head4->description
+msgid "Custom images"
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->desklet-size->description
+msgid "Desklet size"
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->desklet-size->tooltip
+msgid "Increase or decrease the size of the clock."
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->desklet-size->units
+msgid "pixels"
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->head2->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->head1->description
+msgid "Visual"
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->smooth-seconds-hand->description
+msgid "Smooth hands"
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->smooth-seconds-hand->tooltip
+msgid ""
+"Use smooth animation for hour, minute and seconds hand instead of refreshing"
+" it only every second."
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->head0->description
+msgid "Settings for clock@schorschii   (Version 1.1)"
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->img-bg->description
+msgid "Background"
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->img-bg->tooltip
+msgid "Choose your own background image."
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->img-m->description
+msgid "Minute hand"
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->img-m->tooltip
+msgid ""
+"Choose your own image for the minute hand. Should be as big as the "
+"background image."
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->img-s->description
+msgid "Seconds hand"
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->img-s->tooltip
+msgid ""
+"Choose your own image for the seconds hand. Should be as big as the "
+"background image."
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->custom-tz->description
+msgid "Custom time zone"
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->custom-tz->tooltip
+msgid "Enter your custom timezone here."
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->show-seconds-hand->description
+msgid "Show seconds hand"
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->show-seconds-hand->tooltip
+msgid "Show or hide the seconds hand."
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->use-custom-tz->description
+msgid "Use a custom timezone"
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->use-custom-tz->tooltip
+msgid ""
+"Checking this box allows you to set a custom timezone in the field below."
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here, e.g. for multiple timezones. This field is "
+"unavailable unless the checkbox above is enabled."
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->img-h->description
+msgid "Hour hand"
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->img-h->tooltip
+msgid ""
+"Choose your own image for the hour hand. Should be as big as the background "
+"image."
+msgstr ""
