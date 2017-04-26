@@ -13,6 +13,8 @@ const Mainloop = imports.mainloop; // For repeated updating
 const Lang = imports.lang; // Binding desklet to mainloop function
 const Settings = imports.ui.settings; // Load settings-schema.json file
 const Soup = imports.gi.Soup;
+const Gettext = imports.gettext;
+const uuid = "stocks@fthuin";
 
 /************
  * Variables
@@ -30,6 +32,14 @@ var console = global;
 /************
  * Functions
  ************/
+
+/* l10n/translation support */
+
+Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
+
+function _(str) {
+  return Gettext.dgettext(uuid, str);
+}
 
 /* Desklet constructor */
 function MyDesklet(metadata, desklet_id) {
@@ -204,7 +214,7 @@ MyDesklet.prototype = {
         }
 
         stocksBox.add_actor(stockTable);
-        var updatedLabel = createLabel("Updated at " + this.date.toString());
+        var updatedLabel = createLabel(_("Updated at") + " " + this.date.toString());
         stocksBox.add_actor(updatedLabel);
         scrollView.add_actor(stocksBox);
         mainBox.add(scrollView, {expand: true});
