@@ -12,7 +12,14 @@ const Mainloop = imports.mainloop;
 
 const TabPanel = imports.desklet.tabPanel;
 const CollapseButton = imports.desklet.collapseButton;
+const Gettext = imports.gettext;
+const uuid = "devTools@scollins";
 
+Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
+
+function _(str) {
+  return Gettext.dgettext(uuid, str);
+}
 
 function CommandItem(command, pId, inId, outId, errId, output) {
     this._init(command, pId, inId, outId, errId, output);
@@ -38,13 +45,13 @@ CommandItem.prototype = {
         infoBox.add(table, { y_align: St.Align.MIDDLE, y_expand: false });
         
         //command
-        table.add(new St.Label({ text: "Command:   " }), { row: 0, col: 0, col_span: 1,  x_expand: false, x_align: St.Align.START });
+        table.add(new St.Label({ text: _("Command") + ":   " }), { row: 0, col: 0, col_span: 1,  x_expand: false, x_align: St.Align.START });
         let commandLabel = new St.Label({ text: command });
         table.add(commandLabel, { row: 0, col: 1, col_span: 1, x_expand: false, x_align: St.Align.START });
         
         //status
-        table.add(new St.Label({ text: "Status:   " }), { row: 1, col: 0, col_span: 1, x_expand: false, x_align: St.Align.START });
-        this.status = new St.Label({ text: "Running" });
+        table.add(new St.Label({ text: _("Status") + ":   " }), { row: 1, col: 0, col_span: 1, x_expand: false, x_align: St.Align.START });
+        this.status = new St.Label({ text: _("Running") });
         table.add(this.status, { row: 1, col: 1, col_span: 1, y_expand: true, x_expand: false, x_align: St.Align.START });
         
         /*command options*/
@@ -52,12 +59,12 @@ CommandItem.prototype = {
         headerBox.add_actor(buttonBox);
         
         //clear button
-        let clearButton = new St.Button({ label: "Clear", x_align: St.Align.END, style_class: "devtools-contentButton" });
+        let clearButton = new St.Button({ label: _("Clear"), x_align: St.Align.END, style_class: "devtools-contentButton" });
         buttonBox.add_actor(clearButton);
         clearButton.connect("clicked", Lang.bind(this, this.clear));
         
         //end process button
-        this.stopButton = new St.Button({ label: "End Process", x_align: St.Align.END, style_class: "devtools-contentButton" });
+        this.stopButton = new St.Button({ label: _("End Process"), x_align: St.Align.END, style_class: "devtools-contentButton" });
         buttonBox.add_actor(this.stopButton);
         this.stopButton.connect("clicked", Lang.bind(this, this.endProcess));
         
@@ -66,7 +73,7 @@ CommandItem.prototype = {
         let toggleBox = new St.BoxLayout();
         this.actor.add_actor(toggleBox);
         this.showOutput = true;
-        let outputButton = new CollapseButton.CollapseButton("Output", true);
+        let outputButton = new CollapseButton.CollapseButton(_("Output"), true);
         toggleBox.add_actor(outputButton.actor);
         
         //output
@@ -92,7 +99,7 @@ CommandItem.prototype = {
             this.readNext();
         }
         else {
-            this.status.text = "Stopped";
+            this.status.text = _("Stopped");
             this.stopButton.hide();
             this.closed = true;
         }
