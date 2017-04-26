@@ -1,0 +1,63 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-26 13:04+0800\n"
+"PO-Revision-Date: 2017-04-26 13:05+0800\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: zh_CN\n"
+
+#: desklet.js:34
+msgid ""
+"Dependencies missing. Please install \n"
+"libgtop, Network Manager and gir bindings \n"
+"\t    on Ubuntu: gir1.2-gtop-2.0, gir1.2-networkmanager-1.0 \n"
+"\t    on Fedora: libgtop2-devel, NetworkManager-glib-devel \n"
+"\t    on Arch: libgtop, networkmanager\n"
+"and restart Cinnamon.\n"
+msgstr ""
+"依赖缺失。请安装\n"
+"libgtop, 网络管理器和gir bindings\n"
+"\t    在Ubuntu: gir1.2-gtop-2.0, gir1.2-networkmanager-1.0 \n"
+"\t    在Fedora: libgtop2-devel, NetworkManager-glib-devel \n"
+"\t    在Arch: libgtop, networkmanager\n"
+"然后重新启动Cinnamon。\n"
+
+#: desklet.js:213
+msgid "CPU:"
+msgstr "CPU："
+
+#: desklet.js:214
+msgid "Memory:"
+msgstr "内存："
+
+#: desklet.js:215
+msgid "Download:"
+msgstr "下载："
+
+#: desklet.js:216
+msgid "Upload:"
+msgstr "上传："
+
+#: desklet.js:217
+msgid "Temperature:"
+msgstr "温度："
+
+#. simple-system-monitor@ariel->metadata.json->name
+msgid "Simple system monitor"
+msgstr "简单的系统监视器"
+
+#. simple-system-monitor@ariel->metadata.json->description
+msgid "Shows some system status values"
+msgstr "显示一些系统状态的值"
