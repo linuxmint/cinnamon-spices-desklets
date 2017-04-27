@@ -1,0 +1,63 @@
+# Translation for simple-system-monitor@ariel.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-27 12:24+0200\n"
+"PO-Revision-Date: 2017-04-27 12:38+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: de\n"
+
+#: desklet.js:34
+msgid ""
+"Dependencies missing. Please install \n"
+"libgtop, Network Manager and gir bindings \n"
+"\t    on Ubuntu: gir1.2-gtop-2.0, gir1.2-networkmanager-1.0 \n"
+"\t    on Fedora: libgtop2-devel, NetworkManager-glib-devel \n"
+"\t    on Arch: libgtop, networkmanager\n"
+"and restart Cinnamon.\n"
+msgstr ""
+"Abhängigkeiten fehlen. Bitte installieren Sie\n"
+"libgtop, Network Manager und gir bindings \n"
+"\t    auf Ubuntu/LinuxMint: gir1.2-gtop-2.0, gir1.2-networkmanager-1.0 \n"
+"\t    auf Fedora: libgtop2-devel, NetworkManager-glib-devel \n"
+"\t    auf Arch: libgtop, networkmanager\n"
+"und starten Sie Cinnamon neu.\n"
+
+#: applet.js:213
+msgid "CPU:"
+msgstr "CPU:"
+
+#: applet.js:214
+msgid "Memory:"
+msgstr "RAM:"
+
+#: applet.js:215
+msgid "Download:"
+msgstr "Download:"
+
+#: applet.js:216
+msgid "Upload:"
+msgstr "Upload:"
+
+#: applet.js:217
+msgid "Temperature:"
+msgstr "Temperatur:"
+
+#. simple-system-monitor@ariel->metadata.json->description
+msgid "Shows some system status values"
+msgstr "Zeigt einige Systemzustandswerte an"
+
+#. simple-system-monitor@ariel->metadata.json->name
+msgid "Simple system monitor"
+msgstr "Schlichter Systemmonitor"
