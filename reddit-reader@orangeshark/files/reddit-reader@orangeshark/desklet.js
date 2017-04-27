@@ -25,8 +25,16 @@ const Util = imports.misc.util;
 const Desklet = imports.ui.desklet;
 const Settings = imports.ui.settings;
 
+const GLib = imports.gi.GLib;
+const Gettext = imports.gettext;
+
 const MIN_TO_MS = 60 * 1000;
 const USER_AGENT = "reddit-reader-desklet/0.4";
+
+let UUID;
+function _(str) {
+    return Gettext.dgettext(UUID, str);
+}
 
 function Post(data) {
     this._init(data);
@@ -133,6 +141,8 @@ RedditDesklet.prototype = {
         Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
 
         this.metadata = metadata;
+        UUID = this.metadata.uuid;
+        Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale")
 
         try {
             this.settings = new Settings.DeskletSettings(
@@ -248,10 +258,7 @@ RedditDesklet.prototype = {
                                             style_class: "reddit-info-box"});
 
             // points
-            let scoreLabel = new St.Label( {text: "1 point"} );
-            if(posts[i].score != 1) {
-                scoreLabel = new St.Label( {text: "%s points".format(posts[i].score)} );
-            }
+            let scoreLabel = new St.Label( {text: Gettext.dngettext(UUID, "%d point", "%d points", posts[i].score).format(posts[i].score)} );
             infoBox.add(scoreLabel);
              // author
             let authorButton = new St.Button();
@@ -260,7 +267,7 @@ RedditDesklet.prototype = {
                 Util.spawnCommandLine("xdg-open %s".format("https://www.reddit.com/u/" + this.author));
             }));
 
-            let authorLabel = new St.Label( {text: "by " + posts[i].author} );
+            let authorLabel = new St.Label( {text: _("by") + " " + posts[i].author} );
             authorButton.add_actor(authorLabel);
             infoBox.add(authorButton);
 
@@ -270,7 +277,7 @@ RedditDesklet.prototype = {
                 Util.spawnCommandLine("xdg-open %s".format("https://www.reddit.com/r/" + this.subreddit));
             }));
 
-            let subLabel = new St.Label( {text: "to " + posts[i].subreddit} );
+            let subLabel = new St.Label( {text: _("to") + " " + posts[i].subreddit} );
             subButton.add_actor(subLabel);
             infoBox.add(subButton);
 
@@ -281,10 +288,7 @@ RedditDesklet.prototype = {
                 Util.spawnCommandLine("xdg-open %s".format("https://www.reddit.com" + this.permalink));
             }));
 
-            let commentLabel = new St.Label( {text: "1 comment"} );
-            if(posts[i].num_comments != 1) {
-                commentLabel.set_text(posts[i].num_comments + " comments");
-            }
+            let commentLabel = new St.Label( {text: Gettext.dngettext(UUID, "%d comment", "%d comments", posts[i].num_comments).format(posts[i].num_comments)} );
             commentButton.add_actor(commentLabel);
             infoBox.add(commentButton);
 
