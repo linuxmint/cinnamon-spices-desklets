@@ -1,6 +1,6 @@
 {
     "uuid": "soundBox@scollins",
-    "name": "Soundbox ",
+    "name": "Soundbox",
     "description": "A desklet to view sound settings and manage media controls",
     "comments": "Soundbox is an attractive and easy-to-use Desklet designed to control your volume and media players. It was originally forked from the Cinnamon sound applet, but has grown and evolved over time. Feel free to contribute by submitting pull requests, bug reports and feature requests to my github repo.",
     "website": "https://github.com/collinss/Cinnamon-Soundbox",
