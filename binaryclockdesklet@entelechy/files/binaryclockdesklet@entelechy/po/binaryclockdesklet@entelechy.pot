@@ -1,0 +1,67 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-26 13:55+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: desklet.js:72
+msgid "Clock"
+msgstr ""
+
+#. binaryclockdesklet@entelechy->metadata.json->description
+msgid "A desklet that displays the time in binary"
+msgstr ""
+
+#. binaryclockdesklet@entelechy->metadata.json->name
+msgid "Binary clock desklet"
+msgstr ""
+
+#. binaryclockdesklet@entelechy->settings-schema.json->color->description
+msgid "The color for the lights:"
+msgstr ""
+
+#. binaryclockdesklet@entelechy->settings-schema.json->color->tooltip
+msgid "Select a new color for the lights"
+msgstr ""
+
+#. binaryclockdesklet@entelechy->settings-schema.json->head->description
+msgid "Style"
+msgstr ""
+
+#. binaryclockdesklet@entelechy->settings-schema.json->show-
+#. seconds->description
+msgid "Display seconds"
+msgstr ""
+
+#. binaryclockdesklet@entelechy->settings-schema.json->show-seconds->tooltip
+msgid "Show seconds in the binary display"
+msgstr ""
+
+#. binaryclockdesklet@entelechy->settings-schema.json->head2->description
+msgid "Format"
+msgstr ""
+
+#. binaryclockdesklet@entelechy->settings-schema.json->size->description
+msgid "Light diameter:"
+msgstr ""
+
+#. binaryclockdesklet@entelechy->settings-schema.json->size->tooltip
+msgid "Select a diameter for the lights"
+msgstr ""
+
+#. binaryclockdesklet@entelechy->settings-schema.json->size->units
+msgid "pixels"
+msgstr ""
