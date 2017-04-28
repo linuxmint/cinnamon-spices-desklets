@@ -20,6 +20,17 @@ const GLib = imports.gi.GLib;
 const PopupMenu = imports.ui.popupMenu;
 const Util = imports.misc.util;
 
+const Gettext = imports.gettext;
+const UUID = "TimeAndDate@nightflame";
+
+// l10n/translation support
+
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale")
+
+function _(str) {
+  return Gettext.dgettext(UUID, str);
+}
+
 function MyDesklet(metadata){
     this._init(metadata);
 }
