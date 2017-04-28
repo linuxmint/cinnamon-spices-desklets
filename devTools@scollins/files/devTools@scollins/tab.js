@@ -8,6 +8,16 @@ const Lang = imports.lang;
 const Mainloop = imports.mainloop;
 const Signals = imports.signals;
 
+const GLib = imports.gi.GLib;
+const Gettext = imports.gettext;
+const uuid = "devTools@scollins";
+
+Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
+
+function _(str) {
+  return Gettext.dgettext(uuid, str);
+}
+
 function TabManager(tabArea, contentArea) {
     this._init(tabArea, contentArea);
 }
@@ -113,7 +123,7 @@ TabItemBase.prototype = {
             Main.uiGroup.add_actor(this.menu.actor);
             this.menu.actor.hide();
             
-            this.menu.addAction("Close Tab", Lang.bind(this, function() {
+            this.menu.addAction(_("Close Tab"), Lang.bind(this, function() {
                 this.close();
             }));
         }

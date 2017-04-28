@@ -13,7 +13,15 @@ const FileDialog = imports.misc.fileDialog;
 const Tab = imports.desklet.tab;
 const TabPanel = imports.desklet.tabPanel;
 const Text = imports.desklet.text;
+const GLib = imports.gi.GLib;
+const Gettext = imports.gettext;
+const uuid = "devTools@scollins";
 
+Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
+
+function _(str) {
+  return Gettext.dgettext(uuid, str);
+}
 
 function getDefaultParams(path) {
     let params = {};
@@ -148,16 +156,16 @@ SandboxInterface.prototype = {
             this.panel.add_actor(tabPanels);
             this.tabManager = new Tab.TabManager(tabs, tabPanels);
             
-            let evaluateButton = new St.Button({ label: "Evaluate", style_class: "devtools-contentButton" });
+            let evaluateButton = new St.Button({ label: _("Evaluate"), style_class: "devtools-contentButton" });
             topRow.add_actor(evaluateButton);
             evaluateButton.connect("clicked", Lang.bind(this, this.evaluate));
             
             /*javascript*/
-            this.jsTab = new TextEditor("Javascript");
+            this.jsTab = new TextEditor(_("Javascript"));
             this.tabManager.add(this.jsTab);
             
             /*style*/
-            this.cssTab = new TextEditor("Style");
+            this.cssTab = new TextEditor(_("Style"));
             this.tabManager.add(this.cssTab);
             let loadCurrentButton = new St.Button({ style_class: "devtools-sandbox-button" });
             this.cssTab.buttonBox.add_actor(loadCurrentButton);
@@ -187,7 +195,7 @@ SandboxInterface.prototype = {
             
             if ( result && result instanceof Clutter.Actor ) actor = result;
             else {
-                if ( !result ) result = "No errors detected";
+                if ( !result ) result = _("No errors detected");
                 actor = new Text.Label({ text: result }).actor;
             }
             

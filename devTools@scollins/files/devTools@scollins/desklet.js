@@ -30,18 +30,29 @@ const Text = imports.desklet.text;
 //global constants
 const POPUP_MENU_ICON_SIZE = 24;
 
+// translation support
+const GLib = imports.gi.GLib;
+const Gettext = imports.gettext;
+const uuid = "devTools@scollins";
+
+Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
+
+function _(str) {
+  return Gettext.dgettext(uuid, str);
+}
+
 //pages to display in the settings menu
 const SETTINGS_PAGES = [
-    { title: "Applet Settings",      page: "applets" },
-    { title: "Desklet Settings",     page: "desklets" },
-    { title: "Extension Settings",   page: "extensions" },
-    { title: "General Settings",     page: "general" },
-    { title: "Panel Settings",       page: "panel" },
-    { title: "Regional Settings",    page: "region" },
-    { title: "Theme Settings",       page: "themes" },
-    { title: "Tile Settings",        page: "tiling" },
-    { title: "Window Settings",      page: "windows" },
-    { title: "Workspace Settings",   page: "workspaces" }
+    { title: _("Applet Settings"),      page: "applets" },
+    { title: _("Desklet Settings"),     page: "desklets" },
+    { title: _("Extension Settings"),   page: "extensions" },
+    { title: _("General Settings"),     page: "general" },
+    { title: _("Panel Settings"),       page: "panel" },
+    { title: _("Regional Settings"),    page: "region" },
+    { title: _("Theme Settings"),       page: "themes" },
+    { title: _("Tile Settings"),        page: "tiling" },
+    { title: _("Window Settings"),      page: "windows" },
+    { title: _("Workspace Settings"),   page: "workspaces" }
 ]
 
 //global variables
@@ -480,7 +491,7 @@ myDesklet.prototype = {
     },
     
     _populateSettingsMenu: function() {
-        this.settingsMenu.addMenuItem("All Settings",
+        this.settingsMenu.addMenuItem(_("All Settings"),
                          function() { Util.spawnCommandLine("cinnamon-settings"); },
                          new St.Icon({ icon_name: "preferences-system", icon_size: POPUP_MENU_ICON_SIZE, icon_type: St.IconType.FULLCOLOR }));
         

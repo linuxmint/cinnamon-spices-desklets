@@ -1,7 +1,15 @@
 const St = imports.gi.St;
 
 const Tab = imports.desklet.tab;
+const GLib = imports.gi.GLib;
+const Gettext = imports.gettext;
+const uuid = "devTools@scollins";
 
+Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
+
+function _(str) {
+  return Gettext.dgettext(uuid, str);
+}
 
 function TabPanelBase(canClose) {
     this._init(canClose);
@@ -31,5 +39,4 @@ TabPanelBase.prototype = {
             + pad(d.getSeconds())+"  ";
     }
 }
-
 
