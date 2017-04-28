@@ -3,6 +3,14 @@ const Desklet = imports.ui.desklet;
 const Lang = imports.lang;
 const GLib = imports.gi.GLib;
 const Util = imports.misc.util;
+const Gettext = imports.gettext;
+const uuid = "shutdown@phpdreamer";
+
+Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
+
+function _(str) {
+  return Gettext.dgettext(uuid, str);
+}
 
 function ShutdownDesklet(metadata) {
     this._init(metadata);
@@ -21,7 +29,7 @@ ShutdownDesklet.prototype = {
         this._container.set_style('background-color:' + this.metadata["color"] + ';padding:2px;');
 
         this._str = new St.Label();
-        this._str.set_text("Shutdown");
+        this._str.set_text(_("Shutdown"));
         this._btn = new St.Button();
         this._lastClickedTimestamp = new Date() - 10000;
         this._btn.connect("clicked", Lang.bind(this, this._clicked));
