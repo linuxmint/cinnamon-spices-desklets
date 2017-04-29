@@ -13,6 +13,16 @@ const Cogl = imports.gi.Cogl;
 
 const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta["calendar@schorschii"].path;
 
+// Enable translation support
+
+const UUID = "calendar@schorschii";
+const Gettext = imports.gettext;
+
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+
+function _(str) {
+  return Gettext.dgettext(UUID, str);
+}
 
 function MyDesklet(metadata, desklet_id) {
 	this._init(metadata, desklet_id);
