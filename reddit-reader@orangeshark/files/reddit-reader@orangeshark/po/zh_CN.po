@@ -22,21 +22,23 @@ msgstr ""
 #, c-format
 msgid "%d point"
 msgid_plural "%d points"
-msgstr[0] ""
+msgstr[0] "%d次点击"
+msgstr[1] "%d次点击"
 
 #: desklet.js:274
 msgid "by"
-msgstr ""
+msgstr "由"
 
 #: desklet.js:284
 msgid "to"
-msgstr ""
+msgstr "发布到"
 
 #: desklet.js:295
 #, c-format
 msgid "%d comment"
 msgid_plural "%d comments"
-msgstr[0] ""
+msgstr[0] "%d个评论"
+msgstr[1] "%d个评论"
 
 #. reddit-reader@orangeshark->metadata.json->description
 msgid "A desklet to read subreddits"
