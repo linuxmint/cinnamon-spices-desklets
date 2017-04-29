@@ -1,0 +1,8 @@
+
+To configure this desklet, edit the metadata.json file.
+
+The "quality" can be:
+
+ - 0: Fastest rendering will use nearest neighbour interpolation when rendering. good setting.
+ - 1: Higher quality rendering without using extra resources.
+ - 2: Render the texture with the best quality available using extra memory.
