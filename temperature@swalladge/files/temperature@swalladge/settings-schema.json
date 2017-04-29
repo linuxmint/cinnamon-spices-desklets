@@ -19,7 +19,7 @@
         "type" : "spinbutton",
         "min" : 50,
         "max" : 1600,
-        "description" : "Width : ",
+        "description" : "Width :",
         "units" : "pixels",
         "step" : 10
     },
@@ -27,6 +27,6 @@
     "server" : {
         "default" : "http://localhost:8888",
         "type" : "entry",
-        "description" : "Server : "
+        "description" : "Server :"
     }
 }
