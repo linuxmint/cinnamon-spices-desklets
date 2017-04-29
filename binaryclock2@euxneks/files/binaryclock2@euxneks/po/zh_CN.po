@@ -24,7 +24,7 @@ msgstr "时钟"
 
 #. binaryclock2@euxneks->metadata.json->name
 msgid "Binary Clock²"
-msgstr ""
+msgstr "二进制时钟²"
 
 #. binaryclock2@euxneks->metadata.json->description
 msgid ""
