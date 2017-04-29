@@ -1,0 +1,7 @@
+{
+    "description": "A calendar desklet that can display the number of today's appointments from an ical file.", 
+    "max-instances": "10", 
+    "name": "Calendar", 
+    "uuid": "calendar@schorschii",
+    "version": "1.0"
+}

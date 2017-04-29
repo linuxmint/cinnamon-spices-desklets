@@ -1,0 +1,25 @@
+/* labels */
+.month-big {
+	color: white;
+	font-family: "DejaVu Sans", Sans-serif;
+	font-weight: 900; /* bold */
+	font-size: 45px;
+	text-align: center;
+}
+.month-sub {
+	color: white;
+	font-family: "DejaVu Sans", Sans-serif;
+	font-weight: 500; /* normal */
+	font-size: 14px;
+	text-align: center;
+}
+.notification-amount {
+	color: white;
+	font-family: "DejaVu Sans", Sans-serif;
+	font-weight: 900; /* bold */
+	text-align: center;
+	background-color: red;
+	border-radius: 10000px;
+	border: 1px solid black;
+	padding: 2px 6px 1px 6px;
+}
