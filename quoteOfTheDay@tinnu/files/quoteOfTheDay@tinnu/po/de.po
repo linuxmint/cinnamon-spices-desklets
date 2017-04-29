@@ -1,0 +1,91 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-28 19:07+0200\n"
+"PO-Revision-Date: 2017-04-28 19:10+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: de\n"
+
+#: desklet.js:32
+msgid "Quote of the day"
+msgstr "Zitat des Tages"
+
+#: desklet.js:52
+msgid "Copy"
+msgstr "Kopieren"
+
+#. quoteOfTheDay@tinnu->metadata.json->description
+msgid "A desklet that displays quotations from various sources"
+msgstr "Ein Desklet, das Zitate aus verschiedenen Quellen anzeigt"
+
+#. quoteOfTheDay@tinnu->metadata.json->name
+msgid "Quote of the day desklet"
+msgstr "Zitat des Tages Desklet"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->font-size->description
+msgid "Font size:"
+msgstr "Schriftgröße:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->vertical-shadow->description
+msgid "Vertical shadow:"
+msgstr "Vertikaler Schatten:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->vertical-shadow->units
+#. quoteOfTheDay@tinnu->settings-schema.json->shadow-blur->units
+#. quoteOfTheDay@tinnu->settings-schema.json->horizontal-shadow->units
+msgid "px"
+msgstr "px"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->file->description
+msgid "File:"
+msgstr "Datei:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->font-options-header->description
+msgid "Font options:"
+msgstr "Schriftart-Optionen:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->shadow-blur->description
+msgid "Shadow blur:"
+msgstr "Schattenunschärfe:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->shadow-color->description
+msgid "Shadow color:"
+msgstr "Schattenfarbe:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->shadow-color->tooltip
+#. quoteOfTheDay@tinnu->settings-schema.json->text-color->tooltip
+msgid "Click to select a new text color"
+msgstr "Klicken, um eine neue Textfarbe auszuwählen"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->delay->description
+msgid "Update every:"
+msgstr "Aktualisieren alle:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->delay->units
+msgid "minutes"
+msgstr "Minuten"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->text-color->description
+msgid "Font color:"
+msgstr "Schriftfarbe:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->horizontal-shadow->description
+msgid "Horizontal shadow:"
+msgstr "Horizontaler Schatten:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->font-shadow-options-
+#. header->description
+msgid "Text shadow effects:"
+msgstr "Textschatteneffekte:"
