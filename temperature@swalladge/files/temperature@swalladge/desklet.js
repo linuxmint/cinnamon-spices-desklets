@@ -79,7 +79,7 @@ TheDesklet.prototype = {
         } else {
           this.text.set_text(_("error"));
         }
-        
+
         this.window.add(this.text);
         this.setContent(this.window);
         this.mainloop = Mainloop.timeout_add(5 * 60 * 1000, Lang.bind(this, this.get_temp));
