@@ -3,49 +3,50 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 11:45+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2017-04-29 11:47+0200\n"
+"PO-Revision-Date: 2017-04-29 11:48+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: desklet.js:80
 msgid "error"
-msgstr ""
+msgstr "Fehler"
 
 #. temperature@swalladge->metadata.json->description
 msgid "Displays the current temperature from the temperature server."
-msgstr ""
+msgstr "Zeigt die aktuelle Temperatur vom Temperaturserver an."
 
 #. temperature@swalladge->metadata.json->name
 msgid "Temperature"
-msgstr ""
+msgstr "Temperatur"
 
 #. temperature@swalladge->settings-schema.json->width->description
 msgid "Width :"
-msgstr ""
+msgstr "Breite:"
 
 #. temperature@swalladge->settings-schema.json->width->units
 #. temperature@swalladge->settings-schema.json->height->units
 msgid "pixels"
-msgstr ""
+msgstr "Pixel"
 
 #. temperature@swalladge->settings-schema.json->head->description
 msgid "Current Temperature Settings"
-msgstr ""
+msgstr "Aktuelle Temperatureinstellungen"
 
 #. temperature@swalladge->settings-schema.json->server->description
 msgid "Server :"
-msgstr ""
+msgstr "Server:"
 
 #. temperature@swalladge->settings-schema.json->height->description
 msgid "Height :"
-msgstr ""
+msgstr "Höhe:"

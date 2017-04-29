@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-26 16:28+0800\n"
-"PO-Revision-Date: 2017-04-26 16:29+0800\n"
+"POT-Creation-Date: 2017-04-29 11:46+0200\n"
+"PO-Revision-Date: 2017-04-29 11:46+0200\n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.11\n"
-"Last-Translator: \n"
+"X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Language: zh_CN\n"
 
 #: desklet.js:80
 msgid "error"
@@ -31,7 +31,7 @@ msgid "Temperature"
 msgstr "温度"
 
 #. temperature@swalladge->settings-schema.json->width->description
-msgid "Width : "
+msgid "Width :"
 msgstr "宽度："
 
 #. temperature@swalladge->settings-schema.json->width->units
@@ -44,7 +44,7 @@ msgid "Current Temperature Settings"
 msgstr "当前温度设置"
 
 #. temperature@swalladge->settings-schema.json->server->description
-msgid "Server : "
+msgid "Server :"
 msgstr "服务器："
 
 #. temperature@swalladge->settings-schema.json->height->description
