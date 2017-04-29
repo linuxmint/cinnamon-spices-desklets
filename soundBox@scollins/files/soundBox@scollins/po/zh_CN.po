@@ -120,7 +120,7 @@ msgstr "音量："
 
 #: soundbox.js:1530 2.5/soundbox.js:1530 2.8/soundbox.js:1530
 msgid "Input Volume:"
-msgstr ""
+msgstr "输入音量"
 
 #: soundbox.js:1553 2.5/soundbox.js:1553 2.8/soundbox.js:1553
 msgid "Previous Player"
@@ -136,7 +136,7 @@ msgstr "启动播放器"
 
 #: applet.js:88
 msgid "Players"
-msgstr ""
+msgstr "播放器"
 
 #. this.setPanelText();
 #. Cinnamon-Soundbox->metadata.json->name
