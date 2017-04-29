@@ -1,0 +1,87 @@
+{
+    "head0": {
+        "type": "header",
+        "description": "Settings for calendar@schorschii"
+    },
+
+    "head1": {
+        "type": "header",
+        "description": "Visual"
+    },
+    "bg-img" : {
+        "type": "combobox",
+        "default" : "calendar_orange.svg",
+        "description" : "Calendar style",
+        "options" : {
+            "White" : "calendar_white.svg",
+            "Orange": "calendar_orange.svg"
+        },
+        "tooltip" : "Select the background graphic you would like to use."
+    },
+    "text-color": {
+        "type": "colorchooser",
+        "default": "white",
+        "description": "Text color",
+        "tooltip": "Set the text color of this desklet."
+    },
+    "notification-color": {
+        "type": "colorchooser",
+        "default": "red",
+        "description": "Appointment number background color",
+        "tooltip": "Set the appointment number background color of this desklet."
+    },
+    "hide-decorations": {
+        "type": "checkbox",
+        "description": "Hide decorations",
+        "default": false
+    },
+    "scale-size": {
+        "type": "spinbutton",
+        "default": 1.0,
+        "min": 0.4,
+        "max": 5.0,
+        "step": 0.05,
+        "units": "scale factor",
+        "description": "Desklet size",
+        "tooltip": "Increase or decrease the size of the calendar using this scale factor."
+    },
+
+    "head2": {
+        "type": "header",
+        "description": "Number of appointments"
+    },
+    "read-appointments": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Show the number of today's appointments parsed from an ical file",
+        "tooltip": "Checking this box allows you to set an ical file to parse in the field below.",
+        "value": false
+    },
+    "ical-file": {
+        "type": "filechooser",
+        "default": "",
+        "description": "Path to ical file",
+        "tooltip": "Select your ical file for reading the amount of appointments today.\n\nYou can configure Lightning (the Thunderbird Add-On) to save your calendar in an ical file.",
+        "allow-none" : true
+    },
+
+    "head3": {
+        "type": "header",
+        "description": "Custom desklet label (only visible if decorations are enabled)"
+    },
+    "use-custom-label": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Use a custom desklet label",
+        "tooltip": "Checking this box allows you to set a custom label in the field below.",
+        "value": false
+    },
+    "custom-label": {
+        "type": "entry",
+        "default": "Calendar 1",
+        "description": "Custom desklet label",
+        "indent": true,
+        "dependency": "use-custom-label",
+        "tooltip": "Set your custom label here, e.g. for monitoring multiple ical files. This field is unavailable unless the checkbox above is enabled."
+    }
+}
