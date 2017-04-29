@@ -60,7 +60,7 @@ msgstr "视觉"
 
 #. battery@schorschii->settings-schema.json->head0->description
 msgid "Settings for battery@schorschii"
-msgstr ""
+msgstr "battery@schorschii的设置"
 
 #. battery@schorschii->settings-schema.json->devfile_capacity->description
 msgid "Path to battery capacity file (device file)"
