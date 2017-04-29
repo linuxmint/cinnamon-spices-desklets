@@ -21,7 +21,7 @@ const Gettext = imports.gettext;
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
 function _(str) {
-  return Gettext.dgettext(UUID, str);
+	return Gettext.dgettext(UUID, str);
 }
 
 function MyDesklet(metadata, desklet_id) {
@@ -69,6 +69,7 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "bg-img", "bg_img", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "text_color", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "notification-color", "notification_color", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "notification-background-color", "notification_background_color", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "read-appointments", "read_appointments", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "ical-file", "ical_file", this.on_setting_changed);
 
@@ -232,9 +233,9 @@ MyDesklet.prototype = {
 			this.notification = new St.Label({style_class:"notification-amount"}); // day of week string (on top of day of month)
 			this.notification.set_position(0, this.month_top_top);
 			this.notification.style = "font-size: " + (this.size_font_month_sub*1.15).toString() + "px;"
-			                          + "padding: " + (2*this.scale_size) + "px " + (6*this.scale_size) + "px " + (1*this.scale_size) + "px " + (6*this.scale_size) + "px;";
-			                          + "background-color: " + this.notification_color + ";"
-			                          + text_color_style;
+			                          + "padding: " + (2*this.scale_size) + "px " + (6*this.scale_size) + "px " + (1*this.scale_size) + "px " + (6*this.scale_size) + "px;"
+			                          + "background-color: " + this.notification_background_color + ";"
+			                          + "color: " + this.notification_color + ";";
 
 			// add actor
 			this.calendar.remove_all_children();
