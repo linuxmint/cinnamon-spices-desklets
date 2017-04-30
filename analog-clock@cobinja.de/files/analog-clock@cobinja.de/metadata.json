@@ -1,6 +1,6 @@
 {
   "uuid": "analog-clock@cobinja.de",
-  "name": "Analog clock desklet",
+  "name": "CobiAnalogClock",
   "description": "An analog clock desklet",
   "max-instances": "100",
   "multiversion": true

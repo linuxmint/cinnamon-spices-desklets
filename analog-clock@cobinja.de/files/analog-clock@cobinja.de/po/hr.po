@@ -19,25 +19,13 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: 2.8/desklet.js:172 3.0/desklet.js:180
-msgid "Settings"
-msgstr "Postavke"
-
-#: 2.8/desklet.js:185 2.8/desklet.js:369 3.0/desklet.js:193 3.0/desklet.js:377
-msgid "Clock"
-msgstr "Sat"
-
 #. analog-clock@cobinja.de->metadata.json->description
 msgid "An analog clock desklet"
 msgstr "Desklet analognog sata"
 
-#. analog-clock@cobinja.de->metadata.json->name
-msgid "Analog clock desklet"
-msgstr "Analogni sat"
-
 #: settings.ui:7
 msgid "Analog Clock Settings"
-msgstr "Postavke analognog sata"
+msgstr "Postavke CobiAnalogClock"
 
 #: settings.ui:99
 msgid "Theme"
