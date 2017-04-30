@@ -161,6 +161,9 @@ msgstr ""
 msgid "Clock style"
 msgstr ""
 
+msgid "Custom images (available if clock style is set to 'custom')"
+msgstr ""
+
 #. Clock design - light
 msgid "Light"
 msgstr ""

@@ -141,7 +141,7 @@ msgstr ""
 
 #. clock@schorschii->settings-schema.json->use-custom-label->description
 msgid "Use a custom desklet label"
-msgstr "Eine benutzerdefinierte Deskletbezeichnung verwenden."
+msgstr "Eine benutzerdefinierte Deskletbezeichnung verwenden"
 
 #. clock@schorschii->settings-schema.json->use-custom-label->tooltip
 msgid "Checking this box allows you to set a custom label in the field below."
@@ -174,6 +174,9 @@ msgstr ""
 
 msgid "Clock style"
 msgstr "Uhrdesign"
+
+msgid "Custom images (available if clock style is set to 'custom')"
+msgstr "Eigene Grafiken (werden verwendet wenn das Design auf 'Eigene Bilder verwendet' gesetzt ist)"
 
 #. Clock design - light
 msgid "Light"
