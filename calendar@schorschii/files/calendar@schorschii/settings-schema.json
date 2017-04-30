@@ -26,6 +26,12 @@
     },
     "notification-color": {
         "type": "colorchooser",
+        "default": "white",
+        "description": "Appointment number color",
+        "tooltip": "Set the appointment number color of this desklet."
+    },
+    "notification-background-color": {
+        "type": "colorchooser",
         "default": "red",
         "description": "Appointment number background color",
         "tooltip": "Set the appointment number background color of this desklet."
