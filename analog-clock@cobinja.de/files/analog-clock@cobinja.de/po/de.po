@@ -13,7 +13,7 @@ msgstr ""
 
 #: settings.ui:7
 msgid "Analog Clock Settings"
-msgstr "Einstellungen für Analoge Uhr"
+msgstr "Einstellungen für CobiAnalogClock"
 
 #: settings.ui:99
 msgid "Theme"
