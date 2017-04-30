@@ -206,3 +206,21 @@ msgid ""
 "Set your custom label here, e.g. for monitoring multiple ical files. This "
 "field is unavailable unless the checkbox above is enabled."
 msgstr ""
+
+msgid "Appointment number color"
+msgstr ""
+
+msgid "Start program on click of the desklet"
+msgstr ""
+
+msgid "Start a program (e.g. Thunderbird)"
+msgstr ""
+
+msgid "The command entered below will be executed on mouse click of the desklet. So you can directly start Thunderbird."
+msgstr ""
+
+msgid "Command line"
+msgstr ""
+
+msgid "Set your program including parameters to start on click."
+msgstr ""

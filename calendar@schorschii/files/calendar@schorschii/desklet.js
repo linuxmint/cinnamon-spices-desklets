@@ -72,6 +72,8 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "notification-background-color", "notification_background_color", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "read-appointments", "read_appointments", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "ical-file", "ical_file", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "onclick-active", "onclick_active", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "onclick-command", "onclick_command", this.on_setting_changed);
 
 		// initialize desklet gui
 		this.setupUI();
@@ -290,6 +292,11 @@ MyDesklet.prototype = {
 
 		// update size based on scale factor
 		this.refreshSize(true);
+	},
+
+	on_desklet_clicked: function() {
+		if (this.onclick_active == true && this.onclick_command != "")
+			Util.spawnCommandLine(this.onclick_command);
 	},
 
 	on_desklet_removed: function() {
