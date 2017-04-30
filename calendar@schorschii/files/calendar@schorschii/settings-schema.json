@@ -73,6 +73,23 @@
 
     "head3": {
         "type": "header",
+        "description": "Start program on click of the desklet"
+    },
+    "onclick-active": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Start a program (e.g. Thunderbird)",
+        "tooltip": "The command entered below will be executed on mouse click of the desklet. So you can directly start Thunderbird."
+    },
+    "onclick-command": {
+        "type": "entry",
+        "default": "thunderbird",
+        "description": "Command line",
+        "tooltip": "Set your program including parameters to start on click."
+    },
+
+    "head4": {
+        "type": "header",
         "description": "Custom desklet label (only visible if decorations are enabled)"
     },
     "use-custom-label": {

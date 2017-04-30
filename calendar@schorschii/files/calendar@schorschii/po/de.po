@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-29 23:49+0200\n"
-"PO-Revision-Date: 2017-04-30 00:04+0200\n"
+"PO-Revision-Date: 2017-04-30 15:49+0200\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -109,7 +109,7 @@ msgstr ""
 
 #. calendar@schorschii->settings-schema.json->notification-color->description
 msgid "Appointment number background color"
-msgstr "Hintergrundfarbe der Anzahl an Terminen"
+msgstr "Hintergrundfarbe der Terminanzahl"
 
 #. calendar@schorschii->settings-schema.json->notification-color->tooltip
 msgid "Set the appointment number background color of this desklet."
@@ -227,3 +227,21 @@ msgstr ""
 "Legen Sie hier Ihre benutzerdefinierte Deskletbezeichnung fest, z.B. um "
 "mehrere ical-Dateien anzuzeigen. Dieses Feld ist nicht verfügbar, solange "
 "das Kästchen darüber nicht aktiviert ist."
+
+msgid "Appointment number color"
+msgstr "Textfarbe der Terminanzahl"
+
+msgid "Start program on click of the desklet"
+msgstr "Ein Programm starten, wenn auf das Desklet geklickt wird"
+
+msgid "Start a program (e.g. Thunderbird)"
+msgstr "Ein Programm starten (z.B. Thunderbird)"
+
+msgid "The command entered below will be executed on mouse click of the desklet. So you can directly start Thunderbird."
+msgstr "Der darunter eingegebene Befehl wird ausgeführt, sobald mit der Maus auf das Desklet geklickt wurde. Somit können Sie direkt Ihr Kalenderverwaltungsprogramm (Thunderbird) starten."
+
+msgid "Command line"
+msgstr "Befehl"
+
+msgid "Set your program including parameters to start on click."
+msgstr "Legen Sie das zu startende Programm fest, inklusive Parameter."
