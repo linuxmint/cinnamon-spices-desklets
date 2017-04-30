@@ -1,12 +1,23 @@
 {
     "head0": {
         "type": "header",
-        "description": "Settings for clock@schorschii   (Version 1.1)"
+        "description": "Settings for clock@schorschii"
     },
 
     "head1": {
         "type": "header",
         "description": "Visual"
+    },
+    "style" : {
+        "type": "combobox",
+        "default" : "light",
+        "description" : "Clock style",
+        "options" : {
+            "Light" : "light",
+            "Dark": "dark",
+            "Custom": "custom-images"
+        },
+        "tooltip" : "Select the background graphic you would like to use."
     },
     "show-seconds-hand": {
         "type": "checkbox",
@@ -27,7 +38,7 @@
     },
     "desklet-size": {
         "type": "spinbutton",
-        "default": 130,
+        "default": 150,
         "min": 10,
         "max": 500,
         "step": 2,
@@ -78,7 +89,7 @@
 
     "head4": {
         "type": "header",
-        "description": "Custom images"
+        "description": "Custom images (available if clock style is set to 'custom')"
     },
     "img-bg": {
         "default": "", 

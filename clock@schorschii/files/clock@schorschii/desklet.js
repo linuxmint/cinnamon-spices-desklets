@@ -55,6 +55,7 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "custom-label", "custom_label", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "use-custom-tz", "use_custom_tz", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "custom-tz", "custom_tz", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "style", "style", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "img-bg", "img_bg", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "img-s", "img_s", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "img-m", "img_m", this.on_setting_changed);
@@ -123,21 +124,30 @@ MyDesklet.prototype = {
 		this.clock_container = new St.Group({style_class: 'clock_container'}); // container for pointers with background image
 
 		// defaults
-		let img_bg_final = DESKLET_ROOT + "/img/bg.svg";
-		let img_h_final = DESKLET_ROOT + "/img/h.svg";
-		let img_m_final = DESKLET_ROOT + "/img/m.svg";
-		let img_s_final = DESKLET_ROOT + "/img/s.svg";
+		let default_style = "light";
+		let img_bg_final = DESKLET_ROOT + "/img/" + default_style + "/bg.svg";
+		let img_h_final = DESKLET_ROOT + "/img/" + default_style + "/h.svg";
+		let img_m_final = DESKLET_ROOT + "/img/" + default_style + "/m.svg";
+		let img_s_final = DESKLET_ROOT + "/img/" + default_style + "/s.svg";
+
+		// override paths by default designs
+		if (this.style != "custom-images") {
+			img_bg_final = DESKLET_ROOT + "/img/" + this.style + "/bg.svg";
+			img_h_final = DESKLET_ROOT + "/img/" + this.style + "/h.svg";
+			img_m_final = DESKLET_ROOT + "/img/" + this.style + "/m.svg";
+			img_s_final = DESKLET_ROOT + "/img/" + this.style + "/s.svg";
+		}
 
 		// override defaults if images are set
 		if (this.desklet_size < 10)
 			this.desklet_size = 10;
-		if (this.img_bg != "")
+		if (this.style == "custom-images" && this.img_bg != "")
 			img_bg_final = this.img_bg.replace("file://", "");
-		if (this.img_s != "")
+		if (this.style == "custom-images" && this.img_s != "")
 			img_s_final = this.img_s.replace("file://", "");
-		if (this.img_m != "")
+		if (this.style == "custom-images" && this.img_m != "")
 			img_m_final = this.img_m.replace("file://", "");
-		if (this.img_h != "")
+		if (this.style == "custom-images" && this.img_h != "")
 			img_h_final = this.img_h.replace("file://", ""); 
 
 		// set sizes
