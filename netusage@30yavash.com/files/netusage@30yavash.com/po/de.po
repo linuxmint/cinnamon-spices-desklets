@@ -1,0 +1,51 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-01 15:49+0200\n"
+"PO-Revision-Date: 2017-05-01 15:55+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: de\n"
+
+#: desklet.js:104
+msgid ""
+"Please make sure vnstat and vnstati are installed and that the vnstat daemon "
+"is running!"
+msgstr ""
+"Bitte stellen Sie sicher, dass »vnstat« und »vnstati« installiert sind und "
+"dass der »vnstat«-Daemon läuft!"
+
+#: desklet.js:105
+msgid ""
+"In Linux Mint, you can simply run 'apt install vnstati' and that will take "
+"care of everything."
+msgstr ""
+"In Linux Mint können Sie einfach »apt install vnstati« ausführen. Dies wird "
+"alles Nötige installieren."
+
+#: desklet.js:106
+msgid ""
+"In other distributions it might depend on the way things are packaged but "
+"its likely to be similar."
+msgstr ""
+"In anderen Distributionen kann es davon abhängen, wie »vnstat« und »vnstati« "
+"verpackt sind, aber es wird wahrscheinlich ähnlich sein."
+
+#. netusage@30yavash.com->metadata.json->name
+msgid "Network usage monitor"
+msgstr "Netzwerknutzungsmonitor"
+
+#. netusage@30yavash.com->metadata.json->description
+msgid "Network usage monitor using vnstat"
+msgstr "Netzwerknutzung mit »vnstat« überwachen"
