@@ -24,7 +24,19 @@ const uuid = "devTools@scollins";
 Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
 
 function _(str) {
-  return Gettext.dgettext(uuid, str);
+    let customTranslation = Gettext.dgettext(uuid, str);
+    if(customTranslation != str) {
+        return customTranslation;
+    }
+    return Gettext.gettext(str);
+}
+
+function spices_(str, uuid) {
+    let spiceTranslation = Gettext.dgettext(uuid, str);
+    if(spiceTranslation != str) {
+        return spiceTranslation;
+    }
+    return Gettext.gettext(str);
 }
 
 function ExtensionItem(meta, type) {
@@ -65,17 +77,18 @@ ExtensionItem.prototype = {
             iconBin.add_actor(icon);
             
             /*info*/
+            let typenameTranslationDummy = _("Applet") + _("Desklet") + _("Extension") + _("Search providers");
             let infoBin = new St.Bin({ x_align: St.Align.START, x_expand: true, x_fill: true });
             this.actor.add(infoBin, { expand: true });
             let infoBox = new St.BoxLayout({ vertical: true });
             infoBin.set_child(infoBox);
-            infoBox.add_actor(new St.Label({ text: type.name, style_class: "devtools-extensions-title" }));
+            infoBox.add_actor(new St.Label({ text: _(type.name), style_class: "devtools-extensions-title" }));
             
             let table = new St.Table({ homogeneous: false, clip_to_allocation: true });
             infoBox.add(table, { y_align: St.Align.MIDDLE, y_expand: false });
             
             //name
-            let nameString = meta.name;
+            let nameString = spices_(meta.name, this.uuid);
             if ( meta.version ) nameString += " " + meta.version;
             table.add(new St.Label({ text: _("Name") + ":   " }), { row: 0, col: 0, col_span: 1,  x_expand: false, x_align: St.Align.START });
             let name = new St.Label({ text: nameString + "        (" + this.uuid + ")", style: "color: blue;" });
@@ -85,7 +98,7 @@ ExtensionItem.prototype = {
             table.add(new St.Label({ text: _("Description") + ":   " }), { row: 1, col: 0, col_span: 1, x_expand: false, x_align: St.Align.START });
             let description = new St.Label({ text: "" });
             table.add(description, { row: 1, col: 1, col_span: 1, y_expand: true, x_expand: false, x_align: St.Align.START });
-            description.set_text(meta.description);
+            description.set_text(spices_(meta.description, this.uuid));
             
             //path
             table.add(new St.Label({ text: _("Path") + ":   " }), { row: 2, col: 0, col_span: 1, x_expand: false, x_align: St.Align.START });
@@ -265,7 +278,8 @@ ExtensionInterface.prototype = {
         this.checkBoxes = {};
         for ( let key in Extension.Type ) {
             let type = Extension.Type[key];
-            let checkbox = new CheckBox.CheckBox(_("Show") + " "+type.name+"s", { style_class: "devtools-checkBox" });
+            let typeName = type.name+"s";
+            let checkbox = new CheckBox.CheckBox(_("Show %s").format(_(typeName)), { style_class: "devtools-checkBox" });
             this.checkBoxes[type.name] = checkbox;
             bottomBox.add_actor(checkbox.actor);
             checkbox.actor.checked = controller.settings.getValue("show"+type.name);

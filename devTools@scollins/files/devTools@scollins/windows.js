@@ -20,7 +20,7 @@ function _(str) {
 }
 
 function getWorkspaceForWindow(window) {
-    if ( window.is_on_all_workspaces() ) return [null,"all",null];
+    if ( window.is_on_all_workspaces() ) return [null,_("all"),null];
     
     for ( let id = 0; id < global.screen.n_workspaces; id++ ) {
         let name = Main.getWorkspaceName(id);
@@ -122,7 +122,7 @@ WindowItem.prototype = {
     
     switchTo: function() {
         if ( !this.workspace ) return;
-        if ( this.workspace != "all" ) this.workspace.activate(global.get_current_time());
+        if ( this.workspace != _("all") ) this.workspace.activate(global.get_current_time());
         this.window.unminimize(global.get_current_time());
         this.window.activate(global.get_current_time());
     },
