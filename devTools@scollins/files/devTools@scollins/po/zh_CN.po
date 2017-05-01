@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-26 10:57+0800\n"
-"PO-Revision-Date: 2017-04-26 10:57+0800\n"
+"POT-Creation-Date: 2017-05-01 19:24+0800\n"
+"PO-Revision-Date: 2017-05-01 19:25+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -87,7 +87,7 @@ msgstr "启动沙盒"
 msgid "Run command line"
 msgstr "运行命令行"
 
-#: desklet.js:451 extensions.js:149 extensions.js:167 inspect.js:344
+#: desklet.js:451 extensions.js:162 extensions.js:180 inspect.js:344
 #: inspect.js:530 windows.js:88
 msgid "Inspect"
 msgstr "检查"
@@ -148,58 +148,74 @@ msgstr "跟踪"
 msgid "Copy"
 msgstr "复制"
 
-#: extensions.js:44
+#: extensions.js:56
 msgid "Infinite"
 msgstr "无限"
 
-#: extensions.js:80 inspect.js:478
+#: extensions.js:80
+msgid "Applet"
+msgstr "小程序"
+
+#: extensions.js:80
+msgid "Desklet"
+msgstr "桌面小工具"
+
+#: extensions.js:80
+msgid "Extension"
+msgstr "扩展"
+
+#: extensions.js:80
+msgid "Search providers"
+msgstr "搜索提供者"
+
+#: extensions.js:93 inspect.js:478
 msgid "Name"
 msgstr "名称"
 
-#: extensions.js:85
+#: extensions.js:98
 msgid "Description"
 msgstr "描述"
 
-#: extensions.js:91
+#: extensions.js:104
 msgid "Path"
 msgstr "路径"
 
-#: extensions.js:96 terminal.js:53
+#: extensions.js:109 terminal.js:53
 msgid "Status"
 msgstr "状态"
 
-#: extensions.js:117
+#: extensions.js:130
 msgid "Reload"
 msgstr "刷新"
 
-#: extensions.js:122 extensions.js:154
+#: extensions.js:135 extensions.js:167
 msgid "Remove"
 msgstr "移除"
 
-#: extensions.js:128
+#: extensions.js:141
 msgid "Instances"
 msgstr "实例"
 
-#: extensions.js:128
+#: extensions.js:141
 msgid "of"
 msgstr "/"
 
-#: extensions.js:144 extensions.js:162
+#: extensions.js:157 extensions.js:175
 msgid "Highlight"
 msgstr "高亮"
 
-#: extensions.js:175
+#: extensions.js:188
 msgid "Settings"
 msgstr "设置"
 
-#: extensions.js:249
+#: extensions.js:262
 msgid "Extensions"
 msgstr "扩展"
 
-#. devTools@scollins->settings-schema.json->collapsedStartState->options
-#: extensions.js:268
-msgid "Show"
-msgstr "显示"
+#: extensions.js:282
+#, c-format
+msgid "Show %s"
+msgstr "显示%s"
 
 #: inspect.js:119
 msgid "(Press Pause or Control to disable event pass through)"
@@ -324,7 +340,7 @@ msgid "Style"
 msgstr "样式"
 
 #: sandbox.js:174
-msgid "Load currnet stylesheet"
+msgid "Load current stylesheet"
 msgstr "载入当前样式表"
 
 #: sandbox.js:198
@@ -359,6 +375,10 @@ msgstr "已停止"
 msgid "Run"
 msgstr "运行"
 
+#: windows.js:23 windows.js:125
+msgid "all"
+msgstr "全部"
+
 #: windows.js:94
 msgid "Switch to"
 msgstr "切换到"
@@ -370,6 +390,10 @@ msgstr "关闭"
 #: windows.js:143
 msgid "Windows"
 msgstr "窗口"
+
+#. devTools@scollins->metadata.json->name
+msgid "Developer's Tools"
+msgstr "开发者工具"
 
 #. devTools@scollins->metadata.json->contributors
 msgid "Stephen Collins - Author"
@@ -384,10 +408,6 @@ msgstr ""
 "这个桌面小工具提供了帮助排除故障、查看和控制某些Cinnamon组件以及状态信息的"
 "工具，甚至可以测试新代码而无需重启Cinnamon。"
 
-#. devTools@scollins->metadata.json->name
-msgid "Developer's Tools"
-msgstr "开发者工具"
-
 #. devTools@scollins->metadata.json->description
 msgid "A desklet for troubleshooting and developing in the Cinnamon UI"
 msgstr "用于在Cinnamon用户界面中排除故障和开发的桌面小工具"
@@ -399,6 +419,10 @@ msgstr "启动时"
 #. devTools@scollins->settings-schema.json->collapsedStartState->options
 msgid "Remember Previous State"
 msgstr "记住以前的状态"
+
+#. devTools@scollins->settings-schema.json->collapsedStartState->options
+msgid "Show"
+msgstr "显示"
 
 #. devTools@scollins->settings-schema.json->collapsed->description
 msgid "Collapsed"
@@ -415,3 +439,6 @@ msgstr "在置顶模式中将桌面小工具放在屏幕中间"
 #. devTools@scollins->settings-schema.json->raiseKey->description
 msgid "Raise to top shorcut key"
 msgstr "置顶快捷键"
+
+#~ msgid "Load currnet stylesheet"
+#~ msgstr "载入当前样式表"
