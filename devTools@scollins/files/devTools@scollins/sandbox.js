@@ -171,7 +171,7 @@ SandboxInterface.prototype = {
             this.cssTab.buttonBox.add_actor(loadCurrentButton);
             loadCurrentButton.add_actor(new St.Icon({ icon_name: "document-open", icon_size: 24, icon_type: St.IconType.FULLCOLOR }));
             loadCurrentButton.connect("clicked", Lang.bind(this, this.loadCurentStylesheet));
-            new Tooltips.Tooltip(loadCurrentButton, _("Load currnet stylesheet"));
+            new Tooltips.Tooltip(loadCurrentButton, _("Load current stylesheet"));
             
             this.tabManager.selectIndex(0);
             
