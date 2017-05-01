@@ -1,6 +1,6 @@
 # LeMonde.fr Cinnamon Desklet
 
-![Screenshot](/capture.png)
+![Screenshot](./screenshot.png)
 
 ## This repository contains the content of "lemondenewspaper@fthuin".
 You can download it and move it in
