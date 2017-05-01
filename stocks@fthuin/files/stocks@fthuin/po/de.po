@@ -1,0 +1,56 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-01 13:29+0200\n"
+"PO-Revision-Date: 2017-05-01 13:36+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: de\n"
+
+#: desklet.js:217
+msgid "Updated at"
+msgstr "Aktualisiert am"
+
+#. stocks@fthuin->metadata.json->name
+msgid "Stocks Desklet"
+msgstr "Börse-Desklet"
+
+#. stocks@fthuin->metadata.json->description
+msgid "A desklet that displays stocks from Yahoo Finance"
+msgstr "Ein Desklet, das die Börse von Yahoo Finanzen anzeigt"
+
+#. stocks@fthuin->settings-schema.json->delay->description
+msgid "Delay:"
+msgstr "Verzögerung:"
+
+#. stocks@fthuin->settings-schema.json->delay->units
+msgid "minutes"
+msgstr "Minuten"
+
+#. stocks@fthuin->settings-schema.json->width->description
+msgid "Width : "
+msgstr "Breite :"
+
+#. stocks@fthuin->settings-schema.json->width->units
+#. stocks@fthuin->settings-schema.json->height->units
+msgid "pixels"
+msgstr "Pixel"
+
+#. stocks@fthuin->settings-schema.json->head->description
+msgid "Desklet Settings"
+msgstr "Desklet-Einstellungen"
+
+#. stocks@fthuin->settings-schema.json->height->description
+msgid "Height :"
+msgstr "Höhe :"
