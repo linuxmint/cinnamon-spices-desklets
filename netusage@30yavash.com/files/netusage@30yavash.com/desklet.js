@@ -7,63 +7,63 @@
 // -Siavash Salemi
 // 30yavash [at] gmail [dot] com
 //
-const Gio = imports.gi.Gio;
-const St = imports.gi.St;
 const Desklet = imports.ui.desklet;
+const Gio = imports.gi.Gio;
 const Lang = imports.lang;
 const Mainloop = imports.mainloop;
-const GLib = imports.gi.GLib;
-const PopupMenu = imports.ui.popupMenu;
-const Util = imports.misc.util;
-
 const Clutter = imports.gi.Clutter;
+const St = imports.gi.St;
+const Util = imports.misc.util;
+const PopupMenu = imports.ui.popupMenu;
+const GLib = imports.gi.GLib;
+const NMClient = imports.gi.NMClient;
+
+// l10n/translation
+const Gettext = imports.gettext;
+let UUID;
+
+function _(str) {
+    return Gettext.dgettext(UUID, str);
+};
+
 
 function MyDesklet(metadata){
     this._init(metadata);
 }
 
 MyDesklet.prototype = {
-	__proto__: Desklet.Desklet.prototype,
+    __proto__: Desklet.Desklet.prototype,
 
-	_init: function(metadata){
-		Desklet.Desklet.prototype._init.call(this, metadata);
-		
-		this.metadata = metadata
-		this.labelSize = this.metadata["labelSize"];
-		this.netDevice = this.metadata["netDevice"];
-			
-		this._deskletContainer = new St.BoxLayout({vertical:true, style_class: 'desklet-container'});
-		
-		this.labelWidget =  new St.BoxLayout({vertical:false, style_class: 'label-container'});
+    _init: function(metadata){
+        Desklet.Desklet.prototype._init.call(this, metadata);
 
-		this.labelContent = new St.Label();
-		
-		this.labelWidget.add(this.labelContent);
-		this.labelContent.style="font-size: " + this.labelSize;
+        this.metadata = metadata
+        this.netDevice = this.metadata["netDevice"];
 
+        // l10n/translation
+        UUID = metadata.uuid;
+        Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
-		this.imageWidget = new St.Bin({x_align: St.Align.MIDDLE}); 
+        this._deskletContainer = new St.BoxLayout({vertical:true, style_class: 'desklet-container'});
 
+        this.imageWidget = new St.Bin({x_align: St.Align.MIDDLE});
 
+        this._client = NMClient.Client.new();
+        this._deskletContainer.add_actor(this.imageWidget);
+        this.setContent(this._deskletContainer);
+        this._updateWidget();
+    },
 
-		this._deskletContainer.add(this.labelWidget, {x_fill: false, x_align: St.Align.MIDDLE});
-		this._deskletContainer.add_actor(this.imageWidget);
-		this.setContent(this._deskletContainer);
-		this.setHeader(_("Network Traffic"));
-		this._updateWidget();
-	},
+    on_desklet_removed: function() {
+        Mainloop.source_remove(this.timeout);
+    },
 
-	on_desklet_removed: function() {
-		Mainloop.source_remove(this.timeout);
-	},
-
-	_updateWidget: function(){
-		//this.labelContent.set_text("Label");
+    _updateWidget: function(){
         this._updateDevice();
-		this._updateGraph();
-		this.timeout = Mainloop.timeout_add_seconds(1, Lang.bind(this, this._updateWidget));
-		
-	},
+        this._updateGraph();
+        this.timeout = Mainloop.timeout_add_seconds(1, Lang.bind(this, this._updateWidget));
+
+    },
     _updateDevice: function() {
         try {
             global.logError("device: " + this.netDevice);
@@ -78,9 +78,9 @@ MyDesklet.prototype = {
                             this.netDevice = d.get_iface();
                             break;
                         }
-                    }                        
+                    }
                 }
-            }                                                  
+            }
         }
         catch (e) {
             //this.netDevice = "eth0";
@@ -89,25 +89,30 @@ MyDesklet.prototype = {
     },
     _updateGraph: function() {
         try {
-			//this._device = "wlan0";
+            //this._device = "wlan0";
             GLib.spawn_command_line_sync('vnstati -s -ne -i ' + this.netDevice + ' -o /tmp/vnstatlmapplet.png');
             let l = new Clutter.BinLayout();
             let b = new Clutter.Box();
             let c = new Clutter.Texture({keep_aspect_ratio: true, filter_quality: 2, filename: "/tmp/vnstatlmapplet.png"});
-            b.set_layout_manager(l);            
+            b.set_layout_manager(l);
             b.add_actor(c);
             this.imageWidget.set_child(b);
 
         }
         catch (e) {
-            this.textWidget.set_text(" Please make sure vnstat and vnstati are installed and that the vnstat daemon is running! " + e + " ");
+            this.warnings = new St.BoxLayout({vertical: true});
+            this.missingDependencies = new St.Label({text: _("Please make sure vnstat and vnstati are installed and that the vnstat daemon is running!") 
+                                  + "\n" + _("In Linux Mint, you can simply run 'apt install vnstati' and that will take care of everything.") 
+                                  + "\n" + _("In other distributions it might depend on the way things are packaged but its likely to be similar.")});
+            this.warnings.add(this.missingDependencies);
+            this.setContent(this.warnings);
             global.logError(e);
         }
-                
+
     }
 }
 
 function main(metadata, desklet_id){
-	let desklet = new MyDesklet(metadata, desklet_id);
-	return desklet;
+    let desklet = new MyDesklet(metadata, desklet_id);
+    return desklet;
 }
