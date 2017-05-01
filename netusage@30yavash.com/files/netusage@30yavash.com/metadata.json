@@ -2,8 +2,6 @@
     "uuid": "netusage@30yavash.com", 
     "description": "Network usage monitor using vnstat", 
     "name": "Network usage monitor", 
-    "labelSize": "40pt", 
 	"netDevice": "wlan0", 
-    "prevent-decorations": false, 
-    "last-edited": "1371648230"
+    "prevent-decorations": false
 }
