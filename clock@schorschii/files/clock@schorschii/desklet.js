@@ -111,11 +111,11 @@ MyDesklet.prototype = {
 		this.minute_hand.set_rotation_angle(Clutter.RotateAxis.Z_AXIS, minutes_deg);
 		this.hour_hand.set_rotation_angle(Clutter.RotateAxis.Z_AXIS, hours_deg);
 
-		// refresh again in 100 milliseconds or 1 second
-		if (this.smooth_seconds_hand == true)
-			this.timeout = Mainloop.timeout_add(100, Lang.bind(this, this.refresh));
-		else
-			this.timeout = Mainloop.timeout_add(1000, Lang.bind(this, this.refresh));
+		// refresh again in 100 milliseconds, or when the second next changes
+		let timeoutval = 100;
+		if (this.smooth_seconds_hand == false)
+			timeoutval = Math.ceil(1000 - mseconds/1000);
+		this.timeout = Mainloop.timeout_add(timeoutval, Lang.bind(this, this.refresh));
 	},
 
 	refreshSize: function() {
