@@ -11,7 +11,7 @@ const Gio = imports.gi.Gio;
 const St = imports.gi.St;
 const Desklet = imports.ui.desklet;
 const Settings = imports.ui.settings;
-
+const uuid = "WeatherUnderground@nightflame";
 const Lang = imports.lang;
 const Mainloop = imports.mainloop;
 const Clutter = imports.gi.Clutter;
@@ -19,11 +19,17 @@ const GLib = imports.gi.GLib;
 const Tweener = imports.ui.tweener;
 const Util = imports.misc.util;
 const Dialog = imports.ui.modalDialog;
-
+const Gettext = imports.gettext;
 const Tooltips = imports.ui.tooltips;
 const PopupMenu = imports.ui.popupMenu;
 const Cinnamon = imports.gi.Cinnamon;
 const Soup = imports.gi.Soup;
+
+Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "./local/share/locale");
+
+function _(str) {
+    return Gettext.dgettext(uuid, str)
+}
 
 let session = new Soup.SessionAsync();
 Soup.Session.prototype.add_feature.call(session, new Soup.ProxyResolverDefault());
