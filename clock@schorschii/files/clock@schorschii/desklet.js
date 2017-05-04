@@ -93,15 +93,13 @@ MyDesklet.prototype = {
 		let mseconds = this._displayTime.get_microsecond();
 
 		// calc pointer rotation angles
-		let hours_deg = 0;
+		let hours_deg = ((hours+(minutes/60))*360/12);
 		let minutes_deg = 0;
 		let seconds_deg = 0;
 		if (this.smooth_seconds_hand == true) {
-			hours_deg = ((hours+(minutes/60))*360/12);
 			minutes_deg = ((minutes+(seconds/60))*360/60);
 			seconds_deg = ((seconds+(mseconds/1000000))*360/60);
 		} else {
-			hours_deg = (hours*360/12);
 			minutes_deg = (minutes*360/60);
 			seconds_deg = (seconds*360/60);
 		}
