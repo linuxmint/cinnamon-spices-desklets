@@ -50,6 +50,7 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "desklet-size", "desklet_size", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "show-seconds-hand", "show_seconds_hand", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "smooth-seconds-hand", "smooth_seconds_hand", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "smooth-minutes-hand", "smooth_minutes_hand", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hide_decorations", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "use-custom-label", "use_custom_label", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "custom-label", "custom_label", this.on_setting_changed);
@@ -97,11 +98,14 @@ MyDesklet.prototype = {
 		let minutes_deg = 0;
 		let seconds_deg = 0;
 		if (this.smooth_seconds_hand == true) {
-			minutes_deg = ((minutes+(seconds/60))*360/60);
 			seconds_deg = ((seconds+(mseconds/1000000))*360/60);
 		} else {
-			minutes_deg = (minutes*360/60);
 			seconds_deg = (seconds*360/60);
+		}
+		if (this.smooth_minutes_hand == true) {
+			minutes_deg = ((minutes+(seconds/60))*360/60);
+		} else {
+			minutes_deg = (minutes*360/60);
 		}
 
 		// rotate pointer graphics
