@@ -1,46 +1,52 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# ANALOG CHRONOMETER TRANSLATIONS.
+# Copyright (C) 2017 FULL NAME
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-26 17:40+0800\n"
+"Project-Id-Version: Analog Chronometer VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2017-05-04 18:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 
-#: desklet.js:178
+#: desklet.js:190
 msgid "Clock"
-msgstr ""
-
-#. clock@schorschii->metadata.json->description
-msgid ""
-"A scaleable analog clock desklet with smooth hands and free choice of "
-"images."
-msgstr ""
-
-#. clock@schorschii->metadata.json->name
-msgid "Analog Chronometer"
 msgstr ""
 
 #. clock@schorschii->settings-schema.json->head3->description
 msgid "Timezone"
 msgstr ""
 
-#. clock@schorschii->settings-schema.json->hide-decorations->description
-msgid "Hide decorations"
+#. clock@schorschii->settings-schema.json->style->description
+msgid "Clock style"
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->style->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Dark"
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Light"
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Custom"
 msgstr ""
 
 #. clock@schorschii->settings-schema.json->head4->description
-msgid "Custom images"
+msgid "Custom images (available if clock style is set to 'custom')"
 msgstr ""
 
 #. clock@schorschii->settings-schema.json->desklet-size->description
@@ -64,25 +70,31 @@ msgid "Visual"
 msgstr ""
 
 #. clock@schorschii->settings-schema.json->smooth-seconds-hand->description
-msgid "Smooth hands"
+msgid "Smooth second hand"
 msgstr ""
 
 #. clock@schorschii->settings-schema.json->smooth-seconds-hand->tooltip
 msgid ""
-"Use smooth animation for hour, minute and seconds hand instead of refreshing"
-" it only every second."
+"Use smooth animation for seconds hand instead of refreshing it only every "
+"second."
 msgstr ""
 
 #. clock@schorschii->settings-schema.json->head0->description
 msgid "Settings for clock@schorschii"
 msgstr ""
 
-#. clock@schorschii->settings-schema.json->img-bg->description
-msgid "Background"
+#. clock@schorschii->settings-schema.json->img-h->description
+msgid "Hour hand"
 msgstr ""
 
-#. clock@schorschii->settings-schema.json->img-bg->tooltip
-msgid "Choose your own background image."
+#. clock@schorschii->settings-schema.json->img-h->tooltip
+msgid ""
+"Choose your own image for the hour hand. Should be as big as the background "
+"image."
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
 msgstr ""
 
 #. clock@schorschii->settings-schema.json->img-m->description
@@ -93,6 +105,14 @@ msgstr ""
 msgid ""
 "Choose your own image for the minute hand. Should be as big as the "
 "background image."
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->img-bg->description
+msgid "Background"
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->img-bg->tooltip
+msgid "Choose your own background image."
 msgstr ""
 
 #. clock@schorschii->settings-schema.json->img-s->description
@@ -148,30 +168,21 @@ msgid ""
 "unavailable unless the checkbox above is enabled."
 msgstr ""
 
-#. clock@schorschii->settings-schema.json->img-h->description
-msgid "Hour hand"
+#. clock@schorschii->settings-schema.json->smooth-minutes-hand->description
+msgid "Smooth minute hand"
 msgstr ""
 
-#. clock@schorschii->settings-schema.json->img-h->tooltip
+#. clock@schorschii->settings-schema.json->smooth-minutes-hand->tooltip
 msgid ""
-"Choose your own image for the hour hand. Should be as big as the background "
-"image."
+"Use smooth animation for minute hand instead of moving it only once per "
+"minute."
 msgstr ""
 
-msgid "Clock style"
+#. clock@schorschii->metadata.json->description
+msgid ""
+"A scaleable analog clock desklet with smooth hands and free choice of images."
 msgstr ""
 
-msgid "Custom images (available if clock style is set to 'custom')"
-msgstr ""
-
-#. Clock design - light
-msgid "Light"
-msgstr ""
-
-#. Clock design - dark
-msgid "Dark"
-msgstr ""
-
-#. Clock design - use custom images
-msgid "Custom"
+#. clock@schorschii->metadata.json->name
+msgid "Analog Chronometer"
 msgstr ""

@@ -27,8 +27,14 @@
     },
     "smooth-seconds-hand": {
         "type": "checkbox",
-        "description": "Smooth hands",
-        "tooltip": "Use smooth animation for hour, minute and seconds hand instead of refreshing it only every second.",
+        "description": "Smooth second hand",
+        "tooltip": "Use smooth animation for seconds hand instead of refreshing it only every second.",
+        "default": true
+    },
+    "smooth-minutes-hand": {
+        "type": "checkbox",
+        "description": "Smooth minute hand",
+        "tooltip": "Use smooth animation for minute hand instead of moving it only once per minute.",
         "default": true
     },
     "hide-decorations": {

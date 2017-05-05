@@ -6,44 +6,51 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-30 15:31+0200\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2017-05-04 17:55+0100\n"
 "PO-Revision-Date: 2017-04-30 15:42+0200\n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.7.1\n"
-"Last-Translator: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: de\n"
 
-#: desklet.js:178
+#: desklet.js:190
 msgid "Clock"
 msgstr "Uhr"
-
-#. clock@schorschii->metadata.json->description
-msgid ""
-"A scaleable analog clock desklet with smooth hands and free choice of images."
-msgstr ""
-"Ein skalierbares Analoguhr-Desklet mit weich laufendem Sekundenzeiger und "
-"freier Grafikauswahl."
-
-#. clock@schorschii->metadata.json->name
-msgid "Analog Chronometer"
-msgstr "Analoges Chronometer"
 
 #. clock@schorschii->settings-schema.json->head3->description
 msgid "Timezone"
 msgstr "Zeitzone"
 
-#. clock@schorschii->settings-schema.json->hide-decorations->description
-msgid "Hide decorations"
-msgstr "Dekorationen verstecken"
+#. clock@schorschii->settings-schema.json->style->description
+msgid "Clock style"
+msgstr "Uhrdesign"
+
+#. clock@schorschii->settings-schema.json->style->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Dark"
+msgstr "Dunkel"
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Light"
+msgstr "Hell"
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Custom"
+msgstr "Eigene Bilder verwenden"
 
 #. clock@schorschii->settings-schema.json->head4->description
-msgid "Custom images"
-msgstr "Benutzerdefinierte Grafiken"
+msgid "Custom images (available if clock style is set to 'custom')"
+msgstr ""
+"Eigene Grafiken (werden verwendet wenn das Design auf 'Eigene Bilder "
+"verwendet' gesetzt ist)"
 
 #. clock@schorschii->settings-schema.json->desklet-size->description
 msgid "Desklet size"
@@ -66,13 +73,15 @@ msgid "Visual"
 msgstr "Optische Einstellungen"
 
 #. clock@schorschii->settings-schema.json->smooth-seconds-hand->description
-msgid "Smooth hands"
-msgstr "Weiche Zeiger verwenden"
+#, fuzzy
+msgid "Smooth second hand"
+msgstr "Zeige Sekundenzeiger"
 
 #. clock@schorschii->settings-schema.json->smooth-seconds-hand->tooltip
+#, fuzzy
 msgid ""
-"Use smooth animation for hour, minute and seconds hand instead of refreshing "
-"it only every second."
+"Use smooth animation for seconds hand instead of refreshing it only every "
+"second."
 msgstr ""
 "Zeige weiche Zeigeranimation, anstatt nur jede Sekunde zu aktualisieren."
 
@@ -80,13 +89,21 @@ msgstr ""
 msgid "Settings for clock@schorschii"
 msgstr "Einstellungen für clock@schorschii"
 
-#. clock@schorschii->settings-schema.json->img-bg->description
-msgid "Background"
-msgstr "Hintergrund"
+#. clock@schorschii->settings-schema.json->img-h->description
+msgid "Hour hand"
+msgstr "Stundenzeiger"
 
-#. clock@schorschii->settings-schema.json->img-bg->tooltip
-msgid "Choose your own background image."
-msgstr "Wählen Sie Ihre eigenes Ziffernblatt."
+#. clock@schorschii->settings-schema.json->img-h->tooltip
+msgid ""
+"Choose your own image for the hour hand. Should be as big as the background "
+"image."
+msgstr ""
+"Wählen Sie Ihr eigenes Bild für den Stundenzeiger. Es sollte genau so groß "
+"sein, wie das Hintergrundbild."
+
+#. clock@schorschii->settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Dekorationen verstecken"
 
 #. clock@schorschii->settings-schema.json->img-m->description
 msgid "Minute hand"
@@ -99,6 +116,14 @@ msgid ""
 msgstr ""
 "Wählen Sie Ihr eigenes Bild für den Minutenzeiger. Es sollte genau so groß "
 "sein, wie das Hintergrundbild."
+
+#. clock@schorschii->settings-schema.json->img-bg->description
+msgid "Background"
+msgstr "Hintergrund"
+
+#. clock@schorschii->settings-schema.json->img-bg->tooltip
+msgid "Choose your own background image."
+msgstr "Wählen Sie Ihre eigenes Ziffernblatt."
 
 #. clock@schorschii->settings-schema.json->img-s->description
 msgid "Seconds hand"
@@ -160,32 +185,29 @@ msgstr ""
 "Legen Sie hier Ihr eigenes Desklet-Label fest, z.B. um mehrere Zeitzonen "
 "anzuzeigen. Sie müssen zuerst den Schalter darüber einschalten."
 
-#. clock@schorschii->settings-schema.json->img-h->description
-msgid "Hour hand"
-msgstr "Stundenzeiger"
+#. clock@schorschii->settings-schema.json->smooth-minutes-hand->description
+#, fuzzy
+msgid "Smooth minute hand"
+msgstr "Weiche Zeiger verwenden"
 
-#. clock@schorschii->settings-schema.json->img-h->tooltip
+#. clock@schorschii->settings-schema.json->smooth-minutes-hand->tooltip
+#, fuzzy
 msgid ""
-"Choose your own image for the hour hand. Should be as big as the background "
-"image."
+"Use smooth animation for minute hand instead of moving it only once per "
+"minute."
 msgstr ""
-"Wählen Sie Ihr eigenes Bild für den Stundenzeiger. Es sollte genau so groß "
-"sein, wie das Hintergrundbild."
+"Zeige weiche Zeigeranimation, anstatt nur jede Sekunde zu aktualisieren."
 
-msgid "Clock style"
-msgstr "Uhrdesign"
+#. clock@schorschii->metadata.json->description
+msgid ""
+"A scaleable analog clock desklet with smooth hands and free choice of images."
+msgstr ""
+"Ein skalierbares Analoguhr-Desklet mit weich laufendem Sekundenzeiger und "
+"freier Grafikauswahl."
 
-msgid "Custom images (available if clock style is set to 'custom')"
-msgstr "Eigene Grafiken (werden verwendet wenn das Design auf 'Eigene Bilder verwendet' gesetzt ist)"
+#. clock@schorschii->metadata.json->name
+msgid "Analog Chronometer"
+msgstr "Analoges Chronometer"
 
-#. Clock design - light
-msgid "Light"
-msgstr "Hell"
-
-#. Clock design - dark
-msgid "Dark"
-msgstr "Dunkel"
-
-#. Clock design - use custom images
-msgid "Custom"
-msgstr "Eigene Bilder verwenden"
+#~ msgid "Custom images"
+#~ msgstr "Benutzerdefinierte Grafiken"
