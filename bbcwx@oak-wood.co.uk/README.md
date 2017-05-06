@@ -1,11 +1,16 @@
-A desklet for the Cinnamon desktop to display weather from various
-web sources.
+The Weather Desklet displays current and forecast weather on your
+Cinnamon desktop. It has plenty of options for configuring how it
+looks and comes with selection of great weather icons, or you can use
+your own. For those who like to keep an eye on the weather in several
+locations it supports multiple instances.
 
-See help.html for usage instructions, or visit
+At present the Weather Desklet can work with data from the BBC,
+Open Weather Map, Weather Underground, World Weather Online,
+forecast.io, meteoblue.com and weather.com (The Weather Channel).
 
-http://www.oak-wood.co.uk/oss/other/bbcwx
+The Weather Desklet includes translations into a growing number of
+languages.
 
-This desklet is a fork of Loganj's AccuWeather Desklet,
-http://cinnamon-spices.linuxmint.com/desklets/view/10. It makes use of
-the marknote xml library: https://code.google.com/p/marknote/. See 
-help.html for more credits.
+For detailed usage instruction visit the
+[Weather Desklet's website](http://www.oak-wood.co.uk/oss/other/bbcwx),
+or just install the desklet, right click on it and select 'Help'.
