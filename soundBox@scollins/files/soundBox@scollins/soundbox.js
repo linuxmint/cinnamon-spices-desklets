@@ -7,7 +7,7 @@ const Clutter = imports.gi.Clutter;
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
 const Gtk = imports.gi.Gtk;
-const Gvc = imports.gi.Gvc;
+const Cvc = imports.gi.Cvc;
 const St = imports.gi.St;
 
 const Interfaces = imports.misc.interfaces;
@@ -73,7 +73,7 @@ function unregisterSystrayIcons(uuid) {
 
 /* Abstract Objects */
 function ActionManager() {
-    
+
 }
 
 ActionManager.prototype = {
@@ -100,37 +100,37 @@ TimeTracker.prototype = {
             this.fetching = true;
             this.fetchPosition();
         }));
-        
+
         Mainloop.timeout_add(1000, Lang.bind(this, this.fetchPosition));
     },
-    
+
     destroy: function() {
         this.server.disconnectSignal(this.serverSeekedId);
     },
-    
+
     //sets the total song length
     setTotal: function(total) {
         this.totalCount = total;
     },
-    
+
     //gets the total song length
     getTotal: function() {
         return Math.floor(this.totalCount);
     },
-    
+
     //sets the current elapsed time (in seconds)
     setElapsed: function(current) {
         this.startCount = current;
         if ( this.state == "playing" ) this.startTime = new Date(); //this is necessary if the timer is counting
     },
-    
+
     //returns the current elapsed time in seconds
     getElapsed: function() {
         if ( this.fetching ) return -1;
         else if ( this.startTime ) return Math.floor((new Date() - this.startTime) / 1000) + this.startCount;
         else return this.startCount;
     },
-    
+
     //reads and handles the requested postion
     readPosition: function(value) {
         if ( value == null && this.state != "stopped" ) this.updateSeekable(false);
@@ -139,23 +139,23 @@ TimeTracker.prototype = {
         }
         this.fetching = false;
     },
-    
+
     //requests the time position
     fetchPosition: function() {
         this.prop.GetRemote(MEDIA_PLAYER_2_PLAYER_NAME, 'Position', Lang.bind(this, function(position, error) {
             if ( !error ) {
                 this.readPosition(position[0].get_int64());
             }
-        }));        
+        }));
     },
-    
+
     start: function() {
         if ( this.state == "playing" ) return;
         this.startTime = new Date();
         this.state = "playing";
         this.emit("state-changed", this.state);
     },
-    
+
     pause: function() {
         if ( !this.startTime ) return;
         this.startCount += (new Date() - this.startTime) / 1000;
@@ -163,14 +163,14 @@ TimeTracker.prototype = {
         this.state = "paused";
         this.emit("state-changed", this.state);
     },
-    
+
     stop: function() {
         this.startCount = 0;
         this.startTime = null;
         this.state = "stopped";
         this.emit("state-changed", this.state);
     },
-    
+
     seek: function(seconds) {
         this.server.SetPositionRemote(this.trackId, seconds * 1000000);
     }
@@ -187,8 +187,8 @@ GVCHandler.prototype = {
         this.parent = parent;
         this.apps = [];
         this.devices = [];
-        
-        this.volumeControl = new Gvc.MixerControl({ name: "Cinnamon Volume Control" });
+
+        this.volumeControl = new Cvc.MixerControl({ name: "Cinnamon Volume Control" });
         this.volumeControl.connect("state-changed", Lang.bind(this, this.controlStateChanged));
         this.volumeControl.connect("card-added", Lang.bind(this, this.controlStateChanged));
         this.volumeControl.connect("card-removed", Lang.bind(this, this.controlStateChanged));
@@ -202,22 +202,22 @@ GVCHandler.prototype = {
         this.volumeControl.connect("active-input-update", Lang.bind(this, this.deviceUpdated, "input"));
         this.volumeControl.connect("stream-added", Lang.bind(this, this.reloadApps));
         this.volumeControl.connect("stream-removed", Lang.bind(this, this.reloadApps));
-        
+
         normVolume = this.volumeControl.get_vol_max_norm();
         maxVolume = this.volumeControl.get_vol_max_amplified();
         this.volumeControl.open();
     },
-    
+
     controlStateChanged: function() {
-        if ( this.volumeControl.get_state() == Gvc.MixerControlState.READY ) {
+        if ( this.volumeControl.get_state() == Cvc.MixerControlState.READY ) {
             this.readOutput();
             this.readInput();
         }
     },
-    
+
     deviceAdded: function(c, id, type) {
         let device = this.volumeControl["lookup_type_id".replace("type", type)](id);
-        
+
         let deviceItem = new PopupMenu.PopupMenuItem(device.get_description());
         deviceItem.connect("activate", Lang.bind(this, function() {
             global.log("Default output set as " + device.get_description());
@@ -226,10 +226,10 @@ GVCHandler.prototype = {
         deviceItem.addActor(new St.Label({ text: device.get_origin() }));
         this[type+"Devices"].addMenuItem(deviceItem);
         this.devices.push({ id: id, type: type, menuItem: deviceItem });
-        
+
         this.checkMenuHideState(type);
     },
-    
+
     deviceRemoved: function(c, id, type) {
         for ( let i in this.devices ) {
             let device = this.devices[i];
@@ -239,36 +239,36 @@ GVCHandler.prototype = {
                 break;
             }
         }
-        
+
         this.checkMenuHideState(type);
     },
-    
+
     deviceUpdated: function(c, id, type) {
         for ( let device of this.devices ) device.menuItem.setShowDot(device.id == id && device.type == type);
     },
-    
+
     checkMenuHideState: function(type) {
         if ( this[type+"Devices"].numMenuItems == 0 ) this.parent[type+"Section"].actor.hide();
         else this.parent[type+"Section"].actor.show();
     },
-    
+
     readOutput: function() {
         this.output = this.volumeControl.get_default_sink();
         this.parent.outputVolumeDisplay.setControl(this.output);
     },
-    
+
     readInput: function() {
         this.input = this.volumeControl.get_default_source();
         if ( this.input == null ) return;
         if ( settings.showInput ) this.parent.inputVolumeDisplay.setControl(this.input);
     },
-    
+
     reloadApps: function () {
         for ( let i = 0; i < this.apps.length; i++ ) this.apps[i].destroy();
         this.parent.appBox.destroy_all_children();
         this.apps = [];
         let ids = [];
-        
+
         let streams = this.volumeControl.get_sink_inputs();
         for ( let i = 0; i < streams.length; i++ ) {
             let output = streams[i];
@@ -276,7 +276,7 @@ GVCHandler.prototype = {
             if ( id != "org.Cinnamon" && ids.indexOf(id) == -1 ) {
                 let divider = new Divider();
                 this.parent.appBox.add_actor(divider.actor);
-                
+
                 let app = new AppControl(output);
                 this.parent.appBox.add_actor(app.actor);
                 this.apps.push(app);
@@ -284,7 +284,7 @@ GVCHandler.prototype = {
             }
         }
     },
-    
+
     refresh: function() {
         this.readOutput();
         this.readInput();
@@ -300,7 +300,7 @@ function SoundboxTooltip(actor, text) {
 
 SoundboxTooltip.prototype = {
     __proto__: Tooltips.Tooltip.prototype,
-    
+
     _init: function(actor, text) {
         Tooltips.Tooltip.prototype._init.call(this, actor, text);
         this._tooltip.add_style_class_name(settings.theme+"-tooltip");
@@ -319,41 +319,41 @@ function Slider(value) {
 Slider.prototype = {
     _init: function(value) {
         try {
-            
+
             if (isNaN(value)) throw TypeError("The slider value must be a number");
             this._value = Math.max(Math.min(value, 1), 0);
-            
+
             this.actor = new St.DrawingArea({ style_class: "soundbox-slider", reactive: true, track_hover: true });
             this.actor._delegate = this;
             this.actor.connect("repaint", Lang.bind(this, this._sliderRepaint));
             this.actor.connect("button-press-event", Lang.bind(this, this._startDragging));
             this.actor.connect("scroll-event", Lang.bind(this, this._onScrollEvent));
-            
+
             this._releaseId = this._motionId = 0;
             this._dragging = false;
-            
+
         } catch(e) {
             global.logError(e);
         }
     },
-    
+
     setValue: function(value) {
         try {
             if ( this._dragging ) return;
             if ( isNaN(value) ) throw TypeError("The slider value must be a number");
-            
+
             this._value = Math.max(Math.min(value, 1), 0);
             this.actor.queue_repaint();
         } catch(e) {
             global.logError(e);
         }
     },
-    
+
     _sliderRepaint: function(area) {
         let cr = area.get_context();
         let themeNode = area.get_theme_node();
         let [width, height] = area.get_surface_size();
-        
+
         //handle properties
         let handleRadius = themeNode.get_length("-slider-handle-radius");
         let handleHeight = themeNode.get_length("-slider-handle-height");
@@ -361,19 +361,19 @@ Slider.prototype = {
         let handleColor = themeNode.get_color("-slider-handle-color");
         let handleBorderColor = themeNode.get_color("-slider-handle-border-color");
         let handleBorderWidth = themeNode.get_length("-slider-handle-border-width");
-        
+
         //inactive properties
         let sliderBorderWidth = themeNode.get_length("-slider-border-width");
         let sliderHeight = themeNode.get_length("-slider-height");
         let sliderBorderColor = themeNode.get_color("-slider-border-color");
         let sliderColor = themeNode.get_color("-slider-background-color");
-        
+
         //active properties
         let sliderActiveBorderColor = themeNode.get_color("-slider-active-border-color");
         let sliderActiveColor = themeNode.get_color("-slider-active-background-color");
         let sliderActiveBorderWidth = themeNode.get_length("-slider-active-border-width");
         let sliderActiveHeight = themeNode.get_length("-slider-active-height");
-        
+
         //general properties
         let sliderWidth, start;
         if ( handleRadius == 0 ) {
@@ -384,7 +384,7 @@ Slider.prototype = {
             sliderWidth = width - 2 * handleRadius;
             start = handleRadius;
         }
-        
+
         cr.setSourceRGBA (
             sliderActiveColor.red / 255,
             sliderActiveColor.green / 255,
@@ -399,7 +399,7 @@ Slider.prototype = {
             sliderActiveBorderColor.alpha / 255);
         cr.setLineWidth(sliderActiveBorderWidth);
         cr.stroke();
-        
+
         cr.setSourceRGBA (
             sliderColor.red / 255,
             sliderColor.green / 255,
@@ -414,10 +414,10 @@ Slider.prototype = {
             sliderBorderColor.alpha / 255);
         cr.setLineWidth(sliderBorderWidth);
         cr.stroke();
-        
+
         let handleY = height / 2;
         let handleX = handleRadius + (width - 2 * handleRadius) * this._value;
-        
+
         cr.setSourceRGBA (
             handleColor.red / 255,
             handleColor.green / 255,
@@ -434,12 +434,12 @@ Slider.prototype = {
         cr.setLineWidth(handleBorderWidth);
         cr.stroke();
     },
-    
+
     _startDragging: function(actor, event) {
         if (this._dragging) return;
-        
+
         this._dragging = true;
-        
+
         this.previousMode = global.stage_input_mode;
         global.set_stage_input_mode(Cinnamon.StageInputMode.FULLSCREEN);
         Clutter.grab_pointer(this.actor);
@@ -454,49 +454,49 @@ Slider.prototype = {
         if ( this._dragging ) {
             this.actor.disconnect(this._releaseId);
             this.actor.disconnect(this._motionId);
-            
+
             Clutter.ungrab_pointer();
             if ( this.previousMode ) {
                 global.set_stage_input_mode(this.previousMode);
                 this.previousMode = null;
             }
             this._dragging = false;
-            
+
             this.emit("drag-end", this._value);
         }
         return true;
     },
-    
+
     _onScrollEvent: function (actor, event) {
         let direction = event.get_scroll_direction();
-        
+
         if (direction == Clutter.ScrollDirection.DOWN) {
             this._value = Math.max(0, this._value - SLIDER_SCROLL_STEP);
         }
         else if (direction == Clutter.ScrollDirection.UP) {
             this._value = Math.min(1, this._value + SLIDER_SCROLL_STEP);
         }
-        
+
         this.actor.queue_repaint();
         this.emit("value-changed", this._value);
     },
-    
+
     _motionEvent: function(actor, event) {
         let absX, absY;
         [absX, absY] = event.get_coords();
         this._moveHandle(absX, absY);
         return true;
     },
-    
+
     _moveHandle: function(absX, absY) {
         let relX, relY, sliderX, sliderY;
         [sliderX, sliderY] = this.actor.get_transformed_position();
         relX = absX - sliderX;
         relY = absY - sliderY;
-        
+
         let width = this.actor.width;
         let handleRadius = this.actor.get_theme_node().get_length("-slider-handle-radius");
-        
+
         let newvalue;
         if ( relX < handleRadius ) newvalue = 0;
         else if ( relX > width - handleRadius ) newvalue = 1;
@@ -505,11 +505,11 @@ Slider.prototype = {
         this.actor.queue_repaint();
         this.emit("value-changed", this._value);
     },
-    
+
     get_value: function() {
         return this._value;
     },
-    
+
     _onKeyPressEvent: function (actor, event) {
         let key = event.get_key_symbol();
         if ( key == Clutter.KEY_Right || key == Clutter.KEY_Left ) {
@@ -534,22 +534,22 @@ SystemVolumeDisplay.prototype = {
     _init: function(title, iconPrefix) {
         this.iconPrefix = iconPrefix;
         this.volume = 0;
-        
+
         this.actor = new St.Bin({ x_align: St.Align.MIDDLE });
         let volumeBox = new St.BoxLayout({ vertical: true, style_class: "soundbox-volumeBox" });
         this.actor.add_actor(volumeBox);
-        
+
         //volume text
         let volumeTextBin = new St.Bin({ x_align: St.Align.MIDDLE });
         volumeBox.add_actor(volumeTextBin);
         let volumeTitleBox = new St.BoxLayout({ vertical: false, style_class: "soundbox-volumeTextBox" });
         volumeTextBin.add_actor(volumeTitleBox);
-        
+
         let volumeLabel = new St.Label({ text: title, style_class: "soundbox-text" });
         volumeTitleBox.add_actor(volumeLabel);
         this.volumeValueText = new St.Label({ text: Math.floor(100*this.volume) + "%", style_class: "soundbox-text" });
         volumeTitleBox.add_actor(this.volumeValueText);
-        
+
         //volume slider
         let volumeSliderBox = new St.BoxLayout({ vertical: false });
         volumeBox.add_actor(volumeSliderBox);
@@ -558,21 +558,21 @@ SystemVolumeDisplay.prototype = {
         this.volumeIcon = new St.Icon({ icon_name: this.iconPrefix+"high", icon_type: St.IconType.SYMBOLIC, style_class: "soundbox-volumeIcon" });
         volumeButton.set_child(this.volumeIcon);
         this.muteTooltip = new SoundboxTooltip(volumeButton);
-        
+
         let volumeSliderBin = new St.Bin();
         volumeSliderBox.add_actor(volumeSliderBin);
         this.volumeSlider = new Slider(this.volume);
         volumeSliderBin.add_actor(this.volumeSlider.actor);
-        
+
         volumeButton.connect("clicked", Lang.bind(this, this.toggleMute));
         this.volumeSlider.connect("value-changed", Lang.bind(this, this.onSliderChanged));
         settings.settings.connect("changed::exceedNormVolume", Lang.bind(this, function(provider, key, oldVal, newVal) {
             settings[key] = newVal;
             this.updateVolume();
         }));
-        
+
     },
-    
+
     setControl: function(control) {
         if ( this.control ) {
             this.control.disconnect(this.volumeEventId);
@@ -580,9 +580,9 @@ SystemVolumeDisplay.prototype = {
             this.volumeEventId = 0;
             this.mutedEventId = 0;
         }
-        
+
         this.control = control;
-        
+
         if ( control ) {
             this.volumeEventId = this.control.connect("notify::volume", Lang.bind(this, this.updateVolume));
             this.mutedEventId = this.control.connect("notify::is-muted", Lang.bind(this, this.updateMute));
@@ -595,16 +595,16 @@ SystemVolumeDisplay.prototype = {
             this.volumeIcon.icon_name = this.iconPrefix + "muted";
         }
     },
-    
+
     updateVolume: function(object, param_spec) {
         if ( !this.control.is_muted ) {
             this.volume = this.control.volume / normVolume;
-            
+
             this.volumeValueText.text = Math.round(100 * this.volume) + "%";
             this.volumeIcon.icon_name = null;
             if ( settings.exceedNormVolume ) this.volumeSlider.setValue(this.control.volume/maxVolume);
             else this.volumeSlider.setValue(this.volume);
-            
+
             if ( this.volume <= 0 ) this.volumeIcon.icon_name = this.iconPrefix + "muted";
             else {
                 let n = Math.floor(3 * this.volume) + 1;
@@ -614,7 +614,7 @@ SystemVolumeDisplay.prototype = {
             }
         }
     },
-    
+
     updateMute: function(object, param_spec) {
         let muted = this.control.is_muted;
         if ( muted ) {
@@ -630,7 +630,7 @@ SystemVolumeDisplay.prototype = {
             this.volumeValueText.text = Math.floor(100 * this.volume) + "%";
             this.volumeIcon.icon_name = null;
             this.muteTooltip.set_text(_("Mute"));
-            
+
             if ( this.volume <= 0 ) this.volumeIcon.icon_name = this.iconPrefix + "muted";
             else {
                 let n = Math.floor(3 * this.volume) + 1;
@@ -640,7 +640,7 @@ SystemVolumeDisplay.prototype = {
             }
         }
     },
-    
+
     onSliderChanged: function(slider, value) {
         let volume;
         if ( settings.exceedNormVolume ) volume = value * maxVolume;
@@ -656,7 +656,7 @@ SystemVolumeDisplay.prototype = {
         }
         this.control.push_volume();
     },
-    
+
     toggleMute: function() {
         if ( this.control.is_muted ) this.control.change_is_muted(false);
         else this.control.change_is_muted(true);
@@ -671,17 +671,17 @@ function AppControl(app) {
 AppControl.prototype = {
     _init: function(app) {
         this.app = app;
-        
+
         this.muteId = app.connect("notify::is-muted", Lang.bind(this, this.updateMute));
         this.volumeId = app.connect("notify::volume", Lang.bind(this, this.updateVolume));
-        
+
         this.actor = new St.BoxLayout({ vertical: true, style_class: "soundbox-appBox" });
-        
+
         let titleBin = new St.Bin({  });
         this.actor.add_actor(titleBin);
         let titleBox = new St.BoxLayout({ vertical: false, style_class: "soundbox-appTitleBox" });
         titleBin.add_actor(titleBox);
-        
+
         // some applications don't give a valid icon so we try to guess it, and fall back to a default
         let iconName;
         if ( Gtk.IconTheme.get_default().has_icon(app.icon_name) ) iconName = app.icon_name;
@@ -699,36 +699,36 @@ AppControl.prototype = {
         titleBox.add_actor(labelBin);
         let label = new St.Label({ text: app.get_name(), style_class: "soundbox-appTitle" });
         labelBin.add_actor(label);
-        
+
         let volumeBin = new St.Bin({  });
         this.actor.add_actor(volumeBin);
         let volumeBox = new St.BoxLayout({ vertical: false });
         volumeBin.add_actor(volumeBox);
-        
+
         let volumeButton = new St.Button({ style_class: "soundbox-volumeButton" });
         volumeBox.add_actor(volumeButton);
         this.volumeIcon = new St.Icon({ style_class: "soundbox-volumeIcon" });
         volumeButton.add_actor(this.volumeIcon);
         this.muteTooltip = new SoundboxTooltip(volumeButton);
-        
+
         let sliderBin = new St.Bin();
         volumeBox.add_actor(sliderBin);
         this.volumeSlider = new Slider(1);
         sliderBin.add_actor(this.volumeSlider.actor);
-        
+
         volumeButton.connect("clicked", Lang.bind(this, this.toggleMute));
         this.volumeSlider.connect("value-changed", Lang.bind(this, this.sliderChanged));
-        
+
         this.updateMute();
         this.updateVolume();
     },
-    
+
     updateVolume: function() {
         if ( !this.app.is_muted ) {
             this.volume = this.app.volume / normVolume;
             this.volumeSlider.setValue(this.volume);
             this.volumeIcon.icon_name = null;
-            
+
             if ( this.volume <= 0 ) this.volumeIcon.icon_name = "audio-volume-muted";
             else {
                 let n = Math.floor(3 * this.volume) + 1;
@@ -742,7 +742,7 @@ AppControl.prototype = {
             this.volumeIcon.icon_name = "audio-volume-muted";
         }
     },
-    
+
     updateMute: function () {
         let muted = this.app.is_muted;
         if ( muted ) {
@@ -755,7 +755,7 @@ AppControl.prototype = {
             this.volumeSlider.setValue(this.volume);
             this.volumeIcon.icon_name = null;
             this.muteTooltip.set_text(_("Mute"));
-            
+
             if ( this.volume <= 0 ) this.volumeIcon.icon_name = "audio-volume-muted";
             else {
                 let n = Math.floor(3 * this.volume) + 1;
@@ -765,12 +765,12 @@ AppControl.prototype = {
             }
         }
     },
-    
+
     toggleMute: function() {
         if ( this.app.is_muted ) this.app.change_is_muted(false);
         else this.app.change_is_muted(true);
     },
-    
+
     sliderChanged: function(slider, value) {
         let volume = value * normVolume;
         let prev_muted = this.app.is_muted;
@@ -784,7 +784,7 @@ AppControl.prototype = {
         }
         this.app.push_volume();
     },
-    
+
     destroy: function() {
         this.app.disconnect(this.muteId);
         this.app.disconnect(this.volumeId);
@@ -813,19 +813,19 @@ function TimeControls(timeTracker) {
 TimeControls.prototype = {
     _init: function(timeTracker) {
         this.timeTracker = timeTracker;
-        
+
         this.actor = new St.Bin({  });
         this.seekControlsBox = new St.BoxLayout({ vertical: true, style_class: "soundbox-timeBox" });
         this.actor.set_child(this.seekControlsBox);
-        
+
         let timeBin = new St.Bin({ x_align: St.Align.MIDDLE });
         this.seekControlsBox.add_actor(timeBin);
         this._time = new TrackInfo("0:00 / 0:00", "document-open-recent", false);
         timeBin.add_actor(this._time.actor);
-        
+
         this._positionSlider = new Slider(0);
         this.seekControlsBox.add_actor(this._positionSlider.actor);
-        
+
         //connect to events
         this.timeTracker.connect("state-changed", Lang.bind(this, this.onStateChanged));
         settings.settings.connect("changed::countUp", Lang.bind(this, function(provider, key, oldVal, newVal) {
@@ -841,31 +841,31 @@ TimeControls.prototype = {
 
         Mainloop.timeout_add(1000, Lang.bind(this, this.setTimeLabel));
     },
-    
+
     //sets the slider value to the current percent
     setSliderValue: function() {
         if ( this._positionSlider._dragging ) return;
-        
+
         let percent = this.timeTracker.getElapsed() / this.timeTracker.getTotal();
         if ( isNaN(percent) ) percent = 0;
         this._positionSlider.setValue(percent);
     },
-    
+
     //sets the digital clock label
     setTimeLabel: function(elapsed) {
         if ( isNaN(this.timeTracker.startCount) || isNaN(this.timeTracker.totalCount) ) return;
-        
+
         if ( !elapsed ) elapsed = this.timeTracker.getElapsed();
         let total = this.timeTracker.getTotal();
-        
+
         let current;
         if ( settings.countUp ) current = elapsed;
         else current = total - elapsed;
-        
+
         let label = this.formatTime(Math.floor(current)) + " / " + this.formatTime(Math.floor(total));
         this._time.setLabel(label);
     },
-    
+
     //formats the time in a human-readable format
     formatTime: function(seconds) {
         let numHours = Math.floor(seconds/3600);
@@ -877,17 +877,17 @@ TimeControls.prototype = {
         else numHours = "";
         return numHours + numMins.toString() + ":" + numSecs.toString();
     },
-    
+
     onSliderDrag: function(slider, value) {
         let seconds = value * this.timeTracker.getTotal();
         this.setTimeLabel(seconds);
     },
-    
+
     onDragEnd: function(slider, value) {
         seconds = value * this.timeTracker.getTotal();
         this.timeTracker.seek(seconds);
     },
-    
+
     onStateChanged: function(tracker, state) {
         if ( state == "playing" && !this.refreshId ) {
             this.refreshId = Mainloop.timeout_add(200, Lang.bind(this, this.refresh));
@@ -897,7 +897,7 @@ TimeControls.prototype = {
             this.refreshId = 0;
         }
     },
-    
+
     refresh: function() {
         try {
             if ( this.timeTracker.state != "playing" ) {
@@ -933,20 +933,20 @@ TrackInfo.prototype = {
             this.tooltip = new SoundboxTooltip(this.actor, label.toString());
         }
     },
-    
+
     setLabel: function(label) {
         this.label.text = label.toString();
         if ( this.hasTooltip ) this.tooltip.set_text(label.toString());
     },
-    
+
     getLabel: function() {
         return this.label.text.toString();
     },
-    
+
     hide: function() {
         this.actor.hide();
     },
-    
+
     show: function() {
         this.actor.show();
     }
@@ -967,11 +967,11 @@ ControlButton.prototype = {
         this.button.set_child(this.icon);
         this._tooltip = new SoundboxTooltip(this.button, text);
     },
-    
+
     getActor: function() {
         return this.actor;
     },
-    
+
     setIcon: function(icon) {
         this.icon.icon_name = icon;
     },
@@ -979,13 +979,13 @@ ControlButton.prototype = {
     set tooltip(text) {
         this._tooltip.set_text(text);
     },
-    
+
     enable: function() {
         this.button.remove_style_pseudo_class("disabled");
         this.button.can_focus = true;
         this.button.reactive = true;
     },
-    
+
     disable: function() {
         this.button.add_style_pseudo_class("disabled");
         this.button.can_focus = false;
@@ -1007,7 +1007,7 @@ TitleBar.prototype = {
         this.icon = new St.Icon({ icon_name: "media-status-stoped", icon_type: St.IconType.SYMBOLIC, style_class: "soundbox-playerIcon" });
         this.actor.add_actor(this.icon);
         this.title = new St.Label({ text: this.getTitle(), style_class: "soundbox-playerTitle" });
-        
+
         if ( this.server.CanRaise ) {
             let raiseButton = new St.Button({ style_class: "soundbox-raiseButton" });
             this.actor.add_actor(raiseButton);
@@ -1019,7 +1019,7 @@ TitleBar.prototype = {
             new SoundboxTooltip(raiseButton, _("Show player"));
         }
         else this.actor.add_actor(this.title);
-        
+
         if ( this.server.CanQuit ) {
             let quitButton = new St.Button({ style_class: "soundbox-quitButton" });
             this.actor.add_actor(quitButton);
@@ -1032,16 +1032,16 @@ TitleBar.prototype = {
             new SoundboxTooltip(quitButton, _("Close player"));
         }
     },
-    
+
     setStatus: function(status) {
         this.icon.set_icon_name("media-status-" + status.toLowerCase());
         this.setTitle(status);
     },
-    
+
     getTitle: function() {
         return this.name.charAt(0).toUpperCase() + this.name.slice(1);
     },
-    
+
     setTitle: function(status) {
         this.title.text = this.getTitle() + " - " + _(status);
     }
@@ -1057,17 +1057,17 @@ Player.prototype = {
     _init: function(parent, owner, name) {
         try {
             this.actor = new St.Bin();
-            
+
             this.parent = parent;
             this.showPosition = true;
             this.owner = owner;
             this.busName = name;
             this.name = name.split(".")[3];
             this.checkName();
-            
+
             //player title bar
             this.title = new St.Bin();
-            
+
             Interfaces.getDBusProxyWithOwnerAsync(MEDIA_PLAYER_2_NAME, this.busName, Lang.bind(this, function(proxy, error) {
                 if ( error ) {
                     global.logError(error);
@@ -1077,7 +1077,7 @@ Player.prototype = {
                     this._onGetDBus();
                 }
             }));
-            
+
             Interfaces.getDBusProxyWithOwnerAsync(MEDIA_PLAYER_2_PLAYER_NAME, this.busName, Lang.bind(this, function(proxy, error) {
                 if ( error ) {
                     global.logError(error);
@@ -1087,7 +1087,7 @@ Player.prototype = {
                     this._onGetDBus();
                 }
             }));
-            
+
             Interfaces.getDBusPropertiesAsync(this.busName, MEDIA_PLAYER_2_PATH, Lang.bind(this, function(proxy, error) {
                 if ( error ) {
                     global.logError(error);
@@ -1097,12 +1097,12 @@ Player.prototype = {
                     this._onGetDBus();
                 }
             }));
-            
+
         } catch (e) {
             global.logError(e);
         }
     },
-    
+
     _onGetDBus: function() {
         try {
             if ( !this._prop || !this._mediaServerPlayer || !this._mediaServer ) return;
@@ -1110,13 +1110,13 @@ Player.prototype = {
             this.titleBar = new TitleBar(this.name, this._mediaServer);
             this.title.add_actor(this.titleBar.actor);
             this._buildLayout();
-            
+
             this.updateStatus(this._mediaServerPlayer.PlaybackStatus);
             this.setMetadata(this._mediaServerPlayer.Metadata);
             this.updateSeekable();
             this.updateRepeat();
             this.updateShuffle();
-            
+
             this._propChangedId = this._prop.connectSignal("PropertiesChanged", Lang.bind(this, function(proxy, sender, [iface, props]) {
                 if ( props.PlaybackStatus ) this.updateStatus(props.PlaybackStatus.unpack());
                 if ( props.Metadata ) this.setMetadata(props.Metadata.deep_unpack());
@@ -1124,32 +1124,32 @@ Player.prototype = {
                 if ( props.LoopStatus ) this.updateRepeat();
                 if ( props.Shuffle ) this.updateShuffle();
             }));
-            
+
         } catch(e) {
             global.logError(e);
         }
     },
-    
+
     _buildLayout: function() {
         try {
             this.actor.destroy_all_children();
-            
+
             let mainBox = new St.BoxLayout({ vertical: true });
             this.actor.set_child(mainBox);
-            
+
             //track info
             let trackInfoContainer = new St.Bin({  });
             mainBox.add_actor(trackInfoContainer);
             let trackInfoBox = new St.BoxLayout({ vertical: true, style_class: "soundbox-trackInfoBox" });
             trackInfoContainer.set_child(trackInfoBox);
-            
+
             this._title = new TrackInfo(_("Unknown Title"), "audio-x-generic", true);
             trackInfoBox.add_actor(this._title.actor);
             this._album = new TrackInfo(_("Unknown Album"), "media-optical", true);
             trackInfoBox.add_actor(this._album.actor);
             this._artist = new TrackInfo(_("Unknown Artist"), "system-users", true);
             trackInfoBox.add_actor(this._artist.actor);
-            
+
             //album image
             this.trackCoverFile = this.trackCoverFileTmp = false;
             this.trackCover = new St.Bin({ style_class: "soundbox-albumCover-box" });
@@ -1175,33 +1175,33 @@ Player.prototype = {
                 settings[key] = newVal;
                 this.showCoverArt();
             }));
-            
+
             //time display controls
             this.timeControls = new TimeControls(this._timeTracker);
             mainBox.add_actor(this.timeControls.actor);
-            
+
             //control buttons
             this.trackControls = new St.Bin({ x_align: St.Align.MIDDLE });
             mainBox.add_actor(this.trackControls);
             this.controls = new St.BoxLayout({ style_class: "soundbox-buttonBox" });
             this.trackControls.set_child(this.controls);
-            
+
             this._prevButton = new ControlButton("media-skip-backward", _("Previous"), Lang.bind(this, function() {
                 this._mediaServerPlayer.PreviousRemote();
                 if ( this.name == "spotify" ) this._timeTracker.setElapsed(0);
             }));
             this.controls.add_actor(this._prevButton.getActor());
-            
+
             this._playButton = new ControlButton("media-playback-start", _("Play"), Lang.bind(this, function() {
                 this._mediaServerPlayer.PlayPauseRemote();
             }));
             this.controls.add_actor(this._playButton.getActor());
-            
+
             this._stopButton = new ControlButton("media-playback-stop", _("Stop"), Lang.bind(this, function() {
                 this._mediaServerPlayer.StopRemote();
             }));
             this.controls.add_actor(this._stopButton.getActor());
-            
+
             this._nextButton = new ControlButton("media-skip-forward", _("Next"), Lang.bind(this, function() {
                 this._mediaServerPlayer.NextRemote();
                 if ( this.name == "spotify" ) this._timeTracker.setElapsed(0);
@@ -1228,24 +1228,24 @@ Player.prototype = {
             if ( SUPPORT_SEEK.indexOf(this.name) == -1 ) {
                 this.timeControls.actor.hide();
             }
-            
+
         } catch (e) {
             global.logError(e);
         }
     },
-    
+
     destroy: function() {
         this.actor.destroy();
         this.title.destroy();
         if ( this._timeTracker ) this._timeTracker.destroy();
         if ( this._propChangedId ) this._prop.disconnectSignal(this._propChangedId);
     },
-    
+
     updateSeekable: function(position) {
         this._canSeek = this.getCanSeek();
         if ( this._timeTracker.totalCount == 0 || position == false ) this._canSeek = false;
     },
-    
+
     getCanSeek: function() {
         let can_seek = true;
         this._prop.GetRemote(MEDIA_PLAYER_2_PLAYER_NAME, "CanSeek", Lang.bind(this, function(position, error) {
@@ -1255,7 +1255,7 @@ Player.prototype = {
         }));
         return can_seek;
     },
-    
+
     updateRepeat: function() {
         switch ( this._mediaServerPlayer.LoopStatus ) {
             case "None":
@@ -1291,7 +1291,7 @@ Player.prototype = {
             if ( canGoNext ) this._nextButton.enable();
             else this._nextButton.disable();
         }));
-        
+
         this._prop.GetRemote(MEDIA_PLAYER_2_PLAYER_NAME, "CanGoPrevious", Lang.bind(this, function(value, error) {
             let canGoPrevious = true;
             if ( !error ) canGoPrevious = value[0].unpack();
@@ -1299,10 +1299,10 @@ Player.prototype = {
             else this._prevButton.disable();
         }));
     },
-    
+
     setMetadata: function(metadata) {
         if ( !metadata ) return;
-        
+
         if ( metadata["mpris:length"] ) {
             this._timeTracker.setTotal(metadata["mpris:length"].unpack() / 1000000);
             this._timeTracker.fetchPosition();
@@ -1319,9 +1319,9 @@ Player.prototype = {
         else this._album.setLabel(_("Unknown Album"));
         if ( metadata["xesam:title"] ) this._title.setLabel(metadata["xesam:title"].unpack());
         else this._title.setLabel(_("Unknown Title"));
-        
+
         if ( metadata["mpris:trackid"] ) this._timeTracker.trackId = metadata["mpris:trackid"].unpack();
-        
+
         let change = false;
         if ( metadata["mpris:artUrl"] ) {
             if ( this.trackCoverFile != metadata["mpris:artUrl"].unpack() ) {
@@ -1335,7 +1335,7 @@ Player.prototype = {
                 change = true;
             }
         }
-        
+
         if ( change ) {
             if ( this.trackCoverFile ) {
                 this.coverPath = "";
@@ -1355,7 +1355,7 @@ Player.prototype = {
             else this.showCoverArt();
         }
     },
-    
+
     updateStatus: function(status) {
         this.updateSeekable();
         switch ( this._mediaServerPlayer.PlaybackStatus ) {
@@ -1375,22 +1375,22 @@ Player.prototype = {
                 this._playButton.tooltip = _("Play");
                 break;
         }
-        
+
         this.titleBar.setStatus(status);
     },
-    
+
     _onReadCover: function(cover, result) {
         let inStream = cover.read_finish(result);
         let outStream = this.trackCoverFileTmp.replace(null, false, Gio.FileCreateFlags.REPLACE_DESTINATION, null, null);
         outStream.splice_async(inStream, Gio.OutputStreamSpliceFlags.CLOSE_TARGET, 0, null, Lang.bind(this, this._onSavedCover));
     },
-    
+
     _onSavedCover: function(outStream, result) {
         outStream.splice_finish(result, null);
         this.coverPath = this.trackCoverFileTmp.get_path();
         this.showCoverArt(this.coverPath);
     },
-    
+
     showCoverArt: function() {
         if ( ! this.coverPath || ! GLib.file_test(this.coverPath, GLib.FileTest.EXISTS) ) {
             this.trackCover.set_child(new St.Icon({ icon_size: settings.artSize, icon_name: "media-optical-cd-audio", style_class: "soundboxalbumCover", icon_type: St.IconType.FULLCOLOR }));
@@ -1424,14 +1424,14 @@ function SoundboxLayout(containers, settingsObj, actionMgr) {
 SoundboxLayout.prototype = {
     _init: function(containers, settingsObj, actionMgr) {
         try {
-            
+
             settings = settingsObj;
             actionManager = actionMgr;
             this.volumeContent = containers.volumeContent;
             this.playerContent = containers.playerContent;
             this.context = containers.context;
             this.playersMenu = containers.playersMenu;
-            
+
             this.players = {};
             this.owners = [];
             this.playerShown = null;
@@ -1439,10 +1439,10 @@ SoundboxLayout.prototype = {
             this.outputVolumeId = 0;
             this.outputMutedId = 0;
             this._volumeControlShown = false;
-            
+
             Interfaces.getDBusAsync(Lang.bind(this, function (proxy, error) {
                 this._dbus = proxy;
-                
+
                 // player DBus name pattern
                 let name_regex = /^org\.mpris\.MediaPlayer2\./;
                 // load players
@@ -1456,7 +1456,7 @@ SoundboxLayout.prototype = {
                         }
                     }
                 }));
-                
+
                 // watch players
                 this._ownerChangedId = this._dbus.connectSignal("NameOwnerChanged", Lang.bind(this, function(proxy, sender, [name, old_owner, new_owner]) {
                     if ( name_regex.test(name) ) {
@@ -1465,9 +1465,9 @@ SoundboxLayout.prototype = {
                     }
                 }));
             }));
-            
+
             this.gvcHandler = new GVCHandler(this);
-            
+
             settings.settings.connect("changed::showInput", Lang.bind(this, function(provider, key, oldVal, newVal) {
                 settings[key] = newVal;
                 this._buildVolumeControls();
@@ -1476,17 +1476,17 @@ SoundboxLayout.prototype = {
                 settings[key] = newVal;
                 this._setAppHideState();
             }));
-            
+
             this._buildContext();
             this.refresh_players();
             this._buildVolumeControls();
             this._buildPlayerControls();
-            
+
         } catch(e) {
             global.logError(e);
         }
     },
-    
+
     _buildContext: function() {
         this.outputSection = new PopupMenu.PopupMenuSection();
         this.context.addMenuItem(this.outputSection);
@@ -1495,9 +1495,9 @@ SoundboxLayout.prototype = {
         this.gvcHandler.outputDevices.actor.add_style_class_name("soundBox-contextMenuSection");
         this.outputSection.addMenuItem(this.gvcHandler.outputDevices);
         this.outputSection.actor.hide();
-        
+
         this.context.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-        
+
         this.inputSection = new PopupMenu.PopupMenuSection();
         this.context.addMenuItem(this.inputSection);
         this.inputSection.addMenuItem(new PopupMenu.PopupMenuItem(_("Input Devices"), { reactive: false }));
@@ -1505,57 +1505,57 @@ SoundboxLayout.prototype = {
         this.gvcHandler.inputDevices.actor.add_style_class_name("soundBox-contextMenuSection");
         this.inputSection.addMenuItem(this.gvcHandler.inputDevices);
         this.inputSection.actor.hide();
-        
+
         this.context.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-        
+
         this.context.addSettingsAction(_("Sound Settings"), "sound");
     },
-    
+
     _buildVolumeControls: function() {
-        
+
         this.volumeContent.destroy_all_children();
-        
+
         //system volume controls
         this.outputVolumeDisplay = new SystemVolumeDisplay(_("Volume:") + " ", "audio-volume-");
         this.volumeContent.add_actor(this.outputVolumeDisplay.actor);
-        
+
         if ( settings.showInput ) {
             let divider = new Divider();
             this.volumeContent.add_actor(divider.actor);
             this.inputVolumeDisplay = new SystemVolumeDisplay("Input Volume: ", "microphone-sensitivity-");
             this.volumeContent.add_actor(this.inputVolumeDisplay.actor);
         }
-        
+
         //application volume controls
         this.appBox = new St.BoxLayout({ vertical: true });
         this.volumeContent.add_actor(this.appBox);
         if ( !settings.showApps ) this.appBox.hide();
-        
+
         this.gvcHandler.refresh();
     },
-    
+
     _buildPlayerControls: function() {
-        
+
         this.playerContent.hide();
-        
+
         //player title
         this.playerTitleBox = new St.BoxLayout({ vertical: false, style_class: "soundbox-titleBar" });
         this.playerContent.add_actor(this.playerTitleBox);
-        
+
         this.playerBack = new St.Button({ style_class: "soundbox-playerSelectButton", child: new St.Icon({ icon_name: "media-playback-start-rtl", icon_size: 16 }) });
         this.playerTitleBox.add_actor(this.playerBack);
         this.playerBack.hide();
         new SoundboxTooltip(this.playerBack, _("Previous Player"));
-        
+
         this.playerTitle = new St.Bin({ style_class: "soundbox-titleBox" });
         this.playerTitleBox.add(this.playerTitle, { expand: true });
         this.playerTitle.set_alignment(St.Align.MIDDLE, St.Align.MIDDLE);
-        
+
         this.playerForward = new St.Button({ style_class: "soundbox-playerSelectButton", child: new St.Icon({ icon_name: "media-playback-start", icon_size: 16 }) });
         this.playerTitleBox.add_actor(this.playerForward);
         this.playerForward.hide();
         new SoundboxTooltip(this.playerForward, _("Next Player"));
-        
+
         this.playerBack.connect("clicked", Lang.bind(this, function() {
             for ( let i = 0; i < this.owners.length; i++ ) {
                 if ( this.playerShown == this.owners[i] ) {
@@ -1576,20 +1576,20 @@ SoundboxLayout.prototype = {
                 }
             }
         }));
-        
+
         //player info
         this.playersBox = new St.Bin();
         this.playerContent.add_actor(this.playersBox);
     },
-    
+
     _setAppHideState: function() {
         if ( settings.showApps ) this.appBox.show();
         else this.appBox.hide();
     },
-    
+
     refresh_players: function() {
         this.playersMenu.removeAll();
-        
+
         this._availablePlayers = new Array();
         let appsys = Cinnamon.AppSystem.get_default();
         let allApps = appsys.get_all();
@@ -1606,51 +1606,51 @@ SoundboxLayout.prototype = {
                 }
             }
         }
-        
+
         for ( let i = 0; i < this._availablePlayers.length; i++ ) {
             let playerApp = this._availablePlayers[i];
-            
+
             let menuItem = new PopupMenu.PopupBaseMenuItem();
             menuItem.actor.set_name("soundbox-popup-menuitem");
-            
+
             let icon = playerApp.create_icon_texture(ICON_SIZE);
             if ( icon ) menuItem.addActor(icon);
-            
+
             let label = new St.Label({ text: playerApp.get_name() });
             menuItem.addActor(label);
-            
+
             menuItem.connect("activate", function() {
                 playerApp.open_new_window(-1);
             });
             this.playersMenu.addMenuItem(menuItem);
         }
     },
-    
+
     _addPlayer: function(name, owner) {
         try {
-            
+
             this.players[owner] = new Player(this, owner, name);
             this.owners.push(owner);
             if ( this.playerShown == null ) this._showPlayer(this.players[owner]);
-            
+
             if ( this.owners.length > 1 ) {
                 this.playerBack.show();
                 this.playerForward.show();
             }
-            
+
             this.refresh_players();
-            
+
         } catch(e) {
             global.logError(e);
         }
     },
-    
+
     _removePlayer: function(name, owner) {
         try {
-            
+
             this.players[owner].destroy();
             delete this.players[owner];
-            
+
             for ( let i = 0; i < this.owners.length; i++ ) {
                 if ( this.owners[i] == owner ) {
                     this.owners.splice(i, 1);
@@ -1669,17 +1669,17 @@ SoundboxLayout.prototype = {
                     break;
                 }
             }
-            
+
             if ( Object.keys(this.players).length < 2 ) {
                 this.playerBack.hide();
                 this.playerForward.hide();
             }
-            
+
         } catch(e) {
             global.logError(e);
         }
     },
-    
+
     _showPlayer: function(player) {
         if ( player == null ) return;
         this.playerShown = player.owner;
