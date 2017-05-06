@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: Cinnamon Weather Desklet - bbcwx 2.7.1\n"
 "Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
 "POT-Creation-Date: 2015-12-14 18:52+0000\n"
-"PO-Revision-Date: 2015-01-07 06:53+0000\n"
-"Last-Translator: argenclic <Unknown>\n"
+"PO-Revision-Date: 2016-08-29 02:35+0000\n"
+"Last-Translator: FedeHC <Unknown>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-12-04 19:52+0000\n"
-"X-Generator: Launchpad (build 17862)\n"
+"X-Launchpad-Export-Date: 2017-05-05 21:16+0000\n"
+"X-Generator: Launchpad (build 18366)\n"
+"Language: es_ES\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. # Days of the week
@@ -93,7 +93,7 @@ msgstr "Máx:"
 #. # Minimum temperature
 #: desklet.js:349
 msgid "Min:"
-msgstr "Min:"
+msgstr "Mín.:"
 
 #. # Wind speed (English translation is "Wind:")
 #: desklet.js:351
@@ -134,7 +134,7 @@ msgstr "Sin datos"
 #: desklet.js:862
 #, python-format
 msgid "Click for the full forecast for %s"
-msgstr "Haga clic para el pronóstico completo para %s"
+msgstr "Clic para el pronóstico completo de %s"
 
 #. # Units for temperature, degrees Fahrenheit. %f is replaced the value. NB:
 #. English translation uses unicode character u+2109
@@ -303,7 +303,7 @@ msgstr "Tormentas eléctricas"
 
 #: desklet.js:1490 desklet.js:3506
 msgid "Mixed rain and snow"
-msgstr "Lluvia y nieve"
+msgstr "Aguanieve"
 
 #: desklet.js:1491
 msgid "Mixed rain and sleet"
@@ -547,7 +547,7 @@ msgstr "Granizo"
 
 #: desklet.js:1803
 msgid "Rain"
-msgstr ""
+msgstr "Lluvia"
 
 #. # direction of movement of pressure
 #: desklet.js:1987 desklet.js:2601
@@ -974,7 +974,7 @@ msgstr "Wunderground (requiere clave API)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "meteoblue (requires API key)"
-msgstr ""
+msgstr "meteoblue"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "BBC"
@@ -1133,8 +1133,8 @@ msgstr ""
 
 #. bbcwx@oak-wood.co.uk->metadata.json->name
 msgid "Weather Desklet"
-msgstr ""
+msgstr "Desklet del Clima"
 
 #. bbcwx@oak-wood.co.uk->metadata.json->description
 msgid "Display the weather from several web services on your desktop"
-msgstr ""
+msgstr "Mostrar el clima desde distintos servicios web en tu escritorio"

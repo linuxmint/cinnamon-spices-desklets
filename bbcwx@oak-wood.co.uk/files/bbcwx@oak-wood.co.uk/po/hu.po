@@ -8,44 +8,44 @@ msgstr ""
 "Project-Id-Version: bbcwx\n"
 "Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
 "POT-Creation-Date: 2015-12-14 18:52+0000\n"
-"PO-Revision-Date: 2014-12-16 01:35+0000\n"
-"Last-Translator: Peter Toth <tothpeter13@freemail.hu>\n"
+"PO-Revision-Date: 2016-12-11 11:52+0000\n"
+"Last-Translator: KAMI <kami911@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
-"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-12-04 19:52+0000\n"
-"X-Generator: Launchpad (build 17862)\n"
+"X-Launchpad-Export-Date: 2017-05-05 21:20+0000\n"
+"X-Generator: Launchpad (build 18366)\n"
+"Language: hu\n"
 
 #. # Days of the week
 #: desklet.js:103
 msgid "Mon"
-msgstr "Hétf."
+msgstr "Hé"
 
 #: desklet.js:103
 msgid "Tue"
-msgstr "Kedd"
+msgstr "Ke"
 
 #: desklet.js:103
 msgid "Wed"
-msgstr "Szer."
+msgstr "Sze"
 
 #: desklet.js:103
 msgid "Thu"
-msgstr "Csüt."
+msgstr "Csü"
 
 #: desklet.js:103
 msgid "Fri"
-msgstr "Pént."
+msgstr "Pé"
 
 #: desklet.js:103
 msgid "Sat"
-msgstr "Szom."
+msgstr "Szo"
 
 #: desklet.js:103
 msgid "Sun"
-msgstr "Vas."
+msgstr "Va"
 
 #. # The desklet title
 #: desklet.js:179
@@ -113,7 +113,7 @@ msgstr "Adatszolgáltató: "
 #. # Tooltip for refresh button
 #: desklet.js:407
 msgid "Refresh"
-msgstr "Időjárás frissítése"
+msgstr "Frissítés"
 
 #. # Message if we fail to get weather data
 #: desklet.js:727
@@ -133,57 +133,57 @@ msgstr "Nincs adat!"
 #: desklet.js:862
 #, python-format
 msgid "Click for the full forecast for %s"
-msgstr "Kattintson ide a teljes előrejelzésért %s"
+msgstr "Kattintson ide a teljes előrejelzésért: %s"
 
 #. # Units for temperature, degrees Fahrenheit. %f is replaced the value. NB:
 #. English translation uses unicode character u+2109
 #: desklet.js:1104
 #, python-format
 msgid "%fF"
-msgstr "%fF"
+msgstr "%f F"
 
 #. # Units for temperature, degrees Celsius. %f is replaced the value. NB:
 #. English translation uses unicode character u+2103
 #: desklet.js:1106
 #, python-format
 msgid "%fC"
-msgstr "%fC"
+msgstr "%f °C"
 
 #. # wind speed, miles per hour. %f is replaced by the value
 #: desklet.js:1127
 #, python-format
 msgid "%fmph"
-msgstr "%fmph"
+msgstr "%f mph"
 
 #. # wind speed, knots. %f is replaced by the value
 #: desklet.js:1129
 #, python-format
 msgid "%fkn"
-msgstr "%fcsomó"
+msgstr "%f csomó"
 
 #. # wind speed, kilometers per hour. %f is replaced by the value
 #: desklet.js:1131
 #, python-format
 msgid "%fkm/h"
-msgstr "%fkm/h"
+msgstr "%f km/h"
 
 #. # wind speed, meters per second. %f is replaced by the value
 #: desklet.js:1133
 #, python-format
 msgid "%fm/s"
-msgstr "%fm/s"
+msgstr "%f m/s"
 
 #. # pressure, millbars. %f is replaced by the value
 #: desklet.js:1167
 #, python-format
 msgid "%fmb"
-msgstr "%fmb"
+msgstr "%f mb"
 
 #. # pressure, inches of mercury. %f is replaced by the value
 #: desklet.js:1169
 #, python-format
 msgid "%fin"
-msgstr "%fhigany/inch"
+msgstr "%f higany/inch"
 
 #. # pressure, mm of mercury. %f is replaced by the value
 #: desklet.js:1171
@@ -195,86 +195,86 @@ msgstr "%fhigany/mm"
 #: desklet.js:1173
 #, python-format
 msgid "%fkPa"
-msgstr "%fkPa"
+msgstr "%f kPa"
 
 #. # visibility, miles. %f is replaced by the value
 #: desklet.js:1224
 #, python-format
 msgid "%fmi"
-msgstr "%fmérföld"
+msgstr "%f mérföld"
 
 #. # visibility, nautical miles. %f is replaced by the value
 #: desklet.js:1226
 #, python-format
 msgid "%fnmi"
-msgstr "%ftengeri mérföld"
+msgstr "%f tengeri mérföld"
 
 #. # visibility, kilometers. %f is replaced by the value
 #: desklet.js:1228
 #, python-format
 msgid "%fkm"
-msgstr "%fkm"
+msgstr "%f km"
 
 #. # Next 16 strings are for wind direction, compass points
 #: desklet.js:1452
 msgid "N"
-msgstr "Észak"
+msgstr "É"
 
 #: desklet.js:1452
 msgid "NNE"
-msgstr "ÉszÉK"
+msgstr "ÉÉK"
 
 #: desklet.js:1452
 msgid "NE"
-msgstr "ÉszK"
+msgstr "ÉK"
 
 #: desklet.js:1452
 msgid "ENE"
-msgstr "KeÉK"
+msgstr "KÉK"
 
 #: desklet.js:1452
 msgid "E"
-msgstr "Kelet"
+msgstr "K"
 
 #: desklet.js:1452
 msgid "ESE"
-msgstr "DéDK"
+msgstr "KDK"
 
 #: desklet.js:1452
 msgid "SE"
-msgstr "DéK"
+msgstr "DK"
 
 #: desklet.js:1452
 msgid "SSE"
-msgstr "DéDNY"
+msgstr "DDK"
 
 #: desklet.js:1452
 msgid "S"
-msgstr "Dél"
+msgstr "D"
 
 #: desklet.js:1452
 msgid "SSW"
-msgstr "DéDNY"
+msgstr "DDNY"
 
 #: desklet.js:1452
 msgid "SW"
-msgstr "DéNY"
+msgstr "DN"
 
 #: desklet.js:1452
 msgid "WSW"
-msgstr "NYuDNY"
+msgstr "NYDNY"
 
 #: desklet.js:1452
 msgid "W"
-msgstr "Nyugat"
+msgstr "NY"
 
 #: desklet.js:1452
 msgid "WNW"
-msgstr "NyuÉNY"
+msgstr "NYÉNY"
 
 #: desklet.js:1452
 msgid "NW"
-msgstr "ÉszNY"
+msgstr "ÉNY"
 
 #: desklet.js:1452
 msgid "NNW"
@@ -410,7 +410,7 @@ msgstr "Eső és jégeső"
 
 #: desklet.js:1521
 msgid "Hot"
-msgstr "Forróság"
+msgstr "Hőség"
 
 #: desklet.js:1522
 msgid "Isolated thunderstorms"
@@ -418,11 +418,11 @@ msgstr "Elszigetelten zivatarok"
 
 #: desklet.js:1523
 msgid "Scattered thunderstorms"
-msgstr "Elszórtan zivatarok"
+msgstr "Szórványos zivatarok"
 
 #: desklet.js:1524 desklet.js:1525
 msgid "Scattered showers"
-msgstr "Elszórtan záporok"
+msgstr "Szórványos záporok"
 
 #: desklet.js:1526 desklet.js:1528
 msgid "Heavy snow"
@@ -430,7 +430,7 @@ msgstr "Erős havazás"
 
 #: desklet.js:1527
 msgid "Scattered snow showers"
-msgstr "Elszórtan hózáporok"
+msgstr "Szórványos hózáporok"
 
 #: desklet.js:1530
 msgid "Thundershowers"
@@ -546,7 +546,7 @@ msgstr "Jeges eső"
 
 #: desklet.js:1803
 msgid "Rain"
-msgstr ""
+msgstr "Esik"
 
 #. # direction of movement of pressure
 #: desklet.js:1987 desklet.js:2601
@@ -946,7 +946,8 @@ msgstr "Előrejelzett legalacsonyabb hőmérséklet"
 #. bbcwx@oak-wood.co.uk->settings-
 #. schema.json->display__forecast__minimum_temperature->tooltip
 msgid "Check to display the forecast minimum temperature"
-msgstr "Jelölje be az előrejelzett legalacsonyabb hőmérséklet megjelenítéséhez"
+msgstr ""
+"Jelölje be az előrejelzett legalacsonyabb hőmérséklet megjelenítéséhez"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->locationlookups->description
 msgid "Location display settings"
@@ -977,7 +978,7 @@ msgstr "Wunderground (API kulcs szükséges)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "meteoblue (requires API key)"
-msgstr ""
+msgstr "meteoblue (API-kulcs szükséges)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "BBC"
@@ -1135,8 +1136,10 @@ msgstr ""
 
 #. bbcwx@oak-wood.co.uk->metadata.json->name
 msgid "Weather Desklet"
-msgstr ""
+msgstr "Időjárás asztalkalmazás"
 
 #. bbcwx@oak-wood.co.uk->metadata.json->description
 msgid "Display the weather from several web services on your desktop"
 msgstr ""
+"Megjeleníti az időjárási adatokat az asztalon többfajta webszolgáltatást "
+"felhasználva"
