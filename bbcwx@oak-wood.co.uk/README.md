@@ -1,6 +1,6 @@
 The Weather Desklet displays current and forecast weather on your
 Cinnamon desktop. It has plenty of options for configuring how it
-looks and comes with selection of great weather icons, or you can use
+looks and comes with a selection of great weather icons, or you can use
 your own. For those who like to keep an eye on the weather in several
 locations it supports multiple instances.
 
