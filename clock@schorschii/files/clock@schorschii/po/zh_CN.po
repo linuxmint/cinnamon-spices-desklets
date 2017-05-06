@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-04 17:55+0100\n"
-"PO-Revision-Date: 2017-05-02 01:43+0800\n"
+"PO-Revision-Date: 2017-05-06 10:43+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -32,7 +32,7 @@ msgstr "时钟风格"
 
 #. clock@schorschii->settings-schema.json->style->tooltip
 msgid "Select the background graphic you would like to use."
-msgstr ""
+msgstr "选择您想要使用的图形背景。"
 
 #. clock@schorschii->settings-schema.json->style->options
 msgid "Dark"
@@ -71,16 +71,14 @@ msgid "Visual"
 msgstr "视觉"
 
 #. clock@schorschii->settings-schema.json->smooth-seconds-hand->description
-#, fuzzy
 msgid "Smooth second hand"
-msgstr "显示秒针"
+msgstr "平滑秒针"
 
 #. clock@schorschii->settings-schema.json->smooth-seconds-hand->tooltip
-#, fuzzy
 msgid ""
 "Use smooth animation for seconds hand instead of refreshing it only every "
 "second."
-msgstr "使用时针、分针和秒针的平滑动画效果而不是每秒刷新。"
+msgstr "使用秒针的平滑动画效果而不是每秒刷新。"
 
 #. clock@schorschii->settings-schema.json->head0->description
 msgid "Settings for clock@schorschii"
@@ -174,16 +172,14 @@ msgstr ""
 "用这个输入框。"
 
 #. clock@schorschii->settings-schema.json->smooth-minutes-hand->description
-#, fuzzy
 msgid "Smooth minute hand"
-msgstr "平滑指针"
+msgstr "平滑分针"
 
 #. clock@schorschii->settings-schema.json->smooth-minutes-hand->tooltip
-#, fuzzy
 msgid ""
 "Use smooth animation for minute hand instead of moving it only once per "
 "minute."
-msgstr "使用时针、分针和秒针的平滑动画效果而不是每秒刷新。"
+msgstr "使用分针的平滑动画效果而不是每分钟只移动一次。"
 
 #. clock@schorschii->metadata.json->description
 msgid ""
