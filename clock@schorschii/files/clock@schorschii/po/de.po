@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-04 17:55+0100\n"
-"PO-Revision-Date: 2017-04-30 15:42+0200\n"
+"PO-Revision-Date: 2017-05-06 08:52+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -32,7 +32,7 @@ msgstr "Uhrdesign"
 
 #. clock@schorschii->settings-schema.json->style->tooltip
 msgid "Select the background graphic you would like to use."
-msgstr ""
+msgstr "Wählen Sie Ihr Bild für das Ziffernblatt (Hintergrundbild)."
 
 #. clock@schorschii->settings-schema.json->style->options
 msgid "Dark"
@@ -73,17 +73,16 @@ msgid "Visual"
 msgstr "Optische Einstellungen"
 
 #. clock@schorschii->settings-schema.json->smooth-seconds-hand->description
-#, fuzzy
 msgid "Smooth second hand"
-msgstr "Zeige Sekundenzeiger"
+msgstr "Weichen Sekundenzeiger verwenden"
 
 #. clock@schorschii->settings-schema.json->smooth-seconds-hand->tooltip
-#, fuzzy
 msgid ""
 "Use smooth animation for seconds hand instead of refreshing it only every "
 "second."
 msgstr ""
-"Zeige weiche Zeigeranimation, anstatt nur jede Sekunde zu aktualisieren."
+"Zeige weiche Zeigeranimation für den Sekundenzeiger, anstatt ihn nur jede "
+"Sekunde zu bewegen."
 
 #. clock@schorschii->settings-schema.json->head0->description
 msgid "Settings for clock@schorschii"
@@ -186,17 +185,16 @@ msgstr ""
 "anzuzeigen. Sie müssen zuerst den Schalter darüber einschalten."
 
 #. clock@schorschii->settings-schema.json->smooth-minutes-hand->description
-#, fuzzy
 msgid "Smooth minute hand"
-msgstr "Weiche Zeiger verwenden"
+msgstr "Weichen Minutenzeiger verwenden"
 
 #. clock@schorschii->settings-schema.json->smooth-minutes-hand->tooltip
-#, fuzzy
 msgid ""
 "Use smooth animation for minute hand instead of moving it only once per "
 "minute."
 msgstr ""
-"Zeige weiche Zeigeranimation, anstatt nur jede Sekunde zu aktualisieren."
+"Zeige weiche Zeigeranimation für den Minutenzeiger, anstatt ihn nur jede "
+"Minute zu bewegen."
 
 #. clock@schorschii->metadata.json->description
 msgid ""

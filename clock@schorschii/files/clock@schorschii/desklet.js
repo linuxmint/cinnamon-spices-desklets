@@ -115,7 +115,9 @@ MyDesklet.prototype = {
 
 		// refresh again in 100 milliseconds, or when the second next changes
 		let timeoutval = 100;
-		if (this.smooth_seconds_hand == false)
+		if (this.show_seconds_hand == false)
+			timeoutval = Math.ceil(3000 - (1000*seconds + mseconds/1000) % 3000);
+		else if (this.smooth_seconds_hand == false)
 			timeoutval = Math.ceil(1000 - mseconds/1000);
 		this.timeout = Mainloop.timeout_add(timeoutval, Lang.bind(this, this.refresh));
 	},
