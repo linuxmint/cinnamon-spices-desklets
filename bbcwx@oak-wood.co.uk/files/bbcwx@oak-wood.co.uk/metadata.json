@@ -1,10 +1,10 @@
 {
     "description": "Display the weather from several web services on your desktop", 
-    "last-edited": "1494145860", 
+    "last-edited": "1494185621", 
     "name": "Weather Desklet", 
     "uuid": "bbcwx@oak-wood.co.uk",
     "max-instances": "10",
-    "version": "2.9.3",
+    "version": "2.10",
     "comments":"Please consider translating the Weather Desklet into your language. See the website for more information",
     "website":"http://www.oak-wood.co.uk/oss/other/bbcwx",
     "contributors":"Chris Hastie",

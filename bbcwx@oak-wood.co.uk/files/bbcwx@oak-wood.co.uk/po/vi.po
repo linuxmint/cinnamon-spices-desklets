@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbcwx\n"
 "Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
-"POT-Creation-Date: 2015-12-14 18:52+0000\n"
+"POT-Creation-Date: 2017-05-07 20:32+0100\n"
 "PO-Revision-Date: 2015-02-01 22:01+0000\n"
 "Last-Translator: Đỗ Xuân Quyết <quyet.doxuan@gmail.com>\n"
 "Language-Team: Vietnamese <vi@li.org>\n"
@@ -19,547 +19,547 @@ msgstr ""
 "X-Generator: Launchpad (build 17862)\n"
 
 #. # Days of the week
-#: desklet.js:103
+#: desklet.js:102
 msgid "Mon"
 msgstr "Thứ Hai"
 
-#: desklet.js:103
+#: desklet.js:102
 msgid "Tue"
 msgstr "Thứ Ba"
 
-#: desklet.js:103
+#: desklet.js:102
 msgid "Wed"
 msgstr "Thứ Tư"
 
-#: desklet.js:103
+#: desklet.js:102
 msgid "Thu"
 msgstr "Thứ Năm"
 
-#: desklet.js:103
+#: desklet.js:102
 msgid "Fri"
 msgstr "Thứ Sáu"
 
-#: desklet.js:103
+#: desklet.js:102
 msgid "Sat"
 msgstr "Thứ Bảy"
 
-#: desklet.js:103
+#: desklet.js:102
 msgid "Sun"
 msgstr "Chủ Nhật"
 
 #. # The desklet title
-#: desklet.js:179
+#: desklet.js:178
 msgid "Weather"
 msgstr "Thời tiết"
 
 #. # Link to Help file in context menu
-#: desklet.js:187
+#: desklet.js:186
 msgid "Help"
 msgstr "Trợ giúp"
 
 #. # Link to information on translating in context menu
-#: desklet.js:191
+#: desklet.js:190
 msgid "Translate"
 msgstr "Dịch"
 
 #. # Next five strings are labels for current conditions
-#: desklet.js:328 desklet.js:356
+#: desklet.js:330 desklet.js:358
 msgid "Humidity:"
 msgstr "Độ ẩm"
 
 #. # Atmospheric pressure
-#: desklet.js:329 desklet.js:355
+#: desklet.js:331 desklet.js:357
 msgid "Pressure:"
 msgstr "Áp suất:"
 
-#: desklet.js:330
+#: desklet.js:332
 msgid "Wind:"
 msgstr "Gió:"
 
-#: desklet.js:331
+#: desklet.js:333
 msgid "Feels like:"
 msgstr "Cảm giác như:"
 
-#: desklet.js:332
+#: desklet.js:334
 msgid "Visibility:"
 msgstr "Tầm nhìn xa:"
 
 #. # Maximum temperature
-#: desklet.js:347
+#: desklet.js:349
 msgid "Max:"
 msgstr "Lớn nhất"
 
 #. # Minimum temperature
-#: desklet.js:349
+#: desklet.js:351
 msgid "Min:"
 msgstr "Nhỏ nhất"
 
 #. # Wind speed (English translation is "Wind:")
-#: desklet.js:351
+#: desklet.js:353
 msgid "Wind speed:"
 msgstr "Tốc độ gió"
 
 #. # Wind direction
-#: desklet.js:353
+#: desklet.js:355
 msgid "Dir:"
 msgstr "Hướng gió"
 
 #. # Credit the data supplier. A link to the data supplier appears to the
 #. right of this string
-#: desklet.js:395
+#: desklet.js:397
 msgid "Data from "
 msgstr "Nguồn dữ liệu "
 
 #. # Tooltip for refresh button
-#: desklet.js:407
+#: desklet.js:409
 msgid "Refresh"
 msgstr "Cập nhật"
 
 #. # Message if we fail to get weather data
-#: desklet.js:727
+#: desklet.js:729
 msgid "No data available"
 msgstr "Hiện không có dữ liệu"
 
-#: desklet.js:760 desklet.js:827
+#: desklet.js:762 desklet.js:829
 #, python-format
 msgid "Error: %s"
 msgstr "Lỗi: %s"
 
-#: desklet.js:760 desklet.js:827
+#: desklet.js:762 desklet.js:829
 msgid "No data"
 msgstr "Không có dữ liệu"
 
 #. # %s is replaced by place name
-#: desklet.js:862
+#: desklet.js:864
 #, python-format
 msgid "Click for the full forecast for %s"
 msgstr "Nhấn chuột để lấy mọi dự báo cho %s"
 
 #. # Units for temperature, degrees Fahrenheit. %f is replaced the value. NB:
 #. English translation uses unicode character u+2109
-#: desklet.js:1104
+#: desklet.js:1107
 #, python-format
 msgid "%fF"
 msgstr "%fºF"
 
 #. # Units for temperature, degrees Celsius. %f is replaced the value. NB:
 #. English translation uses unicode character u+2103
-#: desklet.js:1106
+#: desklet.js:1109
 #, python-format
 msgid "%fC"
 msgstr "%fºC"
 
 #. # wind speed, miles per hour. %f is replaced by the value
-#: desklet.js:1127
+#: desklet.js:1130
 #, python-format
 msgid "%fmph"
 msgstr "%f m/h"
 
 #. # wind speed, knots. %f is replaced by the value
-#: desklet.js:1129
+#: desklet.js:1132
 #, python-format
 msgid "%fkn"
 msgstr "%fk n/h"
 
 #. # wind speed, kilometers per hour. %f is replaced by the value
-#: desklet.js:1131
+#: desklet.js:1134
 #, python-format
 msgid "%fkm/h"
 msgstr "%f km/h"
 
 #. # wind speed, meters per second. %f is replaced by the value
-#: desklet.js:1133
+#: desklet.js:1136
 #, python-format
 msgid "%fm/s"
 msgstr "%f m/s"
 
 #. # pressure, millbars. %f is replaced by the value
-#: desklet.js:1167
+#: desklet.js:1170
 #, python-format
 msgid "%fmb"
 msgstr "%f mb"
 
 #. # pressure, inches of mercury. %f is replaced by the value
-#: desklet.js:1169
+#: desklet.js:1172
 #, python-format
 msgid "%fin"
 msgstr "%f in"
 
 #. # pressure, mm of mercury. %f is replaced by the value
-#: desklet.js:1171
+#: desklet.js:1174
 #, python-format
 msgid "%fmm"
 msgstr "%f mm"
 
 #. # pressure, kilopascals. %f is replaced by the value
-#: desklet.js:1173
+#: desklet.js:1176
 #, python-format
 msgid "%fkPa"
 msgstr "%f kPa"
 
 #. # visibility, miles. %f is replaced by the value
-#: desklet.js:1224
+#: desklet.js:1227
 #, python-format
 msgid "%fmi"
 msgstr "%f dặm"
 
 #. # visibility, nautical miles. %f is replaced by the value
-#: desklet.js:1226
+#: desklet.js:1229
 #, python-format
 msgid "%fnmi"
 msgstr "%f nmi"
 
 #. # visibility, kilometers. %f is replaced by the value
-#: desklet.js:1228
+#: desklet.js:1231
 #, python-format
 msgid "%fkm"
 msgstr "%f km"
 
 #. # Next 16 strings are for wind direction, compass points
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "N"
 msgstr "Bắc"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "NNE"
 msgstr "Bắc - Đông Bắc"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "NE"
 msgstr "Đông Bắc"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "ENE"
 msgstr "Đông - Đông Bắc"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "E"
 msgstr "Đông"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "ESE"
 msgstr "Đông - Đông Nam"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "SE"
 msgstr "Đông Nam"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "SSE"
 msgstr "Nam - Đông Nam"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "S"
 msgstr "Nam"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "SSW"
 msgstr "Nam - Tây Nam"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "SW"
 msgstr "Tây Nam"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "WSW"
 msgstr "Tây - Tây Nam"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "W"
 msgstr "Tây"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "WNW"
 msgstr "Tây - Tây Bắc"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "NW"
 msgstr "Tây Bắc"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "NNW"
 msgstr "Bắc - Tây Bắc"
 
-#: desklet.js:1485
+#: desklet.js:1488
 msgid "Tornado"
 msgstr "Tố lốc"
 
-#: desklet.js:1486
+#: desklet.js:1489
 msgid "Tropical storm"
 msgstr "Bão nhiệt đới"
 
-#: desklet.js:1487
+#: desklet.js:1490
 msgid "Hurricane"
 msgstr "Bão tố"
 
-#: desklet.js:1488
+#: desklet.js:1491
 msgid "Severe thunderstorms"
 msgstr "Có nơi có dông"
 
-#: desklet.js:1489
+#: desklet.js:1492
 msgid "Thunderstorms"
 msgstr "Bão kèm sấm chớp"
 
-#: desklet.js:1490 desklet.js:3506
+#: desklet.js:1493 desklet.js:3806
 msgid "Mixed rain and snow"
 msgstr "Mưa kèm theo tuyết"
 
-#: desklet.js:1491
+#: desklet.js:1494
 msgid "Mixed rain and sleet"
 msgstr "Mưa có tạo tuyết"
 
-#: desklet.js:1492
+#: desklet.js:1495
 msgid "Mixed snow and sleet"
 msgstr "Tuyết ẩm"
 
-#: desklet.js:1493
+#: desklet.js:1496
 msgid "Freezing drizzle"
 msgstr "Mưa giá"
 
-#: desklet.js:1494 desklet.js:1788
+#: desklet.js:1497 desklet.js:1791
 msgid "Drizzle"
 msgstr "Mưa phùn"
 
-#: desklet.js:1495
+#: desklet.js:1498
 msgid "Freezing rain"
 msgstr "Mưa rét"
 
-#: desklet.js:1496 desklet.js:1497 desklet.js:3502
+#: desklet.js:1499 desklet.js:1500 desklet.js:3802
 msgid "Showers"
 msgstr "Mưa rào"
 
-#: desklet.js:1498
+#: desklet.js:1501
 msgid "Snow flurries"
 msgstr "Tuyết bất chợt"
 
-#: desklet.js:1499
+#: desklet.js:1502
 msgid "Light snow showers"
 msgstr "Tuyết nhỏ"
 
-#: desklet.js:1500
+#: desklet.js:1503
 msgid "Blowing snow"
 msgstr "Gió tuyết"
 
-#: desklet.js:1501 desklet.js:3504 desklet.js:3510
+#: desklet.js:1504 desklet.js:3804 desklet.js:3810
 msgid "Snow"
 msgstr "Tuyết"
 
-#: desklet.js:1502
+#: desklet.js:1505
 msgid "Hail"
 msgstr "Mưa đá"
 
-#: desklet.js:1503 desklet.js:1793
+#: desklet.js:1506 desklet.js:1796
 msgid "Sleet"
 msgstr "Mưa tuyết"
 
-#: desklet.js:1504
+#: desklet.js:1507
 msgid "Dust"
 msgstr "Bụi"
 
-#: desklet.js:1505
+#: desklet.js:1508
 msgid "Foggy"
 msgstr "Có sương mù"
 
-#: desklet.js:1506
+#: desklet.js:1509
 msgid "Haze"
 msgstr "Khói mù"
 
-#: desklet.js:1507
+#: desklet.js:1510
 msgid "Smoky"
 msgstr "Có khói mờ"
 
-#: desklet.js:1508
+#: desklet.js:1511
 msgid "Blustery"
 msgstr "Gió lớn"
 
-#: desklet.js:1509
+#: desklet.js:1512
 msgid "Windy"
 msgstr "Có gió"
 
-#: desklet.js:1510
+#: desklet.js:1513
 msgid "Cold"
 msgstr "Lạnh"
 
-#: desklet.js:1511 desklet.js:3499
+#: desklet.js:1514 desklet.js:3799
 msgid "Cloudy"
 msgstr "Có mây"
 
-#: desklet.js:1512 desklet.js:1513
+#: desklet.js:1515 desklet.js:1516
 msgid "Mostly cloudy"
 msgstr "Nhiều nơi có mây"
 
-#: desklet.js:1514 desklet.js:1515 desklet.js:1529
+#: desklet.js:1517 desklet.js:1518 desklet.js:1532
 msgid "Partly cloudy"
 msgstr "Mây rải rác"
 
-#: desklet.js:1516
+#: desklet.js:1519
 msgid "Clear"
 msgstr "Trời quang mây tạnh"
 
-#: desklet.js:1517 desklet.js:1777
+#: desklet.js:1520 desklet.js:1780
 msgid "Sunny"
 msgstr "Có nắng"
 
-#: desklet.js:1518 desklet.js:1519 desklet.js:3497
+#: desklet.js:1521 desklet.js:1522 desklet.js:3797
 msgid "Fair"
 msgstr "Trời đẹp"
 
-#: desklet.js:1520
+#: desklet.js:1523
 msgid "Mixed rain and hail"
 msgstr "Mưa kèm theo đá"
 
-#: desklet.js:1521
+#: desklet.js:1524
 msgid "Hot"
 msgstr "Nóng nực"
 
-#: desklet.js:1522
+#: desklet.js:1525
 msgid "Isolated thunderstorms"
 msgstr "Thỉnh thoảng có dông"
 
-#: desklet.js:1523
+#: desklet.js:1526
 msgid "Scattered thunderstorms"
 msgstr "Dông rải rác"
 
-#: desklet.js:1524 desklet.js:1525
+#: desklet.js:1527 desklet.js:1528
 msgid "Scattered showers"
 msgstr "Mưa rào rải rác"
 
-#: desklet.js:1526 desklet.js:1528
+#: desklet.js:1529 desklet.js:1531
 msgid "Heavy snow"
 msgstr "Tuyết nặng hạt"
 
-#: desklet.js:1527
+#: desklet.js:1530
 msgid "Scattered snow showers"
 msgstr "Tuyết rơi rải rác"
 
-#: desklet.js:1530
+#: desklet.js:1533
 msgid "Thundershowers"
 msgstr "Mưa rào, sấm sét giật mạnh"
 
-#: desklet.js:1531 desklet.js:3505
+#: desklet.js:1534 desklet.js:3805
 msgid "Snow showers"
 msgstr "Tuyết lớn"
 
-#: desklet.js:1532
+#: desklet.js:1535
 msgid "Isolated thundershowers"
 msgstr "Mưa rào, thỉng thoảng có sấm sét"
 
-#: desklet.js:1533
+#: desklet.js:1536
 msgid "Not available"
 msgstr "Không sẵn sàng"
 
-#: desklet.js:1776 desklet.js:3496
+#: desklet.js:1779 desklet.js:3796
 msgid "Clear Sky"
 msgstr "Trời trong xanh"
 
-#: desklet.js:1778 desklet.js:3498
+#: desklet.js:1781 desklet.js:3798
 msgid "Partly Cloudy"
 msgstr "Có mây rải rác"
 
-#: desklet.js:1779
+#: desklet.js:1782
 msgid "Sunny Intervals"
 msgstr "Thỉnh thoảng có nắng"
 
-#: desklet.js:1780
+#: desklet.js:1783
 msgid "Sand Storm"
 msgstr "Bão cát"
 
-#: desklet.js:1781
+#: desklet.js:1784
 msgid "Mist"
 msgstr "Sương mù ẩm ướt"
 
-#: desklet.js:1782 desklet.js:3500
+#: desklet.js:1785 desklet.js:3800
 msgid "Fog"
 msgstr "Sương mù"
 
-#: desklet.js:1783
+#: desklet.js:1786
 msgid "White Cloud"
 msgstr "Mây trắng"
 
-#: desklet.js:1784
+#: desklet.js:1787
 msgid "Light Cloud"
 msgstr "Mây mỏng"
 
-#: desklet.js:1785
+#: desklet.js:1788
 msgid "Grey Cloud"
 msgstr "Mây đen"
 
-#: desklet.js:1786
+#: desklet.js:1789
 msgid "Thick Cloud"
 msgstr "Mây dày"
 
-#: desklet.js:1787
+#: desklet.js:1790
 msgid "Light Rain Shower"
 msgstr "Mưa rào nhẹ"
 
-#: desklet.js:1789 desklet.js:3507 desklet.js:3511
+#: desklet.js:1792 desklet.js:3807 desklet.js:3811
 msgid "Light Rain"
 msgstr "Mưa nhỏ"
 
-#: desklet.js:1790
+#: desklet.js:1793
 msgid "Heavy Rain Shower"
 msgstr "Mưa rào rả rích"
 
-#: desklet.js:1791 desklet.js:3501 desklet.js:3509
+#: desklet.js:1794 desklet.js:3801 desklet.js:3809
 msgid "Heavy Rain"
 msgstr "Mưa to"
 
-#: desklet.js:1792
+#: desklet.js:1795
 msgid "Sleet Shower"
 msgstr "Mưa tuyết lớn"
 
-#: desklet.js:1794
+#: desklet.js:1797
 msgid "Light Snow Shower"
 msgstr "Mưa tuyết nhỏ"
 
-#: desklet.js:1795 desklet.js:3508 desklet.js:3512
+#: desklet.js:1798 desklet.js:3808 desklet.js:3812
 msgid "Light Snow"
 msgstr "Tuyết nhẹ"
 
-#: desklet.js:1796
+#: desklet.js:1799
 msgid "Heavy Snow Shower"
 msgstr "Tuyết dày"
 
-#: desklet.js:1797
+#: desklet.js:1800
 msgid "Heavy Snow"
 msgstr "Tuyết lớn"
 
-#: desklet.js:1798 desklet.js:3503
+#: desklet.js:1801 desklet.js:3803
 msgid "Thundery Shower"
 msgstr "Mưa rào kèm sấm sét"
 
-#: desklet.js:1799
+#: desklet.js:1802
 msgid "Thunder Storm"
 msgstr "Dông tố"
 
-#: desklet.js:1800
+#: desklet.js:1803
 msgid "Thunderstorm"
 msgstr "Dông bão"
 
-#: desklet.js:1801
+#: desklet.js:1804
 msgid "Hazy"
 msgstr "Có sương mù"
 
-#: desklet.js:1802
+#: desklet.js:1805
 msgid "Hail Shower"
 msgstr "Mưa đá lớn"
 
-#: desklet.js:1803
+#: desklet.js:1806
 msgid "Rain"
 msgstr ""
 
 #. # direction of movement of pressure
-#: desklet.js:1987 desklet.js:2601
+#: desklet.js:1991 desklet.js:2618
 msgid "Steady"
 msgstr "ổn định"
 
 #. # direction of movement of pressure
-#: desklet.js:1987 desklet.js:2597
+#: desklet.js:1991 desklet.js:2614
 msgid "Rising"
 msgstr "đang mạnh lên"
 
 #. # direction of movement of pressure
-#: desklet.js:1987 desklet.js:2599
+#: desklet.js:1991 desklet.js:2616
 msgid "Falling"
 msgstr "đang yếu đi"
 
@@ -583,10 +583,6 @@ msgstr "Google"
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->description
 msgid "Data service"
 msgstr "Đài khí tượng"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->options
-msgid "Yahoo!"
-msgstr "Yahoo!"
 
 #. bbcwx@oak-wood.co.uk->settings-
 #. schema.json->experimental_enabled->description
@@ -970,15 +966,16 @@ msgid "BBC"
 msgstr "BBC"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-msgid "Yahoo"
-msgstr "Yahoo"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "weather.com (deprecated)"
 msgstr "weather.com (có thể không còn hoạt động)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "World Weather Online (requires API key)"
+msgstr "World Weather Online (cần API key)"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
+#, fuzzy
+msgid "World Weather Online Premium (requires API key)"
 msgstr "World Weather Online (cần API key)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
@@ -1122,3 +1119,9 @@ msgstr ""
 #. bbcwx@oak-wood.co.uk->metadata.json->description
 msgid "Display the weather from several web services on your desktop"
 msgstr ""
+
+#~ msgid "Yahoo!"
+#~ msgstr "Yahoo!"
+
+#~ msgid "Yahoo"
+#~ msgstr "Yahoo"

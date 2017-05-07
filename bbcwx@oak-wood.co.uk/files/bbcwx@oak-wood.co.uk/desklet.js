@@ -1,15 +1,15 @@
-/* 
+/*
  * bbcwx - a Cinnamon Desklet displaying the weather retrieved
  * from one of several web services.
- * 
- * Copyright 2014 - 2015 Chris Hastie. Forked from accudesk@logan; original
- * code Copyright 2013 loganj. 
- * 
- * Includes the marknote library, Copyright 2011 jbulb.org. 
+ *
+ * Copyright 2014 - 2017 Chris Hastie. Forked from accudesk@logan; original
+ * code Copyright 2013 loganj.
+ *
+ * Includes the marknote library, Copyright 2011 jbulb.org.
  * Icons Copyright 2010 Merlin the Red, 2010 VClouds, 2010
  * d3stroy and 2004 digitalchet.
  * See help.html for further credits and license information.
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -29,7 +29,7 @@ const St = imports.gi.St;
 const Desklet = imports.ui.desklet;
 const Lang = imports.lang;
 const Mainloop = imports.mainloop;
-const Clutter = imports.gi.Clutter;  
+const Clutter = imports.gi.Clutter;
 const GLib = imports.gi.GLib;
 const Util = imports.misc.util;
 const Main = imports.ui.main;
@@ -93,7 +93,7 @@ function MyDesklet(metadata,desklet_id){
 
 MyDesklet.prototype = {
   __proto__: Desklet.Desklet.prototype,
-    
+
 
   _init: function(metadata,desklet_id){
     //############Variables###########
@@ -108,13 +108,13 @@ MyDesklet.prototype = {
     this.oldshifttemp='';
     this.redrawNeeded=false;
 
-        
+
     //################################
-    
+
     try {
       Desklet.Desklet.prototype._init.call(this, metadata);
       //#########################binding configuration file################
-      this.settings = new Settings.DeskletSettings(this, UUID, this.desklet_id);  
+      this.settings = new Settings.DeskletSettings(this, UUID, this.desklet_id);
       // temperature unit change may require refetching forecast if service includes units in text summaries
       this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"tunits","tunits",this.onTempUnitChange,null);
       // these require only a redisplay
@@ -143,7 +143,7 @@ MyDesklet.prototype = {
       // userno because of change to number of days in table, and possibly position of current temperature
       this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"layout","layout",this.displayOptsChange,null);
       this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"userno","userno",this.redraw,null);
-      
+
       // these need a redraw. displayOptsChange sets a flag to say a redraw is needed before calling redraw
       this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"display__cc__pressure","display__cc__pressure",this.displayOptsChange,null);
       this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"display__cc__humidity","display__cc__humidity",this.displayOptsChange,null);
@@ -158,30 +158,30 @@ MyDesklet.prototype = {
       this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"display__forecast__humidity","display__forecast__humidity",this.displayOptsChange,null);
 
       this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"display__meta__country","display__meta__country",this.updateStyle,null);
-      
+
       this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"display__cc__weather","display__cc__weather",this.displayOptsChange,null);
-      
+
       // a change to webservice requires data to be fetched and the window redrawn
       this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"webservice","webservice",this.initForecast,null);
-      
+
       this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"locsrc","locsrc",this.displayMeta,null);
       this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"manuallocation","manuallocation",this.displayMeta,null);
-      
+
       this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"experimental_enabled","experimental_enabled",this.doExperimental,null);
       this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"gravity","gravity",this.setGravity,null);
-      
+
       // refresh style on change of global desklet setting for decorations
       global.settings.connect('changed::desklet-decorations', Lang.bind(this, this.updateStyle));
-      
+
       // set a header for those that don't override the theme
       //## The desklet title
       this.setHeader(_('Weather'));
-      
+
       this._geocache = new Object();
       this._geocache.yahoo = new Object();
       this._geocache.google = new Object();
-      
-      this.helpFile = DESKLET_DIR + "/help.html"; 
+
+      this.helpFile = DESKLET_DIR + "/help.html";
       //## Link to Help file in context menu
       this._menu.addAction(_('Help'), Lang.bind(this, function() {
         Util.spawnCommandLine("xdg-open " + this.helpFile);
@@ -190,8 +190,8 @@ MyDesklet.prototype = {
       this._menu.addAction(_('Translate'), Lang.bind(this, function() {
         Util.spawnCommandLine("xdg-open " + BBCWX_TRANSLATION_URL);
       }));
-      this.initForecast(); 
-      
+      this.initForecast();
+
     }
     catch (e) {
       global.logError(e);
@@ -221,6 +221,9 @@ MyDesklet.prototype = {
       case 'wwo':
         this.service = new wxDriverWWO(this.stationID, this.apikey);
         break;
+      case 'wwo2':
+        this.service = new wxDriverWWOPremium(this.stationID, this.apikey);
+        break;
       case 'forecast':
         this.service = new wxDriverForecastIo(this.stationID, this.apikey);
         break;
@@ -233,39 +236,39 @@ MyDesklet.prototype = {
       default:
         this.service = new wxDriverBBC(this.stationID);
     }
-    
+
     this._setDerivedValues();
-    this._createWindow(); 
+    this._createWindow();
     this.setGravity();
     this._update_style();
-    this._refreshweathers();    
+    this._refreshweathers();
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
   // Create the layout of our desklet. Certain settings changes require this
-  // to be called again (eg change service, as capabilities change, change number 
+  // to be called again (eg change service, as capabilities change, change number
   // days of forecast to display
   _createWindow: function(){
     // in these circumstances we do not need to redraw the window from scratch as the elements haven't changed
-    if((this.no == this.oldno) && (this.oldwebservice == this.webservice) && (this.shifttemp == this.oldshifttemp) && !this.redrawNeeded) {       
+    if((this.no == this.oldno) && (this.oldwebservice == this.webservice) && (this.shifttemp == this.oldshifttemp) && !this.redrawNeeded) {
       return;
-    }      
-    
+    }
+
     this.oldno=this.no;
     this.oldwebservice = this.webservice;
     this.oldshifttemp = this.shifttemp;
     this.redrawNeeded = false;
-    
+
     // get rid of the signal to banner and main icon before we recreate a window
     try {
       if (this.bannersig) this.banner.disconnect(this.bannersig);
       if (this.cwiconsig && this.cwicon) this.cwicon.disconnect(this.cwiconsig);
       this.bannersig = null;
       this.cwiconsig = null;
-    } catch(e) { }  
-    
+    } catch(e) { }
+
     this.window=new St.BoxLayout({vertical: ((this.vertical==1) ? true : false)});
-    
+
     this.cwicon = null;
     // container for link and refresh icon
     this.buttons=new St.BoxLayout({vertical: false,x_align:2, y_align:2 });
@@ -274,45 +277,45 @@ MyDesklet.prototype = {
       icon_type: St.IconType.SYMBOLIC
     });
     this.but=new St.Button(); // container for refresh icon
-    
+
     // these will hold the data for the three day forecast
-    this.labels=[]; this.fwicons=[];this.max=[]; this.min=[]; this.windd=[]; this.winds=[]; 
+    this.labels=[]; this.fwicons=[];this.max=[]; this.min=[]; this.windd=[]; this.winds=[];
     this.fhumidity=[]; this.fpressure=[]; this.eachday=[];
-    
+
     // some labels need resetting incase we are redrawing after a change of service
     this.humidity=null; this.pressure=null; this.windspeed=null; this.feelslike=null;
-    
+
     this._separatorArea = new St.DrawingArea({ style_class: BBCWX_SEPARATOR_STYLE });
-    
+
     let ccap = this.show.cc;
-    
+
     // current weather values
     if(ccap.humidity) this.humidity=new St.Label();
     if(ccap.pressure) this.pressure=new St.Label();
     if(ccap.wind_speed) this.windspeed=new St.Label();
     if(ccap.feelslike) this.feelslike=new St.Label();
-    if(ccap.visibility) this.visibility=new St.Label();    
-    
+    if(ccap.visibility) this.visibility=new St.Label();
+
     // container for current weather values
     this.ctemp_values = new St.BoxLayout({vertical: true, y_align: 2});
     // container for current weather labels
     this.ctemp_captions = new St.BoxLayout({vertical: true, y_align: 2});
     // container for current weather
     this.ctemp = new St.BoxLayout({vertical: false, x_align: 2, y_align: 2});
-    
+
     // city and city container
     this.cityname=new St.Label();
     this.city=new St.BoxLayout({vertical:true});
-    
+
     // container for right (horizontal) or lower (vertical) part of window
     this.container= new St.BoxLayout({vertical: true, x_align: 2});
     // container for left (horizontal) or upper (vertical) part of window
     this.cweather = new St.BoxLayout({vertical: true, x_align: 2});
     // current weather icon container
-    if (ccap.weather) this.cwicon = new St.Button(); 
+    if (ccap.weather) this.cwicon = new St.Button();
     // current weather text
     if (ccap.weather) this.weathertext=new St.Label();
-    
+
     // current temp on wide layouts
     if (this.shifttemp) {
       this.ctemp_bigtemp = new St.BoxLayout({vertical: false, x_align: 3, y_align: 2});
@@ -320,28 +323,28 @@ MyDesklet.prototype = {
       this.ctemp_bigtemp.add_actor(this.currenttemp);
       this.ctemp.add_actor(this.ctemp_bigtemp);
     }
-    
-    this.city.add_actor(this.cityname); 
-    
+
+    this.city.add_actor(this.cityname);
+
     //## Next five strings are labels for current conditions
     if(ccap.humidity) this.ctemp_captions.add_actor(new St.Label({text: _('Humidity:')}));
     if(ccap.pressure) this.ctemp_captions.add_actor(new St.Label({text: _('Pressure:')}));
     if(ccap.wind_speed) this.ctemp_captions.add_actor(new St.Label({text: _('Wind:')}));
     if(ccap.feelslike) this.ctemp_captions.add_actor(new St.Label({text: _('Feels like:')}));
     if(ccap.visibility) this.ctemp_captions.add_actor(new St.Label({text: _('Visibility:')}));
-    
+
     if(this.humidity) this.ctemp_values.add_actor(this.humidity);
     if(this.pressure) this.ctemp_values.add_actor(this.pressure);
     if(this.windspeed) this.ctemp_values.add_actor(this.windspeed);
     if(this.feelslike) this.ctemp_values.add_actor(this.feelslike);
     if(this.visibility) this.ctemp_values.add_actor(this.visibility);
-    
+
     this.ctemp.add_actor(this.ctemp_captions);
     this.ctemp.add_actor(this.ctemp_values);
-    
+
     // build table to hold three day forecast
     this.fwtable =new St.Table();
-    
+
     //## Maximum temperature
     this.maxlabel = new St.Label({text: _('Max:')});
     //## Minimum temperature
@@ -353,10 +356,10 @@ MyDesklet.prototype = {
     //## Atmospheric pressure
     this.fpressurelabel = new St.Label({text: _('Pressure:')});
     this.fhumiditylabel = new St.Label({text: _('Humidity:')});
-    
+
     let fcap = this.show.forecast;
     let row = 2;
-    
+
     if(fcap.maximum_temperature) {this.fwtable.add(this.maxlabel,{row:row,col:0}); row++}
     if(fcap.minimum_temperature) {this.fwtable.add(this.minlabel,{row:row,col:0}); row++}
     if(fcap.wind_speed) {this.fwtable.add(this.windlabel,{row:row,col:0}); row++}
@@ -373,7 +376,7 @@ MyDesklet.prototype = {
       if(fcap.pressure) this.fpressure[f]=new St.Label();
       if(fcap.humidity) this.fhumidity[f]=new St.Label();
       this.wxtooltip[f] = new Tooltips.Tooltip(this.fwicons[f]);
-      
+
       this.fwtable.add(this.labels[f],{row:0,col:f+1});
       this.fwtable.add(this.fwicons[f],{row:1,col:f+1});
       row = 2;
@@ -384,19 +387,19 @@ MyDesklet.prototype = {
       if(this.fpressure[f]) {this.fwtable.add(this.fpressure[f],{row:row,col:f+1}); row++}
       if(this.fhumidity[f]) {this.fwtable.add(this.fhumidity[f],{row:row,col:f+1}); row++}
     }
-    
+
     this.buttoncontainer = new St.BoxLayout({vertical: true, x_align: 2, y_align: 2});
-    
+
     this.but.set_child(this.iconbutton);
     this.but.connect('clicked', Lang.bind(this, this.updateForecast));
     // seems we have to use a button for bannerpre to get the vertical alignment :(
     //## Credit the data supplier. A link to the data supplier appears to the right of this string
     this.bannerpre=new St.Button({label: _('Data from ')});
-    this.banner=new St.Button({ 
+    this.banner=new St.Button({
       reactive: true,
       track_hover: true,
       style_class: 'bbcwx-link'});
-    this.bannericon=new St.Button({ 
+    this.bannericon=new St.Button({
       reactive: true,
       track_hover: true,
       style_class: 'bbcwx-link'});
@@ -409,28 +412,28 @@ MyDesklet.prototype = {
     this.buttons.add_actor(this.but);
     this.buttoncontainer.add_actor(this.bannericon);
     this.buttoncontainer.add_actor(this.buttons);
-    this.container.add_actor(this.ctemp);  
+    this.container.add_actor(this.ctemp);
     this.container.add_actor(this._separatorArea);
-    this.container.add_actor(this.fwtable); 
+    this.container.add_actor(this.fwtable);
     this.cweather.add_actor(this.city);
     if (this.cwicon) this.cweather.add_actor(this.cwicon);
     if (this.weathertext) this.cweather.add_actor(this.weathertext);
     this.container.add_actor(this.buttoncontainer);
     this.window.add_actor(this.cweather);
     this.window.add_actor(this.container);
-    
+
     this.setContent(this.window);
-    
+
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
   // Set some internal values derived from user choices
   _setDerivedValues: function() {
-    
+
     this.vertical = this.layout;
     this.currenttempadding = BBCWX_TEMP_PADDING;
     this.currenttempsize = BBCWX_CC_TEXT_SIZE;
-    
+
     // set the number of days of forecast to display; maximum of the number
     // selected by the user and the maximum supported by the driver
     if (this.userno > this.service.maxDays) {
@@ -438,14 +441,14 @@ MyDesklet.prototype = {
     } else {
       this.no = this.userno;
     }
-    
+
     // set the refresh period; minimum of the number
     // selected by the user and the minimum supported by the driver
     this.refreshSec = this.refreshtime * 60;
     if (this.refreshSec < this.service.minTTL) {
       this.refreshSec = this.service.minTTL;
-    }    
-    
+    }
+
     // if more than four days we'll shift the position of the current temperature,
     // but only in horizontal layout
     // false: concatenate with weather text; true: shift to alongside current conditions;
@@ -453,15 +456,15 @@ MyDesklet.prototype = {
     if (this.no > 4 && this.vertical == 0) {
       this.shifttemp = true;
     }
-    
+
     // set this.iconprops
     this._initIcons();
-    
+
     // clone this.service.capabilities, then && it with display preferences
     this.show =  JSON.parse(JSON.stringify(this.service.capabilities));
-    let displayopts =['display__cc__pressure', 'display__cc__wind_speed', 
+    let displayopts =['display__cc__pressure', 'display__cc__wind_speed',
       'display__cc__humidity', 'display__cc__feelslike', 'display__cc__visibility',
-      'display__forecast__wind_speed', 'display__forecast__wind_direction', 
+      'display__forecast__wind_speed', 'display__forecast__wind_direction',
       'display__forecast__maximum_temperature', 'display__forecast__minimum_temperature',
       'display__forecast__humidity', 'display__forecast__pressure',
       'display__meta__country'
@@ -472,13 +475,13 @@ MyDesklet.prototype = {
       this.show[parts[1]][parts[2]] = this.show[parts[1]][parts[2]] && this[displayopts[i]];
       if (parts[1] == 'cc' && this.show[parts[1]][parts[2]]) ccShowCount++;
     }
-    
-    // don't shift the current temp display position if 
+
+    // don't shift the current temp display position if
     // no current conditions to display
     if (ccShowCount < 1) this.shifttemp = false;
-    
+
     // if not showing current weather text and icon, force
-    // to vertical and shift current temperature   
+    // to vertical and shift current temperature
     this.show.cc.weather = this.display__cc__weather;
     if (!this.display__cc__weather) {
       this.shifttemp = true
@@ -486,9 +489,9 @@ MyDesklet.prototype = {
       this.vertical = 1;
       // don't right pad the temperature if there's nothing to its right
       if (ccShowCount < 1) this.currenttempadding = 0;
-    }     
+    }
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
   // Set internal values for icons
   _initIcons: function() {
@@ -508,14 +511,14 @@ MyDesklet.prototype = {
       ext: 'png',
       map : {}
     }
-    
+
     let file = Gio.file_new_for_path(DESKLET_DIR + '/icons/' + iconset + '/iconmeta.json');
     try {
       let raw_file = Cinnamon.get_file_contents_utf8_sync(file.get_path());
-      iconprops = JSON.parse(raw_file);    
+      iconprops = JSON.parse(raw_file);
     } catch(e) {
       global.logError("Failed to parse iconmeta.json for iconset " + this.iconstyle);
-    } 
+    }
     // set anything missing to default values
     for (let prop in deficonprops) {
       if (typeof iconprops[prop] === 'undefined') {
@@ -524,9 +527,9 @@ MyDesklet.prototype = {
     }
     return iconprops;
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
-  // Called when some change requires the styling of the desklet to be updated    
+  // Called when some change requires the styling of the desklet to be updated
   updateStyle: function() {
     // set values for this.iconprops
     this._setDerivedValues();
@@ -537,14 +540,14 @@ MyDesklet.prototype = {
     this.displayCurrent();
     this.displayMeta();
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
   // Called when units are changed
   onUnitChange: function() {
     this.displayForecast();
-    this.displayCurrent();    
+    this.displayCurrent();
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
   // Called when temperature units are updated. If service text summaries include
   // units we must refetch forecast, otherwise just refresh display
@@ -554,7 +557,7 @@ MyDesklet.prototype = {
       this.updateForecast();
     }
   },
-   
+
   ////////////////////////////////////////////////////////////////////////////
   // Does the bulk of the work of updating style
   _update_style: function() {
@@ -568,13 +571,13 @@ MyDesklet.prototype = {
     if (this.currenttemp) this.currenttemp.style= 'text-align : center; font-size:'+this.currenttempsize*this.zoom+'px';
     if (this.ctemp_bigtemp) this.ctemp_bigtemp.style = 'text-align : left; padding-right: ' + this.currenttempadding *this.zoom + 'px'
     this.fwtable.style="spacing-rows: "+BBCWX_TABLE_ROW_SPACING*this.zoom+"px;spacing-columns: "+BBCWX_TABLE_COL_SPACING*this.zoom+"px;padding: "+BBCWX_TABLE_PADDING*this.zoom+"px;";
-    this.cityname.style="text-align: center;font-size: "+BBCWX_TEXT_SIZE*this.zoom+"px; font-weight: " + ((this.citystyle) ? 'bold' : 'normal') + ";" ;    
+    this.cityname.style="text-align: center;font-size: "+BBCWX_TEXT_SIZE*this.zoom+"px; font-weight: " + ((this.citystyle) ? 'bold' : 'normal') + ";" ;
     this.ctemp_captions.style = 'text-align : right;font-size: '+BBCWX_TEXT_SIZE*this.zoom+"px; padding-right: " +BBCWX_LABEL_PADDING*this.zoom+"px";
     this.ctemp_values.style = 'text-align : left; font-size: '+BBCWX_TEXT_SIZE*this.zoom+"px";
-    
+
     if(this.overrideTheme) {
       // hide header and use a style with no border
-      this._header.hide();  
+      this._header.hide();
       this.window.set_style_class_name('desklet');
       if (this.border) {
         let borderradius = (this.borderwidth > this.cornerradius) ? this.borderwidth : this.cornerradius;
@@ -584,20 +587,20 @@ MyDesklet.prototype = {
         this.window.style="border-radius: " + this.cornerradius + "px; background-color: "+(this.bgcolor.replace(")",","+this.transparency+")")).replace('rgb','rgba')+"; color: "+this.textcolor;
       }
       this.banner.style='font-size: '+BBCWX_LINK_TEXT_SIZE*this.zoom+"px; color: " + this.textcolor;
-      this.bannerpre.style='font-size: '+BBCWX_LINK_TEXT_SIZE*this.zoom+"px; color: " + this.textcolor; 
+      this.bannerpre.style='font-size: '+BBCWX_LINK_TEXT_SIZE*this.zoom+"px; color: " + this.textcolor;
       this.banner.set_style_class_name('bbcwx-link');
     } else {
       this.window.set_style('');
-      // set style_class and _header visibility according to 
+      // set style_class and _header visibility according to
       // global desklet settings for theme
       let dec = global.settings.get_int('desklet-decorations');
       switch(dec){
       case 0:
-          this._header.hide();    
-          this.window.set_style_class_name('desklet');        
+          this._header.hide();
+          this.window.set_style_class_name('desklet');
           break;
       case 1:
-          this._header.hide();            
+          this._header.hide();
           this.window.set_style_class_name('desklet-with-borders');
           break;
       case 2:
@@ -606,7 +609,7 @@ MyDesklet.prototype = {
           break;
       }
       this.banner.style='font-size: '+BBCWX_LINK_TEXT_SIZE*this.zoom+"px;";
-      this.bannerpre.style='font-size: '+BBCWX_LINK_TEXT_SIZE*this.zoom+"px;"; 
+      this.bannerpre.style='font-size: '+BBCWX_LINK_TEXT_SIZE*this.zoom+"px;";
     }
     this._separatorArea.height=5*this.zoom;
 
@@ -620,16 +623,16 @@ MyDesklet.prototype = {
       if(this.fpressure[f]) this.fpressure[f].style= 'text-align : center; font-size: '+BBCWX_TEXT_SIZE*this.zoom+"px";
       if(this.fhumidity[f]) this.fhumidity[f].style= 'text-align : center; font-size: '+BBCWX_TEXT_SIZE*this.zoom+"px";
     }
-    
+
     this.buttons.style="padding-top:"+BBCWX_BUTTON_PADDING*this.zoom+"px;padding-bottom:"+BBCWX_BUTTON_PADDING*this.zoom+"px";
-    
+
     this.iconbutton.icon_size=BBCWX_REFRESH_ICON_SIZE*this.zoom;
-    
+
     let forecastlabels = ['maxlabel', 'minlabel', 'windlabel', 'winddlabel', 'fpressurelabel', 'fhumiditylabel'];
     for (let i = 0; i<forecastlabels.length; i++) {
       if (this[forecastlabels[i]]) this[forecastlabels[i]].style = 'text-align : right;font-size: '+BBCWX_LABEL_TEXT_SIZE*this.zoom+"px";
     }
-    
+
     this.cweather.style='padding: ' + BBCWX_CONTAINER_PADDING*this.zoom+'px';
     if (this.vertical==1) {
       // loose the top padding on container in vertical mode (too much space)
@@ -637,80 +640,80 @@ MyDesklet.prototype = {
     } else {
       this.container.style='padding: ' + BBCWX_CONTAINER_PADDING*this.zoom+'px';
     }
-    
+
   },
-    
+
   ////////////////////////////////////////////////////////////////////////////
   // Update the forecast, without changing layout or styling
   updateForecast: function() {
     this._refreshweathers();
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
   // Change the location we are displaying weather for
   changeStation: function() {
     this.service.setStation(this.stationID);
     this._refreshweathers();
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
   // Change the API key and reget weather data
   changeApiKey: function() {
     this.service.setApiKey(this.apikey);
     this._refreshweathers();
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
   // Change the refresh period and restart the loop
   changeRefresh: function() {
     this._setDerivedValues();
     this._doLoop();
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
   // Called when there is a change to user config for parameters to display
   displayOptsChange: function() {
     this.redrawNeeded = true;
     this.redraw();
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
   // redraw the window, but without refetching data from the service provider
   redraw: function() {
     this._setDerivedValues();
-    this._createWindow(); 
+    this._createWindow();
     this._update_style();
     this.displayCurrent();
     this.displayForecast();
     this.displayMeta();
   },
-      
+
   ////////////////////////////////////////////////////////////////////////////
   // update the data from the service and start the timeout to the next update
   // refreshData will call the display* functions
   _refreshweathers: function() {
     let now=new Date().toLocaleFormat('%H:%M:%S');
     global.log("bbcwx (instance " + this.desklet_id + "): refreshing forecast at " + now);
-    
 
-    
+
+
     // pass this to refreshData as it needs to call display* functions once the data
     // is updated
-    this.service.refreshData(this);  
-    
+    this.service.refreshData(this);
+
     this._doLoop();
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
-  // Begin / restart the main loop, waiting for refreshSec before updating again  
+  // Begin / restart the main loop, waiting for refreshSec before updating again
   _doLoop: function() {
     if(typeof this._timeoutId !== 'undefined') {
       Mainloop.source_remove(this._timeoutId);
     }
-    
+
     this._timeoutId=Mainloop.timeout_add_seconds(Math.round(this.refreshSec * (0.9 + Math.random()*0.2)),Lang.bind(this, this.updateForecast));
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
   // Update the display of the forecast data
   displayForecast: function() {
@@ -721,19 +724,19 @@ MyDesklet.prototype = {
       this.labels[f].label=((this.daynames[day.day]) ? this.daynames[day.day] : '');
       let fwiconimage = this._getIconImage(day.icon, BBCWX_ICON_HEIGHT*this.zoom);
       //fwiconimage.set_size(BBCWX_ICON_HEIGHT*this.iconprops.aspect*this.zoom, BBCWX_ICON_HEIGHT*this.zoom);
-      this.fwicons[f].set_child(fwiconimage);   
+      this.fwicons[f].set_child(fwiconimage);
       //## Message if we fail to get weather data
       this.wxtooltip[f].set_text(((day.weathertext) ? _(day.weathertext) : _('No data available')));
       if(this.max[f]) this.max[f].text=this._formatTemperature(day.maximum_temperature, true);
       //if(this.max[f]) { this.max[f].text=this._formatTemperature(day.maximum_temperature, true); } else { this.max[f].text=''}
       if(this.min[f]) this.min[f].text=this._formatTemperature(day.minimum_temperature, true);
       if(this.winds[f]) this.winds[f].text=this._formatWindspeed(day.wind_speed, true);
-      if(this.windd[f]) this.windd[f].text= ((day.wind_direction) ? day.wind_direction : '');   
+      if(this.windd[f]) this.windd[f].text= ((day.wind_direction) ? day.wind_direction : '');
       if(this.fpressure[f]) this.fpressure[f].text=this._formatPressure(day.pressure, '', true);
       if(this.fhumidity[f]) this.fhumidity[f].text=this._formatHumidity(day.humidity, true);
     }
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
   // Update the display of the current observations
   displayCurrent: function(){
@@ -745,11 +748,11 @@ MyDesklet.prototype = {
     }
     if (this.shifttemp) {
       if (this.weathertext) this.weathertext.text = ((cc.weathertext) ? cc.weathertext : '');
-      this.currenttemp.text = this._formatTemperature(cc.temperature, true) ;  
+      this.currenttemp.text = this._formatTemperature(cc.temperature, true) ;
     } else {
       if (this.weathertext) this.weathertext.text = ((cc.weathertext) ? cc.weathertext : '') + ((cc.temperature && cc.weathertext) ? ', ' : '' )+ this._formatTemperature(cc.temperature, true) ;
     }
-    
+
     if (this.humidity) this.humidity.text= this._formatHumidity(cc.humidity);
     if (this.pressure) this.pressure.text=this._formatPressure(cc.pressure, cc.pressure_direction, true);
     if (this.windspeed) this.windspeed.text=((cc.wind_direction) ? cc.wind_direction : '') + ((cc.wind_direction && cc.wind_speed) ? ', ' : '' ) + this._formatWindspeed(cc.wind_speed, true);
@@ -759,35 +762,35 @@ MyDesklet.prototype = {
       this.weathertext.text = (this.service.data.status.lasterror) ? _('Error: %s').format(this.service.data.status.lasterror) : _('No data') ;
     }
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
   // Update the display of the meta data, eg city name, link tooltip. Handles
   // managing reverse geocode lookups from Yahoo or Google if needed
   displayMeta: function() {
     let locsrc = this.locsrc;
     if (this.manuallocation.toString().length) locsrc = 'manual'
-    
+
     this.displaycity = '';
     this.tooltiplocation = '';
-    
+
     if (locsrc == 'manual') {
       this.displaycity=this.manuallocation;
       this.tooltiplocation = this.manuallocation
     } else {
-      // if city name from service is empty, use wgs84, or stationID 
+      // if city name from service is empty, use wgs84, or stationID
       if (!this.service.data.city.toString().length) {
         if (this.service.capabilities.meta.wgs84 && this.service.data.status.meta == BBCWX_SERVICE_STATUS_OK) {
           // If city name is empty and source is 'service', we'll look it up with Google!
           if (locsrc == 'service') locsrc = 'google';
           this.displaycity=this.service.data.wgs84.lat + ',' + this.service.data.wgs84.lon;
-          this.tooltiplocation = this.service.data.wgs84.lat + ',' + this.service.data.wgs84.lon;   
+          this.tooltiplocation = this.service.data.wgs84.lat + ',' + this.service.data.wgs84.lon;
         } else {
           this.displaycity = this.stationID;
           this.tooltiplocation = this.stationID;
         }
       } else {
         // initially set the displayed location to that from the data service,
-        // if available. Google / Yahoo lookups we'll do asyncronously later        
+        // if available. Google / Yahoo lookups we'll do asyncronously later
         this.displaycity=this.service.data.city;
         this.tooltiplocation = this.service.data.city;
         if (this.show.meta.country) {
@@ -795,37 +798,37 @@ MyDesklet.prototype = {
         }
       }
     }
-    
+
     // initial update (Google/Yahoo to follow)
     this._updateLocationDisplay();
-    
+
     if (this.service.linkIcon) {
       let bannericonimage = this._getIconImage(this.service.linkIcon.file, this.service.linkIcon.height*this.zoom, this.service.linkIcon.width*this.zoom, false);
       //bannericonimage.set_size(this.service.linkIcon.width*this.zoom, this.service.linkIcon.height*this.zoom);
-      this.bannericon.set_child(bannericonimage); 
+      this.bannericon.set_child(bannericonimage);
     }
     this.banner.label = this.service.linkText;
 
-       
+
     try {
       if (this.bannersig) this.banner.disconnect(this.bannersig);
       if (this.cwiconsig && this.cwicon) this.cwicon.disconnect(this.cwiconsig);
       this.bannersig = null;
       this.cwiconsig = null;
-    } catch(e) { global.logWarning("Failed to disconnect signal from link banner") }  
+    } catch(e) { global.logWarning("Failed to disconnect signal from link banner") }
     this.bannersig = this.banner.connect('clicked', Lang.bind(this, function() {
         Util.spawnCommandLine("xdg-open " + this.service.linkURL );
     }));
-    if (this.cwicon) { 
+    if (this.cwicon) {
         this.cwiconsig = this.cwicon.connect('clicked', Lang.bind(this, function() {
           Util.spawnCommandLine("xdg-open " + this.service.linkURL );
       }));
     }
-    
+
     if (this.service.data.status.meta != BBCWX_SERVICE_STATUS_OK) {
       this.cityname.text = (this.service.data.status.lasterror) ? _('Error: %s').format(this.service.data.status.lasterror) : _('No data') ;
     }
-    
+
     // do async lookup of location with yahoo or google
     else if (this.service.capabilities.meta.wgs84 && (locsrc == 'yahoo' || locsrc == 'google')) {
       let latlon = this.service.data.wgs84.lat + ',' + this.service.data.wgs84.lon;
@@ -842,14 +845,14 @@ MyDesklet.prototype = {
       // no cache - lookup
       } else {
         // debugging
-        //global.log ("bbcwx: Looking up city for " + latlon + " at " + locsrc);  
+        //global.log ("bbcwx: Looking up city for " + latlon + " at " + locsrc);
         let b = this._getGeo(locsrc, function(geo, locsrc) {
           if (geo) {
             this._load_geo(geo, locsrc);
             this._updateLocationDisplay();
-          }         
+          }
         });
-      } 
+      }
     }
   },
 
@@ -862,7 +865,7 @@ MyDesklet.prototype = {
     this.bannertooltip.set_text(linktooltip);
     if (this.cwicontooltip) this.cwicontooltip.set_text(linktooltip);
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
   // Do async reverse geocode lookups at Yahoo! or Google
   // -> locsrc: which service to use: either 'yahoo' or 'google'
@@ -893,8 +896,8 @@ MyDesklet.prototype = {
         callback.call(here,false,locsrc);
       }
     });
-  }, 
-  
+  },
+
   ///////////////////////////////////////////////////////////////////////////
   // Call back function to process returned object from reverse geocode lookups
   // Wraper around _load_geo_yahoo and _load_geo_google
@@ -912,7 +915,7 @@ MyDesklet.prototype = {
         this._load_geo_yahoo(data);
     }
   },
-  
+
   ///////////////////////////////////////////////////////////////////////////
   // Call back function to process returned object from reverse geocode lookups
   // from Yahoo!
@@ -920,12 +923,12 @@ MyDesklet.prototype = {
     if (!data) {
       //this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
       return;
-    }    
-   
+    }
+
     let json = JSON.parse(data);
     let latlon = this.service.data.wgs84.lat + ',' + this.service.data.wgs84.lon;
     this._geocache.yahoo[latlon] = new Object();
-    
+
     try {
       let geo = json.query.results.Result;
       this.displaycity = geo.city;
@@ -933,7 +936,7 @@ MyDesklet.prototype = {
       if (this.show.meta.country) {
         this.displaycity += ', ' + geo.country;
       }
-      
+
       this._geocache.yahoo[latlon].city = geo.city;
       this._geocache.yahoo[latlon].country = geo.country;
     } catch(e) {
@@ -950,21 +953,21 @@ MyDesklet.prototype = {
     if (!data) {
       //this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
       return;
-    }    
+    }
     let city = '';
-    let country = ''; 
+    let country = '';
     let geo = new Object();
     let addrtypes = [ 'xlocality', 'xstreetaddr', 'xpostal_code', 'administrative_area_level_3', 'administrative_area_level_2', 'administrative_area_level_1', 'xcountry'];
     for (let a=0; a<addrtypes.length; a++) {
       geo[addrtypes[a]] = new Object();
     }
-    
-    
+
+
     let json = JSON.parse(data);
-    
+
     let latlon = this.service.data.wgs84.lat + ',' + this.service.data.wgs84.lon;
     this._geocache.google[latlon] = new Object();
-    
+
     try {
       let results = json.results;
       for (let i=0; i<results.length; i++) {
@@ -980,19 +983,19 @@ MyDesklet.prototype = {
           }
           if (results[i].types[t] == 'country') {
             geo.xcountry = results[i];
-          }          
+          }
           if (results[i].types[t] == 'locality') {
             geo.xlocality = results[i];
-          }     
+          }
           if (results[i].types[t] == 'street_address') {
             geo.xstreetaddr = results[i];
           }
           if (results[i].types[t] == 'postal_code' && results[i].types.join().indexOf("postal_code_prefix") == -1) {
             geo.xpostal_code = results[i];
-          }          
-        }        
+          }
+        }
       }
-      
+
       for (let a=0; a<addrtypes.length; a++) {
         if (typeof geo[addrtypes[a]].address_components !== "undefined" && (!city || !country)) {
           let components = geo[addrtypes[a]].address_components;
@@ -1012,8 +1015,8 @@ MyDesklet.prototype = {
                 }
               }
             }
-          }  
-        }   
+          }
+        }
         if (city && country) a = addrtypes.length;
       }
 
@@ -1025,7 +1028,7 @@ MyDesklet.prototype = {
         }
         this._geocache.google[latlon].city = city;
       }
-         
+
       if (country) this._geocache.google[latlon].country = country;
 
     } catch(e) {
@@ -1034,14 +1037,14 @@ MyDesklet.prototype = {
       //this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
     }
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
   // Get an icon
   // -> iconcode: the code of the icon
   // -> h: the base height of the icon
   // -> w: the base width of the icon. If not specified this is calculated from
   //       the iconsets 'aspect' property and h
-  // -> adjust: boolean, whether to adjust h and w by the value of the iconsets 
+  // -> adjust: boolean, whether to adjust h and w by the value of the iconsets
   //            adjust property
   _getIconImage: function(iconcode, h, w, adjust) {
     if (typeof h === 'undefined') h = BBCWX_ICON_HEIGHT;
@@ -1068,16 +1071,16 @@ MyDesklet.prototype = {
       if (adjust) {
         height = height*this.defaulticonprops.adjust;
         width = width*this.defaulticonprops.adjust;
-      }      
+      }
       file = Gio.file_new_for_path(icon_file);
     }
     let icon_uri = file.get_uri();
-    
+
     let iconimg = St.TextureCache.get_default().load_uri_async(icon_uri, width, height);
     iconimg.set_size(width, height);
     return iconimg;
   },
-  
+
   setGravity: function() {
     if (this.experimental_enabled) {
       this.actor.move_anchor_point_from_gravity(this.gravity);
@@ -1085,22 +1088,22 @@ MyDesklet.prototype = {
       this.actor.move_anchor_point_from_gravity(0);
     }
   },
-  
+
   doExperimental: function() {
     this.setGravity();
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
-  // take a temperature in C and convert as needed. 
+  // take a temperature in C and convert as needed.
   // Append unit string if units is true
   _formatTemperature: function(temp, units) {
     units = typeof units !== 'undefined' ? units : false;
     if (typeof temp === 'undefined' || temp === null) return '';
-    if (!temp.toString().length) return ''; 
+    if (!temp.toString().length) return '';
     let celsius = 1*temp;
     let fahr = ((celsius + 40) * 1.8) - 40;
     let out = Math.round(((this.tunits=='F') ? fahr : celsius));
-    //## Units for temperature, degrees Fahrenheit. %f is replaced the value. NB: English translation uses unicode character u+2109 
+    //## Units for temperature, degrees Fahrenheit. %f is replaced the value. NB: English translation uses unicode character u+2109
     let fahrfmt = _('%fF');
     //## Units for temperature, degrees Celsius. %f is replaced the value. NB: English translation uses unicode character u+2103
     let celfmt = _('%fC')
@@ -1111,7 +1114,7 @@ MyDesklet.prototype = {
   },
 
   ////////////////////////////////////////////////////////////////////////////
-  // take a wind speed in km/h and convert to required 
+  // take a wind speed in km/h and convert to required
   // units. Append unit string if units is true
   _formatWindspeed: function(wind, units) {
     units = typeof units !== 'undefined' ? units : false;
@@ -1146,7 +1149,7 @@ MyDesklet.prototype = {
     }
     return out;
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
   // take a pressure in mb and convert as needed. Append units and trajectory
   // -> pressure: real, pressure (in mb)
@@ -1185,8 +1188,8 @@ MyDesklet.prototype = {
     };
     let mb = 1*pressure;
     let out = mb * conversion[this.punits];
-    
-    //### TODO prepare this for gettext 
+
+    //### TODO prepare this for gettext
     out = out.toFixed(precission[this.punits]);
     if (units) {
       out = unitstring[this.punits].format(out);
@@ -1196,7 +1199,7 @@ MyDesklet.prototype = {
     }
     return out;
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
   _formatHumidity: function(humidity) {
     if (!humidity.toString().length) return '';
@@ -1241,15 +1244,15 @@ MyDesklet.prototype = {
     }
     return out;
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
   on_desklet_removed: function() {
     if(typeof this._timeoutId !== 'undefined') {
       Mainloop.source_remove(this._timeoutId);
     }
   }
-  
-    
+
+
 };
 
 ////////////////////////////////////////////////////////////////////////////
@@ -1271,26 +1274,26 @@ wxDriver.prototype = {
   linkText: '',
 
   linkIcon: false,
-  // the maximum number of days of forecast supported 
+  // the maximum number of days of forecast supported
   // by this driver
   maxDays : 1,
   // API key for use in some services
   apikey: '',
-  
+
   // minimum allowed interval between refreshes: refer to each service's
   // terms of service when setting specific values
   minTTL: 600,
-  
-  
+
+
   lang_map: {},
-  
+
   ////////////////////////////////////////////////////////////////////////////
   // initialise
   _init: function(stationID, apikey) {
     apikey = (typeof apikey !== 'undefined') ? apikey : '';
     this.stationID = stationID;
     this.apikey = apikey;
-    
+
     // a list of capabilities supported by the driver
     // we set them all to true here and expect any children
     // to disable those they don't support
@@ -1328,12 +1331,12 @@ wxDriver.prototype = {
     };
     // ### TODO: if we later use visibility, we need to indicate if driver returns
     // a value (in km) or a descriptive string (good/fair/poor - BBC)
-    
+
     this.data=new Object();
     this._emptyData();
     this.unitsInSummaries = false;
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
   // create an empty data structure to be filled in by child drivers
   // numeric data returned should be values without units appended. The following units
@@ -1351,9 +1354,9 @@ wxDriver.prototype = {
     this.data.wgs84 = new Object();
     this.data.wgs84.lat = null;
     this.data.wgs84.lon = null;
-    
+
     this.data.days=[];
-    
+
     // the status of the service request
     delete this.data.status;
     this.data.status = new Object();
@@ -1362,7 +1365,7 @@ wxDriver.prototype = {
     this.data.status.forecast = BBCWX_SERVICE_STATUS_INIT;
     this.data.status.meta = BBCWX_SERVICE_STATUS_INIT;
     this.data.status.lasterror = false;
-    
+
     // current conditions
     delete this.data.cc;
     this.data.cc = new Object();
@@ -1377,7 +1380,7 @@ wxDriver.prototype = {
     this.data.cc.weathertext = '';
     this.data.cc.icon = '';
     this.data.cc.feelslike = '';
-    
+
     // forecast
     for(let i=0; i<this.maxDays; i++) {
       let day = new Object();
@@ -1399,7 +1402,7 @@ wxDriver.prototype = {
       this.data.days[i] = day;
     };
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
   // change the stationID
   setStation: function(stationID) {
@@ -1411,15 +1414,15 @@ wxDriver.prototype = {
   setApiKey: function(apikey) {
     this.apikey = apikey;
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
   // for debugging. Log the driver type
   showType: function() {
     global.log('Using driver type: ' + this.drivertype);
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
-  // async call to retrieve the data. 
+  // async call to retrieve the data.
   // -> url: url to call
   // -> callback: callback function to which the retrieved data is passed
   _getWeather: function(url, callback) {
@@ -1436,7 +1439,7 @@ wxDriver.prototype = {
         callback.call(here,false);
       }
     });
-  }, 
+  },
 
   // stub function to be overridden by child classes. deskletObj is a reference
   // to the main object. It is passed to allow deskletObj.displayForecast()
@@ -1452,7 +1455,7 @@ wxDriver.prototype = {
     let directions = [_('N'), _('NNE'),_('NE'), _('ENE'),_('E'), _('ESE'),_('SE'),_('SSE'), _('S'),_('SSW'), _('SW'), _('WSW'),_('W'),_('WNW'), _('NW'),_('NNW')];
     return directions[Math.round(deg / 22.5) % directions.length];
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
   // Get the service specific language code that best serves the current locale
   getLangCode: function() {
@@ -1464,18 +1467,18 @@ wxDriver.prototype = {
           lang = this.lang_map[lang_list[i].toLowerCase()];
           i = lang_list.length;
         }
-      }    
+      }
     }
     // debugging
     // global.log("bbcwx: lang_list: " + lang_list.join() + "; lang: " + lang);
     return lang;
   },
-  
+
   _getDayName: function(i) {
     let days = ['Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     return days[i];
   },
-  
+
   ////////////////////////////////////////////////////////////////////////////
   // Utility to get a localised weather text string from a Yahoo/TWC code. This
   // function is here because both the Yahoo and TWC drivers use it
@@ -1535,7 +1538,7 @@ wxDriver.prototype = {
     if (code && typeof textmap[code] !== "undefined") {
       wxtext = textmap[code];
     }
-    return wxtext;    
+    return wxtext;
   }
 };
 
@@ -1547,16 +1550,16 @@ function wxDriverBBC(stationID) {
 
 wxDriverBBC.prototype = {
   __proto__: wxDriver.prototype,
-  
+
   drivertype: 'BBC',
-  maxDays: 3, 
+  maxDays: 3,
   linkText: 'www.bbc.co.uk/weather',
-  
+
   // these will be dynamically reset when data is loaded
   linkURL: 'http://www.bbc.co.uk/weather/',
-  
+
   _baseURL: 'http://open.live.bbc.co.uk/weather/feeds/en/',
-  
+
   // initialise the driver
   _bbcinit: function(stationID) {
     this._init(stationID);
@@ -1564,12 +1567,12 @@ wxDriverBBC.prototype = {
     this.capabilities.cc.feelslike = false;
     this.capabilities.cc.obstime = false;
   },
-  
+
   refreshData: function(deskletObj) {
     // reset the data object
     this._emptyData();
     this.linkURL = 'http://www.bbc.co.uk/weather';
-    
+
     // process the three day forecast
     let a = this._getWeather(this._baseURL + this.stationID + '/' + '3dayforecast' + '.rss', function(weather) {
       if (weather) {
@@ -1583,14 +1586,14 @@ wxDriverBBC.prototype = {
     // process current observations
     let b = this._getWeather(this._baseURL + this.stationID + '/' + 'observations' + '.rss', function(weather) {
       if (weather) {
-        this._load_observations(weather); 
+        this._load_observations(weather);
       }
       // get the main object to update the display
-      deskletObj.displayCurrent();      
-    });    
-    
+      deskletObj.displayCurrent();
+    });
+
   },
-  
+
   // process the rss for a 3dayforecast and populate this.data
   _load_forecast: function (rss) {
     if (!rss) {
@@ -1599,7 +1602,7 @@ wxDriverBBC.prototype = {
       return;
     }
     let days = [];
-    
+
     let parser = new Marknote.marknote.Parser();
     let doc = parser.parse(rss);
     if (!doc)  {
@@ -1699,7 +1702,7 @@ wxDriverBBC.prototype = {
           let pparts=v.split('|');
           v = pparts[0].trim();
           this.data.cc.pressure_direction = _(pparts[1].trim());
-        }      
+        }
         this.data.cc[k] = v;
       }
       this.data.cc.icon = this._getIconFromText(this.data.cc.weathertext);
@@ -1715,7 +1718,7 @@ wxDriverBBC.prototype = {
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
     }
   },
-  
+
   _getIconFromText: function(wxtext) {
     let icon_name = 'na';
     let iconmap = {
@@ -1755,24 +1758,24 @@ wxDriverBBC.prototype = {
     }
     return icon_name;
   },
-  
+
   _getTemperature: function(temp) {
-    if (!temp) return ''; 
+    if (!temp) return '';
     let celsius = temp.slice(0, temp.indexOf('C')-1).trim();
     return celsius;
   },
-  
+
   _getWindspeed: function(wind) {
     if (!wind) return '';
     let mph = wind.replace('mph', '');
     let out = mph * 1.6;
     return out;
   },
-  
+
   // dummy function that exists just to list the strings
   // for translation
   _dummy: function() {
-    let a =[  
+    let a =[
       _('Clear Sky'),
       _('Sunny'),
       _('Partly Cloudy'),
@@ -1804,7 +1807,7 @@ wxDriverBBC.prototype = {
     ];
   }
 
-};  
+};
 
 ////////////////////////////////////////////////////////////////////////////
 // ### Driver for Yahoo! Weather
@@ -1815,16 +1818,16 @@ function wxDriverYahoo(stationID) {
 
 wxDriverYahoo.prototype = {
   __proto__: wxDriver.prototype,
-  
+
   drivertype: 'Yahoo',
-  maxDays: 5, 
+  maxDays: 5,
   linkText: 'Yahoo! Weather',
-  
+
   // these will be dynamically reset when data is loaded
   linkURL: 'http://weather.yahoo.com',
-  
+
   _baseURL: 'http://weather.yahooapis.com/forecastrss?u=c&w=',
-  
+
   // initialise the driver
   _yahooinit: function(stationID) {
     this._init(stationID);
@@ -1834,19 +1837,19 @@ wxDriverYahoo.prototype = {
     this.capabilities.forecast.pressure_direction =  false;
     this.capabilities.forecast.visibility =  false;
     this.capabilities.forecast.uv_risk =  false;
-    this.capabilities.forecast.humidity =  false;  
+    this.capabilities.forecast.humidity =  false;
     this.capabilities.cc.visibility = false;
     this._woeidcache = new Object();
     this._isEnglish = LangList[0].substr(0,2).toLowerCase() == 'en' ? true : false;
   },
-  
+
   // for the yahoo driver, this is a wrapper around _refreshData. This is needed in order
   // to get the yahoo WOEID if this.stationID has been provided as lat,lon
   refreshData: function(deskletObj) {
     // reset the data object
     this._emptyData();
     this.linkURL = 'http://weather.yahoo.com/';
-    
+
     // lat,lon location
     if (this.stationID.search(/^\-?\d+(\.\d+)?,\-?\d+(\.\d+)?$/) == 0) {
       if (typeof this._woeidcache[this.stationID] === 'object') {
@@ -1861,23 +1864,23 @@ wxDriverYahoo.prototype = {
         let a = this._getWeather(geourl, function(geo) {
           if (geo) {
             let ok = this._load_woeid(geo);
-            if (ok) { 
+            if (ok) {
               this._refreshData(deskletObj);
             } else {
-              deskletObj.displayCurrent();  
+              deskletObj.displayCurrent();
               deskletObj.displayMeta();
-              deskletObj.displayForecast();             
+              deskletObj.displayForecast();
             }
           } else {
             this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
             this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
             this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
             this.data.status.lasterror = "Could not resolve location";
-            deskletObj.displayCurrent();  
+            deskletObj.displayCurrent();
             deskletObj.displayMeta();
             deskletObj.displayForecast();
           }
-        });   
+        });
       }
     // unrecognised - not a numeric WOEID
     } else if (this.stationID.search(/^\d+$/) !=0) {
@@ -1886,7 +1889,7 @@ wxDriverYahoo.prototype = {
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.lasterror = "Invalid location format";
       deskletObj.displayForecast();
-      deskletObj.displayMeta();     
+      deskletObj.displayMeta();
       deskletObj.displayCurrent();
       return;
     // looks like a WOEID
@@ -1894,9 +1897,9 @@ wxDriverYahoo.prototype = {
       this._woeid = this.stationID;
       this._refreshData(deskletObj);
     }
-    
+
   },
-  
+
   _refreshData: function(deskletObj) {
     // get the forecast
     let a = this._getWeather(this._baseURL + encodeURIComponent(this._woeid), function(weather) {
@@ -1904,12 +1907,12 @@ wxDriverYahoo.prototype = {
         this._load_forecast(weather);
       }
       // get the main object to update the display
-      deskletObj.displayCurrent();  
+      deskletObj.displayCurrent();
       deskletObj.displayMeta();
       deskletObj.displayForecast();
-    });       
+    });
   },
-  
+
   _load_woeid: function(data) {
     if (!data) {
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
@@ -1917,11 +1920,11 @@ wxDriverYahoo.prototype = {
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.lasterror = "Could not resolve location";
       return false;
-    }    
-   
+    }
+
     let json = JSON.parse(data);
     this._woeidcache[this.stationID] = new Object();
-    
+
     try {
       let geo = json.query.results.Result;
       if (geo.woeid) {
@@ -1934,7 +1937,7 @@ wxDriverYahoo.prototype = {
         this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
         this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
         this.data.status.lasterror = "Could not resolve location";
-        return false;        
+        return false;
       }
     } catch(e) {
       global.logError(e);
@@ -1945,9 +1948,9 @@ wxDriverYahoo.prototype = {
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.lasterror = "Could not resolve location";
       return false;
-    }   
+    }
   },
-  
+
   // process the rss and populate this.data
   _load_forecast: function (rss) {
     if (!rss) {
@@ -1955,9 +1958,9 @@ wxDriverYahoo.prototype = {
       this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
       return;
-    }    
+    }
     let days = [];
-    
+
     let parser = new Marknote.marknote.Parser();
     let doc = parser.parse(rss);
     if (!doc) {
@@ -1979,7 +1982,7 @@ wxDriverYahoo.prototype = {
         this.data.status.lasterror = items[0].getChildElement("title").getText();
         return;
       }
-      
+
       let geo = channel.getChildElement('yweather:location');
       let wind = channel.getChildElement('yweather:wind');
       let atmosphere = channel.getChildElement('yweather:atmosphere');
@@ -2011,7 +2014,7 @@ wxDriverYahoo.prototype = {
       }
       this.data.cc.icon = this._mapicon(conditions.getAttributeValue('code'));
       this.data.cc.feelslike = wind.getAttributeValue('chill');
-      
+
       this.linkURL = items[0].getChildElement('link').getText();
 
       let forecasts = items[0].getChildElements('yweather:forecast');
@@ -2030,10 +2033,10 @@ wxDriverYahoo.prototype = {
         day.icon = this._mapicon(forecasts[i].getAttributeValue('code'));
         this.data.days[i] = day;
       }
-      
+
       this.data.wgs84.lat = items[0].getChildElement('geo:lat').getText();
       this.data.wgs84.lon = items[0].getChildElement('geo:long').getText();
-      
+
       this.data.status.forecast = BBCWX_SERVICE_STATUS_OK;
       this.data.status.meta = BBCWX_SERVICE_STATUS_OK;
       this.data.status.cc = BBCWX_SERVICE_STATUS_OK;
@@ -2044,7 +2047,7 @@ wxDriverYahoo.prototype = {
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
     }
   },
-  
+
   _mapicon: function(code) {
     // http://developer.yahoo.com/weather/#codes
     let icon_name = 'na';
@@ -2104,11 +2107,11 @@ wxDriverYahoo.prototype = {
     }
     // ### TODO consider some text based overides, eg
     // /light rain/i    11
-    
+
     return icon_name;
   },
-  
-};  
+
+};
 
 ////////////////////////////////////////////////////////////////////////////
 // ### Driver for Open Weather Map
@@ -2118,16 +2121,16 @@ function wxDriverOWM(stationID, apikey) {
 
 wxDriverOWM.prototype = {
   __proto__: wxDriver.prototype,
-  
+
   drivertype: 'OWM',
-  maxDays: 7, 
+  maxDays: 7,
   linkText: 'openweathermap.org',
-  
+
   // these will be dynamically reset when data is loaded
   linkURL: 'http://openweathermap.org',
-  
+
   _baseURL: 'http://api.openweathermap.org/data/2.5/',
-  
+
   lang_map: {
     'bg' : 'bg',
     'zh' : 'zh',
@@ -2144,13 +2147,26 @@ wxDriverOWM.prototype = {
     'ro' : 'ro',
     'ru' : 'ru',
     'es' : 'es',
-    'sv' : 'sv',
+    'sv' : 'se',
     'tr' : 'tr',
-    'uk' : 'uk',
+    'uk' : 'ua',
     'hr' : 'hr',
-    'ca' : 'ca'
+    'ca' : 'ca',
+    'cs' : 'cz',
+    'el' : 'el',
+    'fa' : 'fa',
+    'gl' : 'gl',
+    'hu' : 'hu',
+    'ja' : 'ja',
+    'kr' : 'kr',
+    'lv' : 'la',
+    'lt' : 'lt',
+    'mk' : 'mk',
+    'sk' : 'sk',
+    'sl' : 'sl',
+    'vi' : 'vi'
   },
-  
+
   // initialise the driver
   _owminit: function(stationID, apikey) {
     this._init(stationID, apikey);
@@ -2161,7 +2177,7 @@ wxDriverOWM.prototype = {
     this.capabilities.forecast.visibility = false;
     this.capabilities.forecast.uv_risk = false;
   },
-  
+
   refreshData: function(deskletObj) {
     // reset the data object
     this._emptyData();
@@ -2175,13 +2191,13 @@ wxDriverOWM.prototype = {
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.lasterror = "Invalid location format";
       deskletObj.displayForecast();
-      deskletObj.displayMeta();     
+      deskletObj.displayMeta();
       deskletObj.displayCurrent();
       return
     }
-    
+
     this.langcode = this.getLangCode();
-    
+
     // process the 7 day forecast
     let apiforecasturl = (typeof latlon != 'undefined')
       ? this._baseURL + 'forecast/daily?units=metric&cnt=7&lat=' + latlon[0] +  '&lon=' + latlon[1]
@@ -2189,7 +2205,7 @@ wxDriverOWM.prototype = {
 
     if (this.apikey) apiforecasturl = apiforecasturl + '&APPID=' + this.apikey;
     if (this.langcode) apiforecasturl += '&lang=' + this.langcode;
-    
+
     let a = this._getWeather(apiforecasturl, function(weather) {
       if (weather) {
         this._load_forecast(weather);
@@ -2200,33 +2216,33 @@ wxDriverOWM.prototype = {
     });
 
     // process current observations
-    let apiccurl = (typeof latlon != 'undefined')  
+    let apiccurl = (typeof latlon != 'undefined')
     ? this._baseURL + 'weather?units=metric&lat=' + latlon[0] +  '&lon=' + latlon[1]
     : this._baseURL + 'weather?units=metric&id=' + encodeURIComponent(this.stationID);
     if (this.apikey) apiccurl = apiccurl + '&APPID=' + this.apikey;
     if (this.langcode) apiccurl += '&lang=' + this.langcode;
     let b = this._getWeather(apiccurl, function(weather) {
       if (weather) {
-        this._load_observations(weather); 
+        this._load_observations(weather);
       }
       // get the main object to update the display
-      deskletObj.displayCurrent();      
-    });    
-    
+      deskletObj.displayCurrent();
+    });
+
   },
-  
+
   // process the data for a forecast and populate this.data
   _load_forecast: function (data) {
     if (!data) {
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
       return;
-    }    
-   
+    }
+
     let json = JSON.parse(data);
     if (json.cod != '200') {
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
-      this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;    
+      this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.lasterror = json.cod;
       return;
     }
@@ -2251,14 +2267,14 @@ wxDriverOWM.prototype = {
         day.icon = this._mapicon(json.list[i].weather[0].icon, json.list[i].weather[0].id);
 
         this.data.days[i] = day;
-      }    
-      
+      }
+
       this.data.status.forecast = BBCWX_SERVICE_STATUS_OK;
       this.data.status.meta = BBCWX_SERVICE_STATUS_OK;
     } catch(e) {
       global.logError(e);
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
-      this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;     
+      this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
     }
   },
 
@@ -2267,14 +2283,14 @@ wxDriverOWM.prototype = {
     if (!data) {
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
       return;
-    }     
+    }
     let json = JSON.parse(data);
     if (json.cod != '200') {
-      this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;    
+      this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.lasterror = json.cod;
       return;
     }
-    
+
     try {
       this.data.cc.humidity = json.main.humidity;
       this.data.cc.temperature = json.main.temp;
@@ -2284,13 +2300,13 @@ wxDriverOWM.prototype = {
       this.data.cc.obstime = new Date(json.dt *1000).toLocaleFormat("%H:%M %Z");
       this.data.cc.weathertext = json.weather[0].description.ucwords();
       this.data.cc.icon = this._mapicon(json.weather[0].icon, json.weather[0].id);
-      this.data.status.cc = BBCWX_SERVICE_STATUS_OK; 
+      this.data.status.cc = BBCWX_SERVICE_STATUS_OK;
     } catch(e) {
       global.logError(e);
-      this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;      
+      this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
     }
   },
-  
+
   _mapicon: function(iconcode, wxcode) {
     // http://bugs.openweathermap.org/projects/api/wiki/Weather_Condition_Codes
     let icon_name = 'na';
@@ -2376,11 +2392,11 @@ wxDriverOWM.prototype = {
     // override with nighttime icons
     if ((iconcode.charAt(2) == 'n') && (typeof nightmap[icon_name] !== "undefined")) {
       icon_name = nightmap[icon_name];
-    }    
+    }
     return icon_name;
-  }, 
+  },
 
-};  
+};
 
 ////////////////////////////////////////////////////////////////////////////
 // ### Driver for Weather Underground
@@ -2390,13 +2406,13 @@ function wxDriverWU(stationID, apikey) {
 
 wxDriverWU.prototype = {
   __proto__: wxDriver.prototype,
-  
+
   drivertype: 'Wunderground',
-  maxDays: 7, 
+  maxDays: 7,
   linkText: 'wunderground.com\u00AE',
-  
+
   _referralRef: '?apiref=415600fd47df8d55',
-  
+
   // these will be dynamically reset when data is loaded
   linkURL: 'http://wunderground.com' + this._referralRef,
   linkIcon: {
@@ -2404,9 +2420,9 @@ wxDriverWU.prototype = {
     width: 145,
     height: 17,
   },
-  
+
   _baseURL: 'http://api.wunderground.com/api/',
-  
+
   lang_map: {
       'af' : 'AF',
       'sq' : 'AL',
@@ -2449,7 +2465,7 @@ wxDriverWU.prototype = {
       'is' : 'IS',
       'it' : 'IT',
       'ja' : 'JP',
-      'jv' : 'JV',
+      'jv' : 'JW',
       'km' : 'KM',
       'ko' : 'KR',
       'ku' : 'KU',
@@ -2501,17 +2517,17 @@ wxDriverWU.prototype = {
     this.capabilities.forecast.visibility = false;
     this.capabilities.forecast.uv_risk = false;
   },
-  
+
   refreshData: function(deskletObj) {
     // reset the data object
     this._emptyData();
     this.linkURL = 'http://wunderground.com' + this._referralRef;
-    
+
     this.langcode = this.getLangCode();
     let apiurl = this._baseURL + encodeURIComponent(this.apikey) + '/forecast10day/conditions/astronomy/';
     if (this.langcode) {
       apiurl +=  'lang:' + this.langcode + '/';
-    }   
+    }
     apiurl += 'q/' + encodeURIComponent(this.stationID) + '.json'
     // process the forecast - single call for both current conditions and 10 day forecast
     let a = this._getWeather(apiurl, function(weather) {
@@ -2520,12 +2536,12 @@ wxDriverWU.prototype = {
       }
       // get the main object to update the display
       deskletObj.displayForecast();
-      deskletObj.displayCurrent();    
-      deskletObj.displayMeta();      
+      deskletObj.displayCurrent();
+      deskletObj.displayMeta();
     });
 
   },
-  
+
   // process the data for a multi day forecast and populate this.data
   _load_forecast: function (data) {
     // global.log("WU: entering _load_forecast");
@@ -2534,19 +2550,19 @@ wxDriverWU.prototype = {
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
       return;
-    }    
-   
+    }
+
     let json = JSON.parse(data);
-    
+
     if (typeof json.response.error !== 'undefined') {
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
-      this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;  
+      this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.lasterror = json.response.error.type;
       global.logWarning("Error from wunderground: " + json.response.error.type + ": " + json.response.error.description);
       return;
     }
-    
+
     try {
       var days = json.forecast.simpleforecast.forecastday;
 
@@ -2562,7 +2578,7 @@ wxDriverWU.prototype = {
         day.icon = this._mapicon(days[i].icon, false);
 
         this.data.days[i] = day;
-      }   
+      }
       let co = json.current_observation;
       this.data.cc.humidity = co.relative_humidity.replace('%', '');
       this.data.cc.temperature = co.temp_c;
@@ -2580,17 +2596,17 @@ wxDriverWU.prototype = {
       this.data.wgs84.lat = co.display_location.latitude;
       this.data.wgs84.lon = co.display_location.longitude;
       this.linkURL = co.forecast_url + this._referralRef;
-      this.data.status.cc = BBCWX_SERVICE_STATUS_OK; 
+      this.data.status.cc = BBCWX_SERVICE_STATUS_OK;
       this.data.status.meta = BBCWX_SERVICE_STATUS_OK;
       this.data.status.forecast = BBCWX_SERVICE_STATUS_OK;
     } catch(e) {
       global.logError(e);
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
-      this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;      
-    }      
+      this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
+    }
   },
- 
+
   _getPressureTrend: function (code) {
     let out = '';
     let map = {
@@ -2603,10 +2619,10 @@ wxDriverWU.prototype = {
     };
     if (code && (typeof map[code] !== "undefined")) {
       out = map[code];
-    }    
+    }
     return out;
   },
-  
+
   _mapicon: function(iconcode, astro) {
     let icon_name = 'na';
     let iconmap = {
@@ -2641,8 +2657,8 @@ wxDriverWU.prototype = {
     };
     if (iconcode && (typeof iconmap[iconcode] !== "undefined")) {
       icon_name = iconmap[iconcode];
-    } 
-    
+    }
+
     // override with nighttime icons
     // this is a crude estimate of whether or not it's night
     // TODO test with high latitudes in Winter / Summer
@@ -2657,13 +2673,13 @@ wxDriverWU.prototype = {
       if ((now < sr) || (now > ss)) {
         if ( typeof nightmap[icon_name] !== "undefined") {
           icon_name = nightmap[icon_name];
-        }    
+        }
       }
     }
     return icon_name;
-  }, 
+  },
 
-};  
+};
 
 ////////////////////////////////////////////////////////////////////////////
 // ### Driver for World Weather Online
@@ -2673,21 +2689,21 @@ function wxDriverWWO(stationID, apikey) {
 
 wxDriverWWO.prototype = {
   __proto__: wxDriver.prototype,
-  
+
   drivertype: 'WWO',
-  maxDays: 7, 
+  maxDays: 5,
   linkText: 'World Weather Online',
-  
-  
+
+
   // these will be dynamically reset when data is loaded
   linkURL: 'http://www.worldweatheronline.com',
 
   // see http://developer.worldweatheronline.com/free_api_terms_of_use,
   // point 3
   minTTL: 3600,
-  
+
   _baseURL: 'http://api.worldweatheronline.com/free/v1/',
-  
+
   lang_map: {
     'ar' : 'ar',
     'bn' : 'bn',
@@ -2700,6 +2716,7 @@ wxDriverWWO.prototype = {
     'zh_hsn' : 'zh_hsn',
     'zh_yue' : 'zh_yue',
     'cs' : 'cs',
+    'da' : 'da',
     'nl' : 'nl',
     'fi' : 'fi',
     'fr' : 'fr',
@@ -2728,9 +2745,9 @@ wxDriverWWO.prototype = {
     'uk' : 'uk',
     'ur' : 'ur',
     'vi' : 'vi',
-    'zu' : 'zu'    
+    'zu' : 'zu'
   },
-  
+
   // initialise the driver
   _wwoinit: function(stationID, apikey) {
     this._init(stationID, apikey);
@@ -2742,18 +2759,18 @@ wxDriverWWO.prototype = {
     this.capabilities.forecast.uv_risk = false;
     this.capabilities.forecast.humidity = false;
   },
-  
+
   refreshData: function(deskletObj) {
     // reset the data object
     this._emptyData();
     this.linkURL = 'http://www.worldweatheronline.com';
-    
+
     this.langcode = this.getLangCode();
     this.i18Desc = 'lang_' + this.langcode;
-    
+
     let apiurl = this._baseURL + 'weather.ashx?q=' + encodeURIComponent(this.stationID) + '&format=json&extra=localObsTime%2CisDayTime&num_of_days=5&includelocation=yes&key=' + encodeURIComponent(this.apikey);
     if (this.langcode) apiurl += '&lang=' + this.langcode;
-    
+
     // process the forecast
     let a = this._getWeather(apiurl, function(weather) {
       if (weather) {
@@ -2761,12 +2778,12 @@ wxDriverWWO.prototype = {
       }
       // get the main object to update the display
       deskletObj.displayForecast();
-      deskletObj.displayCurrent();   
-      deskletObj.displayMeta(); 
+      deskletObj.displayCurrent();
+      deskletObj.displayMeta();
     });
-    
+
   },
-  
+
   // process the data for a multi day forecast and populate this.data
   _load_forecast: function (data) {
     if (!data) {
@@ -2774,19 +2791,19 @@ wxDriverWWO.prototype = {
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
       return;
-    }    
-   
+    }
+
     let json = JSON.parse(data);
-    
+
     if (typeof json.data.error !== 'undefined') {
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
-      this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;  
+      this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.lasterror = json.data.error[0].msg;
       global.logWarning("Error from World Weather Online: " + json.data.error[0].msg);
       return;
     }
-    
+
     try {
       let days = json.data.weather;
 
@@ -2807,7 +2824,7 @@ wxDriverWWO.prototype = {
         day.icon = this._mapicon(days[i].weatherCode, days[i].weatherIconUrl[0].value);
 
         this.data.days[i] = day;
-      }   
+      }
       let cc = json.data.current_condition[0];
 
       this.data.cc.humidity = cc.humidity;
@@ -2825,7 +2842,7 @@ wxDriverWWO.prototype = {
       this.data.cc.icon = this._mapicon(cc.weatherCode, cc.weatherIconUrl[0].value);
       // vis is in km
       this.data.cc.visibility = cc.visibility;
-      
+
       let locdata = json.data.nearest_area[0];
       this.data.city = locdata.areaName[0].value;
       this.data.country = locdata.country[0].value;
@@ -2838,18 +2855,18 @@ wxDriverWWO.prototype = {
       } else {
         this.linkURL = 'http://www.worldweatheronline.com/v2/weather.aspx?q=' + encodeURIComponent(this.stationID);
       }
-      
-      this.data.status.meta = BBCWX_SERVICE_STATUS_OK;   
-      this.data.status.cc = BBCWX_SERVICE_STATUS_OK; 
+
+      this.data.status.meta = BBCWX_SERVICE_STATUS_OK;
+      this.data.status.cc = BBCWX_SERVICE_STATUS_OK;
       this.data.status.forecast = BBCWX_SERVICE_STATUS_OK;
     } catch(e) {
       global.logError(e);
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
-      this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;      
-    }      
+      this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
+    }
   },
-  
+
   _mapicon: function(iconcode, recommendedIcon) {
     // http://www.worldweatheronline.com/feed/wwoConditionCodes.txt
     let icon_name = 'na';
@@ -2912,18 +2929,285 @@ wxDriverWWO.prototype = {
       '22' : '21',
       '47' : '38'
     };
-    
+
     if (iconcode && (typeof iconmap[iconcode] !== "undefined")) {
       icon_name = iconmap[iconcode];
     }
     // override with nighttime icons
     if ((recommendedIcon.indexOf('night') > -1) && (typeof nightmap[icon_name] !== "undefined")) {
       icon_name = nightmap[icon_name];
-    } 
+    }
     return icon_name;
-  }, 
+  },
 
-};  
+};
+
+////////////////////////////////////////////////////////////////////////////
+// ### Driver for World Weather Online premium
+function wxDriverWWOPremium(stationID, apikey) {
+  this._wwoinit(stationID, apikey);
+};
+
+wxDriverWWOPremium.prototype = {
+  __proto__: wxDriver.prototype,
+
+  drivertype: 'WWOPremium',
+  maxDays: 7,
+  linkText: 'World Weather Online',
+
+
+  // these will be dynamically reset when data is loaded
+  linkURL: 'http://www.worldweatheronline.com',
+
+  // see http://developer.worldweatheronline.com/free_api_terms_of_use,
+  // point 3
+  minTTL: 3600,
+
+  _baseURL: 'http://api.worldweatheronline.com/premium/v1/',
+
+  lang_map: {
+    'ar' : 'ar',
+    'bn' : 'bn',
+    'bg' : 'bg',
+    'zh' : 'zh',
+    'zh_cn' : 'zh',
+    'zh_tw' : 'zh_tw',
+    'zh_cmn' : 'zh_cmn',
+    'zh_wuu' : 'zh_wuu',
+    'zh_hsn' : 'zh_hsn',
+    'zh_yue' : 'zh_yue',
+    'cs' : 'cs',
+    'da' : 'da',
+    'nl' : 'nl',
+    'fi' : 'fi',
+    'fr' : 'fr',
+    'de' : 'de',
+    'el' : 'el',
+    'hi' : 'hi',
+    'hu' : 'hu',
+    'it' : 'it',
+    'ja' : 'ja',
+    'jv' : 'jv',
+    'ko' : 'ko',
+    'mr' : 'mr',
+    'pa' : 'pa',
+    'pl' : 'pl',
+    'pt' : 'pt',
+    'ro' : 'ro',
+    'ru' : 'ru',
+    'sr' : 'sr',
+    'si' : 'si',
+    'sk' : 'sk',
+    'es' : 'es',
+    'sv' : 'sv',
+    'ta' : 'ta',
+    'te' : 'te',
+    'tr' : 'tr',
+    'uk' : 'uk',
+    'ur' : 'ur',
+    'vi' : 'vi',
+    'zu' : 'zu'
+  },
+
+  // initialise the driver
+  _wwoinit: function(stationID, apikey) {
+    this._init(stationID, apikey);
+    //this.capabilities.forecast.pressure = false;
+    this.capabilities.forecast.pressure_direction =  false;
+    this.capabilities.cc.pressure_direction = false;
+    //this.capabilities.cc.feelslike = false;
+    //this.capabilities.forecast.visibility = false;
+    this.capabilities.forecast.uv_risk = false;
+    //this.capabilities.forecast.humidity = false;
+  },
+
+  refreshData: function(deskletObj) {
+    // reset the data object
+    this._emptyData();
+    this.linkURL = 'http://www.worldweatheronline.com';
+
+    this.langcode = this.getLangCode();
+    this.i18Desc = 'lang_' + this.langcode;
+
+    let apiurl = this._baseURL + 'weather.ashx?q=' + encodeURIComponent(this.stationID) + '&format=json&tp=24&extra=localObsTime%2CisDayTime&num_of_days=7&includelocation=yes&key=' + encodeURIComponent(this.apikey);
+    if (this.langcode) apiurl += '&lang=' + this.langcode;
+
+    // process the forecast
+    let a = this._getWeather(apiurl, function(weather) {
+      if (weather) {
+        this._load_forecast(weather);
+      }
+      // get the main object to update the display
+      deskletObj.displayForecast();
+      deskletObj.displayCurrent();
+      deskletObj.displayMeta();
+    });
+
+  },
+
+  // process the data for a multi day forecast and populate this.data
+  _load_forecast: function (data) {
+    if (!data) {
+      this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
+      this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
+      this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
+      return;
+    }
+
+    let json = JSON.parse(data);
+
+    if (typeof json.data.error !== 'undefined') {
+      this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
+      this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
+      this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
+      this.data.status.lasterror = json.data.error[0].msg;
+      global.logWarning("Error from World Weather Online: " + json.data.error[0].msg);
+      return;
+    }
+
+    try {
+      let days = json.data.weather;
+
+      for (let i=0; i<days.length; i++) {
+        let day = new Object();
+        day.day = this._getDayName(new Date(days[i].date).toLocaleFormat("%w"));
+        day.minimum_temperature = days[i].mintempC;
+        day.maximum_temperature = days[i].maxtempC;
+        //day.pressure = json.list[i].pressure;
+        //day.humidity = days[i].avehumidity;
+        day.wind_speed = days[i].hourly[0].windspeedKmph;
+        day.wind_direction = days[i].hourly[0].winddir16Point;
+        day.humidity = days[i].hourly[0].humidity;
+        day.visibility = days[i].hourly[0].visibility;
+        day.pressure = days[i].hourly[0].pressure;
+        day.feelslike = days[i].hourly[0].FeelsLikeC;
+        if (typeof days[i].hourly[0][this.i18Desc] !== "undefined" && days[i].hourly[0][this.i18Desc][0].value) {
+          day.weathertext = days[i].hourly[0][this.i18Desc][0].value;
+        } else {
+          day.weathertext = days[i].hourly[0].weatherDesc[0].value;
+        }
+        day.icon = this._mapicon(days[i].hourly[0].weatherCode, days[i].hourly[0].weatherIconUrl[0].value);
+
+        this.data.days[i] = day;
+      }
+      let cc = json.data.current_condition[0];
+
+      this.data.cc.humidity = cc.humidity;
+      this.data.cc.temperature = cc.temp_C;
+      this.data.cc.pressure = cc.pressure;
+      this.data.cc.wind_speed = cc.windspeedKmph;
+      this.data.cc.feelslike = cc.FeelsLikeC;
+      this.data.cc.wind_direction = cc.winddir16Point;
+      let dt = cc.localObsDateTime.split(/\-|\s/);
+      this.data.cc.obstime = new Date(dt.slice(0,3).join('/')+' '+dt[3]).toLocaleFormat("%H:%M %Z");
+      if (typeof cc[this.i18Desc] !== "undefined" && cc[this.i18Desc][0].value) {
+        this.data.cc.weathertext = cc[this.i18Desc][0].value;
+      } else {
+        this.data.cc.weathertext = cc.weatherDesc[0].value;
+      }
+      this.data.cc.icon = this._mapicon(cc.weatherCode, cc.weatherIconUrl[0].value);
+      // vis is in km
+      this.data.cc.visibility = cc.visibility;
+
+      let locdata = json.data.nearest_area[0];
+      this.data.city = locdata.areaName[0].value;
+      this.data.country = locdata.country[0].value;
+      this.data.region = locdata.region[0].value;
+      this.data.wgs84.lat = locdata.latitude;
+      this.data.wgs84.lon = locdata.longitude;
+      // we don't reliably get weatherURL in the response :(
+      if (typeof locdata.weatherUrl != 'undefined') {
+        this.linkURL = locdata.weatherUrl[0].value;
+      } else {
+        this.linkURL = 'http://www.worldweatheronline.com/v2/weather.aspx?q=' + encodeURIComponent(this.stationID);
+      }
+
+      this.data.status.meta = BBCWX_SERVICE_STATUS_OK;
+      this.data.status.cc = BBCWX_SERVICE_STATUS_OK;
+      this.data.status.forecast = BBCWX_SERVICE_STATUS_OK;
+    } catch(e) {
+      global.logError(e);
+      this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
+      this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
+      this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
+    }
+  },
+
+  _mapicon: function(iconcode, recommendedIcon) {
+    // http://www.worldweatheronline.com/feed/wwoConditionCodes.txt
+    let icon_name = 'na';
+    let iconmap = {
+      '395': '16',
+      '392': '13',
+      '389': '04',
+      '386': '37',
+      '377': '18',
+      '374': '18',
+      '371': '16',
+      '368': '13',
+      '365': '18',
+      '362': '18',
+      '359': '39',
+      '356': '39',
+      '353': '39',
+      '350': '18',
+      '338': '16',
+      '335': '16',
+      '332': '14',
+      '329': '14',
+      '326': '13',
+      '323': '13',
+      '320': '06',
+      '317': '06',
+      '314': '10',
+      '311': '08',
+      '308': '12',
+      '305': '12',
+      '302': '11',
+      '299': '11',
+      '296': '09',
+      '293': '09',
+      '284': '08',
+      '281': '08',
+      '266': '09',
+      '263': '09',
+      '260': '20',
+      '248': '20',
+      '230': '15',
+      '227': '15',
+      '200': '38',
+      '185': '08',
+      '182': '06',
+      '179': '13',
+      '176': '39',
+      '143': '20',
+      '122': '26',
+      '119': '26',
+      '116': '30',
+      '113': '32'
+    };
+    let nightmap = {
+      '39' : '45',
+      '41' : '46',
+      '30' : '29',
+      '28' : '27',
+      '32' : '31',
+      '22' : '21',
+      '47' : '38'
+    };
+
+    if (iconcode && (typeof iconmap[iconcode] !== "undefined")) {
+      icon_name = iconmap[iconcode];
+    }
+    // override with nighttime icons
+    if ((recommendedIcon.indexOf('night') > -1) && (typeof nightmap[icon_name] !== "undefined")) {
+      icon_name = nightmap[icon_name];
+    }
+    return icon_name;
+  },
+
+};
+
 
 ////////////////////////////////////////////////////////////////////////////
 // ### Driver for Forecast.io
@@ -2933,17 +3217,17 @@ function wxDriverForecastIo(stationID, apikey) {
 
 wxDriverForecastIo.prototype = {
   __proto__: wxDriver.prototype,
-  
+
   drivertype: 'forecast.io',
-  maxDays: 7, 
+  maxDays: 7,
   linkText: 'Forecast.io',
-  
-  
+
+
   // these will be dynamically reset when data is loaded
-  linkURL: 'http://forecast.io',
-  
-  _baseURL: 'https://api.forecast.io/forecast/',
-  
+  linkURL: 'https://darksky.net',
+
+  _baseURL: 'https://api.darksky.net/forecast/',
+
   lang_map: {
     'nl' : 'nl',
     'en' : 'en',
@@ -2973,10 +3257,15 @@ wxDriverForecastIo.prototype = {
     'is' : 'is',
     'nb' : 'nb',
     'be' : 'be',
-    'id' : 'id'
-    
+    'id' : 'id',
+    'az' : 'az',
+    'ca' : 'ca',
+    'et' : 'et',
+    'sl' : 'sl',
+    'bg' : 'bg'
+
   },
-  
+
   // initialise the driver
   _fioinit: function(stationID, apikey) {
     this._init(stationID, apikey);
@@ -2985,34 +3274,34 @@ wxDriverForecastIo.prototype = {
     this.capabilities.cc.obstime = false;
     //this.capabilities.meta.country = false;
     //this._geocache = new Object();
-    
+
     //forecast.io sometime includes units in summaries
     this.unitsInSummaries = true;
   },
-  
+
   refreshData: function(deskletObj) {
     // reset the data object
     this._emptyData();
     this.linkURL = 'http://forecast.io';
-    
-    // forecast.io sometimes includes temp and snow accumulations in 
+
+    // forecast.io sometimes includes temp and snow accumulations in
     // text summaries. To get these in imperial units we have to request
-    // all responses be imperial using 'us'. Do this if user opts for 
+    // all responses be imperial using 'us'. Do this if user opts for
     // Fahrenheit temperatures. Individual data points will have to be
     // converted back later using _getSI().
     this.units = (deskletObj.tunits=='F')?'us':'ca';
-    
+
     // check the stationID looks valid before going further
     if (this.stationID.search(/^\-?\d+(\.\d+)?,\-?\d+(\.\d+)?$/) == 0) {
       let latlon = this.stationID.split(',')
       //this.data.wgs84.lat = latlon[0];
       //this.data.wgs84.lon = latlon[1];
       //this.linkURL = 'http://forecast.io/#/f/' + this.stationID;
-      
+
       let apiurl = this._baseURL + encodeURIComponent(this.apikey) + '/' + encodeURIComponent(this.stationID) + '?units=' + this.units + '&exclude=minutely,hourly,alerts,flags';
       this.langcode = this.getLangCode();
       if (this.langcode) apiurl += '&lang=' + this.langcode;
-      
+
       // process the forecast
       let a = this._getWeather(apiurl, function(weather) {
         if (weather) {
@@ -3020,8 +3309,8 @@ wxDriverForecastIo.prototype = {
         }
         // get the main object to update the display
         deskletObj.displayForecast();
-        deskletObj.displayCurrent();   
-        deskletObj.displayMeta(); 
+        deskletObj.displayCurrent();
+        deskletObj.displayMeta();
       });
 
     } else {
@@ -3029,13 +3318,13 @@ wxDriverForecastIo.prototype = {
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.lasterror = "Invalid location";
-      deskletObj.displayMeta(); 
+      deskletObj.displayMeta();
       deskletObj.displayForecast();
       deskletObj.displayCurrent();
     }
-    
+
   },
-  
+
   // process the data for a multi day forecast and populate this.data
   _load_forecast: function (data) {
     if (!data) {
@@ -3043,10 +3332,10 @@ wxDriverForecastIo.prototype = {
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
       //this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
       return;
-    }    
-   
+    }
+
     let json = JSON.parse(data);
-    
+
     try {
       let days = json.daily.data;
 
@@ -3078,22 +3367,22 @@ wxDriverForecastIo.prototype = {
       this.data.cc.icon = this._mapicon(cc.icon);
       this.data.cc.visibility = this._getSI(cc.visibility, 'viz');
       this.data.cc.feelslike = this._getSI(cc.apparentTemperature, 'temp');
-      
+
       this.data.wgs84.lat = json.latitude;
       this.data.wgs84.lon = json.longitude;
       this.linkURL = 'http://forecast.io/#/f/' + json.latitude + ',' + json.longitude;
-      
-      this.data.status.cc = BBCWX_SERVICE_STATUS_OK; 
+
+      this.data.status.cc = BBCWX_SERVICE_STATUS_OK;
       this.data.status.forecast = BBCWX_SERVICE_STATUS_OK;
       this.data.status.meta = BBCWX_SERVICE_STATUS_OK;
     } catch(e) {
       global.logError(e);
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
       //this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
-      this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;      
-    }      
+      this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
+    }
   },
-  
+
   // Ensure units returned by driver are SI, even when requesting imperial ('us')
   // units to get imperial in the summary text
   _getSI: function(val, type) {
@@ -3111,7 +3400,7 @@ wxDriverForecastIo.prototype = {
       return val;
     }
     // miles to km
-    if (type == "viz") {   
+    if (type == "viz") {
       return val*1.60923;
     }
     // mph to km/h
@@ -3120,7 +3409,7 @@ wxDriverForecastIo.prototype = {
     }
     return val;
   },
-  
+
   _mapicon: function(iconcode) {
     // https://developer.forecast.io/docs/v2
     let icon_name = 'na';
@@ -3136,15 +3425,15 @@ wxDriverForecastIo.prototype = {
       'partly-cloudy-day' : '30',
       'partly-cloudy-night' : '29'
     };
-    
+
     if (iconcode && (typeof iconmap[iconcode] !== "undefined")) {
       icon_name = iconmap[iconcode];
     }
 
     return icon_name;
-  }, 
+  },
 
-};  
+};
 
 ////////////////////////////////////////////////////////////////////////////
 // ### Driver for TWC Weather
@@ -3154,16 +3443,16 @@ function wxDriverTWC(stationID) {
 
 wxDriverTWC.prototype = {
   __proto__: wxDriver.prototype,
-  
+
   drivertype: 'twc',
-  maxDays: 7, 
+  maxDays: 7,
   linkText: 'weather.com',
-  
+
   // these will be dynamically reset when data is loaded
   linkURL: 'http://www.weather.com',
-  
+
   _baseURL: 'http://wxdata.weather.com/wxdata/weather/local/',
-  
+
   // initialise the driver
   _twcinit: function(stationID) {
     this._init(stationID);
@@ -3172,12 +3461,12 @@ wxDriverTWC.prototype = {
     this.capabilities.forecast.visibility = false;
     this._isEnglish = LangList[0].substr(0,2).toLowerCase() == 'en' ? true : false;
   },
-  
+
   refreshData: function(deskletObj) {
     // reset the data object
     this._emptyData();
     this.linkURL = 'http://www.weather.com';
-    
+
     // process the forecast
     let a = this._getWeather(this._baseURL + encodeURIComponent(this.stationID) + '?cc=*&dayf=10&unit=m', function(weather) {
       if (weather) {
@@ -3185,11 +3474,11 @@ wxDriverTWC.prototype = {
       }
       // get the main object to update the display
       deskletObj.displayForecast();
-      deskletObj.displayCurrent();   
-      deskletObj.displayMeta(); 
+      deskletObj.displayCurrent();
+      deskletObj.displayMeta();
     });
   },
-  
+
   // process the xml and populate this.data
   _load_forecast: function (xml) {
     if (!xml) {
@@ -3197,9 +3486,9 @@ wxDriverTWC.prototype = {
       this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
       return;
-    }    
+    }
     let days = [];
-    
+
     let parser = new Marknote.marknote.Parser();
     let doc = parser.parse(xml);
     if (!doc) {
@@ -3218,7 +3507,7 @@ wxDriverTWC.prototype = {
         this.data.status.lasterror = rootElem.getChildElement('err').getText();
         return;
       }
-      
+
       this.data.cc = new Object();
       this.data.days = [];
 
@@ -3281,7 +3570,7 @@ wxDriverTWC.prototype = {
         day.wind_direction = windf.getChildElement('t').getText();
         this.data.days[i] = day;
       }
-        
+
       this.data.status.forecast = BBCWX_SERVICE_STATUS_OK;
       this.data.status.meta = BBCWX_SERVICE_STATUS_OK;
       this.data.status.cc = BBCWX_SERVICE_STATUS_OK;
@@ -3292,7 +3581,7 @@ wxDriverTWC.prototype = {
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
     }
   },
-  
+
   _mapicon: function(code) {
     // Use codes as listed by Yahoo! as weather.com supplies their data
     // http://developer.yahoo.com/weather/#codes
@@ -3353,11 +3642,11 @@ wxDriverTWC.prototype = {
     }
     // ### TODO consider some text based overides, eg
     // /light rain/i    11
-    
+
     return icon_name;
   },
-  
-};  
+
+};
 
 ////////////////////////////////////////////////////////////////////////////
 // ### Driver for MeteoBlue
@@ -3367,12 +3656,12 @@ function wxDriverMeteoBlue(stationID, apikey) {
 
 wxDriverMeteoBlue.prototype = {
   __proto__: wxDriver.prototype,
-  
+
   drivertype: 'meteoblue',
-  maxDays: 7, 
+  maxDays: 7,
   linkText: 'meteoblue',
-  
-  
+
+
   // these will be dynamically reset when data is loaded
   linkURL: 'https://www.meteoblue.com',
   linkIcon: {
@@ -3380,12 +3669,12 @@ wxDriverMeteoBlue.prototype = {
     width: 59,
     height: 20,
   },
-  
+
   _baseURL: 'http://my.meteoblue.com/dataApi/dispatch.pl',
-  
+
   lang_map: {
   },
-  
+
   // initialise the driver
   _meteoblueinit: function(stationID, apikey) {
     this._init(stationID, apikey);
@@ -3401,13 +3690,13 @@ wxDriverMeteoBlue.prototype = {
     this.capabilities.forecast.uv_risk =  false;
 
   },
-  
+
   refreshData: function(deskletObj) {
     // reset the data object
     this._emptyData();
     this.linkURL = 'https://www.meteoblue.com';
-    
-    
+
+
     // check the stationID looks valid before going further
     if (this.stationID.search(/^\-?\d+(\.\d+)?,\-?\d+(\.\d+)?$/) == 0) {
       let latlon = this.stationID.split(',')
@@ -3420,8 +3709,8 @@ wxDriverMeteoBlue.prototype = {
         }
         // get the main object to update the display
         deskletObj.displayForecast();
-        deskletObj.displayCurrent();   
-        deskletObj.displayMeta(); 
+        deskletObj.displayCurrent();
+        deskletObj.displayMeta();
       });
 
     } else {
@@ -3429,13 +3718,13 @@ wxDriverMeteoBlue.prototype = {
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.lasterror = "Invalid location";
-      deskletObj.displayMeta(); 
+      deskletObj.displayMeta();
       deskletObj.displayForecast();
       deskletObj.displayCurrent();
     }
-    
+
   },
-  
+
   // process the data for a multi day forecast and populate this.data
   _load_forecast: function (data) {
     if (!data) {
@@ -3443,19 +3732,19 @@ wxDriverMeteoBlue.prototype = {
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
       //this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
       return;
-    }    
-   
+    }
+
     let json = JSON.parse(data);
-    
+
     if (typeof json.error_message !== 'undefined') {
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
-      this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;  
+      this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.lasterror = json.error_message;
       global.logWarning("Error from World Weather Online: " + json.error_message);
       return;
     }
-    
+
     try {
       let days = json.forecast;
 
@@ -3479,54 +3768,54 @@ wxDriverMeteoBlue.prototype = {
       this.data.cc.weathertext = this._getWxTxt(cc.pictocode);
       this.data.cc.wind_speed = cc.wind_speed;
       this.data.cc.icon = this._mapicon(cc.pictocode, cc.is_daylight);
-      
+
       this.data.wgs84.lat = json.meta.lat;
       this.data.wgs84.lon = json.meta.lon;
       https://www.meteoblue.com/weather/forecast/week/52.275N-1.597E
       this.linkURL = 'https://www.meteoblue.com/weather/forecast/week/' + json.meta.lat + 'N' + json.meta.lon + 'E';
-      
-      this.data.status.cc = BBCWX_SERVICE_STATUS_OK; 
+
+      this.data.status.cc = BBCWX_SERVICE_STATUS_OK;
       this.data.status.forecast = BBCWX_SERVICE_STATUS_OK;
       this.data.status.meta = BBCWX_SERVICE_STATUS_OK;
     } catch(e) {
       global.logError(e);
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
       //this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
-      this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;      
-    }      
+      this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
+    }
   },
-  
+
   // translate meteoblue pictocode into text string. We use phrases that we
   // have in existing translations for. Meteoblue suggested text given in comments
-  // TODO 'Heavy Rain' is a poor match for 6 and 14. Probably better to use 
+  // TODO 'Heavy Rain' is a poor match for 6 and 14. Probably better to use
   // 'Rain', but we don't have that in the existing translations
   // see https://content.meteoblue.com/en/help/standards/symbols-and-pictograms
   _getWxTxt: function(pictcode) {
     let wxtext = '';
     let textmap = {
-      '1' : _('Clear Sky'),             //Sunny, cloudless sky 
-      '2' : _('Fair'),                  //Sunny and few clouds 
-      '3' : _('Partly Cloudy'),         //Partly cloudy 
-      '4' : _('Cloudy'),                //Overcast 
-      '5' :  _('Fog'),                  //Fog 
-      '6' : _('Heavy Rain'),            //Overcast with rain 
-      '7' : _('Showers'),               //Mixed with showers 
-      '8' :  _('Thundery Shower'),      //Showers, thunderstorms likely 
-      '9' : _('Snow'),                  //Overcast with snow 
-      '10' : _('Snow showers'),         //Mixed with snow showers 
-      '11' : _('Mixed rain and snow'),  //Mostly cloudy with a mixture of snow and rain 
-      '12' : _('Light Rain'),           //Overcast with light rain 
-      '13' : _('Light Snow'),           //Overcast with light snow 
-      '14' : _('Heavy Rain'),           //Mostly cloudy with rain 
-      '15' : _('Snow'),                 //Mostly cloudy with snow 
-      '16' : _('Light Rain'),           //Mostly cloudy with light rain 
-      '17' : _('Light Snow')            //Mostly cloudy with light snow 
+      '1' : _('Clear Sky'),             //Sunny, cloudless sky
+      '2' : _('Fair'),                  //Sunny and few clouds
+      '3' : _('Partly Cloudy'),         //Partly cloudy
+      '4' : _('Cloudy'),                //Overcast
+      '5' :  _('Fog'),                  //Fog
+      '6' : _('Heavy Rain'),            //Overcast with rain
+      '7' : _('Showers'),               //Mixed with showers
+      '8' :  _('Thundery Shower'),      //Showers, thunderstorms likely
+      '9' : _('Snow'),                  //Overcast with snow
+      '10' : _('Snow showers'),         //Mixed with snow showers
+      '11' : _('Mixed rain and snow'),  //Mostly cloudy with a mixture of snow and rain
+      '12' : _('Light Rain'),           //Overcast with light rain
+      '13' : _('Light Snow'),           //Overcast with light snow
+      '14' : _('Heavy Rain'),           //Mostly cloudy with rain
+      '15' : _('Snow'),                 //Mostly cloudy with snow
+      '16' : _('Light Rain'),           //Mostly cloudy with light rain
+      '17' : _('Light Snow')            //Mostly cloudy with light snow
     };
-    
+
     if (pictcode && (typeof textmap[pictcode] !== "undefined")) {
       wxtext = textmap[pictcode];
     }
-    
+
     return wxtext;
   },
 
@@ -3551,7 +3840,7 @@ wxDriverMeteoBlue.prototype = {
       '16' : '11',
       '17' : '13'
     };
-    
+
     let iconmapnight = {
       '1' : '31',
       '2' : '32',
@@ -3571,7 +3860,7 @@ wxDriverMeteoBlue.prototype = {
       '16' : '11',
       '17' : '13'
     };
-    
+
     if (isDay) {
       if (iconcode && (typeof iconmapday[iconcode] !== "undefined")) {
         icon_name = iconmapday[iconcode];
@@ -3583,9 +3872,9 @@ wxDriverMeteoBlue.prototype = {
     }
 
     return icon_name;
-  }, 
+  },
 
-};  
+};
 
 
 ////////////////////////////////////////////////////////////////////////////

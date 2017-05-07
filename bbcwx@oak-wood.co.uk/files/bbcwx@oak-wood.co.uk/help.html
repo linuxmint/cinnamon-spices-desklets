@@ -127,19 +127,32 @@ del {text-decoration: line-through;}
     and prefixing it with zmw:00000.1. to give
     <code class="loccode">zmw:00000.1.03541</code>
     <h3 id="wwo">World Weather Online</h3>
-    <p><strong>World Weather Online requires an API key</strong>. You can 
-    <a href="http://developer.worldweatheronline.com/signup.aspx">register for a free API key here</a>.</p>
+    <p><strong>World Weather Online requires an API key</strong>.</p>
+    <p class="notice">
+    WWO no longer offer new keys for this API. Old keys continue to work and the service will be supported so long as
+    they do. The service has been replaced by <a href="https://www.apixu.com">APIXU</a> and we plan to add support for
+    APIXU shortly.
+    </p>
+    <p>
+    Locations can be specified as a US zipcode, a UK or Canadian post code, or as a latitude and longitude.
+    Latitude and longitude should be given as decimals, separated by a comma, with positive being north or east. For example, for
+    central London, 51.51N, 0.13W, use <code class="loccode">51.51,-0.13</code>.
+    </p>
+    <h3 id="wwo2">World Weather Online Premium</h3>
+    <p><strong>World Weather Online premium requires an API key</strong>. You can
+    <a href="http://developer.worldweatheronline.com/signup.aspx">register for an API key here</a>. A free trial
+    key is available, after which payment is required.</p>
     <p>
     Locations can be specified as a US zipcode, a UK or Canadian post code, or as a latitude and longitude.  
     Latitude and longitude should be given as decimals, separated by a comma, with positive being north or east. For example, for 
     central London, 51.51N, 0.13W, use <code class="loccode">51.51,-0.13</code>.
     </p>
-    <h3 id="forecast">Forecast.io</h3>
-    <p><strong>Forecast.io requires an API key</strong>. You can 
-    <a href="https://developer.forecast.io/register">register for a free API key here</a>.</p>
+    <h3 id="forecast">forecast.io (Dark Sky)</h3>
+    <p><strong>Forecast.io (now Dark Sky) requires an API key</strong>. You can
+    <a href="https://darksky.net/dev/">register for a free API key here</a>.</p>
     <p>
-    Locations must be specified as a latitude and longitude.  
-    Latitude and longitude should be given as decimals, separated by a comma, with positive being north or east. For example, for 
+    Locations must be specified as a latitude and longitude.
+    Latitude and longitude should be given as decimals, separated by a comma, with positive being north or east. For example, for
     central London, 51.51N, 0.13W, use <code class="loccode">51.51,-0.13</code>.
     </p>
     <h3 id="twc">weather.com</h3>

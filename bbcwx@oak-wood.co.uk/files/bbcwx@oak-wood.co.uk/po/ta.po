@@ -6,560 +6,560 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bbcwx\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-12-14 18:52+0000\n"
+"Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
+"POT-Creation-Date: 2017-05-07 20:32+0100\n"
 "PO-Revision-Date: 2016-08-02 08:28+0000\n"
 "Last-Translator: Kamala Kannan <Unknown>\n"
 "Language-Team: Tamil <ta@li.org>\n"
+"Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2016-08-14 17:00+0000\n"
 "X-Generator: Launchpad (build 18169)\n"
-"Language: ta\n"
 
 #. # Days of the week
-#: desklet.js:103
+#: desklet.js:102
 msgid "Mon"
 msgstr "திங்கள்"
 
-#: desklet.js:103
+#: desklet.js:102
 msgid "Tue"
 msgstr "செவ்வாய்"
 
-#: desklet.js:103
+#: desklet.js:102
 msgid "Wed"
 msgstr "புதன்"
 
-#: desklet.js:103
+#: desklet.js:102
 msgid "Thu"
 msgstr "வியாழன்"
 
-#: desklet.js:103
+#: desklet.js:102
 msgid "Fri"
 msgstr "வெள்ளி"
 
-#: desklet.js:103
+#: desklet.js:102
 msgid "Sat"
 msgstr "சனி"
 
-#: desklet.js:103
+#: desklet.js:102
 msgid "Sun"
 msgstr "ஞாயிறு"
 
 #. # The desklet title
-#: desklet.js:179
+#: desklet.js:178
 msgid "Weather"
 msgstr "வானிலை"
 
 #. # Link to Help file in context menu
-#: desklet.js:187
+#: desklet.js:186
 msgid "Help"
 msgstr "உதவி"
 
 #. # Link to information on translating in context menu
-#: desklet.js:191
+#: desklet.js:190
 msgid "Translate"
 msgstr "மொழிபெயர்"
 
 #. # Next five strings are labels for current conditions
-#: desklet.js:328 desklet.js:356
+#: desklet.js:330 desklet.js:358
 msgid "Humidity:"
 msgstr "ஈரப்பதம்:"
 
 #. # Atmospheric pressure
-#: desklet.js:329 desklet.js:355
+#: desklet.js:331 desklet.js:357
 msgid "Pressure:"
 msgstr "அழுத்தம்:"
 
-#: desklet.js:330
+#: desklet.js:332
 msgid "Wind:"
 msgstr "காற்று:"
 
-#: desklet.js:331
+#: desklet.js:333
 msgid "Feels like:"
 msgstr "மனநிலை:"
 
-#: desklet.js:332
+#: desklet.js:334
 msgid "Visibility:"
 msgstr "காட்சிமை:"
 
 #. # Maximum temperature
-#: desklet.js:347
+#: desklet.js:349
 msgid "Max:"
 msgstr "அதிகபட்சம்:"
 
 #. # Minimum temperature
-#: desklet.js:349
+#: desklet.js:351
 msgid "Min:"
 msgstr "குறைந்த பட்சம்:"
 
 #. # Wind speed (English translation is "Wind:")
-#: desklet.js:351
+#: desklet.js:353
 msgid "Wind speed:"
 msgstr "காற்றின் வேகம்:"
 
 #. # Wind direction
-#: desklet.js:353
+#: desklet.js:355
 msgid "Dir:"
 msgstr "திசை:"
 
 #. # Credit the data supplier. A link to the data supplier appears to the
 #. right of this string
-#: desklet.js:395
+#: desklet.js:397
 msgid "Data from "
 msgstr "தரவு மூலம்: "
 
 #. # Tooltip for refresh button
-#: desklet.js:407
+#: desklet.js:409
 msgid "Refresh"
 msgstr "புதுப்பி"
 
 #. # Message if we fail to get weather data
-#: desklet.js:727
+#: desklet.js:729
 msgid "No data available"
 msgstr "தரவு எதுவும் கிடைக்கவில்லை"
 
-#: desklet.js:760 desklet.js:827
+#: desklet.js:762 desklet.js:829
 #, python-format
 msgid "Error: %s"
 msgstr "பிழை: %s"
 
-#: desklet.js:760 desklet.js:827
+#: desklet.js:762 desklet.js:829
 msgid "No data"
 msgstr "தரவு இல்லை"
 
 #. # %s is replaced by place name
-#: desklet.js:862
+#: desklet.js:864
 #, python-format
 msgid "Click for the full forecast for %s"
 msgstr "%s கான முன்னறிவிப்பை பெற இங்கே சொடுக்கவும்"
 
 #. # Units for temperature, degrees Fahrenheit. %f is replaced the value. NB:
 #. English translation uses unicode character u+2109
-#: desklet.js:1104
+#: desklet.js:1107
 #, python-format
 msgid "%fF"
 msgstr "%f℉"
 
 #. # Units for temperature, degrees Celsius. %f is replaced the value. NB:
 #. English translation uses unicode character u+2103
-#: desklet.js:1106
+#: desklet.js:1109
 #, python-format
 msgid "%fC"
 msgstr "%f℃"
 
 #. # wind speed, miles per hour. %f is replaced by the value
-#: desklet.js:1127
+#: desklet.js:1130
 #, python-format
 msgid "%fmph"
 msgstr "%fmph"
 
 #. # wind speed, knots. %f is replaced by the value
-#: desklet.js:1129
+#: desklet.js:1132
 #, python-format
 msgid "%fkn"
 msgstr "%fkn"
 
 #. # wind speed, kilometers per hour. %f is replaced by the value
-#: desklet.js:1131
+#: desklet.js:1134
 #, python-format
 msgid "%fkm/h"
 msgstr "%fkm/h"
 
 #. # wind speed, meters per second. %f is replaced by the value
-#: desklet.js:1133
+#: desklet.js:1136
 #, python-format
 msgid "%fm/s"
 msgstr "%fமீ/வி"
 
 #. # pressure, millbars. %f is replaced by the value
-#: desklet.js:1167
+#: desklet.js:1170
 #, python-format
 msgid "%fmb"
 msgstr "%fmb"
 
 #. # pressure, inches of mercury. %f is replaced by the value
-#: desklet.js:1169
+#: desklet.js:1172
 #, python-format
 msgid "%fin"
 msgstr "%fin"
 
 #. # pressure, mm of mercury. %f is replaced by the value
-#: desklet.js:1171
+#: desklet.js:1174
 #, python-format
 msgid "%fmm"
 msgstr "%fmm"
 
 #. # pressure, kilopascals. %f is replaced by the value
-#: desklet.js:1173
+#: desklet.js:1176
 #, python-format
 msgid "%fkPa"
 msgstr "%fkPa"
 
 #. # visibility, miles. %f is replaced by the value
-#: desklet.js:1224
+#: desklet.js:1227
 #, python-format
 msgid "%fmi"
 msgstr "%fமைல்"
 
 #. # visibility, nautical miles. %f is replaced by the value
-#: desklet.js:1226
+#: desklet.js:1229
 #, python-format
 msgid "%fnmi"
 msgstr "%fகடல்மைல்"
 
 #. # visibility, kilometers. %f is replaced by the value
-#: desklet.js:1228
+#: desklet.js:1231
 #, python-format
 msgid "%fkm"
 msgstr "%fகிமீ"
 
 #. # Next 16 strings are for wind direction, compass points
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "N"
 msgstr "வ"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "NNE"
 msgstr "வவகி"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "NE"
 msgstr "வகி"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "ENE"
 msgstr "கிவகி"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "E"
 msgstr "கி"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "ESE"
 msgstr "கிதெகி"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "SE"
 msgstr "தெகி"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "SSE"
 msgstr "தெதெகி"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "S"
 msgstr "தெ"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "SSW"
 msgstr "தெதெமே"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "SW"
 msgstr "தெமே"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "WSW"
 msgstr "மேதெமே"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "W"
 msgstr "மே"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "WNW"
 msgstr "மேவமே"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "NW"
 msgstr "வமே"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "NNW"
 msgstr "வவமே"
 
-#: desklet.js:1485
+#: desklet.js:1488
 msgid "Tornado"
 msgstr "சுழற்காற்று"
 
-#: desklet.js:1486
+#: desklet.js:1489
 msgid "Tropical storm"
 msgstr "வெப்ப மண்டல சூறாவளி"
 
-#: desklet.js:1487
+#: desklet.js:1490
 msgid "Hurricane"
 msgstr "சூறாவளி"
 
-#: desklet.js:1488
+#: desklet.js:1491
 msgid "Severe thunderstorms"
 msgstr "கடுமையான இடிமழை"
 
-#: desklet.js:1489
+#: desklet.js:1492
 msgid "Thunderstorms"
 msgstr "இடியுடன் கூடிய புயல்"
 
-#: desklet.js:1490 desklet.js:3506
+#: desklet.js:1493 desklet.js:3806
 msgid "Mixed rain and snow"
 msgstr "மழையும் பனியும் கலந்து"
 
-#: desklet.js:1491
+#: desklet.js:1494
 msgid "Mixed rain and sleet"
 msgstr "மழையும் பனிமழையும் கலந்து"
 
-#: desklet.js:1492
+#: desklet.js:1495
 msgid "Mixed snow and sleet"
 msgstr "பனியும் பனிமழையும் கலந்து"
 
-#: desklet.js:1493
+#: desklet.js:1496
 msgid "Freezing drizzle"
 msgstr "உறைவிக்கும் தூறல்"
 
-#: desklet.js:1494 desklet.js:1788
+#: desklet.js:1497 desklet.js:1791
 msgid "Drizzle"
 msgstr "தூறல்"
 
-#: desklet.js:1495
+#: desklet.js:1498
 msgid "Freezing rain"
 msgstr "உறைவிக்கும் மழை"
 
-#: desklet.js:1496 desklet.js:1497 desklet.js:3502
+#: desklet.js:1499 desklet.js:1500 desklet.js:3802
 msgid "Showers"
 msgstr "மழைப்பொழிவு"
 
-#: desklet.js:1498
+#: desklet.js:1501
 msgid "Snow flurries"
 msgstr "பனித்துகள்கள்"
 
-#: desklet.js:1499
+#: desklet.js:1502
 msgid "Light snow showers"
 msgstr "மெல்லிய பனிச்சாரல்"
 
-#: desklet.js:1500
+#: desklet.js:1503
 msgid "Blowing snow"
 msgstr "காற்றுடன் கூடிய வெண்பனி"
 
-#: desklet.js:1501 desklet.js:3504 desklet.js:3510
+#: desklet.js:1504 desklet.js:3804 desklet.js:3810
 msgid "Snow"
 msgstr "பனி"
 
-#: desklet.js:1502
+#: desklet.js:1505
 msgid "Hail"
 msgstr "ஆலங்கட்டி"
 
-#: desklet.js:1503 desklet.js:1793
+#: desklet.js:1506 desklet.js:1796
 msgid "Sleet"
 msgstr "ஆலங்கட்டி மழை"
 
-#: desklet.js:1504
+#: desklet.js:1507
 msgid "Dust"
 msgstr "தூசு"
 
-#: desklet.js:1505
+#: desklet.js:1508
 msgid "Foggy"
 msgstr "மூடுபனி"
 
-#: desklet.js:1506
+#: desklet.js:1509
 msgid "Haze"
 msgstr "மூட்டம்"
 
-#: desklet.js:1507
+#: desklet.js:1510
 msgid "Smoky"
 msgstr "புகை"
 
-#: desklet.js:1508
+#: desklet.js:1511
 msgid "Blustery"
 msgstr "பலத்த காற்று"
 
-#: desklet.js:1509
+#: desklet.js:1512
 msgid "Windy"
 msgstr "அதிக காற்று"
 
-#: desklet.js:1510
+#: desklet.js:1513
 msgid "Cold"
 msgstr "குளிர்"
 
-#: desklet.js:1511 desklet.js:3499
+#: desklet.js:1514 desklet.js:3799
 msgid "Cloudy"
 msgstr "மேகமூட்டம்"
 
-#: desklet.js:1512 desklet.js:1513
+#: desklet.js:1515 desklet.js:1516
 msgid "Mostly cloudy"
 msgstr "பெரும்பாலும் மேகமூட்டம்"
 
-#: desklet.js:1514 desklet.js:1515 desklet.js:1529
+#: desklet.js:1517 desklet.js:1518 desklet.js:1532
 msgid "Partly cloudy"
 msgstr "சிறிது புகை மேகத்துடன்"
 
-#: desklet.js:1516
+#: desklet.js:1519
 msgid "Clear"
 msgstr "தெளிவு"
 
-#: desklet.js:1517 desklet.js:1777
+#: desklet.js:1520 desklet.js:1780
 msgid "Sunny"
 msgstr "சூரிய வெளிச்சம்"
 
-#: desklet.js:1518 desklet.js:1519 desklet.js:3497
+#: desklet.js:1521 desklet.js:1522 desklet.js:3797
 msgid "Fair"
 msgstr "மிதமான"
 
-#: desklet.js:1520
+#: desklet.js:1523
 msgid "Mixed rain and hail"
 msgstr "மழை மற்றும் ஆலங்கட்டி"
 
-#: desklet.js:1521
+#: desklet.js:1524
 msgid "Hot"
 msgstr "சூடான"
 
-#: desklet.js:1522
+#: desklet.js:1525
 msgid "Isolated thunderstorms"
 msgstr "ஆங்காங்கே இடியுடன் கூடிய மழை"
 
-#: desklet.js:1523
+#: desklet.js:1526
 msgid "Scattered thunderstorms"
 msgstr "பரவலான இடி"
 
-#: desklet.js:1524 desklet.js:1525
+#: desklet.js:1527 desklet.js:1528
 msgid "Scattered showers"
 msgstr "பரவலான மழை"
 
-#: desklet.js:1526 desklet.js:1528
+#: desklet.js:1529 desklet.js:1531
 msgid "Heavy snow"
 msgstr "மிகுந்த பனி"
 
-#: desklet.js:1527
+#: desklet.js:1530
 msgid "Scattered snow showers"
 msgstr "பரவலான பனிப்பொழிவு"
 
-#: desklet.js:1530
+#: desklet.js:1533
 msgid "Thundershowers"
 msgstr "இடியுடன்கூடிய மழை"
 
-#: desklet.js:1531 desklet.js:3505
+#: desklet.js:1534 desklet.js:3805
 msgid "Snow showers"
 msgstr "பனிப் பொழிவுகள்"
 
-#: desklet.js:1532
+#: desklet.js:1535
 msgid "Isolated thundershowers"
 msgstr "ஆங்காங்கே இடியுடன் கூடிய கனமழை"
 
-#: desklet.js:1533
+#: desklet.js:1536
 msgid "Not available"
 msgstr "இருப்பில் இல்லை"
 
-#: desklet.js:1776 desklet.js:3496
+#: desklet.js:1779 desklet.js:3796
 msgid "Clear Sky"
 msgstr "தெளிந்த வானம்"
 
-#: desklet.js:1778 desklet.js:3498
+#: desklet.js:1781 desklet.js:3798
 msgid "Partly Cloudy"
 msgstr "ஓரளவு மேகமூட்டமாக"
 
-#: desklet.js:1779
+#: desklet.js:1782
 msgid "Sunny Intervals"
 msgstr "கதிரொளி இடைவெளிகள்"
 
-#: desklet.js:1780
+#: desklet.js:1783
 msgid "Sand Storm"
 msgstr "மணல் புயல்"
 
-#: desklet.js:1781
+#: desklet.js:1784
 msgid "Mist"
 msgstr "பனிமூட்டம்"
 
-#: desklet.js:1782 desklet.js:3500
+#: desklet.js:1785 desklet.js:3800
 msgid "Fog"
 msgstr "பனி"
 
-#: desklet.js:1783
+#: desklet.js:1786
 msgid "White Cloud"
 msgstr "வெண்மேகம்"
 
-#: desklet.js:1784
+#: desklet.js:1787
 msgid "Light Cloud"
 msgstr "மேகமூட்டம்"
 
-#: desklet.js:1785
+#: desklet.js:1788
 msgid "Grey Cloud"
 msgstr "கரியமேகம்"
 
-#: desklet.js:1786
+#: desklet.js:1789
 msgid "Thick Cloud"
 msgstr "அடர்ந்தமேகம்"
 
-#: desklet.js:1787
+#: desklet.js:1790
 msgid "Light Rain Shower"
 msgstr "மித மழைப்பொழிவு"
 
-#: desklet.js:1789 desklet.js:3507 desklet.js:3511
+#: desklet.js:1792 desklet.js:3807 desklet.js:3811
 msgid "Light Rain"
 msgstr "மித மழை"
 
-#: desklet.js:1790
+#: desklet.js:1793
 msgid "Heavy Rain Shower"
 msgstr "கன மழை"
 
-#: desklet.js:1791 desklet.js:3501 desklet.js:3509
+#: desklet.js:1794 desklet.js:3801 desklet.js:3809
 msgid "Heavy Rain"
 msgstr "கடும் மழை"
 
-#: desklet.js:1792
+#: desklet.js:1795
 msgid "Sleet Shower"
 msgstr "கல் மழை"
 
-#: desklet.js:1794
+#: desklet.js:1797
 msgid "Light Snow Shower"
 msgstr "மித பனிப்பொழிவு"
 
-#: desklet.js:1795 desklet.js:3508 desklet.js:3512
+#: desklet.js:1798 desklet.js:3808 desklet.js:3812
 msgid "Light Snow"
 msgstr "மெல்லிய பனி"
 
-#: desklet.js:1796
+#: desklet.js:1799
 msgid "Heavy Snow Shower"
 msgstr "கனத்த பனி மழை"
 
-#: desklet.js:1797
+#: desklet.js:1800
 msgid "Heavy Snow"
 msgstr "கனத்த பனி"
 
-#: desklet.js:1798 desklet.js:3503
+#: desklet.js:1801 desklet.js:3803
 msgid "Thundery Shower"
 msgstr "இடியுடன் கூடிய மழை"
 
-#: desklet.js:1799
+#: desklet.js:1802
 msgid "Thunder Storm"
 msgstr "இடியுடன் கூடிய மழை"
 
-#: desklet.js:1800
+#: desklet.js:1803
 msgid "Thunderstorm"
 msgstr "இடிமின்புயல்"
 
-#: desklet.js:1801
+#: desklet.js:1804
 msgid "Hazy"
 msgstr "மங்கல்வான்"
 
-#: desklet.js:1802
+#: desklet.js:1805
 msgid "Hail Shower"
 msgstr "ஆலங்கட்டி மழை"
 
-#: desklet.js:1803
+#: desklet.js:1806
 msgid "Rain"
 msgstr "மழை"
 
 #. # direction of movement of pressure
-#: desklet.js:1987 desklet.js:2601
+#: desklet.js:1991 desklet.js:2618
 msgid "Steady"
 msgstr "நிலையான"
 
 #. # direction of movement of pressure
-#: desklet.js:1987 desklet.js:2597
+#: desklet.js:1991 desklet.js:2614
 msgid "Rising"
 msgstr "உயர்கிறது"
 
 #. # direction of movement of pressure
-#: desklet.js:1987 desklet.js:2599
+#: desklet.js:1991 desklet.js:2616
 msgid "Falling"
 msgstr "வீழ்கிறது"
 
@@ -572,8 +572,8 @@ msgid ""
 "The source of the text displayed as the current location. Yahoo! and Google "
 "may offer city names in other languages"
 msgstr ""
-"உரை ஆதாரமாக தற்போதைய இடம் காட்டப்படும் . யாஹூ! மற்றும் கூகுள் பிற "
-"மொழிகளில் நகர பெயர்களை வழங்கலாம்"
+"உரை ஆதாரமாக தற்போதைய இடம் காட்டப்படும் . யாஹூ! மற்றும் கூகுள் பிற மொழிகளில் நகர "
+"பெயர்களை வழங்கலாம்"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->options
 msgid "Google"
@@ -583,10 +583,6 @@ msgstr "கூகுள்"
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->description
 msgid "Data service"
 msgstr "தரவு சேவை"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->options
-msgid "Yahoo!"
-msgstr "யாஹூ!"
 
 #. bbcwx@oak-wood.co.uk->settings-
 #. schema.json->experimental_enabled->description
@@ -615,8 +611,8 @@ msgid ""
 "Period between refreshing forecasts. Note that not all services support "
 "lower refresh times"
 msgstr ""
-"முன்னறிவிப்புகள் புதுப்பிக்கும் இடைவெளி. எல்லா சேவைகளும் குறைந்த "
-"புதுப்பிப்பு நேரங்களை ஆதரிப்பதில்லை என்று குறிப்பில் கொள்ளவும்"
+"முன்னறிவிப்புகள் புதுப்பிக்கும் இடைவெளி. எல்லா சேவைகளும் குறைந்த புதுப்பிப்பு நேரங்களை "
+"ஆதரிப்பதில்லை என்று குறிப்பில் கொள்ளவும்"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->refreshtime->units
 msgid "minutes"
@@ -705,8 +701,8 @@ msgid ""
 "Select the point on the desklet to which it is anchored. This point will "
 "remain static as the desklet grows and shrinks"
 msgstr ""
-"பணிமேடை உபகரணம் நிலைநிறுத்த வேண்டிய புள்ளியை தேர்வு செய்க. உபகரணம் "
-"வளர்ந்தாலும் சுருங்கினாலும் இந்த புள்ளி நிலைத்திருக்கும்"
+"பணிமேடை உபகரணம் நிலைநிறுத்த வேண்டிய புள்ளியை தேர்வு செய்க. உபகரணம் வளர்ந்தாலும் "
+"சுருங்கினாலும் இந்த புள்ளி நிலைத்திருக்கும்"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
 msgid "Bottom center"
@@ -866,8 +862,8 @@ msgid ""
 "The number of days of forecast to display. Note that not all services "
 "support all values"
 msgstr ""
-"முன்னறிவிப்பு நாட்களின் எண்ணிக்கை . எல்லா சேவைகளும் எல்லா மதிப்புகளையும் "
-"ஆதரிப்பதில்லை என்பதை குறிப்பில் கொள்ளவும்."
+"முன்னறிவிப்பு நாட்களின் எண்ணிக்கை . எல்லா சேவைகளும் எல்லா மதிப்புகளையும் ஆதரிப்பதில்லை "
+"என்பதை குறிப்பில் கொள்ளவும்."
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->userno->units
 msgid "days"
@@ -882,8 +878,8 @@ msgid ""
 "Select the color for the border. Only available if the 'Border' checkbox is "
 "enabled"
 msgstr ""
-"வரம்பின் நிறத்தை தேர்வு செய்யவும். 'வரம்பு' தேர்வுப்பெட்டி "
-"இயலச்செய்திருந்தால் மட்டுமே கிடைக்கும்"
+"வரம்பின் நிறத்தை தேர்வு செய்யவும். 'வரம்பு' தேர்வுப்பெட்டி இயலச்செய்திருந்தால் மட்டுமே "
+"கிடைக்கும்"
 
 #. bbcwx@oak-wood.co.uk->settings-
 #. schema.json->display__forecast__wind_speed->description
@@ -912,9 +908,7 @@ msgstr "பணிமேடை தீம்களை மீறு (கீழே �
 msgid ""
 "Check this to override the desktop theme and configure the appearance "
 "manually"
-msgstr ""
-"பணிமேடை தீமை புறக்கணிக்க இதை குறித்து மற்றும் தோற்றத்தை சரிபார்த்து "
-"கட்டமைக்கவும்"
+msgstr "பணிமேடை தீமை புறக்கணிக்க இதை குறித்து மற்றும் தோற்றத்தை சரிபார்த்து கட்டமைக்கவும்"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->citystyle->description
 msgid "Bold city name"
@@ -956,8 +950,7 @@ msgstr "API சாவி"
 msgid ""
 "Required for some services only. Enter your API key for your chosen service"
 msgstr ""
-"சில சேவைகளுக்கு மட்டுமே தேவை. நீங்கள் தேர்வு செய்த சேவைக்கான் உங்கள் API "
-"திறவை உள்ளிடவும்"
+"சில சேவைகளுக்கு மட்டுமே தேவை. நீங்கள் தேர்வு செய்த சேவைக்கான் உங்கள் API திறவை உள்ளிடவும்"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->tooltip
 msgid "Select the data service you wish to use"
@@ -980,15 +973,16 @@ msgid "BBC"
 msgstr "பிபிசி"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-msgid "Yahoo"
-msgstr "யாஹூ"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "weather.com (deprecated)"
 msgstr "weather.com (நீக்கப்பட்டது)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "World Weather Online (requires API key)"
+msgstr "World Weather Online (API key தேவை)"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
+#, fuzzy
+msgid "World Weather Online Premium (requires API key)"
 msgstr "World Weather Online (API key தேவை)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
@@ -1110,8 +1104,7 @@ msgstr "பணிமேடை உபகரணத்தின் ஊடுரு�
 msgid ""
 "Optional items to display (not all options are supported by all services)"
 msgstr ""
-"காட்டவேண்டிய விருப்ப உருப்படி (எல்லா சேவைகளும் எல்லா விருப்பங்களையும் "
-"ஆதரிப்பதில்லை )"
+"காட்டவேண்டிய விருப்ப உருப்படி (எல்லா சேவைகளும் எல்லா விருப்பங்களையும் ஆதரிப்பதில்லை )"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->experimental->description
 msgid "Experimental and buggy features (read documentation!!)"
@@ -1126,8 +1119,8 @@ msgid ""
 "Select the width of the border. Only available if the 'Border' checkbox is "
 "enabled"
 msgstr ""
-"வரம்பின் அகலத்தை தேர்வு செய்யவும். 'வரம்பு' தேர்வுப்பெட்டி "
-"இயலச்செய்திருந்தால் மட்டுமே கிடைக்கும்"
+"வரம்பின் அகலத்தை தேர்வு செய்யவும். 'வரம்பு' தேர்வுப்பெட்டி இயலச்செய்திருந்தால் மட்டுமே "
+"கிடைக்கும்"
 
 #. bbcwx@oak-wood.co.uk->metadata.json->name
 msgid "Weather Desklet"
@@ -1136,3 +1129,9 @@ msgstr "வானிலை பணிமேடை உபகரணம்"
 #. bbcwx@oak-wood.co.uk->metadata.json->description
 msgid "Display the weather from several web services on your desktop"
 msgstr "உங்கள் பணிமேடையில் பல இணைய சேவைகள் இருந்து வானிலையை காட்டவும்"
+
+#~ msgid "Yahoo!"
+#~ msgstr "யாஹூ!"
+
+#~ msgid "Yahoo"
+#~ msgstr "யாஹூ"
