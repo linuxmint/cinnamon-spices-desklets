@@ -29,133 +29,10 @@
    See the License for the specific language governing permissions and
    limitations under the License. 
 */
-marknote = function () {
+let marknote = function () {
 };
 marknote.constants = {DOCTYPE_START:"<!DOCTYPE", CDATA_START:"<![CDATA[", CDATA_END:"]]>", COMMENT_START:"<!--", COMMENT_END:"-->", TAG_OPEN:"<", TAG_CLOSE:">", TAG_CLOSE_SELF_TERMINATING:"/>", ENDTAG_OPEN:"</", EQUALS:"=", SQUOTE:"'", DQUOTE:"\"", PI_START:"<?", PI_END:"?>", BRACKET_OPEN:"[", BRACKET_CLOSE:"]", TOKENTYPE_BRACKET_OPEN:"bracketOpen", TOKENTYPE_TAG_OPEN:"tagOpen", TOKENTYPE_TAG_CLOSE:"tagClose", TOKENTYPE_ENDTAG_OPEN:"endTagOpen", TOKENTYPE_ENDTAG_CLOSE:"endTagClose", TOKENTYPE_SELF_TERMINATING:"closeTagSelfTerminating", TOKENTYPE_WHITESPACE:"whitespace", TOKENTYPE_ATTRIBUTE:"attribute", TOKENTYPE_QUOTE:"quote", TOKENTYPE_QUOTED:"quotedLiteral", TOKENTYPE_NORMAL:"normal", TOKENTYPE_COMMENT_START:"commentStart", TOKENTYPE_COMMENT_END:"commentEnd", TOKENTYPE_CDATA_START:"cdataStart", TOKENTYPE_CDATA_END:"cdataEnd", TOKENTYPE_PI_START:"piStart", TOKENTYPE_PI_END:"piEnd", TOKENTYPE_DOCTYPE_START:"docTypeStart", DATATYPE_ATTRIBUTE:"marknote.Attribute", DATATYPE_CDATA:"marknote.CDATA", DATATYPE_CLONER:"marknote.Cloner", DATATYPE_COMMENT:"marknote.Comment", DATATYPE_DOCTYPE:"marknote.DOCTYPE", DATATYPE_DOCUMENT:"marknote.Document", DATATYPE_ELEMENT:"marknote.Element", DATATYPE_ENTITYREF:"marknote.EntityRef", DATATYPE_XMLENTITYREFS:"marknote.XMLEntityRefs", DATATYPE_ENTITYREFS:"marknote.EntityRefs", DATATYPE_PARSER:"marknote.Parser", DATATYPE_PROCESSINGINSTRUCTION:"marknote.ProcessingInstruction", DATATYPE_QNAME:"marknote.QName", DATATYPE_TEXT:"marknote.Text", DATATYPE_TOKEN:"marknote.Token", DATATYPE_TOKENIZER:"marknote.Tokenizer", DATATYPE_WRITER:"marknote.Writer"};
-marknote.ajaxDoc = null;
-marknote.AJAX = function () {
-    this.req = null;
-    this.status = null;
-    this.statusText = null;
-    this.responseText = null;
-};
-marknote.AJAX.prototype.genRequest = function () {
-    var xhr = false;
-    try {
-        xhr = new XMLHttpRequest();
-    }
-    catch (e1) {
-        try {
-            xhr = new ActiveXObject("Msxml2.XMLHTTP");
-        }
-        catch (e2) {
-            try {
-                xhr = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-            catch (e3) {
-                xhr = false;
-            }
-        }
-    }
-    this.req = xhr;
-    return xhr;
-};
-marknote.AJAX.prototype.getRequest = function () {
-    return this.req;
-};
-marknote.AJAX.prototype.getStatus = function () {
-    return this.status;
-};
-marknote.AJAX.prototype.getStatusText = function () {
-    return this.statusText;
-};
-marknote.AJAX.prototype.getResponseText = function () {
-    return this.responseText;
-};
-marknote.AJAX.prototype.constructQueryString = function (params) {
-    var str = "";
-    if (params && typeof params == "object") {
-        var amper = "";
-        for (var paramName in params) {
-            str += amper + encodeURIComponent(paramName) + "=" + encodeURIComponent(params[paramName]);
-            amper = "&";
-        }
-    } else {
-        if (params && typeof params == "string") {
-            str = params;
-        }
-    }
-    return str;
-};
-marknote.AJAX.prototype.read = function (url, params, callback, callbackParams, method) {
-    var req = this.genRequest();
-    var AJAXreq = this;
-    var queryStr = this.constructQueryString(params);
-    var doc;
-    marknote.AJAXDoc = null;
-    method = method && method.toUpperCase() === "POST" ? "POST" : "GET";
-    if (!req) {
-        return false;
-    }
-    if (!callback) {
-        callback = marknote.AJAX.defaultCallback;
-    }
-    if (!callbackParams) {
-        callbackParams = new Object();
-    }
-    req.open(method, url, true);
-    req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    req.onreadystatechange = function () {
-        if (req.readyState == 4) {
-            AJAXreq.status = req.status;
-            AJAXreq.statusText = req.statusText;
-            AJAXreq.responseText = req.responseText;
-            var parser = new marknote.Parser();
-            doc = parser.parse(req.responseText);
-            callback.call(AJAXreq, doc, callbackParams);
-        }
-    };
-    req.send(queryStr);
-};
-marknote.AJAX.prototype.defaultCallback = function (doc, params) {
-    marknote.AJAXDoc = doc;
-};
-marknote.SJAX = function () {
-    this.req = null;
-    this.status = null;
-    this.statusText = null;
-    this.responseText = null;
-};
-marknote.SJAX.prototype.getRequest = function () {
-    return this.req;
-};
-marknote.SJAX.prototype.getStatus = function () {
-    return this.status;
-};
-marknote.SJAX.prototype.getStatusText = function () {
-    return this.statusText;
-};
-marknote.SJAX.prototype.getResponseText = function () {
-    return this.responseText;
-};
-marknote.SJAX.prototype.read = function (url, params, method) {
-    var xhr = new marknote.AJAX();
-    var req = xhr.genRequest();
-    var queryStr = xhr.constructQueryString(params);
-    var parser = new marknote.Parser();
-    method = method && method.toUpperCase() === "POST" ? "POST" : "GET";
-    if (!req) {
-        return new marknote.Document();
-    }
-    req.open(method, url, false);
-    req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    req.send(queryStr);
-    this.req = req;
-    this.status = req.status;
-    this.statusText = req.statusText;
-    this.responseText = req.responseText;
-    return parser.parse(req.responseText);
-};
+
 marknote.Attribute = function (name, value) {
     this.dataType = marknote.constants.DATATYPE_ATTRIBUTE;
     this.isSw8tXmlContent = false;
@@ -643,6 +520,7 @@ marknote.Element.prototype.getChildElement = function (elemName) {
             }
         }
     }
+    return false;
 };
 marknote.Element.prototype.removeChildElement = function (elemName) {
     var compareName = elemName.dataType == marknote.constants.DATATYPE_QNAME ? elemName.getName() : elemName;
@@ -666,6 +544,7 @@ marknote.Element.prototype.getChildElementAt = function (index) {
         return this.getChildElements()[index];
     }
     catch (err) {
+        return false;
     }
 };
 marknote.Element.prototype.removeChildElementAt = function (index) {
@@ -695,6 +574,7 @@ marknote.Element.prototype.getAttribute = function (name) {
             return attribute;
         }
     }
+    return false;
 };
 marknote.Element.prototype.getAttributeValue = function (name) {
     var attrib = this.getAttribute(name);
@@ -1428,6 +1308,7 @@ marknote.ProcessingInstruction.prototype.getAttributeValue = function (attribute
             return data[a];
         }
     }
+    return false;
 };
 marknote.ProcessingInstruction.prototype.setAttributeValue = function (attributeName, value) {
     var data = this.getData();

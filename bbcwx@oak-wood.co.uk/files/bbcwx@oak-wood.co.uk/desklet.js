@@ -31,12 +31,10 @@ const Lang = imports.lang;
 const Mainloop = imports.mainloop;
 const Clutter = imports.gi.Clutter;  
 const GLib = imports.gi.GLib;
-const Tweener = imports.ui.tweener;
 const Util = imports.misc.util;
 const Main = imports.ui.main;
 
 const Tooltips = imports.ui.tooltips;
-const PopupMenu = imports.ui.popupMenu;
 const Cinnamon = imports.gi.Cinnamon;
 const Settings = imports.ui.settings;
 
@@ -48,7 +46,8 @@ const UUID = "bbcwx@oak-wood.co.uk";
 const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 
 imports.searchPath.push(DESKLET_DIR);
-const xml = imports.marknote;
+
+const Marknote = imports.marknote;
 
 const _httpSession = new Soup.SessionAsync();
 Soup.Session.prototype.add_feature.call(_httpSession, new Soup.ProxyResolverDefault());
@@ -518,7 +517,7 @@ MyDesklet.prototype = {
       global.logError("Failed to parse iconmeta.json for iconset " + this.iconstyle);
     } 
     // set anything missing to default values
-    for (prop in deficonprops) {
+    for (let prop in deficonprops) {
       if (typeof iconprops[prop] === 'undefined') {
         iconprops[prop] = deficonprops[prop];
       }
@@ -1601,7 +1600,7 @@ wxDriverBBC.prototype = {
     }
     let days = [];
     
-    let parser = new marknote.Parser();
+    let parser = new Marknote.marknote.Parser();
     let doc = parser.parse(rss);
     if (!doc)  {
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
@@ -1668,7 +1667,7 @@ wxDriverBBC.prototype = {
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
       return;
     }
-    let parser = new marknote.Parser();
+    let parser = new Marknote.marknote.Parser();
     let doc = parser.parse(rss);
     if (!doc) {
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
@@ -1959,7 +1958,7 @@ wxDriverYahoo.prototype = {
     }    
     let days = [];
     
-    let parser = new marknote.Parser();
+    let parser = new Marknote.marknote.Parser();
     let doc = parser.parse(rss);
     if (!doc) {
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
@@ -3119,6 +3118,7 @@ wxDriverForecastIo.prototype = {
     if (type == "windspd") {
       return val*1.60923;
     }
+    return val;
   },
   
   _mapicon: function(iconcode) {
@@ -3200,7 +3200,7 @@ wxDriverTWC.prototype = {
     }    
     let days = [];
     
-    let parser = new marknote.Parser();
+    let parser = new Marknote.marknote.Parser();
     let doc = parser.parse(xml);
     if (!doc) {
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
