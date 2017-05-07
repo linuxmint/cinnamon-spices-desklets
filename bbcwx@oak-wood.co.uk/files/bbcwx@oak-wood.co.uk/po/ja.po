@@ -6,560 +6,560 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bbcwx\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-12-14 18:52+0000\n"
+"Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
+"POT-Creation-Date: 2017-05-07 20:32+0100\n"
 "PO-Revision-Date: 2016-08-06 12:35+0000\n"
 "Last-Translator: kiyoyon0046 <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2017-05-06 13:16+0000\n"
 "X-Generator: Launchpad (build 18366)\n"
-"Language: ja\n"
 
 #. # Days of the week
-#: desklet.js:103
+#: desklet.js:102
 msgid "Mon"
 msgstr "月"
 
-#: desklet.js:103
+#: desklet.js:102
 msgid "Tue"
 msgstr "火"
 
-#: desklet.js:103
+#: desklet.js:102
 msgid "Wed"
 msgstr "水"
 
-#: desklet.js:103
+#: desklet.js:102
 msgid "Thu"
 msgstr "木"
 
-#: desklet.js:103
+#: desklet.js:102
 msgid "Fri"
 msgstr "金"
 
-#: desklet.js:103
+#: desklet.js:102
 msgid "Sat"
 msgstr "土"
 
-#: desklet.js:103
+#: desklet.js:102
 msgid "Sun"
 msgstr "日"
 
 #. # The desklet title
-#: desklet.js:179
+#: desklet.js:178
 msgid "Weather"
 msgstr "天気"
 
 #. # Link to Help file in context menu
-#: desklet.js:187
+#: desklet.js:186
 msgid "Help"
 msgstr "ヘルプ"
 
 #. # Link to information on translating in context menu
-#: desklet.js:191
+#: desklet.js:190
 msgid "Translate"
 msgstr "翻訳"
 
 #. # Next five strings are labels for current conditions
-#: desklet.js:328 desklet.js:356
+#: desklet.js:330 desklet.js:358
 msgid "Humidity:"
 msgstr "湿度:"
 
 #. # Atmospheric pressure
-#: desklet.js:329 desklet.js:355
+#: desklet.js:331 desklet.js:357
 msgid "Pressure:"
 msgstr "気圧:"
 
-#: desklet.js:330
+#: desklet.js:332
 msgid "Wind:"
 msgstr "風"
 
-#: desklet.js:331
+#: desklet.js:333
 msgid "Feels like:"
 msgstr "体感:"
 
-#: desklet.js:332
+#: desklet.js:334
 msgid "Visibility:"
 msgstr "視界:"
 
 #. # Maximum temperature
-#: desklet.js:347
+#: desklet.js:349
 msgid "Max:"
 msgstr "最高気温:"
 
 #. # Minimum temperature
-#: desklet.js:349
+#: desklet.js:351
 msgid "Min:"
 msgstr "最低気温:"
 
 #. # Wind speed (English translation is "Wind:")
-#: desklet.js:351
+#: desklet.js:353
 msgid "Wind speed:"
 msgstr "風速:"
 
 #. # Wind direction
-#: desklet.js:353
+#: desklet.js:355
 msgid "Dir:"
 msgstr "方位:"
 
 #. # Credit the data supplier. A link to the data supplier appears to the
 #. right of this string
-#: desklet.js:395
+#: desklet.js:397
 msgid "Data from "
 msgstr "提供: "
 
 #. # Tooltip for refresh button
-#: desklet.js:407
+#: desklet.js:409
 msgid "Refresh"
 msgstr "更新"
 
 #. # Message if we fail to get weather data
-#: desklet.js:727
+#: desklet.js:729
 msgid "No data available"
 msgstr "データがありません"
 
-#: desklet.js:760 desklet.js:827
+#: desklet.js:762 desklet.js:829
 #, python-format
 msgid "Error: %s"
 msgstr "エラー: %s"
 
-#: desklet.js:760 desklet.js:827
+#: desklet.js:762 desklet.js:829
 msgid "No data"
 msgstr "データがありません"
 
 #. # %s is replaced by place name
-#: desklet.js:862
+#: desklet.js:864
 #, python-format
 msgid "Click for the full forecast for %s"
 msgstr ""
 
 #. # Units for temperature, degrees Fahrenheit. %f is replaced the value. NB:
 #. English translation uses unicode character u+2109
-#: desklet.js:1104
+#: desklet.js:1107
 #, python-format
 msgid "%fF"
 msgstr ""
 
 #. # Units for temperature, degrees Celsius. %f is replaced the value. NB:
 #. English translation uses unicode character u+2103
-#: desklet.js:1106
+#: desklet.js:1109
 #, python-format
 msgid "%fC"
 msgstr ""
 
 #. # wind speed, miles per hour. %f is replaced by the value
-#: desklet.js:1127
+#: desklet.js:1130
 #, python-format
 msgid "%fmph"
 msgstr ""
 
 #. # wind speed, knots. %f is replaced by the value
-#: desklet.js:1129
+#: desklet.js:1132
 #, python-format
 msgid "%fkn"
 msgstr ""
 
 #. # wind speed, kilometers per hour. %f is replaced by the value
-#: desklet.js:1131
+#: desklet.js:1134
 #, python-format
 msgid "%fkm/h"
 msgstr ""
 
 #. # wind speed, meters per second. %f is replaced by the value
-#: desklet.js:1133
+#: desklet.js:1136
 #, python-format
 msgid "%fm/s"
 msgstr ""
 
 #. # pressure, millbars. %f is replaced by the value
-#: desklet.js:1167
+#: desklet.js:1170
 #, python-format
 msgid "%fmb"
 msgstr ""
 
 #. # pressure, inches of mercury. %f is replaced by the value
-#: desklet.js:1169
+#: desklet.js:1172
 #, python-format
 msgid "%fin"
 msgstr ""
 
 #. # pressure, mm of mercury. %f is replaced by the value
-#: desklet.js:1171
+#: desklet.js:1174
 #, python-format
 msgid "%fmm"
 msgstr ""
 
 #. # pressure, kilopascals. %f is replaced by the value
-#: desklet.js:1173
+#: desklet.js:1176
 #, python-format
 msgid "%fkPa"
 msgstr ""
 
 #. # visibility, miles. %f is replaced by the value
-#: desklet.js:1224
+#: desklet.js:1227
 #, python-format
 msgid "%fmi"
 msgstr ""
 
 #. # visibility, nautical miles. %f is replaced by the value
-#: desklet.js:1226
+#: desklet.js:1229
 #, python-format
 msgid "%fnmi"
 msgstr ""
 
 #. # visibility, kilometers. %f is replaced by the value
-#: desklet.js:1228
+#: desklet.js:1231
 #, python-format
 msgid "%fkm"
 msgstr ""
 
 #. # Next 16 strings are for wind direction, compass points
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "N"
 msgstr ""
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "NNE"
 msgstr "北北東"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "NE"
 msgstr "北東"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "ENE"
 msgstr "東北東"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "E"
 msgstr "東"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "ESE"
 msgstr "東南東"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "SE"
 msgstr "南東"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "SSE"
 msgstr "南南東"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "S"
 msgstr "南"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "SSW"
 msgstr "南南西"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "SW"
 msgstr "南西"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "WSW"
 msgstr "西南西"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "W"
 msgstr "西"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "WNW"
 msgstr "西北西"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "NW"
 msgstr "北西"
 
-#: desklet.js:1452
+#: desklet.js:1455
 msgid "NNW"
 msgstr "北北西"
 
-#: desklet.js:1485
+#: desklet.js:1488
 msgid "Tornado"
 msgstr "竜巻"
 
-#: desklet.js:1486
+#: desklet.js:1489
 msgid "Tropical storm"
 msgstr "熱帯低気圧"
 
-#: desklet.js:1487
+#: desklet.js:1490
 msgid "Hurricane"
 msgstr "ハリケーン"
 
-#: desklet.js:1488
+#: desklet.js:1491
 msgid "Severe thunderstorms"
 msgstr "激しい雷雨"
 
-#: desklet.js:1489
+#: desklet.js:1492
 msgid "Thunderstorms"
 msgstr "雷雨"
 
-#: desklet.js:1490 desklet.js:3506
+#: desklet.js:1493 desklet.js:3806
 msgid "Mixed rain and snow"
 msgstr "みぞれ"
 
-#: desklet.js:1491
+#: desklet.js:1494
 msgid "Mixed rain and sleet"
 msgstr "雨混じりのみぞれ"
 
-#: desklet.js:1492
+#: desklet.js:1495
 msgid "Mixed snow and sleet"
 msgstr "雪混じりのみぞれ"
 
-#: desklet.js:1493
+#: desklet.js:1496
 msgid "Freezing drizzle"
 msgstr "凍った霧雨"
 
-#: desklet.js:1494 desklet.js:1788
+#: desklet.js:1497 desklet.js:1791
 msgid "Drizzle"
 msgstr "小雨"
 
-#: desklet.js:1495
+#: desklet.js:1498
 msgid "Freezing rain"
 msgstr "凍った雨"
 
-#: desklet.js:1496 desklet.js:1497 desklet.js:3502
+#: desklet.js:1499 desklet.js:1500 desklet.js:3802
 msgid "Showers"
 msgstr "にわか雨"
 
-#: desklet.js:1498
+#: desklet.js:1501
 msgid "Snow flurries"
 msgstr "にわか雪"
 
-#: desklet.js:1499
+#: desklet.js:1502
 msgid "Light snow showers"
 msgstr "弱いにわか雪"
 
-#: desklet.js:1500
+#: desklet.js:1503
 msgid "Blowing snow"
 msgstr "吹雪"
 
-#: desklet.js:1501 desklet.js:3504 desklet.js:3510
+#: desklet.js:1504 desklet.js:3804 desklet.js:3810
 msgid "Snow"
 msgstr "雪"
 
-#: desklet.js:1502
+#: desklet.js:1505
 msgid "Hail"
 msgstr "雹（ひょう）"
 
-#: desklet.js:1503 desklet.js:1793
+#: desklet.js:1506 desklet.js:1796
 msgid "Sleet"
 msgstr "みぞれ"
 
-#: desklet.js:1504
+#: desklet.js:1507
 msgid "Dust"
 msgstr "塵"
 
-#: desklet.js:1505
+#: desklet.js:1508
 msgid "Foggy"
 msgstr "霧"
 
-#: desklet.js:1506
+#: desklet.js:1509
 msgid "Haze"
 msgstr "もや"
 
-#: desklet.js:1507
+#: desklet.js:1510
 msgid "Smoky"
 msgstr "もや"
 
-#: desklet.js:1508
+#: desklet.js:1511
 msgid "Blustery"
 msgstr "激しい風"
 
-#: desklet.js:1509
+#: desklet.js:1512
 msgid "Windy"
 msgstr "強い風"
 
-#: desklet.js:1510
+#: desklet.js:1513
 msgid "Cold"
 msgstr "寒い"
 
-#: desklet.js:1511 desklet.js:3499
+#: desklet.js:1514 desklet.js:3799
 msgid "Cloudy"
 msgstr "曇り"
 
-#: desklet.js:1512 desklet.js:1513
+#: desklet.js:1515 desklet.js:1516
 msgid "Mostly cloudy"
 msgstr "おおむね曇"
 
-#: desklet.js:1514 desklet.js:1515 desklet.js:1529
+#: desklet.js:1517 desklet.js:1518 desklet.js:1532
 msgid "Partly cloudy"
 msgstr "晴時々曇"
 
-#: desklet.js:1516
+#: desklet.js:1519
 msgid "Clear"
 msgstr "晴れ"
 
-#: desklet.js:1517 desklet.js:1777
+#: desklet.js:1520 desklet.js:1780
 msgid "Sunny"
 msgstr "晴"
 
-#: desklet.js:1518 desklet.js:1519 desklet.js:3497
+#: desklet.js:1521 desklet.js:1522 desklet.js:3797
 msgid "Fair"
 msgstr "晴れ"
 
-#: desklet.js:1520
+#: desklet.js:1523
 msgid "Mixed rain and hail"
 msgstr "ひょう混じりの雨"
 
-#: desklet.js:1521
+#: desklet.js:1524
 msgid "Hot"
 msgstr "暑い"
 
-#: desklet.js:1522
+#: desklet.js:1525
 msgid "Isolated thunderstorms"
 msgstr "ところにより雷雨"
 
-#: desklet.js:1523
+#: desklet.js:1526
 msgid "Scattered thunderstorms"
 msgstr "ところにより雷雨"
 
-#: desklet.js:1524 desklet.js:1525
+#: desklet.js:1527 desklet.js:1528
 msgid "Scattered showers"
 msgstr "ところによりにわか雨"
 
-#: desklet.js:1526 desklet.js:1528
+#: desklet.js:1529 desklet.js:1531
 msgid "Heavy snow"
 msgstr "強い雪"
 
-#: desklet.js:1527
+#: desklet.js:1530
 msgid "Scattered snow showers"
 msgstr "所によりにわか雪"
 
-#: desklet.js:1530
+#: desklet.js:1533
 msgid "Thundershowers"
 msgstr "雷雨"
 
-#: desklet.js:1531 desklet.js:3505
+#: desklet.js:1534 desklet.js:3805
 msgid "Snow showers"
 msgstr "吹雪"
 
-#: desklet.js:1532
+#: desklet.js:1535
 msgid "Isolated thundershowers"
 msgstr "局地的な雷雨"
 
-#: desklet.js:1533
+#: desklet.js:1536
 msgid "Not available"
 msgstr "利用不可"
 
-#: desklet.js:1776 desklet.js:3496
+#: desklet.js:1779 desklet.js:3796
 msgid "Clear Sky"
 msgstr "快晴"
 
-#: desklet.js:1778 desklet.js:3498
+#: desklet.js:1781 desklet.js:3798
 msgid "Partly Cloudy"
 msgstr "所により曇り"
 
-#: desklet.js:1779
+#: desklet.js:1782
 msgid "Sunny Intervals"
 msgstr ""
 
-#: desklet.js:1780
+#: desklet.js:1783
 msgid "Sand Storm"
 msgstr "砂嵐"
 
-#: desklet.js:1781
+#: desklet.js:1784
 msgid "Mist"
 msgstr "もや"
 
-#: desklet.js:1782 desklet.js:3500
+#: desklet.js:1785 desklet.js:3800
 msgid "Fog"
 msgstr "霧"
 
-#: desklet.js:1783
+#: desklet.js:1786
 msgid "White Cloud"
 msgstr ""
 
-#: desklet.js:1784
+#: desklet.js:1787
 msgid "Light Cloud"
 msgstr ""
 
-#: desklet.js:1785
+#: desklet.js:1788
 msgid "Grey Cloud"
 msgstr "雷雲"
 
-#: desklet.js:1786
+#: desklet.js:1789
 msgid "Thick Cloud"
 msgstr ""
 
-#: desklet.js:1787
+#: desklet.js:1790
 msgid "Light Rain Shower"
 msgstr ""
 
-#: desklet.js:1789 desklet.js:3507 desklet.js:3511
+#: desklet.js:1792 desklet.js:3807 desklet.js:3811
 msgid "Light Rain"
 msgstr "軽い雨"
 
-#: desklet.js:1790
+#: desklet.js:1793
 msgid "Heavy Rain Shower"
 msgstr ""
 
-#: desklet.js:1791 desklet.js:3501 desklet.js:3509
+#: desklet.js:1794 desklet.js:3801 desklet.js:3809
 msgid "Heavy Rain"
 msgstr "激しい雨"
 
-#: desklet.js:1792
+#: desklet.js:1795
 msgid "Sleet Shower"
 msgstr ""
 
-#: desklet.js:1794
+#: desklet.js:1797
 msgid "Light Snow Shower"
 msgstr ""
 
-#: desklet.js:1795 desklet.js:3508 desklet.js:3512
+#: desklet.js:1798 desklet.js:3808 desklet.js:3812
 msgid "Light Snow"
 msgstr ""
 
-#: desklet.js:1796
+#: desklet.js:1799
 msgid "Heavy Snow Shower"
 msgstr ""
 
-#: desklet.js:1797
+#: desklet.js:1800
 msgid "Heavy Snow"
 msgstr ""
 
-#: desklet.js:1798 desklet.js:3503
+#: desklet.js:1801 desklet.js:3803
 msgid "Thundery Shower"
 msgstr ""
 
-#: desklet.js:1799
+#: desklet.js:1802
 msgid "Thunder Storm"
 msgstr ""
 
-#: desklet.js:1800
+#: desklet.js:1803
 msgid "Thunderstorm"
 msgstr ""
 
-#: desklet.js:1801
+#: desklet.js:1804
 msgid "Hazy"
 msgstr ""
 
-#: desklet.js:1802
+#: desklet.js:1805
 msgid "Hail Shower"
 msgstr ""
 
-#: desklet.js:1803
+#: desklet.js:1806
 msgid "Rain"
 msgstr ""
 
 #. # direction of movement of pressure
-#: desklet.js:1987 desklet.js:2601
+#: desklet.js:1991 desklet.js:2618
 msgid "Steady"
 msgstr ""
 
 #. # direction of movement of pressure
-#: desklet.js:1987 desklet.js:2597
+#: desklet.js:1991 desklet.js:2614
 msgid "Rising"
 msgstr ""
 
 #. # direction of movement of pressure
-#: desklet.js:1987 desklet.js:2599
+#: desklet.js:1991 desklet.js:2616
 msgid "Falling"
 msgstr ""
 
@@ -580,10 +580,6 @@ msgstr ""
 #. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->options
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->description
 msgid "Data service"
-msgstr ""
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->options
-msgid "Yahoo!"
 msgstr ""
 
 #. bbcwx@oak-wood.co.uk->settings-
@@ -966,15 +962,15 @@ msgid "BBC"
 msgstr ""
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-msgid "Yahoo"
-msgstr ""
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "weather.com (deprecated)"
 msgstr ""
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "World Weather Online (requires API key)"
+msgstr ""
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
+msgid "World Weather Online Premium (requires API key)"
 msgstr ""
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options

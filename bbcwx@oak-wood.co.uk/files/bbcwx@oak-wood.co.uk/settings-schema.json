@@ -13,6 +13,7 @@
         "Open Weather Map": "owm",
         "Wunderground (requires API key)": "wunderground",
         "World Weather Online (requires API key)": "wwo",
+        "World Weather Online Premium (requires API key)": "wwo2",
         "Forecast.io (requires API key)" : "forecast",
         "weather.com (deprecated)" : "twc",
         "meteoblue (requires API key)" : "meteoblue"
