@@ -6,45 +6,51 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: clock@schorschii\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-05 13:18+0200\n"
-"PO-Revision-Date: 2017-05-05 13:41+0200\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2017-05-08 14:32+0200\n"
+"PO-Revision-Date: 2017-05-08 14:35+0200\n"
+"Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: \n"
+"Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.7.1\n"
-"Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"Language: hr\n"
 
-#: desklet.js:178
+#: desklet.js:190
 msgid "Clock"
 msgstr "Sat"
-
-#. clock@schorschii->metadata.json->description
-msgid ""
-"A scaleable analog clock desklet with smooth hands and free choice of images."
-msgstr ""
-"Prilagodljivi desklet analognog sata s glatkim kazaljkama i slobodnim "
-"odabirom slika."
-
-#. clock@schorschii->metadata.json->name
-msgid "Analog Chronometer"
-msgstr "Analogni kronometar"
 
 #. clock@schorschii->settings-schema.json->head3->description
 msgid "Timezone"
 msgstr "Vremenska zona"
 
-#. clock@schorschii->settings-schema.json->hide-decorations->description
-msgid "Hide decorations"
-msgstr "Prikaži ukrase"
+#. clock@schorschii->settings-schema.json->style->description
+msgid "Clock style"
+msgstr "Izgled sata"
+
+#. clock@schorschii->settings-schema.json->style->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Odaberite grafiku pozadinu koju želite koristiti."
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Dark"
+msgstr "Tamni"
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Light"
+msgstr "Svjetli"
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Custom"
+msgstr "Prilagođen"
 
 #. clock@schorschii->settings-schema.json->head4->description
-msgid "Custom images"
-msgstr "Prilagođena slika"
+msgid "Custom images (available if clock style is set to 'custom')"
+msgstr ""
+"Prilagođene slike (dostupno ako je izgled sata postavljen na 'Prilagođen')"
 
 #. clock@schorschii->settings-schema.json->desklet-size->description
 msgid "Desklet size"
@@ -67,28 +73,36 @@ msgid "Visual"
 msgstr "Izgled"
 
 #. clock@schorschii->settings-schema.json->smooth-seconds-hand->description
-msgid "Smooth hands"
-msgstr "Glatke kazaljke"
+msgid "Smooth second hand"
+msgstr "Glatko pomicanje kazaljke sekunde"
 
 #. clock@schorschii->settings-schema.json->smooth-seconds-hand->tooltip
 msgid ""
-"Use smooth animation for hour, minute and seconds hand instead of refreshing "
-"it only every second."
+"Use smooth animation for seconds hand instead of refreshing it only every "
+"second."
 msgstr ""
-"Koristi glatku animaciju za kazaljke sata, minuta i sekundi umjesto "
-"osvježavanja svake sekunde."
+"Koristi glatku animaciju za kazaljku sekundi umjesto osvježavanja svake "
+"sekunde."
 
 #. clock@schorschii->settings-schema.json->head0->description
 msgid "Settings for clock@schorschii"
 msgstr "Postavke za clock@schorschii"
 
-#. clock@schorschii->settings-schema.json->img-bg->description
-msgid "Background"
-msgstr "Pozadina"
+#. clock@schorschii->settings-schema.json->img-h->description
+msgid "Hour hand"
+msgstr "Kazaljka sata"
 
-#. clock@schorschii->settings-schema.json->img-bg->tooltip
-msgid "Choose your own background image."
-msgstr "Odaberite svoju vlastitu pozadinsku sliku."
+#. clock@schorschii->settings-schema.json->img-h->tooltip
+msgid ""
+"Choose your own image for the hour hand. Should be as big as the background "
+"image."
+msgstr ""
+"Odaberite svoju vlastitu sliku za kazaljku sata. Trebala bi biti velika kao "
+"pozadinska slika."
+
+#. clock@schorschii->settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Prikaži ukrase"
 
 #. clock@schorschii->settings-schema.json->img-m->description
 msgid "Minute hand"
@@ -101,6 +115,14 @@ msgid ""
 msgstr ""
 "Odaberite svoju vlastitu sliku za kazaljku minuta. Trebala bi biti velika "
 "kao pozadinska slika."
+
+#. clock@schorschii->settings-schema.json->img-bg->description
+msgid "Background"
+msgstr "Pozadina"
+
+#. clock@schorschii->settings-schema.json->img-bg->tooltip
+msgid "Choose your own background image."
+msgstr "Odaberite svoju vlastitu pozadinsku sliku."
 
 #. clock@schorschii->settings-schema.json->img-s->description
 msgid "Seconds hand"
@@ -162,33 +184,38 @@ msgstr ""
 "Postavite svoj prilagođeni naslov ovdje, npr. za višestruke vremenske zone. "
 "Ovo polje je nedostupno osim ako je odabrana mogućnost iznad."
 
-#. clock@schorschii->settings-schema.json->img-h->description
-msgid "Hour hand"
-msgstr "Kazaljka sata"
+#. clock@schorschii->settings-schema.json->smooth-minutes-hand->description
+msgid "Smooth minute hand"
+msgstr "Glatko pomicanje kazaljke minuta"
 
-#. clock@schorschii->settings-schema.json->img-h->tooltip
+#. clock@schorschii->settings-schema.json->smooth-minutes-hand->tooltip
 msgid ""
-"Choose your own image for the hour hand. Should be as big as the background "
-"image."
+"Use smooth animation for minute hand instead of moving it only once per "
+"minute."
 msgstr ""
-"Odaberite svoju vlastitu sliku za kazaljku sata. Trebala bi biti velika kao "
-"pozadinska slika."
+"Koristi glatku animaciju za kazaljku minuta umjesto osvježavanja svake "
+"sekunde."
 
-msgid "Clock style"
-msgstr "Izgled sata"
-
-msgid "Custom images (available if clock style is set to 'custom')"
+#. clock@schorschii->metadata.json->description
+msgid ""
+"A scaleable analog clock desklet with smooth hands and free choice of images."
 msgstr ""
-"Prilagođene slike (dostupno ako je izgled sata postavljen na 'Prilagođen')"
+"Prilagodljivi desklet analognog sata s glatkim kazaljkama i slobodnim "
+"odabirom slika."
 
-#. Clock design - light
-msgid "Light"
-msgstr "Svjetli"
+#. clock@schorschii->metadata.json->name
+msgid "Analog Chronometer"
+msgstr "Analogni kronometar"
 
-#. Clock design - dark
-msgid "Dark"
-msgstr "Tamni"
+#~ msgid "Custom images"
+#~ msgstr "Prilagođena slika"
 
-#. Clock design - use custom images
-msgid "Custom"
-msgstr "Prilagođen"
+#~ msgid "Smooth hands"
+#~ msgstr "Glatke kazaljke"
+
+#~ msgid ""
+#~ "Use smooth animation for hour, minute and seconds hand instead of "
+#~ "refreshing it only every second."
+#~ msgstr ""
+#~ "Koristi glatku animaciju za kazaljke sata, minuta i sekundi umjesto "
+#~ "osvježavanja svake sekunde."
