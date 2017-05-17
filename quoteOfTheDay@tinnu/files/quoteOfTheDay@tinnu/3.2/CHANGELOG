@@ -1,3 +1,5 @@
+v0.3.1
+  * Added a version for Cinnamon 3.2+ that handles the new FileChooser correctly
 v0.3.0
 - Added font options in the configuration menu:
   * Font size
