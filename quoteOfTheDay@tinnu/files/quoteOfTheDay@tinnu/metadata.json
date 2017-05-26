@@ -2,5 +2,6 @@
  "uuid": "quoteOfTheDay@tinnu",
  "name": "Quote of the day desklet",
  "description": "A desklet that displays quotations from various sources",
- "prevent-decorations": false
+ "prevent-decorations": false,
+ "multiversion": true
 }
