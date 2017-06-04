@@ -1,12 +1,13 @@
 const Cinnamon = imports.gi.Cinnamon;
 const Desklet = imports.ui.desklet;
+const Gettext = imports.gettext;
+const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
 const Lang = imports.lang;
 const Mainloop = imports.mainloop;
 const Settings = imports.ui.settings;
 const St = imports.gi.St;
-const Gettext = imports.gettext;
-const Gio = imports.gi.Gio;
+const Util = imports.misc.util;
 const uuid = "quoteOfTheDay@tinnu";
 
 // l10n/translation support
@@ -73,7 +74,7 @@ MyDesklet.prototype = {
         if (this.update_id > 0) {
             Mainloop.source_remove(this.update_id);
         }
-       
+
         this.update_id = Mainloop.timeout_add_seconds(this.delay*60, Lang.bind(this, this._update));
         this._update();
         
@@ -99,67 +100,35 @@ MyDesklet.prototype = {
      * Display a new quote
      **/
     _update: function() {
-        this._quote.set_text(this._getNewQuote());
+        this._getNewQuote();
         return true; // Returns true so that the timeout keeps getting called
     },
 
     /**
-     * Return a string containing a quote
+     * Call fortune to obtain a random quote from the input file
      **/
     _getNewQuote: function() {
-        let allQuotes = "";
-        try {
-            // Since we update infrequently, reread the file in case it has changed
-            let quote_file_uri = Gio.File.new_for_uri(this.file);
-            if (!quote_file_uri.query_exists(null)) {
-                return "Quote file not found: " + quote_file_uri;
-            }
-            let quoteFileContents = Cinnamon.get_file_contents_utf8_sync(quote_file_uri.get_path());
-            allQuotes = quoteFileContents.toString();
-        }
-        catch (e) {
-            global.logError(e);
-            return "";
+        // Make sure the input file exists
+        if (!this.file) {
+            global.logError("Quote file is null.");
+            this._setNewQuote("");
+            return;
         }
 
-        // Ensure first and last chars are 'sep', for symmetry
-        if (allQuotes.charAt(0) !== this.sep) {
-            allQuotes = this.sep + allQuotes;
-        }
-        if (allQuotes.lastIndexOf(this.sep) !== allQuotes.length - 1) {
-            allQuotes = allQuotes + this.sep;
+        let quote_file_uri = Gio.File.new_for_uri(this.file);
+        if (!quote_file_uri.query_exists(null)) {
+            global.logError("Quote file not found: " + this.file);
         }
 
-        // Now find the beginning and end of each quotation
-        this._findSeparators(allQuotes);
-
-        // Choose a quote randomly, subtract 1 so we don't select the ending separator 
-        let index = Math.floor(Math.random() * (this.separators.length - 1));
-
-        // Parse chosen quote for display
-        let currentQuote = allQuotes.substring(this.separators[index] + 1, this.separators[index+1]);
-
-        // Truncate if needed
-        currentQuote = currentQuote.substring(0, Math.min(currentQuote.length, this.maxSize)); 
-        return currentQuote;
+        Util.spawn_async(["fortune", quote_file_uri.get_path()],
+            Lang.bind(this, this._setNewQuote));
     },
 
     /**
-     * Helper function for _getNewQuote
-     *   - Returns an array containing the indicies of the separators in the allQuotes string
+     * Callback for _getNewQuote to set the quote text when spawn_async returns
      **/
-    _findSeparators: function(allQuotes) {
-        this.separators = [];
-        let index = 0;
-
-        while (index < allQuotes.length) {
-            index = allQuotes.indexOf(this.sep, index);
-            if (index === -1) {
-                break;  // no more separators
-            }
-            this.separators.push(index);
-            index++;
-        }
+    _setNewQuote: function(quote) {
+        this._quote.set_text(quote);
     }
 }
 

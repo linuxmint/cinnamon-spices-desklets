@@ -1,6 +1,6 @@
 # Quote of the Day Cinnamon Desklet #
 
-v0.3.0 - Oct. 30, 2016
+v0.4.0 - June 4, 2017
 
 This desklet displays a random quote of the day. Left click it to display a new random quote at any time.
 
@@ -29,16 +29,17 @@ See `/usr/share/games/fortunes` for examples. The format is simply, "a text file
 each separated by the character "%" on its own line," as explained on the Wikipedia page. Whitespace 
 formatting within the text file is preserved when the quote is displayed.
 
+After creating a custom input file, you must also run:
+`strfile input_file input_file.dat`
+to create the .dat file that `fortune` requires.  The `-c` option of `strfile` allows you to change
+the delimiting character, if desired.
+
 ## TODO ##
 
 Provide a GUI method to change the font.
 
 ## Known Issues ##
 
-- When the desklet is added in Cinnamon 3.0+, the "Installed Desklets" screen shows a scary red exclaimation mark. 
-  This is because Quote of the Day uses `get_file_contents_utf8_sync` to read the file of quotes, but this function 
-  was deprecated in Cinnamon 3.1. This warning will be fixable with the async version of this function, which 
-  should be available in Cinnamon 3.2.
 - The text shadow may not be visible upon reboot until the mouse is hovered over the quote. 
   I'm unsure if this is an error in the desklet, or a problem with Cinnamon.
 

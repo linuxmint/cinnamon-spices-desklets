@@ -1,10 +1,11 @@
 {
     "file": {
-        "default": "/usr/share/games/fortunes/literature", 
+        "default": "file:///usr/share/games/fortunes/literature",
         "type": "filechooser", 
         "description" : "File:", 
         "allow-none" : false,
-        "select-dir" : false
+        "select-dir" : false,
+        "value": "file:///usr/share/games/fortunes/literature"
     },
     "delay": {
         "default": 1440,
