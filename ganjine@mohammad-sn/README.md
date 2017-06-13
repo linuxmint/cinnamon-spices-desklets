@@ -1,5 +1,5 @@
 
-<h2><img src="ganjine%40mohammad-sn/icon.png" alt="ganjine logo" width="22"/> Ganjine</h2>
+<h2><img src="icon.png" alt="ganjine logo" width="22"/> Ganjine</h2>
 
 This desklet shows random persian poems on the desktop from [Ganjoor](http://ganjoor.net), a Persian poetry web site.
 
@@ -13,9 +13,9 @@ This desklet shows random persian poems on the desktop from [Ganjoor](http://gan
 
 **Screenshot**
 
-![screenshot](ganjine%40mohammad-sn/screenshot.png)
+![screenshot](screenshot.png)
 
 **Configuration**
 
-![configuration](ganjine%40mohammad-sn/configuration.png)
+![configuration](configuration.png)
  
