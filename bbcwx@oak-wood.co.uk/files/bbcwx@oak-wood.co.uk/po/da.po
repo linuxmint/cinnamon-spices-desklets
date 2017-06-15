@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bbcwx\n"
 "Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
 "POT-Creation-Date: 2017-05-07 20:32+0100\n"
-"PO-Revision-Date: 2015-01-25 18:44+0000\n"
+"PO-Revision-Date: 2017-06-15 17:29+0200\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Danish <da@li.org>\n"
 "Language: da\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2015-12-04 19:52+0000\n"
-"X-Generator: Launchpad (build 17862)\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #. # Days of the week
 #: desklet.js:102
@@ -546,7 +546,7 @@ msgstr "Haglbyge"
 
 #: desklet.js:1806
 msgid "Rain"
-msgstr ""
+msgstr "Regn"
 
 #. # direction of movement of pressure
 #: desklet.js:1991 desklet.js:2618
@@ -966,7 +966,7 @@ msgstr "Wunderground (kræver API-nøgle)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "meteoblue (requires API key)"
-msgstr ""
+msgstr "meteoblue (kræver API-nøgle)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "BBC"
@@ -981,9 +981,8 @@ msgid "World Weather Online (requires API key)"
 msgstr "World Weather Online (kræver API-nøgle)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
 msgid "World Weather Online Premium (requires API key)"
-msgstr "World Weather Online (kræver API-nøgle)"
+msgstr "World Weather Online Premium (kræver API-nøgle)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "Open Weather Map"
@@ -1125,11 +1124,11 @@ msgstr ""
 
 #. bbcwx@oak-wood.co.uk->metadata.json->name
 msgid "Weather Desklet"
-msgstr ""
+msgstr "Vejrskrivebordsprogram"
 
 #. bbcwx@oak-wood.co.uk->metadata.json->description
 msgid "Display the weather from several web services on your desktop"
-msgstr ""
+msgstr "Vis vejret fra adskillelige webtjenester på dit skrivebord"
 
 #~ msgid "Yahoo!"
 #~ msgstr "Yahoo!"
