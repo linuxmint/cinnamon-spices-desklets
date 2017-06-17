@@ -5,7 +5,7 @@
     },
     "font": {
         "type": "fontchooser",
-        "default": "IranNastaliq 20",
+        "default": "Noto Naskh Arabic Bold 18",
         "description": "Font"
     },
     "text-color": {
@@ -63,11 +63,6 @@
 "رهی معیری" :"41"
         },
         "description": "Select poet"
-    },
-    "install-fonts": {
-        "type": "button",
-        "description" : "Install IranNastaliq font",
-        "callback" : "installFonts"
     },
     "x-l": {
         "type": "generic",

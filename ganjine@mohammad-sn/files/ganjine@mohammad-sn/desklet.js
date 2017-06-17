@@ -95,7 +95,6 @@ MyDesklet.prototype = {
         this.settings.bind("selected-poet", "selected_poet", this._updateBeyt);
         this.settings.bind("x-l", "XL", null);
         this.settings.bind("poem-history", "PoemHistory", null);
-        this.settings.bind("poem-history", "PoemHistory", null);
 
         this._clipboard = St.Clipboard.get_default();
 
@@ -286,11 +285,6 @@ MyDesklet.prototype = {
         this.prev = verse_data;
 
         this.timeout = Mainloop.timeout_add_seconds(this.interval * 60, Lang.bind(this, this._updateBeyt));
-    },
-
-    installFonts: function() {
-        let deskletDir = DeskletManager.deskletMeta[this.metadata.uuid].path;
-        Gio.app_info_launch_default_for_uri('file://' + deskletDir + '/fonts/IranNastaliq.ttf', global.create_app_launch_context());
     },
 
     takeScreenShot: function(menuItem, event) {
