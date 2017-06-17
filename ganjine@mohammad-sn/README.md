@@ -1,5 +1,5 @@
 
-<h2><img src="icon.png" alt="ganjine logo" width="22"/> Ganjine</h2>
+<h2><img src="https://raw.githubusercontent.com/linuxmint/cinnamon-spices-desklets/master/ganjine%40mohammad-sn/icon.png" alt="ganjine logo" width="22"/> Ganjine</h2>
 
 This desklet shows random persian poems on the desktop from [Ganjoor](http://ganjoor.net), a Persian poetry web site.
 
@@ -11,11 +11,7 @@ This desklet shows random persian poems on the desktop from [Ganjoor](http://gan
 * Show poems from specified poet
 * Save screenshot of poem
 
-**Screenshot**
-
-![screenshot](screenshot.png)
-
 **Configuration**
 
-![configuration](configuration.png)
+![configuration](https://raw.githubusercontent.com/linuxmint/cinnamon-spices-desklets/master/ganjine%40mohammad-sn/configuration.png)
  
