@@ -18,14 +18,14 @@ const DeskletManager = imports.ui.deskletManager;
 let DIRECTORY_PICTURES = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES);
 
 function invertbrightness(rgb) {
-  rgb = Array.prototype.join.call(arguments).match(/(-?[0-9\.]+)/g);
-  let brightness = 255 * 3
-  for (var i = 0; i < rgb.length && i < 3; i++) {
-    brightness -= rgb[i];
-  }
-  if (brightness > 255 * 1.5)
-    return '255, 255, 255';
-  return '0, 0, 0';
+    rgb = Array.prototype.join.call(arguments).match(/(-?[0-9\.]+)/g);
+    let brightness = 255 * 3
+    for (var i = 0; i < rgb.length && i < 3; i++) {
+        brightness -= rgb[i];
+    }
+    if (brightness > 255 * 1.5)
+        return '255, 255, 255';
+    return '0, 0, 0';
 }
 
 function MyDesklet(metadata, desklet_id) {
@@ -99,13 +99,13 @@ MyDesklet.prototype = {
 
         this._clipboard = St.Clipboard.get_default();
 
-        let openLinkMenuItem = new PopupMenu.PopupIconMenuItem("View on ganjoor.net", "web-browser", "symbolic");
+        let openLinkMenuItem = new PopupMenu.PopupIconMenuItem("View on ganjoor.net", "web-browser", St.IconType.SYMBOLIC);
         openLinkMenuItem.connect('activate', Lang.bind(this, function(menuItem, event) {
             if (this.poet.link)
                 Gio.app_info_launch_default_for_uri(this.poet.link, global.create_app_launch_context());
         }));
 
-        let previousPoemMenuItem = new PopupMenu.PopupIconMenuItem("Previous", "go-previous", "symbolic");
+        let previousPoemMenuItem = new PopupMenu.PopupIconMenuItem("Previous", "go-previous", St.IconType.SYMBOLIC);
         previousPoemMenuItem.connect('activate', Lang.bind(this, function(menuItem, event) {
             if (this.history.length) {
                 if (this.timeout)
@@ -115,17 +115,17 @@ MyDesklet.prototype = {
             }
         }));
 
-        let copyMenuItem = new PopupMenu.PopupIconMenuItem("Copy", "edit-copy", "symbolic");
+        let copyMenuItem = new PopupMenu.PopupIconMenuItem("Copy", "edit-copy", St.IconType.SYMBOLIC);
         copyMenuItem.connect('activate', Lang.bind(this, function(menuItem, event) {
             this._clipboard.set_text(this.verse.text + '\n' + this.poet.poetname);
         }));
 
-        let copyLinkMenuItem = new PopupMenu.PopupIconMenuItem("Copy link", "insert-link", "symbolic");
+        let copyLinkMenuItem = new PopupMenu.PopupIconMenuItem("Copy link", "insert-link", St.IconType.SYMBOLIC);
         copyLinkMenuItem.connect('activate', Lang.bind(this, function(menuItem, event) {
             this._clipboard.set_text(this.poet.link);
         }));
 
-        let takeShotMenuItem = new PopupMenu.PopupIconMenuItem("Take screenshot", "image-x-generic", "symbolic");
+        let takeShotMenuItem = new PopupMenu.PopupIconMenuItem("Take screenshot", "image-x-generic", St.IconType.SYMBOLIC);
         takeShotMenuItem.connect('activate', Lang.bind(this, this.takeScreenShot));
 
         this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem(), 0);
@@ -160,35 +160,35 @@ MyDesklet.prototype = {
         let fontsize = fontprep.pop();
         let fontweight = '';
         let fontstyle = '';
-        let fontname = fontprep.join(' ').replaceAll(',', ' ');
-            ['Italic', 'Oblique'].forEach(function(item, i) {
-                if (fontname.contains(item)) {
-                    fontstyle = item;
-                    fontname = fontname.replaceAll(item, '');
-                }
-            });
+        let fontname = fontprep.join(' ').replace(/,/g, ' ');
+        ['Italic', 'Oblique'].forEach(function(item, i) {
+            if (fontname.contains(item)) {
+                fontstyle = item;
+                fontname = fontname.replace(item, '');
+            }
+        });
 
-            ['Bold', 'Light', 'Medium', 'Heavy'].forEach(function(item, i) {
-                if (fontname.contains(item)) {
-                    fontweight = item;
-                    fontname = fontname.replaceAll(item, '');
-                }
-            });
+        ['Bold', 'Light', 'Medium', 'Heavy'].forEach(function(item, i) {
+            if (fontname.contains(item)) {
+                fontweight = item;
+                fontname = fontname.replace(item, '');
+            }
+        });
 
         this.verse.style = ("font-family: " + fontname + ", Amiri, IranNastaliq, Noto Nastaliq Urdu, Noto Naskh Arabic; " +
-                            "text-align: center;" +
-                            "font-size: " + fontsize + "pt; " +
-                            (fontstyle?"font-style: " + fontstyle + "; ":"") +
-                            (fontweight?"font-weight: " + fontweight + "; ":"") +
-                            "color: " + this.color + "; " +
-                            "text-shadow: " + "0px 1px 6px rgba(" + invertbrightness(this.color) + ", 0.2); " +
-                            "padding: 10px 20px;").toLowerCase();
+            "text-align: center;" +
+            "font-size: " + fontsize + "pt; " +
+            (fontstyle ? "font-style: " + fontstyle + "; " : "") +
+            (fontweight ? "font-weight: " + fontweight + "; " : "") +
+            "color: " + this.color + "; " +
+            "text-shadow: " + "0px 1px 6px rgba(" + invertbrightness(this.color) + ", 0.2); " +
+            "padding: 10px 20px;").toLowerCase();
 
-        this.poet.style =  ("font-family: Noto Naskh Arabic;" +
-                            "text-align: center;" +
-                            "font-size: " + (fontsize / 2.5) + "pt;" +
-                            "color: " + this.color + ";" +
-                            "text-shadow: " + "0px 1px 6px rgba(" + invertbrightness(this.color) + ", 0.2);").toLowerCase() ;
+        this.poet.style = ("font-family: Noto Naskh Arabic;" +
+            "text-align: center;" +
+            "font-size: " + (fontsize / 2.5) + "pt;" +
+            "color: " + this.color + ";" +
+            "text-shadow: " + "0px 1px 6px rgba(" + invertbrightness(this.color) + ", 0.2);").toLowerCase();
 
         this.metadata['prevent-decorations'] = !this.show_decoration;
         this._updateDecoration();
@@ -294,61 +294,52 @@ MyDesklet.prototype = {
     },
 
     takeScreenShot: function(menuItem, event) {
-            let screenshot = new Cinnamon.Screenshot();
-            let padding = 100;
-            let x = this.actor.x - 1.5 * padding;
-            let y = this.actor.y - 1.3 * padding;
-            let w = this.actor.width + 3 * padding;
-            let h = this.actor.height + 3 * padding;
+        let screenshot = new Cinnamon.Screenshot();
+        let padding = 100;
+        let x = this.actor.x - 1.5 * padding;
+        let y = this.actor.y - 1.3 * padding;
+        let w = this.actor.width + 3 * padding;
+        let h = this.actor.height + 3 * padding;
 
-            let xwmax = this.actor.get_parent().get_parent().width;
-            let yhmax = this.actor.get_parent().get_parent().height;
+        let xwmax = this.actor.get_parent().get_parent().width;
+        let yhmax = this.actor.get_parent().get_parent().height;
 
-            if (x < 0) {
-                w += 2 * x;
-                x = 0;
-            }
-            if (y < 0) {
-                h += 2 * y;
-                y = 0;
-            }
-            if (x + w > xwmax) {
-                x -= xwmax - (w + x);
-                w = xwmax - x;
-            }
-            if (y + h > yhmax) {
-                y -= Math.floor(1.3 / 1.5 * (yhmax - (h + y)));
-                h = yhmax - y;
-            }
-
-            let filename = DIRECTORY_PICTURES + '/g-' + this.poet.link.substr(20).replaceAll('/', '-') + Math.random() + '.png';
-            this.actor.origopacity = this.actor.opacity;
-            this.actor.opacity = 255;
-            global.window_group.opacity = 0;
-            global.bottom_window_group.opacity = 0;
-            Main.panelManager.getPanels().forEach(function(panel, i) {
-                if (panel) panel.actor.opacity = 0;
-            });
-            //global.background_actor.effects = [];
-            //for(let i = 0; i < 20; i++) {
-            //global.background_actor.effects.push(new Clutter.BlurEffect());
-            //global.background_actor.effect = global.background_actor.effects[i];
-            //}
-            screenshot.screenshot_area(false, x, y, w, h, filename, Lang.bind(this, function() {
-                global.window_group.opacity = 255;
-                global.bottom_window_group.opacity = 255;
-                Main.panelManager.getPanels().forEach(function(panel, i) {
-                    if (panel) panel.actor.opacity = 255;
-                });
-            //let l = global.background_actor.effects.length;
-            //while(l--) {
-            //global.background_actor.remove_effect(global.background_actor.effects.pop());}
-                //global.background_actor.remove_effect(global.background_actor.effect);
-                this.actor.opacity = this.actor.origopacity;
-                Gio.app_info_launch_default_for_uri('file://' + filename, global.create_app_launch_context());
-            }));
-
+        if (x < 0) {
+            w += 2 * x;
+            x = 0;
         }
+        if (y < 0) {
+            h += 2 * y;
+            y = 0;
+        }
+        if (x + w > xwmax) {
+            x -= xwmax - (w + x);
+            w = xwmax - x;
+        }
+        if (y + h > yhmax) {
+            y -= Math.floor(1.3 / 1.5 * (yhmax - (h + y)));
+            h = yhmax - y;
+        }
+
+        let filename = DIRECTORY_PICTURES + '/g-' + this.poet.link.substr(20).replaceAll('/', '-') + Math.random() + '.png';
+        this.actor.origopacity = this.actor.opacity;
+        this.actor.opacity = 255;
+        global.window_group.opacity = 0;
+        global.bottom_window_group.opacity = 0;
+        Main.panelManager.getPanels().forEach(function(panel, i) {
+            if (panel) panel.actor.opacity = 0;
+        });
+        screenshot.screenshot_area(false, x, y, w, h, filename, Lang.bind(this, function() {
+            global.window_group.opacity = 255;
+            global.bottom_window_group.opacity = 255;
+            Main.panelManager.getPanels().forEach(function(panel, i) {
+                if (panel) panel.actor.opacity = 255;
+            });
+            this.actor.opacity = this.actor.origopacity;
+            Gio.app_info_launch_default_for_uri('file://' + filename, global.create_app_launch_context());
+        }));
+
+    }
 }
 
 function main(metadata, desklet_id) {
