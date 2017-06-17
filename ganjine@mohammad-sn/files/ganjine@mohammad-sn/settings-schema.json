@@ -1,0 +1,103 @@
+{
+    "section1": {
+        "type": "section",
+        "description" : "Appearance"
+    },
+    "font": {
+        "type": "fontchooser",
+        "default": "Noto Naskh Arabic Bold 18",
+        "description": "Font"
+    },
+    "text-color": {
+	    "type": "colorchooser",
+	    "default": "rgb(255,255,255)",
+	    "description": "Text color",
+	    "tooltip": "Click the button to select a new text color"
+    },
+    "decoration": {
+        "default": false,
+        "type": "switch",
+        "description": "Show default desklet decoration"
+    },
+    "section2": {
+        "type": "section",
+        "description" : "Options"
+    },
+    "interval-minutes": {
+        "default": 20,
+        "type": "spinbutton",
+        "min": 1,
+        "max": 1000,
+        "units": "minutes",
+        "step": 5,
+        "description": "Refresh interval"
+    },
+    "limit-poems": {
+        "default": false,
+        "type": "switch",
+        "description": "Limit poems to specified poet"
+    },
+    "selected-poet": {
+        "dependency": "limit-poems",
+        "default": "2",
+        "type": "combobox",
+        "options": {
+"حافظ" :"2",
+"خیام" :"3",
+"ابوسعید ابوالخیر" :"26",
+"صائب" :"22",
+"سعدی" :"7",
+"باباطاهر" :"28",
+"مولوی" :"5",
+"اوحدی" :"19",
+"خواجو" :"20",
+"شهریار" :"35",
+"عراقی" :"21",
+"فروغی بسطامی" :"32",
+"سلمان ساوجی" :"40",
+"محتشم کاشانی" :"29",
+"امیرخسرو دهلوی" :"34",
+"سیف فرغانی" :"31",
+"عبید زاکانی" :"33",
+"هاتف اصفهانی" :"25",
+"رهی معیری" :"41"
+        },
+        "description": "Select poet"
+    },
+    "x-l": {
+        "type": "generic",
+        "default": 1000
+    },
+    "poem-history": {
+        "type": "generic",
+        "default": [
+            "گر ز در ماندگی عشق ترا دردی هست\nهم بدان درد قناعت کن و درمان بگذار||امیرخسرو دهلوی||https://ganjoor.net/khosro/gozide/ghazal-khosro/sh387/",
+            "لیکن چه توان کرد که قوت نتوان کرد\nبا گردش ایام به بازوی شجاعت||سعدی||https://ganjoor.net/saadi/divan/ghazals/sh135/",
+            "در آن جهان ندهد فقر اگر نتیجه، در اینجا\nهمین بس است که پروای انقلاب ندارم||صائب||https://ganjoor.net/saeb/divan-saeb/ghazal-saeb/sh106/",
+            "کجاست همنفسی تا به شرح عرضه دهم\nکه دل چه می‌کشد از روزگار هجرانش||حافظ||https://ganjoor.net/hafez/ghazal/sh280/",
+            "تا جذبه‌ای نگیرد دامان دل فروغی\nحق را نمی‌توان جست با صد هزار هادی||فروغی بسطامی||https://ganjoor.net/forooghi/divan-forooghi/ghazalf/sh461/",
+            "ای جمالت شمع صد پروانه سر برکن ز بام\nمرغ جان را پرزنان گرد سرای خویش بین||محتشم کاشانی||https://ganjoor.net/mohtasham/divan-moh/ghazal-moh/sh503/",
+            "بمانده بی رخ زیبای خویش دشمن کام\nفتاده خوار و خجل در کف زمانه زبون||عراقی||https://ganjoor.net/eraghi/divane/ghazale/sh223/",
+            "چشمه چشم من از سرو قدت یابد، آب\nرشته جان من از، شمع رخت دارد، تاب||سلمان ساوجی||https://ganjoor.net/salman/divanss/ghazalss/sh22/",
+            "گرفت دامن من اشک و بر درش بنشاند\nکجا روم ز درد او که خون گرفت مرا||سلمان ساوجی||https://ganjoor.net/salman/divanss/ghazalss/sh11/",
+            "با آن که از وی غایبم و از می چو حافظ تایبم\nدر مجلس روحانیان گه گاه جامی می‌زنم||حافظ||https://ganjoor.net/hafez/ghazal/sh344/",
+            "چندان چو سگ به کوی تو در خفته‌ام که هیچ\nاز خاک درگه تو نشانم نمی‌رود||سیف فرغانی||https://ganjoor.net/seyf/divan-seyf/ghazalha/sh44/",
+            "برخیز و بیا بتا برای دل ما\t\tحل کن به جمال خویشتن مشکل ما\nیک کوزه شراب تا بهم نوش کنیم\t\tزان پیش که کوزه‌ها کنند از گل ما||خیام||https://ganjoor.net/khayyam/robaee/sh1/",
+            "ای روی خویش دیده تو در روی خوب یار\nآیینه‌ای عظیم منور گرفته‌ای||مولوی||https://ganjoor.net/moulavi/shams/ghazalsh/sh2983/",
+            "تا چند همچو شمع زبان آوری کنی\nپروانه مراد رسید ای محب خموش||حافظ||https://ganjoor.net/hafez/ghazal/sh285/",
+            "هر که می‌بیندم از جور غمت می‌گوید\nسعدیا بر تو چه رنجست که بگداخته‌ای||سعدی||https://ganjoor.net/saadi/divan/ghazals/sh488/",
+            "اسرار ملک بین که بغول افتادست\t\tوان سکهٔ زر بین که بپول افتادست\nوان دست برافشاندن مردان زد و کون\t\tاکنون بترانهٔ کچول افتادست||ابوسعید ابوالخیر||https://ganjoor.net/abusaeed/robaee-aa/sh76/",
+            "ته که ناخوانده‌ای علم سماوات\t\tته که نابرده‌ای ره در خرابات\nته که سود و زیان خود ندانی\t\tبیاران کی رسی هیهات هیهات||باباطاهر||https://ganjoor.net/babataher/2beytiha/sh4/",
+            "شهری به تو یار است و غریب این همه محروم\nای شاه به نازم دل درویش نوازت||شهریار||https://ganjoor.net/shahriar/gozidegh/sh17/",
+            "منم که دیده به دیدار دوست کردم باز\nچه شکر گویمت ای کارساز بنده نواز||حافظ||https://ganjoor.net/hafez/ghazal/sh259/",
+            "از چرخ فلک گردش یکسان مطلب\t\tوز دور زمانه عدل سلطان مطلب\nروزی پنج در جهان خواهی بود\t\tآزار دل هیچ مسلمان مطلب||ابوسعید ابوالخیر||https://ganjoor.net/abusaeed/robaee-aa/sh33/",
+            "رنج عشقت راحت هر دردمندی\nزخم تیغت مرهم هر دل فکاری||فروغی بسطامی||https://ganjoor.net/forooghi/divan-forooghi/ghazalf/sh476/",
+            "ز تودور چند سوزم بمیان آتش غم ؟\nهمه غیرتم زعودت همه رشکم از سپندت||امیرخسرو دهلوی||https://ganjoor.net/khosro/gozide/ghazal-khosro/sh75/",
+            "اگر به آب وصالش طمع کند غیری\nمن آن طمع نپسندم، که خاک درگاهم||اوحدی||https://ganjoor.net/ouhadi/divano/ghazalo/sh574/",
+            "زبان خامه ندارد سر بیان فراق\nوگرنه شرح دهم با تو داستان فراق||حافظ||https://ganjoor.net/hafez/ghazal/sh297/",
+            "ناصحم گفت که جز غم چه هنر دارد عشق\nبرو ای خواجه عاقل هنری بهتر از این||حافظ||https://ganjoor.net/hafez/ghazal/sh404/",
+            "مددی نیست که دیگر به منش باز آرد\nآن ز پیش من دل خسته به آزار شده||اوحدی||https://ganjoor.net/ouhadi/divano/ghazalo/sh711/",
+            "فرخ آن بی‌دل، که یابد هر سحر\nاز گل گلزار عالم بوی تو||عراقی||https://ganjoor.net/eraghi/divane/ghazale/sh230/"
+        ]
+    }
+}
