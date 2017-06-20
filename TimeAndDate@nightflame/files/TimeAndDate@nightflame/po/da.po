@@ -36,4 +36,4 @@ msgstr "Et forgrenet skrivebordsprogram som viser tid og dato"
 
 #. TimeAndDate@nightflame->metadata.json->name
 msgid "Time and Date Desklet"
-msgstr "Tid- og datoskrivebordsprogram"
+msgstr "Tid- og dato"
