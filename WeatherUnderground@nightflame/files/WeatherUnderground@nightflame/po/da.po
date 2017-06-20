@@ -52,8 +52,8 @@ msgstr "Opdateringsfrekvens"
 
 #. WeatherUnderground@nightflame->metadata->name
 msgid "Weather Underground Desklet"
-msgstr "Weather Underground-skrivebordsprogram"
+msgstr "Weather Underground"
 
 #. WeatherUnderground@nightflame->metadata->description
 msgid "Weather Underground"
-msgstr "Weather Underground"
+msgstr "Skrivebordsprogram med vejret fra Weather Underground"
