@@ -28,4 +28,4 @@ msgstr "Et forgrenet skrivebordsprogram som viser tiden"
 
 #. clockTow@armandobs14->metadata.json->name
 msgid "ClockTow desklet"
-msgstr "ClockTow-skrivebordsprogram"
+msgstr "ClockTow"
