@@ -28,7 +28,7 @@ msgstr "Et skrivebordsprogram som viser tilfældig tekstoutput fra kommandoer"
 
 #. commandOfTheDay@logg->metadata.json->name
 msgid "Command of the day desklet"
-msgstr "Skrivebordsprogrammet Dagens kommando"
+msgstr "Dagens kommando"
 
 #. commandOfTheDay@logg->settings-schema.json->delay->description
 msgid "Update every:"
