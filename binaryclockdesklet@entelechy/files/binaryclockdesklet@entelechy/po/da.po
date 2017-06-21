@@ -28,7 +28,7 @@ msgstr "Et skrivebordsprogram som viser tiden binært"
 
 #. binaryclockdesklet@entelechy->metadata.json->name
 msgid "Binary clock desklet"
-msgstr "Binært ur-skrivebordsprogram"
+msgstr "Binært ur"
 
 #. binaryclockdesklet@entelechy->settings-schema.json->color->description
 msgid "The color for the lights:"
