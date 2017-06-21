@@ -1,0 +1,75 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-21 20:27+0200\n"
+"PO-Revision-Date: 2017-06-21 20:34+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: da\n"
+
+#: desklet.js:27
+msgid "Le Monde.fr Newspaper"
+msgstr "Avisen Le Monde"
+
+#. lemondenewspaper@fthuin->metadata.json->description
+msgid "A desklet that displays news from the world"
+msgstr "Skrivebordsprogram som viser nyheder fra hele verden på fransk"
+
+#. lemondenewspaper@fthuin->metadata.json->name
+msgid "LeMonde.fr Newspaper Unofficial"
+msgstr "Avisen Le Monde (uofficiel)"
+
+#. lemondenewspaper@fthuin->settings-schema.json->head->description
+msgid "Desklet Settings"
+msgstr "Indstillinger for skrivebordsprogram"
+
+#. lemondenewspaper@fthuin->settings-schema.json->displayImages->description
+msgid "Display images"
+msgstr "Vis billeder"
+
+#. lemondenewspaper@fthuin->settings-schema.json->displayImages->tooltip
+msgid "Check this if you want to show images with the content"
+msgstr "Aktivér denne hvis du vil have vist billeder"
+
+#. lemondenewspaper@fthuin->settings-schema.json->height->description
+msgid "Height :"
+msgstr "Højde:"
+
+#. lemondenewspaper@fthuin->settings-schema.json->height->units
+#. lemondenewspaper@fthuin->settings-schema.json->width->units
+msgid "pixels"
+msgstr "pixler"
+
+#. lemondenewspaper@fthuin->settings-
+#. schema.json->newsDisplayRefreshDelay->description
+msgid "Change news every :"
+msgstr "Skift nyheder efter:"
+
+#. lemondenewspaper@fthuin->settings-
+#. schema.json->newsDisplayRefreshDelay->units
+msgid "seconds"
+msgstr "sekunder"
+
+#. lemondenewspaper@fthuin->settings-schema.json->width->description
+msgid "Width : "
+msgstr "Bredde:"
+
+#. lemondenewspaper@fthuin->settings-
+#. schema.json->newsRefreshDelay->description
+msgid "Refresh news database delay:"
+msgstr "Opdatér nyhederne efter:"
+
+#. lemondenewspaper@fthuin->settings-schema.json->newsRefreshDelay->units
+msgid "minutes"
+msgstr "minutter"
