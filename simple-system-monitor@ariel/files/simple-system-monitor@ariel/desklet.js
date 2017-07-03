@@ -6,6 +6,9 @@ const GLib = imports.gi.GLib;
 const Cinnamon = imports.gi.Cinnamon;
 const Gettext = imports.gettext;
 const UUID = "simple-system-monitor@ariel";
+const GTop = imports.gi.GTop;
+const NMClient = imports.gi.NMClient;
+const NetworkManager = imports.gi.NetworkManager;
 
 // l10n/translation support
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
