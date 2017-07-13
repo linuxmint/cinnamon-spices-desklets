@@ -14,6 +14,7 @@ and choosing Configure.
 - Font size
 - Font color
 - Font shadow (size, color, and blur)
+- Advanced options (see bottom of this file)
 
 By default, the font should come from the active theme. However, changes to the font face can be made 
 by editing the stylesheet.css file. Add a line to the existing `.quote-container` element such as: 
@@ -59,6 +60,20 @@ execute following command in your home directory:
 This will create the files `myfortunes` and `myfortunes.dat` in your home directory. Then go to desklet settings
 and choose the `myfortunes` file from your home directory.
 
+## Advanced Configuration Options ##
+The "Advanced Options" section of the configuration menu allows Quote of the Day to work more like `fortune`, if
+desired, since this desklet calls `fortune` behind the scenes.  This section is entirely optional, the desklet
+will work very well without changing these options.
+
+Valid parameters for the "Parameters for fortune" entry can be found by reading `man fortune`.
+
+Checking "Ignore input file" will use `fortune`'s default behavior when run without an input file.  On English
+systems, ignoring the input file will result in a random quotation being selected from any one of the fortune
+files in `usr/share/games/fortunes`.  On systems where another language has been set up, the random
+quotation will be selected from any one of the fortune files in `/usr/share/games/fortunes/XX`, where `XX` is the
+two letter locale abbreviation of the configured locale, if the directory exists.  Otherwise a fortune from
+`/usr/share/games/fortunes` will be selected.
+
 ## TODO ##
 
 Provide a GUI method to change the font.
@@ -70,5 +85,5 @@ Provide a GUI method to change the font.
 
 Comments welcome.
 
-- Jess (tinytinnu [at] gmail [dot] com)
-- RavetcoFX (RavetcoFX [at] gmail [dot] [com]
+- Jess (tinytinnu [at] gmail [dot] [com])
+- RavetcoFX (RavetcoFX [at] gmail [dot] [com])
