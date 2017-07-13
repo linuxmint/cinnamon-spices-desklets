@@ -49,6 +49,8 @@ MyDesklet.prototype = {
             this.settings.bindProperty(Settings.BindingDirection.IN, "vertical-shadow", "vertShadow", this.on_font_setting_changed, null);
             this.settings.bindProperty(Settings.BindingDirection.IN, "shadow-blur", "shadowBlur", this.on_font_setting_changed, null);
             this.settings.bindProperty(Settings.BindingDirection.IN, "shadow-color", "shadowColor", this.on_font_setting_changed, null);
+            this.settings.bindProperty(Settings.BindingDirection.IN, "fortune-params", "fortuneParams", this.on_setting_changed, null);
+            this.settings.bindProperty(Settings.BindingDirection.IN, "ignore-input-file", "ignoreInputFile", this.on_setting_changed, null);
 
             this._menu.addAction(_("Copy"), Lang.bind(this, function() {
                 cb = St.Clipboard.get_default();
@@ -74,10 +76,8 @@ MyDesklet.prototype = {
             Mainloop.source_remove(this.update_id);
         }
        
-        this.update_id = Mainloop.timeout_add_seconds(this.delay*60, Lang.bind(this, this._update));
         this.file = this.file.replace('~', GLib.get_home_dir());
         this._update();
-        
         this.updateInProgress = false;
     },
 
@@ -93,7 +93,9 @@ MyDesklet.prototype = {
     },
 
     on_desklet_removed: function() {
-        Mainloop.source_remove(this.update_id);
+        if (this.update_id > 0) {
+            Mainloop.source_remove(this.update_id);
+        }
     },
 
     /**
@@ -101,14 +103,26 @@ MyDesklet.prototype = {
      **/
     _update: function() {
         this._getNewQuote();
-        return true; // Returns true so that the timeout keeps getting called
+        this.update_id = Mainloop.timeout_add_seconds(this.delay*60, Lang.bind(this, this._update));
     },
 
     /**
      * Call fortune to obtain a random quote from the input file
      **/
     _getNewQuote: function() {
-        Util.spawn_async(["fortune", this.file], Lang.bind(this, this._setNewQuote));
+        if (this.ignoreInputFile == false) { // Use the configured input file
+            // spawn_async seems to ignore this.file when an empty this.fortuneParams is passed, so if the
+            // fortuneParams are empty, don't pass them
+            if (this.fortuneParams == "") {
+                Util.spawn_async(["fortune", this.file], Lang.bind(this, this._setNewQuote));
+            }
+            else {
+                Util.spawn_async(["fortune", this.fortuneParams, this.file], Lang.bind(this, this._setNewQuote));
+            }
+        }
+        else { // don't pass a file to fortune
+            Util.spawn_async(["fortune", this.fortuneParams], Lang.bind(this, this._setNewQuote));
+        }
     },
 
     /**

@@ -1,3 +1,6 @@
+## v0.4.1 ##
+- Add "Advanced Options" to let users make Quote of the Day work more like `fortune`
+
 ## v0.4.0 ##
 - Use `fortune` to select a quote rather than parsing the input file directly
 
