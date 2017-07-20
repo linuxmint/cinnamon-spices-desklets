@@ -1,0 +1,125 @@
+{
+    "top": {
+        "type": "header",
+        "description": "Calendar configuration"
+    },
+
+    "calendarName": {
+        "type": "entry",
+        "default": "",
+        "description": "Calendar name(s)",
+        "tooltip": "Enter your calendar names separated by comma here"
+    },
+
+    "interval": {
+        "default": 7,
+        "type": "spinbutton",
+        "min": 1,
+        "max": 30,
+        "description": "Number of days to include",
+        "tooltip": "Show the agenda for these number of days",
+        "units": "days",
+        "step": 1
+    },
+
+    "delay": {
+        "default": 15,
+        "type": "spinbutton",
+        "min": 1,
+        "max": 1440,
+        "description": "Update every:",
+        "units": "minutes",
+        "step": 1
+    },
+
+    "sep1": {
+        "type": "separator"
+    },
+
+    "display": {
+        "type": "header",
+        "description": "Desklet style"
+    },
+
+    "date_format": {
+        "type": "entry",
+        "default": "dddd, MMMM dd",
+        "description": "Date format",
+        "tooltip": "Enter the date format here"
+    },
+
+    "today_format": {
+        "type": "entry",
+        "default": "'TODAY', MMMM dd",
+        "description": "Today format",
+        "tooltip": "Enter the today format here"
+    },
+
+    "tomorrow_format": {
+        "type": "entry",
+        "default": "'TOMORROW', MMMM dd",
+        "description": "Tomorrow format",
+        "tooltip": "Enter the tomorrow format here"
+    },
+
+    "use_24h_clock": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Use 24h clock",
+        "tooltip": "Check to show time in 24h"
+    },
+
+    "zoom": {
+        "type": "spinbutton",
+        "default": 1.0,
+        "min": 0.5,
+        "max": 2.0,
+        "step": 0.1,
+        "units": "times",
+        "description": "Zoom by",
+        "tooltip": "Change the size of the desklet"
+    },
+
+    "transparency": {
+        "type": "scale",
+        "indent": true,
+        "dependency": "overrideTheme",
+        "default": 0.5,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.05,
+        "description": "Transparency",
+        "tooltip": "Set the transparency of the desklet"
+    },
+
+    "textcolor": {
+        "type": "colorchooser",
+        "indent": true,
+        "dependency": "overrideTheme",
+        "default": "rgb(255,255,255)",
+        "description": "Text color",
+        "tooltip": "Click the button to select a new text color"
+    },
+
+    "bgcolor": {
+        "type": "colorchooser",
+        "indent": true,
+        "dependency": "overrideTheme",
+        "default": "rgb(0,0,0)",
+        "description": "Background color",
+        "tooltip": "Click the button to select a new background color"
+    },
+
+    "cornerradius": {
+        "type": "spinbutton",
+        "indent": true,
+        "dependency": "overrideTheme",
+        "default": 10.0,
+        "min": 0,
+        "max": 50.0,
+        "step": 1,
+        "units": "px",
+        "description": "Corner radius",
+        "tooltip": "Radius for rounding the desklet's corners"
+    }
+}
