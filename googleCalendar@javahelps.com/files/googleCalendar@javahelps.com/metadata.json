@@ -1,8 +1,6 @@
 {
-    "uuid": "googleCalendar@javahelps.com", 
-    "dangerous": true, 
+    "uuid": "googleCalendar@javahelps.com",
     "description": "A desklet that displays your agenda based on Google Calendar", 
     "name": "Google Calendar", 
-    "prevent-decorations": true, 
-    "last-edited": 1485102003
+    "prevent-decorations": true
 }
