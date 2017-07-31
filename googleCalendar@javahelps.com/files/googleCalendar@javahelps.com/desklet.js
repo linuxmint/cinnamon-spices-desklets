@@ -350,7 +350,7 @@ GoogleCalendarDesklet.prototype = {
         try {
             // Execute the command to retrieve the calendar events.
             Util.spawnCommandLine("bash " + this.mainDir + "execute_command.sh \"" + this.gcalcli_command + "\"");
-            Mainloop.timeout_add_seconds(3, Lang.bind(this, this.read_file));
+            Mainloop.timeout_add_seconds(5, Lang.bind(this, this.read_file));
         } catch (e) {
             global.logError(e);
         } finally {
