@@ -1,0 +1,6 @@
+{
+    "uuid": "googleCalendar@javahelps.com",
+    "description": "A desklet that displays your agenda based on Google Calendar", 
+    "name": "Google Calendar", 
+    "prevent-decorations": true
+}
