@@ -1,6 +1,7 @@
 const Main = imports.ui.main;
 const PopupMenu = imports.ui.popupMenu;
 const Cinnamon = imports.gi.Cinnamon;
+const GLib = imports.gi.GLib;
 const Gtk = imports.gi.Gtk;
 const St = imports.gi.St;
 const Params = imports.misc.params;
@@ -8,10 +9,8 @@ const Lang = imports.lang;
 const Mainloop = imports.mainloop;
 const Signals = imports.signals;
 
-const GLib = imports.gi.GLib;
-const Gettext = imports.gettext;
 const uuid = "devTools@scollins";
-
+const Gettext = imports.gettext;
 Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
 
 function _(str) {

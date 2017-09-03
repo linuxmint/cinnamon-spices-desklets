@@ -12,16 +12,17 @@ const St = imports.gi.St;
 const Lang = imports.lang;
 const Mainloop = imports.mainloop;
 
-const TabPanel = imports.desklet.tabPanel;
-const CollapseButton = imports.desklet.collapseButton;
+const uuid = "devTools@scollins";
+const DeskletDir = imports.ui.deskletManager.desklets[uuid];
+const TabPanel = DeskletDir.tabPanel;
+const CollapseButton = DeskletDir.collapseButton;
+
+const Gettext = imports.gettext;
+Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
 
 
 let controller;
 
-const Gettext = imports.gettext;
-const uuid = "devTools@scollins";
-
-Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
 
 function _(str) {
     let customTranslation = Gettext.dgettext(uuid, str);

@@ -5,25 +5,26 @@ const Tooltips = imports.ui.tooltips;
 const Cinnamon = imports.gi.Cinnamon;
 const Clutter = imports.gi.Clutter;
 const Cogl = imports.gi.Cogl;
+const GLib = imports.gi.GLib;
 const Meta = imports.gi.Meta;
 const St = imports.gi.St;
 const Lang = imports.lang;
 const Signals = imports.signals;
 
-const TabPanel = imports.desklet.tabPanel;
-const CollapseButton = imports.desklet.collapseButton;
-const Windows = imports.desklet.windows;
+const uuid = "devTools@scollins";
+const DeskletDir = imports.ui.deskletManager.desklets[uuid];
+const TabPanel = DeskletDir.tabPanel;
+const CollapseButton = DeskletDir.collapseButton;
+const Windows = DeskletDir.windows;
 
 const INSPECTABLE_TYPES = ["object","array","map","actor","window","applet","desklet"];
+
+const Gettext = imports.gettext;
+Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
 
 
 let controller;
 
-const GLib = imports.gi.GLib;
-const Gettext = imports.gettext;
-const uuid = "devTools@scollins";
-
-Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
 
 function _(str) {
   return Gettext.dgettext(uuid, str);

@@ -1,19 +1,19 @@
 const Main = imports.ui.main;
 const PopupMenu = imports.ui.popupMenu;
 const Cinnamon = imports.gi.Cinnamon;
+const GLib = imports.gi.GLib;
 const St = imports.gi.St;
 const Lang = imports.lang;
 
-const TabPanel = imports.desklet.tabPanel;
+const uuid = "devTools@scollins";
+const DeskletDir = imports.ui.deskletManager.desklets[uuid];
+const TabPanel = DeskletDir.tabPanel;
+
+const Gettext = imports.gettext;
+Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale");
 
 
 let controller;
-
-const GLib = imports.gi.GLib;
-const Gettext = imports.gettext;
-const uuid = "devTools@scollins";
-
-Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
 
 function _(str) {
   return Gettext.dgettext(uuid, str);
