@@ -1,5 +1,4 @@
 {
-    "dangerous": false,
     "description": "Displays the current temperature from the rpi temperature server.",
     "prevent-decorations": false,
     "uuid": "temperature@swalladge",
