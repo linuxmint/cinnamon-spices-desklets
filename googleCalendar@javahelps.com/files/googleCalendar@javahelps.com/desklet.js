@@ -150,18 +150,18 @@ GoogleCalendarDesklet.prototype = {
         // Bind the properties
         try {
             this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], this.update_id);
-            this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "calendarName", "calendarName", this.on_calendar_config_changed, null);
-            this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "interval", "interval", this.on_calendar_config_changed, null);
-            this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "delay", "delay", this.on_setting_changed, null);
-            this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "use_24h_clock", "use_24h_clock", this.on_desklet_config_changed, null);
-            this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "date_format", "date_format", this.on_desklet_config_changed, null);
-            this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "today_format", "today_format", this.on_desklet_config_changed, null);
-            this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "tomorrow_format", "tomorrow_format", this.on_desklet_config_changed, null);
-            this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "zoom", "zoom", this.on_setting_changed, null);
-            this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "textcolor", "textcolor", this.on_setting_changed, null);
-            this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "bgcolor", "bgcolor", this.on_setting_changed, null);
-            this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "transparency", "transparency", this.on_setting_changed, null);
-            this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "cornerradius", "cornerradius", this.on_setting_changed, null);
+            this.settings.bind("calendarName", "calendarName", this.on_calendar_config_changed, null);
+            this.settings.bind("interval", "interval", this.on_calendar_config_changed, null);
+            this.settings.bind("delay", "delay", this.on_setting_changed, null);
+            this.settings.bind("use_24h_clock", "use_24h_clock", this.on_desklet_config_changed, null);
+            this.settings.bind("date_format", "date_format", this.on_desklet_config_changed, null);
+            this.settings.bind("today_format", "today_format", this.on_desklet_config_changed, null);
+            this.settings.bind("tomorrow_format", "tomorrow_format", this.on_desklet_config_changed, null);
+            this.settings.bind("zoom", "zoom", this.on_setting_changed, null);
+            this.settings.bind("textcolor", "textcolor", this.on_setting_changed, null);
+            this.settings.bind("bgcolor", "bgcolor", this.on_setting_changed, null);
+            this.settings.bind("transparency", "transparency", this.on_setting_changed, null);
+            this.settings.bind("cornerradius", "cornerradius", this.on_setting_changed, null);
         } catch (e) {
             global.logError(e);
         }
@@ -220,7 +220,7 @@ GoogleCalendarDesklet.prototype = {
             vertical: true,
             style_class: 'desklet'
         });
-        this.window.style = "padding: 10px; border-radius: " + this.cornerradius + "px; background-color: " + (this.bgcolor.replace(")", "," + this.transparency + ")")).replace('rgb', 'rgba') + "; color: " + this.textcolor;
+        this.window.style = "padding: 10px; border-radius: " + this.cornerradius + "px; background-color: " + (this.bgcolor.replace(")", "," + (1.0 - this.transparency) + ")")).replace('rgb', 'rgba') + "; color: " + this.textcolor;
 
         this.label = new St.Label();
         this.label.style = 'text-align : left; font-size:' + (14 * this.zoom) + 'px; color: ' + this.textcolor;

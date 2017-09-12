@@ -14,7 +14,7 @@ For the moment, the desklet has not been tested with different displays or aspec
   sudo apt install gcalcli
   ```
 
-  2. Launch the `gcalcli` from terminal and configure the user account
+  2. Launch the `gcalcli list` from terminal and configure the user account
 
   3. Add the Google Calendar desklet and enjoy!!!
 
