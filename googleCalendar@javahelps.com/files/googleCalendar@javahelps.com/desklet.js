@@ -220,7 +220,7 @@ GoogleCalendarDesklet.prototype = {
             vertical: true,
             style_class: 'desklet'
         });
-        this.window.style = "padding: 10px; border-radius: " + this.cornerradius + "px; background-color: " + (this.bgcolor.replace(")", "," + this.transparency + ")")).replace('rgb', 'rgba') + "; color: " + this.textcolor;
+        this.window.style = "padding: 10px; border-radius: " + this.cornerradius + "px; background-color: " + (this.bgcolor.replace(")", "," + (1.0 - this.transparency) + ")")).replace('rgb', 'rgba') + "; color: " + this.textcolor;
 
         this.label = new St.Label();
         this.label.style = 'text-align : left; font-size:' + (14 * this.zoom) + 'px; color: ' + this.textcolor;
