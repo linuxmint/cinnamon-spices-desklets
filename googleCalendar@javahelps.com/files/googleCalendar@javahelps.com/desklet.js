@@ -227,7 +227,7 @@ GoogleCalendarDesklet.prototype = {
 
         this.window.add(this.label);
         this.setContent(this.window);
-        this.label.set_text("Retrieving events...")
+        this.label.set_text(_("Retrieving events..."))
     },
 
     /**
@@ -295,7 +295,7 @@ GoogleCalendarDesklet.prototype = {
                 content = this.formatFileContent(this.file_content, this.date_format, this.use_24h_clock);
             } catch (e) {
                 global.logError(e);
-                content = "Unable to retrieve events..."
+                content = _("Unable to retrieve events...")
             }
             this.label.set_text(content);
         } else {
@@ -324,10 +324,10 @@ GoogleCalendarDesklet.prototype = {
                     this.file_content = commandOutput;
                 } catch (e) {
                     global.logError(e);
-                    content = "Unable to retrieve events..."
+                    content = _("Unable to retrieve events...")
                 }
             } else {
-                content = "No events found..."
+                content = _("No events found...")
             }
 
             this.label.set_text(content);
