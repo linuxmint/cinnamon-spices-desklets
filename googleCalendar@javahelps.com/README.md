@@ -14,7 +14,11 @@ For the moment, the desklet has not been tested with different displays or aspec
   sudo apt install gcalcli
   ```
 
-  2. Launch the `gcalcli list` from terminal and configure the user account
+  2. Launch `gcalcli` with a parameter listfrom terminal and configure the user account
+  ```
+  gcalcli list
+  ```
+  Once you have execute the above command, `gcalcli` will open a web page and ask you to provide the permission to access your Google Calendar.
 
   3. Add the Google Calendar desklet and enjoy!!!
 
@@ -24,3 +28,5 @@ For the moment, the desklet has not been tested with different displays or aspec
 - Customize update frequency
 - Manually update the agenda by clicking on the desklet
 - Customize the look and feel
+
+The Cinnamon Desklet does not render the markup styles properly. Visting [GitHub](https://github.com/linuxmint/cinnamon-spices-desklets/tree/master/googleCalendar%40javahelps.com) will show the commands more clearly using different fonts.
