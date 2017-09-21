@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-22 16:52+0200\n"
-"PO-Revision-Date: 2017-06-22 17:00+0200\n"
+"POT-Creation-Date: 2017-04-26 12:46+0800\n"
+"PO-Revision-Date: 2017-09-21 17:57+0200\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.7.1\n"
-"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: da\n"
 
 #: desklet.js:32
 msgid "Quote of the day"
@@ -89,3 +89,24 @@ msgstr "Vandret skygge:"
 #. header->description
 msgid "Text shadow effects:"
 msgstr "Effekter for tekstskygge:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->advanced-options-header->
+#. description
+msgid "Advanced options:"
+msgstr "Avancerede indstillinger:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->fortune-params->description
+msgid "Parameters for fortune:"
+msgstr "Parametre til fortune:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->fortune-params->tooltip
+msgid "E.g. -s, etc.  See README for more info."
+msgstr "F.eks. -s, osv. Se README for yderligere information."
+
+#. quoteOfTheDay@tinnu->settings-schema.json->ignore-input-file->description
+msgid "Ignore input file"
+msgstr "Ignorér inputfilen"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->ignore-input-file->tooltip
+msgid "Use fortune's default behavior instead of an input file.  See README for more info."
+msgstr "Anvend fortunes standardopførsel i stedet for en inputfil. Se README for yderligere information."
