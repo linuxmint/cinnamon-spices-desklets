@@ -1,0 +1,34 @@
+{
+
+    "note-entry": {
+      "type": "entry",
+      "default": "Your Note Here",
+      "description": "Note: (use %% for newline)",
+      "tooltip" : "Set your note here"
+    },
+
+    "font-options-separator": {
+        "type": "separator"
+    },
+
+    "font-options-header": {
+        "type": "header",
+        "description" : "Font options:"
+    },
+
+    "font-size": {
+        "type": "spinbutton",
+        "default": 15,
+        "min": 8,
+        "max": 200,
+        "units": "pt",
+        "description" : "Font size:",
+        "step": 1
+    },
+    "text-color" : {
+	    "type": "colorchooser",
+	    "default" : "rgb(255,255,255)",
+	    "description" : "Font color:",
+	    "tooltip" : "Click to select a new text color"
+    }
+}
