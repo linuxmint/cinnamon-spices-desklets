@@ -9,6 +9,7 @@ const Tweener = imports.ui.tweener;
 //gobject introspection imports
 const Cinnamon = imports.gi.Cinnamon;
 const Clutter = imports.gi.Clutter;
+const GLib = imports.gi.GLib;
 const Gtk = imports.gi.Gtk;
 const St = imports.gi.St;
 
@@ -18,23 +19,22 @@ const Lang = imports.lang;
 const Signals = imports.signals;
 
 // devtools imports
-const Tab = imports.desklet.tab;
-const Sandbox = imports.desklet.sandbox;
-const Windows = imports.desklet.windows;
-const Extensions = imports.desklet.extensions;
-const ErrorLog = imports.desklet.errorLog;
-const Terminal = imports.desklet.terminal;
-const Inspect = imports.desklet.inspect;
-const Text = imports.desklet.text;
+const uuid = "devTools@scollins";
+const DeskletDir = imports.ui.deskletManager.desklets[uuid];
+const Tab = DeskletDir.tab;
+const Sandbox = DeskletDir.sandbox;
+const Windows = DeskletDir.windows;
+const Extensions = DeskletDir.extensions;
+const ErrorLog = DeskletDir.errorLog;
+const Terminal = DeskletDir.terminal;
+const Inspect = DeskletDir.inspect;
+const Text = DeskletDir.text;
 
 //global constants
 const POPUP_MENU_ICON_SIZE = 24;
 
 // translation support
-const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
-const uuid = "devTools@scollins";
-
 Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
 
 function _(str) {
@@ -417,7 +417,7 @@ myDesklet.prototype = {
         if ( this.collapsedStartState == 1 ) this.collapsed = false;
         else if ( this.collapsedStartState == 2 ) this.collapsed = true;
         
-        let paddingBox = new St.Bin({ min_width: 15 });
+        let paddingBox = new St.Bin({ width: 15 });
         this.buttonArea.add(paddingBox, { expand: true });
         
         //cinnamon settings menu

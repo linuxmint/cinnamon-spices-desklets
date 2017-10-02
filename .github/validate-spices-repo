@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd ..
+
+for UUID in *
+do
+    if [ -d "$UUID" ]; then
+        bash ./validate-spice $UUID
+    fi
+done

@@ -95,8 +95,18 @@ CobiAnalogClockSettings.prototype = {
     for (let key in settings) {
       if (settings.hasOwnProperty(key)) {
         let comparison;
-        if (settings[key] instanceof Array) {
-          comparison = !compareArray(this.values[key], settings[key]);
+        if (key == "timezone") {
+          let currentTZ = this.values[key];
+          if (currentTZ) {
+            let settingRegion = settings[key]["region"];
+            let settingCity = settings[key]["city"];
+            let valueRegion = currentTZ["region"];
+            let valueCity = currentTZ["city"];
+            comparison = settingRegion !== valueRegion || settingCity !== valueCity;
+          }
+          else {
+            comparison = true;
+          }
         }
         else {
           comparison = this.values[key] !== settings[key];
@@ -104,6 +114,7 @@ CobiAnalogClockSettings.prototype = {
         if (comparison) {
           this.values[key] = settings[key];
           this.emit(key + "-changed", this.values[key]);
+          this.emit("changed", key, this.values[key]);
         }
       }
     }
@@ -309,6 +320,7 @@ CobiAnalogClock.prototype = {
     second.actor.set_pivot_point(pivotPoint.x, pivotPoint.y);
     second.actor.set_position((this._clockSize / 2) - pivotPoint.x * second.actor.size.width + MARGIN * global.ui_scale,
                                           (this._clockSize / 2) - pivotPoint.y * second.actor.size.height + MARGIN * global.ui_scale);
+    this._showSecondsChangedImpl();
     
     this._clockActor.add_actor(this._clock.frame.actor);
     this._clock.frame.actor.set_position(MARGIN * global.ui_scale, MARGIN * global.ui_scale);
@@ -336,9 +348,13 @@ CobiAnalogClock.prototype = {
     this._updateClock();
   },
   
-  _onShowSecondsChanged: function() {
+  _showSecondsChangedImpl: function() {
     let showSeconds = this._settings.values["show-seconds"];
     showSeconds ? this._clock.second.actor.show() : this._clock.second.actor.hide();
+  },
+  
+  _onShowSecondsChanged: function() {
+    this._showSecondsChangedImpl();
     this._updateClock();
   },
   

@@ -7,16 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-19 23:25+0500\n"
-"PO-Revision-Date: 2017-05-19 23:31+0500\n"
+"POT-Creation-Date: 2017-08-10 21:32+0500\n"
+"PO-Revision-Date: 2017-08-10 21:45+0500\n"
+"Last-Translator: Ilis <ilis@inbox.ru>\n"
 "Language-Team: \n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.7.1\n"
-"Last-Translator: \n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"Language: ru\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: desklet.js:32
 msgid "Quote of the day"
@@ -36,11 +37,11 @@ msgstr "Quote of the day desklet"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->font-size->description
 msgid "Font size:"
-msgstr "Размер шрифта:"
+msgstr "Размер шрифта"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->vertical-shadow->description
 msgid "Vertical shadow:"
-msgstr "Вертикальная тень:"
+msgstr "Вертикальная тень"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->vertical-shadow->units
 #. quoteOfTheDay@tinnu->settings-schema.json->shadow-blur->units
@@ -50,19 +51,19 @@ msgstr "пк"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->file->description
 msgid "File:"
-msgstr "Файл:"
+msgstr "Файл с цитатами"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->font-options-header->description
 msgid "Font options:"
-msgstr "Параметры шрифта:"
+msgstr "Параметры шрифта"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->shadow-blur->description
 msgid "Shadow blur:"
-msgstr "Размытие тени:"
+msgstr "Размытие тени"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->shadow-color->description
 msgid "Shadow color:"
-msgstr "Цвет тени:"
+msgstr "Цвет тени"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->shadow-color->tooltip
 #. quoteOfTheDay@tinnu->settings-schema.json->text-color->tooltip
@@ -71,7 +72,7 @@ msgstr "Щёлкните для выбора нового цвета текст�
 
 #. quoteOfTheDay@tinnu->settings-schema.json->delay->description
 msgid "Update every:"
-msgstr "Обновлять через:"
+msgstr "Обновлять через"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->delay->units
 msgid "minutes"
@@ -79,13 +80,39 @@ msgstr "минуты"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->text-color->description
 msgid "Font color:"
-msgstr "Цвет шрифта:"
+msgstr "Цвет шрифта"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->horizontal-shadow->description
 msgid "Horizontal shadow:"
-msgstr "Горизонтальная тень:"
+msgstr "Горизонтальная тень"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->font-shadow-options-
 #. header->description
 msgid "Text shadow effects:"
-msgstr "Эффекты тени для текста:"
+msgstr "Эффекты тени для текста"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->advanced-options-header->
+#. description
+msgid "Advanced options:"
+msgstr "Дополнительные параметры"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->fortune-params->description
+msgid "Parameters for fortune:"
+msgstr "Опции для fortune"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->fortune-params->tooltip
+msgid "E.g. -s, etc.  See README for more info."
+msgstr ""
+"Например, -s и другие. Смотрите README для дополнительной информации."
+
+#. quoteOfTheDay@tinnu->settings-schema.json->ignore-input-file->description
+msgid "Ignore input file"
+msgstr "Игнорировать файл с цитатами"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->ignore-input-file->tooltip
+msgid ""
+"Use fortune's default behavior instead of an input file.  See README for "
+"more info."
+msgstr ""
+"Не передавать имя файла с цитатами в качестве опции fortune. Программа "
+"выберет файл из установленных в системе."

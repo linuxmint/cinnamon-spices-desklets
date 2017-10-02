@@ -6,5 +6,5 @@
   "hour": {"fileName": "hour.svg", "pivot-x": 2, "pivot-y": 43.5},
   "minute": {"fileName": "minute.svg", "pivot-x": 1.5, "pivot-y": 53.5},
   "second": {"fileName": "second.svg", "pivot-x": 1.5, "pivot-y": 43.5},
-  "tz-label": "color: #cccccc; font-weight: bold;"
+  "tz-label": "color: #cccccc; font-weight: bold; font-size: 13px;"
 }

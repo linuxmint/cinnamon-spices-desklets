@@ -25,7 +25,7 @@ const PopupMenu = imports.ui.popupMenu;
 const Cinnamon = imports.gi.Cinnamon;
 const Soup = imports.gi.Soup;
 
-Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "./local/share/locale");
+Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale");
 
 function _(str) {
     return Gettext.dgettext(uuid, str)

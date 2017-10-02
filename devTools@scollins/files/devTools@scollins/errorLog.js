@@ -7,19 +7,19 @@ const Pango = imports.gi.Pango;
 const St = imports.gi.St;
 const Lang = imports.lang;
 
-const TabPanel = imports.desklet.tabPanel;
-const Text = imports.desklet.text;
+const uuid = "devTools@scollins";
+const DeskletDir = imports.ui.deskletManager.desklets[uuid];
+const TabPanel = DeskletDir.tabPanel;
+const Text = DeskletDir.text;
 
 const CINNAMON_LOG_REFRESH_TIMEOUT = 1;
 const XSESSION_LOG_REFRESH_TIMEOUT = 10;
 
+const Gettext = imports.gettext;
+Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
+
 
 let xsession_hide_old = true;
-
-const Gettext = imports.gettext;
-const uuid = "devTools@scollins";
-
-Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
 
 function _(str) {
   return Gettext.dgettext(uuid, str);

@@ -1,8 +1,7 @@
 {
-    "dangerous": true, 
-    "description": "Shows some system status values", 
-    "prevent-decorations": false, 
-    "uuid": "simple-system-monitor@ariel", 
+    "description": "Shows some system status values",
+    "prevent-decorations": false,
+    "uuid": "simple-system-monitor@ariel",
     "name": "Simple system monitor",
 	"thermal-file": "/sys/devices/virtual/thermal/thermal_zone0/temp"
 }

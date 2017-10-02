@@ -10,11 +10,12 @@ const Util = imports.misc.util;
 const Lang = imports.lang;
 const Mainloop = imports.mainloop;
 
-const TabPanel = imports.desklet.tabPanel;
-const CollapseButton = imports.desklet.collapseButton;
-const Gettext = imports.gettext;
 const uuid = "devTools@scollins";
+const DeskletDir = imports.ui.deskletManager.desklets[uuid];
+const TabPanel = DeskletDir.tabPanel;
+const CollapseButton = DeskletDir.collapseButton;
 
+const Gettext = imports.gettext;
 Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
 
 function _(str) {

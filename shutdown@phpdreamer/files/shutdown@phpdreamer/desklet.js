@@ -34,7 +34,7 @@ ShutdownDesklet.prototype = {
         this._lastClickedTimestamp = new Date() - 10000;
         this._btn.connect("clicked", Lang.bind(this, this._clicked));
         this._btn.set_style('background-image: url(\'' + GLib.get_home_dir()
-        + "/.local/share/cinnamon/desklets/" + this.uuid + '/shutdown.png\');'
+        + "/.local/share/cinnamon/desklets/" + this.uuid + '/icon.png\');'
         + 'background-position: 0px 0px; width:64px; height:64px; display:block;');
 
         this._container.add(this._str);

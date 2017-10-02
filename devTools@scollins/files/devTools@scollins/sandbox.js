@@ -4,19 +4,20 @@ const Tooltips = imports.ui.tooltips;
 const Cinnamon = imports.gi.Cinnamon;
 const Clutter = imports.gi.Clutter;
 const Gio = imports.gi.Gio;
+const GLib = imports.gi.GLib;
 const Gtk = imports.gi.Gtk;
 const Pango = imports.gi.Pango;
 const St = imports.gi.St;
 const Lang = imports.lang;
 const FileDialog = imports.misc.fileDialog;
 
-const Tab = imports.desklet.tab;
-const TabPanel = imports.desklet.tabPanel;
-const Text = imports.desklet.text;
-const GLib = imports.gi.GLib;
-const Gettext = imports.gettext;
 const uuid = "devTools@scollins";
+const DeskletDir = imports.ui.deskletManager.desklets[uuid];
+const Tab = DeskletDir.tab;
+const TabPanel = DeskletDir.tabPanel;
+const Text = DeskletDir.text;
 
+const Gettext = imports.gettext;
 Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
 
 function _(str) {

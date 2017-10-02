@@ -77,5 +77,24 @@
 	    "default" : "rgb(0,0,0)",
 	    "description" : "Shadow color:",
 	    "tooltip" : "Click to select a new text shadow color"
+    },
+    "advanced-options-separator": {
+        "type": "separator"
+    },
+    "advanced-options-header": {
+        "type": "header",
+        "description": "Advanced options:"
+    },
+    "fortune-params": {
+        "type": "entry",
+        "default": "",
+        "description": "Parameters for fortune:",
+        "tooltip": "E.g. -s, etc.  See README for more info."
+    },
+    "ignore-input-file": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Ignore input file",
+        "tooltip":  "Use fortune's default behavior instead of an input file.  See README for more info."
     }
 }
