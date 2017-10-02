@@ -1,13 +1,8 @@
-const Cinnamon = imports.gi.Cinnamon;
 const Desklet = imports.ui.desklet;
-const Gettext = imports.gettext;
-const GLib = imports.gi.GLib;
-const Lang = imports.lang;
-const Mainloop = imports.mainloop;
 const Settings = imports.ui.settings;
 const St = imports.gi.St;
-const Util = imports.misc.util;
-const uuid = "inspireNote@BrainAxe";
+const uuid = "deskNote@BrainAxe";
+
 
 
 function deskNote(metadata, desklet_id) {
@@ -22,7 +17,7 @@ deskNote.prototype = {
 
         this._note = new St.Label({style_class: "note-container"});
         this.setContent(this._note);
-        this.setHeader(_("Inspire Note"));
+        this.setHeader(_("Desktop Note"));
 
         this.maxSize = 7000; // Cinnamon can crash if this int is too high
 
@@ -48,7 +43,7 @@ deskNote.prototype = {
 
     on_setting_changed: function() {
       var new_text = this.noteEntry;
-      var new_text = new_text.replace("%", "\n");
+      var new_text = new_text.replace(/%%/g, "\n");
       this.text.set_text(new_text);
     },
 

@@ -1,7 +1,6 @@
-{
-    "dangerous": false,
-    "description": "Displays note!", 
-    "prevent-decorations": false,
-    "uuid": "deskNote@BrainAxe",
-    "name": "Desktop Note! desklet"
+{ 
+    "prevent-decorations": false, 
+    "uuid": "deskNote@BrainAxe", 
+    "name": "Desktop Note desklet", 
+    "description": "Displays Note on Desktop!"
 }

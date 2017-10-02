@@ -3,7 +3,7 @@
     "note-entry": {
       "type": "entry",
       "default": "Your Note Here",
-      "description": "Note: (use % for newline)",
+      "description": "Note: (use %% for newline)",
       "tooltip" : "Set your note here"
     },
 

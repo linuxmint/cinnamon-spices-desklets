@@ -13,7 +13,7 @@ and choosing Configure.
 - Font size
 - Font color
 
-For newline use % (symbol).
+For newline use %% (symbol).
 
 **Important**: Cinnamon may need to be restarted and/or the desklet may need to be removed and re-added 
 for this change to take effect. 
