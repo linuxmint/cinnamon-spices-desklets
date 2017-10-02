@@ -1,0 +1,79 @@
+const Cinnamon = imports.gi.Cinnamon;
+const Desklet = imports.ui.desklet;
+const Gettext = imports.gettext;
+const GLib = imports.gi.GLib;
+const Lang = imports.lang;
+const Mainloop = imports.mainloop;
+const Settings = imports.ui.settings;
+const St = imports.gi.St;
+const Util = imports.misc.util;
+const uuid = "inspireNote@BrainAxe";
+
+
+function deskNote(metadata, desklet_id) {
+    this._init(metadata, desklet_id);
+}
+
+deskNote.prototype = {
+    __proto__: Desklet.Desklet.prototype,
+
+    _init: function(metadata, desklet_id) {
+        Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
+
+        this._note = new St.Label({style_class: "note-container"});
+        this.setContent(this._note);
+        this.setHeader(_("Inspire Note"));
+
+        this.maxSize = 7000; // Cinnamon can crash if this int is too high
+
+        this.setupUI()
+
+        try {
+           this.settings = new Settings.DeskletSettings(
+               this, this.metadata["uuid"], this.instance_id);
+
+           this.settings.bindProperty(Settings.BindingDirection.IN, "note-entry", "noteEntry", this.on_setting_changed, null);
+           this.settings.bindProperty(Settings.BindingDirection.IN, "font-size", "fontSize", this.on_font_setting_changed, null);
+           this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "fontColor", this.on_font_setting_changed, null);
+
+         }
+       catch (e) {
+           global.logError(e);
+       }
+
+       this.on_setting_changed();
+       this.on_font_setting_changed();
+
+    },
+
+    on_setting_changed: function() {
+      var new_text = this.noteEntry;
+      var new_text = new_text.replace("%", "\n");
+      this.text.set_text(new_text);
+    },
+
+    on_font_setting_changed: function() {
+        this._note.style="font-size: " + this.fontSize + "pt;\n" +
+                          "color: " + this.fontColor + ";\n" ;
+    },
+
+
+
+    setupUI: function() {
+        // main container for the desklet
+        this.window = new St.Bin();
+        this.text = new St.Label();
+
+        this.text.set_text("");
+        this._note = new St.BoxLayout({vertical:true, style_class: 'note-container'})
+
+        this._note.add(this.text);
+
+        this.window.add_actor(this._note)
+        this.setContent(this.window);
+    }
+}
+
+function main(metadata, desklet_id) {
+    return new deskNote(metadata, desklet_id);
+}
