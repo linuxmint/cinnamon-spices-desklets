@@ -136,7 +136,7 @@ GoogleCalendarDesklet.prototype = {
     _init: function (metadata, desklet_id) {
         Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
 
-        this.gcalcli_command = "gcalcli --refresh --nocache agenda --detail_length --nostarted --tsv";
+        this.gcalcli_command = "gcalcli --refresh --nocache agenda --nostarted --tsv";
         this.metadata = metadata;
         this.update_id = null;
         this.updateInProgress = false;
@@ -185,7 +185,7 @@ GoogleCalendarDesklet.prototype = {
             this.interval = 7; // Default interval is 7 days
         }
         dateTime.setDate(dateTime.getDate() + this.interval);
-        command += "\"" + this.formatDate(dateTime) + "\" --detail_length --nostarted --tsv";
+        command += "\"" + this.formatDate(dateTime) + "\" --nostarted --tsv";
         if (this.calendarName != "") {
             var calendars = this.calendarName.split(",");
             for (var i = 0; i < calendars.length; i++) {
