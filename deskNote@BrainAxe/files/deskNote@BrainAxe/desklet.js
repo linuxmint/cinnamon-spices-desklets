@@ -1,9 +1,16 @@
+const Cinnamon = imports.gi.Cinnamon;
 const Desklet = imports.ui.desklet;
+const GLib = imports.gi.GLib;
 const Settings = imports.ui.settings;
 const St = imports.gi.St;
 const uuid = "deskNote@BrainAxe";
+const Gettext = imports.gettext;
 
+function _(str) {
+  return Gettext.dgettext(uuid, str);
+}
 
+Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
 
 function deskNote(metadata, desklet_id) {
     this._init(metadata, desklet_id);
