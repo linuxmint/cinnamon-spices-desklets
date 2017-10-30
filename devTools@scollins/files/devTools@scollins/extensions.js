@@ -5,37 +5,31 @@ const DeskletManager = imports.ui.deskletManager;
 const Extension = imports.ui.extension;
 const Flashspot = imports.ui.flashspot;
 const PopupMenu = imports.ui.popupMenu;
+const Tooltips = imports.ui.tooltips;
 const Util = imports.misc.util;
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
+const Pango = imports.gi.Pango;
 const St = imports.gi.St;
+const Gettext = imports.gettext;
 const Lang = imports.lang;
 const Mainloop = imports.mainloop;
 
 const uuid = "devTools@scollins";
 const DeskletDir = imports.ui.deskletManager.desklets[uuid];
+const Tab = DeskletDir.tab;
 const TabPanel = DeskletDir.tabPanel;
 const CollapseButton = DeskletDir.collapseButton;
-
-const Gettext = imports.gettext;
-Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
 
 
 let controller;
 
 
-function _(str) {
-    let customTranslation = Gettext.dgettext(uuid, str);
-    if(customTranslation != str) {
-        return customTranslation;
-    }
-    return Gettext.gettext(str);
-}
-
-function spices_(str, uuid) {
-    let spiceTranslation = Gettext.dgettext(uuid, str);
-    if(spiceTranslation != str) {
-        return spiceTranslation;
+function _(str, domain) {
+    if ( !domain ) domain = uuid;
+    let translation = Gettext.dgettext(domain, str);
+    if (translation != str) {
+        return translation;
     }
     return Gettext.gettext(str);
 }
@@ -57,7 +51,7 @@ ExtensionItem.prototype = {
             if ( maxInstances == -1 ) maxInstances = _("Infinite");
             this.isMultiInstance = maxInstances && maxInstances != 1;
 
-            this.actor = new St.BoxLayout({ style_class: "devtools-extensions-container" });
+            this.actor = new St.BoxLayout({ style_class: "devtools-extensions-container", reactive: true });
 
             /*icon*/
             let iconBin = new St.Bin({ style_class: "devtools-extensions-icon" });
@@ -78,38 +72,19 @@ ExtensionItem.prototype = {
             iconBin.add_actor(icon);
 
             /*info*/
-            let typenameTranslationDummy = _("Applet") + _("Desklet") + _("Extension") + _("Search providers");
             let infoBin = new St.Bin({ x_align: St.Align.START, x_expand: true, x_fill: true });
             this.actor.add(infoBin, { expand: true });
             let infoBox = new St.BoxLayout({ vertical: true });
             infoBin.set_child(infoBox);
-            infoBox.add_actor(new St.Label({ text: _(type.name), style_class: "devtools-extensions-title" }));
-
-            let table = new St.Table({ homogeneous: false, clip_to_allocation: true });
-            infoBox.add(table, { y_align: St.Align.MIDDLE, y_expand: false });
 
             //name
-            let nameString = spices_(meta.name, this.uuid);
-            if ( meta.version ) nameString += " " + meta.version;
-            table.add(new St.Label({ text: _("Name") + ":   " }), { row: 0, col: 0, col_span: 1,  x_expand: false, x_align: St.Align.START });
-            let name = new St.Label({ text: nameString + "        (" + this.uuid + ")", style: "color: blue;" });
-            table.add(name, { row: 0, col: 1, col_span: 1, x_expand: false, x_align: St.Align.START });
-
-            //description
-            table.add(new St.Label({ text: _("Description") + ":   " }), { row: 1, col: 0, col_span: 1, x_expand: false, x_align: St.Align.START });
-            let description = new St.Label({ text: "" });
-            table.add(description, { row: 1, col: 1, col_span: 1, y_expand: true, x_expand: false, x_align: St.Align.START });
-            description.set_text(spices_(meta.description, this.uuid));
-
-            //path
-            table.add(new St.Label({ text: _("Path") + ":   " }), { row: 2, col: 0, col_span: 1, x_expand: false, x_align: St.Align.START });
-            let path = new St.Label({ text: meta.path });
-            table.add(path, { row: 2, col: 1, col_span: 1, x_expand: false, x_align: St.Align.START });
+            let nameString = _(meta.name, this.uuid) + "        (" + this.uuid + ")";
+            let name = new St.Label({ text: nameString, style: "color: blue;" });
+            infoBox.add_actor(name);
 
             //status
-            table.add(new St.Label({ text: _("Status") + ":   " }), { row: 3, col: 0, col_span: 1, x_expand: false, x_align: St.Align.START });
             let status = new St.Label({ text: Extension.getMetaStateString(meta.state) });
-            table.add(status, { row: 3, col: 1, col_span: 1, x_expand: false, x_align: St.Align.START });
+            infoBox.add_actor(status);
             switch ( meta.state ) {
                 case Extension.State.INITIALIZING:
                     status.style = "color: yellow;";
@@ -124,23 +99,25 @@ ExtensionItem.prototype = {
             }
 
             /*extension options*/
-            let buttonBox = new St.BoxLayout({ vertical:true, style_class: "devtools-extensions-buttonBox" });
-            this.actor.add_actor(buttonBox);
+            let buttonBox = new St.BoxLayout({ vertical: false, style_class: "devtools-extensions-buttonBox" });
+            infoBox.add_actor(buttonBox);
 
             //reload
-            let reloadButton = new St.Button({ label: _("Reload"), x_align: St.Align.END, style_class: "devtools-contentButton" });
+            let reloadButton = new St.Button({ label: _("Reload"), x_align: St.Align.MIDDLE, style_class: "devtools-contentButton" });
             buttonBox.add_actor(reloadButton);
             reloadButton.connect("clicked", Lang.bind(this, this.reload));
 
             //remove
-            let removeButton = new St.Button({ label: _("Remove"), x_align: St.Align.END, style_class: "devtools-contentButton" });
+            let removeButton = new St.Button({ label: _("Remove"), x_align: St.Align.MIDDLE, style_class: "devtools-contentButton" });
             buttonBox.add_actor(removeButton);
             removeButton.connect("clicked", Lang.bind(this, this.removeAll));
 
             /*check for multi-instance*/
             if ( this.isMultiInstance ) {
-                let instanceDropdown = new CollapseButton.CollapseButton(_("Instances") + ": "+this.instances.length+" "+_("of")+" "+maxInstances, false, null);
-                table.add(instanceDropdown.actor, { row: 4, col: 0, col_span: 2, x_expand: false, x_align: St.Align.START });
+                let buttonString = _("Instances") + ": " + this.instances.length + " (" + _("maximum of") + ": " + maxInstances + ")";
+                let instanceDropdown = new CollapseButton.CollapseButton(buttonString, false, null);
+                infoBox.add_actor(instanceDropdown.actor);
+                instanceDropdown.actor.x_expand = false;
 
                 let instancesContainer = new St.BoxLayout({ vertical: true });
                 instanceDropdown.setChild(instancesContainer);
@@ -165,7 +142,7 @@ ExtensionItem.prototype = {
                     inspectButton.connect("clicked", Lang.bind(this, this.inspect, id));
 
                     //remove button
-                    let removeButton = new St.Button({ label: _("Remove") });
+                    let removeButton = new St.Button({ label: _("Remove"), style_class: "devtools-contentButton" });
                     instanceBox.add_actor(removeButton);
                     removeButton.connect("clicked", Lang.bind(this, function() { this.remove(id); }));
                 }
@@ -173,12 +150,12 @@ ExtensionItem.prototype = {
             else {
                 //highlight button
                 if ( this.type == Extension.Type.APPLET || this.type == Extension.Type.DESKLET ) {
-                    let highlightButton = new St.Button({ label: _("Highlight"), x_align: St.Align.END, style_class: "devtools-contentButton" });
+                    let highlightButton = new St.Button({ label: _("Highlight"), x_align: St.Align.MIDDLE, style_class: "devtools-contentButton" });
                     buttonBox.add_actor(highlightButton);
                     highlightButton.connect("clicked", Lang.bind(this, function() { this.highlight(this.uuid); }));
 
                     //inspect button
-                    let inspectButton = new St.Button({ label: _("Inspect"), x_align: St.Align.END, style_class: "devtools-contentButton" });
+                    let inspectButton = new St.Button({ label: _("Inspect"), x_align: St.Align.MIDDLE, style_class: "devtools-contentButton" });
                     buttonBox.add_actor(inspectButton);
                     inspectButton.connect("clicked", Lang.bind(this, this.inspect, this.uuid));
                 }
@@ -186,12 +163,15 @@ ExtensionItem.prototype = {
 
             //link to settings
             if ( !meta["hide-configuration"] && GLib.file_test(meta.path + "/settings-schema.json", GLib.FileTest.EXISTS)) {
-                let settingsButton = new St.Button({ label: _("Configure"), x_align: St.Align.END, style_class: "devtools-contentButton" });
+                let settingsButton = new St.Button({ label: _("Configure"), x_align: St.Align.MIDDLE, style_class: "devtools-contentButton" });
                 buttonBox.add_actor(settingsButton);
                 settingsButton.connect("clicked", Lang.bind(this, function() {
                     Util.spawnCommandLine(["xlet-settings", type.name.toLowerCase(), this.uuid].join(' '));
                 }));
             }
+
+            let tooltip = new Tooltips.Tooltip(this.actor, nameString + "\n" + _(meta.description, this.uuid) + "\n" + meta.path);
+            tooltip._tooltip.style = "text-align: left;"
         } catch(e) {
             global.logError(e);
         }
@@ -264,63 +244,78 @@ ExtensionInterface.prototype = {
 
     _init: function(controllerObj) {
         controller = controllerObj;
+        this.reloadId = -1;
 
         TabPanel.TabPanelBase.prototype._init.call(this);
 
-        let scrollBox = new St.ScrollView();
-        this.panel.add(scrollBox, { expand: true });
+        let tabBox = new Tab.TabBoxBase({ styleClass: "devtools-sandbox-tabs" });
+        this.panel.add_actor(tabBox.actor);
 
-        this.extensionBox = new St.BoxLayout({ vertical: true, style_class: "devtools-extensions-mainBox" });
-        scrollBox.add_actor(this.extensionBox);
+        let contentBox = new St.BoxLayout({ y_expand: true });
+        this.panel.add_actor(contentBox);
 
-        let bottomBox = new St.BoxLayout();
-        this.panel.add_actor(bottomBox);
+        let tabManager = new Tab.TabManager(tabBox, contentBox);
 
-        this.checkBoxes = {};
+        this.pages = {};
         for ( let key in Extension.Type ) {
             let type = Extension.Type[key];
             let typeName = type.name+"s";
-            let checkbox = new CheckBox.CheckBox(_("Show %s").format(_(typeName)), { style_class: "devtools-checkBox" });
-            this.checkBoxes[type.name] = checkbox;
-            bottomBox.add_actor(checkbox.actor);
-            checkbox.actor.checked = controller.settings.getValue("show"+type.name);
-            checkbox.actor.connect("clicked", Lang.bind(this, function() {
-                controller.settings.setValue("show"+type.name, checkbox.actor.checked);
-                this.reload();
-            }));
 
-            type.connect("extension-loaded", Lang.bind(this, this.reload));
+            let page = new Tab.TabItemBase({ styleClass: "devtools-sandbox-tab" });
+            tabManager.add(page);
+            let scrollBox = new St.ScrollView({ x_expand: true, x_fill: true, y_expand: true, y_fill: true });
+            page.setContent(scrollBox);
+            page.setTabContent(new St.Label({ text: _(typeName, "cinnamon") }));
+
+            let extensionBox = new St.BoxLayout({ vertical: true, style_class: "devtools-extensions-mainBox" });
+            scrollBox.add_actor(extensionBox);
+            this.pages[key] = extensionBox;
+
+            type.connect("extension-loaded", Lang.bind(this, this.queueReload));
             type.connect("extension-unloaded", Lang.bind(this, this.queueReload));
         }
+
+        tabManager.selectIndex(0);
     },
 
     queueReload: function() {
-        Mainloop.idle_add(Lang.bind(this, this.reload));
+        if ( this.reloadId == -1 ) {
+            this.reloadId = Mainloop.idle_add(Lang.bind(this, this.reload));
+        }
     },
 
     reload: function() {
-        try {
-            if ( !this.selected ) return;
-            this.extensionBox.destroy_all_children();
+        this.reloadId = -1;
+        if ( !this.selected ) return;
 
-            for ( let typeName in Extension.Type ) {
-                let type = Extension.Type[typeName];
-                for ( let uuid in type.maps.meta ) {
-                    let meta = type.maps.meta[uuid];
+        for ( let key in Extension.Type ) {
+            let type = Extension.Type[key];
+            this.pages[key].destroy_all_children();
 
-                    if ( !meta.name ) continue;
-                    if ( !type || !this.checkBoxes[type.name].actor.checked ) continue;
+            let hasChildren = false;
+            for ( let uuid in type.maps.meta ) {
+                let meta = type.maps.meta[uuid];
 
+                if ( !meta.name ) continue;
+
+                try {
                     let extension = new ExtensionItem(meta, type);
-                    this.extensionBox.add_actor(extension.actor);
+                    this.pages[key].add_actor(extension.actor);
+                } catch(e) {
+                    global.logError(_("failed to create extension item for uuid") + " " + uuid);
+                    global.logError(e);
                 }
+                hasChildren = true;
             }
-        } catch(e) {
-            global.logError(e);
+            if ( !hasChildren ) {
+                let messageBin = new St.Bin({ y_expand: true });
+                this.pages[key].add_actor(messageBin);
+                messageBin.set_child(new St.Label({ text: _("No extensions of this type are enabled") }));
+            }
         }
     },
 
     onSelected: function() {
-        Mainloop.idle_add(Lang.bind(this, this.reload));
+        this.reload();
     }
 }
