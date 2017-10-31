@@ -52,7 +52,7 @@ function CobiAnalogClockSettings(instanceId) {
 CobiAnalogClockSettings.prototype = {
   _init: function(instanceId) {
     this._instanceId = instanceId;
-    this._signalManager = new SignalManager.SignalManager(this);
+    this._signalManager = new SignalManager.SignalManager(null);
     this.values = {};
     
     let settingsDirName = GLib.get_user_config_dir();
@@ -75,7 +75,7 @@ CobiAnalogClockSettings.prototype = {
     this._upgradeSettings();
     
     this._monitor = this._settingsFile.monitor(Gio.FileMonitorFlags.NONE, null);
-    this._signalManager.connect(this._monitor, "changed", this._onSettingsChanged);
+    this._signalManager.connect(this._monitor, "changed", this._onSettingsChanged, this);
   },
   
   _getDefaultSettingsFile: function() {
@@ -183,7 +183,7 @@ CobiAnalogClock.prototype = {
 
   _init: function(metadata, instanceId){
     Desklet.Desklet.prototype._init.call(this, metadata, instanceId);
-    this._signalManager = new SignalManager.SignalManager(this);
+    this._signalManager = new SignalManager.SignalManager(null);
     this._settings = new CobiAnalogClockSettings(instanceId);
     
     this._displayTime = new GLib.DateTime();
@@ -209,16 +209,16 @@ CobiAnalogClock.prototype = {
     let currentMillis = new Date().getMilliseconds();
     let timeoutMillis = (1000 - currentMillis) % 1000;
     
-    this._signalManager.connect(global, "scale-changed", this._onSizeChanged);
-    this._signalManager.connect(this._settings, "size-changed", this._onSizeChanged);
-    this._signalManager.connect(this._settings, "theme-changed", this._onThemeChanged);
-    this._signalManager.connect(this._settings, "hide-decorations-changed", this._onHideDecorationsChanged);
-    this._signalManager.connect(global.settings, "changed::desklet-decorations", this._onHideDecorationsChanged);
-    this._signalManager.connect(this._settings, "show-seconds-changed", this._onShowSecondsChanged);
+    this._signalManager.connect(global, "scale-changed", this._onSizeChanged, this);
+    this._signalManager.connect(this._settings, "size-changed", this._onSizeChanged, this);
+    this._signalManager.connect(this._settings, "theme-changed", this._onThemeChanged, this);
+    this._signalManager.connect(this._settings, "hide-decorations-changed", this._onHideDecorationsChanged, this);
+    this._signalManager.connect(global.settings, "changed::desklet-decorations", this._onHideDecorationsChanged, this);
+    this._signalManager.connect(this._settings, "show-seconds-changed", this._onShowSecondsChanged, this);
     
-    this._signalManager.connect(this._settings, "timezone-use-changed", this._onTimezoneChanged);
-    this._signalManager.connect(this._settings, "timezone-changed", this._onTimezoneChanged);
-    this._signalManager.connect(this._settings, "timezone-display-changed", this._onTimezoneDisplayChanged);
+    this._signalManager.connect(this._settings, "timezone-use-changed", this._onTimezoneChanged, this);
+    this._signalManager.connect(this._settings, "timezone-changed", this._onTimezoneChanged, this);
+    this._signalManager.connect(this._settings, "timezone-display-changed", this._onTimezoneDisplayChanged, this);
     
     this._upClient = new UPowerGlib.Client();
     try {
