@@ -215,6 +215,9 @@ MyDesklet.prototype = {
       case 'owm':
         this.service = new wxDriverOWM(this.stationID, this.apikey);
         break;
+      case 'owm2':
+        this.service = new wxDriverOWMFree(this.stationID, this.apikey);
+        break;
       case 'wunderground':
         this.service = new wxDriverWU(this.stationID, this.apikey);
         break;
@@ -1479,6 +1482,24 @@ wxDriver.prototype = {
     return days[i];
   },
 
+  _minArr: function(arr) {
+    return arr.reduce(function (p, v) {
+      return ( p < v ? p : v );
+    });
+  },
+
+  _maxArr: function(arr) {
+    return arr.reduce(function (p, v) {
+      return ( p > v ? p : v );
+    });
+  },
+
+  _avgArr: function(arr) {
+    return arr.reduce(function (p, v) {
+      return p + v;
+    }) / arr.length;
+  },
+
   ////////////////////////////////////////////////////////////////////////////
   // Utility to get a localised weather text string from a Yahoo/TWC code. This
   // function is here because both the Yahoo and TWC drivers use it
@@ -2198,13 +2219,7 @@ wxDriverOWM.prototype = {
 
     this.langcode = this.getLangCode();
 
-    // process the 7 day forecast
-    let apiforecasturl = (typeof latlon != 'undefined')
-      ? this._baseURL + 'forecast/daily?units=metric&cnt=7&lat=' + latlon[0] +  '&lon=' + latlon[1]
-      : this._baseURL + 'forecast/daily?units=metric&cnt=7&id=' + encodeURIComponent(this.stationID)
-
-    if (this.apikey) apiforecasturl = apiforecasturl + '&APPID=' + this.apikey;
-    if (this.langcode) apiforecasturl += '&lang=' + this.langcode;
+    let apiforecasturl = this._get_apiforecasturl();
 
     let a = this._getWeather(apiforecasturl, function(weather) {
       if (weather) {
@@ -2228,7 +2243,18 @@ wxDriverOWM.prototype = {
       // get the main object to update the display
       deskletObj.displayCurrent();
     });
+  },
 
+  // process the 7 day forecast
+  _get_apiforecasturl: function() {
+    let apiforecasturl = (typeof latlon != 'undefined')
+      ? this._baseURL + 'forecast/daily?units=metric&cnt=7&lat=' + latlon[0] +  '&lon=' + latlon[1]
+      : this._baseURL + 'forecast/daily?units=metric&cnt=7&id=' + encodeURIComponent(this.stationID)
+
+    if (this.apikey) apiforecasturl = apiforecasturl + '&APPID=' + this.apikey;
+    if (this.langcode) apiforecasturl += '&lang=' + this.langcode;
+
+	return apiforecasturl;
   },
 
   // process the data for a forecast and populate this.data
@@ -2248,33 +2274,37 @@ wxDriverOWM.prototype = {
     }
 
     try {
-      this.data.city = json.city.name;
-      this.data.country = json.city.country;
-      this.data.wgs84.lat = json.city.coord.lat;
-      this.data.wgs84.lon = json.city.coord.lon;
-      this.linkURL = 'http://openweathermap.org/city/' + json.city.id;
-
-      for (let i=0; i<json.list.length; i++) {
-        let day = new Object();
-        day.day = this._getDayName(new Date(json.list[i].dt *1000).toLocaleFormat( "%w" ));
-        day.minimum_temperature = json.list[i].temp.min;
-        day.maximum_temperature = json.list[i].temp.max;
-        day.pressure = json.list[i].pressure;
-        day.humidity = json.list[i].humidity;
-        day.wind_speed = json.list[i].speed * 3.6;
-        day.wind_direction = this.compassDirection(json.list[i].deg);
-        day.weathertext = json.list[i].weather[0].description.ucwords();
-        day.icon = this._mapicon(json.list[i].weather[0].icon, json.list[i].weather[0].id);
-
-        this.data.days[i] = day;
-      }
-
+      this._parse_forecast(json);
       this.data.status.forecast = BBCWX_SERVICE_STATUS_OK;
       this.data.status.meta = BBCWX_SERVICE_STATUS_OK;
     } catch(e) {
       global.logError(e);
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
+    }
+  },
+
+  // parse json for a forecast and populate this.data
+  _parse_forecast: function (json) {
+    this.data.city = json.city.name;
+    this.data.country = json.city.country;
+    this.data.wgs84.lat = json.city.coord.lat;
+    this.data.wgs84.lon = json.city.coord.lon;
+    this.linkURL = 'http://openweathermap.org/city/' + json.city.id;
+
+    for (let i=0; i<json.list.length; i++) {
+      let day = new Object();
+      day.day = this._getDayName(new Date(json.list[i].dt *1000).toLocaleFormat( "%w" ));
+      day.minimum_temperature = json.list[i].temp.min;
+      day.maximum_temperature = json.list[i].temp.max;
+      day.pressure = json.list[i].pressure;
+      day.humidity = json.list[i].humidity;
+      day.wind_speed = json.list[i].speed * 3.6;
+      day.wind_direction = this.compassDirection(json.list[i].deg);
+      day.weathertext = json.list[i].weather[0].description.ucwords();
+      day.icon = this._mapicon(json.list[i].weather[0].icon, json.list[i].weather[0].id);
+
+      this.data.days[i] = day;
     }
   },
 
@@ -2394,6 +2424,87 @@ wxDriverOWM.prototype = {
       icon_name = nightmap[icon_name];
     }
     return icon_name;
+  },
+
+};
+
+////////////////////////////////////////////////////////////////////////////
+// ### Driver for Open Weather Map Free
+function wxDriverOWMFree(stationID, apikey) {
+  this._owminit(stationID, apikey);
+};
+
+wxDriverOWMFree.prototype = {
+  __proto__: wxDriverOWM.prototype,
+
+  drivertype: 'OWMFree',
+  maxDays: 3,
+
+  // process the 3 days forecast
+  _get_apiforecasturl: function() {
+    let apiforecasturl = (typeof latlon != 'undefined')
+      ? this._baseURL + 'forecast/?units=metric&lat=' + latlon[0] +  '&lon=' + latlon[1]
+      : this._baseURL + 'forecast/?units=metric&id=' + encodeURIComponent(this.stationID)
+
+    if (this.apikey) apiforecasturl = apiforecasturl + '&appid=' + this.apikey;
+    if (this.langcode) apiforecasturl += '&lang=' + this.langcode;
+
+	return apiforecasturl;
+  },
+
+  // process the data for a forecast and populate this.data
+  _parse_forecast: function (json) {
+      this.data.city = json.city.name;
+      this.data.country = json.city.country;
+      this.data.wgs84.lat = json.city.coord.lat;
+      this.data.wgs84.lon = json.city.coord.lon;
+      this.linkURL = 'http://openweathermap.org/city/' + json.city.id;
+
+      let days = {};
+      for (let i=0; i<json.list.length; i++) {
+        let day_name = this._getDayName(new Date(json.list[i].dt *1000).toLocaleFormat( "%w" ));
+
+        if (!(day_name in days)) {
+          let day = new Object();
+          day.minimum_temperature = [];
+          day.maximum_temperature = [];
+          day.pressure = [];
+          day.humidity = [];
+          day.wind_speed = [];
+          day.wind_direction = [];
+          day.weathertext = [];
+          day.icon = [];
+          days[day_name] = day;
+        }
+
+        days[day_name].minimum_temperature.push(json.list[i].main.temp_min);
+        days[day_name].maximum_temperature.push(json.list[i].main.temp_max);
+        days[day_name].pressure.push(json.list[i].main.pressure);
+        days[day_name].humidity.push(json.list[i].main.humidity);
+        days[day_name].wind_speed.push(json.list[i].wind.speed * 3.6);
+        days[day_name].wind_direction.push(json.list[i].wind.deg);
+        days[day_name].weathertext.push(json.list[i].weather[0].description.ucwords());
+        days[day_name].icon.push(this._mapicon(json.list[i].weather[0].icon, json.list[i].weather[0].id));
+      }
+
+      let today = this._getDayName(new Date().toLocaleFormat( "%w" ));
+      this.data.days = [];
+      for (day_name in days) {
+        if (day_name == today) continue;
+        let middle = Math.round(days[day_name].icon.length / 2);
+        let day = new Object();
+        day.day = day_name;
+        day.minimum_temperature = this._minArr(days[day_name].minimum_temperature);
+        day.maximum_temperature = this._maxArr(days[day_name].maximum_temperature);
+        day.pressure = this._avgArr(days[day_name].pressure);
+        day.humidity = this._avgArr(days[day_name].humidity);
+        day.wind_speed = this._avgArr(days[day_name].wind_speed);
+        day.wind_direction = this.compassDirection(this._avgArr(days[day_name].wind_direction));
+        day.weathertext = days[day_name].weathertext[middle];
+        day.icon = days[day_name].icon[middle];
+
+        this.data.days.push(day);
+      }
   },
 
 };
