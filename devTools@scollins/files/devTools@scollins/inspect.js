@@ -112,6 +112,7 @@ Inspector.prototype = {
         this._target = null;
         this._pointerTarget = null;
         this.passThroughEvents = false;
+        global.set_cursor(Cinnamon.Cursor.CROSSHAIR);
         this._updatePassthroughText();
     },
 
@@ -168,6 +169,11 @@ Inspector.prototype = {
     _close: function() {
         global.stage.disconnect(this._capturedEventId);
         Main.popModal(this._eventHandler);
+
+        if (this._borderPaintTarget != null)
+            this._borderPaintTarget.disconnect(this._borderPaintId);
+
+        global.unset_cursor();
 
         this._eventHandler.destroy();
         this._eventHandler = null;
