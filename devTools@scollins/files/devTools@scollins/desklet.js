@@ -40,20 +40,6 @@ function _(str) {
   return Gettext.dgettext(uuid, str);
 }
 
-//pages to display in the settings menu
-const SETTINGS_PAGES = [
-    { title: _("Applet Settings"),      page: "applets" },
-    { title: _("Desklet Settings"),     page: "desklets" },
-    { title: _("Extension Settings"),   page: "extensions" },
-    { title: _("General Settings"),     page: "general" },
-    { title: _("Panel Settings"),       page: "panel" },
-    { title: _("Regional Settings"),    page: "region" },
-    { title: _("Theme Settings"),       page: "themes" },
-    { title: _("Tile Settings"),        page: "tiling" },
-    { title: _("Window Settings"),      page: "windows" },
-    { title: _("Workspace Settings"),   page: "workspaces" }
-]
-
 //global variables
 let desklet_raised = false;
 
@@ -419,11 +405,15 @@ myDesklet.prototype = {
         let paddingBox = new St.Bin({ width: 15 });
         this.buttonArea.add(paddingBox, { expand: true });
 
-        //cinnamon settings menu
-        let settingsMenuIcon = new St.Icon({ icon_name: "settings", icon_type: St.IconType.SYMBOLIC, icon_size: "20" });
-        this.settingsMenu = new Menu(settingsMenuIcon, _("Cinnamon Settings"), "devtools-button");
-        this.buttonArea.add_actor(this.settingsMenu.actor);
-        this._populateSettingsMenu();
+        //cinnamonSettings button
+        let cinnamonSettingsButton = new St.Button({ style_class: "devtools-button" });
+        this.buttonArea.add_actor(cinnamonSettingsButton);
+        let cinnamonSettingsIcon = new St.Icon({ icon_name: "preferences-system", icon_size: 20, icon_type: St.IconType.SYMBOLIC });
+        cinnamonSettingsButton.set_child(cinnamonSettingsIcon);
+        cinnamonSettingsButton.connect("clicked", Lang.bind(this, function() {
+            Util.spawnCommandLine("cinnamon-settings");
+        }));
+        new Tooltips.Tooltip(cinnamonSettingsButton, _("Open Cinnamon Settings"));
 
         //sandbox button
         let sandboxButton = new St.Button({ style_class: "devtools-button" });
@@ -487,21 +477,6 @@ myDesklet.prototype = {
         this.tabManager.add(extensions);
         let windows = new Windows.WindowInterface(this);
         this.tabManager.add(windows);
-    },
-
-    _populateSettingsMenu: function() {
-        this.settingsMenu.addMenuItem(_("All Settings"),
-                         function() { Util.spawnCommandLine("cinnamon-settings"); },
-                         new St.Icon({ icon_name: "preferences-system", icon_size: POPUP_MENU_ICON_SIZE, icon_type: St.IconType.FULLCOLOR }));
-
-        this.settingsMenu.addSeparator();
-
-        for ( let i = 0; i < SETTINGS_PAGES.length; i++ ) {
-            let command = "cinnamon-settings " + SETTINGS_PAGES[i].page;
-            this.settingsMenu.addMenuItem(SETTINGS_PAGES[i].title,
-                             function() { Util.spawnCommandLine(command); },
-                             new St.Icon({ icon_name: "cs-" + SETTINGS_PAGES[i].page, icon_size: POPUP_MENU_ICON_SIZE, icon_type: St.IconType.FULLCOLOR }));
-        }
     },
 
     newTerminal: function() {
