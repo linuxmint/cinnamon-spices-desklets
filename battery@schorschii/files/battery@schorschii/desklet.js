@@ -96,12 +96,12 @@ MyDesklet.prototype = {
 
 	refresh: function() {
 		// default device files
-		var default_devfiles_capacity = ['/sys/class/power_supply/CMB0/capacity',
+		let default_devfiles_capacity = ['/sys/class/power_supply/CMB0/capacity',
 		                                 '/sys/class/power_supply/CMB1/capacity',
 		                                 '/sys/class/power_supply/BAT0/capacity',
 		                                 '/sys/class/power_supply/BAT1/capacity',
 		                                 '/sys/class/power_supply/BAT2/capacity'];
-		var default_devfiles_status = ['/sys/class/power_supply/CMB0/status',
+		let default_devfiles_status = ['/sys/class/power_supply/CMB0/status',
 		                               '/sys/class/power_supply/CMB1/status',
 		                               '/sys/class/power_supply/BAT0/status',
 		                               '/sys/class/power_supply/BAT1/status',
@@ -109,13 +109,13 @@ MyDesklet.prototype = {
 
 		// get device files from settings
 		// remove "file://" because it's not supported by Cinnamon.get_file_contents_utf8_sync()
-		var result_devfile_capacity = this.devfile_capacity.replace("file://", "");
-		var result_devfile_status = this.devfile_status.replace("file://", "");
+		let result_devfile_capacity = this.devfile_capacity.replace("file://", "");
+		let result_devfile_status = this.devfile_status.replace("file://", "");
 
 		// auto detect device files if settings were not set
 		if (result_devfile_capacity == "") {
 			// iterate trough default devfiles ...
-			for (var i in default_devfiles_capacity) {
+			for (let i in default_devfiles_capacity) {
 				// ... and check if it exists
 				if (GLib.file_test(default_devfiles_capacity[i], GLib.FileTest.EXISTS) &&
 				   (!GLib.file_test(default_devfiles_capacity[i], GLib.FileTest.IS_DIR))) {
@@ -126,7 +126,7 @@ MyDesklet.prototype = {
 		}
 		if (result_devfile_status == "") {
 			// iterate trough default devfiles ...
-			for (var i in default_devfiles_status) {
+			for (let i in default_devfiles_status) {
 				// ... and check if it exists
 				if (GLib.file_test(default_devfiles_status[i], GLib.FileTest.EXISTS) &&
 				   (!GLib.file_test(default_devfiles_status[i], GLib.FileTest.IS_DIR))) {
@@ -141,8 +141,8 @@ MyDesklet.prototype = {
 
 		// get current battery/power supply values
 		this.currentCapacity = 0;
-		var currentState = "";
-		var currentError = 0;
+		let currentState = "";
+		let currentError = 0;
 		try {
 			// read device files
 			this.currentCapacity = parseInt(Cinnamon.get_file_contents_utf8_sync(result_devfile_capacity));
