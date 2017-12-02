@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-02 17:54+0100\n"
+"PO-Revision-Date: 2017-12-02 17:58+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: da\n"
+
+#: desklet.js
+msgid "Desktop Note"
+msgstr "Skrivebordsnote"
+
+#. deskNote@BrainAxe->metadata.json->name
+msgid "Desktop Note desklet"
+msgstr "Skrivebordsnote"
+
+#. deskNote@BrainAxe->metadata.json->description
+msgid "Displays Note on Desktop!"
+msgstr "Viser noter på skrivebordet!"
+
+#. deskNote@BrainAxe->settings-schema.json->note-entry->description
+msgid "Note: (use %% for newline)"
+msgstr "Note: (brug %% for ny linje)"
+
+#. deskNote@BrainAxe->settings-schema.json->note-entry->tooltip
+msgid "Set your note here"
+msgstr "Indstil din note her"
+
+#. deskNote@BrainAxe->settings-schema.json->note-entry->default
+msgid "Your Note Here"
+msgstr "Din note her"
+
+#. deskNote@BrainAxe->settings-schema.json->font-options-header->description
+msgid "Font options:"
+msgstr "Skrifttypeindstillinger:"
+
+#. deskNote@BrainAxe->settings-schema.json->font-size->description
+msgid "Font size:"
+msgstr "Skriftstørrelse:"
+
+#. deskNote@BrainAxe->settings-schema.json->text-color->description
+msgid "Font color:"
+msgstr "Tekstfarve:"
+
+#. deskNote@BrainAxe->settings-schema.json->text-color->tooltip
+msgid "Click to select a new text color"
+msgstr "Klik for at vælge en ny tekstfarve"
