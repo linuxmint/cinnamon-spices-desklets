@@ -233,7 +233,7 @@ HelloDesklet.prototype = {
             style_class: 'right'
         });
 
-        label = new St.Label();
+        var label = new St.Label();
         label.set_text("Change 1H:");
         left.add(label);
 

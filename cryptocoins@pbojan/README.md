@@ -14,7 +14,7 @@ Cinnamon Desklet that displays the current price of more than **80+ coins** and 
 4. Find the `Crypto Coins Ticker` Desklet, you can use the search bar
 5. Mark it for installation and click the button in the left bottom corner
 
-*NOTE: It is also possible to install the Desklet manually by coping the `files/cryptocoins@pbojan` folder to `~/.local/share/cinnamon/desklets/` but it is recommended to use the steps above to always get the latest version!*
+*NOTE: It is also possible to install the Desklet manually by copying the `files/cryptocoins@pbojan` folder to `~/.local/share/cinnamon/desklets/` but it is recommended to use the steps above to always get the latest version!*
 
 #### Usage
 
