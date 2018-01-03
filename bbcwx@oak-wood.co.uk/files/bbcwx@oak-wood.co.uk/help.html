@@ -75,6 +75,8 @@ del {text-decoration: line-through;}
     The Location code is therefore <code class="loccode">2643743</code>.
     </p>
     <h3 id="owm">Open Weather Map</h3>
+    <p>This is the original Open Weather Map driver that works with OWM's 16 day forecast API.
+    This API is no longer available on free accounts.</p>
     <p>Visit <a href="http://openweathermap.org/">the Open Weather Map</a> and search
     for your city. The code you need is the numeric part at
     the end of URL for the city's weather. For example, a search for Chicago 
@@ -90,8 +92,9 @@ del {text-decoration: line-through;}
     <a href="http://openweathermap.org/appid">register on the Open Weather 
     Map website</a>.</p>
     <h3 id="owm2">Open Weather Map Free</h3>
-    <p>Open Weather Map free account only offers 5 days/3 hour forecast API (no daily forecast).</p>
-    <p>Using this service will merge 3 hours forecasts for next 3 days (less accurate but usefull).</p>
+    <p>This OWM driver (contributed by Kallys) works with OWM's 5 day forecast API, which is available on free accounts.
+    As the forecasts are 3 hourly the driver has to some approximating to come up with a daily forecast.</p>
+    <p>Locations are specified in the same way as the original <a href="#owm">Open Weather Map driver</a></p>
 	<p><strong>Open Weather Map Free requires an API Key</strong>. To obtain an API Key for Open Weather
     Map <a href="http://openweathermap.org/appid">register on the Open Weather Map website</a>.</p>
     <h3 id="yahoo">Yahoo</h3>
