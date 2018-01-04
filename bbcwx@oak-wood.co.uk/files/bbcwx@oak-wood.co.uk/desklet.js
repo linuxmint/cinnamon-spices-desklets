@@ -2205,7 +2205,7 @@ wxDriverOWM.prototype = {
     this.linkURL = 'http://openweathermap.org';
 
     if (this.stationID.search(/^\-?\d+(\.\d+)?,\-?\d+(\.\d+)?$/) == 0) {
-      var latlon = this.stationID.split(',');
+      this.latlon = this.stationID.split(',');
     } else if (this.stationID.search(/^\d+$/) !=0) {
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
@@ -2231,8 +2231,8 @@ wxDriverOWM.prototype = {
     });
 
     // process current observations
-    let apiccurl = (typeof latlon != 'undefined')
-    ? this._baseURL + 'weather?units=metric&lat=' + latlon[0] +  '&lon=' + latlon[1]
+    let apiccurl = (typeof this.latlon != 'undefined')
+    ? this._baseURL + 'weather?units=metric&lat=' + this.latlon[0] +  '&lon=' + this.latlon[1]
     : this._baseURL + 'weather?units=metric&id=' + encodeURIComponent(this.stationID);
     if (this.apikey) apiccurl = apiccurl + '&APPID=' + this.apikey;
     if (this.langcode) apiccurl += '&lang=' + this.langcode;
@@ -2247,8 +2247,8 @@ wxDriverOWM.prototype = {
 
   // process the 7 day forecast
   _get_apiforecasturl: function() {
-    let apiforecasturl = (typeof latlon != 'undefined')
-      ? this._baseURL + 'forecast/daily?units=metric&cnt=7&lat=' + latlon[0] +  '&lon=' + latlon[1]
+    let apiforecasturl = (typeof this.latlon != 'undefined')
+      ? this._baseURL + 'forecast/daily?units=metric&cnt=7&lat=' + this.latlon[0] +  '&lon=' + this.latlon[1]
       : this._baseURL + 'forecast/daily?units=metric&cnt=7&id=' + encodeURIComponent(this.stationID)
 
     if (this.apikey) apiforecasturl = apiforecasturl + '&APPID=' + this.apikey;
@@ -2438,12 +2438,12 @@ wxDriverOWMFree.prototype = {
   __proto__: wxDriverOWM.prototype,
 
   drivertype: 'OWMFree',
-  maxDays: 3,
+  maxDays: 5,
 
   // process the 3 days forecast
   _get_apiforecasturl: function() {
-    let apiforecasturl = (typeof latlon != 'undefined')
-      ? this._baseURL + 'forecast/?units=metric&lat=' + latlon[0] +  '&lon=' + latlon[1]
+    let apiforecasturl = (typeof this.latlon != 'undefined')
+      ? this._baseURL + 'forecast/?units=metric&lat=' + this.latlon[0] +  '&lon=' + this.latlon[1]
       : this._baseURL + 'forecast/?units=metric&id=' + encodeURIComponent(this.stationID)
 
     if (this.apikey) apiforecasturl = apiforecasturl + '&appid=' + this.apikey;
@@ -2460,9 +2460,14 @@ wxDriverOWMFree.prototype = {
       this.data.wgs84.lon = json.city.coord.lon;
       this.linkURL = 'http://openweathermap.org/city/' + json.city.id;
 
+      // This is ugly, but to place a forecast in a particular day we need to make an effort to 
+      // interpret the UTC timestamps in the context of the forecast location's timezone, which 
+      // we don't know. So we estimate, based on longitude  
+      let est_tz = Math.round(json.city.coord.lon/15) * 3600;
+
       let days = {};
       for (let i=0; i<json.list.length; i++) {
-        let day_name = this._getDayName(new Date(json.list[i].dt *1000).toLocaleFormat( "%w" ));
+        let day_name = this._getDayName(new Date((json.list[i].dt + est_tz)*1000).getUTCDay());
 
         if (!(day_name in days)) {
           let day = new Object();
@@ -2477,8 +2482,8 @@ wxDriverOWMFree.prototype = {
           days[day_name] = day;
         }
 
-        days[day_name].minimum_temperature.push(json.list[i].main.temp_min);
-        days[day_name].maximum_temperature.push(json.list[i].main.temp_max);
+        days[day_name].minimum_temperature.push(json.list[i].main.temp);
+        days[day_name].maximum_temperature.push(json.list[i].main.temp);
         days[day_name].pressure.push(json.list[i].main.pressure);
         days[day_name].humidity.push(json.list[i].main.humidity);
         days[day_name].wind_speed.push(json.list[i].wind.speed * 3.6);
@@ -2490,16 +2495,16 @@ wxDriverOWMFree.prototype = {
       let today = this._getDayName(new Date().toLocaleFormat( "%w" ));
       this.data.days = [];
       for (day_name in days) {
-        if (day_name == today) continue;
-        let middle = Math.round(days[day_name].icon.length / 2);
+        //if (day_name == today) continue;
+        let middle = Math.floor(days[day_name].icon.length / 2);
         let day = new Object();
         day.day = day_name;
         day.minimum_temperature = this._minArr(days[day_name].minimum_temperature);
         day.maximum_temperature = this._maxArr(days[day_name].maximum_temperature);
         day.pressure = this._avgArr(days[day_name].pressure);
         day.humidity = this._avgArr(days[day_name].humidity);
-        day.wind_speed = this._avgArr(days[day_name].wind_speed);
-        day.wind_direction = this.compassDirection(this._avgArr(days[day_name].wind_direction));
+        day.wind_speed = days[day_name].wind_speed[middle];
+        day.wind_direction = this.compassDirection(days[day_name].wind_direction[middle]);
         day.weathertext = days[day_name].weathertext[middle];
         day.icon = days[day_name].icon[middle];
 
