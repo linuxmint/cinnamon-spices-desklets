@@ -93,8 +93,8 @@ del {text-decoration: line-through;}
     Map website</a>.</p>
     <h3 id="owm2">Open Weather Map Free</h3>
     <p>This OWM driver (contributed by Kallys) works with OWM's 5 day forecast API, which is available on free accounts.
-    As the forecasts are 3 hourly the driver has to some approximating to come up with a daily forecast.</p>
-    <p>Locations are specified in the same way as the original <a href="#owm">Open Weather Map driver</a></p>
+    As the forecasts are 3 hourly the driver has to do some approximating to come up with a daily forecast.</p>
+    <p>Locations are specified in the same way as for the original <a href="#owm">Open Weather Map driver</a></p>
 	<p><strong>Open Weather Map Free requires an API Key</strong>. To obtain an API Key for Open Weather
     Map <a href="http://openweathermap.org/appid">register on the Open Weather Map website</a>.</p>
     <h3 id="yahoo">Yahoo</h3>
@@ -137,9 +137,7 @@ del {text-decoration: line-through;}
     <h3 id="wwo">World Weather Online</h3>
     <p><strong>World Weather Online requires an API key</strong>.</p>
     <p class="notice">
-    WWO no longer offer new keys for this API. Old keys continue to work and the service will be supported so long as
-    they do. The service has been replaced by <a href="https://www.apixu.com">APIXU</a> and we plan to add support for
-    APIXU shortly.
+    WWO no longer offer new keys for this free API. The service has been replaced by <a href="#apixu">APIXU</a>.
     </p>
     <p>
     Locations can be specified as a US zipcode, a UK or Canadian post code, or as a latitude and longitude.
@@ -154,6 +152,16 @@ del {text-decoration: line-through;}
     Locations can be specified as a US zipcode, a UK or Canadian post code, or as a latitude and longitude.  
     Latitude and longitude should be given as decimals, separated by a comma, with positive being north or east. For example, for 
     central London, 51.51N, 0.13W, use <code class="loccode">51.51,-0.13</code>.
+    </p>
+    <h3 id="apixu">APIXU</h3>
+    <p><strong>APIXU requires an API key</strong>. You can 
+    <a href="https://www.apixu.com/signup.aspx">register for a free API key from here</a>.</p>
+    <p>
+    Locations can be specified using a wide range of formats. The most reliable is as a latitude and longitude.
+    Latitude and longitude should be given as decimals, separated by a comma, with positive being north or east. For example, for
+    central London, 51.51N, 0.13W, use <code class="loccode">51.51,-0.13</code>. You can also use a US zipcode, a UK or Canadian
+    postcode, or a city name. The location <code class="loccode">auto:ip</code> can be used to automatically guess your location 
+    based on your IP address. Three character IATA airport codes can be given in the format <code class="loccode">iata:BHX</code>.
     </p>
     <h3 id="forecast">forecast.io (Dark Sky)</h3>
     <p><strong>Forecast.io (now Dark Sky) requires an API key</strong>. You can
@@ -292,7 +300,8 @@ del {text-decoration: line-through;}
     Public License version 3</a>. It was originally a fork of 
     <a href="http://cinnamon-spices.linuxmint.com/desklets/view/10">Loganj's AccuWeather 
     Desklet</a>, which is released under the &#8220;use it as you like&#8221; license. 
-    Copyright &copy; 2014–2015 Chris Hastie, 2013 Loganj.
+    Copyright &copy; 2014–2018 Chris Hastie, 2013 Loganj. The Open Weather Map Free driver
+    was contributed by Kallys.
     </p>
     <p>The desklet makes use of the <a href="https://code.google.com/p/marknote/">marknote 
     xml library</a>, which is Copyright &copy; 2011 <a href="http://jbulb.org">jbulb.org</a>
