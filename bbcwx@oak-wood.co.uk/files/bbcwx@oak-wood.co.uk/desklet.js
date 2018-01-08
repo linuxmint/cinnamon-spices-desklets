@@ -2506,7 +2506,7 @@ wxDriverOWMFree.prototype = {
 
       let today = this._getDayName(new Date().toLocaleFormat( "%w" ));
       this.data.days = [];
-      for (day_name in days) {
+      for (let day_name in days) {
         //if (day_name == today) continue;
         let middle = Math.floor(days[day_name].icon.length / 2);
         let day = new Object();
@@ -3634,7 +3634,6 @@ wxDriverForecastIo.prototype = {
     'nb' : 'nb',
     'be' : 'be',
     'id' : 'id',
-    'az' : 'az',
     'ca' : 'ca',
     'et' : 'et',
     'sl' : 'sl',
