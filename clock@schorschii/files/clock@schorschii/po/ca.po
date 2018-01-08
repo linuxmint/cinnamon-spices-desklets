@@ -1,0 +1,212 @@
+# ANALOG CHRONOMETER TRANSLATIONS.
+# Copyright (C) 2017 FULL NAME
+# This file is distributed under the same license as the PACKAGE package.
+# Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Analog Chronometer VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2017-05-04 18:03+0100\n"
+"PO-Revision-Date: 2018-01-08 12:40+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.5\n"
+"Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ca\n"
+
+#: desklet.js:190
+msgid "Clock"
+msgstr "Rellotge"
+
+#. clock@schorschii->settings-schema.json->head3->description
+msgid "Timezone"
+msgstr "Zona horària"
+
+#. clock@schorschii->settings-schema.json->style->description
+msgid "Clock style"
+msgstr "Estil de rellotge"
+
+#. clock@schorschii->settings-schema.json->style->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Seleccioneu el gràfic del fons que voleu utilitzar."
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Dark"
+msgstr "Fosc"
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Light"
+msgstr "Clar"
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Custom"
+msgstr "Personalitzat"
+
+#. clock@schorschii->settings-schema.json->head4->description
+msgid "Custom images (available if clock style is set to 'custom')"
+msgstr ""
+"Imatges personalitzades (disponibles si l'estil del rellotge està establert "
+"com a «personalitzat»)"
+
+#. clock@schorschii->settings-schema.json->desklet-size->description
+msgid "Desklet size"
+msgstr "Mida de la miniaplicació d'escriptori"
+
+#. clock@schorschii->settings-schema.json->desklet-size->tooltip
+msgid "Increase or decrease the size of the clock."
+msgstr "Augmenta o disminueix la mida del rellotge."
+
+#. clock@schorschii->settings-schema.json->desklet-size->units
+msgid "pixels"
+msgstr "píxels"
+
+#. clock@schorschii->settings-schema.json->head2->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Etiqueta de miniaplicació d'escriptori personalitzada (només és visible si "
+"les decoracions estan habilitades)"
+
+#. clock@schorschii->settings-schema.json->head1->description
+msgid "Visual"
+msgstr "Visual"
+
+#. clock@schorschii->settings-schema.json->smooth-seconds-hand->description
+msgid "Smooth second hand"
+msgstr "Maneta dels segons suau"
+
+#. clock@schorschii->settings-schema.json->smooth-seconds-hand->tooltip
+msgid ""
+"Use smooth animation for seconds hand instead of refreshing it only every "
+"second."
+msgstr ""
+"Utilitza l'animació suau per a la maneta dels segons en comptes de refrescar-"
+"la només una vegada cada segon."
+
+#. clock@schorschii->settings-schema.json->head0->description
+msgid "Settings for clock@schorschii"
+msgstr "Ajusts per clock@schorschii"
+
+#. clock@schorschii->settings-schema.json->img-h->description
+msgid "Hour hand"
+msgstr "Maneta de les hores"
+
+#. clock@schorschii->settings-schema.json->img-h->tooltip
+msgid ""
+"Choose your own image for the hour hand. Should be as big as the background "
+"image."
+msgstr ""
+"Trieu la vostra pròpia imatge per a la maneta de les hores. Hauria de ser "
+"tan gran com la imatge del fons."
+
+#. clock@schorschii->settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Oculta les decoracions"
+
+#. clock@schorschii->settings-schema.json->img-m->description
+msgid "Minute hand"
+msgstr "Maneta dels minuts"
+
+#. clock@schorschii->settings-schema.json->img-m->tooltip
+msgid ""
+"Choose your own image for the minute hand. Should be as big as the "
+"background image."
+msgstr ""
+"Trieu la vostra pròpia imatge per a la maneta dels minuts. Hauria de ser tan "
+"gran com la imatge del fons."
+
+#. clock@schorschii->settings-schema.json->img-bg->description
+msgid "Background"
+msgstr "Fons"
+
+#. clock@schorschii->settings-schema.json->img-bg->tooltip
+msgid "Choose your own background image."
+msgstr "Trieu la vostra pròpia imatge de fons."
+
+#. clock@schorschii->settings-schema.json->img-s->description
+msgid "Seconds hand"
+msgstr "Maneta dels segons"
+
+#. clock@schorschii->settings-schema.json->img-s->tooltip
+msgid ""
+"Choose your own image for the seconds hand. Should be as big as the "
+"background image."
+msgstr ""
+"Trieu la vostra pròpia imatge per a la maneta dels segons. Hauria de ser tan "
+"gran com la imatge del fons."
+
+#. clock@schorschii->settings-schema.json->custom-tz->description
+msgid "Custom time zone"
+msgstr "Zona horària personalitzada"
+
+#. clock@schorschii->settings-schema.json->custom-tz->tooltip
+msgid "Enter your custom timezone here."
+msgstr "Introduïu aquí la zona horària personalitzada."
+
+#. clock@schorschii->settings-schema.json->show-seconds-hand->description
+msgid "Show seconds hand"
+msgstr "Mostra la maneta dels segons"
+
+#. clock@schorschii->settings-schema.json->show-seconds-hand->tooltip
+msgid "Show or hide the seconds hand."
+msgstr "Mostra o oculta la maneta dels segons."
+
+#. clock@schorschii->settings-schema.json->use-custom-tz->description
+msgid "Use a custom timezone"
+msgstr "Utilitza una zona horària personalitzada"
+
+#. clock@schorschii->settings-schema.json->use-custom-tz->tooltip
+msgid ""
+"Checking this box allows you to set a custom timezone in the field below."
+msgstr ""
+"Si marqueu aquesta casella, podeu establir una zona horària personalitzada "
+"al camp següent."
+
+#. clock@schorschii->settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Utilitza una etiqueta de miniaplicació d'escriptori personalitzada"
+
+#. clock@schorschii->settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Si marqueu aquesta casella, podeu establir una etiqueta personalitzada al "
+"camp següent."
+
+#. clock@schorschii->settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Etiqueta de miniaplicació d'escriptori personalitzada"
+
+#. clock@schorschii->settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here, e.g. for multiple timezones. This field is "
+"unavailable unless the checkbox above is enabled."
+msgstr ""
+"Establiu aquí l'etiqueta personalitzada, p. ex. per a diverses zones "
+"horàries. Aquest camp no està disponible a menys que la casella de selecció "
+"de dalt estigui habilitada."
+
+#. clock@schorschii->settings-schema.json->smooth-minutes-hand->description
+msgid "Smooth minute hand"
+msgstr "Maneta dels minuts suau"
+
+#. clock@schorschii->settings-schema.json->smooth-minutes-hand->tooltip
+msgid ""
+"Use smooth animation for minute hand instead of moving it only once per "
+"minute."
+msgstr ""
+"Utilitza l'animació suau per a la maneta dels minuts en comptes de moure-la "
+"només una vegada per minut."
+
+#. clock@schorschii->metadata.json->description
+msgid ""
+"A scaleable analog clock desklet with smooth hands and free choice of images."
+msgstr ""
+"Una miniaplicació d'escriptori de rellotge analògic amb canvi d'escala, "
+"manetes llises i lliure elecció d'imatges."
+
+#. clock@schorschii->metadata.json->name
+msgid "Analog Chronometer"
+msgstr "Cronòmetre analògic"
