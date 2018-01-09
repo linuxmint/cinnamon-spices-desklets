@@ -2,7 +2,7 @@
  * bbcwx - a Cinnamon Desklet displaying the weather retrieved
  * from one of several web services.
  *
- * Copyright 2014 - 2017 Chris Hastie. Forked from accudesk@logan; original
+ * Copyright 2014 - 2018 Chris Hastie. Forked from accudesk@logan; original
  * code Copyright 2013 loganj.
  *
  * Includes the marknote library, Copyright 2011 jbulb.org.
@@ -226,6 +226,9 @@ MyDesklet.prototype = {
         break;
       case 'wwo2':
         this.service = new wxDriverWWOPremium(this.stationID, this.apikey);
+        break;
+      case 'apixu':
+        this.service = new wxDriverAPIXU(this.stationID, this.apikey);
         break;
       case 'forecast':
         this.service = new wxDriverForecastIo(this.stationID, this.apikey);
@@ -758,7 +761,7 @@ MyDesklet.prototype = {
 
     if (this.humidity) this.humidity.text= this._formatHumidity(cc.humidity);
     if (this.pressure) this.pressure.text=this._formatPressure(cc.pressure, cc.pressure_direction, true);
-    if (this.windspeed) this.windspeed.text=((cc.wind_direction) ? cc.wind_direction : '') + ((cc.wind_direction && cc.wind_speed) ? ', ' : '' ) + this._formatWindspeed(cc.wind_speed, true);
+    if (this.windspeed) this.windspeed.text=((cc.wind_direction) ? cc.wind_direction : '') + ((cc.wind_direction && typeof cc.wind_speed !== 'undefined' && cc.wind_speed !== null) ? ', ' : '' ) + this._formatWindspeed(cc.wind_speed, true);
     if (this.feelslike) this.feelslike.text=this._formatTemperature(cc.feelslike, true);
     if (this.visibility) this.visibility.text=this._formatVisibility(cc.visibility, true);
     if (this.service.data.status.cc != BBCWX_SERVICE_STATUS_OK && this.weathertext) {
@@ -1478,6 +1481,9 @@ wxDriver.prototype = {
   },
 
   _getDayName: function(i) {
+    // handle Glib days, which use 1 based numbering starting with Mon
+    // all the same except Sun is 7, not 0
+    if (i == 7) { i = 0; }
     let days = ['Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     return days[i];
   },
@@ -2292,9 +2298,15 @@ wxDriverOWM.prototype = {
     this.data.wgs84.lon = json.city.coord.lon;
     this.linkURL = 'http://openweathermap.org/city/' + json.city.id;
 
+    // This is ugly, but to place a forecast in a particular day we need to make an effort to 
+    // interpret the UTC timestamps in the context of the forecast location's timezone, which 
+    // we don't know. So we estimate, based on longitude  
+    let est_tz = Math.round(json.city.coord.lon/15) * 3600;
+
     for (let i=0; i<json.list.length; i++) {
       let day = new Object();
-      day.day = this._getDayName(new Date(json.list[i].dt *1000).toLocaleFormat( "%w" ));
+      // day.day = this._getDayName(new Date(json.list[i].dt *1000).toLocaleFormat( "%w" ));
+      day.day = this._getDayName(new Date((json.list[i].dt + est_tz)*1000).getUTCDay());
       day.minimum_temperature = json.list[i].temp.min;
       day.maximum_temperature = json.list[i].temp.max;
       day.pressure = json.list[i].pressure;
@@ -2494,7 +2506,7 @@ wxDriverOWMFree.prototype = {
 
       let today = this._getDayName(new Date().toLocaleFormat( "%w" ));
       this.data.days = [];
-      for (day_name in days) {
+      for (let day_name in days) {
         //if (day_name == today) continue;
         let middle = Math.floor(days[day_name].icon.length / 2);
         let day = new Object();
@@ -2925,7 +2937,7 @@ wxDriverWWO.prototype = {
 
       for (let i=0; i<days.length; i++) {
         let day = new Object();
-        day.day = this._getDayName(new Date(days[i].date).toLocaleFormat("%w"));
+        day.day = this._getDayName(new Date(days[i].date).getUTCDay());
         day.minimum_temperature = days[i].tempMinC;
         day.maximum_temperature = days[i].tempMaxC;
         //day.pressure = json.list[i].pressure;
@@ -3186,7 +3198,7 @@ wxDriverWWOPremium.prototype = {
 
       for (let i=0; i<days.length; i++) {
         let day = new Object();
-        day.day = this._getDayName(new Date(days[i].date).toLocaleFormat("%w"));
+        day.day = this._getDayName(new Date(days[i].date).getUTCDay());
         day.minimum_temperature = days[i].mintempC;
         day.maximum_temperature = days[i].maxtempC;
         //day.pressure = json.list[i].pressure;
@@ -3324,6 +3336,254 @@ wxDriverWWOPremium.prototype = {
 
 };
 
+////////////////////////////////////////////////////////////////////////////
+// ### Driver for APIXU
+function wxDriverAPIXU(stationID, apikey) {
+  this._apixuinit(stationID, apikey);
+};
+
+wxDriverAPIXU.prototype = {
+  __proto__: wxDriver.prototype,
+
+  drivertype: 'APIXU',
+  maxDays: 7,
+  linkText: 'APIXU',
+
+
+  // these will be dynamically reset when data is loaded
+  linkURL: 'https://www.apixu.com/weather/',
+
+
+  _baseURL: 'https://api.apixu.com/v1/',
+
+  lang_map: {
+    'ar' : 'ar',
+    'bn' : 'bn',
+    'bg' : 'bg',
+    'zh' : 'zh',
+    'zh_cn' : 'zh',
+    'zh_tw' : 'zh_tw',
+    'zh_cmn' : 'zh_cmn',
+    'zh_wuu' : 'zh_wuu',
+    'zh_hsn' : 'zh_hsn',
+    'zh_yue' : 'zh_yue',
+    'cs' : 'cs',
+    'da' : 'da',
+    'nl' : 'nl',
+    'fi' : 'fi',
+    'fr' : 'fr',
+    'de' : 'de',
+    'el' : 'el',
+    'hi' : 'hi',
+    'hu' : 'hu',
+    'it' : 'it',
+    'ja' : 'ja',
+    'jv' : 'jv',
+    'ko' : 'ko',
+    'mr' : 'mr',
+    'pa' : 'pa',
+    'pl' : 'pl',
+    'pt' : 'pt',
+    'ro' : 'ro',
+    'ru' : 'ru',
+    'sr' : 'sr',
+    'si' : 'si',
+    'sk' : 'sk',
+    'es' : 'es',
+    'sv' : 'sv',
+    'ta' : 'ta',
+    'te' : 'te',
+    'tr' : 'tr',
+    'uk' : 'uk',
+    'ur' : 'ur',
+    'vi' : 'vi',
+    'zu' : 'zu'
+  },
+
+  // initialise the driver
+  _apixuinit: function(stationID, apikey) {
+    this._init(stationID, apikey);
+    this.capabilities.forecast.pressure = false;
+    this.capabilities.forecast.pressure_direction =  false;
+    this.capabilities.cc.pressure_direction = false;
+    this.capabilities.forecast.wind_direction = false;
+  },
+
+  refreshData: function(deskletObj) {
+    // reset the data object
+    this._emptyData();
+    this.linkURL = 'https://www.apixu.com/weather/';
+
+    this.langcode = this.getLangCode();
+    this.i18Desc = 'lang_' + this.langcode;
+
+    let apiurl = this._baseURL + 'forecast.json?q=' + encodeURIComponent(this.stationID) + '&days=' + this.maxDays + '&key=' + encodeURIComponent(this.apikey);
+    if (this.langcode) apiurl += '&lang=' + this.langcode;
+
+    // process the forecast
+    let a = this._getWeather(apiurl, function(weather) {
+      if (weather) {
+        this._load_forecast(weather);
+      }
+      // get the main object to update the display
+      deskletObj.displayForecast();
+      deskletObj.displayCurrent();
+      deskletObj.displayMeta();
+    });
+
+  },
+
+  // process the data for a multi day forecast and populate this.data
+  _load_forecast: function (data) {
+    if (!data) {
+      this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
+      this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
+      this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
+      return;
+    }
+
+    let json = JSON.parse(data);
+
+    if (typeof json.error !== 'undefined') {
+      this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
+      this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
+      this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
+      this.data.status.lasterror = json.data.error.msg;
+      global.logWarning("Error from APIXU: " + json.error.msg);
+      return;
+    }
+
+    try {
+      let days = json.forecast.forecastday;
+
+      for (let i=0; i<days.length; i++) {
+        let day = new Object();
+        // APIXU date is a unix epoch that represents the start of the forecast day
+        // as it would be in UTC.
+        day.day = this._getDayName(new Date(days[i].date).getUTCDay());
+        day.minimum_temperature = days[i].day.mintemp_c;
+        day.maximum_temperature = days[i].day.maxtemp_c;
+        //day.pressure = json.list[i].pressure;
+        day.humidity = days[i].day.avghumidity;
+        day.wind_speed = days[i].day.maxwind_kph;
+        day.visibility = days[i].day.avgvis_km;
+        day.weathertext = days[i].day.condition.text;
+        day.icon = this._mapicon(days[i].day.condition.code, 1);
+        day.uv_risk = days[i].day.uv;
+
+        this.data.days[i] = day;
+      }
+      let cc = json.current;
+
+      this.data.cc.humidity = cc.humidity;
+      this.data.cc.temperature = cc.temp_c;
+      this.data.cc.pressure = cc.pressure_mb;
+      this.data.cc.wind_speed = cc.wind_kph;
+      this.data.cc.wind_direction = this.compassDirection(cc.wind_degree);
+      this.data.cc.obstime = new Date(cc.last_updated_epoch * 1000).toLocaleFormat("%H:%M %Z");
+      this.data.cc.weathertext = cc.condition.text;
+      this.data.cc.icon = this._mapicon(cc.condition.code, cc.is_day);
+      // vis is in km
+      this.data.cc.visibility = cc.vis_km;
+      this.data.cc.feelslike = cc.feelslike_c
+
+      let locdata = json.location;
+      this.data.city = locdata.name;
+      this.data.country = locdata.country;
+      this.data.region = locdata.region;
+      this.data.wgs84.lat = locdata.lat;
+      this.data.wgs84.lon = locdata.lon;
+      // we don't get a URL for local forecasts in the response. Build it from the station ID
+      // (stationID seems OK, but if cases occur where it doesn't work we could normalise by
+      // constructing the query parameters from lat + ',' + lon).
+      this.linkURL = 'https://www.apixu.com/weather/?q=' + encodeURIComponent(this.stationID);
+
+      this.data.status.meta = BBCWX_SERVICE_STATUS_OK;
+      this.data.status.cc = BBCWX_SERVICE_STATUS_OK;
+      this.data.status.forecast = BBCWX_SERVICE_STATUS_OK;
+    } catch(e) {
+      global.logError(e);
+      this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
+      this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
+      this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
+    }
+  },
+
+  _mapicon: function(iconcode, isDay) {
+    // http://www.apixu.com/doc/Apixu_weather_conditions.csv
+    let icon_name = 'na';
+    let iconmap = {
+      '1000': '32',
+      '1003': '30',
+      '1006': '26',
+      '1009': '26',
+      '1030': '22',
+      '1063': '39',
+      '1066': '41',
+      '1069': '07',
+      '1072': '08',
+      '1087': '37',
+      '1114': '15',
+      '1117': '15',
+      '1135': '20',
+      '1147': '20',
+      '1150': '39',
+      '1153': '09',
+      '1168': '08',
+      '1171': '10',
+      '1180': '39',
+      '1183': '11',
+      '1186': '39',
+      '1189': '12',
+      '1192': '39',
+      '1195': '12',
+      '1198': '10',
+      '1201': '10',
+      '1204': '18',
+      '1207': '18',
+      '1210': '41',
+      '1213': '13',
+      '1216': '41',
+      '1219': '14',
+      '1222': '41',
+      '1225': '16',
+      '1237': '18',
+      '1240': '39',
+      '1243': '39',
+      '1246': '39',
+      '1249': '18',
+      '1252': '18',
+      '1255': '41',
+      '1258': '41',
+      '1261': '18',
+      '1264': '18',
+      '1273': '37',
+      '1276': '04',
+      '1279': '41',
+      '1282': '16'
+    };
+    let nightmap = {
+      '39' : '45',
+      '41' : '46',
+      '30' : '29',
+      '28' : '27',
+      '32' : '31',
+      '22' : '21',
+      '47' : '38'
+    };
+
+    if (iconcode && (typeof iconmap[iconcode] !== "undefined")) {
+      icon_name = iconmap[iconcode];
+    }
+    // override with nighttime icons
+    if ((isDay != 1) && (typeof nightmap[icon_name] !== "undefined")) {
+      icon_name = nightmap[icon_name];
+    }
+    return icon_name;
+  },
+
+};
+
 
 ////////////////////////////////////////////////////////////////////////////
 // ### Driver for Forecast.io
@@ -3374,7 +3634,6 @@ wxDriverForecastIo.prototype = {
     'nb' : 'nb',
     'be' : 'be',
     'id' : 'id',
-    'az' : 'az',
     'ca' : 'ca',
     'et' : 'et',
     'sl' : 'sl',
@@ -3451,13 +3710,16 @@ wxDriverForecastIo.prototype = {
     }
 
     let json = JSON.parse(data);
+    let tz = GLib.TimeZone.new(json.timezone);
 
     try {
       let days = json.daily.data;
 
       for (let i=0; i<days.length; i++) {
         let day = new Object();
-        day.day = this._getDayName(new Date(days[i].time * 1000).toLocaleFormat("%w"));
+        let dt = GLib.DateTime.new_from_unix_utc(days[i].time);
+        dt = dt.to_timezone(tz);
+        day.day = this._getDayName(dt.get_day_of_week());
         day.minimum_temperature = this._getSI(days[i].temperatureMin, 'temp');
         day.maximum_temperature = this._getSI(days[i].temperatureMax, 'temp');
         day.minimum_feelslike = this._getSI(days[i].apparentTemperatureMin, 'temp');
@@ -3683,6 +3945,7 @@ wxDriverTWC.prototype = {
         day.humidity = dayparts[p].getChildElement('hmid').getText();
         var windf = dayparts[p].getChildElement('wind');
         day.wind_speed = windf.getChildElement('s').getText();
+        if(day.wind_speed == 'calm') {day.wind_speed = 0};
         day.wind_direction = windf.getChildElement('t').getText();
         this.data.days[i] = day;
       }
@@ -3843,6 +4106,7 @@ wxDriverMeteoBlue.prototype = {
 
   // process the data for a multi day forecast and populate this.data
   _load_forecast: function (data) {
+    this.data.city = '';
     if (!data) {
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
@@ -3866,7 +4130,8 @@ wxDriverMeteoBlue.prototype = {
 
       for (let i=0; i<days.length; i++) {
         let day = new Object();
-        day.day = day.day = this._getDayName(new Date(days[i].date).toLocaleFormat("%w"));
+        //day.day = this._getDayName(new Date(days[i].date).getUTCDay());
+        day.day = days[i].weekday;
         day.minimum_temperature = days[i].temperature_min;
         day.maximum_temperature = days[i].temperature_max;
         day.pressure = days[i].pressure_hpa;
@@ -3887,7 +4152,7 @@ wxDriverMeteoBlue.prototype = {
 
       this.data.wgs84.lat = json.meta.lat;
       this.data.wgs84.lon = json.meta.lon;
-      https://www.meteoblue.com/weather/forecast/week/52.275N-1.597E
+      //https://www.meteoblue.com/weather/forecast/week/52.275N-1.597E
       this.linkURL = 'https://www.meteoblue.com/weather/forecast/week/' + json.meta.lat + 'N' + json.meta.lon + 'E';
 
       this.data.status.cc = BBCWX_SERVICE_STATUS_OK;
