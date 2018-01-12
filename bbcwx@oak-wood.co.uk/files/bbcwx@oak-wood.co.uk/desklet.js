@@ -845,7 +845,7 @@ MyDesklet.prototype = {
         this.displaycity = this._geocache[locsrc][latlon].city;
         this.tooltiplocation = this.displaycity
         if (this.show.meta.country) {
-          this.displaycity += ', ' + this._geocache[locsrc][latlon].country;
+          if (this._geocache[locsrc][latlon].country !== 'undefined') this.displaycity += ', ' + this._geocache[locsrc][latlon].country;
         }
         this._updateLocationDisplay();
       // no cache - lookup
