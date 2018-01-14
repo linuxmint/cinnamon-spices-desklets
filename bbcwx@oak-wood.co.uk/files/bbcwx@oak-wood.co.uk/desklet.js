@@ -839,13 +839,13 @@ MyDesklet.prototype = {
     else if (this.service.capabilities.meta.wgs84 && (locsrc == 'yahoo' || locsrc == 'google')) {
       let latlon = this.service.data.wgs84.lat + ',' + this.service.data.wgs84.lon;
       // check the cache
-      if (typeof this._geocache[locsrc][latlon] === 'object') {
+      if (typeof this._geocache[locsrc][latlon] === 'object' && typeof this._geocache[locsrc][latlon].city !== 'undefined') {
         // debugging
         //global.log ("bbcwx: geocache hit for " + latlon + ", " + locsrc + ": " + this._geocache[locsrc][latlon].city);
         this.displaycity = this._geocache[locsrc][latlon].city;
         this.tooltiplocation = this.displaycity
         if (this.show.meta.country) {
-          this.displaycity += ', ' + this._geocache[locsrc][latlon].country;
+          if (this._geocache[locsrc][latlon].country !== 'undefined') this.displaycity += ', ' + this._geocache[locsrc][latlon].country;
         }
         this._updateLocationDisplay();
       // no cache - lookup
@@ -4106,7 +4106,6 @@ wxDriverMeteoBlue.prototype = {
 
   // process the data for a multi day forecast and populate this.data
   _load_forecast: function (data) {
-    this.data.city = '';
     if (!data) {
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
