@@ -2483,23 +2483,23 @@ wxDriverOWMFree.prototype = {
 
         if (!(day_name in days)) {
           let day = new Object();
-          day.minimum_temperature = [];
-          day.maximum_temperature = [];
+          day.temperature = [];
           day.pressure = [];
           day.humidity = [];
           day.wind_speed = [];
-          day.wind_direction = [];
+          day.wind_direction_x = [];
+          day.wind_direction_y = [];
           day.weathertext = [];
           day.icon = [];
           days[day_name] = day;
         }
 
-        days[day_name].minimum_temperature.push(json.list[i].main.temp);
-        days[day_name].maximum_temperature.push(json.list[i].main.temp);
+        days[day_name].temperature.push(json.list[i].main.temp);
         days[day_name].pressure.push(json.list[i].main.pressure);
         days[day_name].humidity.push(json.list[i].main.humidity);
         days[day_name].wind_speed.push(json.list[i].wind.speed * 3.6);
-        days[day_name].wind_direction.push(json.list[i].wind.deg);
+        days[day_name].wind_direction_x.push(Math.cos(json.list[i].wind.deg));
+        days[day_name].wind_direction_y.push(Math.sin(json.list[i].wind.deg));
         days[day_name].weathertext.push(json.list[i].weather[0].description.ucwords());
         days[day_name].icon.push(this._mapicon(json.list[i].weather[0].icon, json.list[i].weather[0].id));
       }
@@ -2511,12 +2511,12 @@ wxDriverOWMFree.prototype = {
         let middle = Math.floor(days[day_name].icon.length / 2);
         let day = new Object();
         day.day = day_name;
-        day.minimum_temperature = this._minArr(days[day_name].minimum_temperature);
-        day.maximum_temperature = this._maxArr(days[day_name].maximum_temperature);
+        day.minimum_temperature = this._minArr(days[day_name].temperature);
+        day.maximum_temperature = this._maxArr(days[day_name].temperature);
         day.pressure = this._avgArr(days[day_name].pressure);
         day.humidity = this._avgArr(days[day_name].humidity);
         day.wind_speed = days[day_name].wind_speed[middle];
-        day.wind_direction = this.compassDirection(days[day_name].wind_direction[middle]);
+        day.wind_direction = this.compassDirection((Math.atan2(this._avgArr(days[day_name].wind_direction_y), this._avgArr(days[day_name].wind_direction_x)) + Math.PI) * (180/Math.PI));
         day.weathertext = days[day_name].weathertext[middle];
         day.icon = days[day_name].icon[middle];
 
