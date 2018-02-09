@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bbcwx\n"
 "Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
 "POT-Creation-Date: 2018-01-07 21:05+0000\n"
-"PO-Revision-Date: 2018-01-09 13:26+0100\n"
+"PO-Revision-Date: 2018-02-09 08:37+0100\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "Language: ca\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2015-12-04 19:52+0000\n"
-"X-Generator: Poedit 2.0.5\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #. # Days of the week
 #: desklet.js:102
@@ -506,7 +506,7 @@ msgstr "Pluja intensa"
 
 #: desklet.js:1822
 msgid "Sleet Shower"
-msgstr "Pugims"
+msgstr "Plugims"
 
 #: desklet.js:1824
 msgid "Light Snow Shower"
@@ -952,7 +952,7 @@ msgstr "Clau de l'API"
 msgid ""
 "Required for some services only. Enter your API key for your chosen service"
 msgstr ""
-"Només  és necessari per alguns serveis. Introduïu la vostra clau API per al "
+"Només és necessari per a alguns serveis. Introduïu la vostra clau API per al "
 "servei seleccionat"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->tooltip
@@ -1129,7 +1129,7 @@ msgid ""
 "Select the width of the border. Only available if the 'Border' checkbox is "
 "enabled"
 msgstr ""
-"Seleccioneu l'ample de la ora. Només disponible si la casella 'Vora' està "
+"Seleccioneu l'ample de la vora. Només disponible si la casella 'Vora' està "
 "habilitada"
 
 #. bbcwx@oak-wood.co.uk->metadata.json->name
