@@ -8,12 +8,12 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-25 20:27+0800\n"
-"PO-Revision-Date: 2018-01-08 12:02+0100\n"
+"PO-Revision-Date: 2018-02-09 08:41+0100\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.5\n"
+"X-Generator: Poedit 2.0.6\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: ca\n"
@@ -115,7 +115,7 @@ msgstr "Mesura d'angles"
 
 #. calculator@scollins->settings-schema.json->precision->description
 msgid "Precision"
-msgstr "Precissió"
+msgstr "Precisió"
 
 #. calculator@scollins->settings-schema.json->precision->units
 msgid "digits"
