@@ -188,7 +188,7 @@ CobiAnalogClock.prototype = {
     
     this._displayTime = new GLib.DateTime();
 
-    this._menu.addAction(_("Settings"), Lang.bind(this, function() {Util.spawnCommandLine(DESKLET_DIR + "/settings.py " + instanceId);}));
+    this._menu.addAction(_("Settings"), Lang.bind(this, function() {Util.spawnCommandLine("python " + DESKLET_DIR + "/settings.py " + instanceId);}));
   },
   
   on_desklet_added_to_desktop: function(userEnabled) {
