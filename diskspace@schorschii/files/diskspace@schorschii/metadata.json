@@ -1,0 +1,7 @@
+{
+    "max-instances": "10",
+    "description": "A simple desklet to display the filesystem or RAM usage.",
+    "name": "Disk Space",
+    "version": "1.0",
+    "uuid": "diskspace@schorschii"
+}
