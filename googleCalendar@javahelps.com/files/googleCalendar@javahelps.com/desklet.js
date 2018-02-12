@@ -48,8 +48,8 @@ function _(str) {
     return Gettext.dgettext(UUID, str);
 }
 
-function GoogleCalendarDesklet(metadata, desklet_id) {
-    this._init(metadata, desklet_id);
+function GoogleCalendarDesklet(metadata, deskletID) {
+    this._init(metadata, deskletID);
 }
 
 GoogleCalendarDesklet.prototype = {
@@ -58,34 +58,34 @@ GoogleCalendarDesklet.prototype = {
     /**
      * Initialize the desklet.
      */
-    _init: function(metadata, desklet_id) {
-        Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
+    _init: function(metadata, deskletID) {
+        Desklet.Desklet.prototype._init.call(this, metadata, deskletID);
         this.metadata = metadata;
         this.maxSize = 7000;
-        this.update_id = null;
+        this.updateID = null;
         this.updateInProgress = false;
         this.eventsList;
-        this.lastDate;
-        this.today_str;
-        this.tomorrow_str;
+        this.lastDate = null;
+        this.today;
+        this.tomorrow;
 
         this._updateDecoration();
 
         // Bind the properties
         try {
-            this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], this.update_id);
-            this.settings.bind("calendarName", "calendarName", this.onSettingChanged, null);
-            this.settings.bind("interval", "interval", this.onSettingChanged, null);
-            this.settings.bind("delay", "delay", this.onSettingChanged, null);
-            this.settings.bind("use_24h_clock", "use_24h_clock", this.onCalendarFormatChanged, null);
-            this.settings.bind("date_format", "date_format", this.onCalendarFormatChanged, null);
-            this.settings.bind("today_format", "today_format", this.onCalendarFormatChanged, null);
-            this.settings.bind("tomorrow_format", "tomorrow_format", this.onCalendarFormatChanged, null);
-            this.settings.bind("zoom", "zoom", this.onSettingChanged, null);
-            this.settings.bind("textcolor", "textcolor", this.onSettingChanged, null);
-            this.settings.bind("bgcolor", "bgcolor", this.onSettingChanged, null);
-            this.settings.bind("transparency", "transparency", this.onSettingChanged, null);
-            this.settings.bind("cornerradius", "cornerradius", this.onSettingChanged, null);
+            this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], this.updateID);
+            this.settings.bind("calendarName", "calendarName", this.onCalendarParamsChanged, null);
+            this.settings.bind("interval", "interval", this.onCalendarParamsChanged, null);
+            this.settings.bind("delay", "delay", this.onCalendarParamsChanged, null);
+            this.settings.bind("use_24h_clock", "use_24h_clock", this.onDeskletFormatChanged, null);
+            this.settings.bind("date_format", "date_format", this.onDeskletFormatChanged, null);
+            this.settings.bind("today_format", "today_format", this.onDeskletFormatChanged, null);
+            this.settings.bind("tomorrow_format", "tomorrow_format", this.onDeskletFormatChanged, null);
+            this.settings.bind("zoom", "zoom", this.onDeskletFormatChanged, null);
+            this.settings.bind("textcolor", "textcolor", this.onDeskletFormatChanged, null);
+            this.settings.bind("bgcolor", "bgcolor", this.onDeskletFormatChanged, null);
+            this.settings.bind("transparency", "transparency", this.onDeskletFormatChanged, null);
+            this.settings.bind("cornerradius", "cornerradius", this.onDeskletFormatChanged, null);
         } catch (e) {
             global.logError(e);
         }
@@ -99,18 +99,18 @@ GoogleCalendarDesklet.prototype = {
     /**
      * Called when user updates settings related to formatting.
      */
-    onCalendarFormatChanged: function() {
+    onDeskletFormatChanged: function() {
         this.updateAgenda();
     },
 
     /**
      * Called when user changes the settings which require new events.
      */
-    onSettingChanged: function() {
-        if (this.update_id > 0) {
-            Mainloop.source_remove(this.update_id);
+    onCalendarParamsChanged: function() {
+        if (this.updateID > 0) {
+            Mainloop.source_remove(this.updateID);
         }
-        this.update_id = null;
+        this.updateID = null;
         this.retrieveEvents();
     },
 
@@ -118,7 +118,7 @@ GoogleCalendarDesklet.prototype = {
      * Called when the desklet is removed.
      */
     on_desklet_removed: function() {
-        Mainloop.source_remove(this.update_id);
+        Mainloop.source_remove(this.updateID);
     },
 
     /**
@@ -133,8 +133,8 @@ GoogleCalendarDesklet.prototype = {
      * Construct gcalcli command to retrieve events.
      */
     getCalendarCommand: function() {
-        var dateTime = new Date();
-        var command = ["gcalcli", "agenda"];
+        let dateTime = new Date();
+        let command = ["gcalcli", "agenda"];
         command.push(CalendarUtility.formatParameterDate(dateTime));
         if (this.interval == null) {
             this.interval = 7; // Default interval is 7 days
@@ -144,12 +144,12 @@ GoogleCalendarDesklet.prototype = {
         command.push("--nostarted");
         command.push("--tsv");
         if (this.calendarName != "") {
-            var calendars = this.calendarName.split(",");
-            for (var i = 0; i < calendars.length; i++) {
-                var calendar_name = calendars[i].trim();
-                if (calendar_name != "") {
+            let calendars = this.calendarName.split(",");
+            for (let name of calendars) {
+                name = name.trim();
+                if (name !== "") {
                     command.push("--calendar");
-                    command.push(calendar_name);
+                    command.push(name);
                 }
             }
         }
@@ -160,8 +160,8 @@ GoogleCalendarDesklet.prototype = {
      * Convert string line to Event object and store in a list.
      * This method also add the event to widget.
      */
-    addEvent: function(event_line) {
-        let event = new Event(event_line, this.use_24h_clock);
+    addEvent: function(eventLine) {
+        let event = new Event(eventLine, this.use_24h_clock);
         this.eventsList.push(event);
         this.addEventToWidget(event);
     },
@@ -171,13 +171,13 @@ GoogleCalendarDesklet.prototype = {
      */
     addEventToWidget: function(event) {
         // Create date header
-        if (this.lastDate == undefined || event.start_date.diffDays(this.lastDate) <= -1) {
+        if (this.lastDate === null || event.startDate.diffDays(this.lastDate) <= -1) {
             let leadingNewline = "";
             if (this.lastDate) {
                 leadingNewline = "\n\n";
             }
-            this.lastDate = event.start_date;
-            let label = CalendarUtility.label(leadingNewline + this.formatEventDate(event.start_date_str) + SEPARATOR_LINE, this.zoom, this.textcolor);
+            this.lastDate = event.startDate;
+            let label = CalendarUtility.label(leadingNewline + this.formatEventDate(event.startDateText) + SEPARATOR_LINE, this.zoom, this.textcolor);
             this.window.add(label);
         }
 
@@ -203,10 +203,10 @@ GoogleCalendarDesklet.prototype = {
     resetWidget: function(resetEventsList = false) {
         if (resetEventsList) {
             this.eventsList = [];
-            this.today_str = new XDate().toString("yyyy-MM-dd");
-            this.tomorrow_str = new XDate().addDays(1).toString("yyyy-MM-dd");
+            this.today = new XDate().toString("yyyy-MM-dd");
+            this.tomorrow = new XDate().addDays(1).toString("yyyy-MM-dd");
         }
-        this.lastDate = undefined;
+        this.lastDate = null;
         this.window = CalendarUtility.window(this.cornerradius, this.textcolor, this.bgcolor, this.transparency);
         this.setContent(this.window);
     },
@@ -216,19 +216,19 @@ GoogleCalendarDesklet.prototype = {
      **/
     updateLoop: function() {
         this.retrieveEvents();
-        this.update_id = Mainloop.timeout_add_seconds(this.delay * 60, Lang.bind(this, this.updateLoop));
+        this.updateID = Mainloop.timeout_add_seconds(this.delay * 60, Lang.bind(this, this.updateLoop));
     },
 
     /*
      * Format date using given pattern.
      */
-    formatEventDate: function(str_date) {
-        if (this.today_str === str_date) {
-            return new XDate(str_date).toString(this.today_format).toUpperCase();
-        } else if (this.tomorrow_str === str_date) {
-            return new XDate(str_date).toString(this.tomorrow_format).toUpperCase();
+    formatEventDate: function(dateText) {
+        if (this.today === dateText) {
+            return new XDate(dateText).toString(this.today_format).toUpperCase();
+        } else if (this.tomorrow === dateText) {
+            return new XDate(dateText).toString(this.tomorrow_format).toUpperCase();
         } else {
-            return new XDate(str_date).toString(this.date_format).toUpperCase();
+            return new XDate(dateText).toString(this.date_format).toUpperCase();
         }
     },
 
@@ -239,6 +239,7 @@ GoogleCalendarDesklet.prototype = {
         if (this.eventsList.length > 0) {
             this.resetWidget();
             for (let event of this.eventsList) {
+                event.useTwentyFourHour = this.use_24h_clock;
                 this.addEventToWidget(event);
             }
         } else {
@@ -284,7 +285,7 @@ GoogleCalendarDesklet.prototype = {
     }
 }
 
-function main(metadata, desklet_id) {
-    let desklet = new GoogleCalendarDesklet(metadata, desklet_id);
+function main(metadata, deskletID) {
+    let desklet = new GoogleCalendarDesklet(metadata, deskletID);
     return desklet;
 };

@@ -32,9 +32,9 @@ const SpawnReader = function() {};
 
 const CalendarUtility = function() {};
 
-function Event(event_line, use_24h_clock) {
-    this._init(event_line, use_24h_clock);
-}
+function Event(eventLine, use_24h_clock) {
+    this._init(eventLine, use_24h_clock);
+};
 
 SpawnReader.prototype.spawn = function(path, command, func) {
 
@@ -67,74 +67,72 @@ CalendarUtility.prototype.label = function(text, zoom, textColor, leftAlign = tr
     label.style = "text-align : " + (leftAlign ? "left" : "right") + "; font-size:" + (fontSize * zoom) + "px; color: " + textColor;
     label.set_text(text);
     return label;
-}
+};
 
 CalendarUtility.prototype.container = function(isVertical = false) {
     return new St.BoxLayout({
         vertical: isVertical,
         style_class: "desklet"
     });
-}
+};
 
 CalendarUtility.prototype.window = function(cornerRadius, textColor, bgColor, transparency) {
     let window = this.container(isVertical = true);
     window.style = "padding: 10px; border-radius: " + cornerRadius + "px; background-color: " + (bgColor.replace(")", "," + (1.0 - transparency) + ")")).replace("rgb", "rgba") + "; color: " + textColor;
     return window;
-}
+};
 
 CalendarUtility.prototype.setTooltip = function(widget, text) {
     let tooltip = new Tooltips.Tooltip(widget);
     tooltip.set_text(text);
-}
+};
 
 CalendarUtility.prototype.formatParameterDate = function(value) {
     return value.getMonth() + 1 + "/" + value.getDate() + "/" + value.getFullYear();
-}
+};
 
 /**
  * Event prototype with the following attributes:
- * - start_date
- * - start_time
- * - start_date_str
- * - end_date
- * - end_time
+ * - startDate
+ * - startTime
+ * - startDateText
+ * - endDate
+ * - endTime
  * - name
- * - use_24h_clock
- * - MAX_LENGTH = 35
+ * - useTwentyFourHour
  */
 Event.prototype = {
-    _init: function(event_line, use_24h_clock) {
-        let properties = event_line.split("\t");
-        this.start_date = new XDate(properties[0]);
-        this.start_time = properties[1];
-        this.end_date = new XDate(properties[2]);
-        this.end_time = properties[3];
+    _init: function(eventLine, useTwentyFourHour) {
+        let properties = eventLine.split("\t");
+        this.startDate = new XDate(properties[0]);
+        this.startDateText = properties[0];
+        this.startTime = properties[1];
+        this.endDate = new XDate(properties[2]);
+        this.endTime = properties[3];
         this.name = properties[4];
-        this.use_24h_clock = use_24h_clock;
-        this.MAX_LENGTH = 35;
-        this.start_date_str = properties[0];
+        this.useTwentyFourHour = useTwentyFourHour;
     },
 
     formatEventDuration: function(date) {
-        var start_diff_days = this.start_date.diffDays(date);
-        var end_diff_days = this.end_date.diffDays(date);
-        if (start_diff_days == 0 && end_diff_days == 0) {
+        var startDiffDays = this.startDate.diffDays(date);
+        var endDiffDays = this.endDate.diffDays(date);
+        if (startDiffDays === 0 && endDiffDays === 0) {
             // Starting and ending at this date
-            return this._formatTime(this.start_time) + " - " + this._formatTime(this.end_time);
-        } else if ((start_diff_days == 0 && end_diff_days == -1 && this.start_time === "00:00") || (start_diff_days > 0 && end_diff_days < 0)) {
+            return this.formatTime(this.startTime) + " - " + this.formatTime(this.endTime);
+        } else if ((startDiffDays === 0 && endDiffDays === -1 && this.startTime === "00:00") || (startDiffDays > 0 && endDiffDays < 0)) {
             // Whole day
             return "";
-        } else if (start_diff_days == 0 && end_diff_days < 0) {
-            if (this.start_time == "00:00") {
+        } else if (startDiffDays === 0 && endDiffDays < 0) {
+            if (this.startTime === "00:00") {
                 // Whole day
                 return "";
             } else {
                 // starting at the middle of this day
-                return this._formatTime(this.start_time) + " \u2192";
+                return this.formatTime(this.startTime) + " \u2192";
             }
-        } else if (start_diff_days > 0 && end_diff_days == 0 && this.end_time != "00:00") {
+        } else if (startDiffDays > 0 && endDiffDays === 0 && this.endTime !== "00:00") {
             // Ending at the middle of this day
-            return "\u2192 " + this._formatTime(this.end_time);
+            return "\u2192 " + this.formatTime(this.endTime);
         } else {
             return "";
         }
@@ -143,8 +141,8 @@ Event.prototype = {
     /**
      * Format the time into 24 hours or 12 hours based on the user preference.
      */
-    _formatTime: function(time) {
-        if (this.use_24h_clock) {
+    formatTime: function(time) {
+        if (this.useTwentyFourHour) {
             return time;
         }
         time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
@@ -153,6 +151,6 @@ Event.prototype = {
             time[5] = +time[0] < 12 ? " AM" : " PM";
             time[0] = +time[0] % 12 || 12;
         }
-        return time.join('');
+        return time.join("");
     }
-}
+};
