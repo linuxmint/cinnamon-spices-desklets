@@ -58,7 +58,7 @@ GoogleCalendarDesklet.prototype = {
     /**
      * Initialize the desklet.
      */
-    _init: function(metadata, deskletID) {
+    _init(metadata, deskletID) {
         Desklet.Desklet.prototype._init.call(this, metadata, deskletID);
         this.metadata = metadata;
         this.maxSize = 7000;
@@ -99,14 +99,14 @@ GoogleCalendarDesklet.prototype = {
     /**
      * Called when user updates settings related to formatting.
      */
-    onDeskletFormatChanged: function() {
+    onDeskletFormatChanged() {
         this.updateAgenda();
     },
 
     /**
      * Called when user changes the settings which require new events.
      */
-    onCalendarParamsChanged: function() {
+    onCalendarParamsChanged() {
         if (this.updateID > 0) {
             Mainloop.source_remove(this.updateID);
         }
@@ -117,14 +117,14 @@ GoogleCalendarDesklet.prototype = {
     /**
      * Called when the desklet is removed.
      */
-    on_desklet_removed: function() {
+    on_desklet_removed() {
         Mainloop.source_remove(this.updateID);
     },
 
     /**
      * Called when user clicks on the desklet.
      */
-    on_desklet_clicked: function(event) {
+    on_desklet_clicked(event) {
         this.retrieveEvents();
     },
 
@@ -132,7 +132,7 @@ GoogleCalendarDesklet.prototype = {
     /**
      * Construct gcalcli command to retrieve events.
      */
-    getCalendarCommand: function() {
+    getCalendarCommand() {
         let dateTime = new Date();
         let command = ["gcalcli", "agenda"];
         command.push(CalendarUtility.formatParameterDate(dateTime));
@@ -160,7 +160,7 @@ GoogleCalendarDesklet.prototype = {
      * Convert string line to Event object and store in a list.
      * This method also add the event to widget.
      */
-    addEvent: function(eventLine) {
+    addEvent(eventLine) {
         let event = new Event(eventLine, this.use_24h_clock);
         this.eventsList.push(event);
         this.addEventToWidget(event);
@@ -169,7 +169,7 @@ GoogleCalendarDesklet.prototype = {
     /**
      * Append given event to widget.
      */
-    addEventToWidget: function(event) {
+    addEventToWidget(event) {
         // Create date header
         if (this.lastDate === null || event.startDate.diffDays(this.lastDate) <= -1) {
             let leadingNewline = "";
@@ -188,7 +188,7 @@ GoogleCalendarDesklet.prototype = {
 
         let dateText = event.formatEventDuration(this.lastDate);
         if (dateText) {
-            let lblDate = CalendarUtility.label(dateText, this.zoom, this.textcolor, leftAlign = false);
+            let lblDate = CalendarUtility.label(dateText, this.zoom, this.textcolor, false);
             lblEvent.width = TEXT_WIDTH;
             lblDate.width = DATE_WIDTH;
             box.add(lblDate);
@@ -200,7 +200,7 @@ GoogleCalendarDesklet.prototype = {
     /**
      * Reset internal states and widget CalendarUtility.
      */
-    resetWidget: function(resetEventsList = false) {
+    resetWidget(resetEventsList = false) {
         if (resetEventsList) {
             this.eventsList = [];
             this.today = new XDate().toString("yyyy-MM-dd");
@@ -214,7 +214,7 @@ GoogleCalendarDesklet.prototype = {
     /**
      * Updates every user set seconds
      **/
-    updateLoop: function() {
+    updateLoop() {
         this.retrieveEvents();
         this.updateID = Mainloop.timeout_add_seconds(this.delay * 60, Lang.bind(this, this.updateLoop));
     },
@@ -222,7 +222,7 @@ GoogleCalendarDesklet.prototype = {
     /*
      * Format date using given pattern.
      */
-    formatEventDate: function(dateText) {
+    formatEventDate(dateText) {
         if (this.today === dateText) {
             return new XDate(dateText).toString(this.today_format).toUpperCase();
         } else if (this.tomorrow === dateText) {
@@ -235,7 +235,7 @@ GoogleCalendarDesklet.prototype = {
     /**
      * Format the output of the command read from the file and display in the desklet.
      */
-    updateAgenda: function() {
+    updateAgenda() {
         if (this.eventsList.length > 0) {
             this.resetWidget();
             for (let event of this.eventsList) {
@@ -250,12 +250,12 @@ GoogleCalendarDesklet.prototype = {
     /**
      * Method to update the text/reading of the file
      **/
-    retrieveEvents: function() {
+    retrieveEvents() {
         if (this.updateInProgress) {
             return;
         }
         this.updateInProgress = true;
-        this.resetWidget(resetEventsList = true);
+        this.resetWidget(true);
         // Set temporary method
         let label = CalendarUtility.label(_("No events found..."), this.zoom, this.textcolor);
         this.window.add(label);

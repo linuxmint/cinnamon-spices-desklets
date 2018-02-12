@@ -32,8 +32,8 @@ const SpawnReader = function() {};
 
 const CalendarUtility = function() {};
 
-function Event(eventLine, use_24h_clock) {
-    this._init(eventLine, use_24h_clock);
+function Event(eventLine, useTwentyFourHour) {
+    this._init(eventLine, useTwentyFourHour);
 };
 
 SpawnReader.prototype.spawn = function(path, command, func) {
@@ -77,7 +77,7 @@ CalendarUtility.prototype.container = function(isVertical = false) {
 };
 
 CalendarUtility.prototype.window = function(cornerRadius, textColor, bgColor, transparency) {
-    let window = this.container(isVertical = true);
+    let window = this.container(true);
     window.style = "padding: 10px; border-radius: " + cornerRadius + "px; background-color: " + (bgColor.replace(")", "," + (1.0 - transparency) + ")")).replace("rgb", "rgba") + "; color: " + textColor;
     return window;
 };
@@ -102,7 +102,7 @@ CalendarUtility.prototype.formatParameterDate = function(value) {
  * - useTwentyFourHour
  */
 Event.prototype = {
-    _init: function(eventLine, useTwentyFourHour) {
+    _init(eventLine, useTwentyFourHour) {
         let properties = eventLine.split("\t");
         this.startDate = new XDate(properties[0]);
         this.startDateText = properties[0];
@@ -113,7 +113,7 @@ Event.prototype = {
         this.useTwentyFourHour = useTwentyFourHour;
     },
 
-    formatEventDuration: function(date) {
+    formatEventDuration(date) {
         var startDiffDays = this.startDate.diffDays(date);
         var endDiffDays = this.endDate.diffDays(date);
         if (startDiffDays === 0 && endDiffDays === 0) {
@@ -141,7 +141,7 @@ Event.prototype = {
     /**
      * Format the time into 24 hours or 12 hours based on the user preference.
      */
-    formatTime: function(time) {
+    formatTime(time) {
         if (this.useTwentyFourHour) {
             return time;
         }
