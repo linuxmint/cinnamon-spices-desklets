@@ -43,7 +43,7 @@ For the moment, the desklet has not been tested with different displays or aspec
   2018-02-16	14:30	2018-02-16	15:30	Cloud Computing
   ```
   If not, your `gcalcli` has some issues. Without fixing them, Google Calendar Desklet cannot be used.
-  > Please note than I cannot help on `gcalcli` related issues. If you could not resolve it, please report at: [gcalcli GitHub Issues](https://github.com/insanum/gcalcli/issues).
+  > Please note that I cannot help on `gcalcli` related issues. If you could not resolve them, please report at: [gcalcli GitHub Issues](https://github.com/insanum/gcalcli/issues).
 
 
   4. Add Google Calendar desklet and enjoy!!!
