@@ -23,7 +23,7 @@ const Lang = imports.lang;
 const St = imports.gi.St;
 const Tooltips = imports.ui.tooltips;
 
-imports.searchPath.unshift(GLib.get_home_dir() + '/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/lib');
+imports.searchPath.unshift(GLib.get_home_dir() + "/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/lib");
 
 
 const XDate = imports.xdate.XDate;
@@ -64,7 +64,7 @@ SpawnReader.prototype.read = function(stream, func) {
 
 CalendarUtility.prototype.label = function(text, zoom, textColor, leftAlign = true, fontSize = 14) {
     let label = new St.Label();
-    label.style = 'text-align : ' + (leftAlign ? 'left' : 'right') + '; font-size:' + (fontSize * zoom) + 'px; color: ' + textColor;
+    label.style = "text-align : " + (leftAlign ? "left" : "right") + "; font-size:" + (fontSize * zoom) + "px; color: " + textColor;
     label.set_text(text);
     return label;
 }
@@ -72,13 +72,13 @@ CalendarUtility.prototype.label = function(text, zoom, textColor, leftAlign = tr
 CalendarUtility.prototype.container = function(isVertical = false) {
     return new St.BoxLayout({
         vertical: isVertical,
-        style_class: 'desklet'
+        style_class: "desklet"
     });
 }
 
 CalendarUtility.prototype.window = function(cornerRadius, textColor, bgColor, transparency) {
     let window = this.container(isVertical = true);
-    window.style = "padding: 10px; border-radius: " + cornerRadius + "px; background-color: " + (bgColor.replace(")", "," + (1.0 - transparency) + ")")).replace('rgb', 'rgba') + "; color: " + textColor;
+    window.style = "padding: 10px; border-radius: " + cornerRadius + "px; background-color: " + (bgColor.replace(")", "," + (1.0 - transparency) + ")")).replace("rgb", "rgba") + "; color: " + textColor;
     return window;
 }
 
@@ -150,7 +150,7 @@ Event.prototype = {
         time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
         if (time.length > 1) {
             time = time.slice(1);
-            time[5] = +time[0] < 12 ? ' AM' : ' PM';
+            time[5] = +time[0] < 12 ? " AM" : " PM";
             time[0] = +time[0] % 12 || 12;
         }
         return time.join('');

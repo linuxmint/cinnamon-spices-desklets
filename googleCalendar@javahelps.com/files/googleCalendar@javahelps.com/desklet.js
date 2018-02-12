@@ -28,7 +28,7 @@ const Gettext = imports.gettext;
 const Gio = imports.gi.Gio;
 
 // Import local libraries
-imports.searchPath.unshift(GLib.get_home_dir() + '/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/lib');
+imports.searchPath.unshift(GLib.get_home_dir() + "/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/lib");
 const XDate = imports.utility.XDate;
 const SpawnReader = imports.utility.SpawnReader;
 const Event = imports.utility.Event;
@@ -74,44 +74,44 @@ GoogleCalendarDesklet.prototype = {
         // Bind the properties
         try {
             this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], this.update_id);
-            this.settings.bind("calendarName", "calendarName", this.on_setting_changed, null);
-            this.settings.bind("interval", "interval", this.on_setting_changed, null);
-            this.settings.bind("delay", "delay", this.on_setting_changed, null);
-            this.settings.bind("use_24h_clock", "use_24h_clock", this.on_calendar_format_changed, null);
-            this.settings.bind("date_format", "date_format", this.on_calendar_format_changed, null);
-            this.settings.bind("today_format", "today_format", this.on_calendar_format_changed, null);
-            this.settings.bind("tomorrow_format", "tomorrow_format", this.on_calendar_format_changed, null);
-            this.settings.bind("zoom", "zoom", this.on_setting_changed, null);
-            this.settings.bind("textcolor", "textcolor", this.on_setting_changed, null);
-            this.settings.bind("bgcolor", "bgcolor", this.on_setting_changed, null);
-            this.settings.bind("transparency", "transparency", this.on_setting_changed, null);
-            this.settings.bind("cornerradius", "cornerradius", this.on_setting_changed, null);
+            this.settings.bind("calendarName", "calendarName", this.onSettingChanged, null);
+            this.settings.bind("interval", "interval", this.onSettingChanged, null);
+            this.settings.bind("delay", "delay", this.onSettingChanged, null);
+            this.settings.bind("use_24h_clock", "use_24h_clock", this.onCalendarFormatChanged, null);
+            this.settings.bind("date_format", "date_format", this.onCalendarFormatChanged, null);
+            this.settings.bind("today_format", "today_format", this.onCalendarFormatChanged, null);
+            this.settings.bind("tomorrow_format", "tomorrow_format", this.onCalendarFormatChanged, null);
+            this.settings.bind("zoom", "zoom", this.onSettingChanged, null);
+            this.settings.bind("textcolor", "textcolor", this.onSettingChanged, null);
+            this.settings.bind("bgcolor", "bgcolor", this.onSettingChanged, null);
+            this.settings.bind("transparency", "transparency", this.onSettingChanged, null);
+            this.settings.bind("cornerradius", "cornerradius", this.onSettingChanged, null);
         } catch (e) {
             global.logError(e);
         }
         // Set header
         this.setHeader(_("Google Calendar"));
         // Start the update loop
-        this._update_loop();
+        this.updateLoop();
     },
 
     //////////////////////////////////////////// Event Listeners ////////////////////////////////////////////
     /**
      * Called when user updates settings related to formatting.
      */
-    on_calendar_format_changed: function() {
-        this.update_agenda();
+    onCalendarFormatChanged: function() {
+        this.updateAgenda();
     },
 
     /**
      * Called when user changes the settings which require new events.
      */
-    on_setting_changed: function() {
+    onSettingChanged: function() {
         if (this.update_id > 0) {
             Mainloop.source_remove(this.update_id);
         }
         this.update_id = null;
-        this.update_agenda();
+        this.retrieveEvents();
     },
 
     /**
@@ -125,30 +125,30 @@ GoogleCalendarDesklet.prototype = {
      * Called when user clicks on the desklet.
      */
     on_desklet_clicked: function(event) {
-        this._update();
+        this.retrieveEvents();
     },
 
     //////////////////////////////////////////// Utility Functions ////////////////////////////////////////////
     /**
      * Construct gcalcli command to retrieve events.
      */
-    _getCalendarCommand: function() {
+    getCalendarCommand: function() {
         var dateTime = new Date();
-        var command = ['gcalcli', 'agenda'];
+        var command = ["gcalcli", "agenda"];
         command.push(CalendarUtility.formatParameterDate(dateTime));
         if (this.interval == null) {
             this.interval = 7; // Default interval is 7 days
         }
         dateTime.setDate(dateTime.getDate() + this.interval);
         command.push(CalendarUtility.formatParameterDate(dateTime));
-        command.push('--nostarted');
-        command.push('--tsv');
+        command.push("--nostarted");
+        command.push("--tsv");
         if (this.calendarName != "") {
             var calendars = this.calendarName.split(",");
             for (var i = 0; i < calendars.length; i++) {
                 var calendar_name = calendars[i].trim();
                 if (calendar_name != "") {
-                    command.push('--calendar');
+                    command.push("--calendar");
                     command.push(calendar_name);
                 }
             }
@@ -160,16 +160,16 @@ GoogleCalendarDesklet.prototype = {
      * Convert string line to Event object and store in a list.
      * This method also add the event to widget.
      */
-    _addEvent: function(event_line) {
+    addEvent: function(event_line) {
         let event = new Event(event_line, this.use_24h_clock);
         this.eventsList.push(event);
-        this._addEventToWidget(event);
+        this.addEventToWidget(event);
     },
 
     /**
      * Append given event to widget.
      */
-    _addEventToWidget: function(event) {
+    addEventToWidget: function(event) {
         // Create date header
         if (this.lastDate == undefined || event.start_date.diffDays(this.lastDate) <= -1) {
             let leadingNewline = "";
@@ -200,7 +200,7 @@ GoogleCalendarDesklet.prototype = {
     /**
      * Reset internal states and widget CalendarUtility.
      */
-    reset_widget: function(resetEventsList = false) {
+    resetWidget: function(resetEventsList = false) {
         if (resetEventsList) {
             this.eventsList = [];
             this.today_str = new XDate().toString("yyyy-MM-dd");
@@ -214,9 +214,9 @@ GoogleCalendarDesklet.prototype = {
     /**
      * Updates every user set seconds
      **/
-    _update_loop: function() {
-        this._update();
-        this.update_id = Mainloop.timeout_add_seconds(this.delay * 60, Lang.bind(this, this._update_loop));
+    updateLoop: function() {
+        this.retrieveEvents();
+        this.update_id = Mainloop.timeout_add_seconds(this.delay * 60, Lang.bind(this, this.updateLoop));
     },
 
     /*
@@ -235,26 +235,26 @@ GoogleCalendarDesklet.prototype = {
     /**
      * Format the output of the command read from the file and display in the desklet.
      */
-    update_agenda: function() {
+    updateAgenda: function() {
         if (this.eventsList.length > 0) {
-            this.reset_widget();
+            this.resetWidget();
             for (let event of this.eventsList) {
-                this._addEventToWidget(event);
+                this.addEventToWidget(event);
             }
         } else {
-            this._update();
+            this.retrieveEvents();
         }
     },
 
     /**
      * Method to update the text/reading of the file
      **/
-    _update: function() {
+    retrieveEvents: function() {
         if (this.updateInProgress) {
             return;
         }
         this.updateInProgress = true;
-        this.reset_widget(resetEventsList = true);
+        this.resetWidget(resetEventsList = true);
         // Set temporary method
         let label = CalendarUtility.label(_("No events found..."), this.zoom, this.textcolor);
         this.window.add(label);
@@ -262,14 +262,14 @@ GoogleCalendarDesklet.prototype = {
         try {
             // Execute the command to retrieve the calendar events.
             reader = new SpawnReader();
-            reader.spawn('./', this._getCalendarCommand(), (output) => {
+            reader.spawn("./", this.getCalendarCommand(), (output) => {
                 if (!outputReceived) {
-                    this.reset_widget();
+                    this.resetWidget();
                     outputReceived = true;
                 }
                 let eventLine = output.toString();
                 try {
-                    this._addEvent(eventLine);
+                    this.addEvent(eventLine);
                 } catch (e) {
                     global.logError(e);
                     let label = CalendarUtility.label(_("Unable to retrieve events..."), this.zoom, this.textcolor);
