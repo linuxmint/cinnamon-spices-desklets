@@ -22,9 +22,16 @@ const GLib = imports.gi.GLib;
 const Lang = imports.lang;
 const St = imports.gi.St;
 const Tooltips = imports.ui.tooltips;
+const Gettext = imports.gettext;
 
 imports.searchPath.unshift(GLib.get_home_dir() + "/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/lib");
 
+const UUID = "googleCalendar@javahelps.com";
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+
+function _(str) {
+    return Gettext.dgettext(UUID, str);
+};
 
 const XDate = imports.xdate.XDate;
 
@@ -148,7 +155,7 @@ Event.prototype = {
         time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
         if (time.length > 1) {
             time = time.slice(1);
-            time[5] = +time[0] < 12 ? " AM" : " PM";
+            time[5] = +time[0] < 12 ? (" " + _("AM")) : (" " + _("PM"));
             time[0] = +time[0] % 12 || 12;
         }
         return time.join("");
