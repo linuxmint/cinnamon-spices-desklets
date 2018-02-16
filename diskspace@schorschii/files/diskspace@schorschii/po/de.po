@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2018-02-01 08:21+0100\n"
-"PO-Revision-Date: 2018-02-01 08:29+0100\n"
+"PO-Revision-Date: 2018-02-15 18:58+0100\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,10 +18,8 @@ msgstr ""
 msgid "Disk Space"
 msgstr "Speicherplatzanzeige"
 
-msgid "A simple desklet to display the filesystem or RAM usage."
-msgstr ""
-"Ein einfaches Desklet um die Nutzung eines Dateisystems oder des "
-"Arbeitsspeichers anzuzeigen."
+msgid "Displays the usage of a filesystem or RAM."
+msgstr "Zeigt die Auslastung eines Dateisystems oder des Arbeitsspeichers an."
 
 msgid "Settings for diskspace@schorschii"
 msgstr "Einstellungen für diskspace@schorschii"
@@ -52,14 +50,29 @@ msgstr "Wählen Sie das Dateisystem, welches Sie anzeigen möchten."
 msgid "Visual"
 msgstr "Visuelle Einstellungen"
 
+msgid "Text"
+msgstr "Text"
+
+msgid "Name and total size"
+msgstr "Bezeichnung und Kapazität"
+
+msgid "Used and total space"
+msgstr "Belegter Speicherplatz und Kapazität"
+
+msgid "Free and total space"
+msgstr "Freier Speicherplatz und Kapazität"
+
 msgid "Hide decorations"
 msgstr "Dekorationen verstecken"
+
+msgid "Use a custom circle color"
+msgstr "Kreisfarbe selbst festlegen"
 
 msgid "Circle color"
 msgstr "Kreisfarbe"
 
 msgid "Text color"
-msgstr "Testfarbe"
+msgstr "Textfarbe"
 
 msgid "Increase or decrease the size of this desklet using this scale factor."
 msgstr ""
@@ -77,7 +90,7 @@ msgstr ""
 "Eigenes Desklet-Label (nur sichtbar, wenn Dekorationen aktiviert sind)"
 
 msgid "Use a custom desklet label"
-msgstr "Eigenes Desklet-Label"
+msgstr "Ein eigenes Desklet-Label verwenden"
 
 msgid "Checking this box allows you to set a custom label in the field below."
 msgstr ""
