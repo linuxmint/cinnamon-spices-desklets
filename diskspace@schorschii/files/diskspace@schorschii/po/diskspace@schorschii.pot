@@ -18,7 +18,7 @@ msgstr ""
 msgid "Disk Space"
 msgstr ""
 
-msgid "A simple desklet to display the filesystem or RAM usage."
+msgid "Displays the usage of a filesystem or RAM."
 msgstr ""
 
 msgid "Settings for diskspace@schorschii"
@@ -48,7 +48,22 @@ msgstr ""
 msgid "Visual"
 msgstr ""
 
+msgid "Text"
+msgstr ""
+
+msgid "Name and total size"
+msgstr ""
+
+msgid "Used and total space"
+msgstr ""
+
+msgid "Free and total space"
+msgstr ""
+
 msgid "Hide decorations"
+msgstr ""
+
+msgid "Use a custom circle color"
 msgstr ""
 
 msgid "Circle color"
