@@ -161,3 +161,159 @@ msgstr ""
 #. googleCalendar@javahelps.com->metadata.json->description
 msgid "A desklet that displays your agenda based on Google Calendar"
 msgstr ""
+
+#: xdate.js:13
+msgid "January"
+msgstr ""
+
+#: xdate.js:13
+msgid "February"
+msgstr ""
+
+#: xdate.js:13
+msgid "March"
+msgstr ""
+
+#: xdate.js:13
+msgid "April"
+msgstr ""
+
+#: xdate.js:13
+msgid "May"
+msgstr ""
+
+#: xdate.js:13
+msgid "June"
+msgstr ""
+
+#: xdate.js:13
+msgid "July"
+msgstr ""
+
+#: xdate.js:13
+msgid "August"
+msgstr ""
+
+#: xdate.js:13
+msgid "September"
+msgstr ""
+
+#: xdate.js:13
+msgid "October"
+msgstr ""
+
+#: xdate.js:13
+msgid "November"
+msgstr ""
+
+#: xdate.js:13
+msgid "December"
+msgstr ""
+
+#: xdate.js:13
+msgid "Jan"
+msgstr ""
+
+#: xdate.js:13
+msgid "Feb"
+msgstr ""
+
+#: xdate.js:13
+msgid "Mar"
+msgstr ""
+
+#: xdate.js:13
+msgid "Apr"
+msgstr ""
+
+#: xdate.js:13
+msgid "Jun"
+msgstr ""
+
+#: xdate.js:13
+msgid "Jul"
+msgstr ""
+
+#: xdate.js:13
+msgid "Aug"
+msgstr ""
+
+#: xdate.js:13
+msgid "Sep"
+msgstr ""
+
+#: xdate.js:13
+msgid "Oct"
+msgstr ""
+
+#: xdate.js:13
+msgid "Nov"
+msgstr ""
+
+#: xdate.js:13
+msgid "Dec"
+msgstr ""
+
+#: xdate.js:13
+msgid "Sunday"
+msgstr ""
+
+#: xdate.js:13
+msgid "Monday"
+msgstr ""
+
+#: xdate.js:13
+msgid "Tuesday"
+msgstr ""
+
+#: xdate.js:13
+msgid "Wednesday"
+msgstr ""
+
+#: xdate.js:13
+msgid "Thursday"
+msgstr ""
+
+#: xdate.js:13
+msgid "Friday"
+msgstr ""
+
+#: xdate.js:13
+msgid "Saturday"
+msgstr ""
+
+#: xdate.js:13
+msgid "Sun"
+msgstr ""
+
+#: xdate.js:13
+msgid "Mon"
+msgstr ""
+
+#: xdate.js:13
+msgid "Tue"
+msgstr ""
+
+#: xdate.js:13
+msgid "Wed"
+msgstr ""
+
+#: xdate.js:13
+msgid "Thu"
+msgstr ""
+
+#: xdate.js:13
+msgid "Fri"
+msgstr ""
+
+#: xdate.js:13
+msgid "Sat"
+msgstr ""
+
+#: xdate.js:13
+msgid "AM"
+msgstr ""
+
+#: xdate.js:13
+msgid "PM"
+msgstr ""

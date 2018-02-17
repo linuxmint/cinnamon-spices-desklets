@@ -23,350 +23,269 @@ const GLib = imports.gi.GLib;
 const Lang = imports.lang;
 const Mainloop = imports.mainloop;
 const Settings = imports.ui.settings;
-const St = imports.gi.St;
 const Util = imports.misc.util;
 const Gettext = imports.gettext;
-imports.searchPath.unshift(GLib.get_home_dir() + '/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/lib');
-const XDate = imports.xdate.XDate;
-const uuid = "googleCalendar@javahelps.com";
-const separator = "\n\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\n";
-var today = new XDate();
-today.clearTime();
-var today_str = new XDate().toString("yyyy-MM-dd");
-var tomorrow_str = new XDate().addDays(1).toString("yyyy-MM-dd");
-Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale");
+const Gio = imports.gi.Gio;
+
+// Import local libraries
+imports.searchPath.unshift(GLib.get_home_dir() + "/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/lib");
+const XDate = imports.utility.XDate;
+const SpawnReader = imports.utility.SpawnReader;
+const Event = imports.utility.Event;
+const CalendarUtility = new imports.utility.CalendarUtility();
+
+
+const UUID = "googleCalendar@javahelps.com";
+const SEPARATOR_LINE = "\n\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015";
+
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+
+const TEXT_WIDTH = 250;
+const DATE_WIDTH = 150;
+const FONT_SIZE = 14;
 
 function _(str) {
-    return Gettext.dgettext(uuid, str);
+    return Gettext.dgettext(UUID, str);
 }
 
-function GoogleCalendarDesklet(metadata, desklet_id) {
-    this._init(metadata, desklet_id);
-}
-
-function Event(event_line, use_24h_clock) {
-    this._init(event_line, use_24h_clock);
-}
-
-/**
- * Event prototype with the following attributes:
- * - start_date
- * - start_time
- * - end_date
- * - end_time
- * - name
- * - use_24h_clock
- * - MAX_LENGTH = 35
- */
-Event.prototype = {
-    _init: function (event_line, use_24h_clock) {
-        let properties = event_line.split("\t");
-        this.start_date = new XDate(properties[0]);
-        this.start_time = properties[1];
-        this.end_date = new XDate(properties[2]);
-        this.end_time = properties[3];
-        this.name = properties[4];
-        this.use_24h_clock = use_24h_clock;
-        this.MAX_LENGTH = 35;
-    },
-
-    toString: function (date) {
-        var start_diff_days = this.start_date.diffDays(date);
-        var end_diff_days = this.end_date.diffDays(date);
-        if (start_diff_days == 0 && end_diff_days == 0) {
-            // Starting and ending at this date
-            return this.format(this.name, this.formatTime(this.start_time) + " - " + this.formatTime(this.end_time));
-        } else if ((start_diff_days == 0 && end_diff_days == -1 && this.start_time === "00:00") || (start_diff_days > 0 && end_diff_days < 0)) {
-            // Whole day
-            return this.format(this.name);
-        } else if (start_diff_days == 0 && end_diff_days < 0) {
-            if (this.start_time == "00:00") {
-                // Whole day
-                return this.format(this.name);
-            } else {
-                // starting at the middle of this day
-                return this.format(this.name, this.formatTime(this.start_time) + " \u2192");
-            }
-        } else if (start_diff_days > 0 && end_diff_days == 0 && this.end_time != "00:00") {
-            // Ending at the middle of this day
-            return this.format(this.name, (this.use_24h_clock ? "         " : "             ") + "\u2192 " + this.formatTime(this.end_time));
-        } else {
-            return "";
-        }
-    },
-
-    /**
-     * Format the time into 24 hours or 12 hours based on the user preference.
-     */
-    formatTime: function (time) {
-        if (this.use_24h_clock) {
-            return time;
-        }
-        time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
-        if (time.length > 1) {
-            time = time.slice(1);
-            time[5] = +time[0] < 12 ? ' AM' : ' PM';
-            time[0] = +time[0] % 12 || 12;
-        }
-        return time.join('');
-    },
-
-    /**
-     * Format an event name along with the interval.
-     * This function defines the maximum length of a calendar event.
-     */
-    format: function (name, interval = "") {
-        let max_length = 55;
-        if (interval) {
-            max_length = this.MAX_LENGTH;
-        }
-        name = (name.length > max_length) ? name.substr(0, max_length - 3) + '...' : name;
-        if (interval) {
-            name = name + '\t'.repeat((max_length - name.length) / 4);
-            return name + (this.use_24h_clock ? "\t" : " ") + interval;
-        } else {
-            return name;
-        }
-    }
+function GoogleCalendarDesklet(metadata, deskletID) {
+    this._init(metadata, deskletID);
 }
 
 GoogleCalendarDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
 
-    _init: function (metadata, desklet_id) {
-        Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
-
-        this.gcalcli_command = "gcalcli --refresh --nocache agenda --nostarted --tsv";
+    /**
+     * Initialize the desklet.
+     */
+    _init(metadata, deskletID) {
+        Desklet.Desklet.prototype._init.call(this, metadata, deskletID);
         this.metadata = metadata;
-        this.update_id = null;
+        this.maxSize = 7000;
+        this.updateID = null;
         this.updateInProgress = false;
-        this.mainDir = GLib.get_home_dir() + '/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/';
-        this.file = this.mainDir + "output.txt";
-        this.reading_file = false;
-        this.file_content = "";
+        this.eventsList;
+        this.lastDate = null;
+        this.today;
+        this.tomorrow;
 
         this._updateDecoration();
 
         // Bind the properties
         try {
-            this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], this.update_id);
-            this.settings.bind("calendarName", "calendarName", this.on_calendar_config_changed, null);
-            this.settings.bind("interval", "interval", this.on_calendar_config_changed, null);
-            this.settings.bind("delay", "delay", this.on_setting_changed, null);
-            this.settings.bind("use_24h_clock", "use_24h_clock", this.on_desklet_config_changed, null);
-            this.settings.bind("date_format", "date_format", this.on_desklet_config_changed, null);
-            this.settings.bind("today_format", "today_format", this.on_desklet_config_changed, null);
-            this.settings.bind("tomorrow_format", "tomorrow_format", this.on_desklet_config_changed, null);
-            this.settings.bind("zoom", "zoom", this.on_setting_changed, null);
-            this.settings.bind("textcolor", "textcolor", this.on_setting_changed, null);
-            this.settings.bind("bgcolor", "bgcolor", this.on_setting_changed, null);
-            this.settings.bind("transparency", "transparency", this.on_setting_changed, null);
-            this.settings.bind("cornerradius", "cornerradius", this.on_setting_changed, null);
+            this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], this.updateID);
+            this.settings.bind("calendarName", "calendarName", this.onCalendarParamsChanged, null);
+            this.settings.bind("interval", "interval", this.onCalendarParamsChanged, null);
+            this.settings.bind("delay", "delay", this.onCalendarParamsChanged, null);
+            this.settings.bind("use_24h_clock", "use_24h_clock", this.onDeskletFormatChanged, null);
+            this.settings.bind("date_format", "date_format", this.onDeskletFormatChanged, null);
+            this.settings.bind("today_format", "today_format", this.onDeskletFormatChanged, null);
+            this.settings.bind("tomorrow_format", "tomorrow_format", this.onDeskletFormatChanged, null);
+            this.settings.bind("zoom", "zoom", this.onDeskletFormatChanged, null);
+            this.settings.bind("textcolor", "textcolor", this.onDeskletFormatChanged, null);
+            this.settings.bind("bgcolor", "bgcolor", this.onDeskletFormatChanged, null);
+            this.settings.bind("transparency", "transparency", this.onDeskletFormatChanged, null);
+            this.settings.bind("cornerradius", "cornerradius", this.onDeskletFormatChanged, null);
         } catch (e) {
             global.logError(e);
         }
-
-        this.maxSize = 7000;
-
+        // Set header
         this.setHeader(_("Google Calendar"));
-        this.on_calendar_config_changed();
-        this.setup_display();
-        this._update();
+        // Start the update loop
+        this.updateLoop();
+    },
+
+    //////////////////////////////////////////// Event Listeners ////////////////////////////////////////////
+    /**
+     * Called when user updates settings related to formatting.
+     */
+    onDeskletFormatChanged() {
+        this.updateAgenda();
     },
 
     /**
-     * Update the 'gcalcli' command whenever the user has changed the preference.
+     * Called when user changes the settings which require new events.
      */
-    on_calendar_config_changed: function () {
-        var dateTime = new Date();
-        var command = "gcalcli agenda ";
-        command += "\"" + this.formatDate(dateTime) + "\" ";
+    onCalendarParamsChanged() {
+        if (this.updateID > 0) {
+            Mainloop.source_remove(this.updateID);
+        }
+        this.updateID = null;
+        this.retrieveEvents();
+    },
+
+    /**
+     * Called when the desklet is removed.
+     */
+    on_desklet_removed() {
+        Mainloop.source_remove(this.updateID);
+    },
+
+    /**
+     * Called when user clicks on the desklet.
+     */
+    on_desklet_clicked(event) {
+        this.retrieveEvents();
+    },
+
+    //////////////////////////////////////////// Utility Functions ////////////////////////////////////////////
+    /**
+     * Construct gcalcli command to retrieve events.
+     */
+    getCalendarCommand() {
+        let dateTime = new Date();
+        let command = ["gcalcli", "agenda"];
+        command.push(CalendarUtility.formatParameterDate(dateTime));
         if (this.interval == null) {
             this.interval = 7; // Default interval is 7 days
         }
         dateTime.setDate(dateTime.getDate() + this.interval);
-        command += "\"" + this.formatDate(dateTime) + "\" --nostarted --tsv";
+        command.push(CalendarUtility.formatParameterDate(dateTime));
+        command.push("--nostarted");
+        command.push("--tsv");
         if (this.calendarName != "") {
-            var calendars = this.calendarName.split(",");
-            for (var i = 0; i < calendars.length; i++) {
-                var name = calendars[i].trim();
-                if (name != "") {
-                    command = command + " --calendar \"" + name + "\"";
+            let calendars = this.calendarName.split(",");
+            for (let name of calendars) {
+                name = name.trim();
+                if (name !== "") {
+                    command.push("--calendar");
+                    command.push(name);
                 }
             }
         }
-        this.gcalcli_command = command;
-    },
-
-    on_desklet_config_changed: function () {
-        this.update_agenda();
-    },
-
-    on_setting_changed: function () {
-        if (this.update_id > 0) {
-            Mainloop.source_remove(this.update_id);
-        }
-        this.update_id = null;
-        this.setup_display();
-        this.update_agenda();
-    },
-
-    on_desklet_removed: function () {
-        Mainloop.source_remove(this.update_id);
-    },
-
-    setup_display: function () {
-        this.window = new St.BoxLayout({
-            vertical: true,
-            style_class: 'desklet'
-        });
-        this.window.style = "padding: 10px; border-radius: " + this.cornerradius + "px; background-color: " + (this.bgcolor.replace(")", "," + (1.0 - this.transparency) + ")")).replace('rgb', 'rgba') + "; color: " + this.textcolor;
-
-        this.label = new St.Label();
-        this.label.style = 'text-align : left; font-size:' + (14 * this.zoom) + 'px; color: ' + this.textcolor;
-
-        this.window.add(this.label);
-        this.setContent(this.window);
-        this.label.set_text(_("Retrieving events..."))
+        return command;
     },
 
     /**
-     * Updates every user set secconds
-     **/
-    _update_loop: function () {
-        this._update();
-        this.update_id = Mainloop.timeout_add_seconds(this.delay * 60, Lang.bind(this, this._update_loop));
+     * Convert string line to Event object and store in a list.
+     * This method also add the event to widget.
+     */
+    addEvent(eventLine) {
+        let event = new Event(eventLine, this.use_24h_clock);
+        this.eventsList.push(event);
+        this.addEventToWidget(event);
     },
 
-    formatDate: function (value) {
-        return value.getMonth() + 1 + "/" + value.getDate() + "/" + value.getFullYear();
+    /**
+     * Append given event to widget.
+     */
+    addEventToWidget(event) {
+        // Create date header
+        if (this.lastDate === null || event.startDate.diffDays(this.lastDate) <= -1) {
+            let leadingNewline = "";
+            if (this.lastDate) {
+                leadingNewline = "\n\n";
+            }
+            this.lastDate = event.startDate;
+            let label = CalendarUtility.label(leadingNewline + this.formatEventDate(event.startDateText) + SEPARATOR_LINE, this.zoom, this.textcolor);
+            this.window.add(label);
+        }
+
+        // Create event row
+        let box = CalendarUtility.container();
+        let lblEvent = CalendarUtility.label(event.name, this.zoom, this.textcolor);
+        box.add(lblEvent);
+
+        let dateText = event.formatEventDuration(this.lastDate);
+        if (dateText) {
+            let lblDate = CalendarUtility.label(dateText, this.zoom, this.textcolor, false);
+            lblEvent.width = TEXT_WIDTH;
+            lblDate.width = DATE_WIDTH;
+            box.add(lblDate);
+        }
+
+        this.window.add(box);
+    },
+
+    /**
+     * Reset internal states and widget CalendarUtility.
+     */
+    resetWidget(resetEventsList = false) {
+        if (resetEventsList) {
+            this.eventsList = [];
+            this.today = new XDate().toString("yyyy-MM-dd");
+            this.tomorrow = new XDate().addDays(1).toString("yyyy-MM-dd");
+        }
+        this.lastDate = null;
+        this.window = CalendarUtility.window(this.cornerradius, this.textcolor, this.bgcolor, this.transparency);
+        this.setContent(this.window);
+    },
+
+    /**
+     * Updates every user set seconds
+     **/
+    updateLoop() {
+        this.retrieveEvents();
+        this.updateID = Mainloop.timeout_add_seconds(this.delay * 60, Lang.bind(this, this.updateLoop));
     },
 
     /*
      * Format date using given pattern.
      */
-    formatEventDate: function (str_date) {
-        if (today_str === str_date) {
-            return new XDate(str_date).toString(this.today_format).toUpperCase();
-        } else if (tomorrow_str === str_date) {
-            return new XDate(str_date).toString(this.tomorrow_format).toUpperCase();
+    formatEventDate(dateText) {
+        if (this.today === dateText) {
+            return new XDate(dateText).toString(this.today_format).toUpperCase();
+        } else if (this.tomorrow === dateText) {
+            return new XDate(dateText).toString(this.tomorrow_format).toUpperCase();
         } else {
-            return new XDate(str_date).toString(this.date_format).toUpperCase();
+            return new XDate(dateText).toString(this.date_format).toUpperCase();
         }
-    },
-
-    formatFileContent: function (commandOutput, date_format = "dddd, MMMM dd", use_24h_clock = false) {
-        let content = "";
-        let currentDate = "";
-        let events = commandOutput.split("\n");
-        let noOfEvents = events.length;
-        let dates = new Set();
-        var events_array = [];
-        for (let i = 0; i < noOfEvents; i++) {
-            let properties = events[i].split("\t");
-            dates.add(properties[0]);
-            events_array.push(new Event(events[i], this.use_24h_clock));
-        }
-
-        for (let d of dates) {
-            let date = new XDate(d);
-            if (today.diffDays(date) >= 0) {
-                content += this.formatEventDate(d) + separator;
-                for (var i = 0; i < events_array.length; i++) {
-                    let txt = events_array[i].toString(date);
-                    if (txt) {
-                        content += txt + "\n";
-                    }
-                }
-                content += "\n\n";
-            }
-        }
-
-        return content.trim();
     },
 
     /**
      * Format the output of the command read from the file and display in the desklet.
      */
-    update_agenda: function () {
-        if (this.file_content) {
-            let content = "";
-            try {
-                content = this.formatFileContent(this.file_content, this.date_format, this.use_24h_clock);
-            } catch (e) {
-                global.logError(e);
-                content = _("Unable to retrieve events...")
+    updateAgenda() {
+        if (this.eventsList.length > 0) {
+            this.resetWidget();
+            for (let event of this.eventsList) {
+                event.useTwentyFourHour = this.use_24h_clock;
+                this.addEventToWidget(event);
             }
-            this.label.set_text(content);
         } else {
-            this.read_file();
-        }
-    },
-
-    /**
-     * Read the output file generated by the command.
-     */
-    read_file: function () {
-
-        if (this.reading_file) {
-            return;
-        }
-        try {
-            this.reading_file = true;
-
-            let output_file_content = Cinnamon.get_file_contents_utf8_sync(this.file).toString();
-            let content = "";
-            let commandOutput = output_file_content.substring(0, Math.min(output_file_content.length, this.maxSize)).trim();
-
-            if (commandOutput != "") {
-                try {
-                    content = this.formatFileContent(commandOutput, this.date_format, this.use_24h_clock);
-                    this.file_content = commandOutput;
-                } catch (e) {
-                    global.logError(e);
-                    content = _("Unable to retrieve events...")
-                }
-            } else {
-                content = _("No events found...")
-            }
-
-            this.label.set_text(content);
-
-        } catch (e) {
-            global.logError(e);
-        } finally {
-            this.reading_file = false;
+            this.retrieveEvents();
         }
     },
 
     /**
      * Method to update the text/reading of the file
      **/
-    _update: function () {
+    retrieveEvents() {
         if (this.updateInProgress) {
             return;
         }
         this.updateInProgress = true;
+        this.resetWidget(true);
+        // Set temporary method
+        let label = CalendarUtility.label(_("No events found..."), this.zoom, this.textcolor);
+        this.window.add(label);
+        var outputReceived = false;
         try {
             // Execute the command to retrieve the calendar events.
-            Util.spawnCommandLine("bash " + this.mainDir + "execute_command.sh \"" + this.gcalcli_command + "\"");
-            Mainloop.timeout_add_seconds(5, Lang.bind(this, this.read_file));
+            reader = new SpawnReader();
+            reader.spawn("./", this.getCalendarCommand(), (output) => {
+                if (!outputReceived) {
+                    this.resetWidget();
+                    outputReceived = true;
+                }
+                let eventLine = output.toString();
+                try {
+                    this.addEvent(eventLine);
+                } catch (e) {
+                    global.logError(e);
+                    let label = CalendarUtility.label(_("Unable to retrieve events..."), this.zoom, this.textcolor);
+                    this.window.add(label);
+                }
+            });
         } catch (e) {
             global.logError(e);
         } finally {
             this.updateInProgress = false;
         }
-    },
-
-    /**
-     * Update the calendar when user clicks on the desklet.
-     */
-    on_desklet_clicked: function (event) {
-        this._update();
     }
 }
 
-function main(metadata, desklet_id) {
-    let desklet = new GoogleCalendarDesklet(metadata, desklet_id);
+function main(metadata, deskletID) {
+    let desklet = new GoogleCalendarDesklet(metadata, deskletID);
     return desklet;
-}
+};
