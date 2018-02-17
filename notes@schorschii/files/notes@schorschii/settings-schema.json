@@ -33,7 +33,8 @@
         "description" : "Notes style",
         "options" : {
             "White" : "bg_white.svg",
-            "Yellow": "bg_yellow.svg"
+            "Yellow": "bg_yellow.svg",
+            "None": "none"
         },
         "tooltip" : "Select the background graphic you would like to use."
     },
