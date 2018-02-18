@@ -7,16 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-23 22:00+0500\n"
-"PO-Revision-Date: 2017-10-23 22:31+0500\n"
+"POT-Creation-Date: 2018-02-18 22:38+0500\n"
+"PO-Revision-Date: 2018-02-18 22:48+0500\n"
+"Last-Translator: Ilis <ilis@inbox.ru>\n"
 "Language-Team: \n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.7.1\n"
-"Last-Translator: Ilis <ilis@inbox.ru>\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"Language: ru\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. googleCalendar@javahelps.com->metadata.json->name
 #: desklet.js:171
@@ -162,3 +163,159 @@ msgstr "Стиль десклета"
 #. googleCalendar@javahelps.com->metadata.json->description
 msgid "A desklet that displays your agenda based on Google Calendar"
 msgstr "Десклет, показывающий повестку дня из Календаря Google"
+
+#: xdate.js:13
+msgid "January"
+msgstr "Январь"
+
+#: xdate.js:13
+msgid "February"
+msgstr "Февраль"
+
+#: xdate.js:13
+msgid "March"
+msgstr "Март"
+
+#: xdate.js:13
+msgid "April"
+msgstr "Апрель"
+
+#: xdate.js:13
+msgid "May"
+msgstr "Май"
+
+#: xdate.js:13
+msgid "June"
+msgstr "Июнь"
+
+#: xdate.js:13
+msgid "July"
+msgstr "Июль"
+
+#: xdate.js:13
+msgid "August"
+msgstr "Август"
+
+#: xdate.js:13
+msgid "September"
+msgstr "Сентябрь"
+
+#: xdate.js:13
+msgid "October"
+msgstr "Октябрь"
+
+#: xdate.js:13
+msgid "November"
+msgstr "Ноябрь"
+
+#: xdate.js:13
+msgid "December"
+msgstr "Декабрь"
+
+#: xdate.js:13
+msgid "Jan"
+msgstr "Янв"
+
+#: xdate.js:13
+msgid "Feb"
+msgstr "Фев"
+
+#: xdate.js:13
+msgid "Mar"
+msgstr "Мар"
+
+#: xdate.js:13
+msgid "Apr"
+msgstr "Апр"
+
+#: xdate.js:13
+msgid "Jun"
+msgstr "Июн"
+
+#: xdate.js:13
+msgid "Jul"
+msgstr "Июл"
+
+#: xdate.js:13
+msgid "Aug"
+msgstr "Авг"
+
+#: xdate.js:13
+msgid "Sep"
+msgstr "Сен"
+
+#: xdate.js:13
+msgid "Oct"
+msgstr "Окт"
+
+#: xdate.js:13
+msgid "Nov"
+msgstr "Ноя"
+
+#: xdate.js:13
+msgid "Dec"
+msgstr "Дек"
+
+#: xdate.js:13
+msgid "Sunday"
+msgstr "Воскресенье"
+
+#: xdate.js:13
+msgid "Monday"
+msgstr "Понедельник"
+
+#: xdate.js:13
+msgid "Tuesday"
+msgstr "Вторник"
+
+#: xdate.js:13
+msgid "Wednesday"
+msgstr "Среда"
+
+#: xdate.js:13
+msgid "Thursday"
+msgstr "Четверг"
+
+#: xdate.js:13
+msgid "Friday"
+msgstr "Пятница"
+
+#: xdate.js:13
+msgid "Saturday"
+msgstr "Суббота"
+
+#: xdate.js:13
+msgid "Sun"
+msgstr "Вс"
+
+#: xdate.js:13
+msgid "Mon"
+msgstr "Пн"
+
+#: xdate.js:13
+msgid "Tue"
+msgstr "Вт"
+
+#: xdate.js:13
+msgid "Wed"
+msgstr "Ср"
+
+#: xdate.js:13
+msgid "Thu"
+msgstr "Чт"
+
+#: xdate.js:13
+msgid "Fri"
+msgstr "Пт"
+
+#: xdate.js:13
+msgid "Sat"
+msgstr "Сб"
+
+#: xdate.js:13
+msgid "AM"
+msgstr "ппн"
+
+#: xdate.js:13
+msgid "PM"
+msgstr "ппд"
