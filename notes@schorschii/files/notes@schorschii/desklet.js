@@ -132,7 +132,9 @@ MyDesklet.prototype = {
 				this.bg_img = "bg_yellow.svg";
 
 			// create elements
-			this.notepad = getImageAtScale(DESKLET_ROOT + "/img/" + this.bg_img, this.desklet_width, this.desklet_height); // background
+			this.notepad = this.bg_img === "none"
+				? new Clutter.Actor()
+				: getImageAtScale(DESKLET_ROOT + "/img/" + this.bg_img, this.desklet_width, this.desklet_height); // background
 
 			this.container = new St.Group(); // container for labels
 
