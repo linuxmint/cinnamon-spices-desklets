@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bbcwx\n"
 "Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
 "POT-Creation-Date: 2018-01-07 21:05+0000\n"
-"PO-Revision-Date: 2018-02-09 08:37+0100\n"
+"PO-Revision-Date: 2018-02-26 12:49+0100\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "Language: ca\n"
@@ -21,31 +21,31 @@ msgstr ""
 #. # Days of the week
 #: desklet.js:102
 msgid "Mon"
-msgstr "Dl"
+msgstr "dl."
 
 #: desklet.js:102
 msgid "Tue"
-msgstr "Dm"
+msgstr "dt."
 
 #: desklet.js:102
 msgid "Wed"
-msgstr "Dc"
+msgstr "dc."
 
 #: desklet.js:102
 msgid "Thu"
-msgstr "Dj"
+msgstr "dj."
 
 #: desklet.js:102
 msgid "Fri"
-msgstr "Dv"
+msgstr "dv."
 
 #: desklet.js:102
 msgid "Sat"
-msgstr "Ds"
+msgstr "ds."
 
 #: desklet.js:102
 msgid "Sun"
-msgstr "Dg"
+msgstr "dg."
 
 #. # The desklet title
 #: desklet.js:178
