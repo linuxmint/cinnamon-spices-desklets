@@ -1,0 +1,109 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2018-01-12 18:07+0100\n"
+"PO-Revision-Date: 2018-02-26 13:30+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
+"Language: ca\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+msgid "Disk Space"
+msgstr "Espai de disc"
+
+msgid "Displays the usage of a filesystem or RAM."
+msgstr "Mostra l'ús d'un sistema de fitxers o de la RAM."
+
+msgid "Settings for diskspace@schorschii"
+msgstr "Ajusts per diskspace@schorschii"
+
+msgid "General"
+msgstr "General"
+
+msgid "Monitor a file system or RAM usage"
+msgstr "Monitora l'ús d'un sistema de fitxers o de la RAM"
+
+msgid "Choose, if this desklet should show file system or RAM usage."
+msgstr ""
+"Trieu, si aquesta miniaplicació d'escriptori ha de mostrar l'ús d'un "
+"sistema de fitxers o de la RAM."
+
+msgid "Filesystem"
+msgstr "Sistema de fitxers"
+
+msgid "RAM"
+msgstr "RAM"
+
+msgid "Filesystem to monitor"
+msgstr "Sistema de fitxers a monitorar"
+
+msgid "Select the file system, which you want to monitor."
+msgstr "Seleccioneu el sistema de fitxers que voleu monitorar."
+
+msgid "Visual"
+msgstr "Visual"
+
+msgid "Text"
+msgstr "Text"
+
+msgid "Name and total size"
+msgstr "Nom i mida total"
+
+msgid "Used and total space"
+msgstr "Espai utilitzat i total"
+
+msgid "Free and total space"
+msgstr "Espai lliure i total"
+
+msgid "Hide decorations"
+msgstr "Oculta les decoracions"
+
+msgid "Use a custom circle color"
+msgstr "Utilitza un color de cercle personalitzat"
+
+msgid "Circle color"
+msgstr "Color del cercle"
+
+msgid "Text color"
+msgstr "Color del text"
+
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Augmenta o disminueix la mida d'aquesta miniaplicació d'escriptori amb "
+"aquest factor de canvi d'escala."
+
+msgid "Desklet size"
+msgstr "Mida de la miniaplicació d'escriptori"
+
+msgid "scale factor"
+msgstr "factor de canvi d'escala"
+
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Etiqueta de miniaplicació d'escriptori personalitzada (només és visible si "
+"les decoracions estan habilitades)"
+
+msgid "Use a custom desklet label"
+msgstr "Utilitza una etiqueta de miniaplicació d'escriptori personalitzada"
+
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Si marqueu aquesta casella, podeu establir una etiqueta personalitzada al "
+"camp següent."
+
+msgid "Custom desklet label"
+msgstr "Etiqueta de miniaplicació d'escriptori personalitzada"
+
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr ""
+"Establiu aquí la vostra etiqueta personalitzada. Aquest camp no està "
+"disponible a menys que la casella de selecció de dalt estigui habilitada."
