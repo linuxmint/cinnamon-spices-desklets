@@ -52,9 +52,15 @@ ExtensionItem.prototype = {
 
             if (isCinnamonGTE38) {
                 this.definitions = definitions;
-                this.instances = definitions.map(function(instance) {
-                    return instance.applet ? instance.applet : instance.desklet ? instance.desklet : instance;
-                });
+                for (let i = 0; i < this.definitions.length; i++) {
+                    let instance = this.definitions[i];
+                    if (instance.applet) {
+                        instance = instance.applet;
+                    } else if (instance.desklet) {
+                        instance = instance.desklet;
+                    }
+                    this.instances.push(instance);
+                }
             } else {
                this.definitions = type.maps.objects[this.uuid]._loadedDefinitions;
                for( let id in this.definitions ) this.instances.push(this.definitions[id]);
@@ -312,20 +318,30 @@ ExtensionInterface.prototype = {
 
         if (isCinnamonGTE38) {
             let extensions = Extension.extensions;
+            let extensionsAndSearchProviders = [];
+            for (let i = 0; i < extensions.length; i++) {
+                if (extensions[i].lowerType === 'extension' || extensions[i].lowerType === 'search_provider') {
+                    extensionsAndSearchProviders.push(extensions[i]);
+                }
+            }
             let instances = AppletManager.definitions
                 .concat(DeskletManager.definitions)
-                .concat(extensions.filter(function(extension) {
-                    return extension.lowerType === 'extension' || extension.lowerType === 'search_provider';
-                }))
+                .concat(extensionsAndSearchProviders)
             for (let key in Extension.Type) {
-                let hasChildren = false;
                 let type = Extension.Type[key];
+                this.pages[key].destroy_all_children();
+
+                let hasChildren = false;
                 for (let _uuid in type.legacyMeta) {
-                    let meta = Extension.extensions.filter(extension => extension.uuid === _uuid)[0].meta;
-                    if ( !meta.name ) continue;
+                    let meta = extensions.filter(function(extension) {
+                        return extension.uuid === _uuid;
+                    })[0].meta;
+
+                    if (!meta.name) continue;
+
                     try {
                         let definitions = [];
-                        for (var i = 0; i < instances.length; i++) {
+                        for (let i = 0; i < instances.length; i++) {
                             if (instances[i].uuid !== _uuid) {
                                 continue
                             }
@@ -333,7 +349,7 @@ ExtensionInterface.prototype = {
                         }
                         let extension = new ExtensionItem(meta, type, definitions);
                         this.pages[key].add_actor(extension.actor);
-                    } catch(e) {
+                    } catch (e) {
                         global.logError(_("failed to create extension item for uuid") + " " + _uuid);
                         global.logError(e);
                     }
