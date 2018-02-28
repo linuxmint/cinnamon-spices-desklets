@@ -1,14 +1,17 @@
 const Main = imports.ui.main;
-const PopupMenu = imports.ui.popupMenu;
 const Cinnamon = imports.gi.Cinnamon;
-const GLib = imports.gi.GLib;
 const St = imports.gi.St;
 const Gettext = imports.gettext;
 const Lang = imports.lang;
 
 const uuid = "devTools@scollins";
-const DeskletDir = imports.ui.deskletManager.desklets[uuid];
-const TabPanel = DeskletDir.tabPanel;
+let TabPanel;
+if (typeof require !== 'undefined') {
+    TabPanel = require('./tabPanel');
+} else {
+    const DeskletDir = imports.ui.deskletManager.desklets[uuid];
+    TabPanel = DeskletDir.tabPanel;
+}
 
 
 let controller;

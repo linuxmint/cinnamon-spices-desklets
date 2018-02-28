@@ -20,14 +20,30 @@ const Signals = imports.signals;
 
 // devtools imports
 const uuid = "devTools@scollins";
-const Tab = imports.desklets[uuid].tab;
-const Sandbox = imports.desklets[uuid].sandbox;
-const Windows = imports.desklets[uuid].windows;
-const Extensions = imports.desklets[uuid].extensions;
-const ErrorLog = imports.desklets[uuid].errorLog;
-const Terminal = imports.desklets[uuid].terminal;
-const Inspect = imports.desklets[uuid].inspect;
-const Text = imports.desklets[uuid].text;
+
+
+let Tab, Sandbox, Windows, Extensions, ErrorLog, Terminal, Inspect, Text;
+if (typeof require !== 'undefined') {
+    Tab = require('./tab');
+    Sandbox = require('./sandbox');
+    Windows = require('./windows');
+    Extensions = require('./extensions');
+    ErrorLog = require('./errorLog');
+    Terminal = require('./terminal');
+    Inspect = require('./inspect');
+    Text = require('./text');
+} else {
+    const DeskletDir = imports.ui.deskletManager.desklets[uuid];
+    Tab = DeskletDir.tab;
+    Sandbox = DeskletDir.sandbox;
+    Windows = DeskletDir.windows;
+    Extensions = DeskletDir.extensions;
+    ErrorLog = DeskletDir.errorLog;
+    Terminal = DeskletDir.terminal;
+    Inspect = DeskletDir.inspect;
+    Text = DeskletDir.text;
+}
+
 
 //global constants
 const POPUP_MENU_ICON_SIZE = 24;

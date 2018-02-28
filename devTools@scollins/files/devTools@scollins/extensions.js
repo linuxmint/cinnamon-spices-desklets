@@ -1,25 +1,29 @@
 const AppletManager = imports.ui.appletManager;
-const CheckBox = imports.ui.checkBox;
-const Desklet = imports.ui.desklet;
 const DeskletManager = imports.ui.deskletManager;
 const Extension = imports.ui.extension;
 const Flashspot = imports.ui.flashspot;
-const PopupMenu = imports.ui.popupMenu;
 const Tooltips = imports.ui.tooltips;
 const Util = imports.misc.util;
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
-const Pango = imports.gi.Pango;
 const St = imports.gi.St;
 const Gettext = imports.gettext;
 const Lang = imports.lang;
 const Mainloop = imports.mainloop;
 
 const uuid = "devTools@scollins";
-const DeskletDir = imports.ui.deskletManager.desklets[uuid];
-const Tab = DeskletDir.tab;
-const TabPanel = DeskletDir.tabPanel;
-const CollapseButton = DeskletDir.collapseButton;
+const isCinnamonGTE38 = typeof require !== 'undefined';
+let Tab, TabPanel, CollapseButton;
+if (isCinnamonGTE38) {
+    Tab = require('./tab');
+    TabPanel = require('./tabPanel');
+    CollapseButton = require('./collapseButton');
+} else {
+    const DeskletDir = imports.ui.deskletManager.desklets[uuid];
+    Tab = DeskletDir.tab;
+    TabPanel = DeskletDir.tabPanel;
+    CollapseButton = DeskletDir.collapseButton;
+}
 
 
 let controller;
@@ -34,19 +38,28 @@ function _(str, domain) {
     return Gettext.gettext(str);
 }
 
-function ExtensionItem(meta, type) {
-    this._init(meta, type);
+function ExtensionItem(meta, type, definitions) {
+    this._init(meta, type, definitions);
 }
 
 ExtensionItem.prototype = {
-    _init: function(meta, type) {
+    _init: function(meta, type, definitions) {
         try {
             this.meta = meta;
             this.uuid = meta.uuid;
             this.type = type;
-            this.definitions = type.maps.objects[this.uuid]._loadedDefinitions;
             this.instances = [];
-            for( let id in this.definitions ) this.instances.push(this.definitions[id]);
+
+            if (isCinnamonGTE38) {
+                this.definitions = definitions;
+                this.instances = definitions.map(function(instance) {
+                    return instance.applet ? instance.applet : instance.desklet ? instance.desklet : instance;
+                });
+            } else {
+               this.definitions = type.maps.objects[this.uuid]._loadedDefinitions;
+               for( let id in this.definitions ) this.instances.push(this.definitions[id]);
+            }
+
             let maxInstances = meta["max-instances"];
             if ( maxInstances == -1 ) maxInstances = _("Infinite");
             this.isMultiInstance = maxInstances && maxInstances != 1;
@@ -124,7 +137,8 @@ ExtensionItem.prototype = {
 
                 for ( let i = 0; i < this.instances.length; i++ ) {
                     let instance = this.instances[i];
-                    let id = instance[type.name.toLowerCase()+"_id"];
+                    let idKey = type.name.toLowerCase()+"_id";
+                    let id = isCinnamonGTE38 ? this.definitions[i][idKey] : instance[idKey];
 
                     let instanceBox = new St.BoxLayout({ style_class: "devtools-extensions-instanceBox" });
                     instancesContainer.add_actor(instanceBox);
@@ -223,11 +237,19 @@ ExtensionItem.prototype = {
     },
 
     getXletObject: function(id) {
+        if (isCinnamonGTE38) {
+            let refInstances = this.definitions.filter((instance) => {
+                let key = this.type.name.toLowerCase() + '_id';
+                return instance[key] === id;
+            });
+            return refInstances[0];
+        }
         if ( !this.isMultiInstance ) {
             id = Object.keys(this.definitions)[0];
         }
 
-        if ( this.type == Extension.Type.APPLET ) return AppletManager.appletObj[id];
+        if ( this.type == Extension.Type.APPLET )
+            return AppletManager.appletObj[id];
         else return DeskletManager.deskletObj[id];
     }
 }
@@ -287,6 +309,44 @@ ExtensionInterface.prototype = {
     reload: function() {
         this.reloadId = -1;
         if ( !this.selected ) return;
+
+        if (isCinnamonGTE38) {
+            let extensions = Extension.extensions;
+            let instances = AppletManager.definitions
+                .concat(DeskletManager.definitions)
+                .concat(extensions.filter(function(extension) {
+                    return extension.lowerType === 'extension' || extension.lowerType === 'search_provider';
+                }))
+            for (let key in Extension.Type) {
+                let hasChildren = false;
+                let type = Extension.Type[key];
+                for (let _uuid in type.legacyMeta) {
+                    let meta = Extension.extensions.filter(extension => extension.uuid === _uuid)[0].meta;
+                    if ( !meta.name ) continue;
+                    try {
+                        let definitions = [];
+                        for (var i = 0; i < instances.length; i++) {
+                            if (instances[i].uuid !== _uuid) {
+                                continue
+                            }
+                            definitions.push(instances[i])
+                        }
+                        let extension = new ExtensionItem(meta, type, definitions);
+                        this.pages[key].add_actor(extension.actor);
+                    } catch(e) {
+                        global.logError(_("failed to create extension item for uuid") + " " + _uuid);
+                        global.logError(e);
+                    }
+                    hasChildren = true;
+                }
+                if ( !hasChildren ) {
+                    let messageBin = new St.Bin({ y_expand: true });
+                    this.pages[key].add_actor(messageBin);
+                    messageBin.set_child(new St.Label({ text: _("No extensions of this type are enabled") }));
+                }
+            }
+            return;
+        }
 
         for ( let key in Extension.Type ) {
             let type = Extension.Type[key];

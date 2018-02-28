@@ -12,10 +12,15 @@ const Lang = imports.lang;
 const Signals = imports.signals;
 
 const uuid = "devTools@scollins";
-const DeskletDir = imports.ui.deskletManager.desklets[uuid];
-const TabPanel = DeskletDir.tabPanel;
-const CollapseButton = DeskletDir.collapseButton;
-const Windows = DeskletDir.windows;
+let TabPanel, Windows;
+if (typeof require !== 'undefined') {
+    TabPanel = require('./tabPanel');
+    Windows = require('./windows');
+} else {
+    const DeskletDir = imports.ui.deskletManager.desklets[uuid];
+    TabPanel = DeskletDir.tabPanel;
+    Windows = DeskletDir.windows;
+}
 
 const INSPECTABLE_TYPES = ["object","array","map","actor","window","applet","desklet"];
 
