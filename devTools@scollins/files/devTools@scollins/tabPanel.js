@@ -1,8 +1,13 @@
 const GLib = imports.gi.GLib;
 const St = imports.gi.St;
 const uuid = "devTools@scollins";
-const DeskletDir = imports.ui.deskletManager.desklets[uuid];
-const Tab = DeskletDir.tab;
+let Tab;
+if (typeof require !== 'undefined') {
+    Tab = require('./tab');
+} else {
+    const DeskletDir = imports.ui.deskletManager.desklets[uuid];
+    Tab = DeskletDir.tab;
+}
 const Gettext = imports.gettext;
 Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
 

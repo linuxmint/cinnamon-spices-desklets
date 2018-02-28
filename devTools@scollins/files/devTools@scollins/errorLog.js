@@ -4,15 +4,22 @@ const Main = imports.ui.main;
 const Cinnamon = imports.gi.Cinnamon;
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
-const Pango = imports.gi.Pango;
 const St = imports.gi.St;
 const Lang = imports.lang;
 const Mainloop = imports.mainloop;
 
 const uuid = "devTools@scollins";
-const DeskletDir = imports.ui.deskletManager.desklets[uuid];
-const TabPanel = DeskletDir.tabPanel;
-const Text = DeskletDir.text;
+
+let TabPanel, Text;
+if (typeof require !== 'undefined') {
+    TabPanel = require('./tabPanel');
+    Text = require('./text');
+} else {
+    const DeskletDir = imports.ui.deskletManager.desklets[uuid];
+    TabPanel = DeskletDir.tabPanel;
+    Text = DeskletDir.text;
+}
+
 
 const CINNAMON_LOG_REFRESH_TIMEOUT = 1;
 const XSESSION_LOG_REFRESH_TIMEOUT = 10;

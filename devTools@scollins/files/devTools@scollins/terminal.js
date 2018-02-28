@@ -1,5 +1,4 @@
 const Main = imports.ui.main;
-const PopupMenu = imports.ui.popupMenu;
 const Cinnamon = imports.gi.Cinnamon;
 const Clutter = imports.gi.Clutter;
 const Gio = imports.gi.Gio;
@@ -11,9 +10,15 @@ const Lang = imports.lang;
 const Mainloop = imports.mainloop;
 
 const uuid = "devTools@scollins";
-const DeskletDir = imports.ui.deskletManager.desklets[uuid];
-const TabPanel = DeskletDir.tabPanel;
-const CollapseButton = DeskletDir.collapseButton;
+let TabPanel, CollapseButton;
+if (typeof require !== 'undefined') {
+    TabPanel = require('./tabPanel');
+    CollapseButton = require('./collapseButton');
+} else {
+    const DeskletDir = imports.ui.deskletManager.desklets[uuid];
+    TabPanel = DeskletDir.tabPanel;
+    CollapseButton = DeskletDir.collapseButton;
+}
 
 const Gettext = imports.gettext;
 Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")

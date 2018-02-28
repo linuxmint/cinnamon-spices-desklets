@@ -3,7 +3,6 @@ const Clutter = imports.gi.Clutter;
 const Gtk = imports.gi.Gtk;
 const Pango = imports.gi.Pango;
 const St = imports.gi.St;
-const Main = imports.ui.main;
 const Params = imports.misc.params;
 const Lang = imports.lang;
 const Mainloop = imports.mainloop;
