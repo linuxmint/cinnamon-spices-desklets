@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2018-01-12 18:07+0100\n"
-"PO-Revision-Date: 2018-01-12 18:46+0100\n"
+"PO-Revision-Date: 2018-03-02 15:08+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -70,6 +70,12 @@ msgstr "Gelb"
 msgid "White"
 msgstr "Weiß"
 
+msgid "White Large"
+msgstr "Weiß Lang"
+
+msgid "White (Old)"
+msgstr "Weiß (Alt)"
+
 msgid "Hide decorations"
 msgstr "Keine Dekorationen verwenden"
 
@@ -90,12 +96,6 @@ msgstr "Textfarbe"
 
 msgid "Desklet size"
 msgstr "Deskletgröße"
-
-msgid "Desklet width"
-msgstr "Deskletbreite"
-
-msgid "Desklet height"
-msgstr "Desklethöhe"
 
 msgid "pixels"
 msgstr "Pixel"

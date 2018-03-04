@@ -66,6 +66,12 @@ msgstr ""
 msgid "White"
 msgstr ""
 
+msgid "White Large"
+msgstr ""
+
+msgid "White (Old)"
+msgstr ""
+
 msgid "Hide decorations"
 msgstr ""
 
@@ -85,12 +91,6 @@ msgid "Text color"
 msgstr ""
 
 msgid "Desklet size"
-msgstr ""
-
-msgid "Desklet width"
-msgstr ""
-
-msgid "Desklet height"
 msgstr ""
 
 msgid "pixels"
