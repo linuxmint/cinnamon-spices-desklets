@@ -65,8 +65,6 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "font", "font", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scale_size", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "size-font", "size_font", this.on_setting_changed);
-		this.settings.bindProperty(Settings.BindingDirection.IN, "size-width", "size_width", this.on_setting_changed);
-		this.settings.bindProperty(Settings.BindingDirection.IN, "size-height", "size_height", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "bg-img", "bg_img", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "text_color", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "file", "file", this.on_setting_changed);
@@ -78,10 +76,6 @@ MyDesklet.prototype = {
 
 	setupUI: function() {
 		// defaults and initial values
-		this.default_notepad_label_top = 23;
-		this.default_notepad_label_left = 21;
-		this.default_notepad_label_right = 15;
-		this.default_notepad_label_bottom = 10;
 		this.notecontent = "";
 
 		// load images and set initial sizes
@@ -119,6 +113,35 @@ MyDesklet.prototype = {
 	refreshSize: function(reloadGraphics = false) {
 		if (reloadGraphics == true) {
 
+			// set images
+			if (this.bg_img == "")
+				this.bg_img = "bg_yellow.svg";
+
+			// set appropriate text padding according to background image
+			this.default_notepad_label_top = 0;
+			this.default_notepad_label_left = 0;
+			this.default_notepad_label_right = 0;
+			this.default_notepad_label_bottom = 0;
+			this.size_width = 130;
+			this.size_height = 130;
+			switch (this.bg_img) {
+				case "bg_yellow.svg":
+					this.default_notepad_label_top = 24;
+					this.default_notepad_label_left = 17;
+					this.default_notepad_label_right = 16;
+					this.default_notepad_label_bottom = 16;
+					break;
+				case "bg_white_2_large.svg":
+					this.size_height = 200;
+				case "bg_white.svg":
+				case "bg_white_2.svg":
+					this.default_notepad_label_top = 18;
+					this.default_notepad_label_left = 22;
+					this.default_notepad_label_right = 15;
+					this.default_notepad_label_bottom = 15;
+					break;
+			}
+
 			// calc new sizes based on scale factor
 			this.desklet_width = this.size_width * this.scale_size;
 			this.desklet_height = this.size_height * this.scale_size;
@@ -126,10 +149,6 @@ MyDesklet.prototype = {
 			this.label_left = this.default_notepad_label_left * this.scale_size;
 			this.label_right = this.default_notepad_label_right * this.scale_size;
 			this.label_bottom = this.default_notepad_label_bottom * this.scale_size;
-
-			// set images
-			if (this.bg_img == "")
-				this.bg_img = "bg_yellow.svg";
 
 			// create elements
 			this.notepad = this.bg_img === "none"
@@ -139,10 +158,9 @@ MyDesklet.prototype = {
 			this.container = new St.Group(); // container for labels
 
 			this.notetext = new St.Label({style_class:"notetext"}); // day of week string (on top of day of month)
-			this.notetext.set_position(this.label_left, this.label_top);
-			this.notetext.style = "width: " + (this.desklet_width - this.label_left - this.label_right) + "px;"
-			                    + "height: " + (this.desklet_height - this.label_top - this.label_bottom) + "px;"
-			                    + "font-family: '" + this.font + "';"
+			this.notetext.set_position(Math.round(this.label_left), Math.round(this.label_top));
+			this.notetext.set_size(this.desklet_width - this.label_left - this.label_right, this.desklet_height - this.label_top - this.label_bottom);
+			this.notetext.style = "font-family: '" + this.font + "';"
 			                    + "font-size: " + this.size_font + "px;"
 			                    + "color:" + this.text_color + ";";
 
