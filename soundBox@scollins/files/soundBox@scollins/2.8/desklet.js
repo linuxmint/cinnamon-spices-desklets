@@ -11,7 +11,13 @@ const St = imports.gi.St;
 const Lang = imports.lang;
 const Signals = imports.signals;
 
-const Soundbox = imports.desklet.soundbox;
+const uuid = "soundBox@scollins";
+let Soundbox;
+if (typeof require !== 'undefined') {
+    Soundbox = require('./soundbox');
+} else {
+    Soundbox = imports.ui.deskletManager.desklets[uuid].soundbox;
+}
 
 const SETTINGS_KEYS = ["hideSystray", "theme", "showInput", "showApps", "raiseKey", "centerRaised", "compact", "showArt", "artSize", "exceedNormVolume"];
 
@@ -20,7 +26,6 @@ let settings, actionManager;
 let desklet_raised = false;
 
 const Gettext = imports.gettext;
-const uuid = "soundBox@scollins";
 
 Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
 
