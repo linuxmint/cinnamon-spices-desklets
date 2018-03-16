@@ -16,7 +16,7 @@ const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 
 imports.searchPath.push(DESKLET_DIR);
 
-const Calendar = imports.calendar;
+let Calendar = typeof require !== "undefined" ? require("./calendar") : imports.ui.deskletManager.desklets[UUID].calendar;
 
 const STYLE_TEXT_CENTER = "text-align: center;";
 const STYLE_LABEL_DAY = "padding: 0, 1.5pt; " + STYLE_TEXT_CENTER;
@@ -203,7 +203,7 @@ MyDesklet.prototype = {
 		this.tooltipMonth.set_text(Calendar.MONTH_NAMES[this.date.getMonth()] + " " + this.date.getFullYear());
 
 		//////// Calendar Layout ////////
-		if (typeof (this.boxLayoutCalendar) !== "undefined")
+		if (typeof this.boxLayoutCalendar !== "undefined")
 			this.boxLayoutCalendar.remove_all_children();
 		this.boxLayoutCalendar = new St.BoxLayout({vertical: this.layout !== "horizontal"});
 		this.boxLayoutCalendar.style = "background-color: " + (this.colourBackground.replace(")", ","
