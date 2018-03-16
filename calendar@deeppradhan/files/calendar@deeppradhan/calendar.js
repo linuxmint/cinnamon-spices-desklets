@@ -1,9 +1,9 @@
 // Names of the Month
-const MONTH_NAMES = ["January", "February", "March", "April", "May", "June",
+var MONTH_NAMES = ["January", "February", "March", "April", "May", "June",
 		"July", "August", "September", "October", "November", "December"];
 
 // Names of the Weekdays
-const WEEKDAY_NAMES = ["Sunday", "Monday", "Tuesday",
+var WEEKDAY_NAMES = ["Sunday", "Monday", "Tuesday",
 		"Wednesday", "Thursday", "Friday", "Saturday"];
 
 // Method to return a Date (first day) after adding specified months to specified Date
