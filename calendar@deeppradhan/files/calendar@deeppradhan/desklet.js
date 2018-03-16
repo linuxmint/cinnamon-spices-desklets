@@ -174,9 +174,10 @@ MyDesklet.prototype = {
 					" font-weight: bold;" : "") + (i === 0 ? " color: " + this.colourSundays + ";" : "")
 					+ (i === 6 ? " color: " + this.colourSaturdays + ";" : "");
 
-	// Remove all days
+		// Remove currently added days
 		for (let i = 0; i < 31; i++)
-			this.tableMonth.remove_child(this.labelDays[i]);
+			if (this.labelDays[i].get_parent())
+				this.tableMonth.remove_child(this.labelDays[i]);
 
 		for (let i = 0, row = 2, col = (new Date(this.date.getFullYear(), this.date.getMonth(), 1)).getDay(),
 				monthLength = Calendar.daysInMonth(this.date.getMonth(), this.date.getFullYear()); i < monthLength; i++) {
