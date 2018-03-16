@@ -19,7 +19,7 @@ function daysInMonth(month, fullYear) {
 // Method to return a string with single digit number zero padded
 function zeroPad(number) {
 	number = Number(number);
-	if (typeof(number) !== "number")
+	if (typeof number !== "number")
 		return;
 	return (number >= 0 && number <= 9 ? "0" : "") + number;
 }
