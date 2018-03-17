@@ -131,6 +131,7 @@ MyDesklet.prototype = {
 	},
 	
 	on_desklet_removed: function() {
+		this.removed = true;
 		Mainloop.source_remove(this.timeout);
 	},
 	
@@ -227,6 +228,11 @@ MyDesklet.prototype = {
 
 	/* Method to update the Desklet values*/
 	updateValues: function() {
+
+		if (this.removed) {
+			this.timeout = 0;
+			return false;
+		}
 
 		let now = new Date();
 
