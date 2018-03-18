@@ -137,7 +137,8 @@ MyDesklet.prototype = {
 	
 	// Refresh on change of settings
 	onSettingChanged: function() {
-		Mainloop.source_remove(this.timeout);
+		if (this.timeout)
+			Mainloop.source_remove(this.timeout);
 		this.updateCalendar();
 	},
 
