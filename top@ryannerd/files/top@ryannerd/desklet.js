@@ -4,7 +4,7 @@ const GLib = imports.gi.GLib;
 const Mainloop = imports.mainloop;
 const Lang = imports.lang;
 const DeskletManager = imports.ui.deskletManager;
-const Gettext = imports.gettext;
+// const Gettext = imports.gettext;
 const UUID = "top@ryannerd";
 const DESKLET_DIR = DeskletManager.deskletMeta[UUID].path; // path to this desklet (unused)
 const PID_LIMIT = 10; // TODO: Make this user defined.
@@ -13,10 +13,13 @@ const TOP_COMMAND = "top -n 1 -b"; // TODO: Make this user defined.
 const DEBUG = false; // Set this to true or "verbose" if you are tweaking the desklet (emits some useful info into global.log())
 const Global = global; // This is done so that Auto-completion for Gnome project can be used.
 
+// l10n/translation support
+// Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+
 /**
  * Preparatory function for when we implement string translations.
- * @param str
- * @return {*}
+ * @param {string} str
+ * @return {string}
  * @private
  */
 function _(str) {
@@ -61,7 +64,7 @@ const topToJsonParser =
         for(i=0, item=line_items[i];i<line_items.length;item=line_items[++i]){
             let value=parseFloat(item);
             if(value===0 && item.indexOf(".") !== -1) {
-                value="0.0"
+                value="0.0";
             }
             let name=item.replace(value, "").replace(".0", "");
             _result[_name][name]=parseFloat(value);
@@ -102,7 +105,7 @@ const topToJsonParser =
     parse(data, pid_limit)
     {
         if(!data) {
-            return
+            return;
         }
 
         let result={process:[]};
