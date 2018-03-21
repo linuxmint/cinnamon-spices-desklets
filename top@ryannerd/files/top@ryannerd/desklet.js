@@ -33,7 +33,7 @@ function _(str) {
  * Developers: [https://github.com/RyanNerd]
  * See README.md for more info
  * TODO:
- *  - Display PIDs in a grid
+ *  - Display PIDs in a grid.
  *  - User configuration options:
  *      - How often the update runs. Currently every 20 seconds.
  *      - Allow user to configure how many pid lines to display. Currently set to 10;
@@ -104,10 +104,6 @@ const topToJsonParser =
      */
     parse(data, pid_limit)
     {
-        if(!data) {
-            return;
-        }
-
         let result={process:[]};
         let data_line=data.split("\n");
 
@@ -146,28 +142,31 @@ const topToJsonParser =
 
 /**
  * Top Desklet init
- *
  * @param metadata
- * @param desklet_id
+ * @param deskletId
  * @constructor
  */
-function TopDesklet(metadata, desklet_id)
+function TopDesklet(metadata, deskletId)
 {
-    this._init(metadata, desklet_id);
+    this._init(metadata, deskletId);
 }
 
 /**
- *
- * Top Desklet
- * Main logic
+ * Top Desklet - Main logic
  */
 TopDesklet.prototype =
 {
     __proto__: Desklet.Desklet.prototype,
 
-    _init: function(metadata, desklet_id)
+    /**
+     * Desklet Init
+     * @param metadata
+     * @param deskletId
+     * @private
+     */
+    _init(metadata, deskletId)
     {
-        Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
+        Desklet.Desklet.prototype._init.call(this, metadata, deskletId);
 
         this.setupUI();
     },
@@ -328,7 +327,7 @@ TopDesklet.prototype =
         this.mainContainer.add(this.swapTitles);
         this.mainContainer.add(this.swapValues);
 
-
+        // Show the UI and call refresh to populate initial values.
         this.setContent(this.mainContainer);
         this._refresh();
     },
@@ -394,6 +393,9 @@ TopDesklet.prototype =
         this.timeout = Mainloop.timeout_add_seconds(UPDATE_TIMER, Lang.bind(this, this._refresh));
     },
 
+    /**
+     * Desklet event hook.
+     */
     on_desklet_removed()
     {
         Mainloop.source_remove(this.timeout);
@@ -401,7 +403,6 @@ TopDesklet.prototype =
 
     /**
      * Executes `top` command synchronously. Upon success returns the output as a string, otherwise a null.
-     *
      * @return {string | null}
      */
     getTopOutput()
@@ -425,7 +426,6 @@ TopDesklet.prototype =
 
 /**
  * Desklet entry point
- *
  * @param metadata
  * @param desklet_id
  * @return {TopDesklet}
