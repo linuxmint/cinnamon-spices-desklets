@@ -4,6 +4,7 @@ const GLib = imports.gi.GLib;
 const Mainloop = imports.mainloop;
 const Lang = imports.lang;
 const DeskletManager = imports.ui.deskletManager;
+const Gettext = imports.gettext;
 const UUID = "top@ryannerd";
 const DESKLET_DIR = DeskletManager.deskletMeta[UUID].path; // path to this desklet (unused)
 const PID_LIMIT = 10; // TODO: Make this user defined.
@@ -11,6 +12,17 @@ const UPDATE_TIMER = 5; // TODO: Make this user defined.
 const TOP_COMMAND = "top -n 1 -b"; // TODO: Make this user defined.
 const DEBUG = false; // Set this to true or "verbose" if you are tweaking the desklet (emits some useful info into global.log())
 const Global = global; // This is done so that Auto-completion for Gnome project can be used.
+
+/**
+ * Preparatory function for when we implement string translations.
+ * @param str
+ * @return {*}
+ * @private
+ */
+function _(str) {
+    // return Gettext.dgettext(UUID, str);
+    return str;
+}
 
 /**
  * DESKLET: Top (top@ryannerd)
@@ -48,9 +60,11 @@ const topToJsonParser =
         let i, item;
         for(i=0, item=line_items[i];i<line_items.length;item=line_items[++i]){
             let value=parseFloat(item);
-            if(value===0 && item.indexOf(".") !== -1){value="0.0"}
+            if(value===0 && item.indexOf(".") !== -1) {
+                value="0.0"
+            }
             let name=item.replace(value, "").replace(".0", "");
-            _result[_name][name]=parseFloat(value)
+            _result[_name][name]=parseFloat(value);
         }
     },
 
@@ -87,7 +101,10 @@ const topToJsonParser =
      */
     parse(data, pid_limit)
     {
-        if(!data) {return}
+        if(!data) {
+            return
+        }
+
         let result={process:[]};
         let data_line=data.split("\n");
 
@@ -112,9 +129,9 @@ const topToJsonParser =
         for (i=7, item=data_line[i];i<pid_limit;item=data_line[++i]) {
             if (item) {
                 offset = (i === 7) ? 1 : 0;
-                line=item.replace(/\s+/g, ',').substring(offset);
+                line=item.replace(/\s+/g, ",").substring(offset);
                 if (line !== "") {
-                    this.parseProcess(result, line)
+                    this.parseProcess(result, line);
                 }
             }
         }
@@ -145,7 +162,8 @@ TopDesklet.prototype =
 {
     __proto__: Desklet.Desklet.prototype,
 
-    _init: function(metadata, desklet_id) {
+    _init: function(metadata, desklet_id)
+    {
         Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
 
         this.setupUI();
