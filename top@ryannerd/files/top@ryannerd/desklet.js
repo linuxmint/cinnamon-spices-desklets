@@ -80,12 +80,12 @@ const topToJsonParser =
     {
         let line=_line.replace(RegExp("%","g"), "").split(":")[1].replace(RegExp(" ", "g"), "");
         _result[_name]={};
-        let line_items=line.split(",");
+        let lineItems=line.split(",");
         let i, item;
-        for(i=0, item=line_items[i];i<line_items.length;item=line_items[++i]){
+        for(i=0, item=lineItems[i]; i < lineItems.length; item=lineItems[++i]) {
             let value=parseFloat(item);
             if(value===0 && item.indexOf(".") !== -1) {
-                value="0.0";
+                value = "0.0";
             }
             let name=item.replace(value, "").replace(".0", "");
             _result[_name][name]=parseFloat(value);
@@ -99,8 +99,8 @@ const topToJsonParser =
      */
     parseProcess(_result, _line)
     {
-        let items=_line.split(",");
-        let process={
+        let items =_line.split(",");
+        let process = {
             pid:items[0],
             user:items[1],
             pr:items[2],
@@ -120,33 +120,33 @@ const topToJsonParser =
     /**
      * Parse output from Linux `top` command into JSON
      * @param {string} data
-     * @param {int} pid_limit
+     * @param {int} pidLimit
      * @return {{process: Array}}
      */
-    parse(data, pid_limit)
+    parse(data, pidLimit)
     {
         let result={process:[]};
-        let data_line=data.split("\n");
+        let dataLine = data.split("\n");
 
         //sys info
-        this.parseLine(result, "task", data_line[1]);
-        this.parseLine(result, "cpu", data_line[2].replace(" us,", "user,").replace(" sy,", " system,").replace(" id,", " idle,"));
-        this.parseLine(result, "ram", data_line[3].replace(RegExp("k ","g"), " ").replace(" buff/cache", "cache"));
-        this.parseLine(result, "swap", data_line[4].replace(" used.", "used,").replace(" avail Mem", "avail"));
+        this.parseLine(result, "task", dataLine[1]);
+        this.parseLine(result, "cpu", dataLine[2].replace(" us,", "user,").replace(" sy,", " system,").replace(" id,", " idle,"));
+        this.parseLine(result, "ram", dataLine[3].replace(RegExp("k ","g"), " ").replace(" buff/cache", "cache"));
+        this.parseLine(result, "swap", dataLine[4].replace(" used.", "used,").replace(" avail Mem", "avail"));
 
         //process
-        if (pid_limit) {
-            if(pid_limit>=data_line.length-1){
-                pid_limit=data_line.length-1;
+        if (pidLimit) {
+            if(pidLimit>=dataLine.length-1){
+                pidLimit=dataLine.length-1;
             } else {
-                pid_limit += 7;
+                pidLimit += 7;
             }
         } else {
-            pid_limit=data_line.length-1;
+            pidLimit=dataLine.length-1;
         }
 
         let i, item, line, offset;
-        for (i=7, item=data_line[i];i<pid_limit;item=data_line[++i]) {
+        for (i=7, item=dataLine[i]; i < pidLimit; item=dataLine[++i]) {
             if (item) {
                 line=item.replace(/\s+/g, ",").substring(1);
                 if (line !== "") {
