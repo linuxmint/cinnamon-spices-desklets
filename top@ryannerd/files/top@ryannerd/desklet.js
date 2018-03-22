@@ -28,14 +28,35 @@ function _(str) {
 }
 
 /**
+ * Really?!? - Spidermonkey the javascript interpreter is so bad that we need to do this?
+ * Then again we are using javascript:
+ * @see https://blog.dantup.com/2014/05/web-development-sucks-and-its-not-getting-any-better/
+ * @see https://stackoverflow.com/questions/7545641/javascript-multidimensional-array
+ * @param {int} x
+ * @param {int} y
+ * @return {[,]}
+ * @constructor
+ */
+function Array2D(x, y)
+{
+    let array2D = new Array(x);
+
+    for(let i = 0; i < array2D.length; i++)
+    {
+        array2D[i] = new Array(y);
+    }
+
+    return array2D;
+}
+
+/**
  * DESKLET: Top (top@ryannerd)
  * Description: Displays output from the `top` command as a nicely formatted desklet
  * Developers: [https://github.com/RyanNerd]
  * See README.md for more info
  * TODO:
- *  - Display PIDs in a grid.
  *  - User configuration options:
- *      - How often the update runs. Currently every 20 seconds.
+ *      - How often the update runs. Currently every 5 seconds.
  *      - Allow user to configure how many pid lines to display. Currently set to 10;
  *      - Allow user to change `top ` command and switches. Currently set as 'top -n 1 -b'
  *      - Allow user to select the height and width of the desklet. Currently width: 450px
@@ -127,8 +148,7 @@ const topToJsonParser =
         let i, item, line, offset;
         for (i=7, item=data_line[i];i<pid_limit;item=data_line[++i]) {
             if (item) {
-                offset = (i === 7) ? 1 : 0;
-                line=item.replace(/\s+/g, ",").substring(offset);
+                line=item.replace(/\s+/g, ",").substring(1);
                 if (line !== "") {
                     this.parseProcess(result, line);
                 }
@@ -178,6 +198,9 @@ TopDesklet.prototype =
     {
         // Set up all the UI via ST
         this.mainContainer = new St.BoxLayout({style_class: "mainTopContainer"});
+        this.headerContainer = new St.BoxLayout();
+        this.detailContainer = new St.BoxLayout({vertical: true, x_align: 0});
+        this.mainTable = new St.Table();
 
         /**
          * TASKS
@@ -213,8 +236,8 @@ TopDesklet.prototype =
         this.taskValues.add(this.taskValueStopped);
         this.taskValues.add(this.taskValueZombie);
 
-        this.mainContainer.add(this.taskTitles);
-        this.mainContainer.add(this.taskValues);
+        this.headerContainer.add(this.taskTitles);
+        this.headerContainer.add(this.taskValues);
 
         /**
          * CPU
@@ -258,8 +281,8 @@ TopDesklet.prototype =
         this.cpuValues.add(this.cpuValueSi);
         this.cpuValues.add(this.cpuValueSt);
 
-        this.mainContainer.add(this.cpuTitles);
-        this.mainContainer.add(this.cpuValues);
+        this.headerContainer.add(this.cpuTitles);
+        this.headerContainer.add(this.cpuValues);
 
         /**
          * RAM
@@ -291,8 +314,8 @@ TopDesklet.prototype =
         this.ramValues.add(this.ramValueUsed);
         this.ramValues.add(this.ramValueCache);
 
-        this.mainContainer.add(this.ramTitles);
-        this.mainContainer.add(this.ramValues);
+        this.headerContainer.add(this.ramTitles);
+        this.headerContainer.add(this.ramValues);
 
         /**
          * SWAP
@@ -324,10 +347,42 @@ TopDesklet.prototype =
         this.swapValues.add(this.swapValueUsed);
         this.swapValues.add(this.swapValueAvailable);
 
-        this.mainContainer.add(this.swapTitles);
-        this.mainContainer.add(this.swapValues);
+        this.headerContainer.add(this.swapTitles);
+        this.headerContainer.add(this.swapValues);
 
-        // Show the UI and call refresh to populate initial values.
+        /**
+         * PROCESSES
+         */
+        this.procTable = new St.Table();
+        this.procTable.add(new St.Label({text: _("PID"), style_class: "topProcTitle"}), {row: 0, col: 0});
+        this.procTable.add(new St.Label({text: _("USER"), style_class: "topProcTitle"}), {row: 0, col: 1});
+        this.procTable.add(new St.Label({text: _("PR"), style_class: "topProcTitle"}), {row: 0, col: 2});
+        this.procTable.add(new St.Label({text: _("NI"), style_class: "topProcTitle"}), {row: 0, col: 3});
+        this.procTable.add(new St.Label({text: _("VIRT"), style_class: "topProcTitle"}), {row: 0, col: 4});
+        this.procTable.add(new St.Label({text: _("RES"), style_class: "topProcTitle"}), {row: 0, col: 5});
+        this.procTable.add(new St.Label({text: _("SHR"), style_class: "topProcTitle"}), {row: 0, col: 6});
+        this.procTable.add(new St.Label({text: _("S"), style_class: "topProcTitle"}), {row: 0, col: 7});
+        this.procTable.add(new St.Label({text: _("CPU"), style_class: "topProcTitle"}), {row: 0, col: 8});
+        this.procTable.add(new St.Label({text: _("MEM"), style_class: "topProcTitle"}), {row: 0, col: 9});
+        this.procTable.add(new St.Label({text: _("TIME"), style_class: "topProcTitle"}), {row: 0, col: 10});
+        this.procTable.add(new St.Label({text: _("CMD"), style_class: "topProcTitle"}), {row: 0, col: 11});
+
+        this.procGrid = Array2D(PID_LIMIT, 11);
+        for(let row=0; row < PID_LIMIT; row++)
+        {
+            for(let col=0; col <= 11; col++) {
+                this.procGrid[row][col] = new St.Label({text: _(""), style_class: "topValue"});
+                this.procTable.add(this.procGrid[row][col], {row: row+1, col: col});
+            }
+        }
+        this.detailContainer.add_actor(this.procTable);
+
+        // Add the header and detail tables to the main container table.
+        this.mainTable.add(this.headerContainer, {row:0, col:0});
+        this.mainTable.add(this.detailContainer, {row:1, col:0});
+        this.mainContainer.add(this.mainTable);
+
+        // Show the UI and call refresh to populate initial values and start the refresh timer.
         this.setContent(this.mainContainer);
         this._refresh();
     },
@@ -380,6 +435,24 @@ TopDesklet.prototype =
             this.swapValueFree.text = top.swap.free.toString();
             this.swapValueUsed.text = top.swap.used.toString();
             this.swapValueAvailable.text = top.swap.avail.toString();
+
+            // PROCESSES
+            let processes = top.process;
+            for(let row=0; row < PID_LIMIT; row++)
+            {
+                this.procGrid[row][0].text = parseInt(processes[row].pid).toString();
+                this.procGrid[row][1].text = processes[row].user;
+                this.procGrid[row][2].text = parseInt(processes[row].pr).toString();
+                this.procGrid[row][3].text = parseInt(processes[row].ni).toString();
+                this.procGrid[row][4].text = parseInt(processes[row].virt).toString();
+                this.procGrid[row][5].text = parseInt(processes[row].res).toString();
+                this.procGrid[row][6].text = parseInt(processes[row].shr).toString();
+                this.procGrid[row][7].text = processes[row].s;
+                this.procGrid[row][8].text = parseFloat(processes[row].cpu).toString();
+                this.procGrid[row][9].text = parseFloat(processes[row].mem).toString();
+                this.procGrid[row][10].text = processes[row].time;
+                this.procGrid[row][11].text = processes[row].command;
+            }
         }
     },
 

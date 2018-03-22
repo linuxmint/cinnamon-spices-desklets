@@ -9,7 +9,6 @@ developers: [[Ryan Jentzsch](https://github.com/RyanNerd)]
 translators: []
 
 **TODO**:
- - Processes displayed in a grid.
  - User configuration options:
     - How often the update runs. Currently every 5 seconds.
     - Allow user to configure how many pid lines to display. Currently set to 10.
