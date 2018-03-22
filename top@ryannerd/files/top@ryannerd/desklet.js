@@ -10,8 +10,8 @@ const DESKLET_DIR = DeskletManager.deskletMeta[UUID].path; // path to this deskl
 const PID_LIMIT = 10; // TODO: Make this user defined.
 const UPDATE_TIMER = 5; // TODO: Make this user defined.
 const TOP_COMMAND = "top -n 1 -b"; // TODO: Make this user defined.
-const DEBUG = false; // Set this to true or "verbose" if you are tweaking the desklet (emits some useful info into global.log())
-const Global = global; // This is done so that Auto-completion for Gnome project can be used.
+const DEBUG = false; // Set this to true or "verbose" if you are tweaking the desklet (emits some useful info into Global.log())
+const Global = global; // This is done so that Auto-completion for Gnome project can be used. see: https://github.com/RyanNerd/gnome-autocomplete
 
 // l10n/translation support
 // Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
