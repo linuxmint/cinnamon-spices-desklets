@@ -4,14 +4,17 @@ const GLib = imports.gi.GLib;
 const Mainloop = imports.mainloop;
 const Lang = imports.lang;
 const DeskletManager = imports.ui.deskletManager;
+const Settings = imports.ui.settings;
+const Global = global; // This is done so that Auto-completion for Gnome project can be used. see: https://github.com/RyanNerd/gnome-autocomplete
 // const Gettext = imports.gettext;
+
 const UUID = "top@ryannerd";
 const DESKLET_DIR = DeskletManager.deskletMeta[UUID].path; // path to this desklet (unused)
-const PID_LIMIT = 10; // TODO: Make this user defined.
-const UPDATE_TIMER = 5; // TODO: Make this user defined.
-const TOP_COMMAND = "top -n 1 -b"; // TODO: Make this user defined.
-const DEBUG = false; // Set this to true or "verbose" if you are tweaking the desklet (emits some useful info into Global.log())
-const Global = global; // This is done so that Auto-completion for Gnome project can be used. see: https://github.com/RyanNerd/gnome-autocomplete
+
+const PID_MAX_LIMIT = 20;
+const DEFAULT_PID_LIMIT = 10;
+const DEFAULT_UPDATE_TIMER = 5;
+const DEFAULT_TOP_COMMAND = "top -n 1 -b";
 
 // l10n/translation support
 // Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
@@ -186,9 +189,23 @@ TopDesklet.prototype =
      */
     _init(metadata, deskletId)
     {
-        Desklet.Desklet.prototype._init.call(this, metadata, deskletId);
+        try {
+            Desklet.Desklet.prototype._init.call(this, metadata, deskletId);
 
-        this.setupUI();
+            // Get and set the configuration bindings
+            this.settings = new Settings.DeskletSettings(this, UUID, this.deskletId);
+            this.settings.bindProperty(Settings.BindingDirection.IN, "pid-lines", "cfgMaxPidLines", this.on_setting_changed);
+            this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-rate", "cfgRefreshRate", this.on_setting_changed);
+            this.settings.bindProperty(Settings.BindingDirection.IN, "top-command", "cfgTopCommand", this.on_setting_changed);
+
+            this.cfgMaxPidLines = parseInt(this.cfgMaxPidLines) || DEFAULT_PID_LIMIT;
+            this.cfgRefreshRate = parseInt(this.cfgRefreshRate) || DEFAULT_UPDATE_TIMER;
+            this.cfgTopCommand = this.cfgTopCommand || DEFAULT_TOP_COMMAND;
+
+            this.setupUI();
+        } catch (e) {
+            Global.logError(e);
+        }
     },
 
     /**
@@ -367,8 +384,8 @@ TopDesklet.prototype =
         this.procTable.add(new St.Label({text: _("TIME"), style_class: "topProcTitle"}), {row: 0, col: 10});
         this.procTable.add(new St.Label({text: _("CMD"), style_class: "topProcTitle"}), {row: 0, col: 11});
 
-        this.procGrid = Array2D(PID_LIMIT, 11);
-        for(let row=0; row < PID_LIMIT; row++)
+        this.procGrid = Array2D(PID_MAX_LIMIT, 11);
+        for(let row=0; row < this.cfgMaxPidLines; row++)
         {
             for(let col=0; col <= 11; col++) {
                 this.procGrid[row][col] = new St.Label({text: _(""), style_class: "topValue"});
@@ -399,15 +416,7 @@ TopDesklet.prototype =
         // Is topOutput not null then we have a valid string to parse.
         if (topOutput !== null) {
             // Parse the string into JSON for easier handling.
-            let top = topToJsonParser.parse(topOutput, PID_LIMIT);
-
-            // Debugging
-            if (DEBUG) {
-                if (DEBUG === 'VERBOSE' || DEBUG === 'verbose') {
-                    Global.log(topOutput);
-                }
-                Global.log(top);
-            }
+            let top = topToJsonParser.parse(topOutput, this.cfgMaxPidLines);
 
             // TASKS
             this.taskValueTotal.text = top.task.total.toString();
@@ -438,7 +447,7 @@ TopDesklet.prototype =
 
             // PROCESSES
             let processes = top.process;
-            for(let row=0; row < PID_LIMIT; row++)
+            for(let row=0; row < this.cfgMaxPidLines; row++)
             {
                 this.procGrid[row][0].text = parseInt(processes[row].pid).toString();
                 this.procGrid[row][1].text = processes[row].user;
@@ -463,7 +472,7 @@ TopDesklet.prototype =
     _refresh()
     {
         this._updateTop();
-        this.timeout = Mainloop.timeout_add_seconds(UPDATE_TIMER, Lang.bind(this, this._refresh));
+        this.timeout = Mainloop.timeout_add_seconds(this.cfgRefreshRate, Lang.bind(this, this._refresh));
     },
 
     /**
@@ -481,17 +490,15 @@ TopDesklet.prototype =
     getTopOutput()
     {
         // Execute the top command.
-        let [ok, output, err, exitStatus] = GLib.spawn_command_line_sync(TOP_COMMAND);
+        let [ok, output, err, exitStatus] = GLib.spawn_command_line_sync(this.cfgTopCommand);
 
         // If all is well then return the output from the command as a string.
         if (ok && output) {
             return output.toString();
         }
 
-        // Log details of the failure if we are in debug mode.
-        if (DEBUG) {
-            Global.log("`" +TOP_COMMAND +"` command failure (exit code:" + exitStatus +"): \n" + err.toString());
-        }
+        // Log details of the failure.
+        Global.log("`" + this.cfgTopCommand + "` command failure (exit code:" + exitStatus +"): \n" + err.toString());
 
         return null;
     }

@@ -1,0 +1,39 @@
+{
+  "head0": {
+    "type": "header",
+    "description": "Desklet Settings for top@ryannerd"
+  },
+
+  "head1": {
+    "type": "header",
+    "description": "Visual"
+  },
+  "pid-lines": {
+    "type": "spinbutton",
+    "default": 10,
+    "min": 1,
+    "max": 20,
+    "step": 1,
+    "description": "Number of processes to list (requires desklet restart)",
+    "tooltip": "Set how many processes you want to display."
+  },
+  "refresh-rate": {
+    "type": "spinbutton",
+    "default": 5.0,
+    "min": 1,
+    "max": 5000,
+    "step": 1,
+    "description": "Number of seconds for each refresh",
+    "tooltip": "Increase or decrease the how often the display updates."
+  },
+  "head2": {
+    "type": "header",
+    "description": "Process"
+  },
+  "top-command": {
+    "type": "entry",
+    "default": "top -n 1 -b",
+    "description": "The top command that is executed every refresh",
+    "tooltip": "The command MUST return output in the standard `top -b` format."
+  }
+}
