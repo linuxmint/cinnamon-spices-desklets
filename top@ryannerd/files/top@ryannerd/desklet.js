@@ -11,10 +11,18 @@ const Global = global; // This is done so that Auto-completion for Gnome project
 const UUID = "top@ryannerd";
 const DESKLET_DIR = DeskletManager.deskletMeta[UUID].path; // path to this desklet (unused)
 
-const PID_MAX_LIMIT = 20;
-const DEFAULT_PID_LIMIT = 10;
-const DEFAULT_UPDATE_TIMER = 5;
-const DEFAULT_TOP_COMMAND = "top -n 1 -b";
+const PID_MAX_LIMIT          = 20;
+const DEFAULT_PID_LIMIT      = 10;
+const DEFAULT_UPDATE_TIMER   = 5;
+const DEFAULT_TOP_COMMAND    = "top -n 1 -b";
+const DEFAULT_SHOW_TASKS     = true;
+const DEFAULT_SHOW_CPU       = true;
+const DEFAULT_SHOW_RAM       = true;
+const DEFAULT_SHOW_SWAP      = true;
+const DEFAULT_SHOW_PROCESSES = true;
+const DEFAULT_TITLE_COLOR    = "midnightblue";
+const DEFAULT_LABEL_COLOR    = "black";
+const DEFAULT_VALUE_COLOR    = "white";
 
 // l10n/translation support
 // Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
@@ -192,20 +200,61 @@ TopDesklet.prototype =
         try {
             Desklet.Desklet.prototype._init.call(this, metadata, deskletId);
 
-            // Get and set the configuration bindings
+            // Get the configuration bindings
             this.settings = new Settings.DeskletSettings(this, UUID, this.deskletId);
             this.settings.bindProperty(Settings.BindingDirection.IN, "pid-lines", "cfgMaxPidLines", this.on_setting_changed);
             this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-rate", "cfgRefreshRate", this.on_setting_changed);
             this.settings.bindProperty(Settings.BindingDirection.IN, "top-command", "cfgTopCommand", this.on_setting_changed);
+            this.settings.bindProperty(Settings.BindingDirection.IN, "show-tasks", "cfgShowTasks", this.on_setting_changed);
+            this.settings.bindProperty(Settings.BindingDirection.IN, "show-cpu", "cfgShowCpu", this.on_setting_changed);
+            this.settings.bindProperty(Settings.BindingDirection.IN, "show-ram", "cfgShowRam", this.on_setting_changed);
+            this.settings.bindProperty(Settings.BindingDirection.IN, "show-swap", "cfgShowSwap", this.on_setting_changed);
+            this.settings.bindProperty(Settings.BindingDirection.IN, "show-processes", "cfgShowProcesses", this.on_setting_changed);
+            this.settings.bindProperty(Settings.BindingDirection.IN, "title-color", "cfgTitleColor", this.on_setting_changed);
+            this.settings.bindProperty(Settings.BindingDirection.IN, "label-color", "cfgLabelColor", this.on_setting_changed);
+            this.settings.bindProperty(Settings.BindingDirection.IN, "value-color", "cfgValueColor", this.on_setting_changed);
 
-            this.cfgMaxPidLines = parseInt(this.cfgMaxPidLines) || DEFAULT_PID_LIMIT;
-            this.cfgRefreshRate = parseInt(this.cfgRefreshRate) || DEFAULT_UPDATE_TIMER;
-            this.cfgTopCommand = this.cfgTopCommand || DEFAULT_TOP_COMMAND;
+            this.cfgMaxPidLines   = parseInt(this.cfgMaxPidLines) || DEFAULT_PID_LIMIT;
+            this.cfgRefreshRate   = parseInt(this.cfgRefreshRate) || DEFAULT_UPDATE_TIMER;
+            this.cfgTopCommand    = this.cfgTopCommand            || DEFAULT_TOP_COMMAND;
+            this.cfgShowTasks     = this.cfgShowTasks             || DEFAULT_SHOW_TASKS;
+            this.cfgShowCpu       = this.cfgShowCpu               || DEFAULT_SHOW_CPU;
+            this.cfgShowRam       = this.cfgShowRam               || DEFAULT_SHOW_RAM;
+            this.cfgShowSwap      = this.cfgShowSwap              || DEFAULT_SHOW_SWAP;
+            this.cfgShowProcesses = this.cfgShowProcesses         || DEFAULT_SHOW_PROCESSES;
+            this.cfgTitleColor    = this.cfgTitleColor            || DEFAULT_TITLE_COLOR;
+            this.cfgLabelColor    = this.cfgLabelColor            || DEFAULT_LABEL_COLOR;
+            this.cfgValueColor    = this.cfgValueColor            || DEFAULT_VALUE_COLOR;
 
-            this.setupUI();
+            // Kick off the UI Setup and refresh
+            this.on_setting_changed();
+
         } catch (e) {
             Global.logError(e);
         }
+    },
+
+    /**
+     * Desklet event hook that fires when the user changes anything in the configuration dialog.
+     */
+    on_setting_changed()
+    {
+        // Prevent any refresh until we have set up the UI
+        if (this.timeout && typeof this.timeout !== 'undefined') {
+            Mainloop.source_remove(this.timeout);
+        }
+
+        // Nuke the mainContainer
+        this.mainContainer = null;
+
+        // Set up the UI
+        this.setupUI();
+
+        // Show the UI and call refresh to populate initial values.
+        this.setContent(this.mainContainer);
+
+        // Update the display values and start the refresh timer.
+        this._refresh();
     },
 
     /**
@@ -222,186 +271,208 @@ TopDesklet.prototype =
         /**
          * TASKS
          */
-        this.taskTitles = new St.BoxLayout({vertical: true});
-        this.taskValues = new St.BoxLayout({vertical: true});
+        if (this.cfgShowTasks)
+        {
+            this.taskTitles = new St.BoxLayout({vertical: true});
+            this.taskValues = new St.BoxLayout({vertical: true});
 
-        this.taskTitleMain = new St.Label({text: _("TASKS"), style_class: "topMainTitle"});
-        this.taskTitleTotal = new St.Label({text: _("Total:"), style_class: "topTitle"});
-        this.taskTitleRunning = new St.Label({text: _("Running:"), style_class: "topTitle"});
-        this.taskTitleSleeping = new St.Label({text: _("Sleeping:"), style_class: "topTitle"});
-        this.taskTitleStopped = new St.Label({text: _("Stopped:"), style_class: "topTitle"});
-        this.taskTitleZombie = new St.Label({text: _("Zombie:"), style_class: "topTitle"});
+            this.taskTitleMain = new St.Label({text: _("TASKS"), style_class: "topMainTitle", style: "color: " + this.cfgTitleColor});
+            this.taskTitleTotal = new St.Label({text: _("Total:"), style_class: "topTitle", style: "color: " + this.cfgLabelColor});
+            this.taskTitleRunning = new St.Label({text: _("Running:"), style_class: "topTitle", style: "color: " + this.cfgLabelColor});
+            this.taskTitleSleeping = new St.Label({text: _("Sleeping:"), style_class: "topTitle", style: "color: " + this.cfgLabelColor});
+            this.taskTitleStopped = new St.Label({text: _("Stopped:"), style_class: "topTitle", style: "color: " + this.cfgLabelColor});
+            this.taskTitleZombie = new St.Label({text: _("Zombie:"), style_class: "topTitle", style: "color: " + this.cfgLabelColor});
 
-        this.taskTitles.add(this.taskTitleMain);
-        this.taskTitles.add(this.taskTitleTotal);
-        this.taskTitles.add(this.taskTitleRunning);
-        this.taskTitles.add(this.taskTitleSleeping);
-        this.taskTitles.add(this.taskTitleStopped);
-        this.taskTitles.add(this.taskTitleZombie);
+            this.taskTitles.add(this.taskTitleMain);
+            this.taskTitles.add(this.taskTitleTotal);
+            this.taskTitles.add(this.taskTitleRunning);
+            this.taskTitles.add(this.taskTitleSleeping);
+            this.taskTitles.add(this.taskTitleStopped);
+            this.taskTitles.add(this.taskTitleZombie);
 
-        this.taskValueMain = new St.Label({text: "", style_class: "topValue"});
-        this.taskValueTotal = new St.Label({text: "0", style_class: "topValue"});
-        this.taskValueRunning = new St.Label({text: "0", style_class: "topValue"});
-        this.taskValueSleeping = new St.Label({text: "0", style_class: "topValue"});
-        this.taskValueStopped = new St.Label({text: "0", style_class: "topValue"});
-        this.taskValueZombie = new St.Label({text: "0", style_class: "topValue"});
+            this.taskValueMain = new St.Label({text: "", style_class: "topValue", style: "color: " + this.cfgValueColor});
+            this.taskValueTotal = new St.Label({text: "0", style_class: "topValue", style: "color: " + this.cfgValueColor});
+            this.taskValueRunning = new St.Label({text: "0", style_class: "topValue", style: "color: " + this.cfgValueColor});
+            this.taskValueSleeping = new St.Label({text: "0", style_class: "topValue", style: "color: " + this.cfgValueColor});
+            this.taskValueStopped = new St.Label({text: "0", style_class: "topValue", style: "color: " + this.cfgValueColor});
+            this.taskValueZombie = new St.Label({text: "0", style_class: "topValue", style: "color: " + this.cfgValueColor});
 
-        this.taskValues.add(this.taskValueMain);
-        this.taskValues.add(this.taskValueTotal);
-        this.taskValues.add(this.taskValueRunning);
-        this.taskValues.add(this.taskValueSleeping);
-        this.taskValues.add(this.taskValueStopped);
-        this.taskValues.add(this.taskValueZombie);
+            this.taskValues.add(this.taskValueMain);
+            this.taskValues.add(this.taskValueTotal);
+            this.taskValues.add(this.taskValueRunning);
+            this.taskValues.add(this.taskValueSleeping);
+            this.taskValues.add(this.taskValueStopped);
+            this.taskValues.add(this.taskValueZombie);
 
-        this.headerContainer.add(this.taskTitles);
-        this.headerContainer.add(this.taskValues);
+            this.headerContainer.add(this.taskTitles);
+            this.headerContainer.add(this.taskValues);
+        }
 
         /**
          * CPU
          */
-        this.cpuTitles = new St.BoxLayout({vertical: true});
-        this.cpuValues = new St.BoxLayout({vertical: true});
+        if (this.cfgShowCpu)
+        {
+            this.cpuTitles = new St.BoxLayout({vertical: true});
+            this.cpuValues = new St.BoxLayout({vertical: true});
 
-        this.cpuTitleMain = new St.Label({text: _("CPU%"), style_class: "topMainTitle"});
-        this.cpuTitleUser = new St.Label({text: _("User:"), style_class: "topTitle"});
-        this.cpuTitleSystem = new St.Label({text: _("System:"), style_class: "topTitle"});
-        this.cpuTitleNi = new St.Label({text: _("Nice:"), style_class: "topTitle"});
-        this.cpuTitleIdle = new St.Label({text: _("Idle:"), style_class: "topTitle"});
-        this.cpuTitleHi = new St.Label({text: _("H/I:"), style_class: "topTitle"});
-        this.cpuTitleSi = new St.Label({text: _("S/I:"), style_class: "topTitle"});
-        this.cpuTitleSt = new St.Label({text: _("St:"), style_class: "topTitle"});
+            this.cpuTitleMain = new St.Label({text: _("CPU%"), style_class: "topMainTitle", style: "color: " + this.cfgTitleColor});
+            this.cpuTitleUser = new St.Label({text: _("User:"), style_class: "topTitle", style: "color: " + this.cfgLabelColor});
+            this.cpuTitleSystem = new St.Label({text: _("System:"), style_class: "topTitle", style: "color: " + this.cfgLabelColor});
+            this.cpuTitleNi = new St.Label({text: _("Nice:"), style_class: "topTitle", style: "color: " + this.cfgLabelColor});
+            this.cpuTitleIdle = new St.Label({text: _("Idle:"), style_class: "topTitle", style: "color: " + this.cfgLabelColor});
+            this.cpuTitleHi = new St.Label({text: _("H/I:"), style_class: "topTitle", style: "color: " + this.cfgLabelColor});
+            this.cpuTitleSi = new St.Label({text: _("S/I:"), style_class: "topTitle", style: "color: " + this.cfgLabelColor});
+            this.cpuTitleSt = new St.Label({text: _("St:"), style_class: "topTitle", style: "color: " + this.cfgLabelColor});
 
-        this.cpuTitles.add(this.cpuTitleMain);
-        this.cpuTitles.add(this.cpuTitleUser);
-        this.cpuTitles.add(this.cpuTitleSystem);
-        this.cpuTitles.add(this.cpuTitleNi);
-        this.cpuTitles.add(this.cpuTitleIdle);
-        this.cpuTitles.add(this.cpuTitleHi);
-        this.cpuTitles.add(this.cpuTitleSi);
-        this.cpuTitles.add(this.cpuTitleSt);
+            this.cpuTitles.add(this.cpuTitleMain);
+            this.cpuTitles.add(this.cpuTitleUser);
+            this.cpuTitles.add(this.cpuTitleSystem);
+            this.cpuTitles.add(this.cpuTitleNi);
+            this.cpuTitles.add(this.cpuTitleIdle);
+            this.cpuTitles.add(this.cpuTitleHi);
+            this.cpuTitles.add(this.cpuTitleSi);
+            this.cpuTitles.add(this.cpuTitleSt);
 
-        this.cpuValueMain = new St.Label({text: "", style_class: "topValue"});
-        this.cpuValueUser = new St.Label({text: "0", style_class: "topValue"});
-        this.cpuValueSystem = new St.Label({text: "0", style_class: "topValue"});
-        this.cpuValueNi = new St.Label({text: "0", style_class: "topValue"});
-        this.cpuValueIdle = new St.Label({text: "0", style_class: "topValue"});
-        this.cpuValueHi = new St.Label({text: "0", style_class: "topValue"});
-        this.cpuValueSi = new St.Label({text: "0", style_class: "topValue"});
-        this.cpuValueSt = new St.Label({text: "0", style_class: "topValue"});
+            this.cpuValueMain = new St.Label({text: "", style_class: "topValue", style: "color: " + this.cfgValueColor});
+            this.cpuValueUser = new St.Label({text: "0", style_class: "topValue", style: "color: " + this.cfgValueColor});
+            this.cpuValueSystem = new St.Label({text: "0", style_class: "topValue", style: "color: " + this.cfgValueColor});
+            this.cpuValueNi = new St.Label({text: "0", style_class: "topValue", style: "color: " + this.cfgValueColor});
+            this.cpuValueIdle = new St.Label({text: "0", style_class: "topValue", style: "color: " + this.cfgValueColor});
+            this.cpuValueHi = new St.Label({text: "0", style_class: "topValue", style: "color: " + this.cfgValueColor});
+            this.cpuValueSi = new St.Label({text: "0", style_class: "topValue", style: "color: " + this.cfgValueColor});
+            this.cpuValueSt = new St.Label({text: "0", style_class: "topValue", style: "color: " + this.cfgValueColor});
 
-        this.cpuValues.add(this.cpuValueMain);
-        this.cpuValues.add(this.cpuValueUser);
-        this.cpuValues.add(this.cpuValueSystem);
-        this.cpuValues.add(this.cpuValueNi);
-        this.cpuValues.add(this.cpuValueIdle);
-        this.cpuValues.add(this.cpuValueHi);
-        this.cpuValues.add(this.cpuValueSi);
-        this.cpuValues.add(this.cpuValueSt);
+            this.cpuValues.add(this.cpuValueMain);
+            this.cpuValues.add(this.cpuValueUser);
+            this.cpuValues.add(this.cpuValueSystem);
+            this.cpuValues.add(this.cpuValueNi);
+            this.cpuValues.add(this.cpuValueIdle);
+            this.cpuValues.add(this.cpuValueHi);
+            this.cpuValues.add(this.cpuValueSi);
+            this.cpuValues.add(this.cpuValueSt);
 
-        this.headerContainer.add(this.cpuTitles);
-        this.headerContainer.add(this.cpuValues);
+            this.headerContainer.add(this.cpuTitles);
+            this.headerContainer.add(this.cpuValues);
+        }
 
         /**
          * RAM
          */
-        this.ramTitles = new St.BoxLayout({vertical: true});
-        this.ramValues = new St.BoxLayout({vertical: true});
+        if (this.cfgShowRam)
+        {
+            this.ramTitles = new St.BoxLayout({vertical: true});
+            this.ramValues = new St.BoxLayout({vertical: true});
 
-        this.ramTitleMain = new St.Label({text: _("RAM"), style_class: "topMainTitle"});
-        this.ramTitleTotal = new St.Label({text: _("Total:"), style_class: "topTitle"});
-        this.ramTitleFree = new St.Label({text: _("Free:"), style_class: "topTitle"});
-        this.ramTitleUsed = new St.Label({text: _("Used:"), style_class: "topTitle"});
-        this.ramTitleCache = new St.Label({text: _("Cache:"), style_class: "topTitle"});
+            this.ramTitleMain = new St.Label({text: _("RAM"), style_class: "topMainTitle", style: "color: " + this.cfgTitleColor});
+            this.ramTitleTotal = new St.Label({text: _("Total:"), style_class: "topTitle", style: "color: " + this.cfgLabelColor});
+            this.ramTitleFree = new St.Label({text: _("Free:"), style_class: "topTitle", style: "color: " + this.cfgLabelColor});
+            this.ramTitleUsed = new St.Label({text: _("Used:"), style_class: "topTitle", style: "color: " + this.cfgLabelColor});
+            this.ramTitleCache = new St.Label({text: _("Cache:"), style_class: "topTitle", style: "color: " + this.cfgLabelColor});
 
-        this.ramTitles.add(this.ramTitleMain);
-        this.ramTitles.add(this.ramTitleTotal);
-        this.ramTitles.add(this.ramTitleFree);
-        this.ramTitles.add(this.ramTitleUsed);
-        this.ramTitles.add(this.ramTitleCache);
+            this.ramTitles.add(this.ramTitleMain);
+            this.ramTitles.add(this.ramTitleTotal);
+            this.ramTitles.add(this.ramTitleFree);
+            this.ramTitles.add(this.ramTitleUsed);
+            this.ramTitles.add(this.ramTitleCache);
 
-        this.ramValueMain = new St.Label({text: "", style_class: "topValue"});
-        this.ramValueTotal = new St.Label({text: "0", style_class: "topValue"});
-        this.ramValueFree = new St.Label({text: "0", style_class: "topValue"});
-        this.ramValueUsed = new St.Label({text: "0", style_class: "topValue"});
-        this.ramValueCache = new St.Label({text: "0", style_class: "topValue"});
+            this.ramValueMain = new St.Label({text: "", style_class: "topValue", style: "color: " + this.cfgValueColor});
+            this.ramValueTotal = new St.Label({text: "0", style_class: "topValue", style: "color: " + this.cfgValueColor});
+            this.ramValueFree = new St.Label({text: "0", style_class: "topValue", style: "color: " + this.cfgValueColor});
+            this.ramValueUsed = new St.Label({text: "0", style_class: "topValue", style: "color: " + this.cfgValueColor});
+            this.ramValueCache = new St.Label({text: "0", style_class: "topValue", style: "color: " + this.cfgValueColor});
 
-        this.ramValues.add(this.ramValueMain);
-        this.ramValues.add(this.ramValueTotal);
-        this.ramValues.add(this.ramValueFree);
-        this.ramValues.add(this.ramValueUsed);
-        this.ramValues.add(this.ramValueCache);
+            this.ramValues.add(this.ramValueMain);
+            this.ramValues.add(this.ramValueTotal);
+            this.ramValues.add(this.ramValueFree);
+            this.ramValues.add(this.ramValueUsed);
+            this.ramValues.add(this.ramValueCache);
 
-        this.headerContainer.add(this.ramTitles);
-        this.headerContainer.add(this.ramValues);
+            this.headerContainer.add(this.ramTitles);
+            this.headerContainer.add(this.ramValues);
+        }
 
         /**
          * SWAP
          */
-        this.swapTitles = new St.BoxLayout({vertical: true});
-        this.swapValues = new St.BoxLayout({vertical: true});
+        if (this.cfgShowSwap)
+        {
+            this.swapTitles = new St.BoxLayout({vertical: true});
+            this.swapValues = new St.BoxLayout({vertical: true});
 
-        this.swapTitleMain = new St.Label({text: _("SWAP"), style_class: "topMainTitle"});
-        this.swapTitleTotal = new St.Label({text: _("Total:"), style_class: "topTitle"});
-        this.swapTitleFree = new St.Label({text: _("Free"), style_class: "topTitle"});
-        this.swapTitleUsed = new St.Label({text: _("Used:"), style_class: "topTitle"});
-        this.swapTitleAvailable = new St.Label({text: _("Available:"), style_class: "topTitle"});
+            this.swapTitleMain = new St.Label({text: _("SWAP"), style_class: "topMainTitle", style: "color: " + this.cfgTitleColor});
+            this.swapTitleTotal = new St.Label({text: _("Total:"), style_class: "topTitle", style: "color: " + this.cfgLabelColor});
+            this.swapTitleFree = new St.Label({text: _("Free"), style_class: "topTitle", style: "color: " + this.cfgLabelColor});
+            this.swapTitleUsed = new St.Label({text: _("Used:"), style_class: "topTitle", style: "color: " + this.cfgLabelColor});
+            this.swapTitleAvailable = new St.Label({text: _("Available:"), style_class: "topTitle", style: "color: " + this.cfgLabelColor});
 
-        this.swapTitles.add(this.swapTitleMain);
-        this.swapTitles.add(this.swapTitleTotal);
-        this.swapTitles.add(this.swapTitleFree);
-        this.swapTitles.add(this.swapTitleUsed);
-        this.swapTitles.add(this.swapTitleAvailable);
+            this.swapTitles.add(this.swapTitleMain);
+            this.swapTitles.add(this.swapTitleTotal);
+            this.swapTitles.add(this.swapTitleFree);
+            this.swapTitles.add(this.swapTitleUsed);
+            this.swapTitles.add(this.swapTitleAvailable);
 
-        this.swapValueMain = new St.Label({text: "", style_class: "topValue"});
-        this.swapValueTotal = new St.Label({text: "0", style_class: "topValue"});
-        this.swapValueFree = new St.Label({text: "0", style_class: "topValue"});
-        this.swapValueUsed = new St.Label({text: "0", style_class: "topValue"});
-        this.swapValueAvailable = new St.Label({text: "0", style_class: "topValue"});
+            this.swapValueMain = new St.Label({text: "", style_class: "topValue", style: "color: " + this.cfgValueColor});
+            this.swapValueTotal = new St.Label({text: "0", style_class: "topValue", style: "color: " + this.cfgValueColor});
+            this.swapValueFree = new St.Label({text: "0", style_class: "topValue", style: "color: " + this.cfgValueColor});
+            this.swapValueUsed = new St.Label({text: "0", style_class: "topValue", style: "color: " + this.cfgValueColor});
+            this.swapValueAvailable = new St.Label({text: "0", style_class: "topValue", style: "color: " + this.cfgValueColor});
 
-        this.swapValues.add(this.swapValueMain);
-        this.swapValues.add(this.swapValueTotal);
-        this.swapValues.add(this.swapValueFree);
-        this.swapValues.add(this.swapValueUsed);
-        this.swapValues.add(this.swapValueAvailable);
+            this.swapValues.add(this.swapValueMain);
+            this.swapValues.add(this.swapValueTotal);
+            this.swapValues.add(this.swapValueFree);
+            this.swapValues.add(this.swapValueUsed);
+            this.swapValues.add(this.swapValueAvailable);
 
-        this.headerContainer.add(this.swapTitles);
-        this.headerContainer.add(this.swapValues);
+            this.headerContainer.add(this.swapTitles);
+            this.headerContainer.add(this.swapValues);
+        }
 
         /**
          * PROCESSES
          */
-        this.procTable = new St.Table();
-        this.procTable.add(new St.Label({text: _("PID"), style_class: "topProcTitle"}), {row: 0, col: 0});
-        this.procTable.add(new St.Label({text: _("USER"), style_class: "topProcTitle"}), {row: 0, col: 1});
-        this.procTable.add(new St.Label({text: _("PR"), style_class: "topProcTitle"}), {row: 0, col: 2});
-        this.procTable.add(new St.Label({text: _("NI"), style_class: "topProcTitle"}), {row: 0, col: 3});
-        this.procTable.add(new St.Label({text: _("VIRT"), style_class: "topProcTitle"}), {row: 0, col: 4});
-        this.procTable.add(new St.Label({text: _("RES"), style_class: "topProcTitle"}), {row: 0, col: 5});
-        this.procTable.add(new St.Label({text: _("SHR"), style_class: "topProcTitle"}), {row: 0, col: 6});
-        this.procTable.add(new St.Label({text: _("S"), style_class: "topProcTitle"}), {row: 0, col: 7});
-        this.procTable.add(new St.Label({text: _("CPU"), style_class: "topProcTitle"}), {row: 0, col: 8});
-        this.procTable.add(new St.Label({text: _("MEM"), style_class: "topProcTitle"}), {row: 0, col: 9});
-        this.procTable.add(new St.Label({text: _("TIME"), style_class: "topProcTitle"}), {row: 0, col: 10});
-        this.procTable.add(new St.Label({text: _("CMD"), style_class: "topProcTitle"}), {row: 0, col: 11});
-
-        this.procGrid = Array2D(PID_MAX_LIMIT, 11);
-        for(let row=0; row < this.cfgMaxPidLines; row++)
+        if (this.cfgShowProcesses)
         {
-            for(let col=0; col <= 11; col++) {
-                this.procGrid[row][col] = new St.Label({text: _(""), style_class: "topValue"});
-                this.procTable.add(this.procGrid[row][col], {row: row+1, col: col});
+            this.procTable = new St.Table();
+            this.procTable.add(new St.Label({text: _("PID"), style_class: "topProcTitle", style: "color: " + this.cfgTitleColor}), {row: 0, col: 0});
+            this.procTable.add(new St.Label({text: _("USER"), style_class: "topProcTitle", style: "color: " + this.cfgTitleColor}), {row: 0, col: 1});
+            this.procTable.add(new St.Label({text: _("PR"), style_class: "topProcTitle", style: "color: " + this.cfgTitleColor}), {row: 0, col: 2});
+            this.procTable.add(new St.Label({text: _("NI"), style_class: "topProcTitle", style: "color: " + this.cfgTitleColor}), {row: 0, col: 3});
+            this.procTable.add(new St.Label({text: _("VIRT"), style_class: "topProcTitle", style: "color: " + this.cfgTitleColor}), {row: 0, col: 4});
+            this.procTable.add(new St.Label({text: _("RES"), style_class: "topProcTitle", style: "color: " + this.cfgTitleColor}), {row: 0, col: 5});
+            this.procTable.add(new St.Label({text: _("SHR"), style_class: "topProcTitle", style: "color: " + this.cfgTitleColor}), {row: 0, col: 6});
+            this.procTable.add(new St.Label({text: _("S"), style_class: "topProcTitle", style: "color: " + this.cfgTitleColor}), {row: 0, col: 7});
+            this.procTable.add(new St.Label({text: _("CPU"), style_class: "topProcTitle", style: "color: " + this.cfgTitleColor}), {row: 0, col: 8});
+            this.procTable.add(new St.Label({text: _("MEM"), style_class: "topProcTitle", style: "color: " + this.cfgTitleColor}), {row: 0, col: 9});
+            this.procTable.add(new St.Label({text: _("TIME"), style_class: "topProcTitle", style: "color: " + this.cfgTitleColor}), {row: 0, col: 10});
+            this.procTable.add(new St.Label({text: _("CMD"), style_class: "topProcTitle", style: "color: " + this.cfgTitleColor}), {row: 0, col: 11});
+
+            this.procGrid = Array2D(PID_MAX_LIMIT, 11);
+            for (let row = 0; row < this.cfgMaxPidLines; row++)
+            {
+                for (let col = 0; col <= 11; col++)
+                {
+                    this.procGrid[row][col] = new St.Label({text: _(""), style_class: "topValue", style: "color: " + this.cfgValueColor});
+                    this.procTable.add(this.procGrid[row][col], {row: row + 1, col: col});
+                }
             }
+            this.detailContainer.add_actor(this.procTable);
         }
-        this.detailContainer.add_actor(this.procTable);
+
+        // Check if user has shut everything off and if so then just show a label indicating to change things in config
+        if (!(
+            this.cfgShowProcesses ||
+            this.cfgShowTasks     ||
+            this.cfgShowSwap      ||
+            this.cfgShowCpu       ||
+            this.cfgShowRam)) {
+            this.headerContainer.add(new St.Label({text: _("Top Desklet - Open Configuration for display options"), style_class: "topMainTitle"}));
+        }
 
         // Add the header and detail tables to the main container table.
         this.mainTable.add(this.headerContainer, {row:0, col:0});
         this.mainTable.add(this.detailContainer, {row:1, col:0});
         this.mainContainer.add(this.mainTable);
-
-        // Show the UI and call refresh to populate initial values and start the refresh timer.
-        this.setContent(this.mainContainer);
-        this._refresh();
     },
 
     /**

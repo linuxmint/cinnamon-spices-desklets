@@ -14,8 +14,60 @@
     "min": 1,
     "max": 20,
     "step": 1,
-    "description": "Number of processes to list (requires desklet restart)",
-    "tooltip": "Set how many processes you want to display."
+    "description": "Number of processes to list",
+    "tooltip": "Set how many processes you want to display"
+  },
+  "show-tasks": {
+    "type": "checkbox",
+    "description": "Show Tasks",
+    "tooltip": "show the TASKS information",
+    "default": true
+  },
+  "show-cpu": {
+    "type": "checkbox",
+    "description": "Show CPU",
+    "tooltip": "show the CPU information",
+    "default": true
+  },
+  "show-ram": {
+    "type": "checkbox",
+    "description": "Show RAM",
+    "tooltip": "show the RAM information",
+    "default": true
+  },
+  "show-swap": {
+    "type": "checkbox",
+    "description": "Show SWAP",
+    "tooltip": "show the SWAP information",
+    "default": true
+  },
+  "show-processes": {
+    "type": "checkbox",
+    "description": "Show Processes",
+    "tooltip": "show the SWAP information",
+    "default": true
+  },
+  "title-color": {
+    "type": "colorchooser",
+    "description": "Title text color",
+    "tooltip": "The color for the titles",
+    "default": "midnightblue"
+  },
+  "label-color": {
+    "type": "colorchooser",
+    "description": "Label text color",
+    "tooltip": "The color for the labels",
+    "default": "black"
+  },
+  "value-color": {
+    "type": "colorchooser",
+    "description": "Value text color",
+    "tooltip": "The color for the values",
+    "default": "white"
+  },
+  "head2": {
+    "type": "header",
+    "description": "Top Process Settings"
   },
   "refresh-rate": {
     "type": "spinbutton",
@@ -25,10 +77,6 @@
     "step": 1,
     "description": "Number of seconds for each refresh",
     "tooltip": "Increase or decrease the how often the display updates."
-  },
-  "head2": {
-    "type": "header",
-    "description": "Process"
   },
   "top-command": {
     "type": "entry",

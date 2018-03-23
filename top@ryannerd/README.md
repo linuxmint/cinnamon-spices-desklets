@@ -14,8 +14,9 @@ Screenshot:
 
 **TODO**:
  - User configuration options:
-    - Fix issue where desklet restart is needed when number of processes is changed.
-    - Give users more control over the look and feel of the desklet (title colors, etc.)
+    - Background color
+    - Opacity
+    - Width
  - Language Translations
     - I need to figure out how all this "po" stuff works.
     - Spanish (I may be able to bribe my co-worker Pablo into helping)
