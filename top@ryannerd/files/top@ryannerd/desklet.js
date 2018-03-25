@@ -213,6 +213,7 @@ TopDesklet.prototype =
             this.settings.bindProperty(Settings.BindingDirection.IN, "title-color", "cfgTitleColor", this.on_setting_changed);
             this.settings.bindProperty(Settings.BindingDirection.IN, "label-color", "cfgLabelColor", this.on_setting_changed);
             this.settings.bindProperty(Settings.BindingDirection.IN, "value-color", "cfgValueColor", this.on_setting_changed);
+            this.settings.bindProperty(Settings.BindingDirection.IN, "enable-custom-command", "cfgEnableCustomCommand", this.on_setting_changed);
 
             this.cfgMaxPidLines   = parseInt(this.cfgMaxPidLines) || DEFAULT_PID_LIMIT;
             this.cfgRefreshRate   = parseInt(this.cfgRefreshRate) || DEFAULT_UPDATE_TIMER;
@@ -225,6 +226,9 @@ TopDesklet.prototype =
             this.cfgTitleColor    = this.cfgTitleColor            || DEFAULT_TITLE_COLOR;
             this.cfgLabelColor    = this.cfgLabelColor            || DEFAULT_LABEL_COLOR;
             this.cfgValueColor    = this.cfgValueColor            || DEFAULT_VALUE_COLOR;
+
+            // Set the timer as inactive.
+            this.timeout = 0;
 
             // Kick off the UI Setup and refresh
             this.on_setting_changed();
@@ -240,8 +244,14 @@ TopDesklet.prototype =
     on_setting_changed()
     {
         // Prevent any refresh until we have set up the UI
-        if (this.timeout && typeof this.timeout !== 'undefined') {
+        if (this.timeout > 0) {
             Mainloop.source_remove(this.timeout);
+        }
+
+        if (this.cfgEnableCustomCommand) {
+            this.cfgTopCommand = this.cfgTopCommand || DEFAULT_TOP_COMMAND;
+        } else {
+            this.cfgTopCommand = DEFAULT_TOP_COMMAND;
         }
 
         // Nuke the mainContainer
@@ -551,7 +561,9 @@ TopDesklet.prototype =
      */
     on_desklet_removed()
     {
-        Mainloop.source_remove(this.timeout);
+        if (this.timeout > 0) {
+            Mainloop.source_remove(this.timeout);
+        }
     },
 
     /**
