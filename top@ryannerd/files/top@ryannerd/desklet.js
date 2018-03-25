@@ -6,7 +6,7 @@ const Lang = imports.lang;
 const DeskletManager = imports.ui.deskletManager;
 const Settings = imports.ui.settings;
 const Global = global; // This is done so that Auto-completion for Gnome project can be used. see: https://github.com/RyanNerd/gnome-autocomplete
-// const Gettext = imports.gettext;
+const Gettext = imports.gettext;
 
 const UUID = "top@ryannerd";
 const DESKLET_DIR = DeskletManager.deskletMeta[UUID].path; // path to this desklet (unused)
@@ -25,7 +25,7 @@ const DEFAULT_LABEL_COLOR    = "black";
 const DEFAULT_VALUE_COLOR    = "white";
 
 // l10n/translation support
-// Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
 /**
  * Preparatory function for when we implement string translations.
@@ -34,8 +34,7 @@ const DEFAULT_VALUE_COLOR    = "white";
  * @private
  */
 function _(str) {
-    // return Gettext.dgettext(UUID, str);
-    return str;
+    return Gettext.dgettext(UUID, str);
 }
 
 /**
