@@ -1585,7 +1585,7 @@ wxDriverBBC.prototype = {
   // these will be dynamically reset when data is loaded
   linkURL: 'http://www.bbc.co.uk/weather/',
 
-  _baseURL: 'http://open.live.bbc.co.uk/weather/feeds/en/',
+  _baseURL: 'https://weather-broker-cdn.api.bbci.co.uk/en/',
 
   // initialise the driver
   _bbcinit: function(stationID) {
@@ -1601,7 +1601,7 @@ wxDriverBBC.prototype = {
     this.linkURL = 'http://www.bbc.co.uk/weather';
 
     // process the three day forecast
-    let a = this._getWeather(this._baseURL + this.stationID + '/' + '3dayforecast' + '.rss', function(weather) {
+    let a = this._getWeather(this._baseURL + 'forecast/rss/3day/' + this.stationID, function(weather) {
       if (weather) {
         this._load_forecast(weather);
       }
@@ -1611,7 +1611,7 @@ wxDriverBBC.prototype = {
     });
 
     // process current observations
-    let b = this._getWeather(this._baseURL + this.stationID + '/' + 'observations' + '.rss', function(weather) {
+    let b = this._getWeather(this._baseURL + 'observation/rss/' + this.stationID, function(weather) {
       if (weather) {
         this._load_observations(weather);
       }
@@ -1737,8 +1737,8 @@ wxDriverBBC.prototype = {
       this.data.cc.temperature = this._getTemperature(this.data.cc.temperature);
       this.data.cc.wind_speed = this._getWindspeed(this.data.cc.wind_speed);
       this.data.cc.wind_direction = _(this.data.cc.wind_direction);
-      this.data.cc.humidity = this.data.cc.humidity.replace('%', '');
-      this.data.cc.pressure = this.data.cc.pressure.replace('mb', '');
+      this.data.cc.humidity = this.data.cc.humidity.replace('%', '').replace('-- ', '');
+      this.data.cc.pressure = this.data.cc.pressure.replace('mb', '').replace('-- ', '');
       this.data.status.cc = BBCWX_SERVICE_STATUS_OK;
     } catch(e) {
       global.logError(e);
@@ -1761,21 +1761,28 @@ wxDriverBBC.prototype = {
       'grey cloud' : '26d',
       'thick cloud' : '26d',
       'light rain shower' : '39',
+      'light rain showers' : '39',
       'drizzle' : '09',
       'light rain' : '11',
       'heavy rain shower' : '39',
+      'heavy rain showers' : '39',
       'heavy rain' : '12',
       'sleet shower' : '07',
+      'sleet showers' : '07',
       'sleet' : '07',
       'light snow shower' : '41',
+      'light snow showers' : '41',
       'light snow' : '13',
       'heavy snow shower' : '41',
+      'heavy snow showers' : '41',
       'heavy snow' : '16',
       'thundery shower' : '37',
+      'thundery showers' : '37',
       'thunder storm' : '04',
       'thunderstorm' : '04',
       'hazy' : '22',
-      'hail shower': '18'
+      'hail shower': '18',
+      'hail showers': '18'
     }
     if (wxtext) {
       wxtext = wxtext.toLowerCase();
@@ -1789,12 +1796,14 @@ wxDriverBBC.prototype = {
   _getTemperature: function(temp) {
     if (!temp) return '';
     let celsius = temp.slice(0, temp.indexOf('C')-1).trim();
+    if (isNaN(celsius)) return '';
     return celsius;
   },
 
   _getWindspeed: function(wind) {
     if (!wind) return '';
     let mph = wind.replace('mph', '');
+    if (isNaN(mph)) return '';
     let out = mph * 1.6;
     return out;
   },
