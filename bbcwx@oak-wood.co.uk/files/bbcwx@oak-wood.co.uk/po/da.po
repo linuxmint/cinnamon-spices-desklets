@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bbcwx\n"
 "Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
 "POT-Creation-Date: 2018-01-07 21:05+0000\n"
-"PO-Revision-Date: 2017-06-15 17:29+0200\n"
+"PO-Revision-Date: 2018-04-07 19:36+0200\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Danish <da@li.org>\n"
 "Language: da\n"
@@ -957,9 +957,8 @@ msgid "Select the data service you wish to use"
 msgstr "Vælg den dataservice, du vil benytte"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
 msgid "APIXU (requires API key)"
-msgstr "meteoblue (kræver API-nøgle)"
+msgstr "APIXU (kræver API-nøgle)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "Wunderground (requires API key)"
@@ -970,18 +969,16 @@ msgid "meteoblue (requires API key)"
 msgstr "meteoblue (kræver API-nøgle)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
 msgid "World Weather Online (deprecated) (requires API key)"
-msgstr "World Weather Online (kræver API-nøgle)"
+msgstr "World Weather Online (forældet) (kræver API-nøgle)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "BBC"
 msgstr "BBC"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
 msgid "Open Weather Map Free (requires API key)"
-msgstr "World Weather Online (kræver API-nøgle)"
+msgstr "Open Weather Map Free (kræver API-nøgle)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "weather.com (deprecated)"
@@ -996,9 +993,8 @@ msgid "Forecast.io (requires API key)"
 msgstr "Forecast.io (kræver API-nøgle)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
 msgid "Open Weather Map (requires API key)"
-msgstr "World Weather Online (kræver API-nøgle)"
+msgstr "Open Weather Map (kræver API-nøgle)"
 
 #. bbcwx@oak-wood.co.uk->settings-
 #. schema.json->display__forecast__pressure->description
