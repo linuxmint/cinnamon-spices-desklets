@@ -180,7 +180,7 @@ msgstr "avril"
 
 #: xdate.js:13
 msgid "May"
-msgstr "may"
+msgstr "mai"
 
 #: xdate.js:13
 msgid "June"
