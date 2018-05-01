@@ -1,3 +1,4 @@
+'use strict';
 const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
 const GLib = imports.gi.GLib;
