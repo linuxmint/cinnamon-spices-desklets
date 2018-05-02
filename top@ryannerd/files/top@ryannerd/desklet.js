@@ -1,4 +1,3 @@
-'use strict';
 const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
 const GLib = imports.gi.GLib;
@@ -201,7 +200,7 @@ TopDesklet.prototype =
             Desklet.Desklet.prototype._init.call(this, metadata, deskletId);
 
             // Get the configuration bindings
-            this.settings = new Settings.DeskletSettings(this, UUID, this.deskletId);
+            this.settings = new Settings.DeskletSettings(this, UUID, deskletId);
             this.settings.bindProperty(Settings.BindingDirection.IN, "pid-lines", "cfgMaxPidLines", this.on_setting_changed);
             this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-rate", "cfgRefreshRate", this.on_setting_changed);
             this.settings.bindProperty(Settings.BindingDirection.IN, "top-command", "cfgTopCommand", this.on_setting_changed);
