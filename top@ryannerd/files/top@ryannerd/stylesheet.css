@@ -1,0 +1,28 @@
+.mainTopContainer {
+    width: 600px;
+    padding: 5px 5px 5px 5px;
+}
+
+.topMainTitle {
+    text-align: right;
+    color: midnightblue;
+    font-style: italic;
+}
+
+.topTitle {
+    text-align: right;
+}
+
+.topProcTitle {
+    text-align: left;
+    color: midnightblue;
+    font-style: italic;
+    padding-left: 5px;
+    padding-right: 10px;
+}
+
+.topValue {
+    text-align: left;
+    padding-left: 5px;
+    padding-right: 10px;
+}

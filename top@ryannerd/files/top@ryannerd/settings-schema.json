@@ -1,0 +1,102 @@
+{
+  "head0": {
+    "type": "header",
+    "description": "Desklet Settings for top@ryannerd"
+  },
+
+  "head1": {
+    "type": "header",
+    "description": "Visual"
+  },
+  "pid-lines": {
+    "type": "spinbutton",
+    "default": 10,
+    "min": 1,
+    "max": 20,
+    "step": 1,
+    "description": "Number of processes to list",
+    "tooltip": "Set how many processes you want to display"
+  },
+  "show-tasks": {
+    "type": "checkbox",
+    "description": "Show Tasks",
+    "tooltip": "show the TASKS information",
+    "default": true
+  },
+  "show-cpu": {
+    "type": "checkbox",
+    "description": "Show CPU",
+    "tooltip": "show the CPU information",
+    "default": true
+  },
+  "show-ram": {
+    "type": "checkbox",
+    "description": "Show RAM",
+    "tooltip": "show the RAM information",
+    "default": true
+  },
+  "show-swap": {
+    "type": "checkbox",
+    "description": "Show SWAP",
+    "tooltip": "show the SWAP information",
+    "default": true
+  },
+  "show-processes": {
+    "type": "checkbox",
+    "description": "Show Processes",
+    "tooltip": "show the SWAP information",
+    "default": true
+  },
+  "title-color": {
+    "type": "colorchooser",
+    "description": "Title text color",
+    "tooltip": "The color for the titles",
+    "default": "midnightblue"
+  },
+  "label-color": {
+    "type": "colorchooser",
+    "description": "Label text color",
+    "tooltip": "The color for the labels",
+    "default": "black"
+  },
+  "value-color": {
+    "type": "colorchooser",
+    "description": "Value text color",
+    "tooltip": "The color for the values",
+    "default": "white"
+  },
+  "head2": {
+    "type": "header",
+    "description": "Top Process Settings"
+  },
+  "refresh-rate": {
+    "type": "spinbutton",
+    "default": 1.5,
+    "min": 1,
+    "max": 5000,
+    "step": 0.5,
+    "description": "Number of seconds to wait before refresh",
+    "tooltip": "Increase or decrease the how often the display updates."
+  },
+  "use-custom-command": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Use a custom `top` command?"
+  },
+  "top-command": {
+    "dependency": "use-custom-command",
+    "indent": true,
+    "type": "entry",
+    "default": "top -n 1 -b",
+    "description": "The `top` command that is executed every refresh",
+    "tooltip": "The command MUST return output in the standard `top -b` format."
+  },
+  "enable-custom-command": {
+    "dependency": "use-custom-command",
+    "indent": true,
+    "type": "checkbox",
+    "default": false,
+    "description": "When set to true the custom command is used",
+    "tooltip": "WARNING: The command is executed synchronously and can cause potential hangs if the command is long running!"
+  }
+}
