@@ -531,7 +531,7 @@ TopDesklet.prototype =
             {
                 this.procGrid[row][0].text = parseInt(processes[row].pid).toString();
                 this.procGrid[row][1].text = processes[row].user;
-                this.procGrid[row][2].text = parseInt(processes[row].pr).toString();
+                this.procGrid[row][2].text = processes[row].pr;
                 this.procGrid[row][3].text = parseInt(processes[row].ni).toString();
                 this.procGrid[row][4].text = parseInt(processes[row].virt).toString();
                 this.procGrid[row][5].text = parseInt(processes[row].res).toString();
