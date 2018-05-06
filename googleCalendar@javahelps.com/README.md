@@ -4,7 +4,7 @@ View your upcoming calendar events on your Cinnamon Desktop. This desklet uses `
 
 ## Requirements
 
-- Cinnamon 3.4 or 3.6
+- Cinnamon 3.4, 3.6 or 3.8
 - `gcalcli`
 
 ## Installation
@@ -40,7 +40,8 @@ You should get an output similar to this:
 2018-02-16	14:30	2018-02-16	15:30	Cloud Computing
 ```
 If not, your `gcalcli` has some issues. Without fixing them, Google Calendar Desklet cannot be used.
-> Please note that I cannot help on `gcalcli` related issues. If you could not resolve them by yourself, please report at: [gcalcli GitHub Issues](https://github.com/insanum/gcalcli/issues).
+
+*Please note that I cannot help on `gcalcli` related issues. If you could not resolve them by yourself, please report at: [gcalcli GitHub Issues](https://github.com/insanum/gcalcli/issues).*
 
 
 4. Add Google Calendar desklet and enjoy!!!

@@ -117,6 +117,9 @@ Event.prototype = {
         this.endDate = new XDate(properties[2]);
         this.endTime = properties[3];
         this.name = properties[4];
+        if (!this.name) {
+            throw "Error in parsing " + eventLine;
+        }
         this.useTwentyFourHour = useTwentyFourHour;
     },
 
