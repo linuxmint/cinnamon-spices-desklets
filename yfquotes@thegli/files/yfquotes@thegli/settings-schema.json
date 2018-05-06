@@ -74,6 +74,7 @@
   "showCurrencyCode": {
     "type": "checkbox",
     "default": true,
+    "dependency": "showStockPrice",
     "description": "Show currency code",
     "tooltip": "Display the currency of the price (eg. $)."
   },
