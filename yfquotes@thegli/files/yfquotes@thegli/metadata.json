@@ -1,0 +1,7 @@
+{
+    "description": "A desklet that displays stock quote information from Yahoo Finance",
+    "name": "Yahoo Finance Quotes",
+    "prevent-decorations": true,
+    "version": "0.1.0",
+    "uuid": "yfquotes@thegli"
+}

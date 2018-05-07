@@ -1,0 +1,17 @@
+.stocks-reader {
+    padding: 5px;
+    border: 2px solid #ffffff;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 12px;
+    color: #ffffff;
+}
+
+.stocks-table-item {
+    padding-left: 2px;
+    padding-right: 5px;
+}
+
+.stocks-label {
+    text-align: center;
+}
+

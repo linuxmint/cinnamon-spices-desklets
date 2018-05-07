@@ -1,0 +1,87 @@
+{
+  "head": {
+    "type": "header",
+    "description": "Desklet layout and Financial data"
+  },
+  "height": {
+    "default": 620,
+    "type": "spinbutton",
+    "min": 50,
+    "max": 1600,
+    "description": "Height",
+    "units": "pixels",
+    "step": 20,
+    "tooltip": "Desklet height in pixels."
+  },
+  "width": {
+    "default": 440,
+    "type": "spinbutton",
+    "min": 50,
+    "max": 1600,
+    "description": "Width",
+    "units": "pixels",
+    "step": 40,
+    "tooltip": "Desklet width in pixels."
+  },
+  "delayMinutes": {
+    "default": 10,
+    "type": "spinbutton",
+    "min": 1,
+    "max": 3600,
+    "description": "Update frequency",
+    "units": "minutes",
+    "step": 1,
+    "tooltip": "Data refresh frequency, in minutes."
+  },
+  "companySymbols": {
+    "type": "textview",
+    "height": 200,
+    "default": "MMM\nAXP\nAAPL\nBA\nCAT\nCVX\nCSCO\nKO\nDWDP\nXOM\nGE\nGS\nHD\nINTC\nIBM\nJNJ\nJPM\nMCD\nMRK\nMSFT\nNKE\nPFE\nPG\nTRV\nUTX\nUNH\nVZ\nV\nWMT\nDIS",
+    "description": "Quote symbols",
+    "tooltip": "List the stock quote symbols here, separated with line-breaks."
+  },
+  "separator": {
+    "type": "separator"
+  },
+  "display": {
+    "type": "header",
+    "description": "Stock quote details"
+  },
+  "showIcon": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show change icon",
+    "tooltip": "Indicates whether the stock price moved up, down, or is unchanged."
+  },
+  "showStockName": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show full stock name",
+    "tooltip": "Display the full stock name (eg. International Business Machines)."
+  },
+  "showStockSymbol": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show ticker/symbol",
+    "tooltip": "Display the stock symbol (eg. IBM)."
+  },
+  "showStockPrice": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show price",
+    "tooltip": "Display the current stock price (eg. 146.79)."
+  },
+  "showCurrencyCode": {
+    "type": "checkbox",
+    "default": true,
+    "dependency": "showStockPrice",
+    "description": "Show currency code",
+    "tooltip": "Display the currency of the price (eg. $)."
+  },
+  "showStockPercentChange": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show percent change",
+    "tooltip": "Display the percent change of the stock price (eg. +0.53%)."
+  }
+}
