@@ -17,6 +17,8 @@
 * along with this program.  If not, see <http:*www.gnu.org/licenses/>.
 */
 
+"use strict";
+
 const Cinnamon = imports.gi.Cinnamon;
 const Desklet = imports.ui.desklet;
 const GLib = imports.gi.GLib;
@@ -192,6 +194,8 @@ GoogleCalendarDesklet.prototype = {
             lblEvent.width = TEXT_WIDTH;
             lblDate.width = DATE_WIDTH;
             box.add(lblDate);
+        } else {
+            lblEvent.width = TEXT_WIDTH + DATE_WIDTH;
         }
 
         this.window.add(box);
@@ -262,7 +266,7 @@ GoogleCalendarDesklet.prototype = {
         var outputReceived = false;
         try {
             // Execute the command to retrieve the calendar events.
-            reader = new SpawnReader();
+            let reader = new SpawnReader();
             reader.spawn("./", this.getCalendarCommand(), (output) => {
                 if (!outputReceived) {
                     this.resetWidget();
@@ -273,7 +277,13 @@ GoogleCalendarDesklet.prototype = {
                     this.addEvent(eventLine);
                 } catch (e) {
                     global.logError(e);
-                    let label = CalendarUtility.label(_("Unable to retrieve events..."), this.zoom, this.textcolor);
+                    let label;
+                    if (eventLine.includes("https://accounts.google.com/o/oauth2/auth")) {
+                        // Not authenticated
+                        label = CalendarUtility.label(_("Please configure gcalcli to continue"), this.zoom, this.textcolor);
+                    } else {
+                        label = CalendarUtility.label(_("Unable to retrieve events..."), this.zoom, this.textcolor);
+                    }
                     this.window.add(label);
                 }
             });
