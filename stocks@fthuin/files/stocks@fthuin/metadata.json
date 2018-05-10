@@ -1,8 +1,0 @@
-{
-    "last-edited": "1453028592",
-    "icon": "emblem-sales",
-    "description": "A desklet that displays stocks from Yahoo Finance",
-    "name": "Stocks Desklet", 
-    "prevent-decorations": true,
-    "uuid": "stocks@fthuin"
-}
