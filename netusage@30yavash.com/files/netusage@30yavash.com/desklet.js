@@ -1,12 +1,3 @@
-//
-// Network usage monitor v0.1 - 28 Sep 2013
-//
-// keeps track of your network usage.
-// base on clem Network Usage Monitor applet.
-//
-// -Siavash Salemi
-// 30yavash [at] gmail [dot] com
-//
 const Desklet = imports.ui.desklet;
 const Gio = imports.gi.Gio;
 const Lang = imports.lang;
@@ -16,7 +7,32 @@ const St = imports.gi.St;
 const Util = imports.misc.util;
 const PopupMenu = imports.ui.popupMenu;
 const GLib = imports.gi.GLib;
-const NMClient = imports.gi.NMClient;
+
+// Code for selecting network manager thanks to Jason Hicks
+let tryFn = function(fn, errCb) {
+  try {
+    return fn();
+  } catch (e) {
+    if (typeof errCb === 'function') {
+      errCb(e);
+    }
+  }
+}
+
+let CONNECTED_STATE, NMClient_new, newNM;
+// Fallback to the new version.
+tryFn(function() {
+  const NMClient = imports.gi.NMClient;
+  const NetworkManager = imports.gi.NetworkManager;
+  CONNECTED_STATE = NetworkManager.DeviceState ? NetworkManager.DeviceState.ACTIVATED : 0;
+  NMClient_new = NMClient.Client.new;
+  newNM = false;
+}, function() {
+  const NM = imports.gi.NM;
+  CONNECTED_STATE = NM.DeviceState.ACTIVATED;
+  NMClient_new = NM.Client.new;
+  newNM = true;
+});
 
 // l10n/translation
 const Gettext = imports.gettext;
@@ -25,7 +41,6 @@ let UUID;
 function _(str) {
     return Gettext.dgettext(UUID, str);
 };
-
 
 function MyDesklet(metadata){
     this._init(metadata);
@@ -48,7 +63,10 @@ MyDesklet.prototype = {
 
         this.imageWidget = new St.Bin({x_align: St.Align.MIDDLE});
 
-        this._client = NMClient.Client.new();
+//      this._client = NMClient.Client.new();
+        let args = newNM ? [null] : [];
+        this._client = NMClient_new.apply(this, args);
+
         this._deskletContainer.add_actor(this.imageWidget);
         this.setContent(this._deskletContainer);
         this._updateWidget();
@@ -66,7 +84,7 @@ MyDesklet.prototype = {
     },
     _updateDevice: function() {
         try {
-            global.logError("device: " + this.netDevice);
+//          global.logError("device: " + this.netDevice);
             let activeConnections = this._client.get_active_connections();
             for (let i = 0; i < activeConnections.length; i++) {
                 let a = activeConnections[i];
@@ -83,13 +101,12 @@ MyDesklet.prototype = {
             }
         }
         catch (e) {
-            //this.netDevice = "eth0";
             global.logError(e);
         }
     },
     _updateGraph: function() {
         try {
-            //this._device = "wlan0";
+
             GLib.spawn_command_line_sync('vnstati -s -ne -i ' + this.netDevice + ' -o /tmp/vnstatlmapplet.png');
             let l = new Clutter.BinLayout();
             let b = new Clutter.Box();
@@ -103,12 +120,13 @@ MyDesklet.prototype = {
             this.warnings = new St.BoxLayout({vertical: true});
             this.missingDependencies = new St.Label({text: _("Please make sure vnstat and vnstati are installed and that the vnstat daemon is running!") 
                                   + "\n" + _("In Linux Mint, you can simply run 'apt install vnstati' and that will take care of everything.") 
-                                  + "\n" + _("In other distributions it might depend on the way things are packaged but its likely to be similar.")});
+                                  + "\n" + _("In other distributions it might depend on the way things are packaged but its likely to be similar.")
+                                  + "\n" + _("The Interface detected was: " + this.netDevice )
+});
             this.warnings.add(this.missingDependencies);
             this.setContent(this.warnings);
-            global.logError(e);
+//            global.logError(e);
         }
-
     }
 }
 
