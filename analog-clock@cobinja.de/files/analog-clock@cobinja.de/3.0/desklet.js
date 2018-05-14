@@ -25,7 +25,7 @@ const MARGIN = 5;
 
 function getImageAtScale(imageFileName, scale) {
   let width, height, fileInfo;
-  [fileInfo, width, height] = GdkPixbuf.Pixbuf.get_file_info(imageFileName, null, null);
+  [fileInfo, width, height] = GdkPixbuf.Pixbuf.get_file_info(imageFileName);
   
   let scaledWidth = scale * width;
   let scaledHeight = scale * height;
@@ -154,7 +154,7 @@ CobiAnalogClockSettings.prototype = {
   
   _writeSettings: function() {
     let filedata = JSON.stringify(this.values, null, "  ");
-    GLib.file_set_contents(this._settingsFile.get_path(), filedata, filedata.length);
+    GLib.file_set_contents(this._settingsFile.get_path(), filedata);
   },
   
   destroy: function(deleteConfig) {
@@ -162,11 +162,11 @@ CobiAnalogClockSettings.prototype = {
     this._monitor.cancel();
     if (deleteConfig !== undefined && deleteConfig == true) {
       let file = this._settingsFile;
-      file.delete(null, null);
+      file.delete(null);
       file = file.get_parent(); // dir analog-clock@cobinja.de/
-      file.delete(null, null);
+      file.delete(null);
       file = file.get_parent(); // dir ~/config/cobinja/
-      file.delete(null, null);
+      file.delete(null);
     }
     this.values = null;
   }
@@ -381,6 +381,7 @@ CobiAnalogClock.prototype = {
     this._tzId = tzFile.query_exists(null) ? ":" + tzId : null;
     this._updateHeader();
     this._updateTzLabel();
+    this._initialUpdate = true;
     this._updateClock();
   },
   
