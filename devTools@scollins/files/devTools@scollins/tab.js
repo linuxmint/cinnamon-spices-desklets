@@ -263,13 +263,13 @@ ScrolledTabBox.prototype = {
         let scrollButtonBox = new St.BoxLayout();
         stack.add_actor(scrollButtonBox);
 
-        this.backButton = new St.Button({label: "<", style_class: "devtools-tab-scrollButton"});
+        this.backButton = new St.Button({label: "&lt;", style_class: "devtools-tab-scrollButton"});
         scrollButtonBox.add_actor(this.backButton);
         this.backButton.connect("clicked", Lang.bind(this, this.scrollBack));
 
         scrollButtonBox.add(new St.Bin(), { expand: true });
 
-        this.forwardButton = new St.Button({label: ">", style_class: "devtools-tab-scrollButton"});
+        this.forwardButton = new St.Button({label: "&gt;", style_class: "devtools-tab-scrollButton"});
         scrollButtonBox.add_actor(this.forwardButton);
         this.forwardButton.connect("clicked", Lang.bind(this, this.scrollForward));
 
