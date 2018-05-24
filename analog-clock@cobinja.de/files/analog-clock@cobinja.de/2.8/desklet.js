@@ -357,6 +357,7 @@ CobiAnalogClock.prototype = {
     this._tzId = tzFile.query_exists(null) ? ":" + tzId : null;
     this._updateHeader();
     this._updateTzLabel();
+    this._initialUpdate = true;
     this._updateClock();
   },
   
