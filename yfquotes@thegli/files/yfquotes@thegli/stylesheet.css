@@ -1,17 +1,21 @@
-.stocks-reader {
+.quotes-reader {
     padding: 5px;
     border: 2px solid #ffffff;
-    background-color: rgba(0, 0, 0, 0.7);
     border-radius: 12px;
     color: #ffffff;
 }
 
-.stocks-table-item {
+.quotes-table-item {
     padding-left: 2px;
     padding-right: 5px;
 }
 
-.stocks-label {
+.quotes-label {
     text-align: center;
+}
+
+.error-label {
+    text-align: left;
+    color: #cc0000;
 }
 
