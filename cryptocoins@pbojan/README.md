@@ -1,6 +1,6 @@
 ## CryptoCoins Desklet for Cinnamon
 
-Cinnamon Desklet that displays the current price of more than **80+ coins** and their daily percent changes.
+Cinnamon Desklet that displays the current price of more than **220+ coins** and their daily percent changes.
 
 ## Usage Help
 
@@ -50,10 +50,10 @@ If you have ideas for new features or improvements please send an email to [p.bo
 If you want to support the work and maintenance of this Desklet, please consider donating. Every donation is highly appreciated!
 
 ```
-BTC: 116BgTg5KRfcNoVm3R8icGU13AfR95CxZU
-BCH: 14pZtzzvvjq7zwJKvWaHZNijYXn8gPdT35
-LTC: LYs7eaP2so2uUfETUwWfnxCfsZde4uBBid
-ETH: 0x268ff652d60992d241e40626e94b6dc54444d897
+BTC: bc1q82zg96fgeenr5ag254lnqt4nn77lzjf5nx9m00
+BCH: qq57wcmp7ajgpzgxhme5ldfwwfmkja8qd5mmaf6rlz
+LTC: ltc1q362me09lmxfcq6zex6968qsnnq6hz3nhxv4cyr
+ETH: 0x1125207ae7d169eb623fa228e5b2c48a6b6482d9
 ```
 
 Can't donate but you still want to help? Report a bug or even better solve one or improve the Desklet by creating a pull request.

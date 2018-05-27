@@ -1,5 +1,5 @@
 {
-    "description": "Displays the current price of more than 80+ coins and their daily percent changes.",
+    "description": "Displays the current price of more than 220+ coins and their daily percent changes.",
     "uuid": "cryptocoins@pbojan",
     "name": "Crypto Coins Ticker",
     "prevent-decorations": true,
