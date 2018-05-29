@@ -100,7 +100,7 @@ TopDesklet.prototype = {
             // Recalculate positions
             xPosition = xPosition + 175;
 
-            if (xPosition == 700) {
+            if (xPosition === 700) {
                 yPosition = yPosition + 175;
                 xPosition = 0;
             }
