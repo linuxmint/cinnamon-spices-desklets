@@ -188,7 +188,7 @@ TopDesklet.prototype = {
         Mainloop.source_remove(this.timeout);
     }
 
-}
+};
 
 function main(metadata, deskletId) {
     return new TopDesklet(metadata, deskletId);
