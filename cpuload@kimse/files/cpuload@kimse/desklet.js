@@ -79,14 +79,14 @@ TopDesklet.prototype = {
             usageCircle.set_position(xPosition, yPosition);
 
             // Create usage label
-            usageText = usage + '%';
+            usageText = usage + "%";
             usageLabel = new St.Label();
             usageLabel.set_position(xPosition + (150 / 2) - ((largeFontSize * usageText.length / 1.6) / 2), yPosition + 45);
             usageLabel.set_text(usageText);
             usageLabel.style = "font-size: " + largeFontSize + "px;font-family: 'Sawasdee', sans-serif;font-weight: 500";
 
             // Create sub label
-            subText = 'Core ' + cpuCore;
+            subText = "Core " + cpuCore;
             subLabel = new St.Label();
             subLabel.set_position(xPosition + (157 / 2) - ((normalFontSize * subText.length / 1.6) / 2), yPosition + 75);
             subLabel.set_text(subText);
@@ -124,7 +124,7 @@ TopDesklet.prototype = {
 
         let canvas = new Clutter.Canvas();
         canvas.set_size(150, 150);
-        canvas.connect('draw', function(canvas, cr, width, height) {
+        canvas.connect("draw", function(canvas, cr, width, height) {
 
             let offset = Math.PI * 0.5;
             let start = 0 - offset;
@@ -161,7 +161,7 @@ TopDesklet.prototype = {
     executeTop: function() {
 
         let subprocess = new Gio.Subprocess({
-            argv: ['top', '-bn2', '-d0.01'],
+            argv: ["top", "-bn2", "-d0.01"],
             flags: Gio.SubprocessFlags.STDOUT_PIPE,
         });
 
