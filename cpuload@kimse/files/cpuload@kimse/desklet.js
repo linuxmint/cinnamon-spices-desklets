@@ -19,13 +19,16 @@ TopDesklet.prototype = {
 
         this.executeTop();
         this.setupUI();
+
     },
 
     setupUI () {
-
+        
+        this.largeFontSize = 20;
+        this.normalFontSize = 13;
         this.colors = [];
-        let cpuCore = 0;
-        for (cpuCore = 0; cpuCore < this.getCpuLoad().length; cpuCore++) {
+
+        for (let cpuCoreNumber = 0; cpuCoreNumber < this.getCpuLoad().length; cpuCoreNumber++) {
             this.colors.push(this.generateCircleColor());
         }
 
@@ -41,63 +44,62 @@ TopDesklet.prototype = {
 
     refresh () {
 
-        this.window.remove_all_children();
-
         // Execute top
         this.executeTop();
 
+        // Remove previous drawings
+        this.window.remove_all_children();
+
+        // Redraw Cpu usage
+        this.redrawCpuUsages();
+
+        // Refresh again in 5 seconds
+        this.timeout = Mainloop.timeout_add_seconds(5, Lang.bind(this, this.refresh));
+    },
+
+    redrawCpuUsages() {
+
         let cpuLoad = this.getCpuLoad();
-        let cpuCore;
-        let circleCanvas;
-        let usageCircle;
         let xPosition = 0;
         let yPosition = 0;
-        let largeFontSize = 20;
-        let normalFontSize = 13;
-        let idle = 0;
-        let usage = 0;
-        let usageLabel;
-        let usageText;
-        let subLabel;
-        let subText;
 
-        for (cpuCore = 0; cpuCore < cpuLoad.length; cpuCore++) {
-
+        cpuLoad.forEach(function(cpuCoreLoad, cpuCoreNumber) {
+           
             // Get CPU core idle time
-            idle = parseInt(cpuLoad[cpuCore].match(/([\d]{1,3}\.[\d]) id/i)[1]);
+            let cpuCoreIdleTime = cpuCoreLoad.match(/([\d]{1,3}\.[\d]) id/i)[1];
 
-            // Calculate usage
-            usage = 100 - idle;
+            // Calculate cpu core usage time
+            let cpuCoreUsageTime = 100 - cpuCoreIdleTime;
 
             // Draw circle canvas
-            circleCanvas = this.drawCircleCanvas(usage, 100, this.colors[cpuCore]);
+            let circleCanvas = this.drawCircleCanvas(cpuCoreUsageTime, 100, this.colors[cpuCoreNumber]);
 
-            // Create usage circle
-            usageCircle = new Clutter.Actor();
-            usageCircle.set_content(circleCanvas);
-            usageCircle.set_size(150, 150);
-            usageCircle.set_position(xPosition, yPosition);
+            // Create cpuCoreUsageTime circle
+            let cpuCoreUsageTimeCircle = new Clutter.Actor();
+            cpuCoreUsageTimeCircle.set_content(circleCanvas);
+            cpuCoreUsageTimeCircle.set_size(150, 150);
+            cpuCoreUsageTimeCircle.set_position(xPosition, yPosition);
 
-            // Create usage label
-            usageText = usage + "%";
-            usageLabel = new St.Label();
-            usageLabel.set_position(xPosition + (150 / 2) - ((largeFontSize * usageText.length / 1.6) / 2), yPosition + 45);
-            usageLabel.set_text(usageText);
-            usageLabel.style = "font-size: " + largeFontSize + "px;font-family: 'Sawasdee', sans-serif;font-weight: 500";
+            // Create cpuCoreUsageTime label
+            let cpuCoreUsageTimeText = cpuCoreUsageTime + "%";
+            let cpuCoreUsageTimeLabel = new St.Label();
+            cpuCoreUsageTimeLabel.set_position(xPosition + (150 / 2) - ((this.largeFontSize * cpuCoreUsageTimeText.length / 1.6) / 2), yPosition + 45);
+            cpuCoreUsageTimeLabel.set_text(cpuCoreUsageTimeText);
+            cpuCoreUsageTimeLabel.style = "font-size: " + this.largeFontSize + "px;font-family: 'Sawasdee', sans-serif;font-weight: 500";
 
             // Create sub label
-            subText = "Core " + cpuCore;
-            subLabel = new St.Label();
-            subLabel.set_position(xPosition + (157 / 2) - ((normalFontSize * subText.length / 1.6) / 2), yPosition + 75);
+            let subText = "Core " + cpuCoreNumber;
+            let subLabel = new St.Label();
+            subLabel.set_position(xPosition + (157 / 2) - ((this.normalFontSize * subText.length / 1.6) / 2), yPosition + 75);
             subLabel.set_text(subText);
-            subLabel.style = "font-size: " + normalFontSize + "px;font-family: 'Sawasdee', sans-serif";
+            subLabel.style = "font-size: " + this.normalFontSize + "px;font-family: 'Sawasdee', sans-serif";
 
             // Add to main window
-            this.window.add_actor(usageCircle);
-            this.window.add_actor(usageLabel);
+            this.window.add_actor(cpuCoreUsageTimeCircle);
+            this.window.add_actor(cpuCoreUsageTimeLabel);
             this.window.add_actor(subLabel);
 
-            // Recalculate positions
+            // Calculate position of the next circle
             xPosition = xPosition + 175;
 
             if (xPosition === 700) {
@@ -105,10 +107,7 @@ TopDesklet.prototype = {
                 xPosition = 0;
             }
 
-        }
-
-        // Refresh again in 5 seconds
-        this.timeout = Mainloop.timeout_add_seconds(5, Lang.bind(this, this.refresh));
+        },this);
     },
 
     refreshDecoration () {
@@ -189,8 +188,8 @@ TopDesklet.prototype = {
         Mainloop.source_remove(this.timeout);
     }
 
-};
+}
 
 function main(metadata, deskletId) {
     return new TopDesklet(metadata, deskletId);
-};
+}
