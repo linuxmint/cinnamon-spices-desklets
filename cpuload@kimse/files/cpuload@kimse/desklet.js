@@ -9,7 +9,7 @@ const Cairo = imports.cairo;
 
 function TopDesklet(metadata, deskletId) {
     this._init(metadata, deskletId);
-}
+};
 
 TopDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
@@ -189,8 +189,8 @@ TopDesklet.prototype = {
         Mainloop.source_remove(this.timeout);
     }
 
-}
+};
 
 function main(metadata, deskletId) {
     return new TopDesklet(metadata, deskletId);
-}
+};
