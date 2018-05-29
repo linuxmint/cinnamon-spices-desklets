@@ -72,7 +72,9 @@ TopDesklet.prototype = {
             let cpuCoreUsageTime = 100 - cpuCoreIdleTime;
 
             // Draw circle canvas
-            let circleCanvas = this.drawCircleCanvas(cpuCoreUsageTime, 100, this.colors[cpuCoreNumber]);
+            let circleCanvas = this.drawCircleCanvas(cpuCoreUsageTime, 100, this.colors.find(function(color, index) {
+                return index === cpuCoreNumber;
+            }));
 
             // Create cpuCoreUsageTime circle
             let cpuCoreUsageTimeCircle = new Clutter.Actor();
