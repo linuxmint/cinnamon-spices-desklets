@@ -14,14 +14,14 @@ function TopDesklet(metadata, deskletId) {
 TopDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
 
-    _init: function(metadata, deskletId) {
+    _init (metadata, deskletId) {
         Desklet.Desklet.prototype._init.call(this, metadata, deskletId);
 
         this.executeTop();
         this.setupUI();
     },
 
-    setupUI: function() {
+    setupUI () {
 
         this.colors = [];
         let cpuCore = 0;
@@ -39,7 +39,7 @@ TopDesklet.prototype = {
     },
 
 
-    refresh: function() {
+    refresh () {
 
         this.window.remove_all_children();
 
@@ -111,13 +111,13 @@ TopDesklet.prototype = {
         this.timeout = Mainloop.timeout_add_seconds(5, Lang.bind(this, this.refresh));
     },
 
-    refreshDecoration: function() {
+    refreshDecoration () {
         // Remove decorations
         this.metadata["prevent-decorations"] = true;
         this._updateDecoration();
     },
 
-    drawCircleCanvas: function(use, total, color) {
+    drawCircleCanvas (use, total, color) {
 
         let a = use;
         let b = total;
@@ -158,7 +158,7 @@ TopDesklet.prototype = {
         return canvas;
     },
 
-    executeTop: function() {
+    executeTop () {
 
         let subprocess = new Gio.Subprocess({
             argv: ["top", "-bn2", "-d0.01"],
@@ -170,12 +170,12 @@ TopDesklet.prototype = {
         this.top = subprocess.communicate_utf8(null, null)[1];
     },
 
-    getCpuLoad: function() {
+    getCpuLoad () {
         let cpus = this.top.match(/%Cpu.+/g);
         return cpus.splice(Math.ceil(cpus.length / 2), cpus.length);
     },
 
-    generateCircleColor: function() {
+    generateCircleColor () {
         let rgba = {
             r: Math.random(),
             g: Math.random(),
@@ -185,7 +185,7 @@ TopDesklet.prototype = {
         return rgba;
     },
 
-    on_desklet_removed: function() {
+    on_desklet_removed () {
         Mainloop.source_remove(this.timeout);
     }
 
