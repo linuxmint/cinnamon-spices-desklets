@@ -1,3 +1,4 @@
+/*global imports*/
 const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
 const Gio = imports.gi.Gio;
