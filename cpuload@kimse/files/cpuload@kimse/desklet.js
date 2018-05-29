@@ -9,7 +9,7 @@ const Cairo = imports.cairo;
 
 function TopDesklet(metadata, deskletId) {
     this._init(metadata, deskletId);
-};
+}
 
 TopDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
@@ -70,7 +70,7 @@ TopDesklet.prototype = {
             usage = 100 - idle;
 
             // Draw circle canvas
-            circleCanvas = this.drawCircleCanvas(usage, 100, this.colors[cpuCore])
+            circleCanvas = this.drawCircleCanvas(usage, 100, this.colors[cpuCore]);
 
             // Create usage circle
             usageCircle = new Clutter.Actor();
