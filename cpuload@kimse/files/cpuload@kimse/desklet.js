@@ -22,6 +22,7 @@ TopDesklet.prototype = {
         this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], deskletId);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hide_decorations", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scale_size", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "column-count", "column_count", this.on_setting_changed);
 
         this.executeTop();
         this.setupUI();
@@ -30,7 +31,7 @@ TopDesklet.prototype = {
 
     setupUI () {
         
-        this.minDeskletWidth = 700;
+        this.minDeskletWidth = 175;
         this.largeFontSize = 20;
         this.normalFontSize = 13;
         this.colors = [];
@@ -99,6 +100,7 @@ TopDesklet.prototype = {
 			let cpuCoreUsageLabelPositionY = yPosition + (this.circleContainerSize / 2) - (this.cpuCoreUsageFontSize * 1.35);
             let cpuCoreUsageLabel = new St.Label();
             cpuCoreUsageLabel.set_position(cpuCoreUsageLabelPositionX, cpuCoreUsageLabelPositionY);
+            cpuCoreUsageLabel.set_text(cpuCoreUsageStr);
             cpuCoreUsageLabel.style = "font-size: " + this.cpuCoreUsageFontSize + "px;font-family: 'Sawasdee', sans-serif;font-weight: 500";
 
             // Create CPU core number label
@@ -209,7 +211,7 @@ TopDesklet.prototype = {
 		this.circleContainerMarginSize = 175 * this.scale_size;
 		this.cpuCoreUsageFontSize = Math.round(this.largeFontSize * this.scale_size);
 		this.cpuCoreNumberFontSize = Math.round(this.normalFontSize * this.scale_size);
-        this.maxDeskletWidth = this.minDeskletWidth * this.scale_size;
+        this.maxDeskletWidth = (this.minDeskletWidth * this.column_count) * this.scale_size;
     },
 
 	on_setting_changed () {

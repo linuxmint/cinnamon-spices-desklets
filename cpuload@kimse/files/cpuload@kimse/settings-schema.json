@@ -22,5 +22,15 @@
         "units": "scale factor",
         "description": "Desklet size",
         "tooltip": "Increase or decrease the size of this desklet using this scale factor."
+    },
+    "column-count": {
+        "type": "spinbutton",
+        "default": 2,
+        "step": 1,
+        "min": 1,
+        "max": 16,
+        "units": "columns",
+        "description": "Column count",
+        "tooltip": "Increase or decrease column count"
     }
 }
