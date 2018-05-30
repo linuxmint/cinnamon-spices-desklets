@@ -20,9 +20,9 @@ TopDesklet.prototype = {
         Desklet.Desklet.prototype._init.call(this, metadata, deskletId);
 
         this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], deskletId);
-		this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hide_decorations", this.on_setting_changed);
-		this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scale_size", this.on_setting_changed);
-		this.settings.bindProperty(Settings.BindingDirection.IN, "column-count", "column_count", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hide_decorations", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scale_size", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "column-count", "column_count", this.on_setting_changed);
 
         this.executeTop();
         this.setupUI();
@@ -50,7 +50,6 @@ TopDesklet.prototype = {
         this.refresh();
     },
 
-
     refresh () {
 
         // Execute top
@@ -64,9 +63,7 @@ TopDesklet.prototype = {
 
         // Refresh again in 5 seconds
         this.timeout = Mainloop.timeout_add_seconds(5, Lang.bind(this, this.refresh));
-    },
-
-    
+    },    
 
     redrawCpuUsages() {
 
@@ -96,8 +93,8 @@ TopDesklet.prototype = {
 
             // Create CPU usage label
             let cpuCoreUsageStr = cpuCoreUsageTime + "%";
-			let cpuCoreUsageLabelPositionX = xPosition + (this.circleContainerSize / 2) - ((this.cpuCoreUsageFontSize * cpuCoreUsageStr.length / 2) / 2);
-			let cpuCoreUsageLabelPositionY = yPosition + (this.circleContainerSize / 2) - (this.cpuCoreUsageFontSize * 1.35);
+            let cpuCoreUsageLabelPositionX = xPosition + (this.circleContainerSize / 2) - ((this.cpuCoreUsageFontSize * cpuCoreUsageStr.length / 2) / 2);
+            let cpuCoreUsageLabelPositionY = yPosition + (this.circleContainerSize / 2) - (this.cpuCoreUsageFontSize * 1.35);
             let cpuCoreUsageLabel = new St.Label();
             cpuCoreUsageLabel.set_position(cpuCoreUsageLabelPositionX, cpuCoreUsageLabelPositionY);
             cpuCoreUsageLabel.set_text(cpuCoreUsageStr);
@@ -105,8 +102,8 @@ TopDesklet.prototype = {
 
             // Create CPU core number label
             let cpuCoreNumberStr = "Core " + cpuCoreNumber;
-			let cpuCoreNumberPositionX = xPosition + (this.circleContainerSize / 2) - ((this.cpuCoreNumberFontSize * cpuCoreNumberStr.length / 2) / 2);
-			let cpuCoreNumberPositionY = yPosition + (this.circleContainerSize / 2) + this.cpuCoreNumberFontSize / 4;
+            let cpuCoreNumberPositionX = xPosition + (this.circleContainerSize / 2) - ((this.cpuCoreNumberFontSize * cpuCoreNumberStr.length / 2) / 2);
+            let cpuCoreNumberPositionY = yPosition + (this.circleContainerSize / 2) + this.cpuCoreNumberFontSize / 4;
             let cpuCoreNumberLabel = new St.Label();
             cpuCoreNumberLabel.set_position(cpuCoreNumberPositionX, cpuCoreNumberPositionY);
             cpuCoreNumberLabel.set_text(cpuCoreNumberStr);
