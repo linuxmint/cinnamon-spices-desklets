@@ -1,5 +1,5 @@
 {
-    "max-instances": "10", 
+    "max-instances": "1", 
     "description": "Displays CPU load", 
     "name": "CPU Load", 
     "version": "0.3", 
