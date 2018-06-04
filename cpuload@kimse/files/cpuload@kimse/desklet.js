@@ -10,11 +10,11 @@ const Clutter = imports.gi.Clutter;
 const Cairo = imports.cairo;
 const Settings = imports.ui.settings;
 
-function TopDesklet(metadata, deskletId) {
+function CpuLoadDesklet(metadata, deskletId) {
     this._init(metadata, deskletId);
 }
 
-TopDesklet.prototype = {
+CpuLoadDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
 
     _init(metadata, deskletId) {
@@ -244,5 +244,5 @@ TopDesklet.prototype = {
 };
 
 function main(metadata, deskletId) {
-    return new TopDesklet(metadata, deskletId);
+    return new CpuLoadDesklet(metadata, deskletId);
 }
