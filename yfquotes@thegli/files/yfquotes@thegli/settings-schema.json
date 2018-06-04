@@ -1,87 +1,132 @@
 {
-  "head": {
+  "head1": {
     "type": "header",
-    "description": "Desklet layout and Financial data"
-  },
-  "height": {
-    "default": 620,
-    "type": "spinbutton",
-    "min": 50,
-    "max": 1600,
-    "description": "Height",
-    "units": "pixels",
-    "step": 20,
-    "tooltip": "Desklet height in pixels."
+    "description": "Desklet layout"
   },
   "width": {
-    "default": 440,
     "type": "spinbutton",
-    "min": 50,
-    "max": 1600,
+    "default": 480,
+    "min": 40,
+    "max": 4000,
+    "step": 20,
     "description": "Width",
     "units": "pixels",
-    "step": 40,
     "tooltip": "Desklet width in pixels."
   },
-  "delayMinutes": {
-    "default": 10,
+  "height": {
     "type": "spinbutton",
+    "default": 640,
+    "min": 40,
+    "max": 4000,
+    "step": 20,
+    "units": "pixels",
+    "description": "Height",
+    "tooltip": "Desklet height in pixels."
+  },
+  "transparency": {
+    "type": "scale",
+    "default": 0.7,
+    "min": 0.0,
+    "max": 1.0,
+    "step": 0.05,
+    "description": "Background transparency",
+    "tooltip": "The higher the value, the more solid the desklet background."
+  },
+  "head2": {
+    "type": "header",
+    "description": "Financial data"
+  },
+  "delayMinutes": {
+    "type": "spinbutton",
+    "default": 10,
     "min": 1,
-    "max": 3600,
-    "description": "Update frequency",
-    "units": "minutes",
+    "max": 1440,
     "step": 1,
+    "units": "minutes",
+    "description": "Update frequency",
     "tooltip": "Data refresh frequency, in minutes."
   },
-  "companySymbols": {
+  "showLastUpdateTimestamp": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show last update timestamp",
+    "tooltip": "Display timestamp when quotes were updated last."
+  },
+  "roundNumbers": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Round numbers",
+    "tooltip": "Perform rounding of floating-point numbers."
+  },
+  "decimalPlaces": {
+    "type": "spinbutton",
+    "default": 2,
+    "min": 0,
+    "max": 12,
+    "step": 1,
+    "units": "positions",
+    "description": "Decimal places to round",
+    "tooltip": "Number of positions to round to after decimal point.",
+    "dependency": "roundNumbers"
+  },
+  "quoteSymbols": {
     "type": "textview",
-    "height": 200,
+    "height": 150,
     "default": "MMM\nAXP\nAAPL\nBA\nCAT\nCVX\nCSCO\nKO\nDWDP\nXOM\nGE\nGS\nHD\nINTC\nIBM\nJNJ\nJPM\nMCD\nMRK\nMSFT\nNKE\nPFE\nPG\nTRV\nUTX\nUNH\nVZ\nV\nWMT\nDIS",
     "description": "Quote symbols",
-    "tooltip": "List the stock quote symbols here, separated with line-breaks."
+    "tooltip": "List the quote symbols here, separated with line-breaks."
   },
-  "separator": {
-    "type": "separator"
-  },
-  "display": {
+  "head3": {
     "type": "header",
-    "description": "Stock quote details"
+    "description": "Quote details"
   },
-  "showIcon": {
+  "showChangeIcon": {
     "type": "checkbox",
     "default": true,
     "description": "Show change icon",
-    "tooltip": "Indicates whether the stock price moved up, down, or is unchanged."
+    "tooltip": "Indicates whether the market price moved up, down, or is unchanged."
   },
-  "showStockName": {
+  "showQuoteName": {
     "type": "checkbox",
     "default": true,
-    "description": "Show full stock name",
-    "tooltip": "Display the full stock name (eg. International Business Machines)."
+    "description": "Show verbose name",
+    "tooltip": "Display the quote name (eg. International Business Machines). Click to open quote in browser."
   },
-  "showStockSymbol": {
+  "showQuoteSymbol": {
     "type": "checkbox",
     "default": true,
     "description": "Show ticker/symbol",
-    "tooltip": "Display the stock symbol (eg. IBM)."
+    "tooltip": "Display the quote symbol (eg. IBM)."
   },
-  "showStockPrice": {
+  "showMarketPrice": {
     "type": "checkbox",
     "default": true,
     "description": "Show price",
-    "tooltip": "Display the current stock price (eg. 146.79)."
+    "tooltip": "Display the current market price (eg. 146.79)."
   },
   "showCurrencyCode": {
     "type": "checkbox",
     "default": true,
-    "dependency": "showStockPrice",
-    "description": "Show currency code",
-    "tooltip": "Display the currency of the price (eg. $)."
+    "description": "Show currency symbol",
+    "tooltip": "Display the currency symbol of the price (eg. $).",
+    "dependency": "showMarketPrice"
   },
-  "showStockPercentChange": {
+  "showAbsoluteChange": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show absolute change",
+    "tooltip": "Display the absolute change of the market price (eg. +0.739)."
+  },
+  "showPercentChange": {
     "type": "checkbox",
     "default": true,
     "description": "Show percent change",
-    "tooltip": "Display the percent change of the stock price (eg. +0.53%)."
+    "tooltip": "Display the percent change of the market price (eg. +0.53%)."
+  },
+  "showTradeTime": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show trading time",
+    "tooltip": "Display the last trading time (if current day) or date."
   }
 }
