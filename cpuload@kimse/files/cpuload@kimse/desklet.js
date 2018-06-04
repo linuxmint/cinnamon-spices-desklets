@@ -189,7 +189,7 @@ CpuLoadDesklet.prototype = {
 
         activity.forEach(function(cpu, index) {
 
-            load = cpu.split(" ");
+            let load = cpu.split(" ");
 
             active[index] = parseInt(load[1]) + parseInt(load[2]) + parseInt(load[3]) + parseInt(load[7]) + parseInt(load[8]);
             total[index] = parseInt(load[1]) + parseInt(load[2]) + parseInt(load[3]) + parseInt(load[4]) + parseInt(load[5]) + parseInt(load[7]) + parseInt(load[8]);
