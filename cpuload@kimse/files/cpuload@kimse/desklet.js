@@ -10,11 +10,11 @@ const Clutter = imports.gi.Clutter;
 const Cairo = imports.cairo;
 const Settings = imports.ui.settings;
 
-function CpuLoadDesklet(metadata, deskletId) {
+function CpuusageDesklet(metadata, deskletId) {
     this._init(metadata, deskletId);
 }
 
-CpuLoadDesklet.prototype = {
+CpuusageDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
 
     _init(metadata, deskletId) {
@@ -66,61 +66,50 @@ CpuLoadDesklet.prototype = {
         let yPosition = 0;
         let utilization = this.getCpuUtilization();
 
-        if(!utilization.length){
-        
-            let loadingLabel = new St.Label();
+        utilization.forEach(function (usage, index) {
 
-            loadingLabel.style = "font-size: " + (this.loadingDataMessageFontSize) + "px;font-family: 'Sawasdee', sans-serif;font-weight: 500";
-            loadingLabel.set_text("Waiting for more data samples ...");
+	        // Draw circle canvas
+	        let circleCanvas = this.drawCircleCanvas(usage, 100, this.getCpuColor(index));
 
-            this.window.add_actor(loadingLabel);
+	        // Create CPU usage container
+	        let cpuCoreUsageContainer = new Clutter.Actor();
+	        cpuCoreUsageContainer.set_content(circleCanvas);
+	        cpuCoreUsageContainer.set_size(this.circleContainerSize, this.circleContainerSize);
+	        cpuCoreUsageContainer.set_position(xPosition, yPosition);
 
-        } else {
+	        // Create CPU usage label
+	        let cpuCoreUsageStr = usage + "%";
+	        let cpuCoreUsageLabelPositionX = xPosition + (this.circleContainerSize / 2) - ((this.cpuCoreUsageFontSize * cpuCoreUsageStr.length / 2) / 2);
+	        let cpuCoreUsageLabelPositionY = yPosition + (this.circleContainerSize / 2) - (this.cpuCoreUsageFontSize * 1.35);
+	        let cpuCoreUsageLabel = new St.Label();
+	        cpuCoreUsageLabel.set_position(cpuCoreUsageLabelPositionX, cpuCoreUsageLabelPositionY);
+	        cpuCoreUsageLabel.set_text(cpuCoreUsageStr);
+	        cpuCoreUsageLabel.style = "font-size: " + this.cpuCoreUsageFontSize + "px;font-family: 'Sawasdee', sans-serif;font-weight: 500";
 
-            utilization.forEach(function(load, index) {
+	        // Create CPU core number label
+	        let cpuCoreNumberStr = "Core " + index;
+	        let cpuCoreNumberPositionX = xPosition + (this.circleContainerSize / 2) - ((this.cpuCoreNumberFontSize * cpuCoreNumberStr.length / 2) / 2);
+	        let cpuCoreNumberPositionY = yPosition + (this.circleContainerSize / 2) + this.cpuCoreNumberFontSize / 4;
+	        let cpuCoreNumberLabel = new St.Label();
+	        cpuCoreNumberLabel.set_position(cpuCoreNumberPositionX, cpuCoreNumberPositionY);
+	        cpuCoreNumberLabel.set_text(cpuCoreNumberStr);
+	        cpuCoreNumberLabel.style = "font-size: " + this.cpuCoreNumberFontSize + "px;font-family: 'Sawasdee', sans-serif";
 
-                // Draw circle canvas
-                let circleCanvas = this.drawCircleCanvas(load, 100, this.getCpuColor(index));
+	        // Add to main window
+	        this.window.add_actor(cpuCoreUsageContainer);
+	        this.window.add_actor(cpuCoreUsageLabel);
+	        this.window.add_actor(cpuCoreNumberLabel);
 
-                // Create CPU usage container
-                let cpuCoreUsageContainer = new Clutter.Actor();
-                cpuCoreUsageContainer.set_content(circleCanvas);
-                cpuCoreUsageContainer.set_size(this.circleContainerSize, this.circleContainerSize);
-                cpuCoreUsageContainer.set_position(xPosition, yPosition);
+	        // Calculate position of the next circle
+	        xPosition = xPosition + this.circleContainerMarginSize;
 
-                // Create CPU usage label
-                let cpuCoreUsageStr = load + "%";
-                let cpuCoreUsageLabelPositionX = xPosition + (this.circleContainerSize / 2) - ((this.cpuCoreUsageFontSize * cpuCoreUsageStr.length / 2) / 2);
-                let cpuCoreUsageLabelPositionY = yPosition + (this.circleContainerSize / 2) - (this.cpuCoreUsageFontSize * 1.35);
-                let cpuCoreUsageLabel = new St.Label();
-                cpuCoreUsageLabel.set_position(cpuCoreUsageLabelPositionX, cpuCoreUsageLabelPositionY);
-                cpuCoreUsageLabel.set_text(cpuCoreUsageStr);
-                cpuCoreUsageLabel.style = "font-size: " + this.cpuCoreUsageFontSize + "px;font-family: 'Sawasdee', sans-serif;font-weight: 500";
+	        if (xPosition >= this.maxDeskletWidth) {
+		        yPosition = yPosition + this.circleContainerMarginSize;
+		        xPosition = 0;
+	        }
 
-                // Create CPU core number label
-                let cpuCoreNumberStr = "Core " + index;
-                let cpuCoreNumberPositionX = xPosition + (this.circleContainerSize / 2) - ((this.cpuCoreNumberFontSize * cpuCoreNumberStr.length / 2) / 2);
-                let cpuCoreNumberPositionY = yPosition + (this.circleContainerSize / 2) + this.cpuCoreNumberFontSize / 4;
-                let cpuCoreNumberLabel = new St.Label();
-                cpuCoreNumberLabel.set_position(cpuCoreNumberPositionX, cpuCoreNumberPositionY);
-                cpuCoreNumberLabel.set_text(cpuCoreNumberStr);
-                cpuCoreNumberLabel.style = "font-size: " + this.cpuCoreNumberFontSize + "px;font-family: 'Sawasdee', sans-serif";
+        }, this);
 
-                // Add to main window
-                this.window.add_actor(cpuCoreUsageContainer);
-                this.window.add_actor(cpuCoreUsageLabel);
-                this.window.add_actor(cpuCoreNumberLabel);
-
-                // Calculate position of the next circle
-                xPosition = xPosition + this.circleContainerMarginSize;
-
-                if (xPosition >= this.maxDeskletWidth) {
-                    yPosition = yPosition + this.circleContainerMarginSize;
-                    xPosition = 0;
-                }
-
-            }, this);
-        }
     },
 
     refreshDecoration() {
@@ -188,7 +177,7 @@ CpuLoadDesklet.prototype = {
         this.circleContainerSize = 150 * this.scale_size;
         this.circleContainerMarginSize = 175 * this.scale_size;
         this.cpuCoreUsageFontSize = Math.round(this.largeFontSize * this.scale_size);
-        this.loadingDataMessageFontSize = Math.round(this.largeFontSize * this.scale_size);
+        this.usageingDataMessageFontSize = Math.round(this.largeFontSize * this.scale_size);
         this.cpuCoreNumberFontSize = Math.round(this.normalFontSize * this.scale_size);
         this.maxDeskletWidth = (this.minDeskletWidth * this.column_count) * this.scale_size;
     },
@@ -203,13 +192,16 @@ CpuLoadDesklet.prototype = {
 
         activity.forEach(function(cpu, index) {
 
-            let load = cpu.split(" ");
+            let usage = cpu.split(" ");
 
-            active[index] = parseInt(load[1]) + parseInt(load[2]) + parseInt(load[3]) + parseInt(load[7]) + parseInt(load[8]);
-            total[index] = parseInt(load[1]) + parseInt(load[2]) + parseInt(load[3]) + parseInt(load[4]) + parseInt(load[5]) + parseInt(load[7]) + parseInt(load[8]);
+            active[index] = parseInt(usage[1]) + parseInt(usage[2]) + parseInt(usage[3]) + parseInt(usage[7]) + parseInt(usage[8]);
+            total[index] = parseInt(usage[1]) + parseInt(usage[2]) + parseInt(usage[3]) + parseInt(usage[4]) + parseInt(usage[5]) + parseInt(usage[7]) + parseInt(usage[8]);
 
             if(hasPreviousSample) {
                 utilization[index] = this.calculateCpuUtilization(active[index], this.active[index], total[index], this.total[index]);
+            }
+            else {
+                utilization[index] = 0;
             }
 
         }, this);
@@ -220,8 +212,8 @@ CpuLoadDesklet.prototype = {
         return utilization;
     },
 
-    calculateCpuUtilization (current_active, previous_active, current_total, previous_total) {
-        return Math.round((100 * (current_active - previous_active) / (current_total - previous_total)));
+    calculateCpuUtilization (currentActive, previousActive, currentTotal, previousTotal) {
+        return Math.round((100 * (currentActive - previousActive) / (currentTotal - previousTotal)));
     },
 
     getCpuActivity() {
@@ -256,5 +248,5 @@ CpuLoadDesklet.prototype = {
 };
 
 function main(metadata, deskletId) {
-    return new CpuLoadDesklet(metadata, deskletId);
+    return new CpuusageDesklet(metadata, deskletId);
 }
