@@ -3,6 +3,7 @@ const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
 const Gio = imports.gi.Gio;
 const Mainloop = imports.mainloop;
+const Cinnamon = imports.gi.Cinnamon;
 const Lang = imports.lang;
 const Main = imports.ui.main;
 const Clutter = imports.gi.Clutter;
@@ -16,7 +17,7 @@ function TopDesklet(metadata, deskletId) {
 TopDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
 
-    _init (metadata, deskletId) {
+    _init(metadata, deskletId) {
         Desklet.Desklet.prototype._init.call(this, metadata, deskletId);
 
         this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], deskletId);
@@ -24,21 +25,19 @@ TopDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scale_size", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "column-count", "column_count", this.on_setting_changed);
 
-        this.executeTop();
+        this.active = [];
+        this.total = [];
+        this.colors = [];
+
         this.setupUI();
 
     },
 
-    setupUI () {
-        
+    setupUI() {
+
         this.minDeskletWidth = 175;
         this.largeFontSize = 20;
         this.normalFontSize = 13;
-        this.colors = [];
-
-        for (let cpuCoreNumber = 0; cpuCoreNumber < this.getCpuLoad().length; cpuCoreNumber++) {
-            this.colors.push(this.generateCircleColor());
-        }
 
         // Create a main window        
         this.window = new Clutter.Actor();
@@ -50,11 +49,7 @@ TopDesklet.prototype = {
         this.refresh();
     },
 
-    refresh () {
-
-        // Execute top
-        this.executeTop();
-
+    refresh() {
         // Remove previous drawings
         this.window.remove_all_children();
 
@@ -63,26 +58,18 @@ TopDesklet.prototype = {
 
         // Refresh again in 5 seconds
         this.timeout = Mainloop.timeout_add_seconds(5, Lang.bind(this, this.refresh));
-    },    
+    },
 
     redrawCpuUsages() {
 
-        let cpuLoad = this.getCpuLoad();
         let xPosition = 0;
         let yPosition = 0;
+        let utilization = this.getCpuUtilization();
 
-        cpuLoad.forEach(function(cpuCoreLoad, cpuCoreNumber) {
-           
-            // Get CPU core idle time
-            let cpuCoreIdleTime = parseInt(cpuCoreLoad.match(/([\d]{1,3}\.[\d]) id/i)[1]);
-
-            // Calculate cpu core usage time
-            let cpuCoreUsageTime = 100 - cpuCoreIdleTime;
+        utilization.forEach(function(load, index) {
 
             // Draw circle canvas
-            let circleCanvas = this.drawCircleCanvas(cpuCoreUsageTime, 100, this.colors.find(function(color, index) {
-                return index === cpuCoreNumber;
-            }));
+            let circleCanvas = this.drawCircleCanvas(load, 100, this.getCpuColor(index));
 
             // Create CPU usage container
             let cpuCoreUsageContainer = new Clutter.Actor();
@@ -90,9 +77,8 @@ TopDesklet.prototype = {
             cpuCoreUsageContainer.set_size(this.circleContainerSize, this.circleContainerSize);
             cpuCoreUsageContainer.set_position(xPosition, yPosition);
 
-
             // Create CPU usage label
-            let cpuCoreUsageStr = cpuCoreUsageTime + "%";
+            let cpuCoreUsageStr = load + "%";
             let cpuCoreUsageLabelPositionX = xPosition + (this.circleContainerSize / 2) - ((this.cpuCoreUsageFontSize * cpuCoreUsageStr.length / 2) / 2);
             let cpuCoreUsageLabelPositionY = yPosition + (this.circleContainerSize / 2) - (this.cpuCoreUsageFontSize * 1.35);
             let cpuCoreUsageLabel = new St.Label();
@@ -101,7 +87,7 @@ TopDesklet.prototype = {
             cpuCoreUsageLabel.style = "font-size: " + this.cpuCoreUsageFontSize + "px;font-family: 'Sawasdee', sans-serif;font-weight: 500";
 
             // Create CPU core number label
-            let cpuCoreNumberStr = "Core " + cpuCoreNumber;
+            let cpuCoreNumberStr = "Core " + index;
             let cpuCoreNumberPositionX = xPosition + (this.circleContainerSize / 2) - ((this.cpuCoreNumberFontSize * cpuCoreNumberStr.length / 2) / 2);
             let cpuCoreNumberPositionY = yPosition + (this.circleContainerSize / 2) + this.cpuCoreNumberFontSize / 4;
             let cpuCoreNumberLabel = new St.Label();
@@ -122,10 +108,10 @@ TopDesklet.prototype = {
                 xPosition = 0;
             }
 
-        },this);
+        }, this);
     },
 
-    refreshDecoration () {
+    refreshDecoration() {
 
         // Enable/disable decorations
         this.metadata["prevent-decorations"] = this.hide_decorations;
@@ -133,7 +119,7 @@ TopDesklet.prototype = {
         this._updateDecoration();
     },
 
-    drawCircleCanvas (use, total, color) {
+    drawCircleCanvas(use, total, color) {
 
         let a = use;
         let b = total;
@@ -175,24 +161,7 @@ TopDesklet.prototype = {
         return canvas;
     },
 
-    executeTop () {
-
-        let subprocess = new Gio.Subprocess({
-            argv: ["top", "-bn2", "-d0.01"],
-            flags: Gio.SubprocessFlags.STDOUT_PIPE,
-        });
-
-        subprocess.init(null);
-
-        this.top = subprocess.communicate_utf8(null, null)[1];
-    },
-
-    getCpuLoad () {
-        let cpus = this.top.match(/%Cpu.+/g);
-        return cpus.splice(Math.ceil(cpus.length / 2), cpus.length);
-    },
-
-    generateCircleColor () {
+    generateCircleColor() {
         let rgba = {
             r: Math.random(),
             g: Math.random(),
@@ -202,28 +171,73 @@ TopDesklet.prototype = {
         return rgba;
     },
 
-    refreshScalingSizes () {
+    refreshScalingSizes() {
         // Calculate new sizes based on scale factor
-		this.circleContainerSize = 150 * this.scale_size;
-		this.circleContainerMarginSize = 175 * this.scale_size;
-		this.cpuCoreUsageFontSize = Math.round(this.largeFontSize * this.scale_size);
-		this.cpuCoreNumberFontSize = Math.round(this.normalFontSize * this.scale_size);
+        this.circleContainerSize = 150 * this.scale_size;
+        this.circleContainerMarginSize = 175 * this.scale_size;
+        this.cpuCoreUsageFontSize = Math.round(this.largeFontSize * this.scale_size);
+        this.cpuCoreNumberFontSize = Math.round(this.normalFontSize * this.scale_size);
         this.maxDeskletWidth = (this.minDeskletWidth * this.column_count) * this.scale_size;
     },
 
-	on_setting_changed () {
-		// Update decoration settings
-		this.refreshDecoration();
+    getCpuUtilization() {
+
+        let utilization = [];
+        let active = [];
+        let total = [];
+        let activity = this.getCpuActivity();
+
+        activity.forEach(function(cpu, index) {
+
+            load = cpu.split(" ");
+
+            active[index] = parseInt(load[1]) + parseInt(load[2]) + parseInt(load[3]) + parseInt(load[7]) + parseInt(load[8]);
+            total[index] = parseInt(load[1]) + parseInt(load[2]) + parseInt(load[3]) + parseInt(load[4]) + parseInt(load[5]) + parseInt(load[7]) + parseInt(load[8]);
+
+        });
+
+        if (this.active.length || this.total.length) {
+            for (var i = 0; i < this.active.length; i++) {
+                utilization[i] = Math.round((100 * (active[i] - this.active[i]) / (total[i] - this.total[i])));
+            }
+        } else {
+            for (var i = 0; i < active.length; i++) {
+                utilization[i] = 0;
+            }
+        }
+
+        this.active = active;
+        this.total = total;
+
+        return utilization;
+    },
+
+    getCpuActivity() {
+        return Cinnamon.get_file_contents_utf8_sync('/proc/stat').match(/^cpu[\d]+.+$/mg);
+    },
+
+    getCpuColor(index) {
+
+        if (typeof this.colors[index] === 'undefined') {
+            this.colors[index] = this.generateCircleColor();
+        }
+
+        return this.colors[index];
+    },
+
+    on_setting_changed() {
+        // Update decoration settings
+        this.refreshDecoration();
 
         // Refresh scaling sizes        
         this.refreshScalingSizes();
 
-		// settings changed; instant refresh
-		Mainloop.source_remove(this.timeout);
-		this.refresh();
-	},
+        // settings changed; instant refresh
+        Mainloop.source_remove(this.timeout);
+        this.refresh();
+    },
 
-    on_desklet_removed () {
+    on_desklet_removed() {
         Mainloop.source_remove(this.timeout);
     }
 
