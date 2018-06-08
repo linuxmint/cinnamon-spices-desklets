@@ -89,7 +89,7 @@
         "default": "",
         "description": "Custom time zone",
         "indent": true,
-        "dependency": "custom-timezone",
+        "dependency": "use-custom-tz",
         "tooltip": "Enter your custom timezone here."
     },
 
