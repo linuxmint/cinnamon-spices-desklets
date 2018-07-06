@@ -83,7 +83,6 @@
     "transparency": {
         "type": "scale",
         "indent": true,
-        "dependency": "overrideTheme",
         "default": 0.5,
         "min": 0.0,
         "max": 1.0,
@@ -95,7 +94,6 @@
     "textcolor": {
         "type": "colorchooser",
         "indent": true,
-        "dependency": "overrideTheme",
         "default": "rgb(255,255,255)",
         "description": "Text color",
         "tooltip": "Click the button to select a new text color"
@@ -104,7 +102,6 @@
     "bgcolor": {
         "type": "colorchooser",
         "indent": true,
-        "dependency": "overrideTheme",
         "default": "rgb(0,0,0)",
         "description": "Background color",
         "tooltip": "Click the button to select a new background color"
@@ -113,7 +110,6 @@
     "cornerradius": {
         "type": "spinbutton",
         "indent": true,
-        "dependency": "overrideTheme",
         "default": 10.0,
         "min": 0,
         "max": 50.0,
