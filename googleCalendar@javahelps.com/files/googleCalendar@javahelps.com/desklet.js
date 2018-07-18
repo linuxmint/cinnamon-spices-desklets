@@ -136,15 +136,7 @@ GoogleCalendarDesklet.prototype = {
      */
     getCalendarCommand() {
         let dateTime = new Date();
-        let command = ["gcalcli", "agenda"];
-        command.push(CalendarUtility.formatParameterDate(dateTime));
-        if (this.interval == null) {
-            this.interval = 7; // Default interval is 7 days
-        }
-        dateTime.setDate(dateTime.getDate() + this.interval);
-        command.push(CalendarUtility.formatParameterDate(dateTime));
-        command.push("--nostarted");
-        command.push("--tsv");
+        let command = ["gcalcli"];
         if (this.calendarName != "") {
             let calendars = this.calendarName.split(",");
             for (let name of calendars) {
@@ -155,6 +147,15 @@ GoogleCalendarDesklet.prototype = {
                 }
             }
         }
+        command.push("agenda");
+        command.push(CalendarUtility.formatParameterDate(dateTime));
+        if (this.interval == null) {
+            this.interval = 7; // Default interval is 7 days
+        }
+        dateTime.setDate(dateTime.getDate() + this.interval);
+        command.push(CalendarUtility.formatParameterDate(dateTime));
+        command.push("--nostarted");
+        command.push("--tsv");     
         return command;
     },
 
