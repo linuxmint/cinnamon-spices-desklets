@@ -41,7 +41,7 @@ libgtop, Network Manager and gir bindings \n\
 \t    on Arch: libgtop, networkmanager\n\
 and restart Cinnamon.\n");
 
-CPU = function () {
+const CPU = function () {
     this._init.apply(this, arguments);
 };
 
@@ -53,7 +53,7 @@ CPU.prototype = {
 		this.sys = this.gtop.sys;
 		this.iowait = this.gtop.iowait;
 	},
-	
+
 	refresh: function() {
         GTop.glibtop_get_cpu(this.gtop);
 
@@ -67,10 +67,10 @@ CPU.prototype = {
 		this.user = this.gtop.user;
 		this.sys = this.gtop.sys;
 		this.iowait = this.gtop.iowait;
-	}	
+	}
 }
 
-Memory = function () {
+const Memory = function () {
     this._init.apply(this, arguments);
 };
 
@@ -78,15 +78,15 @@ Memory.prototype = {
 	_init: function() {
         this.gtop = new GTop.glibtop_mem();
 	},
-	
+
 	refresh: function() {
-        GTop.glibtop_get_mem(this.gtop);		
+        GTop.glibtop_get_mem(this.gtop);
 		this.used = Math.round(this.gtop.user / 1024 / 1024 / 1024 * 100) / 100;
 		this.usedPercentaje = Math.round(this.gtop.user * 100 / this.gtop.total);
-	}	
+	}
 }
 
-Thermal = function() {
+const Thermal = function() {
     this._init.apply(this, arguments);
 };
 
@@ -100,17 +100,17 @@ Thermal.prototype = {
 
 	refresh: function() {
         if(GLib.file_test(this.file, 1<<4)){
-            let t_str = Cinnamon.get_file_contents_utf8_sync(this.file).split("\n")[0];            
+            let t_str = Cinnamon.get_file_contents_utf8_sync(this.file).split("\n")[0];
             this.degrees = parseInt(t_str) / 1000;
             this.info = this.degrees + "°C";
-        }            
-        else 
+        }
+        else
             global.logError("error reading: " + this.file);
     }
 }
 
 
-Net = function () {
+const Net = function () {
     this._init.apply(this, arguments);
 };
 
@@ -125,16 +125,16 @@ Net.prototype = {
             for (let i = 3; i < net_lines.length - 1 ; i++) {
                 let connection = net_lines[i].replace(/^\s+/g, '').split(":")[0];
                 if(Cinnamon.get_file_contents_utf8_sync('/sys/class/net/' + connection + '/operstate')
-                .replace(/\s/g, "") == "up" && 
-                connection.indexOf("br") < 0 && 
+                .replace(/\s/g, "") == "up" &&
+                connection.indexOf("br") < 0 &&
                 connection.indexOf("lo") < 0) {
                 	this.connections.push(connection);
                 }
             }
         }
-        
+
         this.gtop = new GTop.glibtop_netload();
-        
+
 		try {
             let connection_list = this.client.get_devices();
             this.NMsigID = []
@@ -145,7 +145,7 @@ Net.prototype = {
         catch(e) {
             global.logError("Please install Network Manager GObject Introspection Bindings");
         }
-        
+
         this.totalDownloaded = 0;
         this.totalUploaded = 0;
         this.lastRefresh = 0;
@@ -165,28 +165,28 @@ Net.prototype = {
             global.logError("Please install Network Manager GObject Introspection Bindings");
         }
     },
-	
+
 	refresh: function() {
 		let totalDownloaded = 0;
 		let totalUploaded = 0;
-		
+
 		for (let i in this.connections) {
 			GTop.glibtop_get_netload(this.gtop, this.connections[i]);
 			totalDownloaded += this.gtop.bytes_in;
 			totalUploaded += this.gtop.bytes_out;
 		}
-		
+
 		let time = GLib.get_monotonic_time() / 1000;
 		let delta = time - this.lastRefresh;
-		
+
 		this.downloadSpeed = delta > 0 ? Math.round((totalDownloaded - this.totalDownloaded) / delta) : 0;
 		this.uploadSpeed = delta > 0 ? Math.round((totalUploaded - this.totalUploaded) / delta) : 0;
-		
-		this.downloadSpeed = this.downloadSpeed < 1024 ? this.downloadSpeed + "KB" : 
-			Math.round(this.downloadSpeed / 1024 * 100) / 100 + "MB"; 
-		
-		this.uploadSpeed = this.uploadSpeed < 1024 ? this.uploadSpeed + "KB" : 
-			Math.round(this.uploadSpeed / 1024 * 100) / 100 + "MB"; 
+
+		this.downloadSpeed = this.downloadSpeed < 1024 ? this.downloadSpeed + "KB" :
+			Math.round(this.downloadSpeed / 1024 * 100) / 100 + "MB";
+
+		this.uploadSpeed = this.uploadSpeed < 1024 ? this.uploadSpeed + "KB" :
+			Math.round(this.uploadSpeed / 1024 * 100) / 100 + "MB";
 
         this.totalDownloaded = totalDownloaded;
         this.totalUploaded = totalUploaded;
@@ -236,10 +236,10 @@ MyDesklet.prototype = {
 		this.values.add(this.valueDownload);
 		this.values.add(this.valueUpload);
 		this.values.add(this.valueTemperature);
-		
+
 		this.mainContainer.add(this.titles);
 		this.mainContainer.add(this.values);
-	
+
         this.setContent(this.mainContainer);
 
 		this.cpu = new CPU();
@@ -281,7 +281,7 @@ ErrorDesklet.prototype = {
     _init: function(metadata, desklet_id) {
 		Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
         this.mainContainer = new St.BoxLayout();
-		this.errorMessage = new St.Label({text: MISSING_DEPENDENCIES});	
+		this.errorMessage = new St.Label({text: MISSING_DEPENDENCIES});
 		this.mainContainer.add(this.errorMessage);
 		this.setContent(this.mainContainer);
     }
