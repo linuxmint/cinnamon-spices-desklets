@@ -211,26 +211,26 @@ MyDesklet.prototype = {
 			}
 
 			// create labels
-			let textpercent_x = (absolute_size / 2) - ((font_size*percent_string.length/1.6) / 2);
-			let textpercent_y = (absolute_size / 2) - (font_size*1.35);
+			let textpercent_x = absolute_size / 2 - font_size*percent_string.length/1.6 / 2;
+			let textpercent_y = absolute_size / 2 - font_size * 1.35;
 			let textpercent = new St.Label({style_class:"textpercent"});
 			textpercent.set_position(textpercent_x, textpercent_y);
 			textpercent.set_text(percent_string);
-			textpercent.style = "font-size: " + font_size + "px;"
+			textpercent.style = "font-size: " + font_size / global.ui_scale + "px;"
 			                  + "color: " + this.text_color + ";";
-			let textsub_x = (absolute_size / 2) - ((font_size_sub*sub_string.length/1.6) / 2);
-			let textsub_y = textpercent_y + (font_size*1.4);
+			let textsub_x = absolute_size / 2 - font_size_sub*sub_string.length/1.6 / 2;
+			let textsub_y = textpercent_y + font_size * 1.4;
 			let textsub = new St.Label({style_class:"textsub"});
 			textsub.set_position(textsub_x, textsub_y);
 			textsub.set_text(sub_string);
-			textsub.style = "font-size: " + font_size_sub + "px;"
+			textsub.style = "font-size: " + font_size_sub / global.ui_scale + "px;"
 			              + "color: " + this.text_color + ";";
-			let textsub2_x = (absolute_size / 2) - ((font_size_sub*sub_string2.length/1.6) / 2);
-			let textsub2_y = textsub_y + (font_size_sub*1.25);
+			let textsub2_x = absolute_size / 2 - font_size_sub*sub_string2.length/1.6 / 2;
+			let textsub2_y = textsub_y + font_size_sub * 1.25;
 			let textsub2 = new St.Label({style_class:"textsub2"});
 			textsub2.set_position(textsub2_x, textsub2_y);
 			textsub2.set_text(sub_string2);
-			textsub2.style = "font-size: " + font_size_sub + "px;"
+			textsub2.style = "font-size: " + font_size_sub / global.ui_scale + "px;"
 			               + "color: " + this.text_color + ";";
 
 			// add actor
