@@ -36,8 +36,8 @@ CpuusageDesklet.prototype = {
     setupUI() {
 
         this.minDeskletWidth = 175;
-        this.largeFontSize = 20;
-        this.normalFontSize = 13;
+        this.largeFontSize = 22;
+        this.normalFontSize = 14;
 
         // Create a main window        
         this.window = new Clutter.Actor();        
@@ -79,21 +79,21 @@ CpuusageDesklet.prototype = {
 
 	        // Create CPU usage label
 	        let cpuCoreUsageStr = usage + "%";
-	        let cpuCoreUsageLabelPositionX = xPosition + (this.circleContainerSize / 2) - ((this.cpuCoreUsageFontSize * cpuCoreUsageStr.length / 2) / 2);
-	        let cpuCoreUsageLabelPositionY = yPosition + (this.circleContainerSize / 2) - (this.cpuCoreUsageFontSize * 1.35);
+	        let cpuCoreUsageLabelPositionX = xPosition + (this.circleContainerSize - this.cpuCoreUsageFontSize * cpuCoreUsageStr.length / global.ui_scale) / 2;
+	        let cpuCoreUsageLabelPositionY = yPosition + (this.circleContainerSize - this.cpuCoreUsageFontSize * 1.35 * global.ui_scale) / 2;
 	        let cpuCoreUsageLabel = new St.Label();
 	        cpuCoreUsageLabel.set_position(cpuCoreUsageLabelPositionX, cpuCoreUsageLabelPositionY);
 	        cpuCoreUsageLabel.set_text(cpuCoreUsageStr);
-	        cpuCoreUsageLabel.style = "font-size: " + this.cpuCoreUsageFontSize + "px;font-family: 'Sawasdee', sans-serif;font-weight: 500";
+	        cpuCoreUsageLabel.style = "font-size: " + this.cpuCoreUsageFontSize / global.ui_scale + "px;font-family: 'Sawasdee', sans-serif;font-weight: 500";
 
 	        // Create CPU core number label
 	        let cpuCoreNumberStr = "Core " + index;
-	        let cpuCoreNumberPositionX = xPosition + (this.circleContainerSize / 2) - ((this.cpuCoreNumberFontSize * cpuCoreNumberStr.length / 2) / 2);
-	        let cpuCoreNumberPositionY = yPosition + (this.circleContainerSize / 2) + this.cpuCoreNumberFontSize / 4;
+	        let cpuCoreNumberPositionX = xPosition + (this.circleContainerSize - this.cpuCoreNumberFontSize * cpuCoreNumberStr.length / global.ui_scale) / 2;
+	        let cpuCoreNumberPositionY = yPosition + (this.circleContainerSize + this.cpuCoreNumberFontSize / 2 * global.ui_scale) / 2;
 	        let cpuCoreNumberLabel = new St.Label();
 	        cpuCoreNumberLabel.set_position(cpuCoreNumberPositionX, cpuCoreNumberPositionY);
 	        cpuCoreNumberLabel.set_text(cpuCoreNumberStr);
-	        cpuCoreNumberLabel.style = "font-size: " + this.cpuCoreNumberFontSize + "px;font-family: 'Sawasdee', sans-serif";
+	        cpuCoreNumberLabel.style = "font-size: " + this.cpuCoreNumberFontSize / global.ui_scale + "px;font-family: 'Sawasdee', sans-serif";
 
 	        // Add to main window
 	        this.window.add_actor(cpuCoreUsageContainer);
