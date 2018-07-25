@@ -529,7 +529,7 @@ TopDesklet.prototype =
             let processes = top.process;
             for(let row=0; row < this.cfgMaxPidLines; row++)
             {
-                this.procGrid[row][0].text = parseInt(processes[row].pid).toString();
+                this.procGrid[row][0].text = processes[row].pid;
                 this.procGrid[row][1].text = processes[row].user;
                 this.procGrid[row][2].text = processes[row].pr;
                 this.procGrid[row][3].text = parseInt(processes[row].ni).toString();
