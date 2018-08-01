@@ -64,13 +64,6 @@ function Array2D(x, y)
  * Description: Displays output from the `top` command as a nicely formatted desklet
  * Developers: [https://github.com/RyanNerd]
  * See README.md for more info
- * TODO:
- *  - User configuration options:
- *      - How often the update runs. Currently every 5 seconds.
- *      - Allow user to configure how many pid lines to display. Currently set to 10;
- *      - Allow user to change `top ` command and switches. Currently set as 'top -n 1 -b'
- *      - Allow user to select the height and width of the desklet. Currently width: 450px
- *  - Language Translations
  */
 
 /**
@@ -158,7 +151,12 @@ const topToJsonParser =
         let i, item, line, offset;
         for (i=7, item=dataLine[i]; i < pidLimit; item=dataLine[++i]) {
             if (item) {
-                line=item.replace(/\s+/g, ",").substring(1);
+                // Is there a space at the first position? If so don't include it in the line parsing
+                if (item.substr(0,1)===" ") {
+                    line=item.replace(/\s+/g, ",").substring(1);
+                } else {
+                    line=item.replace(/\s+/g, ",");
+                }
                 if (line !== "") {
                     this.parseProcess(result, line);
                 }

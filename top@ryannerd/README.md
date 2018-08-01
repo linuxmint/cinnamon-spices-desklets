@@ -17,6 +17,7 @@ Screenshot:
     - Background color
     - Opacity
     - Width
+    - Font family
  - Language Translations
     - I need to figure out how all this "po" stuff works.
     - Spanish (I may be able to bribe my co-worker Pablo into helping)
