@@ -85,6 +85,7 @@ GoogleCalendarDesklet.prototype = {
             this.settings.bind("tomorrow_format", "tomorrow_format", this.onDeskletFormatChanged, null);
             this.settings.bind("zoom", "zoom", this.onDeskletFormatChanged, null);
             this.settings.bind("textcolor", "textcolor", this.onDeskletFormatChanged, null);
+            this.settings.bind("alldaytextcolor", "alldaytextcolor", this.onDeskletFormatChanged, null);
             this.settings.bind("bgcolor", "bgcolor", this.onDeskletFormatChanged, null);
             this.settings.bind("transparency", "transparency", this.onDeskletFormatChanged, null);
             this.settings.bind("cornerradius", "cornerradius", this.onDeskletFormatChanged, null);
@@ -186,16 +187,18 @@ GoogleCalendarDesklet.prototype = {
 
         // Create event row
         let box = CalendarUtility.container();
-        let lblEvent = CalendarUtility.label(event.name, this.zoom, this.textcolor);
-        box.add(lblEvent);
 
         let dateText = event.formatEventDuration(this.lastDate);
         if (dateText) {
+            let lblEvent = CalendarUtility.label(event.name, this.zoom, this.textcolor);
+            box.add(lblEvent);
             let lblDate = CalendarUtility.label(dateText, this.zoom, this.textcolor, false);
             lblEvent.width = TEXT_WIDTH;
             lblDate.width = DATE_WIDTH;
             box.add(lblDate);
         } else {
+            let lblEvent = CalendarUtility.label(event.name, this.zoom, this.alldaytextcolor); //show allday events in blue
+            box.add(lblEvent);
             lblEvent.width = TEXT_WIDTH + DATE_WIDTH;
         }
 
