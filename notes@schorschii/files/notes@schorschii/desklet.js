@@ -59,16 +59,18 @@ MyDesklet.prototype = {
 
 		// initialize settings
 		this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
-		this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hide_decorations", this.on_setting_changed);
-		this.settings.bindProperty(Settings.BindingDirection.IN, "use-custom-label", "use_custom_label", this.on_setting_changed);
-		this.settings.bindProperty(Settings.BindingDirection.IN, "custom-label", "custom_label", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "use-custom-label", "useCustomLabel", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "custom-label", "customLabel", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "font", "font", this.on_setting_changed);
-		this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scale_size", this.on_setting_changed);
-		this.settings.bindProperty(Settings.BindingDirection.IN, "size-font", "size_font", this.on_setting_changed);
-		this.settings.bindProperty(Settings.BindingDirection.IN, "bg-img", "bg_img", this.on_setting_changed);
-		this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "text_color", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "font-bold", "fontBold", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "font-italic", "fontItalic", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "size-font", "sizeFont", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "style", "style", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "customTextColor", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "file", "file", this.on_setting_changed);
-		this.settings.bindProperty(Settings.BindingDirection.IN, "edit-cmd", "edit_cmd", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "edit-cmd", "editCmd", this.on_setting_changed);
 
 		// initialize desklet gui
 		this.setupUI();
@@ -78,11 +80,29 @@ MyDesklet.prototype = {
 		// defaults and initial values
 		this.notecontent = "";
 
+		// load image index
+		this.imageIndex = new Array();
+		this.imageIndexRaw = Cinnamon.get_file_contents_utf8_sync(DESKLET_ROOT + '/img/index.csv');
+		let lines = this.imageIndexRaw.split('\n');
+		for(var i = 0;i < lines.length;i++) {
+			let fields = lines[i].split(',');
+			if(fields.length == 9) {
+				let style = new Array();
+				style['name'] = fields[0];
+				style['imagePath'] = fields[1];
+				style['marginTop'] = fields[2];
+				style['marginRight'] = fields[3];
+				style['marginBottom'] = fields[4];
+				style['marginLeft'] = fields[5];
+				style['sizeWidth'] = fields[6];
+				style['sizeHeight'] = fields[7];
+				style['defaultTextColor'] = fields[8];
+				this.imageIndex.push(style);
+			}
+		}
+
 		// load images and set initial sizes
 		this.refreshSize(true);
-
-		// set root eleent
-		this.setContent(this.notepad);
 
 		// set decoration settings
 		this.refreshDecoration();
@@ -94,10 +114,10 @@ MyDesklet.prototype = {
 	refresh: function() {
 		try {
 			// read notes text file
-			this.final_path = this.file.replace("file://", "");
-			if (this.final_path == "") this.final_path = "note.txt"; // in home dir
+			this.finalPath = decodeURIComponent(this.file.replace("file://", ""));
+			if(this.finalPath == "") this.finalPath = "note.txt"; // in home dir
 
-			this.notecontent = Cinnamon.get_file_contents_utf8_sync(this.final_path);
+			this.notecontent = Cinnamon.get_file_contents_utf8_sync(this.finalPath);
 		} catch(ex) {
 			// error reading file - maybe the file does not exist
 			this.notecontent = _("Can't read text file.\nSelect a file in settings.\n\nClick here to edit.");
@@ -113,9 +133,8 @@ MyDesklet.prototype = {
 	refreshSize: function(reloadGraphics = false) {
 		if (reloadGraphics == true) {
 
-			// set images
-			if (this.bg_img == "")
-				this.bg_img = "bg_yellow.svg";
+			// set default image
+			this.bgImg = "none";
 
 			// set appropriate text padding according to background image
 			this.default_notepad_label_top = 0;
@@ -124,54 +143,54 @@ MyDesklet.prototype = {
 			this.default_notepad_label_bottom = 0;
 			this.size_width = 130;
 			this.size_height = 130;
-			switch (this.bg_img) {
-				case "bg_yellow.svg":
-					this.default_notepad_label_top = 24;
-					this.default_notepad_label_left = 17;
-					this.default_notepad_label_right = 16;
-					this.default_notepad_label_bottom = 16;
+
+			for(var i = 0;i < this.imageIndex.length;i++) {
+				if(this.imageIndex[i]['name'] == this.style) {
+					this.default_notepad_label_top = this.imageIndex[i]['marginTop'];
+					this.default_notepad_label_right = this.imageIndex[i]['marginRight'];
+					this.default_notepad_label_bottom = this.imageIndex[i]['marginBottom'];
+					this.default_notepad_label_left = this.imageIndex[i]['marginLeft'];
+					this.size_width = this.imageIndex[i]['sizeWidth'];
+					this.size_height = this.imageIndex[i]['sizeHeight'];
+					this.bgImg = this.imageIndex[i]['imagePath'];
+					this.textColor =
+						this.customTextColor === "rgba(0,0,0,0)"
+						? this.imageIndex[i]['defaultTextColor']
+						: this.customTextColor;
 					break;
-				case "bg_white_2_large.svg":
-					this.size_height = 200;
-				case "bg_white.svg":
-				case "bg_white_2.svg":
-					this.default_notepad_label_top = 18;
-					this.default_notepad_label_left = 22;
-					this.default_notepad_label_right = 15;
-					this.default_notepad_label_bottom = 15;
-					break;
+				}
 			}
 
 			// calc new sizes based on scale factor
-			this.desklet_width = this.size_width * this.scale_size;
-			this.desklet_height = this.size_height * this.scale_size;
-			this.label_top = this.default_notepad_label_top * this.scale_size;
-			this.label_left = this.default_notepad_label_left * this.scale_size;
-			this.label_right = this.default_notepad_label_right * this.scale_size;
-			this.label_bottom = this.default_notepad_label_bottom * this.scale_size;
+			this.desklet_width = this.size_width * this.scaleSize;
+			this.desklet_height = this.size_height * this.scaleSize;
+			this.label_top = this.default_notepad_label_top * this.scaleSize;
+			this.label_left = this.default_notepad_label_left * this.scaleSize;
+			this.label_right = this.default_notepad_label_right * this.scaleSize;
+			this.label_bottom = this.default_notepad_label_bottom * this.scaleSize;
 
 			// create elements
-			this.notepad = this.bg_img === "none"
+			this.notepad =
+				this.bgImg === "none"
 				? new Clutter.Actor()
-				: getImageAtScale(DESKLET_ROOT + "/img/" + this.bg_img, this.desklet_width, this.desklet_height); // background
+				: getImageAtScale(DESKLET_ROOT + this.bgImg, this.desklet_width, this.desklet_height); // background
 
 			this.container = new St.Group(); // container for labels
 
-			this.notetext = new St.Label({style_class:"notetext"}); // day of week string (on top of day of month)
+			this.notetext = new St.Label({style_class:"notetext"});
 			this.notetext.set_position(Math.round(this.label_left), Math.round(this.label_top));
 			this.notetext.set_size(this.desklet_width - this.label_left - this.label_right, this.desklet_height - this.label_top - this.label_bottom);
 			this.notetext.style = "font-family: '" + this.font + "';"
-			                    + "font-size: " + this.size_font + "px;"
-			                    + "color:" + this.text_color + ";";
+			                    + "font-size: " + this.sizeFont + "px;"
+			                    + "color:" + this.textColor + ";"
+			                    + "font-weight:" + (this.fontBold ? "bold" : "normal") + ";"
+			                    + "font-style:" + (this.fontItalic ? "italic" : "normal") + ";";
 
 			// add actor
 			this.notepad.remove_all_children();
 			this.notepad.add_actor(this.container);
 			this.container.add_actor(this.notetext);
-			this.setContent(this.notepad);
-
-			// remember last notification amount
-			this.last_notecontent = this.notecontent;
+			this.setContent(this.notepad); // set root element
 
 			// debug
 			//Main.notifyError("Complete Refresh Done", " ");
@@ -186,13 +205,13 @@ MyDesklet.prototype = {
 
 	refreshDecoration: function() {
 		// desklet label (header)
-		if (this.use_custom_label == true)
-			this.setHeader(this.custom_label)
+		if (this.useCustomLabel == true)
+			this.setHeader(this.customLabel)
 		else
 			this.setHeader(_("Notepad"));
 
 		// prevent decorations?
-		this.metadata["prevent-decorations"] = this.hide_decorations;
+		this.metadata["prevent-decorations"] = this.hideDecorations;
 		this._updateDecoration();
 	},
 
@@ -209,8 +228,8 @@ MyDesklet.prototype = {
 	},
 
 	on_desklet_clicked: function() {
-		if (this.edit_cmd != "") {
-			Util.spawnCommandLine(this.edit_cmd.replace("%f", this.final_path));
+		if (this.editCmd != "") {
+			Util.spawnCommandLine(this.editCmd.replace("%f", '"'+this.finalPath+'"'));
 		}
 	},
 
