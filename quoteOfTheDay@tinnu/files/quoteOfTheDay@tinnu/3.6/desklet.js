@@ -1,3 +1,4 @@
+/* global imports */
 const Cinnamon = imports.gi.Cinnamon;
 const Desklet = imports.ui.desklet;
 const Gettext = imports.gettext;
