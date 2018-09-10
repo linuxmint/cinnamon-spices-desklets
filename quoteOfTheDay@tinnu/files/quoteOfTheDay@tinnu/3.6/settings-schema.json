@@ -1,0 +1,100 @@
+{
+    "file": {
+        "default": "file:///usr/share/games/fortunes/literature",
+        "type": "filechooser", 
+        "description" : "File:", 
+        "allow-none" : false,
+        "select-dir" : false,
+        "value": "file:///usr/share/games/fortunes/literature"
+    },
+    "delay": {
+        "default": 1440,
+        "type": "spinbutton",
+        "min": 1,
+        "max": 1440,
+        "description" : "Update every:",
+        "units" : "minutes",
+        "step": 10 
+    },
+    "font-options-separator": {
+        "type": "separator"
+    },
+    "font-options-header": {
+        "type": "header",
+        "description" : "Font options:"
+    },
+    "font-size": {
+        "type": "spinbutton",
+        "default": 15,
+        "min": 8,
+        "max": 200,
+        "units": "pt",
+        "description" : "Font size:",
+        "step": 1
+    },
+    "text-color" : {
+	    "type": "colorchooser",
+	    "default" : "rgb(255,255,255)",
+	    "description" : "Font color:",
+	    "tooltip" : "Click to select a new text color"
+    },
+    "font-shadow-options-separator": {
+        "type": "separator"
+    },
+    "font-shadow-options-header": {
+        "type": "header",
+        "description" : "Text shadow effects:"
+    },
+    "horizontal-shadow": {
+        "type": "spinbutton",
+        "default": 1,
+        "min": 0,
+        "max": 100,
+    	"units": "px",
+        "description" : "Horizontal shadow:",
+        "step": 1
+    },
+    "vertical-shadow": {
+        "type": "spinbutton",
+        "default": 1,
+        "min": 0,
+        "max": 100,
+    	"units": "px",
+        "description" : "Vertical shadow:",
+        "step": 1
+    },
+    "shadow-blur": {
+        "type": "spinbutton",
+        "default": 2,
+        "min": 0,
+        "max": 100,
+    	"units": "px",
+        "description" : "Shadow blur:",
+        "step": 1
+    },
+    "shadow-color" : {
+	    "type": "colorchooser",
+	    "default" : "rgb(0,0,0)",
+	    "description" : "Shadow color:",
+	    "tooltip" : "Click to select a new text shadow color"
+    },
+    "advanced-options-separator": {
+        "type": "separator"
+    },
+    "advanced-options-header": {
+        "type": "header",
+        "description": "Advanced options:"
+    },
+    "fortune-params": {
+        "type": "entry",
+        "default": "",
+        "description": "Parameters for fortune:",
+        "tooltip": "E.g. -s, etc.  See README for more info."
+    },
+    "ignore-input-file": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Ignore input file",
+        "tooltip":  "Use fortune's default behavior instead of an input file.  See README for more info."
+    }
+}
