@@ -34,8 +34,8 @@ msgstr "Notizblock"
 msgid "Note"
 msgstr "Notiz"
 
-msgid "A simple desklet to display notes."
-msgstr "Ein einfaches Desklet um Notizen anzuzeigen."
+msgid "A desklet to display notes including various themes."
+msgstr "Ein Desklet mit verschiedenen Designs um Notizen anzuzeigen."
 
 msgid "Settings for notes@schorschii"
 msgstr "Einstellungen für notes@schorschii"
@@ -70,17 +70,134 @@ msgstr "Gelb"
 msgid "White"
 msgstr "Weiß"
 
-msgid "White Large"
-msgstr "Weiß Lang"
+msgid "Blank Note - Black"
+msgstr "Einfache Notiz - Schwarz"
 
-msgid "White (Old)"
-msgstr "Weiß (Alt)"
+msgid "Blank Note - Blue"
+msgstr "Einfache Notiz - Blau"
+
+msgid "Blank Note - Green"
+msgstr "Einfache Notiz - Grün"
+
+msgid "Blank Note - Orange"
+msgstr "Einfache Notiz - Orange"
+
+msgid "Blank Note - Purple"
+msgstr "Einfache Notiz - Violett"
+
+msgid "Blank Note - White"
+msgstr "Einfache Notiz - Weiß"
+
+msgid "Blank Note - Yellow"
+msgstr "Einfache Notiz - Gelb"
+
+msgid "White Note - Black Button"
+msgstr "Weiße Notiz - schwarze Stecknadel"
+
+msgid "White Note - Blue Button"
+msgstr "Weiße Notiz - blaue Stecknadel"
+
+msgid "White Note - Green Button"
+msgstr "Weiße Notiz - grüne Stecknadel"
+
+msgid "White Note - Red Button"
+msgstr "Weiße Notiz - rote Stecknadel"
+
+msgid "White Note - Yellow Button"
+msgstr "Weiße Notiz - gelbe Stecknadel"
+
+msgid "Yellow Note - Black Clip"
+msgstr "Gelbe Notiz - schwarze Büroklammer"
+
+msgid "Yellow Note - Blue Clip"
+msgstr "Gelbe Notiz - blaue Büroklammer"
+
+msgid "Yellow Note - Green Clip"
+msgstr "Gelbe Notiz - grüne Büroklammer"
+
+msgid "Yellow Note - Jingle Clip"
+msgstr "Gelbe Notiz - gestreifte Büroklammer"
+
+msgid "Yellow Note - Red Clip"
+msgstr "Gelbe Notiz - rote Büroklammer"
+
+msgid "Yellow Note - Yellow Clip"
+msgstr "Gelbe Notiz - gelbe Büroklammer"
+
+msgid "White Note - Black Magnet"
+msgstr "Weiße Notiz - schwarzer Magnet"
+
+msgid "Yellow Note - Blue Magnet"
+msgstr "Gelbe Notiz - blauer Magnet"
+
+msgid "White Note - Lines and Red Magnet"
+msgstr "Weiße Notiz - Zeilen und roter Magnet"
+
+msgid "Black Note - White Magnet"
+msgstr "Schwarze Notiz - weißer Magnet"
+
+msgid "Yellow Note - Yellow Magnet"
+msgstr "Gelbe Notiz - gelber Magnet"
+
+msgid "Blue Paint Strokes"
+msgstr "Blaue Farbstriche"
+
+msgid "Green Paint Strokes"
+msgstr "Grüne Farbstriche"
+
+msgid "Purple Paint Strokes"
+msgstr "Violette Farbstriche"
+
+msgid "Red Paint Strokes"
+msgstr "Rote Farbstriche"
+
+msgid "Yellow Paint Strokes"
+msgstr "Gelbe Farbstriche"
+
+msgid "White Note - Silver Spiral"
+msgstr "Weiße Notiz - silberner Spiralblock"
+
+msgid "White Note - Silver Spiral 2"
+msgstr "Weiße Notiz - silberner Spiralblock 2"
+
+msgid "White Note - Black Spiral"
+msgstr "Weiße Notiz - schwarzer Spiralblock"
+
+msgid "White Note Large - Silver Spiral"
+msgstr "Große weiße Notiz - silberner Spiralblock"
+
+msgid "Yellow Sticker"
+msgstr "Gelber Notizblock"
+
+msgid "Yellow Note (iOS Style)"
+msgstr "Gelbe Notiz (iOS-Stil)"
+
+msgid "Birch Bark"
+msgstr "Birkenrinde"
+
+msgid "Burned Paper"
+msgstr "Verbranntes Papier"
+
+msgid "Clay Tablet"
+msgstr "Tontafel"
+
+msgid "Coffee Stained"
+msgstr "Kaffeefleck"
+
+msgid "Clipboard"
+msgstr "Klemmbrett"
 
 msgid "Hide decorations"
 msgstr "Keine Dekorationen verwenden"
 
 msgid "Font"
 msgstr "Schriftart"
+
+msgid "Bold"
+msgstr "Fett"
+
+msgid "Italic"
+msgstr "Kursiv"
 
 msgid "Font size"
 msgstr "Schriftgröße"
