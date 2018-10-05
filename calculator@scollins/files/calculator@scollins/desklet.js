@@ -108,11 +108,11 @@ function gamma(input) {
     if ( input < 0.5 ) return Math.PI / (Math.sin(Math.PI * input) * gamma(1 - input));
     else {
         input -= 1;
-        
+
         let x = GAMMA_CONSTANTS[0];
         for ( let i = 1; i < GAMMA_PRECISION + 2; i++ ) x += GAMMA_CONSTANTS[i] / (input + i);
         let t = input + GAMMA_PRECISION + 0.5;
-        
+
         return Math.sqrt(2 * Math.PI) * Math.pow(t, (input + 0.5)) * Math.exp(-t) * x;
     }
 }
@@ -126,30 +126,30 @@ Buffer.prototype = {
     _init: function() {
         this.rpn = false;
     },
-    
+
     reset: function() {
         this.stack = [""];
         this.operations = [];
         this.invDown();
-        
+
         this.emit("changed");
     },
-    
+
     invUp: function() {
         this.inv = true;
         this.emit("inv-changed");
     },
-    
+
     invDown: function() {
         this.inv = false;
         this.emit("inv-changed");
     },
-    
+
     updateAngleMode: function(angleMode) {
         this.angleMode = angleMode;
         this.emit("status-changed");
     },
-    
+
     append: function(value) {
         if ( value == "." ) {
             if ( this.stack[this.stack.length-1].indexOf(".") != -1 ) return;
@@ -162,21 +162,21 @@ Buffer.prototype = {
         }
         else if ( !isNaN(value) && this.stack[this.stack.length-1] == "0" ) this.stack[this.stack.length-1] = value;
         else this.stack[this.stack.length-1] += value;
-        
+
         this.emit("changed");
     },
-    
+
     operate: function(value) {
         if ( this.rpn ) {
             this.execute(value);
             return;
         }
-        
+
         let dualFunc = ["add", "sub", "mult", "div", "power", "root"];
         let multFunc = ["sqrt", "sin", "cos", "tan", "sin-inv", "cos-inv", "tan-inv", "log", "ln", "10x", "ex"];
-        
+
         if ( this.stack[this.stack.length-1] == "" && dualFunc.indexOf(value) != -1 ) return;
-        
+
         if ( multFunc.indexOf(value) != -1 ) {
             if ( this.stack[this.stack.length-1] != "" ) {
                 this.operations.push("mult");
@@ -184,17 +184,17 @@ Buffer.prototype = {
             }
         }
         else this.stack.push("");
-        
+
         this.operations.push(value);
         this.emit("changed");
     },
-    
+
     execute: function(value) {
         if ( ( !this.rpn && this.stack[this.stack.length-1] == "" ) ||
              ( this.rpn && this.stack[0] == "" ) ) return;
         if ( this.rpn && this.stack[this.stack.length-1] == "" ) this.stack.pop();
         let result;
-        
+
         switch ( value ) {
             case "%":
                 if ( this.stack[this.stack.length-1] == "" ) break;
@@ -283,33 +283,33 @@ Buffer.prototype = {
                 result = String(factorial(Number(this.stack.pop())));
                 break;
         }
-        
+
         if ( result ) this.stack.push(result);
         if ( this.rpn ) this.stack.push("");
-        
+
         this.emit("changed");
     },
-    
+
     solve: function() {
         while ( this.operations.length > 0 ) this.close();
-        
+
         this.emit("changed");
     },
-    
+
     clear: function() {
         this.stack[this.stack.length-1] = "";
         this.emit("changed");
     },
-    
+
     push: function() {
         //if the user has not entered anything in, we want to duplicate the last entry
         if ( this.stack[this.stack.length-1] == "" && this.stack.length-1 > 0 )
             this.stack[this.stack.length-1] = this.stack[this.stack.length-2];
         this.stack.push("");
-        
+
         this.emit("changed");
     },
-    
+
     back: function() {
         if ( this.stack[this.stack.length-1] == "" ) {
             if ( this.rpn && this.stack.length > 1 ) {
@@ -328,44 +328,44 @@ Buffer.prototype = {
             }
             this.stack.push(string);
         }
-        
+
         this.emit("changed");
     },
-    
+
     del: function() {
         if ( this.rpn && this.stack[this.stack.length-1] == "" ) this.stack.pop();
         this.stack.pop();
         this.stack.push("");
-        
+
         this.emit("changed");
     },
-    
+
     swap: function() {
         if ( this.stack[this.stack.length-1] == "" ) this.stack.pop();
         if ( this.stack.length > 1 ) this.stack.push(String(this.stack.splice(this.stack.length-2,1)));
         this.stack.push("");
-        
+
         this.emit("changed");
     },
-    
+
     recip: function() {
         if ( this.stack[this.stack.length-1] == "" ) this.stack.pop();
         this.stack.push(String(1/this.stack.pop()));
         this.stack.push("");
-        
+
         this.emit("changed");
     },
-    
+
     open: function() {
         if ( this.stack[this.stack.length-1] != "" ) {
             this.stack.push("");
             this.operations.push("mult");
         }
         this.operations.push("popen");
-        
+
         this.emit("changed");
     },
-    
+
     close: function() {
         let stop = 0;
         for ( let i = this.operations.length; i >= 0; i-- ) {
@@ -374,7 +374,7 @@ Buffer.prototype = {
                 break;
             }
         }
-        
+
         for ( let i = this.operations.length-1, j = this.stack.length-1; i >= stop; i--, j-- ) {
             let value = this.stack[j];
             switch ( this.operations[i] ) {
@@ -438,7 +438,7 @@ Buffer.prototype = {
                     break;
             }
         }
-        
+
         for ( let i = this.operations.length-1, j = this.stack.length-1; i >= stop; i--, j-- ) {
             let secondVal;
             switch ( this.operations[i] ) {
@@ -454,7 +454,7 @@ Buffer.prototype = {
                     break;
             }
         }
-        
+
         for ( let i = this.operations.length-1, j = this.stack.length-1; i >= stop; i--, j-- ) {
             let secondVal;
             switch ( this.operations[i] ) {
@@ -470,12 +470,12 @@ Buffer.prototype = {
                     break;
             }
         }
-        
+
         if ( this.operations.length > 0 ) this.operations.pop();
-        
+
         this.emit("changed");
     },
-    
+
     pi: function() {
         if ( this.stack[this.stack.length-1] == "" ) {
             this.stack.pop();
@@ -484,59 +484,62 @@ Buffer.prototype = {
         else {
             this.stack.push(String(this.stack.pop()*Math.PI));
         }
-        
+
         if ( this.rpn ) this.stack.push("");
-        
+
         this.emit("changed");
     },
-    
+
     neg: function() {
         if ( this.rpn && this.stack[this.stack.length-1] == "" ) this.stack.pop();
-        
+
         if ( this.stack.length > 0 ) {
             string = this.stack.pop();
             if ( string[0] == "-" ) string = string.slice(1);
             else string = "-" + string;
             this.stack.push(string);
         }
-        
+
         if ( this.rpn ) this.stack.push("");
-        
+
         this.emit("changed");
     },
-    
+
     copy: function() {
         if ( this.stack[0] == "" ) return;
         if ( this.rpn && this.stack[this.stack.length-1] == "" ) this.stack.pop();
-        St.Clipboard.get_default().set_text(this.stack[this.stack.length-1]);
+        if ( St.ClipboardType ) St.Clipboard.get_default().set_text(St.ClipboardType.CLIPBOARD, this.stack[this.stack.length-1]);
+        else St.Clipboard.get_default().set_text(this.stack[this.stack.length-1]);
         if ( this.rpn ) this.stack.push("");
     },
-    
+
     paste: function() {
-        St.Clipboard.get_default().get_text(Lang.bind(this, function(cb, text) {
+        let callback = Lang.bind(this, function(cb, text) {
             if ( isNaN(Number(text)) ) return;
             if ( !this.rpn && this.stack[this.stack.length-1] != "" ) return;
             if ( this.stack[this.stack.length-1] == "" ) this.stack.pop();
-            
+
             this.stack.push(text);
             if ( this.rpn ) this.stack.push("");
-            
+
             this.emit("changed");
-        }));
+        })
+        if ( St.ClipboardType ) St.Clipboard.get_default().get_text(St.ClipboardType.CLIPBOARD, callback);
+        else St.Clipboard.get_default().get_text(callback);
     },
-    
+
     handleKeyPress: function(event) {
         try {
-            
+
             let symbol = event.get_key_symbol();
             let key = event.get_key_unicode();
-            
+
             if ( symbol == Clutter.KP_Enter || symbol == Clutter.Return ) {
                 if ( this.rpn ) this.push();
                 else this.solve();
                 return;
             }
-            
+
             switch ( key ) {
                 case 49:
                     this.append("1");
@@ -590,7 +593,7 @@ Buffer.prototype = {
                     this.paste();
                     break;
             }
-            
+
         } catch(e) {
             global.logError(e);
         }
@@ -605,11 +608,11 @@ function DisplayBox(precision) {
 
 DisplayBox.prototype = {
     _init: function(precision) {
-        
+
         this.precision = precision;
-        
+
         this.actor = new St.BoxLayout({ vertical: true, style_class: "calc-displayWindow" });
-        
+
         //top line
         let topBox = new St.BoxLayout({ vertical: false });
         this.actor.add_actor(topBox);
@@ -618,7 +621,7 @@ DisplayBox.prototype = {
         topBox.add(new St.BoxLayout(), { expand: true });
         this.valuePrev = new St.Label({ style_class: "calc-displayText-secondary" });
         topBox.add_actor(this.valuePrev);
-        
+
         //bottom line
         let bottomBox = new St.BoxLayout({ vertical: false });
         this.actor.add_actor(bottomBox);
@@ -627,25 +630,25 @@ DisplayBox.prototype = {
         bottomBox.add(new St.BoxLayout(), { expand: true });
         this.value = new St.Label({ text: "0", style_class: "calc-displayText-primary" });
         bottomBox.add_actor(this.value);
-        
+
         buffer.connect("changed", Lang.bind(this, this.update));
         buffer.connect("status-changed", Lang.bind(this, this.onStatusChanged));
         buffer.connect("inv-changed", Lang.bind(this, this.onStatusChanged));
-        
+
         this.update();
-        
+
     },
-    
+
     update: function() {
         try {
-            
+
             //primary
             let last = buffer.stack.length - 1;
             let value = buffer.stack[last];
             if ( value == "" ) value = "0";
             else if ( value.length > this.precision ) value = String(Number(value).toPrecision(this.precision));
             this.value.text = value;
-            
+
             //secondary
             if ( buffer.stack.length > 1 ) {
                 let prev = buffer.stack[last-1];
@@ -653,7 +656,7 @@ DisplayBox.prototype = {
                 this.valuePrev.text = prev;
             }
             else this.valuePrev.text = "";
-            
+
             //operation
             if ( buffer.operations.length > 0 ) {
                 let file = Gio.file_new_for_path(button_path + buffer.operations[buffer.operations.length-1] + "-symbolic.svg");
@@ -661,21 +664,21 @@ DisplayBox.prototype = {
                 this.operation.gicon = gicon;
             }
             else this.operation.set_icon_name("");
-            
+
             this.onStatusChanged();
-            
+
         } catch (e) {
             global.logError(e);
         }
     },
-    
+
     onStatusChanged: function() {
         let text;
         if ( buffer.angleMode == 0 ) text = "deg";
         else text = "rad";
-        
+
         if ( buffer.inv ) text += " inv";
-        
+
         this.status.text = text;
     }
 }
@@ -687,115 +690,115 @@ function DisplayBoxRPN(precision) {
 
 DisplayBoxRPN.prototype = {
     _init: function(precision) {
-        
+
         this.precision = precision;
         this.show = [];
-        
+
         this.actor = new St.BoxLayout({ vertical: true, style_class: "calc-displayWindow-rpn" });
-        
+
         //status area
         this.status = new St.Label({ style_class: "calc-displayText-status" });
         this.actor.add_actor(this.status);
-        
+
         let bottomBox = new St.BoxLayout({ vertical: false, style_class: "calc-stackArea" });
         this.actor.add_actor(bottomBox);
-        
+
         let displayBin = new St.Bin({ x_expand: true, x_fill: true, y_align: St.Align.END });
         bottomBox.add(displayBin, { expand: true });
         this.displayBox = new St.BoxLayout({ vertical: true, pack_start: true });
         displayBin.add_actor(this.displayBox);
-        
+
         let navigationBox = new St.BoxLayout({ vertical: true, style_class: "calc-navigation-box" });
         bottomBox.add_actor(navigationBox);
         this.buttonUp = new St.Button({ style_class: "calc-navigation-button", visible: false });
         navigationBox.add_actor(this.buttonUp);
         let iconUp = new St.Icon({ icon_name: "go-up", style_class: "calc-navigation-icon" });
         this.buttonUp.set_child(iconUp);
-        
+
         let padding = new St.Bin();
         navigationBox.add(padding, { expand: true });
-        
+
         this.buttonDown = new St.Button({ style_class: "calc-navigation-button", visible: false });
         navigationBox.add_actor(this.buttonDown);
         let iconDown = new St.Icon({ icon_name: "go-down", style_class: "calc-navigation-icon" });
         this.buttonDown.set_child(iconDown);
-        
+
         this.buttonUp.connect("clicked", Lang.bind(this, this.navigateUp));
         this.buttonDown.connect("clicked", Lang.bind(this, this.navigateDown));
-        
+
         buffer.connect("changed", Lang.bind(this, function() { this.update(true); }));
         buffer.connect("status-changed", Lang.bind(this, this.onStatusChanged));
         buffer.connect("inv-changed", Lang.bind(this, this.onStatusChanged));
-        
+
         this.onStatusChanged();
-        
+
     },
-    
+
     update: function(refreshData) {
         try {
-            
+
             this.displayBox.destroy_all_children();
-            
+
             if ( refreshData ) {
                 this.stack = buffer.stack.slice(0);
-                for ( let i in this.stack ) 
+                for ( let i in this.stack )
                     if ( this.stack[i] == "" ) this.stack.splice(i, 1);
                 this.start = this.stack.length - 1;
                 if ( this.stack.length > 4 ) this.end = this.start - 4;
                 else this.end = 0;
             }
-            
+
             for ( let i = this.start, j = this.stack.length - this.start; i >= this.end; i--, j++ ) {
                 let row = new St.BoxLayout({ vertical: false });
                 this.displayBox.add_actor(row);
-                
+
                 let index = new St.Label({ text: j + ":", x_expand: true, style_class: "calc-displayText-rpn" });
                 row.add(index, { expand: true });
-                
+
                 let text = this.stack[i];
                 if ( text.length > this.precision ) text = String(Number(text).toPrecision(this.precision));
                 let value = new St.Label({ text: text, style_class: "calc-displayText-rpn" });
                 row.add_actor(value);
             }
-            
+
             if ( this.start == this.stack.length - 1 ) this.buttonDown.hide();
             else this.buttonDown.show();
-            
+
             if ( this.end == 0 ) this.buttonUp.hide();
             else this.buttonUp.show();
-            
+
             this.onStatusChanged();
-            
+
         } catch(e) {
             global.logError(e);
         }
     },
-    
+
     onStatusChanged: function() {
         let text;
         if ( buffer.angleMode == 0 ) text = "deg";
         else text = "rad";
         text += " rpn";
         if ( buffer.inv ) text += " inv";
-        
+
         this.status.text = text;
     },
-    
+
     navigateUp: function() {
         if ( this.end != 0 ) {
             this.start--;
             this.end--;
         }
-        
+
         this.update(false);
     },
-    
+
     navigateDown: function() {
         if ( this.start != this.stack.length - 1 ) {
             this.start++;
             this.end++;
         }
-        
+
         this.update(false);
     }
 }
@@ -807,7 +810,7 @@ function Button(info, rpn) {
 
 Button.prototype = {
     _init: function(info, rpn) {
-        
+
         switch ( info.type ) {
             case "opt1":
                 if ( rpn ) this.info = {type: "cmd", value: "swap", tooltip: _("Swap Entries")};
@@ -825,17 +828,17 @@ Button.prototype = {
                 this.info = info;
                 break;
         }
-        
+
         this.actor = new St.BoxLayout({ style_class: "calc-button-padding" });
         this.button = new St.Button({ style_class: "calc-button" });
         this.actor.add_actor(this.button);
-        
+
         let file = Gio.file_new_for_path(button_path + this.info.value + "-symbolic.svg");
         let gicon = new Gio.FileIcon({ file: file });
         this.image = new St.Icon({ gicon: gicon, icon_size: 16, icon_type: St.IconType.SYMBOLIC });
         this.button.add_actor(this.image);
         if ( this.info.tooltip ) new Tooltips.Tooltip(this.button, _(this.info.tooltip));
-        
+
         if ( this.info.inv ) {
             this.infoInv = this.info.inv;
             buffer.connect("inv-changed", Lang.bind(this, this.refresh));
@@ -843,26 +846,26 @@ Button.prototype = {
             let gicon = new Gio.FileIcon({ file: file });
             this.imageInv = new St.Icon({ gicon: gicon, icon_size: 16, icon_type: St.IconType.SYMBOLIC });
         }
-        
+
         this.button.connect("clicked", Lang.bind(this, this.execute));
-        
+
     },
-    
+
     refresh: function() {
         if ( buffer.inv ) this.button.set_child(this.imageInv);
         else this.button.set_child(this.image);
     },
-    
+
     execute: function() {
         try {
-            
+
             let info;
             if ( this.info.inv && buffer.inv ) info = this.infoInv;
             else info = this.info;
-            
+
             if ( info.type == "cmd" ) buffer[info.value]();
             else buffer[info.type](info.value);
-            
+
         } catch(e) {
             global.logError(e);
         }
@@ -877,51 +880,51 @@ function RaisedBox() {
 RaisedBox.prototype = {
     _init: function() {
         try {
-            
+
             this.stageEventIds = [];
             this.contextMenuEvents = [];
-            
+
             this.actor = new St.Group({ visible: false, x: 0, y: 0 });
             Main.uiGroup.add_actor(this.actor);
             let constraint = new Clutter.BindConstraint({ source: global.stage,
                                                           coordinate: Clutter.BindCoordinate.POSITION | Clutter.BindCoordinate.SIZE });
             this.actor.add_constraint(constraint);
-            
+
             this._backgroundBin = new St.Bin();
             this.actor.add_actor(this._backgroundBin);
             let monitor = Main.layoutManager.focusMonitor;
             this._backgroundBin.set_position(monitor.x, monitor.y);
             this._backgroundBin.set_size(monitor.width, monitor.height);
-            
+
             let stack = new Cinnamon.Stack();
             this._backgroundBin.child = stack;
-            
+
             this.eventBlocker = new Clutter.Group({ reactive: true });
             stack.add_actor(this.eventBlocker);
-            
+
             this.groupContent = new St.Bin();
             stack.add_actor(this.groupContent);
-            
+
         } catch(e) {
             global.logError(e);
         }
     },
-    
+
     add: function(desklet) {
         try {
-            
+
             this.desklet = desklet;
             this.contextMenu = this.desklet._menu;
-            
+
             this.groupContent.add_actor(this.desklet.actor);
-            
+
             this.actor.show();
             global.set_stage_input_mode(Cinnamon.StageInputMode.FOCUSED);
             global.stage.set_key_focus(this.actor);
             this.actor.grab_key_focus();
             global.set_stage_input_mode(Cinnamon.StageInputMode.FULLSCREEN);
             global.focus_manager.add_group(this.actor);
-            
+
             this.stageEventIds.push(global.stage.connect("captured-event", Lang.bind(this, this.onStageEvent)));
             this.stageEventIds.push(global.stage.connect("enter-event", Lang.bind(this, this.onStageEvent)));
             this.stageEventIds.push(global.stage.connect("leave-event", Lang.bind(this, this.onStageEvent)));
@@ -933,31 +936,31 @@ RaisedBox.prototype = {
                     global.set_stage_input_mode(Cinnamon.StageInputMode.FULLSCREEN);
                 }
             })));
-            
+
         } catch(e) {
             global.logError(e);
         }
     },
-    
+
     remove: function() {
         try {
-            
+
             for ( let i = 0; i < this.stageEventIds.length; i++ ) global.stage.disconnect(this.stageEventIds[i]);
             for ( let i = 0; i < this.contextMenuEvents.length; i++ ) this.contextMenu.disconnect(this.contextMenuEvents[i]);
-            
+
             if ( this.desklet ) this.groupContent.remove_actor(this.desklet.actor);
-            
+
             this.actor.destroy();
             global.set_stage_input_mode(Cinnamon.StageInputMode.NORMAL);
-            
+
         } catch(e) {
             global.logError(e);
         }
     },
-    
+
     onStageEvent: function(actor, event) {
         try {
-            
+
             let type = event.type();
             if ( type == Clutter.EventType.KEY_RELEASE ) return true;
             if ( type == Clutter.EventType.KEY_PRESS ) {
@@ -965,16 +968,16 @@ RaisedBox.prototype = {
                 else buffer.handleKeyPress(event);
                 return true;
             }
-            
+
             let target = event.get_source();
             if ( target == this.desklet.actor || this.desklet.actor.contains(target) ||
                  target == this.contextMenu.actor || this.contextMenu.actor.contains(target) ) return false;
             if ( type == Clutter.EventType.BUTTON_RELEASE ) this.emit("closed");
-            
+
         } catch(e) {
             global.logError(e);
         }
-        
+
         return true;
     }
 }
@@ -987,29 +990,29 @@ function myDesklet(metadata, desklet_id) {
 
 myDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
-    
+
     _init: function(metadata, desklet_id) {
         try {
-            
+
             this.metadata = metadata;
             Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
-            
+
             this._bindSettings();
-            
+
             this._populateContextMenu();
-            
+
             button_path = this.metadata.path + "/buttons/";
-            
+
             buffer = new Buffer();
-            
+
             this._buildInterface();
             this.setAngleMode(this.angleMode);
-            
+
         } catch(e) {
             global.logError(e);
         }
     },
-    
+
     _bindSettings: function() {
         this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], this.instance_id);
         this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "angleMode", "angleMode", this.setAngleMode);
@@ -1019,57 +1022,57 @@ myDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "raiseKey", "raiseKey", this.bindKey);
         this.bindKey();
     },
-    
+
     bindKey: function() {
         if ( this.keyId ) Main.keybindingManager.removeHotKey(this.keyId);
-        
+
         this.keyId = "calculator-raise";
         Main.keybindingManager.addHotKey(this.keyId, this.raiseKey, Lang.bind(this, this.toggleRaise));
     },
-    
+
     toggleRaise: function() {
         try {
-            
+
             if ( desklet_raised ) this.lower();
             else this.raise();
-            
+
         } catch(e) {
             global.logError(e);
         }
     },
-    
+
     raise: function() {
-        
+
         if ( desklet_raised || this.changingRaiseState ) return;
         this.changingRaiseState = true;
-        
+
         this._draggable.inhibit = false;
         this.raisedBox = new RaisedBox();
-        
+
         let position = this.actor.get_position();
         this.actor.get_parent().remove_actor(this.actor);
         this.raisedBox.add(this);
-        
+
         this.raisedBox.connect("closed", Lang.bind(this, this.lower));
-        
+
         desklet_raised = true;
         this.changingRaiseState = false;
     },
-    
+
     lower: function() {
         if ( !desklet_raised || this.changingRaiseState ) return;
         this.changingRaiseState = true;
-        
+
         if ( this.raisedBox ) this.raisedBox.remove();
         Main.deskletContainer.addDesklet(this.actor);
         this._draggable.inhibit = false;
-        
+
         desklet_raised = false;
         this.changingRaiseState = false;
     },
-    
+
     _populateContextMenu: function() {
-        
+
         this.degMenuItem = new PopupMenu.PopupMenuItem(_("Degrees"));
         this._menu.addMenuItem(this.degMenuItem);
         this.degMenuItem.setShowDot(this.angleMode == 0);
@@ -1077,7 +1080,7 @@ myDesklet.prototype = {
             this.angleMode = 0;
             this.setAngleMode();
         })));
-        
+
         this.radMenuItem = new PopupMenu.PopupMenuItem(_("Radians"));
         this._menu.addMenuItem(this.radMenuItem);
         this.radMenuItem.setShowDot(this.angleMode == 1);
@@ -1085,51 +1088,51 @@ myDesklet.prototype = {
             this.angleMode = 1;
             this.setAngleMode();
         })));
-        
+
         this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-        
+
         this.rpnMenuItem = new PopupMenu.PopupMenuItem(_("RPN"));
         this._menu.addMenuItem(this.rpnMenuItem);
         this.rpnMenuItem.connect("activate", Lang.bind(this, function() {
             this.rpn = !this.rpn;
             this._buildInterface();
         }))
-        
+
         this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-        
+
         this.layoutFFMenuItem = new PopupMenu.PopupMenuItem(_("4-Function"));
         this._menu.addMenuItem(this.layoutFFMenuItem);
         this.layoutFFMenuItem.connect("activate", Lang.bind(this, function() {
             this.layout = 1;
             this._buildInterface();
         }));
-        
+
         this.layoutSciMenuItem = new PopupMenu.PopupMenuItem(_("Scientific"));
         this._menu.addMenuItem(this.layoutSciMenuItem);
         this.layoutSciMenuItem.connect("activate", Lang.bind(this, function() {
             this.layout = 2;
             this._buildInterface();
         }));
-        
+
         this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-        
+
         let copyItem = new PopupMenu.PopupMenuItem(_("Copy"));
         this._menu.addMenuItem(copyItem);
         copyItem.connect("activate", Lang.bind(this, function() { buffer.copy(); }));
-        
+
         let pasteItem = new PopupMenu.PopupMenuItem(_("Paste"));
         this._menu.addMenuItem(pasteItem);
         pasteItem.connect("activate", Lang.bind(this, function() { buffer.paste(); }));
     },
-    
+
     _buildInterface: function() {
         if ( this.mainBox ) this.mainBox.destroy();
-        
+
         buffer.rpn = this.rpn;
         buffer.reset();
-        
+
         let layout;
-        
+
         if ( this.rpn ) this.rpnMenuItem.setShowDot(true);
         else this.rpnMenuItem.setShowDot(false);
         this.layoutFFMenuItem.setShowDot(false);
@@ -1144,24 +1147,24 @@ myDesklet.prototype = {
                 this.layoutSciMenuItem.setShowDot(true);
                 break;
         }
-        
+
         this.mainBox = new St.BoxLayout({ style_class: "calc-mainBox", vertical: true });
         this.setContent(this.mainBox);
-        
+
         let displayArea = new St.BoxLayout({ vertical: true, style_class: "calc-displayArea" });
         this.mainBox.add_actor(displayArea);
-        
+
         if ( this.rpn ) this.display = new DisplayBoxRPN(this.precision);
         else this.display = new DisplayBox(this.precision);
         displayArea.add_actor(this.display.actor);
-        
+
         let buttonTable = new Clutter.TableLayout();
         //buttonTable.set_row_spacing(5);
         //buttonTable.set_column_spacing(5);
         let buttonBox = new Clutter.Actor();
         buttonBox.set_layout_manager(buttonTable);
         this.mainBox.add_actor(buttonBox);
-        
+
         for ( let i = 0; i < layout.length; i++ ) {
             for ( let j = 0; j < layout[i].length; j++ ) {
                 let buttonInfo = layout[i][j];
@@ -1171,13 +1174,13 @@ myDesklet.prototype = {
             }
         }
     },
-    
+
     setAngleMode: function() {
         this.degMenuItem.setShowDot(this.angleMode == 0);
         this.radMenuItem.setShowDot(this.angleMode == 1);
         buffer.updateAngleMode(this.angleMode);
     },
-    
+
     setPrecision: function() {
         this.display.precision = this.precision;
         this.display.update();
