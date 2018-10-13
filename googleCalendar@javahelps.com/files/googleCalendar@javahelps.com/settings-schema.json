@@ -98,7 +98,13 @@
         "description": "Text color",
         "tooltip": "Click the button to select a new text color"
     },
-
+    "alldaytextcolor": {
+        "type": "colorchooser",
+        "indent": true,
+        "default": "rgb(255,255,255)",
+        "description": "All Day Event Text color",
+        "tooltip": "Click the button to select a new all day event text color"
+    },
     "bgcolor": {
         "type": "colorchooser",
         "indent": true,

@@ -145,6 +145,10 @@ msgstr ""
 msgid "Click the button to select a new text color"
 msgstr ""
 
+#. googleCalendar@javahelps.com->settings-schema.json->alldaytextcolor->description
+msgid "All Day Event Text color"
+msgstr ""
+
 #. googleCalendar@javahelps.com->settings-
 #. schema.json->use_24h_clock->description
 msgid "Use 24h clock"
