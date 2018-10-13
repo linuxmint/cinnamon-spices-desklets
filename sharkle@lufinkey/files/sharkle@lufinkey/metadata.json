@@ -1,0 +1,7 @@
+{
+    "uuid": "sharkle@lufinkey",
+    "dangerous": false,
+    "name": "Sharkle",
+    "description": "The Sharkle desklet from the game Night in the Woods",
+    "prevent-decorations": true
+}

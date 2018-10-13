@@ -1,0 +1,11 @@
+{
+	"color": {
+		"type": "combobox",
+		"description": "Color",
+		"default": "white",
+		"options": {
+			"White": "white",
+			"Black": "black"
+		}
+	}
+}
