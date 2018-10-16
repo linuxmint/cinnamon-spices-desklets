@@ -45,6 +45,7 @@ Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 const TEXT_WIDTH = 250;
 const DATE_WIDTH = 150;
 const FONT_SIZE = 14;
+const SCRIPT_PATH = GLib.get_home_dir() + "/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/py";
 
 function _(str) {
     return Gettext.dgettext(UUID, str);
@@ -87,6 +88,9 @@ GoogleCalendarDesklet.prototype = {
             this.settings.bind("textcolor", "textcolor", this.onDeskletFormatChanged, null);
             this.settings.bind("alldaytextcolor", "alldaytextcolor", this.onDeskletFormatChanged, null);
             this.settings.bind("bgcolor", "bgcolor", this.onDeskletFormatChanged, null);
+            this.settings.bind("diff_calendar", "diff_calendar", this.onDeskletFormatChanged, null)
+            this.settings.bind("show_location", "show_location", this.onDeskletFormatChanged, null)
+            this.settings.bind("location_color", "location_color", this.onDeskletFormatChanged, null);
             this.settings.bind("transparency", "transparency", this.onDeskletFormatChanged, null);
             this.settings.bind("cornerradius", "cornerradius", this.onDeskletFormatChanged, null);
         } catch (e) {
@@ -137,26 +141,22 @@ GoogleCalendarDesklet.prototype = {
      */
     getCalendarCommand() {
         let dateTime = new Date();
-        let command = ["gcalcli"];
+        let command = ["python3", "google_calendar.py"];
+        command.push("--no-of-days");
+        if (this.interval == null) {
+            this.interval = 7; // Default interval is 7 days
+        }
+        command.push(this.interval.toString());
         if (this.calendarName != "") {
+            command.push("--calendar");
             let calendars = this.calendarName.split(",");
             for (let name of calendars) {
                 name = name.trim();
                 if (name !== "") {
-                    command.push("--calendar");
                     command.push(name);
                 }
             }
         }
-        command.push("agenda");
-        command.push(CalendarUtility.formatParameterDate(dateTime));
-        if (this.interval == null) {
-            this.interval = 7; // Default interval is 7 days
-        }
-        dateTime.setDate(dateTime.getDate() + this.interval);
-        command.push(CalendarUtility.formatParameterDate(dateTime));
-        command.push("--nostarted");
-        command.push("--tsv");     
         return command;
     },
 
@@ -165,9 +165,13 @@ GoogleCalendarDesklet.prototype = {
      * This method also add the event to widget.
      */
     addEvent(eventLine) {
-        let event = new Event(eventLine, this.use_24h_clock);
-        this.eventsList.push(event);
-        this.addEventToWidget(event);
+        let events = JSON.parse(eventLine);
+        for (let i = 0; i < events.length; i++) {
+            let event = new Event(events[i], this.use_24h_clock);
+            this.eventsList.push(event);
+            this.addEventToWidget(event);
+        }
+
     },
 
     /**
@@ -188,21 +192,46 @@ GoogleCalendarDesklet.prototype = {
         // Create event row
         let box = CalendarUtility.container();
 
+        let textWidth = TEXT_WIDTH;
+        let lblBullet;
+        // Add a bullet to differentiate calendar
+        if (this.diff_calendar) {
+            lblBullet = CalendarUtility.label("\u2022 ", this.zoom, event.color);
+            // lblBullet.style = lblBullet.style + "; font-weight: bold;"
+            box.add(lblBullet);
+            global.logError(lblBullet.width);
+            // 5 is a hack to adjust width
+            textWidth = textWidth - lblBullet.width - 5;
+        }
+
         let dateText = event.formatEventDuration(this.lastDate);
         if (dateText) {
             let lblEvent = CalendarUtility.label(event.name, this.zoom, this.textcolor);
             box.add(lblEvent);
             let lblDate = CalendarUtility.label(dateText, this.zoom, this.textcolor, false);
-            lblEvent.width = TEXT_WIDTH;
+            lblEvent.width = textWidth - 5; // 5 is a hack to adjust width
             lblDate.width = DATE_WIDTH;
             box.add(lblDate);
         } else {
-            let lblEvent = CalendarUtility.label(event.name, this.zoom, this.alldaytextcolor); //show allday events in blue
+            let lblEvent = CalendarUtility.label(event.name, this.zoom, this.alldaytextcolor);
             box.add(lblEvent);
-            lblEvent.width = TEXT_WIDTH + DATE_WIDTH;
+            lblEvent.width = textWidth + DATE_WIDTH;
         }
 
         this.window.add(box);
+        if (this.show_location && event.location !== "") {
+            let locationBox = CalendarUtility.container();
+            if (this.diff_calendar) {
+                let lblEmpty = CalendarUtility.label("", this.zoom, this.textcolor);
+                lblEmpty.width = lblBullet.width;
+                locationBox.add(lblEmpty);
+            }
+            let lblLocation = CalendarUtility.label(event.location, this.zoom, this.location_color, true, 12);
+            lblLocation.style = lblLocation.style + "; font-style: italic;"
+            lblLocation.width = textWidth + DATE_WIDTH;
+            locationBox.add(lblLocation);
+            this.window.add(locationBox);
+        }
     },
 
     /**
@@ -263,17 +292,13 @@ GoogleCalendarDesklet.prototype = {
             return;
         }
         this.updateInProgress = true;
-        this.resetWidget(true);
-        // Set temporary method
-        let label = CalendarUtility.label(_("No events found..."), this.zoom, this.textcolor);
-        this.window.add(label);
         var outputReceived = false;
         try {
             // Execute the command to retrieve the calendar events.
             let reader = new SpawnReader();
-            reader.spawn("./", this.getCalendarCommand(), (output) => {
+            reader.spawn(SCRIPT_PATH, this.getCalendarCommand(), (output) => {
+                this.resetWidget(true);
                 if (!outputReceived) {
-                    this.resetWidget();
                     outputReceived = true;
                 }
                 let eventLine = output.toString();
@@ -284,7 +309,7 @@ GoogleCalendarDesklet.prototype = {
                     let label;
                     if (eventLine.includes("https://accounts.google.com/o/oauth2/auth")) {
                         // Not authenticated
-                        label = CalendarUtility.label(_("Please configure gcalcli to continue"), this.zoom, this.textcolor);
+                        label = CalendarUtility.label(_("Please authenticate the desklet to continue"), this.zoom, this.textcolor);
                     } else {
                         label = CalendarUtility.label(_("Unable to retrieve events..."), this.zoom, this.textcolor);
                     }

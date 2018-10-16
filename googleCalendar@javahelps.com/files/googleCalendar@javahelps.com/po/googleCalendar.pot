@@ -115,6 +115,22 @@ msgstr ""
 msgid "Click the button to select a new background color"
 msgstr ""
 
+#. googleCalendar@javahelps.com->settings-schema.json->diff_calendar->description
+msgid "Differentiate calendars"
+msgstr ""
+
+#. googleCalendar@javahelps.com->settings-schema.json->diff_calendar->tooltip
+msgid "Show color bullets in front of events"
+msgstr ""
+
+#. googleCalendar@javahelps.com->settings-schema.json->show_location->description
+msgid "Show location"
+msgstr ""
+
+#. googleCalendar@javahelps.com->settings-schema.json->show_location->tooltip
+msgid "Display the event location if available"
+msgstr ""
+
 #. googleCalendar@javahelps.com->settings-
 #. schema.json->cornerradius->description
 msgid "Corner radius"
@@ -146,7 +162,19 @@ msgid "Click the button to select a new text color"
 msgstr ""
 
 #. googleCalendar@javahelps.com->settings-schema.json->alldaytextcolor->description
-msgid "All Day Event Text color"
+msgid "All day event text color"
+msgstr ""
+
+#. googleCalendar@javahelps.com->settings-schema.json->alldaytextcolor->tooltip
+msgid "Click the button to select a new all day event text color"
+msgstr ""
+
+#. googleCalendar@javahelps.com->settings-schema.json->location_color->description
+msgid "Location text color"
+msgstr ""
+
+#. googleCalendar@javahelps.com->settings-schema.json->location_color->tooltip
+msgid "Click the button to select a new location text color"
 msgstr ""
 
 #. googleCalendar@javahelps.com->settings-
