@@ -167,7 +167,7 @@ GoogleCalendarDesklet.prototype = {
      */
     addEvent(eventLine) {
         let events = JSON.parse(eventLine);
-        events.forEach(element => {
+        events.forEach((element) => {
             let event = new Event(element, this.use_24h_clock);
             this.eventsList.push(event);
             this.addEventToWidget(event);

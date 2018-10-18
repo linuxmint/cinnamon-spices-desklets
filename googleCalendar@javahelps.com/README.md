@@ -28,7 +28,6 @@ View your upcoming calendar events on your Cinnamon Desktop. This desklet uses `
 
 5. If there is a warning sign in the "Desklets" dialog, try to remove and add the desklet. If it doesn't work, a system restart may help the desklet to detect `google-api-python-client`.
 
-
 ## Features
 
 - Select events from multiple calendars of the same Google account
@@ -36,3 +35,32 @@ View your upcoming calendar events on your Cinnamon Desktop. This desklet uses `
 - Customize update frequency
 - Manually update the agenda by clicking on the desklet
 - Customize the look and feel
+
+## FAQ
+
+1. **How to show events only from a selected list of calendars?**
+
+    Open your terminal and change the directory to the desklet location.
+    ```shell
+    cd ~/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/py
+    ```
+
+    Execute the following command to see the available calendars:
+    ```shell
+    python3 google_calendar.py --list-calendars
+    ```
+    For example, I have the following caledars:
+    ```text
+    Friends' Birthdays
+    Contacts
+    Holidays in Canada
+    Holidays in Sri Lanka
+    ```
+    Add interesting calendars, separated by comma to the "Calendar name(s)" property in the desklet configuration dialog. For example, if you want to see events only from "Friends' Birthdays" and "Holidays in Canada" your input should look like this:
+    ```text
+    Friends' Birthdays, Holidays in Canada
+    ```
+
+2. **How to report bugs?**
+
+    Please open a GitHub issue at [linuxmint/cinnamon-spices-desklets](https://github.com/linuxmint/cinnamon-spices-desklets/issues). Please include the Python 3 version (`python3 -V`) of your system in addition to the details required in the issue template.
