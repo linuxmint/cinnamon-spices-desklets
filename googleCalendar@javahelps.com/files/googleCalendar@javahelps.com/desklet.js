@@ -167,12 +167,11 @@ GoogleCalendarDesklet.prototype = {
      */
     addEvent(eventLine) {
         let events = JSON.parse(eventLine);
-        for (let i = 0; i < events.length; i++) {
-            let event = new Event(events[i], this.use_24h_clock);
+        events.forEach(element => {
+            let event = new Event(element, this.use_24h_clock);
             this.eventsList.push(event);
             this.addEventToWidget(event);
-        }
-
+        });
     },
 
     /**
