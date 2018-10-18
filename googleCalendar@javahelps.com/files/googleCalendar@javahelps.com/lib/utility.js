@@ -69,9 +69,9 @@ SpawnReader.prototype.read = function(stream, func) {
     }));
 };
 
-CalendarUtility.prototype.label = function(text, zoom, textColor, leftAlign = true, fontSize = 14) {
+CalendarUtility.prototype.label = function(text, zoom, textColor, leftAlign = true, fontSize = 10) {
     let label = new St.Label();
-    label.style = "text-align : " + (leftAlign ? "left" : "right") + "; font-size:" + (fontSize * zoom) + "px; color: " + textColor;
+    label.style = "text-align : " + (leftAlign ? "left" : "right") + "; font-size:" + (fontSize * zoom) + "pt; color: " + textColor;
     label.set_text(text);
     return label;
 };

@@ -42,8 +42,7 @@ def retrieve_events(service, calendar_id, calendar_color, start_time, end_time):
                                            timeMax=end_time,
                                            singleEvents=True).execute()
             for event in events['items']:
-                calendar_event = {'calendar_color': calendar_color, 'summary': event['summary'],
-                                  'calendar_color': calendar_color, 'summary': event['summary'], }
+                calendar_event = {'calendar_color': calendar_color, 'summary': event['summary']}
                 if 'dateTime' in event['start']:
                     startDateTime = datetime.strptime(
                         ''.join(event['start']['dateTime'].rsplit(':', 1)),  '%Y-%m-%dT%H:%M:%S%z')
@@ -97,7 +96,7 @@ def main(argv):
     end_time = str((current_time + relativedelta(days=no_of_days)).isoformat())
 
     # Authenticate and construct service.
-    service, flags = sample_tools.init(
+    service, _ = sample_tools.init(
         [], 'calendar', 'v3', __doc__, __file__,
         scope='https://www.googleapis.com/auth/calendar.readonly')
 
@@ -128,7 +127,7 @@ def main(argv):
     except client.AccessTokenRefreshError:
         # The credentials have been revoked or expired, please re-run the application to re-authorize.
         return -1
-    except Exception as e:
+    except Exception:
         return -2
 
 

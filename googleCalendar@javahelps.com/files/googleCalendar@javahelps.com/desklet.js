@@ -28,6 +28,7 @@ const Settings = imports.ui.settings;
 const Util = imports.misc.util;
 const Gettext = imports.gettext;
 const Gio = imports.gi.Gio;
+const St = imports.gi.St;
 
 // Import local libraries
 imports.searchPath.unshift(GLib.get_home_dir() + "/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/lib");
@@ -43,7 +44,6 @@ const SEPARATOR_LINE = "\n\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
 const TEXT_WIDTH = 250;
-const DATE_WIDTH = 150;
 const FONT_SIZE = 14;
 const SCRIPT_PATH = GLib.get_home_dir() + "/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/py";
 
@@ -65,6 +65,7 @@ GoogleCalendarDesklet.prototype = {
         Desklet.Desklet.prototype._init.call(this, metadata, deskletID);
         this.metadata = metadata;
         this.maxSize = 7000;
+        this.maxWidth = 0;
         this.updateID = null;
         this.updateInProgress = false;
         this.eventsList;
@@ -88,8 +89,8 @@ GoogleCalendarDesklet.prototype = {
             this.settings.bind("textcolor", "textcolor", this.onDeskletFormatChanged, null);
             this.settings.bind("alldaytextcolor", "alldaytextcolor", this.onDeskletFormatChanged, null);
             this.settings.bind("bgcolor", "bgcolor", this.onDeskletFormatChanged, null);
-            this.settings.bind("diff_calendar", "diff_calendar", this.onDeskletFormatChanged, null)
-            this.settings.bind("show_location", "show_location", this.onDeskletFormatChanged, null)
+            this.settings.bind("diff_calendar", "diff_calendar", this.onDeskletFormatChanged, null);
+            this.settings.bind("show_location", "show_location", this.onDeskletFormatChanged, null);
             this.settings.bind("location_color", "location_color", this.onDeskletFormatChanged, null);
             this.settings.bind("transparency", "transparency", this.onDeskletFormatChanged, null);
             this.settings.bind("cornerradius", "cornerradius", this.onDeskletFormatChanged, null);
@@ -187,35 +188,38 @@ GoogleCalendarDesklet.prototype = {
             this.lastDate = event.startDate;
             let label = CalendarUtility.label(leadingNewline + this.formatEventDate(event.startDateText) + SEPARATOR_LINE, this.zoom, this.textcolor);
             this.window.add(label);
+            if (label.width > this.maxWidth) {
+                this.maxWidth = label.width;
+            }
         }
 
         // Create event row
         let box = CalendarUtility.container();
 
-        let textWidth = TEXT_WIDTH;
+        let textWidth = this.maxWidth;
         let lblBullet;
         // Add a bullet to differentiate calendar
         if (this.diff_calendar) {
             lblBullet = CalendarUtility.label("\u2022 ", this.zoom, event.color);
-            // lblBullet.style = lblBullet.style + "; font-weight: bold;"
             box.add(lblBullet);
-            global.logError(lblBullet.width);
-            // 5 is a hack to adjust width
-            textWidth = textWidth - lblBullet.width - 5;
+            textWidth = textWidth - lblBullet.width;
         }
 
         let dateText = event.formatEventDuration(this.lastDate);
         if (dateText) {
             let lblEvent = CalendarUtility.label(event.name, this.zoom, this.textcolor);
-            box.add(lblEvent);
-            let lblDate = CalendarUtility.label(dateText, this.zoom, this.textcolor, false);
-            lblEvent.width = textWidth - 5; // 5 is a hack to adjust width
-            lblDate.width = DATE_WIDTH;
+            let lblDate = CalendarUtility.label(dateText, this.zoom, this.textcolor);
+            box.add(lblEvent, {
+                expand: true,
+                x_fill: true,
+                align: St.Align.START
+            });
             box.add(lblDate);
+            lblEvent.width = textWidth - lblDate.width - 50 * this.zoom * global.ui_scale;
         } else {
             let lblEvent = CalendarUtility.label(event.name, this.zoom, this.alldaytextcolor);
+            lblEvent.width = textWidth;
             box.add(lblEvent);
-            lblEvent.width = textWidth + DATE_WIDTH;
         }
 
         this.window.add(box);
@@ -226,9 +230,9 @@ GoogleCalendarDesklet.prototype = {
                 lblEmpty.width = lblBullet.width;
                 locationBox.add(lblEmpty);
             }
-            let lblLocation = CalendarUtility.label(event.location, this.zoom, this.location_color, true, 12);
-            lblLocation.style = lblLocation.style + "; font-style: italic;"
-            lblLocation.width = textWidth + DATE_WIDTH;
+            let lblLocation = CalendarUtility.label(event.location, this.zoom, this.location_color, true, 8);
+            lblLocation.style = lblLocation.style + "; font-style: italic;";
+            lblLocation.width = textWidth;
             locationBox.add(lblLocation);
             this.window.add(locationBox);
         }
@@ -246,6 +250,7 @@ GoogleCalendarDesklet.prototype = {
         this.lastDate = null;
         this.window = CalendarUtility.window(this.cornerradius, this.textcolor, this.bgcolor, this.transparency);
         this.setContent(this.window);
+        this.maxWidth = 0;
     },
 
     /**
