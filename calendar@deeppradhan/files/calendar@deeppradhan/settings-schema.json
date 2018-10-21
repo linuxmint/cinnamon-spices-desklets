@@ -54,6 +54,17 @@
 		"tooltip": "Show or hide time (hours and minutes)"
 	},
 
+	"first-day-of-week": {
+		"type": "combobox",
+		"default": "sunday",
+		"description": "First day of week",
+		"options": {
+			"Sunday": "0",
+			"Monday": "1"
+		},
+		"tooltip": "Set the first day of week displayed in month calendar"
+	},
+
 	"seperator" : {
 		"type" : "separator"
 	},

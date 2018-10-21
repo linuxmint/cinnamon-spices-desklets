@@ -1,11 +1,11 @@
 {
-	"comments": "Calendar Desklet provides a highly configurable desklet to display current date and browsable months. It has a number of possible customisations.",
-	"contributors": "Deep Pradhan",
-	"description": "Configurable Calendar desklet",
-	"last-edited": 1519920000,
-	"name": "Calendar desklet",
-	"prevent-decorations": true,
-	"uuid": "calendar@deeppradhan",
-	"version": "1.0",
-	"website": "https://github.com/kanchudeep"
+    "comments": "Calendar Desklet provides a highly configurable desklet to display current date and browsable months. It has a number of possible customisations.",
+    "contributors": "Deep Pradhan",
+    "description": "Configurable Calendar desklet",
+    "last-edited": 1523246509,
+    "name": "Calendar desklet",
+    "prevent-decorations": true,
+    "uuid": "calendar@deeppradhan",
+    "version": "1.0",
+    "website": "https://github.com/kanchudeep"
 }

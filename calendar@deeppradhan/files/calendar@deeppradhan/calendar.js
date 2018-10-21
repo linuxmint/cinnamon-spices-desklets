@@ -1,10 +1,10 @@
 // Names of the Month
-var MONTH_NAMES = ["January", "February", "March", "April", "May", "June",
-		"July", "August", "September", "October", "November", "December"];
+var MONTH_NAMES = [_("January"), _("February"), _("March"), _("April"), _("May"), _("June"),
+		_("July"), _("August"), _("September"), _("October"), _("November"), _("December")];
 
 // Names of the Weekdays
-var WEEKDAY_NAMES = ["Sunday", "Monday", "Tuesday",
-		"Wednesday", "Thursday", "Friday", "Saturday"];
+var WEEKDAY_NAMES = [_("Sunday"), _("Monday"), _("Tuesday"),
+		_("Wednesday"), _("Thursday"), _("Friday"), _("Saturday")];
 
 // Method to return a Date (first day) after adding specified months to specified Date
 function dateMonthAdd(date, add) {

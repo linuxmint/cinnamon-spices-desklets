@@ -5,7 +5,8 @@ const Mainloop = imports.mainloop;
 const Settings = imports.ui.settings;
 const St = imports.gi.St;
 const Tooltips = imports.ui.tooltips;
-
+const GLib = imports.gi.GLib;
+const Gettext = imports.gettext;
 const Clutter = imports.gi.Clutter;
 const GdkPixbuf = imports.gi.GdkPixbuf;
 const Cogl = imports.gi.Cogl;
@@ -21,6 +22,11 @@ let Calendar = typeof require !== "undefined" ? require("./calendar") : imports.
 const STYLE_TEXT_CENTER = "text-align: center;";
 const STYLE_LABEL_DAY = "padding: 0, 1.5pt; " + STYLE_TEXT_CENTER;
 
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+
+function _(str) {
+  return Gettext.dgettext(UUID, str);
+}
 
 function MyDesklet(metadata, desklet_id) {
 	this._init(metadata, desklet_id);
@@ -39,6 +45,7 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "short-month-name", "shortMonthName", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "show-year", "showYear", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "show-time", "showTime", this.onSettingChanged);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "first-day-of-week", "firstDayOfWeek", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "layout", "layout", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "custom-font-family", "customFontFamily", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "font-size", "fontSize", this.onSettingChanged);
@@ -50,6 +57,7 @@ MyDesklet.prototype = {
 
 		// Date of the calendar
 		this.date = new Date();
+		this.fDoW = this.firstDayOfWeek === "0" ? 0 : 1
 
 		//////// Today Panel ////////
 		this.labelDay = new St.Label();
@@ -83,7 +91,7 @@ MyDesklet.prototype = {
 		this.labelWeekdays = [];
 		for (let i = 0; i < 7; i++) {
 			this.labelWeekdays[i] = new St.Label();
-			this.labelWeekdays[i].set_text(Calendar.WEEKDAY_NAMES[i].substring(0, 1));
+			this.labelWeekdays[i].set_text(_(Calendar.WEEKDAY_NAMES[(i + this.fDoW) % 7]).substring(0, 1));
 			this.tableMonth.add(this.labelWeekdays[i], {row: 1, col: i});
 		}
 
@@ -118,8 +126,8 @@ MyDesklet.prototype = {
 		}
 
 		//////// Calendar Layout ////////
-		// Set Desklet header
-		this.setHeader("Calendar");
+		// Set desklet header
+		this.setHeader(_("Calendar"));
 
 		this.updateCalendar();
 	},
@@ -137,12 +145,13 @@ MyDesklet.prototype = {
 	
 	// Refresh on change of settings
 	onSettingChanged: function() {
+	    this.fDoW = this.firstDayOfWeek === "0" ? 0 : 1
 		if (this.timeout)
 			Mainloop.source_remove(this.timeout);
 		this.updateCalendar();
 	},
 
-	/* Method to update the Desklet layout*/
+	/* Method to update the desklet layout*/
 	updateCalendar: function() {
 
 		let now = new Date();
@@ -167,27 +176,29 @@ MyDesklet.prototype = {
 			this.boxLayoutToday.add(this.labelTime);
 
 		//////// Month Panel ////////
-		this.labelMonth.set_text(Calendar.MONTH_NAMES[this.date.getMonth()].substring(0, 3) + " " + this.date.getFullYear());
+		this.labelMonth.set_text(_(Calendar.MONTH_NAMES[this.date.getMonth()]).substring(0, 3) + " " + this.date.getFullYear());
 
 		// Set weekday style
 		for (let i = 0; i < 7; i++)
 			this.labelWeekdays[i].style = STYLE_LABEL_DAY + (this.date.getFullYear() == now.getFullYear()
-					&& this.date.getMonth() == now.getMonth() && i == now.getDay() ?
-					" font-weight: bold;" : "") + (i === 0 ? " color: " + this.colourSundays + ";" : "")
-					+ (i === 6 ? " color: " + this.colourSaturdays + ";" : "");
+					&& this.date.getMonth() == now.getMonth() && (i + this.fDoW) == now.getDay() ?
+					" font-weight: bold;" : "") + (((i + this.fDoW) % 7) === 0 ? " color: " +
+					this.colourSundays + ";" : "") + (((i+ this.fDoW) % 7) === 6 ? " color: " +
+					this.colourSaturdays + ";" : "");
 
 		// Remove currently added days
 		for (let i = 0; i < 31; i++)
 			if (this.labelDays[i].get_parent())
 				this.tableMonth.remove_child(this.labelDays[i]);
 
-		for (let i = 0, row = 2, col = (new Date(this.date.getFullYear(), this.date.getMonth(), 1)).getDay(),
-				monthLength = Calendar.daysInMonth(this.date.getMonth(), this.date.getFullYear()); i < monthLength; i++) {
+		for (let i = 0, row = 2, col = ((new Date(this.date.getFullYear(), this.date.getMonth(), 1)).getDay()
+		        - this.fDoW) % 7, monthLength = Calendar.daysInMonth(this.date.getMonth(), this.date.getFullYear());
+		        i < monthLength; i++) {
 			this.labelDays[i].style = STYLE_LABEL_DAY;
 			// Set specified colour of Sunday and Saturday
-			if (col === 0)
+			if (col === 6)
 				this.labelDays[i].style = this.labelDays[i].style + " color: " + this.colourSundays + ";";
-			else if (col === 6)
+			else if (col === (6 - this.fDoW) % 7)
 				this.labelDays[i].style = this.labelDays[i].style + " color: " + this.colourSaturdays + ";";
 
 			// Emphasise today's date 
@@ -203,7 +214,7 @@ MyDesklet.prototype = {
 				col = 0;
 			}
 		}
-		this.tooltipMonth.set_text(Calendar.MONTH_NAMES[this.date.getMonth()] + " " + this.date.getFullYear());
+		this.tooltipMonth.set_text(_(Calendar.MONTH_NAMES[this.date.getMonth()]) + " " + this.date.getFullYear());
 
 		//////// Calendar Layout ////////
 		if (typeof this.boxLayoutCalendar !== "undefined")
@@ -227,7 +238,7 @@ MyDesklet.prototype = {
 		this.updateValues();
 	},
 
-	/* Method to update the Desklet values*/
+	/* Method to update the desklet values*/
 	updateValues: function() {
 
 		if (this.removed) {
@@ -243,9 +254,9 @@ MyDesklet.prototype = {
 		}
 
 		//////// Today Panel ////////
-		this.labelDay.set_text(Calendar.WEEKDAY_NAMES[now.getDay()].substring(0, this.showWeekday !== "full" ? 3 : 9));
+		this.labelDay.set_text(_(Calendar.WEEKDAY_NAMES[now.getDay()]).substring(0, this.showWeekday !== "full" ? 3 : 9));
 		this.labelDate.set_text(String(now.getDate()));
-		this.labelMonthYear.set_text(Calendar.MONTH_NAMES[now.getMonth()].substring(0, this.shortMonthName ? 3 : 9)
+		this.labelMonthYear.set_text(_(Calendar.MONTH_NAMES[now.getMonth()]).substring(0, this.shortMonthName ? 3 : 9)
 				+ (this.showYear !== "off" ? " " + (String(now.getFullYear()).substring(this.showYear !== "full" ? 2 : 0)) : ""));
 		this.labelTime.set_text(Calendar.zeroPad(now.getHours()) + ":"
 				+ Calendar.zeroPad(now.getMinutes()));
