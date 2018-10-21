@@ -37,7 +37,7 @@ function MyDesklet(metadata, desklet_id) {
 MyDesklet.prototype = {
 	__proto__: Desklet.Desklet.prototype,
 
-	_init: function(metadata, desklet_id) {
+	_init(metadata, desklet_id) {
 		Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
 
 		// Initialise settings
@@ -92,9 +92,10 @@ MyDesklet.prototype = {
 		// Create labels for weekdays
 		this.labelWeekdays = [];
 		for (let i = 0; i < 7; i++) {
-			this.labelWeekdays[i] = new St.Label();
-			this.labelWeekdays[i].set_text(_(Calendar.WEEKDAY_NAMES[(i + this.fDoW) % 7]).substring(0, 1));
-			this.tableMonth.add(this.labelWeekdays[i], {row: 1, col: i});
+			let weekday = new St.Label();
+			weekday.set_text(_(Calendar.WEEKDAY_NAMES[(i + this.fDoW) % 7]).substring(0, 1));
+			this.labelWeekdays.push(weekday);
+			this.tableMonth.add(weekday, {row: 1, col: i});
 		}
 
 		this.buttonPrevious.set_child(this.labelPrevious);
@@ -122,9 +123,10 @@ MyDesklet.prototype = {
 
 		// Create buttons with labels (with tooltips) for days
 		for (let i = 0; i < 31; i++) {
-			this.labelDays[i] = new St.Label();
-			this.labelDays[i].style = STYLE_LABEL_DAY;
-			this.labelDays[i].set_text(String(i + 1));
+			let DateLabel = new St.Label();
+			DateLabel.style = STYLE_LABEL_DAY;
+			DateLabel.set_text(String(i + 1));
+			this.labelDays.push(DateLabel);
 		}
 
 		//////// Calendar Layout ////////
@@ -135,26 +137,27 @@ MyDesklet.prototype = {
 	},
 
 	// Called on user clicking the desklet
-	on_desklet_clicked: function(event) {
+	on_desklet_clicked(event) {
 		this.date = new Date();
 		this.updateCalendar();
 	},
 	
-	on_desklet_removed: function() {
+	on_desklet_removed() {
 		this.removed = true;
 		Mainloop.source_remove(this.timeout);
 	},
 	
 	// Refresh on change of settings
-	onSettingChanged: function() {
+	onSettingChanged() {
 		this.fDoW = this.firstDayOfWeek === "0" ? 0 : 1;
-		if (this.timeout)
+		if (this.timeout) {
 			Mainloop.source_remove(this.timeout);
+		}
 		this.updateCalendar();
 	},
 
 	/* Method to update the desklet layout*/
-	updateCalendar: function() {
+	updateCalendar() {
 
 		let now = new Date();
 
@@ -181,34 +184,39 @@ MyDesklet.prototype = {
 		this.labelMonth.set_text(_(Calendar.MONTH_NAMES[this.date.getMonth()]).substring(0, 3) + " " + this.date.getFullYear());
 
 		// Set weekday style
-		for (let i = 0; i < 7; i++)
-			this.labelWeekdays[i].style = STYLE_LABEL_DAY + (this.date.getFullYear() == now.getFullYear()
-					&& this.date.getMonth() == now.getMonth() && (i + this.fDoW) == now.getDay() ?
+		for (let i = 0; i < 7; i++) {
+			this.labelWeekdays[i].style = STYLE_LABEL_DAY + (this.date.getFullYear() === now.getFullYear()
+					&& this.date.getMonth() === now.getMonth() && (i + this.fDoW) === now.getDay() ?
 					" font-weight: bold;" : "") + (((i + this.fDoW) % 7) === 0 ? " color: " +
 					this.colourSundays + ";" : "") + (((i+ this.fDoW) % 7) === 6 ? " color: " +
 					this.colourSaturdays + ";" : "");
+		}
 
 		// Remove currently added days
 		for (let i = 0; i < 31; i++)
-			if (this.labelDays[i].get_parent())
+			if (this.labelDays[i].get_parent()) {
 				this.tableMonth.remove_child(this.labelDays[i]);
+		}
 
 		for (let i = 0, row = 2, col = ((new Date(this.date.getFullYear(), this.date.getMonth(), 1)).getDay()
-		        - this.fDoW) % 7, monthLength = Calendar.daysInMonth(this.date.getMonth(), this.date.getFullYear());
-		        i < monthLength; i++) {
+				- this.fDoW) % 7, monthLength = Calendar.daysInMonth(this.date.getMonth(), this.date.getFullYear());
+				i < monthLength; i++) {
 			this.labelDays[i].style = STYLE_LABEL_DAY;
 			// Set specified colour of Sunday and Saturday
-			if (col === 6)
+			if (col === 6) {
 				this.labelDays[i].style = this.labelDays[i].style + " color: " + this.colourSundays + ";";
-			else if (col === (6 - this.fDoW) % 7)
+			}
+			else if (col === (6 - this.fDoW) % 7) {
 				this.labelDays[i].style = this.labelDays[i].style + " color: " + this.colourSaturdays + ";";
+			}
 
 			// Emphasise today's date 
-			if (this.date.getFullYear() == now.getFullYear() && this.date.getMonth() == now.getMonth()
-					&& i + 1 === now.getDate())
+			if (this.date.getFullYear() === now.getFullYear() && this.date.getMonth() === now.getMonth()
+					&& i + 1 === now.getDate()) {
 				this.labelDays[i].style = this.labelDays[i].style + "background-color: "
 						+ this.colourText + "; color: " + this.colourBackground
 						+ "; border-radius: " + (this.fontSize / 4) + "pt;";
+			}
 			this.tableMonth.add(this.labelDays[i], {row: row, col: col});
 			col++;
 			if (col > 6) {
@@ -241,7 +249,7 @@ MyDesklet.prototype = {
 	},
 
 	/* Method to update the desklet values*/
-	updateValues: function() {
+	updateValues() {
 
 		if (this.removed) {
 			this.timeout = 0;
