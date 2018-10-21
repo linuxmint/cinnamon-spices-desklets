@@ -1,3 +1,5 @@
+/* global imports */
+
 const Desklet = imports.ui.desklet;
 const Gio = imports.gi.Gio;
 const Lang = imports.lang;
@@ -57,7 +59,7 @@ MyDesklet.prototype = {
 
 		// Date of the calendar
 		this.date = new Date();
-		this.fDoW = this.firstDayOfWeek === "0" ? 0 : 1
+		this.fDoW = this.firstDayOfWeek === "0" ? 0 : 1;
 
 		//////// Today Panel ////////
 		this.labelDay = new St.Label();
@@ -145,7 +147,7 @@ MyDesklet.prototype = {
 	
 	// Refresh on change of settings
 	onSettingChanged: function() {
-	    this.fDoW = this.firstDayOfWeek === "0" ? 0 : 1
+		this.fDoW = this.firstDayOfWeek === "0" ? 0 : 1;
 		if (this.timeout)
 			Mainloop.source_remove(this.timeout);
 		this.updateCalendar();
