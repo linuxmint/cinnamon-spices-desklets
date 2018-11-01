@@ -183,6 +183,21 @@ MyDesklet.prototype = {
 		//////// Month Panel ////////
 		this.labelMonth.set_text(_(Calendar.MONTH_NAMES[this.date.getMonth()]).substring(0, 3) + " " + this.date.getFullYear());
 
+        // Remove currently added days
+		for (let i = 0; i < 7; i++)
+			if (this.labelWeekdays[i].get_parent()) {
+				this.tableMonth.remove_child(this.labelWeekdays[i]);
+		}
+		// Create labels for weekdays
+		this.labelWeekdays = [];
+		for (let i = 0; i < 7; i++) {
+			let weekday = new St.Label();
+			weekday.set_text(_(Calendar.WEEKDAY_NAMES[(i + this.fDoW) % 7]).substring(0, 1));
+			this.labelWeekdays.push(weekday);
+			this.tableMonth.add(weekday, {row: 1, col: i});
+		}
+
+
 		// Set weekday style
 		for (let i = 0; i < 7; i++) {
 			this.labelWeekdays[i].style = STYLE_LABEL_DAY + (this.date.getFullYear() === now.getFullYear()
