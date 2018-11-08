@@ -66,10 +66,10 @@ GoogleCalendarDesklet.prototype = {
         this.maxSize = 7000;
         this.updateID = null;
         this.updateInProgress = false;
-        this.eventsList;
+        this.eventsList = [];
         this.lastDate = null;
-        this.today;
-        this.tomorrow;
+        this.today = new XDate().toString("yyyy-MM-dd");
+        this.tomorrow = new XDate().addDays(1).toString("yyyy-MM-dd");
 
         this._updateDecoration();
 
@@ -156,7 +156,7 @@ GoogleCalendarDesklet.prototype = {
         dateTime.setDate(dateTime.getDate() + this.interval);
         command.push(CalendarUtility.formatParameterDate(dateTime));
         command.push("--nostarted");
-        command.push("--tsv");     
+        command.push("--tsv");
         return command;
     },
 
@@ -227,16 +227,34 @@ GoogleCalendarDesklet.prototype = {
         this.updateID = Mainloop.timeout_add_seconds(this.delay * 60, Lang.bind(this, this.updateLoop));
     },
 
-    /*
+    /**
+     * Returns well formatted string (for this.today_format, this.tomorrow_format and this.date_format).
+     * This fixes a bug that occurs, for example, when 'today' is replaced by 'aujourd'hui' by a French-speaking user.
+     */
+    wellFormatted(t) {
+        var ret=t;
+        if (t.indexOf("'") > -1) {
+            let index1 = t.indexOf("'");        // first apostrophe
+            let index2 = t.lastIndexOf("'");    // last apostrophe
+            let sub = t.substr(index1 + 1, index2 - index1); // all between the first and last apostrophe
+            if (sub.indexOf("'") > -1) {  // there is at least one other apostrophe
+                let sub2 = sub.replace("'", "’");  // replaces all other apostrophe &apos; by the &rsquo; character
+                ret = t.replace(sub, sub2)
+            }
+        }
+        return ret
+    },
+
+    /**
      * Format date using given pattern.
      */
     formatEventDate(dateText) {
         if (this.today === dateText) {
-            return new XDate(dateText).toString(this.today_format).toUpperCase();
+            return new XDate(dateText).toString(this.wellFormatted(this.today_format)).toUpperCase();
         } else if (this.tomorrow === dateText) {
-            return new XDate(dateText).toString(this.tomorrow_format).toUpperCase();
+            return new XDate(dateText).toString(this.wellFormatted(this.tomorrow_format)).toUpperCase();
         } else {
-            return new XDate(dateText).toString(this.date_format).toUpperCase();
+            return new XDate(dateText).toString(this.wellFormatted(this.date_format)).toUpperCase();
         }
     },
 
