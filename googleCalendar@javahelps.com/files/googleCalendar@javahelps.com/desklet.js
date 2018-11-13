@@ -236,7 +236,7 @@ GoogleCalendarDesklet.prototype = {
         if (t.indexOf("'") > -1) {
             let index1 = t.indexOf("'");        // first apostrophe
             let index2 = t.lastIndexOf("'");    // last apostrophe
-            let sub = t.substr(index1 + 1, index2 - index1); // all between the first and last apostrophe
+            let sub = t.substr(index1 + 1, index2 - index1 - 1); // all between the first and last apostrophe
             if (sub.indexOf("'") > -1) {  // there is at least one other apostrophe
                 let sub2 = sub.replace("'", "’");  // replaces all other apostrophe &apos; by the &rsquo; character
                 ret = t.replace(sub, sub2);
