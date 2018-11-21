@@ -7,32 +7,7 @@ const St = imports.gi.St;
 const Util = imports.misc.util;
 const PopupMenu = imports.ui.popupMenu;
 const GLib = imports.gi.GLib;
-
-// Code for selecting network manager thanks to Jason Hicks
-let tryFn = function(fn, errCb) {
-  try {
-    return fn();
-  } catch (e) {
-    if (typeof errCb === 'function') {
-      errCb(e);
-    }
-  }
-}
-
-let CONNECTED_STATE, NMClient_new, newNM;
-// Fallback to the new version.
-tryFn(function() {
-  const NMClient = imports.gi.NMClient;
-  const NetworkManager = imports.gi.NetworkManager;
-  CONNECTED_STATE = NetworkManager.DeviceState ? NetworkManager.DeviceState.ACTIVATED : 0;
-  NMClient_new = NMClient.Client.new;
-  newNM = false;
-}, function() {
-  const NM = imports.gi.NM;
-  CONNECTED_STATE = NM.DeviceState.ACTIVATED;
-  NMClient_new = NM.Client.new;
-  newNM = true;
-});
+const NM = imports.gi.NM;
 
 // l10n/translation
 const Gettext = imports.gettext;
@@ -63,9 +38,7 @@ MyDesklet.prototype = {
 
         this.imageWidget = new St.Bin({x_align: St.Align.MIDDLE});
 
-//      this._client = NMClient.Client.new();
-        let args = newNM ? [null] : [];
-        this._client = NMClient_new.apply(this, args);
+        this._client = NM.Client.new(null);
 
         this._deskletContainer.add_actor(this.imageWidget);
         this.setContent(this._deskletContainer);
@@ -118,8 +91,8 @@ MyDesklet.prototype = {
         }
         catch (e) {
             this.warnings = new St.BoxLayout({vertical: true});
-            this.missingDependencies = new St.Label({text: _("Please make sure vnstat and vnstati are installed and that the vnstat daemon is running!") 
-                                  + "\n" + _("In Linux Mint, you can simply run 'apt install vnstati' and that will take care of everything.") 
+            this.missingDependencies = new St.Label({text: _("Please make sure vnstat and vnstati are installed and that the vnstat daemon is running!")
+                                  + "\n" + _("In Linux Mint, you can simply run 'apt install vnstati' and that will take care of everything.")
                                   + "\n" + _("In other distributions it might depend on the way things are packaged but its likely to be similar.")
                                   + "\n" + _("The Interface detected was: " + this.netDevice )
 });

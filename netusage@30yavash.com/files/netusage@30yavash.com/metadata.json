@@ -1,7 +1,8 @@
 {
-    "uuid": "netusage@30yavash.com", 
-    "description": "Network usage monitor using vnstat", 
-    "name": "Network usage monitor", 
-	"netDevice": "wlan0", 
-    "prevent-decorations": false
+    "uuid": "netusage@30yavash.com",
+    "description": "Network usage monitor using vnstat",
+    "name": "Network usage monitor",
+    "netDevice": "wlan0",
+    "prevent-decorations": false,
+    "multiversion": true
 }
