@@ -34,6 +34,20 @@ function MyDesklet(metadata, desklet_id) {
 	this._init(metadata, desklet_id);
 }
 
+function getWeekNumber(d) {
+    // Copy date so don't modify original
+    d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+    // Set to nearest Thursday: current date + 4 - current day number
+    // Make Sunday's day number 7
+    d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay()||7));
+    // Get first day of year
+    var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
+    // Calculate full weeks to nearest Thursday
+    var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
+    // Return week number
+    return weekNo;
+}
+
 MyDesklet.prototype = {
 	__proto__: Desklet.Desklet.prototype,
 
@@ -48,6 +62,7 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "show-year", "showYear", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "show-time", "showTime", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "first-day-of-week", "firstDayOfWeek", this.onSettingChanged);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "calendar-week", "calendarWeek", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "layout", "layout", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "custom-font-family", "customFontFamily", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "font-size", "fontSize", this.onSettingChanged);
@@ -97,6 +112,12 @@ MyDesklet.prototype = {
 			this.labelWeekdays.push(weekday);
 			this.tableMonth.add(weekday, {row: 1, col: i});
 		}
+		if (this.calendarWeek == true) {
+			let calweek = new St.Label();
+			calweek.set_text(_("CW"));
+			this.labelWeekdays.push(calweek);
+			this.tableMonth.add(calweek, {row: 1, col: 7});
+		}
 
 		this.buttonPrevious.set_child(this.labelPrevious);
 		this.buttonMonth.set_child(this.labelMonth);
@@ -122,7 +143,7 @@ MyDesklet.prototype = {
 		this.tableMonth.add(this.buttonNext, {row: 0, col: 6});
 
 		// Create buttons with labels (with tooltips) for days
-		for (let i = 0; i < 31; i++) {
+		for (let i = 0; i < 31+6; i++) { // 4 for weekno.
 			let DateLabel = new St.Label();
 			DateLabel.style = STYLE_LABEL_DAY;
 			DateLabel.set_text(String(i + 1));
@@ -184,7 +205,8 @@ MyDesklet.prototype = {
 		this.labelMonth.set_text(_(Calendar.MONTH_NAMES[this.date.getMonth()]).substring(0, 3) + " " + this.date.getFullYear());
 
         // Remove currently added days
-		for (let i = 0; i < 7; i++)
+        let elements = this.labelWeekdays.length
+		for (let i = 0; i < elements; i++)
 			if (this.labelWeekdays[i].get_parent()) {
 				this.tableMonth.remove_child(this.labelWeekdays[i]);
 		}
@@ -196,25 +218,30 @@ MyDesklet.prototype = {
 			this.labelWeekdays.push(weekday);
 			this.tableMonth.add(weekday, {row: 1, col: i});
 		}
-
+		if (this.calendarWeek == true) {
+			let calweek = new St.Label();
+			calweek.set_text(_("CW"));
+			this.labelWeekdays.push(calweek);
+			this.tableMonth.add(calweek, {row: 1, col: 7});
+		}
 
 		// Set weekday style
 		for (let i = 0; i < 7; i++) {
 			this.labelWeekdays[i].style = STYLE_LABEL_DAY + (this.date.getFullYear() === now.getFullYear()
 					&& this.date.getMonth() === now.getMonth() && (i + this.fDoW) === now.getDay() ?
 					" font-weight: bold;" : "") + (((i + this.fDoW) % 7) === 0 ? " color: " +
-					this.colourSundays + ";" : "") + (((i+ this.fDoW) % 7) === 6 ? " color: " +
+					this.colourSundays + ";" : "") + (((i + this.fDoW) % 7) === 6 ? " color: " +
 					this.colourSaturdays + ";" : "");
 		}
 
 		// Remove currently added days
-		for (let i = 0; i < 31; i++)
+		for (let i = 0; i < 31+6; i++)
 			if (this.labelDays[i].get_parent()) {
 				this.tableMonth.remove_child(this.labelDays[i]);
 		}
-
-		for (let i = 0, row = 2, col = ((new Date(this.date.getFullYear(), this.date.getMonth(), 1)).getDay()
-				- this.fDoW) % 7, monthLength = Calendar.daysInMonth(this.date.getMonth(), this.date.getFullYear());
+        let cw = 0, row = 2;
+        let col = ((new Date(this.date.getFullYear(), this.date.getMonth(), 1)).getDay()- this.fDoW) % 7
+		for (let i = 0, monthLength = Calendar.daysInMonth(this.date.getMonth(), this.date.getFullYear());
 				i < monthLength; i++) {
 			this.labelDays[i].style = STYLE_LABEL_DAY;
 			// Set specified colour of Sunday and Saturday
@@ -237,8 +264,30 @@ MyDesklet.prototype = {
 			if (col > 6) {
 				row++;
 				col = 0;
+
 			}
 		}
+        if (this.calendarWeek === true) {
+            let cw = getWeekNumber(new Date(this.date.getFullYear(), this.date.getMonth(), 1));
+            if (col === 0) {
+                row = row - 1;
+            }
+            if(this.date.getMonth() === 11) {   // December
+                row = row - 1;
+            }
+            let i = 2;
+    		for (; i <= row; i++) {
+                this.labelDays[29+i].set_text(String(cw));
+                this.tableMonth.add(this.labelDays[29+i], {row: i , col: 7});
+                cw++;
+            }
+            if(this.date.getMonth() === 11) {   // December
+                cw = getWeekNumber(new Date(this.date.getFullYear(), this.date.getMonth(), 31));
+                this.labelDays[29+i].set_text(String(cw));
+                this.tableMonth.add(this.labelDays[29+i], {row: i , col: 7});
+            }
+        }
+
 		this.tooltipMonth.set_text(_(Calendar.MONTH_NAMES[this.date.getMonth()]) + " " + this.date.getFullYear());
 
 		//////// Calendar Layout ////////
@@ -246,7 +295,7 @@ MyDesklet.prototype = {
 			this.boxLayoutCalendar.remove_all_children();
 		this.boxLayoutCalendar = new St.BoxLayout({vertical: this.layout !== "horizontal"});
 		this.boxLayoutCalendar.style = "background-color: " + (this.colourBackground.replace(")", ","
-				+ (1 - this.transparency / 100) + ")")).replace('rgb', 'rgba')
+				+ (1 - this.transparency / 100) + ")")).replace("rgb", "rgba")
 				+ "; border-radius: " + (this.fontSize / 3 * 2) + "pt; color: " + this.colourText + ";"
 				+ (this.customFontFamily !== "" ? " font-family: '" + this.customFontFamily + "';" : "")
 				+ " font-size: " + this.fontSize + "pt; padding: " + (this.fontSize / 3 * 2) + "pt; text-shadow: 1px 1px 2px #000;";

@@ -56,7 +56,7 @@
 
 	"first-day-of-week": {
 		"type": "combobox",
-		"default": "sunday",
+		"default": "0",
 		"description": "First day of week",
 		"options": {
 			"Sunday": "0",
@@ -64,7 +64,12 @@
 		},
 		"tooltip": "Set the first day of week displayed in month calendar"
 	},
-
+	"calendar-week": {
+		"type": "checkbox",
+		"default": false,
+		"description": "Show calendar week",
+		"tooltip": "Show or hide calendar week according to ISO-8601 in month calendar"
+	},
 	"seperator" : {
 		"type" : "separator"
 	},
