@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-21 07:15+0200\n"
+"POT-Creation-Date: 2018-11-02 16:49+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,93 +17,97 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:113
+#: desklet.js:117 desklet.js:223
+msgid "CW"
+msgstr ""
+
+#: desklet.js:137
 msgid "Previous month..."
 msgstr ""
 
-#: desklet.js:115
+#: desklet.js:139
 msgid "Next month..."
 msgstr ""
 
-#: desklet.js:130
+#: desklet.js:155
 msgid "Calendar"
 msgstr ""
 
-#: calendar.js:2
+#: calendar.js:4
 msgid "January"
 msgstr ""
 
-#: calendar.js:2
+#: calendar.js:4
 msgid "February"
 msgstr ""
 
-#: calendar.js:2
+#: calendar.js:4
 msgid "March"
 msgstr ""
 
-#: calendar.js:2
+#: calendar.js:4
 msgid "April"
 msgstr ""
 
-#: calendar.js:2
+#: calendar.js:4
 msgid "May"
 msgstr ""
 
-#: calendar.js:2
+#: calendar.js:4
 msgid "June"
 msgstr ""
 
-#: calendar.js:3
+#: calendar.js:5
 msgid "July"
 msgstr ""
 
-#: calendar.js:3
+#: calendar.js:5
 msgid "August"
 msgstr ""
 
-#: calendar.js:3
+#: calendar.js:5
 msgid "September"
 msgstr ""
 
-#: calendar.js:3
+#: calendar.js:5
 msgid "October"
 msgstr ""
 
-#: calendar.js:3
+#: calendar.js:5
 msgid "November"
 msgstr ""
 
-#: calendar.js:3
+#: calendar.js:5
 msgid "December"
 msgstr ""
 
 #. settings-schema.json->first-day-of-week->options
-#: calendar.js:6
+#: calendar.js:8
 msgid "Sunday"
 msgstr ""
 
 #. settings-schema.json->first-day-of-week->options
-#: calendar.js:6
+#: calendar.js:8
 msgid "Monday"
 msgstr ""
 
-#: calendar.js:6
+#: calendar.js:8
 msgid "Tuesday"
 msgstr ""
 
-#: calendar.js:7
+#: calendar.js:9
 msgid "Wednesday"
 msgstr ""
 
-#: calendar.js:7
+#: calendar.js:9
 msgid "Thursday"
 msgstr ""
 
-#: calendar.js:7
+#: calendar.js:9
 msgid "Friday"
 msgstr ""
 
-#: calendar.js:7
+#: calendar.js:9
 msgid "Saturday"
 msgstr ""
 
@@ -184,6 +188,14 @@ msgstr ""
 
 #. settings-schema.json->first-day-of-week->tooltip
 msgid "Set the first day of week displayed in month calendar"
+msgstr ""
+
+#. settings-schema.json->calendar-week->description
+msgid "Show calendar week"
+msgstr ""
+
+#. settings-schema.json->calendar-week->tooltip
+msgid "Show or hide calendar week according to ISO-8601 in month calendar"
 msgstr ""
 
 #. settings-schema.json->display->description

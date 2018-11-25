@@ -6,275 +6,300 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Calendar Desklet - 1.0\n"
-"Report-Msgid-Bugs-To: wiz_kid_o3@yahoo.com\n"
-"POT-Creation-Date: 2018-03-01 21:30+0530\n"
-"PO-Revision-Date: 2018-10-20 20:00+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-02 16:49+0100\n"
+"PO-Revision-Date: 2018-11-02 16:54+0100\n"
 "Last-Translator: Ozzie Isaacs <ozzie.fernandez.isaacs@googlemail.com>\n"
 "Language-Team: DE\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de\n"
+"X-Generator: Poedit 2.0.6\n"
 
-#: desklet.js:105
+#: desklet.js:117 desklet.js:223
+msgid "CW"
+msgstr "KW"
+
+#: desklet.js:137
 msgid "Previous month..."
 msgstr "Vorheriger Monat..."
 
-#: desklet.js:107
+#: desklet.js:139
 msgid "Next month..."
 msgstr "Nächster Monat..."
 
-#: desklet.js:130
+#: desklet.js:155
 msgid "Calendar"
-msgstr ""
+msgstr "Kalender"
 
-#: calendar.js:2
+#: calendar.js:4
 msgid "January"
 msgstr "Januar"
 
-#: calendar.js:2
+#: calendar.js:4
 msgid "February"
 msgstr "Februar"
 
-#: calendar.js:2
+#: calendar.js:4
 msgid "March"
 msgstr "März"
 
-#: calendar.js:2
+#: calendar.js:4
 msgid "April"
 msgstr "April"
 
-#: calendar.js:2
+#: calendar.js:4
 msgid "May"
 msgstr "Mai"
 
-#: calendar.js:2
+#: calendar.js:4
 msgid "June"
 msgstr "Juni"
 
-#: calendar.js:3
+#: calendar.js:5
 msgid "July"
 msgstr "Juli"
 
-#: calendar.js:3
+#: calendar.js:5
 msgid "August"
 msgstr "August"
 
-#: calendar.js:3
+#: calendar.js:5
 msgid "September"
 msgstr "September"
 
-#: calendar.js:3
+#: calendar.js:5
 msgid "October"
 msgstr "Oktober"
 
-#: calendar.js:3
+#: calendar.js:5
 msgid "November"
 msgstr "November"
 
-#: calendar.js:3
+#: calendar.js:5
 msgid "December"
 msgstr "Dezember"
 
 #. settings-schema.json->first-day-of-week->options
-#: calendar.js:6
+#: calendar.js:8
 msgid "Sunday"
 msgstr "Sonntag"
 
 #. settings-schema.json->first-day-of-week->options
-#: calendar.js:6
+#: calendar.js:8
 msgid "Monday"
 msgstr "Montag"
 
-#: calendar.js:6
+#: calendar.js:8
 msgid "Tuesday"
 msgstr "Dienstag"
 
-#: calendar.js:7
+#: calendar.js:9
 msgid "Wednesday"
 msgstr "Mittwoch"
 
-#: calendar.js:7
+#: calendar.js:9
 msgid "Thursday"
 msgstr "Donnerstag"
 
-#: calendar.js:7
+#: calendar.js:9
 msgid "Friday"
 msgstr "Freitag"
 
-#: calendar.js:7
+#: calendar.js:9
 msgid "Saturday"
 msgstr "Samstag"
 
-#. calendar@deeppradhan->metadata.json->name
-msgid "Calendar desklet"
-msgstr "Kalender Desklet"
-
-#. calendar@deeppradhan->metadata.json->contributors
-msgid "Deep Pradhan"
-msgstr "Deep Pradhan"
-
-#. calendar@deeppradhan->metadata.json->description
-msgid "Configurable Calendar desklet"
-msgstr "Konfigurierbares Kalender Desklet"
-
-#. calendar@deeppradhan->metadata.json->comments
-msgid ""
-"Calendar Desklet provides a highly configurable desklet to display current "
-"date and scrollable months. It has a number of possible customisations."
-msgstr "Das Kalender Desklet stellt ein konfigurierbares Desklet zur Darstellung des aktuellen Datums und des Monats dar. Die Darstellung ist anpassbar."
-
-#. calendar@deeppradhan->settings-schema.json->font-size->description
-msgid "Font size (pt)"
-msgstr "Schriftgröße (pt)"
-
-#. calendar@deeppradhan->settings-schema.json->font-size->tooltip
-msgid "Set the text font size in points"
-msgstr "Stelle die Schriftgröße in Punkten ein"
-
-#. calendar@deeppradhan->settings-schema.json->layout->description
-msgid "Layout of desklet"
-msgstr "Layout des Desklets"
-
-#. calendar@deeppradhan->settings-schema.json->layout->tooltip
-msgid "Set the overall layout to horizontal/vertical of desklet"
-msgstr "Wähle als generelles Layout des Desklets Horizontal oder Vertikal"
-
-#. calendar@deeppradhan->settings-schema.json->layout->options
-msgid "Horizontal"
-msgstr "Horizontal"
-
-#. calendar@deeppradhan->settings-schema.json->layout->options
-msgid "Vertical"
-msgstr "Vertikal"
-
-#. calendar@deeppradhan->settings-schema.json->transparency->description
-msgid "Transparency (%)"
-msgstr "Transparenz in (%)"
-
-#. calendar@deeppradhan->settings-schema.json->transparency->tooltip
-msgid "Set the transparency of desklet in percentage"
-msgstr "Stelle die Transparenz des Desklets in Prozent ein"
-
-#. calendar@deeppradhan->settings-schema.json->show-time->description
-msgid "Show time"
-msgstr "Zeitanzeige"
-
-#. calendar@deeppradhan->settings-schema.json->show-time->tooltip
-msgid "Show or hide time (hours and minutes)"
-msgstr "Stelle die Zeit dar, oder verstekce die Anzeige (Stunde und Minute)"
-
-#. calendar@deeppradhan->settings-schema.json->custom-font-family->description
-msgid "Custom font family for text (blank to use default)"
-msgstr "Benutzerdefinierte Schriftfamilie für Text (freilassen um die Standardschriftart zu benutzen)"
-
-#. calendar@deeppradhan->settings-schema.json->custom-font-family->tooltip
-msgid "Set a custom font family for the text (blank to use default font)"
-msgstr "Wähle eine benutzerdefinierte Schriftfamilie für Texte (freilassen um die Standardschriftart zu benutzen)"
-
-#. calendar@deeppradhan->settings-schema.json->top->description
+#. settings-schema.json->top->description
 msgid "Calendar configuration"
 msgstr "Kalender Einstellungen"
 
-#. calendar@deeppradhan->settings-schema.json->colour-background->description
-msgid "Background colour"
-msgstr "Hintergrundfarbe"
-
-#. calendar@deeppradhan->settings-schema.json->colour-background->tooltip
-msgid "Set background colour of desklet"
-msgstr "Wähle die Hintergrundfarbe des Desklets"
-
-#. calendar@deeppradhan->settings-schema.json->short-month-name->description
-msgid "Short month name"
-msgstr "Kurzer Monatsname"
-
-#. calendar@deeppradhan->settings-schema.json->short-month-name->tooltip
-msgid "Show short month name"
-msgstr "Stelle den verkürzten Monatsnamen dar"
-
-#. calendar@deeppradhan->settings-schema.json->show-weekday->description
-msgid "Show day of week"
-msgstr "Anzeige Tag der Woche"
-
-#. calendar@deeppradhan->settings-schema.json->show-weekday->tooltip
-msgid "For day of week; show full name, short name or disable showing"
-msgstr "Darstellung des Tages der Woche; vollständiger, verkürzter Name oder deaktiviere Darstellung"
-
-#. calendar@deeppradhan->settings-schema.json->show-weekday->options
-#. calendar@deeppradhan->settings-schema.json->show-year->options
-msgid "Full"
-msgstr "Vollständig"
-
-#. calendar@deeppradhan->settings-schema.json->show-weekday->options
-#. calendar@deeppradhan->settings-schema.json->show-year->options
-msgid "Short"
-msgstr "Kurz"
-
-#. calendar@deeppradhan->settings-schema.json->show-weekday->options
-#. calendar@deeppradhan->settings-schema.json->show-year->options
-msgid "No"
-msgstr "Nein"
-
-#. calendar@deeppradhan->settings-schema.json->show-year->description
-msgid "Show year"
-msgstr "Jahresanzeige"
-
-#. calendar@deeppradhan->settings-schema.json->show-year->tooltip
-msgid "For year; show all digits, show last two digits or disable showing"
-msgstr "Darstellung des Jahres; Vollständige, verkürzte Jahresanzeige, oder deaktiviere Darstellung"
-
-#. calendar@deeppradhan->settings-schema.json->colour-saturdays->description
-msgid "Text colour for Saturdays"
-msgstr "Textfarbe für Samstage"
-
-#. calendar@deeppradhan->settings-schema.json->colour-saturdays->tooltip
-msgid "Set text colour for Saturdays"
-msgstr "Wähle die Textfarbe für Samstage"
-
-#. calendar@deeppradhan->settings-schema.json->colour-sundays->description
-msgid "Text colour for Sundays"
-msgstr "Textfarbe für Sonntag"
-
-#. calendar@deeppradhan->settings-schema.json->colour-sundays->tooltip
-msgid "Set text colour for Sundays"
-msgstr "Wähle die Textfarbe für Sonntage"
-
-#. calendar@deeppradhan->settings-schema.json->panels->description
+#. settings-schema.json->panels->description
 msgid "Panels to show"
 msgstr "Panels für Anzeige"
 
-#. calendar@deeppradhan->settings-schema.json->panels->tooltip
-msgid "Select the panels to display in desklet"
-msgstr "Wähle welche Panels im Desklet angezeigt werden"
-
-#. calendar@deeppradhan->settings-schema.json->panels->options
+#. settings-schema.json->panels->options
 msgid "Both Today & Month"
 msgstr "Anzeige heutiger Tag & Monat"
 
-#. calendar@deeppradhan->settings-schema.json->panels->options
+#. settings-schema.json->panels->options
 msgid "Today only"
 msgstr "Nur heutiger Tag"
 
-#. calendar@deeppradhan->settings-schema.json->panels->options
+#. settings-schema.json->panels->options
 msgid "Month only"
 msgstr "Nur Monat"
 
-#. calendar@deeppradhan->settings-schema.json->display->description
-msgid "Desklet style configuration"
-msgstr "Desklet Style Einstellung"
+#. settings-schema.json->panels->tooltip
+msgid "Select the panels to display in desklet"
+msgstr "Wähle welche Panels im Desklet angezeigt werden"
 
-#. calendar@deeppradhan->settings-schema.json->colour-text->description
-msgid "Text colour"
-msgstr "Textfarbe"
+#. settings-schema.json->show-weekday->description
+msgid "Show day of week"
+msgstr "Anzeige Tag der Woche"
 
-#. calendar@deeppradhan->settings-schema.json->colour-text->tooltip
-msgid "Set text colour of desklet"
-msgstr "Wähle die Textfarbe des Desklets"
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "No"
+msgstr "Nein"
 
-#. calendar@deeppradhan->settings-schema.json->first-day-of-week->description
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "Full"
+msgstr "Vollständig"
+
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "Short"
+msgstr "Kurz"
+
+#. settings-schema.json->show-weekday->tooltip
+msgid "For day of week; show full name, short name or disable showing"
+msgstr ""
+"Darstellung des Tages der Woche; vollständiger, verkürzter Name oder "
+"deaktiviere Darstellung"
+
+#. settings-schema.json->short-month-name->description
+msgid "Short month name"
+msgstr "Kurzer Monatsname"
+
+#. settings-schema.json->short-month-name->tooltip
+msgid "Show short month name"
+msgstr "Stelle den verkürzten Monatsnamen dar"
+
+#. settings-schema.json->show-year->description
+msgid "Show year"
+msgstr "Jahresanzeige"
+
+#. settings-schema.json->show-year->tooltip
+msgid "For year; show all digits, show last two digits or disable showing"
+msgstr ""
+"Darstellung des Jahres; Vollständige, verkürzte Jahresanzeige, oder "
+"deaktiviere Darstellung"
+
+#. settings-schema.json->show-time->description
+msgid "Show time"
+msgstr "Zeitanzeige"
+
+#. settings-schema.json->show-time->tooltip
+msgid "Show or hide time (hours and minutes)"
+msgstr "Stelle die Zeit dar, oder verstekce die Anzeige (Stunde und Minute)"
+
+#. settings-schema.json->first-day-of-week->description
 msgid "First day of week"
 msgstr "Erster Tag der Woche"
 
-#. calendar@deeppradhan->settings-schema.json->first-day-of-week->tooltip
+#. settings-schema.json->first-day-of-week->tooltip
 msgid "Set the first day of week displayed in month calendar"
-msgstr "Wähle den ersten Tag der Woche welcher im Monatskalender angezeigt werden soll"
+msgstr ""
+"Wähle den ersten Tag der Woche welcher im Monatskalender angezeigt werden "
+"soll"
+
+#. settings-schema.json->calendar-week->description
+msgid "Show calendar week"
+msgstr "Anzeige Kalenderwoche"
+
+#. settings-schema.json->calendar-week->tooltip
+msgid "Show or hide calendar week according to ISO-8601 in month calendar"
+msgstr "Anzeige der Kalenderwoche nach ISO8601 im Monatskalender"
+
+#. settings-schema.json->display->description
+msgid "Desklet style configuration"
+msgstr "Desklet Style Einstellung"
+
+#. settings-schema.json->layout->description
+msgid "Layout of desklet"
+msgstr "Layout des Desklets"
+
+#. settings-schema.json->layout->options
+msgid "Horizontal"
+msgstr "Horizontal"
+
+#. settings-schema.json->layout->options
+msgid "Vertical"
+msgstr "Vertikal"
+
+#. settings-schema.json->layout->tooltip
+msgid "Set the overall layout to horizontal/vertical of desklet"
+msgstr "Wähle als generelles Layout des Desklets Horizontal oder Vertikal"
+
+#. settings-schema.json->custom-font-family->description
+msgid "Custom font family for text (blank to use default)"
+msgstr ""
+"Benutzerdefinierte Schriftfamilie für Text (freilassen um die "
+"Standardschriftart zu benutzen)"
+
+#. settings-schema.json->custom-font-family->tooltip
+msgid "Set a custom font family for the text (blank to use default font)"
+msgstr ""
+"Wähle eine benutzerdefinierte Schriftfamilie für Texte (freilassen um die "
+"Standardschriftart zu benutzen)"
+
+#. settings-schema.json->font-size->description
+msgid "Font size (pt)"
+msgstr "Schriftgröße (pt)"
+
+#. settings-schema.json->font-size->tooltip
+msgid "Set the text font size in points"
+msgstr "Stelle die Schriftgröße in Punkten ein"
+
+#. settings-schema.json->colour-text->description
+msgid "Text colour"
+msgstr "Textfarbe"
+
+#. settings-schema.json->colour-text->tooltip
+msgid "Set text colour of desklet"
+msgstr "Wähle die Textfarbe des Desklets"
+
+#. settings-schema.json->colour-sundays->description
+msgid "Text colour for Sundays"
+msgstr "Textfarbe für Sonntag"
+
+#. settings-schema.json->colour-sundays->tooltip
+msgid "Set text colour for Sundays"
+msgstr "Wähle die Textfarbe für Sonntage"
+
+#. settings-schema.json->colour-saturdays->description
+msgid "Text colour for Saturdays"
+msgstr "Textfarbe für Samstage"
+
+#. settings-schema.json->colour-saturdays->tooltip
+msgid "Set text colour for Saturdays"
+msgstr "Wähle die Textfarbe für Samstage"
+
+#. settings-schema.json->colour-background->description
+msgid "Background colour"
+msgstr "Hintergrundfarbe"
+
+#. settings-schema.json->colour-background->tooltip
+msgid "Set background colour of desklet"
+msgstr "Wähle die Hintergrundfarbe des Desklets"
+
+#. settings-schema.json->transparency->description
+msgid "Transparency (%)"
+msgstr "Transparenz in (%)"
+
+#. settings-schema.json->transparency->tooltip
+msgid "Set the transparency of desklet in percentage"
+msgstr "Stelle die Transparenz des Desklets in Prozent ein"
+
+#. metadata.json->comments
+msgid ""
+"Calendar Desklet provides a highly configurable desklet to display current "
+"date and browsable months. It has a number of possible customisations."
+msgstr ""
+"Das Kalender Desklet stellt ein konfigurierbares Desklet zur Darstellung des "
+"aktuellen Datums und des Monats dar. Die Darstellung ist anpassbar."
+
+#. metadata.json->contributors
+msgid "Deep Pradhan"
+msgstr "Deep Pradhan"
+
+#. metadata.json->description
+msgid "Configurable Calendar desklet"
+msgstr "Konfigurierbares Kalender Desklet"
+
+#. metadata.json->name
+msgid "Calendar desklet"
+msgstr "Kalender Desklet"
