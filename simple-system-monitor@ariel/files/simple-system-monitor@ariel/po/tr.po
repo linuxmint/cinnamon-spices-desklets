@@ -1,0 +1,64 @@
+# Translation for simple-system-monitor@ariel.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Gökhan GÖKKAYA <gokhanlnx@gmail.com>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-05 01:50+0800\n"
+"PO-Revision-Date: 2018-11-27 11:07+0300\n"
+"Language-Team: Linux Mint Türkiye <gokhanlnx@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"Last-Translator: Gökhan GÖKKAYA <gokhanlnx@gmail.com>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: tr\n"
+
+#: desklet.js:34
+msgid ""
+"Dependencies missing. Please install \n"
+"libgtop, Network Manager and gir bindings \n"
+"\t    on Ubuntu: gir1.2-gtop-2.0, gir1.2-networkmanager-1.0 \n"
+"\t    on Fedora: libgtop2-devel, NetworkManager-glib-devel \n"
+"\t    on Arch: libgtop, networkmanager\n"
+"and restart Cinnamon.\n"
+msgstr ""
+"Bağımlılıklar eksik. Lütfen şunları kurunuz\n"
+"libgtop, Ağ Yöneticisi ve gir bağlayıcıları\n"
+"\t    Ubuntu/Linux Mint için: gir1.2-gtop-2.0, gir1.2-networkmanager-1.0\n"
+"\t    Fedora için: libgtop2-devel, NetworkManager-glib-devel \n"
+"\t    Arch için: libgtop, networkmanager\n"
+"ve Cinnamon'u yeniden başlatınız.\n"
+"\n"
+
+#: applet.js:213
+msgid "CPU:"
+msgstr "İşlemci:"
+
+#: applet.js:214
+msgid "Memory:"
+msgstr "Hafıza:"
+
+#: applet.js:215
+msgid "Download:"
+msgstr "İndirme:"
+
+#: applet.js:216
+msgid "Upload:"
+msgstr "Gönderim:"
+
+#: applet.js:217
+msgid "Temperature:"
+msgstr "Sıcaklık:"
+
+#. simple-system-monitor@ariel->metadata.json->description
+msgid "Shows some system status values"
+msgstr "Bazı sistem durumu değerlerini gösterir"
+
+#. simple-system-monitor@ariel->metadata.json->name
+msgid "Simple system monitor"
+msgstr "Basit sistem izleyici"
