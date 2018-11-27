@@ -8,31 +8,7 @@ const Util = imports.misc.util;
 const PopupMenu = imports.ui.popupMenu;
 const GLib = imports.gi.GLib;
 
-// Code for selecting network manager thanks to Jason Hicks
-let tryFn = function(fn, errCb) {
-  try {
-    return fn();
-  } catch (e) {
-    if (typeof errCb === 'function') {
-      errCb(e);
-    }
-  }
-}
-
-let CONNECTED_STATE, NMClient_new, newNM;
-// Fallback to the new version.
-tryFn(function() {
-  const NMClient = imports.gi.NMClient;
-  const NetworkManager = imports.gi.NetworkManager;
-  CONNECTED_STATE = NetworkManager.DeviceState ? NetworkManager.DeviceState.ACTIVATED : 0;
-  NMClient_new = NMClient.Client.new;
-  newNM = false;
-}, function() {
-  const NM = imports.gi.NM;
-  CONNECTED_STATE = NM.DeviceState.ACTIVATED;
-  NMClient_new = NM.Client.new;
-  newNM = true;
-});
+const NM = imports.gi.NM;
 
 // l10n/translation
 const Gettext = imports.gettext;
@@ -63,9 +39,8 @@ MyDesklet.prototype = {
 
         this.imageWidget = new St.Bin({x_align: St.Align.MIDDLE});
 
-//      this._client = NMClient.Client.new();
-        let args = newNM ? [null] : [];
-        this._client = NMClient_new.apply(this, args);
+//      Modified code thanks to Jason Hicks
+        this._client = NM.Client.new(null);
 
         this._deskletContainer.add_actor(this.imageWidget);
         this.setContent(this._deskletContainer);
@@ -84,7 +59,7 @@ MyDesklet.prototype = {
     },
     _updateDevice: function() {
         try {
-//          global.logError("device: " + this.netDevice);
+//          global.logError("device: " + this.netDevice); // Uncomment only for testing
             let activeConnections = this._client.get_active_connections();
             for (let i = 0; i < activeConnections.length; i++) {
                 let a = activeConnections[i];
@@ -101,7 +76,7 @@ MyDesklet.prototype = {
             }
         }
         catch (e) {
-            global.logError(e);
+//            global.logError(e); // Uncomment only for testing otherwise it fills error log when no connection present
         }
     },
     _updateGraph: function() {

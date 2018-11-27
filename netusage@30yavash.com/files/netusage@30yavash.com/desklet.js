@@ -84,7 +84,7 @@ MyDesklet.prototype = {
     },
     _updateDevice: function() {
         try {
-//          global.logError("device: " + this.netDevice);
+//          global.logError("device: " + this.netDevice);  // Uncomment only for testing
             let activeConnections = this._client.get_active_connections();
             for (let i = 0; i < activeConnections.length; i++) {
                 let a = activeConnections[i];
@@ -101,7 +101,7 @@ MyDesklet.prototype = {
             }
         }
         catch (e) {
-            global.logError(e);
+//            global.logError(e); // Uncomment only for testing otherwise it fills error log when no connection present
         }
     },
     _updateGraph: function() {
