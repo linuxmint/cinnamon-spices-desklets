@@ -1,0 +1,112 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Gökhan GÖKKAYA <gokhanlnx@gmail.com>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2018-01-12 18:07+0100\n"
+"PO-Revision-Date: 2018-11-27 10:38+0300\n"
+"Language-Team: Linux Mint Türkiye <gokhanlnx@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: Gökhan GÖKKAYA <gokhanlnx@gmail.com>\n"
+"Language: tr\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+msgid "Disk Space"
+msgstr "Disk Alanı"
+
+msgid "Displays the usage of a filesystem or RAM."
+msgstr "Dosya sistemi veya RAM kullanımını görüntüler."
+
+msgid "Settings for diskspace@schorschii"
+msgstr "diskspace@schorschii için Ayarlar"
+
+msgid "General"
+msgstr "Genel"
+
+msgid "Monitor a file system or RAM usage"
+msgstr "Dosya sistemini veya RAM kullanımını izleyin"
+
+msgid "Choose, if this desklet should show file system or RAM usage."
+msgstr ""
+"Masaüstü uygulamacığının dosya sistemi ya da RAM kullanımı gösterimini "
+"buradan seçebilirsiniz."
+
+msgid "Filesystem"
+msgstr "Dosya sistemi"
+
+msgid "RAM"
+msgstr "RAM"
+
+msgid "Filesystem to monitor"
+msgstr "İzlenecek dosya sistemi"
+
+msgid "Select the file system, which you want to monitor."
+msgstr "İzlemek istediğiniz dosya sistemini seçiniz."
+
+msgid "Visual"
+msgstr "Görsel"
+
+msgid "Text"
+msgstr "Metin"
+
+msgid "Name and total size"
+msgstr "İsim ve toplam boyut"
+
+msgid "Used and total space"
+msgstr "Kullanılan ve toplam boyut"
+
+msgid "Free and total space"
+msgstr "Boş alan ve toplam boyut"
+
+msgid "Hide decorations"
+msgstr "Süslemeleri gizle"
+
+msgid "Use a custom circle color"
+msgstr "Özel bir daire rengi kullan"
+
+msgid "Circle color"
+msgstr "Daire rengi"
+
+msgid "Text color"
+msgstr "Metin rengi"
+
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Bu ölçü çarpanını kullanarak bu masaüstü uygulamacığının boyutunu artırın "
+"veya azaltın."
+
+msgid "Desklet size"
+msgstr "Masaüstü uygulamacığının boyutu"
+
+msgid "scale factor"
+msgstr "ölçü çarpanı"
+
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Masaüstü uygulamacığı özel etiketi (sadece süslemeler etkinse görünür)"
+
+msgid "Use a custom desklet label"
+msgstr "Masaüstü uygulamacığı için özel bir etiketi kullan"
+
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Bu kutuyu işaretlemek, aşağıda açılacak alandan özel bir etiket "
+"ayarlamanıza izin verir."
+
+msgid "Custom desklet label"
+msgstr "Özel masaüstü uygulamacığı etiketi"
+
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr ""
+"Burada özel etiketinizi ayarlayabilirsiniz. Bu alan yukarıdaki onay kutusu "
+"etkin olmadıkça kullanılamaz."
