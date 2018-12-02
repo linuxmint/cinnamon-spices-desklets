@@ -33,11 +33,11 @@ function _(str) {
     return Gettext.dgettext(UUID, str);
 };
 
-const XDate = imports.xdate.XDate;
+var XDate = imports.xdate.XDate;
 
-const SpawnReader = function() {};
+var SpawnReader = function() {};
 
-const CalendarUtility = function() {};
+var CalendarUtility = function() {};
 
 function Event(eventLine, useTwentyFourHour) {
     this._init(eventLine, useTwentyFourHour);
@@ -45,7 +45,7 @@ function Event(eventLine, useTwentyFourHour) {
 
 SpawnReader.prototype.spawn = function(path, command, func) {
 
-    let pid, stdin, stdout, stderr, stream, reader;
+    let res, pid, stdin, stdout, stderr, stream, reader;
 
     [res, pid, stdin, stdout, stderr] = GLib.spawn_async_with_pipes(
         path, command, null, GLib.SpawnFlags.SEARCH_PATH, null);
