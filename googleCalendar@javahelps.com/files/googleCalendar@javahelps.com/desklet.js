@@ -194,6 +194,7 @@ GoogleCalendarDesklet.prototype = {
 
         // Create event row
         let box = CalendarUtility.container();
+        this.window.add(box);
 
         let textWidth = this.maxWidth;
         let lblBullet;
@@ -221,7 +222,6 @@ GoogleCalendarDesklet.prototype = {
             box.add(lblEvent);
         }
 
-        this.window.add(box);
         if (this.show_location && event.location !== "") {
             let locationBox = CalendarUtility.container();
             if (this.diff_calendar) {

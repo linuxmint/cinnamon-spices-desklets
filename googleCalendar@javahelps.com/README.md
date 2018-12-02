@@ -6,19 +6,22 @@ View your upcoming calendar events on your Cinnamon Desktop. This desklet uses `
 
 - Cinnamon 3.4, 3.6 or 3.8
 - Python 3
-- Pip 3
+- python3-pip
+- python3-setuptools
+- `python-dateutil`
 - `google-api-python-client`
+- `oauth2client`
 
 ## Installation
 
-1. Install `pip` for Python 3 using the following command:
+1. Install `pip` and `setuptools` for Python 3 using the following command:
     ```bash
-    sudo apt install python3-pip
+    sudo apt install python3-pip python3-setuptools
     ```
 
-2. Install `google-api-python-client` Python module using the following command:
+2. Install `python-dateutil`, `google-api-python-client` and `oauth2client` Python modules using the following command:
     ```bash
-    sudo pip3 install --upgrade google-api-python-client oauth2client
+    sudo pip3 install --upgrade python-dateutil google-api-python-client oauth2client
     ```
     If you encounter any problems, please check the [official website](https://developers.google.com/api-client-library/python/start/installation).
 
