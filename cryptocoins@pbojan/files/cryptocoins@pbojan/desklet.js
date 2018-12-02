@@ -328,7 +328,7 @@ HelloDesklet.prototype = {
     row.add(right);
 
     return row;
-  },W
+  },
 
   getFormattedPrice: function(price) {
     var options = {
