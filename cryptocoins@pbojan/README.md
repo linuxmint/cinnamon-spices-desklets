@@ -1,6 +1,10 @@
-## CryptoCoins Desklet for Cinnamon
+## Crypto Currency Ticker (Desklet) for Cinnamon
 
-Cinnamon Desklet that displays the current price of more than **220+ coins** and their daily percent changes.
+Cinnamon Desklet that displays the current price of more than **500+ crypto coins** and their daily percent changes.
+
+Official website for news and updates: http://cryptocurrencyticker.info/
+
+![Desklet screenshot](screenshot.png)
 
 ## Usage Help
 
@@ -32,22 +36,23 @@ Cinnamon Desklet that displays the current price of more than **220+ coins** and
 
 1. Click the right mouse button while hovering on the Desklet
 2. Select `Configure` from the menu
-3. The settings menu should appear and you can select the following:
+3. The settings menu should appear and you can change the following:
+    - Your CoinMarketCap API key (you can get free at https://pro.coinmarketcap.com)
     - What kind of coin to be displayed on the ticker
     - In what currency the price should be displayed
     - The refresh interval when to get new data
 
-*NOTE: The API refreshes every 5 minutes and currently that is the lowest configuration option!*
+*NOTE: The ticker refreshes by default every 30 minutes. Every refresh uses one credit per coin ticker, plan you montlhy credits limit accordingly!*
 
 ## Bugs/Feedback
 
-If you find any bugs or stability issues please create an issue [here](https://github.com/pbojan/cryptocoins/issues) or send an email to [p.bojan@live.com](mailto:p.bojan@live.com).
+If you find any bugs or stability issues please create an issue [here](https://github.com/pbojan/cryptocoins-desklet-cinnamon/issues) or send an email to [p.bojan@live.com](mailto:p.bojan@live.com).
 
 If you have ideas for new features or improvements please send an email to [p.bojan@live.com](mailto:p.bojan@live.com).
 
 ## Contribute/Donate
 
-If you want to support the work and maintenance of this Desklet, please consider donating. Every donation is highly appreciated!
+If you want to support the work and maintenance of this crypto Ticker, please consider donating. Every donation is highly appreciated!
 
 ```
 BTC: bc1q82zg96fgeenr5ag254lnqt4nn77lzjf5nx9m00
@@ -56,18 +61,18 @@ LTC: ltc1q362me09lmxfcq6zex6968qsnnq6hz3nhxv4cyr
 ETH: 0x1125207ae7d169eb623fa228e5b2c48a6b6482d9
 ```
 
-Can't donate but you still want to help? Report a bug or even better solve one or improve the Desklet by creating a pull request.
+Can't donate but you still want to help? Report a bug or even better solve one or improve this Crypto Ticker by creating a pull request.
 If you want to add new features please first send an email to [p.bojan@live.com](mailto:p.bojan@live.com) and describe your idea.
 
 ## Credits
 
-1. The Desklet currently is using the API from: https://coinmarketcap.com/
+1. The Ticker currently is using the API from: https://coinmarketcap.com/
 2. The icons are from: https://github.com/cjdowner/cryptocurrency-icons
 
 ## MIT License
 
 ```
-Copyright (c) 2017 Bojan Petkovski
+Copyright (c) 2018 Bojan Petkovski
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
