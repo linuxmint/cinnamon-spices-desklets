@@ -124,6 +124,8 @@ def main(argv):
             calendar_events = sorted(
                 calendar_events, key=lambda k: k['start_date'] + k['start_time'])
             print(json.dumps(calendar_events))
+        else:
+            print('[{"calendar_color": "#ffffff", "summary": "NO_EVENTS_FOUND_GOOGLE_CALENDAR", "start_date": "%s", "start_time": "00:00", "end_date": "%s", "end_time": "00:00", "location": ""}]' % (current_time.date(), (current_time + relativedelta(days=1)).date()))
     except client.AccessTokenRefreshError:
         # The credentials have been revoked or expired, please re-run the application to re-authorize.
         return -1

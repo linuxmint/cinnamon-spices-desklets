@@ -167,11 +167,15 @@ GoogleCalendarDesklet.prototype = {
      */
     addEvent(eventLine) {
         let events = JSON.parse(eventLine);
-        events.forEach((element) => {
-            let event = new Event(element, this.use_24h_clock);
-            this.eventsList.push(event);
-            this.addEventToWidget(event);
-        });
+        if(events.length == 1 && events[0]["summary"] === "NO_EVENTS_FOUND_GOOGLE_CALENDAR") {
+            this.window.add(CalendarUtility.label(_("No events found..."), this.zoom, this.textcolor));
+        } else {
+            events.forEach((element) => {
+                let event = new Event(element, this.use_24h_clock);
+                this.eventsList.push(event);
+                this.addEventToWidget(event);
+            });
+        }
     },
 
     /**
