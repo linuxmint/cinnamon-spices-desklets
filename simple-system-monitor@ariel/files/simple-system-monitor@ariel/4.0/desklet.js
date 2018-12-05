@@ -7,8 +7,7 @@ const Cinnamon = imports.gi.Cinnamon;
 const Gettext = imports.gettext;
 const UUID = "simple-system-monitor@ariel";
 const GTop = imports.gi.GTop;
-const NMClient = imports.gi.NMClient;
-const NetworkManager = imports.gi.NetworkManager;
+const NM = imports.gi.NM;
 
 // l10n/translation support
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
@@ -20,8 +19,7 @@ function _(str) {
 let missingDependencies = false;
 
 try {
-    const NMClient = imports.gi.NMClient;
-    const NetworkManager = imports.gi.NetworkManager;
+const NM = imports.gi.NM;
 } catch (e) {
     global.logError(e);
     missingDependencies = true;
@@ -35,10 +33,10 @@ try {
 }
 
 const MISSING_DEPENDENCIES = _("Dependencies missing. Please install \n\
-libgtop, Network Manager and gir bindings \n\
-\t    on Ubuntu: gir1.2-gtop-2.0, gir1.2-networkmanager-1.0 \n\
-\t    on Fedora: libgtop2-devel, NetworkManager-glib-devel \n\
-\t    on Arch: libgtop, networkmanager\n\
+libgtop \n\
+\t    on Ubuntu: gir1.2-gtop-2.0 \n\
+\t    on Fedora: libgtop2-devel \n\
+\t    on Arch: libgtop \n\
 and restart Cinnamon.\n");
 
 const CPU = function () {
@@ -117,7 +115,7 @@ const Net = function () {
 Net.prototype = {
 	_init: function() {
         this.connections = [];
-        this.client = NMClient.Client.new();
+        this.client = NM.Client.new(null);
 		this.update_connections();
 
         if (!this.connections.length){
@@ -143,7 +141,7 @@ Net.prototype = {
             }
         }
         catch(e) {
-            global.logError("Please install Network Manager GObject Introspection Bindings");
+            global.logError("Please install Missing Dependencies");
         }
 
         this.totalDownloaded = 0;
@@ -156,13 +154,13 @@ Net.prototype = {
             this.connections = []
             let connection_list = this.client.get_devices();
             for (let j = 0; j < connection_list.length; j++){
-                if (connection_list[j].state == NetworkManager.DeviceState.ACTIVATED){
+                if (connection_list[j].state == NM.DeviceState.ACTIVATED){
                    this.connections.push(connection_list[j].get_ip_iface());
                 }
             }
         }
         catch(e) {
-            global.logError("Please install Network Manager GObject Introspection Bindings");
+            global.logError("Please install Missing Dependencies");
         }
     },
 
@@ -298,7 +296,7 @@ function main(metadata, desklet_id) {
 ## Version 1.0.0
   * Institute changelog - currently only in desklet.js
   * Changes for Cinnamon 4.0 and higher to avoid segfaults when old Network Manager Library is no longer available by using multiversion with folder 4.0
-    * Comment out all references to NetworkManager
+    * Comment out or delete all references to NetworkManager
     * Replace calls to NetworkManager with equivalent calls to NM
     * Change logError messages to not reference NetworkManager  
 */
