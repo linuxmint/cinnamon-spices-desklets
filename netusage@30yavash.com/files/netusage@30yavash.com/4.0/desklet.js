@@ -8,7 +8,12 @@ const Util = imports.misc.util;
 const PopupMenu = imports.ui.popupMenu;
 const GLib = imports.gi.GLib;
 
+
+let CONNECTED_STATE, NMClient_new, newNM;
 const NM = imports.gi.NM;
+  CONNECTED_STATE = NM.DeviceState.ACTIVATED;
+  NMClient_new = NM.Client.new;
+  newNM = true;
 
 // l10n/translation
 const Gettext = imports.gettext;
@@ -39,8 +44,9 @@ MyDesklet.prototype = {
 
         this.imageWidget = new St.Bin({x_align: St.Align.MIDDLE});
 
-//      Modified code thanks to Jason Hicks
-        this._client = NM.Client.new(null);
+//      this._client = NMClient.Client.new();
+        let args = newNM ? [null] : [];
+        this._client = NMClient_new.apply(this, args);
 
         this._deskletContainer.add_actor(this.imageWidget);
         this.setContent(this._deskletContainer);
@@ -55,22 +61,35 @@ MyDesklet.prototype = {
         this._updateDevice();
         this._updateGraph();
         this.timeout = Mainloop.timeout_add_seconds(1, Lang.bind(this, this._updateWidget));
+},
 
+    getInterfaces: function () {
+        return this._client.get_devices();
     },
+
+    isInterfaceAvailable: function (name) {
+        let interfaces = this.getInterfaces();
+        if (interfaces != null) {
+           for (let i = 0; i < interfaces.length; i++) {
+                let iname = interfaces[i].get_iface();
+                if (iname == name && interfaces[i].state == CONNECTED_STATE) {
+
+                   return true;
+                 }
+             }
+        }
+        return false;
+    },
+
     _updateDevice: function() {
         try {
-//          global.logError("device: " + this.netDevice); // Uncomment only for testing
-            let activeConnections = this._client.get_active_connections();
-            for (let i = 0; i < activeConnections.length; i++) {
-                let a = activeConnections[i];
-                if (a['default']) {
-                    let devices = a.get_devices();
-                    for (let j = 0; j < devices.length; j++) {
-                        let d = devices[j];
-                        if (d._delegate) {
-                            this.netDevice = d.get_iface();
-                            break;
-                        }
+             this._device = "null"
+             let interfaces = this.getInterfaces();
+             if (interfaces != null) {
+                 for (let i = 0; i < interfaces.length; i++) {
+                    let iname = interfaces[i].get_iface();
+                    if (this.isInterfaceAvailable(iname)) {
+                        this._device = iname; 
                     }
                 }
             }
@@ -81,8 +100,10 @@ MyDesklet.prototype = {
     },
     _updateGraph: function() {
         try {
-
-            GLib.spawn_command_line_sync('vnstati -s -ne -i ' + this.netDevice + ' -o /tmp/vnstatlmapplet.png');
+           if (this._device != "null") { 
+//                       global.logError("Testing output - detected device: " + this._device);   // Comment out unless testing
+            GLib.spawn_command_line_sync('vnstati -s -ne -i ' + this._device + ' -o /tmp/vnstatlmapplet.png');
+            }
             let l = new Clutter.BinLayout();
             let b = new Clutter.Box();
             let c = new Clutter.Texture({keep_aspect_ratio: true, filter_quality: 2, filename: "/tmp/vnstatlmapplet.png"});
@@ -96,7 +117,7 @@ MyDesklet.prototype = {
             this.missingDependencies = new St.Label({text: _("Please make sure vnstat and vnstati are installed and that the vnstat daemon is running!") 
                                   + "\n" + _("In Linux Mint, you can simply run 'apt install vnstati' and that will take care of everything.") 
                                   + "\n" + _("In other distributions it might depend on the way things are packaged but its likely to be similar.")
-                                  + "\n" + _("The Interface detected was: " + this.netDevice )
+                                  + "\n" + _("The Interface detected was: " + this._device )
 });
             this.warnings.add(this.missingDependencies);
             this.setContent(this.warnings);
@@ -118,5 +139,8 @@ function main(metadata, desklet_id){
   * Changes for Cinnamon 4.0 and higher to avoid segfaults when old Network Manager Library is no longer available by using multiversion with folder 4.0 - Issues #2094 and #2097
   * Remove Try-Catch as no longer required in 4.0 and associated changes.
   * It is believed that all Distributions packaging Cinnamon 4.0 have changed to the new Network Manager Libraries
+## 1.0.2
+  * Significant change to code to identify device as old code failed under Cinnamon 4.0
+    - New code is identical to that used in applets vnstat@linuxmint.com and netusagemonitor@pdcurtis
   * Change "author" to "pdcurtis"
 */
