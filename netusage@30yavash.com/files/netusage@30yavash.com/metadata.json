@@ -1,10 +1,10 @@
 {
-    "uuid": "netusage@30yavash.com", 
-    "description": "Network usage monitor using vnstat", 
-    "name": "Network usage monitor", 
-	"netDevice": "wlan0", 
+    "uuid": "netusage@30yavash.com",
+    "description": "Network usage monitor using vnstat",
+    "name": "Network usage monitor",
+	"netDevice": "wlan0",
     "prevent-decorations": false,
     "multiversion": true,
     "cinnamon-version": ["2.2","2.4","2.6","2.8","3.0","3.2","3.4","3.6","3.8","4.0"],
-    "version": "1.0.1"
+    "version": "1.0.2"
 }
