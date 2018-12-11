@@ -168,152 +168,20 @@ msgid "A desklet that displays your agenda based on Google Calendar"
 msgstr "Viser dine aftaler baseret på Google Kalender"
 
 #: xdate.js:13
-msgid "January"
-msgstr "Januar"
+msgid "January,February,March,April,May,June,July,August,September,October,November,December"
+msgstr "Januar,Februar,Marts,April,Maj,Juni,Juli,August,September,Oktober,November,December"
 
 #: xdate.js:13
-msgid "February"
-msgstr "Februar"
+msgid "Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec"
+msgstr "Jan,Feb,Mar,Apr,Maj,Jun,Jul,Aug,Sep,Okt,Nov,Dec"
 
 #: xdate.js:13
-msgid "March"
-msgstr "Marts"
+msgid "Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday"
+msgstr "Søndag,Mandag,Tirsdag,Onsdag,Torsdag,Fredag,Lørdag"
 
 #: xdate.js:13
-msgid "April"
-msgstr "April"
-
-#: xdate.js:13
-msgid "May"
-msgstr "Maj"
-
-#: xdate.js:13
-msgid "June"
-msgstr "Juni"
-
-#: xdate.js:13
-msgid "July"
-msgstr "Juli"
-
-#: xdate.js:13
-msgid "August"
-msgstr "August"
-
-#: xdate.js:13
-msgid "September"
-msgstr "September"
-
-#: xdate.js:13
-msgid "October"
-msgstr "Oktober"
-
-#: xdate.js:13
-msgid "November"
-msgstr "November"
-
-#: xdate.js:13
-msgid "December"
-msgstr "December"
-
-#: xdate.js:13
-msgid "Jan"
-msgstr "Jan"
-
-#: xdate.js:13
-msgid "Feb"
-msgstr "Feb"
-
-#: xdate.js:13
-msgid "Mar"
-msgstr "Mar"
-
-#: xdate.js:13
-msgid "Apr"
-msgstr "Apr"
-
-#: xdate.js:13
-msgid "Jun"
-msgstr "Jun"
-
-#: xdate.js:13
-msgid "Jul"
-msgstr "Jul"
-
-#: xdate.js:13
-msgid "Aug"
-msgstr "Aug"
-
-#: xdate.js:13
-msgid "Sep"
-msgstr "Sep"
-
-#: xdate.js:13
-msgid "Oct"
-msgstr "Okt"
-
-#: xdate.js:13
-msgid "Nov"
-msgstr "Nov"
-
-#: xdate.js:13
-msgid "Dec"
-msgstr "Dec"
-
-#: xdate.js:13
-msgid "Sunday"
-msgstr "Søndag"
-
-#: xdate.js:13
-msgid "Monday"
-msgstr "Mandag"
-
-#: xdate.js:13
-msgid "Tuesday"
-msgstr "Tirsdag"
-
-#: xdate.js:13
-msgid "Wednesday"
-msgstr "Onsdag"
-
-#: xdate.js:13
-msgid "Thursday"
-msgstr "Torsdag"
-
-#: xdate.js:13
-msgid "Friday"
-msgstr "Fredag"
-
-#: xdate.js:13
-msgid "Saturday"
-msgstr "Lørdag"
-
-#: xdate.js:13
-msgid "Sun"
-msgstr "Søn"
-
-#: xdate.js:13
-msgid "Mon"
-msgstr "Man"
-
-#: xdate.js:13
-msgid "Tue"
-msgstr "Tir"
-
-#: xdate.js:13
-msgid "Wed"
-msgstr "Ons"
-
-#: xdate.js:13
-msgid "Thu"
-msgstr "Tor"
-
-#: xdate.js:13
-msgid "Fri"
-msgstr "Fre"
-
-#: xdate.js:13
-msgid "Sat"
-msgstr "Lør"
+msgid "Sun,Mon,Tue,Wed,Thu,Fri,Sat"
+msgstr "Søn,Man,Tir,Ons,Tor,Fre,Lør"
 
 #: xdate.js:13
 msgid "AM"

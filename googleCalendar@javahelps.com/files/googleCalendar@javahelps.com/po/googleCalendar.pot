@@ -115,6 +115,22 @@ msgstr ""
 msgid "Click the button to select a new background color"
 msgstr ""
 
+#. googleCalendar@javahelps.com->settings-schema.json->diff_calendar->description
+msgid "Differentiate calendars"
+msgstr ""
+
+#. googleCalendar@javahelps.com->settings-schema.json->diff_calendar->tooltip
+msgid "Show color bullets in front of events"
+msgstr ""
+
+#. googleCalendar@javahelps.com->settings-schema.json->show_location->description
+msgid "Show location"
+msgstr ""
+
+#. googleCalendar@javahelps.com->settings-schema.json->show_location->tooltip
+msgid "Display the event location if available"
+msgstr ""
+
 #. googleCalendar@javahelps.com->settings-
 #. schema.json->cornerradius->description
 msgid "Corner radius"
@@ -146,7 +162,19 @@ msgid "Click the button to select a new text color"
 msgstr ""
 
 #. googleCalendar@javahelps.com->settings-schema.json->alldaytextcolor->description
-msgid "All Day Event Text color"
+msgid "All day event text color"
+msgstr ""
+
+#. googleCalendar@javahelps.com->settings-schema.json->alldaytextcolor->tooltip
+msgid "Click the button to select a new all day event text color"
+msgstr ""
+
+#. googleCalendar@javahelps.com->settings-schema.json->location_color->description
+msgid "Location text color"
+msgstr ""
+
+#. googleCalendar@javahelps.com->settings-schema.json->location_color->tooltip
+msgid "Click the button to select a new location text color"
 msgstr ""
 
 #. googleCalendar@javahelps.com->settings-
@@ -167,151 +195,19 @@ msgid "A desklet that displays your agenda based on Google Calendar"
 msgstr ""
 
 #: xdate.js:13
-msgid "January"
+msgid "January,February,March,April,May,June,July,August,September,October,November,December"
 msgstr ""
 
 #: xdate.js:13
-msgid "February"
+msgid "Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec"
 msgstr ""
 
 #: xdate.js:13
-msgid "March"
+msgid "Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday"
 msgstr ""
 
 #: xdate.js:13
-msgid "April"
-msgstr ""
-
-#: xdate.js:13
-msgid "May"
-msgstr ""
-
-#: xdate.js:13
-msgid "June"
-msgstr ""
-
-#: xdate.js:13
-msgid "July"
-msgstr ""
-
-#: xdate.js:13
-msgid "August"
-msgstr ""
-
-#: xdate.js:13
-msgid "September"
-msgstr ""
-
-#: xdate.js:13
-msgid "October"
-msgstr ""
-
-#: xdate.js:13
-msgid "November"
-msgstr ""
-
-#: xdate.js:13
-msgid "December"
-msgstr ""
-
-#: xdate.js:13
-msgid "Jan"
-msgstr ""
-
-#: xdate.js:13
-msgid "Feb"
-msgstr ""
-
-#: xdate.js:13
-msgid "Mar"
-msgstr ""
-
-#: xdate.js:13
-msgid "Apr"
-msgstr ""
-
-#: xdate.js:13
-msgid "Jun"
-msgstr ""
-
-#: xdate.js:13
-msgid "Jul"
-msgstr ""
-
-#: xdate.js:13
-msgid "Aug"
-msgstr ""
-
-#: xdate.js:13
-msgid "Sep"
-msgstr ""
-
-#: xdate.js:13
-msgid "Oct"
-msgstr ""
-
-#: xdate.js:13
-msgid "Nov"
-msgstr ""
-
-#: xdate.js:13
-msgid "Dec"
-msgstr ""
-
-#: xdate.js:13
-msgid "Sunday"
-msgstr ""
-
-#: xdate.js:13
-msgid "Monday"
-msgstr ""
-
-#: xdate.js:13
-msgid "Tuesday"
-msgstr ""
-
-#: xdate.js:13
-msgid "Wednesday"
-msgstr ""
-
-#: xdate.js:13
-msgid "Thursday"
-msgstr ""
-
-#: xdate.js:13
-msgid "Friday"
-msgstr ""
-
-#: xdate.js:13
-msgid "Saturday"
-msgstr ""
-
-#: xdate.js:13
-msgid "Sun"
-msgstr ""
-
-#: xdate.js:13
-msgid "Mon"
-msgstr ""
-
-#: xdate.js:13
-msgid "Tue"
-msgstr ""
-
-#: xdate.js:13
-msgid "Wed"
-msgstr ""
-
-#: xdate.js:13
-msgid "Thu"
-msgstr ""
-
-#: xdate.js:13
-msgid "Fri"
-msgstr ""
-
-#: xdate.js:13
-msgid "Sat"
+msgid "Sun,Mon,Tue,Wed,Thu,Fri,Sat"
 msgstr ""
 
 #: xdate.js:13
