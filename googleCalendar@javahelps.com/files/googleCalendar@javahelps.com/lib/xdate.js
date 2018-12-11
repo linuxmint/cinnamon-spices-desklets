@@ -48,20 +48,20 @@ var XDate = (function (Date, Math, Array, undefined) {
 
 
 	var methodSubjects = [
-		'FullYear', // 0
-		'Month', // 1
-		'Date', // 2
-		'Hours', // 3
-		'Minutes', // 4
-		'Seconds', // 5
-		'Milliseconds', // 6
-		'Day', // 7
-		'Year' // 8
+		"FullYear", // 0
+		"Month", // 1
+		"Date", // 2
+		"Hours", // 3
+		"Minutes", // 4
+		"Seconds", // 5
+		"Milliseconds", // 6
+		"Day", // 7
+		"Year" // 8
 	];
 	var subjectPlurals = [
-		'Years', // 0
-		'Months', // 1
-		'Days' // 2
+		"Years", // 0
+		"Months", // 1
+		"Days" // 2
 	];
 	var unitsWithin = [
 		12, // months in year
@@ -109,6 +109,127 @@ var XDate = (function (Date, Math, Array, undefined) {
 		);
 	}
 
+	/* General Utilities
+	---------------------------------------------------------------------------------*/
+
+
+	function methodize(f) {
+		return function () {
+			return f.apply(undefined, [this].concat(slice(arguments)));
+		};
+	}
+
+
+	function curry(f) {
+		var firstArgs = slice(arguments, 1);
+		return function () {
+			return f.apply(undefined, firstArgs.concat(slice(arguments)));
+		};
+	}
+
+
+	function slice(a, start, end) {
+		return Array.prototype.slice.call(
+			a,
+			start || 0, // start and end cannot be undefined for IE
+			end === undefined ? a.length : end
+		);
+	}
+
+
+	function each(a, f) {
+		for (var i = 0; i < a.length; i++) {
+			f(a[i], i);
+		}
+	}
+
+
+	function isString(arg) {
+		return typeof arg == 'string';
+	}
+
+
+	function isNumber(arg) {
+		return typeof arg == 'number';
+	}
+
+
+	function isBoolean(arg) {
+		return typeof arg == 'boolean';
+	}
+
+
+	function isFunction(arg) {
+		return typeof arg == 'function';
+	}
+
+
+	function zeroPad(n, len) {
+		len = len || 2;
+		n += '';
+		while (n.length < len) {
+			n = '0' + n;
+		}
+		return n;
+	}
+
+	/* Internal Utilities
+	---------------------------------------------------------------------------------*/
+
+
+	function _clone(xdate) { // returns the internal Date object that should be used
+		var d = new Date(xdate[0].getTime());
+		if (getUTCMode(xdate)) {
+			d.toString = toUTCString;
+		}
+		return d;
+	}
+
+
+	function _getField(d, useUTC, fieldIndex) {
+		return d['get' + (useUTC ? 'UTC' : '') + methodSubjects[fieldIndex]]();
+	}
+
+
+	function _setField(d, useUTC, fieldIndex, args) {
+		d['set' + (useUTC ? 'UTC' : '') + methodSubjects[fieldIndex]].apply(d, args);
+	}
+
+
+
+	/* Date Math Utilities
+	---------------------------------------------------------------------------------*/
+
+
+	function coerceToUTC(date) {
+		return new Date(UTC(
+			date.getFullYear(),
+			date.getMonth(),
+			date.getDate(),
+			date.getHours(),
+			date.getMinutes(),
+			date.getSeconds(),
+			date.getMilliseconds()
+		));
+	}
+
+
+	function coerceToLocal(date) {
+		return new Date(
+			date.getUTCFullYear(),
+			date.getUTCMonth(),
+			date.getUTCDate(),
+			date.getUTCHours(),
+			date.getUTCMinutes(),
+			date.getUTCSeconds(),
+			date.getUTCMilliseconds()
+		);
+	}
+
+
+	function getDaysInMonth(year, month) {
+		return 32 - new Date(UTC(year, month, 32)).getUTCDate();
+	}
 
 	function init(xdate, args) {
 		var len = args.length;
@@ -196,13 +317,13 @@ var XDate = (function (Date, Math, Array, undefined) {
 
 	each(methodSubjects, function (subject, fieldIndex) {
 
-		proto['get' + subject] = function () {
+		proto["get" + subject] = function () {
 			return _getField(this[0], getUTCMode(this), fieldIndex);
 		};
 
 		if (fieldIndex != YEAR) { // because there is no getUTCYear
 
-			proto['getUTC' + subject] = function () {
+			proto["getUTC" + subject] = function () {
 				return _getField(this[0], true, fieldIndex);
 			};
 
@@ -211,7 +332,7 @@ var XDate = (function (Date, Math, Array, undefined) {
 		if (fieldIndex != DAY) { // because there is no setDay or setUTCDay
 			// and the add* and diff* methods use DATE instead
 
-			proto['set' + subject] = function (value) {
+			proto["set" + subject] = function (value) {
 				_set(this, fieldIndex, value, arguments, getUTCMode(this));
 				return this; // for chaining
 			};
@@ -219,17 +340,17 @@ var XDate = (function (Date, Math, Array, undefined) {
 			if (fieldIndex != YEAR) { // because there is no setUTCYear
 				// and the add* and diff* methods use FULLYEAR instead
 
-				proto['setUTC' + subject] = function (value) {
+				proto["setUTC" + subject] = function (value) {
 					_set(this, fieldIndex, value, arguments, true);
 					return this; // for chaining
 				};
 
-				proto['add' + (subjectPlurals[fieldIndex] || subject)] = function (delta, preventOverflow) {
+				proto["add" + (subjectPlurals[fieldIndex] || subject)] = function (delta, preventOverflow) {
 					_add(this, fieldIndex, delta, preventOverflow);
 					return this; // for chaining
 				};
 
-				proto['diff' + (subjectPlurals[fieldIndex] || subject)] = function (otherDate) {
+				proto["diff" + (subjectPlurals[fieldIndex] || subject)] = function (otherDate) {
 					return _diff(this, otherDate, fieldIndex);
 				};
 
@@ -727,134 +848,6 @@ var XDate = (function (Date, Math, Array, undefined) {
 
 
 	XDate.getDaysInMonth = getDaysInMonth;
-
-
-
-	/* Internal Utilities
-	---------------------------------------------------------------------------------*/
-
-
-	function _clone(xdate) { // returns the internal Date object that should be used
-		var d = new Date(xdate[0].getTime());
-		if (getUTCMode(xdate)) {
-			d.toString = toUTCString;
-		}
-		return d;
-	}
-
-
-	function _getField(d, useUTC, fieldIndex) {
-		return d['get' + (useUTC ? 'UTC' : '') + methodSubjects[fieldIndex]]();
-	}
-
-
-	function _setField(d, useUTC, fieldIndex, args) {
-		d['set' + (useUTC ? 'UTC' : '') + methodSubjects[fieldIndex]].apply(d, args);
-	}
-
-
-
-	/* Date Math Utilities
-	---------------------------------------------------------------------------------*/
-
-
-	function coerceToUTC(date) {
-		return new Date(UTC(
-			date.getFullYear(),
-			date.getMonth(),
-			date.getDate(),
-			date.getHours(),
-			date.getMinutes(),
-			date.getSeconds(),
-			date.getMilliseconds()
-		));
-	}
-
-
-	function coerceToLocal(date) {
-		return new Date(
-			date.getUTCFullYear(),
-			date.getUTCMonth(),
-			date.getUTCDate(),
-			date.getUTCHours(),
-			date.getUTCMinutes(),
-			date.getUTCSeconds(),
-			date.getUTCMilliseconds()
-		);
-	}
-
-
-	function getDaysInMonth(year, month) {
-		return 32 - new Date(UTC(year, month, 32)).getUTCDate();
-	}
-
-
-
-	/* General Utilities
-	---------------------------------------------------------------------------------*/
-
-
-	function methodize(f) {
-		return function () {
-			return f.apply(undefined, [this].concat(slice(arguments)));
-		};
-	}
-
-
-	function curry(f) {
-		var firstArgs = slice(arguments, 1);
-		return function () {
-			return f.apply(undefined, firstArgs.concat(slice(arguments)));
-		};
-	}
-
-
-	function slice(a, start, end) {
-		return Array.prototype.slice.call(
-			a,
-			start || 0, // start and end cannot be undefined for IE
-			end === undefined ? a.length : end
-		);
-	}
-
-
-	function each(a, f) {
-		for (var i = 0; i < a.length; i++) {
-			f(a[i], i);
-		};
-	}
-
-
-	function isString(arg) {
-		return typeof arg == 'string';
-	}
-
-
-	function isNumber(arg) {
-		return typeof arg == 'number';
-	}
-
-
-	function isBoolean(arg) {
-		return typeof arg == 'boolean';
-	}
-
-
-	function isFunction(arg) {
-		return typeof arg == 'function';
-	}
-
-
-	function zeroPad(n, len) {
-		len = len || 2;
-		n += '';
-		while (n.length < len) {
-			n = '0' + n;
-		}
-		return n;
-	}
-
-
 
 	// Export for Node.js
 	if (typeof module !== 'undefined' && module.exports) {
