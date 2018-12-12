@@ -19,17 +19,17 @@ const Gettext = imports.gettext,
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 var XDate = function(t, e, n, r) {
     function u() {
-        return i2(this instanceof u ? this : new u, arguments)
+        return i(this instanceof u ? this : new u, arguments)
     }
 
-    function i2(e, n) {
+    function i(e, n) {
         var r, i = n.length;
-        if (i>0 && J(n[i - 1]) && (r = n[--i], n = O(n, 0, i)), i) {
+        if (J(n[i - 1]) && (r = n[--i], n = O(n, 0, i)), i)
             if (1 == i) {
                 var o = n[0];
                 o instanceof t ? e[0] = new t(o.getTime()) : G(o) ? e[0] = new t(o) : o instanceof u ? e[0] = D(o) : A(o) && (e[0] = new t(0), e = T(o, r || !1, e))
             } else e[0] = new t(rt.apply(t, n)), r || (e[0] = x(e[0]));
-        } else e[0] = new t;
+        else e[0] = new t;
         return J(r) && s(e, r), e
     }
 
@@ -91,14 +91,14 @@ var XDate = function(t, e, n, r) {
     function m(t, e, n, u) {
         var i = F(b, t, u),
             o = F(z, t, u);
-        n === r && (n = d(i2(I), i2(Z), i2(j)));
+        n === r && (n = d(i(I), i(Z), i(j)));
         var s = l(n);
-        u || (s = x(s)), t.setTime(s.getTime()), o(j, [i2(j) + 7 * (e - 1)])
+        u || (s = x(s)), t.setTime(s.getTime()), o(j, [i(j) + 7 * (e - 1)])
     }
 
     function T(e, n, r) {
         for (var i, o = u.parsers, s = 0; s < o.length; s++)
-            if (i == o[s](e, n, r)) return i;
+            if (i = o[s](e, n, r)) return i;
         return r[0] = new t(e), r
     }
 
