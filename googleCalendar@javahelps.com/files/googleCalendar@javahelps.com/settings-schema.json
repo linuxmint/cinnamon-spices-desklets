@@ -98,19 +98,43 @@
         "description": "Text color",
         "tooltip": "Click the button to select a new text color"
     },
+
     "alldaytextcolor": {
         "type": "colorchooser",
         "indent": true,
         "default": "rgb(255,255,255)",
-        "description": "All Day Event Text color",
+        "description": "All day event text color",
         "tooltip": "Click the button to select a new all day event text color"
     },
+
     "bgcolor": {
         "type": "colorchooser",
         "indent": true,
         "default": "rgb(0,0,0)",
         "description": "Background color",
         "tooltip": "Click the button to select a new background color"
+    },
+
+    "diff_calendar": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Differentiate calendars",
+        "tooltip": "Show color bullets in front of events"
+    },
+
+    "show_location": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show location",
+        "tooltip": "Display the event location if available"
+    },
+
+    "location_color": {
+        "type": "colorchooser",
+        "indent": true,
+        "default": "rgb(255,255,255)",
+        "description": "Location text color",
+        "tooltip": "Click the button to select a new location text color"
     },
 
     "cornerradius": {
