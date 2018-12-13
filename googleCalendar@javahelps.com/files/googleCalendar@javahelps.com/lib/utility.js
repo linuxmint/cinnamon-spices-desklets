@@ -69,9 +69,9 @@ SpawnReader.prototype.read = function(stream, func) {
     }));
 };
 
-CalendarUtility.prototype.label = function(text, zoom, textColor, leftAlign = true, fontSize = 14) {
+CalendarUtility.prototype.label = function(text, zoom, textColor, leftAlign = true, fontSize = 10) {
     let label = new St.Label();
-    label.style = "text-align : " + (leftAlign ? "left" : "right") + "; font-size:" + (fontSize * zoom) + "px; color: " + textColor;
+    label.style = "text-align : " + (leftAlign ? "left" : "right") + "; font-size:" + (fontSize * zoom) + "pt; color: " + textColor;
     label.set_text(text);
     return label;
 };
@@ -107,16 +107,20 @@ CalendarUtility.prototype.formatParameterDate = function(value) {
  * - endTime
  * - name
  * - useTwentyFourHour
+ * - color
+ * - location
  */
 Event.prototype = {
-    _init(eventLine, useTwentyFourHour) {
-        let properties = eventLine.split("\t");
-        this.startDate = new XDate(properties[0]);
-        this.startDateText = properties[0];
-        this.startTime = properties[1];
-        this.endDate = new XDate(properties[2]);
-        this.endTime = properties[3];
-        this.name = properties[4];
+    _init(event, useTwentyFourHour) {
+        // let properties = eventLine.split("\t");
+        this.startDate = new XDate(event["start_date"]);
+        this.startDateText = event["start_date"];
+        this.startTime = event["start_time"];
+        this.endDate = new XDate(event["end_date"]);
+        this.endTime = event["end_time"];
+        this.name = event["summary"];
+        this.color = event["calendar_color"];
+        this.location = event["location"];
         if (!this.name) {
             throw "Error in parsing " + eventLine;
         }
