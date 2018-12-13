@@ -166,8 +166,13 @@ GoogleCalendarDesklet.prototype = {
      * This method also add the event to widget.
      */
     addEvent(eventLine) {
-        let events = JSON.parse(eventLine);
-        if(events.length === 1 && events[0]["summary"] === "NO_EVENTS_FOUND_GOOGLE_CALENDAR") {
+        let events = [];
+        try {
+            events = JSON.parse(eventLine);
+        } catch (e) {
+            throw e;
+        }
+        if (events.length === 1 && events[0]["summary"] === "NO_EVENTS_FOUND_GOOGLE_CALENDAR") {
             this.window.add(CalendarUtility.label(_("No events found..."), this.zoom, this.textcolor));
         } else {
             events.forEach((element) => {
@@ -269,13 +274,13 @@ GoogleCalendarDesklet.prototype = {
      * This fixes a bug that occurs, for example, when 'today' is replaced by 'aujourd'hui' by a French-speaking user.
      */
     wellFormatted(t) {
-        var ret=t;
+        var ret = t;
         if (t.indexOf("'") > -1) {
-            let index1 = t.indexOf("'");        // first apostrophe
-            let index2 = t.lastIndexOf("'");    // last apostrophe
+            let index1 = t.indexOf("'"); // first apostrophe
+            let index2 = t.lastIndexOf("'"); // last apostrophe
             let sub = t.substr(index1 + 1, index2 - index1 - 1); // all between the first and last apostrophe
-            if (sub.indexOf("'") > -1) {  // there is at least one other apostrophe
-                let sub2 = sub.replace("'", "’");  // replaces all other apostrophe &apos; by the &rsquo; character
+            if (sub.indexOf("'") > -1) { // there is at least one other apostrophe
+                let sub2 = sub.replace("'", "’"); // replaces all other apostrophe &apos; by the &rsquo; character
                 ret = t.replace(sub, sub2);
             }
         }
@@ -322,6 +327,7 @@ GoogleCalendarDesklet.prototype = {
         try {
             // Execute the command to retrieve the calendar events.
             let reader = new SpawnReader();
+            let error = false;
             reader.spawn(SCRIPT_PATH, this.getCalendarCommand(), (output) => {
                 this.resetWidget(true);
                 if (!outputReceived) {
@@ -330,18 +336,17 @@ GoogleCalendarDesklet.prototype = {
                 let eventLine = output.toString();
                 try {
                     this.addEvent(eventLine);
+                    error = false;
                 } catch (e) {
-                    global.logError(e);
-                    let label;
-                    if (eventLine.includes("https://accounts.google.com/o/oauth2/auth")) {
-                        // Not authenticated
-                        label = CalendarUtility.label(_("Please authenticate the desklet to continue"), this.zoom, this.textcolor);
-                    } else {
-                        label = CalendarUtility.label(_("Unable to retrieve events..."), this.zoom, this.textcolor);
-                    }
-                    this.window.add(label);
+                    // Some JSON parse errors happened. May be because of first time authentication
+                    // Wait until reaching last line of the output because the last line may be a valid events JSON
+                    error = true;
                 }
             });
+            if (error) {
+                let label = CalendarUtility.label(_("Unable to retrieve events..."), this.zoom, this.textcolor);
+                this.window.add(label);
+            }
         } catch (e) {
             global.logError(e);
         } finally {
