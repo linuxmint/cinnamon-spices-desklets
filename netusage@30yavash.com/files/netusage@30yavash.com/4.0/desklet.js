@@ -6,7 +6,9 @@ const Clutter = imports.gi.Clutter;
 const St = imports.gi.St;
 const Util = imports.misc.util;
 const PopupMenu = imports.ui.popupMenu;
+const UPowerGlib = imports.gi.UPowerGlib;
 const GLib = imports.gi.GLib;
+const Settings = imports.ui.settings; // ++ Needed if you use Settings Screen
 
 
 let CONNECTED_STATE, NMClient_new, newNM;
@@ -23,18 +25,42 @@ function _(str) {
     return Gettext.dgettext(UUID, str);
 };
 
-function MyDesklet(metadata){
-    this._init(metadata);
+function MyDesklet(metadata, desklet_id){
+    this._init(metadata, desklet_id);
 }
 
 MyDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
 
-    _init: function(metadata){
+    _init: function(metadata, desklet_id){
         Desklet.Desklet.prototype._init.call(this, metadata);
 
         this.metadata = metadata
-        this.netDevice = this.metadata["netDevice"];
+        this._Device = this.metadata["netDevice"];
+
+            this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
+
+            this.settings.bindProperty(Settings.BindingDirection.IN,
+                "useExtendedDisplay",
+                "useExtendedDisplay",
+                this.on_settings_changed);
+
+            this.settings.bindProperty(Settings.BindingDirection.IN,
+                "extendedDisplay",
+                "extendedDisplay",
+                this.on_settings_changed);
+
+            this.settings.bindProperty(Settings.BindingDirection.IN,
+                "useVnstatiCommandString",
+                "useVnstatiCommandString",
+                this.on_settings_changed);
+
+            this.settings.bindProperty(Settings.BindingDirection.IN,
+                "vnstatiCommandString",
+                "vnstatiCommandString",
+                this.on_settings_changed);
+
+
 
         // l10n/translation
         UUID = metadata.uuid;
@@ -57,10 +83,15 @@ MyDesklet.prototype = {
         Mainloop.source_remove(this.timeout);
     },
 
+ // ++ Function called when settings are changed
+    on_settings_changed: function () {
+            this._updateGraph();
+    },
+
     _updateWidget: function(){
         this._updateDevice();
         this._updateGraph();
-        this.timeout = Mainloop.timeout_add_seconds(1, Lang.bind(this, this._updateWidget));
+        this.timeout = Mainloop.timeout_add_seconds(10, Lang.bind(this, this._updateWidget));
 },
 
     getInterfaces: function () {
@@ -101,9 +132,27 @@ MyDesklet.prototype = {
     _updateGraph: function() {
         try {
            if (this._device != "null") { 
-//                       global.logError("Testing output - detected device: " + this._device);   // Comment out unless testing
+                   if (this.useExtendedDisplay) {
+                         if(this.extendedDisplay == "classic" ) {
+
             GLib.spawn_command_line_sync('vnstati -s -ne -i ' + this._device + ' -o /tmp/vnstatlmapplet.png');
             }
+                         if(this.extendedDisplay == "classicPlus" ) {
+                               GLib.spawn_command_line_sync('vnstati -vs -ne -i ' + this._device + ' -o /tmp/vnstatlmapplet.png' );
+                         }
+
+                         if(this.extendedDisplay == "userDefined" ) {
+                               if (this.useVnstatiCommandString) {
+                                     GLib.spawn_command_line_sync('vnstati ' + this.vnstatiCommandString + ' -ne -i ' + this._device + ' -o /tmp/vnstatlmapplet.png');
+                               } else {
+                                     GLib.spawn_command_line_sync('vnstati -s -ne -i ' + this._device + ' -o /tmp/vnstatlmapplet.png');
+                               }
+                         }
+                   } else {
+                        GLib.spawn_command_line_sync('vnstati -s -ne -i ' + this._device + ' -o /tmp/vnstatlmapplet.png');
+                   }
+            }
+
             let l = new Clutter.BinLayout();
             let b = new Clutter.Box();
             let c = new Clutter.Texture({keep_aspect_ratio: true, filter_quality: 2, filename: "/tmp/vnstatlmapplet.png"});
@@ -143,4 +192,11 @@ function main(metadata, desklet_id){
   * Significant change to code to identify device as old code failed under Cinnamon 4.0
     - New code is identical to that used in applets vnstat@linuxmint.com and netusagemonitor@pdcurtis
   * Change "author" to "pdcurtis"
+## 1.0.3
+  * desklet_id to various functions
+  * Add Configure (settings-schema.json) to applet
+  * Provide options to choose different vnstati formats including a user specified format
+  * Tidy code to remove trailing spaces
+  * Change Icon to be unique and have better affordance
+  * Add CHANGELOG.md and Update README.md
 */
