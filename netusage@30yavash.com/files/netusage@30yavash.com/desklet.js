@@ -104,7 +104,7 @@ MyDesklet.prototype = {
 
  // ++ Function called when settings are changed
     on_settings_changed: function () {
-            this._updateGraph();
+            this._updateWidget();
     },
 
     _updateWidget: function(){
@@ -152,26 +152,18 @@ MyDesklet.prototype = {
         try {
            if (this._device != "null") {
                    if (this.useExtendedDisplay) {
-                         if(this.extendedDisplay == "classic" ) {
-
-                                GLib.spawn_command_line_sync('vnstati -s -ne -i ' + this._device + ' -o /tmp/vnstatlmapplet.png');
-                         }
-                         if(this.extendedDisplay == "classicPlus" ) {
-
-                               GLib.spawn_command_line_sync('vnstati -vs -ne -i ' + this._device + ' -o /tmp/vnstatlmapplet.png' );
-                         }
-
                          if(this.extendedDisplay == "userDefined" ) {
                                if (this.useVnstatiCommandString) {
                                      GLib.spawn_command_line_sync('vnstati ' + this.vnstatiCommandString + ' -ne -i ' + this._device + ' -o /tmp/vnstatlmapplet.png');
                                } else {
                                      GLib.spawn_command_line_sync('vnstati -s -ne -i ' + this._device + ' -o /tmp/vnstatlmapplet.png');
                                }
+                         } else {
+                                 GLib.spawn_command_line_sync('vnstati ' + this.extendedDisplay + ' -ne -i ' + this._device + ' -o /tmp/vnstatlmapplet.png');
                          }
                    } else {
                         GLib.spawn_command_line_sync('vnstati -s -ne -i ' + this._device + ' -o /tmp/vnstatlmapplet.png');
                    }
-
             }
 
             let l = new Clutter.BinLayout();
@@ -220,4 +212,8 @@ function main(metadata, desklet_id){
   * Tidy code to remove trailing spaces
   * Change Icon to be unique and have better affordance
   * Add CHANGELOG.md and Update README.md
+## 1.0.4
+  * Correct Icon for Cinnamon 4.0
+  * Extend number of choices of vnstati formats
+  * Update README.md
 */

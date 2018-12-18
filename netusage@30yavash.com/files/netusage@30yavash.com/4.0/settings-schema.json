@@ -5,10 +5,10 @@
     },
 
     "useExtendedDisplay": {
-        "type": "switch",
+        "type": "checkbox",
         "default": false,
         "description": "Enable Extended Display Options",
-        "tooltip": "This is new option version 1.0.3"
+        "tooltip": "This is a new option from version 1.0.3"
     },
 
     "extendedDisplay" : {
@@ -16,28 +16,32 @@
         "type": "combobox",
         "default": "classic",
         "options": {
-            "Classic - Summary of Data Usage for last Days and Months" : "classic",
-            "Classic Plus - Classic with addition of breakdown by hour for last 24 hours": "classicPlus" ,
+            "Classic - Summary of Traffic for last Days and Months" : "-s",
+            "Classic Plus - Classic with addition of hourly statistics": "-vs" ,
+            "Hourly statistics for last 24 hours" : "-h ",
+            "Daily statistics for last 30 days" : "-d",
+            "Monthly statistics for last 12 months" : "-m",
+            "All time Top ten traffic days" : "-t",
             "Custom Display - requires enabling below": "userDefined"
          },
-        "description" : "Type of Display - default 'classic'",
-        "tooltip": "This feature offers the Classic (original) display with optional of adding an hourly breakdown over the last 24 hours and an experimental option of a user defined string for vnstati when enabled below"
+        "description" : "Type of Display - default Classic",
+        "tooltip": "This feature offers the Classic (original) display with a number of other options including use of a user defined string for vnstati when enabled below"
    },
 
     "useVnstatiCommandString": {
         "dependency": "useExtendedDisplay",
-        "type": "switch",
+        "type": "checkbox",
         "default": false,
         "description": "Enable Custom Display Option",
-        "tooltip": "Check box"
+        "tooltip": "Beware - no error checking - if you crash the applet try restarting Cinnamon"
     },
 
     "vnstatiCommandString": {
         "dependency": "useVnstatiCommandString",
         "type": "entry",
-        "default": "-vs",
-        "description": "Custom options to pass to vnstati - default is '-vs' ",
-        "tooltip": "The default is the options used for the extended display. Note: this is not the whole vnstati option string - the interface and output file options are added to it automatically. Please read the vnstati manual for further information on options avaiilable"
+        "default": "-s",
+        "description": "Custom options to pass to vnstati - default is '-s' ",
+        "tooltip": "Note: this is not the whole vnstati option string - the interface and output file options are added to it automatically. Please read the vnstati manual for further information on options avaiilable"
     }
 
 }
