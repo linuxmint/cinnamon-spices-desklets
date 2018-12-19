@@ -1,6 +1,6 @@
 # Change log since pdcurtis became involved
 ## 1.0.4
-  * Extend number of choices of vnstati formats
+  * Extend number of choices of vnstati formats to remove need for user specified format.
   * Update CHANGELOG.md and README.md
 ## 1.0.3
   * Add desklet_id to various functions and enable multiple instances

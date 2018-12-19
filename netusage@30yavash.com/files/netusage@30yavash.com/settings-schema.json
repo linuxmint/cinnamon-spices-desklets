@@ -14,35 +14,19 @@
     "extendedDisplay" : {
         "dependency": "useExtendedDisplay",
         "type": "combobox",
-        "default": "classic",
+        "default": "-s",
         "options": {
             "Classic - Summary of Traffic for last Days and Months" : "-s",
             "Classic Plus - Classic with addition of hourly statistics": "-vs" ,
             "Hourly statistics for last 24 hours" : "-h ",
             "Daily statistics for last 30 days" : "-d",
             "Monthly statistics for last 12 months" : "-m",
-            "All time Top ten traffic days" : "-t",
-            "Custom Display - requires enabling below": "userDefined"
+            "All time Top ten traffic days" : "-t"
          },
         "description" : "Type of Display - default Classic",
-        "tooltip": "This feature offers the Classic (original) display with a number of other options including use of a user defined string for vnstati when enabled below"
-   },
+        "tooltip": "This feature offers the Classic (original) display with a number of other options"
+   }
 
-    "useVnstatiCommandString": {
-        "dependency": "useExtendedDisplay",
-        "type": "checkbox",
-        "default": false,
-        "description": "Enable Custom Display Option",
-        "tooltip": "Beware - no error checking - if you crash the applet try restarting Cinnamon"
-    },
-
-    "vnstatiCommandString": {
-        "dependency": "useVnstatiCommandString",
-        "type": "entry",
-        "default": "-s",
-        "description": "Custom options to pass to vnstati - default is '-s' ",
-        "tooltip": "Note: this is not the whole vnstati option string - the interface and output file options are added to it automatically. Please read the vnstati manual for further information on options avaiilable"
-    }
 
 }
 

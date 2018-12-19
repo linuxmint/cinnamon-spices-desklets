@@ -63,23 +63,21 @@ MyDesklet.prototype = {
                 "useExtendedDisplay",
                 this.on_settings_changed);
 
-
             this.settings.bindProperty(Settings.BindingDirection.IN,
                 "extendedDisplay",
                 "extendedDisplay",
                 this.on_settings_changed);
 
-            this.settings.bindProperty(Settings.BindingDirection.IN,
+/*            this.settings.bindProperty(Settings.BindingDirection.IN,
                 "useVnstatiCommandString",
                 "useVnstatiCommandString",
                 this.on_settings_changed);
-
 
             this.settings.bindProperty(Settings.BindingDirection.IN,
                 "vnstatiCommandString",
                 "vnstatiCommandString",
                 this.on_settings_changed);
-
+*/
 
         // l10n/translation
         UUID = metadata.uuid;
@@ -152,19 +150,12 @@ MyDesklet.prototype = {
         try {
            if (this._device != "null") {
                    if (this.useExtendedDisplay) {
-                         if(this.extendedDisplay == "userDefined" ) {
-                               if (this.useVnstatiCommandString) {
-                                     GLib.spawn_command_line_sync('vnstati ' + this.vnstatiCommandString + ' -ne -i ' + this._device + ' -o /tmp/vnstatlmapplet.png');
-                               } else {
-                                     GLib.spawn_command_line_sync('vnstati -s -ne -i ' + this._device + ' -o /tmp/vnstatlmapplet.png');
-                               }
-                         } else {
-                                 GLib.spawn_command_line_sync('vnstati ' + this.extendedDisplay + ' -ne -i ' + this._device + ' -o /tmp/vnstatlmapplet.png');
-                         }
+                           GLib.spawn_command_line_sync('vnstati ' + this.extendedDisplay + ' -ne -i ' + this._device + ' -o /tmp/vnstatlmapplet.png');
+
                    } else {
                         GLib.spawn_command_line_sync('vnstati -s -ne -i ' + this._device + ' -o /tmp/vnstatlmapplet.png');
                    }
-            }
+
 
             let l = new Clutter.BinLayout();
             let b = new Clutter.Box();
@@ -172,7 +163,7 @@ MyDesklet.prototype = {
             b.set_layout_manager(l);
             b.add_actor(c);
             this.imageWidget.set_child(b);
-
+            }
         }
         catch (e) {
             this.warnings = new St.BoxLayout({vertical: true});
@@ -214,6 +205,6 @@ function main(metadata, desklet_id){
   * Add CHANGELOG.md and Update README.md
 ## 1.0.4
   * Correct Icon for Cinnamon 4.0
-  * Extend number of choices of vnstati formats
+  * Extend number of choices of vnstati formats and remove custom option
   * Update README.md
 */
