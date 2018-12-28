@@ -4,13 +4,19 @@ const Clutter = imports.gi.Clutter;
 const Soup = imports.gi.Soup;
 const Lang = imports.lang;
 const Settings = imports.ui.settings;
+const GLib = imports.gi.GLib;
+const Gettext = imports.gettext;
 
 const API_LINK_INST = "https://kretaglobalmobileapi.ekreta.hu/api/v1/Institute";
 const UUID = "eKreta@thegergo02";
 
 var httpSession = new Soup.SessionAsync();
 
-let studentName = "Unknown";
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale")
+
+function _(str) {
+  return Gettext.dgettext(UUID, str);
+}
 
 function EKretaDesklet(metadata, desklet_id) {
     this._init(metadata, desklet_id);
@@ -21,7 +27,7 @@ EKretaDesklet.prototype = {
 
     _init(metadata, desklet_id) {
         Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
-        global.log(UUID + ": Desklet started.");
+        global.log(UUID + ":" + _("Desklet started."));
         this.setHeader("eKreta");
 
         this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, desklet_id);
@@ -30,7 +36,7 @@ EKretaDesklet.prototype = {
         this.settings.bind("pass", "passW");
         this.settings.bind("show_class_av", "showClassAv");
 
-        global.log(UUID + ": started getAuthToken(x,y,z).");
+        global.log(UUID + ":" + _("started getAuthToken(x,y,z)."));
         this.getAuthToken(this.instID, this.usrN, this.passW);
     },
 
@@ -39,7 +45,7 @@ EKretaDesklet.prototype = {
         this.window = new St.BoxLayout({vertical:true});
         if (!studentDetails) {
             this.bigText = new St.Label();
-            this.bigText.set_text("Error: Couldn't login with the credetinals given. (Check the desklet settings.)");
+            this.bigText.set_text(_("Error: Couldn't login with the credetinals given. (Check the desklet settings.)"));
             this.window.add(this.bigText);
 
             this.setContent(this.window);
@@ -62,17 +68,17 @@ EKretaDesklet.prototype = {
         }
         
         this.setContent(this.window);
-        global.log(UUID + ": UI now ready in setupUI(x).");
-        global.log(UUID + ": Desklet loaded successfully.");
+        global.log(UUID + ":" + _("UI now ready in setupUI(x)."));
+        global.log(UUID + ":" + _("Desklet loaded successfully."));
     },
 
     getStudentDetails(instID,authToken) {
         if (authToken == "cantgetauth") {
-            global.log(UUID + ": getStudentDetails(x,y) aknowledged that the auth token doesn't exist, calls setupUI(x) with a false value.");
+            global.log(UUID + ":" + _("getStudentDetails(x,y) aknowledged that the auth token doesn't exist, calls setupUI(x) with a false value."));
             this.setupUI(false);
             return;
         }
-        global.log(UUID + ": Setting up a GET request in getStudentDetails(x,y).");
+        global.log(UUID + ":" + _("Setting up a GET request in getStudentDetails(x,y)."));
         var message = Soup.Message.new(
             "GET",
             "https://" + instID + ".e-kreta.hu/mapi/api/v1/Student"
@@ -82,14 +88,14 @@ EKretaDesklet.prototype = {
         httpSession.queue_message(message,
             Lang.bind(this, function(session, response) {
                 if (response.status_code !== Soup.KnownStatusCode.OK) {
-                    global.log(UUID + ": Error during download in getStudentDetails(): response code " +
+                    global.log(UUID + ":" + _("Error during download in getStudentDetails()") + ": response code " +
                         response.status_code + ": " + response.reason_phrase + " - " +
                         response.response_body.data);
                     return;
                 }
                 var result = JSON.parse(message.response_body.data);
-                global.log(UUID + ": Got correct response in getStudentDetails(x,y).");
-                global.log(UUID + ": Starting setupUI(x).");
+                global.log(UUID + ":" + _("Got correct response in getStudentDetails(x,y)."));
+                global.log(UUID + ":" + _("Starting setupUI(x)."));
                 this.setupUI(result);
                 return;
             })
@@ -97,7 +103,7 @@ EKretaDesklet.prototype = {
     },
 
     getAuthToken(instID, usrN, passW) {
-        global.log(UUID + ": Setting up a POST request in getAuthToken(x,y,z).");
+        global.log(UUID + ":" + _("Setting up a POST request in getAuthToken(x,y,z)."));
         var message = Soup.Message.new(
             "POST",
             "https://" + instID + ".e-kreta.hu/idp/api/v1/Token"
@@ -109,16 +115,16 @@ EKretaDesklet.prototype = {
         httpSession.queue_message(message,
             Lang.bind(this, function(session, response) {
                 if (response.status_code !== Soup.KnownStatusCode.OK) {
-                    global.log(UUID + ": Error during download in getAuthToken(x,y,z): response code " +
+                    global.log(UUID + ":" + _("Error during download in getAuthToken(x,y,z)") + ": response code " +
                         response.status_code + ": " + response.reason_phrase + " - " +
                         response.response_body.data);
                     this.getStudentDetails(instID,"cantgetauth");
-                    global.log(UUID + ": Getting auth token failed, passing 'cantgetauth' to getStudentDetails(x,y).");
+                    global.log(UUID + ":" + _("Getting auth token failed, passing 'cantgetauth' to getStudentDetails(x,y)."));
                     return;
                 }
                 var result = JSON.parse(message.response_body.data);
-                global.log(UUID + ": Got correct response in getAuthToken(x,y,z).");
-                global.log(UUID + ": Starting getStudentDetails(x,y).");
+                global.log(UUID + ":" + _("Got correct response in getAuthToken(x,y,z)."));
+                global.log(UUID + ":" + _("Starting getStudentDetails(x,y)."));
                 this.getStudentDetails(instID,result["access_token"]);
                 return;
             })
@@ -135,7 +141,7 @@ EKretaDesklet.prototype = {
         httpSession.queue_message(message,
             Lang.bind(this, function(session, response) {
                 if (response.status_code !== Soup.KnownStatusCode.OK) {
-                    global.log("Error during download getInsitutes(): response code " +
+                    global.log(_("Error during download getInsitutes()") + ": response code " +
                         response.status_code + ": " + response.reason_phrase + " - " +
                         response.response_body.data);
                     return;
@@ -149,7 +155,7 @@ EKretaDesklet.prototype = {
 
     onSettingChanged: function() {
         this.getAuthToken(this.instID, this.usrN, this.passW);
-        global.log(UUID + ": Settings changed, reloading desklet.");
+        global.log(UUID + ":" + _("Settings changed, reloading desklet."));
     }
 };
 
