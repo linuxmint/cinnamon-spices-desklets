@@ -69,7 +69,7 @@ EKretaDesklet.prototype = {
                 }
 
                 for(let i = 0; i < subjectCategories.length; i++) {
-                    this.currentSubjectText = new St.Label({"font-weight": "bold"});
+                    this.currentSubjectText = new St.Label();
                     this.currentSubjectText.set_text(subjectCategories[i]);
                     global.log(subjectCategories[i]);
                     this.window.add(this.currentSubjectText);
