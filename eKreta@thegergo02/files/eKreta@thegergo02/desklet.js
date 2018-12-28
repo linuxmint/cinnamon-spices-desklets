@@ -44,9 +44,12 @@ EKretaDesklet.prototype = {
 
 
     setupUI(studentDetails) {
-        this.window = new St.BoxLayout({vertical:true});
+        this.window = new St.BoxLayout({
+            vertical: true,
+            style_class: "container"
+        });
         if (!studentDetails) {
-            this.bigText = new St.Label();
+            this.bigText = new St.Label({style_class: "normalLabel"});
             this.bigText.set_text(_("Error: Couldn't login with the credetinals given. (Check the desklet settings.)"));
             this.window.add(this.bigText);
 
@@ -54,7 +57,7 @@ EKretaDesklet.prototype = {
             return;
         }
 
-        this.bigText = new St.Label();
+        this.bigText = new St.Label({style_class: "normalLabel"});
         this.bigText.set_text(studentDetails.Name + " (" + studentDetails.InstituteName + ")");
         this.window.add(this.bigText);
 
@@ -76,12 +79,28 @@ EKretaDesklet.prototype = {
                 }
             } else {
                 for(let i = 0; i < studentDetails["SubjectAverages"].length; i++) {
-                    this.currentText = new St.Label();
+                    if (studentDetails["SubjectAverages"][i]["Value"] == 5) {
+                        this.gradeColor = "perfectGrade";
+                    } else if (studentDetails["SubjectAverages"][i]["Value"] >= 4.5) {
+                        this.gradeColor = "almostPerfectGrade";
+                    } else if (studentDetails["SubjectAverages"][i]["Value"] >= 3.5) {
+                        this.gradeColor = "goodGrade";
+                    } else if (studentDetails["SubjectAverages"][i]["Value"] >= 2.5) {
+                        this.gradeColor = "badGrade";
+                    } else if (studentDetails["SubjectAverages"][i]["Value"] >= 1.5) {
+                        this.gradeColor = "reallyBadGrade";
+                    } else {
+                        this.gradeColor = "reallyBadGrade";
+                    }
+
+                    this.currentText = new St.Label({style_class: this.gradeColor});
+
                     this.currentSubText = studentDetails["SubjectAverages"][i]["Subject"] + ": " + studentDetails["SubjectAverages"][i]["Value"];
                     if (this.showClassAv) {
                         this.currentSubText += " (Class Av.: " + studentDetails["SubjectAverages"][i]["ClassValue"] +")";
                     }
                     this.currentText.set_text(this.currentSubText);
+
                     this.window.add(this.currentText);
                 }
             }
