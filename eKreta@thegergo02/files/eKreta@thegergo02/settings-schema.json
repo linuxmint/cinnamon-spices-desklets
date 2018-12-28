@@ -27,13 +27,27 @@
 
     "head1": {
         "type" : "header",
-        "description" : "Preferences"
+        "description" : "Grades"
+    },
+
+    "show_grades": {
+        "type" : "checkbox",
+        "default" : true,
+        "description" : "Your grades",
+        "tooltip" : "Show your grades."
     },
 
     "show_class_av": {
         "type" : "checkbox",
         "default" : false,
         "description" : "Class averages",
-        "tooltip" : "Show class averages next to your averages"
+        "tooltip" : "Show class averages next to your averages."
+    },
+
+    "group_sub_categ": {
+        "type" : "checkbox",
+        "default" : false,
+        "description" : "Group by subject category (Doesn't work)",
+        "tooltip" : "Group your average grades by their category. (Doesn't look always good)"
     }
 }
