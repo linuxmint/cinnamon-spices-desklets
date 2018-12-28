@@ -36,6 +36,14 @@ EKretaDesklet.prototype = {
 
     setupUI(studentDetails) {
         this.window = new St.BoxLayout({vertical:true});
+        if (!studentDetails) {
+            this.bigText = new St.Label();
+            this.bigText.set_text("Error: Couldn't login with the credetinals given. (Check the desklet settings.)");
+            this.window.add(this.bigText);
+
+            this.setContent(this.window);
+            return;
+        }
 
         this.bigText = new St.Label();
         this.bigText.set_text(studentDetails.Name);
@@ -54,6 +62,11 @@ EKretaDesklet.prototype = {
     },
 
     getStudentDetails(instID,authToken) {
+        if (authToken == "cantgetauth") {
+            global.log(UUID + ": getStudentDetails(x,y) aknowledged that the auth token doesn't exist, calls setupUI(x) with a false value.");
+            this.setupUI(false);
+            return;
+        }
         global.log(UUID + ": Setting up a GET request in getStudentDetails(x,y).");
         var message = Soup.Message.new(
             "GET",
@@ -91,9 +104,11 @@ EKretaDesklet.prototype = {
         httpSession.queue_message(message,
             Lang.bind(this, function(session, response) {
                 if (response.status_code !== Soup.KnownStatusCode.OK) {
-                    global.log(UUID + ": Error during download in getAuthToken(): response code " +
+                    global.log(UUID + ": Error during download in getAuthToken(x,y,z): response code " +
                         response.status_code + ": " + response.reason_phrase + " - " +
                         response.response_body.data);
+                    this.getStudentDetails(instID,"cantgetauth");
+                    global.log(UUID + ": Getting auth token failed, passing 'cantgetauth' to getStudentDetails(x,y).");
                     return;
                 }
                 var result = JSON.parse(message.response_body.data);
@@ -134,6 +149,7 @@ EKretaDesklet.prototype = {
         this.settings.bind("pass", "passW");
 
         this.getAuthToken(this.instID, this.usrN, this.passW);
+        global.log(UUID + ": Settings changed, reloading desklet.");
     }
 };
 
