@@ -28,6 +28,7 @@ EKretaDesklet.prototype = {
         this.settings.bind("inst_id", "instID");
         this.settings.bind("usr", "usrN");
         this.settings.bind("pass", "passW");
+        this.settings.bind("show_class_av", "showClassAv");
 
         global.log(UUID + ": started getAuthToken(x,y,z).");
         this.getAuthToken(this.instID, this.usrN, this.passW);
@@ -52,7 +53,11 @@ EKretaDesklet.prototype = {
         for(let i = 0; i < studentDetails["SubjectAverages"].length; i++)
         {
             this.currentText = new St.Label();
-            this.currentText.set_text(studentDetails["SubjectAverages"][i]["Subject"] + ": " + studentDetails["SubjectAverages"][i]["Value"] + " (Class Av.: " + studentDetails["SubjectAverages"][i]["ClassValue"] +")");
+            this.currentSubText = studentDetails["SubjectAverages"][i]["Subject"] + ": " + studentDetails["SubjectAverages"][i]["Value"];
+            if (this.showClassAv) {
+                this.currentSubText += " (Class Av.: " + studentDetails["SubjectAverages"][i]["ClassValue"] +")";
+            }
+            this.currentText.set_text(this.currentSubText);
             this.window.add(this.currentText);
         }
         
@@ -142,12 +147,7 @@ EKretaDesklet.prototype = {
         );
     },
 
-    on_settings_changed() {
-        this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, desklet_id);
-        this.settings.bind("inst_id", "instID");
-        this.settings.bind("usr", "usrN");
-        this.settings.bind("pass", "passW");
-
+    onSettingChanged: function() {
         this.getAuthToken(this.instID, this.usrN, this.passW);
         global.log(UUID + ": Settings changed, reloading desklet.");
     }
