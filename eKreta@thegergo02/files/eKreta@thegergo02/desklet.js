@@ -12,17 +12,17 @@ var httpSession = new Soup.SessionAsync();
 
 let studentName = "Unknown";
 
-function eKretaDesklet(metadata, desklet_id) {
+function EKretaDesklet(metadata, desklet_id) {
     this._init(metadata, desklet_id);
 }
 
-eKretaDesklet.prototype = {
+EKretaDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
 
     _init(metadata, desklet_id) {
         Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
         global.log(UUID + ": Desklet started.");
-        this.setHeader('eKreta');
+        this.setHeader("eKreta");
 
         this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, desklet_id);
         this.settings.bind("inst_id", "instID");
@@ -135,8 +135,8 @@ eKretaDesklet.prototype = {
 
         this.getAuthToken(this.instID, this.usrN, this.passW);
     }
-}
+};
 
 function main(metadata, desklet_id) {
-    return new eKretaDesklet(metadata, desklet_id);
+    return new EKretaDesklet(metadata, desklet_id);
 }
