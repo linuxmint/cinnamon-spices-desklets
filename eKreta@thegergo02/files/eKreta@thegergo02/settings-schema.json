@@ -1,5 +1,5 @@
 {
-    "head0" : {
+    "head0": {
         "type" : "header",
         "description" : "Settings for eKreta desklet."
     },
@@ -23,5 +23,17 @@
         "default": "",
         "description": "Your password for the eKreta system.",
         "tooltip": "You need this to fetch data from the eKreta system."
+    },
+
+    "head1": {
+        "type" : "header",
+        "description" : "Preferences"
+    },
+
+    "show_class_av": {
+        "type" : "checkbox",
+        "default" : false,
+        "description" : "Class averages",
+        "tooltip" : "Show class averages next to your averages"
     }
 }
