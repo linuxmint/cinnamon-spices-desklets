@@ -34,7 +34,9 @@ EKretaDesklet.prototype = {
         this.settings.bind("inst_id", "instID");
         this.settings.bind("usr", "usrN");
         this.settings.bind("pass", "passW");
+        this.settings.bind("show_grades", "showGrades");
         this.settings.bind("show_class_av", "showClassAv");
+        this.settings.bind("group_sub_categ", "groupSubCateg");
 
         global.log(UUID + ":" + _("started getAuthToken(x,y,z)."));
         this.getAuthToken(this.instID, this.usrN, this.passW);
@@ -53,18 +55,36 @@ EKretaDesklet.prototype = {
         }
 
         this.bigText = new St.Label();
-        this.bigText.set_text(studentDetails.Name);
+        this.bigText.set_text(studentDetails.Name + " (" + studentDetails.InstituteName + ")");
         this.window.add(this.bigText);
 
-        for(let i = 0; i < studentDetails["SubjectAverages"].length; i++)
-        {
-            this.currentText = new St.Label();
-            this.currentSubText = studentDetails["SubjectAverages"][i]["Subject"] + ": " + studentDetails["SubjectAverages"][i]["Value"];
-            if (this.showClassAv) {
-                this.currentSubText += " (Class Av.: " + studentDetails["SubjectAverages"][i]["ClassValue"] +")";
+        if (this.showGrades) {
+            if (this.groupSubCateg) {
+                //TODO: Implement it correctly, in this state it doesn't work
+                let subjectCategories = new Array();
+                for(let i = 0; i < studentDetails["SubjectAverages"].length; i++) {
+                    if (subjectCategories.indexOf(studentDetails["SubjectAverages"][i]["SubjectCategoryName"]) === -1) {
+                        subjectCategories.push(studentDetails["SubjectAverages"][i]["SubjectCategoryName"]);
+                    }
+                }
+
+                for(let i = 0; i < subjectCategories.length; i++) {
+                    this.currentSubjectText = new St.Label({"font-weight": "bold"});
+                    this.currentSubjectText.set_text(subjectCategories[i]);
+                    global.log(subjectCategories[i]);
+                    this.window.add(this.currentSubjectText);
+                }
+            } else {
+                for(let i = 0; i < studentDetails["SubjectAverages"].length; i++) {
+                    this.currentText = new St.Label();
+                    this.currentSubText = studentDetails["SubjectAverages"][i]["Subject"] + ": " + studentDetails["SubjectAverages"][i]["Value"];
+                    if (this.showClassAv) {
+                        this.currentSubText += " (Class Av.: " + studentDetails["SubjectAverages"][i]["ClassValue"] +")";
+                    }
+                    this.currentText.set_text(this.currentSubText);
+                    this.window.add(this.currentText);
+                }
             }
-            this.currentText.set_text(this.currentSubText);
-            this.window.add(this.currentText);
         }
         
         this.setContent(this.window);
