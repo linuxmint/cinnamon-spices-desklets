@@ -52,7 +52,7 @@ EKretaDesklet.prototype = {
         for(let i = 0; i < studentDetails["SubjectAverages"].length; i++)
         {
             this.currentText = new St.Label();
-            this.currentText.set_text(studentDetails["SubjectAverages"][i]["Subject"] + ": " + studentDetails["SubjectAverages"][i]["Value"]);
+            this.currentText.set_text(studentDetails["SubjectAverages"][i]["Subject"] + ": " + studentDetails["SubjectAverages"][i]["Value"] + " (Class Av.: " + studentDetails["SubjectAverages"][i]["ClassValue"] +")");
             this.window.add(this.currentText);
         }
         
