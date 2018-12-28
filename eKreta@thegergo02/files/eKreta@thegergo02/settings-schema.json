@@ -1,0 +1,27 @@
+{
+    "head0" : {
+        "type" : "header",
+        "description" : "Settings for eKreta desklet."
+    },
+
+    "inst_id": {
+        "type": "entry",
+        "default": "klik",
+        "description": "Institution ID (klik*********)",
+        "tooltip": "When you got your URL to login, before the first dot you got the ID."
+    },
+
+    "usr": {
+        "type": "entry",
+        "default": "",
+        "description": "Your username for the eKreta system.",
+        "tooltip": "You need this to fetch data from the eKreta system."
+    },
+
+    "pass": {
+        "type": "entry",
+        "default": "",
+        "description": "Your password for the eKreta system.",
+        "tooltip": "You need this to fetch data from the eKreta system."
+    }
+}
