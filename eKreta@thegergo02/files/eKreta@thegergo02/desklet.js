@@ -104,7 +104,7 @@ EKretaDesklet.prototype = {
         );
 
         var postParameters = "institute_code=" + instID + "&userName=" + usrN + "&password=" + passW + "&grant_type=password&client_id=919e0c1c-76a2-4646-a2fb-7085bbbf3c56";
-        message.set_request("application/x-www-form-urlencoded",2,postParameters,postParameters.length);
+        message.set_request("application/x-www-form-urlencoded",2,postParameters);
 
         httpSession.queue_message(message,
             Lang.bind(this, function(session, response) {
