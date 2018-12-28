@@ -7,4 +7,4 @@ It displays all of your subject's average.
 Display all of your information from the eKreta system.
 
 ## Screenshot
-![screenshot.png](screenshot.png)
+![screenshot(new).png](screenshot(new).png)
