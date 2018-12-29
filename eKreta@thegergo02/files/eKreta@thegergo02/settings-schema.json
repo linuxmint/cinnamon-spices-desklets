@@ -4,6 +4,11 @@
         "description" : "Settings for eKreta desklet."
     },
 
+    "disclaimer": {
+        "type" : "header",
+        "description" : "You need to reload the desklet for the changes to apply."
+    },
+
     "inst_id": {
         "type": "entry",
         "default": "klik",
@@ -25,105 +30,11 @@
         "tooltip": "You need this to fetch data from the eKreta system."
     },
 
-    "head1": {
-        "type" : "header",
-        "description" : "Grades"
-    },
-
-    "show_grades": {
-        "type" : "checkbox",
-        "default" : true,
-        "description" : "Your grades",
-        "tooltip" : "Show your grades."
-    },
-
-    "group_sub_categ": {
-        "type" : "checkbox",
-        "default" : false,
-        "description" : "Group by subject category",
-        "tooltip" : "Group your average grades by their category. (Doesn't look always good)"
-    },
-
-    "show_class_av": {
-        "type" : "checkbox",
-        "default" : false,
-        "description" : "Class averages",
-        "tooltip" : "Show class averages next to your averages."
-    },
-
-    "show_grade_diff": {
-        "type" : "checkbox",
-        "default" : false,
-        "description" : "Show grade difference",
-        "tooltip" : "Show the difference between your avereages, and your class's averages (You have to turn on class averages)."
-    },
-
-    "perfect_grade_value": {
+    "delay_minutes": {
         "type": "entry",
         "default": "5",
-        "description": "Perfect Grade.",
-        "tooltip": "If your grade equals to this, it will be displayed as a perfect grade."
-    },
-
-    "almost_perfect_grade_value": {
-        "type": "entry",
-        "default": "4.5",
-        "description": "Almost Perfect Grade.",
-        "tooltip": "If your grade greater or equals to this, it will be displayed as an almost perfect grade."
-    },
-
-    "good_grade_value": {
-        "type": "entry",
-        "default": "3.5",
-        "description": "Good Grade.",
-        "tooltip": "If your grade greater or equals to this, it will be displayed as a good grade."
-    },
-
-    "middle_grade_value": {
-        "type": "entry",
-        "default": "2.5",
-        "description": "Middle Grade.",
-        "tooltip": "If your grade greater or equals to this, it will be displayed as a middle grade."
-    },
-
-    "bad_grade_value": {
-        "type": "entry",
-        "default": "1.5",
-        "description": "Bad Grade.",
-        "tooltip": "If your grade greater or equals to this, it will be displayed as a bad grade."
-    },
-
-    "really_bad_grade_value": {
-        "type": "entry",
-        "default": "1",
-        "description": "Really Bad Grade.",
-        "tooltip": "If your grade greater or equals to this, it will be displayed as a really bad grade. (Study sometimes...)"
-    }
-}{
-    "head0": {
-        "type" : "header",
-        "description" : "Settings for eKreta desklet."
-    },
-
-    "inst_id": {
-        "type": "entry",
-        "default": "klik",
-        "description": "Institution ID (klik*********)",
-        "tooltip": "When you got your URL to login, before the first dot you got the ID."
-    },
-
-    "usr": {
-        "type": "entry",
-        "default": "",
-        "description": "Your username for the eKreta system.",
-        "tooltip": "You need this to fetch data from the eKreta system."
-    },
-
-    "pass": {
-        "type": "entry",
-        "default": "",
-        "description": "Your password for the eKreta system.",
-        "tooltip": "You need this to fetch data from the eKreta system."
+        "description": "Data update time interval.",
+        "tooltip": "The time to wait till' the next data update. (In minutes)."
     },
 
     "head1": {
