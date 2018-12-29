@@ -31,12 +31,21 @@ EKretaDesklet.prototype = {
         this.setHeader("eKreta");
 
         this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, desklet_id);
+        // Settings for eKreta desklet.
         this.settings.bind("inst_id", "instID");
         this.settings.bind("usr", "usrN");
         this.settings.bind("pass", "passW");
+        // Grades
         this.settings.bind("show_grades", "showGrades");
         this.settings.bind("show_class_av", "showClassAv");
         this.settings.bind("group_sub_categ", "groupSubCateg");
+        this.settings.bind("perfect_grade_value", "perfectGradeValue");
+        this.settings.bind("almost_perfect_grade_value", "almostPerfectGradeValue");
+        this.settings.bind("perfect_grade_value", "perfectGradeValue");
+        this.settings.bind("good_grade_value", "goodGradeValue");
+        this.settings.bind("middle_grade_value", "middleGradeValue");
+        this.settings.bind("bad_grade_value", "badGradeValue");
+        this.settings.bind("really_bad_grade_value", "reallyBadGradeValue");
 
         global.log(UUID + ":" + _("started getAuthToken(x,y,z)."));
         this.getAuthToken(this.instID, this.usrN, this.passW);
@@ -79,15 +88,17 @@ EKretaDesklet.prototype = {
                 }
             } else {
                 for(let i = 0; i < studentDetails["SubjectAverages"].length; i++) {
-                    if (studentDetails["SubjectAverages"][i]["Value"] == 5) {
+                    if (studentDetails["SubjectAverages"][i]["Value"] == this.perfectGradeValue) {
                         this.gradeColor = "perfectGrade";
-                    } else if (studentDetails["SubjectAverages"][i]["Value"] >= 4.5) {
+                    } else if (studentDetails["SubjectAverages"][i]["Value"] >= this.almostPerfectGradeValue && studentDetails["SubjectAverages"][i]["Value"] < this.perfectGradeValue) {
                         this.gradeColor = "almostPerfectGrade";
-                    } else if (studentDetails["SubjectAverages"][i]["Value"] >= 3.5) {
+                    } else if (studentDetails["SubjectAverages"][i]["Value"] >= this.goodGradeValue && studentDetails["SubjectAverages"][i]["Value"] < this.almostPerfectGradeValue) {
                         this.gradeColor = "goodGrade";
-                    } else if (studentDetails["SubjectAverages"][i]["Value"] >= 2.5) {
+                    } else if (studentDetails["SubjectAverages"][i]["Value"] >= this.middleGradeValue && studentDetails["SubjectAverages"][i]["Value"] < this.goodGradeValue) {
+                        this.gradeColor = "middleGrade";
+                    } else if (studentDetails["SubjectAverages"][i]["Value"] >= this.badGradeValue && studentDetails["SubjectAverages"][i]["Value"] < this.middleGradeValue) {
                         this.gradeColor = "badGrade";
-                    } else if (studentDetails["SubjectAverages"][i]["Value"] >= 1.5) {
+                    } else if (studentDetails["SubjectAverages"][i]["Value"] == this.reallyBadGradeValue){
                         this.gradeColor = "reallyBadGrade";
                     } else {
                         this.gradeColor = "reallyBadGrade";
