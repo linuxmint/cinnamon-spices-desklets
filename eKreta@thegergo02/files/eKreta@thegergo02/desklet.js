@@ -151,7 +151,7 @@ EKretaDesklet.prototype = {
 
     getStudentDetails(instID,authToken) {
         if (authToken == "cantgetauth") {
-            global.log(UUID + ":" + _("getStudentDetails(x,y) aknowledged that the auth token doesn't exist, calls setupUI(x) with a false value."));
+            global.log(UUID + ":" + _("getStudentDetails(x,y) aknowledged that the auth token doesn't exist, calls setupUI(x) with 'cantgetauth' value."));
             this.setupUI(false);
             return;
         }
