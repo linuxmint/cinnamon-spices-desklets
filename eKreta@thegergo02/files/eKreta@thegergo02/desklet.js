@@ -2,6 +2,7 @@ const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
 const Clutter = imports.gi.Clutter;
 const Soup = imports.gi.Soup;
+const Mainloop = imports.mainloop;
 const Lang = imports.lang;
 const Settings = imports.ui.settings;
 const GLib = imports.gi.GLib;
@@ -27,31 +28,14 @@ EKretaDesklet.prototype = {
 
     _init(metadata, desklet_id) {
         Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
+        this.deskletId = desklet_id;
         global.log(UUID + ":" + _("Desklet started."));
         this.setHeader("eKreta");
-
-        this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, desklet_id);
-        // Settings for eKreta desklet.
-        this.settings.bind("inst_id", "instID", this.onSettingChanged);
-        this.settings.bind("usr", "usrN", this.onSettingChanged);
-        this.settings.bind("pass", "passW", this.onSettingChanged);
-        // Grades
-        this.settings.bind("show_grades", "showGrades", this.onSettingChanged);
-        this.settings.bind("group_sub_categ", "groupSubCateg", this.onSettingChanged);
-        this.settings.bind("show_class_av", "showClassAv", this.onSettingChanged);
-        this.settings.bind("show_grade_diff", "showGradeDiff", this.onSettingChanged);
-        this.settings.bind("perfect_grade_value", "perfectGradeValue", this.onSettingChanged);
-        this.settings.bind("almost_perfect_grade_value", "almostPerfectGradeValue", this.onSettingChanged);
-        this.settings.bind("perfect_grade_value", "perfectGradeValue", this.onSettingChanged);
-        this.settings.bind("good_grade_value", "goodGradeValue", this.onSettingChanged);
-        this.settings.bind("middle_grade_value", "middleGradeValue", this.onSettingChanged);
-        this.settings.bind("bad_grade_value", "badGradeValue", this.onSettingChanged);
-        this.settings.bind("really_bad_grade_value", "reallyBadGradeValue", this.onSettingChanged);
-
         global.log(UUID + ":" + _("started getAuthToken(x,y,z)."));
-        this.getAuthToken(this.instID, this.usrN, this.passW);
+        //this.getAuthToken(this.instID, this.usrN, this.passW);
+        this.loadSettings();
+        this.onUpdate();
     },
-
 
     setupUI(studentDetails) {
         this.window = new St.BoxLayout({
@@ -254,9 +238,42 @@ EKretaDesklet.prototype = {
         );
     },
 
-    onSettingChanged() {
+    onUpdate() {
+        global.log(UUID + ":" + _("onUpdate() get called, calling setUpdateTimer() and getAuthToken()"));
+        this.setUpdateTimer();
         this.getAuthToken(this.instID, this.usrN, this.passW);
-        global.log(UUID + ":" + _("Settings changed, reloading desklet."));
+    },
+
+    setUpdateTimer() {
+        this.updateLoop = Mainloop.timeout_add(this.delayMinutes * 60 * 1000, Lang.bind(this, this.onUpdate));
+        global.log(UUID + ":" + _("Setting up mainloop (for " + this.delayMinutes + " min), and binding onUpdate() to it."));
+    },
+
+    removeUpdateTimer() {
+        Mainloop.source_remove(this.updateLoop);
+        global.log(UUID + ":" + _("Removing Mainloop."));
+    },
+
+    loadSettings() {
+        this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, this.deskletId);
+        // Settings for eKreta desklet.
+        this.settings.bind("inst_id", "instID", this.onSettingChanged);
+        this.settings.bind("usr", "usrN", this.onSettingChanged);
+        this.settings.bind("pass", "passW", this.onSettingChanged);
+        this.settings.bind("delay_minutes", "delayMinutes", this.onSettingChanged);
+        // Grades
+        this.settings.bind("show_grades", "showGrades", this.onSettingChanged);
+        this.settings.bind("group_sub_categ", "groupSubCateg", this.onSettingChanged);
+        this.settings.bind("show_class_av", "showClassAv", this.onSettingChanged);
+        this.settings.bind("show_grade_diff", "showGradeDiff", this.onSettingChanged);
+        this.settings.bind("perfect_grade_value", "perfectGradeValue", this.onSettingChanged);
+        this.settings.bind("almost_perfect_grade_value", "almostPerfectGradeValue", this.onSettingChanged);
+        this.settings.bind("perfect_grade_value", "perfectGradeValue", this.onSettingChanged);
+        this.settings.bind("good_grade_value", "goodGradeValue", this.onSettingChanged);
+        this.settings.bind("middle_grade_value", "middleGradeValue", this.onSettingChanged);
+        this.settings.bind("bad_grade_value", "badGradeValue", this.onSettingChanged);
+        this.settings.bind("really_bad_grade_value", "reallyBadGradeValue", this.onSettingChanged);
+        global.log(UUID + ":" + _("Loaded settings."));
     },
 
     showLoadingScreen() {
@@ -268,6 +285,11 @@ EKretaDesklet.prototype = {
         this.loadingText.set_text("Loading...");
         this.loadingWindow.add(this.loadingText);
         this.setContent(this.loadingWindow)
+    },
+
+    on_desklet_removed() {
+        this.removeUpdateTimer();
+        global.log(UUID + ":" + _("Desklet got removed."));
     }
 };
 
