@@ -7,6 +7,10 @@
     color: #ffffff;
 }
 
+.boldLabel {
+    font-weight: bold;
+}
+
 .perfectGrade {
     color: #2ea801;
 }
