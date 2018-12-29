@@ -37,18 +37,18 @@
         "tooltip" : "Show your grades."
     },
 
-    "show_class_av": {
-        "type" : "checkbox",
-        "default" : false,
-        "description" : "Class averages",
-        "tooltip" : "Show class averages next to your averages."
-    },
-
     "group_sub_categ": {
         "type" : "checkbox",
         "default" : false,
         "description" : "Group by subject category",
         "tooltip" : "Group your average grades by their category. (Doesn't look always good)"
+    },
+
+    "show_class_av": {
+        "type" : "checkbox",
+        "default" : false,
+        "description" : "Class averages",
+        "tooltip" : "Show class averages next to your averages."
     },
 
     "perfect_grade_value": {
