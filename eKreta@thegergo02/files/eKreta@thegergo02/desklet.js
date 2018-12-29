@@ -72,7 +72,6 @@ EKretaDesklet.prototype = {
 
         if (this.showGrades) {
             if (this.groupSubCateg) {
-                //TODO: Implement it correctly, in this state it doesn't work
                 let subjectCategories = new Array();
                 for(let i = 0; i < studentDetails["SubjectAverages"].length; i++) {
                     if (subjectCategories.indexOf(studentDetails["SubjectAverages"][i]["SubjectCategoryName"]) === -1) {
@@ -80,11 +79,39 @@ EKretaDesklet.prototype = {
                     }
                 }
 
-                for(let i = 0; i < subjectCategories.length; i++) {
-                    this.currentSubjectText = new St.Label();
-                    this.currentSubjectText.set_text(subjectCategories[i]);
-                    global.log(subjectCategories[i]);
+                for(let j = 0; j < subjectCategories.length; j++) {
+                    this.currentSubjectText = new St.Label({style_class: "boldLabel"});
+                    this.currentSubjectText.set_text(subjectCategories[j]);
                     this.window.add(this.currentSubjectText);
+                    for(let i = 0; i < studentDetails["SubjectAverages"].length; i++) {
+                        if (studentDetails["SubjectAverages"][i]["SubjectCategoryName"] === subjectCategories[j]) {
+                            if (studentDetails["SubjectAverages"][i]["Value"] == this.perfectGradeValue) {
+                                this.gradeColor = "perfectGrade";
+                            } else if (studentDetails["SubjectAverages"][i]["Value"] >= this.almostPerfectGradeValue && studentDetails["SubjectAverages"][i]["Value"] < this.perfectGradeValue) {
+                                this.gradeColor = "almostPerfectGrade";
+                            } else if (studentDetails["SubjectAverages"][i]["Value"] >= this.goodGradeValue && studentDetails["SubjectAverages"][i]["Value"] < this.almostPerfectGradeValue) {
+                                this.gradeColor = "goodGrade";
+                            } else if (studentDetails["SubjectAverages"][i]["Value"] >= this.middleGradeValue && studentDetails["SubjectAverages"][i]["Value"] < this.goodGradeValue) {
+                                this.gradeColor = "middleGrade";
+                            } else if (studentDetails["SubjectAverages"][i]["Value"] >= this.badGradeValue && studentDetails["SubjectAverages"][i]["Value"] < this.middleGradeValue) {
+                                this.gradeColor = "badGrade";
+                            } else if (studentDetails["SubjectAverages"][i]["Value"] == this.reallyBadGradeValue){
+                                this.gradeColor = "reallyBadGrade";
+                            } else {
+                                this.gradeColor = "reallyBadGrade";
+                            }
+        
+                            this.currentText = new St.Label({style_class: this.gradeColor});
+        
+                            this.currentSubText = studentDetails["SubjectAverages"][i]["Subject"] + ": " + studentDetails["SubjectAverages"][i]["Value"];
+                            if (this.showClassAv) {
+                                this.currentSubText += " (Class Av.: " + studentDetails["SubjectAverages"][i]["ClassValue"] +")";
+                            }
+                            this.currentText.set_text(this.currentSubText);
+        
+                            this.window.add(this.currentText);
+                        }
+                    }
                 }
             } else {
                 for(let i = 0; i < studentDetails["SubjectAverages"].length; i++) {
