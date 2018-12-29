@@ -47,7 +47,7 @@
     "group_sub_categ": {
         "type" : "checkbox",
         "default" : false,
-        "description" : "Group by subject category (Doesn't work)",
+        "description" : "Group by subject category",
         "tooltip" : "Group your average grades by their category. (Doesn't look always good)"
     },
 
