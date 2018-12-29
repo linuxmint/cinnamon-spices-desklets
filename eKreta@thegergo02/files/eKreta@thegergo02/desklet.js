@@ -180,6 +180,7 @@ EKretaDesklet.prototype = {
     },
 
     getAuthToken(instID, usrN, passW) {
+        this.showLoadingScreen();
         global.log(UUID + ":" + _("Setting up a POST request in getAuthToken(x,y,z)."));
         var message = Soup.Message.new(
             "POST",
@@ -233,6 +234,17 @@ EKretaDesklet.prototype = {
     onSettingChanged() {
         this.getAuthToken(this.instID, this.usrN, this.passW);
         global.log(UUID + ":" + _("Settings changed, reloading desklet."));
+    },
+
+    showLoadingScreen() {
+        this.loadingWindow = new St.BoxLayout({
+            vertical: true,
+            style_class: "container"
+        });
+        this.loadingText = new St.Label({style_class: "normalLabel"});
+        this.loadingText.set_text("Loading...");
+        this.loadingWindow.add(this.loadingText);
+        this.setContent(this.loadingWindow)
     }
 };
 
