@@ -32,20 +32,20 @@ EKretaDesklet.prototype = {
 
         this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, desklet_id);
         // Settings for eKreta desklet.
-        this.settings.bind("inst_id", "instID");
-        this.settings.bind("usr", "usrN");
-        this.settings.bind("pass", "passW");
+        this.settings.bind("inst_id", "instID", this.onSettingChanged);
+        this.settings.bind("usr", "usrN", this.onSettingChanged);
+        this.settings.bind("pass", "passW", this.onSettingChanged);
         // Grades
-        this.settings.bind("show_grades", "showGrades");
-        this.settings.bind("show_class_av", "showClassAv");
-        this.settings.bind("group_sub_categ", "groupSubCateg");
-        this.settings.bind("perfect_grade_value", "perfectGradeValue");
-        this.settings.bind("almost_perfect_grade_value", "almostPerfectGradeValue");
-        this.settings.bind("perfect_grade_value", "perfectGradeValue");
-        this.settings.bind("good_grade_value", "goodGradeValue");
-        this.settings.bind("middle_grade_value", "middleGradeValue");
-        this.settings.bind("bad_grade_value", "badGradeValue");
-        this.settings.bind("really_bad_grade_value", "reallyBadGradeValue");
+        this.settings.bind("show_grades", "showGrades", this.onSettingChanged);
+        this.settings.bind("show_class_av", "showClassAv", this.onSettingChanged);
+        this.settings.bind("group_sub_categ", "groupSubCateg", this.onSettingChanged);
+        this.settings.bind("perfect_grade_value", "perfectGradeValue", this.onSettingChanged);
+        this.settings.bind("almost_perfect_grade_value", "almostPerfectGradeValue", this.onSettingChanged);
+        this.settings.bind("perfect_grade_value", "perfectGradeValue", this.onSettingChanged);
+        this.settings.bind("good_grade_value", "goodGradeValue", this.onSettingChanged);
+        this.settings.bind("middle_grade_value", "middleGradeValue", this.onSettingChanged);
+        this.settings.bind("bad_grade_value", "badGradeValue", this.onSettingChanged);
+        this.settings.bind("really_bad_grade_value", "reallyBadGradeValue", this.onSettingChanged);
 
         global.log(UUID + ":" + _("started getAuthToken(x,y,z)."));
         this.getAuthToken(this.instID, this.usrN, this.passW);
@@ -230,7 +230,7 @@ EKretaDesklet.prototype = {
         );
     },
 
-    onSettingChanged: function() {
+    onSettingChanged() {
         this.getAuthToken(this.instID, this.usrN, this.passW);
         global.log(UUID + ":" + _("Settings changed, reloading desklet."));
     }
