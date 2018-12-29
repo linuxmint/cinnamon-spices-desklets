@@ -37,8 +37,9 @@ EKretaDesklet.prototype = {
         this.settings.bind("pass", "passW", this.onSettingChanged);
         // Grades
         this.settings.bind("show_grades", "showGrades", this.onSettingChanged);
-        this.settings.bind("show_class_av", "showClassAv", this.onSettingChanged);
         this.settings.bind("group_sub_categ", "groupSubCateg", this.onSettingChanged);
+        this.settings.bind("show_class_av", "showClassAv", this.onSettingChanged);
+        this.settings.bind("show_grade_diff", "showGradeDiff", this.onSettingChanged);
         this.settings.bind("perfect_grade_value", "perfectGradeValue", this.onSettingChanged);
         this.settings.bind("almost_perfect_grade_value", "almostPerfectGradeValue", this.onSettingChanged);
         this.settings.bind("perfect_grade_value", "perfectGradeValue", this.onSettingChanged);
@@ -106,6 +107,17 @@ EKretaDesklet.prototype = {
                             this.currentSubText = studentDetails["SubjectAverages"][i]["Subject"] + ": " + studentDetails["SubjectAverages"][i]["Value"];
                             if (this.showClassAv) {
                                 this.currentSubText += " (Class Av.: " + studentDetails["SubjectAverages"][i]["ClassValue"] +")";
+
+                                if (this.showGradeDiff) {
+                                    this.diff = +(studentDetails["SubjectAverages"][i]["Value"] - studentDetails["SubjectAverages"][i]["ClassValue"]).toFixed(2);
+                                    if (studentDetails["SubjectAverages"][i]["Value"] > studentDetails["SubjectAverages"][i]["ClassValue"]) {
+                                        this.currentSubText += " (Your grade is better with: +" + this.diff +")";
+                                    } else if (studentDetails["SubjectAverages"][i]["Value"] < studentDetails["SubjectAverages"][i]["ClassValue"]) {
+                                        this.currentSubText += " (Your grade is worse with: " + this.diff +")";
+                                    } else {
+                                        this.currentSubText += " (Your grade is equal)";
+                                    }
+                                }
                             }
                             this.currentText.set_text(this.currentSubText);
         
@@ -136,6 +148,17 @@ EKretaDesklet.prototype = {
                     this.currentSubText = studentDetails["SubjectAverages"][i]["Subject"] + ": " + studentDetails["SubjectAverages"][i]["Value"];
                     if (this.showClassAv) {
                         this.currentSubText += " (Class Av.: " + studentDetails["SubjectAverages"][i]["ClassValue"] +")";
+
+                        if (this.showGradeDiff) {
+                            this.diff = +(studentDetails["SubjectAverages"][i]["Value"] - studentDetails["SubjectAverages"][i]["ClassValue"]).toFixed(2);
+                            if (studentDetails["SubjectAverages"][i]["Value"] > studentDetails["SubjectAverages"][i]["ClassValue"]) {
+                                this.currentSubText += " (Your grade is better with: +" + this.diff +")";
+                            } else if (studentDetails["SubjectAverages"][i]["Value"] < studentDetails["SubjectAverages"][i]["ClassValue"]) {
+                                this.currentSubText += " (Your grade is worse with: " + this.diff +")";
+                            } else {
+                                this.currentSubText += " (Your grade is equal)";
+                            }
+                        }
                     }
                     this.currentText.set_text(this.currentSubText);
 
