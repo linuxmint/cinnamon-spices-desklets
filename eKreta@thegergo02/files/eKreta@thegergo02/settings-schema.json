@@ -49,5 +49,47 @@
         "default" : false,
         "description" : "Group by subject category (Doesn't work)",
         "tooltip" : "Group your average grades by their category. (Doesn't look always good)"
+    },
+
+    "perfect_grade_value": {
+        "type": "entry",
+        "default": "5",
+        "description": "Perfect Grade.",
+        "tooltip": "If your grade equals to this, it will be displayed as a perfect grade."
+    },
+
+    "almost_perfect_grade_value": {
+        "type": "entry",
+        "default": "4.5",
+        "description": "Almost Perfect Grade.",
+        "tooltip": "If your grade greater or equals to this, it will be displayed as an almost perfect grade."
+    },
+
+    "good_grade_value": {
+        "type": "entry",
+        "default": "3.5",
+        "description": "Good Grade.",
+        "tooltip": "If your grade greater or equals to this, it will be displayed as a good grade."
+    },
+
+    "middle_grade_value": {
+        "type": "entry",
+        "default": "2.5",
+        "description": "Middle Grade.",
+        "tooltip": "If your grade greater or equals to this, it will be displayed as a middle grade."
+    },
+
+    "bad_grade_value": {
+        "type": "entry",
+        "default": "1.5",
+        "description": "Bad Grade.",
+        "tooltip": "If your grade greater or equals to this, it will be displayed as a bad grade."
+    },
+
+    "really_bad_grade_value": {
+        "type": "entry",
+        "default": "1",
+        "description": "Really Bad Grade.",
+        "tooltip": "If your grade greater or equals to this, it will be displayed as a really bad grade. (Study sometimes...)"
     }
 }
