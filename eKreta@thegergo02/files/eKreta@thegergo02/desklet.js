@@ -1,3 +1,4 @@
+//Imports
 const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
 const Clutter = imports.gi.Clutter;
@@ -8,250 +9,36 @@ const Settings = imports.ui.settings;
 const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
 
+//Constant strings
 const API_LINK_INST = "https://kretaglobalmobileapi.ekreta.hu/api/v1/Institute";
 const UUID = "eKreta@thegergo02";
 
+//Some variable initialization
 var httpSession = new Soup.SessionAsync();
 
+//Setting up translations
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale")
-
 function _(str) {
   return Gettext.dgettext(UUID, str);
 }
 
+//Constructor function
 function EKretaDesklet(metadata, desklet_id) {
     this._init(metadata, desklet_id);
 }
 
+//Desklet
 EKretaDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
 
     _init(metadata, desklet_id) {
         Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
         this.deskletId = desklet_id;
-        global.log(UUID + ":" + _("Desklet started."));
+        this.showLoadingScreen();
         this.setHeader("eKreta");
-        global.log(UUID + ":" + _("started getAuthToken(x,y,z)."));
-        //this.getAuthToken(this.instID, this.usrN, this.passW);
         this.loadSettings();
         this.onUpdate();
-    },
-
-    setupUI(studentDetails) {
-        this.window = new St.BoxLayout({
-            vertical: true,
-            style_class: "container"
-        });
-        if (!studentDetails) {
-            this.bigText = new St.Label({style_class: "normalLabel"});
-            this.bigText.set_text(_("Error: Couldn't login with the credetinals given. (Check the desklet settings.)"));
-            this.window.add(this.bigText);
-
-            this.setContent(this.window);
-            return;
-        }
-
-        this.bigText = new St.Label({style_class: "normalLabel"});
-        this.bigText.set_text(studentDetails.Name + " (" + studentDetails.InstituteName + ")");
-        this.window.add(this.bigText);
-
-        if (this.showGrades) {
-            if (this.groupSubCateg) {
-                let subjectCategories = new Array();
-                for(let i = 0; i < studentDetails["SubjectAverages"].length; i++) {
-                    if (subjectCategories.indexOf(studentDetails["SubjectAverages"][i]["SubjectCategoryName"]) === -1) {
-                        subjectCategories.push(studentDetails["SubjectAverages"][i]["SubjectCategoryName"]);
-                    }
-                }
-
-                for(let j = 0; j < subjectCategories.length; j++) {
-                    this.currentSubjectText = new St.Label({style_class: "boldLabel"});
-                    this.currentSubjectText.set_text(subjectCategories[j]);
-                    this.window.add(this.currentSubjectText);
-                    for(let i = 0; i < studentDetails["SubjectAverages"].length; i++) {
-                        if (studentDetails["SubjectAverages"][i]["SubjectCategoryName"] === subjectCategories[j]) {
-                            if (studentDetails["SubjectAverages"][i]["Value"] == this.perfectGradeValue) {
-                                this.gradeColor = "perfectGrade";
-                            } else if (studentDetails["SubjectAverages"][i]["Value"] >= this.almostPerfectGradeValue && studentDetails["SubjectAverages"][i]["Value"] < this.perfectGradeValue) {
-                                this.gradeColor = "almostPerfectGrade";
-                            } else if (studentDetails["SubjectAverages"][i]["Value"] >= this.goodGradeValue && studentDetails["SubjectAverages"][i]["Value"] < this.almostPerfectGradeValue) {
-                                this.gradeColor = "goodGrade";
-                            } else if (studentDetails["SubjectAverages"][i]["Value"] >= this.middleGradeValue && studentDetails["SubjectAverages"][i]["Value"] < this.goodGradeValue) {
-                                this.gradeColor = "middleGrade";
-                            } else if (studentDetails["SubjectAverages"][i]["Value"] >= this.badGradeValue && studentDetails["SubjectAverages"][i]["Value"] < this.middleGradeValue) {
-                                this.gradeColor = "badGrade";
-                            } else if (studentDetails["SubjectAverages"][i]["Value"] == this.reallyBadGradeValue){
-                                this.gradeColor = "reallyBadGrade";
-                            } else {
-                                this.gradeColor = "reallyBadGrade";
-                            }
-        
-                            this.currentText = new St.Label({style_class: this.gradeColor});
-        
-                            this.currentSubText = studentDetails["SubjectAverages"][i]["Subject"] + ": " + studentDetails["SubjectAverages"][i]["Value"];
-                            if (this.showClassAv) {
-                                this.currentSubText += " (Class Av.: " + studentDetails["SubjectAverages"][i]["ClassValue"] +")";
-
-                                if (this.showGradeDiff) {
-                                    this.diff = +(studentDetails["SubjectAverages"][i]["Value"] - studentDetails["SubjectAverages"][i]["ClassValue"]).toFixed(2);
-                                    if (studentDetails["SubjectAverages"][i]["Value"] > studentDetails["SubjectAverages"][i]["ClassValue"]) {
-                                        this.currentSubText += " (Your grade is better with: +" + this.diff +")";
-                                    } else if (studentDetails["SubjectAverages"][i]["Value"] < studentDetails["SubjectAverages"][i]["ClassValue"]) {
-                                        this.currentSubText += " (Your grade is worse with: " + this.diff +")";
-                                    } else {
-                                        this.currentSubText += " (Your grade is equal)";
-                                    }
-                                }
-                            }
-                            this.currentText.set_text(this.currentSubText);
-        
-                            this.window.add(this.currentText);
-                        }
-                    }
-                }
-            } else {
-                for(let i = 0; i < studentDetails["SubjectAverages"].length; i++) {
-                    if (studentDetails["SubjectAverages"][i]["Value"] == this.perfectGradeValue) {
-                        this.gradeColor = "perfectGrade";
-                    } else if (studentDetails["SubjectAverages"][i]["Value"] >= this.almostPerfectGradeValue && studentDetails["SubjectAverages"][i]["Value"] < this.perfectGradeValue) {
-                        this.gradeColor = "almostPerfectGrade";
-                    } else if (studentDetails["SubjectAverages"][i]["Value"] >= this.goodGradeValue && studentDetails["SubjectAverages"][i]["Value"] < this.almostPerfectGradeValue) {
-                        this.gradeColor = "goodGrade";
-                    } else if (studentDetails["SubjectAverages"][i]["Value"] >= this.middleGradeValue && studentDetails["SubjectAverages"][i]["Value"] < this.goodGradeValue) {
-                        this.gradeColor = "middleGrade";
-                    } else if (studentDetails["SubjectAverages"][i]["Value"] >= this.badGradeValue && studentDetails["SubjectAverages"][i]["Value"] < this.middleGradeValue) {
-                        this.gradeColor = "badGrade";
-                    } else if (studentDetails["SubjectAverages"][i]["Value"] == this.reallyBadGradeValue){
-                        this.gradeColor = "reallyBadGrade";
-                    } else {
-                        this.gradeColor = "reallyBadGrade";
-                    }
-
-                    this.currentText = new St.Label({style_class: this.gradeColor});
-
-                    this.currentSubText = studentDetails["SubjectAverages"][i]["Subject"] + ": " + studentDetails["SubjectAverages"][i]["Value"];
-                    if (this.showClassAv) {
-                        this.currentSubText += " (Class Av.: " + studentDetails["SubjectAverages"][i]["ClassValue"] +")";
-
-                        if (this.showGradeDiff) {
-                            this.diff = +(studentDetails["SubjectAverages"][i]["Value"] - studentDetails["SubjectAverages"][i]["ClassValue"]).toFixed(2);
-                            if (studentDetails["SubjectAverages"][i]["Value"] > studentDetails["SubjectAverages"][i]["ClassValue"]) {
-                                this.currentSubText += " (Your grade is better with: +" + this.diff +")";
-                            } else if (studentDetails["SubjectAverages"][i]["Value"] < studentDetails["SubjectAverages"][i]["ClassValue"]) {
-                                this.currentSubText += " (Your grade is worse with: " + this.diff +")";
-                            } else {
-                                this.currentSubText += " (Your grade is equal)";
-                            }
-                        }
-                    }
-                    this.currentText.set_text(this.currentSubText);
-
-                    this.window.add(this.currentText);
-                }
-            }
-        }
-        
-        this.setContent(this.window);
-        global.log(UUID + ":" + _("UI now ready in setupUI(x)."));
-        global.log(UUID + ":" + _("Desklet loaded successfully."));
-    },
-
-    getStudentDetails(instID,authToken) {
-        if (authToken == "cantgetauth") {
-            global.log(UUID + ":" + _("getStudentDetails(x,y) aknowledged that the auth token doesn't exist, calls setupUI(x) with 'cantgetauth' value."));
-            this.setupUI(false);
-            return;
-        }
-        global.log(UUID + ":" + _("Setting up a GET request in getStudentDetails(x,y)."));
-        var message = Soup.Message.new(
-            "GET",
-            "https://" + instID + ".e-kreta.hu/mapi/api/v1/Student"
-        );
-        message.request_headers.append("Authorization", "Bearer " + authToken);
-    
-        httpSession.queue_message(message,
-            Lang.bind(this, function(session, response) {
-                if (response.status_code !== Soup.KnownStatusCode.OK) {
-                    global.log(UUID + ":" + _("Error during download in getStudentDetails()") + ": response code " +
-                        response.status_code + ": " + response.reason_phrase + " - " +
-                        response.response_body.data);
-                    return;
-                }
-                var result = JSON.parse(message.response_body.data);
-                global.log(UUID + ":" + _("Got correct response in getStudentDetails(x,y)."));
-                global.log(UUID + ":" + _("Starting setupUI(x)."));
-                this.setupUI(result);
-                return;
-            })
-        );
-    },
-
-    getAuthToken(instID, usrN, passW) {
-        this.showLoadingScreen();
-        global.log(UUID + ":" + _("Setting up a POST request in getAuthToken(x,y,z)."));
-        var message = Soup.Message.new(
-            "POST",
-            "https://" + instID + ".e-kreta.hu/idp/api/v1/Token"
-        );
-
-        var postParameters = "institute_code=" + instID + "&userName=" + usrN + "&password=" + passW + "&grant_type=password&client_id=919e0c1c-76a2-4646-a2fb-7085bbbf3c56";
-        message.set_request("application/x-www-form-urlencoded",2,postParameters);
-
-        httpSession.queue_message(message,
-            Lang.bind(this, function(session, response) {
-                if (response.status_code !== Soup.KnownStatusCode.OK) {
-                    global.log(UUID + ":" + _("Error during download in getAuthToken(x,y,z)") + ": response code " +
-                        response.status_code + ": " + response.reason_phrase + " - " +
-                        response.response_body.data);
-                    this.getStudentDetails(instID,"cantgetauth");
-                    global.log(UUID + ":" + _("Getting auth token failed, passing 'cantgetauth' to getStudentDetails(x,y)."));
-                    return;
-                }
-                var result = JSON.parse(message.response_body.data);
-                global.log(UUID + ":" + _("Got correct response in getAuthToken(x,y,z)."));
-                global.log(UUID + ":" + _("Starting getStudentDetails(x,y)."));
-                this.getStudentDetails(instID,result["access_token"]);
-                return;
-            })
-        );
-    },
-
-    getInstitutes() {
-        var message = Soup.Message.new(
-            "GET",
-            API_LINK_INST
-        );
-        message.request_headers.append("apiKey", "7856d350-1fda-45f5-822d-e1a2f3f1acf0");
-    
-        httpSession.queue_message(message,
-            Lang.bind(this, function(session, response) {
-                if (response.status_code !== Soup.KnownStatusCode.OK) {
-                    global.log(_("Error during download getInsitutes()") + ": response code " +
-                        response.status_code + ": " + response.reason_phrase + " - " +
-                        response.response_body.data);
-                    return;
-                }
-    
-                var result = JSON.parse(message.response_body.data);
-                return;
-            })
-        );
-    },
-
-    onUpdate() {
-        global.log(UUID + ":" + _("onUpdate() get called, calling setUpdateTimer() and getAuthToken()"));
-        this.setUpdateTimer();
-        this.getAuthToken(this.instID, this.usrN, this.passW);
-    },
-
-    setUpdateTimer() {
-        this.updateLoop = Mainloop.timeout_add(this.delayMinutes * 60 * 1000, Lang.bind(this, this.onUpdate));
-        global.log(UUID + ":" + _("Setting up mainloop (for " + this.delayMinutes + " min), and binding onUpdate() to it."));
-    },
-
-    removeUpdateTimer() {
-        Mainloop.source_remove(this.updateLoop);
-        global.log(UUID + ":" + _("Removing Mainloop."));
+        global.log(UUID + ":" + _("Desklet started."));
     },
 
     loadSettings() {
@@ -274,6 +61,244 @@ EKretaDesklet.prototype = {
         this.settings.bind("bad_grade_value", "badGradeValue", this.onSettingChanged);
         this.settings.bind("really_bad_grade_value", "reallyBadGradeValue", this.onSettingChanged);
         global.log(UUID + ":" + _("Loaded settings."));
+        return;
+    },
+
+    updateData() {
+        this.showLoadingScreen();
+        this.getAuthToken(this.instID, this.usrN, this.passW, function(result, upperThis) {
+            upperThis.getStudentDetails(upperThis.instID,result,function(result, upperThis) {
+                upperThis.setupUI(result);
+            });
+        });
+        return;
+    },
+
+    onUpdate() {
+        global.log(UUID + ":" + _("onUpdate() got called."));
+        this.setUpdateTimer();
+        this.updateData();
+        return;
+    },
+
+    setUpdateTimer() {
+        global.log(UUID + ":" + _("setUpdateTimer() got called."));
+        this.updateLoop = Mainloop.timeout_add(this.delayMinutes * 60 * 1000, Lang.bind(this, this.onUpdate));
+        global.log(UUID + ":" + _("Setting up mainloop (for " + this.delayMinutes + " min), and binding onUpdate() to it."));
+        return;
+    },
+
+    removeUpdateTimer() {
+        if (this.updateLoop !== null) {
+            Mainloop.source_remove(this.updateLoop);
+            global.log(UUID + ":" + _("Removing Mainloop."));
+        }
+        return;
+    },
+
+    setupUI(studentDetails) {
+        this.window = new St.BoxLayout({
+            vertical: true,
+            style_class: "container"
+        });
+
+        if (studentDetails === "cantgetauth") {
+            this.bigText = new St.Label({style_class: "normalLabel"});
+            this.bigText.set_text(_("Error: Couldn't login with the credetinals given. (Check the desklet settings.)"));
+
+            this.window.add(this.bigText);
+            this.setContent(this.window);
+            return;
+        }
+
+        this.bigText = new St.Label({style_class: "normalLabel"});
+        this.bigText.set_text(studentDetails.Name + " (" + studentDetails.InstituteName + ")");
+        this.window.add(this.bigText);
+
+        if (this.showGrades) {
+            if (this.groupSubCateg) {
+                let subjectCategories = new Array();
+                for(let i = 0; i < studentDetails["SubjectAverages"].length; i++) {
+                    if (subjectCategories.indexOf(studentDetails["SubjectAverages"][i]["SubjectCategoryName"]) === -1) {
+                        subjectCategories.push(studentDetails["SubjectAverages"][i]["SubjectCategoryName"]);
+                    }
+                }
+
+                for(let j = 0; j < subjectCategories.length; j++) {
+                    this.currentSubjectText = new St.Label({style_class: "boldLabel"});
+                    this.currentSubjectText.set_text(subjectCategories[j]);
+                    this.window.add(this.currentSubjectText);
+                    for(let i = 0; i < studentDetails["SubjectAverages"].length; i++) {
+                        this.gradeAverage = studentDetails["SubjectAverages"][i]["Value"];
+                        this.subjectName = studentDetails["SubjectAverages"][i]["Subject"];
+                        this.classAverage = studentDetails["SubjectAverages"][i]["ClassValue"];
+
+                        if (studentDetails["SubjectAverages"][i]["SubjectCategoryName"] === subjectCategories[j]) {
+                            this.getGradeColor(this.gradeAverage,function(result,upperThis) {
+                                upperThis.gradeColor = result;
+                            });
+        
+                            this.currentText = new St.Label({style_class: this.gradeColor});
+                            this.currentSubText = this.subjectName + ": " + this.gradeAverage;
+        
+                            if (this.showClassAv) {
+                                this.currentSubText += " (Class Av.: " + this.classAverage +")";
+        
+                                if (this.showGradeDiff) {
+                                    this.diff = +(this.gradeAverage - this.classAverage).toFixed(2);
+                                    if (this.gradeAverage > this.classAverage) {
+                                        this.currentSubText += " (Your grade is better with: +" + this.diff +")";
+                                    } else if (this.gradeAverage < this.classAverage) {
+                                        this.currentSubText += " (Your grade is worse with: -" + this.diff +")";
+                                    } else {
+                                        this.currentSubText += " (Your grade is equal)";
+                                    }
+                                }
+                            }
+
+                            this.currentText.set_text(this.currentSubText);
+                            this.window.add(this.currentText);
+                        }
+                    }
+                }
+            } else {
+                for(let i = 0; i < studentDetails["SubjectAverages"].length; i++) {
+                    this.gradeAverage = studentDetails["SubjectAverages"][i]["Value"];
+                    this.subjectName = studentDetails["SubjectAverages"][i]["Subject"];
+                    this.classAverage = studentDetails["SubjectAverages"][i]["ClassValue"];
+
+                    this.getGradeColor(this.gradeAverage,function(result,upperThis) {
+                        upperThis.gradeColor = result;
+                    });
+
+                    this.currentText = new St.Label({style_class: this.gradeColor});
+                    this.currentSubText = this.subjectName + ": " + this.gradeAverage;
+
+                    if (this.showClassAv) {
+                        this.currentSubText += " (Class Av.: " + this.classAverage +")";
+
+                        if (this.showGradeDiff) {
+                            this.diff = +(this.gradeAverage - this.classAverage).toFixed(2);
+                            if (this.gradeAverage > this.classAverage) {
+                                this.currentSubText += " (Your grade is better with: +" + this.diff +")";
+                            } else if (this.gradeAverage < this.classAverage) {
+                                this.currentSubText += " (Your grade is worse with: -" + this.diff +")";
+                            } else {
+                                this.currentSubText += " (Your grade is equal)";
+                            }
+                        }
+                    }
+
+                    this.currentText.set_text(this.currentSubText);
+                    this.window.add(this.currentText);
+                }
+            }
+        }
+        
+        this.setContent(this.window);
+        global.log(UUID + ":" + _("UI now ready in setupUI(x)."));
+        global.log(UUID + ":" + _("Desklet loaded successfully."));
+    },
+
+    getAuthToken(instID, usrN, passW, callbackF) {
+        global.log(UUID + ":" + _("Setting up a POST request in getAuthToken()."));
+        var message = Soup.Message.new(
+            "POST",
+            "https://" + instID + ".e-kreta.hu/idp/api/v1/Token"
+        );
+
+        var postParameters = "institute_code=" + instID + "&userName=" + usrN + "&password=" + passW + "&grant_type=password&client_id=919e0c1c-76a2-4646-a2fb-7085bbbf3c56";
+        message.set_request("application/x-www-form-urlencoded",2,postParameters);
+
+        httpSession.queue_message(message,
+            Lang.bind(this, function(session, response) {
+                if (response.status_code !== Soup.KnownStatusCode.OK) {
+                    global.log(UUID + ":" + _("Error during download in getAuthToken(x,y,z)") + ": response code " +
+                        response.status_code + ": " + response.reason_phrase + " - " +
+                        response.response_body.data);
+                    global.log(UUID + ":" + _("Getting auth token failed, passing 'cantgetauth'."));
+                    callbackF('cantgetauth', this);
+                    return;
+                }
+                var result = JSON.parse(message.response_body.data);
+                global.log(UUID + ":" + _("Got correct response in getAuthToken()."));
+                callbackF(result["access_token"], this);
+                return;
+            })
+        );
+    },
+
+    getStudentDetails(instID,authToken,callbackF) {
+        if (authToken == "cantgetauth") {
+            global.log(UUID + ":" + _("getStudentDetails() aknowledged that the auth token doesn't exist, passing 'cantgetauth' value."));
+            callbackF("cantgetauth", this);
+            return;
+        }
+
+        global.log(UUID + ":" + _("Setting up a GET request in getStudentDetails()."));
+        var message = Soup.Message.new(
+            "GET",
+            "https://" + instID + ".e-kreta.hu/mapi/api/v1/Student"
+        );
+        message.request_headers.append("Authorization", "Bearer " + authToken);
+    
+        httpSession.queue_message(message,
+            Lang.bind(this, function(session, response) {
+                if (response.status_code !== Soup.KnownStatusCode.OK) {
+                    global.log(UUID + ":" + _("Error during download in getStudentDetails()") + ": response code " +
+                        response.status_code + ": " + response.reason_phrase + " - " +
+                        response.response_body.data);
+                    callbackF("cantgetauth",this); //TODO: Create a correct error value.
+                    return;
+                }
+                var result = JSON.parse(message.response_body.data);
+                global.log(UUID + ":" + _("Got correct response in getStudentDetails()."));
+                callbackF(result, this);
+                return;
+            })
+        );
+    },
+
+    getInstitutes(callbackF) {
+        var message = Soup.Message.new(
+            "GET",
+            API_LINK_INST
+        );
+        message.request_headers.append("apiKey", "7856d350-1fda-45f5-822d-e1a2f3f1acf0");
+    
+        httpSession.queue_message(message,
+            Lang.bind(this, function(session, response) {
+                if (response.status_code !== Soup.KnownStatusCode.OK) {
+                    global.log(_("Error during download getInsitutes()") + ": response code " +
+                        response.status_code + ": " + response.reason_phrase + " - " +
+                        response.response_body.data);
+                    callbackF("error", this);
+                    return;
+                }
+    
+                var result = JSON.parse(message.response_body.data);
+                callbackF(result, this);
+                return;
+            })
+        );
+    },
+
+    getGradeColor(gradeValue, callbackF) {
+        if (gradeValue == this.perfectGradeValue) {
+            callbackF("perfectGrade", this);
+        } else if (gradeValue >= this.almostPerfectGradeValue && gradeValue < this.perfectGradeValue) {
+            callbackF("almostPerfectGrade", this);
+        } else if (gradeValue >= this.goodGradeValue && gradeValue < this.almostPerfectGradeValue) {
+            callbackF("goodGrade", this);
+        } else if (gradeValue >= this.middleGradeValue && gradeValue < this.goodGradeValue) {
+            callbackF("middleGrade", this);
+        } else if (gradeValue >= this.badGradeValue && gradeValue < this.middleGradeValue) {
+            callbackF("badGrade", this);
+        } else if (gradeValue == this.reallyBadGradeValue){
+            callbackF("reallyBadGrade", this);
+        } else {
+            callbackF("reallyBadGrade", this);
+        }
     },
 
     showLoadingScreen() {
