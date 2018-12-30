@@ -31,6 +31,11 @@ function EKretaDesklet(metadata, desklet_id) {
 EKretaDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
 
+    //Initialization function
+    /*
+        We start to load up the desklet, 
+        it's settings, and start the mainloop creator function. 
+    */
     _init(metadata, desklet_id) {
         Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
         this.deskletId = desklet_id;
@@ -41,6 +46,10 @@ EKretaDesklet.prototype = {
         global.log(UUID + ":" + _("Desklet started."));
     },
 
+    //Settings loader function
+    /*
+        This function loads in our settings.
+    */
     loadSettings() {
         this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, this.deskletId);
         // Settings for eKreta desklet.
@@ -64,6 +73,11 @@ EKretaDesklet.prototype = {
         return;
     },
 
+    //Data updater function
+    /*
+        This function gets a new auth token, 
+        with it the current data from the KRETA servers.
+    */
     updateData() {
         this.showLoadingScreen();
         this.getAuthToken(this.instID, this.usrN, this.passW, function(result, upperThis) {
@@ -74,13 +88,23 @@ EKretaDesklet.prototype = {
         return;
     },
 
+    //onUpdate() function
+    /*
+        This function gets called in time intervals, 
+        this reloads the data and sets up the UI with the new data. 
+    */
     onUpdate() {
         global.log(UUID + ":" + _("onUpdate() got called."));
         this.setUpdateTimer();
         this.updateData();
         return;
     },
-
+    
+    //Mainloop creator function
+    /*
+        This function creates the mainloop,
+        and with it we fetch the current data, 
+    */
     setUpdateTimer() {
         global.log(UUID + ":" + _("setUpdateTimer() got called."));
         this.updateLoop = Mainloop.timeout_add(this.delayMinutes * 60 * 1000, Lang.bind(this, this.onUpdate));
@@ -88,6 +112,11 @@ EKretaDesklet.prototype = {
         return;
     },
 
+    //Mainloop remover function
+    /*
+        This function removes the mainloop 
+        when we don't need it. 
+    */
     removeUpdateTimer() {
         if (this.updateLoop !== null) {
             Mainloop.source_remove(this.updateLoop);
@@ -96,6 +125,11 @@ EKretaDesklet.prototype = {
         return;
     },
 
+    //UI creator function
+    /*
+        This creates the user interface for our desklet,
+        so it's an important function. 
+    */
     setupUI(studentDetails) {
         this.window = new St.BoxLayout({
             vertical: true,
@@ -145,14 +179,9 @@ EKretaDesklet.prototype = {
                                 this.currentSubText += " (Class Av.: " + this.classAverage +")";
         
                                 if (this.showGradeDiff) {
-                                    this.diff = +(this.gradeAverage - this.classAverage).toFixed(2);
-                                    if (this.gradeAverage > this.classAverage) {
-                                        this.currentSubText += " (Your grade is better with: +" + this.diff +")";
-                                    } else if (this.gradeAverage < this.classAverage) {
-                                        this.currentSubText += " (Your grade is worse with: -" + this.diff +")";
-                                    } else {
-                                        this.currentSubText += " (Your grade is equal)";
-                                    }
+                                    this.getClassGradeDiff(this.gradeAverage, this.classAverage, function(result, upperThis) {
+                                        upperThis.currentSubText += result;
+                                    });
                                 }
                             }
 
@@ -178,14 +207,9 @@ EKretaDesklet.prototype = {
                         this.currentSubText += " (Class Av.: " + this.classAverage +")";
 
                         if (this.showGradeDiff) {
-                            this.diff = +(this.gradeAverage - this.classAverage).toFixed(2);
-                            if (this.gradeAverage > this.classAverage) {
-                                this.currentSubText += " (Your grade is better with: +" + this.diff +")";
-                            } else if (this.gradeAverage < this.classAverage) {
-                                this.currentSubText += " (Your grade is worse with: -" + this.diff +")";
-                            } else {
-                                this.currentSubText += " (Your grade is equal)";
-                            }
+                            this.getClassGradeDiff(this.gradeAverage, this.classAverage, function(result, upperThis) {
+                                upperThis.currentSubText += result;
+                            });
                         }
                     }
 
@@ -200,6 +224,11 @@ EKretaDesklet.prototype = {
         global.log(UUID + ":" + _("Desklet loaded successfully."));
     },
 
+    //Auth token fetcher function
+    /*
+        This function fetches the auth token, 
+        with the given login details. 
+    */
     getAuthToken(instID, usrN, passW, callbackF) {
         global.log(UUID + ":" + _("Setting up a POST request in getAuthToken()."));
         var message = Soup.Message.new(
@@ -228,6 +257,11 @@ EKretaDesklet.prototype = {
         );
     },
 
+    //Student data fetcher function
+    /*
+        This function fetches the user's data, 
+        with the given auth token. 
+    */
     getStudentDetails(instID,authToken,callbackF) {
         if (authToken == "cantgetauth") {
             global.log(UUID + ":" + _("getStudentDetails() aknowledged that the auth token doesn't exist, passing 'cantgetauth' value."));
@@ -259,6 +293,12 @@ EKretaDesklet.prototype = {
         );
     },
 
+    //Institute fetcher function
+    /*
+        This function fetches the institutions where KRETA is implemented, 
+        the code doesn't use it currently. 
+    */
+    //TODO: The user can automatically select his/her institution.
     getInstitutes(callbackF) {
         var message = Soup.Message.new(
             "GET",
@@ -283,6 +323,10 @@ EKretaDesklet.prototype = {
         );
     },
 
+    //Grade coloring mechanism
+    /*
+        From the grade average, get what range it belongs. 
+    */
     getGradeColor(gradeValue, callbackF) {
         if (gradeValue == this.perfectGradeValue) {
             callbackF("perfectGrade", this);
@@ -301,6 +345,25 @@ EKretaDesklet.prototype = {
         }
     },
 
+    //Your and class average comparer function
+    /*
+        Returns how you compare to your class. 
+    */
+    getClassGradeDiff(gradeAverage, classAverage, callbackF) {
+        var diff = +(gradeAverage - classAverage).toFixed(2);
+        if (gradeAverage > classAverage) {
+            callbackF(" (Your grade is better with: +" + diff +")", this);
+        } else if (gradeAverage < classAverage) {
+            callbackF(" (Your grade is worse with: -" + diff +")", this);
+        } else {
+            callbackF(" (Your grade is equal)", this);
+        }
+    },
+
+    //Loading screen shower function
+    /*
+        Show the loading screen. 
+    */
     showLoadingScreen() {
         this.loadingWindow = new St.BoxLayout({
             vertical: true,
@@ -312,6 +375,11 @@ EKretaDesklet.prototype = {
         this.setContent(this.loadingWindow)
     },
 
+    //When the desklet gets removed
+    /* 
+        It fires when the desklet gets removed,
+        and cleans up after it.
+    */
     on_desklet_removed() {
         this.removeUpdateTimer();
         global.log(UUID + ":" + _("Desklet got removed."));
