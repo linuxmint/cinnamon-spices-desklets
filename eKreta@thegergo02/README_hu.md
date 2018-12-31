@@ -19,3 +19,12 @@
 
 ## Képernyőkép
 ![screenshot.png](screenshot.png)
+
+
+## Changelog
+
+### v0.0.1 (Alpha)
+* Első kiadás! :+1:
+* Tantárgyak átlagának kijelzése
+* A kód refactorolva
+* Mainloop implementálva
