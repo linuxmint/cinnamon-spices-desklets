@@ -18,3 +18,11 @@
 
 ## Screenshot
 ![screenshot.png](screenshot.png)
+
+## Changelog
+
+### v0.0.1 (Alpha)
+* First release! :+1:
+* Display your subject's grade average
+* A major code refactor
+* Implemented mainloop
