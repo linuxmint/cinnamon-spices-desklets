@@ -49,17 +49,6 @@ MyDesklet.prototype = {
                 "extendedDisplay",
                 this.on_settings_changed);
 
-/*            this.settings.bindProperty(Settings.BindingDirection.IN,
-                "useVnstatiCommandString",
-                "useVnstatiCommandString",
-                this.on_settings_changed);
-
-            this.settings.bindProperty(Settings.BindingDirection.IN,
-                "vnstatiCommandString",
-                "vnstatiCommandString",
-                this.on_settings_changed);
-*/
-
         // l10n/translation
         UUID = metadata.uuid;
         Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
@@ -74,7 +63,7 @@ MyDesklet.prototype = {
 
         this._deskletContainer.add_actor(this.imageWidget);
         this.setContent(this._deskletContainer);
-        this._updateWidget();
+         this._updateWidget();
     },
 
     on_desklet_removed: function() {
@@ -89,7 +78,7 @@ MyDesklet.prototype = {
     _updateWidget: function(){
         this._updateDevice();
         this._updateGraph();
-        this.timeout = Mainloop.timeout_add_seconds(10, Lang.bind(this, this._updateWidget));
+        this.timeout = Mainloop.timeout_add_seconds(2, Lang.bind(this, this._updateWidget));
 },
 
     getInterfaces: function () {
@@ -128,23 +117,35 @@ MyDesklet.prototype = {
         }
     },
     _updateGraph: function() {
-        try {
-           if (this._device != "null") {
-                   if (this.useExtendedDisplay) {
-                           GLib.spawn_command_line_sync('vnstati ' + this.extendedDisplay + ' -ne -i ' + this._device + ' -o /tmp/vnstatlmapplet.png');
-
-                   } else {
-                        GLib.spawn_command_line_sync('vnstati -s -ne -i ' + this._device + ' -o /tmp/vnstatlmapplet.png');
-                   }
 
 
-            let l = new Clutter.BinLayout();
-            let b = new Clutter.Box();
-            let c = new Clutter.Texture({keep_aspect_ratio: true, filter_quality: 2, filename: "/tmp/vnstatlmapplet.png"});
-            b.set_layout_manager(l);
-            b.add_actor(c);
-            this.imageWidget.set_child(b);
+        let path = `/tmp/${this._uuid}`;
+        let instancePath = Gio.File.new_for_path(path);
+        if (!instancePath.query_exists(null)) {
+            if (!instancePath.make_directory(null)) {
+                global.log(this._uuid, `Cannot make directory: ${path}`);
+                return;
             }
+        }
+
+        try {
+
+           if (this._device != "null") {
+               if (!this.useExtendedDisplay) { this.extendedDisplay = "-s" };
+               let image = `${path}/vnstatImage_${this._device}_${this.extendedDisplay}.png`;
+               let command = 'vnstati ' + this.extendedDisplay + ' -ne -i ' + this._device + ' -o ' + image ;
+//             GLib.spawn_command_line_async(command);
+
+               Util.spawnCommandLineAsync(command, () => {
+                    let l = new Clutter.BinLayout();
+                    let b = new Clutter.Box();
+                    let c = new Clutter.Texture({keep_aspect_ratio: true, filter_quality: 2, filename: image });
+                    b.set_layout_manager(l);
+                    b.add_actor(c);
+                    this.imageWidget.destroy_all_children();
+                    this.imageWidget.set_child(b);
+                });
+             }
         }
         catch (e) {
             this.warnings = new St.BoxLayout({vertical: true});
@@ -187,5 +188,9 @@ function main(metadata, desklet_id){
 ## 1.0.4
   * Correct Icon for Cinnamon 4.0
   * Extend number of choices of vnstati formats and remove custom option
+  * Create folder for images and add extendedDisplay to image filename
+  * Make command line calls asyncronous
+  * Use Util.spawnCommandLineAsync for 3.6 and higher using code from  jaszhix
+  * Correct potential memory leak identified by jaszhix
   * Update README.md
 */
