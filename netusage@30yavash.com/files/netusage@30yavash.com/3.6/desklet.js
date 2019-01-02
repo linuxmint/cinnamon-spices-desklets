@@ -153,17 +153,17 @@ MyDesklet.prototype = {
                if (!this.useExtendedDisplay) { this.extendedDisplay = "-s" };
                let image = `${path}/vnstatImage_${this._device}_${this.extendedDisplay}.png`;
                let command = 'vnstati ' + this.extendedDisplay + ' -ne -i ' + this._device + ' -o ' + image ;
-            GLib.spawn_command_line_async(command);
+//            GLib.spawn_command_line_async(command);
 
-//          Util.spawnCommandLineAsync(command, () => {
-              let l = new Clutter.BinLayout();
-              let b = new Clutter.Box();
-              let c = new Clutter.Texture({keep_aspect_ratio: true, filter_quality: 2, filename: image });
-              b.set_layout_manager(l);
-              b.add_actor(c);
-              this.imageWidget.destroy_all_children();
-              this.imageWidget.set_child(b);
-//          });
+              Util.spawnCommandLineAsync(command, () => {
+                let l = new Clutter.BinLayout();
+                let b = new Clutter.Box();
+                let c = new Clutter.Texture({keep_aspect_ratio: true, filter_quality: 2, filename: image });
+                b.set_layout_manager(l);
+                b.add_actor(c);
+                this.imageWidget.destroy_all_children();
+                this.imageWidget.set_child(b);
+              });
             }
         }
         catch (e) {
@@ -208,7 +208,7 @@ function main(metadata, desklet_id){
   * Correct Icon for Cinnamon 4.0
   * Extend number of choices of vnstati formats and remove custom option
   * Create folder for images and add extendedDisplay to image filename
-  * Make command line calls asyncronous 
+  * Make command line calls asyncronous
   * Use Util.spawnCommandLineAsync for 3.6 and higher using code from  jaszhix
   * Correct potential memory leak identified by jaszhix
   * Update README.md

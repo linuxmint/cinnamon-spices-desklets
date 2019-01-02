@@ -6,7 +6,6 @@ const Clutter = imports.gi.Clutter;
 const St = imports.gi.St;
 const Util = imports.misc.util;
 const PopupMenu = imports.ui.popupMenu;
-const UPowerGlib = imports.gi.UPowerGlib;
 const GLib = imports.gi.GLib;
 const Settings = imports.ui.settings; // ++ Needed if you use Settings Screen
 
@@ -50,18 +49,6 @@ MyDesklet.prototype = {
                 "extendedDisplay",
                 this.on_settings_changed);
 
-            this.settings.bindProperty(Settings.BindingDirection.IN,
-                "useVnstatiCommandString",
-                "useVnstatiCommandString",
-                this.on_settings_changed);
-
-            this.settings.bindProperty(Settings.BindingDirection.IN,
-                "vnstatiCommandString",
-                "vnstatiCommandString",
-                this.on_settings_changed);
-
-
-
         // l10n/translation
         UUID = metadata.uuid;
         Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
@@ -76,7 +63,7 @@ MyDesklet.prototype = {
 
         this._deskletContainer.add_actor(this.imageWidget);
         this.setContent(this._deskletContainer);
-        this._updateWidget();
+         this._updateWidget();
     },
 
     on_desklet_removed: function() {
@@ -85,13 +72,13 @@ MyDesklet.prototype = {
 
  // ++ Function called when settings are changed
     on_settings_changed: function () {
-            this._updateGraph();
+            this._updateWidget();
     },
 
     _updateWidget: function(){
         this._updateDevice();
         this._updateGraph();
-        this.timeout = Mainloop.timeout_add_seconds(10, Lang.bind(this, this._updateWidget));
+        this.timeout = Mainloop.timeout_add_seconds(2, Lang.bind(this, this._updateWidget));
 },
 
     getInterfaces: function () {
@@ -120,7 +107,7 @@ MyDesklet.prototype = {
                  for (let i = 0; i < interfaces.length; i++) {
                     let iname = interfaces[i].get_iface();
                     if (this.isInterfaceAvailable(iname)) {
-                        this._device = iname; 
+                        this._device = iname;
                     }
                 }
             }
@@ -130,41 +117,40 @@ MyDesklet.prototype = {
         }
     },
     _updateGraph: function() {
+
+
+        let path = `/tmp/${this._uuid}`;
+        let instancePath = Gio.File.new_for_path(path);
+        if (!instancePath.query_exists(null)) {
+            if (!instancePath.make_directory(null)) {
+                global.log(this._uuid, `Cannot make directory: ${path}`);
+                return;
+            }
+        }
+
         try {
-           if (this._device != "null") { 
-                   if (this.useExtendedDisplay) {
-                         if(this.extendedDisplay == "classic" ) {
 
-            GLib.spawn_command_line_sync('vnstati -s -ne -i ' + this._device + ' -o /tmp/vnstatlmapplet.png');
-            }
-                         if(this.extendedDisplay == "classicPlus" ) {
-                               GLib.spawn_command_line_sync('vnstati -vs -ne -i ' + this._device + ' -o /tmp/vnstatlmapplet.png' );
-                         }
+           if (this._device != "null") {
+               if (!this.useExtendedDisplay) { this.extendedDisplay = "-s" };
+               let image = `${path}/vnstatImage_${this._device}_${this.extendedDisplay}.png`;
+               let command = 'vnstati ' + this.extendedDisplay + ' -ne -i ' + this._device + ' -o ' + image ;
+//             GLib.spawn_command_line_async(command);
 
-                         if(this.extendedDisplay == "userDefined" ) {
-                               if (this.useVnstatiCommandString) {
-                                     GLib.spawn_command_line_sync('vnstati ' + this.vnstatiCommandString + ' -ne -i ' + this._device + ' -o /tmp/vnstatlmapplet.png');
-                               } else {
-                                     GLib.spawn_command_line_sync('vnstati -s -ne -i ' + this._device + ' -o /tmp/vnstatlmapplet.png');
-                               }
-                         }
-                   } else {
-                        GLib.spawn_command_line_sync('vnstati -s -ne -i ' + this._device + ' -o /tmp/vnstatlmapplet.png');
-                   }
-            }
-
-            let l = new Clutter.BinLayout();
-            let b = new Clutter.Box();
-            let c = new Clutter.Texture({keep_aspect_ratio: true, filter_quality: 2, filename: "/tmp/vnstatlmapplet.png"});
-            b.set_layout_manager(l);
-            b.add_actor(c);
-            this.imageWidget.set_child(b);
-
+               Util.spawnCommandLineAsync(command, () => {
+                    let l = new Clutter.BinLayout();
+                    let b = new Clutter.Box();
+                    let c = new Clutter.Texture({keep_aspect_ratio: true, filter_quality: 2, filename: image });
+                    b.set_layout_manager(l);
+                    b.add_actor(c);
+                    this.imageWidget.destroy_all_children();
+                    this.imageWidget.set_child(b);
+                });
+             }
         }
         catch (e) {
             this.warnings = new St.BoxLayout({vertical: true});
-            this.missingDependencies = new St.Label({text: _("Please make sure vnstat and vnstati are installed and that the vnstat daemon is running!") 
-                                  + "\n" + _("In Linux Mint, you can simply run 'apt install vnstati' and that will take care of everything.") 
+            this.missingDependencies = new St.Label({text: _("Please make sure vnstat and vnstati are installed and that the vnstat daemon is running!")
+                                  + "\n" + _("In Linux Mint, you can simply run 'apt install vnstati' and that will take care of everything.")
                                   + "\n" + _("In other distributions it might depend on the way things are packaged but its likely to be similar.")
                                   + "\n" + _("The Interface detected was: " + this._device )
 });
@@ -183,7 +169,7 @@ function main(metadata, desklet_id){
 # Change log since pdcurtis became involved
 ## 1.0.0
   * Changes to check which network manager libraries are in use and choose which to use - addresses/solves issue #1647 with Fedora versions 27 and higher.
-  * Update README.md 
+  * Update README.md
 ## 1.0.1
   * Changes for Cinnamon 4.0 and higher to avoid segfaults when old Network Manager Library is no longer available by using multiversion with folder 4.0 - Issues #2094 and #2097
   * Remove Try-Catch as no longer required in 4.0 and associated changes.
@@ -199,4 +185,12 @@ function main(metadata, desklet_id){
   * Tidy code to remove trailing spaces
   * Change Icon to be unique and have better affordance
   * Add CHANGELOG.md and Update README.md
+## 1.0.4
+  * Correct Icon for Cinnamon 4.0
+  * Extend number of choices of vnstati formats and remove custom option
+  * Create folder for images and add extendedDisplay to image filename
+  * Make command line calls asyncronous
+  * Use Util.spawnCommandLineAsync for 3.6 and higher using code from  jaszhix
+  * Correct potential memory leak identified by jaszhix
+  * Update README.md
 */

@@ -10,6 +10,10 @@ The vnstat daemon runs in the background and collects info about your Internet u
 
 The applet detects which device you're currently using, and simply exports a graph using vnstati. The latest version allows you to select the type of graph although for most users the default summary will be the most useful.
 
+You can have multiple instances to display several graphs in parallel.
+
+There is a similar applet, vnstat@linuxmint.com , which can also be run in parallel.
+
 ## What you need for it to work:
 
 You need:
