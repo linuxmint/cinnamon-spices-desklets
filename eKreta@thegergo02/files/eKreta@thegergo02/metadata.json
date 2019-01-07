@@ -1,0 +1,6 @@
+{
+    "uuid": "eKreta@thegergo02",
+    "name": "eKreta desklet",
+    "description": "Displays your grades from the eKreta API.",
+    "prevent-decorations": false
+}
