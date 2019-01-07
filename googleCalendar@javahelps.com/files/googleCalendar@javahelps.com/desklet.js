@@ -28,7 +28,9 @@ const Settings = imports.ui.settings;
 const Util = imports.misc.util;
 const Gettext = imports.gettext;
 const Gio = imports.gi.Gio;
+const Gtk = imports.gi.Gtk;
 const St = imports.gi.St;
+const PopupMenu = imports.ui.popupMenu; // ++ Needed for menus
 
 // Import local libraries
 imports.searchPath.unshift(GLib.get_home_dir() + "/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/lib");
@@ -99,6 +101,13 @@ GoogleCalendarDesklet.prototype = {
         }
         // Set header
         this.setHeader(_("Google Calendar"));
+        // Set "Open Google Calendar" button
+        Gtk.IconTheme.get_default().append_search_path(metadata.path + "/icons/");
+        let button_OGC = new PopupMenu.PopupIconMenuItem(_("Open Google Calendar"), "google-calendar", St.IconType.SYMBOLIC);
+        button_OGC.connect('activate', (event) => {
+            GLib.spawn_command_line_async('xdg-open https://calendar.google.com');
+        });
+        this._menu.addMenuItem(button_OGC);
         // Start the update loop
         this.updateLoop();
     },
