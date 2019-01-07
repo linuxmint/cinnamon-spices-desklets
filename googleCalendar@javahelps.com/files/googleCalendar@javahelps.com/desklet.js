@@ -103,11 +103,11 @@ GoogleCalendarDesklet.prototype = {
         this.setHeader(_("Google Calendar"));
         // Set "Open Google Calendar" button
         Gtk.IconTheme.get_default().append_search_path(metadata.path + "/icons/");
-        let button_OGC = new PopupMenu.PopupIconMenuItem(_("Open Google Calendar"), "google-calendar", St.IconType.SYMBOLIC);
-        button_OGC.connect('activate', (event) => {
-            GLib.spawn_command_line_async('xdg-open https://calendar.google.com');
+        let buttonOgc = new PopupMenu.PopupIconMenuItem(_("Open Google Calendar"), "google-calendar", St.IconType.SYMBOLIC);
+        buttonOgc.connect("activate", (event) => {
+            GLib.spawn_command_line_async("xdg-open https://calendar.google.com");
         });
-        this._menu.addMenuItem(button_OGC);
+        this._menu.addMenuItem(buttonOgc);
         // Start the update loop
         this.updateLoop();
     },
