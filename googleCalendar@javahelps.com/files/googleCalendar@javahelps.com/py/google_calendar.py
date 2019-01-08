@@ -31,7 +31,7 @@ from oauth2client import client
 from googleapiclient import sample_tools
 
 
-def retrieve_events(service, calendar_id, calendar_color, start_time, end_time):
+def retrieve_events(service, calendar_id, calendar_color, start_time, end_time, time_zone):
     try:
         page_token = None
         retrieved_events = []
@@ -40,6 +40,7 @@ def retrieve_events(service, calendar_id, calendar_color, start_time, end_time):
                                            pageToken=page_token,
                                            timeMin=start_time,
                                            timeMax=end_time,
+                                           timeZone=time_zone,
                                            singleEvents=True).execute()
             for event in events['items']:
                 calendar_event = {'calendar_color': calendar_color, 'summary': event['summary']}
@@ -91,7 +92,8 @@ def main(argv):
     selected_calendars = [x.lower() for x in args.calendar]
     all_calendars = '*' in selected_calendars
 
-    current_time = datetime.now(timezone.utc).astimezone()
+    current_time = datetime.now().astimezone()
+    time_zone = str(current_time.tzinfo)
     start_time = str(current_time.isoformat())
     end_time = str((current_time + relativedelta(days=no_of_days)).isoformat())
 
@@ -111,7 +113,7 @@ def main(argv):
                     continue
                 if all_calendars or (calendar_list_entry['summary'].lower() in selected_calendars):
                     events = retrieve_events(
-                        service, calendar_list_entry['id'], calendar_list_entry['backgroundColor'], start_time, end_time)
+                        service, calendar_list_entry['id'], calendar_list_entry['backgroundColor'], start_time, end_time, time_zone)
                     if events == -1:
                         break
                     elif events:
