@@ -4,11 +4,6 @@
         "description" : "Settings for eKreta desklet."
     },
 
-    "disclaimer": {
-        "type" : "header",
-        "description" : "You need to reload the desklet for the changes to apply."
-    },
-
     "inst_id": {
         "type": "entry",
         "default": "klik",
@@ -37,16 +32,23 @@
         "tooltip": "The time to wait till' the next data update. (In minutes)."
     },
 
+    "gzip_enabled": {
+        "type" : "checkbox",
+        "default" : true,
+        "description" : "Enable gZip",
+        "tooltip" : "Enable this if you want faster responses. On really old hardware, (if it can run Cinnamon, it can't be that old) it's better to turn off compression."
+    },
+
     "head1": {
         "type" : "header",
-        "description" : "Grades"
+        "description" : "Grade averages"
     },
 
     "show_grades": {
         "type" : "checkbox",
-        "default" : true,
-        "description" : "Your grades",
-        "tooltip" : "Show your grades."
+        "default" : false,
+        "description" : "Your grade averages",
+        "tooltip" : "Show your grade averages."
     },
 
     "group_sub_categ": {
@@ -66,7 +68,7 @@
     "show_grade_diff": {
         "type" : "checkbox",
         "default" : false,
-        "description" : "Show grade difference",
+        "description" : "Show grade average difference",
         "tooltip" : "Show the difference between your avereages, and your class's averages (You have to turn on class averages)."
     },
 
@@ -110,5 +112,55 @@
         "default": "1",
         "description": "Really Bad Grade.",
         "tooltip": "If your grade greater or equals to this, it will be displayed as a really bad grade. (Study sometimes...)"
+    },
+
+    "head2": {
+        "type" : "header",
+        "description" : "Grades"
+    },
+
+    "show_grade_panel": {
+        "type" : "checkbox",
+        "default" : false,
+        "description" : "Your grades",
+        "tooltip" : "Show your grades."
+    },
+
+    "group_grades_sub": {
+        "type" : "checkbox",
+        "default" : false,
+        "description" : "Group grades by subject",
+        "tooltip" : "Group your grades by the subject."
+    },
+
+    "head3": {
+        "type" : "header",
+        "description" : "Absences"
+    },
+
+    "show_absences": {
+        "type" : "checkbox",
+        "default" : false,
+        "description" : "Your absences",
+        "tooltip" : "Show your absences."
+    },
+
+    "sort_absences": {
+        "type" : "checkbox",
+        "default" : false,
+        "description" : "Sort absences by subject",
+        "tooltip" : "Organize your absences by your subjects."
+    },
+
+    "head4": {
+        "type" : "header",
+        "description" : "Lessons"
+    },
+
+    "show_lessons": {
+        "type" : "checkbox",
+        "default" : false,
+        "description" : "Show lessons",
+        "tooltip" : "Show your lessons."
     }
 }
