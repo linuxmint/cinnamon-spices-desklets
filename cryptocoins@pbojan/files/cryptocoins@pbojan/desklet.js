@@ -8,14 +8,18 @@ const Mainloop = imports.mainloop;
 const Settings = imports.ui.settings;
 const Util = imports.misc.util;
 
-const UUID = "cryptocoins@pbojan";
+const UUID = 'cryptocoins@pbojan';
 const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
+const HELP_URL = 'https://github.com/pbojan/cryptocoins-desklet-cinnamon#usage-help';
+const DONATE_URL = 'https://github.com/pbojan/cryptocoins-desklet-cinnamon#contributedonate';
+const API_URL = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest';
 const WIDTH = 220;
-const WIDTH_ICON = 50;
-const PADDING = 10;
-const HELP_URL = "https://github.com/pbojan/cryptocoins-desklet-cinnamon#usage-help";
-const DONATE_URL = "https://github.com/pbojan/cryptocoins-desklet-cinnamon#contributedonate";
-const API_URL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest";
+const WIDTH_ICON = 50 / global.ui_scale;
+const PADDING = 10 / global.ui_scale;
+const FONT_SIZE_CONTAINER = parseInt(15 / global.ui_scale);
+const FONT_SIZE_HEADER = parseInt(16 / global.ui_scale);
+const FONT_SIZE_PRICE = parseInt(22 / global.ui_scale);
+const FONT_SIZE_LAST_UPDATED = parseInt(10 / global.ui_scale);
 
 const httpSession = new Soup.SessionAsync();
 Soup.Session.prototype.add_feature.call(httpSession, new Soup.ProxyResolverDefault());
@@ -41,23 +45,23 @@ HelloDesklet.prototype = {
       Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
 
       this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, desklet_id);
-      this.settings.bind("apiKey", "cfgApiKey", this.onSettingsChanged);
-      this.settings.bind("coin", "cfgCoin", this.onSettingsChanged);
-      this.settings.bind("currency", "cfgCurrency", this.onSettingsChanged);
-      this.settings.bind("refreshInterval", "cfgRefreshInterval", this.onRefreshIntervalChanged);
+      this.settings.bind('apiKey', 'cfgApiKey', this.onSettingsChanged);
+      this.settings.bind('coin', 'cfgCoin', this.onSettingsChanged);
+      this.settings.bind('currency', 'cfgCurrency', this.onSettingsChanged);
+      this.settings.bind('refreshInterval', 'cfgRefreshInterval', this.onRefreshIntervalChanged);
 
       this.setHeader('Crypto Coins Ticker');
 
-      this.cfgApiKey = this.cfgApiKey || "";
-      this.cfgCoin = this.cfgCoin || "1";
-      this.cfgCurrency = this.cfgCurrency.toUpperCase() || "USD";
+      this.cfgApiKey = this.cfgApiKey || '';
+      this.cfgCoin = this.cfgCoin || '1';
+      this.cfgCurrency = this.cfgCurrency.toUpperCase() || 'USD';
       this.cfgRefreshInterval = this.cfgRefreshInterval || 30;
 
-      this._menu.addAction("Help", Lang.bind(this, function() {
-        Util.spawnCommandLine("xdg-open " + HELP_URL);
+      this._menu.addAction('Help', Lang.bind(this, function() {
+        Util.spawnCommandLine('xdg-open ' + HELP_URL);
       }));
       this._menu.addAction('Donate', Lang.bind(this, function() {
-        Util.spawnCommandLine("xdg-open " + DONATE_URL);
+        Util.spawnCommandLine('xdg-open ' + DONATE_URL);
       }));
 
       this.fetchData(true);
@@ -92,13 +96,14 @@ HelloDesklet.prototype = {
   showNoApiKey: function() {
     var container = new St.BoxLayout({
       vertical: true,
-      style_class: "container"
+      style_class: 'container'
     });
+    container.set_style('font-size: ' + FONT_SIZE_CONTAINER + 'px;');
 
     var label = new St.Label({
-      style_class: "apikey"
+      style_class: 'apikey'
     });
-    label.set_text("Please set your api key in configuration...");
+    label.set_text('Please set your api key in configuration...');
     container.add(label);
 
     this.setContent(container);
@@ -107,47 +112,52 @@ HelloDesklet.prototype = {
   showLoading: function() {
     var container = new St.BoxLayout({
       vertical: true,
-      style_class: "container"
+      style_class: 'container'
     });
+    container.set_style('font-size: ' + FONT_SIZE_CONTAINER + 'px;');
 
     var label = new St.Label({
-      style_class: "loading"
+      style_class: 'loading'
     });
-    label.set_text("Loading coin data...");
+    label.set_text('Loading coin data...');
     container.add(label);
 
     this.setContent(container);
   },
 
   fetchData: function(initUI) {
+    initUI = initUI || false;
+
     if (!this.cfgApiKey) {
       this.showNoApiKey();
       return;
     }
 
-    this.showLoading();
+    if (initUI) {
+      this.showLoading();
+    }
 
     var message = Soup.Message.new(
-        "GET",
-        API_URL + "?id=" + parseInt(this.cfgCoin) + "&convert=" + this.cfgCurrency
+        'GET',
+        API_URL + '?id=' + parseInt(this.cfgCoin) + '&convert=' + this.cfgCurrency
     );
-    message.request_headers.append("X-CMC_PRO_API_KEY", this.cfgApiKey);
+    message.request_headers.append('X-CMC_PRO_API_KEY', this.cfgApiKey);
 
     httpSession.queue_message(message,
       Lang.bind(this, function(session, response) {
         if (response.status_code !== Soup.KnownStatusCode.OK) {
-          global.log("Error during download: response code " +
-              response.status_code + ": " + response.reason_phrase + " - " +
+          global.log('Error during download: response code ' +
+              response.status_code + ': ' + response.reason_phrase + ' - ' +
               response.response_body.data);
           return;
         }
 
         var result = JSON.parse(message.response_body.data).data[this.cfgCoin];
         if (initUI === true) {
-          global.log("Init UI, create all objects for coin: " + result["name"]);
+          global.log('Init UI, create all objects for coin: ' + result['name']);
           this.setupUI(result);
         } else {
-          global.log("Update objects for coin: " + result["name"]);
+          global.log('Update objects for coin: ' + result['name']);
           this.updateUI(result);
         }
       })
@@ -163,14 +173,14 @@ HelloDesklet.prototype = {
   },
 
   updateUI: function(data) {
-    var quote = data["quote"][this.cfgCurrency];
+    var quote = data['quote'][this.cfgCurrency];
 
-    this.priceLabel.set_text(this.getFormattedPrice(quote["price"]));
-    this.setChangeData(this.change1H, quote["percent_change_1h"]);
-    this.setChangeData(this.change1D, quote["percent_change_24h"]);
-    this.setChangeData(this.change7D, quote["percent_change_7d"]);
+    this.priceLabel.set_text(this.getFormattedPrice(quote['price']));
+    this.setChangeData(this.change1H, quote['percent_change_1h']);
+    this.setChangeData(this.change1D, quote['percent_change_24h']);
+    this.setChangeData(this.change7D, quote['percent_change_7d']);
 
-    var date = new Date(data["last_updated"] * 1000);
+    var date = new Date(data['last_updated']);
     this.lastUpdatedLabel.set_text(date.toLocaleString());
   },
 
@@ -178,21 +188,22 @@ HelloDesklet.prototype = {
     this.container = new St.BoxLayout({
       vertical: true,
       width: WIDTH,
-      style_class: "container"
+      style_class: 'container'
     });
+    this.container.set_style('font-size: ' + FONT_SIZE_CONTAINER + 'px;');
 
-    var quote = data["quote"][this.cfgCurrency];
+    var quote = data['quote'][this.cfgCurrency];
 
     this.change1H = new St.Label();
     this.change1D = new St.Label();
     this.change7D = new St.Label();
 
     this.container.add(this.addHeaderAndTitle(data));
-    this.container.add(this.addPrice(quote["price"]));
-    this.container.add(this.addChange("Change 1H:", this.change1H, quote["percent_change_1h"]));
-    this.container.add(this.addChange("Change 1D:", this.change1D, quote["percent_change_24h"]));
-    this.container.add(this.addChange("Change 7D:", this.change7D, quote["percent_change_7d"]));
-    this.container.add(this.addLastUpdated(data["last_updated"]));
+    this.container.add(this.addPrice(quote['price']));
+    this.container.add(this.addChange('Change 1H:', this.change1H, quote['percent_change_1h']));
+    this.container.add(this.addChange('Change 1D:', this.change1D, quote['percent_change_24h']));
+    this.container.add(this.addChange('Change 7D:', this.change7D, quote['percent_change_7d']));
+    this.container.add(this.addLastUpdated(data['last_updated']));
 
     this.setContent(this.container);
   },
@@ -200,38 +211,40 @@ HelloDesklet.prototype = {
   addHeaderAndTitle: function(data) {
     var row = new St.BoxLayout({
       vertical: false,
-      style_class: "row"
+      style_class: 'row'
     });
     var left = new St.BoxLayout({
       vertical: true,
       width: WIDTH_ICON,
-      style_class: "containerLeft"
+      style_class: 'containerLeft'
     });
-    var file = Gio.file_new_for_path(DESKLET_ROOT + "/images/icons/" + data["symbol"].toLowerCase() + ".png");
+
+    var file = Gio.file_new_for_path(DESKLET_ROOT + '/images/icons/' + data['symbol'].toLowerCase() + '.png');
     var gicon = new Gio.FileIcon({file: file});
     var image = new St.Icon({
       gicon: gicon,
       icon_size: WIDTH_ICON,
       icon_type: St.IconType.SYMBOLIC,
-      style_class: "icon"
+      style_class: 'icon'
     });
     left.add(image);
 
     var right = new St.BoxLayout({
       vertical: true,
       width: WIDTH - PADDING - WIDTH_ICON,
-      style_class: "containerRight"
+      style_class: 'containerRight'
     });
     var label = new St.Label({
-      style_class: "header"
+      style_class: 'header'
     });
-    label.set_text(data["name"]);
+    label.set_style('font-size: ' + FONT_SIZE_HEADER + 'px;');
+    label.set_text(data['name']);
     right.add(label);
 
     label = new St.Label({
-      style_class: "headerID"
+      style_class: 'headerID'
     });
-    label.set_text("(" + data["symbol"] + ") #" + data["cmc_rank"]);
+    label.set_text('(' + data['symbol'] + ') #' + data['cmc_rank']);
     right.add(label);
 
     row.add(left);
@@ -244,13 +257,14 @@ HelloDesklet.prototype = {
     var row = new St.BoxLayout({
       vertical: false,
       width: WIDTH - PADDING,
-      style_class: "row"
+      style_class: 'row'
     });
     var center = new St.BoxLayout({
       vertical: true,
       width: WIDTH - PADDING,
-      style_class: "containerPrice"
+      style_class: 'containerPrice'
     });
+    center.set_style('font-size: ' + FONT_SIZE_PRICE + 'px;');
 
     this.priceLabel = new St.Label();
     this.priceLabel.set_text(this.getFormattedPrice(price));
@@ -265,13 +279,13 @@ HelloDesklet.prototype = {
     var row = new St.BoxLayout({
       vertical: false,
       width: WIDTH - PADDING,
-      style_class: "row containerCenter"
+      style_class: 'row containerCenter'
     });
 
     var left = new St.BoxLayout({
       vertical: true,
       width: 110,
-      style_class: "left"
+      style_class: 'left'
     });
     var right = new St.BoxLayout({
       vertical: true,
@@ -295,30 +309,31 @@ HelloDesklet.prototype = {
   setChangeData: function(label, num) {
     num = parseFloat(num);
 
-    var cls = "green";
+    var cls = 'green';
     if (num < 0) {
-      cls = "red";
+      cls = 'red';
     }
 
     label.style_class = cls;
     label.set_text(num.toLocaleString(undefined, {
-      style: "decimal",
+      style: 'decimal',
       minimumFractionDigits: 2,
       maximumFractionDigits: 2
-    }) + "%");
+    }) + '%');
   },
 
   addLastUpdated: function(date) {
     var row = new St.BoxLayout({
       vertical: false,
       width: WIDTH - PADDING,
-      style_class: "row"
+      style_class: 'row'
     });
     var right = new St.BoxLayout({
       vertical: true,
       width: WIDTH - PADDING,
-      style_class: "lastUpdated"
+      style_class: 'lastUpdated'
     });
+    right.set_style('font-size: ' + FONT_SIZE_LAST_UPDATED + 'px;');
 
     date = new Date(date);
     this.lastUpdatedLabel = new St.Label();
@@ -332,13 +347,13 @@ HelloDesklet.prototype = {
 
   getFormattedPrice: function(price) {
     var options = {
-      style: "currency",
+      style: 'currency',
       currency: this.cfgCurrency.toLowerCase()
     };
 
     price = parseFloat(price);
     if (price < 1) {
-      options["minimumFractionDigits"] = 5;
+      options['minimumFractionDigits'] = 5;
     }
 
     return price.toLocaleString(undefined, options);
