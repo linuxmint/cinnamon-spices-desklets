@@ -15,6 +15,8 @@
         "options" : {
             "Light" : "light",
             "Dark": "dark",
+            "Light Transparent": "light_transparent",
+            "Dark Transparent": "dark_transparent",
             "Custom": "custom-images"
         },
         "tooltip" : "Select the background graphic you would like to use."
@@ -98,29 +100,29 @@
         "description": "Custom images (available if clock style is set to 'custom')"
     },
     "img-bg": {
-        "default": "", 
-        "type": "filechooser", 
+        "default": "",
+        "type": "filechooser",
         "description" : "Background",
         "tooltip": "Choose your own background image.",
         "allow-none" : true
     },
     "img-s": {
-        "default": "", 
-        "type": "filechooser", 
+        "default": "",
+        "type": "filechooser",
         "description" : "Seconds hand",
         "tooltip": "Choose your own image for the seconds hand. Should be as big as the background image.",
         "allow-none" : true
     },
     "img-m": {
-        "default": "", 
-        "type": "filechooser", 
+        "default": "",
+        "type": "filechooser",
         "description" : "Minute hand",
         "tooltip": "Choose your own image for the minute hand. Should be as big as the background image.",
         "allow-none" : true
     },
     "img-h": {
-        "default": "", 
-        "type": "filechooser", 
+        "default": "",
+        "type": "filechooser",
         "description" : "Hour hand",
         "tooltip": "Choose your own image for the hour hand. Should be as big as the background image.",
         "allow-none" : true

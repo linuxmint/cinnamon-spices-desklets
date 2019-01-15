@@ -200,7 +200,7 @@ MyDesklet.prototype = {
 		) {
 
 			// calc new sizes based on scale factor
-			this.new_size_font = this.default_size_font * this.scale_size;
+			this.new_size_font = Math.round(this.default_size_font * this.scale_size / global.ui_scale);
 			this.battery_width = this.default_size_battery_width * this.scale_size;
 			this.battery_height = this.default_size_battery_height * this.scale_size;
 			this.segment_height = this.battery_height * this.segment_size_factor;
