@@ -1,7 +1,7 @@
 {
-    "uuid": "calendar@schorschii", 
-    "max-instances": "10", 
-    "description": "A calendar desklet that can display the number of today's appointments from an ical file.", 
-    "name": "Calendar", 
-    "version": "1.1"
+    "uuid": "calendar@schorschii",
+    "max-instances": "10",
+    "description": "A calendar desklet that can display the number of today's appointments from an ical file.",
+    "name": "Calendar",
+    "version": "1.2"
 }

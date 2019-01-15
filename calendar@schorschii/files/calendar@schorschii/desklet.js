@@ -198,16 +198,14 @@ MyDesklet.prototype = {
 		if (this.notification_amount != this.last_notification_amount || reloadGraphics == true) {
 
 			// calc new sizes based on scale factor
-			this.desklet_width = this.default_size_battery_width * this.scale_size;
-			this.desklet_height = this.default_size_battery_height * this.scale_size;
-			this.size_symbol = this.default_size_symbol * this.scale_size;
-			this.size_font_month_big = this.default_size_font_month_big * this.scale_size;
-			this.size_font_month_sub = this.default_size_font_month_sub * this.scale_size;
-			this.month_big_top = this.default_month_big_top * this.scale_size;
-			this.month_sub_top = this.default_month_sub_top * this.scale_size;
-			this.month_top_top = this.default_month_top_top * this.scale_size;
-			this.segment_width_max = this.segment_width * 0.95;
-			this.segment_width_calced = this.segment_width_max * (this.currentCapacity / 100);
+			let label_width = Math.round(this.default_size_battery_width * this.scale_size / global.ui_scale);
+			let desklet_width = this.default_size_battery_width * this.scale_size;
+			let desklet_height = this.default_size_battery_height * this.scale_size;
+			let size_font_month_big = Math.round(this.default_size_font_month_big * this.scale_size / global.ui_scale);
+			let size_font_month_sub = Math.round(this.default_size_font_month_sub * this.scale_size / global.ui_scale);
+			let month_big_top = this.default_month_big_top * this.scale_size;
+			let month_sub_top = this.default_month_sub_top * this.scale_size;
+			let month_top_top = this.default_month_top_top * this.scale_size;
 
 			// set images
 			if (this.bg_img == "")
@@ -216,25 +214,25 @@ MyDesklet.prototype = {
 			let text_color_style = "color:" + this.text_color + ";";
 
 			// create elements
-			this.calendar = getImageAtScale(DESKLET_ROOT + "/img/" + this.bg_img, this.desklet_width, this.desklet_height); // background
+			this.calendar = getImageAtScale(DESKLET_ROOT + "/img/" + this.bg_img, desklet_width, desklet_height); // background
 
 			this.container = new St.Group(); // container for labels
 
 			this.month_big = new St.Label({style_class:"month-big"}); // day of month
-			this.month_big.set_position(0, this.month_big_top);
-			this.month_big.style = "width: " + this.desklet_width + "px;" + "font-size: " + this.size_font_month_big.toString() + "px;" + text_color_style;
+			this.month_big.set_position(0, month_big_top);
+			this.month_big.style = "width: " + label_width + "px;" + "font-size: " + size_font_month_big.toString() + "px;" + text_color_style;
 
 			this.month_sub = new St.Label({style_class:"month-sub"}); // month string and year (below day of month)
-			this.month_sub.set_position(0, this.month_sub_top);
-			this.month_sub.style = "width: " + this.desklet_width + "px;" + "font-size: " + this.size_font_month_sub.toString() + "px;" + text_color_style;
+			this.month_sub.set_position(0, month_sub_top);
+			this.month_sub.style = "width: " + label_width + "px;" + "font-size: " + size_font_month_sub.toString() + "px;" + text_color_style;
 
 			this.month_top = new St.Label({style_class:"month-sub"}); // day of week string (on top of day of month)
-			this.month_top.set_position(0, this.month_top_top);
-			this.month_top.style = "width: " + this.desklet_width + "px;" + "font-size: " + this.size_font_month_sub.toString() + "px;" + text_color_style;
+			this.month_top.set_position(0, month_top_top);
+			this.month_top.style = "width: " + label_width + "px;" + "font-size: " + size_font_month_sub.toString() + "px;" + text_color_style;
 
 			this.notification = new St.Label({style_class:"notification-amount"}); // day of week string (on top of day of month)
-			this.notification.set_position(0, this.month_top_top);
-			this.notification.style = "font-size: " + (this.size_font_month_sub*1.15).toString() + "px;"
+			this.notification.set_position(0, month_top_top);
+			this.notification.style = "font-size: " + (size_font_month_sub*1.15).toString() + "px;"
 			                          + "padding: " + (2*this.scale_size) + "px " + (6*this.scale_size) + "px " + (1*this.scale_size) + "px " + (6*this.scale_size) + "px;"
 			                          + "background-color: " + this.notification_background_color + ";"
 			                          + "color: " + this.notification_color + ";";
