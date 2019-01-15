@@ -152,11 +152,11 @@ MyDesklet.prototype = {
 		if (this.style == "custom-images" && this.img_m != "")
 			img_m_final = this.img_m.replace("file://", "");
 		if (this.style == "custom-images" && this.img_h != "")
-			img_h_final = this.img_h.replace("file://", ""); 
+			img_h_final = this.img_h.replace("file://", "");
 
 		// set sizes
-		this.size_style = "width: " + this.desklet_size.toString() + "px;" +
-		                  "height: " + this.desklet_size.toString() + "px;";
+		this.size_style = "width: " + (this.desklet_size/global.ui_scale).toString() + "px;" +
+		                  "height: " + (this.desklet_size/global.ui_scale).toString() + "px;";
 		this.clock.style = this.size_style;
 		this.clock_container.style = this.size_style;
 
