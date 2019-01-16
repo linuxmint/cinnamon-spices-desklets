@@ -198,7 +198,7 @@ MyDesklet.prototype = {
 				} else if(fs == "/") {
 					sub_string = this.shortText(_("Filesystem"));
 				} else {
-					pathparts = fs.split("/");
+					let pathparts = fs.split("/");
 					sub_string = this.shortText(pathparts[pathparts.length-1]);
 				}
 				sub_string2 = this.niceSize(size);
@@ -266,14 +266,15 @@ MyDesklet.prototype = {
 
 	refreshDecoration: function() {
 		// desklet label (header)
+		let fs = this.filesystem.replace("file://", "").trim();
 		if (this.use_custom_label == true)
 			this.setHeader(this.custom_label)
 		else if (this.type == "ram")
 			this.setHeader(_("RAM"));
-		else if (this.filesystem == null || this.filesystem == "" || this.filesystem == "/")
+		else if (fs == null || fs == "" || fs == "/")
 			this.setHeader(_("Disk Space"));
 		else {
-			let pathparts = this.filesystem.replace("file://", "").trim().split("/");
+			let pathparts = fs.split("/");
 			this.setHeader(pathparts[pathparts.length-1]);
 		}
 
