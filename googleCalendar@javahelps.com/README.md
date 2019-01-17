@@ -14,9 +14,9 @@ View your upcoming calendar events on your Cinnamon Desktop. This desklet uses `
 
 ## Installation
 
-1. Install `pip` and `setuptools` for Python 3 using the following command:
+1. Install `pip`, `setuptools`, `python3-dateutil`, `python3-oauth2client` and `python3-googleapi` for Python 3 using the following command:
     ```bash
-    sudo apt install python3-pip python3-setuptools
+    sudo apt install python3-pip python3-setuptools python3-dateutil python3-oauth2client python3-googleapi
     ```
 
 2. Install `python-dateutil`, `google-api-python-client` and `oauth2client` Python modules using the following command:
