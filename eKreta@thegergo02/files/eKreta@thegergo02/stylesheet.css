@@ -1,5 +1,5 @@
 .container {
-    background-color: #000000;
+    background-color: #1c1c1c;
     font-family: Ubuntu;
 }
 
@@ -33,4 +33,8 @@
 
 .reallyBadGrade {
     color: #fc1302;
+}
+
+.medicalAbsence {
+    color: #02abf9;
 }
