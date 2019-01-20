@@ -92,7 +92,7 @@ def main(argv):
     selected_calendars = [x.lower() for x in args.calendar]
     all_calendars = '*' in selected_calendars
 
-    current_time = datetime.now().astimezone()
+    current_time = datetime.now(timezone.utc).astimezone()
     time_zone = str(current_time.tzinfo)
     start_time = str(current_time.isoformat())
     end_time = str((current_time + relativedelta(days=no_of_days)).isoformat())
