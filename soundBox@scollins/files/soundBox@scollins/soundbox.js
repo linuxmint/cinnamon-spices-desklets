@@ -1596,8 +1596,8 @@ SoundboxLayout.prototype = {
         let listedDesktopFiles = new Array();
         for ( let y = 0; y < allApps.length; y++ ) {
             let app = allApps[y];
-            let entry = app.get_tree_entry();
-            let path = entry.get_desktop_file_path();
+            let info = app.get_app_info();
+            let path = info.get_filename();
             for ( let i in settings.compatiblePlayers ) {
                 let desktopFile = settings.compatiblePlayers[i] + ".desktop";
                 if ( path.indexOf(desktopFile) != -1 && listedDesktopFiles.indexOf(desktopFile) == -1 ) {
