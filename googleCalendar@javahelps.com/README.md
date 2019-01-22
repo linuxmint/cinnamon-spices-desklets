@@ -14,7 +14,7 @@ View your upcoming calendar events on your Cinnamon Desktop. This desklet uses `
 
 ## Installation
 
-1. Install `pip`, `setuptools`, `python3-dateutil`, `python3-oauth2client` and `python3-googleapi` for Python 3 using the following command:
+1. Install dependencies using the following command:
     ```bash
     sudo apt install python3-pip python3-setuptools python3-dateutil python3-oauth2client python3-googleapi
     ```
@@ -47,14 +47,14 @@ View your upcoming calendar events on your Cinnamon Desktop. This desklet uses `
 
 2. **How to show events only from a selected list of calendars?**
 
-    Open your terminal and change the directory to the desklet location.
+    Open your terminal and change the directory to the desklet config location.
     ```shell
-    cd ~/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/py
+    cd ~/.cinnamon/configs/googleCalendar@javahelps.com
     ```
 
     Execute the following command to see the available calendars:
     ```shell
-    python3 google_calendar.py --list-calendars
+    python3 ~/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/py/google_calendar.py --list-calendars
     ```
     For example, I have the following calendars:
     ```text
@@ -86,8 +86,8 @@ View your upcoming calendar events on your Cinnamon Desktop. This desklet uses `
     Please open a GitHub issue at [linuxmint/cinnamon-spices-desklets](https://github.com/linuxmint/cinnamon-spices-desklets/issues). Please include the Python 3 version (`python3 -V`) of your system in addition to the details required in the issue template.
     Reporting the output of the following command also helpful to trace the problem. However, please replace any personal information printed in the console by some random characters.
     ```shell
-    cd ~/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/py
-    python3 google_calendar.py
+    cd ~/.cinnamon/configs/googleCalendar@javahelps.com
+    python3 ~/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/py/google_calendar.py
     ```
 
 6. **I have encountered the following issue with `sudo pip3 install --upgrade python-dateutil google-api-python-client oauth2client` command. How can I fix it?**
@@ -107,7 +107,7 @@ View your upcoming calendar events on your Cinnamon Desktop. This desklet uses `
 
     Enter the following command in a terminal and just click on the desklet.
     ```shell
-    rm ~/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/py/calendar.dat
+    rm ~/.cinnamon/configs/googleCalendar@javahelps.com/calendar.dat
     ```
 
 8. **I love this desklet and want to appreciate it. How can I express it?**

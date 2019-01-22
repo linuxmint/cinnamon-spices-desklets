@@ -47,7 +47,8 @@ Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
 const TEXT_WIDTH = 250;
 const FONT_SIZE = 14;
-const SCRIPT_PATH = GLib.get_home_dir() + "/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/py";
+const SCRIPT_PATH = GLib.get_home_dir() + "/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/py/google_calendar.py";
+const CONFIG_PATH = GLib.get_home_dir() + "/.cinnamon/configs/googleCalendar@javahelps.com";
 
 function _(str) {
     return Gettext.dgettext(UUID, str);
@@ -151,7 +152,7 @@ GoogleCalendarDesklet.prototype = {
      */
     getCalendarCommand() {
         let dateTime = new Date();
-        let command = ["python3", "google_calendar.py"];
+        let command = ["python3", SCRIPT_PATH];
         command.push("--no-of-days");
         if (this.interval == null) {
             this.interval = 7; // Default interval is 7 days
@@ -337,7 +338,7 @@ GoogleCalendarDesklet.prototype = {
             // Execute the command to retrieve the calendar events.
             let reader = new SpawnReader();
             let error = false;
-            reader.spawn(SCRIPT_PATH, this.getCalendarCommand(), (output) => {
+            reader.spawn(CONFIG_PATH, this.getCalendarCommand(), (output) => {
                 this.resetWidget(true);
                 if (!outputReceived) {
                     outputReceived = true;
