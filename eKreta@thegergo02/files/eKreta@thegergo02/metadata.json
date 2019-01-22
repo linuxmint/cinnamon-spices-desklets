@@ -2,5 +2,7 @@
     "uuid": "eKreta@thegergo02",
     "name": "eKreta desklet",
     "description": "Displays your grades from the eKreta API.",
-    "prevent-decorations": false
+    "prevent-decorations": true,
+    "max-instances": 2,
+    "version": 0.30
 }

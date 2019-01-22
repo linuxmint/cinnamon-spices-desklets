@@ -15,6 +15,7 @@ const UUID = "eKreta@thegergo02";
 
 //Some variable initialization
 var httpSession = new Soup.SessionAsync();
+var isSettingChangedRunning = true;
 
 //Setting up translations
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale")
@@ -43,7 +44,6 @@ EKretaDesklet.prototype = {
         this.setHeader("eKreta");
         this.loadSettings();
         this.onUpdate();
-        global.log(UUID + ":" + _("Desklet started."));
     },
 
     //Settings loader function
@@ -57,7 +57,8 @@ EKretaDesklet.prototype = {
         this.settings.bind("usr", "usrN", this.onSettingChanged);
         this.settings.bind("pass", "passW", this.onSettingChanged);
         this.settings.bind("delay_minutes", "delayMinutes", this.onSettingChanged);
-        // Grades
+        this.settings.bind("gzip_enabled", "gzipEnabled", this.onSettingChanged);
+        // Grade averages
         this.settings.bind("show_grades", "showGrades", this.onSettingChanged);
         this.settings.bind("group_sub_categ", "groupSubCateg", this.onSettingChanged);
         this.settings.bind("show_class_av", "showClassAv", this.onSettingChanged);
@@ -69,7 +70,16 @@ EKretaDesklet.prototype = {
         this.settings.bind("middle_grade_value", "middleGradeValue", this.onSettingChanged);
         this.settings.bind("bad_grade_value", "badGradeValue", this.onSettingChanged);
         this.settings.bind("really_bad_grade_value", "reallyBadGradeValue", this.onSettingChanged);
-        global.log(UUID + ":" + _("Loaded settings."));
+        // Grades
+        this.settings.bind("show_grade_panel", "showGradePanel", this.onSettingChanged);
+        this.settings.bind("group_grades_sub", "groupGradesSub", this.onSettingChanged);
+        //Absences
+        this.settings.bind("show_absences", "showAbsences", this.onSettingChanged);
+        this.settings.bind("sort_absences", "sortAbsences", this.onSettingChanged);
+        //Lessons
+        this.settings.bind("show_lessons", "showLessons", this.onSettingChanged);
+        this.settings.bind("show_filtered_days", "showFilteredDays", this.onSettingChanged);
+        
         return;
     },
 
@@ -81,8 +91,27 @@ EKretaDesklet.prototype = {
     updateData() {
         this.showLoadingScreen();
         this.getAuthToken(this.instID, this.usrN, this.passW, function(result, upperThis) {
-            upperThis.getStudentDetails(upperThis.instID,result,function(result, upperThis) {
-                upperThis.setupUI(result);
+            upperThis.curAuthToken = result;
+            upperThis.getStudentDetails(upperThis.instID,upperThis.curAuthToken,function(result, upperThis) {
+                upperThis.curStudentDetails = result;
+                if (!upperThis.showLessons) {
+                    upperThis.setupUI(result,null);
+                } else {
+                    upperThis.getCurrentWeek(function(StartDate,EndDate,upperThis) {
+                        var startDate = StartDate.getFullYear() + "-" + ((StartDate.getMonth() == 0) ? "01" : StartDate.getMonth()) + "-" + ((StartDate.getDate() < 10) ? "0" + StartDate.getDate() : StartDate.getDate());
+                        var endDate = EndDate.getFullYear() + "-" + ((EndDate.getMonth() == 0) ? "01" : EndDate.getMonth()) + "-" + ((EndDate.getDate() < 10) ? "0" + EndDate.getDate() : EndDate.getDate());
+                        
+                        upperThis.getLessons(upperThis.curAuthToken,upperThis.instID,startDate, endDate,function(result,upperThis) {
+                            for (let i = 0; i < result.length; i++) {
+                                var n = result[i]["Date"].lastIndexOf('T');
+                                result[i]["Date"] = result[i]["Date"].substring(0,n);
+                            }
+                            result["EndDate"] = endDate;
+                            upperThis.setupUI(upperThis.curStudentDetails,result);
+                        });
+                }, upperThis);
+                }
+                isSettingChangedRunning = false;
             });
         });
         return;
@@ -94,7 +123,6 @@ EKretaDesklet.prototype = {
         this reloads the data and sets up the UI with the new data. 
     */
     onUpdate() {
-        global.log(UUID + ":" + _("onUpdate() got called."));
         this.setUpdateTimer();
         this.updateData();
         return;
@@ -106,9 +134,7 @@ EKretaDesklet.prototype = {
         and with it we fetch the current data, 
     */
     setUpdateTimer() {
-        global.log(UUID + ":" + _("setUpdateTimer() got called."));
         this.updateLoop = Mainloop.timeout_add(this.delayMinutes * 60 * 1000, Lang.bind(this, this.onUpdate));
-        global.log(UUID + ":" + _("Setting up mainloop (for " + this.delayMinutes + " min), and binding onUpdate() to it."));
         return;
     },
 
@@ -120,7 +146,6 @@ EKretaDesklet.prototype = {
     removeUpdateTimer() {
         if (this.updateLoop !== null) {
             Mainloop.source_remove(this.updateLoop);
-            global.log(UUID + ":" + _("Removing Mainloop."));
         }
         return;
     },
@@ -130,14 +155,14 @@ EKretaDesklet.prototype = {
         This creates the user interface for our desklet,
         so it's an important function. 
     */
-    setupUI(studentDetails) {
+    setupUI(studentDetails,lessonDetails) {
         this.window = new St.BoxLayout({
             vertical: true,
             style_class: "container"
         });
 
         if (studentDetails === "cantgetauth") {
-            this.bigText = new St.Label({style_class: "normalLabel"});
+            this.bigText = new St.Label({style_class: "boldLabel"});
             this.bigText.set_text(_("Error: Couldn't login with the credetinals given. (Check the desklet settings.)"));
 
             this.window.add(this.bigText);
@@ -145,41 +170,49 @@ EKretaDesklet.prototype = {
             return;
         }
 
-        this.bigText = new St.Label({style_class: "normalLabel"});
-        this.bigText.set_text(studentDetails.Name + " (" + studentDetails.InstituteName + ")");
-        this.window.add(this.bigText);
+        var studentName = studentDetails["Name"]
+        var studentInstituteName = studentDetails["InstituteName"];
+        var studentSubjectAverages = studentDetails["SubjectAverages"];
+
+        this.nameText = new St.Label({style_class: "normalLabel"});
+        this.nameText.set_text(studentName + " (" + studentInstituteName + ")");
+        this.window.add(this.nameText);
+
+        this.panelText = new St.Label({style_class: "boldLabel"});
 
         if (this.showGrades) {
+            this.panelText.set_text("Grade averages");
+            this.window.add(this.panelText);
+
             if (this.groupSubCateg) {
-                let subjectCategories = new Array();
-                for(let i = 0; i < studentDetails["SubjectAverages"].length; i++) {
-                    if (subjectCategories.indexOf(studentDetails["SubjectAverages"][i]["SubjectCategoryName"]) === -1) {
-                        subjectCategories.push(studentDetails["SubjectAverages"][i]["SubjectCategoryName"]);
-                    }
-                }
+                this.fetchSubjectsFromResponse(studentSubjectAverages,"SubjectCategoryName", function(result, upperThis) {
+                    upperThis.subjects = result;
+                });
+                var subjectCategories = this.subjects;
 
                 for(let j = 0; j < subjectCategories.length; j++) {
                     this.currentSubjectText = new St.Label({style_class: "boldLabel"});
                     this.currentSubjectText.set_text(subjectCategories[j]);
                     this.window.add(this.currentSubjectText);
                     for(let i = 0; i < studentDetails["SubjectAverages"].length; i++) {
-                        this.gradeAverage = studentDetails["SubjectAverages"][i]["Value"];
-                        this.subjectName = studentDetails["SubjectAverages"][i]["Subject"];
-                        this.classAverage = studentDetails["SubjectAverages"][i]["ClassValue"];
+                        var gradeAverage = studentSubjectAverages[i]["Value"];
+                        var subjectName = studentSubjectAverages[i]["Subject"];
+                        var classAverage = studentSubjectAverages[i]["ClassValue"];
+                        var subjectCategoryName = studentSubjectAverages[i]["SubjectCategoryName"];
 
-                        if (studentDetails["SubjectAverages"][i]["SubjectCategoryName"] === subjectCategories[j]) {
-                            this.getGradeColor(this.gradeAverage,function(result,upperThis) {
+                        if (subjectCategoryName === subjectCategories[j]) {
+                            this.getGradeColor(gradeAverage,function(result,upperThis) {
                                 upperThis.gradeColor = result;
                             });
         
                             this.currentText = new St.Label({style_class: this.gradeColor});
-                            this.currentSubText = this.subjectName + ": " + this.gradeAverage;
+                            this.currentSubText = subjectName + ": " + gradeAverage;
         
                             if (this.showClassAv) {
-                                this.currentSubText += " (Class Av.: " + this.classAverage +")";
+                                this.currentSubText += " (Class Av.: " + classAverage +")";
         
                                 if (this.showGradeDiff) {
-                                    this.getClassGradeDiff(this.gradeAverage, this.classAverage, function(result, upperThis) {
+                                    this.getClassGradeDiff(gradeAverage, classAverage, function(result, upperThis) {
                                         upperThis.currentSubText += result;
                                     });
                                 }
@@ -217,11 +250,191 @@ EKretaDesklet.prototype = {
                     this.window.add(this.currentText);
                 }
             }
+        } else if (this.showGradePanel) {
+            this.panelText.set_text("Your grades");
+            this.window.add(this.panelText);
+
+            if (this.groupGradesSub) {
+                this.fetchSubjectsFromResponse(studentDetails["Evaluations"],"Subject", function(result, upperThis) {
+                    upperThis.subjects = result;
+                });
+                var subjects = this.subjects;
+
+                for (let j = 0; j < subjects.length; j++) {
+                    var subjectText = new St.Label({style_class: "boldLabel"});
+                    subjectText.set_text(subjects[j]);
+                    this.window.add(subjectText);
+                    for (let i = 0; i < studentDetails["Evaluations"].length; i++) {
+                        var gradeSubject = studentDetails["Evaluations"][i]["Subject"];
+                        if (gradeSubject === subjects[j]) {
+                            var gradeForm = studentDetails["Evaluations"][i]["Form"];
+                            var gradeMode = studentDetails["Evaluations"][i]["Mode"];
+                            var gradeTheme = studentDetails["Evaluations"][i]["Theme"];
+                            var gradeNumValue = studentDetails["Evaluations"][i]["NumberValue"];
+                            var gradeTypeName = studentDetails["Evaluations"][i]["TypeName"];
+                            var gradeValue = studentDetails["Evaluations"][i]["Value"];
+            
+                            if (gradeNumValue !== null) {
+                                this.getGradeColor(gradeNumValue,function(result,upperThis) {
+                                    upperThis.gradeColour = result;
+                                });
+                            }
+            
+                            if (gradeForm !== "Diligence" && gradeForm !== "Deportment") {
+                                if (gradeTheme !== "" && gradeTheme !== null) {
+                                    var evaluationString = gradeSubject  + " : " + gradeMode + " : " + gradeTheme + " : " + gradeNumValue;
+                                } else {
+                                    var evaluationString = gradeSubject  + " : " + gradeMode + " : " + gradeNumValue;
+                                }
+                                var currentText = new St.Label({style_class: this.gradeColour});
+            
+                                currentText.set_text(evaluationString);
+                                this.window.add(currentText);
+                            } else {
+                                var evaluationString = gradeForm + " : " + gradeTypeName + " : " + gradeValue;
+                                var currentText = new St.Label({style_class: "normalLabel"});
+            
+                                currentText.set_text(evaluationString);
+                                this.window.add(currentText);
+                            }
+                        }
+                    }
+                }
+            } else {
+                for (let i = 0; i < studentDetails["Evaluations"].length; i++) {
+                    var gradeForm = studentDetails["Evaluations"][i]["Form"];
+                    var gradeSubject = studentDetails["Evaluations"][i]["Subject"];
+                    var gradeMode = studentDetails["Evaluations"][i]["Mode"];
+                    var gradeTheme = studentDetails["Evaluations"][i]["Theme"];
+                    var gradeNumValue = studentDetails["Evaluations"][i]["NumberValue"];
+                    var gradeTypeName = studentDetails["Evaluations"][i]["TypeName"];
+                    var gradeValue = studentDetails["Evaluations"][i]["Value"];
+    
+                    if (gradeNumValue !== null) {
+                        this.getGradeColor(gradeNumValue,function(result,upperThis) {
+                            upperThis.gradeColour = result;
+                        });
+                    }
+    
+                    if (gradeForm !== "Diligence" && gradeForm !== "Deportment") {
+                        if (gradeTheme !== "" && gradeTheme !== null) {
+                            var evaluationString = gradeSubject  + " : " + gradeMode + " : " + gradeTheme + " : " + gradeNumValue;
+                        } else {
+                            var evaluationString = gradeSubject  + " : " + gradeMode + " : " + gradeNumValue;
+                        }
+                        var currentText = new St.Label({style_class: this.gradeColour});
+    
+                        currentText.set_text(evaluationString);
+                        this.window.add(currentText);
+                    } else {
+                        var evaluationString = gradeForm + " : " + gradeTypeName + " : " + gradeValue;
+                        var currentText = new St.Label({style_class: "normalLabel"});
+    
+                        currentText.set_text(evaluationString);
+                        this.window.add(currentText);
+                    }
+                }
+            }
+        } else if (this.showAbsences) {
+            this.panelText.set_text("Absences");
+            this.window.add(this.panelText);
+            if (this.sortAbsences) {
+                this.fetchSubjectsFromResponse(studentDetails["Absences"],"Subject", function(result, upperThis) {
+                    upperThis.subjects = result;
+                });
+
+                var subjects = this.subjects;
+
+                for (let j = 0; j < subjects.length;j++) {
+                    var curSubjectText = new St.Label({style_class: "boldLabel"});
+                    curSubjectText.set_text(subjects[j]);
+                    this.window.add(curSubjectText);
+
+                    for(let i = 0;i < studentDetails["Absences"].length;i++) {
+                        if (studentDetails["Absences"][i]["Subject"] === subjects[j]) {
+                            var absenceLessonStartTime = studentDetails["Absences"][i]["LessonStartTime"];
+                                var n = absenceLessonStartTime.lastIndexOf('T');
+                                absenceLessonStartTime = absenceLessonStartTime.substring(0,n);
+        
+                            var absenceString = absenceLessonStartTime + " : " + studentDetails["Absences"][i]["TypeName"] + " : " + studentDetails["Absences"][i]["ModeName"] + " : " + studentDetails["Absences"][i]["JustificationStateName"] + " : " + studentDetails["Absences"][i]["JustificationTypeName"];
+                            var currentTextColor;
+                            if (studentDetails["Absences"][i]["JustificationType"] === "Justified") {
+                                currentTextColor = "perfectGrade";
+                            } else if (studentDetails["Absences"][i]["JustificationType"] === "UnJustified") {
+                                currentTextColor = "reallyBadGrade";
+                            } else if (studentDetails["Absences"][i]["JustificationType"] === "Medical") {
+                                currentTextColor = "medicalAbsence";
+                            }
+                            
+                            var currentText = new St.Label({style_class: currentTextColor});
+                            currentText.set_text(absenceString);
+                            this.window.add(currentText);
+                        }
+                    }
+                }
+            } else {
+                for(let i = 0;i < studentDetails["Absences"].length;i++) {
+                    var absenceLessonStartTime = studentDetails["Absences"][i]["LessonStartTime"];
+                        var n = absenceLessonStartTime.lastIndexOf('T');
+                        absenceLessonStartTime = absenceLessonStartTime.substring(0,n);
+
+                    var absenceString = absenceLessonStartTime + " : " + studentDetails["Absences"][i]["TypeName"] + " : " + studentDetails["Absences"][i]["ModeName"] + " : " + studentDetails["Absences"][i]["JustificationStateName"] + " : " + studentDetails["Absences"][i]["JustificationTypeName"];
+                    var currentTextColor;
+                    if (studentDetails["Absences"][i]["JustificationType"] === "Justified") {
+                        currentTextColor = "perfectGrade";
+                    } else if (studentDetails["Absences"][i]["JustificationType"] === "UnJustified") {
+                        currentTextColor = "reallyBadGrade";
+                    } else if (studentDetails["Absences"][i]["JustificationType"] === "Medical") {
+                        currentTextColor = "medicalAbsence";
+                    }
+                    
+                    var currentText = new St.Label({style_class: currentTextColor});
+                    currentText.set_text(absenceString);
+                    this.window.add(currentText);
+                }
+            }
+        } else if (this.showLessons) {
+            this.panelText.set_text("Lessons");
+            this.window.add(this.panelText);
+
+            var lastRun = -1;
+            for (let j = 0;j <= 6;j++) {
+                this.curIterationDay = j;
+                this.isCurrentDay(j + 1,function(result, upperThis) {
+                    upperThis.getDayStyleClass(result,function(result, upperThis) {
+                        upperThis.curIterationDayStyle = result;
+                        upperThis.getDayName(upperThis.curIterationDay,function(result, upperThis) {
+                            upperThis.dayText = new St.Label({ style_class: upperThis.curIterationDayStyle });
+                            upperThis.dayText.set_text(result);
+                        });
+                    });
+                });
+                if (!this.showFilteredDays) {
+                    this.window.add(this.dayText);
+                }
+                this.alreadyIn = new Array();
+                for (let i = 0; i < lessonDetails.length; i++) {
+                    var startDate = new Date(lessonDetails[i]["Date"]);
+
+                    if (startDate < new Date(lessonDetails["EndDate"]) && startDate.getDay() === j + 1 && this.alreadyIn.indexOf(lessonDetails[i]["LessonId"]) === -1) {
+                        var n = lessonDetails[i]["StartTime"].lastIndexOf('T');
+                        var nE = lessonDetails[i]["EndTime"].lastIndexOf('T');
+                        lessonDetails[i]["StartTimeHour"] = lessonDetails[i]["StartTime"].substring(n+1);
+                        lessonDetails[i]["EndTimeHour"] = lessonDetails[i]["EndTime"].substring(nE+1);
+                        lessonDetails[i]["StartTime"] = lessonDetails[i]["StartTime"].substring(0,n);
+                        var lessonText = new St.Label({ style_class: "medicalAbsence" })
+                        lessonText.set_text(lessonDetails[i]["Count"] + " : " + lessonDetails[i]["Subject"] + " : " + lessonDetails[i]["StartTimeHour"] + " - " + lessonDetails[i]["EndTimeHour"]);
+                        if (lastRun !== j) {
+                            this.window.add(this.dayText);
+                            lastRun = j;
+                        }
+                        this.window.add(lessonText);
+                    }
+                }
+            }
         }
         
-        this.setContent(this.window);
-        global.log(UUID + ":" + _("UI now ready in setupUI(x)."));
-        global.log(UUID + ":" + _("Desklet loaded successfully."));
+        this.setContent(this.window);    
     },
 
     //Auth token fetcher function
@@ -230,31 +443,10 @@ EKretaDesklet.prototype = {
         with the given login details. 
     */
     getAuthToken(instID, usrN, passW, callbackF) {
-        global.log(UUID + ":" + _("Setting up a POST request in getAuthToken()."));
-        var message = Soup.Message.new(
-            "POST",
-            "https://" + instID + ".e-kreta.hu/idp/api/v1/Token"
-        );
-
         var postParameters = "institute_code=" + instID + "&userName=" + usrN + "&password=" + passW + "&grant_type=password&client_id=919e0c1c-76a2-4646-a2fb-7085bbbf3c56";
-        message.set_request("application/x-www-form-urlencoded",2,postParameters);
-
-        httpSession.queue_message(message,
-            Lang.bind(this, function(session, response) {
-                if (response.status_code !== Soup.KnownStatusCode.OK) {
-                    global.log(UUID + ":" + _("Error during download in getAuthToken(x,y,z)") + ": response code " +
-                        response.status_code + ": " + response.reason_phrase + " - " +
-                        response.response_body.data);
-                    global.log(UUID + ":" + _("Getting auth token failed, passing 'cantgetauth'."));
-                    callbackF('cantgetauth', this);
-                    return;
-                }
-                var result = JSON.parse(message.response_body.data);
-                global.log(UUID + ":" + _("Got correct response in getAuthToken()."));
-                callbackF(result["access_token"], this);
-                return;
-            })
-        );
+        this.httpRequest("POST","https://" + instID + ".e-kreta.hu/idp/api/v1/Token",null,postParameters,function(result,upperThis) {
+            callbackF(result["access_token"],upperThis);
+        })
     },
 
     //Student data fetcher function
@@ -264,33 +456,13 @@ EKretaDesklet.prototype = {
     */
     getStudentDetails(instID,authToken,callbackF) {
         if (authToken == "cantgetauth") {
-            global.log(UUID + ":" + _("getStudentDetails() aknowledged that the auth token doesn't exist, passing 'cantgetauth' value."));
             callbackF("cantgetauth", this);
             return;
         }
 
-        global.log(UUID + ":" + _("Setting up a GET request in getStudentDetails()."));
-        var message = Soup.Message.new(
-            "GET",
-            "https://" + instID + ".e-kreta.hu/mapi/api/v1/Student"
-        );
-        message.request_headers.append("Authorization", "Bearer " + authToken);
-    
-        httpSession.queue_message(message,
-            Lang.bind(this, function(session, response) {
-                if (response.status_code !== Soup.KnownStatusCode.OK) {
-                    global.log(UUID + ":" + _("Error during download in getStudentDetails()") + ": response code " +
-                        response.status_code + ": " + response.reason_phrase + " - " +
-                        response.response_body.data);
-                    callbackF("cantgetauth",this); //TODO: Create a correct error value.
-                    return;
-                }
-                var result = JSON.parse(message.response_body.data);
-                global.log(UUID + ":" + _("Got correct response in getStudentDetails()."));
-                callbackF(result, this);
-                return;
-            })
-        );
+        this.httpRequest("GET", "https://" + instID + ".e-kreta.hu/mapi/api/v1/Student", [["Authorization", "Bearer " + authToken]], null,function(result,upperThis) {
+            callbackF(result,upperThis);
+        });
     },
 
     //Institute fetcher function
@@ -300,27 +472,110 @@ EKretaDesklet.prototype = {
     */
     //TODO: The user can automatically select his/her institution.
     getInstitutes(callbackF) {
+        this.httpRequest("GET", API_LINK_INST, [["apiKey", "7856d350-1fda-45f5-822d-e1a2f3f1acf0"]], null, function(result,upperThis) {
+            callbackF(result);
+        });
+    },
+
+    getLessons(authToken,instID,fromDate,toDate,callbackF) {
+        this.httpRequest("GET", "https://" + instID + ".e-kreta.hu/mapi/api/v1/Lesson", [["Authorization", "Bearer " + authToken]], "fromDate=" + fromDate + "&toDate=" + toDate, function(result,upperThis) {
+            callbackF(result,upperThis);
+        });
+    },
+
+    //HTTP request creator function
+    /*
+        This function creates all of our HTTP requests.
+    */
+    httpRequest(method,url,headers,postParameters,callbackF) {
         var message = Soup.Message.new(
-            "GET",
-            API_LINK_INST
+            method,
+            url
         );
-        message.request_headers.append("apiKey", "7856d350-1fda-45f5-822d-e1a2f3f1acf0");
-    
+
+        if (headers !== null) {
+            for (let i = 0;i < headers.length;i++) {
+                message.request_headers.append(headers[i][0],headers[i][1]);
+            }
+        }
+        if (this.gzipEnabled)
+            message.request_headers.append("Accept-Encoding","gzip");
+
+        if (postParameters !== null) 
+            message.set_request("application/x-www-form-urlencoded",2,postParameters);
+
         httpSession.queue_message(message,
             Lang.bind(this, function(session, response) {
                 if (response.status_code !== Soup.KnownStatusCode.OK) {
-                    global.log(_("Error during download getInsitutes()") + ": response code " +
-                        response.status_code + ": " + response.reason_phrase + " - " +
-                        response.response_body.data);
-                    callbackF("error", this);
+                    global.log(response.status_code + " : " + response.response_body.data);
+                    callbackF("cantgetauth", this); //TODO: Correct error value.
                     return;
                 }
-    
+                
                 var result = JSON.parse(message.response_body.data);
                 callbackF(result, this);
                 return;
             })
         );
+        return
+    },
+
+    getDayName(dayNumber,callbackF) {
+        switch (dayNumber) {
+            case 0: { 
+                callbackF(_("Monday"), this); 
+                break;
+            }
+            case 1: { 
+                callbackF(_("Tuesday"), this); 
+                break;
+            }
+            case 2: { 
+                callbackF(_("Wednesday"), this); 
+                break;
+            }
+            case 3: { 
+                callbackF(_("Thursday"), this); 
+                break;
+            }
+            case 4: { 
+                callbackF(_("Friday"), this); 
+                break;
+            }
+            case 5: { 
+                callbackF(_("Saturday"), this); 
+                break;
+            }
+            case 6: { 
+                callbackF(_("Sunday"), this); 
+                break;
+            }
+            default: {
+                callbackF(_("Not a day"), this);
+            }
+        }
+    },
+
+    isCurrentDay(dayNumber,callbackF) {
+        callbackF(dayNumber == new Date().getDay(), this);
+    },
+
+    getDayStyleClass(isCurrentDay, callbackF) {
+        if (isCurrentDay)
+            callbackF("boldLabel", this);
+        else 
+            callbackF("normalLabel", this);
+    },
+
+    fetchSubjectsFromResponse(array,subjectString,callbackF) {
+        var subjects = new Array();
+        for(let i = 0; i < array.length; i++) {
+            var currentSubject = array[i][subjectString];
+            if (subjects.indexOf(currentSubject) === -1 && currentSubject !== null) {
+                subjects.push(currentSubject);
+            }
+        }
+        callbackF(subjects, this);
     },
 
     //Grade coloring mechanism
@@ -360,6 +615,20 @@ EKretaDesklet.prototype = {
         }
     },
 
+    getCurrentWeek(callbackF, upperThis) {
+        var today = new Date();
+        var day = today.getDay();
+
+        var StartDate = new Date();
+        var EndDate = new Date();
+        StartDate.setHours(0,0,0,0); EndDate.setHours(0,0,0,0);
+        StartDate.setDate(today.getDate()-day);
+        EndDate.setDate(today.getDate()-day+6);
+        EndDate.setDate(EndDate.getDate()-5);
+        callbackF(StartDate,EndDate,upperThis);
+        global.log(StartDate + " : " + EndDate);
+    },
+
     //Loading screen shower function
     /*
         Show the loading screen. 
@@ -375,6 +644,18 @@ EKretaDesklet.prototype = {
         this.setContent(this.loadingWindow)
     },
 
+    //When the settings gets changed
+    /*
+        It reloads the desklet with the new settings.
+    */
+    onSettingChanged() {
+        if (!isSettingChangedRunning) {
+            isSettingChangedRunning = true;
+            this.removeUpdateTimer();
+            this.onUpdate();
+        }
+    },
+
     //When the desklet gets removed
     /* 
         It fires when the desklet gets removed,
@@ -382,10 +663,10 @@ EKretaDesklet.prototype = {
     */
     on_desklet_removed() {
         this.removeUpdateTimer();
-        global.log(UUID + ":" + _("Desklet got removed."));
     }
 };
 
+//Calls the desklet.
 function main(metadata, desklet_id) {
     return new EKretaDesklet(metadata, desklet_id);
 }
