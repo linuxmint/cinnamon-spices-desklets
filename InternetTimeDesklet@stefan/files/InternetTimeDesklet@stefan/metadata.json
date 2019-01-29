@@ -1,0 +1,6 @@
+{
+    "uuid": "InternetTimeDesklet@stefan", 
+    "name": "Internet Time",
+    "description": "Shows the Internet Time in .beat", 
+    "prevent-decorations": false
+}
