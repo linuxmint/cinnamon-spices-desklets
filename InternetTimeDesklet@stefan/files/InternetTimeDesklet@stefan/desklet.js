@@ -12,8 +12,13 @@ NetBeatDesklet.prototype = {
 
 	_init: function(metadata, desklet_id){
 		Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
-
 		this.setupUI();
+		this.refresh();
+		// set update intervall:
+		//  1 beat = 86.4 sec.  Shorter update interval means more precise changing time of the .beat
+		this.timeout = Mainloop.timeout_add_seconds(10, Lang.bind(this, this.refresh));         
+		// only update, if the desklet is running
+        this.keepUpdating = true;   
 	},
 
 	setupUI: function() {
@@ -60,8 +65,6 @@ NetBeatDesklet.prototype = {
 
 		this.setContent(this.frame);
 		
-		this.refresh();
-		
     },
     
 	on_desklet_removed: function() {
@@ -77,11 +80,8 @@ NetBeatDesklet.prototype = {
 		let tzoff = 60 + d.getTimezoneOffset();
 		let beats = ('000' + Math.floor((s + (m + tzoff) * 60 + h * 3600) / 86.4) % 1000).slice(-3);
 		this.netbeat.set_text("@" + beats);
-		
-		// set update intervall:
-		//  1 beat = 86.4 sec.  Shorter update interval means more precise changing time of the .beat
-		this.timeout = Mainloop.timeout_add_seconds(10, Lang.bind(this, this.refresh));
-	
+		// only update, if the desklet is running
+		return this.keepUpdating;	
 	},
 
 	on_desklet_clicked: function() {
@@ -89,7 +89,10 @@ NetBeatDesklet.prototype = {
 	},
 
 	on_desklet_removed: function() {
-		Mainloop.source_remove(this.timeout);
+		// if the desklet is removed, stop updating, stop Mainloop
+		this.keepUpdating = false;
+		if (this.timeout) Mainloop.source_remove(this.timeout);
+		this.timeout = 0;
 	},
 
 };	
