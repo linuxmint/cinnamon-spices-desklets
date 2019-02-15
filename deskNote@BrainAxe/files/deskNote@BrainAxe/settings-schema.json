@@ -1,9 +1,9 @@
 {
 
     "note-entry": {
-      "type": "entry",
+      "type": "textview",
       "default": "Your Note Here",
-      "description": "Note: (use %% for newline)",
+      "description": "Note:",
       "tooltip" : "Set your note here"
     },
 
