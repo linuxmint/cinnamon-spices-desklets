@@ -1,6 +1,29 @@
 {
     "top": {
         "type": "header",
+        "description": "Google Calendar authentication"
+    },
+
+    "clientId": {
+        "type": "entry",
+        "default": "",
+        "description": "Client Id",
+        "tooltip": "Enter your Google calendar project client id. Leave it empty to use the default client id."
+    },
+
+    "clientSecret": {
+        "type": "entry",
+        "default": "",
+        "description": "Client secret",
+        "tooltip": "Enter your Google calendar project client secret. Leave it empty to use the default client secret."
+    },
+
+    "sep1": {
+        "type": "separator"
+    },
+
+    "display1": {
+        "type": "header",
         "description": "Calendar configuration"
     },
 
@@ -32,11 +55,11 @@
         "step": 1
     },
 
-    "sep1": {
+    "sep2": {
         "type": "separator"
     },
 
-    "display": {
+    "display2": {
         "type": "header",
         "description": "Desklet style"
     },

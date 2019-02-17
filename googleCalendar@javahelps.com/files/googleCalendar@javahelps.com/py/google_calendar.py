@@ -23,12 +23,69 @@ Command-line application that retrieves the list of the user's calendars."""
 
 import sys
 
+import os
 import argparse
 import json
 from datetime import datetime, timezone
 from dateutil.relativedelta import relativedelta
 from oauth2client import client
-from googleapiclient import sample_tools
+
+import httplib2
+
+from oauth2client import clientsecrets
+from googleapiclient import discovery
+from oauth2client import client
+from oauth2client import file
+from oauth2client import tools
+
+HOME_DIRECTORY = os.environ.get('HOME') or os.path.expanduser('~')
+STORAGE_PATH = os.path.join(
+    HOME_DIRECTORY, ".cinnamon/configs/googleCalendar@javahelps.com/calendar.dat")
+DEFAULT_CLIENT_ID = "308973626016-9333rc7ade2mop1cignfejfh6se9kbdk.apps.googleusercontent.com"
+DEFAULT_CLIENT_SECRET = "CDXlDkqPae-pT_UvmPTy5wuG"
+
+
+class DefaultArg:
+
+    def __init__(self):
+        self.auth_host_name = "localhost"
+        self.noauth_local_webserver = False
+        self.auth_host_port = [8080, 8090]
+        self.logging_level = "ERROR"
+
+
+def flow_from_clientsecrets(client_id, client_secret, redirect_uri=None, login_hint=None):
+    scope = "https://www.googleapis.com/auth/calendar.readonly"
+    constructor_kwargs = {
+        'redirect_uri': redirect_uri,
+        'auth_uri': "https://accounts.google.com/o/oauth2/auth",
+        'token_uri': "https://accounts.google.com/o/oauth2/token",
+        'login_hint': login_hint,
+    }
+    try:
+        return client.OAuth2WebServerFlow(client_id, client_secret, scope, **constructor_kwargs)
+    except clientsecrets.InvalidClientSecretsError:
+        raise
+    else:
+        raise client.UnknownClientSecretsFlowError(
+            'This OAuth 2.0 flow is unsupported: installed')
+
+
+def create_service(client_id, client_secret):
+    # Prepare credentials, and authorize HTTP object with them.
+    # If the credentials don't exist or are invalid run through the native client
+    # flow. The Storage object will ensure that if successful the good
+    # credentials will get written back to a file.
+    storage = file.Storage(STORAGE_PATH)
+    credentials = storage.get()
+    if credentials is None or credentials.invalid:
+        # Set up a Flow object to be used if we need to authenticate.
+        flow = flow_from_clientsecrets(client_id, client_secret)
+        credentials = tools.run_flow(flow, storage, DefaultArg())
+    http = credentials.authorize(http=httplib2.Http())
+
+    # Construct a service object via the discovery service.
+    return discovery.build("calendar", "v3", http=http)
 
 
 def retrieve_events(service, calendar_id, calendar_color, start_time, end_time, time_zone):
@@ -86,10 +143,15 @@ def main(argv):
                         help='number of days to include')
     parser.add_argument('--calendar', type=str, default=['*'], nargs='*')
     parser.add_argument("--list-calendars", action='store_true')
+    parser.add_argument("--client_id", type=str, help='the Google client id')
+    parser.add_argument("--client_secret", type=str,
+                        help='the Google client secret')
     args = parser.parse_args()
 
     # Extract arguments
     no_of_days = int(args.no_of_days)
+    client_id = args.client_id
+    client_secret = args.client_secret
     selected_calendars = [x.lower() for x in args.calendar]
     all_calendars = '*' in selected_calendars
 
@@ -98,10 +160,12 @@ def main(argv):
     start_time = str(current_time.isoformat())
     end_time = str((current_time + relativedelta(days=no_of_days)).isoformat())
 
+    if not client_id or not client_secret:
+        client_id = DEFAULT_CLIENT_ID
+        client_secret = DEFAULT_CLIENT_SECRET
+
     # Authenticate and construct service.
-    service, _ = sample_tools.init(
-        [], 'calendar', 'v3', __doc__, __file__,
-        scope='https://www.googleapis.com/auth/calendar.readonly')
+    service = create_service(client_id, client_secret)
 
     calendar_events = []
     try:

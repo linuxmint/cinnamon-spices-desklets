@@ -81,6 +81,8 @@ GoogleCalendarDesklet.prototype = {
         // Bind the properties
         try {
             this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], this.updateID);
+            this.settings.bind("clientId", "clientId", this.onCalendarParamsChanged, null);
+            this.settings.bind("clientSecret", "clientSecret", this.onCalendarParamsChanged, null);
             this.settings.bind("calendarName", "calendarName", this.onCalendarParamsChanged, null);
             this.settings.bind("interval", "interval", this.onCalendarParamsChanged, null);
             this.settings.bind("delay", "delay", this.onCalendarParamsChanged, null);
@@ -152,7 +154,7 @@ GoogleCalendarDesklet.prototype = {
      */
     getCalendarCommand() {
         let dateTime = new Date();
-        let command = ["python3", SCRIPT_PATH];
+        let command = ["python3", SCRIPT_PATH, "--client_id", this.clientId, "--client_secret", this.clientSecret];
         command.push("--no-of-days");
         if (this.interval == null) {
             this.interval = 7; // Default interval is 7 days
