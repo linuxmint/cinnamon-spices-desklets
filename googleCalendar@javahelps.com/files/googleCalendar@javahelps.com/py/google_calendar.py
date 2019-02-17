@@ -22,21 +22,18 @@
 Command-line application that retrieves the list of the user's calendars."""
 
 import sys
-
 import os
 import argparse
 import json
 from datetime import datetime, timezone
 from dateutil.relativedelta import relativedelta
-from oauth2client import client
-
 import httplib2
-
-from oauth2client import clientsecrets
-from googleapiclient import discovery
 from oauth2client import client
+from oauth2client import clientsecrets
 from oauth2client import file
 from oauth2client import tools
+from googleapiclient import discovery
+
 
 HOME_DIRECTORY = os.environ.get('HOME') or os.path.expanduser('~')
 STORAGE_PATH = os.path.join(
@@ -103,16 +100,16 @@ def retrieve_events(service, calendar_id, calendar_color, start_time, end_time, 
                 calendar_event = {
                     'calendar_color': calendar_color, 'summary': event['summary']}
                 if 'dateTime' in event['start']:
-                    startDateTime = datetime.strptime(
-                        ''.join(event['start']['dateTime'].rsplit(':', 1)),  '%Y-%m-%dT%H:%M:%S%z')
-                    endDateTime = datetime.strptime(
-                        ''.join(event['end']['dateTime'].rsplit(':', 1)),  '%Y-%m-%dT%H:%M:%S%z')
-                    calendar_event['start_date'] = str(startDateTime.date())
+                    start_date_time = datetime.strptime(
+                        ''.join(event['start']['dateTime'].rsplit(':', 1)), '%Y-%m-%dT%H:%M:%S%z')
+                    end_date_time = datetime.strptime(
+                        ''.join(event['end']['dateTime'].rsplit(':', 1)), '%Y-%m-%dT%H:%M:%S%z')
+                    calendar_event['start_date'] = str(start_date_time.date())
                     calendar_event['start_time'] = str(
-                        startDateTime.time()).rsplit(':', 1)[0]
-                    calendar_event['end_date'] = str(endDateTime.date())
+                        start_date_time.time()).rsplit(':', 1)[0]
+                    calendar_event['end_date'] = str(end_date_time.date())
                     calendar_event['end_time'] = str(
-                        endDateTime.time()).rsplit(':', 1)[0]
+                        end_date_time.time()).rsplit(':', 1)[0]
                 else:
                     calendar_event['start_date'] = event['start']['date']
                     calendar_event['start_time'] = '00:00'
@@ -197,7 +194,7 @@ def main(argv):
     except client.AccessTokenRefreshError:
         # The credentials have been revoked or expired, please re-run the application to re-authorize.
         return -1
-    except Exception:
+    except BaseException:
         return -2
 
 
