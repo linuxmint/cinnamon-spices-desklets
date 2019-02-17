@@ -31,8 +31,8 @@ msgid "Displays Note on Desktop!"
 msgstr "Visualitza la nota a l'escriptori!"
 
 #. deskNote@BrainAxe->settings-schema.json->note-entry->description
-msgid "Note: "
-msgstr "Nota: "
+msgid "Note:"
+msgstr "Nota:"
 
 #. deskNote@BrainAxe->settings-schema.json->note-entry->tooltip
 msgid "Set your note here"

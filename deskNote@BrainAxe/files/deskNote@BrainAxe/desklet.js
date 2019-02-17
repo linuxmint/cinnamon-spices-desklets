@@ -50,7 +50,6 @@ deskNote.prototype = {
 
     on_setting_changed: function() {
       var new_text = this.noteEntry;
-      var new_text = new_text.replace(/%%/g, "\n");
       this.text.set_text(new_text);
     },
 
