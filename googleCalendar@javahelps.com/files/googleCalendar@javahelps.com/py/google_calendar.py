@@ -98,7 +98,7 @@ def retrieve_events(service, calendar_id, calendar_color, start_time, end_time, 
                                            singleEvents=True).execute()
             for event in events['items']:
                 calendar_event = {
-                    'calendar_color': calendar_color, 'summary': event['summary']}
+                    'calendar_color': calendar_color, 'summary': event.get('summary', 'NO_TITLE')}
                 if 'dateTime' in event['start']:
                     start_date_time = datetime.strptime(
                         ''.join(event['start']['dateTime'].rsplit(':', 1)), '%Y-%m-%dT%H:%M:%S%z')
