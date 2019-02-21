@@ -195,6 +195,27 @@ msgid "A desklet that displays your agenda based on Google Calendar"
 msgstr ""
 
 #. settings-schema.json->top->description
+msgid "Google Calendar authentication"
+msgstr ""
+
+#. settings-schema.json->clientId->description
+msgid "Client Id"
+msgstr ""
+
+#. settings-schema.json->clientId->tooltip
+msgid "Enter your Google calendar project client id. Leave it empty to use the default client id."
+msgstr ""
+
+#. settings-schema.json->clientSecret->description
+msgid "Client secret"
+msgstr ""
+
+#. settings-schema.json->clientSecret->tooltip
+msgid "Enter your Google calendar project client secret. Leave it empty to use the default client secret."
+msgstr ""
+
+
+#. settings-schema.json->display1->description
 msgid "Calendar configuration"
 msgstr ""
 
@@ -226,7 +247,7 @@ msgstr ""
 msgid "minutes"
 msgstr ""
 
-#. settings-schema.json->display->description
+#. settings-schema.json->display2->description
 msgid "Desklet style"
 msgstr ""
 

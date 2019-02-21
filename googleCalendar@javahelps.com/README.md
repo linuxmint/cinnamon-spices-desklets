@@ -47,11 +47,6 @@ View your upcoming calendar events on your Cinnamon Desktop. This desklet uses `
 
 2. **How to show events only from a selected list of calendars?**
 
-    Open your terminal and change the directory to the desklet config location.
-    ```shell
-    cd ~/.cinnamon/configs/googleCalendar@javahelps.com
-    ```
-
     Execute the following command to see the available calendars:
     ```shell
     python3 ~/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/py/google_calendar.py --list-calendars
@@ -86,7 +81,6 @@ View your upcoming calendar events on your Cinnamon Desktop. This desklet uses `
     Please open a GitHub issue at [linuxmint/cinnamon-spices-desklets](https://github.com/linuxmint/cinnamon-spices-desklets/issues). Please include the Python 3 version (`python3 -V`) of your system in addition to the details required in the issue template.
     Reporting the output of the following command also helpful to trace the problem. However, please replace any personal information printed in the console by some random characters.
     ```shell
-    cd ~/.cinnamon/configs/googleCalendar@javahelps.com
     python3 ~/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/py/google_calendar.py
     ```
 
