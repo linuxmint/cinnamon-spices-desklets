@@ -341,8 +341,8 @@ var XDate = function(t, e, n, r) {
         return this.toUTCString(Q)
     }, u.defaultLocale = "", u.locales = {
         "": {
-            monthNames: [_("January"), _("February"), _("March"), _("April"), _("May"), _("June"), _("July"), _("August"), _("September"), _("October"), _("November"), _("December")],
-            monthNamesShort: [_("Jan"), _("Feb"), _("Mar"), _("Apr"), _("May"), _("Jun"), _("Jul"), _("Aug"), _("Sep"), _("Oct"), _("Nov"), _("Dec")],
+            monthNames: [_("January"), _("February"), _("March"), _("April"), Gettext.dpgettext(UUID, "long", "May"), _("June"), _("July"), _("August"), _("September"), _("October"), _("November"), _("December")],
+            monthNamesShort: [_("Jan"), _("Feb"), _("Mar"), _("Apr"), Gettext.dpgettext(UUID, "short", "May"), _("Jun"), _("Jul"), _("Aug"), _("Sep"), _("Oct"), _("Nov"), _("Dec")],
             dayNames: [_("Sunday"), _("Monday"), _("Tuesday"), _("Wednesday"), _("Thursday"), _("Friday"), _("Saturday")],
             dayNamesShort: [_("Sun"), _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat")],
             amDesignator: _("AM"),
