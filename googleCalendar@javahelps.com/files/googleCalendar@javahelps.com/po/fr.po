@@ -59,6 +59,11 @@ msgid "April"
 msgstr "avril"
 
 #: lib/xdate.js:344 lib/xdate.js:345
+msgctxt "long"
+msgid "May"
+msgstr "mai"
+
+msgctxt "long"
 msgid "May"
 msgstr "mai"
 
