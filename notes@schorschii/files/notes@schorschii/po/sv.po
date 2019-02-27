@@ -1,0 +1,249 @@
+# Swedish translation for notes@schorschii
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR: Åke Engelbrektson <eson@svenskasprakfiler.se>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: notes@schorschii\n"
+"POT-Creation-Date: 2018-01-12 18:07+0100\n"
+"PO-Revision-Date: 2019-02-27 06:19+0100\n"
+"Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
+"Language: sv\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+#: desklet.js:109
+msgid ""
+"Can't read text file.\n"
+"Select a file in settings.\n"
+"\n"
+"Click here to edit."
+msgstr ""
+"Kan inte läsa textfilen.\n"
+"Välj en fil i inställningarna.\n"
+"\n"
+"Klicka här för att redigera."
+
+#: desklet.js:172
+msgid "Notepad"
+msgstr "Notepad"
+
+msgid "Note"
+msgstr "Note"
+
+msgid "A desklet to display notes including various themes."
+msgstr ""
+"Ett skrivbordsprogram för att visa anteckningar, med varierande teman."
+
+msgid "Settings for notes@schorschii"
+msgstr "Inställningar för notes@schorschii"
+
+msgid "General"
+msgstr "Allmänt"
+
+msgid "Path to note text file"
+msgstr "Sökväg till anteckningsfil"
+
+msgid "Select your text file, where to read from and save to."
+msgstr "Välj den textfil, som skall läsas från och sparas till."
+
+msgid "Command for editing this note (on mouse click)"
+msgstr "Kommando för att redigera denna anteckning (vid musklick)"
+
+msgid "%f will replaced by the text file path."
+msgstr "%f ersätts av sökvägen till din textfil."
+
+msgid "Visual"
+msgstr "Visuellt"
+
+msgid "Select the background graphic you would like to use."
+msgstr "Välj den bakgrundsgrafik du vill använda."
+
+msgid "Notes style"
+msgstr "Anteckningsstil"
+
+msgid "Yellow"
+msgstr "Gul"
+
+msgid "White"
+msgstr "Vit"
+
+msgid "Blank Note - Black"
+msgstr "Slätt ark - Svart"
+
+msgid "Blank Note - Blue"
+msgstr "Slätt ark - Blå"
+
+msgid "Blank Note - Green"
+msgstr "Slätt ark - Grön"
+
+msgid "Blank Note - Orange"
+msgstr "Slätt ark - Orange"
+
+msgid "Blank Note - Purple"
+msgstr "Slätt ark - Lila"
+
+msgid "Blank Note - White"
+msgstr "Slätt ark - Vit"
+
+msgid "Blank Note - Yellow"
+msgstr "Slätt ark - Gul"
+
+msgid "White Note - Black Button"
+msgstr "Vitt ark - Svart nål"
+
+msgid "White Note - Blue Button"
+msgstr "Vitt ark - Blå nål"
+
+msgid "White Note - Green Button"
+msgstr "Vitt ark - Grön nål"
+
+msgid "White Note - Red Button"
+msgstr "Vitt ark - Röd nål"
+
+msgid "White Note - Yellow Button"
+msgstr "Vitt ark - Gul nål"
+
+msgid "Yellow Note - Black Clip"
+msgstr "Gult ark - Svart gem"
+
+msgid "Yellow Note - Blue Clip"
+msgstr "Gult ark - Blått gem"
+
+msgid "Yellow Note - Green Clip"
+msgstr "Gult ark - Grönt gem"
+
+msgid "Yellow Note - Jingle Clip"
+msgstr "Gult ark - Randigt gem"
+
+msgid "Yellow Note - Red Clip"
+msgstr "Gult ark - Rött gem"
+
+msgid "Yellow Note - Yellow Clip"
+msgstr "Gult ark - Gult gem"
+
+msgid "White Note - Black Magnet"
+msgstr "Vitt ark - Svart magnet"
+
+msgid "Yellow Note - Blue Magnet"
+msgstr "Gult ark - Blå magnet"
+
+msgid "White Note - Lines and Red Magnet"
+msgstr "Vitt ark - Linjer och röd magnet"
+
+msgid "Black Note - White Magnet"
+msgstr "Svart ark - Vit magnet"
+
+msgid "Yellow Note - Yellow Magnet"
+msgstr "Gult ark - Gul magnet"
+
+msgid "Blue Paint Strokes"
+msgstr "Blåa penseldrag"
+
+msgid "Green Paint Strokes"
+msgstr "Gröna penseldrag"
+
+msgid "Purple Paint Strokes"
+msgstr "Lila penseldrag"
+
+msgid "Red Paint Strokes"
+msgstr "Röda penseldrag"
+
+msgid "Yellow Paint Strokes"
+msgstr "Gula penseldrag"
+
+msgid "White Note - Silver Spiral"
+msgstr "Vitt ark - Silverspiral"
+
+msgid "White Note - Silver Spiral 2"
+msgstr "Vitt ark - Silverspiral 2"
+
+msgid "White Note - Black Spiral"
+msgstr "Vitt ark - Svart spiral"
+
+msgid "White Note Large - Silver Spiral"
+msgstr "Vitt ark stor - Silverspiral"
+
+msgid "Yellow Sticker"
+msgstr "Gul PostIt"
+
+msgid "Yellow Note (iOS Style)"
+msgstr "Gult ark (iOS-stil)"
+
+msgid "Birch Bark"
+msgstr "Björknäver"
+
+msgid "Burned Paper"
+msgstr "Bränt papper"
+
+msgid "Clay Tablet"
+msgstr "Lertavla"
+
+msgid "Coffee Stained"
+msgstr "Kaffefläckat"
+
+msgid "Clipboard"
+msgstr "Skrivplatta"
+
+msgid "Hide decorations"
+msgstr "Dölj dekorationer"
+
+msgid "Font"
+msgstr "Teckensnitt"
+
+msgid "Bold"
+msgstr "Fet"
+
+msgid "Italic"
+msgstr "Kursiv"
+
+msgid "Font size"
+msgstr "Teckenstorlek"
+
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Öka eller minska storleken på det här skrivbordsprogrammet, med denna "
+"skalfaktor."
+
+msgid "Set the text color of this desklet."
+msgstr "Ange textfärg för anteckningar."
+
+msgid "Text color"
+msgstr "Textfärg"
+
+msgid "Desklet size"
+msgstr "Programstorlek"
+
+msgid "pixels"
+msgstr "pixlar"
+
+msgid "scale factor"
+msgstr "skalfaktor"
+
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Anpassad programetikett (synlig endast om dekorationer är aktiverade)."
+
+msgid "Use a custom desklet label"
+msgstr "Använd anpassad programetikett"
+
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr "Aktivering låter dig ange en anpassad etikett i fältet nedan."
+
+msgid "Custom desklet label"
+msgstr "Anpassad programetikett"
+
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr ""
+"Ange din anpassade etikett här. Detta fält är otillgängligt om inte "
+"ovanstående inställning är på."
