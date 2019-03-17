@@ -30,7 +30,7 @@ ShutdownDesklet.prototype = {
 
         this._str = new St.Label();
         this._str.set_text(_("Shutdown"));
-        this._str.set_style('text-align:center;');
+        this._str.set_style("text-align:center");
         this._btn = new St.Button();
         this._lastClickedTimestamp = new Date() - 10000;
         this._btn.connect("clicked", Lang.bind(this, this._clicked));
