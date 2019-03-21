@@ -59,13 +59,13 @@ MyDesklet.prototype = {
     },
 
     _updateDate: function() {
-       let hourFormat = '%H';
-       let minFormat = '%M';
-       let secFormat = '%S';
-       let locale = GLib.getenv('LANG');
+       let hourFormat = "%H";
+       let minFormat = "%M";
+       let secFormat = "%S";
+       let locale = GLib.getenv("LANG");
        if (locale) {
            // convert $LANG from format "en_GB.UTF-8" to "en-GB"
-           locale = GLib.getenv('LANG').replace(/_/g, "-").replace(/\..+/, "");
+           locale = GLib.getenv("LANG").replace(/_/g, "-").replace(/\..+/, "");
        } else {
            // fallback locale
            locale = "en-US";
