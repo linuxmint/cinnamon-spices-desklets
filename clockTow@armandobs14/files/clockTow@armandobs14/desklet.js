@@ -1,3 +1,4 @@
+const Cinnamon = imports.gi.Cinnamon;
 const Gio = imports.gi.Gio;
 const St = imports.gi.St;
 
@@ -16,6 +17,10 @@ Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale")
 function _(str) {
   return Gettext.dgettext(UUID, str);
 }
+
+const toLocaleFormat = function toLocaleFormat(date, format) {
+    return Cinnamon.util_format_date(format, date.getTime());
+};
 
 function MyDesklet(metadata){
     this._init(metadata);
@@ -53,7 +58,7 @@ MyDesklet.prototype = {
     //_onFontSizeChanged: function(){
         //this._date.style="font-size: " + this._dateSettings.get_int("font-size") + "pt";
     //},
-        
+
     on_desklet_removed: function() {
 	Mainloop.source_remove(this.timeout);
     },
@@ -71,9 +76,9 @@ MyDesklet.prototype = {
            locale = "en-US";
        }
        let displayDate = new Date();
-       this._hour.set_text(displayDate.toLocaleFormat(hourFormat));
-       this._min.set_text(displayDate.toLocaleFormat(minFormat));
-       this._sec.set_text(displayDate.toLocaleFormat(secFormat));
+       this._hour.set_text(toLocaleFormat(displayDate, hourFormat));
+       this._min.set_text(toLocaleFormat(displayDate, minFormat));
+       this._sec.set_text(toLocaleFormat(displayDate, secFormat));
        this._date.set_text(displayDate.toLocaleDateString(locale, {
            day: "numeric",
            month: "long",
