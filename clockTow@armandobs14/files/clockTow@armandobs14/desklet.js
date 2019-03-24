@@ -58,17 +58,27 @@ MyDesklet.prototype = {
 	Mainloop.source_remove(this.timeout);
     },
 
-    _updateDate: function(){
-       //let dateFormat = this._dateSettings.get_string('date-format');
-       let hourFormat = '%H';
-       let minFormat = '%M';
-       let secFormat = '%S';
-       let dateFormat = '%A,%e %B';
+    _updateDate: function() {
+       let hourFormat = "%H";
+       let minFormat = "%M";
+       let secFormat = "%S";
+       let locale = GLib.getenv("LANG");
+       if (locale) {
+           // convert $LANG from format "en_GB.UTF-8" to "en-GB"
+           locale = GLib.getenv("LANG").replace(/_/g, "-").replace(/\..+/, "");
+       } else {
+           // fallback locale
+           locale = "en-US";
+       }
        let displayDate = new Date();
        this._hour.set_text(displayDate.toLocaleFormat(hourFormat));
        this._min.set_text(displayDate.toLocaleFormat(minFormat));
        this._sec.set_text(displayDate.toLocaleFormat(secFormat));
-       this._date.set_text(displayDate.toLocaleFormat(dateFormat));
+       this._date.set_text(displayDate.toLocaleDateString(locale, {
+           day: "numeric",
+           month: "long",
+           weekday: "long"
+        }));
        this.timeout = Mainloop.timeout_add_seconds(1, Lang.bind(this, this._updateDate));
     }
 }
