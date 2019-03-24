@@ -2,12 +2,13 @@
 // Jalali Time And Date - Cinnamon Desklet v0.4 - 29 Sep 2013
 //
 // The Solar Hijri calendar is the official calendar of Iran and Afghanistan.
-// 
+//
 // based on Ehsan Tabari and Cinnamon Time and Date desklet
 //
 // -Siavash Salemi
 // 30yavash [at] gmail [dot] com
 //
+const Cinnamon = imports.gi.Cinnamon;
 const Gio = imports.gi.Gio;
 const St = imports.gi.St;
 const Desklet = imports.ui.desklet;
@@ -17,8 +18,9 @@ const GLib = imports.gi.GLib;
 const PopupMenu = imports.ui.popupMenu;
 const Util = imports.misc.util;
 
-
-
+const toLocaleFormat = function toLocaleFormat(date, format) {
+    return Cinnamon.util_format_date(format, date.getTime());
+};
 
 function MyDesklet(metadata){
     this._init(metadata);
@@ -29,22 +31,22 @@ MyDesklet.prototype = {
 
 	_init: function(metadata){
 		Desklet.Desklet.prototype._init.call(this, metadata);
-		
+
 		this.metadata = metadata
 		this.dateFormat = this.metadata["dateFormat"];
 		this.dateSize = this.metadata["dateSize"];
 		this.timeFormat = this.metadata["timeFormat"];
 		this.timeSize = this.metadata["timeSize"];
-			
+
 		this._clockContainer = new St.BoxLayout({vertical:true, style_class: 'clock-container'});
-		
+
 		this._dateContainer =  new St.BoxLayout({vertical:false, style_class: 'date-container'});
 		this._timeContainer =  new St.BoxLayout({vertical:false, style_class: 'time-container'});
 
 		this._date = new St.Label();
 		this._time = new St.Label();
-		
-		
+
+
 		this._dateContainer.add(this._date);
 		this._timeContainer.add(this._time);
 
@@ -53,30 +55,30 @@ MyDesklet.prototype = {
 
 		this.setContent(this._clockContainer);
 		this.setHeader(_("Time And Date"));
-		
+
 		// Set the font sizes from .json file
-		
+
 		this._date.style="font-size: " + this.dateSize;
 		this._time.style="font-size: " + this.timeSize;
-		
+
 		// let dir_path = ;
 		// this.save_path = dir_path.replace('~', GLib.get_home_dir());
 		this.configFile = GLib.get_home_dir() + "/.local/share/cinnamon/desklets/jalalidesklet@30yavash.com/metadata.json";
 		this.helpFile = GLib.get_home_dir() + "/.local/share/cinnamon/desklets/jalalidesklet@30yavash.com/README";
-		
+
 		global.log("Config file " + this.configFile);
-		
+
 		this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
 
 		this._menu.addAction(_("Edit Config"), Lang.bind(this, function() {
 			Util.spawnCommandLine("xdg-open " + this.configFile);
 		}));
-		
+
 		this._menu.addAction(_("Help"), Lang.bind(this, function() {
 			Util.spawnCommandLine("xdg-open " + this.helpFile);
 		}));
-		
-		
+
+
 		this._updateDate();
 	},
 
@@ -90,15 +92,15 @@ MyDesklet.prototype = {
 		// let dateFormat = '%A,%e %B';
 		let displayDate = new Date();
 
-	
-		this._time.set_text( FarsiNumbers( displayDate.toLocaleFormat(this.timeFormat)) );
+
+		this._time.set_text( FarsiNumbers( toLocaleFormat(displayDate, this.timeFormat)) );
 		//this._date.set_text(displayDate.toLocaleFormat(this.dateFormat));
 
 		let jalali = new JalaliDate(displayDate);
 		this._date.set_text( FarsiNumbers(jalali.toLocaleFormat(this.dateFormat)) );
-		
+
 		this.timeout = Mainloop.timeout_add_seconds(1, Lang.bind(this, this._updateDate));
-		
+
 	}
 }
 
@@ -185,7 +187,7 @@ let FarsiMonthNamesShort = new Array ("",
 	dateResult=dateResult.replace("%B",FarsiMonthNames[this.month].charRefToUnicode());
 	dateResult=dateResult.replace("%b",FarsiMonthNamesShort[this.month].charRefToUnicode());
 	dateResult=dateResult.replace("%A",FarsiDayNamesFull[this.day].charRefToUnicode());
-	dateResult=dateObject.toLocaleFormat(dateResult);
+	dateResult=toLocaleFormat(dateObject, dateResult);
 
 
 	return dateResult;
@@ -235,7 +237,7 @@ function DaysInMonth(Year, Month) {
       AYear4+=1900;
    let ADay=dateObject.getDate();
    let AMonth=dateObject.getMonth()+1; // Check [HINT]
-    
+
     let Yd = ADay;
     let M = AMonth;
     for (let i = 1; i < M; i++)
