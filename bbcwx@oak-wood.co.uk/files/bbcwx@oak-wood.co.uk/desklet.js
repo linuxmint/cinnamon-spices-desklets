@@ -82,6 +82,10 @@ Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 const LangList = GLib.get_language_names()
 //const LangList = ['ar', 'zh_CN', 'es_ES', 'es', 'en'];
 
+const toLocaleFormat = function toLocaleFormat(date, format) {
+  return Cinnamon.util_format_date(format, date.getTime());
+};
+
 function _(str) {
   if (!str.toString().length) return '';
   return Gettext.dgettext(UUID, str)
@@ -698,7 +702,7 @@ MyDesklet.prototype = {
   // update the data from the service and start the timeout to the next update
   // refreshData will call the display* functions
   _refreshweathers: function() {
-    let now=new Date().toLocaleFormat('%H:%M:%S');
+    let now = toLocaleFormat(new Date(), '%H:%M:%S');
     global.log("bbcwx (instance " + this.desklet_id + "): refreshing forecast at " + now);
 
 
@@ -2307,9 +2311,9 @@ wxDriverOWM.prototype = {
     this.data.wgs84.lon = json.city.coord.lon;
     this.linkURL = 'http://openweathermap.org/city/' + json.city.id;
 
-    // This is ugly, but to place a forecast in a particular day we need to make an effort to 
-    // interpret the UTC timestamps in the context of the forecast location's timezone, which 
-    // we don't know. So we estimate, based on longitude  
+    // This is ugly, but to place a forecast in a particular day we need to make an effort to
+    // interpret the UTC timestamps in the context of the forecast location's timezone, which
+    // we don't know. So we estimate, based on longitude
     let est_tz = Math.round(json.city.coord.lon/15) * 3600;
 
     for (let i=0; i<json.list.length; i++) {
@@ -2348,7 +2352,7 @@ wxDriverOWM.prototype = {
       this.data.cc.pressure = json.main.pressure;
       this.data.cc.wind_speed = json.wind.speed * 3.6;
       this.data.cc.wind_direction = this.compassDirection(json.wind.deg);
-      this.data.cc.obstime = new Date(json.dt *1000).toLocaleFormat("%H:%M %Z");
+      this.data.cc.obstime = toLocaleFormat(new Date(json.dt *1000), "%H:%M %Z");
       this.data.cc.weathertext = json.weather[0].description.ucwords();
       this.data.cc.icon = this._mapicon(json.weather[0].icon, json.weather[0].id);
       this.data.status.cc = BBCWX_SERVICE_STATUS_OK;
@@ -2481,9 +2485,9 @@ wxDriverOWMFree.prototype = {
       this.data.wgs84.lon = json.city.coord.lon;
       this.linkURL = 'http://openweathermap.org/city/' + json.city.id;
 
-      // This is ugly, but to place a forecast in a particular day we need to make an effort to 
-      // interpret the UTC timestamps in the context of the forecast location's timezone, which 
-      // we don't know. So we estimate, based on longitude  
+      // This is ugly, but to place a forecast in a particular day we need to make an effort to
+      // interpret the UTC timestamps in the context of the forecast location's timezone, which
+      // we don't know. So we estimate, based on longitude
       let est_tz = Math.round(json.city.coord.lon/15) * 3600;
 
       let days = {};
@@ -2513,7 +2517,7 @@ wxDriverOWMFree.prototype = {
         days[day_name].icon.push(this._mapicon(json.list[i].weather[0].icon, json.list[i].weather[0].id));
       }
 
-      let today = this._getDayName(new Date().toLocaleFormat( "%w" ));
+      let today = this._getDayName(toLocaleFormat(new Date(), "%w"));
       this.data.days = [];
       for (let day_name in days) {
         //if (day_name == today) continue;
@@ -2723,7 +2727,7 @@ wxDriverWU.prototype = {
       this.data.cc.pressure_direction = this._getPressureTrend(co.pressure_trend);
       this.data.cc.wind_speed = co.wind_kph;
       this.data.cc.wind_direction = this.compassDirection(co.wind_degrees);
-      this.data.cc.obstime = new Date(co.local_epoch *1000).toLocaleFormat("%H:%M %Z");
+      this.data.cc.obstime = toLocaleFormat(new Date(co.local_epoch *1000), "%H:%M %Z");
       this.data.cc.weathertext = co.weather;
       this.data.cc.icon = this._mapicon(co.icon, json.moon_phase);
       this.data.cc.feelslike = co.feelslike_c;
@@ -2970,7 +2974,7 @@ wxDriverWWO.prototype = {
       this.data.cc.wind_speed = cc.windspeedKmph;
       this.data.cc.wind_direction = cc.winddir16Point;
       let dt = cc.localObsDateTime.split(/\-|\s/);
-      this.data.cc.obstime = new Date(dt.slice(0,3).join('/')+' '+dt[3]).toLocaleFormat("%H:%M %Z");
+      this.data.cc.obstime = toLocaleFormat(new Date(dt.slice(0,3).join('/')+' '+dt[3]), "%H:%M %Z");
       if (typeof cc[this.i18Desc] !== "undefined" && cc[this.i18Desc][0].value) {
         this.data.cc.weathertext = cc[this.i18Desc][0].value;
       } else {
@@ -3236,7 +3240,7 @@ wxDriverWWOPremium.prototype = {
       this.data.cc.feelslike = cc.FeelsLikeC;
       this.data.cc.wind_direction = cc.winddir16Point;
       let dt = cc.localObsDateTime.split(/\-|\s/);
-      this.data.cc.obstime = new Date(dt.slice(0,3).join('/')+' '+dt[3]).toLocaleFormat("%H:%M %Z");
+      this.data.cc.obstime = toLocaleFormat(new Date(dt.slice(0,3).join('/')+' '+dt[3]), "%H:%M %Z");
       if (typeof cc[this.i18Desc] !== "undefined" && cc[this.i18Desc][0].value) {
         this.data.cc.weathertext = cc[this.i18Desc][0].value;
       } else {
@@ -3489,7 +3493,7 @@ wxDriverAPIXU.prototype = {
       this.data.cc.pressure = cc.pressure_mb;
       this.data.cc.wind_speed = cc.wind_kph;
       this.data.cc.wind_direction = this.compassDirection(cc.wind_degree);
-      this.data.cc.obstime = new Date(cc.last_updated_epoch * 1000).toLocaleFormat("%H:%M %Z");
+      this.data.cc.obstime = toLocaleFormat(new Date(cc.last_updated_epoch * 1000), "%H:%M %Z");
       this.data.cc.weathertext = cc.condition.text;
       this.data.cc.icon = this._mapicon(cc.condition.code, cc.is_day);
       // vis is in km
@@ -3916,7 +3920,7 @@ wxDriverTWC.prototype = {
 
       this.data.cc.temperature = cc.getChildElement('tmp').getText();
       this.data.cc.feelslike = cc.getChildElement('flik').getText();
-      this.data.cc.obstime = new Date(cc.getChildElement('lsup').getText()).toLocaleFormat( "%H:%M %Z" );
+      this.data.cc.obstime = toLocaleFormat(new Date(cc.getChildElement('lsup').getText()), "%H:%M %Z");
       // use the text if our locale is English, otherwise try and get a translation from the code
       if (this._isEnglish) {
         this.data.cc.weathertext = cc.getChildElement('t').getText();
