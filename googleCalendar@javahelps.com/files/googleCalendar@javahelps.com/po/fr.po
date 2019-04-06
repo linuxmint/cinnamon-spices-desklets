@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-07 15:40+0100\n"
-"PO-Revision-Date: 2019-01-07 16:30+0100\n"
+"PO-Revision-Date: 2019-04-06 21:44+0200\n"
 "Last-Translator: Claude CLERC <claude.clerc@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -58,12 +58,13 @@ msgstr "mars"
 msgid "April"
 msgstr "avril"
 
-#: lib/xdate.js:344 lib/xdate.js:345
+#: lib/xdate.js:344
 msgctxt "long"
 msgid "May"
 msgstr "mai"
 
-msgctxt "long"
+#: lib/xdate.js:344 lib/xdate.js:345
+msgctxt "short"
 msgid "May"
 msgstr "mai"
 
@@ -200,6 +201,34 @@ msgid "A desklet that displays your agenda based on Google Calendar"
 msgstr "Affiche sur le bureau votre ou vos Google Agenda"
 
 #. settings-schema.json->top->description
+msgid "Google Calendar authentication"
+msgstr "Google Agenda authentification"
+
+#. settings-schema.json->clientId->description
+msgid "Client Id"
+msgstr "Identifiant"
+
+#. settings-schema.json->clientId->tooltip
+msgid ""
+"Enter your Google calendar project client id. Leave it empty to use the "
+"default client id."
+msgstr ""
+"Renseignez ici votre identifiant Google Agenda Pro. Laissez vide si vous "
+"n'utilisez que votre compte personnel."
+
+#. settings-schema.json->clientSecret->description
+msgid "Client secret"
+msgstr "Mot de passe"
+
+#. settings-schema.json->clientSecret->tooltip
+msgid ""
+"Enter your Google calendar project client secret. Leave it empty to use the "
+"default client secret."
+msgstr ""
+"Renseignez ici votre mot de passe Google Agenda Pro. Laissez vide si vous "
+"n'utilisez que votre compte personnel."
+
+#. settings-schema.json->display1->description
 msgid "Calendar configuration"
 msgstr "Configuration de l'agenda"
 
@@ -209,7 +238,9 @@ msgstr "Nom de chacun de vos agendas"
 
 #. settings-schema.json->calendarName->tooltip
 msgid "Enter your calendar names separated by comma here"
-msgstr "Entrer ici le nom de votre agenda, ou bien les noms de tous vos agendas séparés par une virgule"
+msgstr ""
+"Entrer ici le nom de votre agenda, ou bien les noms de tous vos agendas "
+"séparés par une virgule"
 
 #. settings-schema.json->interval->description
 msgid "Number of days to include"
@@ -231,7 +262,7 @@ msgstr "Fréquence de mise à jour:"
 msgid "minutes"
 msgstr "minutes"
 
-#. settings-schema.json->display->description
+#. settings-schema.json->display2->description
 msgid "Desklet style"
 msgstr "Style du desklet"
 
@@ -301,7 +332,9 @@ msgstr "Couleur du texte d'un événement durant toute une journée"
 
 #. settings-schema.json->alldaytextcolor->tooltip
 msgid "Click the button to select a new all day event text color"
-msgstr "Cliquer sur le bouton pour sélectionner la nouvelle couleur de texte des événements durant toute une journée"
+msgstr ""
+"Cliquer sur le bouton pour sélectionner la nouvelle couleur de texte des "
+"événements durant toute une journée"
 
 #. settings-schema.json->bgcolor->description
 msgid "Background color"
@@ -309,7 +342,8 @@ msgstr "Couleur de l’arrière-plan"
 
 #. settings-schema.json->bgcolor->tooltip
 msgid "Click the button to select a new background color"
-msgstr "Cliquer sur le bouton pour sélectionner la nouvelle couleur d’arrière-plan"
+msgstr ""
+"Cliquer sur le bouton pour sélectionner la nouvelle couleur d’arrière-plan"
 
 #. settings-schema.json->diff_calendar->description
 msgid "Differentiate calendars"
@@ -333,7 +367,9 @@ msgstr "Couleur du texte indiquant le lieu"
 
 #. settings-schema.json->location_color->tooltip
 msgid "Click the button to select a new location text color"
-msgstr "Cliquer sur le bouton pour sélectionner la nouvelle couleur du texte indiquant le lieu"
+msgstr ""
+"Cliquer sur le bouton pour sélectionner la nouvelle couleur du texte "
+"indiquant le lieu"
 
 #. settings-schema.json->cornerradius->units
 msgid "px"
