@@ -16,11 +16,11 @@ var session = new Soup.SessionAsync();
 
 function _(str) {
   return Gettext.dgettext(uuid, str);
-};
+}
 
 function ViennaTextBasedWeather(metadata, deskletId) {
     this._init(metadata, deskletId);
-};
+}
 
 let insertNewLines = function(text) {
   let numOfCharsToSkip = 80;
