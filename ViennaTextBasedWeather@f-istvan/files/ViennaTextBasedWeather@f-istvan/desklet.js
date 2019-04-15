@@ -166,5 +166,5 @@ ViennaTextBasedWeather.prototype = {
 
 function main(metadata, deskletId) {
     return new ViennaTextBasedWeather(metadata, deskletId);
-};
+}
 
