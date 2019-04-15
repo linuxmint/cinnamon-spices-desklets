@@ -1,6 +1,8 @@
 /*
  * Vienna Weather Information
  */
+
+"use strict";
 const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
 const Soup = imports.gi.Soup;
@@ -23,7 +25,7 @@ function ViennaTextBasedWeather(metadata, deskletId) {
 let insertNewLines = function(text) {
   let numOfCharsToSkip = 80;
   for (let i = 1; i < text.length / numOfCharsToSkip; i++) {
-    var position = text.indexOf(" ", numOfCharsToSkip * i) + 1
+    var position = text.indexOf(" ", numOfCharsToSkip * i) + 1;
     text = [text.slice(0, position), "\n", text.slice(position)].join("");
   }
 
@@ -73,10 +75,10 @@ let createMainLayoutWithItems = function (config) {
     vertical: true,
     width: config.width,
     height: config.height,
-    styleClass: 'vie-window'
+    styleClass: "vie-window"
   });
 
-  config.items.forEach((item) => window.add(item))
+  config.items.forEach((item) => window.add(item));
   return window;
 }
 
@@ -89,17 +91,17 @@ let getDateText = function () {
     " " + now.getHours() + 
     ":" + now.getMinutes() +
     ":" + now.getSeconds();
-}
+};
 
 ViennaTextBasedWeather.prototype = {
     __proto__: Desklet.Desklet.prototype,
 
-    _init: function(metadata, deskletId) {
+    _init(metadata, deskletId) {
         Desklet.Desklet.prototype._init.call(this, metadata, deskletId);
 
         this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, deskletId);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "height", "height", this._onDisplayChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "width", "width", this._onDisplayChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "height", "height", this.onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "width", "width", this.onSettingsChanged, null);
         
         let config = {
           height: this.height,
@@ -114,7 +116,7 @@ ViennaTextBasedWeather.prototype = {
         this.getWeather();
     },
 
-    _onResponse(session, message) {
+    handleResponse(session, message) {
       let fulltextWrapper = message.response_body.data.toString();
       
       let heuteRegex = /<h2>(Heute[^]*)<\/h2>[^]*(<p>[^]*<\/p>)<h2>Morgen+/;
@@ -143,22 +145,20 @@ ViennaTextBasedWeather.prototype = {
       this.mainloop = Mainloop.timeout_add(10 * 1000, Lang.bind(this, this.getWeather));
     },
 
-    getWeather: function() {
+    getWeather() {
       var url = "https://wetter.orf.at/wien/prognose";
-      var getUrl = Soup.Message.new('GET', url);
-      session.queue_message(getUrl, Lang.bind(this, this._onResponse));
+      var getUrl = Soup.Message.new("GET", url);
+      session.queue_message(getUrl, Lang.bind(this, this.handleResponse));
     },
 
-    _onDisplayChanged: function() {
-        this.window.set_size(this.width, this.height);
+    onSettingsChanged() {
+      this.window.set_size(this.width, this.height);
     },
 
-    _onSettingsChanged: function() {
-        Mainloop.source_remove(this.mainloop);
-        this.getWeather();
-    },
-
-    on_desklet_remove: function() {
+    /**
+     * Called when the desklet is removed.
+     */
+    on_desklet_removed() {
       this.window.destroy_all_children();
       this.window.destroy();
       Mainloop.source_remove(this.mainloop);
