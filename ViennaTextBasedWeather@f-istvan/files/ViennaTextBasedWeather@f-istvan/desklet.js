@@ -16,11 +16,11 @@ var session = new Soup.SessionAsync();
 
 function _(str) {
   return Gettext.dgettext(uuid, str);
-}
+};
 
 function ViennaTextBasedWeather(metadata, deskletId) {
     this._init(metadata, deskletId);
-}
+};
 
 let insertNewLines = function(text) {
   let numOfCharsToSkip = 80;
@@ -30,7 +30,7 @@ let insertNewLines = function(text) {
   }
 
   return text;
-}
+};
 
 let getWeatherObjectByRegex = function(text, regex) {
   let match = text.match(regex);
@@ -44,15 +44,14 @@ let getWeatherObjectByRegex = function(text, regex) {
     name: weatherLabel,
     text: weatherText
   };
-
-}
+};
 
 let createLabel = function(label, cssClass) {
   return new St.Label({
     text: label,
     styleClass: cssClass
   });
-}
+};
 
 let createWeatherContainer = function (weatherObject) {
   let heuteWeatherName = createLabel(weatherObject.name, "vie-weather-name");
@@ -68,7 +67,7 @@ let createWeatherContainer = function (weatherObject) {
   widgetLayout.add(heuteWeatherText);
 
   return widgetLayout;
-}
+};
 
 let createMainLayoutWithItems = function (config) {
   let window = new St.BoxLayout({
@@ -80,7 +79,7 @@ let createMainLayoutWithItems = function (config) {
 
   config.items.forEach((item) => window.add(item));
   return window;
-}
+};
 
 let getDateText = function () {
   let now = new Date();
@@ -167,5 +166,5 @@ ViennaTextBasedWeather.prototype = {
 
 function main(metadata, deskletId) {
     return new ViennaTextBasedWeather(metadata, deskletId);
-}
+};
 
