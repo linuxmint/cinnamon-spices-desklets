@@ -48,6 +48,18 @@ msgstr ""
 msgid "Visual"
 msgstr ""
 
+msgid "Design"
+msgstr ""
+
+msgid "Classic (Thick)"
+msgstr ""
+
+msgid "Thin"
+msgstr ""
+
+msgid "Draw free/unused space (gray)"
+msgstr ""
+
 msgid "Text"
 msgstr ""
 
