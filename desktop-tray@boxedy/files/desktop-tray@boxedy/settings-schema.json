@@ -1,0 +1,369 @@
+{
+
+	"toggleKey": {
+		"type": "keybinding",
+		"description": "Toggle collapse shortcut key: ",
+		"default": "<Super>/"
+	},
+	"changePointer": {
+		"type": "switch",
+		"description": "Change mouse to pointer hand on mouse over",
+		"default": false
+	},
+	"fixPos": {
+		"type": "switch",
+		"description": "Fix Position",
+		"default": true
+	},
+
+
+	"section-tray": {
+		"type": "section",
+		"description": "////////////////////////////////////////////////////////////////    Tray"
+	},
+	"label-tray-size": {
+		"type": "label",
+		"description": "////////////////////////////////    Size, Opacity & Color"
+	},
+	"width": {
+		"type": "spinbutton",
+		"description": "Width",
+		"units": "pixels",
+		"min": 20,
+		"max": 10000,
+		"step": 20,
+		"default": 800
+	},
+	"height": {
+		"type": "spinbutton",
+		"description": "Height",
+		"units": "pixels",
+		"min": 20,
+		"max": 10000,
+		"step": 20,
+		"default": 400
+	},
+	"bAlpha": {
+		"type": "spinbutton",
+		"description": "Background Opacity",
+		"units": "%",
+		"min": 0,
+		"max": 1,
+		"step": 0.01,
+		"default": 0.98
+	},
+	"hlColor": {
+		"type": "colorchooser",
+		"description": "Highlight",
+		"default": "rgb(214,73,55)"
+	},
+	"fg1Color": {
+		"type": "colorchooser",
+		"description": "Foreground 1",
+		"default": "rgb(0,0,0)"
+	},
+	"fg2Color": {
+		"type": "colorchooser",
+		"description": "Foreground 2",
+		"default": "rgb(26,27,28)"
+	},
+	"bgColor": {
+		"type": "colorchooser",
+		"description": "Background",
+		"default": "rgb(10,11,12)"
+	},
+	"label-tray-more": {
+		"type": "label",
+		"description": "////////////////////////////////    Collapsed"
+	},
+	"collapsedSize": {
+		"type": "spinbutton",
+		"description": "Size",
+		"units": "pixels",
+		"min": 10,
+		"max": 200,
+		"step": 10,
+		"default": 20
+	},
+	"collapsedSpeed": {
+		"type": "spinbutton",
+		"description": "Speed",
+		"units": "Seconds",
+		"min": 0,
+		"max": 1.5,
+		"step": 0.1,
+		"default": 0.2
+	},
+	"collapsedDir": {
+		"type": "combobox",
+		"description": "Direction",
+		"default": "top",
+		"options": {
+			"Top": "top",
+			"Left": "left"
+		}
+	},
+	"collapsed": {
+		"type": "switch",
+		"description": "Collapsed",
+		"default": false
+	},
+	"label-tray-text": {
+		"type": "label",
+		"description": "////////////////////////////////    Text"
+	},
+	"txtVisible": {
+		"type": "switch",
+		"description": "Text Visible",
+		"default": true
+	},
+
+
+	
+
+
+	"txtColor": {
+		"type": "colorchooser",
+		"dependency": "txtVisible",
+		"description": "Text Color",
+		"default": "rgb(58,59,56)"
+	},
+	"txtSize":{
+    	"type": "spinbutton",
+    	"dependency": "txtVisible",
+		"description" : "font-size",
+		"units": "pt",
+		"min": 2,
+		"max": 10000,
+		"step": 1,
+		"default": 10
+    },
+    "txtFont":{
+    	"dependency": "txtVisible",
+    	"default": "inconsolata, monospace", 
+        "type": "entry", 
+        "description" : "font-family"
+    },
+    "txtDisplay":{
+    	"type": "textview", 
+    	"dependency": "txtVisible",
+    	"default": "Customize this text in settings.", 
+        "description" : "Display Text",
+        "height" : 200
+    },
+    "showScrollBar": {
+		"type": "switch",
+		"dependency": "txtVisible",
+		"description": "Show scrollbar (when needed)",
+		"default": true
+	},
+    "bgImg": {
+		"type": "switch",
+		"dependency": "txtVisible",
+		"description": "Display image in text background.",
+		"default": false
+	},
+    "imgFile": {
+        "default": "", 
+        "type": "filechooser", 
+        "dependency": "bgImg",
+        "description" : "Select Image"
+    },
+    
+
+
+	"section-sides": {
+		"type": "section",
+		"description": "////////////////////////////////////////////////////////////////    Sides"
+	},
+	"label-sides-vis": {
+		"type": "label",
+		"description": "////////////////////////////////    Visibility"
+	},
+	"topVis": {
+		"type": "switch",
+		"description": "Top",
+		"default": true
+	},
+	"leftVis": {
+		"type": "switch",
+		"description": "Left",
+		"default": true
+	},
+	"rightVis": {
+		"type": "switch",
+		"description": "Right",
+		"default": true
+	},
+	"bottomVis": {
+		"type": "switch",
+		"description": "Bottom",
+		"default": true
+	},
+
+	"label-sides-color": {
+		"type": "label",
+		"description": "////////////////////////////////    Color"
+	},
+	"sideColorTL": {
+		"type": "combobox",
+		"description": "Unfocused Top Left",
+		"default": "fg1",
+		"options": {
+			"Highlight": "hl",
+			"Foreground 1": "fg1",
+			"Foreground 2": "fg2",
+			"Background": "bg"
+		}
+	},
+	"sideColorBR": {
+		"type": "combobox",
+		"description": "Unfocused Bottom Right",
+		"default": "fg2",
+		"options": {
+			"Highlight": "hl",
+			"Foreground 1": "fg1",
+			"Foreground 2": "fg2",
+			"Background": "bg"
+		}
+	},
+	"sideColorFocused": {
+		"type": "combobox",
+		"description": "Focused",
+		"default": "hl",
+		"options": {
+			"Highlight": "hl",
+			"Foreground 1": "fg1",
+			"Foreground 2": "fg2",
+			"Background": "bg"
+		}
+	},
+	"label-sides-size": {
+		"type": "label",
+		"description": "////////////////////////////////    Size"
+	},
+	"sideLengthRatio": {
+		"type": "spinbutton",
+		"description": "Length",
+		"units": "%",
+		"min": 0.01,
+		"max": 1.0,
+		"step": 0.01,
+		"default": 1.0
+	},
+	"sideBreadthRatio": {
+		"type": "spinbutton",
+		"description": "Unfocused Breadth",
+		"units": "%",
+		"min": 0.1,
+		"max": 1.0,
+		"step": 0.1,
+		"default": 0.1
+	},
+	"sideBreadthRatioFocused": {
+		"type": "spinbutton",
+		"description": "Focused Breadth",
+		"units": "%",
+		"min": 0.1,
+		"max": 1.0,
+		"step": 0.1,
+		"default": 0.1
+	},
+
+	"section-corners": {
+		"type": "section",
+		"description": "////////////////////////////////////////////////////////////////    Corners"
+	},
+	"label-corners-vis": {
+		"type": "label",
+		"description": "////////////////////////////////    Visibility"
+	},
+	"tlVis": {
+		"type": "switch",
+		"description": "Top Left",
+		"default": true
+	},
+	"trVis": {
+		"type": "switch",
+		"description": "Top Right",
+		"default": true
+	},
+	"blVis": {
+		"type": "switch",
+		"description": "Bottom Left",
+		"default": true
+	},
+	"brVis": {
+		"type": "switch",
+		"description": "Bottom Right",
+		"default": true
+	},
+	"label-corners-color": {
+		"type": "label",
+		"description": "////////////////////////////////    Color"
+	},
+	"cornerColorTL": {
+		"type": "combobox",
+		"description": "Unfocused Top Left",
+		"default": "fg1",
+		"options": {
+			"Highlight": "hl",
+			"Foreground 1": "fg1",
+			"Foreground 2": "fg2",
+			"Background": "bg"
+		}
+	},
+	"cornerColorBR": {
+		"type": "combobox",
+		"description": "Unfocused Bottom Right",
+		"default": "fg2",
+		"options": {
+			"Highlight": "hl",
+			"Foreground 1": "fg1",
+			"Foreground 2": "fg2",
+			"Background": "bg"
+		}
+	},
+	"cornerColorFocused": {
+		"type": "combobox",
+		"description": "Focused",
+		"default": "hl",
+		"options": {
+			"Highlight": "hl",
+			"Foreground 1": "fg1",
+			"Foreground 2": "fg2",
+			"Background": "bg"
+		}
+	},
+	"label-corners-size": {
+		"type": "label",
+		"description": "////////////////////////////////    Size"
+	},
+	"cornerLengthRatio": {
+		"type": "spinbutton",
+		"description": "Length",
+		"units": "%",
+		"min": 0.1,
+		"max": 1.00,
+		"step": 0.1,
+		"default": 0.9
+	},
+	"cornerBreadthRatio": {
+		"type": "spinbutton",
+		"description": "Breadth",
+		"units": "%",
+		"min": 0.1,
+		"max": 1.00,
+		"step": 0.1,
+		"default": 0.1
+	},
+	"cornerSize": {
+		"type": "spinbutton",
+		"description": "Size",
+		"units": "pixels",
+		"min": 2,
+		"max": 100,
+		"step": 1,
+		"default": 10
+	}
+}

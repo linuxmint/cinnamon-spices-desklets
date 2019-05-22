@@ -1,0 +1,7 @@
+{
+    "uuid": "desktop-tray@boxedy",
+    "max-instances": "100",
+    "description": "Collapsible tray over desktop hiding icons, conky, etc.",
+    "prevent-decorations": true,
+    "name": "Desktop Tray"
+}
