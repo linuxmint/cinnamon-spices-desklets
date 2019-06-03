@@ -1,0 +1,7 @@
+{
+    "description": "Displays text based weather information of Vienna in German.",
+    "prevent-decorations": false,
+    "uuid": "ViennaTextBasedWeather@f-istvan",
+    "name": "Vienna Text Based Weather"
+}
+

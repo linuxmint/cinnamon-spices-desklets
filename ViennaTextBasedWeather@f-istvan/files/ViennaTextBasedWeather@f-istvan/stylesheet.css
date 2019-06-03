@@ -1,0 +1,27 @@
+.vie-window {
+  padding: 10px 10px 0px 10px;
+}
+
+.vie-weather-name {
+  font-size: 110%;
+  font-weight: bold;
+  padding: 2px 0px 2px 25px;
+  color: rgb(255, 27, 46);
+}
+
+.vie-weather-text {
+  font-size: 100%;
+  padding: 2px 0px 15px 10px;
+}
+
+.vie-last-modified {
+  font-size: 70%;
+  bottom: 10px;
+  padding-bottom: 20px;
+}
+
+.vie-title {
+  font-size: 125%;
+  font-weight: bold;
+  color: rgb(255, 27, 46);
+}
