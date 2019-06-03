@@ -50,6 +50,18 @@ msgstr "Wählen Sie das Dateisystem, welches Sie anzeigen möchten."
 msgid "Visual"
 msgstr "Visuelle Einstellungen"
 
+msgid "Design"
+msgstr "Design"
+
+msgid "Classic (Thick)"
+msgstr "Klassisch (Dick)"
+
+msgid "Thin"
+msgstr "Dünn"
+
+msgid "Draw free/unused space (gray)"
+msgstr "Zeichne freien/unbenutzten Speicherplatz (grau)"
+
 msgid "Text"
 msgstr "Text"
 

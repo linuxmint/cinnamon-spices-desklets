@@ -41,6 +41,8 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "custom-label", "custom_label", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scale_size", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "text_color", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "design", "design", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "draw-free-space", "draw_free_space", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "circle-color", "circle_color", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "use-own-circle-color", "use_own_circle_color", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "filesystem", "filesystem", this.on_setting_changed);
@@ -115,6 +117,8 @@ MyDesklet.prototype = {
 			var fs = this.filesystem.replace("file://", "").trim();
 			if(fs == null || fs == "") fs = "/";
 
+			let design = this.design;
+			let draw_free_space = this.draw_free_space;
 			let percent_string = "";
 			let avail = 0;
 			let use = 0;
@@ -130,7 +134,6 @@ MyDesklet.prototype = {
 				cr.restore();
 				cr.setOperator(Cairo.Operator.OVER);
 				cr.scale(width, height);
-				//cr.setLineCap(Cairo.LineCap.ROUND);
 				cr.translate(0.5, 0.5);
 
 				if(type == "ram") {
@@ -165,20 +168,37 @@ MyDesklet.prototype = {
 				let start = 0 - offset;
 				let end = ((use*(Math.PI*2))/size) - offset;
 
-				cr.setSourceRGBA(1, 1, 1, 0.2);
-				cr.setLineWidth(0.20);
-				cr.arc(0, 0, 0.4, 0, Math.PI*2);
-				cr.stroke();
-
-				cr.setSourceRGBA(circle_r, circle_g, circle_b, circle_a);
-				cr.setLineWidth(0.20);
-				cr.arc(0, 0, 0.4, start, end);
-				cr.stroke();
-
-				cr.setSourceRGBA(0, 0, 0, 0.1446);
-				cr.setLineWidth(0.05);
-				cr.arc(0, 0, 0.325, start, end);
-				cr.stroke();
+				if(design == "thin") {
+					if(draw_free_space) {
+						cr.setSourceRGBA(1, 1, 1, 0.2);
+						cr.setLineWidth(0.04);
+						cr.arc(0, 0, 0.4, 0, Math.PI*2);
+						cr.stroke();
+					}
+					/////
+					cr.setLineCap(Cairo.LineCap.ROUND);
+					cr.setSourceRGBA(circle_r, circle_g, circle_b, circle_a);
+					cr.setLineWidth(0.04);
+					cr.arc(0, 0, 0.4, start, end);
+					cr.stroke();
+				} else { // classic design
+					if(draw_free_space) {
+						cr.setSourceRGBA(1, 1, 1, 0.2);
+						cr.setLineWidth(0.20);
+						cr.arc(0, 0, 0.4, 0, Math.PI*2);
+						cr.stroke();
+					}
+					/////
+					cr.setSourceRGBA(circle_r, circle_g, circle_b, circle_a);
+					cr.setLineWidth(0.20);
+					cr.arc(0, 0, 0.4, start, end);
+					cr.stroke();
+					/////
+					cr.setSourceRGBA(0, 0, 0, 0.1446);
+					cr.setLineWidth(0.05);
+					cr.arc(0, 0, 0.325, start, end);
+					cr.stroke();
+				}
 
 				return true;
 			});
