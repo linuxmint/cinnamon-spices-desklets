@@ -24,6 +24,8 @@ const GLib = imports.gi.GLib;
 const Mainloop = imports.mainloop;
 
 const _httpSession = new Soup.SessionAsync();
+_httpSession.timeout = 5;
+
 Soup.Session.prototype.add_feature.call(_httpSession, new Soup.ProxyResolverDefault());
 
 function ShowRemoteIPDesklet(metadata, deskletId) {
