@@ -144,7 +144,7 @@ GoogleCalendarDesklet.prototype = {
         let reader = new SpawnReader();
         let command = ["python3", SCRIPT_PATH, "--list-calendars"];
         // List of calendars already selected by user:
-        let registeredCalendarNames = this.calendarName.toString().split(',');
+        let registeredCalendarNames = this.calendarName.toString().split(",");
         // List of all the user's calendars:
         var calendars = []; // We will populate it !
         this.calendarNames = [];
@@ -180,11 +180,13 @@ GoogleCalendarDesklet.prototype = {
             var cal;
             for (var i=0; i < this.calendarNames.length; i++) {
                 cal = this.calendarNames[i];
-                if (cal["display"] === true) names.push(cal["name"]);
+                if (cal["display"] === true) {
+                    names.push(cal["name"]);
+                }
             }
-            this.calendarName = names.join(',');
+            this.calendarName = names.join(",");
         } catch(e) {
-            this.calendarName = '';
+            this.calendarName = "";
         }
     },
 
