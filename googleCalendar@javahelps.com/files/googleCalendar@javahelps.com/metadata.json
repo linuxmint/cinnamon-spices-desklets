@@ -3,5 +3,5 @@
     "description": "A desklet that displays your agenda based on Google Calendar",
     "name": "Google Calendar",
     "prevent-decorations": true,
-    "cinnamon-version": ["3.4", "3.6", "3.8", "4.0"]
+    "cinnamon-version": ["3.4", "3.6", "3.8", "4.0", "4.2"]
 }
