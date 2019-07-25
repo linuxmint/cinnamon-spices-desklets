@@ -1,21 +1,21 @@
 /*
- * Google Calendar Desklet displays your agenda based on your Google Calendar in Cinnamon desktop.
+* Google Calendar Desklet displays your agenda based on your Google Calendar in Cinnamon desktop.
 
- * Copyright (C) 2017  Gobinath
+* Copyright (C) 2017  Gobinath
 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http:*www.gnu.org/licenses/>.
- */
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http:*www.gnu.org/licenses/>.
+*/
 
 "use strict";
 
@@ -38,6 +38,7 @@ const XDate = imports.utility.XDate;
 const SpawnReader = imports.utility.SpawnReader;
 const Event = imports.utility.Event;
 const CalendarUtility = new imports.utility.CalendarUtility();
+
 
 const UUID = "googleCalendar@javahelps.com";
 const SEPARATOR_LINE = "\n\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015";
@@ -70,7 +71,7 @@ GoogleCalendarDesklet.prototype = {
         this.maxWidth = 0;
         this.updateID = null;
         this.updateInProgress = false;
-        this.eventsMap = {};
+        this.eventsList = [];
         this.lastDate = null;
         this.today = new XDate().toString("yyyy-MM-dd");
         this.tomorrow = new XDate().addDays(1).toString("yyyy-MM-dd");
@@ -82,7 +83,8 @@ GoogleCalendarDesklet.prototype = {
             this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], this.updateID);
             this.settings.bind("clientId", "clientId", this.onCalendarParamsChanged, null);
             this.settings.bind("clientSecret", "clientSecret", this.onCalendarParamsChanged, null);
-            this.settings.bind("calendarName", "calendarName", this.onCalendarParamsChanged, null);
+            //this.settings.bind("calendarName", "calendarName", this.onCalendarParamsChanged, null);
+            this.settings.bind("calendarNames", "calendarNames", this.onCalendarParamsChanged, null);
             this.settings.bind("interval", "interval", this.onCalendarParamsChanged, null);
             this.settings.bind("delay", "delay", this.onCalendarParamsChanged, null);
             this.settings.bind("use_24h_clock", "use_24h_clock", this.onDeskletFormatChanged, null);
@@ -98,6 +100,7 @@ GoogleCalendarDesklet.prototype = {
             this.settings.bind("location_color", "location_color", this.onDeskletFormatChanged, null);
             this.settings.bind("transparency", "transparency", this.onDeskletFormatChanged, null);
             this.settings.bind("cornerradius", "cornerradius", this.onDeskletFormatChanged, null);
+            this.setCalendarName();
         } catch (e) {
             global.logError(e);
         }
@@ -126,11 +129,31 @@ GoogleCalendarDesklet.prototype = {
      * Called when user changes the settings which require new events.
      */
     onCalendarParamsChanged() {
+        this.setCalendarName();
         if (this.updateID > 0) {
             Mainloop.source_remove(this.updateID);
         }
         this.updateID = null;
         this.retrieveEvents();
+    },
+
+    /**
+     * Called when the user clicks the button to populate the calendarName field with the names of all their calendars.
+     */
+    onAllNamesButtonClicked() {
+        let reader = new SpawnReader();
+        let command = ["python3", SCRIPT_PATH, "--list-calendars"];
+        // List of calendars already selected by user:
+        let registeredCalendarNames = this.calendarName.toString().split(',');
+        // List of all the user's calendars:
+        var calendars = []; // We will populate it !
+        this.calendarNames = [];
+        reader.spawn(CONFIG_PATH, command, (output) => {
+            let calendar = output.toString().trim();
+            let display = (registeredCalendarNames.indexOf(calendar) > -1);
+            calendars.push({"name": calendar, "display": display});
+            this.calendarNames = calendars; // Refreshes the array in Settings.
+        });
     },
 
     /**
@@ -148,6 +171,23 @@ GoogleCalendarDesklet.prototype = {
     },
 
     //////////////////////////////////////////// Utility Functions ////////////////////////////////////////////
+    /**
+     * Set the this.calendarName value.
+     */
+    setCalendarName() {
+        try {
+            var names = [];
+            var cal;
+            for (var i=0; i < this.calendarNames.length; i++) {
+                cal = this.calendarNames[i];
+                if (cal["display"] === true) names.push(cal["name"]);
+            }
+            this.calendarName = names.join(',');
+        } catch(e) {
+            this.calendarName = '';
+        }
+    },
+
     /**
      * Construct gcalcli command to retrieve events.
      */
@@ -188,60 +228,24 @@ GoogleCalendarDesklet.prototype = {
         } else {
             events.forEach((element) => {
                 let event = new Event(element, this.use_24h_clock);
-                let days = event.startDate.diffDays(event.endDate);
-                if (days > 0 && event.endTime == "00:00") {
-                    // All day event
-                    days--;
-                }
-                let date = event.startDate.clone();
-                date.addDays(-1);
-                date.clearTime();
-                for (var i = 0; i <= days; i++) {
-                    date.addDays(1);
-                    let strDate = date.toString("yyyy-MM-dd");
-                    if (!(strDate in this.eventsMap)) {
-                        this.eventsMap[strDate] = [];
-                    }
-                    if (event.startTime == "00:00") {
-                        this.eventsMap[strDate].unshift(event);
-                    } else {
-                        this.eventsMap[strDate].push(event);
-                    }
-                }
+                this.eventsList.push(event);
+                this.addEventToWidget(event);
             });
-            this.addEventsToWidget();
-        }
-    },
-
-    addEventsToWidget() {
-        let date = new XDate();
-        date.clearTime();
-        date.addDays(-1);
-        for (var i = 0; i <= this.interval; i++) {
-            date.addDays(1);
-            let key = date.toString("yyyy-MM-dd");
-            if (key in this.eventsMap) {
-                let events = this.eventsMap[key];
-                events.forEach((event) => {
-                    event.useTwentyFourHour = this.use_24h_clock;
-                    this.addEventToWidget(event, date.clone());
-                });
-            }
         }
     },
 
     /**
      * Append given event to widget.
      */
-    addEventToWidget(event, date) {
+    addEventToWidget(event) {
         // Create date header
-        if (this.lastDate === null || date.diffDays(this.lastDate) <= -1) {
+        if (this.lastDate === null || event.startDate.diffDays(this.lastDate) <= -1) {
             let leadingNewline = "";
             if (this.lastDate) {
                 leadingNewline = "\n\n";
             }
-            this.lastDate = date;
-            let label = CalendarUtility.label(leadingNewline + this.formatEventDate(date) + SEPARATOR_LINE, this.zoom, this.textcolor);
+            this.lastDate = event.startDate;
+            let label = CalendarUtility.label(leadingNewline + this.formatEventDate(event.startDateText) + SEPARATOR_LINE, this.zoom, this.textcolor);
             this.window.add(label);
             if (label.width > this.maxWidth) {
                 this.maxWidth = label.width;
@@ -296,9 +300,9 @@ GoogleCalendarDesklet.prototype = {
     /**
      * Reset internal states and widget CalendarUtility.
      */
-    resetWidget(resetEvents = false) {
-        if (resetEvents) {
-            this.eventsMap = {};
+    resetWidget(resetEventsList = false) {
+        if (resetEventsList) {
+            this.eventsList = [];
             this.today = new XDate().toString("yyyy-MM-dd");
             this.tomorrow = new XDate().addDays(1).toString("yyyy-MM-dd");
         }
@@ -337,14 +341,13 @@ GoogleCalendarDesklet.prototype = {
     /**
      * Format date using given pattern.
      */
-    formatEventDate(date) {
-        let dateText = date.toString("yyyy-MM-dd");
+    formatEventDate(dateText) {
         if (this.today === dateText) {
-            return date.toString(this.wellFormatted(this.today_format)).toUpperCase();
+            return new XDate(dateText).toString(this.wellFormatted(this.today_format)).toUpperCase();
         } else if (this.tomorrow === dateText) {
-            return date.toString(this.wellFormatted(this.tomorrow_format)).toUpperCase();
+            return new XDate(dateText).toString(this.wellFormatted(this.tomorrow_format)).toUpperCase();
         } else {
-            return date.toString(this.wellFormatted(this.date_format)).toUpperCase();
+            return new XDate(dateText).toString(this.wellFormatted(this.date_format)).toUpperCase();
         }
     },
 
@@ -352,24 +355,15 @@ GoogleCalendarDesklet.prototype = {
      * Format the output of the command read from the file and display in the desklet.
      */
     updateAgenda() {
-        if (isEmpty(this.eventsMap)) {
-            this.retrieveEvents();
-        } else {
+        if (this.eventsList.length > 0) {
             this.resetWidget();
-            this.addEventsToWidget();
+            for (let event of this.eventsList) {
+                event.useTwentyFourHour = this.use_24h_clock;
+                this.addEventToWidget(event);
+            }
+        } else {
+            this.retrieveEvents();
         }
-    },
-
-    /**
-     * Check if an object is empty.
-     * @param {object} obj 
-     */
-    isEmpty(obj) {
-        for (var key in obj) {
-            if (obj.hasOwnProperty(key))
-                return false;
-        }
-        return true;
     },
 
     /**
