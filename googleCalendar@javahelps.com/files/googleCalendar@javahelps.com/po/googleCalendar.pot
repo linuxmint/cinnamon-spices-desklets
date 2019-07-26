@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-07 15:40+0100\n"
+"POT-Creation-Date: 2019-07-26 15:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,19 +18,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. metadata.json->name
-#: desklet.js:103
+#: desklet.js:108
 msgid "Google Calendar"
 msgstr ""
 
-#: desklet.js:106
+#: desklet.js:111
 msgid "Open Google Calendar"
 msgstr ""
 
-#: desklet.js:185
+#: desklet.js:227
 msgid "No events found..."
 msgstr ""
 
-#: desklet.js:356
+#: desklet.js:398
 msgid "Unable to retrieve events..."
 msgstr ""
 
@@ -58,13 +58,7 @@ msgstr ""
 msgid "April"
 msgstr ""
 
-#: lib/xdate.js:344 lib/xdate.js:344
-msgctxt "long"
-msgid "May"
-msgstr ""
-
 #: lib/xdate.js:344 lib/xdate.js:345
-msgctxt "short"
 msgid "May"
 msgstr ""
 
@@ -209,7 +203,9 @@ msgid "Client Id"
 msgstr ""
 
 #. settings-schema.json->clientId->tooltip
-msgid "Enter your Google calendar project client id. Leave it empty to use the default client id."
+msgid ""
+"Enter your Google calendar project client id. Leave it empty to use the "
+"default client id."
 msgstr ""
 
 #. settings-schema.json->clientSecret->description
@@ -217,20 +213,39 @@ msgid "Client secret"
 msgstr ""
 
 #. settings-schema.json->clientSecret->tooltip
-msgid "Enter your Google calendar project client secret. Leave it empty to use the default client secret."
+msgid ""
+"Enter your Google calendar project client secret. Leave it empty to use the "
+"default client secret."
 msgstr ""
-
 
 #. settings-schema.json->display1->description
 msgid "Calendar configuration"
 msgstr ""
 
-#. settings-schema.json->calendarName->description
-msgid "Calendar name(s)"
+#. settings-schema.json->allNamesButton->description
+msgid "Fill in the list bellow with the names of all my calendars"
 msgstr ""
 
-#. settings-schema.json->calendarName->tooltip
-msgid "Enter your calendar names separated by comma here"
+#. settings-schema.json->allNamesButton->tooltip
+msgid ""
+"Click to fill in the list bellow with the names of all my calendars. It may "
+"take a little while."
+msgstr ""
+
+#. settings-schema.json->calendarNames->description
+msgid "Display these calendars:"
+msgstr ""
+
+#. settings-schema.json->calendarNames->tooltip
+msgid "If you want to diplay a calendar, set it to TRUE (or check its box)."
+msgstr ""
+
+#. settings-schema.json->calendarNames->columns->title
+msgid "Calendar"
+msgstr ""
+
+#. settings-schema.json->calendarNames->columns->title
+msgid "Display it?"
 msgstr ""
 
 #. settings-schema.json->interval->description
