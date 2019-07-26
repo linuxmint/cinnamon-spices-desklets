@@ -25,13 +25,13 @@
   "allNamesButton": {
     "type": "button",
     "description": "Fill in the list bellow with the names of all my calendars",
-    "tooltip": "Click to fill in the list bellow with the names of all my calendars",
+    "tooltip": "Click to fill in the list bellow with the names of all my calendars. It may take a little while.",
     "callback": "onAllNamesButtonClicked"
   },
   "calendarNames": {
     "type": "list",
     "description": "Display these calendars:",
-    "tooltip": "If you want to diplay a calendar, set it to TRUE.",
+    "tooltip": "If you want to diplay a calendar, set it to TRUE (or check its box).",
     "columns": [
             {
                 "id": "name",
