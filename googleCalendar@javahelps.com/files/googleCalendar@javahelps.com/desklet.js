@@ -149,9 +149,9 @@ GoogleCalendarDesklet.prototype = {
         var calendars = []; // We will populate it !
         this.calendarNames = [];
         reader.spawn(CONFIG_PATH, command, (output) => {
-            let calendar = output.toString().trim();
-            let display = (registeredCalendarNames.indexOf(calendar) > -1);
-            calendars.push({"name": calendar, "display": display});
+            let name = output.toString().trim();
+            let display = (registeredCalendarNames.indexOf(name) > -1);
+            calendars.push({name, display});
             this.calendarNames = calendars; // Refreshes the array in Settings.
         });
     },
@@ -177,11 +177,9 @@ GoogleCalendarDesklet.prototype = {
     setCalendarName() {
         try {
             var names = [];
-            var cal;
             for (var i=0; i < this.calendarNames.length; i++) {
-                cal = this.calendarNames[i];
-                if (cal["display"] === true) {
-                    names.push(cal["name"]);
+                if (this.calendarNames[i]["display"] === true) {
+                    names.push(this.calendarNames[i]["name"]);
                 }
             }
             this.calendarName = names.join(",");
