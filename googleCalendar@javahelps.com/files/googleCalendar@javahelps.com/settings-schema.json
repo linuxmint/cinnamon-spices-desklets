@@ -25,7 +25,7 @@
   "allNamesButton": {
     "type": "button",
     "description": "Fill in the list bellow with the names of all my calendars",
-    "tooltip": "Click to fill in the list bellow with the names of all my calendars. It may take a little while.",
+    "tooltip": "Click to fill in the list bellow with the names of all your calendars. It may take a little while.",
     "callback": "onAllNamesButtonClicked"
   },
   "calendarNames": {
