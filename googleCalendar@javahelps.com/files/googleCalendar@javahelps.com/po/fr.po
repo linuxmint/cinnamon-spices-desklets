@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-07 15:40+0100\n"
-"PO-Revision-Date: 2019-04-06 21:44+0200\n"
-"Last-Translator: Claude CLERC <claude.clerc@gmail.com>\n"
+"POT-Creation-Date: 2019-07-26 15:38+0200\n"
+"PO-Revision-Date: 2019-07-26 16:36+0200\n"
+"Last-Translator: Claudiux <claude.clerc@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -18,19 +18,19 @@ msgstr ""
 "X-Generator: Poedit 2.0.6\n"
 
 #. metadata.json->name
-#: desklet.js:103
+#: desklet.js:108
 msgid "Google Calendar"
 msgstr "Google Agenda"
 
-#: desklet.js:106
+#: desklet.js:111
 msgid "Open Google Calendar"
 msgstr "Ouvrir Google Agenda"
 
-#: desklet.js:185
+#: desklet.js:227
 msgid "No events found..."
 msgstr "Aucun événement n'a été trouvé..."
 
-#: desklet.js:356
+#: desklet.js:398
 msgid "Unable to retrieve events..."
 msgstr "Impossible de récupérer les événements..."
 
@@ -58,13 +58,7 @@ msgstr "mars"
 msgid "April"
 msgstr "avril"
 
-#: lib/xdate.js:344
-msgctxt "long"
-msgid "May"
-msgstr "mai"
-
 #: lib/xdate.js:344 lib/xdate.js:345
-msgctxt "short"
 msgid "May"
 msgstr "mai"
 
@@ -209,38 +203,44 @@ msgid "Client Id"
 msgstr "Identifiant"
 
 #. settings-schema.json->clientId->tooltip
-msgid ""
-"Enter your Google calendar project client id. Leave it empty to use the "
-"default client id."
-msgstr ""
-"Renseignez ici votre identifiant Google Agenda Pro. Laissez vide si vous "
-"n'utilisez que votre compte personnel."
+msgid "Enter your Google calendar project client id. Leave it empty to use the default client id."
+msgstr "Renseignez ici votre identifiant Google Agenda Pro. Laissez vide si vous n'utilisez que votre compte personnel."
 
 #. settings-schema.json->clientSecret->description
 msgid "Client secret"
 msgstr "Mot de passe"
 
 #. settings-schema.json->clientSecret->tooltip
-msgid ""
-"Enter your Google calendar project client secret. Leave it empty to use the "
-"default client secret."
-msgstr ""
-"Renseignez ici votre mot de passe Google Agenda Pro. Laissez vide si vous "
-"n'utilisez que votre compte personnel."
+msgid "Enter your Google calendar project client secret. Leave it empty to use the default client secret."
+msgstr "Renseignez ici votre mot de passe Google Agenda Pro. Laissez vide si vous n'utilisez que votre compte personnel."
 
 #. settings-schema.json->display1->description
 msgid "Calendar configuration"
 msgstr "Configuration de l'agenda"
 
-#. settings-schema.json->calendarName->description
-msgid "Calendar name(s)"
-msgstr "Nom de chacun de vos agendas"
+#. settings-schema.json->allNamesButton->description
+msgid "Fill in the list bellow with the names of all my calendars"
+msgstr "Remplir la liste ci-dessous avec les noms de tous mes calendriers"
 
-#. settings-schema.json->calendarName->tooltip
-msgid "Enter your calendar names separated by comma here"
-msgstr ""
-"Entrer ici le nom de votre agenda, ou bien les noms de tous vos agendas "
-"séparés par une virgule"
+#. settings-schema.json->allNamesButton->tooltip
+msgid "Click to fill in the list bellow with the names of all your calendars. It may take a little while."
+msgstr "Cliquer pour remplir la liste ci-dessous avec les noms de tous vos agendas. Cela peut prendre un peu de temps."
+
+#. settings-schema.json->calendarNames->description
+msgid "Display these calendars:"
+msgstr "Afficher ces agendas :"
+
+#. settings-schema.json->calendarNames->tooltip
+msgid "If you want to diplay a calendar, set it to TRUE (or check its box)."
+msgstr "Si vous voulez afficher un agenda, positionnez-le à TRUE (ou cochez sa case)."
+
+#. settings-schema.json->calendarNames->columns->title
+msgid "Calendar"
+msgstr "Agenda"
+
+#. settings-schema.json->calendarNames->columns->title
+msgid "Display it?"
+msgstr "Afficher ?"
 
 #. settings-schema.json->interval->description
 msgid "Number of days to include"
@@ -332,9 +332,7 @@ msgstr "Couleur du texte d'un événement durant toute une journée"
 
 #. settings-schema.json->alldaytextcolor->tooltip
 msgid "Click the button to select a new all day event text color"
-msgstr ""
-"Cliquer sur le bouton pour sélectionner la nouvelle couleur de texte des "
-"événements durant toute une journée"
+msgstr "Cliquer sur le bouton pour sélectionner la nouvelle couleur de texte des événements durant toute une journée"
 
 #. settings-schema.json->bgcolor->description
 msgid "Background color"
@@ -342,8 +340,7 @@ msgstr "Couleur de l’arrière-plan"
 
 #. settings-schema.json->bgcolor->tooltip
 msgid "Click the button to select a new background color"
-msgstr ""
-"Cliquer sur le bouton pour sélectionner la nouvelle couleur d’arrière-plan"
+msgstr "Cliquer sur le bouton pour sélectionner la nouvelle couleur d’arrière-plan"
 
 #. settings-schema.json->diff_calendar->description
 msgid "Differentiate calendars"
@@ -367,9 +364,7 @@ msgstr "Couleur du texte indiquant le lieu"
 
 #. settings-schema.json->location_color->tooltip
 msgid "Click the button to select a new location text color"
-msgstr ""
-"Cliquer sur le bouton pour sélectionner la nouvelle couleur du texte "
-"indiquant le lieu"
+msgstr "Cliquer sur le bouton pour sélectionner la nouvelle couleur du texte indiquant le lieu"
 
 #. settings-schema.json->cornerradius->units
 msgid "px"
@@ -382,6 +377,16 @@ msgstr "Rayon des coins"
 #. settings-schema.json->cornerradius->tooltip
 msgid "Radius for rounding the desklet's corners"
 msgstr "Rayon pour l’arrondissement des coins du desklet"
+
+#~ msgctxt "short"
+#~ msgid "May"
+#~ msgstr "mai"
+
+#~ msgid "Calendar name(s)"
+#~ msgstr "Nom de chacun de vos agendas"
+
+#~ msgid "Enter your calendar names separated by comma here"
+#~ msgstr "Entrer ici le nom de votre agenda, ou bien les noms de tous vos agendas séparés par une virgule"
 
 #~ msgid "Retrieving events..."
 #~ msgstr "Récupération des évènements..."
