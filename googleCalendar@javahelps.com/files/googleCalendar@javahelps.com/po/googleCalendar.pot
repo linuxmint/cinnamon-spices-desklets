@@ -204,8 +204,7 @@ msgstr ""
 
 #. settings-schema.json->clientId->tooltip
 msgid ""
-"Enter your Google calendar project client id. Leave it empty to use the "
-"default client id."
+"Enter your Google calendar project client id. Leave it empty to use the default client id."
 msgstr ""
 
 #. settings-schema.json->clientSecret->description
@@ -214,8 +213,7 @@ msgstr ""
 
 #. settings-schema.json->clientSecret->tooltip
 msgid ""
-"Enter your Google calendar project client secret. Leave it empty to use the "
-"default client secret."
+"Enter your Google calendar project client secret. Leave it empty to use the default client secret."
 msgstr ""
 
 #. settings-schema.json->display1->description
@@ -228,8 +226,7 @@ msgstr ""
 
 #. settings-schema.json->allNamesButton->tooltip
 msgid ""
-"Click to fill in the list bellow with the names of all your calendars. It may "
-"take a little while."
+"Click to fill in the list bellow with the names of all your calendars. It may take a little while."
 msgstr ""
 
 #. settings-schema.json->calendarNames->description
