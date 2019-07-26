@@ -228,7 +228,7 @@ msgstr ""
 
 #. settings-schema.json->allNamesButton->tooltip
 msgid ""
-"Click to fill in the list bellow with the names of all my calendars. It may "
+"Click to fill in the list bellow with the names of all your calendars. It may "
 "take a little while."
 msgstr ""
 
