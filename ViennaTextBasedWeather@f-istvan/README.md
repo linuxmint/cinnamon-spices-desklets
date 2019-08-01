@@ -8,6 +8,10 @@ ViennaTextBasedWeather
 
 ## Changelog
 
+### v1.0.1
+* Fix if two 'heute' are present (#444)
+* Bigger width by default
+
 ### v1.0.0
 * First release!
 * Display the weather

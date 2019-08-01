@@ -57,7 +57,7 @@ let createWeatherContainer = function (weatherObject) {
   let heuteWeatherName = createLabel(weatherObject.name, "vie-weather-name");
   let text = insertNewLines(weatherObject.text);
   let heuteWeatherText = createLabel(text, "vie-weather-text");
-  
+
   let widgetLayout = new St.BoxLayout({
     vertical: true,
     styleClass: "vie-weather-container"
@@ -83,11 +83,11 @@ let createMainLayoutWithItems = function (config) {
 
 let getDateText = function () {
   let now = new Date();
-  return "Last weather update: " + 
-    now.getFullYear() + 
-    "-" + (now.getMonth() + 1) + 
-    "-" + now.getDate() + 
-    " " + now.getHours() + 
+  return "Last weather update: " +
+    now.getFullYear() +
+    "-" + (now.getMonth() + 1) +
+    "-" + now.getDate() +
+    " " + now.getHours() +
     ":" + now.getMinutes() +
     ":" + now.getSeconds();
 };
@@ -101,7 +101,7 @@ ViennaTextBasedWeather.prototype = {
         this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, deskletId);
         this.settings.bindProperty(Settings.BindingDirection.IN, "height", "height", this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "width", "width", this.onSettingsChanged, null);
-        
+
         let config = {
           height: this.height,
           width: this.width,
@@ -117,10 +117,20 @@ ViennaTextBasedWeather.prototype = {
 
     handleResponse(session, message) {
       let fulltextWrapper = message.response_body.data.toString();
-      
+
       let heuteRegex = /<h2>(Heute[^]*)<\/h2>[^]*(<p>[^]*<\/p>)<h2>Morgen+/;
       let morgenRegex = /<h2>(Morgen[^]*)<\/h2>([^]*<p>[^]*<\/p>)<h2>Übermorgen/;
       let uberMorgenRegex = /<h2>(Übermorgen[^]*)<\/h2>([^]*<p>[^]*<\/p>)<h2>/;
+
+      /**
+        Sometimes there are two items about 'heute'.
+        For instance: "Heute Nachmittag" and "Heute Abend, heute Nacht"
+        In those cases we show the first one.
+      */
+      let heuteHeuteRegex = /<h2>(Heute[^]*)<\/h2>[^]*(<p>[^]*<\/p>)<h2>Heute+/;
+      if (heuteHeuteRegex.test(fulltextWrapper)) {
+        heuteRegex = heuteHeuteRegex;
+      }
 
       let heuteWeather = getWeatherObjectByRegex(fulltextWrapper, heuteRegex);
       let morgenWeather = getWeatherObjectByRegex(fulltextWrapper, morgenRegex);
