@@ -15,7 +15,7 @@
     },
 
     "width" : {
-        "default" : 500,
+        "default" : 640,
         "type" : "spinbutton",
         "min" : 50,
         "max" : 1600,
