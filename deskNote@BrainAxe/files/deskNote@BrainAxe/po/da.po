@@ -31,8 +31,8 @@ msgid "Displays Note on Desktop!"
 msgstr "Viser noter på skrivebordet!"
 
 #. deskNote@BrainAxe->settings-schema.json->note-entry->description
-msgid "Note: (use %% for newline)"
-msgstr "Note: (brug %% for ny linje)"
+msgid "Note:"
+msgstr "Note:"
 
 #. deskNote@BrainAxe->settings-schema.json->note-entry->tooltip
 msgid "Set your note here"

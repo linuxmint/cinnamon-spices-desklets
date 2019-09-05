@@ -32,7 +32,7 @@ deskNote.prototype = {
 
         try {
            this.settings = new Settings.DeskletSettings(
-               this, this.metadata["uuid"], this.instance_id);
+               this, this.metadata["uuid"], desklet_id);
 
            this.settings.bindProperty(Settings.BindingDirection.IN, "note-entry", "noteEntry", this.on_setting_changed, null);
            this.settings.bindProperty(Settings.BindingDirection.IN, "font-size", "fontSize", this.on_font_setting_changed, null);
@@ -50,7 +50,6 @@ deskNote.prototype = {
 
     on_setting_changed: function() {
       var new_text = this.noteEntry;
-      var new_text = new_text.replace(/%%/g, "\n");
       this.text.set_text(new_text);
     },
 

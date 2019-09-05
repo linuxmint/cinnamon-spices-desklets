@@ -181,6 +181,12 @@ msgid "April"
 msgstr "Апрель"
 
 #: xdate.js:13
+msgctxt "long"
+msgid "May"
+msgstr "Май"
+
+#: xdate.js:13
+msgctxt "short"
 msgid "May"
 msgstr "Май"
 

@@ -41,6 +41,8 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "custom-label", "custom_label", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scale_size", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "text_color", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "design", "design", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "draw-free-space", "draw_free_space", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "circle-color", "circle_color", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "use-own-circle-color", "use_own_circle_color", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "filesystem", "filesystem", this.on_setting_changed);
@@ -115,6 +117,8 @@ MyDesklet.prototype = {
 			var fs = this.filesystem.replace("file://", "").trim();
 			if(fs == null || fs == "") fs = "/";
 
+			let design = this.design;
+			let draw_free_space = this.draw_free_space;
 			let percent_string = "";
 			let avail = 0;
 			let use = 0;
@@ -130,7 +134,6 @@ MyDesklet.prototype = {
 				cr.restore();
 				cr.setOperator(Cairo.Operator.OVER);
 				cr.scale(width, height);
-				//cr.setLineCap(Cairo.LineCap.ROUND);
 				cr.translate(0.5, 0.5);
 
 				if(type == "ram") {
@@ -165,20 +168,37 @@ MyDesklet.prototype = {
 				let start = 0 - offset;
 				let end = ((use*(Math.PI*2))/size) - offset;
 
-				cr.setSourceRGBA(1, 1, 1, 0.2);
-				cr.setLineWidth(0.20);
-				cr.arc(0, 0, 0.4, 0, Math.PI*2);
-				cr.stroke();
-
-				cr.setSourceRGBA(circle_r, circle_g, circle_b, circle_a);
-				cr.setLineWidth(0.20);
-				cr.arc(0, 0, 0.4, start, end);
-				cr.stroke();
-
-				cr.setSourceRGBA(0, 0, 0, 0.1446);
-				cr.setLineWidth(0.05);
-				cr.arc(0, 0, 0.325, start, end);
-				cr.stroke();
+				if(design == "thin") {
+					if(draw_free_space) {
+						cr.setSourceRGBA(1, 1, 1, 0.2);
+						cr.setLineWidth(0.04);
+						cr.arc(0, 0, 0.4, 0, Math.PI*2);
+						cr.stroke();
+					}
+					/////
+					cr.setLineCap(Cairo.LineCap.ROUND);
+					cr.setSourceRGBA(circle_r, circle_g, circle_b, circle_a);
+					cr.setLineWidth(0.04);
+					cr.arc(0, 0, 0.4, start, end);
+					cr.stroke();
+				} else { // classic design
+					if(draw_free_space) {
+						cr.setSourceRGBA(1, 1, 1, 0.2);
+						cr.setLineWidth(0.20);
+						cr.arc(0, 0, 0.4, 0, Math.PI*2);
+						cr.stroke();
+					}
+					/////
+					cr.setSourceRGBA(circle_r, circle_g, circle_b, circle_a);
+					cr.setLineWidth(0.20);
+					cr.arc(0, 0, 0.4, start, end);
+					cr.stroke();
+					/////
+					cr.setSourceRGBA(0, 0, 0, 0.1446);
+					cr.setLineWidth(0.05);
+					cr.arc(0, 0, 0.325, start, end);
+					cr.stroke();
+				}
 
 				return true;
 			});
@@ -198,7 +218,7 @@ MyDesklet.prototype = {
 				} else if(fs == "/") {
 					sub_string = this.shortText(_("Filesystem"));
 				} else {
-					pathparts = fs.split("/");
+					let pathparts = fs.split("/");
 					sub_string = this.shortText(pathparts[pathparts.length-1]);
 				}
 				sub_string2 = this.niceSize(size);
@@ -211,26 +231,26 @@ MyDesklet.prototype = {
 			}
 
 			// create labels
-			let textpercent_x = (absolute_size / 2) - ((font_size*percent_string.length/1.6) / 2);
-			let textpercent_y = (absolute_size / 2) - (font_size*1.35);
+			let textpercent_x = absolute_size / 2 - font_size*percent_string.length/1.6 / 2;
+			let textpercent_y = absolute_size / 2 - font_size * 1.35;
 			let textpercent = new St.Label({style_class:"textpercent"});
 			textpercent.set_position(textpercent_x, textpercent_y);
 			textpercent.set_text(percent_string);
-			textpercent.style = "font-size: " + font_size + "px;"
+			textpercent.style = "font-size: " + font_size / global.ui_scale + "px;"
 			                  + "color: " + this.text_color + ";";
-			let textsub_x = (absolute_size / 2) - ((font_size_sub*sub_string.length/1.6) / 2);
-			let textsub_y = textpercent_y + (font_size*1.4);
+			let textsub_x = absolute_size / 2 - font_size_sub*sub_string.length/1.6 / 2;
+			let textsub_y = textpercent_y + font_size * 1.4;
 			let textsub = new St.Label({style_class:"textsub"});
 			textsub.set_position(textsub_x, textsub_y);
 			textsub.set_text(sub_string);
-			textsub.style = "font-size: " + font_size_sub + "px;"
+			textsub.style = "font-size: " + font_size_sub / global.ui_scale + "px;"
 			              + "color: " + this.text_color + ";";
-			let textsub2_x = (absolute_size / 2) - ((font_size_sub*sub_string2.length/1.6) / 2);
-			let textsub2_y = textsub_y + (font_size_sub*1.25);
+			let textsub2_x = absolute_size / 2 - font_size_sub*sub_string2.length/1.6 / 2;
+			let textsub2_y = textsub_y + font_size_sub * 1.25;
 			let textsub2 = new St.Label({style_class:"textsub2"});
 			textsub2.set_position(textsub2_x, textsub2_y);
 			textsub2.set_text(sub_string2);
-			textsub2.style = "font-size: " + font_size_sub + "px;"
+			textsub2.style = "font-size: " + font_size_sub / global.ui_scale + "px;"
 			               + "color: " + this.text_color + ";";
 
 			// add actor
@@ -266,14 +286,15 @@ MyDesklet.prototype = {
 
 	refreshDecoration: function() {
 		// desklet label (header)
+		let fs = this.filesystem.replace("file://", "").trim();
 		if (this.use_custom_label == true)
 			this.setHeader(this.custom_label)
 		else if (this.type == "ram")
 			this.setHeader(_("RAM"));
-		else if (this.filesystem == null || this.filesystem == "" || this.filesystem == "/")
+		else if (fs == null || fs == "" || fs == "/")
 			this.setHeader(_("Disk Space"));
 		else {
-			let pathparts = this.filesystem.replace("file://", "").trim().split("/");
+			let pathparts = fs.split("/");
 			this.setHeader(pathparts[pathparts.length-1]);
 		}
 

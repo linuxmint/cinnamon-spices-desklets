@@ -1,0 +1,26 @@
+{
+    "head" : {
+        "type" : "header",
+        "description" : "Settings"
+    },
+
+    "height" : {
+        "default" : 380,
+        "type" : "spinbutton",
+        "min" : 50,
+        "max" : 1600,
+        "description" : "Height :",
+        "units" : "pixels",
+        "step" : 10
+    },
+
+    "width" : {
+        "default" : 640,
+        "type" : "spinbutton",
+        "min" : 50,
+        "max" : 1600,
+        "description" : "Width :",
+        "units" : "pixels",
+        "step" : 10
+    }
+}

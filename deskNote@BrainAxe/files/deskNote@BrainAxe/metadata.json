@@ -2,5 +2,6 @@
     "prevent-decorations": false, 
     "uuid": "deskNote@BrainAxe", 
     "name": "Desktop Note desklet", 
-    "description": "Displays Note on Desktop!"
+    "description": "Displays Note on Desktop!",
+    "max-instances": 10
 }

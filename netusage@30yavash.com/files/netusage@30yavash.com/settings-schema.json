@@ -1,0 +1,32 @@
+{
+    "head": {
+        "type": "header",
+        "description": "Settings for the Network Usage Applet (uses vnstati)"
+    },
+
+    "useExtendedDisplay": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Enable Extended Display Options",
+        "tooltip": "This is a new option from version 1.0.3"
+    },
+
+    "extendedDisplay" : {
+        "dependency": "useExtendedDisplay",
+        "type": "combobox",
+        "default": "-s",
+        "options": {
+            "Classic - Summary of Traffic for last Days and Months" : "-s",
+            "Classic Plus - Classic with addition of hourly statistics": "-vs" ,
+            "Hourly statistics for last 24 hours" : "-h ",
+            "Daily statistics for last 30 days" : "-d",
+            "Monthly statistics for last 12 months" : "-m",
+            "All time Top ten traffic days" : "-t"
+         },
+        "description" : "Type of Display - default Classic",
+        "tooltip": "This feature offers the Classic (original) display with a number of other options"
+   }
+
+
+}
+

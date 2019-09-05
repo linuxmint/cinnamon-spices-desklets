@@ -30,7 +30,7 @@ msgstr ""
 msgid "Note"
 msgstr ""
 
-msgid "A simple desklet to display notes."
+msgid "A desklet to display notes including various themes."
 msgstr ""
 
 msgid "Settings for notes@schorschii"
@@ -66,16 +66,133 @@ msgstr ""
 msgid "White"
 msgstr ""
 
-msgid "White Large"
+msgid "Blank Note - Black"
 msgstr ""
 
-msgid "White (Old)"
+msgid "Blank Note - Blue"
+msgstr ""
+
+msgid "Blank Note - Green"
+msgstr ""
+
+msgid "Blank Note - Orange"
+msgstr ""
+
+msgid "Blank Note - Purple"
+msgstr ""
+
+msgid "Blank Note - White"
+msgstr ""
+
+msgid "Blank Note - Yellow"
+msgstr ""
+
+msgid "White Note - Black Button"
+msgstr ""
+
+msgid "White Note - Blue Button"
+msgstr ""
+
+msgid "White Note - Green Button"
+msgstr ""
+
+msgid "White Note - Red Button"
+msgstr ""
+
+msgid "White Note - Yellow Button"
+msgstr ""
+
+msgid "Yellow Note - Black Clip"
+msgstr ""
+
+msgid "Yellow Note - Blue Clip"
+msgstr ""
+
+msgid "Yellow Note - Green Clip"
+msgstr ""
+
+msgid "Yellow Note - Jingle Clip"
+msgstr ""
+
+msgid "Yellow Note - Red Clip"
+msgstr ""
+
+msgid "Yellow Note - Yellow Clip"
+msgstr ""
+
+msgid "White Note - Black Magnet"
+msgstr ""
+
+msgid "Yellow Note - Blue Magnet"
+msgstr ""
+
+msgid "White Note - Lines and Red Magnet"
+msgstr ""
+
+msgid "Black Note - White Magnet"
+msgstr ""
+
+msgid "Yellow Note - Yellow Magnet"
+msgstr ""
+
+msgid "Blue Paint Strokes"
+msgstr ""
+
+msgid "Green Paint Strokes"
+msgstr ""
+
+msgid "Purple Paint Strokes"
+msgstr ""
+
+msgid "Red Paint Strokes"
+msgstr ""
+
+msgid "Yellow Paint Strokes"
+msgstr ""
+
+msgid "White Note - Silver Spiral"
+msgstr ""
+
+msgid "White Note - Silver Spiral 2"
+msgstr ""
+
+msgid "White Note - Black Spiral"
+msgstr ""
+
+msgid "White Note Large - Silver Spiral"
+msgstr ""
+
+msgid "Yellow Sticker"
+msgstr ""
+
+msgid "Yellow Note (iOS Style)"
+msgstr ""
+
+msgid "Birch Bark"
+msgstr ""
+
+msgid "Burned Paper"
+msgstr ""
+
+msgid "Clay Tablet"
+msgstr ""
+
+msgid "Coffee Stained"
+msgstr ""
+
+msgid "Clipboard"
 msgstr ""
 
 msgid "Hide decorations"
 msgstr ""
 
 msgid "Font"
+msgstr ""
+
+msgid "Bold"
+msgstr ""
+
+msgid "Italic"
 msgstr ""
 
 msgid "Font size"

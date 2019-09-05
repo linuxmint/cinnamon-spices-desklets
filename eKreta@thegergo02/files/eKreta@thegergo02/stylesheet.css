@@ -1,0 +1,40 @@
+.container {
+    background-color: #1c1c1c;
+    font-family: Ubuntu;
+}
+
+.normalLabel {
+    color: #ffffff;
+}
+
+.boldLabel {
+    font-weight: bold;
+}
+
+.perfectGrade {
+    color: #2ea801;
+}
+
+.almostPerfectGrade {
+    color: #81a801;
+}
+
+.goodGrade {
+    color: #d6e04c;
+}
+
+.middleGrade {
+    color: #f7eb09;
+}
+
+.badGrade {
+    color: #ed6002;
+}
+
+.reallyBadGrade {
+    color: #fc1302;
+}
+
+.medicalAbsence {
+    color: #02abf9;
+}

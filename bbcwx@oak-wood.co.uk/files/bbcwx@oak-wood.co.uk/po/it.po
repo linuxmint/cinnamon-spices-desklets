@@ -915,7 +915,7 @@ msgstr ""
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->citystyle->description
 msgid "Bold city name"
-msgstr "Nome della citàà in grassetto"
+msgstr "Nome della città in grassetto"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->citystyle->tooltip
 msgid "Check to display the city name in bold"
