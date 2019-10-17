@@ -24,6 +24,8 @@ CpuusageDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hide_decorations", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scale_size", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "column-count", "column_count", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "per-core", "per_core", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refresh_interval", this.on_setting_changed);
 
         this.active = [];
         this.total = [];
@@ -39,8 +41,8 @@ CpuusageDesklet.prototype = {
         this.largeFontSize = 20;
         this.normalFontSize = 13;
 
-        // Create a main window        
-        this.window = new Clutter.Actor();        
+        // Create a main window
+        this.window = new Clutter.Actor();
         this.setContent(this.window);
 
         // Refresh the main window
@@ -56,8 +58,8 @@ CpuusageDesklet.prototype = {
         // Redraw Cpu usage
         this.redrawCpuUsages();
 
-        // Refresh again in 5 seconds
-        this.timeout = Mainloop.timeout_add_seconds(5, Lang.bind(this, this.refresh));
+        // Refresh again in refresh_interval seconds
+        this.timeout = Mainloop.timeout_add_seconds(this.refresh_interval, Lang.bind(this, this.refresh));
     },
 
     redrawCpuUsages() {
@@ -87,7 +89,9 @@ CpuusageDesklet.prototype = {
 	        cpuCoreUsageLabel.style = "font-size: " + this.cpuCoreUsageFontSize + "px;font-family: 'Sawasdee', sans-serif;font-weight: 500";
 
 	        // Create CPU core number label
-	        let cpuCoreNumberStr = "Core " + index;
+		let cpuCoreNumberStr = "CPU usage";
+		if (this.per_core)
+			cpuCoreNumberStr = "Core " + index;
 	        let cpuCoreNumberPositionX = xPosition + (this.circleContainerSize / 2) - ((this.cpuCoreNumberFontSize * cpuCoreNumberStr.length / 2) / 2);
 	        let cpuCoreNumberPositionY = yPosition + (this.circleContainerSize / 2) + this.cpuCoreNumberFontSize / 4;
 	        let cpuCoreNumberLabel = new St.Label();
@@ -192,7 +196,8 @@ CpuusageDesklet.prototype = {
 
         activity.forEach(function(cpu, index) {
 
-            let usage = cpu.split(" ");
+            // Remove double space for total stats (starts with "cpu  ")
+            let usage = cpu.replace("  ", " ").split(" ");
 
             active[index] = parseInt(usage[1]) + parseInt(usage[2]) + parseInt(usage[3]) + parseInt(usage[7]) + parseInt(usage[8]);
             total[index] = parseInt(usage[1]) + parseInt(usage[2]) + parseInt(usage[3]) + parseInt(usage[4]) + parseInt(usage[5]) + parseInt(usage[7]) + parseInt(usage[8]);
@@ -217,7 +222,11 @@ CpuusageDesklet.prototype = {
     },
 
     getCpuActivity() {
-        return Cinnamon.get_file_contents_utf8_sync('/proc/stat').match(/^cpu[\d]+.+$/mg);
+
+        if (this.per_core)
+            return Cinnamon.get_file_contents_utf8_sync('/proc/stat').match(/^cpu[\d]+.+$/mg);
+        else
+            return Cinnamon.get_file_contents_utf8_sync('/proc/stat').match(/^cpu\ +.+$/mg);
     },
 
     getCpuColor(index) {
@@ -230,10 +239,14 @@ CpuusageDesklet.prototype = {
     },
 
     on_setting_changed() {
+	// Remove old activity data
+	this.active = [];
+	this.total = [];
+
         // Update decoration settings
         this.refreshDecoration();
 
-        // Refresh scaling sizes        
+        // Refresh scaling sizes
         this.refreshScalingSizes();
 
         // settings changed; instant refresh
