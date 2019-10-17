@@ -90,8 +90,9 @@ CpuusageDesklet.prototype = {
 
 	        // Create CPU core number label
 		let cpuCoreNumberStr = "CPU usage";
-		if (this.per_core)
+		if (this.per_core) {
 			cpuCoreNumberStr = "Core " + index;
+		}
 	        let cpuCoreNumberPositionX = xPosition + (this.circleContainerSize / 2) - ((this.cpuCoreNumberFontSize * cpuCoreNumberStr.length / 2) / 2);
 	        let cpuCoreNumberPositionY = yPosition + (this.circleContainerSize / 2) + this.cpuCoreNumberFontSize / 4;
 	        let cpuCoreNumberLabel = new St.Label();
@@ -223,10 +224,12 @@ CpuusageDesklet.prototype = {
 
     getCpuActivity() {
 
-        if (this.per_core)
-            return Cinnamon.get_file_contents_utf8_sync('/proc/stat').match(/^cpu[\d]+.+$/mg);
-        else
-            return Cinnamon.get_file_contents_utf8_sync('/proc/stat').match(/^cpu\ +.+$/mg);
+        if (this.per_core) {
+            return Cinnamon.get_file_contents_utf8_sync("/proc/stat").match(/^cpu[\d]+.+$/mg);
+	{
+        else {
+            return Cinnamon.get_file_contents_utf8_sync("/proc/stat").match(/^cpu\ +.+$/mg);
+	}
     },
 
     getCpuColor(index) {
