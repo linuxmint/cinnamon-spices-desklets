@@ -226,7 +226,7 @@ CpuusageDesklet.prototype = {
 
         if (this.per_core) {
             return Cinnamon.get_file_contents_utf8_sync("/proc/stat").match(/^cpu[\d]+.+$/mg);
-	{
+	}
         else {
             return Cinnamon.get_file_contents_utf8_sync("/proc/stat").match(/^cpu\ +.+$/mg);
 	}
