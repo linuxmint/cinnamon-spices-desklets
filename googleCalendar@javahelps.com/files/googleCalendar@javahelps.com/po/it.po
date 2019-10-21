@@ -8,20 +8,20 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-07 15:40+0100\n"
-"PO-Revision-Date: 2019-02-22 12:08+0100\n"
+"PO-Revision-Date: 2019-10-21 20:06+0200\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
-"Last-Translator: \n"
+"X-Generator: Poedit 2.2.1\n"
+"Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: it\n"
 
 #. metadata.json->name
 #: desklet.js:103
 msgid "Google Calendar"
-msgstr "Desklet da Google Calendar"
+msgstr "Google Calendar"
 
 #: desklet.js:106
 msgid "Open Google Calendar"
@@ -193,8 +193,7 @@ msgstr "Sab"
 
 #. metadata.json->description
 msgid "A desklet that displays your agenda based on Google Calendar"
-msgstr ""
-"Un Desklet per visualizzare la tua agenda basata su un Google Calendar"
+msgstr "Un Desklet per visualizzare la tua agenda basata su Google Calendar"
 
 #. settings-schema.json->top->description
 msgid "Google Calendar authentication"
@@ -234,7 +233,7 @@ msgstr "Nome (o nomi) Calendario"
 
 #. settings-schema.json->calendarName->tooltip
 msgid "Enter your calendar names separated by comma here"
-msgstr "Metti il nome dei calendari separato da una virgola"
+msgstr "Digita il nome dei calendari separato da una virgola"
 
 #. settings-schema.json->interval->description
 msgid "Number of days to include"
@@ -250,7 +249,7 @@ msgstr "giorni"
 
 #. settings-schema.json->delay->description
 msgid "Update every:"
-msgstr "Effettua l'update ogni:"
+msgstr "Aggiorna ogni:"
 
 #. settings-schema.json->delay->units
 msgid "minutes"
@@ -372,4 +371,4 @@ msgstr "Raggio degli spigoli"
 
 #. settings-schema.json->cornerradius->tooltip
 msgid "Radius for rounding the desklet's corners"
-msgstr "Setta la dimensione del raccordo sugli spigoli del desklet"
+msgstr "Imposta la dimensione del raccordo sugli spigoli del desklet"
