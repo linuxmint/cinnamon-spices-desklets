@@ -48,10 +48,10 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "filesystem", "filesystem", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "type", "type", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "text-view", "text_view", this.on_setting_changed);
-		this.settings.bindProperty(Settings.BindingDirection.INOUT, "random-circle-color-generated", "random_circle_color_generated", this.on_setting_changed);
-		this.settings.bindProperty(Settings.BindingDirection.INOUT, "random-circle-color-r", "random_circle_color_r", this.on_setting_changed);
-		this.settings.bindProperty(Settings.BindingDirection.INOUT, "random-circle-color-g", "random_circle_color_g", this.on_setting_changed);
-		this.settings.bindProperty(Settings.BindingDirection.INOUT, "random-circle-color-b", "trandom_circle_color_b", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "random-circle-color-generated", "random_circle_color_generated", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "random-circle-color-r", "random_circle_color_r", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "random-circle-color-g", "random_circle_color_g", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "random-circle-color-b", "trandom_circle_color_b", this.on_setting_changed);
 		if(!this.random_circle_color_generated) {
 			this.random_circle_color_r = Math.random();
 			this.random_circle_color_g = Math.random();
