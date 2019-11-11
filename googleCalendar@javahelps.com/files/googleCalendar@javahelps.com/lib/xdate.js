@@ -97,8 +97,10 @@ var XDate = function(t, e, n, r) {
     }
 
     function T(e, n, r) {
-        for (var i, o = u.parsers, s = 0; s < o.length; s++)
-            if (i == o[s](e, n, r)) return i;
+        for (var i, o = u.parsers, s = 0; s < o.length; s++) {
+            i = o[s](e, n, r);
+            if (i) return i;
+        }
         return r[0] = new t(e), r
     }
 
