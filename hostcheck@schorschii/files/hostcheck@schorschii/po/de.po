@@ -1,0 +1,86 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2018-01-12 18:07+0100\n"
+"PO-Revision-Date: 2018-01-12 18:07+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+msgid "Host Check"
+msgstr "Host Check"
+
+msgid "Checks a host via ping or HTTP(S) and displays if it is available."
+msgstr "Zeigt grafisch an, ob ein Host via Ping oder HTTP(S) erreichbar ist."
+
+msgid "Settings for hostcheck@schorschii"
+msgstr "Einstellungen für hostcheck@schorschii"
+
+msgid "General"
+msgstr "Allgemein"
+
+msgid "Ping or HTTP(S) check"
+msgstr "Ping oder HTTP(S) verwenden"
+
+msgid "Choose, if this desklet should do a ping or HTTP(S) check."
+msgstr "Wählen Sie aus, ob dieses Desklet den Host via Ping oder HTTP(S) überprüfen soll."
+
+msgid "Show notifications when state changed"
+msgstr "Zeige Benachrichtigungen, wenn sich der Status ändert."
+
+msgid "Hostname, IP address or HTTP(S)-URL to check"
+msgstr "Zu überprüfender Hostname, IP-Adresse oder HTTP(S)-URL"
+
+msgid "Desklet size"
+msgstr "Deskletgröße"
+
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Vergrößern oder verkleinern Sie dieses Desklet, indem Sie diesen "
+"Skalierungsfaktor verändern."
+
+msgid "Hide decorations"
+msgstr "Dekorationen verstecken"
+
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Eigenes Desklet-Label (nur sichtbar, wenn Dekorationen aktiviert sind)"
+
+msgid "Use a custom desklet label"
+msgstr "Ein eigenes Desklet-Label verwenden"
+
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Wenn Sie diese Option aktivieren, können Sie ein eigenes Desklet-Label im "
+"Feld darunter festlegen."
+
+msgid "Custom desklet label"
+msgstr "Eigenes Desklet-Label"
+
+msgid "Set your custom label here. This field is unavailable unless the checkbox above is enabled."
+msgstr ""
+"Legen Sie hier ihr eigenes Label fest. Dieses Feld ist nicht verfügbar, "
+"solange die Option darüber nicht aktiviert wurde."
+
+msgid "CRIT"
+msgstr "CRIT"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "WARN"
+msgstr "WARN"
+
+msgid "No ping output"
+msgstr "Ping-Befehl lieferte keine Ausgabe"
+
+msgid "HTTP-Statuscode"
+msgstr "HTTP-Statuscode"

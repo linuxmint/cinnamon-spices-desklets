@@ -1,0 +1,26 @@
+.statusbox {
+	font-family: "Ubuntu", sans-serif;
+	font-weight: bold;
+	font-size: 15px;
+	text-align: center;
+	vertical-align: middle;
+	width: 120px;
+	height: 38px;
+	background-color: #DDDDDD;
+	color: black;
+	border-radius: 4px;
+	box-shadow: 0px 0px 5px black;
+	padding: 4px;
+}
+.statusbox.green {
+	background-color: #2BB938;
+	color: white;
+}
+.statusbox.yellow {
+	background-color: #FDFD5A;
+	color: black;
+}
+.statusbox.red {
+	background-color: #F71F00;
+	color: white;
+}
