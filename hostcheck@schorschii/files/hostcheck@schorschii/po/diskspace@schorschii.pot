@@ -1,0 +1,79 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2018-01-12 18:07+0100\n"
+"PO-Revision-Date: 2018-01-12 18:07+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+msgid "Host Check"
+msgstr ""
+
+msgid "Checks a host via ping or HTTP(S) and displays if it is available."
+msgstr ""
+
+msgid "Settings for hostcheck@schorschii"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Ping or HTTP(S) check"
+msgstr ""
+
+msgid "Choose, if this desklet should do a ping or HTTP(S) check."
+msgstr ""
+
+msgid "Show notifications when state changed"
+msgstr ""
+
+msgid "Hostname, IP address or HTTP(S)-URL to check"
+msgstr ""
+
+msgid "Desklet size"
+msgstr ""
+
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+
+msgid "Hide decorations"
+msgstr ""
+
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+
+msgid "Use a custom desklet label"
+msgstr ""
+
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+
+msgid "Custom desklet label"
+msgstr ""
+
+msgid "Set your custom label here. This field is unavailable unless the checkbox above is enabled."
+msgstr ""
+
+msgid "CRIT"
+msgstr ""
+
+msgid "OK"
+msgstr ""
+
+msgid "WARN"
+msgstr ""
+
+msgid "No ping output"
+msgstr ""
+
+msgid "HTTP-Statuscode"
+msgstr ""

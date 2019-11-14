@@ -1,0 +1,67 @@
+{
+    "head0": {
+        "type": "header",
+        "description": "Settings for hostcheck@schorschii"
+    },
+
+    "head1": {
+        "type": "header",
+        "description": "General"
+    },
+    "type": {
+        "type": "combobox",
+        "default": "ping",
+        "description": "Ping or HTTP(S) check",
+        "tooltip": "Choose, if this desklet should do a ping or HTTP(S) check.",
+        "options" : {
+            "Ping" : "ping",
+            "HTTP(S)": "http"
+        }
+    },
+    "show-notifications": {
+        "type": "checkbox",
+        "description": "Show notifications when state changed",
+        "default": true
+    },
+    "host": {
+        "type": "entry",
+        "default": "",
+        "description": "Hostname, IP address or HTTP(S)-URL to check",
+        "indent": true
+    },
+    "scale-size": {
+        "type": "spinbutton",
+        "default": 1,
+        "min": 0.5,
+        "max": 10,
+        "step": 0.2,
+        "units": "scale factor",
+        "description": "Desklet size",
+        "tooltip": "Increase or decrease the size of this desklet using this scale factor."
+    },
+    "hide-decorations": {
+        "type": "checkbox",
+        "description": "Hide decorations",
+        "default": false
+    },
+
+    "head3": {
+        "type": "header",
+        "description": "Custom desklet label (only visible if decorations are enabled)"
+    },
+    "use-custom-label": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Use a custom desklet label",
+        "tooltip": "Checking this box allows you to set a custom label in the field below.",
+        "value": false
+    },
+    "custom-label": {
+        "type": "entry",
+        "default": "Webserver 1",
+        "description": "Custom desklet label",
+        "indent": true,
+        "dependency": "use-custom-label",
+        "tooltip": "Set your custom label here. This field is unavailable unless the checkbox above is enabled."
+    }
+}
