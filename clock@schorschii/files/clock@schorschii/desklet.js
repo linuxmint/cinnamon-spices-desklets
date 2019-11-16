@@ -82,7 +82,7 @@ MyDesklet.prototype = {
 		this._displayTime = new GLib.DateTime();
 
 		// get timezone info
-		if (this.use_custom_tz && this.custom_tz != "") {
+		if(this.use_custom_tz && this.custom_tz != "") {
 			let tz = GLib.TimeZone.new(this.custom_tz);
 			this._displayTime = this._displayTime.to_timezone(tz);
 		}
@@ -97,12 +97,12 @@ MyDesklet.prototype = {
 		let hours_deg = ((hours+(minutes/60))*360/12);
 		let minutes_deg = 0;
 		let seconds_deg = 0;
-		if (this.smooth_seconds_hand == true) {
+		if(this.smooth_seconds_hand == true) {
 			seconds_deg = ((seconds+(mseconds/1000000))*360/60);
 		} else {
 			seconds_deg = (seconds*360/60);
 		}
-		if (this.smooth_minutes_hand == true) {
+		if(this.smooth_minutes_hand == true) {
 			minutes_deg = ((minutes+(seconds/60))*360/60);
 		} else {
 			minutes_deg = (minutes*360/60);
@@ -115,9 +115,9 @@ MyDesklet.prototype = {
 
 		// refresh again in 100 milliseconds, or when the second next changes
 		let timeoutval = 100;
-		if (this.show_seconds_hand == false)
+		if(this.show_seconds_hand == false)
 			timeoutval = Math.ceil(3000 - (1000*seconds + mseconds/1000) % 3000);
-		else if (this.smooth_seconds_hand == false)
+		else if(this.smooth_seconds_hand == false)
 			timeoutval = Math.ceil(1000 - mseconds/1000);
 		this.timeout = Mainloop.timeout_add(timeoutval, Lang.bind(this, this.refresh));
 	},
@@ -135,7 +135,7 @@ MyDesklet.prototype = {
 		let img_s_final = DESKLET_ROOT + "/img/" + default_style + "/s.svg";
 
 		// override paths by default designs
-		if (this.style != "custom-images") {
+		if(this.style != "custom-images") {
 			img_bg_final = DESKLET_ROOT + "/img/" + this.style + "/bg.svg";
 			img_h_final = DESKLET_ROOT + "/img/" + this.style + "/h.svg";
 			img_m_final = DESKLET_ROOT + "/img/" + this.style + "/m.svg";
@@ -143,28 +143,26 @@ MyDesklet.prototype = {
 		}
 
 		// override defaults if images are set
-		if (this.desklet_size < 10)
+		if(this.desklet_size < 10)
 			this.desklet_size = 10;
-		if (this.style == "custom-images" && this.img_bg != "")
+		if(this.style == "custom-images" && this.img_bg != "")
 			img_bg_final = this.img_bg.replace("file://", "");
-		if (this.style == "custom-images" && this.img_s != "")
+		if(this.style == "custom-images" && this.img_s != "")
 			img_s_final = this.img_s.replace("file://", "");
-		if (this.style == "custom-images" && this.img_m != "")
+		if(this.style == "custom-images" && this.img_m != "")
 			img_m_final = this.img_m.replace("file://", "");
-		if (this.style == "custom-images" && this.img_h != "")
+		if(this.style == "custom-images" && this.img_h != "")
 			img_h_final = this.img_h.replace("file://", "");
 
 		// set sizes
-		this.size_style = "width: " + (this.desklet_size/global.ui_scale).toString() + "px;" +
-		                  "height: " + (this.desklet_size/global.ui_scale).toString() + "px;";
-		this.clock.style = this.size_style;
-		this.clock_container.style = this.size_style;
+		let scale = global.ui_scale;
+		this.clock.set_size(this.desklet_size*scale, this.desklet_size*scale);
 
 		// load images in given size
-		this.clock_bg = getImageAtScale(img_bg_final, this.desklet_size, this.desklet_size); // background
-		this.second_hand = getImageAtScale(img_s_final, this.desklet_size, this.desklet_size); // pointers
-		this.minute_hand = getImageAtScale(img_m_final, this.desklet_size, this.desklet_size);
-		this.hour_hand = getImageAtScale(img_h_final, this.desklet_size, this.desklet_size);
+		this.clock_bg = getImageAtScale(img_bg_final, this.desklet_size*scale, this.desklet_size*scale); // background
+		this.second_hand = getImageAtScale(img_s_final, this.desklet_size*scale, this.desklet_size*scale); // pointers
+		this.minute_hand = getImageAtScale(img_m_final, this.desklet_size*scale, this.desklet_size*scale);
+		this.hour_hand = getImageAtScale(img_h_final, this.desklet_size*scale, this.desklet_size*scale);
 
 		// set pivot points for pointer images
 		this.second_hand.set_pivot_point(0.5,0.5);
@@ -176,7 +174,7 @@ MyDesklet.prototype = {
 		this.clock_container.add_actor(this.clock_bg);
 		this.clock_container.add_actor(this.hour_hand);
 		this.clock_container.add_actor(this.minute_hand);
-		if (this.show_seconds_hand == true)
+		if(this.show_seconds_hand == true)
 			this.clock_container.add_actor(this.second_hand);
 
 		// set root element
@@ -186,7 +184,7 @@ MyDesklet.prototype = {
 
 	refreshDecoration: function() {
 		// desklet label (header)
-		if (this.use_custom_label == true)
+		if(this.use_custom_label == true)
 			this.setHeader(this.custom_label)
 		else
 			this.setHeader(_("Clock"));
