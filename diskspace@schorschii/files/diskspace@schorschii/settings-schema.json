@@ -33,11 +33,11 @@
     },
     "design": {
         "type": "combobox",
-        "default": "classic",
+        "default": "thin",
         "description": "Design",
         "options" : {
-            "Classic (Thick)" : "classic",
-            "Thin": "thin"
+            "Thin": "thin",
+            "Classic (Thick)" : "classic"
         }
     },
     "text-view": {
