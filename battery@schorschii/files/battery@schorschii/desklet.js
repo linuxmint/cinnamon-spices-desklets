@@ -110,8 +110,8 @@ MyDesklet.prototype = {
 
 		// get device files from settings
 		// remove "file://" from path
-		let result_devfile_capacity = this.devfile_capacity.replace("file://", "").split("%20").join(" ");
-		let result_devfile_status = this.devfile_status.replace("file://", "").split("%20").join(" ");
+		let result_devfile_capacity = decodeURIComponent(this.devfile_capacity.replace("file://", ""));
+		let result_devfile_status = decodeURIComponent(this.devfile_status.replace("file://", ""));
 
 		// auto detect device files if settings were not set
 		if(result_devfile_capacity == "") {
