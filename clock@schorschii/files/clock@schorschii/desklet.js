@@ -146,13 +146,13 @@ MyDesklet.prototype = {
 		if(this.desklet_size < 10)
 			this.desklet_size = 10;
 		if(this.style == "custom-images" && this.img_bg != "")
-			img_bg_final = this.img_bg.replace("file://", "");
+			img_bg_final = decodeURIComponent(this.img_bg.replace("file://", ""));
 		if(this.style == "custom-images" && this.img_s != "")
-			img_s_final = this.img_s.replace("file://", "");
+			img_s_final = decodeURIComponent(this.img_s.replace("file://", ""));
 		if(this.style == "custom-images" && this.img_m != "")
-			img_m_final = this.img_m.replace("file://", "");
+			img_m_final = decodeURIComponent(this.img_m.replace("file://", ""));
 		if(this.style == "custom-images" && this.img_h != "")
-			img_h_final = this.img_h.replace("file://", "");
+			img_h_final = decodeURIComponent(this.img_h.replace("file://", ""));
 
 		// set sizes
 		let scale = global.ui_scale;
