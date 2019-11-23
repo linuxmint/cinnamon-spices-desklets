@@ -140,8 +140,6 @@ MyDesklet.prototype = {
 		//Main.notifyError(result_devfile_capacity, result_devfile_status); // debug
 
 		// get current battery/power supply values
-		this.currentCapacity = 0;
-		this.currentState = "";
 		this.currentError = 0;
 		try {
 			// read capacity file async
@@ -202,6 +200,8 @@ MyDesklet.prototype = {
 				// error: warning icon and no label
 				symbol = "warn";
 				showText = false;
+				this.currentCapacity = 0;
+				this.currentState = "";
 			} else {
 				if(this.currentState == "Charging" && this.showplug) {
 					// power supply online, charging and icon should be shown

@@ -1,7 +1,12 @@
 # Clock Desklet
-- smooth hands
+
+## Features
+- smooth hands (deactivatable)
 - light and dark themes
-- use own images
+- you can use your own images
+
+## Performance Notes
+- if you are using this desklet on older hardware, please consider disabling the smooth seconds hand to reduce CPU impact
 
 ## Contributions
 - code and first themes by _schorschii_
