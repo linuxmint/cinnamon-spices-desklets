@@ -1,7 +1,6 @@
 {
- "uuid": "calculator@scollins",
- "name": "Desktop Calculator",
- "description": "A calculator Desklet",
- "prevent-decorations": false
+    "uuid": "calculator@scollins",
+    "name": "Desktop Calculator",
+    "description": "A calculator Desklet",
+    "prevent-decorations": false
 }
-

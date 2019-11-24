@@ -13,8 +13,8 @@
    height="16"
    width="16"
    version="1.1"
-   inkscape:version="0.48.4 r9939"
-   sodipodi:docname="number-symbolic.svg">
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="4-symbolic.svg">
   <defs
      id="defs10" />
   <sodipodi:namedview
@@ -26,15 +26,15 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1026"
-     inkscape:window-height="622"
+     inkscape:window-width="1806"
+     inkscape:window-height="1079"
      id="namedview8"
      showgrid="false"
      inkscape:zoom="14.75"
-     inkscape:cx="-9.7627123"
+     inkscape:cx="0.27118644"
      inkscape:cy="5.1256096"
-     inkscape:window-x="339"
-     inkscape:window-y="26"
+     inkscape:window-x="754"
+     inkscape:window-y="289"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg7384" />
   <metadata
@@ -52,12 +52,12 @@
   <title
      id="title9167">Gnome Symbolic Icon Theme</title>
   <g
-     style="font-size:13.66111565px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#bebebe;fill-opacity:1;stroke:none;font-family:Rekha;-inkscape-font-specification:Rekha Medium"
-     id="text3001"
-     transform="matrix(1.1088354,0,0,1.1088354,0.02476664,-1.5859935)">
+     aria-label="4"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;line-height:1.25;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#bebebe;fill-opacity:1;stroke:none;stroke-width:0.45808831"
+     id="text816">
     <path
-       d="m 10.260856,10.07258 0,0.85382 -1.3607756,0 0,2.227936 -1.0272518,0 0,-2.227936 -3.7488023,0 0,-0.85382 4.1890531,-5.9367149 0.587001,0 0,5.9367149 1.3607756,0 m -2.4013684,0 0,-4.5359169 -3.2018239,4.5359169 3.2018239,0"
-       id="path2985"
-       inkscape:connector-curvature="0" />
+       d="m 12.956,11.677333 h -1.941333 v 3.024 H 9.428 v -3.024 H 3.0440002 v -1.4 L 9.316,1.2986668 h 1.698667 V 10.202667 H 12.956 Z M 9.428,10.202667 V 6.0026667 Q 9.428,5.032 9.4466666,4.3600001 9.484,3.6693334 9.5213333,3.0533334 H 9.4466666 Q 9.2973333,3.4080001 9.0733333,3.8186667 8.8493333,4.2293334 8.644,4.5093334 L 4.6493335,10.202667 Z"
+       style=""
+       id="path824" />
   </g>
 </svg>

@@ -13,8 +13,8 @@
    height="16"
    width="16"
    version="1.1"
-   inkscape:version="0.48.4 r9939"
-   sodipodi:docname="number-symbolic.svg">
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="0-symbolic.svg">
   <defs
      id="defs10" />
   <sodipodi:namedview
@@ -26,15 +26,15 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1026"
-     inkscape:window-height="622"
+     inkscape:window-width="1648"
+     inkscape:window-height="1075"
      id="namedview8"
      showgrid="false"
      inkscape:zoom="14.75"
-     inkscape:cx="-9.6271191"
+     inkscape:cx="5.6271186"
      inkscape:cy="5.1256096"
-     inkscape:window-x="39"
-     inkscape:window-y="204"
+     inkscape:window-x="912"
+     inkscape:window-y="293"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg7384" />
   <metadata
@@ -52,12 +52,12 @@
   <title
      id="title9167">Gnome Symbolic Icon Theme</title>
   <g
-     style="font-size:13.66111565px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#bebebe;fill-opacity:1;stroke:none;font-family:Rekha;-inkscape-font-specification:Rekha Medium"
-     id="text3001"
-     transform="matrix(1.0863373,0,0,1.0863373,0.07064127,-1.4929444)">
+     aria-label="0"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;line-height:1.25;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#bebebe;fill-opacity:1;stroke:none;stroke-width:0.45808831"
+     id="text816">
     <path
-       d="M 7.2991684,4.4827294 C 6.7299525,4.482738 6.2985961,4.8473898 6.0050979,5.5766859 5.7115956,6.3059971 5.5648455,7.3599298 5.5648471,8.7384871 c -1.6e-6,1.0494901 0.075597,1.8944149 0.2267959,2.5347769 0.2757105,1.147321 0.7782185,1.720981 1.5075254,1.720981 0.5692093,0 1.0005657,-0.351311 1.2940706,-1.053934 C 8.8867346,11.228797 9.0334847,10.161523 9.0334898,8.7384871 9.0334847,7.7423695 8.9578862,6.9196794 8.8066939,6.2704144 8.5309767,5.0786325 8.0284687,4.482738 7.2991684,4.4827294 m 0,-0.3468643 c 1.0850582,9e-6 1.8944073,0.5692216 2.4280499,1.7076395 0.3913277,0.8360382 0.5869947,1.8010315 0.5870007,2.8949825 -6e-6,1.1117477 -0.195673,2.0811879 -0.5870007,2.9083239 -0.5336426,1.129532 -1.3429917,1.694298 -2.4280499,1.694298 -1.0850648,0 -1.8944139,-0.564766 -2.4280498,-1.694298 C 4.479784,10.819675 4.2841172,9.8502348 4.2841175,8.7384871 4.2841172,7.65343 4.479784,6.6928838 4.8711186,5.8568455 5.4047545,4.7095337 6.2141036,4.1358741 7.2991684,4.1358651"
-       id="path2985"
-       inkscape:connector-curvature="0" />
+       d="m 12.424,7.9906667 q 0,2.1653333 -0.448,3.6960003 -0.448,1.530666 -1.437333,2.352 Q 9.568,14.86 7.9813334,14.86 q -2.2586666,0 -3.3413332,-1.810667 -1.064,-1.829333 -1.064,-5.0586663 0,-2.1653332 0.4293333,-3.6959998 0.448,-1.5306667 1.4186666,-2.3333333 0.9706667,-0.8213333 2.5573333,-0.8213333 2.2399996,0 3.3413336,1.8106666 Q 12.424,4.7426668 12.424,7.9906667 Z m -7.2053332,0 q 0,2.7440003 0.616,4.1066663 Q 6.4693334,13.46 7.9813334,13.46 q 1.4933333,0 2.1279996,-1.344 0.653334,-1.362667 0.653334,-4.1253333 0,-2.7253332 -0.653334,-4.0879998 -0.6346663,-1.3626667 -2.1279996,-1.3626667 -1.512,0 -2.1466666,1.3626667 -0.616,1.3626666 -0.616,4.0879998 z"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#bebebe;fill-opacity:1;stroke-width:0.45808831"
+       id="path828" />
   </g>
 </svg>
