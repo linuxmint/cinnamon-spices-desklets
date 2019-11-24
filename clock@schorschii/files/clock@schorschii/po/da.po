@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Analog Chronometer VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-20 18:15+0200\n"
-"PO-Revision-Date: 2017-06-20 18:30+0200\n"
+"POT-Creation-Date: 2017-05-04 18:03+0100\n"
+"PO-Revision-Date: 2019-11-24 11:12+0100\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
-"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"X-Generator: Poedit 2.0.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: da\n"
 
 #: desklet.js:190
 msgid "Clock"
@@ -41,6 +41,14 @@ msgstr "Mørk"
 #. clock@schorschii->settings-schema.json->style->options
 msgid "Light"
 msgstr "Lys"
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Dark Transparent"
+msgstr "Mørk gennemsigtig"
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Light Transparent"
+msgstr "Lys gennemsigtig"
 
 #. clock@schorschii->settings-schema.json->style->options
 msgid "Custom"
