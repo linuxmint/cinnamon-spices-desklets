@@ -540,56 +540,37 @@ Buffer.prototype = {
                 return;
             }
 
+            //global.log("Calculator received key: "+key); // debug
             switch ( key ) {
-                case 49:
-                    this.append("1");
+                case "1":
+                case "2":
+                case "3":
+                case "4":
+                case "5":
+                case "6":
+                case "7":
+                case "8":
+                case "9":
+                case "0":
+                case ".":
+                    this.append(key);
                     break;
-                case 50:
-                    this.append("2");
-                    break;
-                case 51:
-                    this.append("3");
-                    break;
-                case 52:
-                    this.append("4");
-                    break;
-                case 53:
-                    this.append("5");
-                    break;
-                case 54:
-                    this.append("6");
-                    break;
-                case 55:
-                    this.append("7");
-                    break;
-                case 56:
-                    this.append("8");
-                    break;
-                case 57:
-                    this.append("9");
-                    break;
-                case 48:
-                    this.append("0");
-                    break;
-                case 46:
-                    this.append(".");
-                    break;
-                case 43:
+                case "+":
                     this.operate("add");
                     break;
-                case 45:
+                case "-":
                     this.operate("sub");
                     break;
-                case 42:
+                case "*":
                     this.operate("mult");
                     break;
-                case 47:
+                case "/":
                     this.operate("div");
                     break;
-                case 3:
+                case "c":
                     this.copy();
                     break;
-                case 22:
+                case "v":
                     this.paste();
                     break;
             }
@@ -1015,6 +996,7 @@ myDesklet.prototype = {
 
     _bindSettings: function() {
         this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], this.instance_id);
+        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "style", "style", this._buildInterface);
         this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "angleMode", "angleMode", this.setAngleMode);
         this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "rpn", "rpn", this._buildInterface);
         this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "layout", "layout", this._buildInterface);
@@ -1126,6 +1108,8 @@ myDesklet.prototype = {
     },
 
     _buildInterface: function() {
+        this.setHeader(_("Desktop Calculator"));
+
         if ( this.mainBox ) this.mainBox.destroy();
 
         buffer.rpn = this.rpn;
@@ -1148,7 +1132,7 @@ myDesklet.prototype = {
                 break;
         }
 
-        this.mainBox = new St.BoxLayout({ style_class: "calc-mainBox", vertical: true });
+        this.mainBox = new St.BoxLayout({ style_class: "calc-mainBox "+this.style, vertical: true });
         this.setContent(this.mainBox);
 
         let displayArea = new St.BoxLayout({ vertical: true, style_class: "calc-displayArea" });
