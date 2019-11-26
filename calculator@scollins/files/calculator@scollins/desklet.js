@@ -320,7 +320,7 @@ Buffer.prototype = {
             else return;
         }
         else {
-            string = this.stack.pop();
+            let string = this.stack.pop();
             if ( string.length != 0) {
                 if ( string.substr(string.length-3, 2) == "e+" ) string = string.substr(0, string.length-2);
                 else if ( isNaN( string ) || string.search("Infinity") != -1 ) string = "";
@@ -494,7 +494,7 @@ Buffer.prototype = {
         if ( this.rpn && this.stack[this.stack.length-1] == "" ) this.stack.pop();
 
         if ( this.stack.length > 0 ) {
-            string = this.stack.pop();
+            let string = this.stack.pop();
             if ( string[0] == "-" ) string = string.slice(1);
             else string = "-" + string;
             this.stack.push(string);
@@ -537,6 +537,10 @@ Buffer.prototype = {
             if ( symbol == Clutter.KP_Enter || symbol == Clutter.Return ) {
                 if ( this.rpn ) this.push();
                 else this.solve();
+                return;
+            }
+            if ( symbol == Clutter.BackSpace || symbol == Clutter.Delete ) {
+                this.back();
                 return;
             }
 
