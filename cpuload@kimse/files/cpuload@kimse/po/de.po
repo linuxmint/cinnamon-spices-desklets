@@ -1,0 +1,93 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2018-01-12 18:07+0100\n"
+"PO-Revision-Date: 2018-01-12 18:07+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+msgid "CPU Load"
+msgstr "CPU-Auslastung"
+
+msgid "Displays CPU load"
+msgstr "Zeigt die CPU-Auslastung an"
+
+msgid "CPU usage"
+msgstr "CPU-Nutzung"
+
+msgid "Settings for cpuload@kimse"
+msgstr "Einstellungen für cpuload@kimse"
+
+msgid "Visual"
+msgstr "Visuelle Einstellungen"
+
+msgid "Design"
+msgstr "Design"
+
+msgid "Thin"
+msgstr "Dünn"
+
+msgid "Classic (Thick)"
+msgstr "Klassisch (Dick)"
+
+msgid "Draw unused resources (gray)"
+msgstr "Zeichne ungenutzte Ressourcen (grau)"
+
+msgid "Circle color"
+msgstr "Kreisfarbe"
+
+msgid "Random"
+msgstr "Zufällig"
+
+msgid "Static"
+msgstr "Statisch"
+
+msgid "Colorize by CPU usage (green-red)"
+msgstr "Nach CPU-Auslastung einfärben (grün-rot)"
+
+msgid "Static circle color"
+msgstr "Statische Kreisfarbe"
+
+msgid "Hide decorations"
+msgstr "Dekorationen ausblenden"
+
+msgid "Desklet size"
+msgstr "Deskletgröße"
+
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Vergrößern oder verkleinern Sie dieses Desklet, indem Sie diesen "
+"Skalierungsfaktor verändern."
+
+msgid "Column count"
+msgstr "Spaltenanzahl"
+
+msgid "Increase or decrease column count."
+msgstr "Erhöhen oder verringern Sie die Spaltenanzahl."
+
+msgid "Show usage for each core"
+msgstr "Zeige CPU-Auslastung für jeden Kern"
+
+msgid "Shows separate indicator for every CPU core."
+msgstr "Zeige separate CPU-Auslastungsanzeige für jeden Prozessorkern"
+
+msgid "Refresh interval"
+msgstr "Aktualisierungsintervall"
+
+msgid "Increase or decrease refresh interval in seconds."
+msgstr "Erhöhen oder verringern Sie das Aktualisierungsintervall."
+
+msgid "scale factor"
+msgstr "Skalierungsfaktor"
+
+msgid "columns"
+msgstr "Spalten"
