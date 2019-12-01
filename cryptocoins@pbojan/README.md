@@ -72,7 +72,7 @@ If you want to add new features please first send an email to [p.bojan@live.com]
 ## MIT License
 
 ```
-Copyright (c) 2018 Bojan Petkovski
+Copyright (c) 2019 Bojan Petkovski
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
