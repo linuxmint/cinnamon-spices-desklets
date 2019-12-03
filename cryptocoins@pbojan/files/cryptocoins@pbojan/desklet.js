@@ -57,6 +57,9 @@ HelloDesklet.prototype = {
       this.cfgCurrency = this.cfgCurrency.toUpperCase() || 'USD';
       this.cfgRefreshInterval = this.cfgRefreshInterval || 30;
 
+      this._menu.addAction('Refresh', Lang.bind(this, function () {
+        this.fetchData();
+      }));
       this._menu.addAction('Help', Lang.bind(this, function() {
         Util.spawnCommandLine('xdg-open ' + HELP_URL);
       }));
