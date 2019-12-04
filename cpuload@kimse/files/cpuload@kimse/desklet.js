@@ -26,6 +26,10 @@ CpuusageDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "column-count", "column_count", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "per-core", "per_core", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refresh_interval", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "design", "design", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "draw-unused", "draw_unused", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "circle-color-type", "circle_color_type", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "circle-color", "circle_color", this.on_setting_changed);
 
         this.active = [];
         this.total = [];
@@ -71,7 +75,7 @@ CpuusageDesklet.prototype = {
         utilization.forEach(function (usage, index) {
 
             // Draw circle canvas
-            let circleCanvas = this.drawCircleCanvas(usage, 100, this.getCpuColor(index));
+            let circleCanvas = this.drawCircleCanvas(usage, 100, this.getCpuColor(index, usage));
 
             // Create CPU usage container
             let cpuCoreUsageContainer = new Clutter.Actor();
@@ -130,6 +134,9 @@ CpuusageDesklet.prototype = {
         let a = use;
         let b = total;
 
+        let design = this.design;
+        let draw_unused = this.draw_unused;
+
         let canvas = new Clutter.Canvas();
         canvas.set_size(this.circleContainerSize, this.circleContainerSize);
 
@@ -146,18 +153,37 @@ CpuusageDesklet.prototype = {
             cr.setOperator(Cairo.Operator.OVER);
             cr.scale(width, height);
             cr.translate(0.5, 0.5);
-            cr.setSourceRGBA(1, 1, 1, 0.2);
-            cr.setLineWidth(0.20);
-            cr.arc(0, 0, 0.4, 0, Math.PI * 2);
-            cr.stroke();
-            cr.setSourceRGBA(color.r, color.g, color.b, color.a);
-            cr.setLineWidth(0.20);
-            cr.arc(0, 0, 0.4, start, end);
-            cr.stroke();
-            cr.setSourceRGBA(0, 0, 0, 0.1446);
-            cr.setLineWidth(0.05);
-            cr.arc(0, 0, 0.325, start, end);
-            cr.stroke();
+            if(design === "thin") {
+                if(draw_unused) {
+                    cr.setSourceRGBA(1, 1, 1, 0.2);
+                    cr.setLineWidth(0.04);
+                    cr.arc(0, 0, 0.4, 0, Math.PI*2);
+                    cr.stroke();
+                }
+                /////
+                cr.setLineCap(Cairo.LineCap.ROUND);
+                cr.setSourceRGBA(color.r, color.g, color.b, color.a);
+                cr.setLineWidth(0.04);
+                cr.arc(0, 0, 0.4, start, end);
+                cr.stroke();
+            } else { // thick design
+                if(draw_unused) {
+                    cr.setSourceRGBA(1, 1, 1, 0.2);
+                    cr.setLineWidth(0.20);
+                    cr.arc(0, 0, 0.4, 0, Math.PI*2);
+                    cr.stroke();
+                }
+                /////
+                cr.setSourceRGBA(color.r, color.g, color.b, color.a);
+                cr.setLineWidth(0.20);
+                cr.arc(0, 0, 0.4, start, end);
+                cr.stroke();
+                /////
+                cr.setSourceRGBA(0, 0, 0, 0.1446);
+                cr.setLineWidth(0.05);
+                cr.arc(0, 0, 0.325, start, end);
+                cr.stroke();
+            }
 
             return true;
         });
@@ -230,13 +256,44 @@ CpuusageDesklet.prototype = {
     }
     },
 
-    getCpuColor(index) {
+    getCpuColor(index, usage) {
 
-        if (typeof this.colors[index] === 'undefined') {
-            this.colors[index] = this.generateCircleColor();
+        if(this.circle_color_type === 'static') {
+            let circle_colors = this.circle_color.match(/\((.*?)\)/)[1].split(","); // get contents inside brackets: "rgb(...)"
+            let rgba = {
+                r: parseInt(circle_colors[0])/255,
+                g: parseInt(circle_colors[1])/255,
+                b: parseInt(circle_colors[2])/255,
+                a: (circle_colors.length >= 4) ? parseFloat(circle_colors[3]) : 1
+            };
+            return rgba;
+        } else if(this.circle_color_type === 'dynamic') {
+            let colorGreen = {
+                r: 70.0/255,
+                g: 200.0/255,
+                b: 150.0/255,
+                a: 1
+            };
+            let colorRed = {
+                r: 180.0/255,
+                g: 10.0/255,
+                b: 10.0/255,
+                a: 1
+            };
+            let color = {
+                r: colorGreen.r + (usage/100) * (colorRed.r - colorGreen.r),
+                g: colorGreen.g + (usage/100) * (colorRed.g - colorGreen.g),
+                b: colorGreen.b + (usage/100) * (colorRed.b - colorGreen.b),
+                a: 1
+            };
+            return color;
+        } else {
+            if (typeof this.colors[index] === 'undefined') {
+                this.colors[index] = this.generateCircleColor();
+            }
+            return this.colors[index];
         }
 
-        return this.colors[index];
     },
 
     on_setting_changed() {

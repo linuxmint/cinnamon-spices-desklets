@@ -8,6 +8,35 @@
         "type": "header",
         "description": "Visual"
     },
+    "design": {
+        "type": "combobox",
+        "default": "classic",
+        "description": "Design",
+        "options" : {
+            "Thick" : "thick",
+            "Thin": "thin"
+        }
+    },
+    "draw-unused": {
+        "type": "checkbox",
+        "description": "Draw unused resources (gray)",
+        "default": true
+    },
+    "circle-color-type": {
+        "type": "combobox",
+        "default": "random",
+        "description": "Circle color",
+        "options" : {
+            "Random" : "random",
+            "Static": "static",
+            "Colorize by CPU usage (green-red)": "dynamic"
+        }
+    },
+    "circle-color": {
+        "type": "colorchooser",
+        "default": "rgba(83,199,160,1.0)",
+        "description": "Static circle color"
+    },
     "hide-decorations": {
         "type": "checkbox",
         "description": "Hide decorations",
