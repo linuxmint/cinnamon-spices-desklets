@@ -36,8 +36,8 @@ msgstr "Design"
 msgid "Thin"
 msgstr "Dünn"
 
-msgid "Classic (Thick)"
-msgstr "Klassisch (Dick)"
+msgid "Thick"
+msgstr "Dick"
 
 msgid "Draw unused resources (gray)"
 msgstr "Zeichne ungenutzte Ressourcen (grau)"

@@ -13,7 +13,7 @@
         "default": "classic",
         "description": "Design",
         "options" : {
-            "Classic (Thick)" : "classic",
+            "Thick" : "thick",
             "Thin": "thin"
         }
     },

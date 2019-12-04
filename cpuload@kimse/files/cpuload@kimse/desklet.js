@@ -166,7 +166,7 @@ CpuusageDesklet.prototype = {
                 cr.setLineWidth(0.04);
                 cr.arc(0, 0, 0.4, start, end);
                 cr.stroke();
-            } else { // classic design
+            } else { // thick design
                 if(draw_unused) {
                     cr.setSourceRGBA(1, 1, 1, 0.2);
                     cr.setLineWidth(0.20);
