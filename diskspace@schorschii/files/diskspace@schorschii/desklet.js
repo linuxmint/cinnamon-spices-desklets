@@ -153,7 +153,8 @@ MyDesklet.prototype = {
 					let [, out] = subprocess.communicate_utf8(null, null); // get full output from stdout
 					let fsline = out.split(/\r?\n/)[1]; // get second line with fs information
 					let fsvalues = fsline.split(/\s+/); // separate space-separated values from line
-					avail = parseInt(fsvalues[3]);
+					// https://stackoverflow.com/questions/30772369/linux-free-m-total-used-and-free-memory-values-dont-add-up
+					avail = parseInt(fsvalues[3]) + parseInt(fsvalues[5]);
 					use = parseInt(fsvalues[2]);
 					size = use + avail;
 					percent_string = Math.round(use * 100 / size) + "%";
