@@ -112,7 +112,7 @@ MyDesklet.prototype = {
 
 		if(out == "") {
 			source_object.desklet.colorClass = '';
-			source_object.desklet.statusTagString = 'UNKNOWN';
+			source_object.desklet.statusTagString = _('UNKNOWN');
 			source_object.desklet.commandOut = _('No ping output');
 		}
 		else if(source_object.desklet.type == 'ping') {

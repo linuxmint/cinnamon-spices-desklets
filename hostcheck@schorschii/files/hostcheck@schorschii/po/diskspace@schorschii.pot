@@ -41,6 +41,8 @@ msgstr ""
 
 msgid "Desklet size"
 msgstr ""
+msgid "scale factor"
+msgstr ""
 
 msgid "Increase or decrease the size of this desklet using this scale factor."
 msgstr ""
@@ -61,6 +63,8 @@ msgid "Custom desklet label"
 msgstr ""
 
 msgid "Set your custom label here. This field is unavailable unless the checkbox above is enabled."
+msgstr ""
+msgid "UNKNOWN"
 msgstr ""
 
 msgid "CRIT"
