@@ -164,7 +164,6 @@ msgid "White Note - Black Spiral"
 msgstr "Note Blanche - Spirale Noire"
 
 msgid "White Note Large - Silver Spiral"
-msgstr "Nota Bianca Grande - Spirale Argentata"
 msgstr "Note Blanche Grande - Spirale Argentée"
 
 msgid "Yellow Sticker"
