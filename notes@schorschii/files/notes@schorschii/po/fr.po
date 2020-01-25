@@ -1,0 +1,244 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2018-01-12 18:07+0100\n"
+"PO-Revision-Date: 2020-01-24 23:40+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.1\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: Anonymous <ano@nymo.us>\n"
+"Language: fr\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+#: desklet.js:109
+msgid ""
+"Can't read text file.\n"
+"Select a file in settings.\n"
+"\n"
+"Click here to edit."
+msgstr ""
+"Impossible de lire le fichier texte.\n"
+"Selectionnez un fichier dans les réglages..\n"
+"\n"
+"Cliquez ici pour modifier."
+
+#: desklet.js:172
+msgid "Notepad"
+msgstr "Bloc Note"
+
+msgid "Note"
+msgstr "Note"
+
+msgid "A desklet to display notes including various themes."
+msgstr "Un desklet pour afficher des notes aux styles graphiques variés."
+
+msgid "Settings for notes@schorschii"
+msgstr "Paramètres de notes@schorschii"
+
+msgid "General"
+msgstr "Général"
+
+msgid "Path to note text file"
+msgstr "Chemin vers le fichier de note"
+
+msgid "Select your text file, where to read from and save to."
+msgstr "Sélectionnez un fichier texte dans lequel sera lue et écrite la note."
+
+msgid "Command for editing this note (on mouse click)"
+msgstr "Commande pour éditer cette note (avec un click de souris)"
+
+msgid "%f will replaced by the text file path."
+msgstr "%f sera remplacé par le chemin du fichier."
+
+msgid "Visual"
+msgstr "Visuel"
+
+msgid "Select the background graphic you would like to use."
+msgstr "Sélectionnez le fond graphique que vous souhaitez utiliser."
+
+msgid "Notes style"
+msgstr "Style des notes"
+
+msgid "Yellow"
+msgstr "Jaune"
+
+msgid "White"
+msgstr "Blanc"
+
+msgid "Blank Note - Black"
+msgstr "Note Vierge - Noir"
+
+msgid "Blank Note - Blue"
+msgstr "Note Vierge - Bleu"
+
+msgid "Blank Note - Green"
+msgstr "Note Vierge - Vert"
+
+msgid "Blank Note - Orange"
+msgstr "Note Vierge - Orange"
+
+msgid "Blank Note - Purple"
+msgstr "Note Vierge - Violet"
+
+msgid "Blank Note - White"
+msgstr "Nota Vierge - Blanc"
+
+msgid "Blank Note - Yellow"
+msgstr "Note Vierge - Jaune"
+
+msgid "White Note - Black Button"
+msgstr "Note Blanche - Punaise Noire"
+
+msgid "White Note - Blue Button"
+msgstr "Note Blanche - Punaise Bleue"
+
+msgid "White Note - Green Button"
+msgstr "Note Blanche - Bouton Vert"
+
+msgid "White Note - Red Button"
+msgstr "Note Blanche - Bouton Rouge"
+
+msgid "White Note - Yellow Button"
+msgstr "Note Blanche - Bouton Jaune"
+
+msgid "Yellow Note - Black Clip"
+msgstr "Note Jaune - Épingle Noire"
+
+msgid "Yellow Note - Blue Clip"
+msgstr "Note Jaune - Épingle Bleue"
+
+msgid "Yellow Note - Green Clip"
+msgstr "Note Jaune - Épingle Verte"
+
+msgid "Yellow Note - Jingle Clip"
+msgstr "Note Jaune - Épingle Jingle"
+
+msgid "Yellow Note - Red Clip"
+msgstr "Note Jaune - Épingle Rouge"
+
+msgid "Yellow Note - Yellow Clip"
+msgstr "Note Jaune - Épingle Jaune"
+
+msgid "White Note - Black Magnet"
+msgstr "Note Blanche - Magnet Noir"
+
+msgid "Yellow Note - Blue Magnet"
+msgstr "Note Blanche - Magnet Bleu"
+
+msgid "White Note - Lines and Red Magnet"
+msgstr "Note Blanche - Magnet Rouge et lignes"
+
+msgid "Black Note - White Magnet"
+msgstr "Note Noire - Magnet Blanc"
+
+msgid "Yellow Note - Yellow Magnet"
+msgstr "Note Jaune - Magnet Jaune"
+
+msgid "Blue Paint Strokes"
+msgstr "Traces de peinture Bleues"
+
+msgid "Green Paint Strokes"
+msgstr "Traces de peinture Vertes"
+
+msgid "Purple Paint Strokes"
+msgstr "Traces de peinture Violettes"
+
+msgid "Red Paint Strokes"
+msgstr "Traces de peinture Rouges"
+
+msgid "Yellow Paint Strokes"
+msgstr "Traces de peinture Jaunes"
+
+msgid "White Note - Silver Spiral"
+msgstr "Note Blanche - Spirale Argentée"
+
+msgid "White Note - Silver Spiral 2"
+msgstr "Note Blanche - Spirale Argentée 2"
+
+msgid "White Note - Black Spiral"
+msgstr "Note Blanche - Spirale Noire"
+
+msgid "White Note Large - Silver Spiral"
+msgstr "Note Blanche Grande - Spirale Argentée"
+
+msgid "Yellow Sticker"
+msgstr "Adhésif Jaune"
+
+msgid "Yellow Note (iOS Style)"
+msgstr "Note Jaune (Style iOS)"
+
+msgid "Birch Bark"
+msgstr "Écorce de Bouleau"
+
+msgid "Burned Paper"
+msgstr "Papier Brûlé"
+
+msgid "Clay Tablet"
+msgstr "Tablette d'argile"
+
+msgid "Coffee Stained"
+msgstr "Teinté de café"
+
+msgid "Clipboard"
+msgstr "Clipboard"
+
+msgid "Hide decorations"
+msgstr "Masquer les décorations"
+
+msgid "Font"
+msgstr "Police"
+
+msgid "Bold"
+msgstr "Gras"
+
+msgid "Italic"
+msgstr "Italique"
+
+msgid "Font size"
+msgstr "Taille de police"
+
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr "Augmenter ou réduire la taille de cette desklet selon cette échelle."
+
+msgid "Set the text color of this desklet."
+msgstr "Changer la couleur du texte de ce desklet."
+
+msgid "Text color"
+msgstr "Couleur du texte"
+
+msgid "Desklet size"
+msgstr "Taille de la desklet"
+
+msgid "pixels"
+msgstr "pixels"
+
+msgid "scale factor"
+msgstr "facteur d'échelle"
+
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Étiquette de desklet personnalisée (visible seulement si décorations "
+"activées)" 
+
+msgid "Use a custom desklet label"
+msgstr "Utiliser une étiquette de desklet personnalisée"
+
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Cocher cette case vous permet de changer l'étiquette personnalisée "
+"du champ ci-dessous."
+
+msgid "Custom desklet label"
+msgstr "Etiquette de desklet personnalisée"
+
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr ""
+"Changez votre étiquette personnalisée ici. Ce champ n'est disponible que si "
+"vous avez coché la case ci-dessus"
