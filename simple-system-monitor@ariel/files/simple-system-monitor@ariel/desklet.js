@@ -293,3 +293,12 @@ function main(metadata, desklet_id) {
     else
     	return new MyDesklet(metadata, desklet_id);
 }
+/*
+# Changelog 
+## Version 1.0.0
+  * Institute changelog - currently only in desklet.js
+  * Changes for Cinnamon 4.0 and higher to avoid segfaults when old Network Manager Library is no longer available by using multiversion with folder 4.0
+    * Comment out all references to NetworkManager
+    * Replace calls to NetworkManager with equivalent calls to NM
+    * Change logError messages to not reference NetworkManager  
+*/

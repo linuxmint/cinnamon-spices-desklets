@@ -97,6 +97,14 @@ msgstr "Ein Taschenrechner-Desklet"
 msgid "Desktop Calculator"
 msgstr "Desktop-Taschenrechner"
 
+#. calculator@scollins->settings-schema.json->style->options
+msgid "Light"
+msgstr "Hell"
+
+#. calculator@scollins->settings-schema.json->style->options
+msgid "Dark"
+msgstr "Dunkel"
+
 #. calculator@scollins->settings-schema.json->raiseKey->description
 msgid "Raise to top shorcut key"
 msgstr "Tastenkürzel, um Taschenrechner in den Vordergrund zu bringen"

@@ -8,6 +8,35 @@
         "type": "header",
         "description": "Visual"
     },
+    "design": {
+        "type": "combobox",
+        "default": "classic",
+        "description": "Design",
+        "options" : {
+            "Thick" : "thick",
+            "Thin": "thin"
+        }
+    },
+    "draw-unused": {
+        "type": "checkbox",
+        "description": "Draw unused resources (gray)",
+        "default": true
+    },
+    "circle-color-type": {
+        "type": "combobox",
+        "default": "random",
+        "description": "Circle color",
+        "options" : {
+            "Random" : "random",
+            "Static": "static",
+            "Colorize by CPU usage (green-red)": "dynamic"
+        }
+    },
+    "circle-color": {
+        "type": "colorchooser",
+        "default": "rgba(83,199,160,1.0)",
+        "description": "Static circle color"
+    },
     "hide-decorations": {
         "type": "checkbox",
         "description": "Hide decorations",
@@ -31,6 +60,22 @@
         "max": 16,
         "units": "columns",
         "description": "Column count",
-        "tooltip": "Increase or decrease column count"
+        "tooltip": "Increase or decrease column count."
+    },
+    "per-core": {
+        "type": "checkbox",
+        "description": "Show usage for each core",
+        "default": true,
+        "tooltip": "Shows separate indicator for every CPU core."
+    },
+    "refresh-interval": {
+        "type": "spinbutton",
+        "default": 5,
+        "step": 1,
+        "min": 1,
+        "max": 15,
+        "units": "seconds",
+        "description": "Refresh interval",
+        "tooltip": "Increase or decrease refresh interval in seconds."
     }
 }

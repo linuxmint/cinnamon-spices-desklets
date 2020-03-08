@@ -1,17 +1,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-04-08 18:38+0200\n"
-"PO-Revision-Date: 2018-04-08 18:46+0200\n"
+"POT-Creation-Date: 2018-01-12 18:07+0100\n"
+"PO-Revision-Date: 2018-11-12 18:15+0100\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
-"Language: da\n"
 "X-Poedit-SearchPath-0: desklet.js\n"
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
@@ -34,8 +34,9 @@ msgstr "Notesblok"
 msgid "Note"
 msgstr "Note"
 
-msgid "A simple desklet to display notes."
-msgstr "Et enkelt skrivebordsprogram til visning af noter."
+msgid "A desklet to display notes including various themes."
+msgstr ""
+"Et enkelt skrivebordsprogram til visning af noter med forskellige temaer."
 
 msgid "Settings for notes@schorschii"
 msgstr "Indstillinger"
@@ -70,17 +71,134 @@ msgstr "Gul"
 msgid "White"
 msgstr "Hvid"
 
-msgid "White Large"
-msgstr "Hvid stor"
+msgid "Blank Note - Black"
+msgstr "Tom note — Sort"
 
-msgid "White (Old)"
-msgstr "Hvid (gammel)"
+msgid "Blank Note - Blue"
+msgstr "Tom note — Blå"
+
+msgid "Blank Note - Green"
+msgstr "Tom note — Grøn"
+
+msgid "Blank Note - Orange"
+msgstr "Tom note — Orange"
+
+msgid "Blank Note - Purple"
+msgstr "Tom note — Lilla"
+
+msgid "Blank Note - White"
+msgstr "Tom note — Hvid"
+
+msgid "Blank Note - Yellow"
+msgstr "Tom note — Gul"
+
+msgid "White Note - Black Button"
+msgstr "Hvid note — Sort tegnestift"
+
+msgid "White Note - Blue Button"
+msgstr "Hvid note — Blå tegnestift"
+
+msgid "White Note - Green Button"
+msgstr "Hvid note — Grøn tegnestift"
+
+msgid "White Note - Red Button"
+msgstr "Hvid note — Rød tegnestift"
+
+msgid "White Note - Yellow Button"
+msgstr "Hvid note — Gul tegnestift"
+
+msgid "Yellow Note - Black Clip"
+msgstr "Gul note — Sort papirklips"
+
+msgid "Yellow Note - Blue Clip"
+msgstr "Gul note — Blå papirklips"
+
+msgid "Yellow Note - Green Clip"
+msgstr "Gul note — Grøn papirklips"
+
+msgid "Yellow Note - Jingle Clip"
+msgstr "Gul note — Stribet papirklips"
+
+msgid "Yellow Note - Red Clip"
+msgstr "Gul note — Rød papirklips"
+
+msgid "Yellow Note - Yellow Clip"
+msgstr "Gul note — Gul papirklips"
+
+msgid "White Note - Black Magnet"
+msgstr "Hvid note — Sort magnet"
+
+msgid "Yellow Note - Blue Magnet"
+msgstr "Gul note — Blå magnet"
+
+msgid "White Note - Lines and Red Magnet"
+msgstr "Hvid note — Linjeret med rød magnet"
+
+msgid "Black Note - White Magnet"
+msgstr "Sort note — Hvid magnet"
+
+msgid "Yellow Note - Yellow Magnet"
+msgstr "Gul note — Gul magnet"
+
+msgid "Blue Paint Strokes"
+msgstr "Blå malestreger"
+
+msgid "Green Paint Strokes"
+msgstr "Grønne malestreger"
+
+msgid "Purple Paint Strokes"
+msgstr "Lilla malestreger"
+
+msgid "Red Paint Strokes"
+msgstr "Røde malestreger"
+
+msgid "Yellow Paint Strokes"
+msgstr "Gule malestreger"
+
+msgid "White Note - Silver Spiral"
+msgstr "Hvid note — Sølvspiral"
+
+msgid "White Note - Silver Spiral 2"
+msgstr "Hvid note — Sølvspiral 2"
+
+msgid "White Note - Black Spiral"
+msgstr "Hvid note — Sort spiral"
+
+msgid "White Note Large - Silver Spiral"
+msgstr "Hvid note, stor — Sølvspiral"
+
+msgid "Yellow Sticker"
+msgstr "Gul post-it"
+
+msgid "Yellow Note (iOS Style)"
+msgstr "Gul note (iOS-stil)"
+
+msgid "Birch Bark"
+msgstr "Birkebark"
+
+msgid "Burned Paper"
+msgstr "Brændt papir"
+
+msgid "Clay Tablet"
+msgstr "Lertavle"
+
+msgid "Coffee Stained"
+msgstr "Kaffeplettet"
+
+msgid "Clipboard"
+msgstr "Clipboard"
 
 msgid "Hide decorations"
 msgstr "Skjul boks rundt om skrivebordsprogrammet"
 
 msgid "Font"
 msgstr "Skrifttype"
+
+msgid "Bold"
+msgstr "Fed"
+
+msgid "Italic"
+msgstr "Kursiv"
 
 msgid "Font size"
 msgstr "Skrifttypestørrelse"
@@ -125,3 +243,9 @@ msgid ""
 msgstr ""
 "Angiv din tilpassede etiket her. Dette felt er utilgængeligt, med mindre "
 "afkrydsningsfeltet ovenfor er aktiveret."
+
+#~ msgid "White Large"
+#~ msgstr "Hvid stor"
+
+#~ msgid "White (Old)"
+#~ msgstr "Hvid (gammel)"

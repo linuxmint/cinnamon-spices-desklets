@@ -70,7 +70,7 @@ Authors are able to accept or refuse changes from other people which modify the 
 
 Authors may choose to pass on development of their desklet to someone else. In that case, the "author" field in UUID/info.json will be changed to the new developer and the "original_author" field will be added to give credit to the original developer.
 
-If an author abandons their desklet, the Linux Mint team will take over maintenance of the desklet or pass it on to someone else. Several factors are used to determine if an desklet is abandoned, including prolonged activity, failure to respond to requests, and serious breakages that have occurred due to changes in API, etc. If you plan to abandon a desklet, please notify us, so we don't have to guess as to whether it is abandoned or not.
+If an author abandons their desklet, the Linux Mint team will take over maintenance of the desklet or pass it on to someone else. Several factors are used to determine if a desklet is abandoned, including prolonged inactivity, failure to respond to requests, and serious breakages that have occurred due to changes in API, etc. If you plan to abandon a desklet, please notify us, so we don't have to guess as to whether it is abandoned or not.
 
 # Pull requests from authors and workflow
 
@@ -91,8 +91,8 @@ If everything is fine, the PR is merged, the website is updated and users can se
 In addition to the checks specified above, if the pull request comes from somebody other than the author, it will be held until the author reviews it or gives a thumbs-up, with the following exceptions:
 
 - If it is a bug fix, the PR may be merged, though if the bug is minor, or the fix could potentially impact the way the desklet works, we may wait for author approval before merging.
-- If the pull request adds translations it will likewise be merged. These are not going to effect the functionality of the code, and will make the desklet available to many users who couldn't use it before due to a language barrier. We view this a essentially a bugfix, but it is included here for clarification.
-- If the author fails to respond in a reasonable time, we will assume the desklet is abandoned (as mentioned above) and the pull request will be merged assuming it meets all other requirements.
+- If the pull request adds translations it will likewise be merged. These are not going to affect the functionality of the code, and will make the desklet available to many users who couldn't use it before due to a language barrier. We view this as essentially a bugfix, but it is included here for clarification.
+- If the author fails to respond in a reasonable time, we will assume the desklet is abandoned (as mentioned above) and the pull request will be merged, assuming it meets all other requirements.
 
 If the changes represent a change in functionality, or in look and feel, or if their implementation could be questioned and/or discussed, the reviewer should leave the PR open and ask the author to review it.
 
@@ -132,3 +132,12 @@ More info:
 ```
 ./cinnamon-spices-makepot --help
 ```
+
+# Auto-reloading desklets
+
+A utility script using Gulp is provided that can automatically reload desklets on code change. To use, install the [latest NodeJS LTS release](https://github.com/nodesource/distributions).
+- Run `npm install -g gulp@^4.0.0`
+- In the root of this repo's directory run `npm install`.
+- To use the script, run ```gulp watch --uuid="<desklet uuid>"```
+
+For more info run ```gulp help```.

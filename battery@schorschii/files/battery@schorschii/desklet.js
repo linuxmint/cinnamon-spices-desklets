@@ -10,6 +10,7 @@ const Main = imports.ui.main;
 const Clutter = imports.gi.Clutter;
 const GdkPixbuf = imports.gi.GdkPixbuf;
 const Cogl = imports.gi.Cogl;
+const Gio = imports.gi.Gio;
 
 const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta["battery@schorschii"].path;
 
@@ -75,199 +76,227 @@ MyDesklet.prototype = {
 		this.default_segment_offset = 14;
 		this.segment_size_factor = 0.875;
 		this.currentCapacity = 0;
-		this.currentCapacity_text = "";
-		this.symbol = "";
-		this.show_text = true;
-		this.lastCapacity = this.currentCapacity;
-		this.lastSymbol = this.symbol;
+		this.currentState = "";
+		this.currentError = -1;
+		this.lastCapacity = -1;
+		this.lastState = "";
+		this.lastError = -1;
 
 		// load images and set initial sizes
-		this.refreshSize(true);
+		this.refreshDesklet(true);
 
-		// set root eleent
+		// set root element
 		this.setContent(this.battery);
 
 		// set decoration settings
 		this.refreshDecoration();
 
-		// set initial values
-		this.refresh();
+		// start update cycle
+		this.update();
 	},
 
-	refresh: function() {
+	update: function() {
 		// default device files
 		let default_devfiles_capacity = ['/sys/class/power_supply/CMB0/capacity',
-		                                 '/sys/class/power_supply/CMB1/capacity',
-		                                 '/sys/class/power_supply/BAT0/capacity',
-		                                 '/sys/class/power_supply/BAT1/capacity',
-		                                 '/sys/class/power_supply/BAT2/capacity'];
+										 '/sys/class/power_supply/CMB1/capacity',
+										 '/sys/class/power_supply/BAT0/capacity',
+										 '/sys/class/power_supply/BAT1/capacity',
+										 '/sys/class/power_supply/BAT2/capacity'];
 		let default_devfiles_status = ['/sys/class/power_supply/CMB0/status',
-		                               '/sys/class/power_supply/CMB1/status',
-		                               '/sys/class/power_supply/BAT0/status',
-		                               '/sys/class/power_supply/BAT1/status',
-		                               '/sys/class/power_supply/BAT2/status'];
+									   '/sys/class/power_supply/CMB1/status',
+									   '/sys/class/power_supply/BAT0/status',
+									   '/sys/class/power_supply/BAT1/status',
+									   '/sys/class/power_supply/BAT2/status'];
 
 		// get device files from settings
-		// remove "file://" because it's not supported by Cinnamon.get_file_contents_utf8_sync()
-		let result_devfile_capacity = this.devfile_capacity.replace("file://", "");
-		let result_devfile_status = this.devfile_status.replace("file://", "");
+		// remove "file://" from path
+		let result_devfile_capacity = decodeURIComponent(this.devfile_capacity.replace("file://", ""));
+		let result_devfile_status = decodeURIComponent(this.devfile_status.replace("file://", ""));
 
 		// auto detect device files if settings were not set
-		if (result_devfile_capacity == "") {
+		if(result_devfile_capacity == "") {
 			// iterate trough default devfiles ...
-			for (let i in default_devfiles_capacity) {
+			for(let i in default_devfiles_capacity) {
 				// ... and check if it exists
-				if (GLib.file_test(default_devfiles_capacity[i], GLib.FileTest.EXISTS) &&
-				   (!GLib.file_test(default_devfiles_capacity[i], GLib.FileTest.IS_DIR))) {
+				if(GLib.file_test(default_devfiles_capacity[i], GLib.FileTest.EXISTS)
+				&&(!GLib.file_test(default_devfiles_capacity[i], GLib.FileTest.IS_DIR))) {
 					result_devfile_capacity = default_devfiles_capacity[i];
 					break;
 				}
 			}
 		}
-		if (result_devfile_status == "") {
+		if(result_devfile_status == "") {
 			// iterate trough default devfiles ...
-			for (let i in default_devfiles_status) {
+			for(let i in default_devfiles_status) {
 				// ... and check if it exists
-				if (GLib.file_test(default_devfiles_status[i], GLib.FileTest.EXISTS) &&
-				   (!GLib.file_test(default_devfiles_status[i], GLib.FileTest.IS_DIR))) {
+				if(GLib.file_test(default_devfiles_status[i], GLib.FileTest.EXISTS)
+				&&(!GLib.file_test(default_devfiles_status[i], GLib.FileTest.IS_DIR))) {
 					result_devfile_status = default_devfiles_status[i];
 					break;
 				}
 			}
 		}
 
-		// debug
-		//Main.notifyError(result_devfile_capacity, result_devfile_status);
+		//Main.notifyError(result_devfile_capacity, result_devfile_status); // debug
 
 		// get current battery/power supply values
-		this.currentCapacity = 0;
-		let currentState = "";
-		let currentError = 0;
+		this.currentError = 0;
 		try {
-			// read device files
-			this.currentCapacity = parseInt(Cinnamon.get_file_contents_utf8_sync(result_devfile_capacity));
-			if (this.currentCapacity > 100) this.currentCapacity = 100; // fix for some batteries reporting values higher than 100
-			currentState = Cinnamon.get_file_contents_utf8_sync(result_devfile_status).trim();
+			// read capacity file async
+			let file_capacity = Gio.file_new_for_path(result_devfile_capacity);
+			file_capacity.load_contents_async(null, (file, response) => {
+				try {
+					let [success, contents, tag] = file.load_contents_finish(response);
+					if(success) {
+						this.currentCapacity = parseInt(contents.toString());
+						// fix for some batteries reporting values higher than 100
+						if(this.currentCapacity > 100) this.currentCapacity = 100;
+					}
+					GLib.free(contents);
+				} catch(err) {
+					this.currentError = 1;
+				}
+				this.refreshDesklet();
+			});
+			// read status file async
+			let file_status = Gio.file_new_for_path(result_devfile_status);
+			file_status.load_contents_async(null, (file, response) => {
+				try {
+					let [success, contents, tag] = file.load_contents_finish(response);
+					if(success) {
+						this.currentState = contents.toString().trim();
+					}
+					GLib.free(contents);
+				} catch(err) {
+					this.currentError = 1;
+				}
+				this.refreshDesklet();
+			});
 		} catch(ex) {
 			// maybe the file does not exist because the battery was removed
-			currentError = 1;
+			this.currentError = 1;
+			this.refreshDesklet();
 		}
 
-		// set label text to current capacity
-		this.currentCapacity_text = this.currentCapacity.toString() + "%";
-
-		// icon or label visibility decision
-		if (currentError == 1) {
-			// error: warning icon and no label
-			this.symbol = "warn";
-			this.show_text = false;
-		} else {
-			if (currentState == "Charging" && this.showplug == true) {
-				// power supply online, charging and icon should be shown
-				this.symbol = "flash";
-				this.show_text = false;
-			} else if ((currentState == "Not charging" || currentState == "Full" || currentState == "Unknown") && this.showplug == true) {
-				// power supply online, not charging (full) and icon should be shown
-				this.symbol = "plug";
-				this.show_text = false;
-			} else if (this.showpercent == true) {
-				// power supply offline (= discharging) and capacity should be shown
-				this.symbol = "";
-				this.show_text = true; // text visible
-			} else if (this.showpercent == false) {
-				// power supply offline (= discharging) and capacity should not be shown
-				this.symbol = "";
-				this.show_text = false;
-			} else {
-				// Unknown state
-				this.symbol = "warn";
-				this.show_text = false;
-			}
-		}
-
-		// set object sizes without recalc
-		this.refreshSize();
-
-		// refresh again in two seconds
-		this.timeout = Mainloop.timeout_add_seconds(2, Lang.bind(this, this.refresh));
+		// update again in two seconds
+		this.timeout = Mainloop.timeout_add_seconds(2, Lang.bind(this, this.update));
 	},
 
-	refreshSize: function(forceRefresh = false) {
+	refreshDesklet: function(forceRefresh = false) {
 		// only execute refresh if ...
-		if (this.lastCapacity != this.currentCapacity // ... capacity has changed
-			|| this.lastSymbol != this.symbol // ... symbol has changed
-			|| forceRefresh == true // ... it is a forced refresh
+		if(this.lastCapacity != this.currentCapacity // ... capacity has changed
+			|| this.lastState != this.currentState // ... state has changed
+			|| this.lastError != this.currentError // ... error has changed
+			|| forceRefresh // ... it is a forced refresh
 		) {
 
+			// set label text to current capacity
+			let currentCapacityText = this.currentCapacity.toString() + "%";
+
+			// icon or label visibility decision
+			let symbol = "warn";
+			let showText = false;
+			if(this.currentError == 1) {
+				// error: warning icon and no label
+				symbol = "warn";
+				showText = false;
+				this.currentCapacity = 0;
+				this.currentState = "";
+			} else {
+				if(this.currentState == "Charging" && this.showplug) {
+					// power supply online, charging and icon should be shown
+					symbol = "flash";
+					showText = false;
+				} else if((this.currentState == "Not charging" || this.currentState == "Full" || this.currentState == "Unknown") && this.showplug) {
+					// power supply online, not charging (full) and icon should be shown
+					symbol = "plug";
+					showText = false;
+				} else if(this.showpercent) {
+					// power supply offline (= discharging) and capacity should be shown
+					symbol = "";
+					showText = true; // text visible
+				} else if(!this.showpercent) {
+					// power supply offline (= discharging) and capacity should not be shown
+					symbol = "";
+					showText = false;
+				} else {
+					// Unknown state
+					symbol = "warn";
+					showText = false;
+				}
+			}
+
 			// calc new sizes based on scale factor
-			this.new_size_font = this.default_size_font * this.scale_size;
-			this.battery_width = this.default_size_battery_width * this.scale_size;
-			this.battery_height = this.default_size_battery_height * this.scale_size;
-			this.segment_height = this.battery_height * this.segment_size_factor;
-			this.segment_width = this.battery_width * this.segment_size_factor;
-			this.segment_top = 5 * this.scale_size;
-			this.segment_left = 10 * this.scale_size;
-			this.size_symbol = this.default_size_symbol * this.scale_size;
-			this.size_font = this.default_size_font * this.scale_size;
-			this.segment_width_max = this.segment_width * 0.95;
-			this.segment_width_calced = this.segment_width_max * (this.currentCapacity / 100);
+			let scale = this.scale_size * global.ui_scale;
+			let newFontSizeRounded = Math.round(this.default_size_font * this.scale_size);
+			let newFontSize = this.default_size_font * this.scale_size;
+			let batteryWidth = this.default_size_battery_width * scale;
+			let batteryHeight = this.default_size_battery_height * scale;
+			let segmentHeight = batteryHeight * this.segment_size_factor;
+			let segmentWidth = batteryWidth * this.segment_size_factor;
+			let segmentTop = 5 * scale;
+			let segmentLeft = 10 * scale;
+			let symbolSize = this.default_size_symbol * scale;
+			let segmentWidthMax = segmentWidth * 0.95;
+			let segmentWidthCalced = segmentWidthMax * (this.currentCapacity / 100);
 
 			// set images
 			let bar_img = "green.svg";
-			if (this.currentCapacity == 0) bar_img = "none.svg";
-			else if (this.currentCapacity <= 20) bar_img = "red.svg";
+			if(this.currentCapacity == 0) bar_img = "none.svg";
+			else if(this.currentCapacity <= 20) bar_img = "red.svg";
 
 			let symbol_img = "";
-			if (this.symbol == "warn")
-				symbol_img = "warn.svg";
-			else if (this.symbol == "plug")
-				symbol_img = "plug.svg";
-			else if (this.symbol == "flash")
-				symbol_img = "flash.svg";
+			if(symbol == "warn") symbol_img = "warn.svg";
+			else if(symbol == "plug") symbol_img = "plug.svg";
+			else if(symbol == "flash") symbol_img = "flash.svg";
 
-			if (this.bg_img == "")
+			if(this.bg_img == "")
 				this.bg_img = "bg_transparent.svg";
 
-			// create elements
-			this.battery = getImageAtScale(DESKLET_ROOT + "/img/" + this.bg_img, this.battery_width, this.battery_height); // background
+			// create battery background
+			this.battery = getImageAtScale(DESKLET_ROOT + "/img/" + this.bg_img, batteryWidth, batteryHeight);
 
-			this.segment = getImageAtScale(DESKLET_ROOT + "/img/" + bar_img, this.segment_width, this.segment_height, this.segment_width_calced, this.segment_height); // variable width bar (indicates capacity)
-			this.segment.set_position(this.segment_left, this.segment_top);
+			// create segment = variable width bar (indicates capacity)
+			this.segment = getImageAtScale(DESKLET_ROOT + "/img/" + bar_img, segmentWidth, segmentHeight, segmentWidthCalced, segmentHeight);
+			this.segment.set_position(segmentLeft, segmentTop);
 
-			this.container = new St.Group(); // container for icon and label
+			// container for subelements (icon, label)
+			this.container = new St.Group();
 
-			if (symbol_img != "") {
-				this.plug = getImageAtScale(DESKLET_ROOT + "/img/" + symbol_img, this.size_symbol, this.size_symbol); // plug/warn icon
-				this.plug.set_position((this.segment_width / 2) - (this.size_symbol / 2), (this.segment_height / 2) - (this.size_symbol / 2));
+			// plug/warn/flash icon
+			if(symbol_img != "") {
+				this.imageIcon = getImageAtScale(DESKLET_ROOT + "/img/" + symbol_img, symbolSize, symbolSize);
+				this.imageIcon.set_position((segmentWidth / 2) - (symbolSize / 2), (segmentHeight / 2) - (symbolSize / 2));
 			}
 
-			this.text = new St.Label({style_class:"text"}); // displays capacity in precent
-			this.text.set_position((this.segment_width / 2) - ((this.size_font*this.currentCapacity_text.length/1.5) / 2), (this.segment_height / 2) - ((this.size_font*1) / 2));
-			this.text.style = "font-size: " + this.new_size_font.toString() + "px;";
-			if (this.show_text == true)
-				this.text.set_text(this.currentCapacity_text);
+			// label for percent string
+			this.labelText = new St.Label({style_class:"text"});
+			this.labelText.set_position((segmentWidth / 2) - ((newFontSize * global.ui_scale * currentCapacityText.length / 1.25) / 2), (segmentHeight / 2) - (newFontSize * global.ui_scale / 1.7));
+			this.labelText.style = "font-size: " + newFontSizeRounded.toString() + "px;";
+			if(showText)
+				this.labelText.set_text(currentCapacityText);
 			else
-				this.text.set_text("");
+				this.labelText.set_text("");
 
 			// add actor
 			this.battery.remove_all_children();
 			this.battery.add_actor(this.segment);
 			this.segment.add_actor(this.container);
-			if (symbol_img != "")
-				this.container.add_actor(this.plug);
-			this.container.add_actor(this.text);
+			if(symbol_img != "")
+				this.container.add_actor(this.imageIcon);
+			this.container.add_actor(this.labelText);
 			this.setContent(this.battery);
 
 			// set last states
 			this.lastCapacity = this.currentCapacity;
-			this.lastSymbol = this.symbol;
-
+			this.lastState = this.currentState;
+			this.lastError = this.currentError;
 		}
 	},
 
 	refreshDecoration: function() {
 		// desklet label (header)
-		if (this.use_custom_label == true)
+		if(this.use_custom_label)
 			this.setHeader(this.custom_label)
 		else
 			this.setHeader(_("Battery"));
@@ -278,15 +307,9 @@ MyDesklet.prototype = {
 	},
 
 	on_setting_changed: function() {
-		// update decoration settings
+		// update decoration settings and refresh desklet content
 		this.refreshDecoration();
-
-		// settings changed; instant refresh
-		Mainloop.source_remove(this.timeout);
-		this.refresh();
-
-		// update size based on scale factor
-		this.refreshSize(true);
+		this.refreshDesklet(true);
 	},
 
 	on_desklet_removed: function() {

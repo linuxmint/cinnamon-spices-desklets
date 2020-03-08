@@ -1,0 +1,83 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-27 12:01+0200\n"
+"PO-Revision-Date: 2019-10-21 20:33+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.2.1\n"
+"Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
+"Language: it\n"
+
+#: desklet.js:265
+#, c-format
+msgid "%d point"
+msgid_plural "%d points"
+msgstr[0] "%d punto"
+msgstr[1] "%d punti"
+
+#: desklet.js:274
+msgid "by"
+msgstr "da"
+
+#: desklet.js:284
+msgid "to"
+msgstr "a"
+
+#: desklet.js:295
+#, c-format
+msgid "%d comment"
+msgid_plural "%d comments"
+msgstr[0] "%d commento"
+msgstr[1] "%d commenti"
+
+#. reddit-reader@orangeshark->metadata.json->description
+msgid "A desklet to read subreddits"
+msgstr "Un desklet per leggere subreddit"
+
+#. reddit-reader@orangeshark->metadata.json->name
+msgid "reddit reader desklet"
+msgstr "Lettore di Reddit - Desklet"
+
+#. reddit-reader@orangeshark->settings-schema.json->refreshRate->description
+msgid "Refresh rate:"
+msgstr "Frequenza di aggiornamento:"
+
+#. reddit-reader@orangeshark->settings-schema.json->refreshRate->units
+msgid "minutes"
+msgstr "minuti"
+
+#. reddit-reader@orangeshark->settings-schema.json->width->description
+msgid "Width:"
+msgstr "Larghezza:"
+
+#. reddit-reader@orangeshark->settings-schema.json->width->units
+#. reddit-reader@orangeshark->settings-schema.json->height->units
+msgid "pixels"
+msgstr "pixels"
+
+#. reddit-reader@orangeshark->settings-schema.json->height->description
+msgid "Height:"
+msgstr "Altezza:"
+
+#. reddit-reader@orangeshark->settings-schema.json->subreddit->description
+msgid "Subreddit:"
+msgstr "Subreddit:"
+
+#. reddit-reader@orangeshark->settings-schema.json->subreddit->tooltip
+msgid ""
+"supports multireddits and alterative sorting methods. eg: TheOnion"
+"+NotTheOnion, Linux/new and aww+worldnews/controversial"
+msgstr ""
+"supporta multireddit e metodi di ordinamento alterativi. Ad "
+"esempio: TheOnion+NotTheOnion, Linux/new e aww+worldnews/"
+"controversial"
