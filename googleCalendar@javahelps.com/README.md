@@ -2,6 +2,8 @@
 
 View your upcoming calendar events on your Cinnamon Desktop. This desklet uses `google-api-python-client` to pull events from Google Calendar. You can configure every aspect of the desklet using the configure dialog.
 
+Google is currently verifying the desklet for its API usage. Google prevents new users from registering until it's been verified. Users can create their own Google Developer Project to access their Calendar events. Please follow this article [How to Setup Google Calendar Desklet](https://medium.com/@lgobinath/how-to-use-google-calendar-desklet-41d8aa0dbedd) to setup Google Calendar Desklet using the personal authentication key.
+
 ## Requirements
 
 - Cinnamon 3.4, 3.6, 3.8, 4.0, or 4.2
