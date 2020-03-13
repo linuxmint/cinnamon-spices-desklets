@@ -1,0 +1,51 @@
+{
+    "delay": {
+        "default": 1,
+        "type": "spinbutton",
+        "min": 1,
+        "max": 1440,
+        "description" : "Update every:",
+        "units" : "minutes",
+        "step": 10 
+    },
+    "timeout": {
+        "default": 30,
+        "type": "spinbutton",
+        "min": 1,
+        "max": 1440,
+        "description" : "Cancel command after:",
+        "units" : "seconds",
+        "step": 5 
+    },
+    "font-size": {
+        "type": "spinbutton",
+        "default": 15,
+        "min": 8,
+        "max": 200,
+        "units": "pt",
+        "description" : "Font size:",
+        "step": 1
+    },
+    "commands" : {
+        "type" : "list",
+        "description" : "Commands",
+        "columns" : [
+            {"id": "label", "title": "Label", "type": "string"},
+            {"id": "command", "title": "Command", "type": "string"}
+        ],
+        "default" : [
+            {
+                "label": "Date: ",
+                "command": "date +\"%A %B %d, %I:%M %p\""
+            },
+            {
+                "label": "Cinnamon version: ",
+                "command": "cinnamon --version"
+            },
+            {
+                "label": "Hostname: ",
+                "command": "hostname -I"
+            }
+        ]
+    }
+}
