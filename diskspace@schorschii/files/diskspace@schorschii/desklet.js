@@ -122,7 +122,7 @@ MyDesklet.prototype = {
 
 			// get filesystem
 			var type = this.type;
-			var fs = this.filesystem.replace("file://", "").trim();
+			var fs = decodeURIComponent(this.filesystem.replace("file://", "").trim());
 			if(fs == null || fs == "") fs = "/";
 
 			let design = this.design;
@@ -284,7 +284,7 @@ MyDesklet.prototype = {
 
 	refreshDecoration: function() {
 		// desklet label (header)
-		let fs = this.filesystem.replace("file://", "").trim();
+		let fs = decodeURIComponent(this.filesystem.replace("file://", "").trim());
 		if(this.use_custom_label == true)
 			this.setHeader(this.custom_label)
 		else if(this.type == "ram")
