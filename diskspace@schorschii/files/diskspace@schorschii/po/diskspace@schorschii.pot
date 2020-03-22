@@ -107,3 +107,18 @@ msgstr ""
 
 msgid "Set your custom label here. This field is unavailable unless the checkbox above is enabled."
 msgstr ""
+
+msgid "Action on mouse click"
+msgstr ""
+
+msgid "Choose what to do when the desklet was clicked."
+msgstr ""
+
+msgid "Open File Manager"
+msgstr ""
+
+msgid "Open Partition Manager"
+msgstr ""
+
+msgid "Nothing"
+msgstr ""

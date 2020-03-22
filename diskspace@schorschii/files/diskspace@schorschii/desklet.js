@@ -49,6 +49,7 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "filesystem", "filesystem", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "type", "type", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "text-view", "text_view", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "onclick-action", "onclick_action", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "random-circle-color-generated", "random_circle_color_generated", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "random-circle-color-r", "random_circle_color_r", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "random-circle-color-g", "random_circle_color_g", this.on_setting_changed);
@@ -311,7 +312,12 @@ MyDesklet.prototype = {
 	},
 
 	on_desklet_clicked: function() {
-		Util.spawnCommandLine("gnome-disks");
+		if(this.onclick_action == "filemanager") {
+			let fs = decodeURIComponent(this.filesystem.replace("file://", "").trim());
+			Util.spawnCommandLine("xdg-open " + '"' + fs + '"');
+		} else if(this.onclick_action == "partitionmanager") {
+			Util.spawnCommandLine("gnome-disks");
+		}
 	},
 
 	on_desklet_removed: function() {
