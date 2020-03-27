@@ -40,7 +40,12 @@ MyDesklet.prototype = {
             this.settings.bind("timeout", "timeout", this.onSettingChanged);
             this.settings.bind("commands", "commands", this.onSettingChanged);
 
-            this.settings.bind("font-size", "fontSize", this.onFontSettingChanged);
+            this.settings.bind("font", "font", this.onStyleSettingChanged);
+            this.settings.bind("font-color", "fontColor", this.onStyleSettingChanged);
+            this.settings.bind("background-color", "backgroundColor", this.onStyleSettingChanged);
+            this.settings.bind("background-transparency", "backgroundTransparency", this.onStyleSettingChanged);
+            this.settings.bind("border-width", "borderWidth", this.onStyleSettingChanged);
+            this.settings.bind("border-color", "borderColor", this.onStyleSettingChanged);
         } 
         catch (e) {
             global.logError(e);
@@ -63,7 +68,7 @@ MyDesklet.prototype = {
         this._content = new St.BoxLayout({
             vertical: true
         });
-        this.onFontSettingChanged();
+        this.onStyleSettingChanged();
         this.setContent(this._content);
         for(let command of this.commands){
             command.loading = false;
@@ -74,8 +79,51 @@ MyDesklet.prototype = {
         this.updateInProgress = false;
     },
 
-    onFontSettingChanged() {
-        this._content.style = "font-size: " + this.fontSize + "pt;";
+    onStyleSettingChanged() {
+        let font = this.getCssFont(this.font);
+        this._content.style = "font-family: \"" + font.name + "\", \"Noto Sans Regular\";\n" +
+                                "font-size: " + font.size + "pt;\n" + 
+                                (font.style ? "font-style: " + font.style + ";\n" : "") +
+                                (font.weight ? "font-weight: " + font.weight + ";\n" : "") +
+                                "color: " + this.fontColor + ";\n" +
+                                "background-color: " + this.getCssColor(this.backgroundColor, this.backgroundTransparency) + ";\n" +
+                                "border-width: " + this.borderWidth + "px;\n" +
+                                "border-color: " + this.getCssColor(this.borderColor, this.backgroundTransparency) + ";\n" +
+                                "border-radius: 10pt;\n" +
+                                "padding: 5px 10px;";
+    },
+
+    getCssFont(font){
+        let fontSplitted = font.split(' ');
+        let size = fontSplitted.pop();
+        let weight = '';
+        let style = '';
+        let name = fontSplitted.join(' ').replace(/,/g, ' ');
+
+        ['Italic', 'Oblique'].forEach(function(item, i) {
+            if (name.includes(item)) {
+                style = item;
+                name = name.replace(item, '');
+            }
+        });
+
+        ['Bold', 'Light', 'Medium', 'Heavy'].forEach(function(item, i) {
+            if (name.includes(item)) {
+                weight = item;
+                name = name.replace(item, '');
+            }
+        });
+
+        return {
+            name: name.trim(),
+            size: size,
+            weight: weight.toLowerCase(),
+            style: style.toLowerCase()
+        };
+    },
+
+    getCssColor(color, transparency){
+        return color.replace(")", "," + (1.0 - transparency) + ")").replace("rgb", "rgba");
     },
 
     onDeskletClicked(event) {  
