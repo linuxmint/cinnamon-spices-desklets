@@ -56,25 +56,37 @@ Covid19IndiaDesklet.prototype = {
 
     getJSON: function(url) {
 
+        var jsonData = "EMPTY";
         let message = Soup.Message.new('GET', url);
         _httpSession.send_message (message);
-        var jsonData = "EMPTY";
         if (message.status_code!== Soup.KnownStatusCode.OK) {
-            this._date.set_text("Server Unreachable.");
-            var sleep = 30
+            jsonData = "Unreachable";
         } else {
             jsonData = JSON.parse(message.response_body.data.toString());
         }
+        if (typeof jsonData == "string")
+            return jsonData;
         return jsonData.statewise[0];
     },
 
     refreshStats: function() {
         var jsonData = this.getJSON("https://api.covid19india.org/data.json");
-        this.titleUpdatedValue.set_text(jsonData.lastupdatedtime);
-        this.titleConfirmedValue.set_text(jsonData.confirmed);
-        this.titleActiveValue.set_text(jsonData.active);
-        this.titleRecoveredValue.set_text(jsonData.recovered);
-        this.titleDeceasedValue.set_text(jsonData.deaths);
+        if (typeof jsonData == "string") 
+        {
+            this.titleUpdatedValue.set_text(jsonData);
+            this.titleConfirmedValue.set_text(jsonData);
+            this.titleActiveValue.set_text(jsonData);
+            this.titleRecoveredValue.set_text(jsonData);
+            this.titleDeceasedValue.set_text(jsonData);
+        }
+        else
+        {
+            this.titleUpdatedValue.set_text(jsonData.lastupdatedtime);
+            this.titleConfirmedValue.set_text(jsonData.confirmed);
+            this.titleActiveValue.set_text(jsonData.active);
+            this.titleRecoveredValue.set_text(jsonData.recovered);
+            this.titleDeceasedValue.set_text(jsonData.deaths);
+        }
     },
 
     _updateWidget: function(){
