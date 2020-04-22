@@ -1,3 +1,7 @@
-.command-result-result-label-container {
+.command-result-label-align-left {
+    text-align: left;
+}
+
+.command-result-label-align-right {
     text-align: right;
 }
