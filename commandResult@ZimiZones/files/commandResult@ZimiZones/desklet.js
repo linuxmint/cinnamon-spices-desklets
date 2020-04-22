@@ -70,9 +70,10 @@ MyDesklet.prototype = {
         });
         this.onStyleSettingChanged();
         this.setContent(this._content);
-        for(let command of this.commands){
+
+        for(let command of this.commands) {
             command.loading = false;
-            this._addLabel(command, command.label, "Loading...");
+            this._addLabel(command, command.label, command["label-align-right"], "Loading...", command["command-align-right"]);
         }
 
         this._update();
@@ -80,11 +81,8 @@ MyDesklet.prototype = {
     },
 
     onStyleSettingChanged() {
-        let font = this.getCssFont(this.font);
-        this._content.style = "font-family: \"" + font.name + "\", \"Noto Sans Regular\";\n" +
-                                "font-size: " + font.size + "pt;\n" + 
-                                (font.style ? "font-style: " + font.style + ";\n" : "") +
-                                (font.weight ? "font-weight: " + font.weight + ";\n" : "") +
+        let fontFamilies = this.getCssFont(this.font);
+        this._content.style = "font: " + fontFamilies.join(", ") + ";\n" +
                                 "color: " + this.fontColor + ";\n" +
                                 "background-color: " + this.getCssColor(this.backgroundColor, this.backgroundTransparency) + ";\n" +
                                 "border-width: " + this.borderWidth + "px;\n" +
@@ -94,32 +92,66 @@ MyDesklet.prototype = {
     },
 
     getCssFont(font){
+        let names = [];
         let fontSplitted = font.split(" ");
         let size = fontSplitted.pop();
-        let weight = "";
-        let style = "";
         let name = fontSplitted.join(" ").replace(/,/g, " ");
 
-        ["Italic", "Oblique"].forEach(function(item, i) {
-            if (name.includes(item)) {
+        names.push(size + "pt \"" + name + "\"");
+
+        let style = "";
+        ["italic", "oblique"].forEach(function(item, i) {
+            if (name.toLowerCase().includes(item)) {
                 style = item;
-                name = name.replace(item, "");
+                name = name.replace(new RegExp(item, "ig"), "").trim();
             }
         });
+        if (style !== "") {
+            names.push(style + " " + size + "pt \"" + name + "\"");
+        }
 
-        ["Bold", "Light", "Medium", "Heavy"].forEach(function(item, i) {
-            if (name.includes(item)) {
-                weight = item;
-                name = name.replace(item, "");
+        let weight = "";
+        [            
+            { weight: "100", names: ["ultra-light", "extra-light"] }, 
+            { weight: "200", names: ["light", "thin"] }, 
+            { weight: "300", names: ["book", "demi"] },
+            { weight: "400", names: ["normal", "regular"] },
+            { weight: "500", names: ["medium"] },
+            { weight: "600", names: ["semibold", "demibold"] },
+            { weight: "900", names: ["extra-black", "fat", "poster", "ultra-black"] },
+            { weight: "800", names: ["black", "extra-bold", "heavy"] },
+            { weight: "700", names: ["bold"] }
+        ].forEach(function(item, i) {
+            if (weight === "") { 
+                item.names.forEach(function(item2, i2) {
+                    if (name.toLowerCase().includes(item2)) {
+                        weight = item.weight;
+                        name = name.replace(new RegExp(item2, "ig"), "").trim();
+                    }
+                });
             }
         });
+        if (weight !== "") {
+            if (style !== "") {
+                names.push(style + " " + weight + " " + size + "pt \"" + name + "\"");
+            }
+            names.push(weight + " " + size + "pt \"" + name + "\"");
+        }
 
-        return {
-            name: name.trim(),
-            size,
-            weight: weight.toLowerCase(),
-            style: style.toLowerCase()
-        };
+        if (weight !== "") {
+            if (style !== "") {
+                names.push(style + " " + weight + " " + size + "pt \"Noto Sans Regular\"");
+                names.push(style + " " + weight + " " + size + "pt \"Noto Sans\"");
+            }
+            names.push(weight + " " + size + "pt \"Noto Sans Regular\"");
+            names.push(weight + " " + size + "pt \"Noto Sans\"");
+        }
+        names.push(size + "pt \"Noto Sans Regular\"");
+        names.push("400 " + size + "pt \"Noto Sans\"");
+        names.push("15pt \"Noto Sans Regular\"");
+        names.push("400 15pt \"Noto Sans\"");
+
+        return names;
     },
 
     getCssColor(color, transparency){
@@ -172,23 +204,25 @@ MyDesklet.prototype = {
         command.labels.result.set_text(result);
     },
 
-    _addLabel(command, left, right) {
+    _addLabel(command, left, labelAlignRight, right, commandAlignRight) {          
         command.labels = {
             label: new St.Label({
-                text: left
+                text: left,
+                style_class: labelAlignRight ? "command-result-label-align-right" : "command-result-label-align-left"
             }),
             result: new St.Label({
-                style_class: "command-result-result-label-container",
-                text: right
+                text: right,
+                style_class: commandAlignRight ? "command-result-label-align-right" : "command-result-label-align-left"
             })
         };
 
         let box = new St.BoxLayout({
         });
         box.add(command.labels.label, {
+            expand: labelAlignRight
         });
         box.add(command.labels.result, {
-            expand: true
+            expand: !labelAlignRight
         });
 
         this._content.add(box, { 

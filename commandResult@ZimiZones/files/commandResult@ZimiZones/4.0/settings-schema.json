@@ -27,20 +27,28 @@
         "description" : "Commands",
         "columns" : [
             {"id": "label", "title": "Label", "type": "string"},
-            {"id": "command", "title": "Command", "type": "string"}
+            {"id": "label-align-right", "title": "Align label right", "type": "boolean"},
+            {"id": "command", "title": "Command", "type": "string"},
+            {"id": "command-align-right", "title": "Align command result right", "type": "boolean"}
         ],
         "default" : [
             {
                 "label": "Date: ",
-                "command": "date +\"%A %B %d, %I:%M %p\""
+                "label-align-right": false,
+                "command": "date +\"%A %B %d, %I:%M %p\"",
+                "command-align-right": true
             },
             {
                 "label": "Cinnamon version: ",
-                "command": "cinnamon --version"
+                "label-align-right": false,
+                "command": "cinnamon --version",
+                "command-align-right": true
             },
             {
                 "label": "Hostname: ",
-                "command": "hostname -I"
+                "label-align-right": false,
+                "command": "hostname -I",
+                "command-align-right": true
             }
         ]
     },
