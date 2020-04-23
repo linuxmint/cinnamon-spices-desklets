@@ -1,0 +1,8 @@
+{
+    "uuid": "mintoo@sujitagarwal",
+    "name": "Mintoo - The Mint Assistant",
+    "description": "A friendly assistant for your Linux Mint.",
+    "version": "1.0",
+    "max-instances": "1",
+    "prevent-decorations": true
+}
