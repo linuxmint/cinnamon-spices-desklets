@@ -1,0 +1,166 @@
+.MintooMainContainer {
+	width: auto;
+}
+
+.MintooRowContainer {
+	width: 100%;
+}
+
+.MintooButtonMove {
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size: 8px;
+	padding: 0px 16px;
+	min-height:14px;
+	min-width:92px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+	background-position: center center; 
+	background-size: 32px 32px; 
+	background-image: url('image/move.png'); 
+	margin-bottom: 5px;
+	margin-right: 5px;
+	cursor:move;
+}
+.MintooButtonMove:hover {
+	background-color:#5cbf2a;
+}
+.MintooButtonMove:active {
+	position:relative;
+	top:1px;
+}
+
+.MintooButtonOne {
+	background-color:#333333;
+	text-decoration:none;
+	text-indent:0px;
+	line-height:30px;
+	-moz-border-radius:30px 30px 0 30px;
+	-webkit-border-radius:30px 30px 0 30px;
+	border-radius:30px 30px 0 30px;
+	text-align:center;
+	vertical-align:middle;
+	display:inline-block;
+	font-size:20px;
+	color:#ffffff;
+	width:30px;
+	height:30px;
+	padding:15px;
+	border-color:#aba367;
+	border-width:0px;
+	border-style:solid;
+	background-position: center center; 
+	background-size: 32px 32px; 
+	background-image: url('image/lock.png'); 
+	margin-bottom: 5px;
+	margin-right: 5px;
+	cursor:pointer;
+}
+.MintooButtonOne:hover {
+	background-color:#5cbf2a;
+}
+.MintooButtonOne:active {
+	position:relative;
+	top:1px;
+}
+
+.MintooButtonTwo {
+	background-color:#333333;
+	text-decoration:none;
+	text-indent:0px;
+	line-height:30px;
+	-moz-border-radius:30px 30px 30px 0;
+	-webkit-border-radius:30px 30px 30px 0;
+	border-radius:30px 30px 30px 0;
+	text-align:center;
+	vertical-align:middle;
+	display:inline-block;
+	font-size:20px;
+	color:#ffffff;
+	width:30px;
+	height:30px;
+	padding:15px;
+	border-color:#aba367;
+	border-width:0px;
+	border-style:solid;
+	background-position: center center; 
+	background-size: 32px 32px; 
+	background-image: url('image/logout.png'); 
+	margin-bottom: 5px;
+	cursor:pointer;
+}
+.MintooButtonTwo:hover {
+	background-color:#5cbf2a;
+}
+.MintooButtonTwo:active {
+	position:relative;
+	top:1px;
+}
+
+.MintooButtonThree {
+	background-color:#333333;
+	text-decoration:none;
+	text-indent:0px;
+	line-height:30px;
+	-moz-border-radius:30px 0px 30px 30px;
+	-webkit-border-radius:30px 0px 30px 30px;
+	border-radius:30px 0px 30px 30px;
+	text-align:center;
+	vertical-align:middle;
+	display:inline-block;
+	font-size:20px;
+	color:#ffffff;
+	width:30px;
+	height:30px;
+	padding:15px;
+	border-color:#aba367;
+	border-width:0px;
+	border-style:solid;
+	background-position: center center; 
+	background-size: 32px 32px; 
+	background-image: url('image/shutdown.png'); 
+	margin-bottom: 5px;
+	margin-right: 5px;
+	cursor:pointer;
+}
+.MintooButtonThree:hover {
+	background-color:#5cbf2a;
+}
+.MintooButtonThree:active {
+	position:relative;
+	top:1px;
+}
+
+.MintooButtonFour {
+	background-color:#333333;
+	text-decoration:none;
+	text-indent:0px;
+	line-height:30px;
+	-moz-border-radius:0 30px 30px 30px;
+	-webkit-border-radius:0 30px 30px 30px;
+	border-radius:0 30px 30px 30px;
+	text-align:center;
+	vertical-align:middle;
+	display:inline-block;
+	font-size:20px;
+	color:#ffffff;
+	width:30px;
+	height:30px;
+	padding:15px;
+	border-color:#aba367;
+	border-width:0px;
+	border-style:solid;
+	background-position: center center; 
+	background-size: 32px 32px; 
+	background-image: url('image/reboot.png'); 
+	margin-bottom: 5px;
+	cursor:pointer;
+}
+.MintooButtonFour:hover {
+	background-color:#5cbf2a;
+}
+.MintooButtonFour:active {
+	position:relative;
+	top:1px;
+}
