@@ -49,44 +49,22 @@ MintooDesklet.prototype = {
         this._row2.add(this._btnReboot);
         this._container.add(this._row2);
 
-        this._lastClickedTimestamp = new Date() - 10000;
-
         this.setContent(this._container);
     },
 
     _lockClickAction: function () {
-        let clickedTimestamp = new Date();
-        if (clickedTimestamp - this._lastClickedTimestamp > 250) {
-            this._lastClickedTimestamp = clickedTimestamp;
-            return;
-        }
         Util.spawnCommandLine("cinnamon-screensaver-command -l");
     },
 
     _logoutClickAction: function () {
-        let clickedTimestamp = new Date();
-        if (clickedTimestamp - this._lastClickedTimestamp > 250) {
-            this._lastClickedTimestamp = clickedTimestamp;
-            return;
-        }
         Util.spawnCommandLine("cinnamon-session-quit --logout");
     },
 
     _shutdownClickAction: function () {
-        let clickedTimestamp = new Date();
-        if (clickedTimestamp - this._lastClickedTimestamp > 250) {
-            this._lastClickedTimestamp = clickedTimestamp;
-            return;
-        }
         Util.spawnCommandLine("cinnamon-session-quit --power-off");
     },
 
     _rebootClickAction: function () {
-        let clickedTimestamp = new Date();
-        if (clickedTimestamp - this._lastClickedTimestamp > 250) {
-            this._lastClickedTimestamp = clickedTimestamp;
-            return;
-        }
         Util.spawnCommandLine("cinnamon-session-quit --reboot");
     }
 }
