@@ -63,7 +63,7 @@
 
     "font": {
         "type": "fontchooser",
-        "default": "Noto Sans Regular 15",
+        "default": "Monospace 15",
         "description": "Font"
     },
     "font-color" : {
