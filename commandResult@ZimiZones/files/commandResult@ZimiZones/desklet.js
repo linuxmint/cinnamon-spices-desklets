@@ -81,8 +81,11 @@ MyDesklet.prototype = {
     },
 
     onStyleSettingChanged() {
-        let fontFamilies = this.getCssFont(this.font);
-        this._content.style = "font: " + fontFamilies.join(", ") + ";\n" +
+        let fontProperties = this.getCssFont(this.font);
+        this._content.style = (fontProperties.names.length === 0 ? "" : ("font-family: " + fontProperties.names.join(", ") + ";\n")) + 
+                                (fontProperties.size === "" ? "" : ("font-size: " + fontProperties.size + "px;\n")) +
+                                (fontProperties.style === "" ? "" : ("font-style: " + fontProperties.style + ";\n")) +
+                                (fontProperties.weight === "" ? "" : ("font-weight: " + fontProperties.weight + ";\n")) +
                                 "color: " + this.fontColor + ";\n" +
                                 "background-color: " + this.getCssColor(this.backgroundColor, this.backgroundTransparency) + ";\n" +
                                 "border-width: " + this.borderWidth + "px;\n" +
@@ -93,24 +96,32 @@ MyDesklet.prototype = {
 
     getCssFont(font){
         let names = [];
+        let namesTmp;
         let fontSplitted = font.split(" ");
         let size = fontSplitted.pop();
-        let name = fontSplitted.join(" ").replace(/,/g, " ");
-
-        names.push(size + "pt \"" + name + "\"");
-
         let style = "";
-        ["italic", "oblique"].forEach(function(item, i) {
-            if (name.toLowerCase().includes(item)) {
-                style = item;
-                name = name.replace(new RegExp(item, "ig"), "").trim();
-            }
-        });
-        if (style !== "") {
-            names.push(style + " " + size + "pt \"" + name + "\"");
-        }
-
         let weight = "";
+        let defaultFont = "";
+
+        names.push(fontSplitted.join(" ").replace(/,/g, " "));
+
+        namesTmp = [];
+        ["italic", "oblique"].forEach(function(item, i) {
+            names.forEach(function(item2, i2) {
+                if (item2.toLowerCase().includes(item)) {
+                    if (style === "") {
+                        style = item;
+                    }
+                    namesTmp.push(item2.replace(new RegExp(item, "ig"), "").trim());
+                }
+            });
+        });
+
+        namesTmp.forEach(function(item, i) {
+            names.push(item);
+        });
+
+        namesTmp = [];
         [            
             { weight: "100", names: ["ultra-light", "extra-light"] }, 
             { weight: "200", names: ["light", "thin"] }, 
@@ -122,36 +133,57 @@ MyDesklet.prototype = {
             { weight: "800", names: ["black", "extra-bold", "heavy"] },
             { weight: "700", names: ["bold"] }
         ].forEach(function(item, i) {
-            if (weight === "") { 
-                item.names.forEach(function(item2, i2) {
-                    if (name.toLowerCase().includes(item2)) {
-                        weight = item.weight;
-                        name = name.replace(new RegExp(item2, "ig"), "").trim();
+            item.names.forEach(function(item2, i2) {
+                names.forEach(function(item3, i3) {        
+                    if (item3.toLowerCase().includes(item2)) {
+                        if (weight === "") {
+                            weight = item.weight;
+                        }
+                        namesTmp.push(item3.replace(new RegExp(item2, "ig"), "").trim());
                     }
                 });
-            }
+            });
         });
-        if (weight !== "") {
-            if (style !== "") {
-                names.push(style + " " + weight + " " + size + "pt \"" + name + "\"");
-            }
-            names.push(weight + " " + size + "pt \"" + name + "\"");
+
+        namesTmp.forEach(function(item, i) {
+            names.push(item);
+        });
+
+        [            
+            { generic: "monospace", names: ["mono", "console"] }, 
+            { generic: "cursive", names: ["brush", "script", "calligraphy", "handwriting"] }, 
+            { generic: "sans-serif", names: ["sans"] },
+            { generic: "serif", names: ["lucida"] }
+        ].forEach(function(item, i) {
+            item.names.forEach(function(item2, i2) {
+                names.forEach(function(item3, i3) {        
+                    if (item3.toLowerCase().includes(item2)) {
+                        if (defaultFont === "") {
+                            defaultFont = item.generic;
+                        }
+                    }
+                });
+            });
+        });
+
+        if (defaultFont === "") {
+            defaultFont = "monospace";
         }
 
-        if (weight !== "") {
-            if (style !== "") {
-                names.push(style + " " + weight + " " + size + "pt \"Noto Sans Regular\"");
-                names.push(style + " " + weight + " " + size + "pt \"Noto Sans\"");
-            }
-            names.push(weight + " " + size + "pt \"Noto Sans Regular\"");
-            names.push(weight + " " + size + "pt \"Noto Sans\"");
-        }
-        names.push(size + "pt \"Noto Sans Regular\"");
-        names.push("400 " + size + "pt \"Noto Sans\"");
-        names.push("15pt \"Noto Sans Regular\"");
-        names.push("400 15pt \"Noto Sans\"");
+        namesTmp = [];
+        names.forEach(function(item, i) {        
+            namesTmp.push("\"" + item + "\"");
+        });
+        names = namesTmp;
 
-        return names;
+        names.push(defaultFont);
+        
+        return {
+            names,
+            size,
+            style,
+            weight
+        };
     },
 
     getCssColor(color, transparency){
