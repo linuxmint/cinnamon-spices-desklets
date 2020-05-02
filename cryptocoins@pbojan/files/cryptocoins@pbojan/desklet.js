@@ -24,11 +24,11 @@ const FONT_SIZE_LAST_UPDATED = parseInt(10 / global.ui_scale);
 const httpSession = new Soup.SessionAsync();
 Soup.Session.prototype.add_feature.call(httpSession, new Soup.ProxyResolverDefault());
 
-function HelloDesklet(metadata, desklet_id) {
+function CryptocurrencyTicker(metadata, desklet_id) {
   this._init(metadata, desklet_id);
 }
 
-HelloDesklet.prototype = {
+CryptocurrencyTicker.prototype = {
   __proto__: Desklet.Desklet.prototype,
 
   container: null,
@@ -49,6 +49,8 @@ HelloDesklet.prototype = {
       this.settings.bind('coin', 'cfgCoin', this.onSettingsChanged);
       this.settings.bind('currency', 'cfgCurrency', this.onSettingsChanged);
       this.settings.bind('refreshInterval', 'cfgRefreshInterval', this.onRefreshIntervalChanged);
+      this.settings.bind('bgColor', 'cfgBgColor', this.onUISettingsChanged);
+      this.settings.bind('bgBorderRadius', 'cfgBgBorderRadius', this.onUISettingsChanged);
 
       this.setHeader('Crypto Coins Ticker');
 
@@ -56,6 +58,8 @@ HelloDesklet.prototype = {
       this.cfgCoin = this.cfgCoin || '1';
       this.cfgCurrency = this.cfgCurrency.toUpperCase() || 'USD';
       this.cfgRefreshInterval = this.cfgRefreshInterval || 30;
+      this.cfgBgColor = this.cfgBgColor || '#303030';
+      this.cfgBgBorderRadius = this.cfgBgBorderRadius || 10;
 
       this._menu.addAction('Refresh', Lang.bind(this, function () {
         this.fetchData();
@@ -96,17 +100,21 @@ HelloDesklet.prototype = {
     this.fetchData(true);
   },
 
+  onUISettingsChanged: function () {
+    this.setContainerStyle(this.container)
+  },
+
   showNoApiKey: function() {
     var container = new St.BoxLayout({
       vertical: true,
       style_class: 'container'
     });
-    container.set_style('font-size: ' + FONT_SIZE_CONTAINER + 'px;');
+    this.setContainerStyle(container)
 
     var label = new St.Label({
       style_class: 'apikey'
     });
-    label.set_text('Please set your api key in configuration...');
+    label.set_text('API KEY missing...');
     container.add(label);
 
     this.setContent(container);
@@ -117,7 +125,7 @@ HelloDesklet.prototype = {
       vertical: true,
       style_class: 'container'
     });
-    container.set_style('font-size: ' + FONT_SIZE_CONTAINER + 'px;');
+    this.setContainerStyle(container)
 
     var label = new St.Label({
       style_class: 'loading'
@@ -149,7 +157,7 @@ HelloDesklet.prototype = {
     httpSession.queue_message(message,
       Lang.bind(this, function(session, response) {
         if (response.status_code !== Soup.KnownStatusCode.OK) {
-          global.log('Error during download: response code ' +
+          global.log(UUID + ': Error during download: response code ' +
               response.status_code + ': ' + response.reason_phrase + ' - ' +
               response.response_body.data);
           return;
@@ -193,7 +201,7 @@ HelloDesklet.prototype = {
       width: WIDTH,
       style_class: 'container'
     });
-    this.container.set_style('font-size: ' + FONT_SIZE_CONTAINER + 'px;');
+    this.setContainerStyle(this.container)
 
     var quote = data['quote'][this.cfgCurrency];
 
@@ -360,9 +368,17 @@ HelloDesklet.prototype = {
     }
 
     return price.toLocaleString(undefined, options);
+  },
+
+  setContainerStyle: function (container) {
+    container.set_style(
+      'font-size: ' + FONT_SIZE_CONTAINER + 'px; ' +
+      'background-color: ' +  this.cfgBgColor + '; ' +
+      'border-radius: ' + this.cfgBgBorderRadius + 'px;'
+    );
   }
 };
 
 function main(metadata, desklet_id) {
-  return new HelloDesklet(metadata, desklet_id);
+  return new CryptocurrencyTicker(metadata, desklet_id);
 }
