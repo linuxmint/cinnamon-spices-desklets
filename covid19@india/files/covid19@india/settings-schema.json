@@ -1,0 +1,82 @@
+{
+    "head0": {
+        "type": "header",
+        "description": "Settings for covid19@india"
+    },
+
+    "langdl" : {
+        "type" : "combobox",
+        "description" : "Choose language",
+        "default" : "hi",
+        "options" : {
+            "English" : "en",
+            "Hindi" : "hi"
+        }
+    },
+
+    "head1": {
+        "type": "header",
+        "description": "Your Location"
+    },
+    "state" : {
+        "type" : "combobox",
+        "description" : "Select state to display information",
+        "default" : "7",
+        "options" : {
+            "Maharastra" : "1",
+            "Gujrat" : "2",
+            "Tamil Nadu" : "3",
+            "Delhi" : "4",
+            "Rajasthan" : "5",
+            "Madhya Pradesh" : "6",
+            "Uttar Pradesh" : "7",
+            "Andra Pradesh" : "8",
+            "Punjab" : "9",
+            "West Bengal" : "10",
+            "Telangana" : "11",
+            "Jammu and Kashmir" : "12",
+            "Karnataka" : "13",
+            "Haryana" : "14",
+            "Bihar" : "15",
+            "Kerala" : "16",
+            "Odisha" : "17",
+            "Chandigarh" : "18",
+            "Jharkhand" : "19",
+            "Tripura" : "20",
+            "Uttarakhand" : "21",
+            "Chhattisgarh" : "22",
+            "Assam" : "23",
+            "Himachal Pradesh" : "24",
+            "Ladakh" : "25",
+            "Andaman and Nicobar Isla" : "26",
+            "Meghalaya" : "27",
+            "Puducherry" : "28",
+            "Goa" : "29",
+            "Manipur" : "30",
+            "Mizoram" : "31",
+            "Arunachal Pradesh" : "32",
+            "Dadra and Nagar Have" : "33",
+            "Nagaland" : "34",
+            "Daman and Diu" : "35",
+            "Lakshadweep" : "36",
+            "Sikkim" : "37"
+
+        }
+    },
+
+    "head3": {
+        "type": "header",
+        "description": "Experimetal"
+    },
+    "district": {
+        "type": "entry",
+        "default": "",
+        "description": "Enter your district"
+    },
+    "district_enable" : {
+        "type" : "checkbox",
+        "default" : false,
+        "description" : "Enable your district status (not use in slow internet)"
+    }
+
+}
