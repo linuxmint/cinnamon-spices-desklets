@@ -64,19 +64,77 @@
         }
     },
 
-    "head3": {
+    "head2": {
         "type": "header",
         "description": "Experimetal"
     },
     "district": {
         "type": "entry",
-        "default": "",
+        "default": "Agra",
         "description": "Enter your district"
     },
     "district_enable" : {
         "type" : "checkbox",
         "default" : false,
         "description" : "Enable your district status (not use in slow internet)"
+    },
+    
+
+    "head3" : {
+        "type" : "header",
+        "description" : "Style"
+    },
+    "title_css" : {
+        "type" : "entry",
+        "default" : "color: #007bff; font-size: 18px; text-align: center; text-shadow: #000088 1px 1px 2px;",
+        "description" : "Style for your title"
+    },
+    "india_css" : {
+        "type" : "entry",
+        "default" : "color: #007bff; font-size: 24px; text-align: center; text-shadow: #000088 1px 1px 2px;",
+        "description" : "Style for India title"
+    },
+    "indiadetails_css" : {
+        "type" : "entry",
+        "default" : "color: #6c757d; font-size: 10px; text-align: center; text-shadow: #000000 1px 1px 1px;",
+        "description" : "Style for India details"
+    },
+    "state_css" : {
+        "type" : "entry",
+        "default" : "color: #007bff; font-size: 24px; text-align: center; text-shadow: #000088 1px 1px 2px;",
+        "description" : "Style for State title"
+    },
+    "statedetails_css" : {
+        "type" : "entry",
+        "default" : "color: #6c757d; font-size: 10px; text-align: center; text-shadow: #000000 1px 1px 1px;",
+        "description" : "Style for State Details"
+    },
+    "district_css" : {
+        "type" : "entry",
+        "default" : "text-align:center; font-size: 24px; text-align: center; text-shadow: #000000 1px 1px 2px;",
+        "description" : "Style for District title"
+    },
+    "districtdetails_css" : {
+        "type" : "entry",
+        "default" : "text-align:center; font-size: 14px; text-align: center; text-shadow: #000000 1px 1px 2px;",
+        "description" : "Style for District Details"
+    },
+    "districtred_css" : {
+        "type" : "colorchooser",
+        "default" : "#ff073a",
+        "description" : "Color for Red Zone District"
+    },
+    "districtorange_css" : {
+        "type" : "colorchooser",
+        "default" : "#fd7e14",
+        "description" : "Color for Orange Zone District"
+    },
+    "districtgreen_css" : {
+        "type" : "colorchooser",
+        "default" : "#28a745",
+        "description" : "Color for Green Zone District"
     }
+
+
 
 }
