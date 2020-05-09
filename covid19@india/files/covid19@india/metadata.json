@@ -1,6 +1,7 @@
 {
     "uuid": "covid19@india",
     "description": "Covid 19 status for your district",
-    "version": "1.0",
-    "name": "Covid 19 information for India"
+    "version": "1.1",
+    "name": "Covid 19 information for India",
+    "last-edited": 1588963692
 }
