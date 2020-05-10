@@ -23,43 +23,43 @@
         "description" : "Select state to display information",
         "default" : "7",
         "options" : {
-            "Maharastra" : "1",
-            "Gujrat" : "2",
-            "Tamil Nadu" : "3",
-            "Delhi" : "4",
-            "Rajasthan" : "5",
-            "Madhya Pradesh" : "6",
-            "Uttar Pradesh" : "7",
-            "Andra Pradesh" : "8",
-            "Punjab" : "9",
-            "West Bengal" : "10",
-            "Telangana" : "11",
-            "Jammu and Kashmir" : "12",
-            "Karnataka" : "13",
-            "Haryana" : "14",
-            "Bihar" : "15",
-            "Kerala" : "16",
-            "Odisha" : "17",
-            "Chandigarh" : "18",
-            "Jharkhand" : "19",
-            "Tripura" : "20",
-            "Uttarakhand" : "21",
-            "Chhattisgarh" : "22",
-            "Assam" : "23",
-            "Himachal Pradesh" : "24",
-            "Ladakh" : "25",
-            "Andaman and Nicobar Isla" : "26",
-            "Meghalaya" : "27",
-            "Puducherry" : "28",
-            "Goa" : "29",
-            "Manipur" : "30",
-            "Mizoram" : "31",
-            "Arunachal Pradesh" : "32",
-            "Dadra and Nagar Have" : "33",
-            "Nagaland" : "34",
-            "Daman and Diu" : "35",
-            "Lakshadweep" : "36",
-            "Sikkim" : "37"
+            "Maharastra" : "MH",
+            "Gujrat" : "GJ",
+            "Tamil Nadu" : "TN",
+            "Delhi" : "DL",
+            "Rajasthan" : "RJ",
+            "Madhya Pradesh" : "MP",
+            "Uttar Pradesh" : "UP",
+            "Andra Pradesh" : "AP",
+            "West Bengal" : "WB",
+            "Punjab" : "PB",
+            "Telangana" : "TG",
+            "Jammu and Kashmir" : "JK",
+            "Karnataka" : "KA",
+            "Haryana" : "HR",
+            "Bihar" : "BR",
+            "Kerala" : "KL",
+            "Odisha" : "OR",
+            "Chandigarh" : "CH",
+            "Jharkhand" : "JH",
+            "Tripura" : "TR",
+            "Uttarakhand" : "UT",
+            "Chhattisgarh" : "CT",
+            "Assam" : "AS",
+            "Himachal Pradesh" : "HP",
+            "Ladakh" : "LA",
+            "Andaman and Nicobar Isla" : "AN",
+            "Meghalaya" : "ML",
+            "Puducherry" : "PY",
+            "Goa" : "GA",
+            "Manipur" : "MN",
+            "Mizoram" : "MA",
+            "Arunachal Pradesh" : "AR",
+            "Dadra and Nagar Have" : "DN",
+            "Nagaland" : "NG",
+            "Daman and Diu" : "DD",
+            "Lakshadweep" : "LD",
+            "Sikkim" : "SK"
 
         }
     },
@@ -77,64 +77,7 @@
         "type" : "checkbox",
         "default" : false,
         "description" : "Enable your district status (not use in slow internet)"
-    },
-    
-
-    "head3" : {
-        "type" : "header",
-        "description" : "Style"
-    },
-    "title_css" : {
-        "type" : "entry",
-        "default" : "color: #007bff; font-size: 18px; text-align: center; text-shadow: #000088 1px 1px 2px;",
-        "description" : "Style for your title"
-    },
-    "india_css" : {
-        "type" : "entry",
-        "default" : "color: #007bff; font-size: 24px; text-align: center; text-shadow: #000088 1px 1px 2px;",
-        "description" : "Style for India title"
-    },
-    "indiadetails_css" : {
-        "type" : "entry",
-        "default" : "color: #6c757d; font-size: 10px; text-align: center; text-shadow: #000000 1px 1px 1px;",
-        "description" : "Style for India details"
-    },
-    "state_css" : {
-        "type" : "entry",
-        "default" : "color: #007bff; font-size: 24px; text-align: center; text-shadow: #000088 1px 1px 2px;",
-        "description" : "Style for State title"
-    },
-    "statedetails_css" : {
-        "type" : "entry",
-        "default" : "color: #6c757d; font-size: 10px; text-align: center; text-shadow: #000000 1px 1px 1px;",
-        "description" : "Style for State Details"
-    },
-    "district_css" : {
-        "type" : "entry",
-        "default" : "text-align:center; font-size: 24px; text-align: center; text-shadow: #000000 1px 1px 2px;",
-        "description" : "Style for District title"
-    },
-    "districtdetails_css" : {
-        "type" : "entry",
-        "default" : "text-align:center; font-size: 14px; text-align: center; text-shadow: #000000 1px 1px 2px;",
-        "description" : "Style for District Details"
-    },
-    "districtred_css" : {
-        "type" : "colorchooser",
-        "default" : "#ff073a",
-        "description" : "Color for Red Zone District"
-    },
-    "districtorange_css" : {
-        "type" : "colorchooser",
-        "default" : "#fd7e14",
-        "description" : "Color for Orange Zone District"
-    },
-    "districtgreen_css" : {
-        "type" : "colorchooser",
-        "default" : "#28a745",
-        "description" : "Color for Green Zone District"
     }
-
 
 
 }
