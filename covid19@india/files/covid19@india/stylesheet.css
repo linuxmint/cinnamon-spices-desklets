@@ -1,0 +1,47 @@
+.covidContainer {
+	text-align: center; 
+}
+.title_css {
+	color: #007bff; 
+	font-size: 18px; 
+	text-shadow: #000088 1px 1px 2px;
+}
+.india_css {
+	color: #007bff; 
+	font-size: 24px; 
+	text-shadow: #000088 1px 1px 2px;
+}
+.indiadetails_css {
+	color: #6c757d; 
+	font-size: 12px; 
+	text-shadow: #000000 1px 1px 1px;
+}
+.state_css {
+	color: #007bff; 
+	font-size: 24px; 
+	text-shadow: #000088 1px 1px 2px;
+}
+.statedetails_css {
+	color: #6c757d; 
+	font-size: 12px; 
+	text-shadow: #000000 1px 1px 1px;
+}
+.district_css {
+	text-align:center; 
+	font-size: 24px; 
+	text-shadow: #000000 1px 1px 2px;
+}
+.districtdetails_css {
+	text-align:center; 
+	font-size: 14px; 
+	text-shadow: #000000 1px 1px 2px;
+}
+.districtred_css {
+	color: #ff073a;
+}
+.districtorange_css {
+	color: #fd7e14;
+}
+.districtgreen_css {
+	color: #28a745;
+}
