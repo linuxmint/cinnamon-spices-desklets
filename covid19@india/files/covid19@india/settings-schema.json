@@ -71,7 +71,8 @@
     "district": {
         "type": "entry",
         "default": "Agra",
-        "description": "Enter your district"
+        "description": "Enter your district",
+        "tooltip" : "Spelling of your district can be matched with www.covid19india.org website"
     },
     "district_enable" : {
         "type" : "checkbox",
