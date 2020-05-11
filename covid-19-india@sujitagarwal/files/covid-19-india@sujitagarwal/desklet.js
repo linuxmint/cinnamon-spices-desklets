@@ -153,6 +153,18 @@ Covid19IndiaDesklet.prototype = {
             cr.stroke();
             cr.moveTo(y * xScale, area_height - deaths[y] * yScale);
         }
+
+        baseColor.red = 244;
+        baseColor.green = 188;
+        baseColor.blue = 28;
+        Clutter.cairo_set_source_color(cr, baseColor);
+
+        cr.moveTo(0, area_height - (confirmed[0] - deaths[0] - recovered[0]) * yScale);
+        for (let y=1;y<sections;y++) {
+            cr.lineTo(y * xScale, area_height - (confirmed[y] - deaths[y] - recovered[y]) * yScale);
+            cr.stroke();
+            cr.moveTo(y * xScale, area_height - (confirmed[y] - deaths[y] - recovered[y]) * yScale);
+        }
     },
 
     getJSON: function(url) {
@@ -187,7 +199,9 @@ Covid19IndiaDesklet.prototype = {
         var x = 0;
         var highest = 0;
         var lowest = 10000000;
-        for (var i = 70; i <= 100; i++) {
+        var totalData = 0;
+        for(var i in jsonData.cases_time_series) { totalData++; }
+        for (var i = parseInt(totalData) - 31; i < parseInt(totalData); i++) {
             confirmed[x] = jsonData.cases_time_series[i].dailyconfirmed; 
             if (parseInt(confirmed[x])>highest) {highest = parseInt(confirmed[x]);}
             if (parseInt(confirmed[x])<lowest) {lowest = parseInt(confirmed[x]);}
