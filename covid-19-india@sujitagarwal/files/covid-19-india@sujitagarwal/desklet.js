@@ -86,6 +86,12 @@ Covid19IndiaDesklet.prototype = {
         baseColor.green = 150;
         baseColor.alpha = 120;
         Clutter.cairo_set_source_color(cr, baseColor);
+
+        cr.setOperator(Cairo.Operator.CLEAR);
+        cr.setLineWidth(LINE_WIDTH);
+        cr.rectangle(0, 0, area_width, area_height);
+        cr.fill();
+
         cr.setOperator(Cairo.Operator.OVER);    
 
         this.getGraphData("https://api.covid19india.org/data.json");
