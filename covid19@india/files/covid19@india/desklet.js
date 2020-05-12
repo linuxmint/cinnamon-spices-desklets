@@ -254,14 +254,16 @@ MyDesklet.prototype = {
 
 
     },
-
-
-    update() {
-        if (this.langdl === "hi") {
+    refreshStats() {
+    	 if (this.langdl === "hi") {
             this.refreshStatshi();
         } else {
             this.refreshStatsen();
         }
+    },
+
+    update() {
+       this.refreshStats();
         this.timeout = Mainloop.timeout_add_seconds(3600, Lang.bind(this, this.update));
     },
 
