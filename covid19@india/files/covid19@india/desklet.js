@@ -134,12 +134,12 @@ MyDesklet.prototype = {
     },
 
     checkDistricthi() {
-        if(this.district_enable) {
+        if (this.district_enable) {
             this.refreshdistricthi();
         }
     },
     checkDistricten() {
-        if(this.district_enable) {
+        if (this.district_enable) {
             this.refreshdistricten();
         }
     },
@@ -149,48 +149,54 @@ MyDesklet.prototype = {
         if (jsonZone !== "") {
             jsonZone.zones.forEach((distzn) => {
                 if (distzn.statecode === this.mystate && distzn.district.toLowerCase() === this.mydistrict.toLowerCase()) {
-                    switch (distzn.zone) {
-                        case "Red":
-                            this._districtContainer.styleClass = "districtred_css";
-                            this._districtZone.set_text("लाल क्षेत्र " + distzn.lastupdated + " से");
-                            break;
-                        case "Green":
-                            this._districtContainer.styleClass = "districtgreen_css";
-                            this._districtZone.set_text("हरा क्षेत्र " + distzn.lastupdated + " से");
-                            break;
-                        case "Orange":
-                            this._districtContainer.styleClass = "districtorange_css";
-                            this._districtZone.set_text("नारंगी क्षेत्र " + distzn.lastupdated + " से");
-                            break;
-                    }
+                    this.refreshZoneTexthi(distzn);
                 }
             });
         } else { this._districtZone.set_text("अज्ञात"); }
 
+    },
+    refreshZoneTexthi(distzn) {
+        switch (distzn.zone) {
+            case "Red":
+                this._districtContainer.styleClass = "districtred_css";
+                this._districtZone.set_text("लाल क्षेत्र " + distzn.lastupdated + " से");
+                break;
+            case "Green":
+                this._districtContainer.styleClass = "districtgreen_css";
+                this._districtZone.set_text("हरा क्षेत्र " + distzn.lastupdated + " से");
+                break;
+            case "Orange":
+                this._districtContainer.styleClass = "districtorange_css";
+                this._districtZone.set_text("नारंगी क्षेत्र " + distzn.lastupdated + " से");
+                break;
+        }
     },
     refreshZoneen() {
         let jsonZoneen = this.getJSON("https://api.covid19india.org/zones.json");
         if (jsonZoneen !== "") {
             jsonZoneen.zones.forEach((distenzn) => {
                 if (distenzn.statecode === this.mystate && distenzn.district.toLowerCase() === this.mydistrict.toLowerCase()) {
-                    switch (distenzn.zone) {
-                        case "Red":
-                            this._districtContainer.styleClass = "districtred_css";
-                            this._districtZone.set_text("Red Zone from " + distenzn.lastupdated);
-                            break;
-                        case "Green":
-                            this._districtContainer.styleClass = "districtgreen_css";
-                            this._districtZone.set_text("Green Zone from " + distenzn.lastupdated);
-                            break;
-                        case "Orange":
-                            this._districtContainer.styleClass = "districtorange_css";
-                            this._districtZone.set_text("Orange Zone from " + distenzn.lastupdated);
-                            break;
-                    }
+                    this.refreshZoneTexten(distenzn);
                 }
             });
         } else { this._districtZone.set_text("Unreachable"); }
 
+    },
+    refreshZoneTexten(distenzn) {
+        switch (distenzn.zone) {
+            case "Red":
+                this._districtContainer.styleClass = "districtred_css";
+                this._districtZone.set_text("Red Zone from " + distenzn.lastupdated);
+                break;
+            case "Green":
+                this._districtContainer.styleClass = "districtgreen_css";
+                this._districtZone.set_text("Green Zone from " + distenzn.lastupdated);
+                break;
+            case "Orange":
+                this._districtContainer.styleClass = "districtorange_css";
+                this._districtZone.set_text("Orange Zone from " + distenzn.lastupdated);
+                break;
+        }
     },
 
     refreshdistricthi() {
