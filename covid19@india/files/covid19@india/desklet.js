@@ -115,14 +115,14 @@ MyDesklet.prototype = {
         }
     },
     refreshStatsen() {
-        let jsonData = this.getJSON("https://api.covid19india.org/data.json");
-        if (jsonData !== "") {
-            this._india.set_text("India: " + jsonData.statewise[0].active);
-            this._indiaDetails.set_text("Confirmed: " + jsonData.statewise[0].confirmed + ", Recovered: " + jsonData.statewise[0].recovered + ", Death: " + jsonData.statewise[0].deaths + " \nat " + jsonData.statewise[0].lastupdatedtime);
-            jsonData.statewise.forEach((statecd) => {
-                if (statecd.statecode === this.mystate) {
-                    this._state.set_text(statecd.state + ": " + statecd.active);
-                    this._stateDetails.set_text("Confirmed: " + statecd.confirmed + ", Recovered: " + statecd.recovered + ", Death: " + statecd.deaths + " \nat " + statecd.lastupdatedtime);
+        let jsonDataen = this.getJSON("https://api.covid19india.org/data.json");
+        if (jsonDataen !== "") {
+            this._india.set_text("India: " + jsonDataen.statewise[0].active);
+            this._indiaDetails.set_text("Confirmed: " + jsonDataen.statewise[0].confirmed + ", Recovered: " + jsonDataen.statewise[0].recovered + ", Death: " + jsonDataen.statewise[0].deaths + " \nat " + jsonDataen.statewise[0].lastupdatedtime);
+            jsonDataen.statewise.forEach((stateencd) => {
+                if (stateencd.statecode === this.mystate) {
+                    this._state.set_text(stateencd.state + ": " + stateencd.active);
+                    this._stateDetails.set_text("Confirmed: " + stateencd.confirmed + ", Recovered: " + stateencd.recovered + ", Death: " + stateencd.deaths + " \nat " + stateencd.lastupdatedtime);
 
                 }
             });
@@ -169,22 +169,22 @@ MyDesklet.prototype = {
 
     },
     refreshZoneen() {
-        let jsonZone = this.getJSON("https://api.covid19india.org/zones.json");
-        if (jsonZone !== "") {
-            jsonZone.zones.forEach((distzn) => {
-                if (distzn.statecode === this.mystate && distzn.district.toLowerCase() === this.mydistrict.toLowerCase()) {
-                    switch (distzn.zone) {
+        let jsonZoneen = this.getJSON("https://api.covid19india.org/zones.json");
+        if (jsonZoneen !== "") {
+            jsonZoneen.zones.forEach((distenzn) => {
+                if (distenzn.statecode === this.mystate && distenzn.district.toLowerCase() === this.mydistrict.toLowerCase()) {
+                    switch (distenzn.zone) {
                         case "Red":
                             this._districtContainer.styleClass = "districtred_css";
-                            this._districtZone.set_text("Red Zone from " + distzn.lastupdated);
+                            this._districtZone.set_text("Red Zone from " + distenzn.lastupdated);
                             break;
                         case "Green":
                             this._districtContainer.styleClass = "districtgreen_css";
-                            this._districtZone.set_text("Green Zone from " + distzn.lastupdated);
+                            this._districtZone.set_text("Green Zone from " + distenzn.lastupdated);
                             break;
                         case "Orange":
                             this._districtContainer.styleClass = "districtorange_css";
-                            this._districtZone.set_text("Orange Zone from " + distzn.lastupdated);
+                            this._districtZone.set_text("Orange Zone from " + distenzn.lastupdated);
                             break;
                     }
                 }
@@ -222,16 +222,16 @@ MyDesklet.prototype = {
 
 
     refreshdistricten() {
-        let jsonDistrict = this.getJSON("https://api.covid19india.org/v2/state_district_wise.json");
-        if (jsonDistrict !== "") {
+        let jsonDistricten = this.getJSON("https://api.covid19india.org/v2/state_district_wise.json");
+        if (jsonDistricten !== "") {
             this.districtfound = false;
-            jsonDistrict.forEach((statecd) => {
-                if (statecd.statecode === this.mystate) {
-                    statecd.districtData.forEach((distct) => {
-                        if (distct.district.toLowerCase() === this.mydistrict.toLowerCase()) {
+            jsonDistricten.forEach((statecden) => {
+                if (statecden.statecode === this.mystate) {
+                    statecden.districtData.forEach((distcten) => {
+                        if (distcten.district.toLowerCase() === this.mydistrict.toLowerCase()) {
 
-                            this._districtDetails.set_text("Active: " + distct.active + " \nConfirmed: " + distct.confirmed + "\nRecovered: " + distct.recovered + "\nDeceased: " + distct.deceased);
-                            this._district.set_text(distct.district);
+                            this._districtDetails.set_text("Active: " + distcten.active + " \nConfirmed: " + distcten.confirmed + "\nRecovered: " + distcten.recovered + "\nDeceased: " + distcten.deceased);
+                            this._district.set_text(distcten.district);
                             this.districtfound = true;
                         }
                     });
