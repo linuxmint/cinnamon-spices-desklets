@@ -255,7 +255,7 @@ MyDesklet.prototype = {
 
     },
     refreshStats() {
-    	 if (this.langdl === "hi") {
+		if (this.langdl === "hi") {
             this.refreshStatshi();
         } else {
             this.refreshStatsen();
