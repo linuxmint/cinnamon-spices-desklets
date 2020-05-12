@@ -44,20 +44,34 @@ MyDesklet.prototype = {
 
     setupUI() {
         this._covidContainer = new St.BoxLayout({ vertical: true, styleClass: "covidContainer" });
-        this._title = new St.Label({ text: this.langdl === "hi" ? "कोरोना विवरण" : "Corona Report", styleClass: "title_css" });
-        this._india = new St.Label({ text: this.langdl === "hi" ? "भारत: खोज रहा है" : "India: loading", styleClass: "india_css" });
-        this._indiaDetails = new St.Label({ text: this.langdl === "hi" ? " खोज रहा है \n  खोज रहा है" : "loading \n loading", styleClass: "indiadetails_css" });
-        this._state = new St.Label({ text: this.langdl === "hi" ? "राज्य:  खोज रहा है" : "State loading", styleClass: "state_css" });
-        this._stateDetails = new St.Label({ text: this.langdl === "hi" ? " खोज रहा है \n  खोज रहा है" : "loading \n loading", styleClass: "statedetails_css" });
+        this._districtContainer = new St.BoxLayout({ vertical: true, styleClass: "districtContainer" });
+
+        if (this.langdl === "hi") {
+            this._title = new St.Label({ text: "कोरोना विवरण", styleClass: "title_css" });
+            this._india = new St.Label({ text: "भारत: खोज रहा है", styleClass: "india_css" });
+            this._indiaDetails = new St.Label({ text: " खोज रहा है \n  खोज रहा है", styleClass: "indiadetails_css" });
+            this._state = new St.Label({ text: "राज्य:  खोज रहा है", styleClass: "state_css" });
+            this._stateDetails = new St.Label({ text: " खोज रहा है \n  खोज रहा है", styleClass: "statedetails_css" });
+            this._district = new St.Label({ text: "जिला: खोज रहा है", styleClass: "district_css" });
+            this._districtZone = new St.Label({ text: "क्षेत्र खोज रहा है", styleClass: "districtzone_css" });
+            this._districtDetails = new St.Label({ text: "खोज रहा है \n खोज रहा है \n खोज रहा है \n खोज रहा है", styleClass: "districtdetails_css" });
+
+        } else {
+            this._title = new St.Label({ text: "Corona Report", styleClass: "title_css" });
+            this._india = new St.Label({ text: "India: loading", styleClass: "india_css" });
+            this._indiaDetails = new St.Label({ text: "loading \n loading", styleClass: "indiadetails_css" });
+            this._state = new St.Label({ text: "State loading", styleClass: "state_css" });
+            this._stateDetails = new St.Label({ text: "loading \n loading", styleClass: "statedetails_css" });
+            this._district = new St.Label({ text: "District: loading", styleClass: "district_css" });
+            this._districtZone = new St.Label({ text: "zone loading", styleClass: "districtzone_css" });
+            this._districtDetails = new St.Label({ text: "loading \n loading \n loading \n loading", styleClass: "districtdetails_css" });
+
+        }
         this._covidContainer.add(this._title);
         this._covidContainer.add(this._india);
         this._covidContainer.add(this._indiaDetails);
         this._covidContainer.add(this._state);
         this._covidContainer.add(this._stateDetails);
-        this._districtContainer = new St.BoxLayout({ vertical: true, styleClass: "districtContainer" });
-        this._district = new St.Label({ text: this.langdl === "hi" ? "जिला: loading" : "District: loading", styleClass: "district_css" });
-        this._districtZone = new St.Label({ text: this.langdl === "hi" ? "क्षेत्र loading" : "zone loading", styleClass: "districtzone_css" });
-        this._districtDetails = new St.Label({ text: this.langdl === "hi" ? "loading \n loading \n loading \n loading" : "loading \n loading \n loading \n loading", styleClass: "districtdetails_css" });
         this._districtContainer.add(this._district);
         this._districtContainer.add(this._districtZone);
         this._districtContainer.add(this._districtDetails);
@@ -82,107 +96,166 @@ MyDesklet.prototype = {
 
     },
 
-    refreshStats() {
+
+    refreshStatshi() {
         let jsonData = this.getJSON("https://api.covid19india.org/data.json");
-        if (jsonData !== "" && this.langdl === "hi") {
+        if (jsonData !== "") {
             this._india.set_text("भारत: " + jsonData.statewise[0].active);
             this._indiaDetails.set_text("पुष्टीकृत: " + jsonData.statewise[0].confirmed + ", रोगमुक्त: " + jsonData.statewise[0].recovered + ", मृतक: " + jsonData.statewise[0].deaths + " \nसमय " + jsonData.statewise[0].lastupdatedtime + " पर");
             jsonData.statewise.forEach((statecd) => {
-                if(statecd.statecode===this.mystate) {
-                    this._state.set_text(statecd.state+ ": "+statecd.active);
-					this._stateDetails.set_text("पुष्टीकृत: "+statecd.confirmed+", रोगमुक्त: "+statecd.recovered+", मृतक: "+statecd.deaths+" \nसमय "+statecd.lastupdatedtime+" पर");
-            	}
+                if (statecd.statecode === this.mystate) {
+                    this._state.set_text(statecd.state + ": " + statecd.active);
+                    this._stateDetails.set_text("पुष्टीकृत: " + statecd.confirmed + ", रोगमुक्त: " + statecd.recovered + ", मृतक: " + statecd.deaths + " \nसमय " + statecd.lastupdatedtime + " पर");
+                }
             });
-        } else if (jsonData !== "" && this.langdl === "en") {
+            this.checkDistricthi();
+        } else {
+            this._indiaDetails.set_text("अज्ञात\nअज्ञात");
+            this._stateDetails.set_text("अज्ञात\nअज्ञात");
+        }
+    },
+    refreshStatsen() {
+        let jsonData = this.getJSON("https://api.covid19india.org/data.json");
+        if (jsonData !== "") {
             this._india.set_text("India: " + jsonData.statewise[0].active);
             this._indiaDetails.set_text("Confirmed: " + jsonData.statewise[0].confirmed + ", Recovered: " + jsonData.statewise[0].recovered + ", Death: " + jsonData.statewise[0].deaths + " \nat " + jsonData.statewise[0].lastupdatedtime);
             jsonData.statewise.forEach((statecd) => {
-                if(statecd.statecode===this.mystate) {
-					this._state.set_text(statecd.state + ": " + statecd.active);
-					this._stateDetails.set_text("Confirmed: " + statecd.confirmed + ", Recovered: " + statecd.recovered + ", Death: " + statecd.deaths + " \nat " + statecd.lastupdatedtime);
+                if (statecd.statecode === this.mystate) {
+                    this._state.set_text(statecd.state + ": " + statecd.active);
+                    this._stateDetails.set_text("Confirmed: " + statecd.confirmed + ", Recovered: " + statecd.recovered + ", Death: " + statecd.deaths + " \nat " + statecd.lastupdatedtime);
 
                 }
             });
+            this.checkDistricten();
         } else {
-            this._indiaDetails.set_text(this.langdl==="hi"?"अज्ञात\nअज्ञात" : "unreachable\nunreachable");
-            this._stateDetails.set_text(this.langdl==="hi"?"अज्ञात\nअज्ञात" : "unreachable\nunreachable");
+            this._indiaDetails.set_text("unreachable\nunreachable");
+            this._stateDetails.set_text("unreachable\nunreachable");
         }
-        global.log("This is covid19 desklet log");
+    },
 
-        if (this.district_enable === true && jsonData !== "") {
-            let jsonZone = this.getJSON("https://api.covid19india.org/zones.json");
-            if (jsonZone !== "") {
-				this.zonefound = false;
-                jsonZone.zones.forEach((distzn) => {
-                    if (distzn.statecode === this.mystate && distzn.district.toLowerCase() === this.mydistrict.toLowerCase()) {
-						this.zonefound=true;
-                        if (distzn.zone === "Red") {
+    checkDistricthi() {
+        if(this.district_enable) {
+            this.refreshdistricthi();
+        }
+    },
+    checkDistricten() {
+        if(this.district_enable) {
+            this.refreshdistricten();
+        }
+    },
+
+    refreshZonehi() {
+        let jsonZone = this.getJSON("https://api.covid19india.org/zones.json");
+        if (jsonZone !== "") {
+            jsonZone.zones.forEach((distzn) => {
+                if (distzn.statecode === this.mystate && distzn.district.toLowerCase() === this.mydistrict.toLowerCase()) {
+                    switch (distzn.zone) {
+                        case "Red":
                             this._districtContainer.styleClass = "districtred_css";
-                            this._districtZone.set_text(this.langdl === "hi" ? "लाल क्षेत्र " + distzn.lastupdated + " से" : "Red Zone from " + distzn.lastupdated);
-                        }
-                        if (distzn.zone === "Green") {
+                            this._districtZone.set_text("लाल क्षेत्र " + distzn.lastupdated + " से");
+                            break;
+                        case "Green":
                             this._districtContainer.styleClass = "districtgreen_css";
-                            this._districtZone.set_text(this.langdl === "hi" ? "हरा क्षेत्र " + distzn.lastupdated + " से" : "Green Zone from " + distzn.lastupdated);
-                        }
-                        if (distzn.zone === "Orange") {
+                            this._districtZone.set_text("हरा क्षेत्र " + distzn.lastupdated + " से");
+                            break;
+                        case "Orange":
                             this._districtContainer.styleClass = "districtorange_css";
-                            this._districtZone.set_text(this.langdl === "hi" ? "नारंगी क्षेत्र " + distzn.lastupdated + " से" : "Orange Zone from " + distzn.lastupdated);
-                        }
+                            this._districtZone.set_text("नारंगी क्षेत्र " + distzn.lastupdated + " से");
+                            break;
                     }
-                });
-                if(this.zonefound===false) {
-					this._districtZone.set_text("Zone not found");
                 }
+            });
+        } else { this._districtZone.set_text("अज्ञात"); }
 
-            } else { this._districtZone.set_text(this.langdl === "hi" ? "अज्ञात" : "Unreachable"); }
-            let jsonDistrict = this.getJSON("https://api.covid19india.org/v2/state_district_wise.json");
-            if (jsonDistrict !== "") {
-                this.districtfound = false;
-                jsonDistrict.forEach((statecd) => {
-					if(statecd.statecode===this.mystate) {
-						statecd.districtData.forEach((distct) => {
-							if(distct.district.toLowerCase()===this.mydistrict.toLowerCase()) {
-                                this._districtDetails.set_text(this.langdl === "hi" ?
-                                    "सक्रिय: " + distct.active +
-                                    " \nपुष्टीकृत: " + distct.confirmed +
-                                    "\nरोगमुक्त: " + distct.recovered +
-                                    "\nमृतक: " + distct.deceased :
-                                    "Active: " + distct.active +
-                                    " \nConfirmed: " + distct.confirmed +
-                                    "\nRecovered: " + distct.recovered +
-                                    "\nDeceased: " + distct.deceased);
-                                this._district.set_text(distct.district);
-                                this.districtfound = true;
-							}
-                        });
-					}
-                });
-                
-
-                if (this.districtfound === false) {
-                    this._districtDetails.set_text(this.langdl === "hi" ?
-                        "सक्रिय: " + "अज्ञात" +
-                        " \nपुष्टीकृत: " + "अज्ञात" +
-                        "\nरोगमुक्त: " + "अज्ञात" +
-                        "\nमृतक: " + "अज्ञात" :
-                        "Active: " + "Unknown" +
-                        " \nConfirmed: " + "Unknown" +
-                        "\nRecovered: " + "Unknown" +
-                        "\nDeceased: " + "Unknown");
-                    this._district.set_text(this.langdl === "hi" ? this.mydistrict + ": राज्य में नहीं" : this.mydistrict + ": Not found in state");
+    },
+    refreshZoneen() {
+        let jsonZone = this.getJSON("https://api.covid19india.org/zones.json");
+        if (jsonZone !== "") {
+            jsonZone.zones.forEach((distzn) => {
+                if (distzn.statecode === this.mystate && distzn.district.toLowerCase() === this.mydistrict.toLowerCase()) {
+                    switch (distzn.zone) {
+                        case "Red":
+                            this._districtContainer.styleClass = "districtred_css";
+                            this._districtZone.set_text("Red Zone from " + distzn.lastupdated);
+                            break;
+                        case "Green":
+                            this._districtContainer.styleClass = "districtgreen_css";
+                            this._districtZone.set_text("Green Zone from " + distzn.lastupdated);
+                            break;
+                        case "Orange":
+                            this._districtContainer.styleClass = "districtorange_css";
+                            this._districtZone.set_text("Orange Zone from " + distzn.lastupdated);
+                            break;
+                    }
                 }
+            });
+        } else { this._districtZone.set_text("Unreachable"); }
 
+    },
+
+    refreshdistricthi() {
+
+        let jsonDistrict = this.getJSON("https://api.covid19india.org/v2/state_district_wise.json");
+        if (jsonDistrict !== "") {
+            this.districtfound = false;
+            jsonDistrict.forEach((statecd) => {
+                if (statecd.statecode === this.mystate) {
+                    statecd.districtData.forEach((distct) => {
+                        if (distct.district.toLowerCase() === this.mydistrict.toLowerCase()) {
+                            this._district.set_text(distct.district);
+                            this._districtDetails.set_text("सक्रिय: " + distct.active + " \nपुष्टीकृत: " + distct.confirmed + "\nरोगमुक्त: " + distct.recovered + "\nमृतक: " + distct.deceased);
+                            this.districtfound = true;
+                        }
+                    });
+                }
+            });
+
+
+            if (this.districtfound === false) {
+                this._districtDetails.set_text("सक्रिय: " + "अज्ञात" + " \nपुष्टीकृत: " + "अज्ञात" + "\nरोगमुक्त: " + "अज्ञात" + "\nमृतक: " + "अज्ञात");
+                this._district.set_text(this.mydistrict + ": राज्य में नहीं");
             }
-        } else {
-            this._districtDetails.set_text(this.langdl==="hi"?"अज्ञात\nअज्ञात\nअज्ञात\nअज्ञात":"Unreachable\nUnreachable\nUnreachable\nUnreachable");
-            this._district.set_text(this.langdl === "hi" ? this.mydistrict + ": इंटरनेट नहीं है" : this.mydistrict + ": No Internet");
+            this.refreshZonehi();
         }
     },
 
 
+
+    refreshdistricten() {
+        let jsonDistrict = this.getJSON("https://api.covid19india.org/v2/state_district_wise.json");
+        if (jsonDistrict !== "") {
+            this.districtfound = false;
+            jsonDistrict.forEach((statecd) => {
+                if (statecd.statecode === this.mystate) {
+                    statecd.districtData.forEach((distct) => {
+                        if (distct.district.toLowerCase() === this.mydistrict.toLowerCase()) {
+
+                            this._districtDetails.set_text("Active: " + distct.active + " \nConfirmed: " + distct.confirmed + "\nRecovered: " + distct.recovered + "\nDeceased: " + distct.deceased);
+                            this._district.set_text(distct.district);
+                            this.districtfound = true;
+                        }
+                    });
+                }
+            });
+
+
+            if (this.districtfound === false) {
+                this._districtDetails.set_text("Active: " + "Unknown" + " \nConfirmed: " + "Unknown" + "\nRecovered: " + "Unknown" + "\nDeceased: " + "Unknown");
+                this._district.set_text(this.mydistrict + ": Not found in state");
+            }
+            this.refreshZoneen();
+        }
+
+
+    },
+
+
     update() {
-        this.refreshStats();
-        // update again in two seconds
+        if (this.langdl === "hi") {
+            this.refreshStatshi();
+        } else {
+            this.refreshStatsen();
+        }
         this.timeout = Mainloop.timeout_add_seconds(3600, Lang.bind(this, this.update));
     },
 
