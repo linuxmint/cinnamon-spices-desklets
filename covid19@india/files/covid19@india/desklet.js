@@ -264,7 +264,7 @@ MyDesklet.prototype = {
 
     update() {
        this.refreshStats();
-        this.timeout = Mainloop.timeout_add_seconds(3600, Lang.bind(this, this.update));
+        this.timeout = Mainloop.timeout_add_seconds(900, Lang.bind(this, this.update));
     },
 
     on_setting_changed() {
