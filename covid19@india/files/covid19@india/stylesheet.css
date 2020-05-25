@@ -1,57 +1,68 @@
 .covidContainer {
-  text-align: center;
+    text-align: center;
 }
 
 .title_css {
-  color: #007bff;
-  font-size: 18px;
-  text-shadow: #008 1px 1px 2px;
+    color: #007bff;
+    font-size: 18px;
+    text-shadow: #008 1px 1px;
 }
 
 .india_css {
-  color: #007bff;
-  font-size: 24px;
-  text-shadow: #008 1px 1px 2px;
+    color: #007bff;
+    font-size: 24px;
+    text-shadow: #008 1px 1px;
 }
 
 .indiadetails_css {
-  color: #6c757d;
-  font-size: 12px;
-  text-shadow: #000 1px 1px 1px;
+    color: #6c757d;
+    font-size: 12px;
+    text-shadow: #000 1px 1px;
 }
 
 .state_css {
-  color: #007bff;
-  font-size: 24px;
-  text-shadow: #008 1px 1px 2px;
+    color: #007bff;
+    font-size: 24px;
+    text-shadow: #008 1px 1px;
 }
 
 .statedetails_css {
-  color: #6c757d;
-  font-size: 12px;
-  text-shadow: #000 1px 1px 1px;
+    color: #6c757d;
+    font-size: 12px;
+    text-shadow: #000 1px 1px;
 }
 
 .district_css {
-  text-align: center;
-  font-size: 24px;
-  text-shadow: #000 1px 1px 2px;
+    text-align: center;
+    font-size: 24px;
+    text-shadow: #000 1px 1px;
+
+}
+
+.districtzone_css {
+    font-size: 10px;
+    text-shadow: #000 1px 1px;
+
 }
 
 .districtdetails_css {
-  text-align: center;
-  font-size: 14px;
-  text-shadow: #000 1px 1px 2px;
+    text-align: center;
+    font-size: 14px;
+    text-shadow: #000 1px 1px;
+
 }
 
 .districtred_css {
-  color: #ff073a;
+    color: #ff073a;
+    text-shadow: #400 1px 1px;
 }
 
 .districtorange_css {
-  color: #fd7e14;
+    color: #fd7e14;
+    text-shadow: #440 1px 1px;
 }
 
 .districtgreen_css {
-  color: #28a745;
+    color: #28a745;
+    text-shadow: #040 1px 1px;
 }
