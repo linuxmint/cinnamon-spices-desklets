@@ -1,0 +1,7 @@
+{
+    "uuid": "temperature@india",
+    "name": "Temperature measure",
+    "description": "Display temperature in thermometer",
+    "thermal-file": "/sys/devices/virtual/thermal/thermal_zone0/temp",
+    "version": "1.0.0"
+}
