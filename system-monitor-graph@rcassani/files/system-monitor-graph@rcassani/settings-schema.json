@@ -1,0 +1,129 @@
+{
+    "head0": {
+        "type": "header",
+        "description": "Settings for system-monitor-graph@rcassani"
+    },
+
+    "head1": {
+        "type": "header",
+        "description": "General"
+    },
+    "type": {
+        "type": "combobox",
+        "default": "cpu",
+        "description": "System variable for graph",
+        "tooltip": "Select the system variable to monitor.",
+        "options" : {
+            "CPU" : "cpu",
+            "RAM" : "ram",
+            "HHD" : "hdd"
+        }
+    },
+    "filesystem": {
+        "type": "filechooser",
+        "default": "/",
+        "description": "Filesystem to monitor",
+        "tooltip": "Select a directory in the filesystem to monitor.",
+        "allow-none" : true,
+        "select-dir" : true,
+        "dependency": "type=hdd"
+    },
+    "duration": {
+        "type": "combobox",
+        "default": 60,
+        "description": "Duration of the graph",
+        "tooltip": "Maximum among of time to show in the graph.",
+        "options" : {
+            "30 s": 30,
+            " 1 min": 60,
+            " 2 min": 120,
+            " 5 min": 300,
+            "10 min": 600,
+            "30 min": 1800,
+            "60 min": 3600
+        }
+    },
+    "refresh-interval": {
+        "type": "combobox",
+        "default": 1,
+        "description": "Refresh interval",
+        "tooltip": "How often a new value of the variable will be calculated.",
+        "options" : {
+            " 1 s": 1,
+            " 2 s": 2,
+            " 5 s": 5,
+            "10 s": 10,
+            "30 s": 30,
+            "60 s": 60
+        }
+    },
+
+
+    "head2": {
+        "type": "header",
+        "description": "Visual"
+    },
+    "background-color": {
+        "type": "colorchooser",
+        "default": "rgba(50,50,50,1)",
+        "description": "Background color",
+        "tooltip": "RGB or RGBA."
+    },
+    "text-color": {
+        "type": "colorchooser",
+        "default": "rgba(255,255,255,1)",
+        "description": "Text color",
+        "tooltip": "RGB or RGBA."
+    },
+    "line-color-cpu": {
+        "type": "colorchooser",
+        "default": "rgba(23,147,208,1.0)",
+        "description": "Line color CPU",
+        "dependency": "type=cpu",
+        "tooltip": "RGB or RGBA. Alpha is ignored"
+    },
+    "line-color-ram": {
+        "type": "colorchooser",
+        "default": "rgba(137,190,67,1.0)",
+        "description": "Line color RAM",
+        "dependency": "type=ram",
+        "tooltip": "RGB or RGBA. Alpha is ignored"
+    },
+    "line-color-hdd": {
+        "type": "colorchooser",
+        "default": "rgba(197,86,33,1.0)",
+        "description": "Line color HDD",
+        "dependency": "type=hdd",
+        "tooltip": "RGB or RGBA. Alpha is ignored"
+    },
+    "midline-color": {
+        "type": "colorchooser",
+        "default": "rgba(127,127,127,1)",
+        "description": "Grid color",
+        "tooltip": "RGB or RGBA."
+    },
+    "h-midlines": {
+        "type": "spinbutton",
+        "default": 4,
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "description": "Number of horizontal lines in the grid"
+    },
+    "v-midlines": {
+        "type": "spinbutton",
+        "default": 4,
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "description": "Number of vertical lines in the grid"
+    },
+    "scale-size": {
+        "type": "scale",
+        "default": 1,
+        "min": 0.5,
+        "max": 5,
+        "step": 0.1,
+        "description": "Scale factor for desklet size (scale factor of 1 = 330 x 120 px)"
+    }
+}
