@@ -11,7 +11,8 @@ const Util = imports.misc.util;
 
 const UUID = "system-monitor-graph@rcassani";
 const DESKLET_PATH = imports.ui.deskletManager.deskletMeta[UUID].path;
-const GB_TO_KB = 1048576; // 1 GB = 1,048,576 kB
+const GIB_TO_KIB = 1048576; // 1 GiB = 1,048,576 kiB
+const GB_TO_KB = 1000000; // 1 GB = 1,000,000 kB
 
 
 function MyDesklet(metadata, desklet_id) {
@@ -138,7 +139,7 @@ MyDesklet.prototype = {
               text1 = "RAM";
               text2 = Math.round(ram_use).toString() + "%"
               text3 = ram_values[1].toFixed(1) + " / "
-                    + ram_values[0].toFixed(1) + " GB";
+                    + ram_values[0].toFixed(1) + " GiB";
               break;
 
           case "hdd":
@@ -270,16 +271,13 @@ MyDesklet.prototype = {
     },
 
     get_ram_values: function() {
-        // https://www.man7.org/linux/man-pages/man1/free.1.html
+        // used  = total - available
         let mem_out = Cinnamon.get_file_contents_utf8_sync("/proc/meminfo");
         let mem_tot = parseInt(mem_out.match(/(MemTotal):\D+(\d+)/)[2]);
-        let mem_usd = mem_tot - parseInt(mem_out.match(/(MemFree):\D+(\d+)/)[2])
-                             - parseInt(mem_out.match(/(Cached):\D+(\d+)/)[2])
-                             - parseInt(mem_out.match(/(Buffers):\D+(\d+)/)[2])
-                             - parseInt(mem_out.match(/(SReclaimable):\D+(\d+)/)[2]);
+        let mem_usd = mem_tot - parseInt(mem_out.match(/(MemAvailable):\D+(\d+)/)[2]);
 
-        let ram_tot = mem_tot / GB_TO_KB;
-        let ram_usd = mem_usd / GB_TO_KB;
+        let ram_tot = mem_tot / GIB_TO_KIB;
+        let ram_usd = mem_usd / GIB_TO_KIB;
         return [ram_tot, ram_usd];
     },
 
