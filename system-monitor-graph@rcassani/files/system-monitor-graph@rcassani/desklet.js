@@ -12,7 +12,7 @@ const Util = imports.misc.util;
 const UUID = "system-monitor-graph@rcassani";
 const DESKLET_PATH = imports.ui.deskletManager.deskletMeta[UUID].path;
 const GIB_TO_KIB = 1048576; // 1 GiB = 1,048,576 kiB
-const GB_TO_KB = 1000000; // 1 GB = 1,000,000 kB
+const GB_TO_B = 1000000000; // 1 GB = 1,000,000,000 B
 
 
 function MyDesklet(metadata, desklet_id) {
@@ -291,8 +291,8 @@ MyDesklet.prototype = {
         let df_line = out.match(/.+/g)[1];
         let df_values = df_line.split(/\s+/); // split by space
         // values for partition space
-        let hdd_tot = (parseFloat(df_values[3]) + parseFloat(df_values[2]) ) / GB_TO_KB;
-        let hdd_fre = parseFloat(df_values[3]) / GB_TO_KB;
+        let hdd_tot = parseFloat(df_values[1]) * 1024 / GB_TO_B;
+        let hdd_fre = parseFloat(df_values[3]) * 1024 / GB_TO_B;
         // utilization of partition
         let dev_fs = df_values[0];
         let fs = dev_fs.split(/\/+/)[2];
