@@ -2,7 +2,7 @@
 Desklet to show graphs for the level of activity in various system variables including: CPU, memory, and disks. The desklet supports multiple instances with different system variables with the idea of presenting them in a uniform way.
 
 <p align="center">
-<img src="simple.gif" width="400" align="middle"><br>
+<img src="https://cinnamon-spices.linuxmint.com/git/desklets/system-monitor-graph@rcassani/simple.gif" width="400" align="middle"><br>
 Four instances of the Desklet in action.
 </p>
 
@@ -22,19 +22,19 @@ Each variable is calculated every `Refresh interval` seconds (Min. 1 s, Max. 60 
 
 ### Customizable visual elements
 <p align="center">
-<img src="settings.png" width="700" align="middle"><br>
+<img src="https://cinnamon-spices.linuxmint.com/git/desklets/system-monitor-graph@rcassani/settings.png" width="700" align="middle"><br>
 Settings for one instance of the system monitor graph Desklet.
 </p>
 
 ### Screenshots
 <p align="center">
-<img src="screenshot.png" width="900" align="middle"><br>
+<img src="https://cinnamon-spices.linuxmint.com/git/desklets/system-monitor-graph@rcassani/screenshot.png" width="900" align="middle"><br>
 The Desklet is fully customizable.
 </p>
 <br>
 
 <p align="center">
-<img src="screenshot2.png" width="900" align="middle"><br>
+<img src="https://cinnamon-spices.linuxmint.com/git/desklets/system-monitor-graph@rcassani/screenshot2.png" width="900" align="middle"><br>
 A simple screenshot.
 </p>
 
