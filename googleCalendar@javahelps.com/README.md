@@ -6,7 +6,7 @@ Google is currently verifying the desklet for its API usage. Google prevents new
 
 ## Requirements
 
-- Cinnamon 3.4, 3.6, 3.8, 4.0, or 4.2
+- Cinnamon 3.4, 3.6, 3.8, 4.0, 4.2, 4.4, or 4.6
 - Python 3
 - python3-pip
 - python3-setuptools
