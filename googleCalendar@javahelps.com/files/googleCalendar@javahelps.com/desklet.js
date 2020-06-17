@@ -30,7 +30,7 @@ const Gettext = imports.gettext;
 const Gio = imports.gi.Gio;
 const Gtk = imports.gi.Gtk;
 const St = imports.gi.St;
-const PopupMenu = imports.ui.popupMenu; // ++ Needed for menus
+const PopupMenu = imports.ui.popupMenu;
 
 // Import local libraries
 imports.searchPath.unshift(GLib.get_home_dir() + "/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/lib");
@@ -47,8 +47,7 @@ Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
 const TEXT_WIDTH = 250;
 const FONT_SIZE = 14;
-const SCRIPT_PATH = GLib.get_home_dir() + "/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/py/google_calendar.py";
-const CONFIG_PATH = GLib.get_home_dir() + "/.cinnamon/configs/googleCalendar@javahelps.com";
+const HOME_PATH = GLib.get_home_dir();
 
 function _(str) {
     return Gettext.dgettext(UUID, str);
@@ -78,41 +77,38 @@ GoogleCalendarDesklet.prototype = {
 
         this._updateDecoration();
 
-        // Bind the properties
-        try {
-            this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], this.updateID);
-            this.settings.bind("clientId", "clientId", this.onCalendarParamsChanged, null);
-            this.settings.bind("clientSecret", "clientSecret", this.onCalendarParamsChanged, null);
-            //this.settings.bind("calendarName", "calendarName", this.onCalendarParamsChanged, null);
-            this.settings.bind("calendarNames", "calendarNames", this.onCalendarParamsChanged, null);
-            this.settings.bind("interval", "interval", this.onCalendarParamsChanged, null);
-            this.settings.bind("delay", "delay", this.onCalendarParamsChanged, null);
-            this.settings.bind("use_24h_clock", "use_24h_clock", this.onDeskletFormatChanged, null);
-            this.settings.bind("date_format", "date_format", this.onDeskletFormatChanged, null);
-            this.settings.bind("today_format", "today_format", this.onDeskletFormatChanged, null);
-            this.settings.bind("tomorrow_format", "tomorrow_format", this.onDeskletFormatChanged, null);
-            this.settings.bind("zoom", "zoom", this.onDeskletFormatChanged, null);
-            this.settings.bind("textcolor", "textcolor", this.onDeskletFormatChanged, null);
-            this.settings.bind("alldaytextcolor", "alldaytextcolor", this.onDeskletFormatChanged, null);
-            this.settings.bind("bgcolor", "bgcolor", this.onDeskletFormatChanged, null);
-            this.settings.bind("diff_calendar", "diff_calendar", this.onDeskletFormatChanged, null);
-            this.settings.bind("show_location", "show_location", this.onDeskletFormatChanged, null);
-            this.settings.bind("location_color", "location_color", this.onDeskletFormatChanged, null);
-            this.settings.bind("transparency", "transparency", this.onDeskletFormatChanged, null);
-            this.settings.bind("cornerradius", "cornerradius", this.onDeskletFormatChanged, null);
-            this.setCalendarName();
-        } catch (e) {
-            global.logError(e);
-        }
+        // Bind properties
+        this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], deskletID);
+        this.settings.bind("clientId", "clientId", this.onCalendarParamsChanged, null);
+        this.settings.bind("clientSecret", "clientSecret", this.onCalendarParamsChanged, null);
+        this.settings.bind("gcalendarAccount", "gcalendarAccount", this.onCalendarParamsChanged, null);
+        this.settings.bind("calendarNames", "calendarNames", this.onCalendarParamsChanged, null);
+        this.settings.bind("interval", "interval", this.onCalendarParamsChanged, null);
+        this.settings.bind("delay", "delay", this.onCalendarParamsChanged, null);
+        this.settings.bind("use_24h_clock", "use_24h_clock", this.onDeskletFormatChanged, null);
+        this.settings.bind("date_format", "date_format", this.onDeskletFormatChanged, null);
+        this.settings.bind("today_format", "today_format", this.onDeskletFormatChanged, null);
+        this.settings.bind("tomorrow_format", "tomorrow_format", this.onDeskletFormatChanged, null);
+        this.settings.bind("zoom", "zoom", this.onDeskletFormatChanged, null);
+        this.settings.bind("textcolor", "textcolor", this.onDeskletFormatChanged, null);
+        this.settings.bind("alldaytextcolor", "alldaytextcolor", this.onDeskletFormatChanged, null);
+        this.settings.bind("bgcolor", "bgcolor", this.onDeskletFormatChanged, null);
+        this.settings.bind("diff_calendar", "diff_calendar", this.onDeskletFormatChanged, null);
+        this.settings.bind("show_location", "show_location", this.onDeskletFormatChanged, null);
+        this.settings.bind("location_color", "location_color", this.onDeskletFormatChanged, null);
+        this.settings.bind("transparency", "transparency", this.onDeskletFormatChanged, null);
+        this.settings.bind("cornerradius", "cornerradius", this.onDeskletFormatChanged, null);
+        this.setCalendarName();
+
         // Set header
         this.setHeader(_("Google Calendar"));
-        // Set "Open Google Calendar" button
+        // Set "Open Google Calendar" menu item
         Gtk.IconTheme.get_default().append_search_path(metadata.path + "/icons/");
-        let buttonOgc = new PopupMenu.PopupIconMenuItem(_("Open Google Calendar"), "google-calendar", St.IconType.SYMBOLIC);
-        buttonOgc.connect("activate", (event) => {
+        let openGoogleCalendarItem = new PopupMenu.PopupIconMenuItem(_("Open Google Calendar"), "google-calendar", St.IconType.SYMBOLIC);
+        openGoogleCalendarItem.connect("activate", (event) => {
             GLib.spawn_command_line_async("xdg-open https://calendar.google.com");
         });
-        this._menu.addMenuItem(buttonOgc);
+        this._menu.addMenuItem(openGoogleCalendarItem);
         // Start the update loop
         this.updateLoop();
     },
@@ -121,8 +117,16 @@ GoogleCalendarDesklet.prototype = {
     /**
      * Called when user updates settings related to formatting.
      */
-    onDeskletFormatChanged() {
-        this.updateAgenda();
+    onDeskletFormatChange() {
+        if (this.eventsList.length > 0) {
+            this.resetWidget();
+            for (let event of this.eventsList) {
+                event.useTwentyFourHour = this.use_24h_clock;
+                this.addEventToWidget(event);
+            }
+        } else {
+            this.retrieveEventsIfAuthorized();
+        }
     },
 
     /**
@@ -134,7 +138,7 @@ GoogleCalendarDesklet.prototype = {
             Mainloop.source_remove(this.updateID);
         }
         this.updateID = null;
-        this.retrieveEvents();
+        this.retrieveEventsIfAuthorized();
     },
 
     /**
@@ -142,16 +146,20 @@ GoogleCalendarDesklet.prototype = {
      */
     onAllNamesButtonClicked() {
         let reader = new SpawnReader();
-        let command = ["python3", SCRIPT_PATH, "--list-calendars"];
+        let command = ["gcalendar", "--output", "txt", "--list-calendars"];
+        this.addAccountID(command, this.gcalendarAccount);
         // List of calendars already selected by user:
         let registeredCalendarNames = this.calendarName.toString().split(",");
         // List of all the user's calendars:
         var calendars = []; // We will populate it !
         this.calendarNames = [];
-        reader.spawn(CONFIG_PATH, command, (output) => {
+        reader.spawn(HOME_PATH, command, (output) => {
             let name = output.toString().trim();
             let display = (registeredCalendarNames.indexOf(name) > -1);
-            calendars.push({name, display});
+            calendars.push({
+                name,
+                display
+            });
             this.calendarNames = calendars; // Refreshes the array in Settings.
         });
     },
@@ -167,7 +175,7 @@ GoogleCalendarDesklet.prototype = {
      * Called when user clicks on the desklet.
      */
     on_desklet_clicked(event) {
-        this.retrieveEvents();
+        this.retrieveEventsIfAuthorized();
     },
 
     //////////////////////////////////////////// Utility Functions ////////////////////////////////////////////
@@ -177,38 +185,30 @@ GoogleCalendarDesklet.prototype = {
     setCalendarName() {
         try {
             var names = [];
-            for (var i=0; i < this.calendarNames.length; i++) {
+            for (var i = 0; i < this.calendarNames.length; i++) {
                 if (this.calendarNames[i]["display"] === true) {
                     names.push(this.calendarNames[i]["name"]);
                 }
             }
             this.calendarName = names.join(",");
-        } catch(e) {
+        } catch (e) {
             this.calendarName = "";
         }
     },
 
     /**
-     * Construct gcalcli command to retrieve events.
+     * Construct gcalendar command to retrieve events.
      */
-    getCalendarCommand() {
+    getCalendarCommand(accountId) {
         let dateTime = new Date();
-        let command = ["python3", SCRIPT_PATH, "--client_id", this.clientId, "--client_secret", this.clientSecret];
+        let command = ["gcalendar", "--output", "json", "--client-id", this.clientId, "--client-secret", this.clientSecret];
         command.push("--no-of-days");
         if (this.interval == null) {
             this.interval = 7; // Default interval is 7 days
         }
         command.push(this.interval.toString());
-        if (this.calendarName != "") {
-            command.push("--calendar");
-            let calendars = this.calendarName.split(",");
-            for (let name of calendars) {
-                name = name.trim();
-                if (name !== "") {
-                    command.push(name);
-                }
-            }
-        }
+        this.addCalendarList(command);
+        this.addAccountID(command, accountId);
         return command;
     },
 
@@ -223,8 +223,8 @@ GoogleCalendarDesklet.prototype = {
         } catch (e) {
             throw e;
         }
-        if (events.length === 1 && events[0]["summary"] === "NO_EVENTS_FOUND_GOOGLE_CALENDAR") {
-            this.window.add(CalendarUtility.label(_("No events found..."), this.zoom, this.textcolor));
+        if (events.length === 0) {
+            this.window.add(CalendarUtility.label(_("No events found"), this.zoom, this.textcolor));
         } else {
             events.forEach((element) => {
                 let event = new Event(element, this.use_24h_clock);
@@ -316,7 +316,7 @@ GoogleCalendarDesklet.prototype = {
      * Updates every user set seconds
      **/
     updateLoop() {
-        this.retrieveEvents();
+        this.retrieveEventsIfAuthorized();
         this.updateID = Mainloop.timeout_add_seconds(this.delay * 60, Lang.bind(this, this.updateLoop));
     },
 
@@ -324,7 +324,7 @@ GoogleCalendarDesklet.prototype = {
      * Returns well formatted string (for this.today_format, this.tomorrow_format and this.date_format).
      * This fixes a bug that occurs, for example, when 'today' is replaced by 'aujourd'hui' by a French-speaking user.
      */
-    wellFormatted(t) {
+    formatDatePattern(t) {
         var ret = t;
         if (t.indexOf("'") > -1) {
             let index1 = t.indexOf("'"); // first apostrophe
@@ -343,33 +343,73 @@ GoogleCalendarDesklet.prototype = {
      */
     formatEventDate(dateText) {
         if (this.today === dateText) {
-            return new XDate(dateText).toString(this.wellFormatted(this.today_format)).toUpperCase();
+            return new XDate(dateText).toString(this.formatDatePattern(this.today_format)).toUpperCase();
         } else if (this.tomorrow === dateText) {
-            return new XDate(dateText).toString(this.wellFormatted(this.tomorrow_format)).toUpperCase();
+            return new XDate(dateText).toString(this.formatDatePattern(this.tomorrow_format)).toUpperCase();
         } else {
-            return new XDate(dateText).toString(this.wellFormatted(this.date_format)).toUpperCase();
+            return new XDate(dateText).toString(this.formatDatePattern(this.date_format)).toUpperCase();
         }
     },
 
-    /**
-     * Format the output of the command read from the file and display in the desklet.
-     */
-    updateAgenda() {
-        if (this.eventsList.length > 0) {
-            this.resetWidget();
-            for (let event of this.eventsList) {
-                event.useTwentyFourHour = this.use_24h_clock;
-                this.addEventToWidget(event);
-            }
-        } else {
-            this.retrieveEvents();
+    retrieveEventsIfAuthorized() {
+        let accountId = this.gcalendarAccount;
+        try {
+            // Check the status of gcalendar
+            let reader = new SpawnReader();
+            let command = ["gcalendar", "--output", "txt", "--status"];
+            this.addAccountID(command, accountId);
+            reader.spawn(HOME_PATH, command, (output) => {
+                let status = output.toString().trim();
+                if (status === "Authorized") {
+                    // Authorized
+                    this.retrieveEvents(accountId);
+                } else {
+                    this.showGcalendarStatus(status, accountId);
+                }
+            });
+        } catch (e) {
+            this.showErrorMessage(e.toString());
         }
+    },
+
+    showGcalendarStatus(status, accountId) {
+        let message = _("gcalendar is not authorized");
+        if (status === "Token Expired") {
+            message = _("gcalendar token expired");
+        }
+        // Show the status on widget
+        this.resetWidget(true);
+        let label = CalendarUtility.label(message, this.zoom, this.textcolor);
+        let hint = _("Execute: ") + "gcalendar";
+        if (accountId != null && accountId !== "") {
+            hint = hint + " --account " + accountId;
+        }
+        let lblHint = CalendarUtility.label(hint, this.zoom, this.location_color, true, 8);
+        lblHint.style = lblHint.style + "; font-style: italic;";
+
+        this.window.add(label);
+        this.window.add(lblHint);
+    },
+
+    showErrorMessage(errorMessage) {
+        this.resetWidget(true);
+        let message = _("Unknown Error");
+        let hint = errorMessage;
+        if (errorMessage.includes("No such file or directory")) {
+            message = _("Install gcalendar to use this desklet.");
+            hint = _("Visit: ") + "https://github.com/slgobinath/gcalendar";
+        }
+        let label = CalendarUtility.label(message, this.zoom, this.textcolor);
+        let lblHint = CalendarUtility.label(hint, this.zoom, this.location_color, true, 8);
+        lblHint.style = lblHint.style + "; font-style: italic;";
+        this.window.add(label);
+        this.window.add(lblHint);
     },
 
     /**
      * Method to update the text/reading of the file
      **/
-    retrieveEvents() {
+    retrieveEvents(accountId) {
         if (this.updateInProgress) {
             return;
         }
@@ -379,7 +419,7 @@ GoogleCalendarDesklet.prototype = {
             // Execute the command to retrieve the calendar events.
             let reader = new SpawnReader();
             let error = false;
-            reader.spawn(CONFIG_PATH, this.getCalendarCommand(), (output) => {
+            reader.spawn(HOME_PATH, this.getCalendarCommand(accountId), (output) => {
                 this.resetWidget(true);
                 if (!outputReceived) {
                     outputReceived = true;
@@ -403,8 +443,36 @@ GoogleCalendarDesklet.prototype = {
         } finally {
             this.updateInProgress = false;
         }
+    },
+
+    /**
+     * Add selected calendars to the command.
+     * @param {String[]} command gcalendar command
+     */
+    addCalendarList(command) {
+        if (this.calendarName != "") {
+            command.push("--calendar");
+            let calendars = this.calendarName.split(",");
+            for (let name of calendars) {
+                name = name.trim();
+                if (name !== "") {
+                    command.push(name);
+                }
+            }
+        }
+    },
+
+    /**
+     * Append the account id to the command if valid.
+     * @param {String[]} command gcalendar command
+     * @param {String} accountId gcalendar account id
+     */
+    addAccountID(command, accountId) {
+        if (accountId != null && accountId !== "") {
+            command.push("--account", accountId);
+        }
     }
-}
+};
 
 function main(metadata, deskletID) {
     let desklet = new GoogleCalendarDesklet(metadata, deskletID);

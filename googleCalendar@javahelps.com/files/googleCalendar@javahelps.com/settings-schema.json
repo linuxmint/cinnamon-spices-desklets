@@ -22,6 +22,12 @@
     "type": "header",
     "description": "Calendar configuration"
   },
+  "gcalendarAccount" : {
+    "type": "entry",
+    "default" : "",
+    "description" : "gcalendar Account ID",
+    "tooltip" : "Enter gcalendar --account id"
+  },
   "allNamesButton": {
     "type": "button",
     "description": "Fill in the list bellow with the names of all my calendars",
