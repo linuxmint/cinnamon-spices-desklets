@@ -1,40 +1,61 @@
 # Google Calendar Desklet
 
-View your upcoming calendar events on your Cinnamon Desktop. This desklet uses `google-api-python-client` to pull events from Google Calendar. You can configure every aspect of the desklet using the configure dialog.
-
-Google is currently verifying the desklet for its API usage. Google prevents new users from registering until it's been verified. Users can create their own Google Developer Project to access their Calendar events. Please follow this article [How to Setup Google Calendar Desklet](https://medium.com/@lgobinath/how-to-use-google-calendar-desklet-41d8aa0dbedd) to setup Google Calendar Desklet using the personal authentication key.
+View your upcoming calendar events on your Cinnamon Desktop. This desklet uses `gcalendar` to pull events from Google Calendar. You can configure every aspect of the desklet using the configure dialog.
 
 ## Requirements
 
 - Cinnamon 3.4, 3.6, 3.8, 4.0, 4.2, 4.4, or 4.6
-- Python 3
-- python3-pip
-- python3-setuptools
-- `python-dateutil`
-- `google-api-python-client`
-- `oauth2client`
+- `gcalendar`
 
 ## Installation
 
-1. Install dependencies using the following command:
+1. Install `gcalendar`:
+
+    [gcalendar]((https://github.com/slgobinath/gcalendar)) is a Free and Open Source Software developed by the same developer to read Google Calendar events from the terminal.
+
+    **Install From PPA:**
+
+    ```bash
+    sudo add-apt-repository ppa:slgobinath/gcalendar
+    sudo apt update
+    sudo apt install gcalendar
+    ```
+
+    **Disclaimer:** `ppa:slgobinath/gcalendar` is my (the developer of this desklet) own repository that is not monitored by the Linux Mint team, and user installs it at their own discretion.
+
+    I am providing the PPA to make the installation process simple. However, if you have any concerns with adding a PPA, you can also install `gcalendar` from [PyPi](https://pypi.org/project/gcalendar/) or from the source code.
+
+    **Install From PyPi:**
 
     ```bash
     sudo apt install python3-pip python3-setuptools python3-dateutil python3-oauth2client python3-googleapi
+    pip3 install gcalendar
     ```
 
-2. Install `python-dateutil`, `google-api-python-client` and `oauth2client` Python modules using the following command:
+    **Install From Source:**
 
     ```bash
-    sudo pip3 install --upgrade python-dateutil google-api-python-client oauth2client
+    sudo apt install python3-pip python3-setuptools python3-dateutil python3-oauth2client python3-googleapi git
+    git clone https://github.com/slgobinath/gcalendar.git
+    cd gcalendar
+    pip3 install -e .
     ```
 
-    If you encounter any problems, please check the [official website](https://developers.google.com/api-client-library/python/start/installation).
+    For more information, please visit the `gcalendar` [GitHub Repository](https://github.com/slgobinath/gcalendar).
 
-3. Add Google Calendar desklet
+2. Authorize `gcalendar` to read your calendar.
 
-4. You should get a Google Authentication page asking for reading permission. Allow the "Cinnamon Google Calendar Desklet" to read your Google Calendar events.
+    Just run `gcalendar` from the terminal. It will open Google Calendar OAuth page in your default browser.
 
-5. If there is a warning sign in the "Desklets" dialog, try to remove and add the desklet again. If it doesn't work, a system restart may help the desklet to detect `google-api-python-client`.
+    ```bash
+    gcalendar
+    ```
+
+    For more details, see this YouTube video: [gcalendar Authorization](https://www.youtube.com/watch?v=mwU8AQmzIPE&feature). After authorizing gcalendar, you should see your calendar events printed in the terminal.
+
+3. Download and add this desklet.
+
+4. If there is a warning sign in the "Desklets" dialog, try to remove and add the desklet again. If it doesn't work, a system restart may help the desklet to detect `gcalendar`.
 
 ## Features
 
@@ -43,6 +64,7 @@ Google is currently verifying the desklet for its API usage. Google prevents new
 - Customize update frequency
 - Manually update the agenda by clicking on the desklet
 - Customize the look and feel
+- Multiple account support (Using `gcalendar --account`)
 
 ## FAQ
 
@@ -55,49 +77,22 @@ Google is currently verifying the desklet for its API usage. Google prevents new
     It means you do not have any events in the selected time interval. By default, the desklet retrieves events for the next `7` days. You can modify it by adjusting the "Number of days to include (days)" property in the configuration dialog.
     If that doesn't work, please ensure that you have some events in your Google Calendar by visiting the official [website](https://calendar.google.com/calendar).
 
-    If there are events between the selected time period, something wrong with the desklet. Please report the bug with the output of `google_calendar.py` script. More details on how to report a bug are given below.
-
 3. **What does "Unable to retrieve events..." mean?**
 
-    It means the desklet could not retrieve any events and there is a possible error. Please report the bug with the output of `google_calendar.py` script. More details on how to report a bug are given below.
+    It means the desklet could not retrieve any events and there is a possible error. Please report the bug with the output of `gcalendar` command at [gcalendar issues](https://github.com/slgobinath/gcalendar/issues).
 
 4. **How to report bugs?**
 
-    Please open a GitHub issue at [linuxmint/cinnamon-spices-desklets](https://github.com/linuxmint/cinnamon-spices-desklets/issues). Please include the Python 3 version (`python3 -V`) of your system in addition to the details required in the issue template.
-    Reporting the output of the following command also helpful to trace the problem. However, please replace any personal information printed in the console by some random characters.
+    Please open a GitHub issue at [linuxmint/cinnamon-spices-desklets](https://github.com/linuxmint/cinnamon-spices-desklets/issues) if the desklet doesn't work as expected. Any gcalendar specific bugs must be reported at [gcalendar issues](https://github.com/slgobinath/gcalendar/issues).
 
-    ```shell
-    python3 ~/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/py/google_calendar.py
-    ```
+5. **Can I use my own client id and client secrets?**
 
-5. **How to fix the following error while executing: `sudo pip3 install --upgrade python-dateutil google-api-python-client oauth2client`?**
+    You can use your own credentials but use them with `gcalendar --client-id xxx --client-secret yyy` to authorize before using them in the desklet.
 
-    ```shell
-    Traceback (most recent call last):
-    File "/usr/bin/pip3", line 9, in <module>
-        from pip import main
-    ImportError: cannot import name 'main'
-    ```
-
-    It is a problem with your existing pip command. Please reinstall it using the following command:
-
-    ```shell
-    sudo python3 -m pip uninstall pip && sudo apt install python3-pip --reinstall
-    ```
-
-6. **How to change the Google Account to a new one?**
-
-    Enter the following command in a terminal and just click on the desklet.
-
-    ```shell
-    rm ~/.cinnamon/configs/googleCalendar@javahelps.com/calendar.dat
-    ```
-
-7. **I love this desklet and want to appreciate it. How can I express it?**
+6. **I love this desklet/gcalendar and want to appreciate it. How can I express it?**
 
     It is a great pleasure to see someone likes your work. Though I am the [core developer](https://github.com/slgobinath), there are other contributors contributing to this desklet by fixing bugs and translating it into other languages. If you like the desklet, please show it to the world by login to the [CINNAMON spices](https://cinnamon-spices.linuxmint.com/) website and clicking the <kbd>Like it</kbd> button. I also appreciate it, if you can [buy me a coffee](https://paypal.me/slgobinath)!
 
-
 ## Privacy Policy
 
-**None of your data is collected, stored, processed or shared with the developer or any third-parties.** For more information, please check the detailed [privacy policy](https://github.com/linuxmint/cinnamon-spices-desklets/blob/master/googleCalendar%40javahelps.com/privacy_policy.md).
+**None of your data is collected, stored, processed or shared with the developer or any third-parties.** For more information, please check the detailed [privacy policy](https://www.javahelps.com/p/gcalendar.html#privacy-policy).
