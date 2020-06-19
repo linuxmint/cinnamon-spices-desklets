@@ -11,15 +11,41 @@ View your upcoming calendar events on your Cinnamon Desktop. This desklet uses `
 
 1. Install `gcalendar`:
 
+    [gcalendar]((https://github.com/slgobinath/gcalendar)) is a Free and Open Source Software developed by the same developer to read Google Calendar events from the terminal.
+
+    **Install From PPA:**
+
     ```bash
     sudo add-apt-repository ppa:slgobinath/gcalendar
     sudo apt update
     sudo apt install gcalendar
     ```
 
-    For other distributions, please visit the [GitHub Repository](https://github.com/slgobinath/gcalendar).
+    **Disclaimer:** `ppa:slgobinath/gcalendar` is my (the developer of this desklet) own repository that is not monitored by the Linux Mint team, and user installs it at their own discretion.
+
+    I am providing the PPA to make the installation process simple. However, if you have any concerns with adding a PPA, you can also install `gcalendar` from [PyPi](https://pypi.org/project/gcalendar/) or from the source code.
+
+    **Install From PyPi:**
+
+    ```bash
+    sudo apt install python3-pip python3-setuptools python3-dateutil python3-oauth2client python3-googleapi
+    pip3 install gcalendar
+    ```
+
+    **Install From Source:**
+
+    ```bash
+    sudo apt install python3-pip python3-setuptools python3-dateutil python3-oauth2client python3-googleapi git
+    git clone https://github.com/slgobinath/gcalendar.git
+    cd gcalendar
+    pip3 install -e .
+    ```
+
+    For more information, please visit the `gcalendar` [GitHub Repository](https://github.com/slgobinath/gcalendar).
 
 2. Authorize `gcalendar` to read your calendar.
+
+    Just run `gcalendar` from the terminal. It will open Google Calendar OAuth page in your default browser.
 
     ```bash
     gcalendar
@@ -53,13 +79,14 @@ View your upcoming calendar events on your Cinnamon Desktop. This desklet uses `
 
 3. **What does "Unable to retrieve events..." mean?**
 
-    It means the desklet could not retrieve any events and there is a possible error. Please report the bug with the output of `gcalendar` command at [gcalendar issues](https://github.com/slgobinath/gcalendar/issues)
+    It means the desklet could not retrieve any events and there is a possible error. Please report the bug with the output of `gcalendar` command at [gcalendar issues](https://github.com/slgobinath/gcalendar/issues).
 
 4. **How to report bugs?**
 
     Please open a GitHub issue at [linuxmint/cinnamon-spices-desklets](https://github.com/linuxmint/cinnamon-spices-desklets/issues) if the desklet doesn't work as expected. Any gcalendar specific bugs must be reported at [gcalendar issues](https://github.com/slgobinath/gcalendar/issues).
 
 5. **Can I use my own client id and client secrets?**
+
     You can use your own credentials but use them with `gcalendar --client-id xxx --client-secret yyy` to authorize before using them in the desklet.
 
 6. **I love this desklet/gcalendar and want to appreciate it. How can I express it?**
