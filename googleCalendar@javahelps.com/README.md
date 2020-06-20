@@ -11,9 +11,9 @@ View your upcoming calendar events on your Cinnamon Desktop. This desklet uses `
 
 1. Install `gcalendar`:
 
-    [gcalendar]((https://github.com/slgobinath/gcalendar)) is a Free and Open Source Software developed by the same developer to read Google Calendar events from the terminal.
+    [gcalendar](https://github.com/slgobinath/gcalendar) is a Free and Open Source Software developed by the same developer to read Google Calendar events from the terminal.
 
-    **Install From PPA:**
+    **Linux Mint:**
 
     ```bash
     sudo add-apt-repository ppa:slgobinath/gcalendar
@@ -21,9 +21,21 @@ View your upcoming calendar events on your Cinnamon Desktop. This desklet uses `
     sudo apt install gcalendar
     ```
 
-    **Disclaimer:** `ppa:slgobinath/gcalendar` is my (the developer of this desklet) own repository that is not monitored by the Linux Mint team, and user installs it at their own discretion.
+    **Arch:**
 
-    I am providing the PPA to make the installation process simple. However, if you have any concerns with adding a PPA, you can also install `gcalendar` from [PyPi](https://pypi.org/project/gcalendar/) or from the source code.
+    ```bash
+    yay -S gcalendar
+    ```
+
+    OR
+
+    ```bash
+    packer -S gcalendar
+    ```
+
+    **Disclaimer:** [ppa:slgobinath/gcalendar](https://launchpad.net/~slgobinath/+archive/ubuntu/gcalendar) and [AUR gcalendar](https://aur.archlinux.org/packages/gcalendar) are my (the developer of this desklet) own repositories that are not monitored by the Linux Mint team, and user installs it at their own discretion.
+
+    I am providing the PPA and AUR to make the installation process simple. However, if you have any concerns with adding a PPA or installing from AUR, you can also install `gcalendar` from [PyPi](https://pypi.org/project/gcalendar/) or from the source code.
 
     **Install From PyPi:**
 
