@@ -1,0 +1,8 @@
+{
+    "max-instances": "20",
+    "uuid": "system-monitor-graph@rcassani",
+    "name": "System monitor graph",
+    "description": "Creates graphs for system variables.",
+    "version": "1.0",
+    "prevent-decorations": true
+}

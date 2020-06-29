@@ -58,7 +58,7 @@ msgstr "mars"
 msgid "April"
 msgstr "avril"
 
-#: lib/xdate.js:344 lib/xdate.js:345
+#: lib/xdate.js:344
 msgid "May"
 msgstr "mai"
 
@@ -105,6 +105,10 @@ msgstr "mar"
 #: lib/xdate.js:345
 msgid "Apr"
 msgstr "avr"
+
+#: lib/xdate.js:345
+msgid "May"
+msgstr "mai"
 
 #: lib/xdate.js:345
 msgid "Jun"

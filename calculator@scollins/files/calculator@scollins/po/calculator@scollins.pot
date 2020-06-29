@@ -96,6 +96,14 @@ msgstr ""
 msgid "Desktop Calculator"
 msgstr ""
 
+#. calculator@scollins->settings-schema.json->style->options
+msgid "Light"
+msgstr ""
+
+#. calculator@scollins->settings-schema.json->style->options
+msgid "Dark"
+msgstr ""
+
 #. calculator@scollins->settings-schema.json->raiseKey->description
 msgid "Raise to top shorcut key"
 msgstr ""

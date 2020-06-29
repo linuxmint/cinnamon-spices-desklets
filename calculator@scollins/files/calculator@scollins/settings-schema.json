@@ -1,4 +1,14 @@
 {
+    "style": {
+        "type": "combobox",
+        "default" : "dark",
+        "description" : "Style",
+        "options" : {
+            "Light" : "light",
+            "Dark": "dark"
+        }
+    },
+
     "angleMode": {
         "type": "radiogroup",
         "description": "Angle Measure",
@@ -8,13 +18,13 @@
         },
         "default": 0
     },
-    
+
     "rpn": {
         "type": "checkbox",
         "description": "Use Reverse-Polish Notation",
         "default": false
     },
-    
+
     "layout": {
         "type": "radiogroup",
         "description": "Style",
@@ -24,7 +34,7 @@
         },
         "default": 1
     },
-    
+
     "precision": {
         "type": "spinbutton",
         "description": "Precision",
@@ -34,7 +44,7 @@
         "default": 10,
         "units": "digits"
     },
-    
+
     "raiseKey": {
         "type": "keybinding",
         "description": "Raise to top shorcut key",

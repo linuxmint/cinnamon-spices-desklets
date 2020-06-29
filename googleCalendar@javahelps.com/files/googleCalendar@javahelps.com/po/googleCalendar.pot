@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-26 15:38+0200\n"
+"POT-Creation-Date: 2020-06-18 08:52-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,175 +18,205 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. metadata.json->name
-#: desklet.js:108
+#: desklet.js:104
 msgid "Google Calendar"
 msgstr ""
 
-#: desklet.js:111
+#: desklet.js:107
 msgid "Open Google Calendar"
 msgstr ""
 
 #: desklet.js:227
-msgid "No events found..."
+msgid "No events found"
 msgstr ""
 
-#: desklet.js:398
+#: desklet.js:376
+msgid "gcalendar is not authorized"
+msgstr ""
+
+#: desklet.js:378
+msgid "gcalendar token expired"
+msgstr ""
+
+#: desklet.js:383
+msgid "Execute: "
+msgstr ""
+
+#: desklet.js:396
+msgid "Unknown Error"
+msgstr ""
+
+#: desklet.js:399
+msgid "Install gcalendar to use this desklet."
+msgstr ""
+
+#: desklet.js:400
+msgid "Visit: "
+msgstr ""
+
+#: desklet.js:438
 msgid "Unable to retrieve events..."
 msgstr ""
 
-#: lib/utility.js:165 lib/xdate.js:348
+#: lib/utility.js:165 lib/xdate.js:350
 msgid "AM"
 msgstr ""
 
-#: lib/utility.js:165 lib/xdate.js:349
+#: lib/utility.js:165 lib/xdate.js:351
 msgid "PM"
 msgstr ""
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "January"
 msgstr ""
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "February"
 msgstr ""
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "March"
 msgstr ""
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "April"
 msgstr ""
 
-#: lib/xdate.js:344 lib/xdate.js:345
+#: lib/xdate.js:346
+msgctxt "long"
 msgid "May"
 msgstr ""
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "June"
 msgstr ""
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "July"
 msgstr ""
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "August"
 msgstr ""
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "September"
 msgstr ""
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "October"
 msgstr ""
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "November"
 msgstr ""
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "December"
 msgstr ""
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Jan"
 msgstr ""
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Feb"
 msgstr ""
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Mar"
 msgstr ""
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Apr"
 msgstr ""
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
+msgctxt "short"
+msgid "May"
+msgstr ""
+
+#: lib/xdate.js:347
 msgid "Jun"
 msgstr ""
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Jul"
 msgstr ""
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Aug"
 msgstr ""
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Sep"
 msgstr ""
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Oct"
 msgstr ""
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Nov"
 msgstr ""
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Dec"
 msgstr ""
 
-#: lib/xdate.js:346
+#: lib/xdate.js:348
 msgid "Sunday"
 msgstr ""
 
-#: lib/xdate.js:346
+#: lib/xdate.js:348
 msgid "Monday"
 msgstr ""
 
-#: lib/xdate.js:346
+#: lib/xdate.js:348
 msgid "Tuesday"
 msgstr ""
 
-#: lib/xdate.js:346
+#: lib/xdate.js:348
 msgid "Wednesday"
 msgstr ""
 
-#: lib/xdate.js:346
+#: lib/xdate.js:348
 msgid "Thursday"
 msgstr ""
 
-#: lib/xdate.js:346
+#: lib/xdate.js:348
 msgid "Friday"
 msgstr ""
 
-#: lib/xdate.js:346
+#: lib/xdate.js:348
 msgid "Saturday"
 msgstr ""
 
-#: lib/xdate.js:347
+#: lib/xdate.js:349
 msgid "Sun"
 msgstr ""
 
-#: lib/xdate.js:347
+#: lib/xdate.js:349
 msgid "Mon"
 msgstr ""
 
-#: lib/xdate.js:347
+#: lib/xdate.js:349
 msgid "Tue"
 msgstr ""
 
-#: lib/xdate.js:347
+#: lib/xdate.js:349
 msgid "Wed"
 msgstr ""
 
-#: lib/xdate.js:347
+#: lib/xdate.js:349
 msgid "Thu"
 msgstr ""
 
-#: lib/xdate.js:347
+#: lib/xdate.js:349
 msgid "Fri"
 msgstr ""
 
-#: lib/xdate.js:347
+#: lib/xdate.js:349
 msgid "Sat"
 msgstr ""
 
@@ -204,7 +234,8 @@ msgstr ""
 
 #. settings-schema.json->clientId->tooltip
 msgid ""
-"Enter your Google calendar project client id. Leave it empty to use the default client id."
+"Enter your Google calendar project client id. Leave it empty to use the "
+"default client id."
 msgstr ""
 
 #. settings-schema.json->clientSecret->description
@@ -213,11 +244,20 @@ msgstr ""
 
 #. settings-schema.json->clientSecret->tooltip
 msgid ""
-"Enter your Google calendar project client secret. Leave it empty to use the default client secret."
+"Enter your Google calendar project client secret. Leave it empty to use the "
+"default client secret."
 msgstr ""
 
 #. settings-schema.json->display1->description
 msgid "Calendar configuration"
+msgstr ""
+
+#. settings-schema.json->gcalendarAccount->description
+msgid "gcalendar Account ID"
+msgstr ""
+
+#. settings-schema.json->gcalendarAccount->tooltip
+msgid "Enter gcalendar --account id"
 msgstr ""
 
 #. settings-schema.json->allNamesButton->description
@@ -226,7 +266,8 @@ msgstr ""
 
 #. settings-schema.json->allNamesButton->tooltip
 msgid ""
-"Click to fill in the list bellow with the names of all your calendars. It may take a little while."
+"Click to fill in the list bellow with the names of all your calendars. It "
+"may take a little while."
 msgstr ""
 
 #. settings-schema.json->calendarNames->description

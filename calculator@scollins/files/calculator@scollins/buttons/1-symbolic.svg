@@ -13,8 +13,8 @@
    height="16"
    width="16"
    version="1.1"
-   inkscape:version="0.48.4 r9939"
-   sodipodi:docname="number-symbolic.svg">
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="1-symbolic.svg">
   <defs
      id="defs10" />
   <sodipodi:namedview
@@ -26,15 +26,15 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1026"
-     inkscape:window-height="622"
+     inkscape:window-width="1409"
+     inkscape:window-height="965"
      id="namedview8"
      showgrid="false"
      inkscape:zoom="14.75"
-     inkscape:cx="-6.7477319"
-     inkscape:cy="5.1256096"
-     inkscape:window-x="339"
-     inkscape:window-y="26"
+     inkscape:cx="3.0167666"
+     inkscape:cy="8.3630543"
+     inkscape:window-x="1151"
+     inkscape:window-y="397"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg7384" />
   <metadata
@@ -52,12 +52,12 @@
   <title
      id="title9167">Gnome Symbolic Icon Theme</title>
   <g
-     style="font-size:13.66111565px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#bebebe;fill-opacity:1;stroke:none;font-family:Nimbus Roman No9 L;-inkscape-font-specification:Nimbus Roman No9 L"
-     id="text3001"
-     transform="matrix(1.0828471,0,0,1.0828471,-0.02754279,-1.2441346)">
+     aria-label="1"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;line-height:1.25;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#bebebe;fill-opacity:1;stroke:none;stroke-width:0.45808831"
+     id="text816">
     <path
-       d="m 7.9393198,3.9194218 -2.4590008,1.2431615 0,0.1912556 C 5.6442522,5.2855334 5.7945247,5.2308889 5.8491691,5.2035667 6.0950689,5.107939 6.3273083,5.0532944 6.4639193,5.0532944 c 0.2868831,0 0.4098335,0.2049172 0.4098335,0.6420724 l 0,6.1884852 c 0,0.450817 -0.1092892,0.765023 -0.3278668,0.887973 -0.2049165,0.12295 -0.3961729,0.163933 -0.9699392,0.177594 l 0,0.204917 3.7704679,0 0,-0.204917 c -1.0792271,-0.01366 -1.297806,-0.150273 -1.297806,-0.806006 l 0,-8.196669 -0.1092889,-0.027322"
-       id="path2985"
-       inkscape:connector-curvature="0" />
+       d="M 10.482667,14.664 H 8.8773333 V 5.3493332 q 0,-0.8026666 0.018667,-1.2879999 0.018667,-0.4853334 0.056,-1.008 -0.2986666,0.2986666 -0.56,0.504 Q 8.1493334,3.7626666 7.7946667,4.0799999 L 6.3760001,5.2373332 5.5173335,4.1359999 9.12,1.336 h 1.362667 z"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#bebebe;fill-opacity:1;stroke-width:0.45808831"
+       id="path824" />
   </g>
 </svg>

@@ -1,9 +1,9 @@
 {
-    "description": "Displays the current price of more than 500+ coins and their daily percent changes. For more updates and news check out the website: http://cryptocurrencyticker.info",
+    "description": "Cryptocurrency Ticker (Desklet) for Cinnamon Desktop that displays the current price of more than 600+ cryptocurrencies, and their daily percent changes. The official website for news and updates about this Cryptocurrency Ticker: http://cryptocurrencyticker.info",
     "uuid": "cryptocoins@pbojan",
-    "name": "Crypto Coins Ticker",
+    "name": "Cryptocurrency Ticker",
     "website": "http://cryptocurrencyticker.info",
     "prevent-decorations": true,
     "max-instances": 10,
-    "version": 1.2
+    "version": 1.4
 }

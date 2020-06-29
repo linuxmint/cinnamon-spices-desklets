@@ -3,5 +3,5 @@
     "max-instances": "10",
     "description": "A scaleable analog clock desklet with smooth hands and free choice of images.",
     "name": "Analog Chronometer",
-    "version": "1.4"
+    "version": "1.5"
 }

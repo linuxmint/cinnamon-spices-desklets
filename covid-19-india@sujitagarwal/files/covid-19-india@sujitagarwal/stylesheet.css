@@ -1,0 +1,81 @@
+.CovidMainContainer {
+	padding-top: 10px;
+}
+
+.CovidTime {	
+	width: 200px;
+	text-align: center;
+	font-size: 10px;
+	padding: 5px 10px;
+	margin-bottom: 3px;
+}
+
+.CovidHeading {	
+	width: 200px;
+	text-align: center;
+}
+
+.CovidTitle {	
+	width: 86px;
+	text-align: center;
+	float: left;
+	text-transform: lowercase;
+	color: #FFF;
+	padding: 5px 10px;
+	background: #444444;
+	margin-bottom: 3px;
+	margin-right: 3px;
+	border-radius: 15px;
+}
+
+.CovidValue1 {
+	width: 86px;
+	text-align: center;
+	padding: 5px 10px;
+	float: left;
+	text-transform: lowercase;
+	color: #FFF;
+	background: #002366;
+	margin-bottom: 3px;
+	border-radius: 15px;
+}
+
+
+.CovidValue2{
+	width: 86px;
+	text-align: center;
+	padding: 5px 10px;
+	float: left;
+	text-transform: lowercase;
+	color: #FFF;
+	background: #f4bc1c;
+	margin-bottom: 3px;
+	border-radius: 15px;
+}
+
+
+.CovidValue3 {
+	width: 86px;
+	text-align: center;
+	padding: 5px 10px;
+	float: left;
+	text-transform: lowercase;
+	color: #FFF;
+	background: #0e6b0e;
+	margin-bottom: 3px;
+	border-radius: 15px;
+}
+
+
+.CovidValue4 {
+	width: 86px;
+	text-align: center;
+	padding: 5px 10px;
+	float: left;
+	text-transform: lowercase;
+	color: #FFF;
+	background: #C40233;
+	margin-bottom: 3px;
+	border-radius: 15px;
+}
+
