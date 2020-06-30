@@ -72,9 +72,28 @@
   "quoteSymbols": {
     "type": "textview",
     "height": 150,
-    "default": "MMM\nAXP\nAAPL\nBA\nCAT\nCVX\nCSCO\nKO\nDWDP\nXOM\nGE\nGS\nHD\nINTC\nIBM\nJNJ\nJPM\nMCD\nMRK\nMSFT\nNKE\nPFE\nPG\nTRV\nUTX\nUNH\nVZ\nV\nWMT\nDIS",
+    "default": "MMM\nAXP\nAAPL\nBA\nCAT\nCVX\nCSCO\nKO\nDOW\nDWDP\nXOM\nGS\nHD\nINTC\nIBM\nJNJ\nJPM\nMCD\nMRK\nMSFT\nNKE\nPFE\nPG\nRTX\nTRV\nUNH\nVZ\nV\nWBA\nWMT\nDIS",
     "description": "Quote symbols",
     "tooltip": "List the quote symbols here, separated with line-breaks."
+  },
+  "sortCriteria": {
+    "type": "radiogroup",
+    "default": "none",
+    "options": {
+      "given order": "none",
+      "percent change": "regularMarketChangePercent",
+      "name": "shortName",
+      "symbol": "symbol"
+      
+    },
+    "description": "Sort list by",
+    "tooltip": "Sort the quote list."
+  },
+  "sortDirection": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Sort in ascending order",
+    "tooltip": "Check to sort quotes in ascending order, uncheck to sort in descending order."
   },
   "head3": {
     "type": "header",
