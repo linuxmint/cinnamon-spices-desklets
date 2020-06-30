@@ -7,7 +7,12 @@ This repository contains a [desklet for the Cinnamon desktop environment](https:
 
 This desklet is based on the [desklet from fthuin](https://github.com/fthuin/yahoofinance-cinnamon-desklet). The data retrieval part is adopted to an alternative service url, after the Yahoo Finance community table got retired in May 2017.
 
-Tested with Linux Mint 17.0 (Cinnamon 2.2), Debian 9 (Cinnamon 3.2), Linux Mint 18.2 (Cinnamon 3.4), Linux Mint 18.3 (Cinnamon 3.6), and Manjaro (Cinnamon 3.8).
+Tested with
+
+- Linux Mint Cinnamon 17 up to 20
+- Debian 9 with Cinnamon 3.2
+- Manjaro with Cinnamon 3.8
+
 
 ## Installation
 Either follow the installation instructions on [Cinnamon spices](https://cinnamon-spices.linuxmint.com/desklets), or manually download the folder **yfquotes@thegli** (below "files") and copy the folder and its content to *~/.local/share/cinnamon/desklets/*.
@@ -16,6 +21,14 @@ Either follow the installation instructions on [Cinnamon spices](https://cinnamo
 Check out the desklet configuration settings, and choose the data refresh period, the list of quotes to show (see also [Known Limitations](#known-limitations)), and quote details to display. The default list contains the Dow 30 companies.
 
 ## Release Notes
+
+### 0.3.0 - June 29, 2020
+Features:
+* add setting to sort quotes list
+* update DOW 30 component symbols
+
+Bugfixes:
+* auto-retry in case of connection problem (e.g. TLS handshake)
 
 ### 0.2.0 - May 23, 2018
 Features:
@@ -45,9 +58,10 @@ Features:
 Bugfixes:
 * change data retrieval to alternative url from Yahoo Finance
 
-##Known Limitations
+## Known Limitations
+
 * The quotes list might not be editable using the desklet's configuration dialog (encountered in Cinnamon 3.6 and earlier 3.x versions). As a workaround, export the configuration using the standard desklet settings menu to a (json) file, then edit the file with your favorite text editor, and finally import the configuration file again.
- 
+
 ## Credits
 Based on the desklet source code from [fthuin](https://github.com/fthuin/yahoofinance-cinnamon-desklet).
 
