@@ -117,7 +117,7 @@ GoogleCalendarDesklet.prototype = {
     /**
      * Called when user updates settings related to formatting.
      */
-    onDeskletFormatChange() {
+    onDeskletFormatChanged() {
         if (this.eventsList.length > 0) {
             this.resetWidget();
             for (let event of this.eventsList) {
