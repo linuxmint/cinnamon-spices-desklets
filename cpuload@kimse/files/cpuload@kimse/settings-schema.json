@@ -1,72 +1,17 @@
 {
     "head0": {
         "type": "header",
-        "description": "Settings for cpuload@kimse"
+        "description": "Settings for the CPU Load desklet"
     },
-
     "head1": {
         "type": "header",
-        "description": "Visual"
-    },
-    "design": {
-        "type": "combobox",
-        "default": "classic",
-        "description": "Design",
-        "options" : {
-            "Thick" : "thick",
-            "Thin": "thin"
-        }
-    },
-    "draw-unused": {
-        "type": "checkbox",
-        "description": "Draw unused resources (gray)",
-        "default": true
-    },
-    "circle-color-type": {
-        "type": "combobox",
-        "default": "random",
-        "description": "Circle color",
-        "options" : {
-            "Random" : "random",
-            "Static": "static",
-            "Colorize by CPU usage (green-red)": "dynamic"
-        }
-    },
-    "circle-color": {
-        "type": "colorchooser",
-        "default": "rgba(83,199,160,1.0)",
-        "description": "Static circle color"
-    },
-    "hide-decorations": {
-        "type": "checkbox",
-        "description": "Hide decorations",
-        "default": false
-    },
-    "scale-size": {
-        "type": "spinbutton",
-        "default": 1,
-        "min": 0.5,
-        "max": 10,
-        "step": 0.2,
-        "units": "scale factor",
-        "description": "Desklet size",
-        "tooltip": "Increase or decrease the size of this desklet using this scale factor."
-    },
-    "column-count": {
-        "type": "spinbutton",
-        "default": 2,
-        "step": 1,
-        "min": 1,
-        "max": 16,
-        "units": "columns",
-        "description": "Column count",
-        "tooltip": "Increase or decrease column count."
+        "description": "General"
     },
     "per-core": {
         "type": "checkbox",
-        "description": "Show usage for each core",
+        "description": "Show all CPU cores",
         "default": true,
-        "tooltip": "Shows separate indicator for every CPU core."
+        "tooltip": "Display utilization of each CPU core rather than total CPU utilization."
     },
     "refresh-interval": {
         "type": "spinbutton",
@@ -77,5 +22,71 @@
         "units": "seconds",
         "description": "Refresh interval",
         "tooltip": "Increase or decrease refresh interval in seconds."
+    },
+    "head2": {
+        "type": "header",
+        "description": "Layout"
+    },
+    "design": {
+        "type": "combobox",
+        "default": "thick",
+        "description": "Design",
+        "options" : {
+            "Thick" : "thick",
+            "Thin": "thin"
+        }
+    },
+    "scale-size": {
+        "type": "spinbutton",
+        "default": 1,
+        "min": 0.4,
+        "max": 10,
+        "step": 0.2,
+        "units": "scale factor",
+        "description": "Desklet size",
+        "tooltip": "Increase or decrease the size of the desklet."
+    },
+    "number-of-columns": {
+        "type": "spinbutton",
+        "default": 2,
+        "step": 1,
+        "min": 1,
+        "max": 16,
+        "units": "columns",
+        "description": "Number of columns",
+        "tooltip": "Increase or decrease number of columns."
+    },
+    "head3": {
+        "type": "header",
+        "description": "Colors"
+    },
+    "color-theme": {
+        "type": "combobox",
+        "default": "random",
+        "description": "Color theme",
+        "options" : {
+            "Random" : "random",
+            "Static": "static",
+            "Dynamic": "dynamic"
+        }
+    },
+    "static-theme-color": {
+        "type": "colorchooser",
+        "default": "rgba(83,199,160,1.0)",
+        "description": "Static theme color"
+    },
+    "head4": {
+        "type": "header",
+        "description": "Background"
+    },
+    "show-background": {
+        "type": "checkbox",
+        "description": "Show background",
+        "default": true
+    },
+    "hide-decorations": {
+        "type": "checkbox",
+        "description": "Hide decorations",
+        "default": false
     }
 }

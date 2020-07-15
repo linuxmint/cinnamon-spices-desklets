@@ -24,10 +24,10 @@ msgstr ""
 msgid "CPU usage"
 msgstr ""
 
-msgid "Settings for cpuload@kimse"
+msgid "Settings for the CPU Load desklet"
 msgstr ""
 
-msgid "Visual"
+msgid "Layout"
 msgstr ""
 
 msgid "Design"
@@ -39,43 +39,22 @@ msgstr ""
 msgid "Thick"
 msgstr ""
 
-msgid "Draw unused resources (gray)"
-msgstr ""
-
-msgid "Circle color"
-msgstr ""
-
-msgid "Random"
-msgstr ""
-
-msgid "Static"
-msgstr ""
-
-msgid "Indicate CPU usage (Green-Red)"
-msgstr ""
-
-msgid "Static circle color"
-msgstr ""
-
-msgid "Hide decorations"
-msgstr ""
-
 msgid "Desklet size"
 msgstr ""
 
-msgid "Increase or decrease the size of this desklet using this scale factor."
+msgid "Increase or decrease the size of the desklet."
 msgstr ""
 
-msgid "Column count"
+msgid "Number of columns"
 msgstr ""
 
-msgid "Increase or decrease column count."
+msgid "Increase or decrease number of columns."
 msgstr ""
 
-msgid "Show usage for each core"
+msgid "Show all CPU cores"
 msgstr ""
 
-msgid "Shows separate indicator for every CPU core."
+msgid "Display utilization of each CPU core rather than total CPU utilization."
 msgstr ""
 
 msgid "Refresh interval"
@@ -88,4 +67,31 @@ msgid "scale factor"
 msgstr ""
 
 msgid "columns"
+msgstr ""
+
+msgid "Colors"
+msgstr ""
+
+msgid "Color theme"
+msgstr ""
+
+msgid "Random"
+msgstr ""
+
+msgid "Static"
+msgstr ""
+
+msgid "Dynamic"
+msgstr ""
+
+msgid "Static theme color"
+msgstr ""
+
+msgid "Background"
+msgstr ""
+
+msgid "Show background"
+msgstr ""
+
+msgid "Hide decorations"
 msgstr ""

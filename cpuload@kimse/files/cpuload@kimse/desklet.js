@@ -1,323 +1,604 @@
-/*global imports*/
-const Desklet = imports.ui.desklet;
-const St = imports.gi.St;
-const Gio = imports.gi.Gio;
+
 const Mainloop = imports.mainloop;
-const Cinnamon = imports.gi.Cinnamon;
 const Lang = imports.lang;
-const Main = imports.ui.main;
-const Clutter = imports.gi.Clutter;
-const Cairo = imports.cairo;
+const Desklet = imports.ui.desklet;
 const Settings = imports.ui.settings;
+const Cairo = imports.cairo;
+const Gio = imports.gi.Gio;
+const Clutter = imports.gi.Clutter;
+const St = imports.gi.St;
+const GLib = imports.gi.GLib;
 
-function CpuusageDesklet(metadata, deskletId) {
-    this._init(metadata, deskletId);
-}
-
-CpuusageDesklet.prototype = {
+CpuLoadDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
 
+    /**
+     * Initializes the desklet.
+     * 
+     * @param {Object}  metadata 
+     * @param {string}  deskletId 
+     * 
+     * @returns {Object}
+     */
     _init(metadata, deskletId) {
         Desklet.Desklet.prototype._init.call(this, metadata, deskletId);
 
+        // Settings
         this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, deskletId);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hide_decorations", this.on_setting_changed);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scale_size", this.on_setting_changed);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "column-count", "column_count", this.on_setting_changed);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "per-core", "per_core", this.on_setting_changed);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refresh_interval", this.on_setting_changed);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "design", "design", this.on_setting_changed);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "draw-unused", "draw_unused", this.on_setting_changed);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "circle-color-type", "circle_color_type", this.on_setting_changed);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "circle-color", "circle_color", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, 'per-core', 'per_core', this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, 'scale-size', 'scale_size', this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, 'number-of-columns', 'number_of_columns', this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, 'refresh-interval', 'refresh_interval', this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, 'design', 'design', this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, 'color-theme', 'color_theme', this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, 'static-theme-color', 'static_theme_color', this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, 'show-background', 'show_background', this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, 'hide-decorations', 'hide_decorations', this.on_setting_changed);
 
-        this.active = [];
-        this.total = [];
+        // Properties
+        this.cpus_utilization = [];
+        this.cpus_active_time = [];
+        this.cpus_total_time = [];
         this.colors = [];
+        this.cpu_container_outer_base_width = 170;
+        this.cpu_container_inner_base_width = 150;
+        this.large_font_size = 20;
+        this.normal_font_size = 13;
+        this.has_previous_sample = false;
 
-        this.setupUI();
-
+        // Preload CPU activity data and setup the UI.
+        this.refreshCpuActivity(this.setupUI);
     },
 
+    /**
+     * Setup the UI.
+     */
     setupUI() {
-
-        this.minDeskletWidth = 170;
-        this.largeFontSize = 20;
-        this.normalFontSize = 13;
 
         // Create a main window
         this.window = new Clutter.Actor();
         this.setContent(this.window);
 
-        // Refresh the main window
+        // Refresh the desklet window
         this.refreshScalingSizes();
-        this.refreshDecoration();
-        this.refresh();
+        this.toggleDecoration();
+
+        // Start the main desklet loop
+        this.main();
     },
 
-    refresh() {
-        // Remove previous drawings
-        this.window.remove_all_children();
+    /**
+     * Toggle desklet decoration.
+     */
+    toggleDecoration() {
 
-        // Redraw Cpu usage
-        this.redrawCpuUsages();
-
-        // Refresh again in refresh_interval seconds
-        this.timeout = Mainloop.timeout_add_seconds(this.refresh_interval, Lang.bind(this, this.refresh));
-    },
-
-    redrawCpuUsages() {
-
-        let xPosition = 0;
-        let yPosition = 0;
-        let utilization = this.getCpuUtilization();
-
-        utilization.forEach(function (usage, index) {
-
-            // Draw circle canvas
-            let circleCanvas = this.drawCircleCanvas(usage, 100, this.getCpuColor(index, usage));
-
-            // Create CPU usage container
-            let cpuCoreUsageContainer = new Clutter.Actor();
-            cpuCoreUsageContainer.set_content(circleCanvas);
-            cpuCoreUsageContainer.set_size(this.circleContainerSize, this.circleContainerSize);
-            cpuCoreUsageContainer.set_position(xPosition, yPosition);
-
-            // Create CPU usage label
-            let cpuCoreUsageStr = usage + "%";
-            let cpuCoreUsageLabelPositionX = xPosition;
-            let cpuCoreUsageLabelPositionY = yPosition + (this.circleContainerSize / 2) - (this.cpuCoreUsageFontSize * (1.35*global.ui_scale));
-            let cpuCoreUsageLabel = new St.Label();
-            cpuCoreUsageLabel.set_position(cpuCoreUsageLabelPositionX, cpuCoreUsageLabelPositionY);
-            cpuCoreUsageLabel.set_text(cpuCoreUsageStr);
-            cpuCoreUsageLabel.style = "text-align:center;font-size: " + this.cpuCoreUsageFontSize + "px;font-family: 'Sawasdee', sans-serif;font-weight: 500;width:" + (this.circleContainerSize/global.ui_scale) + "px";
-
-            // Create CPU core number label
-            let cpuCoreNumberStr = "CPU usage";
-            if (this.per_core) {
-                cpuCoreNumberStr = "Core " + index;
-            }
-            let cpuCoreNumberPositionX = xPosition;
-            let cpuCoreNumberPositionY = yPosition + (this.circleContainerSize / 2) + (this.cpuCoreNumberFontSize/global.ui_scale) / 4;
-            let cpuCoreNumberLabel = new St.Label();
-            cpuCoreNumberLabel.set_position(cpuCoreNumberPositionX, cpuCoreNumberPositionY);
-            cpuCoreNumberLabel.set_text(cpuCoreNumberStr);
-            cpuCoreNumberLabel.style = "text-align:center;font-size: " + this.cpuCoreNumberFontSize + "px;font-family: 'Sawasdee', sans-serif;width:" + (this.circleContainerSize/global.ui_scale) + "px";
-
-            // Add to main window
-            this.window.add_actor(cpuCoreUsageContainer);
-            this.window.add_actor(cpuCoreUsageLabel);
-            this.window.add_actor(cpuCoreNumberLabel);
-
-            // Calculate position of the next circle
-            xPosition = xPosition + this.circleContainerMarginSize;
-
-            if (xPosition >= this.maxDeskletWidth) {
-                yPosition = yPosition + this.circleContainerMarginSize;
-                xPosition = 0;
-            }
-
-        }, this);
-
-    },
-
-    refreshDecoration() {
-
-        // Enable/disable decorations
-        this.metadata["prevent-decorations"] = this.hide_decorations;
+        // Toggle decorations
+        this.metadata['prevent-decorations'] = this.hide_decorations;
 
         this._updateDecoration();
     },
 
-    drawCircleCanvas(use, total, color) {
+    /**
+     * Refresh desklet scaling.
+     */
+    refreshScalingSizes() {
+        // Calculate new sizes based on scale factor
+        this.cpu_container_size = this.cpu_container_inner_base_width * this.scale_size * global.ui_scale;
+        this.cpu_container_margin_size = this.cpu_container_outer_base_width * this.scale_size * global.ui_scale;
+        this.cpu_load_font_size = Math.round(this.large_font_size * this.scale_size);
+        this.cpu_name_font_size = Math.round(this.normal_font_size * this.scale_size);
+        this.max_desklet_width = (this.cpu_container_outer_base_width * this.number_of_columns) * this.scale_size * global.ui_scale;
+    },
 
-        let a = use;
-        let b = total;
+    /**
+     * Main desklet loop.
+     */
+    main() {
+        
+        // Refresh CPU activity
+        this.refreshCpuActivity(this.drawCpuActivity);
 
-        let design = this.design;
-        let draw_unused = this.draw_unused;
+        this.timeout = Mainloop.timeout_add_seconds(this.refresh_interval, Lang.bind(this, this.main));
+    },
+
+    /**
+     * Refresh CPU activity.
+     * 
+     * @param {Object=} callback 
+     */
+    refreshCpuActivity(callback = null) {
+        
+        let desklet = this;
+
+        // Get cpu activity sample
+        this.getCpuActivitySample(this.per_core).then(activity => {
+            // Update CPU activity data
+            desklet.updateCpuActivity(activity);
+
+            if(callback !== null) {
+                callback = callback.bind(desklet);
+                callback();
+            }
+        });
+    },
+
+    /**
+     * Draw CPU activity meter(s).
+     */
+    drawCpuActivity() {
+
+        let pos_x = 0;
+        let pos_y = 0;
+
+        // Remove previous actors
+        this.window.remove_all_children();
+
+        // Create actors for each CPU core
+        for(let core in this.cpus_utilization) {
+
+            // Create CPU meter
+            let container = this.makeCpuContainer(
+                    this.makeCpuCoreCanvas(core), 
+                    pos_x,
+                    pos_y
+                );
+
+            // Create CPU core label
+            let cpu_load = this.makeCpuLoadLabel(core, pos_x, pos_y);           
+            let cpu_name = this.makeCpuNameLabel(core, pos_x, pos_y);
+
+            // Calculate position of the next CPU meter
+            pos_x = pos_x + this.cpu_container_margin_size;
+
+            if (pos_x >= this.max_desklet_width) {
+                pos_y = pos_y + this.cpu_container_margin_size;
+                pos_x = 0;
+            }
+
+            // Add to main window
+            this.window.add_actor(container);
+            this.window.add_actor(cpu_load);
+            this.window.add_actor(cpu_name);
+        }
+    },
+
+    /**
+     * Refresh CPU activity.
+     * 
+     * @param {Clutter.Canvas}  canvas
+     * @param {number}          pos_x
+     * @param {number}          pos_y
+     * 
+     * @returns {Clutter.Actor}
+     */
+    makeCpuContainer(canvas, pos_x, pos_y){
+
+        let actor = new Clutter.Actor();
+
+        actor.set_content(canvas);
+        actor.set_size(this.cpu_container_size, this.cpu_container_size);
+        actor.set_position(pos_x, pos_y);
+
+        return actor;
+    },
+
+    /**
+     * Make a CPU load label.
+     * 
+     * @param {number}  cpu_active_time
+     * @param {number}  pos_x
+     * @param {number}  pos_y
+     * 
+     * @returns {St.Label}
+     */
+    makeCpuLoadLabel(core, pos_x, pos_y){
+
+        let label = new St.Label();
+        let cpu_active_time = this.cpus_utilization[core];
+
+        label.set_position(pos_x, pos_y + (this.cpu_container_size / 2) - (this.cpu_load_font_size * (1.35 * global.ui_scale)));
+        label.set_text(cpu_active_time + '%');
+
+        label.style = this.getTextLabelStyle(this.cpu_load_font_size);
+
+        return label;
+    },
+
+    /**
+     * Make a CPU name label.
+     * 
+     * @param {number}  core
+     * @param {number}  pos_x
+     * @param {number}  pos_y
+     * 
+     * @returns {St.Label}
+     */
+    makeCpuNameLabel(core, pos_x, pos_y)
+    {
+        let label = new St.Label();
+        
+        label.set_position(pos_x, pos_y + (this.cpu_container_size / 2) + (this.cpu_name_font_size / global.ui_scale) / 4);
+        label.set_text(this.per_core ? "Core " + core : "CPU usage");
+
+        label.style = this.getTextLabelStyle(this.cpu_name_font_size);
+
+        return label;
+    },
+
+    /**
+     * Get text label style.
+     * 
+     * @param {number}  font_size
+     * 
+     * @returns {string}
+     */
+    getTextLabelStyle(font_size){
+        return "text-align:center;font-size: " + font_size + "px;" + 
+               "font-family: 'Sawasdee', sans-serif;" + 
+               "width:" + (this.cpu_container_size / global.ui_scale) + "px";
+    },
+    
+    /**
+     * Check if a previous CPU activity data sample has been collected.
+     * 
+     * @param {number}  num_cpus
+     * 
+     * @returns {boolean}
+     */
+    hasPreviousSample(num_cpus){
+
+        // This is only checked once after (re)initialization.
+        // we use a flag after the first check rather than counting
+        // the length of those arrays over and over again
+        if(!this.has_previous_sample){
+            return this.has_previous_sample = this.cpus_active_time.length === num_cpus &&
+                                              this.cpus_total_time.length === num_cpus;
+        }
+
+        return true;
+    },
+
+    /**
+     * Make CPU meter canvas.
+     * 
+     * @param {number}  core
+     * 
+     * @returns {Clutter.Canvas}
+     */
+    makeCpuCoreCanvas(core) {
 
         let canvas = new Clutter.Canvas();
-        canvas.set_size(this.circleContainerSize, this.circleContainerSize);
+        let desklet = this;
+        let cpu_active_time = this.cpus_utilization[core];
+        let color = this.getCpuColor(core);
 
-        canvas.connect("draw", function(canvas, cr, width, height) {
+        canvas.set_size(this.cpu_container_size, this.cpu_container_size);
+        canvas.connect('draw', function(canvas, cr, width, height) {
 
             let offset = Math.PI * 0.5;
             let start = 0 - offset;
-            let end = ((a * (Math.PI * 2)) / b) - offset;
+            let end = ((cpu_active_time * (Math.PI * 2)) / 100) - offset;
 
-            cr.save();
-            cr.setOperator(Cairo.Operator.CLEAR);
-            cr.paint();
-            cr.restore();
-            cr.setOperator(Cairo.Operator.OVER);
-            cr.scale(width, height);
-            cr.translate(0.5, 0.5);
-            if(design === "thin") {
-                if(draw_unused) {
-                    cr.setSourceRGBA(1, 1, 1, 0.2);
-                    cr.setLineWidth(0.04);
-                    cr.arc(0, 0, 0.4, 0, Math.PI*2);
-                    cr.stroke();
-                }
-                /////
-                cr.setLineCap(Cairo.LineCap.ROUND);
-                cr.setSourceRGBA(color.r, color.g, color.b, color.a);
-                cr.setLineWidth(0.04);
-                cr.arc(0, 0, 0.4, start, end);
-                cr.stroke();
-            } else { // thick design
-                if(draw_unused) {
-                    cr.setSourceRGBA(1, 1, 1, 0.2);
-                    cr.setLineWidth(0.20);
-                    cr.arc(0, 0, 0.4, 0, Math.PI*2);
-                    cr.stroke();
-                }
-                /////
-                cr.setSourceRGBA(color.r, color.g, color.b, color.a);
-                cr.setLineWidth(0.20);
-                cr.arc(0, 0, 0.4, start, end);
-                cr.stroke();
-                /////
-                cr.setSourceRGBA(0, 0, 0, 0.1446);
-                cr.setLineWidth(0.05);
-                cr.arc(0, 0, 0.325, start, end);
-                cr.stroke();
+            desklet.drawCircleShape(cr, width, height);
+
+            if(desklet.design === 'thin') {
+                desklet.drawThinCircleShape(cr, start, end, color);
+            } else {                
+                desklet.drawThickCircleShape(cr, start, end, color);
             }
-
-            return true;
         });
-
         canvas.invalidate();
 
         return canvas;
     },
 
-    generateCircleColor() {
+    /**
+     * Draw CPU meter shape model.
+     * 
+     * @param {Cario}   cr
+     * @param {number}  width
+     * @param {number}  height
+     */
+    drawCircleShape(cr, width, height) {
+        cr.save();
+        cr.setOperator(Cairo.Operator.CLEAR);
+        cr.paint();
+        cr.restore();
+        cr.setOperator(Cairo.Operator.OVER);
+        cr.scale(width, height);
+        cr.translate(0.5, 0.5);
+    },
+
+    /**
+     * Draw thin CPU meter design.
+     * 
+     * @param {Cario}   cr
+     * @param {number}  start
+     * @param {number}  end
+     * @param {Object}  color
+     */
+    drawThinCircleShape(cr, start, end, color){
+
+        if(this.show_background) {
+            cr.setSourceRGBA(1, 1, 1, 0.2);
+            cr.setLineWidth(0.04);
+            cr.arc(0, 0, 0.4, 0, Math.PI * 2);
+            cr.stroke();
+        }
+
+        cr.setLineCap(Cairo.LineCap.ROUND);
+        cr.setSourceRGBA(color.r, color.g, color.b, color.a);
+        cr.setLineWidth(0.04);
+        cr.arc(0, 0, 0.4, start, end);
+        cr.stroke();
+    },
+
+    /**
+     * Draw thick CPU meter design.
+     * 
+     * @param {Cario}   cr
+     * @param {number}  start
+     * @param {number}  end
+     * @param {Object}  color
+     */
+    drawThickCircleShape(cr, start, end, color){
+        
+        if(this.show_background) {
+            cr.setSourceRGBA(1, 1, 1, 0.2);
+            cr.setLineWidth(0.20);
+            cr.arc(0, 0, 0.4, 0, Math.PI * 2);
+            cr.stroke();
+        }
+
+        cr.setSourceRGBA(color.r, color.g, color.b, color.a);
+        cr.setLineWidth(0.20);
+        cr.arc(0, 0, 0.4, start, end);
+        cr.stroke();
+        cr.setSourceRGBA(0, 0, 0, 0.1446);
+        cr.setLineWidth(0.05);
+        cr.arc(0, 0, 0.325, start, end);
+        cr.stroke();
+    },
+    
+    /**
+     * Get CPU meter color based on user-defined color theme.
+     * 
+     * @param {number}  core
+     * 
+     * @return {Object}
+     */
+    getCpuColor(core) {
+
+        switch(this.color_theme)
+        {
+            case 'dynamic':
+                // Make a new dynamic rgb color based on the CPU core utilization.
+                return this.getDynamicRgbColor(core);
+            case 'static':
+                // Get the user defined static rgb color singleton instance for the core.
+                if (typeof this.colors[core] === 'undefined') {
+                    this.colors[core] = this.getStaticRgbColor();
+                }
+
+                return this.colors[core];
+            case 'random':
+            default:
+                // Get the user defined static rgb color singleton instance for the core.
+                if (typeof this.colors[core] === 'undefined') {
+                    this.colors[core] = this.makeRandomRgbColor();
+                }
+
+                return this.colors[core];
+        }
+
+    },
+
+    /**
+     * Get a dynamic RGB color based on the given CPU core utilization.
+     * 
+     * @param {number} core 
+     * 
+     * @returns {Object}
+     */
+    getDynamicRgbColor(core) {
+        let green = {
+            r: 70.0/255,
+            g: 200.0/255,
+            b: 150.0/255,
+            a: 1
+        };
+        let red = {
+            r: 180.0/255,
+            g: 10.0/255,
+            b: 10.0/255,
+            a: 1
+        };
+        
+        return {
+            r: green.r + (this.cpus_utilization[core] / 100) * (red.r - green.r),
+            g: green.g + (this.cpus_utilization[core] / 100) * (red.g - green.g),
+            b: green.b + (this.cpus_utilization[core] / 100) * (red.b - green.b),
+            a: 1
+        };
+    },
+
+    /**
+     * Get the static user defined RGB color.
+     * 
+     * @param {number} core
+     * 
+     * @returns {Object}
+     */
+    getStaticRgbColor() {
+        // Parse the color setting string
+        let colors = this.static_theme_color.match(/\((.*?)\)/)[1].split(',');
+
+        let rgba = {
+            r: parseInt(colors[0])/255,
+            g: parseInt(colors[1])/255,
+            b: parseInt(colors[2])/255,
+            a: (colors.length >= 4) ? parseFloat(colors[3]) : 1
+        };
+
+        return rgba;
+    },
+
+    /**
+     * Make a random color
+     * 
+     * @returns {Object}
+     */
+    makeRandomRgbColor() {
+
         let rgba = {
             r: Math.random(),
             g: Math.random(),
             b: Math.random(),
             a: 1
         };
+
         return rgba;
     },
 
-    refreshScalingSizes() {
-        // Calculate new sizes based on scale factor
-        this.circleContainerSize = 150 * this.scale_size * global.ui_scale;
-        this.circleContainerMarginSize = this.minDeskletWidth * this.scale_size * global.ui_scale;
-        this.cpuCoreUsageFontSize = Math.round(this.largeFontSize * this.scale_size);
-        this.usageingDataMessageFontSize = Math.round(this.largeFontSize * this.scale_size);
-        this.cpuCoreNumberFontSize = Math.round(this.normalFontSize * this.scale_size);
-        this.maxDeskletWidth = (this.minDeskletWidth * this.column_count) * this.scale_size * global.ui_scale;
+    /**
+     * Get CPU activity sample
+     * 
+     * @async
+     * @param {boolean}  per_core
+     * 
+     * @returns {Object}
+     */
+    async getCpuActivitySample(per_core) {
+
+        let activity = [];
+        let proc_stat = '';
+
+        try {
+            proc_stat = String(await this.readProcStatFileAsync());
+
+            if (per_core) {
+                activity = proc_stat.match(/^cpu[\d]+.+$/mg);
+            } else {
+                activity = proc_stat.match(/^cpu\ +.+$/mg);
+            }
+                
+            return activity;
+
+        } catch (e) {
+            logError(e);
+        }
     },
 
-    getCpuUtilization() {
+    /**
+     * Read /proc/stat file
+     * 
+     * @param {Cancellable=}  cancellable
+     * 
+     * @returns {Promise}
+     */
+    readProcStatFileAsync(cancellable = null) {
 
-        let utilization = [];
-        let active = [];
-        let total = [];
-        let activity = this.getCpuActivity();
-        let hasPreviousSample = this.active.length && this.total.length;
+        let file = Gio.File.new_for_path('/proc/stat');
 
-        activity.forEach(function(cpu, index) {
+        return new Promise((resolve, reject) => {
+            file.load_contents_async(cancellable, (source_object, result) => {                
+                try {
+                    result = source_object.load_contents_finish(result);
+                    
+                    let [success, proc_stat] = result;
+
+                    resolve(proc_stat);
+                } catch (e) {
+                    reject(e);
+                }
+            });
+        });
+    },
+
+    /**
+     * Parses /proc/stat content 
+     * 
+     * @param {string} activity 
+     */
+    updateCpuActivity(activity) {
+
+        let cpus_active_time = [];
+        let cpus_total_time = [];
+
+        activity.forEach(function (stats, core) {
 
             // Remove double space for total stats (starts with "cpu  ")
-            let usage = cpu.replace("  ", " ").split(" ");
+            let load = stats.replace("  ", " ").split(" ");
 
-            active[index] = parseInt(usage[1]) + parseInt(usage[2]) + parseInt(usage[3]) + parseInt(usage[7]) + parseInt(usage[8]);
-            total[index] = parseInt(usage[1]) + parseInt(usage[2]) + parseInt(usage[3]) + parseInt(usage[4]) + parseInt(usage[5]) + parseInt(usage[7]) + parseInt(usage[8]);
+            cpus_active_time[core] = parseInt(load[1]) + // user: Time spent in user mode.
+                            parseInt(load[2]) +          // nice: Time spent in user mode with low priority (nice).
+                            parseInt(load[3]) +          // system: Time spent in system mode.
+                            parseInt(load[7]) +          // softirq: Time servicing softirqs.
+                            parseInt(load[8]);           // stolen: Stolen time, which is the time spent in other operating systems when running in a virtualized environment
+                   
+            cpus_total_time[core] = parseInt(load[1]) +  // user: Time spent in user mode.
+                            parseInt(load[2]) +          // nice: Time spent in user mode with low priority (nice).
+                            parseInt(load[3]) +          // system: Time spent in system mode.
+                            parseInt(load[4]) +          // idle: Time spent in the idle task.
+                            parseInt(load[5]) +          // iowait: Time waiting for I/O to complete
+                            parseInt(load[7]) +          // softirq: Time servicing softirqs.
+                            parseInt(load[8]);           // stolen: Stolen time, which is the time spent in other operating systems when running in a virtualized environment
+  
+            if(this.hasPreviousSample(activity.length)){
+                this.cpus_utilization[core] = Math.round(
+                    (100 * (cpus_active_time[core] - this.cpus_active_time[core]) / (cpus_total_time[core] - this.cpus_total_time[core]))
+                );
+            } else {
+                this.cpus_utilization[core] = 0;
+            }
 
-            if(hasPreviousSample) {
-                utilization[index] = this.calculateCpuUtilization(active[index], this.active[index], total[index], this.total[index]);
-            }
-            else {
-                utilization[index] = 0;
-            }
+            this.cpus_active_time[core] = cpus_active_time[core];
+            this.cpus_total_time[core] = cpus_total_time[core];
 
         }, this);
-
-        this.active = active;
-        this.total = total;
-
-        return utilization;
     },
 
-    calculateCpuUtilization (currentActive, previousActive, currentTotal, previousTotal) {
-        return Math.round((100 * (currentActive - previousActive) / (currentTotal - previousTotal)));
-    },
-
-    getCpuActivity() {
-        if (this.per_core) {
-            return Cinnamon.get_file_contents_utf8_sync("/proc/stat").match(/^cpu[\d]+.+$/mg);
-        } else {
-            return Cinnamon.get_file_contents_utf8_sync("/proc/stat").match(/^cpu\ +.+$/mg);
-    }
-    },
-
-    getCpuColor(index, usage) {
-
-        if(this.circle_color_type === 'static') {
-            let circle_colors = this.circle_color.match(/\((.*?)\)/)[1].split(","); // get contents inside brackets: "rgb(...)"
-            let rgba = {
-                r: parseInt(circle_colors[0])/255,
-                g: parseInt(circle_colors[1])/255,
-                b: parseInt(circle_colors[2])/255,
-                a: (circle_colors.length >= 4) ? parseFloat(circle_colors[3]) : 1
-            };
-            return rgba;
-        } else if(this.circle_color_type === 'dynamic') {
-            let colorGreen = {
-                r: 70.0/255,
-                g: 200.0/255,
-                b: 150.0/255,
-                a: 1
-            };
-            let colorRed = {
-                r: 180.0/255,
-                g: 10.0/255,
-                b: 10.0/255,
-                a: 1
-            };
-            let color = {
-                r: colorGreen.r + (usage/100) * (colorRed.r - colorGreen.r),
-                g: colorGreen.g + (usage/100) * (colorRed.g - colorGreen.g),
-                b: colorGreen.b + (usage/100) * (colorRed.b - colorGreen.b),
-                a: 1
-            };
-            return color;
-        } else {
-            if (typeof this.colors[index] === 'undefined') {
-                this.colors[index] = this.generateCircleColor();
-            }
-            return this.colors[index];
-        }
-
-    },
-
+    /**
+     * Called when desklet settings gets changed.
+     */
     on_setting_changed() {
-        // Remove old activity data
-        this.active = [];
-        this.total = [];
+        // Remove old data
+        this.cpus_utilization = [];
+        this.cpus_active_time = [];
+        this.cpus_total_time = [];
+        this.has_previous_sample = false;
+        this.colors = [];
 
         // Update decoration settings
-        this.refreshDecoration();
+        this.toggleDecoration();
 
         // Refresh scaling sizes
         this.refreshScalingSizes();
 
-        // settings changed; instant refresh
+        // Restart main loop
         Mainloop.source_remove(this.timeout);
-        this.refresh();
+        this.main();
     },
 
+    /**
+     * Called when desklet gets removed
+     */
     on_desklet_removed() {
         Mainloop.source_remove(this.timeout);
     }
-
 };
 
+/**
+ * CPU Load desklet class
+ * 
+ * @class
+ * @param {Object} metadata 
+ * @param {string} deskletId 
+ */
+function CpuLoadDesklet(metadata, deskletId) {
+    this._init(metadata, deskletId);
+}
+
 function main(metadata, deskletId) {
-    return new CpuusageDesklet(metadata, deskletId);
+    return new CpuLoadDesklet(metadata, deskletId);
 }

@@ -24,10 +24,10 @@ msgstr "Zeigt die CPU-Auslastung an"
 msgid "CPU usage"
 msgstr "CPU-Nutzung"
 
-msgid "Settings for cpuload@kimse"
-msgstr "Einstellungen für cpuload@kimse"
+msgid "Settings for the CPU Load desklet"
+msgstr "Einstellungen für CPU Load desklet"
 
-msgid "Visual"
+msgid "Layout"
 msgstr "Visuelle Einstellungen"
 
 msgid "Design"
@@ -39,46 +39,25 @@ msgstr "Dünn"
 msgid "Thick"
 msgstr "Dick"
 
-msgid "Draw unused resources (gray)"
-msgstr "Zeichne ungenutzte Ressourcen (grau)"
-
-msgid "Circle color"
-msgstr "Kreisfarbe"
-
-msgid "Random"
-msgstr "Zufällig"
-
-msgid "Static"
-msgstr "Statisch"
-
-msgid "Colorize by CPU usage (green-red)"
-msgstr "Nach CPU-Auslastung einfärben (grün-rot)"
-
-msgid "Static circle color"
-msgstr "Statische Kreisfarbe"
-
-msgid "Hide decorations"
-msgstr "Dekorationen ausblenden"
-
 msgid "Desklet size"
 msgstr "Deskletgröße"
 
-msgid "Increase or decrease the size of this desklet using this scale factor."
+msgid "Increase or decrease the size of the desklet."
 msgstr ""
 "Vergrößern oder verkleinern Sie dieses Desklet, indem Sie diesen "
 "Skalierungsfaktor verändern."
 
-msgid "Column count"
+msgid "Number of columns"
 msgstr "Spaltenanzahl"
 
-msgid "Increase or decrease column count."
+msgid "Increase or decrease number of columns."
 msgstr "Erhöhen oder verringern Sie die Spaltenanzahl."
 
-msgid "Show usage for each core"
+msgid "Show all CPU cores"
 msgstr "Zeige CPU-Auslastung für jeden Kern"
 
-msgid "Shows separate indicator for every CPU core."
-msgstr "Zeige separate CPU-Auslastungsanzeige für jeden Prozessorkern"
+msgid "Utilization of each CPU core will be displayed rather than total CPU utilization."
+msgstr "Zeige separate CPU-Auslastungsanzeige für jeden Prozessorkern."
 
 msgid "Refresh interval"
 msgstr "Aktualisierungsintervall"
@@ -91,3 +70,30 @@ msgstr "Skalierungsfaktor"
 
 msgid "columns"
 msgstr "Spalten"
+
+msgid "Colors"
+msgstr "Farbeinstellungen"
+
+msgid "Color theme"
+msgstr "Kreisfarbe"
+
+msgid "Random"
+msgstr "Zufällig"
+
+msgid "Static"
+msgstr "Statisch"
+
+msgid "Dynamic"
+msgstr "Nach CPU-Auslastung einfärben (grün-rot)"
+
+msgid "Static theme color"
+msgstr "Statische Kreisfarbe"
+
+msgid "Background"
+msgstr "Hintergrundeinstellungen"
+
+msgid "Hide decorations"
+msgstr "Dekorationen ausblenden"
+
+msgid "Show background"
+msgstr "Zeichne ungenutzte Ressourcen (grau)"
