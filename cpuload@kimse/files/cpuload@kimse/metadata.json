@@ -2,6 +2,7 @@
     "max-instances": "1",
     "description": "Displays CPU load",
     "name": "CPU Load",
-    "version": "0.4",
-    "uuid": "cpuload@kimse"
+    "version": "0.5",
+    "uuid": "cpuload@kimse",
+    "last-edited": 1575483287
 }
