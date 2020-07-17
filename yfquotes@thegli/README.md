@@ -22,6 +22,11 @@ Check out the desklet configuration settings, and choose the data refresh period
 
 ## Release Notes
 
+### 0.4.0 - July 17, 2020 
+Features:
+ * allow multiple Desklet instances
+ * add German translation
+
 ### 0.3.0 - June 29, 2020
 Features:
 * add setting to sort quotes list
