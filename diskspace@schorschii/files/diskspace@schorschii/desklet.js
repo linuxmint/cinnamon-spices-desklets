@@ -240,21 +240,21 @@ MyDesklet.prototype = {
 			}
 
 			// set label contents
-			let textpercent_y = (absolute_size * global.ui_scale) / 2 - font_size * (1.42 * global.ui_scale);
+			let textpercent_y = Math.round((absolute_size * global.ui_scale) / 2 - font_size * (1.28 * global.ui_scale));
 			this.textpercent.set_position(null, textpercent_y);
 			this.textpercent.set_text(percent_string);
 			this.textpercent.style = "font-size: " + font_size + "px;"
 			                  + "width: " + absolute_size + "px;"
 			                  + "color: " + this.text_color + ";";
 
-			let textsub_y = textpercent_y + font_size * (1.4 * global.ui_scale);
+			let textsub_y = Math.round(textpercent_y + font_size * (1.25 * global.ui_scale));
 			this.textsub.set_position(null, textsub_y);
 			this.textsub.set_text(sub_string);
 			this.textsub.style = "font-size: " + font_size_sub + "px;"
 			              + "width: " + absolute_size + "px;"
 			              + "color: " + this.text_color + ";";
 
-			let textsub2_y = textsub_y + font_size_sub * (1.25 * global.ui_scale);
+			let textsub2_y = Math.round(textsub_y + font_size_sub * (1.25 * global.ui_scale));
 			this.textsub2.set_position(null, textsub2_y);
 			this.textsub2.set_text(sub_string2);
 			this.textsub2.style = "font-size: " + font_size_sub + "px;"
