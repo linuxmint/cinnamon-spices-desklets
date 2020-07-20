@@ -3,4 +3,4 @@
 - thick and thin design
 
 ## Setup
-- please install the "Sawasdee" font
+- please make sure the "Ubuntu" font is installed
