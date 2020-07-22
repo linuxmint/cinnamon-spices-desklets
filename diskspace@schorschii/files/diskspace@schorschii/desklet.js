@@ -209,7 +209,7 @@ MyDesklet.prototype = {
 					cr.arc(0, 0, 0.329, start, end);
 					cr.stroke();
 					/////
-					font_size -= 2;
+					font_size -= 3;
 					font_size_sub -= 2;
 				}
 
@@ -240,7 +240,7 @@ MyDesklet.prototype = {
 			}
 
 			// set label contents
-			let textpercent_y = Math.round((absolute_size * global.ui_scale) / 2 - font_size * (1.28 * global.ui_scale));
+			let textpercent_y = Math.round((absolute_size * global.ui_scale) / 2 - font_size * (1.26 * global.ui_scale));
 			this.textpercent.set_position(null, textpercent_y);
 			this.textpercent.set_text(percent_string);
 			this.textpercent.style = "font-size: " + font_size + "px;"
