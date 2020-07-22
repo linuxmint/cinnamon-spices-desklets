@@ -191,6 +191,18 @@ MyDesklet.prototype = {
 					cr.setLineWidth(0.045);
 					cr.arc(0, 0, 0.45, start, end);
 					cr.stroke();
+				} else if(design == "compact") {
+					if(draw_free_space) {
+						cr.setSourceRGBA(1, 1, 1, 0.2);
+						cr.setLineWidth(0.4);
+						cr.arc(0, 0, 0.2, 0, Math.PI*2);
+						cr.stroke();
+					}
+					/////
+					cr.setSourceRGBA(circle_r, circle_g, circle_b, circle_a);
+					cr.setLineWidth(0.4);
+					cr.arc(0, 0, 0.2, start, end);
+					cr.stroke();
 				} else { // classic design
 					if(draw_free_space) {
 						cr.setSourceRGBA(1, 1, 1, 0.2);
@@ -210,7 +222,7 @@ MyDesklet.prototype = {
 					cr.stroke();
 					/////
 					font_size -= 3;
-					font_size_sub -= 2;
+					font_size_sub -= 3;
 				}
 
 				return true;
@@ -237,6 +249,8 @@ MyDesklet.prototype = {
 			} else if(this.text_view == "free-size") {
 				sub_string = this.niceSize(avail);
 				sub_string2 = this.niceSize(size);
+			} else {
+				percent_string = "";
 			}
 
 			// set label contents
