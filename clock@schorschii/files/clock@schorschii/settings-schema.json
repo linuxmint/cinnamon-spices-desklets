@@ -25,7 +25,7 @@
         "type": "checkbox",
         "description": "Show seconds hand",
         "tooltip": "Show or hide the seconds hand.",
-        "default": true
+        "default": false
     },
     "smooth-seconds-hand": {
         "type": "checkbox",
