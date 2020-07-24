@@ -48,7 +48,8 @@
         "description": "Design",
         "options" : {
             "Thin": "thin",
-            "Classic (Thick)" : "classic"
+            "Compact": "compact",
+            "Classic (Thick)": "classic"
         }
     },
     "text-view": {
@@ -58,7 +59,8 @@
         "options" : {
             "Name and total size" : "name-size",
             "Used and total space": "used-size",
-            "Free and total space": "free-size"
+            "Free and total space": "free-size",
+            "No text": "none"
         }
     },
     "hide-decorations": {
@@ -91,7 +93,7 @@
     "scale-size": {
         "type": "spinbutton",
         "default": 1,
-        "min": 0.5,
+        "min": 0.4,
         "max": 10,
         "step": 0.2,
         "units": "scale factor",
