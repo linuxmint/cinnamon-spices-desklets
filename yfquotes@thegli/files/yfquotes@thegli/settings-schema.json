@@ -72,7 +72,7 @@
   "quoteSymbols": {
     "type": "textview",
     "height": 150,
-    "default": "MMM\nAXP\nAAPL\nBA\nCAT\nCVX\nCSCO\nKO\nDOW\nDWDP\nXOM\nGS\nHD\nINTC\nIBM\nJNJ\nJPM\nMCD\nMRK\nMSFT\nNKE\nPFE\nPG\nRTX\nTRV\nUNH\nVZ\nV\nWBA\nWMT\nDIS",
+    "default": "MMM\nAXP\nAAPL\nBA\nCAT\nCVX\nCSCO\nKO\nDOW\nXOM\nGS\nHD\nINTC\nIBM\nJNJ\nJPM\nMCD\nMRK\nMSFT\nNKE\nPFE\nPG\nRTX\nTRV\nUNH\nVZ\nV\nWBA\nWMT\nDIS",
     "description": "Quote symbols",
     "tooltip": "List the quote symbols here, separated with line-breaks."
   },
@@ -109,7 +109,14 @@
     "type": "checkbox",
     "default": true,
     "description": "Show verbose name",
-    "tooltip": "Display the quote name (eg. International Business Machines). Click to open quote in browser."
+    "tooltip": "Display the quote name (eg. International Business Machines)."
+  },
+  "linkQuoteName": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Add web link to name",
+    "tooltip": "Click to open quote in browser.",
+    "dependency": "showQuoteName"
   },
   "showQuoteSymbol": {
     "type": "checkbox",
