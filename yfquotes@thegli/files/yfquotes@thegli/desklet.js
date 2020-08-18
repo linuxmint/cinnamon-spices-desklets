@@ -1,5 +1,5 @@
 /*
- * Yahoo Finance Quotes - 0.4.0
+ * Yahoo Finance Quotes - 0.4.1
  *
  * Shows financial market information provided by Yahoo Finance.
  * This desklet is based on the work of fthuin's stocks desklet.
@@ -105,7 +105,7 @@ QuotesTable.prototype = {
             cellContents.push(this.createPercentChangeIcon(quote));
         }
         if (shouldShow.quoteName) {
-            cellContents.push(this.createQuoteNameLabel(quote));
+            cellContents.push(this.createQuoteNameLabel(quote, shouldShow.linkQuote));
         }
         if (shouldShow.quoteSymbol) {
             cellContents.push(this.createQuoteSymbolLabel(quote));
@@ -150,19 +150,22 @@ QuotesTable.prototype = {
             style_class : "quotes-label"
         });
     },
-    createQuoteNameLabel : function (quote) {
-        const nameButton = new St.Button();
+    createQuoteNameLabel : function (quote, addLink) {
         const nameLabel =  new St.Label({
             text : this.existsProperty(quote, "shortName") ? quote.shortName : ABSENT,
             style_class : "quotes-label",
-            reactive: true
+            reactive : addLink ? true : false
         });
-        nameButton.add_actor(nameLabel);
-        nameButton.connect("clicked", Lang.bind(this, function() {
-            Gio.app_info_launch_default_for_uri("https://finance.yahoo.com/quote/" + quote.symbol, global.create_app_launch_context());
-
-        }));     
-        return nameButton;
+		if (addLink) {
+	        const nameButton = new St.Button();
+	        nameButton.add_actor(nameLabel);
+	        nameButton.connect("clicked", Lang.bind(this, function() {
+	            Gio.app_info_launch_default_for_uri("https://finance.yahoo.com/quote/" + quote.symbol, global.create_app_launch_context());	
+	        }));
+	        return nameButton;
+         } else {
+	        return nameLabel;
+         }
     },
     createAbsoluteChangeLabel : function (quote, withCurrencySymbol, decimalPlaces) {
         var absoluteChangeText = "";
@@ -284,8 +287,11 @@ StockQuoteDesklet.prototype = {
                 this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "sortDirection", "sortDirection",
                 this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "showChangeIcon", "showChangeIcon", this.onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "showChangeIcon", "showChangeIcon", 
+				this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showQuoteName", "showQuoteName",
+                this.onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "linkQuoteName", "linkQuoteName",
                 this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showQuoteSymbol", "showQuoteSymbol",
                 this.onSettingsChanged, null);
@@ -304,6 +310,7 @@ StockQuoteDesklet.prototype = {
         return {
             "changeIcon" : this.showChangeIcon,
             "quoteName" : this.showQuoteName,
+			"linkQuote" : this.linkQuoteName,
             "quoteSymbol" : this.showQuoteSymbol,
             "marketPrice" : this.showMarketPrice,
             "currencySymbol" : this.showCurrencyCode,
