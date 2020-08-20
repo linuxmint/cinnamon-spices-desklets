@@ -57,6 +57,9 @@ msgstr ""
 msgid "Thin"
 msgstr ""
 
+msgid "Compact"
+msgstr ""
+
 msgid "Draw free/unused space (gray)"
 msgstr ""
 
@@ -70,6 +73,9 @@ msgid "Used and total space"
 msgstr ""
 
 msgid "Free and total space"
+msgstr ""
+
+msgid "No text"
 msgstr ""
 
 msgid "Hide decorations"

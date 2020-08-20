@@ -59,6 +59,9 @@ msgstr "Klassisch (Dick)"
 msgid "Thin"
 msgstr "Dünn"
 
+msgid "Compact"
+msgstr "Kompakt"
+
 msgid "Draw free/unused space (gray)"
 msgstr "Zeichne freien/unbenutzten Speicherplatz (grau)"
 
@@ -73,6 +76,9 @@ msgstr "Belegter Speicherplatz und Kapazität"
 
 msgid "Free and total space"
 msgstr "Freier Speicherplatz und Kapazität"
+
+msgid "No text"
+msgstr "Kein Text"
 
 msgid "Hide decorations"
 msgstr "Dekorationen verstecken"

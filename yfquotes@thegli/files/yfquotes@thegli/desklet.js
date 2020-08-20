@@ -1,5 +1,5 @@
 /*
- * Yahoo Finance Quotes - 0.3.0
+ * Yahoo Finance Quotes - 0.4.1
  *
  * Shows financial market information provided by Yahoo Finance.
  * This desklet is based on the work of fthuin's stocks desklet.
@@ -23,16 +23,17 @@ const Lang = imports.lang;
 // Settings loader based on settings-schema.json file
 const Settings = imports.ui.settings;
 // translation support
-// const Gettext = imports.gettext;
+const Gettext = imports.gettext;
 
 const UUID = "yfquotes@thegli";
 const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 const ABSENT = "N/A";
 
-// Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
-// function _(str) {
-// return Gettext.dgettext(UUID, str);
-// }
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+
+function _(str) {
+    return Gettext.dgettext(UUID, str);
+}
 
 var YahooFinanceQuoteReader = function () {
 };
@@ -62,7 +63,7 @@ YahooFinanceQuoteReader.prototype = {
                     response = contents.toString();
                     retries = maxRetries;
                 } else {
-                    response = errorBegin + "Yahoo Finance service not available!" + errorEnd;
+                    response = errorBegin + _("Yahoo Finance service not available!") + errorEnd;
                 }
             } catch (err) {
                 response = errorBegin + err + errorEnd;
@@ -104,7 +105,7 @@ QuotesTable.prototype = {
             cellContents.push(this.createPercentChangeIcon(quote));
         }
         if (shouldShow.quoteName) {
-            cellContents.push(this.createQuoteNameLabel(quote));
+            cellContents.push(this.createQuoteNameLabel(quote, shouldShow.linkQuote));
         }
         if (shouldShow.quoteSymbol) {
             cellContents.push(this.createQuoteSymbolLabel(quote));
@@ -149,19 +150,22 @@ QuotesTable.prototype = {
             style_class : "quotes-label"
         });
     },
-    createQuoteNameLabel : function (quote) {
-        const nameButton = new St.Button();
+    createQuoteNameLabel : function (quote, addLink) {
         const nameLabel =  new St.Label({
             text : this.existsProperty(quote, "shortName") ? quote.shortName : ABSENT,
             style_class : "quotes-label",
-            reactive: true
+            reactive : addLink ? true : false
         });
-        nameButton.add_actor(nameLabel);
-        nameButton.connect("clicked", Lang.bind(this, function() {
-            Gio.app_info_launch_default_for_uri("https://finance.yahoo.com/quote/" + quote.symbol, global.create_app_launch_context());
-
-        }));     
-        return nameButton;
+		if (addLink) {
+	        const nameButton = new St.Button();
+	        nameButton.add_actor(nameLabel);
+	        nameButton.connect("clicked", Lang.bind(this, function() {
+	            Gio.app_info_launch_default_for_uri("https://finance.yahoo.com/quote/" + quote.symbol, global.create_app_launch_context());	
+	        }));
+	        return nameButton;
+         } else {
+	        return nameLabel;
+         }
     },
     createAbsoluteChangeLabel : function (quote, withCurrencySymbol, decimalPlaces) {
         var absoluteChangeText = "";
@@ -283,8 +287,11 @@ StockQuoteDesklet.prototype = {
                 this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "sortDirection", "sortDirection",
                 this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "showChangeIcon", "showChangeIcon", this.onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "showChangeIcon", "showChangeIcon", 
+				this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showQuoteName", "showQuoteName",
+                this.onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "linkQuoteName", "linkQuoteName",
                 this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showQuoteSymbol", "showQuoteSymbol",
                 this.onSettingsChanged, null);
@@ -303,6 +310,7 @@ StockQuoteDesklet.prototype = {
         return {
             "changeIcon" : this.showChangeIcon,
             "quoteName" : this.showQuoteName,
+			"linkQuote" : this.linkQuoteName,
             "quoteSymbol" : this.showQuoteSymbol,
             "marketPrice" : this.showMarketPrice,
             "currencySymbol" : this.showCurrencyCode,
@@ -323,13 +331,13 @@ StockQuoteDesklet.prototype = {
     },
     createLastUpdateLabel : function () {
         return new St.Label({
-            text : "Updated at " + this.formatCurrentTimestamp(),
+            text : _("Updated at ") + this.formatCurrentTimestamp(),
             style_class : "quotes-label"
         });
     },
     createErrorLabel : function (errorMsg) {
         return new St.Label({
-            text : "Error: " + errorMsg,
+            text : _("Error: ") + errorMsg,
             style_class : "error-label"
         });
     },
@@ -363,8 +371,8 @@ StockQuoteDesklet.prototype = {
         this.updateLoop = Mainloop.timeout_add(this.delayMinutes * 60 * 1000, Lang.bind(this, this.onUpdate));
     },
     onError : function (quoteSymbols, err) {
-      global.logError("Cannot display quotes information for symbols: " + quoteSymbols.join(","));
-      global.logError("The following error occurred: " + err);
+      global.logError(_("Cannot display quotes information for symbols: ") + quoteSymbols.join(","));
+      global.logError(_("The following error occurred: ") + err);
     },
     sortByProperty: function (quotes, prop, direction) {        
         if (quotes.length < 2) {

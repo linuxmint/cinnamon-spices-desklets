@@ -2,4 +2,4 @@
 
 Displays CPU utilization per core.
 
-The look is heavily inspired by the diskspace@schorschii desklet.
+This desklet goes well with the diskspace@schorschii desklet.
