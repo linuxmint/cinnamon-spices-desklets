@@ -39,6 +39,9 @@ msgstr ""
 msgid "RAM"
 msgstr ""
 
+msgid "Swap"
+msgstr ""
+
 msgid "Filesystem to monitor"
 msgstr ""
 

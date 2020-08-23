@@ -15,7 +15,8 @@
         "tooltip": "Choose, if this desklet should show file system or RAM usage.",
         "options" : {
             "Filesystem" : "filesystem",
-            "RAM": "ram"
+            "RAM": "ram",
+            "Swap": "swap"
         }
     },
     "filesystem": {

@@ -41,6 +41,9 @@ msgstr "Dateisystem"
 msgid "RAM"
 msgstr "Arbeitsspeicher"
 
+msgid "Swap"
+msgstr "Swap-Speicher"
+
 msgid "Filesystem to monitor"
 msgstr "Dateisystem, welches angezeigt werden soll"
 
