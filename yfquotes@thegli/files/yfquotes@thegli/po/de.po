@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2020-07-17 18:00+0200\n"
-"PO-Revision-Date: 2020-07-17 18:00+0200\n"
+"PO-Revision-Date: 2020-09-20 14:00+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -14,9 +14,30 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: de\n"
 
+#: desklet.js:66
+msgid "Yahoo Finance service not available!"
+msgstr "Yahoo Finance Service nicht verfügbar!"
+
+#: desklet.js:334
+msgid "Updated at "
+msgstr "Aktualisiert um "
+
+#: desklet.js:340
+msgid "Error: "
+msgstr "Fehler: "
+
+#: desklet.js:374
+msgid "Cannot display quotes information for symbols: "
+msgstr "Finanzdaten können nicht angezeigt werden für die Symbole: "
+
+#: desklet.js:375
+msgid "The following error occurred: "
+msgstr "Folgender Fehler ist aufgetreten: "
+
+
 #. metadata.json->description
-msgid "Displays financial market information from Yahoo Finance"
-msgstr "Finanzmarktinformationen anzeigen von Yahoo Finance"
+msgid "Displays financial market information such as stock quotes and commodity prices from Yahoo Finance"
+msgstr "Zeigt Finanzmarktinformationen wie Aktienkurse und Rohstoffpreise von Yahoo Finance an"
 
 #. metadata.json->name
 msgid "Yahoo Finance Quotes"
@@ -159,11 +180,16 @@ msgid "Show verbose name"
 msgstr "Name anzeigen"
 
 #. settings-schema.json->showQuoteName->tooltip
-msgid ""
-"Display the quote name (eg. International Business Machines). Click to open "
-"quote in browser."
-msgstr "Zeigt den Namen des Instruments an (z.B. International Business Machines). Anklicken, "
-"um das Instrument im Browser zu öffnen."
+msgid "Display the quote name (eg. International Business Machines)."
+msgstr "Zeigt den Namen des Instruments an (z.B. International Business Machines)."
+
+#. settings-schema.json->linkQuoteName->description
+msgid "Add web link to name"
+msgstr "Name mit Web Link hinterlegen"
+
+#. settings-schema.json->linkQuoteName->tooltip
+msgid "Click to open quote in browser."
+msgstr "Anklicken, um das Instrument im Browser zu öffnen."
 
 #. settings-schema.json->showQuoteSymbol->description
 msgid "Show ticker/symbol"
@@ -171,7 +197,7 @@ msgstr "Symbol anzeigen"
 
 #. settings-schema.json->showQuoteSymbol->tooltip
 msgid "Display the quote symbol (eg. IBM)."
-msgstr "Zeit das Symbol des Instruments an (z.B. IBM)."
+msgstr "Zeigt das Symbol des Instruments an (z.B. IBM)."
 
 #. settings-schema.json->showMarketPrice->description
 msgid "Show price"
@@ -212,23 +238,3 @@ msgstr "Handelszeitpunkt anzeigen"
 #. settings-schema.json->showTradeTime->tooltip
 msgid "Display the last trading time (if current day) or date."
 msgstr "Zeigt die letzte Handelszeit (falls heutiger Tag) oder den letzten Handelstag an."
-
-# desklet.js:66
-msgid "Yahoo Finance service not available!"
-msgstr "Yahoo Finance Service nicht verfügbar!"
-
-# desklet.js:327
-msgid "Updated at "
-msgstr "Aktualisiert um "
-
-# desklet.js:333
-msgid "Error: "
-msgstr "Fehler: "
-
-# desklet.js:367
-msgid "Cannot display quotes information for symbols: "
-msgstr "Finanzdaten können nicht angezeigt werden für die Symbole: "
-
-# desklet.js:368
-msgid "The following error occurred: "
-msgstr "Folgender Fehler ist aufgetreten: "

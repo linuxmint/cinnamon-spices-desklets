@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2020-07-17 18:00+0200\n"
-"PO-Revision-Date: 2020-07-17 18:00+0200\n"
+"PO-Revision-Date: 2020-09-20 14:00+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -14,8 +14,28 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: desklet.js:66
+msgid "Yahoo Finance service not available!"
+msgstr ""
+
+#: desklet.js:334
+msgid "Updated at "
+msgstr ""
+
+#: desklet.js:340
+msgid "Error: "
+msgstr ""
+
+#: desklet.js:374
+msgid "Cannot display quotes information for symbols: "
+msgstr ""
+
+#: desklet.js:375
+msgid "The following error occurred: "
+msgstr ""
+
 #. metadata.json->description
-msgid "Displays financial market information from Yahoo Finance"
+msgid "Displays financial market information such as stock quotes and commodity prices from Yahoo Finance"
 msgstr ""
 
 #. metadata.json->name
@@ -158,9 +178,15 @@ msgid "Show verbose name"
 msgstr ""
 
 #. settings-schema.json->showQuoteName->tooltip
-msgid ""
-"Display the quote name (eg. International Business Machines). Click to open "
-"quote in browser."
+msgid "Display the quote name (eg. International Business Machines)."
+msgstr ""
+
+#. settings-schema.json->linkQuoteName->description
+msgid "Add web link to name"
+msgstr ""
+
+#. settings-schema.json->linkQuoteName->tooltip
+msgid "Click to open quote in browser."
 msgstr ""
 
 #. settings-schema.json->showQuoteSymbol->description
@@ -209,24 +235,4 @@ msgstr ""
 
 #. settings-schema.json->showTradeTime->tooltip
 msgid "Display the last trading time (if current day) or date."
-msgstr ""
-
-# desklet.js:66
-msgid "Yahoo Finance service not available!"
-msgstr ""
-
-# desklet.js:327
-msgid "Updated at "
-msgstr ""
-
-# desklet.js:333
-msgid "Error: "
-msgstr ""
-
-# desklet.js:367
-msgid "Cannot display quotes information for symbols: "
-msgstr ""
-
-# desklet.js:368
-msgid "The following error occurred: "
 msgstr ""
