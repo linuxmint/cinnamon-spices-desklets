@@ -210,8 +210,17 @@ QuotesTable.prototype = {
     createPercentChangeLabel : function (quote) {
         return new St.Label({
             text : this.existsProperty(quote, "regularMarketChangePercent") ? (this.roundAmount(quote.regularMarketChangePercent, 2) + "%") : ABSENT,
-            style_class : "quotes-label"
+            style_class : this.quoteColor(this.existsProperty(quote, "regularMarketChangePercent") ? parseFloat(quote.regularMarketChangePercent) : 0.0)
         });
+    },
+    quoteColor : function (percentChange) {
+        let style = "quotes-label";
+        if (percentChange > 0) {
+            style = "quotes-label-up";
+        } else if (percentChange < 0) {
+            style = "quotes-label-down";
+        }
+        return style;
     },
     roundAmount : function (amount, maxDecimals) {
         if (maxDecimals > -1)  {
