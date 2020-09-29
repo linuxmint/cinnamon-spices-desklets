@@ -149,11 +149,15 @@ QuotesTable.prototype = {
         });
         return this.addLinkIfWanted(quote.symbol, nameLabel, addLink);
     },
-    createMarketPriceLabel(quote, withCurrencySymbol, decimalPlaces, addLink) {
-        let currencySymbol = "";
+    createCurrencySymbolIfWanted(withCurrencySymbol, quote) {
         if (withCurrencySymbol && this.existsProperty(quote, "currency")) {
-            currencySymbol = this.currencyCodeToSymbolMap[quote.currency] || quote.currency;
+            return this.currencyCodeToSymbolMap[quote.currency] || quote.currency;
+        } else {
+            return "";
         }
+    },
+    createMarketPriceLabel(quote, withCurrencySymbol, decimalPlaces, addLink) {
+        const currencySymbol = this.createCurrencySymbolIfWanted(withCurrencySymbol, quote);
         const nameLabel =  new St.Label({
             text : currencySymbol + (this.existsProperty(quote, "regularMarketPrice") ? this.roundAmount(quote.regularMarketPrice, decimalPlaces) : ABSENT),
             style_class : "quotes-label",
@@ -195,19 +199,18 @@ QuotesTable.prototype = {
         });
         return this.addLinkIfWanted(quote.symbol, nameLabel, addLink);
     },
-    createPercentChangeIcon(quote, addLink) {
+    findIcon(quote) {
         const percentChange = this.existsProperty(quote, "regularMarketChangePercent") ? parseFloat(quote.regularMarketChangePercent) : 0.0;
-        let path = "";
-
         if (percentChange > 0) {
-            path = "/icons/up.svg";
+            return "up.svg";
         } else if (percentChange < 0) {
-            path = "/icons/down.svg";
-        } else if (percentChange === 0.0) {
-            path = "/icons/eq.svg";
+            return "down.svg";
+        } else {
+            return "/eq.svg";
         }
-
-        const iconFile = Gio.file_new_for_path(DESKLET_DIR + path);
+    },
+    createPercentChangeIcon(quote, addLink) {
+        const iconFile = Gio.file_new_for_path(DESKLET_DIR + "/icons/" + this.findIcon(quote));
         const uri = iconFile.get_uri();
         const image = St.TextureCache.get_default().load_uri_async(uri, -1, -1);
         image.set_size(20, 20);
