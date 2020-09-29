@@ -42,6 +42,9 @@ msgstr ""
 msgid "Swap"
 msgstr ""
 
+msgid "Not Found"
+msgstr ""
+
 msgid "Filesystem to monitor"
 msgstr ""
 
