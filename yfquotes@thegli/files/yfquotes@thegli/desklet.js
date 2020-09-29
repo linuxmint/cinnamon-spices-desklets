@@ -134,19 +134,19 @@ QuotesTable.prototype = {
     existsProperty : function(object, property) {
       return object.hasOwnProperty(property) && object[property] !== undefined && object[property] !== null;
     },
-    createQuoteSymbolLabel : function (quote, addLink) {
+    createQuoteSymbolLabel(quote, addLink) {
         const nameLabel =  new St.Label({
             text : quote.symbol,
             style_class : "quotes-label",
             reactive : addLink ? true : false
         });
         if (addLink) {
-	    return this.createLink(nameLabel, quote.symbol);
+            return this.createLink(nameLabel, quote.symbol);
         } else {
             return nameLabel;
         }
     },
-    createMarketPriceLabel : function (quote, withCurrencySymbol, decimalPlaces, addLink) {
+    createMarketPriceLabel(quote, withCurrencySymbol, decimalPlaces, addLink) {
         let currencySymbol = "";
         if (withCurrencySymbol && this.existsProperty(quote, "currency")) {
             currencySymbol = this.currencyCodeToSymbolMap[quote.currency] || quote.currency;
@@ -162,15 +162,15 @@ QuotesTable.prototype = {
             return nameLabel;
         }
     },
-    createLink : function (label, symbol, addLink) {
+    createLink(label, symbol, addLink) {
             const button = new St.Button();
             button.add_actor(label);
             button.connect("clicked", Lang.bind(this, function() {
                 Gio.app_info_launch_default_for_uri("https://finance.yahoo.com/quote/" + symbol, global.create_app_launch_context());
             }));
-	    return button;
+            return button;
     },
-    createQuoteNameLabel : function (quote, addLink) {
+    createQuoteNameLabel(quote, addLink) {
         const nameLabel =  new St.Label({
             text : this.existsProperty(quote, "shortName") ? quote.shortName : ABSENT,
             style_class : "quotes-label",
@@ -182,7 +182,7 @@ QuotesTable.prototype = {
             return nameLabel;
         }
     },
-    createAbsoluteChangeLabel : function (quote, withCurrencySymbol, decimalPlaces, addLink) {
+    createAbsoluteChangeLabel(quote, withCurrencySymbol, decimalPlaces, addLink) {
         var absoluteChangeText = "";
         if (this.existsProperty(quote, "regularMarketChange")) {
             let absoluteChange = this.roundAmount(quote.regularMarketChange, decimalPlaces);
@@ -204,7 +204,7 @@ QuotesTable.prototype = {
             return nameLabel;
         }
     },
-    createPercentChangeIcon : function (quote, addLink) {
+    createPercentChangeIcon(quote, addLink) {
         const percentChange = this.existsProperty(quote, "regularMarketChangePercent") ? parseFloat(quote.regularMarketChangePercent) : 0.0;
         let path = "";
 
@@ -233,7 +233,7 @@ QuotesTable.prototype = {
             return binIcon;
         }
     },
-    createPercentChangeLabel : function (quote, addLink) {
+    createPercentChangeLabel(quote, addLink) {
         const nameLabel =  new St.Label({
             text : this.existsProperty(quote, "regularMarketChangePercent") ? (this.roundAmount(quote.regularMarketChangePercent, 2) + "%") : ABSENT,
             style_class : "quotes-label",
@@ -277,7 +277,7 @@ QuotesTable.prototype = {
 
         return tsFormat;
     },
-    createTradeTimeLabel : function (quote) {
+    createTradeTimeLabel(quote) {
         const nameLabel =  new St.Label({
             text : this.existsProperty(quote, "regularMarketTime") ? this.formatTime(quote.regularMarketTime) : ABSENT,
             style_class : "quotes-label",
