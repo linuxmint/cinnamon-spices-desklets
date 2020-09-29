@@ -134,17 +134,20 @@ QuotesTable.prototype = {
     existsProperty : function(object, property) {
       return object.hasOwnProperty(property) && object[property] !== undefined && object[property] !== null;
     },
+    addLinkIfWanted(symbol, element, addLink) {
+        if (addLink) {
+            return this.createLink(element, symbol);
+        } else {
+            return element;
+        }
+    },
     createQuoteSymbolLabel(quote, addLink) {
         const nameLabel =  new St.Label({
             text : quote.symbol,
             style_class : "quotes-label",
             reactive : addLink ? true : false
         });
-        if (addLink) {
-            return this.createLink(nameLabel, quote.symbol);
-        } else {
-            return nameLabel;
-        }
+        return this.addLinkIfWanted(quote.symbol, nameLabel, addLink);
     },
     createMarketPriceLabel(quote, withCurrencySymbol, decimalPlaces, addLink) {
         let currencySymbol = "";
@@ -156,11 +159,7 @@ QuotesTable.prototype = {
             style_class : "quotes-label",
             reactive : addLink ? true : false
         });
-        if (addLink) {
-	    return this.createLink(nameLabel, quote.symbol);
-        } else {
-            return nameLabel;
-        }
+        return this.addLinkIfWanted(quote.symbol, nameLabel, addLink);
     },
     createLink(label, symbol, addLink) {
             const button = new St.Button();
@@ -176,11 +175,7 @@ QuotesTable.prototype = {
             style_class : "quotes-label",
             reactive : addLink ? true : false
         });
-        if (addLink) {
-	    return this.createLink(nameLabel, quote.symbol);
-        } else {
-            return nameLabel;
-        }
+        return this.addLinkIfWanted(quote.symbol, nameLabel, addLink);
     },
     createAbsoluteChangeLabel(quote, withCurrencySymbol, decimalPlaces, addLink) {
         var absoluteChangeText = "";
@@ -198,11 +193,7 @@ QuotesTable.prototype = {
             style_class : "quotes-label",
             reactive : addLink ? true : false
         });
-        if (addLink) {
-	    return this.createLink(nameLabel, quote.symbol);
-        } else {
-            return nameLabel;
-        }
+        return this.addLinkIfWanted(quote.symbol, nameLabel, addLink);
     },
     createPercentChangeIcon(quote, addLink) {
         const percentChange = this.existsProperty(quote, "regularMarketChangePercent") ? parseFloat(quote.regularMarketChangePercent) : 0.0;
@@ -227,11 +218,7 @@ QuotesTable.prototype = {
             reactive : addLink ? true : false
         });
         binIcon.set_child(image);
-        if (addLink) {
-	    return this.createLink(binIcon, quote.symbol);
-        } else {
-            return binIcon;
-        }
+        return this.addLinkIfWanted(quote.symbol, binIcon, addLink);
     },
     createPercentChangeLabel(quote, addLink) {
         const nameLabel =  new St.Label({
@@ -239,11 +226,7 @@ QuotesTable.prototype = {
             style_class : "quotes-label",
             reactive : addLink ? true : false
         });
-        if (addLink) {
-	    return this.createLink(nameLabel, quote.symbol);
-        } else {
-            return nameLabel;
-        }
+        return this.addLinkIfWanted(quote.symbol, nameLabel, addLink);
     },
     roundAmount : function (amount, maxDecimals) {
         if (maxDecimals > -1)  {
@@ -277,17 +260,13 @@ QuotesTable.prototype = {
 
         return tsFormat;
     },
-    createTradeTimeLabel(quote) {
+    createTradeTimeLabel(quote, addLink) {
         const nameLabel =  new St.Label({
             text : this.existsProperty(quote, "regularMarketTime") ? this.formatTime(quote.regularMarketTime) : ABSENT,
             style_class : "quotes-label",
             reactive : addLink ? true : false
         });
-        if (addLink) {
-	    return this.createLink(nameLabel, quote.symbol);
-        } else {
-            return nameLabel;
-        }
+        return this.addLinkIfWanted(quote.symbol, nameLabel, addLink);
     }
 };
 
