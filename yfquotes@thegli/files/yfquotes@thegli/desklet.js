@@ -150,9 +150,18 @@ QuotesTable.prototype = {
             style_class : "quotes-label"
         });
     },
+    searchName : function (quote) {
+        if(this.existsProperty(quote, "longName")) {
+            return quote.longName;
+        } else if(this.existsProperty(quote, "shortName")) {
+            return quote.shortName;
+        } else {
+            return ABSENT;
+        }
+    },
     createQuoteNameLabel : function (quote, addLink) {
         const nameLabel =  new St.Label({
-            text : this.existsProperty(quote, "shortName") ? quote.shortName : ABSENT,
+            text : this.searchName(quote),
             style_class : "quotes-label",
             reactive : addLink ? true : false
         });
