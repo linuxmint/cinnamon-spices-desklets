@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2020-07-17 18:00+0200\n"
-"PO-Revision-Date: 2020-09-20 14:00+0200\n"
+"PO-Revision-Date: 2020-10-04 18:45+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -181,12 +181,20 @@ msgstr ""
 msgid "Display the quote name (eg. International Business Machines)."
 msgstr ""
 
+#. settings-schema.json->useLongQuoteName->description
+msgid "Use long version for verbose name"
+msgstr ""
+
+#. settings-schema.json->useLongQuoteName->tooltip
+msgid "Use the long version for quote name, if available (eg. International Business Machines Corporation)."
+msgstr ""
+
 #. settings-schema.json->linkQuoteName->description
 msgid "Add web link to name"
 msgstr ""
 
 #. settings-schema.json->linkQuoteName->tooltip
-msgid "Click to open quote in browser."
+msgid "Click name to open quote in browser."
 msgstr ""
 
 #. settings-schema.json->showQuoteSymbol->description
@@ -195,6 +203,14 @@ msgstr ""
 
 #. settings-schema.json->showQuoteSymbol->tooltip
 msgid "Display the quote symbol (eg. IBM)."
+msgstr ""
+
+#. settings-schema.json->linkQuoteSymbol->description
+msgid "Add web link to ticker/symbol"
+msgstr ""
+
+#. settings-schema.json->linkQuoteSymbol->tooltip
+msgid "Click symbol to open quote in browser."
 msgstr ""
 
 #. settings-schema.json->showMarketPrice->description
@@ -227,6 +243,14 @@ msgstr ""
 
 #. settings-schema.json->showPercentChange->tooltip
 msgid "Display the percent change of the market price (eg. +0.53%)."
+msgstr ""
+
+#. settings-schema.json->colorPercentChange->description
+msgid "Use trend colors for percent change"
+msgstr ""
+
+#. settings-schema.json->colorPercentChange->tooltip
+msgid "Color the percent change to show the trend (green for up, red for down)."
 msgstr ""
 
 #. settings-schema.json->showTradeTime->description

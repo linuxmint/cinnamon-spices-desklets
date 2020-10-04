@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2020-07-17 18:00+0200\n"
-"PO-Revision-Date: 2020-09-20 14:00+0200\n"
+"PO-Revision-Date: 2020-10-04 18:45+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -168,7 +168,7 @@ msgid "Quote details"
 msgstr "Finanzinstrument Details"
 
 #. settings-schema.json->showChangeIcon->description
-msgid "Show change icon"
+msgid "Show change/trend icon"
 msgstr "Änderungssymbol anzeigen"
 
 #. settings-schema.json->showChangeIcon->tooltip
@@ -183,13 +183,21 @@ msgstr "Name anzeigen"
 msgid "Display the quote name (eg. International Business Machines)."
 msgstr "Zeigt den Namen des Instruments an (z.B. International Business Machines)."
 
+#. settings-schema.json->useLongQuoteName->description
+msgid "Use long version for verbose name"
+msgstr "Verwende die längere Version des Namens"
+
+#. settings-schema.json->useLongQuoteName->tooltip
+msgid "Use the long version for quote name, if available (eg. International Business Machines Corporation)."
+msgstr "Verwende die längere Version des Namens, falls vorhanden (z.B. International Business Machines Corporation)."
+
 #. settings-schema.json->linkQuoteName->description
 msgid "Add web link to name"
 msgstr "Name mit Web Link hinterlegen"
 
 #. settings-schema.json->linkQuoteName->tooltip
-msgid "Click to open quote in browser."
-msgstr "Anklicken, um das Instrument im Browser zu öffnen."
+msgid "Click name to open quote in browser."
+msgstr "Name anklicken, um das Instrument im Browser zu öffnen."
 
 #. settings-schema.json->showQuoteSymbol->description
 msgid "Show ticker/symbol"
@@ -198,6 +206,14 @@ msgstr "Symbol anzeigen"
 #. settings-schema.json->showQuoteSymbol->tooltip
 msgid "Display the quote symbol (eg. IBM)."
 msgstr "Zeigt das Symbol des Instruments an (z.B. IBM)."
+
+#. settings-schema.json->linkQuoteSymbol->description
+msgid "Add web link to ticker/symbol"
+msgstr "Symbol mit Web Link hinterlegen"
+
+#. settings-schema.json->linkQuoteSymbol->tooltip
+msgid "Click symbol to open quote in browser."
+msgstr "Symbol anklicken, um das Instrument im Browser zu öffnen."
 
 #. settings-schema.json->showMarketPrice->description
 msgid "Show price"
@@ -230,6 +246,14 @@ msgstr "Prozentuale Veränderung anzeigen"
 #. settings-schema.json->showPercentChange->tooltip
 msgid "Display the percent change of the market price (eg. +0.53%)."
 msgstr "Zeigt die relative Veränderung des Marktpreises an (z.B. +0.53%)."
+
+#. settings-schema.json->colorPercentChange->description
+msgid "Use trend colors for percent change"
+msgstr "Verwende Trend-Farben bei prozentualer Veränderung"
+
+#. settings-schema.json->colorPercentChange->tooltip
+msgid "Color the percent change to show the trend (green for up, red for down)."
+msgstr "Färbt die prozentuale Veränderung gemäss Trend (grün für höher, rot für tiefer)."
 
 #. settings-schema.json->showTradeTime->description
 msgid "Show trading time"

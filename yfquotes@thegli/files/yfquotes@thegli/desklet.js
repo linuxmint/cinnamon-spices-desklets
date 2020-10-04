@@ -1,5 +1,5 @@
 /*
- * Yahoo Finance Quotes - 0.4.1
+ * Yahoo Finance Quotes - 0.5.0
  *
  * Shows financial market information provided by Yahoo Finance.
  * This desklet is based on the work of fthuin's stocks desklet.
@@ -28,6 +28,7 @@ const Gettext = imports.gettext;
 const UUID = "yfquotes@thegli";
 const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 const ABSENT = "N/A";
+const YF_PAGE = "https://finance.yahoo.com/quote/";
 
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
@@ -105,10 +106,10 @@ QuotesTable.prototype = {
             cellContents.push(this.createPercentChangeIcon(quote));
         }
         if (shouldShow.quoteName) {
-            cellContents.push(this.createQuoteNameLabel(quote, shouldShow.linkQuote));
+            cellContents.push(this.createQuoteNameLabel(quote, shouldShow.useLongName, shouldShow.linkQuote));
         }
         if (shouldShow.quoteSymbol) {
-            cellContents.push(this.createQuoteSymbolLabel(quote));
+            cellContents.push(this.createQuoteSymbolLabel(quote, shouldShow.linkSymbol));
         }
         if (shouldShow.marketPrice) {
             cellContents.push(this.createMarketPriceLabel(quote, shouldShow.currencySymbol, shouldShow.decimalPlaces));
@@ -117,7 +118,7 @@ QuotesTable.prototype = {
             cellContents.push(this.createAbsoluteChangeLabel(quote, shouldShow.currencySymbol, shouldShow.decimalPlaces));
         }
         if (shouldShow.percentChange) {
-            cellContents.push(this.createPercentChangeLabel(quote));
+            cellContents.push(this.createPercentChangeLabel(quote, shouldShow.colorPercentChange));
         }
         if (shouldShow.tradeTime) {
             cellContents.push(this.createTradeTimeLabel(quote));
@@ -134,11 +135,22 @@ QuotesTable.prototype = {
     existsProperty : function(object, property) {
       return object.hasOwnProperty(property) && object[property] !== undefined && object[property] !== null;
     },
-    createQuoteSymbolLabel : function (quote) {
-        return new St.Label({
+    createQuoteSymbolLabel : function (quote, addLink) {
+        const symbolLabel =  new St.Label({
             text : quote.symbol,
-            style_class : "quotes-label"
+            style_class : "quotes-label",
+            reactive : addLink ? true : false
         });
+		if (addLink) {
+	        const symbolButton = new St.Button();
+	        symbolButton.add_actor(symbolLabel);
+	        symbolButton.connect("clicked", Lang.bind(this, function() {
+	            Gio.app_info_launch_default_for_uri(YF_PAGE + quote.symbol, global.create_app_launch_context());	
+	        }));
+	        return symbolButton;
+         } else {
+	        return symbolLabel;
+         }
     },
     createMarketPriceLabel : function (quote, withCurrencySymbol, decimalPlaces) {
         let currencySymbol = "";
@@ -150,9 +162,18 @@ QuotesTable.prototype = {
             style_class : "quotes-label"
         });
     },
-    createQuoteNameLabel : function (quote, addLink) {
+    determineQuoteName : function (quote, useLongName) {
+        if (useLongName && this.existsProperty(quote, "longName")) {
+            return quote.longName;
+        } else if (this.existsProperty(quote, "shortName")) {
+            return quote.shortName;
+        } 
+
+        return ABSENT;
+    },
+    createQuoteNameLabel : function (quote, useLongName, addLink) {
         const nameLabel =  new St.Label({
-            text : this.existsProperty(quote, "shortName") ? quote.shortName : ABSENT,
+            text : this.determineQuoteName(quote, useLongName),
             style_class : "quotes-label",
             reactive : addLink ? true : false
         });
@@ -160,7 +181,7 @@ QuotesTable.prototype = {
 	        const nameButton = new St.Button();
 	        nameButton.add_actor(nameLabel);
 	        nameButton.connect("clicked", Lang.bind(this, function() {
-	            Gio.app_info_launch_default_for_uri("https://finance.yahoo.com/quote/" + quote.symbol, global.create_app_launch_context());	
+	            Gio.app_info_launch_default_for_uri(YF_PAGE + quote.symbol, global.create_app_launch_context());	
 	        }));
 	        return nameButton;
          } else {
@@ -207,10 +228,19 @@ QuotesTable.prototype = {
         binIcon.set_child(image);
         return binIcon;
     },
-    createPercentChangeLabel : function (quote) {
+    createPercentChangeLabel : function (quote, useTrendColors) {
+		let trendClassSuffix = "";
+		if (useTrendColors && this.existsProperty(quote, "regularMarketChangePercent")) {
+			const percentageChange = parseFloat(quote.regularMarketChangePercent);
+			if (percentageChange > 0) {
+				trendClassSuffix = "-up";
+			} else if (percentageChange < 0) {
+				trendClassSuffix = "-down";
+			}
+		}
         return new St.Label({
             text : this.existsProperty(quote, "regularMarketChangePercent") ? (this.roundAmount(quote.regularMarketChangePercent, 2) + "%") : ABSENT,
-            style_class : "quotes-label"
+            style_class : "quotes-label" + trendClassSuffix
         });
     },
     roundAmount : function (amount, maxDecimals) {
@@ -291,9 +321,13 @@ StockQuoteDesklet.prototype = {
 				this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showQuoteName", "showQuoteName",
                 this.onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "useLongQuoteName", "useLongQuoteName",
+                this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "linkQuoteName", "linkQuoteName",
                 this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showQuoteSymbol", "showQuoteSymbol",
+                this.onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "linkQuoteSymbol", "linkQuoteSymbol",
                 this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showMarketPrice", "showMarketPrice",
                 this.onSettingsChanged, null);
@@ -303,6 +337,8 @@ StockQuoteDesklet.prototype = {
                 this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showPercentChange", "showPercentChange",
                 this.onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "colorPercentChange", "colorPercentChange",
+                this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showTradeTime", "showTradeTime",
                 this.onSettingsChanged, null);
     },
@@ -310,12 +346,15 @@ StockQuoteDesklet.prototype = {
         return {
             "changeIcon" : this.showChangeIcon,
             "quoteName" : this.showQuoteName,
+			"useLongName" : this.useLongQuoteName,
 			"linkQuote" : this.linkQuoteName,
             "quoteSymbol" : this.showQuoteSymbol,
+			"linkSymbol" : this.linkQuoteSymbol,
             "marketPrice" : this.showMarketPrice,
             "currencySymbol" : this.showCurrencyCode,
             "absoluteChange": this.showAbsoluteChange,
             "percentChange" : this.showPercentChange,
+			"colorPercentChange" : this.colorPercentChange,
             "tradeTime" : this.showTradeTime,
             "decimalPlaces" : this.roundNumbers ? this.decimalPlaces : -1
         };
