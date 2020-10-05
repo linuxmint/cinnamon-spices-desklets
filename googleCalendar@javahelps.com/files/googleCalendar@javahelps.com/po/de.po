@@ -251,7 +251,7 @@ msgstr "Kalenderkonfiguration"
 
 #. settings-schema.json->gcalendarAccount->description
 msgid "gcalendar Account ID"
-msgstr "Google ID"
+msgstr "gcalendar Konto ID"
 
 #. settings-schema.json->gcalendarAccount->tooltip
 msgid "Enter gcalendar --account id"
