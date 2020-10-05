@@ -2,17 +2,17 @@
 #
 # settings.py
 # Copyright (C) 2013 Lars Mueller <cobinja@yahoo.de>
-# 
+#
 # CobiAnalogClock is free software: you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by the
 # Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # CobiAnalogClock is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 # See the GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License along
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -38,7 +38,7 @@ def getTimezones():
   lsZones = Gtk.ListStore(GObject.TYPE_INT, GObject.TYPE_STRING)
   regionNames = [];
   lsCities = Gtk.ListStore(GObject.TYPE_INT, GObject.TYPE_STRING, GObject.TYPE_STRING)
-  
+
   _tzinfo_dir = os.getenv("TZDIR") or "/usr/share/zoneinfo"
   if _tzinfo_dir.endswith(os.sep):
     _tzinfo_dir = _tzinfo_dir[:-1]
@@ -56,7 +56,7 @@ def getTimezones():
        'US/Pacific',
        'UTC']
   timeZones.sort()
-  
+
   i = 0
   for tz in timeZones:
     i += 1
@@ -73,55 +73,56 @@ def getTimezones():
 def filterDetailFunc(model, iterator, regionCombo):
   rcIter = regionCombo.get_active_iter()
   if rcIter == None: return False
-  
+
   rcModel = regionCombo.get_model()
   activeRegion = rcModel[rcIter][1]
-  
+
   cityRegion = model[iterator][2]
   return activeRegion == cityRegion
 
 class CobiSettings:
   def __init__(self, instanceId):
+    """Constructor"""
     self.instanceId = instanceId
     settingsDirName = GLib.get_user_config_dir()
     if not settingsDirName:
       settingsDirName = GLib.get_home_dir() + "/.config"
     settingsDirName += "/cobinja/" + UUID
     settingsDir = Gio.file_new_for_path(settingsDirName)
-    
+
     if not settingsDir.query_exists(None):
       settingsDir.make_directory_with_parents(None)
-    
+
     self.__settingsFile = settingsDir.get_child(instanceId + ".json")
     if not self.__settingsFile.query_exists(None):
       self.__getDefaultSettingsFile().copy(self.__settingsFile, 0, None, None, None)
-    
+
     self.values = collections.OrderedDict()
     
     self.__loadSettings()
     
     self.__monitor = self.__settingsFile.monitor(Gio.FileMonitorFlags.NONE, None)
     self.__monitorChangedId = self.__monitor.connect("changed", self.__onSettingsChanged)
-  
+
   def __getDefaultSettingsFile(self):
     return Gio.file_new_for_path(DESKLET_DIR + "/default_settings.json")
-  
+
   def writeSettings(self):
     if self.changed():
       f = open(self.__settingsFile.get_path(), 'w')
       f.write(json.dumps(self.values, sort_keys=False, indent=2))
       f.close()
       self.__origSettings = collections.OrderedDict(self.values)
-  
+
   def setEntry(self, key, value, writeToFile):
     if key in self.values.keys() and self.values[key] != value:
       self.values[key] = value
       if writeToFile:
         self.writeSettings()
-  
+
   def __onSettingsChanged(self, monitor, thisFile, otherFile, eventType):
     self.__loadSettings()
-  
+
   def __loadSettings(self):
     f = open(self.__settingsFile.get_path(), 'r')
     settings = json.loads(f.read(), object_pairs_hook=collections.OrderedDict)
@@ -132,16 +133,18 @@ class CobiSettings:
       if value != oldValue:
         self.values[key] = value
     self.__origSettings = collections.OrderedDict(self.values)
-  
+
   def changed(self):
     return self.values != self.__origSettings
-  
+
   def __del__(self):
+    """Destructor"""
     self.__monitor.disconnect(self.__monitorChangedId)
     self.__monitor.cancel()
 
 class CobiAnalogClockSettings:
   def __init__(self):
+    """Constructor"""
     instanceId = sys.argv[1];
     self.__settings = CobiSettings(instanceId)
     
@@ -154,8 +157,7 @@ class CobiAnalogClockSettings:
     # Load theme names
     themeNames = getThemeNames(DESKLET_DIR + "/../themes")
     activeIndex = 0
-    for i in range(0, len(themeNames)):
-      themeName = themeNames[i]
+    for i, themeName in enumerate(themeNames):
       self.lsTheme.append([i, themeName])
       if themeName == self.__settings.values["theme"]:
         activeIndex = i
@@ -237,18 +239,18 @@ class CobiAnalogClockSettings:
     
   def destroy(self, window):
     Gtk.main_quit()
-    
+
   def okPressed(self, button):
     self.applySettings(button)
     Gtk.main_quit()
-  
+
   def applySettings(self, button):
     self.__settings.writeSettings()
     self.updateApplyButtonSensitivity()
-  
+
   def cancel(self, button):
     Gtk.main_quit()
-  
+
   def onThemeChanged(self, button):
     tree_iter = button.get_active_iter()
     if tree_iter != None:
@@ -256,19 +258,19 @@ class CobiAnalogClockSettings:
     if themeName:
       self.__settings.setEntry("theme", themeName, False)
     self.updateApplyButtonSensitivity()
-  
+
   def onSizeChanged(self, button):
     self.__settings.setEntry("size", int(button.get_value()), False)
     self.updateApplyButtonSensitivity()
-  
+
   def onShowSecondsChanged(self, button):
     self.__settings.setEntry("show-seconds", button.get_active(), False)
     self.updateApplyButtonSensitivity()
-  
+
   def onHideDecorationsChanged(self, button):
     self.__settings.setEntry("hide-decorations", button.get_active(), False)
     self.updateApplyButtonSensitivity()
-  
+
   def onUseTimezoneChanged(self, button):
     active = button.get_active()
     self.__settings.setEntry("timezone-use", active, False)
@@ -277,7 +279,7 @@ class CobiAnalogClockSettings:
     self.cbTzDisplayLabel.set_sensitive(active)
     self.builder.get_object("lblTzDisplayLabel").set_sensitive(active)
     self.updateApplyButtonSensitivity()
-  
+
   def onTzRegionChanged(self, button):
     tree_iter = button.get_active_iter()
     if tree_iter != None:
@@ -288,16 +290,16 @@ class CobiAnalogClockSettings:
       self.cbTzCity.set_sensitive(len(self.lsfCities) > 0)
     self.updateTzSetting()
     self.updateApplyButtonSensitivity()
-  
+
   def onTzCityChanged(self, button):
     self.updateTzSetting()
     self.updateApplyButtonSensitivity()
-  
+
   def onTzDisplayLabelChanged(self, button):
     active = button.get_active()
     self.__settings.setEntry("timezone-display", active, False)
     self.updateApplyButtonSensitivity()
-  
+
   def updateTzSetting(self):
     newTz = {}
     regionIter = self.cbTzRegion.get_active_iter()
@@ -310,7 +312,7 @@ class CobiAnalogClockSettings:
       if cityIter:
         newTz["city"] = self.lsfCities[cityIter][1]
     self.__settings.setEntry("timezone", newTz, False)
-  
+
   def updateApplyButtonSensitivity(self):
     btn = self.builder.get_object("buttonApply")
     changed = self.__settings.changed()
@@ -322,6 +324,6 @@ def main():
     
 if __name__ == "__main__":
   if len(sys.argv) != 2:
-    print "Usage: settings.py <desklet_id>"
+    print("Usage: settings.py <desklet_id>")
     exit(0);
   main()
