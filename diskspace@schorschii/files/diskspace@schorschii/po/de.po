@@ -44,6 +44,9 @@ msgstr "Arbeitsspeicher"
 msgid "Swap"
 msgstr "Swap-Speicher"
 
+msgid "Not Found"
+msgstr "Nicht gef."
+
 msgid "Filesystem to monitor"
 msgstr "Dateisystem, welches angezeigt werden soll"
 

@@ -11,18 +11,21 @@ const Clutter = imports.gi.Clutter;
 const GdkPixbuf = imports.gi.GdkPixbuf;
 const Cogl = imports.gi.Cogl;
 const Gio = imports.gi.Gio;
+const Gettext = imports.gettext;
 
 const UUID = "notes@schorschii";
 const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
 
 // translation support
-const Gettext = imports.gettext;
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 function _(str) {
 	return Gettext.dgettext(UUID, str);
 }
 
 function MyDesklet(metadata, desklet_id) {
+	// translation init: if installed in user context, switch to translations in user's home dir
+	if(!DESKLET_ROOT.startsWith("/usr/share/")) {
+		Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+	}
 	this._init(metadata, desklet_id);
 }
 
