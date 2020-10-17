@@ -33,6 +33,7 @@ MyDesklet.prototype = {
         this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
         this.settings.bindProperty(Settings.BindingDirection.IN, "type", "type", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "filesystem", "filesystem", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "filesystem-label", "filesystem_label", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refresh_interval", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "duration", "duration", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "background_color", this.on_setting_changed);
@@ -148,7 +149,8 @@ MyDesklet.prototype = {
               let hdd_values = this.get_hdd_values(dir_path);
               let hdd_use = Math.min(hdd_values[1], 100); //already in %
               value = hdd_use / 100;
-              text1 = hdd_values[0];
+              text1 = this.filesystem_label;
+              if (text1 == "") text1 = hdd_values[0];
               text2 = Math.round(hdd_use).toString() + "%"
               text3 = hdd_values[3].toFixed(0) + " GB free of "
                     + hdd_values[2].toFixed(0) + " GB";
