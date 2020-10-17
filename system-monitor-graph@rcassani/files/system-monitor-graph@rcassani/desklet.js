@@ -229,14 +229,15 @@ MyDesklet.prototype = {
         this.text1.set_text(text1);
         this.text1.style = "font-size: " + text1_size + "px;"
                          + "color: " + this.text_color + ";";
-        this.text2.set_position(5 * unit_size, unit_size);
+        this.text2.set_position(this.text1.get_width() + (2 * unit_size), unit_size);
         this.text2.set_text(text2);
         this.text2.style = "font-size: " + text2_size + "px;"
                          + "color: " + this.text_color + ";";
-        this.text3.set_position(9.5 * unit_size, unit_size * 1.4);
         this.text3.set_text(text3);
         this.text3.style = "font-size: " + text3_size + "px;"
                          + "color: " + this.text_color + ";";
+        this.text3.set_position((21 * unit_size) - this.text3.get_width(), unit_size * 1.3333);
+
 
         // update canvas
         canvas.invalidate();
