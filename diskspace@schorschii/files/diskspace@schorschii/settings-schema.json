@@ -64,6 +64,15 @@
             "No text": "none"
         }
     },
+    "size-prefix": {
+        "type": "combobox",
+        "default": "binary",
+        "description": "Size Prefix",
+        "options" : {
+            "Decimal" : "decimal",
+            "Binary": "binary"
+        }
+    },
     "hide-decorations": {
         "type": "checkbox",
         "description": "Hide decorations",
