@@ -84,6 +84,15 @@ msgstr ""
 msgid "No text"
 msgstr ""
 
+msgid "Size Prefix"
+msgstr ""
+
+msgid "Decimal"
+msgstr ""
+
+msgid "Binary"
+msgstr ""
+
 msgid "Hide decorations"
 msgstr ""
 

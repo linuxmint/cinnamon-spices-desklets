@@ -40,6 +40,7 @@ MyDesklet.prototype = {
 
 		// initialize settings
 		this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "size-prefix", "size_prefix", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hide_decorations", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "use-custom-label", "use_custom_label", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "custom-label", "custom_label", this.on_setting_changed);
@@ -116,7 +117,7 @@ MyDesklet.prototype = {
 		if(type == "ram") {
 
 			let subprocess = new Gio.Subprocess({
-				argv: ['/usr/bin/free'],
+				argv: ['/usr/bin/free', '--bytes'],
 				flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
 			});
 			subprocess.init(null);
@@ -140,7 +141,7 @@ MyDesklet.prototype = {
 		} else if(type == "swap") {
 
 			let subprocess = new Gio.Subprocess({
-				argv: ['/usr/bin/free'],
+				argv: ['/usr/bin/free', '--bytes'],
 				flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
 			});
 			subprocess.init(null);
@@ -174,8 +175,8 @@ MyDesklet.prototype = {
 				if(stdErr == "" && fslines.length > 1) {
 					let fsvalues = fslines[1].split(/\s+/); // separate space-separated values from line
 					if(fsvalues.length > 4) {
-						avail = parseInt(fsvalues[3]);
-						use = parseInt(fsvalues[2]);
+						avail = parseInt(fsvalues[3]) * 1024; // df shows 1K blocks -> convert ty bytes
+						use = parseInt(fsvalues[2]) * 1024; // df shows 1K blocks -> convert ty bytes
 						size = use + avail;
 						percentString = fsvalues[4];
 					}
@@ -335,17 +336,18 @@ MyDesklet.prototype = {
 	},
 
 	niceSize: function(value) {
-		let use_binary = true;
-		if(use_binary) {
-			if(value < 1024) return value + "K";
-			else if(value < 1024*1024) return Math.round(value / 1024 * 10) / 10 + "M";
-			else if(value < 1024*1024*1024) return Math.round(value / 1024 / 1024 * 10) / 10 + "G";
-			else return Math.round(value / 1024 / 1024 / 1024 * 10) / 10 + "T";
+		if(this.size_prefix == "binary") {
+			if(value < 1024) return value + " B";
+			else if(value < 1024*1024) return Math.round(value / 1024 * 10) / 10 + " Ki";
+			else if(value < 1024*1024*1024) return Math.round(value / 1024 / 1024 * 10) / 10 + " Mi";
+			else if(value < 1024*1024*1024*1024) return Math.round(value / 1024 / 1024 /1024 * 10) / 10 + " Gi";
+			else return Math.round(value / 1024 / 1024 / 1024 / 1024 * 10) / 10 + " Ti";
 		} else {
-			if(value < 1000) return value + "K";
-			else if(value < 1000*1000) return Math.round(value / 1000 * 10) / 10 + "M";
-			else if(value < 1000*1000*1000) return Math.round(value / 1000 / 1000 * 10) / 10 + "G";
-			else return Math.round(value / 1000 / 1000 / 1000 * 10) / 10 + "T";
+			if(value < 1000) return value + " B";
+			else if(value < 1000*1000) return Math.round(value / 1000 * 10) / 10 + " K";
+			else if(value < 1000*1000*1000) return Math.round(value / 1000 / 1000 * 10) / 10 + " M";
+			else if(value < 1000*1000*1000*1000) return Math.round(value / 1000 / 1000 / 1000 * 10) / 10 + " G";
+			else return Math.round(value / 1000 / 1000 / 1000 / 1000 * 10) / 10 + " T";
 		}
 	},
 
