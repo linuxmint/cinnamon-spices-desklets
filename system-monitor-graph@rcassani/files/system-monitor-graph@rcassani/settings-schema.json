@@ -16,7 +16,7 @@
         "options" : {
             "CPU" : "cpu",
             "RAM" : "ram",
-            "HHD" : "hdd"
+            "HDD" : "hdd"
         }
     },
     "filesystem": {
