@@ -16,7 +16,7 @@
         "options" : {
             "CPU" : "cpu",
             "RAM" : "ram",
-            "HHD" : "hdd"
+            "HDD" : "hdd"
         }
     },
     "filesystem": {
@@ -26,6 +26,13 @@
         "tooltip": "Select a directory in the filesystem to monitor.",
         "allow-none" : true,
         "select-dir" : true,
+        "dependency": "type=hdd"
+    },
+    "filesystem-label": {
+        "type": "entry",
+        "default": "",
+        "description": "Filesystem label",
+        "tooltip": "Empty uses the filesystem name from df.",
         "dependency": "type=hdd"
     },
     "duration": {

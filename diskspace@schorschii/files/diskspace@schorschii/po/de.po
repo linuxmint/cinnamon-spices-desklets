@@ -41,6 +41,12 @@ msgstr "Dateisystem"
 msgid "RAM"
 msgstr "Arbeitsspeicher"
 
+msgid "Swap"
+msgstr "Swap-Speicher"
+
+msgid "Not Found"
+msgstr "Nicht gef."
+
 msgid "Filesystem to monitor"
 msgstr "Dateisystem, welches angezeigt werden soll"
 
@@ -79,6 +85,15 @@ msgstr "Freier Speicherplatz und Kapazität"
 
 msgid "No text"
 msgstr "Kein Text"
+
+msgid "Size Prefix"
+msgstr "Präfixe"
+
+msgid "Decimal"
+msgstr "Dezimal"
+
+msgid "Binary"
+msgstr "Binär"
 
 msgid "Hide decorations"
 msgstr "Dekorationen verstecken"

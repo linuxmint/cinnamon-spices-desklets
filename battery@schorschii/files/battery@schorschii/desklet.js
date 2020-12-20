@@ -12,8 +12,8 @@ const GdkPixbuf = imports.gi.GdkPixbuf;
 const Cogl = imports.gi.Cogl;
 const Gio = imports.gi.Gio;
 
-const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta["battery@schorschii"].path;
-
+const UUID = "battery@schorschii";
+const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
 
 function MyDesklet(metadata, desklet_id) {
 	this._init(metadata, desklet_id);

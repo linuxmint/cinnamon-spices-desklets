@@ -22,6 +22,17 @@ Check out the desklet configuration settings, and choose the data refresh period
 
 ## Release Notes
 
+### 0.5.0 - October 4, 2020
+Features:
+* new setting to color percentage change according to trend. Enabled by default if percentage change is displayed. Courtesy of [plaihonen](https://github.com/plaihonen).
+* new setting to add Yahoo Finance hyperlink to symbol/quote. Enabled by default if symbol is displayed. Proposed by [ngaro](https://github.com/ngaro).
+* new setting to use long version for verbose quote name. Enabled by default if verbose name is displayed. Courtesy of [ngaro](https://github.com/ngaro).
+
+### 0.4.2 - September 20, 2020
+Bugfixes:
+* update translation files with new setting
+* extend desklet description for better searchability
+
 ### 0.4.1 - August 18, 2020
 Features:
 * add setting to disable quote name hyperlink

@@ -39,6 +39,12 @@ msgstr ""
 msgid "RAM"
 msgstr ""
 
+msgid "Swap"
+msgstr ""
+
+msgid "Not Found"
+msgstr ""
+
 msgid "Filesystem to monitor"
 msgstr ""
 
@@ -76,6 +82,15 @@ msgid "Free and total space"
 msgstr ""
 
 msgid "No text"
+msgstr ""
+
+msgid "Size Prefix"
+msgstr ""
+
+msgid "Decimal"
+msgstr ""
+
+msgid "Binary"
 msgstr ""
 
 msgid "Hide decorations"

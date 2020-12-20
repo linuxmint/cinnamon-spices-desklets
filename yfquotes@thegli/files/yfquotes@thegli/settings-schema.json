@@ -5,7 +5,7 @@
   },
   "width": {
     "type": "spinbutton",
-    "default": 480,
+    "default": 560,
     "min": 40,
     "max": 4000,
     "step": 20,
@@ -102,7 +102,7 @@
   "showChangeIcon": {
     "type": "checkbox",
     "default": true,
-    "description": "Show change icon",
+    "description": "Show change/trend icon",
     "tooltip": "Indicates whether the market price moved up, down, or is unchanged."
   },
   "showQuoteName": {
@@ -111,11 +111,18 @@
     "description": "Show verbose name",
     "tooltip": "Display the quote name (eg. International Business Machines)."
   },
+  "useLongQuoteName": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Use long version for verbose name",
+    "tooltip": "Use the long version for quote name, if available (eg. International Business Machines Corporation).",
+    "dependency": "showQuoteName"
+  },
   "linkQuoteName": {
     "type": "checkbox",
     "default": true,
     "description": "Add web link to name",
-    "tooltip": "Click to open quote in browser.",
+    "tooltip": "Click name to open quote in browser.",
     "dependency": "showQuoteName"
   },
   "showQuoteSymbol": {
@@ -123,6 +130,13 @@
     "default": true,
     "description": "Show ticker/symbol",
     "tooltip": "Display the quote symbol (eg. IBM)."
+  },
+  "linkQuoteSymbol": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Add web link to ticker/symbol",
+    "tooltip": "Click symbol to open quote in browser.",
+    "dependency": "showQuoteSymbol"
   },
   "showMarketPrice": {
     "type": "checkbox",
@@ -148,6 +162,13 @@
     "default": true,
     "description": "Show percent change",
     "tooltip": "Display the percent change of the market price (eg. +0.53%)."
+  },
+  "colorPercentChange": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Use trend colors for percent change",
+    "tooltip": "Color the percent change to show the trend (green for up, red for down).",
+    "dependency": "showPercentChange"
   },
   "showTradeTime": {
     "type": "checkbox",

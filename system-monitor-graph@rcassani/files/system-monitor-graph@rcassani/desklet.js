@@ -33,6 +33,7 @@ MyDesklet.prototype = {
         this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
         this.settings.bindProperty(Settings.BindingDirection.IN, "type", "type", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "filesystem", "filesystem", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "filesystem-label", "filesystem_label", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refresh_interval", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "duration", "duration", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "background_color", this.on_setting_changed);
@@ -148,7 +149,8 @@ MyDesklet.prototype = {
               let hdd_values = this.get_hdd_values(dir_path);
               let hdd_use = Math.min(hdd_values[1], 100); //already in %
               value = hdd_use / 100;
-              text1 = hdd_values[0];
+              text1 = this.filesystem_label;
+              if (text1 == "") text1 = hdd_values[0];
               text2 = Math.round(hdd_use).toString() + "%"
               text3 = hdd_values[3].toFixed(0) + " GB free of "
                     + hdd_values[2].toFixed(0) + " GB";
@@ -229,14 +231,15 @@ MyDesklet.prototype = {
         this.text1.set_text(text1);
         this.text1.style = "font-size: " + text1_size + "px;"
                          + "color: " + this.text_color + ";";
-        this.text2.set_position(5 * unit_size, unit_size);
+        this.text2.set_position(this.text1.get_width() + (2 * unit_size), unit_size);
         this.text2.set_text(text2);
         this.text2.style = "font-size: " + text2_size + "px;"
                          + "color: " + this.text_color + ";";
-        this.text3.set_position(9.5 * unit_size, unit_size * 1.4);
         this.text3.set_text(text3);
         this.text3.style = "font-size: " + text3_size + "px;"
                          + "color: " + this.text_color + ";";
+        this.text3.set_position((21 * unit_size) - this.text3.get_width(), unit_size * 1.3333);
+
 
         // update canvas
         canvas.invalidate();

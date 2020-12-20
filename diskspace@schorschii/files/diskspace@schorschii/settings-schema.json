@@ -15,7 +15,8 @@
         "tooltip": "Choose, if this desklet should show file system or RAM usage.",
         "options" : {
             "Filesystem" : "filesystem",
-            "RAM": "ram"
+            "RAM": "ram",
+            "Swap": "swap"
         }
     },
     "filesystem": {
@@ -61,6 +62,15 @@
             "Used and total space": "used-size",
             "Free and total space": "free-size",
             "No text": "none"
+        }
+    },
+    "size-prefix": {
+        "type": "combobox",
+        "default": "binary",
+        "description": "Size Prefix",
+        "options" : {
+            "Decimal" : "decimal",
+            "Binary": "binary"
         }
     },
     "hide-decorations": {
