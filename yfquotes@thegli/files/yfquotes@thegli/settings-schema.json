@@ -72,7 +72,7 @@
   "quoteSymbols": {
     "type": "textview",
     "height": 150,
-    "default": "MMM\nAXP\nAAPL\nBA\nCAT\nCVX\nCSCO\nKO\nDOW\nXOM\nGS\nHD\nINTC\nIBM\nJNJ\nJPM\nMCD\nMRK\nMSFT\nNKE\nPFE\nPG\nRTX\nTRV\nUNH\nVZ\nV\nWBA\nWMT\nDIS",
+    "default": "MMM\nAXP\nAMGN\nAAPL\nBA\nCAT\nCVX\nCSCO\nKO\nDOW\nGS\nHD\nHON\nINTC\nIBM\nJNJ\nJPM\nMCD\nMRK\nMSFT\nNKE\nPG\nCRM\nTRV\nUNH\nVZ\nV\nWBA\nWMT\nDIS",
     "description": "Quote symbols",
     "tooltip": "List the quote symbols here, separated with line-breaks."
   },
