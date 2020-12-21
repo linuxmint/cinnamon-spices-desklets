@@ -40,12 +40,12 @@ msgstr "야후 금융 지수"
 #. settings-schema.json->head1->description
 #: 
 msgid "Desklet layout"
-msgstr "Desklet 레이아웃"
+msgstr "데스크릿 스타일"
 
 #. settings-schema.json->width->description
 #: 
 msgid "Width"
-msgstr "폭"
+msgstr "가로"
 
 #. settings-schema.json->width->units
 #. settings-schema.json->height->units
@@ -61,7 +61,7 @@ msgstr "데스크릿 너비 (픽셀)."
 #. settings-schema.json->height->description
 #: 
 msgid "Height"
-msgstr "신장"
+msgstr "세로"
 
 #. settings-schema.json->height->tooltip
 #: 
@@ -71,12 +71,12 @@ msgstr "데스크릿 높이 (픽셀)."
 #. settings-schema.json->transparency->description
 #: 
 msgid "Background transparency"
-msgstr "배경 투명성"
+msgstr "배경 투명도"
 
 #. settings-schema.json->transparency->tooltip
 #: 
 msgid "The higher the value, the more solid the desklet background."
-msgstr "값이 높을수록 데스크릿 배경이 더 단단해집니다."
+msgstr "값이 높을수록 데스크릿 배경이 더 진하게 보입니다."
 
 #. settings-schema.json->head2->description
 #: 
@@ -86,7 +86,7 @@ msgstr "재무 데이터"
 #. settings-schema.json->delayMinutes->units
 #: 
 msgid "minutes"
-msgstr "의사록"
+msgstr "분"
 
 #. settings-schema.json->delayMinutes->description
 #: 
@@ -101,12 +101,12 @@ msgstr "데이터 새로 고침 빈도 (분)."
 #. settings-schema.json->showLastUpdateTimestamp->description
 #: 
 msgid "Show last update timestamp"
-msgstr "마지막 업데이트 타임 스탬프 표시"
+msgstr "마지막 업데이트 타임 표시"
 
 #. settings-schema.json->showLastUpdateTimestamp->tooltip
 #: 
 msgid "Display timestamp when quotes were updated last."
-msgstr "견적이 마지막으로 업데이트 된 타임 스탬프를 표시합니다."
+msgstr "견적이 마지막으로 업데이트 된 타임을 표시합니다."
 
 #. settings-schema.json->roundNumbers->description
 #: 
@@ -136,7 +136,7 @@ msgstr "소수점 뒤에서 반올림 할 위치 수입니다."
 #. settings-schema.json->quoteSymbols->description
 #: 
 msgid "Quote symbols"
-msgstr "인용 부호"
+msgstr "종목코드 : 종목코드 + .KS(코스피) 또는 .KQ(코스닥)"
 
 #. settings-schema.json->quoteSymbols->tooltip
 #: 
@@ -161,7 +161,7 @@ msgstr "이름"
 #. settings-schema.json->sortCriteria->options
 #: 
 msgid "symbol"
-msgstr "상징"
+msgstr "기호"
 
 #. settings-schema.json->sortCriteria->description
 #: 
@@ -171,7 +171,7 @@ msgstr "목록 정렬 기준"
 #. settings-schema.json->sortCriteria->tooltip
 #: 
 msgid "Sort the quote list."
-msgstr "견적 목록을 정렬합니다."
+msgstr "목록을 정렬합니다."
 
 #. settings-schema.json->sortDirection->description
 #: 
@@ -181,12 +181,12 @@ msgstr "오름차순으로 정렬"
 #. settings-schema.json->sortDirection->tooltip
 #: 
 msgid "Check to sort quotes in ascending order, uncheck to sort in descending order."
-msgstr "따옴표를 오름차순으로 정렬하려면 선택하고 내림차순으로 정렬하려면 선택을 취소하십시오."
+msgstr "오름차순으로 정렬하려면 선택하고 내림차순으로 정렬하려면 선택을 취소하십시오."
 
 #. settings-schema.json->head3->description
 #: 
 msgid "Quote details"
-msgstr "견적 세부 정보"
+msgstr "세부 정보"
 
 #. settings-schema.json->showChangeIcon->description
 #: 
@@ -206,7 +206,7 @@ msgstr "자세한 이름 표시"
 #. settings-schema.json->showQuoteName->tooltip
 #: 
 msgid "Display the quote name (eg. International Business Machines)."
-msgstr "견적 이름을 표시합니다 (예 : International Business Machines)."
+msgstr "이름을 표시합니다 (예 : International Business Machines)."
 
 #. settings-schema.json->useLongQuoteName->description
 #: 
@@ -226,7 +226,7 @@ msgstr "이름에 웹 링크 추가"
 #. settings-schema.json->linkQuoteName->tooltip
 #: 
 msgid "Click name to open quote in browser."
-msgstr "이름을 클릭하여 브라우저에서 따옴표를 엽니 다."
+msgstr "이름을 클릭하여 브라우저에서 엽니다."
 
 #. settings-schema.json->showQuoteSymbol->description
 #: 
@@ -236,7 +236,7 @@ msgstr "티커 / 기호 표시"
 #. settings-schema.json->showQuoteSymbol->tooltip
 #: 
 msgid "Display the quote symbol (eg. IBM)."
-msgstr "따옴표를 표시합니다 (예 : IBM)."
+msgstr "종목을 표시합니다 (예 : IBM)."
 
 #. settings-schema.json->linkQuoteSymbol->description
 #: 
@@ -246,7 +246,7 @@ msgstr "티커 / 기호에 웹 링크 추가"
 #. settings-schema.json->linkQuoteSymbol->tooltip
 #: 
 msgid "Click symbol to open quote in browser."
-msgstr "기호를 클릭하여 브라우저에서 따옴표를 엽니 다."
+msgstr "기호를 클릭하여 브라우저에서 정보를 엽니다."
 
 #. settings-schema.json->showMarketPrice->description
 #: 
