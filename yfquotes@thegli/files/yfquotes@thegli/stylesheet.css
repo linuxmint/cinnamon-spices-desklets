@@ -1,31 +1,30 @@
 .quotes-reader {
-    padding: 5px;
-    border: 2px solid #ffffff;
-    border-radius: 12px;
-    color: #ffffff;
+  padding: 5px;
+  border: 2px solid #ffffff;
+  border-radius: 12px;
+  color: #ffffff;
 }
 
 .quotes-table-item {
-    padding-left: 2px;
-    padding-right: 5px;
+  padding-left: 2px;
+  padding-right: 5px;
 }
 
 .quotes-label {
-    text-align: center;
+  text-align: center;
 }
 
 .quotes-label-up {
-    text-align: center;
-    color: #00cc55;
+  text-align: center;
+  color: #00cc55;
 }
 
 .quotes-label-down {
-    text-align: center;
-    color: #cc0000;
+  text-align: center;
+  color: #cc0000;
 }
 
 .error-label {
-    text-align: left;
-    color: #cc0000;
+  text-align: left;
+  color: #cc0000;
 }
-
