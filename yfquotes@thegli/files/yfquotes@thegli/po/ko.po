@@ -190,7 +190,7 @@ msgstr "세부 정보"
 
 #. settings-schema.json->showChangeIcon->description
 #: 
-msgid "Show change icon"
+msgid "Show change/trend icon"
 msgstr "변경 아이콘 표시"
 
 #. settings-schema.json->showChangeIcon->tooltip
