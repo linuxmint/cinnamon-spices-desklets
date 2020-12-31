@@ -16,7 +16,8 @@
         "options" : {
             "CPU" : "cpu",
             "RAM" : "ram",
-            "HDD" : "hdd"
+            "HDD" : "hdd",
+            "GPU" : "gpu"
         }
     },
     "filesystem": {
@@ -34,6 +35,34 @@
         "description": "Filesystem label",
         "tooltip": "Empty uses the filesystem name from df.",
         "dependency": "type=hdd"
+    },
+    "gpu-manufacturer": {
+        "type": "combobox",
+        "default": "nvidia",
+        "description": "GPU manufacturer",
+        "tooltip": "Select the GPU manufacturer.",
+        "options" : {
+            "NVIDIA" : "nvidia"
+        },
+        "dependency": "type=gpu"
+    },
+    "gpu-id": {
+        "type": "entry",
+        "default": "0",
+        "description": "Id of GPU to monitor",
+        "tooltip": "Check GPU id with nvidia-smi -L",
+        "dependency": "type=gpu"
+    },
+    "gpu-variable": {
+        "type": "combobox",
+        "default": "usage",
+        "description": "GPU variable to monitor",
+        "tooltip": "Select the GPU variable to monitor.",
+        "options" : {
+            "Usage"  : "usage",
+            "Memory" : "memory"
+        },
+        "dependency": "type=gpu"
     },
     "duration": {
         "type": "combobox",
@@ -101,6 +130,13 @@
         "default": "rgba(197,86,33,1.0)",
         "description": "Line color HDD",
         "dependency": "type=hdd",
+        "tooltip": "RGB or RGBA. Alpha is ignored"
+    },
+    "line-color-gpu": {
+        "type": "colorchooser",
+        "default": "rgba(197,86,133,1.0)",
+        "description": "Line color GPU",
+        "dependency": "type=gpu",
         "tooltip": "RGB or RGBA. Alpha is ignored"
     },
     "midline-color": {

@@ -8,11 +8,13 @@ const Gio = imports.gi.Gio;
 const Cairo = imports.cairo;
 const St = imports.gi.St;
 const Util = imports.misc.util;
+const GLib = imports.gi.GLib;
 
 const UUID = "system-monitor-graph@rcassani";
 const DESKLET_PATH = imports.ui.deskletManager.deskletMeta[UUID].path;
 const GIB_TO_KIB = 1048576; // 1 GiB = 1,048,576 kiB
-const GB_TO_B = 1000000000; // 1 GB = 1,000,000,000 B
+const GB_TO_B = 1000000000; // 1 GB  = 1,000,000,000 B
+const GIB_TO_MIB = 1024;    // 1 GiB = 1,042 MiB
 
 
 function MyDesklet(metadata, desklet_id) {
@@ -34,6 +36,9 @@ MyDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "type", "type", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "filesystem", "filesystem", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "filesystem-label", "filesystem_label", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "gpu-manufacturer", "gpu_manufacturer", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "gpu-variable", "gpu_variable", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "gpu-id", "gpu_id", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refresh_interval", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "duration", "duration", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "background_color", this.on_setting_changed);
@@ -45,6 +50,7 @@ MyDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-cpu", "line_color_cpu", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-ram", "line_color_ram", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-hdd", "line_color_hdd", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-gpu", "line_color_gpu", this.on_setting_changed);
 
         // initialize desklet GUI
         this.setupUI();
@@ -94,6 +100,10 @@ MyDesklet.prototype = {
                   break;
               case "hdd":
                   this.line_color = this.line_color_hdd;
+                  break;
+              case "gpu":
+                  this.line_color = this.line_color_gpu;
+                  break;
             }
             this.first_run = false;
         }
@@ -154,8 +164,33 @@ MyDesklet.prototype = {
               text2 = Math.round(hdd_use).toString() + "%"
               text3 = hdd_values[3].toFixed(0) + " GB free of "
                     + hdd_values[2].toFixed(0) + " GB";
+              break;
 
+          case "gpu":
+              switch (this.gpu_manufacturer) {
+                case "nvidia":
+                    switch (this.gpu_variable) {
+                        case "usage":
+                            let gpu_use = this.get_nvidia_gpu_use();
+                            value = gpu_use / 100;
+                            text1 = "GPU Usage";
+                            text2 = Math.round(gpu_use).toString() + "%";
+                            break;
+                        case "memory":
+                            let gpu_mem_values = this.get_nvidia_gpu_mem();
+                            let gpu_mem_use = 100 * gpu_mem_values[1] / gpu_mem_values[0];
+                            value = gpu_mem_use / 100;
+                            text1 = "GPU Memory";
+                            text2 = Math.round(gpu_mem_use).toString() + "%"
+                            text3 = gpu_mem_values[1].toFixed(1) + " / "
+                                  + gpu_mem_values[0].toFixed(1) + " GiB";
+                            break;
+                    }
+                    break;
 
+                case "other":
+                    break
+              }
               break;
         }
 
@@ -333,6 +368,22 @@ MyDesklet.prototype = {
         let a = 1;
         if (colors.length > 3) a = colors[3];
         return [r, g, b, a];
+    },
+
+    get_nvidia_gpu_use: function() {
+        let [result, stdout, stderr] = GLib.spawn_command_line_sync("nvidia-smi --query-gpu=utilization.gpu --format=csv --id=" + this.gpu_id);
+        let gpu_use =  parseInt(stdout.toString().match(/[^\r\n]+/g)[1]); // parse integer in second line
+        return gpu_use;
+    },
+
+    get_nvidia_gpu_mem: function() {
+      let [result, stdout, stderr] = GLib.spawn_command_line_sync("nvidia-smi --query-gpu=memory.total --format=csv --id=" + this.gpu_id);
+      let mem_tot =  parseInt(stdout.toString().match(/[^\r\n]+/g)[1]); // parse integer in second line
+      [result, stdout, stderr] = GLib.spawn_command_line_sync("nvidia-smi --query-gpu=memory.used --format=csv --id=" + this.gpu_id);
+      let mem_usd =  parseInt(stdout.toString().match(/[^\r\n]+/g)[1]); // parse integer in second line
+      let gpu_mem_tot = mem_tot / GIB_TO_MIB;
+      let gpu_mem_usd = mem_usd / GIB_TO_MIB;
+      return [gpu_mem_tot, gpu_mem_usd];
     }
 
 };
