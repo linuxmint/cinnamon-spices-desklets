@@ -1,0 +1,97 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2018-01-12 18:07+0100\n"
+"PO-Revision-Date: 2021-01-11 19:09+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.1\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
+"Language: it\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+msgid "CPU Load"
+msgstr "Carico CPU"
+
+msgid "Displays CPU load"
+msgstr "Mostra il carico della CPU"
+
+msgid "CPU usage"
+msgstr "Utilizzo CPU"
+
+msgid "Settings for the CPU Load desklet"
+msgstr "Impostazione del desklet Carico CPU"
+
+msgid "Layout"
+msgstr "Layout"
+
+msgid "Design"
+msgstr "Design"
+
+msgid "Thin"
+msgstr "Sottile"
+
+msgid "Thick"
+msgstr "Spesso"
+
+msgid "Desklet size"
+msgstr "Dimensione desklet"
+
+msgid "Increase or decrease the size of the desklet."
+msgstr "Aumenta o riduci le dimensioni di questo desklet."
+
+msgid "Number of columns"
+msgstr "Numero di colonne"
+
+msgid "Increase or decrease number of columns."
+msgstr "Incrementa o decrementa il numero di colonne."
+
+msgid "Show all CPU cores"
+msgstr "Mostra tutti i core della CPU"
+
+msgid "Display utilization of each CPU core rather than total CPU utilization."
+msgstr "Mostra l'utilizzo di ogni core della CPU invece di un totale."
+
+msgid "Refresh interval"
+msgstr "Intervallo di aggiornamento"
+
+msgid "Increase or decrease refresh interval in seconds."
+msgstr "Incrementa o decrementa l'intervallo di aggiornamento in secondi."
+
+msgid "scale factor"
+msgstr "fattore di scala"
+
+msgid "columns"
+msgstr "colonne"
+
+msgid "Colors"
+msgstr "Colori"
+
+msgid "Color theme"
+msgstr "Tema colore"
+
+msgid "Random"
+msgstr "Casuale"
+
+msgid "Static"
+msgstr "Statico"
+
+msgid "Dynamic"
+msgstr "Dinamico"
+
+msgid "Static theme color"
+msgstr "Tema colore statico"
+
+msgid "Background"
+msgstr "Sfondo"
+
+msgid "Show background"
+msgstr "Mostra sfondo"
+
+msgid "Hide decorations"
+msgstr "Nascondi decorazioni"
