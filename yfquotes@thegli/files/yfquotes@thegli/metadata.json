@@ -1,7 +1,8 @@
 {
-    "description": "Displays financial market information from Yahoo Finance",
+    "description": "Displays financial market information such as stock quotes and commodity prices from Yahoo Finance",
     "name": "Yahoo Finance Quotes",
     "prevent-decorations": true,
-    "version": "0.2.0",
+    "max-instances": "10",
+    "version": "0.5.1",
     "uuid": "yfquotes@thegli"
 }

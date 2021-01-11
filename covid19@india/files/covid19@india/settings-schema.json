@@ -1,0 +1,84 @@
+{
+    "head0": {
+        "type": "header",
+        "description": "Settings for covid19@india"
+    },
+
+    "langdl" : {
+        "type" : "combobox",
+        "description" : "Choose language",
+        "default" : "hi",
+        "options" : {
+            "English" : "en",
+            "Hindi" : "hi"
+        }
+    },
+
+    "head1": {
+        "type": "header",
+        "description": "Your Location"
+    },
+    "state" : {
+        "type" : "combobox",
+        "description" : "Select state to display information",
+        "default" : "UP",
+        "options" : {
+            "Maharastra" : "MH",
+            "Gujrat" : "GJ",
+            "Tamil Nadu" : "TN",
+            "Delhi" : "DL",
+            "Rajasthan" : "RJ",
+            "Madhya Pradesh" : "MP",
+            "Uttar Pradesh" : "UP",
+            "Andra Pradesh" : "AP",
+            "West Bengal" : "WB",
+            "Punjab" : "PB",
+            "Telangana" : "TG",
+            "Jammu and Kashmir" : "JK",
+            "Karnataka" : "KA",
+            "Haryana" : "HR",
+            "Bihar" : "BR",
+            "Kerala" : "KL",
+            "Odisha" : "OR",
+            "Chandigarh" : "CH",
+            "Jharkhand" : "JH",
+            "Tripura" : "TR",
+            "Uttarakhand" : "UT",
+            "Chhattisgarh" : "CT",
+            "Assam" : "AS",
+            "Himachal Pradesh" : "HP",
+            "Ladakh" : "LA",
+            "Andaman and Nicobar Islands" : "AN",
+            "Meghalaya" : "ML",
+            "Puducherry" : "PY",
+            "Goa" : "GA",
+            "Manipur" : "MN",
+            "Mizoram" : "MA",
+            "Arunachal Pradesh" : "AR",
+            "Dadra and Nagar Haveli and Daman and Diu" : "DN",
+            "Nagaland" : "NG",
+            "Daman and Diu" : "DD",
+            "Lakshadweep" : "LD",
+            "Sikkim" : "SK"
+
+        }
+    },
+
+    "head2": {
+        "type": "header",
+        "description": "Experimetal"
+    },
+    "district": {
+        "type": "entry",
+        "default": "Agra",
+        "description": "Enter your district",
+        "tooltip" : "Spelling of your district can be matched with www.covid19india.org website"
+    },
+    "district_enable" : {
+        "type" : "checkbox",
+        "default" : false,
+        "description" : "Enable your district status (not use in slow internet)"
+    }
+
+
+}

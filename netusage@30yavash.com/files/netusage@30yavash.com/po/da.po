@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-21 20:37+0200\n"
-"PO-Revision-Date: 2017-06-21 20:43+0200\n"
+"POT-Creation-Date: 2020-01-03 12:49+0200\n"
+"PO-Revision-Date: 2020-12-09 18:32+0100\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
-"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: da\n"
 
 #: desklet.js:104
 msgid ""
@@ -48,3 +48,51 @@ msgstr "Netværksforbrug"
 #. netusage@30yavash.com->metadata.json->description
 msgid "Network usage monitor using vnstat"
 msgstr "Overvågning af netværksforbrug ved hjælp af vnstat"
+
+#. netusage@30yavash.com->setting-schema.json->head->description
+msgid "Settings for the Network Usage Applet (uses vnstati)"
+msgstr "Indstillinger for Netværksforbrug (bruger vnstati)"
+
+#. netusage@30yavash.com->setting-schema.json->useExtendedDisplay->description
+msgid "Enable Extended Display Options"
+msgstr "Aktivér udvidede visningsindstillinger"
+
+#. netusage@30yavash.com->setting-schema.json->useExtendedDisplay->tooltip
+msgid "This is a new option from version 1.0.3"
+msgstr "Dette er en ny mulighed fra og med version 1.0.3"
+
+#. netusage@30yavash.com->setting-schema.json->extendedDisplay->options
+msgid "Classic - Summary of Traffic for last Days and Months"
+msgstr "Klassisk - Resumé af de sidste dages og måneders trafik"
+
+#. netusage@30yavash.com->setting-schema.json->extendedDisplay->options
+msgid "Classic Plus - Classic with addition of hourly statistics"
+msgstr "Klassisk plus - Klassisk med statistik for hver time"
+
+#. netusage@30yavash.com->setting-schema.json->extendedDisplay->options
+msgid "Hourly statistics for last 24 hours"
+msgstr "Statistik for hver time de sidste 24 timer"
+
+#. netusage@30yavash.com->setting-schema.json->extendedDisplay->options
+msgid "Daily statistics for last 30 days"
+msgstr "Daglig statistik for de sidste 30 dage"
+
+#. netusage@30yavash.com->setting-schema.json->extendedDisplay->options
+msgid "Monthly statistics for last 12 months"
+msgstr "Månedlig statistik for de sidste 12 måneder"
+
+#. netusage@30yavash.com->setting-schema.json->extendedDisplay->options
+msgid "All time Top ten traffic days"
+msgstr "Top ti over dage med mest trafik"
+
+#. netusage@30yavash.com->setting-schema.json->extendedDisplay->description
+msgid "Type of Display - default Classic"
+msgstr "Visningstype - som standard Klassisk"
+
+#. netusage@30yavash.com->setting-schema.json->extendedDisplay->tooltip
+msgid ""
+"This feature offers the Classic (original) display with a number of other "
+"options"
+msgstr ""
+"Denne indstilling indeholder den oprindelige klassiske visning og andre "
+"valgmuligheder"

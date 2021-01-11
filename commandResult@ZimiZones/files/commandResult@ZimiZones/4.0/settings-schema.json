@@ -1,0 +1,108 @@
+{
+	"top": {
+		"type": "header",
+		"description": "Commands configuration"
+	},
+
+    "delay": {
+        "default": 1,
+        "type": "spinbutton",
+        "min": 1,
+        "max": 1440,
+        "description" : "Update every",
+        "units" : "minutes",
+        "step": 10 
+    },
+    "timeout": {
+        "default": 30,
+        "type": "spinbutton",
+        "min": 1,
+        "max": 1440,
+        "description" : "Cancel command after",
+        "units" : "seconds",
+        "step": 5 
+    },
+    "commands" : {
+        "type" : "list",
+        "description" : "Commands",
+        "columns" : [
+            {"id": "label", "title": "Label", "type": "string"},
+            {"id": "label-align-right", "title": "Align label right", "type": "boolean"},
+            {"id": "command", "title": "Command", "type": "string"},
+            {"id": "command-align-right", "title": "Align command result right", "type": "boolean"}
+        ],
+        "default" : [
+            {
+                "label": "Date: ",
+                "label-align-right": false,
+                "command": "date +\"%A %B %d, %I:%M %p\"",
+                "command-align-right": true
+            },
+            {
+                "label": "Cinnamon version: ",
+                "label-align-right": false,
+                "command": "cinnamon --version",
+                "command-align-right": true
+            },
+            {
+                "label": "Hostname: ",
+                "label-align-right": false,
+                "command": "hostname -I",
+                "command-align-right": true
+            }
+        ]
+    },
+
+    "style-options-separator": {
+        "type": "separator"
+    },
+    "style-options-header": {
+        "type": "header",
+        "description" : "Style"
+    },
+
+    "font": {
+        "type": "fontchooser",
+        "default": "Monospace 15",
+        "description": "Font"
+    },
+    "font-color" : {
+	    "type": "colorchooser",
+	    "default" : "rgb(255,255,255)",
+	    "description" : "Font color",
+	    "tooltip" : "Font color"
+    },
+    "background-color": {
+        "type": "colorchooser",
+        "indent": true,
+        "default": "rgb(0,0,0)",
+        "description": "Background color",
+        "tooltip": "Click to select the background color"
+    },
+    "background-transparency": {
+        "type": "scale",
+        "indent": true,
+        "default": 0.5,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.05,
+        "description": "Transparency",
+        "tooltip": "Transparency of the desklet"
+    },
+    "border-color": {
+        "type": "colorchooser",
+        "indent": true,
+        "default": "rgb(255,255,255)",
+        "description": "Border color",
+        "tooltip": "Click to select the border color"
+    },
+    "border-width": {
+        "type": "spinbutton",
+        "default": 2,
+        "min": 0,
+        "max": 200,
+        "units": "px",
+        "description" : "Border width",
+        "step": 1
+    }
+}

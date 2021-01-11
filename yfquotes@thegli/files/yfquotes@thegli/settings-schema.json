@@ -5,7 +5,7 @@
   },
   "width": {
     "type": "spinbutton",
-    "default": 480,
+    "default": 560,
     "min": 40,
     "max": 4000,
     "step": 20,
@@ -72,9 +72,28 @@
   "quoteSymbols": {
     "type": "textview",
     "height": 150,
-    "default": "MMM\nAXP\nAAPL\nBA\nCAT\nCVX\nCSCO\nKO\nDWDP\nXOM\nGE\nGS\nHD\nINTC\nIBM\nJNJ\nJPM\nMCD\nMRK\nMSFT\nNKE\nPFE\nPG\nTRV\nUTX\nUNH\nVZ\nV\nWMT\nDIS",
+    "default": "MMM\nAXP\nAMGN\nAAPL\nBA\nCAT\nCVX\nCSCO\nKO\nDOW\nGS\nHD\nHON\nINTC\nIBM\nJNJ\nJPM\nMCD\nMRK\nMSFT\nNKE\nPG\nCRM\nTRV\nUNH\nVZ\nV\nWBA\nWMT\nDIS",
     "description": "Quote symbols",
     "tooltip": "List the quote symbols here, separated with line-breaks."
+  },
+  "sortCriteria": {
+    "type": "radiogroup",
+    "default": "none",
+    "options": {
+      "given order": "none",
+      "percent change": "regularMarketChangePercent",
+      "name": "shortName",
+      "symbol": "symbol"
+      
+    },
+    "description": "Sort list by",
+    "tooltip": "Sort the quote list."
+  },
+  "sortDirection": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Sort in ascending order",
+    "tooltip": "Check to sort quotes in ascending order, uncheck to sort in descending order."
   },
   "head3": {
     "type": "header",
@@ -83,20 +102,41 @@
   "showChangeIcon": {
     "type": "checkbox",
     "default": true,
-    "description": "Show change icon",
+    "description": "Show change/trend icon",
     "tooltip": "Indicates whether the market price moved up, down, or is unchanged."
   },
   "showQuoteName": {
     "type": "checkbox",
     "default": true,
     "description": "Show verbose name",
-    "tooltip": "Display the quote name (eg. International Business Machines). Click to open quote in browser."
+    "tooltip": "Display the quote name (eg. International Business Machines)."
+  },
+  "useLongQuoteName": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Use long version for verbose name",
+    "tooltip": "Use the long version for quote name, if available (eg. International Business Machines Corporation).",
+    "dependency": "showQuoteName"
+  },
+  "linkQuoteName": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Add web link to name",
+    "tooltip": "Click name to open quote in browser.",
+    "dependency": "showQuoteName"
   },
   "showQuoteSymbol": {
     "type": "checkbox",
     "default": true,
     "description": "Show ticker/symbol",
     "tooltip": "Display the quote symbol (eg. IBM)."
+  },
+  "linkQuoteSymbol": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Add web link to ticker/symbol",
+    "tooltip": "Click symbol to open quote in browser.",
+    "dependency": "showQuoteSymbol"
   },
   "showMarketPrice": {
     "type": "checkbox",
@@ -122,6 +162,13 @@
     "default": true,
     "description": "Show percent change",
     "tooltip": "Display the percent change of the market price (eg. +0.53%)."
+  },
+  "colorPercentChange": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Use trend colors for percent change",
+    "tooltip": "Color the percent change to show the trend (green for up, red for down).",
+    "dependency": "showPercentChange"
   },
   "showTradeTime": {
     "type": "checkbox",

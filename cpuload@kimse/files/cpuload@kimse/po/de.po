@@ -1,0 +1,99 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2018-01-12 18:07+0100\n"
+"PO-Revision-Date: 2018-01-12 18:07+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+msgid "CPU Load"
+msgstr "CPU-Auslastung"
+
+msgid "Displays CPU load"
+msgstr "Zeigt die CPU-Auslastung an"
+
+msgid "CPU usage"
+msgstr "CPU-Nutzung"
+
+msgid "Settings for the CPU Load desklet"
+msgstr "Einstellungen für CPU Load desklet"
+
+msgid "Layout"
+msgstr "Visuelle Einstellungen"
+
+msgid "Design"
+msgstr "Design"
+
+msgid "Thin"
+msgstr "Dünn"
+
+msgid "Thick"
+msgstr "Dick"
+
+msgid "Desklet size"
+msgstr "Deskletgröße"
+
+msgid "Increase or decrease the size of the desklet."
+msgstr ""
+"Vergrößern oder verkleinern Sie dieses Desklet, indem Sie diesen "
+"Skalierungsfaktor verändern."
+
+msgid "Number of columns"
+msgstr "Spaltenanzahl"
+
+msgid "Increase or decrease number of columns."
+msgstr "Erhöhen oder verringern Sie die Spaltenanzahl."
+
+msgid "Show all CPU cores"
+msgstr "Zeige CPU-Auslastung für jeden Kern"
+
+msgid "Utilization of each CPU core will be displayed rather than total CPU utilization."
+msgstr "Zeige separate CPU-Auslastungsanzeige für jeden Prozessorkern."
+
+msgid "Refresh interval"
+msgstr "Aktualisierungsintervall"
+
+msgid "Increase or decrease refresh interval in seconds."
+msgstr "Erhöhen oder verringern Sie das Aktualisierungsintervall."
+
+msgid "scale factor"
+msgstr "Skalierungsfaktor"
+
+msgid "columns"
+msgstr "Spalten"
+
+msgid "Colors"
+msgstr "Farbeinstellungen"
+
+msgid "Color theme"
+msgstr "Kreisfarbe"
+
+msgid "Random"
+msgstr "Zufällig"
+
+msgid "Static"
+msgstr "Statisch"
+
+msgid "Dynamic"
+msgstr "Nach CPU-Auslastung einfärben (grün-rot)"
+
+msgid "Static theme color"
+msgstr "Statische Kreisfarbe"
+
+msgid "Background"
+msgstr "Hintergrundeinstellungen"
+
+msgid "Hide decorations"
+msgstr "Dekorationen ausblenden"
+
+msgid "Show background"
+msgstr "Zeichne ungenutzte Ressourcen (grau)"

@@ -893,6 +893,8 @@ MyDesklet.prototype = {
     //global.log('bbcwx: geo, calling ' + url);
     var here = this;
     let message = Soup.Message.new('GET', url);
+    _httpSession.timeout = 10;
+    _httpSession.idle_timeout = 10;
     _httpSession.queue_message(message, function (session, message) {
       if( message.status_code == 200) {
         try {callback.call(here,message.response_body.data.toString(),locsrc);} catch(e) {global.logError(e)}
@@ -1436,6 +1438,8 @@ wxDriver.prototype = {
     //global.log('bbcwx: calling ' + url);
     var here = this;
     let message = Soup.Message.new('GET', url);
+    _httpSession.timeout = 10;
+    _httpSession.idle_timeout = 10;
     _httpSession.queue_message(message, function (session, message) {
       if( message.status_code == 200) {
         try {callback.call(here,message.response_body.data.toString());} catch(e) {global.logError(e)}

@@ -1,0 +1,199 @@
+# Swedish translation for calendar@deeppradhan.
+# Copyright (c) 2018 Deep Pradhan
+# This file is distributed under the same license as the PACKAGE package.
+# Åke Engelbrektson <eson@svenskasprakfiler.se>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Calendar Desklet - 1.0\n"
+"Report-Msgid-Bugs-To: wiz_kid_o3@yahoo.com\n"
+"POT-Creation-Date: 2018-03-01 21:30+0530\n"
+"PO-Revision-Date: 2020-01-02 10:43+0100\n"
+"Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: sv\n"
+
+#: desklet.js:105
+msgid "Previous month..."
+msgstr "Föregående månad..."
+
+#: desklet.js:107
+msgid "Next month..."
+msgstr "Nästa månad..."
+
+#. calendar@deeppradhan->metadata.json->name
+msgid "Calendar desklet"
+msgstr "Skrivbordskalender"
+
+#. calendar@deeppradhan->metadata.json->contributors
+msgid "Deep Pradhan"
+msgstr "Deep Pradhan"
+
+#. calendar@deeppradhan->metadata.json->description
+msgid "Configurable Calendar desklet"
+msgstr "Konfigurerbar skrivbordskalender"
+
+#. calendar@deeppradhan->metadata.json->comments
+msgid ""
+"Calendar Desklet provides a highly configurable desklet to display current "
+"date and browsable months. It has a number of possible customisations."
+msgstr ""
+"Calendar Desklet är ett konfigurerbart skrivbordsprogram för att visa "
+"aktuellt datum och bläddringsbara månader. Det har ett antal möjliga "
+"anpassningar."
+
+#. calendar@deeppradhan->settings-schema.json->font-size->description
+msgid "Font size (pt)"
+msgstr "Teckenstorlek (pt)"
+
+#. calendar@deeppradhan->settings-schema.json->font-size->tooltip
+msgid "Set the text font size in points"
+msgstr "Ange textstorlek i punkter"
+
+#. calendar@deeppradhan->settings-schema.json->layout->description
+msgid "Layout of desklet"
+msgstr "Programlayout"
+
+#. calendar@deeppradhan->settings-schema.json->layout->tooltip
+msgid "Set the overall layout to horizontal/vertical of desklet"
+msgstr "Ange övergripande layout till horisontell/vertikal för programmet"
+
+#. calendar@deeppradhan->settings-schema.json->layout->options
+msgid "Horizontal"
+msgstr "Horisontell"
+
+#. calendar@deeppradhan->settings-schema.json->layout->options
+msgid "Vertical"
+msgstr "Vertikal"
+
+#. calendar@deeppradhan->settings-schema.json->transparency->description
+msgid "Transparency (%)"
+msgstr "Transparens (%)"
+
+#. calendar@deeppradhan->settings-schema.json->transparency->tooltip
+msgid "Set the transparency of desklet in percentage"
+msgstr "Ange programtransparens i procent"
+
+#. calendar@deeppradhan->settings-schema.json->show-time->description
+msgid "Show time"
+msgstr "Visa tid"
+
+#. calendar@deeppradhan->settings-schema.json->show-time->tooltip
+msgid "Show or hide time (hours and minutes)"
+msgstr "Visa eller dölj tiden (timmar och minuter)"
+
+#. calendar@deeppradhan->settings-schema.json->custom-font-family->description
+msgid "Custom font family for text (blank to use default)"
+msgstr "Anpassat teckensnitt för text (lämnas tomt för standardinställning)"
+
+#. calendar@deeppradhan->settings-schema.json->custom-font-family->tooltip
+msgid "Set a custom font family for the text (blank to use default font)"
+msgstr ""
+"Ange ett anpassat teckensnitt för text (lämnas tomt för "
+"standardinställning)"
+
+#. calendar@deeppradhan->settings-schema.json->top->description
+msgid "Calendar configuration"
+msgstr "Kalenderkonfiguration"
+
+#. calendar@deeppradhan->settings-schema.json->colour-background->description
+msgid "Background colour"
+msgstr "Bakgrundsfärg"
+
+#. calendar@deeppradhan->settings-schema.json->colour-background->tooltip
+msgid "Set background colour of desklet"
+msgstr "Ange bakgrundsfärg för programmet"
+
+#. calendar@deeppradhan->settings-schema.json->short-month-name->description
+msgid "Short month name"
+msgstr "Kort månadsnamn"
+
+#. calendar@deeppradhan->settings-schema.json->short-month-name->tooltip
+msgid "Show short month name"
+msgstr "Visa kort månadsnamn"
+
+#. calendar@deeppradhan->settings-schema.json->show-weekday->description
+msgid "Show day of week"
+msgstr "Visa veckodag"
+
+#. calendar@deeppradhan->settings-schema.json->show-weekday->tooltip
+msgid "For day of week; show full name, short name or disable showing"
+msgstr ""
+"För veckodag: Visa fullständigt namn, kortnamn eller inaktivera visning"
+
+#. calendar@deeppradhan->settings-schema.json->show-weekday->options
+#. calendar@deeppradhan->settings-schema.json->show-year->options
+msgid "Full"
+msgstr "Fullständig"
+
+#. calendar@deeppradhan->settings-schema.json->show-weekday->options
+#. calendar@deeppradhan->settings-schema.json->show-year->options
+msgid "Short"
+msgstr "Kort"
+
+#. calendar@deeppradhan->settings-schema.json->show-weekday->options
+#. calendar@deeppradhan->settings-schema.json->show-year->options
+msgid "No"
+msgstr "Nej"
+
+#. calendar@deeppradhan->settings-schema.json->show-year->description
+msgid "Show year"
+msgstr "Visa årtal"
+
+#. calendar@deeppradhan->settings-schema.json->show-year->tooltip
+msgid "For year; show all digits, show last two digits or disable showing"
+msgstr ""
+"För år: Visa alla siffror, de två sista siffrorna eller inaktivera visning"
+
+#. calendar@deeppradhan->settings-schema.json->colour-saturdays->description
+msgid "Text colour for Saturdays"
+msgstr "Textfärg för lördagar"
+
+#. calendar@deeppradhan->settings-schema.json->colour-saturdays->tooltip
+msgid "Set text colour for Saturdays"
+msgstr "Ange textfärg för lördagar"
+
+#. calendar@deeppradhan->settings-schema.json->colour-sundays->description
+msgid "Text colour for Sundays"
+msgstr "Textfärg för söndagar"
+
+#. calendar@deeppradhan->settings-schema.json->colour-sundays->tooltip
+msgid "Set text colour for Sundays"
+msgstr "Ange textfärg för söndagar"
+
+#. calendar@deeppradhan->settings-schema.json->panels->description
+msgid "Panels to show"
+msgstr "Paneler att visa"
+
+#. calendar@deeppradhan->settings-schema.json->panels->tooltip
+msgid "Select the panels to display in desklet"
+msgstr "Välj vilka paneler som visas i programmet"
+
+#. calendar@deeppradhan->settings-schema.json->panels->options
+msgid "Both Today & Month"
+msgstr "Både idag & månad"
+
+#. calendar@deeppradhan->settings-schema.json->panels->options
+msgid "Today only"
+msgstr "Endast idag"
+
+#. calendar@deeppradhan->settings-schema.json->panels->options
+msgid "Month only"
+msgstr "Endast månad"
+
+#. calendar@deeppradhan->settings-schema.json->display->description
+msgid "Desklet style configuration"
+msgstr "Programstil"
+
+#. calendar@deeppradhan->settings-schema.json->colour-text->description
+msgid "Text colour"
+msgstr "Textfärg"
+
+#. calendar@deeppradhan->settings-schema.json->colour-text->tooltip
+msgid "Set text colour of desklet"
+msgstr "Ange textfärg för programmet"

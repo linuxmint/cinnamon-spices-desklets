@@ -2,6 +2,7 @@
     "uuid": "googleCalendar@javahelps.com",
     "description": "A desklet that displays your agenda based on Google Calendar",
     "name": "Google Calendar",
+    "max-instances": "10",
     "prevent-decorations": true,
-    "cinnamon-version": ["3.4", "3.6", "3.8", "4.0", "4.2"]
+    "cinnamon-version": ["3.4", "3.6", "3.8", "4.0", "4.2", "4.4", "4.6"]
 }

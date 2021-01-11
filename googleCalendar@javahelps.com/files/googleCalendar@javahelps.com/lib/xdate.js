@@ -24,7 +24,7 @@ var XDate = function(t, e, n, r) {
 
     function i(e, n) {
         var r, i = n.length;
-        if (J(n[i - 1]) && (r = n[--i], n = O(n, 0, i)), i)
+        if (i > 0 && J(n[i - 1]) && (r = n[--i], n = O(n, 0, i)), i)
             if (1 == i) {
                 var o = n[0];
                 o instanceof t ? e[0] = new t(o.getTime()) : G(o) ? e[0] = new t(o) : o instanceof u ? e[0] = D(o) : A(o) && (e[0] = new t(0), e = T(o, r || !1, e))
@@ -97,8 +97,10 @@ var XDate = function(t, e, n, r) {
     }
 
     function T(e, n, r) {
-        for (var i, o = u.parsers, s = 0; s < o.length; s++)
-            if (i = o[s](e, n, r)) return i;
+        for (var i, o = u.parsers, s = 0; s < o.length; s++) {
+            i = o[s](e, n, r);
+            if (i) return i;
+        }
         return r[0] = new t(e), r
     }
 

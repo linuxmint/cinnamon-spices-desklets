@@ -1,0 +1,97 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2018-01-12 18:07+0100\n"
+"PO-Revision-Date: 2018-01-12 18:07+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+msgid "CPU Load"
+msgstr ""
+
+msgid "Displays CPU load"
+msgstr ""
+
+msgid "CPU usage"
+msgstr ""
+
+msgid "Settings for the CPU Load desklet"
+msgstr ""
+
+msgid "Layout"
+msgstr ""
+
+msgid "Design"
+msgstr ""
+
+msgid "Thin"
+msgstr ""
+
+msgid "Thick"
+msgstr ""
+
+msgid "Desklet size"
+msgstr ""
+
+msgid "Increase or decrease the size of the desklet."
+msgstr ""
+
+msgid "Number of columns"
+msgstr ""
+
+msgid "Increase or decrease number of columns."
+msgstr ""
+
+msgid "Show all CPU cores"
+msgstr ""
+
+msgid "Display utilization of each CPU core rather than total CPU utilization."
+msgstr ""
+
+msgid "Refresh interval"
+msgstr ""
+
+msgid "Increase or decrease refresh interval in seconds."
+msgstr ""
+
+msgid "scale factor"
+msgstr ""
+
+msgid "columns"
+msgstr ""
+
+msgid "Colors"
+msgstr ""
+
+msgid "Color theme"
+msgstr ""
+
+msgid "Random"
+msgstr ""
+
+msgid "Static"
+msgstr ""
+
+msgid "Dynamic"
+msgstr ""
+
+msgid "Static theme color"
+msgstr ""
+
+msgid "Background"
+msgstr ""
+
+msgid "Show background"
+msgstr ""
+
+msgid "Hide decorations"
+msgstr ""

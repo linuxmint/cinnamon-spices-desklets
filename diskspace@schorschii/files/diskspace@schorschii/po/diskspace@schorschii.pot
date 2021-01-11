@@ -39,6 +39,12 @@ msgstr ""
 msgid "RAM"
 msgstr ""
 
+msgid "Swap"
+msgstr ""
+
+msgid "Not Found"
+msgstr ""
+
 msgid "Filesystem to monitor"
 msgstr ""
 
@@ -57,6 +63,9 @@ msgstr ""
 msgid "Thin"
 msgstr ""
 
+msgid "Compact"
+msgstr ""
+
 msgid "Draw free/unused space (gray)"
 msgstr ""
 
@@ -70,6 +79,18 @@ msgid "Used and total space"
 msgstr ""
 
 msgid "Free and total space"
+msgstr ""
+
+msgid "No text"
+msgstr ""
+
+msgid "Size Prefix"
+msgstr ""
+
+msgid "Decimal"
+msgstr ""
+
+msgid "Binary"
 msgstr ""
 
 msgid "Hide decorations"
@@ -106,4 +127,19 @@ msgid "Custom desklet label"
 msgstr ""
 
 msgid "Set your custom label here. This field is unavailable unless the checkbox above is enabled."
+msgstr ""
+
+msgid "Action on mouse click"
+msgstr ""
+
+msgid "Choose what to do when the desklet was clicked."
+msgstr ""
+
+msgid "Open File Manager"
+msgstr ""
+
+msgid "Open Partition Manager"
+msgstr ""
+
+msgid "Nothing"
 msgstr ""

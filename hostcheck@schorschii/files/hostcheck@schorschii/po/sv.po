@@ -1,0 +1,92 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2018-01-12 18:07+0100\n"
+"PO-Revision-Date: 2019-12-26 11:59+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
+"Language: sv\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+msgid "Host Check"
+msgstr "Värdkontroll"
+
+msgid "Checks a host via ping or HTTP(S) and displays if it is available."
+msgstr ""
+"Kontrollerar en värddator via ping eller HTTP(S) och visar om den är "
+"tillgänglig."
+
+msgid "Settings for hostcheck@schorschii"
+msgstr "Inställningar för hostcheck@schorschii"
+
+msgid "General"
+msgstr "Allmänt"
+
+msgid "Ping or HTTP(S) check"
+msgstr "Ping- eller HTTP(S)-kontroll"
+
+msgid "Choose, if this desklet should do a ping or HTTP(S) check."
+msgstr "Välj om detta skrivbordsprogram skall pinga eller kolla via HTTP(S)."
+
+msgid "Show notifications when state changed"
+msgstr "Visa aviseringar när status ändras"
+
+msgid "Hostname, IP address or HTTP(S)-URL to check"
+msgstr "Värdnamn, IP-adress eller HTTP(S)-URL att kolla"
+
+msgid "Desklet size"
+msgstr "Programstorlek"
+
+msgid "scale factor"
+msgstr "skalfaktor"
+
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Öka eller minska storleken på det här programmet, med denna skalfaktor."
+
+msgid "Hide decorations"
+msgstr "Dölj dekorationer"
+
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr "Anpassad programetikett (endast synlig om dekorationer är aktiverat)"
+
+msgid "Use a custom desklet label"
+msgstr "Använd en anpassad programetikett"
+
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr "Aktivering låter dig ange en anpassad etikett i fältet nedan."
+
+msgid "Custom desklet label"
+msgstr "Anpassad programetikett"
+
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr ""
+"Ange din anpassade etikett här. Detta fält är inte tillgängligt om "
+"ovanstående inställning ar av."
+
+msgid "UNKNOWN"
+msgstr "OKÄND"
+
+msgid "CRIT"
+msgstr "KRITISK"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "WARN"
+msgstr "VARNING"
+
+msgid "No ping output"
+msgstr "Ingen ping-utdata"
+
+msgid "HTTP-Statuscode"
+msgstr "HTTP statuskod"

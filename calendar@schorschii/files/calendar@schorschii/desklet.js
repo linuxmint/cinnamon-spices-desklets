@@ -10,21 +10,21 @@ const Main = imports.ui.main;
 const Clutter = imports.gi.Clutter;
 const GdkPixbuf = imports.gi.GdkPixbuf;
 const Cogl = imports.gi.Cogl;
-
-const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta["calendar@schorschii"].path;
-
-// Enable translation support
-
-const UUID = "calendar@schorschii";
 const Gettext = imports.gettext;
 
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+const UUID = "calendar@schorschii";
+const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
 
+// translation support
 function _(str) {
 	return Gettext.dgettext(UUID, str);
 }
 
 function MyDesklet(metadata, desklet_id) {
+	// translation init: if installed in user context, switch to translations in user's home dir
+	if(!DESKLET_ROOT.startsWith("/usr/share/")) {
+		Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+	}
 	this._init(metadata, desklet_id);
 }
 
@@ -110,7 +110,7 @@ MyDesklet.prototype = {
 		this._displayTime = new GLib.DateTime();
 
 		// get timezone info
-		if (this.use_custom_tz && this.custom_tz != "") {
+		if(this.use_custom_tz && this.custom_tz != "") {
 			let tz = GLib.TimeZone.new(this.custom_tz);
 			this._displayTime = this._displayTime.to_timezone(tz);
 		}
@@ -163,10 +163,10 @@ MyDesklet.prototype = {
 			let ical_current_text = "";
 			let ical_current_desc = "";
 			for(var i = 0;i < lines.length;i++){
-				if (lines[i].startsWith("BEGIN:VEVENT")) {
+				if(lines[i].startsWith("BEGIN:VEVENT")) {
 					// calendar entry starts
 				}
-				if (lines[i].startsWith("END:VEVENT")) {
+				if(lines[i].startsWith("END:VEVENT")) {
 					// calendar entry ends
 
 					// check date if it matches today's date
@@ -176,13 +176,13 @@ MyDesklet.prototype = {
 					// reset temporary variables
 					ical_current_desc = ""; ical_current_text = ""; ical_current_dtstart = ""; ical_current_dtend = "";
 				}
-				if (lines[i].startsWith("DTSTART")) // read appointment start date and time
+				if(lines[i].startsWith("DTSTART")) // read appointment start date and time
 					ical_current_dtstart = lines[i].split(":")[1].split("T")[0].trim();
-				if (lines[i].startsWith("DTEND")) // read appointment end date and time
+				if(lines[i].startsWith("DTEND")) // read appointment end date and time
 					ical_current_dtend = lines[i].split(":")[1].split("T")[0].trim();
-				if (lines[i].startsWith("SUMMARY")) // read appointment summary
+				if(lines[i].startsWith("SUMMARY")) // read appointment summary
 					ical_current_text = lines[i].split(":")[1];
-				if (lines[i].startsWith("DESCRIPTION")) // read appointment description
+				if(lines[i].startsWith("DESCRIPTION")) // read appointment description
 					ical_current_desc = lines[i].split(":")[1];
 			}
 		}
@@ -195,20 +195,21 @@ MyDesklet.prototype = {
 	},
 
 	refreshSize: function(reloadGraphics = false) {
-		if (this.notification_amount != this.last_notification_amount || reloadGraphics == true) {
+		if(this.notification_amount != this.last_notification_amount || reloadGraphics == true) {
 
 			// calc new sizes based on scale factor
-			let label_width = Math.round(this.default_size_battery_width * this.scale_size / global.ui_scale);
-			let desklet_width = this.default_size_battery_width * this.scale_size;
-			let desklet_height = this.default_size_battery_height * this.scale_size;
-			let size_font_month_big = Math.round(this.default_size_font_month_big * this.scale_size / global.ui_scale);
-			let size_font_month_sub = Math.round(this.default_size_font_month_sub * this.scale_size / global.ui_scale);
-			let month_big_top = this.default_month_big_top * this.scale_size;
-			let month_sub_top = this.default_month_sub_top * this.scale_size;
-			let month_top_top = this.default_month_top_top * this.scale_size;
+			let scale = this.scale_size * global.ui_scale;
+			let desklet_width = this.default_size_battery_width * scale;
+			let desklet_height = this.default_size_battery_height * scale;
+			let label_width = Math.round(this.default_size_battery_width * this.scale_size);
+			let size_font_month_big = Math.round(this.default_size_font_month_big * this.scale_size);
+			let size_font_month_sub = Math.round(this.default_size_font_month_sub * this.scale_size);
+			let month_big_top = this.default_month_big_top * scale;
+			let month_sub_top = this.default_month_sub_top * scale;
+			let month_top_top = this.default_month_top_top * scale;
 
 			// set images
-			if (this.bg_img == "")
+			if(this.bg_img == "")
 				this.bg_img = "calendar_orange.svg";
 
 			let text_color_style = "color:" + this.text_color + ";";
@@ -243,7 +244,7 @@ MyDesklet.prototype = {
 			this.container.add_actor(this.month_big);
 			this.container.add_actor(this.month_sub);
 			this.container.add_actor(this.month_top);
-			if (this.notification_amount > 0 || this.notification_amount == -1)
+			if(this.notification_amount > 0 || this.notification_amount == -1)
 				this.container.add_actor(this.notification);
 			this.setContent(this.calendar);
 
@@ -259,7 +260,7 @@ MyDesklet.prototype = {
 		this.month_big.set_text(this.dayofmonth.toString());
 		this.month_sub.set_text(subtitle);
 		this.month_top.set_text(this.dayofweek_string);
-		if (this.notification_amount == -1)
+		if(this.notification_amount == -1)
 			this.notification.set_text("!");
 		else
 			this.notification.set_text(this.notification_amount.toString());
@@ -270,7 +271,7 @@ MyDesklet.prototype = {
 
 	refreshDecoration: function() {
 		// desklet label (header)
-		if (this.use_custom_label == true)
+		if(this.use_custom_label == true)
 			this.setHeader(this.custom_label)
 		else
 			this.setHeader(_("Calendar"));
@@ -293,7 +294,7 @@ MyDesklet.prototype = {
 	},
 
 	on_desklet_clicked: function() {
-		if (this.onclick_active == true && this.onclick_command != "")
+		if(this.onclick_active == true && this.onclick_command != "")
 			Util.spawnCommandLine(this.onclick_command);
 	},
 
