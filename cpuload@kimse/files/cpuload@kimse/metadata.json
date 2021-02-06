@@ -3,6 +3,5 @@
     "description": "Displays CPU load",
     "name": "CPU Load",
     "version": "0.5",
-    "uuid": "cpuload@kimse",
-    "last-edited": 1575483287
+    "uuid": "cpuload@kimse"
 }
