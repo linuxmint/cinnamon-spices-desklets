@@ -24,13 +24,13 @@ A spice can contain many files, but it should have the following file structure:
 
 - UUID/
 - UUID/info.json
-- UUID/icon.png
 - UUID/screenshot.png
 - UUID/README.md
 - UUID/files/
 - UUID/files/UUID
 - UUID/files/UUID/metadata.json
 - UUID/files/UUID/desklet.js
+- UUID/files/UUID/icon.png
 
 There are two important directories:
 

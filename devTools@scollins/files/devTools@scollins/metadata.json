@@ -5,6 +5,5 @@
     "contributors": "Stephen Collins - Author",
     "comments": "This desklet provides tools to help troubleshoot, view and control certain Cinnamon components and status information, and even test new code without restarting Cinnamon.",
     "name": "Developer's Tools",
-    "icon": "applications-development",
     "uuid": "devTools@scollins"
 }

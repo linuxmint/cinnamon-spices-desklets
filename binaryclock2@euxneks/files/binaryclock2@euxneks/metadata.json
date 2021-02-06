@@ -1,5 +1,4 @@
 {
-    "last-edited": "1437082995", 
     "description": "Based off of entelechy's binary clock, fixed to work with 17.2 and also added the option to have squared pips instead of circled pips.", 
     "minimum-decoration": 1, 
     "uuid": "binaryclock2@euxneks", 
