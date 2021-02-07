@@ -1,6 +1,5 @@
 {
     "description": "Display the weather from several web services on your desktop", 
-    "last-edited": "1494185621", 
     "name": "Weather Desklet", 
     "uuid": "bbcwx@oak-wood.co.uk",
     "max-instances": "10",

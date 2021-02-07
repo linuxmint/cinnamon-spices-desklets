@@ -1,5 +1,4 @@
 {
-    "last-edited": "1370193670", 
     "description": "A fork desklet that displays the time and date", 
     "prevent-decorations": false, 
     "uuid": "TimeAndDate@nightflame", 
