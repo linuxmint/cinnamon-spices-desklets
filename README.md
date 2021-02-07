@@ -46,7 +46,6 @@ Important note:
 At the root level:
 
 - info.json contains information about the spice. For instance, this is the file which contains the github username of the spice's author.
-- icon.png is the icon associated with the spice.
 - screenshot.png is a screenshot of the spice in action.
 - README.md is optional and can be used to show instructions and information about the spice. It appears both in Github and on the website.
 
