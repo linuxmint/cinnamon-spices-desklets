@@ -1,0 +1,97 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2018-01-12 18:07+0100\n"
+"PO-Revision-Date: 2021-02-09 11:42+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.1\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
+"Language: sk\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+msgid "CPU Load"
+msgstr "Záťaž procesora"
+
+msgid "Displays CPU load"
+msgstr "Zobrazuje zaťaženie procesora"
+
+msgid "CPU usage"
+msgstr "Využitie procesora"
+
+msgid "Settings for the CPU Load desklet"
+msgstr "Nastavenia deskletu zaťaženia procesoru"
+
+msgid "Layout"
+msgstr "Rozloženie"
+
+msgid "Design"
+msgstr "Vzhľad"
+
+msgid "Thin"
+msgstr "Tenký"
+
+msgid "Thick"
+msgstr "Hrubý"
+
+msgid "Desklet size"
+msgstr "Veľkosť deskletu"
+
+msgid "Increase or decrease the size of the desklet."
+msgstr "Zväčší alebo zmenší veľkosť deskletu."
+
+msgid "Number of columns"
+msgstr "Počet stĺpcov"
+
+msgid "Increase or decrease number of columns."
+msgstr "Zvýši alebo zmenší počet stĺpcov."
+
+msgid "Show all CPU cores"
+msgstr "Zobraziť všetky jadrá procesora"
+
+msgid "Display utilization of each CPU core rather than total CPU utilization."
+msgstr "Zobrazí využitie každého jadra procesora namiesto celkového využitia procesora."
+
+msgid "Refresh interval"
+msgstr "Interval obnovenia"
+
+msgid "Increase or decrease refresh interval in seconds."
+msgstr "Zväčší alebo zmenší počet sekúnd intervalu obnovenia."
+
+msgid "scale factor"
+msgstr "faktor zmeny mierky"
+
+msgid "columns"
+msgstr "stĺpce"
+
+msgid "Colors"
+msgstr "Farby"
+
+msgid "Color theme"
+msgstr "Farebný motív"
+
+msgid "Random"
+msgstr "Náhodný"
+
+msgid "Static"
+msgstr "Stály"
+
+msgid "Dynamic"
+msgstr "Dynamický"
+
+msgid "Static theme color"
+msgstr "Farba stáleho motívu"
+
+msgid "Background"
+msgstr "Pozadie"
+
+msgid "Show background"
+msgstr "Zobraziť pozadie"
+
+msgid "Hide decorations"
+msgstr "Skryť dekorácie"
