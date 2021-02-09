@@ -10,6 +10,7 @@ const Util = imports.misc.util;
 
 const Tooltips = imports.ui.tooltips;
 const PopupMenu = imports.ui.popupMenu;
+const Settings = imports.ui.settings;
 const Cinnamon = imports.gi.Cinnamon;
 const Soup = imports.gi.Soup
 let session = new Soup.SessionAsync();
@@ -24,8 +25,8 @@ function _(str) {
   return Gettext.dgettext(UUID, str);
 }
 
-function MyDesklet(metadata){
-    this._init(metadata);
+function MyDesklet(metadata, desklet_id){
+    this._init(metadata, desklet_id);
 }
 
 MyDesklet.prototype = {
@@ -190,7 +191,7 @@ MyDesklet.prototype = {
         });
     },
 
-    _init: function(metadata){
+    _init: function(metadata, desklet_id){
         try {            
             Desklet.Desklet.prototype._init.call(this, metadata);
             this.metadata = metadata
@@ -220,6 +221,10 @@ MyDesklet.prototype = {
             this._photoFrame.set_child(this._clutterBox);            
             this.setContent(this._photoFrame);
 
+            this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
+            this.settings.bind("max-height", "max_height", this._onSettingsChanged);
+            this.settings.bind("keep-centered", "keep_centered", this._onSettingsChanged);
+        
             
             this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
             this._menu.addAction(_("View latest xkcd"), Lang.bind(this, function() {
@@ -266,12 +271,9 @@ MyDesklet.prototype = {
                 this.refresh(this._xkcds[this._xkcds.length - 1]);
                 this._timeoutId = Mainloop.timeout_add_seconds(5, Lang.bind(this, this.refresh));
             }
-
-            
             
             global.w = this._photoFrame;
-            
-        }
+            }
         catch (e) {
             global.logError(e);
         }
@@ -306,6 +308,6 @@ MyDesklet.prototype = {
 }
 
 function main(metadata, desklet_id){
-    let desklet = new MyDesklet(metadata);
+    let desklet = new MyDesklet(metadata, desklet_id);
     return desklet;
 }

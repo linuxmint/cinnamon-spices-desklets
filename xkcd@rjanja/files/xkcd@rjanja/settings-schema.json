@@ -1,0 +1,18 @@
+{
+    "max-height": {
+        "type": "spinbutton",
+        "default": 90,
+        "min": 20,
+        "max": 4096,
+        "units": "px",
+        "description": "Maximum height",
+        "tooltip": "Select the maximum height that the desklet can have.",
+        "step": 1
+    },
+    "keep-centered": {
+        "type": "switch",
+        "default": false,
+        "description": "Keep centered",
+        "tooltip": "Check this to keep the desklet in the center of the screen."
+    }
+}
