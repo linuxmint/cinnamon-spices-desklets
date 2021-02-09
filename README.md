@@ -1,5 +1,7 @@
 # cinnamon-spices-desklets
 
+![Validate spices](https://github.com/linuxmint/cinnamon-spices-desklets/workflows/Validate%20spices/badge.svg)
+
 This repository hosts all the desklets available for the Cinnamon desktop environment.
 
 Users can install spices from https://cinnamon-spices.linuxmint.com, or directly from within Cinnamon -> System Settings.
