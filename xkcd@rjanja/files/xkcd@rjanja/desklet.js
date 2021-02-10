@@ -76,6 +76,8 @@ XkcdDesklet.prototype = {
     updateUI: function(xkcdId) {
         let url, filename;
 
+        this._clutterBox.set_size(this.maxWidth, this.maxHeight)
+
         if (xkcdId === null || xkcdId === undefined) {
             url = 'http://www.xkcd.com/info.0.json';
             filename = this.save_path + '/temp.json'
@@ -108,7 +110,7 @@ XkcdDesklet.prototype = {
 
     set_tooltip: function(tip) {
         //global.log('set_tooltip');
-        if (tip !== null) {  
+        if (tip !== null) {
             this._photoFrame.tooltip_text = tip;
         }
         else {
@@ -129,10 +131,10 @@ XkcdDesklet.prototype = {
 
             let tempFile, jsonFile;
             let finalFilename = this.save_path + '/' + this.curXkcd.num + '.json';
-            
+
             if (cached !== true && filename != finalFilename) {
                 tempFile = Gio.file_new_for_path(filename);
-                
+
                 try {
                     jsonFile = Gio.file_new_for_path(finalFilename);
                     jsonFile.trash(null);
@@ -144,9 +146,9 @@ XkcdDesklet.prototype = {
                 }
                 catch (e) {}
             }
-            
+
             this.set_tooltip(null);
-            
+
             let imgFilename = this.save_path + '/' + this.curXkcd.num + '.png';
             let imgFile = Gio.file_new_for_path(imgFilename);
             if (imgFile.query_exists(null)) {
@@ -155,7 +157,7 @@ XkcdDesklet.prototype = {
             else {
                 this.download_file(this.curXkcd.img, imgFilename, Lang.bind(this, this.on_xkcd_downloaded));
             }
-            
+
         }
         else {
             //global.log('No joy, no json');
@@ -181,14 +183,14 @@ XkcdDesklet.prototype = {
     },
 
     _init: function(metadata, desklet_id){
-        try {            
+        try {
             Desklet.Desklet.prototype._init.call(this, metadata);
             this.metadata = metadata
             this.updateInProgress = false;
             this._files = [];
             this._xkcds = [];
             this._currentXkcd = null;
-            
+
             this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
             this.settings.bind("max-height", "maxHeight", this._onSettingsChanged);
             this.settings.bind("max-width", "maxWidth", this._onSettingsChanged);
@@ -201,7 +203,7 @@ XkcdDesklet.prototype = {
             this._binLayout = new Clutter.BinLayout();
             this._clutterBox = new Clutter.Box();
             this._clutterTexture = new Clutter.Texture({
-                keep_aspect_ratio: true, 
+                keep_aspect_ratio: true,
                 filter_quality: this.metadata["quality"]});
             this._clutterTexture.connect('load-finished', Lang.bind(this, function(e) {
                 if (this.curXkcd && this.curXkcd['alt']) {
@@ -210,12 +212,12 @@ XkcdDesklet.prototype = {
             }));
             this._clutterTexture.set_load_async(true);
             this._clutterBox.set_layout_manager(this._binLayout);
-            this._clutterBox.set_width(this.metadata["width"]);
+
             this._clutterBox.add_actor(this._clutterTexture);
-            this._photoFrame.set_child(this._clutterBox);            
+            this._photoFrame.set_child(this._clutterBox);
             this.setContent(this._photoFrame);
-        
-            
+
+
             this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
             this._menu.addAction(_("View latest xkcd"), Lang.bind(this, function() {
                 this._refresh(null);
@@ -232,8 +234,8 @@ XkcdDesklet.prototype = {
             }
 
             this.set_tooltip(null);
-            
-            
+
+
             let dir = Gio.file_new_for_path(this.save_path);
             if (dir.query_exists(null)) {
                 let fileEnum = dir.enumerate_children('standard::*', Gio.FileQueryInfoFlags.NONE, null);
@@ -249,7 +251,7 @@ XkcdDesklet.prototype = {
                 fileEnum.close(null);
             }
             this._xkcds.sort();
-            
+
             this.updateInProgress = false;
 
             if (this._xkcds.length == 0)
@@ -260,7 +262,7 @@ XkcdDesklet.prototype = {
             {
                 this._refresh(this._xkcds[this._xkcds.length - 1]);
             }
-            
+
             global.w = this._photoFrame;
             }
         catch (e) {
@@ -285,7 +287,7 @@ XkcdDesklet.prototype = {
         }
     },
 
-    on_desklet_clicked: function(event){  
+    on_desklet_clicked: function(event){
         try {
             if (event.get_button() == 1) {
                 this._update();
