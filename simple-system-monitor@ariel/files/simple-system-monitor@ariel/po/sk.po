@@ -1,0 +1,79 @@
+# Slovak translation of simple system monitor desklet.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Dušan Kazik <prescott66@gmail.com>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-10 12:24+0100\n"
+"PO-Revision-Date: 2021-02-10 14:54+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.1\n"
+"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+"Language: sk\n"
+
+#: desklet.js:37
+msgid ""
+"Dependencies missing. Please install \n"
+"libgtop, Network Manager and gir bindings \n"
+"\t    on Ubuntu: gir1.2-gtop-2.0, gir1.2-networkmanager-1.0 \n"
+"\t    on Fedora: libgtop2-devel, NetworkManager-glib-devel \n"
+"\t    on Arch: libgtop, networkmanager\n"
+"and restart Cinnamon.\n"
+msgstr ""
+"Chýbajú závislosti. Prosím, nainštalujte balíky \n"
+"libgtop, Network Manager (Správca siete) a gir \n"
+"\t    v distribúcii Ubuntu: gir1.2-gtop-2.0, gir1.2-networkmanager-1.0 \n"
+"\t    v distribúcii Fedora: libgtop2-devel, NetworkManager-glib-devel \n"
+"\t    v distribúcii Arch: libgtop, networkmanager\n"
+"a reštartujte prostredie Cinnamon.\n"
+
+#: desklet.js:216 4.0/desklet.js:214
+msgid "CPU:"
+msgstr "Procesor:"
+
+#: desklet.js:217 4.0/desklet.js:215
+msgid "Memory:"
+msgstr "Pamäť:"
+
+#: desklet.js:218 4.0/desklet.js:216
+msgid "Download:"
+msgstr "Preberanie:"
+
+#: desklet.js:219 4.0/desklet.js:217
+msgid "Upload:"
+msgstr "Odosielanie:"
+
+#: desklet.js:220 4.0/desklet.js:218
+msgid "Temperature:"
+msgstr "Teplota:"
+
+#: 4.0/desklet.js:35
+msgid ""
+"Dependencies missing. Please install \n"
+"libgtop \n"
+"\t    on Ubuntu: gir1.2-gtop-2.0 \n"
+"\t    on Fedora: libgtop2-devel \n"
+"\t    on Arch: libgtop \n"
+"and restart Cinnamon.\n"
+msgstr ""
+"Chýbajú závislosti. Prosím, nainštalujte balík \n"
+"libgtop \n"
+"\t    v distribúcii Ubuntu: gir1.2-gtop-2.0 \n"
+"\t    v distribúcii: libgtop2-devel \n"
+"\t    v distribúcii Arch: libgtop \n"
+"a reštartujte prostredie Cinnamon.\n"
+
+#. metadata.json->description
+msgid "Shows some system status values"
+msgstr "Zobrazuje niektoré hodnoty stavu systému"
+
+#. metadata.json->name
+msgid "Simple system monitor"
+msgstr "Jednoduchý monitor systému"
