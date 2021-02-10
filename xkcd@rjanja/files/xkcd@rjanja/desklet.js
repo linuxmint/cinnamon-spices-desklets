@@ -25,11 +25,11 @@ function _(str) {
   return Gettext.dgettext(UUID, str);
 }
 
-function MyDesklet(metadata, desklet_id){
+function XkcdDesklet(metadata, desklet_id){
     this._init(metadata, desklet_id);
 }
 
-MyDesklet.prototype = {
+XkcdDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
 
     download_file: function(url, localFilename, callback) {
@@ -288,6 +288,6 @@ MyDesklet.prototype = {
 }
 
 function main(metadata, desklet_id){
-    let desklet = new MyDesklet(metadata, desklet_id);
+    let desklet = new XkcdDesklet(metadata, desklet_id);
     return desklet;
 }
