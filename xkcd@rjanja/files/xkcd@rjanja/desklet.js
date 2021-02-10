@@ -62,15 +62,19 @@ XkcdDesklet.prototype = {
          });
     },
 
-    refresh: function(xkcdId) {
+    _refresh: function(xkcdId) {
+        // global.log("refreshing");
         if (this.updateInProgress) return true;
         this.updateInProgress = true;
-        
-        let url, filename;
 
-        if (this._timeoutId) {
-            Mainloop.source_remove(this._timeoutId);
-        }
+        this.updateUI(xkcdId);
+        this._removeTimeout();
+        this._timeoutId = Mainloop.timeout_add_seconds(this.refreshInterval, Lang.bind(this, this._refresh));
+        return true;
+    },
+
+    updateUI: function(xkcdId) {
+        let url, filename;
 
         if (xkcdId === null || xkcdId === undefined) {
             url = 'http://www.xkcd.com/info.0.json';
@@ -88,8 +92,14 @@ XkcdDesklet.prototype = {
                 this.download_file(url, filename, Lang.bind(this, this.on_json_downloaded));
             }
         }
-        
         return true;
+    },
+
+    _removeTimeout: function () {
+        if (this._timeoutId) {
+            Mainloop.source_remove(this._timeoutId);
+            this._timeoutId = null;
+        }
     },
 
     query_tooltip: function(widget, x, y, keyboard_mode, tooltip, user_data) {
@@ -98,7 +108,7 @@ XkcdDesklet.prototype = {
 
     set_tooltip: function(tip) {
         //global.log('set_tooltip');
-        if (tip !== null) {
+        if (tip !== null) {  
             this._photoFrame.tooltip_text = tip;
         }
         else {
@@ -204,11 +214,11 @@ XkcdDesklet.prototype = {
             this._clutterBox.add_actor(this._clutterTexture);
             this._photoFrame.set_child(this._clutterBox);            
             this.setContent(this._photoFrame);
-
+        
             
             this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
             this._menu.addAction(_("View latest xkcd"), Lang.bind(this, function() {
-                this.refresh(null);
+                this._refresh(null);
             }));
             this._menu.addAction(_("Open save folder"), Lang.bind(this, function() {
                 Util.spawnCommandLine("xdg-open " + this.save_path);
@@ -244,12 +254,11 @@ XkcdDesklet.prototype = {
 
             if (this._xkcds.length == 0)
             {
-                this.refresh(null);
+                this._refresh(null);
             }
             else
             {
-                this.refresh(this._xkcds[this._xkcds.length - 1]);
-                this._timeoutId = Mainloop.timeout_add_seconds(5, Lang.bind(this, this.refresh));
+                this._refresh(this._xkcds[this._xkcds.length - 1]);
             }
             
             global.w = this._photoFrame;
@@ -261,6 +270,7 @@ XkcdDesklet.prototype = {
     },
 
     _update: function(){
+        // Move to the next, older comic
         try {
             let idx = this._xkcds.indexOf(this._currentXkcd);
             let nextId = idx > 0 ? this._xkcds[idx - 1] : this._currentXkcd - 1;
@@ -268,7 +278,7 @@ XkcdDesklet.prototype = {
                 nextId = null;
             }
 
-            this.refresh(nextId);
+            this._refresh(nextId);
         }
         catch (e) {
             global.logError(e);
@@ -284,6 +294,10 @@ XkcdDesklet.prototype = {
         catch (e) {
             global.logError(e);
         }
+    },
+
+    _onSettingsChanged: function(event) {
+        this._refresh();
     }
 }
 
