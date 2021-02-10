@@ -99,31 +99,10 @@ MyDesklet.prototype = {
     set_tooltip: function(tip) {
         //global.log('set_tooltip');
         if (tip !== null) {
-            //this._photoFrame.hide();
-            //this._photoFrame.tooltip_text = '                                                                                                                                                                                            ';
-            
             this._photoFrame.tooltip_text = tip;
-            //this._photoFrame.show_tooltip();
-            //this._photoFrame.hide_tooltip();
-            //this._photoFrame.show();
-            //this._photoFrame.hover = false;
-            //this._photoFrame.reactive = true;
-            //this.emit('allocation-changed');
-            //this._photoFrame.tooltip_markup = '<span font_size="large" foreground="black" background="white">hello!</span>'; // ' + tip + '
-            //this._photoFrame.tooltip_markup = '<markup>hi there how are you hello!is cool!</markup>'; // ' + tip + '
-            //global.log(this._photoFrame.tooltip_markup);
-            //global.log(this._photoFrame.tooltip_window);
-            //this._photoFrame.show_help();
-            //this._photoFrame.trigger_tooltip_query();
         }
         else {
-            //this._photoFrame.hide_tooltip();
             this._photoFrame.tooltip_text = null;
-            //this._photoFrame.show_tooltip();
-            //this._photoFrame.tooltip_text = null;
-            //this._photoFrame.reactive = false;
-            //this._photoFrame.track_hover = true;
-            //this._photoFrame.hover = false;
         }
     },
 
