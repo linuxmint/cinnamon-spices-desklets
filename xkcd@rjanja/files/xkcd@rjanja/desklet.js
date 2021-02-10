@@ -200,6 +200,11 @@ MyDesklet.prototype = {
             this._xkcds = [];
             this._currentXkcd = null;
             
+            this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
+            this.settings.bind("max-height", "maxHeight", this._onSettingsChanged);
+            this.settings.bind("max-width", "maxWidth", this._onSettingsChanged);
+            this.settings.bind("refresh-interval", "refreshInterval", this._onSettingsChanged);
+            this.settings.bind("keep-centered", "keepCentered", this._onSettingsChanged);
 
             this.setHeader(_("xkcd"));
 
@@ -221,10 +226,6 @@ MyDesklet.prototype = {
             this._photoFrame.set_child(this._clutterBox);            
             this.setContent(this._photoFrame);
 
-            this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
-            this.settings.bind("max-height", "max_height", this._onSettingsChanged);
-            this.settings.bind("keep-centered", "keep_centered", this._onSettingsChanged);
-        
             
             this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
             this._menu.addAction(_("View latest xkcd"), Lang.bind(this, function() {

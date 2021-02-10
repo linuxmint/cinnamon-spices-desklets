@@ -9,6 +9,26 @@
         "tooltip": "Select the maximum height that the desklet can have.",
         "step": 1
     },
+    "max-width": {
+        "type": "spinbutton",
+        "default": 90,
+        "min": 20,
+        "max": 4096,
+        "units": "px",
+        "description": "Maximum width",
+        "tooltip": "Select the maximum width that the desklet can have.",
+        "step": 1
+    },
+    "refresh-interval": {
+        "type": "spinbutton",
+        "default": 5,
+        "min": 1,
+        "max": 86400,
+        "units": "s",
+        "description": "Refresh interval",
+        "tooltip": "Select how frequently the applet should refresh. Set to 60 for 1 minute, 3600 for 1 hour, 86400 for 1 day.",
+        "step": 1
+    },
     "keep-centered": {
         "type": "switch",
         "default": false,
