@@ -76,8 +76,6 @@ XkcdDesklet.prototype = {
     updateUI: function(xkcdId) {
         let url, filename;
 
-        this._clutterBox.set_size(this.maxWidth, this.maxHeight)
-
         if (xkcdId === null || xkcdId === undefined) {
             url = 'http://www.xkcd.com/info.0.json';
             filename = this.save_path + '/temp.json'
@@ -94,6 +92,18 @@ XkcdDesklet.prototype = {
                 this.download_file(url, filename, Lang.bind(this, this.on_json_downloaded));
             }
         }
+
+        // Constrain the image to the max width/height (without forcing it to upscale if it's smaller)
+        // Needs to be called when we know for sure that the texture is loaded
+        var outwh = this._clutterTexture.get_base_size();
+        var width = outwh[0];
+        var height = outwh[1];
+        if (width > this.maxWidth || height > this.maxHeight) {
+            this._clutterBox.set_size(this.maxWidth, this.maxHeight);
+        } else {
+            this._clutterBox.set_size(width, height);
+        }
+
         return true;
     },
 
@@ -153,7 +163,7 @@ XkcdDesklet.prototype = {
             let imgFile = Gio.file_new_for_path(imgFilename);
             if (imgFile.query_exists(null)) {
                 this.on_xkcd_downloaded(true, imgFilename, true);
-            }
+                }
             else {
                 this.download_file(this.curXkcd.img, imgFilename, Lang.bind(this, this.on_xkcd_downloaded));
             }
