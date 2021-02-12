@@ -8,6 +8,7 @@ const Mainloop = imports.mainloop;
 const St = imports.gi.St;
 const Tweener = imports.ui.tweener;
 const Util = imports.misc.util;
+const Cogl = imports.gi.Cogl;
 
 const Tooltips = imports.ui.tooltips;
 const PopupMenu = imports.ui.popupMenu;
@@ -95,15 +96,8 @@ XkcdDesklet.prototype = {
         }
 
         // Constrain the image to the max width/height (without forcing it to upscale if it's smaller)
-        var outwh = this._clutterTexture.get_base_size();
-        var width = outwh[0];
-        var height = outwh[1];
-        if (width > this.maxWidth || height > this.maxHeight) {
-            this._clutterBox.set_size(this.maxWidth, this.maxHeight);
-        } else if (width > 0 && height > 0) {
-            this._clutterBox.set_size(width, height);
-        } // they're 0 if the image hasn't been loaded yet, so this will also be done once the download is finished, in on_xkcd_downloaded
-
+        this._clutterImageActor = this.getImageFitting(file, this.maxWidth, this.maxHeight).actor;
+        this._photoFrame.set_child(this._clutterImageActor);
         return true;
     },
 
@@ -175,31 +169,33 @@ XkcdDesklet.prototype = {
         return true;
     },
 
+    // taken from analog-clock@cobinja.de
+    getImageFitting: function (imageFileName, maxWidth, maxHeight) {
+        let width, height, fileInfo;
+        [fileInfo, width, height] = GdkPixbuf.Pixbuf.get_file_info(imageFileName, null, null);
+
+        let pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(imageFileName, width, height);
+        
+        let image = new Clutter.Image();
+        image.set_data(
+            pixBuf.get_pixels(),
+            pixBuf.get_has_alpha() ? Cogl.PixelFormat.RGBA_8888 : Cogl.PixelFormat.RGB_888,
+            width, height,
+            pixBuf.get_rowstride()
+        );
+
+        let actor = new Clutter.Actor({ width: maxWidth, height: maxHeight });
+        actor.set_content(image);
+        actor.set_content_gravity(Clutter.Gravity.RESIZE_ASPECT)
+
+        return { actor: actor, origWidth: width, origHeight: height };
+    },
+
     on_xkcd_downloaded: function(success, file, cached) {
-        Tweener.addTween(this._clutterTexture, { opacity: 0,
-            time: this.metadata["fade-delay"],
-            transition: 'easeInSine',
-            onComplete: Lang.bind(this, function() {
-                this.updateInProgress = false;
-                // Texture.get_base_size seems to return 0 if used in this function, so just use a pixbuf instead
-                let width, height, fileInfo;
-                [fileInfo, width, height] = GdkPixbuf.Pixbuf.get_file_info(file, null, null);
-
-                if (width > this.maxWidth || height > this.maxHeight) {
-                    this._clutterBox.set_size(this.maxWidth, this.maxHeight);
-                } else if (width > 0 && height > 0) {
-                    this._clutterBox.set_size(width, height);
-                }
-
-                if (this._clutterTexture.set_from_file(file)) {
-                    this._photoFrame.set_child(this._clutterBox);
-                }
-                Tweener.addTween(this._clutterTexture, { opacity: 255,
-                    time: this.metadata["fade-delay"],
-                    transition: 'easeInSine'
-                });
-            })
-        });
+        // TODO: add back animation
+        this.updateInProgress = false;
+        this._clutterImageActor = this.getImageFitting(file, this.maxWidth, this.maxHeight).actor;
+        this._photoFrame.set_child(this._clutterImageActor);
     },
 
     _init: function(metadata, desklet_id){
@@ -221,21 +217,19 @@ XkcdDesklet.prototype = {
 
             this._photoFrame = new St.Bin({style_class: 'xkcd-box', x_align: St.Align.START});
             this._binLayout = new Clutter.BinLayout();
-            this._clutterBox = new Clutter.Box();
-            // TODO: migrate to Clutter.Image
-            this._clutterTexture = new Clutter.Texture({
-                keep_aspect_ratio: true,
-                filter_quality: this.metadata["quality"]});
-            this._clutterTexture.connect('load-finished', Lang.bind(this, function(e) {
-                if (this.curXkcd && this.curXkcd['alt']) {
-                    this.set_tooltip(this.curXkcd.alt);
-                }
-            }));
-            this._clutterTexture.set_load_async(true);
-            this._clutterBox.set_layout_manager(this._binLayout);
+            
+            this._clutterImageActor = new Clutter.Actor();
 
-            this._clutterBox.add_actor(this._clutterTexture);
-            this._photoFrame.set_child(this._clutterBox);
+            // Signal deprecated, no replacement :( 
+            // https://developer.gnome.org/clutter/stable/ClutterTexture.html#ClutterTexture-load-finished
+            // this._clutterImageActor.connect('load-finished', Lang.bind(this, function(e) {
+            //     if (this.curXkcd && this.curXkcd['alt']) {
+            //         this.set_tooltip(this.curXkcd.alt);
+            //     }
+            // }));
+            
+
+            this._photoFrame.set_child(this._clutterImageActor);
             this.setContent(this._photoFrame);
 
 
