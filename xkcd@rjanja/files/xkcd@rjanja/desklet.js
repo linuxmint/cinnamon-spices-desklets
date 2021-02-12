@@ -1,10 +1,11 @@
-const Gio = imports.gi.Gio;
-const St = imports.gi.St;
+const Clutter = imports.gi.Clutter;
 const Desklet = imports.ui.desklet;
+const GdkPixbuf = imports.gi.GdkPixbuf;
+const Gio = imports.gi.Gio;
+const GLib = imports.gi.GLib;
 const Lang = imports.lang;
 const Mainloop = imports.mainloop;
-const Clutter = imports.gi.Clutter;
-const GLib = imports.gi.GLib;
+const St = imports.gi.St;
 const Tweener = imports.ui.tweener;
 const Util = imports.misc.util;
 
@@ -94,15 +95,14 @@ XkcdDesklet.prototype = {
         }
 
         // Constrain the image to the max width/height (without forcing it to upscale if it's smaller)
-        // Needs to be called when we know for sure that the texture is loaded
         var outwh = this._clutterTexture.get_base_size();
         var width = outwh[0];
         var height = outwh[1];
         if (width > this.maxWidth || height > this.maxHeight) {
             this._clutterBox.set_size(this.maxWidth, this.maxHeight);
-        } else {
+        } else if (width > 0 && height > 0) {
             this._clutterBox.set_size(width, height);
-        }
+        } // they're 0 if the image hasn't been loaded yet, so this will also be done once the download is finished, in on_xkcd_downloaded
 
         return true;
     },
@@ -181,6 +181,16 @@ XkcdDesklet.prototype = {
             transition: 'easeInSine',
             onComplete: Lang.bind(this, function() {
                 this.updateInProgress = false;
+                // Texture.get_base_size seems to return 0 if used in this function, so just use a pixbuf instead
+                let width, height, fileInfo;
+                [fileInfo, width, height] = GdkPixbuf.Pixbuf.get_file_info(file, null, null);
+
+                if (width > this.maxWidth || height > this.maxHeight) {
+                    this._clutterBox.set_size(this.maxWidth, this.maxHeight);
+                } else if (width > 0 && height > 0) {
+                    this._clutterBox.set_size(width, height);
+                }
+
                 if (this._clutterTexture.set_from_file(file)) {
                     this._photoFrame.set_child(this._clutterBox);
                 }
@@ -212,6 +222,7 @@ XkcdDesklet.prototype = {
             this._photoFrame = new St.Bin({style_class: 'xkcd-box', x_align: St.Align.START});
             this._binLayout = new Clutter.BinLayout();
             this._clutterBox = new Clutter.Box();
+            // TODO: migrate to Clutter.Image
             this._clutterTexture = new Clutter.Texture({
                 keep_aspect_ratio: true,
                 filter_quality: this.metadata["quality"]});
