@@ -169,7 +169,7 @@ XkcdDesklet.prototype = {
         return true;
     },
 
-    // taken from analog-clock@cobinja.de
+    // adapted from analog-clock@cobinja.de
     getImageFitting: function (imageFileName, maxWidth, maxHeight) {
         let width, height, fileInfo;
         [fileInfo, width, height] = GdkPixbuf.Pixbuf.get_file_info(imageFileName, null, null);
@@ -186,7 +186,11 @@ XkcdDesklet.prototype = {
 
         let actor = new Clutter.Actor({ width: maxWidth, height: maxHeight });
         actor.set_content(image);
-        actor.set_content_gravity(Clutter.Gravity.RESIZE_ASPECT)
+        if (this.keepCentered) {
+            actor.set_content_gravity(Clutter.ContentGravity.RESIZE_ASPECT);
+        } else {
+            actor.set_content_gravity(Clutter.ContentGravity.TOP_LEFT);
+        }
 
         return { actor: actor, origWidth: width, origHeight: height };
     },
