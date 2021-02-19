@@ -1,274 +1,278 @@
-# CINNAMON NEPALI PATRO DESKLET TRANSLATIONS.
-# Copyright (c) 2018 Deep Pradhan
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Calendar Desklet - 1.0\n"
-"Report-Msgid-Bugs-To: wiz_kid_o3@yahoo.com\n"
-"POT-Creation-Date: 2018-03-01 21:30+0530\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-19 22:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 
-#
-msgid ""
+#: desklet.js:156
+msgid "Previous month..."
 msgstr ""
 
-#. nepalipatro@deeppradhan->metadata.json->name
-msgid "Nepali Patro Desklet"
+#: desklet.js:158
+msgid "Next month..."
 msgstr ""
 
-#. nepalipatro@deeppradhan->metadata.json->contributors
-msgid "Deep Pradhan"
-msgstr ""
-
-#. nepalipatro@deeppradhan->metadata.json->description
-msgid "Configurable Nepali Patro (Calendar) desklet"
-msgstr ""
-
-#. nepalipatro@deeppradhan->metadata.json->comments
+#. metadata.json->comments
 msgid ""
 "Nepali Patro Desklet provides a highly configurable desklet for the Nepali "
-"Patro/Calendar (Bikram Sambat), which displays current date and scrollable "
+"Patro/Calendar (Bikram Sambat), which displays current date and browsable "
 "months. It has a number of possible customisations."
 msgstr ""
 
-#. nepalipatro@deeppradhan->settings-schema.json->font-size->description
-msgid "Font size (pt)"
+#. metadata.json->contributors
+msgid "Deep Pradhan"
 msgstr ""
 
-#. nepalipatro@deeppradhan->settings-schema.json->font-size->tooltip
-msgid "Set the text font size in points"
+#. metadata.json->description
+msgid "Configurable Nepali Patro (Calendar) desklet"
 msgstr ""
 
-#. nepalipatro@deeppradhan->settings-schema.json->font-family->description
-msgid "Font family for text"
+#. metadata.json->name
+msgid "Nepali Patro Desklet"
 msgstr ""
 
-#. nepalipatro@deeppradhan->settings-schema.json->font-family->tooltip
-msgid ""
-"Set a font family for the text (common Devanagari fonts are listed and MAY "
-"or MAY NOT be available on your system)"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->font-family->options
-msgid "Lohit Devanagari"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->font-family->options
-msgid "Samyak Devanagari"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->font-family->options
-msgid "Sarai"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->font-family->options
-msgid "Default"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->font-family->options
-msgid "Gargi"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->font-family->options
-msgid "Noto Sans Devanagari UI"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->font-family->options
-msgid "Noto Sans Devanagari"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->font-family->options
-msgid "Samanata"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->font-family->options
-msgid "Kalimati"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->font-family->options
-msgid "Custom"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->layout->description
-msgid "Layout of desklet"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->layout->tooltip
-msgid "Set the overall layout to horizontal/vertical of desklet"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->layout->options
-msgid "Horizontal"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->layout->options
-msgid "Vertical"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->show-time->description
-msgid "Show time"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->show-time->tooltip
-msgid "Show or hide time (hours and minutes)"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->language->description
-msgid "Display language"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->language->tooltip
-msgid "Select the language of desklet"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->language->options
-msgid "English"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->time-zone->description
-msgid "Time/Date TimeZone"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->time-zone->tooltip
-msgid "Show calendar/time as per the current system/Nepali TimeZone"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->time-zone->options
-msgid "System TimeZone"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->time-zone->options
-msgid "Nepali TimeZone"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->custom-font-
-#. family->description
-msgid "Custom font family for text (also set 'Font family' above to 'Custom')"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->custom-font-family->tooltip
-msgid ""
-"Set a custom font family for the text (to use a custom font family, set "
-"'Font family' above to 'Custom')"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->top->description
+#. settings-schema.json->top->description
 msgid "Calendar configuration"
 msgstr ""
 
-#. nepalipatro@deeppradhan->settings-schema.json->colour-
-#. background->description
-msgid "Background colour"
+#. settings-schema.json->language->description
+msgid "Display language"
 msgstr ""
 
-#. nepalipatro@deeppradhan->settings-schema.json->colour-background->tooltip
-msgid "Set background colour of desklet"
+#. settings-schema.json->language->options
+msgid "English"
 msgstr ""
 
-#. nepalipatro@deeppradhan->settings-schema.json->short-month-
-#. name->description
-msgid "Short month name"
+#. settings-schema.json->language->options
+msgid "नेपाली (Nepali)"
 msgstr ""
 
-#. nepalipatro@deeppradhan->settings-schema.json->short-month-name->tooltip
-msgid "Show short Bikram Sambat month name"
+#. settings-schema.json->language->tooltip
+msgid "Select the language of desklet"
 msgstr ""
 
-#. nepalipatro@deeppradhan->settings-schema.json->show-weekday->description
+#. settings-schema.json->panels->description
+msgid "Panels to show"
+msgstr ""
+
+#. settings-schema.json->panels->options
+msgid "Both Today & Month"
+msgstr ""
+
+#. settings-schema.json->panels->options
+msgid "Today only"
+msgstr ""
+
+#. settings-schema.json->panels->options
+msgid "Month only"
+msgstr ""
+
+#. settings-schema.json->panels->tooltip
+msgid "Select the panels to display in desklet"
+msgstr ""
+
+#. settings-schema.json->show-weekday->description
 msgid "Show day of week"
 msgstr ""
 
-#. nepalipatro@deeppradhan->settings-schema.json->show-weekday->tooltip
-msgid "For day of week; show full name, short name or disable showing"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->show-weekday->options
-#. nepalipatro@deeppradhan->settings-schema.json->show-year->options
-msgid "Full"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->show-weekday->options
-#. nepalipatro@deeppradhan->settings-schema.json->show-year->options
-msgid "Short"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->show-weekday->options
-#. nepalipatro@deeppradhan->settings-schema.json->show-year->options
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
 msgid "No"
 msgstr ""
 
-#. nepalipatro@deeppradhan->settings-schema.json->show-year->description
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "Full"
+msgstr ""
+
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "Short"
+msgstr ""
+
+#. settings-schema.json->show-weekday->tooltip
+msgid "For day of week; show full name, short name or disable showing"
+msgstr ""
+
+#. settings-schema.json->short-month-name->description
+msgid "Short month name"
+msgstr ""
+
+#. settings-schema.json->short-month-name->tooltip
+msgid "Show short Bikram Sambat month name"
+msgstr ""
+
+#. settings-schema.json->show-year->description
 msgid "Show Bikram Sambat year"
 msgstr ""
 
-#. nepalipatro@deeppradhan->settings-schema.json->show-year->tooltip
+#. settings-schema.json->show-year->tooltip
 msgid ""
 "For Bikram Sambat year; show all digits, show last two digits or disable "
 "showing"
 msgstr ""
 
-#. nepalipatro@deeppradhan->settings-schema.json->colour-
-#. saturdays->description
-msgid "Text colour for Saturdays"
+#. settings-schema.json->show-time->description
+msgid "Show time"
 msgstr ""
 
-#. nepalipatro@deeppradhan->settings-schema.json->colour-saturdays->tooltip
-msgid "Set text colour for Saturdays"
+#. settings-schema.json->show-time->tooltip
+msgid "Show or hide time (hours and minutes)"
 msgstr ""
 
-#. nepalipatro@deeppradhan->settings-schema.json->colour-sundays->description
-msgid "Text colour for Sundays"
+#. settings-schema.json->time-zone->description
+msgid "Time/Date TimeZone"
 msgstr ""
 
-#. nepalipatro@deeppradhan->settings-schema.json->colour-sundays->tooltip
-msgid "Set text colour for Sundays"
+#. settings-schema.json->time-zone->options
+msgid "Nepali TimeZone"
 msgstr ""
 
-#. nepalipatro@deeppradhan->settings-schema.json->panels->description
-msgid "Panels to show"
+#. settings-schema.json->time-zone->options
+msgid "System TimeZone"
 msgstr ""
 
-#. nepalipatro@deeppradhan->settings-schema.json->panels->tooltip
-msgid "Select the panels to display in desklet"
+#. settings-schema.json->time-zone->tooltip
+msgid "Show calendar/time as per the current system/Nepali TimeZone"
 msgstr ""
 
-#. nepalipatro@deeppradhan->settings-schema.json->panels->options
-msgid "Both Today & Month"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->panels->options
-msgid "Today only"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->panels->options
-msgid "Month only"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->transparency->description
-msgid "Transparency (%)"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->transparency->tooltip
-msgid "Set the transparency of desklet in percentage"
-msgstr ""
-
-#. nepalipatro@deeppradhan->settings-schema.json->display->description
+#. settings-schema.json->display->description
 msgid "Desklet style configuration"
 msgstr ""
 
-#. nepalipatro@deeppradhan->settings-schema.json->colour-text->description
+#. settings-schema.json->layout->description
+msgid "Layout of desklet"
+msgstr ""
+
+#. settings-schema.json->layout->options
+msgid "Horizontal"
+msgstr ""
+
+#. settings-schema.json->layout->options
+msgid "Vertical"
+msgstr ""
+
+#. settings-schema.json->layout->tooltip
+msgid "Set the overall layout to horizontal/vertical of desklet"
+msgstr ""
+
+#. settings-schema.json->font-family->description
+msgid "Font family for text"
+msgstr ""
+
+#. settings-schema.json->font-family->options
+msgid "Default"
+msgstr ""
+
+#. settings-schema.json->font-family->options
+msgid "Gargi"
+msgstr ""
+
+#. settings-schema.json->font-family->options
+msgid "Kalimati"
+msgstr ""
+
+#. settings-schema.json->font-family->options
+msgid "Lohit Devanagari"
+msgstr ""
+
+#. settings-schema.json->font-family->options
+msgid "Noto Sans Devanagari"
+msgstr ""
+
+#. settings-schema.json->font-family->options
+msgid "Noto Sans Devanagari UI"
+msgstr ""
+
+#. settings-schema.json->font-family->options
+msgid "Samanata"
+msgstr ""
+
+#. settings-schema.json->font-family->options
+msgid "Samyak Devanagari"
+msgstr ""
+
+#. settings-schema.json->font-family->options
+msgid "Sarai"
+msgstr ""
+
+#. settings-schema.json->font-family->options
+msgid "Custom"
+msgstr ""
+
+#. settings-schema.json->font-family->tooltip
+msgid ""
+"Set a font family for the text (common Devanagari fonts are listed and MAY "
+"or MAY NOT be available on your system)"
+msgstr ""
+
+#. settings-schema.json->custom-font-family->description
+msgid "Custom font family for text (also set 'Font family' above to 'Custom')"
+msgstr ""
+
+#. settings-schema.json->custom-font-family->tooltip
+msgid ""
+"Set a custom font family for the text (to use a custom font family, set "
+"'Font family' above to 'Custom')"
+msgstr ""
+
+#. settings-schema.json->font-size->description
+msgid "Font size (pt)"
+msgstr ""
+
+#. settings-schema.json->font-size->tooltip
+msgid "Set the text font size in points"
+msgstr ""
+
+#. settings-schema.json->colour-text->description
 msgid "Text colour"
 msgstr ""
 
-#. nepalipatro@deeppradhan->settings-schema.json->colour-text->tooltip
+#. settings-schema.json->colour-text->tooltip
 msgid "Set text colour of desklet"
+msgstr ""
+
+#. settings-schema.json->colour-saturdays->description
+msgid "Text colour for Saturdays"
+msgstr ""
+
+#. settings-schema.json->colour-saturdays->tooltip
+msgid "Set text colour for Saturdays"
+msgstr ""
+
+#. settings-schema.json->colour-sundays->description
+msgid "Text colour for Sundays"
+msgstr ""
+
+#. settings-schema.json->colour-sundays->tooltip
+msgid "Set text colour for Sundays"
+msgstr ""
+
+#. settings-schema.json->colour-background->description
+msgid "Background colour"
+msgstr ""
+
+#. settings-schema.json->colour-background->tooltip
+msgid "Set background colour of desklet"
+msgstr ""
+
+#. settings-schema.json->transparency->description
+msgid "Transparency (%)"
+msgstr ""
+
+#. settings-schema.json->transparency->tooltip
+msgid "Set the transparency of desklet in percentage"
 msgstr ""
