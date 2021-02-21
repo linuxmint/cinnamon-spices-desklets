@@ -1,0 +1,406 @@
+{
+	"layout" : {
+		"type" : "layout"
+		,"pages" : ["general", "digit", "clock", "date-unix"]
+
+		,"general" : {
+			"type" : "page"
+			,"title" : "General"
+			,"sections" : ["general-layout", "background"]
+		}
+		,"digit" : {
+			"type" : "page"
+			,"title" : "Digits"
+			,"sections" : ["digit-appearance", "digit-darksegments", "digit-stroke"]
+		}
+		,"clock" : {
+			"type" : "page"
+			,"title" : "Clock"
+			,"sections" : ["clock-appearance"]
+		}
+		,"date-unix" : {
+			"type" : "page"
+			,"title" : "Date and Unix time"
+			,"sections" : ["date-appearance", "unix-appearance"]
+		}
+		
+		
+		
+		,"general-layout" : {
+			"type" : "section"
+			,"title" : "Main layout"
+			,"keys" : ["show-clock", "show-date", "show-unix", "main-layout", "layout-gap"]
+		}
+		,"background" : {
+			"type" : "section"
+			,"title" : "Background"
+			,"keys" : ["show-background", "background-color", "background-opacity", "round-corners", "background-shadow"]
+		}
+		
+		,"digit-appearance" : {
+			"type" : "section"
+			,"title" : "Digit appearance"
+			,"keys" : ["digit-style", "digit-skew", "digit-color", "digit-opacity", "digit-margin", "digit-alt69", "digit-alt7"]
+		}
+		,"digit-darksegments" : {
+			"type" : "section"
+			,"title" : "Dark segments"
+			,"keys" : ["dark-enabled", "dark-color", "dark-opacity"]
+		}
+		,"digit-stroke" : {
+			"type" : "section"
+			,"title" : "Stroke"
+			,"keys" : ["stroke-enabled", "stroke-width", "stroke-color", "stroke-opacity"]
+		}
+
+		,"clock-appearance" : {
+			"type" : "section"
+			,"title" : "Clock appearance"
+			,"keys" : ["show-clock", "clock-height", "show-seconds", "small-seconds", "clock-divider", "clock-blink", "leading-zero", "clock-12h", "clock-ampm"]
+		}
+
+		,"date-appearance" : {
+			"type" : "section"
+			,"title" : "Date appearance"
+			,"keys" : ["show-date", "date-height", "date-format", "date-divider"]
+		}
+
+		,"unix-appearance" : {
+			"type" : "section"
+			,"title" : "Unix time appearance"
+			,"keys" : ["show-unix", "unix-height", "unix-divider"]
+		}
+		
+	}
+	
+	,"main-layout" : {
+		"type" : "combobox"
+		,"default" : "dcu"
+		,"options" : {
+			"Clock - Date - Unix" : "cdu"
+			,"Clock - Unix - Date" : "cud"
+			,"Date - Clock - Unix" : "dcu"
+			,"Date - Unix - Clock" : "duc"
+			,"Unix - Clock - Date" : "ucd"
+			,"Unix - Date - Clock" : "udc"
+		}
+		,"description" : "Vertical order of main elements"
+	}
+	,"layout-gap" : {
+		"type": "spinbutton"
+		,"default" : 15
+		,"min" : 5
+		,"max" : 100
+		,"step" : 5
+		,"units" : "pixel"
+		,"description" : "Space between main elements"
+	}
+	
+	,"show-background" : {
+		"type" : "switch"
+		,"default" : true
+		,"description" : "Show background"
+	}
+	,"background-color" : {
+		"type" : "colorchooser"
+		,"default" : "rgb(0,0,0)"
+		,"dependency" : "show-background"
+		,"description" : "Color"
+	}
+	,"background-opacity" : {
+		"type": "spinbutton"
+		,"default" : 40
+		,"min" : 5
+		,"max" : 100
+		,"step" : 5
+		,"units" : "percent"
+		,"dependency" : "show-background"
+		,"description" : "Opacity"
+	}
+	,"round-corners" : {
+		"type" : "switch"
+		,"default" : true
+		,"dependency" : "show-background"
+		,"description" : "Round corners"
+	}
+	,"background-shadow" : {
+		"type" : "switch"
+		,"default" : true
+		,"dependency" : "show-background"
+		,"description" : "Shadow"
+	}
+
+
+	,"digit-skew" : {
+		"type": "spinbutton"
+		,"default" : 0
+		,"min" : 0
+		,"max" : 16
+		,"step" : 2
+		,"units" : "degrees"
+		,"description" : "Skew"
+	}
+	,"digit-color" : {
+		"type" : "colorchooser"
+		,"default" : "rgb(255,255,255)"
+		,"description" : "Color"
+	}
+	,"digit-opacity" : {
+		"type": "spinbutton"
+		,"default" : 80
+		,"min" : 5
+		,"max" : 100
+		,"step" : 5
+		,"units" : "percent"
+		,"description" : "Opacity"
+	}
+	,"digit-margin" : {
+		"type": "spinbutton"
+		,"default" : 15
+		,"min" : 0
+		,"max" : 50
+		,"step" : 5
+		,"units" : "percent"
+		,"description" : "Relative space between digits"
+		,"tooltip" : "This value will be increasingly reduced by the digit skew."
+	}
+	,"digit-alt69" : {
+		"type" : "switch"
+		,"default" : false
+		,"description" : "Alternative 6 and 9"
+	}
+	,"digit-alt7" : {
+		"type" : "switch"
+		,"default" : false
+		,"description" : "Alternative 7"
+	}
+	
+	,"dark-enabled" : {
+		"type" : "switch"
+		,"default" : true
+		,"description" : "Show dark segments of the digits"
+	}
+	,"dark-color" : {
+		"type" : "combobox"
+		,"default" : "same"
+		,"options" : {
+			"Black" : "rgb(0,0,0)"
+			,"White" : "rgb(255,255,255)"
+			,"same as illuminated" : "same"
+		}
+		,"dependency" : "dark-enabled"
+		,"description" : "Color"
+	}
+	,"dark-opacity" : {
+		"type": "spinbutton"
+		,"default" : 15
+		,"min" : 5
+		,"max" : 100
+		,"step" : 5
+		,"units" : "percent"
+		,"dependency" : "dark-enabled"
+		,"description" : "Opacity"
+	}
+	
+	,"stroke-enabled" : {
+		"type" : "switch"
+		,"default" : false
+		,"description" : "Add stroke"
+	}
+	,"stroke-width" : {
+		"type": "spinbutton"
+		,"default" : 4
+		,"min" : 1
+		,"max" : 10
+		,"step" : 1
+		,"units" : "pixel"
+		,"dependency" : "stroke-enabled"
+		,"description" : "Width"
+	}
+	,"stroke-color" : {
+		"type" : "colorchooser"
+		,"default" : "rgb(0,0,0)"
+		,"dependency" : "stroke-enabled"
+		,"description" : "Color"
+	}
+	,"stroke-opacity" : {
+		"type": "spinbutton"
+		,"default" : 100
+		,"min" : 5
+		,"max" : 100
+		,"step" : 5
+		,"units" : "percent"
+		,"dependency" : "stroke-enabled"
+		,"description" : "Opacity"
+	}
+
+	,"show-clock" : {
+		"type" : "switch"
+		,"default" : true
+		,"description" : "Show clock"
+	}
+	,"clock-height" : {
+		"type": "spinbutton"
+		,"default" : 60
+		,"min" : 15
+		,"max" : 350
+		,"step" : 10
+		,"units" : "pixel"
+		,"description" : "Digit height"
+	}
+	,"show-seconds" : {
+		"type" : "switch"
+		,"default" : true
+		,"description" : "Show seconds"
+	}
+	,"small-seconds" : {
+		"type" : "switch"
+		,"default" : false
+		,"dependency" : "show-seconds"
+		,"description" : "Smaller seconds"
+	}
+	,"clock-divider" : {
+		"type" : "combobox"
+		,"default" : "cp"
+		,"options" : {
+			"none" : "none"
+			,"half space" : "hspace"
+			,"full space" : "fspace"
+			,"decimal point" : "dp"
+			,"colon" : "cp"
+			,"dash" : "dash"
+		}
+		,"description" : "Divider type"
+	}
+	,"clock-blink" : {
+		"type" : "switch"
+		,"default" : false
+		,"description" : "Blinking divider (only decimal point and colon)"
+	}
+	,"leading-zero" : {
+		"type" : "combobox"
+		,"default" : "1"
+		,"options" : {
+			"on" : "1"
+			,"off" : "0"
+			,"hide" : "-0"
+			,"remove" : "-1"
+		}
+		,"description" : "Leading zero in hours"
+	}
+	,"clock-12h" : {
+		"type" : "switch"
+		,"default" : false
+		,"description" : "12h instead of 24h"
+	}
+	,"clock-ampm" : {
+		"type" : "combobox"
+		,"default" : "hide"
+		,"options" : {
+			"hide" : "hide"
+			,"only A and P" : "ap"
+			,"with M variant 1" : "m1"
+			,"with M variant 2" : "m2"
+		}
+		,"dependency" : "clock-12h"
+		,"description" : "AM/PM indicator"
+	}
+	
+
+	,"show-date" : {
+		"type" : "switch"
+		,"default" : false
+		,"description" : "Show date"
+	}
+	,"date-height" : {
+		"type": "spinbutton"
+		,"default" : 20
+		,"min" : 15
+		,"max" : 350
+		,"step" : 10
+		,"units" : "pixel"
+		,"description" : "Digit height"
+	}
+	,"date-format" : {
+		"type" : "combobox"
+		,"default" : "ymd"
+		,"options" : {
+			"Year - Month - Day" : "ymd"
+			,"Year - Day - Month" : "ydm"
+			,"Day - Month - Year" : "dmy"
+			,"Month - Day - Year" : "mdy"
+		}
+		,"description" : "Date format"
+	}
+	,"date-divider" : {
+		"type" : "combobox"
+		,"default" : "dash"
+		,"options" : {
+			"none" : "none"
+			,"half space" : "hspace"
+			,"full space" : "fspace"
+			,"decimal point" : "dp"
+			,"colon" : "cp"
+			,"dash" : "dash"
+		}
+		,"description" : "Divider type"
+	}
+
+
+	,"show-unix" : {
+		"type" : "switch"
+		,"default" : false
+		,"description" : "Show Unix time"
+	}
+	,"unix-height" : {
+		"type": "spinbutton"
+		,"default" : 30
+		,"min" : 15
+		,"max" : 350
+		,"step" : 10
+		,"units" : "pixel"
+		,"description" : "Digit height"
+	}
+	,"unix-divider" : {
+		"type" : "combobox"
+		,"default" : "hspace"
+		,"options" : {
+			"none" : "none"
+			,"half space" : "hspace"
+			,"full space" : "fspace"
+			,"decimal point" : "dp"
+			,"colon" : "cp"
+			,"dash" : "dash"
+		}
+		,"description" : "Divider type"
+	}
+	
+	,"digit-style" : {
+		"type" : "combobox"
+		,"default" : "OpenClipart"
+		,"options" : {
+			"Style by OpenClipart" : "OpenClipart"
+			,"Style by alex8664" : "alex8664"
+			,"Style by Cfaerber" : "Cfaerber"
+			,"Style by h2g2bob" : "h2g2bob"
+			,"Keshikan's DSEG Classic Light" : "keshikan-classic-light"
+			,"Keshikan's DSEG Classic Regular" : "keshikan-classic-regular"
+			,"Keshikan's DSEG Classic Bold" : "keshikan-classic-bold"
+			,"Keshikan's DSEG Classic Mini Light" : "keshikan-classic-mini-light"
+			,"Keshikan's DSEG Classic Mini Regular" : "keshikan-classic-mini-regular"
+			,"Keshikan's DSEG Classic Mini Bold" : "keshikan-classic-mini-bold"
+			,"Keshikan's DSEG Modern Light" : "keshikan-modern-light"
+			,"Keshikan's DSEG Modern Regular" : "keshikan-modern-regular"
+			,"Keshikan's DSEG Modern Bold" : "keshikan-modern-bold"
+			,"Keshikan's DSEG Modern Mini Light" : "keshikan-modern-mini-light"
+			,"Keshikan's DSEG Modern Mini Regular" : "keshikan-modern-mini-regular"
+			,"Keshikan's DSEG Modern Mini Bold" : "keshikan-modern-mini-bold"
+			,"Simple 1" : "simple"
+			,"Simple 2" : "simple2"
+			,"Simple 3" : "simple3"
+			,"Curved" : "curved"
+		}
+		,"description" : "Digit style"
+	}
+
+}
