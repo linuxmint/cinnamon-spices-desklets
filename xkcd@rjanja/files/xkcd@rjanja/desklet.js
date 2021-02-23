@@ -24,28 +24,29 @@ const UUID = "xkcd@rjanja";
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale")
 
 function _(str) {
-  return Gettext.dgettext(UUID, str);
+    return Gettext.dgettext(UUID, str);
 }
 
-function XkcdDesklet(metadata, desklet_id){
+function XkcdDesklet(metadata, desklet_id) {
     this._init(metadata, desklet_id);
 }
 
 XkcdDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
 
-    download_file: function(url, localFilename, callback) {
+    download_file: function (url, localFilename, callback) {
         let outFile = Gio.file_new_for_path(localFilename);
         var outStream = new Gio.DataOutputStream({
-            base_stream:outFile.replace(null, false, Gio.FileCreateFlags.NONE, null)});
+            base_stream: outFile.replace(null, false, Gio.FileCreateFlags.NONE, null)
+        });
 
         var message = Soup.Message.new('GET', url);
-        session.queue_message(message, function(session, response) {
+        session.queue_message(message, function (session, response) {
             if (response.status_code !== Soup.KnownStatusCode.OK) {
-               global.log("Error during download: response code " + response.status_code
-                  + ": " + response.reason_phrase + " - " + response.response_body.data);
-               callback(false, null);
-               return true;
+                global.log("Error during download: response code " + response.status_code
+                    + ": " + response.reason_phrase + " - " + response.response_body.data);
+                callback(false, null);
+                return true;
             }
 
             try {
@@ -53,18 +54,18 @@ XkcdDesklet.prototype = {
                 outStream.close(null);
             }
             catch (e) {
-               global.logError("Site seems to be down. Error was:");
-               global.logError(e);
-               callback(false, null);
-               return true;
+                global.logError("Site seems to be down. Error was:");
+                global.logError(e);
+                callback(false, null);
+                return true;
             }
 
             callback(true, localFilename);
             return false;
-         });
+        });
     },
 
-    _refresh: function(xkcdId) {
+    _refresh: function (xkcdId) {
         // global.log("refreshing");
         if (this.updateInProgress) return true;
         this.updateInProgress = true;
@@ -75,7 +76,7 @@ XkcdDesklet.prototype = {
         return true;
     },
 
-    updateUI: function(xkcdId) {
+    updateUI: function (xkcdId) {
         let url, filename;
 
         if (xkcdId === null || xkcdId === undefined) {
@@ -108,11 +109,11 @@ XkcdDesklet.prototype = {
         }
     },
 
-    query_tooltip: function(widget, x, y, keyboard_mode, tooltip, user_data) {
+    query_tooltip: function (widget, x, y, keyboard_mode, tooltip, user_data) {
         global.log('query tooltip');
     },
 
-    set_tooltip: function(tip) {
+    set_tooltip: function (tip) {
         //global.log('set_tooltip');
         if (tip !== null) {
             this._photoFrame.tooltip_text = tip;
@@ -122,7 +123,7 @@ XkcdDesklet.prototype = {
         }
     },
 
-    on_json_downloaded: function(success, filename, cached) {
+    on_json_downloaded: function (success, filename, cached) {
         if (success) {
             this.curXkcd = JSON.parse(Cinnamon.get_file_contents_utf8_sync(filename));
 
@@ -143,12 +144,12 @@ XkcdDesklet.prototype = {
                     jsonFile = Gio.file_new_for_path(finalFilename);
                     jsonFile.trash(null);
                 }
-                catch (e) {}
+                catch (e) { }
 
                 try {
                     tempFile.set_display_name(this.curXkcd.num + '.json', null);
                 }
-                catch (e) {}
+                catch (e) { }
             }
 
             this.set_tooltip(null);
@@ -157,7 +158,7 @@ XkcdDesklet.prototype = {
             let imgFile = Gio.file_new_for_path(imgFilename);
             if (imgFile.query_exists(null)) {
                 this.on_xkcd_downloaded(true, imgFilename, true);
-                }
+            }
             else {
                 this.download_file(this.curXkcd.img, imgFilename, Lang.bind(this, this.on_xkcd_downloaded));
             }
@@ -175,7 +176,7 @@ XkcdDesklet.prototype = {
         [fileInfo, width, height] = GdkPixbuf.Pixbuf.get_file_info(imageFileName, null, null);
 
         let pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(imageFileName, width, height);
-        
+
         let image = new Clutter.Image();
         image.set_data(
             pixBuf.get_pixels(),
@@ -195,14 +196,14 @@ XkcdDesklet.prototype = {
         return { actor: actor, origWidth: width, origHeight: height };
     },
 
-    on_xkcd_downloaded: function(success, file, cached) {
+    on_xkcd_downloaded: function (success, file, cached) {
         // TODO: add back animation
         this.updateInProgress = false;
         this._clutterImageActor = this.getImageFitting(file, this.maxWidth, this.maxHeight).actor;
         this._photoFrame.set_child(this._clutterImageActor);
     },
 
-    _init: function(metadata, desklet_id){
+    _init: function (metadata, desklet_id) {
         try {
             Desklet.Desklet.prototype._init.call(this, metadata);
             this.metadata = metadata
@@ -219,9 +220,9 @@ XkcdDesklet.prototype = {
 
             this.setHeader(_("xkcd"));
 
-            this._photoFrame = new St.Bin({style_class: 'xkcd-box', x_align: St.Align.START});
+            this._photoFrame = new St.Bin({ style_class: 'xkcd-box', x_align: St.Align.START });
             this._binLayout = new Clutter.BinLayout();
-            
+
             this._clutterImageActor = new Clutter.Actor();
 
             // Signal deprecated, no replacement :( 
@@ -231,17 +232,17 @@ XkcdDesklet.prototype = {
             //         this.set_tooltip(this.curXkcd.alt);
             //     }
             // }));
-            
+
 
             this._photoFrame.set_child(this._clutterImageActor);
             this.setContent(this._photoFrame);
 
 
             this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-            this._menu.addAction(_("View latest xkcd"), Lang.bind(this, function() {
+            this._menu.addAction(_("View latest xkcd"), Lang.bind(this, function () {
                 this._refresh(null);
             }));
-            this._menu.addAction(_("Open save folder"), Lang.bind(this, function() {
+            this._menu.addAction(_("Open save folder"), Lang.bind(this, function () {
                 Util.spawnCommandLine("xdg-open " + this.save_path);
             }));
 
@@ -273,24 +274,22 @@ XkcdDesklet.prototype = {
 
             this.updateInProgress = false;
 
-            if (this._xkcds.length == 0)
-            {
+            if (this._xkcds.length == 0) {
                 this._refresh(null);
             }
-            else
-            {
+            else {
                 this._refresh(this._xkcds[this._xkcds.length - 1]);
             }
 
             global.w = this._photoFrame;
-            }
+        }
         catch (e) {
             global.logError(e);
         }
         return true;
     },
 
-    _update: function(){
+    _update: function () {
         // Move to the next, older comic
         try {
             let idx = this._xkcds.indexOf(this._currentXkcd);
@@ -306,7 +305,7 @@ XkcdDesklet.prototype = {
         }
     },
 
-    on_desklet_clicked: function(event){
+    on_desklet_clicked: function (event) {
         try {
             if (event.get_button() == 1) {
                 this._update();
@@ -317,12 +316,12 @@ XkcdDesklet.prototype = {
         }
     },
 
-    _onSettingsChanged: function(event) {
+    _onSettingsChanged: function (event) {
         this._refresh();
     }
 }
 
-function main(metadata, desklet_id){
+function main(metadata, desklet_id) {
     let desklet = new XkcdDesklet(metadata, desklet_id);
     return desklet;
 }
