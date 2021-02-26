@@ -134,11 +134,10 @@ More info:
 ./cinnamon-spices-makepot --help
 ```
 
-# Auto-reloading desklets
+# Translations Status Tables
 
-A utility script using Gulp is provided that can automatically reload desklets on code change. To use, install the [latest NodeJS LTS release](https://github.com/nodesource/distributions).
-- Run `npm install -g gulp@^4.0.0`
-- In the root of this repo's directory run `npm install`.
-- To use the script, run ```gulp watch --uuid="<desklet uuid>"```
+The spices receive updates which sometimes contain new or updated strings that need to be translated. The translation status tables were created to give translators a better overview of the current state of translations and also to make it easier to track where new untranslated strings appear.
 
-For more info run ```gulp help```.
+* [Translation Status Tables for Desklets](https://github.com/linuxmint/cinnamon-spices-desklets/blob/translation-status-tables/.translation-tables/tables/README.md)
+
+To ensure that these tables are always up-to-date, they are automatically regenerated whenever a new commit is pushed to the master branch.
