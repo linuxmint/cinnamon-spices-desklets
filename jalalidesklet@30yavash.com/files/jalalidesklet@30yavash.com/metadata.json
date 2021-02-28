@@ -6,6 +6,5 @@
     "name": "Jalali Time and Date Desklet", 
     "timeSize": "40pt", 
     "timeFormat": "%H:%M", 
-    "prevent-decorations": false, 
-    "last-edited": "1371648230"
+    "prevent-decorations": false
 }

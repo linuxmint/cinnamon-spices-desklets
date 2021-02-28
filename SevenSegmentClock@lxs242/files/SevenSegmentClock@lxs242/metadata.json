@@ -1,0 +1,8 @@
+{
+	"uuid": "SevenSegmentClock@lxs242" 
+	,"name": "Seven Segment Digital Clock"
+	,"description": "Customizable seven segment digital clock with date and Unix time"
+	,"version": "1.0"
+	,"prevent-decorations": true 
+	,"max-instances": "10"
+}

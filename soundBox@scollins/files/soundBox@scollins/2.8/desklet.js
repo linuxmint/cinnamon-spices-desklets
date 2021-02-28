@@ -45,7 +45,7 @@ ButtonMenu.prototype = {
             this.actor.set_child(content);
             
             this.menuManager = new PopupMenu.PopupMenuManager(this);
-            this.menu = new PopupMenu.PopupMenu(this.actor, 0.5, St.Side.TOP, 0);
+            this.menu = new PopupMenu.PopupMenu(this.actor, St.Side.TOP);
             this.menu.actor.set_name(settings.theme+"-popup");
             this.menuManager.addMenu(this.menu);
             Main.uiGroup.add_actor(this.menu.actor);
@@ -82,6 +82,10 @@ ButtonMenu.prototype = {
         } catch(e) {
             global.logError(e);
         }
+    },
+    
+    destroy: function() {
+        this.menu.destroy()
     },
     
     activate: function() {
@@ -332,7 +336,7 @@ myDesklet.prototype = {
     
     on_desklet_removed: function() {
         Soundbox.unregisterSystrayIcons(this.metadata.uuid);
-        this._dbus.disconnectSignal(this._ownerChangedId);
+        this.playerLauncher.destroy()
     },
     
     bindKey: function() {
