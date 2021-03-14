@@ -1,21 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# Alex Savvin <savvin@mail.ru>, 2020.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-14 14:37+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2021-03-14 14:38+0100\n"
+"Last-Translator: Alex Savvin <savvin@mail.ru>\n"
+"Language-Team: NoTeam\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.3\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
 
 #: desklet.js:137
 msgid ""
@@ -24,278 +24,291 @@ msgid ""
 "\n"
 "Click here to edit."
 msgstr ""
+"Не могу прочитать текстовый файл.\n"
+"Укажите файл в настройках.\n"
+"\n"
+"Щёлкните здесь для редактирования."
 
 #: desklet.js:229
 msgid "Notepad"
-msgstr ""
+msgstr "Блокнот"
 
 #. metadata.json->description
 msgid "A desklet to display notes including various themes."
-msgstr ""
+msgstr "Десклет показа заметок, имеющий множество тем."
 
 #. metadata.json->name
 msgid "Note"
-msgstr ""
+msgstr "Заметка"
 
 #. settings-schema.json->head0->description
 msgid "Settings for notes@schorschii"
-msgstr ""
+msgstr "Настройки notes@schorschii"
 
 #. settings-schema.json->head1->description
 msgid "General"
-msgstr ""
+msgstr "Общие"
 
 #. settings-schema.json->file->description
 msgid "Path to note text file"
-msgstr ""
+msgstr "Путь к текстовому файлу заметок"
 
 #. settings-schema.json->file->tooltip
 msgid "Select your text file, where to read from and save to."
-msgstr ""
+msgstr "Укажите текстовый файл для чтения и сохранения заметок."
 
 #. settings-schema.json->edit-cmd->description
 msgid "Command for editing this note (on mouse click)"
-msgstr ""
+msgstr "Команда для редактирования этой заметки (по щелчку мыши)"
 
 #. settings-schema.json->edit-cmd->tooltip
 msgid "%f will replaced by the text file path."
-msgstr ""
+msgstr "%f заменится на путь к текстовому файлу."
 
 #. settings-schema.json->head2->description
 msgid "Visual"
-msgstr ""
+msgstr "Отображение"
 
 #. settings-schema.json->style->description
 msgid "Notes style"
-msgstr ""
+msgstr "Стиль заметок"
 
 #. settings-schema.json->style->options
 msgid "Blank Note - Black"
-msgstr ""
+msgstr "Пустая заметка - чёрная"
 
 #. settings-schema.json->style->options
 msgid "Blank Note - Blue"
-msgstr ""
+msgstr "Пустая заметка - голубая"
 
 #. settings-schema.json->style->options
 msgid "Blank Note - Green"
-msgstr ""
+msgstr "Пустая заметка - зелёная"
 
 #. settings-schema.json->style->options
 msgid "Blank Note - Orange"
-msgstr ""
+msgstr "Пустая заметка - оранжевая"
 
 #. settings-schema.json->style->options
 msgid "Blank Note - Purple"
-msgstr ""
+msgstr "Пустая заметка - фиолетовая"
 
 #. settings-schema.json->style->options
 msgid "Blank Note - White"
-msgstr ""
+msgstr "Пустая заметка - белая"
 
 #. settings-schema.json->style->options
 msgid "Blank Note - Yellow"
-msgstr ""
+msgstr "Пустая заметка - жёлтая"
 
 #. settings-schema.json->style->options
 msgid "White Note - Black Button"
-msgstr ""
+msgstr "Белая заметка - чёрная кнопка"
 
 #. settings-schema.json->style->options
 msgid "White Note - Blue Button"
-msgstr ""
+msgstr "Белая заметка - голубая кнопка"
 
 #. settings-schema.json->style->options
 msgid "White Note - Green Button"
-msgstr ""
+msgstr "Белая заметка - зелёная кнопка"
 
 #. settings-schema.json->style->options
 msgid "White Note - Red Button"
-msgstr ""
+msgstr "Белая заметка - красная кнопка"
 
 #. settings-schema.json->style->options
 msgid "White Note - Yellow Button"
-msgstr ""
+msgstr "Белая заметка - жёлтая кнопка"
 
 #. settings-schema.json->style->options
 msgid "Yellow Note - Black Clip"
-msgstr ""
+msgstr "Жёлтая заметка - чёрная скрепка"
 
 #. settings-schema.json->style->options
 msgid "Yellow Note - Blue Clip"
-msgstr ""
+msgstr "Жёлтая заметка - голубая скрепка"
 
 #. settings-schema.json->style->options
 msgid "Yellow Note - Green Clip"
-msgstr ""
+msgstr "Жёлтая заметка - зелёная скрепка"
 
 #. settings-schema.json->style->options
 msgid "Yellow Note - Jingle Clip"
-msgstr ""
+msgstr "Жёлтая заметка - полосатя скрепка"
 
 #. settings-schema.json->style->options
 msgid "Yellow Note - Red Clip"
-msgstr ""
+msgstr "Жёлтая заметка - красная скрепка"
 
 #. settings-schema.json->style->options
 msgid "Yellow Note - Yellow Clip"
-msgstr ""
+msgstr "Жёлтая заметка - жёлткая скрепка"
 
 #. settings-schema.json->style->options
 msgid "White Note - Black Magnet"
-msgstr ""
+msgstr "Белая заметка - чёрный магнит"
 
 #. settings-schema.json->style->options
 msgid "Yellow Note - Blue Magnet"
-msgstr ""
+msgstr "Жёлтая заметка - голубой магнит"
 
 #. settings-schema.json->style->options
 msgid "White Note - Lines and Red Magnet"
-msgstr ""
+msgstr "Белая заметка - линии и красный магнит"
 
 #. settings-schema.json->style->options
 msgid "Black Note - White Magnet"
-msgstr ""
+msgstr "Чёрная заметка - белый магнит"
 
 #. settings-schema.json->style->options
 msgid "Yellow Note - Yellow Magnet"
-msgstr ""
+msgstr "Жёлтая заметка - жёлтый магнит"
 
 #. settings-schema.json->style->options
 msgid "Blue Paint Strokes"
-msgstr ""
+msgstr "Мазки синей краски"
 
 #. settings-schema.json->style->options
 msgid "Green Paint Strokes"
-msgstr ""
+msgstr "Мазки зелёной краски"
 
 #. settings-schema.json->style->options
 msgid "Purple Paint Strokes"
-msgstr ""
+msgstr "Мазки фиолетовой краски"
 
 #. settings-schema.json->style->options
 msgid "Red Paint Strokes"
-msgstr ""
+msgstr "Мазки красной краски"
 
 #. settings-schema.json->style->options
 msgid "Yellow Paint Strokes"
-msgstr ""
+msgstr "Мазки жёлтой краски"
 
 #. settings-schema.json->style->options
 msgid "White Note - Silver Spiral"
-msgstr ""
+msgstr "Белая заметка - серебрянная спираль"
 
 #. settings-schema.json->style->options
 msgid "White Note - Silver Spiral 2"
-msgstr ""
+msgstr "Белай заментка - серебрянная списраль 2"
 
 #. settings-schema.json->style->options
 msgid "White Note - Black Spiral"
-msgstr ""
+msgstr "Белая заметка - чёрная спираль"
 
 #. settings-schema.json->style->options
 msgid "White Note Large - Silver Spiral"
-msgstr ""
+msgstr "Жёлтая большая заметка - серебрянная спираль"
 
 #. settings-schema.json->style->options
 msgid "Yellow Sticker"
-msgstr ""
+msgstr "Жёлтый стикер"
 
 #. settings-schema.json->style->options
 msgid "Yellow Note (iOS Style)"
-msgstr ""
+msgstr "Жёлтая заметка (стиль iOS)"
 
 #. settings-schema.json->style->options
 msgid "Birch Bark"
-msgstr ""
+msgstr "Береста"
 
 #. settings-schema.json->style->options
 msgid "Burned Paper"
-msgstr ""
+msgstr "Сгоревшая бумага"
 
 #. settings-schema.json->style->options
 msgid "Clay Tablet"
-msgstr ""
+msgstr "Глиняная табличка"
 
 #. settings-schema.json->style->options
 msgid "Coffee Stained"
-msgstr ""
+msgstr "Забрызганная кофе"
 
 #. settings-schema.json->style->options
 msgid "Clipboard"
-msgstr ""
+msgstr "Доска с зажимом"
 
 #. settings-schema.json->style->options
 msgid "None"
-msgstr ""
+msgstr "–"
 
 #. settings-schema.json->style->tooltip
 msgid "Select the background graphic you would like to use."
-msgstr ""
+msgstr "Выберите желаемый фон."
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
-msgstr ""
+msgstr "Скрыть декорации"
 
 #. settings-schema.json->font->description
 msgid "Font"
-msgstr ""
+msgstr "Шрифт"
 
 #. settings-schema.json->size-font->units
 msgid "pixels"
-msgstr ""
+msgstr "пиксели"
 
 #. settings-schema.json->size-font->description
 msgid "Font size"
-msgstr ""
+msgstr "Размер шрифта"
 
 #. settings-schema.json->size-font->tooltip
 #. settings-schema.json->scale-size->tooltip
 msgid "Increase or decrease the size of this desklet using this scale factor."
 msgstr ""
+"Коэффициент масштабирования - увеличение или уменьшение размера дисклета."
 
 #. settings-schema.json->font-bold->description
 msgid "Bold"
-msgstr ""
+msgstr "Жирный"
 
 #. settings-schema.json->font-italic->description
 msgid "Italic"
-msgstr ""
+msgstr "Курсив"
 
 #. settings-schema.json->text-color->description
 msgid "Text color"
-msgstr ""
+msgstr "Цвет текста"
 
 #. settings-schema.json->text-color->tooltip
 msgid "Set the text color of this desklet."
-msgstr ""
+msgstr "Настройка цвета текста дисклета."
 
 #. settings-schema.json->scale-size->units
 msgid "scale factor"
-msgstr ""
+msgstr "масштаб"
 
 #. settings-schema.json->scale-size->description
 msgid "Desklet size"
-msgstr ""
+msgstr "Размер дисклета"
 
 #. settings-schema.json->head3->description
 msgid "Custom desklet label (only visible if decorations are enabled)"
-msgstr ""
+msgstr "Настройка названия десклета (только при включенных декорациях)"
 
 #. settings-schema.json->use-custom-label->description
 msgid "Use a custom desklet label"
-msgstr ""
+msgstr "Использовать своё название десклета"
 
 #. settings-schema.json->use-custom-label->tooltip
 msgid "Checking this box allows you to set a custom label in the field below."
-msgstr ""
+msgstr "При установленной галочке можно задать собственное имя десклету."
 
 #. settings-schema.json->custom-label->description
 msgid "Custom desklet label"
-msgstr ""
+msgstr "Название десклета"
 
 #. settings-schema.json->custom-label->tooltip
 msgid ""
 "Set your custom label here. This field is unavailable unless the checkbox "
 "above is enabled."
 msgstr ""
+"Задайте своё название десклета. Это поле недоступно, если не установлена "
+"галочка выше."
+
+#~ msgid "Yellow"
+#~ msgstr "Жёлтый"
+
+#~ msgid "White"
+#~ msgstr "Белый"
