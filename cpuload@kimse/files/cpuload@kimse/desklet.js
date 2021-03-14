@@ -1,4 +1,3 @@
-
 const Mainloop = imports.mainloop;
 const Lang = imports.lang;
 const Desklet = imports.ui.desklet;
@@ -8,6 +7,16 @@ const Gio = imports.gi.Gio;
 const Clutter = imports.gi.Clutter;
 const St = imports.gi.St;
 const GLib = imports.gi.GLib;
+
+
+// translation support
+const uuid = "cpuload@kimse";
+const Gettext = imports.gettext;
+Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
+
+function _(str) {
+  return Gettext.dgettext(uuid, str);
+}
 
 CpuLoadDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
@@ -218,7 +227,7 @@ CpuLoadDesklet.prototype = {
         let label = new St.Label();
         
         label.set_position(pos_x, pos_y + (this.cpu_container_size / 2) + (this.cpu_name_font_size / global.ui_scale) / 4);
-        label.set_text(this.per_core ? "Core " + core : "CPU usage");
+        label.set_text(this.per_core ? _("Core %d").format(core) : _("CPU usage"));
 
         label.style = this.getTextLabelStyle(this.cpu_name_font_size);
 
