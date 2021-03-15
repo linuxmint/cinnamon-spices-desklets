@@ -250,6 +250,9 @@ msgid "Font size"
 msgstr ""
 
 #. settings-schema.json->size-font->tooltip
+msgid "Increase or decrease the note font size."
+msgstr ""
+
 #. settings-schema.json->scale-size->tooltip
 msgid "Increase or decrease the size of this desklet using this scale factor."
 msgstr ""
