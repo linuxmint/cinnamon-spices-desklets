@@ -202,6 +202,9 @@ msgstr "Kursiv"
 msgid "Font size"
 msgstr "Schriftgröße"
 
+msgid "Increase or decrease the note font size."
+msgstr "Erhöhen oder verringern Sie die Schriftgröße der Notiz."
+
 msgid "Increase or decrease the size of this desklet using this scale factor."
 msgstr "Erhöhen oder verringern Sie die Größe dieses Desklets indem Sie diesen Skalierungsfaktor anpassen."
 

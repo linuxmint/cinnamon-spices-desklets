@@ -100,7 +100,7 @@
         "step": 1,
         "units": "pixels",
         "description": "Font size",
-        "tooltip": "Increase or decrease the size of this desklet using this scale factor."
+        "tooltip": "Increase or decrease the note font size."
     },
     "font-bold": {
         "type": "checkbox",
