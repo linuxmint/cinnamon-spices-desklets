@@ -1,41 +1,45 @@
 # Yahoo Finance Quotes Desklet
 # Copyright (C) 2020 Thomas Egli
 # This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
-
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
-"POT-Creation-Date: 2020-07-17 18:00+0200\n"
-"PO-Revision-Date: 2020-10-04 18:45+0200\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-18 19:25+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 
-#: desklet.js:66
+#: desklet.js:70
 msgid "Yahoo Finance service not available!"
 msgstr ""
 
-#: desklet.js:334
+#: desklet.js:399
 msgid "Updated at "
 msgstr ""
 
-#: desklet.js:340
+#: desklet.js:406
 msgid "Error: "
 msgstr ""
 
-#: desklet.js:374
+#: desklet.js:447
 msgid "Cannot display quotes information for symbols: "
 msgstr ""
 
-#: desklet.js:375
+#: desklet.js:448
 msgid "The following error occurred: "
 msgstr ""
 
 #. metadata.json->description
-msgid "Displays financial market information such as stock quotes and commodity prices from Yahoo Finance"
+msgid ""
+"Displays financial market information such as stock quotes and commodity "
+"prices from Yahoo Finance"
 msgstr ""
 
 #. metadata.json->name
@@ -166,7 +170,7 @@ msgid "Quote details"
 msgstr ""
 
 #. settings-schema.json->showChangeIcon->description
-msgid "Show change icon"
+msgid "Show change/trend icon"
 msgstr ""
 
 #. settings-schema.json->showChangeIcon->tooltip
@@ -186,7 +190,9 @@ msgid "Use long version for verbose name"
 msgstr ""
 
 #. settings-schema.json->useLongQuoteName->tooltip
-msgid "Use the long version for quote name, if available (eg. International Business Machines Corporation)."
+msgid ""
+"Use the long version for quote name, if available (eg. International "
+"Business Machines Corporation)."
 msgstr ""
 
 #. settings-schema.json->linkQuoteName->description
@@ -250,7 +256,8 @@ msgid "Use trend colors for percent change"
 msgstr ""
 
 #. settings-schema.json->colorPercentChange->tooltip
-msgid "Color the percent change to show the trend (green for up, red for down)."
+msgid ""
+"Color the percent change to show the trend (green for up, red for down)."
 msgstr ""
 
 #. settings-schema.json->showTradeTime->description
