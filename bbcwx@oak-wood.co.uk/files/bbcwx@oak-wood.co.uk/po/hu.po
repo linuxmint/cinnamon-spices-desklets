@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: bbcwx\n"
 "Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
 "POT-Creation-Date: 2018-01-07 21:05+0000\n"
-"PO-Revision-Date: 2016-12-11 11:52+0000\n"
-"Last-Translator: KAMI <kami911@gmail.com>\n"
+"PO-Revision-Date: 2021-03-22 08:06+0100\n"
+"Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2017-05-05 21:20+0000\n"
-"X-Generator: Launchpad (build 18366)\n"
+"X-Generator: Poedit 2.3\n"
 
 #. # Days of the week
 #: desklet.js:102
@@ -102,7 +102,7 @@ msgstr "Szélerősség:"
 #. # Wind direction
 #: desklet.js:361
 msgid "Dir:"
-msgstr "Szélirány"
+msgstr "Szélirány:"
 
 #. # Credit the data supplier. A link to the data supplier appears to the
 #. right of this string
@@ -127,7 +127,7 @@ msgstr "Hiba: %s"
 
 #: desklet.js:768 desklet.js:835
 msgid "No data"
-msgstr "Nincs adat!"
+msgstr "Nincs adat"
 
 #. # %s is replaced by place name
 #: desklet.js:870
@@ -573,7 +573,7 @@ msgid ""
 "may offer city names in other languages"
 msgstr ""
 "A megadott szöveg használata az aktuális hely megnevezéseként. Lehetséges, "
-"hogy a Yahoo! és a  Google felajánl város neveket egyéb nyelveken."
+"hogy a Yahoo! és a  Google felajánl város neveket egyéb nyelveken is."
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->options
 msgid "Google"
@@ -582,7 +582,7 @@ msgstr "Google"
 #. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->options
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->description
 msgid "Data service"
-msgstr "Az időjárás előrejelzés szolgáltatója"
+msgstr "Az időjárás-előrejelzés szolgáltatója"
 
 #. bbcwx@oak-wood.co.uk->settings-
 #. schema.json->experimental_enabled->description
@@ -612,8 +612,8 @@ msgid ""
 "Period between refreshing forecasts. Note that not all services support "
 "lower refresh times"
 msgstr ""
-"Frissítések közötti időintervallum. Kérjük vegye figyelembe, hogy nem "
-"mindegyik szolgáltatás támogatja az alacsony frissítési időintervallumokat."
+"Frissítések időköze. Kérjük vegye figyelembe, hogy nem mindegyik "
+"szolgáltatás támogatja az alacsony frissítési időközöket."
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->refreshtime->units
 msgid "minutes"
@@ -702,8 +702,8 @@ msgid ""
 "Select the point on the desklet to which it is anchored. This point will "
 "remain static as the desklet grows and shrinks"
 msgstr ""
-"Válasszon egy pontot a deskleten amely rögzítve lesz. Ez a pont állandó "
-"marad a desklet méretének növekedése és csökkenése esetén is."
+"Válasszon egy pontot a asztalkalmazáson amely rögzítve lesz. Ez a pont "
+"állandó marad a asztalkalmazás méretének növekedése és csökkenése esetén is."
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
 msgid "Bottom center"
@@ -755,11 +755,11 @@ msgstr "Az a mértékegység amelyben a légnyomást megjelenítjük"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->punits->options
 msgid "in (Hg)"
-msgstr "inch(higany)"
+msgstr "(higany)inch"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->punits->options
 msgid "mm (Hg)"
-msgstr "mm(higany)"
+msgstr "(higany)mm"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->punits->options
 msgid "kPa"
@@ -771,7 +771,7 @@ msgstr "mb"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->styling->description
 msgid "Desklet style"
-msgstr "A Desklet stílusa"
+msgstr "Aztalkalmazás stílusa"
 
 #. bbcwx@oak-wood.co.uk->settings-
 #. schema.json->display__forecast__maximum_temperature->description
@@ -793,11 +793,11 @@ msgstr "Az a mértékegység amelyben a szél sebességét megjelenítjük"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->options
 msgid "knots"
-msgstr "csomók"
+msgstr "csomó"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->options
 msgid "m/s"
-msgstr "méter/sec"
+msgstr "méter/mp"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->options
 msgid "km/h"
@@ -964,9 +964,8 @@ msgid "Select the data service you wish to use"
 msgstr "Válassza ki a használni kívánt szolgáltatót"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
 msgid "APIXU (requires API key)"
-msgstr "meteoblue (API-kulcs szükséges)"
+msgstr "APIXU (API-kulcs szükséges)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "Wunderground (requires API key)"
@@ -977,36 +976,32 @@ msgid "meteoblue (requires API key)"
 msgstr "meteoblue (API-kulcs szükséges)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
 msgid "World Weather Online (deprecated) (requires API key)"
-msgstr "World Weather Online (API kulcs szükséges)"
+msgstr "World Weather Online (elavult) (API-kulcs szükséges)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "BBC"
 msgstr "BBC"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
 msgid "Open Weather Map Free (requires API key)"
-msgstr "World Weather Online (API kulcs szükséges)"
+msgstr "Open Weather Map Free (API-kulcs szükséges)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "weather.com (deprecated)"
-msgstr "weather.com (helytelenített)"
+msgstr "weather.com (elavult)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
 msgid "World Weather Online Premium (requires API key)"
-msgstr "World Weather Online (API kulcs szükséges)"
+msgstr "World Weather Online Premium (API-kulcs szükséges)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "Forecast.io (requires API key)"
 msgstr "Forecast.io (API kulcs szükséges)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
 msgid "Open Weather Map (requires API key)"
-msgstr "World Weather Online (API kulcs szükséges)"
+msgstr "Open Weather Map (requires API key)"
 
 #. bbcwx@oak-wood.co.uk->settings-
 #. schema.json->display__forecast__pressure->description
