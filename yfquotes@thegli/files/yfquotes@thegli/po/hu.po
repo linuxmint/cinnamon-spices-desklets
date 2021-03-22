@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-18 19:25+0100\n"
-"PO-Revision-Date: 2021-03-22 07:43+0100\n"
+"PO-Revision-Date: 2021-03-22 07:52+0100\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -116,15 +116,15 @@ msgstr "Számok kerekítése."
 
 #. settings-schema.json->decimalPlaces->units
 msgid "positions"
-msgstr "pozíciók"
+msgstr "ár"
 
 #. settings-schema.json->decimalPlaces->description
 msgid "Decimal places to round"
-msgstr "A megjelenítendő tizedesjegyek száma"
+msgstr "Tizedesjegyek száma"
 
 #. settings-schema.json->decimalPlaces->tooltip
 msgid "Number of positions to round to after decimal point."
-msgstr "Pozíciók számának kerekítése"
+msgstr "Megjelenítendő tizedesjegyek száma."
 
 #. settings-schema.json->quoteSymbols->description
 msgid "Quote symbols"
