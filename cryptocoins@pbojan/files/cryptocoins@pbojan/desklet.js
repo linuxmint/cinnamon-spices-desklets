@@ -19,6 +19,7 @@ const PADDING = 10 / global.ui_scale;
 const FONT_SIZE_CONTAINER = parseInt(15 / global.ui_scale);
 const FONT_SIZE_HEADER = parseInt(16 / global.ui_scale);
 const FONT_SIZE_PRICE = parseInt(22 / global.ui_scale);
+const FONT_SIZE_ASSETS = parseInt(12 / global.ui_scale);
 const FONT_SIZE_LAST_UPDATED = parseInt(10 / global.ui_scale);
 
 const httpSession = new Soup.SessionAsync();
@@ -39,6 +40,8 @@ CryptocurrencyTicker.prototype = {
   change1H: null,
   change1D: null,
   change7D: null,
+  assetsOwning: null,
+  assetsValue: null,
 
   _init: function(metadata, desklet_id) {
     try {
@@ -48,6 +51,8 @@ CryptocurrencyTicker.prototype = {
       this.settings.bind('apiKey', 'cfgApiKey', this.onSettingsChanged);
       this.settings.bind('coin', 'cfgCoin', this.onSettingsChanged);
       this.settings.bind('currency', 'cfgCurrency', this.onSettingsChanged);
+      this.settings.bind('assetsOwned', 'cfgAssetsOwned', this.onSettingsChanged);
+      this.settings.bind('assetsValue', 'cfgAssetsValue', this.onSettingsChanged);
       this.settings.bind('refreshInterval', 'cfgRefreshInterval', this.onRefreshIntervalChanged);
       this.settings.bind('bgColor', 'cfgBgColor', this.onUISettingsChanged);
       this.settings.bind('bgBorderRadius', 'cfgBgBorderRadius', this.onUISettingsChanged);
@@ -57,6 +62,8 @@ CryptocurrencyTicker.prototype = {
       this.cfgApiKey = this.cfgApiKey || '';
       this.cfgCoin = this.cfgCoin || '1';
       this.cfgCurrency = this.cfgCurrency.toUpperCase() || 'USD';
+      this.cfgAssetsOwned = this.cfgAssetsOwned || 0.0;
+      this.cfgAssetsValue = this.cfgAssetsValue || 0.0;
       this.cfgRefreshInterval = this.cfgRefreshInterval || 30;
       this.cfgBgColor = this.cfgBgColor || '#303030';
       this.cfgBgBorderRadius = this.cfgBgBorderRadius || 10;
@@ -84,8 +91,10 @@ CryptocurrencyTicker.prototype = {
       Mainloop.source_remove(this.mainloop);
     }
 
-    this.container.destroy_all_children();
-    this.container.destroy();
+    if (this.container) {
+      this.container.destroy_all_children();
+      this.container.destroy();
+    }
   },
 
   onRefreshIntervalChanged: function() {
@@ -191,6 +200,16 @@ CryptocurrencyTicker.prototype = {
     this.setChangeData(this.change1D, quote['percent_change_24h']);
     this.setChangeData(this.change7D, quote['percent_change_7d']);
 
+    if (this.cfgAssetsOwned > 0 && this.assetsOwning) {
+      this.assetsOwning.set_text(
+        this.cfgAssetsOwned + " " + data['symbol'] + " | " + this.getFormattedPrice(this.cfgAssetsOwned * quote['price'])
+      );
+
+      if (this.cfgAssetsValue > 0 && this.assetsValue) {
+        this.updateAssetsValue(this.cfgAssetsOwned, this.cfgAssetsValue, quote['price']);
+      }
+    }
+
     var date = new Date(data['last_updated']);
     this.lastUpdatedLabel.set_text(date.toLocaleString());
   },
@@ -214,8 +233,15 @@ CryptocurrencyTicker.prototype = {
     this.container.add(this.addChange('Change 1H:', this.change1H, quote['percent_change_1h']));
     this.container.add(this.addChange('Change 1D:', this.change1D, quote['percent_change_24h']));
     this.container.add(this.addChange('Change 7D:', this.change7D, quote['percent_change_7d']));
-    this.container.add(this.addLastUpdated(data['last_updated']));
 
+    if (this.cfgAssetsOwned > 0.0) {
+      this.container.add(this.addAssetsOwned(this.cfgAssetsOwned, quote['price'], data['symbol']));
+      if (this.cfgAssetsValue > 0.0) {
+        this.container.add(this.addAssetsValue(this.cfgAssetsOwned, this.cfgAssetsValue, quote['price']));
+      }
+    }
+
+    this.container.add(this.addLastUpdated(data['last_updated']));
     this.setContent(this.container);
   },
 
@@ -226,7 +252,7 @@ CryptocurrencyTicker.prototype = {
     });
     var left = new St.BoxLayout({
       vertical: true,
-      width: WIDTH_ICON,
+      width: 50,
       style_class: 'containerLeft'
     });
 
@@ -242,7 +268,7 @@ CryptocurrencyTicker.prototype = {
 
     var right = new St.BoxLayout({
       vertical: true,
-      width: WIDTH - PADDING - WIDTH_ICON,
+      width: WIDTH - PADDING - 50,
       style_class: 'containerRight'
     });
     var label = new St.Label({
@@ -286,6 +312,58 @@ CryptocurrencyTicker.prototype = {
     return row;
   },
 
+  addAssetsOwned: function(assetOwned, currentPrice, symbol) {
+    var row = new St.BoxLayout({
+      vertical: false,
+      width: WIDTH - PADDING,
+      style_class: 'row'
+    });
+    var center = new St.BoxLayout({
+      vertical: true,
+      width: WIDTH - PADDING,
+      style_class: 'containerAssetsOwned'
+    });
+    center.set_style('font-size: ' + FONT_SIZE_ASSETS + 'px;');
+
+    this.assetsOwning = new St.Label();
+    this.assetsOwning.set_text(assetOwned + " " + symbol + " | " + this.getFormattedPrice(assetOwned * currentPrice));
+    center.add(this.assetsOwning);
+
+    row.add(center);
+
+    return row;
+  },
+
+  addAssetsValue: function(assetOwned, assetsValue, currentPrice) {
+    var row = new St.BoxLayout({
+      vertical: false,
+      width: WIDTH - PADDING,
+      style_class: 'row'
+    });
+    var center = new St.BoxLayout({
+      vertical: true,
+      width: WIDTH - PADDING,
+      style_class: 'containerAssetsValue'
+    });
+    center.set_style('font-size: ' + FONT_SIZE_ASSETS + 'px;');
+
+    this.assetsValue = new St.Label();
+    this.updateAssetsValue(assetOwned, assetsValue, currentPrice);
+
+    center.add(this.assetsValue);
+    row.add(center);
+
+    return row;
+  },
+
+  updateAssetsValue: function(assetOwned, assetsValue, currentPrice) {
+    var profit = assetOwned * currentPrice - assetsValue;
+    var increase = Math.round(profit / assetsValue * 100);
+
+    this.assetsValue.style_class = profit > 0 ? 'green' : 'red';
+    this.assetsValue.set_text(this.getFormattedPrice(profit) + " | " + this.getFormattedPercent(increase));
+  },
+
   addChange: function(title, changeLabel, changeValue) {
     var row = new St.BoxLayout({
       vertical: false,
@@ -326,11 +404,7 @@ CryptocurrencyTicker.prototype = {
     }
 
     label.style_class = cls;
-    label.set_text(num.toLocaleString(undefined, {
-      style: 'decimal',
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    }) + '%');
+    label.set_text(this.getFormattedPercent(num));
   },
 
   addLastUpdated: function(date) {
@@ -356,6 +430,20 @@ CryptocurrencyTicker.prototype = {
     return row;
   },
 
+  getFormattedPercent: function(percent) {
+    var formattedPercent = percent.toLocaleString(undefined, {
+      style: 'decimal',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }) + '%';
+
+    if (percent > 0) {
+      formattedPercent = "+" + formattedPercent;
+    }
+
+    return formattedPercent;
+  },
+
   getFormattedPrice: function(price) {
     var options = {
       style: 'currency',
@@ -363,7 +451,7 @@ CryptocurrencyTicker.prototype = {
     };
 
     price = parseFloat(price);
-    if (price < 1) {
+    if (price > 0 && price < 1) {
       options['minimumFractionDigits'] = 5;
     }
 
