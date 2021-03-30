@@ -32,8 +32,18 @@
         "default": "thick",
         "description": "Design",
         "options" : {
-            "Thick" : "thick",
-            "Thin": "thin"
+            "Thin": "thin",
+            "Compact": "compact",
+            "Thick" : "thick"
+        }
+    },
+    "circle": {
+        "type": "combobox",
+        "default": "speedometer",
+        "description": "Circle",
+        "options" : {
+            "Speedometer": "speedometer",
+            "Full Circle": "full-circle"
         }
     },
     "scale-size": {

@@ -77,6 +77,22 @@ msgstr "Dick"
 msgid "Thin"
 msgstr "Dünn"
 
+#. settings-schema.json->design->options
+msgid "Compact"
+msgstr "Kompakt"
+
+#. settings-schema.json->circle->description
+msgid "Circle"
+msgstr "Kreis"
+
+#. settings-schema.json->circle->options
+msgid "Speedometer"
+msgstr "Tachometer"
+
+#. settings-schema.json->circle->options
+msgid "Full Circle"
+msgstr "Voller Kreis"
+
 #. settings-schema.json->scale-size->units
 msgid "scale factor"
 msgstr "Skalierungsfaktor"
