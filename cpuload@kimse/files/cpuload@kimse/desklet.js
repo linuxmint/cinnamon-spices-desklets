@@ -284,7 +284,7 @@ CpuLoadDesklet.prototype = {
         canvas.set_size(this.cpu_container_size, this.cpu_container_size);
         canvas.connect('draw', function(canvas, cr, width, height) {
 
-            let offset = Math.PI * (desklet.circle == 'speedometer' ? 1.25 : 0.5);
+            let offset = Math.PI * (desklet.circle == 'speedometer' ? 1.25 : 1.5);
             let start = 0 - offset;
             let end = ((cpu_active_time * (Math.PI * (desklet.circle == 'speedometer' ? 1.5 : 2) )) / 100) - offset;
 
