@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-18 08:52-0400\n"
-"PO-Revision-Date: 2021-04-07 17:28+0200\n"
+"PO-Revision-Date: 2021-04-11 10:43+0200\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Last-Translator: Bosák Balázs <bossbob88@gmail.com>\n"
+"Last-Translator: Balazs Bosak <bossbob88@gmail.com>\n"
 "Language-Team: \n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.3\n"
 
 #. metadata.json->name
 #: desklet.js:104
@@ -48,7 +48,7 @@ msgstr "Ismeretlen hiba"
 
 #: desklet.js:399
 msgid "Install gcalendar to use this desklet."
-msgstr "Telepítse a gcalendar-t az asztalalkalmazás használatához."
+msgstr "Telepítse a gcalendar-t az asztalkalmazás használatához."
 
 #: desklet.js:400
 msgid "Visit: "
@@ -223,7 +223,7 @@ msgstr "Szo"
 #. metadata.json->description
 msgid "A desklet that displays your agenda based on Google Calendar"
 msgstr ""
-"Egy asztalalkalmazás amely megjeleníti a napirendjét a Google Naptár alapján"
+"Egy asztalkalmazás amely megjeleníti a napirendjét a Google Naptár alapján"
 
 #. settings-schema.json->top->description
 msgid "Google Calendar authentication"
@@ -317,7 +317,7 @@ msgstr "perc"
 
 #. settings-schema.json->display2->description
 msgid "Desklet style"
-msgstr "Asztalalkalmazás stílusa"
+msgstr "Asztalkalmazás stílusa"
 
 #. settings-schema.json->date_format->description
 msgid "Date format"
@@ -361,7 +361,7 @@ msgstr "Nagyítás"
 
 #. settings-schema.json->zoom->tooltip
 msgid "Change the size of the desklet"
-msgstr "Asztalalkalmazás méretének megváltoztatása"
+msgstr "Asztalkalmazás méretének megváltoztatása"
 
 #. settings-schema.json->transparency->description
 msgid "Transparency"
@@ -369,7 +369,7 @@ msgstr "Átlátszóság"
 
 #. settings-schema.json->transparency->tooltip
 msgid "Set the transparency of the desklet"
-msgstr "Asztalalkalmazás átlátszóságának beállítása"
+msgstr "Asztalkalmazás átlátszóságának beállítása"
 
 #. settings-schema.json->textcolor->description
 msgid "Text color"
@@ -430,4 +430,4 @@ msgstr "Sarok sugara"
 
 #. settings-schema.json->cornerradius->tooltip
 msgid "Radius for rounding the desklet's corners"
-msgstr "Az asztalalkalmazás sarkainak lekerekítése során használt sugár"
+msgstr "Az asztalkalmazás sarkainak lekerekítése során használt sugár"
