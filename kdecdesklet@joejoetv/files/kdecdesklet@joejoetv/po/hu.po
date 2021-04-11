@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-13 23:34+0200\n"
-"PO-Revision-Date: 2021-04-07 19:44+0200\n"
+"PO-Revision-Date: 2021-04-11 10:47+0200\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Last-Translator: Bosák Balázs <bossbob88@gmail.com>\n"
+"Last-Translator: Balazs Bosak <bossbob88@gmail.com>\n"
 "Language-Team: \n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.3\n"
 
 #: desklet.js:291
 msgid "Reply"
@@ -27,7 +27,7 @@ msgstr "Elérhető eszközök"
 
 #: desklet.js:396
 msgid "Reload Desklet"
-msgstr "Asztalalkalmazás újratöltése"
+msgstr "Asztalkalmazás újratöltése"
 
 #: desklet.js:401
 msgid "KDEConnect is not running!"
@@ -43,11 +43,11 @@ msgstr "Nincsenek párosított eszközök!"
 
 #. metadata.json->name
 msgid "KDEConnect Desklet"
-msgstr "KDEConnect asztalalkalmazás"
+msgstr "KDEConnect asztalkalmazás"
 
 #. metadata.json->description
 msgid "Desklet for displaying information about a Device connected with KDeConnect."
-msgstr "A KDEConnect-hez csatlakoztatott eszköz információinak megjelenítésére szolgáló asztalalkalmazás."
+msgstr "A KDEConnect-hez csatlakoztatott eszköz információinak megjelenítésére szolgáló asztalkalmazás."
 
 #. settings-schema.json->header->description
 msgid "Device Settings"
