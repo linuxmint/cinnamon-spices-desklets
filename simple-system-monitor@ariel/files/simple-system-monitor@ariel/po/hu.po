@@ -1,0 +1,62 @@
+# Translation for simple-system-monitor@ariel.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-05 01:50+0800\n"
+"PO-Revision-Date: 2021-04-10 19:59+0200\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: Balazs Bosak <bossbob88@gmail.com>\n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.3\n"
+
+#: desklet.js:34
+msgid ""
+"Dependencies missing. Please install \n"
+"libgtop, Network Manager and gir bindings \n"
+"\t    on Ubuntu: gir1.2-gtop-2.0, gir1.2-networkmanager-1.0 \n"
+"\t    on Fedora: libgtop2-devel, NetworkManager-glib-devel \n"
+"\t    on Arch: libgtop, networkmanager\n"
+"and restart Cinnamon.\n"
+msgstr ""
+"Hiányoznak a függőségek. Kérjük telepítse a következőket: \n"
+"libgtop, Hálózatkezelő és gir bindings \n"
+"\t    Ubuntu rendszerhez: gir1.2-gtop-2.0, gir1.2-networkmanager-1.0 \n"
+"\t    Fedora rendszerhez: libgtop2-devel, NetworkManager-glib-devel \n"
+"\t    Arch rendszerhez: libgtop, networkmanager\n"
+"majd indítsa újra a Cinnamont.\n"
+
+#: applet.js:213
+msgid "CPU:"
+msgstr "CPU:"
+
+#: applet.js:214
+msgid "Memory:"
+msgstr "Memória:"
+
+#: applet.js:215
+msgid "Download:"
+msgstr "Letöltés:"
+
+#: applet.js:216
+msgid "Upload:"
+msgstr "Feltöltés:"
+
+#: applet.js:217
+msgid "Temperature:"
+msgstr "Hőmérséklet:"
+
+#. simple-system-monitor@ariel->metadata.json->description
+msgid "Shows some system status values"
+msgstr "Néhány rendszerállapot érték megjelenítése"
+
+#. simple-system-monitor@ariel->metadata.json->name
+msgid "Simple system monitor"
+msgstr "Egyszerű rendszerfigyelő"
