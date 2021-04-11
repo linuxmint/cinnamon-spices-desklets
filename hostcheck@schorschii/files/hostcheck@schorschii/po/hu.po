@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-18 18:53+0100\n"
-"PO-Revision-Date: 2021-04-07 17:37+0200\n"
+"PO-Revision-Date: 2021-04-11 10:45+0200\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Last-Translator: Bosák Balázs <bossbob88@gmail.com>\n"
+"Last-Translator: Balazs Bosak <bossbob88@gmail.com>\n"
 "Language-Team: \n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.3\n"
 
 #: desklet.js:119
 msgid "UNKNOWN"
@@ -65,7 +65,7 @@ msgstr "Ping vagy HTTP(S) ellenőrzés"
 #. settings-schema.json->type->tooltip
 msgid "Choose, if this desklet should do a ping or HTTP(S) check."
 msgstr ""
-"Válasszon, hogy az asztalalkalmazás végezzen-e pinget vagy HTTP(S) "
+"Válasszon, hogy az asztalkalmazás végezzen-e pinget vagy HTTP(S) "
 "ellenőrzést."
 
 #. settings-schema.json->type->options
@@ -90,12 +90,12 @@ msgstr "léptéktényező"
 
 #. settings-schema.json->scale-size->description
 msgid "Desklet size"
-msgstr "Asztalalkalmazás mérete"
+msgstr "Asztalkalmazás mérete"
 
 #. settings-schema.json->scale-size->tooltip
 msgid "Increase or decrease the size of this desklet using this scale factor."
 msgstr ""
-"Növelje vagy csökkentse az asztalalkalmazás méretét ezt a skálát használva."
+"Növelje vagy csökkentse az asztalkalmazás méretét ezt a skálát használva."
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
@@ -104,12 +104,12 @@ msgstr "Díszítések elrejtése"
 #. settings-schema.json->head3->description
 msgid "Custom desklet label (only visible if decorations are enabled)"
 msgstr ""
-"Egyéni asztalalkalmazás címke (csak akkor látható, ha a dekoráció "
+"Egyéni asztalkalmazás címke (csak akkor látható, ha a dekoráció "
 "engedélyezve van)"
 
 #. settings-schema.json->use-custom-label->description
 msgid "Use a custom desklet label"
-msgstr "Egyéni asztalalkalmazás címke használata"
+msgstr "Egyéni asztalkalmazás címke használata"
 
 #. settings-schema.json->use-custom-label->tooltip
 msgid "Checking this box allows you to set a custom label in the field below."
@@ -119,7 +119,7 @@ msgstr ""
 
 #. settings-schema.json->custom-label->description
 msgid "Custom desklet label"
-msgstr "Egyéni asztalalkalmazás címke"
+msgstr "Egyéni asztalkalmazás címke"
 
 #. settings-schema.json->custom-label->tooltip
 msgid ""
