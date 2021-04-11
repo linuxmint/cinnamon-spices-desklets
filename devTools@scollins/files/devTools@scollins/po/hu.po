@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-18 18:47+0100\n"
-"PO-Revision-Date: 2021-04-07 13:43+0200\n"
+"PO-Revision-Date: 2021-04-11 10:39+0200\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Last-Translator: Bosák Balázs <bossbob88@gmail.com>\n"
+"Last-Translator: Balazs Bosak <bossbob88@gmail.com>\n"
 "Language-Team: \n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.3\n"
 
 #: desklet.js:247 tabPanel.js:25
 msgid "Untitled"
@@ -332,7 +332,7 @@ msgstr "Ablakok"
 #. metadata.json->description
 msgid "A desklet for troubleshooting and developing in the Cinnamon UI"
 msgstr ""
-"Egy asztalalkalmazás a Cinnamon felhasználói felületének hibajavítására és "
+"Egy asztalkalmazás a Cinnamon felhasználói felületének hibajavítására és "
 "fejlesztésére"
 
 #. metadata.json->contributors
@@ -345,8 +345,8 @@ msgid ""
 "Cinnamon components and status information, and even test new code without "
 "restarting Cinnamon."
 msgstr ""
-"Ez az asztalalkalmazás olyan eszközöket nyújt, amelyek segítenek a "
-"Cinnamon egyes összetevőinek és állapotinformációinak megtekintésében, "
+"Ez az asztalkalmazás olyan eszközöket nyújt, amelyek segítenek a Cinnamon "
+"egyes összetevőinek és állapotinformációinak megtekintésében, "
 "hibajavításában és ellenőrzésében, illetve akár új kód tesztelésében a "
 "Cinnamon újraindítása nélkül."
 
@@ -376,7 +376,7 @@ msgstr "Legfelülre hozás gyorsbillentyű"
 
 #. settings-schema.json->centerRaised->description
 msgid "Center the desklet on the screen in raised mode"
-msgstr "Asztalalkalmazás középre igazítása a képernyőn emelt módban"
+msgstr "Asztalkalmazás középre igazítása a képernyőn emelt módban"
 
 #. settings-schema.json->sandboxHeader->description
 msgid "Sandbox header"

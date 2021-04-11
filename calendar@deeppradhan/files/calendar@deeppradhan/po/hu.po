@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-18 19:52+0100\n"
-"PO-Revision-Date: 2021-04-05 21:01+0200\n"
+"PO-Revision-Date: 2021-04-11 10:30+0200\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Last-Translator: Bosák Balázs <bossbob88@gmail.com>\n"
+"Last-Translator: Balazs Bosak <bossbob88@gmail.com>\n"
 "Language-Team: \n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.3\n"
 
 #: desklet.js:105
 msgid "Previous month..."
@@ -30,7 +30,7 @@ msgid ""
 "Calendar Desklet provides a highly configurable desklet to display current "
 "date and browsable months. It has a number of possible customisations."
 msgstr ""
-"A Naptár egy széleskörűen konfigurálható asztalalkalmazás, amellyel "
+"A Naptár egy széleskörűen konfigurálható asztalkalmazás, amellyel "
 "megjeleníthető a jelenlegi dátum és hónapok böngészhető formátumban. "
 "Számos módon testre szabható."
 
@@ -40,11 +40,11 @@ msgstr "Deep Pradhan"
 
 #. metadata.json->description
 msgid "Configurable Calendar desklet"
-msgstr "Konfigurálható Naptár asztalalkalmazás"
+msgstr "Konfigurálható Naptár asztalkalmazás"
 
 #. metadata.json->name
 msgid "Calendar desklet"
-msgstr "Naptár asztalalkalmazás"
+msgstr "Naptár asztalkalmazás"
 
 #. settings-schema.json->top->description
 msgid "Calendar configuration"
@@ -68,7 +68,7 @@ msgstr "Csak a hónap"
 
 #. settings-schema.json->panels->tooltip
 msgid "Select the panels to display in desklet"
-msgstr "Válassza ki az asztalalkalmazáson megjelenítendő paneleket"
+msgstr "Válassza ki az asztalkalmazáson megjelenítendő paneleket"
 
 #. settings-schema.json->show-weekday->description
 msgid "Show day of week"
@@ -121,11 +121,11 @@ msgstr "Idő megjelenítése vagy elrejtése (óra, perc)"
 
 #. settings-schema.json->display->description
 msgid "Desklet style configuration"
-msgstr "Asztalalkalmazás stílusának beállítása"
+msgstr "Asztalkalmazás stílusának beállítása"
 
 #. settings-schema.json->layout->description
 msgid "Layout of desklet"
-msgstr "Asztalalkalmazás elrendezése"
+msgstr "Asztalkalmazás elrendezése"
 
 #. settings-schema.json->layout->options
 msgid "Horizontal"
@@ -138,7 +138,7 @@ msgstr "Függőleges"
 #. settings-schema.json->layout->tooltip
 msgid "Set the overall layout to horizontal/vertical of desklet"
 msgstr ""
-"Állítsa az asztalalkalmazás általános elrendezését vízszintes/függőleges "
+"Állítsa az asztalkalmazás általános elrendezését vízszintes/függőleges "
 "helyzetbe"
 
 #. settings-schema.json->custom-font-family->description
@@ -167,7 +167,7 @@ msgstr "Szöveg színe"
 
 #. settings-schema.json->colour-text->tooltip
 msgid "Set text colour of desklet"
-msgstr "Asztalalkalmazás szövegszínének beállítása"
+msgstr "Asztalkalmazás szövegszínének beállítása"
 
 #. settings-schema.json->colour-sundays->description
 msgid "Text colour for Sundays"
@@ -191,7 +191,7 @@ msgstr "Háttér színe"
 
 #. settings-schema.json->colour-background->tooltip
 msgid "Set background colour of desklet"
-msgstr "Asztalalkalmazás háttérszínének beállítása"
+msgstr "Asztalkalmazás háttérszínének beállítása"
 
 #. settings-schema.json->transparency->description
 msgid "Transparency (%)"
@@ -199,4 +199,4 @@ msgstr "Átlátszóság (%)"
 
 #. settings-schema.json->transparency->tooltip
 msgid "Set the transparency of desklet in percentage"
-msgstr "Asztalalkalmazás átlátszóságának százalékértékes beállítása"
+msgstr "Asztalkalmazás átlátszóságának százalékértékes beállítása"
