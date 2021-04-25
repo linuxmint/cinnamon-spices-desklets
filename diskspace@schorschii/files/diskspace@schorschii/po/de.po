@@ -74,14 +74,20 @@ msgstr "Zeichne freien/unbenutzten Speicherplatz (grau)"
 msgid "Text"
 msgstr "Text"
 
-msgid "Name and total size"
+msgid "Name and total space"
 msgstr "Bezeichnung und Kapazität"
 
 msgid "Used and total space"
 msgstr "Belegter Speicherplatz und Kapazität"
 
+msgid "Total and used space"
+msgstr "Kapazität und Belegter Speicherplatz"
+
 msgid "Free and total space"
 msgstr "Freier Speicherplatz und Kapazität"
+
+msgid "Total and free space"
+msgstr "Kapazität und Freier Speicherplatz"
 
 msgid "No text"
 msgstr "Kein Text"
