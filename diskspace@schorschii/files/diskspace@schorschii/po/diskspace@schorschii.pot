@@ -72,13 +72,19 @@ msgstr ""
 msgid "Text"
 msgstr ""
 
-msgid "Name and total size"
+msgid "Name and total space"
 msgstr ""
 
 msgid "Used and total space"
 msgstr ""
 
+msgid "Total and used space"
+msgstr ""
+
 msgid "Free and total space"
+msgstr ""
+
+msgid "Total and free space"
 msgstr ""
 
 msgid "No text"

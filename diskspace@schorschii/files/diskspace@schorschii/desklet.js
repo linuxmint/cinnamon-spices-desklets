@@ -300,9 +300,15 @@ MyDesklet.prototype = {
 		} else if(this.text_view == "used-size") {
 			textSub1 = this.niceSize(use);
 			textSub2 = this.niceSize(size);
+		} else if(this.text_view == "size-used") {
+			textSub1 = this.niceSize(size);
+			textSub2 = this.niceSize(use);
 		} else if(this.text_view == "free-size") {
 			textSub1 = this.niceSize(avail);
 			textSub2 = this.niceSize(size);
+		} else if(this.text_view == "size-free") {
+			textSub1 = this.niceSize(size);
+			textSub2 = this.niceSize(avail);
 		} else {
 			percentString = "";
 		}

@@ -58,9 +58,11 @@
         "default": "used-size",
         "description": "Text",
         "options" : {
-            "Name and total size" : "name-size",
+            "Name and total space" : "name-size",
             "Used and total space": "used-size",
+            "Total and used space": "size-used",
             "Free and total space": "free-size",
+            "Total and free space": "size-free",
             "No text": "none"
         }
     },
