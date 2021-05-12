@@ -34,6 +34,17 @@
     margin: 2px auto 5px auto;
 }
 
+.containerAssetsOwned {
+    color: #a6ccf3;
+    text-align: center;
+    margin: 10px auto 2px auto;
+}
+
+.containerAssetsValue {
+    text-align: center;
+    margin: 2px auto 2px auto;
+}
+
 .containerCenter .left {
     text-align: right;
     padding-right: 3px;

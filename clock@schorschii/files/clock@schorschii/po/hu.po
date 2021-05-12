@@ -1,0 +1,211 @@
+# ANALOG CHRONOMETER TRANSLATIONS.
+# Copyright (C) 2017 FULL NAME
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Analog Chronometer VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2017-05-04 18:03+0100\n"
+"PO-Revision-Date: 2021-04-11 10:34+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: hu\n"
+"Last-Translator: Balazs Bosak <bossbob88@gmail.com>\n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.3\n"
+
+#: desklet.js:190
+msgid "Clock"
+msgstr "Óra"
+
+#. clock@schorschii->settings-schema.json->head3->description
+msgid "Timezone"
+msgstr "Időzóna"
+
+#. clock@schorschii->settings-schema.json->style->description
+msgid "Clock style"
+msgstr "Óra stílusa"
+
+#. clock@schorschii->settings-schema.json->style->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Válassza ki a használni kívánt háttérgrafikát."
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Dark"
+msgstr "Sötét"
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Light"
+msgstr "Világos"
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Dark Transparent"
+msgstr "Sötét átlátszó"
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Light Transparent"
+msgstr "Világos átlátszó"
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Custom"
+msgstr "Egyéni"
+
+#. clock@schorschii->settings-schema.json->head4->description
+msgid "Custom images (available if clock style is set to 'custom')"
+msgstr "Egyéni képek (akkor érhetők el, ha az óra stílusa „egyedi”)"
+
+#. clock@schorschii->settings-schema.json->desklet-size->description
+msgid "Desklet size"
+msgstr "Asztalkalmazás mérete"
+
+#. clock@schorschii->settings-schema.json->desklet-size->tooltip
+msgid "Increase or decrease the size of the clock."
+msgstr "Növelje vagy csökkentse az óra méretét."
+
+#. clock@schorschii->settings-schema.json->desklet-size->units
+msgid "pixels"
+msgstr "képpont"
+
+#. clock@schorschii->settings-schema.json->head2->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Egyéni asztali címke (csak akkor látható, ha a dekoráció engedélyezve van)"
+
+#. clock@schorschii->settings-schema.json->head1->description
+msgid "Visual"
+msgstr "Vizuális"
+
+#. clock@schorschii->settings-schema.json->smooth-seconds-hand->description
+msgid "Smooth second hand"
+msgstr "Folyamatos másodpercmutató animáció"
+
+#. clock@schorschii->settings-schema.json->smooth-seconds-hand->tooltip
+msgid ""
+"Use smooth animation for seconds hand instead of refreshing it only every "
+"second."
+msgstr "Folyamatos másodpercmutató animáció használata léptetés helyet."
+
+#. clock@schorschii->settings-schema.json->head0->description
+msgid "Settings for clock@schorschii"
+msgstr "Clock@schorschii beállításai"
+
+#. clock@schorschii->settings-schema.json->img-h->description
+msgid "Hour hand"
+msgstr "Óramutató"
+
+#. clock@schorschii->settings-schema.json->img-h->tooltip
+msgid ""
+"Choose your own image for the hour hand. Should be as big as the background "
+"image."
+msgstr ""
+"Válasszon ki az óramutató számára egy saját képét. Akkorának kell lennie, "
+"mint a háttérnek használt képnek."
+
+#. clock@schorschii->settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Díszítések elrejtése"
+
+#. clock@schorschii->settings-schema.json->img-m->description
+msgid "Minute hand"
+msgstr "Percmutató"
+
+#. clock@schorschii->settings-schema.json->img-m->tooltip
+msgid ""
+"Choose your own image for the minute hand. Should be as big as the "
+"background image."
+msgstr ""
+"Válasszon ki a percmutató számára egy saját képét. Akkorának kell lennie, "
+"mint a háttérnek használt képnek."
+
+#. clock@schorschii->settings-schema.json->img-bg->description
+msgid "Background"
+msgstr "Háttér"
+
+#. clock@schorschii->settings-schema.json->img-bg->tooltip
+msgid "Choose your own background image."
+msgstr "Válassza ki a saját háttérképét."
+
+#. clock@schorschii->settings-schema.json->img-s->description
+msgid "Seconds hand"
+msgstr "Másodpercmutató"
+
+#. clock@schorschii->settings-schema.json->img-s->tooltip
+msgid ""
+"Choose your own image for the seconds hand. Should be as big as the "
+"background image."
+msgstr ""
+"Válasszon ki a másodpercmutató számára egy saját képét. Akkorának kell "
+"lennie, mint a háttérnek használt képnek."
+
+#. clock@schorschii->settings-schema.json->custom-tz->description
+msgid "Custom time zone"
+msgstr "Egyéni időzóna"
+
+#. clock@schorschii->settings-schema.json->custom-tz->tooltip
+msgid "Enter your custom timezone here."
+msgstr "Egyéni időzóna megadása itt."
+
+#. clock@schorschii->settings-schema.json->show-seconds-hand->description
+msgid "Show seconds hand"
+msgstr "Másodpercmutató megjelenítése"
+
+#. clock@schorschii->settings-schema.json->show-seconds-hand->tooltip
+msgid "Show or hide the seconds hand."
+msgstr "A másodpercmutató megjelenítése vagy elrejtése."
+
+#. clock@schorschii->settings-schema.json->use-custom-tz->description
+msgid "Use a custom timezone"
+msgstr "Egyéni időzóna használata"
+
+#. clock@schorschii->settings-schema.json->use-custom-tz->tooltip
+msgid ""
+"Checking this box allows you to set a custom timezone in the field below."
+msgstr ""
+"Ennek a négyzetnek a bejelölésével egyéni időzónát állíthat be az alábbi "
+"mezőben."
+
+#. clock@schorschii->settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Egyéni asztalkalmazás címke használata"
+
+#. clock@schorschii->settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Ennek a négyzetnek a bejelölésével egyéni címkét állíthat be az alábbi "
+"mezőben."
+
+#. clock@schorschii->settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Egyéni asztalkalmazás címke"
+
+#. clock@schorschii->settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here, e.g. for multiple timezones. This field is "
+"unavailable unless the checkbox above is enabled."
+msgstr ""
+"Itt állítsa be az egyéni címkét, pl. több időzónához. Ez a mező csak akkor "
+"érhető el, ha a fenti négyzet be van jelölve."
+
+#. clock@schorschii->settings-schema.json->smooth-minutes-hand->description
+msgid "Smooth minute hand"
+msgstr "Folyamatos percmutató animáció"
+
+#. clock@schorschii->settings-schema.json->smooth-minutes-hand->tooltip
+msgid ""
+"Use smooth animation for minute hand instead of moving it only once per "
+"minute."
+msgstr "Folyamatos percmutató animáció használata léptetés helyet."
+
+#. clock@schorschii->metadata.json->description
+msgid ""
+"A scaleable analog clock desklet with smooth hands and free choice of images."
+msgstr ""
+"Méretezhető analóg óra asztalkalmazás, folyamatos mutató animációval és "
+"szabad képválasztással."
+
+#. clock@schorschii->metadata.json->name
+msgid "Analog Chronometer"
+msgstr "Analóg kronométer"

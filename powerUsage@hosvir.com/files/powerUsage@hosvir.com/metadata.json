@@ -1,6 +1,0 @@
-{
-    "uuid": "powerUsage@hosvir.com", 
-    "description": "Displays the real time usage from Engage Efergy.", 
-    "prevent-decorations": false, 
-    "name": "Power Usage Monitor"
-}

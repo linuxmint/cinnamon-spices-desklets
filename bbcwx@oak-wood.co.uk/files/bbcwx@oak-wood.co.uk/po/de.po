@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bbcwx\n"
 "Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
 "POT-Creation-Date: 2018-01-07 21:05+0000\n"
-"PO-Revision-Date: 2017-04-28 18:27+0200\n"
+"PO-Revision-Date: 2021-03-18 18:44+0100\n"
 "Last-Translator: sven <sven@liefgen.lu>\n"
 "Language-Team: German <de@li.org>\n"
 "Language: de\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2016-08-01 19:04+0000\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 2.3\n"
 
 #. # Days of the week
 #: desklet.js:102
@@ -140,7 +140,7 @@ msgstr "Anklicken, für die vollständige Vorhersage für %s"
 #: desklet.js:1113
 #, python-format
 msgid "%fF"
-msgstr "%f F"
+msgstr "%f °F"
 
 #. # Units for temperature, degrees Celsius. %f is replaced the value. NB:
 #. English translation uses unicode character u+2103
@@ -962,9 +962,8 @@ msgid "Select the data service you wish to use"
 msgstr "Wählen Sie den Datendienst aus, den Sie verwenden möchten"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
 msgid "APIXU (requires API key)"
-msgstr "meteoblue (API-Schlüssel erforderlich)"
+msgstr "APIXU (API-Schlüssel erforderlich)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "Wunderground (requires API key)"
@@ -975,36 +974,32 @@ msgid "meteoblue (requires API key)"
 msgstr "meteoblue (API-Schlüssel erforderlich)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
 msgid "World Weather Online (deprecated) (requires API key)"
-msgstr "World Weather Online (API-Schlüssel erforderlich)"
+msgstr "World Weather Online (veraltet) (API-Schlüssel erforderlich)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "BBC"
 msgstr "BBC"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
 msgid "Open Weather Map Free (requires API key)"
-msgstr "World Weather Online (API-Schlüssel erforderlich)"
+msgstr "Open Weather Map Free (API-Schlüssel erforderlich)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "weather.com (deprecated)"
 msgstr "weather.com (abgekündigt)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
 msgid "World Weather Online Premium (requires API key)"
-msgstr "World Weather Online (API-Schlüssel erforderlich)"
+msgstr "World Weather Online Premium (API-Schlüssel erforderlich)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "Forecast.io (requires API key)"
 msgstr "Forecast.io (API-Schlüssel erforderlich)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
 msgid "Open Weather Map (requires API key)"
-msgstr "World Weather Online (API-Schlüssel erforderlich)"
+msgstr "Open Weather Map (API-Schlüssel erforderlich)"
 
 #. bbcwx@oak-wood.co.uk->settings-
 #. schema.json->display__forecast__pressure->description
@@ -1115,7 +1110,7 @@ msgstr "Deckkraft"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->transparency->tooltip
 msgid "Set the transparency of the desklet"
-msgstr "Legen Sie die Deckkraft des Desklets fest."
+msgstr "Die Deckkraft des Desklets festlegen"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->display->description
 msgid ""

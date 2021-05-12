@@ -161,14 +161,14 @@ MyDesklet.prototype = {
         let fontstyle = '';
         let fontname = fontprep.join(' ').replace(/,/g, ' ');
         ['Italic', 'Oblique'].forEach(function(item, i) {
-            if (fontname.contains(item)) {
+            if (fontname.includes(item)) {
                 fontstyle = item;
                 fontname = fontname.replace(item, '');
             }
         });
 
         ['Bold', 'Light', 'Medium', 'Heavy'].forEach(function(item, i) {
-            if (fontname.contains(item)) {
+            if (fontname.includes(item)) {
                 fontweight = item;
                 fontname = fontname.replace(item, '');
             }
@@ -215,15 +215,15 @@ MyDesklet.prototype = {
 
     _get_data: function(session, response) {
         let html = response.response_body.data;
-        if (html != null && html.contains("ganjoor-m1")) {
+        if (html != null && html.includes("ganjoor-m1")) {
             let lines = html.split('\n');
             this.abyat = [];
             let poetname = '';
             let poemlink = '';
             for (let i = 0; i < lines.length; i++) {
-                if (lines[i].contains('-m1') || lines[i].contains('-m2'))
+                if (lines[i].includes('-m1') || lines[i].includes('-m2'))
                     this.abyat.push(lines[i].substring(lines[i].indexOf('>') + 1, lines[i].lastIndexOf('<')));
-                if (lines[i].contains('ganjoor-poet')) {
+                if (lines[i].includes('ganjoor-poet')) {
                     let href_st = lines[i].indexOf('<a href="') + 9;
                     let href_end = lines[i].indexOf('"', href_st);
                     poemlink = lines[i].substring(href_st, href_end);

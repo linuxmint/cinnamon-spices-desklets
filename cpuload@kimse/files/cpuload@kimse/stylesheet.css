@@ -1,0 +1,6 @@
+/* labels */
+.cpuLoad, .cpuName {
+	font-family: "Ubuntu", sans-serif;
+	font-weight: 200;
+	text-align: center;
+}
