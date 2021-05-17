@@ -1715,7 +1715,7 @@ wxDriverBBC.prototype = {
       let title = item.getChildElement("title").getText();
       desc = desc.replace('mb,', 'mb|');
       this.data.cc.weathertext = title.split(':')[2].split(',')[0].trim();
-      if (this.data.cc.weathertext.toLowerCase() == 'null') this.data.cc.weathertext = '';
+      if ((this.data.cc.weathertext.toLowerCase() == 'null') || (this.data.cc.weathertext.includes('Not available'))) this.data.cc.weathertext = '';
       let parts = desc.split(',');
       for (let b=0; b<parts.length; b++) {
         let k, v;
