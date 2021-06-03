@@ -66,10 +66,9 @@ SpawnReader.prototype.read = function(stream, func, pid) {
         if (out !== null) {
             func(ByteArray.toString(out));
             this.read(source, func, pid);
-        } else {
-            // Done reading. Close the pipe.
-            GLib.spawn_close_pid(pid);
         }
+        // Done reading. Close the process.
+        GLib.spawn_close_pid(pid);
     }));
 };
 
