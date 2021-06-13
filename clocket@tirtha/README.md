@@ -16,7 +16,7 @@ weather viewer combined.<br>
 <li>change colors of your taste.</li>
 <li>Generate a current weather data api key from <a href="https://openweathermap.org/price">openweathermap.org</a> or existing api .just make sure that api is openweathermap
 current weather data api.</li>
-<li>now put lat-lon or place name. if you dont know your location get it from <a href="tirtharajsinha.github.io/clocket/#latlon"></li>
+<li>now put lat-lon or place name. if you dont know your location get it from <a href="tirtharajsinha.github.io/clocket/#latlon">here</a></li>
 </ol>
 
 
