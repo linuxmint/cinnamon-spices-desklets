@@ -22,4 +22,4 @@ current weather data api.</li>
 
 ## For more info visit clocket official <a href="tirtharajsinha.github.io/clocket/">site <br>
 
-<img src="https://github.com/tirtharajsinha/clocket/blob/main/static/applyss.png">
+<img src="screenshot.png" alt ="">
