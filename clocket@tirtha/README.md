@@ -20,6 +20,6 @@ current weather data api.</li>
 </ol>
 
 
-## For more info visit clocket official <a href="tirtharajsinha.github.io/clocket/">site <br>
+## For more info visit clocket official <a href="https://tirtharajsinha.github.io/clocket/">site <br>
 
 <img src="screenshot.png" alt ="">
