@@ -1,0 +1,64 @@
+{
+    "font-size": {
+        "type": "spinbutton",
+        "default": 40,
+        "min": 10,
+        "max": 200,
+        "units": "px",
+        "description" : "Font size",
+        "step": 1
+    },
+    "text-color" : {
+	    "type": "colorchooser",
+	    "default" : "rgb(255,255,255)",
+	    "description" : "Text color",
+	    "tooltip" : "Click the button to select a new text color"
+    },
+    "background-color" : {
+	    "type": "colorchooser",
+	    "default" : "rgba(0, 0, 0, 0.363)",
+	    "description" : "background color",
+	    "tooltip" : "Click the button to select a new background color"
+    },
+    
+    
+    "weather":{
+        "type":"switch",
+        "default":true,
+        "description":"Want weather display ?",
+        "tooltip": "want current weather display ?"
+    },
+    "weather-color" : {
+	    "type": "colorchooser",
+	    "default" : "rgb(0,0,0)",
+	    "description" : "weather block text color",
+	    "tooltip" : "Click the button to select a new text color"
+    },
+    "weather-bg-color" : {
+	    "type": "colorchooser",
+	    "default" : "rgba(0, 0, 0, 0.363)",
+	    "description" : "weather-block bg-color",
+	    "tooltip" : "Click the button to select a new bg color"
+    },
+    "api-key":{
+        "type": "entry",
+        "default": "",
+        "description": "put api key",
+        "indent": true,
+        "tooltip" : "put your api key generated from open-weather-map here"
+    },
+    "lat-long":{
+        "type": "entry",
+        "default": "",
+        "description": "put lat-lon",
+        "indent": true,
+        "tooltip" : "put your lat-long generated from lat-long.html page"
+    },
+    "place":{
+        "type": "entry",
+        "default": "",
+        "description": "put place name",
+        "indent": true,
+        "tooltip" : "put your place name."
+    }
+}
