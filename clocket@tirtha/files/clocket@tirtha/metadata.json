@@ -1,8 +1,8 @@
 {
  "uuid": "clocket@tirtha",
- "name": "Clocket",
- "description": "A desklet that displays the time and date",
+ "name": "clocket",
+ "description": "A desklet that displays the time, date and weather report",
  "prevent-decorations": false,
  "max-instances": "100",
- "author":"Tirtharaj"
+ "author":"tirtha"
 }
