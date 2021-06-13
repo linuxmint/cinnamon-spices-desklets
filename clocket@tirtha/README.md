@@ -1,5 +1,5 @@
 
-# clocket-tirtha
+# clocket@tirtha
 
 Clocket is a desklet built for cinnamon DE based on gnome3.
 display time,data and current weather data.<br>
