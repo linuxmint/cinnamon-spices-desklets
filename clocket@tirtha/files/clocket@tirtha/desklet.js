@@ -49,12 +49,18 @@ class CinnamonClockDesklet extends Desklet.Desklet {
         this.settings.bind("weather", "weatherperm", this._onWeatherPermChange);
         this.settings.bind("api-key", "api", this._dummy_func);
         this.settings.bind("lat-long", "latlon", this._dummy_func);
+        this.settings.bind("place", "city", this._dummy_func);
         this.settings.bind("weather-color", "wcolor", this._onchange_weather_style);
         this.settings.bind("weather-bg-color", "wbgcolor", this._onSettingsChanged);
-        this.settings.bind("place", "city");
+        this.settings.bind("auto-update", "auto_update", this._on_feed_settings_change);
+        this.settings.bind("update-duration", "duration", this._on_update_duration_change);
+        this.settings.bind("feedback", "feed", this._on_feed_settings_change);
         this._menu.addSettingsAction(_("Date and Time Settings"), "calendar")
         if (this.weatherperm) {
             this._create_weather_label();
+            if (this.auto_update) {
+                this.dur = parseInt(this.duration);
+            }
         }
 
     }
@@ -97,6 +103,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
             this._wContainer.style = "color: " + this.wcolor;
             this._wloc.style = "color: " + this.wcolor;
             this._wover.style = "color: " + this.wcolor;
+            
         }
     }
 
@@ -110,6 +117,8 @@ class CinnamonClockDesklet extends Desklet.Desklet {
         this._weatherleft = new St.Label({ style_class: "wbody_label_style" });
         this._weatherright = new St.Label({ style_class: "wbody_label_style" });
         this._weatherright.style = "padding-left:30px;"
+        this._wfeed = new St.Label({ style_class: "wbody_label_style" });
+        this._wfeed.style = "color:rgb(214, 25, 98);text-align:right;";
 
         this.iconbutton = new St.Icon({ icon_name: 'view-refresh-symbolic', icon_type: St.IconType.SYMBOLIC });
         this.iconbutton.style = "width:20px;\nheight:20px;"
@@ -125,8 +134,23 @@ class CinnamonClockDesklet extends Desklet.Desklet {
         this._wContainer.add(this._weatherleft);
         this._wContainer.add(this._weatherright);
         this._weatherContainer.add(this._wContainer);
+        this._weatherContainer.add(this._wfeed);
         this._Container.add(this._weatherContainer);
+
         this._get_weather_update();
+    }
+
+    _on_feed_settings_change() {
+        if (this.feed) {
+            var feed = "data from openweathermap.org....";
+            if (this.auto_update) {
+                feed = feed + "\nAuto-refresh Enabled.\nduration: " + this.duration + " min";
+            }
+            this._wfeed.set_text(feed);
+        }
+        else{
+            this._wfeed.set_text("");
+        }
     }
 
     _onWeatherPermChange() {
@@ -136,11 +160,26 @@ class CinnamonClockDesklet extends Desklet.Desklet {
         }
         else {
             this._weatherContainer.destroy();
+            this.auto_update = false;
         }
 
     }
     _dummy_func() {
 
+    }
+
+    _on_update_duration_change() {
+        this.dur = parseInt(this.duration);
+        if (this.feed) {
+            var feed = "data from openweathermap.org....";
+            if (this.auto_update) {
+                feed = feed + "\nAuto-refresh Enabled.\nduration: " + this.duration + " min";
+            }
+            this._wfeed.set_text(feed);
+        }
+        else{
+            this._wfeed.set_text("");
+        }
     }
     getJSON(url) {
 
@@ -176,7 +215,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
             if ((this.api !== "") && ((this.latlon !== "") || (this.city !== ""))) {
 
                 var baseurl = "http://api.openweathermap.org/data/2.5/weather?";
-               
+                
                 var weatherapi = this.api;
                 var id = ""
                 if (this.latlon == "") {
@@ -210,10 +249,10 @@ class CinnamonClockDesklet extends Desklet.Desklet {
                     utctime = utctime.toFixed(2);
                     var time = String(utctime);
                     time = time.replace(".", ":");
-                    if(utctime>=0){
-                        time="+"+time;
+                    if (utctime >= 0) {
+                        time = "+" + time;
                     }
-                    
+
                     var loc = jsondata.name + ", " + jsondata.sys.country + ", UTC" + time;
                     var ovarall = jsondata.weather[0].description;
                     var temp = jsondata.main.temp + " ℃";
@@ -230,6 +269,13 @@ class CinnamonClockDesklet extends Desklet.Desklet {
                     this._wover.set_text(ovarall);
                     this._weatherleft.set_text(reportleft);
                     this._weatherright.set_text(reportright);
+                    var feed = "        data from openweathermap.org....";
+                    if(this.feed){
+                        if (this.auto_update) {
+                            feed = feed + "\nAuto-refresh Enabled.\nduration: " + this.duration + " min";
+                        }
+                        this._wfeed.set_text(feed);
+                    }
 
                 }
 
@@ -265,6 +311,11 @@ class CinnamonClockDesklet extends Desklet.Desklet {
         var dd = a.getDay();
         var weekday = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
         this._week.set_text("   " + weekday[dd]);
+        if (this.weatherperm && this.auto_update) {
+            if (min % this.dur == 0) {
+                this._get_refresh_report();
+            }
+        }
 
 
     }
