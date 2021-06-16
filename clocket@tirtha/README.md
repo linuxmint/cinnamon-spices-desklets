@@ -18,7 +18,7 @@ weather viewer combined.<br>
 > download from <a href="https://cinnamon-spices.linuxmint.com/desklets/view/59">here</a>.
 
 ### doenload from source 
-> Go [here][https://tirtharajsinha.github.io/clocket/] and download the desklet.
+> Go <a href="https://tirtharajsinha.github.io/clocket/"> here</a> and download the desklet.
 > Then extract the archive and copy the `clocket@tirtha` folder into your `~/.local/share/cinnamon/desklets` folder.
 
 ## use
