@@ -8,6 +8,19 @@ I built this desklet cuz I just wanted a desklet of my own taste.<br>
 Other desklets are great but i wanted a desklet having a clock and <br>
 weather viewer combined.<br>
 
+## installation
+### installation from default desklet downloader (Recommended)
+> rightclick on your desktop
+> select `add desklet`
+> go to "Download" tab, search `clocket` and download that.
+
+### installation from spice 
+> download from <a href="https://cinnamon-spices.linuxmint.com/desklets/view/59">here</a>.
+
+### doenload from source 
+> Go [here]["https://tirtharajsinha.github.io/clocket/"] and download the desklet.
+> Then extract the archive and copy the `clocket@tirtha` folder into your `~/.local/share/cinnamon/desklets` folder.
+
 ## use
 
 <ol>
