@@ -215,7 +215,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
             if ((this.api !== "") && ((this.latlon !== "") || (this.city !== ""))) {
 
                 var baseurl = "http://api.openweathermap.org/data/2.5/weather?";
-                
+                // var weatherapi = "8e44efb0ae84f237a5d93f5f4d629433";
                 var weatherapi = this.api;
                 var id = ""
                 if (this.latlon == "") {
@@ -299,7 +299,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     _updateClock() {
         let a = new Date();
         var min = a.getMinutes();
-        var date = this.clock.get_clock();
+        var sec=a.getSeconds();
         this._time.set_text(this.clock.get_clock_for_format("%0l:%0M"));
         var date = String(a.getDate()).padStart(2, '0')
         this._date.set_text(date);
@@ -312,7 +312,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
         var weekday = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
         this._week.set_text("   " + weekday[dd]);
         if (this.weatherperm && this.auto_update) {
-            if (min % this.dur == 0) {
+            if (min % this.dur == 0 && sec<2) {
                 this._get_refresh_report();
             }
         }
