@@ -1,11 +1,11 @@
 # Yahoo Finance Quotes Desklet
-# Copyright (C) 2020 Thomas Egli
+# Copyright (C) 2021 Thomas Egli
 # This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2020-07-17 18:00+0200\n"
-"PO-Revision-Date: 2021-01-11 19:47+0100\n"
+"PO-Revision-Date: 2021-06-18 18:00+0100\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,23 +15,23 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: it\n"
 
-#: desklet.js:66
+#: desklet.js:70
 msgid "Yahoo Finance service not available!"
 msgstr "Il servizio Yahoo Finance non è disponibile!"
 
-#: desklet.js:334
+#: desklet.js:410
 msgid "Updated at "
 msgstr "Aggiornato al "
 
-#: desklet.js:340
+#: desklet.js:417
 msgid "Error: "
 msgstr "Errore:"
 
-#: desklet.js:374
+#: desklet.js:458
 msgid "Cannot display quotes information for symbols: "
 msgstr "Impossibile mostrare info sulle quotazioni per i simboli: "
 
-#: desklet.js:375
+#: desklet.js:459
 msgid "The following error occurred: "
 msgstr "È stato riscontrato il seguente errore: "
 
@@ -47,9 +47,66 @@ msgstr ""
 msgid "Yahoo Finance Quotes"
 msgstr "Quotazioni Yahoo Finance"
 
-#. settings-schema.json->head1->description
-msgid "Desklet layout"
-msgstr "Layout del desklet"
+#. settings-schema.json->layoutPage->title
+msgid "Layout"
+msgstr "Disposizione"
+
+#. settings-schema.json->dataPage->title
+#. settings-schema.json->dataSymbolsSection->title
+msgid "Quotes"
+msgstr "Quotazioni"
+
+#. settings-schema.json->detailsPage->title
+msgid "Details"
+msgstr "Dettaglio"
+
+#. settings-schema.json->presentationPage->title
+msgid "Presentation"
+msgstr "Presentazione"
+
+#. settings-schema.json->dataUpdateSection->title
+msgid "Data Updates"
+msgstr "Aggiornamento dei dati"
+
+#. settings-schema.json->detailsNameSection->title
+msgid "Name"
+msgstr "Nome"
+
+#. settings-schema.json->detailsSymbolSection->title
+msgid "Symbol"
+msgstr "Simbolo"
+
+#. settings-schema.json->detailsPriceSection->title
+msgid "Price"
+msgstr "Prezzo"
+
+#. settings-schema.json->detailsChangeSection->title
+msgid "Change"
+msgstr "Variazione"
+
+#. settings-schema.json->detailsDateTimeSection->title
+msgid "Date and Time"
+msgstr "Data e ora"
+
+#. settings-schema.json->presentationFormattingSection->title
+msgid "Number Formatting"
+msgstr "Formattazione del numero "
+
+#. settings-schema.json->presentationSortingSection->title
+msgid "Sorting"
+msgstr "Ordinamento"
+
+#. settings-schema.json->presentationColorsSection->title
+msgid "Colors"
+msgstr "Colori"
+
+#. settings-schema.json->layoutDimensionSection->title
+msgid "Dimension"
+msgstr "Dimensione"
+
+#. settings-schema.json->layoutEffectsSection->title
+msgid "Effects"
+msgstr "Effeti"
 
 #. settings-schema.json->width->description
 msgid "Width"
@@ -80,10 +137,6 @@ msgstr "Trasparenza sfondo"
 msgid "The higher the value, the more solid the desklet background."
 msgstr ""
 "Più alto è il valore, maggiore sarà la solidità dello sfondo del desklet."
-
-#. settings-schema.json->head2->description
-msgid "Financial data"
-msgstr "Dati finanziari"
 
 #. settings-schema.json->delayMinutes->units
 msgid "minutes"
@@ -130,7 +183,7 @@ msgid "Quote symbols"
 msgstr "Simboli delle quotazioni"
 
 #. settings-schema.json->quoteSymbols->tooltip
-msgid "List the quote symbols here, separated with line-breaks."
+msgid "List of quote symbols, separated with line-breaks."
 msgstr ""
 "Elenca i simboli delle quotazioni qui, separandole con interruzioni di riga."
 
@@ -169,12 +222,16 @@ msgstr ""
 "Abilita per ordinare le quotazioni in ordine crescente, disabilita per "
 "ordinare in ordine decrescente."
 
-#. settings-schema.json->head3->description
-msgid "Quote details"
-msgstr "Dettaglio quotazioni"
+#. settings-schema.json->alternativeColors->description
+msgid "Use alternative colors"
+msgstr "Usa colori alternativi"
+
+#. settings-schema.json->alternativeColors->tooltip
+msgid "Use blue instead of green."
+msgstr "Usa il blu invece del verde."
 
 #. settings-schema.json->showChangeIcon->description
-msgid "Show change icon"
+msgid "Show change/trend icon"
 msgstr "Mostra icona cambiamento"
 
 #. settings-schema.json->showChangeIcon->tooltip
