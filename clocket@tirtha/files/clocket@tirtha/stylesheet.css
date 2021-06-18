@@ -1,0 +1,45 @@
+.clock_container_style{
+    background-color: rgba(0, 0, 0, 0.363);
+    padding:10px;
+    border-radius: 20px;
+    margin:3px;
+    margin-bottom: 3px;
+    
+
+}
+
+.date_label_style{
+    font-size: 30px;
+    color:red;
+}
+.month_label_style{
+    font-size: 20px;
+    color:white;
+}
+.weekday_label_style{
+    font-size: 24px;
+    color:white;
+}
+
+.weather_container_style{
+    background-color: rgba(0, 0, 0, 0.363);
+    padding:10px;
+    border-radius: 20px;
+    margin:3px;
+    margin-bottom: 3px;
+}
+.whead_label_style{
+    text-align: center;
+    font-size: 30px;
+    color:white;
+    
+}
+.wloc_label_style{
+    text-align:center;
+    font-size: 20px;
+    
+}
+.wbody_label_style{
+    font-size: 14px;
+    padding-left:10px;
+}
