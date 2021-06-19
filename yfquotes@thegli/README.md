@@ -13,12 +13,27 @@ Tested with
 - Manjaro with Cinnamon 3.8
 
 ## Installation
-Either follow the installation instructions on [Cinnamon spices](https://cinnamon-spices.linuxmint.com/desklets), or manually download the folder **yfquotes@thegli** (below "files") and copy the folder and its content to *~/.local/share/cinnamon/desklets/*.
+Either follow the installation instructions on [Cinnamon spices](https://cinnamon-spices.linuxmint.com/desklets), or manually download the folder **yfquotes@thegli** (below "files") and copy the folder and its content to `~/.local/share/cinnamon/desklets/`
 
 ## Configuration
 Check out the desklet configuration settings, and choose the data refresh period, the list of quotes to show (see also [Known Limitations](#known-limitations)), and quote details to display. The default list contains the Dow 30 companies.
 
 ## Release Notes
+
+### 0.6.0 - June 18, 2021
+Features:
+- change layout of settings dialog to tabbed views
+- new setting to use alternative colors (use blue instead of green)
+- add Hungarian translation (courtesy of [KAMI911](https://github.com/KAMI911))
+
+### 0.5.2 - February 7, 2021
+Features:
+- add Italian translation (courtesy of [Dragone2](https://github.com/Dragone2))
+- add Korean translation (courtesy of [chaeya](https://github.com/chaeya))
+- optimize png files (courtesy of [NikoKrause](https://github.com/NikoKrause))
+ 
+Bugfixes:
+- correct a msgid in translation files
 
 ### 0.5.1 - December 20, 2020
 Features:
@@ -48,7 +63,7 @@ Bugfixes:
 
 ### 0.4.0 - July 17, 2020 
 Features:
-- allow multiple Desklet instances
+- allow multiple desklet instances
 - add German translation
 
 ### 0.3.0 - June 29, 2020

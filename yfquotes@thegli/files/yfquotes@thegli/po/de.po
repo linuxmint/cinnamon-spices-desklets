@@ -1,12 +1,12 @@
 # German translation for Yahoo Finance Quotes Desklet
-# Copyright (C) 2020 Thomas Egli
+# Copyright (C) 2021 Thomas Egli
 # This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-18 19:25+0100\n"
-"PO-Revision-Date: 2021-03-18 19:28+0100\n"
+"PO-Revision-Date: 2021-06-18 18:00+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -19,19 +19,19 @@ msgstr ""
 msgid "Yahoo Finance service not available!"
 msgstr "Yahoo Finance Service nicht verfügbar!"
 
-#: desklet.js:399
+#: desklet.js:410
 msgid "Updated at "
 msgstr "Aktualisiert um "
 
-#: desklet.js:406
+#: desklet.js:417
 msgid "Error: "
 msgstr "Fehler: "
 
-#: desklet.js:447
+#: desklet.js:458
 msgid "Cannot display quotes information for symbols: "
 msgstr "Finanzdaten können nicht angezeigt werden für die Symbole: "
 
-#: desklet.js:448
+#: desklet.js:459
 msgid "The following error occurred: "
 msgstr "Folgender Fehler ist aufgetreten: "
 
@@ -47,9 +47,66 @@ msgstr ""
 msgid "Yahoo Finance Quotes"
 msgstr "Yahoo Finance Quotes"
 
-#. settings-schema.json->head1->description
-msgid "Desklet layout"
-msgstr "Desklet Anordnung"
+#. settings-schema.json->layoutPage->title
+msgid "Layout"
+msgstr "Anordnung"
+
+#. settings-schema.json->dataPage->title
+#. settings-schema.json->dataSymbolsSection->title
+msgid "Quotes"
+msgstr "Finanzinstrumente"
+
+#. settings-schema.json->detailsPage->title
+msgid "Details"
+msgstr "Details"
+
+#. settings-schema.json->presentationPage->title
+msgid "Presentation"
+msgstr "Darstellung"
+
+#. settings-schema.json->dataUpdateSection->title
+msgid "Data Updates"
+msgstr "Daten-Aktualisierung"
+
+#. settings-schema.json->detailsNameSection->title
+msgid "Name"
+msgstr "Name"
+
+#. settings-schema.json->detailsSymbolSection->title
+msgid "Symbol"
+msgstr "Symbol"
+
+#. settings-schema.json->detailsPriceSection->title
+msgid "Price"
+msgstr "Preis"
+
+#. settings-schema.json->detailsChangeSection->title
+msgid "Change"
+msgstr "Veränderung"
+
+#. settings-schema.json->detailsDateTimeSection->title
+msgid "Date and Time"
+msgstr "Handelszeitpunkt"
+
+#. settings-schema.json->presentationFormattingSection->title
+msgid "Number Formatting"
+msgstr "Zahlenformat"
+
+#. settings-schema.json->presentationSortingSection->title
+msgid "Sorting"
+msgstr "Sortierung"
+
+#. settings-schema.json->presentationColorsSection->title
+msgid "Colors"
+msgstr "Farben"
+
+#. settings-schema.json->layoutDimensionSection->title
+msgid "Dimension"
+msgstr "Ausmaß"
+
+#. settings-schema.json->layoutEffectsSection->title
+msgid "Effects"
+msgstr "Effekte"
 
 #. settings-schema.json->width->description
 msgid "Width"
@@ -79,10 +136,6 @@ msgstr "Hintergrund Transparenz"
 #. settings-schema.json->transparency->tooltip
 msgid "The higher the value, the more solid the desklet background."
 msgstr "Je grösser der Wert, desto deckender der Desklet Hintergrund."
-
-#. settings-schema.json->head2->description
-msgid "Financial data"
-msgstr "Finanzdaten"
 
 #. settings-schema.json->delayMinutes->units
 msgid "minutes"
@@ -129,7 +182,7 @@ msgid "Quote symbols"
 msgstr "Finanzinstrument-Symbole"
 
 #. settings-schema.json->quoteSymbols->tooltip
-msgid "List the quote symbols here, separated with line-breaks."
+msgid "List of quote symbols, separated with line-breaks."
 msgstr ""
 "Liste der Symbole von Finanzinstrumenten, durch Zeilenumbruch getrennt."
 
@@ -163,14 +216,19 @@ msgstr "Sortiert in absteigender Reihenfolge"
 
 #. settings-schema.json->sortDirection->tooltip
 msgid ""
-"Check to sort quotes in ascending order, uncheck to sort in descending order."
+"Check to sort quotes in ascending order, uncheck to sort in descending "
+"order."
 msgstr ""
 "Auswählen für Sortieren in absteigender Reihenfolge, abwählen für "
 "austeigende Reihenfolge."
 
-#. settings-schema.json->head3->description
-msgid "Quote details"
-msgstr "Finanzinstrument Details"
+#. settings-schema.json->alternativeColors->description
+msgid "Use alternative colors"
+msgstr "Alternative Farben verwenden"
+
+#. settings-schema.json->alternativeColors->tooltip
+msgid "Use blue instead of green."
+msgstr "Verwendet Blau anstatt Grün."
 
 #. settings-schema.json->showChangeIcon->description
 msgid "Show change/trend icon"

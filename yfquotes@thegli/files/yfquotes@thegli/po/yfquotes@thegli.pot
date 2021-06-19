@@ -1,5 +1,5 @@
 # Yahoo Finance Quotes Desklet
-# Copyright (C) 2020 Thomas Egli
+# Copyright (C) 2021 Thomas Egli
 # This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
 #
 #, fuzzy
@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-18 19:25+0100\n"
+"POT-Creation-Date: 2021-06-18 18:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,19 +20,19 @@ msgstr ""
 msgid "Yahoo Finance service not available!"
 msgstr ""
 
-#: desklet.js:399
+#: desklet.js:410
 msgid "Updated at "
 msgstr ""
 
-#: desklet.js:406
+#: desklet.js:417
 msgid "Error: "
 msgstr ""
 
-#: desklet.js:447
+#: desklet.js:458
 msgid "Cannot display quotes information for symbols: "
 msgstr ""
 
-#: desklet.js:448
+#: desklet.js:459
 msgid "The following error occurred: "
 msgstr ""
 
@@ -46,8 +46,65 @@ msgstr ""
 msgid "Yahoo Finance Quotes"
 msgstr ""
 
-#. settings-schema.json->head1->description
-msgid "Desklet layout"
+#. settings-schema.json->layoutPage->title
+msgid "Layout"
+msgstr ""
+
+#. settings-schema.json->dataPage->title
+#. settings-schema.json->dataSymbolsSection->title
+msgid "Quotes"
+msgstr ""
+
+#. settings-schema.json->detailsPage->title
+msgid "Details"
+msgstr ""
+
+#. settings-schema.json->presentationPage->title
+msgid "Presentation"
+msgstr ""
+
+#. settings-schema.json->dataUpdateSection->title
+msgid "Data Updates"
+msgstr ""
+
+#. settings-schema.json->detailsNameSection->title
+msgid "Name"
+msgstr ""
+
+#. settings-schema.json->detailsSymbolSection->title
+msgid "Symbol"
+msgstr ""
+
+#. settings-schema.json->detailsPriceSection->title
+msgid "Price"
+msgstr ""
+
+#. settings-schema.json->detailsChangeSection->title
+msgid "Change"
+msgstr ""
+
+#. settings-schema.json->detailsDateTimeSection->title
+msgid "Date and Time"
+msgstr ""
+
+#. settings-schema.json->presentationFormattingSection->title
+msgid "Number Formatting"
+msgstr ""
+
+#. settings-schema.json->presentationSortingSection->title
+msgid "Sorting"
+msgstr ""
+
+#. settings-schema.json->presentationColorsSection->title
+msgid "Colors"
+msgstr ""
+
+#. settings-schema.json->layoutDimensionSection->title
+msgid "Dimension"
+msgstr ""
+
+#. settings-schema.json->layoutEffectsSection->title
+msgid "Effects"
 msgstr ""
 
 #. settings-schema.json->width->description
@@ -77,10 +134,6 @@ msgstr ""
 
 #. settings-schema.json->transparency->tooltip
 msgid "The higher the value, the more solid the desklet background."
-msgstr ""
-
-#. settings-schema.json->head2->description
-msgid "Financial data"
 msgstr ""
 
 #. settings-schema.json->delayMinutes->units
@@ -128,7 +181,7 @@ msgid "Quote symbols"
 msgstr ""
 
 #. settings-schema.json->quoteSymbols->tooltip
-msgid "List the quote symbols here, separated with line-breaks."
+msgid "List of quote symbols, separated with line-breaks."
 msgstr ""
 
 #. settings-schema.json->sortCriteria->options
@@ -165,8 +218,12 @@ msgid ""
 "order."
 msgstr ""
 
-#. settings-schema.json->head3->description
-msgid "Quote details"
+#. settings-schema.json->alternativeColors->description
+msgid "Use alternative colors"
+msgstr ""
+
+#. settings-schema.json->alternativeColors->tooltip
+msgid "Use blue instead of green."
 msgstr ""
 
 #. settings-schema.json->showChangeIcon->description

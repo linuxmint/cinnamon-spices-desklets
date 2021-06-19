@@ -1,5 +1,5 @@
 /*
- * Yahoo Finance Quotes - 0.5.1
+ * Yahoo Finance Quotes - 0.6.0
  *
  * Shows financial market information provided by Yahoo Finance.
  * This desklet is based on the work of fthuin's stocks desklet.
@@ -109,7 +109,7 @@ QuotesTable.prototype = {
         let cellContents = [];
 
         if (shouldShow.changeIcon) {
-            cellContents.push(this.createPercentChangeIcon(quote));
+            cellContents.push(this.createPercentChangeIcon(quote, shouldShow.alternativeColors));
         }
         if (shouldShow.quoteName) {
             cellContents.push(this.createQuoteNameLabel(quote, shouldShow.useLongName, shouldShow.linkQuote));
@@ -124,7 +124,7 @@ QuotesTable.prototype = {
             cellContents.push(this.createAbsoluteChangeLabel(quote, shouldShow.currencySymbol, shouldShow.decimalPlaces));
         }
         if (shouldShow.percentChange) {
-            cellContents.push(this.createPercentChangeLabel(quote, shouldShow.colorPercentChange));
+            cellContents.push(this.createPercentChangeLabel(quote, shouldShow.colorPercentChange, shouldShow.alternativeColors));
         }
         if (shouldShow.tradeTime) {
             cellContents.push(this.createTradeTimeLabel(quote));
@@ -220,12 +220,16 @@ QuotesTable.prototype = {
         });
     },
 
-    createPercentChangeIcon : function (quote) {
+    createPercentChangeIcon : function (quote, useAlternativeColors) {
         const percentChange = this.existsProperty(quote, "regularMarketChangePercent") ? parseFloat(quote.regularMarketChangePercent) : 0.0;
         let path = "";
 
         if (percentChange > 0) {
-            path = "/icons/up.svg";
+            if (useAlternativeColors) {
+                path = "/icons/up-alt.svg";
+            } else {
+                path = "/icons/up.svg";
+            }
         } else if (percentChange < 0) {
             path = "/icons/down.svg";
         } else if (percentChange === 0.0) {
@@ -245,12 +249,16 @@ QuotesTable.prototype = {
         return binIcon;
     },
 
-    createPercentChangeLabel : function (quote, useTrendColors) {
+    createPercentChangeLabel : function (quote, useTrendColors, useAlternativeColors) {
         let trendClassSuffix = "";
         if (useTrendColors && this.existsProperty(quote, "regularMarketChangePercent")) {
             const percentageChange = parseFloat(quote.regularMarketChangePercent);
             if (percentageChange > 0) {
-                trendClassSuffix = "-up";
+                if (useAlternativeColors) {
+                    trendClassSuffix = "-up-alt";
+                } else {
+                    trendClassSuffix = "-up";
+                }
             } else if (percentageChange < 0) {
                 trendClassSuffix = "-down";
             }
@@ -362,6 +370,8 @@ StockQuoteDesklet.prototype = {
                 this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "colorPercentChange", "colorPercentChange",
                 this.onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "alternativeColors", "alternativeColors",
+                this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showTradeTime", "showTradeTime",
                 this.onSettingsChanged, null);
     },
@@ -379,6 +389,7 @@ StockQuoteDesklet.prototype = {
             "absoluteChange": this.showAbsoluteChange,
             "percentChange" : this.showPercentChange,
             "colorPercentChange" : this.colorPercentChange,
+            "alternativeColors" : this.alternativeColors,
             "tradeTime" : this.showTradeTime,
             "decimalPlaces" : this.roundNumbers ? this.decimalPlaces : -1
         };

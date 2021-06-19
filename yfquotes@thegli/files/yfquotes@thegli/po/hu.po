@@ -1,5 +1,5 @@
 # Yahoo Finance Quotes Desklet
-# Copyright (C) 2020 Thomas Egli
+# Copyright (C) 2021 Thomas Egli
 # This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
 #
 msgid ""
@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-18 19:25+0100\n"
-"PO-Revision-Date: 2021-03-22 07:52+0100\n"
+"PO-Revision-Date: 2021-06-18 18:00+0100\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,19 +20,19 @@ msgstr ""
 msgid "Yahoo Finance service not available!"
 msgstr "A Yahoo Finance szolgáltatás pillanatnyilag nem érhető el."
 
-#: desklet.js:399
+#: desklet.js:410
 msgid "Updated at "
 msgstr "Frissítve: "
 
-#: desklet.js:406
+#: desklet.js:417
 msgid "Error: "
 msgstr "Hiba: "
 
-#: desklet.js:447
+#: desklet.js:458
 msgid "Cannot display quotes information for symbols: "
 msgstr "Nem jeleníthetőek meg megállapítások a következő szimbólumokhoz: "
 
-#: desklet.js:448
+#: desklet.js:459
 msgid "The following error occurred: "
 msgstr "A következő hiba történt: "
 
@@ -48,9 +48,66 @@ msgstr ""
 msgid "Yahoo Finance Quotes"
 msgstr "Yahoo Finance Quotes"
 
-#. settings-schema.json->head1->description
-msgid "Desklet layout"
-msgstr "Asztalkalmazás elrendezés"
+#. settings-schema.json->layoutPage->title
+msgid "Layout"
+msgstr "Elrendezés"
+
+#. settings-schema.json->dataPage->title
+#. settings-schema.json->dataSymbolsSection->title
+msgid "Quotes"
+msgstr "Szimbólumok"
+
+#. settings-schema.json->detailsPage->title
+msgid "Details"
+msgstr "Részletei"
+
+#. settings-schema.json->presentationPage->title
+msgid "Presentation"
+msgstr "Bemutatás"
+
+#. settings-schema.json->dataUpdateSection->title
+msgid "Data Updates"
+msgstr "Adatfrissítések"
+
+#. settings-schema.json->detailsNameSection->title
+msgid "Name"
+msgstr "Név"
+
+#. settings-schema.json->detailsSymbolSection->title
+msgid "Symbol"
+msgstr "Szimbólum"
+
+#. settings-schema.json->detailsPriceSection->title
+msgid "Price"
+msgstr "Megjelenítése"
+
+#. settings-schema.json->detailsChangeSection->title
+msgid "Change"
+msgstr "Változás"
+
+#. settings-schema.json->detailsDateTimeSection->title
+msgid "Date and Time"
+msgstr "Dátum és idő"
+
+#. settings-schema.json->presentationFormattingSection->title
+msgid "Number Formatting"
+msgstr "Szám formázása"
+
+#. settings-schema.json->presentationSortingSection->title
+msgid "Sorting"
+msgstr "Válogató"
+
+#. settings-schema.json->presentationColorsSection->title
+msgid "Colors"
+msgstr "Színek"
+
+#. settings-schema.json->layoutDimensionSection->title
+msgid "Dimension"
+msgstr "Mértékben"
+
+#. settings-schema.json->layoutEffectsSection->title
+msgid "Effects"
+msgstr "Hatások"
 
 #. settings-schema.json->width->description
 msgid "Width"
@@ -131,7 +188,7 @@ msgid "Quote symbols"
 msgstr "Szimbólumok"
 
 #. settings-schema.json->quoteSymbols->tooltip
-msgid "List the quote symbols here, separated with line-breaks."
+msgid "List of quote symbols, separated with line-breaks."
 msgstr ""
 "Szimbólumok listájának megjelenítése itt, sortörésekkel elválasztva."
 
@@ -171,9 +228,13 @@ msgstr ""
 "Jelölje be ezt a jelölőnégyzetet növekvő sorrendhez, vagy távolítsa el a "
 "jelölést a csökkenő sorrendhez."
 
-#. settings-schema.json->head3->description
-msgid "Quote details"
-msgstr "Megállapítások részletei"
+#. settings-schema.json->alternativeColors->description
+msgid "Use alternative colors"
+msgstr "Használjon alternatív színeket"
+
+#. settings-schema.json->alternativeColors->tooltip
+msgid "Use blue instead of green."
+msgstr "A zöld helyett kéket használjon."
 
 #. settings-schema.json->showChangeIcon->description
 msgid "Show change/trend icon"
