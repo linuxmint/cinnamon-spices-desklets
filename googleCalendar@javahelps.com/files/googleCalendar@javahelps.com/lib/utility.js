@@ -23,6 +23,7 @@ const Lang = imports.lang;
 const St = imports.gi.St;
 const Tooltips = imports.ui.tooltips;
 const Gettext = imports.gettext;
+const ByteArray = imports.byteArray;
 
 imports.searchPath.unshift(GLib.get_home_dir() + "/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/lib");
 
@@ -52,10 +53,10 @@ SpawnReader.prototype.spawn = function(path, command, func) {
 
     stream = new Gio.DataInputStream({ base_stream: new Gio.UnixInputStream({ fd: stdout }) });
 
-    this.read(stream, func);
+    this.read(stream, func, pid);
 };
 
-SpawnReader.prototype.read = function(stream, func) {
+SpawnReader.prototype.read = function(stream, func, pid) {
 
     stream.read_line_async(GLib.PRIORITY_LOW, null, Lang.bind(this, function(source, res) {
 
@@ -63,9 +64,11 @@ SpawnReader.prototype.read = function(stream, func) {
 
         [out, length] = source.read_line_finish(res);
         if (out !== null) {
-            func(out);
-            this.read(source, func);
+            func(ByteArray.toString(out));
+            this.read(source, func, pid);
         }
+        // Done reading. Close the process.
+        GLib.spawn_close_pid(pid);
     }));
 };
 
