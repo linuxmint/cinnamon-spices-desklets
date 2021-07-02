@@ -49,7 +49,7 @@ function BikramSambat() {
 					gregorian.getMinutes(), gregorian.getSeconds()), gregorian);
 			year = this.epoch.bikramSambat.year;
 			month = this.epoch.bikramSambat.month;
-			date = this.epoch.bikramSambat.date;
+			date = this.epoch.bikramSambat.date +1 ; //needed for fixing the day lag ..
 			while (countGeorgian > 0) {
 				if (typeof(this.monthLength[year]) === "undefined"
 						|| typeof(this.yearLength[year]) === "undefined")
