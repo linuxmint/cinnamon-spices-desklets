@@ -215,7 +215,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
             if ((this.api !== "") && ((this.latlon !== "") || (this.city !== ""))) {
 
                 var baseurl = "http://api.openweathermap.org/data/2.5/weather?";
-                // var weatherapi = "8e44efb0ae84f237a5d93f5f4d629433";
+                // var weatherapi for api key
                 var weatherapi = this.api;
                 var id = ""
                 if (this.latlon == "") {
