@@ -1,11 +1,11 @@
 # Yahoo Finance Quotes Desklet
-# Copyright (C) 2020 Thomas Egli
+# Copyright (C) 2021 Thomas Egli
 # This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2020-07-17 18:00+0200\n"
-"PO-Revision-Date: 2020-12-11 15:49+0100\n"
+"PO-Revision-Date: 2021-06-18 18:00+0100\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,23 +15,23 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: da\n"
 
-#: desklet.js:66
+#: desklet.js:70
 msgid "Yahoo Finance service not available!"
 msgstr "Yahoo Finance er ikke tilgængelig!"
 
-#: desklet.js:334
+#: desklet.js:410
 msgid "Updated at "
 msgstr "Opdateret "
 
-#: desklet.js:340
+#: desklet.js:417
 msgid "Error: "
 msgstr "Fejl: "
 
-#: desklet.js:374
+#: desklet.js:458
 msgid "Cannot display quotes information for symbols: "
 msgstr "Kan ikke vise kurser for symbolerne: "
 
-#: desklet.js:375
+#: desklet.js:459
 msgid "The following error occurred: "
 msgstr "Følgende fejl opstod: "
 
@@ -47,9 +47,66 @@ msgstr ""
 msgid "Yahoo Finance Quotes"
 msgstr "Yahoo Finance kurser"
 
-#. settings-schema.json->head1->description
-msgid "Desklet layout"
+#. settings-schema.json->layoutPage->title
+msgid "Layout"
 msgstr "Layout"
+
+#. settings-schema.json->dataPage->title
+#. settings-schema.json->dataSymbolsSection->title
+msgid "Quotes"
+msgstr "kurser"
+
+#. settings-schema.json->detailsPage->title
+msgid "Details"
+msgstr "detaljer"
+
+#. settings-schema.json->presentationPage->title
+msgid "Presentation"
+msgstr "præsentation"
+
+#. settings-schema.json->dataUpdateSection->title
+msgid "Data Updates"
+msgstr "opdateringsinterval"
+
+#. settings-schema.json->detailsNameSection->title
+msgid "Name"
+msgstr "navn"
+
+#. settings-schema.json->detailsSymbolSection->title
+msgid "Symbol"
+msgstr "selskabskoderne"
+
+#. settings-schema.json->detailsPriceSection->title
+msgid "Price"
+msgstr "kurs"
+
+#. settings-schema.json->detailsChangeSection->title
+msgid "Change"
+msgstr "ændring"
+
+#. settings-schema.json->detailsDateTimeSection->title
+msgid "Date and Time"
+msgstr "handelstidspunkt"
+
+#. settings-schema.json->presentationFormattingSection->title
+msgid "Number Formatting"
+msgstr "nummer formattering"
+
+#. settings-schema.json->presentationSortingSection->title
+msgid "Sorting"
+msgstr "sortere"
+
+#. settings-schema.json->presentationColorsSection->title
+msgid "Colors"
+msgstr "farver"
+
+#. settings-schema.json->layoutDimensionSection->title
+msgid "Dimension"
+msgstr "størrelse"
+
+#. settings-schema.json->layoutEffectsSection->title
+msgid "Effects"
+msgstr "effekter"
 
 #. settings-schema.json->width->description
 msgid "Width"
@@ -79,10 +136,6 @@ msgstr "Baggrundens gennemsigtighed"
 #. settings-schema.json->transparency->tooltip
 msgid "The higher the value, the more solid the desklet background."
 msgstr "Jo højere værdi, desto mindre gennemsigtig er baggrunden."
-
-#. settings-schema.json->head2->description
-msgid "Financial data"
-msgstr "Finansielle data"
 
 #. settings-schema.json->delayMinutes->units
 msgid "minutes"
@@ -129,7 +182,7 @@ msgid "Quote symbols"
 msgstr "Selskabskoder"
 
 #. settings-schema.json->quoteSymbols->tooltip
-msgid "List the quote symbols here, separated with line-breaks."
+msgid "List of quote symbols, separated with line-breaks."
 msgstr "Skriv selskabskoderne her, adskilt af linjeskift."
 
 #. settings-schema.json->sortCriteria->options
@@ -167,12 +220,16 @@ msgstr ""
 "Markér for at sortere kurserne i stigende rækkefølge, fjern markeringen for "
 "at sortere i faldende rækkefølge."
 
-#. settings-schema.json->head3->description
-msgid "Quote details"
-msgstr "Detaljer om kurserne"
+#. settings-schema.json->alternativeColors->description
+msgid "Use alternative colors"
+msgstr "anlægge alternative farver"
+
+#. settings-schema.json->alternativeColors->tooltip
+msgid "Use blue instead of green."
+msgstr "anlægge blå i stedet for grøn."
 
 #. settings-schema.json->showChangeIcon->description
-msgid "Show change icon"
+msgid "Show change/trend icon"
 msgstr "Vis ikon for ændring"
 
 #. settings-schema.json->showChangeIcon->tooltip

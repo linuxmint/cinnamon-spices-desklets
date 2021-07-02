@@ -1,3 +1,6 @@
+# Yahoo Finance Quotes Desklet
+# Copyright (C) 2021 Thomas Egli
+# This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
 msgid ""
 msgstr ""
 "MIME-Version: 1.0\n"
@@ -11,37 +14,96 @@ msgstr ""
 "Last-Translator: \n"
 "Language-Team: \n"
 
-#: desklet.js:66
+#: desklet.js:70
 msgid "Yahoo Finance service not available!"
 msgstr "Yahoo Finance 서비스를 사용할 수 없습니다!"
 
-#: desklet.js:334
+#: desklet.js:410
 msgid "Updated at "
 msgstr "업데이트 날짜 "
 
-#: desklet.js:340
+#: desklet.js:417
 msgid "Error: "
 msgstr "오류: "
 
-#: desklet.js:374
+#: desklet.js:458
 msgid "Cannot display quotes information for symbols: "
 msgstr "기호에 대한 따옴표 정보를 표시 할 수 없습니다. "
 
-#: desklet.js:375
+#: desklet.js:459
 msgid "The following error occurred: "
 msgstr "다음 오류가 발생했습니다. "
 
 #. metadata.json->description
-msgid "Displays financial market information such as stock quotes and commodity prices from Yahoo Finance"
+msgid ""
+"Displays financial market information such as stock quotes and commodity "
+"prices from Yahoo Finance"
 msgstr "Yahoo Finance의 주식 시세 및 상품 가격과 같은 금융 시장 정보를 표시합니다."
 
 #. metadata.json->name
 msgid "Yahoo Finance Quotes"
 msgstr "야후 금융 지수"
 
-#. settings-schema.json->head1->description
-msgid "Desklet layout"
-msgstr "데스크릿 스타일"
+#. settings-schema.json->layoutPage->title
+msgid "Layout"
+msgstr ""
+
+#. settings-schema.json->dataPage->title
+#. settings-schema.json->dataSymbolsSection->title
+msgid "Quotes"
+msgstr ""
+
+#. settings-schema.json->detailsPage->title
+msgid "Details"
+msgstr ""
+
+#. settings-schema.json->presentationPage->title
+msgid "Presentation"
+msgstr ""
+
+#. settings-schema.json->dataUpdateSection->title
+msgid "Data Updates"
+msgstr ""
+
+#. settings-schema.json->detailsNameSection->title
+msgid "Name"
+msgstr ""
+
+#. settings-schema.json->detailsSymbolSection->title
+msgid "Symbol"
+msgstr ""
+
+#. settings-schema.json->detailsPriceSection->title
+msgid "Price"
+msgstr ""
+
+#. settings-schema.json->detailsChangeSection->title
+msgid "Change"
+msgstr ""
+
+#. settings-schema.json->detailsDateTimeSection->title
+msgid "Date and Time"
+msgstr ""
+
+#. settings-schema.json->presentationFormattingSection->title
+msgid "Number Formatting"
+msgstr ""
+
+#. settings-schema.json->presentationSortingSection->title
+msgid "Sorting"
+msgstr ""
+
+#. settings-schema.json->presentationColorsSection->title
+msgid "Colors"
+msgstr ""
+
+#. settings-schema.json->layoutDimensionSection->title
+msgid "Dimension"
+msgstr ""
+
+#. settings-schema.json->layoutEffectsSection->title
+msgid "Effects"
+msgstr ""
 
 #. settings-schema.json->width->description
 msgid "Width"
@@ -71,10 +133,6 @@ msgstr "배경 투명도"
 #. settings-schema.json->transparency->tooltip
 msgid "The higher the value, the more solid the desklet background."
 msgstr "값이 높을수록 데스크릿 배경이 더 진하게 보입니다."
-
-#. settings-schema.json->head2->description
-msgid "Financial data"
-msgstr "재무 데이터"
 
 #. settings-schema.json->delayMinutes->units
 msgid "minutes"
@@ -121,7 +179,7 @@ msgid "Quote symbols"
 msgstr "종목코드 : 종목코드 + .KS(코스피) 또는 .KQ(코스닥)"
 
 #. settings-schema.json->quoteSymbols->tooltip
-msgid "List the quote symbols here, separated with line-breaks."
+msgid "List of quote symbols, separated with line-breaks."
 msgstr "여기에 따옴표를 줄 바꿈으로 구분하여 나열하십시오."
 
 #. settings-schema.json->sortCriteria->options
@@ -153,12 +211,18 @@ msgid "Sort in ascending order"
 msgstr "오름차순으로 정렬"
 
 #. settings-schema.json->sortDirection->tooltip
-msgid "Check to sort quotes in ascending order, uncheck to sort in descending order."
+msgid ""
+"Check to sort quotes in ascending order, uncheck to sort in descending "
+"order."
 msgstr "오름차순으로 정렬하려면 선택하고 내림차순으로 정렬하려면 선택을 취소하십시오."
 
-#. settings-schema.json->head3->description
-msgid "Quote details"
-msgstr "세부 정보"
+#. settings-schema.json->alternativeColors->description
+msgid "Use alternative colors"
+msgstr ""
+
+#. settings-schema.json->alternativeColors->tooltip
+msgid "Use blue instead of green."
+msgstr ""
 
 #. settings-schema.json->showChangeIcon->description
 msgid "Show change/trend icon"
@@ -181,7 +245,9 @@ msgid "Use long version for verbose name"
 msgstr "자세한 이름에 긴 버전 사용"
 
 #. settings-schema.json->useLongQuoteName->tooltip
-msgid "Use the long version for quote name, if available (eg. International Business Machines Corporation)."
+msgid ""
+"Use the long version for quote name, if available (eg. International "
+"Business Machines Corporation)."
 msgstr "가능한 경우 견적 이름에 긴 버전을 사용하십시오 (예 : International Business Machines Corporation)."
 
 #. settings-schema.json->linkQuoteName->description
