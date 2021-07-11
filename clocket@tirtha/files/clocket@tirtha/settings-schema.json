@@ -20,22 +20,37 @@
 	    "description" : "background color",
 	    "tooltip" : "Click the button to select a new background color"
     },
-    
-    
-    "weather":{
+     "weather":{
         "type":"switch",
         "default":true,
         "description":"Want weather display ?",
         "tooltip": "want current weather display ?"
     },
+    "auto-update":{
+        "type":"switch",
+        "dependency" : "weather",
+        "default":false,
+        "description":"auto-update report",
+        "tooltip": "enable or disable auto-update"
+    },
+    "update-duration":{
+        "type": "entry",
+        "dependency" : "auto-update",
+        "default": "20",
+        "description": "set auto update duration(20 min/30 min/60 min)",
+        "indent": true,
+        "tooltip" : "set auto update duration"
+    },
     "weather-color" : {
 	    "type": "colorchooser",
+        "dependency" : "weather",
 	    "default" : "rgb(0,0,0)",
 	    "description" : "weather block text color",
 	    "tooltip" : "Click the button to select a new text color"
     },
     "weather-bg-color" : {
 	    "type": "colorchooser",
+        "dependency" : "weather",
 	    "default" : "rgba(0, 0, 0, 0.363)",
 	    "description" : "weather-block bg-color",
 	    "tooltip" : "Click the button to select a new bg color"
@@ -43,12 +58,14 @@
     "api-key":{
         "type": "entry",
         "default": "",
+        "dependency" : "weather",
         "description": "put api key",
         "indent": true,
         "tooltip" : "put your api key generated from open-weather-map here"
     },
     "lat-long":{
         "type": "entry",
+        "dependency" : "weather",
         "default": "",
         "description": "put lat-lon",
         "indent": true,
@@ -56,9 +73,17 @@
     },
     "place":{
         "type": "entry",
+        "dependency" : "weather",
         "default": "",
         "description": "put place name",
         "indent": true,
         "tooltip" : "put your place name."
+    },
+    "feedback":{
+        "type":"switch",
+        "dependency" : "weather",
+        "default":false,
+        "description":"feedback report",
+        "tooltip": "enable or disable auto-update"
     }
 }
