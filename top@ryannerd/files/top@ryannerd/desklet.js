@@ -33,26 +33,21 @@ Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
  * @return {string}
  * @private
  */
-function _(str) {
+const _ = (str) => {
     return Gettext.dgettext(UUID, str);
 }
 
 /**
- * Really?!? - Spidermonkey the javascript interpreter is so bad that we need to do this?
- * Then again we are using javascript:
- * @see https://blog.dantup.com/2014/05/web-development-sucks-and-its-not-getting-any-better/
- * @see https://stackoverflow.com/questions/7545641/javascript-multidimensional-array
+ * Two Dimensional array support
+ * @link https://stackoverflow.com/questions/7545641/javascript-multidimensional-array
  * @param {int} x
  * @param {int} y
  * @return {[,]}
- * @constructor
  */
-function Array2D(x, y)
-{
-    let array2D = new Array(x);
+const Array2D = (x, y) => {
+    const array2D = new Array(x);
 
-    for(let i = 0; i < array2D.length; i++)
-    {
+    for(let i = 0; i < array2D.length; i++) {
         array2D[i] = new Array(y);
     }
 
@@ -69,18 +64,16 @@ function Array2D(x, y)
 /**
  * `top` string output to JSON parser
  * R&D (Rob & Duplicate) - shamelessly stolen from:
- * @see https://github.com/devalexqt/topparser
+ * @link https://github.com/devalexqt/topparser
  */
-const topToJsonParser =
-{
+const topToJsonParser = {
     /**
      * Parses a single line from `top` output
      * @param {&object} _result The resulting object from parsing
      * @param {string} _name The name of the line being parsed: 'task', 'cpu', 'ram', or 'swap'
      * @param {string} _line The line to parse
      */
-    parseLine(_result, _name, _line)
-    {
+    parseLine(_result, _name, _line) {
         let line=_line.replace(RegExp("%","g"), "").split(":")[1].replace(RegExp(" ", "g"), "");
         _result[_name]={};
         let lineItems=line.split(",");
@@ -100,8 +93,7 @@ const topToJsonParser =
      * @param {&object} _result The resulting object from parsing
      * @param {string} _line The line to parse
      */
-    parseProcess(_result, _line)
-    {
+    parseProcess(_result, _line) {
         let items =_line.split(",");
         let process = {
             pid:items[0],
@@ -126,8 +118,7 @@ const topToJsonParser =
      * @param {int} pidLimit
      * @return {{process: Array}}
      */
-    parse(data, pidLimit)
-    {
+    parse(data, pidLimit) {
         let result={process:[]};
         let dataLine = data.split("\n");
 
@@ -148,7 +139,7 @@ const topToJsonParser =
             pidLimit=dataLine.length-1;
         }
 
-        let i, item, line, offset;
+        let i, item, line;
         for (i=7, item=dataLine[i]; i < pidLimit; item=dataLine[++i]) {
             if (item) {
                 // Is there a space at the first position? If so don't include it in the line parsing
@@ -163,7 +154,6 @@ const topToJsonParser =
             }
         }
         result.time=new Date().getTime();
-
         return result;
     }
 };
@@ -174,16 +164,14 @@ const topToJsonParser =
  * @param deskletId
  * @constructor
  */
-function TopDesklet(metadata, deskletId)
-{
+function TopDesklet(metadata, deskletId) {
     this._init(metadata, deskletId);
 }
 
 /**
  * Top Desklet - Main logic
  */
-TopDesklet.prototype =
-{
+TopDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
 
     /**
@@ -192,8 +180,7 @@ TopDesklet.prototype =
      * @param deskletId
      * @private
      */
-    _init(metadata, deskletId)
-    {
+    _init(metadata, deskletId) {
         try {
             Desklet.Desklet.prototype._init.call(this, metadata, deskletId);
 
@@ -238,8 +225,7 @@ TopDesklet.prototype =
     /**
      * Desklet event hook that fires when the user changes anything in the configuration dialog.
      */
-    on_setting_changed()
-    {
+    on_setting_changed() {
         // Prevent any refresh until we have set up the UI
         if (this.timeout > 0) {
             Mainloop.source_remove(this.timeout);
@@ -267,8 +253,7 @@ TopDesklet.prototype =
     /**
      * Set up the initial User Interface
      */
-    setupUI()
-    {
+    setupUI() {
         // Set up all the UI via ST
         this.mainContainer = new St.BoxLayout({style_class: "mainTopContainer"});
         this.headerContainer = new St.BoxLayout();
@@ -278,8 +263,7 @@ TopDesklet.prototype =
         /**
          * TASKS
          */
-        if (this.cfgShowTasks)
-        {
+        if (this.cfgShowTasks) {
             this.taskTitles = new St.BoxLayout({vertical: true});
             this.taskValues = new St.BoxLayout({vertical: true});
 
@@ -318,8 +302,7 @@ TopDesklet.prototype =
         /**
          * CPU
          */
-        if (this.cfgShowCpu)
-        {
+        if (this.cfgShowCpu) {
             this.cpuTitles = new St.BoxLayout({vertical: true});
             this.cpuValues = new St.BoxLayout({vertical: true});
 
@@ -366,8 +349,7 @@ TopDesklet.prototype =
         /**
          * RAM
          */
-        if (this.cfgShowRam)
-        {
+        if (this.cfgShowRam) {
             this.ramTitles = new St.BoxLayout({vertical: true});
             this.ramValues = new St.BoxLayout({vertical: true});
 
@@ -402,8 +384,7 @@ TopDesklet.prototype =
         /**
          * SWAP
          */
-        if (this.cfgShowSwap)
-        {
+        if (this.cfgShowSwap) {
             this.swapTitles = new St.BoxLayout({vertical: true});
             this.swapValues = new St.BoxLayout({vertical: true});
 
@@ -438,8 +419,7 @@ TopDesklet.prototype =
         /**
          * PROCESSES
          */
-        if (this.cfgShowProcesses)
-        {
+        if (this.cfgShowProcesses) {
             this.procTable = new St.Table();
             this.procTable.add(new St.Label({text: _("PID"), style_class: "topProcTitle", style: "color: " + this.cfgTitleColor}), {row: 0, col: 0});
             this.procTable.add(new St.Label({text: _("USER"), style_class: "topProcTitle", style: "color: " + this.cfgTitleColor}), {row: 0, col: 1});
@@ -455,10 +435,8 @@ TopDesklet.prototype =
             this.procTable.add(new St.Label({text: _("CMD"), style_class: "topProcTitle", style: "color: " + this.cfgTitleColor}), {row: 0, col: 11});
 
             this.procGrid = Array2D(PID_MAX_LIMIT, 11);
-            for (let row = 0; row < this.cfgMaxPidLines; row++)
-            {
-                for (let col = 0; col <= 11; col++)
-                {
+            for (let row = 0; row < this.cfgMaxPidLines; row++) {
+                for (let col = 0; col <= 11; col++) {
                     this.procGrid[row][col] = new St.Label({text: _(""), style_class: "topValue", style: "color: " + this.cfgValueColor});
                     this.procTable.add(this.procGrid[row][col], {row: row + 1, col: col});
                 }
@@ -486,15 +464,14 @@ TopDesklet.prototype =
      * Called when desklet initializes and in set intervals after that.
      * @private
      */
-    _updateTop()
-    {
+    _updateTop() {
         // Get the top output as a string.
         let topOutput = this.getTopOutput();
 
         // Is topOutput not null then we have a valid string to parse.
         if (topOutput !== null) {
             // Parse the string into JSON for easier handling.
-            let top = topToJsonParser.parse(topOutput, this.cfgMaxPidLines);
+            const top = topToJsonParser.parse(topOutput, this.cfgMaxPidLines);
 
             // TASKS
             this.taskValueTotal.text = top.task.total.toString();
@@ -524,7 +501,7 @@ TopDesklet.prototype =
             this.swapValueAvailable.text = top.swap.avail.toString();
 
             // PROCESSES
-            let processes = top.process;
+            const processes = top.process;
             for(let row=0; row < this.cfgMaxPidLines; row++)
             {
                 this.procGrid[row][0].text = parseInt(processes[row].pid).toString();
@@ -547,8 +524,7 @@ TopDesklet.prototype =
      * Refresh the UI in set intervals.
      * @private
      */
-    _refresh()
-    {
+    _refresh() {
         this._updateTop();
         this.timeout = Mainloop.timeout_add_seconds(this.cfgRefreshRate, Lang.bind(this, this._refresh));
     },
@@ -556,8 +532,7 @@ TopDesklet.prototype =
     /**
      * Desklet event hook.
      */
-    on_desklet_removed()
-    {
+    on_desklet_removed() {
         if (this.timeout > 0) {
             Mainloop.source_remove(this.timeout);
         }
@@ -567,8 +542,7 @@ TopDesklet.prototype =
      * Executes `top` command synchronously. Upon success returns the output as a string, otherwise a null.
      * @return {string | null}
      */
-    getTopOutput()
-    {
+    getTopOutput() {
         // Execute the top command.
         let [ok, output, err, exitStatus] = GLib.spawn_command_line_sync(this.cfgTopCommand);
 
@@ -590,7 +564,6 @@ TopDesklet.prototype =
  * @param desklet_id
  * @return {TopDesklet}
  */
-function main(metadata, desklet_id)
-{
+function main(metadata, desklet_id) {
     return new TopDesklet(metadata, desklet_id);
 }

@@ -1,8 +1,6 @@
 {
     "cinnamon-version": [
-        "3.4", 
-        "3.6",
-        "3.8"
+        "4.8"
     ], 
     "description": "A desklet that displays top process info",
     "name": "Top",
