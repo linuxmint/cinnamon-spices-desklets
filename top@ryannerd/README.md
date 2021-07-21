@@ -1,6 +1,6 @@
-Top Desklet
+Top ![](files/top@ryannerd/icon.png) Desklet 
 ===========
-![](icon.png) Displays the output from the `top` command as a nicely formatted [desklet](https://cinnamon-spices.linuxmint.com/)
+Displays the output from the `top` command as a nicely formatted [desklet](https://cinnamon-spices.linuxmint.com/)
 
 UUID: top@ryannerd
 
@@ -12,14 +12,13 @@ Screenshot:
 
 ![](screenshot.png)
 
-**TODO**:
- - User configuration options:
-    - Background color
-    - Opacity
-    - Width
-    - Font family
- - Language Translations
-    - I need to figure out how all this "po" stuff works.
-    - Spanish (I may be able to bribe my co-worker Pablo into helping)
+Compatability: 
+- Linux Mint 20.1+
+- Cinnamon 4.8+
 
-[See also](https://github.com/RyanNerd/gnome-autocomplete)
+I need assistance in the development of `top@ryannerd`:
+- [ ] Translation to other languages (currently only English)
+- [ ] Feature requests and issues as indicated on [Github](https://github.com/linuxmint/cinnamon-spices-desklets/issues?q=is%3Aissue+is%3Aopen+top%40ryannerd)
+
+For additional resources developing desklets and applets:
+[Auto complete for IDEA based IDEs for desklet development](https://github.com/RyanNerd/gnome-autocomplete)
