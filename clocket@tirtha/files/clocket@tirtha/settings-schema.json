@@ -65,7 +65,7 @@
     },
     "lat-long":{
         "type": "entry",
-        "dependency" : "weather",
+        
         "default": "",
         "description": "put lat-lon",
         "indent": true,
@@ -73,7 +73,7 @@
     },
     "place":{
         "type": "entry",
-        "dependency" : "weather",
+        
         "default": "",
         "description": "put place name",
         "indent": true,
@@ -85,5 +85,11 @@
         "default":false,
         "description":"feedback report",
         "tooltip": "enable or disable auto-update"
+    },
+    "forecast":{
+        "type":"switch",
+        "default":true,
+        "description":"Want weather forecust display ?",
+        "tooltip": "want weather forecast display ?"
     }
 }

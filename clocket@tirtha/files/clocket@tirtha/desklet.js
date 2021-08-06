@@ -9,6 +9,10 @@ const Soup = imports.gi.Soup;
 const Cairo = imports.cairo;
 const Clutter = imports.gi.Clutter;
 const _httpSession = new Soup.SessionAsync();
+// const Me = imports.misc.extensionUtils.getCurrentExtension();
+const Gio = imports.gi.Gio;
+const UUID = "clocket@tirtha";
+const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 
 
 class CinnamonClockDesklet extends Desklet.Desklet {
@@ -47,6 +51,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
         this.settings.bind("text-color", "color", this._onSettingsChanged);
         this.settings.bind("background-color", "bgcolor", this._onSettingsChanged);
         this.settings.bind("weather", "weatherperm", this._onWeatherPermChange);
+        this.settings.bind("forecast", "forecastperm", this._onForecastPermChange);
         this.settings.bind("api-key", "api", this._dummy_func);
         this.settings.bind("lat-long", "latlon", this._dummy_func);
         this.settings.bind("place", "city", this._dummy_func);
@@ -62,6 +67,10 @@ class CinnamonClockDesklet extends Desklet.Desklet {
                 this.dur = parseInt(this.duration);
             }
         }
+        if (this.forecastperm) {
+            this._create_forecast_label();
+        }
+
 
     }
 
@@ -78,6 +87,10 @@ class CinnamonClockDesklet extends Desklet.Desklet {
         if (this.weatherperm) {
             this._whead.style = "color: " + this.color;
             this._weatherContainer.style = "background-color:" + this.wbgcolor;
+        }
+        if (this.forecastperm) {
+            
+            this._forecustContainer.style = "background-color:" + this.wbgcolor;
         }
 
         this._updateClock();
@@ -103,9 +116,30 @@ class CinnamonClockDesklet extends Desklet.Desklet {
             this._wContainer.style = "color: " + this.wcolor;
             this._wloc.style = "color: " + this.wcolor;
             this._wover.style = "color: " + this.wcolor;
+
+        }
+        if (this.forecastperm) {
             
+            this._fhead.style = "color: " + this.wcolor;
+            this._ftemp.style = "color: " + this.wcolor;
+            this._shead.style = "color: " + this.wcolor;
+            this._stemp.style = "color: " + this.wcolor;
+            this._thead.style = "color: " + this.wcolor;
+            this._ttemp.style = "color: " + this.wcolor;
+
+
         }
     }
+    _getIconImage(iconpath, dim) {
+        let icon_file = DESKLET_DIR + iconpath;
+        let file = Gio.file_new_for_path(icon_file);
+        let icon_uri = file.get_uri();
+        let iconimage = St.TextureCache.get_default().load_uri_async(icon_uri, 65, 65);
+        iconimage.set_size(dim, dim);
+        return iconimage;
+    }
+
+
 
     _create_weather_label() {
         this._weatherContainer = new St.BoxLayout({ "vertical": true, style_class: "weather_container_style" });
@@ -120,6 +154,15 @@ class CinnamonClockDesklet extends Desklet.Desklet {
         this._wfeed = new St.Label({ style_class: "wbody_label_style" });
         this._wfeed.style = "color:rgb(214, 25, 98);text-align:right;";
 
+        // let gicon = Gio.icon_new_for_string("icons/icon.png");
+        // this.wicon = new St.Icon({style_class: 'your-icon-name'});
+        this.wicon = this._getIconImage("/icons/icon.png", 40);
+
+        // this.wicon.style='background-image: url("icons/icon.png")'
+        this._wiconbut = new St.Button(); // container for weather icon
+        this._wiconbut.style = "padding-top:0px;padding-bottom:0px"
+        this._wiconbut.set_child(this.wicon);
+
         this.iconbutton = new St.Icon({ icon_name: 'view-refresh-symbolic', icon_type: St.IconType.SYMBOLIC });
         this.iconbutton.style = "width:20px;\nheight:20px;"
         this._rfsbut = new St.Button(); // container for refresh icon
@@ -128,6 +171,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
         this._rfsbut.connect('clicked', Lang.bind(this, this._get_refresh_report));
 
         this._weatherContainer.add(this._wloc);
+        this._weatherContainer.add(this._wiconbut);
         this._weatherContainer.add(this._whead);
         this._weatherContainer.add(this._wover);
         this._weatherContainer.add(this._rfsbut);
@@ -140,6 +184,8 @@ class CinnamonClockDesklet extends Desklet.Desklet {
         this._get_weather_update();
     }
 
+
+
     _on_feed_settings_change() {
         if (this.feed) {
             var feed = "data from openweathermap.org....";
@@ -148,7 +194,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
             }
             this._wfeed.set_text(feed);
         }
-        else{
+        else {
             this._wfeed.set_text("");
         }
     }
@@ -156,11 +202,22 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     _onWeatherPermChange() {
         if (this.weatherperm) {
             this._create_weather_label();
-            this._get_weather_update();
+            // this._get_weather_update();
         }
         else {
             this._weatherContainer.destroy();
             this.auto_update = false;
+        }
+
+    }
+    _onForecastPermChange() {
+        if (this.forecastperm) {
+            this._create_forecast_label();
+            
+        }
+        else {
+            this._forecustContainer.destroy();
+
         }
 
     }
@@ -177,7 +234,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
             }
             this._wfeed.set_text(feed);
         }
-        else{
+        else {
             this._wfeed.set_text("");
         }
     }
@@ -206,6 +263,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
         this._weatherleft.set_text("");
         this._weatherright.set_text("");
         this._get_weather_update();
+        this._get_forecast_update();
 
     }
     _get_weather_update() {
@@ -262,6 +320,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
                     var windspeed = "Wind speed : " + jsondata.wind.speed + " m/s \n";
                     var cloud = "Cloudiness : " + jsondata.clouds.all + " %\n"
                     var visibility = "Visibility : " + jsondata.visibility + " m";
+                    var icon = jsondata.weather[0].icon;
                     var reportleft = feels + pressure + humidity;
                     var reportright = windspeed + cloud + visibility;
                     this._wloc.set_text(loc)
@@ -269,8 +328,13 @@ class CinnamonClockDesklet extends Desklet.Desklet {
                     this._wover.set_text(ovarall);
                     this._weatherleft.set_text(reportleft);
                     this._weatherright.set_text(reportright);
+
+                    let wiconimage = this._getIconImage("/icons/owm_icons/" + icon + "@2x.png", 80);
+                    this._wiconbut.set_child(wiconimage);
+
+
                     var feed = "        data from openweathermap.org....";
-                    if(this.feed){
+                    if (this.feed) {
                         if (this.auto_update) {
                             feed = feed + "\nAuto-refresh Enabled.\nduration: " + this.duration + " min";
                         }
@@ -292,6 +356,147 @@ class CinnamonClockDesklet extends Desklet.Desklet {
         }
 
     }
+    _create_forecast_label() {
+        this._forecustContainer = new St.BoxLayout({ vertical: false, style_class: "main_forecast_container_style" });
+        this._firstday = new St.BoxLayout({ vertical: true, style_class: "forecast_container_style" });
+        this._secondday = new St.BoxLayout({ vertical: true, style_class: "forecast_container_style" });
+        this._thirdday = new St.BoxLayout({ vertical: true, style_class: "forecast_container_style" });
+
+
+
+        this._fhead = new St.Label({ style_class: "fday_label_style" });
+        this._fhead.set_text("MON");
+        let ficon = this._getIconImage("/icons/icon.png", 40);
+        this.firsticonbtn = new St.Button();
+        this.firsticonbtn.set_child(ficon);
+        this.firsticonbtn.style = "padding-top:0px;padding-bottom:0px";
+        this._ftemp = new St.Label({ style_class: "fday_label_style" });
+        this._ftemp.set_text("30℃")
+
+
+        this._firstday.add(this._fhead);
+        this._firstday.add(this.firsticonbtn);
+        this._firstday.add(this._ftemp);
+        this._forecustContainer.add(this._firstday);
+
+
+        this._shead = new St.Label({ style_class: "fday_label_style" });
+        this._shead.set_text("TUE");
+        let sicon = this._getIconImage("/icons/icon.png", 40);
+        this.secondiconbtn = new St.Button();
+        this.secondiconbtn.set_child(sicon);
+        this.secondiconbtn.style = "padding-top:0px;padding-bottom:0px";
+        this._stemp = new St.Label({ style_class: "fday_label_style" });
+        this._stemp.set_text("31℃");
+
+
+        this._secondday.add(this._shead);
+        this._secondday.add(this.secondiconbtn);
+        this._secondday.add(this._stemp);
+        this._forecustContainer.add(this._secondday);
+
+
+        this._thead = new St.Label({ style_class: "fday_label_style" });
+        this._thead.set_text("WED");
+        let ticon = this._getIconImage("/icons/icon.png", 40);
+        this.thirdiconbtn = new St.Button();
+        this.thirdiconbtn.set_child(ticon);
+        this.thirdiconbtn.style = "padding-top:0px;padding-bottom:0px";
+        this._ttemp = new St.Label({ style_class: "fday_label_style" });
+        this._ttemp.set_text("32℃")
+
+
+        this._thirdday.add(this._thead);
+        this._thirdday.add(this.thirdiconbtn);
+        this._thirdday.add(this._ttemp);
+        this._forecustContainer.add(this._thirdday);
+
+        this._Container.add(this._forecustContainer);
+
+        this._get_forecast_update();
+    }
+
+    _get_forecast_update() {
+        if (this.weatherperm == true) {
+
+            if ((this.api !== "") && ((this.latlon !== "") || (this.city !== ""))) {
+
+                var baseurl = "http://api.openweathermap.org/data/2.5/forecast?";
+                // var weatherapi for api key
+                var weatherapi = this.api;
+                var id = ""
+                if (this.latlon == "") {
+                    id = "q=" + this.city;
+
+                }
+                else {
+                    var cor = (String(this.latlon)).split("-");
+                    var id = "lat=" + cor[0] + "&lon=" + cor[1];
+                }
+
+                var url = baseurl + id + "&appid=" + String(weatherapi) + "&units=metric";
+                var jsondata = this.getJSON(url);
+                if (jsondata == "401") {
+                    var report = "invalid api key found !!!";
+                    this._fhead.set_text("401")
+                }
+                else if (jsondata == "unreachable") {
+                    var report = "unreachable !!!\n unknown error occured."
+                    this._fhead.set_text("unr")
+                }
+                else if (jsondata == "404") {
+                    var report = "Error 404 !\n Invalid place found...."
+                    this._fhead.set_text("404")
+                }
+                else {
+                    var utctime = jsondata.timezone / 3600;
+                    utctime = utctime.toFixed(2);
+                    var time = String(utctime);
+                    time = time.replace(".", ":");
+                    if (utctime >= 0) {
+                        time = "+" + time;
+                    }
+
+                    let newdate = new Date();
+                    var d = newdate.getDay() + 1;
+                    let newdata = jsondata;
+                    var weekday = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+                    let forcustdata = newdata.list;
+                    var count = 0;
+                    let day = "";
+                    let foredata = [];
+                    for (var i = 7; i < 24; i += 8) {
+                        day = forcustdata[i];
+                        let temp = day["main"]["temp"];
+                        let icon = day["weather"][0]["icon"];
+                        d = d % 7;
+                        let wd = weekday[d];
+                        d++;
+                        foredata.push([wd, icon, temp]);
+
+                    }
+                    this._fhead.set_text(foredata[0][0]);
+                    let wiconimage = this._getIconImage("/icons/owm_icons/" + foredata[0][1] + "@2x.png", 50);
+                    this.firsticonbtn.set_child(wiconimage);
+                    this._ftemp.set_text(foredata[0][2] + "℃");
+
+                    this._shead.set_text(foredata[1][0]);
+                    wiconimage = this._getIconImage("/icons/owm_icons/" + foredata[1][1] + "@2x.png", 50);
+                    this.secondiconbtn.set_child(wiconimage);
+                    this._stemp.set_text(foredata[1][2] + "℃");
+
+                    this._thead.set_text(foredata[2][0]);
+                    wiconimage = this._getIconImage("/icons/owm_icons/" + foredata[2][1] + "@2x.png", 50);
+                    this.thirdiconbtn.set_child(wiconimage);
+                    this._ttemp.set_text(foredata[2][2] + "℃");
+
+
+                }
+
+
+            }
+        }
+    }
 
 
 
@@ -299,7 +504,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     _updateClock() {
         let a = new Date();
         var min = a.getMinutes();
-        var sec=a.getSeconds();
+        var sec = a.getSeconds();
         this._time.set_text(this.clock.get_clock_for_format("%0l:%0M"));
         var date = String(a.getDate()).padStart(2, '0')
         this._date.set_text(date);
@@ -312,7 +517,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
         var weekday = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
         this._week.set_text("   " + weekday[dd]);
         if (this.weatherperm && this.auto_update) {
-            if (min % this.dur == 0 && sec<2) {
+            if (min % this.dur == 0 && sec < 2) {
                 this._get_refresh_report();
             }
         }

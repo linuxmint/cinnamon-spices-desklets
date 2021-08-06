@@ -1,8 +1,11 @@
 {
- "uuid": "clocket@tirtha",
- "name": "clocket",
- "description": "A desklet that displays the time, date and weather report",
- "prevent-decorations": false,
- "max-instances": "100",
- "author":"tirtha"
+    "uuid": "clocket@tirtha",
+    "name": "clocket",
+    "description": "A desklet that displays the time, date, currenty and forecast weather report",
+    "prevent-decorations": false,
+    "max-instances": "100",
+    "author": "tirtharajsinha",
+    "version": "2.01",
+    "comments":"Please consider custom Weather Desklet into your language. See the website for more information",
+    "website":"https://tirtharajsinha.github.io/clocket/"
 }
