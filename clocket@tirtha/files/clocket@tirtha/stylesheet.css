@@ -5,6 +5,7 @@
     margin:3px;
     margin-bottom: 3px;
     
+    
 
 }
 
@@ -27,7 +28,25 @@
     border-radius: 20px;
     margin:3px;
     margin-bottom: 3px;
+    color:white;
+    
 }
+.main_forecast_container_style{
+    background-color: rgba(0, 0, 0, 0.363);
+    padding:10px;
+    border-radius: 20px;
+    margin:3px;
+    margin-bottom: 3px;  
+}
+.forecast_container_style{
+    background-color: rgba(0, 0, 0, .6);
+    padding:10px;
+    border-radius: 20px;
+    margin:3px;
+    margin-bottom: 3px;
+    width:85px;
+}
+
 .whead_label_style{
     text-align: center;
     font-size: 30px;
@@ -43,3 +62,10 @@
     font-size: 14px;
     padding-left:10px;
 }
+.fday_label_style{
+    text-align:center;
+    font-size: 14px;
+    color:white;
+}
+
+
