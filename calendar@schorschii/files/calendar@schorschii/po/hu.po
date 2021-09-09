@@ -205,7 +205,7 @@ msgid ""
 "Set your custom label here, e.g. for monitoring multiple ical files. This field is unavailable unless the checkbox "
 "above is enabled."
 msgstr ""
-"Itt állítson be egyéni címkét, pl. több ical fájl megfigyelésére. Ez a mező csak akkor érhető el, ha a fenti négyzet "
+"Itt állítson be egyéni címkét, például több ical fájl megfigyelésére. Ez a mező csak akkor érhető el, ha a fenti négyzet "
 "be van jelölve."
 
 msgid "Appointment number color"
@@ -215,7 +215,7 @@ msgid "Start program on click of the desklet"
 msgstr "Program indítása az asztalkalmazásra kattintva"
 
 msgid "Start a program (e.g. Thunderbird)"
-msgstr "Egy program indítása (pl. Thunderbird)"
+msgstr "Egy program indítása (például: Thunderbird)"
 
 msgid "The command entered below will be executed on mouse click of the desklet. So you can directly start Thunderbird."
 msgstr ""

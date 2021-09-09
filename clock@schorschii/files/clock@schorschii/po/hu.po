@@ -186,7 +186,7 @@ msgid ""
 "Set your custom label here, e.g. for multiple timezones. This field is "
 "unavailable unless the checkbox above is enabled."
 msgstr ""
-"Itt állítsa be az egyéni címkét, pl. több időzónához. Ez a mező csak akkor "
+"Itt állítsa be az egyéni címkét, például több időzónához. Ez a mező csak akkor "
 "érhető el, ha a fenti négyzet be van jelölve."
 
 #. clock@schorschii->settings-schema.json->smooth-minutes-hand->description
