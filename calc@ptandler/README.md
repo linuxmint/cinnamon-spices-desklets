@@ -23,6 +23,7 @@ Keyboard input is available after the desklet was raised to top by the defined s
   - `a=2` = `2`
 - You can use the **comma `,` operator** to evaluate several expressions and return just the value of the last one. Can be used to define variables:
   - `a=2, b=3, a*b`
+- For conditional expression you can use the JS `? :` operator, e.g. `1 < 2 ? "that's true" : "no, wrong"`
 - You can define **functions**:
   - `fib = (n) => n <= 0 ? 0 : (n <= 1 ? 1 : (fib(n - 1) + fib(n - 2))), fib(7)` = `13`
 - You can use all **builtin JavaScript** functions and global objects (available in GJS / CJS), such as `JSON.stringify`

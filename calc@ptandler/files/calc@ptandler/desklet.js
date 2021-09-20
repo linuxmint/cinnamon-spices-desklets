@@ -33,7 +33,7 @@ HelloDesklet.prototype = {
     },
 
     setupUI: function () {
-        log("JSEvaluator.setupUI")
+        // log("JSEvaluator.setupUI")
         // main container for the desklet
         this.mainBox = new St.BoxLayout({style_class: "calc-mainBox", vertical: true});
 
@@ -59,6 +59,6 @@ HelloDesklet.prototype = {
 }
 
 function main(metadata, desklet_id) {
-    log("JSEvaluator.main!!");
+    // log("JSEvaluator.main!!");
     return new HelloDesklet(metadata, desklet_id);
 }
