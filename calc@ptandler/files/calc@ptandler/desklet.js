@@ -14,7 +14,7 @@ function evalExpression(input) {
         const result = Function(helper_functions + "with (Math) return " + input)();
         if (result === undefined) return "undefined";
         if (result === null) return "null";
-        return result;
+        return JSON.stringify(result);
     } catch (e) {
         return "error: " + e.message;
     }

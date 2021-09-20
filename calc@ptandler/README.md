@@ -34,6 +34,7 @@ Keyboard input is available after the desklet was raised to top by the defined s
 - add action "copy value to **clipboard**" including keyboard shortcut; also allow copying the expression; and of course allow copying all past expressions and results from the history
 - add icon to open message box for documentation and introduction that **explains some JS expression syntax** (e.g. the examples above)
 - add **translations** (i18n)
+- add option to turn off to use `JSON.stringify()` to display results
 
 ## Cinnamon Desklet Development hints
 
