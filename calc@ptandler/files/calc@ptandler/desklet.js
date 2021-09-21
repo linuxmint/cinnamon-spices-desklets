@@ -51,7 +51,7 @@ HelloDesklet.prototype = {
         this.mainBox.add_actor(this.input);
 
         this.result = new St.Label();
-        this.result.set_text(evalExpression(this.input.get_text()).toString());
+        this.result.set_text("= 3");
         this.mainBox.add_actor(this.result);
 
         this.setContent(this.mainBox);
