@@ -7,9 +7,9 @@ Keyboard input is available after the desklet was raised to top by the defined s
 
 ## Features and Example Expressions
 
-- `1+2` = `3`
+- `1 + 2` = `3`
 - `(1 + 2) * (3 + 4)` = `21`
-- All functions defined in the [JavaScript `Math` object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math) are included using the [`with` statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/with) (knowing that is not generally recommended using `with` in JS, but I think here it's kind of convenient).
+- All functions defined in the [JavaScript `Math` object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math) are included using the [`with` statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/with) (knowing that is not generally recommended using `with` in JS, but I think here it's kind of convenient):
   - `min(1,2)` = `1`
   - `max(1,2)` = `2`
   - `sqrt(16)` = `4`
@@ -26,6 +26,7 @@ Keyboard input is available after the desklet was raised to top by the defined s
 - For conditional expression you can use the JS `? :` operator, e.g. `1 < 2 ? "that's true" : "no, wrong"`
 - You can define **functions**:
   - `fib = (n) => n <= 0 ? 0 : (n <= 1 ? 1 : (fib(n - 1) + fib(n - 2))), fib(7)` = `13`
+    CAUTION: Be careful with recursive functions, I'm not sure if there is a timeout for the evaluation of the expression and if it's quite long. So you can crash your desktop if evaluation hangs ... believe me, I tried ;-) 
 - You can use all **builtin JavaScript** functions and global objects (available in GJS / CJS), such as `JSON.stringify`
 
 ## ToDo: Ideas for Further Development
