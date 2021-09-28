@@ -1,21 +1,21 @@
 # This file corresponding a translation of commandOfTheDay to Portuguese of Brazil.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Arthur Gorgonio <gorgonioarthur@gmail.com>, YEAR 2017.
+# Arthur Gorgonio <gorgonioarthur@gmail.com>, 2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 20:51-0300\n"
-"PO-Revision-Date: 2017-04-30 21:03-0300\n"
+"POT-Creation-Date: 2017-04-26 16:13+0800\n"
+"PO-Revision-Date: 2021-09-27 01:38-0300\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
-"Last-Translator: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0\n"
+"Last-Translator: Marcelo Aof\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Language: pt_BR\n"
 
 #: desklet.js:48
@@ -24,11 +24,11 @@ msgstr "Comando do dia"
 
 #. commandOfTheDay@logg->metadata.json->description
 msgid "A desklet that displays arbitrary text output from commands"
-msgstr "Um widget que exibe textos arbritários a partir de comandos."
+msgstr "Um desklet que exibe textos arbitrários a partir de comandos"
 
 #. commandOfTheDay@logg->metadata.json->name
 msgid "Command of the day desklet"
-msgstr "Widget do comando do dia"
+msgstr "Desklet de comando do dia"
 
 #. commandOfTheDay@logg->settings-schema.json->delay->description
 msgid "Update every:"
@@ -36,7 +36,7 @@ msgstr "Atualizar a cada:"
 
 #. commandOfTheDay@logg->settings-schema.json->delay->units
 msgid "minutes"
-msgstr "Minutos"
+msgstr "minutos"
 
 #. commandOfTheDay@logg->settings-schema.json->theCommand->description
 msgid "Command:"
