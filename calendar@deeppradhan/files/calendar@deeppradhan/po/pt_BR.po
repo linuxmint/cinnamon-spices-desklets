@@ -93,7 +93,7 @@ msgstr "Sim, abreviado"
 msgid "For day of week; show full name, short name or disable showing"
 msgstr ""
 "Mostre o dia da semana por extenso com a palavra completa ou abreviada, ou "
-"prefira não mostrar nada"
+"prefira mostrar nada"
 
 #. settings-schema.json->short-month-name->description
 msgid "Short month name"
@@ -110,8 +110,7 @@ msgstr "Mostrar o ano"
 #. settings-schema.json->show-year->tooltip
 msgid "For year; show all digits, show last two digits or disable showing"
 msgstr ""
-"Mostre o ano com a palavra completa ou abreviada, ou prefira não mostrar "
-"nada"
+"Mostre o ano com a palavra completa ou abreviada, ou prefira mostrar nada"
 
 #. settings-schema.json->show-time->description
 msgid "Show time"
