@@ -369,7 +369,7 @@ msgstr "Minimizado"
 
 #. settings-schema.json->raiseKey->description
 msgid "Raise to top shorcut key"
-msgstr "Tecla de atalho para Trazer o desklet para frente"
+msgstr "Tecla de atalho para trazer o desklet para frente"
 
 #. settings-schema.json->centerRaised->description
 msgid "Center the desklet on the screen in raised mode"
