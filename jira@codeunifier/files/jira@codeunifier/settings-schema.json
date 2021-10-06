@@ -1,0 +1,65 @@
+{
+    "top": {
+        "type": "header",
+        "description": "Jira Desklet Settings"
+    },
+    "accountId": {
+        "type": "entry",
+        "default": "",
+        "description": "Account Id",
+        "tooltip": "Enter your Atlassian account id (can be viewed in the URL on your Atlassian profile page)."
+    },
+    "accountEmail": {
+        "type": "entry",
+        "default": "",
+        "description": "Account Email",
+        "tooltip": "Enter the account email address to be used for Jira authentication."
+    },
+    "apiToken": {
+        "type": "entry",
+        "default": "",
+        "description": "API Token",
+        "tooltip": "Enter the API Key for your account (managed at https://id.atlassian.com/manage-profile/security/api-tokens)."
+    },
+    "projectBoardUrl": {
+        "type": "entry",
+        "default": "",
+        "description": "Project Board URL",
+        "tooltip": "Enter the url for your project board (e.g. https://{atlassian domain}/jira/software/projects/{project name}/boards/{board number})."
+    },
+    "projectName": {
+        "type": "entry",
+        "default": "",
+        "description": "Project Name",
+        "tooltip": "Enter the name of the Atlassian Jira Project."
+    },
+    "atlassianDomain": {
+        "type": "entry",
+        "default": "",
+        "description": "Atlassian Domain",
+        "tooltip": "Enter the Atlassian domain for the API (e.g. '{company}.atlassian.net')"
+    },
+    "transparency": {
+        "type": "scale",
+        "indent": true,
+        "default": 0.5,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.05,
+        "description": "Transparency"
+    },
+    "backgroundColor": {
+      "type": "colorchooser",
+      "indent": true,
+      "default": "rgb(220,220,220)",
+      "description": "Background color",
+      "tooltip": "Click the button to select a new color"
+    },
+    "issueColor": {
+      "type": "colorchooser",
+      "indent": true,
+      "default": "rgb(139,177,88)",
+      "description": "Issue tag color",
+      "tooltip": "Click the button to select a new color"
+    }
+}
