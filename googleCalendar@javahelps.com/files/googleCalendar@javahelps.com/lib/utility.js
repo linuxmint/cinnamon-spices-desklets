@@ -17,6 +17,7 @@
 * along with this program.  If not, see <http:*www.gnu.org/licenses/>.
 */
 
+const Cinnamon = imports.gi.Cinnamon;
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
 const Lang = imports.lang;
@@ -24,10 +25,13 @@ const St = imports.gi.St;
 const Tooltips = imports.ui.tooltips;
 const Gettext = imports.gettext;
 const ByteArray = imports.byteArray;
+const Util = imports.misc.util;
 
 imports.searchPath.unshift(GLib.get_home_dir() + "/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/lib");
 
 const UUID = "googleCalendar@javahelps.com";
+const DESKLET_DIR = GLib.get_home_dir() + "/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/"
+const COMMAND_OUTPUT_FILE = DESKLET_DIR + "output.txt";
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
 function _(str) {
@@ -45,31 +49,12 @@ function Event(eventLine, useTwentyFourHour) {
 };
 
 SpawnReader.prototype.spawn = function(path, command, func) {
-
-    let res, pid, stdin, stdout, stderr, stream, reader;
-
-    [res, pid, stdin, stdout, stderr] = GLib.spawn_async_with_pipes(
-        path, command, null, GLib.SpawnFlags.SEARCH_PATH, null);
-
-    stream = new Gio.DataInputStream({ base_stream: new Gio.UnixInputStream({ fd: stdout }) });
-
-    this.read(stream, func, pid);
-};
-
-SpawnReader.prototype.read = function(stream, func, pid) {
-
-    stream.read_line_async(GLib.PRIORITY_LOW, null, Lang.bind(this, function(source, res) {
-
-        let out, length;
-
-        [out, length] = source.read_line_finish(res);
-        if (out !== null) {
-            func(ByteArray.toString(out));
-            this.read(source, func, pid);
-        }
-        // Done reading. Close the process.
-        GLib.spawn_close_pid(pid);
-    }));
+    let commandStr = command.join(" ");
+    // Using pipes to read the output sometimes leaves the command running and cause too many files opened
+    Util.spawnCommandLineAsync("bash " + DESKLET_DIR + "writeEvents.sh \""+ commandStr +"\"", () => {
+        let commandFileContents = Cinnamon.get_file_contents_utf8_sync(COMMAND_OUTPUT_FILE).toString();
+        func(commandFileContents);
+    });
 };
 
 CalendarUtility.prototype.label = function(text, zoom, textColor, leftAlign = true, fontSize = 10) {

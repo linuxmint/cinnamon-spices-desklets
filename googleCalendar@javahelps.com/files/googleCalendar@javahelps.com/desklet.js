@@ -201,7 +201,16 @@ GoogleCalendarDesklet.prototype = {
      */
     getCalendarCommand(accountId) {
         let dateTime = new Date();
-        let command = ["gcalendar", "--output", "json", "--client-id", this.clientId, "--client-secret", this.clientSecret];
+        let command = ["gcalendar", "--output", "json"];
+        if (this.clientId != null && this.clientId != "") {
+            command.push("--client-id");
+            command.push(this.clientId);
+            this.clientId, "--client-secret", this.clientSecret
+        }
+        if (this.clientSecret != null && this.clientSecret != "") {
+            command.push("--client-secret");
+            command.push(this.clientSecret);
+        }
         command.push("--no-of-days");
         if (this.interval == null) {
             this.interval = 7; // Default interval is 7 days
