@@ -190,7 +190,7 @@ msgstr "Mostrar a capa do álbum"
 #. 2.8->settings-schema.json->centerRaised->description
 #. Cinnamon-Soundbox->settings-schema.json->centerRaised->description
 msgid "Center Soundbox on the screen in raised mode"
-msgstr "Centralizar o desklet na tela na frente das janelas"
+msgstr "Posicionar o desklet na frente das janelas, centralizado na tela"
 
 #. 2.5->settings-schema.json->theme->description
 #. 2.8->settings-schema.json->theme->description
