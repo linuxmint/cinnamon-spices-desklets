@@ -7,3 +7,10 @@
 .calc-mainBox.light {
     background-color: lightgray;
 }
+
+.history-box {
+    border: white;
+    background-color: lightslategray;
+    border-radius: 4px;
+    width: 100%;
+}

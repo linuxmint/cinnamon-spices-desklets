@@ -31,25 +31,52 @@ Keyboard input is available after the desklet was raised to top by the defined s
 
 ## ToDo: Ideas for Further Development
 
-- add expression & result **history** as dropdown with scrollbar (on pressing "enter" + clear text input)
-- add action "copy value to **clipboard**" including keyboard shortcut; also allow copying the expression; and of course allow copying all past expressions and results from the history
-- add icon to open message box for documentation and introduction that **explains some JS expression syntax** (e.g. the examples above)
-- add **translations** (i18n)
-- add option to turn off to use `JSON.stringify()` to display results
+- [ ] add expression & result **history** as dropdown with scrollbar (on pressing "enter" + put result as input text and place cursor & focus)
+- [ ] add keyboard shortcuts to show / hide history (e.g. Ctrl H)
+- [ ] add keyboard shortcuts to navigate in history (e.g. Ctrl arrow up / down) - should also show history if hidden
+- [ ] add option to make history persistent and save last N entries it to some sensible place (where? settings?)
+- [ ] add option to clear history
+- [ ] add action "copy value to **clipboard**" including keyboard shortcut; also allow copying the expression; and of course allow copying all past expressions and results from the history
+- [ ] add icon to open message box for documentation and introduction that **explains some JS expression syntax** (e.g. the examples above)
+- [ ] add **translations** (i18n)
+- [ ] add option to turn off to use `JSON.stringify()` to display results
 
-## Cinnamon Desklet Development hints
+## Changelog
+
+### version 0.1, Sep 21, 2021
+
+- initial version: just simple evaluation 
+
+## Development Hints
 
 This is the first desklet and also first Gnome app I developed. It was a bit tricky for me to find helpful documentation. Here some things that were helpful for me.
+
+### Gnome
+
+Kind of useful Documentation:
+
+- [Gnome developer documentation](https://developer.gnome.org/documentation/introduction.html)
+- [Gnome GTK API 4.0 documentation](https://docs.gtk.org/gtk4/#classes)
+- [Gnome's St widget library](https://gjs-docs.gnome.org/st10~1.0_api/) and the doc of [St's JS binding](https://www.roojs.com/seed/gir-1.2-gtk-3.0/seed/St.html)
+- [Introduction to Gnome JS (GJS) extensions](https://gjs.guide/extensions/overview/anatomy.html#prefs-js) in general
+- https://gjs.guide/guides/gtk/3/ Gtk / GJS Guide
+
+### Cinnamon
 
 - source can be directly put in .local/share/cinnamon/uuid (where `uuid` is the UUID of you desklet)
 - use `Cinnamon Looking Glass` ("Melange") to
     - reload code after changes!! (tab "Extension")
     - see log messages
 - I had to restart Cinnamon in order to get the CSS reloaded, not sure if there is another possibility.
-- Kind of useful Documentation:
-  - [Gnome developer documentation](https://developer.gnome.org/documentation/introduction.html)
-  - [Gnome GTK API 4.0 documentation](https://docs.gtk.org/gtk4/#classes)
-  - [Gnome's St widget library](https://gjs-docs.gnome.org/st10~1.0_api/) and the doc of [St's JS binding](https://www.roojs.com/seed/gir-1.2-gtk-3.0/seed/St.html)
-  - [Introduction to Gnome JS (GJS) extensions](https://gjs.guide/extensions/overview/anatomy.html#prefs-js) in general
-  - [A bit too short introduction in writing Cinnamon desklets](http://www.erikedrosa.com/2014/12/31/hello-world-desklet-tutorial.html)
-  - The directory of the desklets listed on https://cinnamon-spices.linuxmint.com/ is based on https://github.com/linuxmint/cinnamon-spices-desklets
+- The directory of the desklets listed on https://cinnamon-spices.linuxmint.com/ is based on https://github.com/linuxmint/cinnamon-spices-desklets
+- The [scollin's developer's tools desklet](https://cinnamon-spices.linuxmint.com/desklets/view/17) is quite helpful!
+
+#### Documentation:
+
+- [A bit too short introduction in writing Cinnamon desklets](http://www.erikedrosa.com/2014/12/31/hello-world-desklet-tutorial.html)
+- Cinnamon-specific tutorials https://projects.linuxmint.com/reference/git/cinnamon-tutorials/
+- https://nickdurante.github.io/development/Writing-a-Cinnamon-Applet/
+- https://github.com/gustavo-iniguez-goya/arpsentinel-applet/wiki/Collaborating-and-resources
+  - "Read the source code (very useful): /usr/share/cinnamon/js/ui/"
+- [Source of the Cinnamon docs](https://github.com/linuxmint/cinnamon/tree/master/docs/reference)
+  - but also as [MarkDown version here](https://github.com/linuxmint/linuxmint.github.io/tree/master/reference/git) ... is this generated from the above?
