@@ -133,7 +133,7 @@ msgstr "A altura do desklet em pixels."
 
 #. settings-schema.json->transparency->description
 msgid "Background transparency"
-msgstr "Transparência do fundod transparency"
+msgstr "Transparência do fundo"
 
 #. settings-schema.json->transparency->tooltip
 msgid "The higher the value, the more solid the desklet background."
