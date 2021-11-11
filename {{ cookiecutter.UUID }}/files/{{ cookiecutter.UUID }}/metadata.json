@@ -1,0 +1,6 @@
+{
+    "uuid" : "{{ cookiecutter.UUID }}",
+    "name" : "{{ cookiecutter.project_name }}",
+    "description" : "{{ cookiecutter.description }}",
+    "pervent-decorations" : "{{ cookiecutter.prevent_decorations }}"
+}

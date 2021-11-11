@@ -1,0 +1,8 @@
+{
+    "project_name"    : "My Projetc",
+    "author_name"     : "ZenithClown",
+
+    "UUID" : "{{ cookiecutter.project_name.lower().replace(' ', '_') }}@{{ cookiecutter.author_name }}",
+    "description" : "A short description of {{ cookiecutter.project_name }}.",
+    "prevent_decorations" : "Prevent Desklet Decorations (true/false)?"
+}

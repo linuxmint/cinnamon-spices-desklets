@@ -1,0 +1,6 @@
+{
+    "UUID" : "{{ cookiecutter.UUID }}",
+    "author" : "{{ cookiecutter.author_name }}",
+    "created_on" : "{% now 'utc', '%A, %B %e, %H:%M' %} (UTC)",
+    "short_description" : "{{ cookiecutter.description }}",
+}
