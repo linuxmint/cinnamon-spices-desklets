@@ -1,0 +1,9 @@
+{
+    "uuid": "jira@codeunifier",
+    "description": "This is my first desklet",
+    "name": "Jira Desklet",
+    "max-instances": "1",
+    "author": "codeunifier",
+    "prevent-decorations": true,
+    "version": "0.1"
+}
