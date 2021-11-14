@@ -35,7 +35,7 @@ msgstr "CPU-Auslastung"
 
 #. settings-schema.json->head0->description
 msgid "Settings for the CPU Load desklet"
-msgstr "Einstellungen für CPU Load desklet"
+msgstr "Einstellungen für das CPU-Auslastungs-Desklet"
 
 #. settings-schema.json->head1->description
 msgid "General"
