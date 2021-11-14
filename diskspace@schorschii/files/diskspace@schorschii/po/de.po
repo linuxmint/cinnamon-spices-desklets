@@ -158,5 +158,8 @@ msgstr "Dateimanager öffnen"
 msgid "Open Partition Manager"
 msgstr "Partitions-Editor öffnen"
 
+msgid "Open System Monitor"
+msgstr "Systemüberwachung öffnen"
+
 msgid "Nothing"
 msgstr "Nichts"
