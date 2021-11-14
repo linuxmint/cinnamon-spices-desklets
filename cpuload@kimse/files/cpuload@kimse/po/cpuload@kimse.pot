@@ -123,6 +123,10 @@ msgstr ""
 msgid "Colors"
 msgstr ""
 
+#. settings-schema.json->font-color->description
+msgid "Font color"
+msgstr ""
+
 #. settings-schema.json->color-theme->description
 msgid "Color theme"
 msgstr ""
