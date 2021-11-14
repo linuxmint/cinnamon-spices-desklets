@@ -396,7 +396,9 @@ MyDesklet.prototype = {
 			let fs = decodeURIComponent(this.filesystem.replace("file://", "").trim());
 			Util.spawnCommandLine("xdg-open " + '"' + fs + '"');
 		} else if(this.onclick_action == "partitionmanager") {
-			Util.spawnCommandLine("gnome-disks");
+				Util.spawnCommandLine("gnome-disks");
+		} else if(this.onclick_action == "sysmonitor") {
+				Util.spawnCommandLine("gnome-system-monitor");
 		}
 	},
 

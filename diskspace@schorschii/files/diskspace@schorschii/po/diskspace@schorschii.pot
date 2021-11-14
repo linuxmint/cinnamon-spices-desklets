@@ -147,5 +147,8 @@ msgstr ""
 msgid "Open Partition Manager"
 msgstr ""
 
+msgid "Open System Monitor"
+msgstr ""
+
 msgid "Nothing"
 msgstr ""
