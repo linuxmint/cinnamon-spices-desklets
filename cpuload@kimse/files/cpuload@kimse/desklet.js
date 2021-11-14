@@ -40,6 +40,7 @@ CpuLoadDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, 'refresh-interval', 'refresh_interval', this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, 'design', 'design', this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, 'circle', 'circle', this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, 'font-color', 'font_color', this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, 'color-theme', 'color_theme', this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, 'static-theme-color', 'static_theme_color', this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, 'show-background', 'show_background', this.on_setting_changed);
@@ -244,7 +245,8 @@ CpuLoadDesklet.prototype = {
      */
     getTextLabelStyle(font_size){
         return "font-size: " + font_size + "px;" +
-               "width:" + (this.cpu_container_size / global.ui_scale) + "px";
+               "width:" + (this.cpu_container_size / global.ui_scale) + "px;" +
+               "color:" + (this.font_color) + ";";
     },
 
     /**
