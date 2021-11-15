@@ -159,5 +159,8 @@ msgstr "Abrir o gerenciador de arquivos"
 msgid "Open Partition Manager"
 msgstr "Abrir o gerenciador de partições"
 
+msgid "Open System Monitor"
+msgstr "Abrir o monitor do sistema"
+
 msgid "Nothing"
 msgstr "Nenhuma ação"
