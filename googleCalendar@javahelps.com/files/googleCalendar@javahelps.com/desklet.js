@@ -170,7 +170,10 @@ GoogleCalendarDesklet.prototype = {
      * Called when the desklet is removed.
      */
     on_desklet_removed() {
-        Mainloop.source_remove(this.updateID);
+        if (this.updateID > 0) {
+            Mainloop.source_remove(this.updateID);
+        }
+        this.updateID = null;
     },
 
     /**
