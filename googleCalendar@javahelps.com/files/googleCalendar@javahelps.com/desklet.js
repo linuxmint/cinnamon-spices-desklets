@@ -154,11 +154,13 @@ GoogleCalendarDesklet.prototype = {
         var calendars = []; // We will populate it !
         this.calendarNames = [];
         reader.spawn(HOME_PATH, command, (output) => {
-            let name = output.toString().trim();
-            let display = (registeredCalendarNames.indexOf(name) > -1);
-            calendars.push({
-                name,
-                display
+            let names = output.toString().trim().split(/\r?\n/);
+            names.forEach((name) => {
+                let display = (registeredCalendarNames.indexOf(name) > -1);
+                calendars.push({
+                    name,
+                    display
+                });
             });
             this.calendarNames = calendars; // Refreshes the array in Settings.
         });
@@ -200,7 +202,6 @@ GoogleCalendarDesklet.prototype = {
      * Construct gcalendar command to retrieve events.
      */
     getCalendarCommand(accountId) {
-        let dateTime = new Date();
         let command = ["gcalendar", "--output", "json"];
         if (this.clientId != null && this.clientId != "") {
             command.push("--client-id");
@@ -465,7 +466,7 @@ GoogleCalendarDesklet.prototype = {
             for (let name of calendars) {
                 name = name.trim();
                 if (name !== "") {
-                    command.push(name);
+                    command.push("\"" + name + "\"");
                 }
             }
         }

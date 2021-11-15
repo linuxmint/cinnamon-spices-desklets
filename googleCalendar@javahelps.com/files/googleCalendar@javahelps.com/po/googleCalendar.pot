@@ -8,16 +8,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-18 08:52-0400\n"
+"POT-Creation-Date: 2021-11-14 20:26-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #. metadata.json->name
+#. settings-schema.json->page_gcalendar->title
 #: desklet.js:104
 msgid "Google Calendar"
 msgstr ""
@@ -26,43 +27,43 @@ msgstr ""
 msgid "Open Google Calendar"
 msgstr ""
 
-#: desklet.js:227
+#: desklet.js:237
 msgid "No events found"
 msgstr ""
 
-#: desklet.js:376
+#: desklet.js:386
 msgid "gcalendar is not authorized"
 msgstr ""
 
-#: desklet.js:378
+#: desklet.js:388
 msgid "gcalendar token expired"
 msgstr ""
 
-#: desklet.js:383
+#: desklet.js:393
 msgid "Execute: "
 msgstr ""
 
-#: desklet.js:396
+#: desklet.js:406
 msgid "Unknown Error"
 msgstr ""
 
-#: desklet.js:399
+#: desklet.js:409
 msgid "Install gcalendar to use this desklet."
 msgstr ""
 
-#: desklet.js:400
+#: desklet.js:410
 msgid "Visit: "
 msgstr ""
 
-#: desklet.js:438
+#: desklet.js:448
 msgid "Unable to retrieve events..."
 msgstr ""
 
-#: lib/utility.js:165 lib/xdate.js:350
+#: lib/utility.js:156 lib/xdate.js:350
 msgid "AM"
 msgstr ""
 
-#: lib/utility.js:165 lib/xdate.js:351
+#: lib/utility.js:156 lib/xdate.js:351
 msgid "PM"
 msgstr ""
 
@@ -224,7 +225,11 @@ msgstr ""
 msgid "A desklet that displays your agenda based on Google Calendar"
 msgstr ""
 
-#. settings-schema.json->top->description
+#. settings-schema.json->page_style->title
+msgid "Desklet Style"
+msgstr ""
+
+#. settings-schema.json->display0->description
 msgid "Google Calendar authentication"
 msgstr ""
 
@@ -304,10 +309,6 @@ msgstr ""
 
 #. settings-schema.json->delay->units
 msgid "minutes"
-msgstr ""
-
-#. settings-schema.json->display2->description
-msgid "Desklet style"
 msgstr ""
 
 #. settings-schema.json->date_format->description
