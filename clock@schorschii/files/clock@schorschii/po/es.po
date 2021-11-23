@@ -1,0 +1,220 @@
+# ANALOG CHRONOMETER TRANSLATIONS.
+# Copyright (C) 2017 FULL NAME
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Analog Chronometer VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2017-05-04 18:03+0100\n"
+"PO-Revision-Date: 2021-11-13 14:48-0300\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: es\n"
+
+#: desklet.js:190
+msgid "Clock"
+msgstr "Reloj"
+
+#. clock@schorschii->settings-schema.json->head3->description
+msgid "Timezone"
+msgstr "Zona horaria"
+
+#. clock@schorschii->settings-schema.json->style->description
+msgid "Clock style"
+msgstr "Estilo de reloj"
+
+#. clock@schorschii->settings-schema.json->style->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Seleccione el gráfico de fondo que desea utilizar."
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Dark"
+msgstr "Oscuro"
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Light"
+msgstr "Claro"
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Dark Transparent"
+msgstr "Transparente oscuro"
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Light Transparent"
+msgstr "Transparente claro"
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Custom"
+msgstr "Personalizado"
+
+#. clock@schorschii->settings-schema.json->head4->description
+msgid "Custom images (available if clock style is set to 'custom')"
+msgstr ""
+"Imágenes personalizadas (disponibles si el estilo del reloj está configurado "
+"como \"personalizado\")"
+
+#. clock@schorschii->settings-schema.json->desklet-size->description
+msgid "Desklet size"
+msgstr "Tamaño del desklet"
+
+#. clock@schorschii->settings-schema.json->desklet-size->tooltip
+msgid "Increase or decrease the size of the clock."
+msgstr "Aumentar o disminuir el tamaño del reloj."
+
+#. clock@schorschii->settings-schema.json->desklet-size->units
+msgid "pixels"
+msgstr "píxeles"
+
+#. clock@schorschii->settings-schema.json->head2->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Etiqueta personalizada del desklet (solo visible si las decoraciones están "
+"habilitadas)"
+
+#. clock@schorschii->settings-schema.json->head1->description
+msgid "Visual"
+msgstr "Visual"
+
+#. clock@schorschii->settings-schema.json->smooth-seconds-hand->description
+msgid "Smooth second hand"
+msgstr "Segundero suave"
+
+#. clock@schorschii->settings-schema.json->smooth-seconds-hand->tooltip
+msgid ""
+"Use smooth animation for seconds hand instead of refreshing it only every "
+"second."
+msgstr ""
+"Utilice una animación suave para el segundero en lugar de actualizarla solo "
+"cada segundo."
+
+#. clock@schorschii->settings-schema.json->head0->description
+msgid "Settings for clock@schorschii"
+msgstr "Configuración de clock@schorschii"
+
+#. clock@schorschii->settings-schema.json->img-h->description
+msgid "Hour hand"
+msgstr "Manecilla de la hora"
+
+#. clock@schorschii->settings-schema.json->img-h->tooltip
+msgid ""
+"Choose your own image for the hour hand. Should be as big as the background "
+"image."
+msgstr ""
+"Elija su propia imagen para la manecilla de la hora. Debe ser tan grande "
+"como la imagen de fondo."
+
+#. clock@schorschii->settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Ocultar decoraciones"
+
+#. clock@schorschii->settings-schema.json->img-m->description
+msgid "Minute hand"
+msgstr "Minutero"
+
+#. clock@schorschii->settings-schema.json->img-m->tooltip
+msgid ""
+"Choose your own image for the minute hand. Should be as big as the "
+"background image."
+msgstr ""
+"Elija su propia imagen para la manecilla del minutero. Debe ser tan grande "
+"como la imagen de fondo."
+
+#. clock@schorschii->settings-schema.json->img-bg->description
+msgid "Background"
+msgstr "Fondo"
+
+#. clock@schorschii->settings-schema.json->img-bg->tooltip
+msgid "Choose your own background image."
+msgstr "Elija su propia imagen de fondo."
+
+#. clock@schorschii->settings-schema.json->img-s->description
+msgid "Seconds hand"
+msgstr "Segundero"
+
+#. clock@schorschii->settings-schema.json->img-s->tooltip
+msgid ""
+"Choose your own image for the seconds hand. Should be as big as the "
+"background image."
+msgstr ""
+"Elija su propia imagen para la manecilla del segundero. Debe ser tan grande "
+"como la imagen de fondo."
+
+#. clock@schorschii->settings-schema.json->custom-tz->description
+msgid "Custom time zone"
+msgstr "Zona horaria personalizada"
+
+#. clock@schorschii->settings-schema.json->custom-tz->tooltip
+msgid "Enter your custom timezone here."
+msgstr "Introduzca aquí su zona horaria personalizada."
+
+#. clock@schorschii->settings-schema.json->show-seconds-hand->description
+msgid "Show seconds hand"
+msgstr "Mostrar el segundero"
+
+#. clock@schorschii->settings-schema.json->show-seconds-hand->tooltip
+msgid "Show or hide the seconds hand."
+msgstr "Mostrar u ocultar el segundero."
+
+#. clock@schorschii->settings-schema.json->use-custom-tz->description
+msgid "Use a custom timezone"
+msgstr "Utilizar una zona horaria personalizada"
+
+#. clock@schorschii->settings-schema.json->use-custom-tz->tooltip
+msgid ""
+"Checking this box allows you to set a custom timezone in the field below."
+msgstr ""
+"Marcar esta casilla permite establecer una zona horaria personalizada en el "
+"campo inferior."
+
+#. clock@schorschii->settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Utilice una etiqueta personalizada del desklet"
+
+#. clock@schorschii->settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Marcar esta casilla permite establecer una etiqueta personalizada en el "
+"campo a continuación."
+
+#. clock@schorschii->settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Etiqueta personalizada del desklet"
+
+#. clock@schorschii->settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here, e.g. for multiple timezones. This field is "
+"unavailable unless the checkbox above is enabled."
+msgstr ""
+"Establezca aquí su etiqueta personalizada, por ejemplo, para múltiples zonas "
+"horarias. Este campo no está disponible a menos que la casilla anterior esté "
+"activada."
+
+#. clock@schorschii->settings-schema.json->smooth-minutes-hand->description
+msgid "Smooth minute hand"
+msgstr "Minutero suave"
+
+#. clock@schorschii->settings-schema.json->smooth-minutes-hand->tooltip
+msgid ""
+"Use smooth animation for minute hand instead of moving it only once per "
+"minute."
+msgstr ""
+"Utilice una animación suave para el minutero en lugar de moverlo solo una "
+"vez por minuto."
+
+#. clock@schorschii->metadata.json->description
+msgid ""
+"A scaleable analog clock desklet with smooth hands and free choice of images."
+msgstr ""
+"Un desklet de reloj analógico escalable con con agujas suaves y libre "
+"elección de imágenes."
+
+#. clock@schorschii->metadata.json->name
+msgid "Analog Chronometer"
+msgstr "Cronómetro analógico"
