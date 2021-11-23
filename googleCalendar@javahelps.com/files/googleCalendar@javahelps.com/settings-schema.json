@@ -1,5 +1,61 @@
 {
-  "top": {
+  "layout": {
+    "type": "layout",
+    "pages": [
+      "page_gcalendar",
+      "page_style"
+    ],
+    "page_gcalendar": {
+      "type": "page",
+      "title": "Google Calendar",
+      "sections": [
+        "section_gcalendar"
+      ]
+    },
+    "page_style": {
+      "type": "page",
+      "title": "Desklet Style",
+      "sections": [
+        "section_style"
+      ]
+    },
+    "section_gcalendar": {
+      "type": "section",
+      "title": "",
+      "keys": [
+        "display0",
+        "clientId",
+        "clientSecret",
+        "sep1",
+        "display1",
+        "gcalendarAccount",
+        "allNamesButton",
+        "calendarNames",
+        "interval",
+        "delay"
+      ]
+    },
+    "section_style": {
+      "type": "section",
+      "title": "",
+      "keys": [
+        "date_format",
+        "today_format",
+        "tomorrow_format",
+        "use_24h_clock",
+        "zoom",
+        "transparency",
+        "textcolor",
+        "alldaytextcolor",
+        "bgcolor",
+        "diff_calendar",
+        "show_location",
+        "location_color",
+        "cornerradius"
+      ]
+    }
+  },
+  "display0": {
     "type": "header",
     "description": "Google Calendar authentication"
   },
@@ -22,11 +78,11 @@
     "type": "header",
     "description": "Calendar configuration"
   },
-  "gcalendarAccount" : {
+  "gcalendarAccount": {
     "type": "entry",
-    "default" : "",
-    "description" : "gcalendar Account ID",
-    "tooltip" : "Enter gcalendar --account id"
+    "default": "",
+    "description": "gcalendar Account ID",
+    "tooltip": "Enter gcalendar --account id"
   },
   "allNamesButton": {
     "type": "button",
@@ -39,17 +95,17 @@
     "description": "Display these calendars:",
     "tooltip": "If you want to diplay a calendar, set it to TRUE (or check its box).",
     "columns": [
-            {
-                "id": "name",
-                "title": "Calendar",
-                "type": "string"
-            },
-            {
-                "id": "display",
-                "title": "Display it?",
-                "align": 0.5,
-                "type": "boolean"
-            }
+      {
+        "id": "name",
+        "title": "Calendar",
+        "type": "string"
+      },
+      {
+        "id": "display",
+        "title": "Display it?",
+        "align": 0.5,
+        "type": "boolean"
+      }
     ],
     "default": []
   },
@@ -72,13 +128,7 @@
     "units": "minutes",
     "step": 1
   },
-  "sep2": {
-    "type": "separator"
-  },
-  "display2": {
-    "type": "header",
-    "description": "Desklet style"
-  },
+
   "date_format": {
     "type": "entry",
     "default": "dddd, MMMM dd",
