@@ -123,6 +123,10 @@ msgstr "Erhöhen oder verringern Sie die Spaltenanzahl."
 msgid "Colors"
 msgstr "Farbeinstellungen"
 
+#. settings-schema.json->font-color->description
+msgid "Font color"
+msgstr "Schriftfarbe"
+
 #. settings-schema.json->color-theme->description
 msgid "Color theme"
 msgstr "Kreisfarbe"
