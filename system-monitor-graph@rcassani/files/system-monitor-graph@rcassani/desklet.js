@@ -7,25 +7,32 @@ const Cinnamon = imports.gi.Cinnamon;
 const Gio = imports.gi.Gio;
 const Cairo = imports.cairo;
 const St = imports.gi.St;
-const Util = imports.misc.util;
+//const Util = imports.misc.util;
 const GLib = imports.gi.GLib;
+const Gettext = imports.gettext;
 
-const UUID = "system-monitor-graph@rcassani";
-const DESKLET_PATH = imports.ui.deskletManager.deskletMeta[UUID].path;
 const GIB_TO_KIB = 1048576; // 1 GiB = 1,048,576 kiB
 const GB_TO_B = 1000000000; // 1 GB  = 1,000,000,000 B
 const GIB_TO_MIB = 1024;    // 1 GiB = 1,042 MiB
 
+const UUID = "system-monitor-graph@rcassani";
+const DESKLET_PATH = imports.ui.deskletManager.deskletMeta[UUID].path;
 
-function MyDesklet(metadata, desklet_id) {
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+
+function _(str) {
+  return Gettext.dgettext(UUID, str);
+}
+
+function SystemMonitorGraph(metadata, desklet_id) {
   this._init(metadata, desklet_id);
 }
 
 function main(metadata, desklet_id) {
-  return new MyDesklet(metadata, desklet_id);
+  return new SystemMonitorGraph(metadata, desklet_id);
 }
 
-MyDesklet.prototype = {
+SystemMonitorGraph.prototype = {
     __proto__: Desklet.Desklet.prototype,
 
     _init: function(metadata, desklet_id) {
@@ -139,7 +146,7 @@ MyDesklet.prototype = {
           case "cpu":
               let cpu_use = this.get_cpu_use();
               value = cpu_use / 100;
-              text1 = "CPU";
+              text1 = _("CPU");
               text2 = Math.round(cpu_use).toString() + "%";
               break;
 
@@ -147,10 +154,10 @@ MyDesklet.prototype = {
               let ram_values = this.get_ram_values();
               let ram_use = 100 * ram_values[1] / ram_values[0];
               value = ram_use / 100;
-              text1 = "RAM";
+              text1 = _("RAM");
               text2 = Math.round(ram_use).toString() + "%"
               text3 = ram_values[1].toFixed(1) + " / "
-                    + ram_values[0].toFixed(1) + " GiB";
+                    + ram_values[0].toFixed(1) + " " + _("GiB");
               break;
 
           case "hdd":
@@ -162,8 +169,8 @@ MyDesklet.prototype = {
               text1 = this.filesystem_label;
               if (text1 == "") text1 = hdd_values[0];
               text2 = Math.round(hdd_use).toString() + "%"
-              text3 = hdd_values[3].toFixed(0) + " GB free of "
-                    + hdd_values[2].toFixed(0) + " GB";
+              text3 = hdd_values[3].toFixed(0) + " " + _("GB free of") + " "
+                    + hdd_values[2].toFixed(0) + " " + _("GB");
               break;
 
           case "gpu":
@@ -173,17 +180,17 @@ MyDesklet.prototype = {
                         case "usage":
                             let gpu_use = this.get_nvidia_gpu_use();
                             value = gpu_use / 100;
-                            text1 = "GPU Usage";
+                            text1 = _("GPU Usage");
                             text2 = Math.round(gpu_use).toString() + "%";
                             break;
                         case "memory":
                             let gpu_mem_values = this.get_nvidia_gpu_mem();
                             let gpu_mem_use = 100 * gpu_mem_values[1] / gpu_mem_values[0];
                             value = gpu_mem_use / 100;
-                            text1 = "GPU Memory";
+                            text1 = _("GPU Memory");
                             text2 = Math.round(gpu_mem_use).toString() + "%"
                             text3 = gpu_mem_values[1].toFixed(1) + " / "
-                                  + gpu_mem_values[0].toFixed(1) + " GiB";
+                                  + gpu_mem_values[0].toFixed(1) + " " + _("GiB");
                             break;
                     }
                     break;
