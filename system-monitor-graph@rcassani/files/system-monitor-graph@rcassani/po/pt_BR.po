@@ -138,7 +138,7 @@ msgstr "Duração do gráfico"
 
 #. settings-schema.json->duration->tooltip
 msgid "Maximum among of time to show in the graph."
-msgstr "Máximo de tempo para mostrar no gráfico."
+msgstr "Período máximo de tempo para mostrar no gráfico."
 
 #. settings-schema.json->duration->options
 #. settings-schema.json->refresh-interval->options
