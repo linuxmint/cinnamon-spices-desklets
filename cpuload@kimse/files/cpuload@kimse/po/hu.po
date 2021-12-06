@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-14 17:33+0100\n"
-"PO-Revision-Date: 2021-12-06 10:31+0100\n"
+"PO-Revision-Date: 2021-12-06 10:33+0100\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: \n"
 "Language: hu\n"
@@ -125,7 +125,6 @@ msgid "Colors"
 msgstr "Színek"
 
 #. settings-schema.json->font-color->description
-#, fuzzy
 msgid "Font color"
 msgstr "Betűszín"
 
