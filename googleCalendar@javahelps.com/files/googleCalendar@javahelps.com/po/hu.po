@@ -7,17 +7,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-18 08:52-0400\n"
-"PO-Revision-Date: 2021-04-11 10:43+0200\n"
+"POT-Creation-Date: 2021-11-14 20:26-0500\n"
+"PO-Revision-Date: 2021-12-06 10:34+0100\n"
+"Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
+"Language-Team: \n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Last-Translator: Balazs Bosak <bossbob88@gmail.com>\n"
-"Language-Team: \n"
 "X-Generator: Poedit 2.3\n"
 
 #. metadata.json->name
+#. settings-schema.json->page_gcalendar->title
 #: desklet.js:104
 msgid "Google Calendar"
 msgstr "Google Naptár"
@@ -26,43 +27,43 @@ msgstr "Google Naptár"
 msgid "Open Google Calendar"
 msgstr "Google Naptár megnyitása"
 
-#: desklet.js:227
+#: desklet.js:237
 msgid "No events found"
 msgstr "Nem találhatók események"
 
-#: desklet.js:376
+#: desklet.js:386
 msgid "gcalendar is not authorized"
 msgstr "gcalendar nincs engedélyezve"
 
-#: desklet.js:378
+#: desklet.js:388
 msgid "gcalendar token expired"
 msgstr "gcalendar token lejárt"
 
-#: desklet.js:383
+#: desklet.js:393
 msgid "Execute: "
 msgstr "Végrehajtás: "
 
-#: desklet.js:396
+#: desklet.js:406
 msgid "Unknown Error"
 msgstr "Ismeretlen hiba"
 
-#: desklet.js:399
+#: desklet.js:409
 msgid "Install gcalendar to use this desklet."
 msgstr "Telepítse a gcalendar-t az asztalkalmazás használatához."
 
-#: desklet.js:400
+#: desklet.js:410
 msgid "Visit: "
 msgstr "Látogasson el ide: "
 
-#: desklet.js:438
+#: desklet.js:448
 msgid "Unable to retrieve events..."
 msgstr "Nem sikerült lekérni az eseményeket..."
 
-#: lib/utility.js:165 lib/xdate.js:350
+#: lib/utility.js:156 lib/xdate.js:350
 msgid "AM"
 msgstr "de."
 
-#: lib/utility.js:165 lib/xdate.js:351
+#: lib/utility.js:156 lib/xdate.js:351
 msgid "PM"
 msgstr "du."
 
@@ -225,7 +226,11 @@ msgid "A desklet that displays your agenda based on Google Calendar"
 msgstr ""
 "Egy asztalkalmazás amely megjeleníti a napirendjét a Google Naptár alapján"
 
-#. settings-schema.json->top->description
+#. settings-schema.json->page_style->title
+msgid "Desklet Style"
+msgstr "Asztalkalmazás stílusa"
+
+#. settings-schema.json->display0->description
 msgid "Google Calendar authentication"
 msgstr "Google Naptár hitelesítés"
 
@@ -284,8 +289,8 @@ msgstr "Következő naptárak megjelenítése:"
 #. settings-schema.json->calendarNames->tooltip
 msgid "If you want to diplay a calendar, set it to TRUE (or check its box)."
 msgstr ""
-"Ha egy naptárt szeretne megjeleníteni, állítsa TRUE értékre (vagy jelölje "
-"be a négyzetet)."
+"Ha egy naptárt szeretne megjeleníteni, állítsa TRUE értékre (vagy jelölje be "
+"a négyzetet)."
 
 #. settings-schema.json->calendarNames->columns->title
 msgid "Calendar"
@@ -314,10 +319,6 @@ msgstr "Frissítési gyakoriság:"
 #. settings-schema.json->delay->units
 msgid "minutes"
 msgstr "perc"
-
-#. settings-schema.json->display2->description
-msgid "Desklet style"
-msgstr "Asztalkalmazás stílusa"
 
 #. settings-schema.json->date_format->description
 msgid "Date format"
