@@ -122,7 +122,6 @@ MyDesklet.prototype = {
 	},
 
 	loadFileContent: function(file, reloadGraphics) {
-		global.log("loadFileContent");
 		file.load_contents_async(null, (file, response) => {
 			try {
 				let [success, contents, tag] = file.load_contents_finish(response);
@@ -146,28 +145,15 @@ MyDesklet.prototype = {
 		// get notes text file path
 		this.finalPath = decodeURIComponent(this.file.replace("file://", ""));
 		if(this.finalPath == "") this.finalPath = "note.txt"; // in home dir
-		global.log("loadText: " + this.finalPath);
 		// read file async
 		let file = Gio.file_new_for_path(this.finalPath);
-
+		// create file monitor
 		this.monitor = file.monitor_file(Gio.FileMonitorFlags.NONE, null);
 		//this.monitor.set_rate_limit(1000);
-		global.log("loadText: monitor " + this.monitor.rate_limit);
 
+		// listen for 'change' event
 		this.monitor.connect('changed', Lang.bind(this, function(monitor, file, other_file, event_type) {
-			/*
-Gio.FileMonitorEvent.ATTRIBUTE_CHANGED : 4
-Gio.FileMonitorEvent.CHANGED : 0
-Gio.FileMonitorEvent.CHANGES_DONE_HINT : 1
-Gio.FileMonitorEvent.CREATED : 3
-Gio.FileMonitorEvent.DELETED : 2
-Gio.FileMonitorEvent.MOVED : 7
-Gio.FileMonitorEvent.PRE_UNMOUNT : 5
-Gio.FileMonitorEvent.UNMOUNTED : 6
-			 */
-			global.log("loadText: change " + event_type);
 			if (event_type == Gio.FileMonitorEvent.CHANGES_DONE_HINT || event_type == Gio.FileMonitorEvent.DELETED) {
-				//global.log("loadText: change " + event_type);
 				this.loadFileContent(file, false);
 			}
 		}));
@@ -264,7 +250,6 @@ Gio.FileMonitorEvent.UNMOUNTED : 6
 	},
 
 	on_setting_changed: function() {
-		global.log("on_setting_changed");
 		// update decoration settings
 		this.refreshDecoration();
 
@@ -280,7 +265,6 @@ Gio.FileMonitorEvent.UNMOUNTED : 6
 	},
 
 	on_desklet_removed: function() {
-		global.log("on_desklet_removed");
 		this.cancelFileMonitor();
 	}
 }
