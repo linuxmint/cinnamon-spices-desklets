@@ -2,6 +2,8 @@
 
 Very simple and minimalistic but yet quite powerful calculator that evaluates [JavaScript expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators). The complete power of JS directly at your hand! ;-)
 
+Original repository: [https://github.com/ptandler/cinnamon-spices-desklets](https://github.com/ptandler/cinnamon-spices-desklets/tree/calc%40ptandler/calc%40ptandler)
+
 ## Keyboard Input
 Keyboard input is available after the desklet was raised to top by the defined shortcut (default SUPER+C, can be changed in the desklet settings).
 
