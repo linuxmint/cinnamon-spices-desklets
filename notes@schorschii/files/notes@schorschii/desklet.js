@@ -165,8 +165,9 @@ Gio.FileMonitorEvent.MOVED : 7
 Gio.FileMonitorEvent.PRE_UNMOUNT : 5
 Gio.FileMonitorEvent.UNMOUNTED : 6
 			 */
-			if (event_type == Gio.FileMonitorEvent.CHANGES_DONE_HINT) {
-				global.log("loadText: change " + event_type);
+			global.log("loadText: change " + event_type);
+			if (event_type == Gio.FileMonitorEvent.CHANGES_DONE_HINT || event_type == Gio.FileMonitorEvent.DELETED) {
+				//global.log("loadText: change " + event_type);
 				this.loadFileContent(file, false);
 			}
 		}));
