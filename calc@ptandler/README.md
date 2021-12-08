@@ -31,19 +31,27 @@ Keyboard input is available after the desklet was raised to top by the defined s
 
 ## ToDo: Ideas for Further Development
 
-- [ ] add expression & result **history** as dropdown with scrollbar (on pressing "enter" + put result as input text and place cursor & focus)
+- [ ] add scrollbar to historyBox if it gets longer _(how does this work with St?)_
+- [ ] make max number of history entries configurable & ensure not to store more entries in the list
+- [ ] add option to convert locale number format (e.g. `1,23`) to JS notation (i.e. `1.23`) to avoid errors for those used to one of these formats!
+- [ ] add button and keyboard shortcut for "copy value to **clipboard**"
+- [ ] add icon to open message box for documentation and introduction that **explains some JS expression syntax** (e.g. the examples above)
+- [ ] add **translations** (i18n)
+- [ ] add option to use the result of current expression as new input when pressing `Enter` key (instead of empty string)
 - [ ] add keyboard shortcuts to show / hide history (e.g. Ctrl H)
 - [ ] add keyboard shortcuts to navigate in history (e.g. Ctrl arrow up / down) - should also show history if hidden
 - [ ] add option to make history persistent and save last N entries it to some sensible place (where? settings?)
 - [ ] add option to clear history
-- [ ] add action "copy value to **clipboard**" including keyboard shortcut; also allow copying the expression; and of course allow copying all past expressions and results from the history
-- [ ] add icon to open message box for documentation and introduction that **explains some JS expression syntax** (e.g. the examples above)
-- [ ] add **translations** (i18n)
 - [ ] add option to turn off to use `JSON.stringify()` to display results
 
 ## Changelog
 
-### version 0.1, Sep 21, 2021
+### version 0.2, 2021-12-08
+
+- [x] add expression & result **history** as dropdown with scrollbar (on pressing "enter" + put result as input text and place cursor & focus)
+- [x] add action copy input or result from history to current expression (by click) 
+
+### version 0.1, 2021-09-21
 
 - initial version: just simple evaluation 
 
