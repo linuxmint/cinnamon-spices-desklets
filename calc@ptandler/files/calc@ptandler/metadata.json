@@ -3,7 +3,7 @@
   "name": "Mini-Calc Desklet",
   "description": "Very simple and minimalistic but yet powerful calculator that evaluates JavaScript expressions.",
   "author": "ptandler",
-  "version": "0.1",
+  "version": "0.2",
   "shell-version": [ "3.38", "40" ],
-  "url": "https://github.com/ptandler/cinnamon-spices-desklets/tree/master/calc@ptandler"
+  "url": "https://github.com/ptandler/cinnamon-spices-desklets/tree/calc%40ptandler/calc%40ptandler"
 }
