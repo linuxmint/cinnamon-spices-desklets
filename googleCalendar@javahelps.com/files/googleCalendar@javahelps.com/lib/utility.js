@@ -49,15 +49,17 @@ function Event(eventLine, useTwentyFourHour) {
 };
 
 SpawnReader.prototype.spawn = function(path, command, func) {
-    // Remove 'gcalendar' from the command array as it is part of the writeEvents.sh
-    // Until a better solution to retrieve events from gcalendar use the writeEvents.sh
-    command.shift();
     let commandStr = command.join(" ");
-    // Using pipes to read the output sometimes leaves the command running and cause too many files opened
-    Util.spawnCommandLineAsync("bash " + DESKLET_DIR + "writeEvents.sh " + commandStr, () => {
-        let commandFileContents = Cinnamon.get_file_contents_utf8_sync(COMMAND_OUTPUT_FILE).toString();
-        func(commandFileContents);
-    });
+    Util.spawnCommandLineAsyncIO(
+        commandStr,
+        (stdout, stderr, exitCode) => {
+            if (exitCode == 0) {
+                func(stdout);
+            } else {
+                func("");
+            }
+        }
+    );
 };
 
 CalendarUtility.prototype.label = function(text, zoom, textColor, leftAlign = true, fontSize = 10) {
