@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-14 17:33+0100\n"
-"PO-Revision-Date: 2021-04-11 10:37+0200\n"
+"PO-Revision-Date: 2021-12-06 10:33+0100\n"
+"Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
+"Language-Team: \n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Last-Translator: Balazs Bosak <bossbob88@gmail.com>\n"
-"Language-Team: \n"
 "X-Generator: Poedit 2.3\n"
 
 #: desklet.js:221
@@ -48,7 +48,9 @@ msgstr "Összes CPU mag megjelenítése"
 
 #. settings-schema.json->per-core->tooltip
 msgid "Display utilization of each CPU core rather than total CPU utilization."
-msgstr "Az egyes CPU magok kihasználtságának megjelenítése a teljes CPU kihasználtság helyett."
+msgstr ""
+"Az egyes CPU magok kihasználtságának megjelenítése a teljes CPU "
+"kihasználtság helyett."
 
 #. settings-schema.json->refresh-interval->units
 msgid "seconds"
@@ -121,6 +123,10 @@ msgstr "Növelje vagy csökkentse az oszlopok számát."
 #. settings-schema.json->head3->description
 msgid "Colors"
 msgstr "Színek"
+
+#. settings-schema.json->font-color->description
+msgid "Font color"
+msgstr "Betűszín"
 
 #. settings-schema.json->color-theme->description
 msgid "Color theme"
