@@ -1,0 +1,50 @@
+# CobiAnalogClock Desklet
+# Copyright (C) 2017 Lars Mueller
+# This file is distributed under the same license as the CobiAnalog Desklet package.
+# Lars Mueller <cobinja@yahoo.de>, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-24 09:43+0200\n"
+"PO-Revision-Date: 2021-12-17 09:17-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: settings.ui:7
+msgid "Analog Clock Settings"
+msgstr "Ajustes del reloj analógico"
+
+#: settings.ui:99
+msgid "Theme"
+msgstr "Tema"
+
+#: settings.ui:138
+msgid "Size"
+msgstr "Tamaño"
+
+#: settings.ui:182
+msgid "Show Seconds"
+msgstr "Mostrar el segundero"
+
+#: settings.ui:220
+msgid "Hide decorations"
+msgstr "Ocultar decoraciones"
+
+#: settings.ui:259
+msgid "Use specific timezone"
+msgstr "Utilizar una zona horaria específica"
+
+#: settings.ui:297
+msgid "Display Timezone"
+msgstr "Mostrar zona horaria"
+
+msgid "An analog clock desklet"
+msgstr "Un desklet de reloj analógico"
