@@ -121,12 +121,7 @@ MyDesklet.prototype = {
 		this.refreshDecoration();
 	},
 
-	loadText: function(reloadGraphics = false) {
-		// get notes text file path
-		this.finalPath = decodeURIComponent(this.file.replace("file://", ""));
-		if(this.finalPath == "") this.finalPath = "note.txt"; // in home dir
-		// read file async
-		let file = Gio.file_new_for_path(this.finalPath);
+	loadFileContent: function(file, reloadGraphics) {
 		file.load_contents_async(null, (file, response) => {
 			try {
 				let [success, contents, tag] = file.load_contents_finish(response);
@@ -144,9 +139,30 @@ MyDesklet.prototype = {
 			// refresh desklet content
 			this.refreshDesklet(reloadGraphics);
 		});
+	},
 
-		// refresh again in two seconds
-		this.timeout = Mainloop.timeout_add_seconds(2, Lang.bind(this, this.loadText));
+	loadText: function(reloadGraphics = false) {
+		// get notes text file path
+		this.finalPath = decodeURIComponent(this.file.replace("file://", ""));
+		if(this.finalPath == "") this.finalPath = "note.txt"; // in home dir
+		// read file async
+		let file = Gio.file_new_for_path(this.finalPath);
+		// create file monitor
+		this.monitor = file.monitor_file(Gio.FileMonitorFlags.NONE, null);
+		//this.monitor.set_rate_limit(1000);
+
+		// listen for 'change' event
+		this.monitor.connect('changed', Lang.bind(this, function(monitor, file, other_file, event_type) {
+			if (event_type == Gio.FileMonitorEvent.CHANGES_DONE_HINT || event_type == Gio.FileMonitorEvent.DELETED) {
+				this.loadFileContent(file, false);
+			}
+		}));
+
+		this.loadFileContent(file, reloadGraphics);
+	},
+
+	cancelFileMonitor: function() {
+		this.monitor = null;
 	},
 
 	refreshDesklet: function(reloadGraphics = false) {
@@ -238,7 +254,7 @@ MyDesklet.prototype = {
 		this.refreshDecoration();
 
 		// settings changed; instant refresh
-		Mainloop.source_remove(this.timeout);
+		this.cancelFileMonitor();
 		this.loadText(true);
 	},
 
@@ -249,6 +265,6 @@ MyDesklet.prototype = {
 	},
 
 	on_desklet_removed: function() {
-		Mainloop.source_remove(this.timeout);
+		this.cancelFileMonitor();
 	}
 }
