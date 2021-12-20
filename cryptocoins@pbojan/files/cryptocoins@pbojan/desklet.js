@@ -11,7 +11,7 @@ const Util = imports.misc.util;
 const UUID = 'cryptocoins@pbojan';
 const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
 const HELP_URL = 'https://github.com/pbojan/cryptocoins-desklet-cinnamon#usage-help';
-const DONATE_URL = 'https://github.com/pbojan/cryptocoins-desklet-cinnamon#contributedonate';
+const DONATE_URL = 'https://cryptocurrencyticker.xyz/#contribute';
 const API_URL = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest';
 const WIDTH = 220;
 const WIDTH_ICON = 50 / global.ui_scale;
@@ -49,7 +49,8 @@ CryptocurrencyTicker.prototype = {
 
       this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, desklet_id);
       this.settings.bind('apiKey', 'cfgApiKey', this.onSettingsChanged);
-      this.settings.bind('coin', 'cfgCoin', this.onSettingsChanged);
+      this.settings.bind('coinSymbol', 'cfgCoinSymbol', this.onSettingsChanged);
+      this.settings.bind('coinID', 'cfgCoinID', this.onSettingsChanged);
       this.settings.bind('currency', 'cfgCurrency', this.onSettingsChanged);
       this.settings.bind('assetsOwned', 'cfgAssetsOwned', this.onSettingsChanged);
       this.settings.bind('assetsValue', 'cfgAssetsValue', this.onSettingsChanged);
@@ -60,7 +61,8 @@ CryptocurrencyTicker.prototype = {
       this.setHeader('Crypto Coins Ticker');
 
       this.cfgApiKey = this.cfgApiKey || '';
-      this.cfgCoin = this.cfgCoin || '1';
+      this.cfgCoinID = this.cfgCoinID || '';
+      this.cfgCoinSymbol = this.cfgCoinSymbol || 'BTC';
       this.cfgCurrency = this.cfgCurrency.toUpperCase() || 'USD';
       this.cfgAssetsOwned = this.cfgAssetsOwned || 0.0;
       this.cfgAssetsValue = this.cfgAssetsValue || 0.0;
@@ -157,10 +159,12 @@ CryptocurrencyTicker.prototype = {
       this.showLoading();
     }
 
-    var message = Soup.Message.new(
-        'GET',
-        API_URL + '?id=' + parseInt(this.cfgCoin) + '&convert=' + this.cfgCurrency
-    );
+    let url = API_URL + '?symbol=' + this.cfgCoinSymbol.toUpperCase() + '&convert=' + this.cfgCurrency;
+    if (this.cfgCoinID !== '') {
+      url = API_URL + '?id=' + this.cfgCoinID + '&convert=' + this.cfgCurrency;
+    }
+
+    var message = Soup.Message.new('GET', url);
     message.request_headers.append('X-CMC_PRO_API_KEY', this.cfgApiKey);
 
     httpSession.queue_message(message,
@@ -172,7 +176,13 @@ CryptocurrencyTicker.prototype = {
           return;
         }
 
-        var result = JSON.parse(message.response_body.data).data[this.cfgCoin];
+        let result = JSON.parse(message.response_body.data);
+        if (this.cfgCoinID !== '') {
+          result = result.data[this.cfgCoinID];
+        } else {
+          result = result.data[this.cfgCoinSymbol.toUpperCase()];
+        }
+
         if (initUI === true) {
           global.log('Init UI, create all objects for coin: ' + result['name']);
           this.setupUI(result);
