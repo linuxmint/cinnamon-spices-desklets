@@ -269,10 +269,7 @@ QuotesTable.prototype = {
 
     roundAmount : function (amount, maxDecimals) {
         if (maxDecimals > -1)  {
-            const parts = amount.toString().split(".");
-            if (parts.length > 1 && parts[1].length > maxDecimals) {
-                return Number((amount).toFixed(maxDecimals));
-            }
+            return amount.toFixed(maxDecimals);
         }
         return amount;
     },
