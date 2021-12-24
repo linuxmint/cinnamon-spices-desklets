@@ -70,7 +70,7 @@
     "presentationColorsSection": {
       "type": "section",
       "title": "Colors",
-      "keys": ["alternativeColors"]
+      "keys": ["uptrendChangeColor", "downtrendChangeColor"]
     },
     "layoutDimensionSection": {
       "type": "section",
@@ -171,12 +171,6 @@
     "description": "Sort in ascending order",
     "tooltip": "Check to sort quotes in ascending order, uncheck to sort in descending order."
   },
-  "alternativeColors": {
-    "type": "checkbox",
-    "default": false,
-    "description": "Use alternative colors",
-    "tooltip": "Use blue instead of green."
-  },
   "showChangeIcon": {
     "type": "checkbox",
     "default": true,
@@ -253,5 +247,17 @@
     "default": true,
     "description": "Show trading time",
     "tooltip": "Display the last trading time (if current day) or date."
+  },
+  "uptrendChangeColor": {
+    "type": "colorchooser",
+    "description": "Uptrend change color",
+    "tooltip": "Color of the uptrend change",
+    "default": "green"
+  },
+  "downtrendChangeColor": {
+    "type": "colorchooser",
+    "description": "Downtrend change color",
+    "tooltip": "Color of the downtrend change",
+    "default": "red"
   }
 }

@@ -115,7 +115,8 @@ QuotesTable.prototype = {
         let cellContents = [];
 
         if (shouldShow.changeIcon) {
-            cellContents.push(this.createPercentChangeIcon(quote, shouldShow.alternativeColors));
+            cellContents.push(this.createPercentChangeIcon(quote,
+                shouldShow.uptrendChangeColor, shouldShow.downtrendChangeColor));
         }
         if (shouldShow.quoteName) {
             cellContents.push(this.createQuoteNameLabel(quote, shouldShow.useLongName, shouldShow.linkQuote));
@@ -130,7 +131,8 @@ QuotesTable.prototype = {
             cellContents.push(this.createAbsoluteChangeLabel(quote, shouldShow.currencySymbol, shouldShow.decimalPlaces));
         }
         if (shouldShow.percentChange) {
-            cellContents.push(this.createPercentChangeLabel(quote, shouldShow.colorPercentChange, shouldShow.alternativeColors));
+            cellContents.push(this.createPercentChangeLabel(quote, shouldShow.colorPercentChange,
+                shouldShow.uptrendChangeColor, shouldShow.downtrendChangeColor));
         }
         if (shouldShow.tradeTime) {
             cellContents.push(this.createTradeTimeLabel(quote));
@@ -226,17 +228,17 @@ QuotesTable.prototype = {
         });
     },
 
-    createPercentChangeIcon : function (quote, useAlternativeColors) {
+    createPercentChangeIcon : function (quote, uptrendChangeColor, downtrendChangeColor) {
         const percentChange = this.existsProperty(quote, "regularMarketChangePercent") ? parseFloat(quote.regularMarketChangePercent) : 0.0;
         let iconText = this.quoteChangeSymbolMap["EQUALS"];
-        let iconColor = "color: #cccccc;"; // TODO : get color form the settings
+        let iconColor = "";
 
         if (percentChange > 0) {
             iconText = this.quoteChangeSymbolMap["UP"];
-            iconColor = useAlternativeColors ? "color: #497cff;" : "color: #00cc55;";
+            iconColor = "color: " + uptrendChangeColor + ";";
         } else if (percentChange < 0) {
             iconText = this.quoteChangeSymbolMap["DOWN"];
-            iconColor = "color: #cc0000;";
+            iconColor = "color: " + downtrendChangeColor + ";";
         }
 
         return new St.Label({
@@ -246,24 +248,22 @@ QuotesTable.prototype = {
         });
     },
 
-    createPercentChangeLabel : function (quote, useTrendColors, useAlternativeColors) {
-        let trendClassSuffix = "";
+
+    createPercentChangeLabel : function (quote, useTrendColors, uptrendChangeColor, downtrendChangeColor) {
+        let labelColor = "";
         if (useTrendColors && this.existsProperty(quote, "regularMarketChangePercent")) {
             const percentageChange = parseFloat(quote.regularMarketChangePercent);
             if (percentageChange > 0) {
-                if (useAlternativeColors) {
-                    trendClassSuffix = "-up-alt";
-                } else {
-                    trendClassSuffix = "-up";
-                }
+                labelColor = "color: " + uptrendChangeColor + ";";
             } else if (percentageChange < 0) {
-                trendClassSuffix = "-down";
+                labelColor = "color: " + downtrendChangeColor + ";";
             }
         }
 
         return new St.Label({
             text : this.existsProperty(quote, "regularMarketChangePercent") ? (this.roundAmount(quote.regularMarketChangePercent, 2) + "%") : ABSENT,
-            style_class : "quotes-label" + trendClassSuffix
+            style_class : "quotes-label",
+            style : labelColor
         });
     },
 
@@ -367,10 +367,12 @@ StockQuoteDesklet.prototype = {
                 this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "colorPercentChange", "colorPercentChange",
                 this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "alternativeColors", "alternativeColors",
-                this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showTradeTime", "showTradeTime",
                 this.onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "uptrendChangeColor", "uptrendChangeColor",
+            this.onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "downtrendChangeColor", "downtrendChangeColor",
+            this.onSettingsChanged, null);
     },
 
     getQuoteDisplaySettings : function () {
@@ -386,9 +388,10 @@ StockQuoteDesklet.prototype = {
             "absoluteChange": this.showAbsoluteChange,
             "percentChange" : this.showPercentChange,
             "colorPercentChange" : this.colorPercentChange,
-            "alternativeColors" : this.alternativeColors,
             "tradeTime" : this.showTradeTime,
-            "decimalPlaces" : this.roundNumbers ? this.decimalPlaces : -1
+            "decimalPlaces" : this.roundNumbers ? this.decimalPlaces : -1,
+            "uptrendChangeColor" : this.uptrendChangeColor,
+            "downtrendChangeColor" : this.downtrendChangeColor
         };
     },
 

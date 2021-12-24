@@ -15,24 +15,6 @@
   padding: 0 0 3px 0;
 }
 
-.quotes-label-up {
-  text-align: center;
-  padding: 0 0 3px 0;
-  color: #00cc55;
-}
-
-.quotes-label-up-alt {
-  text-align: center;
-  padding: 0 0 3px 0;
-  color: #497cff;
-}
-
-.quotes-label-down {
-  text-align: center;
-  padding: 0 0 3px 0;
-  color: #cc0000;
-}
-
 .error-label {
   text-align: left;
   color: #cc0000;
