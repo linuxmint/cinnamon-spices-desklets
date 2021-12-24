@@ -5,19 +5,14 @@
   color: #ffffff;
 }
 
-.quotes-table-item {
-  padding-left: 2px;
-  padding-right: 5px;
-}
-
-.quotes-left {
+.quotes-label {
   text-align: left;
-  padding: 0 0 3px 0;
+  padding: 0.1em 0 0.2em 0;
 }
 
-.quotes-right {
+.quotes-number {
   text-align: right;
-  padding: 0 0 3px 0;
+  padding: 0.1em 0 0.2em 0;
 }
 
 .quotes-last-update {
@@ -28,8 +23,4 @@
 .error-label {
   text-align: left;
   color: #cc0000;
-}
-
-.quotes-icon {
-  padding: 0 0 2px 4px;
 }

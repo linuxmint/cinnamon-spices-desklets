@@ -108,43 +108,43 @@ QuotesTable.prototype = {
     },
 
     render : function (quotes, settings) {
+        this.updateSettingsWithQuoteNameLengths(quotes, settings);
         for (let rowIndex = 0, l = quotes.length; rowIndex < l; rowIndex++) {
             this.renderTableRow(quotes[rowIndex], rowIndex, settings);
         }
     },
 
-    renderTableRow : function (quote, rowIndex, shouldShow) {
+    renderTableRow : function (quote, rowIndex, settings) {
         let cellContents = [];
 
-        if (shouldShow.changeIcon) {
+        if (settings.changeIcon) {
             cellContents.push(this.createPercentChangeIcon(quote,
-                shouldShow.uptrendChangeColor, shouldShow.downtrendChangeColor));
+                settings.uptrendChangeColor, settings.downtrendChangeColor));
         }
-        if (shouldShow.quoteName) {
-            cellContents.push(this.createQuoteNameLabel(quote, shouldShow.useLongName, shouldShow.linkQuote));
+        if (settings.quoteName) {
+            cellContents.push(this.createQuoteNameLabel(quote, settings.useLongName, settings.linkQuote, settings.quoteNameLength));
         }
-        if (shouldShow.quoteSymbol) {
-            cellContents.push(this.createQuoteSymbolLabel(quote, shouldShow.linkSymbol));
+        if (settings.quoteSymbol) {
+            cellContents.push(this.createQuoteSymbolLabel(quote, settings.linkSymbol, settings.quoteSymbolLength));
         }
-        if (shouldShow.marketPrice) {
-            cellContents.push(this.createMarketPriceLabel(quote, shouldShow.currencySymbol, shouldShow.decimalPlaces));
+        if (settings.marketPrice) {
+            cellContents.push(this.createMarketPriceLabel(quote, settings.currencySymbol, settings.decimalPlaces));
         }
-        if (shouldShow.absoluteChange) {
-            cellContents.push(this.createAbsoluteChangeLabel(quote, shouldShow.currencySymbol, shouldShow.decimalPlaces));
+        if (settings.absoluteChange) {
+            cellContents.push(this.createAbsoluteChangeLabel(quote, settings.currencySymbol, settings.decimalPlaces));
         }
-        if (shouldShow.percentChange) {
-            cellContents.push(this.createPercentChangeLabel(quote, shouldShow.colorPercentChange,
-                shouldShow.uptrendChangeColor, shouldShow.downtrendChangeColor));
+        if (settings.percentChange) {
+            cellContents.push(this.createPercentChangeLabel(quote, settings.colorPercentChange,
+                settings.uptrendChangeColor, settings.downtrendChangeColor));
         }
-        if (shouldShow.tradeTime) {
+        if (settings.tradeTime) {
             cellContents.push(this.createTradeTimeLabel(quote));
         }
 
         for (let columnIndex = 0; columnIndex < cellContents.length; ++columnIndex) {
             this.el.add(cellContents[columnIndex], {
                 row : rowIndex,
-                col : columnIndex,
-                style_class : "quotes-table-item"
+                col : columnIndex
             });
         }
     },
@@ -153,11 +153,12 @@ QuotesTable.prototype = {
       return object.hasOwnProperty(property) && typeof object[property] !== "undefined" && object[property] !== null;
     },
 
-    createQuoteSymbolLabel : function (quote, addLink) {
+    createQuoteSymbolLabel : function (quote, addLink, quoteSymbolLength) {
         const symbolLabel =  new St.Label({
             text : quote.symbol,
-            style_class : "quotes-left",
-            reactive : addLink ? true : false
+            style_class : "quotes-label",
+            reactive : addLink ? true : false,
+            style : "width:" + quoteSymbolLength + "em;"
         });
 
         if (addLink) {
@@ -179,7 +180,7 @@ QuotesTable.prototype = {
         }
         return new St.Label({
             text : currencySymbol + (this.existsProperty(quote, "regularMarketPrice") ? this.roundAmount(quote.regularMarketPrice, decimalPlaces) : ABSENT),
-            style_class : "quotes-right"
+            style_class : "quotes-number"
         });
     },
 
@@ -193,11 +194,12 @@ QuotesTable.prototype = {
         return ABSENT;
     },
 
-    createQuoteNameLabel : function (quote, useLongName, addLink) {
+    createQuoteNameLabel : function (quote, useLongName, addLink, quoteNameLength) {
         const nameLabel =  new St.Label({
             text : this.determineQuoteName(quote, useLongName),
-            style_class : "quotes-left",
-            reactive : addLink ? true : false
+            style_class : "quotes-label",
+            reactive : addLink ? true : false,
+            style : "width:" + quoteNameLength + "em;"
         });
 
         if (addLink) {
@@ -226,7 +228,7 @@ QuotesTable.prototype = {
 
         return new St.Label({
             text : absoluteChangeText,
-            style_class : "quotes-right"
+            style_class : "quotes-number"
         });
     },
 
@@ -244,12 +246,10 @@ QuotesTable.prototype = {
         }
 
         return new St.Label({
-            style_class : "quotes-icon",
             text : iconText,
             style : iconColor
         });
     },
-
 
     createPercentChangeLabel : function (quote, useTrendColors, uptrendChangeColor, downtrendChangeColor) {
         let labelColor = "";
@@ -264,7 +264,7 @@ QuotesTable.prototype = {
 
         return new St.Label({
             text : this.existsProperty(quote, "regularMarketChangePercent") ? (this.roundAmount(quote.regularMarketChangePercent, 2) + "%") : ABSENT,
-            style_class : "quotes-right",
+            style_class : "quotes-number",
             style : labelColor
         });
     },
@@ -304,8 +304,18 @@ QuotesTable.prototype = {
     createTradeTimeLabel : function (quote) {
         return new St.Label({
             text : this.existsProperty(quote, "regularMarketTime") ? this.formatTime(quote.regularMarketTime) : ABSENT,
-            style_class : "quotes-right"
+            style_class : "quotes-number"
         });
+    },
+
+    updateSettingsWithQuoteNameLengths : function (quotes, settings) {
+        let quoteSymbolMaxLength = Math.max.apply(Math, quotes.map((quote) => quote.symbol.length));
+        let quoteNameMaxLength = Math.max.apply(Math, quotes.map((quote) => this.determineQuoteName(quote, settings.useLongName).length));
+
+        settings.quoteNameLength = quoteNameMaxLength/2 + 2;
+        settings.quoteSymbolLength = quoteSymbolMaxLength/2 + 2;
+
+        return settings;
     }
 };
 
@@ -458,7 +468,7 @@ StockQuoteDesklet.prototype = {
       global.logError(_("The following error occurred: ") + err);
     },
 
-    sortByProperty: function (quotes, prop, direction) {        
+    sortByProperty: function (quotes, prop, direction) {
         if (quotes.length < 2) {
             return quotes;
         }
