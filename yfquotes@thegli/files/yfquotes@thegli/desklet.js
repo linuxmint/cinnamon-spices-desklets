@@ -96,7 +96,9 @@ QuotesTable.prototype = {
         EUR : "\u20AC",
         JPY : "\u00A5",
         GBP : "\u00A3",
-        INR : "\u20A8"
+        INR : "\u20A8",
+        UAH : "\u20B4",
+        RUB : "\u20BD"
     },
 
     quoteChangeSymbolMap : {
