@@ -156,7 +156,7 @@ QuotesTable.prototype = {
     createQuoteSymbolLabel : function (quote, addLink) {
         const symbolLabel =  new St.Label({
             text : quote.symbol,
-            style_class : "quotes-label",
+            style_class : "quotes-left",
             reactive : addLink ? true : false
         });
 
@@ -179,7 +179,7 @@ QuotesTable.prototype = {
         }
         return new St.Label({
             text : currencySymbol + (this.existsProperty(quote, "regularMarketPrice") ? this.roundAmount(quote.regularMarketPrice, decimalPlaces) : ABSENT),
-            style_class : "quotes-label"
+            style_class : "quotes-right"
         });
     },
 
@@ -196,7 +196,7 @@ QuotesTable.prototype = {
     createQuoteNameLabel : function (quote, useLongName, addLink) {
         const nameLabel =  new St.Label({
             text : this.determineQuoteName(quote, useLongName),
-            style_class : "quotes-label",
+            style_class : "quotes-left",
             reactive : addLink ? true : false
         });
 
@@ -226,7 +226,7 @@ QuotesTable.prototype = {
 
         return new St.Label({
             text : absoluteChangeText,
-            style_class : "quotes-label"
+            style_class : "quotes-right"
         });
     },
 
@@ -264,7 +264,7 @@ QuotesTable.prototype = {
 
         return new St.Label({
             text : this.existsProperty(quote, "regularMarketChangePercent") ? (this.roundAmount(quote.regularMarketChangePercent, 2) + "%") : ABSENT,
-            style_class : "quotes-label",
+            style_class : "quotes-right",
             style : labelColor
         });
     },
@@ -304,7 +304,7 @@ QuotesTable.prototype = {
     createTradeTimeLabel : function (quote) {
         return new St.Label({
             text : this.existsProperty(quote, "regularMarketTime") ? this.formatTime(quote.regularMarketTime) : ABSENT,
-            style_class : "quotes-label"
+            style_class : "quotes-right"
         });
     }
 };
@@ -407,7 +407,7 @@ StockQuoteDesklet.prototype = {
     createLastUpdateLabel : function () {
         return new St.Label({
             text : _("Updated at ") + this.formatCurrentTimestamp(),
-            style_class : "quotes-label"
+            style_class : "quotes-last-update"
         });
     },
 

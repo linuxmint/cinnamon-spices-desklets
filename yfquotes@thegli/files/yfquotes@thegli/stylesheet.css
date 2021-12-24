@@ -10,9 +10,19 @@
   padding-right: 5px;
 }
 
-.quotes-label {
-  text-align: center;
+.quotes-left {
+  text-align: left;
   padding: 0 0 3px 0;
+}
+
+.quotes-right {
+  text-align: right;
+  padding: 0 0 3px 0;
+}
+
+.quotes-last-update {
+  text-align: center;
+  padding: 5px 0 0 0;
 }
 
 .error-label {
