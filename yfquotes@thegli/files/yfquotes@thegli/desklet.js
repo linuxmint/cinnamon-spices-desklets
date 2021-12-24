@@ -99,6 +99,12 @@ QuotesTable.prototype = {
         INR : "\u20A8"
     },
 
+    quoteChangeSymbolMap : {
+        UP : "\u25B2",
+        DOWN : "\u25BC",
+        EQUALS : "\u25B6"
+    },
+
     render : function (quotes, settings) {
         for (let rowIndex = 0, l = quotes.length; rowIndex < l; rowIndex++) {
             this.renderTableRow(quotes[rowIndex], rowIndex, settings);
@@ -222,31 +228,22 @@ QuotesTable.prototype = {
 
     createPercentChangeIcon : function (quote, useAlternativeColors) {
         const percentChange = this.existsProperty(quote, "regularMarketChangePercent") ? parseFloat(quote.regularMarketChangePercent) : 0.0;
-        let path = "";
+        let iconText = this.quoteChangeSymbolMap["EQUALS"];
+        let iconColor = "color: #cccccc;"; // TODO : get color form the settings
 
         if (percentChange > 0) {
-            if (useAlternativeColors) {
-                path = "/icons/up-alt.svg";
-            } else {
-                path = "/icons/up.svg";
-            }
+            iconText = this.quoteChangeSymbolMap["UP"];
+            iconColor = useAlternativeColors ? "color: #497cff;" : "color: #00cc55;";
         } else if (percentChange < 0) {
-            path = "/icons/down.svg";
-        } else if (percentChange === 0.0) {
-            path = "/icons/eq.svg";
+            iconText = this.quoteChangeSymbolMap["DOWN"];
+            iconColor = "color: #cc0000;";
         }
 
-        const iconFile = Gio.file_new_for_path(DESKLET_DIR + path);
-        const uri = iconFile.get_uri();
-        const image = St.TextureCache.get_default().load_uri_async(uri, -1, -1);
-        image.set_size(20, 20);
-
-        const binIcon = new St.Bin({
-            height : "20",
-            width : "20"
+        return new St.Label({
+            style_class : "quotes-icon",
+            text : iconText,
+            style : iconColor
         });
-        binIcon.set_child(image);
-        return binIcon;
     },
 
     createPercentChangeLabel : function (quote, useTrendColors, useAlternativeColors) {
