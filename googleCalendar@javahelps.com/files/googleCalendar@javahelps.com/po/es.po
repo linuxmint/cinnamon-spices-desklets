@@ -225,6 +225,10 @@ msgstr "Sáb"
 msgid "A desklet that displays your agenda based on Google Calendar"
 msgstr "Un desklet que muestra su agenda basada en Google Calendar"
 
+#. settings-schema.json->page_style->title
+msgid "Desklet Style"
+msgstr "Estilo del Desklet"
+
 #. settings-schema.json->top->description
 msgid "Google Calendar authentication"
 msgstr "Autenticación de Google Calendar"
