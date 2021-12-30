@@ -123,6 +123,10 @@ msgstr "Aumentar o disminuir el número de columnas."
 msgid "Colors"
 msgstr "Colores"
 
+#. settings-schema.json->font-color->description
+msgid "Font color"
+msgstr "Color de la letra"
+
 #. settings-schema.json->color-theme->description
 msgid "Color theme"
 msgstr "Paleta de colores"
