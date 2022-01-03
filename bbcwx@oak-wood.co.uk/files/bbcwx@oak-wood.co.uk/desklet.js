@@ -1587,7 +1587,7 @@ wxDriverBBC.prototype = {
   linkText: 'www.bbc.co.uk/weather',
 
   // these will be dynamically reset when data is loaded
-  linkURL: 'http://www.bbc.co.uk/weather/',
+  linkURL: 'https://www.bbc.co.uk/weather/',
 
   _baseURL: 'https://weather-broker-cdn.api.bbci.co.uk/en/',
 
@@ -1602,7 +1602,7 @@ wxDriverBBC.prototype = {
   refreshData: function(deskletObj) {
     // reset the data object
     this._emptyData();
-    this.linkURL = 'http://www.bbc.co.uk/weather';
+    this.linkURL = 'https://www.bbc.co.uk/weather';
 
     // process the three day forecast
     let a = this._getWeather(this._baseURL + 'forecast/rss/3day/' + this.stationID, function(weather) {
@@ -1864,9 +1864,9 @@ wxDriverYahoo.prototype = {
   linkText: 'Yahoo! Weather',
 
   // these will be dynamically reset when data is loaded
-  linkURL: 'http://weather.yahoo.com',
+  linkURL: 'https://weather.yahoo.com',
 
-  _baseURL: 'http://weather.yahooapis.com/forecastrss?u=c&w=',
+  _baseURL: 'https://weather.yahooapis.com/forecastrss?u=c&w=',
 
   // initialise the driver
   _yahooinit: function(stationID) {
@@ -2167,9 +2167,9 @@ wxDriverOWM.prototype = {
   linkText: 'openweathermap.org',
 
   // these will be dynamically reset when data is loaded
-  linkURL: 'http://openweathermap.org',
+  linkURL: 'https://openweathermap.org',
 
-  _baseURL: 'http://api.openweathermap.org/data/2.5/',
+  _baseURL: 'https://api.openweathermap.org/data/2.5/',
 
   lang_map: {
     'bg' : 'bg',
@@ -2562,7 +2562,7 @@ wxDriverWU.prototype = {
     height: 17,
   },
 
-  _baseURL: 'http://api.wunderground.com/api/',
+  _baseURL: 'https://api.wunderground.com/api/',
 
   lang_map: {
       'af' : 'AF',
@@ -2662,7 +2662,7 @@ wxDriverWU.prototype = {
   refreshData: function(deskletObj) {
     // reset the data object
     this._emptyData();
-    this.linkURL = 'http://wunderground.com' + this._referralRef;
+    this.linkURL = 'https://wunderground.com' + this._referralRef;
 
     this.langcode = this.getLangCode();
     let apiurl = this._baseURL + encodeURIComponent(this.apikey) + '/forecast10day/conditions/astronomy/';
@@ -2843,7 +2843,7 @@ wxDriverWWO.prototype = {
   // point 3
   minTTL: 3600,
 
-  _baseURL: 'http://api.worldweatheronline.com/free/v1/',
+  _baseURL: 'https://api.worldweatheronline.com/free/v1/',
 
   lang_map: {
     'ar' : 'ar',
@@ -2904,7 +2904,7 @@ wxDriverWWO.prototype = {
   refreshData: function(deskletObj) {
     // reset the data object
     this._emptyData();
-    this.linkURL = 'http://www.worldweatheronline.com';
+    this.linkURL = 'https://www.worldweatheronline.com';
 
     this.langcode = this.getLangCode();
     this.i18Desc = 'lang_' + this.langcode;
@@ -3104,7 +3104,7 @@ wxDriverWWOPremium.prototype = {
   // point 3
   minTTL: 3600,
 
-  _baseURL: 'http://api.worldweatheronline.com/premium/v1/',
+  _baseURL: 'https://api.worldweatheronline.com/premium/v1/',
 
   lang_map: {
     'ar' : 'ar',
@@ -3165,7 +3165,7 @@ wxDriverWWOPremium.prototype = {
   refreshData: function(deskletObj) {
     // reset the data object
     this._emptyData();
-    this.linkURL = 'http://www.worldweatheronline.com';
+    this.linkURL = 'https://www.worldweatheronline.com';
 
     this.langcode = this.getLangCode();
     this.i18Desc = 'lang_' + this.langcode;
@@ -3840,9 +3840,9 @@ wxDriverTWC.prototype = {
   linkText: 'weather.com',
 
   // these will be dynamically reset when data is loaded
-  linkURL: 'http://www.weather.com',
+  linkURL: 'https://www.weather.com',
 
-  _baseURL: 'http://wxdata.weather.com/wxdata/weather/local/',
+  _baseURL: 'https://wxdata.weather.com/wxdata/weather/local/',
 
   // initialise the driver
   _twcinit: function(stationID) {
@@ -3856,7 +3856,7 @@ wxDriverTWC.prototype = {
   refreshData: function(deskletObj) {
     // reset the data object
     this._emptyData();
-    this.linkURL = 'http://www.weather.com';
+    this.linkURL = 'https://www.weather.com';
 
     // process the forecast
     let a = this._getWeather(this._baseURL + encodeURIComponent(this.stationID) + '?cc=*&dayf=10&unit=m', function(weather) {
@@ -4062,7 +4062,7 @@ wxDriverMeteoBlue.prototype = {
     height: 20,
   },
 
-  _baseURL: 'http://my.meteoblue.com/dataApi/dispatch.pl',
+  _baseURL: 'https://my.meteoblue.com/dataApi/dispatch.pl',
 
   lang_map: {
   },
