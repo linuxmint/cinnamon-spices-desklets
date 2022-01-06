@@ -140,11 +140,11 @@ QuotesTable.prototype = {
                 settings.uptrendChangeColor, settings.downtrendChangeColor, settings.unchangedTrendColor));
         }
         if (settings.quoteName) {
-            cellContents.push(this.createQuoteLabel(
-                this.quoteUtils.determineQuoteName(quote, settings.useLongName), settings.linkQuote, settings.quoteNameMaxLength));
+            cellContents.push(this.createQuoteLabel(this.quoteUtils.determineQuoteName(quote, settings.useLongName),
+                quote.symbol, settings.linkQuote, settings.quoteNameMaxLength));
         }
-        if (settings.quoteSymbol) {
-            cellContents.push(this.createQuoteLabel(quote.symbol, settings.linkSymbol, settings.quoteSymbolMaxLength));
+        if (settings.quoteSymbol) {cellContents.push(this.createQuoteLabel(quote.symbol,
+                quote.symbol, settings.linkSymbol, settings.quoteSymbolMaxLength));
         }
         if (settings.marketPrice) {
             cellContents.push(this.createMarketPriceLabel(quote, settings.currencySymbol, settings.decimalPlaces,
@@ -171,7 +171,7 @@ QuotesTable.prototype = {
         }
     },
 
-    createQuoteLabel : function (labelText, addLink, labelMaxLength) {
+    createQuoteLabel : function (labelText, quoteSymbol, addLink, labelMaxLength) {
         const label =  new St.Label({
             text : labelText,
             style_class : "quotes-label",
@@ -183,7 +183,7 @@ QuotesTable.prototype = {
             const symbolButton = new St.Button();
             symbolButton.add_actor(label);
             symbolButton.connect("clicked", Lang.bind(this, function() {
-                Gio.app_info_launch_default_for_uri(YF_PAGE + labelText, global.create_app_launch_context());
+                Gio.app_info_launch_default_for_uri(YF_PAGE + quoteSymbol, global.create_app_launch_context());
             }));
             return symbolButton;
         } else {
