@@ -60,7 +60,7 @@
     "presentationFormattingSection": {
       "type": "section",
       "title": "Number Formatting",
-      "keys": ["roundNumbers", "decimalPlaces"]
+      "keys": ["roundNumbers", "decimalPlaces", "strictRounding"]
     },
     "presentationSortingSection": {
       "type": "section",
@@ -143,6 +143,13 @@
     "units": "positions",
     "description": "Decimal places to round",
     "tooltip": "Number of positions to round to after decimal point.",
+    "dependency": "roundNumbers"
+  },
+  "strictRounding": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Strict rounding",
+    "tooltip": "Strict rounding to the specified decimal places (for example, 0 will be presented as 0.00).",
     "dependency": "roundNumbers"
   },
   "quoteSymbols": {
