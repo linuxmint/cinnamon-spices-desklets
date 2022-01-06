@@ -70,7 +70,7 @@
     "presentationColorsSection": {
       "type": "section",
       "title": "Colors",
-      "keys": ["uptrendChangeColor", "downtrendChangeColor"]
+      "keys": ["uptrendChangeColor", "downtrendChangeColor", "unchangedTrendColor"]
     },
     "layoutDimensionSection": {
       "type": "section",
@@ -259,5 +259,11 @@
     "description": "Downtrend change color",
     "tooltip": "Color of the downtrend change",
     "default": "red"
+  },
+  "unchangedTrendColor": {
+    "type": "colorchooser",
+    "description": "Unchanged trend color",
+    "tooltip": "Color of the unchanged trend",
+    "default": "grey"
   }
 }

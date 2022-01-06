@@ -136,7 +136,8 @@ QuotesTable.prototype = {
         let cellContents = [];
 
         if (settings.changeIcon) {
-            cellContents.push(this.createPercentChangeIcon(quote, settings.uptrendChangeColor, settings.downtrendChangeColor));
+            cellContents.push(this.createPercentChangeIcon(quote,
+                settings.uptrendChangeColor, settings.downtrendChangeColor, settings.unchangedTrendColor));
         }
         if (settings.quoteName) {
             cellContents.push(this.createQuoteLabel(
@@ -153,7 +154,7 @@ QuotesTable.prototype = {
         }
         if (settings.percentChange) {
             cellContents.push(this.createPercentChangeLabel(quote, settings.colorPercentChange,
-                settings.uptrendChangeColor, settings.downtrendChangeColor));
+                settings.uptrendChangeColor, settings.downtrendChangeColor, settings.unchangedTrendColor));
         }
         if (settings.tradeTime) {
             cellContents.push(this.createTradeTimeLabel(quote));
@@ -218,35 +219,35 @@ QuotesTable.prototype = {
         });
     },
 
-    createPercentChangeIcon : function (quote, uptrendChangeColor, downtrendChangeColor) {
+    createPercentChangeIcon : function (quote, uptrendChangeColor, downtrendChangeColor, unchangedTrendColor) {
         const percentChange = this.quoteUtils.existsProperty(quote, "regularMarketChangePercent")
             ? parseFloat(quote.regularMarketChangePercent)
             : 0.0;
         let iconText = this.quoteChangeSymbolMap["EQUALS"];
-        let iconColor = "";
+        let iconColor = unchangedTrendColor;
 
         if (percentChange > 0) {
             iconText = this.quoteChangeSymbolMap["UP"];
-            iconColor = "color: " + uptrendChangeColor + ";";
+            iconColor = uptrendChangeColor;
         } else if (percentChange < 0) {
             iconText = this.quoteChangeSymbolMap["DOWN"];
-            iconColor = "color: " + downtrendChangeColor + ";";
+            iconColor = downtrendChangeColor;
         }
 
         return new St.Label({
             text : iconText,
-            style : iconColor
+            style : "color: " + iconColor + ";"
         });
     },
 
-    createPercentChangeLabel : function (quote, useTrendColors, uptrendChangeColor, downtrendChangeColor) {
-        let labelColor = "";
+    createPercentChangeLabel : function (quote, useTrendColors, uptrendChangeColor, downtrendChangeColor, unchangedTrendColor) {
+        let labelColor = unchangedTrendColor;
         if (useTrendColors && this.quoteUtils.existsProperty(quote, "regularMarketChangePercent")) {
             const percentageChange = parseFloat(quote.regularMarketChangePercent);
             if (percentageChange > 0) {
-                labelColor = "color: " + uptrendChangeColor + ";";
+                labelColor = uptrendChangeColor;
             } else if (percentageChange < 0) {
-                labelColor = "color: " + downtrendChangeColor + ";";
+                labelColor = downtrendChangeColor;
             }
         }
 
@@ -255,7 +256,7 @@ QuotesTable.prototype = {
                 ? (this.roundAmount(quote.regularMarketChangePercent, 2) + "%")
                 : ABSENT,
             style_class : "quotes-number",
-            style : labelColor
+            style : "color: " + labelColor + ";"
         });
     },
 
@@ -368,6 +369,8 @@ StockQuoteDesklet.prototype = {
             this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "downtrendChangeColor", "downtrendChangeColor",
             this.onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "unchangedTrendColor", "unchangedTrendColor",
+            this.onSettingsChanged, null);
     },
 
     getQuoteDisplaySettings : function (quotes) {
@@ -387,6 +390,7 @@ StockQuoteDesklet.prototype = {
             "decimalPlaces" : this.roundNumbers ? this.decimalPlaces : -1,
             "uptrendChangeColor" : this.uptrendChangeColor,
             "downtrendChangeColor" : this.downtrendChangeColor,
+            "unchangedTrendColor" : this.unchangedTrendColor,
             "quoteSymbolMaxLength" : Math.max.apply(Math, quotes.map((quote) => quote.symbol.length)),
             "quoteNameMaxLength" : Math.max.apply(Math, quotes.map((quote) => this.quoteUtils.determineQuoteName(quote, this.useLongQuoteName).length))
         };
