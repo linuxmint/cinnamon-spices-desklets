@@ -20,6 +20,14 @@ Check out the desklet configuration settings, and choose the data refresh period
 
 ## Release Notes
 
+### 0.7.0 - January 10, 2022
+Features:
+- add symbolic trend change icons instead of .svg
+- add configurable trend change colors instead of hardcoded colors
+- add configurable strict rounding
+- add UAH and RUB currency symbols
+- changed table items view (text align to the left, numbers/dates align to the right)
+
 ### 0.6.0 - June 18, 2021
 Features:
 - change layout of settings dialog to tabbed views
