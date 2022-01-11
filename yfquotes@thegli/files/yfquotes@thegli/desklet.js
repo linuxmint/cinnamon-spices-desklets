@@ -144,7 +144,7 @@ QuotesTable.prototype = {
                 quote.symbol, settings.linkQuote, settings.quoteNameMaxLength));
         }
         if (settings.quoteSymbol) {cellContents.push(this.createQuoteLabel(quote.symbol,
-                quote.symbol, settings.linkSymbol, settings.quoteSymbolMaxLength));
+            quote.symbol, settings.linkSymbol, settings.quoteSymbolMaxLength));
         }
         if (settings.marketPrice) {
             cellContents.push(this.createMarketPriceLabel(quote, settings.currencySymbol, settings.decimalPlaces,
@@ -224,8 +224,8 @@ QuotesTable.prototype = {
 
     createPercentChangeIcon : function (quote, uptrendChangeColor, downtrendChangeColor, unchangedTrendColor) {
         const percentChange = this.quoteUtils.existsProperty(quote, "regularMarketChangePercent")
-            ? parseFloat(quote.regularMarketChangePercent)
-            : 0.0;
+            ? this.roundAmount(quote.regularMarketChangePercent, 2, true)
+            : 0.00;
         let iconText = this.quoteChangeSymbolMap["EQUALS"];
         let iconColor = unchangedTrendColor;
 
@@ -246,7 +246,7 @@ QuotesTable.prototype = {
     createPercentChangeLabel : function (quote, useTrendColors, uptrendChangeColor, downtrendChangeColor, unchangedTrendColor, strictRounding) {
         let labelColor = unchangedTrendColor;
         if (useTrendColors && this.quoteUtils.existsProperty(quote, "regularMarketChangePercent")) {
-            const percentageChange = parseFloat(quote.regularMarketChangePercent);
+            const percentageChange = this.roundAmount(quote.regularMarketChangePercent, 2, true);
             if (percentageChange > 0) {
                 labelColor = uptrendChangeColor;
             } else if (percentageChange < 0) {
