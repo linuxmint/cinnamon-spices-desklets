@@ -5,28 +5,19 @@
   color: #ffffff;
 }
 
-.quotes-table-item {
-  padding-left: 2px;
-  padding-right: 5px;
-}
-
 .quotes-label {
-  text-align: center;
+  text-align: left;
+  padding: 0.1em 0 0.2em 0;
 }
 
-.quotes-label-up {
-  text-align: center;
-  color: #00cc55;
+.quotes-number {
+  text-align: right;
+  padding: 0.1em 0 0.2em 0;
 }
 
-.quotes-label-up-alt {
+.quotes-last-update {
   text-align: center;
-  color: #497cff;
-}
-
-.quotes-label-down {
-  text-align: center;
-  color: #cc0000;
+  padding: 5px 0 0 0;
 }
 
 .error-label {

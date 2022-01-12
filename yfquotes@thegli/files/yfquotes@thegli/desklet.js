@@ -3,7 +3,7 @@
  *
  * Shows financial market information provided by Yahoo Finance.
  * This desklet is based on the work of fthuin's stocks desklet.
- * 
+ *
  */
 
 // Cinnamon desklet user interface
@@ -36,6 +36,25 @@ function _(str) {
     return Gettext.dgettext(UUID, str);
 }
 
+let YahooFinanceQuoteUtils = function () {};
+
+YahooFinanceQuoteUtils.prototype = {
+    existsProperty : function(object, property) {
+        return object.hasOwnProperty(property)
+            && typeof object[property] !== "undefined"
+            && object[property] !== null;
+    },
+
+    determineQuoteName : function (quote, useLongName) {
+        if (useLongName && this.existsProperty(quote, "longName")) {
+            return quote.longName;
+        } else if (this.existsProperty(quote, "shortName")) {
+            return quote.shortName;
+        }
+        return ABSENT;
+    }
+}
+
 var YahooFinanceQuoteReader = function () {
 };
 
@@ -57,7 +76,7 @@ YahooFinanceQuoteReader.prototype = {
         const errorEnd = "\"}}";
         const urlcatch = Gio.file_new_for_uri(requestUrl);
         let response;
-        
+
         const maxRetries = 5;
         let retries = 0;
         do {
@@ -72,14 +91,13 @@ YahooFinanceQuoteReader.prototype = {
             } catch (err) {
                 response = errorBegin + err + errorEnd;
             }
-            
             retries++;
-        } while (retries < maxRetries); 
+        } while (retries < maxRetries);
 
         return JSON.parse(response);
     },
 
-    fetchQuotes : function (response) {        
+    fetchQuotes : function (response) {
         return [response.quoteResponse.result, response.quoteResponse.error];
     }
 };
@@ -89,14 +107,23 @@ var QuotesTable = function () {
         homogeneous : false
     });
 };
+
 QuotesTable.prototype = {
     constructor : QuotesTable,
+    quoteUtils: new YahooFinanceQuoteUtils(),
     currencyCodeToSymbolMap : {
         USD : "$",
         EUR : "\u20AC",
         JPY : "\u00A5",
         GBP : "\u00A3",
-        INR : "\u20A8"
+        INR : "\u20A8",
+        UAH : "\u20B4",
+        RUB : "\u20BD"
+    },
+    quoteChangeSymbolMap : {
+        UP : "\u25B2",
+        DOWN : "\u25BC",
+        EQUALS : "\u25B6"
     },
 
     render : function (quotes, settings) {
@@ -105,107 +132,82 @@ QuotesTable.prototype = {
         }
     },
 
-    renderTableRow : function (quote, rowIndex, shouldShow) {
+    renderTableRow : function (quote, rowIndex, settings) {
         let cellContents = [];
 
-        if (shouldShow.changeIcon) {
-            cellContents.push(this.createPercentChangeIcon(quote, shouldShow.alternativeColors));
+        if (settings.changeIcon) {
+            cellContents.push(this.createPercentChangeIcon(quote,
+                settings.uptrendChangeColor, settings.downtrendChangeColor, settings.unchangedTrendColor));
         }
-        if (shouldShow.quoteName) {
-            cellContents.push(this.createQuoteNameLabel(quote, shouldShow.useLongName, shouldShow.linkQuote));
+        if (settings.quoteName) {
+            cellContents.push(this.createQuoteLabel(this.quoteUtils.determineQuoteName(quote, settings.useLongName),
+                quote.symbol, settings.linkQuote, settings.quoteNameMaxLength));
         }
-        if (shouldShow.quoteSymbol) {
-            cellContents.push(this.createQuoteSymbolLabel(quote, shouldShow.linkSymbol));
+        if (settings.quoteSymbol) {cellContents.push(this.createQuoteLabel(quote.symbol,
+            quote.symbol, settings.linkSymbol, settings.quoteSymbolMaxLength));
         }
-        if (shouldShow.marketPrice) {
-            cellContents.push(this.createMarketPriceLabel(quote, shouldShow.currencySymbol, shouldShow.decimalPlaces));
+        if (settings.marketPrice) {
+            cellContents.push(this.createMarketPriceLabel(quote, settings.currencySymbol, settings.decimalPlaces,
+                settings.strictRounding));
         }
-        if (shouldShow.absoluteChange) {
-            cellContents.push(this.createAbsoluteChangeLabel(quote, shouldShow.currencySymbol, shouldShow.decimalPlaces));
+        if (settings.absoluteChange) {
+            cellContents.push(this.createAbsoluteChangeLabel(quote, settings.currencySymbol, settings.decimalPlaces,
+                settings.strictRounding));
         }
-        if (shouldShow.percentChange) {
-            cellContents.push(this.createPercentChangeLabel(quote, shouldShow.colorPercentChange, shouldShow.alternativeColors));
+        if (settings.percentChange) {
+            cellContents.push(this.createPercentChangeLabel(quote, settings.colorPercentChange,
+                settings.uptrendChangeColor, settings.downtrendChangeColor, settings.unchangedTrendColor,
+                settings.strictRounding));
         }
-        if (shouldShow.tradeTime) {
+        if (settings.tradeTime) {
             cellContents.push(this.createTradeTimeLabel(quote));
         }
 
         for (let columnIndex = 0; columnIndex < cellContents.length; ++columnIndex) {
             this.el.add(cellContents[columnIndex], {
                 row : rowIndex,
-                col : columnIndex,
-                style_class : "quotes-table-item"
+                col : columnIndex
             });
         }
     },
 
-    existsProperty : function(object, property) {
-      return object.hasOwnProperty(property) && typeof object[property] !== "undefined" && object[property] !== null;
-    },
-
-    createQuoteSymbolLabel : function (quote, addLink) {
-        const symbolLabel =  new St.Label({
-            text : quote.symbol,
+    createQuoteLabel : function (labelText, quoteSymbol, addLink, labelMaxLength) {
+        const label =  new St.Label({
+            text : labelText,
             style_class : "quotes-label",
-            reactive : addLink ? true : false
+            reactive : addLink ? true : false,
+            style : "width:" + (labelMaxLength/2 + 2) + "em;"
         });
 
         if (addLink) {
             const symbolButton = new St.Button();
-            symbolButton.add_actor(symbolLabel);
+            symbolButton.add_actor(label);
             symbolButton.connect("clicked", Lang.bind(this, function() {
-                Gio.app_info_launch_default_for_uri(YF_PAGE + quote.symbol, global.create_app_launch_context());
+                Gio.app_info_launch_default_for_uri(YF_PAGE + quoteSymbol, global.create_app_launch_context());
             }));
             return symbolButton;
-         } else {
-            return symbolLabel;
-         }
+        } else {
+            return label;
+        }
     },
 
-    createMarketPriceLabel : function (quote, withCurrencySymbol, decimalPlaces) {
+    createMarketPriceLabel : function (quote, withCurrencySymbol, decimalPlaces, strictRounding) {
         let currencySymbol = "";
-        if (withCurrencySymbol && this.existsProperty(quote, "currency")) {
+        if (withCurrencySymbol && this.quoteUtils.existsProperty(quote, "currency")) {
             currencySymbol = this.currencyCodeToSymbolMap[quote.currency] || quote.currency;
         }
         return new St.Label({
-            text : currencySymbol + (this.existsProperty(quote, "regularMarketPrice") ? this.roundAmount(quote.regularMarketPrice, decimalPlaces) : ABSENT),
-            style_class : "quotes-label"
+            text : currencySymbol + (this.quoteUtils.existsProperty(quote, "regularMarketPrice")
+                ? this.roundAmount(quote.regularMarketPrice, decimalPlaces, strictRounding)
+                : ABSENT),
+            style_class : "quotes-number"
         });
     },
 
-    determineQuoteName : function (quote, useLongName) {
-        if (useLongName && this.existsProperty(quote, "longName")) {
-            return quote.longName;
-        } else if (this.existsProperty(quote, "shortName")) {
-            return quote.shortName;
-        } 
-
-        return ABSENT;
-    },
-
-    createQuoteNameLabel : function (quote, useLongName, addLink) {
-        const nameLabel =  new St.Label({
-            text : this.determineQuoteName(quote, useLongName),
-            style_class : "quotes-label",
-            reactive : addLink ? true : false
-        });
-
-        if (addLink) {
-            const nameButton = new St.Button();
-            nameButton.add_actor(nameLabel);
-            nameButton.connect("clicked", Lang.bind(this, function() {
-                Gio.app_info_launch_default_for_uri(YF_PAGE + quote.symbol, global.create_app_launch_context());
-            }));
-            return nameButton;
-         } else {
-            return nameLabel;
-         }
-    },
-
-    createAbsoluteChangeLabel : function (quote, withCurrencySymbol, decimalPlaces) {
+    createAbsoluteChangeLabel : function (quote, withCurrencySymbol, decimalPlaces, strictRounding) {
         var absoluteChangeText = "";
-        if (this.existsProperty(quote, "regularMarketChange")) {
-            let absoluteChange = this.roundAmount(quote.regularMarketChange, decimalPlaces);
+        if (this.quoteUtils.existsProperty(quote, "regularMarketChange")) {
+            let absoluteChange = this.roundAmount(quote.regularMarketChange, decimalPlaces, strictRounding);
             if (absoluteChange > 0.0) {
                 absoluteChangeText = "+";
             }
@@ -216,65 +218,59 @@ QuotesTable.prototype = {
 
         return new St.Label({
             text : absoluteChangeText,
-            style_class : "quotes-label"
+            style_class : "quotes-number"
         });
     },
 
-    createPercentChangeIcon : function (quote, useAlternativeColors) {
-        const percentChange = this.existsProperty(quote, "regularMarketChangePercent") ? parseFloat(quote.regularMarketChangePercent) : 0.0;
-        let path = "";
+    createPercentChangeIcon : function (quote, uptrendChangeColor, downtrendChangeColor, unchangedTrendColor) {
+        const percentChange = this.quoteUtils.existsProperty(quote, "regularMarketChangePercent")
+            ? this.roundAmount(quote.regularMarketChangePercent, 2, true)
+            : 0.00;
+        let iconText = this.quoteChangeSymbolMap["EQUALS"];
+        let iconColor = unchangedTrendColor;
 
         if (percentChange > 0) {
-            if (useAlternativeColors) {
-                path = "/icons/up-alt.svg";
-            } else {
-                path = "/icons/up.svg";
-            }
+            iconText = this.quoteChangeSymbolMap["UP"];
+            iconColor = uptrendChangeColor;
         } else if (percentChange < 0) {
-            path = "/icons/down.svg";
-        } else if (percentChange === 0.0) {
-            path = "/icons/eq.svg";
+            iconText = this.quoteChangeSymbolMap["DOWN"];
+            iconColor = downtrendChangeColor;
         }
 
-        const iconFile = Gio.file_new_for_path(DESKLET_DIR + path);
-        const uri = iconFile.get_uri();
-        const image = St.TextureCache.get_default().load_uri_async(uri, -1, -1);
-        image.set_size(20, 20);
-
-        const binIcon = new St.Bin({
-            height : "20",
-            width : "20"
+        return new St.Label({
+            text : iconText,
+            style : "color: " + iconColor + ";"
         });
-        binIcon.set_child(image);
-        return binIcon;
     },
 
-    createPercentChangeLabel : function (quote, useTrendColors, useAlternativeColors) {
-        let trendClassSuffix = "";
-        if (useTrendColors && this.existsProperty(quote, "regularMarketChangePercent")) {
-            const percentageChange = parseFloat(quote.regularMarketChangePercent);
+    createPercentChangeLabel : function (quote, useTrendColors, uptrendChangeColor, downtrendChangeColor, unchangedTrendColor, strictRounding) {
+        let labelColor = unchangedTrendColor;
+        if (useTrendColors && this.quoteUtils.existsProperty(quote, "regularMarketChangePercent")) {
+            const percentageChange = this.roundAmount(quote.regularMarketChangePercent, 2, true);
             if (percentageChange > 0) {
-                if (useAlternativeColors) {
-                    trendClassSuffix = "-up-alt";
-                } else {
-                    trendClassSuffix = "-up";
-                }
+                labelColor = uptrendChangeColor;
             } else if (percentageChange < 0) {
-                trendClassSuffix = "-down";
+                labelColor = downtrendChangeColor;
             }
         }
 
         return new St.Label({
-            text : this.existsProperty(quote, "regularMarketChangePercent") ? (this.roundAmount(quote.regularMarketChangePercent, 2) + "%") : ABSENT,
-            style_class : "quotes-label" + trendClassSuffix
+            text : this.quoteUtils.existsProperty(quote, "regularMarketChangePercent")
+                ? (this.roundAmount(quote.regularMarketChangePercent, 2, strictRounding) + "%")
+                : ABSENT,
+            style_class : "quotes-number",
+            style : "color: " + labelColor + ";"
         });
     },
 
-    roundAmount : function (amount, maxDecimals) {
+    roundAmount : function (amount, maxDecimals, strictRounding) {
         if (maxDecimals > -1)  {
+            if (strictRounding) {
+                return amount.toFixed(maxDecimals);
+            }
             const parts = amount.toString().split(".");
             if (parts.length > 1 && parts[1].length > maxDecimals) {
-                return Number((amount).toFixed(maxDecimals));
+                return Number(amount.toFixed(maxDecimals));
             }
         }
         return amount;
@@ -282,8 +278,9 @@ QuotesTable.prototype = {
 
     isToday : function (date) {
         const today = new Date();
-        return date.getFullYear() === today.getFullYear() && date.getMonth() === today.getMonth()
-                && date.getDate() === today.getDate();
+        return date.getFullYear() === today.getFullYear()
+            && date.getMonth() === today.getMonth()
+            && date.getDate() === today.getDate();
     },
 
     formatTime : function (unixTimestamp) {
@@ -307,8 +304,10 @@ QuotesTable.prototype = {
 
     createTradeTimeLabel : function (quote) {
         return new St.Label({
-            text : this.existsProperty(quote, "regularMarketTime") ? this.formatTime(quote.regularMarketTime) : ABSENT,
-            style_class : "quotes-label"
+            text : this.quoteUtils.existsProperty(quote, "regularMarketTime")
+                ? this.formatTime(quote.regularMarketTime)
+                : ABSENT,
+            style_class : "quotes-number"
         });
     }
 };
@@ -324,59 +323,68 @@ StockQuoteDesklet.prototype = {
         this.metadata = metadata;
         this.id = id;
         this.quoteReader = new YahooFinanceQuoteReader();
+        this.quoteUtils = new YahooFinanceQuoteUtils();
         this.loadSettings();
         this.onUpdate();
     },
 
     loadSettings : function () {
         this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, this.id);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "height", "height", this.onDisplayChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "width", "width", this.onDisplayChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "height", "height",
+            this.onDisplayChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "width", "width",
+            this.onDisplayChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "transparency", "transparency",
-                this.onDisplayChanged, null);
+            this.onDisplayChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "delayMinutes", "delayMinutes",
-                this.onSettingsChanged, null);
+            this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showLastUpdateTimestamp", "showLastUpdateTimestamp",
-                this.onSettingsChanged, null);
+            this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "roundNumbers", "roundNumbers",
-                this.onSettingsChanged, null);
+            this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "decimalPlaces", "decimalPlaces",
-                this.onSettingsChanged, null);  
+            this.onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "strictRounding", "strictRounding",
+            this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "quoteSymbols", "quoteSymbolsText",
-                this.onSettingsChanged, null);
+            this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "sortCriteria", "sortCriteria",
-                this.onSettingsChanged, null);
+            this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "sortDirection", "sortDirection",
-                this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "showChangeIcon", "showChangeIcon", 
-                this.onSettingsChanged, null);
+            this.onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "showChangeIcon", "showChangeIcon",
+            this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showQuoteName", "showQuoteName",
-                this.onSettingsChanged, null);
+            this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "useLongQuoteName", "useLongQuoteName",
-                this.onSettingsChanged, null);
+            this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "linkQuoteName", "linkQuoteName",
-                this.onSettingsChanged, null);
+            this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showQuoteSymbol", "showQuoteSymbol",
-                this.onSettingsChanged, null);
+            this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "linkQuoteSymbol", "linkQuoteSymbol",
-                this.onSettingsChanged, null);
+            this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showMarketPrice", "showMarketPrice",
-                this.onSettingsChanged, null);
+            this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showCurrencyCode", "showCurrencyCode",
-                this.onSettingsChanged, null);
+            this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showAbsoluteChange", "showAbsoluteChange",
-                this.onSettingsChanged, null);
+            this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showPercentChange", "showPercentChange",
-                this.onSettingsChanged, null);
+            this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "colorPercentChange", "colorPercentChange",
-                this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "alternativeColors", "alternativeColors",
-                this.onSettingsChanged, null);
+            this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showTradeTime", "showTradeTime",
-                this.onSettingsChanged, null);
+            this.onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "uptrendChangeColor", "uptrendChangeColor",
+            this.onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "downtrendChangeColor", "downtrendChangeColor",
+            this.onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "unchangedTrendColor", "unchangedTrendColor",
+            this.onSettingsChanged, null);
     },
 
-    getQuoteDisplaySettings : function () {
+    getQuoteDisplaySettings : function (quotes) {
         return {
             "changeIcon" : this.showChangeIcon,
             "quoteName" : this.showQuoteName,
@@ -389,15 +397,19 @@ StockQuoteDesklet.prototype = {
             "absoluteChange": this.showAbsoluteChange,
             "percentChange" : this.showPercentChange,
             "colorPercentChange" : this.colorPercentChange,
-            "alternativeColors" : this.alternativeColors,
             "tradeTime" : this.showTradeTime,
-            "decimalPlaces" : this.roundNumbers ? this.decimalPlaces : -1
+            "decimalPlaces" : this.roundNumbers ? this.decimalPlaces : -1,
+            "strictRounding" : this.roundNumbers && this.strictRounding,
+            "uptrendChangeColor" : this.uptrendChangeColor,
+            "downtrendChangeColor" : this.downtrendChangeColor,
+            "unchangedTrendColor" : this.unchangedTrendColor,
+            "quoteSymbolMaxLength" : Math.max.apply(Math, quotes.map((quote) => quote.symbol.length)),
+            "quoteNameMaxLength" : Math.max.apply(Math, quotes.map((quote) => this.quoteUtils.determineQuoteName(quote, this.useLongQuoteName).length))
         };
     },
 
     formatCurrentTimestamp : function () {
         const now = new Date();
-
         return now.toLocaleTimeString(undefined, {
             hour : "numeric",
             minute : "numeric",
@@ -408,7 +420,7 @@ StockQuoteDesklet.prototype = {
     createLastUpdateLabel : function () {
         return new St.Label({
             text : _("Updated at ") + this.formatCurrentTimestamp(),
-            style_class : "quotes-label"
+            style_class : "quotes-last-update"
         });
     },
 
@@ -442,11 +454,11 @@ StockQuoteDesklet.prototype = {
     onUpdate : function () {
         const quoteSymbols = this.quoteSymbolsText.split("\n");
         try {
-          let quotes = this.quoteReader.getQuotes(quoteSymbols);
-          this.render(quotes);
-          this.setUpdateTimer();
+            let quotes = this.quoteReader.getQuotes(quoteSymbols);
+            this.render(quotes);
+            this.setUpdateTimer();
         } catch (err) {
-          this.onError(quoteSymbols, err);
+            this.onError(quoteSymbols, err);
         }
     },
 
@@ -455,15 +467,15 @@ StockQuoteDesklet.prototype = {
     },
 
     onError : function (quoteSymbols, err) {
-      global.logError(_("Cannot display quotes information for symbols: ") + quoteSymbols.join(","));
-      global.logError(_("The following error occurred: ") + err);
+        global.logError(_("Cannot display quotes information for symbols: ") + quoteSymbols.join(","));
+        global.logError(_("The following error occurred: ") + err);
     },
 
-    sortByProperty: function (quotes, prop, direction) {        
+    sortByProperty: function (quotes, prop, direction) {
         if (quotes.length < 2) {
             return quotes;
         }
-        
+
         const clone = quotes.slice(0);
         clone.sort(function(q1, q2) {
             let p1 = "";
@@ -474,7 +486,7 @@ StockQuoteDesklet.prototype = {
             if (q2.hasOwnProperty(prop) && typeof q2[prop] !== "undefined" && q2[prop] !== null) {
                 p2 = q2[prop].toString().match(/^\d+$/) ? + q2[prop] : q2[prop];
             }
-            
+
             return ((p1 < p2) ? -1 : ((p1 > p2) ? 1 : 0)) * direction;
         });
         return clone;
@@ -484,21 +496,21 @@ StockQuoteDesklet.prototype = {
         const tableContainer = new St.BoxLayout({
             vertical : true
         });
-        
+
         // optional sort
         if (this.sortCriteria && this.sortCriteria !== "none") {
             quotes[0] = this.sortByProperty(quotes[0], this.sortCriteria, this.sortDirection ? 1 : -1);
         }
-        
+
         // in case of errors, show details
         if (quotes[1] !== null) {
             tableContainer.add_actor(this.createErrorLabel(quotes[1]));
         }
-        
+
         const table = new QuotesTable();
-        table.render(quotes[0], this.getQuoteDisplaySettings());
+        table.render(quotes[0], this.getQuoteDisplaySettings(quotes[0]));
         tableContainer.add_actor(table.el);
-        
+
         if (this.showLastUpdateTimestamp) {
             tableContainer.add_actor(this.createLastUpdateLabel());
         }
