@@ -20,6 +20,10 @@ Check out the desklet configuration settings, and choose the data refresh period
 
 ## Release Notes
 
+### 0.8.0 - January 12, 2022
+Features:
+- add Russian translation
+
 ### 0.7.0 - January 10, 2022
 Features:
 - add symbolic trend change icons instead of .svg
