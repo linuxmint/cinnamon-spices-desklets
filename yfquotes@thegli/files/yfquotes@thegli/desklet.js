@@ -224,7 +224,7 @@ QuotesTable.prototype = {
 
     createPercentChangeIcon : function (quote, uptrendChangeColor, downtrendChangeColor, unchangedTrendColor) {
         const percentChange = this.quoteUtils.existsProperty(quote, "regularMarketChangePercent")
-            ? this.roundAmount(quote.regularMarketChangePercent, 2, true)
+            ? parseFloat(quote.regularMarketChangePercent)
             : 0.00;
         let iconText = this.quoteChangeSymbolMap["EQUALS"];
         let iconColor = unchangedTrendColor;
@@ -246,7 +246,7 @@ QuotesTable.prototype = {
     createPercentChangeLabel : function (quote, useTrendColors, uptrendChangeColor, downtrendChangeColor, unchangedTrendColor, strictRounding) {
         let labelColor = unchangedTrendColor;
         if (useTrendColors && this.quoteUtils.existsProperty(quote, "regularMarketChangePercent")) {
-            const percentageChange = this.roundAmount(quote.regularMarketChangePercent, 2, true);
+            const percentageChange = parseFloat(quote.regularMarketChangePercent);
             if (percentageChange > 0) {
                 labelColor = uptrendChangeColor;
             } else if (percentageChange < 0) {
