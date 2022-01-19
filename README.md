@@ -1,1 +1,0 @@
-# QOTD-Desklet
