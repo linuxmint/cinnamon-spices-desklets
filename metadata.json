@@ -1,8 +1,0 @@
-{
-  "max-instances": "10",
-  "uuid": "qotd@dev",
-  "name": "First Desklet",
-  "description": "This is my first desklet",
-  "version": "0.1",
-  "prevent-decorations": false
-}
