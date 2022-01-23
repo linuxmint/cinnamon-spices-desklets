@@ -1,95 +1,145 @@
 {
+    "top": {
+        "type": "header",
+        "description": "Clock configuration"
+    },
     "font-size": {
         "type": "spinbutton",
         "default": 40,
         "min": 10,
         "max": 200,
         "units": "px",
-        "description" : "Font size",
+        "description": "Font size",
         "step": 1
     },
-    "text-color" : {
-	    "type": "colorchooser",
-	    "default" : "rgb(255,255,255)",
-	    "description" : "Text color",
-	    "tooltip" : "Click the button to select a new text color"
+    "text-color": {
+        "type": "colorchooser",
+        "default": "rgb(255,255,255)",
+        "description": "Text color",
+        "tooltip": "Click the button to select a new text color"
     },
-    "background-color" : {
-	    "type": "colorchooser",
-	    "default" : "rgba(0, 0, 0, 0.363)",
-	    "description" : "background color",
-	    "tooltip" : "Click the button to select a new background color"
+    "background-color": {
+        "type": "colorchooser",
+        "default": "rgba(0, 0, 0, 0.363)",
+        "description": "background color",
+        "tooltip": "Click the button to select a new background color"
     },
-     "weather":{
-        "type":"switch",
-        "default":true,
-        "description":"Want weather display ?",
-        "tooltip": "want current weather display ?"
+    "sep1" : {
+        "type" : "separator"
     },
-    "auto-update":{
-        "type":"switch",
-        "dependency" : "weather",
-        "default":false,
-        "description":"auto-update report",
+    "weatherconf":{
+        "type":"header",
+        "description":"weather data service settings"
+    },
+    "compact": {
+        "type": "switch",
+        "default": true,
+        "description": "Want weather display ?",
+        "tooltip": "Want weather display ?"
+    },
+    "webservice" : {
+        "type": "combobox",
+        "default" : "owm",
+        "dependency":"compact",
+        "description" : "Data service",
+        "options" : {
+            "BBC" : "bbc",
+            "Open Weather Map Free (requires API key)": "owm"
+        },
+        "tooltip" : "select the data service"
+    },
+    "api-key": {
+        "type": "entry",
+        "default": "",
+        "dependency":"compact",
+        "description": "put api key",
+        "indent": true,
+        "tooltip": "put your api key generated from open-weather-map here"
+    },
+    "loctype" : {
+        "type": "combobox",
+        "default" : "city",
+        "dependency":"compact",
+        "description" : "Data service",
+        "options" : {
+            "city name" : "city",
+            "lat-lon": "lat-lon"
+        },
+        "tooltip" : "select your location type"
+    },
+    "loc": {
+        "type": "entry",
+        "default": "kolkata",
+        "dependency":"compact",
+        "description": "put your location",
+        "indent": true,
+        "tooltip": "put your lat-long generated from lat-long.html page"
+    },
+    
+    "auto-update": {
+        "type": "switch",
+        "default": false,
+        "dependency":"compact",
+        "description": "auto-update report",
         "tooltip": "enable or disable auto-update"
     },
-    "update-duration":{
+    "update-duration": {
         "type": "entry",
-        "dependency" : "auto-update",
+        "dependency": "auto-update",
         "default": "20",
         "description": "set auto update duration(20 min/30 min/60 min)",
         "indent": true,
-        "tooltip" : "set auto update duration"
+        "tooltip": "set auto update duration"
+    },
+    "sep2":{
+        "type":"separator"
+    },
+    "data-custom":{
+        "type":"header",
+        "description":"customize your data",
+        "dependency":"compact"
+    },
+    "unit":{
+        "type": "combobox",
+        "default" : "metric",
+        "dependency":"compact",
+        "description" : "unit",
+        "options" : {
+            "metric" : "metric"
+        },
+        "tooltip" : "select your unit preferance"
+    },
+    "sep3":{
+        "type":"separator"
+    },
+    "design":{
+        "type":"header",
+        "description":"customize font and bg color",
+        "dependency":"compact"
     },
     "weather-color" : {
 	    "type": "colorchooser",
-        "dependency" : "weather",
-	    "default" : "rgb(0,0,0)",
+        "dependency":"compact",
+	    "default" : "rgb(255,255,255)",
 	    "description" : "weather block text color",
 	    "tooltip" : "Click the button to select a new text color"
     },
     "weather-bg-color" : {
 	    "type": "colorchooser",
-        "dependency" : "weather",
+        "dependency":"compact",
 	    "default" : "rgba(0, 0, 0, 0.363)",
 	    "description" : "weather-block bg-color",
 	    "tooltip" : "Click the button to select a new bg color"
     },
-    "api-key":{
-        "type": "entry",
-        "default": "",
-        "dependency" : "weather",
-        "description": "put api key",
-        "indent": true,
-        "tooltip" : "put your api key generated from open-weather-map here"
-    },
-    "lat-long":{
-        "type": "entry",
-        
-        "default": "",
-        "description": "put lat-lon",
-        "indent": true,
-        "tooltip" : "put your lat-long generated from lat-long.html page"
-    },
-    "place":{
-        "type": "entry",
-        
-        "default": "",
-        "description": "put place name",
-        "indent": true,
-        "tooltip" : "put your place name."
-    },
-    "feedback":{
-        "type":"switch",
-        "dependency" : "weather",
-        "default":false,
-        "description":"feedback report",
-        "tooltip": "enable or disable auto-update"
-    },
-    "forecast":{
-        "type":"switch",
-        "default":true,
-        "description":"Want weather forecust display ?",
-        "tooltip": "want weather forecast display ?"
+    "icon-pack":{
+        "type": "combobox",
+        "default" : "default",
+        "dependency":"compact",
+        "description" : "Icon pack",
+        "options" : {
+            "default" : "default"
+        },
+        "tooltip" : "select your fav icon-pack"
     }
+    
 }
