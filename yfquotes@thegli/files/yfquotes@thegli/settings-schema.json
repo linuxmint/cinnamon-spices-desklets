@@ -149,7 +149,7 @@
     "type": "checkbox",
     "default": false,
     "description": "Strict rounding",
-    "tooltip": "Strict rounding to the specified decimal places (for example, 0 will be presented as 0.00).",
+    "tooltip": "Strict rounding to the specified decimal places (eg. 0 will be presented as 0.00).",
     "dependency": "roundNumbers"
   },
   "quoteSymbols": {
@@ -258,19 +258,19 @@
   "uptrendChangeColor": {
     "type": "colorchooser",
     "description": "Uptrend change color",
-    "tooltip": "Color of the uptrend change",
+    "tooltip": "Color of the uptrend change.",
     "default": "green"
   },
   "downtrendChangeColor": {
     "type": "colorchooser",
     "description": "Downtrend change color",
-    "tooltip": "Color of the downtrend change",
+    "tooltip": "Color of the downtrend change.",
     "default": "red"
   },
   "unchangedTrendColor": {
     "type": "colorchooser",
     "description": "Unchanged trend color",
-    "tooltip": "Color of the unchanged trend",
+    "tooltip": "Color of the unchanged trend.",
     "default": "grey"
   }
 }

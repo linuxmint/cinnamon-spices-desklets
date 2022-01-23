@@ -1,6 +1,7 @@
 # Yahoo Finance Quotes Desklet
 # Copyright (C) 2021 Thomas Egli
 # This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
@@ -15,23 +16,23 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: da\n"
 
-#: desklet.js:70
+#: desklet.js:89
 msgid "Yahoo Finance service not available!"
 msgstr "Yahoo Finance er ikke tilgængelig!"
 
-#: desklet.js:410
+#: desklet.js:422
 msgid "Updated at "
 msgstr "Opdateret "
 
-#: desklet.js:417
+#: desklet.js:429
 msgid "Error: "
 msgstr "Fejl: "
 
-#: desklet.js:458
+#: desklet.js:470
 msgid "Cannot display quotes information for symbols: "
 msgstr "Kan ikke vise kurser for symbolerne: "
 
-#: desklet.js:459
+#: desklet.js:471
 msgid "The following error occurred: "
 msgstr "Følgende fejl opstod: "
 
@@ -177,6 +178,14 @@ msgstr "Decimaler til afrunding"
 msgid "Number of positions to round to after decimal point."
 msgstr "Antallet af decimaler."
 
+#. settings-schema.json->strictRounding->description
+msgid "Strict rounding"
+msgstr ""
+
+#. settings-schema.json->strictRounding->tooltip
+msgid "Strict rounding to the specified decimal places (eg. 0 will be presented as 0.00)."
+msgstr ""
+
 #. settings-schema.json->quoteSymbols->description
 msgid "Quote symbols"
 msgstr "Selskabskoder"
@@ -219,14 +228,6 @@ msgid ""
 msgstr ""
 "Markér for at sortere kurserne i stigende rækkefølge, fjern markeringen for "
 "at sortere i faldende rækkefølge."
-
-#. settings-schema.json->alternativeColors->description
-msgid "Use alternative colors"
-msgstr "anlægge alternative farver"
-
-#. settings-schema.json->alternativeColors->tooltip
-msgid "Use blue instead of green."
-msgstr "anlægge blå i stedet for grøn."
 
 #. settings-schema.json->showChangeIcon->description
 msgid "Show change/trend icon"
@@ -328,3 +329,27 @@ msgstr "Vis handelstidspunkt"
 #. settings-schema.json->showTradeTime->tooltip
 msgid "Display the last trading time (if current day) or date."
 msgstr "Viser det seneste handelstidspunkt eller -dato."
+
+#. settings-schema.json->uptrendChangeColor->description
+msgid "Uptrend change color"
+msgstr ""
+
+#. settings-schema.json->uptrendChangeColor->tooltip
+msgid "Color of the uptrend change."
+msgstr ""
+
+#. settings-schema.json->downtrendChangeColor->description
+msgid "Downtrend change color"
+msgstr ""
+
+#. settings-schema.json->downtrendChangeColor->tooltip
+msgid "Color of the downtrend change."
+msgstr ""
+
+#. settings-schema.json->unchangedTrendColor->description
+msgid "Unchanged trend color"
+msgstr ""
+
+#. settings-schema.json->unchangedTrendColor->tooltip
+msgid "Color of the unchanged trend."
+msgstr ""
