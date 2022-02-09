@@ -183,11 +183,11 @@ msgstr "Número de posições a arredondar depois da vírgula."
 
 #. settings-schema.json->strictRounding->description
 msgid "Strict rounding"
-msgstr ""
+msgstr "Exibir zero em dezenas"
 
 #. settings-schema.json->strictRounding->tooltip
 msgid "Strict rounding to the specified decimal places (eg. 0 will be presented as 0.00)."
-msgstr ""
+msgstr "Força a existência de casas decimais (por exemplo, 0 será apresentado como 0,00)."
 
 #. settings-schema.json->quoteSymbols->description
 msgid "Quote symbols"
@@ -342,24 +342,24 @@ msgstr ""
 
 #. settings-schema.json->uptrendChangeColor->description
 msgid "Uptrend change color"
-msgstr ""
+msgstr "Cor da tendência de alta"
 
 #. settings-schema.json->uptrendChangeColor->tooltip
 msgid "Color of the uptrend change."
-msgstr ""
+msgstr "Cor da tendência de alta."
 
 #. settings-schema.json->downtrendChangeColor->description
 msgid "Downtrend change color"
-msgstr ""
+msgstr "Cor da tendência de baixa"
 
 #. settings-schema.json->downtrendChangeColor->tooltip
 msgid "Color of the downtrend change."
-msgstr ""
+msgstr "Cor da tendência de baixa."
 
 #. settings-schema.json->unchangedTrendColor->description
 msgid "Unchanged trend color"
-msgstr ""
+msgstr "Cor da tendência lateral"
 
 #. settings-schema.json->unchangedTrendColor->tooltip
 msgid "Color of the unchanged trend."
-msgstr ""
+msgstr "Cor da tendência lateral."
