@@ -1888,7 +1888,7 @@ wxDriverYahoo.prototype = {
   refreshData: function(deskletObj) {
     // reset the data object
     this._emptyData();
-    this.linkURL = 'http://weather.yahoo.com/';
+    this.linkURL = 'https://weather.yahoo.com/';
 
     // lat,lon location
     if (this.stationID.search(/^\-?\d+(\.\d+)?,\-?\d+(\.\d+)?$/) == 0) {
@@ -2221,7 +2221,7 @@ wxDriverOWM.prototype = {
   refreshData: function(deskletObj) {
     // reset the data object
     this._emptyData();
-    this.linkURL = 'http://openweathermap.org';
+    this.linkURL = 'https://openweathermap.org';
 
     if (this.stationID.search(/^\-?\d+(\.\d+)?,\-?\d+(\.\d+)?$/) == 0) {
       this.latlon = this.stationID.split(',');
@@ -2309,7 +2309,7 @@ wxDriverOWM.prototype = {
     this.data.country = json.city.country;
     this.data.wgs84.lat = json.city.coord.lat;
     this.data.wgs84.lon = json.city.coord.lon;
-    this.linkURL = 'http://openweathermap.org/city/' + json.city.id;
+    this.linkURL = 'https://openweathermap.org/city/' + json.city.id;
 
     // This is ugly, but to place a forecast in a particular day we need to make an effort to 
     // interpret the UTC timestamps in the context of the forecast location's timezone, which 
@@ -2483,7 +2483,7 @@ wxDriverOWMFree.prototype = {
       this.data.country = json.city.country;
       this.data.wgs84.lat = json.city.coord.lat;
       this.data.wgs84.lon = json.city.coord.lon;
-      this.linkURL = 'http://openweathermap.org/city/' + json.city.id;
+      this.linkURL = 'https://openweathermap.org/city/' + json.city.id;
 
       // This is ugly, but to place a forecast in a particular day we need to make an effort to 
       // interpret the UTC timestamps in the context of the forecast location's timezone, which 
@@ -2555,7 +2555,7 @@ wxDriverWU.prototype = {
   _referralRef: '?apiref=415600fd47df8d55',
 
   // these will be dynamically reset when data is loaded
-  linkURL: 'http://wunderground.com' + this._referralRef,
+  linkURL: 'https://wunderground.com' + this._referralRef,
   linkIcon: {
     file: 'wunderground',
     width: 145,
@@ -2837,7 +2837,7 @@ wxDriverWWO.prototype = {
 
 
   // these will be dynamically reset when data is loaded
-  linkURL: 'http://www.worldweatheronline.com',
+  linkURL: 'https://www.worldweatheronline.com',
 
   // see http://developer.worldweatheronline.com/free_api_terms_of_use,
   // point 3
@@ -2994,7 +2994,7 @@ wxDriverWWO.prototype = {
       if (typeof locdata.weatherUrl != 'undefined') {
         this.linkURL = locdata.weatherUrl[0].value;
       } else {
-        this.linkURL = 'http://www.worldweatheronline.com/v2/weather.aspx?q=' + encodeURIComponent(this.stationID);
+        this.linkURL = 'https://www.worldweatheronline.com/v2/weather.aspx?q=' + encodeURIComponent(this.stationID);
       }
 
       this.data.status.meta = BBCWX_SERVICE_STATUS_OK;
@@ -3098,7 +3098,7 @@ wxDriverWWOPremium.prototype = {
 
 
   // these will be dynamically reset when data is loaded
-  linkURL: 'http://www.worldweatheronline.com',
+  linkURL: 'https://www.worldweatheronline.com',
 
   // see http://developer.worldweatheronline.com/free_api_terms_of_use,
   // point 3
@@ -3260,7 +3260,7 @@ wxDriverWWOPremium.prototype = {
       if (typeof locdata.weatherUrl != 'undefined') {
         this.linkURL = locdata.weatherUrl[0].value;
       } else {
-        this.linkURL = 'http://www.worldweatheronline.com/v2/weather.aspx?q=' + encodeURIComponent(this.stationID);
+        this.linkURL = 'https://www.worldweatheronline.com/v2/weather.aspx?q=' + encodeURIComponent(this.stationID);
       }
 
       this.data.status.meta = BBCWX_SERVICE_STATUS_OK;
@@ -3670,7 +3670,7 @@ wxDriverForecastIo.prototype = {
   refreshData: function(deskletObj) {
     // reset the data object
     this._emptyData();
-    this.linkURL = 'http://forecast.io';
+    this.linkURL = 'https://forecast.io';
 
     // forecast.io sometimes includes temp and snow accumulations in
     // text summaries. To get these in imperial units we have to request
@@ -3761,7 +3761,7 @@ wxDriverForecastIo.prototype = {
 
       this.data.wgs84.lat = json.latitude;
       this.data.wgs84.lon = json.longitude;
-      this.linkURL = 'http://forecast.io/#/f/' + json.latitude + ',' + json.longitude;
+      this.linkURL = 'https://forecast.io/#/f/' + json.latitude + ',' + json.longitude;
 
       this.data.status.cc = BBCWX_SERVICE_STATUS_OK;
       this.data.status.forecast = BBCWX_SERVICE_STATUS_OK;
@@ -3913,7 +3913,7 @@ wxDriverTWC.prototype = {
       this.data.city = locparts[0].trim();
       //### TODO this returns state for US - somehow detect that and add US
       this.data.country = locparts[locparts.length-1].trim();
-      this.linkURL = 'http://www.weather.com/weather/today/' + geo.getAttributeValue('id').trim();
+      this.linkURL = 'https://www.weather.com/weather/today/' + geo.getAttributeValue('id').trim();
       this.data.wgs84.lat=geo.getChildElement('lat').getText();
       this.data.wgs84.lon=geo.getChildElement('lon').getText();
       // data.region
