@@ -31,6 +31,11 @@ msgstr "RAM"
 msgid "GiB"
 msgstr "GiB"
 
+#. settings-schema.json->type->options
+#: desklet.js:171
+msgid "Swap"
+msgstr "Swap"
+
 #: desklet.js:172
 msgid "GB free of"
 msgstr "GB frei von"
@@ -228,6 +233,10 @@ msgstr "RGB oder RGBA. Alpha wird ignoriert"
 #. settings-schema.json->line-color-ram->description
 msgid "Line color RAM"
 msgstr "RAM-Linienfarbe"
+
+#. settings-schema.json->line-color-swap->description
+msgid "Line color Swap"
+msgstr "Swap-Linienfarbe"
 
 #. settings-schema.json->line-color-hdd->description
 msgid "Line color HDD"

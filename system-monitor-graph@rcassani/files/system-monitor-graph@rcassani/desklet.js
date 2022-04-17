@@ -56,6 +56,7 @@ SystemMonitorGraph.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "text_color", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-cpu", "line_color_cpu", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-ram", "line_color_ram", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-swap", "line_color_swap", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-hdd", "line_color_hdd", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-gpu", "line_color_gpu", this.on_setting_changed);
 
@@ -104,6 +105,9 @@ SystemMonitorGraph.prototype = {
                   break;
               case "ram":
                   this.line_color = this.line_color_ram;
+                  break;
+              case "swap":
+                  this.line_color = this.line_color_swap;
                   break;
               case "hdd":
                   this.line_color = this.line_color_hdd;
@@ -159,6 +163,16 @@ SystemMonitorGraph.prototype = {
               text3 = ram_values[1].toFixed(1) + " / "
                     + ram_values[0].toFixed(1) + " " + _("GiB");
               break;
+
+          case "swap":
+            let swap_values = this.get_swap_values();
+            let swap_use = 100 * swap_values[1] / swap_values[0];
+            value = swap_use / 100;
+            text1 = _("Swap");
+            text2 = Math.round(swap_use).toString() + "%"
+            text3 = swap_values[1].toFixed(1) + " / "
+                  + swap_values[0].toFixed(1) + " " + _("GiB");
+            break;
 
           case "hdd":
               let dir_path = decodeURIComponent(this.filesystem.replace("file://", "").trim());
@@ -324,6 +338,17 @@ SystemMonitorGraph.prototype = {
         let ram_tot = mem_tot / GIB_TO_KIB;
         let ram_usd = mem_usd / GIB_TO_KIB;
         return [ram_tot, ram_usd];
+    },
+
+    get_swap_values: function() {
+        // used  = total - available
+        let mem_out = Cinnamon.get_file_contents_utf8_sync("/proc/meminfo");
+        let mem_tot = parseInt(mem_out.match(/(SwapTotal):\D+(\d+)/)[2]);
+        let mem_usd = mem_tot - parseInt(mem_out.match(/(SwapFree):\D+(\d+)/)[2]);
+
+        let swap_tot = mem_tot / GIB_TO_KIB;
+        let swap_usd = mem_usd / GIB_TO_KIB;
+        return [swap_tot, swap_usd];
     },
 
     get_hdd_values: function(dir_path) {

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-28 13:30-0500\n"
+"POT-Creation-Date: 2022-04-17 23:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,33 +18,37 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. settings-schema.json->type->options
-#: desklet.js:149
+#: desklet.js:153
 msgid "CPU"
 msgstr ""
 
 #. settings-schema.json->type->options
-#: desklet.js:157
+#: desklet.js:161
 msgid "RAM"
 msgstr ""
 
-#: desklet.js:160
-#: desklet.js:193
+#: desklet.js:164 desklet.js:174 desklet.js:207
 msgid "GiB"
 msgstr ""
 
-#: desklet.js:172
+#. settings-schema.json->type->options
+#: desklet.js:171
+msgid "Swap"
+msgstr ""
+
+#: desklet.js:186
 msgid "GB free of"
 msgstr ""
 
-#: desklet.js:173
+#: desklet.js:187
 msgid "GB"
 msgstr ""
 
-#: desklet.js:183
+#: desklet.js:197
 msgid "GPU Usage"
 msgstr ""
 
-#: desklet.js:190
+#: desklet.js:204
 msgid "GPU Memory"
 msgstr ""
 
@@ -221,6 +225,7 @@ msgstr ""
 
 #. settings-schema.json->line-color-cpu->tooltip
 #. settings-schema.json->line-color-ram->tooltip
+#. settings-schema.json->line-color-swap->tooltip
 #. settings-schema.json->line-color-hdd->tooltip
 #. settings-schema.json->line-color-gpu->tooltip
 msgid "RGB or RGBA. Alpha is ignored"
@@ -228,6 +233,10 @@ msgstr ""
 
 #. settings-schema.json->line-color-ram->description
 msgid "Line color RAM"
+msgstr ""
+
+#. settings-schema.json->line-color-swap->description
+msgid "Line color Swap"
 msgstr ""
 
 #. settings-schema.json->line-color-hdd->description
