@@ -143,7 +143,7 @@ SystemMonitorGraph.prototype = {
         var text1 = '';
         var text2 = '';
         var text3 = '';
-        var line_colors = this.parse_rgba_seetings(this.line_color);
+        var line_colors = this.parse_rgba_settings(this.line_color);
 
         // current values
         switch (this.type) {
@@ -220,8 +220,8 @@ SystemMonitorGraph.prototype = {
         values.shift();
         this.values = values;
 
-        var background_colors = this.parse_rgba_seetings(this.background_color);
-        var midline_colors = this.parse_rgba_seetings(this.midline_color);
+        var background_colors = this.parse_rgba_settings(this.background_color);
+        var midline_colors = this.parse_rgba_settings(this.midline_color);
 
 
 
@@ -392,7 +392,7 @@ SystemMonitorGraph.prototype = {
       return hdd_use;
     },
 
-    parse_rgba_seetings: function(color_str) {
+    parse_rgba_settings: function(color_str) {
         let colors = color_str.match(/\((.*?)\)/)[1].split(","); // get contents inside brackets: "rgb(...)"
         let r = parseInt(colors[0])/255;
         let g = parseInt(colors[1])/255;
