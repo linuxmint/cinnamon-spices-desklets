@@ -120,7 +120,7 @@ SystemMonitorGraph.prototype = {
         }
 
         // Desklet proportions
-        let unit_size = 15 * this.scale_size;  // pixels
+        let unit_size = 15 * this.scale_size * global.ui_scale;  // pixels
         var line_width = unit_size / 15;
         var margin_up = 3 * unit_size;
         var graph_w = 20 * unit_size;
@@ -129,9 +129,9 @@ SystemMonitorGraph.prototype = {
         let desklet_h = graph_h + (4 * unit_size);
         var h_midlines = this.h_midlines;
         var v_midlines = this.v_midlines;
-        let text1_size = 4 * unit_size / 3;
-        let text2_size = 4 * unit_size / 3;
-        let text3_size = 3 * unit_size / 3;
+        let text1_size = (4 * unit_size / 3) / global.ui_scale;
+        let text2_size = (4 * unit_size / 3) / global.ui_scale;
+        let text3_size = (3 * unit_size / 3) / global.ui_scale;
         var radius = 2 * unit_size / 3;;
         var degrees = Math.PI / 180.0;
 
