@@ -128,7 +128,7 @@
     },
     "line-color-swap": {
         "type": "colorchooser",
-        "default": "rgba(137,190,67,1.0)",
+        "default": "rgba(229,165,10,1.0)",
         "description": "Line color Swap",
         "dependency": "type=swap",
         "tooltip": "RGB or RGBA. Alpha is ignored"
