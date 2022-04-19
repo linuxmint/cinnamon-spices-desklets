@@ -42,8 +42,6 @@ A simple screenshot.
 </p>
 
 ## TODO
-- [ ] Bottom alignment of the text elements
-- [ ] Right alignment of the third text elements
 - [ ] Add other variables such as network, CPU and GPU temperatures, battery levels for PC and peripherals.
 
 ### Resources
