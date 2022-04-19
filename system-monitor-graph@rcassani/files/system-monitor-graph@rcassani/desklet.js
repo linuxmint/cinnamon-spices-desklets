@@ -283,18 +283,27 @@ SystemMonitorGraph.prototype = {
         });
 
         // text position and content
-        this.text1.set_position(unit_size, (2.5 * unit_size) - this.text1.get_height());
+        this.text1.set_position(
+            Math.round(unit_size),
+            Math.round((2.5 * unit_size) - this.text1.get_height())
+        );
         this.text1.set_text(text1);
         this.text1.style = "font-size: " + text1_size + "px;"
                          + "color: " + this.text_color + ";";
-        this.text2.set_position(this.text1.get_width() + (2 * unit_size), (2.5 * unit_size) - this.text2.get_height());
+        this.text2.set_position(
+            Math.round(this.text1.get_width() + (2 * unit_size)),
+            Math.round((2.5 * unit_size) - this.text2.get_height())
+        );
         this.text2.set_text(text2);
         this.text2.style = "font-size: " + text2_size + "px;"
                          + "color: " + this.text_color + ";";
         this.text3.set_text(text3);
         this.text3.style = "font-size: " + text3_size + "px;"
                          + "color: " + this.text_color + ";";
-        this.text3.set_position((21 * unit_size) - this.text3.get_width(), (2.5 * unit_size) - this.text3.get_height());
+        this.text3.set_position(
+            Math.round((21 * unit_size) - this.text3.get_width()),
+            Math.round((2.5 * unit_size) - this.text3.get_height())
+        );
 
 
         // update canvas
