@@ -216,7 +216,7 @@ SystemMonitorGraph.prototype = {
         }
 
         // concatenate new value
-        values.push(value);
+        values.push(isNaN(value) ? 0 : value);
         values.shift();
         this.values = values;
 
