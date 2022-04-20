@@ -10,13 +10,16 @@ Four instances of the Desklet in action.
 This project has been inspired from other Desklets such as [Disk Space](https://cinnamon-spices.linuxmint.com/desklets/view/39), [CPU Load](https://cinnamon-spices.linuxmint.com/desklets/view/44), [Simple system monitor](https://cinnamon-spices.linuxmint.com/desklets/view/29), [Network usage monitor](https://cinnamon-spices.linuxmint.com/desklets/view/15), [Top](https://cinnamon-spices.linuxmint.com/desklets/view/41), and the  [Rainmeter Win10 Widgets](https://win10widgets.com/).
 
 ## Features
-### Variables to monitor (v1.0 - May 2020)
+### Variables to monitor (v1.3 - April 2022)
 
 | System variable | Description |
 | -----------     | ----------- |
 | CPU             | CPU usage in % |
-| RAM             | Used RAM as % of total, and in GB  |
-| HDD             | % of I/O activity, and free and total space in the filesystem (partition)  indicated by the user|
+| RAM             | Used RAM as % of total, and in GB |
+| Swap            | Used Swap space as % of total, and in GB |
+| HDD             | % of I/O activity, and free and total space in the filesystem (partition)  indicated by the user |
+| GPU Usage       | GPU usage in % |
+| GPU Memory      | GPU memory usage in % |
 
 Each variable is calculated every `Refresh interval` seconds (Min. 1 s, Max. 60 s.), and the graph shows the last `Duration of the graph` period (Min. 30 s, Max. 60 min).
 
@@ -39,9 +42,6 @@ A simple screenshot.
 </p>
 
 ## TODO
-- [ ] Bottom alignment of the text elements
-- [ ] Right alignment of the third text elements
-- [ ] Add % of use of GPU
 - [ ] Add other variables such as network, CPU and GPU temperatures, battery levels for PC and peripherals.
 
 ### Resources

@@ -56,6 +56,7 @@ SystemMonitorGraph.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "text_color", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-cpu", "line_color_cpu", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-ram", "line_color_ram", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-swap", "line_color_swap", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-hdd", "line_color_hdd", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-gpu", "line_color_gpu", this.on_setting_changed);
 
@@ -105,6 +106,9 @@ SystemMonitorGraph.prototype = {
               case "ram":
                   this.line_color = this.line_color_ram;
                   break;
+              case "swap":
+                  this.line_color = this.line_color_swap;
+                  break;
               case "hdd":
                   this.line_color = this.line_color_hdd;
                   break;
@@ -116,7 +120,7 @@ SystemMonitorGraph.prototype = {
         }
 
         // Desklet proportions
-        let unit_size = 15 * this.scale_size;  // pixels
+        let unit_size = 15 * this.scale_size * global.ui_scale;  // pixels
         var line_width = unit_size / 15;
         var margin_up = 3 * unit_size;
         var graph_w = 20 * unit_size;
@@ -125,9 +129,9 @@ SystemMonitorGraph.prototype = {
         let desklet_h = graph_h + (4 * unit_size);
         var h_midlines = this.h_midlines;
         var v_midlines = this.v_midlines;
-        let text1_size = 4 * unit_size / 3;
-        let text2_size = 4 * unit_size / 3;
-        let text3_size = 3 * unit_size / 3;
+        let text1_size = (4 * unit_size / 3) / global.ui_scale;
+        let text2_size = (4 * unit_size / 3) / global.ui_scale;
+        let text3_size = (3 * unit_size / 3) / global.ui_scale;
         var radius = 2 * unit_size / 3;;
         var degrees = Math.PI / 180.0;
 
@@ -139,7 +143,7 @@ SystemMonitorGraph.prototype = {
         var text1 = '';
         var text2 = '';
         var text3 = '';
-        var line_colors = this.parse_rgba_seetings(this.line_color);
+        var line_colors = this.parse_rgba_settings(this.line_color);
 
         // current values
         switch (this.type) {
@@ -159,6 +163,16 @@ SystemMonitorGraph.prototype = {
               text3 = ram_values[1].toFixed(1) + " / "
                     + ram_values[0].toFixed(1) + " " + _("GiB");
               break;
+
+          case "swap":
+            let swap_values = this.get_swap_values();
+            let swap_use = 100 * swap_values[1] / swap_values[0];
+            value = swap_use / 100;
+            text1 = _("Swap");
+            text2 = Math.round(swap_use).toString() + "%"
+            text3 = swap_values[1].toFixed(1) + " / "
+                  + swap_values[0].toFixed(1) + " " + _("GiB");
+            break;
 
           case "hdd":
               let dir_path = decodeURIComponent(this.filesystem.replace("file://", "").trim());
@@ -202,12 +216,12 @@ SystemMonitorGraph.prototype = {
         }
 
         // concatenate new value
-        values.push(value);
+        values.push(isNaN(value) ? 0 : value);
         values.shift();
         this.values = values;
 
-        var background_colors = this.parse_rgba_seetings(this.background_color);
-        var midline_colors = this.parse_rgba_seetings(this.midline_color);
+        var background_colors = this.parse_rgba_settings(this.background_color);
+        var midline_colors = this.parse_rgba_settings(this.midline_color);
 
 
 
@@ -269,18 +283,27 @@ SystemMonitorGraph.prototype = {
         });
 
         // text position and content
-        this.text1.set_position(unit_size, unit_size);
+        this.text1.set_position(
+            Math.round(unit_size),
+            Math.round((2.5 * unit_size) - this.text1.get_height())
+        );
         this.text1.set_text(text1);
         this.text1.style = "font-size: " + text1_size + "px;"
                          + "color: " + this.text_color + ";";
-        this.text2.set_position(this.text1.get_width() + (2 * unit_size), unit_size);
+        this.text2.set_position(
+            Math.round(this.text1.get_width() + (2 * unit_size)),
+            Math.round((2.5 * unit_size) - this.text2.get_height())
+        );
         this.text2.set_text(text2);
         this.text2.style = "font-size: " + text2_size + "px;"
                          + "color: " + this.text_color + ";";
         this.text3.set_text(text3);
         this.text3.style = "font-size: " + text3_size + "px;"
                          + "color: " + this.text_color + ";";
-        this.text3.set_position((21 * unit_size) - this.text3.get_width(), unit_size * 1.3333);
+        this.text3.set_position(
+            Math.round((21 * unit_size) - this.text3.get_width()),
+            Math.round((2.5 * unit_size) - this.text3.get_height())
+        );
 
 
         // update canvas
@@ -326,6 +349,17 @@ SystemMonitorGraph.prototype = {
         return [ram_tot, ram_usd];
     },
 
+    get_swap_values: function() {
+        // used  = total - available
+        let mem_out = Cinnamon.get_file_contents_utf8_sync("/proc/meminfo");
+        let mem_tot = parseInt(mem_out.match(/(SwapTotal):\D+(\d+)/)[2]);
+        let mem_usd = mem_tot - parseInt(mem_out.match(/(SwapFree):\D+(\d+)/)[2]);
+
+        let swap_tot = mem_tot / GIB_TO_KIB;
+        let swap_usd = mem_usd / GIB_TO_KIB;
+        return [swap_tot, swap_usd];
+    },
+
     get_hdd_values: function(dir_path) {
         let subprocess = new Gio.Subprocess({
             argv: ['/bin/df', dir_path],
@@ -367,7 +401,7 @@ SystemMonitorGraph.prototype = {
       return hdd_use;
     },
 
-    parse_rgba_seetings: function(color_str) {
+    parse_rgba_settings: function(color_str) {
         let colors = color_str.match(/\((.*?)\)/)[1].split(","); // get contents inside brackets: "rgb(...)"
         let r = parseInt(colors[0])/255;
         let g = parseInt(colors[1])/255;
