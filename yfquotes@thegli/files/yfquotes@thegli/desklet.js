@@ -57,7 +57,7 @@ YahooFinanceQuoteUtils.prototype = {
         }
         return ABSENT;
     }
-}
+};
 
 let YahooFinanceQuoteReader = function () {
 };
@@ -72,15 +72,15 @@ YahooFinanceQuoteReader.prototype = {
         const errorEnd = "\"}}";
         
         let here = this;
-        let message = Soup.Message.new('GET', requestUrl);
+        let message = Soup.Message.new("GET", requestUrl);
         _httpSession.timeout = 10;
         _httpSession.idle_timeout = 10;
         _httpSession.queue_message(message, function (session, message) {
-            if( message.status_code == 200) {
+            if( message.status_code === 200) {
                 try {
                     callback.call(here, message.response_body.data.toString());
                 } catch(e) {
-                    global.logError(e)
+                    global.logError(e);
                 }
             } else {
                 global.logWarning("Error retrieving url " + requestUrl + ". Status: " + message.status_code + ": " + message.reason_phrase);
