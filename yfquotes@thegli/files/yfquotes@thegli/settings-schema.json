@@ -85,7 +85,7 @@
   },
   "width": {
     "type": "spinbutton",
-    "default": 560,
+    "default": 600,
     "min": 40,
     "max": 4000,
     "step": 20,
@@ -246,7 +246,7 @@
     "type": "checkbox",
     "default": true,
     "description": "Use trend colors for percent change",
-    "tooltip": "Color the percent change to show the trend (green for up, red for down).",
+    "tooltip": "Color the percent change to show the trend.",
     "dependency": "showPercentChange"
   },
   "showTradeTime": {

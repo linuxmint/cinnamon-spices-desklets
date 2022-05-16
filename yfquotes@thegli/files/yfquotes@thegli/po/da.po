@@ -16,23 +16,23 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: da\n"
 
-#: desklet.js:89
+#: desklet.js:87
 msgid "Yahoo Finance service not available!"
 msgstr "Yahoo Finance er ikke tilgængelig!"
 
-#: desklet.js:422
+#: desklet.js:416
 msgid "Updated at "
 msgstr "Opdateret "
 
-#: desklet.js:429
+#: desklet.js:423
 msgid "Error: "
 msgstr "Fejl: "
 
-#: desklet.js:470
+#: desklet.js:467
 msgid "Cannot display quotes information for symbols: "
 msgstr "Kan ikke vise kurser for symbolerne: "
 
-#: desklet.js:471
+#: desklet.js:468
 msgid "The following error occurred: "
 msgstr "Følgende fejl opstod: "
 
@@ -319,7 +319,7 @@ msgstr "Brug tendensfarver for procentvis ændring"
 
 #. settings-schema.json->colorPercentChange->tooltip
 msgid ""
-"Color the percent change to show the trend (green for up, red for down)."
+"Color the percent change to show the trend."
 msgstr "Viser den procentvise ændring som grøn (op) eller rød (ned)."
 
 #. settings-schema.json->showTradeTime->description

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-18 19:25+0100\n"
-"PO-Revision-Date: 2021-06-18 18:00+0100\n"
+"PO-Revision-Date: 2022-05-16 18:00+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,23 +16,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
 
-#: desklet.js:89
+#: desklet.js:87
 msgid "Yahoo Finance service not available!"
 msgstr "Yahoo Finance Service nicht verfügbar!"
 
-#: desklet.js:422
+#: desklet.js:416
 msgid "Updated at "
 msgstr "Aktualisiert um "
 
-#: desklet.js:429
+#: desklet.js:423
 msgid "Error: "
 msgstr "Fehler: "
 
-#: desklet.js:470
+#: desklet.js:467
 msgid "Cannot display quotes information for symbols: "
 msgstr "Finanzdaten können nicht angezeigt werden für die Symbole: "
 
-#: desklet.js:471
+#: desklet.js:468
 msgid "The following error occurred: "
 msgstr "Folgender Fehler ist aufgetreten: "
 
@@ -180,11 +180,11 @@ msgstr "Anzahl der Dezimalstellen nach dem Komma, auf die gerundet wird."
 
 #. settings-schema.json->strictRounding->description
 msgid "Strict rounding"
-msgstr ""
+msgstr "Runden auf feste Anzahl Dezimalstellen"
 
 #. settings-schema.json->strictRounding->tooltip
 msgid "Strict rounding to the specified decimal places (eg. 0 will be presented as 0.00)."
-msgstr ""
+msgstr "Rundet Beträge immer auf die gewählte Anzahl Stellen (z.B. wird der Wert 0 bei 2 Stellen als 0.00 dargestellt)."
 
 #. settings-schema.json->quoteSymbols->description
 msgid "Quote symbols"
@@ -324,10 +324,9 @@ msgstr "Verwende Trend-Farben bei prozentualer Veränderung"
 
 #. settings-schema.json->colorPercentChange->tooltip
 msgid ""
-"Color the percent change to show the trend (green for up, red for down)."
+"Color the percent change to show the trend."
 msgstr ""
-"Färbt die prozentuale Veränderung gemäss Trend (grün für höher, rot für "
-"tiefer)."
+"Färbt die prozentuale Veränderung gemäss Trend."
 
 #. settings-schema.json->showTradeTime->description
 msgid "Show trading time"
@@ -341,24 +340,24 @@ msgstr ""
 
 #. settings-schema.json->uptrendChangeColor->description
 msgid "Uptrend change color"
-msgstr ""
+msgstr "Aufwärtstrend-Farbe"
 
 #. settings-schema.json->uptrendChangeColor->tooltip
 msgid "Color of the uptrend change."
-msgstr ""
+msgstr "Farbe für positive prozentuale Veränderung."
 
 #. settings-schema.json->downtrendChangeColor->description
 msgid "Downtrend change color"
-msgstr ""
+msgstr "Abwärtstrend-Farbe"
 
 #. settings-schema.json->downtrendChangeColor->tooltip
 msgid "Color of the downtrend change."
-msgstr ""
+msgstr "Farbe für negative prozentuale Veränderung."
 
 #. settings-schema.json->unchangedTrendColor->description
 msgid "Unchanged trend color"
-msgstr ""
+msgstr "Seitwärtstrend-Farbe"
 
 #. settings-schema.json->unchangedTrendColor->tooltip
 msgid "Color of the unchanged trend."
-msgstr ""
+msgstr "Farbe für unveränderte prozentuale Veränderung."

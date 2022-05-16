@@ -16,23 +16,23 @@ msgstr ""
 "Language-Team: \n"
 "X-Generator: Poedit 2.3\n"
 
-#: desklet.js:89
+#: desklet.js:87
 msgid "Yahoo Finance service not available!"
 msgstr "A Yahoo Finance szolgáltatás pillanatnyilag nem érhető el."
 
-#: desklet.js:422
+#: desklet.js:416
 msgid "Updated at "
 msgstr "Frissítve: "
 
-#: desklet.js:429
+#: desklet.js:423
 msgid "Error: "
 msgstr "Hiba: "
 
-#: desklet.js:470
+#: desklet.js:467
 msgid "Cannot display quotes information for symbols: "
 msgstr "Nem jeleníthetőek meg megállapítások a következő szimbólumokhoz: "
 
-#: desklet.js:471
+#: desklet.js:468
 msgid "The following error occurred: "
 msgstr "A következő hiba történt: "
 
@@ -334,7 +334,7 @@ msgstr "Trendszínek használata a százalékos változásnál"
 
 #. settings-schema.json->colorPercentChange->tooltip
 msgid ""
-"Color the percent change to show the trend (green for up, red for down)."
+"Color the percent change to show the trend."
 msgstr ""
 "Százalékos változás színezése a trend megjelenítéséhez (zöld: emelkedő, "
 "piros: csökkenő)."

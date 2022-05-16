@@ -16,23 +16,23 @@ msgstr ""
 "Last-Translator: \n"
 "Language: ru\n"
 
-#: desklet.js:89
+#: desklet.js:87
 msgid "Yahoo Finance service not available!"
 msgstr "Сервис Yahoo Finance не доступен!"
 
-#: desklet.js:422
+#: desklet.js:416
 msgid "Updated at "
 msgstr "Обновлено в "
 
-#: desklet.js:429
+#: desklet.js:423
 msgid "Error: "
 msgstr "Ошибка: "
 
-#: desklet.js:470
+#: desklet.js:467
 msgid "Cannot display quotes information for symbols: "
 msgstr "Невозможно отобразить информацию о котировках для биржевых символов: "
 
-#: desklet.js:471
+#: desklet.js:468
 msgid "The following error occurred: "
 msgstr "Произошла ошибка: "
 
@@ -318,7 +318,7 @@ msgid "Use trend colors for percent change"
 msgstr "Показывать цветные проценты"
 
 #. settings-schema.json->colorPercentChange->tooltip
-msgid "Color the percent change to show the trend (green for up, red for down)."
+msgid "Color the percent change to show the trend."
 msgstr "Отображение цветных процентов (зеленый цвет при росте, красный цвет при падении)."
 
 #. settings-schema.json->showTradeTime->description

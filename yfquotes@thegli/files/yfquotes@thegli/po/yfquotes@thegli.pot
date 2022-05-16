@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-18 18:52+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2022-05-16 23:48+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -16,23 +16,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:89
+#: desklet.js:87
 msgid "Yahoo Finance service not available!"
 msgstr ""
 
-#: desklet.js:422
+#: desklet.js:416
 msgid "Updated at "
 msgstr ""
 
-#: desklet.js:429
+#: desklet.js:423
 msgid "Error: "
 msgstr ""
 
-#: desklet.js:470
+#: desklet.js:467
 msgid "Cannot display quotes information for symbols: "
 msgstr ""
 
-#: desklet.js:471
+#: desklet.js:468
 msgid "The following error occurred: "
 msgstr ""
 
@@ -181,7 +181,9 @@ msgid "Strict rounding"
 msgstr ""
 
 #. settings-schema.json->strictRounding->tooltip
-msgid "Strict rounding to the specified decimal places (eg. 0 will be presented as 0.00)."
+msgid ""
+"Strict rounding to the specified decimal places (eg. 0 will be presented as "
+"0.00)."
 msgstr ""
 
 #. settings-schema.json->quoteSymbols->description
@@ -313,8 +315,7 @@ msgid "Use trend colors for percent change"
 msgstr ""
 
 #. settings-schema.json->colorPercentChange->tooltip
-msgid ""
-"Color the percent change to show the trend (green for up, red for down)."
+msgid "Color the percent change to show the trend."
 msgstr ""
 
 #. settings-schema.json->showTradeTime->description
