@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Cinnamon Weather Desklet - bbcwx 2.8.3\n"
 "Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
 "POT-Creation-Date: 2018-01-07 21:05+0000\n"
-"PO-Revision-Date: 2016-07-08 04:29+0000\n"
+"PO-Revision-Date: 2022-05-20 13:14+0300\n"
 "Last-Translator: Kamala Kannan <Unknown>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2016-08-01 19:04+0000\n"
-"X-Generator: Launchpad (build 18169)\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. # Days of the week
 #: desklet.js:102
@@ -958,9 +958,8 @@ msgid "Select the data service you wish to use"
 msgstr "Выбрать источник данных"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
 msgid "APIXU (requires API key)"
-msgstr "Forecast.io (требуется API ключ)"
+msgstr "APIXU (требуется API ключ)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "Wunderground (requires API key)"
@@ -968,39 +967,35 @@ msgstr "Wunderground (требуется API ключ)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "meteoblue (requires API key)"
-msgstr ""
+msgstr "meteoblue (требуется API ключ)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
 msgid "World Weather Online (deprecated) (requires API key)"
-msgstr "World Weather Online (требуется API ключ)"
+msgstr "World Weather Online (устаревший) (требуется ключ API)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "BBC"
 msgstr "BBC"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
 msgid "Open Weather Map Free (requires API key)"
-msgstr "World Weather Online (требуется API ключ)"
+msgstr "Open Weather Map Free (требуется ключ API)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "weather.com (deprecated)"
 msgstr "weather.com (не рекомендуется)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
 msgid "World Weather Online Premium (requires API key)"
-msgstr "World Weather Online (требуется API ключ)"
+msgstr "World Weather Online Premium (требуется API ключ)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
 msgid "Forecast.io (requires API key)"
 msgstr "Forecast.io (требуется API ключ)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
 msgid "Open Weather Map (requires API key)"
-msgstr "World Weather Online (требуется API ключ)"
+msgstr "Open Weather Map (требуется API ключ)"
 
 #. bbcwx@oak-wood.co.uk->settings-
 #. schema.json->display__forecast__pressure->description
