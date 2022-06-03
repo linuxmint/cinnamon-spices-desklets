@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-30 02:38+0800\n"
-"PO-Revision-Date: 2019-10-19 21:22+0200\n"
+"PO-Revision-Date: 2022-06-03 12:21+0200\n"
+"Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
-"Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
+"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: it\n"
 
 #: desklet.js:125
 msgid "Monday"
@@ -160,7 +160,7 @@ msgstr "Colore del testo"
 
 #. calendar@schorschii->settings-schema.json->text-color->tooltip
 msgid "Set the text color of this desklet."
-msgstr "Imposta il colore del testo di questo desklet"
+msgstr "Imposta il colore del testo di questo desklet."
 
 #. calendar@schorschii->settings-schema.json->read-appointments->description
 msgid "Show the number of today's appointments parsed from an ical file"

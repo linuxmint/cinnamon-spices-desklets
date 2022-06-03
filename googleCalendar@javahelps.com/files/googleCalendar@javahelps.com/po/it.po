@@ -7,187 +7,218 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-07 15:40+0100\n"
-"PO-Revision-Date: 2019-10-21 20:06+0200\n"
+"POT-Creation-Date: 2021-11-14 20:26-0500\n"
+"PO-Revision-Date: 2022-06-03 12:37+0200\n"
+"Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
-"Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
+"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: it\n"
 
 #. metadata.json->name
-#: desklet.js:103
+#. settings-schema.json->page_gcalendar->title
+#: desklet.js:104
 msgid "Google Calendar"
 msgstr "Google Calendar"
 
-#: desklet.js:106
+#: desklet.js:107
 msgid "Open Google Calendar"
 msgstr "Apri Google Calendar"
 
-#: desklet.js:185
-msgid "No events found..."
-msgstr "Nessun evento trovato..."
+#: desklet.js:237
+msgid "No events found"
+msgstr "Nessun evento trovato"
 
-#: desklet.js:356
+#: desklet.js:386
+msgid "gcalendar is not authorized"
+msgstr "gcalendar non è autorizzato"
+
+#: desklet.js:388
+msgid "gcalendar token expired"
+msgstr "il token di gcalendar è scaduto"
+
+#: desklet.js:393
+msgid "Execute: "
+msgstr "Esegui: "
+
+#: desklet.js:406
+msgid "Unknown Error"
+msgstr "Errore Sconosciuto"
+
+#: desklet.js:409
+msgid "Install gcalendar to use this desklet."
+msgstr "Installa gcalendar per utilizzare questo desklet."
+
+#: desklet.js:410
+msgid "Visit: "
+msgstr "Visita: "
+
+#: desklet.js:448
 msgid "Unable to retrieve events..."
 msgstr "Non riesco a recuperare gli eventi..."
 
-#: lib/utility.js:165 lib/xdate.js:348
+#: lib/utility.js:156 lib/xdate.js:350
 msgid "AM"
 msgstr "AM"
 
-#: lib/utility.js:165 lib/xdate.js:349
+#: lib/utility.js:156 lib/xdate.js:351
 msgid "PM"
 msgstr "PM"
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "January"
 msgstr "Gennaio"
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "February"
 msgstr "Febbraio"
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "March"
 msgstr "Marzo"
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "April"
 msgstr "Aprile"
 
-#: lib/xdate.js:344 lib/xdate.js:345
+#: lib/xdate.js:346
+msgctxt "long"
 msgid "May"
 msgstr "Maggio"
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "June"
 msgstr "Giugno"
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "July"
 msgstr "Luglio"
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "August"
 msgstr "Agosto"
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "September"
 msgstr "Settembre"
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "October"
 msgstr "Ottobre"
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "November"
 msgstr "Novembre"
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "December"
 msgstr "Dicembre"
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Jan"
 msgstr "Gen"
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Feb"
 msgstr "Feb"
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Mar"
 msgstr "Mar"
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Apr"
 msgstr "Apr"
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
+msgctxt "short"
+msgid "May"
+msgstr "Mag"
+
+#: lib/xdate.js:347
 msgid "Jun"
 msgstr "Giu"
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Jul"
 msgstr "Lug"
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Aug"
 msgstr "Ago"
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Sep"
 msgstr "Set"
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Oct"
 msgstr "Ott"
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Nov"
 msgstr "Nov"
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Dec"
 msgstr "Dic"
 
-#: lib/xdate.js:346
+#: lib/xdate.js:348
 msgid "Sunday"
 msgstr "Domenica"
 
-#: lib/xdate.js:346
+#: lib/xdate.js:348
 msgid "Monday"
 msgstr "Lunedì"
 
-#: lib/xdate.js:346
+#: lib/xdate.js:348
 msgid "Tuesday"
 msgstr "Martedì"
 
-#: lib/xdate.js:346
+#: lib/xdate.js:348
 msgid "Wednesday"
 msgstr "Mercoledì"
 
-#: lib/xdate.js:346
+#: lib/xdate.js:348
 msgid "Thursday"
 msgstr "Giovedì"
 
-#: lib/xdate.js:346
+#: lib/xdate.js:348
 msgid "Friday"
 msgstr "Venerdì"
 
-#: lib/xdate.js:346
+#: lib/xdate.js:348
 msgid "Saturday"
 msgstr "Sabato"
 
-#: lib/xdate.js:347
+#: lib/xdate.js:349
 msgid "Sun"
 msgstr "Dom"
 
-#: lib/xdate.js:347
+#: lib/xdate.js:349
 msgid "Mon"
 msgstr "Lun"
 
-#: lib/xdate.js:347
+#: lib/xdate.js:349
 msgid "Tue"
 msgstr "Mar"
 
-#: lib/xdate.js:347
+#: lib/xdate.js:349
 msgid "Wed"
 msgstr "Mer"
 
-#: lib/xdate.js:347
+#: lib/xdate.js:349
 msgid "Thu"
 msgstr "Gio"
 
-#: lib/xdate.js:347
+#: lib/xdate.js:349
 msgid "Fri"
 msgstr "Ven"
 
-#: lib/xdate.js:347
+#: lib/xdate.js:349
 msgid "Sat"
 msgstr "Sab"
 
@@ -195,7 +226,11 @@ msgstr "Sab"
 msgid "A desklet that displays your agenda based on Google Calendar"
 msgstr "Un Desklet per visualizzare la tua agenda basata su Google Calendar"
 
-#. settings-schema.json->top->description
+#. settings-schema.json->page_style->title
+msgid "Desklet Style"
+msgstr "Stile del Desklet"
+
+#. settings-schema.json->display0->description
 msgid "Google Calendar authentication"
 msgstr "Autenticazione Google Calendar"
 
@@ -208,8 +243,8 @@ msgid ""
 "Enter your Google calendar project client id. Leave it empty to use the "
 "default client id."
 msgstr ""
-"Immetti il tuo Google Calendar projet \"client id\". Oppure lascia in "
-"bianco per usare quello di default."
+"Immetti il tuo Google Calendar projet \"client id\". Oppure lascia in bianco "
+"per usare quello di default."
 
 #. settings-schema.json->clientSecret->description
 msgid "Client secret"
@@ -227,13 +262,43 @@ msgstr ""
 msgid "Calendar configuration"
 msgstr "Configurazione Calendario"
 
-#. settings-schema.json->calendarName->description
-msgid "Calendar name(s)"
-msgstr "Nome (o nomi) Calendario"
+#. settings-schema.json->gcalendarAccount->description
+msgid "gcalendar Account ID"
+msgstr "Account ID di gcalendar"
 
-#. settings-schema.json->calendarName->tooltip
-msgid "Enter your calendar names separated by comma here"
-msgstr "Digita il nome dei calendari separato da una virgola"
+#. settings-schema.json->gcalendarAccount->tooltip
+msgid "Enter gcalendar --account id"
+msgstr "Digita gcalendar --acount id"
+
+#. settings-schema.json->allNamesButton->description
+msgid "Fill in the list bellow with the names of all my calendars"
+msgstr "Compila l'elenco sottostante con i nomi di tutti i miei calendari"
+
+#. settings-schema.json->allNamesButton->tooltip
+msgid ""
+"Click to fill in the list bellow with the names of all your calendars. It "
+"may take a little while."
+msgstr ""
+"Clicca per compilare l'elenco sottostante con i nomi di tutti i tuoi "
+"calendari. Potrebbe volerci un po' di tempo."
+
+#. settings-schema.json->calendarNames->description
+msgid "Display these calendars:"
+msgstr "Mostra questi calendari:"
+
+#. settings-schema.json->calendarNames->tooltip
+msgid "If you want to diplay a calendar, set it to TRUE (or check its box)."
+msgstr ""
+"Se vuoi visualizzare un calendario, impostalo su TRUE (o seleziona la sua "
+"casella)."
+
+#. settings-schema.json->calendarNames->columns->title
+msgid "Calendar"
+msgstr "Calendario"
+
+#. settings-schema.json->calendarNames->columns->title
+msgid "Display it?"
+msgstr "Mostrarlo?"
 
 #. settings-schema.json->interval->description
 msgid "Number of days to include"
@@ -254,10 +319,6 @@ msgstr "Aggiorna ogni:"
 #. settings-schema.json->delay->units
 msgid "minutes"
 msgstr "minuti"
-
-#. settings-schema.json->display2->description
-msgid "Desklet style"
-msgstr "Stile del Desklet"
 
 #. settings-schema.json->date_format->description
 msgid "Date format"
@@ -298,7 +359,7 @@ msgstr "proporzione"
 
 #. settings-schema.json->zoom->description
 msgid "Zoom by"
-msgstr "Zoom"
+msgstr "Ingrandisci di"
 
 #. settings-schema.json->zoom->tooltip
 msgid "Change the size of the desklet"
@@ -350,8 +411,7 @@ msgstr "Mostra la location dell'evento"
 
 #. settings-schema.json->show_location->tooltip
 msgid "Display the event location if available"
-msgstr ""
-"Mostra, se disponibile, la location dell'evento con un colore speciale"
+msgstr "Mostra, se disponibile, la location dell'evento con un colore speciale"
 
 #. settings-schema.json->location_color->description
 msgid "Location text color"
@@ -372,3 +432,9 @@ msgstr "Raggio degli spigoli"
 #. settings-schema.json->cornerradius->tooltip
 msgid "Radius for rounding the desklet's corners"
 msgstr "Imposta la dimensione del raccordo sugli spigoli del desklet"
+
+#~ msgid "Calendar name(s)"
+#~ msgstr "Nome (o nomi) Calendario"
+
+#~ msgid "Enter your calendar names separated by comma here"
+#~ msgstr "Digita il nome dei calendari separato da una virgola"

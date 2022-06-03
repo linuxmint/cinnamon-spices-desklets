@@ -5,16 +5,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2020-07-17 18:00+0200\n"
-"PO-Revision-Date: 2021-06-18 18:00+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-18 18:52+0200\n"
+"PO-Revision-Date: 2022-06-03 12:53+0200\n"
+"Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
-"Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
+"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: it\n"
 
 #: desklet.js:89
 msgid "Yahoo Finance service not available!"
@@ -26,7 +27,7 @@ msgstr "Aggiornato al "
 
 #: desklet.js:429
 msgid "Error: "
-msgstr "Errore:"
+msgstr "Errore: "
 
 #: desklet.js:470
 msgid "Cannot display quotes information for symbols: "
@@ -91,7 +92,7 @@ msgstr "Data e ora"
 
 #. settings-schema.json->presentationFormattingSection->title
 msgid "Number Formatting"
-msgstr "Formattazione del numero "
+msgstr "Formattazione Numerica"
 
 #. settings-schema.json->presentationSortingSection->title
 msgid "Sorting"
@@ -181,11 +182,15 @@ msgstr "Numero di posizioni da arrotondare dopo il punto decimale."
 
 #. settings-schema.json->strictRounding->description
 msgid "Strict rounding"
-msgstr ""
+msgstr "Arrotondamento rigoroso"
 
 #. settings-schema.json->strictRounding->tooltip
-msgid "Strict rounding to the specified decimal places (eg. 0 will be presented as 0.00)."
+msgid ""
+"Strict rounding to the specified decimal places (eg. 0 will be presented as "
+"0.00)."
 msgstr ""
+"Arrotondamento rigoroso alle cifre decimali specificate (ad es. 0 verrà "
+"presentato come 0,00)."
 
 #. settings-schema.json->quoteSymbols->description
 msgid "Quote symbols"
@@ -341,19 +346,21 @@ msgstr ""
 
 #. settings-schema.json->uptrendChangeColor->description
 msgid "Uptrend change color"
-msgstr ""
+msgstr "Colore del cambiamento trend in rialzo"
 
 #. settings-schema.json->uptrendChangeColor->tooltip
 msgid "Color of the uptrend change."
 msgstr ""
+"Imposta il colore con cui evidenziare il cambiamento del trend in rialzo."
 
 #. settings-schema.json->downtrendChangeColor->description
 msgid "Downtrend change color"
-msgstr ""
+msgstr "Colore del cambiamento trend al ribasso"
 
 #. settings-schema.json->downtrendChangeColor->tooltip
 msgid "Color of the downtrend change."
 msgstr ""
+"Imposta il colore con cui evidenziare il cambiamento del trend al ribasso."
 
 #. settings-schema.json->unchangedTrendColor->description
 msgid "Unchanged trend color"

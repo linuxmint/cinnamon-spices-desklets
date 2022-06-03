@@ -2,16 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2018-01-12 18:07+0100\n"
-"PO-Revision-Date: 2019-10-21 20:02+0200\n"
+"PO-Revision-Date: 2022-06-03 12:40+0200\n"
+"Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.3\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
-"Language: it\n"
 "X-Poedit-SearchPath-0: desklet.js\n"
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
@@ -32,14 +32,20 @@ msgstr "Monitora l'utilizzo del file system o della RAM"
 
 msgid "Choose, if this desklet should show file system or RAM usage."
 msgstr ""
-"Scegliere se questo desklet deve mostrare l'utilizzo del file system o "
-"della RAM."
+"Scegliere se questo desklet deve mostrare l'utilizzo del file system o della "
+"RAM."
 
 msgid "Filesystem"
 msgstr "Filesystem"
 
 msgid "RAM"
 msgstr "RAM"
+
+msgid "Swap"
+msgstr "Swap"
+
+msgid "Not Found"
+msgstr "Non Trovato"
 
 msgid "Filesystem to monitor"
 msgstr "Filesystem da monitorare"
@@ -59,20 +65,41 @@ msgstr "Classico (Spesso)"
 msgid "Thin"
 msgstr "Sottile"
 
+msgid "Compact"
+msgstr "Compatto"
+
 msgid "Draw free/unused space (gray)"
 msgstr "Disegna spazio libero/inutilizzato (grigio)"
 
 msgid "Text"
 msgstr "Testo"
 
-msgid "Name and total size"
+msgid "Name and total space"
 msgstr "Nome e dimensione totale"
 
 msgid "Used and total space"
 msgstr "Spazio usato e totale"
 
+msgid "Total and used space"
+msgstr "Spazio totale e usato"
+
 msgid "Free and total space"
 msgstr "Spazio libero e totale"
+
+msgid "Total and free space"
+msgstr "Spazio totale e libero"
+
+msgid "No text"
+msgstr "Nessun testo"
+
+msgid "Size Prefix"
+msgstr "Prefisso Dimensione"
+
+msgid "Decimal"
+msgstr "Decimale"
+
+msgid "Binary"
+msgstr "Binario"
 
 msgid "Hide decorations"
 msgstr "Nascondi decorazioni"
@@ -119,3 +146,21 @@ msgid ""
 msgstr ""
 "Imposta qui la tua etichetta personalizzata. Questo campo non è disponibile "
 "a meno che la casella sopra non sia abilitata."
+
+msgid "Action on mouse click"
+msgstr "Azione al click del mouse"
+
+msgid "Choose what to do when the desklet was clicked."
+msgstr "Scegli cosa fare quando si clicca sul desklet."
+
+msgid "Open File Manager"
+msgstr "Apri il File Manager"
+
+msgid "Open Partition Manager"
+msgstr "Apri il Gestore Partizioni"
+
+msgid "Open System Monitor"
+msgstr "Apri il Monitor di Sistema"
+
+msgid "Nothing"
+msgstr "Nulla"
