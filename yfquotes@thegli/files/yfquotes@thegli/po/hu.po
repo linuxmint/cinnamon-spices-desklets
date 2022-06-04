@@ -6,14 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-18 19:25+0100\n"
-"PO-Revision-Date: 2021-06-18 18:00+0100\n"
+"POT-Creation-Date: 2021-06-18 18:52+0200\n"
+"PO-Revision-Date: 2022-06-04 15:23+0200\n"
+"Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
+"Language-Team: \n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
-"Language-Team: \n"
 "X-Generator: Poedit 2.3\n"
 
 #: desklet.js:89
@@ -138,10 +138,6 @@ msgstr "Háttér átlátszósága"
 msgid "The higher the value, the more solid the desklet background."
 msgstr "A magasabb érték jobban megjeleníti az asztalkalmazás hátterét."
 
-#. settings-schema.json->head2->description
-msgid "Financial data"
-msgstr "Pénzügyi adatok"
-
 #. settings-schema.json->delayMinutes->units
 msgid "minutes"
 msgstr "perc"
@@ -160,8 +156,7 @@ msgstr "Utolsó frissítéskeresés időbélyegének megjelenítése"
 
 #. settings-schema.json->showLastUpdateTimestamp->tooltip
 msgid "Display timestamp when quotes were updated last."
-msgstr ""
-"Megjeleníti a megállapítások utolsó frissítéskeresésének időbélyegét."
+msgstr "Megjeleníti a megállapítások utolsó frissítéskeresésének időbélyegét."
 
 #. settings-schema.json->roundNumbers->description
 msgid "Round numbers"
@@ -185,11 +180,15 @@ msgstr "Megjelenítendő tizedesjegyek száma."
 
 #. settings-schema.json->strictRounding->description
 msgid "Strict rounding"
-msgstr ""
+msgstr "Szigorú kerekítés"
 
 #. settings-schema.json->strictRounding->tooltip
-msgid "Strict rounding to the specified decimal places (eg. 0 will be presented as 0.00)."
+msgid ""
+"Strict rounding to the specified decimal places (eg. 0 will be presented as "
+"0.00)."
 msgstr ""
+"Szigorú kerekítés mindenképpen megjeleníti a megadott tizedesjegyeket "
+"(például a 0 megjelenítési módja 0,00 lesz)"
 
 #. settings-schema.json->quoteSymbols->description
 msgid "Quote symbols"
@@ -197,8 +196,7 @@ msgstr "Szimbólumok"
 
 #. settings-schema.json->quoteSymbols->tooltip
 msgid "List of quote symbols, separated with line-breaks."
-msgstr ""
-"Szimbólumok listájának megjelenítése itt, sortörésekkel elválasztva."
+msgstr "Szimbólumok listájának megjelenítése itt, sortörésekkel elválasztva."
 
 #. settings-schema.json->sortCriteria->options
 msgid "given order"
@@ -230,8 +228,7 @@ msgstr "Növekvő sorrend"
 
 #. settings-schema.json->sortDirection->tooltip
 msgid ""
-"Check to sort quotes in ascending order, uncheck to sort in descending "
-"order."
+"Check to sort quotes in ascending order, uncheck to sort in descending order."
 msgstr ""
 "Jelölje be ezt a jelölőnégyzetet növekvő sorrendhez, vagy távolítsa el a "
 "jelölést a csökkenő sorrendhez."
@@ -243,8 +240,8 @@ msgstr "Változás, azaz trend ikon megjelenítése"
 #. settings-schema.json->showChangeIcon->tooltip
 msgid "Indicates whether the market price moved up, down, or is unchanged."
 msgstr ""
-"Megmutatja, hogy a piaci ár felfelé, illetve lefelé mozdult-e el, vagy "
-"nem változott meg."
+"Megmutatja, hogy a piaci ár felfelé, illetve lefelé mozdult-e el, vagy nem "
+"változott meg."
 
 #. settings-schema.json->showQuoteName->description
 msgid "Show verbose name"
@@ -263,8 +260,8 @@ msgid ""
 "Use the long version for quote name, if available (eg. International "
 "Business Machines Corporation)."
 msgstr ""
-"A részletes név hosszabb változatának megjelenítése, ha elérhető "
-"(például: International Business Machines Corporation)."
+"A részletes név hosszabb változatának megjelenítése, ha elérhető (például: "
+"International Business Machines Corporation)."
 
 #. settings-schema.json->linkQuoteName->description
 msgid "Add web link to name"
@@ -272,8 +269,7 @@ msgstr "Név webhivatkozássá alakítása"
 
 #. settings-schema.json->linkQuoteName->tooltip
 msgid "Click name to open quote in browser."
-msgstr ""
-"Kattintson a névre a megállapítások böngészőben történő megnyitásához."
+msgstr "Kattintson a névre a megállapítások böngészőben történő megnyitásához."
 
 #. settings-schema.json->showQuoteSymbol->description
 msgid "Show ticker/symbol"
@@ -290,8 +286,7 @@ msgstr "Szimbólum webhivatkozássá alakítása"
 #. settings-schema.json->linkQuoteSymbol->tooltip
 msgid "Click symbol to open quote in browser."
 msgstr ""
-"Kattintson a szimbólumra a megállapítások böngészőben történő "
-"megnyitásához."
+"Kattintson a szimbólumra a megállapítások böngészőben történő megnyitásához."
 
 #. settings-schema.json->showMarketPrice->description
 msgid "Show price"
@@ -325,8 +320,7 @@ msgstr "Százalékos változás megjelenítése"
 #. settings-schema.json->showPercentChange->tooltip
 msgid "Display the percent change of the market price (eg. +0.53%)."
 msgstr ""
-"Piaci ár változásának százalékos értékének megjelenítése (például: "
-"+0,53%)."
+"Piaci ár változásának százalékos értékének megjelenítése (például: +0,53%)."
 
 #. settings-schema.json->colorPercentChange->description
 msgid "Use trend colors for percent change"
@@ -349,24 +343,27 @@ msgstr "Utolsó kereskedési időpont vagy dátum megjelenítése."
 
 #. settings-schema.json->uptrendChangeColor->description
 msgid "Uptrend change color"
-msgstr ""
+msgstr "Emelkedés színe"
 
 #. settings-schema.json->uptrendChangeColor->tooltip
 msgid "Color of the uptrend change."
-msgstr ""
+msgstr "Az emelkedő árfolyam színe."
 
 #. settings-schema.json->downtrendChangeColor->description
 msgid "Downtrend change color"
-msgstr ""
+msgstr "Csökkenés színe"
 
 #. settings-schema.json->downtrendChangeColor->tooltip
 msgid "Color of the downtrend change."
-msgstr ""
+msgstr "A csökkenő árfolyam színe."
 
 #. settings-schema.json->unchangedTrendColor->description
 msgid "Unchanged trend color"
-msgstr ""
+msgstr "Változatlan trend színe"
 
 #. settings-schema.json->unchangedTrendColor->tooltip
 msgid "Color of the unchanged trend."
-msgstr ""
+msgstr "A változatlan árfolyam színe."
+
+#~ msgid "Financial data"
+#~ msgstr "Pénzügyi adatok"
