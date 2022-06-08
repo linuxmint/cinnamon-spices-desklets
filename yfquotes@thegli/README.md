@@ -24,6 +24,12 @@ Check out the desklet configuration settings, and choose the data refresh period
 
 ## Release Notes
 
+### 0.8.2 - June 8, 2022
+
+Bugfixes:
+
+- check timer reference before calling Mainloop.source_remove()
+
 ### 0.8.1 - May 16, 2022
 
 Features:

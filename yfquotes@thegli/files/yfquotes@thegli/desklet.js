@@ -536,7 +536,10 @@ StockQuoteDesklet.prototype = {
     },
 
     removeUpdateTimer : function () {
-        Mainloop.source_remove(this.updateLoop);
+        if (this.updateLoop > 0) {
+            Mainloop.source_remove(this.updateLoop);
+        }
+        this.updateLoop = null;
     }
 };
 
