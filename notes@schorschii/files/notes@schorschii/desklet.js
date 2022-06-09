@@ -54,6 +54,7 @@ function getImageAtScale(imageFileName, width, height, width2 = 0, height2 = 0) 
 	return actor;
 }
 
+
 MyDesklet.prototype = {
 	__proto__: Desklet.Desklet.prototype,
 
