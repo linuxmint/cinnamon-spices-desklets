@@ -82,6 +82,13 @@
         },
         "tooltip" : "Select the background graphic you would like to use."
     },
+    "bg-color": {
+        "type": "colorchooser",
+        "default": "rgba(0,0,0,0)",
+        "description": "Background color",
+        "tooltip": "Set the background color of this desklet.",
+        "dependency": "style=none"
+    },
     "hide-decorations": {
         "type": "checkbox",
         "description": "Hide decorations",

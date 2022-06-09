@@ -54,7 +54,6 @@ function getImageAtScale(imageFileName, width, height, width2 = 0, height2 = 0) 
 	return actor;
 }
 
-
 MyDesklet.prototype = {
 	__proto__: Desklet.Desklet.prototype,
 
@@ -73,6 +72,7 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "size-font", "sizeFont", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "style", "style", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "customTextColor", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "bg-color", "customBgColor", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "file", "file", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "edit-cmd", "editCmd", this.on_setting_changed);
 
@@ -192,6 +192,7 @@ MyDesklet.prototype = {
 						this.customTextColor === "rgba(0,0,0,0)"
 						? this.imageIndex[i]['defaultTextColor']
 						: this.customTextColor;
+					this.bgColor = this.customBgColor;
 					break;
 				}
 			}
@@ -221,6 +222,12 @@ MyDesklet.prototype = {
 								+ "color:" + this.textColor + ";"
 								+ "font-weight:" + (this.fontBold ? "bold" : "normal") + ";"
 								+ "font-style:" + (this.fontItalic ? "italic" : "normal") + ";";
+
+			if (this.bgImg === "none") {
+				this.notetext.style += "background-color:" + this.bgColor + ";"
+				if (this.hideDecorations === true)
+					this.notetext.style += "padding: 1em;";
+			}
 
 			// add actor
 			this.notepad.remove_all_children();
