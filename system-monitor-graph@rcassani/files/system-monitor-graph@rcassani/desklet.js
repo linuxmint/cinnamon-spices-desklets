@@ -102,6 +102,7 @@ SystemMonitorGraph.prototype = {
             this.cpu_use     = 0;
             this.gpu_use     = 0;
             this.gpu_mem     = new Array(2).fill(0.0);
+            this.ram_values  = new Array(2).fill(0.0);
             // set colors
             switch (this.type) {
               case "cpu":
@@ -159,13 +160,13 @@ SystemMonitorGraph.prototype = {
               break;
 
           case "ram":
-              let ram_values = this.get_ram_values();
-              let ram_use = 100 * ram_values[1] / ram_values[0];
+              this.get_ram_values();
+              let ram_use = 100 * this.ram_values[1] / this.ram_values[0];
               value = ram_use / 100;
               text1 = _("RAM");
               text2 = Math.round(ram_use).toString() + "%"
-              text3 = ram_values[1].toFixed(1) + " / "
-                    + ram_values[0].toFixed(1) + " " + _("GiB");
+              text3 = this.ram_values[1].toFixed(1) + " / "
+                    + this.ram_values[0].toFixed(1) + " " + _("GiB");
               break;
 
           case "swap":
@@ -350,13 +351,19 @@ SystemMonitorGraph.prototype = {
 
     get_ram_values: function() {
         // used  = total - available
-        let mem_out = Cinnamon.get_file_contents_utf8_sync("/proc/meminfo");
-        let mem_tot = parseInt(mem_out.match(/(MemTotal):\D+(\d+)/)[2]);
-        let mem_usd = mem_tot - parseInt(mem_out.match(/(MemAvailable):\D+(\d+)/)[2]);
-
-        let ram_tot = mem_tot / GIB_TO_KIB;
-        let ram_usd = mem_usd / GIB_TO_KIB;
-        return [ram_tot, ram_usd];
+        let subprocess = new Gio.Subprocess({
+        argv: ['cat', '/proc/meminfo'],
+        flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
+        });
+        subprocess.init(null);
+        subprocess.wait_async(null, (sourceObject, res) => {
+            let [, stdout, stderr] = sourceObject.communicate_utf8(null, null);
+            let mem_tot = parseInt(stdout.match(/(MemTotal):\D+(\d+)/)[2]);
+            let mem_usd = mem_tot - parseInt(stdout.match(/(MemAvailable):\D+(\d+)/)[2]);
+            let ram_tot = mem_tot / GIB_TO_KIB;
+            let ram_usd = mem_usd / GIB_TO_KIB;
+            this.ram_values = [ram_tot, ram_usd];
+        });
     },
 
     get_swap_values: function() {
