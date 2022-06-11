@@ -104,7 +104,7 @@ SystemMonitorGraph.prototype = {
             this.gpu_mem     = new Array(2).fill(0.0);
             this.ram_values  = new Array(2).fill(0.0);
             this.swap_values = new Array(2).fill(0.0);
-
+            this.hdd_values  = new Array(4).fill(0.0);
 
             // set colors
             switch (this.type) {
@@ -185,14 +185,14 @@ SystemMonitorGraph.prototype = {
           case "hdd":
               let dir_path = decodeURIComponent(this.filesystem.replace("file://", "").trim());
               if(dir_path == null || dir_path == "") dir_path = "/";
-              let hdd_values = this.get_hdd_values(dir_path);
-              let hdd_use = Math.min(hdd_values[1], 100); //already in %
+              this.get_hdd_values(dir_path);
+              let hdd_use = Math.min(this.hdd_values[1], 100); //already in %
               value = hdd_use / 100;
               text1 = this.filesystem_label;
-              if (text1 == "") text1 = hdd_values[0];
+              if (text1 == "") text1 = this.hdd_values[0];
               text2 = Math.round(hdd_use).toString() + "%"
-              text3 = hdd_values[3].toFixed(0) + " " + _("GB free of") + " "
-                    + hdd_values[2].toFixed(0) + " " + _("GB");
+              text3 = this.hdd_values[3].toFixed(0) + " " + _("GB free of") + " "
+                    + this.hdd_values[2].toFixed(0) + " " + _("GB");
               break;
 
           case "gpu":
@@ -388,21 +388,23 @@ SystemMonitorGraph.prototype = {
 
     get_hdd_values: function(dir_path) {
         let subprocess = new Gio.Subprocess({
-            argv: ['/bin/df', dir_path],
-            flags: Gio.SubprocessFlags.STDOUT_PIPE,
+        argv: ['/bin/df', dir_path],
+        flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
         });
         subprocess.init(null);
-        let [, out] = subprocess.communicate_utf8(null, null); // get full output from stdout
-        let df_line = out.match(/.+/g)[1];
-        let df_values = df_line.split(/\s+/); // split by space
-        // values for partition space
-        let hdd_tot = parseFloat(df_values[1]) * 1024 / GB_TO_B;
-        let hdd_fre = parseFloat(df_values[3]) * 1024 / GB_TO_B;
-        // utilization of partition
-        let dev_fs = df_values[0];
-        let fs = dev_fs.split(/\/+/)[2];
-        let hdd_use = this.get_hdd_use(fs);
-        return [fs, hdd_use, hdd_tot, hdd_fre];
+        subprocess.wait_async(null, (sourceObject, res) => {
+            let [, stdout, stderr] = sourceObject.communicate_utf8(null, null);
+            let df_line = stdout.match(/.+/g)[1];
+            let df_values = df_line.split(/\s+/); // split by space
+            // values for partition space
+            let hdd_tot = parseFloat(df_values[1]) * 1024 / GB_TO_B;
+            let hdd_fre = parseFloat(df_values[3]) * 1024 / GB_TO_B;
+            // utilization of partition
+            let dev_fs = df_values[0];
+            let fs = dev_fs.split(/\/+/)[2];
+            let hdd_use = this.get_hdd_use(fs);
+            this.hdd_values = [fs, hdd_use, hdd_tot, hdd_fre];
+        });
     },
 
     get_hdd_use: function(fs) {
