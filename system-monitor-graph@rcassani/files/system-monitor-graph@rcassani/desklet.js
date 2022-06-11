@@ -7,7 +7,6 @@ const Cinnamon = imports.gi.Cinnamon;
 const Gio = imports.gi.Gio;
 const Cairo = imports.cairo;
 const St = imports.gi.St;
-//const Util = imports.misc.util;
 const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
 
@@ -100,11 +99,11 @@ SystemMonitorGraph.prototype = {
             this.hdd_hdd_tot = 0;
             // values to graph
             this.cpu_use     = 0;
-            this.gpu_use     = 0;
-            this.gpu_mem     = new Array(2).fill(0.0);
             this.ram_values  = new Array(2).fill(0.0);
             this.swap_values = new Array(2).fill(0.0);
             this.hdd_values  = new Array(4).fill(0.0);
+            this.gpu_use     = 0;
+            this.gpu_mem     = new Array(2).fill(0.0);
 
             // set colors
             switch (this.type) {
