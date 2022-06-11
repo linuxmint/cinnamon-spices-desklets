@@ -100,6 +100,7 @@ SystemMonitorGraph.prototype = {
             this.hdd_hdd_tot = 0;
             // values to graph
             this.gpu_use     = 0;
+            this.gpu_mem     = new Array(2).fill(0.0);
             // set colors
             switch (this.type) {
               case "cpu":
@@ -200,13 +201,13 @@ SystemMonitorGraph.prototype = {
                             text2 = Math.round(this.gpu_use).toString() + "%";
                             break;
                         case "memory":
-                            let gpu_mem_values = this.get_nvidia_gpu_mem();
-                            let gpu_mem_use = 100 * gpu_mem_values[1] / gpu_mem_values[0];
+                            this.get_nvidia_gpu_mem();
+                            let gpu_mem_use = 100 * this.gpu_mem[1] / this.gpu_mem[0];
                             value = gpu_mem_use / 100;
                             text1 = _("GPU Memory");
                             text2 = Math.round(gpu_mem_use).toString() + "%"
-                            text3 = gpu_mem_values[1].toFixed(1) + " / "
-                                  + gpu_mem_values[0].toFixed(1) + " " + _("GiB");
+                            text3 = this.gpu_mem[1].toFixed(1) + " / "
+                                  + this.gpu_mem[0].toFixed(1) + " " + _("GiB");
                             break;
                     }
                     break;
@@ -426,13 +427,20 @@ SystemMonitorGraph.prototype = {
     },
 
     get_nvidia_gpu_mem: function() {
-      let [result, stdout, stderr] = GLib.spawn_command_line_sync("nvidia-smi --query-gpu=memory.total --format=csv --id=" + this.gpu_id);
-      let mem_tot =  parseInt(stdout.toString().match(/[^\r\n]+/g)[1]); // parse integer in second line
-      [result, stdout, stderr] = GLib.spawn_command_line_sync("nvidia-smi --query-gpu=memory.used --format=csv --id=" + this.gpu_id);
-      let mem_usd =  parseInt(stdout.toString().match(/[^\r\n]+/g)[1]); // parse integer in second line
-      let gpu_mem_tot = mem_tot / GIB_TO_MIB;
-      let gpu_mem_usd = mem_usd / GIB_TO_MIB;
-      return [gpu_mem_tot, gpu_mem_usd];
+      let subprocess = new Gio.Subprocess({
+      argv: ['nvidia-smi', '--query-gpu=memory.total,memory.used', '--format=csv', '--id='+ this.gpu_id],
+      flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
+      });
+      subprocess.init(null);
+      subprocess.wait_async(null, (sourceObject, res) => {
+          let [, stdout, stderr] = sourceObject.communicate_utf8(null, null);
+          let fslines = stdout.split(/\r?\n/); // Line0:Headers Line1:Values
+          let items = fslines[1].split(',');   // Values are comma-separated
+          let mem_tot =  parseInt(items[0]);
+          let mem_usd =  parseInt(items[1]);
+          this.gpu_mem[0] = mem_tot / GIB_TO_MIB;
+          this.gpu_mem[1] = mem_usd / GIB_TO_MIB;
+      });
     }
 
 };
