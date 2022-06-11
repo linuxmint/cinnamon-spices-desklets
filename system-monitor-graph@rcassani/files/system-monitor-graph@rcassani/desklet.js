@@ -103,6 +103,9 @@ SystemMonitorGraph.prototype = {
             this.gpu_use     = 0;
             this.gpu_mem     = new Array(2).fill(0.0);
             this.ram_values  = new Array(2).fill(0.0);
+            this.swap_values = new Array(2).fill(0.0);
+
+
             // set colors
             switch (this.type) {
               case "cpu":
@@ -170,13 +173,13 @@ SystemMonitorGraph.prototype = {
               break;
 
           case "swap":
-            let swap_values = this.get_swap_values();
-            let swap_use = 100 * swap_values[1] / swap_values[0];
+            this.get_swap_values();
+            let swap_use = 100 * this.swap_values[1] / this.swap_values[0];
             value = swap_use / 100;
             text1 = _("Swap");
             text2 = Math.round(swap_use).toString() + "%"
-            text3 = swap_values[1].toFixed(1) + " / "
-                  + swap_values[0].toFixed(1) + " " + _("GiB");
+            text3 = this.swap_values[1].toFixed(1) + " / "
+                  + this.swap_values[0].toFixed(1) + " " + _("GiB");
             break;
 
           case "hdd":
@@ -368,13 +371,19 @@ SystemMonitorGraph.prototype = {
 
     get_swap_values: function() {
         // used  = total - available
-        let mem_out = Cinnamon.get_file_contents_utf8_sync("/proc/meminfo");
-        let mem_tot = parseInt(mem_out.match(/(SwapTotal):\D+(\d+)/)[2]);
-        let mem_usd = mem_tot - parseInt(mem_out.match(/(SwapFree):\D+(\d+)/)[2]);
-
-        let swap_tot = mem_tot / GIB_TO_KIB;
-        let swap_usd = mem_usd / GIB_TO_KIB;
-        return [swap_tot, swap_usd];
+        let subprocess = new Gio.Subprocess({
+        argv: ['cat', '/proc/meminfo'],
+        flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
+        });
+        subprocess.init(null);
+        subprocess.wait_async(null, (sourceObject, res) => {
+            let [, stdout, stderr] = sourceObject.communicate_utf8(null, null);
+            let mem_tot = parseInt(stdout.match(/(SwapTotal):\D+(\d+)/)[2]);
+            let mem_usd = mem_tot - parseInt(stdout.match(/(SwapFree):\D+(\d+)/)[2]);
+            let swap_tot = mem_tot / GIB_TO_KIB;
+            let swap_usd = mem_usd / GIB_TO_KIB;
+            this.swap_values = [swap_tot, swap_usd];
+        });
     },
 
     get_hdd_values: function(dir_path) {
