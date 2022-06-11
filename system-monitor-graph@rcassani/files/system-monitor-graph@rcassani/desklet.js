@@ -98,6 +98,8 @@ SystemMonitorGraph.prototype = {
             this.cpu_cpu_idl = 0;
             this.hdd_cpu_tot = 0;
             this.hdd_hdd_tot = 0;
+            // values to graph
+            this.gpu_use     = 0;
             // set colors
             switch (this.type) {
               case "cpu":
@@ -192,10 +194,10 @@ SystemMonitorGraph.prototype = {
                 case "nvidia":
                     switch (this.gpu_variable) {
                         case "usage":
-                            let gpu_use = this.get_nvidia_gpu_use();
-                            value = gpu_use / 100;
+                            this.get_nvidia_gpu_use();
+                            value = this.gpu_use / 100;
                             text1 = _("GPU Usage");
-                            text2 = Math.round(gpu_use).toString() + "%";
+                            text2 = Math.round(this.gpu_use).toString() + "%";
                             break;
                         case "memory":
                             let gpu_mem_values = this.get_nvidia_gpu_mem();
@@ -412,9 +414,15 @@ SystemMonitorGraph.prototype = {
     },
 
     get_nvidia_gpu_use: function() {
-        let [result, stdout, stderr] = GLib.spawn_command_line_sync("nvidia-smi --query-gpu=utilization.gpu --format=csv --id=" + this.gpu_id);
-        let gpu_use =  parseInt(stdout.toString().match(/[^\r\n]+/g)[1]); // parse integer in second line
-        return gpu_use;
+        let subprocess = new Gio.Subprocess({
+        argv: ['nvidia-smi', '--query-gpu=utilization.gpu', '--format=csv', '--id='+ this.gpu_id],
+        flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
+        });
+        subprocess.init(null);
+        subprocess.wait_async(null, (sourceObject, res) => {
+            let [, stdout, stderr] = sourceObject.communicate_utf8(null, null);
+            this.gpu_use =  parseInt(stdout.toString().match(/[^\r\n]+/g)[1]); // parse integer in second line
+        });
     },
 
     get_nvidia_gpu_mem: function() {
