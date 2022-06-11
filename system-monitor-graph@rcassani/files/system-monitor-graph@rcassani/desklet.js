@@ -99,6 +99,7 @@ SystemMonitorGraph.prototype = {
             this.hdd_cpu_tot = 0;
             this.hdd_hdd_tot = 0;
             // values to graph
+            this.cpu_use     = 0;
             this.gpu_use     = 0;
             this.gpu_mem     = new Array(2).fill(0.0);
             // set colors
@@ -151,10 +152,10 @@ SystemMonitorGraph.prototype = {
         // current values
         switch (this.type) {
           case "cpu":
-              let cpu_use = this.get_cpu_use();
-              value = cpu_use / 100;
+              this.get_cpu_use();
+              value = this.cpu_use / 100;
               text1 = _("CPU");
-              text2 = Math.round(cpu_use).toString() + "%";
+              text2 = Math.round(this.cpu_use).toString() + "%";
               break;
 
           case "ram":
@@ -328,17 +329,23 @@ SystemMonitorGraph.prototype = {
 
     get_cpu_use: function() {
         // https://rosettacode.org/wiki/Linux_CPU_utilization
-        let cpu_line = Cinnamon.get_file_contents_utf8_sync("/proc/stat").match(/cpu\s.+/)[0];
-        let cpu_values = cpu_line.split(/\s+/);
-        let cpu_idl = parseFloat(cpu_values[4]);
-        let cpu_tot = 0;
-        for (let i = 1; i<10; i++){
-          cpu_tot += parseFloat(cpu_values[i])
-        }
-        let cpu_use = 100 * (1 - (cpu_idl - this.cpu_cpu_idl) / (cpu_tot - this.cpu_cpu_tot));
-        this.cpu_cpu_tot = cpu_tot;
-        this.cpu_cpu_idl = cpu_idl;
-        return cpu_use;
+        let subprocess = new Gio.Subprocess({
+        argv: ['head', '-n', '1', '/proc/stat'],
+        flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
+        });
+        subprocess.init(null);
+        subprocess.wait_async(null, (sourceObject, res) => {
+            let [, stdout, stderr] = sourceObject.communicate_utf8(null, null);
+            let cpu_values = stdout.split(/\s+/);
+            let cpu_idl = parseFloat(cpu_values[4]);
+            let cpu_tot = 0;
+            for (let i = 1; i<10; i++){
+              cpu_tot += parseFloat(cpu_values[i])
+            }
+            this.cpu_use = 100 * (1 - (cpu_idl - this.cpu_cpu_idl) / (cpu_tot - this.cpu_cpu_tot));
+            this.cpu_cpu_tot = cpu_tot;
+            this.cpu_cpu_idl = cpu_idl;
+        });
     },
 
     get_ram_values: function() {
