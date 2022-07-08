@@ -55,6 +55,7 @@ SystemMonitorGraph.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "midline-color", "midline_color", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "text_color", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-cpu", "line_color_cpu", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-cpu-temp", "line_color_cpu_temp", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-ram", "line_color_ram", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-swap", "line_color_swap", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-hdd", "line_color_hdd", this.on_setting_changed);
@@ -102,6 +103,9 @@ SystemMonitorGraph.prototype = {
             switch (this.type) {
               case "cpu":
                   this.line_color = this.line_color_cpu;
+                  break;
+              case "cputemp":
+                  this.line_color = this.line_color_cpu_temp;
                   break;
               case "ram":
                   this.line_color = this.line_color_ram;
@@ -152,6 +156,13 @@ SystemMonitorGraph.prototype = {
               value = cpu_use / 100;
               text1 = _("CPU");
               text2 = Math.round(cpu_use).toString() + "%";
+              break;
+
+          case "cputemp":
+              let cpu_temp = this.get_cpu_temp_one();
+              value = cpu_temp / 100;
+              text1 = _("CPU Temp.");
+              text2 = cpu_temp + "°C";
               break;
 
           case "ram":
@@ -336,6 +347,11 @@ SystemMonitorGraph.prototype = {
         this.cpu_cpu_tot = cpu_tot;
         this.cpu_cpu_idl = cpu_idl;
         return cpu_use;
+    },
+
+    get_cpu_temp_one: function() {
+        let cpu_temp = Cinnamon.get_file_contents_utf8_sync("/sys/class/hwmon/hwmon0/temp1_input");
+        return cpu_temp / 1000;
     },
 
     get_ram_values: function() {

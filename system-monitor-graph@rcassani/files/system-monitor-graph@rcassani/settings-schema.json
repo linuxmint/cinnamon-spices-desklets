@@ -15,6 +15,7 @@
         "tooltip": "Select the system variable to monitor.",
         "options" : {
             "CPU" : "cpu",
+            "CPU Temperature" : "cputemp",
             "RAM" : "ram",
             "Swap" : "swap",
             "HDD" : "hdd",
@@ -117,6 +118,13 @@
         "default": "rgba(23,147,208,1.0)",
         "description": "Line color CPU",
         "dependency": "type=cpu",
+        "tooltip": "RGB or RGBA. Alpha is ignored"
+    },
+    "line-color-cpu-temp": {
+        "type": "colorchooser",
+        "default": "rgba(184,151,0,1.0)",
+        "description": "Line color CPU Temperature",
+        "dependency": "type=cputemp",
         "tooltip": "RGB or RGBA. Alpha is ignored"
     },
     "line-color-ram": {
