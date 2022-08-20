@@ -15,23 +15,23 @@ msgstr ""
 "Last-Translator: \n"
 "Language-Team: \n"
 
-#: desklet.js:89
+#: desklet.js:87
 msgid "Yahoo Finance service not available!"
 msgstr "Yahoo Finance 서비스를 사용할 수 없습니다!"
 
-#: desklet.js:422
+#: desklet.js:416
 msgid "Updated at "
 msgstr "업데이트 날짜 "
 
-#: desklet.js:429
+#: desklet.js:423
 msgid "Error: "
 msgstr "오류: "
 
-#: desklet.js:470
+#: desklet.js:467
 msgid "Cannot display quotes information for symbols: "
 msgstr "기호에 대한 따옴표 정보를 표시 할 수 없습니다. "
 
-#: desklet.js:471
+#: desklet.js:468
 msgid "The following error occurred: "
 msgstr "다음 오류가 발생했습니다. "
 
@@ -312,7 +312,7 @@ msgid "Use trend colors for percent change"
 msgstr "퍼센트 변화에 트렌드 색상 사용"
 
 #. settings-schema.json->colorPercentChange->tooltip
-msgid "Color the percent change to show the trend (green for up, red for down)."
+msgid "Color the percent change to show the trend."
 msgstr "퍼센트 변화에 색상을 지정하여 추세를 표시합니다 (녹색은 상승, 빨간색은 하락)."
 
 #. settings-schema.json->showTradeTime->description
