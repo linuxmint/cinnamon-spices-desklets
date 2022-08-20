@@ -7,7 +7,6 @@ const Cinnamon = imports.gi.Cinnamon;
 const Gio = imports.gi.Gio;
 const Cairo = imports.cairo;
 const St = imports.gi.St;
-//const Util = imports.misc.util;
 const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
 
@@ -98,6 +97,14 @@ SystemMonitorGraph.prototype = {
             this.cpu_cpu_idl = 0;
             this.hdd_cpu_tot = 0;
             this.hdd_hdd_tot = 0;
+            // values to graph
+            this.cpu_use     = 0;
+            this.ram_values  = new Array(2).fill(0.0);
+            this.swap_values = new Array(2).fill(0.0);
+            this.hdd_values  = new Array(4).fill(0.0);
+            this.gpu_use     = 0;
+            this.gpu_mem     = new Array(2).fill(0.0);
+
             // set colors
             switch (this.type) {
               case "cpu":
@@ -148,43 +155,43 @@ SystemMonitorGraph.prototype = {
         // current values
         switch (this.type) {
           case "cpu":
-              let cpu_use = this.get_cpu_use();
-              value = cpu_use / 100;
+              this.get_cpu_use();
+              value = this.cpu_use / 100;
               text1 = _("CPU");
-              text2 = Math.round(cpu_use).toString() + "%";
+              text2 = Math.round(this.cpu_use).toString() + "%";
               break;
 
           case "ram":
-              let ram_values = this.get_ram_values();
-              let ram_use = 100 * ram_values[1] / ram_values[0];
+              this.get_ram_values();
+              let ram_use = 100 * this.ram_values[1] / this.ram_values[0];
               value = ram_use / 100;
               text1 = _("RAM");
               text2 = Math.round(ram_use).toString() + "%"
-              text3 = ram_values[1].toFixed(1) + " / "
-                    + ram_values[0].toFixed(1) + " " + _("GiB");
+              text3 = this.ram_values[1].toFixed(1) + " / "
+                    + this.ram_values[0].toFixed(1) + " " + _("GiB");
               break;
 
           case "swap":
-            let swap_values = this.get_swap_values();
-            let swap_use = 100 * swap_values[1] / swap_values[0];
+            this.get_swap_values();
+            let swap_use = 100 * this.swap_values[1] / this.swap_values[0];
             value = swap_use / 100;
             text1 = _("Swap");
             text2 = Math.round(swap_use).toString() + "%"
-            text3 = swap_values[1].toFixed(1) + " / "
-                  + swap_values[0].toFixed(1) + " " + _("GiB");
+            text3 = this.swap_values[1].toFixed(1) + " / "
+                  + this.swap_values[0].toFixed(1) + " " + _("GiB");
             break;
 
           case "hdd":
               let dir_path = decodeURIComponent(this.filesystem.replace("file://", "").trim());
               if(dir_path == null || dir_path == "") dir_path = "/";
-              let hdd_values = this.get_hdd_values(dir_path);
-              let hdd_use = Math.min(hdd_values[1], 100); //already in %
+              this.get_hdd_values(dir_path);
+              let hdd_use = Math.min(this.hdd_values[1], 100); //already in %
               value = hdd_use / 100;
               text1 = this.filesystem_label;
-              if (text1 == "") text1 = hdd_values[0];
+              if (text1 == "") text1 = this.hdd_values[0];
               text2 = Math.round(hdd_use).toString() + "%"
-              text3 = hdd_values[3].toFixed(0) + " " + _("GB free of") + " "
-                    + hdd_values[2].toFixed(0) + " " + _("GB");
+              text3 = this.hdd_values[3].toFixed(0) + " " + _("GB free of") + " "
+                    + this.hdd_values[2].toFixed(0) + " " + _("GB");
               break;
 
           case "gpu":
@@ -192,19 +199,19 @@ SystemMonitorGraph.prototype = {
                 case "nvidia":
                     switch (this.gpu_variable) {
                         case "usage":
-                            let gpu_use = this.get_nvidia_gpu_use();
-                            value = gpu_use / 100;
+                            this.get_nvidia_gpu_use();
+                            value = this.gpu_use / 100;
                             text1 = _("GPU Usage");
-                            text2 = Math.round(gpu_use).toString() + "%";
+                            text2 = Math.round(this.gpu_use).toString() + "%";
                             break;
                         case "memory":
-                            let gpu_mem_values = this.get_nvidia_gpu_mem();
-                            let gpu_mem_use = 100 * gpu_mem_values[1] / gpu_mem_values[0];
+                            this.get_nvidia_gpu_mem();
+                            let gpu_mem_use = 100 * this.gpu_mem[1] / this.gpu_mem[0];
                             value = gpu_mem_use / 100;
                             text1 = _("GPU Memory");
                             text2 = Math.round(gpu_mem_use).toString() + "%"
-                            text3 = gpu_mem_values[1].toFixed(1) + " / "
-                                  + gpu_mem_values[0].toFixed(1) + " " + _("GiB");
+                            text3 = this.gpu_mem[1].toFixed(1) + " / "
+                                  + this.gpu_mem[0].toFixed(1) + " " + _("GiB");
                             break;
                     }
                     break;
@@ -325,58 +332,78 @@ SystemMonitorGraph.prototype = {
 
     get_cpu_use: function() {
         // https://rosettacode.org/wiki/Linux_CPU_utilization
-        let cpu_line = Cinnamon.get_file_contents_utf8_sync("/proc/stat").match(/cpu\s.+/)[0];
-        let cpu_values = cpu_line.split(/\s+/);
-        let cpu_idl = parseFloat(cpu_values[4]);
-        let cpu_tot = 0;
-        for (let i = 1; i<10; i++){
-          cpu_tot += parseFloat(cpu_values[i])
-        }
-        let cpu_use = 100 * (1 - (cpu_idl - this.cpu_cpu_idl) / (cpu_tot - this.cpu_cpu_tot));
-        this.cpu_cpu_tot = cpu_tot;
-        this.cpu_cpu_idl = cpu_idl;
-        return cpu_use;
+        let subprocess = new Gio.Subprocess({
+        argv: ['head', '-n', '1', '/proc/stat'],
+        flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
+        });
+        subprocess.init(null);
+        subprocess.wait_async(null, (sourceObject, res) => {
+            let [, stdout, stderr] = sourceObject.communicate_utf8(null, null);
+            let cpu_values = stdout.split(/\s+/);
+            let cpu_idl = parseFloat(cpu_values[4]);
+            let cpu_tot = 0;
+            for (let i = 1; i<10; i++){
+              cpu_tot += parseFloat(cpu_values[i])
+            }
+            this.cpu_use = 100 * (1 - (cpu_idl - this.cpu_cpu_idl) / (cpu_tot - this.cpu_cpu_tot));
+            this.cpu_cpu_tot = cpu_tot;
+            this.cpu_cpu_idl = cpu_idl;
+        });
     },
 
     get_ram_values: function() {
         // used  = total - available
-        let mem_out = Cinnamon.get_file_contents_utf8_sync("/proc/meminfo");
-        let mem_tot = parseInt(mem_out.match(/(MemTotal):\D+(\d+)/)[2]);
-        let mem_usd = mem_tot - parseInt(mem_out.match(/(MemAvailable):\D+(\d+)/)[2]);
-
-        let ram_tot = mem_tot / GIB_TO_KIB;
-        let ram_usd = mem_usd / GIB_TO_KIB;
-        return [ram_tot, ram_usd];
+        let subprocess = new Gio.Subprocess({
+        argv: ['cat', '/proc/meminfo'],
+        flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
+        });
+        subprocess.init(null);
+        subprocess.wait_async(null, (sourceObject, res) => {
+            let [, stdout, stderr] = sourceObject.communicate_utf8(null, null);
+            let mem_tot = parseInt(stdout.match(/(MemTotal):\D+(\d+)/)[2]);
+            let mem_usd = mem_tot - parseInt(stdout.match(/(MemAvailable):\D+(\d+)/)[2]);
+            let ram_tot = mem_tot / GIB_TO_KIB;
+            let ram_usd = mem_usd / GIB_TO_KIB;
+            this.ram_values = [ram_tot, ram_usd];
+        });
     },
 
     get_swap_values: function() {
         // used  = total - available
-        let mem_out = Cinnamon.get_file_contents_utf8_sync("/proc/meminfo");
-        let mem_tot = parseInt(mem_out.match(/(SwapTotal):\D+(\d+)/)[2]);
-        let mem_usd = mem_tot - parseInt(mem_out.match(/(SwapFree):\D+(\d+)/)[2]);
-
-        let swap_tot = mem_tot / GIB_TO_KIB;
-        let swap_usd = mem_usd / GIB_TO_KIB;
-        return [swap_tot, swap_usd];
+        let subprocess = new Gio.Subprocess({
+        argv: ['cat', '/proc/meminfo'],
+        flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
+        });
+        subprocess.init(null);
+        subprocess.wait_async(null, (sourceObject, res) => {
+            let [, stdout, stderr] = sourceObject.communicate_utf8(null, null);
+            let mem_tot = parseInt(stdout.match(/(SwapTotal):\D+(\d+)/)[2]);
+            let mem_usd = mem_tot - parseInt(stdout.match(/(SwapFree):\D+(\d+)/)[2]);
+            let swap_tot = mem_tot / GIB_TO_KIB;
+            let swap_usd = mem_usd / GIB_TO_KIB;
+            this.swap_values = [swap_tot, swap_usd];
+        });
     },
 
     get_hdd_values: function(dir_path) {
         let subprocess = new Gio.Subprocess({
-            argv: ['/bin/df', dir_path],
-            flags: Gio.SubprocessFlags.STDOUT_PIPE,
+        argv: ['/bin/df', dir_path],
+        flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
         });
         subprocess.init(null);
-        let [, out] = subprocess.communicate_utf8(null, null); // get full output from stdout
-        let df_line = out.match(/.+/g)[1];
-        let df_values = df_line.split(/\s+/); // split by space
-        // values for partition space
-        let hdd_tot = parseFloat(df_values[1]) * 1024 / GB_TO_B;
-        let hdd_fre = parseFloat(df_values[3]) * 1024 / GB_TO_B;
-        // utilization of partition
-        let dev_fs = df_values[0];
-        let fs = dev_fs.split(/\/+/)[2];
-        let hdd_use = this.get_hdd_use(fs);
-        return [fs, hdd_use, hdd_tot, hdd_fre];
+        subprocess.wait_async(null, (sourceObject, res) => {
+            let [, stdout, stderr] = sourceObject.communicate_utf8(null, null);
+            let df_line = stdout.match(/.+/g)[1];
+            let df_values = df_line.split(/\s+/); // split by space
+            // values for partition space
+            let hdd_tot = parseFloat(df_values[1]) * 1024 / GB_TO_B;
+            let hdd_fre = parseFloat(df_values[3]) * 1024 / GB_TO_B;
+            // utilization of partition
+            let dev_fs = df_values[0];
+            let fs = dev_fs.split(/\/+/)[2];
+            let hdd_use = this.get_hdd_use(fs);
+            this.hdd_values = [fs, hdd_use, hdd_tot, hdd_fre];
+        });
     },
 
     get_hdd_use: function(fs) {
@@ -412,19 +439,32 @@ SystemMonitorGraph.prototype = {
     },
 
     get_nvidia_gpu_use: function() {
-        let [result, stdout, stderr] = GLib.spawn_command_line_sync("nvidia-smi --query-gpu=utilization.gpu --format=csv --id=" + this.gpu_id);
-        let gpu_use =  parseInt(stdout.toString().match(/[^\r\n]+/g)[1]); // parse integer in second line
-        return gpu_use;
+        let subprocess = new Gio.Subprocess({
+        argv: ['nvidia-smi', '--query-gpu=utilization.gpu', '--format=csv', '--id='+ this.gpu_id],
+        flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
+        });
+        subprocess.init(null);
+        subprocess.wait_async(null, (sourceObject, res) => {
+            let [, stdout, stderr] = sourceObject.communicate_utf8(null, null);
+            this.gpu_use =  parseInt(stdout.toString().match(/[^\r\n]+/g)[1]); // parse integer in second line
+        });
     },
 
     get_nvidia_gpu_mem: function() {
-      let [result, stdout, stderr] = GLib.spawn_command_line_sync("nvidia-smi --query-gpu=memory.total --format=csv --id=" + this.gpu_id);
-      let mem_tot =  parseInt(stdout.toString().match(/[^\r\n]+/g)[1]); // parse integer in second line
-      [result, stdout, stderr] = GLib.spawn_command_line_sync("nvidia-smi --query-gpu=memory.used --format=csv --id=" + this.gpu_id);
-      let mem_usd =  parseInt(stdout.toString().match(/[^\r\n]+/g)[1]); // parse integer in second line
-      let gpu_mem_tot = mem_tot / GIB_TO_MIB;
-      let gpu_mem_usd = mem_usd / GIB_TO_MIB;
-      return [gpu_mem_tot, gpu_mem_usd];
+      let subprocess = new Gio.Subprocess({
+      argv: ['nvidia-smi', '--query-gpu=memory.total,memory.used', '--format=csv', '--id='+ this.gpu_id],
+      flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
+      });
+      subprocess.init(null);
+      subprocess.wait_async(null, (sourceObject, res) => {
+          let [, stdout, stderr] = sourceObject.communicate_utf8(null, null);
+          let fslines = stdout.split(/\r?\n/); // Line0:Headers Line1:Values
+          let items = fslines[1].split(',');   // Values are comma-separated
+          let mem_tot =  parseInt(items[0]);
+          let mem_usd =  parseInt(items[1]);
+          this.gpu_mem[0] = mem_tot / GIB_TO_MIB;
+          this.gpu_mem[1] = mem_usd / GIB_TO_MIB;
+      });
     }
 
 };
