@@ -7,43 +7,48 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-28 13:30-0500\n"
-"PO-Revision-Date: 2021-12-06 10:45+0100\n"
+"POT-Creation-Date: 2022-04-17 23:21+0200\n"
+"PO-Revision-Date: 2022-06-04 15:33+0200\n"
+"Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
+"Language-Team: \n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
-"Language-Team: \n"
 "X-Generator: Poedit 2.3\n"
 
 #. settings-schema.json->type->options
-#: desklet.js:149
+#: desklet.js:153
 msgid "CPU"
 msgstr "CPU"
 
 #. settings-schema.json->type->options
-#: desklet.js:157
+#: desklet.js:161
 msgid "RAM"
 msgstr "RAM"
 
-#: desklet.js:160 desklet.js:193
+#: desklet.js:164 desklet.js:174 desklet.js:207
 msgid "GiB"
 msgstr "GiB"
 
-#: desklet.js:172
+#. settings-schema.json->type->options
+#: desklet.js:171
+msgid "Swap"
+msgstr "Cserehely"
+
+#: desklet.js:186
 msgid "GB free of"
 msgstr "GB szabad, összesen:"
 
-#: desklet.js:173
+#: desklet.js:187
 msgid "GB"
 msgstr "GB"
 
-#: desklet.js:183
+#: desklet.js:197
 msgid "GPU Usage"
 msgstr "GPU használat"
 
-#: desklet.js:190
+#: desklet.js:204
 msgid "GPU Memory"
 msgstr "GPU memória"
 
@@ -53,11 +58,11 @@ msgstr "Rendszerfigyelő grafikonnal"
 
 #. metadata.json->description
 msgid "Creates graphs for system variables."
-msgstr ""
+msgstr "Grafikonokat készít a rendszer jellemző értékeiből."
 
 #. settings-schema.json->head0->description
 msgid "Settings for system-monitor-graph@rcassani"
-msgstr ""
+msgstr "Beállítások a system-monitor-graph@rcassani asztalkalmazáshoz"
 
 #. settings-schema.json->head1->description
 msgid "General"
@@ -65,11 +70,11 @@ msgstr "Általános"
 
 #. settings-schema.json->type->description
 msgid "System variable for graph"
-msgstr ""
+msgstr "Rendszerjellemzők a grafikon számára"
 
 #. settings-schema.json->type->tooltip
 msgid "Select the system variable to monitor."
-msgstr ""
+msgstr "Válassza ki a megfigyelendő rendszerjellemzőket."
 
 #. settings-schema.json->type->options
 msgid "HDD"
@@ -85,7 +90,7 @@ msgstr "Megfigyelt fájlrendszer"
 
 #. settings-schema.json->filesystem->tooltip
 msgid "Select a directory in the filesystem to monitor."
-msgstr ""
+msgstr "Válasszon ki egy mappát a megfigyelendő fájlrendszerhez."
 
 #. settings-schema.json->filesystem-label->description
 msgid "Filesystem label"
@@ -93,7 +98,7 @@ msgstr "Fájlrendszercímke"
 
 #. settings-schema.json->filesystem-label->tooltip
 msgid "Empty uses the filesystem name from df."
-msgstr ""
+msgstr "Amennyiben üresen hagyja, a fájlrendszer neve a df parancs alapján lesz megadva."
 
 #. settings-schema.json->gpu-manufacturer->description
 msgid "GPU manufacturer"
@@ -101,7 +106,7 @@ msgstr "GPU gyártó"
 
 #. settings-schema.json->gpu-manufacturer->tooltip
 msgid "Select the GPU manufacturer."
-msgstr ""
+msgstr "GPU gyártó kiválasztása"
 
 #. settings-schema.json->gpu-manufacturer->options
 msgid "NVIDIA"
@@ -113,15 +118,15 @@ msgstr "A figyelendő GPU azonosítója"
 
 #. settings-schema.json->gpu-id->tooltip
 msgid "Check GPU id with nvidia-smi -L"
-msgstr ""
+msgstr "A GPU id figyelése a nvidia-smi -L paranccsal"
 
 #. settings-schema.json->gpu-variable->description
 msgid "GPU variable to monitor"
-msgstr ""
+msgstr "A figyelendő GPU jellemzők"
 
 #. settings-schema.json->gpu-variable->tooltip
 msgid "Select the GPU variable to monitor."
-msgstr ""
+msgstr "Válassza ki a megfigyelendő GPU jellemzőket."
 
 #. settings-schema.json->gpu-variable->options
 msgid "Usage"
@@ -137,7 +142,7 @@ msgstr "Grafikon időtartama"
 
 #. settings-schema.json->duration->tooltip
 msgid "Maximum among of time to show in the graph."
-msgstr ""
+msgstr "A grafikon megjelenítésének időátfogása"
 
 #. settings-schema.json->duration->options
 #. settings-schema.json->refresh-interval->options
@@ -174,7 +179,7 @@ msgstr "Frissítési gyakoriság"
 
 #. settings-schema.json->refresh-interval->tooltip
 msgid "How often a new value of the variable will be calculated."
-msgstr ""
+msgstr "A jellemzők értékek meghatározásának időköze."
 
 #. settings-schema.json->refresh-interval->options
 msgid " 1 s"
@@ -220,6 +225,7 @@ msgstr "CPU vonalszín"
 
 #. settings-schema.json->line-color-cpu->tooltip
 #. settings-schema.json->line-color-ram->tooltip
+#. settings-schema.json->line-color-swap->tooltip
 #. settings-schema.json->line-color-hdd->tooltip
 #. settings-schema.json->line-color-gpu->tooltip
 msgid "RGB or RGBA. Alpha is ignored"
@@ -228,6 +234,10 @@ msgstr "RGB vagy RGBA. Az Alfa csatorna figyelmen kívül hagyásával"
 #. settings-schema.json->line-color-ram->description
 msgid "Line color RAM"
 msgstr "RAM vonalszín"
+
+#. settings-schema.json->line-color-swap->description
+msgid "Line color Swap"
+msgstr "CSEREHELY vonalszín"
 
 #. settings-schema.json->line-color-hdd->description
 msgid "Line color HDD"
@@ -251,4 +261,4 @@ msgstr "Függőleges rácsvonalak száma"
 
 #. settings-schema.json->scale-size->description
 msgid "Scale factor for desklet size (scale factor of 1 = 330 x 120 px)"
-msgstr ""
+msgstr "Méretezés az asztalkalmazáshoz (az 1-es méret = 330 x 120 pixel)"
