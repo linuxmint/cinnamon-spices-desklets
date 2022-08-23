@@ -82,8 +82,8 @@ NetBeatDesklet.prototype = {
 
         // calculation fix
         let beatSecs = (s + m * 60 + h * 3600);
-        let netBeats = (1000 * beatSecs / 3600);
-        let beats = ('000' + Math.floor(netBeats));
+        let netBeats = beatSecs / 86.4;
+        let beats = ("000" + parseInt(netBeats)).slice(-3);
 
 		this.netbeat.set_text("@" + beats);
 		// only update, if the desklet is running
