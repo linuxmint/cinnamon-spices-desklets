@@ -188,7 +188,7 @@ SystemMonitorGraph.prototype = {
               let hdd_use = Math.min(this.hdd_values[1], 100); //already in %
               value = hdd_use / 100;
               text1 = this.filesystem_label;
-              if (text1 == "") text1 = this.hdd_values[0];
+              if (text1 == "") text1 = this.hdd_values[0].toString();
               text2 = Math.round(hdd_use).toString() + "%"
               text3 = this.hdd_values[3].toFixed(0) + " " + _("GB free of") + " "
                     + this.hdd_values[2].toFixed(0) + " " + _("GB");

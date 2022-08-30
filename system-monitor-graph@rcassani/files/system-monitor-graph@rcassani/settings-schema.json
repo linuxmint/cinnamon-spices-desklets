@@ -23,7 +23,7 @@
     },
     "filesystem": {
         "type": "filechooser",
-        "default": "/",
+        "default": "file:///",
         "description": "Filesystem to monitor",
         "tooltip": "Select a directory in the filesystem to monitor.",
         "allow-none" : true,
