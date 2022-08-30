@@ -2,14 +2,17 @@
 # Execute the script called codeowners_creator.py to generate it.
 
 InternetTimeDesklet@stefan/*                       @stefan12O
+SevenSegmentClock@lxs242/*                         @lxs242
 ViennaTextBasedWeather@f-istvan/*                  @f-istvan
 analog-clock@cobinja.de/*                          @cobinja
 battery@schorschii/*                               @schorschii
 bbcwx@oak-wood.co.uk/*                             @tipichris
+calc@ptandler/*                                    @ptandler
 calculator@scollins/*                              @schorschii
 calendar@deeppradhan/*                             @kanchudeep
 calendar@schorschii/*                              @schorschii
 clock@schorschii/*                                 @schorschii
+clocket@tirtha/*                                   @tirtharajsinha
 commandResult@ZimiZones/*                          @ZimiZones
 covid-19-india@sujitagarwal/*                      @sujitagarwal
 covid19@india/*                                    @OnlineLearningTutorials
@@ -22,8 +25,8 @@ eKreta@thegergo02/*                                @thegergo02
 ganjine@mohammad-sn/*                              @mohammad-sn
 googleCalendar@javahelps.com/*                     @slgobinath
 hostcheck@schorschii/*                             @schorschii
+jira@codeunifier/*                                 @codeunifier
 kdecdesklet@joejoetv/*                             @JoeJoeTV
-lemondenewspaper@fthuin/*                          @fthuin
 mintoo@sujitagarwal/*                              @sujitagarwal
 nepalipatro@deeppradhan/*                          @kanchudeep
 netusage@30yavash.com/*                            @pdcurtis
@@ -46,6 +49,5 @@ yfquotes@thegli/*                                  @thegli
 # clockTow@armandobs14
 # commandOfTheDay@logg
 # jalalidesklet@30yavash.com
-# powerUsage@hosvir.com
 # reddit-reader@orangeshark
 # shutdown@phpdreamer
