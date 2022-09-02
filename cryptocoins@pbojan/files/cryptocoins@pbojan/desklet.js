@@ -2,6 +2,7 @@
 const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
 const Soup = imports.gi.Soup;
+const ByteArray = imports.byteArray;
 const Gio = imports.gi.Gio;
 const Lang = imports.lang;
 const Mainloop = imports.mainloop;
@@ -22,8 +23,13 @@ const FONT_SIZE_PRICE = parseInt(22 / global.ui_scale);
 const FONT_SIZE_ASSETS = parseInt(12 / global.ui_scale);
 const FONT_SIZE_LAST_UPDATED = parseInt(10 / global.ui_scale);
 
-const httpSession = new Soup.SessionAsync();
-Soup.Session.prototype.add_feature.call(httpSession, new Soup.ProxyResolverDefault());
+let httpSession;
+if (Soup.MAJOR_VERSION == 2) {
+    httpSession = new Soup.SessionAsync();
+    Soup.Session.prototype.add_feature.call(httpSession, new Soup.ProxyResolverDefault());
+} else { //version 3
+    httpSession = new Soup.Session();
+}
 
 function CryptocurrencyTicker(metadata, desklet_id) {
   this._init(metadata, desklet_id);
@@ -165,33 +171,51 @@ CryptocurrencyTicker.prototype = {
     }
 
     var message = Soup.Message.new('GET', url);
-    message.request_headers.append('X-CMC_PRO_API_KEY', this.cfgApiKey);
 
-    httpSession.queue_message(message,
-      Lang.bind(this, function(session, response) {
-        if (response.status_code !== Soup.KnownStatusCode.OK) {
-          global.log(UUID + ': Error during download: response code ' +
-              response.status_code + ': ' + response.reason_phrase + ' - ' +
-              response.response_body.data);
-          return;
-        }
+    const process_result = result => {
+      result = JSON.parse(result);
+      if (this.cfgCoinID !== '') {
+        result = result.data[this.cfgCoinID];
+      } else {
+        result = result.data[this.cfgCoinSymbol.toUpperCase()];
+      }
 
-        let result = JSON.parse(message.response_body.data);
-        if (this.cfgCoinID !== '') {
-          result = result.data[this.cfgCoinID];
-        } else {
-          result = result.data[this.cfgCoinSymbol.toUpperCase()];
-        }
+      if (initUI === true) {
+        global.log('Init UI, create all objects for coin: ' + result['name']);
+        this.setupUI(result);
+      } else {
+        global.log('Update objects for coin: ' + result['name']);
+        this.updateUI(result);
+      }
+    };
 
-        if (initUI === true) {
-          global.log('Init UI, create all objects for coin: ' + result['name']);
-          this.setupUI(result);
-        } else {
-          global.log('Update objects for coin: ' + result['name']);
-          this.updateUI(result);
-        }
-      })
-    );
+    if (Soup.MAJOR_VERSION === 2) {
+      message.request_headers.append('X-CMC_PRO_API_KEY', this.cfgApiKey);
+      httpSession.queue_message(message,
+        Lang.bind(this, function(session, response) {
+          if (response.status_code !== Soup.KnownStatusCode.OK) {
+            global.log(UUID + ': Error during download: response code ' +
+                response.status_code + ': ' + response.reason_phrase + ' - ' +
+                response.response_body.data);
+            return;
+          }
+          process_result(message.response_body.data);
+        })
+      );
+    } else { //version 3
+      message.get_request_headers().append('X-CMC_PRO_API_KEY', this.cfgApiKey);
+      httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null,
+        Lang.bind(this, function(session, response) {
+          if (message.get_status() !== Soup.Status.OK) {
+            global.log(UUID + ': Error during download: response code ' +
+                message.get_status() + ': ' + message.get_reason_phrase());
+            return;
+          }
+          const bytes = httpSession.send_and_read_finish(response);
+          process_result(ByteArray.toString(bytes.get_data()));
+        })
+      );
+    }
 
     if (this.mainloop) {
       Mainloop.source_remove(this.mainloop);
