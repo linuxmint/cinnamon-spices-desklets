@@ -41,6 +41,7 @@ const Settings = imports.ui.settings;
 const DeskletManager = imports.ui.deskletManager;
 
 const Soup = imports.gi.Soup;
+const ByteArray = imports.byteArray;
 
 const UUID = "bbcwx@oak-wood.co.uk";
 const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
@@ -49,8 +50,13 @@ imports.searchPath.push(DESKLET_DIR);
 
 const Marknote = imports.marknote;
 
-const _httpSession = new Soup.SessionAsync();
-Soup.Session.prototype.add_feature.call(_httpSession, new Soup.ProxyResolverDefault());
+let _httpSession;
+if (Soup.MAJOR_VERSION == 2) {
+    _httpSession = new Soup.SessionAsync();
+    Soup.Session.prototype.add_feature.call(_httpSession, new Soup.ProxyResolverDefault());
+} else { //version 3
+    _httpSession = new Soup.Session();
+}
 
 // Set up some constants for layout and styling
 const BBCWX_TEXT_SIZE = 14;
@@ -895,15 +901,30 @@ MyDesklet.prototype = {
     let message = Soup.Message.new('GET', url);
     _httpSession.timeout = 10;
     _httpSession.idle_timeout = 10;
-    _httpSession.queue_message(message, function (session, message) {
-      if( message.status_code == 200) {
-        try {callback.call(here,message.response_body.data.toString(),locsrc);} catch(e) {global.logError(e)}
-      } else {
-        global.logWarning("Error retrieving address " + url + ". Status: " + message.status_code + ": " + message.reason_phrase);
-        //here.data.status.lasterror = message.status_code;
-        callback.call(here,false,locsrc);
-      }
-    });
+    if (Soup.MAJOR_VERSION === 2) {
+      _httpSession.queue_message(message, function (session, message) {
+        if( message.status_code == 200) {
+          try {callback.call(here,message.response_body.data.toString(),locsrc);} catch(e) {global.logError(e)}
+        } else {
+          global.logWarning("Error retrieving address " + url + ". Status: " + message.status_code + ": " + message.reason_phrase);
+          //here.data.status.lasterror = message.status_code;
+          callback.call(here,false,locsrc);
+        }
+      });
+    } else { //version3
+      _httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, function (session, result) {
+        if(message.get_status() === 200) {
+          try {
+            const bytes = _httpSession.send_and_read_finish(result);
+            callback.call(here,ByteArray.toString(bytes.get_data()),locsrc);
+          } catch(e) {global.logError(e)}
+        } else {
+          global.logWarning("Error retrieving address " + url + ". Status: " + message.get_status() + ": " + message.get_reason_phrase());
+          //here.data.status.lasterror = message.get_status();
+          callback.call(here,false,locsrc);
+        }
+      });
+    }
   },
 
   ///////////////////////////////////////////////////////////////////////////
@@ -1438,17 +1459,34 @@ wxDriver.prototype = {
     //global.log('bbcwx: calling ' + url);
     var here = this;
     let message = Soup.Message.new('GET', url);
-    _httpSession.timeout = 10;
-    _httpSession.idle_timeout = 10;
-    _httpSession.queue_message(message, function (session, message) {
-      if( message.status_code == 200) {
-        try {callback.call(here,message.response_body.data.toString());} catch(e) {global.logError(e)}
-      } else {
-        global.logWarning("Error retrieving address " + url + ". Status: " + message.status_code + ": " + message.reason_phrase);
-        here.data.status.lasterror = message.status_code;
-        callback.call(here,false);
-      }
-    });
+    if (Soup.MAJOR_VERSION === 2) {
+      _httpSession.timeout = 10;
+      _httpSession.idle_timeout = 10;
+      _httpSession.queue_message(message, function (session, message) {
+        if( message.status_code == 200) {
+          try {callback.call(here,message.response_body.data.toString());} catch(e) {global.logError(e)}
+        } else {
+          global.logWarning("Error retrieving address " + url + ". Status: " + message.status_code + ": " + message.reason_phrase);
+          here.data.status.lasterror = message.status_code;
+          callback.call(here,false);
+        }
+      });
+    } else { //version 3
+      _httpSession.timeout = 10;
+      _httpSession.idle_timeout = 10;
+      _httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, function (session, result) {
+        if( message.get_status() === 200) {
+          try {
+            const bytes = _httpSession.send_and_read_finish(result);
+            callback.call(here,ByteArray.toString(bytes.get_data()));
+          } catch(e) {global.logError(e)}
+        } else {
+          global.logWarning("Error retrieving address " + url + ". Status: " + message.get_status() + ": " + message.get_reason_phrase());
+          here.data.status.lasterror = message.get_status();
+          callback.call(here,false);
+        }
+      });
+    }
   },
 
   // stub function to be overridden by child classes. deskletObj is a reference
