@@ -13,6 +13,7 @@ const GLib = imports.gi.GLib;
 const PopupMenu = imports.ui.popupMenu;
 const Tooltips = imports.ui.tooltips;
 const Soup = imports.gi.Soup
+const ByteArray = imports.byteArray;
 const DeskletManager = imports.ui.deskletManager;
 
 let DIRECTORY_PICTURES = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES);
@@ -38,8 +39,12 @@ MyDesklet.prototype = {
     _init: function(metadata, desklet_id) {
         Desklet.Desklet.prototype._init.call(this, metadata);
 
-        this.session = new Soup.SessionAsync();
-        Soup.Session.prototype.add_feature.call(this.session, new Soup.ProxyResolverDefault());
+        if (Soup.MAJOR_VERSION == 2) {
+            this.session = new Soup.SessionAsync();
+            Soup.Session.prototype.add_feature.call(this.session, new Soup.ProxyResolverDefault());
+        } else { //version 3
+            this.session = new Soup.Session();
+        }
 
         this.actor.text_direction = Clutter.TextDirection.RTL;
         this.box = new St.BoxLayout({ vertical: true });
@@ -210,11 +215,19 @@ MyDesklet.prototype = {
         if (this.limited)
             url += '&p=' + this.selected_poet;
         this.request = Soup.Message.new('GET', url);
-        this.session.queue_message(this.request, Lang.bind(this, this._get_data));
+        if (Soup.MAJOR_VERSION === 2) {
+            this.session.queue_message(this.request, (session, response) => {
+                this._get_data(response.response_body.data);
+            });
+        } else { //version 3
+            this.session.send_and_read_async(this.request, Soup.MessagePriority.NORMAL, null, (session, response) => {
+                const bytes = this.session.send_and_read_finish(response);
+                this._get_data(ByteArray.toString(bytes.get_data()));
+            });
+        }
     },
 
-    _get_data: function(session, response) {
-        let html = response.response_body.data;
+    _get_data: function(html) {
         if (html != null && html.includes("ganjoor-m1")) {
             let lines = html.split('\n');
             this.abyat = [];
