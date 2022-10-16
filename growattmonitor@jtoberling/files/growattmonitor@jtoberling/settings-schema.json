@@ -1,0 +1,61 @@
+{
+    "starttime": {
+        "type": "scale",
+        "default": 6,
+        "min": 0,
+        "max": 12,
+        "step": 0.1,
+        "description": "Start time of power display",
+        "units": "Hours"
+    },
+
+    "endtime": {
+        "type": "scale",
+        "default": 19,
+        "min": 12,
+        "max": 24,
+        "step": 0.1,
+        "description": "End time of power display",
+        "units": "Hours"
+    },
+
+    "delay": {
+        "default": 300,
+        "type": "spinbutton",
+        "min": 10,
+        "max": 3600,
+        "description" : "Referesh interva",
+        "units" : "seconds",
+        "step": 10
+    },
+
+    "server": {
+        "type": "entry",
+        "default": "https://server.growatt.com",
+        "description": "Growatt server", 
+        "indent": true,
+        "tooltip": "https://server.growatt.com"
+    },
+    
+    "plantId": {
+        "type": "entry",
+        "default": "",
+        "description": "Plant Id (empty for default)", 
+        "indent": true
+    },
+    
+    "account": {
+        "type": "entry",
+        "default": "",
+        "description": "Growatt Account", 
+        "indent": true,
+        "tooltip": "Username"
+    },
+    
+    "savepassword": {
+        "type": "button",
+        "description": "Enter and save password ...",
+        "callback": "onPasswordSave"
+    }    
+    
+}
