@@ -7,53 +7,53 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-26 12:46+0800\n"
-"PO-Revision-Date: 2017-12-02 17:58+0100\n"
+"POT-Creation-Date: 2021-03-18 19:33+0100\n"
+"PO-Revision-Date: 2022-10-20 19:57+0200\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
-"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: da\n"
+"X-Generator: Poedit 3.0.1\n"
 
-#: desklet.js
+#: desklet.js:27
 msgid "Desktop Note"
 msgstr "Skrivebordsnote"
 
-#. deskNote@BrainAxe->metadata.json->name
+#. metadata.json->name
 msgid "Desktop Note desklet"
 msgstr "Skrivebordsnote"
 
-#. deskNote@BrainAxe->metadata.json->description
+#. metadata.json->description
 msgid "Displays Note on Desktop!"
 msgstr "Viser noter på skrivebordet!"
 
-#. deskNote@BrainAxe->settings-schema.json->note-entry->description
+#. settings-schema.json->note-entry->description
 msgid "Note:"
 msgstr "Note:"
 
-#. deskNote@BrainAxe->settings-schema.json->note-entry->tooltip
+#. settings-schema.json->note-entry->tooltip
 msgid "Set your note here"
 msgstr "Angiv din note her"
 
-#. deskNote@BrainAxe->settings-schema.json->note-entry->default
-msgid "Your Note Here"
-msgstr "Din note her"
-
-#. deskNote@BrainAxe->settings-schema.json->font-options-header->description
+#. settings-schema.json->font-options-header->description
 msgid "Font options:"
 msgstr "Skrifttypeindstillinger:"
 
-#. deskNote@BrainAxe->settings-schema.json->font-size->description
+#. settings-schema.json->font-size->units
+msgid "pt"
+msgstr "pkt"
+
+#. settings-schema.json->font-size->description
 msgid "Font size:"
 msgstr "Skriftstørrelse:"
 
-#. deskNote@BrainAxe->settings-schema.json->text-color->description
+#. settings-schema.json->text-color->description
 msgid "Font color:"
 msgstr "Tekstfarve:"
 
-#. deskNote@BrainAxe->settings-schema.json->text-color->tooltip
+#. settings-schema.json->text-color->tooltip
 msgid "Click to select a new text color"
 msgstr "Klik for at vælge en ny tekstfarve"
