@@ -7,408 +7,338 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-30 01:05-0600\n"
-"PO-Revision-Date: 2017-12-02 18:06+0100\n"
+"POT-Creation-Date: 2021-03-18 18:47+0100\n"
+"PO-Revision-Date: 2022-10-23 18:58+0200\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
 
-#: sandbox.js:71
-msgid "Open"
-msgstr "Åbn"
+#: desklet.js:247 tabPanel.js:25
+msgid "Untitled"
+msgstr "Unavngivet"
 
-#: sandbox.js:77
-msgid "Save"
-msgstr "Gem"
+#: desklet.js:289
+msgid "Tools"
+msgstr "Værktøjer"
 
-#: sandbox.js:83
-msgid "Save As"
-msgstr "Gem som"
+#: desklet.js:406 desklet.js:538
+msgid "Expand"
+msgstr "Udfold"
 
-#: sandbox.js:144
-msgid "Sandbox"
-msgstr "Sandkasse"
+#. settings-schema.json->collapsedStartState->options
+#: desklet.js:410 desklet.js:555
+msgid "Collapse"
+msgstr "Sammenfold"
 
-#: sandbox.js:160
-msgid "Evaluate"
-msgstr "Evaluér"
+#: desklet.js:432
+msgid "Open Cinnamon Settings"
+msgstr "Åbn indstillinger for Cinnamon"
 
-#: sandbox.js:165
-msgid "Javascript"
-msgstr "JavaScript"
+#: desklet.js:440
+msgid "Start Sandbox"
+msgstr "Start sandkasse"
 
-#: sandbox.js:169
-msgid "Style"
-msgstr "Stil"
+#: desklet.js:448
+msgid "Run command line"
+msgstr "Kør kommandolinje"
 
-#: sandbox.js:175
-msgid "Load current stylesheet"
-msgstr "Indlæs aktuelle typografiark (stylesheet)"
+#: desklet.js:456 extensions.js:160 extensions.js:178 inspect.js:369
+#: inspect.js:555 windows.js:89
+msgid "Inspect"
+msgstr "Undersøg"
 
-#: sandbox.js:199
-msgid "No errors detected"
-msgstr "Ingen fejl fundet"
+#: desklet.js:464
+msgid "Open Looking Glass"
+msgstr "Åbn lup"
 
-#: errorLog.js:37
+#: desklet.js:474
+msgid "Reload Theme"
+msgstr "Genindlæs tema"
+
+#: desklet.js:484
+msgid "Restart Cinnamon"
+msgstr "Genstart Cinnamon"
+
+#: errorLog.js:44
 msgid "X-Session Log"
 msgstr "X-sessions-log"
 
-#: errorLog.js:55
+#: errorLog.js:62
 msgid "Hide old errors"
 msgstr "Skjul gamle fejl"
 
-#: errorLog.js:70 terminal.js:63
+#: errorLog.js:77 terminal.js:68
 msgid "Clear"
 msgstr "Ryd"
 
-#: errorLog.js:123
+#: errorLog.js:130
 msgid "Cinnamon Log"
 msgstr "Cinnamon-log"
 
-#: errorLog.js:140
+#: errorLog.js:147
 msgid "Show Timestamp"
 msgstr "Vis tidsstempel"
 
-#: errorLog.js:148
+#: errorLog.js:155
 msgid "Infos"
 msgstr "Info"
 
-#: errorLog.js:156
+#: errorLog.js:163
 msgid "Warnings"
 msgstr "Advarsler"
 
-#: errorLog.js:164
+#: errorLog.js:171
 msgid "Errors"
 msgstr "Fejl"
 
-#: errorLog.js:172
+#: errorLog.js:179
 msgid "Traces"
 msgstr "Spor"
 
-#: errorLog.js:186
+#: errorLog.js:193
 msgid "Copy"
 msgstr "Kopiér"
 
-#: inspect.js:120
+#: extensions.js:70
+msgid "Infinite"
+msgstr "Uendelig"
+
+#: extensions.js:125
+msgid "Reload"
+msgstr "Genindlæs"
+
+#: extensions.js:130 extensions.js:165
+msgid "Remove"
+msgstr "Fjern"
+
+#: extensions.js:136
+msgid "Instances"
+msgstr "Forekomster"
+
+#: extensions.js:136
+msgid "maximum of"
+msgstr "maksimum af"
+
+#: extensions.js:155 extensions.js:173
+msgid "Highlight"
+msgstr "Fremhæv"
+
+#: extensions.js:186
+msgid "Configure"
+msgstr "Konfigurér"
+
+#: extensions.js:271
+msgid "Extensions"
+msgstr "Udvidelser"
+
+#: extensions.js:353 extensions.js:381
+msgid "failed to create extension item for uuid"
+msgstr "kunne ikke oprette udvidelseselement for uuid"
+
+#: extensions.js:361 extensions.js:389
+msgid "No extensions of this type are enabled"
+msgstr "Ingen udvidelser af denne type er aktiveret"
+
+#: inspect.js:126
 msgid "(Press Pause or Control to disable event pass through)"
 msgstr ""
 "(Tryk Pause eller Control for at deaktivere at hændelser slipper igennem)"
 
-#: inspect.js:122
+#: inspect.js:128
 msgid "(Press Pause or Control to enable event pass through)"
 msgstr ""
 "(Tryk Pause eller Control for at aktivere at hændelser slipper igennem)"
 
-#: inspect.js:358 inspect.js:544 desklet.js:450 windows.js:86 extensions.js:140
-#: extensions.js:158
-msgid "Inspect"
-msgstr "Undersøg"
-
-#: inspect.js:400
+#: inspect.js:411
 msgid "Length"
 msgstr "Længde"
 
-#: inspect.js:407
+#: inspect.js:418
 msgid "Parent"
 msgstr "Ophav"
 
-#: inspect.js:416
+#: inspect.js:427
 msgid "Children"
 msgstr "Børn"
 
-#. devTools@scollins->settings-schema.json->height->description
-#: inspect.js:427
+#. settings-schema.json->height->description
+#: inspect.js:438
 msgid "Height"
 msgstr "Højde"
 
-#. devTools@scollins->settings-schema.json->width->description
-#: inspect.js:429
+#. settings-schema.json->width->description
+#: inspect.js:440
 msgid "Width"
 msgstr "Bredde"
 
-#: inspect.js:431
+#: inspect.js:442
 msgid "Visible"
 msgstr "Synlige"
 
-#: inspect.js:435
+#: inspect.js:446
 msgid "Style Class"
 msgstr "Stilklasse"
 
-#: inspect.js:437
+#: inspect.js:448
 msgid "None"
 msgstr "Ingen"
 
-#: inspect.js:445 windows.js:67
+#: inspect.js:456 windows.js:70
 msgid "Title"
 msgstr "Titel"
 
-#: inspect.js:448 windows.js:72
+#: inspect.js:459 windows.js:75
 msgid "Class"
 msgstr "Klasse"
 
-#: inspect.js:451 windows.js:77
+#: inspect.js:462 windows.js:80
 msgid "Workspace"
 msgstr "Arbejdsområde"
 
-#: inspect.js:460
+#: inspect.js:471
 msgid "Monitor"
 msgstr "Overvåg"
 
-#: inspect.js:464
+#: inspect.js:475
 msgid "Size"
 msgstr "Størrelse"
 
-#: inspect.js:466
+#: inspect.js:477
 msgid "Position"
 msgstr "Position"
 
-#: inspect.js:483
+#: inspect.js:494
 msgid "Values"
 msgstr "Værdier"
 
-#: inspect.js:484
+#: inspect.js:495
 msgid "Index"
 msgstr "Indeks"
 
-#: inspect.js:487
+#: inspect.js:498
 msgid "Map Elements"
 msgstr "Afbild elementer"
 
-#: inspect.js:488
+#: inspect.js:499
 msgid "Key"
 msgstr "Nøgle"
 
-#: inspect.js:491
+#: inspect.js:502
 msgid "Properties"
 msgstr "Egenskaber"
 
-#: inspect.js:492
+#: inspect.js:503
 msgid "Name"
 msgstr "Navn"
 
-#: inspect.js:498
+#: inspect.js:509
 msgid "Type"
 msgstr "Type"
 
-#: inspect.js:499
+#: inspect.js:510
 msgid "Value"
 msgstr "Værdi"
 
-#: tabPanel.js:20 desklet.js:245
-msgid "Untitled"
-msgstr "Unavngivet"
+#: sandbox.js:76
+msgid "Open"
+msgstr "Åbn"
 
-#: desklet.js:45
-msgid "Applet Settings"
-msgstr "Indstillinger for panelprogram"
+#: sandbox.js:82
+msgid "Save"
+msgstr "Gem"
 
-#: desklet.js:46
-msgid "Desklet Settings"
-msgstr "Indstillinger for skrivebordsprogram"
+#: sandbox.js:88
+msgid "Save As"
+msgstr "Gem som"
 
-#: desklet.js:47
-msgid "Extension Settings"
-msgstr "Indstillinger for udvidelse"
+#: sandbox.js:149
+msgid "Sandbox"
+msgstr "Sandkasse"
 
-#: desklet.js:48
-msgid "General Settings"
-msgstr "Generelle indstillinger"
+#: sandbox.js:165
+msgid "Evaluate"
+msgstr "Evaluér"
 
-#: desklet.js:49
-msgid "Panel Settings"
-msgstr "Indstillinger for panel"
+#: sandbox.js:170
+msgid "Javascript"
+msgstr "JavaScript"
 
-#: desklet.js:50
-msgid "Regional Settings"
-msgstr "Indstillinger for sprog"
+#: sandbox.js:174
+msgid "Style"
+msgstr "Stil"
 
-#: desklet.js:51
-msgid "Theme Settings"
-msgstr "Indstillinger for tema"
+#: sandbox.js:180
+msgid "Load current stylesheet"
+msgstr "Indlæs aktuelle typografiark (stylesheet)"
 
-#: desklet.js:52
-msgid "Tile Settings"
-msgstr "Indstillinger for side om side-udlægning"
-
-#: desklet.js:53
-msgid "Window Settings"
-msgstr "Indstillinger for vindue"
-
-#: desklet.js:54
-msgid "Workspace Settings"
-msgstr "Indstillinger for arbejdsområde"
-
-#: desklet.js:287
-msgid "Tools"
-msgstr "Værktøjer"
-
-#: desklet.js:404 desklet.js:547
-msgid "Expand"
-msgstr "Udfold"
-
-#. devTools@scollins->settings-schema.json->collapsedStartState->options
-#: desklet.js:408 desklet.js:564
-msgid "Collapse"
-msgstr "Sammenfold"
-
-#: desklet.js:424
-msgid "Cinnamon Settings"
-msgstr "Indstillinger for Cinnamon"
-
-#: desklet.js:434
-msgid "Start Sandbox"
-msgstr "Start sandkasse"
-
-#: desklet.js:442
-msgid "Run command line"
-msgstr "Kør kommandolinje"
-
-#: desklet.js:458
-msgid "Open Looking Glass"
-msgstr "Åbn lup"
-
-#: desklet.js:468
-msgid "Reload Theme"
-msgstr "Genindlæs tema"
-
-#: desklet.js:478
-msgid "Restart Cinnamon"
-msgstr "Genstart Cinnamon"
-
-#: desklet.js:493
-msgid "All Settings"
-msgstr "Alle indstillinger"
-
-#: terminal.js:49
-msgid "Command"
-msgstr "Kommando"
-
-#: terminal.js:54
-msgid "Status"
-msgstr "Status"
-
-#: terminal.js:55
-msgid "Running"
-msgstr "Kører"
-
-#: terminal.js:68
-msgid "End Process"
-msgstr "Afslut proces"
-
-#: terminal.js:77
-msgid "Output"
-msgstr "Output"
-
-#: terminal.js:103
-msgid "Stopped"
-msgstr "Stoppet"
-
-#: terminal.js:226
-msgid "Run"
-msgstr "Kør"
+#: sandbox.js:204
+msgid "No errors detected"
+msgstr "Ingen fejl fundet"
 
 #: tab.js:126
 msgid "Close Tab"
 msgstr "Luk faneblad"
 
-#: windows.js:21 windows.js:123
+#: terminal.js:54
+msgid "Command"
+msgstr "Kommando"
+
+#: terminal.js:59
+msgid "Status"
+msgstr "Status"
+
+#: terminal.js:60
+msgid "Running"
+msgstr "Kører"
+
+#: terminal.js:73
+msgid "End Process"
+msgstr "Afslut proces"
+
+#: terminal.js:82
+msgid "Output"
+msgstr "Output"
+
+#: terminal.js:108
+msgid "Stopped"
+msgstr "Stoppet"
+
+#: terminal.js:231
+msgid "Run"
+msgstr "Kør"
+
+#: windows.js:24 windows.js:126
 msgid "all"
 msgstr "alle"
 
-#: windows.js:92
+#: windows.js:95
 msgid "Switch to"
 msgstr "Skift til"
 
-#: windows.js:98
+#: windows.js:101
 msgid "Close"
 msgstr "Luk"
 
-#: windows.js:141
+#: windows.js:144
 msgid "Windows"
 msgstr "Vinduer"
 
-#: extensions.js:51
-msgid "Infinite"
-msgstr "Uendelig"
+#. metadata.json->description
+msgid "A desklet for troubleshooting and developing in the Cinnamon UI"
+msgstr ""
+"Et skrivebordsprogram til fejlfinding og udvikling i Cinnamon-"
+"brugergrænsefladen"
 
-#: extensions.js:106
-msgid "Reload"
-msgstr "Genindlæs"
-
-#: extensions.js:111 extensions.js:145
-msgid "Remove"
-msgstr "Fjern"
-
-#: extensions.js:117
-msgid "Instances"
-msgstr "Forekomster"
-
-#: extensions.js:117
-msgid "maximum of"
-msgstr "maksimum af"
-
-#: extensions.js:135 extensions.js:153
-msgid "Highlight"
-msgstr "Fremhæv"
-
-#: extensions.js:166
-msgid "Configure"
-msgstr "Konfigurér"
-
-#: extensions.js:243
-msgid "Extensions"
-msgstr "Udvidelser"
-
-#: extensions.js:305
-msgid "failed to create extension item for uuid"
-msgstr "kunne ikke oprette udvidelseselement for uuid"
-
-#: extensions.js:313
-msgid "No extensions of this type are enabled"
-msgstr "Ingen udvidelser af denne type er aktiveret"
-
-#. devTools@scollins->settings-schema.json->collapsedStartState->description
-msgid "On startup"
-msgstr "Ved opstart"
-
-#. devTools@scollins->settings-schema.json->collapsedStartState->options
-msgid "Remember Previous State"
-msgstr "Husk forrige tilstand"
-
-#. devTools@scollins->settings-schema.json->collapsedStartState->options
-msgid "Show"
-msgstr "Vis"
-
-#. devTools@scollins->settings-schema.json->collapsed->description
-msgid "Collapsed"
-msgstr "Sammenfoldet"
-
-#. devTools@scollins->settings-schema.json->sandboxHeader->description
-msgid "Sandbox header"
-msgstr "Sandkasseoverskrift"
-
-#. devTools@scollins->settings-schema.json->centerRaised->description
-msgid "Center the desklet on the screen in raised mode"
-msgstr "Centrér skrivebordsprogrammet på skærmen forrest"
-
-#. devTools@scollins->settings-schema.json->raiseKey->description
-msgid "Raise to top shorcut key"
-msgstr "Genvejstast til at flytte øverst"
-
-#. devTools@scollins->metadata.json->name
-msgid "Developer's Tools"
-msgstr "Udviklers værktøjer"
-
-#. devTools@scollins->metadata.json->contributors
+#. metadata.json->contributors
 msgid "Stephen Collins - Author"
 msgstr "Stephen Collins - forfatter"
 
-#. devTools@scollins->metadata.json->comments
+#. metadata.json->comments
 msgid ""
 "This desklet provides tools to help troubleshoot, view and control certain "
 "Cinnamon components and status information, and even test new code without "
@@ -418,8 +348,34 @@ msgstr ""
 "fejlfinde, vise og kontrollere visse dele af Cinnamon, statusinformation og "
 "tillader endda afprøvning af ny kode uden at genstarte Cinnamon."
 
-#. devTools@scollins->metadata.json->description
-msgid "A desklet for troubleshooting and developing in the Cinnamon UI"
-msgstr ""
-"Et skrivebordsprogram til fejlfinding og udvikling i Cinnamon-"
-"brugergrænsefladen"
+#. metadata.json->name
+msgid "Developer's Tools"
+msgstr "Udviklers værktøjer"
+
+#. settings-schema.json->collapsedStartState->description
+msgid "On startup"
+msgstr "Ved opstart"
+
+#. settings-schema.json->collapsedStartState->options
+msgid "Remember Previous State"
+msgstr "Husk forrige tilstand"
+
+#. settings-schema.json->collapsedStartState->options
+msgid "Show"
+msgstr "Vis"
+
+#. settings-schema.json->collapsed->description
+msgid "Collapsed"
+msgstr "Sammenfoldet"
+
+#. settings-schema.json->raiseKey->description
+msgid "Raise to top shorcut key"
+msgstr "Genvejstast til at flytte øverst"
+
+#. settings-schema.json->centerRaised->description
+msgid "Center the desklet on the screen in raised mode"
+msgstr "Centrér skrivebordsprogrammet på skærmen forrest"
+
+#. settings-schema.json->sandboxHeader->description
+msgid "Sandbox header"
+msgstr "Sandkasseoverskrift"
