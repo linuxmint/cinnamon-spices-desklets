@@ -513,5 +513,3 @@ class PasswordDialog extends ModalDialog.ModalDialog {
 
     }
 }
-
-
