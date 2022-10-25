@@ -57,7 +57,7 @@ class GrowattDesklet extends Desklet.Desklet {
     }
     
     on_setting_changed() {
-        this.onUpdate();
+        this.setUpdateTimer(3);
     }
 
     on_password_stored(source, result) {
@@ -78,7 +78,7 @@ class GrowattDesklet extends Desklet.Desklet {
     }    
     
     onRefreshClicked() {
-        this.onUpdate();
+        this.setUpdateTimer(3);
     }
 
     render() {
@@ -170,7 +170,7 @@ class GrowattDesklet extends Desklet.Desklet {
     }
         
 
-    setUpdateTimer() {
+    setUpdateTimer(setTimer = -1) {
 
         if (this.updateLoopId) {
           Mainloop.source_remove(this.updateLoopId);
@@ -180,6 +180,10 @@ class GrowattDesklet extends Desklet.Desklet {
         if (!this.statusOk) {
           timeOut = 15;
         }
+        if (setTimer > 0)  {
+          timeOut = setTimer;
+        }
+        
         this.updateLoopId = Mainloop.timeout_add_seconds(timeOut, Lang.bind(this, this.onUpdate));
     }
     
@@ -213,11 +217,35 @@ class GrowattDesklet extends Desklet.Desklet {
 
         this.httpSession.queue_message(message,
             Lang.bind(this, function(session, response) {
-                if (response.status_code !== Soup.KnownStatusCode.OK) {
-                    global.log("growattMonitor: HTTPREQUESTERROR: ", response.status_code );
+
+              
+              let body = response.response_body.data;
+
+              if (response.status_code==300) {
+                global.log('UrlData: ', message.response_body.data);
                 }
 
-                callbackF(this, message, message.response_body.data);
+              this.statusOk = false;
+              let result = {
+                result: '0'
+              }; 
+              try {
+                  result = JSON.parse(message.response_body.data);
+            
+                  if ( (typeof result.result =='undefined') || result.result !='1') {                
+                      this.statusOk = true;
+                  }
+                  
+              } catch(e) {
+                  //global.log('growattMonitor: http: no json response!');
+              }
+              
+              if (result.result=='0') {
+                this._failedLogin(this);
+              }
+                
+
+              callbackF(this, message, result);
                 return;
             })
         );
@@ -269,11 +297,9 @@ class GrowattDesklet extends Desklet.Desklet {
             url, 
             null, 		// headers
             data, 		// postParams
-            function(context, message, body) {
+            function(context, message, result) {
                     context.lockPerformLogin = false;
-                    if (message.status_code == Soup.KnownStatusCode.OK) {
-                        let result = JSON.parse(body);
-                        if (result.result==1) {
+                    if (result.result=='1' ) {
                             context.login = true;
                   
                             const list = Soup.cookies_from_response(message);
@@ -285,16 +311,6 @@ class GrowattDesklet extends Desklet.Desklet {
                                     context.onePlantId = c.value;
                                  }
                             }); // forEach
-                            
-                            //
-                            
-                        } else {
-                            // if result.result<>1
-                            context._failedLogin(context);
-                        }
-                     } else { 
-                         // Status no ok
-                         context._failedLogin(context);;
                      } // if (message.status_code)
             } // function
         ); // httpRequest
@@ -381,21 +397,13 @@ class GrowattDesklet extends Desklet.Desklet {
           url, 
           null, 		// headers
           data, 		// postParams
-          function(context, message, body) {
-
-          
-              if (message.status_code == Soup.KnownStatusCode.OK) {
-                let result = JSON.parse(body);
+          function(context, message, result) {            
             
                 if (result.result=='1') {                
                     context.statusOk = true;
                     context._daychartresult = result.obj.pac;
                     context.onStatusCheckDataGrid(context,result.obj.pac);
                 }
-                
-              } else {
-                //context.statusOk = false;
-              }
           }
         );     
       
@@ -413,8 +421,9 @@ class GrowattDesklet extends Desklet.Desklet {
           }
           context._nominalPower = d.nominalPower;
 
+          const updateArr = d.lastUpdateTime.split(" ");
           const labelPlantModel =  new St.Label({
-            text : d.plantName + ' ('+d.deviceModel+' ' + (parseInt(d.nominalPower)/1000) +'kW, Id:'+d.plantId+')',
+            text : d.plantName + ' ('+d.deviceModel+' ' + (parseInt(d.nominalPower)/1000) +'kW, Id:'+d.plantId+') @' + updateArr[1],
             style : "width: 35em; color: "+color+"; text-decoration-line: underline; text-shadow: 1px 1px;"
           });  
           context.dataBox.add(labelPlantModel);
@@ -448,16 +457,11 @@ class GrowattDesklet extends Desklet.Desklet {
           url, 
           null, 		// headers
           null, 		// postParams
-          function(context, message, body) {
-              if (message.status_code == Soup.KnownStatusCode.OK) {
+          function(context, message, result) {
+              if (result.result=='1') {
                 context.statusOk = true;
-                let result = JSON.parse(body);
                 
-                context.onStatusCheckData(context,result.obj);
-
-                
-              } else {
-                //context.statusOk = false;
+                context.onStatusCheckData(context,result.obj);                
               }
           }
         );
