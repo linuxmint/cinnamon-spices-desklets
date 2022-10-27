@@ -93,7 +93,7 @@ class GrowattDesklet extends Desklet.Desklet {
         
             this.refreshButton = new St.Button();
             this.refreshIcon = new St.Icon({
-                              icon_name: 'restart',
+                              icon_name: 'reload',
                               icon_size: 20, 
                               icon_type: St.IconType.SYMBOLIC
             });
@@ -180,6 +180,7 @@ class GrowattDesklet extends Desklet.Desklet {
         if (!this.statusOk) {
           timeOut = 15;
         }
+        
         if (setTimer > 0)  {
           timeOut = setTimer;
         }
@@ -216,15 +217,15 @@ class GrowattDesklet extends Desklet.Desklet {
         }
 
         this.httpSession.queue_message(message,
-            Lang.bind(this, function(session, response) {
 
+            Lang.bind(this, function(session, response) {
               
               let body = response.response_body.data;
-
+              
               if (response.status_code==300) {
                 global.log('UrlData: ', message.response_body.data);
-                }
-
+              }
+            
               this.statusOk = false;
               let result = {
                 result: '0'
@@ -237,7 +238,6 @@ class GrowattDesklet extends Desklet.Desklet {
                   }
                   
               } catch(e) {
-                  //global.log('growattMonitor: http: no json response!');
               }
               
               if (result.result=='0') {
@@ -246,7 +246,7 @@ class GrowattDesklet extends Desklet.Desklet {
                 
 
               callbackF(this, message, result);
-                return;
+              return;
             })
         );
         return;
@@ -300,6 +300,7 @@ class GrowattDesklet extends Desklet.Desklet {
             function(context, message, result) {
                     context.lockPerformLogin = false;
                     if (result.result=='1' ) {
+
                             context.login = true;
                   
                             const list = Soup.cookies_from_response(message);
@@ -311,9 +312,10 @@ class GrowattDesklet extends Desklet.Desklet {
                                     context.onePlantId = c.value;
                                  }
                             }); // forEach
-                     } // if (message.status_code)
-            } // function
-        ); // httpRequest
+                            
+                     }
+            } 
+        ); 
     }
     
 
@@ -398,12 +400,11 @@ class GrowattDesklet extends Desklet.Desklet {
           null, 		// headers
           data, 		// postParams
           function(context, message, result) {            
-            
-                if (result.result=='1') {                
+               if (result.result=='1') {                
                     context.statusOk = true;
                     context._daychartresult = result.obj.pac;
                     context.onStatusCheckDataGrid(context,result.obj.pac);
-                }
+               }
           }
         );     
       
@@ -420,8 +421,9 @@ class GrowattDesklet extends Desklet.Desklet {
             color = 'red';
           }
           context._nominalPower = d.nominalPower;
-
+          
           const updateArr = d.lastUpdateTime.split(" ");
+          
           const labelPlantModel =  new St.Label({
             text : d.plantName + ' ('+d.deviceModel+' ' + (parseInt(d.nominalPower)/1000) +'kW, Id:'+d.plantId+') @' + updateArr[1],
             style : "width: 35em; color: "+color+"; text-decoration-line: underline; text-shadow: 1px 1px;"
@@ -461,8 +463,9 @@ class GrowattDesklet extends Desklet.Desklet {
               if (result.result=='1') {
                 context.statusOk = true;
                 
-                context.onStatusCheckData(context,result.obj);                
-              }
+                context.onStatusCheckData(context,result.obj);
+                
+              } 
           }
         );
     
@@ -513,3 +516,5 @@ class PasswordDialog extends ModalDialog.ModalDialog {
 
     }
 }
+
+
