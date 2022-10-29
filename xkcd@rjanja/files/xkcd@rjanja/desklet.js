@@ -230,6 +230,22 @@ MyDesklet.prototype = {
             }));
 
             let dir_path = this.metadata["directory"];
+
+            // Replace special directory name if any, e.g. DIRECTORY_PICTURES/xkcd replaced by /home/username/Pictures/xkcd.
+            let special_dir_name = dir_path.substring(dir_path.indexOf("<") + 1, dir_path.indexOf(">"))
+            if (dir_path.indexOf("<") == 0 && special_dir_name != "") {
+                let special_dir_enumvalue = eval("GLib.UserDirectory." + special_dir_name)
+
+                // If invalid speciale dir name, get_user_special_dir falls back to desktop folder. Here we default to ~/Pictures
+                if(special_dir_enumvalue != undefined) {
+                    let special_dir_path = GLib.get_user_special_dir(special_dir_enumvalue)
+                    dir_path = dir_path.replace("<" + special_dir_name + ">", special_dir_path);
+                }
+                else {
+                    dir_path = dir_path.replace(/\<.*\>/g, "~/Pictures"); // Regex capture all between "< >"
+                }
+            }
+
             this.save_path = dir_path.replace('~', GLib.get_home_dir());
             let saveFolder = Gio.file_new_for_path(this.save_path);
             if (!saveFolder.query_exists(null)) {

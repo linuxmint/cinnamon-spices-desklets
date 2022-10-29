@@ -3,7 +3,7 @@
  "name": "xkcd comics viewer",
  "description": "A viewer for today's xkcd comic",
  "minimum-decoration": 1,
- "directory":"~/Pictures/xkcd",
+ "directory":"<DIRECTORY_PICTURES>/xkcd",
  "delay": 5,
  "quality": 2,
  "fade-delay": 0.3
