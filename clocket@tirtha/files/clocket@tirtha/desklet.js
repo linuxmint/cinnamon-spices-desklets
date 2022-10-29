@@ -6,9 +6,15 @@ const Settings = imports.ui.settings;
 const Lang = imports.lang;
 const Json = imports.gi.Json;
 const Soup = imports.gi.Soup;
+const ByteArray = imports.byteArray;
 const Cairo = imports.cairo;
 const Clutter = imports.gi.Clutter;
-const _httpSession = new Soup.SessionAsync();
+let _httpSession;
+if (Soup.MAJOR_VERSION == 2) {
+    _httpSession = new Soup.SessionAsync();
+} else { //version 3
+    _httpSession = new Soup.Session();
+}
 // const Me = imports.misc.extensionUtils.getCurrentExtension();
 const Gio = imports.gi.Gio;
 const UUID = "clocket@tirtha";
@@ -150,16 +156,31 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
         var jsonData = "EMPTY";
         let message = Soup.Message.new('GET', url);
-        _httpSession.send_message(message);
-        if (message.status_code === Soup.KnownStatusCode.OK) {
-            jsonData = JSON.parse(message.response_body.data.toString());
-            return jsonData;
-        } else if (message.status_code === 401) {
-            return "401";
-        } else if (message.status_code === 404) {
-            return "404";
-        } else {
-            return "unreachable";
+
+        if (Soup.MAJOR_VERSION === 2) {
+            _httpSession.send_message(message);
+            if (message.status_code === Soup.KnownStatusCode.OK) {
+                jsonData = JSON.parse(message.response_body.data.toString());
+                return jsonData;
+            } else if (message.status_code === 401) {
+                return "401";
+            } else if (message.status_code === 404) {
+                return "404";
+            } else {
+                return "unreachable";
+            }
+        } else { //version 3
+            const bytes = _httpSession.send_and_read(message, null);
+            if (message.get_status() === Soup.Status.OK) {
+                jsonData = JSON.parse(ByteArray.toString(bytes.get_data()));
+                return jsonData;
+            } else if (message.get_status() === 401) {
+                return "401";
+            } else if (message.get_status() === 404) {
+                return "404";
+            } else {
+                return "unreachable";
+            }
         }
 
     }
