@@ -17,6 +17,7 @@ const GLib = imports.gi.GLib;
 // Gtk library (policies for scrollview)
 const Gtk = imports.gi.Gtk;
 const Soup = imports.gi.Soup;
+const ByteArray = imports.byteArray;
 // for periodic data reload
 const Mainloop = imports.mainloop;
 // Binding desklet to mainloop function
@@ -33,8 +34,13 @@ const YF_PAGE = "https://finance.yahoo.com/quote/";
 
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
-const _httpSession = new Soup.SessionAsync();
-Soup.Session.prototype.add_feature.call(_httpSession, new Soup.ProxyResolverDefault());
+let _httpSession;
+if (Soup.MAJOR_VERSION == 2) {
+    _httpSession = new Soup.SessionAsync();
+    Soup.Session.prototype.add_feature.call(_httpSession, new Soup.ProxyResolverDefault());
+} else { //version 3
+    _httpSession = new Soup.Session();
+}
 
 function _(str) {
     return Gettext.dgettext(UUID, str);
@@ -75,18 +81,34 @@ YahooFinanceQuoteReader.prototype = {
         let message = Soup.Message.new("GET", requestUrl);
         _httpSession.timeout = 10;
         _httpSession.idle_timeout = 10;
-        _httpSession.queue_message(message, function (session, message) {
-            if( message.status_code === 200) {
-                try {
-                    callback.call(here, message.response_body.data.toString());
-                } catch(e) {
-                    global.logError(e);
+        if (Soup.MAJOR_VERSION === 2) {
+            _httpSession.queue_message(message, function (session, message) {
+                if( message.status_code === 200) {
+                    try {
+                        callback.call(here, message.response_body.data.toString());
+                    } catch(e) {
+                        global.logError(e);
+                    }
+                } else {
+                    global.logWarning("Error retrieving url " + requestUrl + ". Status: " + message.status_code + ": " + message.reason_phrase);
+                    callback.call(here, errorBegin + _("Yahoo Finance service not available!") + errorEnd);
                 }
-            } else {
-                global.logWarning("Error retrieving url " + requestUrl + ". Status: " + message.status_code + ": " + message.reason_phrase);
-                callback.call(here, errorBegin + _("Yahoo Finance service not available!") + errorEnd);
-            }
-        });
+            });
+        } else { //version 3
+            _httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, function (session, result) {
+                if( message.get_status() === 200) {
+                    try {
+                        const bytes = _httpSession.send_and_read_finish(result);
+                        callback.call(here, ByteArray.toString(bytes.get_data()));
+                    } catch(e) {
+                        global.logError(e);
+                    }
+                } else {
+                    global.logWarning("Error retrieving url " + requestUrl + ". Status: " + message.get_status() + ": " + message.get_reason_phrase());
+                    callback.call(here, errorBegin + _("Yahoo Finance service not available!") + errorEnd);
+                }
+            });
+        }
     },
     
     createYahooQueryUrl : function (quoteSymbols) {
