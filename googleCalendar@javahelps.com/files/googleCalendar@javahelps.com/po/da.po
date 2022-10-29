@@ -7,18 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-18 08:52-0400\n"
-"PO-Revision-Date: 2020-12-09 18:08+0100\n"
+"POT-Creation-Date: 2021-11-14 20:26-0500\n"
+"PO-Revision-Date: 2022-10-23 19:03+0200\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. metadata.json->name
+#. settings-schema.json->page_gcalendar->title
 #: desklet.js:104
 msgid "Google Calendar"
 msgstr "Google Kalender"
@@ -27,43 +28,43 @@ msgstr "Google Kalender"
 msgid "Open Google Calendar"
 msgstr "Åbn Google Kalender"
 
-#: desklet.js:227
+#: desklet.js:237
 msgid "No events found"
 msgstr "Ingen begivenheder fundet"
 
-#: desklet.js:376
+#: desklet.js:386
 msgid "gcalendar is not authorized"
 msgstr "gcalendar er ikke godkendt"
 
-#: desklet.js:378
+#: desklet.js:388
 msgid "gcalendar token expired"
 msgstr "gcalendar-token er udløbet"
 
-#: desklet.js:383
+#: desklet.js:393
 msgid "Execute: "
 msgstr "Udfør: "
 
-#: desklet.js:396
+#: desklet.js:406
 msgid "Unknown Error"
 msgstr "Ukendt fejl"
 
-#: desklet.js:399
+#: desklet.js:409
 msgid "Install gcalendar to use this desklet."
 msgstr "Installér gcalendar for at bruge dette skrivebordsprogram."
 
-#: desklet.js:400
+#: desklet.js:410
 msgid "Visit: "
 msgstr "Besøg: "
 
-#: desklet.js:438
+#: desklet.js:448
 msgid "Unable to retrieve events..."
 msgstr "Kunne ikke hente begivenheder …"
 
-#: lib/utility.js:165 lib/xdate.js:350
+#: lib/utility.js:156 lib/xdate.js:350
 msgid "AM"
 msgstr "AM"
 
-#: lib/utility.js:165 lib/xdate.js:351
+#: lib/utility.js:156 lib/xdate.js:351
 msgid "PM"
 msgstr "PM"
 
@@ -225,7 +226,11 @@ msgstr "Lør"
 msgid "A desklet that displays your agenda based on Google Calendar"
 msgstr "Viser dine aftaler baseret på Google Kalender"
 
-#. settings-schema.json->top->description
+#. settings-schema.json->page_style->title
+msgid "Desklet Style"
+msgstr "Skrivebordsprogrammets stil"
+
+#. settings-schema.json->display0->description
 msgid "Google Calendar authentication"
 msgstr "Google Kalender-bekræftelse"
 
@@ -313,10 +318,6 @@ msgstr "Opdatér efter:"
 #. settings-schema.json->delay->units
 msgid "minutes"
 msgstr "minutter"
-
-#. settings-schema.json->display2->description
-msgid "Desklet style"
-msgstr "Stil"
 
 #. settings-schema.json->date_format->description
 msgid "Date format"
@@ -429,12 +430,3 @@ msgstr "Hjørneradius"
 #. settings-schema.json->cornerradius->tooltip
 msgid "Radius for rounding the desklet's corners"
 msgstr "Radius for rundingen på skrivebordsprogrammets hjørner"
-
-#~ msgid "Retrieving events..."
-#~ msgstr "Henter begivenheder …"
-
-#~ msgid "Calendar name(s)"
-#~ msgstr "Kalendernavne"
-
-#~ msgid "Enter your calendar names separated by comma here"
-#~ msgstr "Indtast dine kalendernavne adskilt af komma"
