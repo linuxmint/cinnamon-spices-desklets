@@ -1,0 +1,8 @@
+{
+    "uuid": "timelet@linuxedo.com",
+    "name": "Timelet",
+    "description": "A themeable desklet that shows the time",
+    "prevent-decorations": true,
+    "max-instances": "10",
+    "author": "slgobinath"
+}
