@@ -1,0 +1,86 @@
+# Timelet
+# Copyright (C) 2022 Gobinath
+# This file is distributed under the same license as the Timelet package.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-12 06:11-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. metadata.json->name
+#: desklet.js:50
+msgid "Timelet"
+msgstr ""
+
+#: themes/theme.js:133
+msgid "AM"
+msgstr ""
+
+#: themes/theme.js:135
+msgid "Noon"
+msgstr ""
+
+#: themes/theme.js:137
+msgid "PM"
+msgstr ""
+
+#. metadata.json->description
+msgid "A themeable desklet that shows the time"
+msgstr ""
+
+#. settings-schema.json->head0->description
+msgid "Timelet Settings"
+msgstr ""
+
+#. settings-schema.json->themeName->description
+msgid "Theme"
+msgstr ""
+
+#. settings-schema.json->textColor->description
+msgid "Text color"
+msgstr ""
+
+#. settings-schema.json->textColor->tooltip
+msgid "Click the button to select a new text color"
+msgstr ""
+
+#. settings-schema.json->bgColor->description
+msgid "Background color"
+msgstr ""
+
+#. settings-schema.json->bgColor->tooltip
+msgid "Click the button to select a new background color"
+msgstr ""
+
+#. settings-schema.json->scale->description
+msgid "Scale"
+msgstr ""
+
+#. settings-schema.json->scale->tooltip
+msgid "Change the size of the desklet"
+msgstr ""
+
+#. settings-schema.json->transparency->description
+msgid "Background Transparency"
+msgstr ""
+
+#. settings-schema.json->transparency->tooltip
+msgid "Set the transparency of the desklet"
+msgstr ""
+
+#. settings-schema.json->cornerRadius->description
+msgid "Background Corner radius"
+msgstr ""
+
+#. settings-schema.json->cornerRadius->tooltip
+msgid "Radius for rounding the desklet's corners"
+msgstr ""

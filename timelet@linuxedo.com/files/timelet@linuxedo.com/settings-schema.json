@@ -1,0 +1,56 @@
+{
+  "head0": {
+    "type": "header",
+    "description": "Timelet Settings"
+  },
+  "themeName": {
+    "type": "combobox",
+    "default": "Gotham",
+    "options": {},
+    "description": "Theme"
+  },
+  "textColor": {
+    "type": "colorchooser",
+    "indent": true,
+    "default": "rgb(255,255,255)",
+    "description": "Text color",
+    "tooltip": "Click the button to select a new text color"
+  },
+  "bgColor": {
+    "type": "colorchooser",
+    "indent": true,
+    "default": "rgb(0,0,0)",
+    "description": "Background color",
+    "tooltip": "Click the button to select a new background color"
+  },
+  "scale": {
+    "type": "scale",
+    "indent": true,
+    "default": 1,
+    "min": 0.1,
+    "max": 2.0,
+    "step": 0.05,
+    "description": "Scale",
+    "tooltip": "Change the size of the desklet"
+  },
+  "transparency": {
+    "type": "scale",
+    "indent": true,
+    "default": 0.5,
+    "min": 0.0,
+    "max": 1.0,
+    "step": 0.05,
+    "description": "Background Transparency",
+    "tooltip": "Set the transparency of the desklet"
+  },
+  "cornerRadius": {
+    "type": "scale",
+    "indent": true,
+    "default": 10.0,
+    "min": 0,
+    "max": 50.0,
+    "step": 1,
+    "description": "Background Corner radius",
+    "tooltip": "Radius for rounding the desklet's corners"
+  }
+}
