@@ -1074,6 +1074,22 @@ msgstr ""
 msgid "Set your location here"
 msgstr ""
 
+#. bbcwx@oak-wood.co.uk->settings-schema.json->textshadow->description
+msgid "Text shadow"
+msgstr ""
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->textshadow->tooltip
+msgid "Check to add a text shadow"
+msgstr ""
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->shadowblur->description
+msgid "Shadow blur radius"
+msgstr ""
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->shadowblur->tooltip
+msgid "Set the text shadow sharp (1) or blurry (2-7)"
+msgstr ""
+
 #. bbcwx@oak-wood.co.uk->settings-schema.json->cornerradius->description
 msgid "Corner radius"
 msgstr ""

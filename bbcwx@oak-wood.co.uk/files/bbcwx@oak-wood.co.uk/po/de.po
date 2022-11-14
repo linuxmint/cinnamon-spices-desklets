@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bbcwx\n"
 "Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
 "POT-Creation-Date: 2018-01-07 21:05+0000\n"
-"PO-Revision-Date: 2021-03-18 18:44+0100\n"
+"PO-Revision-Date: 2022-02-11 19:12+0100\n"
 "Last-Translator: sven <sven@liefgen.lu>\n"
 "Language-Team: German <de@li.org>\n"
 "Language: de\n"
@@ -1091,6 +1091,23 @@ msgstr "Ort"
 msgid "Set your location here"
 msgstr "Bestimme deinen Ort hier"
 
+#. bbcwx@oak-wood.co.uk->settings-schema.json->textshadow->description
+msgid "Text shadow"
+msgstr "Textschatten"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->textshadow->tooltip
+msgid "Check to add a text shadow"
+msgstr "Aktivieren, um einen Textschatten zu erzeugen"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->shadowblur->description
+msgid "Shadow blur radius"
+msgstr "Blur-Radius des Textschattens"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->shadowblur->tooltip
+msgid "Set the text shadow sharp (1) or blurry (2-7)"
+msgstr ""
+"Bestimme den Blur-Effekt des Textschattens von scharf (1) bis weich (2-7)"
+
 #. bbcwx@oak-wood.co.uk->settings-schema.json->cornerradius->description
 msgid "Corner radius"
 msgstr "Eckenradius"
@@ -1143,6 +1160,12 @@ msgstr "Wetter Desklet"
 #. bbcwx@oak-wood.co.uk->metadata.json->description
 msgid "Display the weather from several web services on your desktop"
 msgstr "Zeigt das Wetter von mehreren Webdiensten auf Ihrem Desktop an"
+
+#~ msgid "Check to make the forecast better readable"
+#~ msgstr "Aktivieren, um die Vorhersage besser lesbar zu machen"
+
+#~ msgid "Click the button to select a new shadow color"
+#~ msgstr "Knopf anklicken, um eine neue Schattenfarbe auszuwählen"
 
 #~ msgid "Open Weather Map"
 #~ msgstr "Open Weather Map"

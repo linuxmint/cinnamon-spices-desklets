@@ -285,6 +285,26 @@
     "tooltip" : "Click the button to select a new text color"
   },
 
+  "textshadow" : {
+    "type" : "switch",
+    "dependency": "overrideTheme",
+    "default" : false,
+    "description": "Text shadow",
+    "tooltip": "Check to add a text shadow"
+  },
+
+  "shadowblur" : {
+    "type" : "spinbutton",
+    "dependency": "overrideTheme",
+    "default" : 1.0,
+    "min" : 1,
+    "max" : 7.0,
+    "step" : 1,
+    "units" : "px",
+    "description" : "Shadow blur radius",
+    "tooltip" : "Set the text shadow sharp (1) or blurry (2-7)"
+  },
+
   "bgcolor" : {
     "type": "colorchooser",
     "indent": true,

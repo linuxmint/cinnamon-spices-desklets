@@ -138,6 +138,8 @@ MyDesklet.prototype = {
       this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"borderwidth","borderwidth",this.updateStyle,null);
       this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"iconstyle","iconstyle",this.updateStyle,null);
       this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"citystyle","citystyle",this.updateStyle,null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"textshadow","textshadow",this.updateStyle,null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"shadowblur","shadowblur",this.updateStyle,null);
       // this change requires us to fetch new data:
       this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"stationID","stationID",this.changeStation,null);
       // this requires a change of API key and refetch data
@@ -379,7 +381,7 @@ MyDesklet.prototype = {
     if(fcap.pressure) {this.fwtable.add(this.fpressurelabel,{row:row,col:0}); row++}
     if(fcap.humidity) {this.fwtable.add(this.fhumiditylabel,{row:row,col:0}); row++}
     for(let f=0;f<this.no;f++) {
-      this.labels[f]=new St.Button({label: ''});
+      this.labels[f]=new St.Label();
       this.fwicons[f]=new St.Button();
       if(fcap.maximum_temperature) this.max[f]=new St.Label();
       if(fcap.minimum_temperature) this.min[f]=new St.Label();
@@ -601,6 +603,7 @@ MyDesklet.prototype = {
       this.banner.style='font-size: '+BBCWX_LINK_TEXT_SIZE*this.zoom+"px; color: " + this.textcolor;
       this.bannerpre.style='font-size: '+BBCWX_LINK_TEXT_SIZE*this.zoom+"px; color: " + this.textcolor;
       this.banner.set_style_class_name('bbcwx-link');
+      if (this.textshadow) this.window.style=this.window.style+";text-shadow: 1px 1px "+this.shadowblur+"px "+contrastingColor(this.textcolor);
     } else {
       this.window.set_style('');
       // set style_class and _header visibility according to
@@ -733,7 +736,7 @@ MyDesklet.prototype = {
     for(let f=0;f<this.no;f++)
     {
       let day = this.service.data.days[f];
-      this.labels[f].label=((this.daynames[day.day]) ? this.daynames[day.day] : '');
+      this.labels[f].text=((this.daynames[day.day]) ? this.daynames[day.day] : '');
       let fwiconimage = this._getIconImage(day.icon, BBCWX_ICON_HEIGHT*this.zoom);
       //fwiconimage.set_size(BBCWX_ICON_HEIGHT*this.iconprops.aspect*this.zoom, BBCWX_ICON_HEIGHT*this.zoom);
       this.fwicons[f].set_child(fwiconimage);
@@ -4315,6 +4318,30 @@ wxDriverMeteoBlue.prototype = {
 // Utility function to capitalise first letter of each word in a string
 String.prototype.ucwords = function() {
     return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+};
+
+// Choose automatically contrasting black or white shadow color dependent on text color
+function contrastingColor(color) {
+    return (luma(color) >= 165) ? '#000000' : '#ffffff';
+};
+
+function luma(color) {
+ // SMPTE C, Rec. 709 weightings
+    let hex = rgb2hex(color);
+    let r = parseInt(hex.slice(0, 2), 16);
+    let g = parseInt(hex.slice(2, 4), 16);
+    let b = parseInt(hex.slice(4), 16);
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+};
+
+function rgb2hex(rgb) {
+    let rgbSplit = rgb.split("(")[1].split(")")[0];
+    rgbSplit = rgbSplit.split(",");
+    let hex = rgbSplit.map(function(hexCol){                 //For each array element
+        hexCol = parseInt(hexCol).toString(16);              //Convert to a base16 string
+        return (hexCol.length == 1) ? "0" + hexCol : hexCol; //Add zero if we get only one character
+    })
+    return hex.join("");
 };
 
 function main(metadata, desklet_id){
