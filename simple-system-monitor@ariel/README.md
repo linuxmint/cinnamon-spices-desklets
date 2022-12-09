@@ -57,3 +57,9 @@ edit `.local/share/cinnamon/desklets/simple-system-monitor@ariel/metadata.json`
 set `"prevent-decorations"` to `true`  
 
 example: `"prevent-decorations": true,`
+
+**Back to previous layout**
+
+edit `.local/share/cinnamon/desklets/simple-system-monitor@ariel/4.0/stylesheet.css`  
+set `"text-align: right"` to `".title"`  
+set `"text-align: left"` to `".value"`  
