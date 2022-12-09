@@ -1,5 +1,4 @@
 .mainContainer {
-	width: 140px;
 	padding: 10px 10px 10px 10px;
 }
 
@@ -9,10 +8,10 @@
 }
 
 .title {	
-	text-align: right;
+	text-align: left;
 }
 
 .value {
-	text-align: left;
+	text-align: right;
 	padding-left: 5px;
 }
