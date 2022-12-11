@@ -18,48 +18,48 @@ Shows some system status values.
 ## Tips
 **"Temperature" shows incorrect value**  
 
-edit `.local/share/cinnamon/desklets/simple-system-monitor@ariel/metadata.json`  
-specify a appropriate file path to `"thermal-file":`  
+Edit `.local/share/cinnamon/desklets/simple-system-monitor@ariel/metadata.json`  
+Specify a appropriate file path to `"thermal-file":`  
 
-example: Ryzen CPU is `"/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon3/temp1_input"`
+Example: Ryzen CPU is `"/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon2/temp1_input"`
 
 **"GPU" shows incorrect value**
 
-edit `.local/share/cinnamon/desklets/simple-system-monitor@ariel/metadata.json`  
-specify a appropriate file path to `"thermal-file-gpu":`   
+Edit `.local/share/cinnamon/desklets/simple-system-monitor@ariel/metadata.json`  
+Specify a appropriate file path to `"thermal-file-gpu":`   
 
-example: Radeon GPU is `"/sys/devices/pci0000:00/0000:00:03.1/0000:06:00.0/hwmon/hwmon1/temp1_input"`
+Example: Radeon GPU is `"/sys/devices/pci0000:00/0000:00:03.1/0000:06:00.0/hwmon/hwmon1/temp1_input"`
 
 **Change font color**
 
-edit `.local/share/cinnamon/desklets/simple-system-monitor@ariel/4.0/stylesheet.css`  
-add `"color:"` to `".mainContainer"`  
+Edit `.local/share/cinnamon/desklets/simple-system-monitor@ariel/4.0/stylesheet.css`  
+Add `"color:"` to `".mainContainer"`  
 
-example: `color: rgba(255, 144, 0, 1.0);`
+Example: `color: rgba(255, 144, 0, 1.0);`
 
 **Change font size**
 
-edit `.local/share/cinnamon/desklets/simple-system-monitor@ariel/4.0/stylesheet.css`  
-add `"font-size:"` to `".mainContainer"`  
+Edit `.local/share/cinnamon/desklets/simple-system-monitor@ariel/4.0/stylesheet.css`  
+Add `"font-size:"` to `".mainContainer"`  
 
-example: `font-size: 1.2em;`
+Example: `font-size: 1.2em;`
 
 **Change background color**
 
-edit `.local/share/cinnamon/desklets/simple-system-monitor@ariel/4.0/stylesheet.css`  
-add `"background-color:"` to `".mainContainer"`  
+Edit `.local/share/cinnamon/desklets/simple-system-monitor@ariel/4.0/stylesheet.css`  
+Add `"background-color:"` to `".mainContainer"`  
 
-example: `background-color: rgba(90, 90, 90, 1.0);`
+Example: `background-color: rgba(90, 90, 90, 1.0);`
 
 **Change background color to transparent**
 
-edit `.local/share/cinnamon/desklets/simple-system-monitor@ariel/metadata.json`  
-set `"prevent-decorations"` to `true`  
+Edit `.local/share/cinnamon/desklets/simple-system-monitor@ariel/metadata.json`  
+Set `"prevent-decorations"` to `true`  
 
-example: `"prevent-decorations": true,`
+Example: `"prevent-decorations": true,`
 
 **Back to previous layout**
 
-edit `.local/share/cinnamon/desklets/simple-system-monitor@ariel/4.0/stylesheet.css`  
-set `"text-align: right"` to `".title"`  
-set `"text-align: left"` to `".value"`  
+Edit `.local/share/cinnamon/desklets/simple-system-monitor@ariel/4.0/stylesheet.css`  
+Set `"text-align: right"` to `".title"`  
+Set `"text-align: left"` to `".value"`  
