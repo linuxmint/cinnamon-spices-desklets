@@ -37,8 +37,8 @@ msgid "Swap"
 msgstr "Cserehely"
 
 #: desklet.js:186
-msgid "GB free of"
-msgstr "GB szabad, összesen:"
+msgid "free of"
+msgstr "szabad, összesen:"
 
 #: desklet.js:187
 msgid "GB"

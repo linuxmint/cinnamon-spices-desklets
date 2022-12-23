@@ -33,8 +33,8 @@ msgid "GiB"
 msgstr "GiB"
 
 #: desklet.js:172
-msgid "GB free of"
-msgstr "GB livres de"
+msgid "free of"
+msgstr "livres de"
 
 #: desklet.js:173
 msgid "GB"
