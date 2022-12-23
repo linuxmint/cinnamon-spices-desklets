@@ -21,6 +21,39 @@
             "GPU" : "gpu"
         }
     },
+    "data-prefix-ram": {
+        "type": "combobox",
+        "default": 0,
+        "options": {
+            "Binary prefix or IEC (1 GiB = 1024³ bytes)" : 0,
+            "Decimal prefix (1 GB = 1000³ bytes)" : 1
+        },
+        "description": "Prefix for data units",
+        "tooltip": "Unit prefix for RAM size.",
+        "dependency": "type=ram"
+    },
+    "data-prefix-swap": {
+        "type": "combobox",
+        "default": 0,
+        "options": {
+            "Binary prefix or IEC (1 GiB = 1024³ bytes)" : 0,
+            "Decimal prefix (1 GB = 1000³ bytes)" : 1
+        },
+        "description": "Prefix for data units",
+        "tooltip": "Unit prefix for Swap size.",
+        "dependency": "type=swap"
+    },
+    "data-prefix-hdd": {
+        "type": "combobox",
+        "default": 0,
+        "options": {
+            "Binary prefix or IEC (1 GiB = 1024³ bytes)" : 0,
+            "Decimal prefix (1 GB = 1000³ bytes)" : 1
+        },
+        "description": "Prefix for data units",
+        "tooltip": "Unit prefix for Filesystem size.",
+        "dependency": "type=hdd"
+    },
     "filesystem": {
         "type": "filechooser",
         "default": "file:///",
@@ -63,6 +96,17 @@
             "Usage"  : "usage",
             "Memory" : "memory"
         },
+        "dependency": "type=gpu"
+    },
+    "data-prefix-gpumem": {
+        "type": "combobox",
+        "default": 0,
+        "options": {
+            "Binary prefix or IEC (1 GiB = 1024³ bytes)" : 0,
+            "Decimal prefix (1 GB = 1000³ bytes)" : 1
+        },
+        "description": "Prefix for data units",
+        "tooltip": "Unit prefix for GPU memory size.",
         "dependency": "type=gpu"
     },
     "duration": {
