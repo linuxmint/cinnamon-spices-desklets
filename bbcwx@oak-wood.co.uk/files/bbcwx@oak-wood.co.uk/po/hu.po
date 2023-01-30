@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bbcwx\n"
 "Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
 "POT-Creation-Date: 2018-01-07 21:05+0000\n"
-"PO-Revision-Date: 2021-03-22 08:06+0100\n"
+"PO-Revision-Date: 2023-01-09 20:51+0100\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "Language: hu\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2017-05-05 21:20+0000\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. # Days of the week
 #: desklet.js:102
@@ -573,7 +573,7 @@ msgid ""
 "may offer city names in other languages"
 msgstr ""
 "A megadott szöveg használata az aktuális hely megnevezéseként. Lehetséges, "
-"hogy a Yahoo! és a  Google felajánl város neveket egyéb nyelveken is."
+"hogy a Yahoo! és a Google felajánl város neveket egyéb nyelveken is"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->options
 msgid "Google"
@@ -613,7 +613,7 @@ msgid ""
 "lower refresh times"
 msgstr ""
 "Frissítések időköze. Kérjük vegye figyelembe, hogy nem mindegyik "
-"szolgáltatás támogatja az alacsony frissítési időközöket."
+"szolgáltatás támogatja az alacsony frissítési időközöket"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->refreshtime->units
 msgid "minutes"
@@ -703,7 +703,7 @@ msgid ""
 "remain static as the desklet grows and shrinks"
 msgstr ""
 "Válasszon egy pontot a asztalkalmazáson amely rögzítve lesz. Ez a pont "
-"állandó marad a asztalkalmazás méretének növekedése és csökkenése esetén is."
+"állandó marad a asztalkalmazás méretének növekedése és csökkenése esetén is"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
 msgid "Bottom center"
@@ -1093,18 +1093,34 @@ msgstr "Hely"
 msgid "Set your location here"
 msgstr "Itt állíthatja be a helyet"
 
+#. bbcwx@oak-wood.co.uk->settings-schema.json->textshadow->description
+msgid "Text shadow"
+msgstr "Szöveg árnyékolása"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->textshadow->tooltip
+msgid "Check to add a text shadow"
+msgstr "Jelölje be a szöveg árnyékolásához"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->shadowblur->description
+msgid "Shadow blur radius"
+msgstr "Árnyék-lekerekítés sugara"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->shadowblur->tooltip
+msgid "Set the text shadow sharp (1) or blurry (2-7)"
+msgstr "Állítsa be a szöveg árnyékát élesre (1), vagy elmosottra (2-7)"
+
 #. bbcwx@oak-wood.co.uk->settings-schema.json->cornerradius->description
 msgid "Corner radius"
-msgstr "Saroklekerekítés sugara"
+msgstr "Sarok lekerekítés sugara"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->cornerradius->tooltip
 msgid "Radius for rounding the desklet's corners"
-msgstr "A desklet saroklekerekítésének mértéke"
+msgstr "Az asztalkalmazás sarok-lekerekítésének mértéke"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->cornerradius->units
 #. bbcwx@oak-wood.co.uk->settings-schema.json->borderwidth->units
 msgid "px"
-msgstr "pixel"
+msgstr "képpont"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->transparency->description
 msgid "Transparency"
