@@ -1,7 +1,6 @@
 const Gio = imports.gi.Gio;
 const St = imports.gi.St;
 const Desklet = imports.ui.desklet;
-const Lang = imports.lang;
 const Mainloop = imports.mainloop;
 const Clutter = imports.gi.Clutter;
 const GLib = imports.gi.GLib;
@@ -14,8 +13,13 @@ const Tooltips = imports.ui.tooltips;
 const PopupMenu = imports.ui.popupMenu;
 const Cinnamon = imports.gi.Cinnamon;
 const Soup = imports.gi.Soup
-let session = new Soup.SessionAsync();
-Soup.Session.prototype.add_feature.call(session, new Soup.ProxyResolverDefault());
+let session
+if (Soup.get_major_version() == "2") {
+    session = new Soup.SessionAsync();
+    Soup.Session.prototype.add_feature.call(session, new Soup.ProxyResolverDefault());
+} else { //Soup 3
+    session = new Soup.Session();
+}
 
 const Gettext = imports.gettext;
 const UUID = "xkcd@rjanja";
@@ -39,30 +43,54 @@ MyDesklet.prototype = {
             base_stream:outFile.replace(null, false, Gio.FileCreateFlags.NONE, null)});
 
         var message = Soup.Message.new('GET', url);
-        session.queue_message(message, function(session, response) {
-            if (response.status_code !== Soup.KnownStatusCode.OK) {
-               global.log("Error during download: response code " + response.status_code
-                  + ": " + response.reason_phrase + " - " + response.response_body.data);
-               callback(false, null);
-               return true;
-            }
 
-            try {
-                let contents = message.response_body.flatten().get_as_bytes();  // For Soup 2.4
-                // let contents = message.response_body.flatten();              // For Soup 3.0
-                outStream.write_bytes(contents, null);
-                outStream.close(null);
-            }
-            catch (e) {
-               global.logError("Site seems to be down. Error was:");
-               global.logError(e);
-               callback(false, null);
-               return true;
-            }
+        if (Soup.get_major_version() == "2") {
+            session.queue_message(message, function (session, response) {
+                if (response.status_code !== Soup.KnownStatusCode.OK) {
+                    global.log("Error during download: response code " + response.status_code
+                        + ": " + response.reason_phrase + " - " + response.response_body.data);
+                    callback(false, null);
+                    return true;
+                }
 
-            callback(true, localFilename);
-            return false;
-         });
+                try {
+                    let contents = message.response_body.flatten().get_as_bytes();  // For Soup 2.4
+                    outStream.write_bytes(contents, null);
+                    outStream.close(null);
+                }
+                catch (e) {
+                    global.logError("Site seems to be down. Error was:");
+                    global.logError(e);
+                    callback(false, null);
+                    return true;
+                }
+
+                callback(true, localFilename);
+                return false;
+            });
+        } else { //Soup 3
+            session.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, (session, response) => {
+                if (message.status_code !== Soup.Status.OK) {
+                    global.log("Error during download: response code " + message.status_code + ": " + message.reason_phrase);
+                    callback(false, null);
+                    return true;
+                }
+                try {
+                    const bytes = session.send_and_read_finish(response);
+                    outStream.write_bytes(bytes, null);
+                    outStream.close(null);
+                }
+                catch (e) {
+                    global.logError("Site seems to be down. Error was:");
+                    global.logError(e);
+                    callback(false, null);
+                    return true;
+                }
+
+                callback(true, localFilename);
+                return false;
+            });
+        }
     },
 
     refresh: function(xkcdId) {
@@ -79,7 +107,7 @@ MyDesklet.prototype = {
         if (xkcdId === null || xkcdId === undefined) {
             url = 'http://www.xkcd.com/info.0.json';
             filename = this.save_path + '/temp.json'
-            this.download_file(url, filename, Lang.bind(this, this.on_json_downloaded));
+            this.download_file(url, filename, this.on_json_downloaded.bind(this));
         }
         else {
             url = 'http://www.xkcd.com/' + xkcdId + '/info.0.json';
@@ -89,7 +117,7 @@ MyDesklet.prototype = {
                 this.on_json_downloaded(true, filename, true);
             }
             else {
-                this.download_file(url, filename, Lang.bind(this, this.on_json_downloaded));
+                this.download_file(url, filename, this.on_json_downloaded.bind(this));
             }
         }
         
@@ -140,7 +168,7 @@ MyDesklet.prototype = {
                 this.on_xkcd_downloaded(true, imgFilename, true);
             }
             else {
-                this.download_file(this.curXkcd.img, imgFilename, Lang.bind(this, this.on_xkcd_downloaded));
+                this.download_file(this.curXkcd.img, imgFilename, this.on_xkcd_downloaded.bind(this));
             }
             
         }
@@ -154,7 +182,7 @@ MyDesklet.prototype = {
         Tweener.addTween(this._image, { opacity: 0,
             time: this.metadata["fade-delay"],
             transition: 'easeInSine',
-            onComplete: Lang.bind(this, function() {
+            onComplete: function() {
                 this.updateInProgress = false;
                 let pixbuf = GdkPixbuf.Pixbuf.new_from_file(file);
                 if (pixbuf != null) {
@@ -170,7 +198,7 @@ MyDesklet.prototype = {
                 } else {
                     global.logError("Error reading file : " + file)
                 }
-            })
+            }.bind(this)
         });
     },
 
@@ -192,12 +220,12 @@ MyDesklet.prototype = {
             this.setContent(this._imageFrame)
             
             this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-            this._menu.addAction(_("View latest xkcd"), Lang.bind(this, function() {
+            this._menu.addAction(_("View latest xkcd"), function () {
                 this.refresh(null);
-            }));
-            this._menu.addAction(_("Open save folder"), Lang.bind(this, function() {
+            }.bind(this));
+            this._menu.addAction(_("Open save folder"), function () {
                 Util.spawnCommandLine("xdg-open " + this.save_path);
-            }));
+            }.bind(this));
 
             let dir_path = this.metadata["directory"];
 
@@ -250,7 +278,7 @@ MyDesklet.prototype = {
             else
             {
                 this.refresh(this._xkcds[this._xkcds.length - 1]);
-                this._timeoutId = Mainloop.timeout_add_seconds(5, Lang.bind(this, this.refresh, null));
+                this._timeoutId = Mainloop.timeout_add_seconds(5, this.refresh.bind(this, null));
             }            
         }
         catch (e) {
