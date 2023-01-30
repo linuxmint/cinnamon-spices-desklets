@@ -40,6 +40,10 @@ SystemMonitorGraph.prototype = {
         // initialize settings
         this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
         this.settings.bindProperty(Settings.BindingDirection.IN, "type", "type", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "data-prefix-ram", "data_prefix_ram", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "data-prefix-swap", "data_prefix_swap", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "data-prefix-hdd", "data_prefix_hdd", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "data-prefix-gpumem", "data_prefix_gpumem", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "filesystem", "filesystem", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "filesystem-label", "filesystem_label", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "gpu-manufacturer", "gpu_manufacturer", this.on_setting_changed);
@@ -165,20 +169,36 @@ SystemMonitorGraph.prototype = {
               this.get_ram_values();
               let ram_use = 100 * this.ram_values[1] / this.ram_values[0];
               value = ram_use / 100;
+              let ram_prefix = "";
+              if (this.data_prefix_ram == 1) {
+                  // decimal prefix
+                  ram_prefix =  _("GB");
+              } else {
+                  // binary prefix
+                  ram_prefix =  _("GiB");
+              }
               text1 = _("RAM");
               text2 = Math.round(ram_use).toString() + "%"
               text3 = this.ram_values[1].toFixed(1) + " / "
-                    + this.ram_values[0].toFixed(1) + " " + _("GiB");
+                    + this.ram_values[0].toFixed(1) + " " + ram_prefix;
               break;
 
           case "swap":
             this.get_swap_values();
             let swap_use = 100 * this.swap_values[1] / this.swap_values[0];
             value = swap_use / 100;
+            let swap_prefix = "";
+            if (this.data_prefix_swap == 1) {
+                // decimal prefix
+                swap_prefix =  _("GB");
+            } else {
+                // binary prefix
+                swap_prefix =  _("GiB");
+            }
             text1 = _("Swap");
             text2 = Math.round(swap_use).toString() + "%"
             text3 = this.swap_values[1].toFixed(1) + " / "
-                  + this.swap_values[0].toFixed(1) + " " + _("GiB");
+                  + this.swap_values[0].toFixed(1) + " " + swap_prefix;
             break;
 
           case "hdd":
@@ -187,11 +207,19 @@ SystemMonitorGraph.prototype = {
               this.get_hdd_values(dir_path);
               let hdd_use = Math.min(this.hdd_values[1], 100); //already in %
               value = hdd_use / 100;
+              let hdd_prefix = "";
+              if (this.data_prefix_hdd == 1) {
+                  // decimal prefix
+                  hdd_prefix =  _("GB");
+              } else {
+                  // binary prefix
+                  hdd_prefix =  _("GiB");
+              }
               text1 = this.filesystem_label;
               if (text1 == "") text1 = this.hdd_values[0].toString();
               text2 = Math.round(hdd_use).toString() + "%"
-              text3 = this.hdd_values[3].toFixed(0) + " " + _("GB free of") + " "
-                    + this.hdd_values[2].toFixed(0) + " " + _("GB");
+              text3 = this.hdd_values[3].toFixed(0) + " " + hdd_prefix + " " + _("free of") + " "
+                    + this.hdd_values[2].toFixed(0) + " " + hdd_prefix;
               break;
 
           case "gpu":
@@ -208,10 +236,18 @@ SystemMonitorGraph.prototype = {
                             this.get_nvidia_gpu_mem();
                             let gpu_mem_use = 100 * this.gpu_mem[1] / this.gpu_mem[0];
                             value = gpu_mem_use / 100;
+                            let gpumem_prefix = "";
+                            if (this.data_prefix_gpumem == 1) {
+                                // decimal prefix
+                                gpumem_prefix =  _("GB");
+                            } else {
+                                // binary prefix
+                                gpumem_prefix =  _("GiB");
+                            }
                             text1 = _("GPU Memory");
                             text2 = Math.round(gpu_mem_use).toString() + "%"
                             text3 = this.gpu_mem[1].toFixed(1) + " / "
-                                  + this.gpu_mem[0].toFixed(1) + " " + _("GiB");
+                                  + this.gpu_mem[0].toFixed(1) + " " + gpumem_prefix;
                             break;
                     }
                     break;
@@ -353,6 +389,7 @@ SystemMonitorGraph.prototype = {
 
     get_ram_values: function() {
         // used  = total - available
+        // while meminfo says "kb" the unit is kibibytes
         let subprocess = new Gio.Subprocess({
         argv: ['cat', '/proc/meminfo'],
         flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
@@ -362,14 +399,24 @@ SystemMonitorGraph.prototype = {
             let [, stdout, stderr] = sourceObject.communicate_utf8(null, null);
             let mem_tot = parseInt(stdout.match(/(MemTotal):\D+(\d+)/)[2]);
             let mem_usd = mem_tot - parseInt(stdout.match(/(MemAvailable):\D+(\d+)/)[2]);
-            let ram_tot = mem_tot / GIB_TO_KIB;
-            let ram_usd = mem_usd / GIB_TO_KIB;
+            let ram_tot
+            let ram_usd
+            if (this.data_prefix_ram == 1) {
+                // decimal prefix
+                ram_tot = mem_tot * 1024 / GB_TO_B;
+                ram_usd = mem_usd * 1024 / GB_TO_B;
+            } else {
+                // binary prefix
+                ram_tot = mem_tot / GIB_TO_KIB;
+                ram_usd = mem_usd / GIB_TO_KIB;
+            }
             this.ram_values = [ram_tot, ram_usd];
         });
     },
 
     get_swap_values: function() {
         // used  = total - available
+        // while meminfo says "kb" the unit is kibibytes
         let subprocess = new Gio.Subprocess({
         argv: ['cat', '/proc/meminfo'],
         flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
@@ -379,13 +426,23 @@ SystemMonitorGraph.prototype = {
             let [, stdout, stderr] = sourceObject.communicate_utf8(null, null);
             let mem_tot = parseInt(stdout.match(/(SwapTotal):\D+(\d+)/)[2]);
             let mem_usd = mem_tot - parseInt(stdout.match(/(SwapFree):\D+(\d+)/)[2]);
-            let swap_tot = mem_tot / GIB_TO_KIB;
-            let swap_usd = mem_usd / GIB_TO_KIB;
+            let swap_tot
+            let swap_usd
+            if (this.data_prefix_swap == 1) {
+                // decimal prefix
+                swap_tot = mem_tot * 1024 / GB_TO_B;
+                swap_usd = mem_usd * 1024 / GB_TO_B;
+            } else {
+                // binary prefix
+                swap_tot = mem_tot / GIB_TO_KIB;
+                swap_usd = mem_usd / GIB_TO_KIB;
+            }
             this.swap_values = [swap_tot, swap_usd];
         });
     },
 
     get_hdd_values: function(dir_path) {
+        // while df says "1K" it means 1 kibibyte
         let subprocess = new Gio.Subprocess({
         argv: ['/bin/df', dir_path],
         flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
@@ -396,8 +453,17 @@ SystemMonitorGraph.prototype = {
             let df_line = stdout.match(/.+/g)[1];
             let df_values = df_line.split(/\s+/); // split by space
             // values for partition space
-            let hdd_tot = parseFloat(df_values[1]) * 1024 / GB_TO_B;
-            let hdd_fre = parseFloat(df_values[3]) * 1024 / GB_TO_B;
+            let hdd_tot
+            let hdd_fre
+            if (this.data_prefix_hdd == 1) {
+                // decimal prefix
+                hdd_tot = parseFloat(df_values[1]) * 1024 / GB_TO_B;
+                hdd_fre = parseFloat(df_values[3]) * 1024 / GB_TO_B;
+            } else {
+                // binary prefix
+                hdd_tot = parseFloat(df_values[1]) / GIB_TO_KIB;
+                hdd_fre = parseFloat(df_values[3]) / GIB_TO_KIB;
+            }
             // utilization of partition
             let dev_fs = df_values[0];
             let fs = dev_fs.split(/\/+/)[2];
@@ -460,10 +526,19 @@ SystemMonitorGraph.prototype = {
           let [, stdout, stderr] = sourceObject.communicate_utf8(null, null);
           let fslines = stdout.split(/\r?\n/); // Line0:Headers Line1:Values
           let items = fslines[1].split(',');   // Values are comma-separated
-          let mem_tot =  parseInt(items[0]);
-          let mem_usd =  parseInt(items[1]);
-          this.gpu_mem[0] = mem_tot / GIB_TO_MIB;
-          this.gpu_mem[1] = mem_usd / GIB_TO_MIB;
+          let mem_tot
+          let mem_usd
+          if (this.data_prefix_gpumem == 1) {
+              // decimal prefix
+              mem_tot =  parseInt(items[0]) * 1024 * 1024 / GB_TO_B;
+              mem_usd =  parseInt(items[1]) * 1024 * 1024 / GB_TO_B;
+          } else {
+              // binary prefix
+              mem_tot =  parseInt(items[0]) / GIB_TO_MIB;
+              mem_usd =  parseInt(items[1]) / GIB_TO_MIB;
+          }
+          this.gpu_mem[0] = mem_tot;
+          this.gpu_mem[1] = mem_usd;
       });
     }
 

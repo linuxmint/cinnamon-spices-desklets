@@ -37,7 +37,7 @@ msgid "Swap"
 msgstr ""
 
 #: desklet.js:186
-msgid "GB free of"
+msgid "free of"
 msgstr ""
 
 #: desklet.js:187
