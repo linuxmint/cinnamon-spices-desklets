@@ -133,11 +133,11 @@ MyDesklet.prototype = {
                 Util.spawn_async(["fortune", file_path], Lang.bind(this, this._setNewQuote));
             }
             else {
-                Util.spawn_async(["fortune", this.fortuneParams, file_path], Lang.bind(this, this._setNewQuote));
+                Util.spawn_async(["fortune", ...this.fortuneParams.split(' '), file_path], Lang.bind(this, this._setNewQuote));
             }
         }
         else { // don't pass a file to fortune
-            Util.spawn_async(["fortune", this.fortuneParams], Lang.bind(this, this._setNewQuote));
+            Util.spawn_async(["fortune", ...this.fortuneParams.split(' ')], Lang.bind(this, this._setNewQuote));
         }
     },
 
