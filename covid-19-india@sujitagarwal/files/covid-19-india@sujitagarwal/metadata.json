@@ -1,8 +1,0 @@
-{
-    "uuid": "covid-19-india@sujitagarwal",
-    "name": "COVID-19 India Quick Stats",
-    "description": "Displays Quick Stats about COVID-19 in India!",
-    "version": "1.1",
-    "max-instances": "1",
-    "prevent-decorations": true
-}
