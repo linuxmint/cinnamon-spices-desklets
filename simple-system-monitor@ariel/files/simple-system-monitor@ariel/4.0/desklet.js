@@ -60,7 +60,7 @@ CPU.prototype = {
 		let sys = this.gtop.sys - this.sys;
         let iowait = this.gtop.iowait - this.iowait;
 
-	    this.used = Math.round((user + sys + iowait) * 100 / total);
+	    this.used = ((user + sys + iowait) * 100 / total).toFixed(2);
 		this.total = this.gtop.total;
 		this.user = this.gtop.user;
 		this.sys = this.gtop.sys;
@@ -79,8 +79,8 @@ Memory.prototype = {
 
 	refresh: function() {
         GTop.glibtop_get_mem(this.gtop);
-		this.used = Math.round(this.gtop.user / 1024 / 1024 / 1024 * 100) / 100;
-		this.usedPercentaje = Math.round(this.gtop.user * 100 / this.gtop.total);
+		this.used = (Math.round(this.gtop.user / 1024 / 1024 / 1024 * 100) / 100).toFixed(2);
+		/* this.usedPercentaje = Math.round(this.gtop.user * 100 / this.gtop.total); */
 	}
 }
 
@@ -100,13 +100,35 @@ Thermal.prototype = {
         if(GLib.file_test(this.file, 1<<4)){
             let t_str = Cinnamon.get_file_contents_utf8_sync(this.file).split("\n")[0];
             this.degrees = parseInt(t_str) / 1000;
-            this.info = this.degrees + "°C";
+            this.info = (this.degrees).toFixed(1) + " °C";
         }
         else
             global.logError("error reading: " + this.file);
     }
 }
 
+const ThermalGPU = function() {
+    this._init.apply(this, arguments);
+};
+
+ThermalGPU.prototype = {
+    _init: function(sensorFileGPU) {
+		this.file = sensorFileGPU;
+        this.degrees = 0;
+        this.info = "N/A";
+
+	},
+
+	refresh: function() {
+        if(GLib.file_test(this.file, 1<<4)){
+            let t_str = Cinnamon.get_file_contents_utf8_sync(this.file).split("\n")[0];
+            this.degrees = parseInt(t_str) / 1000;
+            this.info = (this.degrees).toFixed(1) + " °C";
+        }
+        else
+            global.logError("error reading: " + this.file);
+    }
+}
 
 const Net = function () {
     this._init.apply(this, arguments);
@@ -180,11 +202,11 @@ Net.prototype = {
 		this.downloadSpeed = delta > 0 ? Math.round((totalDownloaded - this.totalDownloaded) / delta) : 0;
 		this.uploadSpeed = delta > 0 ? Math.round((totalUploaded - this.totalUploaded) / delta) : 0;
 
-		this.downloadSpeed = this.downloadSpeed < 1024 ? this.downloadSpeed + "KB" :
-			Math.round(this.downloadSpeed / 1024 * 100) / 100 + "MB";
+		this.downloadSpeed = this.downloadSpeed < 1024 ? this.downloadSpeed + " KB" :
+			(Math.round(this.downloadSpeed / 1024 * 100) / 100).toFixed(1) + " MB";
 
-		this.uploadSpeed = this.uploadSpeed < 1024 ? this.uploadSpeed + "KB" :
-			Math.round(this.uploadSpeed / 1024 * 100) / 100 + "MB";
+		this.uploadSpeed = this.uploadSpeed < 1024 ? this.uploadSpeed + " KB" :
+			(Math.round(this.uploadSpeed / 1024 * 100) / 100).toFixed(1) + " MB";
 
         this.totalDownloaded = totalDownloaded;
         this.totalUploaded = totalUploaded;
@@ -216,24 +238,28 @@ MyDesklet.prototype = {
 		this.titleDownload = new St.Label({text: _("Download:"), style_class: "title"});
 		this.titleUpload = new St.Label({text: _("Upload:"), style_class: "title"});
 		this.titleTemperature = new St.Label({text: _("Temperature:"), style_class: "title"});
+		this.titleTemperatureGPU = new St.Label({text: _("GPU:"), style_class: "title"});
 
 		this.titles.add(this.titleCPU);
 		this.titles.add(this.titleMemory);
 		this.titles.add(this.titleDownload);
 		this.titles.add(this.titleUpload);
 		this.titles.add(this.titleTemperature);
+		this.titles.add(this.titleTemperatureGPU);
 
-		this.valueCPU = new St.Label({text: "0%", style_class: "value"});
-		this.valueMemory = new St.Label({text: "0GB", style_class: "value"});
-		this.valueDownload = new St.Label({text: "0B", style_class: "value"});
-		this.valueUpload = new St.Label({text: "0B", style_class: "value"});
-		this.valueTemperature = new St.Label({text: "0°C", style_class: "value"});
+		this.valueCPU = new St.Label({text: "0 %", style_class: "value"});
+		this.valueMemory = new St.Label({text: "0 GB", style_class: "value"});
+		this.valueDownload = new St.Label({text: "0 B", style_class: "value"});
+		this.valueUpload = new St.Label({text: "0 B", style_class: "value"});
+		this.valueTemperature = new St.Label({text: "0 °C", style_class: "value"});
+		this.valueTemperatureGPU = new St.Label({text: "0 °C", style_class: "value"});
 
 		this.values.add(this.valueCPU);
 		this.values.add(this.valueMemory);
 		this.values.add(this.valueDownload);
 		this.values.add(this.valueUpload);
 		this.values.add(this.valueTemperature);
+		this.values.add(this.valueTemperatureGPU);
 
 		this.mainContainer.add(this.titles);
 		this.mainContainer.add(this.values);
@@ -244,6 +270,7 @@ MyDesklet.prototype = {
 		this.memory = new Memory();
 		this.net = new Net();
 		this.thermal = new Thermal(this.metadata["thermal-file"]);
+		this.thermalGPU = new ThermalGPU(this.metadata["thermal-file-gpu"]);
 		this._updateWidget();
     },
 
@@ -261,11 +288,13 @@ MyDesklet.prototype = {
 		this.memory.refresh();
 		this.thermal.refresh();
 		this.net.refresh();
-		this.valueCPU.text = this.cpu.used + "%";
-		this.valueMemory.text = this.memory.used + "GB";
+		this.thermalGPU.refresh();
+		this.valueCPU.text = this.cpu.used + " %";
+		this.valueMemory.text = this.memory.used + " GB";
 		this.valueDownload.text = this.net.downloadSpeed;
 		this.valueUpload.text = this.net.uploadSpeed;
 		this.valueTemperature.text = this.thermal.info;
+		this.valueTemperatureGPU.text = this.thermalGPU.info;
 	}
 }
 
