@@ -1,19 +1,25 @@
 const Gio = imports.gi.Gio;
 const St = imports.gi.St;
 const Desklet = imports.ui.desklet;
-const Lang = imports.lang;
 const Mainloop = imports.mainloop;
 const Clutter = imports.gi.Clutter;
 const GLib = imports.gi.GLib;
 const Tweener = imports.ui.tweener;
 const Util = imports.misc.util;
+const GdkPixbuf = imports.gi.GdkPixbuf;
+const Cogl = imports.gi.Cogl;
 
 const Tooltips = imports.ui.tooltips;
 const PopupMenu = imports.ui.popupMenu;
 const Cinnamon = imports.gi.Cinnamon;
 const Soup = imports.gi.Soup
-let session = new Soup.SessionAsync();
-Soup.Session.prototype.add_feature.call(session, new Soup.ProxyResolverDefault());
+let session
+if (Soup.get_major_version() == "2") {
+    session = new Soup.SessionAsync();
+    Soup.Session.prototype.add_feature.call(session, new Soup.ProxyResolverDefault());
+} else { //Soup 3
+    session = new Soup.Session();
+}
 
 const Gettext = imports.gettext;
 const UUID = "xkcd@rjanja";
@@ -37,28 +43,54 @@ MyDesklet.prototype = {
             base_stream:outFile.replace(null, false, Gio.FileCreateFlags.NONE, null)});
 
         var message = Soup.Message.new('GET', url);
-        session.queue_message(message, function(session, response) {
-            if (response.status_code !== Soup.KnownStatusCode.OK) {
-               global.log("Error during download: response code " + response.status_code
-                  + ": " + response.reason_phrase + " - " + response.response_body.data);
-               callback(false, null);
-               return true;
-            }
 
-            try {
-                Cinnamon.write_soup_message_to_stream(outStream, message);
-                outStream.close(null);
-            }
-            catch (e) {
-               global.logError("Site seems to be down. Error was:");
-               global.logError(e);
-               callback(false, null);
-               return true;
-            }
+        if (Soup.get_major_version() == "2") {
+            session.queue_message(message, function (session, response) {
+                if (response.status_code !== Soup.KnownStatusCode.OK) {
+                    global.log("Error during download: response code " + response.status_code
+                        + ": " + response.reason_phrase + " - " + response.response_body.data);
+                    callback(false, null);
+                    return true;
+                }
 
-            callback(true, localFilename);
-            return false;
-         });
+                try {
+                    let contents = message.response_body.flatten().get_as_bytes();  // For Soup 2.4
+                    outStream.write_bytes(contents, null);
+                    outStream.close(null);
+                }
+                catch (e) {
+                    global.logError("Site seems to be down. Error was:");
+                    global.logError(e);
+                    callback(false, null);
+                    return true;
+                }
+
+                callback(true, localFilename);
+                return false;
+            });
+        } else { //Soup 3
+            session.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, (session, response) => {
+                if (message.status_code !== Soup.Status.OK) {
+                    global.log("Error during download: response code " + message.status_code + ": " + message.reason_phrase);
+                    callback(false, null);
+                    return true;
+                }
+                try {
+                    const bytes = session.send_and_read_finish(response);
+                    outStream.write_bytes(bytes, null);
+                    outStream.close(null);
+                }
+                catch (e) {
+                    global.logError("Site seems to be down. Error was:");
+                    global.logError(e);
+                    callback(false, null);
+                    return true;
+                }
+
+                callback(true, localFilename);
+                return false;
+            });
+        }
     },
 
     refresh: function(xkcdId) {
@@ -69,12 +101,13 @@ MyDesklet.prototype = {
 
         if (this._timeoutId) {
             Mainloop.source_remove(this._timeoutId);
+            delete this._timeoutId
         }
 
         if (xkcdId === null || xkcdId === undefined) {
             url = 'http://www.xkcd.com/info.0.json';
             filename = this.save_path + '/temp.json'
-            this.download_file(url, filename, Lang.bind(this, this.on_json_downloaded));
+            this.download_file(url, filename, this.on_json_downloaded.bind(this));
         }
         else {
             url = 'http://www.xkcd.com/' + xkcdId + '/info.0.json';
@@ -84,7 +117,7 @@ MyDesklet.prototype = {
                 this.on_json_downloaded(true, filename, true);
             }
             else {
-                this.download_file(url, filename, Lang.bind(this, this.on_json_downloaded));
+                this.download_file(url, filename, this.on_json_downloaded.bind(this));
             }
         }
         
@@ -96,34 +129,6 @@ MyDesklet.prototype = {
     },
 
     set_tooltip: function(tip) {
-        //global.log('set_tooltip');
-        if (tip !== null) {
-            //this._photoFrame.hide();
-            //this._photoFrame.tooltip_text = '                                                                                                                                                                                            ';
-            
-            this._photoFrame.tooltip_text = tip;
-            //this._photoFrame.show_tooltip();
-            //this._photoFrame.hide_tooltip();
-            //this._photoFrame.show();
-            //this._photoFrame.hover = false;
-            //this._photoFrame.reactive = true;
-            //this.emit('allocation-changed');
-            //this._photoFrame.tooltip_markup = '<span font_size="large" foreground="black" background="white">hello!</span>'; // ' + tip + '
-            //this._photoFrame.tooltip_markup = '<markup>hi there how are you hello!is cool!</markup>'; // ' + tip + '
-            //global.log(this._photoFrame.tooltip_markup);
-            //global.log(this._photoFrame.tooltip_window);
-            //this._photoFrame.show_help();
-            //this._photoFrame.trigger_tooltip_query();
-        }
-        else {
-            //this._photoFrame.hide_tooltip();
-            this._photoFrame.tooltip_text = null;
-            //this._photoFrame.show_tooltip();
-            //this._photoFrame.tooltip_text = null;
-            //this._photoFrame.reactive = false;
-            //this._photoFrame.track_hover = true;
-            //this._photoFrame.hover = false;
-        }
     },
 
     on_json_downloaded: function(success, filename, cached) {
@@ -163,7 +168,7 @@ MyDesklet.prototype = {
                 this.on_xkcd_downloaded(true, imgFilename, true);
             }
             else {
-                this.download_file(this.curXkcd.img, imgFilename, Lang.bind(this, this.on_xkcd_downloaded));
+                this.download_file(this.curXkcd.img, imgFilename, this.on_xkcd_downloaded.bind(this));
             }
             
         }
@@ -174,19 +179,26 @@ MyDesklet.prototype = {
     },
 
     on_xkcd_downloaded: function(success, file, cached) {
-        Tweener.addTween(this._clutterTexture, { opacity: 0,
+        Tweener.addTween(this._image, { opacity: 0,
             time: this.metadata["fade-delay"],
             transition: 'easeInSine',
-            onComplete: Lang.bind(this, function() {
+            onComplete: function() {
                 this.updateInProgress = false;
-                if (this._clutterTexture.set_from_file(file)) {
-                    this._photoFrame.set_child(this._clutterBox);
+                let pixbuf = GdkPixbuf.Pixbuf.new_from_file(file);
+                if (pixbuf != null) {
+                    this._image.set_data(pixbuf.get_pixels(),
+                        pixbuf.get_has_alpha() ?
+                        Cogl.PixelFormat.RGBA_8888 :
+                        Cogl.PixelFormat.RGB_888,
+                        pixbuf.get_width(),
+                        pixbuf.get_height(),
+                        pixbuf.get_rowstride());
+                    this._imageFrame.set_width(pixbuf.get_width())
+                    this._imageFrame.set_height(pixbuf.get_height())
+                } else {
+                    global.logError("Error reading file : " + file)
                 }
-                Tweener.addTween(this._clutterTexture, { opacity: 255,
-                    time: this.metadata["fade-delay"],
-                    transition: 'easeInSine'
-                });
-            })
+            }.bind(this)
         });
     },
 
@@ -202,32 +214,18 @@ MyDesklet.prototype = {
 
             this.setHeader(_("xkcd"));
 
-            this._photoFrame = new St.Bin({style_class: 'xkcd-box', x_align: St.Align.START});
-            this._binLayout = new Clutter.BinLayout();
-            this._clutterBox = new Clutter.Box();
-            this._clutterTexture = new Clutter.Texture({
-                keep_aspect_ratio: true, 
-                filter_quality: this.metadata["quality"]});
-            this._clutterTexture.connect('load-finished', Lang.bind(this, function(e) {
-                if (this.curXkcd && this.curXkcd['alt']) {
-                    this.set_tooltip(this.curXkcd.alt);
-                }
-            }));
-            this._clutterTexture.set_load_async(true);
-            this._clutterBox.set_layout_manager(this._binLayout);
-            this._clutterBox.set_width(this.metadata["width"]);
-            this._clutterBox.add_actor(this._clutterTexture);
-            this._photoFrame.set_child(this._clutterBox);            
-            this.setContent(this._photoFrame);
-
+            this._image = new Clutter.Image();
+            this._imageFrame = new Clutter.Actor({width: 0, height: 0})
+            this._imageFrame.set_content(this._image)
+            this.setContent(this._imageFrame)
             
             this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-            this._menu.addAction(_("View latest xkcd"), Lang.bind(this, function() {
+            this._menu.addAction(_("View latest xkcd"), function () {
                 this.refresh(null);
-            }));
-            this._menu.addAction(_("Open save folder"), Lang.bind(this, function() {
+            }.bind(this));
+            this._menu.addAction(_("Open save folder"), function () {
                 Util.spawnCommandLine("xdg-open " + this.save_path);
-            }));
+            }.bind(this));
 
             let dir_path = this.metadata["directory"];
 
@@ -280,13 +278,8 @@ MyDesklet.prototype = {
             else
             {
                 this.refresh(this._xkcds[this._xkcds.length - 1]);
-                this._timeoutId = Mainloop.timeout_add_seconds(5, Lang.bind(this, this.refresh));
-            }
-
-            
-            
-            global.w = this._photoFrame;
-            
+                this._timeoutId = Mainloop.timeout_add_seconds(5, this.refresh.bind(this, null));
+            }            
         }
         catch (e) {
             global.logError(e);
