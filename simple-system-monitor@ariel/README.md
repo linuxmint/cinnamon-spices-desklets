@@ -1,65 +1,23 @@
-## Simple system monitor
+# Simple System Monitor
 Shows some system status values.
-- CPU usage
-- Memory usage
-- Network speed(Download, Upload)
-- Temperature(CPU, GPU) see Tips
+* CPU usage
+* Memory usage
+* Network utilization (Download, Upload)
+* Temperature (CPU, GPU)
 
-## Update history
-1.1.0
-- Add GPU Temperature.
-- Adjust layout. (Labels: right to left, Values: left to right)
-- Adjust value format to avoid wobbling. ("CPU" "Memory" fixed decimal point to 2 digits)
-- Adjust value format to avoid wobbling. ("Download" "Upload" fixed decimal point to 1 digits in unit is "MB")
+## Dependencies
+This extension requires [libgtop](https://developer.gnome.org/libgtop/stable) in order to function.
 
-1.0.0
-- Initial Release.
+## Instructions
+To install dependencies:
+* Debian GNU/Linux, Ubuntu, and derivatives:
+    `sudo apt install gir1.2-gtop-2.0 libgtop2-dev`
+* Fedora and derivatives:
+    `sudo dnf install libgtop2 libgtop2-devel`
+* Arch and derivatives:
+    `sudo pacman -S libgtop`
 
-## Tips
-**"Temperature" shows incorrect value**  
+You will have to **restart the shell** (`Alt + F2` &rarr; `r`) **after installing** the dependencies.
 
-Edit `.local/share/cinnamon/desklets/simple-system-monitor@ariel/metadata.json`  
-Specify a appropriate file path to `"thermal-file":`  
-
-Example: Ryzen CPU is `"/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon2/temp1_input"`
-
-**"GPU" shows incorrect value**
-
-Edit `.local/share/cinnamon/desklets/simple-system-monitor@ariel/metadata.json`  
-Specify a appropriate file path to `"thermal-file-gpu":`   
-
-Example: Radeon GPU is `"/sys/devices/pci0000:00/0000:00:03.1/0000:06:00.0/hwmon/hwmon1/temp1_input"`
-
-**Change font color**
-
-Edit `.local/share/cinnamon/desklets/simple-system-monitor@ariel/4.0/stylesheet.css`  
-Add `"color:"` to `".mainContainer"`  
-
-Example: `color: rgba(255, 144, 0, 1.0);`
-
-**Change font size**
-
-Edit `.local/share/cinnamon/desklets/simple-system-monitor@ariel/4.0/stylesheet.css`  
-Add `"font-size:"` to `".mainContainer"`  
-
-Example: `font-size: 1.2em;`
-
-**Change background color**
-
-Edit `.local/share/cinnamon/desklets/simple-system-monitor@ariel/4.0/stylesheet.css`  
-Add `"background-color:"` to `".mainContainer"`  
-
-Example: `background-color: rgba(90, 90, 90, 1.0);`
-
-**Change background color to transparent**
-
-Edit `.local/share/cinnamon/desklets/simple-system-monitor@ariel/metadata.json`  
-Set `"prevent-decorations"` to `true`  
-
-Example: `"prevent-decorations": true,`
-
-**Back to previous layout**
-
-Edit `.local/share/cinnamon/desklets/simple-system-monitor@ariel/4.0/stylesheet.css`  
-Set `"text-align: right"` to `".title"`  
-Set `"text-align: left"` to `".value"`  
+### For customizing the font, if the new font selection is invalid, the field will be reset to empty once closed.
+### Valid fonts will update the desklet immediately.

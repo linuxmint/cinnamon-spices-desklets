@@ -1,0 +1,8 @@
+.mainContainer {
+  padding: 10px;
+}
+
+.label {
+  display: inline-block;
+  color: #aaa;
+}
