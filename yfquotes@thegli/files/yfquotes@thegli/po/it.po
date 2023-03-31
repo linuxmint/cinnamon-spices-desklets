@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-18 18:52+0200\n"
-"PO-Revision-Date: 2022-06-03 12:53+0200\n"
+"PO-Revision-Date: 2023-03-31 11:27+0200\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: desklet.js:87
 msgid "Yahoo Finance service not available!"
@@ -328,8 +328,7 @@ msgid "Use trend colors for percent change"
 msgstr "Usa i colori di tendenza per la variazione percentuale"
 
 #. settings-schema.json->colorPercentChange->tooltip
-msgid ""
-"Color the percent change to show the trend."
+msgid "Color the percent change to show the trend."
 msgstr ""
 "Colora la variazione percentuale per mostrare la tendenza (verde in alto, "
 "rosso in basso)."
@@ -364,8 +363,8 @@ msgstr ""
 
 #. settings-schema.json->unchangedTrendColor->description
 msgid "Unchanged trend color"
-msgstr ""
+msgstr "Colore della tendenza invariata"
 
 #. settings-schema.json->unchangedTrendColor->tooltip
 msgid "Color of the unchanged trend."
-msgstr ""
+msgstr "Colore per la tendenza invariata."

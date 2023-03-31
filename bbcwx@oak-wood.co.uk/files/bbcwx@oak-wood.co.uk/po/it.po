@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bbcwx\n"
 "Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
 "POT-Creation-Date: 2018-01-07 21:05+0000\n"
-"PO-Revision-Date: 2022-06-03 12:27+0200\n"
+"PO-Revision-Date: 2023-03-31 11:20+0200\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: Italian <it@li.org>\n"
 "Language: it\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2015-12-04 19:52+0000\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. # Days of the week
 #: desklet.js:102
@@ -70,7 +70,7 @@ msgstr "Umidità:"
 #. # Atmospheric pressure
 #: desklet.js:337 desklet.js:363
 msgid "Pressure:"
-msgstr "Pressione atm.:"
+msgstr "Pressione:"
 
 #: desklet.js:338
 msgid "Wind:"
@@ -78,7 +78,7 @@ msgstr "Vento:"
 
 #: desklet.js:339
 msgid "Feels like:"
-msgstr "Temperatura percepita:"
+msgstr "Percepita:"
 
 #: desklet.js:340
 msgid "Visibility:"
@@ -1089,6 +1089,22 @@ msgstr "Località"
 #. bbcwx@oak-wood.co.uk->settings-schema.json->stationID->tooltip
 msgid "Set your location here"
 msgstr "Imposta la tua località"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->textshadow->description
+msgid "Text shadow"
+msgstr "Ombreggiatura del testo"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->textshadow->tooltip
+msgid "Check to add a text shadow"
+msgstr "Seleziona per aggiungere un'ombreggiatura al testo"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->shadowblur->description
+msgid "Shadow blur radius"
+msgstr "Raggio di sfocatura dell'ombreggiatura"
+
+#. bbcwx@oak-wood.co.uk->settings-schema.json->shadowblur->tooltip
+msgid "Set the text shadow sharp (1) or blurry (2-7)"
+msgstr "Imposta l'ombreggiatura del testo nitida (1) o sfocata (2-7)"
 
 #. bbcwx@oak-wood.co.uk->settings-schema.json->cornerradius->description
 msgid "Corner radius"
