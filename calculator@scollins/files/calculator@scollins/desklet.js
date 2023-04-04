@@ -534,12 +534,12 @@ Buffer.prototype = {
             let symbol = event.get_key_symbol();
             let key = event.get_key_unicode();
 
-            if ( symbol == Clutter.KP_Enter || symbol == Clutter.Return ) {
+            if ( symbol == Clutter.KEY_KP_Enter || symbol == Clutter.KEY_Return ) {
                 if ( this.rpn ) this.push();
                 else this.solve();
                 return;
             }
-            if ( symbol == Clutter.BackSpace || symbol == Clutter.Delete ) {
+            if ( symbol == Clutter.KEY_BackSpace || symbol == Clutter.KEY_Delete ) {
                 this.back();
                 return;
             }
@@ -1150,7 +1150,7 @@ myDesklet.prototype = {
         else this.display = new DisplayBox(this.precision);
         displayArea.add_actor(this.display.actor);
 
-        let buttonTable = new Clutter.TableLayout();
+        let buttonTable = new Clutter.GridLayout();
         //buttonTable.set_row_spacing(5);
         //buttonTable.set_column_spacing(5);
         let buttonBox = new Clutter.Actor();
@@ -1162,7 +1162,7 @@ myDesklet.prototype = {
                 let buttonInfo = layout[i][j];
                 if ( buttonInfo.type == "empty" ) continue;
                 let button = new Button(buttonInfo, this.rpn);
-                buttonTable.pack(button.actor, j, i);
+                buttonTable.attach(button.actor, j, i, 1, 1);
             }
         }
     },
