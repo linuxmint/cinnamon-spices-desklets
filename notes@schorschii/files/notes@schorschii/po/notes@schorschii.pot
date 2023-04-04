@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-14 14:37+0100\n"
+"POT-Creation-Date: 2023-04-04 15:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:137
+#: desklet.js:130
+msgid "Refresh"
+msgstr ""
+
+#: desklet.js:143
 msgid ""
 "Can't read text file.\n"
 "Select a file in settings.\n"
@@ -25,7 +29,7 @@ msgid ""
 "Click here to edit."
 msgstr ""
 
-#: desklet.js:229
+#: desklet.js:263
 msgid "Notepad"
 msgstr ""
 
@@ -233,6 +237,14 @@ msgstr ""
 msgid "Select the background graphic you would like to use."
 msgstr ""
 
+#. settings-schema.json->bg-color->description
+msgid "Background color"
+msgstr ""
+
+#. settings-schema.json->bg-color->tooltip
+msgid "Set the background color of this desklet."
+msgstr ""
+
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
 msgstr ""
@@ -251,10 +263,6 @@ msgstr ""
 
 #. settings-schema.json->size-font->tooltip
 msgid "Increase or decrease the note font size."
-msgstr ""
-
-#. settings-schema.json->scale-size->tooltip
-msgid "Increase or decrease the size of this desklet using this scale factor."
 msgstr ""
 
 #. settings-schema.json->font-bold->description
@@ -279,6 +287,10 @@ msgstr ""
 
 #. settings-schema.json->scale-size->description
 msgid "Desklet size"
+msgstr ""
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
 msgstr ""
 
 #. settings-schema.json->head3->description

@@ -11,6 +11,7 @@ const Clutter = imports.gi.Clutter;
 const GdkPixbuf = imports.gi.GdkPixbuf;
 const Cogl = imports.gi.Cogl;
 const Gio = imports.gi.Gio;
+const PopupMenu = imports.ui.popupMenu;
 const Gettext = imports.gettext;
 
 const UUID = "notes@schorschii";
@@ -85,6 +86,9 @@ MyDesklet.prototype = {
 		// defaults and initial values
 		this.notecontent = "";
 
+		// init context menu
+		this.populateContextMenu();
+
 		// load image index
 		this.imageIndex = new Array();
 		let file = Gio.file_new_for_path(DESKLET_ROOT + '/img/index.csv');
@@ -120,6 +124,12 @@ MyDesklet.prototype = {
 
 		// set decoration settings
 		this.refreshDecoration();
+	},
+
+	populateContextMenu: function() {
+		this.refreshMenuItem = new PopupMenu.PopupMenuItem(_("Refresh"));
+		this._menu.addMenuItem(this.refreshMenuItem);
+		this.refreshMenuItem.connect("activate", Lang.bind(this, Lang.bind(this, this.loadText)));
 	},
 
 	loadFileContent: function(file, reloadGraphics) {
