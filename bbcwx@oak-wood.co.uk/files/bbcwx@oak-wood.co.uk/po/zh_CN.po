@@ -8,1131 +8,1093 @@ msgstr ""
 "Project-Id-Version: Cinnamon Weather Desklet - bbcwx 2.9\n"
 "Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
 "POT-Creation-Date: 2018-01-07 21:05+0000\n"
-"PO-Revision-Date: 2017-03-14 23:20+0800\n"
+"PO-Revision-Date: 2023-04-16 07:22-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.11\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.1.1\n"
 
-#. # Days of the week
-#: desklet.js:102
+#: desklet.js:108
 msgid "Mon"
 msgstr "一"
 
-#: desklet.js:102
+#: desklet.js:108
 msgid "Tue"
 msgstr "二"
 
-#: desklet.js:102
+#: desklet.js:108
 msgid "Wed"
 msgstr "三"
 
-#: desklet.js:102
+#: desklet.js:108
 msgid "Thu"
 msgstr "四"
 
-#: desklet.js:102
+#: desklet.js:108
 msgid "Fri"
 msgstr "五"
 
-#: desklet.js:102
+#: desklet.js:108
 msgid "Sat"
 msgstr "六"
 
-#: desklet.js:102
+#: desklet.js:108
 msgid "Sun"
 msgstr "日"
 
-#. # The desklet title
-#: desklet.js:178
+#: desklet.js:186
 msgid "Weather"
 msgstr "天气"
 
-#. # Link to Help file in context menu
-#: desklet.js:186
+#: desklet.js:194
 msgid "Help"
 msgstr "帮助"
 
-#. # Link to information on translating in context menu
-#: desklet.js:190
+#: desklet.js:198
 msgid "Translate"
 msgstr "翻译"
 
-#. # Next five strings are labels for current conditions
-#: desklet.js:336 desklet.js:364
+#: desklet.js:344 desklet.js:372
 msgid "Humidity:"
 msgstr "湿度："
 
-#. # Atmospheric pressure
-#: desklet.js:337 desklet.js:363
+#: desklet.js:345 desklet.js:371
 msgid "Pressure:"
 msgstr "气压："
 
-#: desklet.js:338
+#: desklet.js:346
 msgid "Wind:"
 msgstr "风力："
 
-#: desklet.js:339
+#: desklet.js:347
 msgid "Feels like:"
 msgstr "体感温度："
 
-#: desklet.js:340
+#: desklet.js:348
 msgid "Visibility:"
 msgstr "可见度："
 
-#. # Maximum temperature
-#: desklet.js:355
+#: desklet.js:363
 msgid "Max:"
 msgstr "最高气温："
 
-#. # Minimum temperature
-#: desklet.js:357
+#: desklet.js:365
 msgid "Min:"
 msgstr "最低气温："
 
-#. # Wind speed (English translation is "Wind:")
-#: desklet.js:359
+#: desklet.js:367
 msgid "Wind speed:"
 msgstr "风速："
 
-#. # Wind direction
-#: desklet.js:361
+#: desklet.js:369
 msgid "Dir:"
 msgstr "方向："
 
-#. # Credit the data supplier. A link to the data supplier appears to the
-#. right of this string
-#: desklet.js:403
+#: desklet.js:411
 msgid "Data from "
 msgstr "数据来自"
 
-#. # Tooltip for refresh button
-#: desklet.js:415
+#: desklet.js:423
 msgid "Refresh"
 msgstr "刷新"
 
-#. # Message if we fail to get weather data
-#: desklet.js:735
+#: desklet.js:744
 msgid "No data available"
 msgstr "没有可用的数据"
 
-#: desklet.js:768 desklet.js:835
-#, python-format
+#: desklet.js:777 desklet.js:844
+#, javascript-format
 msgid "Error: %s"
 msgstr "错误：%s"
 
-#: desklet.js:768 desklet.js:835
+#: desklet.js:777 desklet.js:844
 msgid "No data"
 msgstr "没有数据"
 
-#. # %s is replaced by place name
-#: desklet.js:870
-#, python-format
+#: desklet.js:879
+#, javascript-format
 msgid "Click for the full forecast for %s"
 msgstr "点击查看%s的完整预报"
 
-#. # Units for temperature, degrees Fahrenheit. %f is replaced the value. NB:
-#. English translation uses unicode character u+2109
-#: desklet.js:1113
-#, python-format
-msgid "%fF"
+#: desklet.js:1139
+#, javascript-format
+msgid "%f°F"
 msgstr "%f°F"
 
-#. # Units for temperature, degrees Celsius. %f is replaced the value. NB:
-#. English translation uses unicode character u+2103
-#: desklet.js:1115
-#, python-format
-msgid "%fC"
+#: desklet.js:1141
+#, javascript-format
+msgid "%f°C"
 msgstr "%f°C"
 
-#. # wind speed, miles per hour. %f is replaced by the value
-#: desklet.js:1136
-#, python-format
+#: desklet.js:1162
+#, javascript-format
 msgid "%fmph"
 msgstr "%f英里每小时"
 
-#. # wind speed, knots. %f is replaced by the value
-#: desklet.js:1138
-#, python-format
+#: desklet.js:1164
+#, javascript-format
 msgid "%fkn"
 msgstr "%f节"
 
-#. # wind speed, kilometers per hour. %f is replaced by the value
-#: desklet.js:1140
-#, python-format
+#: desklet.js:1166
+#, javascript-format
 msgid "%fkm/h"
 msgstr "%f公里/小时"
 
-#. # wind speed, meters per second. %f is replaced by the value
-#: desklet.js:1142
-#, python-format
+#: desklet.js:1168
+#, javascript-format
 msgid "%fm/s"
 msgstr "%f米/秒"
 
-#. # pressure, millbars. %f is replaced by the value
-#: desklet.js:1176
-#, python-format
+#: desklet.js:1202
+#, javascript-format
 msgid "%fmb"
 msgstr "%f毫巴"
 
-#. # pressure, inches of mercury. %f is replaced by the value
-#: desklet.js:1178
-#, python-format
+#: desklet.js:1204
+#, javascript-format
 msgid "%fin"
 msgstr "%f英寸"
 
-#. # pressure, mm of mercury. %f is replaced by the value
-#: desklet.js:1180
-#, python-format
+#: desklet.js:1206
+#, javascript-format
 msgid "%fmm"
 msgstr "%f毫米"
 
-#. # pressure, kilopascals. %f is replaced by the value
-#: desklet.js:1182
-#, python-format
+#: desklet.js:1208
+#, javascript-format
 msgid "%fkPa"
 msgstr "%f千帕"
 
-#. # visibility, miles. %f is replaced by the value
-#: desklet.js:1233
-#, python-format
+#: desklet.js:1259
+#, javascript-format
 msgid "%fmi"
 msgstr "%f英里"
 
-#. # visibility, nautical miles. %f is replaced by the value
-#: desklet.js:1235
-#, python-format
+#: desklet.js:1261
+#, javascript-format
 msgid "%fnmi"
 msgstr "%f海里"
 
-#. # visibility, kilometers. %f is replaced by the value
-#: desklet.js:1237
-#, python-format
+#: desklet.js:1263
+#, javascript-format
 msgid "%fkm"
 msgstr "%f公里"
 
-#. # Next 16 strings are for wind direction, compass points
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "N"
 msgstr "北"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "NNE"
 msgstr "东北偏北"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "NE"
 msgstr "东北"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "ENE"
 msgstr "东北偏东"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "E"
 msgstr "东"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "ESE"
 msgstr "东南偏东"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "SE"
 msgstr "东南"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "SSE"
 msgstr "东南偏南"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "S"
 msgstr "南"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "SSW"
 msgstr "西南偏南"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "SW"
 msgstr "西南"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "WSW"
 msgstr "西南偏西"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "W"
 msgstr "西"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "WNW"
 msgstr "西北偏西"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "NW"
 msgstr "西北"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "NNW"
 msgstr "西北偏北"
 
-#: desklet.js:1515
+#: desklet.js:1560
 msgid "Tornado"
 msgstr "龙卷风"
 
-#: desklet.js:1516
+#: desklet.js:1561
 msgid "Tropical storm"
 msgstr "热带风暴"
 
-#: desklet.js:1517
+#: desklet.js:1562
 msgid "Hurricane"
 msgstr "飓风"
 
-#: desklet.js:1518
+#: desklet.js:1563
 msgid "Severe thunderstorms"
 msgstr "强雷暴"
 
-#: desklet.js:1519
+#: desklet.js:1564
 msgid "Thunderstorms"
 msgstr "雷暴"
 
-#: desklet.js:1520 desklet.js:4188
+#: desklet.js:1565 desklet.js:4240
 msgid "Mixed rain and snow"
 msgstr "雨夹雪"
 
-#: desklet.js:1521
+#: desklet.js:1566
 msgid "Mixed rain and sleet"
 msgstr "雨和雨夹雪"
 
-#: desklet.js:1522
+#: desklet.js:1567
 msgid "Mixed snow and sleet"
 msgstr "雪和雨夹雪"
 
-#: desklet.js:1523
+#: desklet.js:1568
 msgid "Freezing drizzle"
 msgstr "冻毛毛雨"
 
-#: desklet.js:1524 desklet.js:1818
+#: desklet.js:1569 desklet.js:1872
 msgid "Drizzle"
 msgstr "毛毛雨"
 
-#: desklet.js:1525
+#: desklet.js:1570
 msgid "Freezing rain"
 msgstr "冻雨"
 
-#: desklet.js:1526 desklet.js:1527 desklet.js:4184
+#: desklet.js:1571 desklet.js:1572 desklet.js:4236
 msgid "Showers"
 msgstr "阵雨"
 
-#: desklet.js:1528
+#: desklet.js:1573
 msgid "Snow flurries"
 msgstr "小阵雪"
 
-#: desklet.js:1529
+#: desklet.js:1574
 msgid "Light snow showers"
 msgstr "轻微阵雪"
 
-#: desklet.js:1530
+#: desklet.js:1575
 msgid "Blowing snow"
 msgstr "高吹雪"
 
-#: desklet.js:1531 desklet.js:4186 desklet.js:4192
+#: desklet.js:1576 desklet.js:4238 desklet.js:4244
 msgid "Snow"
 msgstr "雪"
 
-#: desklet.js:1532
+#: desklet.js:1577
 msgid "Hail"
 msgstr "冰雹"
 
-#: desklet.js:1533 desklet.js:1823
+#: desklet.js:1578 desklet.js:1877
 msgid "Sleet"
 msgstr "雨夹雪"
 
-#: desklet.js:1534
+#: desklet.js:1579
 msgid "Dust"
 msgstr "粉尘"
 
-#: desklet.js:1535
+#: desklet.js:1580
 msgid "Foggy"
 msgstr "多雾"
 
-#: desklet.js:1536
+#: desklet.js:1581
 msgid "Haze"
 msgstr "霾"
 
-#: desklet.js:1537
+#: desklet.js:1582
 msgid "Smoky"
 msgstr "烟雾"
 
-#: desklet.js:1538
+#: desklet.js:1583
 msgid "Blustery"
 msgstr "大风"
 
-#: desklet.js:1539
+#: desklet.js:1584
 msgid "Windy"
 msgstr "多风"
 
-#: desklet.js:1540
+#: desklet.js:1585
 msgid "Cold"
 msgstr "寒冷"
 
-#: desklet.js:1541 desklet.js:4181
+#: desklet.js:1586 desklet.js:4233
 msgid "Cloudy"
 msgstr "多云"
 
-#: desklet.js:1542 desklet.js:1543
+#: desklet.js:1587 desklet.js:1588
 msgid "Mostly cloudy"
 msgstr "大部多云"
 
-#: desklet.js:1544 desklet.js:1545 desklet.js:1559
+#: desklet.js:1589 desklet.js:1590 desklet.js:1604
 msgid "Partly cloudy"
 msgstr "局部多云"
 
-#: desklet.js:1546
+#: desklet.js:1591
 msgid "Clear"
 msgstr "晴"
 
-#: desklet.js:1547 desklet.js:1807
+#: desklet.js:1592 desklet.js:1861
 msgid "Sunny"
 msgstr "晴"
 
-#: desklet.js:1548 desklet.js:1549 desklet.js:4179
+#: desklet.js:1593 desklet.js:1594 desklet.js:4231
 msgid "Fair"
 msgstr "晴"
 
-#: desklet.js:1550
+#: desklet.js:1595
 msgid "Mixed rain and hail"
 msgstr "雨夹冰雹"
 
-#: desklet.js:1551
+#: desklet.js:1596
 msgid "Hot"
 msgstr "炎热"
 
-#: desklet.js:1552
+#: desklet.js:1597
 msgid "Isolated thunderstorms"
 msgstr "局地雷暴"
 
-#: desklet.js:1553
+#: desklet.js:1598
 msgid "Scattered thunderstorms"
 msgstr "分散雷雨"
 
-#: desklet.js:1554 desklet.js:1555
+#: desklet.js:1599 desklet.js:1600
 msgid "Scattered showers"
 msgstr "分散阵雨"
 
-#: desklet.js:1556 desklet.js:1558
+#: desklet.js:1601 desklet.js:1603
 msgid "Heavy snow"
 msgstr "大雪"
 
-#: desklet.js:1557
+#: desklet.js:1602
 msgid "Scattered snow showers"
 msgstr "分散阵雪"
 
-#: desklet.js:1560
+#: desklet.js:1605
 msgid "Thundershowers"
 msgstr "雷阵雨"
 
-#: desklet.js:1561 desklet.js:4187
+#: desklet.js:1606 desklet.js:4239
 msgid "Snow showers"
 msgstr "阵雪"
 
-#: desklet.js:1562
+#: desklet.js:1607
 msgid "Isolated thundershowers"
 msgstr "局地雷阵雨"
 
-#: desklet.js:1563
+#: desklet.js:1608
 msgid "Not available"
 msgstr "不可用"
 
-#: desklet.js:1806 desklet.js:4178
+#: desklet.js:1860 desklet.js:4230
 msgid "Clear Sky"
 msgstr "晴天"
 
-#: desklet.js:1808 desklet.js:4180
+#: desklet.js:1862 desklet.js:4232
 msgid "Partly Cloudy"
 msgstr "局部多云"
 
-#: desklet.js:1809
+#: desklet.js:1863
 msgid "Sunny Intervals"
 msgstr "多云间晴"
 
-#: desklet.js:1810
+#: desklet.js:1864
 msgid "Sand Storm"
 msgstr "沙尘暴"
 
-#: desklet.js:1811
+#: desklet.js:1865
 msgid "Mist"
 msgstr "轻雾"
 
-#: desklet.js:1812 desklet.js:4182
+#: desklet.js:1866 desklet.js:4234
 msgid "Fog"
 msgstr "雾"
 
-#: desklet.js:1813
+#: desklet.js:1867
 msgid "White Cloud"
 msgstr "白云"
 
-#: desklet.js:1814
+#: desklet.js:1868
 msgid "Light Cloud"
 msgstr "薄云"
 
-#: desklet.js:1815
+#: desklet.js:1869
 msgid "Grey Cloud"
 msgstr "乌云"
 
-#: desklet.js:1816
+#: desklet.js:1870
 msgid "Thick Cloud"
 msgstr "厚云"
 
-#: desklet.js:1817
+#: desklet.js:1871
 msgid "Light Rain Shower"
 msgstr "轻微阵雨"
 
-#: desklet.js:1819 desklet.js:4189 desklet.js:4193
+#: desklet.js:1873 desklet.js:4241 desklet.js:4245
 msgid "Light Rain"
 msgstr "小雨"
 
-#: desklet.js:1820
+#: desklet.js:1874
 msgid "Heavy Rain Shower"
 msgstr "强阵雨"
 
-#: desklet.js:1821 desklet.js:4183 desklet.js:4191
+#: desklet.js:1875 desklet.js:4235 desklet.js:4243
 msgid "Heavy Rain"
 msgstr "大雨"
 
-#: desklet.js:1822
+#: desklet.js:1876
 msgid "Sleet Shower"
 msgstr "阵性雨夹雪"
 
-#: desklet.js:1824
+#: desklet.js:1878
 msgid "Light Snow Shower"
 msgstr "轻微阵雪"
 
-#: desklet.js:1825 desklet.js:4190 desklet.js:4194
+#: desklet.js:1879 desklet.js:4242 desklet.js:4246
 msgid "Light Snow"
 msgstr "小雪"
 
-#: desklet.js:1826
+#: desklet.js:1880
 msgid "Heavy Snow Shower"
 msgstr "强阵雪"
 
-#: desklet.js:1827
+#: desklet.js:1881
 msgid "Heavy Snow"
 msgstr "大雪"
 
-#: desklet.js:1828 desklet.js:4185
+#: desklet.js:1882 desklet.js:4237
 msgid "Thundery Shower"
 msgstr "雷阵雨"
 
-#: desklet.js:1829
+#: desklet.js:1883
 msgid "Thunder Storm"
 msgstr "雷雨"
 
-#: desklet.js:1830
+#: desklet.js:1884
 msgid "Thunderstorm"
 msgstr "雷暴"
 
-#: desklet.js:1831
+#: desklet.js:1885
 msgid "Hazy"
 msgstr "烟雾"
 
-#: desklet.js:1832
+#: desklet.js:1886
 msgid "Hail Shower"
 msgstr "阵雹"
 
-#: desklet.js:1833
+#: desklet.js:1887
 msgid "Rain"
 msgstr "雨"
 
-#. # direction of movement of pressure
-#: desklet.js:2018 desklet.js:2746
+#: desklet.js:2072 desklet.js:2800
 msgid "Steady"
 msgstr "稳定"
 
-#. # direction of movement of pressure
-#: desklet.js:2018 desklet.js:2742
+#: desklet.js:2072 desklet.js:2796
 msgid "Rising"
 msgstr "上升"
 
-#. # direction of movement of pressure
-#: desklet.js:2018 desklet.js:2744
+#: desklet.js:2072 desklet.js:2798
 msgid "Falling"
 msgstr "下降"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->description
-msgid "Get displayed location from"
-msgstr "获取显示的位置"
+#. metadata.json->description
+msgid "Display the weather from several web services on your desktop"
+msgstr "在您的桌面上显示来自多个网络服务的天气"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->tooltip
+#. metadata.json->name
+msgid "Weather Desklet"
+msgstr "天气桌面小工具"
+
+#. metadata.json->comments
 msgid ""
-"The source of the text displayed as the current location. Yahoo! and Google "
-"may offer city names in other languages"
-msgstr "文本源显示为当前的位置。Yahoo!和Google可能提供其他语言的城市名称"
+"Please consider translating the Weather Desklet into your language. See the "
+"website for more information"
+msgstr ""
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->options
-msgid "Google"
-msgstr "Google"
+#. metadata.json->contributors
+msgid "Chris Hastie"
+msgstr ""
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->options
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->description
-msgid "Data service"
-msgstr "数据服务"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->experimental_enabled->description
-msgid "Enable experimental features"
-msgstr "启用实验性功能"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->experimental_enabled->tooltip
-msgid "Check this to enable experimental and buggy features"
-msgstr "选中此项启用实验性和容易出错的功能"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__cc__humidity->description
-msgid "Current humidity"
-msgstr "当前湿度"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->display__cc__humidity->tooltip
-msgid "Check to display the current humidity"
-msgstr "选中以显示当前的湿度"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->refreshtime->description
-msgid "Refresh forecast every"
-msgstr "刷新预报间隔"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->refreshtime->tooltip
-msgid ""
-"Period between refreshing forecasts. Note that not all services support "
-"lower refresh times"
-msgstr "刷新预报的时间。注意并非所有服务支持较短的刷新时间"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->refreshtime->units
-msgid "minutes"
-msgstr "分钟"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->manuallocation->description
-msgid "Manually override displayed location"
-msgstr "手动覆写显示的位置"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->manuallocation->tooltip
-msgid "Set your city name manually."
-msgstr "手动设置您的城市名称。"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__cc__wind_speed->description
-msgid "Current wind"
-msgstr "当前风力"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__cc__wind_speed->tooltip
-msgid "Check to display the current wind"
-msgstr "选中以显示当前的风力"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->tunits->description
-msgid "Temperature measurement unit"
-msgstr "温度测量单位"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->tunits->tooltip
-msgid "Measurement units used to display temperature"
-msgstr "用于显示温度的测量单位"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->tunits->options
-msgid "Fahrenheit"
-msgstr "华氏度"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->tunits->options
-msgid "Celsius"
-msgstr "摄氏度"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->textcolor->description
-msgid "Text color"
-msgstr "文本颜色"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->textcolor->tooltip
-msgid "Click the button to select a new text color"
-msgstr "点击按钮选择新的文本颜色"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->border->description
-msgid "Show border"
-msgstr "显示边框"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->border->tooltip
-msgid "Check this to turn border on/off"
-msgstr "选中此项打开/关闭边框"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->layout->description
-msgid "Layout"
-msgstr "布局"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->layout->tooltip
-msgid "Set the overall layout of the desklet"
-msgstr "设置桌面小工具的总体布局"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->layout->options
-msgid "Horizontal"
-msgstr "水平"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->layout->options
-msgid "Vertical"
-msgstr "垂直"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->bgcolor->description
-msgid "Background color"
-msgstr "背景颜色"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->bgcolor->tooltip
-msgid "Click the button to select a new background color"
-msgstr "点击按钮选择新的背景颜色"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->description
-msgid "Anchor desklet by"
-msgstr "固定桌面小工具"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->tooltip
-msgid ""
-"Select the point on the desklet to which it is anchored. This point will "
-"remain static as the desklet grows and shrinks"
-msgstr "选择桌面小程序要固定的点。这个点将在桌面小工具增大和缩小时保持不变"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Bottom center"
-msgstr "中间偏下"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Default"
-msgstr "默认"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Left center"
-msgstr "中间偏左"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Top right"
-msgstr "左上方"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Bottom left"
-msgstr "左下方"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Top left"
-msgstr "左上方"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Right center"
-msgstr "中间偏右"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Bottom right"
-msgstr "右下方"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Top center"
-msgstr "中间偏上"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->top->description
+#. settings-schema.json->top->description
 msgid "Weather configuration"
 msgstr "天气配置"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->description
-msgid "Pressure measurement unit"
-msgstr "气压测量单位"
+#. settings-schema.json->webservice->description
+#. settings-schema.json->locsrc->options
+msgid "Data service"
+msgstr "数据服务"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->tooltip
-msgid "Measurement units used to display atmospheric pressure"
-msgstr "用于显示大气压的测量单位"
+#. settings-schema.json->webservice->options
+msgid "BBC"
+msgstr "BBC"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->options
-msgid "in (Hg)"
-msgstr "英寸(汞柱)"
+#. settings-schema.json->webservice->options
+#, fuzzy
+msgid "Open Weather Map (requires API key)"
+msgstr "World Weather Online (需要API密钥)"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->options
-msgid "mm (Hg)"
-msgstr "毫米(汞柱)"
+#. settings-schema.json->webservice->options
+#, fuzzy
+msgid "Open Weather Map Free (requires API key)"
+msgstr "World Weather Online (需要API密钥)"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->options
-msgid "kPa"
-msgstr "千帕"
+#. settings-schema.json->webservice->options
+msgid "Wunderground (requires API key)"
+msgstr "Wunderground (需要API密钥)"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->options
-msgid "mb"
-msgstr "毫巴"
+#. settings-schema.json->webservice->options
+#, fuzzy
+msgid "World Weather Online (deprecated) (requires API key)"
+msgstr "World Weather Online (需要API密钥)"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->styling->description
-msgid "Desklet style"
-msgstr "桌面小工具风格"
+#. settings-schema.json->webservice->options
+#, fuzzy
+msgid "World Weather Online Premium (requires API key)"
+msgstr "World Weather Online (需要API密钥)"
 
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__maximum_temperature->description
-msgid "Forecast maximum"
-msgstr "预报最高气温"
+#. settings-schema.json->webservice->options
+#, fuzzy
+msgid "APIXU (requires API key)"
+msgstr "meteoblue (需要API密钥)"
 
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__maximum_temperature->tooltip
-msgid "Check to display the forecast maximum temperature"
-msgstr "选中以显示预报的最高温度"
+#. settings-schema.json->webservice->options
+msgid "Forecast.io (requires API key)"
+msgstr "Forecast.io (需要API密钥)"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->description
+#. settings-schema.json->webservice->options
+msgid "weather.com (deprecated)"
+msgstr "weather.com (已废弃)"
+
+#. settings-schema.json->webservice->options
+msgid "meteoblue (requires API key)"
+msgstr "meteoblue (需要API密钥)"
+
+#. settings-schema.json->webservice->tooltip
+msgid "Select the data service you wish to use"
+msgstr "选择您想要使用的数据服务"
+
+#. settings-schema.json->stationID->description
+msgid "Location"
+msgstr "位置"
+
+#. settings-schema.json->stationID->tooltip
+msgid "Set your location here"
+msgstr "在这里设置您的位置"
+
+#. settings-schema.json->apikey->description
+msgid "API key"
+msgstr "API密钥"
+
+#. settings-schema.json->apikey->tooltip
+msgid ""
+"Required for some services only. Enter your API key for your chosen service"
+msgstr "仅某些服务需要。输入您选择的服务的API密钥"
+
+#. settings-schema.json->tunits->description
+msgid "Temperature measurement unit"
+msgstr "温度测量单位"
+
+#. settings-schema.json->tunits->options
+msgid "Celsius"
+msgstr "摄氏度"
+
+#. settings-schema.json->tunits->options
+msgid "Fahrenheit"
+msgstr "华氏度"
+
+#. settings-schema.json->tunits->tooltip
+msgid "Measurement units used to display temperature"
+msgstr "用于显示温度的测量单位"
+
+#. settings-schema.json->wunits->description
 msgid "Wind speed measurement unit"
 msgstr "风速测量单位"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->tooltip
-msgid "Measurement units used to display wind speed"
-msgstr "用于显示风速的测量单位"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->options
-msgid "knots"
-msgstr "节"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->options
-msgid "m/s"
-msgstr "米/秒"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->options
-msgid "km/h"
-msgstr "公里/小时"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->options
+#. settings-schema.json->wunits->options
 msgid "mph"
 msgstr "英里每小时"
 
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__meta__country->description
-msgid "Country"
-msgstr "国家"
+#. settings-schema.json->wunits->options
+msgid "km/h"
+msgstr "公里/小时"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->display__meta__country->tooltip
-msgid "Check to display the country"
-msgstr "选中以显示国家"
+#. settings-schema.json->wunits->options
+msgid "knots"
+msgstr "节"
 
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__cc__pressure->description
-msgid "Current pressure"
-msgstr "当前气压"
+#. settings-schema.json->wunits->options
+msgid "m/s"
+msgstr "米/秒"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->display__cc__pressure->tooltip
-msgid "Check to display the current pressure"
-msgstr "选中以显示当前气压"
+#. settings-schema.json->wunits->tooltip
+msgid "Measurement units used to display wind speed"
+msgstr "用于显示风速的测量单位"
 
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__wind_direction->description
-msgid "Forecast wind direction"
-msgstr "预报风向"
+#. settings-schema.json->punits->description
+msgid "Pressure measurement unit"
+msgstr "气压测量单位"
 
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__wind_direction->tooltip
-msgid "Check to display the forecast wind direction"
-msgstr "选中以显示预报风向"
+#. settings-schema.json->punits->options
+msgid "mb"
+msgstr "毫巴"
 
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__cc__feelslike->description
-msgid "Current 'feels like'"
-msgstr "当前‘体感温度’"
+#. settings-schema.json->punits->options
+msgid "in (Hg)"
+msgstr "英寸(汞柱)"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->display__cc__feelslike->tooltip
-msgid "Check to display the current apparent temperature"
-msgstr "选中以显示当前的表面温度"
+#. settings-schema.json->punits->options
+msgid "mm (Hg)"
+msgstr "毫米(汞柱)"
 
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__humidity->description
-msgid "Forecast humidity"
-msgstr "预报湿度"
+#. settings-schema.json->punits->options
+msgid "kPa"
+msgstr "千帕"
 
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__humidity->tooltip
-msgid "Check to display the forecast humidity"
-msgstr "选中以显示预报湿度"
+#. settings-schema.json->punits->tooltip
+msgid "Measurement units used to display atmospheric pressure"
+msgstr "用于显示大气压的测量单位"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->userno->description
+#. settings-schema.json->userno->units
+msgid "days"
+msgstr "天数"
+
+#. settings-schema.json->userno->description
 msgid "Show forecast for"
 msgstr "显示预报"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->userno->tooltip
+#. settings-schema.json->userno->tooltip
 msgid ""
 "The number of days of forecast to display. Note that not all services "
 "support all values"
 msgstr "要显示的预报天数。注意并非所有服务支持所有的值"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->userno->units
-msgid "days"
-msgstr "天数"
+#. settings-schema.json->refreshtime->units
+msgid "minutes"
+msgstr "分钟"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->bordercolor->description
-msgid "Border color"
-msgstr "边框颜色"
+#. settings-schema.json->refreshtime->description
+msgid "Refresh forecast every"
+msgstr "刷新预报间隔"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->bordercolor->tooltip
+#. settings-schema.json->refreshtime->tooltip
 msgid ""
-"Select the color for the border. Only available if the 'Border' checkbox is "
-"enabled"
-msgstr "选择边框的颜色。仅在‘边框’复选框启用时可用"
+"Period between refreshing forecasts. Note that not all services support "
+"lower refresh times"
+msgstr "刷新预报的时间。注意并非所有服务支持较短的刷新时间"
 
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__wind_speed->description
-msgid "Forecast wind speed"
-msgstr "预报风速"
+#. settings-schema.json->display->description
+msgid ""
+"Optional items to display (not all options are supported by all services)"
+msgstr "要显示的可选条目（并非所有服务支持全部选项）"
 
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__wind_speed->tooltip
-msgid "Check to display the forecast wind speed"
-msgstr "选中以显示预报风速"
+#. settings-schema.json->display__meta__country->description
+msgid "Country"
+msgstr "国家"
 
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__cc__weather->description
+#. settings-schema.json->display__meta__country->tooltip
+msgid "Check to display the country"
+msgstr "选中以显示国家"
+
+#. settings-schema.json->display__cc__weather->description
 msgid "Current weather and icon"
 msgstr "当前天气和图标"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->display__cc__weather->tooltip
+#. settings-schema.json->display__cc__weather->tooltip
 msgid "Check to display the current weather and large icon"
 msgstr "选中以显示当前天气和大图标"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->overrideTheme->description
+#. settings-schema.json->display__cc__pressure->description
+msgid "Current pressure"
+msgstr "当前气压"
+
+#. settings-schema.json->display__cc__pressure->tooltip
+msgid "Check to display the current pressure"
+msgstr "选中以显示当前气压"
+
+#. settings-schema.json->display__cc__humidity->description
+msgid "Current humidity"
+msgstr "当前湿度"
+
+#. settings-schema.json->display__cc__humidity->tooltip
+msgid "Check to display the current humidity"
+msgstr "选中以显示当前的湿度"
+
+#. settings-schema.json->display__cc__wind_speed->description
+msgid "Current wind"
+msgstr "当前风力"
+
+#. settings-schema.json->display__cc__wind_speed->tooltip
+msgid "Check to display the current wind"
+msgstr "选中以显示当前的风力"
+
+#. settings-schema.json->display__cc__feelslike->description
+msgid "Current 'feels like'"
+msgstr "当前‘体感温度’"
+
+#. settings-schema.json->display__cc__feelslike->tooltip
+msgid "Check to display the current apparent temperature"
+msgstr "选中以显示当前的表面温度"
+
+#. settings-schema.json->display__cc__visibility->description
+msgid "Current visibility"
+msgstr "当前可见度"
+
+#. settings-schema.json->display__cc__visibility->tooltip
+msgid "Check to display the current visibility"
+msgstr "选中以显示当前可见度"
+
+#. settings-schema.json->display__forecast__maximum_temperature->description
+msgid "Forecast maximum"
+msgstr "预报最高气温"
+
+#. settings-schema.json->display__forecast__maximum_temperature->tooltip
+msgid "Check to display the forecast maximum temperature"
+msgstr "选中以显示预报的最高温度"
+
+#. settings-schema.json->display__forecast__minimum_temperature->description
+msgid "Forecast minimum"
+msgstr "预报最低气温"
+
+#. settings-schema.json->display__forecast__minimum_temperature->tooltip
+msgid "Check to display the forecast minimum temperature"
+msgstr "选中以显示预报最低温度"
+
+#. settings-schema.json->display__forecast__wind_speed->description
+msgid "Forecast wind speed"
+msgstr "预报风速"
+
+#. settings-schema.json->display__forecast__wind_speed->tooltip
+msgid "Check to display the forecast wind speed"
+msgstr "选中以显示预报风速"
+
+#. settings-schema.json->display__forecast__wind_direction->description
+msgid "Forecast wind direction"
+msgstr "预报风向"
+
+#. settings-schema.json->display__forecast__wind_direction->tooltip
+msgid "Check to display the forecast wind direction"
+msgstr "选中以显示预报风向"
+
+#. settings-schema.json->display__forecast__pressure->description
+msgid "Forecast pressure"
+msgstr "预报气压"
+
+#. settings-schema.json->display__forecast__pressure->tooltip
+msgid "Check to display the forecast pressure"
+msgstr "选中以显示预报气压"
+
+#. settings-schema.json->display__forecast__humidity->description
+msgid "Forecast humidity"
+msgstr "预报湿度"
+
+#. settings-schema.json->display__forecast__humidity->tooltip
+msgid "Check to display the forecast humidity"
+msgstr "选中以显示预报湿度"
+
+#. settings-schema.json->styling->description
+msgid "Desklet style"
+msgstr "桌面小工具风格"
+
+#. settings-schema.json->zoom->units
+msgid "times"
+msgstr "倍数"
+
+#. settings-schema.json->zoom->description
+msgid "Zoom by"
+msgstr "缩放"
+
+#. settings-schema.json->zoom->tooltip
+msgid "Change the size of the desklet"
+msgstr "更改桌面小工具的大小"
+
+#. settings-schema.json->layout->description
+msgid "Layout"
+msgstr "布局"
+
+#. settings-schema.json->layout->options
+msgid "Horizontal"
+msgstr "水平"
+
+#. settings-schema.json->layout->options
+msgid "Vertical"
+msgstr "垂直"
+
+#. settings-schema.json->layout->tooltip
+msgid "Set the overall layout of the desklet"
+msgstr "设置桌面小工具的总体布局"
+
+#. settings-schema.json->iconstyle->description
+msgid "Icon style"
+msgstr "图标风格"
+
+#. settings-schema.json->iconstyle->options
+msgid "Colorful"
+msgstr "彩色"
+
+#. settings-schema.json->iconstyle->options
+msgid "Dark"
+msgstr "暗黑"
+
+#. settings-schema.json->iconstyle->options
+msgid "Light"
+msgstr "明亮"
+
+#. settings-schema.json->iconstyle->options
+msgid "Flat colorful"
+msgstr "扁平彩色"
+
+#. settings-schema.json->iconstyle->options
+msgid "Flat black"
+msgstr "扁平黑"
+
+#. settings-schema.json->iconstyle->options
+msgid "Flat white"
+msgstr "扁平白"
+
+#. settings-schema.json->iconstyle->options
+msgid "VClouds"
+msgstr "VClouds"
+
+#. settings-schema.json->iconstyle->options
+msgid "Novacon"
+msgstr "Novacon"
+
+#. settings-schema.json->iconstyle->options
+msgid "Weezle"
+msgstr "Weezle"
+
+#. settings-schema.json->iconstyle->options
+msgid "Meteocons 1"
+msgstr "Meteocons 1"
+
+#. settings-schema.json->iconstyle->options
+msgid "Meteocons 2"
+msgstr "Meteocons 2"
+
+#. settings-schema.json->iconstyle->options
+msgid "Sketchy"
+msgstr "写生"
+
+#. settings-schema.json->iconstyle->options
+msgid "User defined"
+msgstr "用户定义"
+
+#. settings-schema.json->iconstyle->tooltip
+msgid "Select the style for the weather icons"
+msgstr "选择天气图标的风格"
+
+#. settings-schema.json->citystyle->description
+msgid "Bold city name"
+msgstr "加粗城市名称"
+
+#. settings-schema.json->citystyle->tooltip
+msgid "Check to display the city name in bold"
+msgstr "选中以粗体显示城市名称"
+
+#. settings-schema.json->overrideTheme->description
 msgid "Override desktop theme (enables the settings below)"
 msgstr "覆盖桌面主题（启用以下的设置）"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->overrideTheme->tooltip
+#. settings-schema.json->overrideTheme->tooltip
 msgid ""
 "Check this to override the desktop theme and configure the appearance "
 "manually"
 msgstr "选中此项覆盖桌面主题并手动配置外观"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->citystyle->description
-msgid "Bold city name"
-msgstr "加粗城市名称"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->citystyle->tooltip
-msgid "Check to display the city name in bold"
-msgstr "选中以粗体显示城市名称"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__cc__visibility->description
-msgid "Current visibility"
-msgstr "当前可见度"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__cc__visibility->tooltip
-msgid "Check to display the current visibility"
-msgstr "选中以显示当前可见度"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__minimum_temperature->description
-msgid "Forecast minimum"
-msgstr "预报最低气温"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__minimum_temperature->tooltip
-msgid "Check to display the forecast minimum temperature"
-msgstr "选中以显示预报最低温度"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->locationlookups->description
-msgid "Location display settings"
-msgstr "位置显示设置"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->apikey->description
-msgid "API key"
-msgstr "API密钥"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->apikey->tooltip
-msgid ""
-"Required for some services only. Enter your API key for your chosen service"
-msgstr "仅某些服务需要。输入您选择的服务的API密钥"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->tooltip
-msgid "Select the data service you wish to use"
-msgstr "选择您想要使用的数据服务"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
-msgid "APIXU (requires API key)"
-msgstr "meteoblue (需要API密钥)"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-msgid "Wunderground (requires API key)"
-msgstr "Wunderground (需要API密钥)"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-msgid "meteoblue (requires API key)"
-msgstr "meteoblue (需要API密钥)"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
-msgid "World Weather Online (deprecated) (requires API key)"
-msgstr "World Weather Online (需要API密钥)"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-msgid "BBC"
-msgstr "BBC"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
-msgid "Open Weather Map Free (requires API key)"
-msgstr "World Weather Online (需要API密钥)"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-msgid "weather.com (deprecated)"
-msgstr "weather.com (已废弃)"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
-msgid "World Weather Online Premium (requires API key)"
-msgstr "World Weather Online (需要API密钥)"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-msgid "Forecast.io (requires API key)"
-msgstr "Forecast.io (需要API密钥)"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
-msgid "Open Weather Map (requires API key)"
-msgstr "World Weather Online (需要API密钥)"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__pressure->description
-msgid "Forecast pressure"
-msgstr "预报气压"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__pressure->tooltip
-msgid "Check to display the forecast pressure"
-msgstr "选中以显示预报气压"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->zoom->description
-msgid "Zoom by"
-msgstr "缩放"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->zoom->tooltip
-msgid "Change the size of the desklet"
-msgstr "更改桌面小工具的大小"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->zoom->units
-msgid "times"
-msgstr "倍数"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->description
-msgid "Icon style"
-msgstr "图标风格"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->tooltip
-msgid "Select the style for the weather icons"
-msgstr "选择天气图标的风格"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Flat white"
-msgstr "扁平白"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Novacon"
-msgstr "Novacon"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "VClouds"
-msgstr "VClouds"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Colorful"
-msgstr "彩色"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Light"
-msgstr "明亮"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Meteocons 2"
-msgstr "Meteocons 2"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Flat black"
-msgstr "扁平黑"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Meteocons 1"
-msgstr "Meteocons 1"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Dark"
-msgstr "暗黑"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Sketchy"
-msgstr "写生"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Flat colorful"
-msgstr "扁平彩色"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "User defined"
-msgstr "用户定义"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Weezle"
-msgstr "Weezle"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->stationID->description
-msgid "Location"
-msgstr "位置"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->stationID->tooltip
-msgid "Set your location here"
-msgstr "在这里设置您的位置"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->cornerradius->description
-msgid "Corner radius"
-msgstr "圆角半径"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->cornerradius->tooltip
-msgid "Radius for rounding the desklet's corners"
-msgstr "四舍五入桌面小工具的圆角半径"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->cornerradius->units
-#. bbcwx@oak-wood.co.uk->settings-schema.json->borderwidth->units
-msgid "px"
-msgstr "px"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->transparency->description
+#. settings-schema.json->transparency->description
 msgid "Transparency"
 msgstr "透明度"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->transparency->tooltip
+#. settings-schema.json->transparency->tooltip
 msgid "Set the transparency of the desklet"
 msgstr "设置桌面小工具的透明度"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->display->description
+#. settings-schema.json->textcolor->description
+msgid "Text color"
+msgstr "文本颜色"
+
+#. settings-schema.json->textcolor->tooltip
+msgid "Click the button to select a new text color"
+msgstr "点击按钮选择新的文本颜色"
+
+#. settings-schema.json->textshadow->description
+msgid "Text shadow"
+msgstr ""
+
+#. settings-schema.json->textshadow->tooltip
+msgid "Check to add a text shadow"
+msgstr ""
+
+#. settings-schema.json->shadowblur->units
+#. settings-schema.json->cornerradius->units
+#. settings-schema.json->borderwidth->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->shadowblur->description
+msgid "Shadow blur radius"
+msgstr ""
+
+#. settings-schema.json->shadowblur->tooltip
+msgid "Set the text shadow sharp (1) or blurry (2-7)"
+msgstr ""
+
+#. settings-schema.json->bgcolor->description
+msgid "Background color"
+msgstr "背景颜色"
+
+#. settings-schema.json->bgcolor->tooltip
+msgid "Click the button to select a new background color"
+msgstr "点击按钮选择新的背景颜色"
+
+#. settings-schema.json->cornerradius->description
+msgid "Corner radius"
+msgstr "圆角半径"
+
+#. settings-schema.json->cornerradius->tooltip
+msgid "Radius for rounding the desklet's corners"
+msgstr "四舍五入桌面小工具的圆角半径"
+
+#. settings-schema.json->border->description
+msgid "Show border"
+msgstr "显示边框"
+
+#. settings-schema.json->border->tooltip
+msgid "Check this to turn border on/off"
+msgstr "选中此项打开/关闭边框"
+
+#. settings-schema.json->bordercolor->description
+msgid "Border color"
+msgstr "边框颜色"
+
+#. settings-schema.json->bordercolor->tooltip
 msgid ""
-"Optional items to display (not all options are supported by all services)"
-msgstr "要显示的可选条目（并非所有服务支持全部选项）"
+"Select the color for the border. Only available if the 'Border' checkbox is "
+"enabled"
+msgstr "选择边框的颜色。仅在‘边框’复选框启用时可用"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->experimental->description
-msgid "Experimental and buggy features (read documentation!!)"
-msgstr "实验性和容易出错的功能（阅读文档！！）"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->borderwidth->description
+#. settings-schema.json->borderwidth->description
 msgid "Border width"
 msgstr "边框宽度"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->borderwidth->tooltip
+#. settings-schema.json->borderwidth->tooltip
 msgid ""
 "Select the width of the border. Only available if the 'Border' checkbox is "
 "enabled"
 msgstr "选择边框的宽度。仅在‘边框’复选框启用时可用"
 
-#. bbcwx@oak-wood.co.uk->metadata.json->name
-msgid "Weather Desklet"
-msgstr "天气桌面小工具"
+#. settings-schema.json->locationlookups->description
+msgid "Location display settings"
+msgstr "位置显示设置"
 
-#. bbcwx@oak-wood.co.uk->metadata.json->description
-msgid "Display the weather from several web services on your desktop"
-msgstr "在您的桌面上显示来自多个网络服务的天气"
+#. settings-schema.json->locsrc->description
+msgid "Get displayed location from"
+msgstr "获取显示的位置"
 
-#~ msgid "Open Weather Map"
-#~ msgstr "Open Weather Map"
+#. settings-schema.json->locsrc->options
+msgid "Google"
+msgstr "Google"
 
-#~ msgid "Yahoo!"
-#~ msgstr "Yahoo!"
+#. settings-schema.json->locsrc->tooltip
+msgid ""
+"The source of the text displayed as the current location. Yahoo! and Google "
+"may offer city names in other languages"
+msgstr "文本源显示为当前的位置。Yahoo!和Google可能提供其他语言的城市名称"
 
-#~ msgid "Yahoo"
-#~ msgstr "Yahoo"
+#. settings-schema.json->manuallocation->description
+msgid "Manually override displayed location"
+msgstr "手动覆写显示的位置"
+
+#. settings-schema.json->manuallocation->tooltip
+msgid "Set your city name manually."
+msgstr "手动设置您的城市名称。"
+
+#. settings-schema.json->experimental->description
+msgid "Experimental and buggy features (read documentation!!)"
+msgstr "实验性和容易出错的功能（阅读文档！！）"
+
+#. settings-schema.json->experimental_enabled->description
+msgid "Enable experimental features"
+msgstr "启用实验性功能"
+
+#. settings-schema.json->experimental_enabled->tooltip
+msgid "Check this to enable experimental and buggy features"
+msgstr "选中此项启用实验性和容易出错的功能"
+
+#. settings-schema.json->gravity->description
+msgid "Anchor desklet by"
+msgstr "固定桌面小工具"
+
+#. settings-schema.json->gravity->options
+msgid "Default"
+msgstr "默认"
+
+#. settings-schema.json->gravity->options
+msgid "Top left"
+msgstr "左上方"
+
+#. settings-schema.json->gravity->options
+msgid "Left center"
+msgstr "中间偏左"
+
+#. settings-schema.json->gravity->options
+msgid "Bottom left"
+msgstr "左下方"
+
+#. settings-schema.json->gravity->options
+msgid "Bottom center"
+msgstr "中间偏下"
+
+#. settings-schema.json->gravity->options
+msgid "Bottom right"
+msgstr "右下方"
+
+#. settings-schema.json->gravity->options
+msgid "Right center"
+msgstr "中间偏右"
+
+#. settings-schema.json->gravity->options
+msgid "Top right"
+msgstr "左上方"
+
+#. settings-schema.json->gravity->options
+msgid "Top center"
+msgstr "中间偏上"
+
+#. settings-schema.json->gravity->tooltip
+msgid ""
+"Select the point on the desklet to which it is anchored. This point will "
+"remain static as the desklet grows and shrinks"
+msgstr "选择桌面小程序要固定的点。这个点将在桌面小工具增大和缩小时保持不变"

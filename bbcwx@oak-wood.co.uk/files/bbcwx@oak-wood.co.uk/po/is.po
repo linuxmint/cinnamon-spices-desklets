@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: bbcwx\n"
 "Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
 "POT-Creation-Date: 2018-01-07 21:05+0000\n"
-"PO-Revision-Date: 2015-04-21 14:06+0000\n"
+"PO-Revision-Date: 2023-04-16 07:22-0400\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <is@li.org>\n"
 "Language: is\n"
@@ -17,846 +17,687 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2015-12-04 19:52+0000\n"
-"X-Generator: Launchpad (build 17862)\n"
+"X-Generator: Poedit 3.1.1\n"
 
-#. # Days of the week
-#: desklet.js:102
+#: desklet.js:108
 msgid "Mon"
 msgstr "mán"
 
-#: desklet.js:102
+#: desklet.js:108
 msgid "Tue"
 msgstr "þri"
 
-#: desklet.js:102
+#: desklet.js:108
 msgid "Wed"
 msgstr "mið"
 
-#: desklet.js:102
+#: desklet.js:108
 msgid "Thu"
 msgstr "fim"
 
-#: desklet.js:102
+#: desklet.js:108
 msgid "Fri"
 msgstr "fös"
 
-#: desklet.js:102
+#: desklet.js:108
 msgid "Sat"
 msgstr "lau"
 
-#: desklet.js:102
+#: desklet.js:108
 msgid "Sun"
 msgstr "sun"
 
-#. # The desklet title
-#: desklet.js:178
+#: desklet.js:186
 msgid "Weather"
 msgstr "Veður"
 
-#. # Link to Help file in context menu
-#: desklet.js:186
+#: desklet.js:194
 msgid "Help"
 msgstr "Hjálp"
 
-#. # Link to information on translating in context menu
-#: desklet.js:190
+#: desklet.js:198
 msgid "Translate"
 msgstr "Þýða"
 
-#. # Next five strings are labels for current conditions
-#: desklet.js:336 desklet.js:364
+#: desklet.js:344 desklet.js:372
 msgid "Humidity:"
 msgstr "Rakastig:"
 
-#. # Atmospheric pressure
-#: desklet.js:337 desklet.js:363
+#: desklet.js:345 desklet.js:371
 msgid "Pressure:"
 msgstr "Þrýstingur:"
 
-#: desklet.js:338
+#: desklet.js:346
 msgid "Wind:"
 msgstr "Vindur:"
 
-#: desklet.js:339
+#: desklet.js:347
 msgid "Feels like:"
 msgstr "Með vindkælingu:"
 
-#: desklet.js:340
+#: desklet.js:348
 msgid "Visibility:"
 msgstr "Skyggni:"
 
-#. # Maximum temperature
-#: desklet.js:355
+#: desklet.js:363
 msgid "Max:"
 msgstr "Hám:"
 
-#. # Minimum temperature
-#: desklet.js:357
+#: desklet.js:365
 msgid "Min:"
 msgstr "Lágm:"
 
-#. # Wind speed (English translation is "Wind:")
-#: desklet.js:359
+#: desklet.js:367
 msgid "Wind speed:"
 msgstr "Vindhraði:"
 
-#. # Wind direction
-#: desklet.js:361
+#: desklet.js:369
 msgid "Dir:"
 msgstr "Vindátt:"
 
-#. # Credit the data supplier. A link to the data supplier appears to the
-#. right of this string
-#: desklet.js:403
+#: desklet.js:411
 msgid "Data from "
 msgstr "Gögn frá "
 
-#. # Tooltip for refresh button
-#: desklet.js:415
+#: desklet.js:423
 msgid "Refresh"
 msgstr "Uppfæra"
 
-#. # Message if we fail to get weather data
-#: desklet.js:735
+#: desklet.js:744
 msgid "No data available"
 msgstr "Engin gögn tiltæk"
 
-#: desklet.js:768 desklet.js:835
-#, python-format
+#: desklet.js:777 desklet.js:844
+#, javascript-format
 msgid "Error: %s"
 msgstr "Villa: %s"
 
-#: desklet.js:768 desklet.js:835
+#: desklet.js:777 desklet.js:844
 msgid "No data"
 msgstr "Engin gögn"
 
-#. # %s is replaced by place name
-#: desklet.js:870
-#, python-format
+#: desklet.js:879
+#, javascript-format
 msgid "Click for the full forecast for %s"
 msgstr "Smelltu til að sjá fulla veðurspá fyrir %s"
 
-#. # Units for temperature, degrees Fahrenheit. %f is replaced the value. NB:
-#. English translation uses unicode character u+2109
-#: desklet.js:1113
-#, python-format
-msgid "%fF"
-msgstr "%fF"
+#: desklet.js:1139
+#, javascript-format
+msgid "%f°F"
+msgstr "%f°F"
 
-#. # Units for temperature, degrees Celsius. %f is replaced the value. NB:
-#. English translation uses unicode character u+2103
-#: desklet.js:1115
-#, python-format
-msgid "%fC"
-msgstr "%fC"
+#: desklet.js:1141
+#, javascript-format
+msgid "%f°C"
+msgstr "%f°C"
 
-#. # wind speed, miles per hour. %f is replaced by the value
-#: desklet.js:1136
-#, python-format
+#: desklet.js:1162
+#, javascript-format
 msgid "%fmph"
 msgstr "%fmph"
 
-#. # wind speed, knots. %f is replaced by the value
-#: desklet.js:1138
-#, python-format
+#: desklet.js:1164
+#, javascript-format
 msgid "%fkn"
 msgstr "%fhn"
 
-#. # wind speed, kilometers per hour. %f is replaced by the value
-#: desklet.js:1140
-#, python-format
+#: desklet.js:1166
+#, javascript-format
 msgid "%fkm/h"
 msgstr "%fkm/klst"
 
-#. # wind speed, meters per second. %f is replaced by the value
-#: desklet.js:1142
-#, python-format
+#: desklet.js:1168
+#, javascript-format
 msgid "%fm/s"
 msgstr "%fm/sek"
 
-#. # pressure, millbars. %f is replaced by the value
-#: desklet.js:1176
-#, python-format
+#: desklet.js:1202
+#, javascript-format
 msgid "%fmb"
 msgstr "%fmb"
 
-#. # pressure, inches of mercury. %f is replaced by the value
-#: desklet.js:1178
-#, python-format
+#: desklet.js:1204
+#, javascript-format
 msgid "%fin"
 msgstr "%fin"
 
-#. # pressure, mm of mercury. %f is replaced by the value
-#: desklet.js:1180
-#, python-format
+#: desklet.js:1206
+#, javascript-format
 msgid "%fmm"
 msgstr "%fmm"
 
-#. # pressure, kilopascals. %f is replaced by the value
-#: desklet.js:1182
-#, python-format
+#: desklet.js:1208
+#, javascript-format
 msgid "%fkPa"
 msgstr "%fkPa"
 
-#. # visibility, miles. %f is replaced by the value
-#: desklet.js:1233
-#, python-format
+#: desklet.js:1259
+#, javascript-format
 msgid "%fmi"
 msgstr "%fmi"
 
-#. # visibility, nautical miles. %f is replaced by the value
-#: desklet.js:1235
-#, python-format
+#: desklet.js:1261
+#, javascript-format
 msgid "%fnmi"
 msgstr "%fnmi"
 
-#. # visibility, kilometers. %f is replaced by the value
-#: desklet.js:1237
-#, python-format
+#: desklet.js:1263
+#, javascript-format
 msgid "%fkm"
 msgstr "%fkm"
 
-#. # Next 16 strings are for wind direction, compass points
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "N"
 msgstr "N"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "NNE"
 msgstr "NNA"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "NE"
 msgstr "NA"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "ENE"
 msgstr "ANA"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "E"
 msgstr "A"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "ESE"
 msgstr "ASA"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "SE"
 msgstr "SA"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "SSE"
 msgstr "SSA"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "S"
 msgstr "S"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "SSW"
 msgstr "SSV"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "SW"
 msgstr "SV"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "WSW"
 msgstr "VSV"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "W"
 msgstr "V"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "WNW"
 msgstr "VNV"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "NW"
 msgstr "NV"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "NNW"
 msgstr "NNV"
 
-#: desklet.js:1515
+#: desklet.js:1560
 msgid "Tornado"
 msgstr "Hvirfilbylur"
 
-#: desklet.js:1516
+#: desklet.js:1561
 msgid "Tropical storm"
 msgstr "Hitabeltisstormur"
 
-#: desklet.js:1517
+#: desklet.js:1562
 msgid "Hurricane"
 msgstr "Fellibylur"
 
-#: desklet.js:1518
+#: desklet.js:1563
 msgid "Severe thunderstorms"
 msgstr "Hvasst þrumuveður"
 
-#: desklet.js:1519
+#: desklet.js:1564
 msgid "Thunderstorms"
 msgstr "Þrumuveður"
 
-#: desklet.js:1520 desklet.js:4188
+#: desklet.js:1565 desklet.js:4240
 msgid "Mixed rain and snow"
 msgstr "Ýmist rigning eða snjókoma"
 
-#: desklet.js:1521
+#: desklet.js:1566
 msgid "Mixed rain and sleet"
 msgstr "Ýmist rigning eða slydda"
 
-#: desklet.js:1522
+#: desklet.js:1567
 msgid "Mixed snow and sleet"
 msgstr "Ýmist snjókoma eða slydda"
 
-#: desklet.js:1523
+#: desklet.js:1568
 msgid "Freezing drizzle"
 msgstr "Frostsúld"
 
-#: desklet.js:1524 desklet.js:1818
+#: desklet.js:1569 desklet.js:1872
 msgid "Drizzle"
 msgstr "Súld"
 
-#: desklet.js:1525
+#: desklet.js:1570
 msgid "Freezing rain"
 msgstr "Frostrigning"
 
-#: desklet.js:1526 desklet.js:1527 desklet.js:4184
+#: desklet.js:1571 desklet.js:1572 desklet.js:4236
 msgid "Showers"
 msgstr "Skúrir"
 
-#: desklet.js:1528
+#: desklet.js:1573
 msgid "Snow flurries"
 msgstr "Snjóhryðjur"
 
-#: desklet.js:1529
+#: desklet.js:1574
 msgid "Light snow showers"
 msgstr "Snjóél"
 
-#: desklet.js:1530
+#: desklet.js:1575
 msgid "Blowing snow"
 msgstr "Snjóbylur"
 
-#: desklet.js:1531 desklet.js:4186 desklet.js:4192
+#: desklet.js:1576 desklet.js:4238 desklet.js:4244
 msgid "Snow"
 msgstr "Snjókoma"
 
-#: desklet.js:1532
+#: desklet.js:1577
 msgid "Hail"
 msgstr "Haglél"
 
-#: desklet.js:1533 desklet.js:1823
+#: desklet.js:1578 desklet.js:1877
 msgid "Sleet"
 msgstr "Slydda"
 
-#: desklet.js:1534
+#: desklet.js:1579
 msgid "Dust"
 msgstr "Ryk"
 
-#: desklet.js:1535
+#: desklet.js:1580
 msgid "Foggy"
 msgstr "Þokuloft"
 
-#: desklet.js:1536
+#: desklet.js:1581
 msgid "Haze"
 msgstr "Mistur"
 
-#: desklet.js:1537
+#: desklet.js:1582
 msgid "Smoky"
 msgstr "Reykjarkóf"
 
-#: desklet.js:1538
+#: desklet.js:1583
 msgid "Blustery"
 msgstr "Vindhviður"
 
-#: desklet.js:1539
+#: desklet.js:1584
 msgid "Windy"
 msgstr "Vindasamt"
 
-#: desklet.js:1540
+#: desklet.js:1585
 msgid "Cold"
 msgstr "Kalt"
 
-#: desklet.js:1541 desklet.js:4181
+#: desklet.js:1586 desklet.js:4233
 msgid "Cloudy"
 msgstr "Skýjað"
 
-#: desklet.js:1542 desklet.js:1543
+#: desklet.js:1587 desklet.js:1588
 msgid "Mostly cloudy"
 msgstr "Alskýjað"
 
-#: desklet.js:1544 desklet.js:1545 desklet.js:1559
+#: desklet.js:1589 desklet.js:1590 desklet.js:1604
 msgid "Partly cloudy"
 msgstr "Hálfskýjað"
 
-#: desklet.js:1546
+#: desklet.js:1591
 msgid "Clear"
 msgstr "Heiðskírt"
 
-#: desklet.js:1547 desklet.js:1807
+#: desklet.js:1592 desklet.js:1861
 msgid "Sunny"
 msgstr "Bjartviðri"
 
-#: desklet.js:1548 desklet.js:1549 desklet.js:4179
+#: desklet.js:1593 desklet.js:1594 desklet.js:4231
 msgid "Fair"
 msgstr "Bjart"
 
-#: desklet.js:1550
+#: desklet.js:1595
 msgid "Mixed rain and hail"
 msgstr "Ýmist rigning eða haglél"
 
-#: desklet.js:1551
+#: desklet.js:1596
 msgid "Hot"
 msgstr "Heitt"
 
-#: desklet.js:1552
+#: desklet.js:1597
 msgid "Isolated thunderstorms"
 msgstr "Þrumuveður á köflum"
 
-#: desklet.js:1553
+#: desklet.js:1598
 msgid "Scattered thunderstorms"
 msgstr "Þrumuveður á dreif"
 
-#: desklet.js:1554 desklet.js:1555
+#: desklet.js:1599 desklet.js:1600
 msgid "Scattered showers"
 msgstr "Skúrir á dreif"
 
-#: desklet.js:1556 desklet.js:1558
+#: desklet.js:1601 desklet.js:1603
 msgid "Heavy snow"
 msgstr "Talsverð snjókoma"
 
-#: desklet.js:1557
+#: desklet.js:1602
 msgid "Scattered snow showers"
 msgstr "Snjóél á dreif"
 
-#: desklet.js:1560
+#: desklet.js:1605
 msgid "Thundershowers"
 msgstr "Þrumuskúrir"
 
-#: desklet.js:1561 desklet.js:4187
+#: desklet.js:1606 desklet.js:4239
 msgid "Snow showers"
 msgstr "Snjóél"
 
-#: desklet.js:1562
+#: desklet.js:1607
 msgid "Isolated thundershowers"
 msgstr "Þrumuskúrir á stöku stað"
 
-#: desklet.js:1563
+#: desklet.js:1608
 msgid "Not available"
 msgstr "Ekki tiltækt"
 
-#: desklet.js:1806 desklet.js:4178
+#: desklet.js:1860 desklet.js:4230
 msgid "Clear Sky"
 msgstr "Heiðskírt"
 
-#: desklet.js:1808 desklet.js:4180
+#: desklet.js:1862 desklet.js:4232
 msgid "Partly Cloudy"
 msgstr "Hálfskýjað"
 
-#: desklet.js:1809
+#: desklet.js:1863
 msgid "Sunny Intervals"
 msgstr "Sól með köflum"
 
-#: desklet.js:1810
+#: desklet.js:1864
 msgid "Sand Storm"
 msgstr "Sandfok"
 
-#: desklet.js:1811
+#: desklet.js:1865
 msgid "Mist"
 msgstr "Mistur"
 
-#: desklet.js:1812 desklet.js:4182
+#: desklet.js:1866 desklet.js:4234
 msgid "Fog"
 msgstr "Þoka"
 
-#: desklet.js:1813
+#: desklet.js:1867
 msgid "White Cloud"
 msgstr ""
 
-#: desklet.js:1814
+#: desklet.js:1868
 msgid "Light Cloud"
 msgstr ""
 
-#: desklet.js:1815
+#: desklet.js:1869
 msgid "Grey Cloud"
 msgstr "Þungskýjað"
 
-#: desklet.js:1816
+#: desklet.js:1870
 msgid "Thick Cloud"
 msgstr ""
 
-#: desklet.js:1817
+#: desklet.js:1871
 msgid "Light Rain Shower"
 msgstr "Dálitlar regnskúrir"
 
-#: desklet.js:1819 desklet.js:4189 desklet.js:4193
+#: desklet.js:1873 desklet.js:4241 desklet.js:4245
 msgid "Light Rain"
 msgstr "Dálítil rigning"
 
-#: desklet.js:1820
+#: desklet.js:1874
 msgid "Heavy Rain Shower"
 msgstr "Talsverðar regnskúrir"
 
-#: desklet.js:1821 desklet.js:4183 desklet.js:4191
+#: desklet.js:1875 desklet.js:4235 desklet.js:4243
 msgid "Heavy Rain"
 msgstr "Úrfelli"
 
-#: desklet.js:1822
+#: desklet.js:1876
 msgid "Sleet Shower"
 msgstr "Slydduél"
 
-#: desklet.js:1824
+#: desklet.js:1878
 msgid "Light Snow Shower"
 msgstr "Dálítil snjóél"
 
-#: desklet.js:1825 desklet.js:4190 desklet.js:4194
+#: desklet.js:1879 desklet.js:4242 desklet.js:4246
 msgid "Light Snow"
 msgstr "Dálítil snjókoma"
 
-#: desklet.js:1826
+#: desklet.js:1880
 msgid "Heavy Snow Shower"
 msgstr "Talsverð snjóél"
 
-#: desklet.js:1827
+#: desklet.js:1881
 msgid "Heavy Snow"
 msgstr "Talsverð snjókoma"
 
-#: desklet.js:1828 desklet.js:4185
+#: desklet.js:1882 desklet.js:4237
 msgid "Thundery Shower"
 msgstr "Þrumuskúrir"
 
-#: desklet.js:1829
+#: desklet.js:1883
 msgid "Thunder Storm"
 msgstr "Þrumuveður"
 
-#: desklet.js:1830
+#: desklet.js:1884
 msgid "Thunderstorm"
 msgstr "Þrumuveður"
 
-#: desklet.js:1831
+#: desklet.js:1885
 msgid "Hazy"
 msgstr "Hitamistur"
 
-#: desklet.js:1832
+#: desklet.js:1886
 msgid "Hail Shower"
 msgstr "Haglél"
 
-#: desklet.js:1833
+#: desklet.js:1887
 msgid "Rain"
 msgstr ""
 
-#. # direction of movement of pressure
-#: desklet.js:2018 desklet.js:2746
+#: desklet.js:2072 desklet.js:2800
 msgid "Steady"
 msgstr "Stöðugt"
 
-#. # direction of movement of pressure
-#: desklet.js:2018 desklet.js:2742
+#: desklet.js:2072 desklet.js:2796
 msgid "Rising"
 msgstr "Stígandi"
 
-#. # direction of movement of pressure
-#: desklet.js:2018 desklet.js:2744
+#: desklet.js:2072 desklet.js:2798
 msgid "Falling"
 msgstr "Fallandi"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->description
-msgid "Get displayed location from"
-msgstr "Ná í birta staðsetningu frá"
+#. metadata.json->description
+msgid "Display the weather from several web services on your desktop"
+msgstr ""
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->tooltip
+#. metadata.json->name
+msgid "Weather Desklet"
+msgstr ""
+
+#. metadata.json->comments
 msgid ""
-"The source of the text displayed as the current location. Yahoo! and Google "
-"may offer city names in other languages"
+"Please consider translating the Weather Desklet into your language. See the "
+"website for more information"
 msgstr ""
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->options
-msgid "Google"
-msgstr "Google"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->options
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->description
-msgid "Data service"
-msgstr "Gagnaþjónusta"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->experimental_enabled->description
-msgid "Enable experimental features"
-msgstr "Virkja eiginleika á tilraunastigi"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->experimental_enabled->tooltip
-msgid "Check this to enable experimental and buggy features"
-msgstr ""
-"Hakaðu við hér til að virkja eiginleika á tilraunastigi sem ekki eru alltaf "
-"að virka sem skyldi"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__cc__humidity->description
-msgid "Current humidity"
-msgstr "Rakastig núna"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->display__cc__humidity->tooltip
-msgid "Check to display the current humidity"
-msgstr "Hakaðu við hér til að birta núverandi rakastig"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->refreshtime->description
-msgid "Refresh forecast every"
-msgstr "Uppfæra spá á"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->refreshtime->tooltip
-msgid ""
-"Period between refreshing forecasts. Note that not all services support "
-"lower refresh times"
-msgstr ""
-"Veldu hér tímann milli endurlesturs á veðurspá. Athugaðu að ekki styðja "
-"allar þjónustur mjög lág uppfærslugildi"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->refreshtime->units
-msgid "minutes"
-msgstr "mínútna fresti"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->manuallocation->description
-msgid "Manually override displayed location"
-msgstr "Setja handvirkt inn staðsetningu"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->manuallocation->tooltip
-msgid "Set your city name manually."
-msgstr "Settu inn heiti borgar handvirkt."
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__cc__wind_speed->description
-msgid "Current wind"
-msgstr "Vindur núna"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__cc__wind_speed->tooltip
-msgid "Check to display the current wind"
-msgstr "Hakaðu við hér til að birta núverandi vind"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->tunits->description
-msgid "Temperature measurement unit"
-msgstr "Mælieining fyrir hitastig"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->tunits->tooltip
-msgid "Measurement units used to display temperature"
-msgstr "Mælieiningar við birtingu á hitastigi"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->tunits->options
-msgid "Fahrenheit"
-msgstr "Fahrenheit"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->tunits->options
-msgid "Celsius"
-msgstr "Selsíus"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->textcolor->description
-msgid "Text color"
-msgstr "Textalitur"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->textcolor->tooltip
-msgid "Click the button to select a new text color"
-msgstr "Smelltu á hnappinn til að velja nýjan textalit"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->border->description
-msgid "Show border"
-msgstr "Birta jaðar"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->border->tooltip
-msgid "Check this to turn border on/off"
-msgstr "Hakaðu við þetta af/á til að birta eða fela jaðar"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->layout->description
-msgid "Layout"
-msgstr "Framsetning"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->layout->tooltip
-msgid "Set the overall layout of the desklet"
-msgstr "Veldu almennt útlit skjáborðsgræjunnar"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->layout->options
-msgid "Horizontal"
-msgstr "Lárétt"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->layout->options
-msgid "Vertical"
-msgstr "Lóðrétt"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->bgcolor->description
-msgid "Background color"
-msgstr "Bakgrunnslitur"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->bgcolor->tooltip
-msgid "Click the button to select a new background color"
-msgstr "Smelltu hér til að velja nýjan bakgrunnslit"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->description
-msgid "Anchor desklet by"
-msgstr "Festa skjáborðsgræju á"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->tooltip
-msgid ""
-"Select the point on the desklet to which it is anchored. This point will "
-"remain static as the desklet grows and shrinks"
+#. metadata.json->contributors
+msgid "Chris Hastie"
 msgstr ""
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Bottom center"
-msgstr "Neðst fyrir miðju"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Default"
-msgstr "Sjálfgefið"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Left center"
-msgstr "Vinstri fyrir miðju"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Top right"
-msgstr "Efst til hægri"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Bottom left"
-msgstr "Neðst til vinstri"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Top left"
-msgstr "Efst til vinstri"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Right center"
-msgstr "Hægri fyrir miðju"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Bottom right"
-msgstr "Neðst til hægri"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Top center"
-msgstr "Efst fyrir miðju"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->top->description
+#. settings-schema.json->top->description
 msgid "Weather configuration"
 msgstr "Stillingar veðurupplýsinga"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->description
-msgid "Pressure measurement unit"
-msgstr "Mælieining loftþrýstings"
+#. settings-schema.json->webservice->description
+#. settings-schema.json->locsrc->options
+msgid "Data service"
+msgstr "Gagnaþjónusta"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->tooltip
-msgid "Measurement units used to display atmospheric pressure"
-msgstr "Mælieiningar við birtingu á loftþrýstingi"
+#. settings-schema.json->webservice->options
+msgid "BBC"
+msgstr "BBC"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->options
-msgid "in (Hg)"
-msgstr "in (Hg)"
+#. settings-schema.json->webservice->options
+#, fuzzy
+msgid "Open Weather Map (requires API key)"
+msgstr "World Weather Online (krefst API lykils)"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->options
-msgid "mm (Hg)"
-msgstr "mm (Hg)"
+#. settings-schema.json->webservice->options
+#, fuzzy
+msgid "Open Weather Map Free (requires API key)"
+msgstr "World Weather Online (krefst API lykils)"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->options
-msgid "kPa"
-msgstr "kPa"
+#. settings-schema.json->webservice->options
+msgid "Wunderground (requires API key)"
+msgstr "Wunderground (krefst API lykils)"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->options
-msgid "mb"
-msgstr "mb"
+#. settings-schema.json->webservice->options
+#, fuzzy
+msgid "World Weather Online (deprecated) (requires API key)"
+msgstr "World Weather Online (krefst API lykils)"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->styling->description
-msgid "Desklet style"
-msgstr "Stíll skjáborðsgræju"
+#. settings-schema.json->webservice->options
+#, fuzzy
+msgid "World Weather Online Premium (requires API key)"
+msgstr "World Weather Online (krefst API lykils)"
 
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__maximum_temperature->description
-msgid "Forecast maximum"
-msgstr "Spá fyrir hámarkshitastig"
+#. settings-schema.json->webservice->options
+#, fuzzy
+msgid "APIXU (requires API key)"
+msgstr "Forecast.io (krefst API lykils)"
 
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__maximum_temperature->tooltip
-msgid "Check to display the forecast maximum temperature"
-msgstr "Hakaðu við hér til að birta spá fyrir hámarkshitastig"
+#. settings-schema.json->webservice->options
+msgid "Forecast.io (requires API key)"
+msgstr "Forecast.io (krefst API lykils)"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->description
+#. settings-schema.json->webservice->options
+msgid "weather.com (deprecated)"
+msgstr "weather.com (úrelt)"
+
+#. settings-schema.json->webservice->options
+msgid "meteoblue (requires API key)"
+msgstr ""
+
+#. settings-schema.json->webservice->tooltip
+msgid "Select the data service you wish to use"
+msgstr "Veldu hvaða gagnaþjónustu þú vilt nota"
+
+#. settings-schema.json->stationID->description
+msgid "Location"
+msgstr "Staðsetning"
+
+#. settings-schema.json->stationID->tooltip
+msgid "Set your location here"
+msgstr "Veldu staðsetningu þína"
+
+#. settings-schema.json->apikey->description
+msgid "API key"
+msgstr "API-lykill"
+
+#. settings-schema.json->apikey->tooltip
+msgid ""
+"Required for some services only. Enter your API key for your chosen service"
+msgstr ""
+"Aðeins nauðsynlegt fyrir sumar þjónustur. Settu inn API-lykillinn þinn fyrir "
+"þjónustuna sem þú valdir"
+
+#. settings-schema.json->tunits->description
+msgid "Temperature measurement unit"
+msgstr "Mælieining fyrir hitastig"
+
+#. settings-schema.json->tunits->options
+msgid "Celsius"
+msgstr "Selsíus"
+
+#. settings-schema.json->tunits->options
+msgid "Fahrenheit"
+msgstr "Fahrenheit"
+
+#. settings-schema.json->tunits->tooltip
+msgid "Measurement units used to display temperature"
+msgstr "Mælieiningar við birtingu á hitastigi"
+
+#. settings-schema.json->wunits->description
 msgid "Wind speed measurement unit"
 msgstr "Mælieining vindhraða"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->tooltip
-msgid "Measurement units used to display wind speed"
-msgstr "Mælieiningar við birtingu á vindhraða"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->options
-msgid "knots"
-msgstr "hnútar"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->options
-msgid "m/s"
-msgstr "m/sek"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->options
-msgid "km/h"
-msgstr "km/klst"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->options
+#. settings-schema.json->wunits->options
 msgid "mph"
 msgstr "mílur/klst"
 
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__meta__country->description
-msgid "Country"
-msgstr "Land"
+#. settings-schema.json->wunits->options
+msgid "km/h"
+msgstr "km/klst"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->display__meta__country->tooltip
-msgid "Check to display the country"
-msgstr "Hakaðu við hér til að birta heiti landsins"
+#. settings-schema.json->wunits->options
+msgid "knots"
+msgstr "hnútar"
 
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__cc__pressure->description
-msgid "Current pressure"
-msgstr "Loftþrýstingur núna"
+#. settings-schema.json->wunits->options
+msgid "m/s"
+msgstr "m/sek"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->display__cc__pressure->tooltip
-msgid "Check to display the current pressure"
-msgstr "Hakaðu við hér til að birta núverandi loftþrýsting"
+#. settings-schema.json->wunits->tooltip
+msgid "Measurement units used to display wind speed"
+msgstr "Mælieiningar við birtingu á vindhraða"
 
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__wind_direction->description
-msgid "Forecast wind direction"
-msgstr "Spá vindátt"
+#. settings-schema.json->punits->description
+msgid "Pressure measurement unit"
+msgstr "Mælieining loftþrýstings"
 
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__wind_direction->tooltip
-msgid "Check to display the forecast wind direction"
-msgstr "Hakaðu við hér til að birta spá fyrir vindátt"
+#. settings-schema.json->punits->options
+msgid "mb"
+msgstr "mb"
 
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__cc__feelslike->description
-msgid "Current 'feels like'"
-msgstr "Vindkæling núna"
+#. settings-schema.json->punits->options
+msgid "in (Hg)"
+msgstr "in (Hg)"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->display__cc__feelslike->tooltip
-msgid "Check to display the current apparent temperature"
-msgstr "Hakaðu við hér til að birta núverandi hitastig með vindkælingu"
+#. settings-schema.json->punits->options
+msgid "mm (Hg)"
+msgstr "mm (Hg)"
 
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__humidity->description
-msgid "Forecast humidity"
-msgstr "Spá rakastigi"
+#. settings-schema.json->punits->options
+msgid "kPa"
+msgstr "kPa"
 
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__humidity->tooltip
-msgid "Check to display the forecast humidity"
-msgstr "Hakaðu við hér til að birta spá fyrir rakastig"
+#. settings-schema.json->punits->tooltip
+msgid "Measurement units used to display atmospheric pressure"
+msgstr "Mælieiningar við birtingu á loftþrýstingi"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->userno->description
+#. settings-schema.json->userno->units
+msgid "days"
+msgstr "dagar"
+
+#. settings-schema.json->userno->description
 msgid "Show forecast for"
 msgstr "Birta spá fyrir"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->userno->tooltip
+#. settings-schema.json->userno->tooltip
 msgid ""
 "The number of days of forecast to display. Note that not all services "
 "support all values"
@@ -864,286 +705,407 @@ msgstr ""
 "Veldu hér fjölda daga til birtingar á veðurspá. Athugaðu að ekki styðja "
 "allar þjónustur hvaða gildi sem er"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->userno->units
-msgid "days"
-msgstr "dagar"
+#. settings-schema.json->refreshtime->units
+msgid "minutes"
+msgstr "mínútna fresti"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->bordercolor->description
-msgid "Border color"
-msgstr "Litur ramma"
+#. settings-schema.json->refreshtime->description
+msgid "Refresh forecast every"
+msgstr "Uppfæra spá á"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->bordercolor->tooltip
+#. settings-schema.json->refreshtime->tooltip
 msgid ""
-"Select the color for the border. Only available if the 'Border' checkbox is "
-"enabled"
+"Period between refreshing forecasts. Note that not all services support "
+"lower refresh times"
 msgstr ""
+"Veldu hér tímann milli endurlesturs á veðurspá. Athugaðu að ekki styðja "
+"allar þjónustur mjög lág uppfærslugildi"
 
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__wind_speed->description
-msgid "Forecast wind speed"
-msgstr "Spá vindhraða"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__wind_speed->tooltip
-msgid "Check to display the forecast wind speed"
-msgstr "Hakaðu við hér til að birta spá fyrir vindhraða"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__cc__weather->description
-msgid "Current weather and icon"
-msgstr "Veðurlýsing og táknmynd"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->display__cc__weather->tooltip
-msgid "Check to display the current weather and large icon"
-msgstr "Hakaðu við hér til að birta veðurlýsingu og stóra táknmynd"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->overrideTheme->description
-msgid "Override desktop theme (enables the settings below)"
-msgstr "Hunsa skjáborðsþema (virkjar stillingarnar hér fyrir neðan)"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->overrideTheme->tooltip
-msgid ""
-"Check this to override the desktop theme and configure the appearance "
-"manually"
-msgstr "Hakaðu við hér til að hunsa skjáborðsþema og stilla útlit handvirkt"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->citystyle->description
-msgid "Bold city name"
-msgstr "Feitletra nafn borgar"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->citystyle->tooltip
-msgid "Check to display the city name in bold"
-msgstr "Hakaðu við hér til að birta heiti borgar feitletrað"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__cc__visibility->description
-msgid "Current visibility"
-msgstr "Skyggni núna"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__cc__visibility->tooltip
-msgid "Check to display the current visibility"
-msgstr "Hakaðu við hér til að birta núverandi skyggni"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__minimum_temperature->description
-msgid "Forecast minimum"
-msgstr "Spá fyrir lágmarkshitastig"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__minimum_temperature->tooltip
-msgid "Check to display the forecast minimum temperature"
-msgstr "Hakaðu við hér til að birta spá fyrir lágmarkshitastig"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->locationlookups->description
-msgid "Location display settings"
-msgstr "Birtingarstillingar staðsetningar"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->apikey->description
-msgid "API key"
-msgstr "API-lykill"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->apikey->tooltip
-msgid ""
-"Required for some services only. Enter your API key for your chosen service"
-msgstr ""
-"Aðeins nauðsynlegt fyrir sumar þjónustur. Settu inn API-lykillinn þinn fyrir "
-"þjónustuna sem þú valdir"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->tooltip
-msgid "Select the data service you wish to use"
-msgstr "Veldu hvaða gagnaþjónustu þú vilt nota"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
-msgid "APIXU (requires API key)"
-msgstr "Forecast.io (krefst API lykils)"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-msgid "Wunderground (requires API key)"
-msgstr "Wunderground (krefst API lykils)"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-msgid "meteoblue (requires API key)"
-msgstr ""
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
-msgid "World Weather Online (deprecated) (requires API key)"
-msgstr "World Weather Online (krefst API lykils)"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-msgid "BBC"
-msgstr "BBC"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
-msgid "Open Weather Map Free (requires API key)"
-msgstr "World Weather Online (krefst API lykils)"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-msgid "weather.com (deprecated)"
-msgstr "weather.com (úrelt)"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
-msgid "World Weather Online Premium (requires API key)"
-msgstr "World Weather Online (krefst API lykils)"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-msgid "Forecast.io (requires API key)"
-msgstr "Forecast.io (krefst API lykils)"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
-msgid "Open Weather Map (requires API key)"
-msgstr "World Weather Online (krefst API lykils)"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__pressure->description
-msgid "Forecast pressure"
-msgstr "Spá fyrir loftþrýsting"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__pressure->tooltip
-msgid "Check to display the forecast pressure"
-msgstr "Hakaðu við hér til að birta spá fyrir loftþrýsting"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->zoom->description
-msgid "Zoom by"
-msgstr "Aðdráttur um"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->zoom->tooltip
-msgid "Change the size of the desklet"
-msgstr "Breyta stærð á skjáborðsgræjunni"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->zoom->units
-msgid "times"
-msgstr "sinnum"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->description
-msgid "Icon style"
-msgstr "Stíll táknmynda"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->tooltip
-msgid "Select the style for the weather icons"
-msgstr "Veldu stíl fyrir veðurtáknmyndir"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Flat white"
-msgstr "Flatt hvítt"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Novacon"
-msgstr "Novacon"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "VClouds"
-msgstr "VClouds"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Colorful"
-msgstr "Litríkt"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Light"
-msgstr "Ljóst"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Meteocons 2"
-msgstr "Meteocons 2"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Flat black"
-msgstr "Flatt svart"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Meteocons 1"
-msgstr "Meteocons 1"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Dark"
-msgstr "Dökkt"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Sketchy"
-msgstr "Sketchy"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Flat colorful"
-msgstr "Flatt litaglatt"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "User defined"
-msgstr "Skilgreint af notanda"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Weezle"
-msgstr "Weezle"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->stationID->description
-msgid "Location"
-msgstr "Staðsetning"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->stationID->tooltip
-msgid "Set your location here"
-msgstr "Veldu staðsetningu þína"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->cornerradius->description
-msgid "Corner radius"
-msgstr "Radíus horns"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->cornerradius->tooltip
-msgid "Radius for rounding the desklet's corners"
-msgstr "Radíus rúnnunar á hornum skjáborðsgræju"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->cornerradius->units
-#. bbcwx@oak-wood.co.uk->settings-schema.json->borderwidth->units
-msgid "px"
-msgstr "px"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->transparency->description
-msgid "Transparency"
-msgstr "Gegnsæi"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->transparency->tooltip
-msgid "Set the transparency of the desklet"
-msgstr "Veldu gegnsæi skjáborðsgræjunnar"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->display->description
+#. settings-schema.json->display->description
 msgid ""
 "Optional items to display (not all options are supported by all services)"
 msgstr ""
 "Aukaleg atriði til birtingar (ekki styðja allar þjónustur hvaða valkosti sem "
 "er)"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->experimental->description
-msgid "Experimental and buggy features (read documentation!!)"
-msgstr "Eiginleikar á tilraunastigi (lesa hjálparskjölun!!)"
+#. settings-schema.json->display__meta__country->description
+msgid "Country"
+msgstr "Land"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->borderwidth->description
+#. settings-schema.json->display__meta__country->tooltip
+msgid "Check to display the country"
+msgstr "Hakaðu við hér til að birta heiti landsins"
+
+#. settings-schema.json->display__cc__weather->description
+msgid "Current weather and icon"
+msgstr "Veðurlýsing og táknmynd"
+
+#. settings-schema.json->display__cc__weather->tooltip
+msgid "Check to display the current weather and large icon"
+msgstr "Hakaðu við hér til að birta veðurlýsingu og stóra táknmynd"
+
+#. settings-schema.json->display__cc__pressure->description
+msgid "Current pressure"
+msgstr "Loftþrýstingur núna"
+
+#. settings-schema.json->display__cc__pressure->tooltip
+msgid "Check to display the current pressure"
+msgstr "Hakaðu við hér til að birta núverandi loftþrýsting"
+
+#. settings-schema.json->display__cc__humidity->description
+msgid "Current humidity"
+msgstr "Rakastig núna"
+
+#. settings-schema.json->display__cc__humidity->tooltip
+msgid "Check to display the current humidity"
+msgstr "Hakaðu við hér til að birta núverandi rakastig"
+
+#. settings-schema.json->display__cc__wind_speed->description
+msgid "Current wind"
+msgstr "Vindur núna"
+
+#. settings-schema.json->display__cc__wind_speed->tooltip
+msgid "Check to display the current wind"
+msgstr "Hakaðu við hér til að birta núverandi vind"
+
+#. settings-schema.json->display__cc__feelslike->description
+msgid "Current 'feels like'"
+msgstr "Vindkæling núna"
+
+#. settings-schema.json->display__cc__feelslike->tooltip
+msgid "Check to display the current apparent temperature"
+msgstr "Hakaðu við hér til að birta núverandi hitastig með vindkælingu"
+
+#. settings-schema.json->display__cc__visibility->description
+msgid "Current visibility"
+msgstr "Skyggni núna"
+
+#. settings-schema.json->display__cc__visibility->tooltip
+msgid "Check to display the current visibility"
+msgstr "Hakaðu við hér til að birta núverandi skyggni"
+
+#. settings-schema.json->display__forecast__maximum_temperature->description
+msgid "Forecast maximum"
+msgstr "Spá fyrir hámarkshitastig"
+
+#. settings-schema.json->display__forecast__maximum_temperature->tooltip
+msgid "Check to display the forecast maximum temperature"
+msgstr "Hakaðu við hér til að birta spá fyrir hámarkshitastig"
+
+#. settings-schema.json->display__forecast__minimum_temperature->description
+msgid "Forecast minimum"
+msgstr "Spá fyrir lágmarkshitastig"
+
+#. settings-schema.json->display__forecast__minimum_temperature->tooltip
+msgid "Check to display the forecast minimum temperature"
+msgstr "Hakaðu við hér til að birta spá fyrir lágmarkshitastig"
+
+#. settings-schema.json->display__forecast__wind_speed->description
+msgid "Forecast wind speed"
+msgstr "Spá vindhraða"
+
+#. settings-schema.json->display__forecast__wind_speed->tooltip
+msgid "Check to display the forecast wind speed"
+msgstr "Hakaðu við hér til að birta spá fyrir vindhraða"
+
+#. settings-schema.json->display__forecast__wind_direction->description
+msgid "Forecast wind direction"
+msgstr "Spá vindátt"
+
+#. settings-schema.json->display__forecast__wind_direction->tooltip
+msgid "Check to display the forecast wind direction"
+msgstr "Hakaðu við hér til að birta spá fyrir vindátt"
+
+#. settings-schema.json->display__forecast__pressure->description
+msgid "Forecast pressure"
+msgstr "Spá fyrir loftþrýsting"
+
+#. settings-schema.json->display__forecast__pressure->tooltip
+msgid "Check to display the forecast pressure"
+msgstr "Hakaðu við hér til að birta spá fyrir loftþrýsting"
+
+#. settings-schema.json->display__forecast__humidity->description
+msgid "Forecast humidity"
+msgstr "Spá rakastigi"
+
+#. settings-schema.json->display__forecast__humidity->tooltip
+msgid "Check to display the forecast humidity"
+msgstr "Hakaðu við hér til að birta spá fyrir rakastig"
+
+#. settings-schema.json->styling->description
+msgid "Desklet style"
+msgstr "Stíll skjáborðsgræju"
+
+#. settings-schema.json->zoom->units
+msgid "times"
+msgstr "sinnum"
+
+#. settings-schema.json->zoom->description
+msgid "Zoom by"
+msgstr "Aðdráttur um"
+
+#. settings-schema.json->zoom->tooltip
+msgid "Change the size of the desklet"
+msgstr "Breyta stærð á skjáborðsgræjunni"
+
+#. settings-schema.json->layout->description
+msgid "Layout"
+msgstr "Framsetning"
+
+#. settings-schema.json->layout->options
+msgid "Horizontal"
+msgstr "Lárétt"
+
+#. settings-schema.json->layout->options
+msgid "Vertical"
+msgstr "Lóðrétt"
+
+#. settings-schema.json->layout->tooltip
+msgid "Set the overall layout of the desklet"
+msgstr "Veldu almennt útlit skjáborðsgræjunnar"
+
+#. settings-schema.json->iconstyle->description
+msgid "Icon style"
+msgstr "Stíll táknmynda"
+
+#. settings-schema.json->iconstyle->options
+msgid "Colorful"
+msgstr "Litríkt"
+
+#. settings-schema.json->iconstyle->options
+msgid "Dark"
+msgstr "Dökkt"
+
+#. settings-schema.json->iconstyle->options
+msgid "Light"
+msgstr "Ljóst"
+
+#. settings-schema.json->iconstyle->options
+msgid "Flat colorful"
+msgstr "Flatt litaglatt"
+
+#. settings-schema.json->iconstyle->options
+msgid "Flat black"
+msgstr "Flatt svart"
+
+#. settings-schema.json->iconstyle->options
+msgid "Flat white"
+msgstr "Flatt hvítt"
+
+#. settings-schema.json->iconstyle->options
+msgid "VClouds"
+msgstr "VClouds"
+
+#. settings-schema.json->iconstyle->options
+msgid "Novacon"
+msgstr "Novacon"
+
+#. settings-schema.json->iconstyle->options
+msgid "Weezle"
+msgstr "Weezle"
+
+#. settings-schema.json->iconstyle->options
+msgid "Meteocons 1"
+msgstr "Meteocons 1"
+
+#. settings-schema.json->iconstyle->options
+msgid "Meteocons 2"
+msgstr "Meteocons 2"
+
+#. settings-schema.json->iconstyle->options
+msgid "Sketchy"
+msgstr "Sketchy"
+
+#. settings-schema.json->iconstyle->options
+msgid "User defined"
+msgstr "Skilgreint af notanda"
+
+#. settings-schema.json->iconstyle->tooltip
+msgid "Select the style for the weather icons"
+msgstr "Veldu stíl fyrir veðurtáknmyndir"
+
+#. settings-schema.json->citystyle->description
+msgid "Bold city name"
+msgstr "Feitletra nafn borgar"
+
+#. settings-schema.json->citystyle->tooltip
+msgid "Check to display the city name in bold"
+msgstr "Hakaðu við hér til að birta heiti borgar feitletrað"
+
+#. settings-schema.json->overrideTheme->description
+msgid "Override desktop theme (enables the settings below)"
+msgstr "Hunsa skjáborðsþema (virkjar stillingarnar hér fyrir neðan)"
+
+#. settings-schema.json->overrideTheme->tooltip
+msgid ""
+"Check this to override the desktop theme and configure the appearance "
+"manually"
+msgstr "Hakaðu við hér til að hunsa skjáborðsþema og stilla útlit handvirkt"
+
+#. settings-schema.json->transparency->description
+msgid "Transparency"
+msgstr "Gegnsæi"
+
+#. settings-schema.json->transparency->tooltip
+msgid "Set the transparency of the desklet"
+msgstr "Veldu gegnsæi skjáborðsgræjunnar"
+
+#. settings-schema.json->textcolor->description
+msgid "Text color"
+msgstr "Textalitur"
+
+#. settings-schema.json->textcolor->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Smelltu á hnappinn til að velja nýjan textalit"
+
+#. settings-schema.json->textshadow->description
+msgid "Text shadow"
+msgstr ""
+
+#. settings-schema.json->textshadow->tooltip
+msgid "Check to add a text shadow"
+msgstr ""
+
+#. settings-schema.json->shadowblur->units
+#. settings-schema.json->cornerradius->units
+#. settings-schema.json->borderwidth->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->shadowblur->description
+msgid "Shadow blur radius"
+msgstr ""
+
+#. settings-schema.json->shadowblur->tooltip
+msgid "Set the text shadow sharp (1) or blurry (2-7)"
+msgstr ""
+
+#. settings-schema.json->bgcolor->description
+msgid "Background color"
+msgstr "Bakgrunnslitur"
+
+#. settings-schema.json->bgcolor->tooltip
+msgid "Click the button to select a new background color"
+msgstr "Smelltu hér til að velja nýjan bakgrunnslit"
+
+#. settings-schema.json->cornerradius->description
+msgid "Corner radius"
+msgstr "Radíus horns"
+
+#. settings-schema.json->cornerradius->tooltip
+msgid "Radius for rounding the desklet's corners"
+msgstr "Radíus rúnnunar á hornum skjáborðsgræju"
+
+#. settings-schema.json->border->description
+msgid "Show border"
+msgstr "Birta jaðar"
+
+#. settings-schema.json->border->tooltip
+msgid "Check this to turn border on/off"
+msgstr "Hakaðu við þetta af/á til að birta eða fela jaðar"
+
+#. settings-schema.json->bordercolor->description
+msgid "Border color"
+msgstr "Litur ramma"
+
+#. settings-schema.json->bordercolor->tooltip
+msgid ""
+"Select the color for the border. Only available if the 'Border' checkbox is "
+"enabled"
+msgstr ""
+
+#. settings-schema.json->borderwidth->description
 msgid "Border width"
 msgstr "Breidd jaðars"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->borderwidth->tooltip
+#. settings-schema.json->borderwidth->tooltip
 msgid ""
 "Select the width of the border. Only available if the 'Border' checkbox is "
 "enabled"
 msgstr ""
 
-#. bbcwx@oak-wood.co.uk->metadata.json->name
-msgid "Weather Desklet"
+#. settings-schema.json->locationlookups->description
+msgid "Location display settings"
+msgstr "Birtingarstillingar staðsetningar"
+
+#. settings-schema.json->locsrc->description
+msgid "Get displayed location from"
+msgstr "Ná í birta staðsetningu frá"
+
+#. settings-schema.json->locsrc->options
+msgid "Google"
+msgstr "Google"
+
+#. settings-schema.json->locsrc->tooltip
+msgid ""
+"The source of the text displayed as the current location. Yahoo! and Google "
+"may offer city names in other languages"
 msgstr ""
 
-#. bbcwx@oak-wood.co.uk->metadata.json->description
-msgid "Display the weather from several web services on your desktop"
+#. settings-schema.json->manuallocation->description
+msgid "Manually override displayed location"
+msgstr "Setja handvirkt inn staðsetningu"
+
+#. settings-schema.json->manuallocation->tooltip
+msgid "Set your city name manually."
+msgstr "Settu inn heiti borgar handvirkt."
+
+#. settings-schema.json->experimental->description
+msgid "Experimental and buggy features (read documentation!!)"
+msgstr "Eiginleikar á tilraunastigi (lesa hjálparskjölun!!)"
+
+#. settings-schema.json->experimental_enabled->description
+msgid "Enable experimental features"
+msgstr "Virkja eiginleika á tilraunastigi"
+
+#. settings-schema.json->experimental_enabled->tooltip
+msgid "Check this to enable experimental and buggy features"
 msgstr ""
+"Hakaðu við hér til að virkja eiginleika á tilraunastigi sem ekki eru alltaf "
+"að virka sem skyldi"
 
-#~ msgid "Open Weather Map"
-#~ msgstr "Open Weather Map"
+#. settings-schema.json->gravity->description
+msgid "Anchor desklet by"
+msgstr "Festa skjáborðsgræju á"
 
-#~ msgid "Yahoo!"
-#~ msgstr "Yahoo"
+#. settings-schema.json->gravity->options
+msgid "Default"
+msgstr "Sjálfgefið"
 
-#~ msgid "Yahoo"
-#~ msgstr "Yahoo"
+#. settings-schema.json->gravity->options
+msgid "Top left"
+msgstr "Efst til vinstri"
+
+#. settings-schema.json->gravity->options
+msgid "Left center"
+msgstr "Vinstri fyrir miðju"
+
+#. settings-schema.json->gravity->options
+msgid "Bottom left"
+msgstr "Neðst til vinstri"
+
+#. settings-schema.json->gravity->options
+msgid "Bottom center"
+msgstr "Neðst fyrir miðju"
+
+#. settings-schema.json->gravity->options
+msgid "Bottom right"
+msgstr "Neðst til hægri"
+
+#. settings-schema.json->gravity->options
+msgid "Right center"
+msgstr "Hægri fyrir miðju"
+
+#. settings-schema.json->gravity->options
+msgid "Top right"
+msgstr "Efst til hægri"
+
+#. settings-schema.json->gravity->options
+msgid "Top center"
+msgstr "Efst fyrir miðju"
+
+#. settings-schema.json->gravity->tooltip
+msgid ""
+"Select the point on the desklet to which it is anchored. This point will "
+"remain static as the desklet grows and shrinks"
+msgstr ""
