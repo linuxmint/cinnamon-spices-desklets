@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: 1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-18 18:53+0100\n"
-"PO-Revision-Date: 2022-10-23 19:07+0200\n"
+"PO-Revision-Date: 2023-05-04 15:21+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
 "Language: da\n"
@@ -16,27 +16,27 @@ msgstr ""
 "X-Poedit-SearchPath-0: desklet.js\n"
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
-#: desklet.js:119
+#: desklet.js:120
 msgid "UNKNOWN"
 msgstr "UKENDT"
 
-#: desklet.js:120
+#: desklet.js:121
 msgid "No ping output"
 msgstr "Intet ping-output"
 
-#: desklet.js:125 desklet.js:140
+#: desklet.js:126 desklet.js:141
 msgid "CRIT"
 msgstr "KRIT"
 
-#: desklet.js:129 desklet.js:144
+#: desklet.js:130 desklet.js:145
 msgid "OK"
 msgstr "OK"
 
-#: desklet.js:133 desklet.js:148
+#: desklet.js:134 desklet.js:149
 msgid "WARN"
 msgstr "ADV"
 
-#: desklet.js:137
+#: desklet.js:138
 msgid "HTTP-Statuscode"
 msgstr "HTTP-statuskode"
 
@@ -79,6 +79,10 @@ msgstr "Vis underretninger, når tilstanden ændres"
 #. settings-schema.json->host->description
 msgid "Hostname, IP address or HTTP(S)-URL to check"
 msgstr "Værtsnavn, IP-adresse eller HTTP(S)-URL som skal tjekkes"
+
+#. settings-schema.json->interval->description
+msgid "Time's interval of check"
+msgstr "Tidsinterval for kontrol"
 
 #. settings-schema.json->scale-size->units
 msgid "scale factor"
