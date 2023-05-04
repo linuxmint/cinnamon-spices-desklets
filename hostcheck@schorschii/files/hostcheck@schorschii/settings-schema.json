@@ -36,7 +36,7 @@
         "max": 900,
         "step": 1,
         "units": "seconds",
-        "description": "Time's interval to check"
+        "description": "Time's interval of check"
     },
     "scale-size": {
         "type": "spinbutton",
