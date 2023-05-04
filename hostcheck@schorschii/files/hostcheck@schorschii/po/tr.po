@@ -1,98 +1,136 @@
+# Serkan ÖNDER <serkanonder@outlook.com>, December 2020.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: 1.2\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-12 18:07+0100\n"
-"PO-Revision-Date: 2020-12-13 17:27+0300\n"
+"PO-Revision-Date: 2023-05-04 18:05+0100\n"
+"Last-Translator: Gujenczek <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Last-Translator: Serkan ÖNDER <serkanonder@outlook.com>\n"
-"Language: tr\n"
 "X-Poedit-SearchPath-0: desklet.js\n"
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
-msgid "Host Check"
-msgstr "Ana Bilgisayar Kontrolü"
+#: desklet.js:120
+msgid "UNKNOWN"
+msgstr "BİLİNMEYEN"
 
+#: desklet.js:121
+msgid "No ping output"
+msgstr "Ping çıkışı yok"
+
+#: desklet.js:126 desklet.js:141
+msgid "CRIT"
+msgstr "KRİTİK"
+
+#: desklet.js:130 desklet.js:145
+msgid "OK"
+msgstr "TAMAM"
+
+#: desklet.js:134 desklet.js:149
+msgid "WARN"
+msgstr "UYARI"
+
+#: desklet.js:138
+msgid "HTTP-Statuscode"
+msgstr "HTTP-Durum Kodu"
+
+#. metadata.json->description
 msgid "Checks a host via ping or HTTP(S) and displays if it is available."
 msgstr ""
 "Ping veya HTTP(S) yoluyla bir ana bilgisayarı kontrol eder ve "
 "kullanılabilir olup olmadığını görüntüler."
 
+#. metadata.json->name
+msgid "Host Check"
+msgstr "Ana Bilgisayar Kontrolü"
+
+#. settings-schema.json->head0->description
 msgid "Settings for hostcheck@schorschii"
 msgstr "hostcheck@schorschii Ayarları"
 
+#. settings-schema.json->head1->description
 msgid "General"
 msgstr "Genel"
 
+#. settings-schema.json->type->description
 msgid "Ping or HTTP(S) check"
 msgstr "Ping veya HTTP(S) kontrolü"
 
+#. settings-schema.json->type->tooltip
 msgid "Choose, if this desklet should do a ping or HTTP(S) check."
 msgstr ""
 "Bu masaüstü uygulamasının bir ping veya HTTP(S) kontrolü yapıp "
 "yapmayacağını seçin."
 
+#. settings-schema.json->type->options
+msgid "Ping"
+msgstr ""
+
+#. settings-schema.json->type->options
+msgid "HTTP(S)"
+msgstr ""
+
+#. settings-schema.json->show-notifications->description
 msgid "Show notifications when state changed"
 msgstr "Durum değiştiğinde bildirimleri göster"
 
+#. settings-schema.json->host->description
 msgid "Hostname, IP address or HTTP(S)-URL to check"
 msgstr "Ana bilgisayar adı, IP adresi veya HTTP(S)-URL kontrol edilecek"
 
-msgid "Desklet size"
-msgstr "Uygulama boyutu"
+#. settings-schema.json->interval->description
+msgid "Time's interval of check"
+msgstr "Zamanın kontrol aralığı"
 
+#. settings-schema.json->scale-size->units
 msgid "scale factor"
 msgstr "ölçü çarpanı"
 
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Uygulama boyutu"
+
+#. settings-schema.json->scale-size->tooltip
 msgid "Increase or decrease the size of this desklet using this scale factor."
 msgstr ""
 "Bu ölçü çarpanını kullanarak bu masaüstü uygulamacığının boyutunu artırın "
 "veya azaltın."
 
+#. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
 msgstr "Süslemeleri gizle"
 
+#. settings-schema.json->head3->description
 msgid "Custom desklet label (only visible if decorations are enabled)"
 msgstr ""
 "Masaüstü uygulamacığı özel etiketi (sadece süslemeler etkinse görünür)"
 
+#. settings-schema.json->use-custom-label->description
 msgid "Use a custom desklet label"
 msgstr "Masaüstü uygulamacığı için özel bir etiketi kullan"
 
+#. settings-schema.json->use-custom-label->tooltip
 msgid "Checking this box allows you to set a custom label in the field below."
 msgstr ""
 "Bu kutuyu işaretlemek, aşağıda açılacak alandan özel bir etiket "
 "ayarlamanıza izin verir."
 
+#. settings-schema.json->custom-label->description
 msgid "Custom desklet label"
 msgstr "Özel masaüstü uygulamacığı etiketi"
 
+#. settings-schema.json->custom-label->tooltip
 msgid ""
 "Set your custom label here. This field is unavailable unless the checkbox "
 "above is enabled."
 msgstr ""
 "Burada özel etiketinizi ayarlayabilirsiniz. Bu alan yukarıdaki onay kutusu "
 "etkin olmadıkça kullanılamaz."
-
-msgid "UNKNOWN"
-msgstr "BİLİNMEYEN"
-
-msgid "CRIT"
-msgstr "KRİTİK"
-
-msgid "OK"
-msgstr "TAMAM"
-
-msgid "WARN"
-msgstr "UYARI"
-
-msgid "No ping output"
-msgstr "Ping çıkışı yok"
-
-msgid "HTTP-Statuscode"
-msgstr "HTTP-Durum Kodu"
