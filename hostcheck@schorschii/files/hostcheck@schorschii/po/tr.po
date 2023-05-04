@@ -72,11 +72,11 @@ msgstr ""
 
 #. settings-schema.json->type->options
 msgid "Ping"
-msgstr ""
+msgstr "Ping"
 
 #. settings-schema.json->type->options
 msgid "HTTP(S)"
-msgstr ""
+msgstr "HTTP(S)"
 
 #. settings-schema.json->show-notifications->description
 msgid "Show notifications when state changed"
