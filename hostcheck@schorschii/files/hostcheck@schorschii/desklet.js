@@ -161,7 +161,7 @@ MyDesklet.prototype = {
 		let label_size_x = this.defaultWidth * this.scale_size * global.ui_scale;
 		let label_size_y = this.defaultHeight * this.scale_size * global.ui_scale
 		// modify label
-		let statusString = this.statusTagString + " / " + this.interval + "s\n" + this.host;
+		let statusString = this.statusTagString + " / " + this.interval + _('s') + "\n" + this.host;
 		this.statusLabel.set_text(statusString);
 		this.statusLabel.style_class = "statusbox "+this.colorClass;
 		this.statusLabel.style = "width:"+label_size_x+"px; height:"+label_size_y+"px;";
