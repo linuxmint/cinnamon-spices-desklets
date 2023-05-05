@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-04 14:21+0100\n"
-"PO-Revision-Date: 2023-05-04 14:53+0100\n"
+"POT-Creation-Date: 2023-05-05 13:14+0100\n"
+"PO-Revision-Date: 2023-05-05 13:16+0100\n"
 "Last-Translator: Gujenczek <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
 "Language: cs\n"
@@ -39,6 +39,10 @@ msgstr "VAROVÁNÍ"
 #: desklet.js:138
 msgid "HTTP-Statuscode"
 msgstr "Kód statusu HTTP"
+
+#: desklet.js:164
+msgid "s"
+msgstr "s"
 
 #. metadata.json->description
 msgid "Checks a host via ping or HTTP(S) and displays if it is available."
@@ -80,6 +84,10 @@ msgstr "Zobrazit upozornění na změnu stavu"
 #. settings-schema.json->host->description
 msgid "Hostname, IP address or HTTP(S)-URL to check"
 msgstr "Název hostitele, IP adresa nebo HTTP(S) url adresa ke kontrolování"
+
+#. settings-schema.json->interval->units
+msgid "seconds"
+msgstr "sekund"
 
 #. settings-schema.json->interval->description
 msgid "Time's interval of check"
