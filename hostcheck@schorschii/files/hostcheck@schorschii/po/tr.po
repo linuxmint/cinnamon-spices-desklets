@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: 1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-12 18:07+0100\n"
-"PO-Revision-Date: 2023-05-04 18:05+0100\n"
+"PO-Revision-Date: 2023-05-05 14:25+0100\n"
 "Last-Translator: Gujenczek <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
 "Language: tr\n"
@@ -41,6 +41,10 @@ msgstr "UYARI"
 #: desklet.js:138
 msgid "HTTP-Statuscode"
 msgstr "HTTP-Durum Kodu"
+
+#: desklet.js:164
+msgid "s"
+msgstr "s"
 
 #. metadata.json->description
 msgid "Checks a host via ping or HTTP(S) and displays if it is available."
@@ -85,6 +89,10 @@ msgstr "Durum değiştiğinde bildirimleri göster"
 #. settings-schema.json->host->description
 msgid "Hostname, IP address or HTTP(S)-URL to check"
 msgstr "Ana bilgisayar adı, IP adresi veya HTTP(S)-URL kontrol edilecek"
+
+#. settings-schema.json->interval->units
+msgid "seconds"
+msgstr "saniyeler"
 
 #. settings-schema.json->interval->description
 msgid "Time's interval of check"
