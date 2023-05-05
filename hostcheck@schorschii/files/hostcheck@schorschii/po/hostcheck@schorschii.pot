@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-04 14:21+0100\n"
+"POT-Creation-Date: 2023-05-05 13:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,6 +39,10 @@ msgstr ""
 
 #: desklet.js:138
 msgid "HTTP-Statuscode"
+msgstr ""
+
+#: desklet.js:164
+msgid "s"
 msgstr ""
 
 #. metadata.json->description
@@ -79,6 +83,10 @@ msgstr ""
 
 #. settings-schema.json->host->description
 msgid "Hostname, IP address or HTTP(S)-URL to check"
+msgstr ""
+
+#. settings-schema.json->interval->units
+msgid "seconds"
 msgstr ""
 
 #. settings-schema.json->interval->description
