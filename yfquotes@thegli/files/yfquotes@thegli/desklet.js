@@ -65,15 +65,13 @@ YahooFinanceQuoteUtils.prototype = {
     }
 };
 
-let YahooFinanceQuoteReader = function () {
-};
+let YahooFinanceQuoteReader = function () {};
 
 YahooFinanceQuoteReader.prototype = {
     constructor : YahooFinanceQuoteReader,
-    yahooQueryBaseUrl : "https://query1.finance.yahoo.com/v7/finance/quote?symbols=",
     
-    getAsyncResponse : function(quoteSymbols, callback) {
-        const requestUrl = this.createYahooQueryUrl(quoteSymbols);
+    getAsyncResponse : function(quoteSymbols, apiVersion, callback) {
+        const requestUrl = this.createYahooQueryUrl(apiVersion, quoteSymbols);
         const errorBegin="{\"quoteResponse\":{\"result\":[],\"error\":\"";
         const errorEnd = "\"}}";
         
@@ -111,8 +109,8 @@ YahooFinanceQuoteReader.prototype = {
         }
     },
     
-    createYahooQueryUrl : function (quoteSymbols) {
-        return this.yahooQueryBaseUrl + quoteSymbols.join(",");
+    createYahooQueryUrl : function (apiVersion, quoteSymbols) {
+        return "https://query1.finance.yahoo.com/v" + apiVersion + "/finance/quote?symbols=" + quoteSymbols.join(",");
     }
 };
 
@@ -352,6 +350,8 @@ StockQuoteDesklet.prototype = {
             this.onDisplayChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "transparency", "transparency",
             this.onDisplayChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "apiVersion", "apiVersion",
+            this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "delayMinutes", "delayMinutes",
             this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showLastUpdateTimestamp", "showLastUpdateTimestamp",
@@ -469,9 +469,10 @@ StockQuoteDesklet.prototype = {
     
     onUpdate : function () {
         const quoteSymbols = this.quoteSymbolsText.split("\n");
+        const yfApiVersion = this.apiVersion ? this.apiVersion : "6";
         try {
             const _that = this;
-            this.quoteReader.getAsyncResponse(quoteSymbols, function(response) {
+            this.quoteReader.getAsyncResponse(quoteSymbols, yfApiVersion, function(response) {
                 let parsedResponse = JSON.parse(response);
                 _that.render([parsedResponse.quoteResponse.result, parsedResponse.quoteResponse.error]);
                 _that.setUpdateTimer();

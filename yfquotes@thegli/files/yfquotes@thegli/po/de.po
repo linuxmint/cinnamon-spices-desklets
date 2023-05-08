@@ -1,5 +1,5 @@
 # German translation for Yahoo Finance Quotes Desklet
-# Copyright (C) 2021 Thomas Egli
+# Copyright (C) 2023 Thomas Egli
 # This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
 #
 msgid ""
@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-18 19:25+0100\n"
-"PO-Revision-Date: 2022-05-16 18:00+0100\n"
+"PO-Revision-Date: 2023-05-08 21:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,23 +16,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
 
-#: desklet.js:87
+#: desklet.js:92 desklet.js:106
 msgid "Yahoo Finance service not available!"
 msgstr "Yahoo Finance Service nicht verfügbar!"
 
-#: desklet.js:416
+#: desklet.js:438
 msgid "Updated at "
 msgstr "Aktualisiert um "
 
-#: desklet.js:423
+#: desklet.js:445
 msgid "Error: "
 msgstr "Fehler: "
 
-#: desklet.js:467
+#: desklet.js:490
 msgid "Cannot display quotes information for symbols: "
 msgstr "Finanzdaten können nicht angezeigt werden für die Symbole: "
 
-#: desklet.js:468
+#: desklet.js:491
 msgid "The following error occurred: "
 msgstr "Folgender Fehler ist aufgetreten: "
 
@@ -137,6 +137,22 @@ msgstr "Hintergrund Transparenz"
 #. settings-schema.json->transparency->tooltip
 msgid "The higher the value, the more solid the desklet background."
 msgstr "Je grösser der Wert, desto deckender der Desklet Hintergrund."
+
+#. settings-schema.json->apiVersion->options
+msgid "V6"
+msgstr "V6"
+
+#. settings-schema.json->apiVersion->options
+msgid "V7"
+msgstr "V7"
+
+#. settings-schema.json->apiVersion->description
+msgid "Yahoo Finance Quotes API version"
+msgstr "Yahoo Finance Quotes API Version"
+
+#. settings-schema.json->apiVersion->tooltip
+msgid "Try different version if data requests fail with error."
+msgstr "Version ändern, falls Datenabfragen fehlschlagen"
 
 #. settings-schema.json->delayMinutes->units
 msgid "minutes"
