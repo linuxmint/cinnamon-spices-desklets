@@ -205,7 +205,7 @@ MyDesklet.prototype = {
      **/
     _update() {
         this._getCommandResult();
-        this.updateId = Mainloop.timeout_add_seconds(this.delay * 60, Lang.bind(this, this._update));
+        this.updateId = Mainloop.timeout_add_seconds(this.delay * 1, Lang.bind(this, this._update));
     },
 
     /**
@@ -215,7 +215,7 @@ MyDesklet.prototype = {
         for(let command of this.commands){
             if(!command.loading){
                 command.labels.label.set_text(command.label);
-                command.labels.result.set_text("Loading...");
+                //command.labels.result.set_text("Loading...");
                 command.loading = true;
 
                 Util.spawn_async(["/bin/bash", "-c", "timeout -k " + this.timeout + " " + this.timeout + " " + command.command + " || echo \"Timeout or error occured.\""], Lang.bind(this, this._setNewCommandResult, command));
