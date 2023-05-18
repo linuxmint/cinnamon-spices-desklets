@@ -1,0 +1,21 @@
+.ip-button {
+    border-width: 2px;
+    border-color: #292929;
+    border-radius: 4px;
+    margin: 2px;
+    background-color: #454545;
+    padding: 4px;
+    color: white;
+}
+.ip-button:hover {
+    background-color: #525252;
+}
+.ip-button:active {
+    background-color: #92b372;
+}
+
+.refresh-icon {
+/*    margin: 2px;*/
+    padding: 2px;
+    color: white;
+}

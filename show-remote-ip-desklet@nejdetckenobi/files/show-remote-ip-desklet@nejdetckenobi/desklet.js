@@ -22,11 +22,18 @@ const Util = imports.misc.util;
 const Lang = imports.lang;
 const GLib = imports.gi.GLib;
 const Mainloop = imports.mainloop;
+const ByteArray = imports.byteArray;
+const Settings = imports.ui.settings;
 
-const _httpSession = new Soup.SessionAsync();
+var _httpSession;
+if (Soup.MAJOR_VERSION === 2) {
+    _httpSession = new Soup.SessionAsync();
+    Soup.Session.prototype.add_feature.call(_httpSession, new Soup.ProxyResolverDefault());
+} else {
+    _httpSession = new Soup.Session();
+}
+
 _httpSession.timeout = 5;
-
-Soup.Session.prototype.add_feature.call(_httpSession, new Soup.ProxyResolverDefault());
 
 function ShowRemoteIPDesklet(metadata, deskletId) {
     this._init(metadata, deskletId);
@@ -37,41 +44,112 @@ ShowRemoteIPDesklet.prototype = {
 
     _init: function(metadata, deskletId) {
         Desklet.Desklet.prototype._init.call(this, metadata, deskletId);
-        this.configFile = GLib.get_home_dir() + "/.local/share/cinnamon/desklets/show-remote-ip-desklet@nejdetckenobi/metadata.json";
-        this._menu.addAction("Edit Config", Lang.bind(this, function() {
-            Util.spawnCommandLine("xdg-open " + this.configFile);
-        }));
 
-        this.window = new St.Bin();
-        this.text = new St.Label();
-        this.text.style = "font-size: " + metadata["font-size"];
-        this.window.add_actor(this.text);
+        this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
+
+        // account configs
+        this.settings.bind("iptype", "iptype", () => this._do_updates(), null);
+        this.settings.bind("font_size", "font_size", () => this._do_updates(), null);
+
+        this.window = new St.BoxLayout({ vertical: true });
+
+        this.ip4_button = new St.Button({ style_class: "ip-button" });
+        this.ip4_button.connect("clicked", () => this._copy_ip4());
+        this.window.add(this.ip4_button);
+
+        this.ip6_button = new St.Button({ style_class: "ip-button" });
+        this.ip6_button.connect("clicked", () => this._copy_ip6());
+        this.window.add(this.ip6_button);
+
+        const refresh_button = new St.Button({ });
+        refresh_button.connect("clicked", () => this._do_updates());
+        const icon = new St.Icon({ style_class: "refresh-icon", icon_type: St.IconType.SYMBOLIC, icon_name: "view-refresh-symbolic", icon_size: 16 })
+        refresh_button.child = icon;
+        this.window.add(refresh_button);
+
         this.setContent(this.window);
-
-        this._update_ip();
     },
-    _tick: function() {
-        this._update_ip();
+
+    on_desklet_added_to_desktop: function() {
+        this._do_updates();
         this.timeout = Mainloop.timeout_add_seconds(60, this._tick.bind(this));
     },
-    _update_ip: function() {
-        var that = this;
-        let message = Soup.Message.new("GET", "https://icanhazip.com/");
-        _httpSession.queue_message(message, function(session, message) {
-            if (message.status_code === 200) {
-                let ip = message.response_body.data.toString();
-                that.text.set_text(ip);
-            } else {
-                that.text.set_text("");
-            }
-        });
+
+    _copy_ip4: function() {
+        const ip4 = this.ip4_button.get_label();
+
+        const clip = St.Clipboard.get_default();
+        clip.set_text(St.ClipboardType.CLIPBOARD, ip4);
     },
+
+    _copy_ip6: function() {
+        const ip6 = this.ip6_button.get_label();
+
+        const clip = St.Clipboard.get_default();
+        clip.set_text(St.ClipboardType.CLIPBOARD, ip6);
+    },
+
+    _tick: function() {
+        this._do_updates();
+        return GLib.SOURCE_CONTINUE;
+    },
+
+    _do_updates: function() {
+        this.ip4_button.hide();
+        this.ip6_button.hide();
+
+        if (["ipv4", "both"].includes(this.iptype)) {
+            this.ip4_button.show();
+            // this.ip4_button.set_label("kkk...");
+            this._update_ip("http://ipv4.icanhazip.com/", this.ip4_button);
+        }
+        if (["ipv6", "both"].includes(this.iptype)) {
+            this.ip6_button.show();
+            // this.ip6_button.set_label(".kkk..");
+            this._update_ip("http://ipv6.icanhazip.com/", this.ip6_button);
+        }
+    },
+
+    _update_ip: function(uri, button) {
+        this.ip4_button.style = `font-size: ${this.font_size}pt`;
+        this.ip6_button.style = `font-size: ${this.font_size}pt`;
+
+        let message = Soup.Message.new("GET", uri);
+
+        if (Soup.MAJOR_VERSION === 2) {
+            _httpSession.queue_message(message, (session, message) => {
+                if (message.status_code === 200) {
+                    let ip = message.response_body.data.toString();
+                    button.set_label(ip.replace("\n", ""));
+                } else {
+                    button.set_label(_("Unknown"));
+                }
+            });
+        } else {
+            _httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, (session, result) => {
+                if (message.get_status() === 200) {
+                    const bytes = _httpSession.send_and_read_finish(result);
+                    const ip = ByteArray.toString(bytes.get_data());
+                    button.set_label(ip.replace("\n", ""));
+                    return;
+                }
+
+                button.set_label(_("Unknown"));
+            })
+        }
+    },
+
     on_desklet_clicked: function(event) {
-        this.text.set_text("Getting IP address..");
-        this._update_ip();
+        // this.ip4.set_text("Getting IP address..");
+        // this.ip6text.set_text("");
+        // this._do_updates();
     },
+
     on_desklet_removed: function() {
-        Mainloop.source_remove(this.timeout);
+        if (this.timeout > 0) {
+            Mainloop.source_remove(this.timeout);
+            this.timeout = 0;
+        }
     }
 };
 
