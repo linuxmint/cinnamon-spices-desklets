@@ -21,6 +21,7 @@ const Mainloop = imports.mainloop;
 const Soup = imports.gi.Soup;
 const St = imports.gi.St;
 const Util = imports.misc.util;
+const ByteArray = imports.byteArray;
 
 const Desklet = imports.ui.desklet;
 const Settings = imports.ui.settings;
@@ -70,16 +71,33 @@ Subreddit.prototype = {
     get: function() {
         let message = Soup.Message.new("GET", this.url);
 
-        this.session.queue_message(message, Lang.bind(this, this._onResponse));
+        if (Soup.MAJOR_VERSION === 2) {
+            this.session.queue_message(message, Lang.bind(this, this._onResponse2));
+        } else {
+            this.session.send_and_read_async(message, 0, null, Lang.bind(this, this._onResponse3, message));
+        }
     },
 
-    _onResponse: function(session, message) {
+    _onResponse2: function(session, message) {
         if(message.status_code != 200) {
             this._processResponse(message.status_code, null);
         } else {
             let resultJSON = message.response_body.data;
             let result = JSON.parse(resultJSON);
             this._processResponse(null, result);
+        }
+    },
+
+    _onResponse3: function(session, res, message) {
+        log(session, res, message);
+        if (message.get_status() !== 200) {
+            this._processResponse(message.get_status(), null);
+        } else {
+            try {
+                const bytes = session.send_and_read_finish(res);
+                const result = JSON.parse(ByteArray.toString(bytes.get_data()));
+                this._processResponse(null, result);
+            } catch (e) {}
         }
     },
 
