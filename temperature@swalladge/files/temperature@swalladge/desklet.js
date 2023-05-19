@@ -16,9 +16,15 @@ const Settings = imports.ui.settings;
 const Mainloop = imports.mainloop;
 const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
+const ByteArray = imports.byteArray;
 const uuid = "temperature@swalladge";
 
-var session = new Soup.SessionAsync();
+var session;
+if (Soup.MAJOR_VERSION === 2) {
+  session = new Soup.SessionAsync();
+} else {
+  session = new Soup.Session();
+}
 
 Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
 
@@ -85,23 +91,42 @@ TheDesklet.prototype = {
         this.mainloop = Mainloop.timeout_add(5 * 60 * 1000, Lang.bind(this, this.get_temp));
     },
 
-    _onResponse: function(session, message) {
-      global.log('status: ' + message.status_code);
-      if (message.status_code === 200) {
-        var response = message.response_body.data.toString();
-        var data = JSON.parse(response).data;
-        this.current_temp = data.temperature;
-      } else {
-        this.current_temp = null;
-      }
-      this.setupUI();
-    },
-
     get_temp: function() {
       // var server = this.server || 'http://localhost:8888';
       var url = this.server + '/api/temperature/current';
       var urlcatch = Soup.Message.new('GET', url);
-      session.queue_message(urlcatch, Lang.bind(this, this._onResponse));
+      if (Soup.MAJOR_VERSION === 2) {
+        session.queue_message(urlcatch, (session_, message) => {
+          global.log('status: ' + message.status_code);
+
+          if (message.status_code === 200) {
+            var response = message.response_body.data.toString();
+            var data = JSON.parse(response).data;
+            this.current_temp = data.temperature;
+          } else {
+            this.current_temp = null;
+          }
+          this.setupUI();
+        });
+      } else {
+        session.send_and_read_async(urlcatch, 0, null, (session_, res) => {
+          global.log('status: ' + urlcatch.get_status());
+
+          if (urlcatch.get_status() === 200) {
+            try {
+              const bytes = session.send_and_read_finish(res);
+              var data = JSON.parse(ByteArray.toString(bytes.get_data()));
+              this.current_temp = data.temperature;
+            } catch (e) {
+              global.log(e);
+              this.current_temp = null;
+            }
+          } else {
+            this.current_temp = null;
+          }
+          this.setupUI();
+        });
+      }
     }
 };
 
