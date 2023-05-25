@@ -30,7 +30,7 @@
     "dataUpdateSection": {
       "type": "section",
       "title": "Data Updates",
-      "keys": ["delayMinutes", "showLastUpdateTimestamp"]
+      "keys": ["apiVersion", "delayMinutes", "showLastUpdateTimestamp"]
     },
     "detailsNameSection": {
       "type": "section",
@@ -111,6 +111,16 @@
     "step": 0.05,
     "description": "Background transparency",
     "tooltip": "The higher the value, the more solid the desklet background."
+  },
+  "apiVersion": {
+    "type": "radiogroup",
+    "default": "7",
+    "options": {
+      "V6": "6",
+      "V7": "7"
+    },
+    "description": "Yahoo Finance Quotes API version",
+    "tooltip": "Try different version if data requests fail with error."
   },
   "delayMinutes": {
     "type": "spinbutton",

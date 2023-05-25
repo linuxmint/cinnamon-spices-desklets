@@ -31,6 +31,8 @@ const UUID = "yfquotes@thegli";
 const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 const ABSENT = "N/A";
 const YF_PAGE = "https://finance.yahoo.com/quote/";
+const ERROR_RESPONSE_BEGIN="{\"quoteResponse\":{\"result\":[],\"error\":\"";
+const ERROR_RESPONSE_END = "\"}}";
 
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
@@ -41,6 +43,11 @@ if (Soup.MAJOR_VERSION == 2) {
 } else { //version 3
     _httpSession = new Soup.Session();
 }
+_httpSession.timeout = 10;
+_httpSession.idle_timeout = 10;
+
+let _cookieStore = null;
+let _crumb = null;
 
 function _(str) {
     return Gettext.dgettext(UUID, str);
@@ -65,25 +72,92 @@ YahooFinanceQuoteUtils.prototype = {
     }
 };
 
-let YahooFinanceQuoteReader = function () {
-};
+let YahooFinanceQuoteReader = function () {};
 
 YahooFinanceQuoteReader.prototype = {
     constructor : YahooFinanceQuoteReader,
-    yahooQueryBaseUrl : "https://query1.finance.yahoo.com/v7/finance/quote?symbols=",
     
-    getAsyncResponse : function(quoteSymbols, callback) {
-        const requestUrl = this.createYahooQueryUrl(quoteSymbols);
-        const errorBegin="{\"quoteResponse\":{\"result\":[],\"error\":\"";
-        const errorEnd = "\"}}";
-        
+    getCookie : function (callback) {
+        let here = this;
+        let message = Soup.Message.new("GET", "https://finance.yahoo.com/quote/%5EGSPC/options");
+        if (Soup.MAJOR_VERSION === 2) {
+            message.request_headers.append("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+            message.request_headers.append("Accept-Encoding", "gzip, deflate");
+            _httpSession.queue_message(message, function (session, message) {
+                try {
+                    callback.call(here, message);
+                } catch(e) {
+                    global.logError(e);
+                }
+            });
+        } else { //version 3, untested!
+            message.get_request_headers().append("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+            message.get_request_headers().append("Accept-Encoding", "gzip, deflate");
+            _httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, function (session, result) {
+                try {
+                    const bytes = _httpSession.send_and_read_finish(result);
+                    callback.call(here, ByteArray.toString(bytes.get_data()));
+                } catch(e) {
+                    global.logError(e);
+                }
+            });
+        }
+    },
+    
+    getCrumb : function (callback) {
+        let here = this;
+        let message = Soup.Message.new("GET", "https://query2.finance.yahoo.com/v1/test/getcrumb");
+        if (Soup.MAJOR_VERSION === 2) {
+            message.request_headers.append("Accept", "*/*");
+            message.request_headers.append("Accept-Encoding", "gzip, deflate");
+            if (_cookieStore != null) {
+                Soup.cookies_to_request(_cookieStore, message);
+            }
+            _httpSession.queue_message(message, function (session, message) {
+                if (message.status_code === Soup.KnownStatusCode.OK) {
+                    try {
+                        callback.call(here, message.response_body);
+                    } catch(e) {
+                        global.logError(e);
+                    }
+                } else {
+                    global.logWarning("Error retrieving crumb! Status: " + message.status_code + ": " + message.reason_phrase);
+                    callback.call(here, null);
+                }
+            });
+        } else { //version 3, untested!
+            message.get_request_headers().append("Accept", "*/*");
+            message.get_request_headers().append("Accept-Encoding", "gzip, deflate");
+            if (_cookieStore != null) {
+                Soup.cookies_to_request(_cookieStore, message);
+            }
+            _httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, function (session, result) {
+                if( message.get_status() === Soup.Status.OK) {
+                    try {
+                        const bytes = _httpSession.send_and_read_finish(result);
+                        callback.call(here, ByteArray.toString(bytes.get_data()));
+                    } catch(e) {
+                        global.logError(e);
+                    }
+                } else {
+                    global.logWarning("Error retrieving crumb! Status: " + message.get_status() + ": " + message.get_reason_phrase());
+                    callback.call(here, null);
+                }
+            });
+        }
+    },
+    
+    getFinanceData : function (quoteSymbols, apiVersion, callback) {
+        const requestUrl = this.createYahooQueryUrl(apiVersion, quoteSymbols);
         let here = this;
         let message = Soup.Message.new("GET", requestUrl);
-        _httpSession.timeout = 10;
-        _httpSession.idle_timeout = 10;
         if (Soup.MAJOR_VERSION === 2) {
+            if (apiVersion !== "6" && _cookieStore != null) {
+                Soup.cookies_to_request(_cookieStore, message);
+            }
+            
             _httpSession.queue_message(message, function (session, message) {
-                if( message.status_code === 200) {
+                if( message.status_code === Soup.KnownStatusCode.OK) {
                     try {
                         callback.call(here, message.response_body.data.toString());
                     } catch(e) {
@@ -91,12 +165,16 @@ YahooFinanceQuoteReader.prototype = {
                     }
                 } else {
                     global.logWarning("Error retrieving url " + requestUrl + ". Status: " + message.status_code + ": " + message.reason_phrase);
-                    callback.call(here, errorBegin + _("Yahoo Finance service not available!") + errorEnd);
+                    callback.call(here, here.buildErrorResponse(_("Yahoo Finance service not available!")));
                 }
             });
-        } else { //version 3
+        } else { //version 3, untested!
+            if (apiVersion !== "6" && _cookieStore != null) {
+                Soup.cookies_to_request(_cookieStore, message);
+            }
+            
             _httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, function (session, result) {
-                if( message.get_status() === 200) {
+                if( message.get_status() === Soup.Status.OK) {
                     try {
                         const bytes = _httpSession.send_and_read_finish(result);
                         callback.call(here, ByteArray.toString(bytes.get_data()));
@@ -105,14 +183,22 @@ YahooFinanceQuoteReader.prototype = {
                     }
                 } else {
                     global.logWarning("Error retrieving url " + requestUrl + ". Status: " + message.get_status() + ": " + message.get_reason_phrase());
-                    callback.call(here, errorBegin + _("Yahoo Finance service not available!") + errorEnd);
+                    callback.call(here, here.buildErrorResponse(_("Yahoo Finance service not available!")));
                 }
             });
         }
     },
     
-    createYahooQueryUrl : function (quoteSymbols) {
-        return this.yahooQueryBaseUrl + quoteSymbols.join(",");
+    createYahooQueryUrl : function (apiVersion, quoteSymbols) {
+        if (apiVersion === "6") {
+            return "https://query1.finance.yahoo.com/v6/finance/quote?symbols=" + quoteSymbols.join(",");
+        } else {
+            return "https://query1.finance.yahoo.com/v7/finance/quote?symbols=" + quoteSymbols.join(",") + "&crumb=" + _crumb;   
+        }
+    },
+    
+    buildErrorResponse : function (errorMsg) {
+        return ERROR_RESPONSE_BEGIN + errorMsg + ERROR_RESPONSE_END;
     }
 };
 
@@ -352,6 +438,8 @@ StockQuoteDesklet.prototype = {
             this.onDisplayChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "transparency", "transparency",
             this.onDisplayChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "apiVersion", "apiVersion",
+            this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "delayMinutes", "delayMinutes",
             this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showLastUpdateTimestamp", "showLastUpdateTimestamp",
@@ -469,16 +557,36 @@ StockQuoteDesklet.prototype = {
     
     onUpdate : function () {
         const quoteSymbols = this.quoteSymbolsText.split("\n");
+        const yfApiVersion = this.apiVersion ? this.apiVersion : "7";
         try {
             const _that = this;
-            this.quoteReader.getAsyncResponse(quoteSymbols, function(response) {
-                let parsedResponse = JSON.parse(response);
-                _that.render([parsedResponse.quoteResponse.result, parsedResponse.quoteResponse.error]);
-                _that.setUpdateTimer();
-            });
+            
+            if (yfApiVersion !== "6" && (_cookieStore == null || _crumb == null)) {
+                this.quoteReader.getCookie(function(responseMessage) {
+                    _cookieStore = Soup.cookies_from_response(responseMessage);
+                    
+                    _that.quoteReader.getCrumb(function(responseBody) {
+                        if (responseBody) {
+                            _crumb = responseBody.data.toString();
+                        }
+                        _that.renderFinanceData(quoteSymbols, yfApiVersion);
+                    });
+                });
+            } else {
+                _that.renderFinanceData(quoteSymbols, yfApiVersion);
+            }
         } catch (err) {
             this.onError(quoteSymbols, err);
         }
+    },
+    
+    renderFinanceData : function (quoteSymbols, yfApiVersion) {
+        const _that = this;
+        this.quoteReader.getFinanceData(quoteSymbols, yfApiVersion, function(response) {
+            let parsedResponse = JSON.parse(response);
+            _that.render([parsedResponse.quoteResponse.result, parsedResponse.quoteResponse.error]);
+            _that.setUpdateTimer();
+        });
     },
 
     setUpdateTimer : function () {
