@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-25 23:25+0200\n"
+"POT-Creation-Date: 2023-06-05 20:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,23 +16,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:168 desklet.js:186
+#: desklet.js:176 desklet.js:194
 msgid "Yahoo Finance service not available!"
 msgstr ""
 
-#: desklet.js:526
+#: desklet.js:534
 msgid "Updated at "
 msgstr ""
 
-#: desklet.js:533
+#: desklet.js:541
 msgid "Error: "
 msgstr ""
 
-#: desklet.js:597
+#: desklet.js:609
 msgid "Cannot display quotes information for symbols: "
 msgstr ""
 
-#: desklet.js:598
+#: desklet.js:610
 msgid "The following error occurred: "
 msgstr ""
 

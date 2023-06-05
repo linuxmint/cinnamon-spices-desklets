@@ -29,18 +29,27 @@ const Gettext = imports.gettext;
 
 const UUID = "yfquotes@thegli";
 const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
+
 const ABSENT = "N/A";
-const YF_PAGE = "https://finance.yahoo.com/quote/";
+const YF_COOKIE_URL = "https://finance.yahoo.com/quote/%5EGSPC/options";
+const YF_CRUMB_URL = "https://query2.finance.yahoo.com/v1/test/getcrumb";
+const YF_QUOTE_PAGE = "https://finance.yahoo.com/quote/";
 const ERROR_RESPONSE_BEGIN="{\"quoteResponse\":{\"result\":[],\"error\":\"";
 const ERROR_RESPONSE_END = "\"}}";
+const ACCEPT_HEADER = "Accept";
+const ACCEPT_VALUE_COOKIE = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+const ACCEPT_VALUE_CRUMB = "*/*";
+const ACCEPT_ENCODING_HEADER = "Accept-Encoding";
+const ACCEPT_ENCODING_VALUE = "gzip, deflate";
+const IS_SOUP_2 = Soup.MAJOR_VERSION == 2;
 
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
 let _httpSession;
-if (Soup.MAJOR_VERSION == 2) {
+if (IS_SOUP_2) {
     _httpSession = new Soup.SessionAsync();
     Soup.Session.prototype.add_feature.call(_httpSession, new Soup.ProxyResolverDefault());
-} else { //version 3
+} else { // assume version 3
     _httpSession = new Soup.Session();
 }
 _httpSession.timeout = 10;
@@ -79,10 +88,10 @@ YahooFinanceQuoteReader.prototype = {
     
     getCookie : function (callback) {
         let here = this;
-        let message = Soup.Message.new("GET", "https://finance.yahoo.com/quote/%5EGSPC/options");
-        if (Soup.MAJOR_VERSION === 2) {
-            message.request_headers.append("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
-            message.request_headers.append("Accept-Encoding", "gzip, deflate");
+        let message = Soup.Message.new("GET", YF_COOKIE_URL);
+        if (IS_SOUP_2) {
+            message.request_headers.append(ACCEPT_HEADER, ACCEPT_VALUE_COOKIE);
+            message.request_headers.append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
             _httpSession.queue_message(message, function (session, message) {
                 try {
                     callback.call(here, message);
@@ -90,13 +99,12 @@ YahooFinanceQuoteReader.prototype = {
                     global.logError(e);
                 }
             });
-        } else { //version 3, untested!
-            message.get_request_headers().append("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
-            message.get_request_headers().append("Accept-Encoding", "gzip, deflate");
+        } else {
+            message.get_request_headers().append(ACCEPT_HEADER, ACCEPT_VALUE_COOKIE);
+            message.get_request_headers().append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
             _httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, function (session, result) {
                 try {
-                    const bytes = _httpSession.send_and_read_finish(result);
-                    callback.call(here, ByteArray.toString(bytes.get_data()));
+                    callback.call(here, message);
                 } catch(e) {
                     global.logError(e);
                 }
@@ -106,10 +114,10 @@ YahooFinanceQuoteReader.prototype = {
     
     getCrumb : function (callback) {
         let here = this;
-        let message = Soup.Message.new("GET", "https://query2.finance.yahoo.com/v1/test/getcrumb");
-        if (Soup.MAJOR_VERSION === 2) {
-            message.request_headers.append("Accept", "*/*");
-            message.request_headers.append("Accept-Encoding", "gzip, deflate");
+        let message = Soup.Message.new("GET", YF_CRUMB_URL);
+        if (IS_SOUP_2) {
+            message.request_headers.append(ACCEPT_HEADER, ACCEPT_VALUE_CRUMB);
+            message.request_headers.append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
             if (_cookieStore != null) {
                 Soup.cookies_to_request(_cookieStore, message);
             }
@@ -125,9 +133,9 @@ YahooFinanceQuoteReader.prototype = {
                     callback.call(here, null);
                 }
             });
-        } else { //version 3, untested!
-            message.get_request_headers().append("Accept", "*/*");
-            message.get_request_headers().append("Accept-Encoding", "gzip, deflate");
+        } else {
+            message.get_request_headers().append(ACCEPT_HEADER, ACCEPT_VALUE_CRUMB);
+            message.get_request_headers().append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
             if (_cookieStore != null) {
                 Soup.cookies_to_request(_cookieStore, message);
             }
@@ -151,7 +159,7 @@ YahooFinanceQuoteReader.prototype = {
         const requestUrl = this.createYahooQueryUrl(apiVersion, quoteSymbols);
         let here = this;
         let message = Soup.Message.new("GET", requestUrl);
-        if (Soup.MAJOR_VERSION === 2) {
+        if (IS_SOUP_2) {
             if (apiVersion !== "6" && _cookieStore != null) {
                 Soup.cookies_to_request(_cookieStore, message);
             }
@@ -168,7 +176,7 @@ YahooFinanceQuoteReader.prototype = {
                     callback.call(here, here.buildErrorResponse(_("Yahoo Finance service not available!")));
                 }
             });
-        } else { //version 3, untested!
+        } else {
             if (apiVersion !== "6" && _cookieStore != null) {
                 Soup.cookies_to_request(_cookieStore, message);
             }
@@ -283,7 +291,7 @@ QuotesTable.prototype = {
             const symbolButton = new St.Button();
             symbolButton.add_actor(label);
             symbolButton.connect("clicked", Lang.bind(this, function() {
-                Gio.app_info_launch_default_for_uri(YF_PAGE + quoteSymbol, global.create_app_launch_context());
+                Gio.app_info_launch_default_for_uri(YF_QUOTE_PAGE + quoteSymbol, global.create_app_launch_context());
             }));
             return symbolButton;
         } else {
@@ -567,8 +575,12 @@ StockQuoteDesklet.prototype = {
                     
                     _that.quoteReader.getCrumb(function(responseBody) {
                         if (responseBody) {
-                            _crumb = responseBody.data.toString();
-                        }
+                            if (typeof responseBody["data"] !== "undefined") {
+                                _crumb = responseBody.data;
+                            } else {
+                                _crumb = responseBody;
+                            }
+                         }
                         _that.renderFinanceData(quoteSymbols, yfApiVersion);
                     });
                 });

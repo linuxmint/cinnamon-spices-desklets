@@ -13,6 +13,7 @@ Tested with
 - Linux Mint Cinnamon 17 up to 21
 - Debian 9 with Cinnamon 3.2
 - Manjaro with Cinnamon 3.8
+- Fedora 38 Cinnamon Spin with Cinnamon 5.6 and libsoup3
 
 ## Installation
 
@@ -23,6 +24,12 @@ Either follow the installation instructions on [Cinnamon spices](https://cinnamo
 Check out the desklet configuration settings, and choose the data refresh period, the list of quotes to show (see also [Known Limitations](#known-limitations)), and quote details to display. The default list contains the Dow 30 companies.
 
 ## Release Notes
+
+### 0.8.6 - June 5, 2023
+
+Bugfixes:
+
+- fix libsoup3-specific code
 
 ### 0.8.5 - May 25, 2023
 
