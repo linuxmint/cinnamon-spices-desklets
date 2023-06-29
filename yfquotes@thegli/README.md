@@ -13,6 +13,7 @@ Tested with
 - Linux Mint Cinnamon 17 up to 21
 - Debian 9 with Cinnamon 3.2
 - Manjaro with Cinnamon 3.8
+- Fedora 38 Cinnamon Spin with Cinnamon 5.6 and libsoup3
 
 ## Installation
 
@@ -23,6 +24,33 @@ Either follow the installation instructions on [Cinnamon spices](https://cinnamo
 Check out the desklet configuration settings, and choose the data refresh period, the list of quotes to show (see also [Known Limitations](#known-limitations)), and quote details to display. The default list contains the Dow 30 companies.
 
 ## Release Notes
+
+### 0.8.6 - June 5, 2023
+
+Bugfixes:
+
+- fix libsoup3-specific code
+
+### 0.8.5 - May 25, 2023
+
+Bugfixes:
+
+- adapt to recent changes in Yahoo Finance Quotes API
+
+### 0.8.4 - May 8, 2023
+
+Features:
+
+- new setting to select the version of Yahoo Finance Quotes API
+- update Danish translation (courtesy of [Alan01](https://github.com/Alan01))
+- update Hungarian translation (courtesy of [KAMI911](https://github.com/KAMI911))
+- update Italian translation (courtesy of [Dragone2](https://github.com/Dragone2))
+
+### 0.8.3 - September 15, 2022
+
+Bugfixes:
+
+- add support for libsoup3 (courtesy of [fredcw](https://github.com/fredcw))
 
 ### 0.8.2 - June 8, 2022
 
@@ -48,11 +76,11 @@ Bugfixes:
 
 Features:
 
-- add Russian translation
+- add Russian translation (courtesy of [sulonetskyy](https://github.com/sulonetskyy))
 
 ### 0.7.0 - January 10, 2022
 
-Features:
+Features (courtesy of [sulonetskyy](https://github.com/sulonetskyy)):
 
 - add symbolic trend change icons instead of .svg
 - add configurable trend change colors instead of hardcoded colors
