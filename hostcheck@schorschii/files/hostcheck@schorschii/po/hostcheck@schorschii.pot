@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-18 18:53+0100\n"
+"POT-Creation-Date: 2023-05-05 13:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,28 +17,32 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:119
+#: desklet.js:120
 msgid "UNKNOWN"
 msgstr ""
 
-#: desklet.js:120
+#: desklet.js:121
 msgid "No ping output"
 msgstr ""
 
-#: desklet.js:125 desklet.js:140
+#: desklet.js:126 desklet.js:141
 msgid "CRIT"
 msgstr ""
 
-#: desklet.js:129 desklet.js:144
+#: desklet.js:130 desklet.js:145
 msgid "OK"
 msgstr ""
 
-#: desklet.js:133 desklet.js:148
+#: desklet.js:134 desklet.js:149
 msgid "WARN"
 msgstr ""
 
-#: desklet.js:137
+#: desklet.js:138
 msgid "HTTP-Statuscode"
+msgstr ""
+
+#: desklet.js:164
+msgid "s"
 msgstr ""
 
 #. metadata.json->description
@@ -79,6 +83,14 @@ msgstr ""
 
 #. settings-schema.json->host->description
 msgid "Hostname, IP address or HTTP(S)-URL to check"
+msgstr ""
+
+#. settings-schema.json->interval->units
+msgid "seconds"
+msgstr ""
+
+#. settings-schema.json->interval->description
+msgid "Time's interval of check"
 msgstr ""
 
 #. settings-schema.json->scale-size->units

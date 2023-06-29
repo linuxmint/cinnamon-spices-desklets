@@ -46,6 +46,7 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "type", "type", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "host", "host", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "show-notifications", "show_notifications", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "interval", "interval", this.on_setting_changed);
 
 		// initialize desklet gui
 		this.setupUI();
@@ -79,7 +80,7 @@ MyDesklet.prototype = {
 		this.queryStatus();
 
 		// refresh again in x seconds
-		this.timeout = Mainloop.timeout_add_seconds(5, Lang.bind(this, this.refresh));
+		this.timeout = Mainloop.timeout_add_seconds(this.interval, Lang.bind(this, this.refresh));
 	},
 
 	queryStatus: function() {
@@ -160,7 +161,7 @@ MyDesklet.prototype = {
 		let label_size_x = this.defaultWidth * this.scale_size * global.ui_scale;
 		let label_size_y = this.defaultHeight * this.scale_size * global.ui_scale
 		// modify label
-		let statusString = this.statusTagString + "\n" + this.host;
+		let statusString = this.statusTagString + " (" + this.interval + _('s') + ")\n" + this.host;
 		this.statusLabel.set_text(statusString);
 		this.statusLabel.style_class = "statusbox "+this.colorClass;
 		this.statusLabel.style = "width:"+label_size_x+"px; height:"+label_size_y+"px;";

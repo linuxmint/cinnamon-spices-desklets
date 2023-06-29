@@ -6,3 +6,4 @@
 
 ## Contributions
 - first version by _schorschii_
+- version 1.2 by _Gujenczek_

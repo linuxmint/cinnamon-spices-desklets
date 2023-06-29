@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: 1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-18 18:53+0100\n"
-"PO-Revision-Date: 2022-06-03 12:33+0200\n"
+"PO-Revision-Date: 2023-05-05 14:25+0100\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -16,29 +16,33 @@ msgstr ""
 "X-Poedit-SearchPath-0: desklet.js\n"
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
-#: desklet.js:119
+#: desklet.js:120
 msgid "UNKNOWN"
 msgstr "SCONOSCIUTO"
 
-#: desklet.js:120
+#: desklet.js:121
 msgid "No ping output"
 msgstr "Nessun output da ping"
 
-#: desklet.js:125 desklet.js:140
+#: desklet.js:126 desklet.js:141
 msgid "CRIT"
 msgstr "CRIT"
 
-#: desklet.js:129 desklet.js:144
+#: desklet.js:130 desklet.js:145
 msgid "OK"
 msgstr "OK"
 
-#: desklet.js:133 desklet.js:148
+#: desklet.js:134 desklet.js:149
 msgid "WARN"
 msgstr "AVVISO"
 
-#: desklet.js:137
+#: desklet.js:138
 msgid "HTTP-Statuscode"
 msgstr "Codice Status HTTP"
+
+#: desklet.js:164
+msgid "s"
+msgstr "s"
 
 #. metadata.json->description
 msgid "Checks a host via ping or HTTP(S) and displays if it is available."
@@ -80,6 +84,14 @@ msgstr "Mostra notifiche alle variazioni di status"
 #. settings-schema.json->host->description
 msgid "Hostname, IP address or HTTP(S)-URL to check"
 msgstr "Hostname, Indirizzo IP o URL-HTTP(S) da controllare"
+
+#. settings-schema.json->interval->units
+msgid "seconds"
+msgstr "secondi"
+
+#. settings-schema.json->interval->description
+msgid "Time's interval of check"
+msgstr "Intervallo di tempo di controllo"
 
 #. settings-schema.json->scale-size->units
 msgid "scale factor"

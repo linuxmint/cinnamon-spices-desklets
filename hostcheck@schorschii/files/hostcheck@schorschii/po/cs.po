@@ -1,44 +1,44 @@
+# Čeština
+# Copyright (C) 2023
+# This file is distributed under the same license as the PACKAGE package.
+# Gujenczek <EMAIL@ADDRESS>, May 2023.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-18 18:53+0100\n"
-"PO-Revision-Date: 2023-05-05 14:25+0100\n"
-"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"POT-Creation-Date: 2023-05-05 13:14+0100\n"
+"PO-Revision-Date: 2023-05-05 13:16+0100\n"
+"Last-Translator: Gujenczek <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
-"Language: da\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-SearchPath-0: desklet.js\n"
-"X-Poedit-SearchPath-1: settings-schema.json\n"
 
 #: desklet.js:120
 msgid "UNKNOWN"
-msgstr "UKENDT"
+msgstr "NEZNÁMÝ"
 
 #: desklet.js:121
 msgid "No ping output"
-msgstr "Intet ping-output"
+msgstr "Bez pingu"
 
 #: desklet.js:126 desklet.js:141
 msgid "CRIT"
-msgstr "KRIT"
+msgstr "KRITICKÉ"
 
 #: desklet.js:130 desklet.js:145
 msgid "OK"
-msgstr "OK"
+msgstr "CAJK"
 
 #: desklet.js:134 desklet.js:149
 msgid "WARN"
-msgstr "ADV"
+msgstr "VAROVÁNÍ"
 
 #: desklet.js:138
 msgid "HTTP-Statuscode"
-msgstr "HTTP-statuskode"
+msgstr "Kód statusu HTTP"
 
 #: desklet.js:164
 msgid "s"
@@ -46,27 +46,28 @@ msgstr "s"
 
 #. metadata.json->description
 msgid "Checks a host via ping or HTTP(S) and displays if it is available."
-msgstr "Tjekker en vært via ping og HTTP(S) og viser, om den er tilgængelig."
+msgstr "Kontrola hostitele přes ping nebo HTTP(S) a zobrazení dostupnosti"
 
 #. metadata.json->name
 msgid "Host Check"
-msgstr "Værtstjek"
+msgstr "Kontrola hostitele"
 
 #. settings-schema.json->head0->description
 msgid "Settings for hostcheck@schorschii"
-msgstr "Indstillinger for hostcheck@schorschii"
+msgstr "Nastavení deskletu hostcheck@schorschii"
 
 #. settings-schema.json->head1->description
 msgid "General"
-msgstr "Generelt"
+msgstr "Obecné"
 
 #. settings-schema.json->type->description
 msgid "Ping or HTTP(S) check"
-msgstr "Ping- eller HTTP(S)-tjek"
+msgstr "Kontrola ping nebo HTTP(S)"
 
 #. settings-schema.json->type->tooltip
 msgid "Choose, if this desklet should do a ping or HTTP(S) check."
-msgstr "Vælg om der skal foretages et ping- eller HTTP(S)-tjek."
+msgstr "Vyber, jestli má desklet provádět kontrolu pomocí ping odezvy nebo "
+"načtením HTTP(S)."
 
 #. settings-schema.json->type->options
 msgid "Ping"
@@ -78,60 +79,58 @@ msgstr "HTTP(S)"
 
 #. settings-schema.json->show-notifications->description
 msgid "Show notifications when state changed"
-msgstr "Vis underretninger, når tilstanden ændres"
+msgstr "Zobrazit upozornění na změnu stavu"
 
 #. settings-schema.json->host->description
 msgid "Hostname, IP address or HTTP(S)-URL to check"
-msgstr "Værtsnavn, IP-adresse eller HTTP(S)-URL som skal tjekkes"
+msgstr "Název hostitele, IP adresa nebo HTTP(S) url adresa ke kontrolování"
 
 #. settings-schema.json->interval->units
 msgid "seconds"
-msgstr "sekunder"
+msgstr "sekund"
 
 #. settings-schema.json->interval->description
 msgid "Time's interval of check"
-msgstr "Tidsinterval for kontrol"
+msgstr "Časový interval kontroly"
 
 #. settings-schema.json->scale-size->units
 msgid "scale factor"
-msgstr "skaleringsfaktor"
+msgstr "faktor měřítka"
 
 #. settings-schema.json->scale-size->description
 msgid "Desklet size"
-msgstr "Skrivebordsprogrammets størrelse"
+msgstr "Velikost deskletu"
 
 #. settings-schema.json->scale-size->tooltip
 msgid "Increase or decrease the size of this desklet using this scale factor."
 msgstr ""
-"Forøg eller formindsk skrivebordsprogrammets størrelse med denne "
-"skaleringsfaktor."
+"Zvětšete nebo zmenšete velikost tohoto deskletu pomocí tohoto měřítka."
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
-msgstr "Skjul boks rundt om skrivebordsprogrammet"
+msgstr "Schovat dekorace"
 
 #. settings-schema.json->head3->description
 msgid "Custom desklet label (only visible if decorations are enabled)"
-msgstr "Tilpasset etiket (kun synlig hvis boksen rundt om er aktiveret)"
+msgstr "Vlastní štítek deskletu (viditelné jen při zapnuté dekoraci)"
 
 #. settings-schema.json->use-custom-label->description
 msgid "Use a custom desklet label"
-msgstr "Anvend tilpasset etiket"
+msgstr "Použít vlastní štítek deskletu"
 
 #. settings-schema.json->use-custom-label->tooltip
 msgid "Checking this box allows you to set a custom label in the field below."
 msgstr ""
-"Afkrydsning af dette felt lader dig angive en tilpasset etiket i feltet "
-"nedenfor."
+"Zaškrtnutím tohoto políčka můžete nastavit vlastní štítek v poli níže."
 
 #. settings-schema.json->custom-label->description
 msgid "Custom desklet label"
-msgstr "Tilpasset etiket"
+msgstr "Vlastní štítek"
 
 #. settings-schema.json->custom-label->tooltip
 msgid ""
 "Set your custom label here. This field is unavailable unless the checkbox "
 "above is enabled."
 msgstr ""
-"Angiv din tilpassede etiket her. Dette felt er utilgængeligt, med mindre "
-"afkrydsningsfeltet ovenfor er aktiveret."
+"Zde nastavte svůj vlastní štítek. Toto pole není k dispozici, pokud není "
+"povoleno zaškrtávací políčko výše."
