@@ -13,6 +13,7 @@ const Cogl = imports.gi.Cogl;
 const Gio = imports.gi.Gio;
 const PopupMenu = imports.ui.popupMenu;
 const Gettext = imports.gettext;
+const ByteArray = imports.byteArray;
 
 const UUID = "notes@schorschii";
 const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
@@ -96,7 +97,7 @@ MyDesklet.prototype = {
 			try {
 				let [success, contents, tag] = file.load_contents_finish(response);
 				if(success) {
-					let lines = contents.toString().split('\n');
+					let lines = ByteArray.toString(contents).split('\n');
 					for(var i = 0;i < lines.length;i++) {
 						let fields = lines[i].split(',');
 						if(fields.length != 9) { continue; }
@@ -137,7 +138,7 @@ MyDesklet.prototype = {
 			try {
 				let [success, contents, tag] = file.load_contents_finish(response);
 				if(success) {
-					this.notecontent = contents.toString();
+					this.notecontent = ByteArray.toString(contents);
 				} else {
 					// error reading file - maybe the file does not exist
 					this.notecontent = _("Can't read text file.\nSelect a file in settings.\n\nClick here to edit.");
