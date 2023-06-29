@@ -51,7 +51,7 @@ imports.searchPath.push(DESKLET_DIR);
 const Marknote = imports.marknote;
 
 let _httpSession;
-if (Soup.MAJOR_VERSION == 2) {
+if (Soup.MAJOR_VERSION === undefined || Soup.MAJOR_VERSION === 2) {
     _httpSession = new Soup.SessionAsync();
     Soup.Session.prototype.add_feature.call(_httpSession, new Soup.ProxyResolverDefault());
 } else { //version 3
@@ -904,7 +904,7 @@ MyDesklet.prototype = {
     let message = Soup.Message.new('GET', url);
     _httpSession.timeout = 10;
     _httpSession.idle_timeout = 10;
-    if (Soup.MAJOR_VERSION === 2) {
+    if (Soup.MAJOR_VERSION === undefined || Soup.MAJOR_VERSION === 2) {
       _httpSession.queue_message(message, function (session, message) {
         if( message.status_code == 200) {
           try {callback.call(here,message.response_body.data.toString(),locsrc);} catch(e) {global.logError(e)}
@@ -1462,7 +1462,7 @@ wxDriver.prototype = {
     //global.log('bbcwx: calling ' + url);
     var here = this;
     let message = Soup.Message.new('GET', url);
-    if (Soup.MAJOR_VERSION === 2) {
+    if (Soup.MAJOR_VERSION === undefined || Soup.MAJOR_VERSION === 2) {
       _httpSession.timeout = 10;
       _httpSession.idle_timeout = 10;
       _httpSession.queue_message(message, function (session, message) {
