@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bbcwx\n"
 "Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
 "POT-Creation-Date: 2018-01-07 21:05+0000\n"
-"PO-Revision-Date: 2015-02-01 22:01+0000\n"
+"PO-Revision-Date: 2023-04-16 07:22-0400\n"
 "Last-Translator: Đỗ Xuân Quyết <quyet.doxuan@gmail.com>\n"
 "Language-Team: Vietnamese <vi@li.org>\n"
 "Language: vi\n"
@@ -16,1127 +16,1078 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2015-12-04 19:52+0000\n"
-"X-Generator: Launchpad (build 17862)\n"
+"X-Generator: Poedit 3.1.1\n"
 
-#. # Days of the week
-#: desklet.js:102
+#: desklet.js:108
 msgid "Mon"
 msgstr "Thứ Hai"
 
-#: desklet.js:102
+#: desklet.js:108
 msgid "Tue"
 msgstr "Thứ Ba"
 
-#: desklet.js:102
+#: desklet.js:108
 msgid "Wed"
 msgstr "Thứ Tư"
 
-#: desklet.js:102
+#: desklet.js:108
 msgid "Thu"
 msgstr "Thứ Năm"
 
-#: desklet.js:102
+#: desklet.js:108
 msgid "Fri"
 msgstr "Thứ Sáu"
 
-#: desklet.js:102
+#: desklet.js:108
 msgid "Sat"
 msgstr "Thứ Bảy"
 
-#: desklet.js:102
+#: desklet.js:108
 msgid "Sun"
 msgstr "Chủ Nhật"
 
-#. # The desklet title
-#: desklet.js:178
+#: desklet.js:186
 msgid "Weather"
 msgstr "Thời tiết"
 
-#. # Link to Help file in context menu
-#: desklet.js:186
+#: desklet.js:194
 msgid "Help"
 msgstr "Trợ giúp"
 
-#. # Link to information on translating in context menu
-#: desklet.js:190
+#: desklet.js:198
 msgid "Translate"
 msgstr "Dịch"
 
-#. # Next five strings are labels for current conditions
-#: desklet.js:336 desklet.js:364
+#: desklet.js:344 desklet.js:372
 msgid "Humidity:"
 msgstr "Độ ẩm"
 
-#. # Atmospheric pressure
-#: desklet.js:337 desklet.js:363
+#: desklet.js:345 desklet.js:371
 msgid "Pressure:"
 msgstr "Áp suất:"
 
-#: desklet.js:338
+#: desklet.js:346
 msgid "Wind:"
 msgstr "Gió:"
 
-#: desklet.js:339
+#: desklet.js:347
 msgid "Feels like:"
 msgstr "Cảm giác như:"
 
-#: desklet.js:340
+#: desklet.js:348
 msgid "Visibility:"
 msgstr "Tầm nhìn xa:"
 
-#. # Maximum temperature
-#: desklet.js:355
+#: desklet.js:363
 msgid "Max:"
 msgstr "Lớn nhất"
 
-#. # Minimum temperature
-#: desklet.js:357
+#: desklet.js:365
 msgid "Min:"
 msgstr "Nhỏ nhất"
 
-#. # Wind speed (English translation is "Wind:")
-#: desklet.js:359
+#: desklet.js:367
 msgid "Wind speed:"
 msgstr "Tốc độ gió"
 
-#. # Wind direction
-#: desklet.js:361
+#: desklet.js:369
 msgid "Dir:"
 msgstr "Hướng gió"
 
-#. # Credit the data supplier. A link to the data supplier appears to the
-#. right of this string
-#: desklet.js:403
+#: desklet.js:411
 msgid "Data from "
 msgstr "Nguồn dữ liệu "
 
-#. # Tooltip for refresh button
-#: desklet.js:415
+#: desklet.js:423
 msgid "Refresh"
 msgstr "Cập nhật"
 
-#. # Message if we fail to get weather data
-#: desklet.js:735
+#: desklet.js:744
 msgid "No data available"
 msgstr "Hiện không có dữ liệu"
 
-#: desklet.js:768 desklet.js:835
-#, python-format
+#: desklet.js:777 desklet.js:844
+#, javascript-format
 msgid "Error: %s"
 msgstr "Lỗi: %s"
 
-#: desklet.js:768 desklet.js:835
+#: desklet.js:777 desklet.js:844
 msgid "No data"
 msgstr "Không có dữ liệu"
 
-#. # %s is replaced by place name
-#: desklet.js:870
-#, python-format
+#: desklet.js:879
+#, javascript-format
 msgid "Click for the full forecast for %s"
 msgstr "Nhấn chuột để lấy mọi dự báo cho %s"
 
-#. # Units for temperature, degrees Fahrenheit. %f is replaced the value. NB:
-#. English translation uses unicode character u+2109
-#: desklet.js:1113
-#, python-format
-msgid "%fF"
+#: desklet.js:1139
+#, javascript-format
+msgid "%f°F"
 msgstr "%fºF"
 
-#. # Units for temperature, degrees Celsius. %f is replaced the value. NB:
-#. English translation uses unicode character u+2103
-#: desklet.js:1115
-#, python-format
-msgid "%fC"
+#: desklet.js:1141
+#, javascript-format
+msgid "%f°C"
 msgstr "%fºC"
 
-#. # wind speed, miles per hour. %f is replaced by the value
-#: desklet.js:1136
-#, python-format
+#: desklet.js:1162
+#, javascript-format
 msgid "%fmph"
 msgstr "%f m/h"
 
-#. # wind speed, knots. %f is replaced by the value
-#: desklet.js:1138
-#, python-format
+#: desklet.js:1164
+#, javascript-format
 msgid "%fkn"
 msgstr "%fk n/h"
 
-#. # wind speed, kilometers per hour. %f is replaced by the value
-#: desklet.js:1140
-#, python-format
+#: desklet.js:1166
+#, javascript-format
 msgid "%fkm/h"
 msgstr "%f km/h"
 
-#. # wind speed, meters per second. %f is replaced by the value
-#: desklet.js:1142
-#, python-format
+#: desklet.js:1168
+#, javascript-format
 msgid "%fm/s"
 msgstr "%f m/s"
 
-#. # pressure, millbars. %f is replaced by the value
-#: desklet.js:1176
-#, python-format
+#: desklet.js:1202
+#, javascript-format
 msgid "%fmb"
 msgstr "%f mb"
 
-#. # pressure, inches of mercury. %f is replaced by the value
-#: desklet.js:1178
-#, python-format
+#: desklet.js:1204
+#, javascript-format
 msgid "%fin"
 msgstr "%f in"
 
-#. # pressure, mm of mercury. %f is replaced by the value
-#: desklet.js:1180
-#, python-format
+#: desklet.js:1206
+#, javascript-format
 msgid "%fmm"
 msgstr "%f mm"
 
-#. # pressure, kilopascals. %f is replaced by the value
-#: desklet.js:1182
-#, python-format
+#: desklet.js:1208
+#, javascript-format
 msgid "%fkPa"
 msgstr "%f kPa"
 
-#. # visibility, miles. %f is replaced by the value
-#: desklet.js:1233
-#, python-format
+#: desklet.js:1259
+#, javascript-format
 msgid "%fmi"
 msgstr "%f dặm"
 
-#. # visibility, nautical miles. %f is replaced by the value
-#: desklet.js:1235
-#, python-format
+#: desklet.js:1261
+#, javascript-format
 msgid "%fnmi"
 msgstr "%f nmi"
 
-#. # visibility, kilometers. %f is replaced by the value
-#: desklet.js:1237
-#, python-format
+#: desklet.js:1263
+#, javascript-format
 msgid "%fkm"
 msgstr "%f km"
 
-#. # Next 16 strings are for wind direction, compass points
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "N"
 msgstr "Bắc"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "NNE"
 msgstr "Bắc - Đông Bắc"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "NE"
 msgstr "Đông Bắc"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "ENE"
 msgstr "Đông - Đông Bắc"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "E"
 msgstr "Đông"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "ESE"
 msgstr "Đông - Đông Nam"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "SE"
 msgstr "Đông Nam"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "SSE"
 msgstr "Nam - Đông Nam"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "S"
 msgstr "Nam"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "SSW"
 msgstr "Nam - Tây Nam"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "SW"
 msgstr "Tây Nam"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "WSW"
 msgstr "Tây - Tây Nam"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "W"
 msgstr "Tây"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "WNW"
 msgstr "Tây - Tây Bắc"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "NW"
 msgstr "Tây Bắc"
 
-#: desklet.js:1461
+#: desklet.js:1506
 msgid "NNW"
 msgstr "Bắc - Tây Bắc"
 
-#: desklet.js:1515
+#: desklet.js:1560
 msgid "Tornado"
 msgstr "Tố lốc"
 
-#: desklet.js:1516
+#: desklet.js:1561
 msgid "Tropical storm"
 msgstr "Bão nhiệt đới"
 
-#: desklet.js:1517
+#: desklet.js:1562
 msgid "Hurricane"
 msgstr "Bão tố"
 
-#: desklet.js:1518
+#: desklet.js:1563
 msgid "Severe thunderstorms"
 msgstr "Có nơi có dông"
 
-#: desklet.js:1519
+#: desklet.js:1564
 msgid "Thunderstorms"
 msgstr "Bão kèm sấm chớp"
 
-#: desklet.js:1520 desklet.js:4188
+#: desklet.js:1565 desklet.js:4240
 msgid "Mixed rain and snow"
 msgstr "Mưa kèm theo tuyết"
 
-#: desklet.js:1521
+#: desklet.js:1566
 msgid "Mixed rain and sleet"
 msgstr "Mưa có tạo tuyết"
 
-#: desklet.js:1522
+#: desklet.js:1567
 msgid "Mixed snow and sleet"
 msgstr "Tuyết ẩm"
 
-#: desklet.js:1523
+#: desklet.js:1568
 msgid "Freezing drizzle"
 msgstr "Mưa giá"
 
-#: desklet.js:1524 desklet.js:1818
+#: desklet.js:1569 desklet.js:1872
 msgid "Drizzle"
 msgstr "Mưa phùn"
 
-#: desklet.js:1525
+#: desklet.js:1570
 msgid "Freezing rain"
 msgstr "Mưa rét"
 
-#: desklet.js:1526 desklet.js:1527 desklet.js:4184
+#: desklet.js:1571 desklet.js:1572 desklet.js:4236
 msgid "Showers"
 msgstr "Mưa rào"
 
-#: desklet.js:1528
+#: desklet.js:1573
 msgid "Snow flurries"
 msgstr "Tuyết bất chợt"
 
-#: desklet.js:1529
+#: desklet.js:1574
 msgid "Light snow showers"
 msgstr "Tuyết nhỏ"
 
-#: desklet.js:1530
+#: desklet.js:1575
 msgid "Blowing snow"
 msgstr "Gió tuyết"
 
-#: desklet.js:1531 desklet.js:4186 desklet.js:4192
+#: desklet.js:1576 desklet.js:4238 desklet.js:4244
 msgid "Snow"
 msgstr "Tuyết"
 
-#: desklet.js:1532
+#: desklet.js:1577
 msgid "Hail"
 msgstr "Mưa đá"
 
-#: desklet.js:1533 desklet.js:1823
+#: desklet.js:1578 desklet.js:1877
 msgid "Sleet"
 msgstr "Mưa tuyết"
 
-#: desklet.js:1534
+#: desklet.js:1579
 msgid "Dust"
 msgstr "Bụi"
 
-#: desklet.js:1535
+#: desklet.js:1580
 msgid "Foggy"
 msgstr "Có sương mù"
 
-#: desklet.js:1536
+#: desklet.js:1581
 msgid "Haze"
 msgstr "Khói mù"
 
-#: desklet.js:1537
+#: desklet.js:1582
 msgid "Smoky"
 msgstr "Có khói mờ"
 
-#: desklet.js:1538
+#: desklet.js:1583
 msgid "Blustery"
 msgstr "Gió lớn"
 
-#: desklet.js:1539
+#: desklet.js:1584
 msgid "Windy"
 msgstr "Có gió"
 
-#: desklet.js:1540
+#: desklet.js:1585
 msgid "Cold"
 msgstr "Lạnh"
 
-#: desklet.js:1541 desklet.js:4181
+#: desklet.js:1586 desklet.js:4233
 msgid "Cloudy"
 msgstr "Có mây"
 
-#: desklet.js:1542 desklet.js:1543
+#: desklet.js:1587 desklet.js:1588
 msgid "Mostly cloudy"
 msgstr "Nhiều nơi có mây"
 
-#: desklet.js:1544 desklet.js:1545 desklet.js:1559
+#: desklet.js:1589 desklet.js:1590 desklet.js:1604
 msgid "Partly cloudy"
 msgstr "Mây rải rác"
 
-#: desklet.js:1546
+#: desklet.js:1591
 msgid "Clear"
 msgstr "Trời quang mây tạnh"
 
-#: desklet.js:1547 desklet.js:1807
+#: desklet.js:1592 desklet.js:1861
 msgid "Sunny"
 msgstr "Có nắng"
 
-#: desklet.js:1548 desklet.js:1549 desklet.js:4179
+#: desklet.js:1593 desklet.js:1594 desklet.js:4231
 msgid "Fair"
 msgstr "Trời đẹp"
 
-#: desklet.js:1550
+#: desklet.js:1595
 msgid "Mixed rain and hail"
 msgstr "Mưa kèm theo đá"
 
-#: desklet.js:1551
+#: desklet.js:1596
 msgid "Hot"
 msgstr "Nóng nực"
 
-#: desklet.js:1552
+#: desklet.js:1597
 msgid "Isolated thunderstorms"
 msgstr "Thỉnh thoảng có dông"
 
-#: desklet.js:1553
+#: desklet.js:1598
 msgid "Scattered thunderstorms"
 msgstr "Dông rải rác"
 
-#: desklet.js:1554 desklet.js:1555
+#: desklet.js:1599 desklet.js:1600
 msgid "Scattered showers"
 msgstr "Mưa rào rải rác"
 
-#: desklet.js:1556 desklet.js:1558
+#: desklet.js:1601 desklet.js:1603
 msgid "Heavy snow"
 msgstr "Tuyết nặng hạt"
 
-#: desklet.js:1557
+#: desklet.js:1602
 msgid "Scattered snow showers"
 msgstr "Tuyết rơi rải rác"
 
-#: desklet.js:1560
+#: desklet.js:1605
 msgid "Thundershowers"
 msgstr "Mưa rào, sấm sét giật mạnh"
 
-#: desklet.js:1561 desklet.js:4187
+#: desklet.js:1606 desklet.js:4239
 msgid "Snow showers"
 msgstr "Tuyết lớn"
 
-#: desklet.js:1562
+#: desklet.js:1607
 msgid "Isolated thundershowers"
 msgstr "Mưa rào, thỉng thoảng có sấm sét"
 
-#: desklet.js:1563
+#: desklet.js:1608
 msgid "Not available"
 msgstr "Không sẵn sàng"
 
-#: desklet.js:1806 desklet.js:4178
+#: desklet.js:1860 desklet.js:4230
 msgid "Clear Sky"
 msgstr "Trời trong xanh"
 
-#: desklet.js:1808 desklet.js:4180
+#: desklet.js:1862 desklet.js:4232
 msgid "Partly Cloudy"
 msgstr "Có mây rải rác"
 
-#: desklet.js:1809
+#: desklet.js:1863
 msgid "Sunny Intervals"
 msgstr "Thỉnh thoảng có nắng"
 
-#: desklet.js:1810
+#: desklet.js:1864
 msgid "Sand Storm"
 msgstr "Bão cát"
 
-#: desklet.js:1811
+#: desklet.js:1865
 msgid "Mist"
 msgstr "Sương mù ẩm ướt"
 
-#: desklet.js:1812 desklet.js:4182
+#: desklet.js:1866 desklet.js:4234
 msgid "Fog"
 msgstr "Sương mù"
 
-#: desklet.js:1813
+#: desklet.js:1867
 msgid "White Cloud"
 msgstr "Mây trắng"
 
-#: desklet.js:1814
+#: desklet.js:1868
 msgid "Light Cloud"
 msgstr "Mây mỏng"
 
-#: desklet.js:1815
+#: desklet.js:1869
 msgid "Grey Cloud"
 msgstr "Mây đen"
 
-#: desklet.js:1816
+#: desklet.js:1870
 msgid "Thick Cloud"
 msgstr "Mây dày"
 
-#: desklet.js:1817
+#: desklet.js:1871
 msgid "Light Rain Shower"
 msgstr "Mưa rào nhẹ"
 
-#: desklet.js:1819 desklet.js:4189 desklet.js:4193
+#: desklet.js:1873 desklet.js:4241 desklet.js:4245
 msgid "Light Rain"
 msgstr "Mưa nhỏ"
 
-#: desklet.js:1820
+#: desklet.js:1874
 msgid "Heavy Rain Shower"
 msgstr "Mưa rào rả rích"
 
-#: desklet.js:1821 desklet.js:4183 desklet.js:4191
+#: desklet.js:1875 desklet.js:4235 desklet.js:4243
 msgid "Heavy Rain"
 msgstr "Mưa to"
 
-#: desklet.js:1822
+#: desklet.js:1876
 msgid "Sleet Shower"
 msgstr "Mưa tuyết lớn"
 
-#: desklet.js:1824
+#: desklet.js:1878
 msgid "Light Snow Shower"
 msgstr "Mưa tuyết nhỏ"
 
-#: desklet.js:1825 desklet.js:4190 desklet.js:4194
+#: desklet.js:1879 desklet.js:4242 desklet.js:4246
 msgid "Light Snow"
 msgstr "Tuyết nhẹ"
 
-#: desklet.js:1826
+#: desklet.js:1880
 msgid "Heavy Snow Shower"
 msgstr "Tuyết dày"
 
-#: desklet.js:1827
+#: desklet.js:1881
 msgid "Heavy Snow"
 msgstr "Tuyết lớn"
 
-#: desklet.js:1828 desklet.js:4185
+#: desklet.js:1882 desklet.js:4237
 msgid "Thundery Shower"
 msgstr "Mưa rào kèm sấm sét"
 
-#: desklet.js:1829
+#: desklet.js:1883
 msgid "Thunder Storm"
 msgstr "Dông tố"
 
-#: desklet.js:1830
+#: desklet.js:1884
 msgid "Thunderstorm"
 msgstr "Dông bão"
 
-#: desklet.js:1831
+#: desklet.js:1885
 msgid "Hazy"
 msgstr "Có sương mù"
 
-#: desklet.js:1832
+#: desklet.js:1886
 msgid "Hail Shower"
 msgstr "Mưa đá lớn"
 
-#: desklet.js:1833
+#: desklet.js:1887
 msgid "Rain"
 msgstr ""
 
-#. # direction of movement of pressure
-#: desklet.js:2018 desklet.js:2746
+#: desklet.js:2072 desklet.js:2800
 msgid "Steady"
 msgstr "ổn định"
 
-#. # direction of movement of pressure
-#: desklet.js:2018 desklet.js:2742
+#: desklet.js:2072 desklet.js:2796
 msgid "Rising"
 msgstr "đang mạnh lên"
 
-#. # direction of movement of pressure
-#: desklet.js:2018 desklet.js:2744
+#: desklet.js:2072 desklet.js:2798
 msgid "Falling"
 msgstr "đang yếu đi"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->description
-msgid "Get displayed location from"
-msgstr "Lấy thông tin vị trí từ"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->tooltip
-msgid ""
-"The source of the text displayed as the current location. Yahoo! and Google "
-"may offer city names in other languages"
+#. metadata.json->description
+msgid "Display the weather from several web services on your desktop"
 msgstr ""
-"Nguồn dữ liệu của vị trí hiện thời. Yahoo! và Google có thễ hiện thị tên "
-"thành phố trong cả các ngôn ngữ khác"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->options
-msgid "Google"
-msgstr "Google"
+#. metadata.json->name
+msgid "Weather Desklet"
+msgstr ""
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->locsrc->options
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->description
-msgid "Data service"
-msgstr "Đài khí tượng"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->experimental_enabled->description
-msgid "Enable experimental features"
-msgstr "Thử nghiệm tính năng mới"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->experimental_enabled->tooltip
-msgid "Check this to enable experimental and buggy features"
-msgstr "Tích để bật tính năng mới (có thể có lỗi)"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__cc__humidity->description
-msgid "Current humidity"
-msgstr "Độ ẩm hiện tại"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->display__cc__humidity->tooltip
-msgid "Check to display the current humidity"
-msgstr "Tích để hiện độ ẩm hiện tại"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->refreshtime->description
-msgid "Refresh forecast every"
-msgstr "Cập nhật dự báo mỗi"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->refreshtime->tooltip
+#. metadata.json->comments
 msgid ""
-"Period between refreshing forecasts. Note that not all services support "
-"lower refresh times"
-msgstr "Khoảng thời gian giữa 2 lần cập nhật. Không nên đặt số quá nhỏ"
+"Please consider translating the Weather Desklet into your language. See the website for "
+"more information"
+msgstr ""
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->refreshtime->units
-msgid "minutes"
-msgstr "phút"
+#. metadata.json->contributors
+msgid "Chris Hastie"
+msgstr ""
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->manuallocation->description
-msgid "Manually override displayed location"
-msgstr "Tự đặt vị trí"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->manuallocation->tooltip
-msgid "Set your city name manually."
-msgstr "Tự ghi tên thành phố"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__cc__wind_speed->description
-msgid "Current wind"
-msgstr "Sức gió hiện tại"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__cc__wind_speed->tooltip
-msgid "Check to display the current wind"
-msgstr "Tích để hiện sức gió hiện tại"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->tunits->description
-msgid "Temperature measurement unit"
-msgstr "Đơn vị đo nhiệt độ"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->tunits->tooltip
-msgid "Measurement units used to display temperature"
-msgstr "Các đơn vị đo từng dùng để đo nhiệt độ"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->tunits->options
-msgid "Fahrenheit"
-msgstr "Độ F"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->tunits->options
-msgid "Celsius"
-msgstr "Độ C"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->textcolor->description
-msgid "Text color"
-msgstr "Màu chữ"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->textcolor->tooltip
-msgid "Click the button to select a new text color"
-msgstr "Nhấp nút để chọn màu chữ mới"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->border->description
-msgid "Show border"
-msgstr "Hiện đường viền"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->border->tooltip
-msgid "Check this to turn border on/off"
-msgstr "Tích để hiện/ẩn đường viền"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->layout->description
-msgid "Layout"
-msgstr "Bố cục"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->layout->tooltip
-msgid "Set the overall layout of the desklet"
-msgstr "Đặt bố cục chung cho bảng"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->layout->options
-msgid "Horizontal"
-msgstr "Ngang"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->layout->options
-msgid "Vertical"
-msgstr "Dọc"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->bgcolor->description
-msgid "Background color"
-msgstr "Màu nền"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->bgcolor->tooltip
-msgid "Click the button to select a new background color"
-msgstr "Nhấn để chọn màu nền mới"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->description
-msgid "Anchor desklet by"
-msgstr "Đặt bảng bằng"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->tooltip
-msgid ""
-"Select the point on the desklet to which it is anchored. This point will "
-"remain static as the desklet grows and shrinks"
-msgstr "Chọn điểm đặt bảng. Điểm đó là cố định khi bảng phóng to hay thu nhỏ"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Bottom center"
-msgstr "Bên dưới điểm giữa"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Default"
-msgstr "Mặc định"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Left center"
-msgstr "Bên trái điểm giữa"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Top right"
-msgstr "Góc trên bên phải"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Bottom left"
-msgstr "Góc dưới bên trái"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Top left"
-msgstr "Góc trên bên trái"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Right center"
-msgstr "Bên phải điểm giữa"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Bottom right"
-msgstr "Góc dưới bên phải"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->gravity->options
-msgid "Top center"
-msgstr "Bên trên điểm giữa"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->top->description
+#. settings-schema.json->top->description
 msgid "Weather configuration"
 msgstr "Thiết lập thời tiết"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->description
-msgid "Pressure measurement unit"
-msgstr "Đơn vị đo áp suất"
+#. settings-schema.json->webservice->description
+#. settings-schema.json->locsrc->options
+msgid "Data service"
+msgstr "Đài khí tượng"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->tooltip
-msgid "Measurement units used to display atmospheric pressure"
-msgstr "Các đơn vị đo áp suất từng sử dụng"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->options
-msgid "in (Hg)"
-msgstr "in thuỷ ngân"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->options
-msgid "mm (Hg)"
-msgstr "mm thuỷ ngân"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->options
-msgid "kPa"
-msgstr "kPa"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->punits->options
-msgid "mb"
-msgstr "mb"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->styling->description
-msgid "Desklet style"
-msgstr "Kiểu dáng của bảng"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__maximum_temperature->description
-msgid "Forecast maximum"
-msgstr "Dự báo nhiệt độ lớn nhất"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__maximum_temperature->tooltip
-msgid "Check to display the forecast maximum temperature"
-msgstr "Tích để hiện nhiệt độ lớn nhất"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->description
-msgid "Wind speed measurement unit"
-msgstr "Đơn vị đo tốc độ gió"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->tooltip
-msgid "Measurement units used to display wind speed"
-msgstr "Các đơn vị đo tốc độ gió từng sử dụng"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->options
-msgid "knots"
-msgstr "hải lý"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->options
-msgid "m/s"
-msgstr "m/s"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->options
-msgid "km/h"
-msgstr "km/h"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->wunits->options
-msgid "mph"
-msgstr "dặm/giờ"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__meta__country->description
-msgid "Country"
-msgstr "Quốc gia"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->display__meta__country->tooltip
-msgid "Check to display the country"
-msgstr "Tích để hiện tên nước"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__cc__pressure->description
-msgid "Current pressure"
-msgstr "Áp suất hiện tại"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->display__cc__pressure->tooltip
-msgid "Check to display the current pressure"
-msgstr "Tích đề hiện áp suất hiện tại"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__wind_direction->description
-msgid "Forecast wind direction"
-msgstr "Dự báo hướng gió"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__wind_direction->tooltip
-msgid "Check to display the forecast wind direction"
-msgstr "Tích để hiện dự báo hướng gió"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__cc__feelslike->description
-msgid "Current 'feels like'"
-msgstr "Nhiệt độ mà ta cảm nhận lúc này"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->display__cc__feelslike->tooltip
-msgid "Check to display the current apparent temperature"
-msgstr "Tích để hiện nhiệt độ mà ta cảm nhận thấy"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__humidity->description
-msgid "Forecast humidity"
-msgstr "Dự báo độ ẩm"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__humidity->tooltip
-msgid "Check to display the forecast humidity"
-msgstr "Tích đề hiện dự báo độ ẩm"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->userno->description
-msgid "Show forecast for"
-msgstr "Hiển thị dự báo cho"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->userno->tooltip
-msgid ""
-"The number of days of forecast to display. Note that not all services "
-"support all values"
-msgstr ""
-"Dự báo trong bao nhiêu ngày tới, phụ thuộc vào khả năng dự đoán của từng đài "
-"khí tượng."
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->userno->units
-msgid "days"
-msgstr "ngày"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->bordercolor->description
-msgid "Border color"
-msgstr "Màu viền"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->bordercolor->tooltip
-msgid ""
-"Select the color for the border. Only available if the 'Border' checkbox is "
-"enabled"
-msgstr "Chọn màu viền"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__wind_speed->description
-msgid "Forecast wind speed"
-msgstr "Dự báo tốc độ gió"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__wind_speed->tooltip
-msgid "Check to display the forecast wind speed"
-msgstr "Tích để hiện dự báo tốc độ gió"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__cc__weather->description
-msgid "Current weather and icon"
-msgstr "Thời tiết hiện tại và biểu tượng"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->display__cc__weather->tooltip
-msgid "Check to display the current weather and large icon"
-msgstr "Tịch để hiện thời tiết hiện tại và biểu tượng lớn hơn"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->overrideTheme->description
-msgid "Override desktop theme (enables the settings below)"
-msgstr "Cài đè giao diện hệ thống (cho phép thiết lập các mục bên dưới)"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->overrideTheme->tooltip
-msgid ""
-"Check this to override the desktop theme and configure the appearance "
-"manually"
-msgstr "Tích để chỉnh sửa giao diện"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->citystyle->description
-msgid "Bold city name"
-msgstr "Làm đậm tên thành phố"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->citystyle->tooltip
-msgid "Check to display the city name in bold"
-msgstr "Tích để hiện tên thành phố đậm nét"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__cc__visibility->description
-msgid "Current visibility"
-msgstr "Tầm nhìn hiện tại"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__cc__visibility->tooltip
-msgid "Check to display the current visibility"
-msgstr "Tích để hiện tầm nhìn hiện tại"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__minimum_temperature->description
-msgid "Forecast minimum"
-msgstr "Dự báo nhiệt độ nhỏ nhất"
-
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__minimum_temperature->tooltip
-msgid "Check to display the forecast minimum temperature"
-msgstr "Tích để hiện nhiệt độ nhỏ nhất"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->locationlookups->description
-msgid "Location display settings"
-msgstr "Các tuỳ chọn về vị trí"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->apikey->description
-msgid "API key"
-msgstr "API key"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->apikey->tooltip
-msgid ""
-"Required for some services only. Enter your API key for your chosen service"
-msgstr "Yêu cầu bởi một số đài khí tượng. Nhập API key cho nhà đài bạn chọn."
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->tooltip
-msgid "Select the data service you wish to use"
-msgstr "Chọn đài khí tượng"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
-msgid "APIXU (requires API key)"
-msgstr "Forecast.io (cần API key)"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-msgid "Wunderground (requires API key)"
-msgstr "Wunderground (cần API key)"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-msgid "meteoblue (requires API key)"
-msgstr ""
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
-msgid "World Weather Online (deprecated) (requires API key)"
-msgstr "World Weather Online (cần API key)"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
+#. settings-schema.json->webservice->options
 msgid "BBC"
 msgstr "BBC"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
-msgid "Open Weather Map Free (requires API key)"
-msgstr "World Weather Online (cần API key)"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-msgid "weather.com (deprecated)"
-msgstr "weather.com (có thể không còn hoạt động)"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-#, fuzzy
-msgid "World Weather Online Premium (requires API key)"
-msgstr "World Weather Online (cần API key)"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
-msgid "Forecast.io (requires API key)"
-msgstr "Forecast.io (cần API key)"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->webservice->options
+#. settings-schema.json->webservice->options
 #, fuzzy
 msgid "Open Weather Map (requires API key)"
 msgstr "World Weather Online (cần API key)"
 
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__pressure->description
-msgid "Forecast pressure"
-msgstr "Dự báo áp suất"
+#. settings-schema.json->webservice->options
+#, fuzzy
+msgid "Open Weather Map Free (requires API key)"
+msgstr "World Weather Online (cần API key)"
 
-#. bbcwx@oak-wood.co.uk->settings-
-#. schema.json->display__forecast__pressure->tooltip
-msgid "Check to display the forecast pressure"
-msgstr "Tích để hiện dự báo áp suất"
+#. settings-schema.json->webservice->options
+msgid "Wunderground (requires API key)"
+msgstr "Wunderground (cần API key)"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->zoom->description
-msgid "Zoom by"
-msgstr "Mức phóng đại"
+#. settings-schema.json->webservice->options
+#, fuzzy
+msgid "World Weather Online (deprecated) (requires API key)"
+msgstr "World Weather Online (cần API key)"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->zoom->tooltip
-msgid "Change the size of the desklet"
-msgstr "Thay ơổi kích cỡ bảng"
+#. settings-schema.json->webservice->options
+#, fuzzy
+msgid "World Weather Online Premium (requires API key)"
+msgstr "World Weather Online (cần API key)"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->zoom->units
-msgid "times"
-msgstr "lần"
+#. settings-schema.json->webservice->options
+#, fuzzy
+msgid "APIXU (requires API key)"
+msgstr "Forecast.io (cần API key)"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->description
-msgid "Icon style"
-msgstr "Kiểu biểu tượng"
+#. settings-schema.json->webservice->options
+msgid "Forecast.io (requires API key)"
+msgstr "Forecast.io (cần API key)"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->tooltip
-msgid "Select the style for the weather icons"
-msgstr "Chọn kiểu cho các biểu tượng thời tiết"
+#. settings-schema.json->webservice->options
+msgid "weather.com (deprecated)"
+msgstr "weather.com (có thể không còn hoạt động)"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Flat white"
-msgstr "Flat white"
+#. settings-schema.json->webservice->options
+msgid "meteoblue (requires API key)"
+msgstr ""
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Novacon"
-msgstr "Novacon"
+#. settings-schema.json->webservice->tooltip
+msgid "Select the data service you wish to use"
+msgstr "Chọn đài khí tượng"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "VClouds"
-msgstr "VClouds"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Colorful"
-msgstr "Colorful"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Light"
-msgstr "Light"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Meteocons 2"
-msgstr "Meteocons 2"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Flat black"
-msgstr "Flat black"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Meteocons 1"
-msgstr "Meteocons 1"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Dark"
-msgstr "Dark"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Sketchy"
-msgstr "Sketchy"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Flat colorful"
-msgstr "Flat colorful"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "User defined"
-msgstr "Người dụng tự đặt"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->iconstyle->options
-msgid "Weezle"
-msgstr "Weezle"
-
-#. bbcwx@oak-wood.co.uk->settings-schema.json->stationID->description
+#. settings-schema.json->stationID->description
 msgid "Location"
 msgstr "Địa điểm"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->stationID->tooltip
+#. settings-schema.json->stationID->tooltip
 msgid "Set your location here"
 msgstr "Đặt địa điểm của bạn"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->cornerradius->description
-msgid "Corner radius"
-msgstr "Bán kính góc"
+#. settings-schema.json->apikey->description
+msgid "API key"
+msgstr "API key"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->cornerradius->tooltip
-msgid "Radius for rounding the desklet's corners"
-msgstr "Bán kính các góc xung quanh bảng"
+#. settings-schema.json->apikey->tooltip
+msgid "Required for some services only. Enter your API key for your chosen service"
+msgstr "Yêu cầu bởi một số đài khí tượng. Nhập API key cho nhà đài bạn chọn."
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->cornerradius->units
-#. bbcwx@oak-wood.co.uk->settings-schema.json->borderwidth->units
-msgid "px"
-msgstr "px"
+#. settings-schema.json->tunits->description
+msgid "Temperature measurement unit"
+msgstr "Đơn vị đo nhiệt độ"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->transparency->description
+#. settings-schema.json->tunits->options
+msgid "Celsius"
+msgstr "Độ C"
+
+#. settings-schema.json->tunits->options
+msgid "Fahrenheit"
+msgstr "Độ F"
+
+#. settings-schema.json->tunits->tooltip
+msgid "Measurement units used to display temperature"
+msgstr "Các đơn vị đo từng dùng để đo nhiệt độ"
+
+#. settings-schema.json->wunits->description
+msgid "Wind speed measurement unit"
+msgstr "Đơn vị đo tốc độ gió"
+
+#. settings-schema.json->wunits->options
+msgid "mph"
+msgstr "dặm/giờ"
+
+#. settings-schema.json->wunits->options
+msgid "km/h"
+msgstr "km/h"
+
+#. settings-schema.json->wunits->options
+msgid "knots"
+msgstr "hải lý"
+
+#. settings-schema.json->wunits->options
+msgid "m/s"
+msgstr "m/s"
+
+#. settings-schema.json->wunits->tooltip
+msgid "Measurement units used to display wind speed"
+msgstr "Các đơn vị đo tốc độ gió từng sử dụng"
+
+#. settings-schema.json->punits->description
+msgid "Pressure measurement unit"
+msgstr "Đơn vị đo áp suất"
+
+#. settings-schema.json->punits->options
+msgid "mb"
+msgstr "mb"
+
+#. settings-schema.json->punits->options
+msgid "in (Hg)"
+msgstr "in thuỷ ngân"
+
+#. settings-schema.json->punits->options
+msgid "mm (Hg)"
+msgstr "mm thuỷ ngân"
+
+#. settings-schema.json->punits->options
+msgid "kPa"
+msgstr "kPa"
+
+#. settings-schema.json->punits->tooltip
+msgid "Measurement units used to display atmospheric pressure"
+msgstr "Các đơn vị đo áp suất từng sử dụng"
+
+#. settings-schema.json->userno->units
+msgid "days"
+msgstr "ngày"
+
+#. settings-schema.json->userno->description
+msgid "Show forecast for"
+msgstr "Hiển thị dự báo cho"
+
+#. settings-schema.json->userno->tooltip
+msgid ""
+"The number of days of forecast to display. Note that not all services support all values"
+msgstr ""
+"Dự báo trong bao nhiêu ngày tới, phụ thuộc vào khả năng dự đoán của từng đài khí tượng."
+
+#. settings-schema.json->refreshtime->units
+msgid "minutes"
+msgstr "phút"
+
+#. settings-schema.json->refreshtime->description
+msgid "Refresh forecast every"
+msgstr "Cập nhật dự báo mỗi"
+
+#. settings-schema.json->refreshtime->tooltip
+msgid ""
+"Period between refreshing forecasts. Note that not all services support lower refresh times"
+msgstr "Khoảng thời gian giữa 2 lần cập nhật. Không nên đặt số quá nhỏ"
+
+#. settings-schema.json->display->description
+msgid "Optional items to display (not all options are supported by all services)"
+msgstr "Các mục hiển thị tùy chọn (một số mục không có từ phía đài khí tượng)"
+
+#. settings-schema.json->display__meta__country->description
+msgid "Country"
+msgstr "Quốc gia"
+
+#. settings-schema.json->display__meta__country->tooltip
+msgid "Check to display the country"
+msgstr "Tích để hiện tên nước"
+
+#. settings-schema.json->display__cc__weather->description
+msgid "Current weather and icon"
+msgstr "Thời tiết hiện tại và biểu tượng"
+
+#. settings-schema.json->display__cc__weather->tooltip
+msgid "Check to display the current weather and large icon"
+msgstr "Tịch để hiện thời tiết hiện tại và biểu tượng lớn hơn"
+
+#. settings-schema.json->display__cc__pressure->description
+msgid "Current pressure"
+msgstr "Áp suất hiện tại"
+
+#. settings-schema.json->display__cc__pressure->tooltip
+msgid "Check to display the current pressure"
+msgstr "Tích đề hiện áp suất hiện tại"
+
+#. settings-schema.json->display__cc__humidity->description
+msgid "Current humidity"
+msgstr "Độ ẩm hiện tại"
+
+#. settings-schema.json->display__cc__humidity->tooltip
+msgid "Check to display the current humidity"
+msgstr "Tích để hiện độ ẩm hiện tại"
+
+#. settings-schema.json->display__cc__wind_speed->description
+msgid "Current wind"
+msgstr "Sức gió hiện tại"
+
+#. settings-schema.json->display__cc__wind_speed->tooltip
+msgid "Check to display the current wind"
+msgstr "Tích để hiện sức gió hiện tại"
+
+#. settings-schema.json->display__cc__feelslike->description
+msgid "Current 'feels like'"
+msgstr "Nhiệt độ mà ta cảm nhận lúc này"
+
+#. settings-schema.json->display__cc__feelslike->tooltip
+msgid "Check to display the current apparent temperature"
+msgstr "Tích để hiện nhiệt độ mà ta cảm nhận thấy"
+
+#. settings-schema.json->display__cc__visibility->description
+msgid "Current visibility"
+msgstr "Tầm nhìn hiện tại"
+
+#. settings-schema.json->display__cc__visibility->tooltip
+msgid "Check to display the current visibility"
+msgstr "Tích để hiện tầm nhìn hiện tại"
+
+#. settings-schema.json->display__forecast__maximum_temperature->description
+msgid "Forecast maximum"
+msgstr "Dự báo nhiệt độ lớn nhất"
+
+#. settings-schema.json->display__forecast__maximum_temperature->tooltip
+msgid "Check to display the forecast maximum temperature"
+msgstr "Tích để hiện nhiệt độ lớn nhất"
+
+#. settings-schema.json->display__forecast__minimum_temperature->description
+msgid "Forecast minimum"
+msgstr "Dự báo nhiệt độ nhỏ nhất"
+
+#. settings-schema.json->display__forecast__minimum_temperature->tooltip
+msgid "Check to display the forecast minimum temperature"
+msgstr "Tích để hiện nhiệt độ nhỏ nhất"
+
+#. settings-schema.json->display__forecast__wind_speed->description
+msgid "Forecast wind speed"
+msgstr "Dự báo tốc độ gió"
+
+#. settings-schema.json->display__forecast__wind_speed->tooltip
+msgid "Check to display the forecast wind speed"
+msgstr "Tích để hiện dự báo tốc độ gió"
+
+#. settings-schema.json->display__forecast__wind_direction->description
+msgid "Forecast wind direction"
+msgstr "Dự báo hướng gió"
+
+#. settings-schema.json->display__forecast__wind_direction->tooltip
+msgid "Check to display the forecast wind direction"
+msgstr "Tích để hiện dự báo hướng gió"
+
+#. settings-schema.json->display__forecast__pressure->description
+msgid "Forecast pressure"
+msgstr "Dự báo áp suất"
+
+#. settings-schema.json->display__forecast__pressure->tooltip
+msgid "Check to display the forecast pressure"
+msgstr "Tích để hiện dự báo áp suất"
+
+#. settings-schema.json->display__forecast__humidity->description
+msgid "Forecast humidity"
+msgstr "Dự báo độ ẩm"
+
+#. settings-schema.json->display__forecast__humidity->tooltip
+msgid "Check to display the forecast humidity"
+msgstr "Tích đề hiện dự báo độ ẩm"
+
+#. settings-schema.json->styling->description
+msgid "Desklet style"
+msgstr "Kiểu dáng của bảng"
+
+#. settings-schema.json->zoom->units
+msgid "times"
+msgstr "lần"
+
+#. settings-schema.json->zoom->description
+msgid "Zoom by"
+msgstr "Mức phóng đại"
+
+#. settings-schema.json->zoom->tooltip
+msgid "Change the size of the desklet"
+msgstr "Thay ơổi kích cỡ bảng"
+
+#. settings-schema.json->layout->description
+msgid "Layout"
+msgstr "Bố cục"
+
+#. settings-schema.json->layout->options
+msgid "Horizontal"
+msgstr "Ngang"
+
+#. settings-schema.json->layout->options
+msgid "Vertical"
+msgstr "Dọc"
+
+#. settings-schema.json->layout->tooltip
+msgid "Set the overall layout of the desklet"
+msgstr "Đặt bố cục chung cho bảng"
+
+#. settings-schema.json->iconstyle->description
+msgid "Icon style"
+msgstr "Kiểu biểu tượng"
+
+#. settings-schema.json->iconstyle->options
+msgid "Colorful"
+msgstr "Colorful"
+
+#. settings-schema.json->iconstyle->options
+msgid "Dark"
+msgstr "Dark"
+
+#. settings-schema.json->iconstyle->options
+msgid "Light"
+msgstr "Light"
+
+#. settings-schema.json->iconstyle->options
+msgid "Flat colorful"
+msgstr "Flat colorful"
+
+#. settings-schema.json->iconstyle->options
+msgid "Flat black"
+msgstr "Flat black"
+
+#. settings-schema.json->iconstyle->options
+msgid "Flat white"
+msgstr "Flat white"
+
+#. settings-schema.json->iconstyle->options
+msgid "VClouds"
+msgstr "VClouds"
+
+#. settings-schema.json->iconstyle->options
+msgid "Novacon"
+msgstr "Novacon"
+
+#. settings-schema.json->iconstyle->options
+msgid "Weezle"
+msgstr "Weezle"
+
+#. settings-schema.json->iconstyle->options
+msgid "Meteocons 1"
+msgstr "Meteocons 1"
+
+#. settings-schema.json->iconstyle->options
+msgid "Meteocons 2"
+msgstr "Meteocons 2"
+
+#. settings-schema.json->iconstyle->options
+msgid "Sketchy"
+msgstr "Sketchy"
+
+#. settings-schema.json->iconstyle->options
+msgid "User defined"
+msgstr "Người dụng tự đặt"
+
+#. settings-schema.json->iconstyle->tooltip
+msgid "Select the style for the weather icons"
+msgstr "Chọn kiểu cho các biểu tượng thời tiết"
+
+#. settings-schema.json->citystyle->description
+msgid "Bold city name"
+msgstr "Làm đậm tên thành phố"
+
+#. settings-schema.json->citystyle->tooltip
+msgid "Check to display the city name in bold"
+msgstr "Tích để hiện tên thành phố đậm nét"
+
+#. settings-schema.json->overrideTheme->description
+msgid "Override desktop theme (enables the settings below)"
+msgstr "Cài đè giao diện hệ thống (cho phép thiết lập các mục bên dưới)"
+
+#. settings-schema.json->overrideTheme->tooltip
+msgid "Check this to override the desktop theme and configure the appearance manually"
+msgstr "Tích để chỉnh sửa giao diện"
+
+#. settings-schema.json->transparency->description
 msgid "Transparency"
 msgstr "Độ trong suốt"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->transparency->tooltip
+#. settings-schema.json->transparency->tooltip
 msgid "Set the transparency of the desklet"
 msgstr "Đặt độ trong suốt của bảng"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->display->description
-msgid ""
-"Optional items to display (not all options are supported by all services)"
-msgstr "Các mục hiển thị tùy chọn (một số mục không có từ phía đài khí tượng)"
+#. settings-schema.json->textcolor->description
+msgid "Text color"
+msgstr "Màu chữ"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->experimental->description
-msgid "Experimental and buggy features (read documentation!!)"
-msgstr "Các tính năng thử nghiệm (có thể có lỗi)"
+#. settings-schema.json->textcolor->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Nhấp nút để chọn màu chữ mới"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->borderwidth->description
+#. settings-schema.json->textshadow->description
+msgid "Text shadow"
+msgstr ""
+
+#. settings-schema.json->textshadow->tooltip
+msgid "Check to add a text shadow"
+msgstr ""
+
+#. settings-schema.json->shadowblur->units
+#. settings-schema.json->cornerradius->units
+#. settings-schema.json->borderwidth->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->shadowblur->description
+msgid "Shadow blur radius"
+msgstr ""
+
+#. settings-schema.json->shadowblur->tooltip
+msgid "Set the text shadow sharp (1) or blurry (2-7)"
+msgstr ""
+
+#. settings-schema.json->bgcolor->description
+msgid "Background color"
+msgstr "Màu nền"
+
+#. settings-schema.json->bgcolor->tooltip
+msgid "Click the button to select a new background color"
+msgstr "Nhấn để chọn màu nền mới"
+
+#. settings-schema.json->cornerradius->description
+msgid "Corner radius"
+msgstr "Bán kính góc"
+
+#. settings-schema.json->cornerradius->tooltip
+msgid "Radius for rounding the desklet's corners"
+msgstr "Bán kính các góc xung quanh bảng"
+
+#. settings-schema.json->border->description
+msgid "Show border"
+msgstr "Hiện đường viền"
+
+#. settings-schema.json->border->tooltip
+msgid "Check this to turn border on/off"
+msgstr "Tích để hiện/ẩn đường viền"
+
+#. settings-schema.json->bordercolor->description
+msgid "Border color"
+msgstr "Màu viền"
+
+#. settings-schema.json->bordercolor->tooltip
+msgid "Select the color for the border. Only available if the 'Border' checkbox is enabled"
+msgstr "Chọn màu viền"
+
+#. settings-schema.json->borderwidth->description
 msgid "Border width"
 msgstr "Độ rộng viền"
 
-#. bbcwx@oak-wood.co.uk->settings-schema.json->borderwidth->tooltip
-msgid ""
-"Select the width of the border. Only available if the 'Border' checkbox is "
-"enabled"
+#. settings-schema.json->borderwidth->tooltip
+msgid "Select the width of the border. Only available if the 'Border' checkbox is enabled"
 msgstr "Chọn độ rộng viền"
 
-#. bbcwx@oak-wood.co.uk->metadata.json->name
-msgid "Weather Desklet"
+#. settings-schema.json->locationlookups->description
+msgid "Location display settings"
+msgstr "Các tuỳ chọn về vị trí"
+
+#. settings-schema.json->locsrc->description
+msgid "Get displayed location from"
+msgstr "Lấy thông tin vị trí từ"
+
+#. settings-schema.json->locsrc->options
+msgid "Google"
+msgstr "Google"
+
+#. settings-schema.json->locsrc->tooltip
+msgid ""
+"The source of the text displayed as the current location. Yahoo! and Google may offer city "
+"names in other languages"
 msgstr ""
+"Nguồn dữ liệu của vị trí hiện thời. Yahoo! và Google có thễ hiện thị tên thành phố trong "
+"cả các ngôn ngữ khác"
 
-#. bbcwx@oak-wood.co.uk->metadata.json->description
-msgid "Display the weather from several web services on your desktop"
-msgstr ""
+#. settings-schema.json->manuallocation->description
+msgid "Manually override displayed location"
+msgstr "Tự đặt vị trí"
 
-#~ msgid "Open Weather Map"
-#~ msgstr "Open Weather Map"
+#. settings-schema.json->manuallocation->tooltip
+msgid "Set your city name manually."
+msgstr "Tự ghi tên thành phố"
 
-#~ msgid "Yahoo!"
-#~ msgstr "Yahoo!"
+#. settings-schema.json->experimental->description
+msgid "Experimental and buggy features (read documentation!!)"
+msgstr "Các tính năng thử nghiệm (có thể có lỗi)"
 
-#~ msgid "Yahoo"
-#~ msgstr "Yahoo"
+#. settings-schema.json->experimental_enabled->description
+msgid "Enable experimental features"
+msgstr "Thử nghiệm tính năng mới"
+
+#. settings-schema.json->experimental_enabled->tooltip
+msgid "Check this to enable experimental and buggy features"
+msgstr "Tích để bật tính năng mới (có thể có lỗi)"
+
+#. settings-schema.json->gravity->description
+msgid "Anchor desklet by"
+msgstr "Đặt bảng bằng"
+
+#. settings-schema.json->gravity->options
+msgid "Default"
+msgstr "Mặc định"
+
+#. settings-schema.json->gravity->options
+msgid "Top left"
+msgstr "Góc trên bên trái"
+
+#. settings-schema.json->gravity->options
+msgid "Left center"
+msgstr "Bên trái điểm giữa"
+
+#. settings-schema.json->gravity->options
+msgid "Bottom left"
+msgstr "Góc dưới bên trái"
+
+#. settings-schema.json->gravity->options
+msgid "Bottom center"
+msgstr "Bên dưới điểm giữa"
+
+#. settings-schema.json->gravity->options
+msgid "Bottom right"
+msgstr "Góc dưới bên phải"
+
+#. settings-schema.json->gravity->options
+msgid "Right center"
+msgstr "Bên phải điểm giữa"
+
+#. settings-schema.json->gravity->options
+msgid "Top right"
+msgstr "Góc trên bên phải"
+
+#. settings-schema.json->gravity->options
+msgid "Top center"
+msgstr "Bên trên điểm giữa"
+
+#. settings-schema.json->gravity->tooltip
+msgid ""
+"Select the point on the desklet to which it is anchored. This point will remain static as "
+"the desklet grows and shrinks"
+msgstr "Chọn điểm đặt bảng. Điểm đó là cố định khi bảng phóng to hay thu nhỏ"

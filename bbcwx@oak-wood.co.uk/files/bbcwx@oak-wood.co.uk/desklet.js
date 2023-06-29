@@ -1136,9 +1136,9 @@ MyDesklet.prototype = {
     let fahr = ((celsius + 40) * 1.8) - 40;
     let out = Math.round(((this.tunits=='F') ? fahr : celsius));
     //## Units for temperature, degrees Fahrenheit. %f is replaced the value. NB: English translation uses unicode character u+2109
-    let fahrfmt = _('%fF');
+    let fahrfmt = _('%f\u00b0F');
     //## Units for temperature, degrees Celsius. %f is replaced the value. NB: English translation uses unicode character u+2103
-    let celfmt = _('%fC')
+    let celfmt = _('%f\u00b0C')
     if (units) {
       out = ((this.tunits=='F') ? fahrfmt.format(out) : celfmt.format(out))
     }
