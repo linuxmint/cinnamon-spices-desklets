@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bbcwx\n"
 "Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
 "POT-Creation-Date: 2018-01-07 21:05+0000\n"
-"PO-Revision-Date: 2023-04-16 07:22-0400\n"
+"PO-Revision-Date: 2023-06-30 23:03+0200\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "Language: hu\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2017-05-05 21:20+0000\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: desklet.js:108
 msgid "Mon"
@@ -544,10 +544,12 @@ msgid ""
 "Please consider translating the Weather Desklet into your language. See the "
 "website for more information"
 msgstr ""
+"Kérjük, fontolja meg a Weather Desklet lefordítását a anyanyelvére. További "
+"információért látogassa meg a weboldalt"
 
 #. metadata.json->contributors
 msgid "Chris Hastie"
-msgstr ""
+msgstr "Chris Hastie"
 
 #. settings-schema.json->top->description
 msgid "Weather configuration"
