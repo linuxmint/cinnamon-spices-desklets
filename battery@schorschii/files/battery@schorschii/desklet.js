@@ -11,6 +11,7 @@ const Clutter = imports.gi.Clutter;
 const GdkPixbuf = imports.gi.GdkPixbuf;
 const Cogl = imports.gi.Cogl;
 const Gio = imports.gi.Gio;
+const ByteArray = imports.byteArray;
 
 const UUID = "battery@schorschii";
 const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
@@ -148,7 +149,7 @@ MyDesklet.prototype = {
 				try {
 					let [success, contents, tag] = file.load_contents_finish(response);
 					if(success) {
-						this.currentCapacity = parseInt(contents.toString());
+						this.currentCapacity = parseInt(ByteArray.toString(contents));
 						// fix for some batteries reporting values higher than 100
 						if(this.currentCapacity > 100) this.currentCapacity = 100;
 					}
@@ -164,7 +165,7 @@ MyDesklet.prototype = {
 				try {
 					let [success, contents, tag] = file.load_contents_finish(response);
 					if(success) {
-						this.currentState = contents.toString().trim();
+						this.currentState = ByteArray.toString(contents).trim();
 					}
 					GLib.free(contents);
 				} catch(err) {
