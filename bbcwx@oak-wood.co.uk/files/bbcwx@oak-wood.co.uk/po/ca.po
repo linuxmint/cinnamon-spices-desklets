@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbcwx\n"
 "Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
-"POT-Creation-Date: 2018-01-07 21:05+0000\n"
-"PO-Revision-Date: 2023-04-16 07:22-0400\n"
+"POT-Creation-Date: 2023-08-15 21:58-0400\n"
+"PO-Revision-Date: 2023-08-15 22:42-0400\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "Language: ca\n"
@@ -16,516 +16,539 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2015-12-04 19:52+0000\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.3.1\n"
 
-#: desklet.js:108
+#: 3.0/desklet.js:108 5.4/desklet.js:107
 msgid "Mon"
 msgstr "dl."
 
-#: desklet.js:108
+#: 3.0/desklet.js:108 5.4/desklet.js:107
 msgid "Tue"
 msgstr "dt."
 
-#: desklet.js:108
+#: 3.0/desklet.js:108 5.4/desklet.js:107
 msgid "Wed"
 msgstr "dc."
 
-#: desklet.js:108
+#: 3.0/desklet.js:108 5.4/desklet.js:107
 msgid "Thu"
 msgstr "dj."
 
-#: desklet.js:108
+#: 3.0/desklet.js:108 5.4/desklet.js:107
 msgid "Fri"
 msgstr "dv."
 
-#: desklet.js:108
+#: 3.0/desklet.js:108 5.4/desklet.js:107
 msgid "Sat"
 msgstr "ds."
 
-#: desklet.js:108
+#: 3.0/desklet.js:108 5.4/desklet.js:107
 msgid "Sun"
 msgstr "dg."
 
-#: desklet.js:186
+#: 3.0/desklet.js:186 5.4/desklet.js:192
 msgid "Weather"
 msgstr "El temps"
 
-#: desklet.js:194
+#: 3.0/desklet.js:194 5.4/desklet.js:200
 msgid "Help"
 msgstr "Ajuda"
 
-#: desklet.js:198
+#: 3.0/desklet.js:198 5.4/desklet.js:204
 msgid "Translate"
 msgstr "Traduïu"
 
-#: desklet.js:344 desklet.js:372
+#: 3.0/desklet.js:344 3.0/desklet.js:372 5.4/desklet.js:351 5.4/desklet.js:379
 msgid "Humidity:"
 msgstr "Humitat:"
 
-#: desklet.js:345 desklet.js:371
+#: 3.0/desklet.js:345 3.0/desklet.js:371 5.4/desklet.js:352 5.4/desklet.js:378
 msgid "Pressure:"
 msgstr "Pressió:"
 
-#: desklet.js:346
+#: 3.0/desklet.js:346 5.4/desklet.js:353
 msgid "Wind:"
 msgstr "Vent:"
 
-#: desklet.js:347
+#: 3.0/desklet.js:347 5.4/desklet.js:354
 msgid "Feels like:"
 msgstr "Sensació tèrmica:"
 
-#: desklet.js:348
+#: 3.0/desklet.js:348 5.4/desklet.js:355
 msgid "Visibility:"
 msgstr "Visibilitat:"
 
-#: desklet.js:363
+#: 3.0/desklet.js:363 5.4/desklet.js:370
 msgid "Max:"
 msgstr "Màx.:"
 
-#: desklet.js:365
+#: 3.0/desklet.js:365 5.4/desklet.js:372
 msgid "Min:"
 msgstr "Mín.:"
 
-#: desklet.js:367
+#: 3.0/desklet.js:367 5.4/desklet.js:374
 msgid "Wind speed:"
 msgstr "Velocitat del vent:"
 
-#: desklet.js:369
+#: 3.0/desklet.js:369 5.4/desklet.js:376
 msgid "Dir:"
 msgstr "Direcció:"
 
-#: desklet.js:411
+#: 3.0/desklet.js:411 5.4/desklet.js:418
 msgid "Data from "
 msgstr "Dades: "
 
-#: desklet.js:423
+#: 3.0/desklet.js:423 5.4/desklet.js:432
 msgid "Refresh"
 msgstr "Actualitza"
 
-#: desklet.js:744
+#: 3.0/desklet.js:744 5.4/desklet.js:754
 msgid "No data available"
 msgstr "No hi ha dades disponibles"
 
-#: desklet.js:777 desklet.js:844
+#: 3.0/desklet.js:777 3.0/desklet.js:844 5.4/desklet.js:787 5.4/desklet.js:854
 #, javascript-format
 msgid "Error: %s"
 msgstr "Sha produït un error: %s"
 
-#: desklet.js:777 desklet.js:844
+#: 3.0/desklet.js:777 3.0/desklet.js:844 5.4/desklet.js:787 5.4/desklet.js:854
 msgid "No data"
 msgstr "No hi ha dades"
 
-#: desklet.js:879
+#: 3.0/desklet.js:879 5.4/desklet.js:889
 #, javascript-format
 msgid "Click for the full forecast for %s"
 msgstr "Feu clic per veure la previsió completa per %s"
 
-#: desklet.js:1139
+#: 3.0/desklet.js:1139 5.4/desklet.js:1149
 #, javascript-format
 msgid "%f°F"
 msgstr "%f ºF"
 
-#: desklet.js:1141
+#: 3.0/desklet.js:1141 5.4/desklet.js:1151
 #, javascript-format
 msgid "%f°C"
 msgstr "%f ºC"
 
-#: desklet.js:1162
+#: 3.0/desklet.js:1162 5.4/desklet.js:1172
 #, javascript-format
 msgid "%fmph"
 msgstr "%f mph"
 
-#: desklet.js:1164
+#: 3.0/desklet.js:1164 5.4/desklet.js:1174
 #, javascript-format
 msgid "%fkn"
 msgstr "%f nusos"
 
-#: desklet.js:1166
+#: 3.0/desklet.js:1166 5.4/desklet.js:1176
 #, javascript-format
 msgid "%fkm/h"
 msgstr "%f km/h"
 
-#: desklet.js:1168
+#: 3.0/desklet.js:1168 5.4/desklet.js:1178
 #, javascript-format
 msgid "%fm/s"
 msgstr "%f m/s"
 
-#: desklet.js:1202
+#: 3.0/desklet.js:1202 5.4/desklet.js:1212
 #, javascript-format
 msgid "%fmb"
 msgstr "%f mb"
 
-#: desklet.js:1204
+#: 3.0/desklet.js:1204 5.4/desklet.js:1214
 #, javascript-format
 msgid "%fin"
 msgstr "%f in"
 
-#: desklet.js:1206
+#: 3.0/desklet.js:1206 5.4/desklet.js:1216
 #, javascript-format
 msgid "%fmm"
 msgstr "%f mm"
 
-#: desklet.js:1208
+#: 3.0/desklet.js:1208 5.4/desklet.js:1218
 #, javascript-format
 msgid "%fkPa"
 msgstr "%f kPa"
 
-#: desklet.js:1259
+#: 3.0/desklet.js:1259 5.4/desklet.js:1269
 #, javascript-format
 msgid "%fmi"
 msgstr "%f mi"
 
-#: desklet.js:1261
+#: 3.0/desklet.js:1261 5.4/desklet.js:1271
 #, javascript-format
 msgid "%fnmi"
 msgstr "%f nmi"
 
-#: desklet.js:1263
+#: 3.0/desklet.js:1263 5.4/desklet.js:1273
 #, javascript-format
 msgid "%fkm"
 msgstr "%f km"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "N"
 msgstr "N"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "NNE"
 msgstr "NNE"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "NE"
 msgstr "NE"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "ENE"
 msgstr "ENE"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "E"
 msgstr "E"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "ESE"
 msgstr "ESE"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "SE"
 msgstr "SE"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "SSE"
 msgstr "SSE"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "S"
 msgstr "S"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "SSW"
 msgstr "SSO"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "SW"
 msgstr "SO"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "WSW"
 msgstr "OSO"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "W"
 msgstr "O"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "WNW"
 msgstr "ONO"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "NW"
 msgstr "NO"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "NNW"
 msgstr "NNO"
 
-#: desklet.js:1560
+#: 3.0/desklet.js:1560 5.4/desklet.js:1570
 msgid "Tornado"
 msgstr "Tornado"
 
-#: desklet.js:1561
+#: 3.0/desklet.js:1561 5.4/desklet.js:1571
 msgid "Tropical storm"
 msgstr "Tempesta tropical"
 
-#: desklet.js:1562
+#: 3.0/desklet.js:1562 5.4/desklet.js:1572
 msgid "Hurricane"
 msgstr "Huracà"
 
-#: desklet.js:1563
+#: 3.0/desklet.js:1563 5.4/desklet.js:1573
 msgid "Severe thunderstorms"
 msgstr "Tempesta elèctrica severa"
 
-#: desklet.js:1564
+#: 3.0/desklet.js:1564 5.4/desklet.js:1574
 msgid "Thunderstorms"
 msgstr "Tempesta elèctrica"
 
-#: desklet.js:1565 desklet.js:4240
+#: 3.0/desklet.js:1565 3.0/desklet.js:4240 5.4/desklet.js:1575
+#: 5.4/desklet.js:4250
 msgid "Mixed rain and snow"
 msgstr "Pluja i neu"
 
-#: desklet.js:1566
+#: 3.0/desklet.js:1566 5.4/desklet.js:1576
 msgid "Mixed rain and sleet"
 msgstr "Pluja i aiguaneu"
 
-#: desklet.js:1567
+#: 3.0/desklet.js:1567 5.4/desklet.js:1577
 msgid "Mixed snow and sleet"
 msgstr "Neu i aiguaneu"
 
-#: desklet.js:1568
+#: 3.0/desklet.js:1568 5.4/desklet.js:1578
 msgid "Freezing drizzle"
 msgstr "Plugim glaçat"
 
-#: desklet.js:1569 desklet.js:1872
+#: 3.0/desklet.js:1569 3.0/desklet.js:1872 5.4/desklet.js:1579
+#: 5.4/desklet.js:1882
 msgid "Drizzle"
 msgstr "Plugim"
 
-#: desklet.js:1570
+#: 3.0/desklet.js:1570 5.4/desklet.js:1580
 msgid "Freezing rain"
 msgstr "Pluja glaçada"
 
-#: desklet.js:1571 desklet.js:1572 desklet.js:4236
+#: 3.0/desklet.js:1571 3.0/desklet.js:1572 3.0/desklet.js:4236
+#: 5.4/desklet.js:1581 5.4/desklet.js:1582 5.4/desklet.js:4246
 msgid "Showers"
 msgstr "Ruixats"
 
-#: desklet.js:1573
+#: 3.0/desklet.js:1573 5.4/desklet.js:1583
 msgid "Snow flurries"
 msgstr "Ràfegues de neu"
 
-#: desklet.js:1574
+#: 3.0/desklet.js:1574 5.4/desklet.js:1584
 msgid "Light snow showers"
 msgstr "Ruixats de neu lleugers"
 
-#: desklet.js:1575
+#: 3.0/desklet.js:1575 5.4/desklet.js:1585
 msgid "Blowing snow"
 msgstr "Neu aixecada pel vent"
 
-#: desklet.js:1576 desklet.js:4238 desklet.js:4244
+#: 3.0/desklet.js:1576 3.0/desklet.js:4238 3.0/desklet.js:4244
+#: 5.4/desklet.js:1586 5.4/desklet.js:4248 5.4/desklet.js:4254
 msgid "Snow"
 msgstr "Neu"
 
-#: desklet.js:1577
+#: 3.0/desklet.js:1577 5.4/desklet.js:1587
 msgid "Hail"
 msgstr "Calamarsa"
 
-#: desklet.js:1578 desklet.js:1877
+#: 3.0/desklet.js:1578 3.0/desklet.js:1877 5.4/desklet.js:1588
+#: 5.4/desklet.js:1887
 msgid "Sleet"
 msgstr "Aiguaneu"
 
-#: desklet.js:1579
+#: 3.0/desklet.js:1579 5.4/desklet.js:1589
 msgid "Dust"
 msgstr "Pols"
 
-#: desklet.js:1580
+#: 3.0/desklet.js:1580 5.4/desklet.js:1590
 msgid "Foggy"
 msgstr "Boirós"
 
-#: desklet.js:1581
+#: 3.0/desklet.js:1581 5.4/desklet.js:1591
 msgid "Haze"
 msgstr "Boirina"
 
-#: desklet.js:1582
+#: 3.0/desklet.js:1582 5.4/desklet.js:1592
 msgid "Smoky"
 msgstr "Boira espessa"
 
-#: desklet.js:1583
+#: 3.0/desklet.js:1583 5.4/desklet.js:1593
 msgid "Blustery"
 msgstr "Borrasca"
 
-#: desklet.js:1584
+#: 3.0/desklet.js:1584 5.4/desklet.js:1594
 msgid "Windy"
 msgstr "Ventades"
 
-#: desklet.js:1585
+#: 3.0/desklet.js:1585 5.4/desklet.js:1595
 msgid "Cold"
 msgstr "Fred"
 
-#: desklet.js:1586 desklet.js:4233
+#: 3.0/desklet.js:1586 3.0/desklet.js:4233 5.4/desklet.js:1596
+#: 5.4/desklet.js:4243
 msgid "Cloudy"
 msgstr "Ennuvolat"
 
-#: desklet.js:1587 desklet.js:1588
+#: 3.0/desklet.js:1587 3.0/desklet.js:1588 5.4/desklet.js:1597
+#: 5.4/desklet.js:1598
 msgid "Mostly cloudy"
 msgstr "Principalment ennuvolat"
 
-#: desklet.js:1589 desklet.js:1590 desklet.js:1604
+#: 3.0/desklet.js:1589 3.0/desklet.js:1590 3.0/desklet.js:1604
+#: 5.4/desklet.js:1599 5.4/desklet.js:1600 5.4/desklet.js:1614
 msgid "Partly cloudy"
 msgstr "Parcialment ennuvolat"
 
-#: desklet.js:1591
+#: 3.0/desklet.js:1591 5.4/desklet.js:1601
 msgid "Clear"
 msgstr "Assolellat"
 
-#: desklet.js:1592 desklet.js:1861
+#: 3.0/desklet.js:1592 3.0/desklet.js:1861 5.4/desklet.js:1602
+#: 5.4/desklet.js:1871
 msgid "Sunny"
 msgstr "Assolellat"
 
-#: desklet.js:1593 desklet.js:1594 desklet.js:4231
+#: 3.0/desklet.js:1593 3.0/desklet.js:1594 3.0/desklet.js:4231
+#: 5.4/desklet.js:1603 5.4/desklet.js:1604 5.4/desklet.js:4241
 msgid "Fair"
 msgstr "Bon temps"
 
-#: desklet.js:1595
+#: 3.0/desklet.js:1595 5.4/desklet.js:1605
 msgid "Mixed rain and hail"
 msgstr "Pluja i calamarsa"
 
-#: desklet.js:1596
+#: 3.0/desklet.js:1596 5.4/desklet.js:1606
 msgid "Hot"
 msgstr "Càlid"
 
-#: desklet.js:1597
+#: 3.0/desklet.js:1597 5.4/desklet.js:1607
 msgid "Isolated thunderstorms"
 msgstr "Tempestes elèctriques aïllades"
 
-#: desklet.js:1598
+#: 3.0/desklet.js:1598 5.4/desklet.js:1608
 msgid "Scattered thunderstorms"
 msgstr "Tempestes elèctriques disperses"
 
-#: desklet.js:1599 desklet.js:1600
+#: 3.0/desklet.js:1599 3.0/desklet.js:1600 5.4/desklet.js:1609
+#: 5.4/desklet.js:1610
 msgid "Scattered showers"
 msgstr "Ruixats dispersos"
 
-#: desklet.js:1601 desklet.js:1603
+#: 3.0/desklet.js:1601 3.0/desklet.js:1603 5.4/desklet.js:1611
+#: 5.4/desklet.js:1613
 msgid "Heavy snow"
 msgstr "Nevada forta"
 
-#: desklet.js:1602
+#: 3.0/desklet.js:1602 5.4/desklet.js:1612
 msgid "Scattered snow showers"
 msgstr "Nevades disperses"
 
-#: desklet.js:1605
+#: 3.0/desklet.js:1605 5.4/desklet.js:1615
 msgid "Thundershowers"
 msgstr "Tempestes"
 
-#: desklet.js:1606 desklet.js:4239
+#: 3.0/desklet.js:1606 3.0/desklet.js:4239 5.4/desklet.js:1616
+#: 5.4/desklet.js:4249
 msgid "Snow showers"
 msgstr "Nevades fortes"
 
-#: desklet.js:1607
+#: 3.0/desklet.js:1607 5.4/desklet.js:1617
 msgid "Isolated thundershowers"
 msgstr "Tempestes aïllades"
 
-#: desklet.js:1608
+#: 3.0/desklet.js:1608 5.4/desklet.js:1618
 msgid "Not available"
 msgstr "No està disponible"
 
-#: desklet.js:1860 desklet.js:4230
+#: 3.0/desklet.js:1860 3.0/desklet.js:4230 5.4/desklet.js:1870
+#: 5.4/desklet.js:4240
 msgid "Clear Sky"
 msgstr "Cel clar"
 
-#: desklet.js:1862 desklet.js:4232
+#: 3.0/desklet.js:1862 3.0/desklet.js:4232 5.4/desklet.js:1872
+#: 5.4/desklet.js:4242
 msgid "Partly Cloudy"
 msgstr "Parcialment ennuvolat"
 
-#: desklet.js:1863
+#: 3.0/desklet.js:1863 5.4/desklet.js:1873
 msgid "Sunny Intervals"
 msgstr "Intervals assolellats"
 
-#: desklet.js:1864
+#: 3.0/desklet.js:1864 5.4/desklet.js:1874
 msgid "Sand Storm"
 msgstr "Tempesta de sorra"
 
-#: desklet.js:1865
+#: 3.0/desklet.js:1865 5.4/desklet.js:1875
 msgid "Mist"
 msgstr "Boirina"
 
-#: desklet.js:1866 desklet.js:4234
+#: 3.0/desklet.js:1866 3.0/desklet.js:4234 5.4/desklet.js:1876
+#: 5.4/desklet.js:4244
 msgid "Fog"
 msgstr "Boira"
 
-#: desklet.js:1867
+#: 3.0/desklet.js:1867 5.4/desklet.js:1877
 msgid "White Cloud"
 msgstr "Núvols blancs"
 
-#: desklet.js:1868
+#: 3.0/desklet.js:1868 5.4/desklet.js:1878
 msgid "Light Cloud"
 msgstr "Núvols clars"
 
-#: desklet.js:1869
+#: 3.0/desklet.js:1869 5.4/desklet.js:1879
 msgid "Grey Cloud"
 msgstr "Núvols grisos"
 
-#: desklet.js:1870
+#: 3.0/desklet.js:1870 5.4/desklet.js:1880
 msgid "Thick Cloud"
 msgstr "Núvols gruixuts"
 
-#: desklet.js:1871
+#: 3.0/desklet.js:1871 5.4/desklet.js:1881
 msgid "Light Rain Shower"
 msgstr "Pluja lleugera"
 
-#: desklet.js:1873 desklet.js:4241 desklet.js:4245
+#: 3.0/desklet.js:1873 3.0/desklet.js:4241 3.0/desklet.js:4245
+#: 5.4/desklet.js:1883 5.4/desklet.js:4251 5.4/desklet.js:4255
 msgid "Light Rain"
 msgstr "Pluja lleugera"
 
-#: desklet.js:1874
+#: 3.0/desklet.js:1874 5.4/desklet.js:1884
 msgid "Heavy Rain Shower"
 msgstr "Pluja intensa"
 
-#: desklet.js:1875 desklet.js:4235 desklet.js:4243
+#: 3.0/desklet.js:1875 3.0/desklet.js:4235 3.0/desklet.js:4243
+#: 5.4/desklet.js:1885 5.4/desklet.js:4245 5.4/desklet.js:4253
 msgid "Heavy Rain"
 msgstr "Pluja intensa"
 
-#: desklet.js:1876
+#: 3.0/desklet.js:1876 5.4/desklet.js:1886
 msgid "Sleet Shower"
 msgstr "Plugims"
 
-#: desklet.js:1878
+#: 3.0/desklet.js:1878 5.4/desklet.js:1888
 msgid "Light Snow Shower"
 msgstr "Nevades lleugeres"
 
-#: desklet.js:1879 desklet.js:4242 desklet.js:4246
+#: 3.0/desklet.js:1879 3.0/desklet.js:4242 3.0/desklet.js:4246
+#: 5.4/desklet.js:1889 5.4/desklet.js:4252 5.4/desklet.js:4256
 msgid "Light Snow"
 msgstr "Nevada lleugera"
 
-#: desklet.js:1880
+#: 3.0/desklet.js:1880 5.4/desklet.js:1890
 msgid "Heavy Snow Shower"
 msgstr "Nevades intenses"
 
-#: desklet.js:1881
+#: 3.0/desklet.js:1881 5.4/desklet.js:1891
 msgid "Heavy Snow"
 msgstr "Nevada intensa"
 
-#: desklet.js:1882 desklet.js:4237
+#: 3.0/desklet.js:1882 3.0/desklet.js:4237 5.4/desklet.js:1892
+#: 5.4/desklet.js:4247
 msgid "Thundery Shower"
 msgstr "Tempesta"
 
-#: desklet.js:1883
+#: 3.0/desklet.js:1883 5.4/desklet.js:1893
 msgid "Thunder Storm"
 msgstr "Tempesta elèctrica"
 
-#: desklet.js:1884
+#: 3.0/desklet.js:1884 5.4/desklet.js:1894
 msgid "Thunderstorm"
 msgstr "Tempesta elèctrica"
 
-#: desklet.js:1885
+#: 3.0/desklet.js:1885 5.4/desklet.js:1895
 msgid "Hazy"
 msgstr "Boirós"
 
-#: desklet.js:1886
+#: 3.0/desklet.js:1886 5.4/desklet.js:1896
 msgid "Hail Shower"
 msgstr "Calamarsa"
 
-#: desklet.js:1887
+#: 3.0/desklet.js:1887 5.4/desklet.js:1897
 msgid "Rain"
 msgstr "Pluja"
 
-#: desklet.js:2072 desklet.js:2800
+#: 3.0/desklet.js:2072 3.0/desklet.js:2800 5.4/desklet.js:2082
+#: 5.4/desklet.js:2810
 msgid "Steady"
 msgstr "Estable"
 
-#: desklet.js:2072 desklet.js:2796
+#: 3.0/desklet.js:2072 3.0/desklet.js:2796 5.4/desklet.js:2082
+#: 5.4/desklet.js:2806
 msgid "Rising"
 msgstr "Creixent"
 
-#: desklet.js:2072 desklet.js:2798
+#: 3.0/desklet.js:2072 3.0/desklet.js:2798 5.4/desklet.js:2082
+#: 5.4/desklet.js:2808
 msgid "Falling"
 msgstr "Decreixent"
 
@@ -547,151 +570,188 @@ msgstr ""
 msgid "Chris Hastie"
 msgstr ""
 
-#. settings-schema.json->top->description
+#. 3.0->settings-schema.json->top->description
+#. 5.4->settings-schema.json->top->description
 msgid "Weather configuration"
 msgstr "Configuració del temps"
 
-#. settings-schema.json->webservice->description
-#. settings-schema.json->locsrc->options
+#. 3.0->settings-schema.json->webservice->description
+#. 3.0->settings-schema.json->locsrc->options
+#. 5.4->settings-schema.json->webservice->description
+#. 5.4->settings-schema.json->locsrc->options
 msgid "Data service"
 msgstr "Servei de dades"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 msgid "BBC"
 msgstr "BBC"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 msgid "Open Weather Map (requires API key)"
 msgstr "Open Weather Map (requereix la clau de l’API)"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 msgid "Open Weather Map Free (requires API key)"
 msgstr "World Weather Online (requereix la clau de l’API)"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 msgid "Wunderground (requires API key)"
 msgstr "Wunderground (necessita clau API)"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 msgid "World Weather Online (deprecated) (requires API key)"
 msgstr "World Weather Online (requereix la clau de l’API)"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 msgid "World Weather Online Premium (requires API key)"
 msgstr "World Weather Online (requereix la clau de l'API)"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 msgid "APIXU (requires API key)"
 msgstr "APIXU (requereix la clau de l'API)"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 msgid "Forecast.io (requires API key)"
 msgstr "Forecast.io (necessita clau API)"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 msgid "weather.com (deprecated)"
 msgstr "weather.com (en desús)"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 msgid "meteoblue (requires API key)"
 msgstr "meteoblue (requereix la clau de l'API)"
 
-#. settings-schema.json->webservice->tooltip
+#. 3.0->settings-schema.json->webservice->tooltip
+#. 5.4->settings-schema.json->webservice->tooltip
 msgid "Select the data service you wish to use"
 msgstr "Seleccioneu el servei que voleu emprar"
 
-#. settings-schema.json->stationID->description
+#. 3.0->settings-schema.json->stationID->description
+#. 5.4->settings-schema.json->stationID->description
 msgid "Location"
 msgstr "Ubicació"
 
-#. settings-schema.json->stationID->tooltip
+#. 3.0->settings-schema.json->stationID->tooltip
+#. 5.4->settings-schema.json->stationID->tooltip
 msgid "Set your location here"
 msgstr "Establiu aquí la vostra ubicació"
 
-#. settings-schema.json->apikey->description
+#. 3.0->settings-schema.json->apikey->description
+#. 5.4->settings-schema.json->apikey->description
 msgid "API key"
 msgstr "Clau de l'API"
 
-#. settings-schema.json->apikey->tooltip
+#. 3.0->settings-schema.json->apikey->tooltip
+#. 5.4->settings-schema.json->apikey->tooltip
 msgid ""
 "Required for some services only. Enter your API key for your chosen service"
 msgstr ""
 "Només és necessari per a alguns serveis. Introduïu la vostra clau API per al "
 "servei seleccionat"
 
-#. settings-schema.json->tunits->description
+#. 3.0->settings-schema.json->tunits->description
+#. 5.4->settings-schema.json->tunits->description
 msgid "Temperature measurement unit"
 msgstr "Unitat de temperatura"
 
-#. settings-schema.json->tunits->options
+#. 3.0->settings-schema.json->tunits->options
+#. 5.4->settings-schema.json->tunits->options
 msgid "Celsius"
 msgstr "Celsius"
 
-#. settings-schema.json->tunits->options
+#. 3.0->settings-schema.json->tunits->options
+#. 5.4->settings-schema.json->tunits->options
 msgid "Fahrenheit"
 msgstr "Fahrenheit"
 
-#. settings-schema.json->tunits->tooltip
+#. 3.0->settings-schema.json->tunits->tooltip
+#. 5.4->settings-schema.json->tunits->tooltip
 msgid "Measurement units used to display temperature"
 msgstr "Unitats de mesura usades per mostrar la temperatura"
 
-#. settings-schema.json->wunits->description
+#. 3.0->settings-schema.json->wunits->description
+#. 5.4->settings-schema.json->wunits->description
 msgid "Wind speed measurement unit"
 msgstr "Unitat de la velocitat del vent"
 
-#. settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
+#. 5.4->settings-schema.json->wunits->options
 msgid "mph"
 msgstr "mph"
 
-#. settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
+#. 5.4->settings-schema.json->wunits->options
 msgid "km/h"
 msgstr "km/h"
 
-#. settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
+#. 5.4->settings-schema.json->wunits->options
 msgid "knots"
 msgstr "nusos"
 
-#. settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
+#. 5.4->settings-schema.json->wunits->options
 msgid "m/s"
 msgstr "m/s"
 
-#. settings-schema.json->wunits->tooltip
+#. 3.0->settings-schema.json->wunits->tooltip
+#. 5.4->settings-schema.json->wunits->tooltip
 msgid "Measurement units used to display wind speed"
 msgstr "Unitat per mostrar la velocitat del vent"
 
-#. settings-schema.json->punits->description
+#. 3.0->settings-schema.json->punits->description
+#. 5.4->settings-schema.json->punits->description
 msgid "Pressure measurement unit"
 msgstr "Unitats de pressió"
 
-#. settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
+#. 5.4->settings-schema.json->punits->options
 msgid "mb"
 msgstr "mb"
 
-#. settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
+#. 5.4->settings-schema.json->punits->options
 msgid "in (Hg)"
 msgstr "in (Hg)"
 
-#. settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
+#. 5.4->settings-schema.json->punits->options
 msgid "mm (Hg)"
 msgstr "mm (Hg)"
 
-#. settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
+#. 5.4->settings-schema.json->punits->options
 msgid "kPa"
 msgstr "kPa"
 
-#. settings-schema.json->punits->tooltip
+#. 3.0->settings-schema.json->punits->tooltip
+#. 5.4->settings-schema.json->punits->tooltip
 msgid "Measurement units used to display atmospheric pressure"
 msgstr "Unitats per mostrar la pressió atmosfèrica"
 
-#. settings-schema.json->userno->units
+#. 3.0->settings-schema.json->userno->units
+#. 5.4->settings-schema.json->userno->units
 msgid "days"
 msgstr "dies"
 
-#. settings-schema.json->userno->description
+#. 3.0->settings-schema.json->userno->description
+#. 5.4->settings-schema.json->userno->description
 msgid "Show forecast for"
 msgstr "Mostra la previsió de"
 
-#. settings-schema.json->userno->tooltip
+#. 3.0->settings-schema.json->userno->tooltip
+#. 5.4->settings-schema.json->userno->tooltip
 msgid ""
 "The number of days of forecast to display. Note that not all services "
 "support all values"
@@ -699,15 +759,18 @@ msgstr ""
 "El nombre de dies de previsió a mostrar. No tots els serveis suporten tots "
 "els valors"
 
-#. settings-schema.json->refreshtime->units
+#. 3.0->settings-schema.json->refreshtime->units
+#. 5.4->settings-schema.json->refreshtime->units
 msgid "minutes"
 msgstr "minuts"
 
-#. settings-schema.json->refreshtime->description
+#. 3.0->settings-schema.json->refreshtime->description
+#. 5.4->settings-schema.json->refreshtime->description
 msgid "Refresh forecast every"
 msgstr "Refresca la previsió cada"
 
-#. settings-schema.json->refreshtime->tooltip
+#. 3.0->settings-schema.json->refreshtime->tooltip
+#. 5.4->settings-schema.json->refreshtime->tooltip
 msgid ""
 "Period between refreshing forecasts. Note that not all services support "
 "lower refresh times"
@@ -715,221 +778,279 @@ msgstr ""
 "Període entre refrescs. No tots els serveis admeten intervals de refresc "
 "petits"
 
-#. settings-schema.json->display->description
+#. 3.0->settings-schema.json->display->description
+#. 5.4->settings-schema.json->display->description
 msgid ""
 "Optional items to display (not all options are supported by all services)"
 msgstr ""
 "Ítems opcionals a visualitzar (no tots els serveis admeten totes les opcions)"
 
-#. settings-schema.json->display__meta__country->description
+#. 3.0->settings-schema.json->display__meta__country->description
+#. 5.4->settings-schema.json->display__meta__country->description
 msgid "Country"
 msgstr "País"
 
-#. settings-schema.json->display__meta__country->tooltip
+#. 3.0->settings-schema.json->display__meta__country->tooltip
+#. 5.4->settings-schema.json->display__meta__country->tooltip
 msgid "Check to display the country"
 msgstr "Activeu-ho per mostrar el país"
 
-#. settings-schema.json->display__cc__weather->description
+#. 3.0->settings-schema.json->display__cc__weather->description
+#. 5.4->settings-schema.json->display__cc__weather->description
 msgid "Current weather and icon"
 msgstr "Temps actual i icones"
 
-#. settings-schema.json->display__cc__weather->tooltip
+#. 3.0->settings-schema.json->display__cc__weather->tooltip
+#. 5.4->settings-schema.json->display__cc__weather->tooltip
 msgid "Check to display the current weather and large icon"
 msgstr "Activeu-ho per mostrar el temps actual i les icones grans"
 
-#. settings-schema.json->display__cc__pressure->description
+#. 3.0->settings-schema.json->display__cc__pressure->description
+#. 5.4->settings-schema.json->display__cc__pressure->description
 msgid "Current pressure"
 msgstr "Pressió actual"
 
-#. settings-schema.json->display__cc__pressure->tooltip
+#. 3.0->settings-schema.json->display__cc__pressure->tooltip
+#. 5.4->settings-schema.json->display__cc__pressure->tooltip
 msgid "Check to display the current pressure"
 msgstr "Activeu-ho per mostrar la pressió actual"
 
-#. settings-schema.json->display__cc__humidity->description
+#. 3.0->settings-schema.json->display__cc__humidity->description
+#. 5.4->settings-schema.json->display__cc__humidity->description
 msgid "Current humidity"
 msgstr "Humitat actual"
 
-#. settings-schema.json->display__cc__humidity->tooltip
+#. 3.0->settings-schema.json->display__cc__humidity->tooltip
+#. 5.4->settings-schema.json->display__cc__humidity->tooltip
 msgid "Check to display the current humidity"
 msgstr "Activeu-ho per mostrar la humitat actual"
 
-#. settings-schema.json->display__cc__wind_speed->description
+#. 3.0->settings-schema.json->display__cc__wind_speed->description
+#. 5.4->settings-schema.json->display__cc__wind_speed->description
 msgid "Current wind"
 msgstr "Vent actual"
 
-#. settings-schema.json->display__cc__wind_speed->tooltip
+#. 3.0->settings-schema.json->display__cc__wind_speed->tooltip
+#. 5.4->settings-schema.json->display__cc__wind_speed->tooltip
 msgid "Check to display the current wind"
 msgstr "Activeu-ho per mostrar el vent actual"
 
-#. settings-schema.json->display__cc__feelslike->description
+#. 3.0->settings-schema.json->display__cc__feelslike->description
+#. 5.4->settings-schema.json->display__cc__feelslike->description
 msgid "Current 'feels like'"
 msgstr "Sensació tèrmica actual"
 
-#. settings-schema.json->display__cc__feelslike->tooltip
+#. 3.0->settings-schema.json->display__cc__feelslike->tooltip
+#. 5.4->settings-schema.json->display__cc__feelslike->tooltip
 msgid "Check to display the current apparent temperature"
 msgstr "Activeu-ho per mostrar la sensació tèrmica actual"
 
-#. settings-schema.json->display__cc__visibility->description
+#. 3.0->settings-schema.json->display__cc__visibility->description
+#. 5.4->settings-schema.json->display__cc__visibility->description
 msgid "Current visibility"
 msgstr "Visibilitat actual"
 
-#. settings-schema.json->display__cc__visibility->tooltip
+#. 3.0->settings-schema.json->display__cc__visibility->tooltip
+#. 5.4->settings-schema.json->display__cc__visibility->tooltip
 msgid "Check to display the current visibility"
 msgstr "Activeu-ho per mostrar la visibilitat actual"
 
-#. settings-schema.json->display__forecast__maximum_temperature->description
+#. 3.0->settings-
+#. schema.json->display__forecast__maximum_temperature->description
+#. 5.4->settings-
+#. schema.json->display__forecast__maximum_temperature->description
 msgid "Forecast maximum"
 msgstr "Màxim de previsió"
 
-#. settings-schema.json->display__forecast__maximum_temperature->tooltip
+#. 3.0->settings-schema.json->display__forecast__maximum_temperature->tooltip
+#. 5.4->settings-schema.json->display__forecast__maximum_temperature->tooltip
 msgid "Check to display the forecast maximum temperature"
 msgstr "Activeu-ho per mostrar la previsió de la temperatura màxima"
 
-#. settings-schema.json->display__forecast__minimum_temperature->description
+#. 3.0->settings-
+#. schema.json->display__forecast__minimum_temperature->description
+#. 5.4->settings-
+#. schema.json->display__forecast__minimum_temperature->description
 msgid "Forecast minimum"
 msgstr "Previsió de la temperatura mínim"
 
-#. settings-schema.json->display__forecast__minimum_temperature->tooltip
+#. 3.0->settings-schema.json->display__forecast__minimum_temperature->tooltip
+#. 5.4->settings-schema.json->display__forecast__minimum_temperature->tooltip
 msgid "Check to display the forecast minimum temperature"
 msgstr "Activeu-ho per mostrar la previsió de la temperatura mínima"
 
-#. settings-schema.json->display__forecast__wind_speed->description
+#. 3.0->settings-schema.json->display__forecast__wind_speed->description
+#. 5.4->settings-schema.json->display__forecast__wind_speed->description
 msgid "Forecast wind speed"
 msgstr "Previsió de la velocitat del vent"
 
-#. settings-schema.json->display__forecast__wind_speed->tooltip
+#. 3.0->settings-schema.json->display__forecast__wind_speed->tooltip
+#. 5.4->settings-schema.json->display__forecast__wind_speed->tooltip
 msgid "Check to display the forecast wind speed"
 msgstr "Activeu-ho per mostrar la previsió de la velocitat del vent"
 
-#. settings-schema.json->display__forecast__wind_direction->description
+#. 3.0->settings-schema.json->display__forecast__wind_direction->description
+#. 5.4->settings-schema.json->display__forecast__wind_direction->description
 msgid "Forecast wind direction"
 msgstr "Previsió de la direcció del vent"
 
-#. settings-schema.json->display__forecast__wind_direction->tooltip
+#. 3.0->settings-schema.json->display__forecast__wind_direction->tooltip
+#. 5.4->settings-schema.json->display__forecast__wind_direction->tooltip
 msgid "Check to display the forecast wind direction"
 msgstr "Activeu-ho per mostrar la previsió de la direcció del vent"
 
-#. settings-schema.json->display__forecast__pressure->description
+#. 3.0->settings-schema.json->display__forecast__pressure->description
+#. 5.4->settings-schema.json->display__forecast__pressure->description
 msgid "Forecast pressure"
 msgstr "Previsió de la pressió"
 
-#. settings-schema.json->display__forecast__pressure->tooltip
+#. 3.0->settings-schema.json->display__forecast__pressure->tooltip
+#. 5.4->settings-schema.json->display__forecast__pressure->tooltip
 msgid "Check to display the forecast pressure"
 msgstr "Activeu-ho per mostrar la previsió de la pressió"
 
-#. settings-schema.json->display__forecast__humidity->description
+#. 3.0->settings-schema.json->display__forecast__humidity->description
+#. 5.4->settings-schema.json->display__forecast__humidity->description
 msgid "Forecast humidity"
 msgstr "Previsió de la humitat"
 
-#. settings-schema.json->display__forecast__humidity->tooltip
+#. 3.0->settings-schema.json->display__forecast__humidity->tooltip
+#. 5.4->settings-schema.json->display__forecast__humidity->tooltip
 msgid "Check to display the forecast humidity"
 msgstr "Activeu-ho per mostrar la previsió de la humitat"
 
-#. settings-schema.json->styling->description
+#. 3.0->settings-schema.json->styling->description
+#. 5.4->settings-schema.json->styling->description
 msgid "Desklet style"
 msgstr "Estil de miniaplicació d'escriptori"
 
-#. settings-schema.json->zoom->units
+#. 3.0->settings-schema.json->zoom->units
+#. 5.4->settings-schema.json->zoom->units
 msgid "times"
 msgstr "cops"
 
-#. settings-schema.json->zoom->description
+#. 3.0->settings-schema.json->zoom->description
+#. 5.4->settings-schema.json->zoom->description
 msgid "Zoom by"
 msgstr "Zoom"
 
-#. settings-schema.json->zoom->tooltip
+#. 3.0->settings-schema.json->zoom->tooltip
+#. 5.4->settings-schema.json->zoom->tooltip
 msgid "Change the size of the desklet"
 msgstr "Canvia la mida de la miniaplicació d'escriptori"
 
-#. settings-schema.json->layout->description
+#. 3.0->settings-schema.json->layout->description
+#. 5.4->settings-schema.json->layout->description
 msgid "Layout"
 msgstr "Disposició"
 
-#. settings-schema.json->layout->options
+#. 3.0->settings-schema.json->layout->options
+#. 5.4->settings-schema.json->layout->options
 msgid "Horizontal"
 msgstr "Horitzontal"
 
-#. settings-schema.json->layout->options
+#. 3.0->settings-schema.json->layout->options
+#. 5.4->settings-schema.json->layout->options
 msgid "Vertical"
 msgstr "Vertical"
 
-#. settings-schema.json->layout->tooltip
+#. 3.0->settings-schema.json->layout->tooltip
+#. 5.4->settings-schema.json->layout->tooltip
 msgid "Set the overall layout of the desklet"
 msgstr "Establiu la disposició general de la miniaplicació d'escriptori"
 
-#. settings-schema.json->iconstyle->description
+#. 3.0->settings-schema.json->iconstyle->description
+#. 5.4->settings-schema.json->iconstyle->description
 msgid "Icon style"
 msgstr "Estil de les icones"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Colorful"
 msgstr "Colorit"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Dark"
 msgstr "Fosc"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Light"
 msgstr "Clar"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Flat colorful"
 msgstr "Colorit llis"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Flat black"
 msgstr "Negre llis"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Flat white"
 msgstr "Blanc llis"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "VClouds"
 msgstr "VClouds"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Novacon"
 msgstr "Novacon"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Weezle"
 msgstr "Weezle"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Meteocons 1"
 msgstr "Meteocons 1"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Meteocons 2"
 msgstr "Meteocons 2"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Sketchy"
 msgstr "Esbós"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "User defined"
 msgstr "Definit per l'usuari"
 
-#. settings-schema.json->iconstyle->tooltip
+#. 3.0->settings-schema.json->iconstyle->tooltip
+#. 5.4->settings-schema.json->iconstyle->tooltip
 msgid "Select the style for the weather icons"
 msgstr "Seleccioneu l'estil de les icones"
 
-#. settings-schema.json->citystyle->description
+#. 3.0->settings-schema.json->citystyle->description
+#. 5.4->settings-schema.json->citystyle->description
 msgid "Bold city name"
 msgstr "Nom de la ciutat en negreta"
 
-#. settings-schema.json->citystyle->tooltip
+#. 3.0->settings-schema.json->citystyle->tooltip
+#. 5.4->settings-schema.json->citystyle->tooltip
 msgid "Check to display the city name in bold"
 msgstr "Activeu-ho per mostrar el nom de la ciutat en negreta"
 
-#. settings-schema.json->overrideTheme->description
+#. 3.0->settings-schema.json->overrideTheme->description
+#. 5.4->settings-schema.json->overrideTheme->description
 msgid "Override desktop theme (enables the settings below)"
 msgstr "Redefineix el tema d'escriptori (habilita les opcions de sota)"
 
-#. settings-schema.json->overrideTheme->tooltip
+#. 3.0->settings-schema.json->overrideTheme->tooltip
+#. 5.4->settings-schema.json->overrideTheme->tooltip
 msgid ""
 "Check this to override the desktop theme and configure the appearance "
 "manually"
@@ -937,73 +1058,92 @@ msgstr ""
 "Activeu-ho per redefinir el tema de l'escriptori i configurar manualment "
 "l'aparença"
 
-#. settings-schema.json->transparency->description
+#. 3.0->settings-schema.json->transparency->description
+#. 5.4->settings-schema.json->transparency->description
 msgid "Transparency"
 msgstr "Transparència"
 
-#. settings-schema.json->transparency->tooltip
+#. 3.0->settings-schema.json->transparency->tooltip
+#. 5.4->settings-schema.json->transparency->tooltip
 msgid "Set the transparency of the desklet"
 msgstr "Establiu la transparència de la miniaplicació d'escriptori"
 
-#. settings-schema.json->textcolor->description
+#. 3.0->settings-schema.json->textcolor->description
+#. 5.4->settings-schema.json->textcolor->description
 msgid "Text color"
 msgstr "Color del text"
 
-#. settings-schema.json->textcolor->tooltip
+#. 3.0->settings-schema.json->textcolor->tooltip
+#. 5.4->settings-schema.json->textcolor->tooltip
 msgid "Click the button to select a new text color"
 msgstr "Feu clic per seleccionar un color nou de text"
 
-#. settings-schema.json->textshadow->description
+#. 3.0->settings-schema.json->textshadow->description
+#. 5.4->settings-schema.json->textshadow->description
 msgid "Text shadow"
 msgstr ""
 
-#. settings-schema.json->textshadow->tooltip
+#. 3.0->settings-schema.json->textshadow->tooltip
+#. 5.4->settings-schema.json->textshadow->tooltip
 msgid "Check to add a text shadow"
 msgstr ""
 
-#. settings-schema.json->shadowblur->units
-#. settings-schema.json->cornerradius->units
-#. settings-schema.json->borderwidth->units
+#. 3.0->settings-schema.json->shadowblur->units
+#. 3.0->settings-schema.json->cornerradius->units
+#. 3.0->settings-schema.json->borderwidth->units
+#. 5.4->settings-schema.json->shadowblur->units
+#. 5.4->settings-schema.json->cornerradius->units
+#. 5.4->settings-schema.json->borderwidth->units
 msgid "px"
 msgstr "px"
 
-#. settings-schema.json->shadowblur->description
+#. 3.0->settings-schema.json->shadowblur->description
+#. 5.4->settings-schema.json->shadowblur->description
 msgid "Shadow blur radius"
 msgstr ""
 
-#. settings-schema.json->shadowblur->tooltip
+#. 3.0->settings-schema.json->shadowblur->tooltip
+#. 5.4->settings-schema.json->shadowblur->tooltip
 msgid "Set the text shadow sharp (1) or blurry (2-7)"
 msgstr ""
 
-#. settings-schema.json->bgcolor->description
+#. 3.0->settings-schema.json->bgcolor->description
+#. 5.4->settings-schema.json->bgcolor->description
 msgid "Background color"
 msgstr "Color del fons"
 
-#. settings-schema.json->bgcolor->tooltip
+#. 3.0->settings-schema.json->bgcolor->tooltip
+#. 5.4->settings-schema.json->bgcolor->tooltip
 msgid "Click the button to select a new background color"
 msgstr "Feu clic per seleccionar un color nou de fons"
 
-#. settings-schema.json->cornerradius->description
+#. 3.0->settings-schema.json->cornerradius->description
+#. 5.4->settings-schema.json->cornerradius->description
 msgid "Corner radius"
 msgstr "Radi de les cantonades"
 
-#. settings-schema.json->cornerradius->tooltip
+#. 3.0->settings-schema.json->cornerradius->tooltip
+#. 5.4->settings-schema.json->cornerradius->tooltip
 msgid "Radius for rounding the desklet's corners"
 msgstr "Radi per arrodonir les cantonades de la miniaplicació d'escriptori"
 
-#. settings-schema.json->border->description
+#. 3.0->settings-schema.json->border->description
+#. 5.4->settings-schema.json->border->description
 msgid "Show border"
 msgstr "Mostra el contorn"
 
-#. settings-schema.json->border->tooltip
+#. 3.0->settings-schema.json->border->tooltip
+#. 5.4->settings-schema.json->border->tooltip
 msgid "Check this to turn border on/off"
 msgstr "Activeu-ho per activar/desactivar la vora"
 
-#. settings-schema.json->bordercolor->description
+#. 3.0->settings-schema.json->bordercolor->description
+#. 5.4->settings-schema.json->bordercolor->description
 msgid "Border color"
 msgstr "Color del contorn"
 
-#. settings-schema.json->bordercolor->tooltip
+#. 3.0->settings-schema.json->bordercolor->tooltip
+#. 5.4->settings-schema.json->bordercolor->tooltip
 msgid ""
 "Select the color for the border. Only available if the 'Border' checkbox is "
 "enabled"
@@ -1011,11 +1151,13 @@ msgstr ""
 "Seleccioneu el color del contorn. Només està disponible si s'activa la "
 "casella 'Contorn'"
 
-#. settings-schema.json->borderwidth->description
+#. 3.0->settings-schema.json->borderwidth->description
+#. 5.4->settings-schema.json->borderwidth->description
 msgid "Border width"
 msgstr "Amplada del contorn"
 
-#. settings-schema.json->borderwidth->tooltip
+#. 3.0->settings-schema.json->borderwidth->tooltip
+#. 5.4->settings-schema.json->borderwidth->tooltip
 msgid ""
 "Select the width of the border. Only available if the 'Border' checkbox is "
 "enabled"
@@ -1023,19 +1165,23 @@ msgstr ""
 "Seleccioneu l'ample de la vora. Només disponible si la casella 'Vora' està "
 "habilitada"
 
-#. settings-schema.json->locationlookups->description
+#. 3.0->settings-schema.json->locationlookups->description
+#. 5.4->settings-schema.json->locationlookups->description
 msgid "Location display settings"
 msgstr "Configura la visualització de la ubicació"
 
-#. settings-schema.json->locsrc->description
+#. 3.0->settings-schema.json->locsrc->description
+#. 5.4->settings-schema.json->locsrc->description
 msgid "Get displayed location from"
 msgstr "Obtén la ubicació de"
 
-#. settings-schema.json->locsrc->options
+#. 3.0->settings-schema.json->locsrc->options
+#. 5.4->settings-schema.json->locsrc->options
 msgid "Google"
 msgstr "Google"
 
-#. settings-schema.json->locsrc->tooltip
+#. 3.0->settings-schema.json->locsrc->tooltip
+#. 5.4->settings-schema.json->locsrc->tooltip
 msgid ""
 "The source of the text displayed as the current location. Yahoo! and Google "
 "may offer city names in other languages"
@@ -1043,67 +1189,83 @@ msgstr ""
 "La font del text mostrat com a ubicació actual. Yahoo! i Google poden oferir "
 "els noms de ciutats en altres idiomes"
 
-#. settings-schema.json->manuallocation->description
+#. 3.0->settings-schema.json->manuallocation->description
+#. 5.4->settings-schema.json->manuallocation->description
 msgid "Manually override displayed location"
 msgstr "Redefiniu manualment la ubicació mostrada"
 
-#. settings-schema.json->manuallocation->tooltip
+#. 3.0->settings-schema.json->manuallocation->tooltip
+#. 5.4->settings-schema.json->manuallocation->tooltip
 msgid "Set your city name manually."
 msgstr "Establiu manualment el nom la vostra ciutat."
 
-#. settings-schema.json->experimental->description
+#. 3.0->settings-schema.json->experimental->description
+#. 5.4->settings-schema.json->experimental->description
 msgid "Experimental and buggy features (read documentation!!)"
 msgstr "Funcionalitats experimentals (llegiu la documentació)"
 
-#. settings-schema.json->experimental_enabled->description
+#. 3.0->settings-schema.json->experimental_enabled->description
+#. 5.4->settings-schema.json->experimental_enabled->description
 msgid "Enable experimental features"
 msgstr "Habilita les funcionalitats experimentals"
 
-#. settings-schema.json->experimental_enabled->tooltip
+#. 3.0->settings-schema.json->experimental_enabled->tooltip
+#. 5.4->settings-schema.json->experimental_enabled->tooltip
 msgid "Check this to enable experimental and buggy features"
 msgstr "Activeu-ho per habilitar les funcionalitats experimentals"
 
-#. settings-schema.json->gravity->description
+#. 3.0->settings-schema.json->gravity->description
+#. 5.4->settings-schema.json->gravity->description
 msgid "Anchor desklet by"
 msgstr "Ancora la miniaplicació d'escriptori"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Default"
 msgstr "Per defecte"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Top left"
 msgstr "Superior esquerra"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Left center"
 msgstr "Esquerra central"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Bottom left"
 msgstr "Inferior esquerra"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Bottom center"
 msgstr "Inferior central"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Bottom right"
 msgstr "Inferior dreta"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Right center"
 msgstr "Dreta central"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Top right"
 msgstr "Superior dreta"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Top center"
 msgstr "Superior central"
 
-#. settings-schema.json->gravity->tooltip
+#. 3.0->settings-schema.json->gravity->tooltip
+#. 5.4->settings-schema.json->gravity->tooltip
 msgid ""
 "Select the point on the desklet to which it is anchored. This point will "
 "remain static as the desklet grows and shrinks"

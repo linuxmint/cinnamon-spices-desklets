@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbcwx\n"
 "Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
-"POT-Creation-Date: 2018-01-07 21:05+0000\n"
-"PO-Revision-Date: 2023-04-16 07:22-0400\n"
+"POT-Creation-Date: 2023-08-15 21:58-0400\n"
+"PO-Revision-Date: 2023-08-15 22:42-0400\n"
 "Last-Translator: Kamala Kannan <Unknown>\n"
 "Language-Team: Basque <eu@li.org>\n"
 "Language: eu\n"
@@ -16,516 +16,539 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2016-08-01 19:04+0000\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.3.1\n"
 
-#: desklet.js:108
+#: 3.0/desklet.js:108 5.4/desklet.js:107
 msgid "Mon"
 msgstr "al."
 
-#: desklet.js:108
+#: 3.0/desklet.js:108 5.4/desklet.js:107
 msgid "Tue"
 msgstr "ar."
 
-#: desklet.js:108
+#: 3.0/desklet.js:108 5.4/desklet.js:107
 msgid "Wed"
 msgstr "az."
 
-#: desklet.js:108
+#: 3.0/desklet.js:108 5.4/desklet.js:107
 msgid "Thu"
 msgstr "og."
 
-#: desklet.js:108
+#: 3.0/desklet.js:108 5.4/desklet.js:107
 msgid "Fri"
 msgstr "ol."
 
-#: desklet.js:108
+#: 3.0/desklet.js:108 5.4/desklet.js:107
 msgid "Sat"
 msgstr "lr."
 
-#: desklet.js:108
+#: 3.0/desklet.js:108 5.4/desklet.js:107
 msgid "Sun"
 msgstr "ig."
 
-#: desklet.js:186
+#: 3.0/desklet.js:186 5.4/desklet.js:192
 msgid "Weather"
 msgstr "Eguraldia"
 
-#: desklet.js:194
+#: 3.0/desklet.js:194 5.4/desklet.js:200
 msgid "Help"
 msgstr "Laguntza"
 
-#: desklet.js:198
+#: 3.0/desklet.js:198 5.4/desklet.js:204
 msgid "Translate"
 msgstr "Itzuli"
 
-#: desklet.js:344 desklet.js:372
+#: 3.0/desklet.js:344 3.0/desklet.js:372 5.4/desklet.js:351 5.4/desklet.js:379
 msgid "Humidity:"
 msgstr "Hezetasuna:"
 
-#: desklet.js:345 desklet.js:371
+#: 3.0/desklet.js:345 3.0/desklet.js:371 5.4/desklet.js:352 5.4/desklet.js:378
 msgid "Pressure:"
 msgstr "Presioa:"
 
-#: desklet.js:346
+#: 3.0/desklet.js:346 5.4/desklet.js:353
 msgid "Wind:"
 msgstr "Haizea:"
 
-#: desklet.js:347
+#: 3.0/desklet.js:347 5.4/desklet.js:354
 msgid "Feels like:"
 msgstr "Sentsazioa:"
 
-#: desklet.js:348
+#: 3.0/desklet.js:348 5.4/desklet.js:355
 msgid "Visibility:"
 msgstr "Ikuspena:"
 
-#: desklet.js:363
+#: 3.0/desklet.js:363 5.4/desklet.js:370
 msgid "Max:"
 msgstr "Max:"
 
-#: desklet.js:365
+#: 3.0/desklet.js:365 5.4/desklet.js:372
 msgid "Min:"
 msgstr "Min:"
 
-#: desklet.js:367
+#: 3.0/desklet.js:367 5.4/desklet.js:374
 msgid "Wind speed:"
 msgstr "Haizearen abiadura:"
 
-#: desklet.js:369
+#: 3.0/desklet.js:369 5.4/desklet.js:376
 msgid "Dir:"
 msgstr "Norab:"
 
-#: desklet.js:411
+#: 3.0/desklet.js:411 5.4/desklet.js:418
 msgid "Data from "
 msgstr "Datuen jatorria: "
 
-#: desklet.js:423
+#: 3.0/desklet.js:423 5.4/desklet.js:432
 msgid "Refresh"
 msgstr "Freskatu"
 
-#: desklet.js:744
+#: 3.0/desklet.js:744 5.4/desklet.js:754
 msgid "No data available"
 msgstr "Ez dago daturik eskuragarri"
 
-#: desklet.js:777 desklet.js:844
+#: 3.0/desklet.js:777 3.0/desklet.js:844 5.4/desklet.js:787 5.4/desklet.js:854
 #, javascript-format
 msgid "Error: %s"
 msgstr "Errorea: %s"
 
-#: desklet.js:777 desklet.js:844
+#: 3.0/desklet.js:777 3.0/desklet.js:844 5.4/desklet.js:787 5.4/desklet.js:854
 msgid "No data"
 msgstr "Ez dago daturik"
 
-#: desklet.js:879
+#: 3.0/desklet.js:879 5.4/desklet.js:889
 #, javascript-format
 msgid "Click for the full forecast for %s"
 msgstr "Klikatu %s(r)ako iragarpen osoa ikusteko"
 
-#: desklet.js:1139
+#: 3.0/desklet.js:1139 5.4/desklet.js:1149
 #, javascript-format
 msgid "%f°F"
 msgstr "%f°F"
 
-#: desklet.js:1141
+#: 3.0/desklet.js:1141 5.4/desklet.js:1151
 #, javascript-format
 msgid "%f°C"
 msgstr "%f°C"
 
-#: desklet.js:1162
+#: 3.0/desklet.js:1162 5.4/desklet.js:1172
 #, javascript-format
 msgid "%fmph"
 msgstr "%fmph"
 
-#: desklet.js:1164
+#: 3.0/desklet.js:1164 5.4/desklet.js:1174
 #, javascript-format
 msgid "%fkn"
 msgstr "%fkora"
 
-#: desklet.js:1166
+#: 3.0/desklet.js:1166 5.4/desklet.js:1176
 #, javascript-format
 msgid "%fkm/h"
 msgstr "%fkm/h"
 
-#: desklet.js:1168
+#: 3.0/desklet.js:1168 5.4/desklet.js:1178
 #, javascript-format
 msgid "%fm/s"
 msgstr "%fm/s"
 
-#: desklet.js:1202
+#: 3.0/desklet.js:1202 5.4/desklet.js:1212
 #, javascript-format
 msgid "%fmb"
 msgstr "%fmb"
 
-#: desklet.js:1204
+#: 3.0/desklet.js:1204 5.4/desklet.js:1214
 #, javascript-format
 msgid "%fin"
 msgstr "%fhazb"
 
-#: desklet.js:1206
+#: 3.0/desklet.js:1206 5.4/desklet.js:1216
 #, javascript-format
 msgid "%fmm"
 msgstr "%fmm"
 
-#: desklet.js:1208
+#: 3.0/desklet.js:1208 5.4/desklet.js:1218
 #, javascript-format
 msgid "%fkPa"
 msgstr "%fkPa"
 
-#: desklet.js:1259
+#: 3.0/desklet.js:1259 5.4/desklet.js:1269
 #, javascript-format
 msgid "%fmi"
 msgstr "%fmi"
 
-#: desklet.js:1261
+#: 3.0/desklet.js:1261 5.4/desklet.js:1271
 #, javascript-format
 msgid "%fnmi"
 msgstr "%fnmi"
 
-#: desklet.js:1263
+#: 3.0/desklet.js:1263 5.4/desklet.js:1273
 #, javascript-format
 msgid "%fkm"
 msgstr "%fkm"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "N"
 msgstr "I"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "NNE"
 msgstr "IIE"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "NE"
 msgstr "IE"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "ENE"
 msgstr "EIE"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "E"
 msgstr "E"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "ESE"
 msgstr "EHE"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "SE"
 msgstr "HE"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "SSE"
 msgstr "HHE"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "S"
 msgstr "H"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "SSW"
 msgstr "HHM"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "SW"
 msgstr "HM"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "WSW"
 msgstr "MHM"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "W"
 msgstr "M"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "WNW"
 msgstr "MIM"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "NW"
 msgstr "IM"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "NNW"
 msgstr "IIM"
 
-#: desklet.js:1560
+#: 3.0/desklet.js:1560 5.4/desklet.js:1570
 msgid "Tornado"
 msgstr "Tornadoa"
 
-#: desklet.js:1561
+#: 3.0/desklet.js:1561 5.4/desklet.js:1571
 msgid "Tropical storm"
 msgstr "Ekaitz tropikala"
 
-#: desklet.js:1562
+#: 3.0/desklet.js:1562 5.4/desklet.js:1572
 msgid "Hurricane"
 msgstr "Urakana"
 
-#: desklet.js:1563
+#: 3.0/desklet.js:1563 5.4/desklet.js:1573
 msgid "Severe thunderstorms"
 msgstr "Trumoi-ekaitz gogorrak"
 
-#: desklet.js:1564
+#: 3.0/desklet.js:1564 5.4/desklet.js:1574
 msgid "Thunderstorms"
 msgstr "Trumoi-ekaitzak"
 
-#: desklet.js:1565 desklet.js:4240
+#: 3.0/desklet.js:1565 3.0/desklet.js:4240 5.4/desklet.js:1575
+#: 5.4/desklet.js:4250
 msgid "Mixed rain and snow"
 msgstr "Euria eta elurra"
 
-#: desklet.js:1566
+#: 3.0/desklet.js:1566 5.4/desklet.js:1576
 msgid "Mixed rain and sleet"
 msgstr "Euria eta elurbustia"
 
-#: desklet.js:1567
+#: 3.0/desklet.js:1567 5.4/desklet.js:1577
 msgid "Mixed snow and sleet"
 msgstr "Elurra eta elurbustia"
 
-#: desklet.js:1568
+#: 3.0/desklet.js:1568 5.4/desklet.js:1578
 msgid "Freezing drizzle"
 msgstr "Zirimiri izoztua"
 
-#: desklet.js:1569 desklet.js:1872
+#: 3.0/desklet.js:1569 3.0/desklet.js:1872 5.4/desklet.js:1579
+#: 5.4/desklet.js:1882
 msgid "Drizzle"
 msgstr "Zirimiria"
 
-#: desklet.js:1570
+#: 3.0/desklet.js:1570 5.4/desklet.js:1580
 msgid "Freezing rain"
 msgstr "Euri izoztua"
 
-#: desklet.js:1571 desklet.js:1572 desklet.js:4236
+#: 3.0/desklet.js:1571 3.0/desklet.js:1572 3.0/desklet.js:4236
+#: 5.4/desklet.js:1581 5.4/desklet.js:1582 5.4/desklet.js:4246
 msgid "Showers"
 msgstr "Zaparradak"
 
-#: desklet.js:1573
+#: 3.0/desklet.js:1573 5.4/desklet.js:1583
 msgid "Snow flurries"
 msgstr "Elur-jasak"
 
-#: desklet.js:1574
+#: 3.0/desklet.js:1574 5.4/desklet.js:1584
 msgid "Light snow showers"
 msgstr "Elur-zaparrada arinak"
 
-#: desklet.js:1575
+#: 3.0/desklet.js:1575 5.4/desklet.js:1585
 msgid "Blowing snow"
 msgstr "Elur-jasa haizetsua"
 
-#: desklet.js:1576 desklet.js:4238 desklet.js:4244
+#: 3.0/desklet.js:1576 3.0/desklet.js:4238 3.0/desklet.js:4244
+#: 5.4/desklet.js:1586 5.4/desklet.js:4248 5.4/desklet.js:4254
 msgid "Snow"
 msgstr "Elurra"
 
-#: desklet.js:1577
+#: 3.0/desklet.js:1577 5.4/desklet.js:1587
 msgid "Hail"
 msgstr "Kazkabarra"
 
-#: desklet.js:1578 desklet.js:1877
+#: 3.0/desklet.js:1578 3.0/desklet.js:1877 5.4/desklet.js:1588
+#: 5.4/desklet.js:1887
 msgid "Sleet"
 msgstr "Elurbustia"
 
-#: desklet.js:1579
+#: 3.0/desklet.js:1579 5.4/desklet.js:1589
 msgid "Dust"
 msgstr "Hautsa"
 
-#: desklet.js:1580
+#: 3.0/desklet.js:1580 5.4/desklet.js:1590
 msgid "Foggy"
 msgstr "Lainotsua"
 
-#: desklet.js:1581
+#: 3.0/desklet.js:1581 5.4/desklet.js:1591
 msgid "Haze"
 msgstr "Gandua"
 
-#: desklet.js:1582
+#: 3.0/desklet.js:1582 5.4/desklet.js:1592
 msgid "Smoky"
 msgstr "Ketsua"
 
-#: desklet.js:1583
+#: 3.0/desklet.js:1583 5.4/desklet.js:1593
 msgid "Blustery"
 msgstr "Ekaiztsua"
 
-#: desklet.js:1584
+#: 3.0/desklet.js:1584 5.4/desklet.js:1594
 msgid "Windy"
 msgstr "Haizetsua"
 
-#: desklet.js:1585
+#: 3.0/desklet.js:1585 5.4/desklet.js:1595
 msgid "Cold"
 msgstr "Hotza"
 
-#: desklet.js:1586 desklet.js:4233
+#: 3.0/desklet.js:1586 3.0/desklet.js:4233 5.4/desklet.js:1596
+#: 5.4/desklet.js:4243
 msgid "Cloudy"
 msgstr "Hodeitsua"
 
-#: desklet.js:1587 desklet.js:1588
+#: 3.0/desklet.js:1587 3.0/desklet.js:1588 5.4/desklet.js:1597
+#: 5.4/desklet.js:1598
 msgid "Mostly cloudy"
 msgstr "Nagusiki hodeitsua"
 
-#: desklet.js:1589 desklet.js:1590 desklet.js:1604
+#: 3.0/desklet.js:1589 3.0/desklet.js:1590 3.0/desklet.js:1604
+#: 5.4/desklet.js:1599 5.4/desklet.js:1600 5.4/desklet.js:1614
 msgid "Partly cloudy"
 msgstr "Nahiko hodeitsua"
 
-#: desklet.js:1591
+#: 3.0/desklet.js:1591 5.4/desklet.js:1601
 msgid "Clear"
 msgstr "Garbia"
 
-#: desklet.js:1592 desklet.js:1861
+#: 3.0/desklet.js:1592 3.0/desklet.js:1861 5.4/desklet.js:1602
+#: 5.4/desklet.js:1871
 msgid "Sunny"
 msgstr "Eguzkitsua"
 
-#: desklet.js:1593 desklet.js:1594 desklet.js:4231
+#: 3.0/desklet.js:1593 3.0/desklet.js:1594 3.0/desklet.js:4231
+#: 5.4/desklet.js:1603 5.4/desklet.js:1604 5.4/desklet.js:4241
 msgid "Fair"
 msgstr "Ona"
 
-#: desklet.js:1595
+#: 3.0/desklet.js:1595 5.4/desklet.js:1605
 msgid "Mixed rain and hail"
 msgstr "Euria eta kazkabarra"
 
-#: desklet.js:1596
+#: 3.0/desklet.js:1596 5.4/desklet.js:1606
 msgid "Hot"
 msgstr "Beroa"
 
-#: desklet.js:1597
+#: 3.0/desklet.js:1597 5.4/desklet.js:1607
 msgid "Isolated thunderstorms"
 msgstr "Trumoi-ekaitz isolatuak"
 
-#: desklet.js:1598
+#: 3.0/desklet.js:1598 5.4/desklet.js:1608
 msgid "Scattered thunderstorms"
 msgstr "Trumoi-ekaitz sakabanatuak"
 
-#: desklet.js:1599 desklet.js:1600
+#: 3.0/desklet.js:1599 3.0/desklet.js:1600 5.4/desklet.js:1609
+#: 5.4/desklet.js:1610
 msgid "Scattered showers"
 msgstr "Zaparrada sakabanatuak"
 
-#: desklet.js:1601 desklet.js:1603
+#: 3.0/desklet.js:1601 3.0/desklet.js:1603 5.4/desklet.js:1611
+#: 5.4/desklet.js:1613
 msgid "Heavy snow"
 msgstr "Elur-jasa"
 
-#: desklet.js:1602
+#: 3.0/desklet.js:1602 5.4/desklet.js:1612
 msgid "Scattered snow showers"
 msgstr "Elur-zaparrada sakabanatuak"
 
-#: desklet.js:1605
+#: 3.0/desklet.js:1605 5.4/desklet.js:1615
 msgid "Thundershowers"
 msgstr "Zaparrada ekaiztsuak"
 
-#: desklet.js:1606 desklet.js:4239
+#: 3.0/desklet.js:1606 3.0/desklet.js:4239 5.4/desklet.js:1616
+#: 5.4/desklet.js:4249
 msgid "Snow showers"
 msgstr "Elur-zaparradak"
 
-#: desklet.js:1607
+#: 3.0/desklet.js:1607 5.4/desklet.js:1617
 msgid "Isolated thundershowers"
 msgstr "Zaparrada ekaiztsu isolatuak"
 
-#: desklet.js:1608
+#: 3.0/desklet.js:1608 5.4/desklet.js:1618
 msgid "Not available"
 msgstr "Ez dago eskuragarri"
 
-#: desklet.js:1860 desklet.js:4230
+#: 3.0/desklet.js:1860 3.0/desklet.js:4230 5.4/desklet.js:1870
+#: 5.4/desklet.js:4240
 msgid "Clear Sky"
 msgstr "Oskarbia"
 
-#: desklet.js:1862 desklet.js:4232
+#: 3.0/desklet.js:1862 3.0/desklet.js:4232 5.4/desklet.js:1872
+#: 5.4/desklet.js:4242
 msgid "Partly Cloudy"
 msgstr "Nahiko lainotua"
 
-#: desklet.js:1863
+#: 3.0/desklet.js:1863 5.4/desklet.js:1873
 msgid "Sunny Intervals"
 msgstr "Ostarteak"
 
-#: desklet.js:1864
+#: 3.0/desklet.js:1864 5.4/desklet.js:1874
 msgid "Sand Storm"
 msgstr "Harea-ekaitza"
 
-#: desklet.js:1865
+#: 3.0/desklet.js:1865 5.4/desklet.js:1875
 msgid "Mist"
 msgstr "Lanbroa"
 
-#: desklet.js:1866 desklet.js:4234
+#: 3.0/desklet.js:1866 3.0/desklet.js:4234 5.4/desklet.js:1876
+#: 5.4/desklet.js:4244
 msgid "Fog"
 msgstr "Lainoa"
 
-#: desklet.js:1867
+#: 3.0/desklet.js:1867 5.4/desklet.js:1877
 msgid "White Cloud"
 msgstr "Hodei zuriak"
 
-#: desklet.js:1868
+#: 3.0/desklet.js:1868 5.4/desklet.js:1878
 msgid "Light Cloud"
 msgstr "Hodei arinak"
 
-#: desklet.js:1869
+#: 3.0/desklet.js:1869 5.4/desklet.js:1879
 msgid "Grey Cloud"
 msgstr "Hodei grisak"
 
-#: desklet.js:1870
+#: 3.0/desklet.js:1870 5.4/desklet.js:1880
 msgid "Thick Cloud"
 msgstr "Hodei itxiak"
 
-#: desklet.js:1871
+#: 3.0/desklet.js:1871 5.4/desklet.js:1881
 msgid "Light Rain Shower"
 msgstr "Euri-zaparrada arinak"
 
-#: desklet.js:1873 desklet.js:4241 desklet.js:4245
+#: 3.0/desklet.js:1873 3.0/desklet.js:4241 3.0/desklet.js:4245
+#: 5.4/desklet.js:1883 5.4/desklet.js:4251 5.4/desklet.js:4255
 msgid "Light Rain"
 msgstr "Euri arina"
 
-#: desklet.js:1874
+#: 3.0/desklet.js:1874 5.4/desklet.js:1884
 msgid "Heavy Rain Shower"
 msgstr "Euri-zaparrada gogorrak"
 
-#: desklet.js:1875 desklet.js:4235 desklet.js:4243
+#: 3.0/desklet.js:1875 3.0/desklet.js:4235 3.0/desklet.js:4243
+#: 5.4/desklet.js:1885 5.4/desklet.js:4245 5.4/desklet.js:4253
 msgid "Heavy Rain"
 msgstr "Euri mardula"
 
-#: desklet.js:1876
+#: 3.0/desklet.js:1876 5.4/desklet.js:1886
 msgid "Sleet Shower"
 msgstr "Elurbusti-zaparradak"
 
-#: desklet.js:1878
+#: 3.0/desklet.js:1878 5.4/desklet.js:1888
 msgid "Light Snow Shower"
 msgstr "Elur arin-zaparradak"
 
-#: desklet.js:1879 desklet.js:4242 desklet.js:4246
+#: 3.0/desklet.js:1879 3.0/desklet.js:4242 3.0/desklet.js:4246
+#: 5.4/desklet.js:1889 5.4/desklet.js:4252 5.4/desklet.js:4256
 msgid "Light Snow"
 msgstr "Elur arina"
 
-#: desklet.js:1880
+#: 3.0/desklet.js:1880 5.4/desklet.js:1890
 msgid "Heavy Snow Shower"
 msgstr "Elur-zaparrada gogorrak"
 
-#: desklet.js:1881
+#: 3.0/desklet.js:1881 5.4/desklet.js:1891
 msgid "Heavy Snow"
 msgstr "Elur mardula"
 
-#: desklet.js:1882 desklet.js:4237
+#: 3.0/desklet.js:1882 3.0/desklet.js:4237 5.4/desklet.js:1892
+#: 5.4/desklet.js:4247
 msgid "Thundery Shower"
 msgstr "Zaparrada trumoitsuak"
 
-#: desklet.js:1883
+#: 3.0/desklet.js:1883 5.4/desklet.js:1893
 msgid "Thunder Storm"
 msgstr "Trumoi-ekaitza"
 
-#: desklet.js:1884
+#: 3.0/desklet.js:1884 5.4/desklet.js:1894
 msgid "Thunderstorm"
 msgstr "Trumoi-ekaitza"
 
-#: desklet.js:1885
+#: 3.0/desklet.js:1885 5.4/desklet.js:1895
 msgid "Hazy"
 msgstr "Lainotsua"
 
-#: desklet.js:1886
+#: 3.0/desklet.js:1886 5.4/desklet.js:1896
 msgid "Hail Shower"
 msgstr "Kazkabar-zaparradak"
 
-#: desklet.js:1887
+#: 3.0/desklet.js:1887 5.4/desklet.js:1897
 msgid "Rain"
 msgstr "Euria"
 
-#: desklet.js:2072 desklet.js:2800
+#: 3.0/desklet.js:2072 3.0/desklet.js:2800 5.4/desklet.js:2082
+#: 5.4/desklet.js:2810
 msgid "Steady"
 msgstr "Egonkorra"
 
-#: desklet.js:2072 desklet.js:2796
+#: 3.0/desklet.js:2072 3.0/desklet.js:2796 5.4/desklet.js:2082
+#: 5.4/desklet.js:2806
 msgid "Rising"
 msgstr "Igotzen"
 
-#: desklet.js:2072 desklet.js:2798
+#: 3.0/desklet.js:2072 3.0/desklet.js:2798 5.4/desklet.js:2082
+#: 5.4/desklet.js:2808
 msgid "Falling"
 msgstr "Jaisten"
 
@@ -547,156 +570,193 @@ msgstr ""
 msgid "Chris Hastie"
 msgstr ""
 
-#. settings-schema.json->top->description
+#. 3.0->settings-schema.json->top->description
+#. 5.4->settings-schema.json->top->description
 msgid "Weather configuration"
 msgstr "Eguraldiaren konfigurazioa"
 
-#. settings-schema.json->webservice->description
-#. settings-schema.json->locsrc->options
+#. 3.0->settings-schema.json->webservice->description
+#. 3.0->settings-schema.json->locsrc->options
+#. 5.4->settings-schema.json->webservice->description
+#. 5.4->settings-schema.json->locsrc->options
 msgid "Data service"
 msgstr "Datu-zerbitzua"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 msgid "BBC"
 msgstr "BBC"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 #, fuzzy
 msgid "Open Weather Map (requires API key)"
 msgstr "World Weather Online (API gakoa eskatzen du)"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 #, fuzzy
 msgid "Open Weather Map Free (requires API key)"
 msgstr "World Weather Online (API gakoa eskatzen du)"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 msgid "Wunderground (requires API key)"
 msgstr "Wunderground (API gakoa eskatzen du)"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 #, fuzzy
 msgid "World Weather Online (deprecated) (requires API key)"
 msgstr "World Weather Online (API gakoa eskatzen du)"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 #, fuzzy
 msgid "World Weather Online Premium (requires API key)"
 msgstr "World Weather Online (API gakoa eskatzen du)"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 #, fuzzy
 msgid "APIXU (requires API key)"
 msgstr "meteoblue (requires API key)"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 msgid "Forecast.io (requires API key)"
 msgstr "Forecast.io (API gakoa eskatzen du)"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 msgid "weather.com (deprecated)"
 msgstr "weather.com (baztertzekoa)"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 msgid "meteoblue (requires API key)"
 msgstr "meteoblue (requires API key)"
 
-#. settings-schema.json->webservice->tooltip
+#. 3.0->settings-schema.json->webservice->tooltip
+#. 5.4->settings-schema.json->webservice->tooltip
 msgid "Select the data service you wish to use"
 msgstr "Hautatu erabili nahi duzun datu-zerbitzua"
 
-#. settings-schema.json->stationID->description
+#. 3.0->settings-schema.json->stationID->description
+#. 5.4->settings-schema.json->stationID->description
 msgid "Location"
 msgstr "Kokapena"
 
-#. settings-schema.json->stationID->tooltip
+#. 3.0->settings-schema.json->stationID->tooltip
+#. 5.4->settings-schema.json->stationID->tooltip
 msgid "Set your location here"
 msgstr "Ezarri zure kokapena hemen"
 
-#. settings-schema.json->apikey->description
+#. 3.0->settings-schema.json->apikey->description
+#. 5.4->settings-schema.json->apikey->description
 msgid "API key"
 msgstr "API gakoa"
 
-#. settings-schema.json->apikey->tooltip
+#. 3.0->settings-schema.json->apikey->tooltip
+#. 5.4->settings-schema.json->apikey->tooltip
 msgid ""
 "Required for some services only. Enter your API key for your chosen service"
 msgstr ""
 "Zerbitzu batzurentzat soilik beharrezkoa. Sartu hautatutako zerbitzuaren "
 "zure API gakoa"
 
-#. settings-schema.json->tunits->description
+#. 3.0->settings-schema.json->tunits->description
+#. 5.4->settings-schema.json->tunits->description
 msgid "Temperature measurement unit"
 msgstr "Tenperaturaren neurri-unitatea"
 
-#. settings-schema.json->tunits->options
+#. 3.0->settings-schema.json->tunits->options
+#. 5.4->settings-schema.json->tunits->options
 msgid "Celsius"
 msgstr "Celsius"
 
-#. settings-schema.json->tunits->options
+#. 3.0->settings-schema.json->tunits->options
+#. 5.4->settings-schema.json->tunits->options
 msgid "Fahrenheit"
 msgstr "Fahrenheit"
 
-#. settings-schema.json->tunits->tooltip
+#. 3.0->settings-schema.json->tunits->tooltip
+#. 5.4->settings-schema.json->tunits->tooltip
 msgid "Measurement units used to display temperature"
 msgstr "Tenperatura bistaratzeko erabilitako neurri-unitateak"
 
-#. settings-schema.json->wunits->description
+#. 3.0->settings-schema.json->wunits->description
+#. 5.4->settings-schema.json->wunits->description
 msgid "Wind speed measurement unit"
 msgstr "Haizearen abiaduraren neurri-unitatea"
 
-#. settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
+#. 5.4->settings-schema.json->wunits->options
 msgid "mph"
 msgstr "mph"
 
-#. settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
+#. 5.4->settings-schema.json->wunits->options
 msgid "km/h"
 msgstr "km/h"
 
-#. settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
+#. 5.4->settings-schema.json->wunits->options
 msgid "knots"
 msgstr "korapiloak"
 
-#. settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
+#. 5.4->settings-schema.json->wunits->options
 msgid "m/s"
 msgstr "m/s"
 
-#. settings-schema.json->wunits->tooltip
+#. 3.0->settings-schema.json->wunits->tooltip
+#. 5.4->settings-schema.json->wunits->tooltip
 msgid "Measurement units used to display wind speed"
 msgstr "Haizearen abiadura bistaratzeko erabilitako neurri-unitateak"
 
-#. settings-schema.json->punits->description
+#. 3.0->settings-schema.json->punits->description
+#. 5.4->settings-schema.json->punits->description
 msgid "Pressure measurement unit"
 msgstr "Presioaren neurri-unitatea"
 
-#. settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
+#. 5.4->settings-schema.json->punits->options
 msgid "mb"
 msgstr "mb"
 
-#. settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
+#. 5.4->settings-schema.json->punits->options
 msgid "in (Hg)"
 msgstr "hazb. (Hg)"
 
-#. settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
+#. 5.4->settings-schema.json->punits->options
 msgid "mm (Hg)"
 msgstr "mm (Hg)"
 
-#. settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
+#. 5.4->settings-schema.json->punits->options
 msgid "kPa"
 msgstr "kPa"
 
-#. settings-schema.json->punits->tooltip
+#. 3.0->settings-schema.json->punits->tooltip
+#. 5.4->settings-schema.json->punits->tooltip
 msgid "Measurement units used to display atmospheric pressure"
 msgstr "Presio atmosferikoa bistaratzeko erabilitako neurri-unitateak"
 
-#. settings-schema.json->userno->units
+#. 3.0->settings-schema.json->userno->units
+#. 5.4->settings-schema.json->userno->units
 msgid "days"
 msgstr "egun"
 
-#. settings-schema.json->userno->description
+#. 3.0->settings-schema.json->userno->description
+#. 5.4->settings-schema.json->userno->description
 msgid "Show forecast for"
 msgstr "Iragarpenaren iraupena:"
 
-#. settings-schema.json->userno->tooltip
+#. 3.0->settings-schema.json->userno->tooltip
+#. 5.4->settings-schema.json->userno->tooltip
 msgid ""
 "The number of days of forecast to display. Note that not all services "
 "support all values"
@@ -704,15 +764,18 @@ msgstr ""
 "Bistaratu beharreko iragarpenaren egun kopurua. Kontutan izan zerbitzu "
 "guztiek ez dituztela balio guztiak onartzen"
 
-#. settings-schema.json->refreshtime->units
+#. 3.0->settings-schema.json->refreshtime->units
+#. 5.4->settings-schema.json->refreshtime->units
 msgid "minutes"
 msgstr "minuturo"
 
-#. settings-schema.json->refreshtime->description
+#. 3.0->settings-schema.json->refreshtime->description
+#. 5.4->settings-schema.json->refreshtime->description
 msgid "Refresh forecast every"
 msgstr "Freskatu iragarpena"
 
-#. settings-schema.json->refreshtime->tooltip
+#. 3.0->settings-schema.json->refreshtime->tooltip
+#. 5.4->settings-schema.json->refreshtime->tooltip
 msgid ""
 "Period between refreshing forecasts. Note that not all services support "
 "lower refresh times"
@@ -720,295 +783,372 @@ msgstr ""
 "Iragarpenak freskatzeko maiztasuna. Kontutan izan zerbitzu guztiek ez "
 "dituztela freskatze-denbora baxuak onartzen."
 
-#. settings-schema.json->display->description
+#. 3.0->settings-schema.json->display->description
+#. 5.4->settings-schema.json->display->description
 msgid ""
 "Optional items to display (not all options are supported by all services)"
 msgstr ""
 "Bistaratzeko hautazko elementuak (zerbitzu guztiek ez dituzte aukera guztiak "
 "onartzen)"
 
-#. settings-schema.json->display__meta__country->description
+#. 3.0->settings-schema.json->display__meta__country->description
+#. 5.4->settings-schema.json->display__meta__country->description
 msgid "Country"
 msgstr "Herrialdea"
 
-#. settings-schema.json->display__meta__country->tooltip
+#. 3.0->settings-schema.json->display__meta__country->tooltip
+#. 5.4->settings-schema.json->display__meta__country->tooltip
 msgid "Check to display the country"
 msgstr "Hautatu herrialdea bistaratzeko"
 
-#. settings-schema.json->display__cc__weather->description
+#. 3.0->settings-schema.json->display__cc__weather->description
+#. 5.4->settings-schema.json->display__cc__weather->description
 msgid "Current weather and icon"
 msgstr "Uneko eguraldia eta ikonoa"
 
-#. settings-schema.json->display__cc__weather->tooltip
+#. 3.0->settings-schema.json->display__cc__weather->tooltip
+#. 5.4->settings-schema.json->display__cc__weather->tooltip
 msgid "Check to display the current weather and large icon"
 msgstr "Hautatu uneko eguraldia eta ikono handia bistaratzeko"
 
-#. settings-schema.json->display__cc__pressure->description
+#. 3.0->settings-schema.json->display__cc__pressure->description
+#. 5.4->settings-schema.json->display__cc__pressure->description
 msgid "Current pressure"
 msgstr "Uneko presioa"
 
-#. settings-schema.json->display__cc__pressure->tooltip
+#. 3.0->settings-schema.json->display__cc__pressure->tooltip
+#. 5.4->settings-schema.json->display__cc__pressure->tooltip
 msgid "Check to display the current pressure"
 msgstr "Hautatu uneko presioa bistaratzeko"
 
-#. settings-schema.json->display__cc__humidity->description
+#. 3.0->settings-schema.json->display__cc__humidity->description
+#. 5.4->settings-schema.json->display__cc__humidity->description
 msgid "Current humidity"
 msgstr "Uneko hezetasuna"
 
-#. settings-schema.json->display__cc__humidity->tooltip
+#. 3.0->settings-schema.json->display__cc__humidity->tooltip
+#. 5.4->settings-schema.json->display__cc__humidity->tooltip
 msgid "Check to display the current humidity"
 msgstr "Hautatu uneko hezetasuna bistaratzeko"
 
-#. settings-schema.json->display__cc__wind_speed->description
+#. 3.0->settings-schema.json->display__cc__wind_speed->description
+#. 5.4->settings-schema.json->display__cc__wind_speed->description
 msgid "Current wind"
 msgstr "Uneko haizea"
 
-#. settings-schema.json->display__cc__wind_speed->tooltip
+#. 3.0->settings-schema.json->display__cc__wind_speed->tooltip
+#. 5.4->settings-schema.json->display__cc__wind_speed->tooltip
 msgid "Check to display the current wind"
 msgstr "Hautatu uneko haizea bistaratzeko"
 
-#. settings-schema.json->display__cc__feelslike->description
+#. 3.0->settings-schema.json->display__cc__feelslike->description
+#. 5.4->settings-schema.json->display__cc__feelslike->description
 msgid "Current 'feels like'"
 msgstr "Uneko 'sentsazioa'"
 
-#. settings-schema.json->display__cc__feelslike->tooltip
+#. 3.0->settings-schema.json->display__cc__feelslike->tooltip
+#. 5.4->settings-schema.json->display__cc__feelslike->tooltip
 msgid "Check to display the current apparent temperature"
 msgstr "Hautatu uneko itxurazko tenperatura bistaratzeko"
 
-#. settings-schema.json->display__cc__visibility->description
+#. 3.0->settings-schema.json->display__cc__visibility->description
+#. 5.4->settings-schema.json->display__cc__visibility->description
 msgid "Current visibility"
 msgstr "Uneko ikuspena"
 
-#. settings-schema.json->display__cc__visibility->tooltip
+#. 3.0->settings-schema.json->display__cc__visibility->tooltip
+#. 5.4->settings-schema.json->display__cc__visibility->tooltip
 msgid "Check to display the current visibility"
 msgstr "Hautatu uneko ikuspena bistaratzeko"
 
-#. settings-schema.json->display__forecast__maximum_temperature->description
+#. 3.0->settings-
+#. schema.json->display__forecast__maximum_temperature->description
+#. 5.4->settings-
+#. schema.json->display__forecast__maximum_temperature->description
 msgid "Forecast maximum"
 msgstr "Maximoaren iragarpena"
 
-#. settings-schema.json->display__forecast__maximum_temperature->tooltip
+#. 3.0->settings-schema.json->display__forecast__maximum_temperature->tooltip
+#. 5.4->settings-schema.json->display__forecast__maximum_temperature->tooltip
 msgid "Check to display the forecast maximum temperature"
 msgstr "Hautatu tenperatura maximoaren iragarpena bistaratzeko"
 
-#. settings-schema.json->display__forecast__minimum_temperature->description
+#. 3.0->settings-
+#. schema.json->display__forecast__minimum_temperature->description
+#. 5.4->settings-
+#. schema.json->display__forecast__minimum_temperature->description
 msgid "Forecast minimum"
 msgstr "Minimoaren iragarpena"
 
-#. settings-schema.json->display__forecast__minimum_temperature->tooltip
+#. 3.0->settings-schema.json->display__forecast__minimum_temperature->tooltip
+#. 5.4->settings-schema.json->display__forecast__minimum_temperature->tooltip
 msgid "Check to display the forecast minimum temperature"
 msgstr "Hautatu tenperatura minimoaren iragarpena bistaratzeko"
 
-#. settings-schema.json->display__forecast__wind_speed->description
+#. 3.0->settings-schema.json->display__forecast__wind_speed->description
+#. 5.4->settings-schema.json->display__forecast__wind_speed->description
 msgid "Forecast wind speed"
 msgstr "Haizearen abiaduraren iragarpena"
 
-#. settings-schema.json->display__forecast__wind_speed->tooltip
+#. 3.0->settings-schema.json->display__forecast__wind_speed->tooltip
+#. 5.4->settings-schema.json->display__forecast__wind_speed->tooltip
 msgid "Check to display the forecast wind speed"
 msgstr "Hautatu haizearen abiaduraren iragarpena bistaratzeko"
 
-#. settings-schema.json->display__forecast__wind_direction->description
+#. 3.0->settings-schema.json->display__forecast__wind_direction->description
+#. 5.4->settings-schema.json->display__forecast__wind_direction->description
 msgid "Forecast wind direction"
 msgstr "Haizearen norabidearen iragarpena"
 
-#. settings-schema.json->display__forecast__wind_direction->tooltip
+#. 3.0->settings-schema.json->display__forecast__wind_direction->tooltip
+#. 5.4->settings-schema.json->display__forecast__wind_direction->tooltip
 msgid "Check to display the forecast wind direction"
 msgstr "Hautatu haizearen norabidearen iragarpena bistaratzeko"
 
-#. settings-schema.json->display__forecast__pressure->description
+#. 3.0->settings-schema.json->display__forecast__pressure->description
+#. 5.4->settings-schema.json->display__forecast__pressure->description
 msgid "Forecast pressure"
 msgstr "Presioaren iragarpena"
 
-#. settings-schema.json->display__forecast__pressure->tooltip
+#. 3.0->settings-schema.json->display__forecast__pressure->tooltip
+#. 5.4->settings-schema.json->display__forecast__pressure->tooltip
 msgid "Check to display the forecast pressure"
 msgstr "Hautatu presioaren aurrikuspena bistaratzeko"
 
-#. settings-schema.json->display__forecast__humidity->description
+#. 3.0->settings-schema.json->display__forecast__humidity->description
+#. 5.4->settings-schema.json->display__forecast__humidity->description
 msgid "Forecast humidity"
 msgstr "Hezetasunaren iragarpena"
 
-#. settings-schema.json->display__forecast__humidity->tooltip
+#. 3.0->settings-schema.json->display__forecast__humidity->tooltip
+#. 5.4->settings-schema.json->display__forecast__humidity->tooltip
 msgid "Check to display the forecast humidity"
 msgstr "Hautatu hezetasunaren iragarpena bistaratzeko"
 
-#. settings-schema.json->styling->description
+#. 3.0->settings-schema.json->styling->description
+#. 5.4->settings-schema.json->styling->description
 msgid "Desklet style"
 msgstr "Desklet-aren estiloa"
 
-#. settings-schema.json->zoom->units
+#. 3.0->settings-schema.json->zoom->units
+#. 5.4->settings-schema.json->zoom->units
 msgid "times"
 msgstr "aldiz"
 
-#. settings-schema.json->zoom->description
+#. 3.0->settings-schema.json->zoom->description
+#. 5.4->settings-schema.json->zoom->description
 msgid "Zoom by"
 msgstr "Zooma:"
 
-#. settings-schema.json->zoom->tooltip
+#. 3.0->settings-schema.json->zoom->tooltip
+#. 5.4->settings-schema.json->zoom->tooltip
 msgid "Change the size of the desklet"
 msgstr "Aldatu desklet-aren tamaina"
 
-#. settings-schema.json->layout->description
+#. 3.0->settings-schema.json->layout->description
+#. 5.4->settings-schema.json->layout->description
 msgid "Layout"
 msgstr "Diseinua"
 
-#. settings-schema.json->layout->options
+#. 3.0->settings-schema.json->layout->options
+#. 5.4->settings-schema.json->layout->options
 msgid "Horizontal"
 msgstr "Horizontala"
 
-#. settings-schema.json->layout->options
+#. 3.0->settings-schema.json->layout->options
+#. 5.4->settings-schema.json->layout->options
 msgid "Vertical"
 msgstr "Bertikala"
 
-#. settings-schema.json->layout->tooltip
+#. 3.0->settings-schema.json->layout->tooltip
+#. 5.4->settings-schema.json->layout->tooltip
 msgid "Set the overall layout of the desklet"
 msgstr "Ezarri desklet-aren diseinu orokorra"
 
-#. settings-schema.json->iconstyle->description
+#. 3.0->settings-schema.json->iconstyle->description
+#. 5.4->settings-schema.json->iconstyle->description
 msgid "Icon style"
 msgstr "Ikono-estiloa"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Colorful"
 msgstr "Koloretsua"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Dark"
 msgstr "Iluna"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Light"
 msgstr "Argia"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Flat colorful"
 msgstr "Lau koloretsua"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Flat black"
 msgstr "Beltz laua"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Flat white"
 msgstr "Zuri laua"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "VClouds"
 msgstr "VClouds"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Novacon"
 msgstr "Novacon"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Weezle"
 msgstr "Weezle"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Meteocons 1"
 msgstr "Meteocons 1"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Meteocons 2"
 msgstr "Meteocons 2"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Sketchy"
 msgstr "Sketchy"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "User defined"
 msgstr "Erabiltzaileak definitua"
 
-#. settings-schema.json->iconstyle->tooltip
+#. 3.0->settings-schema.json->iconstyle->tooltip
+#. 5.4->settings-schema.json->iconstyle->tooltip
 msgid "Select the style for the weather icons"
 msgstr "Hautatu eguraldi-ikonoen estiloa"
 
-#. settings-schema.json->citystyle->description
+#. 3.0->settings-schema.json->citystyle->description
+#. 5.4->settings-schema.json->citystyle->description
 msgid "Bold city name"
 msgstr "Hiriaren izena lodiz"
 
-#. settings-schema.json->citystyle->tooltip
+#. 3.0->settings-schema.json->citystyle->tooltip
+#. 5.4->settings-schema.json->citystyle->tooltip
 msgid "Check to display the city name in bold"
 msgstr "Hautatu hiriaren izena lodiz bistaratzeko"
 
-#. settings-schema.json->overrideTheme->description
+#. 3.0->settings-schema.json->overrideTheme->description
+#. 5.4->settings-schema.json->overrideTheme->description
 msgid "Override desktop theme (enables the settings below)"
 msgstr "Baliogabetu mahaigaineko gaia (beheko ezarpenak gaitzen ditu)"
 
-#. settings-schema.json->overrideTheme->tooltip
+#. 3.0->settings-schema.json->overrideTheme->tooltip
+#. 5.4->settings-schema.json->overrideTheme->tooltip
 msgid ""
 "Check this to override the desktop theme and configure the appearance "
 "manually"
 msgstr ""
 "Hautatu hau mahaigaineko gaia baliogabetu eta itxura eskuz konfiguratzeko"
 
-#. settings-schema.json->transparency->description
+#. 3.0->settings-schema.json->transparency->description
+#. 5.4->settings-schema.json->transparency->description
 msgid "Transparency"
 msgstr "Gardentasuna"
 
-#. settings-schema.json->transparency->tooltip
+#. 3.0->settings-schema.json->transparency->tooltip
+#. 5.4->settings-schema.json->transparency->tooltip
 msgid "Set the transparency of the desklet"
 msgstr "Ezarri desklet-aren gardentasuna"
 
-#. settings-schema.json->textcolor->description
+#. 3.0->settings-schema.json->textcolor->description
+#. 5.4->settings-schema.json->textcolor->description
 msgid "Text color"
 msgstr "Testu-kolorea"
 
-#. settings-schema.json->textcolor->tooltip
+#. 3.0->settings-schema.json->textcolor->tooltip
+#. 5.4->settings-schema.json->textcolor->tooltip
 msgid "Click the button to select a new text color"
 msgstr "Klikatu botoia testu-kolore berria hautatzeko"
 
-#. settings-schema.json->textshadow->description
+#. 3.0->settings-schema.json->textshadow->description
+#. 5.4->settings-schema.json->textshadow->description
 msgid "Text shadow"
 msgstr ""
 
-#. settings-schema.json->textshadow->tooltip
+#. 3.0->settings-schema.json->textshadow->tooltip
+#. 5.4->settings-schema.json->textshadow->tooltip
 msgid "Check to add a text shadow"
 msgstr ""
 
-#. settings-schema.json->shadowblur->units
-#. settings-schema.json->cornerradius->units
-#. settings-schema.json->borderwidth->units
+#. 3.0->settings-schema.json->shadowblur->units
+#. 3.0->settings-schema.json->cornerradius->units
+#. 3.0->settings-schema.json->borderwidth->units
+#. 5.4->settings-schema.json->shadowblur->units
+#. 5.4->settings-schema.json->cornerradius->units
+#. 5.4->settings-schema.json->borderwidth->units
 msgid "px"
 msgstr "px"
 
-#. settings-schema.json->shadowblur->description
+#. 3.0->settings-schema.json->shadowblur->description
+#. 5.4->settings-schema.json->shadowblur->description
 msgid "Shadow blur radius"
 msgstr ""
 
-#. settings-schema.json->shadowblur->tooltip
+#. 3.0->settings-schema.json->shadowblur->tooltip
+#. 5.4->settings-schema.json->shadowblur->tooltip
 msgid "Set the text shadow sharp (1) or blurry (2-7)"
 msgstr ""
 
-#. settings-schema.json->bgcolor->description
+#. 3.0->settings-schema.json->bgcolor->description
+#. 5.4->settings-schema.json->bgcolor->description
 msgid "Background color"
 msgstr "Atzeko planoaren kolorea"
 
-#. settings-schema.json->bgcolor->tooltip
+#. 3.0->settings-schema.json->bgcolor->tooltip
+#. 5.4->settings-schema.json->bgcolor->tooltip
 msgid "Click the button to select a new background color"
 msgstr "Klikatu botoia atzeko planoaren kolore berria hautatzeko"
 
-#. settings-schema.json->cornerradius->description
+#. 3.0->settings-schema.json->cornerradius->description
+#. 5.4->settings-schema.json->cornerradius->description
 msgid "Corner radius"
 msgstr "Izkina-erradioa"
 
-#. settings-schema.json->cornerradius->tooltip
+#. 3.0->settings-schema.json->cornerradius->tooltip
+#. 5.4->settings-schema.json->cornerradius->tooltip
 msgid "Radius for rounding the desklet's corners"
 msgstr "Desklet-aren izkinak borobiltzeko erradioa"
 
-#. settings-schema.json->border->description
+#. 3.0->settings-schema.json->border->description
+#. 5.4->settings-schema.json->border->description
 msgid "Show border"
 msgstr "Erakutsi ertza"
 
-#. settings-schema.json->border->tooltip
+#. 3.0->settings-schema.json->border->tooltip
+#. 5.4->settings-schema.json->border->tooltip
 msgid "Check this to turn border on/off"
 msgstr "Hautatu hau ertza jarri/kentzeko"
 
-#. settings-schema.json->bordercolor->description
+#. 3.0->settings-schema.json->bordercolor->description
+#. 5.4->settings-schema.json->bordercolor->description
 msgid "Border color"
 msgstr "Ertzaren kolorea"
 
-#. settings-schema.json->bordercolor->tooltip
+#. 3.0->settings-schema.json->bordercolor->tooltip
+#. 5.4->settings-schema.json->bordercolor->tooltip
 msgid ""
 "Select the color for the border. Only available if the 'Border' checkbox is "
 "enabled"
@@ -1016,11 +1156,13 @@ msgstr ""
 "Hautatu ertzaren kolorea. 'Ertza' kontrol-laukia hautatuta badago soilik "
 "erabilgarri"
 
-#. settings-schema.json->borderwidth->description
+#. 3.0->settings-schema.json->borderwidth->description
+#. 5.4->settings-schema.json->borderwidth->description
 msgid "Border width"
 msgstr "Ertz-zabalera"
 
-#. settings-schema.json->borderwidth->tooltip
+#. 3.0->settings-schema.json->borderwidth->tooltip
+#. 5.4->settings-schema.json->borderwidth->tooltip
 msgid ""
 "Select the width of the border. Only available if the 'Border' checkbox is "
 "enabled"
@@ -1028,19 +1170,23 @@ msgstr ""
 "Hautatu ertzaren zabalera. 'Ertza' kontrol-laukia hautatuta soilik "
 "erabilgarri"
 
-#. settings-schema.json->locationlookups->description
+#. 3.0->settings-schema.json->locationlookups->description
+#. 5.4->settings-schema.json->locationlookups->description
 msgid "Location display settings"
 msgstr "Kokapenaren bistaratzearen ezarpenak"
 
-#. settings-schema.json->locsrc->description
+#. 3.0->settings-schema.json->locsrc->description
+#. 5.4->settings-schema.json->locsrc->description
 msgid "Get displayed location from"
 msgstr "Eskuratu bistaratutako kokapena hemendik:"
 
-#. settings-schema.json->locsrc->options
+#. 3.0->settings-schema.json->locsrc->options
+#. 5.4->settings-schema.json->locsrc->options
 msgid "Google"
 msgstr "Google"
 
-#. settings-schema.json->locsrc->tooltip
+#. 3.0->settings-schema.json->locsrc->tooltip
+#. 5.4->settings-schema.json->locsrc->tooltip
 msgid ""
 "The source of the text displayed as the current location. Yahoo! and Google "
 "may offer city names in other languages"
@@ -1048,68 +1194,84 @@ msgstr ""
 "Uneko kokapen bezala bistaratutako testuaren iturburua. Yahoo! eta Google-k "
 "hiri izenak beste hizkuntzetan eskein ditzakete"
 
-#. settings-schema.json->manuallocation->description
+#. 3.0->settings-schema.json->manuallocation->description
+#. 5.4->settings-schema.json->manuallocation->description
 msgid "Manually override displayed location"
 msgstr "Eskuz gainidatzi bistaratutako kokapena"
 
-#. settings-schema.json->manuallocation->tooltip
+#. 3.0->settings-schema.json->manuallocation->tooltip
+#. 5.4->settings-schema.json->manuallocation->tooltip
 msgid "Set your city name manually."
 msgstr "Ezarri zure hiriaren izena eskuz."
 
-#. settings-schema.json->experimental->description
+#. 3.0->settings-schema.json->experimental->description
+#. 5.4->settings-schema.json->experimental->description
 msgid "Experimental and buggy features (read documentation!!)"
 msgstr ""
 "Ezaugarri esperimentalak (akatsak izan ditzakete, irakurri dokumentazioa!!)"
 
-#. settings-schema.json->experimental_enabled->description
+#. 3.0->settings-schema.json->experimental_enabled->description
+#. 5.4->settings-schema.json->experimental_enabled->description
 msgid "Enable experimental features"
 msgstr "Gaitu ezaugarri esperimentalak"
 
-#. settings-schema.json->experimental_enabled->tooltip
+#. 3.0->settings-schema.json->experimental_enabled->tooltip
+#. 5.4->settings-schema.json->experimental_enabled->tooltip
 msgid "Check this to enable experimental and buggy features"
 msgstr "Hautatu hau ezaugarri esperimentalak gaitzeko (akatsak izan ditzakete)"
 
-#. settings-schema.json->gravity->description
+#. 3.0->settings-schema.json->gravity->description
+#. 5.4->settings-schema.json->gravity->description
 msgid "Anchor desklet by"
 msgstr "Ainguratu desklet-a hemen:"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Default"
 msgstr "Lehenetsia"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Top left"
 msgstr "Goian ezkerrean"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Left center"
 msgstr "Ezkerrean erdian"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Bottom left"
 msgstr "Behean ezkerrean"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Bottom center"
 msgstr "Behean erdian"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Bottom right"
 msgstr "Behean eskuinean"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Right center"
 msgstr "Erdian eskuinean"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Top right"
 msgstr "Goian eskuinean"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Top center"
 msgstr "Goian erdian"
 
-#. settings-schema.json->gravity->tooltip
+#. 3.0->settings-schema.json->gravity->tooltip
+#. 5.4->settings-schema.json->gravity->tooltip
 msgid ""
 "Select the point on the desklet to which it is anchored. This point will "
 "remain static as the desklet grows and shrinks"

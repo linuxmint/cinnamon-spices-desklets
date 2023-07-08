@@ -5,561 +5,550 @@
 #
 msgid ""
 msgstr ""
-"Content-Transfer-Encoding: 8bit\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language: ro\n"
-"Language-Team: Romanian <ro@li.org>\n"
-"Last-Translator: Alin Trăistaru <Unknown>\n"
-"MIME-Version: 1.0\n"
-"PO-Revision-Date: 2023-04-16 07:22-0400\n"
-"POT-Creation-Date: 2018-01-07 21:05+0000\n"
 "Project-Id-Version: bbcwx\n"
 "Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
-"X-Generator: Poedit 3.1.1\n"
+"POT-Creation-Date: 2023-08-15 21:58-0400\n"
+"PO-Revision-Date: 2023-08-15 22:42-0400\n"
+"Last-Translator: Alin Trăistaru <Unknown>\n"
+"Language-Team: Romanian <ro@li.org>\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2015-12-04 19:52+0000\n"
+"X-Generator: Poedit 3.3.1\n"
 
-#: desklet.js:108
+#: 3.0/desklet.js:108 5.4/desklet.js:107
 msgid "Mon"
 msgstr "Lu"
 
-#: desklet.js:108
+#: 3.0/desklet.js:108 5.4/desklet.js:107
 msgid "Tue"
 msgstr "Ma"
 
-#: desklet.js:108
+#: 3.0/desklet.js:108 5.4/desklet.js:107
 msgid "Wed"
 msgstr "Mi"
 
-#: desklet.js:108
+#: 3.0/desklet.js:108 5.4/desklet.js:107
 msgid "Thu"
 msgstr "Jo"
 
-#: desklet.js:108
+#: 3.0/desklet.js:108 5.4/desklet.js:107
 msgid "Fri"
 msgstr "Vi"
 
-#: desklet.js:108
+#: 3.0/desklet.js:108 5.4/desklet.js:107
 msgid "Sat"
 msgstr "Sâ"
 
-#: desklet.js:108
+#: 3.0/desklet.js:108 5.4/desklet.js:107
 msgid "Sun"
 msgstr "Du"
 
-#: desklet.js:186
+#: 3.0/desklet.js:186 5.4/desklet.js:192
 msgid "Weather"
 msgstr "Vremea"
 
-#: desklet.js:194
+#: 3.0/desklet.js:194 5.4/desklet.js:200
 msgid "Help"
 msgstr "Ajutor"
 
-#: desklet.js:198
+#: 3.0/desklet.js:198 5.4/desklet.js:204
 msgid "Translate"
 msgstr "Traducere"
 
-#: desklet.js:344
-#: desklet.js:372
+#: 3.0/desklet.js:344 3.0/desklet.js:372 5.4/desklet.js:351 5.4/desklet.js:379
 msgid "Humidity:"
 msgstr "Umiditate:"
 
-#: desklet.js:345
-#: desklet.js:371
+#: 3.0/desklet.js:345 3.0/desklet.js:371 5.4/desklet.js:352 5.4/desklet.js:378
 msgid "Pressure:"
 msgstr "Presiune:"
 
-#: desklet.js:346
+#: 3.0/desklet.js:346 5.4/desklet.js:353
 msgid "Wind:"
 msgstr "Vânt:"
 
-#: desklet.js:347
+#: 3.0/desklet.js:347 5.4/desklet.js:354
 msgid "Feels like:"
 msgstr "Temperatură aparentă:"
 
-#: desklet.js:348
+#: 3.0/desklet.js:348 5.4/desklet.js:355
 msgid "Visibility:"
 msgstr "Vizibilitate:"
 
-#: desklet.js:363
+#: 3.0/desklet.js:363 5.4/desklet.js:370
 msgid "Max:"
 msgstr "Max:"
 
-#: desklet.js:365
+#: 3.0/desklet.js:365 5.4/desklet.js:372
 msgid "Min:"
 msgstr "Min:"
 
-#: desklet.js:367
+#: 3.0/desklet.js:367 5.4/desklet.js:374
 msgid "Wind speed:"
 msgstr "Viteza vântului:"
 
-#: desklet.js:369
+#: 3.0/desklet.js:369 5.4/desklet.js:376
 msgid "Dir:"
 msgstr "Direcție:"
 
-#: desklet.js:411
+#: 3.0/desklet.js:411 5.4/desklet.js:418
 msgid "Data from "
 msgstr "Date de la "
 
-#: desklet.js:423
+#: 3.0/desklet.js:423 5.4/desklet.js:432
 msgid "Refresh"
 msgstr "Actualizează"
 
-#: desklet.js:744
+#: 3.0/desklet.js:744 5.4/desklet.js:754
 msgid "No data available"
 msgstr "Nu există date disponibile"
 
-#: desklet.js:777
-#: desklet.js:844
+#: 3.0/desklet.js:777 3.0/desklet.js:844 5.4/desklet.js:787 5.4/desklet.js:854
 #, javascript-format
 msgid "Error: %s"
 msgstr "Eroare: %s"
 
-#: desklet.js:777
-#: desklet.js:844
+#: 3.0/desklet.js:777 3.0/desklet.js:844 5.4/desklet.js:787 5.4/desklet.js:854
 msgid "No data"
 msgstr "Nu există date"
 
-#: desklet.js:879
+#: 3.0/desklet.js:879 5.4/desklet.js:889
 #, javascript-format
 msgid "Click for the full forecast for %s"
 msgstr "Apasă pentru previziune completă pentru %s"
 
-#: desklet.js:1139
+#: 3.0/desklet.js:1139 5.4/desklet.js:1149
 #, javascript-format
 msgid "%f°F"
 msgstr "%f°F"
 
-#: desklet.js:1141
+#: 3.0/desklet.js:1141 5.4/desklet.js:1151
 #, javascript-format
 msgid "%f°C"
 msgstr "%f°C"
 
-#: desklet.js:1162
+#: 3.0/desklet.js:1162 5.4/desklet.js:1172
 #, javascript-format
 msgid "%fmph"
 msgstr "%fmph"
 
-#: desklet.js:1164
+#: 3.0/desklet.js:1164 5.4/desklet.js:1174
 #, javascript-format
 msgid "%fkn"
 msgstr "%fkn"
 
-#: desklet.js:1166
+#: 3.0/desklet.js:1166 5.4/desklet.js:1176
 #, javascript-format
 msgid "%fkm/h"
 msgstr "%fkm/h"
 
-#: desklet.js:1168
+#: 3.0/desklet.js:1168 5.4/desklet.js:1178
 #, javascript-format
 msgid "%fm/s"
 msgstr "%fm/s"
 
-#: desklet.js:1202
+#: 3.0/desklet.js:1202 5.4/desklet.js:1212
 #, javascript-format
 msgid "%fmb"
 msgstr "%fmbar"
 
-#: desklet.js:1204
+#: 3.0/desklet.js:1204 5.4/desklet.js:1214
 #, javascript-format
 msgid "%fin"
 msgstr "%finHg"
 
-#: desklet.js:1206
+#: 3.0/desklet.js:1206 5.4/desklet.js:1216
 #, javascript-format
 msgid "%fmm"
 msgstr "%fmmHg"
 
-#: desklet.js:1208
+#: 3.0/desklet.js:1208 5.4/desklet.js:1218
 #, javascript-format
 msgid "%fkPa"
 msgstr "%fkPa"
 
-#: desklet.js:1259
+#: 3.0/desklet.js:1259 5.4/desklet.js:1269
 #, javascript-format
 msgid "%fmi"
 msgstr "%fmi"
 
-#: desklet.js:1261
+#: 3.0/desklet.js:1261 5.4/desklet.js:1271
 #, javascript-format
 msgid "%fnmi"
 msgstr "%fmn"
 
-#: desklet.js:1263
+#: 3.0/desklet.js:1263 5.4/desklet.js:1273
 #, javascript-format
 msgid "%fkm"
 msgstr "%fkm"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "N"
 msgstr "N"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "NNE"
 msgstr "NNE"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "NE"
 msgstr "NE"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "ENE"
 msgstr "ENE"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "E"
 msgstr "E"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "ESE"
 msgstr "ESE"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "SE"
 msgstr "SE"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "SSE"
 msgstr "SSE"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "S"
 msgstr "S"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "SSW"
 msgstr "SSV"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "SW"
 msgstr "SV"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "WSW"
 msgstr "VSV"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "W"
 msgstr "V"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "WNW"
 msgstr "VNV"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "NW"
 msgstr "NV"
 
-#: desklet.js:1506
+#: 3.0/desklet.js:1506 5.4/desklet.js:1516
 msgid "NNW"
 msgstr "NNV"
 
-#: desklet.js:1560
+#: 3.0/desklet.js:1560 5.4/desklet.js:1570
 msgid "Tornado"
 msgstr "Tornadă"
 
-#: desklet.js:1561
+#: 3.0/desklet.js:1561 5.4/desklet.js:1571
 msgid "Tropical storm"
 msgstr "Furtună tropicală"
 
-#: desklet.js:1562
+#: 3.0/desklet.js:1562 5.4/desklet.js:1572
 msgid "Hurricane"
 msgstr "Uragan"
 
-#: desklet.js:1563
+#: 3.0/desklet.js:1563 5.4/desklet.js:1573
 msgid "Severe thunderstorms"
 msgstr "Furtună puternică"
 
-#: desklet.js:1564
+#: 3.0/desklet.js:1564 5.4/desklet.js:1574
 msgid "Thunderstorms"
 msgstr "Furtună cu descărcări electrice"
 
-#: desklet.js:1565
-#: desklet.js:4240
+#: 3.0/desklet.js:1565 3.0/desklet.js:4240 5.4/desklet.js:1575
+#: 5.4/desklet.js:4250
 msgid "Mixed rain and snow"
 msgstr "Ploaie și ninsoare"
 
-#: desklet.js:1566
+#: 3.0/desklet.js:1566 5.4/desklet.js:1576
 msgid "Mixed rain and sleet"
 msgstr "Ploaie și lapoviță"
 
-#: desklet.js:1567
+#: 3.0/desklet.js:1567 5.4/desklet.js:1577
 msgid "Mixed snow and sleet"
 msgstr "Lapoviță și ninsoare"
 
-#: desklet.js:1568
+#: 3.0/desklet.js:1568 5.4/desklet.js:1578
 msgid "Freezing drizzle"
 msgstr "Burniță rece"
 
-#: desklet.js:1569
-#: desklet.js:1872
+#: 3.0/desklet.js:1569 3.0/desklet.js:1872 5.4/desklet.js:1579
+#: 5.4/desklet.js:1882
 msgid "Drizzle"
 msgstr "Burniță"
 
-#: desklet.js:1570
+#: 3.0/desklet.js:1570 5.4/desklet.js:1580
 msgid "Freezing rain"
 msgstr "Ploaie rece"
 
-#: desklet.js:1571
-#: desklet.js:1572
-#: desklet.js:4236
+#: 3.0/desklet.js:1571 3.0/desklet.js:1572 3.0/desklet.js:4236
+#: 5.4/desklet.js:1581 5.4/desklet.js:1582 5.4/desklet.js:4246
 msgid "Showers"
 msgstr "Averse de ploaie"
 
-#: desklet.js:1573
+#: 3.0/desklet.js:1573 5.4/desklet.js:1583
 msgid "Snow flurries"
 msgstr "Rafale de ninsoare"
 
-#: desklet.js:1574
+#: 3.0/desklet.js:1574 5.4/desklet.js:1584
 msgid "Light snow showers"
 msgstr "Ninsoare ușoară"
 
-#: desklet.js:1575
+#: 3.0/desklet.js:1575 5.4/desklet.js:1585
 msgid "Blowing snow"
 msgstr "Ninsoare și viscol"
 
-#: desklet.js:1576
-#: desklet.js:4238
-#: desklet.js:4244
+#: 3.0/desklet.js:1576 3.0/desklet.js:4238 3.0/desklet.js:4244
+#: 5.4/desklet.js:1586 5.4/desklet.js:4248 5.4/desklet.js:4254
 msgid "Snow"
 msgstr "Ninsoare"
 
-#: desklet.js:1577
+#: 3.0/desklet.js:1577 5.4/desklet.js:1587
 msgid "Hail"
 msgstr "Grindină"
 
-#: desklet.js:1578
-#: desklet.js:1877
+#: 3.0/desklet.js:1578 3.0/desklet.js:1877 5.4/desklet.js:1588
+#: 5.4/desklet.js:1887
 msgid "Sleet"
 msgstr "Lapoviță"
 
-#: desklet.js:1579
+#: 3.0/desklet.js:1579 5.4/desklet.js:1589
 msgid "Dust"
 msgstr "Praf"
 
-#: desklet.js:1580
+#: 3.0/desklet.js:1580 5.4/desklet.js:1590
 msgid "Foggy"
 msgstr "Ceață"
 
-#: desklet.js:1581
+#: 3.0/desklet.js:1581 5.4/desklet.js:1591
 msgid "Haze"
 msgstr "Pâclă"
 
-#: desklet.js:1582
+#: 3.0/desklet.js:1582 5.4/desklet.js:1592
 msgid "Smoky"
 msgstr "Fumuriu"
 
-#: desklet.js:1583
+#: 3.0/desklet.js:1583 5.4/desklet.js:1593
 msgid "Blustery"
 msgstr "Vijelie"
 
-#: desklet.js:1584
+#: 3.0/desklet.js:1584 5.4/desklet.js:1594
 msgid "Windy"
 msgstr "Vânt"
 
-#: desklet.js:1585
+#: 3.0/desklet.js:1585 5.4/desklet.js:1595
 msgid "Cold"
 msgstr "Rece"
 
-#: desklet.js:1586
-#: desklet.js:4233
+#: 3.0/desklet.js:1586 3.0/desklet.js:4233 5.4/desklet.js:1596
+#: 5.4/desklet.js:4243
 msgid "Cloudy"
 msgstr "Înnorat"
 
-#: desklet.js:1587
-#: desklet.js:1588
+#: 3.0/desklet.js:1587 3.0/desklet.js:1588 5.4/desklet.js:1597
+#: 5.4/desklet.js:1598
 msgid "Mostly cloudy"
 msgstr "În general noros"
 
-#: desklet.js:1589
-#: desklet.js:1590
-#: desklet.js:1604
+#: 3.0/desklet.js:1589 3.0/desklet.js:1590 3.0/desklet.js:1604
+#: 5.4/desklet.js:1599 5.4/desklet.js:1600 5.4/desklet.js:1614
 msgid "Partly cloudy"
 msgstr "Parțial noros"
 
-#: desklet.js:1591
+#: 3.0/desklet.js:1591 5.4/desklet.js:1601
 msgid "Clear"
 msgstr "Senin"
 
-#: desklet.js:1592
-#: desklet.js:1861
+#: 3.0/desklet.js:1592 3.0/desklet.js:1861 5.4/desklet.js:1602
+#: 5.4/desklet.js:1871
 msgid "Sunny"
 msgstr "Însorit"
 
-#: desklet.js:1593
-#: desklet.js:1594
-#: desklet.js:4231
+#: 3.0/desklet.js:1593 3.0/desklet.js:1594 3.0/desklet.js:4231
+#: 5.4/desklet.js:1603 5.4/desklet.js:1604 5.4/desklet.js:4241
 msgid "Fair"
 msgstr "Vreme bună"
 
-#: desklet.js:1595
+#: 3.0/desklet.js:1595 5.4/desklet.js:1605
 msgid "Mixed rain and hail"
 msgstr "Ploaie și grindină"
 
-#: desklet.js:1596
+#: 3.0/desklet.js:1596 5.4/desklet.js:1606
 msgid "Hot"
 msgstr "Foarte cald"
 
-#: desklet.js:1597
+#: 3.0/desklet.js:1597 5.4/desklet.js:1607
 msgid "Isolated thunderstorms"
 msgstr "Furtuni izolate"
 
-#: desklet.js:1598
+#: 3.0/desklet.js:1598 5.4/desklet.js:1608
 msgid "Scattered thunderstorms"
 msgstr "Furtuni împrăștiate"
 
-#: desklet.js:1599
-#: desklet.js:1600
+#: 3.0/desklet.js:1599 3.0/desklet.js:1600 5.4/desklet.js:1609
+#: 5.4/desklet.js:1610
 msgid "Scattered showers"
 msgstr "Averse împrăștiate"
 
-#: desklet.js:1601
-#: desklet.js:1603
+#: 3.0/desklet.js:1601 3.0/desklet.js:1603 5.4/desklet.js:1611
+#: 5.4/desklet.js:1613
 msgid "Heavy snow"
 msgstr "Ninsoare abundentă"
 
-#: desklet.js:1602
+#: 3.0/desklet.js:1602 5.4/desklet.js:1612
 msgid "Scattered snow showers"
 msgstr "Ninsori împrăștiate"
 
-#: desklet.js:1605
+#: 3.0/desklet.js:1605 5.4/desklet.js:1615
 msgid "Thundershowers"
 msgstr "Furtună torențială"
 
-#: desklet.js:1606
-#: desklet.js:4239
+#: 3.0/desklet.js:1606 3.0/desklet.js:4239 5.4/desklet.js:1616
+#: 5.4/desklet.js:4249
 msgid "Snow showers"
 msgstr "Averse de ninsoare"
 
-#: desklet.js:1607
+#: 3.0/desklet.js:1607 5.4/desklet.js:1617
 msgid "Isolated thundershowers"
 msgstr "Furtuni torențiale izolate"
 
-#: desklet.js:1608
+#: 3.0/desklet.js:1608 5.4/desklet.js:1618
 msgid "Not available"
 msgstr "Nu este disponibil"
 
-#: desklet.js:1860
-#: desklet.js:4230
+#: 3.0/desklet.js:1860 3.0/desklet.js:4230 5.4/desklet.js:1870
+#: 5.4/desklet.js:4240
 msgid "Clear Sky"
 msgstr "Cer senin"
 
-#: desklet.js:1862
-#: desklet.js:4232
+#: 3.0/desklet.js:1862 3.0/desklet.js:4232 5.4/desklet.js:1872
+#: 5.4/desklet.js:4242
 msgid "Partly Cloudy"
 msgstr "Parțial noros"
 
-#: desklet.js:1863
+#: 3.0/desklet.js:1863 5.4/desklet.js:1873
 msgid "Sunny Intervals"
 msgstr "Perioade însorite"
 
-#: desklet.js:1864
+#: 3.0/desklet.js:1864 5.4/desklet.js:1874
 msgid "Sand Storm"
 msgstr "Furtună de nisip"
 
-#: desklet.js:1865
+#: 3.0/desklet.js:1865 5.4/desklet.js:1875
 msgid "Mist"
 msgstr "Ceață"
 
-#: desklet.js:1866
-#: desklet.js:4234
+#: 3.0/desklet.js:1866 3.0/desklet.js:4234 5.4/desklet.js:1876
+#: 5.4/desklet.js:4244
 msgid "Fog"
 msgstr "Ceață deasă"
 
-#: desklet.js:1867
+#: 3.0/desklet.js:1867 5.4/desklet.js:1877
 msgid "White Cloud"
 msgstr "Nori albi"
 
-#: desklet.js:1868
+#: 3.0/desklet.js:1868 5.4/desklet.js:1878
 msgid "Light Cloud"
 msgstr "Ușor înnorat"
 
-#: desklet.js:1869
+#: 3.0/desklet.js:1869 5.4/desklet.js:1879
 msgid "Grey Cloud"
 msgstr "Nori gri"
 
-#: desklet.js:1870
+#: 3.0/desklet.js:1870 5.4/desklet.js:1880
 msgid "Thick Cloud"
 msgstr "Nori denși"
 
-#: desklet.js:1871
+#: 3.0/desklet.js:1871 5.4/desklet.js:1881
 msgid "Light Rain Shower"
 msgstr "Averse ușoare"
 
-#: desklet.js:1873
-#: desklet.js:4241
-#: desklet.js:4245
+#: 3.0/desklet.js:1873 3.0/desklet.js:4241 3.0/desklet.js:4245
+#: 5.4/desklet.js:1883 5.4/desklet.js:4251 5.4/desklet.js:4255
 msgid "Light Rain"
 msgstr "Ploaie ușoară"
 
-#: desklet.js:1874
+#: 3.0/desklet.js:1874 5.4/desklet.js:1884
 msgid "Heavy Rain Shower"
 msgstr "Averse puternice de ploaie"
 
-#: desklet.js:1875
-#: desklet.js:4235
-#: desklet.js:4243
+#: 3.0/desklet.js:1875 3.0/desklet.js:4235 3.0/desklet.js:4243
+#: 5.4/desklet.js:1885 5.4/desklet.js:4245 5.4/desklet.js:4253
 msgid "Heavy Rain"
 msgstr "Ploaie torențială"
 
-#: desklet.js:1876
+#: 3.0/desklet.js:1876 5.4/desklet.js:1886
 msgid "Sleet Shower"
 msgstr "Averse de lapoviță"
 
-#: desklet.js:1878
+#: 3.0/desklet.js:1878 5.4/desklet.js:1888
 msgid "Light Snow Shower"
 msgstr "Averse ușoare de ninsoare"
 
-#: desklet.js:1879
-#: desklet.js:4242
-#: desklet.js:4246
+#: 3.0/desklet.js:1879 3.0/desklet.js:4242 3.0/desklet.js:4246
+#: 5.4/desklet.js:1889 5.4/desklet.js:4252 5.4/desklet.js:4256
 msgid "Light Snow"
 msgstr "Ninsoare ușoară"
 
-#: desklet.js:1880
+#: 3.0/desklet.js:1880 5.4/desklet.js:1890
 msgid "Heavy Snow Shower"
 msgstr "Averse puternice de ninsoare"
 
-#: desklet.js:1881
+#: 3.0/desklet.js:1881 5.4/desklet.js:1891
 msgid "Heavy Snow"
 msgstr "Ninsoare grea"
 
-#: desklet.js:1882
-#: desklet.js:4237
+#: 3.0/desklet.js:1882 3.0/desklet.js:4237 5.4/desklet.js:1892
+#: 5.4/desklet.js:4247
 msgid "Thundery Shower"
 msgstr "Averse cu descărcări electrice"
 
-#: desklet.js:1883
+#: 3.0/desklet.js:1883 5.4/desklet.js:1893
 msgid "Thunder Storm"
 msgstr "Furtună cu descărcări electrice"
 
-#: desklet.js:1884
+#: 3.0/desklet.js:1884 5.4/desklet.js:1894
 msgid "Thunderstorm"
 msgstr "Furtună cu descărcări electrice"
 
-#: desklet.js:1885
+#: 3.0/desklet.js:1885 5.4/desklet.js:1895
 msgid "Hazy"
 msgstr "Pâclă"
 
-#: desklet.js:1886
+#: 3.0/desklet.js:1886 5.4/desklet.js:1896
 msgid "Hail Shower"
 msgstr "Averse de grindină"
 
-#: desklet.js:1887
+#: 3.0/desklet.js:1887 5.4/desklet.js:1897
 msgid "Rain"
 msgstr "Ploaie"
 
-#: desklet.js:2072
-#: desklet.js:2800
+#: 3.0/desklet.js:2072 3.0/desklet.js:2800 5.4/desklet.js:2082
+#: 5.4/desklet.js:2810
 msgid "Steady"
 msgstr "Se menține"
 
-#: desklet.js:2072
-#: desklet.js:2796
+#: 3.0/desklet.js:2072 3.0/desklet.js:2796 5.4/desklet.js:2082
+#: 5.4/desklet.js:2806
 msgid "Rising"
 msgstr "În urcare"
 
-#: desklet.js:2072
-#: desklet.js:2798
+#: 3.0/desklet.js:2072 3.0/desklet.js:2798 5.4/desklet.js:2082
+#: 5.4/desklet.js:2808
 msgid "Falling"
 msgstr "În scădere"
 
@@ -572,540 +561,717 @@ msgid "Weather Desklet"
 msgstr "Vremea Desklet"
 
 #. metadata.json->comments
-msgid "Please consider translating the Weather Desklet into your language. See the website for more information"
-msgstr "Te rugăm să iei în considerare posibilitatea de a traduce Weather Desklet în limba ta. Consultă site-ul web pentru mai multe informații"
+msgid ""
+"Please consider translating the Weather Desklet into your language. See the "
+"website for more information"
+msgstr ""
+"Te rugăm să iei în considerare posibilitatea de a traduce Weather Desklet în "
+"limba ta. Consultă site-ul web pentru mai multe informații"
 
 #. metadata.json->contributors
 msgid "Chris Hastie"
 msgstr "Chris Hastie"
 
-#. settings-schema.json->top->description
+#. 3.0->settings-schema.json->top->description
+#. 5.4->settings-schema.json->top->description
 msgid "Weather configuration"
 msgstr "Configurare vreme"
 
-#. settings-schema.json->webservice->description
-#. settings-schema.json->locsrc->options
+#. 3.0->settings-schema.json->webservice->description
+#. 3.0->settings-schema.json->locsrc->options
+#. 5.4->settings-schema.json->webservice->description
+#. 5.4->settings-schema.json->locsrc->options
 msgid "Data service"
 msgstr "Serviciul de date"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 msgid "BBC"
 msgstr "BBC"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 msgid "Open Weather Map (requires API key)"
 msgstr "Open Weather Map (necesită cheie API)"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 msgid "Open Weather Map Free (requires API key)"
 msgstr "Open Weather Map Free (necesită cheie API)"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 msgid "Wunderground (requires API key)"
 msgstr "Wunderground (necesită cheie API)"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 msgid "World Weather Online (deprecated) (requires API key)"
 msgstr "World Weather Online (învechit) (necesită cheie API)"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 msgid "World Weather Online Premium (requires API key)"
 msgstr "World Weather Online Premium (necesită cheie API)"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 msgid "APIXU (requires API key)"
 msgstr "APIXU (necesită cheie API)"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 msgid "Forecast.io (requires API key)"
 msgstr "Forecast.io (necesită cheie API)"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 msgid "weather.com (deprecated)"
 msgstr "weather.com (învechit)"
 
-#. settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#. 5.4->settings-schema.json->webservice->options
 msgid "meteoblue (requires API key)"
 msgstr "meteoblue (necesită cheie API)"
 
-#. settings-schema.json->webservice->tooltip
+#. 3.0->settings-schema.json->webservice->tooltip
+#. 5.4->settings-schema.json->webservice->tooltip
 msgid "Select the data service you wish to use"
 msgstr "Selectează serviciul de date dorit"
 
-#. settings-schema.json->stationID->description
+#. 3.0->settings-schema.json->stationID->description
+#. 5.4->settings-schema.json->stationID->description
 msgid "Location"
 msgstr "Localitate"
 
-#. settings-schema.json->stationID->tooltip
+#. 3.0->settings-schema.json->stationID->tooltip
+#. 5.4->settings-schema.json->stationID->tooltip
 msgid "Set your location here"
 msgstr "Setează localitatea aici"
 
-#. settings-schema.json->apikey->description
+#. 3.0->settings-schema.json->apikey->description
+#. 5.4->settings-schema.json->apikey->description
 msgid "API key"
 msgstr "Cheie API"
 
-#. settings-schema.json->apikey->tooltip
-msgid "Required for some services only. Enter your API key for your chosen service"
-msgstr "Necesară doar pentru anumite servicii. Introdu cheia API pentru serviciul selectat"
+#. 3.0->settings-schema.json->apikey->tooltip
+#. 5.4->settings-schema.json->apikey->tooltip
+msgid ""
+"Required for some services only. Enter your API key for your chosen service"
+msgstr ""
+"Necesară doar pentru anumite servicii. Introdu cheia API pentru serviciul "
+"selectat"
 
-#. settings-schema.json->tunits->description
+#. 3.0->settings-schema.json->tunits->description
+#. 5.4->settings-schema.json->tunits->description
 msgid "Temperature measurement unit"
 msgstr "Unitate de măsură a temperaturii"
 
-#. settings-schema.json->tunits->options
+#. 3.0->settings-schema.json->tunits->options
+#. 5.4->settings-schema.json->tunits->options
 msgid "Celsius"
 msgstr "Celsius"
 
-#. settings-schema.json->tunits->options
+#. 3.0->settings-schema.json->tunits->options
+#. 5.4->settings-schema.json->tunits->options
 msgid "Fahrenheit"
 msgstr "Fahrenheit"
 
-#. settings-schema.json->tunits->tooltip
+#. 3.0->settings-schema.json->tunits->tooltip
+#. 5.4->settings-schema.json->tunits->tooltip
 msgid "Measurement units used to display temperature"
 msgstr "Unitatea de măsură folosită la afișarea temperaturii"
 
-#. settings-schema.json->wunits->description
+#. 3.0->settings-schema.json->wunits->description
+#. 5.4->settings-schema.json->wunits->description
 msgid "Wind speed measurement unit"
 msgstr "Unitate de măsură pentru viteza vântului"
 
-#. settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
+#. 5.4->settings-schema.json->wunits->options
 msgid "mph"
 msgstr "mph"
 
-#. settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
+#. 5.4->settings-schema.json->wunits->options
 msgid "km/h"
 msgstr "km/h"
 
-#. settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
+#. 5.4->settings-schema.json->wunits->options
 msgid "knots"
 msgstr "noduri"
 
-#. settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
+#. 5.4->settings-schema.json->wunits->options
 msgid "m/s"
 msgstr "m/s"
 
-#. settings-schema.json->wunits->tooltip
+#. 3.0->settings-schema.json->wunits->tooltip
+#. 5.4->settings-schema.json->wunits->tooltip
 msgid "Measurement units used to display wind speed"
 msgstr "Unitatea de măsură folosită la afișarea vitezei vântului"
 
-#. settings-schema.json->punits->description
+#. 3.0->settings-schema.json->punits->description
+#. 5.4->settings-schema.json->punits->description
 msgid "Pressure measurement unit"
 msgstr "Unitate de măsură a presiunii"
 
-#. settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
+#. 5.4->settings-schema.json->punits->options
 msgid "mb"
 msgstr "mbar"
 
-#. settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
+#. 5.4->settings-schema.json->punits->options
 msgid "in (Hg)"
 msgstr "in (Hg)"
 
-#. settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
+#. 5.4->settings-schema.json->punits->options
 msgid "mm (Hg)"
 msgstr "mm (Hg)"
 
-#. settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
+#. 5.4->settings-schema.json->punits->options
 msgid "kPa"
 msgstr "kPa"
 
-#. settings-schema.json->punits->tooltip
+#. 3.0->settings-schema.json->punits->tooltip
+#. 5.4->settings-schema.json->punits->tooltip
 msgid "Measurement units used to display atmospheric pressure"
 msgstr "Unitatea de măsură folosită la afișarea presiunii"
 
-#. settings-schema.json->userno->units
+#. 3.0->settings-schema.json->userno->units
+#. 5.4->settings-schema.json->userno->units
 msgid "days"
 msgstr "zile"
 
-#. settings-schema.json->userno->description
+#. 3.0->settings-schema.json->userno->description
+#. 5.4->settings-schema.json->userno->description
 msgid "Show forecast for"
 msgstr "Afișează prognoza pentru"
 
-#. settings-schema.json->userno->tooltip
-msgid "The number of days of forecast to display. Note that not all services support all values"
-msgstr "Numărul de zile afișate în prognoză. NOTĂ: nu toate serviciile suportă toate valorile"
+#. 3.0->settings-schema.json->userno->tooltip
+#. 5.4->settings-schema.json->userno->tooltip
+msgid ""
+"The number of days of forecast to display. Note that not all services "
+"support all values"
+msgstr ""
+"Numărul de zile afișate în prognoză. NOTĂ: nu toate serviciile suportă toate "
+"valorile"
 
-#. settings-schema.json->refreshtime->units
+#. 3.0->settings-schema.json->refreshtime->units
+#. 5.4->settings-schema.json->refreshtime->units
 msgid "minutes"
 msgstr "minute"
 
-#. settings-schema.json->refreshtime->description
+#. 3.0->settings-schema.json->refreshtime->description
+#. 5.4->settings-schema.json->refreshtime->description
 msgid "Refresh forecast every"
 msgstr "Actualizează la fiecare"
 
-#. settings-schema.json->refreshtime->tooltip
-msgid "Period between refreshing forecasts. Note that not all services support lower refresh times"
-msgstr "Intervalul de actualizare a prognozei. NOTĂ: Nu toate serviciile suportă intervale scurte"
+#. 3.0->settings-schema.json->refreshtime->tooltip
+#. 5.4->settings-schema.json->refreshtime->tooltip
+msgid ""
+"Period between refreshing forecasts. Note that not all services support "
+"lower refresh times"
+msgstr ""
+"Intervalul de actualizare a prognozei. NOTĂ: Nu toate serviciile suportă "
+"intervale scurte"
 
-#. settings-schema.json->display->description
-msgid "Optional items to display (not all options are supported by all services)"
-msgstr "Elemente opționale afișate (nu toate opțiunile sunt suportate de toate serviciile)"
+#. 3.0->settings-schema.json->display->description
+#. 5.4->settings-schema.json->display->description
+msgid ""
+"Optional items to display (not all options are supported by all services)"
+msgstr ""
+"Elemente opționale afișate (nu toate opțiunile sunt suportate de toate "
+"serviciile)"
 
-#. settings-schema.json->display__meta__country->description
+#. 3.0->settings-schema.json->display__meta__country->description
+#. 5.4->settings-schema.json->display__meta__country->description
 msgid "Country"
 msgstr "Țară"
 
-#. settings-schema.json->display__meta__country->tooltip
+#. 3.0->settings-schema.json->display__meta__country->tooltip
+#. 5.4->settings-schema.json->display__meta__country->tooltip
 msgid "Check to display the country"
 msgstr "Bifează pentru a afișa țara"
 
-#. settings-schema.json->display__cc__weather->description
+#. 3.0->settings-schema.json->display__cc__weather->description
+#. 5.4->settings-schema.json->display__cc__weather->description
 msgid "Current weather and icon"
 msgstr "Vremea curentă și iconița"
 
-#. settings-schema.json->display__cc__weather->tooltip
+#. 3.0->settings-schema.json->display__cc__weather->tooltip
+#. 5.4->settings-schema.json->display__cc__weather->tooltip
 msgid "Check to display the current weather and large icon"
 msgstr "Bifează pentru a afișa vremea curentă și iconița mare"
 
-#. settings-schema.json->display__cc__pressure->description
+#. 3.0->settings-schema.json->display__cc__pressure->description
+#. 5.4->settings-schema.json->display__cc__pressure->description
 msgid "Current pressure"
 msgstr "Presiune curentă"
 
-#. settings-schema.json->display__cc__pressure->tooltip
+#. 3.0->settings-schema.json->display__cc__pressure->tooltip
+#. 5.4->settings-schema.json->display__cc__pressure->tooltip
 msgid "Check to display the current pressure"
 msgstr "Bifează pentru a afișa presiunea curentă"
 
-#. settings-schema.json->display__cc__humidity->description
+#. 3.0->settings-schema.json->display__cc__humidity->description
+#. 5.4->settings-schema.json->display__cc__humidity->description
 msgid "Current humidity"
 msgstr "Umiditate curentă"
 
-#. settings-schema.json->display__cc__humidity->tooltip
+#. 3.0->settings-schema.json->display__cc__humidity->tooltip
+#. 5.4->settings-schema.json->display__cc__humidity->tooltip
 msgid "Check to display the current humidity"
 msgstr "Bifează pentru a afișa umiditatea curentă"
 
-#. settings-schema.json->display__cc__wind_speed->description
+#. 3.0->settings-schema.json->display__cc__wind_speed->description
+#. 5.4->settings-schema.json->display__cc__wind_speed->description
 msgid "Current wind"
 msgstr "Viteza curentă a vântului"
 
-#. settings-schema.json->display__cc__wind_speed->tooltip
+#. 3.0->settings-schema.json->display__cc__wind_speed->tooltip
+#. 5.4->settings-schema.json->display__cc__wind_speed->tooltip
 msgid "Check to display the current wind"
 msgstr "Bifează pentru a afișa viteza curentă a vântului"
 
-#. settings-schema.json->display__cc__feelslike->description
+#. 3.0->settings-schema.json->display__cc__feelslike->description
+#. 5.4->settings-schema.json->display__cc__feelslike->description
 msgid "Current 'feels like'"
 msgstr "Temperatură aparentă curentă"
 
-#. settings-schema.json->display__cc__feelslike->tooltip
+#. 3.0->settings-schema.json->display__cc__feelslike->tooltip
+#. 5.4->settings-schema.json->display__cc__feelslike->tooltip
 msgid "Check to display the current apparent temperature"
 msgstr "Bifează pentru a afișa temperatura curentă aparentă"
 
-#. settings-schema.json->display__cc__visibility->description
+#. 3.0->settings-schema.json->display__cc__visibility->description
+#. 5.4->settings-schema.json->display__cc__visibility->description
 msgid "Current visibility"
 msgstr "Vizibilitate curentă"
 
-#. settings-schema.json->display__cc__visibility->tooltip
+#. 3.0->settings-schema.json->display__cc__visibility->tooltip
+#. 5.4->settings-schema.json->display__cc__visibility->tooltip
 msgid "Check to display the current visibility"
 msgstr "Bifează pentru a afișa vizibilitatea curentă"
 
-#. settings-schema.json->display__forecast__maximum_temperature->description
+#. 3.0->settings-
+#. schema.json->display__forecast__maximum_temperature->description
+#. 5.4->settings-
+#. schema.json->display__forecast__maximum_temperature->description
 msgid "Forecast maximum"
 msgstr "Maxim prognozat"
 
-#. settings-schema.json->display__forecast__maximum_temperature->tooltip
+#. 3.0->settings-schema.json->display__forecast__maximum_temperature->tooltip
+#. 5.4->settings-schema.json->display__forecast__maximum_temperature->tooltip
 msgid "Check to display the forecast maximum temperature"
 msgstr "Bifează pentru a afișa temperatura maximă prognozată"
 
-#. settings-schema.json->display__forecast__minimum_temperature->description
+#. 3.0->settings-
+#. schema.json->display__forecast__minimum_temperature->description
+#. 5.4->settings-
+#. schema.json->display__forecast__minimum_temperature->description
 msgid "Forecast minimum"
 msgstr "Minim prognozat"
 
-#. settings-schema.json->display__forecast__minimum_temperature->tooltip
+#. 3.0->settings-schema.json->display__forecast__minimum_temperature->tooltip
+#. 5.4->settings-schema.json->display__forecast__minimum_temperature->tooltip
 msgid "Check to display the forecast minimum temperature"
 msgstr "Bifează pentru a afișa temperatura minimă prognozată"
 
-#. settings-schema.json->display__forecast__wind_speed->description
+#. 3.0->settings-schema.json->display__forecast__wind_speed->description
+#. 5.4->settings-schema.json->display__forecast__wind_speed->description
 msgid "Forecast wind speed"
 msgstr "Viteza vântului prognozată"
 
-#. settings-schema.json->display__forecast__wind_speed->tooltip
+#. 3.0->settings-schema.json->display__forecast__wind_speed->tooltip
+#. 5.4->settings-schema.json->display__forecast__wind_speed->tooltip
 msgid "Check to display the forecast wind speed"
 msgstr "Bifează pentru a afișa viteza vântului prognozată"
 
-#. settings-schema.json->display__forecast__wind_direction->description
+#. 3.0->settings-schema.json->display__forecast__wind_direction->description
+#. 5.4->settings-schema.json->display__forecast__wind_direction->description
 msgid "Forecast wind direction"
 msgstr "Direcția vântului prognozată"
 
-#. settings-schema.json->display__forecast__wind_direction->tooltip
+#. 3.0->settings-schema.json->display__forecast__wind_direction->tooltip
+#. 5.4->settings-schema.json->display__forecast__wind_direction->tooltip
 msgid "Check to display the forecast wind direction"
 msgstr "Bifează pentru a afișa direcția vântului prognozată"
 
-#. settings-schema.json->display__forecast__pressure->description
+#. 3.0->settings-schema.json->display__forecast__pressure->description
+#. 5.4->settings-schema.json->display__forecast__pressure->description
 msgid "Forecast pressure"
 msgstr "Presiune prognozată"
 
-#. settings-schema.json->display__forecast__pressure->tooltip
+#. 3.0->settings-schema.json->display__forecast__pressure->tooltip
+#. 5.4->settings-schema.json->display__forecast__pressure->tooltip
 msgid "Check to display the forecast pressure"
 msgstr "Bifează pentru a afișa presiunea prognozată"
 
-#. settings-schema.json->display__forecast__humidity->description
+#. 3.0->settings-schema.json->display__forecast__humidity->description
+#. 5.4->settings-schema.json->display__forecast__humidity->description
 msgid "Forecast humidity"
 msgstr "Umiditate prognozată"
 
-#. settings-schema.json->display__forecast__humidity->tooltip
+#. 3.0->settings-schema.json->display__forecast__humidity->tooltip
+#. 5.4->settings-schema.json->display__forecast__humidity->tooltip
 msgid "Check to display the forecast humidity"
 msgstr "Bifează pentru a afișa umiditatea prognozată"
 
-#. settings-schema.json->styling->description
+#. 3.0->settings-schema.json->styling->description
+#. 5.4->settings-schema.json->styling->description
 msgid "Desklet style"
 msgstr "Stil desklet"
 
-#. settings-schema.json->zoom->units
+#. 3.0->settings-schema.json->zoom->units
+#. 5.4->settings-schema.json->zoom->units
 msgid "times"
 msgstr "ori"
 
-#. settings-schema.json->zoom->description
+#. 3.0->settings-schema.json->zoom->description
+#. 5.4->settings-schema.json->zoom->description
 msgid "Zoom by"
 msgstr "Mărește de"
 
-#. settings-schema.json->zoom->tooltip
+#. 3.0->settings-schema.json->zoom->tooltip
+#. 5.4->settings-schema.json->zoom->tooltip
 msgid "Change the size of the desklet"
 msgstr "Schimbă dimensiunea desklet-ului"
 
-#. settings-schema.json->layout->description
+#. 3.0->settings-schema.json->layout->description
+#. 5.4->settings-schema.json->layout->description
 msgid "Layout"
 msgstr "Aranjament"
 
-#. settings-schema.json->layout->options
+#. 3.0->settings-schema.json->layout->options
+#. 5.4->settings-schema.json->layout->options
 msgid "Horizontal"
 msgstr "Orizontal"
 
-#. settings-schema.json->layout->options
+#. 3.0->settings-schema.json->layout->options
+#. 5.4->settings-schema.json->layout->options
 msgid "Vertical"
 msgstr "Vertical"
 
-#. settings-schema.json->layout->tooltip
+#. 3.0->settings-schema.json->layout->tooltip
+#. 5.4->settings-schema.json->layout->tooltip
 msgid "Set the overall layout of the desklet"
 msgstr "Setează aranjamentul general al desklet-ului"
 
-#. settings-schema.json->iconstyle->description
+#. 3.0->settings-schema.json->iconstyle->description
+#. 5.4->settings-schema.json->iconstyle->description
 msgid "Icon style"
 msgstr "Stil iconiță"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Colorful"
 msgstr "Colorat"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Dark"
 msgstr "Întunecat"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Light"
 msgstr "Luminos"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Flat colorful"
 msgstr "Colorat plat"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Flat black"
 msgstr "Negru plat"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Flat white"
 msgstr "Alb plat"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "VClouds"
 msgstr "VClouds"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Novacon"
 msgstr "Novacon"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Weezle"
 msgstr "Weezle"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Meteocons 1"
 msgstr "Meteocons 1"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Meteocons 2"
 msgstr "Meteocons 2"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "Sketchy"
 msgstr "Schițat"
 
-#. settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+#. 5.4->settings-schema.json->iconstyle->options
 msgid "User defined"
 msgstr "Definit de utilizator"
 
-#. settings-schema.json->iconstyle->tooltip
+#. 3.0->settings-schema.json->iconstyle->tooltip
+#. 5.4->settings-schema.json->iconstyle->tooltip
 msgid "Select the style for the weather icons"
 msgstr "Selectează stilul iconițelor pentru vreme"
 
-#. settings-schema.json->citystyle->description
+#. 3.0->settings-schema.json->citystyle->description
+#. 5.4->settings-schema.json->citystyle->description
 msgid "Bold city name"
 msgstr "Îngroșare nume oraș"
 
-#. settings-schema.json->citystyle->tooltip
+#. 3.0->settings-schema.json->citystyle->tooltip
+#. 5.4->settings-schema.json->citystyle->tooltip
 msgid "Check to display the city name in bold"
 msgstr "Bifează pentru a afișa numele orașului cu caractere îngroșate"
 
-#. settings-schema.json->overrideTheme->description
+#. 3.0->settings-schema.json->overrideTheme->description
+#. 5.4->settings-schema.json->overrideTheme->description
 msgid "Override desktop theme (enables the settings below)"
 msgstr "Ignoră tema de sistem (se activează opțiunile de mai jos)"
 
-#. settings-schema.json->overrideTheme->tooltip
-msgid "Check this to override the desktop theme and configure the appearance manually"
-msgstr "Bifează pentru a ignora tema de sistem și pentru a configura manual înfățișarea desklet-ului"
+#. 3.0->settings-schema.json->overrideTheme->tooltip
+#. 5.4->settings-schema.json->overrideTheme->tooltip
+msgid ""
+"Check this to override the desktop theme and configure the appearance "
+"manually"
+msgstr ""
+"Bifează pentru a ignora tema de sistem și pentru a configura manual "
+"înfățișarea desklet-ului"
 
-#. settings-schema.json->transparency->description
+#. 3.0->settings-schema.json->transparency->description
+#. 5.4->settings-schema.json->transparency->description
 msgid "Transparency"
 msgstr "Transparență"
 
-#. settings-schema.json->transparency->tooltip
+#. 3.0->settings-schema.json->transparency->tooltip
+#. 5.4->settings-schema.json->transparency->tooltip
 msgid "Set the transparency of the desklet"
 msgstr "Setează transparența desklet-ului"
 
-#. settings-schema.json->textcolor->description
+#. 3.0->settings-schema.json->textcolor->description
+#. 5.4->settings-schema.json->textcolor->description
 msgid "Text color"
 msgstr "Culoare text"
 
-#. settings-schema.json->textcolor->tooltip
+#. 3.0->settings-schema.json->textcolor->tooltip
+#. 5.4->settings-schema.json->textcolor->tooltip
 msgid "Click the button to select a new text color"
 msgstr "Apasă butonul pentru a alege o culoare nouă a textului"
 
-#. settings-schema.json->textshadow->description
+#. 3.0->settings-schema.json->textshadow->description
+#. 5.4->settings-schema.json->textshadow->description
 msgid "Text shadow"
 msgstr "Umbra textului"
 
-#. settings-schema.json->textshadow->tooltip
+#. 3.0->settings-schema.json->textshadow->tooltip
+#. 5.4->settings-schema.json->textshadow->tooltip
 msgid "Check to add a text shadow"
 msgstr "Bifează pentru a adăuga o umbră de text"
 
-#. settings-schema.json->shadowblur->units
-#. settings-schema.json->cornerradius->units
-#. settings-schema.json->borderwidth->units
+#. 3.0->settings-schema.json->shadowblur->units
+#. 3.0->settings-schema.json->cornerradius->units
+#. 3.0->settings-schema.json->borderwidth->units
+#. 5.4->settings-schema.json->shadowblur->units
+#. 5.4->settings-schema.json->cornerradius->units
+#. 5.4->settings-schema.json->borderwidth->units
 msgid "px"
 msgstr "px"
 
-#. settings-schema.json->shadowblur->description
+#. 3.0->settings-schema.json->shadowblur->description
+#. 5.4->settings-schema.json->shadowblur->description
 msgid "Shadow blur radius"
 msgstr "Raza de estompare a umbrei"
 
-#. settings-schema.json->shadowblur->tooltip
+#. 3.0->settings-schema.json->shadowblur->tooltip
+#. 5.4->settings-schema.json->shadowblur->tooltip
 msgid "Set the text shadow sharp (1) or blurry (2-7)"
 msgstr "Setează umbra textului în clar (1) sau neclar (2-7)"
 
-#. settings-schema.json->bgcolor->description
+#. 3.0->settings-schema.json->bgcolor->description
+#. 5.4->settings-schema.json->bgcolor->description
 msgid "Background color"
 msgstr "Culoare fundal"
 
-#. settings-schema.json->bgcolor->tooltip
+#. 3.0->settings-schema.json->bgcolor->tooltip
+#. 5.4->settings-schema.json->bgcolor->tooltip
 msgid "Click the button to select a new background color"
 msgstr "Apasă butonul pentru a alege o nouă culoare a fundalului"
 
-#. settings-schema.json->cornerradius->description
+#. 3.0->settings-schema.json->cornerradius->description
+#. 5.4->settings-schema.json->cornerradius->description
 msgid "Corner radius"
 msgstr "Rotunjire colțuri"
 
-#. settings-schema.json->cornerradius->tooltip
+#. 3.0->settings-schema.json->cornerradius->tooltip
+#. 5.4->settings-schema.json->cornerradius->tooltip
 msgid "Radius for rounding the desklet's corners"
 msgstr "Raza rotunjirii colțurilor desklet-ului"
 
-#. settings-schema.json->border->description
+#. 3.0->settings-schema.json->border->description
+#. 5.4->settings-schema.json->border->description
 msgid "Show border"
 msgstr "Afișează margine"
 
-#. settings-schema.json->border->tooltip
+#. 3.0->settings-schema.json->border->tooltip
+#. 5.4->settings-schema.json->border->tooltip
 msgid "Check this to turn border on/off"
 msgstr "Bifează pentru a ascunde/arăta marginea"
 
-#. settings-schema.json->bordercolor->description
+#. 3.0->settings-schema.json->bordercolor->description
+#. 5.4->settings-schema.json->bordercolor->description
 msgid "Border color"
 msgstr "Culoare margine"
 
-#. settings-schema.json->bordercolor->tooltip
-msgid "Select the color for the border. Only available if the 'Border' checkbox is enabled"
-msgstr "Selectează culoarea pentru margine. Disponibil doar dacă opțiunea 'Margine' este bifată"
+#. 3.0->settings-schema.json->bordercolor->tooltip
+#. 5.4->settings-schema.json->bordercolor->tooltip
+msgid ""
+"Select the color for the border. Only available if the 'Border' checkbox is "
+"enabled"
+msgstr ""
+"Selectează culoarea pentru margine. Disponibil doar dacă opțiunea 'Margine' "
+"este bifată"
 
-#. settings-schema.json->borderwidth->description
+#. 3.0->settings-schema.json->borderwidth->description
+#. 5.4->settings-schema.json->borderwidth->description
 msgid "Border width"
 msgstr "Grosime margine"
 
-#. settings-schema.json->borderwidth->tooltip
-msgid "Select the width of the border. Only available if the 'Border' checkbox is enabled"
-msgstr "Selectează grosimea marginii. Disponibil doar dacă opțiunea 'Margine' este bifată"
+#. 3.0->settings-schema.json->borderwidth->tooltip
+#. 5.4->settings-schema.json->borderwidth->tooltip
+msgid ""
+"Select the width of the border. Only available if the 'Border' checkbox is "
+"enabled"
+msgstr ""
+"Selectează grosimea marginii. Disponibil doar dacă opțiunea 'Margine' este "
+"bifată"
 
-#. settings-schema.json->locationlookups->description
+#. 3.0->settings-schema.json->locationlookups->description
+#. 5.4->settings-schema.json->locationlookups->description
 msgid "Location display settings"
 msgstr "Setări afișare localitate"
 
-#. settings-schema.json->locsrc->description
+#. 3.0->settings-schema.json->locsrc->description
+#. 5.4->settings-schema.json->locsrc->description
 msgid "Get displayed location from"
 msgstr "Obține localitatea afișată de la"
 
-#. settings-schema.json->locsrc->options
+#. 3.0->settings-schema.json->locsrc->options
+#. 5.4->settings-schema.json->locsrc->options
 msgid "Google"
 msgstr "Google"
 
-#. settings-schema.json->locsrc->tooltip
-msgid "The source of the text displayed as the current location. Yahoo! and Google may offer city names in other languages"
-msgstr "Sursa textului afișat drept localitate curentă.Yahoo! și Google ar putea oferi denumiri și în alte limbi"
+#. 3.0->settings-schema.json->locsrc->tooltip
+#. 5.4->settings-schema.json->locsrc->tooltip
+msgid ""
+"The source of the text displayed as the current location. Yahoo! and Google "
+"may offer city names in other languages"
+msgstr ""
+"Sursa textului afișat drept localitate curentă.Yahoo! și Google ar putea "
+"oferi denumiri și în alte limbi"
 
-#. settings-schema.json->manuallocation->description
+#. 3.0->settings-schema.json->manuallocation->description
+#. 5.4->settings-schema.json->manuallocation->description
 msgid "Manually override displayed location"
 msgstr "Suprascrie manual localitatea curentă afișată"
 
-#. settings-schema.json->manuallocation->tooltip
+#. 3.0->settings-schema.json->manuallocation->tooltip
+#. 5.4->settings-schema.json->manuallocation->tooltip
 msgid "Set your city name manually."
 msgstr "Setează manual numele orașului."
 
-#. settings-schema.json->experimental->description
+#. 3.0->settings-schema.json->experimental->description
+#. 5.4->settings-schema.json->experimental->description
 msgid "Experimental and buggy features (read documentation!!)"
 msgstr "Funcții experimentale și cu defecte (citește documentația!)"
 
-#. settings-schema.json->experimental_enabled->description
+#. 3.0->settings-schema.json->experimental_enabled->description
+#. 5.4->settings-schema.json->experimental_enabled->description
 msgid "Enable experimental features"
 msgstr "Activează funcții experimentale"
 
-#. settings-schema.json->experimental_enabled->tooltip
+#. 3.0->settings-schema.json->experimental_enabled->tooltip
+#. 5.4->settings-schema.json->experimental_enabled->tooltip
 msgid "Check this to enable experimental and buggy features"
 msgstr "Bifează pentru a activa funcțiile experimentale și cu defecte"
 
-#. settings-schema.json->gravity->description
+#. 3.0->settings-schema.json->gravity->description
+#. 5.4->settings-schema.json->gravity->description
 msgid "Anchor desklet by"
 msgstr "Ancorează desklet-ul de"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Default"
 msgstr "Implicit"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Top left"
 msgstr "Stânga-sus"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Left center"
 msgstr "Centru-stânga"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Bottom left"
 msgstr "Stânga-jos"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Bottom center"
 msgstr "Centru-dreapta"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Bottom right"
 msgstr "Dreapta-jos"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Right center"
 msgstr "Centru-dreapta"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Top right"
 msgstr "Dreapta-sus"
 
-#. settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+#. 5.4->settings-schema.json->gravity->options
 msgid "Top center"
 msgstr "Centru-sus"
 
-#. settings-schema.json->gravity->tooltip
-msgid "Select the point on the desklet to which it is anchored. This point will remain static as the desklet grows and shrinks"
-msgstr "Selectează punctul de ancorare a desklet-ului. Acest punct va rămâne fix la redimensionarea desklet-ului"
+#. 3.0->settings-schema.json->gravity->tooltip
+#. 5.4->settings-schema.json->gravity->tooltip
+msgid ""
+"Select the point on the desklet to which it is anchored. This point will "
+"remain static as the desklet grows and shrinks"
+msgstr ""
+"Selectează punctul de ancorare a desklet-ului. Acest punct va rămâne fix la "
+"redimensionarea desklet-ului"

@@ -1,0 +1,7 @@
+.bbcwx-link {
+  text-decoration: underline;
+}
+
+.bbcwx-link:hover {
+  text-decoration: none;
+}
