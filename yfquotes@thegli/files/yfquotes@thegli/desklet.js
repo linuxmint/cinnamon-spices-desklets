@@ -41,6 +41,7 @@ const ACCEPT_VALUE_COOKIE = "text/html,application/xhtml+xml,application/xml;q=0
 const ACCEPT_VALUE_CRUMB = "*/*";
 const ACCEPT_ENCODING_HEADER = "Accept-Encoding";
 const ACCEPT_ENCODING_VALUE = "gzip, deflate";
+const USER_AGENT_HEADER = "User-Agent";
 const IS_SOUP_2 = Soup.MAJOR_VERSION == 2;
 
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
@@ -86,12 +87,15 @@ let YahooFinanceQuoteReader = function () {};
 YahooFinanceQuoteReader.prototype = {
     constructor : YahooFinanceQuoteReader,
     
-    getCookie : function (callback) {
+    getCookie : function (customUserAgent, callback) {
         let here = this;
         let message = Soup.Message.new("GET", YF_COOKIE_URL);
         if (IS_SOUP_2) {
             message.request_headers.append(ACCEPT_HEADER, ACCEPT_VALUE_COOKIE);
             message.request_headers.append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
+            if (customUserAgent != null) {
+                message.request_headers.append(USER_AGENT_HEADER, customUserAgent);
+            }
             _httpSession.queue_message(message, function (session, message) {
                 try {
                     callback.call(here, message);
@@ -102,6 +106,9 @@ YahooFinanceQuoteReader.prototype = {
         } else {
             message.get_request_headers().append(ACCEPT_HEADER, ACCEPT_VALUE_COOKIE);
             message.get_request_headers().append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
+            if (customUserAgent != null) {
+                message.get_request_headers().append(USER_AGENT_HEADER, customUserAgent);
+            }
             _httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, function (session, result) {
                 try {
                     callback.call(here, message);
@@ -112,7 +119,7 @@ YahooFinanceQuoteReader.prototype = {
         }
     },
     
-    getCrumb : function (callback) {
+    getCrumb : function (customUserAgent, callback) {
         let here = this;
         let message = Soup.Message.new("GET", YF_CRUMB_URL);
         if (IS_SOUP_2) {
@@ -120,6 +127,9 @@ YahooFinanceQuoteReader.prototype = {
             message.request_headers.append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
             if (_cookieStore != null) {
                 Soup.cookies_to_request(_cookieStore, message);
+            }
+            if (customUserAgent != null) {
+                message.request_headers.append(USER_AGENT_HEADER, customUserAgent);
             }
             _httpSession.queue_message(message, function (session, message) {
                 if (message.status_code === Soup.KnownStatusCode.OK) {
@@ -139,6 +149,9 @@ YahooFinanceQuoteReader.prototype = {
             if (_cookieStore != null) {
                 Soup.cookies_to_request(_cookieStore, message);
             }
+            if (customUserAgent != null) {
+                message.get_request_headers().append(USER_AGENT_HEADER, customUserAgent);
+            }
             _httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, function (session, result) {
                 if( message.get_status() === Soup.Status.OK) {
                     try {
@@ -155,13 +168,16 @@ YahooFinanceQuoteReader.prototype = {
         }
     },
     
-    getFinanceData : function (quoteSymbols, apiVersion, callback) {
+    getFinanceData : function (quoteSymbols, apiVersion, customUserAgent, callback) {
         const requestUrl = this.createYahooQueryUrl(apiVersion, quoteSymbols);
         let here = this;
         let message = Soup.Message.new("GET", requestUrl);
         if (IS_SOUP_2) {
             if (apiVersion !== "6" && _cookieStore != null) {
                 Soup.cookies_to_request(_cookieStore, message);
+            }
+            if (customUserAgent != null) {
+                message.request_headers.append(USER_AGENT_HEADER, customUserAgent);
             }
             
             _httpSession.queue_message(message, function (session, message) {
@@ -179,6 +195,9 @@ YahooFinanceQuoteReader.prototype = {
         } else {
             if (apiVersion !== "6" && _cookieStore != null) {
                 Soup.cookies_to_request(_cookieStore, message);
+            }
+            if (customUserAgent != null) {
+                message.get_request_headers().append(USER_AGENT_HEADER, customUserAgent);
             }
             
             _httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, function (session, result) {
@@ -452,6 +471,10 @@ StockQuoteDesklet.prototype = {
             this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showLastUpdateTimestamp", "showLastUpdateTimestamp",
             this.onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "sendCustomUserAgent", "sendCustomUserAgent",
+            this.onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "customUserAgent", "customUserAgent",
+            this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "roundNumbers", "roundNumbers",
             this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "decimalPlaces", "decimalPlaces",
@@ -566,14 +589,16 @@ StockQuoteDesklet.prototype = {
     onUpdate : function () {
         const quoteSymbols = this.quoteSymbolsText.split("\n");
         const yfApiVersion = this.apiVersion ? this.apiVersion : "7";
+        const customUserAgent = this.sendCustomUserAgent ? this.customUserAgent : null;
+        
         try {
             const _that = this;
             
             if (yfApiVersion !== "6" && (_cookieStore == null || _crumb == null)) {
-                this.quoteReader.getCookie(function(responseMessage) {
+                this.quoteReader.getCookie(customUserAgent, function(responseMessage) {
                     _cookieStore = Soup.cookies_from_response(responseMessage);
                     
-                    _that.quoteReader.getCrumb(function(responseBody) {
+                    _that.quoteReader.getCrumb(customUserAgent, function(responseBody) {
                         if (responseBody) {
                             if (typeof responseBody["data"] !== "undefined") {
                                 _crumb = responseBody.data;
@@ -581,7 +606,7 @@ StockQuoteDesklet.prototype = {
                                 _crumb = responseBody;
                             }
                          }
-                        _that.renderFinanceData(quoteSymbols, yfApiVersion);
+                        _that.renderFinanceData(quoteSymbols, yfApiVersion, customUserAgent);
                     });
                 });
             } else {
@@ -592,9 +617,9 @@ StockQuoteDesklet.prototype = {
         }
     },
     
-    renderFinanceData : function (quoteSymbols, yfApiVersion) {
+    renderFinanceData : function (quoteSymbols, yfApiVersion, customUserAgent) {
         const _that = this;
-        this.quoteReader.getFinanceData(quoteSymbols, yfApiVersion, function(response) {
+        this.quoteReader.getFinanceData(quoteSymbols, yfApiVersion, customUserAgent, function(response) {
             let parsedResponse = JSON.parse(response);
             _that.render([parsedResponse.quoteResponse.result, parsedResponse.quoteResponse.error]);
             _that.setUpdateTimer();

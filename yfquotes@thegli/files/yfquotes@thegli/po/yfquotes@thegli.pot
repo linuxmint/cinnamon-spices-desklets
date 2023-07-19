@@ -1,13 +1,14 @@
-# Yahoo Finance Quotes Desklet
-# Copyright (C) 2023 Thomas Egli
-# This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-05 20:51+0200\n"
+"POT-Creation-Date: 2023-07-19 22:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,23 +17,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:176 desklet.js:194
+#: desklet.js:192 desklet.js:213
 msgid "Yahoo Finance service not available!"
 msgstr ""
 
-#: desklet.js:534
+#: desklet.js:557
 msgid "Updated at "
 msgstr ""
 
-#: desklet.js:541
+#: desklet.js:564
 msgid "Error: "
 msgstr ""
 
-#: desklet.js:609
+#: desklet.js:634
 msgid "Cannot display quotes information for symbols: "
 msgstr ""
 
-#: desklet.js:610
+#: desklet.js:635
 msgid "The following error occurred: "
 msgstr ""
 
@@ -170,6 +171,24 @@ msgstr ""
 
 #. settings-schema.json->showLastUpdateTimestamp->tooltip
 msgid "Display timestamp when quotes were updated last."
+msgstr ""
+
+#. settings-schema.json->sendCustomUserAgent->description
+msgid "Send custom User-Agent header"
+msgstr ""
+
+#. settings-schema.json->sendCustomUserAgent->tooltip
+msgid ""
+"Include a custom User-Agent header in Yahoo Finance Quotes API requests. By "
+"default, this header is not set."
+msgstr ""
+
+#. settings-schema.json->customUserAgent->description
+msgid "Custom User-Agent header"
+msgstr ""
+
+#. settings-schema.json->customUserAgent->tooltip
+msgid "Value for User-Agent header to send with all API requests."
 msgstr ""
 
 #. settings-schema.json->roundNumbers->description
