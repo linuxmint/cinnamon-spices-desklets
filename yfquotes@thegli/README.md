@@ -25,6 +25,13 @@ Check out the desklet configuration settings, and choose the data refresh period
 
 ## Release Notes
 
+### 0.8.7 - July 19, 2023
+
+Features:
+
+- add setting to include a User-Agent header in Yahoo Finance Quotes API requests
+- update Hungarian translation (courtesy of [KAMI911](https://github.com/KAMI911))
+
 ### 0.8.6 - June 5, 2023
 
 Bugfixes:
