@@ -1,5 +1,5 @@
 # German translation for Yahoo Finance Quotes Desklet
-# Copyright (C) 2021 Thomas Egli
+# Copyright (C) 2023 Thomas Egli
 # This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
 #
 msgid ""
@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-18 19:25+0100\n"
-"PO-Revision-Date: 2022-05-16 18:00+0100\n"
+"PO-Revision-Date: 2023-05-08 21:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,23 +16,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
 
-#: desklet.js:87
+#: desklet.js:192 desklet.js:213
 msgid "Yahoo Finance service not available!"
 msgstr "Yahoo Finance Service nicht verfügbar!"
 
-#: desklet.js:416
+#: desklet.js:557
 msgid "Updated at "
 msgstr "Aktualisiert um "
 
-#: desklet.js:423
+#: desklet.js:564
 msgid "Error: "
 msgstr "Fehler: "
 
-#: desklet.js:467
+#: desklet.js:634
 msgid "Cannot display quotes information for symbols: "
 msgstr "Finanzdaten können nicht angezeigt werden für die Symbole: "
 
-#: desklet.js:468
+#: desklet.js:635
 msgid "The following error occurred: "
 msgstr "Folgender Fehler ist aufgetreten: "
 
@@ -138,6 +138,22 @@ msgstr "Hintergrund Transparenz"
 msgid "The higher the value, the more solid the desklet background."
 msgstr "Je grösser der Wert, desto deckender der Desklet Hintergrund."
 
+#. settings-schema.json->apiVersion->options
+msgid "V6"
+msgstr "V6"
+
+#. settings-schema.json->apiVersion->options
+msgid "V7"
+msgstr "V7"
+
+#. settings-schema.json->apiVersion->description
+msgid "Yahoo Finance Quotes API version"
+msgstr "Yahoo Finance Quotes API Version"
+
+#. settings-schema.json->apiVersion->tooltip
+msgid "Try different version if data requests fail with error."
+msgstr "Version ändern, falls Datenabfragen fehlschlagen"
+
 #. settings-schema.json->delayMinutes->units
 msgid "minutes"
 msgstr "Minuten"
@@ -157,6 +173,26 @@ msgstr "Zeitpunkt der letzten Aktualisierung anzeigen"
 #. settings-schema.json->showLastUpdateTimestamp->tooltip
 msgid "Display timestamp when quotes were updated last."
 msgstr "Zeigt den Zeitstempel der letzten Aktualisierung der Finanzdaten an."
+
+#. settings-schema.json->sendCustomUserAgent->description
+msgid "Send custom User-Agent header"
+msgstr "Sende individuellen User-Agent Header"
+
+#. settings-schema.json->sendCustomUserAgent->tooltip
+msgid ""
+"Include a custom User-Agent header in Yahoo Finance Quotes API requests. By "
+"default, this header is not set."
+msgstr ""
+"Fügt einen eigenen User-Agent Header den Yahoo Finance Quotes API Aufrufen "
+"hinzu. Dieser Header wird normalerweise nicht gesetzt."
+
+#. settings-schema.json->customUserAgent->description
+msgid "Custom User-Agent header"
+msgstr "Individueller User-Agent Header"
+
+#. settings-schema.json->customUserAgent->tooltip
+msgid "Value for User-Agent header to send with all API requests."
+msgstr "User-Agent Header Wert, der mit allen API Aufrufen gesendet wird."
 
 #. settings-schema.json->roundNumbers->description
 msgid "Round numbers"
@@ -183,8 +219,12 @@ msgid "Strict rounding"
 msgstr "Runden auf feste Anzahl Dezimalstellen"
 
 #. settings-schema.json->strictRounding->tooltip
-msgid "Strict rounding to the specified decimal places (eg. 0 will be presented as 0.00)."
-msgstr "Rundet Beträge immer auf die gewählte Anzahl Stellen (z.B. wird der Wert 0 bei 2 Stellen als 0.00 dargestellt)."
+msgid ""
+"Strict rounding to the specified decimal places (eg. 0 will be presented as "
+"0.00)."
+msgstr ""
+"Rundet Beträge immer auf die gewählte Anzahl Stellen (z.B. wird der Wert "
+"0 bei 2 Stellen als 0.00 dargestellt)."
 
 #. settings-schema.json->quoteSymbols->description
 msgid "Quote symbols"
@@ -323,10 +363,8 @@ msgid "Use trend colors for percent change"
 msgstr "Verwende Trend-Farben bei prozentualer Veränderung"
 
 #. settings-schema.json->colorPercentChange->tooltip
-msgid ""
-"Color the percent change to show the trend."
-msgstr ""
-"Färbt die prozentuale Veränderung gemäss Trend."
+msgid "Color the percent change to show the trend."
+msgstr "Färbt die prozentuale Veränderung gemäss Trend."
 
 #. settings-schema.json->showTradeTime->description
 msgid "Show trading time"
