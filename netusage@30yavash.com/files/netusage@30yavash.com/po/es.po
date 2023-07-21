@@ -1,0 +1,97 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-01-03 12:49+0200\n"
+"PO-Revision-Date: 2023-07-20 20:52-0400\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.3.1\n"
+
+#: desklet.js:104
+msgid ""
+"Please make sure vnstat and vnstati are installed and that the vnstat daemon "
+"is running!"
+msgstr ""
+"¡Asegúrese de que vnstat y vnstati están instalados y de que el demonio "
+"vnstat se está ejecutando!"
+
+#: desklet.js:105
+msgid ""
+"In Linux Mint, you can simply run 'apt install vnstati' and that will take "
+"care of everything."
+msgstr ""
+"En Linux Mint, basta con ejecutar 'apt install vnstati' y eso se encargará "
+"de todo."
+
+#: desklet.js:106
+msgid ""
+"In other distributions it might depend on the way things are packaged but "
+"its likely to be similar."
+msgstr ""
+"En otras distribuciones puede depender de la forma en que se empaquetan las "
+"cosas, pero es probable que sea similar."
+
+#. netusage@30yavash.com->metadata.json->name
+msgid "Network usage monitor"
+msgstr "Monitor de uso de red"
+
+#. netusage@30yavash.com->metadata.json->description
+msgid "Network usage monitor using vnstat"
+msgstr "Monitor de uso de red mediante vnstat"
+
+#. netusage@30yavash.com->setting-schema.json->head->description
+msgid "Settings for the Network Usage Applet (uses vnstati)"
+msgstr "Configuración del applet de uso de red (utiliza vnstati)"
+
+#. netusage@30yavash.com->setting-schema.json->useExtendedDisplay->description
+msgid "Enable Extended Display Options"
+msgstr "Habilitar opciones de visualización ampliadas"
+
+#. netusage@30yavash.com->setting-schema.json->useExtendedDisplay->tooltip
+msgid "This is a new option from version 1.0.3"
+msgstr "Esta es una nueva opción de la versión 1.0.3"
+
+#. netusage@30yavash.com->setting-schema.json->extendedDisplay->options
+msgid "Classic - Summary of Traffic for last Days and Months"
+msgstr "Classic - Resumen del tráfico de los últimos días y meses"
+
+#. netusage@30yavash.com->setting-schema.json->extendedDisplay->options
+msgid "Classic Plus - Classic with addition of hourly statistics"
+msgstr "Classic Plus - Classic con estadísticas horarias añadidas"
+
+#. netusage@30yavash.com->setting-schema.json->extendedDisplay->options
+msgid "Hourly statistics for last 24 hours"
+msgstr "Estadísticas horarias de las últimas 24 horas"
+
+#. netusage@30yavash.com->setting-schema.json->extendedDisplay->options
+msgid "Daily statistics for last 30 days"
+msgstr "Estadísticas diarias de los últimos 30 días"
+
+#. netusage@30yavash.com->setting-schema.json->extendedDisplay->options
+msgid "Monthly statistics for last 12 months"
+msgstr "Estadísticas mensuales de los últimos 12 meses"
+
+#. netusage@30yavash.com->setting-schema.json->extendedDisplay->options
+msgid "All time Top ten traffic days"
+msgstr "Los diez días con más tráfico"
+
+#. netusage@30yavash.com->setting-schema.json->extendedDisplay->description
+msgid "Type of Display - default Classic"
+msgstr "Tipo de pantalla - por defecto Classic"
+
+#. netusage@30yavash.com->setting-schema.json->extendedDisplay->tooltip
+msgid ""
+"This feature offers the Classic (original) display with a number of other "
+"options"
+msgstr ""
+"Esta función ofrece la visualización Classic (original) con otras opciones"
