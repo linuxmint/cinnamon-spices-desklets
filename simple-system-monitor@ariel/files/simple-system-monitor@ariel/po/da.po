@@ -7,18 +7,82 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-22 17:15+0200\n"
-"PO-Revision-Date: 2017-06-22 17:19+0200\n"
+"POT-Creation-Date: 2023-06-28 23:36-0400\n"
+"PO-Revision-Date: 2023-06-28 23:38-0400\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
-"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: da\n"
+"X-Generator: Poedit 3.3.1\n"
 
-#: desklet.js:34
+#: 5.8/desklet.js:37 4.0/desklet.js:35
+msgid ""
+"Dependencies missing. Please install \n"
+"libgtop \n"
+"\t    on Ubuntu: gir1.2-gtop-2.0 \n"
+"\t    on Fedora: libgtop2-devel \n"
+"\t    on Arch: libgtop \n"
+"and restart Cinnamon.\n"
+msgstr ""
+"Afhængigheder mangler. Installér venligst\n"
+"libgtop, Network Manager og gir bindings \n"
+"\t    i Ubuntu: gir1.2-gtop-2.0, gir1.2-networkmanager-1.0 \n"
+"\t    i Fedora: libgtop2-devel, NetworkManager-glib-devel \n"
+"\t    i Arch: libgtop, networkmanager\n"
+"og genstart Cinnamon.\n"
+
+#: 5.8/desklet.js:106
+msgid "No temp file detected at CPU path. Resetting to default."
+msgstr ""
+
+#: 5.8/desklet.js:110
+msgid "Invalid CPU path detected. Resetting to default."
+msgstr ""
+
+#: 5.8/desklet.js:125 5.8/desklet.js:166
+msgid "error reading: "
+msgstr ""
+
+#: 5.8/desklet.js:147
+msgid "No temp file detected at GPU path. Resetting to default."
+msgstr ""
+
+#: 5.8/desklet.js:151
+msgid "Invalid GPU path detected. Resetting to default."
+msgstr ""
+
+#: 5.8/desklet.js:205 5.8/desklet.js:223
+msgid "Please install missing dependencies."
+msgstr ""
+
+#: 5.8/desklet.js:291 4.0/desklet.js:236 3.0/desklet.js:238
+msgid "CPU:"
+msgstr "CPU:"
+
+#: 5.8/desklet.js:292 4.0/desklet.js:237 3.0/desklet.js:239
+msgid "Memory:"
+msgstr "Hukommelse:"
+
+#: 5.8/desklet.js:293 4.0/desklet.js:238 3.0/desklet.js:240
+msgid "Download:"
+msgstr "Download:"
+
+#: 5.8/desklet.js:294 4.0/desklet.js:239 3.0/desklet.js:241
+msgid "Upload:"
+msgstr "Upload:"
+
+#: 5.8/desklet.js:295 4.0/desklet.js:240 3.0/desklet.js:242
+msgid "Temperature:"
+msgstr "Temperatur:"
+
+#: 5.8/desklet.js:316 4.0/desklet.js:241 3.0/desklet.js:243
+msgid "GPU:"
+msgstr ""
+
+#: 3.0/desklet.js:37
 msgid ""
 "Dependencies missing. Please install \n"
 "libgtop, Network Manager and gir bindings \n"
@@ -34,30 +98,140 @@ msgstr ""
 "\t    i Arch: libgtop, networkmanager\n"
 "og genstart Cinnamon.\n"
 
-#: applet.js:213
-msgid "CPU:"
-msgstr "CPU:"
-
-#: applet.js:214
-msgid "Memory:"
-msgstr "Hukommelse:"
-
-#: applet.js:215
-msgid "Download:"
-msgstr "Download:"
-
-#: applet.js:216
-msgid "Upload:"
-msgstr "Upload:"
-
-#: applet.js:217
-msgid "Temperature:"
-msgstr "Temperatur:"
-
-#. simple-system-monitor@ariel->metadata.json->description
+#. metadata.json->description
 msgid "Shows some system status values"
 msgstr "Viser nogle værdier for systemstatus"
 
-#. simple-system-monitor@ariel->metadata.json->name
-msgid "Simple system monitor"
+#. metadata.json->name
+msgid "Simple System Monitor"
 msgstr "Enkel systemovervågning"
+
+#. 5.8->settings-schema.json->head0->description
+msgid "General Settings"
+msgstr ""
+
+#. 5.8->settings-schema.json->title_align->description
+msgid "Alignment for title strings"
+msgstr ""
+
+#. 5.8->settings-schema.json->title_align->tooltip
+msgid "CPU, Memory, etc."
+msgstr ""
+
+#. 5.8->settings-schema.json->title_align->options
+#. 5.8->settings-schema.json->value_align->options
+msgid "Left"
+msgstr ""
+
+#. 5.8->settings-schema.json->title_align->options
+#. 5.8->settings-schema.json->value_align->options
+msgid "Right"
+msgstr ""
+
+#. 5.8->settings-schema.json->value_align->description
+msgid "Alignment for value strings"
+msgstr ""
+
+#. 5.8->settings-schema.json->value_align->tooltip
+msgid "GB, KB, etc."
+msgstr ""
+
+#. 5.8->settings-schema.json->temp_units->options
+msgid "°C"
+msgstr ""
+
+#. 5.8->settings-schema.json->temp_units->options
+msgid "°F"
+msgstr ""
+
+#. 5.8->settings-schema.json->temp_units->description
+msgid "Temperature units to display"
+msgstr ""
+
+#. 5.8->settings-schema.json->font_scale_size->description
+msgid "Scale factor for font size"
+msgstr ""
+
+#. 5.8->settings-schema.json->font_scale_size->tooltip
+msgid ""
+"Increase or decrease this value to change the font size scale (1.2 = 120%)"
+msgstr ""
+
+#. 5.8->settings-schema.json->font_color->description
+msgid "Font color"
+msgstr ""
+
+#. 5.8->settings-schema.json->font_color->tooltip
+#. 5.8->settings-schema.json->background_color->tooltip
+msgid "RGB or RGBA"
+msgstr ""
+
+#. 5.8->settings-schema.json->font_family->description
+msgid "Font family for text (blank to use default)"
+msgstr ""
+
+#. 5.8->settings-schema.json->font_family->tooltip
+msgid "Set a custom font family for the text (blank to use default font)"
+msgstr ""
+
+#. 5.8->settings-schema.json->width->units
+msgid "px"
+msgstr ""
+
+#. 5.8->settings-schema.json->width->description
+msgid "Fixed width for the desklet"
+msgstr ""
+
+#. 5.8->settings-schema.json->width->tooltip
+msgid ""
+"Increase or decrease this value to set the boundary width of the desklet"
+msgstr ""
+
+#. 5.8->settings-schema.json->show_decorations->description
+msgid "Show background decorations"
+msgstr ""
+
+#. 5.8->settings-schema.json->show_decorations->tooltip
+msgid "Toggle to control whether the background is transparent"
+msgstr ""
+
+#. 5.8->settings-schema.json->background_color->description
+msgid "Background color"
+msgstr ""
+
+#. 5.8->settings-schema.json->head1->description
+msgid "Advanced Settings"
+msgstr ""
+
+#. 5.8->settings-schema.json->customCPUPath->description
+msgid "Path to CPU temperature directory (device path)"
+msgstr ""
+
+#. 5.8->settings-schema.json->customCPUPath->tooltip
+msgid ""
+"Choose your own thermal CPU object e.g. for monitoring another temperature "
+"sensor.\n"
+"\n"
+"Default:\n"
+"/sys/class/thermal/thermal_zone0"
+msgstr ""
+
+#. 5.8->settings-schema.json->display_gpu->description
+msgid "Display GPU temperature"
+msgstr ""
+
+#. 5.8->settings-schema.json->display_gpu->tooltip
+msgid "Toggle to control whether the GPU temperature is displayed"
+msgstr ""
+
+#. 5.8->settings-schema.json->customGPUPath->description
+msgid "Path to GPU temperature directory (device path)"
+msgstr ""
+
+#. 5.8->settings-schema.json->customGPUPath->tooltip
+msgid ""
+"Choose your own thermal GPU object e.g. for monitoring a GPU.\n"
+"\n"
+"Default:\n"
+"/sys/class/thermal/thermal_zone0"
+msgstr ""
