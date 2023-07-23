@@ -1,0 +1,124 @@
+{
+    "head1": {
+        "type": "header",
+        "description": ""
+    },
+    "time_custom1": {
+        "type": "checkbox",
+        "description": "Customize First Time Value",
+        "default": true
+    },
+    "time_format1": {
+        "type": "entry",
+        "description": "Time Format",
+        "default": "%-H:%M",
+        "tooltip": "The datetime format to use for the output. See 'Format String Help' below for additional details.",
+        "dependency": "time_custom1"
+    },
+    "time_font1": {
+        "type": "entry",
+        "description": "Font Family (blank for default)",
+        "default": "",
+        "dependency": "time_custom1"
+    },
+    "time_color1": {
+        "type": "colorchooser",
+        "description": "Font Color",
+        "default": "rgba(255, 255, 255)",
+        "tooltip": "RGB or RGBA",
+        "dependency": "time_custom1"
+    },
+    "time_size1": {
+        "type": "scale",
+        "description": "Font Size",
+        "default": 2,
+        "min": 0.5,
+        "max": 20,
+        "step": 0.1,
+        "tooltip": "Increase or decrease this value to change the font size scale (1.2 = 120%)",
+        "dependency": "time_custom1"
+    },
+    "head2": {
+        "type": "header",
+        "description": ""
+    },
+    "time_custom2": {
+        "type": "checkbox",
+        "description": "Customize Second Time Value",
+        "default": true
+    },
+    "time_format2": {
+        "type": "entry",
+        "description": "Time Format",
+        "default": "%-A, %B %-d %Y",
+        "tooltip": "The datetime format to use for the output. See 'Format String Help' below for additional details.",
+        "dependency": "time_custom2"
+    },
+    "time_font2": {
+        "type": "entry",
+        "description": "Font Family (blank for default)",
+        "default": "",
+        "dependency": "time_custom2"
+    },
+    "time_color2": {
+        "type": "colorchooser",
+        "description": "Font Color",
+        "default": "rgba(255, 255, 255)",
+        "tooltip": "RGB or RGBA",
+        "dependency": "time_custom2"
+    },
+    "time_size2": {
+        "type": "scale",
+        "description": "Font Size",
+        "default": 2,
+        "min": 0.5,
+        "max": 20,
+        "step": 0.1,
+        "tooltip": "Increase or decrease this value to change the font size scale (1.2 = 120%)",
+        "dependency": "time_custom2"
+    },
+    "head3": {
+        "type": "header",
+        "description": ""
+    },
+    "datetime_button": {
+        "type": "button",
+        "description": "Format String Help",
+        "callback": "on_datetime_button_clicked"
+    },
+    "head4": {
+        "type": "header",
+        "description": "Additional Options"
+    },
+    "width": {
+        "type": "spinbutton",
+        "default": 400,
+        "min": 50,
+        "max": 3840,
+        "step": 10,
+        "units": "px",
+        "description": "Fixed width for the desklet",
+        "tooltip": "Increase or decrease this value to set the boundary width of the desklet"
+    },
+    "title_align": {
+        "type": "combobox",
+        "default": "vertical",
+        "description": "Alignment for time strings",
+        "options": {
+            "Vertical": "vertical",
+            "Horizontal": "horizontal"
+        }
+    },
+    "show_decorations": {
+        "type": "checkbox",
+        "description": "Show decorations",
+        "default": false
+    },
+    "background_color": {
+        "type": "colorchooser",
+        "default": "rgba(96, 96, 96, 1)",
+        "description": "Background color",
+        "tooltip": "RGB or RGBA",
+        "dependency": "show_decorations"
+    }
+}

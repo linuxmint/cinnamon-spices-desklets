@@ -1,0 +1,13 @@
+{
+    "description": "A desklet that can display dual datetime strings", 
+    "uuid": "dual-datetime@rcalixte", 
+    "name": "Dual Datetime",
+    "cinnamon-version": [
+        "5.4",
+        "5.6",
+        "5.8"
+    ],
+    "multiversion": true,
+    "max-instances": "10",
+    "version": "1.0"
+}
