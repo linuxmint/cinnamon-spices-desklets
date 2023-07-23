@@ -10,9 +10,15 @@ const Lang = imports.lang;
 const Settings = imports.ui.settings;
 const Mainloop = imports.mainloop;
 const Gettext = imports.gettext;
+const ByteArray = imports.byteArray;
 const uuid = "ViennaTextBasedWeather@f-istvan";
 
-var session = new Soup.SessionAsync();
+var session;
+if (Soup.MAJOR_VERSION === 2) {
+  session = new Soup.SessionAsync();
+} else {
+  session = new Soup.Session();
+}
 
 function _(str) {
   return Gettext.dgettext(uuid, str);
@@ -115,9 +121,7 @@ ViennaTextBasedWeather.prototype = {
         this.getWeather();
     },
 
-    handleResponse(session, message) {
-      let fulltextWrapper = message.response_body.data.toString();
-
+    handleResponse(fulltextWrapper) {
       let heuteRegex = /<h2>(Heute[^]*)<\/h2>[^]*(<p>[^]*<\/p>)<h2>Morgen+/;
       let morgenRegex = /<h2>(Morgen[^]*)<\/h2>([^]*<p>[^]*<\/p>)<h2>Übermorgen/;
       let uberMorgenRegex = /<h2>(Übermorgen[^]*)<\/h2>([^]*<p>[^]*<\/p>)<h2>/;
@@ -157,7 +161,23 @@ ViennaTextBasedWeather.prototype = {
     getWeather() {
       var url = "https://wetter.orf.at/wien/prognose";
       var getUrl = Soup.Message.new("GET", url);
-      session.queue_message(getUrl, Lang.bind(this, this.handleResponse));
+
+      if (Soup.MAJOR_VERSION === 2) {
+        session.queue_message(getUrl, (session, message) => {
+          let fulltextWrapper = message.response_body.data.toString();
+          this.handleResponse(fulltextWrapper);
+        });
+      } else {
+        session.send_and_read_async(getUrl, 0, null, (session_, res) => {
+          try {
+            const bytes = session.send_and_read_finish(res)
+            const fulltextWrapper = ByteArray.toString(bytes.get_data());
+            this.handleResponse(fulltextWrapper);
+          } catch (e) {
+            global.log("ViennaTextBasedWeather@f-istvan", e);
+          }
+        });
+      }
     },
 
     onSettingsChanged() {
