@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-28 23:36-0400\n"
-"PO-Revision-Date: 2023-06-28 23:38-0400\n"
+"PO-Revision-Date: 2023-07-23 21:49-0400\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -43,7 +43,7 @@ msgid "Invalid CPU path detected. Resetting to default."
 msgstr ""
 
 #: 5.8/desklet.js:125 5.8/desklet.js:166
-msgid "error reading: "
+msgid "error reading:"
 msgstr ""
 
 #: 5.8/desklet.js:147

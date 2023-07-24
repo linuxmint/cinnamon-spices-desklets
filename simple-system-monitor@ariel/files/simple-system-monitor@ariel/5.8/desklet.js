@@ -122,7 +122,7 @@ Thermal.prototype = {
             this.info = (this.cpuDegrees).toFixed(1) + this.temp_string;
         }
         else
-            global.logError(_("error reading: ") + this.file);
+            global.logError(_("error reading:") + ` ${this.file}`);
     }
 }
 
@@ -163,7 +163,7 @@ ThermalGPU.prototype = {
             this.info = (this.gpuDegrees).toFixed(1) + this.temp_string;
         }
         else
-            global.logError(_("error reading: ") + this.file);
+            global.logError(_("error reading:") + ` ${this.file}`);
     }
 }
 
