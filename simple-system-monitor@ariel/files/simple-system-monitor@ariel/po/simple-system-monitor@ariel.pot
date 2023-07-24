@@ -36,7 +36,7 @@ msgid "Invalid CPU path detected. Resetting to default."
 msgstr ""
 
 #: 5.8/desklet.js:125 5.8/desklet.js:166
-msgid "error reading: "
+msgid "error reading:"
 msgstr ""
 
 #: 5.8/desklet.js:147
