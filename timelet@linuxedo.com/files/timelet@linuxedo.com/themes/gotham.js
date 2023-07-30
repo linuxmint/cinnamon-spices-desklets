@@ -25,7 +25,7 @@ const Theme = imports.theme.Theme;
 /**
  * Gotham theme class.
  */
-class GothamTheme extends Theme {
+var GothamTheme = class GothamTheme extends Theme {
 
     constructor(config) {
         super(config);

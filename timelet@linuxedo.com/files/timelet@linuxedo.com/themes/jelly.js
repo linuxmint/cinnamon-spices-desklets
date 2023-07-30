@@ -25,7 +25,7 @@ const Theme = imports.theme.Theme;
 /**
  * Jelly theme class.
  */
- class JellyTheme extends Theme {
+var JellyTheme = class JellyTheme extends Theme {
 
     constructor(config) {
         super(config);

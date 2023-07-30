@@ -33,7 +33,7 @@ const MetroTheme = imports.metro.MetroTheme;
  * Step 2: Append your theme name to the `getThemeNames()` function list.
  * Step 3: Add an `else-if` condition to create your theme if the name matches the name you defined in Step 2.
  */
-class Themes {
+var Themes = class Themes {
 
     /**
      * This output will be used as the config GUI theme selector values.

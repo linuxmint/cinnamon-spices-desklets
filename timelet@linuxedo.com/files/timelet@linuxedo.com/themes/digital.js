@@ -25,7 +25,7 @@ const Theme = imports.theme.Theme;
 /**
  * Digital theme class.
  */
-class DigitalTheme extends Theme {
+var DigitalTheme = class DigitalTheme extends Theme {
 
     constructor(config) {
         super(config);

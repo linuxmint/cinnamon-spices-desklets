@@ -25,7 +25,7 @@ const Theme = imports.theme.Theme;
 /**
  * Metro theme class.
  */
-class MetroTheme extends Theme {
+var MetroTheme = class MetroTheme extends Theme {
 
     constructor(config) {
         super(config);
