@@ -25,7 +25,7 @@ const Theme = imports.theme.Theme;
 /**
  * Flair theme class.
  */
-class FlairTheme extends Theme {
+var FlairTheme = class FlairTheme extends Theme {
 
     constructor(config) {
         super(config);

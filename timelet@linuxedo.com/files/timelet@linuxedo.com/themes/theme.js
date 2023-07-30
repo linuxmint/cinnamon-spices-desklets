@@ -30,7 +30,7 @@ function _(str) {
 /**
  * This class is used to pass user configurations to themes.
  */
-class Config {
+var Config = class Config {
     constructor(scale, textColor) {
         this.scale = scale;
         this.textColor = textColor;
@@ -40,7 +40,7 @@ class Config {
 /**
  * The base Theme class. All themes must extend this class.
  */
-class Theme {
+var Theme = class Theme {
 
     /**
      * Timelet will parse the user input into a Config object and pass it to the theme.
