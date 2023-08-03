@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-28 23:36-0400\n"
-"PO-Revision-Date: 2023-07-23 21:49-0400\n"
+"POT-Creation-Date: 2023-08-03 21:06-0400\n"
+"PO-Revision-Date: 2023-08-03 21:06-0400\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.3.1\n"
 
-#: 5.8/desklet.js:37 4.0/desklet.js:35
+#: 5.8/desklet.js:44 4.0/desklet.js:35
 msgid ""
 "Dependencies missing. Please install \n"
 "libgtop \n"
@@ -34,51 +34,51 @@ msgstr ""
 "\t    su Arch: libgtop, networkmanager\n"
 "e riavviare Cinnamon.\n"
 
-#: 5.8/desklet.js:106
+#: 5.8/desklet.js:113
 msgid "No temp file detected at CPU path. Resetting to default."
 msgstr ""
 
-#: 5.8/desklet.js:110
+#: 5.8/desklet.js:117
 msgid "Invalid CPU path detected. Resetting to default."
 msgstr ""
 
-#: 5.8/desklet.js:125 5.8/desklet.js:166
+#: 5.8/desklet.js:132 5.8/desklet.js:173
 msgid "error reading:"
 msgstr ""
 
-#: 5.8/desklet.js:147
+#: 5.8/desklet.js:154
 msgid "No temp file detected at GPU path. Resetting to default."
 msgstr ""
 
-#: 5.8/desklet.js:151
+#: 5.8/desklet.js:158
 msgid "Invalid GPU path detected. Resetting to default."
 msgstr ""
 
-#: 5.8/desklet.js:205 5.8/desklet.js:223
+#: 5.8/desklet.js:212 5.8/desklet.js:230
 msgid "Please install missing dependencies."
 msgstr ""
 
-#: 5.8/desklet.js:291 4.0/desklet.js:236 3.0/desklet.js:238
+#: 5.8/desklet.js:298 4.0/desklet.js:236 3.0/desklet.js:238
 msgid "CPU:"
 msgstr "CPU:"
 
-#: 5.8/desklet.js:292 4.0/desklet.js:237 3.0/desklet.js:239
+#: 5.8/desklet.js:300 4.0/desklet.js:237 3.0/desklet.js:239
 msgid "Memory:"
 msgstr "Memoria:"
 
-#: 5.8/desklet.js:293 4.0/desklet.js:238 3.0/desklet.js:240
+#: 5.8/desklet.js:302 4.0/desklet.js:238 3.0/desklet.js:240
 msgid "Download:"
 msgstr "Download:"
 
-#: 5.8/desklet.js:294 4.0/desklet.js:239 3.0/desklet.js:241
+#: 5.8/desklet.js:304 4.0/desklet.js:239 3.0/desklet.js:241
 msgid "Upload:"
 msgstr "Upload:"
 
-#: 5.8/desklet.js:295 4.0/desklet.js:240 3.0/desklet.js:242
+#: 5.8/desklet.js:306 4.0/desklet.js:240 3.0/desklet.js:242
 msgid "Temperature:"
 msgstr "Temperatura:"
 
-#: 5.8/desklet.js:316 4.0/desklet.js:241 3.0/desklet.js:243
+#: 5.8/desklet.js:333 4.0/desklet.js:241 3.0/desklet.js:243
 msgid "GPU:"
 msgstr "GPU:"
 
