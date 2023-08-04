@@ -4,9 +4,11 @@ const Desklet = imports.ui.desklet;
 const GLib = imports.gi.GLib;
 const GTop = imports.gi.GTop;
 const Gettext = imports.gettext;
+const Gio = imports.gi.Gio;
 const Lang = imports.lang;
 const Mainloop = imports.mainloop;
 const NM = imports.gi.NM;
+const Pango = imports.gi.Pango;
 const Settings = imports.ui.settings;
 const St = imports.gi.St;
 const UUID = "simple-system-monitor@ariel";
@@ -17,6 +19,11 @@ Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 function _(str) {
     return Gettext.dgettext(UUID, str);
 }
+
+const ST_ALIGNMENT = {
+    "left": St.Align.START,
+    "right": St.Align.END
+};
 
 let missingDependencies = false;
 
@@ -289,40 +296,52 @@ MyDesklet.prototype = {
         this.values = new St.BoxLayout({ vertical: true });
 
         this.titleCPU = new St.Label({ text: _("CPU:"), style_class: "title" });
+        this.titleCPU.clutterText.ellipsize = Pango.EllipsizeMode.NONE;
         this.titleMemory = new St.Label({ text: _("Memory:"), style_class: "title" });
+        this.titleMemory.clutterText.ellipsize = Pango.EllipsizeMode.NONE;
         this.titleDownload = new St.Label({ text: _("Download:"), style_class: "title" });
+        this.titleDownload.clutterText.ellipsize = Pango.EllipsizeMode.NONE;
         this.titleUpload = new St.Label({ text: _("Upload:"), style_class: "title" });
+        this.titleUpload.clutterText.ellipsize = Pango.EllipsizeMode.NONE;
         this.titleTemperature = new St.Label({ text: _("Temperature:"), style_class: "title" });
+        this.titleTemperature.clutterText.ellipsize = Pango.EllipsizeMode.NONE;
 
-        this.titles.add(this.titleCPU);
-        this.titles.add(this.titleMemory);
-        this.titles.add(this.titleDownload);
-        this.titles.add(this.titleUpload);
-        this.titles.add(this.titleTemperature);
+        this.titles.add(this.titleCPU, { x_fill: false, x_align: ST_ALIGNMENT[this.title_align] });
+        this.titles.add(this.titleMemory, { x_fill: false, x_align: ST_ALIGNMENT[this.title_align] });
+        this.titles.add(this.titleDownload, { x_fill: false, x_align: ST_ALIGNMENT[this.title_align] });
+        this.titles.add(this.titleUpload, { x_fill: false, x_align: ST_ALIGNMENT[this.title_align] });
+        this.titles.add(this.titleTemperature, { x_fill: false, x_align: ST_ALIGNMENT[this.title_align] });
 
         this.valueCPU = new St.Label({ text: "0%", style_class: "value" });
+        this.valueCPU.clutterText.ellipsize = Pango.EllipsizeMode.NONE;
         this.valueMemory = new St.Label({ text: "0 GB", style_class: "value" });
+        this.valueMemory.clutterText.ellipsize = Pango.EllipsizeMode.NONE;
         this.valueDownload = new St.Label({ text: "0 B", style_class: "value" });
+        this.valueDownload.clutterText.ellipsize = Pango.EllipsizeMode.NONE;
         this.valueUpload = new St.Label({ text: "0 B", style_class: "value" });
+        this.valueUpload.clutterText.ellipsize = Pango.EllipsizeMode.NONE;
         this.valueTemperature = new St.Label({ text: "0°C", style_class: "value" });
+        this.valueTemperature.clutterText.ellipsize = Pango.EllipsizeMode.NONE;
 
-        this.values.add(this.valueCPU);
-        this.values.add(this.valueMemory);
-        this.values.add(this.valueDownload);
-        this.values.add(this.valueUpload);
-        this.values.add(this.valueTemperature);
+        this.values.add(this.valueCPU, { x_fill: false, x_align: ST_ALIGNMENT[this.value_align] });
+        this.values.add(this.valueMemory, { x_fill: false, x_align: ST_ALIGNMENT[this.value_align] });
+        this.values.add(this.valueDownload, { x_fill: false, x_align: ST_ALIGNMENT[this.value_align] });
+        this.values.add(this.valueUpload, { x_fill: false, x_align: ST_ALIGNMENT[this.value_align] });
+        this.values.add(this.valueTemperature, { x_fill: false, x_align: ST_ALIGNMENT[this.value_align] });
 
         if (this.display_gpu) {
             this.titleTemperatureGPU = new St.Label({ text: _("GPU:"), style_class: "title" });
-            this.titles.add(this.titleTemperatureGPU);
+            this.titleTemperatureGPU.clutterText.ellipsize = Pango.EllipsizeMode.NONE;
+            this.titles.add(this.titleTemperatureGPU, { x_fill: false, x_align: ST_ALIGNMENT[this.title_align] });
             this.valueTemperatureGPU = new St.Label({ text: "0°C", style_class: "value" });
-            this.values.add(this.valueTemperatureGPU);
+            this.valueTemperatureGPU.clutterText.ellipsize = Pango.EllipsizeMode.NONE;
+            this.values.add(this.valueTemperatureGPU, { x_fill: false, x_align: ST_ALIGNMENT[this.value_align] });
         }
 
         this.font_family = this.font_family.replace(/['"`]/g, "");
         this.font = this.font_family !== "" ? `font-family: '${this.font_family}';` : "";
-        this.titles.style = `text-align: ${this.title_align}; color: ${this.font_color}; font-size: ${this.font_scale_size}em; ${this.font}`;
-        this.values.style = `text-align: ${this.value_align}; color: ${this.font_color}; font-size: ${this.font_scale_size}em; padding-left: 5px; ${this.font}`;
+        this.titles.style = `color: ${this.font_color}; font-size: ${this.font_scale_size}em; ${this.font}`;
+        this.values.style = `color: ${this.font_color}; font-size: ${this.font_scale_size}em; padding-left: 5px; ${this.font}`;
         this.mainContainer.add(this.titles);
         this.mainContainer.add(this.values);
 
@@ -379,7 +398,7 @@ MyDesklet.prototype = {
                 try {
                     subprocess.communicate_utf8_finish(result);
                     let status = subprocess.get_exit_status();
-                    if (status == 0) {
+                    if (status === 0) {
                         this.font = this.font_family !== "" ? `font-family: '${this.font_family}';` : "";
                     } else {
                         this.font_family = "";
@@ -388,8 +407,8 @@ MyDesklet.prototype = {
                 } catch (e) {
                     global.logError(e);
                 } finally {
-                    this.titles.style = `text-align: ${this.title_align}; color: ${this.font_color}; font-size: ${this.font_scale_size}em; ${this.font}`;
-                    this.values.style = `text-align: ${this.value_align}; color: ${this.font_color}; font-size: ${this.font_scale_size}em; padding-left: 5px; ${this.font}`;
+                    this.titles.style = `color: ${this.font_color}; font-size: ${this.font_scale_size}em; ${this.font}`;
+                    this.values.style = `color: ${this.font_color}; font-size: ${this.font_scale_size}em; padding-left: 5px; ${this.font}`;
                 }
             });
         } catch (e) {
@@ -409,6 +428,7 @@ ErrorDesklet.prototype = {
         Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
         this.mainContainer = new St.BoxLayout();
         this.errorMessage = new St.Label({ text: MISSING_DEPENDENCIES });
+        this.errorMessage.clutterText.ellipsize = Pango.EllipsizeMode.NONE;
         this.mainContainer.add(this.errorMessage);
         this.setContent(this.mainContainer);
     }

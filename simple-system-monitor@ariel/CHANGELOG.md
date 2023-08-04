@@ -1,4 +1,8 @@
 
+### 1.3.0
+* Remove potential ellipsis in titles and values
+* Fix missing import
+
 ### 1.2.0
 * Add options to minimize the need for manual file updates:
   * Title/value alignment
