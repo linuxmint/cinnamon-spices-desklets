@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-04 15:06+0200\n"
-"PO-Revision-Date: 2023-08-04 19:43+0200\n"
+"PO-Revision-Date: 2023-08-04 19:52+0200\n"
 "Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
 "Language-Team: \n"
 "Language: ca\n"
@@ -171,23 +171,23 @@ msgstr "Nota groga - imant groc"
 
 #. settings-schema.json->style->options
 msgid "Blue Paint Strokes"
-msgstr "Marques pintada blava"
+msgstr "Pinzellades pintada blava"
 
 #. settings-schema.json->style->options
 msgid "Green Paint Strokes"
-msgstr "Marques pintada verda"
+msgstr "Pinzellades pintada verda"
 
 #. settings-schema.json->style->options
 msgid "Purple Paint Strokes"
-msgstr "Marques pintada lila"
+msgstr "Pinzellades pintada lila"
 
 #. settings-schema.json->style->options
 msgid "Red Paint Strokes"
-msgstr "Marques pintada vermella"
+msgstr "Pinzellades pintada vermella"
 
 #. settings-schema.json->style->options
 msgid "Yellow Paint Strokes"
-msgstr "Marques pintada groga"
+msgstr "Pinzellades pintada groga"
 
 #. settings-schema.json->style->options
 msgid "White Note - Silver Spiral"
@@ -215,7 +215,7 @@ msgstr "Nota groga (estil iOS)"
 
 #. settings-schema.json->style->options
 msgid "Birch Bark"
-msgstr ""
+msgstr "Escorça de bedoll"
 
 #. settings-schema.json->style->options
 msgid "Burned Paper"
