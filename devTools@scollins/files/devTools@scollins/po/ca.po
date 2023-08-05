@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-04 22:27+0200\n"
-"PO-Revision-Date: 2023-08-04 22:51+0200\n"
+"POT-Creation-Date: 2023-08-04 23:06+0200\n"
+"PO-Revision-Date: 2023-08-05 04:35+0200\n"
 "Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
 "Language-Team: \n"
 "Language: ca\n"
@@ -18,290 +18,369 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#. settings-schema.json->type->options
-#: desklet.js:164
-msgid "CPU"
-msgstr "CPU"
+#: desklet.js:247 tabPanel.js:25
+msgid "Untitled"
+msgstr "Sense títol"
 
-#: desklet.js:175 desklet.js:193 desklet.js:213 desklet.js:242
-msgid "GB"
-msgstr "GB"
+#: desklet.js:289
+msgid "Tools"
+msgstr "Eines"
 
-#: desklet.js:178 desklet.js:196 desklet.js:216 desklet.js:245
-msgid "GiB"
-msgstr "GiB"
+#: desklet.js:406 desklet.js:538
+msgid "Expand"
+msgstr "Desplega"
 
-#. settings-schema.json->type->options
-#: desklet.js:180
-msgid "RAM"
-msgstr "RAM"
+#. settings-schema.json->collapsedStartState->options
+#: desklet.js:410 desklet.js:555
+msgid "Collapse"
+msgstr "Replega"
 
-#. settings-schema.json->type->options
-#: desklet.js:198
-msgid "Swap"
-msgstr "Swap"
+#: desklet.js:432
+msgid "Open Cinnamon Settings"
+msgstr "Obre els ajusts del Cinnamon"
 
-#: desklet.js:221
-msgid "free of"
-msgstr "lliure de"
+#: desklet.js:440
+msgid "Start Sandbox"
+msgstr "Inicia un entorn de proves"
 
-#: desklet.js:232
-msgid "GPU Usage"
-msgstr "Ús de GPU"
+#: desklet.js:448
+msgid "Run command line"
+msgstr "Executa una ordre del terminal"
 
-#: desklet.js:247
-msgid "GPU Memory"
-msgstr "Memòria de la GPU"
+#: desklet.js:456 extensions.js:160 extensions.js:178 inspect.js:369
+#: inspect.js:555 windows.js:89
+msgid "Inspect"
+msgstr "Inspecciona"
 
-#. metadata.json->name
-msgid "System monitor graph"
-msgstr "Monitor gràfic del sistema"
+#: desklet.js:464
+msgid "Open Looking Glass"
+msgstr ""
+
+#: desklet.js:474
+msgid "Reload Theme"
+msgstr "Recarrega el tema"
+
+#: desklet.js:484
+msgid "Restart Cinnamon"
+msgstr "Reinicia el Cinnamon"
+
+#: errorLog.js:44
+msgid "X-Session Log"
+msgstr "Registre sessió X"
+
+#: errorLog.js:62
+msgid "Hide old errors"
+msgstr "Amaga els errors antics"
+
+#: errorLog.js:77 terminal.js:68
+msgid "Clear"
+msgstr "Neteja"
+
+#: errorLog.js:130
+msgid "Cinnamon Log"
+msgstr "Registre del Cinnamon"
+
+#: errorLog.js:147
+msgid "Show Timestamp"
+msgstr "Mostra marques de temps"
+
+#: errorLog.js:155
+msgid "Infos"
+msgstr "Infos"
+
+#: errorLog.js:163
+msgid "Warnings"
+msgstr "Advertiments"
+
+#: errorLog.js:171
+msgid "Errors"
+msgstr "Errors"
+
+#: errorLog.js:179
+msgid "Traces"
+msgstr "Traces"
+
+#: errorLog.js:193
+msgid "Copy"
+msgstr "Copia"
+
+#: extensions.js:70
+msgid "Infinite"
+msgstr "Infinit"
+
+#: extensions.js:125
+msgid "Reload"
+msgstr "Recarrega"
+
+#: extensions.js:130 extensions.js:165
+msgid "Remove"
+msgstr "Elimina"
+
+#: extensions.js:136
+msgid "Instances"
+msgstr "Instàncies"
+
+#: extensions.js:136
+msgid "maximum of"
+msgstr "màxim de"
+
+#: extensions.js:155 extensions.js:173
+msgid "Highlight"
+msgstr "Ressalta"
+
+#: extensions.js:186
+msgid "Configure"
+msgstr "Configura"
+
+#: extensions.js:271
+msgid "Extensions"
+msgstr "Extensions"
+
+#: extensions.js:353 extensions.js:381
+#, fuzzy
+msgid "failed to create extension item for uuid"
+msgstr "no s'ha pogut creat l'ítem d'extensió per a uuid"
+
+#: extensions.js:361 extensions.js:389
+msgid "No extensions of this type are enabled"
+msgstr "Les extensions d'aquest tipus no estan habilitades"
+
+#: inspect.js:126
+msgid "(Press Pause or Control to disable event pass through)"
+msgstr ""
+
+#: inspect.js:128
+msgid "(Press Pause or Control to enable event pass through)"
+msgstr ""
+
+#: inspect.js:411
+msgid "Length"
+msgstr "Longitud"
+
+#: inspect.js:418
+msgid "Parent"
+msgstr "Pare"
+
+#: inspect.js:427
+msgid "Children"
+msgstr "Fills"
+
+#. settings-schema.json->height->description
+#: inspect.js:438
+msgid "Height"
+msgstr "Alçada"
+
+#. settings-schema.json->width->description
+#: inspect.js:440
+msgid "Width"
+msgstr "Amplada"
+
+#: inspect.js:442
+msgid "Visible"
+msgstr "Visible"
+
+#: inspect.js:446
+#, fuzzy
+msgid "Style Class"
+msgstr "Classe d'estil"
+
+#: inspect.js:448
+msgid "None"
+msgstr "Cap"
+
+#: inspect.js:456 windows.js:70
+msgid "Title"
+msgstr "Títol"
+
+#: inspect.js:459 windows.js:75
+msgid "Class"
+msgstr "Classe"
+
+#: inspect.js:462 windows.js:80
+msgid "Workspace"
+msgstr "Entorn de treball"
+
+#: inspect.js:471
+msgid "Monitor"
+msgstr "Monitor"
+
+#: inspect.js:475
+msgid "Size"
+msgstr "Mida"
+
+#: inspect.js:477
+msgid "Position"
+msgstr "Posició"
+
+#: inspect.js:494
+msgid "Values"
+msgstr "Valors"
+
+#: inspect.js:495
+msgid "Index"
+msgstr "Índex"
+
+#: inspect.js:498
+msgid "Map Elements"
+msgstr ""
+
+#: inspect.js:499
+msgid "Key"
+msgstr "Clau"
+
+#: inspect.js:502
+msgid "Properties"
+msgstr "Propietats"
+
+#: inspect.js:503
+msgid "Name"
+msgstr "Nom"
+
+#: inspect.js:509
+msgid "Type"
+msgstr "Tipus"
+
+#: inspect.js:510
+msgid "Value"
+msgstr "Valor"
+
+#: sandbox.js:76
+msgid "Open"
+msgstr "Obre"
+
+#: sandbox.js:82
+msgid "Save"
+msgstr "Desa"
+
+#: sandbox.js:88
+msgid "Save As"
+msgstr "Anomena i desa"
+
+#: sandbox.js:149
+msgid "Sandbox"
+msgstr "Entorn de proves"
+
+#: sandbox.js:165
+msgid "Evaluate"
+msgstr "Evalua"
+
+#: sandbox.js:170
+msgid "Javascript"
+msgstr "Javascript"
+
+#: sandbox.js:174
+msgid "Style"
+msgstr "Estil"
+
+#: sandbox.js:180
+msgid "Load current stylesheet"
+msgstr "Carrega el full d'estil actual"
+
+#: sandbox.js:204
+msgid "No errors detected"
+msgstr "No s'ha detectat cap error"
+
+#: tab.js:126
+msgid "Close Tab"
+msgstr "Tanca la pestanya"
+
+#: terminal.js:54
+msgid "Command"
+msgstr "Ordre"
+
+#: terminal.js:59
+msgid "Status"
+msgstr "Estat"
+
+#: terminal.js:60
+msgid "Running"
+msgstr "Executant"
+
+#: terminal.js:73
+msgid "End Process"
+msgstr "Finalitza el procés"
+
+#: terminal.js:82
+msgid "Output"
+msgstr "Sortida"
+
+#: terminal.js:108
+msgid "Stopped"
+msgstr "Aturat"
+
+#: terminal.js:231
+msgid "Run"
+msgstr "Executa"
+
+#: windows.js:24 windows.js:126
+msgid "all"
+msgstr "tot"
+
+#: windows.js:95
+msgid "Switch to"
+msgstr "Canvia a"
+
+#: windows.js:101
+msgid "Close"
+msgstr "Tanca"
+
+#: windows.js:144
+#, fuzzy
+msgid "Windows"
+msgstr "Finestres"
 
 #. metadata.json->description
-msgid "Creates graphs for system variables."
-msgstr "Crea gràfiques de les variables del sistema."
-
-#. settings-schema.json->head0->description
-msgid "Settings for system-monitor-graph@rcassani"
-msgstr "Ajusts de system-monitor-graph@rcassani"
-
-#. settings-schema.json->head1->description
-msgid "General"
-msgstr "General"
-
-#. settings-schema.json->type->description
-msgid "System variable for graph"
-msgstr "Variable del sistema a monitorar"
-
-#. settings-schema.json->type->tooltip
-msgid "Select the system variable to monitor."
-msgstr "Seleccioneu la variable del sistema a monitorar."
-
-#. settings-schema.json->type->options
-msgid "HDD"
-msgstr "Disc dur"
-
-#. settings-schema.json->type->options
-msgid "GPU"
-msgstr "GPU"
-
-#. settings-schema.json->data-prefix-ram->options
-#. settings-schema.json->data-prefix-swap->options
-#. settings-schema.json->data-prefix-hdd->options
-#. settings-schema.json->data-prefix-gpumem->options
-msgid "Binary prefix or IEC (1 GiB = 1024³ bytes)"
-msgstr "Prefix binari o de l'IEC (1GiB = 1024³ octets)"
-
-#. settings-schema.json->data-prefix-ram->options
-#. settings-schema.json->data-prefix-swap->options
-#. settings-schema.json->data-prefix-hdd->options
-#. settings-schema.json->data-prefix-gpumem->options
-msgid "Decimal prefix (1 GB = 1000³ bytes)"
-msgstr "Prefix decimal (1 GB = 1000³ octets)"
-
-#. settings-schema.json->data-prefix-ram->description
-#. settings-schema.json->data-prefix-swap->description
-#. settings-schema.json->data-prefix-hdd->description
-#. settings-schema.json->data-prefix-gpumem->description
-msgid "Prefix for data units"
-msgstr "Prefix de les unitats de les dades"
-
-#. settings-schema.json->data-prefix-ram->tooltip
-msgid "Unit prefix for RAM size."
-msgstr "Prefix de la unitat de mesura de la RAM."
-
-#. settings-schema.json->data-prefix-swap->tooltip
-msgid "Unit prefix for Swap size."
+msgid "A desklet for troubleshooting and developing in the Cinnamon UI"
 msgstr ""
-"Prefix de la unitat de mesura\n"
-"de la memòria d'intercanvi (Swap)."
+"Una miniaplicació d'escriptori per a desenvolupar en,\n"
+"i solucionar problemes de, la interfície d'usuari del Cinnamon"
 
-#. settings-schema.json->data-prefix-hdd->tooltip
-msgid "Unit prefix for Filesystem size."
-msgstr "Prefix de la unitat de mesura del sistema de fitxers."
+#. metadata.json->contributors
+msgid "Stephen Collins - Author"
+msgstr "Stephen Collins - Autor"
 
-#. settings-schema.json->filesystem->description
-msgid "Filesystem to monitor"
-msgstr "Sistema de fitxers a monitorar"
-
-#. settings-schema.json->filesystem->tooltip
-msgid "Select a directory in the filesystem to monitor."
-msgstr "Seleccioneu qualsevol carpeta del sistema de fitxers a monitorar."
-
-#. settings-schema.json->filesystem-label->description
-msgid "Filesystem label"
-msgstr "Etiqueta per al sistema de fitxers"
-
-#. settings-schema.json->filesystem-label->tooltip
-msgid "Empty uses the filesystem name from df."
+#. metadata.json->comments
+msgid ""
+"This desklet provides tools to help troubleshoot, view and control certain "
+"Cinnamon components and status information, and even test new code without "
+"restarting Cinnamon."
 msgstr ""
-"Si ho deixeu buit, s'agafa el nom del sistema de fitxers mitjançant l'ordre "
-"«df»."
+"Aquest miniaplicació d'escriptori ofereix eines per ajudar a solucionar "
+"problemes,\n"
+"veure i controlar certs components del Cinnamon i informació del seu "
+"estat. Fins i tot\n"
+"provar nou codi sense reiniciar el Cinnamon."
 
-#. settings-schema.json->gpu-manufacturer->description
-msgid "GPU manufacturer"
-msgstr "Fabricant de la GPU"
+#. metadata.json->name
+msgid "Developer's Tools"
+msgstr "Eines de desenvolupament"
 
-#. settings-schema.json->gpu-manufacturer->tooltip
-msgid "Select the GPU manufacturer."
-msgstr "Trieu el fabricant de la vostra GPU."
+#. settings-schema.json->collapsedStartState->description
+msgid "On startup"
+msgstr "A l'inici"
 
-#. settings-schema.json->gpu-manufacturer->options
-msgid "NVIDIA"
-msgstr "NVIDIA"
+#. settings-schema.json->collapsedStartState->options
+msgid "Remember Previous State"
+msgstr "Recorda l'estat anterior"
 
-#. settings-schema.json->gpu-id->description
-msgid "Id of GPU to monitor"
-msgstr "Id de la GPU a monitorar"
+#. settings-schema.json->collapsedStartState->options
+msgid "Show"
+msgstr "Mostra"
 
-#. settings-schema.json->gpu-id->tooltip
-msgid "Check GPU id with nvidia-smi -L"
-msgstr "Comproveu l'identificador de la GPU amb l'ordre «nvidia-smi -L»"
+#. settings-schema.json->collapsed->description
+msgid "Collapsed"
+msgstr "Replegat"
 
-#. settings-schema.json->gpu-variable->description
-msgid "GPU variable to monitor"
-msgstr "Variable de la GPU a monitorar"
+#. settings-schema.json->raiseKey->description
+#, fuzzy
+msgid "Raise to top shorcut key"
+msgstr "Drecera per a pujar sobre tot"
 
-#. settings-schema.json->gpu-variable->tooltip
-msgid "Select the GPU variable to monitor."
-msgstr "Trieu la variable de la GPU que voleu monitorar."
+#. settings-schema.json->centerRaised->description
+#, fuzzy
+msgid "Center the desklet on the screen in raised mode"
+msgstr "Centra la miniaplicació en la pantalla en pujar-la sobre tot"
 
-#. settings-schema.json->gpu-variable->options
-msgid "Usage"
-msgstr "Ús"
-
-#. settings-schema.json->gpu-variable->options
-msgid "Memory"
-msgstr "Memòria"
-
-#. settings-schema.json->data-prefix-gpumem->tooltip
-msgid "Unit prefix for GPU memory size."
-msgstr "Prefix de la unitat de mesura de la mida de la GPU."
-
-#. settings-schema.json->duration->description
-msgid "Duration of the graph"
-msgstr "Duració de la gràfica"
-
-#. settings-schema.json->duration->tooltip
-msgid "Maximum among of time to show in the graph."
-msgstr "Interval de temps que es mostrarà en la gràfica del monitor."
-
-#. settings-schema.json->duration->options
-#. settings-schema.json->refresh-interval->options
-msgid "30 s"
-msgstr "30 s"
-
-#. settings-schema.json->duration->options
-msgid " 1 min"
-msgstr " 1 min"
-
-#. settings-schema.json->duration->options
-msgid " 2 min"
-msgstr " 2 min"
-
-#. settings-schema.json->duration->options
-msgid " 5 min"
-msgstr " 5 min"
-
-#. settings-schema.json->duration->options
-msgid "10 min"
-msgstr "10 min"
-
-#. settings-schema.json->duration->options
-msgid "30 min"
-msgstr "30 min"
-
-#. settings-schema.json->duration->options
-msgid "60 min"
-msgstr "60 min"
-
-#. settings-schema.json->refresh-interval->description
-msgid "Refresh interval"
-msgstr "Interval d'actualització"
-
-#. settings-schema.json->refresh-interval->tooltip
-msgid "How often a new value of the variable will be calculated."
-msgstr "Cada quant de temps es torna a calcular el valor de la variable."
-
-#. settings-schema.json->refresh-interval->options
-msgid " 1 s"
-msgstr " 1 s"
-
-#. settings-schema.json->refresh-interval->options
-msgid " 2 s"
-msgstr " 2 s"
-
-#. settings-schema.json->refresh-interval->options
-msgid " 5 s"
-msgstr " 5 s"
-
-#. settings-schema.json->refresh-interval->options
-msgid "10 s"
-msgstr "10 s"
-
-#. settings-schema.json->refresh-interval->options
-msgid "60 s"
-msgstr "60 s"
-
-#. settings-schema.json->head2->description
-msgid "Visual"
-msgstr "Visual"
-
-#. settings-schema.json->background-color->description
-msgid "Background color"
-msgstr "Color del fons"
-
-#. settings-schema.json->background-color->tooltip
-#. settings-schema.json->text-color->tooltip
-#. settings-schema.json->midline-color->tooltip
-msgid "RGB or RGBA."
-msgstr "RGB o RGBA."
-
-#. settings-schema.json->text-color->description
-msgid "Text color"
-msgstr "Color del text"
-
-#. settings-schema.json->line-color-cpu->description
-msgid "Line color CPU"
-msgstr "Color de la línia de la CPU"
-
-#. settings-schema.json->line-color-cpu->tooltip
-#. settings-schema.json->line-color-ram->tooltip
-#. settings-schema.json->line-color-swap->tooltip
-#. settings-schema.json->line-color-hdd->tooltip
-#. settings-schema.json->line-color-gpu->tooltip
-msgid "RGB or RGBA. Alpha is ignored"
-msgstr "RGB o RGBA. El canal alpha s'ignora"
-
-#. settings-schema.json->line-color-ram->description
-msgid "Line color RAM"
-msgstr "Color de la línia de la RAM"
-
-#. settings-schema.json->line-color-swap->description
-msgid "Line color Swap"
-msgstr "Color de la línia de la memòria d'intercanvi (Swap)"
-
-#. settings-schema.json->line-color-hdd->description
-msgid "Line color HDD"
-msgstr "Color de la línia del Disc dur"
-
-#. settings-schema.json->line-color-gpu->description
-msgid "Line color GPU"
-msgstr "Color de la línia de la GPU"
-
-#. settings-schema.json->midline-color->description
-msgid "Grid color"
-msgstr "Color de la graella"
-
-#. settings-schema.json->h-midlines->description
-msgid "Number of horizontal lines in the grid"
-msgstr "Nombre de línies horitzontals de la graella"
-
-#. settings-schema.json->v-midlines->description
-msgid "Number of vertical lines in the grid"
-msgstr "Nombre de línies verticals de la graella"
-
-#. settings-schema.json->scale-size->description
-msgid "Scale factor for desklet size (scale factor of 1 = 330 x 120 px)"
-msgstr ""
-"Factor d'escala per a la miniaplicació d'escriptori (1,0 = 330 x 120 px)"
+#. settings-schema.json->sandboxHeader->description
+msgid "Sandbox header"
+msgstr "Capçalera de l'entorn de proves"
