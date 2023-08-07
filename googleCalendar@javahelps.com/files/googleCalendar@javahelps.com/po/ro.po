@@ -5,421 +5,416 @@
 #
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ro\n"
+"Language-Team: none\n"
+"Last-Translator: Automatically generated\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2021-11-14 20:26-0500\n"
+"POT-Creation-Date: 2021-11-14 20:26-0500\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-14 20:26-0500\n"
-"PO-Revision-Date: 2021-11-14 20:26-0500\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
-"Language: ro\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
-"20)) ? 1 : 2;\n"
 
 #. metadata.json->name
 #. settings-schema.json->page_gcalendar->title
 #: desklet.js:104
 msgid "Google Calendar"
-msgstr ""
+msgstr "Google Calendar"
 
 #: desklet.js:107
 msgid "Open Google Calendar"
-msgstr ""
+msgstr "Deschideți Google Calendar"
 
 #: desklet.js:237
 msgid "No events found"
-msgstr ""
+msgstr "Nu s-au găsit evenimente"
 
 #: desklet.js:386
 msgid "gcalendar is not authorized"
-msgstr ""
+msgstr "gcalendar nu este autorizat"
 
 #: desklet.js:388
 msgid "gcalendar token expired"
-msgstr ""
+msgstr "gcalendar token expirat"
 
 #: desklet.js:393
 msgid "Execute: "
-msgstr ""
+msgstr "Executați:"
 
 #: desklet.js:406
 msgid "Unknown Error"
-msgstr ""
+msgstr "Eroare necunoscută"
 
 #: desklet.js:409
 msgid "Install gcalendar to use this desklet."
-msgstr ""
+msgstr "Instalați gcalendar pentru a utiliza acest desklet."
 
 #: desklet.js:410
 msgid "Visit: "
-msgstr ""
+msgstr "Vizitați:"
 
 #: desklet.js:448
 msgid "Unable to retrieve events..."
-msgstr ""
+msgstr "Nu se poate prelua evenimente..."
 
-#: lib/utility.js:156 lib/xdate.js:350
+#: lib/utility.js:156
+#: lib/xdate.js:350
 msgid "AM"
-msgstr ""
+msgstr "AM"
 
-#: lib/utility.js:156 lib/xdate.js:351
+#: lib/utility.js:156
+#: lib/xdate.js:351
 msgid "PM"
-msgstr ""
+msgstr "PM"
 
 #: lib/xdate.js:346
 msgid "January"
-msgstr ""
+msgstr "Ianuarie"
 
 #: lib/xdate.js:346
 msgid "February"
-msgstr ""
+msgstr "Februarie"
 
 #: lib/xdate.js:346
 msgid "March"
-msgstr ""
+msgstr "Martie"
 
 #: lib/xdate.js:346
 msgid "April"
-msgstr ""
+msgstr "Aprilie"
 
 #: lib/xdate.js:346
 msgctxt "long"
 msgid "May"
-msgstr ""
+msgstr "Mai"
 
 #: lib/xdate.js:346
 msgid "June"
-msgstr ""
+msgstr "Iunie"
 
 #: lib/xdate.js:346
 msgid "July"
-msgstr ""
+msgstr "Iulie"
 
 #: lib/xdate.js:346
 msgid "August"
-msgstr ""
+msgstr "August"
 
 #: lib/xdate.js:346
 msgid "September"
-msgstr ""
+msgstr "Septembrie"
 
 #: lib/xdate.js:346
 msgid "October"
-msgstr ""
+msgstr "Octombrie"
 
 #: lib/xdate.js:346
 msgid "November"
-msgstr ""
+msgstr "Noiembrie"
 
 #: lib/xdate.js:346
 msgid "December"
-msgstr ""
+msgstr "Decembrie"
 
 #: lib/xdate.js:347
 msgid "Jan"
-msgstr ""
+msgstr "Jan"
 
 #: lib/xdate.js:347
 msgid "Feb"
-msgstr ""
+msgstr "Feb"
 
 #: lib/xdate.js:347
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
 #: lib/xdate.js:347
 msgid "Apr"
-msgstr ""
+msgstr "Apr"
 
 #: lib/xdate.js:347
 msgctxt "short"
 msgid "May"
-msgstr ""
+msgstr "Mai"
 
 #: lib/xdate.js:347
 msgid "Jun"
-msgstr ""
+msgstr "Jun"
 
 #: lib/xdate.js:347
 msgid "Jul"
-msgstr ""
+msgstr "Iulie"
 
 #: lib/xdate.js:347
 msgid "Aug"
-msgstr ""
+msgstr "Aug"
 
 #: lib/xdate.js:347
 msgid "Sep"
-msgstr ""
+msgstr "Sep"
 
 #: lib/xdate.js:347
 msgid "Oct"
-msgstr ""
+msgstr "Octombrie"
 
 #: lib/xdate.js:347
 msgid "Nov"
-msgstr ""
+msgstr "Noiembrie"
 
 #: lib/xdate.js:347
 msgid "Dec"
-msgstr ""
+msgstr "Dec"
 
 #: lib/xdate.js:348
 msgid "Sunday"
-msgstr ""
+msgstr "Duminică"
 
 #: lib/xdate.js:348
 msgid "Monday"
-msgstr ""
+msgstr "Luni"
 
 #: lib/xdate.js:348
 msgid "Tuesday"
-msgstr ""
+msgstr "Marți"
 
 #: lib/xdate.js:348
 msgid "Wednesday"
-msgstr ""
+msgstr "Miercuri"
 
 #: lib/xdate.js:348
 msgid "Thursday"
-msgstr ""
+msgstr "Joi"
 
 #: lib/xdate.js:348
 msgid "Friday"
-msgstr ""
+msgstr "Vineri"
 
 #: lib/xdate.js:348
 msgid "Saturday"
-msgstr ""
+msgstr "Sâmbătă"
 
 #: lib/xdate.js:349
 msgid "Sun"
-msgstr ""
+msgstr "Sun"
 
 #: lib/xdate.js:349
 msgid "Mon"
-msgstr ""
+msgstr "Luni"
 
 #: lib/xdate.js:349
 msgid "Tue"
-msgstr ""
+msgstr "Marți"
 
 #: lib/xdate.js:349
 msgid "Wed"
-msgstr ""
+msgstr "Miercuri"
 
 #: lib/xdate.js:349
 msgid "Thu"
-msgstr ""
+msgstr "Joi"
 
 #: lib/xdate.js:349
 msgid "Fri"
-msgstr ""
+msgstr "vineri"
 
 #: lib/xdate.js:349
 msgid "Sat"
-msgstr ""
+msgstr "Sâmbătă"
 
 #. metadata.json->description
 msgid "A desklet that displays your agenda based on Google Calendar"
-msgstr ""
+msgstr "Un desklet care vă afișează agenda pe baza Google Calendar"
 
 #. settings-schema.json->page_style->title
 msgid "Desklet Style"
-msgstr ""
+msgstr "Stil Desklet"
 
 #. settings-schema.json->display0->description
 msgid "Google Calendar authentication"
-msgstr ""
+msgstr "Autentificarea Google Calendar"
 
 #. settings-schema.json->clientId->description
 msgid "Client Id"
-msgstr ""
+msgstr "ID client"
 
 #. settings-schema.json->clientId->tooltip
-msgid ""
-"Enter your Google calendar project client id. Leave it empty to use the "
-"default client id."
-msgstr ""
+msgid "Enter your Google calendar project client id. Leave it empty to use the default client id."
+msgstr "Introduceți ID-ul de client al proiectului de calendar Google. Lasă-l gol pentru a utiliza ID-ul de client implicit."
 
 #. settings-schema.json->clientSecret->description
 msgid "Client secret"
-msgstr ""
+msgstr "Secretul clientului"
 
 #. settings-schema.json->clientSecret->tooltip
-msgid ""
-"Enter your Google calendar project client secret. Leave it empty to use the "
-"default client secret."
-msgstr ""
+msgid "Enter your Google calendar project client secret. Leave it empty to use the default client secret."
+msgstr "Introduceți secretul de client al proiectului de calendar Google. Lăsați-l gol pentru a utiliza secretul de client implicit."
 
 #. settings-schema.json->display1->description
 msgid "Calendar configuration"
-msgstr ""
+msgstr "Configurația calendarului"
 
 #. settings-schema.json->gcalendarAccount->description
 msgid "gcalendar Account ID"
-msgstr ""
+msgstr "ID-ul contului gcalendar"
 
 #. settings-schema.json->gcalendarAccount->tooltip
 msgid "Enter gcalendar --account id"
-msgstr ""
+msgstr "Introduceți gcalendar --account id"
 
 #. settings-schema.json->allNamesButton->description
 msgid "Fill in the list bellow with the names of all my calendars"
-msgstr ""
+msgstr "Completați lista de mai jos cu numele tuturor calendarelor mele"
 
 #. settings-schema.json->allNamesButton->tooltip
-msgid ""
-"Click to fill in the list bellow with the names of all your calendars. It "
-"may take a little while."
-msgstr ""
+msgid "Click to fill in the list bellow with the names of all your calendars. It may take a little while."
+msgstr "Faceți clic pentru a completa lista de mai jos cu numele tuturor calendarelor dvs. Este posibil să dureze puțin timp."
 
 #. settings-schema.json->calendarNames->description
 msgid "Display these calendars:"
-msgstr ""
+msgstr "Afișați aceste calendare:"
 
 #. settings-schema.json->calendarNames->tooltip
 msgid "If you want to diplay a calendar, set it to TRUE (or check its box)."
-msgstr ""
+msgstr "Dacă doriți să afișați un calendar, setați-l la ADEVĂRAT (sau bifați caseta corespunzătoare)."
 
 #. settings-schema.json->calendarNames->columns->title
 msgid "Calendar"
-msgstr ""
+msgstr "Calendar"
 
 #. settings-schema.json->calendarNames->columns->title
 msgid "Display it?"
-msgstr ""
+msgstr "Să-l afișăm?"
 
 #. settings-schema.json->interval->description
 msgid "Number of days to include"
-msgstr ""
+msgstr "Numărul de zile de inclus"
 
 #. settings-schema.json->interval->tooltip
 msgid "Show the agenda for these number of days"
-msgstr ""
+msgstr "Afișați agenda pentru acest număr de zile"
 
 #. settings-schema.json->interval->units
 msgid "days"
-msgstr ""
+msgstr "zile"
 
 #. settings-schema.json->delay->description
 msgid "Update every:"
-msgstr ""
+msgstr "Actualizați în fiecare:"
 
 #. settings-schema.json->delay->units
 msgid "minutes"
-msgstr ""
+msgstr "minute"
 
 #. settings-schema.json->date_format->description
 msgid "Date format"
-msgstr ""
+msgstr "Formatul datei"
 
 #. settings-schema.json->date_format->tooltip
 msgid "Enter the date format here"
-msgstr ""
+msgstr "Introduceți formatul datei aici"
 
 #. settings-schema.json->today_format->description
 msgid "Today format"
-msgstr ""
+msgstr "Formatul de astăzi"
 
 #. settings-schema.json->today_format->tooltip
 msgid "Enter the today format here"
-msgstr ""
+msgstr "Introduceți aici formatul zilei de astăzi"
 
 #. settings-schema.json->tomorrow_format->description
 msgid "Tomorrow format"
-msgstr ""
+msgstr "Formatul de mâine"
 
 #. settings-schema.json->tomorrow_format->tooltip
 msgid "Enter the tomorrow format here"
-msgstr ""
+msgstr "Introduceți formatul de mâine aici"
 
 #. settings-schema.json->use_24h_clock->description
 msgid "Use 24h clock"
-msgstr ""
+msgstr "Utilizați ceasul de 24 de ore"
 
 #. settings-schema.json->use_24h_clock->tooltip
 msgid "Check to show time in 24h"
-msgstr ""
+msgstr "Verificați pentru a afișa timpul în 24 de ore"
 
 #. settings-schema.json->zoom->units
 msgid "times"
-msgstr ""
+msgstr "ori"
 
 #. settings-schema.json->zoom->description
 msgid "Zoom by"
-msgstr ""
+msgstr "Zoom de"
 
 #. settings-schema.json->zoom->tooltip
 msgid "Change the size of the desklet"
-msgstr ""
+msgstr "Modificarea dimensiunii deskletului"
 
 #. settings-schema.json->transparency->description
 msgid "Transparency"
-msgstr ""
+msgstr "Transparență"
 
 #. settings-schema.json->transparency->tooltip
 msgid "Set the transparency of the desklet"
-msgstr ""
+msgstr "Setați transparența deskletului"
 
 #. settings-schema.json->textcolor->description
 msgid "Text color"
-msgstr ""
+msgstr "Culoarea textului"
 
 #. settings-schema.json->textcolor->tooltip
 msgid "Click the button to select a new text color"
-msgstr ""
+msgstr "Faceți clic pe buton pentru a selecta o nouă culoare a textului"
 
 #. settings-schema.json->alldaytextcolor->description
 msgid "All day event text color"
-msgstr ""
+msgstr "Culoarea textului pentru toată ziua"
 
 #. settings-schema.json->alldaytextcolor->tooltip
 msgid "Click the button to select a new all day event text color"
-msgstr ""
+msgstr "Faceți clic pe buton pentru a selecta o nouă culoare a textului pentru evenimentul de toată ziua"
 
 #. settings-schema.json->bgcolor->description
 msgid "Background color"
-msgstr ""
+msgstr "Culoarea de fundal"
 
 #. settings-schema.json->bgcolor->tooltip
 msgid "Click the button to select a new background color"
-msgstr ""
+msgstr "Faceți clic pe buton pentru a selecta o nouă culoare de fundal"
 
 #. settings-schema.json->diff_calendar->description
 msgid "Differentiate calendars"
-msgstr ""
+msgstr "Calendare diferențiate"
 
 #. settings-schema.json->diff_calendar->tooltip
 msgid "Show color bullets in front of events"
-msgstr ""
+msgstr "Afișați puncte de culoare în fața evenimentelor"
 
 #. settings-schema.json->show_location->description
 msgid "Show location"
-msgstr ""
+msgstr "Arată locația"
 
 #. settings-schema.json->show_location->tooltip
 msgid "Display the event location if available"
-msgstr ""
+msgstr "Afișați locația evenimentului, dacă este disponibilă"
 
 #. settings-schema.json->location_color->description
 msgid "Location text color"
-msgstr ""
+msgstr "Culoarea textului locației"
 
 #. settings-schema.json->location_color->tooltip
 msgid "Click the button to select a new location text color"
-msgstr ""
+msgstr "Faceți clic pe buton pentru a selecta o nouă culoare a textului de locație"
 
 #. settings-schema.json->cornerradius->units
 msgid "px"
-msgstr ""
+msgstr "px"
 
 #. settings-schema.json->cornerradius->description
 msgid "Corner radius"
-msgstr ""
+msgstr "Raza de colț"
 
 #. settings-schema.json->cornerradius->tooltip
 msgid "Radius for rounding the desklet's corners"
-msgstr ""
+msgstr "Raza de rotunjire a colțurilor deskletului"

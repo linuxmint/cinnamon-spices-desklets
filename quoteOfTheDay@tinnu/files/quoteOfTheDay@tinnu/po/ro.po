@@ -5,110 +5,107 @@
 #
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Language: ro\n"
+"Language-Team: none\n"
+"Last-Translator: Automatically generated\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2017-04-26 12:46+0800\n"
+"POT-Creation-Date: 2017-04-26 12:46+0800\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-26 12:46+0800\n"
-"PO-Revision-Date: 2017-04-26 12:46+0800\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
-"Language: ro\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
-"20)) ? 1 : 2;\n"
 
 #: desklet.js:32
 msgid "Quote of the day"
-msgstr ""
+msgstr "Citatul zilei"
 
 #: desklet.js:52
 msgid "Copy"
-msgstr ""
+msgstr "Copiați"
 
 #. quoteOfTheDay@tinnu->metadata.json->description
 msgid "A desklet that displays quotations from various sources"
-msgstr ""
+msgstr "Un desklet care afișează citate din diverse surse"
 
 #. quoteOfTheDay@tinnu->metadata.json->name
 msgid "Quote of the day desklet"
-msgstr ""
+msgstr "Citatul zilei desklet"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->font-size->description
 msgid "Font size:"
-msgstr ""
+msgstr "Mărimea fontului:"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->vertical-shadow->description
 msgid "Vertical shadow:"
-msgstr ""
+msgstr "Umbra verticală:"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->vertical-shadow->units
 #. quoteOfTheDay@tinnu->settings-schema.json->shadow-blur->units
 #. quoteOfTheDay@tinnu->settings-schema.json->horizontal-shadow->units
 msgid "px"
-msgstr ""
+msgstr "px"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->file->description
 msgid "File:"
-msgstr ""
+msgstr "Dosar:"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->font-options-header->description
 msgid "Font options:"
-msgstr ""
+msgstr "Opțiuni de font:"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->shadow-blur->description
 msgid "Shadow blur:"
-msgstr ""
+msgstr "Ceață de umbră:"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->shadow-color->description
 msgid "Shadow color:"
-msgstr ""
+msgstr "Culoarea umbrei:"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->shadow-color->tooltip
 #. quoteOfTheDay@tinnu->settings-schema.json->text-color->tooltip
 msgid "Click to select a new text color"
-msgstr ""
+msgstr "Faceți clic pentru a selecta o nouă culoare de text"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->delay->description
 msgid "Update every:"
-msgstr ""
+msgstr "Actualizați în fiecare:"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->delay->units
 msgid "minutes"
-msgstr ""
+msgstr "minute"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->text-color->description
 msgid "Font color:"
-msgstr ""
+msgstr "Culoarea fontului:"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->horizontal-shadow->description
 msgid "Horizontal shadow:"
-msgstr ""
+msgstr "Umbra orizontală:"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->font-shadow-options-
 #. header->description
 msgid "Text shadow effects:"
-msgstr ""
+msgstr "Efecte de umbrire a textului:"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->advanced-options-header->
 #. description
 msgid "Advanced options:"
-msgstr ""
+msgstr "Opțiuni avansate:"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->fortune-params->description
 msgid "Parameters for fortune:"
-msgstr ""
+msgstr "Parametrii pentru avere:"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->fortune-params->tooltip
 msgid "E.g. -s, etc.  See README for more info."
-msgstr ""
+msgstr "De exemplu, -s, etc.  Consultați README pentru mai multe informații."
 
 #. quoteOfTheDay@tinnu->settings-schema.json->ignore-input-file->description
 msgid "Ignore input file"
-msgstr ""
+msgstr "Ignoră fișierul de intrare"
 
 #. quoteOfTheDay@tinnu->settings-schema.json->ignore-input-file->tooltip
-msgid ""
-"Use fortune's default behavior instead of an input file.  See README for "
-"more info."
-msgstr ""
+msgid "Use fortune's default behavior instead of an input file.  See README for more info."
+msgstr "Utilizați comportamentul implicit al fortune în locul unui fișier de intrare.  Consultați README pentru mai multe informații."

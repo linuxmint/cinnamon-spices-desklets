@@ -5,224 +5,225 @@
 #
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ro\n"
+"Language-Team: none\n"
+"Last-Translator: Automatically generated\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2022-04-17 23:21+0200\n"
+"POT-Creation-Date: 2022-04-17 23:21+0200\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 23:21+0200\n"
-"PO-Revision-Date: 2022-04-17 23:21+0200\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
-"Language: ro\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
-"20)) ? 1 : 2;\n"
 
 #. settings-schema.json->type->options
 #: desklet.js:153
 msgid "CPU"
-msgstr ""
+msgstr "CPU"
 
 #. settings-schema.json->type->options
 #: desklet.js:161
 msgid "RAM"
-msgstr ""
+msgstr "RAM"
 
-#: desklet.js:164 desklet.js:174 desklet.js:207
+#: desklet.js:164
+#: desklet.js:174
+#: desklet.js:207
 msgid "GiB"
-msgstr ""
+msgstr "GiB"
 
 #. settings-schema.json->type->options
 #: desklet.js:171
 msgid "Swap"
-msgstr ""
+msgstr "Schimbați"
 
 #: desklet.js:186
 msgid "free of"
-msgstr ""
+msgstr "fără"
 
 #: desklet.js:187
 msgid "GB"
-msgstr ""
+msgstr "GB"
 
 #: desklet.js:197
 msgid "GPU Usage"
-msgstr ""
+msgstr "Utilizare GPU"
 
 #: desklet.js:204
 msgid "GPU Memory"
-msgstr ""
+msgstr "Memorie GPU"
 
 #. metadata.json->name
 msgid "System monitor graph"
-msgstr ""
+msgstr "Graficul monitorului de sistem"
 
 #. metadata.json->description
 msgid "Creates graphs for system variables."
-msgstr ""
+msgstr "Creează grafice pentru variabilele de sistem."
 
 #. settings-schema.json->head0->description
 msgid "Settings for system-monitor-graph@rcassani"
-msgstr ""
+msgstr "Setări pentru system-monitor-graph@rcassani"
 
 #. settings-schema.json->head1->description
 msgid "General"
-msgstr ""
+msgstr "General"
 
 #. settings-schema.json->type->description
 msgid "System variable for graph"
-msgstr ""
+msgstr "Variabilă de sistem pentru grafic"
 
 #. settings-schema.json->type->tooltip
 msgid "Select the system variable to monitor."
-msgstr ""
+msgstr "Selectați variabila de sistem care urmează să fie monitorizată."
 
 #. settings-schema.json->type->options
 msgid "HDD"
-msgstr ""
+msgstr "HDD"
 
 #. settings-schema.json->type->options
 msgid "GPU"
-msgstr ""
+msgstr "GPU"
 
 #. settings-schema.json->filesystem->description
 msgid "Filesystem to monitor"
-msgstr ""
+msgstr "Sistemul de fișiere de monitorizat"
 
 #. settings-schema.json->filesystem->tooltip
 msgid "Select a directory in the filesystem to monitor."
-msgstr ""
+msgstr "Selectați un director din sistemul de fișiere care urmează să fie monitorizat."
 
 #. settings-schema.json->filesystem-label->description
 msgid "Filesystem label"
-msgstr ""
+msgstr "Eticheta sistemului de fișiere"
 
 #. settings-schema.json->filesystem-label->tooltip
 msgid "Empty uses the filesystem name from df."
-msgstr ""
+msgstr "Empty utilizează numele sistemului de fișiere din df."
 
 #. settings-schema.json->gpu-manufacturer->description
 msgid "GPU manufacturer"
-msgstr ""
+msgstr "Producător GPU"
 
 #. settings-schema.json->gpu-manufacturer->tooltip
 msgid "Select the GPU manufacturer."
-msgstr ""
+msgstr "Selectați producătorul GPU."
 
 #. settings-schema.json->gpu-manufacturer->options
 msgid "NVIDIA"
-msgstr ""
+msgstr "NVIDIA"
 
 #. settings-schema.json->gpu-id->description
 msgid "Id of GPU to monitor"
-msgstr ""
+msgstr "ID-ul GPU-ului de monitorizat"
 
 #. settings-schema.json->gpu-id->tooltip
 msgid "Check GPU id with nvidia-smi -L"
-msgstr ""
+msgstr "Verificați ID-ul GPU cu nvidia-smi -L"
 
 #. settings-schema.json->gpu-variable->description
 msgid "GPU variable to monitor"
-msgstr ""
+msgstr "Variabila GPU de monitorizat"
 
 #. settings-schema.json->gpu-variable->tooltip
 msgid "Select the GPU variable to monitor."
-msgstr ""
+msgstr "Selectați variabila GPU care urmează să fie monitorizată."
 
 #. settings-schema.json->gpu-variable->options
 msgid "Usage"
-msgstr ""
+msgstr "Utilizare"
 
 #. settings-schema.json->gpu-variable->options
 msgid "Memory"
-msgstr ""
+msgstr "Memorie"
 
 #. settings-schema.json->duration->description
 msgid "Duration of the graph"
-msgstr ""
+msgstr "Durata graficului"
 
 #. settings-schema.json->duration->tooltip
 msgid "Maximum among of time to show in the graph."
-msgstr ""
+msgstr "Intervalul maxim de timp care trebuie afișat în grafic."
 
 #. settings-schema.json->duration->options
 #. settings-schema.json->refresh-interval->options
 msgid "30 s"
-msgstr ""
+msgstr "30 s"
 
 #. settings-schema.json->duration->options
 msgid " 1 min"
-msgstr ""
+msgstr " 1 min"
 
 #. settings-schema.json->duration->options
 msgid " 2 min"
-msgstr ""
+msgstr " 2 min"
 
 #. settings-schema.json->duration->options
 msgid " 5 min"
-msgstr ""
+msgstr " 5 min"
 
 #. settings-schema.json->duration->options
 msgid "10 min"
-msgstr ""
+msgstr "10 min"
 
 #. settings-schema.json->duration->options
 msgid "30 min"
-msgstr ""
+msgstr "30 min"
 
 #. settings-schema.json->duration->options
 msgid "60 min"
-msgstr ""
+msgstr "60 min"
 
 #. settings-schema.json->refresh-interval->description
 msgid "Refresh interval"
-msgstr ""
+msgstr "Interval de reîmprospătare"
 
 #. settings-schema.json->refresh-interval->tooltip
 msgid "How often a new value of the variable will be calculated."
-msgstr ""
+msgstr "Cât de des se va calcula o nouă valoare a variabilei."
 
 #. settings-schema.json->refresh-interval->options
 msgid " 1 s"
-msgstr ""
+msgstr " 1 s"
 
 #. settings-schema.json->refresh-interval->options
 msgid " 2 s"
-msgstr ""
+msgstr " 2 s"
 
 #. settings-schema.json->refresh-interval->options
 msgid " 5 s"
-msgstr ""
+msgstr " 5 s"
 
 #. settings-schema.json->refresh-interval->options
 msgid "10 s"
-msgstr ""
+msgstr "10 s"
 
 #. settings-schema.json->refresh-interval->options
 msgid "60 s"
-msgstr ""
+msgstr "60 s"
 
 #. settings-schema.json->head2->description
 msgid "Visual"
-msgstr ""
+msgstr "Vizual"
 
 #. settings-schema.json->background-color->description
 msgid "Background color"
-msgstr ""
+msgstr "Culoarea de fundal"
 
 #. settings-schema.json->background-color->tooltip
 #. settings-schema.json->text-color->tooltip
 #. settings-schema.json->midline-color->tooltip
 msgid "RGB or RGBA."
-msgstr ""
+msgstr "RGB sau RGBA."
 
 #. settings-schema.json->text-color->description
 msgid "Text color"
-msgstr ""
+msgstr "Culoarea textului"
 
 #. settings-schema.json->line-color-cpu->description
 msgid "Line color CPU"
-msgstr ""
+msgstr "Culoarea liniei CPU"
 
 #. settings-schema.json->line-color-cpu->tooltip
 #. settings-schema.json->line-color-ram->tooltip
@@ -230,36 +231,36 @@ msgstr ""
 #. settings-schema.json->line-color-hdd->tooltip
 #. settings-schema.json->line-color-gpu->tooltip
 msgid "RGB or RGBA. Alpha is ignored"
-msgstr ""
+msgstr "RGB sau RGBA. Alpha este ignorat."
 
 #. settings-schema.json->line-color-ram->description
 msgid "Line color RAM"
-msgstr ""
+msgstr "Culoarea liniei RAM"
 
 #. settings-schema.json->line-color-swap->description
 msgid "Line color Swap"
-msgstr ""
+msgstr "Culoarea liniei Swap"
 
 #. settings-schema.json->line-color-hdd->description
 msgid "Line color HDD"
-msgstr ""
+msgstr "Culoarea liniei HDD"
 
 #. settings-schema.json->line-color-gpu->description
 msgid "Line color GPU"
-msgstr ""
+msgstr "Culoarea liniei GPU"
 
 #. settings-schema.json->midline-color->description
 msgid "Grid color"
-msgstr ""
+msgstr "Culoarea grilei"
 
 #. settings-schema.json->h-midlines->description
 msgid "Number of horizontal lines in the grid"
-msgstr ""
+msgstr "Numărul de linii orizontale din grilă"
 
 #. settings-schema.json->v-midlines->description
 msgid "Number of vertical lines in the grid"
-msgstr ""
+msgstr "Numărul de linii verticale din grilă"
 
 #. settings-schema.json->scale-size->description
 msgid "Scale factor for desklet size (scale factor of 1 = 330 x 120 px)"
-msgstr ""
+msgstr "Factorul de scară pentru dimensiunea broșurii de birou (factor de scară de 1 = 330 x 120 px)"

@@ -5,156 +5,155 @@
 #
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ro\n"
+"Language-Team: none\n"
+"Last-Translator: Automatically generated\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2021-03-14 17:33+0100\n"
+"POT-Creation-Date: 2021-03-14 17:33+0100\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-14 17:33+0100\n"
-"PO-Revision-Date: 2021-03-14 17:33+0100\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
-"Language: ro\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
-"20)) ? 1 : 2;\n"
 
 #: desklet.js:221
 #, javascript-format
 msgid "Core %d"
-msgstr ""
+msgstr "Nucleu %d"
 
 #: desklet.js:221
 msgid "CPU usage"
-msgstr ""
+msgstr "Utilizarea CPU"
 
 #. metadata.json->description
 msgid "Displays CPU load"
-msgstr ""
+msgstr "Afișează sarcina CPU"
 
 #. metadata.json->name
 msgid "CPU Load"
-msgstr ""
+msgstr "Încărcare CPU"
 
 #. settings-schema.json->head0->description
 msgid "Settings for the CPU Load desklet"
-msgstr ""
+msgstr "Setări pentru desklet-ul CPU Load"
 
 #. settings-schema.json->head1->description
 msgid "General"
-msgstr ""
+msgstr "General"
 
 #. settings-schema.json->per-core->description
 msgid "Show all CPU cores"
-msgstr ""
+msgstr "Afișați toate nucleele CPU"
 
 #. settings-schema.json->per-core->tooltip
 msgid "Display utilization of each CPU core rather than total CPU utilization."
-msgstr ""
+msgstr "Afișarea utilizării fiecărui nucleu de procesor, mai degrabă decât a utilizării totale a procesorului."
 
 #. settings-schema.json->refresh-interval->units
 msgid "seconds"
-msgstr ""
+msgstr "secunde"
 
 #. settings-schema.json->refresh-interval->description
 msgid "Refresh interval"
-msgstr ""
+msgstr "Interval de reîmprospătare"
 
 #. settings-schema.json->refresh-interval->tooltip
 msgid "Increase or decrease refresh interval in seconds."
-msgstr ""
+msgstr "Măriți sau micșorați intervalul de reîmprospătare în secunde."
 
 #. settings-schema.json->head2->description
 msgid "Layout"
-msgstr ""
+msgstr "Layout"
 
 #. settings-schema.json->design->description
 msgid "Design"
-msgstr ""
+msgstr "Design"
 
 #. settings-schema.json->design->options
 msgid "Thick"
-msgstr ""
+msgstr "Grosime"
 
 #. settings-schema.json->design->options
 msgid "Thin"
-msgstr ""
+msgstr "Subțire"
 
 #. settings-schema.json->design->options
 msgid "Compact"
-msgstr ""
+msgstr "Compact"
 
 #. settings-schema.json->circle->description
 msgid "Circle"
-msgstr ""
+msgstr "Cerc"
 
 #. settings-schema.json->circle->options
 msgid "Speedometer"
-msgstr ""
+msgstr "Turometru"
 
 #. settings-schema.json->circle->options
 msgid "Full Circle"
-msgstr ""
+msgstr "Cercul complet"
 
 #. settings-schema.json->scale-size->units
 msgid "scale factor"
-msgstr ""
+msgstr "factor de scară"
 
 #. settings-schema.json->scale-size->description
 msgid "Desklet size"
-msgstr ""
+msgstr "Dimensiune Desklet"
 
 #. settings-schema.json->scale-size->tooltip
 msgid "Increase or decrease the size of the desklet."
-msgstr ""
+msgstr "Măriți sau micșorați dimensiunea deskletului."
 
 #. settings-schema.json->number-of-columns->units
 msgid "columns"
-msgstr ""
+msgstr "coloane"
 
 #. settings-schema.json->number-of-columns->description
 msgid "Number of columns"
-msgstr ""
+msgstr "Număr de coloane"
 
 #. settings-schema.json->number-of-columns->tooltip
 msgid "Increase or decrease number of columns."
-msgstr ""
+msgstr "Măriți sau micșorați numărul de coloane."
 
 #. settings-schema.json->head3->description
 msgid "Colors"
-msgstr ""
+msgstr "Culori"
 
 #. settings-schema.json->font-color->description
 msgid "Font color"
-msgstr ""
+msgstr "Culoarea fontului"
 
 #. settings-schema.json->color-theme->description
 msgid "Color theme"
-msgstr ""
+msgstr "Tema de culoare"
 
 #. settings-schema.json->color-theme->options
 msgid "Random"
-msgstr ""
+msgstr "Aleatoriu"
 
 #. settings-schema.json->color-theme->options
 msgid "Static"
-msgstr ""
+msgstr "Static"
 
 #. settings-schema.json->color-theme->options
 msgid "Dynamic"
-msgstr ""
+msgstr "Dinamic"
 
 #. settings-schema.json->static-theme-color->description
 msgid "Static theme color"
-msgstr ""
+msgstr "Culoare statică a temei"
 
 #. settings-schema.json->head4->description
 msgid "Background"
-msgstr ""
+msgstr "Fond"
 
 #. settings-schema.json->show-background->description
 msgid "Show background"
-msgstr ""
+msgstr "Arată fundalul"
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
-msgstr ""
+msgstr "Ascundeți decorațiunile"

@@ -5,108 +5,107 @@
 #
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Language: ro\n"
+"Language-Team: none\n"
+"Last-Translator: Automatically generated\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2021-02-20 17:28+0100\n"
+"POT-Creation-Date: 2021-02-20 17:28+0100\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-20 17:28+0100\n"
-"PO-Revision-Date: 2021-02-20 17:28+0100\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
-"Language: ro\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
-"20)) ? 1 : 2;\n"
 
 #. metadata.json->name
 #: desklet.js:133
 msgid "Seven Segment Digital Clock"
-msgstr ""
+msgstr "Ceas digital cu șapte segmente"
 
 #: desklet.js:519
 msgid "Time is an illusion"
-msgstr ""
+msgstr "Timpul este o iluzie"
 
 #. Just adopt the name, unless you're translating into languages with non-latin characters.
 #: desklet.js:519
 msgid "Albert Einstein"
-msgstr ""
+msgstr "Albert Einstein"
 
 #. settings-schema.json->general->title
 msgid "General"
-msgstr ""
+msgstr "General"
 
 #. settings-schema.json->digit->title
 msgid "Digits"
-msgstr ""
+msgstr "Cifre"
 
 #. settings-schema.json->clock->title
 msgid "Clock"
-msgstr ""
+msgstr "Ceas"
 
 #. settings-schema.json->date-unix->title
 msgid "Date and Unix time"
-msgstr ""
+msgstr "Data și ora Unix"
 
 #. settings-schema.json->general-layout->title
 msgid "Main layout"
-msgstr ""
+msgstr "Schema principală"
 
 #. settings-schema.json->background->title
 msgid "Background"
-msgstr ""
+msgstr "Fond"
 
 #. settings-schema.json->digit-appearance->title
 msgid "Digit appearance"
-msgstr ""
+msgstr "Aspectul cifrelor"
 
 #. settings-schema.json->digit-darksegments->title
 msgid "Dark segments"
-msgstr ""
+msgstr "Segmente întunecate"
 
 #. settings-schema.json->digit-stroke->title
 msgid "Stroke"
-msgstr ""
+msgstr "Accident vascular cerebral"
 
 #. settings-schema.json->clock-appearance->title
 msgid "Clock appearance"
-msgstr ""
+msgstr "Aspectul ceasului"
 
 #. settings-schema.json->date-appearance->title
 msgid "Date appearance"
-msgstr ""
+msgstr "Data apariției"
 
 #. settings-schema.json->unix-appearance->title
 msgid "Unix time appearance"
-msgstr ""
+msgstr "Apariția timpului Unix"
 
 #. settings-schema.json->main-layout->options
 msgid "Clock - Date - Unix"
-msgstr ""
+msgstr "Ceas - Data - Unix"
 
 #. settings-schema.json->main-layout->options
 msgid "Clock - Unix - Date"
-msgstr ""
+msgstr "Ceas - Unix - Data"
 
 #. settings-schema.json->main-layout->options
 msgid "Date - Clock - Unix"
-msgstr ""
+msgstr "Data - Ceas - Unix"
 
 #. settings-schema.json->main-layout->options
 msgid "Date - Unix - Clock"
-msgstr ""
+msgstr "Data - Unix - Ceas"
 
 #. settings-schema.json->main-layout->options
 msgid "Unix - Clock - Date"
-msgstr ""
+msgstr "Unix - Ceas - Data"
 
 #. settings-schema.json->main-layout->options
 msgid "Unix - Date - Clock"
-msgstr ""
+msgstr "Unix - Data - Ceas"
 
 #. settings-schema.json->main-layout->description
 msgid "Vertical order of main elements"
-msgstr ""
+msgstr "Ordinea verticală a elementelor principale"
 
 #. settings-schema.json->layout-gap->units
 #. settings-schema.json->stroke-width->units
@@ -114,22 +113,22 @@ msgstr ""
 #. settings-schema.json->date-height->units
 #. settings-schema.json->unix-height->units
 msgid "pixel"
-msgstr ""
+msgstr "pixel"
 
 #. settings-schema.json->layout-gap->description
 msgid "Space between main elements"
-msgstr ""
+msgstr "Spațiul dintre elementele principale"
 
 #. settings-schema.json->show-background->description
 msgid "Show background"
-msgstr ""
+msgstr "Arată fundalul"
 
 #. settings-schema.json->background-color->description
 #. settings-schema.json->digit-color->description
 #. settings-schema.json->dark-color->description
 #. settings-schema.json->stroke-color->description
 msgid "Color"
-msgstr ""
+msgstr "Culoare"
 
 #. settings-schema.json->background-opacity->units
 #. settings-schema.json->digit-opacity->units
@@ -137,288 +136,288 @@ msgstr ""
 #. settings-schema.json->dark-opacity->units
 #. settings-schema.json->stroke-opacity->units
 msgid "percent"
-msgstr ""
+msgstr "procente"
 
 #. settings-schema.json->background-opacity->description
 #. settings-schema.json->digit-opacity->description
 #. settings-schema.json->dark-opacity->description
 #. settings-schema.json->stroke-opacity->description
 msgid "Opacity"
-msgstr ""
+msgstr "Opacitate"
 
 #. settings-schema.json->round-corners->description
 msgid "Round corners"
-msgstr ""
+msgstr "Colțuri rotunde"
 
 #. settings-schema.json->background-shadow->description
 msgid "Shadow"
-msgstr ""
+msgstr "Umbra"
 
 #. settings-schema.json->digit-skew->units
 msgid "degrees"
-msgstr ""
+msgstr "grade"
 
 #. settings-schema.json->digit-skew->description
 msgid "Skew"
-msgstr ""
+msgstr "Înclinare"
 
 #. settings-schema.json->digit-margin->description
 msgid "Relative space between digits"
-msgstr ""
+msgstr "Spațiu relativ între cifre"
 
 #. settings-schema.json->digit-margin->tooltip
 msgid "This value will be increasingly reduced by the digit skew."
-msgstr ""
+msgstr "Această valoare va fi redusă din ce în ce mai mult de distorsiunea cifrelor."
 
 #. settings-schema.json->digit-alt69->description
 msgid "Alternative 6 and 9"
-msgstr ""
+msgstr "Alternativele 6 și 9"
 
 #. settings-schema.json->digit-alt7->description
 msgid "Alternative 7"
-msgstr ""
+msgstr "Alternativa 7"
 
 #. settings-schema.json->dark-enabled->description
 msgid "Show dark segments of the digits"
-msgstr ""
+msgstr "Afișați segmentele întunecate ale cifrelor"
 
 #. settings-schema.json->dark-color->options
 msgid "Black"
-msgstr ""
+msgstr "Negru"
 
 #. settings-schema.json->dark-color->options
 msgid "White"
-msgstr ""
+msgstr "Alb"
 
 #. settings-schema.json->dark-color->options
 msgid "same as illuminated"
-msgstr ""
+msgstr "la fel ca și iluminată"
 
 #. settings-schema.json->stroke-enabled->description
 msgid "Add stroke"
-msgstr ""
+msgstr "Adăugați accident vascular cerebral"
 
 #. settings-schema.json->stroke-width->description
 msgid "Width"
-msgstr ""
+msgstr "Lățime"
 
 #. settings-schema.json->show-clock->description
 msgid "Show clock"
-msgstr ""
+msgstr "Arată ceasul"
 
 #. settings-schema.json->clock-height->description
 #. settings-schema.json->date-height->description
 #. settings-schema.json->unix-height->description
 msgid "Digit height"
-msgstr ""
+msgstr "Înălțimea cifrei"
 
 #. settings-schema.json->show-seconds->description
 msgid "Show seconds"
-msgstr ""
+msgstr "Arată secundele"
 
 #. settings-schema.json->small-seconds->description
 msgid "Smaller seconds"
-msgstr ""
+msgstr "Secunde mai mici"
 
 #. settings-schema.json->clock-divider->options
 #. settings-schema.json->date-divider->options
 #. settings-schema.json->unix-divider->options
 msgid "none"
-msgstr ""
+msgstr "niciunul"
 
 #. settings-schema.json->clock-divider->options
 #. settings-schema.json->date-divider->options
 #. settings-schema.json->unix-divider->options
 msgid "half space"
-msgstr ""
+msgstr "jumătate de spațiu"
 
 #. settings-schema.json->clock-divider->options
 #. settings-schema.json->date-divider->options
 #. settings-schema.json->unix-divider->options
 msgid "full space"
-msgstr ""
+msgstr "spațiu plin"
 
 #. settings-schema.json->clock-divider->options
 #. settings-schema.json->date-divider->options
 #. settings-schema.json->unix-divider->options
 msgid "decimal point"
-msgstr ""
+msgstr "punct zecimal"
 
 #. settings-schema.json->clock-divider->options
 #. settings-schema.json->date-divider->options
 #. settings-schema.json->unix-divider->options
 msgid "colon"
-msgstr ""
+msgstr "colon"
 
 #. settings-schema.json->clock-divider->options
 #. settings-schema.json->date-divider->options
 #. settings-schema.json->unix-divider->options
 msgid "dash"
-msgstr ""
+msgstr "liniuță"
 
 #. settings-schema.json->clock-divider->description
 #. settings-schema.json->date-divider->description
 #. settings-schema.json->unix-divider->description
 msgid "Divider type"
-msgstr ""
+msgstr "Tipul de divizor"
 
 #. settings-schema.json->clock-blink->description
 msgid "Blinking divider (only decimal point and colon)"
-msgstr ""
+msgstr "Divizor intermitent (numai virgulă și două puncte)"
 
 #. settings-schema.json->leading-zero->options
 msgid "on"
-msgstr ""
+msgstr "pe"
 
 #. settings-schema.json->leading-zero->options
 msgid "off"
-msgstr ""
+msgstr "off"
 
 #. settings-schema.json->leading-zero->options
 #. settings-schema.json->clock-ampm->options
 msgid "hide"
-msgstr ""
+msgstr "ascundeți"
 
 #. settings-schema.json->leading-zero->options
 msgid "remove"
-msgstr ""
+msgstr "eliminați"
 
 #. settings-schema.json->leading-zero->description
 msgid "Leading zero in hours"
-msgstr ""
+msgstr "Liderul zero în ore"
 
 #. settings-schema.json->clock-12h->description
 msgid "12h instead of 24h"
-msgstr ""
+msgstr "12h în loc de 24h"
 
 #. settings-schema.json->clock-ampm->options
 msgid "only A and P"
-msgstr ""
+msgstr "numai A și P"
 
 #. settings-schema.json->clock-ampm->options
 msgid "with M variant 1"
-msgstr ""
+msgstr "cu varianta M 1"
 
 #. settings-schema.json->clock-ampm->options
 msgid "with M variant 2"
-msgstr ""
+msgstr "cu varianta M 2"
 
 #. settings-schema.json->clock-ampm->description
 msgid "AM/PM indicator"
-msgstr ""
+msgstr "Indicator AM/PM"
 
 #. settings-schema.json->show-date->description
 msgid "Show date"
-msgstr ""
+msgstr "Data spectacolului"
 
 #. settings-schema.json->date-format->options
 msgid "Year - Month - Day"
-msgstr ""
+msgstr "Anul - Luna - Ziua"
 
 #. settings-schema.json->date-format->options
 msgid "Year - Day - Month"
-msgstr ""
+msgstr "Anul - Ziua - Luna"
 
 #. settings-schema.json->date-format->options
 msgid "Day - Month - Year"
-msgstr ""
+msgstr "Ziua - Luna - Anul"
 
 #. settings-schema.json->date-format->options
 msgid "Month - Day - Year"
-msgstr ""
+msgstr "Luna - Ziua - Anul"
 
 #. settings-schema.json->date-format->description
 msgid "Date format"
-msgstr ""
+msgstr "Formatul datei"
 
 #. settings-schema.json->show-unix->description
 msgid "Show Unix time"
-msgstr ""
+msgstr "Afișează ora Unix"
 
 #. settings-schema.json->digit-style->options
 msgid "Style by OpenClipart"
-msgstr ""
+msgstr "Stil de OpenClipart"
 
 #. settings-schema.json->digit-style->options
 msgid "Style by alex8664"
-msgstr ""
+msgstr "Stil de alex8664"
 
 #. settings-schema.json->digit-style->options
 msgid "Style by Cfaerber"
-msgstr ""
+msgstr "Stil de Cfaerber"
 
 #. settings-schema.json->digit-style->options
 msgid "Style by h2g2bob"
-msgstr ""
+msgstr "Stil de h2g2bob"
 
 #. settings-schema.json->digit-style->options
 msgid "Keshikan's DSEG Classic Light"
-msgstr ""
+msgstr "DSEG Classic Light al lui Keshikan"
 
 #. settings-schema.json->digit-style->options
 msgid "Keshikan's DSEG Classic Regular"
-msgstr ""
+msgstr "Keshikan's DSEG Classic Regular"
 
 #. settings-schema.json->digit-style->options
 msgid "Keshikan's DSEG Classic Bold"
-msgstr ""
+msgstr "Keshikan's DSEG Classic Bold"
 
 #. settings-schema.json->digit-style->options
 msgid "Keshikan's DSEG Classic Mini Light"
-msgstr ""
+msgstr "DSEG Classic Mini Light de la Keshikan"
 
 #. settings-schema.json->digit-style->options
 msgid "Keshikan's DSEG Classic Mini Regular"
-msgstr ""
+msgstr "Keshikan's DSEG Classic Mini Regular"
 
 #. settings-schema.json->digit-style->options
 msgid "Keshikan's DSEG Classic Mini Bold"
-msgstr ""
+msgstr "Keshikan's DSEG Classic Mini Bold"
 
 #. settings-schema.json->digit-style->options
 msgid "Keshikan's DSEG Modern Light"
-msgstr ""
+msgstr "DSEG Modern Light de la Keshikan"
 
 #. settings-schema.json->digit-style->options
 msgid "Keshikan's DSEG Modern Regular"
-msgstr ""
+msgstr "Keshikan's DSEG Modern Regular"
 
 #. settings-schema.json->digit-style->options
 msgid "Keshikan's DSEG Modern Bold"
-msgstr ""
+msgstr "Keshikan's DSEG Modern Bold"
 
 #. settings-schema.json->digit-style->options
 msgid "Keshikan's DSEG Modern Mini Light"
-msgstr ""
+msgstr "Mini-lumina modernă DSEG de la Keshikan"
 
 #. settings-schema.json->digit-style->options
 msgid "Keshikan's DSEG Modern Mini Regular"
-msgstr ""
+msgstr "Keshikan's DSEG Modern Mini Regular"
 
 #. settings-schema.json->digit-style->options
 msgid "Keshikan's DSEG Modern Mini Bold"
-msgstr ""
+msgstr "Keshikan's DSEG Modern Mini Bold de la Keshikan"
 
 #. settings-schema.json->digit-style->options
 msgid "Simple 1"
-msgstr ""
+msgstr "Simplu 1"
 
 #. settings-schema.json->digit-style->options
 msgid "Simple 2"
-msgstr ""
+msgstr "Simplu 2"
 
 #. settings-schema.json->digit-style->options
 msgid "Simple 3"
-msgstr ""
+msgstr "Simplu 3"
 
 #. settings-schema.json->digit-style->options
 msgid "Curved"
-msgstr ""
+msgstr "Curbat"
 
 #. settings-schema.json->digit-style->description
 msgid "Digit style"
-msgstr ""
+msgstr "Stilul cifrei"
 
 #. metadata.json->description
 msgid "Customizable seven segment digital clock with date and Unix time"
-msgstr ""
+msgstr "Ceas digital personalizabil cu șapte segmente, cu dată și oră Unix"

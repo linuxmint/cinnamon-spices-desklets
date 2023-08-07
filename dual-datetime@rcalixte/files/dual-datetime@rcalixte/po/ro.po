@@ -4,112 +4,107 @@
 #
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ro\n"
+"Language-Team: none\n"
+"Last-Translator: Automatically generated\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2023-07-06 23:40-0400\n"
+"POT-Creation-Date: 2023-07-06 23:40-0400\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-06 23:40-0400\n"
-"PO-Revision-Date: 2023-07-06 23:40-0400\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
-"Language: ro\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.3.1\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
-"20)) ? 1 : 2;\n"
 
 #. metadata.json->description
 msgid "A desklet that can display dual datetime strings"
-msgstr ""
+msgstr "Un desklet care poate afișa șiruri de date duble"
 
 #. metadata.json->name
 msgid "Dual Datetime"
-msgstr ""
+msgstr "Dual Datetime"
 
 #. 5.4->settings-schema.json->time_custom1->description
 msgid "Customize First Time Value"
-msgstr ""
+msgstr "Personalizați valoarea de prima dată"
 
 #. 5.4->settings-schema.json->time_format1->description
 #. 5.4->settings-schema.json->time_format2->description
 msgid "Time Format"
-msgstr ""
+msgstr "Format de timp"
 
 #. 5.4->settings-schema.json->time_format1->tooltip
 #. 5.4->settings-schema.json->time_format2->tooltip
-msgid ""
-"The datetime format to use for the output. See 'Format String Help' below "
-"for additional details."
-msgstr ""
+msgid "The datetime format to use for the output. See 'Format String Help' below for additional details."
+msgstr "Formatul datei care urmează să fie utilizat pentru ieșire. Pentru detalii suplimentare, consultați \"Format String Help\" de mai jos."
 
 #. 5.4->settings-schema.json->time_font1->description
 #. 5.4->settings-schema.json->time_font2->description
 msgid "Font Family (blank for default)"
-msgstr ""
+msgstr "Familie de caractere (gol pentru implicită)"
 
 #. 5.4->settings-schema.json->time_color1->description
 #. 5.4->settings-schema.json->time_color2->description
 msgid "Font Color"
-msgstr ""
+msgstr "Culoarea fontului"
 
 #. 5.4->settings-schema.json->time_color1->tooltip
 #. 5.4->settings-schema.json->time_color2->tooltip
 #. 5.4->settings-schema.json->background_color->tooltip
 msgid "RGB or RGBA"
-msgstr ""
+msgstr "RGB sau RGBA"
 
 #. 5.4->settings-schema.json->time_size1->description
 #. 5.4->settings-schema.json->time_size2->description
 msgid "Font Size"
-msgstr ""
+msgstr "Mărimea fontului"
 
 #. 5.4->settings-schema.json->time_size1->tooltip
 #. 5.4->settings-schema.json->time_size2->tooltip
-msgid ""
-"Increase or decrease this value to change the font size scale (1.2 = 120%)"
-msgstr ""
+msgid "Increase or decrease this value to change the font size scale (1.2 = 120%)"
+msgstr "Măriți sau micșorați această valoare pentru a modifica scara dimensiunii fontului (1,2 = 120%)"
 
 #. 5.4->settings-schema.json->time_custom2->description
 msgid "Customize Second Time Value"
-msgstr ""
+msgstr "Personalizați a doua valoare temporală"
 
 #. 5.4->settings-schema.json->datetime_button->description
 msgid "Format String Help"
-msgstr ""
+msgstr "Ajutor pentru Format String"
 
 #. 5.4->settings-schema.json->head4->description
 msgid "Additional Options"
-msgstr ""
+msgstr "Opțiuni suplimentare"
 
 #. 5.4->settings-schema.json->width->units
 msgid "px"
-msgstr ""
+msgstr "px"
 
 #. 5.4->settings-schema.json->width->description
 msgid "Fixed width for the desklet"
-msgstr ""
+msgstr "Lățime fixă pentru desklet"
 
 #. 5.4->settings-schema.json->width->tooltip
-msgid ""
-"Increase or decrease this value to set the boundary width of the desklet"
-msgstr ""
+msgid "Increase or decrease this value to set the boundary width of the desklet"
+msgstr "Măriți sau micșorați această valoare pentru a seta lățimea limitei deskletului"
 
 #. 5.4->settings-schema.json->title_align->description
 msgid "Alignment for time strings"
-msgstr ""
+msgstr "Aliniere pentru șirurile de timp"
 
 #. 5.4->settings-schema.json->title_align->options
 msgid "Vertical"
-msgstr ""
+msgstr "Vertical"
 
 #. 5.4->settings-schema.json->title_align->options
 msgid "Horizontal"
-msgstr ""
+msgstr "Orizontal"
 
 #. 5.4->settings-schema.json->show_decorations->description
 msgid "Show decorations"
-msgstr ""
+msgstr "Arată decorațiuni"
 
 #. 5.4->settings-schema.json->background_color->description
 msgid "Background color"
-msgstr ""
+msgstr "Culoarea de fundal"

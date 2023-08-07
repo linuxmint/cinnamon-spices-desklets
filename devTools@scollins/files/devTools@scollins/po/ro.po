@@ -5,370 +5,382 @@
 #
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ro\n"
+"Language-Team: none\n"
+"Last-Translator: Automatically generated\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2021-03-18 18:47+0100\n"
+"POT-Creation-Date: 2021-03-18 18:47+0100\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-18 18:47+0100\n"
-"PO-Revision-Date: 2021-03-18 18:47+0100\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
-"Language: ro\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
-"20)) ? 1 : 2;\n"
 
-#: desklet.js:247 tabPanel.js:25
+#: desklet.js:247
+#: tabPanel.js:25
 msgid "Untitled"
-msgstr ""
+msgstr "Fără titlu"
 
 #: desklet.js:289
 msgid "Tools"
-msgstr ""
+msgstr "Unelte"
 
-#: desklet.js:406 desklet.js:538
+#: desklet.js:406
+#: desklet.js:538
 msgid "Expand"
-msgstr ""
+msgstr "Extindeți"
 
 #. settings-schema.json->collapsedStartState->options
-#: desklet.js:410 desklet.js:555
+#: desklet.js:410
+#: desklet.js:555
 msgid "Collapse"
-msgstr ""
+msgstr "Colaps"
 
 #: desklet.js:432
 msgid "Open Cinnamon Settings"
-msgstr ""
+msgstr "Deschideți Setări Cinnamon"
 
 #: desklet.js:440
 msgid "Start Sandbox"
-msgstr ""
+msgstr "Start Sandbox"
 
 #: desklet.js:448
 msgid "Run command line"
-msgstr ""
+msgstr "Rulați linia de comandă"
 
-#: desklet.js:456 extensions.js:160 extensions.js:178 inspect.js:369
-#: inspect.js:555 windows.js:89
+#: desklet.js:456
+#: extensions.js:160
+#: extensions.js:178
+#: inspect.js:369
+#: inspect.js:555
+#: windows.js:89
 msgid "Inspect"
-msgstr ""
+msgstr "Inspectați"
 
 #: desklet.js:464
 msgid "Open Looking Glass"
-msgstr ""
+msgstr "Oglindă deschisă"
 
 #: desklet.js:474
 msgid "Reload Theme"
-msgstr ""
+msgstr "Reîncărcați tema"
 
 #: desklet.js:484
 msgid "Restart Cinnamon"
-msgstr ""
+msgstr "Reporniți Cinnamon"
 
 #: errorLog.js:44
 msgid "X-Session Log"
-msgstr ""
+msgstr "X-Session Log"
 
 #: errorLog.js:62
 msgid "Hide old errors"
-msgstr ""
+msgstr "Ascundeți erorile vechi"
 
-#: errorLog.js:77 terminal.js:68
+#: errorLog.js:77
+#: terminal.js:68
 msgid "Clear"
-msgstr ""
+msgstr "Clar"
 
 #: errorLog.js:130
 msgid "Cinnamon Log"
-msgstr ""
+msgstr "Jurnal de scorțișoară"
 
 #: errorLog.js:147
 msgid "Show Timestamp"
-msgstr ""
+msgstr "Arată marcajul de timp"
 
 #: errorLog.js:155
 msgid "Infos"
-msgstr ""
+msgstr "Informații"
 
 #: errorLog.js:163
 msgid "Warnings"
-msgstr ""
+msgstr "Avertismente"
 
 #: errorLog.js:171
 msgid "Errors"
-msgstr ""
+msgstr "Erori"
 
 #: errorLog.js:179
 msgid "Traces"
-msgstr ""
+msgstr "Urmează"
 
 #: errorLog.js:193
 msgid "Copy"
-msgstr ""
+msgstr "Copiați"
 
 #: extensions.js:70
 msgid "Infinite"
-msgstr ""
+msgstr "Infinit"
 
 #: extensions.js:125
 msgid "Reload"
-msgstr ""
+msgstr "Reîncărcare"
 
-#: extensions.js:130 extensions.js:165
+#: extensions.js:130
+#: extensions.js:165
 msgid "Remove"
-msgstr ""
+msgstr "Eliminați"
 
 #: extensions.js:136
 msgid "Instances"
-msgstr ""
+msgstr "Instanțe"
 
 #: extensions.js:136
 msgid "maximum of"
-msgstr ""
+msgstr "maximum de"
 
-#: extensions.js:155 extensions.js:173
+#: extensions.js:155
+#: extensions.js:173
 msgid "Highlight"
-msgstr ""
+msgstr "Evidențiați"
 
 #: extensions.js:186
 msgid "Configure"
-msgstr ""
+msgstr "Configurați"
 
 #: extensions.js:271
 msgid "Extensions"
-msgstr ""
+msgstr "Extensii"
 
-#: extensions.js:353 extensions.js:381
+#: extensions.js:353
+#: extensions.js:381
 msgid "failed to create extension item for uuid"
-msgstr ""
+msgstr "nu a reușit să creeze elementul de extensie pentru uuid"
 
-#: extensions.js:361 extensions.js:389
+#: extensions.js:361
+#: extensions.js:389
 msgid "No extensions of this type are enabled"
-msgstr ""
+msgstr "Nu sunt activate extensii de acest tip"
 
 #: inspect.js:126
 msgid "(Press Pause or Control to disable event pass through)"
-msgstr ""
+msgstr "(Apăsați Pauză sau Control pentru a dezactiva trecerea evenimentului)"
 
 #: inspect.js:128
 msgid "(Press Pause or Control to enable event pass through)"
-msgstr ""
+msgstr "(Apăsați Pauză sau Control pentru a activa trecerea evenimentului)"
 
 #: inspect.js:411
 msgid "Length"
-msgstr ""
+msgstr "Lungime"
 
 #: inspect.js:418
 msgid "Parent"
-msgstr ""
+msgstr "Părinte"
 
 #: inspect.js:427
 msgid "Children"
-msgstr ""
+msgstr "Copii"
 
 #. settings-schema.json->height->description
 #: inspect.js:438
 msgid "Height"
-msgstr ""
+msgstr "Înălțime"
 
 #. settings-schema.json->width->description
 #: inspect.js:440
 msgid "Width"
-msgstr ""
+msgstr "Lățime"
 
 #: inspect.js:442
 msgid "Visible"
-msgstr ""
+msgstr "Vizibil"
 
 #: inspect.js:446
 msgid "Style Class"
-msgstr ""
+msgstr "Clasa de stil"
 
 #: inspect.js:448
 msgid "None"
-msgstr ""
+msgstr "Nici unul"
 
-#: inspect.js:456 windows.js:70
+#: inspect.js:456
+#: windows.js:70
 msgid "Title"
-msgstr ""
+msgstr "Titlu"
 
-#: inspect.js:459 windows.js:75
+#: inspect.js:459
+#: windows.js:75
 msgid "Class"
-msgstr ""
+msgstr "Clasa"
 
-#: inspect.js:462 windows.js:80
+#: inspect.js:462
+#: windows.js:80
 msgid "Workspace"
-msgstr ""
+msgstr "Spațiul de lucru"
 
 #: inspect.js:471
 msgid "Monitor"
-msgstr ""
+msgstr "Monitor"
 
 #: inspect.js:475
 msgid "Size"
-msgstr ""
+msgstr "Dimensiune"
 
 #: inspect.js:477
 msgid "Position"
-msgstr ""
+msgstr "Poziția"
 
 #: inspect.js:494
 msgid "Values"
-msgstr ""
+msgstr "Valori"
 
 #: inspect.js:495
 msgid "Index"
-msgstr ""
+msgstr "Index"
 
 #: inspect.js:498
 msgid "Map Elements"
-msgstr ""
+msgstr "Elemente de hartă"
 
 #: inspect.js:499
 msgid "Key"
-msgstr ""
+msgstr "Cheie"
 
 #: inspect.js:502
 msgid "Properties"
-msgstr ""
+msgstr "Proprietăți"
 
 #: inspect.js:503
 msgid "Name"
-msgstr ""
+msgstr "Nume"
 
 #: inspect.js:509
 msgid "Type"
-msgstr ""
+msgstr "Tip"
 
 #: inspect.js:510
 msgid "Value"
-msgstr ""
+msgstr "Valoare"
 
 #: sandbox.js:76
 msgid "Open"
-msgstr ""
+msgstr "Deschideți"
 
 #: sandbox.js:82
 msgid "Save"
-msgstr ""
+msgstr "Salvați"
 
 #: sandbox.js:88
 msgid "Save As"
-msgstr ""
+msgstr "Salvați ca"
 
 #: sandbox.js:149
 msgid "Sandbox"
-msgstr ""
+msgstr "Sandbox"
 
 #: sandbox.js:165
 msgid "Evaluate"
-msgstr ""
+msgstr "Evaluați"
 
 #: sandbox.js:170
 msgid "Javascript"
-msgstr ""
+msgstr "Javascript"
 
 #: sandbox.js:174
 msgid "Style"
-msgstr ""
+msgstr "Stil"
 
 #: sandbox.js:180
 msgid "Load current stylesheet"
-msgstr ""
+msgstr "Încarcă foaia de stil curentă"
 
 #: sandbox.js:204
 msgid "No errors detected"
-msgstr ""
+msgstr "Nu au fost detectate erori"
 
 #: tab.js:126
 msgid "Close Tab"
-msgstr ""
+msgstr "Închideți fila"
 
 #: terminal.js:54
 msgid "Command"
-msgstr ""
+msgstr "Comandă"
 
 #: terminal.js:59
 msgid "Status"
-msgstr ""
+msgstr "Stare"
 
 #: terminal.js:60
 msgid "Running"
-msgstr ""
+msgstr "Alergare"
 
 #: terminal.js:73
 msgid "End Process"
-msgstr ""
+msgstr "Sfârșitul procesului"
 
 #: terminal.js:82
 msgid "Output"
-msgstr ""
+msgstr "Ieșire"
 
 #: terminal.js:108
 msgid "Stopped"
-msgstr ""
+msgstr "S-a oprit"
 
 #: terminal.js:231
 msgid "Run"
-msgstr ""
+msgstr "Rulați"
 
-#: windows.js:24 windows.js:126
+#: windows.js:24
+#: windows.js:126
 msgid "all"
-msgstr ""
+msgstr "toate"
 
 #: windows.js:95
 msgid "Switch to"
-msgstr ""
+msgstr "Comutați la"
 
 #: windows.js:101
 msgid "Close"
-msgstr ""
+msgstr "Închideți"
 
 #: windows.js:144
 msgid "Windows"
-msgstr ""
+msgstr "Windows"
 
 #. metadata.json->description
 msgid "A desklet for troubleshooting and developing in the Cinnamon UI"
-msgstr ""
+msgstr "Un desklet pentru depanare și dezvoltare în interfața Cinnamon UI"
 
 #. metadata.json->contributors
 msgid "Stephen Collins - Author"
-msgstr ""
+msgstr "Stephen Collins - Autor"
 
 #. metadata.json->comments
-msgid ""
-"This desklet provides tools to help troubleshoot, view and control certain "
-"Cinnamon components and status information, and even test new code without "
-"restarting Cinnamon."
-msgstr ""
+msgid "This desklet provides tools to help troubleshoot, view and control certain Cinnamon components and status information, and even test new code without restarting Cinnamon."
+msgstr "Acest desklet oferă instrumente pentru a ajuta la depanare, pentru a vizualiza și controla anumite componente Cinnamon și informații de stare și chiar pentru a testa un nou cod fără a reporni Cinnamon."
 
 #. metadata.json->name
 msgid "Developer's Tools"
-msgstr ""
+msgstr "Instrumente pentru dezvoltatori"
 
 #. settings-schema.json->collapsedStartState->description
 msgid "On startup"
-msgstr ""
+msgstr "La pornire"
 
 #. settings-schema.json->collapsedStartState->options
 msgid "Remember Previous State"
-msgstr ""
+msgstr "Amintiți-vă de starea anterioară"
 
 #. settings-schema.json->collapsedStartState->options
 msgid "Show"
-msgstr ""
+msgstr "Arată"
 
 #. settings-schema.json->collapsed->description
 msgid "Collapsed"
-msgstr ""
+msgstr "Prăbușit"
 
 #. settings-schema.json->raiseKey->description
 msgid "Raise to top shorcut key"
-msgstr ""
+msgstr "Ridicați până la tasta scurtă de sus"
 
 #. settings-schema.json->centerRaised->description
 msgid "Center the desklet on the screen in raised mode"
-msgstr ""
+msgstr "Centrați desklet-ul pe ecran în modul ridicat"
 
 #. settings-schema.json->sandboxHeader->description
 msgid "Sandbox header"
-msgstr ""
+msgstr "Antet Sandbox"

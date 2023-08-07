@@ -5,48 +5,47 @@
 #
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Language: ro\n"
+"Language-Team: none\n"
+"Last-Translator: Automatically generated\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2017-04-29 11:45+0200\n"
+"POT-Creation-Date: 2017-04-29 11:45+0200\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 11:45+0200\n"
-"PO-Revision-Date: 2017-04-29 11:45+0200\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
-"Language: ro\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
-"20)) ? 1 : 2;\n"
 
 #: desklet.js:80
 msgid "error"
-msgstr ""
+msgstr "eroare"
 
 #. temperature@swalladge->metadata.json->description
 msgid "Displays the current temperature from the temperature server."
-msgstr ""
+msgstr "Afișează temperatura curentă de la serverul de temperatură."
 
 #. temperature@swalladge->metadata.json->name
 msgid "Temperature"
-msgstr ""
+msgstr "Temperatura"
 
 #. temperature@swalladge->settings-schema.json->width->description
 msgid "Width :"
-msgstr ""
+msgstr "Lățime :"
 
 #. temperature@swalladge->settings-schema.json->width->units
 #. temperature@swalladge->settings-schema.json->height->units
 msgid "pixels"
-msgstr ""
+msgstr "pixeli"
 
 #. temperature@swalladge->settings-schema.json->head->description
 msgid "Current Temperature Settings"
-msgstr ""
+msgstr "Setări de temperatură curentă"
 
 #. temperature@swalladge->settings-schema.json->server->description
 msgid "Server :"
-msgstr ""
+msgstr "Server :"
 
 #. temperature@swalladge->settings-schema.json->height->description
 msgid "Height :"
-msgstr ""
+msgstr "Înălțime :"

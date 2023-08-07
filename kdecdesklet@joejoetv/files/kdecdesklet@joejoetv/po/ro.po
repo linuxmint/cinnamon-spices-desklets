@@ -5,60 +5,58 @@
 #
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Language: ro\n"
+"Language-Team: none\n"
+"Last-Translator: Automatically generated\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2020-08-13 23:34+0200\n"
+"POT-Creation-Date: 2020-08-13 23:34+0200\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-13 23:34+0200\n"
-"PO-Revision-Date: 2020-08-13 23:34+0200\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
-"Language: ro\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
-"20)) ? 1 : 2;\n"
 
 #: desklet.js:291
 msgid "Reply"
-msgstr ""
+msgstr "Răspuns"
 
 #: desklet.js:375
 msgid "Available Devices"
-msgstr ""
+msgstr "Dispozitive disponibile"
 
 #: desklet.js:396
 msgid "Reload Desklet"
-msgstr ""
+msgstr "Reîncărcați Desklet"
 
 #: desklet.js:401
 msgid "KDEConnect is not running!"
-msgstr ""
+msgstr "KDEConnect nu funcționează!"
 
 #: desklet.js:451
 msgid "No Device Selected!"
-msgstr ""
+msgstr "Nici un dispozitiv selectat!"
 
 #: desklet.js:580
 msgid "No paired devices!"
-msgstr ""
+msgstr "Nu există dispozitive împerecheate!"
 
 #. metadata.json->name
 msgid "KDEConnect Desklet"
-msgstr ""
+msgstr "KDEConnect Desklet"
 
 #. metadata.json->description
-msgid ""
-"Desklet for displaying information about a Device connected with KDeConnect."
-msgstr ""
+msgid "Desklet for displaying information about a Device connected with KDeConnect."
+msgstr "Desklet pentru afișarea informațiilor despre un dispozitiv conectat cu KDeConnect."
 
 #. settings-schema.json->header->description
 msgid "Device Settings"
-msgstr ""
+msgstr "Setări dispozitiv"
 
 #. settings-schema.json->selected-device-id->description
 msgid "Device ID of selected Device"
-msgstr ""
+msgstr "ID-ul dispozitivului dispozitivului selectat"
 
 #. settings-schema.json->selected-device-id->tooltip
 msgid "KDEConnect Device ID"
-msgstr ""
+msgstr "ID-ul dispozitivului KDEConnect"

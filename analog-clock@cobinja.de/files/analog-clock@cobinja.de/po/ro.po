@@ -5,46 +5,45 @@
 #
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Language: ro\n"
+"Language-Team: none\n"
+"Last-Translator: Automatically generated\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2017-04-24 09:43+0200\n"
+"POT-Creation-Date: 2017-04-24 09:43+0200\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-24 09:43+0200\n"
-"PO-Revision-Date: 2017-04-24 09:43+0200\n"
-"Last-Translator: Automatically generated\n"
-"Language: ro\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language-Team: none\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
-"20)) ? 1 : 2;\n"
 
 #: settings.ui:7
 msgid "Analog Clock Settings"
-msgstr ""
+msgstr "Setări ceas analogic"
 
 #: settings.ui:99
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 #: settings.ui:138
 msgid "Size"
-msgstr ""
+msgstr "Dimensiune"
 
 #: settings.ui:182
 msgid "Show Seconds"
-msgstr ""
+msgstr "Afișați secundele"
 
 #: settings.ui:220
 msgid "Hide decorations"
-msgstr ""
+msgstr "Ascundeți decorațiunile"
 
 #: settings.ui:259
 msgid "Use specific timezone"
-msgstr ""
+msgstr "Utilizați un anumit fus orar"
 
 #: settings.ui:297
 msgid "Display Timezone"
-msgstr ""
+msgstr "Afișare fus orar"
 
 msgid "An analog clock desklet"
-msgstr ""
+msgstr "Un ceas analogic de birou"
