@@ -15,6 +15,29 @@
         "tooltip": "The datetime format to use for the output. See 'Format String Help' below for additional details.",
         "dependency": "time_custom1"
     },
+    "time_align1": {
+        "type": "combobox",
+        "description": "Time Alignment",
+        "default": "left",
+        "dependency": "title_align=vertical",
+        "options": {
+            "Left": "left",
+            "Center": "center",
+            "Right": "right"
+        }
+    },
+    "time_yalign1": {
+        "type": "combobox",
+        "description": "Time Alignment",
+        "default": "left",
+        "tooltip": "This value only applies if the this time value is a smaller size than the other",
+        "dependency": "title_align!=vertical",
+        "options": {
+            "Top": "left",
+            "Middle": "center",
+            "Bottom": "right"
+        }
+    },
     "time_font1": {
         "type": "entry",
         "description": "Font Family (blank for default)",
@@ -53,6 +76,29 @@
         "default": "%-A, %B %-d %Y",
         "tooltip": "The datetime format to use for the output. See 'Format String Help' below for additional details.",
         "dependency": "time_custom2"
+    },
+    "time_align2": {
+        "type": "combobox",
+        "description": "Time Alignment",
+        "default": "left",
+        "dependency": "title_align=vertical",
+        "options": {
+            "Left": "left",
+            "Center": "center",
+            "Right": "right"
+        }
+    },
+    "time_yalign2": {
+        "type": "combobox",
+        "description": "Time Alignment",
+        "default": "left",
+        "tooltip": "This value only applies if the this time value is a smaller size than the other",
+        "dependency": "title_align!=vertical",
+        "options": {
+            "Top": "left",
+            "Middle": "center",
+            "Bottom": "right"
+        }
     },
     "time_font2": {
         "type": "entry",
@@ -103,7 +149,7 @@
     "title_align": {
         "type": "combobox",
         "default": "vertical",
-        "description": "Alignment for time strings",
+        "description": "Layout",
         "options": {
             "Vertical": "vertical",
             "Horizontal": "horizontal"
