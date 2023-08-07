@@ -1,0 +1,91 @@
+# Romanian translations for PACKAGE package.
+# Copyright (C) 2023 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-01-03 12:49+0200\n"
+"PO-Revision-Date: 2020-01-03 12:49+0200\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ro\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+
+#: desklet.js:104
+msgid ""
+"Please make sure vnstat and vnstati are installed and that the vnstat daemon "
+"is running!"
+msgstr ""
+
+#: desklet.js:105
+msgid ""
+"In Linux Mint, you can simply run 'apt install vnstati' and that will take "
+"care of everything."
+msgstr ""
+
+#: desklet.js:106
+msgid ""
+"In other distributions it might depend on the way things are packaged but "
+"its likely to be similar."
+msgstr ""
+
+#. netusage@30yavash.com->metadata.json->name
+msgid "Network usage monitor"
+msgstr ""
+
+#. netusage@30yavash.com->metadata.json->description
+msgid "Network usage monitor using vnstat"
+msgstr ""
+
+#. netusage@30yavash.com->setting-schema.json->head->description
+msgid "Settings for the Network Usage Applet (uses vnstati)"
+msgstr ""
+
+#. netusage@30yavash.com->setting-schema.json->useExtendedDisplay->description
+msgid "Enable Extended Display Options"
+msgstr ""
+
+#. netusage@30yavash.com->setting-schema.json->useExtendedDisplay->tooltip
+msgid "This is a new option from version 1.0.3"
+msgstr ""
+
+#. netusage@30yavash.com->setting-schema.json->extendedDisplay->options
+msgid "Classic - Summary of Traffic for last Days and Months"
+msgstr ""
+
+#. netusage@30yavash.com->setting-schema.json->extendedDisplay->options
+msgid "Classic Plus - Classic with addition of hourly statistics"
+msgstr ""
+
+#. netusage@30yavash.com->setting-schema.json->extendedDisplay->options
+msgid "Hourly statistics for last 24 hours"
+msgstr ""
+
+#. netusage@30yavash.com->setting-schema.json->extendedDisplay->options
+msgid "Daily statistics for last 30 days"
+msgstr ""
+
+#. netusage@30yavash.com->setting-schema.json->extendedDisplay->options
+msgid "Monthly statistics for last 12 months"
+msgstr ""
+
+#. netusage@30yavash.com->setting-schema.json->extendedDisplay->options
+msgid "All time Top ten traffic days"
+msgstr ""
+
+#. netusage@30yavash.com->setting-schema.json->extendedDisplay->description
+msgid "Type of Display - default Classic"
+msgstr ""
+
+#. netusage@30yavash.com->setting-schema.json->extendedDisplay->tooltip
+msgid ""
+"This feature offers the Classic (original) display with a number of other "
+"options"
+msgstr ""
