@@ -18,6 +18,12 @@ function _(str) {
     return Gettext.dgettext(UUID, str);
 }
 
+const ST_ALIGNMENT = {
+    "left": St.Align.START,
+    "center": St.Align.MIDDLE,
+    "right": St.Align.END
+};
+
 function DateTimeDesklet(metadata, desklet_id) {
     this._init(metadata, desklet_id);
 }
@@ -37,11 +43,15 @@ DateTimeDesklet.prototype = {
         this.settings = new Settings.DeskletSettings(this, UUID, this.desklet_id);
         this.settings.bindProperty(Settings.BindingDirection.IN, "time_custom1", "time_custom1", this.setupUI);
         this.settings.bindProperty(Settings.BindingDirection.IN, "time_format1", "time_format1", this.setupUI);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "time_align1", "time_align1", this.setupUI);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "time_yalign1", "time_yalign1", this.setupUI);
         this.settings.bindProperty(Settings.BindingDirection.IN, "time_font1", "time_font1", this.on_font_setting_changed, 1);
         this.settings.bindProperty(Settings.BindingDirection.IN, "time_color1", "time_color1", this.setupUI);
         this.settings.bindProperty(Settings.BindingDirection.IN, "time_size1", "time_size1", this.on_font_setting_changed, 1);
         this.settings.bindProperty(Settings.BindingDirection.IN, "time_custom2", "time_custom2", this.setupUI);
         this.settings.bindProperty(Settings.BindingDirection.IN, "time_format2", "time_format2", this.setupUI);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "time_align2", "time_align2", this.setupUI);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "time_yalign2", "time_yalign2", this.setupUI);
         this.settings.bindProperty(Settings.BindingDirection.IN, "time_font2", "time_font2", this.on_font_setting_changed, 2);
         this.settings.bindProperty(Settings.BindingDirection.IN, "time_color2", "time_color2", this.setupUI);
         this.settings.bindProperty(Settings.BindingDirection.IN, "time_size2", "time_size2", this.on_font_setting_changed, 2);
@@ -82,12 +92,17 @@ DateTimeDesklet.prototype = {
         this[`container${num}`] = new St.BoxLayout({ vertical: false });
         this[`datetime${num}`] = new St.Label({ text: "" });
         this[`datetime${num}`].clutterText.ellipsize = Pango.EllipsizeMode.NONE;
-        this[`container${num}`].add(this[`datetime${num}`]);
+        let _other_num = num == 1 ? 2 : 1;
+        let _y_alignment = !this._vertical && this.time_custom1 && this.time_format1 &&
+            this.time_custom2 && this.time_format2 && this[`time_size${_other_num}`] > this[`time_size${num}`] ?
+            { y_fill: false, y_align: ST_ALIGNMENT[this[`time_yalign${num}`]] } : null;
+        this[`container${num}`].add(this[`datetime${num}`], _y_alignment);
         this[`time_font${num}`] = this[`time_font${num}`].replace(/['"`]/g, "");
         this[`font${num}`] = this[`time_font${num}`] !== "" ? ` font-family: '${this["time_font" + num]}';` : "";
         let _padding = this._vertical || num == 1 ? "" : "padding-left: 0.5em; ";
         this[`container${num}`].style = `${_padding}color: ${this['time_color' + num]}; font-size: ${this['time_size' + num]}em;${this['font' + num]}`;
-        this._main.add(this[`container${num}`]);
+        let _alignment = this._vertical ? { x_fill: false, x_align: ST_ALIGNMENT[this[`time_align${num}`]] } : null;
+        this._main.add(this[`container${num}`], _alignment);
     },
 
     _updateUI: function () {
@@ -126,7 +141,8 @@ DateTimeDesklet.prototype = {
                 } catch (e) {
                     global.logError(e);
                 } finally {
-                    this[`container${num}`].style = `color: ${this["time_color" + num]}; font-size: ${this["time_size" + num]}em;${this["font" + num]}`;
+                    let _padding = this._vertical || num == 1 ? "" : "padding-left: 0.5em; ";
+                    this[`container${num}`].style = `${_padding}color: ${this["time_color" + num]}; font-size: ${this["time_size" + num]}em;${this["font" + num]}`;
                 }
             });
         } catch (e) {

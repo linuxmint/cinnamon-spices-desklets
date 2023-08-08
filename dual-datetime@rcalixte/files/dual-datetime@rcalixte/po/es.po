@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-06 23:40-0400\n"
-"PO-Revision-Date: \n"
+"POT-Creation-Date: 2023-08-06 20:33-0400\n"
+"PO-Revision-Date: 2023-08-06 20:35-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -41,6 +41,50 @@ msgid ""
 msgstr ""
 "Formato de fecha y hora que se usará para la salida. Consulte 'Ayuda para "
 "dar formato a cadenas' a continuación para obtener detalles adicionales."
+
+#. 5.4->settings-schema.json->time_align1->description
+#. 5.4->settings-schema.json->time_yalign1->description
+#. 5.4->settings-schema.json->time_align2->description
+#. 5.4->settings-schema.json->time_yalign2->description
+msgid "Time Alignment"
+msgstr ""
+
+#. 5.4->settings-schema.json->time_align1->options
+#. 5.4->settings-schema.json->time_align2->options
+msgid "Left"
+msgstr ""
+
+#. 5.4->settings-schema.json->time_align1->options
+#. 5.4->settings-schema.json->time_align2->options
+msgid "Center"
+msgstr ""
+
+#. 5.4->settings-schema.json->time_align1->options
+#. 5.4->settings-schema.json->time_align2->options
+msgid "Right"
+msgstr ""
+
+#. 5.4->settings-schema.json->time_yalign1->tooltip
+#. 5.4->settings-schema.json->time_yalign2->tooltip
+msgid ""
+"This value only applies if the this time value is a smaller size than the "
+"other"
+msgstr ""
+
+#. 5.4->settings-schema.json->time_yalign1->options
+#. 5.4->settings-schema.json->time_yalign2->options
+msgid "Top"
+msgstr ""
+
+#. 5.4->settings-schema.json->time_yalign1->options
+#. 5.4->settings-schema.json->time_yalign2->options
+msgid "Middle"
+msgstr ""
+
+#. 5.4->settings-schema.json->time_yalign1->options
+#. 5.4->settings-schema.json->time_yalign2->options
+msgid "Bottom"
+msgstr ""
 
 #. 5.4->settings-schema.json->time_font1->description
 #. 5.4->settings-schema.json->time_font2->description
@@ -99,8 +143,8 @@ msgstr ""
 "desklet"
 
 #. 5.4->settings-schema.json->title_align->description
-msgid "Alignment for time strings"
-msgstr "Alineación de las cadenas"
+msgid "Layout"
+msgstr ""
 
 #. 5.4->settings-schema.json->title_align->options
 msgid "Vertical"

@@ -11,6 +11,7 @@ DESCRIPTION
 Adjust the following options for each datetime value using the settings:
 
 * Time Format
+* Time Alignment (per Layout)
 * Font
 * Color
 * Size
@@ -18,7 +19,7 @@ Adjust the following options for each datetime value using the settings:
 Additional desklet options include:
 
 * Fixed Width
-* Vertical or Horizontal
+* Layout (Vertical or Horizontal)
 * Show Decorations
 * Background Color
 
