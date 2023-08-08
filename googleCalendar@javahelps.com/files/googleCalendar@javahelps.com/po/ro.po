@@ -14,7 +14,7 @@ msgstr ""
 "PO-Revision-Date: 2021-11-14 20:26-0500\n"
 "POT-Creation-Date: 2021-11-14 20:26-0500\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 
 #. metadata.json->name
