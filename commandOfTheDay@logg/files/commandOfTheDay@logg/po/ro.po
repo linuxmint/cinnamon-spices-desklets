@@ -1,0 +1,42 @@
+# Romanian translations for PACKAGE package.
+# Copyright (C) 2023 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2023.
+#
+msgid ""
+msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Language: ro\n"
+"Language-Team: none\n"
+"Last-Translator: Automatically generated\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2017-04-26 16:13+0800\n"
+"POT-Creation-Date: 2017-04-26 16:13+0800\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+
+#: desklet.js:48
+msgid "Command of the day"
+msgstr "Comanda zilei"
+
+#. commandOfTheDay@logg->metadata.json->description
+msgid "A desklet that displays arbitrary text output from commands"
+msgstr "Un desklet care afișează text arbitrar de ieșire din comenzi"
+
+#. commandOfTheDay@logg->metadata.json->name
+msgid "Command of the day desklet"
+msgstr "Desklet comanda zilei"
+
+#. commandOfTheDay@logg->settings-schema.json->delay->description
+msgid "Update every:"
+msgstr "Actualizează în fiecare:"
+
+#. commandOfTheDay@logg->settings-schema.json->delay->units
+msgid "minutes"
+msgstr "minute"
+
+#. commandOfTheDay@logg->settings-schema.json->theCommand->description
+msgid "Command:"
+msgstr "Comandă:"
