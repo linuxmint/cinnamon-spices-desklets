@@ -11,17 +11,28 @@ msgstr ""
 "Language-Team: none\n"
 "Last-Translator: Automatically generated\n"
 "MIME-Version: 1.0\n"
-"PO-Revision-Date: 2017-04-26 15:55+0800\n"
-"POT-Creation-Date: 2017-04-26 15:55+0800\n"
+"PO-Revision-Date: 2017-04-26 11:56+0800\n"
+"POT-Creation-Date: 2017-04-26 11:56+0800\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 
-#. shutdown@phpdreamer->metadata.json->description
-#: desklet.js:32
-msgid "Shutdown"
-msgstr "Oprire"
+#: desklet.js:67
+msgid "Time And Date"
+msgstr "Ora și data"
 
-#. shutdown@phpdreamer->metadata.json->name
-msgid "shutdown linux"
-msgstr "oprire linux"
+#: desklet.js:83
+msgid "Edit Config"
+msgstr "Editare configurare"
+
+#: desklet.js:87
+msgid "Help"
+msgstr "Ajutor"
+
+#. TimeAndDate@nightflame->metadata.json->description
+msgid "A fork desklet that displays the time and date"
+msgstr "Un desklet derivat care afișează ora și data"
+
+#. TimeAndDate@nightflame->metadata.json->name
+msgid "Time and Date Desklet"
+msgstr "Desklet pentru oră și dată"

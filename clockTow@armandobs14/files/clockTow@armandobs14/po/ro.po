@@ -11,17 +11,20 @@ msgstr ""
 "Language-Team: none\n"
 "Last-Translator: Automatically generated\n"
 "MIME-Version: 1.0\n"
-"PO-Revision-Date: 2017-04-26 15:55+0800\n"
-"POT-Creation-Date: 2017-04-26 15:55+0800\n"
+"PO-Revision-Date: 2017-04-26 13:17+0800\n"
+"POT-Creation-Date: 2017-04-26 13:17+0800\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 
-#. shutdown@phpdreamer->metadata.json->description
-#: desklet.js:32
-msgid "Shutdown"
-msgstr "Oprire"
+#: desklet.js:46
+msgid "Clock"
+msgstr "Ceas"
 
-#. shutdown@phpdreamer->metadata.json->name
-msgid "shutdown linux"
-msgstr "oprire linux"
+#. clockTow@armandobs14->metadata.json->description
+msgid "A fork desklet that displays the time"
+msgstr "Un desklet derivat care afișează ora"
+
+#. clockTow@armandobs14->metadata.json->name
+msgid "ClockTow desklet"
+msgstr "ClockTow desklet"
