@@ -5,18 +5,18 @@
 #
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ro\n"
+"Language-Team: Romanian <ro@li.org>\n"
+"Last-Translator: Alin Trăistaru <Unknown>\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2023-04-16 07:22-0400\n"
+"POT-Creation-Date: 2018-01-07 21:05+0000\n"
 "Project-Id-Version: bbcwx\n"
 "Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
-"POT-Creation-Date: 2018-01-07 21:05+0000\n"
-"PO-Revision-Date: 2023-04-16 07:22-0400\n"
-"Last-Translator: Alin Trăistaru <Unknown>\n"
-"Language-Team: Romanian <ro@li.org>\n"
-"Language: ro\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-12-04 19:52+0000\n"
 "X-Generator: Poedit 3.1.1\n"
+"X-Launchpad-Export-Date: 2015-12-04 19:52+0000\n"
 
 #: desklet.js:108
 msgid "Mon"
@@ -58,11 +58,13 @@ msgstr "Ajutor"
 msgid "Translate"
 msgstr "Traducere"
 
-#: desklet.js:344 desklet.js:372
+#: desklet.js:344
+#: desklet.js:372
 msgid "Humidity:"
 msgstr "Umiditate:"
 
-#: desklet.js:345 desklet.js:371
+#: desklet.js:345
+#: desklet.js:371
 msgid "Pressure:"
 msgstr "Presiune:"
 
@@ -106,19 +108,21 @@ msgstr "Actualizează"
 msgid "No data available"
 msgstr "Nu există date disponibile"
 
-#: desklet.js:777 desklet.js:844
+#: desklet.js:777
+#: desklet.js:844
 #, javascript-format
 msgid "Error: %s"
 msgstr "Eroare: %s"
 
-#: desklet.js:777 desklet.js:844
+#: desklet.js:777
+#: desklet.js:844
 msgid "No data"
 msgstr "Nu există date"
 
 #: desklet.js:879
 #, javascript-format
 msgid "Click for the full forecast for %s"
-msgstr "Apăsați pentru previziune completă pentru %s"
+msgstr "Apasă pentru previziune completă pentru %s"
 
 #: desklet.js:1139
 #, javascript-format
@@ -269,7 +273,8 @@ msgstr "Furtună puternică"
 msgid "Thunderstorms"
 msgstr "Furtună cu descărcări electrice"
 
-#: desklet.js:1565 desklet.js:4240
+#: desklet.js:1565
+#: desklet.js:4240
 msgid "Mixed rain and snow"
 msgstr "Ploaie și ninsoare"
 
@@ -285,7 +290,8 @@ msgstr "Lapoviță și ninsoare"
 msgid "Freezing drizzle"
 msgstr "Burniță rece"
 
-#: desklet.js:1569 desklet.js:1872
+#: desklet.js:1569
+#: desklet.js:1872
 msgid "Drizzle"
 msgstr "Burniță"
 
@@ -293,7 +299,9 @@ msgstr "Burniță"
 msgid "Freezing rain"
 msgstr "Ploaie rece"
 
-#: desklet.js:1571 desklet.js:1572 desklet.js:4236
+#: desklet.js:1571
+#: desklet.js:1572
+#: desklet.js:4236
 msgid "Showers"
 msgstr "Averse de ploaie"
 
@@ -309,7 +317,9 @@ msgstr "Ninsoare ușoară"
 msgid "Blowing snow"
 msgstr "Ninsoare și viscol"
 
-#: desklet.js:1576 desklet.js:4238 desklet.js:4244
+#: desklet.js:1576
+#: desklet.js:4238
+#: desklet.js:4244
 msgid "Snow"
 msgstr "Ninsoare"
 
@@ -317,7 +327,8 @@ msgstr "Ninsoare"
 msgid "Hail"
 msgstr "Grindină"
 
-#: desklet.js:1578 desklet.js:1877
+#: desklet.js:1578
+#: desklet.js:1877
 msgid "Sleet"
 msgstr "Lapoviță"
 
@@ -349,15 +360,19 @@ msgstr "Vânt"
 msgid "Cold"
 msgstr "Rece"
 
-#: desklet.js:1586 desklet.js:4233
+#: desklet.js:1586
+#: desklet.js:4233
 msgid "Cloudy"
 msgstr "Înnorat"
 
-#: desklet.js:1587 desklet.js:1588
+#: desklet.js:1587
+#: desklet.js:1588
 msgid "Mostly cloudy"
 msgstr "În general noros"
 
-#: desklet.js:1589 desklet.js:1590 desklet.js:1604
+#: desklet.js:1589
+#: desklet.js:1590
+#: desklet.js:1604
 msgid "Partly cloudy"
 msgstr "Parțial noros"
 
@@ -365,11 +380,14 @@ msgstr "Parțial noros"
 msgid "Clear"
 msgstr "Senin"
 
-#: desklet.js:1592 desklet.js:1861
+#: desklet.js:1592
+#: desklet.js:1861
 msgid "Sunny"
 msgstr "Însorit"
 
-#: desklet.js:1593 desklet.js:1594 desklet.js:4231
+#: desklet.js:1593
+#: desklet.js:1594
+#: desklet.js:4231
 msgid "Fair"
 msgstr "Vreme bună"
 
@@ -387,41 +405,46 @@ msgstr "Furtuni izolate"
 
 #: desklet.js:1598
 msgid "Scattered thunderstorms"
-msgstr "Furtuni răzlețe"
+msgstr "Furtuni împrăștiate"
 
-#: desklet.js:1599 desklet.js:1600
+#: desklet.js:1599
+#: desklet.js:1600
 msgid "Scattered showers"
-msgstr "Averse răzlețe"
+msgstr "Averse împrăștiate"
 
-#: desklet.js:1601 desklet.js:1603
+#: desklet.js:1601
+#: desklet.js:1603
 msgid "Heavy snow"
 msgstr "Ninsoare abundentă"
 
 #: desklet.js:1602
 msgid "Scattered snow showers"
-msgstr "Ninsoari răzlețe"
+msgstr "Ninsori împrăștiate"
 
 #: desklet.js:1605
 msgid "Thundershowers"
-msgstr "Ploaie torențială"
+msgstr "Furtună torențială"
 
-#: desklet.js:1606 desklet.js:4239
+#: desklet.js:1606
+#: desklet.js:4239
 msgid "Snow showers"
 msgstr "Averse de ninsoare"
 
 #: desklet.js:1607
 msgid "Isolated thundershowers"
-msgstr "Ploi torențiale izolate"
+msgstr "Furtuni torențiale izolate"
 
 #: desklet.js:1608
 msgid "Not available"
 msgstr "Nu este disponibil"
 
-#: desklet.js:1860 desklet.js:4230
+#: desklet.js:1860
+#: desklet.js:4230
 msgid "Clear Sky"
 msgstr "Cer senin"
 
-#: desklet.js:1862 desklet.js:4232
+#: desklet.js:1862
+#: desklet.js:4232
 msgid "Partly Cloudy"
 msgstr "Parțial noros"
 
@@ -437,7 +460,8 @@ msgstr "Furtună de nisip"
 msgid "Mist"
 msgstr "Ceață"
 
-#: desklet.js:1866 desklet.js:4234
+#: desklet.js:1866
+#: desklet.js:4234
 msgid "Fog"
 msgstr "Ceață deasă"
 
@@ -461,7 +485,9 @@ msgstr "Nori denși"
 msgid "Light Rain Shower"
 msgstr "Averse ușoare"
 
-#: desklet.js:1873 desklet.js:4241 desklet.js:4245
+#: desklet.js:1873
+#: desklet.js:4241
+#: desklet.js:4245
 msgid "Light Rain"
 msgstr "Ploaie ușoară"
 
@@ -469,7 +495,9 @@ msgstr "Ploaie ușoară"
 msgid "Heavy Rain Shower"
 msgstr "Averse puternice de ploaie"
 
-#: desklet.js:1875 desklet.js:4235 desklet.js:4243
+#: desklet.js:1875
+#: desklet.js:4235
+#: desklet.js:4243
 msgid "Heavy Rain"
 msgstr "Ploaie torențială"
 
@@ -481,7 +509,9 @@ msgstr "Averse de lapoviță"
 msgid "Light Snow Shower"
 msgstr "Averse ușoare de ninsoare"
 
-#: desklet.js:1879 desklet.js:4242 desklet.js:4246
+#: desklet.js:1879
+#: desklet.js:4242
+#: desklet.js:4246
 msgid "Light Snow"
 msgstr "Ninsoare ușoară"
 
@@ -493,7 +523,8 @@ msgstr "Averse puternice de ninsoare"
 msgid "Heavy Snow"
 msgstr "Ninsoare grea"
 
-#: desklet.js:1882 desklet.js:4237
+#: desklet.js:1882
+#: desklet.js:4237
 msgid "Thundery Shower"
 msgstr "Averse cu descărcări electrice"
 
@@ -515,37 +546,38 @@ msgstr "Averse de grindină"
 
 #: desklet.js:1887
 msgid "Rain"
-msgstr ""
+msgstr "Ploaie"
 
-#: desklet.js:2072 desklet.js:2800
+#: desklet.js:2072
+#: desklet.js:2800
 msgid "Steady"
 msgstr "Se menține"
 
-#: desklet.js:2072 desklet.js:2796
+#: desklet.js:2072
+#: desklet.js:2796
 msgid "Rising"
 msgstr "În urcare"
 
-#: desklet.js:2072 desklet.js:2798
+#: desklet.js:2072
+#: desklet.js:2798
 msgid "Falling"
 msgstr "În scădere"
 
 #. metadata.json->description
 msgid "Display the weather from several web services on your desktop"
-msgstr ""
+msgstr "Afișează pe desktop vremea de la mai multe servicii web"
 
 #. metadata.json->name
 msgid "Weather Desklet"
-msgstr ""
+msgstr "Vremea Desklet"
 
 #. metadata.json->comments
-msgid ""
-"Please consider translating the Weather Desklet into your language. See the "
-"website for more information"
-msgstr ""
+msgid "Please consider translating the Weather Desklet into your language. See the website for more information"
+msgstr "Te rugăm să iei în considerare posibilitatea de a traduce Weather Desklet în limba ta. Consultă site-ul web pentru mai multe informații"
 
 #. metadata.json->contributors
 msgid "Chris Hastie"
-msgstr ""
+msgstr "Chris Hastie"
 
 #. settings-schema.json->top->description
 msgid "Weather configuration"
@@ -561,33 +593,28 @@ msgid "BBC"
 msgstr "BBC"
 
 #. settings-schema.json->webservice->options
-#, fuzzy
 msgid "Open Weather Map (requires API key)"
-msgstr "World Weather Online (necesită cheie API)"
+msgstr "Open Weather Map (necesită cheie API)"
 
 #. settings-schema.json->webservice->options
-#, fuzzy
 msgid "Open Weather Map Free (requires API key)"
-msgstr "World Weather Online (necesită cheie API)"
+msgstr "Open Weather Map Free (necesită cheie API)"
 
 #. settings-schema.json->webservice->options
 msgid "Wunderground (requires API key)"
 msgstr "Wunderground (necesită cheie API)"
 
 #. settings-schema.json->webservice->options
-#, fuzzy
 msgid "World Weather Online (deprecated) (requires API key)"
-msgstr "World Weather Online (necesită cheie API)"
+msgstr "World Weather Online (învechit) (necesită cheie API)"
 
 #. settings-schema.json->webservice->options
-#, fuzzy
 msgid "World Weather Online Premium (requires API key)"
-msgstr "World Weather Online (necesită cheie API)"
+msgstr "World Weather Online Premium (necesită cheie API)"
 
 #. settings-schema.json->webservice->options
-#, fuzzy
 msgid "APIXU (requires API key)"
-msgstr "Forecast.io (necesită cheie API)"
+msgstr "APIXU (necesită cheie API)"
 
 #. settings-schema.json->webservice->options
 msgid "Forecast.io (requires API key)"
@@ -599,11 +626,11 @@ msgstr "weather.com (învechit)"
 
 #. settings-schema.json->webservice->options
 msgid "meteoblue (requires API key)"
-msgstr ""
+msgstr "meteoblue (necesită cheie API)"
 
 #. settings-schema.json->webservice->tooltip
 msgid "Select the data service you wish to use"
-msgstr "Selectați serviciul de date dorit"
+msgstr "Selectează serviciul de date dorit"
 
 #. settings-schema.json->stationID->description
 msgid "Location"
@@ -611,18 +638,15 @@ msgstr "Localitate"
 
 #. settings-schema.json->stationID->tooltip
 msgid "Set your location here"
-msgstr "Setați localitatea aici"
+msgstr "Setează localitatea aici"
 
 #. settings-schema.json->apikey->description
 msgid "API key"
 msgstr "Cheie API"
 
 #. settings-schema.json->apikey->tooltip
-msgid ""
-"Required for some services only. Enter your API key for your chosen service"
-msgstr ""
-"Necesară doar pentru anumite servicii. Introduceți cheia API pentru "
-"serviciul selectat"
+msgid "Required for some services only. Enter your API key for your chosen service"
+msgstr "Necesară doar pentru anumite servicii. Introdu cheia API pentru serviciul selectat"
 
 #. settings-schema.json->tunits->description
 msgid "Temperature measurement unit"
@@ -674,7 +698,7 @@ msgstr "mbar"
 
 #. settings-schema.json->punits->options
 msgid "in (Hg)"
-msgstr "țoli (Hg)"
+msgstr "in (Hg)"
 
 #. settings-schema.json->punits->options
 msgid "mm (Hg)"
@@ -694,15 +718,11 @@ msgstr "zile"
 
 #. settings-schema.json->userno->description
 msgid "Show forecast for"
-msgstr "Arată prognoza pentru"
+msgstr "Afișează prognoza pentru"
 
 #. settings-schema.json->userno->tooltip
-msgid ""
-"The number of days of forecast to display. Note that not all services "
-"support all values"
-msgstr ""
-"Numărul de zile afișate în prognoză. NOTĂ: nu toate serviciile suportă toate "
-"valorile"
+msgid "The number of days of forecast to display. Note that not all services support all values"
+msgstr "Numărul de zile afișate în prognoză. NOTĂ: nu toate serviciile suportă toate valorile"
 
 #. settings-schema.json->refreshtime->units
 msgid "minutes"
@@ -713,19 +733,12 @@ msgid "Refresh forecast every"
 msgstr "Actualizează la fiecare"
 
 #. settings-schema.json->refreshtime->tooltip
-msgid ""
-"Period between refreshing forecasts. Note that not all services support "
-"lower refresh times"
-msgstr ""
-"Intervalul de actualizare a prognozei. NOTĂ: Nu toate serviciile suportă "
-"intervale scurte"
+msgid "Period between refreshing forecasts. Note that not all services support lower refresh times"
+msgstr "Intervalul de actualizare a prognozei. NOTĂ: Nu toate serviciile suportă intervale scurte"
 
 #. settings-schema.json->display->description
-msgid ""
-"Optional items to display (not all options are supported by all services)"
-msgstr ""
-"Elemente opționale afișate (nu toate opțiunile sunt suportate de toate "
-"serviciile)"
+msgid "Optional items to display (not all options are supported by all services)"
+msgstr "Elemente opționale afișate (nu toate opțiunile sunt suportate de toate serviciile)"
 
 #. settings-schema.json->display__meta__country->description
 msgid "Country"
@@ -733,7 +746,7 @@ msgstr "Țară"
 
 #. settings-schema.json->display__meta__country->tooltip
 msgid "Check to display the country"
-msgstr "Bifați pentru a afișa țara"
+msgstr "Bifează pentru a afișa țara"
 
 #. settings-schema.json->display__cc__weather->description
 msgid "Current weather and icon"
@@ -741,7 +754,7 @@ msgstr "Vremea curentă și iconița"
 
 #. settings-schema.json->display__cc__weather->tooltip
 msgid "Check to display the current weather and large icon"
-msgstr "Bifați pentru a afișa vremea curentă și iconița mare"
+msgstr "Bifează pentru a afișa vremea curentă și iconița mare"
 
 #. settings-schema.json->display__cc__pressure->description
 msgid "Current pressure"
@@ -749,7 +762,7 @@ msgstr "Presiune curentă"
 
 #. settings-schema.json->display__cc__pressure->tooltip
 msgid "Check to display the current pressure"
-msgstr "Bifați pentru a afișa presiunea curentă"
+msgstr "Bifează pentru a afișa presiunea curentă"
 
 #. settings-schema.json->display__cc__humidity->description
 msgid "Current humidity"
@@ -757,7 +770,7 @@ msgstr "Umiditate curentă"
 
 #. settings-schema.json->display__cc__humidity->tooltip
 msgid "Check to display the current humidity"
-msgstr "Bifați pentru a afișa umiditatea curentă"
+msgstr "Bifează pentru a afișa umiditatea curentă"
 
 #. settings-schema.json->display__cc__wind_speed->description
 msgid "Current wind"
@@ -765,7 +778,7 @@ msgstr "Viteza curentă a vântului"
 
 #. settings-schema.json->display__cc__wind_speed->tooltip
 msgid "Check to display the current wind"
-msgstr "Bifați pentru a afișa viteza curentă a vântului"
+msgstr "Bifează pentru a afișa viteza curentă a vântului"
 
 #. settings-schema.json->display__cc__feelslike->description
 msgid "Current 'feels like'"
@@ -773,7 +786,7 @@ msgstr "Temperatură aparentă curentă"
 
 #. settings-schema.json->display__cc__feelslike->tooltip
 msgid "Check to display the current apparent temperature"
-msgstr "Bifați pentru a afișa temperatura curentă aparentă"
+msgstr "Bifează pentru a afișa temperatura curentă aparentă"
 
 #. settings-schema.json->display__cc__visibility->description
 msgid "Current visibility"
@@ -781,7 +794,7 @@ msgstr "Vizibilitate curentă"
 
 #. settings-schema.json->display__cc__visibility->tooltip
 msgid "Check to display the current visibility"
-msgstr "Bifați pentru a afișa vizibilitatea curentă"
+msgstr "Bifează pentru a afișa vizibilitatea curentă"
 
 #. settings-schema.json->display__forecast__maximum_temperature->description
 msgid "Forecast maximum"
@@ -789,7 +802,7 @@ msgstr "Maxim prognozat"
 
 #. settings-schema.json->display__forecast__maximum_temperature->tooltip
 msgid "Check to display the forecast maximum temperature"
-msgstr "Bifați pentru a afișa temperatura maximă prognozată"
+msgstr "Bifează pentru a afișa temperatura maximă prognozată"
 
 #. settings-schema.json->display__forecast__minimum_temperature->description
 msgid "Forecast minimum"
@@ -797,7 +810,7 @@ msgstr "Minim prognozat"
 
 #. settings-schema.json->display__forecast__minimum_temperature->tooltip
 msgid "Check to display the forecast minimum temperature"
-msgstr "Bifați pentru a afișa temperatura minimă prognozată"
+msgstr "Bifează pentru a afișa temperatura minimă prognozată"
 
 #. settings-schema.json->display__forecast__wind_speed->description
 msgid "Forecast wind speed"
@@ -805,7 +818,7 @@ msgstr "Viteza vântului prognozată"
 
 #. settings-schema.json->display__forecast__wind_speed->tooltip
 msgid "Check to display the forecast wind speed"
-msgstr "Bifați pentru a afișa viteza vântului prognozată"
+msgstr "Bifează pentru a afișa viteza vântului prognozată"
 
 #. settings-schema.json->display__forecast__wind_direction->description
 msgid "Forecast wind direction"
@@ -813,7 +826,7 @@ msgstr "Direcția vântului prognozată"
 
 #. settings-schema.json->display__forecast__wind_direction->tooltip
 msgid "Check to display the forecast wind direction"
-msgstr "Bifați pentru a afișa direcția vântului prognozată"
+msgstr "Bifează pentru a afișa direcția vântului prognozată"
 
 #. settings-schema.json->display__forecast__pressure->description
 msgid "Forecast pressure"
@@ -821,7 +834,7 @@ msgstr "Presiune prognozată"
 
 #. settings-schema.json->display__forecast__pressure->tooltip
 msgid "Check to display the forecast pressure"
-msgstr "Bifați pentru a afișa presiunea prognozată"
+msgstr "Bifează pentru a afișa presiunea prognozată"
 
 #. settings-schema.json->display__forecast__humidity->description
 msgid "Forecast humidity"
@@ -829,7 +842,7 @@ msgstr "Umiditate prognozată"
 
 #. settings-schema.json->display__forecast__humidity->tooltip
 msgid "Check to display the forecast humidity"
-msgstr "Bifați pentru a afișa umiditatea prognozată"
+msgstr "Bifează pentru a afișa umiditatea prognozată"
 
 #. settings-schema.json->styling->description
 msgid "Desklet style"
@@ -861,7 +874,7 @@ msgstr "Vertical"
 
 #. settings-schema.json->layout->tooltip
 msgid "Set the overall layout of the desklet"
-msgstr "Setați aranjamentul general al desklet-ului"
+msgstr "Setează aranjamentul general al desklet-ului"
 
 #. settings-schema.json->iconstyle->description
 msgid "Icon style"
@@ -921,7 +934,7 @@ msgstr "Definit de utilizator"
 
 #. settings-schema.json->iconstyle->tooltip
 msgid "Select the style for the weather icons"
-msgstr "Selectați stilul iconițelor pentru vreme"
+msgstr "Selectează stilul iconițelor pentru vreme"
 
 #. settings-schema.json->citystyle->description
 msgid "Bold city name"
@@ -929,19 +942,15 @@ msgstr "Îngroșare nume oraș"
 
 #. settings-schema.json->citystyle->tooltip
 msgid "Check to display the city name in bold"
-msgstr "Bifați pentru a afișa numele orașului cu caractere îngroșate"
+msgstr "Bifează pentru a afișa numele orașului cu caractere îngroșate"
 
 #. settings-schema.json->overrideTheme->description
 msgid "Override desktop theme (enables the settings below)"
 msgstr "Ignoră tema de sistem (se activează opțiunile de mai jos)"
 
 #. settings-schema.json->overrideTheme->tooltip
-msgid ""
-"Check this to override the desktop theme and configure the appearance "
-"manually"
-msgstr ""
-"Bifați pentru a ignora tema de sistem și pentru a configura manual "
-"înfățișarea desklet-ului"
+msgid "Check this to override the desktop theme and configure the appearance manually"
+msgstr "Bifează pentru a ignora tema de sistem și pentru a configura manual înfățișarea desklet-ului"
 
 #. settings-schema.json->transparency->description
 msgid "Transparency"
@@ -949,7 +958,7 @@ msgstr "Transparență"
 
 #. settings-schema.json->transparency->tooltip
 msgid "Set the transparency of the desklet"
-msgstr "Setați transparența desklet-ului"
+msgstr "Setează transparența desklet-ului"
 
 #. settings-schema.json->textcolor->description
 msgid "Text color"
@@ -957,15 +966,15 @@ msgstr "Culoare text"
 
 #. settings-schema.json->textcolor->tooltip
 msgid "Click the button to select a new text color"
-msgstr "Apăsați butonul pentru a alege o culoare nouă a textului"
+msgstr "Apasă butonul pentru a alege o culoare nouă a textului"
 
 #. settings-schema.json->textshadow->description
 msgid "Text shadow"
-msgstr ""
+msgstr "Umbra textului"
 
 #. settings-schema.json->textshadow->tooltip
 msgid "Check to add a text shadow"
-msgstr ""
+msgstr "Bifează pentru a adăuga o umbră de text"
 
 #. settings-schema.json->shadowblur->units
 #. settings-schema.json->cornerradius->units
@@ -975,11 +984,11 @@ msgstr "px"
 
 #. settings-schema.json->shadowblur->description
 msgid "Shadow blur radius"
-msgstr ""
+msgstr "Raza de estompare a umbrei"
 
 #. settings-schema.json->shadowblur->tooltip
 msgid "Set the text shadow sharp (1) or blurry (2-7)"
-msgstr ""
+msgstr "Setează umbra textului în clar (1) sau neclar (2-7)"
 
 #. settings-schema.json->bgcolor->description
 msgid "Background color"
@@ -987,7 +996,7 @@ msgstr "Culoare fundal"
 
 #. settings-schema.json->bgcolor->tooltip
 msgid "Click the button to select a new background color"
-msgstr "Apăsați butonul pentru a alege o nouă culoare a fundalului"
+msgstr "Apasă butonul pentru a alege o nouă culoare a fundalului"
 
 #. settings-schema.json->cornerradius->description
 msgid "Corner radius"
@@ -999,35 +1008,27 @@ msgstr "Raza rotunjirii colțurilor desklet-ului"
 
 #. settings-schema.json->border->description
 msgid "Show border"
-msgstr "Arată margine"
+msgstr "Afișează margine"
 
 #. settings-schema.json->border->tooltip
 msgid "Check this to turn border on/off"
-msgstr "Bifați pentru a ascunde/arăta marginea"
+msgstr "Bifează pentru a ascunde/arăta marginea"
 
 #. settings-schema.json->bordercolor->description
 msgid "Border color"
 msgstr "Culoare margine"
 
 #. settings-schema.json->bordercolor->tooltip
-msgid ""
-"Select the color for the border. Only available if the 'Border' checkbox is "
-"enabled"
-msgstr ""
-"Selectați culoarea pentru margine. Disponibil doar dacă opțiunea 'Margine' "
-"este bifată"
+msgid "Select the color for the border. Only available if the 'Border' checkbox is enabled"
+msgstr "Selectează culoarea pentru margine. Disponibil doar dacă opțiunea 'Margine' este bifată"
 
 #. settings-schema.json->borderwidth->description
 msgid "Border width"
 msgstr "Grosime margine"
 
 #. settings-schema.json->borderwidth->tooltip
-msgid ""
-"Select the width of the border. Only available if the 'Border' checkbox is "
-"enabled"
-msgstr ""
-"Selectați grosimea marginii. Disponibil doar dacă opțiunea 'Margine' este "
-"bifată"
+msgid "Select the width of the border. Only available if the 'Border' checkbox is enabled"
+msgstr "Selectează grosimea marginii. Disponibil doar dacă opțiunea 'Margine' este bifată"
 
 #. settings-schema.json->locationlookups->description
 msgid "Location display settings"
@@ -1042,24 +1043,20 @@ msgid "Google"
 msgstr "Google"
 
 #. settings-schema.json->locsrc->tooltip
-msgid ""
-"The source of the text displayed as the current location. Yahoo! and Google "
-"may offer city names in other languages"
-msgstr ""
-"Sursa textului afișat drept localitate curentă.Yahoo! și Google ar putea "
-"oferi denumiri și în alte limbi"
+msgid "The source of the text displayed as the current location. Yahoo! and Google may offer city names in other languages"
+msgstr "Sursa textului afișat drept localitate curentă.Yahoo! și Google ar putea oferi denumiri și în alte limbi"
 
 #. settings-schema.json->manuallocation->description
 msgid "Manually override displayed location"
-msgstr "Suprascrieți manual localitatea curentă afișată"
+msgstr "Suprascrie manual localitatea curentă afișată"
 
 #. settings-schema.json->manuallocation->tooltip
 msgid "Set your city name manually."
-msgstr "Setați manual numele orașului."
+msgstr "Setează manual numele orașului."
 
 #. settings-schema.json->experimental->description
 msgid "Experimental and buggy features (read documentation!!)"
-msgstr "Funcții experimentale și cu defecte (citiți documentația!)"
+msgstr "Funcții experimentale și cu defecte (citește documentația!)"
 
 #. settings-schema.json->experimental_enabled->description
 msgid "Enable experimental features"
@@ -1067,11 +1064,11 @@ msgstr "Activează funcții experimentale"
 
 #. settings-schema.json->experimental_enabled->tooltip
 msgid "Check this to enable experimental and buggy features"
-msgstr "Bifați pentru a activa funcțiile experimentale și cu defecte"
+msgstr "Bifează pentru a activa funcțiile experimentale și cu defecte"
 
 #. settings-schema.json->gravity->description
 msgid "Anchor desklet by"
-msgstr "Ancorați desklet-ul de"
+msgstr "Ancorează desklet-ul de"
 
 #. settings-schema.json->gravity->options
 msgid "Default"
@@ -1110,9 +1107,5 @@ msgid "Top center"
 msgstr "Centru-sus"
 
 #. settings-schema.json->gravity->tooltip
-msgid ""
-"Select the point on the desklet to which it is anchored. This point will "
-"remain static as the desklet grows and shrinks"
-msgstr ""
-"Selectați punctul de ancorare a desklet-ului. Acest punct va rămâne fix la "
-"redimensionarea desklet-ului"
+msgid "Select the point on the desklet to which it is anchored. This point will remain static as the desklet grows and shrinks"
+msgstr "Selectează punctul de ancorare a desklet-ului. Acest punct va rămâne fix la redimensionarea desklet-ului"
