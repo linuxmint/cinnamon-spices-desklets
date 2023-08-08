@@ -29,7 +29,7 @@ msgstr "Resetare"
 
 #: desklet.js:51
 msgid "Clear Entry"
-msgstr "Intrare liberă"
+msgstr "Șterge intrarea"
 
 #: desklet.js:53
 msgid "Copy to Clipboard"
@@ -41,19 +41,19 @@ msgstr "Lipire din clipboard"
 
 #: desklet.js:55
 msgid "Inverse"
-msgstr "Inverse"
+msgstr "Invers"
 
 #: desklet.js:58
 msgid "Swap Sign"
-msgstr "Semn de schimb"
+msgstr "Schimbă semnul"
 
 #: desklet.js:82
 msgid "Scientific Notation"
-msgstr "Notația științifică"
+msgstr "Notație științifică"
 
 #: desklet.js:813
 msgid "Swap Entries"
-msgstr "Swap Intrări"
+msgstr "Schimbă intrările"
 
 #: desklet.js:817
 msgid "Reciprocal"
@@ -84,7 +84,7 @@ msgstr "Științifică"
 
 #: desklet.js:1116
 msgid "Copy"
-msgstr "Copiați"
+msgstr "Copiază"
 
 #: desklet.js:1120
 msgid "Paste"
@@ -92,7 +92,7 @@ msgstr "Paste"
 
 #. calculator@scollins->metadata.json->description
 msgid "A calculator Desklet"
-msgstr "Un calculator Desklet"
+msgstr "Un desklet de calculator"
 
 #. calculator@scollins->metadata.json->name
 msgid "Desktop Calculator"
@@ -100,15 +100,15 @@ msgstr "Calculator de birou"
 
 #. calculator@scollins->settings-schema.json->style->options
 msgid "Light"
-msgstr "Lumină"
+msgstr "Deschis"
 
 #. calculator@scollins->settings-schema.json->style->options
 msgid "Dark"
-msgstr "Întuneric"
+msgstr "Închis"
 
 #. calculator@scollins->settings-schema.json->raiseKey->description
 msgid "Raise to top shorcut key"
-msgstr "Ridicați până la tasta scurtă de sus"
+msgstr "Ridică până la tasta scurtă de sus"
 
 #. calculator@scollins->settings-schema.json->layout->description
 msgid "Style"
@@ -132,4 +132,4 @@ msgstr "cifre"
 
 #. calculator@scollins->settings-schema.json->rpn->description
 msgid "Use Reverse-Polish Notation"
-msgstr "Folosiți notația inversă a polonului"
+msgstr "Folosește notația poloneză inversă"

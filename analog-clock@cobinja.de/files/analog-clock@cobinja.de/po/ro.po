@@ -31,19 +31,19 @@ msgstr "Dimensiune"
 
 #: settings.ui:182
 msgid "Show Seconds"
-msgstr "Afișați secundele"
+msgstr "Afișează secundele"
 
 #: settings.ui:220
 msgid "Hide decorations"
-msgstr "Ascundeți decorațiunile"
+msgstr "Ascunde decorațiunile"
 
 #: settings.ui:259
 msgid "Use specific timezone"
-msgstr "Utilizați un anumit fus orar"
+msgstr "Utilizează un anumit fus orar"
 
 #: settings.ui:297
 msgid "Display Timezone"
-msgstr "Afișare fus orar"
+msgstr "Afișează fus orar"
 
 msgid "An analog clock desklet"
 msgstr "Un ceas analogic de birou"

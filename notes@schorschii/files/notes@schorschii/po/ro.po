@@ -29,9 +29,9 @@ msgid ""
 "Click here to edit."
 msgstr ""
 "Nu se poate citi fișierul text.\n"
-"Selectați un fișier în setări.\n"
+"Selectează un fișier în setări.\n"
 "\n"
-"Faceți clic aici pentru a edita."
+"Fă clic aici pentru a edita."
 
 #: desklet.js:263
 msgid "Notepad"
@@ -39,7 +39,7 @@ msgstr "Blocul de notițe"
 
 #. metadata.json->description
 msgid "A desklet to display notes including various themes."
-msgstr "Un desklet pentru afișarea notelor, inclusiv diverse teme."
+msgstr "Un desklet pentru afișarea notelor, cu diverse teme."
 
 #. metadata.json->name
 msgid "Note"
@@ -59,7 +59,7 @@ msgstr "Cale de acces la fișierul text al notei"
 
 #. settings-schema.json->file->tooltip
 msgid "Select your text file, where to read from and save to."
-msgstr "Selectați fișierul text, de unde să citiți și unde să salvați."
+msgstr "Selectează fișierul text, de unde să citește și unde să se salvează."
 
 #. settings-schema.json->edit-cmd->description
 msgid "Command for editing this note (on mouse click)"
@@ -227,7 +227,7 @@ msgstr "Tabletă de lut"
 
 #. settings-schema.json->style->options
 msgid "Coffee Stained"
-msgstr "Cafea pătată"
+msgstr "Pătat cu cafea"
 
 #. settings-schema.json->style->options
 msgid "Clipboard"
@@ -239,7 +239,7 @@ msgstr "Nici unul"
 
 #. settings-schema.json->style->tooltip
 msgid "Select the background graphic you would like to use."
-msgstr "Selectați grafica de fundal pe care doriți să o utilizați."
+msgstr "Selectează grafica de fundal pe care dorești să o utilizezi."
 
 #. settings-schema.json->bg-color->description
 msgid "Background color"
@@ -247,11 +247,11 @@ msgstr "Culoarea de fundal"
 
 #. settings-schema.json->bg-color->tooltip
 msgid "Set the background color of this desklet."
-msgstr "Setați culoarea de fundal a acestui desklet."
+msgstr "Setează culoarea de fundal a acestui desklet."
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
-msgstr "Ascundeți decorațiunile"
+msgstr "Ascunde decorațiunile"
 
 #. settings-schema.json->font->description
 msgid "Font"
@@ -267,7 +267,7 @@ msgstr "Mărimea fontului"
 
 #. settings-schema.json->size-font->tooltip
 msgid "Increase or decrease the note font size."
-msgstr "Măriți sau micșorați dimensiunea fontului notei."
+msgstr "Mărește sau micșorează dimensiunea fontului notei."
 
 #. settings-schema.json->font-bold->description
 msgid "Bold"
@@ -283,7 +283,7 @@ msgstr "Culoarea textului"
 
 #. settings-schema.json->text-color->tooltip
 msgid "Set the text color of this desklet."
-msgstr "Setați culoarea textului din acest desklet."
+msgstr "Setează culoarea textului din acest desklet."
 
 #. settings-schema.json->scale-size->units
 msgid "scale factor"
@@ -295,7 +295,7 @@ msgstr "Dimensiune Desklet"
 
 #. settings-schema.json->scale-size->tooltip
 msgid "Increase or decrease the size of this desklet using this scale factor."
-msgstr "Măriți sau micșorați dimensiunea acestui desklet folosind acest factor de scară."
+msgstr "Mărește sau micșorează dimensiunea acestui desklet folosind acest factor de scară."
 
 #. settings-schema.json->head3->description
 msgid "Custom desklet label (only visible if decorations are enabled)"
@@ -303,11 +303,11 @@ msgstr "Etichetă personalizată pentru desklet (vizibilă numai dacă sunt acti
 
 #. settings-schema.json->use-custom-label->description
 msgid "Use a custom desklet label"
-msgstr "Folosiți o etichetă personalizată pentru desklet"
+msgstr "Folosește o etichetă personalizată pentru desklet"
 
 #. settings-schema.json->use-custom-label->tooltip
 msgid "Checking this box allows you to set a custom label in the field below."
-msgstr "Dacă bifați această casetă, puteți seta o etichetă personalizată în câmpul de mai jos."
+msgstr "Dacă bifezi această casetă, poți seta o etichetă personalizată în câmpul de mai jos."
 
 #. settings-schema.json->custom-label->description
 msgid "Custom desklet label"
@@ -315,4 +315,4 @@ msgstr "Etichetă personalizată de birou"
 
 #. settings-schema.json->custom-label->tooltip
 msgid "Set your custom label here. This field is unavailable unless the checkbox above is enabled."
-msgstr "Setați aici eticheta personalizată. Acest câmp nu este disponibil decât dacă caseta de selectare de mai sus este activată."
+msgstr "Setează aici eticheta personalizată. Acest câmp nu este disponibil decât dacă caseta de selectare de mai sus este activată."

@@ -28,10 +28,10 @@ msgid "General"
 msgstr "General"
 
 msgid "Monitor a file system or RAM usage"
-msgstr "Monitorizați un sistem de fișiere sau utilizarea RAM"
+msgstr "Monitorizează un sistem de fișiere sau utilizarea RAM"
 
 msgid "Choose, if this desklet should show file system or RAM usage."
-msgstr "Alegeți dacă acest desklet trebuie să afișeze utilizarea sistemului de fișiere sau a memoriei RAM."
+msgstr "Alege dacă acest desklet trebuie să afișeze utilizarea sistemului de fișiere sau a memoriei RAM."
 
 msgid "Filesystem"
 msgstr "Sistem de fișiere"
@@ -40,7 +40,7 @@ msgid "RAM"
 msgstr "RAM"
 
 msgid "Swap"
-msgstr "Schimbați"
+msgstr "Schimbă"
 
 msgid "Not Found"
 msgstr "Nu a fost găsit"
@@ -49,7 +49,7 @@ msgid "Filesystem to monitor"
 msgstr "Sistemul de fișiere de monitorizat"
 
 msgid "Select the file system, which you want to monitor."
-msgstr "Selectați sistemul de fișiere pe care doriți să îl monitorizați."
+msgstr "Selectează sistemul de fișiere pe care dorești să îl monitorizezi."
 
 msgid "Visual"
 msgstr "Vizual"
@@ -67,7 +67,7 @@ msgid "Compact"
 msgstr "Compact"
 
 msgid "Draw free/unused space (gray)"
-msgstr "Desenați spațiul liber/neutilizat (gri)"
+msgstr "Desenează spațiul liber/neutilizat (gri)"
 
 msgid "Text"
 msgstr "Text"
@@ -100,10 +100,10 @@ msgid "Binary"
 msgstr "Binary"
 
 msgid "Hide decorations"
-msgstr "Ascundeți decorațiunile"
+msgstr "Ascunde decorațiunile"
 
 msgid "Use a custom circle color"
-msgstr "Utilizați o culoare personalizată a cercului"
+msgstr "Utilizează o culoare personalizată a cercului"
 
 msgid "Circle color"
 msgstr "Culoarea cercului"
@@ -112,43 +112,43 @@ msgid "Text color"
 msgstr "Culoarea textului"
 
 msgid "Increase or decrease the size of this desklet using this scale factor."
-msgstr "Măriți sau micșorați dimensiunea acestui desklet folosind acest factor de scară."
+msgstr "Mărește sau micșorează dimensiunea acestui desklet folosind acest factor de scalare."
 
 msgid "Desklet size"
 msgstr "Dimensiune Desklet"
 
 msgid "scale factor"
-msgstr "factor de scară"
+msgstr "factor de scalare"
 
 msgid "Custom desklet label (only visible if decorations are enabled)"
 msgstr "Etichetă personalizată pentru desklet (vizibilă numai dacă sunt activate decorațiile)"
 
 msgid "Use a custom desklet label"
-msgstr "Folosiți o etichetă personalizată pentru desklet"
+msgstr "Folosește o etichetă personalizată pentru desklet"
 
 msgid "Checking this box allows you to set a custom label in the field below."
-msgstr "Dacă bifați această casetă, puteți seta o etichetă personalizată în câmpul de mai jos."
+msgstr "Dacă bifezi această casetă, poți seta o etichetă personalizată în câmpul de mai jos."
 
 msgid "Custom desklet label"
 msgstr "Etichetă personalizată de birou"
 
 msgid "Set your custom label here. This field is unavailable unless the checkbox above is enabled."
-msgstr "Setați aici eticheta personalizată. Acest câmp nu este disponibil decât dacă caseta de selectare de mai sus este activată."
+msgstr "Setează aici eticheta personalizată. Acest câmp nu este disponibil decât dacă caseta de selectare de mai sus este activată."
 
 msgid "Action on mouse click"
 msgstr "Acțiune la clicul mouse-ului"
 
 msgid "Choose what to do when the desklet was clicked."
-msgstr "Alegeți ce să faceți atunci când se face clic pe desklet."
+msgstr "Alege ce să faci atunci când se face clic pe desklet."
 
 msgid "Open File Manager"
-msgstr "Deschideți Managerul de fișiere"
+msgstr "Deschide Managerul de fișiere"
 
 msgid "Open Partition Manager"
-msgstr "Deschideți Partition Manager"
+msgstr "Deschide Partition Manager"
 
 msgid "Open System Monitor"
-msgstr "Deschideți Monitorul de sistem"
+msgstr "Deschide Monitorul de sistem"
 
 msgid "Nothing"
 msgstr "Nimic"

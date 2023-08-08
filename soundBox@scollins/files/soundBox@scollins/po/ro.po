@@ -24,7 +24,7 @@ msgstr ""
 #: 2.8/soundbox.js:629
 #: 2.8/soundbox.js:756
 msgid "Unmute"
-msgstr "Dezactivați"
+msgstr "Dezactivează"
 
 #: soundbox.js:637
 #: soundbox.js:762
@@ -33,19 +33,19 @@ msgstr "Dezactivați"
 #: 2.8/soundbox.js:637
 #: 2.8/soundbox.js:762
 msgid "Mute"
-msgstr "Mute"
+msgstr "Mut"
 
 #: soundbox.js:1024
 #: 2.5/soundbox.js:1024
 #: 2.8/soundbox.js:1024
 msgid "Show player"
-msgstr "Arată jucătorul"
+msgstr "Afișează playerul"
 
 #: soundbox.js:1037
 #: 2.5/soundbox.js:1037
 #: 2.8/soundbox.js:1037
 msgid "Close player"
-msgstr "Închideți jucătorul"
+msgstr "Închide playerul"
 
 #: soundbox.js:1151
 #: soundbox.js:1326
@@ -90,7 +90,7 @@ msgstr "Anterior"
 #: 2.8/soundbox.js:1375
 #: 2.8/soundbox.js:1380
 msgid "Play"
-msgstr "Joacă"
+msgstr "Redă"
 
 #: soundbox.js:1205
 #: 2.5/soundbox.js:1205
@@ -108,7 +108,7 @@ msgstr "Următorul"
 #: 2.5/soundbox.js:1217
 #: 2.8/soundbox.js:1217
 msgid "Repeat"
-msgstr "Repetați"
+msgstr "Repetă"
 
 #: soundbox.js:1226
 #: 2.5/soundbox.js:1226
@@ -126,19 +126,19 @@ msgstr "Repetare: Dezactivat"
 #: 2.5/soundbox.js:1272
 #: 2.8/soundbox.js:1272
 msgid "Repeat: Track"
-msgstr "Repetați: Pista"
+msgstr "Repetare: Pista"
 
 #: soundbox.js:1276
 #: 2.5/soundbox.js:1276
 #: 2.8/soundbox.js:1276
 msgid "Repeat: All"
-msgstr "Repet: Toate"
+msgstr "Repetare: Toate"
 
 #: soundbox.js:1284
 #: 2.5/soundbox.js:1284
 #: 2.8/soundbox.js:1284
 msgid "Shuffle: On"
-msgstr "Shuffle: Pe"
+msgstr "Shuffle: Activat"
 
 #: soundbox.js:1288
 #: 2.5/soundbox.js:1288
@@ -187,13 +187,13 @@ msgstr "Volumul de intrare:"
 #: 2.5/soundbox.js:1553
 #: 2.8/soundbox.js:1553
 msgid "Previous Player"
-msgstr "Jucătorul anterior"
+msgstr "Playerul anterior"
 
 #: soundbox.js:1562
 #: 2.5/soundbox.js:1562
 #: 2.8/soundbox.js:1562
 msgid "Next Player"
-msgstr "Următorul jucător"
+msgstr "Următorul player"
 
 #: 2.5/desklet.js:300
 #: 2.8/desklet.js:316
@@ -203,7 +203,7 @@ msgstr "Lansare Player"
 
 #: applet.js:88
 msgid "Players"
-msgstr "Jucători"
+msgstr "Playere"
 
 #. this.setPanelText();
 #. Cinnamon-Soundbox->metadata.json->name
@@ -215,31 +215,31 @@ msgstr "Soundbox"
 #. 2.8->settings-schema.json->compact->description
 #. Cinnamon-Soundbox->settings-schema.json->compact->description
 msgid "Use compact layout"
-msgstr "Utilizați un aspect compact"
+msgstr "Utilizează un aspect compact"
 
 #. 2.5->settings-schema.json->showApps->description
 #. 2.8->settings-schema.json->showApps->description
 #. Cinnamon-Soundbox->settings-schema.json->showApps->description
 msgid "Show application volume controls"
-msgstr "Afișați comenzile de control al volumului aplicației"
+msgstr "Afișează comenzile de control al volumului aplicației"
 
 #. 2.5->settings-schema.json->hideSystray->description
 #. 2.8->settings-schema.json->hideSystray->description
 #. Cinnamon-Soundbox->settings-schema.json->hideSystray->description
 msgid "Hide system tray icons for compatible players"
-msgstr "Ascundeți pictogramele din bara de sistem pentru jucătorii compatibili"
+msgstr "Ascunde pictogramele din bara de sistem pentru jucătorii compatibili"
 
 #. 2.5->settings-schema.json->showInput->description
 #. 2.8->settings-schema.json->showInput->description
 #. Cinnamon-Soundbox->settings-schema.json->showInput->description
 msgid "Show input volume controls"
-msgstr "Afișați controalele volumului de intrare"
+msgstr "Afișează controalele volumului de intrare"
 
 #. 2.5->settings-schema.json->exceedNormVolume->description
 #. 2.8->settings-schema.json->exceedNormVolume->description
 #. Cinnamon-Soundbox->settings-schema.json->exceedNormVolume->description
 msgid "Allow volume control to exceed 100% volume"
-msgstr "Permiteți controlul volumului să depășească volumul de 100%."
+msgstr "Permite controlul volumului să depășească volumul de 100%."
 
 #. 2.5->settings-schema.json->exceedNormVolume->tooltip
 #. 2.8->settings-schema.json->exceedNormVolume->tooltip
@@ -251,7 +251,7 @@ msgstr "Notă: unele aplicații nu sună bine la un volum de 100%."
 #. 2.8->settings-schema.json->showArt->description
 #. Cinnamon-Soundbox->settings-schema.json->showArt->description
 msgid "Show album artwork"
-msgstr "Afișați artwork-ul albumului"
+msgstr "Afișează coperta albumului"
 
 #. 2.5->settings-schema.json->centerRaised->description
 #. 2.8->settings-schema.json->centerRaised->description
@@ -269,7 +269,7 @@ msgstr "Tema"
 #. 2.8->settings-schema.json->theme->options
 #. Cinnamon-Soundbox->settings-schema.json->theme->options
 msgid "Ghost"
-msgstr "Fantoma"
+msgstr "Ghost"
 
 #. 2.5->settings-schema.json->theme->options
 #. 2.8->settings-schema.json->theme->options
@@ -281,7 +281,7 @@ msgstr "Hot Rod"
 #. 2.8->settings-schema.json->theme->options
 #. Cinnamon-Soundbox->settings-schema.json->theme->options
 msgid "Ice"
-msgstr "Gheață"
+msgstr "Ice"
 
 #. 2.5->settings-schema.json->theme->options
 #. 2.8->settings-schema.json->theme->options
@@ -293,13 +293,13 @@ msgstr "Mint-X"
 #. 2.8->settings-schema.json->theme->options
 #. Cinnamon-Soundbox->settings-schema.json->theme->options
 msgid "Forest"
-msgstr "Pădure"
+msgstr "Forest"
 
 #. 2.5->settings-schema.json->theme->options
 #. 2.8->settings-schema.json->theme->options
 #. Cinnamon-Soundbox->settings-schema.json->theme->options
 msgid "Clean"
-msgstr "Curat"
+msgstr "Clean"
 
 #. 2.5->settings-schema.json->theme->options
 #. 2.8->settings-schema.json->theme->options
@@ -311,13 +311,13 @@ msgstr "Camuflaj (încearcă să se amestece)"
 #. 2.8->settings-schema.json->theme->options
 #. Cinnamon-Soundbox->settings-schema.json->theme->options
 msgid "Mint"
-msgstr "Mentă"
+msgstr "Mint"
 
 #. 2.5->settings-schema.json->artSize->description
 #. 2.8->settings-schema.json->artSize->description
 #. Cinnamon-Soundbox->settings-schema.json->artSize->description
 msgid "Artwork size"
-msgstr "Dimensiunea lucrării de artă"
+msgstr "Dimensiunea copertei"
 
 #. 2.5->settings-schema.json->appearance->description
 #. 2.8->settings-schema.json->appearance->description
@@ -329,13 +329,13 @@ msgstr "Aspect"
 #. 2.8->settings-schema.json->countUp->description
 #. Cinnamon-Soundbox->settings-schema.json->countUp->description
 msgid "Timer counts up"
-msgstr "Cronometrul numără până"
+msgstr "Cronometrul numără în sus"
 
 #. 2.5->settings-schema.json->raiseKey->description
 #. 2.8->settings-schema.json->raiseKey->description
 #. Cinnamon-Soundbox->settings-schema.json->raiseKey->description
 msgid "Raise to top shorcut key"
-msgstr "Ridicați până la tasta scurtă de sus"
+msgstr "Ridică până la tasta de sus"
 
 #. Cinnamon-Soundbox->metadata.json->description
 msgid "A desklet to view sound settings and manage media controls"
@@ -355,4 +355,4 @@ msgstr "Corbin(RavetcoFX) - Bugfix"
 
 #. Cinnamon-Soundbox->metadata.json->comments
 msgid "Soundbox is an attractive and easy-to-use Desklet designed to control your volume and media players. It was originally forked from the Cinnamon sound applet, but has grown and evolved over time. Feel free to contribute by submitting pull requests, bug reports and feature requests to my github repo."
-msgstr "Soundbox este un Desklet atractiv și ușor de utilizat, conceput pentru a controla volumul și playerele media. Inițial, a fost creat pornind de la applet-ul de sunet Cinnamon, dar a crescut și a evoluat de-a lungul timpului. Nu ezitați să contribuiți trimițând cereri de extragere, rapoarte de erori și cereri de caracteristici la repo-ul meu github."
+msgstr "Soundbox este un Desklet atractiv și ușor de utilizat, conceput pentru a controla volumul și playerele media. Inițial, a fost creat pornind de la applet-ul de sunet Cinnamon, dar a crescut și a evoluat de-a lungul timpului. Nu ezita să contribui trimițând pull requesturi, rapoarte de erori și cereri noi la repo-ul meu github."

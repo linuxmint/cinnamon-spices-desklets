@@ -27,7 +27,7 @@ msgstr "Ceas binar²"
 
 #. binaryclock2@euxneks->metadata.json->description
 msgid "Based off of entelechy's binary clock, fixed to work with 17.2 and also added the option to have squared pips instead of circled pips."
-msgstr "Bazat pe ceasul binar al lui Entelechy, fixat pentru a funcționa cu 17.2 și, de asemenea, a adăugat opțiunea de a avea sâmburi pătrați în loc de sâmburi încercuiți."
+msgstr "Bazat pe ceasul binar al lui entelechy, reparat pentru a funcționa cu 17.2 și, de asemenea, a adăugat opțiunea de a avea puncte pătrate în loc de puncte încercuite."
 
 #. binaryclock2@euxneks->settings-schema.json->head->description
 msgid "Style"
@@ -51,15 +51,15 @@ msgstr "Culoarea Pip:"
 
 #. binaryclock2@euxneks->settings-schema.json->color->tooltip
 msgid "Select a color for pips only"
-msgstr "Selectați o culoare doar pentru sâmburi"
+msgstr "Selectează o culoare doar pentru sâmburi"
 
 #. binaryclock2@euxneks->settings-schema.json->pip-type->description
 msgid "Use circles for pips"
-msgstr "Folosiți cercuri pentru sâmburi"
+msgstr "Folosește cercuri pentru sâmburi"
 
 #. binaryclock2@euxneks->settings-schema.json->pip-type->tooltip
 msgid "Use circles or squares for pips"
-msgstr "Folosiți cercuri sau pătrate pentru vârfuri"
+msgstr "Folosește cercuri sau pătrate pentru vârfuri"
 
 #. binaryclock2@euxneks->settings-schema.json->size->description
 msgid "Pip size:"
@@ -67,7 +67,7 @@ msgstr "Dimensiunea Pip:"
 
 #. binaryclock2@euxneks->settings-schema.json->size->tooltip
 msgid "Select a size/diameter for the pips"
-msgstr "Selectați o dimensiune/un diametru pentru sâmburi"
+msgstr "Selectează o dimensiune/un diametru pentru sâmburi"
 
 #. binaryclock2@euxneks->settings-schema.json->size->units
 msgid "pixels"

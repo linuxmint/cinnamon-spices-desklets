@@ -24,4 +24,4 @@ msgstr "Oprire"
 
 #. shutdown@phpdreamer->metadata.json->name
 msgid "shutdown linux"
-msgstr "închidere linux"
+msgstr "oprire linux"

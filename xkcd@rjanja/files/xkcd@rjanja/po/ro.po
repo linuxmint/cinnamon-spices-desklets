@@ -27,7 +27,7 @@ msgstr "Vezi cele mai recente xkcd"
 
 #: desklet.js:228
 msgid "Open save folder"
-msgstr "Deschideți dosarul de salvare"
+msgstr "Deschide dosarul de salvare"
 
 #. xkcd@rjanja->metadata.json->name
 msgid "xkcd comics viewer"
@@ -35,4 +35,4 @@ msgstr "vizualizator de benzi desenate xkcd"
 
 #. xkcd@rjanja->metadata.json->description
 msgid "A viewer for today's xkcd comic"
-msgstr "Un spectator pentru banda desenată xkcd de astăzi"
+msgstr "Un vizualizator pentru banda desenată xkcd de astăzi"

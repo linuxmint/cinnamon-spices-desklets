@@ -23,7 +23,7 @@ msgstr "Ceas"
 
 #. clockTow@armandobs14->metadata.json->description
 msgid "A fork desklet that displays the time"
-msgstr "Un desklet cu furculiță care afișează ora"
+msgstr "Un desklet derivat care afișează ora"
 
 #. clockTow@armandobs14->metadata.json->name
 msgid "ClockTow desklet"

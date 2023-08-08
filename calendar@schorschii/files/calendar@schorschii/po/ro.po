@@ -104,15 +104,15 @@ msgstr "Un desklet de calendar care poate afișa numărul de întâlniri de ast�
 
 #. calendar@schorschii->settings-schema.json->notification-color->description
 msgid "Appointment number background color"
-msgstr "Numerele de programare culoare de fundal"
+msgstr "Culoarea de fundal a numărului de programări"
 
 #. calendar@schorschii->settings-schema.json->notification-color->tooltip
 msgid "Set the appointment number background color of this desklet."
-msgstr "Setați culoarea de fundal a numărului de programări pentru acest desklet."
+msgstr "Setează culoarea de fundal a numărului de programări pentru acest desklet."
 
 #. calendar@schorschii->settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
-msgstr "Ascundeți decorațiunile"
+msgstr "Ascunde decorațiunile"
 
 #. calendar@schorschii->settings-schema.json->head3->description
 msgid "Custom desklet label (only visible if decorations are enabled)"
@@ -136,7 +136,7 @@ msgstr "Stil de calendar"
 
 #. calendar@schorschii->settings-schema.json->bg-img->tooltip
 msgid "Select the background graphic you would like to use."
-msgstr "Selectați grafica de fundal pe care doriți să o utilizați."
+msgstr "Selectează grafica de fundal pe care dorești să o utilizezi."
 
 #. calendar@schorschii->settings-schema.json->bg-img->options
 msgid "Orange"
@@ -152,7 +152,7 @@ msgstr "Culoarea textului"
 
 #. calendar@schorschii->settings-schema.json->text-color->tooltip
 msgid "Set the text color of this desklet."
-msgstr "Setați culoarea textului din acest desklet."
+msgstr "Setează culoarea textului din acest desklet."
 
 #. calendar@schorschii->settings-schema.json->read-appointments->description
 msgid "Show the number of today's appointments parsed from an ical file"
@@ -160,7 +160,7 @@ msgstr "Afișează numărul de programări de astăzi analizate dintr-un fișier
 
 #. calendar@schorschii->settings-schema.json->read-appointments->tooltip
 msgid "Checking this box allows you to set an ical file to parse in the field below."
-msgstr "Dacă bifați această casetă, puteți seta un fișier ical care să fie analizat în câmpul de mai jos."
+msgstr "Dacă bifezi această casetă, poți seta un fișier ical care să fie analizat în câmpul de mai jos."
 
 #. calendar@schorschii->settings-schema.json->ical-file->description
 msgid "Path to ical file"
@@ -172,9 +172,9 @@ msgid ""
 "\n"
 "You can configure Lightning (the Thunderbird Add-On) to save your calendar in an ical file."
 msgstr ""
-"Selectați fișierul dvs. ical pentru citirea sumei numirilor de astăzi.\n"
+"Selectează fișierul ta ical pentru citirea sumei numirilor de astăzi.\n"
 "\n"
-"Puteți configura Lightning (add-on-ul Thunderbird) pentru a vă salva calendarul într-un fișier ical."
+"Poți configura Lightning (add-on-ul Thunderbird) pentru a îți salva calendarul într-un fișier ical."
 
 #. calendar@schorschii->settings-schema.json->scale-size->description
 msgid "Desklet size"
@@ -182,19 +182,19 @@ msgstr "Dimensiune Desklet"
 
 #. calendar@schorschii->settings-schema.json->scale-size->tooltip
 msgid "Increase or decrease the size of the calendar using this scale factor."
-msgstr "Măriți sau micșorați dimensiunea calendarului folosind acest factor de scară."
+msgstr "Mărește sau micșorează dimensiunea calendarului folosind acest factor de scalare."
 
 #. calendar@schorschii->settings-schema.json->scale-size->units
 msgid "scale factor"
-msgstr "factor de scară"
+msgstr "factor de scalare"
 
 #. calendar@schorschii->settings-schema.json->use-custom-label->description
 msgid "Use a custom desklet label"
-msgstr "Folosiți o etichetă personalizată pentru desklet"
+msgstr "Folosește o etichetă personalizată pentru desklet"
 
 #. calendar@schorschii->settings-schema.json->use-custom-label->tooltip
 msgid "Checking this box allows you to set a custom label in the field below."
-msgstr "Dacă bifați această casetă, puteți seta o etichetă personalizată în câmpul de mai jos."
+msgstr "Dacă bifezi această casetă, poți seta o etichetă personalizată în câmpul de mai jos."
 
 #. calendar@schorschii->settings-schema.json->custom-label->description
 msgid "Custom desklet label"
@@ -202,7 +202,7 @@ msgstr "Etichetă personalizată de birou"
 
 #. calendar@schorschii->settings-schema.json->custom-label->tooltip
 msgid "Set your custom label here, e.g. for monitoring multiple ical files. This field is unavailable unless the checkbox above is enabled."
-msgstr "Setați aici eticheta dvs. personalizată, de exemplu pentru monitorizarea mai multor fișiere ical. Acest câmp nu este disponibil decât dacă caseta de selectare de mai sus este activată."
+msgstr "Setează aici eticheta ta personalizată, de exemplu pentru monitorizarea mai multor fișiere ical. Acest câmp nu este disponibil decât dacă caseta de selectare de mai sus este activată."
 
 msgid "Appointment number color"
 msgstr "Numerele de programare culoare"
@@ -211,13 +211,13 @@ msgid "Start program on click of the desklet"
 msgstr "Start program la click pe desklet"
 
 msgid "Start a program (e.g. Thunderbird)"
-msgstr "Porniți un program (de exemplu, Thunderbird)"
+msgstr "Pornește un program (de exemplu, Thunderbird)"
 
 msgid "The command entered below will be executed on mouse click of the desklet. So you can directly start Thunderbird."
-msgstr "Comanda introdusă mai jos va fi executată la un clic de mouse pe desklet. Astfel, puteți lansa direct Thunderbird."
+msgstr "Comanda introdusă mai jos va fi executată la un clic de mouse pe desklet. Astfel, poți lansa direct Thunderbird."
 
 msgid "Command line"
 msgstr "Linia de comandă"
 
 msgid "Set your program including parameters to start on click."
-msgstr "Setați programul, inclusiv parametrii, pentru a porni la un clic."
+msgstr "Setează programul, inclusiv parametrii, pentru a porni la un clic."

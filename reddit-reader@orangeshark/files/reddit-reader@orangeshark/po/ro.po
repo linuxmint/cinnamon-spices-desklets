@@ -22,8 +22,8 @@ msgstr ""
 msgid "%d point"
 msgid_plural "%d points"
 msgstr[0] "%d punct"
-msgstr[1] ""
-msgstr[2] ""
+msgstr[1] "%d puncte"
+msgstr[2] "%d de puncte"
 
 #: desklet.js:274
 msgid "by"
@@ -38,12 +38,12 @@ msgstr "la"
 msgid "%d comment"
 msgid_plural "%d comments"
 msgstr[0] "%d comentariu"
-msgstr[1] ""
-msgstr[2] ""
+msgstr[1] "%d comentarii"
+msgstr[2] "%d de comentarii"
 
 #. reddit-reader@orangeshark->metadata.json->description
 msgid "A desklet to read subreddits"
-msgstr "Un desklet pentru a citi subreddits"
+msgstr "Un desklet pentru a citi subreddituri"
 
 #. reddit-reader@orangeshark->metadata.json->name
 msgid "reddit reader desklet"

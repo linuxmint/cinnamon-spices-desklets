@@ -65,7 +65,7 @@ msgstr "Segmente întunecate"
 
 #. settings-schema.json->digit-stroke->title
 msgid "Stroke"
-msgstr "Accident vascular cerebral"
+msgstr "Contur"
 
 #. settings-schema.json->clock-appearance->title
 msgid "Clock appearance"
@@ -73,11 +73,11 @@ msgstr "Aspectul ceasului"
 
 #. settings-schema.json->date-appearance->title
 msgid "Date appearance"
-msgstr "Data apariției"
+msgstr "Aspectul datei"
 
 #. settings-schema.json->unix-appearance->title
 msgid "Unix time appearance"
-msgstr "Apariția timpului Unix"
+msgstr "Aspectul orei Unix"
 
 #. settings-schema.json->main-layout->options
 msgid "Clock - Date - Unix"
@@ -121,7 +121,7 @@ msgstr "Spațiul dintre elementele principale"
 
 #. settings-schema.json->show-background->description
 msgid "Show background"
-msgstr "Arată fundalul"
+msgstr "Afișează fundalul"
 
 #. settings-schema.json->background-color->description
 #. settings-schema.json->digit-color->description
@@ -171,15 +171,15 @@ msgstr "Această valoare va fi redusă din ce în ce mai mult de distorsiunea ci
 
 #. settings-schema.json->digit-alt69->description
 msgid "Alternative 6 and 9"
-msgstr "Alternativele 6 și 9"
+msgstr "Alternative pentru 6 și 9"
 
 #. settings-schema.json->digit-alt7->description
 msgid "Alternative 7"
-msgstr "Alternativa 7"
+msgstr "Alternativă pentru 7"
 
 #. settings-schema.json->dark-enabled->description
 msgid "Show dark segments of the digits"
-msgstr "Afișați segmentele întunecate ale cifrelor"
+msgstr "Afișează segmentele întunecate ale cifrelor"
 
 #. settings-schema.json->dark-color->options
 msgid "Black"
@@ -195,7 +195,7 @@ msgstr "la fel ca și iluminată"
 
 #. settings-schema.json->stroke-enabled->description
 msgid "Add stroke"
-msgstr "Adăugați accident vascular cerebral"
+msgstr "Adaugă contur"
 
 #. settings-schema.json->stroke-width->description
 msgid "Width"
@@ -203,7 +203,7 @@ msgstr "Lățime"
 
 #. settings-schema.json->show-clock->description
 msgid "Show clock"
-msgstr "Arată ceasul"
+msgstr "Afișează ceasul"
 
 #. settings-schema.json->clock-height->description
 #. settings-schema.json->date-height->description
@@ -213,7 +213,7 @@ msgstr "Înălțimea cifrei"
 
 #. settings-schema.json->show-seconds->description
 msgid "Show seconds"
-msgstr "Arată secundele"
+msgstr "Afișează secundele"
 
 #. settings-schema.json->small-seconds->description
 msgid "Smaller seconds"
@@ -235,7 +235,7 @@ msgstr "jumătate de spațiu"
 #. settings-schema.json->date-divider->options
 #. settings-schema.json->unix-divider->options
 msgid "full space"
-msgstr "spațiu plin"
+msgstr "spațiu complet"
 
 #. settings-schema.json->clock-divider->options
 #. settings-schema.json->date-divider->options
@@ -276,15 +276,15 @@ msgstr "off"
 #. settings-schema.json->leading-zero->options
 #. settings-schema.json->clock-ampm->options
 msgid "hide"
-msgstr "ascundeți"
+msgstr "ascunde"
 
 #. settings-schema.json->leading-zero->options
 msgid "remove"
-msgstr "eliminați"
+msgstr "elimină"
 
 #. settings-schema.json->leading-zero->description
 msgid "Leading zero in hours"
-msgstr "Liderul zero în ore"
+msgstr "Zero la început în ore"
 
 #. settings-schema.json->clock-12h->description
 msgid "12h instead of 24h"
@@ -308,7 +308,7 @@ msgstr "Indicator AM/PM"
 
 #. settings-schema.json->show-date->description
 msgid "Show date"
-msgstr "Data spectacolului"
+msgstr "Arată data"
 
 #. settings-schema.json->date-format->options
 msgid "Year - Month - Day"

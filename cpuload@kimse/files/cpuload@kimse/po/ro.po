@@ -44,11 +44,11 @@ msgstr "General"
 
 #. settings-schema.json->per-core->description
 msgid "Show all CPU cores"
-msgstr "Afișați toate nucleele CPU"
+msgstr "Afișează toate nucleele CPU"
 
 #. settings-schema.json->per-core->tooltip
 msgid "Display utilization of each CPU core rather than total CPU utilization."
-msgstr "Afișarea utilizării fiecărui nucleu de procesor, mai degrabă decât a utilizării totale a procesorului."
+msgstr "Afișează utilizarea fiecărui nucleu de procesor, mai degrabă decât utilizarea totală a procesorului."
 
 #. settings-schema.json->refresh-interval->units
 msgid "seconds"
@@ -60,7 +60,7 @@ msgstr "Interval de reîmprospătare"
 
 #. settings-schema.json->refresh-interval->tooltip
 msgid "Increase or decrease refresh interval in seconds."
-msgstr "Măriți sau micșorați intervalul de reîmprospătare în secunde."
+msgstr "Mărește sau micșorează intervalul de reîmprospătare în secunde."
 
 #. settings-schema.json->head2->description
 msgid "Layout"
@@ -96,7 +96,7 @@ msgstr "Cercul complet"
 
 #. settings-schema.json->scale-size->units
 msgid "scale factor"
-msgstr "factor de scară"
+msgstr "factor de scalare"
 
 #. settings-schema.json->scale-size->description
 msgid "Desklet size"
@@ -104,7 +104,7 @@ msgstr "Dimensiune Desklet"
 
 #. settings-schema.json->scale-size->tooltip
 msgid "Increase or decrease the size of the desklet."
-msgstr "Măriți sau micșorați dimensiunea deskletului."
+msgstr "Mărește sau micșorează dimensiunea deskletului."
 
 #. settings-schema.json->number-of-columns->units
 msgid "columns"
@@ -116,7 +116,7 @@ msgstr "Număr de coloane"
 
 #. settings-schema.json->number-of-columns->tooltip
 msgid "Increase or decrease number of columns."
-msgstr "Măriți sau micșorați numărul de coloane."
+msgstr "Mărește sau micșorează numărul de coloane."
 
 #. settings-schema.json->head3->description
 msgid "Colors"
@@ -152,8 +152,8 @@ msgstr "Fond"
 
 #. settings-schema.json->show-background->description
 msgid "Show background"
-msgstr "Arată fundalul"
+msgstr "Afișează fundalul"
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
-msgstr "Ascundeți decorațiunile"
+msgstr "Ascunde decorațiunile"

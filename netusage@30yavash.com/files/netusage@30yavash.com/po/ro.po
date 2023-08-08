@@ -19,15 +19,15 @@ msgstr ""
 
 #: desklet.js:104
 msgid "Please make sure vnstat and vnstati are installed and that the vnstat daemon is running!"
-msgstr "Vă rugăm să vă asigurați că vnstat și vnstati sunt instalate și că daemonul vnstat rulează!"
+msgstr "Te rugăm să te asiguri că vnstat și vnstati sunt instalate și că daemonul vnstat rulează!"
 
 #: desklet.js:105
 msgid "In Linux Mint, you can simply run 'apt install vnstati' and that will take care of everything."
-msgstr "În Linux Mint, puteți rula pur și simplu \"apt install vnstati\", care se va ocupa de tot."
+msgstr "În Linux Mint, poți rula pur și simplu \"apt install vnstati\", care se va ocupa de tot."
 
 #: desklet.js:106
 msgid "In other distributions it might depend on the way things are packaged but its likely to be similar."
-msgstr "În alte distribuții ar putea depinde de modul în care sunt împachetate lucrurile, dar este posibil să fie similar."
+msgstr "În alte distribuții ar putea depinde de modul în care sunt instalate lucrurile, dar este posibil să fie similar."
 
 #. netusage@30yavash.com->metadata.json->name
 msgid "Network usage monitor"
@@ -43,7 +43,7 @@ msgstr "Setări pentru Applet de utilizare a rețelei (utilizează vnstati)"
 
 #. netusage@30yavash.com->setting-schema.json->useExtendedDisplay->description
 msgid "Enable Extended Display Options"
-msgstr "Activați opțiunile de afișare extinsă"
+msgstr "Activează opțiunile de afișare extinsă"
 
 #. netusage@30yavash.com->setting-schema.json->useExtendedDisplay->tooltip
 msgid "This is a new option from version 1.0.3"

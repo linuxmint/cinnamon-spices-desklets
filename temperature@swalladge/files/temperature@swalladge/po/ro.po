@@ -40,7 +40,7 @@ msgstr "pixeli"
 
 #. temperature@swalladge->settings-schema.json->head->description
 msgid "Current Temperature Settings"
-msgstr "Setări de temperatură curentă"
+msgstr "Setări de temperatură curente"
 
 #. temperature@swalladge->settings-schema.json->server->description
 msgid "Server :"

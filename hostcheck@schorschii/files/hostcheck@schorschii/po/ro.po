@@ -70,7 +70,7 @@ msgstr "Verificarea Ping sau HTTP(S)"
 
 #. settings-schema.json->type->tooltip
 msgid "Choose, if this desklet should do a ping or HTTP(S) check."
-msgstr "Alegeți dacă acest desklet trebuie să efectueze o verificare ping sau HTTP(S)."
+msgstr "Alege dacă acest desklet trebuie să efectueze o verificare ping sau HTTP(S)."
 
 #. settings-schema.json->type->options
 msgid "Ping"
@@ -82,7 +82,7 @@ msgstr "HTTP(S)"
 
 #. settings-schema.json->show-notifications->description
 msgid "Show notifications when state changed"
-msgstr "Afișați notificări atunci când se schimbă starea"
+msgstr "Afișează notificări atunci când se schimbă starea"
 
 #. settings-schema.json->host->description
 msgid "Hostname, IP address or HTTP(S)-URL to check"
@@ -106,11 +106,11 @@ msgstr "Dimensiune Desklet"
 
 #. settings-schema.json->scale-size->tooltip
 msgid "Increase or decrease the size of this desklet using this scale factor."
-msgstr "Măriți sau micșorați dimensiunea acestui desklet folosind acest factor de scară."
+msgstr "Mărește sau micșorează dimensiunea acestui desklet folosind acest factor de scară."
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
-msgstr "Ascundeți decorațiunile"
+msgstr "Ascunde decorațiunile"
 
 #. settings-schema.json->head3->description
 msgid "Custom desklet label (only visible if decorations are enabled)"
@@ -118,11 +118,11 @@ msgstr "Etichetă personalizată pentru desklet (vizibilă numai dacă sunt acti
 
 #. settings-schema.json->use-custom-label->description
 msgid "Use a custom desklet label"
-msgstr "Folosiți o etichetă personalizată pentru desklet"
+msgstr "Folosește o etichetă personalizată pentru desklet"
 
 #. settings-schema.json->use-custom-label->tooltip
 msgid "Checking this box allows you to set a custom label in the field below."
-msgstr "Dacă bifați această casetă, puteți seta o etichetă personalizată în câmpul de mai jos."
+msgstr "Dacă bifezi această casetă, poți seta o etichetă personalizată în câmpul de mai jos."
 
 #. settings-schema.json->custom-label->description
 msgid "Custom desklet label"
@@ -130,4 +130,4 @@ msgstr "Etichetă personalizată de birou"
 
 #. settings-schema.json->custom-label->tooltip
 msgid "Set your custom label here. This field is unavailable unless the checkbox above is enabled."
-msgstr "Setați aici eticheta personalizată. Acest câmp nu este disponibil decât dacă caseta de selectare de mai sus este activată."
+msgstr "Setează aici eticheta personalizată. Acest câmp nu este disponibil decât dacă caseta de selectare de mai sus este activată."

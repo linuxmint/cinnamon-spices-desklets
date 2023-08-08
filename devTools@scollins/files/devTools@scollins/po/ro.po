@@ -29,17 +29,17 @@ msgstr "Unelte"
 #: desklet.js:406
 #: desklet.js:538
 msgid "Expand"
-msgstr "Extindeți"
+msgstr "Extinde"
 
 #. settings-schema.json->collapsedStartState->options
 #: desklet.js:410
 #: desklet.js:555
 msgid "Collapse"
-msgstr "Colaps"
+msgstr "Micșorează"
 
 #: desklet.js:432
 msgid "Open Cinnamon Settings"
-msgstr "Deschideți Setări Cinnamon"
+msgstr "Deschide Setări Cinnamon"
 
 #: desklet.js:440
 msgid "Start Sandbox"
@@ -47,7 +47,7 @@ msgstr "Start Sandbox"
 
 #: desklet.js:448
 msgid "Run command line"
-msgstr "Rulați linia de comandă"
+msgstr "Rulează linia de comandă"
 
 #: desklet.js:456
 #: extensions.js:160
@@ -56,19 +56,19 @@ msgstr "Rulați linia de comandă"
 #: inspect.js:555
 #: windows.js:89
 msgid "Inspect"
-msgstr "Inspectați"
+msgstr "Inspectează"
 
 #: desklet.js:464
 msgid "Open Looking Glass"
-msgstr "Oglindă deschisă"
+msgstr "Deschide Looking Glass"
 
 #: desklet.js:474
 msgid "Reload Theme"
-msgstr "Reîncărcați tema"
+msgstr "Reîncarcă tema"
 
 #: desklet.js:484
 msgid "Restart Cinnamon"
-msgstr "Reporniți Cinnamon"
+msgstr "Repornește Cinnamon"
 
 #: errorLog.js:44
 msgid "X-Session Log"
@@ -76,7 +76,7 @@ msgstr "X-Session Log"
 
 #: errorLog.js:62
 msgid "Hide old errors"
-msgstr "Ascundeți erorile vechi"
+msgstr "Ascunde erorile vechi"
 
 #: errorLog.js:77
 #: terminal.js:68
@@ -85,11 +85,11 @@ msgstr "Clar"
 
 #: errorLog.js:130
 msgid "Cinnamon Log"
-msgstr "Jurnal de scorțișoară"
+msgstr "Jurnal Cinnamon"
 
 #: errorLog.js:147
 msgid "Show Timestamp"
-msgstr "Arată marcajul de timp"
+msgstr "Afișează marcajul de timp"
 
 #: errorLog.js:155
 msgid "Infos"
@@ -105,11 +105,11 @@ msgstr "Erori"
 
 #: errorLog.js:179
 msgid "Traces"
-msgstr "Urmează"
+msgstr "Urme"
 
 #: errorLog.js:193
 msgid "Copy"
-msgstr "Copiați"
+msgstr "Copiază"
 
 #: extensions.js:70
 msgid "Infinite"
@@ -122,7 +122,7 @@ msgstr "Reîncărcare"
 #: extensions.js:130
 #: extensions.js:165
 msgid "Remove"
-msgstr "Eliminați"
+msgstr "Elimină"
 
 #: extensions.js:136
 msgid "Instances"
@@ -135,7 +135,7 @@ msgstr "maximum de"
 #: extensions.js:155
 #: extensions.js:173
 msgid "Highlight"
-msgstr "Evidențiați"
+msgstr "Evidențiază"
 
 #: extensions.js:186
 msgid "Configure"
@@ -157,11 +157,11 @@ msgstr "Nu sunt activate extensii de acest tip"
 
 #: inspect.js:126
 msgid "(Press Pause or Control to disable event pass through)"
-msgstr "(Apăsați Pauză sau Control pentru a dezactiva trecerea evenimentului)"
+msgstr "(Apasă Pauză sau Control pentru a dezactiva trecerea evenimentului)"
 
 #: inspect.js:128
 msgid "(Press Pause or Control to enable event pass through)"
-msgstr "(Apăsați Pauză sau Control pentru a activa trecerea evenimentului)"
+msgstr "(Apasă Pauză sau Control pentru a activa trecerea evenimentului)"
 
 #: inspect.js:411
 msgid "Length"
@@ -258,15 +258,15 @@ msgstr "Valoare"
 
 #: sandbox.js:76
 msgid "Open"
-msgstr "Deschideți"
+msgstr "Deschide"
 
 #: sandbox.js:82
 msgid "Save"
-msgstr "Salvați"
+msgstr "Salvează"
 
 #: sandbox.js:88
 msgid "Save As"
-msgstr "Salvați ca"
+msgstr "Salvează ca"
 
 #: sandbox.js:149
 msgid "Sandbox"
@@ -274,7 +274,7 @@ msgstr "Sandbox"
 
 #: sandbox.js:165
 msgid "Evaluate"
-msgstr "Evaluați"
+msgstr "Evaluează"
 
 #: sandbox.js:170
 msgid "Javascript"
@@ -294,7 +294,7 @@ msgstr "Nu au fost detectate erori"
 
 #: tab.js:126
 msgid "Close Tab"
-msgstr "Închideți fila"
+msgstr "Închide fila"
 
 #: terminal.js:54
 msgid "Command"
@@ -306,11 +306,11 @@ msgstr "Stare"
 
 #: terminal.js:60
 msgid "Running"
-msgstr "Alergare"
+msgstr "În desfășurare"
 
 #: terminal.js:73
 msgid "End Process"
-msgstr "Sfârșitul procesului"
+msgstr "Sfârșește procesul"
 
 #: terminal.js:82
 msgid "Output"
@@ -318,11 +318,11 @@ msgstr "Ieșire"
 
 #: terminal.js:108
 msgid "Stopped"
-msgstr "S-a oprit"
+msgstr "Oprit"
 
 #: terminal.js:231
 msgid "Run"
-msgstr "Rulați"
+msgstr "Rulează"
 
 #: windows.js:24
 #: windows.js:126
@@ -331,11 +331,11 @@ msgstr "toate"
 
 #: windows.js:95
 msgid "Switch to"
-msgstr "Comutați la"
+msgstr "Comută la"
 
 #: windows.js:101
 msgid "Close"
-msgstr "Închideți"
+msgstr "Închide"
 
 #: windows.js:144
 msgid "Windows"
@@ -351,7 +351,7 @@ msgstr "Stephen Collins - Autor"
 
 #. metadata.json->comments
 msgid "This desklet provides tools to help troubleshoot, view and control certain Cinnamon components and status information, and even test new code without restarting Cinnamon."
-msgstr "Acest desklet oferă instrumente pentru a ajuta la depanare, pentru a vizualiza și controla anumite componente Cinnamon și informații de stare și chiar pentru a testa un nou cod fără a reporni Cinnamon."
+msgstr "Acest desklet oferă instrumente pentru a ajuta la depanare, pentru a vizualiza și controla anumite componente Cinnamon și informații de stare și chiar pentru a testa cod nou fără a reporni Cinnamon."
 
 #. metadata.json->name
 msgid "Developer's Tools"
@@ -363,23 +363,23 @@ msgstr "La pornire"
 
 #. settings-schema.json->collapsedStartState->options
 msgid "Remember Previous State"
-msgstr "Amintiți-vă de starea anterioară"
+msgstr "Amintește-ți de starea anterioară"
 
 #. settings-schema.json->collapsedStartState->options
 msgid "Show"
-msgstr "Arată"
+msgstr "Afișează"
 
 #. settings-schema.json->collapsed->description
 msgid "Collapsed"
-msgstr "Prăbușit"
+msgstr "Micșorat"
 
 #. settings-schema.json->raiseKey->description
 msgid "Raise to top shorcut key"
-msgstr "Ridicați până la tasta scurtă de sus"
+msgstr "Ridică până la tasta scurtă de sus"
 
 #. settings-schema.json->centerRaised->description
 msgid "Center the desklet on the screen in raised mode"
-msgstr "Centrați desklet-ul pe ecran în modul ridicat"
+msgstr "Centrează desklet-ul pe ecran în modul ridicat"
 
 #. settings-schema.json->sandboxHeader->description
 msgid "Sandbox header"

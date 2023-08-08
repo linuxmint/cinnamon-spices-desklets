@@ -31,8 +31,8 @@ msgstr "Ajutor"
 
 #. TimeAndDate@nightflame->metadata.json->description
 msgid "A fork desklet that displays the time and date"
-msgstr "Un desklet cu furculiță care afișează ora și data"
+msgstr "Un desklet derivat care afișează ora și data"
 
 #. TimeAndDate@nightflame->metadata.json->name
 msgid "Time and Date Desklet"
-msgstr "Ora și data Desklet"
+msgstr "Desklet pentru oră și dată"

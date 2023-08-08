@@ -40,7 +40,7 @@ msgstr "Ce tip de adresă să fie afișată (dacă este disponibilă)"
 
 #. settings-schema.json->iptype->options
 msgid "Both"
-msgstr "Atât"
+msgstr "Ambele"
 
 #. settings-schema.json->iptype->options
 msgid "IPv4"

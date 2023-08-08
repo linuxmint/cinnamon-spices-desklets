@@ -31,23 +31,23 @@ msgstr "Stilul ceasului"
 
 #. clock@schorschii->settings-schema.json->style->tooltip
 msgid "Select the background graphic you would like to use."
-msgstr "Selectați grafica de fundal pe care doriți să o utilizați."
+msgstr "Selectează grafica de fundal pe care dorești să o utilizezi."
 
 #. clock@schorschii->settings-schema.json->style->options
 msgid "Dark"
-msgstr "Întuneric"
+msgstr "Închis"
 
 #. clock@schorschii->settings-schema.json->style->options
 msgid "Light"
-msgstr "Lumină"
+msgstr "Deschis"
 
 #. clock@schorschii->settings-schema.json->style->options
 msgid "Dark Transparent"
-msgstr "Întunecat Transparent"
+msgstr "Închis Transparent"
 
 #. clock@schorschii->settings-schema.json->style->options
 msgid "Light Transparent"
-msgstr "Lumină transparentă"
+msgstr "Deschis transparent"
 
 #. clock@schorschii->settings-schema.json->style->options
 msgid "Custom"
@@ -63,7 +63,7 @@ msgstr "Dimensiune Desklet"
 
 #. clock@schorschii->settings-schema.json->desklet-size->tooltip
 msgid "Increase or decrease the size of the clock."
-msgstr "Măriți sau micșorați dimensiunea ceasului."
+msgstr "Mărește sau micșorează dimensiunea ceasului."
 
 #. clock@schorschii->settings-schema.json->desklet-size->units
 msgid "pixels"
@@ -79,11 +79,11 @@ msgstr "Vizual"
 
 #. clock@schorschii->settings-schema.json->smooth-seconds-hand->description
 msgid "Smooth second hand"
-msgstr "Mână a doua netedă"
+msgstr "Secundar lin"
 
 #. clock@schorschii->settings-schema.json->smooth-seconds-hand->tooltip
 msgid "Use smooth animation for seconds hand instead of refreshing it only every second."
-msgstr "Folosiți o animație lină pentru mâna secundară în loc să o reîmprospătați doar la fiecare secundă."
+msgstr "Folosește o animație lină pentru secundar în loc să îl reîmprospătezi doar la fiecare secundă."
 
 #. clock@schorschii->settings-schema.json->head0->description
 msgid "Settings for clock@schorschii"
@@ -91,23 +91,23 @@ msgstr "Setări pentru clock@schorschii"
 
 #. clock@schorschii->settings-schema.json->img-h->description
 msgid "Hour hand"
-msgstr "Mână de oră"
+msgstr "Orar"
 
 #. clock@schorschii->settings-schema.json->img-h->tooltip
 msgid "Choose your own image for the hour hand. Should be as big as the background image."
-msgstr "Alegeți propria imagine pentru mâna orei. Ar trebui să fie la fel de mare ca imaginea de fundal."
+msgstr "Alege propria imagine pentru orar. Ar trebui să fie la fel de mare ca imaginea de fundal."
 
 #. clock@schorschii->settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
-msgstr "Ascundeți decorațiunile"
+msgstr "Ascunde decorațiunile"
 
 #. clock@schorschii->settings-schema.json->img-m->description
 msgid "Minute hand"
-msgstr "Mână de minute"
+msgstr "Minutar"
 
 #. clock@schorschii->settings-schema.json->img-m->tooltip
 msgid "Choose your own image for the minute hand. Should be as big as the background image."
-msgstr "Alegeți propria imagine pentru mâna de minute. Ar trebui să fie la fel de mare ca imaginea de fundal."
+msgstr "Alege propria imagine pentru minutar. Ar trebui să fie la fel de mare ca imaginea de fundal."
 
 #. clock@schorschii->settings-schema.json->img-bg->description
 msgid "Background"
@@ -115,15 +115,15 @@ msgstr "Fond"
 
 #. clock@schorschii->settings-schema.json->img-bg->tooltip
 msgid "Choose your own background image."
-msgstr "Alegeți propria imagine de fundal."
+msgstr "Alege propria imagine de fundal."
 
 #. clock@schorschii->settings-schema.json->img-s->description
 msgid "Seconds hand"
-msgstr "Mâna secundelor"
+msgstr "Secundar"
 
 #. clock@schorschii->settings-schema.json->img-s->tooltip
 msgid "Choose your own image for the seconds hand. Should be as big as the background image."
-msgstr "Alegeți propria imagine pentru mâna secundară. Ar trebui să fie la fel de mare ca imaginea de fundal."
+msgstr "Alege propria imagine pentru secundar. Ar trebui să fie la fel de mare ca imaginea de fundal."
 
 #. clock@schorschii->settings-schema.json->custom-tz->description
 msgid "Custom time zone"
@@ -131,51 +131,51 @@ msgstr "Fus orar personalizat"
 
 #. clock@schorschii->settings-schema.json->custom-tz->tooltip
 msgid "Enter your custom timezone here."
-msgstr "Introduceți aici fusul orar personalizat."
+msgstr "Introdu aici fusul orar personalizat."
 
 #. clock@schorschii->settings-schema.json->show-seconds-hand->description
 msgid "Show seconds hand"
-msgstr "Arată mâna secundară"
+msgstr "Afișează mâna secundară"
 
 #. clock@schorschii->settings-schema.json->show-seconds-hand->tooltip
 msgid "Show or hide the seconds hand."
-msgstr "Afișați sau ascundeți mâna secundară."
+msgstr "Afișează sau ascunde mâna secundară."
 
 #. clock@schorschii->settings-schema.json->use-custom-tz->description
 msgid "Use a custom timezone"
-msgstr "Utilizați un fus orar personalizat"
+msgstr "Utilizează un fus orar personalizat"
 
 #. clock@schorschii->settings-schema.json->use-custom-tz->tooltip
 msgid "Checking this box allows you to set a custom timezone in the field below."
-msgstr "Dacă bifați această casetă, puteți seta un fus orar personalizat în câmpul de mai jos."
+msgstr "Dacă bifezi această casetă, poți seta un fus orar personalizat în câmpul de mai jos."
 
 #. clock@schorschii->settings-schema.json->use-custom-label->description
 msgid "Use a custom desklet label"
-msgstr "Folosiți o etichetă personalizată pentru desklet"
+msgstr "Folosește o etichetă personalizată pentru desklet"
 
 #. clock@schorschii->settings-schema.json->use-custom-label->tooltip
 msgid "Checking this box allows you to set a custom label in the field below."
-msgstr "Dacă bifați această casetă, puteți seta o etichetă personalizată în câmpul de mai jos."
+msgstr "Dacă bifezi această casetă, poți seta o etichetă personalizată în câmpul de mai jos."
 
 #. clock@schorschii->settings-schema.json->custom-label->description
 msgid "Custom desklet label"
-msgstr "Etichetă personalizată de birou"
+msgstr "Etichetă personalizată pentru desklet"
 
 #. clock@schorschii->settings-schema.json->custom-label->tooltip
 msgid "Set your custom label here, e.g. for multiple timezones. This field is unavailable unless the checkbox above is enabled."
-msgstr "Setați aici eticheta dvs. personalizată, de exemplu pentru mai multe fusuri orare. Acest câmp nu este disponibil decât dacă caseta de selectare de mai sus este activată."
+msgstr "Setează aici eticheta ta personalizată, de exemplu pentru mai multe fusuri orare. Acest câmp nu este disponibil decât dacă caseta de selectare de mai sus este activată."
 
 #. clock@schorschii->settings-schema.json->smooth-minutes-hand->description
 msgid "Smooth minute hand"
-msgstr "Mână de minute netedă"
+msgstr "Minutar lin"
 
 #. clock@schorschii->settings-schema.json->smooth-minutes-hand->tooltip
 msgid "Use smooth animation for minute hand instead of moving it only once per minute."
-msgstr "Utilizați o animație lină pentru mâna minutelor în loc să o mișcați o singură dată pe minut."
+msgstr "Utilizează o animație lină pentru minutar în loc să îl miști o singură dată pe minut."
 
 #. clock@schorschii->metadata.json->description
 msgid "A scaleable analog clock desklet with smooth hands and free choice of images."
-msgstr "Un ceas analogic de birou scalabil, cu mâini netede și alegere liberă a imaginilor."
+msgstr "Un ceas analogic de birou scalabil, cu animații line și alegere liberă a imaginilor."
 
 #. clock@schorschii->metadata.json->name
 msgid "Analog Chronometer"

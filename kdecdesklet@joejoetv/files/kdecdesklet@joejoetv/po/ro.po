@@ -27,7 +27,7 @@ msgstr "Dispozitive disponibile"
 
 #: desklet.js:396
 msgid "Reload Desklet"
-msgstr "Reîncărcați Desklet"
+msgstr "Reîncarcă Desklet"
 
 #: desklet.js:401
 msgid "KDEConnect is not running!"
@@ -39,7 +39,7 @@ msgstr "Nici un dispozitiv selectat!"
 
 #: desklet.js:580
 msgid "No paired devices!"
-msgstr "Nu există dispozitive împerecheate!"
+msgstr "Nu există dispozitive cuplate!"
 
 #. metadata.json->name
 msgid "KDEConnect Desklet"

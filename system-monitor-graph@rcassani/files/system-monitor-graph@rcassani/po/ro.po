@@ -36,11 +36,11 @@ msgstr "GiB"
 #. settings-schema.json->type->options
 #: desklet.js:171
 msgid "Swap"
-msgstr "Schimbați"
+msgstr "Schimbă"
 
 #: desklet.js:186
 msgid "free of"
-msgstr "fără"
+msgstr "liber din"
 
 #: desklet.js:187
 msgid "GB"
@@ -76,7 +76,7 @@ msgstr "Variabilă de sistem pentru grafic"
 
 #. settings-schema.json->type->tooltip
 msgid "Select the system variable to monitor."
-msgstr "Selectați variabila de sistem care urmează să fie monitorizată."
+msgstr "Selectează variabila de sistem care urmează să fie monitorizată."
 
 #. settings-schema.json->type->options
 msgid "HDD"
@@ -92,7 +92,7 @@ msgstr "Sistemul de fișiere de monitorizat"
 
 #. settings-schema.json->filesystem->tooltip
 msgid "Select a directory in the filesystem to monitor."
-msgstr "Selectați un director din sistemul de fișiere care urmează să fie monitorizat."
+msgstr "Selectează un director din sistemul de fișiere care urmează să fie monitorizat."
 
 #. settings-schema.json->filesystem-label->description
 msgid "Filesystem label"
@@ -100,7 +100,7 @@ msgstr "Eticheta sistemului de fișiere"
 
 #. settings-schema.json->filesystem-label->tooltip
 msgid "Empty uses the filesystem name from df."
-msgstr "Empty utilizează numele sistemului de fișiere din df."
+msgstr "Gol, va utiliza numele sistemului de fișiere din df."
 
 #. settings-schema.json->gpu-manufacturer->description
 msgid "GPU manufacturer"
@@ -108,7 +108,7 @@ msgstr "Producător GPU"
 
 #. settings-schema.json->gpu-manufacturer->tooltip
 msgid "Select the GPU manufacturer."
-msgstr "Selectați producătorul GPU."
+msgstr "Selectează producătorul GPU."
 
 #. settings-schema.json->gpu-manufacturer->options
 msgid "NVIDIA"
@@ -120,7 +120,7 @@ msgstr "ID-ul GPU-ului de monitorizat"
 
 #. settings-schema.json->gpu-id->tooltip
 msgid "Check GPU id with nvidia-smi -L"
-msgstr "Verificați ID-ul GPU cu nvidia-smi -L"
+msgstr "Verifică ID-ul GPU cu nvidia-smi -L"
 
 #. settings-schema.json->gpu-variable->description
 msgid "GPU variable to monitor"
@@ -128,7 +128,7 @@ msgstr "Variabila GPU de monitorizat"
 
 #. settings-schema.json->gpu-variable->tooltip
 msgid "Select the GPU variable to monitor."
-msgstr "Selectați variabila GPU care urmează să fie monitorizată."
+msgstr "Selectează variabila GPU care urmează să fie monitorizată."
 
 #. settings-schema.json->gpu-variable->options
 msgid "Usage"
@@ -263,4 +263,4 @@ msgstr "Numărul de linii verticale din grilă"
 
 #. settings-schema.json->scale-size->description
 msgid "Scale factor for desklet size (scale factor of 1 = 330 x 120 px)"
-msgstr "Factorul de scară pentru dimensiunea broșurii de birou (factor de scară de 1 = 330 x 120 px)"
+msgstr "Factorul de scară pentru dimensiunea deskletului (factor de scară de 1 = 330 x 120 px)"

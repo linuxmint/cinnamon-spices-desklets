@@ -31,7 +31,7 @@ msgstr "Ajutor"
 
 #. jalalidesklet@30yavash.com->metadata.json->description
 msgid "A fork desklet that displays the time and date in Jalali"
-msgstr "Un desklet cu furculiță care afișează ora și data în Jalali"
+msgstr "Un desklet derivat care afișează ora și data în Jalali"
 
 #. jalalidesklet@30yavash.com->metadata.json->name
 msgid "Jalali Time and Date Desklet"

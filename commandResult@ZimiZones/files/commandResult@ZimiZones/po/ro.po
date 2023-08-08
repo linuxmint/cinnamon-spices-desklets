@@ -25,7 +25,7 @@ msgstr "Rezultatul comenzii"
 #. metadata.json->name
 #. 4.0->metadata.json->name
 msgid "Command result desklet"
-msgstr "Rezultatul comenzii desklet"
+msgstr "Desklet pentru rezultatul comenzii"
 
 #. metadata.json->description
 #. 4.0->metadata.json->description
@@ -40,12 +40,12 @@ msgstr "Zonele Zimi"
 #. settings-schema.json->top->description
 #. 4.0->settings-schema.json->top->description
 msgid "Commands configuration"
-msgstr "Comenzi de configurare"
+msgstr "Configurarea comenzilor"
 
 #. settings-schema.json->delay->description
 #. 4.0->settings-schema.json->delay->description
 msgid "Update every"
-msgstr "Actualizați în fiecare"
+msgstr "Actualizează în fiecare"
 
 #. settings-schema.json->delay->units
 #. settings-schema.json->timeout->units
@@ -72,7 +72,7 @@ msgstr "Etichetă"
 #. settings-schema.json->commands->columns->title
 #. 4.0->settings-schema.json->commands->columns->title
 msgid "Align label right"
-msgstr "Aliniați eticheta la dreapta"
+msgstr "Aliniază eticheta la dreapta"
 
 #. settings-schema.json->commands->columns->title
 #. 4.0->settings-schema.json->commands->columns->title
@@ -82,7 +82,7 @@ msgstr "Comandă"
 #. settings-schema.json->commands->columns->title
 #. 4.0->settings-schema.json->commands->columns->title
 msgid "Align command result right"
-msgstr "Aliniați rezultatul comenzii la dreapta"
+msgstr "Aliniază rezultatul comenzii la dreapta"
 
 #. settings-schema.json->style-options-header->description
 #. 4.0->settings-schema.json->style-options-header->description
@@ -109,7 +109,7 @@ msgstr "Culoarea de fundal"
 #. settings-schema.json->background-color->tooltip
 #. 4.0->settings-schema.json->background-color->tooltip
 msgid "Click to select the background color"
-msgstr "Faceți clic pentru a selecta culoarea de fundal"
+msgstr "Fă clic pentru a selecta culoarea de fundal"
 
 #. settings-schema.json->background-transparency->description
 #. 4.0->settings-schema.json->background-transparency->description
@@ -124,12 +124,12 @@ msgstr "Transparența deskletului"
 #. settings-schema.json->border-color->description
 #. 4.0->settings-schema.json->border-color->description
 msgid "Border color"
-msgstr "Culoare de frontieră"
+msgstr "Culoarea marginii"
 
 #. settings-schema.json->border-color->tooltip
 #. 4.0->settings-schema.json->border-color->tooltip
 msgid "Click to select the border color"
-msgstr "Faceți clic pentru a selecta culoarea marginii"
+msgstr "Fă clic pentru a selecta culoarea marginii"
 
 #. settings-schema.json->border-width->units
 #. 4.0->settings-schema.json->border-width->units

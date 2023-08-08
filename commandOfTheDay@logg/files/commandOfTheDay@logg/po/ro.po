@@ -27,11 +27,11 @@ msgstr "Un desklet care afișează text arbitrar de ieșire din comenzi"
 
 #. commandOfTheDay@logg->metadata.json->name
 msgid "Command of the day desklet"
-msgstr "Comanda zilei desklet"
+msgstr "Desklet comanda zilei"
 
 #. commandOfTheDay@logg->settings-schema.json->delay->description
 msgid "Update every:"
-msgstr "Actualizați în fiecare:"
+msgstr "Actualizează în fiecare:"
 
 #. commandOfTheDay@logg->settings-schema.json->delay->units
 msgid "minutes"

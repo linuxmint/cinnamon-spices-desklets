@@ -24,7 +24,7 @@ msgstr "Baterie"
 
 #. metadata.json->description
 msgid "A battery desklet in iOS style with multi-battery support."
-msgstr "Un desklet pentru baterii în stil iOS cu suport pentru mai multe baterii."
+msgstr "Un desklet pentru baterie în stil iOS cu suport pentru mai multe baterii."
 
 #. metadata.json->name
 msgid "Battery Level Indicator"
@@ -72,15 +72,15 @@ msgstr "Negru"
 
 #. settings-schema.json->bg-img->tooltip
 msgid "Select the background graphic you would like to use."
-msgstr "Selectați grafica de fundal pe care doriți să o utilizați."
+msgstr "Selectează grafica de fundal pe care dorești să o utilizezi."
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
-msgstr "Ascundeți decorațiunile"
+msgstr "Ascunde decorațiunile"
 
 #. settings-schema.json->scale-size->units
 msgid "scale factor"
-msgstr "factor de scară"
+msgstr "factor de scalare"
 
 #. settings-schema.json->scale-size->description
 msgid "Desklet size"
@@ -88,7 +88,7 @@ msgstr "Dimensiune Desklet"
 
 #. settings-schema.json->scale-size->tooltip
 msgid "Increase or decrease the size of the battery using this scale factor."
-msgstr "Măriți sau micșorați dimensiunea bateriei folosind acest factor de scară."
+msgstr "Mărește sau micșorează dimensiunea bateriei folosind acest factor de scalare."
 
 #. settings-schema.json->head2->description
 msgid "Custom desklet label (only visible if decorations are enabled)"
@@ -96,19 +96,19 @@ msgstr "Etichetă personalizată pentru desklet (vizibilă numai dacă sunt acti
 
 #. settings-schema.json->use-custom-label->description
 msgid "Use a custom desklet label"
-msgstr "Folosiți o etichetă personalizată pentru desklet"
+msgstr "Folosește o etichetă personalizată pentru desklet"
 
 #. settings-schema.json->use-custom-label->tooltip
 msgid "Checking this box allows you to set a custom label in the field below."
-msgstr "Dacă bifați această casetă, puteți seta o etichetă personalizată în câmpul de mai jos."
+msgstr "Dacă bifezi această casetă, poți seta o etichetă personalizată în câmpul de mai jos."
 
 #. settings-schema.json->custom-label->description
 msgid "Custom desklet label"
-msgstr "Etichetă personalizată de birou"
+msgstr "Etichetă personalizată pentru desklet"
 
 #. settings-schema.json->custom-label->tooltip
 msgid "Set your custom label here, e.g. for monitoring multiple batteries. This field is unavailable unless the checkbox above is enabled."
-msgstr "Setați aici eticheta dvs. personalizată, de exemplu, pentru monitorizarea mai multor baterii. Acest câmp nu este disponibil decât dacă caseta de verificare de mai sus este activată."
+msgstr "Setează aici eticheta ta personalizată, de exemplu, pentru monitorizarea mai multor baterii. Acest câmp nu este disponibil decât dacă caseta de verificare de mai sus este activată."
 
 #. settings-schema.json->head3->description
 msgid "Advanced"
@@ -128,13 +128,13 @@ msgid ""
 "\n"
 "Replace x with battery number."
 msgstr ""
-"Alegeți propriul fișier de capacitate, de exemplu, pentru monitorizarea bateriei secundare.\n"
+"Alege propriul fișier de capacitate, de exemplu, pentru monitorizarea bateriei secundare.\n"
 "\n"
 "Implicit:\n"
 "/sys/class/power_supply/CMBx/capacity\n"
 "/sys/class/power_supply/BATx/capacity\n"
 "\n"
-"Înlocuiți x cu numărul bateriei."
+"Înlocuiește x cu numărul bateriei."
 
 #. settings-schema.json->devfile_status->description
 msgid "Path to battery status file (device file)"
@@ -150,10 +150,10 @@ msgid ""
 "\n"
 "Replace x with battery number."
 msgstr ""
-"Alegeți propriul fișier de stare, de exemplu, pentru monitorizarea bateriei secundare.\n"
+"Alege propriul fișier de stare, de exemplu, pentru monitorizarea bateriei secundare.\n"
 "\n"
 "Implicit:\n"
 "/sys/class/power_supply/CMBx/status\n"
 "/sys/class/power_supply/BATx/status\n"
 "\n"
-"Înlocuiți x cu numărul bateriei."
+"Înlocuiește x cu numărul bateriei."

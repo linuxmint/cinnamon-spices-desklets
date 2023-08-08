@@ -23,7 +23,7 @@ msgstr "Notă de birou"
 
 #. metadata.json->name
 msgid "Desktop Note desklet"
-msgstr "Birou Notă de birou desklet"
+msgstr "Desklet Notă de birou"
 
 #. metadata.json->description
 msgid "Displays Note on Desktop!"
@@ -35,7 +35,7 @@ msgstr "Notă:"
 
 #. settings-schema.json->note-entry->tooltip
 msgid "Set your note here"
-msgstr "Setați aici nota dvs."
+msgstr "Setează aici nota ta"
 
 #. settings-schema.json->font-options-header->description
 msgid "Font options:"
@@ -55,4 +55,4 @@ msgstr "Culoarea fontului:"
 
 #. settings-schema.json->text-color->tooltip
 msgid "Click to select a new text color"
-msgstr "Faceți clic pentru a selecta o nouă culoare de text"
+msgstr "Fă clic pentru a selecta o nouă culoare de text"
