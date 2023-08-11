@@ -43,7 +43,7 @@ var DigitalTheme = class DigitalTheme extends Theme {
     }
 
     setDateTime(date, locale) {
-        let time = this.to2Digit(date.getHours()) + ":" + this.to2Digit(date.getMinutes()) + ":" + this.to2Digit(date.getSeconds());
+        let time = this.to2Digit(this.is24H() ? date.getHours() : this.to12Hours(date.getHours())) + ":" + this.to2Digit(date.getMinutes()) + ":" + this.to2Digit(date.getSeconds());
         this._time.set_text(time);
     }
 }

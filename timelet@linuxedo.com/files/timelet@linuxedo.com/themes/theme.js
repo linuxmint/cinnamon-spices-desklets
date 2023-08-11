@@ -31,7 +31,8 @@ function _(str) {
  * This class is used to pass user configurations to themes.
  */
 var Config = class Config {
-    constructor(scale, textColor) {
+    constructor(use24H, scale, textColor) {
+        this.use24H = use24H;
         this.scale = scale;
         this.textColor = textColor;
     }
@@ -88,6 +89,15 @@ var Theme = class Theme {
     formatDateTime(date, locale, options) {
         const dateFormatter = new Intl.DateTimeFormat(locale, options);
         return dateFormatter.format(date);
+    }
+
+    /**
+     * Returns true if user prefers time in 24H format.
+     * 
+     * @returns true if user prefers 24H
+     */
+    is24H() {
+        return this._config.use24H;
     }
 
     /**
