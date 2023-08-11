@@ -51,7 +51,10 @@ var MetroTheme = class MetroTheme extends Theme {
 
     setDateTime(date, locale) {
         let month = this.formatDateTime(date, locale, { month: "long" });
-        let time = this.to2Digit(this.to12Hours(date.getHours())) + ":" + this.to2Digit(date.getMinutes()) + " " + this.toPeriod(date.getHours());
+        let time = this.to2Digit(this.is24H() ? date.getHours() : this.to12Hours(date.getHours())) + ":" + this.to2Digit(date.getMinutes());
+        if (!this.is24H()) {
+            time += " " + this.toPeriod(date.getHours());
+        }
         this._weekday.set_text(this.formatDateTime(date, locale, { weekday: "long" }));
         this._date_month.set_text(month + " " + this.to2Digit(date.getDate()));
         this._time.set_text(time);

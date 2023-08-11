@@ -9,6 +9,12 @@
     "options": {},
     "description": "Theme"
   },
+  "use24H": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Use 24H",
+    "tooltip": "Display time in 24H"
+  },
   "textColor": {
     "type": "colorchooser",
     "indent": true,
