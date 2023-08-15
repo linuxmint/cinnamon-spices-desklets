@@ -74,9 +74,9 @@ NetBeatDesklet.prototype = {
 
 	refresh: function() {
 		let d = new Date();
-		let h = d.getHours();
-		let m = d.getMinutes();
-		let s = d.getSeconds();
+		let h = d.getUTCHours() + 1;
+		let m = d.getUTCMinutes();
+		let s = d.getUTCSeconds();
 		//let tzoff = 60 + d.getTimezoneOffset();
 		//let beats = ('000' + Math.floor((s + (m + tzoff) * 60 + h * 3600) / 86.4) % 1000).slice(-3);
 
