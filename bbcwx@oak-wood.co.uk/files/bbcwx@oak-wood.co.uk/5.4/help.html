@@ -1,0 +1,551 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <style type="text/css">
+    html,
+    body,
+    div,
+    span,
+    h1,
+    h2,
+    h3,
+    p,
+    a,
+    em,
+    pre,
+    code {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-weight: inherit;
+      font-style: inherit;
+      font-size: 100%;
+      font-family: inherit;
+      vertical-align: baseline;
+    }
+
+    body {
+      line-height: 1.5;
+      margin: 1.4em 4em;
+    }
+
+    html {
+      font-size: 100.01%;
+    }
+
+    body {
+      font-size: 11pt;
+      color: #222;
+      background: #fff;
+      font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-weight: normal;
+      color: #111;
+    }
+
+    h1 {
+      font-size: 20.2pt;
+      line-height: 1;
+      margin-bottom: 0.5em;
+    }
+
+    h2 {
+      font-size: 15pt;
+      margin-bottom: 0.75em;
+    }
+
+    h3 {
+      font-size: 13pt;
+      font-weight: bold;
+      font-style: normal;
+      line-height: 1;
+      margin-bottom: 0.2em;
+    }
+
+    p {
+      margin: 0 0 1.5em;
+    }
+
+    pre {
+      margin: 1.5em 0;
+      white-space: pre;
+    }
+
+    pre,
+    code {
+      font: 1em 'andale mono', 'lucida console', monospace;
+      line-height: 1.5;
+    }
+
+    a:focus,
+    a:hover {
+      color: #000;
+    }
+
+    a {
+      color: #009;
+      text-decoration: underline;
+    }
+
+    strong {
+      font-weight: bold;
+    }
+
+    img.iconsample {
+      height: 60px;
+      width: auto
+    }
+
+    .iconsample {
+      text-align: center;
+    }
+
+    table {
+      border-collapse: collapse;
+      border: none;
+      margin: 15px auto;
+    }
+
+    td {
+      padding: 10px 15px;
+    }
+
+    td.light {
+      background-color: #666;
+      color: #fff
+    }
+
+    .code {
+      width: 90%;
+      margin: 0 auto 1em auto;
+      background-color: #dde;
+      border: 1px #736C62 dotted;
+      color: #000;
+      display: block;
+      padding: 7px;
+      font-size: 1.1em;
+    }
+
+    code.loccode {
+      border: 1px #736C62 dotted;
+      padding: 2px;
+      background-color: #B5E2B5;
+    }
+
+    .notice {
+      padding: .8em;
+      margin-bottom: 1em;
+      border: 2px solid #FFD324;
+      background: #FFF6BF;
+      color: #514721;
+    }
+
+    .notice a {
+      color: #514721;
+    }
+
+    del {
+      text-decoration: line-through;
+    }
+  </style>
+  <title>Using the Weather Desklet</title>
+</head>
+
+<body bgcolor="#ffffff" text="#000000">
+  <h1>Using the Weather Desklet</h1>
+  <p>
+    The Weather Desklet can retrieve weather data from several online weather
+    services and display them on your Cinnamon desktop in
+    a neat way. It comes with a choice of icons and plenty of options
+    for configuring how it looks, and for those who like to keep an eye on the
+    weather in several locations it supports multiple instances. At present it
+    can work with data from the
+    <a href="http://www.bbc.co.uk/weather">BBC</a>,
+    <a href="http://weather.yahoo.com/"><del>Yahoo! Weather</del></a>,
+    <a href="http://openweathermap.org/">Open Weather Map</a>,
+    <a href="http://wunderground.com/?apiref=415600fd47df8d55">Weather Underground</a>,
+    <a href="http://www.worldweatheronline.com">World Weather Online</a>,
+    <a href="http://forecast.io/">forecast.io</a> and
+    <a href="http://www.weather.com/">weather.com (The Weather Channel)</a>.
+  </p>
+  <p>
+    By default the forecast will be refreshed approximately every thirty minutes.
+    You can always force a refresh by clicking the refresh button at the
+    bottom right. Hovering over the icons in the forecast area will show
+    a brief descriptions of the forecast, whilst clicking on the current weather icon
+    or the credit link at the bottom of the desklet will take you to a more detailed
+    forecast for your area.
+  </p>
+  <h2 id="config">Configuration</h2>
+  <p>Right click on the desklet and select 'Configure...' to enter the
+    configuration screen.</p>
+  <p>Select the service you wish to use to provide weather data. Note that
+    some services require you to obtain an API key by registering with them.</p>
+  <p>The Location must be specified as a code and these codes are specific
+    to the service that you are using. Below are notes on each of the services
+    supported.</p>
+  <h3 id="bbc">BBC</h3>
+  <p>
+    To find your location code visit
+    <a href="http://www.bbc.co.uk/weather/">the BBC Weather site</a> and
+    search for your city. The code you need is the numeric part at
+    the end of URL for the city's weather. For example, a search for London
+    takes you to:
+  </p>
+  <code class='code narrowcode'>http://www.bbc.co.uk/weather/2643743</code>
+  <p>
+    The Location code is therefore <code class="loccode">2643743</code>.
+  </p>
+  <h3 id="owm">Open Weather Map</h3>
+  <p>This is the original Open Weather Map driver that works with OWM's 16 day forecast API.
+    This API is no longer available on free accounts.</p>
+  <p>Visit <a href="http://openweathermap.org/">the Open Weather Map</a> and search
+    for your city. The code you need is the numeric part at
+    the end of URL for the city's weather. For example, a search for Chicago
+    takes you to:</p>
+  <code class='code'>http://openweathermap.org/city/4887398</code>
+  <p>
+    The Location code is therefore <code class="loccode">4887398</code>.
+  </p>
+  <p>You can also give a latitude and longitude. These
+    should be decimals, separated by a comma, with positive being north or east. For example, for
+    central London, 51.51N, 0.13W, use <code class="loccode">51.51,-0.13</code>.</p>
+  <p><strong>Open Weather Map requires an API Key</strong>. To obtain an API Key for Open Weather Map
+    <a href="http://openweathermap.org/appid">register on the Open Weather
+      Map website</a>.
+  </p>
+  <h3 id="owm2">Open Weather Map Free</h3>
+  <p>This OWM driver (contributed by Kallys) works with OWM's 5 day forecast API, which is available on free accounts.
+    As the forecasts are 3 hourly the driver has to do some approximating to come up with a daily forecast.</p>
+  <p>Locations are specified in the same way as for the original <a href="#owm">Open Weather Map driver</a></p>
+  <p><strong>Open Weather Map Free requires an API Key</strong>. To obtain an API Key for Open Weather
+    Map <a href="http://openweathermap.org/appid">register on the Open Weather Map website</a>.</p>
+  <h3 id="yahoo">Yahoo</h3>
+  <p class="notice">Unfortunately Yahoo! is no longer supported because of an incompatible change to the Yahoo! API</p>
+  <p>Visit <a href="http://weather.yahoo.com/">Yahoo! Weather</a> and search
+    for your city. The code you need is the numeric part at
+    the end of URL for the city's weather. For example, a search for Berlin
+    takes you to:</p>
+  <code class='code'>http://weather.yahoo.com/deutschland/bundesland-berlin/berlin-638242/</code>
+  <p>
+    The Location code is therefore <code class="loccode">638242</code>.
+  </p>
+  <p>You can also give a latitude and longitude. These
+    should be decimals, separated by a comma, with positive being north or east. For example, for
+    central London, 51.51N, 0.13W, use <code class="loccode">51.51,-0.13</code>.</p>
+  <h3 id="wu">Weather Underground</h3>
+  <p><strong>Weather Underground requires an API key</strong>. You can
+    <a href="http://www.wunderground.com/weather/api/">obtain a free developer API key here</a>.
+    Weather Desklet uses the 10 day forecast data, so you will need to get at least
+    the Cumulus Plan.
+  </p>
+  <p>
+    There are several ways to specify the location for Weather Underground. For locations in
+    the USA you can simply use a zip code. You can also give a latitude and longitude. These
+    should be decimals, separated by a comma, with positive being north or east. For example, for
+    central London, 51.51N, 0.13W, use <code class="loccode">51.51,-0.13</code>.
+  </p>
+  <p>You can also specify locations as Country/City, eg <code class="loccode">France/Paris</code>,
+    or within the USA as State/City, eg <code class="loccode">TX/Houston</code>. You should
+    check that your proposed location works by visiting the website, eg</p>
+  <code class='code'>http://www.wunderground.com/q/France/Paris</code>
+  <p>If you search for your city on <a href="http://wunderground.com?apiref=415600fd47df8d55">wunderground.com</a> and
+    are
+    taken to URL of this form:</p>
+  <code class="code">http://www.wunderground.com/q/zmw:00000.16.03541</code>
+  <p>use the section following the q, eg <code class="loccode">zmw:00000.16.03541</code>. If you
+    are taken to a URL with a station ID such as:</p>
+  <code class="code">http://www.wunderground.com/global/stations/03541.html</code>
+  <p>you can convert this to a zmw code by taking the station number (03541 in this case)
+    and prefixing it with zmw:00000.1. to give
+    <code class="loccode">zmw:00000.1.03541</code>
+  <h3 id="wwo">World Weather Online</h3>
+  <p><strong>World Weather Online requires an API key</strong>.</p>
+  <p class="notice">
+    WWO no longer offer new keys for this free API. The service has been replaced by <a href="#apixu">APIXU</a>.
+  </p>
+  <p>
+    Locations can be specified as a US zipcode, a UK or Canadian post code, or as a latitude and longitude.
+    Latitude and longitude should be given as decimals, separated by a comma, with positive being north or east. For
+    example, for
+    central London, 51.51N, 0.13W, use <code class="loccode">51.51,-0.13</code>.
+  </p>
+  <h3 id="wwo2">World Weather Online Premium</h3>
+  <p><strong>World Weather Online premium requires an API key</strong>. You can
+    <a href="http://developer.worldweatheronline.com/signup.aspx">register for an API key here</a>. A free trial
+    key is available, after which payment is required.
+  </p>
+  <p>
+    Locations can be specified as a US zipcode, a UK or Canadian post code, or as a latitude and longitude.
+    Latitude and longitude should be given as decimals, separated by a comma, with positive being north or east. For
+    example, for
+    central London, 51.51N, 0.13W, use <code class="loccode">51.51,-0.13</code>.
+  </p>
+  <h3 id="apixu">APIXU</h3>
+  <p><strong>APIXU requires an API key</strong>. You can
+    <a href="https://www.apixu.com/signup.aspx">register for a free API key from here</a>.
+  </p>
+  <p>
+    Locations can be specified using a wide range of formats. The most reliable is as a latitude and longitude.
+    Latitude and longitude should be given as decimals, separated by a comma, with positive being north or east. For
+    example, for
+    central London, 51.51N, 0.13W, use <code class="loccode">51.51,-0.13</code>. You can also use a US zipcode, a UK or
+    Canadian
+    postcode, or a city name. The location <code class="loccode">auto:ip</code> can be used to automatically guess your
+    location
+    based on your IP address. Three character IATA airport codes can be given in the format <code
+      class="loccode">iata:BHX</code>.
+  </p>
+  <h3 id="forecast">forecast.io (Dark Sky)</h3>
+  <p><strong>Forecast.io (now Dark Sky) requires an API key</strong>. You can
+    <a href="https://darksky.net/dev/">register for a free API key here</a>.
+  </p>
+  <p>
+    Locations must be specified as a latitude and longitude.
+    Latitude and longitude should be given as decimals, separated by a comma, with positive being north or east. For
+    example, for
+    central London, 51.51N, 0.13W, use <code class="loccode">51.51,-0.13</code>.
+  </p>
+  <h3 id="twc">weather.com</h3>
+  <p>Location codes for the weather.com service can be
+    <a href="https://edg3.co.uk/snippets/weather-location-codes/">looked up here</a>.
+  <p class="notice">Please note that the weather.com XML feed used has officially
+    <a
+      href="http://feedback.weather.com/knowledgebase/articles/35599-why-is-the-weather-com-xml-data-feed-being-retired">been
+      retired</a>.
+    You should treat the weather.com service as deprecated and likely to stop working at any time.
+  </p>
+  <h3 id="meteoblue">meteoblue</h3>
+  <p><strong>meteoblue requires an API key</strong>. You can
+    <a href="https://content.meteoblue.com/en/products/meteoblue-api">register for a free API key here</a>.
+    The Weather Desklet needs the Free JSON API (json_7day_3h_firstday).
+  </p>
+  <p>
+    Locations must be specified as a latitude and longitude.
+    Latitude and longitude should be given as decimals, separated by a comma, with positive being north or east. For
+    example, for
+    central London, 51.51N, 0.13W, use <code class="loccode">51.51,-0.13</code>.
+  </p>
+  <h3 id="refreshtime">Refresh time</h3>
+  <p>
+    Select the period between refreshing forecasts. The default of 30 minutes should be adequate
+    for most purposes. Please consider the impact of lower refresh times on the service provider's
+    servers and do not use lower refresh periods unless you have a very good reason.
+    In order to comply with the terms of use of some providers Weather Desklet will override
+    low settings in some cases and enforce a minimum.
+  </p>
+  <h3 id="locationsource">Location display settings</h3>
+  <p>
+    These settings allow you to use an alternative source for text displayed for the location.
+    They are particularly useful for those whose language is not English.
+  </p>
+  <p>
+    By default the text is provided by the weather data service. If the service does not provide
+    translations of city names, using names provided by Google may do so. As a last resort
+    you can manually enter a city name.
+  </p>
+  <h3 id="experimental">Experimental and buggy settings</h3>
+  <p>These are settings that should be used with caution.</p>
+  <h4 id="anchor">Anchor desklet by</h4>
+  <p>This setting allows you change the point on the desklet that is anchored. This point
+    remains fixed as the desklet grows or shrinks. It is useful if you wish to place the desklet
+    close to a screen edge. By default the desklet is anchored to the top left corner, so for example,
+    if you place the desklet in the bottom right of your
+    screen a long weather text may cause it to grow beyond the edge of the screen. By anchoring to the
+    bottom right of the desklet this problem is avoided</p>
+  <p>However, Cinnamon's drag and drop functionality for desklets does not cope with a change of
+    anchors. You will find drag and drop behaves oddly if you use this option and you will probably have difficulty
+    positioning the desklet just where you want it. I recommend that when dragging and dropping you always
+    grab the desklet by the top left corner. It's still weird, but slightly less so!</p>
+  <h3 id="othersettings">Other settings</h3>
+  <p>Most of the other settings should be obvious - just experiment. Please note, however,
+    that not all services support all settings. For example, some support only a limited number
+    of days of forecast, or do not support humidity or pressure. If you change the configuration
+    and the display doesn't seem to change, it's probably because the service you have selected
+    does not support the new options. See the list of
+    <a href="http://www.oak-wood.co.uk/oss/other/bbcwx#servicecaps">service capabilities</a> for details.
+  </p>
+  <p>Here's a sample of what the different icon sets look like, or <a href="icons.html">view
+      the full icon sets here.</a></p>
+  <table>
+    <tr>
+      <td class='iconsample'><img src="icons/colourful/39.png" class="iconsample" alt="colourful example"></td>
+      <td>Colourful</td>
+      <td class="light iconsample"><img src="icons/light/39.png" class="iconsample" alt="light example"></td>
+      <td class="light">Light</td>
+      <td class='iconsample'><img src="icons/dark/39.png" class="iconsample" alt="dark example"></td>
+      <td>Dark</td>
+      <td class='iconsample'><img src="icons/novacon/39.png" class="iconsample" alt="Novacon example"></td>
+      <td>Novacon</td>
+      <td class='iconsample'><img src="icons/vclouds/39.png" class="iconsample" alt="VClouds example"></td>
+      <td>VClouds</td>
+      <td class='iconsample'><img src="icons/meteo_outline/8.svg" class="iconsample" alt="Meteocon 1 example"></td>
+      <td>Meteocon 1</td>
+    </tr>
+    <tr>
+      <td class='iconsample'><img src="icons/flat_colourful/39.png" class="iconsample" alt="flat colourful example">
+      </td>
+      <td>Flat colouful</td>
+      <td class="light iconsample"><img src="icons/flat_white/39.png" class="iconsample" alt="flat white example"></td>
+      <td class="light">Flat white</td>
+      <td class='iconsample'><img src="icons/flat_black/39.png" class="iconsample" alt="flat black example"></td>
+      <td>Flat black</td>
+      <td class='iconsample'><img src="icons/weezle/39.png" class="iconsample" alt="Weezle example"></td>
+      <td>Weezle</td>
+      <td class='iconsample'><img src="icons/sketchy/39.png" class="iconsample" alt="Sketchy example"></td>
+      <td>Sketchy</td>
+      <td class='iconsample'><img src="icons/meteo_filled/30.svg" class="iconsample" alt="Meteocon 2 example"></td>
+      <td>Meteocon 2</td>
+    </tr>
+  </table>
+  <h2 id="ownicons">Using your own icons</h2>
+  <p>There are details of
+    <a href="https://github.com/tipichris/bbcwx/wiki/Using-your-own-icons">how to use your own icons</a>
+    in the Weather Desklet on the project wiki, or in the <a href="icons/user/README">README</a>
+    file in the icons/user directory
+    of the Weather Desklet's installation directory
+  </p>
+  <h2 id="i18n">Language support</h2>
+  <p>The Weather Desklet provides partial support for languages other than English. The messages
+    displayed by the Weather Desklet come from two different sources</p>
+  <ul>
+    <li>Text descriptions of weather forecasts and current conditions are provided directly by
+      the data service being used</li>
+    <li>Labels (eg 'Humidity', 'Pressure'), units, and all text in the settings dialogue come from
+      translation files shipped with the Desklet</li>
+  </ul>
+  <h3 id="dataservicetranslations">Data service provided translations</h3>
+  <p>Some data services provide translations of their weather data. Where these are available in one
+    of the preferred languages configured for your desktop, they will be used. The following services support
+    translations. Click on the link to find out which languages are supported:
+  <ul>
+    <li><a href="http://www.openweathermap.org/current#multi">Openweathermap.org</a></li>
+    <li><a href="http://www.wunderground.com/weather/api/d/docs?d=language-support&amp;MR=1">Weather Underground</a>
+    </li>
+    <li><a href="http://www.worldweatheronline.com/weather-api-multilingual.aspx">World Weather Online</a></li>
+    <li><a href="https://developer.forecast.io/docs/v2">Forecast.io</a></li>
+  </ul>
+  <p>Note that although forecasts are translated, names of localities may not be. In this case you may wish to look
+    at the <a href="#locationsource">Location display settings</a>.</p>
+
+  <h3 id="internaltranslations">Internal translations</h3>
+  <p>The Weather Desklet supports translation of most of the internal messages,
+    and some forecast messages from services that do not support translated forecasts themselves.
+    We have a small but growing number of translations contributed by users.
+    If you are a native
+    speaker of a language that we don't yet have a translation for, why not help out?
+    <a href="https://github.com/tipichris/bbcwx/wiki/Translating">Find out more about
+      translating the Weather Desklet</a>.
+  </p>
+  <h2 id="credits">Credits</h2>
+  <h3 id="codecrdits">Code</h3>
+  <p>
+    The Weather Desklet is written by <a href="http://www.oak-wood.co.uk/">Chris Hastie</a> and
+    released under the <a href="http://www.gnu.org/licenses/gpl-3.0.html">GNU General
+      Public License version 3</a>. It was originally a fork of
+    <a href="http://cinnamon-spices.linuxmint.com/desklets/view/10">Loganj's AccuWeather
+      Desklet</a>, which is released under the &#8220;use it as you like&#8221; license.
+    Copyright &copy; 2014–2018 Chris Hastie, 2013 Loganj. The Open Weather Map Free driver
+    was contributed by Kallys.
+  </p>
+  <p>The desklet makes use of the <a href="https://code.google.com/p/marknote/">marknote
+      xml library</a>, which is Copyright &copy; 2011 <a href="http://jbulb.org">jbulb.org</a>
+    and redistributed under the terms of <a href="http://www.apache.org/licenses/LICENSE-2.0">
+      Apache Licence, Version 2.0</a>.</p>
+  <h3 id="iconcredits">Icons</h3>
+  <ul>
+    <li>The colourful, flat colourful, light, dark, flat white and flat black icons are based on
+      the <a href="http://merlinthered.deviantart.com/art/plain-weather-icons-157162192">
+        plain weather icons</a> by <a href="http://merlinthered.deviantart.com/">
+        Merlin The Red</a>. They are licensed under the <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
+        Creative Commons Attribution-NonCommercial-ShareAlike license</a> and are copyright &copy; 2010 Merlin the Red.
+    </li>
+
+    <li>The <a href="http://vclouds.deviantart.com/art/VClouds-Weather-Icons-179152045">VCloud icons</a> are
+      copyright &copy; 2010 <a href="http://vclouds.deviantart.com/">Vclouds</a> and are licensed under
+      the <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
+        Creative Commons Attribution-NonCommercial-ShareAlike license</a></li>
+
+    <li>The <a href="http://d3stroy.deviantart.com/art/Weezle-Weather-Icons-187306753">Weezle icons</a> are
+      copyright &copy; 2010 <a href="http://d3stroy.deviantart.com/">d3stroy</a> and are licensed under
+      the <a href="http://creativecommons.org/licenses/by-nd/3.0/">
+        Creative Commons Attribution-No Derivitives license</a></li>
+
+    <li>The <a href="http://digitalchet.deviantart.com/art/Novacons-Weather-Icons-13133337">Novacon icons</a> are
+      copyright &copy; 2004 <a href="http://digitalchet.deviantart.com/">digitalchet</a> and are licensed under
+      the <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
+        Creative Commons Attribution-NonCommercial-ShareAlike license</a></li>
+
+    <li>
+      The <a href="http://www.alessioatzeni.com/meteocons/">Meteocon icons</a> are copyright &copy;
+      <a href="http://www.alessioatzeni.com/">Alessio Atzeni</a> and are licensed under a custom
+      licence.
+    </li>
+
+    <li>
+      The <a href="http://azuresol.deviantart.com/art/Sketchy-Weather-Icons-135079063">Sketchy icons</a> are copyright
+      &copy;
+      2006 <a href="http://azuresol.deviantart.com/">AzureSol</a> and are licensed under the
+      <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
+        Creative Commons Attribution-NonCommercial-ShareAlike license</a>.
+    </li>
+  </ul>
+
+  <h3 id="translationcredits">Translations</h3>
+  Translations are by the <a href="https://translations.launchpad.net/+groups/launchpad-translators">Launchpad
+    Translators</a>, with
+  particular mention to:
+  <ul>
+    <li>Slovenian by Gregor Pavuna and <a href="https://launchpad.net/~jierro">Damir Jerovšek</a></li>
+    <li>Polish by <a href="https://launchpad.net/~necrordian95">Paweł Ciechomski</a></li>
+    <li>Croatian by <a href="https://launchpad.net/~trebelnik-stefina">gogo</a></li>
+    <li>Spanish by <a href="https://launchpad.net/~argenclic">Fernando</a>, <a
+        href="https://launchpad.net/~ivanpr">Ivan</a> and <a href="https://launchpad.net/~mzs-112000">mzs-112000</a>
+    </li>
+    <li>Portuguese by <a href="mailto:charles@xtrem-pc">Charles</a></li>
+    <li>Finnish by <a href="https://launchpad.net/~mlapin">MLapin</a> and <a
+        href="https://launchpad.net/~orawa66">Orawa</a></li>
+    <li>Ukrainian by <a href="https://launchpad.net/~chugylo">chugylo</a></li>
+    <li>German by <a href="https://launchpad.net/~daschuer">Daniel Schürmann</a>, <a
+        href="https://launchpad.net/~thylamediol-y">Michael Dix</a> and <a
+        href="https://launchpad.net/~laufi-github">Laufi</a></li>
+    <li>Italian by <a href="https://launchpad.net/~matteocolpo">Matteo</a> and <a
+        href="https://launchpad.net/~matra64">Marco Traversa</a>
+    <li>Basque by <a href="https://launchpad.net/~asier-iturralde">Asier Iturralde Sarasola</a></li>
+    <li>French by <a href="https://launchpad.net/~bruce-larre">Bruce</a>, <a
+        href="https://launchpad.net/~pommodori">Gabriel</a>, <a href="https://launchpad.net/~marais-stepha">Stéphane
+        Marais</a> and <a href="https://launchpad.net/~michel-collin">perco</a></li>
+    <li>Dutch by <a href="https://launchpad.net/~elemson">Ori</a>, <a href="https://launchpad.net/~pellesimon">Pelle van
+        der Scheer</a> and Eric.</li>
+    <li>Czech by Hà Trịnh Hùng Sơn</li>
+    <li>Russian by Tatiana and <a href="https://translations.launchpad.net/+groups/launchpad-translators">Launchpad
+        Translators</a>
+    <li>Estonian by Lyyser and mahfiaz</li>
+    <li>Hungarian by Peter Toth</li>
+    <li>Bulgarian by spacy01 and Йордан Йорданов</li>
+    <li>Turkish by kelebek333</li>
+    <li>Slovak by Rastislav Čapák, Peter Kudeláš and Marek Tamaškovič</li>
+    <li>Greek by Jim Spentzos</li>
+    <li>Danish by Alan Mortensen</li>
+    <li>Vietnamese by Đỗ Xuân Quyết</li>
+    <li>Armenian by Narek</li>
+    <li>Romanian by Alin Trăistaru</li>
+    <li>Icelandic by Sveinn í Felli</li>
+    <li>Catalan by Adolfo Jayme and oriolsbd</li>
+    <li>Swedish by Kristian</li>
+  </ul>
+  <p>Your name could be here! <a href="https://github.com/tipichris/bbcwx/wiki/Translating">Find
+      out how to contribute a translation</a>.
+
+  <h3 id="othercredits">Other stuff</h3>
+  <p>Alternative city name lookups are provided by <a href="https://www.google.com/">Google</a>.</p>
+
+</body>
+
+</html>

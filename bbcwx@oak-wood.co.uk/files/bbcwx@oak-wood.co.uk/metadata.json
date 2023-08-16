@@ -3,7 +3,7 @@
     "name": "Weather Desklet", 
     "uuid": "bbcwx@oak-wood.co.uk",
     "max-instances": "10",
-    "version": "2.10",
+    "version": "2.11",
     "comments":"Please consider translating the Weather Desklet into your language. See the website for more information",
     "website":"http://www.oak-wood.co.uk/oss/other/bbcwx",
     "contributors":"Chris Hastie",
