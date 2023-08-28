@@ -25,6 +25,20 @@ Check out the desklet configuration settings, and choose the data refresh period
 
 ## Release Notes
 
+### 0.9.0 - August 28, 2023
+
+Features:
+
+- support cookie consent process for EU region
+- setting for User-Agent header is now active by default
+- include status details in error message
+- add Romanian translation (courtesy of [AndreiMiculita](https://github.com/AndreiMiculita))
+
+Bugfixes:
+
+- remove obsolete setting to select Yahoo Finance Quotes API version, because V6 got disabled
+- general code refactoring, and logging improvements
+
 ### 0.8.7 - July 19, 2023
 
 Features:

@@ -30,7 +30,7 @@
     "dataUpdateSection": {
       "type": "section",
       "title": "Data Updates",
-      "keys": ["apiVersion", "delayMinutes", "showLastUpdateTimestamp", "sendCustomUserAgent", "customUserAgent"]
+      "keys": ["delayMinutes", "showLastUpdateTimestamp", "sendCustomUserAgent", "customUserAgent"]
     },
     "detailsNameSection": {
       "type": "section",
@@ -112,16 +112,6 @@
     "description": "Background transparency",
     "tooltip": "The higher the value, the more solid the desklet background."
   },
-  "apiVersion": {
-    "type": "radiogroup",
-    "default": "7",
-    "options": {
-      "V6": "6",
-      "V7": "7"
-    },
-    "description": "Yahoo Finance Quotes API version",
-    "tooltip": "Try different version if data requests fail with error."
-  },
   "delayMinutes": {
     "type": "spinbutton",
     "default": 10,
@@ -140,7 +130,7 @@
   },
   "sendCustomUserAgent": {
     "type": "checkbox",
-    "default": false,
+    "default": true,
     "description": "Send custom User-Agent header",
     "tooltip": "Include a custom User-Agent header in Yahoo Finance Quotes API requests. By default, this header is not set."
   },
