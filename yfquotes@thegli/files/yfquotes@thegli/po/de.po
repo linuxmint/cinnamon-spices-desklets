@@ -1,13 +1,13 @@
 # German translation for Yahoo Finance Quotes Desklet
-# Copyright (C) 2023 Thomas Egli
+# Copyright (C) 2018 Thomas Egli
 # This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-18 19:25+0100\n"
-"PO-Revision-Date: 2023-05-08 21:58+0200\n"
+"POT-Creation-Date: 2023-08-28 16:36+0200\n"
+"PO-Revision-Date: 2023-08-28 16:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,23 +16,52 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
 
-#: desklet.js:192 desklet.js:213
-msgid "Yahoo Finance service not available!"
-msgstr "Yahoo Finance Service nicht verfügbar!"
+#: desklet.js:302 desklet.js:321
+msgid "Yahoo Finance service not available!\\nStatus: "
+msgstr "Yahoo Finance Service nicht verfügbar!\\nStatus: "
 
-#: desklet.js:557
+#: desklet.js:660
 msgid "Updated at "
 msgstr "Aktualisiert um "
 
-#: desklet.js:564
+#: desklet.js:667
 msgid "Error: "
 msgstr "Fehler: "
 
-#: desklet.js:634
+#: desklet.js:728
+msgid ""
+"Failed to retrieve authorization parameter! Unable to fetch quotes "
+"data.\\nStatus: "
+msgstr ""
+"Empfang von Autorisierungsparameter ist fehlgeschlagen! "
+"Finanzdaten-Abfrage nicht möglich.\\nStatus: "
+
+#: desklet.js:753
+msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
+msgstr ""
+"Consent-Erteilung ist fehlgeschlagen! Finanzdaten-Abfrage nicht "
+"möglich.\\nStatus: "
+
+#: desklet.js:758
+msgid ""
+"Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
+msgstr ""
+"Consent-Erteilung nicht abgeschlossen! Finanzdaten-Abfrage nicht "
+"möglich.\\nStatus: "
+
+#: desklet.js:779
+msgid ""
+"Failed to retrieve authorization crumb! Unable to fetch quotes "
+"data.\\nStatus: "
+msgstr ""
+"Emfang von Autorisierungs-Crumb ist fehlgeschlagen! Finanzdaten-Abfrage "
+"nicht möglich.\\nStatus: "
+
+#: desklet.js:805
 msgid "Cannot display quotes information for symbols: "
 msgstr "Finanzdaten können nicht angezeigt werden für die Symbole: "
 
-#: desklet.js:635
+#: desklet.js:806
 msgid "The following error occurred: "
 msgstr "Folgender Fehler ist aufgetreten: "
 
@@ -137,22 +166,6 @@ msgstr "Hintergrund Transparenz"
 #. settings-schema.json->transparency->tooltip
 msgid "The higher the value, the more solid the desklet background."
 msgstr "Je grösser der Wert, desto deckender der Desklet Hintergrund."
-
-#. settings-schema.json->apiVersion->options
-msgid "V6"
-msgstr "V6"
-
-#. settings-schema.json->apiVersion->options
-msgid "V7"
-msgstr "V7"
-
-#. settings-schema.json->apiVersion->description
-msgid "Yahoo Finance Quotes API version"
-msgstr "Yahoo Finance Quotes API Version"
-
-#. settings-schema.json->apiVersion->tooltip
-msgid "Try different version if data requests fail with error."
-msgstr "Version ändern, falls Datenabfragen fehlschlagen"
 
 #. settings-schema.json->delayMinutes->units
 msgid "minutes"
