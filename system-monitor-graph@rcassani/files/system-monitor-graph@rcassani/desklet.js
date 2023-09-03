@@ -1,9 +1,9 @@
+const ByteArray = imports.byteArray;
 const Desklet = imports.ui.desklet;
 const Settings = imports.ui.settings;
 const Mainloop = imports.mainloop;
 const Lang = imports.lang;
 const Clutter = imports.gi.Clutter;
-const Cinnamon = imports.gi.Cinnamon;
 const Gio = imports.gi.Gio;
 const Cairo = imports.cairo;
 const St = imports.gi.St;
@@ -474,9 +474,11 @@ SystemMonitorGraph.prototype = {
 
     get_hdd_use: function(fs) {
       // https://stackoverflow.com/questions/4458183/how-the-util-of-iostat-is-computed
-      let cpu_line = Cinnamon.get_file_contents_utf8_sync("/proc/stat").match(/cpu\s.+/)[0];
+      let cpu_obj = GLib.file_get_contents("/proc/stat")[1];
+      let cpu_line = ByteArray.toString(cpu_obj).match(/cpu\s.+/)[0];
       let re = new RegExp(fs + '.+');
-      let hdd_line = Cinnamon.get_file_contents_utf8_sync("/proc/diskstats").match(re)[0];
+      let diskstats = GLib.file_get_contents("/proc/diskstats")[1];
+      let hdd_line = ByteArray.toString(diskstats).match(re)[0];
       // get total CPU time
       let cpu_values = cpu_line.split(/\s+/);
       let hdd_cpu_tot = 0;
