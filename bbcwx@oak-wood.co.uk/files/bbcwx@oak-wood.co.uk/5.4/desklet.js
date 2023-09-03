@@ -34,7 +34,6 @@ const GLib = imports.gi.GLib;
 const Main = imports.ui.main;
 
 const Tooltips = imports.ui.tooltips;
-const Cinnamon = imports.gi.Cinnamon;
 const Settings = imports.ui.settings;
 
 const DeskletManager = imports.ui.deskletManager;
