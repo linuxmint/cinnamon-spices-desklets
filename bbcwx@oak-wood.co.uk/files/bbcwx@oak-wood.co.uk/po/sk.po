@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbcwx\n"
 "Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
-"POT-Creation-Date: 2023-08-15 21:58-0400\n"
-"PO-Revision-Date: 2023-08-15 22:42-0400\n"
+"POT-Creation-Date: 2023-09-03 14:13-0400\n"
+"PO-Revision-Date: 2023-09-03 14:15-0400\n"
 "Last-Translator: Peter <peterkudelas@gmail.com>\n"
 "Language-Team: Slovak <sk@li.org>\n"
 "Language: sk\n"
@@ -18,537 +18,537 @@ msgstr ""
 "X-Launchpad-Export-Date: 2015-12-04 19:52+0000\n"
 "X-Generator: Poedit 3.3.1\n"
 
-#: 3.0/desklet.js:108 5.4/desklet.js:107
+#: 5.4/desklet.js:106 3.0/desklet.js:108
 msgid "Mon"
 msgstr "Pon"
 
-#: 3.0/desklet.js:108 5.4/desklet.js:107
+#: 5.4/desklet.js:106 3.0/desklet.js:108
 msgid "Tue"
 msgstr "Ut"
 
-#: 3.0/desklet.js:108 5.4/desklet.js:107
+#: 5.4/desklet.js:106 3.0/desklet.js:108
 msgid "Wed"
 msgstr "Str"
 
-#: 3.0/desklet.js:108 5.4/desklet.js:107
+#: 5.4/desklet.js:106 3.0/desklet.js:108
 msgid "Thu"
 msgstr "Štv"
 
-#: 3.0/desklet.js:108 5.4/desklet.js:107
+#: 5.4/desklet.js:106 3.0/desklet.js:108
 msgid "Fri"
 msgstr "Pia"
 
-#: 3.0/desklet.js:108 5.4/desklet.js:107
+#: 5.4/desklet.js:106 3.0/desklet.js:108
 msgid "Sat"
 msgstr "Sob"
 
-#: 3.0/desklet.js:108 5.4/desklet.js:107
+#: 5.4/desklet.js:106 3.0/desklet.js:108
 msgid "Sun"
 msgstr "Ne"
 
-#: 3.0/desklet.js:186 5.4/desklet.js:192
+#: 5.4/desklet.js:191 3.0/desklet.js:186
 msgid "Weather"
 msgstr "Počasie"
 
-#: 3.0/desklet.js:194 5.4/desklet.js:200
+#: 5.4/desklet.js:199 3.0/desklet.js:194
 msgid "Help"
 msgstr "Pomocník"
 
-#: 3.0/desklet.js:198 5.4/desklet.js:204
+#: 5.4/desklet.js:203 3.0/desklet.js:198
 msgid "Translate"
 msgstr "Preložiť"
 
-#: 3.0/desklet.js:344 3.0/desklet.js:372 5.4/desklet.js:351 5.4/desklet.js:379
+#: 5.4/desklet.js:350 5.4/desklet.js:378 3.0/desklet.js:344 3.0/desklet.js:372
 msgid "Humidity:"
 msgstr "Vlhkosť:"
 
-#: 3.0/desklet.js:345 3.0/desklet.js:371 5.4/desklet.js:352 5.4/desklet.js:378
+#: 5.4/desklet.js:351 5.4/desklet.js:377 3.0/desklet.js:345 3.0/desklet.js:371
 msgid "Pressure:"
 msgstr "Tlak:"
 
-#: 3.0/desklet.js:346 5.4/desklet.js:353
+#: 5.4/desklet.js:352 3.0/desklet.js:346
 msgid "Wind:"
 msgstr "Vietor:"
 
-#: 3.0/desklet.js:347 5.4/desklet.js:354
+#: 5.4/desklet.js:353 3.0/desklet.js:347
 msgid "Feels like:"
 msgstr "Pocitová teplota:"
 
-#: 3.0/desklet.js:348 5.4/desklet.js:355
+#: 5.4/desklet.js:354 3.0/desklet.js:348
 msgid "Visibility:"
 msgstr "Viditeľnosť:"
 
-#: 3.0/desklet.js:363 5.4/desklet.js:370
+#: 5.4/desklet.js:369 3.0/desklet.js:363
 msgid "Max:"
 msgstr "Najvyššia teplota:"
 
-#: 3.0/desklet.js:365 5.4/desklet.js:372
+#: 5.4/desklet.js:371 3.0/desklet.js:365
 msgid "Min:"
 msgstr "Najnižšia teplota:"
 
-#: 3.0/desklet.js:367 5.4/desklet.js:374
+#: 5.4/desklet.js:373 3.0/desklet.js:367
 msgid "Wind speed:"
 msgstr "Rýchlosť vetra:"
 
-#: 3.0/desklet.js:369 5.4/desklet.js:376
+#: 5.4/desklet.js:375 3.0/desklet.js:369
 msgid "Dir:"
 msgstr "Smer vetra:"
 
-#: 3.0/desklet.js:411 5.4/desklet.js:418
+#: 5.4/desklet.js:417 3.0/desklet.js:411
 msgid "Data from "
 msgstr "Údaje z "
 
-#: 3.0/desklet.js:423 5.4/desklet.js:432
+#: 5.4/desklet.js:431 3.0/desklet.js:423
 msgid "Refresh"
 msgstr "Obnoviť"
 
-#: 3.0/desklet.js:744 5.4/desklet.js:754
+#: 5.4/desklet.js:753 3.0/desklet.js:744
 msgid "No data available"
 msgstr "K dispozícii nie sú žiadne údaje"
 
-#: 3.0/desklet.js:777 3.0/desklet.js:844 5.4/desklet.js:787 5.4/desklet.js:854
+#: 5.4/desklet.js:786 5.4/desklet.js:853 3.0/desklet.js:777 3.0/desklet.js:844
 #, javascript-format
 msgid "Error: %s"
 msgstr "Chyba: %s"
 
-#: 3.0/desklet.js:777 3.0/desklet.js:844 5.4/desklet.js:787 5.4/desklet.js:854
+#: 5.4/desklet.js:786 5.4/desklet.js:853 3.0/desklet.js:777 3.0/desklet.js:844
 msgid "No data"
 msgstr "Žiadne údaje"
 
-#: 3.0/desklet.js:879 5.4/desklet.js:889
+#: 5.4/desklet.js:888 3.0/desklet.js:879
 #, javascript-format
 msgid "Click for the full forecast for %s"
 msgstr "Klikni pre plnú predpoveď %s"
 
-#: 3.0/desklet.js:1139 5.4/desklet.js:1149
+#: 5.4/desklet.js:1148 3.0/desklet.js:1139
 #, javascript-format
 msgid "%f°F"
 msgstr "%f °F"
 
-#: 3.0/desklet.js:1141 5.4/desklet.js:1151
+#: 5.4/desklet.js:1150 3.0/desklet.js:1141
 #, javascript-format
 msgid "%f°C"
 msgstr "%f °C"
 
-#: 3.0/desklet.js:1162 5.4/desklet.js:1172
+#: 5.4/desklet.js:1171 3.0/desklet.js:1162
 #, javascript-format
 msgid "%fmph"
 msgstr "%f mph"
 
-#: 3.0/desklet.js:1164 5.4/desklet.js:1174
+#: 5.4/desklet.js:1173 3.0/desklet.js:1164
 #, javascript-format
 msgid "%fkn"
 msgstr "%f kn"
 
-#: 3.0/desklet.js:1166 5.4/desklet.js:1176
+#: 5.4/desklet.js:1175 3.0/desklet.js:1166
 #, javascript-format
 msgid "%fkm/h"
 msgstr "%f km/h"
 
-#: 3.0/desklet.js:1168 5.4/desklet.js:1178
+#: 5.4/desklet.js:1177 3.0/desklet.js:1168
 #, javascript-format
 msgid "%fm/s"
 msgstr "%f m/s"
 
-#: 3.0/desklet.js:1202 5.4/desklet.js:1212
+#: 5.4/desklet.js:1211 3.0/desklet.js:1202
 #, javascript-format
 msgid "%fmb"
 msgstr "%f milibarov"
 
-#: 3.0/desklet.js:1204 5.4/desklet.js:1214
+#: 5.4/desklet.js:1213 3.0/desklet.js:1204
 #, javascript-format
 msgid "%fin"
 msgstr ""
 
-#: 3.0/desklet.js:1206 5.4/desklet.js:1216
+#: 5.4/desklet.js:1215 3.0/desklet.js:1206
 #, javascript-format
 msgid "%fmm"
 msgstr "%f mm"
 
-#: 3.0/desklet.js:1208 5.4/desklet.js:1218
+#: 5.4/desklet.js:1217 3.0/desklet.js:1208
 #, javascript-format
 msgid "%fkPa"
 msgstr "%f kPa"
 
-#: 3.0/desklet.js:1259 5.4/desklet.js:1269
+#: 5.4/desklet.js:1268 3.0/desklet.js:1259
 #, javascript-format
 msgid "%fmi"
 msgstr "%f mi"
 
-#: 3.0/desklet.js:1261 5.4/desklet.js:1271
+#: 5.4/desklet.js:1270 3.0/desklet.js:1261
 #, javascript-format
 msgid "%fnmi"
 msgstr "%f nmi"
 
-#: 3.0/desklet.js:1263 5.4/desklet.js:1273
+#: 5.4/desklet.js:1272 3.0/desklet.js:1263
 #, javascript-format
 msgid "%fkm"
 msgstr "%f km"
 
-#: 3.0/desklet.js:1506 5.4/desklet.js:1516
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
 msgid "N"
 msgstr "S"
 
-#: 3.0/desklet.js:1506 5.4/desklet.js:1516
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
 msgid "NNE"
 msgstr "SSV"
 
-#: 3.0/desklet.js:1506 5.4/desklet.js:1516
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
 msgid "NE"
 msgstr "SV"
 
-#: 3.0/desklet.js:1506 5.4/desklet.js:1516
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
 msgid "ENE"
 msgstr "VSV"
 
-#: 3.0/desklet.js:1506 5.4/desklet.js:1516
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
 msgid "E"
 msgstr "V"
 
-#: 3.0/desklet.js:1506 5.4/desklet.js:1516
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
 msgid "ESE"
 msgstr "VJV"
 
-#: 3.0/desklet.js:1506 5.4/desklet.js:1516
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
 msgid "SE"
 msgstr "JV"
 
-#: 3.0/desklet.js:1506 5.4/desklet.js:1516
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
 msgid "SSE"
 msgstr "JJV"
 
-#: 3.0/desklet.js:1506 5.4/desklet.js:1516
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
 msgid "S"
 msgstr "J"
 
-#: 3.0/desklet.js:1506 5.4/desklet.js:1516
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
 msgid "SSW"
 msgstr "JJZ"
 
-#: 3.0/desklet.js:1506 5.4/desklet.js:1516
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
 msgid "SW"
 msgstr "JZ"
 
-#: 3.0/desklet.js:1506 5.4/desklet.js:1516
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
 msgid "WSW"
 msgstr "ZJZ"
 
-#: 3.0/desklet.js:1506 5.4/desklet.js:1516
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
 msgid "W"
 msgstr "Z"
 
-#: 3.0/desklet.js:1506 5.4/desklet.js:1516
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
 msgid "WNW"
 msgstr "ZSZ"
 
-#: 3.0/desklet.js:1506 5.4/desklet.js:1516
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
 msgid "NW"
 msgstr "SZ"
 
-#: 3.0/desklet.js:1506 5.4/desklet.js:1516
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
 msgid "NNW"
 msgstr "SSZ"
 
-#: 3.0/desklet.js:1560 5.4/desklet.js:1570
+#: 5.4/desklet.js:1569 3.0/desklet.js:1560
 msgid "Tornado"
 msgstr "Tornádo"
 
-#: 3.0/desklet.js:1561 5.4/desklet.js:1571
+#: 5.4/desklet.js:1570 3.0/desklet.js:1561
 msgid "Tropical storm"
 msgstr "Tropická búrka"
 
-#: 3.0/desklet.js:1562 5.4/desklet.js:1572
+#: 5.4/desklet.js:1571 3.0/desklet.js:1562
 msgid "Hurricane"
 msgstr "Hurikán"
 
-#: 3.0/desklet.js:1563 5.4/desklet.js:1573
+#: 5.4/desklet.js:1572 3.0/desklet.js:1563
 msgid "Severe thunderstorms"
 msgstr "Silné búrky"
 
-#: 3.0/desklet.js:1564 5.4/desklet.js:1574
+#: 5.4/desklet.js:1573 3.0/desklet.js:1564
 msgid "Thunderstorms"
 msgstr "Búrky"
 
-#: 3.0/desklet.js:1565 3.0/desklet.js:4240 5.4/desklet.js:1575
-#: 5.4/desklet.js:4250
+#: 5.4/desklet.js:1574 5.4/desklet.js:4249 3.0/desklet.js:1565
+#: 3.0/desklet.js:4240
 msgid "Mixed rain and snow"
 msgstr "Dážď so snehom"
 
-#: 3.0/desklet.js:1566 5.4/desklet.js:1576
+#: 5.4/desklet.js:1575 3.0/desklet.js:1566
 msgid "Mixed rain and sleet"
 msgstr "Dážď s čľapkanicou"
 
-#: 3.0/desklet.js:1567 5.4/desklet.js:1577
+#: 5.4/desklet.js:1576 3.0/desklet.js:1567
 msgid "Mixed snow and sleet"
 msgstr "Sned s čľapkanicou"
 
-#: 3.0/desklet.js:1568 5.4/desklet.js:1578
+#: 5.4/desklet.js:1577 3.0/desklet.js:1568
 msgid "Freezing drizzle"
 msgstr "Mrznúce mrholenie"
 
-#: 3.0/desklet.js:1569 3.0/desklet.js:1872 5.4/desklet.js:1579
-#: 5.4/desklet.js:1882
+#: 5.4/desklet.js:1578 5.4/desklet.js:1881 3.0/desklet.js:1569
+#: 3.0/desklet.js:1872
 msgid "Drizzle"
 msgstr "Mrholenie"
 
-#: 3.0/desklet.js:1570 5.4/desklet.js:1580
+#: 5.4/desklet.js:1579 3.0/desklet.js:1570
 msgid "Freezing rain"
 msgstr "Mrznúci dážď"
 
+#: 5.4/desklet.js:1580 5.4/desklet.js:1581 5.4/desklet.js:4245
 #: 3.0/desklet.js:1571 3.0/desklet.js:1572 3.0/desklet.js:4236
-#: 5.4/desklet.js:1581 5.4/desklet.js:1582 5.4/desklet.js:4246
 msgid "Showers"
 msgstr "Prehánky"
 
-#: 3.0/desklet.js:1573 5.4/desklet.js:1583
+#: 5.4/desklet.js:1582 3.0/desklet.js:1573
 msgid "Snow flurries"
 msgstr "ľahké snehové prehánky"
 
-#: 3.0/desklet.js:1574 5.4/desklet.js:1584
+#: 5.4/desklet.js:1583 3.0/desklet.js:1574
 msgid "Light snow showers"
 msgstr "Slabé sneženie"
 
-#: 3.0/desklet.js:1575 5.4/desklet.js:1585
+#: 5.4/desklet.js:1584 3.0/desklet.js:1575
 msgid "Blowing snow"
 msgstr "Fujavica"
 
+#: 5.4/desklet.js:1585 5.4/desklet.js:4247 5.4/desklet.js:4253
 #: 3.0/desklet.js:1576 3.0/desklet.js:4238 3.0/desklet.js:4244
-#: 5.4/desklet.js:1586 5.4/desklet.js:4248 5.4/desklet.js:4254
 msgid "Snow"
 msgstr "Sneh"
 
-#: 3.0/desklet.js:1577 5.4/desklet.js:1587
+#: 5.4/desklet.js:1586 3.0/desklet.js:1577
 msgid "Hail"
 msgstr "Krúpy"
 
-#: 3.0/desklet.js:1578 3.0/desklet.js:1877 5.4/desklet.js:1588
-#: 5.4/desklet.js:1887
+#: 5.4/desklet.js:1587 5.4/desklet.js:1886 3.0/desklet.js:1578
+#: 3.0/desklet.js:1877
 msgid "Sleet"
 msgstr "Dážď so snehom"
 
-#: 3.0/desklet.js:1579 5.4/desklet.js:1589
+#: 5.4/desklet.js:1588 3.0/desklet.js:1579
 msgid "Dust"
 msgstr "Prach"
 
-#: 3.0/desklet.js:1580 5.4/desklet.js:1590
+#: 5.4/desklet.js:1589 3.0/desklet.js:1580
 msgid "Foggy"
 msgstr "Hmlisto"
 
-#: 3.0/desklet.js:1581 5.4/desklet.js:1591
+#: 5.4/desklet.js:1590 3.0/desklet.js:1581
 msgid "Haze"
 msgstr "Opar"
 
-#: 3.0/desklet.js:1582 5.4/desklet.js:1592
+#: 5.4/desklet.js:1591 3.0/desklet.js:1582
 msgid "Smoky"
 msgstr "Sparno"
 
-#: 3.0/desklet.js:1583 5.4/desklet.js:1593
+#: 5.4/desklet.js:1592 3.0/desklet.js:1583
 msgid "Blustery"
 msgstr "Silný vietor"
 
-#: 3.0/desklet.js:1584 5.4/desklet.js:1594
+#: 5.4/desklet.js:1593 3.0/desklet.js:1584
 msgid "Windy"
 msgstr "Veterno"
 
-#: 3.0/desklet.js:1585 5.4/desklet.js:1595
+#: 5.4/desklet.js:1594 3.0/desklet.js:1585
 msgid "Cold"
 msgstr "Chladno"
 
-#: 3.0/desklet.js:1586 3.0/desklet.js:4233 5.4/desklet.js:1596
-#: 5.4/desklet.js:4243
+#: 5.4/desklet.js:1595 5.4/desklet.js:4242 3.0/desklet.js:1586
+#: 3.0/desklet.js:4233
 msgid "Cloudy"
 msgstr "Oblačno"
 
-#: 3.0/desklet.js:1587 3.0/desklet.js:1588 5.4/desklet.js:1597
-#: 5.4/desklet.js:1598
+#: 5.4/desklet.js:1596 5.4/desklet.js:1597 3.0/desklet.js:1587
+#: 3.0/desklet.js:1588
 msgid "Mostly cloudy"
 msgstr "Prevažne oblačno"
 
+#: 5.4/desklet.js:1598 5.4/desklet.js:1599 5.4/desklet.js:1613
 #: 3.0/desklet.js:1589 3.0/desklet.js:1590 3.0/desklet.js:1604
-#: 5.4/desklet.js:1599 5.4/desklet.js:1600 5.4/desklet.js:1614
 msgid "Partly cloudy"
 msgstr "Polojasno"
 
-#: 3.0/desklet.js:1591 5.4/desklet.js:1601
+#: 5.4/desklet.js:1600 3.0/desklet.js:1591
 msgid "Clear"
 msgstr "Jasno"
 
-#: 3.0/desklet.js:1592 3.0/desklet.js:1861 5.4/desklet.js:1602
-#: 5.4/desklet.js:1871
+#: 5.4/desklet.js:1601 5.4/desklet.js:1870 3.0/desklet.js:1592
+#: 3.0/desklet.js:1861
 msgid "Sunny"
 msgstr "Slnečno"
 
+#: 5.4/desklet.js:1602 5.4/desklet.js:1603 5.4/desklet.js:4240
 #: 3.0/desklet.js:1593 3.0/desklet.js:1594 3.0/desklet.js:4231
-#: 5.4/desklet.js:1603 5.4/desklet.js:1604 5.4/desklet.js:4241
 msgid "Fair"
 msgstr "Vykuklo slniečko"
 
-#: 3.0/desklet.js:1595 5.4/desklet.js:1605
+#: 5.4/desklet.js:1604 3.0/desklet.js:1595
 msgid "Mixed rain and hail"
 msgstr "Dážď s krúpami"
 
-#: 3.0/desklet.js:1596 5.4/desklet.js:1606
+#: 5.4/desklet.js:1605 3.0/desklet.js:1596
 msgid "Hot"
 msgstr "Horúco"
 
-#: 3.0/desklet.js:1597 5.4/desklet.js:1607
+#: 5.4/desklet.js:1606 3.0/desklet.js:1597
 msgid "Isolated thunderstorms"
 msgstr "Miestami búrky"
 
-#: 3.0/desklet.js:1598 5.4/desklet.js:1608
+#: 5.4/desklet.js:1607 3.0/desklet.js:1598
 msgid "Scattered thunderstorms"
 msgstr "Ojedinelé búrky"
 
-#: 3.0/desklet.js:1599 3.0/desklet.js:1600 5.4/desklet.js:1609
-#: 5.4/desklet.js:1610
+#: 5.4/desklet.js:1608 5.4/desklet.js:1609 3.0/desklet.js:1599
+#: 3.0/desklet.js:1600
 msgid "Scattered showers"
 msgstr "Ojedinelé prehánky"
 
-#: 3.0/desklet.js:1601 3.0/desklet.js:1603 5.4/desklet.js:1611
-#: 5.4/desklet.js:1613
+#: 5.4/desklet.js:1610 5.4/desklet.js:1612 3.0/desklet.js:1601
+#: 3.0/desklet.js:1603
 msgid "Heavy snow"
 msgstr "Husté sneženie"
 
-#: 3.0/desklet.js:1602 5.4/desklet.js:1612
+#: 5.4/desklet.js:1611 3.0/desklet.js:1602
 msgid "Scattered snow showers"
 msgstr "Ojedinelé snehové prehánky"
 
-#: 3.0/desklet.js:1605 5.4/desklet.js:1615
+#: 5.4/desklet.js:1614 3.0/desklet.js:1605
 msgid "Thundershowers"
 msgstr "Krátke búrky"
 
-#: 3.0/desklet.js:1606 3.0/desklet.js:4239 5.4/desklet.js:1616
-#: 5.4/desklet.js:4249
+#: 5.4/desklet.js:1615 5.4/desklet.js:4248 3.0/desklet.js:1606
+#: 3.0/desklet.js:4239
 msgid "Snow showers"
 msgstr "Snehové prehánky"
 
-#: 3.0/desklet.js:1607 5.4/desklet.js:1617
+#: 5.4/desklet.js:1616 3.0/desklet.js:1607
 msgid "Isolated thundershowers"
 msgstr "Izolované búrky"
 
-#: 3.0/desklet.js:1608 5.4/desklet.js:1618
+#: 5.4/desklet.js:1617 3.0/desklet.js:1608
 msgid "Not available"
 msgstr "Nedostupné"
 
-#: 3.0/desklet.js:1860 3.0/desklet.js:4230 5.4/desklet.js:1870
-#: 5.4/desklet.js:4240
+#: 5.4/desklet.js:1869 5.4/desklet.js:4239 3.0/desklet.js:1860
+#: 3.0/desklet.js:4230
 msgid "Clear Sky"
 msgstr "Jasno"
 
-#: 3.0/desklet.js:1862 3.0/desklet.js:4232 5.4/desklet.js:1872
-#: 5.4/desklet.js:4242
+#: 5.4/desklet.js:1871 5.4/desklet.js:4241 3.0/desklet.js:1862
+#: 3.0/desklet.js:4232
 msgid "Partly Cloudy"
 msgstr "Polooblačno"
 
-#: 3.0/desklet.js:1863 5.4/desklet.js:1873
+#: 5.4/desklet.js:1872 3.0/desklet.js:1863
 msgid "Sunny Intervals"
 msgstr "Striedavo Slnečno"
 
-#: 3.0/desklet.js:1864 5.4/desklet.js:1874
+#: 5.4/desklet.js:1873 3.0/desklet.js:1864
 msgid "Sand Storm"
 msgstr "Piesočná búrka"
 
-#: 3.0/desklet.js:1865 5.4/desklet.js:1875
+#: 5.4/desklet.js:1874 3.0/desklet.js:1865
 msgid "Mist"
 msgstr "Rosa"
 
-#: 3.0/desklet.js:1866 3.0/desklet.js:4234 5.4/desklet.js:1876
-#: 5.4/desklet.js:4244
+#: 5.4/desklet.js:1875 5.4/desklet.js:4243 3.0/desklet.js:1866
+#: 3.0/desklet.js:4234
 msgid "Fog"
 msgstr "Hmla"
 
-#: 3.0/desklet.js:1867 5.4/desklet.js:1877
+#: 5.4/desklet.js:1876 3.0/desklet.js:1867
 msgid "White Cloud"
 msgstr "Mierna Oblačnosť"
 
-#: 3.0/desklet.js:1868 5.4/desklet.js:1878
+#: 5.4/desklet.js:1877 3.0/desklet.js:1868
 msgid "Light Cloud"
 msgstr "Slabá oblačnosť"
 
-#: 3.0/desklet.js:1869 5.4/desklet.js:1879
+#: 5.4/desklet.js:1878 3.0/desklet.js:1869
 msgid "Grey Cloud"
 msgstr "Stredná oblačnosť"
 
-#: 3.0/desklet.js:1870 5.4/desklet.js:1880
+#: 5.4/desklet.js:1879 3.0/desklet.js:1870
 msgid "Thick Cloud"
 msgstr "Silná oblačnosť"
 
-#: 3.0/desklet.js:1871 5.4/desklet.js:1881
+#: 5.4/desklet.js:1880 3.0/desklet.js:1871
 msgid "Light Rain Shower"
 msgstr "Slabé prehánky"
 
+#: 5.4/desklet.js:1882 5.4/desklet.js:4250 5.4/desklet.js:4254
 #: 3.0/desklet.js:1873 3.0/desklet.js:4241 3.0/desklet.js:4245
-#: 5.4/desklet.js:1883 5.4/desklet.js:4251 5.4/desklet.js:4255
 msgid "Light Rain"
 msgstr "Slabý dážď"
 
-#: 3.0/desklet.js:1874 5.4/desklet.js:1884
+#: 5.4/desklet.js:1883 3.0/desklet.js:1874
 msgid "Heavy Rain Shower"
 msgstr "Silné prehánky"
 
+#: 5.4/desklet.js:1884 5.4/desklet.js:4244 5.4/desklet.js:4252
 #: 3.0/desklet.js:1875 3.0/desklet.js:4235 3.0/desklet.js:4243
-#: 5.4/desklet.js:1885 5.4/desklet.js:4245 5.4/desklet.js:4253
 msgid "Heavy Rain"
 msgstr "Silný dážď"
 
-#: 3.0/desklet.js:1876 5.4/desklet.js:1886
+#: 5.4/desklet.js:1885 3.0/desklet.js:1876
 msgid "Sleet Shower"
 msgstr "prehánky s čľapkanicou"
 
-#: 3.0/desklet.js:1878 5.4/desklet.js:1888
+#: 5.4/desklet.js:1887 3.0/desklet.js:1878
 msgid "Light Snow Shower"
 msgstr "Slabé snehové prehánky"
 
+#: 5.4/desklet.js:1888 5.4/desklet.js:4251 5.4/desklet.js:4255
 #: 3.0/desklet.js:1879 3.0/desklet.js:4242 3.0/desklet.js:4246
-#: 5.4/desklet.js:1889 5.4/desklet.js:4252 5.4/desklet.js:4256
 msgid "Light Snow"
 msgstr "Slabé sneženie"
 
-#: 3.0/desklet.js:1880 5.4/desklet.js:1890
+#: 5.4/desklet.js:1889 3.0/desklet.js:1880
 msgid "Heavy Snow Shower"
 msgstr "Silné snehové prehánky"
 
-#: 3.0/desklet.js:1881 5.4/desklet.js:1891
+#: 5.4/desklet.js:1890 3.0/desklet.js:1881
 msgid "Heavy Snow"
 msgstr "Silné sneženie"
 
-#: 3.0/desklet.js:1882 3.0/desklet.js:4237 5.4/desklet.js:1892
-#: 5.4/desklet.js:4247
+#: 5.4/desklet.js:1891 5.4/desklet.js:4246 3.0/desklet.js:1882
+#: 3.0/desklet.js:4237
 msgid "Thundery Shower"
 msgstr "Letná búrka"
 
-#: 3.0/desklet.js:1883 5.4/desklet.js:1893
+#: 5.4/desklet.js:1892 3.0/desklet.js:1883
 msgid "Thunder Storm"
 msgstr "Búrka"
 
-#: 3.0/desklet.js:1884 5.4/desklet.js:1894
+#: 5.4/desklet.js:1893 3.0/desklet.js:1884
 msgid "Thunderstorm"
 msgstr "Búrka"
 
-#: 3.0/desklet.js:1885 5.4/desklet.js:1895
+#: 5.4/desklet.js:1894 3.0/desklet.js:1885
 msgid "Hazy"
 msgstr "Hmlisto"
 
-#: 3.0/desklet.js:1886 5.4/desklet.js:1896
+#: 5.4/desklet.js:1895 3.0/desklet.js:1886
 msgid "Hail Shower"
 msgstr "slabý ľadovec"
 
-#: 3.0/desklet.js:1887 5.4/desklet.js:1897
+#: 5.4/desklet.js:1896 3.0/desklet.js:1887
 msgid "Rain"
 msgstr ""
 
-#: 3.0/desklet.js:2072 3.0/desklet.js:2800 5.4/desklet.js:2082
-#: 5.4/desklet.js:2810
+#: 5.4/desklet.js:2081 5.4/desklet.js:2809 3.0/desklet.js:2072
+#: 3.0/desklet.js:2800
 msgid "Steady"
 msgstr "Stály tlak"
 
-#: 3.0/desklet.js:2072 3.0/desklet.js:2796 5.4/desklet.js:2082
-#: 5.4/desklet.js:2806
+#: 5.4/desklet.js:2081 5.4/desklet.js:2805 3.0/desklet.js:2072
+#: 3.0/desklet.js:2796
 msgid "Rising"
 msgstr "Stúpajúci tlak"
 
-#: 3.0/desklet.js:2072 3.0/desklet.js:2798 5.4/desklet.js:2082
-#: 5.4/desklet.js:2808
+#: 5.4/desklet.js:2081 5.4/desklet.js:2807 3.0/desklet.js:2072
+#: 3.0/desklet.js:2798
 msgid "Falling"
 msgstr "Klesajúci tlak"
 
@@ -570,191 +570,191 @@ msgstr ""
 msgid "Chris Hastie"
 msgstr ""
 
-#. 3.0->settings-schema.json->top->description
 #. 5.4->settings-schema.json->top->description
+#. 3.0->settings-schema.json->top->description
 msgid "Weather configuration"
 msgstr "Konfigurácia počasia"
 
-#. 3.0->settings-schema.json->webservice->description
-#. 3.0->settings-schema.json->locsrc->options
 #. 5.4->settings-schema.json->webservice->description
 #. 5.4->settings-schema.json->locsrc->options
+#. 3.0->settings-schema.json->webservice->description
+#. 3.0->settings-schema.json->locsrc->options
 msgid "Data service"
 msgstr "Zdroj informácií"
 
-#. 3.0->settings-schema.json->webservice->options
 #. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
 msgid "BBC"
 msgstr ""
 
-#. 3.0->settings-schema.json->webservice->options
 #. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
 #, fuzzy
 msgid "Open Weather Map (requires API key)"
 msgstr "World Weather Online (vyžaduje API kľúč)"
 
-#. 3.0->settings-schema.json->webservice->options
 #. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
 #, fuzzy
 msgid "Open Weather Map Free (requires API key)"
 msgstr "World Weather Online (vyžaduje API kľúč)"
 
-#. 3.0->settings-schema.json->webservice->options
 #. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
 msgid "Wunderground (requires API key)"
 msgstr "Wunderground (vyžaduje API kľúč)"
 
-#. 3.0->settings-schema.json->webservice->options
 #. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
 #, fuzzy
 msgid "World Weather Online (deprecated) (requires API key)"
 msgstr "World Weather Online (vyžaduje API kľúč)"
 
-#. 3.0->settings-schema.json->webservice->options
 #. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
 #, fuzzy
 msgid "World Weather Online Premium (requires API key)"
 msgstr "World Weather Online (vyžaduje API kľúč)"
 
-#. 3.0->settings-schema.json->webservice->options
 #. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
 #, fuzzy
 msgid "APIXU (requires API key)"
 msgstr "forecast.io (vyžaduje API kľúč)"
 
-#. 3.0->settings-schema.json->webservice->options
 #. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
 msgid "Forecast.io (requires API key)"
 msgstr "forecast.io (vyžaduje API kľúč)"
 
-#. 3.0->settings-schema.json->webservice->options
 #. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
 msgid "weather.com (deprecated)"
 msgstr "weather.com (zastarané)"
 
-#. 3.0->settings-schema.json->webservice->options
 #. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
 msgid "meteoblue (requires API key)"
 msgstr ""
 
-#. 3.0->settings-schema.json->webservice->tooltip
 #. 5.4->settings-schema.json->webservice->tooltip
+#. 3.0->settings-schema.json->webservice->tooltip
 msgid "Select the data service you wish to use"
 msgstr ""
 
-#. 3.0->settings-schema.json->stationID->description
 #. 5.4->settings-schema.json->stationID->description
+#. 3.0->settings-schema.json->stationID->description
 msgid "Location"
 msgstr "Poloha"
 
-#. 3.0->settings-schema.json->stationID->tooltip
 #. 5.4->settings-schema.json->stationID->tooltip
+#. 3.0->settings-schema.json->stationID->tooltip
 msgid "Set your location here"
 msgstr "Nastav svoju lokalitu tu"
 
-#. 3.0->settings-schema.json->apikey->description
 #. 5.4->settings-schema.json->apikey->description
+#. 3.0->settings-schema.json->apikey->description
 msgid "API key"
 msgstr "Kľúč API"
 
-#. 3.0->settings-schema.json->apikey->tooltip
 #. 5.4->settings-schema.json->apikey->tooltip
+#. 3.0->settings-schema.json->apikey->tooltip
 msgid ""
 "Required for some services only. Enter your API key for your chosen service"
 msgstr ""
 
-#. 3.0->settings-schema.json->tunits->description
 #. 5.4->settings-schema.json->tunits->description
+#. 3.0->settings-schema.json->tunits->description
 msgid "Temperature measurement unit"
 msgstr "Merné jednotky teploty"
 
-#. 3.0->settings-schema.json->tunits->options
 #. 5.4->settings-schema.json->tunits->options
+#. 3.0->settings-schema.json->tunits->options
 msgid "Celsius"
 msgstr "Celzia"
 
-#. 3.0->settings-schema.json->tunits->options
 #. 5.4->settings-schema.json->tunits->options
+#. 3.0->settings-schema.json->tunits->options
 msgid "Fahrenheit"
 msgstr "Fahrenheita"
 
-#. 3.0->settings-schema.json->tunits->tooltip
 #. 5.4->settings-schema.json->tunits->tooltip
+#. 3.0->settings-schema.json->tunits->tooltip
 msgid "Measurement units used to display temperature"
 msgstr "Merné jednotky použité na zobrazenie teploty"
 
-#. 3.0->settings-schema.json->wunits->description
 #. 5.4->settings-schema.json->wunits->description
+#. 3.0->settings-schema.json->wunits->description
 msgid "Wind speed measurement unit"
 msgstr "Merná jednotka na meranie rýchlosti vetra"
 
-#. 3.0->settings-schema.json->wunits->options
 #. 5.4->settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
 msgid "mph"
 msgstr "mph"
 
-#. 3.0->settings-schema.json->wunits->options
 #. 5.4->settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
 msgid "km/h"
 msgstr ""
 
-#. 3.0->settings-schema.json->wunits->options
 #. 5.4->settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
 msgid "knots"
 msgstr "uzly"
 
-#. 3.0->settings-schema.json->wunits->options
 #. 5.4->settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
 msgid "m/s"
 msgstr ""
 
-#. 3.0->settings-schema.json->wunits->tooltip
 #. 5.4->settings-schema.json->wunits->tooltip
+#. 3.0->settings-schema.json->wunits->tooltip
 msgid "Measurement units used to display wind speed"
 msgstr "Merné jednotky použité pri zobrazovaní rýchlosti vetra"
 
-#. 3.0->settings-schema.json->punits->description
 #. 5.4->settings-schema.json->punits->description
+#. 3.0->settings-schema.json->punits->description
 msgid "Pressure measurement unit"
 msgstr "Merná jednotka tlaku"
 
-#. 3.0->settings-schema.json->punits->options
 #. 5.4->settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
 msgid "mb"
 msgstr "milibarov"
 
-#. 3.0->settings-schema.json->punits->options
 #. 5.4->settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
 msgid "in (Hg)"
 msgstr ""
 
-#. 3.0->settings-schema.json->punits->options
 #. 5.4->settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
 msgid "mm (Hg)"
 msgstr ""
 
-#. 3.0->settings-schema.json->punits->options
 #. 5.4->settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
 msgid "kPa"
 msgstr ""
 
-#. 3.0->settings-schema.json->punits->tooltip
 #. 5.4->settings-schema.json->punits->tooltip
+#. 3.0->settings-schema.json->punits->tooltip
 msgid "Measurement units used to display atmospheric pressure"
 msgstr "Merné jednotky použité na zobrazenie atmosférického tlaku"
 
-#. 3.0->settings-schema.json->userno->units
 #. 5.4->settings-schema.json->userno->units
+#. 3.0->settings-schema.json->userno->units
 msgid "days"
 msgstr "dni"
 
-#. 3.0->settings-schema.json->userno->description
 #. 5.4->settings-schema.json->userno->description
+#. 3.0->settings-schema.json->userno->description
 msgid "Show forecast for"
 msgstr "Zobraz predpoveď pre"
 
-#. 3.0->settings-schema.json->userno->tooltip
 #. 5.4->settings-schema.json->userno->tooltip
+#. 3.0->settings-schema.json->userno->tooltip
 msgid ""
 "The number of days of forecast to display. Note that not all services "
 "support all values"
@@ -762,18 +762,18 @@ msgstr ""
 "Počet dní na zobrazenie predpovede. Poznámka nie pre všetky službydustupné "
 "všetky možnosti"
 
-#. 3.0->settings-schema.json->refreshtime->units
 #. 5.4->settings-schema.json->refreshtime->units
+#. 3.0->settings-schema.json->refreshtime->units
 msgid "minutes"
 msgstr "minúty"
 
-#. 3.0->settings-schema.json->refreshtime->description
 #. 5.4->settings-schema.json->refreshtime->description
+#. 3.0->settings-schema.json->refreshtime->description
 msgid "Refresh forecast every"
 msgstr "Obnoviť predpoveď každých"
 
-#. 3.0->settings-schema.json->refreshtime->tooltip
 #. 5.4->settings-schema.json->refreshtime->tooltip
+#. 3.0->settings-schema.json->refreshtime->tooltip
 msgid ""
 "Period between refreshing forecasts. Note that not all services support "
 "lower refresh times"
@@ -781,406 +781,406 @@ msgstr ""
 "Čas medzi obnovovaním predovede. Poznámka: Niektoré služby nepodporujú "
 "krátky čas pre obnovu"
 
-#. 3.0->settings-schema.json->display->description
 #. 5.4->settings-schema.json->display->description
+#. 3.0->settings-schema.json->display->description
 msgid ""
 "Optional items to display (not all options are supported by all services)"
 msgstr ""
 "Voliteľné veci na zobrazenie (nie všetky možnosti sú podporované pre všetky "
 "služby)"
 
-#. 3.0->settings-schema.json->display__meta__country->description
 #. 5.4->settings-schema.json->display__meta__country->description
+#. 3.0->settings-schema.json->display__meta__country->description
 msgid "Country"
 msgstr "Krajina"
 
-#. 3.0->settings-schema.json->display__meta__country->tooltip
 #. 5.4->settings-schema.json->display__meta__country->tooltip
+#. 3.0->settings-schema.json->display__meta__country->tooltip
 msgid "Check to display the country"
 msgstr "Odklikni na zobrazenie krajiny"
 
-#. 3.0->settings-schema.json->display__cc__weather->description
 #. 5.4->settings-schema.json->display__cc__weather->description
+#. 3.0->settings-schema.json->display__cc__weather->description
 msgid "Current weather and icon"
 msgstr "Aktuálne počasie a ikona"
 
-#. 3.0->settings-schema.json->display__cc__weather->tooltip
 #. 5.4->settings-schema.json->display__cc__weather->tooltip
+#. 3.0->settings-schema.json->display__cc__weather->tooltip
 msgid "Check to display the current weather and large icon"
 msgstr "Odklikni na zobrazenie aktuálneho počasia a veľkej ikony"
 
-#. 3.0->settings-schema.json->display__cc__pressure->description
 #. 5.4->settings-schema.json->display__cc__pressure->description
+#. 3.0->settings-schema.json->display__cc__pressure->description
 msgid "Current pressure"
 msgstr "Aktuálny tlak"
 
-#. 3.0->settings-schema.json->display__cc__pressure->tooltip
 #. 5.4->settings-schema.json->display__cc__pressure->tooltip
+#. 3.0->settings-schema.json->display__cc__pressure->tooltip
 msgid "Check to display the current pressure"
 msgstr "Odklikni na zobrazenie aktuálneho tlaku"
 
-#. 3.0->settings-schema.json->display__cc__humidity->description
 #. 5.4->settings-schema.json->display__cc__humidity->description
+#. 3.0->settings-schema.json->display__cc__humidity->description
 msgid "Current humidity"
 msgstr "Aktuálny vlhkosť"
 
-#. 3.0->settings-schema.json->display__cc__humidity->tooltip
 #. 5.4->settings-schema.json->display__cc__humidity->tooltip
+#. 3.0->settings-schema.json->display__cc__humidity->tooltip
 msgid "Check to display the current humidity"
 msgstr "Skontrolovať pre zobrazenie aktuálnej vlhkosti"
 
-#. 3.0->settings-schema.json->display__cc__wind_speed->description
 #. 5.4->settings-schema.json->display__cc__wind_speed->description
+#. 3.0->settings-schema.json->display__cc__wind_speed->description
 msgid "Current wind"
 msgstr "Aktuálny vietor"
 
-#. 3.0->settings-schema.json->display__cc__wind_speed->tooltip
 #. 5.4->settings-schema.json->display__cc__wind_speed->tooltip
+#. 3.0->settings-schema.json->display__cc__wind_speed->tooltip
 msgid "Check to display the current wind"
 msgstr "Vybrať pre zobrazenie aktuálneho vetra"
 
-#. 3.0->settings-schema.json->display__cc__feelslike->description
 #. 5.4->settings-schema.json->display__cc__feelslike->description
+#. 3.0->settings-schema.json->display__cc__feelslike->description
 msgid "Current 'feels like'"
 msgstr "Aktuálna pocitová"
 
-#. 3.0->settings-schema.json->display__cc__feelslike->tooltip
 #. 5.4->settings-schema.json->display__cc__feelslike->tooltip
+#. 3.0->settings-schema.json->display__cc__feelslike->tooltip
 msgid "Check to display the current apparent temperature"
 msgstr "Odklikni na zobrazenie aktuálnej zdanlivej teploty"
 
-#. 3.0->settings-schema.json->display__cc__visibility->description
 #. 5.4->settings-schema.json->display__cc__visibility->description
+#. 3.0->settings-schema.json->display__cc__visibility->description
 msgid "Current visibility"
 msgstr "Aktuálna viditeľnosť"
 
-#. 3.0->settings-schema.json->display__cc__visibility->tooltip
 #. 5.4->settings-schema.json->display__cc__visibility->tooltip
+#. 3.0->settings-schema.json->display__cc__visibility->tooltip
 msgid "Check to display the current visibility"
 msgstr "Odklikni na zobrazenie aktuálnej vyditeľnosti"
 
-#. 3.0->settings-
-#. schema.json->display__forecast__maximum_temperature->description
 #. 5.4->settings-
+#. schema.json->display__forecast__maximum_temperature->description
+#. 3.0->settings-
 #. schema.json->display__forecast__maximum_temperature->description
 msgid "Forecast maximum"
 msgstr "Najvyššia"
 
-#. 3.0->settings-schema.json->display__forecast__maximum_temperature->tooltip
 #. 5.4->settings-schema.json->display__forecast__maximum_temperature->tooltip
+#. 3.0->settings-schema.json->display__forecast__maximum_temperature->tooltip
 msgid "Check to display the forecast maximum temperature"
 msgstr "Odklikni na zobrazenie najvyššej teploty"
 
-#. 3.0->settings-
-#. schema.json->display__forecast__minimum_temperature->description
 #. 5.4->settings-
+#. schema.json->display__forecast__minimum_temperature->description
+#. 3.0->settings-
 #. schema.json->display__forecast__minimum_temperature->description
 msgid "Forecast minimum"
 msgstr "Najnižšia"
 
-#. 3.0->settings-schema.json->display__forecast__minimum_temperature->tooltip
 #. 5.4->settings-schema.json->display__forecast__minimum_temperature->tooltip
+#. 3.0->settings-schema.json->display__forecast__minimum_temperature->tooltip
 msgid "Check to display the forecast minimum temperature"
 msgstr "Odklikni na zobrazenie najnižšej teploty"
 
-#. 3.0->settings-schema.json->display__forecast__wind_speed->description
 #. 5.4->settings-schema.json->display__forecast__wind_speed->description
+#. 3.0->settings-schema.json->display__forecast__wind_speed->description
 msgid "Forecast wind speed"
 msgstr "Predpoveď rýchlosti vetra"
 
-#. 3.0->settings-schema.json->display__forecast__wind_speed->tooltip
 #. 5.4->settings-schema.json->display__forecast__wind_speed->tooltip
+#. 3.0->settings-schema.json->display__forecast__wind_speed->tooltip
 msgid "Check to display the forecast wind speed"
 msgstr "Odklikni na zobrazenie rýchlosti vetra"
 
-#. 3.0->settings-schema.json->display__forecast__wind_direction->description
 #. 5.4->settings-schema.json->display__forecast__wind_direction->description
+#. 3.0->settings-schema.json->display__forecast__wind_direction->description
 msgid "Forecast wind direction"
 msgstr "Predpoveď smeru vetra"
 
-#. 3.0->settings-schema.json->display__forecast__wind_direction->tooltip
 #. 5.4->settings-schema.json->display__forecast__wind_direction->tooltip
+#. 3.0->settings-schema.json->display__forecast__wind_direction->tooltip
 msgid "Check to display the forecast wind direction"
 msgstr "Odklikni na zobrazenie predpovede smeru vetra"
 
-#. 3.0->settings-schema.json->display__forecast__pressure->description
 #. 5.4->settings-schema.json->display__forecast__pressure->description
+#. 3.0->settings-schema.json->display__forecast__pressure->description
 msgid "Forecast pressure"
 msgstr "Predpoveď tlaku"
 
-#. 3.0->settings-schema.json->display__forecast__pressure->tooltip
 #. 5.4->settings-schema.json->display__forecast__pressure->tooltip
+#. 3.0->settings-schema.json->display__forecast__pressure->tooltip
 msgid "Check to display the forecast pressure"
 msgstr "Odklikni na zobrazenie tlaku"
 
-#. 3.0->settings-schema.json->display__forecast__humidity->description
 #. 5.4->settings-schema.json->display__forecast__humidity->description
+#. 3.0->settings-schema.json->display__forecast__humidity->description
 msgid "Forecast humidity"
 msgstr "Predpoveď vľhkosti"
 
-#. 3.0->settings-schema.json->display__forecast__humidity->tooltip
 #. 5.4->settings-schema.json->display__forecast__humidity->tooltip
+#. 3.0->settings-schema.json->display__forecast__humidity->tooltip
 msgid "Check to display the forecast humidity"
 msgstr "Odklikni na zobrazenie vľhkosti"
 
-#. 3.0->settings-schema.json->styling->description
 #. 5.4->settings-schema.json->styling->description
+#. 3.0->settings-schema.json->styling->description
 msgid "Desklet style"
 msgstr "Štýl deskletu"
 
-#. 3.0->settings-schema.json->zoom->units
 #. 5.4->settings-schema.json->zoom->units
+#. 3.0->settings-schema.json->zoom->units
 msgid "times"
 msgstr "krát"
 
-#. 3.0->settings-schema.json->zoom->description
 #. 5.4->settings-schema.json->zoom->description
+#. 3.0->settings-schema.json->zoom->description
 msgid "Zoom by"
 msgstr "Priblíž o"
 
-#. 3.0->settings-schema.json->zoom->tooltip
 #. 5.4->settings-schema.json->zoom->tooltip
+#. 3.0->settings-schema.json->zoom->tooltip
 msgid "Change the size of the desklet"
 msgstr "Zmeň velkosť deskletu"
 
-#. 3.0->settings-schema.json->layout->description
 #. 5.4->settings-schema.json->layout->description
+#. 3.0->settings-schema.json->layout->description
 msgid "Layout"
 msgstr "Rozloženie"
 
-#. 3.0->settings-schema.json->layout->options
 #. 5.4->settings-schema.json->layout->options
+#. 3.0->settings-schema.json->layout->options
 msgid "Horizontal"
 msgstr "Vodorovné"
 
-#. 3.0->settings-schema.json->layout->options
 #. 5.4->settings-schema.json->layout->options
+#. 3.0->settings-schema.json->layout->options
 msgid "Vertical"
 msgstr "Zvislé"
 
-#. 3.0->settings-schema.json->layout->tooltip
 #. 5.4->settings-schema.json->layout->tooltip
+#. 3.0->settings-schema.json->layout->tooltip
 msgid "Set the overall layout of the desklet"
 msgstr "Nastaviť celkové rozloženie deskletu"
 
-#. 3.0->settings-schema.json->iconstyle->description
 #. 5.4->settings-schema.json->iconstyle->description
+#. 3.0->settings-schema.json->iconstyle->description
 msgid "Icon style"
 msgstr "Štýl ikon"
 
-#. 3.0->settings-schema.json->iconstyle->options
 #. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
 msgid "Colorful"
 msgstr "Farebný"
 
-#. 3.0->settings-schema.json->iconstyle->options
 #. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
 msgid "Dark"
 msgstr "Tmavý"
 
-#. 3.0->settings-schema.json->iconstyle->options
 #. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
 msgid "Light"
 msgstr "Svetlý"
 
-#. 3.0->settings-schema.json->iconstyle->options
 #. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
 msgid "Flat colorful"
 msgstr ""
 
-#. 3.0->settings-schema.json->iconstyle->options
 #. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
 msgid "Flat black"
 msgstr "Plochý čierny"
 
-#. 3.0->settings-schema.json->iconstyle->options
 #. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
 msgid "Flat white"
 msgstr "Plochý biely"
 
-#. 3.0->settings-schema.json->iconstyle->options
 #. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
 msgid "VClouds"
 msgstr ""
 
-#. 3.0->settings-schema.json->iconstyle->options
 #. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
 msgid "Novacon"
 msgstr ""
 
-#. 3.0->settings-schema.json->iconstyle->options
 #. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
 msgid "Weezle"
 msgstr ""
 
-#. 3.0->settings-schema.json->iconstyle->options
 #. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
 msgid "Meteocons 1"
 msgstr ""
 
-#. 3.0->settings-schema.json->iconstyle->options
 #. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
 msgid "Meteocons 2"
 msgstr ""
 
-#. 3.0->settings-schema.json->iconstyle->options
 #. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
 msgid "Sketchy"
 msgstr ""
 
-#. 3.0->settings-schema.json->iconstyle->options
 #. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
 msgid "User defined"
 msgstr "Definované užívateľom"
 
-#. 3.0->settings-schema.json->iconstyle->tooltip
 #. 5.4->settings-schema.json->iconstyle->tooltip
+#. 3.0->settings-schema.json->iconstyle->tooltip
 msgid "Select the style for the weather icons"
 msgstr "Vyber štýl pre ikony počasia"
 
-#. 3.0->settings-schema.json->citystyle->description
 #. 5.4->settings-schema.json->citystyle->description
+#. 3.0->settings-schema.json->citystyle->description
 msgid "Bold city name"
 msgstr "Tučný názov mesta"
 
-#. 3.0->settings-schema.json->citystyle->tooltip
 #. 5.4->settings-schema.json->citystyle->tooltip
+#. 3.0->settings-schema.json->citystyle->tooltip
 msgid "Check to display the city name in bold"
 msgstr "Odklikni na zobrazenie názvu mesta tučno"
 
-#. 3.0->settings-schema.json->overrideTheme->description
 #. 5.4->settings-schema.json->overrideTheme->description
+#. 3.0->settings-schema.json->overrideTheme->description
 msgid "Override desktop theme (enables the settings below)"
 msgstr "Prepíš desktopvú tému (spustí nastavenia podtýmto)"
 
-#. 3.0->settings-schema.json->overrideTheme->tooltip
 #. 5.4->settings-schema.json->overrideTheme->tooltip
+#. 3.0->settings-schema.json->overrideTheme->tooltip
 msgid ""
 "Check this to override the desktop theme and configure the appearance "
 "manually"
 msgstr ""
 "Odklikni na prepísanie desktopvej témy a konfigurovanie vzhľadumanuálne"
 
-#. 3.0->settings-schema.json->transparency->description
 #. 5.4->settings-schema.json->transparency->description
+#. 3.0->settings-schema.json->transparency->description
 msgid "Transparency"
 msgstr "Priehľadnosť"
 
-#. 3.0->settings-schema.json->transparency->tooltip
 #. 5.4->settings-schema.json->transparency->tooltip
+#. 3.0->settings-schema.json->transparency->tooltip
 msgid "Set the transparency of the desklet"
 msgstr "Nastav priehľadnosť deskletu"
 
-#. 3.0->settings-schema.json->textcolor->description
 #. 5.4->settings-schema.json->textcolor->description
+#. 3.0->settings-schema.json->textcolor->description
 msgid "Text color"
 msgstr "Farba textu"
 
-#. 3.0->settings-schema.json->textcolor->tooltip
 #. 5.4->settings-schema.json->textcolor->tooltip
+#. 3.0->settings-schema.json->textcolor->tooltip
 msgid "Click the button to select a new text color"
 msgstr "Kliknite na tlačidlo pre výber inej farby textu"
 
-#. 3.0->settings-schema.json->textshadow->description
 #. 5.4->settings-schema.json->textshadow->description
+#. 3.0->settings-schema.json->textshadow->description
 msgid "Text shadow"
 msgstr ""
 
-#. 3.0->settings-schema.json->textshadow->tooltip
 #. 5.4->settings-schema.json->textshadow->tooltip
+#. 3.0->settings-schema.json->textshadow->tooltip
 msgid "Check to add a text shadow"
 msgstr ""
 
-#. 3.0->settings-schema.json->shadowblur->units
-#. 3.0->settings-schema.json->cornerradius->units
-#. 3.0->settings-schema.json->borderwidth->units
 #. 5.4->settings-schema.json->shadowblur->units
 #. 5.4->settings-schema.json->cornerradius->units
 #. 5.4->settings-schema.json->borderwidth->units
+#. 3.0->settings-schema.json->shadowblur->units
+#. 3.0->settings-schema.json->cornerradius->units
+#. 3.0->settings-schema.json->borderwidth->units
 msgid "px"
 msgstr "px"
 
-#. 3.0->settings-schema.json->shadowblur->description
 #. 5.4->settings-schema.json->shadowblur->description
+#. 3.0->settings-schema.json->shadowblur->description
 msgid "Shadow blur radius"
 msgstr ""
 
-#. 3.0->settings-schema.json->shadowblur->tooltip
 #. 5.4->settings-schema.json->shadowblur->tooltip
+#. 3.0->settings-schema.json->shadowblur->tooltip
 msgid "Set the text shadow sharp (1) or blurry (2-7)"
 msgstr ""
 
-#. 3.0->settings-schema.json->bgcolor->description
 #. 5.4->settings-schema.json->bgcolor->description
+#. 3.0->settings-schema.json->bgcolor->description
 msgid "Background color"
 msgstr "Farba pozadia"
 
-#. 3.0->settings-schema.json->bgcolor->tooltip
 #. 5.4->settings-schema.json->bgcolor->tooltip
+#. 3.0->settings-schema.json->bgcolor->tooltip
 msgid "Click the button to select a new background color"
 msgstr "Klikni na tlačidlo pre vybranie novej farby pozadia"
 
-#. 3.0->settings-schema.json->cornerradius->description
 #. 5.4->settings-schema.json->cornerradius->description
+#. 3.0->settings-schema.json->cornerradius->description
 msgid "Corner radius"
 msgstr "Rohový polomer"
 
-#. 3.0->settings-schema.json->cornerradius->tooltip
 #. 5.4->settings-schema.json->cornerradius->tooltip
+#. 3.0->settings-schema.json->cornerradius->tooltip
 msgid "Radius for rounding the desklet's corners"
 msgstr "Polomer pre zakrivenia rohov deskletu"
 
-#. 3.0->settings-schema.json->border->description
 #. 5.4->settings-schema.json->border->description
+#. 3.0->settings-schema.json->border->description
 msgid "Show border"
 msgstr "Zobraziť hranice"
 
-#. 3.0->settings-schema.json->border->tooltip
 #. 5.4->settings-schema.json->border->tooltip
+#. 3.0->settings-schema.json->border->tooltip
 msgid "Check this to turn border on/off"
 msgstr "Odklikni na zobrazenie orámovania zapnuté/vypnuté"
 
-#. 3.0->settings-schema.json->bordercolor->description
 #. 5.4->settings-schema.json->bordercolor->description
+#. 3.0->settings-schema.json->bordercolor->description
 msgid "Border color"
 msgstr "Farba ohraničenia"
 
-#. 3.0->settings-schema.json->bordercolor->tooltip
 #. 5.4->settings-schema.json->bordercolor->tooltip
+#. 3.0->settings-schema.json->bordercolor->tooltip
 msgid ""
 "Select the color for the border. Only available if the 'Border' checkbox is "
 "enabled"
 msgstr "Označ farbu ohraničenia. Dostupné iba ak 'Ohraničenie' je zapnuté"
 
-#. 3.0->settings-schema.json->borderwidth->description
 #. 5.4->settings-schema.json->borderwidth->description
+#. 3.0->settings-schema.json->borderwidth->description
 msgid "Border width"
 msgstr "Šírka orámovanie"
 
-#. 3.0->settings-schema.json->borderwidth->tooltip
 #. 5.4->settings-schema.json->borderwidth->tooltip
+#. 3.0->settings-schema.json->borderwidth->tooltip
 msgid ""
 "Select the width of the border. Only available if the 'Border' checkbox is "
 "enabled"
 msgstr "Vyber šírku orámovania. Jedine dostupné ak 'Orámovanie' jeSpustené"
 
-#. 3.0->settings-schema.json->locationlookups->description
 #. 5.4->settings-schema.json->locationlookups->description
+#. 3.0->settings-schema.json->locationlookups->description
 msgid "Location display settings"
 msgstr "Nastavenie zobrazenia lokality"
 
-#. 3.0->settings-schema.json->locsrc->description
 #. 5.4->settings-schema.json->locsrc->description
+#. 3.0->settings-schema.json->locsrc->description
 msgid "Get displayed location from"
 msgstr "Zobrazujem polohu z"
 
-#. 3.0->settings-schema.json->locsrc->options
 #. 5.4->settings-schema.json->locsrc->options
+#. 3.0->settings-schema.json->locsrc->options
 msgid "Google"
 msgstr "Google"
 
-#. 3.0->settings-schema.json->locsrc->tooltip
 #. 5.4->settings-schema.json->locsrc->tooltip
+#. 3.0->settings-schema.json->locsrc->tooltip
 msgid ""
 "The source of the text displayed as the current location. Yahoo! and Google "
 "may offer city names in other languages"
@@ -1188,83 +1188,83 @@ msgstr ""
 "Zdroj zobrazujúci polohu. Yahho! a Googlemôže ponúkať názvy miest v iných "
 "jazykoch"
 
-#. 3.0->settings-schema.json->manuallocation->description
 #. 5.4->settings-schema.json->manuallocation->description
+#. 3.0->settings-schema.json->manuallocation->description
 msgid "Manually override displayed location"
 msgstr "Manuálne prepísať zobrazovanú polohu"
 
-#. 3.0->settings-schema.json->manuallocation->tooltip
 #. 5.4->settings-schema.json->manuallocation->tooltip
+#. 3.0->settings-schema.json->manuallocation->tooltip
 msgid "Set your city name manually."
 msgstr "Nastav svoje mesto manuálne"
 
-#. 3.0->settings-schema.json->experimental->description
 #. 5.4->settings-schema.json->experimental->description
+#. 3.0->settings-schema.json->experimental->description
 msgid "Experimental and buggy features (read documentation!!)"
 msgstr "Experimentálne a bugové možnosti (prečítaj si dokumentáciu!)"
 
-#. 3.0->settings-schema.json->experimental_enabled->description
 #. 5.4->settings-schema.json->experimental_enabled->description
+#. 3.0->settings-schema.json->experimental_enabled->description
 msgid "Enable experimental features"
 msgstr "Zapnúť skúšobné funkcie"
 
-#. 3.0->settings-schema.json->experimental_enabled->tooltip
 #. 5.4->settings-schema.json->experimental_enabled->tooltip
+#. 3.0->settings-schema.json->experimental_enabled->tooltip
 msgid "Check this to enable experimental and buggy features"
 msgstr "Vyberte túto možnosť pre zobrazenie skúšobných a zabugovaných funkcii"
 
-#. 3.0->settings-schema.json->gravity->description
 #. 5.4->settings-schema.json->gravity->description
+#. 3.0->settings-schema.json->gravity->description
 msgid "Anchor desklet by"
 msgstr "Ukotviť desklet"
 
-#. 3.0->settings-schema.json->gravity->options
 #. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
 msgid "Default"
 msgstr "Predvolené"
 
-#. 3.0->settings-schema.json->gravity->options
 #. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
 msgid "Top left"
 msgstr "Vľavo hore"
 
-#. 3.0->settings-schema.json->gravity->options
 #. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
 msgid "Left center"
 msgstr "Vľavo v strede"
 
-#. 3.0->settings-schema.json->gravity->options
 #. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
 msgid "Bottom left"
 msgstr "Vľavo dole"
 
-#. 3.0->settings-schema.json->gravity->options
 #. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
 msgid "Bottom center"
 msgstr "Dole v strede"
 
-#. 3.0->settings-schema.json->gravity->options
 #. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
 msgid "Bottom right"
 msgstr "Vpravo dole"
 
-#. 3.0->settings-schema.json->gravity->options
 #. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
 msgid "Right center"
 msgstr "Vpravo v strede"
 
-#. 3.0->settings-schema.json->gravity->options
 #. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
 msgid "Top right"
 msgstr "Vpravo hore"
 
-#. 3.0->settings-schema.json->gravity->options
 #. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
 msgid "Top center"
 msgstr "Hore v strede"
 
-#. 3.0->settings-schema.json->gravity->tooltip
 #. 5.4->settings-schema.json->gravity->tooltip
+#. 3.0->settings-schema.json->gravity->tooltip
 msgid ""
 "Select the point on the desklet to which it is anchored. This point will "
 "remain static as the desklet grows and shrinks"
