@@ -1,5 +1,4 @@
 const ByteArray = imports.byteArray;
-const Cinnamon = imports.gi.Cinnamon;
 const Desklet = imports.ui.desklet;
 const GLib = imports.gi.GLib;
 const GTop = imports.gi.GTop;
@@ -187,11 +186,12 @@ Net.prototype = {
         this.update_connections();
 
         if (!this.connections.length) {
-            let net_lines = GLib.file_get_contents('/proc/net/dev')[1].toString().split("\n");
+            let net_file = GLib.file_get_contents('/proc/net/dev')[1];
+            let net_lines = ByteArray.toString(net_file).split("\n");
             for (let i = 3; i < net_lines.length - 1; i++) {
                 let connection = net_lines[i].replace(/^\s+/g, '').split(":")[0];
-                if (GLib.file_get_contents(`/sys/class/net/${connection}/operstate`)[1].toString()
-                    .replace(/\s/g, "") == "up" &&
+                let operstate = GLib.file_get_contents(`/sys/class/net/${connection}/operstate`)[1];
+                if (ByteArray.toString(operstate).replace(/\s/g, "") == "up" &&
                     connection.indexOf("br") < 0 &&
                     connection.indexOf("lo") < 0) {
                     this.connections.push(connection);
