@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-03 21:06-0400\n"
-"PO-Revision-Date: 2023-08-03 21:06-0400\n"
+"POT-Creation-Date: 2023-09-03 14:07-0400\n"
+"PO-Revision-Date: 2023-09-03 14:08-0400\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.3.1\n"
 
-#: 5.8/desklet.js:44 4.0/desklet.js:35
+#: 5.8/desklet.js:43 4.0/desklet.js:35
 msgid ""
 "Dependencies missing. Please install \n"
 "libgtop \n"
@@ -34,23 +34,23 @@ msgstr ""
 "\t    su Arch: libgtop, networkmanager\n"
 "e riavviare Cinnamon.\n"
 
-#: 5.8/desklet.js:113
+#: 5.8/desklet.js:112
 msgid "No temp file detected at CPU path. Resetting to default."
 msgstr ""
 
-#: 5.8/desklet.js:117
+#: 5.8/desklet.js:116
 msgid "Invalid CPU path detected. Resetting to default."
 msgstr ""
 
-#: 5.8/desklet.js:132 5.8/desklet.js:173
+#: 5.8/desklet.js:131 5.8/desklet.js:172
 msgid "error reading:"
 msgstr ""
 
-#: 5.8/desklet.js:154
+#: 5.8/desklet.js:153
 msgid "No temp file detected at GPU path. Resetting to default."
 msgstr ""
 
-#: 5.8/desklet.js:158
+#: 5.8/desklet.js:157
 msgid "Invalid GPU path detected. Resetting to default."
 msgstr ""
 
