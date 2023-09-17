@@ -14,10 +14,24 @@
    viewBox="0 0 130 130"
    id="svg2"
    version="1.1"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   inkscape:version="0.91 r13725"
    sodipodi:docname="h.svg">
   <defs
-     id="defs4" />
+     id="defs4">
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter4154"
+       x="-0.55083876"
+       width="2.1016775"
+       y="-0.014154611"
+       height="1.0283092">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.34427135"
+         id="feGaussianBlur4156" />
+    </filter>
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -25,16 +39,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="11.2"
-     inkscape:cx="42.487081"
-     inkscape:cy="67.291883"
+     inkscape:zoom="7.9195959"
+     inkscape:cx="74.867946"
+     inkscape:cy="70.158433"
      inkscape:document-units="px"
      inkscape:current-layer="layer2"
      showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1140"
+     inkscape:window-width="1280"
+     inkscape:window-height="741"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="29"
      inkscape:window-maximized="1"
      units="px"
      showguides="true"
@@ -44,15 +58,13 @@
        orientation="0,1"
        id="guide4138"
        inkscape:label=""
-       inkscape:color="rgb(0,0,255)"
-       inkscape:locked="false" />
+       inkscape:color="rgb(0,0,255)" />
     <sodipodi:guide
        position="65,65"
        orientation="1,0"
        id="guide4140"
        inkscape:label=""
-       inkscape:color="rgb(0,0,255)"
-       inkscape:locked="false" />
+       inkscape:color="rgb(0,0,255)" />
   </sodipodi:namedview>
   <metadata
      id="metadata7">
@@ -68,15 +80,27 @@
   </metadata>
   <g
      inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="Shadow">
+    <rect
+       style="opacity:0.15500004;fill:#000000;fill-opacity:0.97947759;stroke:#61737a;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter4154)"
+       id="rect4145-3"
+       width="1.4999875"
+       height="58.373291"
+       x="64.666725"
+       y="27.723114" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Hour Hand"
      style="display:inline">
     <rect
-       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#61737a;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:#000000;fill-opacity:0.97947759;stroke:#61737a;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4145"
-       width="2.2999992"
-       height="58.373199"
-       x="63.852432"
-       y="27.52664" />
+       width="1.1999911"
+       height="58.373291"
+       x="64.477386"
+       y="27.526594" />
   </g>
 </svg>
