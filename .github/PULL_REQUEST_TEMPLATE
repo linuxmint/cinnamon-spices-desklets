@@ -1,0 +1,10 @@
+<!-- Desklet's UUID should be in the title -->
+
+**Notify author of desklet**
+@
+
+<!-- Approval of the current desklet maintainer is necessary if the pull request consists of more than just translation updates.
+     The username in the desklet UUID is not necessary the current maintainer. Please have a look at the author list:
+     https://github.com/linuxmint/cinnamon-spices-desklets/blob/master/.github/CODEOWNERS -->
+
+**Changes description**

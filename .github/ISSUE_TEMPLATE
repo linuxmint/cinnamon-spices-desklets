@@ -1,19 +1,20 @@
 <!-- Desklet's UUID should be in the title -->
 
 ```
- * Desklet version/Build date (to be found in "About.." or in "metadata.json")
+ * Desklet version/Build date (to be found in "About..." or in "metadata.json")
  * Cinnamon version (cinnamon --version)
- * Distribution - (Mint 17.2, Arch, Fedora 25, etc...)
+ * Distribution - (Mint 17.2, Arch, Fedora 25, etc.)
  * Graphics hardware *and* driver used
  * Snippet or attachment of ~/.cinnamon/glass.log
  * Snippet or attachment of ~/.xsession-errors
 
  ```
 
-<!-- Author list: https://github.com/linuxmint/cinnamon-spices-desklets/blob/master/.github/CODEOWNERS -->
-
 **Notify author of desklet**
 @
+
+<!-- The username in the desklet UUID is not necessary the current maintainer. Please have a look at the author list:
+     https://github.com/linuxmint/cinnamon-spices-desklets/blob/master/.github/CODEOWNERS -->
 
 **Issue**
 
