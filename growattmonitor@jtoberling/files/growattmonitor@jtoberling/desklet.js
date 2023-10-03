@@ -12,7 +12,8 @@ const ModalDialog = imports.ui.modalDialog;
 const Secret = imports.gi.Secret;
 const ByteArray = imports.byteArray;
 const GLib = imports.gi.GLib;
-
+const Pango = imports.gi.Pango;
+const PangoCairo = imports.gi.PangoCairo;
 
 class GrowattDesklet extends Desklet.Desklet {
     login = false;
@@ -338,8 +339,8 @@ class GrowattDesklet extends Desklet.Desklet {
                             context.cookieStore = list;
                   
                             context.cookieStore.forEach( function(c) {
-                                 if (c.name=='onePlantId') {
-                                    context.onePlantId = c.value;
+                                 if (c.get_name()=='onePlantId') {
+                                    context.onePlantId = c.get_value();
                                  }
                             }); // forEach
                             
@@ -348,6 +349,50 @@ class GrowattDesklet extends Desklet.Desklet {
         ); 
     }
     
+    
+    _displayText(area, cr, str, x, y, width, height) {
+        var pangolayout = area.create_pango_layout(str);
+        pangolayout.set_alignment(Pango.Alignment.CENTER);
+        pangolayout.set_width(width);
+        var fontsize_px = height;
+        var fontdesc = Pango.font_description_from_string("Sans Normal " + fontsize_px + "px");
+        pangolayout.set_font_description(fontdesc);
+        cr.moveTo(x, y);
+        PangoCairo.layout_path(cr, pangolayout);
+        cr.fill(); 
+    }
+    
+    _displayGrid(area, cr, width, height, st, et, maxW) {
+    
+        cr.setSourceRGBA ( 0.3,  0.3,  0.1, 0.5); // RGBa        
+        cr.rectangle(0,0,width,height);
+        cr.stroke();
+    
+        var hours = [6,9,12,15,18,21];        
+        hours.forEach( function(hh, i){
+            var hhX = width * ( (hh - st) / (et - st));
+            cr.setSourceRGBA ( 0.3,  0.3,  0.1, 0.5); // RGBa        
+            cr.rectangle(hhX,0,1,height);
+            cr.stroke();
+            
+            cr.setSourceRGBA ( 0.7,  0.7,  0.4,  0.5); // RGBa        
+            this._displayText(area, cr, hh.toString() + 'h', hhX+10, 5, 100, 10);
+        }, this);
+        
+
+        for(let w=2000; w < maxW ; w+= 2000) {
+            var wY = height - (height * ( w / maxW ));
+            
+            cr.setSourceRGBA ( 0.3,  0.3,  0.1, 0.5); // RGBa        
+            cr.rectangle(0 ,wY,width,1);
+            cr.stroke();
+            
+            cr.setSourceRGBA ( 0.7,  0.7,  0.4,  0.5); // RGBa        
+            this._displayText(area, cr, (w/1000).toString() + 'kW', 15, wY+1, 100, 10);
+        }
+        
+    
+    }
 
     
     repaintDataGrid(area) { 
@@ -362,31 +407,33 @@ class GrowattDesklet extends Desklet.Desklet {
         let [width, height] = area.get_surface_size();
         let color = area.get_theme_node().get_foreground_color();
 
-        cr.setSourceRGBA ( 0.3,  1.0,  0.3, 0.5); // RGBa
         
-        // GuruMeditation
-        let s2l = width * st / ( et - st); 
-        let e2l = width * et / ( et - st); 
-        let w2  = s2l + e2l;
-        let f   = w2 / width;
-
+        this._displayGrid(area, cr, width, height, st, et, nominalPower);
+        
+        cr.setSourceRGBA ( 0.3,  1.0,  0.3, 0.7); // RGBa
         pacArr.forEach( function(pac, i) {
             if (pac > 0) {
-              let x = width * ( i / pacArr.length  ) ;
-              
-              let xx = x * f - s2l;
-              
+              let iTimeHrs = 24 * ( i / pacArr.length );
+              let xx = width * ( (iTimeHrs - st) / (et - st) );
+
               // Display only if xx in range
               if (xx > 0 && xx < width) {
                   let y = height - ( height * (  pac / nominalPower  ) );
-              
+ 
                   cr.rectangle(xx, y, 2, height);
                   cr.stroke();
               }
             }
         });
         
+        var now = new Date();
+        var nowHH = now.getHours() + now.getMinutes() / 60;
+        var nowXX = width * ( (nowHH - st) / (et - st) );
         
+        cr.setSourceRGBA ( 1.0,  1.0,  0.3, 0.7); // RGBa
+        cr.rectangle(nowXX, 0, 0, height);
+        cr.stroke();
+                
 
         cr.$dispose();     
         

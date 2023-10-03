@@ -2,7 +2,7 @@
     "max-instances": "1",
     "description": "Growatt Solar Monitor",
     "name": "Growatt Monitor",
-    "version": "0.0.2",
+    "version": "0.0.4",
     "uuid": "growattmonitor@jtoberling",
     "multiversion": true,
     "author": "jtoberling",
