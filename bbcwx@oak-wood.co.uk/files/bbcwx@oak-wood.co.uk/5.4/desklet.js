@@ -31,11 +31,9 @@ const Lang = imports.lang;
 const Mainloop = imports.mainloop;
 const Clutter = imports.gi.Clutter;
 const GLib = imports.gi.GLib;
-const Util = imports.misc.util;
 const Main = imports.ui.main;
 
 const Tooltips = imports.ui.tooltips;
-const Cinnamon = imports.gi.Cinnamon;
 const Settings = imports.ui.settings;
 
 const DeskletManager = imports.ui.deskletManager;
@@ -51,11 +49,11 @@ imports.searchPath.push(DESKLET_DIR);
 const Marknote = imports.marknote;
 
 let _httpSession;
-if (Soup.MAJOR_VERSION == 2) {
-    _httpSession = new Soup.SessionAsync();
-    Soup.Session.prototype.add_feature.call(_httpSession, new Soup.ProxyResolverDefault());
+if (Soup.MAJOR_VERSION === undefined || Soup.MAJOR_VERSION === 2) {
+  _httpSession = new Soup.SessionAsync();
+  Soup.Session.prototype.add_feature.call(_httpSession, new Soup.ProxyResolverDefault());
 } else { //version 3
-    _httpSession = new Soup.Session();
+  _httpSession = new Soup.Session();
 }
 
 // Set up some constants for layout and styling
@@ -63,16 +61,16 @@ const BBCWX_TEXT_SIZE = 14;
 const BBCWX_CC_TEXT_SIZE = 24;
 const BBCWX_LABEL_TEXT_SIZE = 11;
 const BBCWX_LINK_TEXT_SIZE = 10;
-const BBCWX_REFRESH_ICON_SIZE=14;
-const BBCWX_TABLE_ROW_SPACING=2;
-const BBCWX_TABLE_COL_SPACING=5;
-const BBCWX_TABLE_PADDING=5;
-const BBCWX_CONTAINER_PADDING=12;
+const BBCWX_REFRESH_ICON_SIZE = 14;
+const BBCWX_TABLE_ROW_SPACING = 2;
+const BBCWX_TABLE_COL_SPACING = 5;
+const BBCWX_TABLE_PADDING = 5;
+const BBCWX_CONTAINER_PADDING = 12;
 const BBCWX_ICON_HEIGHT = 40;
-const BBCWX_CC_ICON_HEIGHT =170;
-const BBCWX_BUTTON_PADDING=3;
-const BBCWX_LABEL_PADDING=4;
-const BBCWX_TEMP_PADDING=12;
+const BBCWX_CC_ICON_HEIGHT = 170;
+const BBCWX_BUTTON_PADDING = 3;
+const BBCWX_LABEL_PADDING = 4;
+const BBCWX_TEMP_PADDING = 12;
 const BBCWX_SEPARATOR_STYLE = 'bbcwx-separator';
 const BBCWX_SERVICE_STATUS_ERROR = 0;
 const BBCWX_SERVICE_STATUS_INIT = 1;
@@ -93,26 +91,26 @@ function _(str) {
   return Gettext.dgettext(UUID, str)
 }
 
-function MyDesklet(metadata,desklet_id){
-  this._init(metadata,desklet_id);
+function MyDesklet(metadata, desklet_id) {
+  this._init(metadata, desklet_id);
 }
 
 MyDesklet.prototype = {
   __proto__: Desklet.Desklet.prototype,
 
 
-  _init: function(metadata,desklet_id){
+  _init: function (metadata, desklet_id) {
     //############Variables###########
     this.desklet_id = desklet_id;
     //## Days of the week
-    this.daynames={Mon: _('Mon'),Tue: _('Tue'), Wed: _('Wed'), Thu: _('Thu'), Fri: _('Fri'), Sat: _('Sat'), Sun: _('Sun')};
-    this.fwicons=[];this.labels=[];this.max=[];this.min=[];this.windd=[];this.winds=[];this.tempn=[];this.eachday=[];this.wxtooltip=[];
-    this.cc=[];this.days=[];
+    this.daynames = { Mon: _('Mon'), Tue: _('Tue'), Wed: _('Wed'), Thu: _('Thu'), Fri: _('Fri'), Sat: _('Sat'), Sun: _('Sun') };
+    this.fwicons = []; this.labels = []; this.max = []; this.min = []; this.windd = []; this.winds = []; this.tempn = []; this.eachday = []; this.wxtooltip = [];
+    this.cc = []; this.days = [];
     this.metadata = metadata;
-    this.oldno=0; // test for a change in this.no
-    this.oldwebservice='';
-    this.oldshifttemp='';
-    this.redrawNeeded=false;
+    this.oldno = 0; // test for a change in this.no
+    this.oldwebservice = '';
+    this.oldshifttemp = '';
+    this.redrawNeeded = false;
 
 
     //################################
@@ -122,64 +120,71 @@ MyDesklet.prototype = {
       //#########################binding configuration file################
       this.settings = new Settings.DeskletSettings(this, UUID, this.desklet_id);
       // temperature unit change may require refetching forecast if service includes units in text summaries
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"tunits","tunits",this.onTempUnitChange,null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "tunits", "tunits", this.onTempUnitChange, null);
       // these require only a redisplay
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"wunits","wunits",this.onUnitChange,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"punits","punits",this.onUnitChange,null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "wunits", "wunits", this.onUnitChange, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "punits", "punits", this.onUnitChange, null);
       // these changes require only a change to the styling of the desklet:
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"overrideTheme","overrideTheme",this.updateStyle,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"transparency","transparency",this.updateStyle,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"textcolor","textcolor",this.updateStyle,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"bgcolor","bgcolor",this.updateStyle,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"cornerradius","cornerradius",this.updateStyle,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"zoom","zoom",this.updateStyle,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"border","border",this.updateStyle,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"bordercolor","bordercolor",this.updateStyle,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"borderwidth","borderwidth",this.updateStyle,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"iconstyle","iconstyle",this.updateStyle,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"citystyle","citystyle",this.updateStyle,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"textshadow","textshadow",this.updateStyle,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"shadowblur","shadowblur",this.updateStyle,null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "overrideTheme", "overrideTheme", this.updateStyle, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "transparency", "transparency", this.updateStyle, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "textcolor", "textcolor", this.updateStyle, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "bgcolor", "bgcolor", this.updateStyle, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "cornerradius", "cornerradius", this.updateStyle, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "zoom", "zoom", this.updateStyle, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "border", "border", this.updateStyle, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "bordercolor", "bordercolor", this.updateStyle, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "borderwidth", "borderwidth", this.updateStyle, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "iconstyle", "iconstyle", this.updateStyle, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "citystyle", "citystyle", this.updateStyle, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "textshadow", "textshadow", this.updateStyle, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "shadowblur", "shadowblur", this.updateStyle, null);
       // this change requires us to fetch new data:
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"stationID","stationID",this.changeStation,null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "stationID", "stationID", this.changeStation, null);
       // this requires a change of API key and refetch data
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"apikey","apikey",this.changeApiKey,null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "apikey", "apikey", this.changeApiKey, null);
       // this change requires the main loop to be restarted, but no other updates
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"refreshtime","refreshtime",this.changeRefresh,null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "refreshtime", "refreshtime", this.changeRefresh, null);
       // these changes potentially need a redraw of the window, but not a refetch of data
       // layout because the position of the current temperature may change
       // userno because of change to number of days in table, and possibly position of current temperature
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"layout","layout",this.displayOptsChange,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"userno","userno",this.redraw,null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "layout", "layout", this.displayOptsChange, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "userno", "userno", this.redraw, null);
 
       // these need a redraw. displayOptsChange sets a flag to say a redraw is needed before calling redraw
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"display__cc__pressure","display__cc__pressure",this.displayOptsChange,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"display__cc__humidity","display__cc__humidity",this.displayOptsChange,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"display__cc__feelslike","display__cc__feelslike",this.displayOptsChange,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"display__cc__wind_speed","display__cc__wind_speed",this.displayOptsChange,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"display__cc__visibility","display__cc__visibility",this.displayOptsChange,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"display__forecast__wind_speed","display__forecast__wind_speed",this.displayOptsChange,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"display__forecast__wind_direction","display__forecast__wind_direction",this.displayOptsChange,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"display__forecast__maximum_temperature","display__forecast__maximum_temperature",this.displayOptsChange,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"display__forecast__minimum_temperature","display__forecast__minimum_temperature",this.displayOptsChange,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"display__forecast__pressure","display__forecast__pressure",this.displayOptsChange,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"display__forecast__humidity","display__forecast__humidity",this.displayOptsChange,null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "display__cc__pressure", "display__cc__pressure", this.displayOptsChange, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "display__cc__humidity", "display__cc__humidity", this.displayOptsChange, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "display__cc__feelslike", "display__cc__feelslike", this.displayOptsChange, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "display__cc__wind_speed", "display__cc__wind_speed", this.displayOptsChange, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "display__cc__visibility", "display__cc__visibility", this.displayOptsChange, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "display__forecast__wind_speed", "display__forecast__wind_speed", this.displayOptsChange, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "display__forecast__wind_direction", "display__forecast__wind_direction", this.displayOptsChange, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "display__forecast__maximum_temperature", "display__forecast__maximum_temperature", this.displayOptsChange, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "display__forecast__minimum_temperature", "display__forecast__minimum_temperature", this.displayOptsChange, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "display__forecast__pressure", "display__forecast__pressure", this.displayOptsChange, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "display__forecast__humidity", "display__forecast__humidity", this.displayOptsChange, null);
 
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"display__meta__country","display__meta__country",this.updateStyle,null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "display__meta__country", "display__meta__country", this.updateStyle, null);
 
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"display__cc__weather","display__cc__weather",this.displayOptsChange,null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "display__cc__weather", "display__cc__weather", this.displayOptsChange, null);
 
       // a change to webservice requires data to be fetched and the window redrawn
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"webservice","webservice",this.initForecast,null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "webservice", "webservice", this.initForecast, null);
 
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"locsrc","locsrc",this.displayMeta,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"manuallocation","manuallocation",this.displayMeta,null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "locsrc", "locsrc", this.displayMeta, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "manuallocation", "manuallocation", this.displayMeta, null);
 
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"experimental_enabled","experimental_enabled",this.doExperimental,null);
-      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY,"gravity","gravity",this.setGravity,null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "experimental_enabled", "experimental_enabled", this.doExperimental, null);
+      this.settings.bindProperty(Settings.BindingDirection.ONE_WAY, "gravity", "gravity", this.setGravity, null);
 
       // refresh style on change of global desklet setting for decorations
       global.settings.connect('changed::desklet-decorations', Lang.bind(this, this.updateStyle));
+
+      // define a subprocess launcher
+      this.launcher = new Gio.SubprocessLauncher({
+        flags: (Gio.SubprocessFlags.STDIN_PIPE |
+          Gio.SubprocessFlags.STDOUT_PIPE |
+          Gio.Subprocess.STDERR_PIPE)
+      });
 
       // set a header for those that don't override the theme
       //## The desklet title
@@ -191,12 +196,12 @@ MyDesklet.prototype = {
 
       this.helpFile = DESKLET_DIR + "/help.html";
       //## Link to Help file in context menu
-      this._menu.addAction(_('Help'), Lang.bind(this, function() {
-        Util.spawnCommandLine("xdg-open " + this.helpFile);
+      this._menu.addAction(_('Help'), Lang.bind(this, function () {
+        this.launcher.spawnv(["xdg-open", this.helpFile]);
       }));
       //## Link to information on translating in context menu
-      this._menu.addAction(_('Translate'), Lang.bind(this, function() {
-        Util.spawnCommandLine("xdg-open " + BBCWX_TRANSLATION_URL);
+      this._menu.addAction(_('Translate'), Lang.bind(this, function () {
+        this.launcher.spawnv(["xdg-open", BBCWX_TRANSLATION_URL]);
       }));
       this.initForecast();
 
@@ -210,16 +215,16 @@ MyDesklet.prototype = {
 
   ////////////////////////////////////////////////////////////////////////////
   // Set everything up initially
-  initForecast: function() {
+  initForecast: function () {
     if (this.service) delete this.service;
     // select the the driver we need for this service
-    switch(this.webservice) {
+    switch (this.webservice) {
       case 'bbc':
         this.service = new wxDriverBBC(this.stationID);
         break;
-//      case 'yahoo':
-//        this.service = new wxDriverYahoo(this.stationID);
-//        break;
+      //      case 'yahoo':
+      //        this.service = new wxDriverYahoo(this.stationID);
+      //        break;
       case 'owm':
         this.service = new wxDriverOWM(this.stationID, this.apikey);
         break;
@@ -262,13 +267,13 @@ MyDesklet.prototype = {
   // Create the layout of our desklet. Certain settings changes require this
   // to be called again (eg change service, as capabilities change, change number
   // days of forecast to display
-  _createWindow: function(){
+  _createWindow: function () {
     // in these circumstances we do not need to redraw the window from scratch as the elements haven't changed
-    if((this.no == this.oldno) && (this.oldwebservice == this.webservice) && (this.shifttemp == this.oldshifttemp) && !this.redrawNeeded) {
+    if ((this.no == this.oldno) && (this.oldwebservice == this.webservice) && (this.shifttemp == this.oldshifttemp) && !this.redrawNeeded) {
       return;
     }
 
-    this.oldno=this.no;
+    this.oldno = this.no;
     this.oldwebservice = this.webservice;
     this.oldshifttemp = this.shifttemp;
     this.redrawNeeded = false;
@@ -279,61 +284,62 @@ MyDesklet.prototype = {
       if (this.cwiconsig && this.cwicon) this.cwicon.disconnect(this.cwiconsig);
       this.bannersig = null;
       this.cwiconsig = null;
-    } catch(e) { }
+    } catch (e) { }
 
-    this.window=new St.BoxLayout({vertical: ((this.vertical==1) ? true : false)});
+    this.window = new St.BoxLayout({ vertical: ((this.vertical == 1) ? true : false) });
 
     this.cwicon = null;
     // container for link and refresh icon
-    this.buttons=new St.BoxLayout({vertical: false,x_align:2, y_align:2 });
+    this.buttons = new St.BoxLayout({ vertical: false, x_align: 2, y_align: 2 });
     // refresh icon
-    this.iconbutton=new St.Icon({ icon_name: 'view-refresh-symbolic',
+    this.iconbutton = new St.Icon({
+      icon_name: 'view-refresh-symbolic',
       icon_type: St.IconType.SYMBOLIC
     });
-    this.but=new St.Button(); // container for refresh icon
+    this.but = new St.Button(); // container for refresh icon
 
     // these will hold the data for the three day forecast
-    this.labels=[]; this.fwicons=[];this.max=[]; this.min=[]; this.windd=[]; this.winds=[];
-    this.fhumidity=[]; this.fpressure=[]; this.eachday=[];
+    this.labels = []; this.fwicons = []; this.max = []; this.min = []; this.windd = []; this.winds = [];
+    this.fhumidity = []; this.fpressure = []; this.eachday = [];
 
     // some labels need resetting incase we are redrawing after a change of service
-    this.humidity=null; this.pressure=null; this.windspeed=null; this.feelslike=null;
+    this.humidity = null; this.pressure = null; this.windspeed = null; this.feelslike = null;
 
     this._separatorArea = new St.DrawingArea({ style_class: BBCWX_SEPARATOR_STYLE });
 
     let ccap = this.show.cc;
 
     // current weather values
-    if(ccap.humidity) this.humidity=new St.Label();
-    if(ccap.pressure) this.pressure=new St.Label();
-    if(ccap.wind_speed) this.windspeed=new St.Label();
-    if(ccap.feelslike) this.feelslike=new St.Label();
-    if(ccap.visibility) this.visibility=new St.Label();
+    if (ccap.humidity) this.humidity = new St.Label();
+    if (ccap.pressure) this.pressure = new St.Label();
+    if (ccap.wind_speed) this.windspeed = new St.Label();
+    if (ccap.feelslike) this.feelslike = new St.Label();
+    if (ccap.visibility) this.visibility = new St.Label();
 
     // container for current weather values
-    this.ctemp_values = new St.BoxLayout({vertical: true, y_align: 2});
+    this.ctemp_values = new St.BoxLayout({ vertical: true, y_align: 2 });
     // container for current weather labels
-    this.ctemp_captions = new St.BoxLayout({vertical: true, y_align: 2});
+    this.ctemp_captions = new St.BoxLayout({ vertical: true, y_align: 2 });
     // container for current weather
-    this.ctemp = new St.BoxLayout({vertical: false, x_align: 2, y_align: 2});
+    this.ctemp = new St.BoxLayout({ vertical: false, x_align: 2, y_align: 2 });
 
     // city and city container
-    this.cityname=new St.Label();
-    this.city=new St.BoxLayout({vertical:true});
+    this.cityname = new St.Label();
+    this.city = new St.BoxLayout({ vertical: true });
 
     // container for right (horizontal) or lower (vertical) part of window
-    this.container= new St.BoxLayout({vertical: true, x_align: 2});
+    this.container = new St.BoxLayout({ vertical: true, x_align: 2 });
     // container for left (horizontal) or upper (vertical) part of window
-    this.cweather = new St.BoxLayout({vertical: true, x_align: 2});
+    this.cweather = new St.BoxLayout({ vertical: true, x_align: 2 });
     // current weather icon container
     if (ccap.weather) this.cwicon = new St.Button();
     // current weather text
-    if (ccap.weather) this.weathertext=new St.Label();
+    if (ccap.weather) this.weathertext = new St.Label();
 
     // current temp on wide layouts
     if (this.shifttemp) {
-      this.ctemp_bigtemp = new St.BoxLayout({vertical: false, x_align: 3, y_align: 2});
-      this.currenttemp=new St.Label();
+      this.ctemp_bigtemp = new St.BoxLayout({ vertical: false, x_align: 3, y_align: 2 });
+      this.currenttemp = new St.Label();
       this.ctemp_bigtemp.add_actor(this.currenttemp);
       this.ctemp.add_actor(this.ctemp_bigtemp);
     }
@@ -341,82 +347,84 @@ MyDesklet.prototype = {
     this.city.add_actor(this.cityname);
 
     //## Next five strings are labels for current conditions
-    if(ccap.humidity) this.ctemp_captions.add_actor(new St.Label({text: _('Humidity:')}));
-    if(ccap.pressure) this.ctemp_captions.add_actor(new St.Label({text: _('Pressure:')}));
-    if(ccap.wind_speed) this.ctemp_captions.add_actor(new St.Label({text: _('Wind:')}));
-    if(ccap.feelslike) this.ctemp_captions.add_actor(new St.Label({text: _('Feels like:')}));
-    if(ccap.visibility) this.ctemp_captions.add_actor(new St.Label({text: _('Visibility:')}));
+    if (ccap.humidity) this.ctemp_captions.add_actor(new St.Label({ text: _('Humidity:') }));
+    if (ccap.pressure) this.ctemp_captions.add_actor(new St.Label({ text: _('Pressure:') }));
+    if (ccap.wind_speed) this.ctemp_captions.add_actor(new St.Label({ text: _('Wind:') }));
+    if (ccap.feelslike) this.ctemp_captions.add_actor(new St.Label({ text: _('Feels like:') }));
+    if (ccap.visibility) this.ctemp_captions.add_actor(new St.Label({ text: _('Visibility:') }));
 
-    if(this.humidity) this.ctemp_values.add_actor(this.humidity);
-    if(this.pressure) this.ctemp_values.add_actor(this.pressure);
-    if(this.windspeed) this.ctemp_values.add_actor(this.windspeed);
-    if(this.feelslike) this.ctemp_values.add_actor(this.feelslike);
-    if(this.visibility) this.ctemp_values.add_actor(this.visibility);
+    if (this.humidity) this.ctemp_values.add_actor(this.humidity);
+    if (this.pressure) this.ctemp_values.add_actor(this.pressure);
+    if (this.windspeed) this.ctemp_values.add_actor(this.windspeed);
+    if (this.feelslike) this.ctemp_values.add_actor(this.feelslike);
+    if (this.visibility) this.ctemp_values.add_actor(this.visibility);
 
     this.ctemp.add_actor(this.ctemp_captions);
     this.ctemp.add_actor(this.ctemp_values);
 
     // build table to hold three day forecast
-    this.fwtable =new St.Table();
+    this.fwtable = new St.Table();
 
     //## Maximum temperature
-    this.maxlabel = new St.Label({text: _('Max:')});
+    this.maxlabel = new St.Label({ text: _('Max:') });
     //## Minimum temperature
-    this.minlabel = new St.Label({text: _('Min:')});
+    this.minlabel = new St.Label({ text: _('Min:') });
     //## Wind speed (English translation is "Wind:")
-    this.windlabel = new St.Label({text: _('Wind speed:')});
+    this.windlabel = new St.Label({ text: _('Wind speed:') });
     //## Wind direction
-    this.winddlabel = new St.Label({text: _('Dir:')});
+    this.winddlabel = new St.Label({ text: _('Dir:') });
     //## Atmospheric pressure
-    this.fpressurelabel = new St.Label({text: _('Pressure:')});
-    this.fhumiditylabel = new St.Label({text: _('Humidity:')});
+    this.fpressurelabel = new St.Label({ text: _('Pressure:') });
+    this.fhumiditylabel = new St.Label({ text: _('Humidity:') });
 
     let fcap = this.show.forecast;
     let row = 2;
 
-    if(fcap.maximum_temperature) {this.fwtable.add(this.maxlabel,{row:row,col:0}); row++}
-    if(fcap.minimum_temperature) {this.fwtable.add(this.minlabel,{row:row,col:0}); row++}
-    if(fcap.wind_speed) {this.fwtable.add(this.windlabel,{row:row,col:0}); row++}
-    if(fcap.wind_direction) {this.fwtable.add(this.winddlabel,{row:row,col:0}); row++}
-    if(fcap.pressure) {this.fwtable.add(this.fpressurelabel,{row:row,col:0}); row++}
-    if(fcap.humidity) {this.fwtable.add(this.fhumiditylabel,{row:row,col:0}); row++}
-    for(let f=0;f<this.no;f++) {
-      this.labels[f]=new St.Label();
-      this.fwicons[f]=new St.Button();
-      if(fcap.maximum_temperature) this.max[f]=new St.Label();
-      if(fcap.minimum_temperature) this.min[f]=new St.Label();
-      if(fcap.wind_speed) this.winds[f]=new St.Label();
-      if(fcap.wind_direction) this.windd[f]=new St.Label();
-      if(fcap.pressure) this.fpressure[f]=new St.Label();
-      if(fcap.humidity) this.fhumidity[f]=new St.Label();
+    if (fcap.maximum_temperature) { this.fwtable.add(this.maxlabel, { row: row, col: 0 }); row++ }
+    if (fcap.minimum_temperature) { this.fwtable.add(this.minlabel, { row: row, col: 0 }); row++ }
+    if (fcap.wind_speed) { this.fwtable.add(this.windlabel, { row: row, col: 0 }); row++ }
+    if (fcap.wind_direction) { this.fwtable.add(this.winddlabel, { row: row, col: 0 }); row++ }
+    if (fcap.pressure) { this.fwtable.add(this.fpressurelabel, { row: row, col: 0 }); row++ }
+    if (fcap.humidity) { this.fwtable.add(this.fhumiditylabel, { row: row, col: 0 }); row++ }
+    for (let f = 0; f < this.no; f++) {
+      this.labels[f] = new St.Label();
+      this.fwicons[f] = new St.Button();
+      if (fcap.maximum_temperature) this.max[f] = new St.Label();
+      if (fcap.minimum_temperature) this.min[f] = new St.Label();
+      if (fcap.wind_speed) this.winds[f] = new St.Label();
+      if (fcap.wind_direction) this.windd[f] = new St.Label();
+      if (fcap.pressure) this.fpressure[f] = new St.Label();
+      if (fcap.humidity) this.fhumidity[f] = new St.Label();
       this.wxtooltip[f] = new Tooltips.Tooltip(this.fwicons[f]);
 
-      this.fwtable.add(this.labels[f],{row:0,col:f+1});
-      this.fwtable.add(this.fwicons[f],{row:1,col:f+1});
+      this.fwtable.add(this.labels[f], { row: 0, col: f + 1 });
+      this.fwtable.add(this.fwicons[f], { row: 1, col: f + 1 });
       row = 2;
-      if(this.max[f]) {this.fwtable.add(this.max[f],{row:row,col:f+1}); row++}
-      if(this.min[f]) {this.fwtable.add(this.min[f],{row:row,col:f+1}); row++}
-      if(this.winds[f]) {this.fwtable.add(this.winds[f],{row:row,col:f+1}); row++}
-      if(this.windd[f]) {this.fwtable.add(this.windd[f],{row:row,col:f+1}); row++}
-      if(this.fpressure[f]) {this.fwtable.add(this.fpressure[f],{row:row,col:f+1}); row++}
-      if(this.fhumidity[f]) {this.fwtable.add(this.fhumidity[f],{row:row,col:f+1}); row++}
+      if (this.max[f]) { this.fwtable.add(this.max[f], { row: row, col: f + 1 }); row++ }
+      if (this.min[f]) { this.fwtable.add(this.min[f], { row: row, col: f + 1 }); row++ }
+      if (this.winds[f]) { this.fwtable.add(this.winds[f], { row: row, col: f + 1 }); row++ }
+      if (this.windd[f]) { this.fwtable.add(this.windd[f], { row: row, col: f + 1 }); row++ }
+      if (this.fpressure[f]) { this.fwtable.add(this.fpressure[f], { row: row, col: f + 1 }); row++ }
+      if (this.fhumidity[f]) { this.fwtable.add(this.fhumidity[f], { row: row, col: f + 1 }); row++ }
     }
 
-    this.buttoncontainer = new St.BoxLayout({vertical: true, x_align: 2, y_align: 2});
+    this.buttoncontainer = new St.BoxLayout({ vertical: true, x_align: 2, y_align: 2 });
 
     this.but.set_child(this.iconbutton);
     this.but.connect('clicked', Lang.bind(this, this.updateForecast));
     // seems we have to use a button for bannerpre to get the vertical alignment :(
     //## Credit the data supplier. A link to the data supplier appears to the right of this string
-    this.bannerpre=new St.Button({label: _('Data from ')});
-    this.banner=new St.Button({
+    this.bannerpre = new St.Button({ label: _('Data from ') });
+    this.banner = new St.Button({
       reactive: true,
       track_hover: true,
-      style_class: 'bbcwx-link'});
-    this.bannericon=new St.Button({
+      style_class: 'bbcwx-link'
+    });
+    this.bannericon = new St.Button({
       reactive: true,
       track_hover: true,
-      style_class: 'bbcwx-link'});
+      style_class: 'bbcwx-link'
+    });
     this.bannertooltip = new Tooltips.Tooltip(this.banner);
     if (this.cwicon) this.cwicontooltip = new Tooltips.Tooltip(this.cwicon);
     //## Tooltip for refresh button
@@ -442,7 +450,7 @@ MyDesklet.prototype = {
 
   ////////////////////////////////////////////////////////////////////////////
   // Set some internal values derived from user choices
-  _setDerivedValues: function() {
+  _setDerivedValues: function () {
 
     this.vertical = this.layout;
     this.currenttempadding = BBCWX_TEMP_PADDING;
@@ -475,17 +483,17 @@ MyDesklet.prototype = {
     this._initIcons();
 
     // clone this.service.capabilities, then && it with display preferences
-    this.show =  JSON.parse(JSON.stringify(this.service.capabilities));
-    let displayopts =['display__cc__pressure', 'display__cc__wind_speed',
+    this.show = JSON.parse(JSON.stringify(this.service.capabilities));
+    let displayopts = ['display__cc__pressure', 'display__cc__wind_speed',
       'display__cc__humidity', 'display__cc__feelslike', 'display__cc__visibility',
       'display__forecast__wind_speed', 'display__forecast__wind_direction',
       'display__forecast__maximum_temperature', 'display__forecast__minimum_temperature',
       'display__forecast__humidity', 'display__forecast__pressure',
       'display__meta__country'
     ];
-    let ccShowCount=0;
-    for (let i=0; i<displayopts.length; i++) {
-      let parts=displayopts[i].split('__');
+    let ccShowCount = 0;
+    for (let i = 0; i < displayopts.length; i++) {
+      let parts = displayopts[i].split('__');
       this.show[parts[1]][parts[2]] = this.show[parts[1]][parts[2]] && this[displayopts[i]];
       if (parts[1] == 'cc' && this.show[parts[1]][parts[2]]) ccShowCount++;
     }
@@ -499,7 +507,7 @@ MyDesklet.prototype = {
     this.show.cc.weather = this.display__cc__weather;
     if (!this.display__cc__weather) {
       this.shifttemp = true
-      this.currenttempsize = this.currenttempsize*1.7;
+      this.currenttempsize = this.currenttempsize * 1.7;
       this.vertical = 1;
       // don't right pad the temperature if there's nothing to its right
       if (ccShowCount < 1) this.currenttempadding = 0;
@@ -508,7 +516,7 @@ MyDesklet.prototype = {
 
   ////////////////////////////////////////////////////////////////////////////
   // Set internal values for icons
-  _initIcons: function() {
+  _initIcons: function () {
     this.iconprops = this._getIconMeta(this.iconstyle);
     this.defaulticonprops = this._getIconMeta(BBCWX_DEFAULT_ICONSET);
 
@@ -517,20 +525,22 @@ MyDesklet.prototype = {
 
   ////////////////////////////////////////////////////////////////////////////
   // Fetch the icon set meta data
-  _getIconMeta: function(iconset) {
+  _getIconMeta: function (iconset) {
     let iconprops = new Object();
     let deficonprops = {
       aspect: 1,
       adjust: 1,
       ext: 'png',
-      map : {}
+      map: {}
     }
 
     let file = Gio.file_new_for_path(DESKLET_DIR + '/icons/' + iconset + '/iconmeta.json');
     try {
-      let raw_file = Cinnamon.get_file_contents_utf8_sync(file.get_path());
+      let raw_json = GLib.file_get_contents(file.get_path())[1];
+      let textDecoder = new TextDecoder('utf-8');
+      let raw_file = textDecoder.decode(raw_json);
       iconprops = JSON.parse(raw_file);
-    } catch(e) {
+    } catch (e) {
       global.logError("Failed to parse iconmeta.json for iconset " + this.iconstyle);
     }
     // set anything missing to default values
@@ -544,7 +554,7 @@ MyDesklet.prototype = {
 
   ////////////////////////////////////////////////////////////////////////////
   // Called when some change requires the styling of the desklet to be updated
-  updateStyle: function() {
+  updateStyle: function () {
     // set values for this.iconprops
     this._setDerivedValues();
     // update style
@@ -557,7 +567,7 @@ MyDesklet.prototype = {
 
   ////////////////////////////////////////////////////////////////////////////
   // Called when units are changed
-  onUnitChange: function() {
+  onUnitChange: function () {
     this.displayForecast();
     this.displayCurrent();
   },
@@ -565,136 +575,136 @@ MyDesklet.prototype = {
   ////////////////////////////////////////////////////////////////////////////
   // Called when temperature units are updated. If service text summaries include
   // units we must refetch forecast, otherwise just refresh display
-  onTempUnitChange: function() {
+  onTempUnitChange: function () {
     this.onUnitChange();
-    if(this.service.unitsInSummaries) {
+    if (this.service.unitsInSummaries) {
       this.updateForecast();
     }
   },
 
   ////////////////////////////////////////////////////////////////////////////
   // Does the bulk of the work of updating style
-  _update_style: function() {
+  _update_style: function () {
     //global.log("bbcwx (instance " + this.desklet_id + "): entering _update_style");
-    this.window.vertical = (this.vertical==1) ? true : false;
+    this.window.vertical = (this.vertical == 1) ? true : false;
     if (this.cwicon) {
-      this.cwicon.height=BBCWX_CC_ICON_HEIGHT*this.zoom;
-      this.cwicon.width=BBCWX_CC_ICON_HEIGHT*this.iconprops.aspect*this.zoom;
+      this.cwicon.height = BBCWX_CC_ICON_HEIGHT * this.zoom;
+      this.cwicon.width = BBCWX_CC_ICON_HEIGHT * this.iconprops.aspect * this.zoom;
     }
-    if (this.weathertext) this.weathertext.style= 'text-align : center; font-size:'+BBCWX_CC_TEXT_SIZE*this.zoom+'px';
-    if (this.currenttemp) this.currenttemp.style= 'text-align : center; font-size:'+this.currenttempsize*this.zoom+'px';
-    if (this.ctemp_bigtemp) this.ctemp_bigtemp.style = 'text-align : left; padding-right: ' + this.currenttempadding *this.zoom + 'px'
-    this.fwtable.style="spacing-rows: "+BBCWX_TABLE_ROW_SPACING*this.zoom+"px;spacing-columns: "+BBCWX_TABLE_COL_SPACING*this.zoom+"px;padding: "+BBCWX_TABLE_PADDING*this.zoom+"px;";
-    this.cityname.style="text-align: center;font-size: "+BBCWX_TEXT_SIZE*this.zoom+"px; font-weight: " + ((this.citystyle) ? 'bold' : 'normal') + ";" ;
-    this.ctemp_captions.style = 'text-align : right;font-size: '+BBCWX_TEXT_SIZE*this.zoom+"px; padding-right: " +BBCWX_LABEL_PADDING*this.zoom+"px";
-    this.ctemp_values.style = 'text-align : left; font-size: '+BBCWX_TEXT_SIZE*this.zoom+"px";
+    if (this.weathertext) this.weathertext.style = 'text-align : center; font-size:' + BBCWX_CC_TEXT_SIZE * this.zoom + 'px';
+    if (this.currenttemp) this.currenttemp.style = 'text-align : center; font-size:' + this.currenttempsize * this.zoom + 'px';
+    if (this.ctemp_bigtemp) this.ctemp_bigtemp.style = 'text-align : left; padding-right: ' + this.currenttempadding * this.zoom + 'px'
+    this.fwtable.style = "spacing-rows: " + BBCWX_TABLE_ROW_SPACING * this.zoom + "px;spacing-columns: " + BBCWX_TABLE_COL_SPACING * this.zoom + "px;padding: " + BBCWX_TABLE_PADDING * this.zoom + "px;";
+    this.cityname.style = "text-align: center;font-size: " + BBCWX_TEXT_SIZE * this.zoom + "px; font-weight: " + ((this.citystyle) ? 'bold' : 'normal') + ";";
+    this.ctemp_captions.style = 'text-align : right;font-size: ' + BBCWX_TEXT_SIZE * this.zoom + "px; padding-right: " + BBCWX_LABEL_PADDING * this.zoom + "px";
+    this.ctemp_values.style = 'text-align : left; font-size: ' + BBCWX_TEXT_SIZE * this.zoom + "px";
 
-    if(this.overrideTheme) {
+    if (this.overrideTheme) {
       // hide header and use a style with no border
       this._header.hide();
       this.window.set_style_class_name('desklet');
       if (this.border) {
         let borderradius = (this.borderwidth > this.cornerradius) ? this.borderwidth : this.cornerradius;
-        this.window.style="border: " + this.borderwidth + "px solid "+this.bordercolor+"; border-radius: " + borderradius + "px; background-color: "+(this.bgcolor.replace(")",","+this.transparency+")")).replace('rgb','rgba')+"; color: "+this.textcolor;
+        this.window.style = "border: " + this.borderwidth + "px solid " + this.bordercolor + "; border-radius: " + borderradius + "px; background-color: " + (this.bgcolor.replace(")", "," + this.transparency + ")")).replace('rgb', 'rgba') + "; color: " + this.textcolor;
       }
       else {
-        this.window.style="border-radius: " + this.cornerradius + "px; background-color: "+(this.bgcolor.replace(")",","+this.transparency+")")).replace('rgb','rgba')+"; color: "+this.textcolor;
+        this.window.style = "border-radius: " + this.cornerradius + "px; background-color: " + (this.bgcolor.replace(")", "," + this.transparency + ")")).replace('rgb', 'rgba') + "; color: " + this.textcolor;
       }
-      this.banner.style='font-size: '+BBCWX_LINK_TEXT_SIZE*this.zoom+"px; color: " + this.textcolor;
-      this.bannerpre.style='font-size: '+BBCWX_LINK_TEXT_SIZE*this.zoom+"px; color: " + this.textcolor;
+      this.banner.style = 'font-size: ' + BBCWX_LINK_TEXT_SIZE * this.zoom + "px; color: " + this.textcolor;
+      this.bannerpre.style = 'font-size: ' + BBCWX_LINK_TEXT_SIZE * this.zoom + "px; color: " + this.textcolor;
       this.banner.set_style_class_name('bbcwx-link');
-      if (this.textshadow) this.window.style=this.window.style+";text-shadow: 1px 1px "+this.shadowblur+"px "+contrastingColor(this.textcolor);
+      if (this.textshadow) this.window.style = this.window.style + ";text-shadow: 1px 1px " + this.shadowblur + "px " + contrastingColor(this.textcolor);
     } else {
       this.window.set_style('');
       // set style_class and _header visibility according to
       // global desklet settings for theme
       let dec = global.settings.get_int('desklet-decorations');
-      switch(dec){
-      case 0:
+      switch (dec) {
+        case 0:
           this._header.hide();
           this.window.set_style_class_name('desklet');
           break;
-      case 1:
+        case 1:
           this._header.hide();
           this.window.set_style_class_name('desklet-with-borders');
           break;
-      case 2:
+        case 2:
           this._header.show();
           this.window.set_style_class_name('desklet-with-borders-and-header');
           break;
       }
-      this.banner.style='font-size: '+BBCWX_LINK_TEXT_SIZE*this.zoom+"px;";
-      this.bannerpre.style='font-size: '+BBCWX_LINK_TEXT_SIZE*this.zoom+"px;";
+      this.banner.style = 'font-size: ' + BBCWX_LINK_TEXT_SIZE * this.zoom + "px;";
+      this.bannerpre.style = 'font-size: ' + BBCWX_LINK_TEXT_SIZE * this.zoom + "px;";
     }
-    this._separatorArea.height=5*this.zoom;
+    this._separatorArea.height = 5 * this.zoom;
 
-    for(let f=0;f<this.no;f++) {
-      this.labels[f].style='text-align : center;font-size: '+BBCWX_TEXT_SIZE*this.zoom+"px";
-      this.fwicons[f].height=BBCWX_ICON_HEIGHT*this.zoom;this.fwicons[f].width= BBCWX_ICON_HEIGHT*this.iconprops.aspect*this.zoom;
-      if(this.max[f]) this.max[f].style= 'text-align : center; font-size: '+BBCWX_TEXT_SIZE*this.zoom+"px";
-      if(this.min[f]) this.min[f].style= 'text-align : center; font-size: '+BBCWX_TEXT_SIZE*this.zoom+"px";
-      if(this.winds[f]) this.winds[f].style= 'text-align : center; font-size: '+BBCWX_TEXT_SIZE*this.zoom+"px";
-      if(this.windd[f]) this.windd[f].style= 'text-align : center; font-size: '+BBCWX_TEXT_SIZE*this.zoom+"px";
-      if(this.fpressure[f]) this.fpressure[f].style= 'text-align : center; font-size: '+BBCWX_TEXT_SIZE*this.zoom+"px";
-      if(this.fhumidity[f]) this.fhumidity[f].style= 'text-align : center; font-size: '+BBCWX_TEXT_SIZE*this.zoom+"px";
+    for (let f = 0; f < this.no; f++) {
+      this.labels[f].style = 'text-align : center;font-size: ' + BBCWX_TEXT_SIZE * this.zoom + "px";
+      this.fwicons[f].height = BBCWX_ICON_HEIGHT * this.zoom; this.fwicons[f].width = BBCWX_ICON_HEIGHT * this.iconprops.aspect * this.zoom;
+      if (this.max[f]) this.max[f].style = 'text-align : center; font-size: ' + BBCWX_TEXT_SIZE * this.zoom + "px";
+      if (this.min[f]) this.min[f].style = 'text-align : center; font-size: ' + BBCWX_TEXT_SIZE * this.zoom + "px";
+      if (this.winds[f]) this.winds[f].style = 'text-align : center; font-size: ' + BBCWX_TEXT_SIZE * this.zoom + "px";
+      if (this.windd[f]) this.windd[f].style = 'text-align : center; font-size: ' + BBCWX_TEXT_SIZE * this.zoom + "px";
+      if (this.fpressure[f]) this.fpressure[f].style = 'text-align : center; font-size: ' + BBCWX_TEXT_SIZE * this.zoom + "px";
+      if (this.fhumidity[f]) this.fhumidity[f].style = 'text-align : center; font-size: ' + BBCWX_TEXT_SIZE * this.zoom + "px";
     }
 
-    this.buttons.style="padding-top:"+BBCWX_BUTTON_PADDING*this.zoom+"px;padding-bottom:"+BBCWX_BUTTON_PADDING*this.zoom+"px";
+    this.buttons.style = "padding-top:" + BBCWX_BUTTON_PADDING * this.zoom + "px;padding-bottom:" + BBCWX_BUTTON_PADDING * this.zoom + "px";
 
-    this.iconbutton.icon_size=BBCWX_REFRESH_ICON_SIZE*this.zoom;
+    this.iconbutton.icon_size = BBCWX_REFRESH_ICON_SIZE * this.zoom;
 
     let forecastlabels = ['maxlabel', 'minlabel', 'windlabel', 'winddlabel', 'fpressurelabel', 'fhumiditylabel'];
-    for (let i = 0; i<forecastlabels.length; i++) {
-      if (this[forecastlabels[i]]) this[forecastlabels[i]].style = 'text-align : right;font-size: '+BBCWX_LABEL_TEXT_SIZE*this.zoom+"px";
+    for (let i = 0; i < forecastlabels.length; i++) {
+      if (this[forecastlabels[i]]) this[forecastlabels[i]].style = 'text-align : right;font-size: ' + BBCWX_LABEL_TEXT_SIZE * this.zoom + "px";
     }
 
-    this.cweather.style='padding: ' + BBCWX_CONTAINER_PADDING*this.zoom+'px';
-    if (this.vertical==1) {
+    this.cweather.style = 'padding: ' + BBCWX_CONTAINER_PADDING * this.zoom + 'px';
+    if (this.vertical == 1) {
       // loose the top padding on container in vertical mode (too much space)
-      this.container.style='padding: 0 ' + BBCWX_CONTAINER_PADDING*this.zoom+'px ' + BBCWX_CONTAINER_PADDING*this.zoom+'px ' + BBCWX_CONTAINER_PADDING*this.zoom+'px ' ;
+      this.container.style = 'padding: 0 ' + BBCWX_CONTAINER_PADDING * this.zoom + 'px ' + BBCWX_CONTAINER_PADDING * this.zoom + 'px ' + BBCWX_CONTAINER_PADDING * this.zoom + 'px ';
     } else {
-      this.container.style='padding: ' + BBCWX_CONTAINER_PADDING*this.zoom+'px';
+      this.container.style = 'padding: ' + BBCWX_CONTAINER_PADDING * this.zoom + 'px';
     }
 
   },
 
   ////////////////////////////////////////////////////////////////////////////
   // Update the forecast, without changing layout or styling
-  updateForecast: function() {
+  updateForecast: function () {
     this._refreshweathers();
   },
 
   ////////////////////////////////////////////////////////////////////////////
   // Change the location we are displaying weather for
-  changeStation: function() {
+  changeStation: function () {
     this.service.setStation(this.stationID);
     this._refreshweathers();
   },
 
   ////////////////////////////////////////////////////////////////////////////
   // Change the API key and reget weather data
-  changeApiKey: function() {
+  changeApiKey: function () {
     this.service.setApiKey(this.apikey);
     this._refreshweathers();
   },
 
   ////////////////////////////////////////////////////////////////////////////
   // Change the refresh period and restart the loop
-  changeRefresh: function() {
+  changeRefresh: function () {
     this._setDerivedValues();
     this._doLoop();
   },
 
   ////////////////////////////////////////////////////////////////////////////
   // Called when there is a change to user config for parameters to display
-  displayOptsChange: function() {
+  displayOptsChange: function () {
     this.redrawNeeded = true;
     this.redraw();
   },
 
   ////////////////////////////////////////////////////////////////////////////
   // redraw the window, but without refetching data from the service provider
-  redraw: function() {
+  redraw: function () {
     this._setDerivedValues();
     this._createWindow();
     this._update_style();
@@ -706,8 +716,8 @@ MyDesklet.prototype = {
   ////////////////////////////////////////////////////////////////////////////
   // update the data from the service and start the timeout to the next update
   // refreshData will call the display* functions
-  _refreshweathers: function() {
-    let now=new Date().toLocaleFormat('%H:%M:%S');
+  _refreshweathers: function () {
+    let now = new Date().toLocaleFormat('%H:%M:%S');
     global.log("bbcwx (instance " + this.desklet_id + "): refreshing forecast at " + now);
 
 
@@ -721,67 +731,66 @@ MyDesklet.prototype = {
 
   ////////////////////////////////////////////////////////////////////////////
   // Begin / restart the main loop, waiting for refreshSec before updating again
-  _doLoop: function() {
-    if(typeof this._timeoutId !== 'undefined') {
+  _doLoop: function () {
+    if (typeof this._timeoutId !== 'undefined') {
       Mainloop.source_remove(this._timeoutId);
     }
 
-    this._timeoutId=Mainloop.timeout_add_seconds(Math.round(this.refreshSec * (0.9 + Math.random()*0.2)),Lang.bind(this, this.updateForecast));
+    this._timeoutId = Mainloop.timeout_add_seconds(Math.round(this.refreshSec * (0.9 + Math.random() * 0.2)), Lang.bind(this, this.updateForecast));
   },
 
   ////////////////////////////////////////////////////////////////////////////
   // Update the display of the forecast data
-  displayForecast: function() {
+  displayForecast: function () {
     //global.log("bbcwx (instance " + this.desklet_id + "): entering displayForecast");
-    for(let f=0;f<this.no;f++)
-    {
+    for (let f = 0; f < this.no; f++) {
       let day = this.service.data.days[f];
-      this.labels[f].text=((this.daynames[day.day]) ? this.daynames[day.day] : '');
-      let fwiconimage = this._getIconImage(day.icon, BBCWX_ICON_HEIGHT*this.zoom);
+      this.labels[f].text = ((this.daynames[day.day]) ? this.daynames[day.day] : '');
+      let fwiconimage = this._getIconImage(day.icon, BBCWX_ICON_HEIGHT * this.zoom);
       //fwiconimage.set_size(BBCWX_ICON_HEIGHT*this.iconprops.aspect*this.zoom, BBCWX_ICON_HEIGHT*this.zoom);
       this.fwicons[f].set_child(fwiconimage);
       //## Message if we fail to get weather data
       this.wxtooltip[f].set_text(((day.weathertext) ? _(day.weathertext) : _('No data available')));
-      if(this.max[f]) this.max[f].text=this._formatTemperature(day.maximum_temperature, true);
+      if (this.max[f]) this.max[f].text = this._formatTemperature(day.maximum_temperature, true);
       //if(this.max[f]) { this.max[f].text=this._formatTemperature(day.maximum_temperature, true); } else { this.max[f].text=''}
-      if(this.min[f]) this.min[f].text=this._formatTemperature(day.minimum_temperature, true);
-      if(this.winds[f]) this.winds[f].text=this._formatWindspeed(day.wind_speed, true);
-      if(this.windd[f]) this.windd[f].text= ((day.wind_direction) ? day.wind_direction : '');
-      if(this.fpressure[f]) this.fpressure[f].text=this._formatPressure(day.pressure, '', true);
-      if(this.fhumidity[f]) this.fhumidity[f].text=this._formatHumidity(day.humidity, true);
+      if (this.min[f]) this.min[f].text = this._formatTemperature(day.minimum_temperature, true);
+      if (this.winds[f]) this.winds[f].text = this._formatWindspeed(day.wind_speed, true);
+      if (this.windd[f]) this.windd[f].text = ((day.wind_direction) ? day.wind_direction : '');
+      if (this.fpressure[f]) this.fpressure[f].text = this._formatPressure(day.pressure, '', true);
+      if (this.fhumidity[f]) this.fhumidity[f].text = this._formatHumidity(day.humidity, true);
     }
   },
 
   ////////////////////////////////////////////////////////////////////////////
   // Update the display of the current observations
-  displayCurrent: function(){
+  displayCurrent: function () {
     let cc = this.service.data.cc;
     if (this.cwicon) {
-      let cwimage=this._getIconImage(this.service.data.cc.icon, BBCWX_CC_ICON_HEIGHT*this.zoom);
+      let cwimage = this._getIconImage(this.service.data.cc.icon, BBCWX_CC_ICON_HEIGHT * this.zoom);
       //cwimage.set_size(BBCWX_CC_ICON_HEIGHT*this.iconprops.aspect*this.zoom, BBCWX_CC_ICON_HEIGHT*this.zoom);
       this.cwicon.set_child(cwimage);
     }
     if (this.shifttemp) {
       if (this.weathertext) this.weathertext.text = ((cc.weathertext) ? cc.weathertext : '');
-      this.currenttemp.text = this._formatTemperature(cc.temperature, true) ;
+      this.currenttemp.text = this._formatTemperature(cc.temperature, true);
     } else {
-      if (this.weathertext) this.weathertext.text = ((cc.weathertext) ? cc.weathertext : '') + ((cc.temperature && cc.weathertext) ? ', ' : '' )+ this._formatTemperature(cc.temperature, true) ;
+      if (this.weathertext) this.weathertext.text = ((cc.weathertext) ? cc.weathertext : '') + ((cc.temperature && cc.weathertext) ? ', ' : '') + this._formatTemperature(cc.temperature, true);
     }
 
-    if (this.humidity) this.humidity.text= this._formatHumidity(cc.humidity);
-    if (this.pressure) this.pressure.text=this._formatPressure(cc.pressure, cc.pressure_direction, true);
-    if (this.windspeed) this.windspeed.text=((cc.wind_direction) ? cc.wind_direction : '') + ((cc.wind_direction && typeof cc.wind_speed !== 'undefined' && cc.wind_speed !== null) ? ', ' : '' ) + this._formatWindspeed(cc.wind_speed, true);
-    if (this.feelslike) this.feelslike.text=this._formatTemperature(cc.feelslike, true);
-    if (this.visibility) this.visibility.text=this._formatVisibility(cc.visibility, true);
+    if (this.humidity) this.humidity.text = this._formatHumidity(cc.humidity);
+    if (this.pressure) this.pressure.text = this._formatPressure(cc.pressure, cc.pressure_direction, true);
+    if (this.windspeed) this.windspeed.text = ((cc.wind_direction) ? cc.wind_direction : '') + ((cc.wind_direction && typeof cc.wind_speed !== 'undefined' && cc.wind_speed !== null) ? ', ' : '') + this._formatWindspeed(cc.wind_speed, true);
+    if (this.feelslike) this.feelslike.text = this._formatTemperature(cc.feelslike, true);
+    if (this.visibility) this.visibility.text = this._formatVisibility(cc.visibility, true);
     if (this.service.data.status.cc != BBCWX_SERVICE_STATUS_OK && this.weathertext) {
-      this.weathertext.text = (this.service.data.status.lasterror) ? _('Error: %s').format(this.service.data.status.lasterror) : _('No data') ;
+      this.weathertext.text = (this.service.data.status.lasterror) ? _('Error: %s').format(this.service.data.status.lasterror) : _('No data');
     }
   },
 
   ////////////////////////////////////////////////////////////////////////////
   // Update the display of the meta data, eg city name, link tooltip. Handles
   // managing reverse geocode lookups from Yahoo or Google if needed
-  displayMeta: function() {
+  displayMeta: function () {
     let locsrc = this.locsrc;
     if (this.manuallocation.toString().length) locsrc = 'manual'
 
@@ -789,7 +798,7 @@ MyDesklet.prototype = {
     this.tooltiplocation = '';
 
     if (locsrc == 'manual') {
-      this.displaycity=this.manuallocation;
+      this.displaycity = this.manuallocation;
       this.tooltiplocation = this.manuallocation
     } else {
       // if city name from service is empty, use wgs84, or stationID
@@ -797,7 +806,7 @@ MyDesklet.prototype = {
         if (this.service.capabilities.meta.wgs84 && this.service.data.status.meta == BBCWX_SERVICE_STATUS_OK) {
           // If city name is empty and source is 'service', we'll look it up with Google!
           if (locsrc == 'service') locsrc = 'google';
-          this.displaycity=this.service.data.wgs84.lat + ',' + this.service.data.wgs84.lon;
+          this.displaycity = this.service.data.wgs84.lat + ',' + this.service.data.wgs84.lon;
           this.tooltiplocation = this.service.data.wgs84.lat + ',' + this.service.data.wgs84.lon;
         } else {
           this.displaycity = this.stationID;
@@ -806,7 +815,7 @@ MyDesklet.prototype = {
       } else {
         // initially set the displayed location to that from the data service,
         // if available. Google / Yahoo lookups we'll do asyncronously later
-        this.displaycity=this.service.data.city;
+        this.displaycity = this.service.data.city;
         this.tooltiplocation = this.service.data.city;
         if (this.show.meta.country) {
           this.displaycity += ', ' + this.service.data.country;
@@ -818,7 +827,7 @@ MyDesklet.prototype = {
     this._updateLocationDisplay();
 
     if (this.service.linkIcon) {
-      let bannericonimage = this._getIconImage(this.service.linkIcon.file, this.service.linkIcon.height*this.zoom, this.service.linkIcon.width*this.zoom, false);
+      let bannericonimage = this._getIconImage(this.service.linkIcon.file, this.service.linkIcon.height * this.zoom, this.service.linkIcon.width * this.zoom, false);
       //bannericonimage.set_size(this.service.linkIcon.width*this.zoom, this.service.linkIcon.height*this.zoom);
       this.bannericon.set_child(bannericonimage);
     }
@@ -830,18 +839,18 @@ MyDesklet.prototype = {
       if (this.cwiconsig && this.cwicon) this.cwicon.disconnect(this.cwiconsig);
       this.bannersig = null;
       this.cwiconsig = null;
-    } catch(e) { global.logWarning("Failed to disconnect signal from link banner") }
-    this.bannersig = this.banner.connect('clicked', Lang.bind(this, function() {
-        Util.spawnCommandLine("xdg-open " + this.service.linkURL );
+    } catch (e) { global.logWarning("Failed to disconnect signal from link banner") }
+    this.bannersig = this.banner.connect('clicked', Lang.bind(this, function () {
+      this.launcher.spawnv(["xdg-open", this.service.linkURL]);
     }));
     if (this.cwicon) {
-        this.cwiconsig = this.cwicon.connect('clicked', Lang.bind(this, function() {
-          Util.spawnCommandLine("xdg-open " + this.service.linkURL );
+      this.cwiconsig = this.cwicon.connect('clicked', Lang.bind(this, function () {
+        this.launcher.spawnv(["xdg-open", this.service.linkURL]);
       }));
     }
 
     if (this.service.data.status.meta != BBCWX_SERVICE_STATUS_OK) {
-      this.cityname.text = (this.service.data.status.lasterror) ? _('Error: %s').format(this.service.data.status.lasterror) : _('No data') ;
+      this.cityname.text = (this.service.data.status.lasterror) ? _('Error: %s').format(this.service.data.status.lasterror) : _('No data');
     }
 
     // do async lookup of location with yahoo or google
@@ -857,11 +866,11 @@ MyDesklet.prototype = {
           if (this._geocache[locsrc][latlon].country !== 'undefined') this.displaycity += ', ' + this._geocache[locsrc][latlon].country;
         }
         this._updateLocationDisplay();
-      // no cache - lookup
+        // no cache - lookup
       } else {
         // debugging
         //global.log ("bbcwx: Looking up city for " + latlon + " at " + locsrc);
-        let b = this._getGeo(locsrc, function(geo, locsrc) {
+        let b = this._getGeo(locsrc, function (geo, locsrc) {
           if (geo) {
             this._load_geo(geo, locsrc);
             this._updateLocationDisplay();
@@ -873,8 +882,8 @@ MyDesklet.prototype = {
 
   ////////////////////////////////////////////////////////////////////////////
   // Update the display of city name and link tooltip
-  _updateLocationDisplay: function() {
-    this.cityname.text=this.displaycity;
+  _updateLocationDisplay: function () {
+    this.cityname.text = this.displaycity;
     //## %s is replaced by place name
     let linktooltip = _('Click for the full forecast for %s').format(this.tooltiplocation)
     this.bannertooltip.set_text(linktooltip);
@@ -886,12 +895,12 @@ MyDesklet.prototype = {
   // -> locsrc: which service to use: either 'yahoo' or 'google'
   // -> callback: callback function to process returned results
   // NB Yahoo service no longer available :(
-  _getGeo: function( locsrc, callback) {
+  _getGeo: function (locsrc, callback) {
     // just use the most preferred language and hope Yahoo! / Google  supports it
     let locale = LangList[0];
     let url = '';
     if (locsrc == 'yahoo') {
-      url = 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20geo.placefinder%20where%20text%3D%22' + this.service.data.wgs84.lat + '%2C' + this.service.data.wgs84.lon +'%22%20and%20gflags%3D%22R%22%20and%20locale%3D%22' + locale + '%22&format=json&callback=';
+      url = 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20geo.placefinder%20where%20text%3D%22' + this.service.data.wgs84.lat + '%2C' + this.service.data.wgs84.lon + '%22%20and%20gflags%3D%22R%22%20and%20locale%3D%22' + locale + '%22&format=json&callback=';
     } else if (locsrc == 'google') {
       url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + this.service.data.wgs84.lat + '%2C' + this.service.data.wgs84.lon + '&language=' + locale;
     } else {
@@ -904,27 +913,27 @@ MyDesklet.prototype = {
     let message = Soup.Message.new('GET', url);
     _httpSession.timeout = 10;
     _httpSession.idle_timeout = 10;
-    if (Soup.MAJOR_VERSION === 2) {
+    if (Soup.MAJOR_VERSION === undefined || Soup.MAJOR_VERSION === 2) {
       _httpSession.queue_message(message, function (session, message) {
-        if( message.status_code == 200) {
-          try {callback.call(here,message.response_body.data.toString(),locsrc);} catch(e) {global.logError(e)}
+        if (message.status_code == 200) {
+          try { callback.call(here, message.response_body.data.toString(), locsrc); } catch (e) { global.logError(e) }
         } else {
           global.logWarning("Error retrieving address " + url + ". Status: " + message.status_code + ": " + message.reason_phrase);
           //here.data.status.lasterror = message.status_code;
-          callback.call(here,false,locsrc);
+          callback.call(here, false, locsrc);
         }
       });
     } else { //version3
       _httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, function (session, result) {
-        if(message.get_status() === 200) {
+        if (message.get_status() === 200) {
           try {
             const bytes = _httpSession.send_and_read_finish(result);
-            callback.call(here,ByteArray.toString(bytes.get_data()),locsrc);
-          } catch(e) {global.logError(e)}
+            callback.call(here, ByteArray.toString(bytes.get_data()), locsrc);
+          } catch (e) { global.logError(e) }
         } else {
           global.logWarning("Error retrieving address " + url + ". Status: " + message.get_status() + ": " + message.get_reason_phrase());
           //here.data.status.lasterror = message.get_status();
-          callback.call(here,false,locsrc);
+          callback.call(here, false, locsrc);
         }
       });
     }
@@ -935,8 +944,8 @@ MyDesklet.prototype = {
   // Wraper around _load_geo_yahoo and _load_geo_google
   // -> data: returned data
   // -> locsrc: the service it came from, 'yahoo' or 'google'
-  _load_geo: function(data, locsrc) {
-    switch(locsrc) {
+  _load_geo: function (data, locsrc) {
+    switch (locsrc) {
       case 'google':
         this._load_geo_google(data);
         break;
@@ -971,7 +980,7 @@ MyDesklet.prototype = {
 
       this._geocache.yahoo[latlon].city = geo.city;
       this._geocache.yahoo[latlon].country = geo.country;
-    } catch(e) {
+    } catch (e) {
       global.logError(e);
       delete this._geocache.yahoo[latlon]
       //this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
@@ -989,8 +998,8 @@ MyDesklet.prototype = {
     let city = '';
     let country = '';
     let geo = new Object();
-    let addrtypes = [ 'xlocality', 'xstreetaddr', 'xpostal_code', 'administrative_area_level_3', 'administrative_area_level_2', 'administrative_area_level_1', 'xcountry'];
-    for (let a=0; a<addrtypes.length; a++) {
+    let addrtypes = ['xlocality', 'xstreetaddr', 'xpostal_code', 'administrative_area_level_3', 'administrative_area_level_2', 'administrative_area_level_1', 'xcountry'];
+    for (let a = 0; a < addrtypes.length; a++) {
       geo[addrtypes[a]] = new Object();
     }
 
@@ -1002,8 +1011,8 @@ MyDesklet.prototype = {
 
     try {
       let results = json.results;
-      for (let i=0; i<results.length; i++) {
-        for (let t=0; t<results[i].types.length; t++) {
+      for (let i = 0; i < results.length; i++) {
+        for (let t = 0; t < results[i].types.length; t++) {
           if (results[i].types[t] == 'administrative_area_level_3') {
             geo.administrative_area_level_3 = results[i];
           }
@@ -1028,11 +1037,11 @@ MyDesklet.prototype = {
         }
       }
 
-      for (let a=0; a<addrtypes.length; a++) {
+      for (let a = 0; a < addrtypes.length; a++) {
         if (typeof geo[addrtypes[a]].address_components !== "undefined" && (!city || !country)) {
           let components = geo[addrtypes[a]].address_components;
-          for (let i=0; i<components.length; i++) {
-            for (let t=0; t<components[i].types.length; t++) {
+          for (let i = 0; i < components.length; i++) {
+            for (let t = 0; t < components[i].types.length; t++) {
               if (components[i].types[t] == 'locality' && !city) {
                 city = components[i].long_name;
               }
@@ -1041,7 +1050,7 @@ MyDesklet.prototype = {
               }
             }
             if (!city) {
-              for (let t=0; t<components[i].types.length; t++) {
+              for (let t = 0; t < components[i].types.length; t++) {
                 if (components[i].types[t] == addrtypes[a] && !city) {
                   city = components[i].long_name;
                 }
@@ -1063,7 +1072,7 @@ MyDesklet.prototype = {
 
       if (country) this._geocache.google[latlon].country = country;
 
-    } catch(e) {
+    } catch (e) {
       global.logError(e);
       delete this._geocache.google[latlon]
       //this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
@@ -1078,7 +1087,7 @@ MyDesklet.prototype = {
   //       the iconsets 'aspect' property and h
   // -> adjust: boolean, whether to adjust h and w by the value of the iconsets
   //            adjust property
-  _getIconImage: function(iconcode, h, w, adjust) {
+  _getIconImage: function (iconcode, h, w, adjust) {
     if (typeof h === 'undefined') h = BBCWX_ICON_HEIGHT;
     if (typeof w === 'undefined') w = false;
     if (typeof adjust === 'undefined') adjust = true;
@@ -1090,10 +1099,10 @@ MyDesklet.prototype = {
     let height = h;
     let width = w ? w : h * this.iconprops.aspect;
     if (adjust) {
-      height = height*this.iconprops.adjust;
-      width = width*this.iconprops.adjust;
+      height = height * this.iconprops.adjust;
+      width = width * this.iconprops.adjust;
     }
-    let icon_file = DESKLET_DIR + '/icons/' + this.iconstyle +'/' + icon_name + icon_ext;
+    let icon_file = DESKLET_DIR + '/icons/' + this.iconstyle + '/' + icon_name + icon_ext;
     let file = Gio.file_new_for_path(icon_file);
     if (!file.query_exists(null)) {
       icon_name = (typeof this.defaulticonprops.map[iconcode] != 'undefined') ? this.defaulticonprops.map[iconcode] : iconcode;
@@ -1101,8 +1110,8 @@ MyDesklet.prototype = {
       width = w ? w : h * this.defaulticonprops.aspect;
       height = h;
       if (adjust) {
-        height = height*this.defaulticonprops.adjust;
-        width = width*this.defaulticonprops.adjust;
+        height = height * this.defaulticonprops.adjust;
+        width = width * this.defaulticonprops.adjust;
       }
       file = Gio.file_new_for_path(icon_file);
     }
@@ -1113,7 +1122,7 @@ MyDesklet.prototype = {
     return iconimg;
   },
 
-  setGravity: function() {
+  setGravity: function () {
     if (this.experimental_enabled) {
       this.actor.move_anchor_point_from_gravity(this.gravity);
     } else {
@@ -1121,26 +1130,26 @@ MyDesklet.prototype = {
     }
   },
 
-  doExperimental: function() {
+  doExperimental: function () {
     this.setGravity();
   },
 
   ////////////////////////////////////////////////////////////////////////////
   // take a temperature in C and convert as needed.
   // Append unit string if units is true
-  _formatTemperature: function(temp, units) {
+  _formatTemperature: function (temp, units) {
     units = typeof units !== 'undefined' ? units : false;
     if (typeof temp === 'undefined' || temp === null) return '';
     if (!temp.toString().length) return '';
-    let celsius = 1*temp;
+    let celsius = 1 * temp;
     let fahr = ((celsius + 40) * 1.8) - 40;
-    let out = Math.round(((this.tunits=='F') ? fahr : celsius));
+    let out = Math.round(((this.tunits == 'F') ? fahr : celsius));
     //## Units for temperature, degrees Fahrenheit. %f is replaced the value. NB: English translation uses unicode character u+2109
-    let fahrfmt = _('%fF');
+    let fahrfmt = _('%f\u00b0F');
     //## Units for temperature, degrees Celsius. %f is replaced the value. NB: English translation uses unicode character u+2103
-    let celfmt = _('%fC')
+    let celfmt = _('%f\u00b0C')
     if (units) {
-      out = ((this.tunits=='F') ? fahrfmt.format(out) : celfmt.format(out))
+      out = ((this.tunits == 'F') ? fahrfmt.format(out) : celfmt.format(out))
     }
     return out;
   },
@@ -1148,7 +1157,7 @@ MyDesklet.prototype = {
   ////////////////////////////////////////////////////////////////////////////
   // take a wind speed in km/h and convert to required
   // units. Append unit string if units is true
-  _formatWindspeed: function(wind, units) {
+  _formatWindspeed: function (wind, units) {
     units = typeof units !== 'undefined' ? units : false;
     if (typeof wind === 'undefined' || wind === null) return '';
     if (!wind.toString().length) return '';
@@ -1172,7 +1181,7 @@ MyDesklet.prototype = {
       'kph': kphfmt,
       'mps': mpsfmt
     }
-    let kph = 1*wind;
+    let kph = 1 * wind;
     let out = kph * conversion[this.wunits];
     out = out.toFixed(0);
     if (units) {
@@ -1187,7 +1196,7 @@ MyDesklet.prototype = {
   // -> pressure: real, pressure (in mb)
   // -> direction: string, direction of travel, or false
   // -> units: boolean, append units
-  _formatPressure: function(pressure, direction, units) {
+  _formatPressure: function (pressure, direction, units) {
     units = typeof units !== 'undefined' ? units : false;
     direction = typeof direction !== 'undefined' ? direction : '';
     if (typeof pressure === 'undefined' || pressure === null) return '';
@@ -1216,9 +1225,9 @@ MyDesklet.prototype = {
       'mb': 0,
       'in': 2,
       'mm': 0,
-      'kpa' : 1
+      'kpa': 1
     };
-    let mb = 1*pressure;
+    let mb = 1 * pressure;
     let out = mb * conversion[this.punits];
 
     //### TODO prepare this for gettext
@@ -1233,9 +1242,9 @@ MyDesklet.prototype = {
   },
 
   ////////////////////////////////////////////////////////////////////////////
-  _formatHumidity: function(humidity) {
+  _formatHumidity: function (humidity) {
     if (!humidity.toString().length) return '';
-    let out = 1*humidity
+    let out = 1 * humidity
     out = out.toFixed(0)
     return out + '%';
   },
@@ -1243,7 +1252,7 @@ MyDesklet.prototype = {
   ////////////////////////////////////////////////////////////////////////////
   // take a visibility and converts to the required format. Strings are returned
   // as such, numbers (assumed km) are converted. Append unit string if units is true
-  _formatVisibility: function(vis, units) {
+  _formatVisibility: function (vis, units) {
     units = typeof units !== 'undefined' ? units : false;
     if (typeof vis === 'undefined' || vis === null) return '';
     if (!vis.toString().length) return '';
@@ -1267,7 +1276,7 @@ MyDesklet.prototype = {
       'kph': kmfmt,
       'mps': kmfmt
     }
-    let km = 1*vis;
+    let km = 1 * vis;
     let out = km * conversion[this.wunits];
     let decpl = (out < 4) ? 1 : 0;
     out = out.toFixed(decpl);
@@ -1278,8 +1287,8 @@ MyDesklet.prototype = {
   },
 
   ////////////////////////////////////////////////////////////////////////////
-  on_desklet_removed: function() {
-    if(typeof this._timeoutId !== 'undefined') {
+  on_desklet_removed: function () {
+    if (typeof this._timeoutId !== 'undefined') {
       Mainloop.source_remove(this._timeoutId);
     }
   }
@@ -1308,7 +1317,7 @@ wxDriver.prototype = {
   linkIcon: false,
   // the maximum number of days of forecast supported
   // by this driver
-  maxDays : 1,
+  maxDays: 1,
   // API key for use in some services
   apikey: '',
 
@@ -1321,7 +1330,7 @@ wxDriver.prototype = {
 
   ////////////////////////////////////////////////////////////////////////////
   // initialise
-  _init: function(stationID, apikey) {
+  _init: function (stationID, apikey) {
     apikey = (typeof apikey !== 'undefined') ? apikey : '';
     this.stationID = stationID;
     this.apikey = apikey;
@@ -1364,7 +1373,7 @@ wxDriver.prototype = {
     // ### TODO: if we later use visibility, we need to indicate if driver returns
     // a value (in km) or a descriptive string (good/fair/poor - BBC)
 
-    this.data=new Object();
+    this.data = new Object();
     this._emptyData();
     this.unitsInSummaries = false;
   },
@@ -1380,14 +1389,14 @@ wxDriver.prototype = {
   // Visibility may be expressed either as a number of km or a descriptive string
   // Wind direction should be a 16 point compass bearing, eg SSW
   // Day names should be English three letter abbreviations, eg Mon, Tue
-  _emptyData: function() {
+  _emptyData: function () {
     this.data.city = '';
     this.data.country = '';
     this.data.wgs84 = new Object();
     this.data.wgs84.lat = null;
     this.data.wgs84.lon = null;
 
-    this.data.days=[];
+    this.data.days = [];
 
     // the status of the service request
     delete this.data.status;
@@ -1414,12 +1423,12 @@ wxDriver.prototype = {
     this.data.cc.feelslike = '';
 
     // forecast
-    for(let i=0; i<this.maxDays; i++) {
+    for (let i = 0; i < this.maxDays; i++) {
       let day = new Object();
       day.day = '';
       day.weathertext = '';
       day.icon = '';
-      day.maximum_temperature ='';
+      day.maximum_temperature = '';
       day.minimum_temperature = '';
       day.wind_direction = '';
       day.wind_speed = '';
@@ -1437,19 +1446,19 @@ wxDriver.prototype = {
 
   ////////////////////////////////////////////////////////////////////////////
   // change the stationID
-  setStation: function(stationID) {
+  setStation: function (stationID) {
     this.stationID = stationID;
   },
 
   ////////////////////////////////////////////////////////////////////////////
   // change the apikey
-  setApiKey: function(apikey) {
+  setApiKey: function (apikey) {
     this.apikey = apikey;
   },
 
   ////////////////////////////////////////////////////////////////////////////
   // for debugging. Log the driver type
-  showType: function() {
+  showType: function () {
     global.log('Using driver type: ' + this.drivertype);
   },
 
@@ -1457,36 +1466,36 @@ wxDriver.prototype = {
   // async call to retrieve the data.
   // -> url: url to call
   // -> callback: callback function to which the retrieved data is passed
-  _getWeather: function(url, callback) {
+  _getWeather: function (url, callback) {
     //debugging
     //global.log('bbcwx: calling ' + url);
     var here = this;
     let message = Soup.Message.new('GET', url);
-    if (Soup.MAJOR_VERSION === 2) {
+    if (Soup.MAJOR_VERSION === undefined || Soup.MAJOR_VERSION === 2) {
       _httpSession.timeout = 10;
       _httpSession.idle_timeout = 10;
       _httpSession.queue_message(message, function (session, message) {
-        if( message.status_code == 200) {
-          try {callback.call(here,message.response_body.data.toString());} catch(e) {global.logError(e)}
+        if (message.status_code == 200) {
+          try { callback.call(here, message.response_body.data.toString()); } catch (e) { global.logError(e) }
         } else {
           global.logWarning("Error retrieving address " + url + ". Status: " + message.status_code + ": " + message.reason_phrase);
           here.data.status.lasterror = message.status_code;
-          callback.call(here,false);
+          callback.call(here, false);
         }
       });
     } else { //version 3
       _httpSession.timeout = 10;
       _httpSession.idle_timeout = 10;
       _httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, function (session, result) {
-        if( message.get_status() === 200) {
+        if (message.get_status() === 200) {
           try {
             const bytes = _httpSession.send_and_read_finish(result);
-            callback.call(here,ByteArray.toString(bytes.get_data()));
-          } catch(e) {global.logError(e)}
+            callback.call(here, ByteArray.toString(bytes.get_data()));
+          } catch (e) { global.logError(e) }
         } else {
           global.logWarning("Error retrieving address " + url + ". Status: " + message.get_status() + ": " + message.get_reason_phrase());
           here.data.status.lasterror = message.get_status();
-          callback.call(here,false);
+          callback.call(here, false);
         }
       });
     }
@@ -1496,23 +1505,23 @@ wxDriver.prototype = {
   // to the main object. It is passed to allow deskletObj.displayForecast()
   // deskletObj.displayMeta() and deskletObj.displayCurrent() to be called from
   // within callback functions.
-  refreshData: function(deskletObj) {
+  refreshData: function (deskletObj) {
   },
 
   ////////////////////////////////////////////////////////////////////////////
   // Utility function to translate direction in degrees into 16 compass points
-  compassDirection: function(deg) {
+  compassDirection: function (deg) {
     //## Next 16 strings are for wind direction, compass points
-    let directions = [_('N'), _('NNE'),_('NE'), _('ENE'),_('E'), _('ESE'),_('SE'),_('SSE'), _('S'),_('SSW'), _('SW'), _('WSW'),_('W'),_('WNW'), _('NW'),_('NNW')];
+    let directions = [_('N'), _('NNE'), _('NE'), _('ENE'), _('E'), _('ESE'), _('SE'), _('SSE'), _('S'), _('SSW'), _('SW'), _('WSW'), _('W'), _('WNW'), _('NW'), _('NNW')];
     return directions[Math.round(deg / 22.5) % directions.length];
   },
 
   ////////////////////////////////////////////////////////////////////////////
   // Get the service specific language code that best serves the current locale
-  getLangCode: function() {
+  getLangCode: function () {
     let lang_list = LangList;
     let lang = '';
-    for (let i=0; i<lang_list.length; i++) {
+    for (let i = 0; i < lang_list.length; i++) {
       if (lang_list[i] != 'C') {
         if (lang_list[i] && (typeof this.lang_map[lang_list[i].toLowerCase()] !== "undefined")) {
           lang = this.lang_map[lang_list[i].toLowerCase()];
@@ -1525,27 +1534,27 @@ wxDriver.prototype = {
     return lang;
   },
 
-  _getDayName: function(i) {
+  _getDayName: function (i) {
     // handle Glib days, which use 1 based numbering starting with Mon
     // all the same except Sun is 7, not 0
     if (i == 7) { i = 0; }
-    let days = ['Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    let days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     return days[i];
   },
 
-  _minArr: function(arr) {
+  _minArr: function (arr) {
     return arr.reduce(function (p, v) {
-      return ( p < v ? p : v );
+      return (p < v ? p : v);
     });
   },
 
-  _maxArr: function(arr) {
+  _maxArr: function (arr) {
     return arr.reduce(function (p, v) {
-      return ( p > v ? p : v );
+      return (p > v ? p : v);
     });
   },
 
-  _avgArr: function(arr) {
+  _avgArr: function (arr) {
     return arr.reduce(function (p, v) {
       return p + v;
     }) / arr.length;
@@ -1554,58 +1563,58 @@ wxDriver.prototype = {
   ////////////////////////////////////////////////////////////////////////////
   // Utility to get a localised weather text string from a Yahoo/TWC code. This
   // function is here because both the Yahoo and TWC drivers use it
-  _getWeatherTextFromYahooCode: function(code) {
+  _getWeatherTextFromYahooCode: function (code) {
     let wxtext = '';
     let textmap = {
-      '0' : _('Tornado'),
-      '1' : _('Tropical storm'),
-      '2' : _('Hurricane'),
-      '3' : _('Severe thunderstorms'),
-      '4' : _('Thunderstorms'),
-      '5' : _('Mixed rain and snow'),
-      '6' : _('Mixed rain and sleet'),
-      '7' : _('Mixed snow and sleet'),
-      '8' : _('Freezing drizzle'),
-      '9' : _('Drizzle'),
-      '10' : _('Freezing rain'),
-      '11' : _('Showers'),
-      '12' : _('Showers'),
-      '13' : _('Snow flurries'),
-      '14' : _('Light snow showers'),
-      '15' : _('Blowing snow'),
-      '16' : _('Snow'),
-      '17' : _('Hail'),
-      '18' : _('Sleet'),
-      '19' : _('Dust'),
-      '20' : _('Foggy'),
-      '21' : _('Haze'),
-      '22' : _('Smoky'),
-      '23' : _('Blustery'),
-      '24' : _('Windy'),
-      '25' : _('Cold'),
-      '26' : _('Cloudy'),
-      '27' : _('Mostly cloudy'),
-      '28' : _('Mostly cloudy'),
-      '29' : _('Partly cloudy'),
-      '30' : _('Partly cloudy'),
-      '31' : _('Clear'),
-      '32' : _('Sunny'),
-      '33' : _('Fair'),
-      '34' : _('Fair'),
-      '35' : _('Mixed rain and hail'),
-      '36' : _('Hot'),
-      '37' : _('Isolated thunderstorms'),
-      '38' : _('Scattered thunderstorms'),
-      '39' : _('Scattered showers'),  // see http://developer.yahoo.com/forum/YDN-Documentation/Yahoo-Weather-API-Wrong-Condition-Code/1290534174000-1122fc3d-da6d-34a2-9fb9-d0863e6c5bc6
-      '40' : _('Scattered showers'),
-      '41' : _('Heavy snow'),
-      '42' : _('Scattered snow showers'),
-      '43' : _('Heavy snow'),
-      '44' : _('Partly cloudy'),
-      '45' : _('Thundershowers'),
-      '46' : _('Snow showers'),
-      '47' : _('Isolated thundershowers'),
-      '3200' : _('Not available')
+      '0': _('Tornado'),
+      '1': _('Tropical storm'),
+      '2': _('Hurricane'),
+      '3': _('Severe thunderstorms'),
+      '4': _('Thunderstorms'),
+      '5': _('Mixed rain and snow'),
+      '6': _('Mixed rain and sleet'),
+      '7': _('Mixed snow and sleet'),
+      '8': _('Freezing drizzle'),
+      '9': _('Drizzle'),
+      '10': _('Freezing rain'),
+      '11': _('Showers'),
+      '12': _('Showers'),
+      '13': _('Snow flurries'),
+      '14': _('Light snow showers'),
+      '15': _('Blowing snow'),
+      '16': _('Snow'),
+      '17': _('Hail'),
+      '18': _('Sleet'),
+      '19': _('Dust'),
+      '20': _('Foggy'),
+      '21': _('Haze'),
+      '22': _('Smoky'),
+      '23': _('Blustery'),
+      '24': _('Windy'),
+      '25': _('Cold'),
+      '26': _('Cloudy'),
+      '27': _('Mostly cloudy'),
+      '28': _('Mostly cloudy'),
+      '29': _('Partly cloudy'),
+      '30': _('Partly cloudy'),
+      '31': _('Clear'),
+      '32': _('Sunny'),
+      '33': _('Fair'),
+      '34': _('Fair'),
+      '35': _('Mixed rain and hail'),
+      '36': _('Hot'),
+      '37': _('Isolated thunderstorms'),
+      '38': _('Scattered thunderstorms'),
+      '39': _('Scattered showers'),  // see http://developer.yahoo.com/forum/YDN-Documentation/Yahoo-Weather-API-Wrong-Condition-Code/1290534174000-1122fc3d-da6d-34a2-9fb9-d0863e6c5bc6
+      '40': _('Scattered showers'),
+      '41': _('Heavy snow'),
+      '42': _('Scattered snow showers'),
+      '43': _('Heavy snow'),
+      '44': _('Partly cloudy'),
+      '45': _('Thundershowers'),
+      '46': _('Snow showers'),
+      '47': _('Isolated thundershowers'),
+      '3200': _('Not available')
     }
     if (code && typeof textmap[code] !== "undefined") {
       wxtext = textmap[code];
@@ -1633,20 +1642,20 @@ wxDriverBBC.prototype = {
   _baseURL: 'https://weather-broker-cdn.api.bbci.co.uk/en/',
 
   // initialise the driver
-  _bbcinit: function(stationID) {
+  _bbcinit: function (stationID) {
     this._init(stationID);
-    this.capabilities.meta.region =  false;
+    this.capabilities.meta.region = false;
     this.capabilities.cc.feelslike = false;
     this.capabilities.cc.obstime = false;
   },
 
-  refreshData: function(deskletObj) {
+  refreshData: function (deskletObj) {
     // reset the data object
     this._emptyData();
     this.linkURL = 'https://www.bbc.co.uk/weather';
 
     // process the three day forecast
-    let a = this._getWeather(this._baseURL + 'forecast/rss/3day/' + this.stationID, function(weather) {
+    let a = this._getWeather(this._baseURL + 'forecast/rss/3day/' + this.stationID, function (weather) {
       if (weather) {
         this._load_forecast(weather);
       }
@@ -1656,7 +1665,7 @@ wxDriverBBC.prototype = {
     });
 
     // process current observations
-    let b = this._getWeather(this._baseURL + 'observation/rss/' + this.stationID, function(weather) {
+    let b = this._getWeather(this._baseURL + 'observation/rss/' + this.stationID, function (weather) {
       if (weather) {
         this._load_observations(weather);
       }
@@ -1677,7 +1686,7 @@ wxDriverBBC.prototype = {
 
     let parser = new Marknote.marknote.Parser();
     let doc = parser.parse(rss);
-    if (!doc)  {
+    if (!doc) {
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
       return;
@@ -1695,23 +1704,23 @@ wxDriverBBC.prototype = {
       this.data.wgs84.lon = geo.split(' ')[1].trim();
       let desc, title;
 
-      for (let i=0; i<items.length; i++) {
+      for (let i = 0; i < items.length; i++) {
         let data = new Object();
         desc = items[i].getChildElement("description").getText();
         title = items[i].getChildElement("title").getText();
         data.link = items[i].getChildElement("link").getText();
-        data.day = title.split(':')[0].trim().substring(0,3);
+        data.day = title.split(':')[0].trim().substring(0, 3);
         let weathertext = title.split(':')[1].split(',')[0].trim();
         let parts = desc.split(',');
         let k, v;
-        for (let b=0; b<parts.length; b++) {
+        for (let b = 0; b < parts.length; b++) {
           k = parts[b].slice(0, parts[b].indexOf(':')).trim().replace(' ', '_').toLowerCase();
-          v = parts[b].slice(parts[b].indexOf(':')+1).trim();
-          if (v.substr(0,4).toLowerCase() == 'null') v = '';
+          v = parts[b].slice(parts[b].indexOf(':') + 1).trim();
+          if (v.substr(0, 4).toLowerCase() == 'null') v = '';
           if (k == "wind_direction" && v != '') {
             let vparts = v.split(" ");
             v = '';
-            for (let c=0; c<vparts.length; c++) {
+            for (let c = 0; c < vparts.length; c++) {
               v += vparts[c].charAt(0).toUpperCase();
             }
           }
@@ -1729,7 +1738,7 @@ wxDriverBBC.prototype = {
       }
       this.data.status.forecast = BBCWX_SERVICE_STATUS_OK;
       this.data.status.meta = BBCWX_SERVICE_STATUS_OK;
-    } catch(e) {
+    } catch (e) {
       global.logError(e);
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
@@ -1758,20 +1767,20 @@ wxDriverBBC.prototype = {
       this.data.cc.weathertext = title.split(':')[2].split(',')[0].trim();
       if ((this.data.cc.weathertext.toLowerCase() == 'null') || (this.data.cc.weathertext.includes('Not available'))) this.data.cc.weathertext = '';
       let parts = desc.split(',');
-      for (let b=0; b<parts.length; b++) {
+      for (let b = 0; b < parts.length; b++) {
         let k, v;
         k = parts[b].slice(0, parts[b].indexOf(':')).trim().replace(' ', '_').toLowerCase();
-        v = parts[b].slice(parts[b].indexOf(':')+1).trim();
-        if (v.substr(0,4).toLowerCase() == 'null') v = '';
+        v = parts[b].slice(parts[b].indexOf(':') + 1).trim();
+        if (v.substr(0, 4).toLowerCase() == 'null') v = '';
         if (k == 'wind_direction' && v != '') {
           let vparts = v.split(" ");
           v = '';
-          for (let c=0; c<vparts.length; c++) {
+          for (let c = 0; c < vparts.length; c++) {
             v += vparts[c].charAt(0).toUpperCase();
           }
         }
         if (k == 'pressure' && v != '') {
-          let pparts=v.split('|');
+          let pparts = v.split('|');
           v = pparts[0].trim();
           this.data.cc.pressure_direction = _(pparts[1].trim());
         }
@@ -1785,47 +1794,47 @@ wxDriverBBC.prototype = {
       this.data.cc.humidity = this.data.cc.humidity.replace('%', '').replace('-- ', '');
       this.data.cc.pressure = this.data.cc.pressure.replace('mb', '').replace('-- ', '');
       this.data.status.cc = BBCWX_SERVICE_STATUS_OK;
-    } catch(e) {
+    } catch (e) {
       global.logError(e);
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
     }
   },
 
-  _getIconFromText: function(wxtext) {
+  _getIconFromText: function (wxtext) {
     let icon_name = 'na';
     let iconmap = {
-      'clear sky' : '31', //night
-      'sunny' : '32',
-      'partly cloudy' : '29',  //night
-      'sunny intervals' : '30',
-      'sand storm' : '19', // not confirmed
-      'mist' : '20',
-      'fog' : '20',
-      'white cloud' : '26',
-      'light cloud' : '26',
-      'grey cloud' : '26d',
-      'thick cloud' : '26d',
-      'light rain shower' : '39',
-      'light rain showers' : '39',
-      'drizzle' : '09',
-      'light rain' : '11',
-      'heavy rain shower' : '39',
-      'heavy rain showers' : '39',
-      'heavy rain' : '12',
-      'sleet shower' : '07',
-      'sleet showers' : '07',
-      'sleet' : '07',
-      'light snow shower' : '41',
-      'light snow showers' : '41',
-      'light snow' : '13',
-      'heavy snow shower' : '41',
-      'heavy snow showers' : '41',
-      'heavy snow' : '16',
-      'thundery shower' : '37',
-      'thundery showers' : '37',
-      'thunder storm' : '04',
-      'thunderstorm' : '04',
-      'hazy' : '22',
+      'clear sky': '31', //night
+      'sunny': '32',
+      'partly cloudy': '29',  //night
+      'sunny intervals': '30',
+      'sand storm': '19', // not confirmed
+      'mist': '20',
+      'fog': '20',
+      'white cloud': '26',
+      'light cloud': '26',
+      'grey cloud': '26d',
+      'thick cloud': '26d',
+      'light rain shower': '39',
+      'light rain showers': '39',
+      'drizzle': '09',
+      'light rain': '11',
+      'heavy rain shower': '39',
+      'heavy rain showers': '39',
+      'heavy rain': '12',
+      'sleet shower': '07',
+      'sleet showers': '07',
+      'sleet': '07',
+      'light snow shower': '41',
+      'light snow showers': '41',
+      'light snow': '13',
+      'heavy snow shower': '41',
+      'heavy snow showers': '41',
+      'heavy snow': '16',
+      'thundery shower': '37',
+      'thundery showers': '37',
+      'thunder storm': '04',
+      'thunderstorm': '04',
+      'hazy': '22',
       'hail shower': '18',
       'hail showers': '18'
     }
@@ -1838,14 +1847,14 @@ wxDriverBBC.prototype = {
     return icon_name;
   },
 
-  _getTemperature: function(temp) {
+  _getTemperature: function (temp) {
     if (!temp) return '';
-    let celsius = temp.slice(0, temp.indexOf('C')-1).trim();
+    let celsius = temp.slice(0, temp.indexOf('C') - 1).trim();
     if (isNaN(celsius)) return '';
     return celsius;
   },
 
-  _getWindspeed: function(wind) {
+  _getWindspeed: function (wind) {
     if (!wind) return '';
     let mph = wind.replace('mph', '');
     if (isNaN(mph)) return '';
@@ -1855,8 +1864,8 @@ wxDriverBBC.prototype = {
 
   // dummy function that exists just to list the strings
   // for translation
-  _dummy: function() {
-    let a =[
+  _dummy: function () {
+    let a = [
       _('Clear Sky'),
       _('Sunny'),
       _('Partly Cloudy'),
@@ -1910,23 +1919,23 @@ wxDriverYahoo.prototype = {
   _baseURL: 'https://weather.yahooapis.com/forecastrss?u=c&w=',
 
   // initialise the driver
-  _yahooinit: function(stationID) {
+  _yahooinit: function (stationID) {
     this._init(stationID);
-    this.capabilities.forecast.wind_direction =  false;
-    this.capabilities.forecast.wind_speed =  false;
-    this.capabilities.forecast.pressure =  false;
-    this.capabilities.forecast.pressure_direction =  false;
-    this.capabilities.forecast.visibility =  false;
-    this.capabilities.forecast.uv_risk =  false;
-    this.capabilities.forecast.humidity =  false;
+    this.capabilities.forecast.wind_direction = false;
+    this.capabilities.forecast.wind_speed = false;
+    this.capabilities.forecast.pressure = false;
+    this.capabilities.forecast.pressure_direction = false;
+    this.capabilities.forecast.visibility = false;
+    this.capabilities.forecast.uv_risk = false;
+    this.capabilities.forecast.humidity = false;
     this.capabilities.cc.visibility = false;
     this._woeidcache = new Object();
-    this._isEnglish = LangList[0].substr(0,2).toLowerCase() == 'en' ? true : false;
+    this._isEnglish = LangList[0].substr(0, 2).toLowerCase() == 'en' ? true : false;
   },
 
   // for the yahoo driver, this is a wrapper around _refreshData. This is needed in order
   // to get the yahoo WOEID if this.stationID has been provided as lat,lon
-  refreshData: function(deskletObj) {
+  refreshData: function (deskletObj) {
     // reset the data object
     this._emptyData();
     this.linkURL = 'https://weather.yahoo.com/';
@@ -1941,8 +1950,8 @@ wxDriverYahoo.prototype = {
         // look up the WOEID from geo.placefinder YQL table. Async lookup with _refreshData
         // in call back to ensure WOEID is available before it is called
         let latlon = this.stationID.split(',')
-        let geourl = 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20geo.placefinder%20where%20text%3D%22' + latlon[0] + '%2C' + latlon[1] +'%22%20and%20gflags%3D%22R%22&format=json&callback=';
-        let a = this._getWeather(geourl, function(geo) {
+        let geourl = 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20geo.placefinder%20where%20text%3D%22' + latlon[0] + '%2C' + latlon[1] + '%22%20and%20gflags%3D%22R%22&format=json&callback=';
+        let a = this._getWeather(geourl, function (geo) {
           if (geo) {
             let ok = this._load_woeid(geo);
             if (ok) {
@@ -1963,8 +1972,8 @@ wxDriverYahoo.prototype = {
           }
         });
       }
-    // unrecognised - not a numeric WOEID
-    } else if (this.stationID.search(/^\d+$/) !=0) {
+      // unrecognised - not a numeric WOEID
+    } else if (this.stationID.search(/^\d+$/) != 0) {
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
@@ -1973,7 +1982,7 @@ wxDriverYahoo.prototype = {
       deskletObj.displayMeta();
       deskletObj.displayCurrent();
       return;
-    // looks like a WOEID
+      // looks like a WOEID
     } else {
       this._woeid = this.stationID;
       this._refreshData(deskletObj);
@@ -1981,9 +1990,9 @@ wxDriverYahoo.prototype = {
 
   },
 
-  _refreshData: function(deskletObj) {
+  _refreshData: function (deskletObj) {
     // get the forecast
-    let a = this._getWeather(this._baseURL + encodeURIComponent(this._woeid), function(weather) {
+    let a = this._getWeather(this._baseURL + encodeURIComponent(this._woeid), function (weather) {
       if (weather) {
         this._load_forecast(weather);
       }
@@ -1994,7 +2003,7 @@ wxDriverYahoo.prototype = {
     });
   },
 
-  _load_woeid: function(data) {
+  _load_woeid: function (data) {
     if (!data) {
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
@@ -2020,7 +2029,7 @@ wxDriverYahoo.prototype = {
         this.data.status.lasterror = "Could not resolve location";
         return false;
       }
-    } catch(e) {
+    } catch (e) {
       global.logError(e);
       delete this._woeidcache[this.stationID]
       this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
@@ -2100,7 +2109,7 @@ wxDriverYahoo.prototype = {
 
       let forecasts = items[0].getChildElements('yweather:forecast');
 
-      for ( let i=0; i<forecasts.length; i++) {
+      for (let i = 0; i < forecasts.length; i++) {
         let day = new Object();
         day.day = forecasts[i].getAttributeValue('day');
         day.maximum_temperature = forecasts[i].getAttributeValue('high');
@@ -2121,7 +2130,7 @@ wxDriverYahoo.prototype = {
       this.data.status.forecast = BBCWX_SERVICE_STATUS_OK;
       this.data.status.meta = BBCWX_SERVICE_STATUS_OK;
       this.data.status.cc = BBCWX_SERVICE_STATUS_OK;
-    } catch(e) {
+    } catch (e) {
       global.logError(e);
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
@@ -2129,59 +2138,59 @@ wxDriverYahoo.prototype = {
     }
   },
 
-  _mapicon: function(code) {
+  _mapicon: function (code) {
     // http://developer.yahoo.com/weather/#codes
     let icon_name = 'na';
     let iconmap = {
-      '0' : '00',
-      '1' : '01',
-      '2' : '01',
-      '3' : '03',
-      '4' : '04',
-      '5' : '05',
-      '6' : '06',
-      '7' : '07',
-      '8' : '08',
-      '9' : '09',
-      '10' : '10',
-      '11' : '11',
-      '12' : '12',
-      '13' : '13',
-      '14' : '41',
-      '15' : '15',
-      '16' : '16',
-      '17' : '18',
-      '18' : '18',
-      '19' : '19',
-      '20' : '20',
-      '21' : '22',
-      '22' : '22',
-      '23' : '23',
-      '24' : '24',
-      '25' : '25',
-      '26' : '26',
-      '27' : '27',
-      '28' : '28',
-      '29' : '29',
-      '30' : '30',
-      '31' : '31',
-      '32' : '32',
-      '33' : '33',
-      '34' : '34',
-      '35' : '06',
-      '36' : '36',
-      '37' : '37',
-      '38' : '38',
-      '39' : '39', // this actually seems to map to showers, see  http://developer.yahoo.com/forum/YDN-Documentation/Yahoo-Weather-API-Wrong-Condition-Code/1290534174000-1122fc3d-da6d-34a2-9fb9-d0863e6c5bc6
-      '40' : '39',
-      '41' : '16',
-      '42' : '41',
-      '43' : '16',
-      '44' : '30',
-      '45' : '47',
-      '46' : '46',
-      '47' : '47',
-      '3200' : 'na'
+      '0': '00',
+      '1': '01',
+      '2': '01',
+      '3': '03',
+      '4': '04',
+      '5': '05',
+      '6': '06',
+      '7': '07',
+      '8': '08',
+      '9': '09',
+      '10': '10',
+      '11': '11',
+      '12': '12',
+      '13': '13',
+      '14': '41',
+      '15': '15',
+      '16': '16',
+      '17': '18',
+      '18': '18',
+      '19': '19',
+      '20': '20',
+      '21': '22',
+      '22': '22',
+      '23': '23',
+      '24': '24',
+      '25': '25',
+      '26': '26',
+      '27': '27',
+      '28': '28',
+      '29': '29',
+      '30': '30',
+      '31': '31',
+      '32': '32',
+      '33': '33',
+      '34': '34',
+      '35': '06',
+      '36': '36',
+      '37': '37',
+      '38': '38',
+      '39': '39', // this actually seems to map to showers, see  http://developer.yahoo.com/forum/YDN-Documentation/Yahoo-Weather-API-Wrong-Condition-Code/1290534174000-1122fc3d-da6d-34a2-9fb9-d0863e6c5bc6
+      '40': '39',
+      '41': '16',
+      '42': '41',
+      '43': '16',
+      '44': '30',
+      '45': '47',
+      '46': '46',
+      '47': '47',
+      '3200': 'na'
     }
     if (code && (typeof iconmap[code] !== "undefined")) {
       icon_name = iconmap[code];
@@ -2213,45 +2222,45 @@ wxDriverOWM.prototype = {
   _baseURL: 'https://api.openweathermap.org/data/2.5/',
 
   lang_map: {
-    'bg' : 'bg',
-    'zh' : 'zh',
-    'zh_cn' : 'zh_cn',
-    'zh_tw' : 'zh_tw',
-    'nl' : 'nl',
-    'en' : 'en',
-    'fi' : 'fi',
-    'fr' : 'fr',
-    'de' : 'de',
-    'it' : 'it',
-    'pl' : 'pl',
-    'pt' : 'pt',
-    'ro' : 'ro',
-    'ru' : 'ru',
-    'es' : 'es',
-    'sv' : 'se',
-    'tr' : 'tr',
-    'uk' : 'ua',
-    'hr' : 'hr',
-    'ca' : 'ca',
-    'cs' : 'cz',
-    'el' : 'el',
-    'fa' : 'fa',
-    'gl' : 'gl',
-    'hu' : 'hu',
-    'ja' : 'ja',
-    'kr' : 'kr',
-    'lv' : 'la',
-    'lt' : 'lt',
-    'mk' : 'mk',
-    'sk' : 'sk',
-    'sl' : 'sl',
-    'vi' : 'vi'
+    'bg': 'bg',
+    'zh': 'zh',
+    'zh_cn': 'zh_cn',
+    'zh_tw': 'zh_tw',
+    'nl': 'nl',
+    'en': 'en',
+    'fi': 'fi',
+    'fr': 'fr',
+    'de': 'de',
+    'it': 'it',
+    'pl': 'pl',
+    'pt': 'pt',
+    'ro': 'ro',
+    'ru': 'ru',
+    'es': 'es',
+    'sv': 'se',
+    'tr': 'tr',
+    'uk': 'ua',
+    'hr': 'hr',
+    'ca': 'ca',
+    'cs': 'cz',
+    'el': 'el',
+    'fa': 'fa',
+    'gl': 'gl',
+    'hu': 'hu',
+    'ja': 'ja',
+    'kr': 'kr',
+    'lv': 'la',
+    'lt': 'lt',
+    'mk': 'mk',
+    'sk': 'sk',
+    'sl': 'sl',
+    'vi': 'vi'
   },
 
   // initialise the driver
-  _owminit: function(stationID, apikey) {
+  _owminit: function (stationID, apikey) {
     this._init(stationID, apikey);
-    this.capabilities.meta.region =  false;
+    this.capabilities.meta.region = false;
     this.capabilities.cc.feelslike = false;
     this.capabilities.cc.pressure_direction = false;
     this.capabilities.cc.visibility = false;
@@ -2259,14 +2268,14 @@ wxDriverOWM.prototype = {
     this.capabilities.forecast.uv_risk = false;
   },
 
-  refreshData: function(deskletObj) {
+  refreshData: function (deskletObj) {
     // reset the data object
     this._emptyData();
     this.linkURL = 'https://openweathermap.org';
 
     if (this.stationID.search(/^\-?\d+(\.\d+)?,\-?\d+(\.\d+)?$/) == 0) {
       this.latlon = this.stationID.split(',');
-    } else if (this.stationID.search(/^\d+$/) !=0) {
+    } else if (this.stationID.search(/^\d+$/) != 0) {
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
@@ -2281,7 +2290,7 @@ wxDriverOWM.prototype = {
 
     let apiforecasturl = this._get_apiforecasturl();
 
-    let a = this._getWeather(apiforecasturl, function(weather) {
+    let a = this._getWeather(apiforecasturl, function (weather) {
       if (weather) {
         this._load_forecast(weather);
       }
@@ -2292,11 +2301,11 @@ wxDriverOWM.prototype = {
 
     // process current observations
     let apiccurl = (typeof this.latlon != 'undefined')
-    ? this._baseURL + 'weather?units=metric&lat=' + this.latlon[0] +  '&lon=' + this.latlon[1]
-    : this._baseURL + 'weather?units=metric&id=' + encodeURIComponent(this.stationID);
+      ? this._baseURL + 'weather?units=metric&lat=' + this.latlon[0] + '&lon=' + this.latlon[1]
+      : this._baseURL + 'weather?units=metric&id=' + encodeURIComponent(this.stationID);
     if (this.apikey) apiccurl = apiccurl + '&APPID=' + this.apikey;
     if (this.langcode) apiccurl += '&lang=' + this.langcode;
-    let b = this._getWeather(apiccurl, function(weather) {
+    let b = this._getWeather(apiccurl, function (weather) {
       if (weather) {
         this._load_observations(weather);
       }
@@ -2306,15 +2315,15 @@ wxDriverOWM.prototype = {
   },
 
   // process the 7 day forecast
-  _get_apiforecasturl: function() {
+  _get_apiforecasturl: function () {
     let apiforecasturl = (typeof this.latlon != 'undefined')
-      ? this._baseURL + 'forecast/daily?units=metric&cnt=7&lat=' + this.latlon[0] +  '&lon=' + this.latlon[1]
+      ? this._baseURL + 'forecast/daily?units=metric&cnt=7&lat=' + this.latlon[0] + '&lon=' + this.latlon[1]
       : this._baseURL + 'forecast/daily?units=metric&cnt=7&id=' + encodeURIComponent(this.stationID)
 
     if (this.apikey) apiforecasturl = apiforecasturl + '&APPID=' + this.apikey;
     if (this.langcode) apiforecasturl += '&lang=' + this.langcode;
 
-	return apiforecasturl;
+    return apiforecasturl;
   },
 
   // process the data for a forecast and populate this.data
@@ -2337,7 +2346,7 @@ wxDriverOWM.prototype = {
       this._parse_forecast(json);
       this.data.status.forecast = BBCWX_SERVICE_STATUS_OK;
       this.data.status.meta = BBCWX_SERVICE_STATUS_OK;
-    } catch(e) {
+    } catch (e) {
       global.logError(e);
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
@@ -2352,15 +2361,15 @@ wxDriverOWM.prototype = {
     this.data.wgs84.lon = json.city.coord.lon;
     this.linkURL = 'https://openweathermap.org/city/' + json.city.id;
 
-    // This is ugly, but to place a forecast in a particular day we need to make an effort to 
-    // interpret the UTC timestamps in the context of the forecast location's timezone, which 
-    // we don't know. So we estimate, based on longitude  
-    let est_tz = Math.round(json.city.coord.lon/15) * 3600;
+    // This is ugly, but to place a forecast in a particular day we need to make an effort to
+    // interpret the UTC timestamps in the context of the forecast location's timezone, which
+    // we don't know. So we estimate, based on longitude
+    let est_tz = Math.round(json.city.coord.lon / 15) * 3600;
 
-    for (let i=0; i<json.list.length; i++) {
+    for (let i = 0; i < json.list.length; i++) {
       let day = new Object();
       // day.day = this._getDayName(new Date(json.list[i].dt *1000).toLocaleFormat( "%w" ));
-      day.day = this._getDayName(new Date((json.list[i].dt + est_tz)*1000).getUTCDay());
+      day.day = this._getDayName(new Date((json.list[i].dt + est_tz) * 1000).getUTCDay());
       day.minimum_temperature = json.list[i].temp.min;
       day.maximum_temperature = json.list[i].temp.max;
       day.pressure = json.list[i].pressure;
@@ -2393,89 +2402,89 @@ wxDriverOWM.prototype = {
       this.data.cc.pressure = json.main.pressure;
       this.data.cc.wind_speed = json.wind.speed * 3.6;
       this.data.cc.wind_direction = this.compassDirection(json.wind.deg);
-      this.data.cc.obstime = new Date(json.dt *1000).toLocaleFormat("%H:%M %Z");
+      this.data.cc.obstime = new Date(json.dt * 1000).toLocaleFormat("%H:%M %Z");
       this.data.cc.weathertext = json.weather[0].description.ucwords();
       this.data.cc.icon = this._mapicon(json.weather[0].icon, json.weather[0].id);
       this.data.status.cc = BBCWX_SERVICE_STATUS_OK;
-    } catch(e) {
+    } catch (e) {
       global.logError(e);
       this.data.status.cc = BBCWX_SERVICE_STATUS_ERROR;
     }
   },
 
-  _mapicon: function(iconcode, wxcode) {
+  _mapicon: function (iconcode, wxcode) {
     // http://bugs.openweathermap.org/projects/api/wiki/Weather_Condition_Codes
     let icon_name = 'na';
     let wxmap = {
-      '300' : '09',
-      '301' : '09',
-      '302' : '11',
-      '310' : '09',
-      '311' : '09',
-      '312' : '11',
-      '313' : '39',
-      '314' : '39',
-      '321' : '39',
-      '500' : '11',
-      '511' : '10',
-      '521' : '39',
-      '522' : '39',
-      '531' : '39',
-      '600' : '13',
-      '601' : '14',
-      '602' : '16',
-      '611' : '18',
-      '612' : '06',
-      '615' : '05',
-      '616' : '05',
-      '620' : '41',
-      '621' : '41',
-      '622' : '41',
-      '721' : '22',
-      '731' : '19',
-      '751' : '19',
-      '761' : '19',
-      '762' : '19',
-      '771' : '23',
-      '781' : '00',
-      '802' : '30',
-      '803' : '28',
-      '804' : '26',
-      '900' : '00',
-      '901' : '01',
-      '902' : '01',
-      '903' : '25',
-      '904' : '36',
-      '905' : '24',
+      '300': '09',
+      '301': '09',
+      '302': '11',
+      '310': '09',
+      '311': '09',
+      '312': '11',
+      '313': '39',
+      '314': '39',
+      '321': '39',
+      '500': '11',
+      '511': '10',
+      '521': '39',
+      '522': '39',
+      '531': '39',
+      '600': '13',
+      '601': '14',
+      '602': '16',
+      '611': '18',
+      '612': '06',
+      '615': '05',
+      '616': '05',
+      '620': '41',
+      '621': '41',
+      '622': '41',
+      '721': '22',
+      '731': '19',
+      '751': '19',
+      '761': '19',
+      '762': '19',
+      '771': '23',
+      '781': '00',
+      '802': '30',
+      '803': '28',
+      '804': '26',
+      '900': '00',
+      '901': '01',
+      '902': '01',
+      '903': '25',
+      '904': '36',
+      '905': '24',
     };
     let nightmap = {
-      '39' : '45',
-      '41' : '46',
-      '30' : '29',
-      '28' : '27',
-      '32' : '31',
-      '22' : '21',
-      '47' : '38'
+      '39': '45',
+      '41': '46',
+      '30': '29',
+      '28': '27',
+      '32': '31',
+      '22': '21',
+      '47': '38'
     };
     let iconmap = {
-      '01d' : '32',
-      '01n' : '31',
-      '02d' : '34',
-      '02n' : '33',
-      '03d' : '26',
-      '03n' : '26',
-      '04d' : '28',
-      '04n' : '27',
-      '09d' : '39',
-      '09n' : '45',
-      '10d' : '12',
-      '10n' : '12',
-      '11d' : '04',
-      '11n' : '04',
-      '13d' : '16',
-      '13n' : '16',
-      '50d' : '20',
-      '50n' : '20'
+      '01d': '32',
+      '01n': '31',
+      '02d': '34',
+      '02n': '33',
+      '03d': '26',
+      '03n': '26',
+      '04d': '28',
+      '04n': '27',
+      '09d': '39',
+      '09n': '45',
+      '10d': '12',
+      '10n': '12',
+      '11d': '04',
+      '11n': '04',
+      '13d': '16',
+      '13n': '16',
+      '50d': '20',
+      '50n': '20'
     };
     if (iconcode && (typeof iconmap[iconcode] !== "undefined")) {
       icon_name = iconmap[iconcode];
@@ -2507,75 +2516,75 @@ wxDriverOWMFree.prototype = {
   maxDays: 5,
 
   // process the 3 days forecast
-  _get_apiforecasturl: function() {
+  _get_apiforecasturl: function () {
     let apiforecasturl = (typeof this.latlon != 'undefined')
-      ? this._baseURL + 'forecast/?units=metric&lat=' + this.latlon[0] +  '&lon=' + this.latlon[1]
+      ? this._baseURL + 'forecast/?units=metric&lat=' + this.latlon[0] + '&lon=' + this.latlon[1]
       : this._baseURL + 'forecast/?units=metric&id=' + encodeURIComponent(this.stationID)
 
     if (this.apikey) apiforecasturl = apiforecasturl + '&appid=' + this.apikey;
     if (this.langcode) apiforecasturl += '&lang=' + this.langcode;
 
-	return apiforecasturl;
+    return apiforecasturl;
   },
 
   // process the data for a forecast and populate this.data
   _parse_forecast: function (json) {
-      this.data.city = json.city.name;
-      this.data.country = json.city.country;
-      this.data.wgs84.lat = json.city.coord.lat;
-      this.data.wgs84.lon = json.city.coord.lon;
-      this.linkURL = 'https://openweathermap.org/city/' + json.city.id;
+    this.data.city = json.city.name;
+    this.data.country = json.city.country;
+    this.data.wgs84.lat = json.city.coord.lat;
+    this.data.wgs84.lon = json.city.coord.lon;
+    this.linkURL = 'https://openweathermap.org/city/' + json.city.id;
 
-      // This is ugly, but to place a forecast in a particular day we need to make an effort to 
-      // interpret the UTC timestamps in the context of the forecast location's timezone, which 
-      // we don't know. So we estimate, based on longitude  
-      let est_tz = Math.round(json.city.coord.lon/15) * 3600;
+    // This is ugly, but to place a forecast in a particular day we need to make an effort to
+    // interpret the UTC timestamps in the context of the forecast location's timezone, which
+    // we don't know. So we estimate, based on longitude
+    let est_tz = Math.round(json.city.coord.lon / 15) * 3600;
 
-      let days = {};
-      for (let i=0; i<json.list.length; i++) {
-        let day_name = this._getDayName(new Date((json.list[i].dt + est_tz)*1000).getUTCDay());
+    let days = {};
+    for (let i = 0; i < json.list.length; i++) {
+      let day_name = this._getDayName(new Date((json.list[i].dt + est_tz) * 1000).getUTCDay());
 
-        if (!(day_name in days)) {
-          let day = new Object();
-          day.minimum_temperature = [];
-          day.maximum_temperature = [];
-          day.pressure = [];
-          day.humidity = [];
-          day.wind_speed = [];
-          day.wind_direction = [];
-          day.weathertext = [];
-          day.icon = [];
-          days[day_name] = day;
-        }
-
-        days[day_name].minimum_temperature.push(json.list[i].main.temp);
-        days[day_name].maximum_temperature.push(json.list[i].main.temp);
-        days[day_name].pressure.push(json.list[i].main.pressure);
-        days[day_name].humidity.push(json.list[i].main.humidity);
-        days[day_name].wind_speed.push(json.list[i].wind.speed * 3.6);
-        days[day_name].wind_direction.push(json.list[i].wind.deg);
-        days[day_name].weathertext.push(json.list[i].weather[0].description.ucwords());
-        days[day_name].icon.push(this._mapicon(json.list[i].weather[0].icon, json.list[i].weather[0].id));
-      }
-
-      let today = this._getDayName(new Date().toLocaleFormat( "%w" ));
-      this.data.days = [];
-      for (let day_name in days) {
-        //if (day_name == today) continue;
-        let middle = Math.floor(days[day_name].icon.length / 2);
+      if (!(day_name in days)) {
         let day = new Object();
-        day.day = day_name;
-        day.minimum_temperature = this._minArr(days[day_name].minimum_temperature);
-        day.maximum_temperature = this._maxArr(days[day_name].maximum_temperature);
-        day.pressure = this._avgArr(days[day_name].pressure);
-        day.humidity = this._avgArr(days[day_name].humidity);
-        day.wind_speed = days[day_name].wind_speed[middle];
-        day.wind_direction = this.compassDirection(days[day_name].wind_direction[middle]);
-        day.weathertext = days[day_name].weathertext[middle];
-        day.icon = days[day_name].icon[middle];
-
-        this.data.days.push(day);
+        day.minimum_temperature = [];
+        day.maximum_temperature = [];
+        day.pressure = [];
+        day.humidity = [];
+        day.wind_speed = [];
+        day.wind_direction = [];
+        day.weathertext = [];
+        day.icon = [];
+        days[day_name] = day;
       }
+
+      days[day_name].minimum_temperature.push(json.list[i].main.temp);
+      days[day_name].maximum_temperature.push(json.list[i].main.temp);
+      days[day_name].pressure.push(json.list[i].main.pressure);
+      days[day_name].humidity.push(json.list[i].main.humidity);
+      days[day_name].wind_speed.push(json.list[i].wind.speed * 3.6);
+      days[day_name].wind_direction.push(json.list[i].wind.deg);
+      days[day_name].weathertext.push(json.list[i].weather[0].description.ucwords());
+      days[day_name].icon.push(this._mapicon(json.list[i].weather[0].icon, json.list[i].weather[0].id));
+    }
+
+    let today = this._getDayName(new Date().toLocaleFormat("%w"));
+    this.data.days = [];
+    for (let day_name in days) {
+      //if (day_name == today) continue;
+      let middle = Math.floor(days[day_name].icon.length / 2);
+      let day = new Object();
+      day.day = day_name;
+      day.minimum_temperature = this._minArr(days[day_name].minimum_temperature);
+      day.maximum_temperature = this._maxArr(days[day_name].maximum_temperature);
+      day.pressure = this._avgArr(days[day_name].pressure);
+      day.humidity = this._avgArr(days[day_name].humidity);
+      day.wind_speed = days[day_name].wind_speed[middle];
+      day.wind_direction = this.compassDirection(days[day_name].wind_direction[middle]);
+      day.weathertext = days[day_name].weathertext[middle];
+      day.icon = days[day_name].icon[middle];
+
+      this.data.days.push(day);
+    }
   },
 
 };
@@ -2606,101 +2615,101 @@ wxDriverWU.prototype = {
   _baseURL: 'https://api.wunderground.com/api/',
 
   lang_map: {
-      'af' : 'AF',
-      'sq' : 'AL',
-      'ar' : 'AR',
-      'hy' : 'HY',
-      'az' : 'AZ',
-      'eu' : 'EU',
-      'be' : 'BY',
-      'bg' : 'BU',
-      'my' : 'MY',
-      'ca' : 'CA',
-      'zh' : 'CN',
-      'zh_cn' : 'CN',
-      'zh_tw' : 'TW',
-      'hr' : 'CR',
-      'cs' : 'CZ',
-      'da' : 'DK',
-      'dv' : 'DV',
-      'nl' : 'NL',
-      'en' : 'EN',
-      'en_gb' : 'LI',
-      'eo' : 'EO',
-      'et' : 'ET',
-      'fi' : 'FI',
-      'fr' : 'FR',
-      'fr_ca' : 'FC',
-      'gl' : 'GZ',
-      'de' : 'DL',
-      'de_ch' : 'CH',
-      'ka' : 'KA',
-      'el' : 'GR',
-      'gu' : 'GU',
-      'ht' : 'HT',
-      'he' : 'IL',
-      'hi' : 'HI',
-      'hu' : 'HU',
-      'id' : 'ID',
-      'ga' : 'IR',
-      'io' : 'IO',
-      'is' : 'IS',
-      'it' : 'IT',
-      'ja' : 'JP',
-      'jv' : 'JW',
-      'km' : 'KM',
-      'ko' : 'KR',
-      'ku' : 'KU',
-      'la' : 'LA',
-      'lt' : 'LT',
-      'lv' : 'LV',
-      'mk' : 'MK',
-      'mt' : 'MT',
-      'mi' : 'MI',
-      'mr' : 'MR',
-      'mn' : 'MN',
-      'no' : 'NO',
-      'oc' : 'OC',
-      'pa' : 'PA',
-      'fa' : 'FA',
-      'pl' : 'PL',
-      'ps' : 'PS',
-      'pt' : 'BR',
-      'ro' : 'RO',
-      'ru' : 'RU',
-      'sr' : 'SR',
-      'sk' : 'SK',
-      'sl' : 'SL',
-      'es' : 'SP',
-      'sw' : 'SI',
-      'sv' : 'SW',
-      'th' : 'TH',
-      'tk' : 'TK',
-      'tl' : 'TL',
-      'tr' : 'TR',
-      'tt' : 'TT',
-      'uk' : 'UA',
-      'uz' : 'UZ',
-      'vi' : 'VU',
-      'cy' : 'CY',
-      'wo' : 'SN',
-      'yi' : 'YI',
-      'ji' : 'JI',
-      'mnk' : 'GM',
-      'pdt' : 'GN',
-      'nds' : 'ND'
-   },
+    'af': 'AF',
+    'sq': 'AL',
+    'ar': 'AR',
+    'hy': 'HY',
+    'az': 'AZ',
+    'eu': 'EU',
+    'be': 'BY',
+    'bg': 'BU',
+    'my': 'MY',
+    'ca': 'CA',
+    'zh': 'CN',
+    'zh_cn': 'CN',
+    'zh_tw': 'TW',
+    'hr': 'CR',
+    'cs': 'CZ',
+    'da': 'DK',
+    'dv': 'DV',
+    'nl': 'NL',
+    'en': 'EN',
+    'en_gb': 'LI',
+    'eo': 'EO',
+    'et': 'ET',
+    'fi': 'FI',
+    'fr': 'FR',
+    'fr_ca': 'FC',
+    'gl': 'GZ',
+    'de': 'DL',
+    'de_ch': 'CH',
+    'ka': 'KA',
+    'el': 'GR',
+    'gu': 'GU',
+    'ht': 'HT',
+    'he': 'IL',
+    'hi': 'HI',
+    'hu': 'HU',
+    'id': 'ID',
+    'ga': 'IR',
+    'io': 'IO',
+    'is': 'IS',
+    'it': 'IT',
+    'ja': 'JP',
+    'jv': 'JW',
+    'km': 'KM',
+    'ko': 'KR',
+    'ku': 'KU',
+    'la': 'LA',
+    'lt': 'LT',
+    'lv': 'LV',
+    'mk': 'MK',
+    'mt': 'MT',
+    'mi': 'MI',
+    'mr': 'MR',
+    'mn': 'MN',
+    'no': 'NO',
+    'oc': 'OC',
+    'pa': 'PA',
+    'fa': 'FA',
+    'pl': 'PL',
+    'ps': 'PS',
+    'pt': 'BR',
+    'ro': 'RO',
+    'ru': 'RU',
+    'sr': 'SR',
+    'sk': 'SK',
+    'sl': 'SL',
+    'es': 'SP',
+    'sw': 'SI',
+    'sv': 'SW',
+    'th': 'TH',
+    'tk': 'TK',
+    'tl': 'TL',
+    'tr': 'TR',
+    'tt': 'TT',
+    'uk': 'UA',
+    'uz': 'UZ',
+    'vi': 'VU',
+    'cy': 'CY',
+    'wo': 'SN',
+    'yi': 'YI',
+    'ji': 'JI',
+    'mnk': 'GM',
+    'pdt': 'GN',
+    'nds': 'ND'
+  },
   // initialise the driver
-  _wuinit: function(stationID, apikey) {
+  _wuinit: function (stationID, apikey) {
     this._init(stationID, apikey);
-    this.capabilities.meta.region =  false;
+    this.capabilities.meta.region = false;
     this.capabilities.forecast.pressure = false;
-    this.capabilities.forecast.pressure_direction =  false;
+    this.capabilities.forecast.pressure_direction = false;
     this.capabilities.forecast.visibility = false;
     this.capabilities.forecast.uv_risk = false;
   },
 
-  refreshData: function(deskletObj) {
+  refreshData: function (deskletObj) {
     // reset the data object
     this._emptyData();
     this.linkURL = 'https://wunderground.com' + this._referralRef;
@@ -2708,11 +2717,11 @@ wxDriverWU.prototype = {
     this.langcode = this.getLangCode();
     let apiurl = this._baseURL + encodeURIComponent(this.apikey) + '/forecast10day/conditions/astronomy/';
     if (this.langcode) {
-      apiurl +=  'lang:' + this.langcode + '/';
+      apiurl += 'lang:' + this.langcode + '/';
     }
     apiurl += 'q/' + encodeURIComponent(this.stationID) + '.json'
     // process the forecast - single call for both current conditions and 10 day forecast
-    let a = this._getWeather(apiurl, function(weather) {
+    let a = this._getWeather(apiurl, function (weather) {
       if (weather) {
         this._load_forecast(weather);
       }
@@ -2748,7 +2757,7 @@ wxDriverWU.prototype = {
     try {
       var days = json.forecast.simpleforecast.forecastday;
 
-      for (let i=0; i<days.length; i++) {
+      for (let i = 0; i < days.length; i++) {
         let day = new Object();
         day.day = days[i].date.weekday_short;
         day.minimum_temperature = days[i].low.celsius;
@@ -2768,7 +2777,7 @@ wxDriverWU.prototype = {
       this.data.cc.pressure_direction = this._getPressureTrend(co.pressure_trend);
       this.data.cc.wind_speed = co.wind_kph;
       this.data.cc.wind_direction = this.compassDirection(co.wind_degrees);
-      this.data.cc.obstime = new Date(co.local_epoch *1000).toLocaleFormat("%H:%M %Z");
+      this.data.cc.obstime = new Date(co.local_epoch * 1000).toLocaleFormat("%H:%M %Z");
       this.data.cc.weathertext = co.weather;
       this.data.cc.icon = this._mapicon(co.icon, json.moon_phase);
       this.data.cc.feelslike = co.feelslike_c;
@@ -2781,7 +2790,7 @@ wxDriverWU.prototype = {
       this.data.status.cc = BBCWX_SERVICE_STATUS_OK;
       this.data.status.meta = BBCWX_SERVICE_STATUS_OK;
       this.data.status.forecast = BBCWX_SERVICE_STATUS_OK;
-    } catch(e) {
+    } catch (e) {
       global.logError(e);
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
@@ -2805,37 +2814,37 @@ wxDriverWU.prototype = {
     return out;
   },
 
-  _mapicon: function(iconcode, astro) {
+  _mapicon: function (iconcode, astro) {
     let icon_name = 'na';
     let iconmap = {
-    'chanceflurries': '13',
-    'chancerain': '39',
-    'chancesleet': '18',
-    'chancesnow': '41',
-    'chancetstorms': '38',
-    'clear': '32',
-    'cloudy': '26',
-    'flurries': '13',
-    'fog': '20',
-    'hazy': '22',
-    'mostlycloudy': '28',
-    'mostlysunny': '34',
-    'partlycloudy': '30',
-    'partlysunny': '30',
-    'sleet': '18',
-    'rain': '12',
-    'snow': '16',
-    'sunny': '32',
-    'tstorms': '04'
+      'chanceflurries': '13',
+      'chancerain': '39',
+      'chancesleet': '18',
+      'chancesnow': '41',
+      'chancetstorms': '38',
+      'clear': '32',
+      'cloudy': '26',
+      'flurries': '13',
+      'fog': '20',
+      'hazy': '22',
+      'mostlycloudy': '28',
+      'mostlysunny': '34',
+      'partlycloudy': '30',
+      'partlysunny': '30',
+      'sleet': '18',
+      'rain': '12',
+      'snow': '16',
+      'sunny': '32',
+      'tstorms': '04'
     };
     let nightmap = {
-      '39' : '45',
-      '41' : '46',
-      '30' : '29',
-      '28' : '27',
-      '32' : '31',
-      '22' : '21',
-      '47' : '38'
+      '39': '45',
+      '41': '46',
+      '30': '29',
+      '28': '27',
+      '32': '31',
+      '22': '21',
+      '47': '38'
     };
     if (iconcode && (typeof iconmap[iconcode] !== "undefined")) {
       icon_name = iconmap[iconcode];
@@ -2849,11 +2858,11 @@ wxDriverWU.prototype = {
       let ss = new Date();
       let now = new Date()
 
-      sr.setHours(astro.sunrise.hour,astro.sunrise.minute,0);
-      ss.setHours(astro.sunset.hour,astro.sunset.minute,0);
-      now.setHours(astro.current_time.hour,astro.current_time.minute,0);
+      sr.setHours(astro.sunrise.hour, astro.sunrise.minute, 0);
+      ss.setHours(astro.sunset.hour, astro.sunset.minute, 0);
+      now.setHours(astro.current_time.hour, astro.current_time.minute, 0);
       if ((now < sr) || (now > ss)) {
-        if ( typeof nightmap[icon_name] !== "undefined") {
+        if (typeof nightmap[icon_name] !== "undefined") {
           icon_name = nightmap[icon_name];
         }
       }
@@ -2887,54 +2896,54 @@ wxDriverWWO.prototype = {
   _baseURL: 'https://api.worldweatheronline.com/free/v1/',
 
   lang_map: {
-    'ar' : 'ar',
-    'bn' : 'bn',
-    'bg' : 'bg',
-    'zh' : 'zh',
-    'zh_cn' : 'zh',
-    'zh_tw' : 'zh_tw',
-    'zh_cmn' : 'zh_cmn',
-    'zh_wuu' : 'zh_wuu',
-    'zh_hsn' : 'zh_hsn',
-    'zh_yue' : 'zh_yue',
-    'cs' : 'cs',
-    'da' : 'da',
-    'nl' : 'nl',
-    'fi' : 'fi',
-    'fr' : 'fr',
-    'de' : 'de',
-    'el' : 'el',
-    'hi' : 'hi',
-    'hu' : 'hu',
-    'it' : 'it',
-    'ja' : 'ja',
-    'jv' : 'jv',
-    'ko' : 'ko',
-    'mr' : 'mr',
-    'pa' : 'pa',
-    'pl' : 'pl',
-    'pt' : 'pt',
-    'ro' : 'ro',
-    'ru' : 'ru',
-    'sr' : 'sr',
-    'si' : 'si',
-    'sk' : 'sk',
-    'es' : 'es',
-    'sv' : 'sv',
-    'ta' : 'ta',
-    'te' : 'te',
-    'tr' : 'tr',
-    'uk' : 'uk',
-    'ur' : 'ur',
-    'vi' : 'vi',
-    'zu' : 'zu'
+    'ar': 'ar',
+    'bn': 'bn',
+    'bg': 'bg',
+    'zh': 'zh',
+    'zh_cn': 'zh',
+    'zh_tw': 'zh_tw',
+    'zh_cmn': 'zh_cmn',
+    'zh_wuu': 'zh_wuu',
+    'zh_hsn': 'zh_hsn',
+    'zh_yue': 'zh_yue',
+    'cs': 'cs',
+    'da': 'da',
+    'nl': 'nl',
+    'fi': 'fi',
+    'fr': 'fr',
+    'de': 'de',
+    'el': 'el',
+    'hi': 'hi',
+    'hu': 'hu',
+    'it': 'it',
+    'ja': 'ja',
+    'jv': 'jv',
+    'ko': 'ko',
+    'mr': 'mr',
+    'pa': 'pa',
+    'pl': 'pl',
+    'pt': 'pt',
+    'ro': 'ro',
+    'ru': 'ru',
+    'sr': 'sr',
+    'si': 'si',
+    'sk': 'sk',
+    'es': 'es',
+    'sv': 'sv',
+    'ta': 'ta',
+    'te': 'te',
+    'tr': 'tr',
+    'uk': 'uk',
+    'ur': 'ur',
+    'vi': 'vi',
+    'zu': 'zu'
   },
 
   // initialise the driver
-  _wwoinit: function(stationID, apikey) {
+  _wwoinit: function (stationID, apikey) {
     this._init(stationID, apikey);
     this.capabilities.forecast.pressure = false;
-    this.capabilities.forecast.pressure_direction =  false;
+    this.capabilities.forecast.pressure_direction = false;
     this.capabilities.cc.pressure_direction = false;
     this.capabilities.cc.feelslike = false;
     this.capabilities.forecast.visibility = false;
@@ -2942,7 +2951,7 @@ wxDriverWWO.prototype = {
     this.capabilities.forecast.humidity = false;
   },
 
-  refreshData: function(deskletObj) {
+  refreshData: function (deskletObj) {
     // reset the data object
     this._emptyData();
     this.linkURL = 'https://www.worldweatheronline.com';
@@ -2954,7 +2963,7 @@ wxDriverWWO.prototype = {
     if (this.langcode) apiurl += '&lang=' + this.langcode;
 
     // process the forecast
-    let a = this._getWeather(apiurl, function(weather) {
+    let a = this._getWeather(apiurl, function (weather) {
       if (weather) {
         this._load_forecast(weather);
       }
@@ -2989,7 +2998,7 @@ wxDriverWWO.prototype = {
     try {
       let days = json.data.weather;
 
-      for (let i=0; i<days.length; i++) {
+      for (let i = 0; i < days.length; i++) {
         let day = new Object();
         day.day = this._getDayName(new Date(days[i].date).getUTCDay());
         day.minimum_temperature = days[i].tempMinC;
@@ -3015,7 +3024,7 @@ wxDriverWWO.prototype = {
       this.data.cc.wind_speed = cc.windspeedKmph;
       this.data.cc.wind_direction = cc.winddir16Point;
       let dt = cc.localObsDateTime.split(/\-|\s/);
-      this.data.cc.obstime = new Date(dt.slice(0,3).join('/')+' '+dt[3]).toLocaleFormat("%H:%M %Z");
+      this.data.cc.obstime = new Date(dt.slice(0, 3).join('/') + ' ' + dt[3]).toLocaleFormat("%H:%M %Z");
       if (typeof cc[this.i18Desc] !== "undefined" && cc[this.i18Desc][0].value) {
         this.data.cc.weathertext = cc[this.i18Desc][0].value;
       } else {
@@ -3041,7 +3050,7 @@ wxDriverWWO.prototype = {
       this.data.status.meta = BBCWX_SERVICE_STATUS_OK;
       this.data.status.cc = BBCWX_SERVICE_STATUS_OK;
       this.data.status.forecast = BBCWX_SERVICE_STATUS_OK;
-    } catch(e) {
+    } catch (e) {
       global.logError(e);
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
@@ -3049,7 +3058,7 @@ wxDriverWWO.prototype = {
     }
   },
 
-  _mapicon: function(iconcode, recommendedIcon) {
+  _mapicon: function (iconcode, recommendedIcon) {
     // http://www.worldweatheronline.com/feed/wwoConditionCodes.txt
     let icon_name = 'na';
     let iconmap = {
@@ -3103,13 +3112,13 @@ wxDriverWWO.prototype = {
       '113': '32'
     };
     let nightmap = {
-      '39' : '45',
-      '41' : '46',
-      '30' : '29',
-      '28' : '27',
-      '32' : '31',
-      '22' : '21',
-      '47' : '38'
+      '39': '45',
+      '41': '46',
+      '30': '29',
+      '28': '27',
+      '32': '31',
+      '22': '21',
+      '47': '38'
     };
 
     if (iconcode && (typeof iconmap[iconcode] !== "undefined")) {
@@ -3148,54 +3157,54 @@ wxDriverWWOPremium.prototype = {
   _baseURL: 'https://api.worldweatheronline.com/premium/v1/',
 
   lang_map: {
-    'ar' : 'ar',
-    'bn' : 'bn',
-    'bg' : 'bg',
-    'zh' : 'zh',
-    'zh_cn' : 'zh',
-    'zh_tw' : 'zh_tw',
-    'zh_cmn' : 'zh_cmn',
-    'zh_wuu' : 'zh_wuu',
-    'zh_hsn' : 'zh_hsn',
-    'zh_yue' : 'zh_yue',
-    'cs' : 'cs',
-    'da' : 'da',
-    'nl' : 'nl',
-    'fi' : 'fi',
-    'fr' : 'fr',
-    'de' : 'de',
-    'el' : 'el',
-    'hi' : 'hi',
-    'hu' : 'hu',
-    'it' : 'it',
-    'ja' : 'ja',
-    'jv' : 'jv',
-    'ko' : 'ko',
-    'mr' : 'mr',
-    'pa' : 'pa',
-    'pl' : 'pl',
-    'pt' : 'pt',
-    'ro' : 'ro',
-    'ru' : 'ru',
-    'sr' : 'sr',
-    'si' : 'si',
-    'sk' : 'sk',
-    'es' : 'es',
-    'sv' : 'sv',
-    'ta' : 'ta',
-    'te' : 'te',
-    'tr' : 'tr',
-    'uk' : 'uk',
-    'ur' : 'ur',
-    'vi' : 'vi',
-    'zu' : 'zu'
+    'ar': 'ar',
+    'bn': 'bn',
+    'bg': 'bg',
+    'zh': 'zh',
+    'zh_cn': 'zh',
+    'zh_tw': 'zh_tw',
+    'zh_cmn': 'zh_cmn',
+    'zh_wuu': 'zh_wuu',
+    'zh_hsn': 'zh_hsn',
+    'zh_yue': 'zh_yue',
+    'cs': 'cs',
+    'da': 'da',
+    'nl': 'nl',
+    'fi': 'fi',
+    'fr': 'fr',
+    'de': 'de',
+    'el': 'el',
+    'hi': 'hi',
+    'hu': 'hu',
+    'it': 'it',
+    'ja': 'ja',
+    'jv': 'jv',
+    'ko': 'ko',
+    'mr': 'mr',
+    'pa': 'pa',
+    'pl': 'pl',
+    'pt': 'pt',
+    'ro': 'ro',
+    'ru': 'ru',
+    'sr': 'sr',
+    'si': 'si',
+    'sk': 'sk',
+    'es': 'es',
+    'sv': 'sv',
+    'ta': 'ta',
+    'te': 'te',
+    'tr': 'tr',
+    'uk': 'uk',
+    'ur': 'ur',
+    'vi': 'vi',
+    'zu': 'zu'
   },
 
   // initialise the driver
-  _wwoinit: function(stationID, apikey) {
+  _wwoinit: function (stationID, apikey) {
     this._init(stationID, apikey);
     //this.capabilities.forecast.pressure = false;
-    this.capabilities.forecast.pressure_direction =  false;
+    this.capabilities.forecast.pressure_direction = false;
     this.capabilities.cc.pressure_direction = false;
     //this.capabilities.cc.feelslike = false;
     //this.capabilities.forecast.visibility = false;
@@ -3203,7 +3212,7 @@ wxDriverWWOPremium.prototype = {
     //this.capabilities.forecast.humidity = false;
   },
 
-  refreshData: function(deskletObj) {
+  refreshData: function (deskletObj) {
     // reset the data object
     this._emptyData();
     this.linkURL = 'https://www.worldweatheronline.com';
@@ -3215,7 +3224,7 @@ wxDriverWWOPremium.prototype = {
     if (this.langcode) apiurl += '&lang=' + this.langcode;
 
     // process the forecast
-    let a = this._getWeather(apiurl, function(weather) {
+    let a = this._getWeather(apiurl, function (weather) {
       if (weather) {
         this._load_forecast(weather);
       }
@@ -3250,7 +3259,7 @@ wxDriverWWOPremium.prototype = {
     try {
       let days = json.data.weather;
 
-      for (let i=0; i<days.length; i++) {
+      for (let i = 0; i < days.length; i++) {
         let day = new Object();
         day.day = this._getDayName(new Date(days[i].date).getUTCDay());
         day.minimum_temperature = days[i].mintempC;
@@ -3281,7 +3290,7 @@ wxDriverWWOPremium.prototype = {
       this.data.cc.feelslike = cc.FeelsLikeC;
       this.data.cc.wind_direction = cc.winddir16Point;
       let dt = cc.localObsDateTime.split(/\-|\s/);
-      this.data.cc.obstime = new Date(dt.slice(0,3).join('/')+' '+dt[3]).toLocaleFormat("%H:%M %Z");
+      this.data.cc.obstime = new Date(dt.slice(0, 3).join('/') + ' ' + dt[3]).toLocaleFormat("%H:%M %Z");
       if (typeof cc[this.i18Desc] !== "undefined" && cc[this.i18Desc][0].value) {
         this.data.cc.weathertext = cc[this.i18Desc][0].value;
       } else {
@@ -3307,7 +3316,7 @@ wxDriverWWOPremium.prototype = {
       this.data.status.meta = BBCWX_SERVICE_STATUS_OK;
       this.data.status.cc = BBCWX_SERVICE_STATUS_OK;
       this.data.status.forecast = BBCWX_SERVICE_STATUS_OK;
-    } catch(e) {
+    } catch (e) {
       global.logError(e);
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
@@ -3315,7 +3324,7 @@ wxDriverWWOPremium.prototype = {
     }
   },
 
-  _mapicon: function(iconcode, recommendedIcon) {
+  _mapicon: function (iconcode, recommendedIcon) {
     // http://www.worldweatheronline.com/feed/wwoConditionCodes.txt
     let icon_name = 'na';
     let iconmap = {
@@ -3369,13 +3378,13 @@ wxDriverWWOPremium.prototype = {
       '113': '32'
     };
     let nightmap = {
-      '39' : '45',
-      '41' : '46',
-      '30' : '29',
-      '28' : '27',
-      '32' : '31',
-      '22' : '21',
-      '47' : '38'
+      '39': '45',
+      '41': '46',
+      '30': '29',
+      '28': '27',
+      '32': '31',
+      '22': '21',
+      '47': '38'
     };
 
     if (iconcode && (typeof iconmap[iconcode] !== "undefined")) {
@@ -3411,59 +3420,59 @@ wxDriverAPIXU.prototype = {
   _baseURL: 'https://api.apixu.com/v1/',
 
   lang_map: {
-    'ar' : 'ar',
-    'bn' : 'bn',
-    'bg' : 'bg',
-    'zh' : 'zh',
-    'zh_cn' : 'zh',
-    'zh_tw' : 'zh_tw',
-    'zh_cmn' : 'zh_cmn',
-    'zh_wuu' : 'zh_wuu',
-    'zh_hsn' : 'zh_hsn',
-    'zh_yue' : 'zh_yue',
-    'cs' : 'cs',
-    'da' : 'da',
-    'nl' : 'nl',
-    'fi' : 'fi',
-    'fr' : 'fr',
-    'de' : 'de',
-    'el' : 'el',
-    'hi' : 'hi',
-    'hu' : 'hu',
-    'it' : 'it',
-    'ja' : 'ja',
-    'jv' : 'jv',
-    'ko' : 'ko',
-    'mr' : 'mr',
-    'pa' : 'pa',
-    'pl' : 'pl',
-    'pt' : 'pt',
-    'ro' : 'ro',
-    'ru' : 'ru',
-    'sr' : 'sr',
-    'si' : 'si',
-    'sk' : 'sk',
-    'es' : 'es',
-    'sv' : 'sv',
-    'ta' : 'ta',
-    'te' : 'te',
-    'tr' : 'tr',
-    'uk' : 'uk',
-    'ur' : 'ur',
-    'vi' : 'vi',
-    'zu' : 'zu'
+    'ar': 'ar',
+    'bn': 'bn',
+    'bg': 'bg',
+    'zh': 'zh',
+    'zh_cn': 'zh',
+    'zh_tw': 'zh_tw',
+    'zh_cmn': 'zh_cmn',
+    'zh_wuu': 'zh_wuu',
+    'zh_hsn': 'zh_hsn',
+    'zh_yue': 'zh_yue',
+    'cs': 'cs',
+    'da': 'da',
+    'nl': 'nl',
+    'fi': 'fi',
+    'fr': 'fr',
+    'de': 'de',
+    'el': 'el',
+    'hi': 'hi',
+    'hu': 'hu',
+    'it': 'it',
+    'ja': 'ja',
+    'jv': 'jv',
+    'ko': 'ko',
+    'mr': 'mr',
+    'pa': 'pa',
+    'pl': 'pl',
+    'pt': 'pt',
+    'ro': 'ro',
+    'ru': 'ru',
+    'sr': 'sr',
+    'si': 'si',
+    'sk': 'sk',
+    'es': 'es',
+    'sv': 'sv',
+    'ta': 'ta',
+    'te': 'te',
+    'tr': 'tr',
+    'uk': 'uk',
+    'ur': 'ur',
+    'vi': 'vi',
+    'zu': 'zu'
   },
 
   // initialise the driver
-  _apixuinit: function(stationID, apikey) {
+  _apixuinit: function (stationID, apikey) {
     this._init(stationID, apikey);
     this.capabilities.forecast.pressure = false;
-    this.capabilities.forecast.pressure_direction =  false;
+    this.capabilities.forecast.pressure_direction = false;
     this.capabilities.cc.pressure_direction = false;
     this.capabilities.forecast.wind_direction = false;
   },
 
-  refreshData: function(deskletObj) {
+  refreshData: function (deskletObj) {
     // reset the data object
     this._emptyData();
     this.linkURL = 'https://www.apixu.com/weather/';
@@ -3475,7 +3484,7 @@ wxDriverAPIXU.prototype = {
     if (this.langcode) apiurl += '&lang=' + this.langcode;
 
     // process the forecast
-    let a = this._getWeather(apiurl, function(weather) {
+    let a = this._getWeather(apiurl, function (weather) {
       if (weather) {
         this._load_forecast(weather);
       }
@@ -3510,7 +3519,7 @@ wxDriverAPIXU.prototype = {
     try {
       let days = json.forecast.forecastday;
 
-      for (let i=0; i<days.length; i++) {
+      for (let i = 0; i < days.length; i++) {
         let day = new Object();
         // APIXU date is a unix epoch that represents the start of the forecast day
         // as it would be in UTC.
@@ -3555,7 +3564,7 @@ wxDriverAPIXU.prototype = {
       this.data.status.meta = BBCWX_SERVICE_STATUS_OK;
       this.data.status.cc = BBCWX_SERVICE_STATUS_OK;
       this.data.status.forecast = BBCWX_SERVICE_STATUS_OK;
-    } catch(e) {
+    } catch (e) {
       global.logError(e);
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
@@ -3563,7 +3572,7 @@ wxDriverAPIXU.prototype = {
     }
   },
 
-  _mapicon: function(iconcode, isDay) {
+  _mapicon: function (iconcode, isDay) {
     // http://www.apixu.com/doc/Apixu_weather_conditions.csv
     let icon_name = 'na';
     let iconmap = {
@@ -3617,13 +3626,13 @@ wxDriverAPIXU.prototype = {
       '1282': '16'
     };
     let nightmap = {
-      '39' : '45',
-      '41' : '46',
-      '30' : '29',
-      '28' : '27',
-      '32' : '31',
-      '22' : '21',
-      '47' : '38'
+      '39': '45',
+      '41': '46',
+      '30': '29',
+      '28': '27',
+      '32': '31',
+      '22': '21',
+      '47': '38'
     };
 
     if (iconcode && (typeof iconmap[iconcode] !== "undefined")) {
@@ -3659,47 +3668,47 @@ wxDriverForecastIo.prototype = {
   _baseURL: 'https://api.darksky.net/forecast/',
 
   lang_map: {
-    'nl' : 'nl',
-    'en' : 'en',
-    'fr' : 'fr',
-    'de' : 'de',
-    'es' : 'es',
-    'pl' : 'pl',
-    'it' : 'it',
-    'tet' : 'tet',
-    'bs' : 'bs',
-    'pt' : 'pt',
-    'ru' : 'ru',
-    'sv' : 'sv',
-    'tr' : 'tr',
-    'zh' : 'zh',
-    'ar' : 'ar',
-    'sk' : 'sk',
-    'uk' : 'uk',
-    'el' : 'el',
+    'nl': 'nl',
+    'en': 'en',
+    'fr': 'fr',
+    'de': 'de',
+    'es': 'es',
+    'pl': 'pl',
+    'it': 'it',
+    'tet': 'tet',
+    'bs': 'bs',
+    'pt': 'pt',
+    'ru': 'ru',
+    'sv': 'sv',
+    'tr': 'tr',
+    'zh': 'zh',
+    'ar': 'ar',
+    'sk': 'sk',
+    'uk': 'uk',
+    'el': 'el',
     'zh_tw': 'zh-tw',
-    'hr' : 'hr',
-    'az' : 'az',
-    'cs' : 'cs',
-    'hu' : 'hu',
-    'sr' : 'sr',
-    'kw' : 'kw',
-    'is' : 'is',
-    'nb' : 'nb',
-    'be' : 'be',
-    'id' : 'id',
-    'ca' : 'ca',
-    'et' : 'et',
-    'sl' : 'sl',
-    'bg' : 'bg'
+    'hr': 'hr',
+    'az': 'az',
+    'cs': 'cs',
+    'hu': 'hu',
+    'sr': 'sr',
+    'kw': 'kw',
+    'is': 'is',
+    'nb': 'nb',
+    'be': 'be',
+    'id': 'id',
+    'ca': 'ca',
+    'et': 'et',
+    'sl': 'sl',
+    'bg': 'bg'
 
   },
 
   // initialise the driver
-  _fioinit: function(stationID, apikey) {
+  _fioinit: function (stationID, apikey) {
     this._init(stationID, apikey);
-    this.capabilities.forecast.pressure_direction =  false;
-    this.capabilities.cc.pressure_direction =  false;
+    this.capabilities.forecast.pressure_direction = false;
+    this.capabilities.cc.pressure_direction = false;
     this.capabilities.cc.obstime = false;
     //this.capabilities.meta.country = false;
     //this._geocache = new Object();
@@ -3708,7 +3717,7 @@ wxDriverForecastIo.prototype = {
     this.unitsInSummaries = true;
   },
 
-  refreshData: function(deskletObj) {
+  refreshData: function (deskletObj) {
     // reset the data object
     this._emptyData();
     this.linkURL = 'https://forecast.io';
@@ -3718,7 +3727,7 @@ wxDriverForecastIo.prototype = {
     // all responses be imperial using 'us'. Do this if user opts for
     // Fahrenheit temperatures. Individual data points will have to be
     // converted back later using _getSI().
-    this.units = (deskletObj.tunits=='F')?'us':'ca';
+    this.units = (deskletObj.tunits == 'F') ? 'us' : 'ca';
 
     // check the stationID looks valid before going further
     if (this.stationID.search(/^\-?\d+(\.\d+)?,\-?\d+(\.\d+)?$/) == 0) {
@@ -3732,7 +3741,7 @@ wxDriverForecastIo.prototype = {
       if (this.langcode) apiurl += '&lang=' + this.langcode;
 
       // process the forecast
-      let a = this._getWeather(apiurl, function(weather) {
+      let a = this._getWeather(apiurl, function (weather) {
         if (weather) {
           this._load_forecast(weather);
         }
@@ -3769,7 +3778,7 @@ wxDriverForecastIo.prototype = {
     try {
       let days = json.daily.data;
 
-      for (let i=0; i<days.length; i++) {
+      for (let i = 0; i < days.length; i++) {
         let day = new Object();
         let dt = GLib.DateTime.new_from_unix_utc(days[i].time);
         dt = dt.to_timezone(tz);
@@ -3779,7 +3788,7 @@ wxDriverForecastIo.prototype = {
         day.minimum_feelslike = this._getSI(days[i].apparentTemperatureMin, 'temp');
         day.maximum_feelslike = this._getSI(days[i].apparentTemperatureMax, 'temp');
         day.pressure = this._getSI(days[i].pressure, 'press');
-        day.humidity = days[i].humidity*100;
+        day.humidity = days[i].humidity * 100;
         day.wind_speed = this._getSI(days[i].windSpeed, 'windspd');
         day.wind_direction = this.compassDirection(days[i].windBearing);
         day.weathertext = days[i].summary;
@@ -3790,7 +3799,7 @@ wxDriverForecastIo.prototype = {
       }
       let cc = json.currently;
 
-      this.data.cc.humidity = cc.humidity*100;
+      this.data.cc.humidity = cc.humidity * 100;
       this.data.cc.temperature = this._getSI(cc.temperature, 'temp');
       this.data.cc.pressure = this._getSI(cc.pressure, 'press');
       this.data.cc.wind_speed = this._getSI(cc.windSpeed, 'windspd');
@@ -3807,7 +3816,7 @@ wxDriverForecastIo.prototype = {
       this.data.status.cc = BBCWX_SERVICE_STATUS_OK;
       this.data.status.forecast = BBCWX_SERVICE_STATUS_OK;
       this.data.status.meta = BBCWX_SERVICE_STATUS_OK;
-    } catch(e) {
+    } catch (e) {
       global.logError(e);
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
       //this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
@@ -3817,7 +3826,7 @@ wxDriverForecastIo.prototype = {
 
   // Ensure units returned by driver are SI, even when requesting imperial ('us')
   // units to get imperial in the summary text
-  _getSI: function(val, type) {
+  _getSI: function (val, type) {
     // If units weren't 'us', return as is
     if (this.units != "us") {
       return val;
@@ -3833,29 +3842,29 @@ wxDriverForecastIo.prototype = {
     }
     // miles to km
     if (type == "viz") {
-      return val*1.60923;
+      return val * 1.60923;
     }
     // mph to km/h
     if (type == "windspd") {
-      return val*1.60923;
+      return val * 1.60923;
     }
     return val;
   },
 
-  _mapicon: function(iconcode) {
+  _mapicon: function (iconcode) {
     // https://developer.forecast.io/docs/v2
     let icon_name = 'na';
     let iconmap = {
-      'clear-day' : '32',
-      'clear-night' : '31',
-      'rain' : '11',
-      'snow' : '14',
-      'sleet' : '18',
-      'wind' : '24',
-      'fog' : '20',
-      'cloudy' : '26',
-      'partly-cloudy-day' : '30',
-      'partly-cloudy-night' : '29'
+      'clear-day': '32',
+      'clear-night': '31',
+      'rain': '11',
+      'snow': '14',
+      'sleet': '18',
+      'wind': '24',
+      'fog': '20',
+      'cloudy': '26',
+      'partly-cloudy-day': '30',
+      'partly-cloudy-night': '29'
     };
 
     if (iconcode && (typeof iconmap[iconcode] !== "undefined")) {
@@ -3886,21 +3895,21 @@ wxDriverTWC.prototype = {
   _baseURL: 'https://wxdata.weather.com/wxdata/weather/local/',
 
   // initialise the driver
-  _twcinit: function(stationID) {
+  _twcinit: function (stationID) {
     this._init(stationID);
-    this.capabilities.forecast.pressure =  false;
-    this.capabilities.forecast.pressure_direction =  false;
+    this.capabilities.forecast.pressure = false;
+    this.capabilities.forecast.pressure_direction = false;
     this.capabilities.forecast.visibility = false;
-    this._isEnglish = LangList[0].substr(0,2).toLowerCase() == 'en' ? true : false;
+    this._isEnglish = LangList[0].substr(0, 2).toLowerCase() == 'en' ? true : false;
   },
 
-  refreshData: function(deskletObj) {
+  refreshData: function (deskletObj) {
     // reset the data object
     this._emptyData();
     this.linkURL = 'https://www.weather.com';
 
     // process the forecast
-    let a = this._getWeather(this._baseURL + encodeURIComponent(this.stationID) + '?cc=*&dayf=10&unit=m', function(weather) {
+    let a = this._getWeather(this._baseURL + encodeURIComponent(this.stationID) + '?cc=*&dayf=10&unit=m', function (weather) {
       if (weather) {
         this._load_forecast(weather);
       }
@@ -3953,22 +3962,22 @@ wxDriverTWC.prototype = {
       let locparts = geo.getChildElement('dnam').getText().split(',');
       this.data.city = locparts[0].trim();
       //### TODO this returns state for US - somehow detect that and add US
-      this.data.country = locparts[locparts.length-1].trim();
+      this.data.country = locparts[locparts.length - 1].trim();
       this.linkURL = 'https://www.weather.com/weather/today/' + geo.getAttributeValue('id').trim();
-      this.data.wgs84.lat=geo.getChildElement('lat').getText();
-      this.data.wgs84.lon=geo.getChildElement('lon').getText();
+      this.data.wgs84.lat = geo.getChildElement('lat').getText();
+      this.data.wgs84.lon = geo.getChildElement('lon').getText();
       // data.region
 
       this.data.cc.temperature = cc.getChildElement('tmp').getText();
       this.data.cc.feelslike = cc.getChildElement('flik').getText();
-      this.data.cc.obstime = new Date(cc.getChildElement('lsup').getText()).toLocaleFormat( "%H:%M %Z" );
+      this.data.cc.obstime = new Date(cc.getChildElement('lsup').getText()).toLocaleFormat("%H:%M %Z");
       // use the text if our locale is English, otherwise try and get a translation from the code
       if (this._isEnglish) {
         this.data.cc.weathertext = cc.getChildElement('t').getText();
       } else {
         this.data.cc.weathertext = this._getWeatherTextFromYahooCode(cc.getChildElement('icon').getText());
       }
-      if(this.data.cc.weathertext == 'N/A') this.data.cc.weathertext = '';
+      if (this.data.cc.weathertext == 'N/A') this.data.cc.weathertext = '';
       this.data.cc.icon = this._mapicon(cc.getChildElement('icon').getText());
       let wind = cc.getChildElement('wind');
       this.data.cc.wind_speed = wind.getChildElement('s').getText();
@@ -3981,9 +3990,9 @@ wxDriverTWC.prototype = {
 
       let forecasts = dayf.getChildElements("day");
 
-      for (let i=0; i<forecasts.length; i++) {
+      for (let i = 0; i < forecasts.length; i++) {
         let day = new Object();
-        day.day = forecasts[i].getAttributeValue('t').substring(0,3);
+        day.day = forecasts[i].getAttributeValue('t').substring(0, 3);
         day.maximum_temperature = forecasts[i].getChildElement('hi').getText();
         day.minimum_temperature = forecasts[i].getChildElement('low').getText();
         var dayparts = forecasts[i].getChildElements("part");
@@ -3999,7 +4008,7 @@ wxDriverTWC.prototype = {
         day.humidity = dayparts[p].getChildElement('hmid').getText();
         var windf = dayparts[p].getChildElement('wind');
         day.wind_speed = windf.getChildElement('s').getText();
-        if(day.wind_speed == 'calm') {day.wind_speed = 0};
+        if (day.wind_speed == 'calm') { day.wind_speed = 0 };
         day.wind_direction = windf.getChildElement('t').getText();
         this.data.days[i] = day;
       }
@@ -4007,7 +4016,7 @@ wxDriverTWC.prototype = {
       this.data.status.forecast = BBCWX_SERVICE_STATUS_OK;
       this.data.status.meta = BBCWX_SERVICE_STATUS_OK;
       this.data.status.cc = BBCWX_SERVICE_STATUS_OK;
-    } catch(e) {
+    } catch (e) {
       global.logError(e);
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
       this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
@@ -4015,60 +4024,60 @@ wxDriverTWC.prototype = {
     }
   },
 
-  _mapicon: function(code) {
+  _mapicon: function (code) {
     // Use codes as listed by Yahoo! as weather.com supplies their data
     // http://developer.yahoo.com/weather/#codes
     let icon_name = 'na';
     let iconmap = {
-      '0' : '00',
-      '1' : '01',
-      '2' : '01',
-      '3' : '03',
-      '4' : '04',
-      '5' : '05',
-      '6' : '06',
-      '7' : '07',
-      '8' : '08',
-      '9' : '09',
-      '10' : '10',
-      '11' : '11',
-      '12' : '12',
-      '13' : '13',
-      '14' : '41',
-      '15' : '15',
-      '16' : '16',
-      '17' : '18',
-      '18' : '18',
-      '19' : '19',
-      '20' : '20',
-      '21' : '22',
-      '22' : '22',
-      '23' : '23',
-      '24' : '24',
-      '25' : '25',
-      '26' : '26',
-      '27' : '27',
-      '28' : '28',
-      '29' : '29',
-      '30' : '30',
-      '31' : '31',
-      '32' : '32',
-      '33' : '33',
-      '34' : '34',
-      '35' : '06',
-      '36' : '36',
-      '37' : '37',
-      '38' : '38',
-      '39' : '39', // this seems to map to showers
-      '40' : '39',
-      '41' : '16',
-      '42' : '41',
-      '43' : '16',
-      '44' : '30',
-      '45' : '47',
-      '46' : '46',
-      '47' : '47',
-      '3200' : 'na'
+      '0': '00',
+      '1': '01',
+      '2': '01',
+      '3': '03',
+      '4': '04',
+      '5': '05',
+      '6': '06',
+      '7': '07',
+      '8': '08',
+      '9': '09',
+      '10': '10',
+      '11': '11',
+      '12': '12',
+      '13': '13',
+      '14': '41',
+      '15': '15',
+      '16': '16',
+      '17': '18',
+      '18': '18',
+      '19': '19',
+      '20': '20',
+      '21': '22',
+      '22': '22',
+      '23': '23',
+      '24': '24',
+      '25': '25',
+      '26': '26',
+      '27': '27',
+      '28': '28',
+      '29': '29',
+      '30': '30',
+      '31': '31',
+      '32': '32',
+      '33': '33',
+      '34': '34',
+      '35': '06',
+      '36': '36',
+      '37': '37',
+      '38': '38',
+      '39': '39', // this seems to map to showers
+      '40': '39',
+      '41': '16',
+      '42': '41',
+      '43': '16',
+      '44': '30',
+      '45': '47',
+      '46': '46',
+      '47': '47',
+      '3200': 'na'
     }
     if (code && (typeof iconmap[code] !== "undefined")) {
       icon_name = iconmap[code];
@@ -4109,22 +4118,22 @@ wxDriverMeteoBlue.prototype = {
   },
 
   // initialise the driver
-  _meteoblueinit: function(stationID, apikey) {
+  _meteoblueinit: function (stationID, apikey) {
     this._init(stationID, apikey);
     this.capabilities.cc.humidity = false;
     this.capabilities.cc.pressure = false;
     this.capabilities.cc.wind_direction = false;
     this.capabilities.cc.visibility = false;
     this.capabilities.cc.feelslike = false;
-    this.capabilities.cc.pressure_direction =  false;
+    this.capabilities.cc.pressure_direction = false;
     this.capabilities.cc.obstime = false;
-    this.capabilities.forecast.pressure_direction =  false;
-    this.capabilities.forecast.visibility =  false;
-    this.capabilities.forecast.uv_risk =  false;
+    this.capabilities.forecast.pressure_direction = false;
+    this.capabilities.forecast.visibility = false;
+    this.capabilities.forecast.uv_risk = false;
 
   },
 
-  refreshData: function(deskletObj) {
+  refreshData: function (deskletObj) {
     // reset the data object
     this._emptyData();
     this.linkURL = 'https://www.meteoblue.com';
@@ -4136,7 +4145,7 @@ wxDriverMeteoBlue.prototype = {
       let apiurl = this._baseURL + '?apikey=' + encodeURIComponent(this.apikey) + '&mac=feed&type=json_7day_3h_firstday&lat=' + latlon[0] + '&lon=' + latlon[1];
 
       // process the forecast
-      let a = this._getWeather(apiurl, function(weather) {
+      let a = this._getWeather(apiurl, function (weather) {
         if (weather) {
           this._load_forecast(weather);
         }
@@ -4181,7 +4190,7 @@ wxDriverMeteoBlue.prototype = {
     try {
       let days = json.forecast;
 
-      for (let i=0; i<days.length; i++) {
+      for (let i = 0; i < days.length; i++) {
         let day = new Object();
         //day.day = this._getDayName(new Date(days[i].date).getUTCDay());
         day.day = days[i].weekday;
@@ -4211,7 +4220,7 @@ wxDriverMeteoBlue.prototype = {
       this.data.status.cc = BBCWX_SERVICE_STATUS_OK;
       this.data.status.forecast = BBCWX_SERVICE_STATUS_OK;
       this.data.status.meta = BBCWX_SERVICE_STATUS_OK;
-    } catch(e) {
+    } catch (e) {
       global.logError(e);
       this.data.status.forecast = BBCWX_SERVICE_STATUS_ERROR;
       //this.data.status.meta = BBCWX_SERVICE_STATUS_ERROR;
@@ -4224,26 +4233,26 @@ wxDriverMeteoBlue.prototype = {
   // TODO 'Heavy Rain' is a poor match for 6 and 14. Probably better to use
   // 'Rain', but we don't have that in the existing translations
   // see https://content.meteoblue.com/en/help/standards/symbols-and-pictograms
-  _getWxTxt: function(pictcode) {
+  _getWxTxt: function (pictcode) {
     let wxtext = '';
     let textmap = {
-      '1' : _('Clear Sky'),             //Sunny, cloudless sky
-      '2' : _('Fair'),                  //Sunny and few clouds
-      '3' : _('Partly Cloudy'),         //Partly cloudy
-      '4' : _('Cloudy'),                //Overcast
-      '5' :  _('Fog'),                  //Fog
-      '6' : _('Heavy Rain'),            //Overcast with rain
-      '7' : _('Showers'),               //Mixed with showers
-      '8' :  _('Thundery Shower'),      //Showers, thunderstorms likely
-      '9' : _('Snow'),                  //Overcast with snow
-      '10' : _('Snow showers'),         //Mixed with snow showers
-      '11' : _('Mixed rain and snow'),  //Mostly cloudy with a mixture of snow and rain
-      '12' : _('Light Rain'),           //Overcast with light rain
-      '13' : _('Light Snow'),           //Overcast with light snow
-      '14' : _('Heavy Rain'),           //Mostly cloudy with rain
-      '15' : _('Snow'),                 //Mostly cloudy with snow
-      '16' : _('Light Rain'),           //Mostly cloudy with light rain
-      '17' : _('Light Snow')            //Mostly cloudy with light snow
+      '1': _('Clear Sky'),             //Sunny, cloudless sky
+      '2': _('Fair'),                  //Sunny and few clouds
+      '3': _('Partly Cloudy'),         //Partly cloudy
+      '4': _('Cloudy'),                //Overcast
+      '5': _('Fog'),                  //Fog
+      '6': _('Heavy Rain'),            //Overcast with rain
+      '7': _('Showers'),               //Mixed with showers
+      '8': _('Thundery Shower'),      //Showers, thunderstorms likely
+      '9': _('Snow'),                  //Overcast with snow
+      '10': _('Snow showers'),         //Mixed with snow showers
+      '11': _('Mixed rain and snow'),  //Mostly cloudy with a mixture of snow and rain
+      '12': _('Light Rain'),           //Overcast with light rain
+      '13': _('Light Snow'),           //Overcast with light snow
+      '14': _('Heavy Rain'),           //Mostly cloudy with rain
+      '15': _('Snow'),                 //Mostly cloudy with snow
+      '16': _('Light Rain'),           //Mostly cloudy with light rain
+      '17': _('Light Snow')            //Mostly cloudy with light snow
     };
 
     if (pictcode && (typeof textmap[pictcode] !== "undefined")) {
@@ -4253,46 +4262,46 @@ wxDriverMeteoBlue.prototype = {
     return wxtext;
   },
 
-  _mapicon: function(iconcode, isDay) {
+  _mapicon: function (iconcode, isDay) {
     let icon_name = 'na';
     let iconmapday = {
-      '1' : '32',
-      '2' : '34',
-      '3' : '30',
-      '4' : '26',
-      '5' : '20',
-      '6' : '12',
-      '7' : '39',
-      '8' : '37',
-      '9' : '14',
-      '10' : '41',
-      '11' : '05',
-      '12' : '11',
-      '13' : '13',
-      '14' : '12',
-      '15' : '14',
-      '16' : '11',
-      '17' : '13'
+      '1': '32',
+      '2': '34',
+      '3': '30',
+      '4': '26',
+      '5': '20',
+      '6': '12',
+      '7': '39',
+      '8': '37',
+      '9': '14',
+      '10': '41',
+      '11': '05',
+      '12': '11',
+      '13': '13',
+      '14': '12',
+      '15': '14',
+      '16': '11',
+      '17': '13'
     };
 
     let iconmapnight = {
-      '1' : '31',
-      '2' : '32',
-      '3' : '29',
-      '4' : '26',
-      '5' : '20',
-      '6' : '12',
-      '7' : '45',
-      '8' : '47',
-      '9' : '14',
-      '10' : '46',
-      '11' : '05',
-      '12' : '11',
-      '13' : '13',
-      '14' : '12',
-      '15' : '14',
-      '16' : '11',
-      '17' : '13'
+      '1': '31',
+      '2': '32',
+      '3': '29',
+      '4': '26',
+      '5': '20',
+      '6': '12',
+      '7': '45',
+      '8': '47',
+      '9': '14',
+      '10': '46',
+      '11': '05',
+      '12': '11',
+      '13': '13',
+      '14': '12',
+      '15': '14',
+      '16': '11',
+      '17': '13'
     };
 
     if (isDay) {
@@ -4316,37 +4325,35 @@ wxDriverMeteoBlue.prototype = {
 
 ////////////////////////////////////////////////////////////////////////////
 // Utility function to capitalise first letter of each word in a string
-String.prototype.ucwords = function() {
-    return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+String.prototype.ucwords = function () {
+  return this.replace(/(?:^|\s)\S/g, function (a) { return a.toUpperCase(); });
 };
 
 // Choose automatically contrasting black or white shadow color dependent on text color
 function contrastingColor(color) {
-    return (luma(color) >= 165) ? '#000000' : '#ffffff';
+  return (luma(color) >= 165) ? '#000000' : '#ffffff';
 };
 
 function luma(color) {
- // SMPTE C, Rec. 709 weightings
-    let hex = rgb2hex(color);
-    let r = parseInt(hex.slice(0, 2), 16);
-    let g = parseInt(hex.slice(2, 4), 16);
-    let b = parseInt(hex.slice(4), 16);
-    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  // SMPTE C, Rec. 709 weightings
+  let hex = rgb2hex(color);
+  let r = parseInt(hex.slice(0, 2), 16);
+  let g = parseInt(hex.slice(2, 4), 16);
+  let b = parseInt(hex.slice(4), 16);
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
 };
 
 function rgb2hex(rgb) {
-    let rgbSplit = rgb.split("(")[1].split(")")[0];
-    rgbSplit = rgbSplit.split(",");
-    let hex = rgbSplit.map(function(hexCol){                 //For each array element
-        hexCol = parseInt(hexCol).toString(16);              //Convert to a base16 string
-        return (hexCol.length == 1) ? "0" + hexCol : hexCol; //Add zero if we get only one character
-    })
-    return hex.join("");
+  let rgbSplit = rgb.split("(")[1].split(")")[0];
+  rgbSplit = rgbSplit.split(",");
+  let hex = rgbSplit.map(function (hexCol) {                 //For each array element
+    hexCol = parseInt(hexCol).toString(16);              //Convert to a base16 string
+    return (hexCol.length == 1) ? "0" + hexCol : hexCol; //Add zero if we get only one character
+  })
+  return hex.join("");
 };
 
-function main(metadata, desklet_id){
-  let desklet = new MyDesklet(metadata,desklet_id);
+function main(metadata, desklet_id) {
+  let desklet = new MyDesklet(metadata, desklet_id);
   return desklet;
 };
-
-

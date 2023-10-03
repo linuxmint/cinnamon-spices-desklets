@@ -85,6 +85,11 @@ const SCIENTIFIC_LAYOUT = [
         {type: "cmd",     value: "pi"}]
 ]
 
+const BINARY_OPS = ["add", "sub", "mult", "div", "power", "root"];
+const UNARY_OPS = ["sqrt", "sin", "cos", "tan", "sin-inv", "cos-inv", "tan-inv", "log", "ln", "10x", "ex"];
+const TRIG_OPS = ["sin", "cos", "tan"];
+const INV_TRIG_OPS = ["sin-inv", "cos-inv", "tan-inv"];
+
 
 let button_path, buffer;
 
@@ -172,12 +177,9 @@ Buffer.prototype = {
             return;
         }
 
-        let dualFunc = ["add", "sub", "mult", "div", "power", "root"];
-        let multFunc = ["sqrt", "sin", "cos", "tan", "sin-inv", "cos-inv", "tan-inv", "log", "ln", "10x", "ex"];
+        if ( this.stack[this.stack.length-1] == "" && BINARY_OPS.indexOf(value) != -1) return;
 
-        if ( this.stack[this.stack.length-1] == "" && dualFunc.indexOf(value) != -1 ) return;
-
-        if ( multFunc.indexOf(value) != -1 ) {
+        if ( UNARY_OPS.indexOf(value) != -1) {
             if ( this.stack[this.stack.length-1] != "" ) {
                 this.operations.push("mult");
                 this.stack.push("");
@@ -193,98 +195,86 @@ Buffer.prototype = {
         if ( ( !this.rpn && this.stack[this.stack.length-1] == "" ) ||
              ( this.rpn && this.stack[0] == "" ) ) return;
         if ( this.rpn && this.stack[this.stack.length-1] == "" ) this.stack.pop();
-        let result;
 
-        switch ( value ) {
-            case "%":
-                if ( this.stack[this.stack.length-1] == "" ) break;
-                result = String(this.stack.pop()/100);
-                break;
-            case "add":
-                if ( this.stack.length < 2 ) break;
-                result = String(Number(this.stack.pop()) + Number(this.stack.pop()));
-                break;
-            case "sub":
-                if ( this.stack.length < 2 ) break;
-                last = Number(this.stack.pop());
-                result = String(Number(this.stack.pop()) - last);
-                break;
-            case "mult":
-                if ( this.stack.length < 2 ) break;
-                result = String(Number(this.stack.pop()) * Number(this.stack.pop()));
-                break;
-            case "div":
-                if ( this.stack.length < 2 ) break;
-                last = Number(this.stack.pop());
-                result = String(Number(this.stack.pop()) / last);
-                break;
-            case "square":
-                result = String(Math.pow(this.stack.pop(), 2));
-                break;
-            case "sqrt":
-                result = String(Math.sqrt(this.stack.pop()));
-                break;
-            case "power":
-                if ( this.stack.length < 2 ) break;
-                power = this.stack.pop();
-                result = String(Math.pow(this.stack.pop(), power));
-                break;
-            case "root":
-                if ( this.stack.length < 2 ) break;
-                root = this.stack.pop();
-                result = String(Math.pow(this.stack.pop(), 1/root));
-                break;
-            case "ex":
-                result = String(Math.exp(this.stack.pop()));
-                break;
-            case "ln":
-                result = String(Math.log(this.stack.pop()));
-                break;
-            case "10x":
-                result = String(Math.pow(10, this.stack.pop()));
-                break;
-            case "log":
-                result = String(Math.log(this.stack.pop())/Math.log(10));
-                break;
-            case "sin":
-                angle = this.stack.pop();
-                if ( this.angleMode == 0 ) angle = angle * Math.PI / 180;
-                result = String(Math.sin(angle));
-                break;
-            case "cos":
-                angle = this.stack.pop();
-                if ( this.angleMode == 0 ) angle = angle * Math.PI / 180;
-                result = String(Math.cos(angle));
-                break;
-            case "tan":
-                angle = this.stack.pop();
-                if ( this.angleMode == 0 ) angle = angle * Math.PI / 180;
-                result = String(Math.tan(angle));
-                break;
-            case "sin-inv":
-                input = this.stack.pop();
-                result = Math.asin(input);
-                if ( this.angleMode == 0 ) result = result / Math.PI * 180;
-                result = String(result);
-                break;
-            case "cos-inv":
-                input = this.stack.pop();
-                result = Math.acos(input);
-                if ( this.angleMode == 0 ) result = result / Math.PI * 180;
-                result = String(result);
-                break;
-            case "tan-inv":
-                input = this.stack.pop();
-                result = Math.atan(input);
-                if ( this.angleMode == 0 ) result = result / Math.PI * 180;
-                result = String(result);
-                break;
-            case "x!":
-                result = String(factorial(Number(this.stack.pop())));
-                break;
+        let binary_op = BINARY_OPS.indexOf(value) != -1;
+        let result = Number(this.stack.pop());
+        
+        if (binary_op && this.stack.length > 0) {
+            let other = Number(this.stack.pop());
+            switch ( value ) {
+                case "add":
+                    result += other;
+                    break;
+                case "sub":
+                    result = other - result;
+                    break;
+                case "mult":
+                    result *= other;
+                    break;
+                case "div":
+                    result = other / result;
+                    break;
+                case "power":
+                    result = Math.pow(other, result);
+                    break;
+                case "root":
+                    result = Math.pow(other, 1 / result);
+                    break;
+             }
+        }
+        else {
+            let trig_op = TRIG_OPS.indexOf(value) != -1;
+            let inv_trig_op = INV_TRIG_OPS.indexOf(value) != -1;
+            if ( trig_op && this.angleMode == 0 ) result *= Math.PI / 180;
+            // Should probably be done with a map instead...
+            switch ( value ) {
+                case "%":
+                    result /= 100;
+                    break;
+                case "square":
+                    result = Math.pow(result, 2);
+                    break;
+                case "sqrt":
+                    result = Math.sqrt(result);
+                    break;
+                case "ex":
+                    result = Math.exp(result);
+                    break;
+                case "ln":
+                    result = Math.log(result);
+                    break;
+                case "10x":
+                    result = Math.pow(10, result);
+                    break;
+                case "log":
+                    result = Math.log(result) / Math.log(10);
+                    break;
+                case "sin":
+                    result = Math.sin(result);
+                    break;
+                case "cos":
+                    result = Math.cos(result);
+                    break;
+                case "tan":
+                    result = Math.tan(result);
+                    break;
+                case "sin-inv":
+                    result = Math.asin(result);
+                    break;
+                case "cos-inv":
+                    result = Math.acos(result);
+                    break;
+                case "tan-inv":
+                    result = Math.atan(result);
+                    break;
+                case "x!":
+                    result = factorial(result);
+                    break;
+            }
+            if ( inv_trig_op && this.angleMode == 0 ) result *= 180 / Math.PI;
         }
 
-        if ( result ) this.stack.push(result);
+        this.stack.push(String(result));
         if ( this.rpn ) this.stack.push("");
 
         this.emit("changed");

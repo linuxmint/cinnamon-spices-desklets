@@ -1,0 +1,169 @@
+USER DEFINED ICONS
+==================
+
+Introduction
+
+~~~~~~~~~~~~
+To customize the Weather Desklet even further, you can place your own 
+set of icons in this directory. Icons can be PNG or SVG format, and 
+possibly others too. A good choice of size is about 256px, though if 
+you don't use the desklet at large zooms you could reduce this somewhat
+(the large current conditions icon is displayed at 170px high at normal
+zoom).
+
+Changes to the icons in `icons/user` take effect at the next refresh. 
+Changes to `iconmeta.json` (see below) take effect when there is change 
+to the Weather Desklet's configuration that affects styling. 
+
+iconmeta.json
+~~~~~~~~~~~~~
+
+The file `iconmeta.json` contains information about the icon set that the
+Weather Desklet needs. You will probably need to create and edit this - it must
+be valid JSON so pay careful attention to the commas! The file
+`iconmeta.json.dist` provides a template that you can copy to `iconmeta.json`.
+Default values will be applied if the file is missing or can not be parsed, or
+if any values are missing.
+
+The file iconmeta.json contains information about the icon set that the
+desklet needs. You will probably need to edit this - it must be valid
+JSON so pay careful attention to the commas! Defaults will be applied if
+the file is missing or can not be parsed, or if any values are missing.
+The format is:
+
+~~~json
+{
+    "ext": "png",
+    "aspect": 1,
+    "adjust": 0.9,
+    "map": {
+        "01": "03",
+        "02": "03",
+        "26d": "26"
+    }
+}
+~~~
+
+ext:
+the file extension used for the icon filenames, without the dot. png and
+svg are known to work. The default if the file is missing is "png".
+
+aspect:
+The aspect ratio of the icons, ie the width divided by the height. For
+square icons this will be 1. For icons that are 170px wide and 120px high
+this will be 1.4167. The default is 1 (ie square icons).
+
+adjust:
+A value to adjust the size of the icon by. The value represents the
+proportion of the container size that the icon should be scaled to. It is
+useful in cases of icon sets that have no inbuilt padding, ie the design
+comes right to the edge of the image file. By setting this value to, for
+example, 0.88 then the icon will be made slightly smaller than its
+container, and displayed in the centre of the container. The size of
+the large current conditions icon container at 1.0x zoom is 170px. With
+a value of adjust of 0.88 the icon will be scaled to about 150px, leaving
+10px of space all around it. The default value is 1 (ie do not adjust).
+Note that values of greater than 1 will have no effect.
+
+map:
+map is a javascript object that maps the codes used by the Weather
+Desklet to icon file names (without the extension). The default is empty,
+which means no mapping, file names are expected to match Weather Desklet
+codes. See below for more details on how icons are selected. The map
+object is useful for avoiding having to have multiple copies of the same
+icon, each with a different name. It can also be used to allow you to keep
+descriptive filenames, rather than codes. For example, rather than name
+an icon for fog 20.png, name it fog.png and include
+
+~~~json
+  "map": {
+      "20": "fog"
+  }
+~~~
+
+How icons are selected
+
+~~~~~~~~~~~~~~~~~~~~~~
+When the Weather Desklet needs to display an icon it goes through the 
+following process:
+
+* Lookup the code in the map for the current icon set. 
+* If it finds a match, attempt to display the icon of the name returned
+* If it doesn't find a match, attempt to display an icon with the same
+  name as the lookup code.
+* If the icon it is attempting to display is not present, switch to the 
+  default icon set and repeat the process
+  
+An example:
+You have the map shown above. In your directory you have files:
+
+02.png
+03.png
+26.png
+39.png
+
+For code 01 the desklet displays 03.png, because 01 maps to 03. 
+
+For code 39 there is no map, so the Weather Desklet displays 39.png. 
+
+Code 02 maps to 03, so 03.png is displayed. The presence of a file 
+named 02.png is ignored. 
+
+For code 47 the desklet attempts to display 47.png, but can not find 
+it, so displays 47.png from the default icon set.
+
+Checking your icon set
+~~~~~~~~~~~~~~~~~~~~~~
+
+The file icons.html displays all the icon sets, including the user defined
+set, alongside the codes and descriptions. It honours the mapping. Please
+note that it doesn't display fallback to the default icon set - missing
+icons / mappings will appear as blank spaces
+
+The codes
+
+~~~~~~~~~
+00  Tornado
+01  Hurricane / tropical storm
+02  Strong wind with rain
+03  Severe thunderstorms
+04  Thunderstorms
+05  Mixed rain and snow
+06  Mixed rain and sleet
+07  Mixed snow and sleet
+08  Freezing drizzle
+09  Drizzle
+10  Freezing rain
+11  Light rain
+12  Heavy rain
+13  Light snow
+14  Medium snow
+15  Blowing snow / blizzard
+16  Heavy snow
+18  Hail / sleet
+19  Dust
+20  Fog
+21  Hazy, night
+22  Hazy, day
+23  Blustery
+24  Windy
+25  Cold
+26  White cloud
+26d Dark cloud
+27  Mostly cloudy (night)
+28  Mostly cloudy (day)
+29  Partly cloudy (night)
+30  Partly cloudy (day)
+31  Clear (night)
+32  Sunny
+33  Few clouds (night)
+34  Few clouds (day)
+36  Hot
+37  Thundery showers (day)
+38  Scattered thunderstorms
+39  Showers (day)
+41  Snow showers (day)
+45  Showers (night)
+46  Snow showers (night)
+47  Thundery showers (night)
+na  Unknown

@@ -17,6 +17,7 @@
             "Dark": "dark",
             "Light Transparent": "light_transparent",
             "Dark Transparent": "dark_transparent",
+            "Semitransparent": "semi_transparent",
             "Custom": "custom-images"
         },
         "tooltip" : "Select the background graphic you would like to use."

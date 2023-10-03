@@ -1,0 +1,79 @@
+# Romanian translations for PACKAGE package.
+# Copyright (C) 2023 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2023.
+#
+msgid ""
+msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ro\n"
+"Language-Team: none\n"
+"Last-Translator: Automatically generated\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2017-04-27 12:01+0200\n"
+"POT-Creation-Date: 2017-04-27 12:01+0200\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+
+#: desklet.js:265
+#, c-format
+msgid "%d point"
+msgid_plural "%d points"
+msgstr[0] "%d punct"
+msgstr[1] "%d puncte"
+msgstr[2] "%d de puncte"
+
+#: desklet.js:274
+msgid "by"
+msgstr "de"
+
+#: desklet.js:284
+msgid "to"
+msgstr "la"
+
+#: desklet.js:295
+#, c-format
+msgid "%d comment"
+msgid_plural "%d comments"
+msgstr[0] "%d comentariu"
+msgstr[1] "%d comentarii"
+msgstr[2] "%d de comentarii"
+
+#. reddit-reader@orangeshark->metadata.json->description
+msgid "A desklet to read subreddits"
+msgstr "Un desklet pentru a citi subreddituri"
+
+#. reddit-reader@orangeshark->metadata.json->name
+msgid "reddit reader desklet"
+msgstr "reddit reader desklet"
+
+#. reddit-reader@orangeshark->settings-schema.json->refreshRate->description
+msgid "Refresh rate:"
+msgstr "Rata de reîmprospătare:"
+
+#. reddit-reader@orangeshark->settings-schema.json->refreshRate->units
+msgid "minutes"
+msgstr "minute"
+
+#. reddit-reader@orangeshark->settings-schema.json->width->description
+msgid "Width:"
+msgstr "Lățime:"
+
+#. reddit-reader@orangeshark->settings-schema.json->width->units
+#. reddit-reader@orangeshark->settings-schema.json->height->units
+msgid "pixels"
+msgstr "pixeli"
+
+#. reddit-reader@orangeshark->settings-schema.json->height->description
+msgid "Height:"
+msgstr "Înălțime:"
+
+#. reddit-reader@orangeshark->settings-schema.json->subreddit->description
+msgid "Subreddit:"
+msgstr "Subreddit:"
+
+#. reddit-reader@orangeshark->settings-schema.json->subreddit->tooltip
+msgid "supports multireddits and alterative sorting methods. eg: TheOnion+NotTheOnion, Linux/new and aww+worldnews/controversial"
+msgstr "suportă multireddits și metode de sortare alternative. ex: TheOnion+NotTheOnion, Linux/new și aww+worldnews/controversial"

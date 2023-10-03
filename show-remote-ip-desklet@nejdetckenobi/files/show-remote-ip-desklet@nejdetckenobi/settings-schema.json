@@ -1,0 +1,24 @@
+{
+    "head" : {
+        "type" : "header",
+        "description" : "IP Address"
+    },
+    "iptype": {
+        "type": "combobox",
+        "default": "both",
+        "description": "Which type of address to display (if available)",
+        "options" : {
+            "Both": "both",
+            "IPv4": "ipv4",
+            "IPv6": "ipv6"
+        }
+    },
+    "font_size" : {
+        "default" : 20,
+        "type" : "spinbutton",
+        "min" : 10,
+        "max" : 60,
+        "description" : "Font height",
+        "step" : 1
+    }
+}

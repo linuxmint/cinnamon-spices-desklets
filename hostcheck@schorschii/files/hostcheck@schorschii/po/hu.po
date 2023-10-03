@@ -5,41 +5,45 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: 1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-18 18:53+0100\n"
-"PO-Revision-Date: 2021-04-11 10:45+0200\n"
+"PO-Revision-Date: 2023-05-05 14:25+0100\n"
+"Last-Translator: Balazs Bosak <bossbob88@gmail.com>\n"
+"Language-Team: \n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Last-Translator: Balazs Bosak <bossbob88@gmail.com>\n"
-"Language-Team: \n"
 "X-Generator: Poedit 2.3\n"
 
-#: desklet.js:119
+#: desklet.js:120
 msgid "UNKNOWN"
 msgstr "ISMERETLEN"
 
-#: desklet.js:120
+#: desklet.js:121
 msgid "No ping output"
 msgstr "Nincs kimenő ping"
 
-#: desklet.js:125 desklet.js:140
+#: desklet.js:126 desklet.js:141
 msgid "CRIT"
 msgstr "KRIT"
 
-#: desklet.js:129 desklet.js:144
+#: desklet.js:130 desklet.js:145
 msgid "OK"
 msgstr "OK"
 
-#: desklet.js:133 desklet.js:148
+#: desklet.js:134 desklet.js:149
 msgid "WARN"
 msgstr "FIGYELMEZTET"
 
-#: desklet.js:137
+#: desklet.js:138
 msgid "HTTP-Statuscode"
 msgstr "HTTP-Statuscode"
+
+#: desklet.js:164
+msgid "s"
+msgstr "s"
 
 #. metadata.json->description
 msgid "Checks a host via ping or HTTP(S) and displays if it is available."
@@ -83,6 +87,14 @@ msgstr "Értesítések megjelenítése állapotváltozáskor"
 #. settings-schema.json->host->description
 msgid "Hostname, IP address or HTTP(S)-URL to check"
 msgstr "Hostname, IP cím vagy HTTP(S)-URL ellenőrzése"
+
+#. settings-schema.json->interval->units
+msgid "seconds"
+msgstr "másodperc"
+
+#. settings-schema.json->interval->description
+msgid "Time's interval of check"
+msgstr "Időintervallum ellenőrzés"
 
 #. settings-schema.json->scale-size->units
 msgid "scale factor"

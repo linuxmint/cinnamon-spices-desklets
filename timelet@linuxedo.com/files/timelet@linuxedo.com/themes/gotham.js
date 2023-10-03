@@ -25,7 +25,7 @@ const Theme = imports.theme.Theme;
 /**
  * Gotham theme class.
  */
-class GothamTheme extends Theme {
+var GothamTheme = class GothamTheme extends Theme {
 
     constructor(config) {
         super(config);
@@ -57,7 +57,7 @@ class GothamTheme extends Theme {
     }
 
     setDateTime(date, locale) {
-        let time = this.to2Digit(this.to12Hours(date.getHours())) + ":" + this.to2Digit(date.getMinutes());
+        let time = this.to2Digit(this.is24H() ? date.getHours() : this.to12Hours(date.getHours())) + ":" + this.to2Digit(date.getMinutes());
         this._time.set_text(time);
         this._weekday.set_text(this.formatDateTime(date, locale, { weekday: "long" }));
         this._date.set_text(this.formatDateTime(date, locale, { day: "2-digit" }));

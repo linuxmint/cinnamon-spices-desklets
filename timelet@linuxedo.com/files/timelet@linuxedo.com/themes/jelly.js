@@ -25,7 +25,7 @@ const Theme = imports.theme.Theme;
 /**
  * Jelly theme class.
  */
- class JellyTheme extends Theme {
+var JellyTheme = class JellyTheme extends Theme {
 
     constructor(config) {
         super(config);
@@ -63,7 +63,7 @@ const Theme = imports.theme.Theme;
     }
 
     setDateTime(date, locale) {
-        this._hour.set_text(this.to2Digit(date.getHours()));
+        this._hour.set_text(this.to2Digit(this.is24H() ? date.getHours() : this.to12Hours(date.getHours())));
         this._seperator.set_text(":");
         this._minute.set_text(this.to2Digit(date.getMinutes()));
         this._weekday.set_text(this.formatDateTime(date, locale, { weekday: "long" }));

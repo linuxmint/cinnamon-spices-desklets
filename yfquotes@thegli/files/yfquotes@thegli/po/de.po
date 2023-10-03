@@ -1,13 +1,13 @@
 # German translation for Yahoo Finance Quotes Desklet
-# Copyright (C) 2021 Thomas Egli
+# Copyright (C) 2018 Thomas Egli
 # This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-18 19:25+0100\n"
-"PO-Revision-Date: 2022-05-16 18:00+0100\n"
+"POT-Creation-Date: 2023-08-28 16:36+0200\n"
+"PO-Revision-Date: 2023-08-28 16:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,23 +16,52 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
 
-#: desklet.js:87
-msgid "Yahoo Finance service not available!"
-msgstr "Yahoo Finance Service nicht verfügbar!"
+#: desklet.js:302 desklet.js:321
+msgid "Yahoo Finance service not available!\\nStatus: "
+msgstr "Yahoo Finance Service nicht verfügbar!\\nStatus: "
 
-#: desklet.js:416
+#: desklet.js:660
 msgid "Updated at "
 msgstr "Aktualisiert um "
 
-#: desklet.js:423
+#: desklet.js:667
 msgid "Error: "
 msgstr "Fehler: "
 
-#: desklet.js:467
+#: desklet.js:728
+msgid ""
+"Failed to retrieve authorization parameter! Unable to fetch quotes "
+"data.\\nStatus: "
+msgstr ""
+"Empfang von Autorisierungsparameter ist fehlgeschlagen! "
+"Finanzdaten-Abfrage nicht möglich.\\nStatus: "
+
+#: desklet.js:753
+msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
+msgstr ""
+"Consent-Erteilung ist fehlgeschlagen! Finanzdaten-Abfrage nicht "
+"möglich.\\nStatus: "
+
+#: desklet.js:758
+msgid ""
+"Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
+msgstr ""
+"Consent-Erteilung nicht abgeschlossen! Finanzdaten-Abfrage nicht "
+"möglich.\\nStatus: "
+
+#: desklet.js:779
+msgid ""
+"Failed to retrieve authorization crumb! Unable to fetch quotes "
+"data.\\nStatus: "
+msgstr ""
+"Emfang von Autorisierungs-Crumb ist fehlgeschlagen! Finanzdaten-Abfrage "
+"nicht möglich.\\nStatus: "
+
+#: desklet.js:805
 msgid "Cannot display quotes information for symbols: "
 msgstr "Finanzdaten können nicht angezeigt werden für die Symbole: "
 
-#: desklet.js:468
+#: desklet.js:806
 msgid "The following error occurred: "
 msgstr "Folgender Fehler ist aufgetreten: "
 
@@ -158,6 +187,26 @@ msgstr "Zeitpunkt der letzten Aktualisierung anzeigen"
 msgid "Display timestamp when quotes were updated last."
 msgstr "Zeigt den Zeitstempel der letzten Aktualisierung der Finanzdaten an."
 
+#. settings-schema.json->sendCustomUserAgent->description
+msgid "Send custom User-Agent header"
+msgstr "Sende individuellen User-Agent Header"
+
+#. settings-schema.json->sendCustomUserAgent->tooltip
+msgid ""
+"Include a custom User-Agent header in Yahoo Finance Quotes API requests. By "
+"default, this header is not set."
+msgstr ""
+"Fügt einen eigenen User-Agent Header den Yahoo Finance Quotes API Aufrufen "
+"hinzu. Dieser Header wird normalerweise nicht gesetzt."
+
+#. settings-schema.json->customUserAgent->description
+msgid "Custom User-Agent header"
+msgstr "Individueller User-Agent Header"
+
+#. settings-schema.json->customUserAgent->tooltip
+msgid "Value for User-Agent header to send with all API requests."
+msgstr "User-Agent Header Wert, der mit allen API Aufrufen gesendet wird."
+
 #. settings-schema.json->roundNumbers->description
 msgid "Round numbers"
 msgstr "Beträge runden"
@@ -183,8 +232,12 @@ msgid "Strict rounding"
 msgstr "Runden auf feste Anzahl Dezimalstellen"
 
 #. settings-schema.json->strictRounding->tooltip
-msgid "Strict rounding to the specified decimal places (eg. 0 will be presented as 0.00)."
-msgstr "Rundet Beträge immer auf die gewählte Anzahl Stellen (z.B. wird der Wert 0 bei 2 Stellen als 0.00 dargestellt)."
+msgid ""
+"Strict rounding to the specified decimal places (eg. 0 will be presented as "
+"0.00)."
+msgstr ""
+"Rundet Beträge immer auf die gewählte Anzahl Stellen (z.B. wird der Wert "
+"0 bei 2 Stellen als 0.00 dargestellt)."
 
 #. settings-schema.json->quoteSymbols->description
 msgid "Quote symbols"
@@ -323,10 +376,8 @@ msgid "Use trend colors for percent change"
 msgstr "Verwende Trend-Farben bei prozentualer Veränderung"
 
 #. settings-schema.json->colorPercentChange->tooltip
-msgid ""
-"Color the percent change to show the trend."
-msgstr ""
-"Färbt die prozentuale Veränderung gemäss Trend."
+msgid "Color the percent change to show the trend."
+msgstr "Färbt die prozentuale Veränderung gemäss Trend."
 
 #. settings-schema.json->showTradeTime->description
 msgid "Show trading time"

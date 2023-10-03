@@ -5,8 +5,8 @@
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2aaa/svg"
-   xmlns="http://www.w3.org/2aaa/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -144,7 +144,7 @@
        height="4.2166696"
        width="0.44570401"
        id="use4540-6"
-       style="opacity:1;fill:#333;fill-opacity:1;stroke:#333;stroke-width:0.65446281;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:#fff;fill-opacity:1;stroke:#fff;stroke-width:0.65446281;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        inkscape:tile-cx="69.434858"
        inkscape:tile-cy="69.773369"
        inkscape:tile-w="1.1001668"
@@ -818,7 +818,7 @@
        height="7.7440991"
        width="1.1637291"
        id="use4234-7"
-       style="opacity:1;fill:#333;fill-opacity:1;stroke:#333;stroke-width:1.13627076;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+       style="opacity:1;fill:#fff;fill-opacity:1;stroke:#fff;stroke-width:1.13627076;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
     <use
        x="0"
        y="0"

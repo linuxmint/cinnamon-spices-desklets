@@ -51,6 +51,7 @@ Timelet.prototype = {
 
         this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], this.instance_id);
         this.settings.bind("themeName", "themeName", this.onSettingChanged);
+        this.settings.bind("use24H", "use24H", this.onSettingChanged);
         this.settings.bind("textColor", "textColor", this.onSettingChanged);
         this.settings.bind("bgColor", "bgColor", this.onSettingChanged);
         this.settings.bind("scale", "scale", this.onSettingChanged);
@@ -80,7 +81,7 @@ Timelet.prototype = {
 
     _setTheme() {
         // Set the theme
-        this._theme = Themes.getTheme(this.themeName, new Config(this.scale, this.textColor));
+        this._theme = Themes.getTheme(this.themeName, new Config(this.use24H, this.scale, this.textColor));
 
         // Define the desklet container
         let deskletContainer = new St.BoxLayout({ vertical: true,style_class: "desklet" });
@@ -95,7 +96,8 @@ Timelet.prototype = {
         if (locale) {
             // convert $LANG from format "en_GB.UTF-8" to "en-GB"
             locale = GLib.getenv("LANG").replace(/_/g, "-").replace(/\..+/, "");
-        } else {
+        } 
+        if (!locale || locale === "C") {
             // fallback locale
             locale = "en-US";
         }
@@ -107,7 +109,8 @@ Timelet.prototype = {
         if (locale) {
             // convert $LANG from format "en_GB.UTF-8" to "en-GB"
             locale = GLib.getenv("LANG").replace(/_/g, "-").replace(/\..+/, "");
-        } else {
+        }
+        if (!locale || locale === "C") {
             // fallback locale
             locale = "en-US";
         }

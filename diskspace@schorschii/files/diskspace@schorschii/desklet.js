@@ -111,10 +111,10 @@ MyDesklet.prototype = {
 		let percentString = "⛔️";
 		let avail = 0;
 		let use = 0;
-		let size = -1;
+		let size = 0;
 
 		// get values from command
-		if(type == "ram") {
+		if(type == "ram" || type == "swap") {
 
 			let subprocess = new Gio.Subprocess({
 				argv: ['/usr/bin/free', '--bytes'],
@@ -124,37 +124,12 @@ MyDesklet.prototype = {
 			subprocess.wait_async(null, (sourceObject, res) => {
 				let [, stdOut, stdErr] = sourceObject.communicate_utf8(null, null);
 				//global.log(stdOut); global.log(stdErr); // debug
-				let fslines = stdOut.split(/\r?\n/); // get second line with ram information
-				if(stdErr == "" && fslines.length > 1) {
-					let fsvalues = fslines[1].split(/\s+/); // separate space-separated values from line
-					if(fsvalues.length > 5) {
-						// https://stackoverflow.com/questions/30772369/linux-free-m-total-used-and-free-memory-values-dont-add-up
-						avail = parseInt(fsvalues[3]) + parseInt(fsvalues[5]);
-						use = parseInt(fsvalues[2]);
-						size = use + avail;
-						percentString = Math.round(use * 100 / size) + "%";
-					}
-				}
-				this.redraw(type, fs, avail, use, size, percentString);
-			});
-
-		} else if(type == "swap") {
-
-			let subprocess = new Gio.Subprocess({
-				argv: ['/usr/bin/free', '--bytes'],
-				flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
-			});
-			subprocess.init(null);
-			subprocess.wait_async(null, (sourceObject, res) => {
-				let [, stdOut, stdErr] = sourceObject.communicate_utf8(null, null);
-				//global.log(stdOut); global.log(stdErr); // debug
-				let fslines = stdOut.split(/\r?\n/); // get third line with swap information
-				if(stdErr == "" && fslines.length > 2) {
-					let fsvalues = fslines[2].split(/\s+/); // separate space-separated values from line
-					if(fsvalues.length > 3) {
-						avail = parseInt(fsvalues[3]);
-						use = parseInt(fsvalues[2]);
-						size = use + avail;
+				if(stdErr == "") {
+					let res = this.parseMem(stdOut, type);
+					avail = res.availMem;
+					use = res.usedMem;
+					size = use + avail;
+					if(size > 0) {
 						percentString = Math.round(use * 100 / size) + "%";
 					}
 				}
@@ -339,6 +314,49 @@ MyDesklet.prototype = {
 					   + "color: " + this.text_color + ";";
 
 		//global.log("Redraw Done"); // debug
+	},
+
+	parseMem: function(output, type = "ram") {
+		const tmpColumns = 2;
+		const colUsedMem = 2;
+		const colFreeMem = 3;
+		const colCacheMem = 5;
+
+		let usedMem = 0;
+		let availMem = 0;
+		
+		let row = 1; // ram
+		if(type != "ram" && type != "swap") {
+			return {availMem, usedMem};
+		}
+		if(type == "swap") {
+			row = 2;
+		}
+
+		let lines = output.split(/\r?\n/);
+		if(lines.length > row) {
+			let tmp = lines[row].split(":");
+			if(tmp.length < tmpColumns) {
+				return {availMem, usedMem};
+			}
+
+			// trim starting whitespaces
+			tmp[tmpColumns - 1] = tmp[tmpColumns - 1].trimStart();
+			let values = tmp[tmpColumns - 1].split(/\s+/);
+			if(values.length < colFreeMem) {
+				return {availMem, usedMem};
+			}
+
+			let a = parseInt(values[colFreeMem - 1]);
+			if(values.length >= colCacheMem) {
+				a += parseInt(values[colCacheMem - 1]);
+			}
+
+			usedMem = parseInt(values[colUsedMem - 1]);
+			availMem = a;
+		}
+
+		return {availMem, usedMem};
 	},
 
 	niceSize: function(value) {

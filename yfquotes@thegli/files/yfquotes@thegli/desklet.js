@@ -29,124 +29,341 @@ const Gettext = imports.gettext;
 
 const UUID = "yfquotes@thegli";
 const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
+const IS_SOUP_2 = Soup.MAJOR_VERSION === 2;
+
+const YF_COOKIE_URL = "https://finance.yahoo.com/quote/%5EGSPC/options";
+const YF_CONSENT_URL = "https://consent.yahoo.com/v2/collectConsent";
+const YF_CRUMB_URL = "https://query2.finance.yahoo.com/v1/test/getcrumb";
+const YF_QUOTE_PAGE_URL = "https://finance.yahoo.com/quote/";
+
+const ACCEPT_HEADER = "Accept";
+const ACCEPT_VALUE_COOKIE = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+const ACCEPT_VALUE_CRUMB = "*/*";
+const ACCEPT_ENCODING_HEADER = "Accept-Encoding";
+const ACCEPT_ENCODING_VALUE = "gzip, deflate";
+const USER_AGENT_HEADER = "User-Agent";
+const FORM_URLENCODED_VALUE = "application/x-www-form-urlencoded";
+
+const AUTH_COOKIE = "A1";
+const CONSENT_COOKIE = "GUCS";
+
 const ABSENT = "N/A";
-const YF_PAGE = "https://finance.yahoo.com/quote/";
+const ERROR_RESPONSE_BEGIN = "{\"quoteResponse\":{\"result\":[],\"error\":\"";
+const ERROR_RESPONSE_END = "\"}}";
+const LOG_PREFIX = UUID + " - ";
 
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
 let _httpSession;
-if (Soup.MAJOR_VERSION == 2) {
+if (IS_SOUP_2) {
     _httpSession = new Soup.SessionAsync();
     Soup.Session.prototype.add_feature.call(_httpSession, new Soup.ProxyResolverDefault());
-} else { //version 3
+    Soup.Session.prototype.add_feature.call(_httpSession, new Soup.ContentDecoder());
+} else { // assume version 3
     _httpSession = new Soup.Session();
 }
+_httpSession.timeout = 10;
+_httpSession.idle_timeout = 10;
+
+const _cookieJar = new Soup.CookieJar();
+Soup.Session.prototype.add_feature.call(_httpSession, _cookieJar);
+
+let _crumb = null;
 
 function _(str) {
     return Gettext.dgettext(UUID, str);
 }
 
-let YahooFinanceQuoteUtils = function () {};
+function logInfo(msg) {
+    global.log(LOG_PREFIX + msg);
+}
+
+function logWarning(msg) {
+    global.logWarning(LOG_PREFIX + msg);
+}
+
+function logError(msg) {
+    global.logError(LOG_PREFIX + msg);
+}
+
+let YahooFinanceQuoteUtils = function() { };
 
 YahooFinanceQuoteUtils.prototype = {
-    existsProperty : function(object, property) {
+
+    existsProperty: function(object, property) {
         return object.hasOwnProperty(property)
             && typeof object[property] !== "undefined"
             && object[property] !== null;
     },
 
-    determineQuoteName : function (quote, useLongName) {
+    determineQuoteName: function(quote, useLongName) {
         if (useLongName && this.existsProperty(quote, "longName")) {
             return quote.longName;
         } else if (this.existsProperty(quote, "shortName")) {
             return quote.shortName;
         }
         return ABSENT;
+    },
+
+    isOkStatus: function(soupMessage) {
+        if (soupMessage) {
+            if (IS_SOUP_2) {
+                return soupMessage.status_code === Soup.KnownStatusCode.OK;
+            } else {
+                return soupMessage.get_status() === Soup.Status.OK;
+            }
+        }
+        return false;
+    },
+
+    getMessageStatusInfo: function(soupMessage) {
+        if (soupMessage) {
+            if (IS_SOUP_2) {
+                return soupMessage.status_code + " " + soupMessage.reason_phrase;
+            } else {
+                return soupMessage.get_status() + " " + soupMessage.get_reason_phrase();
+            }
+        }
+        return "no status available";
     }
 };
 
-let YahooFinanceQuoteReader = function () {
-};
+let YahooFinanceQuoteReader = function() { };
 
 YahooFinanceQuoteReader.prototype = {
-    constructor : YahooFinanceQuoteReader,
-    yahooQueryBaseUrl : "https://query1.finance.yahoo.com/v7/finance/quote?symbols=",
-    
-    getAsyncResponse : function(quoteSymbols, callback) {
-        const requestUrl = this.createYahooQueryUrl(quoteSymbols);
-        const errorBegin="{\"quoteResponse\":{\"result\":[],\"error\":\"";
-        const errorEnd = "\"}}";
-        
-        let here = this;
-        let message = Soup.Message.new("GET", requestUrl);
-        _httpSession.timeout = 10;
-        _httpSession.idle_timeout = 10;
-        if (Soup.MAJOR_VERSION === 2) {
-            _httpSession.queue_message(message, function (session, message) {
-                if( message.status_code === 200) {
+    constructor: YahooFinanceQuoteReader,
+    quoteUtils: new YahooFinanceQuoteUtils(),
+
+    getCookie: function(customUserAgent, callback) {
+        const _that = this;
+        const message = Soup.Message.new("GET", YF_COOKIE_URL);
+
+        if (IS_SOUP_2) {
+            message.request_headers.append(ACCEPT_HEADER, ACCEPT_VALUE_COOKIE);
+            message.request_headers.append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
+            if (customUserAgent != null) {
+                message.request_headers.append(USER_AGENT_HEADER, customUserAgent);
+            }
+
+            _httpSession.queue_message(message, function(session, message) {
+                // logInfo("Soup2 Cookie response: " + _that.quoteUtils.getMessageStatusInfo(message));
+                if (_that.quoteUtils.isOkStatus(message)) {
                     try {
-                        callback.call(here, message.response_body.data.toString());
-                    } catch(e) {
-                        global.logError(e);
+                        callback.call(_that, message, message.response_body.data);
+                    } catch (e) {
+                        logError(e);
                     }
                 } else {
-                    global.logWarning("Error retrieving url " + requestUrl + ". Status: " + message.status_code + ": " + message.reason_phrase);
-                    callback.call(here, errorBegin + _("Yahoo Finance service not available!") + errorEnd);
+                    logWarning("Error retrieving auth page! Status: " + _that.quoteUtils.getMessageStatusInfo(message));
+                    callback.call(_that, message, null);
                 }
             });
-        } else { //version 3
-            _httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, function (session, result) {
-                if( message.get_status() === 200) {
+        } else {
+            message.get_request_headers().append(ACCEPT_HEADER, ACCEPT_VALUE_COOKIE);
+            message.get_request_headers().append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
+            if (customUserAgent != null) {
+                message.get_request_headers().append(USER_AGENT_HEADER, customUserAgent);
+            }
+
+            _httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, function(session, result) {
+                // logInfo("Soup3 Cookie response: " + _that.quoteUtils.getMessageStatusInfo(message));
+                if (_that.quoteUtils.isOkStatus(message)) {
                     try {
-                        const bytes = _httpSession.send_and_read_finish(result);
-                        callback.call(here, ByteArray.toString(bytes.get_data()));
-                    } catch(e) {
-                        global.logError(e);
+                        const bytes = session.send_and_read_finish(result);
+                        callback.call(_that, message, ByteArray.toString(bytes.get_data()));
+                    } catch (e) {
+                        logError(e);
                     }
                 } else {
-                    global.logWarning("Error retrieving url " + requestUrl + ". Status: " + message.get_status() + ": " + message.get_reason_phrase());
-                    callback.call(here, errorBegin + _("Yahoo Finance service not available!") + errorEnd);
+                    logWarning("Error retrieving auth page! Status: " + _that.quoteUtils.getMessageStatusInfo(message));
+                    callback.call(_that, message, null);
                 }
             });
         }
     },
-    
-    createYahooQueryUrl : function (quoteSymbols) {
-        return this.yahooQueryBaseUrl + quoteSymbols.join(",");
+
+    postConsent: function(customUserAgent, formData, callback) {
+        const _that = this;
+        const message = Soup.Message.new("POST", YF_CONSENT_URL);
+
+        if (IS_SOUP_2) {
+            message.request_headers.append(ACCEPT_HEADER, ACCEPT_VALUE_COOKIE);
+            message.request_headers.append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
+            if (customUserAgent != null) {
+                message.request_headers.append(USER_AGENT_HEADER, customUserAgent);
+            }
+            message.set_request(FORM_URLENCODED_VALUE, Soup.MemoryUse.COPY, formData);
+
+            _httpSession.queue_message(message, function(session, message) {
+                // logInfo("Soup2 Consent response: " + _that.quoteUtils.getMessageStatusInfo(message));
+                if (_that.quoteUtils.isOkStatus(message)) {
+                    try {
+                        callback.call(_that, message);
+                    } catch (e) {
+                        logError(e);
+                    }
+                } else {
+                    logWarning("Error sending consent! Status: " + _that.quoteUtils.getMessageStatusInfo(message));
+                    callback.call(_that, message);
+                }
+            });
+        } else {
+            message.get_request_headers().append(ACCEPT_HEADER, ACCEPT_VALUE_CRUMB);
+            message.get_request_headers().append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
+            if (customUserAgent != null) {
+                message.get_request_headers().append(USER_AGENT_HEADER, customUserAgent);
+            }
+            message.set_request_body_from_bytes(FORM_URLENCODED_VALUE, GLib.Bytes.new(formData));
+
+            _httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, function(session, result) {
+                // logInfo("Soup3 Consent response: " + _that.quoteUtils.getMessageStatusInfo(message));
+                if (_that.quoteUtils.isOkStatus(message)) {
+                    try {
+                        callback.call(_that, message);
+                    } catch (e) {
+                        logError(e);
+                    }
+                } else {
+                    logWarning("Error sending consent! Status: " + _that.quoteUtils.getMessageStatusInfo(message));
+                    callback.call(_that, message);
+                }
+            });
+        }
+    },
+
+    getCrumb: function(customUserAgent, callback) {
+        const _that = this;
+        const message = Soup.Message.new("GET", YF_CRUMB_URL);
+
+        if (IS_SOUP_2) {
+            message.request_headers.append(ACCEPT_HEADER, ACCEPT_VALUE_CRUMB);
+            message.request_headers.append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
+            if (customUserAgent != null) {
+                message.request_headers.append(USER_AGENT_HEADER, customUserAgent);
+            }
+
+            _httpSession.queue_message(message, function(session, message) {
+                // logInfo("Soup2 Crumb response: " + _that.quoteUtils.getMessageStatusInfo(message));
+                if (_that.quoteUtils.isOkStatus(message)) {
+                    try {
+                        callback.call(_that, message, message.response_body);
+                    } catch (e) {
+                        logError(e);
+                    }
+                } else {
+                    logWarning("Error retrieving crumb! Status: " + _that.quoteUtils.getMessageStatusInfo(message));
+                    callback.call(_that, message, null);
+                }
+            });
+        } else {
+            message.get_request_headers().append(ACCEPT_HEADER, ACCEPT_VALUE_CRUMB);
+            message.get_request_headers().append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
+            if (customUserAgent != null) {
+                message.get_request_headers().append(USER_AGENT_HEADER, customUserAgent);
+            }
+
+            _httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, function(session, result) {
+                // logInfo("Soup3 Crumb response: " + _that.quoteUtils.getMessageStatusInfo(message));
+                if (_that.quoteUtils.isOkStatus(message)) {
+                    try {
+                        const bytes = session.send_and_read_finish(result);
+                        callback.call(_that, message, ByteArray.toString(bytes.get_data()));
+                    } catch (e) {
+                        logError(e);
+                    }
+                } else {
+                    logWarning("Error retrieving crumb! Status: " + _that.quoteUtils.getMessageStatusInfo(message));
+                    callback.call(_that, message, null);
+                }
+            });
+        }
+    },
+
+    getFinanceData: function(quoteSymbols, customUserAgent, callback) {
+        const _that = this;
+        const requestUrl = this.createYahooQueryUrl(quoteSymbols);
+        const message = Soup.Message.new("GET", requestUrl);
+
+        if (IS_SOUP_2) {
+            if (customUserAgent != null) {
+                message.request_headers.append(USER_AGENT_HEADER, customUserAgent);
+            }
+
+            _httpSession.queue_message(message, function(session, message) {
+                // logInfo("Soup2 Quotes response: " + _that.quoteUtils.getMessageStatusInfo(message));
+                if (_that.quoteUtils.isOkStatus(message)) {
+                    try {
+                        callback.call(_that, message.response_body.data.toString());
+                    } catch (e) {
+                        logError(e);
+                    }
+                } else {
+                    logWarning("Error retrieving url " + requestUrl + ". Status: " + _that.quoteUtils.getMessageStatusInfo(message));
+                    callback.call(_that, _that.buildErrorResponse(_("Yahoo Finance service not available!\\nStatus: ") + _that.quoteUtils.getMessageStatusInfo(message)));
+                }
+            });
+        } else {
+            if (customUserAgent != null) {
+                message.get_request_headers().append(USER_AGENT_HEADER, customUserAgent);
+            }
+
+            _httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, function(session, result) {
+                // logInfo("Soup3 Quotes response: " + _that.quoteUtils.getMessageStatusInfo(message));
+                if (_that.quoteUtils.isOkStatus(message)) {
+                    try {
+                        const bytes = session.send_and_read_finish(result);
+                        callback.call(_that, ByteArray.toString(bytes.get_data()));
+                    } catch (e) {
+                        logError(e);
+                    }
+                } else {
+                    logWarning("Error retrieving url " + requestUrl + ". Status: " + _that.quoteUtils.getMessageStatusInfo(message));
+                    callback.call(_that, _that.buildErrorResponse(_("Yahoo Finance service not available!\\nStatus: ") + _that.quoteUtils.getMessageStatusInfo(message)));
+                }
+            });
+        }
+    },
+
+    createYahooQueryUrl: function(quoteSymbols) {
+        return "https://query1.finance.yahoo.com/v7/finance/quote?symbols=" + quoteSymbols.join(",") + "&crumb=" + _crumb;
+    },
+
+    buildErrorResponse: function(errorMsg) {
+        return ERROR_RESPONSE_BEGIN + errorMsg + ERROR_RESPONSE_END;
     }
 };
 
-let QuotesTable = function () {
+let QuotesTable = function() {
     this.el = new St.Table({
-        homogeneous : false
+        homogeneous: false
     });
 };
 
 QuotesTable.prototype = {
-    constructor : QuotesTable,
+    constructor: QuotesTable,
     quoteUtils: new YahooFinanceQuoteUtils(),
-    currencyCodeToSymbolMap : {
-        USD : "$",
-        EUR : "\u20AC",
-        JPY : "\u00A5",
-        GBP : "\u00A3",
-        INR : "\u20A8",
-        UAH : "\u20B4",
-        RUB : "\u20BD"
+    currencyCodeToSymbolMap: {
+        USD: "$",
+        EUR: "\u20AC",
+        JPY: "\u00A5",
+        GBP: "\u00A3",
+        INR: "\u20A8",
+        UAH: "\u20B4",
+        RUB: "\u20BD"
     },
-    quoteChangeSymbolMap : {
-        UP : "\u25B2",
-        DOWN : "\u25BC",
-        EQUALS : "\u25B6"
+    quoteChangeSymbolMap: {
+        UP: "\u25B2",
+        DOWN: "\u25BC",
+        EQUALS: "\u25B6"
     },
 
-    render : function (quotes, settings) {
+    render: function(quotes, settings) {
         for (let rowIndex = 0, l = quotes.length; rowIndex < l; rowIndex++) {
             this.renderTableRow(quotes[rowIndex], rowIndex, settings);
         }
     },
 
-    renderTableRow : function (quote, rowIndex, settings) {
+    renderTableRow: function(quote, rowIndex, settings) {
         let cellContents = [];
 
         if (settings.changeIcon) {
@@ -157,8 +374,9 @@ QuotesTable.prototype = {
             cellContents.push(this.createQuoteLabel(this.quoteUtils.determineQuoteName(quote, settings.useLongName),
                 quote.symbol, settings.linkQuote, settings.quoteNameMaxLength));
         }
-        if (settings.quoteSymbol) {cellContents.push(this.createQuoteLabel(quote.symbol,
-            quote.symbol, settings.linkSymbol, settings.quoteSymbolMaxLength));
+        if (settings.quoteSymbol) {
+            cellContents.push(this.createQuoteLabel(quote.symbol,
+                quote.symbol, settings.linkSymbol, settings.quoteSymbolMaxLength));
         }
         if (settings.marketPrice) {
             cellContents.push(this.createMarketPriceLabel(quote, settings.currencySymbol, settings.decimalPlaces,
@@ -179,25 +397,25 @@ QuotesTable.prototype = {
 
         for (let columnIndex = 0; columnIndex < cellContents.length; ++columnIndex) {
             this.el.add(cellContents[columnIndex], {
-                row : rowIndex,
-                col : columnIndex
+                row: rowIndex,
+                col: columnIndex
             });
         }
     },
 
-    createQuoteLabel : function (labelText, quoteSymbol, addLink, labelMaxLength) {
-        const label =  new St.Label({
-            text : labelText,
-            style_class : "quotes-label",
-            reactive : addLink ? true : false,
-            style : "width:" + (labelMaxLength/2 + 2) + "em;"
+    createQuoteLabel: function(labelText, quoteSymbol, addLink, labelMaxLength) {
+        const label = new St.Label({
+            text: labelText,
+            style_class: "quotes-label",
+            reactive: addLink ? true : false,
+            style: "width:" + (labelMaxLength / 2 + 2) + "em;"
         });
 
         if (addLink) {
             const symbolButton = new St.Button();
             symbolButton.add_actor(label);
             symbolButton.connect("clicked", Lang.bind(this, function() {
-                Gio.app_info_launch_default_for_uri(YF_PAGE + quoteSymbol, global.create_app_launch_context());
+                Gio.app_info_launch_default_for_uri(YF_QUOTE_PAGE_URL + quoteSymbol, global.create_app_launch_context());
             }));
             return symbolButton;
         } else {
@@ -205,20 +423,20 @@ QuotesTable.prototype = {
         }
     },
 
-    createMarketPriceLabel : function (quote, withCurrencySymbol, decimalPlaces, strictRounding) {
+    createMarketPriceLabel: function(quote, withCurrencySymbol, decimalPlaces, strictRounding) {
         let currencySymbol = "";
         if (withCurrencySymbol && this.quoteUtils.existsProperty(quote, "currency")) {
             currencySymbol = this.currencyCodeToSymbolMap[quote.currency] || quote.currency;
         }
         return new St.Label({
-            text : currencySymbol + (this.quoteUtils.existsProperty(quote, "regularMarketPrice")
+            text: currencySymbol + (this.quoteUtils.existsProperty(quote, "regularMarketPrice")
                 ? this.roundAmount(quote.regularMarketPrice, decimalPlaces, strictRounding)
                 : ABSENT),
-            style_class : "quotes-number"
+            style_class: "quotes-number"
         });
     },
 
-    createAbsoluteChangeLabel : function (quote, withCurrencySymbol, decimalPlaces, strictRounding) {
+    createAbsoluteChangeLabel: function(quote, withCurrencySymbol, decimalPlaces, strictRounding) {
         let absoluteChangeText = "";
         if (this.quoteUtils.existsProperty(quote, "regularMarketChange")) {
             let absoluteChange = this.roundAmount(quote.regularMarketChange, decimalPlaces, strictRounding);
@@ -231,12 +449,12 @@ QuotesTable.prototype = {
         }
 
         return new St.Label({
-            text : absoluteChangeText,
-            style_class : "quotes-number"
+            text: absoluteChangeText,
+            style_class: "quotes-number"
         });
     },
 
-    createPercentChangeIcon : function (quote, uptrendChangeColor, downtrendChangeColor, unchangedTrendColor) {
+    createPercentChangeIcon: function(quote, uptrendChangeColor, downtrendChangeColor, unchangedTrendColor) {
         const percentChange = this.quoteUtils.existsProperty(quote, "regularMarketChangePercent")
             ? parseFloat(quote.regularMarketChangePercent)
             : 0.00;
@@ -252,12 +470,12 @@ QuotesTable.prototype = {
         }
 
         return new St.Label({
-            text : iconText,
-            style : "color: " + iconColor + ";"
+            text: iconText,
+            style: "color: " + iconColor + ";"
         });
     },
 
-    createPercentChangeLabel : function (quote, useTrendColors, uptrendChangeColor, downtrendChangeColor, unchangedTrendColor, strictRounding) {
+    createPercentChangeLabel: function(quote, useTrendColors, uptrendChangeColor, downtrendChangeColor, unchangedTrendColor, strictRounding) {
         let labelColor = "";
         if (useTrendColors && this.quoteUtils.existsProperty(quote, "regularMarketChangePercent")) {
             const percentageChange = parseFloat(quote.regularMarketChangePercent);
@@ -271,16 +489,16 @@ QuotesTable.prototype = {
         }
 
         return new St.Label({
-            text : this.quoteUtils.existsProperty(quote, "regularMarketChangePercent")
+            text: this.quoteUtils.existsProperty(quote, "regularMarketChangePercent")
                 ? (this.roundAmount(quote.regularMarketChangePercent, 2, strictRounding) + "%")
                 : ABSENT,
-            style_class : "quotes-number",
-            style : labelColor ? "color: " + labelColor + ";" : ""
+            style_class: "quotes-number",
+            style: labelColor ? "color: " + labelColor + ";" : ""
         });
     },
 
-    roundAmount : function (amount, maxDecimals, strictRounding) {
-        if (maxDecimals > -1)  {
+    roundAmount: function(amount, maxDecimals, strictRounding) {
+        if (maxDecimals > -1) {
             if (strictRounding) {
                 return amount.toFixed(maxDecimals);
             }
@@ -292,38 +510,38 @@ QuotesTable.prototype = {
         return amount;
     },
 
-    isToday : function (date) {
+    isToday: function(date) {
         const today = new Date();
         return date.getFullYear() === today.getFullYear()
             && date.getMonth() === today.getMonth()
             && date.getDate() === today.getDate();
     },
 
-    formatTime : function (unixTimestamp) {
+    formatTime: function(unixTimestamp) {
         const ts = new Date(unixTimestamp * 1000);
         let tsFormat = "";
 
         if (this.isToday(ts)) {
             tsFormat = ts.toLocaleTimeString(undefined, {
-                hour : "numeric",
-                minute : "numeric"
+                hour: "numeric",
+                minute: "numeric"
             });
         } else {
             tsFormat = ts.toLocaleDateString(undefined, {
-                month : "numeric",
-                day : "numeric"
+                month: "numeric",
+                day: "numeric"
             });
         }
 
         return tsFormat;
     },
 
-    createTradeTimeLabel : function (quote) {
+    createTradeTimeLabel: function(quote) {
         return new St.Label({
-            text : this.quoteUtils.existsProperty(quote, "regularMarketTime")
+            text: this.quoteUtils.existsProperty(quote, "regularMarketTime")
                 ? this.formatTime(quote.regularMarketTime)
                 : ABSENT,
-            style_class : "quotes-number"
+            style_class: "quotes-number"
         });
     }
 };
@@ -334,8 +552,8 @@ function StockQuoteDesklet(metadata, id) {
 }
 
 StockQuoteDesklet.prototype = {
-    __proto__ : Desklet.Desklet.prototype,
-    init : function (metadata, id) {
+    __proto__: Desklet.Desklet.prototype,
+    init: function(metadata, id) {
         this.metadata = metadata;
         this.id = id;
         this.quoteReader = new YahooFinanceQuoteReader();
@@ -344,7 +562,7 @@ StockQuoteDesklet.prototype = {
         this.onUpdate();
     },
 
-    loadSettings : function () {
+    loadSettings: function() {
         this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, this.id);
         this.settings.bindProperty(Settings.BindingDirection.IN, "height", "height",
             this.onDisplayChanged, null);
@@ -355,6 +573,10 @@ StockQuoteDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "delayMinutes", "delayMinutes",
             this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showLastUpdateTimestamp", "showLastUpdateTimestamp",
+            this.onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "sendCustomUserAgent", "sendCustomUserAgent",
+            this.onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "customUserAgent", "customUserAgent",
             this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "roundNumbers", "roundNumbers",
             this.onSettingsChanged, null);
@@ -400,97 +622,191 @@ StockQuoteDesklet.prototype = {
             this.onSettingsChanged, null);
     },
 
-    getQuoteDisplaySettings : function (quotes) {
+    getQuoteDisplaySettings: function(quotes) {
         return {
-            "changeIcon" : this.showChangeIcon,
-            "quoteName" : this.showQuoteName,
-            "useLongName" : this.useLongQuoteName,
-            "linkQuote" : this.linkQuoteName,
-            "quoteSymbol" : this.showQuoteSymbol,
-            "linkSymbol" : this.linkQuoteSymbol,
-            "marketPrice" : this.showMarketPrice,
-            "currencySymbol" : this.showCurrencyCode,
+            "changeIcon": this.showChangeIcon,
+            "quoteName": this.showQuoteName,
+            "useLongName": this.useLongQuoteName,
+            "linkQuote": this.linkQuoteName,
+            "quoteSymbol": this.showQuoteSymbol,
+            "linkSymbol": this.linkQuoteSymbol,
+            "marketPrice": this.showMarketPrice,
+            "currencySymbol": this.showCurrencyCode,
             "absoluteChange": this.showAbsoluteChange,
-            "percentChange" : this.showPercentChange,
-            "colorPercentChange" : this.colorPercentChange,
-            "tradeTime" : this.showTradeTime,
-            "decimalPlaces" : this.roundNumbers ? this.decimalPlaces : -1,
-            "strictRounding" : this.roundNumbers && this.strictRounding,
-            "uptrendChangeColor" : this.uptrendChangeColor,
-            "downtrendChangeColor" : this.downtrendChangeColor,
-            "unchangedTrendColor" : this.unchangedTrendColor,
-            "quoteSymbolMaxLength" : Math.max.apply(Math, quotes.map((quote) => quote.symbol.length)),
-            "quoteNameMaxLength" : Math.max.apply(Math, quotes.map((quote) => this.quoteUtils.determineQuoteName(quote, this.useLongQuoteName).length))
+            "percentChange": this.showPercentChange,
+            "colorPercentChange": this.colorPercentChange,
+            "tradeTime": this.showTradeTime,
+            "decimalPlaces": this.roundNumbers ? this.decimalPlaces : -1,
+            "strictRounding": this.roundNumbers && this.strictRounding,
+            "uptrendChangeColor": this.uptrendChangeColor,
+            "downtrendChangeColor": this.downtrendChangeColor,
+            "unchangedTrendColor": this.unchangedTrendColor,
+            "quoteSymbolMaxLength": Math.max.apply(Math, quotes.map((quote) => quote.symbol.length)),
+            "quoteNameMaxLength": Math.max.apply(Math, quotes.map((quote) => this.quoteUtils.determineQuoteName(quote, this.useLongQuoteName).length))
         };
     },
 
-    formatCurrentTimestamp : function () {
+    formatCurrentTimestamp: function() {
         const now = new Date();
         return now.toLocaleTimeString(undefined, {
-            hour : "numeric",
-            minute : "numeric",
-            second : "numeric"
+            hour: "numeric",
+            minute: "numeric",
+            second: "numeric"
         });
     },
 
-    createLastUpdateLabel : function () {
+    createLastUpdateLabel: function() {
         return new St.Label({
-            text : _("Updated at ") + this.formatCurrentTimestamp(),
-            style_class : "quotes-last-update"
+            text: _("Updated at ") + this.formatCurrentTimestamp(),
+            style_class: "quotes-last-update"
         });
     },
 
-    createErrorLabel : function (errorMsg) {
+    createErrorLabel: function(errorMsg) {
         return new St.Label({
-            text : _("Error: ") + errorMsg,
-            style_class : "error-label"
+            text: _("Error: ") + errorMsg,
+            style_class: "error-label"
         });
     },
 
-    onDisplayChanged : function () {
+    onDisplayChanged: function() {
         this.mainBox.set_size(this.width, this.height);
         this.setTransparency();
     },
 
-    setTransparency:function() {
+    setTransparency: function() {
         this.mainBox.style = "background-color: rgba(0, 0, 0, " + this.transparency + ")";
     },
 
-    onSettingsChanged : function () {
+    onSettingsChanged: function() {
         this.unrender();
         this.removeUpdateTimer();
         this.onUpdate();
     },
 
-    on_desklet_removed : function () {
+    on_desklet_removed: function() {
         this.unrender();
         this.removeUpdateTimer();
     },
-    
-    onUpdate : function () {
+
+    onUpdate: function() {
         const quoteSymbols = this.quoteSymbolsText.split("\n");
+        const customUserAgent = this.sendCustomUserAgent ? this.customUserAgent : null;
+
         try {
-            const _that = this;
-            this.quoteReader.getAsyncResponse(quoteSymbols, function(response) {
-                let parsedResponse = JSON.parse(response);
-                _that.render([parsedResponse.quoteResponse.result, parsedResponse.quoteResponse.error]);
-                _that.setUpdateTimer();
-            });
+            if (_crumb) {
+                this.renderFinanceData(quoteSymbols, customUserAgent);
+            } else {
+                this.fetchCookieAndRender(quoteSymbols, customUserAgent);
+            }
         } catch (err) {
             this.onError(quoteSymbols, err);
         }
     },
 
-    setUpdateTimer : function () {
+    existsCookie: function(name) {
+        for (let cookie of _cookieJar.all_cookies()) {
+            let cookieName = IS_SOUP_2 ? cookie.name : cookie.get_name();
+            if (cookieName === name) {
+                return true;
+            }
+        }
+
+        return false;
+    },
+
+    fetchCookieAndRender: function(quoteSymbols, customUserAgent) {
+        const _that = this;
+
+        this.quoteReader.getCookie(customUserAgent, function(authResponseMessage, responseBody) {
+            if (_that.existsCookie(AUTH_COOKIE)) {
+                _that.fetchCrumbAndRender(quoteSymbols, customUserAgent);
+            } else if (_that.existsCookie(CONSENT_COOKIE)) {
+                _that.processConsentAndRender(authResponseMessage, responseBody, quoteSymbols, customUserAgent);
+            } else {
+                logWarning("Failed to retrieve auth cookie!");
+                _that.renderErrorMessage(_("Failed to retrieve authorization parameter! Unable to fetch quotes data.\\nStatus: ") + _that.quoteUtils.getMessageStatusInfo(authResponseMessage));
+            }
+        });
+    },
+
+    processConsentAndRender: function(authResponseMessage, consentPage, quoteSymbols, customUserAgent) {
+        const _that = this;
+        const formElementRegex = /(<form method="post")(.*)(action="">)/;
+        const formInputRegex = /(<input type="hidden" name=")(.*?)(" value=")(.*?)(">)/g;
+
+        let consentFormFields = "";
+        if (formElementRegex.test(consentPage)) {
+            let maxFields = 0;
+            let hiddenField;
+            while (maxFields < 20 && (hiddenField = formInputRegex.exec(consentPage)) !== null) {
+                consentFormFields = consentFormFields + hiddenField[2] + "=" + hiddenField[4] + "&";
+                maxFields++;
+            }
+            consentFormFields += "reject=reject";
+
+            this.quoteReader.postConsent(customUserAgent, consentFormFields, function(consentResponseMessage) {
+                if (_that.existsCookie(AUTH_COOKIE)) {
+                    _that.fetchCrumbAndRender(quoteSymbols, customUserAgent);
+                } else {
+                    logWarning("Failed to retrieve auth cookie from consent form.");
+                    _that.renderErrorMessage(_("Consent processing failed! Unable to fetch quotes data.\\nStatus: ") + _that.quoteUtils.getMessageStatusInfo(consentResponseMessage));
+                }
+            });
+        } else {
+            logWarning("Consent form not detected.");
+            this.renderErrorMessage(_("Consent processing not completed! Unable to fetch quotes data.\\nStatus: ") + _that.quoteUtils.getMessageStatusInfo(authResponseMessage));
+        }
+    },
+
+    fetchCrumbAndRender: function(quoteSymbols, customUserAgent) {
+        const _that = this;
+
+        this.quoteReader.getCrumb(customUserAgent, function(crumbResponseMessage, responseBody) {
+            if (responseBody) {
+                if (typeof responseBody.data === "string" && responseBody.data.trim() !== "") {
+                    _crumb = responseBody.data;
+                } else if (typeof responseBody === "string" && responseBody.trim() !== "") {
+                    _crumb = responseBody;
+                }
+            }
+
+            if (_crumb) {
+                logInfo("Successfully retrieved all authorization parameters.");
+                _that.renderFinanceData(quoteSymbols, customUserAgent);
+            } else {
+                logWarning("Failed to retrieve crumb!");
+                _that.renderErrorMessage(_("Failed to retrieve authorization crumb! Unable to fetch quotes data.\\nStatus: ") + _that.quoteUtils.getMessageStatusInfo(crumbResponseMessage));
+            }
+        });
+    },
+
+    renderFinanceData: function(quoteSymbols, customUserAgent) {
+        const _that = this;
+
+        this.quoteReader.getFinanceData(quoteSymbols, customUserAgent, function(response) {
+            let parsedResponse = JSON.parse(response);
+            _that.render([parsedResponse.quoteResponse.result, parsedResponse.quoteResponse.error]);
+            _that.setUpdateTimer();
+        });
+    },
+
+    renderErrorMessage: function(errorMessage) {
+        const errorResponse = JSON.parse(this.quoteReader.buildErrorResponse(errorMessage));
+        this.render([errorResponse.quoteResponse.result, errorResponse.quoteResponse.error]);
+        this.setUpdateTimer();
+    },
+
+    setUpdateTimer: function() {
         this.updateLoop = Mainloop.timeout_add(this.delayMinutes * 60 * 1000, Lang.bind(this, this.onUpdate));
     },
 
-    onError : function (quoteSymbols, err) {
-        global.logError(_("Cannot display quotes information for symbols: ") + quoteSymbols.join(","));
-        global.logError(_("The following error occurred: ") + err);
+    onError: function(quoteSymbols, err) {
+        logError(_("Cannot display quotes information for symbols: ") + quoteSymbols.join(","));
+        logError(_("The following error occurred: ") + err);
     },
 
-    sortByProperty: function (quotes, prop, direction) {
+    sortByProperty: function(quotes, prop, direction) {
         if (quotes.length < 2) {
             return quotes;
         }
@@ -511,9 +827,9 @@ StockQuoteDesklet.prototype = {
         return clone;
     },
 
-    render : function (quotes) {
+    render: function(quotes) {
         const tableContainer = new St.BoxLayout({
-            vertical : true
+            vertical: true
         });
 
         // optional sort
@@ -539,25 +855,25 @@ StockQuoteDesklet.prototype = {
         scrollView.add_actor(tableContainer);
 
         this.mainBox = new St.BoxLayout({
-            vertical : true,
-            width : this.width,
-            height : this.height,
-            style_class : "quotes-reader"
+            vertical: true,
+            width: this.width,
+            height: this.height,
+            style_class: "quotes-reader"
         });
         this.setTransparency();
 
         this.mainBox.add(scrollView, {
-            expand : true
+            expand: true
         });
         this.setContent(this.mainBox);
     },
 
-    unrender : function () {
+    unrender: function() {
         this.mainBox.destroy_all_children();
         this.mainBox.destroy();
     },
 
-    removeUpdateTimer : function () {
+    removeUpdateTimer: function() {
         if (this.updateLoop > 0) {
             Mainloop.source_remove(this.updateLoop);
         }

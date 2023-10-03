@@ -29,6 +29,15 @@
         "description": "Hostname, IP address or HTTP(S)-URL to check",
         "indent": true
     },
+    "interval": {
+        "type": "spinbutton",
+        "default": 5,
+        "min": 1,
+        "max": 900,
+        "step": 1,
+        "units": "seconds",
+        "description": "Time's interval of check"
+    },
     "scale-size": {
         "type": "spinbutton",
         "default": 1,

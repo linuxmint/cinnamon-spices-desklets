@@ -30,8 +30,9 @@ function _(str) {
 /**
  * This class is used to pass user configurations to themes.
  */
-class Config {
-    constructor(scale, textColor) {
+var Config = class Config {
+    constructor(use24H, scale, textColor) {
+        this.use24H = use24H;
         this.scale = scale;
         this.textColor = textColor;
     }
@@ -40,7 +41,7 @@ class Config {
 /**
  * The base Theme class. All themes must extend this class.
  */
-class Theme {
+var Theme = class Theme {
 
     /**
      * Timelet will parse the user input into a Config object and pass it to the theme.
@@ -88,6 +89,15 @@ class Theme {
     formatDateTime(date, locale, options) {
         const dateFormatter = new Intl.DateTimeFormat(locale, options);
         return dateFormatter.format(date);
+    }
+
+    /**
+     * Returns true if user prefers time in 24H format.
+     * 
+     * @returns true if user prefers 24H
+     */
+    is24H() {
+        return this._config.use24H;
     }
 
     /**

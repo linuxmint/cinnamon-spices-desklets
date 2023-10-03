@@ -1,0 +1,86 @@
+# Timelet
+# Copyright (C) 2022 Gobinath
+# This file is distributed under the same license as the Timelet package.
+#
+msgid ""
+msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ro\n"
+"Language-Team: none\n"
+"Last-Translator: Automatically generated\n"
+"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2022-11-12 06:11-0500\n"
+"POT-Creation-Date: 2022-11-12 06:11-0500\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+
+#. metadata.json->name
+#: desklet.js:50
+msgid "Timelet"
+msgstr "Timelet"
+
+#: themes/theme.js:133
+msgid "AM"
+msgstr "AM"
+
+#: themes/theme.js:135
+msgid "Noon"
+msgstr "Prânz"
+
+#: themes/theme.js:137
+msgid "PM"
+msgstr "PM"
+
+#. metadata.json->description
+msgid "A themeable desklet that shows the time"
+msgstr "Un desklet tematizabil care arată ora"
+
+#. settings-schema.json->head0->description
+msgid "Timelet Settings"
+msgstr "Setări Timelet"
+
+#. settings-schema.json->themeName->description
+msgid "Theme"
+msgstr "Tema"
+
+#. settings-schema.json->textColor->description
+msgid "Text color"
+msgstr "Culoarea textului"
+
+#. settings-schema.json->textColor->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Fă clic pe buton pentru a selecta o nouă culoare a textului"
+
+#. settings-schema.json->bgColor->description
+msgid "Background color"
+msgstr "Culoarea de fundal"
+
+#. settings-schema.json->bgColor->tooltip
+msgid "Click the button to select a new background color"
+msgstr "Fă clic pe buton pentru a selecta o nouă culoare de fundal"
+
+#. settings-schema.json->scale->description
+msgid "Scale"
+msgstr "Scară"
+
+#. settings-schema.json->scale->tooltip
+msgid "Change the size of the desklet"
+msgstr "Modifică dimensiunea deskletului"
+
+#. settings-schema.json->transparency->description
+msgid "Background Transparency"
+msgstr "Transparența fundalului"
+
+#. settings-schema.json->transparency->tooltip
+msgid "Set the transparency of the desklet"
+msgstr "Setează transparența deskletului"
+
+#. settings-schema.json->cornerRadius->description
+msgid "Background Corner radius"
+msgstr "Raza colțurilor de fundal"
+
+#. settings-schema.json->cornerRadius->tooltip
+msgid "Radius for rounding the desklet's corners"
+msgstr "Raza pentru rotunjirea colțurilor deskletului"

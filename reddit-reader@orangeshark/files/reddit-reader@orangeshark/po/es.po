@@ -1,0 +1,83 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-27 12:01+0200\n"
+"PO-Revision-Date: 2023-07-20 21:29-0400\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.3.1\n"
+
+#: desklet.js:265
+#, c-format
+msgid "%d point"
+msgid_plural "%d points"
+msgstr[0] "%d punto"
+msgstr[1] "%d puntos"
+
+#: desklet.js:274
+msgid "by"
+msgstr "por"
+
+#: desklet.js:284
+msgid "to"
+msgstr "en"
+
+#: desklet.js:295
+#, c-format
+msgid "%d comment"
+msgid_plural "%d comments"
+msgstr[0] "%d comentario"
+msgstr[1] "%d comentarios"
+
+#. reddit-reader@orangeshark->metadata.json->description
+msgid "A desklet to read subreddits"
+msgstr "Un desklet para leer subreddits"
+
+#. reddit-reader@orangeshark->metadata.json->name
+msgid "reddit reader desklet"
+msgstr "desklet lector de reddit"
+
+#. reddit-reader@orangeshark->settings-schema.json->refreshRate->description
+msgid "Refresh rate:"
+msgstr "Frecuencia de actualización:"
+
+#. reddit-reader@orangeshark->settings-schema.json->refreshRate->units
+msgid "minutes"
+msgstr "minutos"
+
+#. reddit-reader@orangeshark->settings-schema.json->width->description
+msgid "Width:"
+msgstr "Ancho:"
+
+#. reddit-reader@orangeshark->settings-schema.json->width->units
+#. reddit-reader@orangeshark->settings-schema.json->height->units
+msgid "pixels"
+msgstr "píxeles"
+
+#. reddit-reader@orangeshark->settings-schema.json->height->description
+msgid "Height:"
+msgstr "Altura:"
+
+#. reddit-reader@orangeshark->settings-schema.json->subreddit->description
+msgid "Subreddit:"
+msgstr "Subreddit:"
+
+#. reddit-reader@orangeshark->settings-schema.json->subreddit->tooltip
+msgid ""
+"supports multireddits and alterative sorting methods. eg: "
+"TheOnion+NotTheOnion, Linux/new and aww+worldnews/controversial"
+msgstr ""
+"soporta multireddits y métodos de clasificación alternativos. "
+"eg: TheOnion+NotTheOnion, Linux/new y aww+worldnews/"
+"controversial"

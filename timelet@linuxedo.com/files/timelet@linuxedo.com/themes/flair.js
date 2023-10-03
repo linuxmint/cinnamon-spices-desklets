@@ -25,7 +25,7 @@ const Theme = imports.theme.Theme;
 /**
  * Flair theme class.
  */
-class FlairTheme extends Theme {
+var FlairTheme = class FlairTheme extends Theme {
 
     constructor(config) {
         super(config);
@@ -44,14 +44,18 @@ class FlairTheme extends Theme {
         this._timeContainer.add(this._time);
         this._PeriodContainer.add(this._period);
         this._clockContainer.add(this._timeContainer);
-        this._clockContainer.add(this._PeriodContainer);
+        if (!this.is24H()) {
+            this._clockContainer.add(this._PeriodContainer);
+        }
 
         return this._clockContainer;
     }
 
     setDateTime(date, locale) {
-        let time = this.to2Digit(this.to12Hours(date.getHours())) + ":" + this.to2Digit(date.getMinutes());
+        let time = this.to2Digit(this.is24H() ? date.getHours() : this.to12Hours(date.getHours())) + ":" + this.to2Digit(date.getMinutes());
         this._time.set_text(time);
-        this._period.set_text(this.toPeriod(date.getHours()));
+        if (!this.is24H()) {
+            this._period.set_text(this.toPeriod(date.getHours()));
+        }
     }
 }

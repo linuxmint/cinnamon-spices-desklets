@@ -51,6 +51,10 @@ msgid "Light Transparent"
 msgstr "Hell Transparent"
 
 #. clock@schorschii->settings-schema.json->style->options
+msgid "Semitransparent"
+msgstr "Semitransparent"
+
+#. clock@schorschii->settings-schema.json->style->options
 msgid "Custom"
 msgstr "Eigene Bilder verwenden"
 

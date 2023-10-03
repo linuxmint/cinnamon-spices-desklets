@@ -15,7 +15,6 @@ const GLib = imports.gi.GLib;
 const Pango = imports.gi.Pango;
 const PangoCairo = imports.gi.PangoCairo;
 
-
 class GrowattDesklet extends Desklet.Desklet {
     login = false;
     statusOk = false;
@@ -186,7 +185,7 @@ class GrowattDesklet extends Desklet.Desklet {
 
         let timeOut = this.delay 
         if (!this.statusOk) {
-          timeOut = 3;			// FIXME: 15
+          timeOut = 15;
         }
         
         if (setTimer > 0)  {

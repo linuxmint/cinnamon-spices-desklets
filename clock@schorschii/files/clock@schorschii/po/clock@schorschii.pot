@@ -50,6 +50,10 @@ msgid "Light Transparent"
 msgstr ""
 
 #. clock@schorschii->settings-schema.json->style->options
+msgid "Semitransparent"
+msgstr ""
+
+#. clock@schorschii->settings-schema.json->style->options
 msgid "Custom"
 msgstr ""
 

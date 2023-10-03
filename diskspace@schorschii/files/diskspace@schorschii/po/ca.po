@@ -2,16 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2018-01-12 18:07+0100\n"
-"PO-Revision-Date: 2018-02-26 13:30+0100\n"
+"PO-Revision-Date: 2023-08-04 09:50+0200\n"
+"Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
 "Language-Team: \n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
-"X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
-"Language: ca\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: desklet.js\n"
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
@@ -32,14 +32,20 @@ msgstr "Monitora l'ús d'un sistema de fitxers o de la RAM"
 
 msgid "Choose, if this desklet should show file system or RAM usage."
 msgstr ""
-"Trieu, si aquesta miniaplicació d'escriptori ha de mostrar l'ús d'un "
-"sistema de fitxers o de la RAM."
+"Trieu, si aquesta miniaplicació d'escriptori\n"
+"ha de mostrar l'ús d'un sistema de fitxers o de la RAM."
 
 msgid "Filesystem"
 msgstr "Sistema de fitxers"
 
 msgid "RAM"
 msgstr "RAM"
+
+msgid "Swap"
+msgstr "Memòria d'intercanvi"
+
+msgid "Not Found"
+msgstr "No s'ha trobat"
 
 msgid "Filesystem to monitor"
 msgstr "Sistema de fitxers a monitorar"
@@ -50,17 +56,50 @@ msgstr "Seleccioneu el sistema de fitxers que voleu monitorar."
 msgid "Visual"
 msgstr "Visual"
 
+msgid "Design"
+msgstr "Disseny"
+
+msgid "Classic (Thick)"
+msgstr "Clàssic (ample)"
+
+msgid "Thin"
+msgstr "Estret"
+
+msgid "Compact"
+msgstr "Compacte"
+
+msgid "Draw free/unused space (gray)"
+msgstr "Dibuixa l'espai lliure o no utilitzat (gris)"
+
 msgid "Text"
 msgstr "Text"
 
-msgid "Name and total size"
+msgid "Name and total space"
 msgstr "Nom i mida total"
 
 msgid "Used and total space"
 msgstr "Espai utilitzat i total"
 
+msgid "Total and used space"
+msgstr "Espai utilitzat i total"
+
 msgid "Free and total space"
 msgstr "Espai lliure i total"
+
+msgid "Total and free space"
+msgstr "Espai lliure i total"
+
+msgid "No text"
+msgstr "Sense text"
+
+msgid "Size Prefix"
+msgstr "Prefix de la mida"
+
+msgid "Decimal"
+msgstr "Decimal"
+
+msgid "Binary"
+msgstr "Binari"
 
 msgid "Hide decorations"
 msgstr "Oculta les decoracions"
@@ -76,8 +115,8 @@ msgstr "Color del text"
 
 msgid "Increase or decrease the size of this desklet using this scale factor."
 msgstr ""
-"Augmenta o disminueix la mida d'aquesta miniaplicació d'escriptori amb "
-"aquest factor de canvi d'escala."
+"Augmenta o disminueix la mida d'aquesta miniaplicació\n"
+"d'escriptori amb aquest factor de canvi d'escala."
 
 msgid "Desklet size"
 msgstr "Mida de la miniaplicació d'escriptori"
@@ -105,5 +144,23 @@ msgid ""
 "Set your custom label here. This field is unavailable unless the checkbox "
 "above is enabled."
 msgstr ""
-"Establiu aquí la vostra etiqueta personalitzada. Aquest camp no està "
+"Establiu aquí la vostra etiqueta personalitzada. Aquest camp no està\n"
 "disponible a menys que la casella de selecció de dalt estigui habilitada."
+
+msgid "Action on mouse click"
+msgstr "Acció en fer clic"
+
+msgid "Choose what to do when the desklet was clicked."
+msgstr "Estableix què fer quan feu clic sobre la miniaplicació d'escriptori."
+
+msgid "Open File Manager"
+msgstr "Obre el gestor de fitxers"
+
+msgid "Open Partition Manager"
+msgstr "Obre el gestor de particions"
+
+msgid "Open System Monitor"
+msgstr "Obre el monitor del sistema"
+
+msgid "Nothing"
+msgstr "Res"
