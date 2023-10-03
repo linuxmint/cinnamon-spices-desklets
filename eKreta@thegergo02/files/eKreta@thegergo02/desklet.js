@@ -8,13 +8,21 @@ const Lang = imports.lang;
 const Settings = imports.ui.settings;
 const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
+const ByteArray = imports.byteArray;
 
 //Constant strings
 const API_LINK_INST = "https://kretaglobalmobileapi.ekreta.hu/api/v1/Institute";
 const UUID = "eKreta@thegergo02";
 
 //Some variable initialization
-var httpSession = new Soup.SessionAsync();
+var httpSession;
+if (Soup.MAJOR_VERSION === 2) {
+    httpSession = new Soup.SessionAsync();
+    Soup.Session.prototype.add_feature.call(httpSession, new Soup.ProxyResolverDefault());
+} else {
+    httpSession = new Soup.Session();
+}
+
 var isSettingChangedRunning = true;
 
 //Setting up translations
@@ -501,22 +509,45 @@ EKretaDesklet.prototype = {
         if (this.gzipEnabled)
             message.request_headers.append("Accept-Encoding","gzip");
 
-        if (postParameters !== null) 
-            message.set_request("application/x-www-form-urlencoded",2,postParameters);
+        if (Soup.MAJOR_VERSION === 2) {
+            if (postParameters !== null)
+                message.set_request("application/x-www-form-urlencoded",2,postParameters);
 
-        httpSession.queue_message(message,
-            Lang.bind(this, function(session, response) {
-                if (response.status_code !== Soup.KnownStatusCode.OK) {
-                    global.log(response.status_code + " : " + response.response_body.data);
-                    callbackF("cantgetauth", this); //TODO: Correct error value.
+            httpSession.queue_message(message,
+                Lang.bind(this, function(session, response) {
+                    if (response.status_code !== Soup.KnownStatusCode.OK) {
+                        global.log(response.status_code + " : " + response.response_body.data);
+                        callbackF("cantgetauth", this); //TODO: Correct error value.
+                        return;
+                    }
+
+                    var result = JSON.parse(message.response_body.data);
+                    callbackF(result, this);
                     return;
+                })
+            );
+        } else {
+            if (postParameters !== null) {
+                const bytes = GLib.Bytes.new(ByteArray.fromString(postParameters));
+                message.set_request_body_from_bytes('application/x-www-form-urlencoded', bytes);
+            }
+
+            httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, (session, result) => {
+                if (message.get_status() === 200) {
+                    try {
+                        const bytes = httpSession.send_and_read_finish(result);
+                        var result = JSON.parse(ByteArray.toString(bytes.get_data()));
+                        callbackF(result, this);
+                    } catch (e) {
+                        global.log(e)
+                        callbackF("cantgetauth", this);
+                    }
+                } else {
+                    global.log(message.get_status() + " : " + message.get_reason_phrase());
+                    callbackF("cantgetauth", this); //TODO: Correct error value.
                 }
-                
-                var result = JSON.parse(message.response_body.data);
-                callbackF(result, this);
-                return;
-            })
-        );
+            });
+        }
         return
     },
 
