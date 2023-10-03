@@ -10,12 +10,11 @@ const Signals = imports.signals;
 const SignalManager = imports.misc.signalManager;
 const ModalDialog = imports.ui.modalDialog;
 const Secret = imports.gi.Secret;
+const ByteArray = imports.byteArray;
+const GLib = imports.gi.GLib;
 
 
 class GrowattDesklet extends Desklet.Desklet {
-
-    httpSession = new Soup.SessionAsync();
-    
     login = false;
     statusOk = false;
     
@@ -35,7 +34,13 @@ class GrowattDesklet extends Desklet.Desklet {
     constructor(metadata, deskletId) {
         super(metadata, deskletId);
         this.metadata = metadata;
-        
+
+        if (Soup.MAJOR_VERSION === 2) {
+            this.httpSession = new Soup.SessionAsync();
+        } else {
+            this.httpSession = new Soup.Session();
+        }
+
         this._signals = new SignalManager.SignalManager(null);
 
 
@@ -78,6 +83,7 @@ class GrowattDesklet extends Desklet.Desklet {
     }    
     
     onRefreshClicked() {
+        log("clicked");
         this.setUpdateTimer(3);
     }
 
@@ -208,48 +214,72 @@ class GrowattDesklet extends Desklet.Desklet {
             }
         }
 
-        if (postParameters !== null) {
-            message.set_request("application/x-www-form-urlencoded",2,postParameters);
-        }
-        
         if (this.cookieStore !== null) {
             Soup.cookies_to_request( this.cookieStore, message );
         }
 
-        this.httpSession.queue_message(message,
+        if (Soup.MAJOR_VERSION === 2) {
+            if (postParameters !== null) {
+                message.set_request("application/x-www-form-urlencoded",2,postParameters);
+            }
 
-            Lang.bind(this, function(session, response) {
-              
-              let body = response.response_body.data;
-              
-              if (response.status_code==300) {
-                global.log('UrlData: ', message.response_body.data);
-              }
-            
-              this.statusOk = false;
-              let result = {
-                result: '0'
-              }; 
-              try {
-                  result = JSON.parse(message.response_body.data);
-            
-                  if ( (typeof result.result =='undefined') || result.result !='1') {                
-                      this.statusOk = true;
+            this.httpSession.queue_message(message,
+
+                Lang.bind(this, function(session, response) {
+
+                  let body = response.response_body.data;
+
+                  if (response.status_code==300) {
+                    global.log('UrlData: ', message.response_body.data);
+                  }
+
+                  this.statusOk = false;
+                  let result = {
+                    result: '0'
+                  }; 
+                  try {
+                      result = JSON.parse(message.response_body.data);
+
+                      if ( (typeof result.result =='undefined') || result.result !='1') {
+                          this.statusOk = true;
+                      }
+
+                  } catch(e) {
                   }
                   
-              } catch(e) {
-              }
-              
-              if (result.result=='0') {
-                this._failedLogin(this);
-              }
-                
+                  if (result.result=='0') {
+                    this._failedLogin(this);
+                  }
 
-              callbackF(this, message, result);
-              return;
-            })
-        );
-        return;
+                  callbackF(this, message, result);
+                  return;
+                })
+            );
+        } else {
+            if (postParameters !== null) {
+                const bytes = GLib.Bytes.new(ByteArray.fromString(postParameters));
+                message.set_request_body_from_bytes('application/x-www-form-urlencoded', bytes);
+            }
+
+            this.httpSession.send_and_read_async(message, 0, null, (session, res) => {
+                this.statusOk = false;
+                let result = {
+                    result: '0'
+                };
+                try {
+                    const bytes = session.send_and_read_finish(res);
+                    result = JSON.parse(ByteArray.toString(bytes.get_data()));
+                    if ( (typeof result.result =='undefined') || result.result !='1') {
+                        this.statusOk = true;
+                    }
+                } catch (e) {}
+                if (result.result == '0') {
+                    this._failedLogin(this);
+                }
+
+                callbackF(this, message, result);
+            });
+        }
     }
 
     _emptyGridBox(context) {
