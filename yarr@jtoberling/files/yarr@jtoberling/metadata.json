@@ -1,5 +1,5 @@
 {
-    "max-instances": "99",
+    "max-instances": "10",
     "description": "Yet Another RSS Reader - now as Cinnamon Desklet",
     "name": "Yet Another RSS Reader",
     "version": "0.0.1",
