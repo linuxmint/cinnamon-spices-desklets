@@ -1,0 +1,16 @@
+.channelbutton {
+  border: none;
+  color: white;
+  width: 80px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  border-radius: 8px;
+  padding: 4px 4px;
+}
+
+.quotes-reader {
+  border-radius: 8px;
+  padding: 4px 4px;
+}
