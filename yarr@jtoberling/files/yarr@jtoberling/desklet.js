@@ -145,7 +145,7 @@ class YarrDesklet extends Desklet.Desklet {
 
 
     onSettingsChanged() {
-        this.setUpdateTimer(this.delay);
+        this.setUpdateTimer(3);
     }
 
 
@@ -373,10 +373,20 @@ class YarrDesklet extends Desklet.Desklet {
             return catStr;
     } 
     
+    _formatedDate( pDate, withYear = true ) {
+        let retStr = '';
+        if (withYear) {
+            retStr += pDate.getFullYear().toString() + '-';
+        }
+        retStr +=(pDate.getMonth()+1).toString().padStart(2,'0') + '-' + (pDate.getDate()+1).toString().padStart(2,'0') + ' ' +
+                 pDate.getHours().toString().padStart(2,'0') + ':' +  pDate.getMinutes().toString().padStart(2, '0');
+        return retStr;
+    }
+    
     displayItems(context) {
     
         let updated= new Date();
-        context.headTitle.set_text(_('Updated:') + new Date().toISOString().replace('T', ' ').split('.')[0] );
+        context.headTitle.set_text(_('Updated:') + context._formatedDate(new Date()));
     
         context.tableContainer.destroy_all_children();
         
@@ -388,29 +398,38 @@ class YarrDesklet extends Desklet.Desklet {
             feedButton.setUri(item.link);
 
             let toolTipText = 
-                item.category
-                + '\n_________________________________________\n' 
+                this.formatTextWrap(item.channel + ': ' + item.title, 80)
+                +'\n[ ' + item.category.split(80) + ' ]\n'
+                + '--------------------------------------------------------------------------------------------\n' 
                 + this.formatTextWrap(this.HTMLPartToTextPart(item.description),80);
-
             let toolTip = new Tooltips.Tooltip(feedButton, toolTipText );
-            
+//            toolTip.get_clutter_text().set_markup('align: left;');
 
-            lineBox.add_actor( feedButton );
+            lineBox.add( feedButton );
             feedButton.connect("clicked", Lang.bind(this, function(p1, p2) {
                 Gio.app_info_launch_default_for_uri(p1.getUri(), global.create_app_launch_context());
             }));
             
-            const itemDate = new Date(item.timestamp);
-            const dateLabel = new St.Label({  text: ' ' + itemDate.toISOString().replace('T', ' ').split('.')[0].slice(5) + ' '    });
+            
+            const dateLabel = new St.Label({  text: ' ' + context._formatedDate(item.timestamp, false) + ' '   });
             lineBox.add(dateLabel);
             
+            let panelButton = new St.Button({
+            //    style_class : "panel-button",
+            });
+  
+  
             const itemLabel = new St.Label({
                     text: item.title, 
             });
+
+            panelButton.set_child(itemLabel);
+
+            let toolTip2 = new Tooltips.Tooltip(panelButton, toolTipText );
+
+
             
-            
-            lineBox.add( itemLabel );
-            
+            lineBox.add_actor( panelButton );
             
             context.tableContainer.add( lineBox );
         
