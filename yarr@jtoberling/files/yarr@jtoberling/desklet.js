@@ -13,9 +13,10 @@ const SignalManager = imports.misc.signalManager;
 const GObject = imports.gi.GObject;
 const Gio = imports.gi.Gio;
 const Tooltips = imports.ui.tooltips
-const Clutter = imports.gi.Clutter;
 
+const Clutter = imports.gi.Clutter;
 const fromXML = require('./fromXML');
+
 const YarrLinkButton = require('./linkbutton');
 
 const uuid = "yarr@jtoberling";
@@ -54,7 +55,6 @@ class YarrDesklet extends Desklet.Desklet {
         this.settings.bind("width", "width", this.onDisplayChanged);
         this.settings.bind("transparency", "transparency", this.onDisplayChanged);
         this.settings.bind("backgroundColor", "backgroundColor", this.backgroundColor);
-
         this.settings.bind("font", "font", this.onSettingsChanged);
         this.settings.bind("text-color", "color", this.onSettingsChanged);
         
@@ -72,7 +72,6 @@ class YarrDesklet extends Desklet.Desklet {
         this.setUpdateTimer(1);
 
     }
-
 
     invertbrightness(rgb) {
         rgb = Array.prototype.join.call(arguments).match(/(-?[0-9\.]+)/g);
@@ -116,7 +115,6 @@ class YarrDesklet extends Desklet.Desklet {
 
         this.setUpdateTimer(1);
     }
-
 
     onDisplayChanged() {
         this.mainBox.set_size(this.width, this.height);
@@ -190,9 +188,6 @@ class YarrDesklet extends Desklet.Desklet {
             });
         }
     }
-
-
-
 
     setUpdateTimer(timeOut) {
     
@@ -459,7 +454,6 @@ class YarrDesklet extends Desklet.Desklet {
             feedButton.connect("clicked", Lang.bind(this, function(p1, p2) {
                 Gio.app_info_launch_default_for_uri(p1.getUri(), global.create_app_launch_context());
             }));
-            
             
             const dateLabel = new St.Label({  text: ' ' + context._formatedDate(item.timestamp, false) + ' ', style: 'text-align: center;'   });
             lineBox.add(dateLabel);
