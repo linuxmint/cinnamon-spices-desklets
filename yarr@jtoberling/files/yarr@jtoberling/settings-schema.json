@@ -54,6 +54,17 @@
         "units": "pixels",
         "description": "Height",
         "tooltip": "Desklet height in pixels."
+      },
+      "font": {
+        "type": "fontchooser",
+        "default": "Ubuntu Regular 10",
+        "description": "Font"
+      },
+      "text-color": {
+	    "type": "colorchooser",
+	    "default": "rgb(255,255,255)",
+	    "description": "Text color",
+	    "tooltip": "Click the button to select a new text color"
       }
 }
 
