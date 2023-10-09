@@ -1,10 +1,10 @@
 {
-    "max-instances": "10",
+    "max-instances": "1",
     "description": "Yet Another RSS Reader - now as Cinnamon Desklet",
     "name": "Yet Another RSS Reader",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "uuid": "yarr@jtoberling",
     "multiversion": true,
     "author": "jtoberling",
-    "prevent-decorations": false
+    "prevent-decorations": true
 }

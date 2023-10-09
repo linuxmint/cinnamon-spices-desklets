@@ -13,9 +13,9 @@ const SignalManager = imports.misc.signalManager;
 const GObject = imports.gi.GObject;
 const Gio = imports.gi.Gio;
 const Tooltips = imports.ui.tooltips
+const Clutter = imports.gi.Clutter;
 
 const fromXML = require('./fromXML');
-
 const YarrLinkButton = require('./linkbutton');
 
 const uuid = "yarr@jtoberling";
@@ -54,6 +54,9 @@ class YarrDesklet extends Desklet.Desklet {
         this.settings.bind("width", "width", this.onDisplayChanged);
         this.settings.bind("transparency", "transparency", this.onDisplayChanged);
         this.settings.bind("backgroundColor", "backgroundColor", this.backgroundColor);
+
+        this.settings.bind("font", "font", this.onSettingsChanged);
+        this.settings.bind("text-color", "color", this.onSettingsChanged);
         
         if (Soup.MAJOR_VERSION === 2) {
             this.httpSession = new Soup.SessionAsync();
@@ -63,11 +66,57 @@ class YarrDesklet extends Desklet.Desklet {
 
         this._signals = new SignalManager.SignalManager(null);
 
+        this.onSettingsChanged();
         this.buildDisplay();
 
         this.setUpdateTimer(1);
 
     }
+
+
+    invertbrightness(rgb) {
+        rgb = Array.prototype.join.call(arguments).match(/(-?[0-9\.]+)/g);
+        let brightness = 255 * 3
+        for (var i = 0; i < rgb.length && i < 3; i++) {
+            brightness -= rgb[i];
+        }
+        if (brightness > 255 * 1.5)
+            return '255, 255, 255';
+        return '0, 0, 0';
+    }
+
+
+    onSettingsChanged() {
+        let fontprep = this.font.split(' ');
+        let fontsize = fontprep.pop();
+        let fontweight = '';
+        let fontstyle = '';
+        let fontname = fontprep.join(' ').replace(/,/g, ' ');
+        ['Italic', 'Oblique'].forEach(function(item, i) {
+            if (fontname.includes(item)) {
+                fontstyle = item;
+                fontname = fontname.replace(item, '');
+            }
+        });
+
+        ['Bold', 'Light', 'Medium', 'Heavy'].forEach(function(item, i) {
+            if (fontname.includes(item)) {
+                fontweight = item;
+                fontname = fontname.replace(item, '');
+            }
+        });
+
+        this.fontstyle = ("font-family: " + fontname + "; " +
+            "font-size: " + fontsize + "pt; " +
+            (fontstyle ? "font-style: " + fontstyle + "; " : "") +
+            (fontweight ? "font-weight: " + fontweight + "; " : "") +
+            "color: " + this.color + "; " +
+            "text-shadow: " + "0px 1px 6px rgba(" + this.invertbrightness(this.color) + ", 0.2); " +
+            "padding: 2px 2px;").toLowerCase();
+
+        this.setUpdateTimer(1);
+    }
+
 
     onDisplayChanged() {
         this.mainBox.set_size(this.width, this.height);
@@ -143,10 +192,6 @@ class YarrDesklet extends Desklet.Desklet {
     }
 
 
-
-    onSettingsChanged() {
-        this.setUpdateTimer(3);
-    }
 
 
     setUpdateTimer(timeOut) {
@@ -398,12 +443,17 @@ class YarrDesklet extends Desklet.Desklet {
             feedButton.setUri(item.link);
 
             let toolTipText = 
-                this.formatTextWrap(item.channel + ': ' + item.title, 80)
-                +'\n[ ' + item.category.split(80) + ' ]\n'
-                + '--------------------------------------------------------------------------------------------\n' 
-                + this.formatTextWrap(this.HTMLPartToTextPart(item.description),80);
+                '<big><b><u>' + this.formatTextWrap(item.channel + ': ' + item.title, 100) + '</u></b></big>'
+                +'\n<small>[ ' + item.category.toString().substring(0,80) + ' ]</small>\n\n'
+                + this.formatTextWrap(this.HTMLPartToTextPart(item.description ?? '-' ),100) 
+                ;
+                
+                
             let toolTip = new Tooltips.Tooltip(feedButton, toolTipText );
-//            toolTip.get_clutter_text().set_markup('align: left;');
+            toolTip._tooltip.style = 'text-align: left;';
+            toolTip._tooltip.clutter_text.set_use_markup(true);
+            toolTip._tooltip.clutter_text.allocate_preferred_size(Clutter.AllocationFlags.NONE);
+            toolTip._tooltip.queue_relayout();
 
             lineBox.add( feedButton );
             feedButton.connect("clicked", Lang.bind(this, function(p1, p2) {
@@ -411,23 +461,23 @@ class YarrDesklet extends Desklet.Desklet {
             }));
             
             
-            const dateLabel = new St.Label({  text: ' ' + context._formatedDate(item.timestamp, false) + ' '   });
+            const dateLabel = new St.Label({  text: ' ' + context._formatedDate(item.timestamp, false) + ' ', style: 'text-align: center;'   });
             lineBox.add(dateLabel);
             
-            let panelButton = new St.Button({
-            //    style_class : "panel-button",
-            });
-  
+            let panelButton = new St.Button({});
   
             const itemLabel = new St.Label({
-                    text: item.title, 
+                    text: item.title,
             });
+            itemLabel.style = context.fontstyle;
 
             panelButton.set_child(itemLabel);
 
             let toolTip2 = new Tooltips.Tooltip(panelButton, toolTipText );
-
-
+            toolTip2._tooltip.style = 'text-align: left;';
+            toolTip2._tooltip.clutter_text.set_use_markup(true);
+            toolTip2._tooltip.clutter_text.allocate_preferred_size(Clutter.AllocationFlags.NONE);
+            toolTip2._tooltip.queue_relayout();
             
             lineBox.add_actor( panelButton );
             
