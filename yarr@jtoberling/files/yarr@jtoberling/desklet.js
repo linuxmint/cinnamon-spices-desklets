@@ -418,7 +418,7 @@ class YarrDesklet extends Desklet.Desklet {
         if (withYear) {
             retStr += pDate.getFullYear().toString() + '-';
         }
-        retStr +=(pDate.getMonth()+1).toString().padStart(2,'0') + '-' + (pDate.getDate()+1).toString().padStart(2,'0') + ' ' +
+        retStr +=(pDate.getMonth()+1).toString().padStart(2,'0') + '-' + pDate.getDate().toString().padStart(2,'0') + ' ' +
                  pDate.getHours().toString().padStart(2,'0') + ':' +  pDate.getMinutes().toString().padStart(2, '0');
         return retStr;
     }
