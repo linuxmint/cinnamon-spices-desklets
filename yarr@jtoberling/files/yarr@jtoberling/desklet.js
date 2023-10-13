@@ -17,8 +17,6 @@ const Tooltips = imports.ui.tooltips
 const Clutter = imports.gi.Clutter;
 const fromXML = require('./fromXML');
 
-const YarrLinkButton = require('./linkbutton');
-
 const uuid = "yarr@jtoberling";
 
 class YarrDesklet extends Desklet.Desklet {
