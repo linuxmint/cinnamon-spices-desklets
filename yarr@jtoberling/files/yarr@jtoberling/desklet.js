@@ -334,13 +334,13 @@ class YarrDesklet extends Desklet.Desklet {
                                             context,
                                             { 
                                                 'channel': 	feed.name,
-                                                'timestamp': parsedDate,
+                                                'timestamp': 	parsedDate,
                                                 'pubDate':	item.pubDate, 
                                                 'title':	item.title, 
-                                                'link':	item.link,
-                                                'category': catStr,
-                                                'description': item.description, 
-                                                "labelColor": feed.labelcolor
+                                                'link':		item.link,
+                                                'category': 	catStr,
+                                                'description': 	item.description, 
+                                                "labelColor": 	feed.labelcolor
                                              }
                                         );
                                     }
@@ -423,6 +423,11 @@ class YarrDesklet extends Desklet.Desklet {
         return retStr;
     }
     
+    onClickedButton(selfObj, p2, uri) {
+        Gio.app_info_launch_default_for_uri(uri, global.create_app_launch_context());
+    }
+    
+    
     displayItems(context) {
     
         let updated= new Date();
@@ -433,9 +438,8 @@ class YarrDesklet extends Desklet.Desklet {
         for(let [key, item] of context.items ) {
 
             const lineBox = new St.BoxLayout({ vertical: false });
-            
-            const feedButton = new YarrLinkButton.YarrLinkButton({ label: "["+item.channel +"]" , style_class: 'channelbutton', style: 'background-color: ' + item.labelColor });
-            feedButton.setUri(item.link);
+
+            const feedButton = new St.Button({ label: "["+item.channel +"]" , style_class: 'channelbutton', style: 'width: 80px; background-color: ' + item.labelColor });
 
             let toolTipText = 
                 '<big><b><u>' + this.formatTextWrap(item.channel + ': ' + item.title, 100) + '</u></b></big>'
@@ -450,10 +454,9 @@ class YarrDesklet extends Desklet.Desklet {
             toolTip._tooltip.clutter_text.allocate_preferred_size(Clutter.AllocationFlags.NONE);
             toolTip._tooltip.queue_relayout();
 
-            lineBox.add( feedButton );
-            feedButton.connect("clicked", Lang.bind(this, function(p1, p2) {
-                Gio.app_info_launch_default_for_uri(p1.getUri(), global.create_app_launch_context());
-            }));
+            lineBox.add(feedButton);
+
+            this._signals.connect( feedButton, 'clicked', (...args) => this.onClickedButton(...args, item.link) ); 
             
             const dateLabel = new St.Label({  text: ' ' + context._formatedDate(item.timestamp, false) + ' ', style: 'text-align: center;'   });
             lineBox.add(dateLabel);
