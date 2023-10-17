@@ -366,81 +366,80 @@ SystemMonitorGraph.prototype = {
         Mainloop.source_remove(this.timeout);
     },
 
+    cpu_file: Gio.file_new_for_path('/proc/stat'),
     get_cpu_use: function() {
         // https://rosettacode.org/wiki/Linux_CPU_utilization
-        let subprocess = new Gio.Subprocess({
-        argv: ['head', '-n', '1', '/proc/stat'],
-        flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
-        });
-        subprocess.init(null);
-        subprocess.wait_async(null, (sourceObject, res) => {
-            let [, stdout, stderr] = sourceObject.communicate_utf8(null, null);
-            let cpu_values = stdout.split(/\s+/);
-            let cpu_idl = parseFloat(cpu_values[4]);
-            let cpu_tot = 0;
-            for (let i = 1; i<10; i++){
-              cpu_tot += parseFloat(cpu_values[i])
+        this.cpu_file.load_contents_async(null, (file, response) => {
+            let [success, contents, tag] = file.load_contents_finish(response);
+            if(success) {
+                let cpu_values = ByteArray.toString(contents).split("\n")[0].split(/\s+/);
+                let cpu_idl = parseFloat(cpu_values[4]);
+                let cpu_tot = 0;
+                for (let i = 1; i<10; i++){
+                  cpu_tot += parseFloat(cpu_values[i])
+                }
+                this.cpu_use = 100 * (1 - (cpu_idl - this.cpu_cpu_idl) / (cpu_tot - this.cpu_cpu_tot));
+                this.cpu_cpu_tot = cpu_tot;
+                this.cpu_cpu_idl = cpu_idl;
             }
-            this.cpu_use = 100 * (1 - (cpu_idl - this.cpu_cpu_idl) / (cpu_tot - this.cpu_cpu_tot));
-            this.cpu_cpu_tot = cpu_tot;
-            this.cpu_cpu_idl = cpu_idl;
+            GLib.free(contents);
         });
     },
 
+    ram_swap_file: Gio.file_new_for_path('/proc/meminfo'),
     get_ram_values: function() {
         // used  = total - available
         // while meminfo says "kb" the unit is kibibytes
-        let subprocess = new Gio.Subprocess({
-        argv: ['cat', '/proc/meminfo'],
-        flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
-        });
-        subprocess.init(null);
-        subprocess.wait_async(null, (sourceObject, res) => {
-            let [, stdout, stderr] = sourceObject.communicate_utf8(null, null);
-            let mem_tot = parseInt(stdout.match(/(MemTotal):\D+(\d+)/)[2]);
-            let mem_usd = mem_tot - parseInt(stdout.match(/(MemAvailable):\D+(\d+)/)[2]);
-            let ram_tot
-            let ram_usd
-            if (this.data_prefix_ram == 1) {
-                // decimal prefix
-                ram_tot = mem_tot * 1024 / GB_TO_B;
-                ram_usd = mem_usd * 1024 / GB_TO_B;
-            } else {
-                // binary prefix
-                ram_tot = mem_tot / GIB_TO_KIB;
-                ram_usd = mem_usd / GIB_TO_KIB;
+        this.ram_swap_file.load_contents_async(null, (file, response) => {
+            let [success, contents, tag] = file.load_contents_finish(response);
+            if(success) {
+                let mem = ByteArray.toString(contents);
+                let mem_tot = parseInt(mem.match(/(MemTotal):\D+(\d+)/)[2]);
+                let mem_usd = mem_tot - parseInt(mem.match(/(MemAvailable):\D+(\d+)/)[2]);
+                let ram_tot
+                let ram_usd
+                if (this.data_prefix_ram == 1) {
+                    // decimal prefix
+                    ram_tot = mem_tot * 1024 / GB_TO_B;
+                    ram_usd = mem_usd * 1024 / GB_TO_B;
+                } else {
+                    // binary prefix
+                    ram_tot = mem_tot / GIB_TO_KIB;
+                    ram_usd = mem_usd / GIB_TO_KIB;
+                }
+                this.ram_values = [ram_tot, ram_usd];
             }
-            this.ram_values = [ram_tot, ram_usd];
+            GLib.free(contents);
         });
     },
 
     get_swap_values: function() {
         // used  = total - available
         // while meminfo says "kb" the unit is kibibytes
-        let subprocess = new Gio.Subprocess({
-        argv: ['cat', '/proc/meminfo'],
-        flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
-        });
-        subprocess.init(null);
-        subprocess.wait_async(null, (sourceObject, res) => {
-            let [, stdout, stderr] = sourceObject.communicate_utf8(null, null);
-            let mem_tot = parseInt(stdout.match(/(SwapTotal):\D+(\d+)/)[2]);
-            let mem_usd = mem_tot - parseInt(stdout.match(/(SwapFree):\D+(\d+)/)[2]);
-            let swap_tot
-            let swap_usd
-            if (this.data_prefix_swap == 1) {
-                // decimal prefix
-                swap_tot = mem_tot * 1024 / GB_TO_B;
-                swap_usd = mem_usd * 1024 / GB_TO_B;
-            } else {
-                // binary prefix
-                swap_tot = mem_tot / GIB_TO_KIB;
-                swap_usd = mem_usd / GIB_TO_KIB;
+        this.ram_swap_file.load_contents_async(null, (file, response) => {
+            let [success, contents, tag] = file.load_contents_finish(response);
+            if(success) {
+                let mem = ByteArray.toString(contents);
+                let mem_tot = parseInt(mem.match(/(SwapTotal):\D+(\d+)/)[2]);
+                let mem_usd = mem_tot - parseInt(mem.match(/(SwapFree):\D+(\d+)/)[2]);
+                let swap_tot
+                let swap_usd
+                if (this.data_prefix_swap == 1) {
+                    // decimal prefix
+                    swap_tot = mem_tot * 1024 / GB_TO_B;
+                    swap_usd = mem_usd * 1024 / GB_TO_B;
+                } else {
+                    // binary prefix
+                    swap_tot = mem_tot / GIB_TO_KIB;
+                    swap_usd = mem_usd / GIB_TO_KIB;
+                }
+                this.swap_values = [swap_tot, swap_usd];
             }
-            this.swap_values = [swap_tot, swap_usd];
+            GLib.free(contents);
         });
     },
 
+    hdd_file: Gio.file_new_for_path('/proc/diskstats'),
     get_hdd_values: function(dir_path) {
         // while df says "1K" it means 1 kibibyte
         let subprocess = new Gio.Subprocess({
@@ -453,47 +452,49 @@ SystemMonitorGraph.prototype = {
             let df_line = stdout.match(/.+/g)[1];
             let df_values = df_line.split(/\s+/); // split by space
             // values for partition space
-            let hdd_tot
-            let hdd_fre
+            var hdd_tot;
+            var hdd_fre;
             if (this.data_prefix_hdd == 1) {
-                // decimal prefix
+                // decimal prefix
                 hdd_tot = parseFloat(df_values[1]) * 1024 / GB_TO_B;
                 hdd_fre = parseFloat(df_values[3]) * 1024 / GB_TO_B;
             } else {
-                // binary prefix
+                // binary prefix
                 hdd_tot = parseFloat(df_values[1]) / GIB_TO_KIB;
                 hdd_fre = parseFloat(df_values[3]) / GIB_TO_KIB;
             }
-            // utilization of partition
+            // get IO utilization of partition
             let dev_fs = df_values[0];
             let fs = dev_fs.split(/\/+/)[2];
-            let hdd_use = this.get_hdd_use(fs);
-            this.hdd_values = [fs, hdd_use, hdd_tot, hdd_fre];
+            let re = new RegExp(fs + '.+');
+            // https://stackoverflow.com/questions/4458183/how-the-util-of-iostat-is-computed
+            this.cpu_file.load_contents_async(null, (file, response) => {
+                let [cpu_success, cpu_contents, cpu_tag] = file.load_contents_finish(response);
+                if(!cpu_success) return;
+                let cpu_line = ByteArray.toString(cpu_contents).match(/cpu\s.+/)[0];
+                // get total CPU time
+                let cpu_values = cpu_line.split(/\s+/);
+                let hdd_cpu_tot = 0;
+                for (let i = 1; i<10; i++){
+                    hdd_cpu_tot += parseFloat(cpu_values[i])
+                }
+                this.hdd_file.load_contents_async(null, (file, response) => {
+                    let [hdd_success, hdd_contents, hdd_tag] = file.load_contents_finish(response);
+                    if(!hdd_success) return;
+                    let hdd_line = ByteArray.toString(hdd_contents).match(re)[0];
+                    // get total of IO times
+                    let hdd_hdd_tot = hdd_line.split(/\s+/)[10];
+                    // update HDD use
+                    let hdd_use = 100 * (hdd_hdd_tot - this.hdd_hdd_tot) / (hdd_cpu_tot - this.hdd_cpu_tot);
+                    // update global values
+                    this.hdd_cpu_tot = hdd_cpu_tot;
+                    this.hdd_hdd_tot = hdd_hdd_tot;
+                    this.hdd_values = [fs, hdd_use, hdd_tot, hdd_fre];
+                    GLib.free(hdd_contents);
+                });
+                GLib.free(cpu_contents);
+            });
         });
-    },
-
-    get_hdd_use: function(fs) {
-      // https://stackoverflow.com/questions/4458183/how-the-util-of-iostat-is-computed
-      let cpu_obj = GLib.file_get_contents("/proc/stat")[1];
-      let cpu_line = ByteArray.toString(cpu_obj).match(/cpu\s.+/)[0];
-      let re = new RegExp(fs + '.+');
-      let diskstats = GLib.file_get_contents("/proc/diskstats")[1];
-      let hdd_line = ByteArray.toString(diskstats).match(re)[0];
-      // get total CPU time
-      let cpu_values = cpu_line.split(/\s+/);
-      let hdd_cpu_tot = 0;
-      for (let i = 1; i<10; i++){
-        hdd_cpu_tot += parseFloat(cpu_values[i])
-      }
-      // get total of IO times
-      let hdd_hdd_tot = hdd_line.split(/\s+/)[10];
-      // update HHD use
-      let hdd_use = 100 * (hdd_hdd_tot - this.hdd_hdd_tot) / (hdd_cpu_tot - this.hdd_cpu_tot);
-      // update global values
-      this.hdd_cpu_tot = hdd_cpu_tot;
-      this.hdd_hdd_tot = hdd_hdd_tot;
-
-      return hdd_use;
     },
 
     parse_rgba_settings: function(color_str) {
@@ -507,41 +508,39 @@ SystemMonitorGraph.prototype = {
     },
 
     get_nvidia_gpu_use: function() {
-        let subprocess = new Gio.Subprocess({
-        argv: ['nvidia-smi', '--query-gpu=utilization.gpu', '--format=csv', '--id='+ this.gpu_id],
-        flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
-        });
-        subprocess.init(null);
-        subprocess.wait_async(null, (sourceObject, res) => {
-            let [, stdout, stderr] = sourceObject.communicate_utf8(null, null);
-            this.gpu_use =  parseInt(stdout.toString().match(/[^\r\n]+/g)[1]); // parse integer in second line
+        let subprocess = Gio.Subprocess.new(
+            ['/usr/bin/nvidia-smi', '--query-gpu=utilization.gpu', '--format=csv', '--id='+ this.gpu_id],
+            Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE
+        );
+        subprocess.communicate_utf8_async(null, null, (subprocess, result) => {
+            let [, stdout, stderr] = subprocess.communicate_utf8_finish(result);
+            this.gpu_use =  parseInt(stdout.match(/[^\r\n]+/g)[1]); // parse integer in second line
         });
     },
 
     get_nvidia_gpu_mem: function() {
-      let subprocess = new Gio.Subprocess({
-      argv: ['nvidia-smi', '--query-gpu=memory.total,memory.used', '--format=csv', '--id='+ this.gpu_id],
-      flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
-      });
-      subprocess.init(null);
-      subprocess.wait_async(null, (sourceObject, res) => {
-          let [, stdout, stderr] = sourceObject.communicate_utf8(null, null);
-          let fslines = stdout.split(/\r?\n/); // Line0:Headers Line1:Values
-          let items = fslines[1].split(',');   // Values are comma-separated
-          let mem_tot
-          let mem_usd
-          if (this.data_prefix_gpumem == 1) {
-              // decimal prefix
-              mem_tot =  parseInt(items[0]) * 1024 * 1024 / GB_TO_B;
-              mem_usd =  parseInt(items[1]) * 1024 * 1024 / GB_TO_B;
-          } else {
-              // binary prefix
-              mem_tot =  parseInt(items[0]) / GIB_TO_MIB;
-              mem_usd =  parseInt(items[1]) / GIB_TO_MIB;
-          }
-          this.gpu_mem[0] = mem_tot;
-          this.gpu_mem[1] = mem_usd;
-      });
+        let subprocess = Gio.Subprocess.new(
+            ['/usr/bin/nvidia-smi', '--query-gpu=memory.total,memory.used', '--format=csv', '--id='+ this.gpu_id],
+            Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE
+        );
+        subprocess.communicate_utf8_async(null, null, (subprocess, result) => {
+            let [, stdout, stderr] = subprocess.communicate_utf8_finish(result);
+            let fslines = stdout.split(/\r?\n/); // Line0:Headers Line1:Values
+            let items = fslines[1].split(',');   // Values are comma-separated
+            let mem_tot
+            let mem_usd
+            if (this.data_prefix_gpumem == 1) {
+                // decimal prefix
+                mem_tot =  parseInt(items[0]) * 1024 * 1024 / GB_TO_B;
+                mem_usd =  parseInt(items[1]) * 1024 * 1024 / GB_TO_B;
+            } else {
+                // binary prefix
+                mem_tot =  parseInt(items[0]) / GIB_TO_MIB;
+                mem_usd =  parseInt(items[1]) / GIB_TO_MIB;
+            }
+            this.gpu_mem[0] = mem_tot;
+            this.gpu_mem[1] = mem_usd;
+        });
     }
 
 };
