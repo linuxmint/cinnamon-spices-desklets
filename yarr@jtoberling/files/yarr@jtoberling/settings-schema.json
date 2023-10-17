@@ -65,6 +65,29 @@
 	    "default": "rgb(255,255,255)",
 	    "description": "Text color",
 	    "tooltip": "Click the button to select a new text color"
-      }
+      },     
+      "numberofitems": {
+        "type": "spinbutton",
+        "default": 50,
+        "min": 10,
+        "max": 300,
+        "step": 1,
+        "description": "Number of displayed articles",
+        "tooltip": "Number of displayed articles in the list window."
+      },
+      "listfilter" : {
+        "type" : "list",
+        "description" : "Message RegExp filters",
+        "columns" : [
+            {"id": "name", "title": "Name", "type": "string"},
+            {"id": "active", "title": "Active", "type": "boolean" , "default": true },
+            {"id": "unmatch", "title": "Unmatch", "type": "boolean" , "default": false },
+            {"id": "filter", "title": "Filter (Regexp eg: '.*')", "type": "string", "default": "", "description": "Regexp filter on channels", "tooltip": "Leave empty for all"}, 
+            {"id": "inTitle", "title": "Match in Title", "type": "boolean", "default": true }, 
+            {"id": "inCategory", "title": "Match in Category", "type": "boolean", "default": true }, 
+            {"id": "inDescription", "title": "Match in Description", "type": "boolean", "default": false }
+        ],
+        "default" : []
+    }
 }
 

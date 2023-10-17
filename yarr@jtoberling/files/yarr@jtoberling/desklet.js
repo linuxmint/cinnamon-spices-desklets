@@ -25,11 +25,12 @@ class YarrDesklet extends Desklet.Desklet {
     
     delay = 300;
     
+    refreshEnabled = true;
+    
     httpSession = null;
     
     xmlutil = null;
     
-    ITEMLIMIT = 100;
     items = new Map();
     
     dataBox = null;	// Object holder for display
@@ -52,9 +53,11 @@ class YarrDesklet extends Desklet.Desklet {
         this.settings.bind("height", "height", this.onDisplayChanged);
         this.settings.bind("width", "width", this.onDisplayChanged);
         this.settings.bind("transparency", "transparency", this.onDisplayChanged);
-        this.settings.bind("backgroundColor", "backgroundColor", this.backgroundColor);
-        this.settings.bind("font", "font", this.onSettingsChanged);
-        this.settings.bind("text-color", "color", this.onSettingsChanged);
+        this.settings.bind("backgroundColor", "backgroundColor", this.onDisplayChanged);
+        this.settings.bind("font", "font", this.onDisplayChanged);
+        this.settings.bind("text-color", "color", this.onDisplayChanged);
+        this.settings.bind("numberofitems", "itemlimit", this.onSettingsChanged, 50);
+        this.settings.bind("listfilter", "listfilter", this.onSetttingChanged);
         
         if (Soup.MAJOR_VERSION === 2) {
             this.httpSession = new Soup.SessionAsync();
@@ -64,8 +67,9 @@ class YarrDesklet extends Desklet.Desklet {
 
         this._signals = new SignalManager.SignalManager(null);
 
+        this.buildInitialDisplay();
+        this.onDisplayChanged();
         this.onSettingsChanged();
-        this.buildDisplay();
 
         this.setUpdateTimer(1);
 
@@ -84,6 +88,11 @@ class YarrDesklet extends Desklet.Desklet {
 
 
     onSettingsChanged() {
+        this.setUpdateTimer(1);
+    }
+
+    onDisplayChanged() {
+
         let fontprep = this.font.split(' ');
         let fontsize = fontprep.pop();
         let fontweight = '';
@@ -111,15 +120,8 @@ class YarrDesklet extends Desklet.Desklet {
             "text-shadow: " + "0px 1px 6px rgba(" + this.invertbrightness(this.color) + ", 0.2); " +
             "padding: 2px 2px;").toLowerCase();
 
-        this.setUpdateTimer(1);
-    }
-
-    onDisplayChanged() {
         this.mainBox.set_size(this.width, this.height);
-        this.setTransparency();
-    }
 
-    setTransparency() {
         this.mainBox.style = "background-color: rgba(" + (this.backgroundColor.replace('rgb(', '').replace(')', '')) + "," + this.transparency + ")";
     }
 
@@ -209,7 +211,21 @@ class YarrDesklet extends Desklet.Desklet {
         this.setUpdateTimer(3);
     }
 
-    buildDisplay() {
+    onClickedToggleRefresh(selfObj, p2, context) {
+    
+        if (context.refreshEnabled) {
+            context.toggleRefresh.set_label(_('Enable refresh'));
+            context.toggleRefresh.set_style_class_name('toggleButtonOff');
+            context.refreshEnabled = false;
+        } else {
+            context.toggleRefresh.set_label(_('Disable refresh'));
+            context.toggleRefresh.set_style_class_name('toggleButtonOn');
+            context.refreshEnabled = true;
+            context.setUpdateTimer(3);
+        }
+    }
+    
+    buildInitialDisplay() {
     
         this.setHeader(_('Yarr'));
         
@@ -225,11 +241,11 @@ class YarrDesklet extends Desklet.Desklet {
             
         this.headTitle = new St.Label({});
         
-        this.headTitle.set_text('Loading: feeds ...' );
+        this.headTitle.set_text(_('Loading: feeds ...' ));
         
         let paddingBox = new St.Bin({ width: 10 });
     
-        this.refreshButton = new St.Button();
+        this.refreshButton = new St.Button({style_class: 'feedRefreshButton'});
         this.refreshIcon = new St.Icon({
                           icon_name: 'reload',
                           icon_size: 20, 
@@ -237,12 +253,16 @@ class YarrDesklet extends Desklet.Desklet {
         });
         this.refreshButton.set_child(this.refreshIcon);
         this.refreshButton.connect("clicked", Lang.bind(this, this.onRefreshClicked));
-            
+                        
+        this.toggleRefresh = new St.Button({ label: _("Disable refresh"), style_class: 'toggleButtonOn'});    
+        let context = this;
+        this._signals.connect( this.toggleRefresh, 'clicked', (...args) => this.onClickedToggleRefresh(...args, this) );
         
         this.headBox.add(this.headTitle);
         this.headBox.add(paddingBox, { expand: true });
+        this.headBox.add_actor(this.toggleRefresh);
         this.headBox.add_actor(this.refreshButton);
-
+        
         this.mainBox.add(this.headBox);
 
         
@@ -256,9 +276,6 @@ class YarrDesklet extends Desklet.Desklet {
 
         this.setContent(this.mainBox);
         
-        this.setTransparency();
-
-
     }
 
     hashCode(str) {
@@ -287,13 +304,60 @@ class YarrDesklet extends Desklet.Desklet {
         let i=0;
         for( let [key, value] of context.items ) {
             i++;
-            if (i > context.ITEMLIMIT) {
+            if (i > context.itemlimit) {
                 context.items.delete(key);
             }
         }        
     }
     
+    inGlobalFilter(context, title, catStr, description) {
+    
+        let found = false;
+        
+        let itemRegexArr = [];
+        
+        
+        for(let i=0; i < context.listfilter.length ; i++ ) {
+        
+            let filterElem = context.listfilter[i];
+            
+            if (filterElem.active) {
+                if (filterElem.unmatch) {
+                    found = true;
+                }
+            
+                let itemRegexp = new RegExp(filterElem.filter);
+
+                if (filterElem.inTitle) {
+                    if (itemRegexp.test(title)) {
+                        found = (filterElem.unmatch)?false:true;
+                        break;
+                    }
+                }
+
+                if (filterElem.inCategory) {
+                    if (itemRegexp.test(catStr)) {
+                        found = (filterElem.unmatch)?false:true;
+                        break;
+                    }
+                }
+
+                if (filterElem.inDescription) {
+                    if (itemRegexp.test(description)) {
+                        found = (filterElem.unmatch)?false:true;
+                        break;
+                    }
+                }
+            }
+        }
+        return found;
+    }
+    
     collectFeeds() {
+    
+        if (!this.refreshEnabled) {
+            return;
+        }
     
         let freshItems = [];
         
@@ -308,7 +372,7 @@ class YarrDesklet extends Desklet.Desklet {
                         null,  // headers
                         null,  // post
                         function(context, message, result) {
-
+                        
                             let resJSON = null;
                             try {
                                 resJSON = fromXML(result);
@@ -324,6 +388,10 @@ class YarrDesklet extends Desklet.Desklet {
                                     let doInsert = true;
                                     if (feed.filter.length > 0)  {
                                         doInsert = feedRegexp.test(catStr);                                    
+                                    }
+                                    
+                                    if (context.listfilter.length > 0 && context.inGlobalFilter(context, item.title, catStr, item.description)) {
+                                        doInsert = false;
                                     }
                                     
                                     if (doInsert) {
@@ -343,7 +411,7 @@ class YarrDesklet extends Desklet.Desklet {
                                         );
                                     }
                                 }
-                                
+                          
                                 context.displayItems(context);
                                 
                             } catch (e) {

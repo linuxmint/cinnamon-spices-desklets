@@ -14,3 +14,38 @@
   border-radius: 8px;
   padding: 4px 4px;
 }
+
+
+.toggleButtonOn {
+  border-radius: 8px;
+  padding: 4px 4px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  color: white;
+  background-color: green;
+}
+
+.toggleButtonOff {
+  border-radius: 8px;
+  padding: 4px 4px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  color: white;
+  background-color: maroon;
+}
+
+.feedRefreshButton {
+  border-radius: 8px;
+  padding: 4px 4px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  color: white;
+  background-color: navz;
+}
+
