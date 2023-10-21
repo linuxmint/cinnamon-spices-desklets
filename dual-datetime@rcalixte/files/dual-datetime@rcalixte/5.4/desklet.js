@@ -76,10 +76,10 @@ DateTimeDesklet.prototype = {
         if (!this.time_custom1 && !this.time_custom2)
             this.time_custom1 = true;
 
-        if (this.time_custom1 && this.time_format1)
+        if (this.time_custom1)
             this._setupContainer(1);
 
-        if (this.time_custom2 && this.time_format2)
+        if (this.time_custom2)
             this._setupContainer(2);
 
         let _background = this.show_decorations ? `background-color: ${this.background_color}; ` : "";
@@ -93,8 +93,8 @@ DateTimeDesklet.prototype = {
         this[`datetime${num}`] = new St.Label({ text: "" });
         this[`datetime${num}`].clutterText.ellipsize = Pango.EllipsizeMode.NONE;
         let _other_num = num == 1 ? 2 : 1;
-        let _y_alignment = !this._vertical && this.time_custom1 && this.time_format1 &&
-            this.time_custom2 && this.time_format2 && this[`time_size${_other_num}`] > this[`time_size${num}`] ?
+        let _y_alignment = !this._vertical && this.time_custom1 && this.time_custom2 &&
+            this[`time_size${_other_num}`] > this[`time_size${num}`] ?
             { y_fill: false, y_align: ST_ALIGNMENT[this[`time_yalign${num}`]] } : null;
         this[`container${num}`].add(this[`datetime${num}`], _y_alignment);
         this[`time_font${num}`] = this[`time_font${num}`].replace(/['"`]/g, "");
@@ -107,10 +107,29 @@ DateTimeDesklet.prototype = {
 
     _updateUI: function () {
         let currentTime = new Date();
-        if (this.time_custom1 && this.time_format1)
-            this.datetime1.set_text(currentTime.toLocaleFormat(this.time_format1));
-        if (this.time_custom2 && this.time_format2)
-            this.datetime2.set_text(currentTime.toLocaleFormat(this.time_format2));
+        let badChars = ["%", ""];
+        if (this.time_custom1) {
+            if (this.time_format1 == null || badChars.indexOf(this.time_format1.trim()) !== -1) {
+                this.datetime1.set_text(currentTime.toLocaleTimeString());
+            } else {
+                try {
+                    this.datetime1.set_text(currentTime.toLocaleFormat(this.time_format1));
+                } catch (e) {
+                    this.datetime1.set_text(currentTime.toLocaleTimeString());
+                }
+            }
+        }
+        if (this.time_custom2) {
+            if (this.time_format2 == null || badChars.indexOf(this.time_format2.trim()) !== -1) {
+                this.datetime2.set_text(currentTime.toLocaleDateString());
+            } else {
+                try {
+                    this.datetime2.set_text(currentTime.toLocaleFormat(this.time_format2));
+                } catch (e) {
+                    this.datetime2.set_text(currentTime.toLocaleDateString());
+                }
+            }
+        }
         this.timeout = Mainloop.timeout_add_seconds(1, Lang.bind(this, this._updateUI));
     },
 

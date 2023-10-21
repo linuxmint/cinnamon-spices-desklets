@@ -11,7 +11,7 @@
     "time_format1": {
         "type": "entry",
         "description": "Time Format",
-        "default": "%-H:%M",
+        "default": "",
         "tooltip": "The datetime format to use for the output. See 'Format String Help' below for additional details.",
         "dependency": "time_custom1"
     },
@@ -73,7 +73,7 @@
     "time_format2": {
         "type": "entry",
         "description": "Time Format",
-        "default": "%-A, %B %-d %Y",
+        "default": "",
         "tooltip": "The datetime format to use for the output. See 'Format String Help' below for additional details.",
         "dependency": "time_custom2"
     },

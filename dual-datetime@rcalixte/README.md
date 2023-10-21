@@ -52,7 +52,7 @@ CONFIGURATION
 
 It is possible to set a single datetime string for both the time and date if
 desired. If the `Format` field is blank for either format field, that value will
-not be displayed.
+be reset to the locale's default time (first string) or date (second string).
 
 COMPATIBILITY
 -------------
