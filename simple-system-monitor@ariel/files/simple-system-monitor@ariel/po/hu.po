@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-03 14:07-0400\n"
-"PO-Revision-Date: 2023-09-03 14:08-0400\n"
+"PO-Revision-Date: 2023-10-22 20:20+0200\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: \n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: 5.8/desklet.js:43 4.0/desklet.js:35
 msgid ""
@@ -36,26 +36,32 @@ msgstr ""
 #: 5.8/desklet.js:112
 msgid "No temp file detected at CPU path. Resetting to default."
 msgstr ""
+"Nem észlelhető hőmérséklet fájl a CPU útvonalon. Visszaállítás az "
+"alapértelmezett értékre."
 
 #: 5.8/desklet.js:116
 msgid "Invalid CPU path detected. Resetting to default."
 msgstr ""
+"Érvénytelen CPU útvonal észlelve. Visszaállítás az alapértelmezett értékre."
 
 #: 5.8/desklet.js:131 5.8/desklet.js:172
 msgid "error reading:"
-msgstr ""
+msgstr "olvasási hiba:"
 
 #: 5.8/desklet.js:153
 msgid "No temp file detected at GPU path. Resetting to default."
 msgstr ""
+"Nincs hőmérsékletfájl észlelhető a GPU útvonalon. Visszaállítás az "
+"alapértelmezett értékre."
 
 #: 5.8/desklet.js:157
 msgid "Invalid GPU path detected. Resetting to default."
 msgstr ""
+"Érvénytelen GPU útvonal észlelve. Visszaállítás az alapértelmezett értékre."
 
 #: 5.8/desklet.js:212 5.8/desklet.js:230
 msgid "Please install missing dependencies."
-msgstr ""
+msgstr "Kérem telepítse az hiányzó függőségeket."
 
 #: 5.8/desklet.js:298 4.0/desklet.js:236 3.0/desklet.js:238
 msgid "CPU:"
@@ -102,111 +108,117 @@ msgid "Shows some system status values"
 msgstr "Néhány rendszerállapot érték megjelenítése"
 
 #. metadata.json->name
-#, fuzzy
-#| msgid "Simple system monitor"
 msgid "Simple System Monitor"
 msgstr "Egyszerű rendszerfigyelő"
 
 #. 5.8->settings-schema.json->head0->description
 msgid "General Settings"
-msgstr ""
+msgstr "Általános beállítások"
 
 #. 5.8->settings-schema.json->title_align->description
 msgid "Alignment for title strings"
-msgstr ""
+msgstr "Cím szövegek igazítása"
 
 #. 5.8->settings-schema.json->title_align->tooltip
 msgid "CPU, Memory, etc."
-msgstr ""
+msgstr "CPU, memória, stb."
 
 #. 5.8->settings-schema.json->title_align->options
 #. 5.8->settings-schema.json->value_align->options
 msgid "Left"
-msgstr ""
+msgstr "Balra"
 
 #. 5.8->settings-schema.json->title_align->options
 #. 5.8->settings-schema.json->value_align->options
 msgid "Right"
-msgstr ""
+msgstr "Jobbra"
 
 #. 5.8->settings-schema.json->value_align->description
 msgid "Alignment for value strings"
-msgstr ""
+msgstr "Érték szövegek igazítása"
 
 #. 5.8->settings-schema.json->value_align->tooltip
 msgid "GB, KB, etc."
-msgstr ""
+msgstr "GB, KB, stb."
 
 #. 5.8->settings-schema.json->temp_units->options
 msgid "°C"
-msgstr ""
+msgstr "°C"
 
 #. 5.8->settings-schema.json->temp_units->options
 msgid "°F"
-msgstr ""
+msgstr "°F"
 
 #. 5.8->settings-schema.json->temp_units->description
 msgid "Temperature units to display"
-msgstr ""
+msgstr "Mértékegység a hőmérséklet megjelenítéséhez"
 
 #. 5.8->settings-schema.json->font_scale_size->description
 msgid "Scale factor for font size"
-msgstr ""
+msgstr "Méretarány faktor a betűméret számára"
 
 #. 5.8->settings-schema.json->font_scale_size->tooltip
 msgid ""
 "Increase or decrease this value to change the font size scale (1.2 = 120%)"
 msgstr ""
+"Növelje vagy csökkentse ezt az értéket a betűméretarány megváltoztatásához "
+"(1.2 = 120%)"
 
 #. 5.8->settings-schema.json->font_color->description
 msgid "Font color"
-msgstr ""
+msgstr "Betűszín"
 
 #. 5.8->settings-schema.json->font_color->tooltip
 #. 5.8->settings-schema.json->background_color->tooltip
 msgid "RGB or RGBA"
-msgstr ""
+msgstr "RGB vagy RGBA"
 
 #. 5.8->settings-schema.json->font_family->description
 msgid "Font family for text (blank to use default)"
 msgstr ""
+"Betűtípus család a szöveghez (hagyja üresen az alapértelmezett betűtípus "
+"használatához)"
 
 #. 5.8->settings-schema.json->font_family->tooltip
 msgid "Set a custom font family for the text (blank to use default font)"
 msgstr ""
+"Állítson be egy egyedi betűtípus családot a szöveghez (hagyja üresen az "
+"alapértelmezett betűtípus használatához)"
 
 #. 5.8->settings-schema.json->width->units
 msgid "px"
-msgstr ""
+msgstr "px"
 
 #. 5.8->settings-schema.json->width->description
 msgid "Fixed width for the desklet"
-msgstr ""
+msgstr "Rögzített szélesség az asztalkalmazáshoz"
 
 #. 5.8->settings-schema.json->width->tooltip
 msgid ""
 "Increase or decrease this value to set the boundary width of the desklet"
 msgstr ""
+"Növelje vagy csökkentse ezt az értéket a desklet szegélyszélességének "
+"beállításához"
 
 #. 5.8->settings-schema.json->show_decorations->description
 msgid "Show background decorations"
-msgstr ""
+msgstr "Háttér dekorációk megjelenítése"
 
 #. 5.8->settings-schema.json->show_decorations->tooltip
 msgid "Toggle to control whether the background is transparent"
-msgstr ""
+msgstr "A háttér átlátszóságának átváltása"
 
 #. 5.8->settings-schema.json->background_color->description
 msgid "Background color"
-msgstr ""
+msgstr "Háttérszín"
 
 #. 5.8->settings-schema.json->head1->description
 msgid "Advanced Settings"
-msgstr ""
+msgstr "Speciális beállítások"
 
 #. 5.8->settings-schema.json->customCPUPath->description
 msgid "Path to CPU temperature directory (device path)"
-msgstr ""
+msgstr "Elérési út a CPU hőmérséklet mappához (eszköz elérési út)"
 
 #. 5.8->settings-schema.json->customCPUPath->tooltip
 msgid ""
@@ -216,18 +228,23 @@ msgid ""
 "Default:\n"
 "/sys/class/thermal/thermal_zone0"
 msgstr ""
+"Válassza ki saját hőmérséklet-szabályozó CPU objektumát, például más "
+"hőmérséklet-érzékelő figyeléséhez.\n"
+"\n"
+"Alapértelmezés:\n"
+"/sys/class/thermal/thermal_zone0"
 
 #. 5.8->settings-schema.json->display_gpu->description
 msgid "Display GPU temperature"
-msgstr ""
+msgstr "GPU hőmérséklet megjelenítése"
 
 #. 5.8->settings-schema.json->display_gpu->tooltip
 msgid "Toggle to control whether the GPU temperature is displayed"
-msgstr ""
+msgstr "A GPU hőmérséklet megjelenítésének átváltása"
 
 #. 5.8->settings-schema.json->customGPUPath->description
 msgid "Path to GPU temperature directory (device path)"
-msgstr ""
+msgstr "Elérési út a GPU hőmérséklet mappához (eszköz elérési út)"
 
 #. 5.8->settings-schema.json->customGPUPath->tooltip
 msgid ""
@@ -236,3 +253,8 @@ msgid ""
 "Default:\n"
 "/sys/class/thermal/thermal_zone0"
 msgstr ""
+"Válassza ki saját hőmérséklet-szabályozó GPU objektumát, például egy GPU "
+"monitorozásához.\n"
+"\n"
+"Alapértelmezés:\n"
+"/sys/class/thermal/thermal_zone0"
