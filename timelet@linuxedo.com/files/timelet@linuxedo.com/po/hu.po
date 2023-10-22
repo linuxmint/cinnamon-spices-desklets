@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-12 06:11-0500\n"
-"PO-Revision-Date: 2023-01-09 20:51+0100\n"
+"POT-Creation-Date: 2023-08-10 21:39-0400\n"
+"PO-Revision-Date: 2023-10-22 20:26+0200\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: \n"
 "Language: hu\n"
@@ -21,15 +21,15 @@ msgstr ""
 msgid "Timelet"
 msgstr "Timelet"
 
-#: themes/theme.js:133
+#: themes/theme.js:143
 msgid "AM"
 msgstr "DE"
 
-#: themes/theme.js:135
+#: themes/theme.js:145
 msgid "Noon"
 msgstr "Dél"
 
-#: themes/theme.js:137
+#: themes/theme.js:147
 msgid "PM"
 msgstr "DU"
 
@@ -44,6 +44,16 @@ msgstr "Timelet beállítások"
 #. settings-schema.json->themeName->description
 msgid "Theme"
 msgstr "Téma"
+
+#. settings-schema.json->use24H->description
+msgid "Use 24H"
+msgstr "24 órás időformátum használata"
+
+#. settings-schema.json->use24H->tooltip
+msgid "Display time in 24H if the theme supports it"
+msgstr ""
+"Idő megjelenítése 24 órás időformátum használatával, ha a beállított téma "
+"támogatja azt"
 
 #. settings-schema.json->textColor->description
 msgid "Text color"
