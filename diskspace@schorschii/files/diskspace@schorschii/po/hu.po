@@ -1,165 +1,159 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-01-12 18:07+0100\n"
-"PO-Revision-Date: 2021-12-06 10:32+0100\n"
+"POT-Creation-Date: 2023-10-16 12:33+0200\n"
+"PO-Revision-Date: 2023-10-16 12:33+0200\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: \n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
-"X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: desklet.js\n"
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
-msgid "Disk Space"
-msgstr "Lemezterület"
-
-msgid "Displays the usage of a filesystem or RAM."
-msgstr "Megjeleníti a fájlrendszer vagy a RAM használatát."
-
-msgid "Settings for diskspace@schorschii"
-msgstr "Diskspace@schorschii beállításai"
-
-msgid "General"
-msgstr "Általános"
-
-msgid "Monitor a file system or RAM usage"
-msgstr "Egy fájlrendszer vagy a RAM használatának megfigyelése"
-
-msgid "Choose, if this desklet should show file system or RAM usage."
-msgstr ""
-"Válasszon, hogy az asztalkalmazás megjelenítse-e a fájlrendszer vagy a RAM "
-"használatát."
-
-msgid "Filesystem"
-msgstr "Fájlrendszer"
-
+#: desklet.js:265 desklet.js:388
 msgid "RAM"
 msgstr "RAM"
 
+#: desklet.js:267 desklet.js:390
 msgid "Swap"
 msgstr "Cserehely"
 
+#: desklet.js:269
+msgid "Filesystem"
+msgstr "Fájlrendszer"
+
+#: desklet.js:291
 msgid "Not Found"
 msgstr "Nem található"
 
-msgid "Filesystem to monitor"
-msgstr "Megfigyelt fájlrendszer"
+#: desklet.js:392
+msgid "Disk Space"
+msgstr "Lemezterület"
 
-msgid "Select the file system, which you want to monitor."
-msgstr "Válassza ki a megfigyelni kívánt fájlrendszert."
+#~ msgid "Displays the usage of a filesystem or RAM."
+#~ msgstr "Megjeleníti a fájlrendszer vagy a RAM használatát."
 
-msgid "Visual"
-msgstr "Vizuális"
+#~ msgid "Settings for diskspace@schorschii"
+#~ msgstr "Diskspace@schorschii beállításai"
 
-msgid "Design"
-msgstr "Dizájn"
+#~ msgid "General"
+#~ msgstr "Általános"
 
-msgid "Classic (Thick)"
-msgstr "Klasszikus (vastag)"
+#~ msgid "Monitor a file system or RAM usage"
+#~ msgstr "Egy fájlrendszer vagy a RAM használatának megfigyelése"
 
-msgid "Thin"
-msgstr "Vékony"
+#~ msgid "Choose, if this desklet should show file system or RAM usage."
+#~ msgstr "Válasszon, hogy az asztalkalmazás megjelenítse-e a fájlrendszer vagy a RAM használatát."
 
-msgid "Compact"
-msgstr "Tömör"
+#~ msgid "Filesystem to monitor"
+#~ msgstr "Megfigyelt fájlrendszer"
 
-msgid "Draw free/unused space (gray)"
-msgstr "Rajzoljon szabad/fel nem használt területet (szürke)"
+#~ msgid "Select the file system, which you want to monitor."
+#~ msgstr "Válassza ki a megfigyelni kívánt fájlrendszert."
 
-msgid "Text"
-msgstr "Szöveg"
+#~ msgid "Visual"
+#~ msgstr "Vizuális"
 
-msgid "Name and total space"
-msgstr "Név és teljes terület"
+#~ msgid "Design"
+#~ msgstr "Dizájn"
 
-msgid "Used and total space"
-msgstr "Felhasznált és teljes terület"
+#~ msgid "Classic (Thick)"
+#~ msgstr "Klasszikus (vastag)"
 
-msgid "Total and used space"
-msgstr "Teljes és elhasznált terület"
+#~ msgid "Thin"
+#~ msgstr "Vékony"
 
-msgid "Free and total space"
-msgstr "Szabad és teljes terület"
+#~ msgid "Compact"
+#~ msgstr "Tömör"
 
-msgid "Total and free space"
-msgstr "Teljes és szabad terület"
+#~ msgid "Draw free/unused space (gray)"
+#~ msgstr "Rajzoljon szabad/fel nem használt területet (szürke)"
 
-msgid "No text"
-msgstr "Nincs szöveg"
+#~ msgid "Text"
+#~ msgstr "Szöveg"
 
-msgid "Size Prefix"
-msgstr "Méret előtag"
+#~ msgid "Name and total space"
+#~ msgstr "Név és teljes terület"
 
-msgid "Decimal"
-msgstr "Tizedesjegy"
+#~ msgid "Used and total space"
+#~ msgstr "Felhasznált és teljes terület"
 
-msgid "Binary"
-msgstr "Bináris"
+#~ msgid "Total and used space"
+#~ msgstr "Teljes és elhasznált terület"
 
-msgid "Hide decorations"
-msgstr "Díszítések elrejtése"
+#~ msgid "Free and total space"
+#~ msgstr "Szabad és teljes terület"
 
-msgid "Use a custom circle color"
-msgstr "Egyéni körszín használata"
+#~ msgid "Total and free space"
+#~ msgstr "Teljes és szabad terület"
 
-msgid "Circle color"
-msgstr "Körszín"
+#~ msgid "No text"
+#~ msgstr "Nincs szöveg"
 
-msgid "Text color"
-msgstr "Szövegszín"
+#~ msgid "Size Prefix"
+#~ msgstr "Méret előtag"
 
-msgid "Increase or decrease the size of this desklet using this scale factor."
-msgstr ""
-"Növelje vagy csökkentse az asztalkalmazás méretét ezt a méretezőt használva."
+#~ msgid "Decimal"
+#~ msgstr "Tizedesjegy"
 
-msgid "Desklet size"
-msgstr "Asztalkalmazás mérete"
+#~ msgid "Binary"
+#~ msgstr "Bináris"
 
-msgid "scale factor"
-msgstr "léptéktényező"
+#~ msgid "Hide decorations"
+#~ msgstr "Díszítések elrejtése"
 
-msgid "Custom desklet label (only visible if decorations are enabled)"
-msgstr ""
-"Egyéni asztalkalmazás címke (csak akkor látható, ha a dekoráció engedélyezve "
-"van)"
+#~ msgid "Use a custom circle color"
+#~ msgstr "Egyéni körszín használata"
 
-msgid "Use a custom desklet label"
-msgstr "Egyéni asztalkalmazás címke használata"
+#~ msgid "Circle color"
+#~ msgstr "Körszín"
 
-msgid "Checking this box allows you to set a custom label in the field below."
-msgstr ""
-"Ennek a négyzetnek a bejelölésével egyéni címkét állíthat be az alábbi "
-"mezőben."
+#~ msgid "Text color"
+#~ msgstr "Szövegszín"
 
-msgid "Custom desklet label"
-msgstr "Egyéni asztalkalmazás címke"
+#~ msgid "Increase or decrease the size of this desklet using this scale factor."
+#~ msgstr "Növelje vagy csökkentse az asztalkalmazás méretét ezt a méretezőt használva."
 
-msgid ""
-"Set your custom label here. This field is unavailable unless the checkbox "
-"above is enabled."
-msgstr ""
-"Itt állítson be egyedi címkét. Ez a mező nem lesz elérhető egészen addig, "
-"amíg a fenti kapcsolóval nem engedélyezi."
+#~ msgid "Desklet size"
+#~ msgstr "Asztalkalmazás mérete"
 
-msgid "Action on mouse click"
-msgstr "Művelet az egérkattintással"
+#~ msgid "scale factor"
+#~ msgstr "léptéktényező"
 
-msgid "Choose what to do when the desklet was clicked."
-msgstr "Válassza ki, mit tegyen, amikor az asztalkalmazásra kattintanak."
+#~ msgid "Custom desklet label (only visible if decorations are enabled)"
+#~ msgstr "Egyéni asztalkalmazás címke (csak akkor látható, ha a dekoráció engedélyezve van)"
 
-msgid "Open File Manager"
-msgstr "Fájlkezelő megnyitása"
+#~ msgid "Use a custom desklet label"
+#~ msgstr "Egyéni asztalkalmazás címke használata"
 
-msgid "Open Partition Manager"
-msgstr "Partíció kezelő megnyitása"
+#~ msgid "Checking this box allows you to set a custom label in the field below."
+#~ msgstr "Ennek a négyzetnek a bejelölésével egyéni címkét állíthat be az alábbi mezőben."
 
-msgid "Open System Monitor"
-msgstr "Rendszerfigyelő megnyitása"
+#~ msgid "Custom desklet label"
+#~ msgstr "Egyéni asztalkalmazás címke"
 
-msgid "Nothing"
-msgstr "Semmit"
+#~ msgid "Set your custom label here. This field is unavailable unless the checkbox above is enabled."
+#~ msgstr "Itt állítson be egyedi címkét. Ez a mező nem lesz elérhető egészen addig, amíg a fenti kapcsolóval nem engedélyezi."
+
+#~ msgid "Action on mouse click"
+#~ msgstr "Művelet az egérkattintással"
+
+#~ msgid "Choose what to do when the desklet was clicked."
+#~ msgstr "Válassza ki, mit tegyen, amikor az asztalkalmazásra kattintanak."
+
+#~ msgid "Open File Manager"
+#~ msgstr "Fájlkezelő megnyitása"
+
+#~ msgid "Open Partition Manager"
+#~ msgstr "Partíció kezelő megnyitása"
+
+#~ msgid "Open System Monitor"
+#~ msgstr "Rendszerfigyelő megnyitása"
+
+#~ msgid "Nothing"
+#~ msgstr "Semmit"
