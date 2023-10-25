@@ -108,10 +108,10 @@ MyDesklet.prototype = {
 		var fs = decodeURIComponent(this.filesystem.replace("file://", "").trim());
 		if(fs == null || fs == "") fs = "/";
 
-		let percentString = "⛔️";
-		let avail = 0;
-		let use = 0;
-		let size = 0;
+		var percentString = "⛔️";
+		var avail = 0;
+		var use = 0;
+		var size = 0;
 
 		// get values from command
 		if(type == "ram" || type == "swap") {
@@ -144,11 +144,15 @@ MyDesklet.prototype = {
 				+','+Gio.FILE_ATTRIBUTE_FILESYSTEM_FREE
 				+','+Gio.FILE_ATTRIBUTE_FILESYSTEM_SIZE,
 				1, null, (source_object, response, data) => {
-					let fileInfo = file.query_filesystem_info_finish(response);
-					let avail = fileInfo.get_attribute_uint64(Gio.FILE_ATTRIBUTE_FILESYSTEM_FREE);
-					let size = fileInfo.get_attribute_uint64(Gio.FILE_ATTRIBUTE_FILESYSTEM_SIZE);
-					let use = size - avail;
-					let percentString = Math.round(use * 100 / size) + "%";
+					try {
+						let fileInfo = file.query_filesystem_info_finish(response);
+						avail = fileInfo.get_attribute_uint64(Gio.FILE_ATTRIBUTE_FILESYSTEM_FREE);
+						size = fileInfo.get_attribute_uint64(Gio.FILE_ATTRIBUTE_FILESYSTEM_SIZE);
+						use = size - avail;
+						percentString = Math.round(use * 100 / size) + "%";
+					} catch(err) {
+						//global.log('file not found: '+fs);
+					}
 					this.redraw(type, fs, avail, use, size, percentString);
 				}
 			);
