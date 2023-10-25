@@ -117,12 +117,12 @@ MyDesklet.prototype = {
 		if(type == "ram" || type == "swap") {
 
 			let subprocess = new Gio.Subprocess({
-				argv: ['/usr/bin/free', '--bytes'],
+				argv: ["/usr/bin/free", "--bytes"],
 				flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
 			});
 			subprocess.init(null);
-			subprocess.wait_async(null, (sourceObject, res) => {
-				let [, stdOut, stdErr] = sourceObject.communicate_utf8(null, null);
+			subprocess.communicate_utf8_async(null, null, (sourceObject, result) => {
+				let [, stdOut, stdErr] = sourceObject.communicate_utf8_finish(result);
 				//global.log(stdOut); global.log(stdErr); // debug
 				if(stdErr == "") {
 					let res = this.parseMem(stdOut, type);
@@ -138,26 +138,20 @@ MyDesklet.prototype = {
 
 		} else {
 
-			let subprocess = new Gio.Subprocess({
-				argv: ['/bin/df', fs],
-				flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
-			});
-			subprocess.init(null);
-			subprocess.wait_async(null, (sourceObject, res) => {
-				let [, stdOut, stdErr] = sourceObject.communicate_utf8(null, null);
-				//global.log(stdOut); global.log(stdErr); // debug
-				let fslines = stdOut.split(/\r?\n/); // get second line with fs information
-				if(stdErr == "" && fslines.length > 1) {
-					let fsvalues = fslines[1].split(/\s+/); // separate space-separated values from line
-					if(fsvalues.length > 4) {
-						avail = parseInt(fsvalues[3]) * 1024; // df shows 1K blocks -> convert ty bytes
-						use = parseInt(fsvalues[2]) * 1024; // df shows 1K blocks -> convert ty bytes
-						size = use + avail;
-						percentString = fsvalues[4];
-					}
+			let file = Gio.file_new_for_path(fs);
+			file.query_filesystem_info_async(
+				Gio.FILE_ATTRIBUTE_FILESYSTEM_USED
+				+','+Gio.FILE_ATTRIBUTE_FILESYSTEM_FREE
+				+','+Gio.FILE_ATTRIBUTE_FILESYSTEM_SIZE,
+				1, null, (source_object, response, data) => {
+					let fileInfo = file.query_filesystem_info_finish(response);
+					let avail = fileInfo.get_attribute_uint64(Gio.FILE_ATTRIBUTE_FILESYSTEM_FREE);
+					let size = fileInfo.get_attribute_uint64(Gio.FILE_ATTRIBUTE_FILESYSTEM_SIZE);
+					let use = size - avail;
+					let percentString = Math.round(use * 100 / size) + "%";
+					this.redraw(type, fs, avail, use, size, percentString);
 				}
-				this.redraw(type, fs, avail, use, size, percentString);
-			});
+			);
 
 		}
 	},
