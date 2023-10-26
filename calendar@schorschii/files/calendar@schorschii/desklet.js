@@ -11,6 +11,7 @@ const Clutter = imports.gi.Clutter;
 const GdkPixbuf = imports.gi.GdkPixbuf;
 const Cogl = imports.gi.Cogl;
 const Gettext = imports.gettext;
+const Gio = imports.gi.Gio;
 
 const UUID = "calendar@schorschii";
 const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
@@ -33,7 +34,7 @@ function main(metadata, desklet_id) {
 }
 
 function getImageAtScale(imageFileName, width, height, width2 = 0, height2 = 0) {
-	if (width2 == 0 || height2 == 0) {
+	if(width2 == 0 || height2 == 0) {
 		width2 = width;
 		height2 = height;
 	}
@@ -90,10 +91,10 @@ MyDesklet.prototype = {
 		this.default_month_top_top = 27;
 		this.dayofmonth = 0; this.monthofyear = 0; this.dayofweek = 0; this.year = 0;
 		this.dayofweek_string = ""; this.monthofyear_string = "";
-		this.notification_amount = 0; this.last_notification_amount = 0;
+		this.last_notification_amount = 0;
 
 		// load images and set initial sizes
-		this.refreshSize(true);
+		this.refreshDesklet(-1, true);
 
 		// set root eleent
 		this.setContent(this.calendar);
@@ -121,7 +122,7 @@ MyDesklet.prototype = {
 		this.dayofweek = this._displayTime.get_day_of_week();
 		this.year = this._displayTime.get_year();
 
-		switch (this.dayofweek) {
+		switch(this.dayofweek) {
 			case 1: this.dayofweek_string = _("Monday"); break;
 			case 2: this.dayofweek_string = _("Tuesday"); break;
 			case 3: this.dayofweek_string = _("Wednesday"); break;
@@ -130,7 +131,7 @@ MyDesklet.prototype = {
 			case 6: this.dayofweek_string = _("Saturday"); break;
 			case 7: this.dayofweek_string = _("Sunday"); break;
 		}
-		switch (this.monthofyear) {
+		switch(this.monthofyear) {
 			case 1: this.monthofyear_string = _("January"); break;
 			case 2: this.monthofyear_string = _("February"); break;
 			case 3: this.monthofyear_string = _("March"); break;
@@ -145,57 +146,54 @@ MyDesklet.prototype = {
 			case 12: this.monthofyear_string = _("December"); break;
 		}
 
-		this.notification_amount = 0;
-		if (this.read_appointments) {
-			let ical_content = "";
-			try {
-				// read ical file
-				ical_content = Cinnamon.get_file_contents_utf8_sync(this.ical_file.replace("file://", ""));
-			} catch(ex) {
-				// error reading file - maybe the file does not exist
-				this.notification_amount = -1;
-			}
-
-			var lines = ical_content.split("\n");
-
-			let ical_current_dtstart = "";
-			let ical_current_dtend = "";
-			let ical_current_text = "";
-			let ical_current_desc = "";
-			for(var i = 0;i < lines.length;i++){
-				if(lines[i].startsWith("BEGIN:VEVENT")) {
-					// calendar entry starts
+		if(this.read_appointments) {
+			// read ical file
+			var notification_amount = 0;
+			let ical_file = Gio.file_new_for_path(this.ical_file.replace("file://", ""));
+			ical_file.load_contents_async(null, (file, response) => {
+				try {
+					let [success, contents, tag] = file.load_contents_finish(response);
+					if(success) {
+						var lines = contents.toString().split("\n");
+						let ical_current_dtstart = "";
+						let ical_current_dtend = "";
+						let ical_current_text = "";
+						let ical_current_desc = "";
+						for(var i = 0;i < lines.length;i++){
+							if(lines[i].startsWith("DTSTART")) // read appointment start date and time
+								ical_current_dtstart = lines[i].split(":")[1].split("T")[0].trim();
+							if(lines[i].startsWith("DTEND")) // read appointment end date and time
+								ical_current_dtend = lines[i].split(":")[1].split("T")[0].trim();
+							if(lines[i].startsWith("SUMMARY")) // read appointment summary
+								ical_current_text = lines[i].split(":")[1];
+							if(lines[i].startsWith("DESCRIPTION")) // read appointment description
+								ical_current_desc = lines[i].split(":")[1];
+							if(lines[i].startsWith("END:VEVENT")) { // calendar entry ends
+								// check date if it matches today's date and if so, increment the counter
+								if(ical_current_dtstart == this.year.toString() + ("0" + this.monthofyear.toString()).slice(-2) + ("0" + this.dayofmonth.toString()).slice(-2))
+									notification_amount ++;
+								// reset temporary variables
+								ical_current_desc = ""; ical_current_text = ""; ical_current_dtstart = ""; ical_current_dtend = "";
+							}
+						}
+						this.refreshDesklet(notification_amount, false); // set text without recalc sizes
+					}
+				} catch(ex) {
+					global.log(ex.toString());
+					// error reading file - maybe the file does not exist
+					this.refreshDesklet(-1, false); // set text without recalc sizes
 				}
-				if(lines[i].startsWith("END:VEVENT")) {
-					// calendar entry ends
-
-					// check date if it matches today's date
-					if (ical_current_dtstart == this.year.toString() + ('0' + this.monthofyear.toString()).slice(-2) + ('0' + this.dayofmonth.toString()).slice(-2))
-						this.notification_amount ++;
-
-					// reset temporary variables
-					ical_current_desc = ""; ical_current_text = ""; ical_current_dtstart = ""; ical_current_dtend = "";
-				}
-				if(lines[i].startsWith("DTSTART")) // read appointment start date and time
-					ical_current_dtstart = lines[i].split(":")[1].split("T")[0].trim();
-				if(lines[i].startsWith("DTEND")) // read appointment end date and time
-					ical_current_dtend = lines[i].split(":")[1].split("T")[0].trim();
-				if(lines[i].startsWith("SUMMARY")) // read appointment summary
-					ical_current_text = lines[i].split(":")[1];
-				if(lines[i].startsWith("DESCRIPTION")) // read appointment description
-					ical_current_desc = lines[i].split(":")[1];
-			}
+			});
+		} else {
+			this.refreshDesklet(-1, false); // set text without recalc sizes
 		}
-
-		// set object sizes without recalc
-		this.refreshSize(false);
 
 		// refresh again in five seconds
 		this.timeout = Mainloop.timeout_add_seconds(5, Lang.bind(this, this.refresh));
 	},
 
-	refreshSize: function(reloadGraphics = false) {
-		if(this.notification_amount != this.last_notification_amount || reloadGraphics == true) {
+	refreshDesklet: function(notification_amount, reloadGraphics=false) {
+		if(notification_amount != this.last_notification_amount || reloadGraphics) {
 
 			// calc new sizes based on scale factor
 			let scale = this.scale_size * global.ui_scale;
@@ -244,12 +242,12 @@ MyDesklet.prototype = {
 			this.container.add_actor(this.month_big);
 			this.container.add_actor(this.month_sub);
 			this.container.add_actor(this.month_top);
-			if(this.notification_amount > 0 || this.notification_amount == -1)
+			if(this.read_appointments)
 				this.container.add_actor(this.notification);
 			this.setContent(this.calendar);
 
 			// remember last notification amount
-			this.last_notification_amount = this.notification_amount;
+			this.last_notification_amount = notification_amount;
 
 			// debug
 			//Main.notifyError("Complete Refresh Done", text_color_style);
@@ -260,10 +258,10 @@ MyDesklet.prototype = {
 		this.month_big.set_text(this.dayofmonth.toString());
 		this.month_sub.set_text(subtitle);
 		this.month_top.set_text(this.dayofweek_string);
-		if(this.notification_amount == -1)
+		if(notification_amount == -1)
 			this.notification.set_text("!");
 		else
-			this.notification.set_text(this.notification_amount.toString());
+			this.notification.set_text(notification_amount.toString());
 
 		// debug
 		//Main.notifyError("Text Refresh Done", " ");
@@ -271,7 +269,7 @@ MyDesklet.prototype = {
 
 	refreshDecoration: function() {
 		// desklet label (header)
-		if(this.use_custom_label == true)
+		if(this.use_custom_label)
 			this.setHeader(this.custom_label)
 		else
 			this.setHeader(_("Calendar"));
@@ -290,11 +288,11 @@ MyDesklet.prototype = {
 		this.refresh();
 
 		// update size based on scale factor
-		this.refreshSize(true);
+		this.refreshDesklet(this.last_notification_amount, true);
 	},
 
 	on_desklet_clicked: function() {
-		if(this.onclick_active == true && this.onclick_command != "")
+		if(this.onclick_active && this.onclick_command != "")
 			Util.spawnCommandLine(this.onclick_command);
 	},
 
