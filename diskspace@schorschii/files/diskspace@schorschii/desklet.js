@@ -138,11 +138,12 @@ MyDesklet.prototype = {
 
 		} else {
 
+			// https://docs.gtk.org/gio/vfunc.File.query_filesystem_info_async.html
 			let file = Gio.file_new_for_path(fs);
 			file.query_filesystem_info_async(
 				Gio.FILE_ATTRIBUTE_FILESYSTEM_USED
-				+','+Gio.FILE_ATTRIBUTE_FILESYSTEM_FREE
-				+','+Gio.FILE_ATTRIBUTE_FILESYSTEM_SIZE,
+				+","+Gio.FILE_ATTRIBUTE_FILESYSTEM_FREE
+				+","+Gio.FILE_ATTRIBUTE_FILESYSTEM_SIZE,
 				1, null, (source_object, response, data) => {
 					try {
 						let fileInfo = file.query_filesystem_info_finish(response);
@@ -151,7 +152,8 @@ MyDesklet.prototype = {
 						use = size - avail;
 						percentString = Math.round(use * 100 / size) + "%";
 					} catch(err) {
-						//global.log('file not found: '+fs);
+						// e.g. file not found (= not mounted)
+						//global.log("error getting filesystem info: "+fs);
 					}
 					this.redraw(type, fs, avail, use, size, percentString);
 				}
@@ -188,7 +190,7 @@ MyDesklet.prototype = {
 		// canvas setup
 		let canvas = new Clutter.Canvas();
 		canvas.set_size(absoluteSize * global.ui_scale, absoluteSize * global.ui_scale);
-		canvas.connect('draw', function (canvas, cr, width, height) {
+		canvas.connect("draw", function (canvas, cr, width, height) {
 			cr.save();
 			cr.setOperator(Cairo.Operator.CLEAR);
 			cr.paint();
@@ -374,7 +376,7 @@ MyDesklet.prototype = {
 	},
 
 	shortText: function(value, max = 9) {
-		return (value.length > max) ? value.substr(0, max-1) + '…' : value;
+		return (value.length > max) ? value.substr(0, max-1) + "…" : value;
 	},
 
 	refreshDecoration: function() {
