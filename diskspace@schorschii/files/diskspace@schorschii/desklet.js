@@ -154,7 +154,6 @@ MyDesklet.prototype = {
 							use = size - avail;
 						} else {
 							use = fileInfo.get_attribute_uint64(Gio.FILE_ATTRIBUTE_FILESYSTEM_USED);
-							global.log(use.toString());
 						}
 						percentString = Math.round(use * 100 / size) + "%";
 					} catch(err) {
