@@ -41,6 +41,7 @@ MyDesklet.prototype = {
 		// initialize settings
 		this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "size-prefix", "size_prefix", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "reserved-blocks-as-used-space", "reserved_blocks_as_used_space", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hide_decorations", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "use-custom-label", "use_custom_label", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "custom-label", "custom_label", this.on_setting_changed);
@@ -149,7 +150,11 @@ MyDesklet.prototype = {
 						let fileInfo = file.query_filesystem_info_finish(response);
 						avail = fileInfo.get_attribute_uint64(Gio.FILE_ATTRIBUTE_FILESYSTEM_FREE);
 						size = fileInfo.get_attribute_uint64(Gio.FILE_ATTRIBUTE_FILESYSTEM_SIZE);
-						use = size - avail;
+						if(this.reserved_blocks_as_used_space) {
+							use = size - avail;
+						} else {
+							use = fileInfo.get_attribute_uint64(Gio.FILE_ATTRIBUTE_FILESYSTEM_USED);
+						}
 						percentString = Math.round(use * 100 / size) + "%";
 					} catch(err) {
 						// e.g. file not found (= not mounted)
