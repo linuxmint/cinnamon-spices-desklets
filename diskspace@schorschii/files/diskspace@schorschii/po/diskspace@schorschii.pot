@@ -51,6 +51,12 @@ msgstr ""
 msgid "Select the file system, which you want to monitor."
 msgstr ""
 
+msgid "Show reserved blocks as used space"
+msgstr ""
+
+msgid "Reserved blocks are useable for the root user only and that's why displayed as used space by default."
+msgstr ""
+
 msgid "Visual"
 msgstr ""
 

@@ -53,6 +53,12 @@ msgstr "Dateisystem, welches angezeigt werden soll"
 msgid "Select the file system, which you want to monitor."
 msgstr "Wählen Sie das Dateisystem, welches Sie anzeigen möchten."
 
+msgid "Show reserved blocks as used space"
+msgstr "Zeige reservierte Blöcke als verwendeten Speicher"
+
+msgid "Reserved blocks are useable for the root user only and that's why displayed as used space by default."
+msgstr "Reservierte Blöcke sind nur vom root-Benutzer verwendbar und daher standardmäßig ausgeblendet."
+
 msgid "Visual"
 msgstr "Visuelle Einstellungen"
 
