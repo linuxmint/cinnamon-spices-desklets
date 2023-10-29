@@ -180,17 +180,17 @@ msgstr ""
 "ical, ktorý sa má analyzovať."
 
 #. settings-schema.json->ical-file->description
-msgid "Path to ical file"
-msgstr "Cesta k súboru ical"
+msgid "Path to ical/ics file"
+msgstr "Cesta k súboru ical/ics"
 
 #. settings-schema.json->ical-file->tooltip
 msgid ""
-"Select your ical file for reading the amount of appointments today.\n"
+"Select your ical or ics file for reading the amount of appointments today.\n"
 "\n"
 "You can configure Lightning (the Thunderbird Add-On) to save your calendar "
 "in an ical file."
 msgstr ""
-"Vyberte váš súbor ical, z ktorého sa má čítať počet dnešných schôdzok.\n"
+"Vyberte si súbor ical alebo ics, aby ste si mohli prečítať počet stretnutí dnes.\n"
 "\n"
 "Môžete nastaviť Lightning (doplnok aplikácie Thunderbird), ktorý uloží váš "
 "kalendár do súboru ical."

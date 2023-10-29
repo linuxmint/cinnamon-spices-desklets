@@ -66,8 +66,8 @@
     "ical-file": {
         "type": "filechooser",
         "default": "",
-        "description": "Path to ical file",
-        "tooltip": "Select your ical file for reading the amount of appointments today.\n\nYou can configure Lightning (the Thunderbird Add-On) to save your calendar in an ical file.",
+        "description": "Path to ical/ics file",
+        "tooltip": "Select your ical or ics file for reading the amount of appointments today.\n\nYou can configure Lightning (the Thunderbird Add-On) to save your calendar in an ical file.",
         "allow-none" : true
     },
 

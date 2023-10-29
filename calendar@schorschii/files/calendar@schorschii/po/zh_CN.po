@@ -167,17 +167,17 @@ msgid ""
 msgstr "选中此项允许您在下面的方框中设置要解析的ical文件。"
 
 #. calendar@schorschii->settings-schema.json->ical-file->description
-msgid "Path to ical file"
-msgstr "ical文件的路径"
+msgid "Path to ical/ics file"
+msgstr "ical/ics文件的路径"
 
 #. calendar@schorschii->settings-schema.json->ical-file->tooltip
 msgid ""
-"Select your ical file for reading the amount of appointments today.\n"
+"Select your ical or ics file for reading the amount of appointments today.\n"
 "\n"
 "You can configure Lightning (the Thunderbird Add-On) to save your calendar "
 "in an ical file."
 msgstr ""
-"选择您用于阅读今天预约数量的ical文件。\n"
+"选择您的 ical 或 ics 文件以读取今天的预约数量。\n"
 "\n"
 "您可以配置Lightning(Thunderbird扩展)将保存您的日历在ical文件中。"
 
