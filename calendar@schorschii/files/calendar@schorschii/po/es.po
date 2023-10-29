@@ -175,17 +175,17 @@ msgstr ""
 "el campo inferior."
 
 #. calendar@schorschii->settings-schema.json->ical-file->description
-msgid "Path to ical file"
-msgstr "Ruta al archivo ical"
+msgid "Path to ical/ics file"
+msgstr "Ruta al archivo ical/ics"
 
 #. calendar@schorschii->settings-schema.json->ical-file->tooltip
 msgid ""
-"Select your ical file for reading the amount of appointments today.\n"
+"Select your ical or ics file for reading the amount of appointments today.\n"
 "\n"
 "You can configure Lightning (the Thunderbird Add-On) to save your calendar "
 "in an ical file."
 msgstr ""
-"Seleccione su archivo ical para leer la cantidad de compromisos de hoy.\n"
+"Seleccione su archivo ical o ics para leer la cantidad de citas hoy.\n"
 "\n"
 "Puede configurar Lightning (el complemento de Thunderbird) para guardar su "
 "calendario en un archivo ical."

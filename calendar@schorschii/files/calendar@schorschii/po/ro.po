@@ -163,16 +163,16 @@ msgid "Checking this box allows you to set an ical file to parse in the field be
 msgstr "Dacă bifezi această casetă, poți seta un fișier ical care să fie analizat în câmpul de mai jos."
 
 #. calendar@schorschii->settings-schema.json->ical-file->description
-msgid "Path to ical file"
-msgstr "Calea de acces la fișierul ical"
+msgid "Path to ical/ics file"
+msgstr "Calea de acces la fișierul ical/ics"
 
 #. calendar@schorschii->settings-schema.json->ical-file->tooltip
 msgid ""
-"Select your ical file for reading the amount of appointments today.\n"
+"Select your ical or ics file for reading the amount of appointments today.\n"
 "\n"
 "You can configure Lightning (the Thunderbird Add-On) to save your calendar in an ical file."
 msgstr ""
-"Selectează fișierul ta ical pentru citirea sumei numirilor de astăzi.\n"
+"Selectați fișierul ical sau ics pentru a citi numărul de întâlniri de astăzi.\n"
 "\n"
 "Poți configura Lightning (add-on-ul Thunderbird) pentru a îți salva calendarul într-un fișier ical."
 

@@ -163,16 +163,16 @@ msgid "Checking this box allows you to set an ical file to parse in the field be
 msgstr "Ennek a négyzetnek a bejelölésével az alábbi mezőben megadhat egy importálandó ical fájlt."
 
 #. calendar@schorschii->settings-schema.json->ical-file->description
-msgid "Path to ical file"
-msgstr "Elérési útvonal az ical fájlhoz"
+msgid "Path to ical/ics file"
+msgstr "Elérési útvonal az ical/ics fájlhoz"
 
 #. calendar@schorschii->settings-schema.json->ical-file->tooltip
 msgid ""
-"Select your ical file for reading the amount of appointments today.\n"
+"Select your ical or ics file for reading the amount of appointments today.\n"
 "\n"
 "You can configure Lightning (the Thunderbird Add-On) to save your calendar in an ical file."
 msgstr ""
-"Válassza ki az ical fájlt a mai találkozók mennyiségének beolvasásához.\n"
+"Válassza ki az ical vagy ics fájlt a mai találkozók számának olvasásához.\n"
 "\n"
 "Beállíthatja a Lightning-et (a Thunderbird kiegészítőjét), hogy a naptárat egy ical fájlba mentse."
 
