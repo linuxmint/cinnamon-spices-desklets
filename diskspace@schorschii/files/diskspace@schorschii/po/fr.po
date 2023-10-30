@@ -1,0 +1,176 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2018-01-12 18:07+0100\n"
+"PO-Revision-Date: 2023-10-30 12:02+0100\n"
+"Last-Translator: Claudiux <claude.clerc@gmail.com>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+msgid "Disk Space"
+msgstr "Espace disque"
+
+msgid "Displays the usage of a filesystem or RAM."
+msgstr "Affiche l'utilisation d'un système de fichiers ou de la mémoire vive."
+
+msgid "Settings for diskspace@schorschii"
+msgstr "Paramètres pour diskspace@schorschii"
+
+msgid "General"
+msgstr "Général"
+
+msgid "Monitor a file system or RAM usage"
+msgstr "Surveiller un système de fichiers ou l'utilisation de la mémoire vive"
+
+msgid "Choose, if this desklet should show file system or RAM usage."
+msgstr ""
+"Choisissez si ce desklet doit afficher l'utilisation du système de fichiers "
+"ou bien de la mémoire vive."
+
+msgid "Filesystem"
+msgstr "Système de fichiers"
+
+msgid "RAM"
+msgstr "Mémoire vive"
+
+msgid "Swap"
+msgstr "Swap"
+
+msgid "Not Found"
+msgstr "Non trouvé"
+
+msgid "Filesystem to monitor"
+msgstr "Système de fichiers à surveiller"
+
+msgid "Select the file system, which you want to monitor."
+msgstr "Choisissez le système de fichiers que vous voulez surveiller."
+
+msgid "Show reserved blocks as used space"
+msgstr "Afficher les blocs réservés en tant qu'espace utilisé"
+
+msgid ""
+"Reserved blocks are useable for the root user only and that's why displayed "
+"as used space by default."
+msgstr ""
+"Les blocs réservés ne sont utilisables que par l'utilisateur root et c'est "
+"pourquoi ils sont affichés par défaut en tant qu'espace utilisé."
+
+msgid "Visual"
+msgstr "Visuel"
+
+msgid "Design"
+msgstr "Aspect"
+
+msgid "Classic (Thick)"
+msgstr "Classique (Épais)"
+
+msgid "Thin"
+msgstr "Mince"
+
+msgid "Compact"
+msgstr "Compact"
+
+msgid "Draw free/unused space (gray)"
+msgstr "Dessiner l'espace libre/inutilisé (en gris)"
+
+msgid "Text"
+msgstr "Texte"
+
+msgid "Name and total space"
+msgstr "Nom et espace total"
+
+msgid "Used and total space"
+msgstr "Espace utilisé et espace total"
+
+msgid "Total and used space"
+msgstr "Espace total et espace utilisé"
+
+msgid "Free and total space"
+msgstr "Espace disponible et espace total"
+
+msgid "Total and free space"
+msgstr "Espace total et espace disponible"
+
+msgid "No text"
+msgstr "Sans texte"
+
+msgid "Size Prefix"
+msgstr "Préfixe de taille"
+
+msgid "Decimal"
+msgstr "Décimal"
+
+msgid "Binary"
+msgstr "Binaire"
+
+msgid "Hide decorations"
+msgstr "Masquer les décorations"
+
+msgid "Use a custom circle color"
+msgstr "Utiliser un cercle de couleur personnalisée"
+
+msgid "Circle color"
+msgstr "Couleur du cercle"
+
+msgid "Text color"
+msgstr "Couleur du texte"
+
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Augmentez ou réduisez la taille de ce desklet en utilisant ce facteur "
+"d'échelle."
+
+msgid "Desklet size"
+msgstr "Taille du desklet"
+
+msgid "scale factor"
+msgstr "facteur d'échelle"
+
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Étiquette personnalisée pour ce desklet (visible uniquement si les "
+"décorations sont activées)"
+
+msgid "Use a custom desklet label"
+msgstr "Utiliser une étiquette personnalisée pour ce desklet"
+
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"En cochant cette case, vous pouvez définir une étiquette personnalisée dans "
+"le champ ci-dessous."
+
+msgid "Custom desklet label"
+msgstr "Étiquette personnalisée pour ce desklet"
+
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr ""
+"Définissez ici votre étiquette personnalisée. Ce champ n'est disponible que "
+"si la case ci-dessus est cochée."
+
+msgid "Action on mouse click"
+msgstr "Action associée au clic"
+
+msgid "Choose what to do when the desklet was clicked."
+msgstr "Choisissez ce qu'il faut faire lorsque l'on clique sur le desklet."
+
+msgid "Open File Manager"
+msgstr "Ouvrir le gestionnaire de fichiers"
+
+msgid "Open Partition Manager"
+msgstr "Ouvrir le Gestionnaire de partitions"
+
+msgid "Open System Monitor"
+msgstr "Ouvrir le moniteur système"
+
+msgid "Nothing"
+msgstr "Rien"
