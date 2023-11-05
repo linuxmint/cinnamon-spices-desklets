@@ -109,7 +109,7 @@ MyDesklet.prototype = {
 		var fs = decodeURIComponent(this.filesystem.replace("file://", "").trim());
 		if(fs == null || fs == "") fs = "/";
 
-		var percentString = "⛔️";
+		var percentString = "---";
 		var avail = 0;
 		var use = 0;
 		var size = 0;
@@ -117,24 +117,29 @@ MyDesklet.prototype = {
 		// get values from command
 		if(type == "ram" || type == "swap") {
 
-			let subprocess = new Gio.Subprocess({
-				argv: ["/usr/bin/free", "--bytes"],
-				flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
-			});
-			subprocess.init(null);
-			subprocess.communicate_utf8_async(null, null, (sourceObject, result) => {
-				let [, stdOut, stdErr] = sourceObject.communicate_utf8_finish(result);
-				//global.log(stdOut); global.log(stdErr); // debug
-				if(stdErr == "") {
-					let res = this.parseMem(stdOut, type);
-					avail = res.availMem;
-					use = res.usedMem;
-					size = use + avail;
-					if(size > 0) {
-						percentString = Math.round(use * 100 / size) + "%";
+			let file = Gio.file_new_for_path("/proc/meminfo");
+			file.load_contents_async(null, (file, response) => {
+				try {
+					let [success, contents, tag] = file.load_contents_finish(response);
+					if(success) {
+						let mem = contents.toString();
+						if(type == "ram") {
+							size = parseInt(mem.match(/(MemTotal):\D+(\d+)/)[2]) * 1024;
+							use = size - parseInt(mem.match(/(MemAvailable):\D+(\d+)/)[2]) * 1024;
+						} else if(type == "swap") {
+							size = parseInt(mem.match(/(SwapTotal):\D+(\d+)/)[2]) * 1024;
+							use = size - parseInt(mem.match(/(SwapFree):\D+(\d+)/)[2]) * 1024;
+						}
+						avail = size - use;
+						if(size > 0) {
+							percentString = Math.round(use * 100 / size) + "%";
+						}
+						this.redraw(type, fs, avail, use, size, percentString);
+						//global.log("avail:"+avail+" used:"+use); // debug
 					}
+				} catch(ex) {
+					global.log("error getting RAM info: "+ex.toString());
 				}
-				this.redraw(type, fs, avail, use, size, percentString);
 			});
 
 		} else {
@@ -293,7 +298,8 @@ MyDesklet.prototype = {
 			percentString = "";
 		}
 		if(size <= 0) {
-			textSub2 = _("Not Found")
+			textSub1 = _("Not Found");
+			textSub2 = "";
 		}
 
 		// set label contents
@@ -319,49 +325,6 @@ MyDesklet.prototype = {
 					   + "color: " + this.text_color + ";";
 
 		//global.log("Redraw Done"); // debug
-	},
-
-	parseMem: function(output, type = "ram") {
-		const tmpColumns = 2;
-		const colUsedMem = 2;
-		const colFreeMem = 3;
-		const colCacheMem = 5;
-
-		let usedMem = 0;
-		let availMem = 0;
-		
-		let row = 1; // ram
-		if(type != "ram" && type != "swap") {
-			return {availMem, usedMem};
-		}
-		if(type == "swap") {
-			row = 2;
-		}
-
-		let lines = output.split(/\r?\n/);
-		if(lines.length > row) {
-			let tmp = lines[row].split(":");
-			if(tmp.length < tmpColumns) {
-				return {availMem, usedMem};
-			}
-
-			// trim starting whitespaces
-			tmp[tmpColumns - 1] = tmp[tmpColumns - 1].trimStart();
-			let values = tmp[tmpColumns - 1].split(/\s+/);
-			if(values.length < colFreeMem) {
-				return {availMem, usedMem};
-			}
-
-			let a = parseInt(values[colFreeMem - 1]);
-			if(values.length >= colCacheMem) {
-				a += parseInt(values[colCacheMem - 1]);
-			}
-
-			usedMem = parseInt(values[colUsedMem - 1]);
-			availMem = a;
-		}
-
-		return {availMem, usedMem};
 	},
 
 	niceSize: function(value) {
