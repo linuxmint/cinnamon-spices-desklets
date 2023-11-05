@@ -3,5 +3,5 @@
     "max-instances": "10",
     "description": "A calendar desklet that can display the number of today's appointments from an ical/ics file.",
     "name": "Calendar",
-    "version": "1.5"
+    "version": "1.6"
 }

@@ -54,9 +54,10 @@ MyDesklet.prototype = {
 
 	setupUI: function() {
 		// defaults and initial values
-		this.defaultWidth = 120;
-		this.defaultHeight = 38;
-		this.defaultInset = 8; // 2*Padding
+		this.defaultWidth = 140;
+		this.defaultHeight = 42;
+		this.defaultInset = 10; // 2*Padding
+		this.defaultFontSize = 16;
 
 		// create objects
 		this.statusLabel = new St.Label({style_class:"statusbox"});
@@ -156,17 +157,18 @@ MyDesklet.prototype = {
 	showStatus: function() {
 		// refresh desklet content
 		// calc new sizes based on scale factor
-		let absolute_size_x = (this.defaultWidth * this.scale_size * global.ui_scale) + (this.defaultInset * this.scale_size * global.ui_scale);
-		let absolute_size_y = (this.defaultHeight * this.scale_size * global.ui_scale) + (this.defaultInset * this.scale_size * global.ui_scale);
+		let absolute_width = (this.defaultWidth * this.scale_size * global.ui_scale) + (this.defaultInset * this.scale_size * global.ui_scale);
+		let absolute_height = (this.defaultHeight * this.scale_size * global.ui_scale) + (this.defaultInset * this.scale_size * global.ui_scale);
 		let label_size_x = this.defaultWidth * this.scale_size * global.ui_scale;
-		let label_size_y = this.defaultHeight * this.scale_size * global.ui_scale
+		let label_size_y = this.defaultHeight * this.scale_size * global.ui_scale;
+		let font_size = Math.round(this.defaultFontSize * this.scale_size * global.ui_scale);
 		// modify label
 		let statusString = this.statusTagString + " (" + this.interval + _('s') + ")\n" + this.host;
 		this.statusLabel.set_text(statusString);
 		this.statusLabel.style_class = "statusbox "+this.colorClass;
-		this.statusLabel.style = "width:"+label_size_x+"px; height:"+label_size_y+"px;";
+		this.statusLabel.style = "width:"+label_size_x+"px; height:"+label_size_y+"px; font-size:"+font_size+"px";
 		// modify desklet canvas
-		this.canvas.set_size(absolute_size_x, absolute_size_y);
+		this.canvas.set_size(absolute_width, absolute_height);
 
 		// desktop notification
 		if(this.prevStatusTagString != "" && this.prevStatusTagString != this.statusTagString) {
