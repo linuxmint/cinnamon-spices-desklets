@@ -72,9 +72,9 @@ MyDesklet.prototype = {
 
 	setupUI: function() {
 		// defaults and initial values
-		this.default_size = 160;
-		this.default_size_font = 32;
-		this.default_size_font_sub = 16;
+		this.default_size = 150;
+		this.default_size_font = 31;
+		this.default_size_font_sub = 15;
 
 		// create and set root element
 		this.canvas = new Clutter.Actor();

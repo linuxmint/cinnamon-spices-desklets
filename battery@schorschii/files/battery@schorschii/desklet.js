@@ -71,7 +71,7 @@ MyDesklet.prototype = {
 	setupUI: function() {
 		// defaults and initial values
 		this.default_size_font = 25;
-		this.default_size_battery_width = 149;
+		this.default_size_battery_width = 150;
 		this.default_size_battery_height = 74;
 		this.default_size_symbol = 36;
 		this.default_segment_offset = 14;
@@ -240,6 +240,7 @@ MyDesklet.prototype = {
 			let symbolSize = this.default_size_symbol * scale;
 			let segmentWidthMax = segmentWidth * 0.95;
 			let segmentWidthCalced = segmentWidthMax * (this.currentCapacity / 100);
+			let xCorrection = -3 * scale;
 
 			// set images
 			let bar_img = "green.svg";
@@ -267,13 +268,17 @@ MyDesklet.prototype = {
 			// plug/warn/flash icon
 			if(symbol_img != "") {
 				this.imageIcon = getImageAtScale(DESKLET_ROOT + "/img/" + symbol_img, symbolSize, symbolSize);
-				this.imageIcon.set_position((segmentWidth / 2) - (symbolSize / 2), (segmentHeight / 2) - (symbolSize / 2));
+				this.imageIcon.set_position(
+					(segmentWidth / 2) - (symbolSize / 2) + xCorrection,
+					(segmentHeight / 2) - (symbolSize / 2)
+				);
 			}
 
 			// label for percent string
 			this.labelText = new St.Label({style_class:"text"});
-			this.labelText.set_position((segmentWidth / 2) - ((newFontSize * global.ui_scale * currentCapacityText.length / 1.25) / 2), (segmentHeight / 2) - (newFontSize * global.ui_scale / 1.7));
-			this.labelText.style = "font-size: " + newFontSizeRounded.toString() + "px;";
+			this.labelText.set_position(0, (segmentHeight / 2) - (newFontSize * global.ui_scale / 1.7));
+			this.labelText.style = "width: " + segmentWidthMax.toString() + "px; "
+				+ "font-size: " + newFontSizeRounded.toString() + "px;";
 			if(showText)
 				this.labelText.set_text(currentCapacityText);
 			else

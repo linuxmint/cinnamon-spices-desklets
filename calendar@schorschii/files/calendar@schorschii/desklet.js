@@ -84,11 +84,11 @@ MyDesklet.prototype = {
 		// defaults and initial values
 		this.default_size_font_month_big = 45;
 		this.default_size_font_month_sub = 14;
-		this.default_size_battery_width = 130;
-		this.default_size_battery_height = 140;
-		this.default_month_big_top = 50;
-		this.default_month_sub_top = 105;
-		this.default_month_top_top = 27;
+		this.default_size_calendar_width = 150;
+		this.default_size_calendar_height = 162;
+		this.default_month_top_top = 35;
+		this.default_month_big_top = 61;
+		this.default_month_sub_top = 125;
 		this.dayofmonth = 0; this.monthofyear = 0; this.dayofweek = 0; this.year = 0;
 		this.dayofweek_string = ""; this.monthofyear_string = "";
 		this.last_notification_amount = 0;
@@ -197,9 +197,9 @@ MyDesklet.prototype = {
 
 			// calc new sizes based on scale factor
 			let scale = this.scale_size * global.ui_scale;
-			let desklet_width = this.default_size_battery_width * scale;
-			let desklet_height = this.default_size_battery_height * scale;
-			let label_width = Math.round(this.default_size_battery_width * this.scale_size);
+			let desklet_width = this.default_size_calendar_width * scale;
+			let desklet_height = this.default_size_calendar_height * scale;
+			let label_width = Math.round(this.default_size_calendar_width * this.scale_size);
 			let size_font_month_big = Math.round(this.default_size_font_month_big * this.scale_size);
 			let size_font_month_sub = Math.round(this.default_size_font_month_sub * this.scale_size);
 			let month_big_top = this.default_month_big_top * scale;
