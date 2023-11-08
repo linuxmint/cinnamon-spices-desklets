@@ -55,7 +55,7 @@ body:
     - clockTow@armandobs14
     - commandOfTheDay@logg
     - commandResult@ZimiZones @ZimiZones
-    - cpuload@kimse @ipimpat
+    - cpuload@kimse @schorschii
     - cryptocoins@pbojan @pbojan
     - deskNote@BrainAxe @BrainAxe
     - devTools@scollins @collinss
@@ -90,6 +90,7 @@ body:
     - top@ryannerd @ryannerd
     - ViennaTextBasedWeather@f-istvan @f-istvan
     - xkcd@rjanja @rjanja
+    - yarr@jtoberling @jtoberling
     - yfquotes@thegli @thegli
   id: desklet
   type: dropdown
