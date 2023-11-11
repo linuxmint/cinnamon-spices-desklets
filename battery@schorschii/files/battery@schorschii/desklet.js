@@ -277,7 +277,7 @@ MyDesklet.prototype = {
 			// label for percent string
 			this.labelText = new St.Label({style_class:"text"});
 			this.labelText.set_position(0, (segmentHeight / 2) - (newFontSize * global.ui_scale / 1.7));
-			this.labelText.style = "width: " + segmentWidthMax.toString() + "px; "
+			this.labelText.style = "width: " + (segmentWidthMax / global.ui_scale).toString() + "px; "
 				+ "font-size: " + newFontSizeRounded.toString() + "px;";
 			if(showText)
 				this.labelText.set_text(currentCapacityText);
