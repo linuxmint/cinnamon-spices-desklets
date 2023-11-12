@@ -2,6 +2,6 @@
     "uuid": "battery@schorschii",
     "max-instances": "10",
     "description": "A battery desklet in iOS style with multi-battery support.",
-    "version": "2.8",
+    "version": "2.8.1",
     "name": "Battery Level Indicator"
 }
