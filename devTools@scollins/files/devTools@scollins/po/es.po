@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-04 23:06+0200\n"
-"PO-Revision-Date: 2023-08-05 04:55+0200\n"
+"POT-Creation-Date: 2021-03-18 18:47+0100\n"
+"PO-Revision-Date: 2023-11-20 20:45-0300\n"
 "Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4\n"
 "X-Poedit-Basepath: .\n"
 
 #: desklet.js:247 tabPanel.js:25
@@ -50,7 +50,7 @@ msgstr "Inspeccionar"
 
 #: desklet.js:464
 msgid "Open Looking Glass"
-msgstr ""
+msgstr "Abrir Looking Glass"
 
 #: desklet.js:474
 msgid "Reload Theme"
@@ -142,11 +142,11 @@ msgstr "Las extensiones de este tipo están deshabilitadas"
 
 #: inspect.js:126
 msgid "(Press Pause or Control to disable event pass through)"
-msgstr ""
+msgstr "(Pulse Pausa o Control para desactivar el paso de eventos)"
 
 #: inspect.js:128
 msgid "(Press Pause or Control to enable event pass through)"
-msgstr ""
+msgstr "(Pulse Pausa o Control para activar el paso de eventos)"
 
 #: inspect.js:411
 msgid "Length"
@@ -175,7 +175,6 @@ msgid "Visible"
 msgstr "Visible"
 
 #: inspect.js:446
-#, fuzzy
 msgid "Style Class"
 msgstr "Clase del estilo"
 
@@ -217,7 +216,7 @@ msgstr "Índice"
 
 #: inspect.js:498
 msgid "Map Elements"
-msgstr ""
+msgstr "Elementos del mapa"
 
 #: inspect.js:499
 msgid "Key"
@@ -296,7 +295,6 @@ msgid "End Process"
 msgstr "Finalizar proceso"
 
 #: terminal.js:82
-#, fuzzy
 msgid "Output"
 msgstr "Resultado"
 
@@ -309,7 +307,6 @@ msgid "Run"
 msgstr "Ejecutar"
 
 #: windows.js:24 windows.js:126
-#, fuzzy
 msgid "all"
 msgstr "todo"
 
@@ -322,15 +319,14 @@ msgid "Close"
 msgstr "Cerrar"
 
 #: windows.js:144
-#, fuzzy
 msgid "Windows"
 msgstr "Ventanas"
 
 #. metadata.json->description
 msgid "A desklet for troubleshooting and developing in the Cinnamon UI"
 msgstr ""
-"Una miniaplicación de escritorio para solucionar problemas de, y "
-"desarrollar en, la interfaz de usuario de Cinnamon"
+"Una miniaplicación de escritorio para solucionar problemas de, y desarrollar "
+"en, la interfaz de usuario de Cinnamon"
 
 #. metadata.json->contributors
 msgid "Stephen Collins - Author"
@@ -367,7 +363,6 @@ msgid "Collapsed"
 msgstr "Replegado"
 
 #. settings-schema.json->raiseKey->description
-#, fuzzy
 msgid "Raise to top shorcut key"
 msgstr "Atajo para subir sobre todo"
 
