@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-12 06:11-0500\n"
-"PO-Revision-Date: 2023-08-05 05:05+0200\n"
+"POT-Creation-Date: 2023-08-10 21:39-0400\n"
+"PO-Revision-Date: 2023-11-20 20:57-0300\n"
 "Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -15,22 +15,22 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4\n"
 
 #. metadata.json->name
 #: desklet.js:50
 msgid "Timelet"
 msgstr "Timelet"
 
-#: themes/theme.js:133
+#: themes/theme.js:143
 msgid "AM"
 msgstr "AM"
 
-#: themes/theme.js:135
+#: themes/theme.js:145
 msgid "Noon"
 msgstr "Mediodía"
 
-#: themes/theme.js:137
+#: themes/theme.js:147
 msgid "PM"
 msgstr "PM"
 
@@ -45,6 +45,14 @@ msgstr "Configuración de Timelet"
 #. settings-schema.json->themeName->description
 msgid "Theme"
 msgstr "Tema"
+
+#. settings-schema.json->use24H->description
+msgid "Use 24H"
+msgstr "Usar 24H"
+
+#. settings-schema.json->use24H->tooltip
+msgid "Display time in 24H if the theme supports it"
+msgstr "Mostrar la hora en 24H si el tema lo soporta"
 
 #. settings-schema.json->textColor->description
 msgid "Text color"
