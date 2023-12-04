@@ -16,7 +16,21 @@
         "options" : {
             "Filesystem" : "filesystem",
             "RAM": "ram",
-            "Swap": "swap"
+            "Swap": "swap",
+            "CPU": "cpu"
+        }
+    },
+    "updateInterval": {
+        "type": "combobox",
+        "default": "5",
+        "description": "Desklet update interval in seconds",
+        "tooltip": "",
+        "options" : {
+            "1 sec" : "1",
+            "2 sec" : "2",
+            "3 sec" : "3",
+            "5 sec" : "5",
+            "10 sec" : "10"
         }
     },
     "filesystem": {
@@ -74,7 +88,9 @@
         "default": "used-size",
         "description": "Text",
         "options" : {
+            "Name" : "name",
             "Name and total space" : "name-size",
+            "Name and free space": "name-free",
             "Used and total space": "used-size",
             "Total and used space": "size-used",
             "Free and total space": "free-size",

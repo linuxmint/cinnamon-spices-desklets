@@ -10,6 +10,7 @@ const Clutter = imports.gi.Clutter;
 const Cairo = imports.cairo;
 const Gio = imports.gi.Gio;
 const Gettext = imports.gettext;
+const ByteArray = imports.byteArray;
 
 const UUID = "diskspace@schorschii";
 const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
@@ -31,8 +32,38 @@ function main(metadata, desklet_id) {
 	return new MyDesklet(metadata, desklet_id);
 }
 
+const readCpuInfo = (cb) => {
+	let file = Gio.file_new_for_path("/proc/stat");
+	file.read_async(0, null, async (file, response) => {
+		const fileStream = file.read_finish(response);
+		try {
+			if (!fileStream) {
+				throw new Error('File stream is empty');
+			}
+			fileStream.read_bytes_async(1024, 0, null, (file, response) => {
+				try {
+					const dataRes = file.read_bytes_finish(response);
+					if (dataRes && dataRes.get_size() > 0) {
+						const data = ByteArray.toString(dataRes.get_data());
+						cb(undefined, data);
+					}
+				} catch (e) {
+					global.log("error read_bytes_finish: " + e.toString());	
+					cb(e, undefined);
+				}
+			});
+			
+		} catch (e) {
+			global.log("error read_bytes_async: " + e.toString());
+			cb(e, undefined);
+		}
+	});
+}
 
 MyDesklet.prototype = {
+	cpuLastSum: 0,
+	cpuLast: [0, 0, 0, 0],
+	cpuSize: 1000,
 	__proto__: Desklet.Desklet.prototype,
 
 	_init: function(metadata, desklet_id) {
@@ -52,6 +83,7 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "circle-color", "circle_color", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "use-own-circle-color", "use_own_circle_color", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "filesystem", "filesystem", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "updateInterval", "updateInterval", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "type", "type", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "text-view", "text_view", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "onclick-action", "onclick_action", this.on_setting_changed);
@@ -100,7 +132,8 @@ MyDesklet.prototype = {
 		//global.log("update "+ this.filesystem); // debug
 
 		// refresh again in two seconds
-		this.timeout = Mainloop.timeout_add_seconds(5, Lang.bind(this, this.update));
+		const updateInterval = +this.updateInterval;
+		this.timeout = Mainloop.timeout_add_seconds(updateInterval, Lang.bind(this, this.update));
 	},
 
 	refreshDesklet: function() {
@@ -113,9 +146,40 @@ MyDesklet.prototype = {
 		var avail = 0;
 		var use = 0;
 		var size = 0;
-
 		// get values from command
-		if(type == "ram" || type == "swap") {
+		if (type == "cpu") {
+			try {
+				readCpuInfo((error, context) => {
+					if (error || !context) {
+						return;
+					}
+					try {
+						const cpuNow = context.split('\n')[0];
+						const columns = cpuNow ? cpuNow.split(/\s+/).slice(1).map((value) => +value) : [];
+						const cpuSum = columns.reduce((val1, val2) => val1+val2, 0);
+						const cpuDelta = Math.max(0, cpuSum - this.cpuLastSum);
+						const cpuIdle = columns.length > 3 ? columns[3] - this.cpuLast[3] : 0;
+						const cpuUsed = cpuDelta - cpuIdle;
+						const cpuUsage = Math.round(100 * cpuUsed / cpuDelta);
+						// save prev data
+						this.cpuLast = columns;
+						this.cpuLastSum = cpuSum;
+						this.cpuSize = Math.max(1000, cpuUsed * 100 / cpuUsage);
+
+						use = cpuUsed;
+						size = Math.round(this.cpuSize);
+						avail = Math.max(0, size - use);
+						percentString = cpuUsage + "%";
+						this.redraw(type, fs, avail, use, size, percentString);
+					} catch (e) {
+						global.log("readCpuInfo error: " + e.toString());
+					}
+				});
+			} catch (e) {
+				global.log("error getting CPU info: " + e.toString());
+			}
+
+		} else if(type == "ram" || type == "swap") {
 
 			let file = Gio.file_new_for_path("/proc/meminfo");
 			file.load_contents_async(null, (file, response) => {
@@ -268,33 +332,17 @@ MyDesklet.prototype = {
 		this.canvas.set_content(canvas);
 		this.canvas.set_size(absoluteSize * global.ui_scale, absoluteSize * global.ui_scale);
 
-		let textSub1 = "";
-		let textSub2 = "";
-		if(this.text_view == "name-size") {
-			if(type == "ram") {
-				textSub1 = this.shortText(_("RAM"));
-			} else if(type == "swap") {
-				textSub1 = this.shortText(_("Swap"));
-			} else if(fs == "/") {
-				textSub1 = this.shortText(_("Filesystem"));
-			} else {
-				let pathparts = fs.split("/");
-				textSub1 = this.shortText(pathparts[pathparts.length-1]);
-			}
-			textSub2 = this.niceSize(size);
-		} else if(this.text_view == "used-size") {
-			textSub1 = this.niceSize(use);
-			textSub2 = this.niceSize(size);
-		} else if(this.text_view == "size-used") {
-			textSub1 = this.niceSize(size);
-			textSub2 = this.niceSize(use);
-		} else if(this.text_view == "free-size") {
-			textSub1 = this.niceSize(avail);
-			textSub2 = this.niceSize(size);
-		} else if(this.text_view == "size-free") {
-			textSub1 = this.niceSize(size);
-			textSub2 = this.niceSize(avail);
-		} else {
+		const textViewParts = this.text_view.split('-');
+		const valueByNameOpts = {
+			fs,
+			type,
+			size,
+			avail,
+			use,
+		};
+		let textSub1 = textViewParts.length > 0 ? this.getValueByName(textViewParts[0], valueByNameOpts) : "";
+		let textSub2 = textViewParts.length > 1 ? this.getValueByName(textViewParts[1], valueByNameOpts) : "";
+		if (textSub1 === undefined || textSub2 === undefined) {
 			percentString = "";
 		}
 		if(size <= 0) {
@@ -327,6 +375,36 @@ MyDesklet.prototype = {
 		//global.log("Redraw Done"); // debug
 	},
 
+	getValueByName: function(name, opts) {
+		if (name == "name") {
+			return this.getNameText(opts.fs, opts.type);
+		} else if (name == "size") {
+			return this.niceSize(opts.size);
+		} else if (name == "used") {
+			return this.niceSize(opts.use);
+		} else if (name == "free") {
+			return this.niceSize(opts.avail);
+		} else {
+			//global.log('getValueByName.name: ' + name);
+		}
+	},
+	getNameText: function(fs, type) {
+		let res;
+		if (type == "cpu") {
+			res = this.shortText(_("CPU"));
+		} else if(type == "ram") {
+			res = this.shortText(_("RAM"));
+		} else if(type == "swap") {
+			res = this.shortText(_("Swap"));
+		} else if(fs == "/") {
+			res = this.shortText(_("Filesystem"));
+		} else {
+			let pathparts = fs.split("/");
+			res = this.shortText(pathparts[pathparts.length-1]);
+		}
+		return res;
+	},
+
 	niceSize: function(value) {
 		if(this.size_prefix == "binary") {
 			if(value < 1024) return value + " B";
@@ -352,6 +430,8 @@ MyDesklet.prototype = {
 		let fs = decodeURIComponent(this.filesystem.replace("file://", "").trim());
 		if(this.use_custom_label == true)
 			this.setHeader(this.custom_label)
+		else if(this.type == "cpu")
+			this.setHeader(_("CPU"));
 		else if(this.type == "ram")
 			this.setHeader(_("RAM"));
 		else if(this.type == "swap")

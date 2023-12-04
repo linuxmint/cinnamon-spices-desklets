@@ -37,6 +37,9 @@ msgstr ""
 msgid "Filesystem"
 msgstr "Sistema de archivos"
 
+msgid "CPU"
+msgstr "CPU"
+
 msgid "RAM"
 msgstr "RAM"
 

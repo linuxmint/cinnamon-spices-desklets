@@ -36,6 +36,9 @@ msgstr "Alege dacă acest desklet trebuie să afișeze utilizarea sistemului de 
 msgid "Filesystem"
 msgstr "Sistem de fișiere"
 
+msgid "CPU"
+msgstr "CPU"
+
 msgid "RAM"
 msgstr "RAM"
 

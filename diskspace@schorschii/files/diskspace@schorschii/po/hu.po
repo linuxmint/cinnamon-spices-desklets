@@ -35,6 +35,9 @@ msgstr "Nem található"
 msgid "Disk Space"
 msgstr "Lemezterület"
 
+msgid "CPU"
+msgstr "CPU"
+
 #~ msgid "Displays the usage of a filesystem or RAM."
 #~ msgstr "Megjeleníti a fájlrendszer vagy a RAM használatát."
 

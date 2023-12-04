@@ -36,6 +36,9 @@ msgstr "Vælg om brugen af filsystem eller RAM skal vises."
 msgid "Filesystem"
 msgstr "Filsystem"
 
+msgid "CPU"
+msgstr "CPU"
+
 msgid "RAM"
 msgstr "RAM"
 

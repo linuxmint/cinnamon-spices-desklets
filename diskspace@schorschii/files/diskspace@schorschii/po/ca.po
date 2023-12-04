@@ -38,6 +38,9 @@ msgstr ""
 msgid "Filesystem"
 msgstr "Sistema de fitxers"
 
+msgid "CPU"
+msgstr "CPU"
+
 msgid "RAM"
 msgstr "RAM"
 
