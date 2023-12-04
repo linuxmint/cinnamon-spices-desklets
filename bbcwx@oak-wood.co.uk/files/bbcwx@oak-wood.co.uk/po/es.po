@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Cinnamon Weather Desklet - bbcwx 2.11\n"
 "Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
 "POT-Creation-Date: 2023-09-03 14:13-0400\n"
-"PO-Revision-Date: 2023-09-03 14:16-0400\n"
+"PO-Revision-Date: 2023-11-20 20:35-0300\n"
 "Last-Translator: FedeHC <Unknown>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2017-05-05 21:16+0000\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: 5.4/desklet.js:106 3.0/desklet.js:108
@@ -566,10 +566,12 @@ msgid ""
 "Please consider translating the Weather Desklet into your language. See the "
 "website for more information"
 msgstr ""
+"Considere la posibilidad de traducir el Desklet de Clima a su idioma. "
+"Consulte el sitio web para más información"
 
 #. metadata.json->contributors
 msgid "Chris Hastie"
-msgstr ""
+msgstr "Chris Hastie"
 
 #. 5.4->settings-schema.json->top->description
 #. 3.0->settings-schema.json->top->description
@@ -590,15 +592,13 @@ msgstr "BBC"
 
 #. 5.4->settings-schema.json->webservice->options
 #. 3.0->settings-schema.json->webservice->options
-#, fuzzy
 msgid "Open Weather Map (requires API key)"
-msgstr "World Weather Online (requiere clave API)"
+msgstr "Open Weather Map (requiere clave API)"
 
 #. 5.4->settings-schema.json->webservice->options
 #. 3.0->settings-schema.json->webservice->options
-#, fuzzy
 msgid "Open Weather Map Free (requires API key)"
-msgstr "World Weather Online (requiere clave API)"
+msgstr "Open Weather Map Free (requiere clave API)"
 
 #. 5.4->settings-schema.json->webservice->options
 #. 3.0->settings-schema.json->webservice->options
@@ -607,21 +607,18 @@ msgstr "Wunderground (requiere clave API)"
 
 #. 5.4->settings-schema.json->webservice->options
 #. 3.0->settings-schema.json->webservice->options
-#, fuzzy
 msgid "World Weather Online (deprecated) (requires API key)"
-msgstr "World Weather Online (requiere clave API)"
+msgstr "World Weather Online (obsoleto) (requiere clave API)"
 
 #. 5.4->settings-schema.json->webservice->options
 #. 3.0->settings-schema.json->webservice->options
-#, fuzzy
 msgid "World Weather Online Premium (requires API key)"
-msgstr "World Weather Online (requiere clave API)"
+msgstr "World Weather Online Premium (requiere clave API)"
 
 #. 5.4->settings-schema.json->webservice->options
 #. 3.0->settings-schema.json->webservice->options
-#, fuzzy
 msgid "APIXU (requires API key)"
-msgstr "meteoblue"
+msgstr "APIXU (requiere clave API)"
 
 #. 5.4->settings-schema.json->webservice->options
 #. 3.0->settings-schema.json->webservice->options
@@ -1088,12 +1085,12 @@ msgstr "Pulse el botón para seleccionar un nuevo color de texto"
 #. 5.4->settings-schema.json->textshadow->description
 #. 3.0->settings-schema.json->textshadow->description
 msgid "Text shadow"
-msgstr ""
+msgstr "Sombra del texto"
 
 #. 5.4->settings-schema.json->textshadow->tooltip
 #. 3.0->settings-schema.json->textshadow->tooltip
 msgid "Check to add a text shadow"
-msgstr ""
+msgstr "Marcar para añadir una sombra al texto"
 
 #. 5.4->settings-schema.json->shadowblur->units
 #. 5.4->settings-schema.json->cornerradius->units
@@ -1107,12 +1104,12 @@ msgstr "px"
 #. 5.4->settings-schema.json->shadowblur->description
 #. 3.0->settings-schema.json->shadowblur->description
 msgid "Shadow blur radius"
-msgstr ""
+msgstr "Radio de difuminación de sombra"
 
 #. 5.4->settings-schema.json->shadowblur->tooltip
 #. 3.0->settings-schema.json->shadowblur->tooltip
 msgid "Set the text shadow sharp (1) or blurry (2-7)"
-msgstr ""
+msgstr "Definir la sombra de texto nítida (1) o difuminada (2-7)"
 
 #. 5.4->settings-schema.json->bgcolor->description
 #. 3.0->settings-schema.json->bgcolor->description

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-29 11:45+0200\n"
-"PO-Revision-Date: 2021-12-22 07:11-0300\n"
+"PO-Revision-Date: 2023-11-24 19:50-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -16,15 +16,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4\n"
 
 #: desklet.js:80
 msgid "error"
 msgstr "error"
 
 #. temperature@swalladge->metadata.json->description
-msgid "Displays the current temperature from the rpi temperature server."
-msgstr "Muestra la temperatura actual del servidor de temperatura rpi."
+msgid "Displays the current temperature from the temperature server."
+msgstr "Muestra la temperatura actual del servidor de temperatura."
 
 #. temperature@swalladge->metadata.json->name
 msgid "Temperature"
