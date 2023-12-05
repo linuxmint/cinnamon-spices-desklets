@@ -1,45 +1,41 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-12-05 13:42+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: blogdron\n"
+"Language-Team: \n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #: desklet.js:27
 msgid "Desktop Note"
-msgstr ""
+msgstr "Заметки"
 
 #. metadata.json->name
 msgid "Desktop Note desklet"
-msgstr ""
+msgstr "Заметки (Desktop Note desklet)"
 
 #. metadata.json->description
 msgid "Displays Note on Desktop!"
-msgstr ""
+msgstr "Показывать заметки на рабочем столе!"
 
 #. settings-schema.json->note-entry->description
 msgid "Note:"
-msgstr ""
+msgstr "Заметка:"
 
 #. settings-schema.json->note-entry->tooltip
 msgid "Set your note here"
-msgstr ""
+msgstr "Напишите вашу заметку здесь"
 
 #. settings-schema.json->font-options-header->description
 msgid "Font options:"
-msgstr ""
+msgstr "Настройки шрифта:"
 
 #. settings-schema.json->font-size->units
 msgid "pt"
@@ -47,12 +43,12 @@ msgstr ""
 
 #. settings-schema.json->font-size->description
 msgid "Font size:"
-msgstr ""
+msgstr "Размер шрифта:"
 
 #. settings-schema.json->text-color->description
 msgid "Font color:"
-msgstr ""
+msgstr "Цвет текста:"
 
 #. settings-schema.json->text-color->tooltip
 msgid "Click to select a new text color"
-msgstr ""
+msgstr "Выберите новый цвет текста"
