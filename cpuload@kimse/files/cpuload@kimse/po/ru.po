@@ -22,7 +22,7 @@ msgstr "Ядро %d"
 msgid "CPU usage"
 msgstr ""
 "Загрузка\n"
-"Процессора"
+"CPU"
 
 #. metadata.json->description
 msgid "Displays CPU load"
