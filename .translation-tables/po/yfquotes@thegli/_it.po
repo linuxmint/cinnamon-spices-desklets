@@ -1,0 +1,61 @@
+# Yahoo Finance Quotes Desklet
+# Copyright (C) 2021 Thomas Egli
+# This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-08-28 16:36+0200\n"
+"PO-Revision-Date: 2023-03-31 11:27+0200\n"
+"Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: desklet.js:302 desklet.js:321
+msgid "Yahoo Finance service not available!\\nStatus: "
+msgstr ""
+
+#: desklet.js:728
+msgid ""
+"Failed to retrieve authorization parameter! Unable to fetch quotes data."
+"\\nStatus: "
+msgstr ""
+
+#: desklet.js:753
+msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
+msgstr ""
+
+#: desklet.js:758
+msgid ""
+"Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
+msgstr ""
+
+#: desklet.js:779
+msgid ""
+"Failed to retrieve authorization crumb! Unable to fetch quotes data."
+"\\nStatus: "
+msgstr ""
+
+#. settings-schema.json->sendCustomUserAgent->description
+msgid "Send custom User-Agent header"
+msgstr ""
+
+#. settings-schema.json->sendCustomUserAgent->tooltip
+msgid ""
+"Include a custom User-Agent header in Yahoo Finance Quotes API requests. By "
+"default, this header is not set."
+msgstr ""
+
+#. settings-schema.json->customUserAgent->description
+msgid "Custom User-Agent header"
+msgstr ""
+
+#. settings-schema.json->customUserAgent->tooltip
+msgid "Value for User-Agent header to send with all API requests."
+msgstr ""

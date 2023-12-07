@@ -1,0 +1,54 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-05 13:42+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: blogdron\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.1\n"
+
+#: desklet.js:27
+msgid "Desktop Note"
+msgstr "Заметки"
+
+#. metadata.json->name
+msgid "Desktop Note desklet"
+msgstr "Заметки (Desktop Note desklet)"
+
+#. metadata.json->description
+msgid "Displays Note on Desktop!"
+msgstr "Показывать заметки на рабочем столе!"
+
+#. settings-schema.json->note-entry->description
+msgid "Note:"
+msgstr "Заметка:"
+
+#. settings-schema.json->note-entry->tooltip
+msgid "Set your note here"
+msgstr "Напишите вашу заметку здесь"
+
+#. settings-schema.json->font-options-header->description
+msgid "Font options:"
+msgstr "Настройки шрифта:"
+
+#. settings-schema.json->font-size->units
+msgid "pt"
+msgstr ""
+
+#. settings-schema.json->font-size->description
+msgid "Font size:"
+msgstr "Размер шрифта:"
+
+#. settings-schema.json->text-color->description
+msgid "Font color:"
+msgstr "Цвет текста:"
+
+#. settings-schema.json->text-color->tooltip
+msgid "Click to select a new text color"
+msgstr "Выберите новый цвет текста"
