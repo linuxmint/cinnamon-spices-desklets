@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 23:21+0200\n"
-"PO-Revision-Date: 2022-10-24 19:00+0200\n"
+"POT-Creation-Date: 2023-11-05 18:14+0100\n"
+"PO-Revision-Date: 2023-12-08 07:51+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
 "Language: da\n"
@@ -85,6 +85,39 @@ msgstr "HDD"
 msgid "GPU"
 msgstr "GPU"
 
+#. settings-schema.json->data-prefix-ram->options
+#. settings-schema.json->data-prefix-swap->options
+#. settings-schema.json->data-prefix-hdd->options
+#. settings-schema.json->data-prefix-gpumem->options
+msgid "Binary prefix or IEC (1 GiB = 1024³ bytes)"
+msgstr "Binært præfiks eller IEC (1 GiB = 1024³ bytes)"
+
+#. settings-schema.json->data-prefix-ram->options
+#. settings-schema.json->data-prefix-swap->options
+#. settings-schema.json->data-prefix-hdd->options
+#. settings-schema.json->data-prefix-gpumem->options
+msgid "Decimal prefix (1 GB = 1000³ bytes)"
+msgstr "Decimalpræfiks (1 GB = 1000³ bytes)"
+
+#. settings-schema.json->data-prefix-ram->description
+#. settings-schema.json->data-prefix-swap->description
+#. settings-schema.json->data-prefix-hdd->description
+#. settings-schema.json->data-prefix-gpumem->description
+msgid "Prefix for data units"
+msgstr "Præfiks for dataenheder"
+
+#. settings-schema.json->data-prefix-ram->tooltip
+msgid "Unit prefix for RAM size."
+msgstr "Enhedspræfiks for RAM-størrelse."
+
+#. settings-schema.json->data-prefix-swap->tooltip
+msgid "Unit prefix for Swap size."
+msgstr "Enhedspræfiks for swap-størrelse."
+
+#. settings-schema.json->data-prefix-hdd->tooltip
+msgid "Unit prefix for Filesystem size."
+msgstr "Enhedspræfiks for filsystemstørrelse."
+
 #. settings-schema.json->filesystem->description
 msgid "Filesystem to monitor"
 msgstr "Filsystem der skal overvåges"
@@ -107,7 +140,7 @@ msgstr "GPU-producent"
 
 #. settings-schema.json->gpu-manufacturer->tooltip
 msgid "Select the GPU manufacturer."
-msgstr "Vælg GPU-producenten"
+msgstr "Vælg GPU-producenten."
 
 #. settings-schema.json->gpu-manufacturer->options
 msgid "NVIDIA"
@@ -136,6 +169,10 @@ msgstr "Forbrug"
 #. settings-schema.json->gpu-variable->options
 msgid "Memory"
 msgstr "Hukommelse"
+
+#. settings-schema.json->data-prefix-gpumem->tooltip
+msgid "Unit prefix for GPU memory size."
+msgstr "Enhedspræfiks for GPU-hukommelsesstørrelse."
 
 #. settings-schema.json->duration->description
 msgid "Duration of the graph"
@@ -262,4 +299,6 @@ msgstr "Antal lodrette linjer i gitteret"
 
 #. settings-schema.json->scale-size->description
 msgid "Scale factor for desklet size (scale factor of 1 = 330 x 120 px)"
-msgstr "Skaleringsfaktor for skrivebordsprogrammets størrelse (1 svarer til 330 x 120 px)"
+msgstr ""
+"Skaleringsfaktor for skrivebordsprogrammets størrelse (1 svarer til 330 x "
+"120 px)"
