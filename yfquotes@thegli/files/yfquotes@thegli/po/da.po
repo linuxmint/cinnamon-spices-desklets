@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-18 18:52+0200\n"
-"PO-Revision-Date: 2022-10-24 19:16+0200\n"
+"POT-Creation-Date: 2023-08-28 16:36+0200\n"
+"PO-Revision-Date: 2023-12-08 08:06+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
 "Language: da\n"
@@ -16,23 +16,48 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: desklet.js:87
-msgid "Yahoo Finance service not available!"
-msgstr "Yahoo Finance er ikke tilgængelig!"
+#: desklet.js:302 desklet.js:321
+msgid "Yahoo Finance service not available!\\nStatus: "
+msgstr "Yahoo Finance er ikke tilgængelig!\\nStatus: "
 
-#: desklet.js:416
+#: desklet.js:660
 msgid "Updated at "
 msgstr "Opdateret "
 
-#: desklet.js:423
+#: desklet.js:667
 msgid "Error: "
 msgstr "Fejl: "
 
-#: desklet.js:467
+#: desklet.js:728
+msgid ""
+"Failed to retrieve authorization parameter! Unable to fetch quotes data."
+"\\nStatus: "
+msgstr ""
+"Kunne ikke hente godkendelsesparameter! Kunne ikke hente kursdata.\n"
+"Status: "
+
+#: desklet.js:753
+msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
+msgstr "Samtykkebehandling mislykkedes! Kunne ikke hente kursdata.\\nStatus: "
+
+#: desklet.js:758
+msgid ""
+"Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
+msgstr ""
+"Samtykkebehandling ikke gennemført! Kunne ikke hente kursdata.\\nStatus: "
+
+#: desklet.js:779
+msgid ""
+"Failed to retrieve authorization crumb! Unable to fetch quotes data."
+"\\nStatus: "
+msgstr ""
+"Kunne ikke hente godkendelseskrumme! Kunne ikke hente kursdata.\\nStatus: "
+
+#: desklet.js:805
 msgid "Cannot display quotes information for symbols: "
 msgstr "Kan ikke vise kurser for symbolerne: "
 
-#: desklet.js:468
+#: desklet.js:806
 msgid "The following error occurred: "
 msgstr "Følgende fejl opstod: "
 
@@ -157,6 +182,26 @@ msgstr "Vis, hvornår data sidst blev opdateret"
 #. settings-schema.json->showLastUpdateTimestamp->tooltip
 msgid "Display timestamp when quotes were updated last."
 msgstr "Viser tidsstempel for den sidste opdatering af kurserne."
+
+#. settings-schema.json->sendCustomUserAgent->description
+msgid "Send custom User-Agent header"
+msgstr "Send brugerdefineret User-Agent-header"
+
+#. settings-schema.json->sendCustomUserAgent->tooltip
+msgid ""
+"Include a custom User-Agent header in Yahoo Finance Quotes API requests. By "
+"default, this header is not set."
+msgstr ""
+"Inkludér en brugerdefineret User-Agent-header i Yahoo Finans kursers API-"
+"anmodninger. Som standard er denne header ikke indstillet."
+
+#. settings-schema.json->customUserAgent->description
+msgid "Custom User-Agent header"
+msgstr "Tilpasset User-Agent-header"
+
+#. settings-schema.json->customUserAgent->tooltip
+msgid "Value for User-Agent header to send with all API requests."
+msgstr "Værdi for User-Agent-header som skal sendes med alle API-anmodninger."
 
 #. settings-schema.json->roundNumbers->description
 msgid "Round numbers"
@@ -356,9 +401,3 @@ msgstr "Farve for uændret tendens"
 #. settings-schema.json->unchangedTrendColor->tooltip
 msgid "Color of the unchanged trend."
 msgstr "Farven for uændret tendens."
-
-#~ msgid "Desklet layout"
-#~ msgstr "Layout"
-
-#~ msgid "Financial data"
-#~ msgstr "Finansielle data"
