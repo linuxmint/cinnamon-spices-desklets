@@ -1,0 +1,49 @@
+# CobiAnalogClock Desklet
+# Copyright (C) 2017 Lars Mueller
+# This file is distributed under the same license as the CobiAnalog Desklet package.
+# Lars Mueller <cobinja@yahoo.de>, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-24 09:43+0200\n"
+"PO-Revision-Date: 2021-04-11 10:22+0200\n"
+"Last-Translator: Balazs Bosak <bossbob88@gmail.com>\n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+
+#: settings.ui:7
+msgid "Analog Clock Settings"
+msgstr "Analóg óra beállítások"
+
+#: settings.ui:99
+msgid "Theme"
+msgstr "Téma"
+
+#: settings.ui:138
+msgid "Size"
+msgstr "Méret"
+
+#: settings.ui:182
+msgid "Show Seconds"
+msgstr "Másodperc megjelenítése"
+
+#: settings.ui:220
+msgid "Hide decorations"
+msgstr "Díszítések elrejtése"
+
+#: settings.ui:259
+msgid "Use specific timezone"
+msgstr "Specifikus időzóna használata"
+
+#: settings.ui:297
+msgid "Display Timezone"
+msgstr "Időzóna megjelenítése"
+
+msgid "An analog clock desklet"
+msgstr "Analóg óra asztalkalmazás"

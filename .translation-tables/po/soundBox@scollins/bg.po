@@ -1,0 +1,299 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-14 01:54+0100\n"
+"PO-Revision-Date: 2017-10-20 17:01+0300\n"
+"Last-Translator: Peyu Yovev <spacy00001@gmail.com>\n"
+"Language-Team: \n"
+"Language: bg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: soundbox.js:629 soundbox.js:756 2.5/soundbox.js:629 2.5/soundbox.js:756
+#: 2.8/soundbox.js:629 2.8/soundbox.js:756
+msgid "Unmute"
+msgstr "Звук"
+
+#: soundbox.js:637 soundbox.js:762 2.5/soundbox.js:637 2.5/soundbox.js:762
+#: 2.8/soundbox.js:637 2.8/soundbox.js:762
+msgid "Mute"
+msgstr "Без звук"
+
+#: soundbox.js:1024 2.5/soundbox.js:1024 2.8/soundbox.js:1024
+msgid "Show player"
+msgstr "Покажи плеъра"
+
+#: soundbox.js:1037 2.5/soundbox.js:1037 2.8/soundbox.js:1037
+msgid "Close player"
+msgstr "Затвори плеъра"
+
+#: soundbox.js:1151 soundbox.js:1326 2.5/soundbox.js:1151 2.5/soundbox.js:1326
+#: 2.8/soundbox.js:1151 2.8/soundbox.js:1326
+msgid "Unknown Title"
+msgstr "Неизвестно заглавие"
+
+#: soundbox.js:1153 soundbox.js:1324 2.5/soundbox.js:1153 2.5/soundbox.js:1324
+#: 2.8/soundbox.js:1153 2.8/soundbox.js:1324
+msgid "Unknown Album"
+msgstr "Неизвестен албум"
+
+#: soundbox.js:1155 soundbox.js:1322 2.5/soundbox.js:1155 2.5/soundbox.js:1322
+#: 2.8/soundbox.js:1155 2.8/soundbox.js:1322
+msgid "Unknown Artist"
+msgstr "Неизвестен изпълнител"
+
+#: soundbox.js:1194 2.5/soundbox.js:1194 2.8/soundbox.js:1194
+msgid "Previous"
+msgstr "Предишно"
+
+#: soundbox.js:1200 soundbox.js:1375 soundbox.js:1380 2.5/soundbox.js:1200
+#: 2.5/soundbox.js:1375 2.5/soundbox.js:1380 2.8/soundbox.js:1200
+#: 2.8/soundbox.js:1375 2.8/soundbox.js:1380
+msgid "Play"
+msgstr "Изпълни"
+
+#: soundbox.js:1205 2.5/soundbox.js:1205 2.8/soundbox.js:1205
+msgid "Stop"
+msgstr "Спри"
+
+#: soundbox.js:1210 2.5/soundbox.js:1210 2.8/soundbox.js:1210
+msgid "Next"
+msgstr "Следващо"
+
+#: soundbox.js:1217 2.5/soundbox.js:1217 2.8/soundbox.js:1217
+msgid "Repeat"
+msgstr "Повтори"
+
+#: soundbox.js:1226 2.5/soundbox.js:1226 2.8/soundbox.js:1226
+msgid "Shuffle"
+msgstr "Разбъркай"
+
+#: soundbox.js:1268 2.5/soundbox.js:1268 2.8/soundbox.js:1268
+msgid "Repeat: Off"
+msgstr "Повторение: Без"
+
+#: soundbox.js:1272 2.5/soundbox.js:1272 2.8/soundbox.js:1272
+msgid "Repeat: Track"
+msgstr "Повторение: Песен"
+
+#: soundbox.js:1276 2.5/soundbox.js:1276 2.8/soundbox.js:1276
+msgid "Repeat: All"
+msgstr "Повторение: Всичко"
+
+#: soundbox.js:1284 2.5/soundbox.js:1284 2.8/soundbox.js:1284
+msgid "Shuffle: On"
+msgstr "Разбъркване: Включено"
+
+#: soundbox.js:1288 2.5/soundbox.js:1288 2.8/soundbox.js:1288
+msgid "Shuffle: Off"
+msgstr "Разбъркване: Изключено"
+
+#: soundbox.js:1370 2.5/soundbox.js:1370 2.8/soundbox.js:1370
+msgid "Pause"
+msgstr "Пауза"
+
+#: soundbox.js:1498 2.5/soundbox.js:1498 2.8/soundbox.js:1498
+msgid "Output Devices"
+msgstr "Изходящи устройства"
+
+#: soundbox.js:1508 2.5/soundbox.js:1508 2.8/soundbox.js:1508
+msgid "Input Devices"
+msgstr "Входящи устройства"
+
+#: soundbox.js:1516 2.5/soundbox.js:1516 2.8/soundbox.js:1516
+msgid "Sound Settings"
+msgstr "Настройки на звук"
+
+#. system volume controls
+#: soundbox.js:1524 2.5/soundbox.js:1524 2.8/soundbox.js:1524
+msgid "Volume:"
+msgstr "Сила на звука:"
+
+#: soundbox.js:1530 2.5/soundbox.js:1530 2.8/soundbox.js:1530
+msgid "Input Volume:"
+msgstr "Входяща сила на звука:"
+
+#: soundbox.js:1553 2.5/soundbox.js:1553 2.8/soundbox.js:1553
+msgid "Previous Player"
+msgstr "Предишен плеър"
+
+#: soundbox.js:1562 2.5/soundbox.js:1562 2.8/soundbox.js:1562
+msgid "Next Player"
+msgstr "Следващ плеър"
+
+#: 2.5/desklet.js:300 2.8/desklet.js:316 desklet.js:295
+msgid "Launch Player"
+msgstr "Стартирай плеър"
+
+#: applet.js:88
+msgid "Players"
+msgstr "Плеъри"
+
+#. this.setPanelText();
+#. Cinnamon-Soundbox->metadata.json->name
+#: applet.js:108
+msgid "Soundbox"
+msgstr "Soundbox"
+
+#. 2.5->settings-schema.json->compact->description
+#. 2.8->settings-schema.json->compact->description
+#. Cinnamon-Soundbox->settings-schema.json->compact->description
+msgid "Use compact layout"
+msgstr "Използвай компактна подредба"
+
+#. 2.5->settings-schema.json->showApps->description
+#. 2.8->settings-schema.json->showApps->description
+#. Cinnamon-Soundbox->settings-schema.json->showApps->description
+msgid "Show application volume controls"
+msgstr "Покажи контролите за звук на приложението"
+
+#. 2.5->settings-schema.json->hideSystray->description
+#. 2.8->settings-schema.json->hideSystray->description
+#. Cinnamon-Soundbox->settings-schema.json->hideSystray->description
+msgid "Hide system tray icons for compatible players"
+msgstr "Скрий иконката на звука за съвместимите плеъри"
+
+#. 2.5->settings-schema.json->showInput->description
+#. 2.8->settings-schema.json->showInput->description
+#. Cinnamon-Soundbox->settings-schema.json->showInput->description
+msgid "Show input volume controls"
+msgstr "Покажи входящите контроли на звука"
+
+#. 2.5->settings-schema.json->exceedNormVolume->description
+#. 2.8->settings-schema.json->exceedNormVolume->description
+#. Cinnamon-Soundbox->settings-schema.json->exceedNormVolume->description
+msgid "Allow volume control to exceed 100% volume"
+msgstr "Разреши контрола на силата на звука да надвишава 100%"
+
+#. 2.5->settings-schema.json->exceedNormVolume->tooltip
+#. 2.8->settings-schema.json->exceedNormVolume->tooltip
+#. Cinnamon-Soundbox->settings-schema.json->exceedNormVolume->tooltip
+msgid "Note: some applications don't sound good over 100% volume"
+msgstr "Бележка: Някои приложения не звучат добре при звук над 100%"
+
+#. 2.5->settings-schema.json->showArt->description
+#. 2.8->settings-schema.json->showArt->description
+#. Cinnamon-Soundbox->settings-schema.json->showArt->description
+msgid "Show album artwork"
+msgstr "Покажи обложка на албум"
+
+#. 2.5->settings-schema.json->centerRaised->description
+#. 2.8->settings-schema.json->centerRaised->description
+#. Cinnamon-Soundbox->settings-schema.json->centerRaised->description
+msgid "Center Soundbox on the screen in raised mode"
+msgstr "Центрирай, когато Soundbox е в разгънат режим"
+
+#. 2.5->settings-schema.json->theme->description
+#. 2.8->settings-schema.json->theme->description
+#. Cinnamon-Soundbox->settings-schema.json->theme->description
+msgid "Theme"
+msgstr "Тема"
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. Cinnamon-Soundbox->settings-schema.json->theme->options
+msgid "Ghost"
+msgstr "Призрак"
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. Cinnamon-Soundbox->settings-schema.json->theme->options
+msgid "Hot Rod"
+msgstr "Хотрод"
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. Cinnamon-Soundbox->settings-schema.json->theme->options
+msgid "Ice"
+msgstr "Лед"
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. Cinnamon-Soundbox->settings-schema.json->theme->options
+msgid "Mint-X"
+msgstr "Минт-Х"
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. Cinnamon-Soundbox->settings-schema.json->theme->options
+msgid "Forest"
+msgstr "Гора"
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. Cinnamon-Soundbox->settings-schema.json->theme->options
+msgid "Clean"
+msgstr "Изчистена"
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. Cinnamon-Soundbox->settings-schema.json->theme->options
+msgid "Camouflage (tries to blend in)"
+msgstr "Камуфлаж (ще се опита сливане)"
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. Cinnamon-Soundbox->settings-schema.json->theme->options
+msgid "Mint"
+msgstr "Мента"
+
+#. 2.5->settings-schema.json->artSize->description
+#. 2.8->settings-schema.json->artSize->description
+#. Cinnamon-Soundbox->settings-schema.json->artSize->description
+msgid "Artwork size"
+msgstr "Размер на обложката"
+
+#. 2.5->settings-schema.json->appearance->description
+#. 2.8->settings-schema.json->appearance->description
+#. Cinnamon-Soundbox->settings-schema.json->appearance->description
+msgid "Appearance"
+msgstr "Вид"
+
+#. 2.5->settings-schema.json->countUp->description
+#. 2.8->settings-schema.json->countUp->description
+#. Cinnamon-Soundbox->settings-schema.json->countUp->description
+msgid "Timer counts up"
+msgstr "Възходящ таймер"
+
+#. 2.5->settings-schema.json->raiseKey->description
+#. 2.8->settings-schema.json->raiseKey->description
+#. Cinnamon-Soundbox->settings-schema.json->raiseKey->description
+msgid "Raise to top shorcut key"
+msgstr "Ратегни към горния клавиш"
+
+#. Cinnamon-Soundbox->metadata.json->description
+msgid "A desklet to view sound settings and manage media controls"
+msgstr "Десклет за преглед на звуковите настройки и контрол на медията"
+
+#. Cinnamon-Soundbox->metadata.json->contributors
+msgid "Stephen Collins - Author"
+msgstr "Стивън Колинс - Автор"
+
+#. Cinnamon-Soundbox->metadata.json->contributors
+msgid "Bernard(zagortenay333) - Mint-x theme"
+msgstr "Бернард (zagortenay333) - Минт-Х тема"
+
+#. Cinnamon-Soundbox->metadata.json->contributors
+msgid "Corbin(RavetcoFX) - Bugfix"
+msgstr "Корбин (RavetcoFX) - Поправка на бъгове"
+
+#. Cinnamon-Soundbox->metadata.json->comments
+msgid ""
+"Soundbox is an attractive and easy-to-use Desklet designed to control your "
+"volume and media players. It was originally forked from the Cinnamon sound "
+"applet, but has grown and evolved over time. Feel free to contribute by "
+"submitting pull requests, bug reports and feature requests to my github repo."
+msgstr ""
+"Soundbox е актрактивен и лесен за използване десклет, създаден за контрол на "
+"звука и медийни плеъра. Това е форк на оригиналния звуков аплет на Cinnamon, "
+"но с времето се разрастна и еволюира. Чувствайте се добре дошли да изпращате "
+"всякакво рекуести и отчети за бъгове в моето github хранилище."

@@ -1,0 +1,47 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-07 18:00+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: blogdron\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.1\n"
+
+#: desklet.js:80
+msgid "error"
+msgstr "ошибка"
+
+#. metadata.json->description
+msgid "Displays the current temperature from the rpi temperature server."
+msgstr "Показывает текущую температуру с rpi сервера."
+
+#. metadata.json->name
+msgid "Temperature"
+msgstr "Температура от Сервера (Temperature)"
+
+#. settings-schema.json->head->description
+msgid "Current Temperature Settings"
+msgstr "Общие настройки"
+
+#. settings-schema.json->height->description
+msgid "Height :"
+msgstr "Высота:"
+
+#. settings-schema.json->height->units
+#. settings-schema.json->width->units
+msgid "pixels"
+msgstr "пикселей"
+
+#. settings-schema.json->width->description
+msgid "Width :"
+msgstr "Ширина:"
+
+#. settings-schema.json->server->description
+msgid "Server :"
+msgstr "Сервер:"
