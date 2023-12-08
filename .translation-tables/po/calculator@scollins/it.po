@@ -1,0 +1,134 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-25 20:27+0800\n"
+"PO-Revision-Date: 2022-06-03 12:23+0200\n"
+"Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:27 desklet.js:50
+msgid "Back"
+msgstr "Indietro"
+
+#: desklet.js:28 desklet.js:52
+msgid "Reset"
+msgstr "Reset"
+
+#: desklet.js:51
+msgid "Clear Entry"
+msgstr "Cancella immissione"
+
+#: desklet.js:53
+msgid "Copy to Clipboard"
+msgstr "Copia negli Appunti"
+
+#: desklet.js:54
+msgid "Paste from Clipboard"
+msgstr "Incolla dagli Appunti"
+
+#: desklet.js:55
+msgid "Inverse"
+msgstr "Inverso"
+
+#: desklet.js:58
+msgid "Swap Sign"
+msgstr "Scambia segno"
+
+#: desklet.js:82
+msgid "Scientific Notation"
+msgstr "Notazione scientifica"
+
+#: desklet.js:813
+msgid "Swap Entries"
+msgstr "Scambia Voci"
+
+#: desklet.js:817
+msgid "Reciprocal"
+msgstr "Reciproco"
+
+#. calculator@scollins->settings-schema.json->angleMode->options
+#: desklet.js:1073
+msgid "Degrees"
+msgstr "Gradi"
+
+#. calculator@scollins->settings-schema.json->angleMode->options
+#: desklet.js:1081
+msgid "Radians"
+msgstr "Radianti"
+
+#: desklet.js:1091
+msgid "RPN"
+msgstr "RPN"
+
+#: desklet.js:1100
+msgid "4-Function"
+msgstr "4-Funzioni"
+
+#. calculator@scollins->settings-schema.json->layout->options
+#: desklet.js:1107
+msgid "Scientific"
+msgstr "Scientifica"
+
+#: desklet.js:1116
+msgid "Copy"
+msgstr "Copia"
+
+#: desklet.js:1120
+msgid "Paste"
+msgstr "Incola"
+
+#. calculator@scollins->metadata.json->description
+msgid "A calculator Desklet"
+msgstr "Una calcolatrice Desklet"
+
+#. calculator@scollins->metadata.json->name
+msgid "Desktop Calculator"
+msgstr "Calcolatrice Desklet"
+
+#. calculator@scollins->settings-schema.json->style->options
+msgid "Light"
+msgstr "Chiaro"
+
+#. calculator@scollins->settings-schema.json->style->options
+msgid "Dark"
+msgstr "Scuro"
+
+#. calculator@scollins->settings-schema.json->raiseKey->description
+msgid "Raise to top shorcut key"
+msgstr "Scorciatoia per portare in primo piano"
+
+#. calculator@scollins->settings-schema.json->layout->description
+msgid "Style"
+msgstr "Stile"
+
+#. calculator@scollins->settings-schema.json->layout->options
+msgid "4-function"
+msgstr "4-funzioni"
+
+#. calculator@scollins->settings-schema.json->angleMode->description
+msgid "Angle Measure"
+msgstr "Misura Angolo"
+
+#. calculator@scollins->settings-schema.json->precision->description
+msgid "Precision"
+msgstr "Precisione"
+
+#. calculator@scollins->settings-schema.json->precision->units
+msgid "digits"
+msgstr "cifre"
+
+#. calculator@scollins->settings-schema.json->rpn->description
+msgid "Use Reverse-Polish Notation"
+msgstr "Usa Notazione Polacca Inversa"

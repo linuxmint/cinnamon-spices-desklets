@@ -1,0 +1,298 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-27 17:29+0200\n"
+"PO-Revision-Date: 2017-04-27 17:30+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: soundbox.js:629 soundbox.js:756 2.5/soundbox.js:629 2.5/soundbox.js:756
+#: 2.8/soundbox.js:629 2.8/soundbox.js:756
+msgid "Unmute"
+msgstr "取消静音"
+
+#: soundbox.js:637 soundbox.js:762 2.5/soundbox.js:637 2.5/soundbox.js:762
+#: 2.8/soundbox.js:637 2.8/soundbox.js:762
+msgid "Mute"
+msgstr "静音"
+
+#: soundbox.js:1024 2.5/soundbox.js:1024 2.8/soundbox.js:1024
+msgid "Show player"
+msgstr "显示播放器"
+
+#: soundbox.js:1037 2.5/soundbox.js:1037 2.8/soundbox.js:1037
+msgid "Close player"
+msgstr "关闭播放器"
+
+#: soundbox.js:1151 soundbox.js:1326 2.5/soundbox.js:1151 2.5/soundbox.js:1326
+#: 2.8/soundbox.js:1151 2.8/soundbox.js:1326
+msgid "Unknown Title"
+msgstr "未知标题"
+
+#: soundbox.js:1153 soundbox.js:1324 2.5/soundbox.js:1153 2.5/soundbox.js:1324
+#: 2.8/soundbox.js:1153 2.8/soundbox.js:1324
+msgid "Unknown Album"
+msgstr "未知专辑"
+
+#: soundbox.js:1155 soundbox.js:1322 2.5/soundbox.js:1155 2.5/soundbox.js:1322
+#: 2.8/soundbox.js:1155 2.8/soundbox.js:1322
+msgid "Unknown Artist"
+msgstr "未知艺术家"
+
+#: soundbox.js:1194 2.5/soundbox.js:1194 2.8/soundbox.js:1194
+msgid "Previous"
+msgstr "上一首"
+
+#: soundbox.js:1200 soundbox.js:1375 soundbox.js:1380 2.5/soundbox.js:1200
+#: 2.5/soundbox.js:1375 2.5/soundbox.js:1380 2.8/soundbox.js:1200
+#: 2.8/soundbox.js:1375 2.8/soundbox.js:1380
+msgid "Play"
+msgstr "播放"
+
+#: soundbox.js:1205 2.5/soundbox.js:1205 2.8/soundbox.js:1205
+msgid "Stop"
+msgstr "停止"
+
+#: soundbox.js:1210 2.5/soundbox.js:1210 2.8/soundbox.js:1210
+msgid "Next"
+msgstr "下一首"
+
+#: soundbox.js:1217 2.5/soundbox.js:1217 2.8/soundbox.js:1217
+msgid "Repeat"
+msgstr "重复"
+
+#: soundbox.js:1226 2.5/soundbox.js:1226 2.8/soundbox.js:1226
+msgid "Shuffle"
+msgstr "随机播放"
+
+#: soundbox.js:1268 2.5/soundbox.js:1268 2.8/soundbox.js:1268
+msgid "Repeat: Off"
+msgstr "重复：关"
+
+#: soundbox.js:1272 2.5/soundbox.js:1272 2.8/soundbox.js:1272
+msgid "Repeat: Track"
+msgstr "重复：音轨"
+
+#: soundbox.js:1276 2.5/soundbox.js:1276 2.8/soundbox.js:1276
+msgid "Repeat: All"
+msgstr "重复：全部"
+
+#: soundbox.js:1284 2.5/soundbox.js:1284 2.8/soundbox.js:1284
+msgid "Shuffle: On"
+msgstr "随机播放：开"
+
+#: soundbox.js:1288 2.5/soundbox.js:1288 2.8/soundbox.js:1288
+msgid "Shuffle: Off"
+msgstr "随机播放：关"
+
+#: soundbox.js:1370 2.5/soundbox.js:1370 2.8/soundbox.js:1370
+msgid "Pause"
+msgstr "暂停"
+
+#: soundbox.js:1498 2.5/soundbox.js:1498 2.8/soundbox.js:1498
+msgid "Output Devices"
+msgstr "输出设备"
+
+#: soundbox.js:1508 2.5/soundbox.js:1508 2.8/soundbox.js:1508
+msgid "Input Devices"
+msgstr "输入设备"
+
+#: soundbox.js:1516 2.5/soundbox.js:1516 2.8/soundbox.js:1516
+msgid "Sound Settings"
+msgstr "声音设置"
+
+#. system volume controls
+#: soundbox.js:1524 2.5/soundbox.js:1524 2.8/soundbox.js:1524
+msgid "Volume:"
+msgstr "音量："
+
+#: soundbox.js:1530 2.5/soundbox.js:1530 2.8/soundbox.js:1530
+msgid "Input Volume:"
+msgstr "输入音量"
+
+#: soundbox.js:1553 2.5/soundbox.js:1553 2.8/soundbox.js:1553
+msgid "Previous Player"
+msgstr "上一个播放器"
+
+#: soundbox.js:1562 2.5/soundbox.js:1562 2.8/soundbox.js:1562
+msgid "Next Player"
+msgstr "下一个播放器"
+
+#: 2.5/desklet.js:300 2.8/desklet.js:316 desklet.js:295
+msgid "Launch Player"
+msgstr "启动播放器"
+
+#: applet.js:88
+msgid "Players"
+msgstr "播放器"
+
+#. this.setPanelText();
+#. Cinnamon-Soundbox->metadata.json->name
+#: applet.js:108
+msgid "Soundbox"
+msgstr "音箱"
+
+#. 2.5->settings-schema.json->compact->description
+#. 2.8->settings-schema.json->compact->description
+#. Cinnamon-Soundbox->settings-schema.json->compact->description
+msgid "Use compact layout"
+msgstr "使用紧凑布局"
+
+#. 2.5->settings-schema.json->showApps->description
+#. 2.8->settings-schema.json->showApps->description
+#. Cinnamon-Soundbox->settings-schema.json->showApps->description
+msgid "Show application volume controls"
+msgstr "显示应用程序音量控制"
+
+#. 2.5->settings-schema.json->hideSystray->description
+#. 2.8->settings-schema.json->hideSystray->description
+#. Cinnamon-Soundbox->settings-schema.json->hideSystray->description
+msgid "Hide system tray icons for compatible players"
+msgstr "隐藏兼容播放器的系统托盘图标"
+
+#. 2.5->settings-schema.json->showInput->description
+#. 2.8->settings-schema.json->showInput->description
+#. Cinnamon-Soundbox->settings-schema.json->showInput->description
+msgid "Show input volume controls"
+msgstr "显示输入音量控制"
+
+#. 2.5->settings-schema.json->exceedNormVolume->description
+#. 2.8->settings-schema.json->exceedNormVolume->description
+#. Cinnamon-Soundbox->settings-schema.json->exceedNormVolume->description
+msgid "Allow volume control to exceed 100% volume"
+msgstr "允许音量控制超出100%的音量"
+
+#. 2.5->settings-schema.json->exceedNormVolume->tooltip
+#. 2.8->settings-schema.json->exceedNormVolume->tooltip
+#. Cinnamon-Soundbox->settings-schema.json->exceedNormVolume->tooltip
+msgid "Note: some applications don't sound good over 100% volume"
+msgstr "注意：某些应用程序超过100%音量时可能听起来不太好"
+
+#. 2.5->settings-schema.json->showArt->description
+#. 2.8->settings-schema.json->showArt->description
+#. Cinnamon-Soundbox->settings-schema.json->showArt->description
+msgid "Show album artwork"
+msgstr "显示专辑封面"
+
+#. 2.5->settings-schema.json->centerRaised->description
+#. 2.8->settings-schema.json->centerRaised->description
+#. Cinnamon-Soundbox->settings-schema.json->centerRaised->description
+msgid "Center Soundbox on the screen in raised mode"
+msgstr "置顶模式中将音箱放在屏幕中间"
+
+#. 2.5->settings-schema.json->theme->description
+#. 2.8->settings-schema.json->theme->description
+#. Cinnamon-Soundbox->settings-schema.json->theme->description
+msgid "Theme"
+msgstr "主题"
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. Cinnamon-Soundbox->settings-schema.json->theme->options
+msgid "Ghost"
+msgstr "Ghost"
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. Cinnamon-Soundbox->settings-schema.json->theme->options
+msgid "Hot Rod"
+msgstr "Hot Rod"
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. Cinnamon-Soundbox->settings-schema.json->theme->options
+msgid "Ice"
+msgstr "Ice"
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. Cinnamon-Soundbox->settings-schema.json->theme->options
+msgid "Mint-X"
+msgstr "Mint-X"
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. Cinnamon-Soundbox->settings-schema.json->theme->options
+msgid "Forest"
+msgstr "Forest"
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. Cinnamon-Soundbox->settings-schema.json->theme->options
+msgid "Clean"
+msgstr "Clean"
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. Cinnamon-Soundbox->settings-schema.json->theme->options
+msgid "Camouflage (tries to blend in)"
+msgstr "Camouflage (尽量融入)"
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. Cinnamon-Soundbox->settings-schema.json->theme->options
+msgid "Mint"
+msgstr "Mint"
+
+#. 2.5->settings-schema.json->artSize->description
+#. 2.8->settings-schema.json->artSize->description
+#. Cinnamon-Soundbox->settings-schema.json->artSize->description
+msgid "Artwork size"
+msgstr "封面大小"
+
+#. 2.5->settings-schema.json->appearance->description
+#. 2.8->settings-schema.json->appearance->description
+#. Cinnamon-Soundbox->settings-schema.json->appearance->description
+msgid "Appearance"
+msgstr "外观"
+
+#. 2.5->settings-schema.json->countUp->description
+#. 2.8->settings-schema.json->countUp->description
+#. Cinnamon-Soundbox->settings-schema.json->countUp->description
+msgid "Timer counts up"
+msgstr "定时器计数"
+
+#. 2.5->settings-schema.json->raiseKey->description
+#. 2.8->settings-schema.json->raiseKey->description
+#. Cinnamon-Soundbox->settings-schema.json->raiseKey->description
+msgid "Raise to top shorcut key"
+msgstr "置顶快捷键"
+
+#. Cinnamon-Soundbox->metadata.json->description
+msgid "A desklet to view sound settings and manage media controls"
+msgstr "一个用来查看声音设置和管理媒体控制的桌面小工具"
+
+#. Cinnamon-Soundbox->metadata.json->contributors
+msgid "Stephen Collins - Author"
+msgstr "Stephen Collins - 作者"
+
+#. Cinnamon-Soundbox->metadata.json->contributors
+msgid "Bernard(zagortenay333) - Mint-x theme"
+msgstr "Bernard(zagortenay333) - Mint-x theme"
+
+#. Cinnamon-Soundbox->metadata.json->contributors
+msgid "Corbin(RavetcoFX) - Bugfix"
+msgstr "Corbin(RavetcoFX) - 错误修正"
+
+#. Cinnamon-Soundbox->metadata.json->comments
+msgid ""
+"Soundbox is an attractive and easy-to-use Desklet designed to control your "
+"volume and media players. It was originally forked from the Cinnamon sound "
+"applet, but has grown and evolved over time. Feel free to contribute by "
+"submitting pull requests, bug reports and feature requests to my github repo."
+msgstr ""
+"音箱是一个有吸引力和易于使用的桌面小工具，旨在控制您的音量和媒体播放器。它最"
+"初是从Cinnamon声音小程序中派生出来的，但随着时间推移不断发展壮大。请随意通过"
+"提交拉取请求、错误报告和功能请求贡献到我的github存储库。"

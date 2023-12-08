@@ -1,0 +1,116 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-26 12:46+0800\n"
+"PO-Revision-Date: 2022-06-03 14:29+0200\n"
+"Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:32
+msgid "Quote of the day"
+msgstr "Citazione del giorno"
+
+#: desklet.js:52
+msgid "Copy"
+msgstr "Copia"
+
+#. quoteOfTheDay@tinnu->metadata.json->description
+msgid "A desklet that displays quotations from various sources"
+msgstr "Un desklet che mostra citazioni da varie fonti"
+
+#. quoteOfTheDay@tinnu->metadata.json->name
+msgid "Quote of the day desklet"
+msgstr "Citazione del giorno desklet"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->font-size->description
+msgid "Font size:"
+msgstr "Dimensione carattere:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->vertical-shadow->description
+msgid "Vertical shadow:"
+msgstr "Ombreggiatura verticale:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->vertical-shadow->units
+#. quoteOfTheDay@tinnu->settings-schema.json->shadow-blur->units
+#. quoteOfTheDay@tinnu->settings-schema.json->horizontal-shadow->units
+msgid "px"
+msgstr "px"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->file->description
+msgid "File:"
+msgstr "File:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->font-options-header->description
+msgid "Font options:"
+msgstr "Opzioni carattere:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->shadow-blur->description
+msgid "Shadow blur:"
+msgstr "Sfocatura dell'ombreggiatura:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->shadow-color->description
+msgid "Shadow color:"
+msgstr "Colore ombreggiatura:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->shadow-color->tooltip
+#. quoteOfTheDay@tinnu->settings-schema.json->text-color->tooltip
+msgid "Click to select a new text color"
+msgstr "Premi per selezionare un nuovo colore del testo"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->delay->description
+msgid "Update every:"
+msgstr "Aggiorna ogni:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->delay->units
+msgid "minutes"
+msgstr "minuti"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->text-color->description
+msgid "Font color:"
+msgstr "Colore carattere:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->horizontal-shadow->description
+msgid "Horizontal shadow:"
+msgstr "Ombreggiatura orizzontale:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->font-shadow-options-
+#. header->description
+msgid "Text shadow effects:"
+msgstr "Effetti ombreggiatura testo:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->advanced-options-header->
+#. description
+msgid "Advanced options:"
+msgstr "Opzioni avanzate:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->fortune-params->description
+msgid "Parameters for fortune:"
+msgstr "Parametri per la fortuna:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->fortune-params->tooltip
+msgid "E.g. -s, etc.  See README for more info."
+msgstr "Per esempio. -s, ecc.  Vedi il README per maggiori informazioni."
+
+#. quoteOfTheDay@tinnu->settings-schema.json->ignore-input-file->description
+msgid "Ignore input file"
+msgstr "Ignora file di input"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->ignore-input-file->tooltip
+msgid ""
+"Use fortune's default behavior instead of an input file.  See README for "
+"more info."
+msgstr ""
+"Usa il comportamento predefinito di fortuna invece di un file di input.  "
+"Vedi README per maggiori informazioni."

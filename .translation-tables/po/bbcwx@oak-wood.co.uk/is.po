@@ -1,0 +1,1273 @@
+# Icelandic translation for bbcwx
+# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
+# This file is distributed under the same license as the bbcwx package.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+# Sveinn í Felli <sv1@fellsnet.is>, 2015.
+msgid ""
+msgstr ""
+"Project-Id-Version: bbcwx\n"
+"Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
+"POT-Creation-Date: 2023-09-03 14:13-0400\n"
+"PO-Revision-Date: 2023-09-03 14:16-0400\n"
+"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
+"Language-Team: Icelandic <is@li.org>\n"
+"Language: is\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2015-12-04 19:52+0000\n"
+"X-Generator: Poedit 3.3.1\n"
+
+#: 5.4/desklet.js:106 3.0/desklet.js:108
+msgid "Mon"
+msgstr "mán"
+
+#: 5.4/desklet.js:106 3.0/desklet.js:108
+msgid "Tue"
+msgstr "þri"
+
+#: 5.4/desklet.js:106 3.0/desklet.js:108
+msgid "Wed"
+msgstr "mið"
+
+#: 5.4/desklet.js:106 3.0/desklet.js:108
+msgid "Thu"
+msgstr "fim"
+
+#: 5.4/desklet.js:106 3.0/desklet.js:108
+msgid "Fri"
+msgstr "fös"
+
+#: 5.4/desklet.js:106 3.0/desklet.js:108
+msgid "Sat"
+msgstr "lau"
+
+#: 5.4/desklet.js:106 3.0/desklet.js:108
+msgid "Sun"
+msgstr "sun"
+
+#: 5.4/desklet.js:191 3.0/desklet.js:186
+msgid "Weather"
+msgstr "Veður"
+
+#: 5.4/desklet.js:199 3.0/desklet.js:194
+msgid "Help"
+msgstr "Hjálp"
+
+#: 5.4/desklet.js:203 3.0/desklet.js:198
+msgid "Translate"
+msgstr "Þýða"
+
+#: 5.4/desklet.js:350 5.4/desklet.js:378 3.0/desklet.js:344 3.0/desklet.js:372
+msgid "Humidity:"
+msgstr "Rakastig:"
+
+#: 5.4/desklet.js:351 5.4/desklet.js:377 3.0/desklet.js:345 3.0/desklet.js:371
+msgid "Pressure:"
+msgstr "Þrýstingur:"
+
+#: 5.4/desklet.js:352 3.0/desklet.js:346
+msgid "Wind:"
+msgstr "Vindur:"
+
+#: 5.4/desklet.js:353 3.0/desklet.js:347
+msgid "Feels like:"
+msgstr "Með vindkælingu:"
+
+#: 5.4/desklet.js:354 3.0/desklet.js:348
+msgid "Visibility:"
+msgstr "Skyggni:"
+
+#: 5.4/desklet.js:369 3.0/desklet.js:363
+msgid "Max:"
+msgstr "Hám:"
+
+#: 5.4/desklet.js:371 3.0/desklet.js:365
+msgid "Min:"
+msgstr "Lágm:"
+
+#: 5.4/desklet.js:373 3.0/desklet.js:367
+msgid "Wind speed:"
+msgstr "Vindhraði:"
+
+#: 5.4/desklet.js:375 3.0/desklet.js:369
+msgid "Dir:"
+msgstr "Vindátt:"
+
+#: 5.4/desklet.js:417 3.0/desklet.js:411
+msgid "Data from "
+msgstr "Gögn frá "
+
+#: 5.4/desklet.js:431 3.0/desklet.js:423
+msgid "Refresh"
+msgstr "Uppfæra"
+
+#: 5.4/desklet.js:753 3.0/desklet.js:744
+msgid "No data available"
+msgstr "Engin gögn tiltæk"
+
+#: 5.4/desklet.js:786 5.4/desklet.js:853 3.0/desklet.js:777 3.0/desklet.js:844
+#, javascript-format
+msgid "Error: %s"
+msgstr "Villa: %s"
+
+#: 5.4/desklet.js:786 5.4/desklet.js:853 3.0/desklet.js:777 3.0/desklet.js:844
+msgid "No data"
+msgstr "Engin gögn"
+
+#: 5.4/desklet.js:888 3.0/desklet.js:879
+#, javascript-format
+msgid "Click for the full forecast for %s"
+msgstr "Smelltu til að sjá fulla veðurspá fyrir %s"
+
+#: 5.4/desklet.js:1148 3.0/desklet.js:1139
+#, javascript-format
+msgid "%f°F"
+msgstr "%f°F"
+
+#: 5.4/desklet.js:1150 3.0/desklet.js:1141
+#, javascript-format
+msgid "%f°C"
+msgstr "%f°C"
+
+#: 5.4/desklet.js:1171 3.0/desklet.js:1162
+#, javascript-format
+msgid "%fmph"
+msgstr "%fmph"
+
+#: 5.4/desklet.js:1173 3.0/desklet.js:1164
+#, javascript-format
+msgid "%fkn"
+msgstr "%fhn"
+
+#: 5.4/desklet.js:1175 3.0/desklet.js:1166
+#, javascript-format
+msgid "%fkm/h"
+msgstr "%fkm/klst"
+
+#: 5.4/desklet.js:1177 3.0/desklet.js:1168
+#, javascript-format
+msgid "%fm/s"
+msgstr "%fm/sek"
+
+#: 5.4/desklet.js:1211 3.0/desklet.js:1202
+#, javascript-format
+msgid "%fmb"
+msgstr "%fmb"
+
+#: 5.4/desklet.js:1213 3.0/desklet.js:1204
+#, javascript-format
+msgid "%fin"
+msgstr "%fin"
+
+#: 5.4/desklet.js:1215 3.0/desklet.js:1206
+#, javascript-format
+msgid "%fmm"
+msgstr "%fmm"
+
+#: 5.4/desklet.js:1217 3.0/desklet.js:1208
+#, javascript-format
+msgid "%fkPa"
+msgstr "%fkPa"
+
+#: 5.4/desklet.js:1268 3.0/desklet.js:1259
+#, javascript-format
+msgid "%fmi"
+msgstr "%fmi"
+
+#: 5.4/desklet.js:1270 3.0/desklet.js:1261
+#, javascript-format
+msgid "%fnmi"
+msgstr "%fnmi"
+
+#: 5.4/desklet.js:1272 3.0/desklet.js:1263
+#, javascript-format
+msgid "%fkm"
+msgstr "%fkm"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "N"
+msgstr "N"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "NNE"
+msgstr "NNA"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "NE"
+msgstr "NA"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "ENE"
+msgstr "ANA"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "E"
+msgstr "A"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "ESE"
+msgstr "ASA"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "SE"
+msgstr "SA"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "SSE"
+msgstr "SSA"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "S"
+msgstr "S"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "SSW"
+msgstr "SSV"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "SW"
+msgstr "SV"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "WSW"
+msgstr "VSV"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "W"
+msgstr "V"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "WNW"
+msgstr "VNV"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "NW"
+msgstr "NV"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "NNW"
+msgstr "NNV"
+
+#: 5.4/desklet.js:1569 3.0/desklet.js:1560
+msgid "Tornado"
+msgstr "Hvirfilbylur"
+
+#: 5.4/desklet.js:1570 3.0/desklet.js:1561
+msgid "Tropical storm"
+msgstr "Hitabeltisstormur"
+
+#: 5.4/desklet.js:1571 3.0/desklet.js:1562
+msgid "Hurricane"
+msgstr "Fellibylur"
+
+#: 5.4/desklet.js:1572 3.0/desklet.js:1563
+msgid "Severe thunderstorms"
+msgstr "Hvasst þrumuveður"
+
+#: 5.4/desklet.js:1573 3.0/desklet.js:1564
+msgid "Thunderstorms"
+msgstr "Þrumuveður"
+
+#: 5.4/desklet.js:1574 5.4/desklet.js:4249 3.0/desklet.js:1565
+#: 3.0/desklet.js:4240
+msgid "Mixed rain and snow"
+msgstr "Ýmist rigning eða snjókoma"
+
+#: 5.4/desklet.js:1575 3.0/desklet.js:1566
+msgid "Mixed rain and sleet"
+msgstr "Ýmist rigning eða slydda"
+
+#: 5.4/desklet.js:1576 3.0/desklet.js:1567
+msgid "Mixed snow and sleet"
+msgstr "Ýmist snjókoma eða slydda"
+
+#: 5.4/desklet.js:1577 3.0/desklet.js:1568
+msgid "Freezing drizzle"
+msgstr "Frostsúld"
+
+#: 5.4/desklet.js:1578 5.4/desklet.js:1881 3.0/desklet.js:1569
+#: 3.0/desklet.js:1872
+msgid "Drizzle"
+msgstr "Súld"
+
+#: 5.4/desklet.js:1579 3.0/desklet.js:1570
+msgid "Freezing rain"
+msgstr "Frostrigning"
+
+#: 5.4/desklet.js:1580 5.4/desklet.js:1581 5.4/desklet.js:4245
+#: 3.0/desklet.js:1571 3.0/desklet.js:1572 3.0/desklet.js:4236
+msgid "Showers"
+msgstr "Skúrir"
+
+#: 5.4/desklet.js:1582 3.0/desklet.js:1573
+msgid "Snow flurries"
+msgstr "Snjóhryðjur"
+
+#: 5.4/desklet.js:1583 3.0/desklet.js:1574
+msgid "Light snow showers"
+msgstr "Snjóél"
+
+#: 5.4/desklet.js:1584 3.0/desklet.js:1575
+msgid "Blowing snow"
+msgstr "Snjóbylur"
+
+#: 5.4/desklet.js:1585 5.4/desklet.js:4247 5.4/desklet.js:4253
+#: 3.0/desklet.js:1576 3.0/desklet.js:4238 3.0/desklet.js:4244
+msgid "Snow"
+msgstr "Snjókoma"
+
+#: 5.4/desklet.js:1586 3.0/desklet.js:1577
+msgid "Hail"
+msgstr "Haglél"
+
+#: 5.4/desklet.js:1587 5.4/desklet.js:1886 3.0/desklet.js:1578
+#: 3.0/desklet.js:1877
+msgid "Sleet"
+msgstr "Slydda"
+
+#: 5.4/desklet.js:1588 3.0/desklet.js:1579
+msgid "Dust"
+msgstr "Ryk"
+
+#: 5.4/desklet.js:1589 3.0/desklet.js:1580
+msgid "Foggy"
+msgstr "Þokuloft"
+
+#: 5.4/desklet.js:1590 3.0/desklet.js:1581
+msgid "Haze"
+msgstr "Mistur"
+
+#: 5.4/desklet.js:1591 3.0/desklet.js:1582
+msgid "Smoky"
+msgstr "Reykjarkóf"
+
+#: 5.4/desklet.js:1592 3.0/desklet.js:1583
+msgid "Blustery"
+msgstr "Vindhviður"
+
+#: 5.4/desklet.js:1593 3.0/desklet.js:1584
+msgid "Windy"
+msgstr "Vindasamt"
+
+#: 5.4/desklet.js:1594 3.0/desklet.js:1585
+msgid "Cold"
+msgstr "Kalt"
+
+#: 5.4/desklet.js:1595 5.4/desklet.js:4242 3.0/desklet.js:1586
+#: 3.0/desklet.js:4233
+msgid "Cloudy"
+msgstr "Skýjað"
+
+#: 5.4/desklet.js:1596 5.4/desklet.js:1597 3.0/desklet.js:1587
+#: 3.0/desklet.js:1588
+msgid "Mostly cloudy"
+msgstr "Alskýjað"
+
+#: 5.4/desklet.js:1598 5.4/desklet.js:1599 5.4/desklet.js:1613
+#: 3.0/desklet.js:1589 3.0/desklet.js:1590 3.0/desklet.js:1604
+msgid "Partly cloudy"
+msgstr "Hálfskýjað"
+
+#: 5.4/desklet.js:1600 3.0/desklet.js:1591
+msgid "Clear"
+msgstr "Heiðskírt"
+
+#: 5.4/desklet.js:1601 5.4/desklet.js:1870 3.0/desklet.js:1592
+#: 3.0/desklet.js:1861
+msgid "Sunny"
+msgstr "Bjartviðri"
+
+#: 5.4/desklet.js:1602 5.4/desklet.js:1603 5.4/desklet.js:4240
+#: 3.0/desklet.js:1593 3.0/desklet.js:1594 3.0/desklet.js:4231
+msgid "Fair"
+msgstr "Bjart"
+
+#: 5.4/desklet.js:1604 3.0/desklet.js:1595
+msgid "Mixed rain and hail"
+msgstr "Ýmist rigning eða haglél"
+
+#: 5.4/desklet.js:1605 3.0/desklet.js:1596
+msgid "Hot"
+msgstr "Heitt"
+
+#: 5.4/desklet.js:1606 3.0/desklet.js:1597
+msgid "Isolated thunderstorms"
+msgstr "Þrumuveður á köflum"
+
+#: 5.4/desklet.js:1607 3.0/desklet.js:1598
+msgid "Scattered thunderstorms"
+msgstr "Þrumuveður á dreif"
+
+#: 5.4/desklet.js:1608 5.4/desklet.js:1609 3.0/desklet.js:1599
+#: 3.0/desklet.js:1600
+msgid "Scattered showers"
+msgstr "Skúrir á dreif"
+
+#: 5.4/desklet.js:1610 5.4/desklet.js:1612 3.0/desklet.js:1601
+#: 3.0/desklet.js:1603
+msgid "Heavy snow"
+msgstr "Talsverð snjókoma"
+
+#: 5.4/desklet.js:1611 3.0/desklet.js:1602
+msgid "Scattered snow showers"
+msgstr "Snjóél á dreif"
+
+#: 5.4/desklet.js:1614 3.0/desklet.js:1605
+msgid "Thundershowers"
+msgstr "Þrumuskúrir"
+
+#: 5.4/desklet.js:1615 5.4/desklet.js:4248 3.0/desklet.js:1606
+#: 3.0/desklet.js:4239
+msgid "Snow showers"
+msgstr "Snjóél"
+
+#: 5.4/desklet.js:1616 3.0/desklet.js:1607
+msgid "Isolated thundershowers"
+msgstr "Þrumuskúrir á stöku stað"
+
+#: 5.4/desklet.js:1617 3.0/desklet.js:1608
+msgid "Not available"
+msgstr "Ekki tiltækt"
+
+#: 5.4/desklet.js:1869 5.4/desklet.js:4239 3.0/desklet.js:1860
+#: 3.0/desklet.js:4230
+msgid "Clear Sky"
+msgstr "Heiðskírt"
+
+#: 5.4/desklet.js:1871 5.4/desklet.js:4241 3.0/desklet.js:1862
+#: 3.0/desklet.js:4232
+msgid "Partly Cloudy"
+msgstr "Hálfskýjað"
+
+#: 5.4/desklet.js:1872 3.0/desklet.js:1863
+msgid "Sunny Intervals"
+msgstr "Sól með köflum"
+
+#: 5.4/desklet.js:1873 3.0/desklet.js:1864
+msgid "Sand Storm"
+msgstr "Sandfok"
+
+#: 5.4/desklet.js:1874 3.0/desklet.js:1865
+msgid "Mist"
+msgstr "Mistur"
+
+#: 5.4/desklet.js:1875 5.4/desklet.js:4243 3.0/desklet.js:1866
+#: 3.0/desklet.js:4234
+msgid "Fog"
+msgstr "Þoka"
+
+#: 5.4/desklet.js:1876 3.0/desklet.js:1867
+msgid "White Cloud"
+msgstr ""
+
+#: 5.4/desklet.js:1877 3.0/desklet.js:1868
+msgid "Light Cloud"
+msgstr ""
+
+#: 5.4/desklet.js:1878 3.0/desklet.js:1869
+msgid "Grey Cloud"
+msgstr "Þungskýjað"
+
+#: 5.4/desklet.js:1879 3.0/desklet.js:1870
+msgid "Thick Cloud"
+msgstr ""
+
+#: 5.4/desklet.js:1880 3.0/desklet.js:1871
+msgid "Light Rain Shower"
+msgstr "Dálitlar regnskúrir"
+
+#: 5.4/desklet.js:1882 5.4/desklet.js:4250 5.4/desklet.js:4254
+#: 3.0/desklet.js:1873 3.0/desklet.js:4241 3.0/desklet.js:4245
+msgid "Light Rain"
+msgstr "Dálítil rigning"
+
+#: 5.4/desklet.js:1883 3.0/desklet.js:1874
+msgid "Heavy Rain Shower"
+msgstr "Talsverðar regnskúrir"
+
+#: 5.4/desklet.js:1884 5.4/desklet.js:4244 5.4/desklet.js:4252
+#: 3.0/desklet.js:1875 3.0/desklet.js:4235 3.0/desklet.js:4243
+msgid "Heavy Rain"
+msgstr "Úrfelli"
+
+#: 5.4/desklet.js:1885 3.0/desklet.js:1876
+msgid "Sleet Shower"
+msgstr "Slydduél"
+
+#: 5.4/desklet.js:1887 3.0/desklet.js:1878
+msgid "Light Snow Shower"
+msgstr "Dálítil snjóél"
+
+#: 5.4/desklet.js:1888 5.4/desklet.js:4251 5.4/desklet.js:4255
+#: 3.0/desklet.js:1879 3.0/desklet.js:4242 3.0/desklet.js:4246
+msgid "Light Snow"
+msgstr "Dálítil snjókoma"
+
+#: 5.4/desklet.js:1889 3.0/desklet.js:1880
+msgid "Heavy Snow Shower"
+msgstr "Talsverð snjóél"
+
+#: 5.4/desklet.js:1890 3.0/desklet.js:1881
+msgid "Heavy Snow"
+msgstr "Talsverð snjókoma"
+
+#: 5.4/desklet.js:1891 5.4/desklet.js:4246 3.0/desklet.js:1882
+#: 3.0/desklet.js:4237
+msgid "Thundery Shower"
+msgstr "Þrumuskúrir"
+
+#: 5.4/desklet.js:1892 3.0/desklet.js:1883
+msgid "Thunder Storm"
+msgstr "Þrumuveður"
+
+#: 5.4/desklet.js:1893 3.0/desklet.js:1884
+msgid "Thunderstorm"
+msgstr "Þrumuveður"
+
+#: 5.4/desklet.js:1894 3.0/desklet.js:1885
+msgid "Hazy"
+msgstr "Hitamistur"
+
+#: 5.4/desklet.js:1895 3.0/desklet.js:1886
+msgid "Hail Shower"
+msgstr "Haglél"
+
+#: 5.4/desklet.js:1896 3.0/desklet.js:1887
+msgid "Rain"
+msgstr ""
+
+#: 5.4/desklet.js:2081 5.4/desklet.js:2809 3.0/desklet.js:2072
+#: 3.0/desklet.js:2800
+msgid "Steady"
+msgstr "Stöðugt"
+
+#: 5.4/desklet.js:2081 5.4/desklet.js:2805 3.0/desklet.js:2072
+#: 3.0/desklet.js:2796
+msgid "Rising"
+msgstr "Stígandi"
+
+#: 5.4/desklet.js:2081 5.4/desklet.js:2807 3.0/desklet.js:2072
+#: 3.0/desklet.js:2798
+msgid "Falling"
+msgstr "Fallandi"
+
+#. metadata.json->description
+msgid "Display the weather from several web services on your desktop"
+msgstr ""
+
+#. metadata.json->name
+msgid "Weather Desklet"
+msgstr ""
+
+#. metadata.json->comments
+msgid ""
+"Please consider translating the Weather Desklet into your language. See the "
+"website for more information"
+msgstr ""
+
+#. metadata.json->contributors
+msgid "Chris Hastie"
+msgstr ""
+
+#. 5.4->settings-schema.json->top->description
+#. 3.0->settings-schema.json->top->description
+msgid "Weather configuration"
+msgstr "Stillingar veðurupplýsinga"
+
+#. 5.4->settings-schema.json->webservice->description
+#. 5.4->settings-schema.json->locsrc->options
+#. 3.0->settings-schema.json->webservice->description
+#. 3.0->settings-schema.json->locsrc->options
+msgid "Data service"
+msgstr "Gagnaþjónusta"
+
+#. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+msgid "BBC"
+msgstr "BBC"
+
+#. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#, fuzzy
+msgid "Open Weather Map (requires API key)"
+msgstr "World Weather Online (krefst API lykils)"
+
+#. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#, fuzzy
+msgid "Open Weather Map Free (requires API key)"
+msgstr "World Weather Online (krefst API lykils)"
+
+#. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+msgid "Wunderground (requires API key)"
+msgstr "Wunderground (krefst API lykils)"
+
+#. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#, fuzzy
+msgid "World Weather Online (deprecated) (requires API key)"
+msgstr "World Weather Online (krefst API lykils)"
+
+#. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#, fuzzy
+msgid "World Weather Online Premium (requires API key)"
+msgstr "World Weather Online (krefst API lykils)"
+
+#. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#, fuzzy
+msgid "APIXU (requires API key)"
+msgstr "Forecast.io (krefst API lykils)"
+
+#. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+msgid "Forecast.io (requires API key)"
+msgstr "Forecast.io (krefst API lykils)"
+
+#. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+msgid "weather.com (deprecated)"
+msgstr "weather.com (úrelt)"
+
+#. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+msgid "meteoblue (requires API key)"
+msgstr ""
+
+#. 5.4->settings-schema.json->webservice->tooltip
+#. 3.0->settings-schema.json->webservice->tooltip
+msgid "Select the data service you wish to use"
+msgstr "Veldu hvaða gagnaþjónustu þú vilt nota"
+
+#. 5.4->settings-schema.json->stationID->description
+#. 3.0->settings-schema.json->stationID->description
+msgid "Location"
+msgstr "Staðsetning"
+
+#. 5.4->settings-schema.json->stationID->tooltip
+#. 3.0->settings-schema.json->stationID->tooltip
+msgid "Set your location here"
+msgstr "Veldu staðsetningu þína"
+
+#. 5.4->settings-schema.json->apikey->description
+#. 3.0->settings-schema.json->apikey->description
+msgid "API key"
+msgstr "API-lykill"
+
+#. 5.4->settings-schema.json->apikey->tooltip
+#. 3.0->settings-schema.json->apikey->tooltip
+msgid ""
+"Required for some services only. Enter your API key for your chosen service"
+msgstr ""
+"Aðeins nauðsynlegt fyrir sumar þjónustur. Settu inn API-lykillinn þinn fyrir "
+"þjónustuna sem þú valdir"
+
+#. 5.4->settings-schema.json->tunits->description
+#. 3.0->settings-schema.json->tunits->description
+msgid "Temperature measurement unit"
+msgstr "Mælieining fyrir hitastig"
+
+#. 5.4->settings-schema.json->tunits->options
+#. 3.0->settings-schema.json->tunits->options
+msgid "Celsius"
+msgstr "Selsíus"
+
+#. 5.4->settings-schema.json->tunits->options
+#. 3.0->settings-schema.json->tunits->options
+msgid "Fahrenheit"
+msgstr "Fahrenheit"
+
+#. 5.4->settings-schema.json->tunits->tooltip
+#. 3.0->settings-schema.json->tunits->tooltip
+msgid "Measurement units used to display temperature"
+msgstr "Mælieiningar við birtingu á hitastigi"
+
+#. 5.4->settings-schema.json->wunits->description
+#. 3.0->settings-schema.json->wunits->description
+msgid "Wind speed measurement unit"
+msgstr "Mælieining vindhraða"
+
+#. 5.4->settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
+msgid "mph"
+msgstr "mílur/klst"
+
+#. 5.4->settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
+msgid "km/h"
+msgstr "km/klst"
+
+#. 5.4->settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
+msgid "knots"
+msgstr "hnútar"
+
+#. 5.4->settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
+msgid "m/s"
+msgstr "m/sek"
+
+#. 5.4->settings-schema.json->wunits->tooltip
+#. 3.0->settings-schema.json->wunits->tooltip
+msgid "Measurement units used to display wind speed"
+msgstr "Mælieiningar við birtingu á vindhraða"
+
+#. 5.4->settings-schema.json->punits->description
+#. 3.0->settings-schema.json->punits->description
+msgid "Pressure measurement unit"
+msgstr "Mælieining loftþrýstings"
+
+#. 5.4->settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
+msgid "mb"
+msgstr "mb"
+
+#. 5.4->settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
+msgid "in (Hg)"
+msgstr "in (Hg)"
+
+#. 5.4->settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
+msgid "mm (Hg)"
+msgstr "mm (Hg)"
+
+#. 5.4->settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
+msgid "kPa"
+msgstr "kPa"
+
+#. 5.4->settings-schema.json->punits->tooltip
+#. 3.0->settings-schema.json->punits->tooltip
+msgid "Measurement units used to display atmospheric pressure"
+msgstr "Mælieiningar við birtingu á loftþrýstingi"
+
+#. 5.4->settings-schema.json->userno->units
+#. 3.0->settings-schema.json->userno->units
+msgid "days"
+msgstr "dagar"
+
+#. 5.4->settings-schema.json->userno->description
+#. 3.0->settings-schema.json->userno->description
+msgid "Show forecast for"
+msgstr "Birta spá fyrir"
+
+#. 5.4->settings-schema.json->userno->tooltip
+#. 3.0->settings-schema.json->userno->tooltip
+msgid ""
+"The number of days of forecast to display. Note that not all services "
+"support all values"
+msgstr ""
+"Veldu hér fjölda daga til birtingar á veðurspá. Athugaðu að ekki styðja "
+"allar þjónustur hvaða gildi sem er"
+
+#. 5.4->settings-schema.json->refreshtime->units
+#. 3.0->settings-schema.json->refreshtime->units
+msgid "minutes"
+msgstr "mínútna fresti"
+
+#. 5.4->settings-schema.json->refreshtime->description
+#. 3.0->settings-schema.json->refreshtime->description
+msgid "Refresh forecast every"
+msgstr "Uppfæra spá á"
+
+#. 5.4->settings-schema.json->refreshtime->tooltip
+#. 3.0->settings-schema.json->refreshtime->tooltip
+msgid ""
+"Period between refreshing forecasts. Note that not all services support "
+"lower refresh times"
+msgstr ""
+"Veldu hér tímann milli endurlesturs á veðurspá. Athugaðu að ekki styðja "
+"allar þjónustur mjög lág uppfærslugildi"
+
+#. 5.4->settings-schema.json->display->description
+#. 3.0->settings-schema.json->display->description
+msgid ""
+"Optional items to display (not all options are supported by all services)"
+msgstr ""
+"Aukaleg atriði til birtingar (ekki styðja allar þjónustur hvaða valkosti sem "
+"er)"
+
+#. 5.4->settings-schema.json->display__meta__country->description
+#. 3.0->settings-schema.json->display__meta__country->description
+msgid "Country"
+msgstr "Land"
+
+#. 5.4->settings-schema.json->display__meta__country->tooltip
+#. 3.0->settings-schema.json->display__meta__country->tooltip
+msgid "Check to display the country"
+msgstr "Hakaðu við hér til að birta heiti landsins"
+
+#. 5.4->settings-schema.json->display__cc__weather->description
+#. 3.0->settings-schema.json->display__cc__weather->description
+msgid "Current weather and icon"
+msgstr "Veðurlýsing og táknmynd"
+
+#. 5.4->settings-schema.json->display__cc__weather->tooltip
+#. 3.0->settings-schema.json->display__cc__weather->tooltip
+msgid "Check to display the current weather and large icon"
+msgstr "Hakaðu við hér til að birta veðurlýsingu og stóra táknmynd"
+
+#. 5.4->settings-schema.json->display__cc__pressure->description
+#. 3.0->settings-schema.json->display__cc__pressure->description
+msgid "Current pressure"
+msgstr "Loftþrýstingur núna"
+
+#. 5.4->settings-schema.json->display__cc__pressure->tooltip
+#. 3.0->settings-schema.json->display__cc__pressure->tooltip
+msgid "Check to display the current pressure"
+msgstr "Hakaðu við hér til að birta núverandi loftþrýsting"
+
+#. 5.4->settings-schema.json->display__cc__humidity->description
+#. 3.0->settings-schema.json->display__cc__humidity->description
+msgid "Current humidity"
+msgstr "Rakastig núna"
+
+#. 5.4->settings-schema.json->display__cc__humidity->tooltip
+#. 3.0->settings-schema.json->display__cc__humidity->tooltip
+msgid "Check to display the current humidity"
+msgstr "Hakaðu við hér til að birta núverandi rakastig"
+
+#. 5.4->settings-schema.json->display__cc__wind_speed->description
+#. 3.0->settings-schema.json->display__cc__wind_speed->description
+msgid "Current wind"
+msgstr "Vindur núna"
+
+#. 5.4->settings-schema.json->display__cc__wind_speed->tooltip
+#. 3.0->settings-schema.json->display__cc__wind_speed->tooltip
+msgid "Check to display the current wind"
+msgstr "Hakaðu við hér til að birta núverandi vind"
+
+#. 5.4->settings-schema.json->display__cc__feelslike->description
+#. 3.0->settings-schema.json->display__cc__feelslike->description
+msgid "Current 'feels like'"
+msgstr "Vindkæling núna"
+
+#. 5.4->settings-schema.json->display__cc__feelslike->tooltip
+#. 3.0->settings-schema.json->display__cc__feelslike->tooltip
+msgid "Check to display the current apparent temperature"
+msgstr "Hakaðu við hér til að birta núverandi hitastig með vindkælingu"
+
+#. 5.4->settings-schema.json->display__cc__visibility->description
+#. 3.0->settings-schema.json->display__cc__visibility->description
+msgid "Current visibility"
+msgstr "Skyggni núna"
+
+#. 5.4->settings-schema.json->display__cc__visibility->tooltip
+#. 3.0->settings-schema.json->display__cc__visibility->tooltip
+msgid "Check to display the current visibility"
+msgstr "Hakaðu við hér til að birta núverandi skyggni"
+
+#. 5.4->settings-
+#. schema.json->display__forecast__maximum_temperature->description
+#. 3.0->settings-
+#. schema.json->display__forecast__maximum_temperature->description
+msgid "Forecast maximum"
+msgstr "Spá fyrir hámarkshitastig"
+
+#. 5.4->settings-schema.json->display__forecast__maximum_temperature->tooltip
+#. 3.0->settings-schema.json->display__forecast__maximum_temperature->tooltip
+msgid "Check to display the forecast maximum temperature"
+msgstr "Hakaðu við hér til að birta spá fyrir hámarkshitastig"
+
+#. 5.4->settings-
+#. schema.json->display__forecast__minimum_temperature->description
+#. 3.0->settings-
+#. schema.json->display__forecast__minimum_temperature->description
+msgid "Forecast minimum"
+msgstr "Spá fyrir lágmarkshitastig"
+
+#. 5.4->settings-schema.json->display__forecast__minimum_temperature->tooltip
+#. 3.0->settings-schema.json->display__forecast__minimum_temperature->tooltip
+msgid "Check to display the forecast minimum temperature"
+msgstr "Hakaðu við hér til að birta spá fyrir lágmarkshitastig"
+
+#. 5.4->settings-schema.json->display__forecast__wind_speed->description
+#. 3.0->settings-schema.json->display__forecast__wind_speed->description
+msgid "Forecast wind speed"
+msgstr "Spá vindhraða"
+
+#. 5.4->settings-schema.json->display__forecast__wind_speed->tooltip
+#. 3.0->settings-schema.json->display__forecast__wind_speed->tooltip
+msgid "Check to display the forecast wind speed"
+msgstr "Hakaðu við hér til að birta spá fyrir vindhraða"
+
+#. 5.4->settings-schema.json->display__forecast__wind_direction->description
+#. 3.0->settings-schema.json->display__forecast__wind_direction->description
+msgid "Forecast wind direction"
+msgstr "Spá vindátt"
+
+#. 5.4->settings-schema.json->display__forecast__wind_direction->tooltip
+#. 3.0->settings-schema.json->display__forecast__wind_direction->tooltip
+msgid "Check to display the forecast wind direction"
+msgstr "Hakaðu við hér til að birta spá fyrir vindátt"
+
+#. 5.4->settings-schema.json->display__forecast__pressure->description
+#. 3.0->settings-schema.json->display__forecast__pressure->description
+msgid "Forecast pressure"
+msgstr "Spá fyrir loftþrýsting"
+
+#. 5.4->settings-schema.json->display__forecast__pressure->tooltip
+#. 3.0->settings-schema.json->display__forecast__pressure->tooltip
+msgid "Check to display the forecast pressure"
+msgstr "Hakaðu við hér til að birta spá fyrir loftþrýsting"
+
+#. 5.4->settings-schema.json->display__forecast__humidity->description
+#. 3.0->settings-schema.json->display__forecast__humidity->description
+msgid "Forecast humidity"
+msgstr "Spá rakastigi"
+
+#. 5.4->settings-schema.json->display__forecast__humidity->tooltip
+#. 3.0->settings-schema.json->display__forecast__humidity->tooltip
+msgid "Check to display the forecast humidity"
+msgstr "Hakaðu við hér til að birta spá fyrir rakastig"
+
+#. 5.4->settings-schema.json->styling->description
+#. 3.0->settings-schema.json->styling->description
+msgid "Desklet style"
+msgstr "Stíll skjáborðsgræju"
+
+#. 5.4->settings-schema.json->zoom->units
+#. 3.0->settings-schema.json->zoom->units
+msgid "times"
+msgstr "sinnum"
+
+#. 5.4->settings-schema.json->zoom->description
+#. 3.0->settings-schema.json->zoom->description
+msgid "Zoom by"
+msgstr "Aðdráttur um"
+
+#. 5.4->settings-schema.json->zoom->tooltip
+#. 3.0->settings-schema.json->zoom->tooltip
+msgid "Change the size of the desklet"
+msgstr "Breyta stærð á skjáborðsgræjunni"
+
+#. 5.4->settings-schema.json->layout->description
+#. 3.0->settings-schema.json->layout->description
+msgid "Layout"
+msgstr "Framsetning"
+
+#. 5.4->settings-schema.json->layout->options
+#. 3.0->settings-schema.json->layout->options
+msgid "Horizontal"
+msgstr "Lárétt"
+
+#. 5.4->settings-schema.json->layout->options
+#. 3.0->settings-schema.json->layout->options
+msgid "Vertical"
+msgstr "Lóðrétt"
+
+#. 5.4->settings-schema.json->layout->tooltip
+#. 3.0->settings-schema.json->layout->tooltip
+msgid "Set the overall layout of the desklet"
+msgstr "Veldu almennt útlit skjáborðsgræjunnar"
+
+#. 5.4->settings-schema.json->iconstyle->description
+#. 3.0->settings-schema.json->iconstyle->description
+msgid "Icon style"
+msgstr "Stíll táknmynda"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Colorful"
+msgstr "Litríkt"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Dark"
+msgstr "Dökkt"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Light"
+msgstr "Ljóst"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Flat colorful"
+msgstr "Flatt litaglatt"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Flat black"
+msgstr "Flatt svart"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Flat white"
+msgstr "Flatt hvítt"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "VClouds"
+msgstr "VClouds"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Novacon"
+msgstr "Novacon"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Weezle"
+msgstr "Weezle"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Meteocons 1"
+msgstr "Meteocons 1"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Meteocons 2"
+msgstr "Meteocons 2"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Sketchy"
+msgstr "Sketchy"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "User defined"
+msgstr "Skilgreint af notanda"
+
+#. 5.4->settings-schema.json->iconstyle->tooltip
+#. 3.0->settings-schema.json->iconstyle->tooltip
+msgid "Select the style for the weather icons"
+msgstr "Veldu stíl fyrir veðurtáknmyndir"
+
+#. 5.4->settings-schema.json->citystyle->description
+#. 3.0->settings-schema.json->citystyle->description
+msgid "Bold city name"
+msgstr "Feitletra nafn borgar"
+
+#. 5.4->settings-schema.json->citystyle->tooltip
+#. 3.0->settings-schema.json->citystyle->tooltip
+msgid "Check to display the city name in bold"
+msgstr "Hakaðu við hér til að birta heiti borgar feitletrað"
+
+#. 5.4->settings-schema.json->overrideTheme->description
+#. 3.0->settings-schema.json->overrideTheme->description
+msgid "Override desktop theme (enables the settings below)"
+msgstr "Hunsa skjáborðsþema (virkjar stillingarnar hér fyrir neðan)"
+
+#. 5.4->settings-schema.json->overrideTheme->tooltip
+#. 3.0->settings-schema.json->overrideTheme->tooltip
+msgid ""
+"Check this to override the desktop theme and configure the appearance "
+"manually"
+msgstr "Hakaðu við hér til að hunsa skjáborðsþema og stilla útlit handvirkt"
+
+#. 5.4->settings-schema.json->transparency->description
+#. 3.0->settings-schema.json->transparency->description
+msgid "Transparency"
+msgstr "Gegnsæi"
+
+#. 5.4->settings-schema.json->transparency->tooltip
+#. 3.0->settings-schema.json->transparency->tooltip
+msgid "Set the transparency of the desklet"
+msgstr "Veldu gegnsæi skjáborðsgræjunnar"
+
+#. 5.4->settings-schema.json->textcolor->description
+#. 3.0->settings-schema.json->textcolor->description
+msgid "Text color"
+msgstr "Textalitur"
+
+#. 5.4->settings-schema.json->textcolor->tooltip
+#. 3.0->settings-schema.json->textcolor->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Smelltu á hnappinn til að velja nýjan textalit"
+
+#. 5.4->settings-schema.json->textshadow->description
+#. 3.0->settings-schema.json->textshadow->description
+msgid "Text shadow"
+msgstr ""
+
+#. 5.4->settings-schema.json->textshadow->tooltip
+#. 3.0->settings-schema.json->textshadow->tooltip
+msgid "Check to add a text shadow"
+msgstr ""
+
+#. 5.4->settings-schema.json->shadowblur->units
+#. 5.4->settings-schema.json->cornerradius->units
+#. 5.4->settings-schema.json->borderwidth->units
+#. 3.0->settings-schema.json->shadowblur->units
+#. 3.0->settings-schema.json->cornerradius->units
+#. 3.0->settings-schema.json->borderwidth->units
+msgid "px"
+msgstr "px"
+
+#. 5.4->settings-schema.json->shadowblur->description
+#. 3.0->settings-schema.json->shadowblur->description
+msgid "Shadow blur radius"
+msgstr ""
+
+#. 5.4->settings-schema.json->shadowblur->tooltip
+#. 3.0->settings-schema.json->shadowblur->tooltip
+msgid "Set the text shadow sharp (1) or blurry (2-7)"
+msgstr ""
+
+#. 5.4->settings-schema.json->bgcolor->description
+#. 3.0->settings-schema.json->bgcolor->description
+msgid "Background color"
+msgstr "Bakgrunnslitur"
+
+#. 5.4->settings-schema.json->bgcolor->tooltip
+#. 3.0->settings-schema.json->bgcolor->tooltip
+msgid "Click the button to select a new background color"
+msgstr "Smelltu hér til að velja nýjan bakgrunnslit"
+
+#. 5.4->settings-schema.json->cornerradius->description
+#. 3.0->settings-schema.json->cornerradius->description
+msgid "Corner radius"
+msgstr "Radíus horns"
+
+#. 5.4->settings-schema.json->cornerradius->tooltip
+#. 3.0->settings-schema.json->cornerradius->tooltip
+msgid "Radius for rounding the desklet's corners"
+msgstr "Radíus rúnnunar á hornum skjáborðsgræju"
+
+#. 5.4->settings-schema.json->border->description
+#. 3.0->settings-schema.json->border->description
+msgid "Show border"
+msgstr "Birta jaðar"
+
+#. 5.4->settings-schema.json->border->tooltip
+#. 3.0->settings-schema.json->border->tooltip
+msgid "Check this to turn border on/off"
+msgstr "Hakaðu við þetta af/á til að birta eða fela jaðar"
+
+#. 5.4->settings-schema.json->bordercolor->description
+#. 3.0->settings-schema.json->bordercolor->description
+msgid "Border color"
+msgstr "Litur ramma"
+
+#. 5.4->settings-schema.json->bordercolor->tooltip
+#. 3.0->settings-schema.json->bordercolor->tooltip
+msgid ""
+"Select the color for the border. Only available if the 'Border' checkbox is "
+"enabled"
+msgstr ""
+
+#. 5.4->settings-schema.json->borderwidth->description
+#. 3.0->settings-schema.json->borderwidth->description
+msgid "Border width"
+msgstr "Breidd jaðars"
+
+#. 5.4->settings-schema.json->borderwidth->tooltip
+#. 3.0->settings-schema.json->borderwidth->tooltip
+msgid ""
+"Select the width of the border. Only available if the 'Border' checkbox is "
+"enabled"
+msgstr ""
+
+#. 5.4->settings-schema.json->locationlookups->description
+#. 3.0->settings-schema.json->locationlookups->description
+msgid "Location display settings"
+msgstr "Birtingarstillingar staðsetningar"
+
+#. 5.4->settings-schema.json->locsrc->description
+#. 3.0->settings-schema.json->locsrc->description
+msgid "Get displayed location from"
+msgstr "Ná í birta staðsetningu frá"
+
+#. 5.4->settings-schema.json->locsrc->options
+#. 3.0->settings-schema.json->locsrc->options
+msgid "Google"
+msgstr "Google"
+
+#. 5.4->settings-schema.json->locsrc->tooltip
+#. 3.0->settings-schema.json->locsrc->tooltip
+msgid ""
+"The source of the text displayed as the current location. Yahoo! and Google "
+"may offer city names in other languages"
+msgstr ""
+
+#. 5.4->settings-schema.json->manuallocation->description
+#. 3.0->settings-schema.json->manuallocation->description
+msgid "Manually override displayed location"
+msgstr "Setja handvirkt inn staðsetningu"
+
+#. 5.4->settings-schema.json->manuallocation->tooltip
+#. 3.0->settings-schema.json->manuallocation->tooltip
+msgid "Set your city name manually."
+msgstr "Settu inn heiti borgar handvirkt."
+
+#. 5.4->settings-schema.json->experimental->description
+#. 3.0->settings-schema.json->experimental->description
+msgid "Experimental and buggy features (read documentation!!)"
+msgstr "Eiginleikar á tilraunastigi (lesa hjálparskjölun!!)"
+
+#. 5.4->settings-schema.json->experimental_enabled->description
+#. 3.0->settings-schema.json->experimental_enabled->description
+msgid "Enable experimental features"
+msgstr "Virkja eiginleika á tilraunastigi"
+
+#. 5.4->settings-schema.json->experimental_enabled->tooltip
+#. 3.0->settings-schema.json->experimental_enabled->tooltip
+msgid "Check this to enable experimental and buggy features"
+msgstr ""
+"Hakaðu við hér til að virkja eiginleika á tilraunastigi sem ekki eru alltaf "
+"að virka sem skyldi"
+
+#. 5.4->settings-schema.json->gravity->description
+#. 3.0->settings-schema.json->gravity->description
+msgid "Anchor desklet by"
+msgstr "Festa skjáborðsgræju á"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Default"
+msgstr "Sjálfgefið"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Top left"
+msgstr "Efst til vinstri"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Left center"
+msgstr "Vinstri fyrir miðju"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Bottom left"
+msgstr "Neðst til vinstri"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Bottom center"
+msgstr "Neðst fyrir miðju"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Bottom right"
+msgstr "Neðst til hægri"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Right center"
+msgstr "Hægri fyrir miðju"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Top right"
+msgstr "Efst til hægri"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Top center"
+msgstr "Efst fyrir miðju"
+
+#. 5.4->settings-schema.json->gravity->tooltip
+#. 3.0->settings-schema.json->gravity->tooltip
+msgid ""
+"Select the point on the desklet to which it is anchored. This point will "
+"remain static as the desklet grows and shrinks"
+msgstr ""

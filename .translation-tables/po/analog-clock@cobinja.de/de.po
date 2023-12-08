@@ -1,0 +1,43 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-24 09:43+0200\n"
+"PO-Revision-Date: 2017-04-24 09:45+0200\n"
+"Last-Translator: Lars Mueller <cobinja@yahoo.de>\n"
+"Language-Team: German\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: settings.ui:7
+msgid "Analog Clock Settings"
+msgstr "Einstellungen für CobiAnalogClock"
+
+#: settings.ui:99
+msgid "Theme"
+msgstr "Thema"
+
+#: settings.ui:138
+msgid "Size"
+msgstr "Größe"
+
+#: settings.ui:182
+msgid "Show Seconds"
+msgstr "Sekunden anzeigen"
+
+#: settings.ui:220
+msgid "Hide decorations"
+msgstr "Verzierung verstecken"
+
+#: settings.ui:259
+msgid "Use specific timezone"
+msgstr "Spezifische Zeitzone benutzen"
+
+#: settings.ui:297
+msgid "Display Timezone"
+msgstr "Zeitzone anzeigen"
+
+msgid "An analog clock desklet"
+msgstr "Ein Desklet mit einer analogen Uhr"
