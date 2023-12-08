@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-14 14:37+0100\n"
-"PO-Revision-Date: 2022-10-23 19:13+0200\n"
+"POT-Creation-Date: 2023-04-04 15:06+0200\n"
+"PO-Revision-Date: 2023-12-08 07:45+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -16,7 +16,11 @@ msgstr ""
 "X-Poedit-SearchPath-0: desklet.js\n"
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
-#: desklet.js:137
+#: desklet.js:130
+msgid "Refresh"
+msgstr "Opdatér"
+
+#: desklet.js:143
 msgid ""
 "Can't read text file.\n"
 "Select a file in settings.\n"
@@ -28,7 +32,7 @@ msgstr ""
 "\n"
 "Klik her for at redigere."
 
-#: desklet.js:229
+#: desklet.js:263
 msgid "Notepad"
 msgstr "Notesblok"
 
@@ -237,6 +241,14 @@ msgstr "Ingen"
 msgid "Select the background graphic you would like to use."
 msgstr "Vælg den baggrundsgrafik, du ønsker at bruge."
 
+#. settings-schema.json->bg-color->description
+msgid "Background color"
+msgstr "Baggrundsfarve"
+
+#. settings-schema.json->bg-color->tooltip
+msgid "Set the background color of this desklet."
+msgstr "Angiv baggrundsfarven for dette skrivebordsprogram."
+
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
 msgstr "Skjul boks rundt om skrivebordsprogrammet"
@@ -256,12 +268,6 @@ msgstr "Skrifttypestørrelse"
 #. settings-schema.json->size-font->tooltip
 msgid "Increase or decrease the note font size."
 msgstr "Forøg eller formindsk notens skriftstørrelse."
-
-#. settings-schema.json->scale-size->tooltip
-msgid "Increase or decrease the size of this desklet using this scale factor."
-msgstr ""
-"Forøg eller formindsk skrivebordsprogrammets størrelse med denne "
-"skaleringsfaktor."
 
 #. settings-schema.json->font-bold->description
 msgid "Bold"
@@ -286,6 +292,12 @@ msgstr "skaleringsfaktor"
 #. settings-schema.json->scale-size->description
 msgid "Desklet size"
 msgstr "Skrivebordsprogrammets størrelse"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Forøg eller formindsk skrivebordsprogrammets størrelse med denne "
+"skaleringsfaktor."
 
 #. settings-schema.json->head3->description
 msgid "Custom desklet label (only visible if decorations are enabled)"
