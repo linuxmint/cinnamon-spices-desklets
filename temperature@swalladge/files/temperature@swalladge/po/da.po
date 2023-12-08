@@ -7,46 +7,46 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-22 17:31+0200\n"
-"PO-Revision-Date: 2017-06-22 17:34+0200\n"
+"POT-Creation-Date: 2023-12-07 18:00+0300\n"
+"PO-Revision-Date: 2023-12-08 07:56+0100\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
-"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: da\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: desklet.js:80
 msgid "error"
 msgstr "fejl"
 
-#. temperature@swalladge->metadata.json->description
-msgid "Displays the current temperature from the temperature server."
-msgstr "Viser den aktuelle temperatur fra en server."
+#. metadata.json->description
+msgid "Displays the current temperature from the rpi temperature server."
+msgstr "Viser den aktuelle temperatur fra rpi-temperaturserveren."
 
-#. temperature@swalladge->metadata.json->name
+#. metadata.json->name
 msgid "Temperature"
 msgstr "Temperatur"
 
-#. temperature@swalladge->settings-schema.json->width->description
-msgid "Width :"
-msgstr "Bredde:"
-
-#. temperature@swalladge->settings-schema.json->width->units
-#. temperature@swalladge->settings-schema.json->height->units
-msgid "pixels"
-msgstr "pixler"
-
-#. temperature@swalladge->settings-schema.json->head->description
+#. settings-schema.json->head->description
 msgid "Current Temperature Settings"
 msgstr "Indstillinger"
 
-#. temperature@swalladge->settings-schema.json->server->description
-msgid "Server :"
-msgstr "Server:"
-
-#. temperature@swalladge->settings-schema.json->height->description
+#. settings-schema.json->height->description
 msgid "Height :"
 msgstr "Højde:"
+
+#. settings-schema.json->height->units
+#. settings-schema.json->width->units
+msgid "pixels"
+msgstr "pixels"
+
+#. settings-schema.json->width->description
+msgid "Width :"
+msgstr "Bredde:"
+
+#. settings-schema.json->server->description
+msgid "Server :"
+msgstr "Server:"
