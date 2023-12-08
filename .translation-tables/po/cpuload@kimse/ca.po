@@ -1,0 +1,160 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-08-04 10:06+0200\n"
+"PO-Revision-Date: 2023-08-04 10:33+0200\n"
+"Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: desklet.js:232
+#, javascript-format
+msgid "Core %d"
+msgstr "Nucli %d"
+
+#: desklet.js:232
+msgid "CPU usage"
+msgstr "Ús de CPU"
+
+#. metadata.json->description
+msgid "Displays CPU load"
+msgstr "Mostra la càrrega de la CPU"
+
+#. metadata.json->name
+msgid "CPU Load"
+msgstr "Càrrega de CPU"
+
+#. settings-schema.json->head0->description
+msgid "Settings for the CPU Load desklet"
+msgstr "Ajusts per a Càrrega de CPU"
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr "General"
+
+#. settings-schema.json->per-core->description
+msgid "Show all CPU cores"
+msgstr "Mostra tots els nuclis de la CPU"
+
+#. settings-schema.json->per-core->tooltip
+msgid "Display utilization of each CPU core rather than total CPU utilization."
+msgstr "Mostra l'ús de cada nucli en comptes del total de la CPU."
+
+#. settings-schema.json->refresh-interval->units
+msgid "seconds"
+msgstr "segons"
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval"
+msgstr "Interval d'actualització"
+
+#. settings-schema.json->refresh-interval->tooltip
+msgid "Increase or decrease refresh interval in seconds."
+msgstr "Incrementa o decrementa l'interval d'actualització, en segons."
+
+#. settings-schema.json->head2->description
+msgid "Layout"
+msgstr "Disposició"
+
+#. settings-schema.json->design->description
+msgid "Design"
+msgstr "Disseny"
+
+#. settings-schema.json->design->options
+msgid "Thin"
+msgstr "Estret"
+
+#. settings-schema.json->design->options
+msgid "Compact"
+msgstr "Compacte"
+
+#. settings-schema.json->design->options
+msgid "Thick"
+msgstr "Ample"
+
+#. settings-schema.json->circle->description
+msgid "Circle"
+msgstr "Cercle"
+
+#. settings-schema.json->circle->options
+msgid "Speedometer"
+msgstr "Indicador velocitat"
+
+#. settings-schema.json->circle->options
+msgid "Full Circle"
+msgstr "Cercle complet"
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "factor d'escala"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Mida de la miniaplicació d'escriptori"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of the desklet."
+msgstr "Augmenta o redueix la mida de la miniaplicació."
+
+#. settings-schema.json->number-of-columns->units
+msgid "columns"
+msgstr "columnes"
+
+#. settings-schema.json->number-of-columns->description
+msgid "Number of columns"
+msgstr "Nombre de columnes"
+
+#. settings-schema.json->number-of-columns->tooltip
+msgid "Increase or decrease number of columns."
+msgstr "Augmenta o disminueix el nombre de columnes."
+
+#. settings-schema.json->head3->description
+msgid "Colors"
+msgstr "Colors"
+
+#. settings-schema.json->font-color->description
+msgid "Font color"
+msgstr "Color de la lletra"
+
+#. settings-schema.json->color-theme->description
+msgid "Color theme"
+msgstr "Color del tema"
+
+#. settings-schema.json->color-theme->options
+msgid "Random"
+msgstr "Aleatori"
+
+#. settings-schema.json->color-theme->options
+msgid "Static"
+msgstr "Estàtic"
+
+#. settings-schema.json->color-theme->options
+msgid "Dynamic"
+msgstr "Dinàmic"
+
+#. settings-schema.json->static-theme-color->description
+msgid "Static theme color"
+msgstr "Color del tema estàtic"
+
+#. settings-schema.json->head4->description
+msgid "Background"
+msgstr "Fons"
+
+#. settings-schema.json->show-background->description
+msgid "Show background"
+msgstr "Mostra el fons"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Oculta les decoracions"

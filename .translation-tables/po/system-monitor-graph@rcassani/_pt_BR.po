@@ -1,0 +1,65 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Marcelo Aof, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-05 18:14+0100\n"
+"PO-Revision-Date: 2021-11-29 15:20-0300\n"
+"Last-Translator: Marcelo Aof\n"
+"Language-Team: \n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. settings-schema.json->type->options
+#: desklet.js:171
+msgid "Swap"
+msgstr ""
+
+#. settings-schema.json->data-prefix-ram->options
+#. settings-schema.json->data-prefix-swap->options
+#. settings-schema.json->data-prefix-hdd->options
+#. settings-schema.json->data-prefix-gpumem->options
+msgid "Binary prefix or IEC (1 GiB = 1024³ bytes)"
+msgstr ""
+
+#. settings-schema.json->data-prefix-ram->options
+#. settings-schema.json->data-prefix-swap->options
+#. settings-schema.json->data-prefix-hdd->options
+#. settings-schema.json->data-prefix-gpumem->options
+msgid "Decimal prefix (1 GB = 1000³ bytes)"
+msgstr ""
+
+#. settings-schema.json->data-prefix-ram->description
+#. settings-schema.json->data-prefix-swap->description
+#. settings-schema.json->data-prefix-hdd->description
+#. settings-schema.json->data-prefix-gpumem->description
+msgid "Prefix for data units"
+msgstr ""
+
+#. settings-schema.json->data-prefix-ram->tooltip
+msgid "Unit prefix for RAM size."
+msgstr ""
+
+#. settings-schema.json->data-prefix-swap->tooltip
+msgid "Unit prefix for Swap size."
+msgstr ""
+
+#. settings-schema.json->data-prefix-hdd->tooltip
+msgid "Unit prefix for Filesystem size."
+msgstr ""
+
+#. settings-schema.json->data-prefix-gpumem->tooltip
+msgid "Unit prefix for GPU memory size."
+msgstr ""
+
+#. settings-schema.json->line-color-swap->description
+msgid "Line color Swap"
+msgstr ""

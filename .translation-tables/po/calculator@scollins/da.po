@@ -1,0 +1,134 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-25 20:27+0800\n"
+"PO-Revision-Date: 2020-12-09 17:26+0100\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"Language-Team: \n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:27 desklet.js:50
+msgid "Back"
+msgstr "Tilbage"
+
+#: desklet.js:28 desklet.js:52
+msgid "Reset"
+msgstr "Nulstil"
+
+#: desklet.js:51
+msgid "Clear Entry"
+msgstr "Ryd indtastning"
+
+#: desklet.js:53
+msgid "Copy to Clipboard"
+msgstr "Kopiér til udklipsholderen"
+
+#: desklet.js:54
+msgid "Paste from Clipboard"
+msgstr "Indsæt fra udklipsholderen"
+
+#: desklet.js:55
+msgid "Inverse"
+msgstr "Invers"
+
+#: desklet.js:58
+msgid "Swap Sign"
+msgstr "Skift fortegn"
+
+#: desklet.js:82
+msgid "Scientific Notation"
+msgstr "Videnskabelig notation"
+
+#: desklet.js:813
+msgid "Swap Entries"
+msgstr "Ombyt indtastninger"
+
+#: desklet.js:817
+msgid "Reciprocal"
+msgstr "Reciprok"
+
+#. calculator@scollins->settings-schema.json->angleMode->options
+#: desklet.js:1073
+msgid "Degrees"
+msgstr "Grader"
+
+#. calculator@scollins->settings-schema.json->angleMode->options
+#: desklet.js:1081
+msgid "Radians"
+msgstr "Radianer"
+
+#: desklet.js:1091
+msgid "RPN"
+msgstr "OPN"
+
+#: desklet.js:1100
+msgid "4-Function"
+msgstr "4-funktioner"
+
+#. calculator@scollins->settings-schema.json->layout->options
+#: desklet.js:1107
+msgid "Scientific"
+msgstr "Videnskabelig"
+
+#: desklet.js:1116
+msgid "Copy"
+msgstr "Kopiér"
+
+#: desklet.js:1120
+msgid "Paste"
+msgstr "Indsæt"
+
+#. calculator@scollins->metadata.json->description
+msgid "A calculator Desklet"
+msgstr "Et lommeregner-skrivebordsprogram"
+
+#. calculator@scollins->metadata.json->name
+msgid "Desktop Calculator"
+msgstr "Skrivebordslommeregner"
+
+#. calculator@scollins->settings-schema.json->style->options
+msgid "Light"
+msgstr "Lys"
+
+#. calculator@scollins->settings-schema.json->style->options
+msgid "Dark"
+msgstr "Mørk"
+
+#. calculator@scollins->settings-schema.json->raiseKey->description
+msgid "Raise to top shorcut key"
+msgstr "Genvejstast til at flytte øverst"
+
+#. calculator@scollins->settings-schema.json->layout->description
+msgid "Style"
+msgstr "Stil"
+
+#. calculator@scollins->settings-schema.json->layout->options
+msgid "4-function"
+msgstr "4-funktioner"
+
+#. calculator@scollins->settings-schema.json->angleMode->description
+msgid "Angle Measure"
+msgstr "Vinkelmål"
+
+#. calculator@scollins->settings-schema.json->precision->description
+msgid "Precision"
+msgstr "Præcision"
+
+#. calculator@scollins->settings-schema.json->precision->units
+msgid "digits"
+msgstr "decimaler"
+
+#. calculator@scollins->settings-schema.json->rpn->description
+msgid "Use Reverse-Polish Notation"
+msgstr "Anvend omvendt polsk notation"

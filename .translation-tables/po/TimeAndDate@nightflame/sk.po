@@ -1,0 +1,39 @@
+# Slovak translation of Time and Date desklet
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Dušan Kazik <prescott66@gmail.com>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-26 11:56+0800\n"
+"PO-Revision-Date: 2021-02-09 11:53+0100\n"
+"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
+"Language-Team: \n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.1\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+
+#: desklet.js:67
+msgid "Time And Date"
+msgstr "Čas a dátum"
+
+#: desklet.js:83
+msgid "Edit Config"
+msgstr "Upraviť konfiguráciu"
+
+#: desklet.js:87
+msgid "Help"
+msgstr "Pomocník"
+
+#. TimeAndDate@nightflame->metadata.json->description
+msgid "A fork desklet that displays the time and date"
+msgstr "Alternatívny desklet, ktorý zobrazuje čas a dátum"
+
+#. TimeAndDate@nightflame->metadata.json->name
+msgid "Time and Date Desklet"
+msgstr "Desklet s časom a dátumom"

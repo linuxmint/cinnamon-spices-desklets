@@ -1,0 +1,1244 @@
+# Tamil translation for bbcwx
+# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
+# This file is distributed under the same license as the bbcwx package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bbcwx\n"
+"Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
+"POT-Creation-Date: 2023-09-03 14:13-0400\n"
+"PO-Revision-Date: 2023-09-03 14:15-0400\n"
+"Last-Translator: Kamala Kannan <Unknown>\n"
+"Language-Team: Tamil <ta@li.org>\n"
+"Language: ta\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2016-08-14 17:00+0000\n"
+"X-Generator: Poedit 3.3.1\n"
+
+#: 5.4/desklet.js:106 3.0/desklet.js:108
+msgid "Mon"
+msgstr "திங்கள்"
+
+#: 5.4/desklet.js:106 3.0/desklet.js:108
+msgid "Tue"
+msgstr "செவ்வாய்"
+
+#: 5.4/desklet.js:106 3.0/desklet.js:108
+msgid "Wed"
+msgstr "புதன்"
+
+#: 5.4/desklet.js:106 3.0/desklet.js:108
+msgid "Thu"
+msgstr "வியாழன்"
+
+#: 5.4/desklet.js:106 3.0/desklet.js:108
+msgid "Fri"
+msgstr "வெள்ளி"
+
+#: 5.4/desklet.js:106 3.0/desklet.js:108
+msgid "Sat"
+msgstr "சனி"
+
+#: 5.4/desklet.js:106 3.0/desklet.js:108
+msgid "Sun"
+msgstr "ஞாயிறு"
+
+#: 5.4/desklet.js:191 3.0/desklet.js:186
+msgid "Weather"
+msgstr "வானிலை"
+
+#: 5.4/desklet.js:199 3.0/desklet.js:194
+msgid "Help"
+msgstr "உதவி"
+
+#: 5.4/desklet.js:203 3.0/desklet.js:198
+msgid "Translate"
+msgstr "மொழிபெயர்"
+
+#: 5.4/desklet.js:350 5.4/desklet.js:378 3.0/desklet.js:344 3.0/desklet.js:372
+msgid "Humidity:"
+msgstr "ஈரப்பதம்:"
+
+#: 5.4/desklet.js:351 5.4/desklet.js:377 3.0/desklet.js:345 3.0/desklet.js:371
+msgid "Pressure:"
+msgstr "அழுத்தம்:"
+
+#: 5.4/desklet.js:352 3.0/desklet.js:346
+msgid "Wind:"
+msgstr "காற்று:"
+
+#: 5.4/desklet.js:353 3.0/desklet.js:347
+msgid "Feels like:"
+msgstr "மனநிலை:"
+
+#: 5.4/desklet.js:354 3.0/desklet.js:348
+msgid "Visibility:"
+msgstr "காட்சிமை:"
+
+#: 5.4/desklet.js:369 3.0/desklet.js:363
+msgid "Max:"
+msgstr "அதிகபட்சம்:"
+
+#: 5.4/desklet.js:371 3.0/desklet.js:365
+msgid "Min:"
+msgstr "குறைந்த பட்சம்:"
+
+#: 5.4/desklet.js:373 3.0/desklet.js:367
+msgid "Wind speed:"
+msgstr "காற்றின் வேகம்:"
+
+#: 5.4/desklet.js:375 3.0/desklet.js:369
+msgid "Dir:"
+msgstr "திசை:"
+
+#: 5.4/desklet.js:417 3.0/desklet.js:411
+msgid "Data from "
+msgstr "தரவு மூலம்: "
+
+#: 5.4/desklet.js:431 3.0/desklet.js:423
+msgid "Refresh"
+msgstr "புதுப்பி"
+
+#: 5.4/desklet.js:753 3.0/desklet.js:744
+msgid "No data available"
+msgstr "தரவு எதுவும் கிடைக்கவில்லை"
+
+#: 5.4/desklet.js:786 5.4/desklet.js:853 3.0/desklet.js:777 3.0/desklet.js:844
+#, javascript-format
+msgid "Error: %s"
+msgstr "பிழை: %s"
+
+#: 5.4/desklet.js:786 5.4/desklet.js:853 3.0/desklet.js:777 3.0/desklet.js:844
+msgid "No data"
+msgstr "தரவு இல்லை"
+
+#: 5.4/desklet.js:888 3.0/desklet.js:879
+#, javascript-format
+msgid "Click for the full forecast for %s"
+msgstr "%s கான முன்னறிவிப்பை பெற இங்கே சொடுக்கவும்"
+
+#: 5.4/desklet.js:1148 3.0/desklet.js:1139
+#, javascript-format
+msgid "%f°F"
+msgstr "%f°F"
+
+#: 5.4/desklet.js:1150 3.0/desklet.js:1141
+#, javascript-format
+msgid "%f°C"
+msgstr "%f°C"
+
+#: 5.4/desklet.js:1171 3.0/desklet.js:1162
+#, javascript-format
+msgid "%fmph"
+msgstr "%fmph"
+
+#: 5.4/desklet.js:1173 3.0/desklet.js:1164
+#, javascript-format
+msgid "%fkn"
+msgstr "%fkn"
+
+#: 5.4/desklet.js:1175 3.0/desklet.js:1166
+#, javascript-format
+msgid "%fkm/h"
+msgstr "%fkm/h"
+
+#: 5.4/desklet.js:1177 3.0/desklet.js:1168
+#, javascript-format
+msgid "%fm/s"
+msgstr "%fமீ/வி"
+
+#: 5.4/desklet.js:1211 3.0/desklet.js:1202
+#, javascript-format
+msgid "%fmb"
+msgstr "%fmb"
+
+#: 5.4/desklet.js:1213 3.0/desklet.js:1204
+#, javascript-format
+msgid "%fin"
+msgstr "%fin"
+
+#: 5.4/desklet.js:1215 3.0/desklet.js:1206
+#, javascript-format
+msgid "%fmm"
+msgstr "%fmm"
+
+#: 5.4/desklet.js:1217 3.0/desklet.js:1208
+#, javascript-format
+msgid "%fkPa"
+msgstr "%fkPa"
+
+#: 5.4/desklet.js:1268 3.0/desklet.js:1259
+#, javascript-format
+msgid "%fmi"
+msgstr "%fமைல்"
+
+#: 5.4/desklet.js:1270 3.0/desklet.js:1261
+#, javascript-format
+msgid "%fnmi"
+msgstr "%fகடல்மைல்"
+
+#: 5.4/desklet.js:1272 3.0/desklet.js:1263
+#, javascript-format
+msgid "%fkm"
+msgstr "%fகிமீ"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "N"
+msgstr "வ"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "NNE"
+msgstr "வவகி"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "NE"
+msgstr "வகி"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "ENE"
+msgstr "கிவகி"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "E"
+msgstr "கி"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "ESE"
+msgstr "கிதெகி"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "SE"
+msgstr "தெகி"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "SSE"
+msgstr "தெதெகி"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "S"
+msgstr "தெ"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "SSW"
+msgstr "தெதெமே"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "SW"
+msgstr "தெமே"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "WSW"
+msgstr "மேதெமே"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "W"
+msgstr "மே"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "WNW"
+msgstr "மேவமே"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "NW"
+msgstr "வமே"
+
+#: 5.4/desklet.js:1515 3.0/desklet.js:1506
+msgid "NNW"
+msgstr "வவமே"
+
+#: 5.4/desklet.js:1569 3.0/desklet.js:1560
+msgid "Tornado"
+msgstr "சுழற்காற்று"
+
+#: 5.4/desklet.js:1570 3.0/desklet.js:1561
+msgid "Tropical storm"
+msgstr "வெப்ப மண்டல சூறாவளி"
+
+#: 5.4/desklet.js:1571 3.0/desklet.js:1562
+msgid "Hurricane"
+msgstr "சூறாவளி"
+
+#: 5.4/desklet.js:1572 3.0/desklet.js:1563
+msgid "Severe thunderstorms"
+msgstr "கடுமையான இடிமழை"
+
+#: 5.4/desklet.js:1573 3.0/desklet.js:1564
+msgid "Thunderstorms"
+msgstr "இடியுடன் கூடிய புயல்"
+
+#: 5.4/desklet.js:1574 5.4/desklet.js:4249 3.0/desklet.js:1565 3.0/desklet.js:4240
+msgid "Mixed rain and snow"
+msgstr "மழையும் பனியும் கலந்து"
+
+#: 5.4/desklet.js:1575 3.0/desklet.js:1566
+msgid "Mixed rain and sleet"
+msgstr "மழையும் பனிமழையும் கலந்து"
+
+#: 5.4/desklet.js:1576 3.0/desklet.js:1567
+msgid "Mixed snow and sleet"
+msgstr "பனியும் பனிமழையும் கலந்து"
+
+#: 5.4/desklet.js:1577 3.0/desklet.js:1568
+msgid "Freezing drizzle"
+msgstr "உறைவிக்கும் தூறல்"
+
+#: 5.4/desklet.js:1578 5.4/desklet.js:1881 3.0/desklet.js:1569 3.0/desklet.js:1872
+msgid "Drizzle"
+msgstr "தூறல்"
+
+#: 5.4/desklet.js:1579 3.0/desklet.js:1570
+msgid "Freezing rain"
+msgstr "உறைவிக்கும் மழை"
+
+#: 5.4/desklet.js:1580 5.4/desklet.js:1581 5.4/desklet.js:4245 3.0/desklet.js:1571
+#: 3.0/desklet.js:1572 3.0/desklet.js:4236
+msgid "Showers"
+msgstr "மழைப்பொழிவு"
+
+#: 5.4/desklet.js:1582 3.0/desklet.js:1573
+msgid "Snow flurries"
+msgstr "பனித்துகள்கள்"
+
+#: 5.4/desklet.js:1583 3.0/desklet.js:1574
+msgid "Light snow showers"
+msgstr "மெல்லிய பனிச்சாரல்"
+
+#: 5.4/desklet.js:1584 3.0/desklet.js:1575
+msgid "Blowing snow"
+msgstr "காற்றுடன் கூடிய வெண்பனி"
+
+#: 5.4/desklet.js:1585 5.4/desklet.js:4247 5.4/desklet.js:4253 3.0/desklet.js:1576
+#: 3.0/desklet.js:4238 3.0/desklet.js:4244
+msgid "Snow"
+msgstr "பனி"
+
+#: 5.4/desklet.js:1586 3.0/desklet.js:1577
+msgid "Hail"
+msgstr "ஆலங்கட்டி"
+
+#: 5.4/desklet.js:1587 5.4/desklet.js:1886 3.0/desklet.js:1578 3.0/desklet.js:1877
+msgid "Sleet"
+msgstr "ஆலங்கட்டி மழை"
+
+#: 5.4/desklet.js:1588 3.0/desklet.js:1579
+msgid "Dust"
+msgstr "தூசு"
+
+#: 5.4/desklet.js:1589 3.0/desklet.js:1580
+msgid "Foggy"
+msgstr "மூடுபனி"
+
+#: 5.4/desklet.js:1590 3.0/desklet.js:1581
+msgid "Haze"
+msgstr "மூட்டம்"
+
+#: 5.4/desklet.js:1591 3.0/desklet.js:1582
+msgid "Smoky"
+msgstr "புகை"
+
+#: 5.4/desklet.js:1592 3.0/desklet.js:1583
+msgid "Blustery"
+msgstr "பலத்த காற்று"
+
+#: 5.4/desklet.js:1593 3.0/desklet.js:1584
+msgid "Windy"
+msgstr "அதிக காற்று"
+
+#: 5.4/desklet.js:1594 3.0/desklet.js:1585
+msgid "Cold"
+msgstr "குளிர்"
+
+#: 5.4/desklet.js:1595 5.4/desklet.js:4242 3.0/desklet.js:1586 3.0/desklet.js:4233
+msgid "Cloudy"
+msgstr "மேகமூட்டம்"
+
+#: 5.4/desklet.js:1596 5.4/desklet.js:1597 3.0/desklet.js:1587 3.0/desklet.js:1588
+msgid "Mostly cloudy"
+msgstr "பெரும்பாலும் மேகமூட்டம்"
+
+#: 5.4/desklet.js:1598 5.4/desklet.js:1599 5.4/desklet.js:1613 3.0/desklet.js:1589
+#: 3.0/desklet.js:1590 3.0/desklet.js:1604
+msgid "Partly cloudy"
+msgstr "சிறிது புகை மேகத்துடன்"
+
+#: 5.4/desklet.js:1600 3.0/desklet.js:1591
+msgid "Clear"
+msgstr "தெளிவு"
+
+#: 5.4/desklet.js:1601 5.4/desklet.js:1870 3.0/desklet.js:1592 3.0/desklet.js:1861
+msgid "Sunny"
+msgstr "சூரிய வெளிச்சம்"
+
+#: 5.4/desklet.js:1602 5.4/desklet.js:1603 5.4/desklet.js:4240 3.0/desklet.js:1593
+#: 3.0/desklet.js:1594 3.0/desklet.js:4231
+msgid "Fair"
+msgstr "மிதமான"
+
+#: 5.4/desklet.js:1604 3.0/desklet.js:1595
+msgid "Mixed rain and hail"
+msgstr "மழை மற்றும் ஆலங்கட்டி"
+
+#: 5.4/desklet.js:1605 3.0/desklet.js:1596
+msgid "Hot"
+msgstr "சூடான"
+
+#: 5.4/desklet.js:1606 3.0/desklet.js:1597
+msgid "Isolated thunderstorms"
+msgstr "ஆங்காங்கே இடியுடன் கூடிய மழை"
+
+#: 5.4/desklet.js:1607 3.0/desklet.js:1598
+msgid "Scattered thunderstorms"
+msgstr "பரவலான இடி"
+
+#: 5.4/desklet.js:1608 5.4/desklet.js:1609 3.0/desklet.js:1599 3.0/desklet.js:1600
+msgid "Scattered showers"
+msgstr "பரவலான மழை"
+
+#: 5.4/desklet.js:1610 5.4/desklet.js:1612 3.0/desklet.js:1601 3.0/desklet.js:1603
+msgid "Heavy snow"
+msgstr "மிகுந்த பனி"
+
+#: 5.4/desklet.js:1611 3.0/desklet.js:1602
+msgid "Scattered snow showers"
+msgstr "பரவலான பனிப்பொழிவு"
+
+#: 5.4/desklet.js:1614 3.0/desklet.js:1605
+msgid "Thundershowers"
+msgstr "இடியுடன்கூடிய மழை"
+
+#: 5.4/desklet.js:1615 5.4/desklet.js:4248 3.0/desklet.js:1606 3.0/desklet.js:4239
+msgid "Snow showers"
+msgstr "பனிப் பொழிவுகள்"
+
+#: 5.4/desklet.js:1616 3.0/desklet.js:1607
+msgid "Isolated thundershowers"
+msgstr "ஆங்காங்கே இடியுடன் கூடிய கனமழை"
+
+#: 5.4/desklet.js:1617 3.0/desklet.js:1608
+msgid "Not available"
+msgstr "இருப்பில் இல்லை"
+
+#: 5.4/desklet.js:1869 5.4/desklet.js:4239 3.0/desklet.js:1860 3.0/desklet.js:4230
+msgid "Clear Sky"
+msgstr "தெளிந்த வானம்"
+
+#: 5.4/desklet.js:1871 5.4/desklet.js:4241 3.0/desklet.js:1862 3.0/desklet.js:4232
+msgid "Partly Cloudy"
+msgstr "ஓரளவு மேகமூட்டமாக"
+
+#: 5.4/desklet.js:1872 3.0/desklet.js:1863
+msgid "Sunny Intervals"
+msgstr "கதிரொளி இடைவெளிகள்"
+
+#: 5.4/desklet.js:1873 3.0/desklet.js:1864
+msgid "Sand Storm"
+msgstr "மணல் புயல்"
+
+#: 5.4/desklet.js:1874 3.0/desklet.js:1865
+msgid "Mist"
+msgstr "பனிமூட்டம்"
+
+#: 5.4/desklet.js:1875 5.4/desklet.js:4243 3.0/desklet.js:1866 3.0/desklet.js:4234
+msgid "Fog"
+msgstr "பனி"
+
+#: 5.4/desklet.js:1876 3.0/desklet.js:1867
+msgid "White Cloud"
+msgstr "வெண்மேகம்"
+
+#: 5.4/desklet.js:1877 3.0/desklet.js:1868
+msgid "Light Cloud"
+msgstr "மேகமூட்டம்"
+
+#: 5.4/desklet.js:1878 3.0/desklet.js:1869
+msgid "Grey Cloud"
+msgstr "கரியமேகம்"
+
+#: 5.4/desklet.js:1879 3.0/desklet.js:1870
+msgid "Thick Cloud"
+msgstr "அடர்ந்தமேகம்"
+
+#: 5.4/desklet.js:1880 3.0/desklet.js:1871
+msgid "Light Rain Shower"
+msgstr "மித மழைப்பொழிவு"
+
+#: 5.4/desklet.js:1882 5.4/desklet.js:4250 5.4/desklet.js:4254 3.0/desklet.js:1873
+#: 3.0/desklet.js:4241 3.0/desklet.js:4245
+msgid "Light Rain"
+msgstr "மித மழை"
+
+#: 5.4/desklet.js:1883 3.0/desklet.js:1874
+msgid "Heavy Rain Shower"
+msgstr "கன மழை"
+
+#: 5.4/desklet.js:1884 5.4/desklet.js:4244 5.4/desklet.js:4252 3.0/desklet.js:1875
+#: 3.0/desklet.js:4235 3.0/desklet.js:4243
+msgid "Heavy Rain"
+msgstr "கடும் மழை"
+
+#: 5.4/desklet.js:1885 3.0/desklet.js:1876
+msgid "Sleet Shower"
+msgstr "கல் மழை"
+
+#: 5.4/desklet.js:1887 3.0/desklet.js:1878
+msgid "Light Snow Shower"
+msgstr "மித பனிப்பொழிவு"
+
+#: 5.4/desklet.js:1888 5.4/desklet.js:4251 5.4/desklet.js:4255 3.0/desklet.js:1879
+#: 3.0/desklet.js:4242 3.0/desklet.js:4246
+msgid "Light Snow"
+msgstr "மெல்லிய பனி"
+
+#: 5.4/desklet.js:1889 3.0/desklet.js:1880
+msgid "Heavy Snow Shower"
+msgstr "கனத்த பனி மழை"
+
+#: 5.4/desklet.js:1890 3.0/desklet.js:1881
+msgid "Heavy Snow"
+msgstr "கனத்த பனி"
+
+#: 5.4/desklet.js:1891 5.4/desklet.js:4246 3.0/desklet.js:1882 3.0/desklet.js:4237
+msgid "Thundery Shower"
+msgstr "இடியுடன் கூடிய மழை"
+
+#: 5.4/desklet.js:1892 3.0/desklet.js:1883
+msgid "Thunder Storm"
+msgstr "இடியுடன் கூடிய மழை"
+
+#: 5.4/desklet.js:1893 3.0/desklet.js:1884
+msgid "Thunderstorm"
+msgstr "இடிமின்புயல்"
+
+#: 5.4/desklet.js:1894 3.0/desklet.js:1885
+msgid "Hazy"
+msgstr "மங்கல்வான்"
+
+#: 5.4/desklet.js:1895 3.0/desklet.js:1886
+msgid "Hail Shower"
+msgstr "ஆலங்கட்டி மழை"
+
+#: 5.4/desklet.js:1896 3.0/desklet.js:1887
+msgid "Rain"
+msgstr "மழை"
+
+#: 5.4/desklet.js:2081 5.4/desklet.js:2809 3.0/desklet.js:2072 3.0/desklet.js:2800
+msgid "Steady"
+msgstr "நிலையான"
+
+#: 5.4/desklet.js:2081 5.4/desklet.js:2805 3.0/desklet.js:2072 3.0/desklet.js:2796
+msgid "Rising"
+msgstr "உயர்கிறது"
+
+#: 5.4/desklet.js:2081 5.4/desklet.js:2807 3.0/desklet.js:2072 3.0/desklet.js:2798
+msgid "Falling"
+msgstr "வீழ்கிறது"
+
+#. metadata.json->description
+msgid "Display the weather from several web services on your desktop"
+msgstr "உங்கள் பணிமேடையில் பல இணைய சேவைகள் இருந்து வானிலையை காட்டவும்"
+
+#. metadata.json->name
+msgid "Weather Desklet"
+msgstr "வானிலை பணிமேடை உபகரணம்"
+
+#. metadata.json->comments
+msgid ""
+"Please consider translating the Weather Desklet into your language. See the website for "
+"more information"
+msgstr ""
+
+#. metadata.json->contributors
+msgid "Chris Hastie"
+msgstr ""
+
+#. 5.4->settings-schema.json->top->description
+#. 3.0->settings-schema.json->top->description
+msgid "Weather configuration"
+msgstr "வானிலை கட்டமைப்பு"
+
+#. 5.4->settings-schema.json->webservice->description
+#. 5.4->settings-schema.json->locsrc->options
+#. 3.0->settings-schema.json->webservice->description
+#. 3.0->settings-schema.json->locsrc->options
+msgid "Data service"
+msgstr "தரவு சேவை"
+
+#. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+msgid "BBC"
+msgstr "பிபிசி"
+
+#. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#, fuzzy
+msgid "Open Weather Map (requires API key)"
+msgstr "World Weather Online (API key தேவை)"
+
+#. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#, fuzzy
+msgid "Open Weather Map Free (requires API key)"
+msgstr "World Weather Online (API key தேவை)"
+
+#. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+msgid "Wunderground (requires API key)"
+msgstr "Wunderground (API key தேவை)"
+
+#. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#, fuzzy
+msgid "World Weather Online (deprecated) (requires API key)"
+msgstr "World Weather Online (API key தேவை)"
+
+#. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#, fuzzy
+msgid "World Weather Online Premium (requires API key)"
+msgstr "World Weather Online (API key தேவை)"
+
+#. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+#, fuzzy
+msgid "APIXU (requires API key)"
+msgstr "meteoblue (API key தேவை)"
+
+#. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+msgid "Forecast.io (requires API key)"
+msgstr "Forecast.io (API key தேவை)"
+
+#. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+msgid "weather.com (deprecated)"
+msgstr "weather.com (நீக்கப்பட்டது)"
+
+#. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+msgid "meteoblue (requires API key)"
+msgstr "meteoblue (API key தேவை)"
+
+#. 5.4->settings-schema.json->webservice->tooltip
+#. 3.0->settings-schema.json->webservice->tooltip
+msgid "Select the data service you wish to use"
+msgstr "நீங்கள் பயன்படுத்த விரும்பும் தரவு சேவையை தேர்வுசெய்யவும்"
+
+#. 5.4->settings-schema.json->stationID->description
+#. 3.0->settings-schema.json->stationID->description
+msgid "Location"
+msgstr "இடம்"
+
+#. 5.4->settings-schema.json->stationID->tooltip
+#. 3.0->settings-schema.json->stationID->tooltip
+msgid "Set your location here"
+msgstr "உங்கள் இருப்பிடத்தை இங்கே அமைக்கவும்"
+
+#. 5.4->settings-schema.json->apikey->description
+#. 3.0->settings-schema.json->apikey->description
+msgid "API key"
+msgstr "API சாவி"
+
+#. 5.4->settings-schema.json->apikey->tooltip
+#. 3.0->settings-schema.json->apikey->tooltip
+msgid "Required for some services only. Enter your API key for your chosen service"
+msgstr "சில சேவைகளுக்கு மட்டுமே தேவை. நீங்கள் தேர்வு செய்த சேவைக்கான் உங்கள் API திறவை உள்ளிடவும்"
+
+#. 5.4->settings-schema.json->tunits->description
+#. 3.0->settings-schema.json->tunits->description
+msgid "Temperature measurement unit"
+msgstr "வெப்பநிலை அளவீடு அலகு"
+
+#. 5.4->settings-schema.json->tunits->options
+#. 3.0->settings-schema.json->tunits->options
+msgid "Celsius"
+msgstr "செல்சியஸ்"
+
+#. 5.4->settings-schema.json->tunits->options
+#. 3.0->settings-schema.json->tunits->options
+msgid "Fahrenheit"
+msgstr "ஃபாரன்ஹீட்"
+
+#. 5.4->settings-schema.json->tunits->tooltip
+#. 3.0->settings-schema.json->tunits->tooltip
+msgid "Measurement units used to display temperature"
+msgstr "வெப்பநிலை காட்ட பயன்படும் அளவீட்டு அலகுகள்"
+
+#. 5.4->settings-schema.json->wunits->description
+#. 3.0->settings-schema.json->wunits->description
+msgid "Wind speed measurement unit"
+msgstr "காற்றின் வேக அளவீட்டு அலகுகள்"
+
+#. 5.4->settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
+msgid "mph"
+msgstr "mph"
+
+#. 5.4->settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
+msgid "km/h"
+msgstr "கிமீ/மணி"
+
+#. 5.4->settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
+msgid "knots"
+msgstr "கடல்மைல்கள்"
+
+#. 5.4->settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
+msgid "m/s"
+msgstr "m/s"
+
+#. 5.4->settings-schema.json->wunits->tooltip
+#. 3.0->settings-schema.json->wunits->tooltip
+msgid "Measurement units used to display wind speed"
+msgstr "காற்றின் வேகம் காட்ட பயன்படும் அளவீட்டு அலகுகள்"
+
+#. 5.4->settings-schema.json->punits->description
+#. 3.0->settings-schema.json->punits->description
+msgid "Pressure measurement unit"
+msgstr "காற்றழுத்த அளவீட்டு அலகு"
+
+#. 5.4->settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
+msgid "mb"
+msgstr "mb"
+
+#. 5.4->settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
+msgid "in (Hg)"
+msgstr "(Hg)ல்"
+
+#. 5.4->settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
+msgid "mm (Hg)"
+msgstr "mm (Hg)"
+
+#. 5.4->settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
+msgid "kPa"
+msgstr "kPa"
+
+#. 5.4->settings-schema.json->punits->tooltip
+#. 3.0->settings-schema.json->punits->tooltip
+msgid "Measurement units used to display atmospheric pressure"
+msgstr "வளிமண்டல அழுத்தம் காட்ட பயன்படும் அளவீட்டு அலகுகள்"
+
+#. 5.4->settings-schema.json->userno->units
+#. 3.0->settings-schema.json->userno->units
+msgid "days"
+msgstr "நாட்கள்"
+
+#. 5.4->settings-schema.json->userno->description
+#. 3.0->settings-schema.json->userno->description
+msgid "Show forecast for"
+msgstr "முன்னறிவிப்பை காட்டு"
+
+#. 5.4->settings-schema.json->userno->tooltip
+#. 3.0->settings-schema.json->userno->tooltip
+msgid ""
+"The number of days of forecast to display. Note that not all services support all values"
+msgstr ""
+"முன்னறிவிப்பு நாட்களின் எண்ணிக்கை . எல்லா சேவைகளும் எல்லா மதிப்புகளையும் ஆதரிப்பதில்லை என்பதை குறிப்பில் "
+"கொள்ளவும்."
+
+#. 5.4->settings-schema.json->refreshtime->units
+#. 3.0->settings-schema.json->refreshtime->units
+msgid "minutes"
+msgstr "நிமிடங்கள்"
+
+#. 5.4->settings-schema.json->refreshtime->description
+#. 3.0->settings-schema.json->refreshtime->description
+msgid "Refresh forecast every"
+msgstr "முன்னறிவிப்பை புதுப்பிக்கும் இடைவெளி"
+
+#. 5.4->settings-schema.json->refreshtime->tooltip
+#. 3.0->settings-schema.json->refreshtime->tooltip
+msgid ""
+"Period between refreshing forecasts. Note that not all services support lower refresh "
+"times"
+msgstr ""
+"முன்னறிவிப்புகள் புதுப்பிக்கும் இடைவெளி. எல்லா சேவைகளும் குறைந்த புதுப்பிப்பு நேரங்களை ஆதரிப்பதில்லை "
+"என்று குறிப்பில் கொள்ளவும்"
+
+#. 5.4->settings-schema.json->display->description
+#. 3.0->settings-schema.json->display->description
+msgid "Optional items to display (not all options are supported by all services)"
+msgstr "காட்டவேண்டிய விருப்ப உருப்படி (எல்லா சேவைகளும் எல்லா விருப்பங்களையும் ஆதரிப்பதில்லை )"
+
+#. 5.4->settings-schema.json->display__meta__country->description
+#. 3.0->settings-schema.json->display__meta__country->description
+msgid "Country"
+msgstr "நாடு"
+
+#. 5.4->settings-schema.json->display__meta__country->tooltip
+#. 3.0->settings-schema.json->display__meta__country->tooltip
+msgid "Check to display the country"
+msgstr "நாட்டை காட்ட குறியிடவும்"
+
+#. 5.4->settings-schema.json->display__cc__weather->description
+#. 3.0->settings-schema.json->display__cc__weather->description
+msgid "Current weather and icon"
+msgstr "தற்போதைய வானிலை மற்றும் ஐகான்"
+
+#. 5.4->settings-schema.json->display__cc__weather->tooltip
+#. 3.0->settings-schema.json->display__cc__weather->tooltip
+msgid "Check to display the current weather and large icon"
+msgstr "தற்போதைய வானிலையையும் பெரிய படவுருவையும் காட்ட குறியிடவும்"
+
+#. 5.4->settings-schema.json->display__cc__pressure->description
+#. 3.0->settings-schema.json->display__cc__pressure->description
+msgid "Current pressure"
+msgstr "தற்போதைய அழுத்தம்"
+
+#. 5.4->settings-schema.json->display__cc__pressure->tooltip
+#. 3.0->settings-schema.json->display__cc__pressure->tooltip
+msgid "Check to display the current pressure"
+msgstr "தற்போதைய அழுத்தத்தை காட்ட குறியிடவும்"
+
+#. 5.4->settings-schema.json->display__cc__humidity->description
+#. 3.0->settings-schema.json->display__cc__humidity->description
+msgid "Current humidity"
+msgstr "தற்போதைய ஈரப்பதம்"
+
+#. 5.4->settings-schema.json->display__cc__humidity->tooltip
+#. 3.0->settings-schema.json->display__cc__humidity->tooltip
+msgid "Check to display the current humidity"
+msgstr "தற்போதைய ஈரப்பதத்தை காட்ட குறியிடவும்"
+
+#. 5.4->settings-schema.json->display__cc__wind_speed->description
+#. 3.0->settings-schema.json->display__cc__wind_speed->description
+msgid "Current wind"
+msgstr "தற்போதைய காற்று"
+
+#. 5.4->settings-schema.json->display__cc__wind_speed->tooltip
+#. 3.0->settings-schema.json->display__cc__wind_speed->tooltip
+msgid "Check to display the current wind"
+msgstr "தற்போதைய காற்றுநிலையை காட்ட குறியிடவும்"
+
+#. 5.4->settings-schema.json->display__cc__feelslike->description
+#. 3.0->settings-schema.json->display__cc__feelslike->description
+msgid "Current 'feels like'"
+msgstr "தற்போதைய உணர்நிலை"
+
+#. 5.4->settings-schema.json->display__cc__feelslike->tooltip
+#. 3.0->settings-schema.json->display__cc__feelslike->tooltip
+msgid "Check to display the current apparent temperature"
+msgstr "தற்போதைய வெளிப்படையான வெப்பநிலை காட்ட குறியிடவும்"
+
+#. 5.4->settings-schema.json->display__cc__visibility->description
+#. 3.0->settings-schema.json->display__cc__visibility->description
+msgid "Current visibility"
+msgstr "தற்போதைய தெரிவுநிலை"
+
+#. 5.4->settings-schema.json->display__cc__visibility->tooltip
+#. 3.0->settings-schema.json->display__cc__visibility->tooltip
+msgid "Check to display the current visibility"
+msgstr "தற்போதைய தெரிவுநிலையை காட்ட குறியிடவும்"
+
+#. 5.4->settings-
+#. schema.json->display__forecast__maximum_temperature->description
+#. 3.0->settings-
+#. schema.json->display__forecast__maximum_temperature->description
+msgid "Forecast maximum"
+msgstr "அதிகபட்ச முன்னறிவிப்பு"
+
+#. 5.4->settings-schema.json->display__forecast__maximum_temperature->tooltip
+#. 3.0->settings-schema.json->display__forecast__maximum_temperature->tooltip
+msgid "Check to display the forecast maximum temperature"
+msgstr "அதிகபட்ச முன்னறிவிப்பு வெப்பநிலையை காட்ட குறியிடவும்"
+
+#. 5.4->settings-
+#. schema.json->display__forecast__minimum_temperature->description
+#. 3.0->settings-
+#. schema.json->display__forecast__minimum_temperature->description
+msgid "Forecast minimum"
+msgstr "குறைந்தபட்ச முன்னறிவிப்பு"
+
+#. 5.4->settings-schema.json->display__forecast__minimum_temperature->tooltip
+#. 3.0->settings-schema.json->display__forecast__minimum_temperature->tooltip
+msgid "Check to display the forecast minimum temperature"
+msgstr "குறைந்தபட்ச முன்னறிவிப்பு வெப்பநிலையை காட்ட குறியிடவும்"
+
+#. 5.4->settings-schema.json->display__forecast__wind_speed->description
+#. 3.0->settings-schema.json->display__forecast__wind_speed->description
+msgid "Forecast wind speed"
+msgstr "காற்று வேகம் முன்னறிவிப்பு"
+
+#. 5.4->settings-schema.json->display__forecast__wind_speed->tooltip
+#. 3.0->settings-schema.json->display__forecast__wind_speed->tooltip
+msgid "Check to display the forecast wind speed"
+msgstr "முன்னறிவிப்பு காற்று வேகத்தை காட்ட குறியிடவும்"
+
+#. 5.4->settings-schema.json->display__forecast__wind_direction->description
+#. 3.0->settings-schema.json->display__forecast__wind_direction->description
+msgid "Forecast wind direction"
+msgstr "காற்று திசை முன்னறிவிப்பு"
+
+#. 5.4->settings-schema.json->display__forecast__wind_direction->tooltip
+#. 3.0->settings-schema.json->display__forecast__wind_direction->tooltip
+msgid "Check to display the forecast wind direction"
+msgstr "முன்னறிவிப்பு காற்று திசையை காட்ட குறியிடவும்"
+
+#. 5.4->settings-schema.json->display__forecast__pressure->description
+#. 3.0->settings-schema.json->display__forecast__pressure->description
+msgid "Forecast pressure"
+msgstr "காற்றழுத்தம் முன்னறிவிப்பு"
+
+#. 5.4->settings-schema.json->display__forecast__pressure->tooltip
+#. 3.0->settings-schema.json->display__forecast__pressure->tooltip
+msgid "Check to display the forecast pressure"
+msgstr "முன்னறிவிப்பு அழுத்தத்தை காட்ட குறியிடவும்"
+
+#. 5.4->settings-schema.json->display__forecast__humidity->description
+#. 3.0->settings-schema.json->display__forecast__humidity->description
+msgid "Forecast humidity"
+msgstr "ஈரப்பதம் முன்னறிவிப்பு"
+
+#. 5.4->settings-schema.json->display__forecast__humidity->tooltip
+#. 3.0->settings-schema.json->display__forecast__humidity->tooltip
+msgid "Check to display the forecast humidity"
+msgstr "முன்னறிவிப்பு ஈரப்பதத்தை காட்ட குறியிடவும்"
+
+#. 5.4->settings-schema.json->styling->description
+#. 3.0->settings-schema.json->styling->description
+msgid "Desklet style"
+msgstr "பணிமேடை உபகரண பாணி"
+
+#. 5.4->settings-schema.json->zoom->units
+#. 3.0->settings-schema.json->zoom->units
+msgid "times"
+msgstr "மடங்கு"
+
+#. 5.4->settings-schema.json->zoom->description
+#. 3.0->settings-schema.json->zoom->description
+msgid "Zoom by"
+msgstr "பெரிதாக்கு"
+
+#. 5.4->settings-schema.json->zoom->tooltip
+#. 3.0->settings-schema.json->zoom->tooltip
+msgid "Change the size of the desklet"
+msgstr "பணிமேடை உபகரணத்தின் அளவை மாற்று"
+
+#. 5.4->settings-schema.json->layout->description
+#. 3.0->settings-schema.json->layout->description
+msgid "Layout"
+msgstr "தளவமைப்பு"
+
+#. 5.4->settings-schema.json->layout->options
+#. 3.0->settings-schema.json->layout->options
+msgid "Horizontal"
+msgstr "கிடைமட்டம்"
+
+#. 5.4->settings-schema.json->layout->options
+#. 3.0->settings-schema.json->layout->options
+msgid "Vertical"
+msgstr "செங்குத்து"
+
+#. 5.4->settings-schema.json->layout->tooltip
+#. 3.0->settings-schema.json->layout->tooltip
+msgid "Set the overall layout of the desklet"
+msgstr "பணிமேடை உபகரணத்தின் ஒட்டுமொத்த அமைப்பை அமை"
+
+#. 5.4->settings-schema.json->iconstyle->description
+#. 3.0->settings-schema.json->iconstyle->description
+msgid "Icon style"
+msgstr "படவுரு பாணி"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Colorful"
+msgstr "வண்ணமிகு"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Dark"
+msgstr "கருமை"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Light"
+msgstr "மெல்லிய"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Flat colorful"
+msgstr "தட்டை வண்ணமிகு"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Flat black"
+msgstr "தட்டை கருமை"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Flat white"
+msgstr "தட்டை வெள்ளை"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "VClouds"
+msgstr "விகிளொட்ஸ்"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Novacon"
+msgstr "நோவாகான்"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Weezle"
+msgstr "வீஸ்ஸில்"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Meteocons 1"
+msgstr "மீட்டியோகான்ஸ் 2"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Meteocons 2"
+msgstr "மீட்டியோகான்ஸ் 2"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Sketchy"
+msgstr "ஸ்கெட்ச்சி"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "User defined"
+msgstr "பயனர் வரையறுத்தது"
+
+#. 5.4->settings-schema.json->iconstyle->tooltip
+#. 3.0->settings-schema.json->iconstyle->tooltip
+msgid "Select the style for the weather icons"
+msgstr "வானிலை படவுருக்களின் பாணியை தேர்வு செய்க"
+
+#. 5.4->settings-schema.json->citystyle->description
+#. 3.0->settings-schema.json->citystyle->description
+msgid "Bold city name"
+msgstr "நகரின் பெயரை தடிமனாக்கு"
+
+#. 5.4->settings-schema.json->citystyle->tooltip
+#. 3.0->settings-schema.json->citystyle->tooltip
+msgid "Check to display the city name in bold"
+msgstr "நகரின் பெயரை தடிமனாக காட்ட குறியிடவும்"
+
+#. 5.4->settings-schema.json->overrideTheme->description
+#. 3.0->settings-schema.json->overrideTheme->description
+msgid "Override desktop theme (enables the settings below)"
+msgstr "பணிமேடை தீம்களை மீறு (கீழே உள்ள அமைப்புகளை செயல்படுத்துகிறது )"
+
+#. 5.4->settings-schema.json->overrideTheme->tooltip
+#. 3.0->settings-schema.json->overrideTheme->tooltip
+msgid "Check this to override the desktop theme and configure the appearance manually"
+msgstr "பணிமேடை தீமை புறக்கணிக்க இதை குறித்து மற்றும் தோற்றத்தை சரிபார்த்து கட்டமைக்கவும்"
+
+#. 5.4->settings-schema.json->transparency->description
+#. 3.0->settings-schema.json->transparency->description
+msgid "Transparency"
+msgstr "ஒளி ஊடுருவல்"
+
+#. 5.4->settings-schema.json->transparency->tooltip
+#. 3.0->settings-schema.json->transparency->tooltip
+msgid "Set the transparency of the desklet"
+msgstr "பணிமேடை உபகரணத்தின் ஊடுருவல் தன்மையை அமை"
+
+#. 5.4->settings-schema.json->textcolor->description
+#. 3.0->settings-schema.json->textcolor->description
+msgid "Text color"
+msgstr "எழுத்து நிறம்"
+
+#. 5.4->settings-schema.json->textcolor->tooltip
+#. 3.0->settings-schema.json->textcolor->tooltip
+msgid "Click the button to select a new text color"
+msgstr "புதிய எழுத்து நிறத்தை தேர்வு செய்ய பொத்தானை சொடுக்கவும்"
+
+#. 5.4->settings-schema.json->textshadow->description
+#. 3.0->settings-schema.json->textshadow->description
+msgid "Text shadow"
+msgstr ""
+
+#. 5.4->settings-schema.json->textshadow->tooltip
+#. 3.0->settings-schema.json->textshadow->tooltip
+msgid "Check to add a text shadow"
+msgstr ""
+
+#. 5.4->settings-schema.json->shadowblur->units
+#. 5.4->settings-schema.json->cornerradius->units
+#. 5.4->settings-schema.json->borderwidth->units
+#. 3.0->settings-schema.json->shadowblur->units
+#. 3.0->settings-schema.json->cornerradius->units
+#. 3.0->settings-schema.json->borderwidth->units
+msgid "px"
+msgstr "px"
+
+#. 5.4->settings-schema.json->shadowblur->description
+#. 3.0->settings-schema.json->shadowblur->description
+msgid "Shadow blur radius"
+msgstr ""
+
+#. 5.4->settings-schema.json->shadowblur->tooltip
+#. 3.0->settings-schema.json->shadowblur->tooltip
+msgid "Set the text shadow sharp (1) or blurry (2-7)"
+msgstr ""
+
+#. 5.4->settings-schema.json->bgcolor->description
+#. 3.0->settings-schema.json->bgcolor->description
+msgid "Background color"
+msgstr "பின்னணி நிறம்"
+
+#. 5.4->settings-schema.json->bgcolor->tooltip
+#. 3.0->settings-schema.json->bgcolor->tooltip
+msgid "Click the button to select a new background color"
+msgstr "புதிய பின்னணி நிறத்தை தேர்வு செய்ய பொத்தானை சொடுக்கவும்"
+
+#. 5.4->settings-schema.json->cornerradius->description
+#. 3.0->settings-schema.json->cornerradius->description
+msgid "Corner radius"
+msgstr "மூலை ஆரம்"
+
+#. 5.4->settings-schema.json->cornerradius->tooltip
+#. 3.0->settings-schema.json->cornerradius->tooltip
+msgid "Radius for rounding the desklet's corners"
+msgstr "பணிமேடை உபகரணத்தின் மூலையை வளைக்கும் ஆரம்"
+
+#. 5.4->settings-schema.json->border->description
+#. 3.0->settings-schema.json->border->description
+msgid "Show border"
+msgstr "வரம்பை காட்டு"
+
+#. 5.4->settings-schema.json->border->tooltip
+#. 3.0->settings-schema.json->border->tooltip
+msgid "Check this to turn border on/off"
+msgstr "வரம்பை அமைக்க/மறைக்க இங்கே குறிக்கவும்"
+
+#. 5.4->settings-schema.json->bordercolor->description
+#. 3.0->settings-schema.json->bordercolor->description
+msgid "Border color"
+msgstr "வரம்பு நிறம்"
+
+#. 5.4->settings-schema.json->bordercolor->tooltip
+#. 3.0->settings-schema.json->bordercolor->tooltip
+msgid "Select the color for the border. Only available if the 'Border' checkbox is enabled"
+msgstr "வரம்பின் நிறத்தை தேர்வு செய்யவும். 'வரம்பு' தேர்வுப்பெட்டி இயலச்செய்திருந்தால் மட்டுமே கிடைக்கும்"
+
+#. 5.4->settings-schema.json->borderwidth->description
+#. 3.0->settings-schema.json->borderwidth->description
+msgid "Border width"
+msgstr "வரம்பு அகலம்"
+
+#. 5.4->settings-schema.json->borderwidth->tooltip
+#. 3.0->settings-schema.json->borderwidth->tooltip
+msgid "Select the width of the border. Only available if the 'Border' checkbox is enabled"
+msgstr "வரம்பின் அகலத்தை தேர்வு செய்யவும். 'வரம்பு' தேர்வுப்பெட்டி இயலச்செய்திருந்தால் மட்டுமே கிடைக்கும்"
+
+#. 5.4->settings-schema.json->locationlookups->description
+#. 3.0->settings-schema.json->locationlookups->description
+msgid "Location display settings"
+msgstr "இடம் காட்சி அமைப்புகள்"
+
+#. 5.4->settings-schema.json->locsrc->description
+#. 3.0->settings-schema.json->locsrc->description
+msgid "Get displayed location from"
+msgstr "காட்டப்படும் இடத்தை பெறும் மூலம்"
+
+#. 5.4->settings-schema.json->locsrc->options
+#. 3.0->settings-schema.json->locsrc->options
+msgid "Google"
+msgstr "கூகுள்"
+
+#. 5.4->settings-schema.json->locsrc->tooltip
+#. 3.0->settings-schema.json->locsrc->tooltip
+msgid ""
+"The source of the text displayed as the current location. Yahoo! and Google may offer "
+"city names in other languages"
+msgstr ""
+"உரை ஆதாரமாக தற்போதைய இடம் காட்டப்படும் . யாஹூ! மற்றும் கூகுள் பிற மொழிகளில் நகர பெயர்களை வழங்கலாம்"
+
+#. 5.4->settings-schema.json->manuallocation->description
+#. 3.0->settings-schema.json->manuallocation->description
+msgid "Manually override displayed location"
+msgstr "காட்டப்படும் இருப்பிடத்தை புறக்கணி"
+
+#. 5.4->settings-schema.json->manuallocation->tooltip
+#. 3.0->settings-schema.json->manuallocation->tooltip
+msgid "Set your city name manually."
+msgstr "உங்கள் நகரின் பெயரை உள்ளிடவும்"
+
+#. 5.4->settings-schema.json->experimental->description
+#. 3.0->settings-schema.json->experimental->description
+msgid "Experimental and buggy features (read documentation!!)"
+msgstr "சோதனை மற்றும் பிழைந்த அம்சங்கள் ( ஆவணங்களை படிக்கவும் !!)"
+
+#. 5.4->settings-schema.json->experimental_enabled->description
+#. 3.0->settings-schema.json->experimental_enabled->description
+msgid "Enable experimental features"
+msgstr "சோதனை அம்சங்களை இயக்கு"
+
+#. 5.4->settings-schema.json->experimental_enabled->tooltip
+#. 3.0->settings-schema.json->experimental_enabled->tooltip
+msgid "Check this to enable experimental and buggy features"
+msgstr "சோதனை மற்றும் பிழைந்த அம்கங்களை செயல்படுத்த இங்கே குறிக்கவும்"
+
+#. 5.4->settings-schema.json->gravity->description
+#. 3.0->settings-schema.json->gravity->description
+msgid "Anchor desklet by"
+msgstr "பணிமேடை உபகரணத்தை நிவைநிறுத்தும் முறை"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Default"
+msgstr "இயல்பிருப்பு"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Top left"
+msgstr "மேல் இடது"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Left center"
+msgstr "இடது மத்தி"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Bottom left"
+msgstr "கீழ் இடது"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Bottom center"
+msgstr "கீழ் மத்தி"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Bottom right"
+msgstr "கீழ் வலது"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Right center"
+msgstr "வலது மத்தி"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Top right"
+msgstr "மேல் வலது"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Top center"
+msgstr "மேல் மத்தி"
+
+#. 5.4->settings-schema.json->gravity->tooltip
+#. 3.0->settings-schema.json->gravity->tooltip
+msgid ""
+"Select the point on the desklet to which it is anchored. This point will remain static "
+"as the desklet grows and shrinks"
+msgstr ""
+"பணிமேடை உபகரணம் நிலைநிறுத்த வேண்டிய புள்ளியை தேர்வு செய்க. உபகரணம் வளர்ந்தாலும் சுருங்கினாலும் இந்த "
+"புள்ளி நிலைத்திருக்கும்"
