@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 11:45+0200\n"
-"PO-Revision-Date: 2023-11-24 19:50-0300\n"
+"POT-Creation-Date: 2023-12-07 18:00+0300\n"
+"PO-Revision-Date: 2023-12-08 18:04-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -22,31 +22,31 @@ msgstr ""
 msgid "error"
 msgstr "error"
 
-#. temperature@swalladge->metadata.json->description
-msgid "Displays the current temperature from the temperature server."
-msgstr "Muestra la temperatura actual del servidor de temperatura."
+#. metadata.json->description
+msgid "Displays the current temperature from the rpi temperature server."
+msgstr "Muestra la temperatura actual del servidor de temperatura rpi."
 
-#. temperature@swalladge->metadata.json->name
+#. metadata.json->name
 msgid "Temperature"
 msgstr "Temperatura"
 
-#. temperature@swalladge->settings-schema.json->width->description
-msgid "Width :"
-msgstr "Ancho:"
-
-#. temperature@swalladge->settings-schema.json->width->units
-#. temperature@swalladge->settings-schema.json->height->units
-msgid "pixels"
-msgstr "píxeles"
-
-#. temperature@swalladge->settings-schema.json->head->description
+#. settings-schema.json->head->description
 msgid "Current Temperature Settings"
 msgstr "Configuración de temperatura actual"
 
-#. temperature@swalladge->settings-schema.json->server->description
-msgid "Server :"
-msgstr "Servidor:"
-
-#. temperature@swalladge->settings-schema.json->height->description
+#. settings-schema.json->height->description
 msgid "Height :"
 msgstr "Altura :"
+
+#. settings-schema.json->height->units
+#. settings-schema.json->width->units
+msgid "pixels"
+msgstr "píxeles"
+
+#. settings-schema.json->width->description
+msgid "Width :"
+msgstr "Ancho:"
+
+#. settings-schema.json->server->description
+msgid "Server :"
+msgstr "Servidor:"
