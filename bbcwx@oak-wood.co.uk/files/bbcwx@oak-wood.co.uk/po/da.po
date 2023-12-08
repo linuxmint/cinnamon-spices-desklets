@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bbcwx\n"
 "Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
 "POT-Creation-Date: 2023-09-03 14:13-0400\n"
-"PO-Revision-Date: 2023-09-03 14:16-0400\n"
+"PO-Revision-Date: 2023-12-08 07:28+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Danish <da@li.org>\n"
 "Language: da\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2015-12-04 19:52+0000\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: 5.4/desklet.js:106 3.0/desklet.js:108
 msgid "Mon"
@@ -88,7 +88,7 @@ msgstr "Min:"
 
 #: 5.4/desklet.js:373 3.0/desklet.js:367
 msgid "Wind speed:"
-msgstr "Vind"
+msgstr "Vindhastighed:"
 
 #: 5.4/desklet.js:375 3.0/desklet.js:369
 msgid "Dir:"
@@ -565,10 +565,12 @@ msgid ""
 "Please consider translating the Weather Desklet into your language. See the "
 "website for more information"
 msgstr ""
+"Overvej at oversætte Vejrskrivebordsprogrammet til dit sprog. Se webstedet "
+"for flere oplysninger."
 
 #. metadata.json->contributors
 msgid "Chris Hastie"
-msgstr ""
+msgstr "Chris Hastie"
 
 #. 5.4->settings-schema.json->top->description
 #. 3.0->settings-schema.json->top->description
@@ -1079,12 +1081,12 @@ msgstr "Klik på knappen for at vælge en ny tekstfarve"
 #. 5.4->settings-schema.json->textshadow->description
 #. 3.0->settings-schema.json->textshadow->description
 msgid "Text shadow"
-msgstr ""
+msgstr "Tekstskygge"
 
 #. 5.4->settings-schema.json->textshadow->tooltip
 #. 3.0->settings-schema.json->textshadow->tooltip
 msgid "Check to add a text shadow"
-msgstr ""
+msgstr "Markér for at tilføje tekstskygge"
 
 #. 5.4->settings-schema.json->shadowblur->units
 #. 5.4->settings-schema.json->cornerradius->units
@@ -1098,12 +1100,12 @@ msgstr "px"
 #. 5.4->settings-schema.json->shadowblur->description
 #. 3.0->settings-schema.json->shadowblur->description
 msgid "Shadow blur radius"
-msgstr ""
+msgstr "Sløringsradius for skygge"
 
 #. 5.4->settings-schema.json->shadowblur->tooltip
 #. 3.0->settings-schema.json->shadowblur->tooltip
 msgid "Set the text shadow sharp (1) or blurry (2-7)"
-msgstr ""
+msgstr "Gør teksten skarp (1) eller sløret (2–7)"
 
 #. 5.4->settings-schema.json->bgcolor->description
 #. 3.0->settings-schema.json->bgcolor->description
