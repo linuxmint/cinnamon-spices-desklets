@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 23:21+0200\n"
-"PO-Revision-Date: 2022-06-03 13:10+0200\n"
+"POT-Creation-Date: 2023-11-05 18:14+0100\n"
+"PO-Revision-Date: 2023-12-12 18:57+0100\n"
+"Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
-"Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: it\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. settings-schema.json->type->options
 #: desklet.js:153
@@ -85,6 +85,39 @@ msgstr "HDD"
 msgid "GPU"
 msgstr "GPU"
 
+#. settings-schema.json->data-prefix-ram->options
+#. settings-schema.json->data-prefix-swap->options
+#. settings-schema.json->data-prefix-hdd->options
+#. settings-schema.json->data-prefix-gpumem->options
+msgid "Binary prefix or IEC (1 GiB = 1024³ bytes)"
+msgstr "Prefisso binario o IEC (1 GiB = 1024³ byte)"
+
+#. settings-schema.json->data-prefix-ram->options
+#. settings-schema.json->data-prefix-swap->options
+#. settings-schema.json->data-prefix-hdd->options
+#. settings-schema.json->data-prefix-gpumem->options
+msgid "Decimal prefix (1 GB = 1000³ bytes)"
+msgstr "Prefisso decimale (1 GB = 1000³ byte)"
+
+#. settings-schema.json->data-prefix-ram->description
+#. settings-schema.json->data-prefix-swap->description
+#. settings-schema.json->data-prefix-hdd->description
+#. settings-schema.json->data-prefix-gpumem->description
+msgid "Prefix for data units"
+msgstr "Prefisso per le unità dati"
+
+#. settings-schema.json->data-prefix-ram->tooltip
+msgid "Unit prefix for RAM size."
+msgstr "Prefisso dell'unità per la dimensione della RAM."
+
+#. settings-schema.json->data-prefix-swap->tooltip
+msgid "Unit prefix for Swap size."
+msgstr "Prefisso dell'unità per la dimensione dello Swap."
+
+#. settings-schema.json->data-prefix-hdd->tooltip
+msgid "Unit prefix for Filesystem size."
+msgstr "Prefisso dell'unità per la dimensione del file system."
+
 #. settings-schema.json->filesystem->description
 msgid "Filesystem to monitor"
 msgstr "Filesystem da monitorare"
@@ -137,6 +170,10 @@ msgstr "Utilizzo"
 msgid "Memory"
 msgstr "Memoria"
 
+#. settings-schema.json->data-prefix-gpumem->tooltip
+msgid "Unit prefix for GPU memory size."
+msgstr "Prefisso dell'unità per la dimensione della memoria della GPU."
+
 #. settings-schema.json->duration->description
 msgid "Duration of the graph"
 msgstr "Durata del grafico"
@@ -184,7 +221,7 @@ msgstr "Quanto spesso verrà calcolato un nuovo valore della variabile."
 
 #. settings-schema.json->refresh-interval->options
 msgid " 1 s"
-msgstr "1 s"
+msgstr " 1 s"
 
 #. settings-schema.json->refresh-interval->options
 msgid " 2 s"
@@ -262,4 +299,6 @@ msgstr "Numero di linee verticali nella griglia"
 
 #. settings-schema.json->scale-size->description
 msgid "Scale factor for desklet size (scale factor of 1 = 330 x 120 px)"
-msgstr "Fattore di scala per le dimensioni del desklet (fattore di scala di 1 = 300 x 120 px)"
+msgstr ""
+"Fattore di scala per le dimensioni del desklet (fattore di scala di 1 = 300 "
+"x 120 px)"

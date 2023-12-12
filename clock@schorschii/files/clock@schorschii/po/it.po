@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: Analog Chronometer VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-04 18:03+0100\n"
-"PO-Revision-Date: 2022-06-03 12:32+0200\n"
+"PO-Revision-Date: 2023-12-12 18:35+0100\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: desklet.js:190
 msgid "Clock"
@@ -40,7 +40,7 @@ msgstr "Scuro"
 
 #. clock@schorschii->settings-schema.json->style->options
 msgid "Light"
-msgstr "Leggero"
+msgstr "Chiaro"
 
 #. clock@schorschii->settings-schema.json->style->options
 msgid "Dark Transparent"
@@ -48,7 +48,11 @@ msgstr "Scuro Trasparente"
 
 #. clock@schorschii->settings-schema.json->style->options
 msgid "Light Transparent"
-msgstr "Leggero Trasparente"
+msgstr "Chiaro Trasparente"
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Semitransparent"
+msgstr "Semi trasparente"
 
 #. clock@schorschii->settings-schema.json->style->options
 msgid "Custom"
