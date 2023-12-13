@@ -1,9 +1,15 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2023-10-16 12:33+0200\n"
-"PO-Revision-Date: 2023-10-16 12:33+0200\n"
-"Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-06 01:23+0300\n"
+"PO-Revision-Date: 2023-12-13 09:45+0100\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -11,149 +17,213 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-SearchPath-0: desklet.js\n"
-"X-Poedit-SearchPath-1: settings-schema.json\n"
 
-#: desklet.js:265 desklet.js:388
+#. settings-schema.json->type->options
+#: desklet.js:275 desklet.js:356
 msgid "RAM"
 msgstr "RAM"
 
-#: desklet.js:267 desklet.js:390
+#. settings-schema.json->type->options
+#: desklet.js:277 desklet.js:358
 msgid "Swap"
 msgstr "Cserehely"
 
-#: desklet.js:269
+#. settings-schema.json->type->options
+#: desklet.js:279
 msgid "Filesystem"
 msgstr "Fájlrendszer"
 
-#: desklet.js:291
+#: desklet.js:301
 msgid "Not Found"
 msgstr "Nem található"
 
-#: desklet.js:392
+#. metadata.json->name
+#: desklet.js:360
 msgid "Disk Space"
-msgstr "Lemezterület"
+msgstr "Lemez terület"
 
-#~ msgid "Displays the usage of a filesystem or RAM."
-#~ msgstr "Megjeleníti a fájlrendszer vagy a RAM használatát."
+#. metadata.json->description
+msgid "Displays the usage of a filesystem or RAM."
+msgstr "Megjeleníti a fájlrendszer vagy a RAM használatát."
 
-#~ msgid "Settings for diskspace@schorschii"
-#~ msgstr "Diskspace@schorschii beállításai"
+#. settings-schema.json->head0->description
+msgid "Settings for diskspace@schorschii"
+msgstr "Diskspace@schorschii beállításai"
 
-#~ msgid "General"
-#~ msgstr "Általános"
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr "Általános"
 
-#~ msgid "Monitor a file system or RAM usage"
-#~ msgstr "Egy fájlrendszer vagy a RAM használatának megfigyelése"
+#. settings-schema.json->type->description
+msgid "Monitor a file system or RAM usage"
+msgstr "Fájlrendszer vagy RAM használatának figyelése"
 
-#~ msgid "Choose, if this desklet should show file system or RAM usage."
-#~ msgstr "Válasszon, hogy az asztalkalmazás megjelenítse-e a fájlrendszer vagy a RAM használatát."
+#. settings-schema.json->type->tooltip
+msgid "Choose, if this desklet should show file system or RAM usage."
+msgstr ""
+"Válassza ki, hogy ez az asztalkalmazás fájlrendszer- vagy RAM-használatot "
+"mutasson-e."
 
-#~ msgid "Filesystem to monitor"
-#~ msgstr "Megfigyelt fájlrendszer"
+#. settings-schema.json->filesystem->description
+msgid "Filesystem to monitor"
+msgstr "Megfigyelendő fájlrendszer"
 
-#~ msgid "Select the file system, which you want to monitor."
-#~ msgstr "Válassza ki a megfigyelni kívánt fájlrendszert."
+#. settings-schema.json->filesystem->tooltip
+msgid "Select the file system, which you want to monitor."
+msgstr "Válassza ki a figyelni kívánt fájlrendszert."
 
-#~ msgid "Visual"
-#~ msgstr "Vizuális"
+#. settings-schema.json->onclick-action->description
+msgid "Action on mouse click"
+msgstr "Művelet egérkattintással"
 
-#~ msgid "Design"
-#~ msgstr "Dizájn"
+#. settings-schema.json->onclick-action->tooltip
+msgid "Choose what to do when the desklet was clicked."
+msgstr "Válassza ki, mi a teendő, amikor a deskletre kattintottak."
 
-#~ msgid "Classic (Thick)"
-#~ msgstr "Klasszikus (vastag)"
+#. settings-schema.json->onclick-action->options
+msgid "Open File Manager"
+msgstr "Nyissa meg a Fájlkezelőt"
 
-#~ msgid "Thin"
-#~ msgstr "Vékony"
+#. settings-schema.json->onclick-action->options
+msgid "Open Partition Manager"
+msgstr "Nyissa meg a Partíciókezelőt"
 
-#~ msgid "Compact"
-#~ msgstr "Tömör"
+#. settings-schema.json->onclick-action->options
+msgid "Open System Monitor"
+msgstr "Nyissa meg a Rendszerfigyelőt"
 
-#~ msgid "Draw free/unused space (gray)"
-#~ msgstr "Rajzoljon szabad/fel nem használt területet (szürke)"
+#. settings-schema.json->onclick-action->options
+msgid "Nothing"
+msgstr "Semmi"
 
-#~ msgid "Text"
-#~ msgstr "Szöveg"
+#. settings-schema.json->size-prefix->description
+msgid "Size Prefix"
+msgstr "Méret előtag"
 
-#~ msgid "Name and total space"
-#~ msgstr "Név és teljes terület"
+#. settings-schema.json->size-prefix->options
+msgid "Decimal"
+msgstr "Tizedes"
 
-#~ msgid "Used and total space"
-#~ msgstr "Felhasznált és teljes terület"
+#. settings-schema.json->size-prefix->options
+msgid "Binary"
+msgstr "Bináris"
 
-#~ msgid "Total and used space"
-#~ msgstr "Teljes és elhasznált terület"
+#. settings-schema.json->reserved-blocks-as-used-space->description
+msgid "Show reserved blocks as used space"
+msgstr "A lefoglalt blokkok megjelenítése használt területként"
 
-#~ msgid "Free and total space"
-#~ msgstr "Szabad és teljes terület"
+#. settings-schema.json->reserved-blocks-as-used-space->tooltip
+msgid ""
+"Reserved blocks are useable for the root user only and that's why displayed "
+"as used space by default."
+msgstr ""
+"A lefoglalt blokkok csak a root felhasználó számára használhatók, ezért az "
+"alapértelmezés szerint használt területként jelennek meg."
 
-#~ msgid "Total and free space"
-#~ msgstr "Teljes és szabad terület"
+#. settings-schema.json->head2->description
+msgid "Visual"
+msgstr "Kinézet"
 
-#~ msgid "No text"
-#~ msgstr "Nincs szöveg"
+#. settings-schema.json->design->description
+msgid "Design"
+msgstr "Téma"
 
-#~ msgid "Size Prefix"
-#~ msgstr "Méret előtag"
+#. settings-schema.json->design->options
+msgid "Thin"
+msgstr "Vékony"
 
-#~ msgid "Decimal"
-#~ msgstr "Tizedesjegy"
+#. settings-schema.json->design->options
+msgid "Compact"
+msgstr "Kompakt"
 
-#~ msgid "Binary"
-#~ msgstr "Bináris"
+#. settings-schema.json->design->options
+msgid "Classic (Thick)"
+msgstr "Klasszikus (Vastag)"
 
-#~ msgid "Hide decorations"
-#~ msgstr "Díszítések elrejtése"
+#. settings-schema.json->text-view->description
+msgid "Text"
+msgstr "Szöveg"
 
-#~ msgid "Use a custom circle color"
-#~ msgstr "Egyéni körszín használata"
+#. settings-schema.json->text-view->options
+msgid "Name and total space"
+msgstr "Név és összes terület"
 
-#~ msgid "Circle color"
-#~ msgstr "Körszín"
+#. settings-schema.json->text-view->options
+msgid "Used and total space"
+msgstr "Használt és összes terület"
 
-#~ msgid "Text color"
-#~ msgstr "Szövegszín"
+#. settings-schema.json->text-view->options
+msgid "Total and used space"
+msgstr "Összes és használt terület"
 
-#~ msgid "Increase or decrease the size of this desklet using this scale factor."
-#~ msgstr "Növelje vagy csökkentse az asztalkalmazás méretét ezt a méretezőt használva."
+#. settings-schema.json->text-view->options
+msgid "Free and total space"
+msgstr "Szabad és összes terület"
 
-#~ msgid "Desklet size"
-#~ msgstr "Asztalkalmazás mérete"
+#. settings-schema.json->text-view->options
+msgid "Total and free space"
+msgstr "Összes és szabad terület"
 
-#~ msgid "scale factor"
-#~ msgstr "léptéktényező"
+#. settings-schema.json->text-view->options
+msgid "No text"
+msgstr "Nincs szöveg"
 
-#~ msgid "Custom desklet label (only visible if decorations are enabled)"
-#~ msgstr "Egyéni asztalkalmazás címke (csak akkor látható, ha a dekoráció engedélyezve van)"
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Díszítések elrejtése"
 
-#~ msgid "Use a custom desklet label"
-#~ msgstr "Egyéni asztalkalmazás címke használata"
+#. settings-schema.json->draw-free-space->description
+msgid "Draw free/unused space (gray)"
+msgstr "Szabad/fel nem használt terület rajzolása (szürke)"
 
-#~ msgid "Checking this box allows you to set a custom label in the field below."
-#~ msgstr "Ennek a négyzetnek a bejelölésével egyéni címkét állíthat be az alábbi mezőben."
+#. settings-schema.json->use-own-circle-color->description
+msgid "Use a custom circle color"
+msgstr "Használjon egyéni körszínt"
 
-#~ msgid "Custom desklet label"
-#~ msgstr "Egyéni asztalkalmazás címke"
+#. settings-schema.json->circle-color->description
+msgid "Circle color"
+msgstr "Körszínt"
 
-#~ msgid "Set your custom label here. This field is unavailable unless the checkbox above is enabled."
-#~ msgstr "Itt állítson be egyedi címkét. Ez a mező nem lesz elérhető egészen addig, amíg a fenti kapcsolóval nem engedélyezi."
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Szöveg szín"
 
-#~ msgid "Action on mouse click"
-#~ msgstr "Művelet az egérkattintással"
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "méretezési lépték"
 
-#~ msgid "Choose what to do when the desklet was clicked."
-#~ msgstr "Válassza ki, mit tegyen, amikor az asztalkalmazásra kattintanak."
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Asztalkalmazás mérete"
 
-#~ msgid "Open File Manager"
-#~ msgstr "Fájlkezelő megnyitása"
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Növelje vagy csökkentse a asztalkalmazás méretét ezzel a méretezési "
+"léptékkel."
 
-#~ msgid "Open Partition Manager"
-#~ msgstr "Partíció kezelő megnyitása"
+#. settings-schema.json->head3->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Egyéni asztalkalmazás címke (csak akkor látható, ha a dekoráció "
+"engedélyezve van)"
 
-#~ msgid "Open System Monitor"
-#~ msgstr "Rendszerfigyelő megnyitása"
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Használjon egyedi asztalkalmazás címkét"
 
-#~ msgid "Nothing"
-#~ msgstr "Semmit"
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr "A négyzet bejelölésével egyéni címkét állíthat be az alábbi mezőben."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Egyéni asztalkalmazás címke"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr ""
+"Itt állíthatja be egyéni címkéjét. Ez a mező csak akkor érhető el, ha a "
+"fenti jelölőnégyzet be van kapcsolva."
