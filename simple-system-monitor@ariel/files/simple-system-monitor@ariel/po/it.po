@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-03 14:07-0400\n"
-"PO-Revision-Date: 2023-09-03 14:08-0400\n"
+"PO-Revision-Date: 2023-12-12 18:55+0100\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: 5.8/desklet.js:43 4.0/desklet.js:35
 msgid ""
@@ -37,26 +37,32 @@ msgstr ""
 #: 5.8/desklet.js:112
 msgid "No temp file detected at CPU path. Resetting to default."
 msgstr ""
+"Nessun file temporaneo rilevato nel percorso della CPU. Utilizzo le "
+"impostazioni predefinite."
 
 #: 5.8/desklet.js:116
 msgid "Invalid CPU path detected. Resetting to default."
 msgstr ""
+"Rilevato percorso CPU non valido. Utilizzo le impostazioni predefinite."
 
 #: 5.8/desklet.js:131 5.8/desklet.js:172
 msgid "error reading:"
-msgstr ""
+msgstr "errore di lettura:"
 
 #: 5.8/desklet.js:153
 msgid "No temp file detected at GPU path. Resetting to default."
 msgstr ""
+"Nessun file temporaneo rilevato nel percorso GPU. Utilizzo le impostazioni "
+"predefinite."
 
 #: 5.8/desklet.js:157
 msgid "Invalid GPU path detected. Resetting to default."
 msgstr ""
+"Rilevato percorso GPU non valido. Utilizzo le impostazioni predefinite."
 
 #: 5.8/desklet.js:212 5.8/desklet.js:230
 msgid "Please install missing dependencies."
-msgstr ""
+msgstr "Installa le dipendenze mancanti."
 
 #: 5.8/desklet.js:298 4.0/desklet.js:236 3.0/desklet.js:238
 msgid "CPU:"
@@ -108,104 +114,114 @@ msgstr "Monitor di sistema semplice"
 
 #. 5.8->settings-schema.json->head0->description
 msgid "General Settings"
-msgstr ""
+msgstr "Impostazioni Generali"
 
 #. 5.8->settings-schema.json->title_align->description
 msgid "Alignment for title strings"
-msgstr ""
+msgstr "Allineamento per le stringhe del titolo"
 
 #. 5.8->settings-schema.json->title_align->tooltip
 msgid "CPU, Memory, etc."
-msgstr ""
+msgstr "CPU, Memoria, ecc."
 
 #. 5.8->settings-schema.json->title_align->options
 #. 5.8->settings-schema.json->value_align->options
 msgid "Left"
-msgstr ""
+msgstr "Sinistra"
 
 #. 5.8->settings-schema.json->title_align->options
 #. 5.8->settings-schema.json->value_align->options
 msgid "Right"
-msgstr ""
+msgstr "Destra"
 
 #. 5.8->settings-schema.json->value_align->description
 msgid "Alignment for value strings"
-msgstr ""
+msgstr "Allineamento per stringhe di valori"
 
 #. 5.8->settings-schema.json->value_align->tooltip
 msgid "GB, KB, etc."
-msgstr ""
+msgstr "GB, KB, ecc."
 
 #. 5.8->settings-schema.json->temp_units->options
 msgid "°C"
-msgstr ""
+msgstr "°C"
 
 #. 5.8->settings-schema.json->temp_units->options
 msgid "°F"
-msgstr ""
+msgstr "°F"
 
 #. 5.8->settings-schema.json->temp_units->description
 msgid "Temperature units to display"
-msgstr ""
+msgstr "Unità di temperatura da visualizzare"
 
 #. 5.8->settings-schema.json->font_scale_size->description
 msgid "Scale factor for font size"
-msgstr ""
+msgstr "Fattore di scala per la dimensione del carattere"
 
 #. 5.8->settings-schema.json->font_scale_size->tooltip
 msgid ""
 "Increase or decrease this value to change the font size scale (1.2 = 120%)"
 msgstr ""
+"Aumenta o diminuisci questo valore per modificare la scala delle "
+"dimensioni del carattere (1.2 = 120%)"
 
 #. 5.8->settings-schema.json->font_color->description
 msgid "Font color"
-msgstr ""
+msgstr "Colore font"
 
 #. 5.8->settings-schema.json->font_color->tooltip
 #. 5.8->settings-schema.json->background_color->tooltip
 msgid "RGB or RGBA"
-msgstr ""
+msgstr "RGB o RGBA"
 
 #. 5.8->settings-schema.json->font_family->description
 msgid "Font family for text (blank to use default)"
 msgstr ""
+"Famiglia di caratteri per il testo (vuoto per utilizzare quello "
+"predefinito)"
 
 #. 5.8->settings-schema.json->font_family->tooltip
 msgid "Set a custom font family for the text (blank to use default font)"
 msgstr ""
+"Imposta una famiglia di caratteri personalizzata per il testo (lascia "
+"vuoto per usare quella predefinita)"
 
 #. 5.8->settings-schema.json->width->units
 msgid "px"
-msgstr ""
+msgstr "px"
 
 #. 5.8->settings-schema.json->width->description
 msgid "Fixed width for the desklet"
-msgstr ""
+msgstr "Larghezza fissa per il desklet"
 
 #. 5.8->settings-schema.json->width->tooltip
 msgid ""
 "Increase or decrease this value to set the boundary width of the desklet"
 msgstr ""
+"Aumentare o diminuire questo valore per impostare la larghezza del bordo "
+"del desklet"
 
 #. 5.8->settings-schema.json->show_decorations->description
 msgid "Show background decorations"
-msgstr ""
+msgstr "Mostra le decorazioni dello sfondo"
 
 #. 5.8->settings-schema.json->show_decorations->tooltip
 msgid "Toggle to control whether the background is transparent"
-msgstr ""
+msgstr "Attiva/disattiva per attivare o meno la trasparenza dello sfondo"
 
 #. 5.8->settings-schema.json->background_color->description
 msgid "Background color"
-msgstr ""
+msgstr "Colore di sfondo"
 
 #. 5.8->settings-schema.json->head1->description
 msgid "Advanced Settings"
-msgstr ""
+msgstr "Impostazioni avanzate"
 
 #. 5.8->settings-schema.json->customCPUPath->description
 msgid "Path to CPU temperature directory (device path)"
 msgstr ""
+"Percorso della directory della temperatura della CPU (percorso del "
+"dispositivo)"
 
 #. 5.8->settings-schema.json->customCPUPath->tooltip
 msgid ""
@@ -215,18 +231,25 @@ msgid ""
 "Default:\n"
 "/sys/class/thermal/thermal_zone0"
 msgstr ""
+"Scegli il tuo oggetto CPU termico, ad es. per monitorare un altro sensore "
+"di temperatura.\n"
+"\n"
+"Predefinito:\n"
+"/sys/class/thermal/thermal_zone0"
 
 #. 5.8->settings-schema.json->display_gpu->description
 msgid "Display GPU temperature"
-msgstr ""
+msgstr "Visualizza la temperatura della GPU"
 
 #. 5.8->settings-schema.json->display_gpu->tooltip
 msgid "Toggle to control whether the GPU temperature is displayed"
-msgstr ""
+msgstr "Attiva/disattiva per visualizzare o meno la temperatura della GPU"
 
 #. 5.8->settings-schema.json->customGPUPath->description
 msgid "Path to GPU temperature directory (device path)"
 msgstr ""
+"Percorso della directory della temperatura della GPU (percorso del "
+"dispositivo)"
 
 #. 5.8->settings-schema.json->customGPUPath->tooltip
 msgid ""
@@ -235,3 +258,7 @@ msgid ""
 "Default:\n"
 "/sys/class/thermal/thermal_zone0"
 msgstr ""
+"Scegli il tuo oggetto GPU termico, ad es. per monitorare una GPU.\n"
+"\n"
+"Predefinito:\n"
+"/sys/class/thermal/thermal_zone0"
