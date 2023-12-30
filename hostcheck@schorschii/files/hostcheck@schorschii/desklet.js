@@ -114,7 +114,7 @@ MyDesklet.prototype = {
 				//request.connect('got_headers', Lang.bind(this, function(message){}));
 				this._httpSession.queue_message(request, function(_httpSession, message) {
 					//global.log(url+' '+message.status_code);
-					_httpSession.desklet.commandOut = _('HTTP-Statuscode')+': '+message.status_code;
+					_httpSession.desklet.commandOut = _('HTTP Status Code')+': '+message.status_code;
 					if(message.status_code == '4') {
 						_httpSession.desklet.colorClass = 'red';
 						_httpSession.desklet.statusTagString = _('CRIT');
