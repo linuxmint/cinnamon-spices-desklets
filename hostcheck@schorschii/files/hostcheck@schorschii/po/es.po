@@ -7,41 +7,41 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-05 13:14+0100\n"
-"PO-Revision-Date: 2023-07-20 20:30-0400\n"
+"POT-Creation-Date: 2023-12-31 13:06+0100\n"
+"PO-Revision-Date: 2023-12-31 11:56-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.4\n"
 
-#: desklet.js:120
+#: desklet.js:121
 msgid "UNKNOWN"
 msgstr "DESCONOCIDO"
 
-#: desklet.js:121
+#: desklet.js:122
 msgid "No ping output"
 msgstr "Sin salida de ping"
 
-#: desklet.js:126 desklet.js:141
+#: desklet.js:127 desklet.js:142
 msgid "CRIT"
 msgstr "CRÍTICO"
 
-#: desklet.js:130 desklet.js:145
+#: desklet.js:131 desklet.js:146
 msgid "OK"
 msgstr "OK"
 
-#: desklet.js:134 desklet.js:149
+#: desklet.js:135 desklet.js:150
 msgid "WARN"
 msgstr "AVISO"
 
-#: desklet.js:138
+#: desklet.js:139
 msgid "HTTP Status Code"
 msgstr "Código de estado HTTP"
 
-#: desklet.js:164
+#: desklet.js:166
 msgid "s"
 msgstr "s"
 
@@ -78,6 +78,14 @@ msgstr "Ping"
 msgid "HTTP(S)"
 msgstr "HTTP(S)"
 
+#. settings-schema.json->success-status-code->description
+msgid "HTTP success status code"
+msgstr "Código de estado HTTP correcto"
+
+#. settings-schema.json->success-status-code->tooltip
+msgid "Choose the HTTP status code which should be assumed as success"
+msgstr "Elija el código de estado HTTP que debe asumirse como correcto"
+
 #. settings-schema.json->show-notifications->description
 msgid "Show notifications when state changed"
 msgstr "Mostrar notificaciones cuando cambia el estado"
@@ -105,8 +113,7 @@ msgstr "Tamaño del Desklet"
 #. settings-schema.json->scale-size->tooltip
 msgid "Increase or decrease the size of this desklet using this scale factor."
 msgstr ""
-"Aumente o reduzca el tamaño de este desklet utilizando este factor de "
-"escala."
+"Aumente o reduzca el tamaño de este desklet utilizando este factor de escala."
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
