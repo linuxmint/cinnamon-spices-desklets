@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-06 02:44+0300\n"
+"POT-Creation-Date: 2023-12-31 13:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,6 +75,14 @@ msgstr ""
 
 #. settings-schema.json->type->options
 msgid "HTTP(S)"
+msgstr ""
+
+#. settings-schema.json->success-status-code->description
+msgid "HTTP success status code"
+msgstr ""
+
+#. settings-schema.json->success-status-code->tooltip
+msgid "Choose the HTTP status code which should be assumed as success"
 msgstr ""
 
 #. settings-schema.json->show-notifications->description
