@@ -56,7 +56,7 @@ MyDesklet.prototype = {
 
 		// initialize desklet gui
 		this.colorClass = '';
-		this.statusTagString = '???';
+		this.statusTagString = _('UNKNOWN');
 		this.prevStatusTagString = this.statusTagString;
 		this.commandOut = '';
 		this.setupUI();
