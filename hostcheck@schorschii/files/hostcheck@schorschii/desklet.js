@@ -43,8 +43,9 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "use-custom-label", "use_custom_label", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "custom-label", "custom_label", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scale_size", this.on_setting_changed);
-		this.settings.bindProperty(Settings.BindingDirection.IN, "type", "type", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "host", "host", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "type", "type", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "success-status-code", "success_status_code", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "show-notifications", "show_notifications", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "interval", "interval", this.on_setting_changed);
 
@@ -115,11 +116,12 @@ MyDesklet.prototype = {
 				this._httpSession.queue_message(request, function(_httpSession, message) {
 					//global.log(url+' '+message.status_code);
 					_httpSession.desklet.commandOut = _('HTTP Status Code')+': '+message.status_code;
-					if(message.status_code == '4') {
+					if(parseInt(message.status_code) == NaN || parseInt(message.status_code) < 100) {
+						// connection errors, e.g. timeout
 						_httpSession.desklet.colorClass = 'red';
 						_httpSession.desklet.statusTagString = _('CRIT');
 					}
-					else if(message.status_code == '200') {
+					else if(message.status_code == _httpSession.desklet.success_status_code.trim()) {
 						_httpSession.desklet.colorClass = 'green';
 						_httpSession.desklet.statusTagString = _('OK');
 					}
