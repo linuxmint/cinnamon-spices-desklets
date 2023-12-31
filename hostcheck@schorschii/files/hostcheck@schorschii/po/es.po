@@ -38,7 +38,7 @@ msgid "WARN"
 msgstr "AVISO"
 
 #: desklet.js:138
-msgid "HTTP-Statuscode"
+msgid "HTTP Status Code"
 msgstr "Código de estado HTTP"
 
 #: desklet.js:164

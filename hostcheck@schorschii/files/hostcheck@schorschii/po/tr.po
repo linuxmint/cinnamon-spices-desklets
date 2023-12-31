@@ -39,7 +39,7 @@ msgid "WARN"
 msgstr "UYARI"
 
 #: desklet.js:138
-msgid "HTTP-Statuscode"
+msgid "HTTP Status Code"
 msgstr "HTTP-Durum Kodu"
 
 #: desklet.js:164
