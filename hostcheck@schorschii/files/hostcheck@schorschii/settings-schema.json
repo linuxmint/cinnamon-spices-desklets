@@ -8,6 +8,12 @@
         "type": "header",
         "description": "General"
     },
+    "host": {
+        "type": "entry",
+        "default": "",
+        "description": "Hostname, IP address or HTTP(S)-URL to check",
+        "indent": true
+    },
     "type": {
         "type": "combobox",
         "default": "ping",
@@ -18,16 +24,18 @@
             "HTTP(S)": "http"
         }
     },
+    "success-status-code": {
+        "type": "entry",
+        "default": "200",
+        "description": "HTTP success status code",
+        "indent": true,
+        "dependency": "type=http",
+        "tooltip": "Choose the HTTP status code which should be assumed as success"
+    },
     "show-notifications": {
         "type": "checkbox",
         "description": "Show notifications when state changed",
         "default": true
-    },
-    "host": {
-        "type": "entry",
-        "default": "",
-        "description": "Hostname, IP address or HTTP(S)-URL to check",
-        "indent": true
     },
     "interval": {
         "type": "spinbutton",
