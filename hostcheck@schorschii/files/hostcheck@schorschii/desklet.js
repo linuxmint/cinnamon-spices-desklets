@@ -50,9 +50,8 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "interval", "interval", this.on_setting_changed);
 
 		// init Soup
-		this._httpSession = new Soup.SessionAsync();
+		this._httpSession = new Soup.Session();
 		this._httpSession.desklet = this;
-		Soup.Session.prototype.add_feature.call(this._httpSession, new Soup.ProxyResolverDefault());
 
 		// initialize desklet gui
 		this.colorClass = '';
