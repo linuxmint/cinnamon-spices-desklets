@@ -1,5 +1,7 @@
 const Desklet = imports.ui.desklet;
 const Gio = imports.gi.Gio;
+const GdkPixbuf = imports.gi.GdkPixbuf;
+const Cogl = imports.gi.Cogl;
 const Lang = imports.lang;
 const Mainloop = imports.mainloop;
 const Clutter = imports.gi.Clutter;
@@ -116,9 +118,8 @@ MyDesklet.prototype = {
 //            global.logError(e); // Uncomment only for testing otherwise it fills error log when no connection present
         }
     },
+
     _updateGraph: function() {
-
-
         let path = `/tmp/${this._uuid}`;
         let instancePath = Gio.File.new_for_path(path);
         if (!instancePath.query_exists(null)) {
@@ -129,37 +130,55 @@ MyDesklet.prototype = {
         }
 
         try {
-
            if (this._device != "null") {
-               if (!this.useExtendedDisplay) { this.extendedDisplay = "-s" };
-               let image = `${path}/vnstatImage_${this._device}_${this.extendedDisplay}.png`;
-               let command = 'vnstati ' + this.extendedDisplay + ' -ne -i ' + this._device + ' -o ' + image ;
-//             GLib.spawn_command_line_async(command);
+                if (!this.useExtendedDisplay) { this.extendedDisplay = "-s" };
+                let image = `${path}/vnstatImage_${this._device}_${this.extendedDisplay}.png`;
+                let command = 'vnstati ' + this.extendedDisplay + ' -ne -i ' + this._device + ' -o ' + image ;
+                Util.spawnCommandLineAsync(command, () => {
+                    const layout = new Clutter.BinLayout();
+                    const box = new Clutter.Box();
 
-               Util.spawnCommandLineAsync(command, () => {
-                    let l = new Clutter.BinLayout();
-                    let b = new Clutter.Box();
-                    let c = new Clutter.Texture({keep_aspect_ratio: true, filter_quality: 2, filename: image });
-                    b.set_layout_manager(l);
-                    b.add_actor(c);
+                    const pixbuf = GdkPixbuf.Pixbuf.new_from_file(image);
+                    const c_image = new Clutter.Image();
+                    c_image.set_data(
+                        pixbuf.get_pixels(),
+                        pixbuf.get_has_alpha() ? Cogl.PixelFormat.RGBA_8888 : Cogl.PixelFormat.RGB_888,
+                        pixbuf.get_width(),
+                        pixbuf.get_height(),
+                        pixbuf.get_rowstride()
+                    );
+
+                    const actor = new Clutter.Actor({width: pixbuf.get_width(), height: pixbuf.get_height()});
+                    actor.set_content(c_image);
+
+                    box.set_layout_manager(layout);
+                    box.add_actor(actor);
                     this.imageWidget.destroy_all_children();
-                    this.imageWidget.set_child(b);
+                    this.imageWidget.set_child(box);
+                }, () => {
+                    this._showErrorMessage("Error running vnstati command.\n");
                 });
              }
         }
         catch (e) {
-            this.warnings = new St.BoxLayout({vertical: true});
-            this.missingDependencies = new St.Label({text: _("Please make sure vnstat and vnstati are installed and that the vnstat daemon is running!")
-                                  + "\n" + _("In Linux Mint, you can simply run 'apt install vnstati' and that will take care of everything.")
-                                  + "\n" + _("In other distributions it might depend on the way things are packaged but its likely to be similar.")
-                                  + "\n" + _("The Interface detected was: " + this._device )
-});
-            this.warnings.add(this.missingDependencies);
-            this.setContent(this.warnings);
-//            global.logError(e);
+            this._showErrorMessage("Error: " + e.message + "\n");
         }
+    },
+
+    _showErrorMessage: function(message) {
+        this.warnings = new St.BoxLayout({vertical: true});
+        this.missingDependencies = new St.Label({text: message
+            + _("Please make sure vnstat and vnstati are installed and that the vnstat daemon is running!")
+            + "\n" + _("In Linux Mint, you can simply run 'apt install vnstati' and that will take care of everything.")
+            + "\n" + _("In other distributions it might depend on the way things are packaged but its likely to be similar.")
+            + "\n" + _("The Interface detected was: " + this._device )
+        });
+        this.warnings.add(this.missingDependencies);
+        this.setContent(this.warnings);
     }
 }
+
+
 
 function main(metadata, desklet_id){
     let desklet = new MyDesklet(metadata, desklet_id);
