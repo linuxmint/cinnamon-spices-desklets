@@ -19,6 +19,8 @@ const fromXML = require('./fromXML');
 
 const uuid = "yarr@jtoberling";
 
+const ByteArray = imports.byteArray;
+
 class YarrDesklet extends Desklet.Desklet {
 
     statusOk = false;
