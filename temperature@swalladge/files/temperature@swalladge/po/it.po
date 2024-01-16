@@ -7,46 +7,46 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 11:45+0200\n"
-"PO-Revision-Date: 2022-06-03 12:54+0200\n"
+"POT-Creation-Date: 2023-12-07 18:00+0300\n"
+"PO-Revision-Date: 2023-12-12 18:58+0100\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: desklet.js:80
 msgid "error"
 msgstr "errore"
 
-#. temperature@swalladge->metadata.json->description
-msgid "Displays the current temperature from the temperature server."
-msgstr "Visualizza la temperatura corrente dal server della temperatura."
+#. metadata.json->description
+msgid "Displays the current temperature from the rpi temperature server."
+msgstr "Visualizza la temperatura corrente dal server della temperatura RPI."
 
-#. temperature@swalladge->metadata.json->name
+#. metadata.json->name
 msgid "Temperature"
 msgstr "Temperatura"
 
-#. temperature@swalladge->settings-schema.json->width->description
-msgid "Width :"
-msgstr "Larghezza:"
-
-#. temperature@swalladge->settings-schema.json->width->units
-#. temperature@swalladge->settings-schema.json->height->units
-msgid "pixels"
-msgstr "pixel"
-
-#. temperature@swalladge->settings-schema.json->head->description
+#. settings-schema.json->head->description
 msgid "Current Temperature Settings"
 msgstr "Impostazioni Temperatura Attuale"
 
-#. temperature@swalladge->settings-schema.json->server->description
-msgid "Server :"
-msgstr "Server:"
-
-#. temperature@swalladge->settings-schema.json->height->description
+#. settings-schema.json->height->description
 msgid "Height :"
 msgstr "Altezza:"
+
+#. settings-schema.json->height->units
+#. settings-schema.json->width->units
+msgid "pixels"
+msgstr "pixel"
+
+#. settings-schema.json->width->description
+msgid "Width :"
+msgstr "Larghezza:"
+
+#. settings-schema.json->server->description
+msgid "Server :"
+msgstr "Server:"

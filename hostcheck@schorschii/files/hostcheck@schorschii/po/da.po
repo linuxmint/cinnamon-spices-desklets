@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-18 18:53+0100\n"
-"PO-Revision-Date: 2023-05-05 14:25+0100\n"
+"POT-Creation-Date: 2023-12-31 13:06+0100\n"
+"PO-Revision-Date: 2024-01-01 10:19+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
 "Language: da\n"
@@ -16,31 +16,31 @@ msgstr ""
 "X-Poedit-SearchPath-0: desklet.js\n"
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
-#: desklet.js:120
+#: desklet.js:121
 msgid "UNKNOWN"
 msgstr "UKENDT"
 
-#: desklet.js:121
+#: desklet.js:122
 msgid "No ping output"
 msgstr "Intet ping-output"
 
-#: desklet.js:126 desklet.js:141
+#: desklet.js:127 desklet.js:142
 msgid "CRIT"
 msgstr "KRIT"
 
-#: desklet.js:130 desklet.js:145
+#: desklet.js:131 desklet.js:146
 msgid "OK"
 msgstr "OK"
 
-#: desklet.js:134 desklet.js:149
+#: desklet.js:135 desklet.js:150
 msgid "WARN"
 msgstr "ADV"
 
-#: desklet.js:138
-msgid "HTTP-Statuscode"
+#: desklet.js:139
+msgid "HTTP Status Code"
 msgstr "HTTP-statuskode"
 
-#: desklet.js:164
+#: desklet.js:166
 msgid "s"
 msgstr "s"
 
@@ -75,6 +75,14 @@ msgstr "Ping"
 #. settings-schema.json->type->options
 msgid "HTTP(S)"
 msgstr "HTTP(S)"
+
+#. settings-schema.json->success-status-code->description
+msgid "HTTP success status code"
+msgstr "Statuskode for vellykket HTTP"
+
+#. settings-schema.json->success-status-code->tooltip
+msgid "Choose the HTTP status code which should be assumed as success"
+msgstr "Vælg den HTTP-statuskode, der skal opfattes som vellykket"
 
 #. settings-schema.json->show-notifications->description
 msgid "Show notifications when state changed"

@@ -2,21 +2,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-14 14:37+0100\n"
-"PO-Revision-Date: 2022-06-03 12:42+0200\n"
+"POT-Creation-Date: 2023-04-04 15:06+0200\n"
+"PO-Revision-Date: 2023-12-12 18:46+0100\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
-"X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: desklet.js\n"
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
-#: desklet.js:137
+#: desklet.js:130
+msgid "Refresh"
+msgstr "Aggiorna"
+
+#: desklet.js:143
 msgid ""
 "Can't read text file.\n"
 "Select a file in settings.\n"
@@ -28,7 +32,7 @@ msgstr ""
 "\n"
 "Clicca qui per modificare."
 
-#: desklet.js:229
+#: desklet.js:263
 msgid "Notepad"
 msgstr "Blocco note"
 
@@ -236,6 +240,14 @@ msgstr "Nessuno"
 msgid "Select the background graphic you would like to use."
 msgstr "Seleziona l'immagine di sfondo che desideri utilizzare."
 
+#. settings-schema.json->bg-color->description
+msgid "Background color"
+msgstr "Colore di sfondo"
+
+#. settings-schema.json->bg-color->tooltip
+msgid "Set the background color of this desklet."
+msgstr "Imposta il colore di sfondo di questo desklet."
+
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
 msgstr "Nascondi decorazioni"
@@ -255,12 +267,6 @@ msgstr "Dimensione carattere"
 #. settings-schema.json->size-font->tooltip
 msgid "Increase or decrease the note font size."
 msgstr "Aumenta o riduci le dimensioni del font delle note."
-
-#. settings-schema.json->scale-size->tooltip
-msgid "Increase or decrease the size of this desklet using this scale factor."
-msgstr ""
-"Aumenta o riduci le dimensioni di questo desklet utilizzando questo fattore "
-"di scala."
 
 #. settings-schema.json->font-bold->description
 msgid "Bold"
@@ -285,6 +291,12 @@ msgstr "fattore di scala"
 #. settings-schema.json->scale-size->description
 msgid "Desklet size"
 msgstr "Dimensioni desklet"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Aumenta o riduci le dimensioni di questo desklet utilizzando questo fattore "
+"di scala."
 
 #. settings-schema.json->head3->description
 msgid "Custom desklet label (only visible if decorations are enabled)"

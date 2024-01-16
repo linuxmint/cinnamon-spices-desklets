@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: Analog Chronometer VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-04 18:03+0100\n"
-"PO-Revision-Date: 2021-04-11 10:34+0200\n"
+"PO-Revision-Date: 2023-10-22 20:26+0200\n"
+"Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
+"Language-Team: \n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: hu\n"
-"Last-Translator: Balazs Bosak <bossbob88@gmail.com>\n"
-"Language-Team: \n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: desklet.js:190
 msgid "Clock"
@@ -48,6 +48,10 @@ msgstr "Sötét átlátszó"
 #. clock@schorschii->settings-schema.json->style->options
 msgid "Light Transparent"
 msgstr "Világos átlátszó"
+
+#. clock@schorschii->settings-schema.json->style->options
+msgid "Semitransparent"
+msgstr "Félig átlátszó"
 
 #. clock@schorschii->settings-schema.json->style->options
 msgid "Custom"
@@ -186,8 +190,8 @@ msgid ""
 "Set your custom label here, e.g. for multiple timezones. This field is "
 "unavailable unless the checkbox above is enabled."
 msgstr ""
-"Itt állítsa be az egyéni címkét, például több időzónához. Ez a mező csak akkor "
-"érhető el, ha a fenti négyzet be van jelölve."
+"Itt állítsa be az egyéni címkét, például több időzónához. Ez a mező csak "
+"akkor érhető el, ha a fenti négyzet be van jelölve."
 
 #. clock@schorschii->settings-schema.json->smooth-minutes-hand->description
 msgid "Smooth minute hand"

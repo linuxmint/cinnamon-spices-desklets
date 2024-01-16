@@ -9,6 +9,7 @@ const Clutter = imports.gi.Clutter;
 const Cairo = imports.cairo;
 const Gio = imports.gi.Gio;
 const Gettext = imports.gettext;
+const Soup = imports.gi.Soup;
 
 const UUID = "hostcheck@schorschii";
 const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
@@ -30,7 +31,6 @@ function main(metadata, desklet_id) {
 	return new MyDesklet(metadata, desklet_id);
 }
 
-
 MyDesklet.prototype = {
 	__proto__: Desklet.Desklet.prototype,
 
@@ -43,20 +43,30 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "use-custom-label", "use_custom_label", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "custom-label", "custom_label", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scale_size", this.on_setting_changed);
-		this.settings.bindProperty(Settings.BindingDirection.IN, "type", "type", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "host", "host", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "type", "type", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "success-status-code", "success_status_code", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "show-notifications", "show_notifications", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "interval", "interval", this.on_setting_changed);
 
+		// init Soup
+		this._httpSession = new Soup.Session();
+		this._httpSession.desklet = this;
+
 		// initialize desklet gui
+		this.colorClass = '';
+		this.statusTagString = _('UNKNOWN');
+		this.prevStatusTagString = this.statusTagString;
+		this.commandOut = '';
 		this.setupUI();
 	},
 
 	setupUI: function() {
 		// defaults and initial values
-		this.defaultWidth = 120;
-		this.defaultHeight = 38;
-		this.defaultInset = 8; // 2*Padding
+		this.defaultWidth = 140;
+		this.defaultHeight = 42;
+		this.defaultInset = 10; // 2*Padding
+		this.defaultFontSize = 16;
 
 		// create objects
 		this.statusLabel = new St.Label({style_class:"statusbox"});
@@ -72,6 +82,7 @@ MyDesklet.prototype = {
 		this.refreshDecoration();
 
 		// set initial values
+		this.showStatus();
 		this.refresh();
 	},
 
@@ -84,38 +95,54 @@ MyDesklet.prototype = {
 	},
 
 	queryStatus: function() {
-		// https://lazka.github.io/pgi-docs/Gio-2.0/classes/Subprocess.html#Gio.Subprocess.wait_async
-		let subprocess = new Gio.Subprocess({
-			argv: ['/bin/echo'], // dummy
-			flags: Gio.SubprocessFlags.STDOUT_PIPE,
-		});
 		if(this.type == 'ping') {
 			let subprocessl = new Gio.SubprocessLauncher({
 				flags: Gio.SubprocessFlags.STDOUT_PIPE,
 			});
 			subprocessl.setenv("LANG", "en", true);
-			subprocess = subprocessl.spawnv(['/bin/ping',this.host,'-c1','-w2']);
+			let subprocess = subprocessl.spawnv(['/bin/ping',this.host,'-c1','-w2']);
+			subprocess.desklet = this;
+			subprocess.wait_async(null, this.commandCallback);
 		}
 		else if(this.type == 'http') {
-			subprocess = new Gio.Subprocess({
-				argv: ['/usr/bin/curl','-s','-o','/dev/null','-w','"%{http_code}"','-m','5',this.host],
-				flags: Gio.SubprocessFlags.STDOUT_PIPE,
-			});
-			subprocess.init(null);
+			let url = this.host;
+			if(!url.startsWith('http://') && !url.startsWith('https://')) {
+				url = 'http://'+url;
+			}
+			var request = Soup.Message.new('GET', url);
+			if(request) {
+				//request.connect('got_headers', Lang.bind(this, function(message){}));
+				this._httpSession.queue_message(request, function(_httpSession, message) {
+					//global.log(url+' '+message.status_code);
+					_httpSession.desklet.commandOut = _('HTTP Status Code')+': '+message.status_code;
+					if(parseInt(message.status_code) == NaN || parseInt(message.status_code) < 100) {
+						// connection errors, e.g. timeout
+						_httpSession.desklet.colorClass = 'red';
+						_httpSession.desklet.statusTagString = _('CRIT');
+					}
+					else if(message.status_code == _httpSession.desklet.success_status_code.trim()) {
+						_httpSession.desklet.colorClass = 'green';
+						_httpSession.desklet.statusTagString = _('OK');
+					}
+					else {
+						_httpSession.desklet.colorClass = 'yellow';
+						_httpSession.desklet.statusTagString = _('WARN');
+					}
+					_httpSession.desklet.showStatus();
+				});
+			} else {
+				this.colorClass = 'yellow';
+				this.statusTagString = _('WARN');
+				this.showStatus();
+			}
 		}
-		else {
-			return;
-		}
-		subprocess.desklet = this;
-		subprocess.wait_async(null, this.commandCallback);
 	},
 
 	commandCallback: function(source_object, res) {
 		let [, out] = source_object.communicate_utf8(null, null);
 		//global.log(out); //debug
 		source_object.desklet.commandOut = out;
-
-		if(out == "") {
+		if(out == '') {
 			source_object.desklet.colorClass = '';
 			source_object.desklet.statusTagString = _('UNKNOWN');
 			source_object.desklet.commandOut = _('No ping output');
@@ -134,44 +161,29 @@ MyDesklet.prototype = {
 				source_object.desklet.statusTagString = _('WARN');
 			}
 		}
-		else if(source_object.desklet.type == 'http') {
-			source_object.desklet.commandOut = _('HTTP-Statuscode')+': '+out;
-			if(out.includes('000')) {
-				source_object.desklet.colorClass = 'red';
-				source_object.desklet.statusTagString = _('CRIT');
-			}
-			else if(out.includes('200')) {
-				source_object.desklet.colorClass = 'green';
-				source_object.desklet.statusTagString = _('OK');
-			}
-			else {
-				source_object.desklet.colorClass = 'yellow';
-				source_object.desklet.statusTagString = _('WARN');
-			}
-		}
-
 		source_object.desklet.showStatus();
 	},
 
 	showStatus: function() {
 		// refresh desklet content
 		// calc new sizes based on scale factor
-		let absolute_size_x = (this.defaultWidth * this.scale_size * global.ui_scale) + (this.defaultInset * this.scale_size * global.ui_scale);
-		let absolute_size_y = (this.defaultHeight * this.scale_size * global.ui_scale) + (this.defaultInset * this.scale_size * global.ui_scale);
+		let absolute_width = (this.defaultWidth * this.scale_size * global.ui_scale) + (this.defaultInset * this.scale_size * global.ui_scale);
+		let absolute_height = (this.defaultHeight * this.scale_size * global.ui_scale) + (this.defaultInset * this.scale_size * global.ui_scale);
 		let label_size_x = this.defaultWidth * this.scale_size * global.ui_scale;
-		let label_size_y = this.defaultHeight * this.scale_size * global.ui_scale
+		let label_size_y = this.defaultHeight * this.scale_size * global.ui_scale;
+		let font_size = Math.round(this.defaultFontSize * this.scale_size * global.ui_scale);
 		// modify label
 		let statusString = this.statusTagString + " (" + this.interval + _('s') + ")\n" + this.host;
 		this.statusLabel.set_text(statusString);
 		this.statusLabel.style_class = "statusbox "+this.colorClass;
-		this.statusLabel.style = "width:"+label_size_x+"px; height:"+label_size_y+"px;";
+		this.statusLabel.style = "width:"+label_size_x+"px; height:"+label_size_y+"px; font-size:"+font_size+"px";
 		// modify desklet canvas
-		this.canvas.set_size(absolute_size_x, absolute_size_y);
+		this.canvas.set_size(absolute_width, absolute_height);
 
 		// desktop notification
 		if(this.prevStatusTagString != "" && this.prevStatusTagString != this.statusTagString) {
 			if(this.show_notifications) {
-				Main.notifyError(this.statusTagString+": "+this.host, this.commandOut);
+				Main.notifyError(this.statusTagString+": "+this.host, this.commandOut.trim());
 			}
 			this.prevStatusTagString = this.statusTagString;
 		}

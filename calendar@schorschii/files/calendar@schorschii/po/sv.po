@@ -170,17 +170,17 @@ msgid ""
 msgstr "Aktivering låter dig ange en iCal-fil som tolkas i fältet nedan."
 
 #. calendar@schorschii->settings-schema.json->ical-file->description
-msgid "Path to ical file"
-msgstr "Sökväg till iCal-filen"
+msgid "Path to ical/ics file"
+msgstr "Sökväg till iCal/ics-filen"
 
 #. calendar@schorschii->settings-schema.json->ical-file->tooltip
 msgid ""
-"Select your ical file for reading the amount of appointments today.\n"
+"Select your ical or ics file for reading the amount of appointments today.\n"
 "\n"
 "You can configure Lightning (the Thunderbird Add-On) to save your calendar "
 "in an ical file."
 msgstr ""
-"Välj iCal-fil för inläsning av dagens inbokade händelser.\n"
+"Välj din ical- eller ics-fil för att läsa antalet möten idag.\n"
 "\n"
 "Du kan konfigurera Lightning (Thunderbird-tillägg) till att spara din "
 "kalender i en iCal-fil."

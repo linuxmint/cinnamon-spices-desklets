@@ -8,14 +8,15 @@ msgstr ""
 "Project-Id-Version: 1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-18 18:53+0100\n"
-"PO-Revision-Date: 2023-05-05 14:25+0100\n"
+"PO-Revision-Date: 2024-01-07 00:42-0500\n"
 "Last-Translator: Balazs Bosak <bossbob88@gmail.com>\n"
 "Language-Team: \n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: desklet.js:120
 msgid "UNKNOWN"
@@ -38,7 +39,7 @@ msgid "WARN"
 msgstr "FIGYELMEZTET"
 
 #: desklet.js:138
-msgid "HTTP-Statuscode"
+msgid "HTTP Status Code"
 msgstr "HTTP-Statuscode"
 
 #: desklet.js:164
@@ -69,8 +70,7 @@ msgstr "Ping vagy HTTP(S) ellenőrzés"
 #. settings-schema.json->type->tooltip
 msgid "Choose, if this desklet should do a ping or HTTP(S) check."
 msgstr ""
-"Válasszon, hogy az asztalkalmazás végezzen-e pinget vagy HTTP(S) "
-"ellenőrzést."
+"Válasszon, hogy az asztalkalmazás végezzen-e pinget vagy HTTP(S) ellenőrzést."
 
 #. settings-schema.json->type->options
 msgid "Ping"
@@ -116,8 +116,8 @@ msgstr "Díszítések elrejtése"
 #. settings-schema.json->head3->description
 msgid "Custom desklet label (only visible if decorations are enabled)"
 msgstr ""
-"Egyéni asztalkalmazás címke (csak akkor látható, ha a dekoráció "
-"engedélyezve van)"
+"Egyéni asztalkalmazás címke (csak akkor látható, ha a dekoráció engedélyezve "
+"van)"
 
 #. settings-schema.json->use-custom-label->description
 msgid "Use a custom desklet label"
@@ -140,3 +140,11 @@ msgid ""
 msgstr ""
 "Itt állítson be egyedi címkét. Ez a mező nem lesz elérhető egészen addig, "
 "amíg a fenti négyzetben ezt nem engedélyezi."
+
+#. settings-schema.json->success-status-code->description
+msgid "HTTP success status code"
+msgstr "HTTP sikeres állapotkód"
+
+#. settings-schema.json->success-status-code->tooltip
+msgid "Choose the HTTP status code which should be assumed as success"
+msgstr "Válassza ki azt a HTTP állapotkódot, amelyet sikeresnek kell tekinteni"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-05 13:14+0100\n"
+"POT-Creation-Date: 2023-12-31 13:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,31 +17,31 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:120
+#: desklet.js:121
 msgid "UNKNOWN"
 msgstr ""
 
-#: desklet.js:121
+#: desklet.js:122
 msgid "No ping output"
 msgstr ""
 
-#: desklet.js:126 desklet.js:141
+#: desklet.js:127 desklet.js:142
 msgid "CRIT"
 msgstr ""
 
-#: desklet.js:130 desklet.js:145
+#: desklet.js:131 desklet.js:146
 msgid "OK"
 msgstr ""
 
-#: desklet.js:134 desklet.js:149
+#: desklet.js:135 desklet.js:150
 msgid "WARN"
 msgstr ""
 
-#: desklet.js:138
-msgid "HTTP-Statuscode"
+#: desklet.js:139
+msgid "HTTP Status Code"
 msgstr ""
 
-#: desklet.js:164
+#: desklet.js:166
 msgid "s"
 msgstr ""
 
@@ -75,6 +75,14 @@ msgstr ""
 
 #. settings-schema.json->type->options
 msgid "HTTP(S)"
+msgstr ""
+
+#. settings-schema.json->success-status-code->description
+msgid "HTTP success status code"
+msgstr ""
+
+#. settings-schema.json->success-status-code->tooltip
+msgid "Choose the HTTP status code which should be assumed as success"
 msgstr ""
 
 #. settings-schema.json->show-notifications->description

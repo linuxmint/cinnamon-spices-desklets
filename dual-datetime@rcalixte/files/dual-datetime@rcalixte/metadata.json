@@ -1,6 +1,6 @@
 {
-    "description": "A desklet that can display dual datetime strings", 
-    "uuid": "dual-datetime@rcalixte", 
+    "description": "A highly customizable clock desklet that can display dual datetime strings",
+    "uuid": "dual-datetime@rcalixte",
     "name": "Dual Datetime",
     "cinnamon-version": [
         "5.4",

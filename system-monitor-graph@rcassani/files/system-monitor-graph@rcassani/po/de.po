@@ -84,6 +84,39 @@ msgstr "HDD"
 msgid "GPU"
 msgstr "GPU"
 
+#. settings-schema.json->data-prefix-ram->options
+#. settings-schema.json->data-prefix-swap->options
+#. settings-schema.json->data-prefix-hdd->options
+#. settings-schema.json->data-prefix-gpumem->options
+msgid "Binary prefix or IEC (1 GiB = 1024³ bytes)"
+msgstr "Binär bzw. IEC (1 GiB = 1024³ Bytes)"
+
+#. settings-schema.json->data-prefix-ram->options
+#. settings-schema.json->data-prefix-swap->options
+#. settings-schema.json->data-prefix-hdd->options
+#. settings-schema.json->data-prefix-gpumem->options
+msgid "Decimal prefix (1 GB = 1000³ bytes)"
+msgstr "Dezimal (1 GB = 1000³ Bytes)"
+
+#. settings-schema.json->data-prefix-ram->description
+#. settings-schema.json->data-prefix-swap->description
+#. settings-schema.json->data-prefix-hdd->description
+#. settings-schema.json->data-prefix-gpumem->description
+msgid "Prefix for data units"
+msgstr "Präfixe für Speichergrößen"
+
+#. settings-schema.json->data-prefix-ram->tooltip
+msgid "Unit prefix for RAM size."
+msgstr "Einheiten-Präfix für RAM-Größe."
+
+#. settings-schema.json->data-prefix-swap->tooltip
+msgid "Unit prefix for Swap size."
+msgstr "Einheiten-Präfix für Swap-Größe."
+
+#. settings-schema.json->data-prefix-hdd->tooltip
+msgid "Unit prefix for Filesystem size."
+msgstr "Einheiten-Präfix für Dateisystem-Größe."
+
 #. settings-schema.json->filesystem->description
 msgid "Filesystem to monitor"
 msgstr "Anzuzeigendes Dateisystem"
@@ -135,6 +168,10 @@ msgstr "Auslastung"
 #. settings-schema.json->gpu-variable->options
 msgid "Memory"
 msgstr "Speicher"
+
+#. settings-schema.json->data-prefix-gpumem->tooltip
+msgid "Unit prefix for GPU memory size."
+msgstr "Einheiten-Präfix für GPU-Speichergröße."
 
 #. settings-schema.json->duration->description
 msgid "Duration of the graph"
