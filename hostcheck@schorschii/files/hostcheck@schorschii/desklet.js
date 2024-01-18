@@ -97,20 +97,23 @@ MyDesklet.prototype = {
 	queryStatus: function() {
 		if(this.type == 'ping') {
 
-			let success;
-			[success, this.child_pid, this.std_in, this.std_out, this.std_err] = GLib.spawn_async_with_pipes(
-				null, /*working dir*/
-				['/bin/ping', this.host, '-c1', '-w2'], /*argv*/
-				null, /*envp*/
-				GLib.SpawnFlags.DO_NOT_REAP_CHILD | GLib.SpawnFlags.LEAVE_DESCRIPTORS_OPEN,
-				null
-			);
-			GLib.close(this.std_in);
-			if(success) {
+			try {
+				let [success, child_pid, std_in, std_out, std_err] = GLib.spawn_async_with_pipes(
+					null, /*working dir*/
+					['/bin/ping', this.host, '-c1', '-w2'], /*argv*/
+					null, /*envp*/
+					GLib.SpawnFlags.DO_NOT_REAP_CHILD | GLib.SpawnFlags.LEAVE_DESCRIPTORS_OPEN,
+					null
+				);
+				GLib.close(std_in);
+				GLib.close(std_err);
+				if(!success) {
+					throw new Error(_('Error executing ping command!'));
+				}
 				let deskletInstance = this;
-				this.ioChannelStdOut = GLib.IOChannel.unix_new(this.std_out);
-				this.tagWatchStdOut = GLib.io_add_watch(
-					this.ioChannelStdOut, GLib.PRIORITY_DEFAULT,
+				let ioChannelStdOut = GLib.IOChannel.unix_new(std_out);
+				let tagWatchStdOut = GLib.io_add_watch(
+					ioChannelStdOut, GLib.PRIORITY_DEFAULT,
 					GLib.IOCondition.IN | GLib.IOCondition.HUP,
 					function(channel, condition, data) {
 						if(condition != GLib.IOCondition.HUP) {
@@ -139,9 +142,9 @@ MyDesklet.prototype = {
 							}
 							deskletInstance.showStatus();
 						}
-						GLib.source_remove(this.tagWatchStdOut);
+						GLib.source_remove(tagWatchStdOut);
 						channel.shutdown(true);
-						//GLib.spawn_close_pid(pid);
+						GLib.spawn_close_pid(child_pid);
 					}
 				);
 				//this.ioChannelStdErr = GLib.IOChannel.unix_new(this.std_err);
@@ -150,11 +153,12 @@ MyDesklet.prototype = {
 				//	GLib.IOCondition.IN | GLib.IOCondition.HUP,
 				//	function(channel, condition, data) {}
 				//);
-			} else {
-				source_object.desklet.commandOut = _('Error executing ping command!');
-				source_object.desklet.colorClass = 'red';
-				source_object.desklet.statusTagString = _('CRIT');
-				source_object.desklet.showStatus();
+			} catch(error) {
+				this.commandOut = error.toString();
+				this.colorClass = 'red';
+				this.statusTagString = _('CRIT');
+				this.showStatus();
+				return;
 			}
 
 		} else if(this.type == 'http') {
@@ -167,7 +171,7 @@ MyDesklet.prototype = {
 			if(request) {
 				//request.connect('got_headers', Lang.bind(this, function(message){}));
 				this._httpSession.queue_message(request, function(_httpSession, message) {
-					//global.log(url+' '+message.status_code);
+					//global.log(url+' '+message.status_code); // debug
 					_httpSession.desklet.commandOut = _('HTTP Status Code')+': '+message.status_code;
 					if(parseInt(message.status_code) == NaN || parseInt(message.status_code) < 100) {
 						// connection errors, e.g. timeout
