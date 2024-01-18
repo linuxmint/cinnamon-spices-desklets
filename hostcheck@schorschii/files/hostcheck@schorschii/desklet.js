@@ -96,15 +96,69 @@ MyDesklet.prototype = {
 
 	queryStatus: function() {
 		if(this.type == 'ping') {
-			let subprocessl = new Gio.SubprocessLauncher({
-				flags: Gio.SubprocessFlags.STDOUT_PIPE,
-			});
-			subprocessl.setenv("LANG", "en", true);
-			let subprocess = subprocessl.spawnv(['/bin/ping',this.host,'-c1','-w2']);
-			subprocess.desklet = this;
-			subprocess.wait_async(null, this.commandCallback);
-		}
-		else if(this.type == 'http') {
+
+			let success;
+			[success, this.child_pid, this.std_in, this.std_out, this.std_err] = GLib.spawn_async_with_pipes(
+				null, /*working dir*/
+				['/bin/ping', this.host, '-c1', '-w2'], /*argv*/
+				null, /*envp*/
+				GLib.SpawnFlags.DO_NOT_REAP_CHILD | GLib.SpawnFlags.LEAVE_DESCRIPTORS_OPEN,
+				null
+			);
+			GLib.close(this.std_in);
+			if(success) {
+				let deskletInstance = this;
+				this.ioChannelStdOut = GLib.IOChannel.unix_new(this.std_out);
+				this.tagWatchStdOut = GLib.io_add_watch(
+					this.ioChannelStdOut, GLib.PRIORITY_DEFAULT,
+					GLib.IOCondition.IN | GLib.IOCondition.HUP,
+					function(channel, condition, data) {
+						if(condition != GLib.IOCondition.HUP) {
+							let [status, out] = channel.read_to_end();
+							out = out.toString();
+							//global.log(status + " === " + out); // debug
+							deskletInstance.commandOut = out;
+							if(out == '') {
+								deskletInstance.colorClass = '';
+								deskletInstance.statusTagString = _('UNKNOWN');
+								deskletInstance.commandOut = _('No ping output');
+							}
+							else if(deskletInstance.type == 'ping') {
+								if(out.includes(' 100% packet loss')) {
+									deskletInstance.colorClass = 'red';
+									deskletInstance.statusTagString = _('CRIT');
+								}
+								else if(out.includes(' 0% packet loss')) {
+									deskletInstance.colorClass = 'green';
+									deskletInstance.statusTagString = _('OK');
+								}
+								else {
+									deskletInstance.colorClass = 'yellow';
+									deskletInstance.statusTagString = _('WARN');
+								}
+							}
+							deskletInstance.showStatus();
+						}
+						GLib.source_remove(this.tagWatchStdOut);
+						channel.shutdown(true);
+						//GLib.spawn_close_pid(pid);
+					}
+				);
+				//this.ioChannelStdErr = GLib.IOChannel.unix_new(this.std_err);
+				//this.tagWatchStdErr = GLib.io_add_watch(
+				//	this.ioChannelStdErr, GLib.PRIORITY_DEFAULT,
+				//	GLib.IOCondition.IN | GLib.IOCondition.HUP,
+				//	function(channel, condition, data) {}
+				//);
+			} else {
+				source_object.desklet.commandOut = _('Error executing ping command!');
+				source_object.desklet.colorClass = 'red';
+				source_object.desklet.statusTagString = _('CRIT');
+				source_object.desklet.showStatus();
+			}
+
+		} else if(this.type == 'http') {
+
 			let url = this.host;
 			if(!url.startsWith('http://') && !url.startsWith('https://')) {
 				url = 'http://'+url;
@@ -135,33 +189,8 @@ MyDesklet.prototype = {
 				this.statusTagString = _('WARN');
 				this.showStatus();
 			}
-		}
-	},
 
-	commandCallback: function(source_object, res) {
-		let [, out] = source_object.communicate_utf8(null, null);
-		//global.log(out); //debug
-		source_object.desklet.commandOut = out;
-		if(out == '') {
-			source_object.desklet.colorClass = '';
-			source_object.desklet.statusTagString = _('UNKNOWN');
-			source_object.desklet.commandOut = _('No ping output');
 		}
-		else if(source_object.desklet.type == 'ping') {
-			if(out.includes(' 100% packet loss')) {
-				source_object.desklet.colorClass = 'red';
-				source_object.desklet.statusTagString = _('CRIT');
-			}
-			else if(out.includes(' 0% packet loss')) {
-				source_object.desklet.colorClass = 'green';
-				source_object.desklet.statusTagString = _('OK');
-			}
-			else {
-				source_object.desklet.colorClass = 'yellow';
-				source_object.desklet.statusTagString = _('WARN');
-			}
-		}
-		source_object.desklet.showStatus();
 	},
 
 	showStatus: function() {
