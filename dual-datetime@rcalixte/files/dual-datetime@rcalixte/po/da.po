@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.2\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 23:03-0500\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/issues\n"
+"POT-Creation-Date: 2024-02-05 15:53-0500\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
@@ -18,8 +18,7 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #. metadata.json->description
-msgid ""
-"A highly customizable clock desklet that can display dual datetime strings"
+msgid "A highly customizable clock desklet that can display dual datetime strings"
 msgstr "Et ur som kan tilpasses til at vise to tider/datoer"
 
 #. metadata.json->name
@@ -37,12 +36,8 @@ msgstr "Tidsformat"
 
 #. 5.4->settings-schema.json->time_format1->tooltip
 #. 5.4->settings-schema.json->time_format2->tooltip
-msgid ""
-"The datetime format to use for the output. See 'Format String Help' below "
-"for additional details."
-msgstr ""
-"Format for tid og dato. Se “Hjælp til strengformat” nedenfor for flere "
-"oplysninger."
+msgid "The datetime format to use for the output. See 'Format String Help' below for additional details."
+msgstr "Format for tid og dato. Se “Hjælp til strengformat” nedenfor for flere oplysninger."
 
 #. 5.4->settings-schema.json->time_align1->description
 #. 5.4->settings-schema.json->time_yalign1->description
@@ -68,12 +63,8 @@ msgstr "Højre"
 
 #. 5.4->settings-schema.json->time_yalign1->tooltip
 #. 5.4->settings-schema.json->time_yalign2->tooltip
-msgid ""
-"This value only applies if the this time value is a smaller size than the "
-"other"
-msgstr ""
-"Denne værdi gælder kun, hvis denne tidsværdi er af en mindre størrelse "
-"end den anden"
+msgid "This value only applies if the this time value is a smaller size than the other"
+msgstr "Denne værdi gælder kun, hvis denne tidsværdi er af en mindre størrelse end den anden"
 
 #. 5.4->settings-schema.json->time_yalign1->options
 #. 5.4->settings-schema.json->time_yalign2->options
@@ -113,11 +104,8 @@ msgstr "Skrifttypestørrelse"
 
 #. 5.4->settings-schema.json->time_size1->tooltip
 #. 5.4->settings-schema.json->time_size2->tooltip
-msgid ""
-"Increase or decrease this value to change the font size scale (1.2 = 120%)"
-msgstr ""
-"Forøg eller formindsk denne værdi for at ændre skaleringen af skrifttypen "
-"(1,2 = 120 %)"
+msgid "Increase or decrease this value to change the font size scale (1.2 = 120%)"
+msgstr "Forøg eller formindsk denne værdi for at ændre skaleringen af skrifttypen (1,2 = 120 %)"
 
 #. 5.4->settings-schema.json->time_custom2->description
 msgid "Customize Second Time Value"
@@ -140,11 +128,8 @@ msgid "Fixed width for the desklet"
 msgstr "Skrivebordsprogrammets bredde"
 
 #. 5.4->settings-schema.json->width->tooltip
-msgid ""
-"Increase or decrease this value to set the boundary width of the desklet"
-msgstr ""
-"Forøg eller formindsk denne værdi for at indstille skrivebordsprogrammets "
-"bredde"
+msgid "Increase or decrease this value to set the boundary width of the desklet"
+msgstr "Forøg eller formindsk denne værdi for at indstille skrivebordsprogrammets bredde"
 
 #. 5.4->settings-schema.json->title_align->description
 msgid "Layout"
