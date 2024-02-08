@@ -107,6 +107,9 @@ MyDesklet.prototype = {
 				);
 				GLib.close(std_in);
 				GLib.close(std_err);
+				GLib.child_watch_add(GLib.PRIORITY_DEFAULT, child_pid, function(pid, wait_status, user_data) {
+					GLib.spawn_close_pid(child_pid);
+				});
 				if(!success) {
 					throw new Error(_('Error executing ping command!'));
 				}
@@ -144,7 +147,6 @@ MyDesklet.prototype = {
 						}
 						GLib.source_remove(tagWatchStdOut);
 						channel.shutdown(true);
-						GLib.spawn_close_pid(child_pid);
 					}
 				);
 				//this.ioChannelStdErr = GLib.IOChannel.unix_new(this.std_err);
