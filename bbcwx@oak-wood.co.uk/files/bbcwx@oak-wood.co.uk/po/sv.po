@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bbcwx\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-02-15 14:18-0500\n"
+"POT-Creation-Date: 2024-02-15 18:53-0500\n"
 "PO-Revision-Date: 2023-09-03 14:15-0400\n"
 "Last-Translator: kristian <Unknown>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -196,7 +196,7 @@ msgstr "%fkm"
 #: 5.4/drivers/meteoblue.js:78 5.4/drivers/nws.js:38 5.4/drivers/nws.js:65
 #: 5.4/drivers/nws.js:73 5.4/drivers/openmeteo.js:40 5.4/drivers/owm.js:65
 #: 5.4/drivers/owmfree.js:29 5.4/drivers/weatherapi.js:75
-#: 5.4/drivers/weatherstack.js:81 5.4/drivers/wunderground.js:49
+#: 5.4/drivers/weatherstack.js:81 5.4/drivers/wunderground.js:50
 #: 5.4/drivers/wwo.js:74
 msgid "Invalid location"
 msgstr ""
@@ -337,7 +337,7 @@ msgstr "Vita Moln"
 
 #: 5.4/drivers/meteoblue.js:52 5.4/drivers/owm.js:69 5.4/drivers/owmfree.js:33
 #: 5.4/drivers/weatherapi.js:79 5.4/drivers/weatherstack.js:85
-#: 5.4/drivers/wunderground.js:53 5.4/drivers/wwo.js:78
+#: 5.4/drivers/wunderground.js:54 5.4/drivers/wwo.js:78
 msgid "No API key provided"
 msgstr ""
 
