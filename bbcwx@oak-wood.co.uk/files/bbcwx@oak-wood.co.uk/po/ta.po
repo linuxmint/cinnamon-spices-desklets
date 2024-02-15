@@ -6,8 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bbcwx\n"
-"Report-Msgid-Bugs-To: chris@oak-wood.co.uk\n"
-"POT-Creation-Date: 2023-09-03 14:13-0400\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-02-15 14:18-0500\n"
 "PO-Revision-Date: 2023-09-03 14:15-0400\n"
 "Last-Translator: Kamala Kannan <Unknown>\n"
 "Language-Team: Tamil <ta@li.org>\n"
@@ -18,521 +19,931 @@ msgstr ""
 "X-Launchpad-Export-Date: 2016-08-14 17:00+0000\n"
 "X-Generator: Poedit 3.3.1\n"
 
-#: 5.4/desklet.js:106 3.0/desklet.js:108
+#: 5.4/desklet.js:111 3.0/desklet.js:108
 msgid "Mon"
 msgstr "திங்கள்"
 
-#: 5.4/desklet.js:106 3.0/desklet.js:108
+#: 5.4/desklet.js:111 3.0/desklet.js:108
 msgid "Tue"
 msgstr "செவ்வாய்"
 
-#: 5.4/desklet.js:106 3.0/desklet.js:108
+#: 5.4/desklet.js:111 3.0/desklet.js:108
 msgid "Wed"
 msgstr "புதன்"
 
-#: 5.4/desklet.js:106 3.0/desklet.js:108
+#: 5.4/desklet.js:111 3.0/desklet.js:108
 msgid "Thu"
 msgstr "வியாழன்"
 
-#: 5.4/desklet.js:106 3.0/desklet.js:108
+#: 5.4/desklet.js:111 3.0/desklet.js:108
 msgid "Fri"
 msgstr "வெள்ளி"
 
-#: 5.4/desklet.js:106 3.0/desklet.js:108
+#: 5.4/desklet.js:111 3.0/desklet.js:108
 msgid "Sat"
 msgstr "சனி"
 
-#: 5.4/desklet.js:106 3.0/desklet.js:108
+#: 5.4/desklet.js:111 3.0/desklet.js:108
 msgid "Sun"
 msgstr "ஞாயிறு"
 
-#: 5.4/desklet.js:191 3.0/desklet.js:186
+#. metadata.json->name
+#: 5.4/desklet.js:251 3.0/desklet.js:186
 msgid "Weather"
 msgstr "வானிலை"
 
-#: 5.4/desklet.js:199 3.0/desklet.js:194
+#: 5.4/desklet.js:259 3.0/desklet.js:194
 msgid "Help"
 msgstr "உதவி"
 
-#: 5.4/desklet.js:203 3.0/desklet.js:198
+#: 5.4/desklet.js:263 3.0/desklet.js:198
 msgid "Translate"
 msgstr "மொழிபெயர்"
 
-#: 5.4/desklet.js:350 5.4/desklet.js:378 3.0/desklet.js:344 3.0/desklet.js:372
+#: 5.4/desklet.js:432 5.4/desklet.js:474 3.0/desklet.js:344 3.0/desklet.js:372
 msgid "Humidity:"
 msgstr "ஈரப்பதம்:"
 
-#: 5.4/desklet.js:351 5.4/desklet.js:377 3.0/desklet.js:345 3.0/desklet.js:371
+#: 5.4/desklet.js:436 5.4/desklet.js:473 3.0/desklet.js:345 3.0/desklet.js:371
 msgid "Pressure:"
 msgstr "அழுத்தம்:"
 
-#: 5.4/desklet.js:352 3.0/desklet.js:346
+#: 5.4/desklet.js:440 3.0/desklet.js:346
 msgid "Wind:"
 msgstr "காற்று:"
 
-#: 5.4/desklet.js:353 3.0/desklet.js:347
+#: 5.4/desklet.js:444 3.0/desklet.js:347
 msgid "Feels like:"
 msgstr "மனநிலை:"
 
-#: 5.4/desklet.js:354 3.0/desklet.js:348
+#: 5.4/desklet.js:448 3.0/desklet.js:348
 msgid "Visibility:"
 msgstr "காட்சிமை:"
 
-#: 5.4/desklet.js:369 3.0/desklet.js:363
+#: 5.4/desklet.js:465 3.0/desklet.js:363
 msgid "Max:"
 msgstr "அதிகபட்சம்:"
 
-#: 5.4/desklet.js:371 3.0/desklet.js:365
+#: 5.4/desklet.js:467 3.0/desklet.js:365
 msgid "Min:"
 msgstr "குறைந்த பட்சம்:"
 
-#: 5.4/desklet.js:373 3.0/desklet.js:367
+#: 5.4/desklet.js:469 3.0/desklet.js:367
 msgid "Wind speed:"
 msgstr "காற்றின் வேகம்:"
 
-#: 5.4/desklet.js:375 3.0/desklet.js:369
+#: 5.4/desklet.js:471 3.0/desklet.js:369
 msgid "Dir:"
 msgstr "திசை:"
 
-#: 5.4/desklet.js:417 3.0/desklet.js:411
+#: 5.4/desklet.js:518 3.0/desklet.js:411
 msgid "Data from "
 msgstr "தரவு மூலம்: "
 
-#: 5.4/desklet.js:431 3.0/desklet.js:423
+#: 5.4/desklet.js:536 3.0/desklet.js:423
 msgid "Refresh"
 msgstr "புதுப்பி"
 
-#: 5.4/desklet.js:753 3.0/desklet.js:744
-msgid "No data available"
+#: 5.4/desklet.js:562
+msgid "Last updated"
+msgstr ""
+
+#: 5.4/desklet.js:870
+#, fuzzy
+msgid "No Data Available"
 msgstr "தரவு எதுவும் கிடைக்கவில்லை"
 
-#: 5.4/desklet.js:786 5.4/desklet.js:853 3.0/desklet.js:777 3.0/desklet.js:844
+#: 5.4/desklet.js:901 5.4/desklet.js:969 3.0/desklet.js:777 3.0/desklet.js:844
 #, javascript-format
 msgid "Error: %s"
 msgstr "பிழை: %s"
 
-#: 5.4/desklet.js:786 5.4/desklet.js:853 3.0/desklet.js:777 3.0/desklet.js:844
-msgid "No data"
-msgstr "தரவு இல்லை"
+#: 5.4/desklet.js:901 5.4/desklet.js:969
+msgid "No Data"
+msgstr ""
 
-#: 5.4/desklet.js:888 3.0/desklet.js:879
+#: 5.4/desklet.js:1003 3.0/desklet.js:879
 #, javascript-format
 msgid "Click for the full forecast for %s"
 msgstr "%s கான முன்னறிவிப்பை பெற இங்கே சொடுக்கவும்"
 
-#: 5.4/desklet.js:1148 3.0/desklet.js:1139
+#: 5.4/desklet.js:1248 3.0/desklet.js:1139
 #, javascript-format
 msgid "%f°F"
 msgstr "%f°F"
 
-#: 5.4/desklet.js:1150 3.0/desklet.js:1141
+#: 5.4/desklet.js:1251 3.0/desklet.js:1141
 #, javascript-format
 msgid "%f°C"
 msgstr "%f°C"
 
-#: 5.4/desklet.js:1171 3.0/desklet.js:1162
+#: 5.4/desklet.js:1271 3.0/desklet.js:1162
 #, javascript-format
 msgid "%fmph"
 msgstr "%fmph"
 
-#: 5.4/desklet.js:1173 3.0/desklet.js:1164
+#: 5.4/desklet.js:1273 3.0/desklet.js:1164
 #, javascript-format
 msgid "%fkn"
 msgstr "%fkn"
 
-#: 5.4/desklet.js:1175 3.0/desklet.js:1166
+#: 5.4/desklet.js:1275 3.0/desklet.js:1166
 #, javascript-format
 msgid "%fkm/h"
 msgstr "%fkm/h"
 
-#: 5.4/desklet.js:1177 3.0/desklet.js:1168
+#: 5.4/desklet.js:1277 3.0/desklet.js:1168
 #, javascript-format
 msgid "%fm/s"
 msgstr "%fமீ/வி"
 
-#: 5.4/desklet.js:1211 3.0/desklet.js:1202
+#: 5.4/desklet.js:1310 3.0/desklet.js:1202
 #, javascript-format
 msgid "%fmb"
 msgstr "%fmb"
 
-#: 5.4/desklet.js:1213 3.0/desklet.js:1204
+#: 5.4/desklet.js:1312 3.0/desklet.js:1204
 #, javascript-format
 msgid "%fin"
 msgstr "%fin"
 
-#: 5.4/desklet.js:1215 3.0/desklet.js:1206
+#: 5.4/desklet.js:1314 3.0/desklet.js:1206
 #, javascript-format
 msgid "%fmm"
 msgstr "%fmm"
 
-#: 5.4/desklet.js:1217 3.0/desklet.js:1208
+#: 5.4/desklet.js:1316 3.0/desklet.js:1208
 #, javascript-format
 msgid "%fkPa"
 msgstr "%fkPa"
 
-#: 5.4/desklet.js:1268 3.0/desklet.js:1259
+#: 5.4/desklet.js:1365 3.0/desklet.js:1259
 #, javascript-format
 msgid "%fmi"
 msgstr "%fமைல்"
 
-#: 5.4/desklet.js:1270 3.0/desklet.js:1261
+#: 5.4/desklet.js:1367 3.0/desklet.js:1261
 #, javascript-format
 msgid "%fnmi"
 msgstr "%fகடல்மைல்"
 
-#: 5.4/desklet.js:1272 3.0/desklet.js:1263
+#: 5.4/desklet.js:1369 3.0/desklet.js:1263
 #, javascript-format
 msgid "%fkm"
 msgstr "%fகிமீ"
 
-#: 5.4/desklet.js:1515 3.0/desklet.js:1506
-msgid "N"
-msgstr "வ"
+#: 5.4/drivers/bbc.js:39 5.4/drivers/meteoblue.js:48
+#: 5.4/drivers/meteoblue.js:78 5.4/drivers/nws.js:38 5.4/drivers/nws.js:65
+#: 5.4/drivers/nws.js:73 5.4/drivers/openmeteo.js:40 5.4/drivers/owm.js:65
+#: 5.4/drivers/owmfree.js:29 5.4/drivers/weatherapi.js:75
+#: 5.4/drivers/weatherstack.js:81 5.4/drivers/wunderground.js:49
+#: 5.4/drivers/wwo.js:74
+msgid "Invalid location"
+msgstr ""
 
-#: 5.4/desklet.js:1515 3.0/desklet.js:1506
-msgid "NNE"
-msgstr "வவகி"
-
-#: 5.4/desklet.js:1515 3.0/desklet.js:1506
-msgid "NE"
-msgstr "வகி"
-
-#: 5.4/desklet.js:1515 3.0/desklet.js:1506
-msgid "ENE"
-msgstr "கிவகி"
-
-#: 5.4/desklet.js:1515 3.0/desklet.js:1506
-msgid "E"
-msgstr "கி"
-
-#: 5.4/desklet.js:1515 3.0/desklet.js:1506
-msgid "ESE"
-msgstr "கிதெகி"
-
-#: 5.4/desklet.js:1515 3.0/desklet.js:1506
-msgid "SE"
-msgstr "தெகி"
-
-#: 5.4/desklet.js:1515 3.0/desklet.js:1506
-msgid "SSE"
-msgstr "தெதெகி"
-
-#: 5.4/desklet.js:1515 3.0/desklet.js:1506
-msgid "S"
-msgstr "தெ"
-
-#: 5.4/desklet.js:1515 3.0/desklet.js:1506
-msgid "SSW"
-msgstr "தெதெமே"
-
-#: 5.4/desklet.js:1515 3.0/desklet.js:1506
-msgid "SW"
-msgstr "தெமே"
-
-#: 5.4/desklet.js:1515 3.0/desklet.js:1506
-msgid "WSW"
-msgstr "மேதெமே"
-
-#: 5.4/desklet.js:1515 3.0/desklet.js:1506
-msgid "W"
-msgstr "மே"
-
-#: 5.4/desklet.js:1515 3.0/desklet.js:1506
-msgid "WNW"
-msgstr "மேவமே"
-
-#: 5.4/desklet.js:1515 3.0/desklet.js:1506
-msgid "NW"
-msgstr "வமே"
-
-#: 5.4/desklet.js:1515 3.0/desklet.js:1506
-msgid "NNW"
-msgstr "வவமே"
-
-#: 5.4/desklet.js:1569 3.0/desklet.js:1560
-msgid "Tornado"
-msgstr "சுழற்காற்று"
-
-#: 5.4/desklet.js:1570 3.0/desklet.js:1561
-msgid "Tropical storm"
-msgstr "வெப்ப மண்டல சூறாவளி"
-
-#: 5.4/desklet.js:1571 3.0/desklet.js:1562
-msgid "Hurricane"
-msgstr "சூறாவளி"
-
-#: 5.4/desklet.js:1572 3.0/desklet.js:1563
-msgid "Severe thunderstorms"
-msgstr "கடுமையான இடிமழை"
-
-#: 5.4/desklet.js:1573 3.0/desklet.js:1564
-msgid "Thunderstorms"
-msgstr "இடியுடன் கூடிய புயல்"
-
-#: 5.4/desklet.js:1574 5.4/desklet.js:4249 3.0/desklet.js:1565 3.0/desklet.js:4240
-msgid "Mixed rain and snow"
-msgstr "மழையும் பனியும் கலந்து"
-
-#: 5.4/desklet.js:1575 3.0/desklet.js:1566
-msgid "Mixed rain and sleet"
-msgstr "மழையும் பனிமழையும் கலந்து"
-
-#: 5.4/desklet.js:1576 3.0/desklet.js:1567
-msgid "Mixed snow and sleet"
-msgstr "பனியும் பனிமழையும் கலந்து"
-
-#: 5.4/desklet.js:1577 3.0/desklet.js:1568
-msgid "Freezing drizzle"
-msgstr "உறைவிக்கும் தூறல்"
-
-#: 5.4/desklet.js:1578 5.4/desklet.js:1881 3.0/desklet.js:1569 3.0/desklet.js:1872
-msgid "Drizzle"
-msgstr "தூறல்"
-
-#: 5.4/desklet.js:1579 3.0/desklet.js:1570
-msgid "Freezing rain"
-msgstr "உறைவிக்கும் மழை"
-
-#: 5.4/desklet.js:1580 5.4/desklet.js:1581 5.4/desklet.js:4245 3.0/desklet.js:1571
-#: 3.0/desklet.js:1572 3.0/desklet.js:4236
-msgid "Showers"
-msgstr "மழைப்பொழிவு"
-
-#: 5.4/desklet.js:1582 3.0/desklet.js:1573
-msgid "Snow flurries"
-msgstr "பனித்துகள்கள்"
-
-#: 5.4/desklet.js:1583 3.0/desklet.js:1574
-msgid "Light snow showers"
-msgstr "மெல்லிய பனிச்சாரல்"
-
-#: 5.4/desklet.js:1584 3.0/desklet.js:1575
-msgid "Blowing snow"
-msgstr "காற்றுடன் கூடிய வெண்பனி"
-
-#: 5.4/desklet.js:1585 5.4/desklet.js:4247 5.4/desklet.js:4253 3.0/desklet.js:1576
-#: 3.0/desklet.js:4238 3.0/desklet.js:4244
-msgid "Snow"
-msgstr "பனி"
-
-#: 5.4/desklet.js:1586 3.0/desklet.js:1577
-msgid "Hail"
-msgstr "ஆலங்கட்டி"
-
-#: 5.4/desklet.js:1587 5.4/desklet.js:1886 3.0/desklet.js:1578 3.0/desklet.js:1877
-msgid "Sleet"
-msgstr "ஆலங்கட்டி மழை"
-
-#: 5.4/desklet.js:1588 3.0/desklet.js:1579
-msgid "Dust"
-msgstr "தூசு"
-
-#: 5.4/desklet.js:1589 3.0/desklet.js:1580
-msgid "Foggy"
-msgstr "மூடுபனி"
-
-#: 5.4/desklet.js:1590 3.0/desklet.js:1581
-msgid "Haze"
-msgstr "மூட்டம்"
-
-#: 5.4/desklet.js:1591 3.0/desklet.js:1582
-msgid "Smoky"
-msgstr "புகை"
-
-#: 5.4/desklet.js:1592 3.0/desklet.js:1583
-msgid "Blustery"
-msgstr "பலத்த காற்று"
-
-#: 5.4/desklet.js:1593 3.0/desklet.js:1584
-msgid "Windy"
-msgstr "அதிக காற்று"
-
-#: 5.4/desklet.js:1594 3.0/desklet.js:1585
-msgid "Cold"
-msgstr "குளிர்"
-
-#: 5.4/desklet.js:1595 5.4/desklet.js:4242 3.0/desklet.js:1586 3.0/desklet.js:4233
-msgid "Cloudy"
-msgstr "மேகமூட்டம்"
-
-#: 5.4/desklet.js:1596 5.4/desklet.js:1597 3.0/desklet.js:1587 3.0/desklet.js:1588
-msgid "Mostly cloudy"
-msgstr "பெரும்பாலும் மேகமூட்டம்"
-
-#: 5.4/desklet.js:1598 5.4/desklet.js:1599 5.4/desklet.js:1613 3.0/desklet.js:1589
-#: 3.0/desklet.js:1590 3.0/desklet.js:1604
-msgid "Partly cloudy"
-msgstr "சிறிது புகை மேகத்துடன்"
-
-#: 5.4/desklet.js:1600 3.0/desklet.js:1591
-msgid "Clear"
-msgstr "தெளிவு"
-
-#: 5.4/desklet.js:1601 5.4/desklet.js:1870 3.0/desklet.js:1592 3.0/desklet.js:1861
-msgid "Sunny"
-msgstr "சூரிய வெளிச்சம்"
-
-#: 5.4/desklet.js:1602 5.4/desklet.js:1603 5.4/desklet.js:4240 3.0/desklet.js:1593
-#: 3.0/desklet.js:1594 3.0/desklet.js:4231
-msgid "Fair"
-msgstr "மிதமான"
-
-#: 5.4/desklet.js:1604 3.0/desklet.js:1595
-msgid "Mixed rain and hail"
-msgstr "மழை மற்றும் ஆலங்கட்டி"
-
-#: 5.4/desklet.js:1605 3.0/desklet.js:1596
-msgid "Hot"
-msgstr "சூடான"
-
-#: 5.4/desklet.js:1606 3.0/desklet.js:1597
-msgid "Isolated thunderstorms"
-msgstr "ஆங்காங்கே இடியுடன் கூடிய மழை"
-
-#: 5.4/desklet.js:1607 3.0/desklet.js:1598
-msgid "Scattered thunderstorms"
-msgstr "பரவலான இடி"
-
-#: 5.4/desklet.js:1608 5.4/desklet.js:1609 3.0/desklet.js:1599 3.0/desklet.js:1600
-msgid "Scattered showers"
-msgstr "பரவலான மழை"
-
-#: 5.4/desklet.js:1610 5.4/desklet.js:1612 3.0/desklet.js:1601 3.0/desklet.js:1603
-msgid "Heavy snow"
-msgstr "மிகுந்த பனி"
-
-#: 5.4/desklet.js:1611 3.0/desklet.js:1602
-msgid "Scattered snow showers"
-msgstr "பரவலான பனிப்பொழிவு"
-
-#: 5.4/desklet.js:1614 3.0/desklet.js:1605
-msgid "Thundershowers"
-msgstr "இடியுடன்கூடிய மழை"
-
-#: 5.4/desklet.js:1615 5.4/desklet.js:4248 3.0/desklet.js:1606 3.0/desklet.js:4239
-msgid "Snow showers"
-msgstr "பனிப் பொழிவுகள்"
-
-#: 5.4/desklet.js:1616 3.0/desklet.js:1607
-msgid "Isolated thundershowers"
-msgstr "ஆங்காங்கே இடியுடன் கூடிய கனமழை"
-
-#: 5.4/desklet.js:1617 3.0/desklet.js:1608
-msgid "Not available"
-msgstr "இருப்பில் இல்லை"
-
-#: 5.4/desklet.js:1869 5.4/desklet.js:4239 3.0/desklet.js:1860 3.0/desklet.js:4230
+#: 5.4/drivers/bbc.js:254 5.4/drivers/meteoblue.js:151
+#: 5.4/drivers/openmeteo.js:122 3.0/desklet.js:1860 3.0/desklet.js:4230
 msgid "Clear Sky"
 msgstr "தெளிந்த வானம்"
 
-#: 5.4/desklet.js:1871 5.4/desklet.js:4241 3.0/desklet.js:1862 3.0/desklet.js:4232
-msgid "Partly Cloudy"
-msgstr "ஓரளவு மேகமூட்டமாக"
+#: 5.4/drivers/bbc.js:255 5.4/drivers/wxbase.js:302 3.0/desklet.js:1569
+#: 3.0/desklet.js:1872
+msgid "Drizzle"
+msgstr "தூறல்"
 
-#: 5.4/desklet.js:1872 3.0/desklet.js:1863
-msgid "Sunny Intervals"
-msgstr "கதிரொளி இடைவெளிகள்"
-
-#: 5.4/desklet.js:1873 3.0/desklet.js:1864
-msgid "Sand Storm"
-msgstr "மணல் புயல்"
-
-#: 5.4/desklet.js:1874 3.0/desklet.js:1865
-msgid "Mist"
-msgstr "பனிமூட்டம்"
-
-#: 5.4/desklet.js:1875 5.4/desklet.js:4243 3.0/desklet.js:1866 3.0/desklet.js:4234
+#: 5.4/drivers/bbc.js:256 5.4/drivers/meteoblue.js:155
+#: 5.4/drivers/openmeteo.js:126 5.4/drivers/weatherapi.js:249
+#: 5.4/drivers/weatherstack.js:238 3.0/desklet.js:1866 3.0/desklet.js:4234
 msgid "Fog"
 msgstr "பனி"
 
-#: 5.4/desklet.js:1876 3.0/desklet.js:1867
-msgid "White Cloud"
-msgstr "வெண்மேகம்"
-
-#: 5.4/desklet.js:1877 3.0/desklet.js:1868
-msgid "Light Cloud"
-msgstr "மேகமூட்டம்"
-
-#: 5.4/desklet.js:1878 3.0/desklet.js:1869
+#: 5.4/drivers/bbc.js:257 3.0/desklet.js:1869
 msgid "Grey Cloud"
 msgstr "கரியமேகம்"
 
-#: 5.4/desklet.js:1879 3.0/desklet.js:1870
-msgid "Thick Cloud"
-msgstr "அடர்ந்தமேகம்"
-
-#: 5.4/desklet.js:1880 3.0/desklet.js:1871
-msgid "Light Rain Shower"
-msgstr "மித மழைப்பொழிவு"
-
-#: 5.4/desklet.js:1882 5.4/desklet.js:4250 5.4/desklet.js:4254 3.0/desklet.js:1873
-#: 3.0/desklet.js:4241 3.0/desklet.js:4245
-msgid "Light Rain"
-msgstr "மித மழை"
-
-#: 5.4/desklet.js:1883 3.0/desklet.js:1874
-msgid "Heavy Rain Shower"
-msgstr "கன மழை"
-
-#: 5.4/desklet.js:1884 5.4/desklet.js:4244 5.4/desklet.js:4252 3.0/desklet.js:1875
-#: 3.0/desklet.js:4235 3.0/desklet.js:4243
-msgid "Heavy Rain"
-msgstr "கடும் மழை"
-
-#: 5.4/desklet.js:1885 3.0/desklet.js:1876
-msgid "Sleet Shower"
-msgstr "கல் மழை"
-
-#: 5.4/desklet.js:1887 3.0/desklet.js:1878
-msgid "Light Snow Shower"
-msgstr "மித பனிப்பொழிவு"
-
-#: 5.4/desklet.js:1888 5.4/desklet.js:4251 5.4/desklet.js:4255 3.0/desklet.js:1879
-#: 3.0/desklet.js:4242 3.0/desklet.js:4246
-msgid "Light Snow"
-msgstr "மெல்லிய பனி"
-
-#: 5.4/desklet.js:1889 3.0/desklet.js:1880
-msgid "Heavy Snow Shower"
-msgstr "கனத்த பனி மழை"
-
-#: 5.4/desklet.js:1890 3.0/desklet.js:1881
-msgid "Heavy Snow"
-msgstr "கனத்த பனி"
-
-#: 5.4/desklet.js:1891 5.4/desklet.js:4246 3.0/desklet.js:1882 3.0/desklet.js:4237
-msgid "Thundery Shower"
-msgstr "இடியுடன் கூடிய மழை"
-
-#: 5.4/desklet.js:1892 3.0/desklet.js:1883
-msgid "Thunder Storm"
-msgstr "இடியுடன் கூடிய மழை"
-
-#: 5.4/desklet.js:1893 3.0/desklet.js:1884
-msgid "Thunderstorm"
-msgstr "இடிமின்புயல்"
-
-#: 5.4/desklet.js:1894 3.0/desklet.js:1885
-msgid "Hazy"
-msgstr "மங்கல்வான்"
-
-#: 5.4/desklet.js:1895 3.0/desklet.js:1886
+#: 5.4/drivers/bbc.js:258 3.0/desklet.js:1886
 msgid "Hail Shower"
 msgstr "ஆலங்கட்டி மழை"
 
-#: 5.4/desklet.js:1896 3.0/desklet.js:1887
+#: 5.4/drivers/bbc.js:259 3.0/desklet.js:1885
+msgid "Hazy"
+msgstr "மங்கல்வான்"
+
+#: 5.4/drivers/bbc.js:260 3.0/desklet.js:1874
+msgid "Heavy Rain Shower"
+msgstr "கன மழை"
+
+#: 5.4/drivers/bbc.js:261 5.4/drivers/weatherapi.js:253
+#: 5.4/drivers/weatherstack.js:242 3.0/desklet.js:1875 3.0/desklet.js:4235
+#: 3.0/desklet.js:4243
+msgid "Heavy Rain"
+msgstr "கடும் மழை"
+
+#: 5.4/drivers/bbc.js:262 3.0/desklet.js:1880
+msgid "Heavy Snow Shower"
+msgstr "கனத்த பனி மழை"
+
+#: 5.4/drivers/bbc.js:263 5.4/drivers/weatherapi.js:255
+#: 5.4/drivers/wxbase.js:334 5.4/drivers/wxbase.js:336 3.0/desklet.js:1881
+msgid "Heavy Snow"
+msgstr "கனத்த பனி"
+
+#: 5.4/drivers/bbc.js:264 3.0/desklet.js:1868
+msgid "Light Cloud"
+msgstr "மேகமூட்டம்"
+
+#: 5.4/drivers/bbc.js:265 5.4/drivers/weatherapi.js:260 3.0/desklet.js:1871
+msgid "Light Rain Shower"
+msgstr "மித மழைப்பொழிவு"
+
+#: 5.4/drivers/bbc.js:266 5.4/drivers/meteoblue.js:162
+#: 5.4/drivers/meteoblue.js:166 5.4/drivers/weatherapi.js:259
+#: 5.4/drivers/weatherstack.js:246 3.0/desklet.js:1873 3.0/desklet.js:4241
+#: 3.0/desklet.js:4245
+msgid "Light Rain"
+msgstr "மித மழை"
+
+#: 5.4/drivers/bbc.js:267 3.0/desklet.js:1878
+msgid "Light Snow Shower"
+msgstr "மித பனிப்பொழிவு"
+
+#: 5.4/drivers/bbc.js:268 5.4/drivers/meteoblue.js:163
+#: 5.4/drivers/meteoblue.js:167 5.4/drivers/weatherapi.js:264
+#: 3.0/desklet.js:1879 3.0/desklet.js:4242 3.0/desklet.js:4246
+msgid "Light Snow"
+msgstr "மெல்லிய பனி"
+
+#: 5.4/drivers/bbc.js:269 5.4/drivers/weatherapi.js:266
+#: 5.4/drivers/weatherstack.js:247 3.0/desklet.js:1865
+msgid "Mist"
+msgstr "பனிமூட்டம்"
+
+#: 5.4/drivers/bbc.js:270 5.4/drivers/meteoblue.js:153
+#: 5.4/drivers/openmeteo.js:124 5.4/drivers/weatherapi.js:279
+#: 5.4/drivers/weatherstack.js:251 5.4/drivers/wxbase.js:322
+#: 5.4/drivers/wxbase.js:323 5.4/drivers/wxbase.js:337 3.0/desklet.js:1862
+#: 3.0/desklet.js:4232
+msgid "Partly Cloudy"
+msgstr "ஓரளவு மேகமூட்டமாக"
+
+#: 5.4/drivers/bbc.js:271 5.4/drivers/meteoblue.js:156
+#: 5.4/drivers/meteoblue.js:164 3.0/desklet.js:1887
 msgid "Rain"
 msgstr "மழை"
 
-#: 5.4/desklet.js:2081 5.4/desklet.js:2809 3.0/desklet.js:2072 3.0/desklet.js:2800
+#: 5.4/drivers/bbc.js:272 3.0/desklet.js:1864
+msgid "Sand Storm"
+msgstr "மணல் புயல்"
+
+#: 5.4/drivers/bbc.js:273 3.0/desklet.js:1876
+msgid "Sleet Shower"
+msgstr "கல் மழை"
+
+#: 5.4/drivers/bbc.js:274 5.4/drivers/wxbase.js:311 3.0/desklet.js:1578
+#: 3.0/desklet.js:1877
+msgid "Sleet"
+msgstr "ஆலங்கட்டி மழை"
+
+#: 5.4/drivers/bbc.js:275 3.0/desklet.js:1863
+msgid "Sunny Intervals"
+msgstr "கதிரொளி இடைவெளிகள்"
+
+#: 5.4/drivers/bbc.js:276 5.4/drivers/weatherapi.js:291
+#: 5.4/drivers/weatherstack.js:258 5.4/drivers/wxbase.js:325
+#: 3.0/desklet.js:1592 3.0/desklet.js:1861
+msgid "Sunny"
+msgstr "சூரிய வெளிச்சம்"
+
+#: 5.4/drivers/bbc.js:277 3.0/desklet.js:1870
+msgid "Thick Cloud"
+msgstr "அடர்ந்தமேகம்"
+
+#: 5.4/drivers/bbc.js:278 3.0/desklet.js:1883
+msgid "Thunder Storm"
+msgstr "இடியுடன் கூடிய மழை"
+
+#: 5.4/drivers/bbc.js:279 5.4/drivers/openmeteo.js:147 3.0/desklet.js:1884
+msgid "Thunderstorm"
+msgstr "இடிமின்புயல்"
+
+#: 5.4/drivers/bbc.js:280 5.4/drivers/meteoblue.js:158 3.0/desklet.js:1882
+#: 3.0/desklet.js:4237
+msgid "Thundery Shower"
+msgstr "இடியுடன் கூடிய மழை"
+
+#: 5.4/drivers/bbc.js:281 3.0/desklet.js:1867
+msgid "White Cloud"
+msgstr "வெண்மேகம்"
+
+#: 5.4/drivers/meteoblue.js:52 5.4/drivers/owm.js:69 5.4/drivers/owmfree.js:33
+#: 5.4/drivers/weatherapi.js:79 5.4/drivers/weatherstack.js:85
+#: 5.4/drivers/wunderground.js:53 5.4/drivers/wwo.js:78
+msgid "No API key provided"
+msgstr ""
+
+#: 5.4/drivers/meteoblue.js:152 5.4/drivers/wxbase.js:326
+#: 5.4/drivers/wxbase.js:327 3.0/desklet.js:1593 3.0/desklet.js:1594
+#: 3.0/desklet.js:4231
+msgid "Fair"
+msgstr "மிதமான"
+
+#: 5.4/drivers/meteoblue.js:154 5.4/drivers/weatherapi.js:248
+#: 5.4/drivers/weatherstack.js:237 5.4/drivers/wxbase.js:319
+#: 3.0/desklet.js:1586 3.0/desklet.js:4233
+msgid "Cloudy"
+msgstr "மேகமூட்டம்"
+
+#: 5.4/drivers/meteoblue.js:157 5.4/drivers/wxbase.js:304
+#: 5.4/drivers/wxbase.js:305 3.0/desklet.js:1571 3.0/desklet.js:1572
+#: 3.0/desklet.js:4236
+msgid "Showers"
+msgstr "மழைப்பொழிவு"
+
+#: 5.4/drivers/meteoblue.js:159 5.4/drivers/meteoblue.js:165
+#: 5.4/drivers/wxbase.js:309 3.0/desklet.js:1576 3.0/desklet.js:4238
+#: 3.0/desklet.js:4244
+msgid "Snow"
+msgstr "பனி"
+
+#: 5.4/drivers/meteoblue.js:160 5.4/drivers/wxbase.js:339
+#, fuzzy
+msgid "Snow Showers"
+msgstr "பனிப் பொழிவுகள்"
+
+#: 5.4/drivers/meteoblue.js:161 5.4/drivers/wxbase.js:298
+#, fuzzy
+msgid "Mixed Rain and Snow"
+msgstr "மழையும் பனியும் கலந்து"
+
+#: 5.4/drivers/openmeteo.js:123
+msgid "Mainly Clear"
+msgstr ""
+
+#: 5.4/drivers/openmeteo.js:125 5.4/drivers/weatherapi.js:278
+#: 5.4/drivers/weatherstack.js:250
+msgid "Overcast"
+msgstr ""
+
+#: 5.4/drivers/openmeteo.js:127
+msgid "Depositing Rime Fog"
+msgstr ""
+
+#: 5.4/drivers/openmeteo.js:128
+msgid "Drizzle: Light Intensity"
+msgstr ""
+
+#: 5.4/drivers/openmeteo.js:129
+msgid "Drizzle: Moderate Intensity"
+msgstr ""
+
+#: 5.4/drivers/openmeteo.js:130
+msgid "Drizzle: Dense Intensity"
+msgstr ""
+
+#: 5.4/drivers/openmeteo.js:131
+#, fuzzy
+msgid "Freezing Drizzle: Light Intensity"
+msgstr "உறைவிக்கும் தூறல்"
+
+#: 5.4/drivers/openmeteo.js:132
+#, fuzzy
+msgid "Freezing Drizzle: Dense Intensity"
+msgstr "உறைவிக்கும் தூறல்"
+
+#: 5.4/drivers/openmeteo.js:133
+msgid "Rain: Slight Intensity"
+msgstr ""
+
+#: 5.4/drivers/openmeteo.js:134
+msgid "Rain: Moderate Intensity"
+msgstr ""
+
+#: 5.4/drivers/openmeteo.js:135
+msgid "Rain: Heavy Intensity"
+msgstr ""
+
+#: 5.4/drivers/openmeteo.js:136
+msgid "Freezing Rain: Light Intensity"
+msgstr ""
+
+#: 5.4/drivers/openmeteo.js:137
+msgid "Freezing Rain: Heavy Intensity"
+msgstr ""
+
+#: 5.4/drivers/openmeteo.js:138
+msgid "Snow Fall: Slight Intensity"
+msgstr ""
+
+#: 5.4/drivers/openmeteo.js:139
+msgid "Snow Fall: Moderate Intensity"
+msgstr ""
+
+#: 5.4/drivers/openmeteo.js:140
+msgid "Snow Fall: Heavy Intensity"
+msgstr ""
+
+#: 5.4/drivers/openmeteo.js:141
+#, fuzzy
+msgid "Snow Grains"
+msgstr "பனித்துகள்கள்"
+
+#: 5.4/drivers/openmeteo.js:142
+msgid "Rain Showers: Slight"
+msgstr ""
+
+#: 5.4/drivers/openmeteo.js:143
+msgid "Rain Showers: Moderate"
+msgstr ""
+
+#: 5.4/drivers/openmeteo.js:144
+msgid "Rain Showers: Violent"
+msgstr ""
+
+#: 5.4/drivers/openmeteo.js:145
+#, fuzzy
+msgid "Slight Snow Showers"
+msgstr "மித பனிப்பொழிவு"
+
+#: 5.4/drivers/openmeteo.js:146
+#, fuzzy
+msgid "Heavy Snow Showers"
+msgstr "கனத்த பனி மழை"
+
+#: 5.4/drivers/openmeteo.js:148
+msgid "Thunderstorm With Slight Hail"
+msgstr ""
+
+#: 5.4/drivers/openmeteo.js:149
+#, fuzzy
+msgid "Thunderstorm With Heavy Hail"
+msgstr "இடிமின்புயல்"
+
+#: 5.4/drivers/owm.js:76 5.4/drivers/owmfree.js:40
+#, fuzzy
+msgid "Invalid location format"
+msgstr "காட்டப்படும் இடத்தை பெறும் மூலம்"
+
+#: 5.4/drivers/weatherapi.js:245 5.4/drivers/weatherstack.js:234
+msgid "Blizzard"
+msgstr ""
+
+#: 5.4/drivers/weatherapi.js:246 5.4/drivers/weatherstack.js:235
+#: 5.4/drivers/wxbase.js:308
+#, fuzzy
+msgid "Blowing Snow"
+msgstr "காற்றுடன் கூடிய வெண்பனி"
+
+#: 5.4/drivers/weatherapi.js:247 5.4/drivers/weatherstack.js:236
+#: 5.4/drivers/wxbase.js:324 3.0/desklet.js:1591
+msgid "Clear"
+msgstr "தெளிவு"
+
+#: 5.4/drivers/weatherapi.js:250 5.4/drivers/weatherstack.js:239
+#: 5.4/drivers/wxbase.js:301
+#, fuzzy
+msgid "Freezing Drizzle"
+msgstr "உறைவிக்கும் தூறல்"
+
+#: 5.4/drivers/weatherapi.js:251 5.4/drivers/weatherstack.js:240
+#, fuzzy
+msgid "Freezing Fog"
+msgstr "உறைவிக்கும் மழை"
+
+#: 5.4/drivers/weatherapi.js:252 5.4/drivers/weatherstack.js:241
+#, fuzzy
+msgid "Heavy Freezing Drizzle"
+msgstr "உறைவிக்கும் தூறல்"
+
+#: 5.4/drivers/weatherapi.js:254 5.4/drivers/weatherstack.js:243
+#, fuzzy
+msgid "Heavy Rain at Times"
+msgstr "கடும் மழை"
+
+#: 5.4/drivers/weatherapi.js:256
+msgid "Ice Pellets"
+msgstr ""
+
+#: 5.4/drivers/weatherapi.js:257 5.4/drivers/weatherstack.js:244
+#, fuzzy
+msgid "Light Drizzle"
+msgstr "தூறல்"
+
+#: 5.4/drivers/weatherapi.js:258 5.4/drivers/weatherstack.js:245
+#, fuzzy
+msgid "Light Freezing Rain"
+msgstr "உறைவிக்கும் மழை"
+
+#: 5.4/drivers/weatherapi.js:261
+msgid "Light Showers of Ice Pellets"
+msgstr ""
+
+#: 5.4/drivers/weatherapi.js:262
+#, fuzzy
+msgid "Light Sleet"
+msgstr "மெல்லிய பனி"
+
+#: 5.4/drivers/weatherapi.js:263
+#, fuzzy
+msgid "Light Sleet Showers"
+msgstr "மித பனிப்பொழிவு"
+
+#: 5.4/drivers/weatherapi.js:265 5.4/drivers/wxbase.js:307
+#, fuzzy
+msgid "Light Snow Showers"
+msgstr "மித பனிப்பொழிவு"
+
+#: 5.4/drivers/weatherapi.js:267
+msgid "Moderate or Heavy Freezing Rain"
+msgstr ""
+
+#: 5.4/drivers/weatherapi.js:268
+#, fuzzy
+msgid "Moderate or Heavy Rain Shower"
+msgstr "கன மழை"
+
+#: 5.4/drivers/weatherapi.js:269
+msgid "Moderate or Heavy Rain With Thunder"
+msgstr ""
+
+#: 5.4/drivers/weatherapi.js:270
+msgid "Moderate or Heavy Showers of Ice Pellets"
+msgstr ""
+
+#: 5.4/drivers/weatherapi.js:271
+msgid "Moderate or Heavy Sleet"
+msgstr ""
+
+#: 5.4/drivers/weatherapi.js:272
+msgid "Moderate or Heavy Sleet Showers"
+msgstr ""
+
+#: 5.4/drivers/weatherapi.js:273
+#, fuzzy
+msgid "Moderate or Heavy Snow Showers"
+msgstr "கனத்த பனி மழை"
+
+#: 5.4/drivers/weatherapi.js:274
+msgid "Moderate or Heavy Snow With Thunder"
+msgstr ""
+
+#: 5.4/drivers/weatherapi.js:275 5.4/drivers/weatherstack.js:248
+#, fuzzy
+msgid "Moderate Rain"
+msgstr "கடும் மழை"
+
+#: 5.4/drivers/weatherapi.js:276 5.4/drivers/weatherstack.js:249
+msgid "Moderate Rain at Times"
+msgstr ""
+
+#: 5.4/drivers/weatherapi.js:277
+#, fuzzy
+msgid "Moderate Snow"
+msgstr "கனத்த பனி"
+
+#: 5.4/drivers/weatherapi.js:280 5.4/drivers/weatherstack.js:252
+#, fuzzy
+msgid "Patchy Freezing Drizzle Possible"
+msgstr "உறைவிக்கும் தூறல்"
+
+#: 5.4/drivers/weatherapi.js:281
+#, fuzzy
+msgid "Patchy Heavy Snow"
+msgstr "கனத்த பனி"
+
+#: 5.4/drivers/weatherapi.js:282 5.4/drivers/weatherstack.js:253
+msgid "Patchy Light Drizzle"
+msgstr ""
+
+#: 5.4/drivers/weatherapi.js:283 5.4/drivers/weatherstack.js:254
+#, fuzzy
+msgid "Patchy Light Rain"
+msgstr "மித மழை"
+
+#: 5.4/drivers/weatherapi.js:284
+msgid "Patchy Light Rain With Thunder"
+msgstr ""
+
+#: 5.4/drivers/weatherapi.js:285
+#, fuzzy
+msgid "Patchy Light Snow"
+msgstr "மெல்லிய பனி"
+
+#: 5.4/drivers/weatherapi.js:286
+msgid "Patchy Light Snow With Thunder"
+msgstr ""
+
+#: 5.4/drivers/weatherapi.js:287
+msgid "Patchy Moderate Snow"
+msgstr ""
+
+#: 5.4/drivers/weatherapi.js:288 5.4/drivers/weatherstack.js:255
+msgid "Patchy Rain Possible"
+msgstr ""
+
+#: 5.4/drivers/weatherapi.js:289 5.4/drivers/weatherstack.js:256
+msgid "Patchy Sleet Possible"
+msgstr ""
+
+#: 5.4/drivers/weatherapi.js:290 5.4/drivers/weatherstack.js:257
+msgid "Patchy Snow Possible"
+msgstr ""
+
+#: 5.4/drivers/weatherapi.js:292 5.4/drivers/weatherstack.js:259
+msgid "Thundery Outbreaks Possible"
+msgstr ""
+
+#: 5.4/drivers/weatherapi.js:293
+#, fuzzy
+msgid "Torrential Rain Shower"
+msgstr "கன மழை"
+
+#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+msgid "N"
+msgstr "வ"
+
+#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+msgid "NNE"
+msgstr "வவகி"
+
+#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+msgid "NE"
+msgstr "வகி"
+
+#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+msgid "ENE"
+msgstr "கிவகி"
+
+#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+msgid "E"
+msgstr "கி"
+
+#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+msgid "ESE"
+msgstr "கிதெகி"
+
+#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+msgid "SE"
+msgstr "தெகி"
+
+#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+msgid "SSE"
+msgstr "தெதெகி"
+
+#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+msgid "S"
+msgstr "தெ"
+
+#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+msgid "SSW"
+msgstr "தெதெமே"
+
+#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+msgid "SW"
+msgstr "தெமே"
+
+#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+msgid "WSW"
+msgstr "மேதெமே"
+
+#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+msgid "W"
+msgstr "மே"
+
+#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+msgid "WNW"
+msgstr "மேவமே"
+
+#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+msgid "NW"
+msgstr "வமே"
+
+#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+msgid "NNW"
+msgstr "வவமே"
+
+#: 5.4/drivers/wxbase.js:293 3.0/desklet.js:1560
+msgid "Tornado"
+msgstr "சுழற்காற்று"
+
+#: 5.4/drivers/wxbase.js:294
+#, fuzzy
+msgid "Tropical Storm"
+msgstr "வெப்ப மண்டல சூறாவளி"
+
+#: 5.4/drivers/wxbase.js:295 3.0/desklet.js:1562
+msgid "Hurricane"
+msgstr "சூறாவளி"
+
+#: 5.4/drivers/wxbase.js:296
+#, fuzzy
+msgid "Severe Thunderstorms"
+msgstr "கடுமையான இடிமழை"
+
+#: 5.4/drivers/wxbase.js:297 3.0/desklet.js:1564
+msgid "Thunderstorms"
+msgstr "இடியுடன் கூடிய புயல்"
+
+#: 5.4/drivers/wxbase.js:299
+#, fuzzy
+msgid "Mixed Rain and Sleet"
+msgstr "மழையும் பனிமழையும் கலந்து"
+
+#: 5.4/drivers/wxbase.js:300
+#, fuzzy
+msgid "Mixed Snow and Sleet"
+msgstr "பனியும் பனிமழையும் கலந்து"
+
+#: 5.4/drivers/wxbase.js:303
+#, fuzzy
+msgid "Freezing Rain"
+msgstr "உறைவிக்கும் மழை"
+
+#: 5.4/drivers/wxbase.js:306
+#, fuzzy
+msgid "Snow Flurries"
+msgstr "பனித்துகள்கள்"
+
+#: 5.4/drivers/wxbase.js:310 3.0/desklet.js:1577
+msgid "Hail"
+msgstr "ஆலங்கட்டி"
+
+#: 5.4/drivers/wxbase.js:312 3.0/desklet.js:1579
+msgid "Dust"
+msgstr "தூசு"
+
+#: 5.4/drivers/wxbase.js:313 3.0/desklet.js:1580
+msgid "Foggy"
+msgstr "மூடுபனி"
+
+#: 5.4/drivers/wxbase.js:314 3.0/desklet.js:1581
+msgid "Haze"
+msgstr "மூட்டம்"
+
+#: 5.4/drivers/wxbase.js:315 3.0/desklet.js:1582
+msgid "Smoky"
+msgstr "புகை"
+
+#: 5.4/drivers/wxbase.js:316 3.0/desklet.js:1583
+msgid "Blustery"
+msgstr "பலத்த காற்று"
+
+#: 5.4/drivers/wxbase.js:317 3.0/desklet.js:1584
+msgid "Windy"
+msgstr "அதிக காற்று"
+
+#: 5.4/drivers/wxbase.js:318 3.0/desklet.js:1585
+msgid "Cold"
+msgstr "குளிர்"
+
+#: 5.4/drivers/wxbase.js:320 5.4/drivers/wxbase.js:321
+#, fuzzy
+msgid "Mostly Cloudy"
+msgstr "பெரும்பாலும் மேகமூட்டம்"
+
+#: 5.4/drivers/wxbase.js:328
+#, fuzzy
+msgid "Mixed Rain and Hail"
+msgstr "மழை மற்றும் ஆலங்கட்டி"
+
+#: 5.4/drivers/wxbase.js:329 3.0/desklet.js:1596
+msgid "Hot"
+msgstr "சூடான"
+
+#: 5.4/drivers/wxbase.js:330
+#, fuzzy
+msgid "Isolated Thunderstorms"
+msgstr "ஆங்காங்கே இடியுடன் கூடிய மழை"
+
+#: 5.4/drivers/wxbase.js:331
+#, fuzzy
+msgid "Scattered Thunderstorms"
+msgstr "பரவலான இடி"
+
+#: 5.4/drivers/wxbase.js:332 5.4/drivers/wxbase.js:333
+#, fuzzy
+msgid "Scattered Showers"
+msgstr "பரவலான மழை"
+
+#: 5.4/drivers/wxbase.js:335
+#, fuzzy
+msgid "Scattered Snow Showers"
+msgstr "பரவலான பனிப்பொழிவு"
+
+#: 5.4/drivers/wxbase.js:338 3.0/desklet.js:1605
+msgid "Thundershowers"
+msgstr "இடியுடன்கூடிய மழை"
+
+#: 5.4/drivers/wxbase.js:340
+#, fuzzy
+msgid "Isolated Thundershowers"
+msgstr "ஆங்காங்கே இடியுடன் கூடிய கனமழை"
+
+#: 5.4/drivers/wxbase.js:341
+#, fuzzy
+msgid "Not Available"
+msgstr "இருப்பில் இல்லை"
+
+#: 3.0/desklet.js:744
+msgid "No data available"
+msgstr "தரவு எதுவும் கிடைக்கவில்லை"
+
+#: 3.0/desklet.js:777 3.0/desklet.js:844
+msgid "No data"
+msgstr "தரவு இல்லை"
+
+#: 3.0/desklet.js:1561
+msgid "Tropical storm"
+msgstr "வெப்ப மண்டல சூறாவளி"
+
+#: 3.0/desklet.js:1563
+msgid "Severe thunderstorms"
+msgstr "கடுமையான இடிமழை"
+
+#: 3.0/desklet.js:1565 3.0/desklet.js:4240
+msgid "Mixed rain and snow"
+msgstr "மழையும் பனியும் கலந்து"
+
+#: 3.0/desklet.js:1566
+msgid "Mixed rain and sleet"
+msgstr "மழையும் பனிமழையும் கலந்து"
+
+#: 3.0/desklet.js:1567
+msgid "Mixed snow and sleet"
+msgstr "பனியும் பனிமழையும் கலந்து"
+
+#: 3.0/desklet.js:1568
+msgid "Freezing drizzle"
+msgstr "உறைவிக்கும் தூறல்"
+
+#: 3.0/desklet.js:1570
+msgid "Freezing rain"
+msgstr "உறைவிக்கும் மழை"
+
+#: 3.0/desklet.js:1573
+msgid "Snow flurries"
+msgstr "பனித்துகள்கள்"
+
+#: 3.0/desklet.js:1574
+msgid "Light snow showers"
+msgstr "மெல்லிய பனிச்சாரல்"
+
+#: 3.0/desklet.js:1575
+msgid "Blowing snow"
+msgstr "காற்றுடன் கூடிய வெண்பனி"
+
+#: 3.0/desklet.js:1587 3.0/desklet.js:1588
+msgid "Mostly cloudy"
+msgstr "பெரும்பாலும் மேகமூட்டம்"
+
+#: 3.0/desklet.js:1589 3.0/desklet.js:1590 3.0/desklet.js:1604
+msgid "Partly cloudy"
+msgstr "சிறிது புகை மேகத்துடன்"
+
+#: 3.0/desklet.js:1595
+msgid "Mixed rain and hail"
+msgstr "மழை மற்றும் ஆலங்கட்டி"
+
+#: 3.0/desklet.js:1597
+msgid "Isolated thunderstorms"
+msgstr "ஆங்காங்கே இடியுடன் கூடிய மழை"
+
+#: 3.0/desklet.js:1598
+msgid "Scattered thunderstorms"
+msgstr "பரவலான இடி"
+
+#: 3.0/desklet.js:1599 3.0/desklet.js:1600
+msgid "Scattered showers"
+msgstr "பரவலான மழை"
+
+#: 3.0/desklet.js:1601 3.0/desklet.js:1603
+msgid "Heavy snow"
+msgstr "மிகுந்த பனி"
+
+#: 3.0/desklet.js:1602
+msgid "Scattered snow showers"
+msgstr "பரவலான பனிப்பொழிவு"
+
+#: 3.0/desklet.js:1606 3.0/desklet.js:4239
+msgid "Snow showers"
+msgstr "பனிப் பொழிவுகள்"
+
+#: 3.0/desklet.js:1607
+msgid "Isolated thundershowers"
+msgstr "ஆங்காங்கே இடியுடன் கூடிய கனமழை"
+
+#: 3.0/desklet.js:1608
+msgid "Not available"
+msgstr "இருப்பில் இல்லை"
+
+#: 3.0/desklet.js:2072 3.0/desklet.js:2800
 msgid "Steady"
 msgstr "நிலையான"
 
-#: 5.4/desklet.js:2081 5.4/desklet.js:2805 3.0/desklet.js:2072 3.0/desklet.js:2796
+#: 3.0/desklet.js:2072 3.0/desklet.js:2796
 msgid "Rising"
 msgstr "உயர்கிறது"
 
-#: 5.4/desklet.js:2081 5.4/desklet.js:2807 3.0/desklet.js:2072 3.0/desklet.js:2798
+#: 3.0/desklet.js:2072 3.0/desklet.js:2798
 msgid "Falling"
 msgstr "வீழ்கிறது"
 
@@ -540,14 +951,10 @@ msgstr "வீழ்கிறது"
 msgid "Display the weather from several web services on your desktop"
 msgstr "உங்கள் பணிமேடையில் பல இணைய சேவைகள் இருந்து வானிலையை காட்டவும்"
 
-#. metadata.json->name
-msgid "Weather Desklet"
-msgstr "வானிலை பணிமேடை உபகரணம்"
-
 #. metadata.json->comments
 msgid ""
-"Please consider translating the Weather Desklet into your language. See the website for "
-"more information"
+"Please consider translating the Weather desklet into your language. See the "
+"website for more information."
 msgstr ""
 
 #. metadata.json->contributors
@@ -572,79 +979,116 @@ msgid "BBC"
 msgstr "பிபிசி"
 
 #. 5.4->settings-schema.json->webservice->options
-#. 3.0->settings-schema.json->webservice->options
+msgid "meteoblue"
+msgstr ""
+
+#. 5.4->settings-schema.json->webservice->options
+msgid "National Weather Service (USA Only)"
+msgstr ""
+
+#. 5.4->settings-schema.json->webservice->options
+msgid "Open-Meteo Non-commercial"
+msgstr ""
+
+#. 5.4->settings-schema.json->webservice->options
 #, fuzzy
-msgid "Open Weather Map (requires API key)"
+msgid "Open Weather Map Free"
 msgstr "World Weather Online (API key தேவை)"
 
 #. 5.4->settings-schema.json->webservice->options
-#. 3.0->settings-schema.json->webservice->options
 #, fuzzy
-msgid "Open Weather Map Free (requires API key)"
+msgid "Open Weather Map"
 msgstr "World Weather Online (API key தேவை)"
 
 #. 5.4->settings-schema.json->webservice->options
-#. 3.0->settings-schema.json->webservice->options
-msgid "Wunderground (requires API key)"
-msgstr "Wunderground (API key தேவை)"
-
-#. 5.4->settings-schema.json->webservice->options
-#. 3.0->settings-schema.json->webservice->options
 #, fuzzy
-msgid "World Weather Online (deprecated) (requires API key)"
-msgstr "World Weather Online (API key தேவை)"
+msgid "Weather API Free"
+msgstr "வானிலை பணிமேடை உபகரணம்"
 
 #. 5.4->settings-schema.json->webservice->options
-#. 3.0->settings-schema.json->webservice->options
 #, fuzzy
-msgid "World Weather Online Premium (requires API key)"
-msgstr "World Weather Online (API key தேவை)"
+msgid "weatherstack"
+msgstr "வானிலை"
 
 #. 5.4->settings-schema.json->webservice->options
-#. 3.0->settings-schema.json->webservice->options
-#, fuzzy
-msgid "APIXU (requires API key)"
-msgstr "meteoblue (API key தேவை)"
+msgid "World Weather Online"
+msgstr ""
 
 #. 5.4->settings-schema.json->webservice->options
-#. 3.0->settings-schema.json->webservice->options
-msgid "Forecast.io (requires API key)"
-msgstr "Forecast.io (API key தேவை)"
-
-#. 5.4->settings-schema.json->webservice->options
-#. 3.0->settings-schema.json->webservice->options
-msgid "weather.com (deprecated)"
-msgstr "weather.com (நீக்கப்பட்டது)"
-
-#. 5.4->settings-schema.json->webservice->options
-#. 3.0->settings-schema.json->webservice->options
-msgid "meteoblue (requires API key)"
-msgstr "meteoblue (API key தேவை)"
+msgid "Wunderground"
+msgstr ""
 
 #. 5.4->settings-schema.json->webservice->tooltip
 #. 3.0->settings-schema.json->webservice->tooltip
 msgid "Select the data service you wish to use"
 msgstr "நீங்கள் பயன்படுத்த விரும்பும் தரவு சேவையை தேர்வுசெய்யவும்"
 
-#. 5.4->settings-schema.json->stationID->description
+#. 5.4->settings-schema.json->bbc__stationID->description
+#. 5.4->settings-schema.json->meteoblue__stationID->description
+#. 5.4->settings-schema.json->nws__stationID->description
+#. 5.4->settings-schema.json->openmeteo__stationID->description
+#. 5.4->settings-schema.json->owmfree__stationID->description
+#. 5.4->settings-schema.json->owm__stationID->description
+#. 5.4->settings-schema.json->weatherapi__stationID->description
+#. 5.4->settings-schema.json->weatherstack__stationID->description
+#. 5.4->settings-schema.json->wwo__stationID->description
+#. 5.4->settings-schema.json->wunderground__stationID->description
 #. 3.0->settings-schema.json->stationID->description
 msgid "Location"
 msgstr "இடம்"
 
-#. 5.4->settings-schema.json->stationID->tooltip
+#. 5.4->settings-schema.json->bbc__stationID->tooltip
+#. 5.4->settings-schema.json->meteoblue__stationID->tooltip
+#. 5.4->settings-schema.json->nws__stationID->tooltip
+#. 5.4->settings-schema.json->openmeteo__stationID->tooltip
+#. 5.4->settings-schema.json->owmfree__stationID->tooltip
+#. 5.4->settings-schema.json->owm__stationID->tooltip
+#. 5.4->settings-schema.json->weatherapi__stationID->tooltip
+#. 5.4->settings-schema.json->weatherstack__stationID->tooltip
+#. 5.4->settings-schema.json->wwo__stationID->tooltip
+#. 5.4->settings-schema.json->wunderground__stationID->tooltip
 #. 3.0->settings-schema.json->stationID->tooltip
 msgid "Set your location here"
 msgstr "உங்கள் இருப்பிடத்தை இங்கே அமைக்கவும்"
 
-#. 5.4->settings-schema.json->apikey->description
-#. 3.0->settings-schema.json->apikey->description
-msgid "API key"
-msgstr "API சாவி"
+#. 5.4->settings-schema.json->meteoblue__apikey->description
+#. 5.4->settings-schema.json->owmfree__apikey->description
+#. 5.4->settings-schema.json->owm__apikey->description
+#. 5.4->settings-schema.json->weatherapi__apikey->description
+#. 5.4->settings-schema.json->weatherstack__apikey->description
+#. 5.4->settings-schema.json->wwo__apikey->description
+#. 5.4->settings-schema.json->wunderground__apikey->description
+#, fuzzy
+msgid "API key (required)"
+msgstr "meteoblue (API key தேவை)"
 
-#. 5.4->settings-schema.json->apikey->tooltip
-#. 3.0->settings-schema.json->apikey->tooltip
-msgid "Required for some services only. Enter your API key for your chosen service"
-msgstr "சில சேவைகளுக்கு மட்டுமே தேவை. நீங்கள் தேர்வு செய்த சேவைக்கான் உங்கள் API திறவை உள்ளிடவும்"
+#. 5.4->settings-schema.json->meteoblue__apikey->tooltip
+msgid "Enter your API key for meteoblue"
+msgstr ""
+
+#. 5.4->settings-schema.json->owmfree__apikey->tooltip
+msgid "Enter your API key for Open Weather Map Free"
+msgstr ""
+
+#. 5.4->settings-schema.json->owm__apikey->tooltip
+msgid "Enter your API key for Open Weather Map"
+msgstr ""
+
+#. 5.4->settings-schema.json->weatherapi__apikey->tooltip
+msgid "Enter your API key for Weather API Free"
+msgstr ""
+
+#. 5.4->settings-schema.json->weatherstack__apikey->tooltip
+msgid "Enter your API key for weatherstack"
+msgstr ""
+
+#. 5.4->settings-schema.json->wwo__apikey->tooltip
+msgid "Enter your API key for World Weather Online"
+msgstr ""
+
+#. 5.4->settings-schema.json->wunderground__apikey->tooltip
+msgid "Enter your API key for Wunderground"
+msgstr ""
 
 #. 5.4->settings-schema.json->tunits->description
 #. 3.0->settings-schema.json->tunits->description
@@ -739,10 +1183,11 @@ msgstr "முன்னறிவிப்பை காட்டு"
 #. 5.4->settings-schema.json->userno->tooltip
 #. 3.0->settings-schema.json->userno->tooltip
 msgid ""
-"The number of days of forecast to display. Note that not all services support all values"
+"The number of days of forecast to display. Note that not all services "
+"support all values"
 msgstr ""
-"முன்னறிவிப்பு நாட்களின் எண்ணிக்கை . எல்லா சேவைகளும் எல்லா மதிப்புகளையும் ஆதரிப்பதில்லை என்பதை குறிப்பில் "
-"கொள்ளவும்."
+"முன்னறிவிப்பு நாட்களின் எண்ணிக்கை . எல்லா சேவைகளும் எல்லா மதிப்புகளையும் ஆதரிப்பதில்லை "
+"என்பதை குறிப்பில் கொள்ளவும்."
 
 #. 5.4->settings-schema.json->refreshtime->units
 #. 3.0->settings-schema.json->refreshtime->units
@@ -757,16 +1202,18 @@ msgstr "முன்னறிவிப்பை புதுப்பிக்�
 #. 5.4->settings-schema.json->refreshtime->tooltip
 #. 3.0->settings-schema.json->refreshtime->tooltip
 msgid ""
-"Period between refreshing forecasts. Note that not all services support lower refresh "
-"times"
+"Period between refreshing forecasts. Note that not all services support "
+"lower refresh times"
 msgstr ""
-"முன்னறிவிப்புகள் புதுப்பிக்கும் இடைவெளி. எல்லா சேவைகளும் குறைந்த புதுப்பிப்பு நேரங்களை ஆதரிப்பதில்லை "
-"என்று குறிப்பில் கொள்ளவும்"
+"முன்னறிவிப்புகள் புதுப்பிக்கும் இடைவெளி. எல்லா சேவைகளும் குறைந்த புதுப்பிப்பு நேரங்களை "
+"ஆதரிப்பதில்லை என்று குறிப்பில் கொள்ளவும்"
 
 #. 5.4->settings-schema.json->display->description
 #. 3.0->settings-schema.json->display->description
-msgid "Optional items to display (not all options are supported by all services)"
-msgstr "காட்டவேண்டிய விருப்ப உருப்படி (எல்லா சேவைகளும் எல்லா விருப்பங்களையும் ஆதரிப்பதில்லை )"
+msgid ""
+"Optional items to display (not all options are supported by all services)"
+msgstr ""
+"காட்டவேண்டிய விருப்ப உருப்படி (எல்லா சேவைகளும் எல்லா விருப்பங்களையும் ஆதரிப்பதில்லை )"
 
 #. 5.4->settings-schema.json->display__meta__country->description
 #. 3.0->settings-schema.json->display__meta__country->description
@@ -776,6 +1223,15 @@ msgstr "நாடு"
 #. 5.4->settings-schema.json->display__meta__country->tooltip
 #. 3.0->settings-schema.json->display__meta__country->tooltip
 msgid "Check to display the country"
+msgstr "நாட்டை காட்ட குறியிடவும்"
+
+#. 5.4->settings-schema.json->display__meta__region->description
+msgid "Region"
+msgstr ""
+
+#. 5.4->settings-schema.json->display__meta__region->tooltip
+#, fuzzy
+msgid "Check to display the region"
 msgstr "நாட்டை காட்ட குறியிடவும்"
 
 #. 5.4->settings-schema.json->display__cc__weather->description
@@ -1034,7 +1490,9 @@ msgstr "பணிமேடை தீம்களை மீறு (கீழே �
 
 #. 5.4->settings-schema.json->overrideTheme->tooltip
 #. 3.0->settings-schema.json->overrideTheme->tooltip
-msgid "Check this to override the desktop theme and configure the appearance manually"
+msgid ""
+"Check this to override the desktop theme and configure the appearance "
+"manually"
 msgstr "பணிமேடை தீமை புறக்கணிக்க இதை குறித்து மற்றும் தோற்றத்தை சரிபார்த்து கட்டமைக்கவும்"
 
 #. 5.4->settings-schema.json->transparency->description
@@ -1123,8 +1581,12 @@ msgstr "வரம்பு நிறம்"
 
 #. 5.4->settings-schema.json->bordercolor->tooltip
 #. 3.0->settings-schema.json->bordercolor->tooltip
-msgid "Select the color for the border. Only available if the 'Border' checkbox is enabled"
-msgstr "வரம்பின் நிறத்தை தேர்வு செய்யவும். 'வரம்பு' தேர்வுப்பெட்டி இயலச்செய்திருந்தால் மட்டுமே கிடைக்கும்"
+msgid ""
+"Select the color for the border. Only available if the 'Border' checkbox is "
+"enabled"
+msgstr ""
+"வரம்பின் நிறத்தை தேர்வு செய்யவும். 'வரம்பு' தேர்வுப்பெட்டி இயலச்செய்திருந்தால் மட்டுமே "
+"கிடைக்கும்"
 
 #. 5.4->settings-schema.json->borderwidth->description
 #. 3.0->settings-schema.json->borderwidth->description
@@ -1133,8 +1595,12 @@ msgstr "வரம்பு அகலம்"
 
 #. 5.4->settings-schema.json->borderwidth->tooltip
 #. 3.0->settings-schema.json->borderwidth->tooltip
-msgid "Select the width of the border. Only available if the 'Border' checkbox is enabled"
-msgstr "வரம்பின் அகலத்தை தேர்வு செய்யவும். 'வரம்பு' தேர்வுப்பெட்டி இயலச்செய்திருந்தால் மட்டுமே கிடைக்கும்"
+msgid ""
+"Select the width of the border. Only available if the 'Border' checkbox is "
+"enabled"
+msgstr ""
+"வரம்பின் அகலத்தை தேர்வு செய்யவும். 'வரம்பு' தேர்வுப்பெட்டி இயலச்செய்திருந்தால் மட்டுமே "
+"கிடைக்கும்"
 
 #. 5.4->settings-schema.json->locationlookups->description
 #. 3.0->settings-schema.json->locationlookups->description
@@ -1154,10 +1620,11 @@ msgstr "கூகுள்"
 #. 5.4->settings-schema.json->locsrc->tooltip
 #. 3.0->settings-schema.json->locsrc->tooltip
 msgid ""
-"The source of the text displayed as the current location. Yahoo! and Google may offer "
-"city names in other languages"
+"The source of the text displayed as the current location. Yahoo! and Google "
+"may offer city names in other languages"
 msgstr ""
-"உரை ஆதாரமாக தற்போதைய இடம் காட்டப்படும் . யாஹூ! மற்றும் கூகுள் பிற மொழிகளில் நகர பெயர்களை வழங்கலாம்"
+"உரை ஆதாரமாக தற்போதைய இடம் காட்டப்படும் . யாஹூ! மற்றும் கூகுள் பிற மொழிகளில் நகர "
+"பெயர்களை வழங்கலாம்"
 
 #. 5.4->settings-schema.json->manuallocation->description
 #. 3.0->settings-schema.json->manuallocation->description
@@ -1237,8 +1704,59 @@ msgstr "மேல் மத்தி"
 #. 5.4->settings-schema.json->gravity->tooltip
 #. 3.0->settings-schema.json->gravity->tooltip
 msgid ""
-"Select the point on the desklet to which it is anchored. This point will remain static "
-"as the desklet grows and shrinks"
+"Select the point on the desklet to which it is anchored. This point will "
+"remain static as the desklet grows and shrinks"
 msgstr ""
-"பணிமேடை உபகரணம் நிலைநிறுத்த வேண்டிய புள்ளியை தேர்வு செய்க. உபகரணம் வளர்ந்தாலும் சுருங்கினாலும் இந்த "
-"புள்ளி நிலைத்திருக்கும்"
+"பணிமேடை உபகரணம் நிலைநிறுத்த வேண்டிய புள்ளியை தேர்வு செய்க. உபகரணம் வளர்ந்தாலும் "
+"சுருங்கினாலும் இந்த புள்ளி நிலைத்திருக்கும்"
+
+#. 3.0->settings-schema.json->webservice->options
+#, fuzzy
+msgid "Open Weather Map (requires API key)"
+msgstr "World Weather Online (API key தேவை)"
+
+#. 3.0->settings-schema.json->webservice->options
+#, fuzzy
+msgid "Open Weather Map Free (requires API key)"
+msgstr "World Weather Online (API key தேவை)"
+
+#. 3.0->settings-schema.json->webservice->options
+msgid "Wunderground (requires API key)"
+msgstr "Wunderground (API key தேவை)"
+
+#. 3.0->settings-schema.json->webservice->options
+#, fuzzy
+msgid "World Weather Online (deprecated) (requires API key)"
+msgstr "World Weather Online (API key தேவை)"
+
+#. 3.0->settings-schema.json->webservice->options
+#, fuzzy
+msgid "World Weather Online Premium (requires API key)"
+msgstr "World Weather Online (API key தேவை)"
+
+#. 3.0->settings-schema.json->webservice->options
+#, fuzzy
+msgid "APIXU (requires API key)"
+msgstr "meteoblue (API key தேவை)"
+
+#. 3.0->settings-schema.json->webservice->options
+msgid "Forecast.io (requires API key)"
+msgstr "Forecast.io (API key தேவை)"
+
+#. 3.0->settings-schema.json->webservice->options
+msgid "weather.com (deprecated)"
+msgstr "weather.com (நீக்கப்பட்டது)"
+
+#. 3.0->settings-schema.json->webservice->options
+msgid "meteoblue (requires API key)"
+msgstr "meteoblue (API key தேவை)"
+
+#. 3.0->settings-schema.json->apikey->description
+msgid "API key"
+msgstr "API சாவி"
+
+#. 3.0->settings-schema.json->apikey->tooltip
+msgid ""
+"Required for some services only. Enter your API key for your chosen service"
+msgstr ""
+"சில சேவைகளுக்கு மட்டுமே தேவை. நீங்கள் தேர்வு செய்த சேவைக்கான் உங்கள் API திறவை உள்ளிடவும்"

@@ -9,29 +9,136 @@
         "description": "Data service",
         "options": {
             "BBC": "bbc",
-            "Open Weather Map (requires API key)": "owm",
-            "Open Weather Map Free (requires API key)": "owm2",
-            "Wunderground (requires API key)": "wunderground",
-            "World Weather Online (deprecated) (requires API key)": "wwo",
-            "World Weather Online Premium (requires API key)": "wwo2",
-            "APIXU (requires API key)": "apixu",
-            "Forecast.io (requires API key)": "forecast",
-            "weather.com (deprecated)": "twc",
-            "meteoblue (requires API key)": "meteoblue"
+            "meteoblue": "meteoblue",
+            "National Weather Service (USA Only)": "nws",
+            "Open-Meteo Non-commercial": "openmeteo",
+            "Open Weather Map Free": "owmfree",
+            "Open Weather Map": "owm",
+            "Weather API Free": "weatherapi",
+            "weatherstack": "weatherstack",
+            "World Weather Online": "wwo",
+            "Wunderground": "wunderground"
         },
         "tooltip": "Select the data service you wish to use"
     },
-    "stationID": {
+    "bbc__stationID": {
+        "dependency": "webservice=bbc",
         "type": "entry",
         "default": "2643743",
         "description": "Location",
         "tooltip": "Set your location here"
     },
-    "apikey": {
+    "meteoblue__stationID": {
+        "dependency": "webservice=meteoblue",
+        "type": "entry",
+        "default": "012.34,-56.78",
+        "description": "Location",
+        "tooltip": "Set your location here"
+    },
+    "meteoblue__apikey": {
+        "dependency": "webservice=meteoblue",
         "type": "entry",
         "default": "",
-        "description": "API key",
-        "tooltip": "Required for some services only. Enter your API key for your chosen service"
+        "description": "API key (required)",
+        "tooltip": "Enter your API key for meteoblue"
+    },
+    "nws__stationID": {
+        "dependency": "webservice=nws",
+        "type": "entry",
+        "default": "012.34,-56.78",
+        "description": "Location",
+        "tooltip": "Set your location here"
+    },
+    "openmeteo__stationID": {
+        "dependency": "webservice=openmeteo",
+        "type": "entry",
+        "default": "012.34,-56.78",
+        "description": "Location",
+        "tooltip": "Set your location here"
+    },
+    "owmfree__stationID": {
+        "dependency": "webservice=owmfree",
+        "type": "entry",
+        "default": "2643743",
+        "description": "Location",
+        "tooltip": "Set your location here"
+    },
+    "owmfree__apikey": {
+        "dependency": "webservice=owmfree",
+        "type": "entry",
+        "default": "",
+        "description": "API key (required)",
+        "tooltip": "Enter your API key for Open Weather Map Free"
+    },
+    "owm__stationID": {
+        "dependency": "webservice=owm",
+        "type": "entry",
+        "default": "2643743",
+        "description": "Location",
+        "tooltip": "Set your location here"
+    },
+    "owm__apikey": {
+        "dependency": "webservice=owm",
+        "type": "entry",
+        "default": "",
+        "description": "API key (required)",
+        "tooltip": "Enter your API key for Open Weather Map"
+    },
+    "weatherapi__stationID": {
+        "dependency": "webservice=weatherapi",
+        "type": "entry",
+        "default": "012.34,-56.78",
+        "description": "Location",
+        "tooltip": "Set your location here"
+    },
+    "weatherapi__apikey": {
+        "dependency": "webservice=weatherapi",
+        "type": "entry",
+        "default": "",
+        "description": "API key (required)",
+        "tooltip": "Enter your API key for Weather API Free"
+    },
+    "weatherstack__stationID": {
+        "dependency": "webservice=weatherstack",
+        "type": "entry",
+        "default": "012.34,-56.78",
+        "description": "Location",
+        "tooltip": "Set your location here"
+    },
+    "weatherstack__apikey": {
+        "dependency": "webservice=weatherstack",
+        "type": "entry",
+        "default": "",
+        "description": "API key (required)",
+        "tooltip": "Enter your API key for weatherstack"
+    },
+    "wwo__stationID": {
+        "dependency": "webservice=wwo",
+        "type": "entry",
+        "default": "012.34,-56.78",
+        "description": "Location",
+        "tooltip": "Set your location here"
+    },
+    "wwo__apikey": {
+        "dependency": "webservice=wwo",
+        "type": "entry",
+        "default": "",
+        "description": "API key (required)",
+        "tooltip": "Enter your API key for World Weather Online"
+    },
+    "wunderground__stationID": {
+        "dependency": "webservice=wunderground",
+        "type": "entry",
+        "default": "STATIONID123",
+        "description": "Location",
+        "tooltip": "Set your location here"
+    },
+    "wunderground__apikey": {
+        "dependency": "webservice=wunderground",
+        "type": "entry",
+        "default": "",
+        "description": "API key (required)",
+        "tooltip": "Enter your API key for Wunderground"
     },
     "tunits": {
         "type": "combobox",
@@ -99,6 +206,12 @@
         "default": false,
         "description": "Country",
         "tooltip": "Check to display the country"
+    },
+    "display__meta__region": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Region",
+        "tooltip": "Check to display the region"
     },
     "display__cc__weather": {
         "type": "checkbox",
