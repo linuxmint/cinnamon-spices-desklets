@@ -6,6 +6,7 @@ const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 imports.searchPath.push(`${DESKLET_DIR}/drivers`);
 const wxBase = imports.wxbase;
 
+const SERVICE_STATUS_ERROR = wxBase.SERVICE_STATUS_ERROR;
 const SERVICE_STATUS_OK = wxBase.SERVICE_STATUS_OK;
 
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + '/.local/share/locale');
@@ -57,9 +58,9 @@ var Driver = class Driver extends wxBase.Driver {
 
     let params = {
       'stationId': encodeURIComponent(this.stationID),
-      'apiKey': encodeURIComponent(this.apikey),
       'format': 'json',
-      'units': 'm'
+      'units': 'm',
+      'apiKey': encodeURIComponent(this.apikey)
     };
     if (this.langcode) params['language'] = this.langcode;
 
@@ -76,9 +77,9 @@ var Driver = class Driver extends wxBase.Driver {
 
     params = {
       'geocode': encodeURIComponent(this.stationID),
-      'apiKey': encodeURIComponent(this.apikey),
       'format': 'json',
-      'units': 'm'
+      'units': 'm',
+      'apiKey': encodeURIComponent(this.apikey)
     };
     if (this.langcode) params['language'] = this.langcode;
 
