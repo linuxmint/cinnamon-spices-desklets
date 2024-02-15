@@ -1,11 +1,11 @@
 {
-    "description": "Display the weather from several web services on your desktop", 
-    "name": "Weather Desklet", 
+    "description": "Display the weather from several web services on your desktop",
+    "name": "Weather",
     "uuid": "bbcwx@oak-wood.co.uk",
     "max-instances": "10",
-    "version": "2.11",
-    "comments":"Please consider translating the Weather Desklet into your language. See the website for more information",
-    "website":"http://www.oak-wood.co.uk/oss/other/bbcwx",
+    "version": "3.0",
+    "comments":"Please consider translating the Weather desklet into your language. See the website for more information.",
+    "website":"https://cinnamon-spices.linuxmint.com/desklets/view/20",
     "contributors":"Chris Hastie",
     "prevent-decorations": true
 }
