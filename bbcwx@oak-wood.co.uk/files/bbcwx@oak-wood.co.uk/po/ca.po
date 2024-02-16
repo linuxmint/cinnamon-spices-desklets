@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bbcwx\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-02-15 18:53-0500\n"
+"POT-Creation-Date: 2024-02-15 19:02-0500\n"
 "PO-Revision-Date: 2023-09-03 14:16-0400\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan <ca@li.org>\n"
@@ -206,7 +206,7 @@ msgstr ""
 msgid "Clear Sky"
 msgstr "Cel clar"
 
-#: 5.4/drivers/bbc.js:255 5.4/drivers/wxbase.js:302 3.0/desklet.js:1569
+#: 5.4/drivers/bbc.js:255 5.4/drivers/wxbase.js:303 3.0/desklet.js:1569
 #: 3.0/desklet.js:1872
 msgid "Drizzle"
 msgstr "Plugim"
@@ -244,7 +244,7 @@ msgid "Heavy Snow Shower"
 msgstr "Nevades intenses"
 
 #: 5.4/drivers/bbc.js:263 5.4/drivers/weatherapi.js:255
-#: 5.4/drivers/wxbase.js:334 5.4/drivers/wxbase.js:336 3.0/desklet.js:1881
+#: 5.4/drivers/wxbase.js:335 5.4/drivers/wxbase.js:337 3.0/desklet.js:1881
 msgid "Heavy Snow"
 msgstr "Nevada intensa"
 
@@ -280,8 +280,8 @@ msgstr "Boirina"
 
 #: 5.4/drivers/bbc.js:270 5.4/drivers/meteoblue.js:153
 #: 5.4/drivers/openmeteo.js:124 5.4/drivers/weatherapi.js:279
-#: 5.4/drivers/weatherstack.js:251 5.4/drivers/wxbase.js:322
-#: 5.4/drivers/wxbase.js:323 5.4/drivers/wxbase.js:337 3.0/desklet.js:1862
+#: 5.4/drivers/weatherstack.js:251 5.4/drivers/wxbase.js:323
+#: 5.4/drivers/wxbase.js:324 5.4/drivers/wxbase.js:338 3.0/desklet.js:1862
 #: 3.0/desklet.js:4232
 msgid "Partly Cloudy"
 msgstr "Parcialment ennuvolat"
@@ -299,7 +299,7 @@ msgstr "Tempesta de sorra"
 msgid "Sleet Shower"
 msgstr "Plugims"
 
-#: 5.4/drivers/bbc.js:274 5.4/drivers/wxbase.js:311 3.0/desklet.js:1578
+#: 5.4/drivers/bbc.js:274 5.4/drivers/wxbase.js:312 3.0/desklet.js:1578
 #: 3.0/desklet.js:1877
 msgid "Sleet"
 msgstr "Aiguaneu"
@@ -309,7 +309,7 @@ msgid "Sunny Intervals"
 msgstr "Intervals assolellats"
 
 #: 5.4/drivers/bbc.js:276 5.4/drivers/weatherapi.js:291
-#: 5.4/drivers/weatherstack.js:258 5.4/drivers/wxbase.js:325
+#: 5.4/drivers/weatherstack.js:258 5.4/drivers/wxbase.js:326
 #: 3.0/desklet.js:1592 3.0/desklet.js:1861
 msgid "Sunny"
 msgstr "Assolellat"
@@ -341,36 +341,36 @@ msgstr "Núvols blancs"
 msgid "No API key provided"
 msgstr ""
 
-#: 5.4/drivers/meteoblue.js:152 5.4/drivers/wxbase.js:326
-#: 5.4/drivers/wxbase.js:327 3.0/desklet.js:1593 3.0/desklet.js:1594
+#: 5.4/drivers/meteoblue.js:152 5.4/drivers/wxbase.js:327
+#: 5.4/drivers/wxbase.js:328 3.0/desklet.js:1593 3.0/desklet.js:1594
 #: 3.0/desklet.js:4231
 msgid "Fair"
 msgstr "Bon temps"
 
 #: 5.4/drivers/meteoblue.js:154 5.4/drivers/weatherapi.js:248
-#: 5.4/drivers/weatherstack.js:237 5.4/drivers/wxbase.js:319
+#: 5.4/drivers/weatherstack.js:237 5.4/drivers/wxbase.js:320
 #: 3.0/desklet.js:1586 3.0/desklet.js:4233
 msgid "Cloudy"
 msgstr "Ennuvolat"
 
-#: 5.4/drivers/meteoblue.js:157 5.4/drivers/wxbase.js:304
-#: 5.4/drivers/wxbase.js:305 3.0/desklet.js:1571 3.0/desklet.js:1572
+#: 5.4/drivers/meteoblue.js:157 5.4/drivers/wxbase.js:305
+#: 5.4/drivers/wxbase.js:306 3.0/desklet.js:1571 3.0/desklet.js:1572
 #: 3.0/desklet.js:4236
 msgid "Showers"
 msgstr "Ruixats"
 
 #: 5.4/drivers/meteoblue.js:159 5.4/drivers/meteoblue.js:165
-#: 5.4/drivers/wxbase.js:309 3.0/desklet.js:1576 3.0/desklet.js:4238
+#: 5.4/drivers/wxbase.js:310 3.0/desklet.js:1576 3.0/desklet.js:4238
 #: 3.0/desklet.js:4244
 msgid "Snow"
 msgstr "Neu"
 
-#: 5.4/drivers/meteoblue.js:160 5.4/drivers/wxbase.js:339
+#: 5.4/drivers/meteoblue.js:160 5.4/drivers/wxbase.js:340
 #, fuzzy
 msgid "Snow Showers"
 msgstr "Nevades fortes"
 
-#: 5.4/drivers/meteoblue.js:161 5.4/drivers/wxbase.js:298
+#: 5.4/drivers/meteoblue.js:161 5.4/drivers/wxbase.js:299
 #, fuzzy
 msgid "Mixed Rain and Snow"
 msgstr "Pluja i neu"
@@ -488,18 +488,18 @@ msgid "Blizzard"
 msgstr ""
 
 #: 5.4/drivers/weatherapi.js:246 5.4/drivers/weatherstack.js:235
-#: 5.4/drivers/wxbase.js:308
+#: 5.4/drivers/wxbase.js:309
 #, fuzzy
 msgid "Blowing Snow"
 msgstr "Neu aixecada pel vent"
 
 #: 5.4/drivers/weatherapi.js:247 5.4/drivers/weatherstack.js:236
-#: 5.4/drivers/wxbase.js:324 3.0/desklet.js:1591
+#: 5.4/drivers/wxbase.js:325 3.0/desklet.js:1591
 msgid "Clear"
 msgstr "Assolellat"
 
 #: 5.4/drivers/weatherapi.js:250 5.4/drivers/weatherstack.js:239
-#: 5.4/drivers/wxbase.js:301
+#: 5.4/drivers/wxbase.js:302
 #, fuzzy
 msgid "Freezing Drizzle"
 msgstr "Plugim glaçat"
@@ -547,7 +547,7 @@ msgstr "Nevada lleugera"
 msgid "Light Sleet Showers"
 msgstr "Nevades lleugeres"
 
-#: 5.4/drivers/weatherapi.js:265 5.4/drivers/wxbase.js:307
+#: 5.4/drivers/weatherapi.js:265 5.4/drivers/wxbase.js:308
 #, fuzzy
 msgid "Light Snow Showers"
 msgstr "Nevades lleugeres"
@@ -657,188 +657,188 @@ msgstr ""
 msgid "Torrential Rain Shower"
 msgstr "Pluja intensa"
 
-#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
 msgid "N"
 msgstr "N"
 
-#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
 msgid "NNE"
 msgstr "NNE"
 
-#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
 msgid "NE"
 msgstr "NE"
 
-#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
 msgid "ENE"
 msgstr "ENE"
 
-#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
 msgid "E"
 msgstr "E"
 
-#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
 msgid "ESE"
 msgstr "ESE"
 
-#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
 msgid "SE"
 msgstr "SE"
 
-#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
 msgid "SSE"
 msgstr "SSE"
 
-#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
 msgid "S"
 msgstr "S"
 
-#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
 msgid "SSW"
 msgstr "SSO"
 
-#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
 msgid "SW"
 msgstr "SO"
 
-#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
 msgid "WSW"
 msgstr "OSO"
 
-#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
 msgid "W"
 msgstr "O"
 
-#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
 msgid "WNW"
 msgstr "ONO"
 
-#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
 msgid "NW"
 msgstr "NO"
 
-#: 5.4/drivers/wxbase.js:241 3.0/desklet.js:1506
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
 msgid "NNW"
 msgstr "NNO"
 
-#: 5.4/drivers/wxbase.js:293 3.0/desklet.js:1560
+#: 5.4/drivers/wxbase.js:294 3.0/desklet.js:1560
 msgid "Tornado"
 msgstr "Tornado"
 
-#: 5.4/drivers/wxbase.js:294
+#: 5.4/drivers/wxbase.js:295
 #, fuzzy
 msgid "Tropical Storm"
 msgstr "Tempesta tropical"
 
-#: 5.4/drivers/wxbase.js:295 3.0/desklet.js:1562
+#: 5.4/drivers/wxbase.js:296 3.0/desklet.js:1562
 msgid "Hurricane"
 msgstr "Huracà"
 
-#: 5.4/drivers/wxbase.js:296
+#: 5.4/drivers/wxbase.js:297
 #, fuzzy
 msgid "Severe Thunderstorms"
 msgstr "Tempesta elèctrica severa"
 
-#: 5.4/drivers/wxbase.js:297 3.0/desklet.js:1564
+#: 5.4/drivers/wxbase.js:298 3.0/desklet.js:1564
 msgid "Thunderstorms"
 msgstr "Tempesta elèctrica"
 
-#: 5.4/drivers/wxbase.js:299
+#: 5.4/drivers/wxbase.js:300
 #, fuzzy
 msgid "Mixed Rain and Sleet"
 msgstr "Pluja i aiguaneu"
 
-#: 5.4/drivers/wxbase.js:300
+#: 5.4/drivers/wxbase.js:301
 #, fuzzy
 msgid "Mixed Snow and Sleet"
 msgstr "Neu i aiguaneu"
 
-#: 5.4/drivers/wxbase.js:303
+#: 5.4/drivers/wxbase.js:304
 #, fuzzy
 msgid "Freezing Rain"
 msgstr "Pluja glaçada"
 
-#: 5.4/drivers/wxbase.js:306
+#: 5.4/drivers/wxbase.js:307
 #, fuzzy
 msgid "Snow Flurries"
 msgstr "Ràfegues de neu"
 
-#: 5.4/drivers/wxbase.js:310 3.0/desklet.js:1577
+#: 5.4/drivers/wxbase.js:311 3.0/desklet.js:1577
 msgid "Hail"
 msgstr "Calamarsa"
 
-#: 5.4/drivers/wxbase.js:312 3.0/desklet.js:1579
+#: 5.4/drivers/wxbase.js:313 3.0/desklet.js:1579
 msgid "Dust"
 msgstr "Pols"
 
-#: 5.4/drivers/wxbase.js:313 3.0/desklet.js:1580
+#: 5.4/drivers/wxbase.js:314 3.0/desklet.js:1580
 msgid "Foggy"
 msgstr "Boirós"
 
-#: 5.4/drivers/wxbase.js:314 3.0/desklet.js:1581
+#: 5.4/drivers/wxbase.js:315 3.0/desklet.js:1581
 msgid "Haze"
 msgstr "Boirina"
 
-#: 5.4/drivers/wxbase.js:315 3.0/desklet.js:1582
+#: 5.4/drivers/wxbase.js:316 3.0/desklet.js:1582
 msgid "Smoky"
 msgstr "Boira espessa"
 
-#: 5.4/drivers/wxbase.js:316 3.0/desklet.js:1583
+#: 5.4/drivers/wxbase.js:317 3.0/desklet.js:1583
 msgid "Blustery"
 msgstr "Borrasca"
 
-#: 5.4/drivers/wxbase.js:317 3.0/desklet.js:1584
+#: 5.4/drivers/wxbase.js:318 3.0/desklet.js:1584
 msgid "Windy"
 msgstr "Ventades"
 
-#: 5.4/drivers/wxbase.js:318 3.0/desklet.js:1585
+#: 5.4/drivers/wxbase.js:319 3.0/desklet.js:1585
 msgid "Cold"
 msgstr "Fred"
 
-#: 5.4/drivers/wxbase.js:320 5.4/drivers/wxbase.js:321
+#: 5.4/drivers/wxbase.js:321 5.4/drivers/wxbase.js:322
 #, fuzzy
 msgid "Mostly Cloudy"
 msgstr "Principalment ennuvolat"
 
-#: 5.4/drivers/wxbase.js:328
+#: 5.4/drivers/wxbase.js:329
 #, fuzzy
 msgid "Mixed Rain and Hail"
 msgstr "Pluja i calamarsa"
 
-#: 5.4/drivers/wxbase.js:329 3.0/desklet.js:1596
+#: 5.4/drivers/wxbase.js:330 3.0/desklet.js:1596
 msgid "Hot"
 msgstr "Càlid"
 
-#: 5.4/drivers/wxbase.js:330
+#: 5.4/drivers/wxbase.js:331
 #, fuzzy
 msgid "Isolated Thunderstorms"
 msgstr "Tempestes elèctriques aïllades"
 
-#: 5.4/drivers/wxbase.js:331
+#: 5.4/drivers/wxbase.js:332
 #, fuzzy
 msgid "Scattered Thunderstorms"
 msgstr "Tempestes elèctriques disperses"
 
-#: 5.4/drivers/wxbase.js:332 5.4/drivers/wxbase.js:333
+#: 5.4/drivers/wxbase.js:333 5.4/drivers/wxbase.js:334
 #, fuzzy
 msgid "Scattered Showers"
 msgstr "Ruixats dispersos"
 
-#: 5.4/drivers/wxbase.js:335
+#: 5.4/drivers/wxbase.js:336
 #, fuzzy
 msgid "Scattered Snow Showers"
 msgstr "Nevades disperses"
 
-#: 5.4/drivers/wxbase.js:338 3.0/desklet.js:1605
+#: 5.4/drivers/wxbase.js:339 3.0/desklet.js:1605
 msgid "Thundershowers"
 msgstr "Tempestes"
 
-#: 5.4/drivers/wxbase.js:340
+#: 5.4/drivers/wxbase.js:341
 #, fuzzy
 msgid "Isolated Thundershowers"
 msgstr "Tempestes aïllades"
 
-#: 5.4/drivers/wxbase.js:341
+#: 5.4/drivers/wxbase.js:342
 #, fuzzy
 msgid "Not Available"
 msgstr "No està disponible"

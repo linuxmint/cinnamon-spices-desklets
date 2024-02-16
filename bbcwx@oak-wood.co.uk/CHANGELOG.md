@@ -1,4 +1,14 @@
 
+### 3.0.2
+
+* Removed trailing ampersand from API calls
+
+### 3.0.1
+
+* Updated Wunderground driver
+  * Fixd import for SERVICE_STATUS_ERROR
+  * Reordered params
+
 ### 3.0
 
 * Refactored code

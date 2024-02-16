@@ -181,6 +181,7 @@ var Driver = class Driver {
         Soup.header_g_string_append_param(glib_str_url, key, value + '&');
       }
       url = glib_str_url.str.replace(/['"']/g, '');
+      url = url.replace(/\&$/, '');
     }
     let message = Soup.Message.new('GET', url);
     if (Soup.MAJOR_VERSION === undefined || Soup.MAJOR_VERSION === 2) {
