@@ -3,7 +3,7 @@
     "name": "Weather",
     "uuid": "bbcwx@oak-wood.co.uk",
     "max-instances": "10",
-    "version": "3.0.3",
+    "version": "3.0.4",
     "comments":"Please consider translating the Weather desklet into your language. See the website for more information.",
     "website":"https://cinnamon-spices.linuxmint.com/desklets/view/20",
     "contributors":"Chris Hastie",

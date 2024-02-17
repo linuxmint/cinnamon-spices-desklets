@@ -19,14 +19,12 @@ var Driver = class Driver extends wxBase.Driver {
   // initialize the driver
   constructor(stationID, apikey) {
     super(stationID, apikey);
+    this.capabilities.cc.pressure = false;
     this.capabilities.cc.pressure_direction = false;
     this.capabilities.cc.weathertext = false;
     this.capabilities.cc.visibility = false;
-    this.capabilities.forecast.humidity = false;
+    this.capabilities.cc.feelslike = false;
     this.capabilities.forecast.pressure = false;
-    this.capabilities.forecast.wind_speed = false;
-    this.capabilities.forecast.wind_direction = false;
-    this.capabilities.forecast.weathertext = false;
     this.capabilities.meta.city = false;
     this.capabilities.meta.region = false;
     this.capabilities.meta.wgs84 = false;
@@ -114,10 +112,8 @@ var Driver = class Driver extends wxBase.Driver {
       this.data.cc.humidity = co.humidity;
       this.data.cc.temperature = co.temperature;
       this.data.cc.has_temp = true;
-      this.data.cc.pressure = co.metric.pressure;
       this.data.cc.wind_speed = co.wind_kph;
       this.data.cc.wind_direction = this.compassDirection(co.winddir);
-      this.data.cc.feelslike = co.metric.heatIndex;
       this.data.cc.icon = ' ';
 
       this.data.country = co.country;
@@ -152,8 +148,16 @@ var Driver = class Driver extends wxBase.Driver {
         day.day = json.dayOfWeek[i].slice(0, 3);
         day.minimum_temperature = json.temperatureMin[i];
         day.maximum_temperature = json.temperatureMax[i];
-        day.icon = ' ';
 
+        let j = i * 2;
+        day.icon = json.daypart[0].iconCode[j];
+        day.humidity = json.daypart[0].relativeHumidity[j];
+        day.feelslike = json.daypart[0].temperature[j] > 18 ?
+          json.daypart[0].temperatureHeatIndex[j] :
+          json.daypart[0].temperatureWindChill[j];
+        day.wind_direction = json.daypart[0].windDirectionCardinal[j];
+        day.wind_speed = json.daypart[0].windSpeed[j];
+        day.weathertext = json.daypart[0].wxPhraseLong[j];
         this.data.days[i - 1] = day;
       }
       this.data.status.forecast = SERVICE_STATUS_OK;
