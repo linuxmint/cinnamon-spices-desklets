@@ -1,4 +1,8 @@
 
+### 3.0.4
+
+* Update Wunderground driver
+
 ### 3.0.3
 
 * Update Wunderground driver to always include language parameter
