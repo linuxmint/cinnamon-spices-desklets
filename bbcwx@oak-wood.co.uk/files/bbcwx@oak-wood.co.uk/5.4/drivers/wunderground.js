@@ -55,10 +55,9 @@ var Driver = class Driver extends wxBase.Driver {
     this.langcode = this.getLangCode();
 
     let params = {
-      'stationId': encodeURIComponent(this.stationID),
+      'stationId': this.stationID,
       'format': 'json',
       'units': 'm',
-      'language': this.langcode ? this.langcode : 'en-US',
       'apiKey': encodeURIComponent(this.apikey)
     };
 
@@ -74,7 +73,7 @@ var Driver = class Driver extends wxBase.Driver {
     }, params);
 
     params = {
-      'geocode': encodeURIComponent(this.stationID),
+      'geocode': this.stationID,
       'format': 'json',
       'units': 'm',
       'language': this.langcode ? this.langcode : 'en-US',

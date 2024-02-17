@@ -1,4 +1,8 @@
 
+### 3.0.5
+
+* Update Wunderground driver
+
 ### 3.0.4
 
 * Update Wunderground driver
