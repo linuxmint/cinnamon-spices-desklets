@@ -60,9 +60,9 @@ var Driver = class Driver extends wxBase.Driver {
       'stationId': encodeURIComponent(this.stationID),
       'format': 'json',
       'units': 'm',
+      'language': this.langcode ? this.langcode : 'en-US',
       'apiKey': encodeURIComponent(this.apikey)
     };
-    if (this.langcode) params['language'] = this.langcode;
 
     this.apiurl = this._baseURL + 'v2/pws/observations/current';
     // process the current weather observation
@@ -79,9 +79,9 @@ var Driver = class Driver extends wxBase.Driver {
       'geocode': encodeURIComponent(this.stationID),
       'format': 'json',
       'units': 'm',
+      'language': this.langcode ? this.langcode : 'en-US',
       'apiKey': encodeURIComponent(this.apikey)
     };
-    if (this.langcode) params['language'] = this.langcode;
 
     this.apiurl = this._baseURL + 'v3/wx/forecast/daily/5day';
     // process the forecast - single call for both current conditions and 4 day forecast

@@ -1,4 +1,8 @@
 
+### 3.0.3
+
+* Update Wunderground driver to always include language parameter
+
 ### 3.0.2
 
 * Removed trailing ampersand from API calls
