@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bbcwx\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-02-15 19:02-0500\n"
+"POT-Creation-Date: 2024-02-17 21:43-0500\n"
 "PO-Revision-Date: 2023-09-03 14:16-0400\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
@@ -48,146 +48,146 @@ msgid "Sun"
 msgstr "Va"
 
 #. metadata.json->name
-#: 5.4/desklet.js:251 3.0/desklet.js:186
+#: 5.4/desklet.js:252 3.0/desklet.js:186
 msgid "Weather"
 msgstr "Időjárás"
 
-#: 5.4/desklet.js:259 3.0/desklet.js:194
+#: 5.4/desklet.js:260 3.0/desklet.js:194
 msgid "Help"
 msgstr "Súgó"
 
-#: 5.4/desklet.js:263 3.0/desklet.js:198
+#: 5.4/desklet.js:264 3.0/desklet.js:198
 msgid "Translate"
 msgstr "Fordítás"
 
-#: 5.4/desklet.js:432 5.4/desklet.js:474 3.0/desklet.js:344 3.0/desklet.js:372
+#: 5.4/desklet.js:433 5.4/desklet.js:475 3.0/desklet.js:344 3.0/desklet.js:372
 msgid "Humidity:"
 msgstr "Páratartalom:"
 
-#: 5.4/desklet.js:436 5.4/desklet.js:473 3.0/desklet.js:345 3.0/desklet.js:371
+#: 5.4/desklet.js:437 5.4/desklet.js:474 3.0/desklet.js:345 3.0/desklet.js:371
 msgid "Pressure:"
 msgstr "Légnyomás:"
 
-#: 5.4/desklet.js:440 3.0/desklet.js:346
+#: 5.4/desklet.js:441 3.0/desklet.js:346
 msgid "Wind:"
 msgstr "Szél:"
 
-#: 5.4/desklet.js:444 3.0/desklet.js:347
+#: 5.4/desklet.js:445 3.0/desklet.js:347
 msgid "Feels like:"
 msgstr "Hőérzet:"
 
-#: 5.4/desklet.js:448 3.0/desklet.js:348
+#: 5.4/desklet.js:449 3.0/desklet.js:348
 msgid "Visibility:"
 msgstr "Látási viszonyok:"
 
-#: 5.4/desklet.js:465 3.0/desklet.js:363
+#: 5.4/desklet.js:466 3.0/desklet.js:363
 msgid "Max:"
 msgstr "Legmagasabb hőmérséklet:"
 
-#: 5.4/desklet.js:467 3.0/desklet.js:365
+#: 5.4/desklet.js:468 3.0/desklet.js:365
 msgid "Min:"
 msgstr "Legalacsonyabb hőmérséklet:"
 
-#: 5.4/desklet.js:469 3.0/desklet.js:367
+#: 5.4/desklet.js:470 3.0/desklet.js:367
 msgid "Wind speed:"
 msgstr "Szélerősség:"
 
-#: 5.4/desklet.js:471 3.0/desklet.js:369
+#: 5.4/desklet.js:472 3.0/desklet.js:369
 msgid "Dir:"
 msgstr "Szélirány:"
 
-#: 5.4/desklet.js:518 3.0/desklet.js:411
+#: 5.4/desklet.js:519 3.0/desklet.js:411
 msgid "Data from "
 msgstr "Adatszolgáltató: "
 
-#: 5.4/desklet.js:536 3.0/desklet.js:423
+#: 5.4/desklet.js:537 3.0/desklet.js:423
 msgid "Refresh"
 msgstr "Frissítés"
 
-#: 5.4/desklet.js:562
+#: 5.4/desklet.js:563
 msgid "Last updated"
 msgstr ""
 
-#: 5.4/desklet.js:870
+#: 5.4/desklet.js:871
 #, fuzzy
 msgid "No Data Available"
 msgstr "Nincs elérhető adat"
 
-#: 5.4/desklet.js:901 5.4/desklet.js:969 3.0/desklet.js:777 3.0/desklet.js:844
+#: 5.4/desklet.js:902 5.4/desklet.js:970 3.0/desklet.js:777 3.0/desklet.js:844
 #, javascript-format
 msgid "Error: %s"
 msgstr "Hiba: %s"
 
-#: 5.4/desklet.js:901 5.4/desklet.js:969
+#: 5.4/desklet.js:902 5.4/desklet.js:970
 msgid "No Data"
 msgstr ""
 
-#: 5.4/desklet.js:1003 3.0/desklet.js:879
+#: 5.4/desklet.js:1004 3.0/desklet.js:879
 #, javascript-format
 msgid "Click for the full forecast for %s"
 msgstr "Kattintson ide a teljes előrejelzésért: %s"
 
-#: 5.4/desklet.js:1248 3.0/desklet.js:1139
+#: 5.4/desklet.js:1249 3.0/desklet.js:1139
 #, javascript-format
 msgid "%f°F"
 msgstr "%f °F"
 
-#: 5.4/desklet.js:1251 3.0/desklet.js:1141
+#: 5.4/desklet.js:1252 3.0/desklet.js:1141
 #, javascript-format
 msgid "%f°C"
 msgstr "%f °C"
 
-#: 5.4/desklet.js:1271 3.0/desklet.js:1162
+#: 5.4/desklet.js:1272 3.0/desklet.js:1162
 #, javascript-format
 msgid "%fmph"
 msgstr "%f mph"
 
-#: 5.4/desklet.js:1273 3.0/desklet.js:1164
+#: 5.4/desklet.js:1274 3.0/desklet.js:1164
 #, javascript-format
 msgid "%fkn"
 msgstr "%f csomó"
 
-#: 5.4/desklet.js:1275 3.0/desklet.js:1166
+#: 5.4/desklet.js:1276 3.0/desklet.js:1166
 #, javascript-format
 msgid "%fkm/h"
 msgstr "%f km/h"
 
-#: 5.4/desklet.js:1277 3.0/desklet.js:1168
+#: 5.4/desklet.js:1278 3.0/desklet.js:1168
 #, javascript-format
 msgid "%fm/s"
 msgstr "%f m/s"
 
-#: 5.4/desklet.js:1310 3.0/desklet.js:1202
+#: 5.4/desklet.js:1311 3.0/desklet.js:1202
 #, javascript-format
 msgid "%fmb"
 msgstr "%f mb"
 
-#: 5.4/desklet.js:1312 3.0/desklet.js:1204
+#: 5.4/desklet.js:1313 3.0/desklet.js:1204
 #, javascript-format
 msgid "%fin"
 msgstr "%f higany/inch"
 
-#: 5.4/desklet.js:1314 3.0/desklet.js:1206
+#: 5.4/desklet.js:1315 3.0/desklet.js:1206
 #, javascript-format
 msgid "%fmm"
 msgstr "%fhigany/mm"
 
-#: 5.4/desklet.js:1316 3.0/desklet.js:1208
+#: 5.4/desklet.js:1317 3.0/desklet.js:1208
 #, javascript-format
 msgid "%fkPa"
 msgstr "%f kPa"
 
-#: 5.4/desklet.js:1365 3.0/desklet.js:1259
+#: 5.4/desklet.js:1366 3.0/desklet.js:1259
 #, javascript-format
 msgid "%fmi"
 msgstr "%f mérföld"
 
-#: 5.4/desklet.js:1367 3.0/desklet.js:1261
+#: 5.4/desklet.js:1368 3.0/desklet.js:1261
 #, javascript-format
 msgid "%fnmi"
 msgstr "%f tengeri mérföld"
 
-#: 5.4/desklet.js:1369 3.0/desklet.js:1263
+#: 5.4/desklet.js:1370 3.0/desklet.js:1263
 #, javascript-format
 msgid "%fkm"
 msgstr "%f km"
@@ -196,8 +196,7 @@ msgstr "%f km"
 #: 5.4/drivers/meteoblue.js:78 5.4/drivers/nws.js:38 5.4/drivers/nws.js:65
 #: 5.4/drivers/nws.js:73 5.4/drivers/openmeteo.js:40 5.4/drivers/owm.js:65
 #: 5.4/drivers/owmfree.js:29 5.4/drivers/weatherapi.js:75
-#: 5.4/drivers/weatherstack.js:81 5.4/drivers/wunderground.js:50
-#: 5.4/drivers/wwo.js:74
+#: 5.4/drivers/weatherstack.js:81 5.4/drivers/wwo.js:74
 msgid "Invalid location"
 msgstr ""
 
@@ -337,7 +336,7 @@ msgstr "Fehér felhő"
 
 #: 5.4/drivers/meteoblue.js:52 5.4/drivers/owm.js:69 5.4/drivers/owmfree.js:33
 #: 5.4/drivers/weatherapi.js:79 5.4/drivers/weatherstack.js:85
-#: 5.4/drivers/wunderground.js:54 5.4/drivers/wwo.js:78
+#: 5.4/drivers/wunderground.js:55 5.4/drivers/wwo.js:78
 msgid "No API key provided"
 msgstr ""
 
@@ -656,6 +655,15 @@ msgstr ""
 #, fuzzy
 msgid "Torrential Rain Shower"
 msgstr "Erős záporeső"
+
+#: 5.4/drivers/wunderground.js:47
+#, fuzzy
+msgid "Invalid station ID"
+msgstr "Megjelenítendő hely betöltése"
+
+#: 5.4/drivers/wunderground.js:51
+msgid "Invalid geocode"
+msgstr ""
 
 #: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
 msgid "N"
@@ -1037,7 +1045,6 @@ msgstr "Válassza ki a használni kívánt szolgáltatót"
 #. 5.4->settings-schema.json->weatherapi__stationID->description
 #. 5.4->settings-schema.json->weatherstack__stationID->description
 #. 5.4->settings-schema.json->wwo__stationID->description
-#. 5.4->settings-schema.json->wunderground__stationID->description
 #. 3.0->settings-schema.json->stationID->description
 msgid "Location"
 msgstr "Hely"
@@ -1051,7 +1058,6 @@ msgstr "Hely"
 #. 5.4->settings-schema.json->weatherapi__stationID->tooltip
 #. 5.4->settings-schema.json->weatherstack__stationID->tooltip
 #. 5.4->settings-schema.json->wwo__stationID->tooltip
-#. 5.4->settings-schema.json->wunderground__stationID->tooltip
 #. 3.0->settings-schema.json->stationID->tooltip
 msgid "Set your location here"
 msgstr "Itt állíthatja be a helyet"
@@ -1090,6 +1096,24 @@ msgstr ""
 #. 5.4->settings-schema.json->wwo__apikey->tooltip
 msgid "Enter your API key for World Weather Online"
 msgstr ""
+
+#. 5.4->settings-schema.json->wunderground__stationID->description
+msgid "Station ID"
+msgstr ""
+
+#. 5.4->settings-schema.json->wunderground__stationID->tooltip
+#, fuzzy
+msgid "Set your station ID here"
+msgstr "Itt állíthatja be a helyet"
+
+#. 5.4->settings-schema.json->wunderground__geocode->description
+msgid "Geocode"
+msgstr ""
+
+#. 5.4->settings-schema.json->wunderground__geocode->tooltip
+#, fuzzy
+msgid "Set your geocode here"
+msgstr "Itt állíthatja be a helyet"
 
 #. 5.4->settings-schema.json->wunderground__apikey->tooltip
 msgid "Enter your API key for Wunderground"
