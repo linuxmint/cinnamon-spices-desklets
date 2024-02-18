@@ -21,9 +21,7 @@ var Driver = class Driver extends wxBase.Driver {
     super(stationID, apikey);
     this.capabilities.cc.pressure = false;
     this.capabilities.cc.pressure_direction = false;
-    this.capabilities.cc.weathertext = false;
     this.capabilities.cc.visibility = false;
-    this.capabilities.cc.feelslike = false;
     this.capabilities.forecast.pressure = false;
     this.capabilities.meta.city = false;
     this.capabilities.meta.region = false;
@@ -68,7 +66,6 @@ var Driver = class Driver extends wxBase.Driver {
         this._load_observation(weather);
       }
       // get the main object to update the display
-      deskletObj.displayCurrent();
       deskletObj.displayMeta();
     }, params);
 
@@ -87,6 +84,7 @@ var Driver = class Driver extends wxBase.Driver {
         this._load_forecast(weather);
       }
       // get the main object to update the display
+      deskletObj.displayCurrent();
       deskletObj.displayForecast();
     }, params);
   }
@@ -113,7 +111,6 @@ var Driver = class Driver extends wxBase.Driver {
       this.data.cc.has_temp = true;
       this.data.cc.wind_speed = co.wind_kph;
       this.data.cc.wind_direction = this.compassDirection(co.winddir);
-      this.data.cc.icon = ' ';
 
       this.data.country = co.country;
 
@@ -142,6 +139,13 @@ var Driver = class Driver extends wxBase.Driver {
     }
 
     try {
+      let index = json.daypart[0].iconCode[0] ? 0 : 1;
+      this.data.cc.icon = json.daypart[0].iconCode[index];
+      this.data.cc.weathertext = json.daypart[0].wxPhraseLong[index];
+      this.data.cc.feelslike = json.daypart[0].temperature[index] > 18 ?
+        json.daypart[0].temperatureHeatIndex[index] :
+        json.daypart[0].temperatureWindChill[index];
+
       for (let i = 1; i < json.dayOfWeek.length; i++) {
         let day = new Object();
         day.day = json.dayOfWeek[i].slice(0, 3);
