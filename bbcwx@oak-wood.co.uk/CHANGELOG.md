@@ -1,19 +1,23 @@
 
+### 3.0.7
+
+* Updated Wunderground driver
+
 ### 3.0.6
 
-* Update Wunderground driver
+* Updated Wunderground driver
 
 ### 3.0.5
 
-* Update Wunderground driver
+* Updated Wunderground driver
 
 ### 3.0.4
 
-* Update Wunderground driver
+* Updated Wunderground driver
 
 ### 3.0.3
 
-* Update Wunderground driver to always include language parameter
+* Updated Wunderground driver to always include language parameter
 
 ### 3.0.2
 
@@ -22,7 +26,7 @@
 ### 3.0.1
 
 * Updated Wunderground driver
-  * Fixd import for SERVICE_STATUS_ERROR
+  * Fixed import for SERVICE_STATUS_ERROR
   * Reordered params
 
 ### 3.0

@@ -17,7 +17,7 @@ function _(str) {
 
 var Driver = class Driver extends wxBase.Driver {
   // initialize the driver
-  constructor(stationID, apikey) {
+  constructor(stationID, apikey, geocode) {
     super(stationID, apikey);
     this.capabilities.cc.pressure = false;
     this.capabilities.cc.pressure_direction = false;
@@ -30,6 +30,7 @@ var Driver = class Driver extends wxBase.Driver {
     this.drivertype = 'Wunderground';
     this.maxDays = 4;
     this.linkText = 'Weather Underground';
+    this.geocode = geocode;
     this._baseURL = 'https://api.weather.com/';
     this.linkURL = 'https://wunderground.com';
     this.linkIcon = {
@@ -43,7 +44,11 @@ var Driver = class Driver extends wxBase.Driver {
     // reset the data object
     this._emptyData();
     if (!this.stationID || this.stationID.length < 3) {
-      this._showError(deskletObj, _('Invalid location'));
+      this._showError(deskletObj, _('Invalid station ID'));
+      return;
+    }
+    if (!this.geocode || this.geocode.length < 3) {
+      this._showError(deskletObj, _('Invalid geocode'));
       return;
     }
     if (!this.apikey) {
@@ -70,7 +75,7 @@ var Driver = class Driver extends wxBase.Driver {
     }, params);
 
     params = {
-      'geocode': this.stationID,
+      'geocode': this.geocode,
       'format': 'json',
       'units': 'm',
       'language': this.langcode ? this.langcode : 'en-US',

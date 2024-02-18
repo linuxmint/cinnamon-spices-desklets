@@ -130,8 +130,15 @@
         "dependency": "webservice=wunderground",
         "type": "entry",
         "default": "STATIONID123",
-        "description": "Location",
-        "tooltip": "Set your location here"
+        "description": "Station ID",
+        "tooltip": "Set your station ID here"
+    },
+    "wunderground__geocode": {
+        "dependency": "webservice=wunderground",
+        "type": "entry",
+        "default": "012.34,-56.78",
+        "description": "Geocode",
+        "tooltip": "Set your geocode here"
     },
     "wunderground__apikey": {
         "dependency": "webservice=wunderground",

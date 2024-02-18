@@ -170,6 +170,7 @@ MyDesklet.prototype = {
       this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, 'wwo__stationID', 'wwo__stationID', this.changeStation, null);  // World Weather Online
       this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, 'wwo__apikey', 'wwo__apikey', this.changeApiKey, null);  // World Weather Online
       this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, 'wunderground__stationID', 'wunderground__stationID', this.changeStation, null);  // Wunderground
+      this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, 'wunderground__geocode', 'wunderground__geocode');  // Wunderground
       this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, 'wunderground__apikey', 'wunderground__apikey', this.changeApiKey, null);  // Wunderground
 
       // temperature unit change may require refetching forecast if service includes units in text summaries
@@ -321,7 +322,7 @@ MyDesklet.prototype = {
       case 'wunderground':
         this.stationID = this.wunderground__stationID;
         this.apikey = this.wunderground__apikey;
-        this.service = new WU.Driver(this.stationID, this.apikey);
+        this.service = new WU.Driver(this.stationID, this.apikey, this.wunderground__geocode);
         break;
       default:
         this.stationID = this.bbc__stationID;
