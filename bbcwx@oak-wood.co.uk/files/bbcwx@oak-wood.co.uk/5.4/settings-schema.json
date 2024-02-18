@@ -17,7 +17,7 @@
             "Weather API Free": "weatherapi",
             "weatherstack": "weatherstack",
             "World Weather Online": "wwo",
-            "Wunderground": "wunderground"
+            "Weather Underground": "wunderground"
         },
         "tooltip": "Select the data service you wish to use"
     },
@@ -145,7 +145,7 @@
         "type": "entry",
         "default": "",
         "description": "API key (required)",
-        "tooltip": "Enter your API key for Wunderground"
+        "tooltip": "Enter your API key for Weather Underground"
     },
     "tunits": {
         "type": "combobox",

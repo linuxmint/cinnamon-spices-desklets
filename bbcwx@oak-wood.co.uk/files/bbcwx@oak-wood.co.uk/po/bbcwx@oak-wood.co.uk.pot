@@ -5,10 +5,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: bbcwx@oak-wood.co.uk 3.0.7\n"
+"Project-Id-Version: bbcwx@oak-wood.co.uk 3.1\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-02-17 21:43-0500\n"
+"POT-Creation-Date: 2024-02-18 14:37-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -973,7 +973,7 @@ msgid "World Weather Online"
 msgstr ""
 
 #. 5.4->settings-schema.json->webservice->options
-msgid "Wunderground"
+msgid "Weather Underground"
 msgstr ""
 
 #. 5.4->settings-schema.json->webservice->tooltip
@@ -1058,7 +1058,7 @@ msgid "Set your geocode here"
 msgstr ""
 
 #. 5.4->settings-schema.json->wunderground__apikey->tooltip
-msgid "Enter your API key for Wunderground"
+msgid "Enter your API key for Weather Underground"
 msgstr ""
 
 #. 5.4->settings-schema.json->tunits->description
