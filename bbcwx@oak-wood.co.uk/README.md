@@ -77,6 +77,7 @@ The location parameters per service:
   * Latitude and longitude (up to three decimals)
 * **Wunderground**
   * Station ID, such as `KAZTUCSO539`
+  * Geocode - latitude and longitude (up to two decimals)
 
 ### REFRESH TIME
 
@@ -87,9 +88,63 @@ use lower refresh periods unless you have a very good reason. In order to
 comply with the terms of use of some providers, the Weather desklet will
 override low settings in some cases and enforce a minimum.
 
-### CREDITS
+FUNCTIONALITY
+-------------
 
-**Code**
+<details>
+  <summary>Supported Features</summary>
+
+|                          |   bbc   |   meteoblue   |   nws   |   openmeteo   |   owmfree   |   owm   |   weatherapi   |   weatherstack   |   wwo   |   wunderground   |
+| :----------------------: |   :-:   |   :-------:   |   :-:   |   :-------:   |   :-----:   |   :-:   |   :--------:   |   :----------:   |   :-:   |   :----------:   |
+| **Icons**                |❕<sup>1 |      ✅       |   ❌    |      ✅       |     ✅      |   ✅    |      ✅        |    ❕<sup>2      |   ✅    |        ✅        |
+|                          |         |               |         |               |             |         |                |                  |         |                  |
+| **Forecast Days**        |    3    |       7       |    6    |   16<sup>3    |      5      |16<sup>3 |       3        |        7         |    7    |        4         |
+|                          |         |               |         |               |             |         |                |                  |         |                  |
+| **Display Capabilities** |         |               |         |               |             |         |                |                  |         |                  |
+|                          |         |               |         |               |             |         |                |                  |         |                  |
+| Current Weather          |         |               |         |               |             |         |                |                  |         |                  |
+| humidity                 |   ✅    |       ❌      |   ✅    |      ✅       |     ✅      |   ✅    |       ✅       |        ✅        |   ✅    |        ✅        |
+| temperature              |   ✅    |       ✅      |   ✅    |      ✅       |     ✅      |   ✅    |       ✅       |        ✅        |   ✅    |        ✅        |
+| pressure                 |   ✅    |       ❌      |   ❌    |      ✅       |     ✅      |   ✅    |       ✅       |        ✅        |   ✅    |        ❌        |
+| pressure direction       |   ✅    |       ❌      |   ❌    |      ❌       |     ❌      |   ❌    |       ❌       |        ❌        |   ❌    |        ❌        |
+| wind speed               |   ✅    |       ✅      |   ✅    |      ✅       |     ✅      |   ✅    |       ✅       |        ✅        |   ✅    |        ✅        |
+| wind direction           |   ✅    |       ✅      |   ✅    |      ✅       |     ✅      |   ✅    |       ✅       |        ✅        |   ✅    |        ✅        |
+| weather text             |   ✅    |       ✅      |   ✅    |      ✅       |     ✅      |   ✅    |       ✅       |        ✅        |   ✅    |        ✅        |
+| visibility               |   ✅    |       ❌      |   ❌    |      ❌       |     ✅      |   ✅    |       ✅       |        ✅        |   ✅    |        ❌        |
+| feels like               |   ❌    |       ❌      |   ❌    |      ✅       |     ✅      |   ✅    |       ✅       |        ✅        |   ✅    |        ✅        |
+|                          |         |               |         |               |             |         |                |                  |         |                  |
+| Forecasts                |         |               |         |               |             |         |                |                  |         |                  |
+| humidity                 |   ✅    |       ✅      |   ✅    |      ❌       |     ✅      |   ✅    |       ✅       |        ❌        |   ✅    |        ✅        |
+| max temperature          |   ✅    |       ✅      |   ✅    |      ✅       |     ✅      |   ✅    |       ✅       |        ✅        |   ✅    |        ✅        |
+| min temperature          |   ✅    |       ✅      |   ✅    |      ✅       |     ✅      |   ✅    |       ✅       |        ✅        |   ✅    |        ✅        |
+| pressure                 |   ✅    |       ✅      |   ❌    |      ❌       |     ✅      |   ✅    |       ❌       |        ❌        |   ✅    |        ❌        |
+| wind speed               |   ✅    |       ✅      |   ✅    |      ✅       |     ✅      |   ✅    |       ✅       |        ❌        |   ✅    |        ✅        |
+| wind direction           |   ✅    |       ✅      |   ✅    |      ✅       |     ✅      |   ✅    |       ❌       |        ❌        |   ✅    |        ✅        |
+| weather text             |   ✅    |       ✅      |   ✅    |      ✅       |     ✅      |   ✅    |       ✅       |        ❌        |   ✅    |        ✅        |
+|                          | **bbc** | **meteoblue** | **nws** | **openmeteo** | **owmfree** | **owm** | **weatherapi** | **weatherstack** | **wwo** | **wunderground** |
+<!--|                          |         |               |         |               |             |         |                |                  |         |                  |-->
+<!--|                          |   bbc   |   meteoblue   |   nws   |   openmeteo   |   owmfree   |   owm   |   weatherapi   |   weatherstack   |   wwo   |   wunderground   |-->
+
+<sup>1</sup> BBC has partial support for icons.
+
+<sup>2</sup> weatherstack doesn't support forecast icons.
+
+<sup>3</sup> The desklet has a maximum of 7 days even if the service supports
+more than that.
+
+</details>
+
+COMPATIBILITY
+-------------
+
+> [!NOTE]
+> On the first upgrade to version 3.0 of this desklet, it may be required to restart Cinnamon.
+
+CREDITS
+-------
+
+### CODE
+
 The Weather desklet was originally written by [Chris
 Hastie](https://www.oak-wood.co.uk/) and released under the [GNU General
 Public License version 3](https://www.gnu.org/licenses/gpl-3.0.html). Prior to
@@ -98,7 +153,7 @@ released under the “use it as you like” license. Copyright © 2014–2018 Ch
 Hastie, 2013 Loganj. The Open Weather Map Free driver was contributed by
 Kallys.
 
-**Icons**
+### ICONS
 
 * The colourful, flat colourful, light, dark, flat white, and flat black icons
 are based on the [plain weather
@@ -127,55 +182,3 @@ icons](https://www.deviantart.com/azuresol/art/Sketchy-Weather-Icons-135079063)
 are copyright © 2006 [AzureSol](https://www.deviantart.com/azuresol) and are
 licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike
 license](https://creativecommons.org/licenses/by-nc-sa/3.0/).
-
-FUNCTIONALITY
--------------
-
-<details>
-  <summary>Supported Features</summary>
-
-|           | bbc | nws | owmfree | owm | openmeteo | weatherapi | wwo | wunderground | meteoblue | weatherstack |
-| :-------: | :-: | :-: | :-----: | :-: | :-------: | :--------: | :-: | :----------: | :-------: | :----------: |
-| **Icons** |❕<sup>1|❌|   ✅    | ✅  |    ✅     |    ✅      | ✅ |      ❌     |     ✅    |     ❕<sup>2  |
-| | | | | | | | | | | |
-| **Forecast Days** | 3 | 6 | 5 | 16<sup>3| 16<sup>3| 3 | 7 | 4 | 7 | 7 |
-| | | | | | | | | | | |
-| **Display Capabilities** | | | | | | | | | | |
-| | | | | | | | | | | |
-| Current Weather | | | | | | | | | | |
-| humidity | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
-| temperature | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| pressure | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
-| pressure direction | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| wind speed | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| wind direction | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| weather text | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ |
-| visibility | ✅ | ❌ | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ | ❌ | ✅ |
-| feels like | ❌ | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
-| | | | | | | | | | | |
-| Forecasts | | | | | | | | | | |
-| humidity | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ | ✅ | ❌ |
-| max temperature | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| min temperature | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| pressure | ✅ | ❌ | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ | ❌ |
-| wind speed | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ |
-| wind direction | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ | ✅ | ❌ |
-| weather text | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ |
-|| **bbc** | **nws** | **owmfree** | **owm** | **openmeteo** | **weatherapi** | **wwo** | **wunderground** | **meteoblue** | **weatherstack** |
-<!--| | | | | | | | | | | |-->
-<!--| | bbc | nws | owmfree | owm | openmeteo | weatherapi | wwo | wunderground | meteoblue | weatherstack |-->
-
-<sup>1</sup> BBC has partial support for icons.
-
-<sup>2</sup> weatherstack doesn't support forecast icons.
-
-<sup>3</sup> The desklet has a maximum of 7 days even if the service supports
-more than that.
-
-</details>
-
-COMPATIBILITY
--------------
-
-> [!NOTE]
-> On the first upgrade to version 3.0 of this desklet, it may be required to restart Cinnamon.
