@@ -1,4 +1,9 @@
 
+### 3.1
+
+* Changed Weather Underground to its proper name
+* Updated README with weather station requirement for Weather Underground
+
 ### 3.0.9
 
 * Updated Wunderground driver

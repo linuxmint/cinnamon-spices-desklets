@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Cinnamon Weather Desklet - bbcwx 2.11\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-02-17 21:43-0500\n"
+"POT-Creation-Date: 2024-02-18 14:37-0500\n"
 "PO-Revision-Date: 2023-09-03 14:15-0400\n"
 "Last-Translator: Marcelo Aof\n"
 "Language-Team: \n"
@@ -1025,8 +1025,9 @@ msgid "World Weather Online"
 msgstr ""
 
 #. 5.4->settings-schema.json->webservice->options
-msgid "Wunderground"
-msgstr ""
+#, fuzzy
+msgid "Weather Underground"
+msgstr "Configuração do clima"
 
 #. 5.4->settings-schema.json->webservice->tooltip
 #. 3.0->settings-schema.json->webservice->tooltip
@@ -1113,7 +1114,7 @@ msgid "Set your geocode here"
 msgstr "Defina a sua localização aqui"
 
 #. 5.4->settings-schema.json->wunderground__apikey->tooltip
-msgid "Enter your API key for Wunderground"
+msgid "Enter your API key for Weather Underground"
 msgstr ""
 
 #. 5.4->settings-schema.json->tunits->description

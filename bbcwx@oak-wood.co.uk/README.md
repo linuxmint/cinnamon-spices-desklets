@@ -7,7 +7,7 @@ a selection of great weather icons, or you can use your own. For those who
 like to keep an eye on the weather in several locations, it supports multiple
 instances.
 
-At present, the Weather Desklet can work with data from:
+At present, the Weather desklet can work with data from:
 
 * BBC **{bbc}**
 * meteoblue **{meteoblue}** *
@@ -18,9 +18,12 @@ At present, the Weather Desklet can work with data from:
 * Weather API Free **{weatherapi}** *
 * weatherstack **{weatherstack}** *
 * World Weather Online **{wwo}** *
-* Wunderground **{wunderground}** *
+* Weather Underground **{wunderground}** * <sup>+
 
 \* A valid API key is required for this service to work.
+
+<sup>+</sup> Weather Underground requires a weather station for access to the
+API and an API key.
 
 The Weather desklet includes translations for a growing number of languages.
 
@@ -75,7 +78,7 @@ The location parameters per service:
 * **World Weather Online**
   * Location
   * Latitude and longitude (up to three decimals)
-* **Wunderground**
+* **Weather Underground**
   * Station ID, such as `KAZTUCSO539`
   * Geocode - latitude and longitude (up to two decimals)
 
