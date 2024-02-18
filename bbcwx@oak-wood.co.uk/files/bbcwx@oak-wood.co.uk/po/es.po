@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2024-02-17 21:43-0500\n"
-"PO-Revision-Date: 2024-02-15 17:44-0300\n"
+"PO-Revision-Date: 2024-02-18 09:52-0300\n"
 "Last-Translator: FedeHC <Unknown>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -629,14 +629,12 @@ msgid "Torrential Rain Shower"
 msgstr "Lluvia torrencial"
 
 #: 5.4/drivers/wunderground.js:47
-#, fuzzy
 msgid "Invalid station ID"
-msgstr "Ubicación no válida"
+msgstr "ID de estación no válido"
 
 #: 5.4/drivers/wunderground.js:51
-#, fuzzy
 msgid "Invalid geocode"
-msgstr "Ubicación no válida"
+msgstr "Geocódigo no válido"
 
 #: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
 msgid "N"
@@ -1050,21 +1048,19 @@ msgstr "Introduzca su clave API para World Weather Online"
 
 #. 5.4->settings-schema.json->wunderground__stationID->description
 msgid "Station ID"
-msgstr ""
+msgstr "ID de la estación"
 
 #. 5.4->settings-schema.json->wunderground__stationID->tooltip
-#, fuzzy
 msgid "Set your station ID here"
-msgstr "Establezca su ubicación aquí"
+msgstr "Configure aquí su ID de estación"
 
 #. 5.4->settings-schema.json->wunderground__geocode->description
 msgid "Geocode"
-msgstr ""
+msgstr "Geocodificación"
 
 #. 5.4->settings-schema.json->wunderground__geocode->tooltip
-#, fuzzy
 msgid "Set your geocode here"
-msgstr "Establezca su ubicación aquí"
+msgstr "Establezca aquí su geocódigo"
 
 #. 5.4->settings-schema.json->wunderground__apikey->tooltip
 msgid "Enter your API key for Wunderground"
