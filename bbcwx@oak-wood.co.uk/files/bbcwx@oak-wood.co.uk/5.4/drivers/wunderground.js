@@ -145,6 +145,7 @@ var Driver = class Driver extends wxBase.Driver {
 
     try {
       let index = json.daypart[0].iconCode[0] ? 0 : 1;
+      this.data.cc.temperature = json.daypart[0].temperature[index];
       this.data.cc.icon = json.daypart[0].iconCode[index];
       this.data.cc.weathertext = json.daypart[0].wxPhraseLong[index];
       this.data.cc.feelslike = json.daypart[0].temperature[index] > 18 ?
