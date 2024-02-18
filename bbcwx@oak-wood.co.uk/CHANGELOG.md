@@ -1,4 +1,8 @@
 
+### 3.0.9
+
+* Updated Wunderground driver
+
 ### 3.0.8
 
 * Updated README
