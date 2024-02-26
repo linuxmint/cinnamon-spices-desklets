@@ -10,3 +10,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.1] - 2024-01-16
 - Fix byteArray import bug [#1036](https://github.com/linuxmint/cinnamon-spices-desklets/issues/1036)
 
+## [1.1.0] - 2024-02-26
+- Experimental ChatGPT AI features

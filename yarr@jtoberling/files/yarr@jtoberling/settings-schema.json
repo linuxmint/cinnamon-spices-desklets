@@ -88,6 +88,13 @@
             {"id": "inDescription", "title": "Match in Description", "type": "boolean", "default": false }
         ],
         "default" : []
-    }
+    }, 
+    
+    "chatgptapikey": {
+        "type": "button",
+        "description": "Enter and save ChatGPT API key ...",
+        "callback": "onChatGPAPIKeySave"
+    }    
+    
 }
 

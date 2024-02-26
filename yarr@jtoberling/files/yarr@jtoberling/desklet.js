@@ -13,6 +13,8 @@ const SignalManager = imports.misc.signalManager;
 const GObject = imports.gi.GObject;
 const Gio = imports.gi.Gio;
 const Tooltips = imports.ui.tooltips
+const ModalDialog = imports.ui.modalDialog;
+const Secret = imports.gi.Secret;
 
 const Clutter = imports.gi.Clutter;
 const fromXML = require('./fromXML');
@@ -49,6 +51,8 @@ class YarrDesklet extends Desklet.Desklet {
         this.uuid = this.metadata["uuid"];
         
         this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, this.instance_id);
+
+        this.STORE_SCHEMA = new Secret.Schema("org.YarrDesklet.Schema",Secret.SchemaFlags.NONE,{});
 
         this.settings.bind('refreshInterval-spinner', 'delay', this.onSettingsChanged);
         this.settings.bind('feeds', 'feeds', this.onSettingsChanged);
@@ -133,7 +137,7 @@ class YarrDesklet extends Desklet.Desklet {
     /*
         This function creates all of our HTTP requests.
     */
-    httpRequest(method,url,headers,postParameters,callbackF) {
+    httpRequest(method,url,headers,postParameters,callbackF, bodyMime='application/x-www-form-urlencoded') {
     
         var message = Soup.Message.new(
             method,
@@ -145,10 +149,9 @@ class YarrDesklet extends Desklet.Desklet {
                 message.request_headers.append(headers[i][0],headers[i][1]);
             }
         }
-
         if (Soup.MAJOR_VERSION === 2) {
             if (postParameters !== null) {
-                message.set_request("application/x-www-form-urlencoded",2,postParameters);
+                message.set_request(bodyMime,2,postParameters);
             }
 
             this.httpSession.queue_message(message,
@@ -172,7 +175,7 @@ class YarrDesklet extends Desklet.Desklet {
         } else {
             if (postParameters !== null) {
                 const bytes = GLib.Bytes.new(ByteArray.fromString(postParameters));
-                message.set_request_body_from_bytes('application/x-www-form-urlencoded', bytes);
+                message.set_request_body_from_bytes(bodyMime, bytes);
             }
 
             this.httpSession.send_and_read_async(message, 0, null, (session, res) => {
@@ -417,7 +420,7 @@ class YarrDesklet extends Desklet.Desklet {
                                 context.displayItems(context);
                                 
                             } catch (e) {
-                                global.log('PARSEERROR');
+                                global.log('ERROR', 'PARSEERROR');
                                 global.log(e);
                             }
                             
@@ -495,6 +498,10 @@ class YarrDesklet extends Desklet.Desklet {
         Gio.app_info_launch_default_for_uri(uri, global.create_app_launch_context());
     }
     
+    onClickedSumButton(selfObj, p2, uri) {
+        this.summarizeUri("w3m", uri);
+    }
+    
     
     displayItems(context) {
     
@@ -525,6 +532,17 @@ class YarrDesklet extends Desklet.Desklet {
             lineBox.add(feedButton);
 
             this._signals.connect( feedButton, 'clicked', (...args) => this.onClickedButton(...args, item.link) ); 
+
+
+            const sumButton = new St.Button({ style: 'width: 24px;'});
+            const sumIcon = new St.Icon({
+                          icon_name: 'gtk-zoom-fit',
+                          icon_size: 20, 
+                          icon_type: St.IconType.SYMBOLIC
+            });
+            sumButton.set_child(sumIcon);
+            lineBox.add(sumButton);
+            this._signals.connect( sumButton, 'clicked', (...args) => this.onClickedSumButton(...args, item.link));
             
             const dateLabel = new St.Label({  text: ' ' + context._formatedDate(item.timestamp, false) + ' ', style: 'text-align: center;'   });
             lineBox.add(dateLabel);
@@ -572,11 +590,137 @@ class YarrDesklet extends Desklet.Desklet {
         }
 
     }
+    
+    on_chatgptapikey_stored(source, result) {
+        Secret.password_store_finish(result);
+    }
+    
+    onChatGPAPIKeySave() {
+            let dialog = new PasswordDialog (
+                _("'%s' settings..\nPlease enter ChatGP API key:").format(this._(this._meta.name)),
+                (password) => {
+                    Secret.password_store(this.STORE_SCHEMA, {}, Secret.COLLECTION_DEFAULT,
+                      "Yarr_ChatGPTApiKey", password, null, this.on_chatgptapikey_stored);
+                }, 
+                this
+            );
+            dialog.open();
+    }
 
+    summarizeUri(tool, uri) {
+        
+        const cmd = "/usr/bin/timeout -k 10 10 /usr/bin/"+tool+" -dump '"+uri+"' || echo 'ERROR: TIMEOUT'"; 
 
+        Util.spawn_async(
+            [
+                "/bin/bash", 
+                "-c", 
+                cmd
+            ],
+            Lang.bind(this, function (result) {
+                global.log('INFO', '------------------------ Resultlen: ', result.length)
+                
+                const reqObj = '{ \
+                        "model": "gpt-3.5-turbo", \
+                        "messages": [ \
+                            { \
+                                "role": "system", \
+                                "content": "Summarize the given text in Hungarian" \
+                            }, \
+                            { \
+                                "role": "user", \
+                                "content": ' + JSON.stringify(result) + ' \
+                            } \
+                        ] \
+                }';
+//                const postBody = JSON.stringify(reqObj);
+                
+                //(method,url,headers,postParameters,callbackF, bodyMime)
+                this.httpRequest(
+                    'POST', 
+                    'https://api.openai.com/v1/chat/completions', 
+                    [
+                        ['Authorization', 	'Bearer ' + Secret.password_lookup_sync(this.STORE_SCHEMA, {}, null )], 
+                        ['Content-type', 	'application/json']
+                    ], 
+                    reqObj,
+                    function (context, message, result) {
+                        global.log('WARNING', message, result);
+                    }, 
+                    'application/json'
+                ); 
+                    
+                
+                
+            })
+        );   
+        
+    }
 }
 
 function main(metadata, desklet_id) {
     let desklet = new YarrDesklet(metadata, desklet_id);
     return desklet;
 }
+
+
+//--------------------------------------------
+
+class PasswordDialog extends ModalDialog.ModalDialog {
+
+    constructor(label, callback, parent){
+        super();
+        
+        this.password = Secret.password_lookup_sync(parent.STORE_SCHEMA, {}, null );
+
+        this.contentLayout.add(new St.Label({ text: label }));
+        this.callback = callback;
+
+        this.passwordBox = new St.BoxLayout({ vertical: false });
+
+        this.entry = new St.Entry({ style: 'background: green; color:yellow;'});
+        this.entry.clutter_text.set_password_char('\u25cf');
+        this.entry.clutter_text.set_text(this.password);
+
+        this.passwordBox.add(this.entry);
+
+        this.contentLayout.add(this.passwordBox);
+
+        this.setInitialKeyFocus( this.entry.clutter_text );
+
+        this.setButtons([
+          {
+              label: "Save", 
+              action: ()  => {
+                  const pwd = this.entry.get_text();
+                  this.callback( pwd );
+                  this.destroy();
+              }, 
+              key: Clutter.KEY_Return, 
+              focused: false
+          },
+          {
+              label: "Show/Hide password",
+              action: ()  => {
+                
+                 if (this.entry.clutter_text.get_password_char()) { 
+                     this.entry.clutter_text.set_password_char('');
+                 } else {
+                     this.entry.clutter_text.set_password_char('\u25cf');
+                 }
+              }, 
+              focused: false
+          },
+          {
+              label: "Cancel", 
+              action: ()  => {
+                  this.destroy();
+              },  
+              key: null, 
+              focused: false
+          }
+        ]);
+
+    }
+}
+
