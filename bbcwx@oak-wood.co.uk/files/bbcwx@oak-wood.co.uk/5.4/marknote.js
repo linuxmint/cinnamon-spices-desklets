@@ -1,20 +1,20 @@
 /*
    marknote-debug.js
-   
+
    Unmimified copy of Marknote - for debugging with a tool such as Firebug.
    For production use, use the minified copy, marknote.js, instead.
-   
+
    This version of marknote has been modified for use in bbcwx, the Cinnamon Weather Desklet
-   
+
    marknote version 0.5.1.bbcwx
    XML DOM/Parser API
-   
+
    Usage:
    <script type="text/javascript" src="path/to/my/javascript/marknote-debug.js"></script>
- 
+
    ------------------------------------------------------------------------------------
- 
-   Copyright(c) 2011 jbulb.org. 
+
+   Copyright(c) 2011 jbulb.org.
    http://jbulb.org
 
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,7 +27,7 @@
    distributed under the License is distributed on an "AS IS" BASIS,
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
-   limitations under the License. 
+   limitations under the License.
 */
 var marknote = function () {
 };
