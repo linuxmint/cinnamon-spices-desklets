@@ -15,7 +15,7 @@ const Gio = imports.gi.Gio;
 const Tooltips = imports.ui.tooltips
 const ModalDialog = imports.ui.modalDialog;
 const Secret = imports.gi.Secret;
-
+const Pango = imports.gi.Pango;
 const Clutter = imports.gi.Clutter;
 const fromXML = require('./fromXML');
 
@@ -54,16 +54,23 @@ class YarrDesklet extends Desklet.Desklet {
 
         this.STORE_SCHEMA = new Secret.Schema("org.YarrDesklet.Schema",Secret.SchemaFlags.NONE,{});
 
-        this.settings.bind('refreshInterval-spinner', 'delay', this.onSettingsChanged);
-        this.settings.bind('feeds', 'feeds', this.onSettingsChanged);
-        this.settings.bind("height", "height", this.onDisplayChanged);
-        this.settings.bind("width", "width", this.onDisplayChanged);
-        this.settings.bind("transparency", "transparency", this.onDisplayChanged);
-        this.settings.bind("backgroundColor", "backgroundColor", this.onDisplayChanged);
-        this.settings.bind("font", "font", this.onDisplayChanged);
-        this.settings.bind("text-color", "color", this.onDisplayChanged);
-        this.settings.bind("numberofitems", "itemlimit", this.onSettingsChanged, 50);
-        this.settings.bind("listfilter", "listfilter", this.onSetttingChanged);
+        this.settings.bind('refreshInterval-spinner', 'delay'); //, this.onSettingsChanged);
+        this.settings.bind('feeds', 'feeds'); //, this.onSettingsChanged);
+        this.settings.bind("height", "height"); //, this.onDisplayChanged);
+        this.settings.bind("width", "width"); //, this.onDisplayChanged);
+        this.settings.bind("transparency", "transparency"); //, this.onDisplayChanged);
+        this.settings.bind("backgroundColor", "backgroundColor"); //, this.onDisplayChanged);
+        this.settings.bind("font", "font"); //, this.onDisplayChanged);
+        this.settings.bind("text-color", "color"); //, this.onDisplayChanged);
+        this.settings.bind("numberofitems", "itemlimit"); //, this.onSettingsChanged, 50);
+        this.settings.bind("listfilter", "listfilter"); //, this.onSetttingChanged);
+        
+        this.settings.bind('ai_enablesummary', 'ai_enablesummary'); //, this.onDisplayChanged);
+        this.settings.bind('ai_dumptool', 'ai_dumptool'); //, this.onDisplayChanged);
+        this.settings.bind('ai_systemprompt', 'ai_systemprompt'); //, this.onDisplayChanged);
+        this.settings.bind('ai_model', 'ai_model'); //, this.onDisplayChanged);
+        this.settings.bind("ai_font", "ai_font"); //, this.onDisplayChanged);
+        this.settings.bind("ai_text-color", "ai_color"); //, this.onDisplayChanged);
         
         if (Soup.MAJOR_VERSION === 2) {
             this.httpSession = new Soup.SessionAsync();
@@ -91,7 +98,32 @@ class YarrDesklet extends Desklet.Desklet {
             return '255, 255, 255';
         return '0, 0, 0';
     }
+    
+    onAIPromptExample1() {
+        this.ai_systemprompt = 'Summarize in four sentences.';
+    }
+    
+    onAIPromptExample2() {
+        this.ai_systemprompt = 'Foglald össze limerick-ben.';
+    }
+    
+    onAIPromptExample3() {
+        this.ai_systemprompt = '俳句のエッセンス\n日本語では';
+    }
+    
+    onAIPromptExample4() {
+        this.ai_systemprompt = 'Foglald össze 4 mondatban.';
+    }
+    
+    onAIPromptExample5() {
+        this.ai_systemprompt = 'Summarize in 10 short lines.';
+    }
+    
 
+    onRefreshSettings() {
+        this.onDisplayChanged();
+        this.onSettingsChanged();
+    }
 
     onSettingsChanged() {
         this.setUpdateTimer(1);
@@ -124,6 +156,35 @@ class YarrDesklet extends Desklet.Desklet {
             (fontweight ? "font-weight: " + fontweight + "; " : "") +
             "color: " + this.color + "; " +
             "text-shadow: " + "0px 1px 6px rgba(" + this.invertbrightness(this.color) + ", 0.2); " +
+            "padding: 2px 2px;").toLowerCase();
+
+        // -----------------------------------------------
+
+        let ai_fontprep = this.ai_font.split(' ');
+        let ai_fontsize = ai_fontprep.pop();
+        let ai_fontweight = '';
+        let ai_fontstyle = '';
+        let ai_fontname = ai_fontprep.join(' ').replace(/,/g, ' ');
+        ['Italic', 'Oblique'].forEach(function(item, i) {
+            if (ai_fontname.includes(item)) {
+                ai_fontstyle = item;
+                ai_fontname = ai_fontname.replace(item, '');
+            }
+        });
+
+        ['Bold', 'Light', 'Medium', 'Heavy'].forEach(function(item, i) {
+            if (ai_fontname.includes(item)) {
+                ai_fontweight = item;
+                ai_fontname = ai_fontname.replace(item, '');
+            }
+        });
+
+        this.ai_fontstyle = ("font-family: " + ai_fontname + "; " +
+            "font-size: " + ai_fontsize + "pt; " +
+            (ai_fontstyle ? "font-style: " + ai_fontstyle + "; " : "") +
+            (ai_fontweight ? "font-weight: " + ai_fontweight + "; " : "") +
+            "color: " + this.ai_color + "; " +
+            "text-shadow: " + "0px 1px 6px rgba(" + this.invertbrightness(this.ai_color) + ", 0.2); " +
             "padding: 2px 2px;").toLowerCase();
 
         this.mainBox.set_size(this.width, this.height);
@@ -498,8 +559,8 @@ class YarrDesklet extends Desklet.Desklet {
         Gio.app_info_launch_default_for_uri(uri, global.create_app_launch_context());
     }
     
-    onClickedSumButton(selfObj, p2, uri) {
-        this.summarizeUri("w3m", uri);
+    onClickedSumButton(selfObj, p2, uri, lineBox) {
+        this.summarizeUri(this.ai_dumptool, uri, lineBox);
     }
     
     
@@ -533,16 +594,19 @@ class YarrDesklet extends Desklet.Desklet {
 
             this._signals.connect( feedButton, 'clicked', (...args) => this.onClickedButton(...args, item.link) ); 
 
+            const itemBoxLayout = new St.BoxLayout({ vertical: true });
 
-            const sumButton = new St.Button({ style: 'width: 24px;'});
-            const sumIcon = new St.Icon({
-                          icon_name: 'gtk-zoom-fit',
-                          icon_size: 20, 
-                          icon_type: St.IconType.SYMBOLIC
-            });
-            sumButton.set_child(sumIcon);
-            lineBox.add(sumButton);
-            this._signals.connect( sumButton, 'clicked', (...args) => this.onClickedSumButton(...args, item.link));
+            if (this.ai_enablesummary) {
+                const sumButton = new St.Button({ style: 'width: 24px;'});
+                const sumIcon = new St.Icon({
+                              icon_name: 'gtk-zoom-fit',
+                              icon_size: 20, 
+                              icon_type: St.IconType.SYMBOLIC
+                });
+                sumButton.set_child(sumIcon);
+                lineBox.add(sumButton);
+                this._signals.connect( sumButton, 'clicked', (...args) => this.onClickedSumButton(...args, item.link, itemBoxLayout));
+            }
             
             const dateLabel = new St.Label({  text: ' ' + context._formatedDate(item.timestamp, false) + ' ', style: 'text-align: center;'   });
             lineBox.add(dateLabel);
@@ -553,8 +617,10 @@ class YarrDesklet extends Desklet.Desklet {
                     text: item.title,
             });
             itemLabel.style = context.fontstyle;
+            
+            itemBoxLayout.add(itemLabel);
 
-            panelButton.set_child(itemLabel);
+            panelButton.set_child(itemBoxLayout);
 
             let toolTip2 = new Tooltips.Tooltip(panelButton, toolTipText );
             toolTip2._tooltip.style = 'text-align: left;';
@@ -607,7 +673,7 @@ class YarrDesklet extends Desklet.Desklet {
             dialog.open();
     }
 
-    summarizeUri(tool, uri) {
+    summarizeUri(tool, uri, lineBox) {
         
         const cmd = "/usr/bin/timeout -k 10 10 /usr/bin/"+tool+" -dump '"+uri+"' || echo 'ERROR: TIMEOUT'"; 
 
@@ -618,14 +684,16 @@ class YarrDesklet extends Desklet.Desklet {
                 cmd
             ],
             Lang.bind(this, function (result) {
-                global.log('INFO', '------------------------ Resultlen: ', result.length)
+                if (result.length > 16384) {
+                    result = result.substring(0,16384);
+                }
                 
                 const reqObj = '{ \
-                        "model": "gpt-3.5-turbo", \
+                        "model": \"'+this.ai_model+'\", \
                         "messages": [ \
                             { \
                                 "role": "system", \
-                                "content": "Summarize the given text in Hungarian" \
+                                "content": ' + JSON.stringify(this.ai_systemprompt)+' \
                             }, \
                             { \
                                 "role": "user", \
@@ -633,8 +701,7 @@ class YarrDesklet extends Desklet.Desklet {
                             } \
                         ] \
                 }';
-//                const postBody = JSON.stringify(reqObj);
-                
+
                 //(method,url,headers,postParameters,callbackF, bodyMime)
                 this.httpRequest(
                     'POST', 
@@ -645,7 +712,23 @@ class YarrDesklet extends Desklet.Desklet {
                     ], 
                     reqObj,
                     function (context, message, result) {
-                        global.log('WARNING', message, result);
+                        
+                        var resObj = JSON.parse(result);
+                        
+                        global.log('INFO', resObj);
+                        
+                        const aiLabel = new St.Label({  
+                            text:  resObj.choices[0].message.content + '\n------------------------------------------------------', 
+                            style: 'text-align: left; width: 100px; display: flex; max-width: 200px;'   
+                        });
+                        aiLabel.style = context.ai_fontstyle;
+                        
+                        aiLabel.clutter_text.line_wrap = true;
+                        aiLabel.clutter_text.line_wrap_mode = Pango.WrapMode.WORD;
+                        aiLabel.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
+                         
+                        lineBox.add(aiLabel);
+
                     }, 
                     'application/json'
                 ); 
