@@ -1,4 +1,55 @@
 {
+    "layout1": {
+        "type": "layout", 
+        "pages": ["page1", "page2", "page3"], 
+        
+        "page1": {
+            "type": "page", 
+            "title": "Feed settings", 
+            "sections": ["section0"]
+        },
+        
+        "page2": {
+            "type": "page", 
+            "title": "Display settings", 
+            "sections": ["section1", "section1ai"]
+        },
+        
+        "page3": {
+            "type": "page", 
+            "title": "AI settings (experimental)", 
+            "sections": ["section2"]
+        },
+        
+        "section0": {
+            "type": "section", 
+            "title": "Feed settings", 
+            "keys": ["refreshsettingsbutton", "feeds", "refreshInterval-spinner", "numberofitems", "listfilter" ]
+        },
+        
+        "section1": {
+            "type": "section", 
+            "title": "Display settings", 
+            "keys": ["refreshsettingsbutton",  "backgroundColor", "transparency", "width", "height", "font", "text-color" ]
+        }, 
+        
+        "section1ai": {
+            "type": "section", 
+            "title": "Display settings for AI feature", 
+            "keys": ["refreshsettingsbutton",  "ai_font", "ai_text-color" ]
+        }, 
+        
+        "section2": {
+            "type": "section", 
+            "title": "AI settings", 
+            "keys": ["refreshsettingsbutton",  "ai_label-info", "ai_enablesummary", "ai_model", "ai_dumptool", 
+                     "ai_example1", "ai_example2", "ai_example3", "ai_example4", "ai_example5", 
+                     "ai_systemprompt", "ai_chatgptapikey" ]
+        }
+    
+    }, 
+
+
     "feeds" : {
         "type" : "list",
         "description" : "Feed settings",
@@ -66,6 +117,17 @@
 	    "description": "Text color",
 	    "tooltip": "Click the button to select a new text color"
       },     
+      "ai_font": {
+        "type": "fontchooser",
+        "default": "Ubuntu Regular 10",
+        "description": "Font for explanation text"
+      },
+      "ai_text-color": {
+	    "type": "colorchooser",
+	    "default": "rgb(255,255,255)",
+	    "description": "Text color of explanation",
+	    "tooltip": "Click the button to select a new text color"
+      },     
       "numberofitems": {
         "type": "spinbutton",
         "default": 50,
@@ -88,6 +150,90 @@
             {"id": "inDescription", "title": "Match in Description", "type": "boolean", "default": false }
         ],
         "default" : []
+    }, 
+    
+    "ai_label-info": {
+        "type": "label", 
+        "description": "These are experimental features. Use at your own risk!\n$$$ - Needs ChatGPT account, can cost money! - $$$ "
+    },
+    
+    "ai_enablesummary": {
+        "description": "Enable EXPERIMENTAL AI summary by ChatGPT",
+        "type": "switch",
+        "default": false
+    },
+    
+    "ai_dumptool": {
+        "type": "combobox",
+        "default": "w3m", 
+        "description": "Choose a tool to dumping web pages", 
+        "options": {
+            "w3m": "w3m", 
+            "lynx": "lynx", 
+            "links": "links"
+        },
+        "tooltip": "You need a command line tool to dump web pages.\nYou have to deploy (apt install ..) one of these manually:\n[ w3m, lynx, links]"
+    }, 
+    
+    "ai_model": {
+        "type": "combobox", 
+        "default": "gpt-3.5-turbo", 
+        "description": "ChatGPT model to use", 
+        "options": {
+            "gpt-4-32k": "gpt-4-32k",
+            "gpt-4": "gpt-4", 
+            "gpt-3.5-turbo": "gpt-3.5-turbo",
+            "gpt-3.5-turbo-16k": "gpt-3.5-turbo-16k"
+        }, 
+        "tooltip": "Some are more clever - but costs more.\nSome require premium class subscription.\nA cheaper can work also well...\nDefault: gpt-3.5-turbo"
+    }, 
+    
+    "ai_systemprompt": {
+        "type" : "textview",
+        "description" : "AI system instructions", 
+        "default" : "Summarize the following text",
+        "tooltip" : "Add instructions to AI Agent",
+        "height" : 100
+    },
+    
+    "ai_chatgptapikey": {
+        "type": "button",
+        "description": "Enter and save ChatGPT API key",
+        "callback": "onChatGPAPIKeySave"
+    }, 
+    
+    "ai_example1": {
+        "type": "button", 
+        "description": "Example Prompt: 'Summarize in four sentences.'",
+        "callback": "onAIPromptExample1"
+    },
+    "ai_example2": {
+        "type": "button", 
+        "description": "Example Prompt: Hungarian limerick: 'Foglald össze limerickben.'",
+        "callback": "onAIPromptExample2"
+    },
+    "ai_example3": {
+        "type": "button", 
+        "description": "Example Prompt: The point is in the haiku. '俳句のエッセンス      日本語では'",
+        "callback": "onAIPromptExample3"
+    },
+    "ai_example4": {
+        "type": "button", 
+        "description": "Example Prompt: Hungarian: 'Summarize in four sentences.'",
+        "callback": "onAIPromptExample4"
+    },
+    "ai_example5": {
+        "type": "button", 
+        "description": "Example Prompt: 'Summarize in 10 sort lines.'",
+        "callback": "onAIPromptExample5"
+    },
+    
+    "refreshsettingsbutton": {
+        "type": "button", 
+        "description": "Refresh settings", 
+        "callback": "onRefreshSettings", 
+        "tooltip": "Press this button to relad settings"
     }
+    
 }
 
