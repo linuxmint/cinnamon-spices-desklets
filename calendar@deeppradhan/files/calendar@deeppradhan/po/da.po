@@ -6,8 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-18 19:52+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-03-01 13:51-0500\n"
 "PO-Revision-Date: 2022-10-20 19:33+0200\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
@@ -18,13 +19,94 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: desklet.js:105
+#: desklet.js:23
+msgid "January"
+msgstr ""
+
+#: desklet.js:23
+msgid "February"
+msgstr ""
+
+#: desklet.js:23
+msgid "March"
+msgstr ""
+
+#: desklet.js:23
+msgid "April"
+msgstr ""
+
+#: desklet.js:24
+msgid "May"
+msgstr ""
+
+#: desklet.js:24
+msgid "June"
+msgstr ""
+
+#: desklet.js:24
+msgid "July"
+msgstr ""
+
+#: desklet.js:24
+msgid "August"
+msgstr ""
+
+#: desklet.js:24
+msgid "September"
+msgstr ""
+
+#: desklet.js:25
+msgid "October"
+msgstr ""
+
+#: desklet.js:25
+msgid "November"
+msgstr ""
+
+#: desklet.js:25
+msgid "December"
+msgstr ""
+
+#: desklet.js:28
+msgid "Sunday"
+msgstr ""
+
+#: desklet.js:28
+msgid "Monday"
+msgstr ""
+
+#: desklet.js:28
+msgid "Tuesday"
+msgstr ""
+
+#: desklet.js:28
+msgid "Wednesday"
+msgstr ""
+
+#: desklet.js:29
+msgid "Thursday"
+msgstr ""
+
+#: desklet.js:29
+msgid "Friday"
+msgstr ""
+
+#: desklet.js:29
+msgid "Saturday"
+msgstr ""
+
+#: desklet.js:130
 msgid "Previous month..."
 msgstr "Forrige måned ..."
 
-#: desklet.js:107
+#: desklet.js:132
 msgid "Next month..."
 msgstr "Næste måned ..."
+
+#: desklet.js:147
+#, fuzzy
+msgid "Calendar"
+msgstr "Kalender"
 
 #. metadata.json->comments
 msgid ""
@@ -70,6 +152,14 @@ msgstr "Kun måned"
 #. settings-schema.json->panels->tooltip
 msgid "Select the panels to display in desklet"
 msgstr "Vælg de paneler, som skal vises i skrivebordsprogrammet"
+
+#. settings-schema.json->auto-advance->description
+msgid "Auto-advance"
+msgstr ""
+
+#. settings-schema.json->auto-advance->tooltip
+msgid "When the month changes, update the desklet"
+msgstr ""
 
 #. settings-schema.json->show-weekday->description
 msgid "Show day of week"
@@ -141,8 +231,7 @@ msgstr "Sæt det overordnede layout til lodret/vandret"
 
 #. settings-schema.json->custom-font-family->description
 msgid "Custom font family for text (blank to use default)"
-msgstr ""
-"Tilpasset skrifttypefamilie til teksten (tom for at bruge standarden)"
+msgstr "Tilpasset skrifttypefamilie til teksten (tom for at bruge standarden)"
 
 #. settings-schema.json->custom-font-family->tooltip
 msgid "Set a custom font family for the text (blank to use default font)"
@@ -196,4 +285,5 @@ msgstr "Gennemsigtighed (%)"
 
 #. settings-schema.json->transparency->tooltip
 msgid "Set the transparency of desklet in percentage"
-msgstr "Angiv skrivebordscalendar@deeppradhanprogrammets gennemsigtighed i procent"
+msgstr ""
+"Angiv skrivebordscalendar@deeppradhanprogrammets gennemsigtighed i procent"
