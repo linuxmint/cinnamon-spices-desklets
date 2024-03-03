@@ -2,6 +2,7 @@
 # Execute the script called codeowners_creator.py to generate it.
 
 InternetTimeDesklet@stefan/*                       @stefan12O
+NumericBinaryClock@ozymandiaslone/*                @ozymandiaslone
 SevenSegmentClock@lxs242/*                         @lxs242
 ViennaTextBasedWeather@f-istvan/*                  @f-istvan
 analog-clock@cobinja.de/*                          @cobinja
