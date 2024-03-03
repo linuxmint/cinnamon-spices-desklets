@@ -42,6 +42,10 @@ class YarrDesklet extends Desklet.Desklet {
     
     timerInProgress = false;		// Semaphore
     _setUpdateTimerInProgress = false; 	// Semaphore
+
+    onUpdateDownloadedTick = -1;    
+    updateDownloadCounter = -1;
+    updateDownloadedTimer = -1;
     
 
     constructor (metadata, desklet_id) {
@@ -99,6 +103,14 @@ class YarrDesklet extends Desklet.Desklet {
         return '0, 0, 0';
     }
     
+    openChatGPTAPIKeys() {
+        Gio.app_info_launch_default_for_uri("https://platform.openai.com/api-keys", global.create_app_launch_context());
+    }
+    
+    openChatGPTUsage() {
+        Gio.app_info_launch_default_for_uri("https://platform.openai.com/usage", global.create_app_launch_context());
+    }
+    
     onAIPromptExample1() {
         this.ai_systemprompt = 'Summarize in four sentences.';
     }
@@ -116,7 +128,11 @@ class YarrDesklet extends Desklet.Desklet {
     }
     
     onAIPromptExample5() {
-        this.ai_systemprompt = 'Summarize in 10 short lines.';
+        this.ai_systemprompt = 'Summarize in 4-8 short bullet points, separtate lines, English language.\nOmit other references and external links from the summary.';
+    }
+    
+    onAIPromptExample6() {
+        this.ai_systemprompt = 'Foglald össze 4-8 rövid bullet pontban, mind külön sorban, magyarul.\nHaggyd ki a többi az oldalon olvasható cikket és hivatkozást a felsorolásból.';
     }
     
 
@@ -312,11 +328,13 @@ class YarrDesklet extends Desklet.Desklet {
         let paddingBox = new St.Bin({ width: 10 });
     
         this.refreshButton = new St.Button({style_class: 'feedRefreshButton'});
+        
         this.refreshIcon = new St.Icon({
                           icon_name: 'reload',
                           icon_size: 20, 
                           icon_type: St.IconType.SYMBOLIC
         });
+        
         this.refreshButton.set_child(this.refreshIcon);
         this.refreshButton.connect("clicked", Lang.bind(this, this.onRefreshClicked));
                         
@@ -419,6 +437,18 @@ class YarrDesklet extends Desklet.Desklet {
         return found;
     }
     
+    onUpdateDownloadedTimer() {
+
+        this.onUpdateDownloadedTick++;
+
+        if ( (this.updateDownloadCounter < 1) || (this.onUpdateDownloadedTick > 10)) {
+            Mainloop.source_remove(this.updateDownloadedTimer);
+            this.displayItems(this);
+            this.refreshIcon.set_icon_name('reload');
+        }
+        return GLib.SOURCE_CONTINUE;
+    }
+    
     collectFeeds() {
     
         if (!this.refreshEnabled) {
@@ -427,11 +457,17 @@ class YarrDesklet extends Desklet.Desklet {
     
         let freshItems = [];
         
+        this.refreshIcon.set_icon_name('system-run');
+
+        this.updateDownloadCounter = this.feeds.length -1;
+        this.onUpdateDownloadedTick = 0;
+        this.updateDownloadedTimer = Mainloop.timeout_add_seconds(1, Lang.bind(this, this.onUpdateDownloadedTimer));
+        
         for(let i=0; i < this.feeds.length; i++ ) {
             
             let feed = this.feeds[i];
             let feedRegexp = new RegExp(feed.filter);
-            
+
             if (feed.active && feed.url.length > 0) {
                     
                     this.httpRequest('GET', feed.url, 
@@ -478,12 +514,14 @@ class YarrDesklet extends Desklet.Desklet {
                                     }
                                 }
                           
-                                context.displayItems(context);
+//                                context.displayItems(context);
                                 
                             } catch (e) {
                                 global.log('ERROR', 'PARSEERROR');
                                 global.log(e);
                             }
+
+                          context.updateDownloadCounter--;
                             
                         }
                     );                                    
@@ -559,8 +597,8 @@ class YarrDesklet extends Desklet.Desklet {
         Gio.app_info_launch_default_for_uri(uri, global.create_app_launch_context());
     }
     
-    onClickedSumButton(selfObj, p2, uri, lineBox) {
-        this.summarizeUri(this.ai_dumptool, uri, lineBox);
+    onClickedSumButton(selfObj, p2, uri, lineBox, sumIcon) {
+        this.summarizeUri(this.ai_dumptool, uri, lineBox, sumIcon);
     }
     
     
@@ -605,7 +643,7 @@ class YarrDesklet extends Desklet.Desklet {
                 });
                 sumButton.set_child(sumIcon);
                 lineBox.add(sumButton);
-                this._signals.connect( sumButton, 'clicked', (...args) => this.onClickedSumButton(...args, item.link, itemBoxLayout));
+                this._signals.connect( sumButton, 'clicked', (...args) => this.onClickedSumButton(...args, item.link, itemBoxLayout, sumIcon));
             }
             
             const dateLabel = new St.Label({  text: ' ' + context._formatedDate(item.timestamp, false) + ' ', style: 'text-align: center;'   });
@@ -617,6 +655,9 @@ class YarrDesklet extends Desklet.Desklet {
                     text: item.title,
             });
             itemLabel.style = context.fontstyle;
+            itemLabel.clutter_text.line_wrap = true;
+            itemLabel.clutter_text.line_wrap_mode = Pango.WrapMode.WORD;
+            itemLabel.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
             
             itemBoxLayout.add(itemLabel);
 
@@ -673,7 +714,9 @@ class YarrDesklet extends Desklet.Desklet {
             dialog.open();
     }
 
-    summarizeUri(tool, uri, lineBox) {
+    summarizeUri(tool, uri, lineBox, sumIcon) {
+    
+        sumIcon.set_icon_name('system-run');
         
         const cmd = "/usr/bin/timeout -k 10 10 /usr/bin/"+tool+" -dump '"+uri+"' || echo 'ERROR: TIMEOUT'"; 
 
@@ -715,8 +758,6 @@ class YarrDesklet extends Desklet.Desklet {
                         
                         var resObj = JSON.parse(result);
                         
-                        global.log('INFO', resObj);
-                        
                         const aiLabel = new St.Label({  
                             text:  resObj.choices[0].message.content + '\n------------------------------------------------------', 
                             style: 'text-align: left; width: 100px; display: flex; max-width: 200px;'   
@@ -728,6 +769,8 @@ class YarrDesklet extends Desklet.Desklet {
                         aiLabel.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
                          
                         lineBox.add(aiLabel);
+                        sumIcon.set_icon_name('gtk-zoom-fit');
+                        
 
                     }, 
                     'application/json'

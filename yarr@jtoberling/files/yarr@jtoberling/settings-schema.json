@@ -17,14 +17,14 @@
         
         "page3": {
             "type": "page", 
-            "title": "AI settings (experimental)", 
+            "title": "AI settings", 
             "sections": ["section2"]
         },
         
         "section0": {
             "type": "section", 
             "title": "Feed settings", 
-            "keys": ["refreshsettingsbutton", "feeds", "refreshInterval-spinner", "numberofitems", "listfilter" ]
+            "keys": ["refreshsettingsbutton", "feeds", "refreshInterval-spinner", "numberofitems", "filterlabel", "listfilter" ]
         },
         
         "section1": {
@@ -42,9 +42,10 @@
         "section2": {
             "type": "section", 
             "title": "AI settings", 
-            "keys": ["refreshsettingsbutton",  "ai_label-info", "ai_enablesummary", "ai_model", "ai_dumptool", 
-                     "ai_example1", "ai_example2", "ai_example3", "ai_example4", "ai_example5", 
-                     "ai_systemprompt", "ai_chatgptapikey" ]
+            "keys": ["refreshsettingsbutton",  "ai_label-info", "ai_button-chatgpt-usage", "ai_enablesummary", "ai_button-chatgpt-apikeys", "ai_chatgptapikey", "ai_model", "ai_dumptool", 
+                     "ai_systemprompt", "ai_systempromptexamples",
+                     "ai_example1", "ai_example2", "ai_example3", "ai_example4", "ai_example5", "ai_example6"
+                     ]
         }
     
     }, 
@@ -60,16 +61,38 @@
             {"id": "labelcolor", "title": "Label Color (#rrggbb)", "type": "string", "default": "#ffffff", "description": "", "tooltip": "#rrggbb (eg: #ffffff --> white)"}, 
             {"id": "filter", "title": "ChannelFilter (Regexp eg: '.*')", "type": "string", "default": "", "description": "Regexp filter on channels", "tooltip": "Leave empty for all"}
         ],
-        "default" : []
+        "default" : [
+            {
+                "name": "NYT",
+                "active": true,
+                "url": "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml",
+                "labelcolor": "#604020",
+                "filter": ""
+            },
+            {
+                "name": "BBC",
+                "active": true,
+                "url": "http://feeds.bbci.co.uk/news/world/rss.xml",
+                "labelcolor": "#505000",
+                "filter": ""
+            },
+            {
+                "name": "24.hu",
+                "active": true,
+                "url": "http://24.hu/feed/",
+                "labelcolor": "#400000",
+                "filter": ""
+            }
+        ]
     },
     "backgroundColor": {
         "type": "colorchooser",
-        "default": "rgb(40,40,40)", 
+        "default": "rgb(0,40,64)", 
         "description": "Background color"
     }, 
     "transparency": {
         "type": "scale",
-        "default": 0.7,
+        "default": 0.8,
         "min": 0.0,
         "max": 1.0,
         "step": 0.05,
@@ -78,7 +101,7 @@
     },
     "refreshInterval-spinner": {
         "type": "spinbutton",
-        "default": 300,
+        "default": 1800,
         "min": 10,
         "max": 36000,
         "step": 10,
@@ -88,7 +111,7 @@
      },     
       "width": {
         "type": "spinbutton",
-        "default": 600,
+        "default": 900,
         "min": 40,
         "max": 4000,
         "step": 20,
@@ -108,12 +131,12 @@
       },
       "font": {
         "type": "fontchooser",
-        "default": "Ubuntu Regular 10",
+        "default": "Ubuntu Regular 12",
         "description": "Font"
       },
       "text-color": {
 	    "type": "colorchooser",
-	    "default": "rgb(255,255,255)",
+	    "default": "rgb(48,192,128)",
 	    "description": "Text color",
 	    "tooltip": "Click the button to select a new text color"
       },     
@@ -124,19 +147,26 @@
       },
       "ai_text-color": {
 	    "type": "colorchooser",
-	    "default": "rgb(255,255,255)",
+	    "default": "rgb(255,164,72)",
 	    "description": "Text color of explanation",
 	    "tooltip": "Click the button to select a new text color"
       },     
       "numberofitems": {
         "type": "spinbutton",
-        "default": 50,
+        "default": 75,
         "min": 10,
         "max": 300,
         "step": 1,
         "description": "Number of displayed articles",
         "tooltip": "Number of displayed articles in the list window."
       },
+
+    "filterlabel": {
+        "type": "label", 
+        "description": "Exclude filters for articles"
+    },
+
+
       "listfilter" : {
         "type" : "list",
         "description" : "Message RegExp filters",
@@ -154,8 +184,20 @@
     
     "ai_label-info": {
         "type": "label", 
-        "description": "These are experimental features. Use at your own risk!\n$$$ - Needs ChatGPT account, can cost money! - $$$ "
+        "description": "These are experimental AI features. Use at your own risk!\nAlso they are needing ChatGPT account, and can cost money! $$$ "
     },
+    
+    "ai_button-chatgpt-apikeys": {
+        "type": "button", 
+        "description": "Open ChaptGPT API keys page", 
+        "callback": "openChatGPTAPIKeys"
+    }, 
+    
+    "ai_button-chatgpt-usage": {
+        "type": "button", 
+        "description": "Open ChaptGPT Usage page", 
+        "callback": "openChatGPTUsage"
+    }, 
     
     "ai_enablesummary": {
         "description": "Enable EXPERIMENTAL AI summary by ChatGPT",
@@ -204,28 +246,38 @@
     
     "ai_example1": {
         "type": "button", 
-        "description": "Example Prompt: 'Summarize in four sentences.'",
+        "description": "Example Prompt1: 'Summarize in four sentences.'",
         "callback": "onAIPromptExample1"
     },
     "ai_example2": {
         "type": "button", 
-        "description": "Example Prompt: Hungarian limerick: 'Foglald össze limerickben.'",
+        "description": "Example Prompt2: Hungarian limerick: 'Foglald össze limerickben.'",
         "callback": "onAIPromptExample2"
     },
     "ai_example3": {
         "type": "button", 
-        "description": "Example Prompt: The point is in the haiku. '俳句のエッセンス      日本語では'",
+        "description": "Example Prompt3: The point is in the haiku. '俳句のエッセンス      日本語では'",
         "callback": "onAIPromptExample3"
     },
     "ai_example4": {
         "type": "button", 
-        "description": "Example Prompt: Hungarian: 'Summarize in four sentences.'",
+        "description": "Example Prompt4: Hungarian: 'Summarize in four sentences.'",
         "callback": "onAIPromptExample4"
     },
     "ai_example5": {
         "type": "button", 
-        "description": "Example Prompt: 'Summarize in 10 sort lines.'",
+        "description": "Example Prompt5: 'Summarize in 4-8 short bullet points, separtate lines, English language.\nOmit other references and external links from the summary'",
         "callback": "onAIPromptExample5"
+    },
+    "ai_example6": {
+        "type": "button", 
+        "description": "Example Prompt6: 'Hungarian bullet points...'", 
+        "callback": "onAIPromptExample6"
+    },
+    
+    "ai_systempromptexamples": {
+        "type": "label", 
+        "description": "Here are some examples for the AI system prompt. You can rewrite them as you like."
     },
     
     "refreshsettingsbutton": {
