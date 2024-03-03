@@ -9,12 +9,9 @@ Experimental feature: Summarize with ChatGPT!
 
   Currently using ChatGPT so: 
   - Needs an API key:   https://platform.openai.com/api-keys 
-  - Can cost money:  	https://platform.openai.com/usage
+  - Can cost money:    	https://platform.openai.com/usage
 
   Or just make it fun and convert it to Haiku! :)
   You can find example AI prompts in settings - and you can also write your
   own.
-
- 
-
 

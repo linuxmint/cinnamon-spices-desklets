@@ -133,6 +133,7 @@ class YarrDesklet extends Desklet.Desklet {
     
     onAIPromptExample6() {
         this.ai_systemprompt = 'Foglald össze 4-8 rövid bullet pontban, mind külön sorban, magyarul.\nHaggyd ki a többi az oldalon olvasható cikket és hivatkozást a felsorolásból.';
+        this.ai_systemprompt = 'Summarize in 10 short lines.';
     }
     
 
@@ -770,13 +771,9 @@ class YarrDesklet extends Desklet.Desklet {
                          
                         lineBox.add(aiLabel);
                         sumIcon.set_icon_name('gtk-zoom-fit');
-                        
-
                     }, 
                     'application/json'
                 ); 
-                    
-                
                 
             })
         );   
