@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.1.1] - 2024-03-03
 - Performance improvement
 - Enhance AI functionality
+- Translation support
 
 ## [1.1.0] - 2024-02-27
 - Experimental ChatGPT AI features
