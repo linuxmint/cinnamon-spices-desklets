@@ -51,6 +51,7 @@ const ABSENT = "N/A";
 const ERROR_RESPONSE_BEGIN = "{\"quoteResponse\":{\"result\":[],\"error\":\"";
 const ERROR_RESPONSE_END = "\"}}";
 const LOG_PREFIX = UUID + " - ";
+const LOG_DEBUG = Gio.file_new_for_path(DESKLET_DIR + "/DEBUG").query_exists(null);
 
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
@@ -72,6 +73,12 @@ let _crumb = null;
 
 function _(str) {
     return Gettext.dgettext(UUID, str);
+}
+
+function logDebug(msg) {
+    if (LOG_DEBUG) {
+        global.log(LOG_PREFIX + 'DEBUG: ' + msg);
+    }
 }
 
 function logInfo(msg) {
@@ -110,7 +117,8 @@ YahooFinanceQuoteUtils.prototype = {
             if (IS_SOUP_2) {
                 return soupMessage.status_code === Soup.KnownStatusCode.OK;
             } else {
-                return soupMessage.get_status() === Soup.Status.OK;
+                // get_status() throws exception on any value missing in enum SoupStatus, so better check reason_phrase
+                return soupMessage.get_reason_phrase() === "OK";
             }
         }
         return false;
@@ -121,7 +129,21 @@ YahooFinanceQuoteUtils.prototype = {
             if (IS_SOUP_2) {
                 return soupMessage.status_code + " " + soupMessage.reason_phrase;
             } else {
-                return soupMessage.get_status() + " " + soupMessage.get_reason_phrase();
+                let reason = soupMessage.get_reason_phrase();
+                let status = "unknown status";
+                try {
+                    status = soupMessage.get_status();
+                } catch (e) {
+                    // get_status() throws exception on any value missing in enum SoupStatus
+                    logDebug("get_status() exception: " + e);
+                    // YF is known to return "429 Too Many Requests", which is unfortunately missing in SoupStatus
+                    if (e.message.indexOf("429") > -1) {
+                        status = "429";
+                        reason = "Too Many Requests";
+                    }
+                }
+                
+                return status + " " + reason;
             }
         }
         return "no status available";
@@ -146,7 +168,7 @@ YahooFinanceQuoteReader.prototype = {
             }
 
             _httpSession.queue_message(message, function(session, message) {
-                // logInfo("Soup2 Cookie response: " + _that.quoteUtils.getMessageStatusInfo(message));
+                logDebug("Soup2 Cookie response status: " + _that.quoteUtils.getMessageStatusInfo(message));
                 if (_that.quoteUtils.isOkStatus(message)) {
                     try {
                         callback.call(_that, message, message.response_body.data);
@@ -166,7 +188,7 @@ YahooFinanceQuoteReader.prototype = {
             }
 
             _httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, function(session, result) {
-                // logInfo("Soup3 Cookie response: " + _that.quoteUtils.getMessageStatusInfo(message));
+                logDebug("Soup3 Cookie response status: " + _that.quoteUtils.getMessageStatusInfo(message));
                 if (_that.quoteUtils.isOkStatus(message)) {
                     try {
                         const bytes = session.send_and_read_finish(result);
@@ -195,7 +217,7 @@ YahooFinanceQuoteReader.prototype = {
             message.set_request(FORM_URLENCODED_VALUE, Soup.MemoryUse.COPY, formData);
 
             _httpSession.queue_message(message, function(session, message) {
-                // logInfo("Soup2 Consent response: " + _that.quoteUtils.getMessageStatusInfo(message));
+                logDebug("Soup2 Consent response status: " + _that.quoteUtils.getMessageStatusInfo(message));
                 if (_that.quoteUtils.isOkStatus(message)) {
                     try {
                         callback.call(_that, message);
@@ -216,7 +238,7 @@ YahooFinanceQuoteReader.prototype = {
             message.set_request_body_from_bytes(FORM_URLENCODED_VALUE, GLib.Bytes.new(formData));
 
             _httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, function(session, result) {
-                // logInfo("Soup3 Consent response: " + _that.quoteUtils.getMessageStatusInfo(message));
+                logDebug("Soup3 Consent response status: " + _that.quoteUtils.getMessageStatusInfo(message));
                 if (_that.quoteUtils.isOkStatus(message)) {
                     try {
                         callback.call(_that, message);
@@ -243,7 +265,7 @@ YahooFinanceQuoteReader.prototype = {
             }
 
             _httpSession.queue_message(message, function(session, message) {
-                // logInfo("Soup2 Crumb response: " + _that.quoteUtils.getMessageStatusInfo(message));
+                logDebug("Soup2 Crumb response status: " + _that.quoteUtils.getMessageStatusInfo(message));
                 if (_that.quoteUtils.isOkStatus(message)) {
                     try {
                         callback.call(_that, message, message.response_body);
@@ -263,7 +285,7 @@ YahooFinanceQuoteReader.prototype = {
             }
 
             _httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, function(session, result) {
-                // logInfo("Soup3 Crumb response: " + _that.quoteUtils.getMessageStatusInfo(message));
+                logDebug("Soup3 Crumb response status: " + _that.quoteUtils.getMessageStatusInfo(message));
                 if (_that.quoteUtils.isOkStatus(message)) {
                     try {
                         const bytes = session.send_and_read_finish(result);
@@ -290,7 +312,7 @@ YahooFinanceQuoteReader.prototype = {
             }
 
             _httpSession.queue_message(message, function(session, message) {
-                // logInfo("Soup2 Quotes response: " + _that.quoteUtils.getMessageStatusInfo(message));
+                logDebug("Soup2 Quotes response status: " + _that.quoteUtils.getMessageStatusInfo(message));
                 if (_that.quoteUtils.isOkStatus(message)) {
                     try {
                         callback.call(_that, message.response_body.data.toString());
@@ -308,7 +330,7 @@ YahooFinanceQuoteReader.prototype = {
             }
 
             _httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, function(session, result) {
-                // logInfo("Soup3 Quotes response: " + _that.quoteUtils.getMessageStatusInfo(message));
+                logDebug("Soup3 Quotes response status: " + _that.quoteUtils.getMessageStatusInfo(message));
                 if (_that.quoteUtils.isOkStatus(message)) {
                     try {
                         const bytes = session.send_and_read_finish(result);
@@ -325,7 +347,9 @@ YahooFinanceQuoteReader.prototype = {
     },
 
     createYahooQueryUrl: function(quoteSymbols) {
-        return "https://query1.finance.yahoo.com/v7/finance/quote?symbols=" + quoteSymbols.join(",") + "&crumb=" + _crumb;
+        const queryUrl = "https://query1.finance.yahoo.com/v7/finance/quote?symbols=" + quoteSymbols.join(",") + "&crumb=" + _crumb;
+        logDebug("YF query URL: " + queryUrl);
+        return queryUrl;
     },
 
     buildErrorResponse: function(errorMsg) {
@@ -719,6 +743,7 @@ StockQuoteDesklet.prototype = {
         const _that = this;
 
         this.quoteReader.getCookie(customUserAgent, function(authResponseMessage, responseBody) {
+            logDebug("Cookie response body: " + responseBody);
             if (_that.existsCookie(AUTH_COOKIE)) {
                 _that.fetchCrumbAndRender(quoteSymbols, customUserAgent);
             } else if (_that.existsCookie(CONSENT_COOKIE)) {
@@ -763,6 +788,7 @@ StockQuoteDesklet.prototype = {
         const _that = this;
 
         this.quoteReader.getCrumb(customUserAgent, function(crumbResponseMessage, responseBody) {
+            logDebug("Crumb response body: " + responseBody);
             if (responseBody) {
                 if (typeof responseBody.data === "string" && responseBody.data.trim() !== "") {
                     _crumb = responseBody.data;
@@ -785,6 +811,7 @@ StockQuoteDesklet.prototype = {
         const _that = this;
 
         this.quoteReader.getFinanceData(quoteSymbols, customUserAgent, function(response) {
+            logDebug("YF query response: " + response);
             let parsedResponse = JSON.parse(response);
             _that.render([parsedResponse.quoteResponse.result, parsedResponse.quoteResponse.error]);
             _that.setUpdateTimer();

@@ -1,48 +1,70 @@
 # Yahoo Finance Quotes Desklet
-# Copyright (C) 2021 Thomas Egli
+# Copyright (C) 2018 Thomas Egli
 # This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-03-04 22:02+0100\n"
 "PO-Revision-Date: \n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
-"Last-Translator: \n"
-"Language: ru\n"
 
-#: desklet.js:87
-msgid "Yahoo Finance service not available!"
+#: desklet.js:324 desklet.js:343
+msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Сервис Yahoo Finance не доступен!"
 
-#: desklet.js:416
+#: desklet.js:684
 msgid "Updated at "
 msgstr "Обновлено в "
 
-#: desklet.js:423
+#: desklet.js:691
 msgid "Error: "
 msgstr "Ошибка: "
 
-#: desklet.js:467
+#: desklet.js:753
+msgid ""
+"Failed to retrieve authorization parameter! Unable to fetch quotes data."
+"\\nStatus: "
+msgstr ""
+
+#: desklet.js:778
+msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
+msgstr ""
+
+#: desklet.js:783
+msgid ""
+"Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
+msgstr ""
+
+#: desklet.js:805
+msgid ""
+"Failed to retrieve authorization crumb! Unable to fetch quotes data."
+"\\nStatus: "
+msgstr ""
+
+#: desklet.js:832
 msgid "Cannot display quotes information for symbols: "
 msgstr "Невозможно отобразить информацию о котировках для биржевых символов: "
 
-#: desklet.js:468
+#: desklet.js:833
 msgid "The following error occurred: "
 msgstr "Произошла ошибка: "
 
 #. metadata.json->description
 msgid ""
-"Displays financial market information such as stock quotes and commodity prices from Yahoo "
-"Finance"
+"Displays financial market information such as stock quotes and commodity "
+"prices from Yahoo Finance"
 msgstr ""
-"Отображение информации финансового рынка, такой как котировки акций и курсы валют из Yahoo "
-"Finance"
+"Отображение информации финансового рынка, такой как котировки акций и курсы "
+"валют из Yahoo Finance"
 
 #. metadata.json->name
 msgid "Yahoo Finance Quotes"
@@ -158,6 +180,24 @@ msgstr "Показывать время последнего обновлени�
 msgid "Display timestamp when quotes were updated last."
 msgstr "Отображение времени последнего обновления котировок."
 
+#. settings-schema.json->sendCustomUserAgent->description
+msgid "Send custom User-Agent header"
+msgstr ""
+
+#. settings-schema.json->sendCustomUserAgent->tooltip
+msgid ""
+"Include a custom User-Agent header in Yahoo Finance Quotes API requests. By "
+"default, this header is not set."
+msgstr ""
+
+#. settings-schema.json->customUserAgent->description
+msgid "Custom User-Agent header"
+msgstr ""
+
+#. settings-schema.json->customUserAgent->tooltip
+msgid "Value for User-Agent header to send with all API requests."
+msgstr ""
+
 #. settings-schema.json->roundNumbers->description
 msgid "Round numbers"
 msgstr "Округлять числа"
@@ -183,10 +223,12 @@ msgid "Strict rounding"
 msgstr "Строгое округление"
 
 #. settings-schema.json->strictRounding->tooltip
-msgid "Strict rounding to the specified decimal places (eg. 0 will be presented as 0.00)."
+msgid ""
+"Strict rounding to the specified decimal places (eg. 0 will be presented as "
+"0.00)."
 msgstr ""
-"Строгое округление до указанного количества знаков после запятой (например, 0 будет отображаться "
-"как 0.00)"
+"Строгое округление до указанного количества знаков после запятой (например, "
+"0 будет отображаться как 0.00)"
 
 #. settings-schema.json->quoteSymbols->description
 msgid "Quote symbols"
@@ -194,7 +236,8 @@ msgstr "Биржевые символы котировок"
 
 #. settings-schema.json->quoteSymbols->tooltip
 msgid "List of quote symbols, separated with line-breaks."
-msgstr "Список биржевых символов (тикеров) котировок, разделенных новой строкой."
+msgstr ""
+"Список биржевых символов (тикеров) котировок, разделенных новой строкой."
 
 #. settings-schema.json->sortCriteria->options
 msgid "given order"
@@ -225,9 +268,11 @@ msgid "Sort in ascending order"
 msgstr "Сортировать по возрастанию"
 
 #. settings-schema.json->sortDirection->tooltip
-msgid "Check to sort quotes in ascending order, uncheck to sort in descending order."
+msgid ""
+"Check to sort quotes in ascending order, uncheck to sort in descending order."
 msgstr ""
-"В активном состоянии сортировка по возрастанию, в неактивном состоянии сортировка по убыванию."
+"В активном состоянии сортировка по возрастанию, в неактивном состоянии "
+"сортировка по убыванию."
 
 #. settings-schema.json->showChangeIcon->description
 msgid "Show change/trend icon"
@@ -243,7 +288,9 @@ msgstr "Показывать название"
 
 #. settings-schema.json->showQuoteName->tooltip
 msgid "Display the quote name (eg. International Business Machines)."
-msgstr "Отображение названия биржевого символа (например, International Business Machines)."
+msgstr ""
+"Отображение названия биржевого символа (например, International Business "
+"Machines)."
 
 #. settings-schema.json->useLongQuoteName->description
 msgid "Use long version for verbose name"
@@ -251,11 +298,11 @@ msgstr "Показывать полное название"
 
 #. settings-schema.json->useLongQuoteName->tooltip
 msgid ""
-"Use the long version for quote name, if available (eg. International Business Machines "
-"Corporation)."
+"Use the long version for quote name, if available (eg. International "
+"Business Machines Corporation)."
 msgstr ""
-"Отображение полного названия биржевого символа если доступно (например, International Business "
-"Machines Corporation)"
+"Отображение полного названия биржевого символа если доступно (например, "
+"International Business Machines Corporation)"
 
 #. settings-schema.json->linkQuoteName->description
 msgid "Add web link to name"
@@ -279,7 +326,8 @@ msgstr "Добавить web-ссылку к биржевому символу"
 
 #. settings-schema.json->linkQuoteSymbol->tooltip
 msgid "Click symbol to open quote in browser."
-msgstr "Открытие информация о котировках в браузере при нажатии на биржевой символ."
+msgstr ""
+"Открытие информация о котировках в браузере при нажатии на биржевой символ."
 
 #. settings-schema.json->showMarketPrice->description
 msgid "Show price"
@@ -303,7 +351,9 @@ msgstr "Показывать изменения в абсолютных знач
 
 #. settings-schema.json->showAbsoluteChange->tooltip
 msgid "Display the absolute change of the market price (eg. +0.739)."
-msgstr "Отображение изменений рыночной цены в абсолютных значениях (например, +0.739)."
+msgstr ""
+"Отображение изменений рыночной цены в абсолютных значениях (например, "
+"+0.739)."
 
 #. settings-schema.json->showPercentChange->description
 msgid "Show percent change"
@@ -319,7 +369,9 @@ msgstr "Показывать цветные проценты"
 
 #. settings-schema.json->colorPercentChange->tooltip
 msgid "Color the percent change to show the trend."
-msgstr "Отображение цветных процентов (зеленый цвет при росте, красный цвет при падении)."
+msgstr ""
+"Отображение цветных процентов (зеленый цвет при росте, красный цвет при "
+"падении)."
 
 #. settings-schema.json->showTradeTime->description
 msgid "Show trading time"

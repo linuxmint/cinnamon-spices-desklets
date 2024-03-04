@@ -4,8 +4,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-28 16:36+0200\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-03-04 22:02+0100\n"
 "PO-Revision-Date: 2023-12-08 08:06+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
@@ -16,19 +17,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: desklet.js:302 desklet.js:321
+#: desklet.js:324 desklet.js:343
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Yahoo Finance er ikke tilgængelig!\\nStatus: "
 
-#: desklet.js:660
+#: desklet.js:684
 msgid "Updated at "
 msgstr "Opdateret "
 
-#: desklet.js:667
+#: desklet.js:691
 msgid "Error: "
 msgstr "Fejl: "
 
-#: desklet.js:728
+#: desklet.js:753
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -36,28 +37,28 @@ msgstr ""
 "Kunne ikke hente godkendelsesparameter! Kunne ikke hente kursdata.\n"
 "Status: "
 
-#: desklet.js:753
+#: desklet.js:778
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr "Samtykkebehandling mislykkedes! Kunne ikke hente kursdata.\\nStatus: "
 
-#: desklet.js:758
+#: desklet.js:783
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Samtykkebehandling ikke gennemført! Kunne ikke hente kursdata.\\nStatus: "
 
-#: desklet.js:779
+#: desklet.js:805
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
 msgstr ""
 "Kunne ikke hente godkendelseskrumme! Kunne ikke hente kursdata.\\nStatus: "
 
-#: desklet.js:805
+#: desklet.js:832
 msgid "Cannot display quotes information for symbols: "
 msgstr "Kan ikke vise kurser for symbolerne: "
 
-#: desklet.js:806
+#: desklet.js:833
 msgid "The following error occurred: "
 msgstr "Følgende fejl opstod: "
 
