@@ -1,45 +1,71 @@
 # Yahoo Finance Quotes Desklet
-# Copyright (C) 2023 Thomas Egli
+# Copyright (C) 2018 Thomas Egli
 # This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
 #
 msgid ""
 msgstr ""
-"Content-Transfer-Encoding: 8bit\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language: ro\n"
-"Language-Team: none\n"
-"Last-Translator: Automatically generated\n"
-"MIME-Version: 1.0\n"
-"PO-Revision-Date: 2023-07-19 22:16+0200\n"
-"POT-Creation-Date: 2023-07-19 22:16+0200\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-03-04 22:02+0100\n"
+"PO-Revision-Date: 2023-07-19 22:16+0200\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
 
-#: desklet.js:192
-#: desklet.js:213
-msgid "Yahoo Finance service not available!"
+#: desklet.js:324 desklet.js:343
+msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Serviciul Yahoo Finance nu este disponibil!"
 
-#: desklet.js:557
+#: desklet.js:684
 msgid "Updated at "
 msgstr "Actualizat la"
 
-#: desklet.js:564
+#: desklet.js:691
 msgid "Error: "
 msgstr "Eroare:"
 
-#: desklet.js:634
+#: desklet.js:753
+msgid ""
+"Failed to retrieve authorization parameter! Unable to fetch quotes data."
+"\\nStatus: "
+msgstr ""
+
+#: desklet.js:778
+msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
+msgstr ""
+
+#: desklet.js:783
+msgid ""
+"Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
+msgstr ""
+
+#: desklet.js:805
+msgid ""
+"Failed to retrieve authorization crumb! Unable to fetch quotes data."
+"\\nStatus: "
+msgstr ""
+
+#: desklet.js:832
 msgid "Cannot display quotes information for symbols: "
 msgstr "Nu se pot afișa informații privind cotațiile pentru simboluri:"
 
-#: desklet.js:635
+#: desklet.js:833
 msgid "The following error occurred: "
 msgstr "A apărut următoarea eroare:"
 
 #. metadata.json->description
-msgid "Displays financial market information such as stock quotes and commodity prices from Yahoo Finance"
-msgstr "Afișează informații de pe piața financiară, cum ar fi cotațiile bursiere și prețurile mărfurilor de pe Yahoo Finance"
+msgid ""
+"Displays financial market information such as stock quotes and commodity "
+"prices from Yahoo Finance"
+msgstr ""
+"Afișează informații de pe piața financiară, cum ar fi cotațiile bursiere și "
+"prețurile mărfurilor de pe Yahoo Finance"
 
 #. metadata.json->name
 msgid "Yahoo Finance Quotes"
@@ -133,23 +159,8 @@ msgstr "Transparența fundalului"
 
 #. settings-schema.json->transparency->tooltip
 msgid "The higher the value, the more solid the desklet background."
-msgstr "Cu cât valoarea este mai mare, cu atât fundalul deskletului este mai solid."
-
-#. settings-schema.json->apiVersion->options
-msgid "V6"
-msgstr "V6"
-
-#. settings-schema.json->apiVersion->options
-msgid "V7"
-msgstr "V7"
-
-#. settings-schema.json->apiVersion->description
-msgid "Yahoo Finance Quotes API version"
-msgstr "Yahoo Finance Quotes API versiune"
-
-#. settings-schema.json->apiVersion->tooltip
-msgid "Try different version if data requests fail with error."
-msgstr "Încearcă o versiune diferită dacă solicitările de date eșuează cu o eroare."
+msgstr ""
+"Cu cât valoarea este mai mare, cu atât fundalul deskletului este mai solid."
 
 #. settings-schema.json->delayMinutes->units
 msgid "minutes"
@@ -176,8 +187,12 @@ msgid "Send custom User-Agent header"
 msgstr "Trimite antetul personalizat User-Agent"
 
 #. settings-schema.json->sendCustomUserAgent->tooltip
-msgid "Include a custom User-Agent header in Yahoo Finance Quotes API requests. By default, this header is not set."
-msgstr "Include un antet User-Agent personalizat în solicitările API Yahoo Finance Quotes. În mod implicit, acest antet nu este setat."
+msgid ""
+"Include a custom User-Agent header in Yahoo Finance Quotes API requests. By "
+"default, this header is not set."
+msgstr ""
+"Include un antet User-Agent personalizat în solicitările API Yahoo Finance "
+"Quotes. În mod implicit, acest antet nu este setat."
 
 #. settings-schema.json->customUserAgent->description
 msgid "Custom User-Agent header"
@@ -185,7 +200,9 @@ msgstr "Antet personalizat User-Agent"
 
 #. settings-schema.json->customUserAgent->tooltip
 msgid "Value for User-Agent header to send with all API requests."
-msgstr "Valoarea pentru antetul User-Agent care trebuie trimisă cu toate cererile API."
+msgstr ""
+"Valoarea pentru antetul User-Agent care trebuie trimisă cu toate cererile "
+"API."
 
 #. settings-schema.json->roundNumbers->description
 msgid "Round numbers"
@@ -212,8 +229,12 @@ msgid "Strict rounding"
 msgstr "Rotunjire strictă"
 
 #. settings-schema.json->strictRounding->tooltip
-msgid "Strict rounding to the specified decimal places (eg. 0 will be presented as 0.00)."
-msgstr "Rotunjire strictă la zecimalele specificate (de exemplu, 0 va fi prezentat ca 0,00)."
+msgid ""
+"Strict rounding to the specified decimal places (eg. 0 will be presented as "
+"0.00)."
+msgstr ""
+"Rotunjire strictă la zecimalele specificate (de exemplu, 0 va fi prezentat "
+"ca 0,00)."
 
 #. settings-schema.json->quoteSymbols->description
 msgid "Quote symbols"
@@ -252,8 +273,11 @@ msgid "Sort in ascending order"
 msgstr "Sortează în ordine crescătoare"
 
 #. settings-schema.json->sortDirection->tooltip
-msgid "Check to sort quotes in ascending order, uncheck to sort in descending order."
-msgstr "Bifează pentru a sorta cotațiile în ordine crescătoare, debifezi pentru a le sorta în ordine descrescătoare."
+msgid ""
+"Check to sort quotes in ascending order, uncheck to sort in descending order."
+msgstr ""
+"Bifează pentru a sorta cotațiile în ordine crescătoare, debifezi pentru a le "
+"sorta în ordine descrescătoare."
 
 #. settings-schema.json->showChangeIcon->description
 msgid "Show change/trend icon"
@@ -269,15 +293,20 @@ msgstr "Afișează numele detaliat"
 
 #. settings-schema.json->showQuoteName->tooltip
 msgid "Display the quote name (eg. International Business Machines)."
-msgstr "Afișează numele cotației (de exemplu, International Business Machines)."
+msgstr ""
+"Afișează numele cotației (de exemplu, International Business Machines)."
 
 #. settings-schema.json->useLongQuoteName->description
 msgid "Use long version for verbose name"
 msgstr "Utilizează versiunea lungă pentru numele detaliat"
 
 #. settings-schema.json->useLongQuoteName->tooltip
-msgid "Use the long version for quote name, if available (eg. International Business Machines Corporation)."
-msgstr "Folosește versiunea lungă pentru numele cotației, dacă este disponibilă (de exemplu, International Business Machines Corporation)."
+msgid ""
+"Use the long version for quote name, if available (eg. International "
+"Business Machines Corporation)."
+msgstr ""
+"Folosește versiunea lungă pentru numele cotației, dacă este disponibilă (de "
+"exemplu, International Business Machines Corporation)."
 
 #. settings-schema.json->linkQuoteName->description
 msgid "Add web link to name"
@@ -325,7 +354,8 @@ msgstr "Afișează modificarea absolută"
 
 #. settings-schema.json->showAbsoluteChange->tooltip
 msgid "Display the absolute change of the market price (eg. +0.739)."
-msgstr "Afișează modificarea absolută a prețului de piață (de exemplu, +0,739)."
+msgstr ""
+"Afișează modificarea absolută a prețului de piață (de exemplu, +0,739)."
 
 #. settings-schema.json->showPercentChange->description
 msgid "Show percent change"
@@ -333,7 +363,8 @@ msgstr "Afișează modificarea procentuală"
 
 #. settings-schema.json->showPercentChange->tooltip
 msgid "Display the percent change of the market price (eg. +0.53%)."
-msgstr "Afișează modificarea procentuală a prețului de piață (de exemplu, +0,53%)."
+msgstr ""
+"Afișează modificarea procentuală a prețului de piață (de exemplu, +0,53%)."
 
 #. settings-schema.json->colorPercentChange->description
 msgid "Use trend colors for percent change"
@@ -349,7 +380,8 @@ msgstr "Afișează timpul de tranzacționare"
 
 #. settings-schema.json->showTradeTime->tooltip
 msgid "Display the last trading time (if current day) or date."
-msgstr "Afișează ultima oră de tranzacționare (dacă este ziua curentă) sau data."
+msgstr ""
+"Afișează ultima oră de tranzacționare (dacă este ziua curentă) sau data."
 
 #. settings-schema.json->uptrendChangeColor->description
 msgid "Uptrend change color"

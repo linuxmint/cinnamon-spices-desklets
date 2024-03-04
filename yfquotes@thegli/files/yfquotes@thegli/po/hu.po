@@ -1,12 +1,13 @@
 # Yahoo Finance Quotes Desklet
-# Copyright (C) 2021 Thomas Egli
+# Copyright (C) 2018 Thomas Egli
 # This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-28 16:36+0200\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-03-04 22:02+0100\n"
 "PO-Revision-Date: 2023-10-22 20:26+0200\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: \n"
@@ -16,19 +17,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: desklet.js:302 desklet.js:321
+#: desklet.js:324 desklet.js:343
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "A Yahoo Finance szolgáltatás pillanatnyilag nem érhető el.\\nÁllapot: "
 
-#: desklet.js:660
+#: desklet.js:684
 msgid "Updated at "
 msgstr "Frissítve: "
 
-#: desklet.js:667
+#: desklet.js:691
 msgid "Error: "
 msgstr "Hiba: "
 
-#: desklet.js:728
+#: desklet.js:753
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -36,20 +37,20 @@ msgstr ""
 "Nem sikerült lekérni az engedélyezési paramétert. Nem sikerült letölteni a "
 "pénzügyi adatokat.\\nÁllapot: "
 
-#: desklet.js:753
+#: desklet.js:778
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Az engedélykezelés nem sikerült. Nem sikerült letölteni a pénzügyi adatokat."
 "\\nÁllapot: "
 
-#: desklet.js:758
+#: desklet.js:783
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Az engedélykezelés nem fejeződött be. Nem sikerült letölteni a pénzügyi "
 "adatokat.\\nÁllapot: "
 
-#: desklet.js:779
+#: desklet.js:805
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
@@ -57,11 +58,11 @@ msgstr ""
 "Nem sikerült lekérni az engedély-sütit. Nem sikerült letölteni a pénzügyi "
 "adatokat.\\nÁllapot: "
 
-#: desklet.js:805
+#: desklet.js:832
 msgid "Cannot display quotes information for symbols: "
 msgstr "Nem jeleníthetőek meg megállapítások a következő szimbólumokhoz: "
 
-#: desklet.js:806
+#: desklet.js:833
 msgid "The following error occurred: "
 msgstr "A következő hiba történt: "
 
@@ -412,20 +413,3 @@ msgstr "Változatlan trend színe"
 #. settings-schema.json->unchangedTrendColor->tooltip
 msgid "Color of the unchanged trend."
 msgstr "A változatlan árfolyam színe."
-
-#~ msgid "V6"
-#~ msgstr "V6"
-
-#~ msgid "V7"
-#~ msgstr "V7"
-
-#~ msgid "Yahoo Finance Quotes API version"
-#~ msgstr "Yahoo Finance Quotes API verzió"
-
-#~ msgid "Try different version if data requests fail with error."
-#~ msgstr ""
-#~ "Ha a adatlekérések hibával szakadnak meg, próbálkozzon egy másik API "
-#~ "verzióval."
-
-#~ msgid "Financial data"
-#~ msgstr "Pénzügyi adatok"

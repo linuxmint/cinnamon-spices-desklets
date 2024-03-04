@@ -5,8 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-28 16:36+0200\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-03-04 22:02+0100\n"
 "PO-Revision-Date: 2023-11-24 20:17-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,19 +17,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4\n"
 
-#: desklet.js:302 desklet.js:321
+#: desklet.js:324 desklet.js:343
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "El servicio de Yahoo Finanzas no está disponible: "
 
-#: desklet.js:660
+#: desklet.js:684
 msgid "Updated at "
 msgstr "Actualizado en "
 
-#: desklet.js:667
+#: desklet.js:691
 msgid "Error: "
 msgstr "Error: "
 
-#: desklet.js:728
+#: desklet.js:753
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -36,20 +37,20 @@ msgstr ""
 "Error al recuperar el parámetro de autorización. No se han podido recuperar "
 "los datos de las cotizaciones: "
 
-#: desklet.js:753
+#: desklet.js:778
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "No se ha podido procesar el consentimiento. No se han podido recuperar los "
 "datos de las cotizaciones: "
 
-#: desklet.js:758
+#: desklet.js:783
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "No se ha completado el procesamiento del consentimiento. No se han podido "
 "recuperar los datos de las cotizaciones: "
 
-#: desklet.js:779
+#: desklet.js:805
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
@@ -57,11 +58,11 @@ msgstr ""
 "¡No se pudo recuperar la ruta de autorización! No se pueden recuperar los "
 "datos de las cotizaciones: "
 
-#: desklet.js:805
+#: desklet.js:832
 msgid "Cannot display quotes information for symbols: "
 msgstr "No se puede mostrar información de cotizaciones para los símbolos: "
 
-#: desklet.js:806
+#: desklet.js:833
 msgid "The following error occurred: "
 msgstr "El siguiente error ha ocurrido: "
 

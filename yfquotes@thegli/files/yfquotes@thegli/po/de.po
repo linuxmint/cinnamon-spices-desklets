@@ -5,8 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-28 16:36+0200\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-03-04 22:02+0100\n"
 "PO-Revision-Date: 2023-08-28 16:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,52 +17,52 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
 
-#: desklet.js:302 desklet.js:321
+#: desklet.js:324 desklet.js:343
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Yahoo Finance Service nicht verfügbar!\\nStatus: "
 
-#: desklet.js:660
+#: desklet.js:684
 msgid "Updated at "
 msgstr "Aktualisiert um "
 
-#: desklet.js:667
+#: desklet.js:691
 msgid "Error: "
 msgstr "Fehler: "
 
-#: desklet.js:728
-msgid ""
-"Failed to retrieve authorization parameter! Unable to fetch quotes "
-"data.\\nStatus: "
-msgstr ""
-"Empfang von Autorisierungsparameter ist fehlgeschlagen! "
-"Finanzdaten-Abfrage nicht möglich.\\nStatus: "
-
 #: desklet.js:753
+msgid ""
+"Failed to retrieve authorization parameter! Unable to fetch quotes data."
+"\\nStatus: "
+msgstr ""
+"Empfang von Autorisierungsparameter ist fehlgeschlagen! Finanzdaten-Abfrage "
+"nicht möglich.\\nStatus: "
+
+#: desklet.js:778
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
-"Consent-Erteilung ist fehlgeschlagen! Finanzdaten-Abfrage nicht "
-"möglich.\\nStatus: "
+"Consent-Erteilung ist fehlgeschlagen! Finanzdaten-Abfrage nicht möglich."
+"\\nStatus: "
 
-#: desklet.js:758
+#: desklet.js:783
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
-"Consent-Erteilung nicht abgeschlossen! Finanzdaten-Abfrage nicht "
-"möglich.\\nStatus: "
+"Consent-Erteilung nicht abgeschlossen! Finanzdaten-Abfrage nicht möglich."
+"\\nStatus: "
 
-#: desklet.js:779
+#: desklet.js:805
 msgid ""
-"Failed to retrieve authorization crumb! Unable to fetch quotes "
-"data.\\nStatus: "
+"Failed to retrieve authorization crumb! Unable to fetch quotes data."
+"\\nStatus: "
 msgstr ""
 "Emfang von Autorisierungs-Crumb ist fehlgeschlagen! Finanzdaten-Abfrage "
 "nicht möglich.\\nStatus: "
 
-#: desklet.js:805
+#: desklet.js:832
 msgid "Cannot display quotes information for symbols: "
 msgstr "Finanzdaten können nicht angezeigt werden für die Symbole: "
 
-#: desklet.js:806
+#: desklet.js:833
 msgid "The following error occurred: "
 msgstr "Folgender Fehler ist aufgetreten: "
 
@@ -236,8 +237,8 @@ msgid ""
 "Strict rounding to the specified decimal places (eg. 0 will be presented as "
 "0.00)."
 msgstr ""
-"Rundet Beträge immer auf die gewählte Anzahl Stellen (z.B. wird der Wert "
-"0 bei 2 Stellen als 0.00 dargestellt)."
+"Rundet Beträge immer auf die gewählte Anzahl Stellen (z.B. wird der Wert 0 "
+"bei 2 Stellen als 0.00 dargestellt)."
 
 #. settings-schema.json->quoteSymbols->description
 msgid "Quote symbols"
@@ -278,8 +279,7 @@ msgstr "Sortiert in absteigender Reihenfolge"
 
 #. settings-schema.json->sortDirection->tooltip
 msgid ""
-"Check to sort quotes in ascending order, uncheck to sort in descending "
-"order."
+"Check to sort quotes in ascending order, uncheck to sort in descending order."
 msgstr ""
 "Auswählen für Sortieren in absteigender Reihenfolge, abwählen für "
 "austeigende Reihenfolge."
