@@ -1,12 +1,13 @@
 # Yahoo Finance Quotes Desklet
-# Copyright (C) 2021 Thomas Egli
+# Copyright (C) 2018 Thomas Egli
 # This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-28 16:36+0200\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-03-04 22:02+0100\n"
 "PO-Revision-Date: 2023-12-12 19:02+0100\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
@@ -17,19 +18,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: desklet.js:302 desklet.js:321
+#: desklet.js:324 desklet.js:343
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Il servizio Yahoo Finance non è disponibile!\\nStato: "
 
-#: desklet.js:660
+#: desklet.js:684
 msgid "Updated at "
 msgstr "Aggiornato al "
 
-#: desklet.js:667
+#: desklet.js:691
 msgid "Error: "
 msgstr "Errore: "
 
-#: desklet.js:728
+#: desklet.js:753
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -37,20 +38,20 @@ msgstr ""
 "Impossibile recuperare il parametro di autorizzazione! Impossibile "
 "recuperare i dati delle quotazioni.\\nStato: "
 
-#: desklet.js:753
+#: desklet.js:778
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Elaborazione del consenso non riuscita! Impossibile recuperare i dati delle "
 "quotazioni.\\nStato: "
 
-#: desklet.js:758
+#: desklet.js:783
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Elaborazione del consenso non completata! Impossibile recuperare i dati "
 "delle quotazioni.\\nStato: "
 
-#: desklet.js:779
+#: desklet.js:805
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
@@ -58,11 +59,11 @@ msgstr ""
 "Impossibile recuperare la parte di autorizzazione! Impossibile recuperare i "
 "dati delle quotazioni.\\nStato: "
 
-#: desklet.js:805
+#: desklet.js:832
 msgid "Cannot display quotes information for symbols: "
 msgstr "Impossibile mostrare info sulle quotazioni per i simboli: "
 
-#: desklet.js:806
+#: desklet.js:833
 msgid "The following error occurred: "
 msgstr "È stato riscontrato il seguente errore: "
 

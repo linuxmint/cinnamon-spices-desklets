@@ -17,13 +17,47 @@ Tested with
 
 ## Installation
 
-Either follow the installation instructions on [Cinnamon spices](https://cinnamon-spices.linuxmint.com/desklets), or manually download the folder **yfquotes@thegli** (below "files") and copy the folder and its content to `~/.local/share/cinnamon/desklets/`
+Either follow the installation instructions on [Cinnamon spices](https://cinnamon-spices.linuxmint.com/desklets) (recommended), or manually download the directory **yfquotes@thegli** (below "files") and copy the directory and its content to `~/.local/share/cinnamon/desklets/`
 
 ## Configuration
 
-Check out the desklet configuration settings, and choose the data refresh period, the list of quotes to show (see also [Known Limitations](#known-limitations)), and quote details to display. The default list contains the Dow 30 companies.
+Check out the desklet configuration settings, and choose the data refresh period, the list of quotes to show, and quote details to display. The default list contains the Dow 30 companies.
+
+## Troubleshooting
+
+Problem: The desklet fails to load data, and shows error message "Status: 429 Too Many Requests".  
+Solution: Enable option *Send custom User-Agent header* found on the first tab "Quotes" in the configuration settings.
+
+### Debug Logging
+
+**Only enable debug logging in case of problems, and when you know why you need it!**
+
+The log output goes to the standard file `~/.xsession-errors`. All log messages produced by this desklet contain "yfquotes@thegli", so we can filter by this text. By default, the desklet logs only abnormal situations.
+
+Significantly more log output can be generated when the *debug log* mode is active.  
+To activate the debug log mode, create an empty file "DEBUG" in the desklet installation directory, e.g. with the command `touch ~/.local/share/cinnamon/desklets/yfquotes@thegli/DEBUG`  
+Then the Cinnamon desktop needs to be restarted in order to re-initialize the desklet. This can be done by pressing *Ctrl-Alt-Esc*, or by logout/login.
+
+To disable the debug log mode, delete the "DEBUG" file, and restart the Cinnamon desktop.
 
 ## Release Notes
+
+### 0.10.0 - March 4, 2024
+
+Features:
+
+- add Spanish translation (courtesy of [haggen88](https://github.com/haggen88))
+- add Finnish translation (courtesy of [MahtiAnkka](https://github.com/MahtiAnkka))
+- update Hungarian translation (courtesy of [KAMI911](https://github.com/KAMI911))
+- update Danish translation (courtesy of [Alan01](https://github.com/Alan01))
+- update Italian translation (courtesy of [Dragone2](https://github.com/Dragone2))
+- brush up this README document
+- implement an optional *debug log* mode for tracing and analysis of unexpected problem situations
+
+Bugfixes:
+
+- handle HTTP response status codes not supported by libsoup3
+- update DOW 30 component symbols
 
 ### 0.9.0 - August 28, 2023
 
@@ -219,10 +253,6 @@ Features:
 Bugfixes:
 
 - change data retrieval to alternative url from Yahoo Finance
-
-## Known Limitations
-
-- The quotes list might not be editable using the desklet's configuration dialog (encountered in Cinnamon 3.6 and earlier 3.x versions). As a workaround, export the configuration using the standard desklet settings menu to a (json) file, then edit the file with your favorite text editor, and finally import the configuration file again.
 
 ## Credits
 

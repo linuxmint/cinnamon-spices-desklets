@@ -5,56 +5,57 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-28 16:36+0200\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-03-04 22:02+0100\n"
 "PO-Revision-Date: 2023-12-22 11:33+0200\n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: \n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
-"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: fi\n"
 
-#: desklet.js:302 desklet.js:321
+#: desklet.js:324 desklet.js:343
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Yahoo Finance palvelu ei ole saatavilla!\\nTila: "
 
-#: desklet.js:660
+#: desklet.js:684
 msgid "Updated at "
 msgstr "Päivitetty klo "
 
-#: desklet.js:667
+#: desklet.js:691
 msgid "Error: "
 msgstr "Virhe: "
 
-#: desklet.js:728
+#: desklet.js:753
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
 msgstr "Valtuutuksen haku epäonnistui! Tietoja ei voi noutaa.\\nTila: "
 
-#: desklet.js:753
+#: desklet.js:778
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr "Suostumuksen käsittely epäonnistui! Tietoja ei voi noutaa.\\nTila: "
 
-#: desklet.js:758
+#: desklet.js:783
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr "Suostumusta ei ole suoritettu loppuun! Tietoja ei voi noutaa.\\nTila: "
 
-#: desklet.js:779
+#: desklet.js:805
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
 msgstr "Valtuutuksen nouto epäonnistui! Tietoja ei voi noutaa.\\nTila: "
 
-#: desklet.js:805
+#: desklet.js:832
 msgid "Cannot display quotes information for symbols: "
 msgstr "Symbolien tietoja ei voi näyttää: "
 
-#: desklet.js:806
+#: desklet.js:833
 msgid "The following error occurred: "
 msgstr "Tapahtui seuraava virhe: "
 
