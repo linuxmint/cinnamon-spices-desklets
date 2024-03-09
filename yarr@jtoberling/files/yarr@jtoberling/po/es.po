@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: yarr@jtoberling 1.1.1\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-03-03 05:52-0500\n"
+"POT-Creation-Date: 2024-03-09 12:56-0500\n"
 "PO-Revision-Date: 2024-03-03 13:15-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,19 +17,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#: desklet.js:300
+#: desklet.js:302
 msgid "Enable refresh"
 msgstr "Habilitar actualización"
 
-#: desklet.js:304 desklet.js:342
+#: desklet.js:306 desklet.js:344
 msgid "Disable refresh"
 msgstr "Deshabilitar actualización"
 
-#: desklet.js:313
+#: desklet.js:315
 msgid "Yarr"
 msgstr "Yarr"
 
-#: desklet.js:327
+#: desklet.js:329
 msgid "Loading: feeds ..."
 msgstr "Cargando: feeds ..."
 
@@ -326,3 +326,7 @@ msgstr "Actualizar configuración"
 #. settings-schema.json->refreshsettingsbutton->tooltip
 msgid "Press this button to relad settings"
 msgstr "Pulse este botón para recargar la configuración"
+
+#. settings-schema.json->enablecopy->description
+msgid "Enable Copy to clipboard button"
+msgstr ""

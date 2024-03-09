@@ -5,10 +5,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: yarr@jtoberling 1.1.1\n"
+"Project-Id-Version: yarr@jtoberling 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-03-03 05:52-0500\n"
+"POT-Creation-Date: 2024-03-09 12:56-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,19 +17,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:300
+#: desklet.js:302
 msgid "Enable refresh"
 msgstr ""
 
-#: desklet.js:304 desklet.js:342
+#: desklet.js:306 desklet.js:344
 msgid "Disable refresh"
 msgstr ""
 
-#: desklet.js:313
+#: desklet.js:315
 msgid "Yarr"
 msgstr ""
 
-#: desklet.js:327
+#: desklet.js:329
 msgid "Loading: feeds ..."
 msgstr ""
 
@@ -307,4 +307,8 @@ msgstr ""
 
 #. settings-schema.json->refreshsettingsbutton->tooltip
 msgid "Press this button to relad settings"
+msgstr ""
+
+#. settings-schema.json->enablecopy->description
+msgid "Enable Copy to clipboard button"
 msgstr ""
