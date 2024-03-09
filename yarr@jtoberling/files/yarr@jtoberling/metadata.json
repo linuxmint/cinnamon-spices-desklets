@@ -2,7 +2,7 @@
     "max-instances": "1",
     "description": "Yet Another RSS Reader - with AI (ChatGPT) summaries",
     "name": "Yet Another RSS Reader",
-    "version": "1.1.1",
+    "version": "1.2.0",
     "uuid": "yarr@jtoberling",
     "multiversion": true,
     "author": "jtoberling",

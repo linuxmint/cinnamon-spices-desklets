@@ -48,6 +48,8 @@ class YarrDesklet extends Desklet.Desklet {
     updateDownloadedTimer = -1;
     
 
+    clipboard = St.Clipboard.get_default();
+
     constructor (metadata, desklet_id) {
         super(metadata, desklet_id);
         this.metadata = metadata;
@@ -68,6 +70,7 @@ class YarrDesklet extends Desklet.Desklet {
         this.settings.bind("text-color", "color"); //, this.onDisplayChanged);
         this.settings.bind("numberofitems", "itemlimit"); //, this.onSettingsChanged, 50);
         this.settings.bind("listfilter", "listfilter"); //, this.onSetttingChanged);
+        this.settings.bind('enablecopy', 'enablecopy'); 
         
         this.settings.bind('ai_enablesummary', 'ai_enablesummary'); //, this.onDisplayChanged);
         this.settings.bind('ai_dumptool', 'ai_dumptool'); //, this.onDisplayChanged);
@@ -133,7 +136,6 @@ class YarrDesklet extends Desklet.Desklet {
     
     onAIPromptExample6() {
         this.ai_systemprompt = 'Foglald össze 4-8 rövid bullet pontban, mind külön sorban, magyarul.\nHaggyd ki a többi az oldalon olvasható cikket és hivatkozást a felsorolásból.';
-        this.ai_systemprompt = 'Summarize in 10 short lines.';
     }
     
 
@@ -509,7 +511,8 @@ class YarrDesklet extends Desklet.Desklet {
                                                 'link':		item.link,
                                                 'category': 	catStr,
                                                 'description': 	item.description, 
-                                                "labelColor": 	feed.labelcolor
+                                                'labelColor': 	feed.labelcolor,
+                                                'aiResponse': 	''
                                              }
                                         );
                                     }
@@ -598,8 +601,24 @@ class YarrDesklet extends Desklet.Desklet {
         Gio.app_info_launch_default_for_uri(uri, global.create_app_launch_context());
     }
     
-    onClickedSumButton(selfObj, p2, uri, lineBox, sumIcon) {
-        this.summarizeUri(this.ai_dumptool, uri, lineBox, sumIcon);
+    onClickedSumButton(selfObj, p2, item, lineBox, sumIcon) {
+        this.summarizeUri(this.ai_dumptool, item, lineBox, sumIcon);
+    }
+    
+    onClickedCopyButton(selfObj, p2, item, lineBox) {
+    
+        const message = item.channel + ' ' + item.category + ' @' + item.pubDate + '\n' +
+            item.title + '\n' +
+            '---------------------------\n' + 
+            item.description + '\n' + 
+            '---------------------------\n' + 
+            item.aiResponse + '\n' +
+            '---------------------------\n' + 
+            'URL: ' + item.link + '\n'
+        ;
+        
+        this.clipboard.set_text(St.ClipboardType.CLIPBOARD, message);
+        
     }
     
     
@@ -644,8 +663,21 @@ class YarrDesklet extends Desklet.Desklet {
                 });
                 sumButton.set_child(sumIcon);
                 lineBox.add(sumButton);
-                this._signals.connect( sumButton, 'clicked', (...args) => this.onClickedSumButton(...args, item.link, itemBoxLayout, sumIcon));
+                this._signals.connect( sumButton, 'clicked', (...args) => this.onClickedSumButton(...args, item, itemBoxLayout, sumIcon));
             }
+
+            if (this.enablecopy) {
+                const copyButton = new St.Button({ style: 'width: 24px;'});
+                const copyIcon = new St.Icon({
+                              icon_name: 'gtk-copy',
+                              icon_size: 20, 
+                              icon_type: St.IconType.SYMBOLIC
+                              });
+                copyButton.set_child(copyIcon);
+                lineBox.add(copyButton);
+                this._signals.connect( copyButton, 'clicked', (...args) => this.onClickedCopyButton(...args, item, itemBoxLayout));
+            }
+            
             
             const dateLabel = new St.Label({  text: ' ' + context._formatedDate(item.timestamp, false) + ' ', style: 'text-align: center;'   });
             lineBox.add(dateLabel);
@@ -672,8 +704,25 @@ class YarrDesklet extends Desklet.Desklet {
             
             lineBox.add_actor( panelButton );
             
+            
+            if (item.aiResponse.length > 0) {
+            
+                const aiLabel = new St.Label({  
+                    text:   item.aiResponse + '\n------------------------------------------------------', 
+                    style: 'text-align: left;'   
+                });
+                aiLabel.style = context.ai_fontstyle;
+                
+                aiLabel.clutter_text.line_wrap = true;
+                aiLabel.clutter_text.line_wrap_mode = Pango.WrapMode.WORD;
+                aiLabel.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
+                 
+                itemBoxLayout.add(aiLabel);
+            }
+            
+            
             context.tableContainer.add( lineBox );
-        
+            
         }
         
                 
@@ -715,12 +764,12 @@ class YarrDesklet extends Desklet.Desklet {
             dialog.open();
     }
 
-    summarizeUri(tool, uri, lineBox, sumIcon) {
+    summarizeUri(tool, item, lineBox, sumIcon) {
     
         sumIcon.set_icon_name('system-run');
-        
-        const cmd = "/usr/bin/timeout -k 10 10 /usr/bin/"+tool+" -dump '"+uri+"' || echo 'ERROR: TIMEOUT'"; 
 
+        const cmd = "/usr/bin/timeout -k 10 10 /usr/bin/"+tool+" -dump '" + item.link + "' || echo 'ERROR: TIMEOUT'"; 
+        
         Util.spawn_async(
             [
                 "/bin/bash", 
@@ -759,8 +808,12 @@ class YarrDesklet extends Desklet.Desklet {
                         
                         var resObj = JSON.parse(result);
                         
+                        var aiResponse = resObj.choices[0].message.content;
+                        
+                        item.aiResponse = aiResponse;
+                        
                         const aiLabel = new St.Label({  
-                            text:  resObj.choices[0].message.content + '\n------------------------------------------------------', 
+                            text:   aiResponse + '\n------------------------------------------------------', 
                             style: 'text-align: left; width: 100px; display: flex; max-width: 200px;'   
                         });
                         aiLabel.style = context.ai_fontstyle;
@@ -771,9 +824,13 @@ class YarrDesklet extends Desklet.Desklet {
                          
                         lineBox.add(aiLabel);
                         sumIcon.set_icon_name('gtk-zoom-fit');
+                        
+
                     }, 
                     'application/json'
                 ); 
+                    
+                
                 
             })
         );   

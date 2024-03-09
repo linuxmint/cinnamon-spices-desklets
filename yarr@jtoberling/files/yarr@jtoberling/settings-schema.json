@@ -30,7 +30,7 @@
         "section1": {
             "type": "section", 
             "title": "Display settings", 
-            "keys": ["refreshsettingsbutton",  "backgroundColor", "transparency", "width", "height", "font", "text-color" ]
+            "keys": ["refreshsettingsbutton",  "backgroundColor", "transparency", "width", "height", "font", "text-color", "enablecopy" ]
         }, 
         
         "section1ai": {
@@ -198,7 +198,7 @@
         "description": "Open ChaptGPT Usage page", 
         "callback": "openChatGPTUsage"
     }, 
-  
+    
     "ai_enablesummary": {
         "description": "Enable EXPERIMENTAL AI summary by ChatGPT",
         "type": "switch",
@@ -269,7 +269,6 @@
         "description": "Example Prompt5: 'Summarize in 4-8 short bullet points, separtate lines, English language.\nOmit other references and external links from the summary'",
         "callback": "onAIPromptExample5"
     },
-  
     "ai_example6": {
         "type": "button", 
         "description": "Example Prompt6: 'Hungarian bullet points...'", 
@@ -280,12 +279,20 @@
         "type": "label", 
         "description": "Here are some examples for the AI system prompt. You can rewrite them as you like."
     },
+    
     "refreshsettingsbutton": {
         "type": "button", 
         "description": "Refresh settings", 
         "callback": "onRefreshSettings", 
         "tooltip": "Press this button to relad settings"
+    },
+    
+    "enablecopy": {
+        "description": "Enable Copy to clipboard button",
+        "type": "switch",
+        "default": true
     }
+    
     
 }
 
