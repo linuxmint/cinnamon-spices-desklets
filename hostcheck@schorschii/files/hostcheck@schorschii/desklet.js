@@ -171,25 +171,48 @@ MyDesklet.prototype = {
 			}
 			var request = Soup.Message.new('GET', url);
 			if(request) {
-				//request.connect('got_headers', Lang.bind(this, function(message){}));
-				this._httpSession.queue_message(request, function(_httpSession, message) {
-					//global.log(url+' '+message.status_code); // debug
-					_httpSession.desklet.commandOut = _('HTTP Status Code')+': '+message.status_code;
-					if(parseInt(message.status_code) == NaN || parseInt(message.status_code) < 100) {
-						// connection errors, e.g. timeout
-						_httpSession.desklet.colorClass = 'red';
-						_httpSession.desklet.statusTagString = _('CRIT');
-					}
-					else if(message.status_code == _httpSession.desklet.success_status_code.trim()) {
-						_httpSession.desklet.colorClass = 'green';
-						_httpSession.desklet.statusTagString = _('OK');
-					}
-					else {
-						_httpSession.desklet.colorClass = 'yellow';
-						_httpSession.desklet.statusTagString = _('WARN');
-					}
-					_httpSession.desklet.showStatus();
-				});
+				if(typeof this._httpSession.queue_message === 'function') { // Soup 2.x
+					this._httpSession.queue_message(request, function(_httpSession, message) {
+						//global.log(url+' '+message.status_code); // debug
+						_httpSession.desklet.commandOut = _('HTTP Status Code')+': '+message.status_code;
+						if(parseInt(message.status_code) == NaN || parseInt(message.status_code) < 100) {
+							// connection errors, e.g. timeout
+							_httpSession.desklet.colorClass = 'red';
+							_httpSession.desklet.statusTagString = _('CRIT');
+						}
+						else if(message.status_code == _httpSession.desklet.success_status_code.trim()) {
+							_httpSession.desklet.colorClass = 'green';
+							_httpSession.desklet.statusTagString = _('OK');
+						}
+						else {
+							_httpSession.desklet.colorClass = 'yellow';
+							_httpSession.desklet.statusTagString = _('WARN');
+						}
+						_httpSession.desklet.showStatus();
+					});
+				} else { // Soup 3.x, since Mint 21.3
+					this._httpSession.send_and_read_async(request, null, null, function(_httpSession, asyncResult) {
+						//global.log(url+' '+request.status_code); // debug
+						//let bytes = _httpSession.send_and_read_finish(asyncResult);
+						//let decoder = new TextDecoder('utf-8');
+						//let response = decoder.decode(bytes.get_data());
+						_httpSession.desklet.commandOut = _('HTTP Status Code')+': '+request.status_code;
+						if(parseInt(request.status_code) == NaN || parseInt(request.status_code) < 100) {
+							// connection errors, e.g. timeout
+							_httpSession.desklet.colorClass = 'red';
+							_httpSession.desklet.statusTagString = _('CRIT');
+						}
+						else if(request.status_code == _httpSession.desklet.success_status_code.trim()) {
+							_httpSession.desklet.colorClass = 'green';
+							_httpSession.desklet.statusTagString = _('OK');
+						}
+						else {
+							_httpSession.desklet.colorClass = 'yellow';
+							_httpSession.desklet.statusTagString = _('WARN');
+						}
+						_httpSession.desklet.showStatus();
+					});
+				}
 			} else {
 				this.colorClass = 'yellow';
 				this.statusTagString = _('WARN');
