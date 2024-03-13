@@ -48,6 +48,10 @@ msgstr ""
 "Akkukapazität wird nur angezeigt, wenn das Stecker-/Ladesymbol nicht "
 "sichtbar ist."
 
+#. settings-schema.json->showremaining->description
+msgid "Show remaining battery time"
+msgstr "Verbleibende Zeit anzeigen"
+
 #. settings-schema.json->showplug->description
 msgid "Show plug/flash icon when power supply is plugged in"
 msgstr ""

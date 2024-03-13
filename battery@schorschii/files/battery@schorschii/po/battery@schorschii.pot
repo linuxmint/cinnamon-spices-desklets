@@ -45,6 +45,10 @@ msgstr ""
 msgid "Battery capacity is only shown when plug/flash icon is not visible."
 msgstr ""
 
+#. settings-schema.json->showremaining->description
+msgid "Show remaining battery time"
+msgstr ""
+
 #. settings-schema.json->showplug->description
 msgid "Show plug/flash icon when power supply is plugged in"
 msgstr ""

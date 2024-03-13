@@ -14,6 +14,11 @@
         "tooltip": "Battery capacity is only shown when plug/flash icon is not visible.",
         "default": true
     },
+    "showremaining": {
+        "type" : "checkbox",
+        "description": "Show remaining battery time",
+        "default": true
+    },
     "showplug": {
         "type": "checkbox",
         "description": "Show plug/flash icon when power supply is plugged in",
