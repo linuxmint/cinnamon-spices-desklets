@@ -16,6 +16,15 @@ const ByteArray = imports.byteArray;
 const UUID = "battery@schorschii";
 const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
 
+const UPowerInterface = `<node>
+  <interface name="org.freedesktop.UPower.Device">
+    <property name="TimeToEmpty" type="x" access="read" />
+    <property name="TimeToFull" type="x" access="read" />
+  </interface>
+</node>`;
+
+const UPowerProxy = Gio.DBusProxy.makeProxyWrapper(UPowerInterface);
+
 function MyDesklet(metadata, desklet_id) {
 	this._init(metadata, desklet_id);
 }
@@ -140,6 +149,23 @@ MyDesklet.prototype = {
 			}
 		}
 
+		if(this.showremaining) {
+			// iterate trough default devfiles ...
+			this.BUS_NAME = "org.freedesktop.UPower";
+			for(let i in default_devfiles_status) {
+				// ... and check if it exists
+				this.batteryObjectDir = default_devfiles_capacity[i].split('/')[4];
+				this.BUS_PATH = `/org/freedesktop/UPower/devices/battery_${this.batteryObjectDir}`;
+				try {
+					this.upowerProxy = new UPowerProxy(Gio.DBus.system, this.BUS_NAME, this.BUS_PATH);
+					this.timeToFull = this.upowerProxy.TimeToFull;
+					this.timeToEmpty = this.upowerProxy.TimeToEmpty;
+					if (this.timeToFull != null && this.timeToEmpty != null)
+						break;
+				} catch { };
+			}
+		}
+
 		//Main.notifyError(result_devfile_capacity, result_devfile_status); // debug
 
 		// get current battery/power supply values
@@ -199,6 +225,7 @@ MyDesklet.prototype = {
 			// icon or label visibility decision
 			let symbol = "warn";
 			let showText = false;
+			let showRemaining = "";
 			if(this.currentError == 1) {
 				// error: warning icon and no label
 				symbol = "warn";
@@ -210,6 +237,7 @@ MyDesklet.prototype = {
 					// power supply online, charging and icon should be shown
 					symbol = "flash";
 					showText = false;
+					if(this.showremaining) showRemaining = this.timeToString(this.timeToFull);
 				} else if((this.currentState == "Not charging" || this.currentState == "Full" || this.currentState == "Unknown") && this.showplug) {
 					// power supply online, not charging (full) and icon should be shown
 					symbol = "plug";
@@ -218,10 +246,12 @@ MyDesklet.prototype = {
 					// power supply offline (= discharging) and capacity should be shown
 					symbol = "";
 					showText = true; // text visible
+					if(this.showremaining) showRemaining = this.timeToString(this.timeToEmpty);
 				} else if(!this.showpercent) {
 					// power supply offline (= discharging) and capacity should not be shown
 					symbol = "";
 					showText = false;
+					if(this.showremaining) showRemaining = this.timeToString(this.timeToEmpty);
 				} else {
 					// Unknown state
 					symbol = "warn";
@@ -245,7 +275,7 @@ MyDesklet.prototype = {
 			let segmentWidthCalced = segmentWidthMax * (this.currentCapacity / 100);
 			let xCorrection = -3 * scale;
 			let yVariation = 0;
-			if(this.showremaining) yVariation = 8 * this.scale_size * global.ui_scale;
+			if(this.showremaining && this.currentCapacity != 100) yVariation = 8 * this.scale_size * global.ui_scale;
 
 			// set images
 			let bar_img = "green.svg";
@@ -290,13 +320,15 @@ MyDesklet.prototype = {
 				this.labelText.set_text("");
 
 			// label for remaining time string
-			let yVariationSubText = 0;
-			if(showText || symbol_img != "") yVariationSubText = yVariation * 2;
-			this.labelSubText = new St.Label({style_class:"subtext"});
-			this.labelSubText.set_position(0, (segmentHeight / 2) - (newFontSize * global.ui_scale / 2.6) + yVariationSubText);
-			this.labelSubText.style = "width: " + (segmentWidthMax / global.ui_scale).toString() + "px; "
-				+ "font-size: " + newFontSizeRoundedSub.toString() + "px;";
-			this.labelSubText.set_text("x hrs x min"); // todo: real values
+			if(this.showremaining && this.currentCapacity != 100) {
+				let yVariationSubText = 0;
+				if(showText || symbol_img != "") yVariationSubText = yVariation * 2;
+				this.labelSubText = new St.Label({style_class:"subtext"});
+				this.labelSubText.set_position(0, (segmentHeight / 2) - (newFontSize * global.ui_scale / 2.6) + yVariationSubText);
+				this.labelSubText.style = "width: " + (segmentWidthMax / global.ui_scale).toString() + "px; "
+					+ "font-size: " + newFontSizeRoundedSub.toString() + "px;";
+				this.labelSubText.set_text(showRemaining);
+			}
 
 			// add actor
 			this.battery.remove_all_children();
@@ -305,7 +337,7 @@ MyDesklet.prototype = {
 			if(symbol_img != "")
 				this.container.add_actor(this.imageIcon);
 			this.container.add_actor(this.labelText);
-			if(this.showremaining)
+			if(this.showremaining && this.currentCapacity != 100)
 				this.container.add_actor(this.labelSubText);
 			this.setContent(this.battery);
 
@@ -326,6 +358,14 @@ MyDesklet.prototype = {
 		// prevent decorations?
 		this.metadata["prevent-decorations"] = this.hide_decorations;
 		this._updateDecoration();
+	},
+
+	timeToString: function(timeInSeconds) {
+		let totalTime = Math.round(timeInSeconds / 60);
+		let minutes = Math.floor(totalTime % 60);
+		let minutesToString = String(minutes).padStart(2, '0');
+		let hours = Math.floor(totalTime / 60);
+		return `(${hours}:${minutesToString})`;
 	},
 
 	on_setting_changed: function() {
