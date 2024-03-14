@@ -6,8 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-07 23:49-0400\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-03-14 05:12-0400\n"
 "PO-Revision-Date: 2023-07-07 23:51-0400\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
@@ -18,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.3.1\n"
 
-#: desklet.js:303
+#: desklet.js:356
 msgid "Battery"
 msgstr "Batteria"
 
@@ -47,6 +48,10 @@ msgid "Battery capacity is only shown when plug/flash icon is not visible."
 msgstr ""
 "La capacità della batteria viene visualizzata solo quando l'icona spina/"
 "flash non è visibile."
+
+#. settings-schema.json->showremaining->description
+msgid "Show remaining battery time"
+msgstr ""
 
 #. settings-schema.json->showplug->description
 msgid "Show plug/flash icon when power supply is plugged in"

@@ -1,9 +1,11 @@
 /* label which shows the capacity */
-.text {
+.text, .subtext {
 	color: white;
 	font-family: "DejaVu Sans", Sans-serif;
-	font-weight: 100;
-	font-size: 24px;
+	font-weight: 400;
 	text-align: center;
-	/* text-shadow: 0px 0px 5px rgba(0,0,0,0.85); */
+	text-shadow: 0px 0px 4px rgba(0,0,0,0.2);
+}
+.subtext {
+	text-shadow: 0px 0px 4px rgba(0,0,0,0.4);
 }

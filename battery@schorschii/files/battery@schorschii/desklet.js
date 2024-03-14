@@ -16,6 +16,15 @@ const ByteArray = imports.byteArray;
 const UUID = "battery@schorschii";
 const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
 
+const UPowerInterface = `<node>
+  <interface name="org.freedesktop.UPower.Device">
+    <property name="TimeToEmpty" type="x" access="read" />
+    <property name="TimeToFull" type="x" access="read" />
+  </interface>
+</node>`;
+
+const UPowerProxy = Gio.DBusProxy.makeProxyWrapper(UPowerInterface);
+
 function MyDesklet(metadata, desklet_id) {
 	this._init(metadata, desklet_id);
 }
@@ -57,6 +66,7 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "devfile_capacity", "devfile_capacity", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "devfile_status", "devfile_status", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "showpercent", "showpercent", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "showremaining", "showremaining", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "showplug", "showplug", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hide_decorations", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "use-custom-label", "use_custom_label", this.on_setting_changed);
@@ -71,6 +81,7 @@ MyDesklet.prototype = {
 	setupUI: function() {
 		// defaults and initial values
 		this.default_size_font = 25;
+		this.default_size_font_sub = 15;
 		this.default_size_battery_width = 150;
 		this.default_size_battery_height = 74;
 		this.default_size_symbol = 36;
@@ -138,6 +149,23 @@ MyDesklet.prototype = {
 			}
 		}
 
+		if(this.showremaining) {
+			// iterate trough default devfiles ...
+			this.BUS_NAME = "org.freedesktop.UPower";
+			for(let i in default_devfiles_status) {
+				// ... and check if it exists
+				this.batteryObjectDir = default_devfiles_capacity[i].split('/')[4];
+				this.BUS_PATH = `/org/freedesktop/UPower/devices/battery_${this.batteryObjectDir}`;
+				try {
+					this.upowerProxy = new UPowerProxy(Gio.DBus.system, this.BUS_NAME, this.BUS_PATH);
+					this.timeToFull = this.upowerProxy.TimeToFull;
+					this.timeToEmpty = this.upowerProxy.TimeToEmpty;
+					if (this.timeToFull != null && this.timeToEmpty != null)
+						break;
+				} catch { };
+			}
+		}
+
 		//Main.notifyError(result_devfile_capacity, result_devfile_status); // debug
 
 		// get current battery/power supply values
@@ -197,6 +225,7 @@ MyDesklet.prototype = {
 			// icon or label visibility decision
 			let symbol = "warn";
 			let showText = false;
+			let showRemaining = "";
 			if(this.currentError == 1) {
 				// error: warning icon and no label
 				symbol = "warn";
@@ -208,6 +237,7 @@ MyDesklet.prototype = {
 					// power supply online, charging and icon should be shown
 					symbol = "flash";
 					showText = false;
+					if(this.showremaining) showRemaining = this.timeToString(this.timeToFull);
 				} else if((this.currentState == "Not charging" || this.currentState == "Full" || this.currentState == "Unknown") && this.showplug) {
 					// power supply online, not charging (full) and icon should be shown
 					symbol = "plug";
@@ -216,10 +246,12 @@ MyDesklet.prototype = {
 					// power supply offline (= discharging) and capacity should be shown
 					symbol = "";
 					showText = true; // text visible
+					if(this.showremaining) showRemaining = this.timeToString(this.timeToEmpty);
 				} else if(!this.showpercent) {
 					// power supply offline (= discharging) and capacity should not be shown
 					symbol = "";
 					showText = false;
+					if(this.showremaining) showRemaining = this.timeToString(this.timeToEmpty);
 				} else {
 					// Unknown state
 					symbol = "warn";
@@ -230,6 +262,7 @@ MyDesklet.prototype = {
 			// calc new sizes based on scale factor
 			let scale = this.scale_size * global.ui_scale;
 			let newFontSizeRounded = Math.round(this.default_size_font * this.scale_size);
+			let newFontSizeRoundedSub = Math.round(this.default_size_font_sub * this.scale_size);
 			let newFontSize = this.default_size_font * this.scale_size;
 			let batteryWidth = this.default_size_battery_width * scale;
 			let batteryHeight = this.default_size_battery_height * scale;
@@ -241,6 +274,8 @@ MyDesklet.prototype = {
 			let segmentWidthMax = segmentWidth * 0.95;
 			let segmentWidthCalced = segmentWidthMax * (this.currentCapacity / 100);
 			let xCorrection = -3 * scale;
+			let yVariation = 0;
+			if(this.showremaining && this.currentCapacity != 100 && showRemaining) yVariation = 8 * this.scale_size * global.ui_scale;
 
 			// set images
 			let bar_img = "green.svg";
@@ -270,19 +305,30 @@ MyDesklet.prototype = {
 				this.imageIcon = getImageAtScale(DESKLET_ROOT + "/img/" + symbol_img, symbolSize, symbolSize);
 				this.imageIcon.set_position(
 					(segmentWidth / 2) - (symbolSize / 2) + xCorrection,
-					(segmentHeight / 2) - (symbolSize / 2)
+					(segmentHeight / 2) - (symbolSize / 2) - yVariation
 				);
 			}
 
 			// label for percent string
 			this.labelText = new St.Label({style_class:"text"});
-			this.labelText.set_position(0, (segmentHeight / 2) - (newFontSize * global.ui_scale / 1.7));
+			this.labelText.set_position(0, (segmentHeight / 2) - (newFontSize * global.ui_scale / 1.7) - yVariation);
 			this.labelText.style = "width: " + (segmentWidthMax / global.ui_scale).toString() + "px; "
 				+ "font-size: " + newFontSizeRounded.toString() + "px;";
 			if(showText)
 				this.labelText.set_text(currentCapacityText);
 			else
 				this.labelText.set_text("");
+
+			// label for remaining time string
+			if(this.showremaining && this.currentCapacity != 100 && showRemaining) {
+				let yVariationSubText = 0;
+				if(showText || symbol_img != "") yVariationSubText = yVariation * 2;
+				this.labelSubText = new St.Label({style_class:"subtext"});
+				this.labelSubText.set_position(0, (segmentHeight / 2) - (newFontSize * global.ui_scale / 2.6) + yVariationSubText);
+				this.labelSubText.style = "width: " + (segmentWidthMax / global.ui_scale).toString() + "px; "
+					+ "font-size: " + newFontSizeRoundedSub.toString() + "px;";
+				this.labelSubText.set_text(showRemaining);
+			}
 
 			// add actor
 			this.battery.remove_all_children();
@@ -291,6 +337,8 @@ MyDesklet.prototype = {
 			if(symbol_img != "")
 				this.container.add_actor(this.imageIcon);
 			this.container.add_actor(this.labelText);
+			if(this.showremaining && this.currentCapacity != 100 && showRemaining)
+				this.container.add_actor(this.labelSubText);
 			this.setContent(this.battery);
 
 			// set last states
@@ -310,6 +358,17 @@ MyDesklet.prototype = {
 		// prevent decorations?
 		this.metadata["prevent-decorations"] = this.hide_decorations;
 		this._updateDecoration();
+	},
+
+	timeToString: function(timeInSeconds) {
+		if (timeInSeconds == 0)
+			return "";
+
+		let totalTime = Math.round(timeInSeconds / 60);
+		let minutes = Math.floor(totalTime % 60);
+		let minutesToString = String(minutes).padStart(2, '0');
+		let hours = Math.floor(totalTime / 60);
+		return `(${hours}:${minutesToString})`;
 	},
 
 	on_setting_changed: function() {
