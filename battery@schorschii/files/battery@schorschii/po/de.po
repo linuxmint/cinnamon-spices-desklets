@@ -83,7 +83,7 @@ msgstr "Den Hintergrund auswählen, den Sie verwenden möchten."
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
-msgstr "Verzierungen verbergen"
+msgstr "Dekorationen verstecken"
 
 #. settings-schema.json->scale-size->units
 msgid "scale factor"
