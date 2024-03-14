@@ -275,7 +275,7 @@ MyDesklet.prototype = {
 			let segmentWidthCalced = segmentWidthMax * (this.currentCapacity / 100);
 			let xCorrection = -3 * scale;
 			let yVariation = 0;
-			if(this.showremaining && this.currentCapacity != 100) yVariation = 8 * this.scale_size * global.ui_scale;
+			if(this.showremaining && this.currentCapacity != 100 && showRemaining) yVariation = 8 * this.scale_size * global.ui_scale;
 
 			// set images
 			let bar_img = "green.svg";
@@ -320,7 +320,7 @@ MyDesklet.prototype = {
 				this.labelText.set_text("");
 
 			// label for remaining time string
-			if(this.showremaining && this.currentCapacity != 100) {
+			if(this.showremaining && this.currentCapacity != 100 && showRemaining) {
 				let yVariationSubText = 0;
 				if(showText || symbol_img != "") yVariationSubText = yVariation * 2;
 				this.labelSubText = new St.Label({style_class:"subtext"});
@@ -337,7 +337,7 @@ MyDesklet.prototype = {
 			if(symbol_img != "")
 				this.container.add_actor(this.imageIcon);
 			this.container.add_actor(this.labelText);
-			if(this.showremaining && this.currentCapacity != 100)
+			if(this.showremaining && this.currentCapacity != 100 && showRemaining)
 				this.container.add_actor(this.labelSubText);
 			this.setContent(this.battery);
 
@@ -361,6 +361,9 @@ MyDesklet.prototype = {
 	},
 
 	timeToString: function(timeInSeconds) {
+		if (timeInSeconds == 0)
+			return "";
+
 		let totalTime = Math.round(timeInSeconds / 60);
 		let minutes = Math.floor(totalTime % 60);
 		let minutesToString = String(minutes).padStart(2, '0');
