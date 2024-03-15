@@ -73,7 +73,7 @@ msgstr "Sonntag"
 
 #: desklet.js:28
 msgid "Monday"
-msgstr ""
+msgstr "Montag"
 
 #: desklet.js:28
 msgid "Tuesday"
