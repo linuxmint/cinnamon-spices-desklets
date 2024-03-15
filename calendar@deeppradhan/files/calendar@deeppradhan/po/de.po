@@ -159,7 +159,7 @@ msgstr "Automatisches Weiterblättern"
 
 #. settings-schema.json->auto-advance->tooltip
 msgid "When the month changes, update the desklet"
-msgstr ""
+msgstr "Aktualisiere das Desklet, wenn sich der Monat ändert"
 
 #. settings-schema.json->show-weekday->description
 msgid "Show day of week"
