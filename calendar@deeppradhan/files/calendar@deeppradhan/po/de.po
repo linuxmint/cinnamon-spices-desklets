@@ -155,7 +155,7 @@ msgstr "Leisten auswählen, die im Desklet angezeigt werden sollen"
 
 #. settings-schema.json->auto-advance->description
 msgid "Auto-advance"
-msgstr ""
+msgstr "Automatisches Weiterblättern"
 
 #. settings-schema.json->auto-advance->tooltip
 msgid "When the month changes, update the desklet"
