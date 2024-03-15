@@ -81,7 +81,7 @@ msgstr ""
 
 #: desklet.js:28
 msgid "Wednesday"
-msgstr ""
+msgstr "Mittwoch"
 
 #: desklet.js:29
 msgid "Thursday"
