@@ -45,7 +45,7 @@ msgstr "Juni"
 
 #: desklet.js:24
 msgid "July"
-msgstr ""
+msgstr "Juli"
 
 #: desklet.js:24
 msgid "August"
