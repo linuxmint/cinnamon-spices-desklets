@@ -6,8 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-18 19:52+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-03-01 13:51-0500\n"
 "PO-Revision-Date: 2021-12-30 12:30-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,21 +19,102 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: desklet.js:105
+#: desklet.js:23
+msgid "January"
+msgstr ""
+
+#: desklet.js:23
+msgid "February"
+msgstr ""
+
+#: desklet.js:23
+msgid "March"
+msgstr ""
+
+#: desklet.js:23
+msgid "April"
+msgstr ""
+
+#: desklet.js:24
+msgid "May"
+msgstr ""
+
+#: desklet.js:24
+msgid "June"
+msgstr ""
+
+#: desklet.js:24
+msgid "July"
+msgstr ""
+
+#: desklet.js:24
+msgid "August"
+msgstr ""
+
+#: desklet.js:24
+msgid "September"
+msgstr ""
+
+#: desklet.js:25
+msgid "October"
+msgstr ""
+
+#: desklet.js:25
+msgid "November"
+msgstr ""
+
+#: desklet.js:25
+msgid "December"
+msgstr ""
+
+#: desklet.js:28
+msgid "Sunday"
+msgstr ""
+
+#: desklet.js:28
+msgid "Monday"
+msgstr ""
+
+#: desklet.js:28
+msgid "Tuesday"
+msgstr ""
+
+#: desklet.js:28
+msgid "Wednesday"
+msgstr ""
+
+#: desklet.js:29
+msgid "Thursday"
+msgstr ""
+
+#: desklet.js:29
+msgid "Friday"
+msgstr ""
+
+#: desklet.js:29
+msgid "Saturday"
+msgstr ""
+
+#: desklet.js:130
 msgid "Previous month..."
 msgstr "Mes anterior..."
 
-#: desklet.js:107
+#: desklet.js:132
 msgid "Next month..."
 msgstr "Próximo mes..."
+
+#: desklet.js:147
+#, fuzzy
+msgid "Calendar"
+msgstr "Desklet de Calendario"
 
 #. metadata.json->comments
 msgid ""
 "Calendar Desklet provides a highly configurable desklet to display current "
 "date and browsable months. It has a number of possible customisations."
 msgstr ""
-"Calendar Desklet proporciona un desklet altamente configurable para "
-"mostrar la fecha actual y meses disponibles. Tiene una serie de posibles "
+"Calendar Desklet proporciona un desklet altamente configurable para mostrar "
+"la fecha actual y meses disponibles. Tiene una serie de posibles "
 "personalizaciones."
 
 #. metadata.json->contributors
@@ -71,6 +153,14 @@ msgstr "Solo Mes"
 msgid "Select the panels to display in desklet"
 msgstr "Seleccione los paneles que se mostrarán en el desklet"
 
+#. settings-schema.json->auto-advance->description
+msgid "Auto-advance"
+msgstr ""
+
+#. settings-schema.json->auto-advance->tooltip
+msgid "When the month changes, update the desklet"
+msgstr ""
+
 #. settings-schema.json->show-weekday->description
 msgid "Show day of week"
 msgstr "Mostrar día de la semana"
@@ -93,8 +183,8 @@ msgstr "Mostrar abreviatura"
 #. settings-schema.json->show-weekday->tooltip
 msgid "For day of week; show full name, short name or disable showing"
 msgstr ""
-"Para el día de la semana; mostrar el nombre completo, el nombre abreviado "
-"o desactivar la visualización"
+"Para el día de la semana; mostrar el nombre completo, el nombre abreviado o "
+"desactivar la visualización"
 
 #. settings-schema.json->short-month-name->description
 msgid "Short month name"
@@ -111,8 +201,8 @@ msgstr "Mostrar año"
 #. settings-schema.json->show-year->tooltip
 msgid "For year; show all digits, show last two digits or disable showing"
 msgstr ""
-"Para el año; mostrar todos los dígitos, mostrar los dos últimos dígitos o "
-"no mostrarlos"
+"Para el año; mostrar todos los dígitos, mostrar los dos últimos dígitos o no "
+"mostrarlos"
 
 #. settings-schema.json->show-time->description
 msgid "Show time"

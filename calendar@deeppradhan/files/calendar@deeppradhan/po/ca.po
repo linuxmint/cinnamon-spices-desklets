@@ -6,8 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-18 19:52+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-03-01 13:51-0500\n"
 "PO-Revision-Date: 2023-08-05 23:58+0200\n"
 "Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
 "Language-Team: \n"
@@ -18,21 +19,102 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: desklet.js:105
+#: desklet.js:23
+msgid "January"
+msgstr ""
+
+#: desklet.js:23
+msgid "February"
+msgstr ""
+
+#: desklet.js:23
+msgid "March"
+msgstr ""
+
+#: desklet.js:23
+msgid "April"
+msgstr ""
+
+#: desklet.js:24
+msgid "May"
+msgstr ""
+
+#: desklet.js:24
+msgid "June"
+msgstr ""
+
+#: desklet.js:24
+msgid "July"
+msgstr ""
+
+#: desklet.js:24
+msgid "August"
+msgstr ""
+
+#: desklet.js:24
+msgid "September"
+msgstr ""
+
+#: desklet.js:25
+msgid "October"
+msgstr ""
+
+#: desklet.js:25
+msgid "November"
+msgstr ""
+
+#: desklet.js:25
+msgid "December"
+msgstr ""
+
+#: desklet.js:28
+msgid "Sunday"
+msgstr ""
+
+#: desklet.js:28
+msgid "Monday"
+msgstr ""
+
+#: desklet.js:28
+msgid "Tuesday"
+msgstr ""
+
+#: desklet.js:28
+msgid "Wednesday"
+msgstr ""
+
+#: desklet.js:29
+msgid "Thursday"
+msgstr ""
+
+#: desklet.js:29
+msgid "Friday"
+msgstr ""
+
+#: desklet.js:29
+msgid "Saturday"
+msgstr ""
+
+#: desklet.js:130
 msgid "Previous month..."
 msgstr "Mes anterior"
 
-#: desklet.js:107
+#: desklet.js:132
 msgid "Next month..."
 msgstr "Mes següent"
+
+#: desklet.js:147
+#, fuzzy
+msgid "Calendar"
+msgstr "Miniaplicació d'escriptori Calendar"
 
 #. metadata.json->comments
 msgid ""
 "Calendar Desklet provides a highly configurable desklet to display current "
 "date and browsable months. It has a number of possible customisations."
 msgstr ""
-"Calendar és una miniaplicació d'escriptori molt configurable, que mostra "
-"la data actual i permet explorar els mesos. Té un gran nombre d'aspectes "
+"Calendar és una miniaplicació d'escriptori molt configurable, que mostra la "
+"data actual i permet explorar els mesos. Té un gran nombre d'aspectes "
 "personalitzables."
 
 #. metadata.json->contributors
@@ -70,6 +152,14 @@ msgstr "Mes"
 #. settings-schema.json->panels->tooltip
 msgid "Select the panels to display in desklet"
 msgstr "Trieu els plafons que seran visibles en la miniaplicació"
+
+#. settings-schema.json->auto-advance->description
+msgid "Auto-advance"
+msgstr ""
+
+#. settings-schema.json->auto-advance->tooltip
+msgid "When the month changes, update the desklet"
+msgstr ""
 
 #. settings-schema.json->show-weekday->description
 msgid "Show day of week"
