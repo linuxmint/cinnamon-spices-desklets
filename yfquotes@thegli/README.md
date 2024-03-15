@@ -42,6 +42,14 @@ To disable the debug log mode, delete the "DEBUG" file, and restart the Cinnamon
 
 ## Release Notes
 
+### 0.11.0 - March 15, 2024
+
+Features:
+
+- new setting to customize font color and font size
+- new setting to customize date and time format (see [date man page](https://man7.org/linux/man-pages/man1/date.1.html) for options)
+- new setting to control vertical scrollbar
+
 ### 0.10.0 - March 4, 2024
 
 Features:
