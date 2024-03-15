@@ -61,7 +61,7 @@ msgstr "Oktober"
 
 #: desklet.js:25
 msgid "November"
-msgstr ""
+msgstr "November"
 
 #: desklet.js:25
 msgid "December"
