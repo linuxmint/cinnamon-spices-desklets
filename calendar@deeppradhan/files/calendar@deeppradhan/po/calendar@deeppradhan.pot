@@ -5,10 +5,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: calendar@deeppradhan 1.1\n"
+"Project-Id-Version: calendar@deeppradhan 1.1.1\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-03-01 13:51-0500\n"
+"POT-Creation-Date: 2024-03-16 22:43-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,91 +17,91 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:23
+#: desklet.js:29
 msgid "January"
 msgstr ""
 
-#: desklet.js:23
+#: desklet.js:29
 msgid "February"
 msgstr ""
 
-#: desklet.js:23
+#: desklet.js:29
 msgid "March"
 msgstr ""
 
-#: desklet.js:23
+#: desklet.js:29
 msgid "April"
 msgstr ""
 
-#: desklet.js:24
+#: desklet.js:30
 msgid "May"
 msgstr ""
 
-#: desklet.js:24
+#: desklet.js:30
 msgid "June"
 msgstr ""
 
-#: desklet.js:24
+#: desklet.js:30
 msgid "July"
 msgstr ""
 
-#: desklet.js:24
+#: desklet.js:30
 msgid "August"
 msgstr ""
 
-#: desklet.js:24
+#: desklet.js:30
 msgid "September"
 msgstr ""
 
-#: desklet.js:25
+#: desklet.js:31
 msgid "October"
 msgstr ""
 
-#: desklet.js:25
+#: desklet.js:31
 msgid "November"
 msgstr ""
 
-#: desklet.js:25
+#: desklet.js:31
 msgid "December"
 msgstr ""
 
-#: desklet.js:28
+#: desklet.js:34
 msgid "Sunday"
 msgstr ""
 
-#: desklet.js:28
+#: desklet.js:34
 msgid "Monday"
 msgstr ""
 
-#: desklet.js:28
+#: desklet.js:34
 msgid "Tuesday"
 msgstr ""
 
-#: desklet.js:28
+#: desklet.js:34
 msgid "Wednesday"
 msgstr ""
 
-#: desklet.js:29
+#: desklet.js:35
 msgid "Thursday"
 msgstr ""
 
-#: desklet.js:29
+#: desklet.js:35
 msgid "Friday"
 msgstr ""
 
-#: desklet.js:29
+#: desklet.js:35
 msgid "Saturday"
 msgstr ""
 
-#: desklet.js:130
+#: desklet.js:136
 msgid "Previous month..."
 msgstr ""
 
-#: desklet.js:132
+#: desklet.js:138
 msgid "Next month..."
 msgstr ""
 
-#: desklet.js:147
+#: desklet.js:153
 msgid "Calendar"
 msgstr ""
 

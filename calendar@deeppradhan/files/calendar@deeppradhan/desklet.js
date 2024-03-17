@@ -1,4 +1,9 @@
+const Clutter = imports.gi.Clutter;
+const Cogl = imports.gi.Cogl;
 const Desklet = imports.ui.desklet;
+const GLib = imports.gi.GLib;
+const GdkPixbuf = imports.gi.GdkPixbuf;
+const Gettext = imports.gettext;
 const Gio = imports.gi.Gio;
 const Lang = imports.lang;
 const Mainloop = imports.mainloop;
@@ -6,18 +11,19 @@ const Settings = imports.ui.settings;
 const St = imports.gi.St;
 const Tooltips = imports.ui.tooltips;
 
-const Clutter = imports.gi.Clutter;
-const GdkPixbuf = imports.gi.GdkPixbuf;
-const Cogl = imports.gi.Cogl;
-
 const UUID = "calendar@deeppradhan";
-
 const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
-
 imports.searchPath.push(DESKLET_DIR);
 
 const STYLE_TEXT_CENTER = "text-align: center;";
 const STYLE_LABEL_DAY = "padding: 0, 1.5pt; " + STYLE_TEXT_CENTER;
+
+// l10n/translation support
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+
+function _(str) {
+    return Gettext.dgettext(UUID, str);
+}
 
 // Names of the Month
 var MONTH_NAMES = [_("January"), _("February"), _("March"), _("April"),
