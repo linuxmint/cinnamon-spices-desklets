@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-03-16 22:43-0400\n"
+"POT-Creation-Date: 2024-03-17 00:55-0400\n"
 "PO-Revision-Date: 2022-10-20 19:33+0200\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
@@ -21,79 +21,79 @@ msgstr ""
 
 #: desklet.js:29
 msgid "January"
-msgstr ""
+msgstr "Januar"
 
 #: desklet.js:29
 msgid "February"
-msgstr ""
+msgstr "Februar"
 
 #: desklet.js:29
 msgid "March"
-msgstr ""
+msgstr "Marts"
 
 #: desklet.js:29
 msgid "April"
-msgstr ""
+msgstr "April"
 
 #: desklet.js:30
 msgid "May"
-msgstr ""
+msgstr "Maj"
 
 #: desklet.js:30
 msgid "June"
-msgstr ""
+msgstr "Juni"
 
 #: desklet.js:30
 msgid "July"
-msgstr ""
+msgstr "Juli"
 
 #: desklet.js:30
 msgid "August"
-msgstr ""
+msgstr "August"
 
 #: desklet.js:30
 msgid "September"
-msgstr ""
+msgstr "September"
 
 #: desklet.js:31
 msgid "October"
-msgstr ""
+msgstr "Oktober"
 
 #: desklet.js:31
 msgid "November"
-msgstr ""
+msgstr "November"
 
 #: desklet.js:31
 msgid "December"
-msgstr ""
+msgstr "December"
 
 #: desklet.js:34
 msgid "Sunday"
-msgstr ""
+msgstr "Søndag"
 
 #: desklet.js:34
 msgid "Monday"
-msgstr ""
+msgstr "Mandag"
 
 #: desklet.js:34
 msgid "Tuesday"
-msgstr ""
+msgstr "Tirsdag"
 
 #: desklet.js:34
 msgid "Wednesday"
-msgstr ""
+msgstr "Onsdag"
 
 #: desklet.js:35
 msgid "Thursday"
-msgstr ""
+msgstr "Torsdag"
 
 #: desklet.js:35
 msgid "Friday"
-msgstr ""
+msgstr "Fredag"
 
 #: desklet.js:35
 msgid "Saturday"
-msgstr ""
+msgstr "Lørdag"
 
 #: desklet.js:136
 msgid "Previous month..."
@@ -104,7 +104,6 @@ msgid "Next month..."
 msgstr "Næste måned ..."
 
 #: desklet.js:153
-#, fuzzy
 msgid "Calendar"
 msgstr "Kalender"
 
