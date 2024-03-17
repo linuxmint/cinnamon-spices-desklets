@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-03-16 22:43-0400\n"
+"POT-Creation-Date: 2024-03-17 00:55-0400\n"
 "PO-Revision-Date: 2021-02-09 16:50+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: \n"
@@ -21,79 +21,79 @@ msgstr ""
 
 #: desklet.js:29
 msgid "January"
-msgstr ""
+msgstr "Január"
 
 #: desklet.js:29
 msgid "February"
-msgstr ""
+msgstr "Február"
 
 #: desklet.js:29
 msgid "March"
-msgstr ""
+msgstr "Marec"
 
 #: desklet.js:29
 msgid "April"
-msgstr ""
+msgstr "Apríl"
 
 #: desklet.js:30
 msgid "May"
-msgstr ""
+msgstr "Máj"
 
 #: desklet.js:30
 msgid "June"
-msgstr ""
+msgstr "Jún"
 
 #: desklet.js:30
 msgid "July"
-msgstr ""
+msgstr "Júl"
 
 #: desklet.js:30
 msgid "August"
-msgstr ""
+msgstr "August"
 
 #: desklet.js:30
 msgid "September"
-msgstr ""
+msgstr "September"
 
 #: desklet.js:31
 msgid "October"
-msgstr ""
+msgstr "Október"
 
 #: desklet.js:31
 msgid "November"
-msgstr ""
+msgstr "November"
 
 #: desklet.js:31
 msgid "December"
-msgstr ""
+msgstr "December"
 
 #: desklet.js:34
 msgid "Sunday"
-msgstr ""
+msgstr "Nedeľa"
 
 #: desklet.js:34
 msgid "Monday"
-msgstr ""
+msgstr "Pondelok"
 
 #: desklet.js:34
 msgid "Tuesday"
-msgstr ""
+msgstr "Utorok"
 
 #: desklet.js:34
 msgid "Wednesday"
-msgstr ""
+msgstr "Streda"
 
 #: desklet.js:35
 msgid "Thursday"
-msgstr ""
+msgstr "Štvrtok"
 
 #: desklet.js:35
 msgid "Friday"
-msgstr ""
+msgstr "Piatok"
 
 #: desklet.js:35
 msgid "Saturday"
-msgstr ""
+msgstr "Sobota"
 
 #: desklet.js:136
 msgid "Previous month..."
@@ -104,9 +104,8 @@ msgid "Next month..."
 msgstr "Nasledujúci mesiac..."
 
 #: desklet.js:153
-#, fuzzy
 msgid "Calendar"
-msgstr "Desklet s kalendárom"
+msgstr "Kalendár"
 
 #. metadata.json->comments
 msgid ""
