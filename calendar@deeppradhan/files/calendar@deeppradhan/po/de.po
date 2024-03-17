@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Calendar Desklet - 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-03-01 13:51-0500\n"
+"POT-Creation-Date: 2024-03-16 22:43-0400\n"
 "PO-Revision-Date: 2021-03-18 19:54+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,91 +19,91 @@ msgstr ""
 "X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: desklet.js:23
+#: desklet.js:29
 msgid "January"
 msgstr "Januar"
 
-#: desklet.js:23
+#: desklet.js:29
 msgid "February"
 msgstr "Februar"
 
-#: desklet.js:23
+#: desklet.js:29
 msgid "March"
 msgstr "März"
 
-#: desklet.js:23
+#: desklet.js:29
 msgid "April"
 msgstr "April"
 
-#: desklet.js:24
+#: desklet.js:30
 msgid "May"
 msgstr "Mai"
 
-#: desklet.js:24
+#: desklet.js:30
 msgid "June"
 msgstr "Juni"
 
-#: desklet.js:24
+#: desklet.js:30
 msgid "July"
 msgstr "Juli"
 
-#: desklet.js:24
+#: desklet.js:30
 msgid "August"
 msgstr "August"
 
-#: desklet.js:24
+#: desklet.js:30
 msgid "September"
 msgstr "September"
 
-#: desklet.js:25
+#: desklet.js:31
 msgid "October"
 msgstr "Oktober"
 
-#: desklet.js:25
+#: desklet.js:31
 msgid "November"
 msgstr "November"
 
-#: desklet.js:25
+#: desklet.js:31
 msgid "December"
 msgstr "Dezember"
 
-#: desklet.js:28
+#: desklet.js:34
 msgid "Sunday"
 msgstr "Sonntag"
 
-#: desklet.js:28
+#: desklet.js:34
 msgid "Monday"
 msgstr "Montag"
 
-#: desklet.js:28
+#: desklet.js:34
 msgid "Tuesday"
 msgstr "Dienstag"
 
-#: desklet.js:28
+#: desklet.js:34
 msgid "Wednesday"
 msgstr "Mittwoch"
 
-#: desklet.js:29
+#: desklet.js:35
 msgid "Thursday"
 msgstr "Donnerstag"
 
-#: desklet.js:29
+#: desklet.js:35
 msgid "Friday"
 msgstr "Freitag"
 
-#: desklet.js:29
+#: desklet.js:35
 msgid "Saturday"
 msgstr "Samstag"
 
-#: desklet.js:130
+#: desklet.js:136
 msgid "Previous month..."
 msgstr "Voriger Monat…"
 
-#: desklet.js:132
+#: desklet.js:138
 msgid "Next month..."
 msgstr "Nächster Monat…"
 
-#: desklet.js:147
+#: desklet.js:153
 #, fuzzy
 msgid "Calendar"
 msgstr "Kalender-Desklet"
