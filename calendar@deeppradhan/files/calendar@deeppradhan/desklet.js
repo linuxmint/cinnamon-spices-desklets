@@ -288,16 +288,6 @@ MyDesklet.prototype = {
 			+ (this.showYear !== "off" ? " " + (String(now.getFullYear()).substring(this.showYear !== "full" ? 2 : 0)) : ""));
 		this.labelTime.set_text(zeroPad(now.getHours()) + ":" + zeroPad(now.getMinutes()));
 		
-		//this.labelWeekdays = [];
-		/*for (let i = 0; i < 7; i++) {
-			let indexx = i;
-			if (this.mondayFirst) 
-				indexx === 6 ? indexx = 0 : indexx++;
-			//this.labelWeekdays[i] = new St.Label();
-			this.labelWeekdays[i].set_text(WEEKDAY_NAMES[indexx].substring(0, 2));
-			this.tableMonth.add(this.labelWeekdays[i], { row: 1, col: i });
-		}*/
-		
 		// Setup loop to update values
 		this.timeout = Mainloop.timeout_add_seconds(this.showTime ? 1 : 10, Lang.bind(this, this.updateValues));
 	}
