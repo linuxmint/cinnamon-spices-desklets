@@ -45,6 +45,8 @@ MyDesklet.prototype = {
 	_init: function(metadata, desklet_id) {
 		Desklet.Desklet.prototype._init.call(this, metadata);
 
+		this.cLabel = new St.Label();
+
 		// initialize settings
 		this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "desklet-size", "desklet_size", this.on_setting_changed);
@@ -64,6 +66,26 @@ MyDesklet.prototype = {
 
 		// initialize desklet gui
 		this.setupUI();
+	},
+
+	refreshLabel: function() {
+		if (this.clock && this.use_custom_label && this.custom_label.length > 0) {
+			this.cLabel.set_text(this.custom_label);
+			//~ let themeFontSize = this.clock.get_theme_node().get_length("font-size");
+			let fontSize = Math.round(this.desklet_size / 10 * global.ui_scale);
+			//~ global.log("fontSize: "+fontSize);
+			this.cLabel.style = "font-size: " + fontSize + "px; color: white;";
+			let clockSize = this.clock.size;
+			let labelSize = this.cLabel.size;
+			let x = Math.round((clockSize.width - labelSize.width) / 2.0);
+			let y = Math.round((clockSize.height - labelSize.height) / 3.0);
+			//~ global.log("x: "+x);
+			//~ global.log("y: "+y);
+			this.cLabel.set_position(x, y);
+			this.cLabel.show()
+		} else {
+			this.cLabel.hide()
+		}
 	},
 
 	setupUI: function() {
@@ -112,6 +134,8 @@ MyDesklet.prototype = {
 		this.second_hand.set_rotation_angle(Clutter.RotateAxis.Z_AXIS, seconds_deg);
 		this.minute_hand.set_rotation_angle(Clutter.RotateAxis.Z_AXIS, minutes_deg);
 		this.hour_hand.set_rotation_angle(Clutter.RotateAxis.Z_AXIS, hours_deg);
+
+		this.cLabel.show();
 
 		// refresh again in 100 milliseconds, or when the second next changes
 		let timeoutval = 100;
@@ -176,6 +200,7 @@ MyDesklet.prototype = {
 		this.clock_container.add_actor(this.minute_hand);
 		if(this.show_seconds_hand == true)
 			this.clock_container.add_actor(this.second_hand);
+		this.clock_container.add_actor(this.cLabel);
 
 		// set root element
 		this.clock.add_actor(this.clock_container);
@@ -183,10 +208,13 @@ MyDesklet.prototype = {
 	},
 
 	refreshDecoration: function() {
+		// set label
+		this.refreshLabel();
+
 		// desklet label (header)
-		if(this.use_custom_label == true)
-			this.setHeader(this.custom_label)
-		else
+		if(this.use_custom_label == true) {
+			this.setHeader(this.custom_label);
+		} else
 			this.setHeader(_("Clock"));
 
 		// prevent decorations?
