@@ -182,6 +182,14 @@ msgstr "Rövid"
 msgid "For day of week; show full name, short name or disable showing"
 msgstr "A hét napjainál; teljes név, rövid név vagy a megjelenítés letiltása"
 
+#. settings-schema.json->monday-first->description
+msgid "Week begins with Monday"
+msgstr ""
+
+#. settings-schema.json->monday-first->tooltip
+msgid "Week begins with Monday"
+msgstr ""
+
 #. settings-schema.json->short-month-name->description
 msgid "Short month name"
 msgstr "Rövid hónapnevek"
