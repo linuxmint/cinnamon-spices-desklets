@@ -193,6 +193,14 @@ msgstr "Mostra nome del mese"
 msgid "Show short month name"
 msgstr "Mostra il nome del mese abbreviato"
 
+#. settings-schema.json->monday-first->description
+msgid "Week begins with Monday"
+msgstr ""
+
+#. settings-schema.json->monday-first->tooltip
+msgid "Week begins with Monday"
+msgstr ""
+
 #. settings-schema.json->show-year->description
 msgid "Show year"
 msgstr "Mostra anno"
