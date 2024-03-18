@@ -38,6 +38,12 @@
         "description": "Short month name",
         "tooltip": "Show short month name"
     },
+	"monday-first": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Week begins with Monday",
+        "tooltip": "Week begins with Monday"
+    },
     "show-year": {
         "type": "combobox",
         "default": "full",
