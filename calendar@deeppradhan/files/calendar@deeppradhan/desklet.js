@@ -31,7 +31,7 @@ _("May"), _("June"), _("July"), _("August"), _("September"),
 _("October"), _("November"), _("December")];
 
 // Names of the Weekdays
-var WEEKDAY_NAMES = [_("Sunday"), _("Monday"), _("Tuesday"), _("Wednesday"),
+var WEEKDAY_NAMES = [_("Sunday"), _("Monday"), _("Tuesday"), _("Wednesday"), 
 _("Thursday"), _("Friday"), _("Saturday")];
 
 // Method to return a Date (first day) after adding specified months to specified Date
@@ -111,16 +111,9 @@ MyDesklet.prototype = {
 		this.labelNext.set_text("\u2BC8");
 		this.labelMonth.style = STYLE_LABEL_DAY + " font-weight: bold;";
 
-		// Create labels for weekdays
 		this.labelWeekdays = [];
-		for (let i = 0; i < 7; i++) {
-			let indexx = i;
-			if (this.mondayFirst) 
-				indexx === 6 ? indexx = 0 : ++indexx;
+		for (let i = 0; i < 7; i++)
 			this.labelWeekdays[i] = new St.Label();
-			this.labelWeekdays[i].set_text(WEEKDAY_NAMES[indexx].substring(0, 1));
-			this.tableMonth.add(this.labelWeekdays[i], { row: 1, col: i });
-		}
 
 		this.buttonPrevious.set_child(this.labelPrevious);
 		this.buttonMonth.set_child(this.labelMonth);
@@ -202,6 +195,15 @@ MyDesklet.prototype = {
 
 		//////// Month Panel ////////
 		this.labelMonth.set_text(MONTH_NAMES[this.date.getMonth()].substring(0, 3) + " " + this.date.getFullYear());
+		
+		// Create labels for weekdays
+		for (let i = 0; i < 7; i++) {
+			let indexx = i;
+			if (this.mondayFirst) 
+				indexx === 6 ? indexx = 0 : ++indexx;
+			this.labelWeekdays[i].set_text(WEEKDAY_NAMES[indexx].substring(0, 1));
+			this.tableMonth.add(this.labelWeekdays[i], { row: 1, col: i });
+		}
 
 		// Set weekday style
 		for (let i = 0; i < 7; i++)
@@ -285,7 +287,17 @@ MyDesklet.prototype = {
 		this.labelMonthYear.set_text(month.substring(0, this.shortMonthName ? 3 : month.length)
 			+ (this.showYear !== "off" ? " " + (String(now.getFullYear()).substring(this.showYear !== "full" ? 2 : 0)) : ""));
 		this.labelTime.set_text(zeroPad(now.getHours()) + ":" + zeroPad(now.getMinutes()));
-
+		
+		//this.labelWeekdays = [];
+		/*for (let i = 0; i < 7; i++) {
+			let indexx = i;
+			if (this.mondayFirst) 
+				indexx === 6 ? indexx = 0 : indexx++;
+			//this.labelWeekdays[i] = new St.Label();
+			this.labelWeekdays[i].set_text(WEEKDAY_NAMES[indexx].substring(0, 2));
+			this.tableMonth.add(this.labelWeekdays[i], { row: 1, col: i });
+		}*/
+		
 		// Setup loop to update values
 		this.timeout = Mainloop.timeout_add_seconds(this.showTime ? 1 : 10, Lang.bind(this, this.updateValues));
 	}
