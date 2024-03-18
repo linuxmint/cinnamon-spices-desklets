@@ -26,13 +26,15 @@ function _(str) {
 }
 
 // Names of the Month
-var MONTH_NAMES = [_("January"), _("February"), _("March"), _("April"),
-_("May"), _("June"), _("July"), _("August"), _("September"),
-_("October"), _("November"), _("December")];
+var MONTHS = [_("January"), _("February"), _("March"), _("April"), _("May"),
+_("June"), _("July"), _("August"), _("September"), _("October"), _("November"),
+_("December")];
 
 // Names of the Weekdays
-var WEEKDAY_NAMES = [_("Sunday"), _("Monday"), _("Tuesday"), _("Wednesday"),
+var WEEKDAYS = [_("Sunday"), _("Monday"), _("Tuesday"), _("Wednesday"),
 _("Thursday"), _("Friday"), _("Saturday")];
+
+var WEEKDAY_NAMES = [...WEEKDAYS];
 
 // Method to return a Date (first day) after adding specified months to specified Date
 function dateMonthAdd(date, add) {
@@ -42,14 +44,6 @@ function dateMonthAdd(date, add) {
 // Method to return the number of days in a given month of a given year
 function daysInMonth(month, fullYear) {
 	return new Date(fullYear, month + 1, 0).getDate();
-}
-
-// Method to return a string with single digit number zero padded
-function zeroPad(number) {
-	number = Number(number);
-	if (typeof number !== "number")
-		return;
-	return (number >= 0 && number <= 9 ? "0" : "") + number;
 }
 
 function MyDesklet(metadata, desklet_id) {
@@ -66,10 +60,12 @@ MyDesklet.prototype = {
 		this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, desklet_id);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "panels", "panels", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "auto-advance", "autoAdvance", this.onSettingChanged);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "first-day", "firstDay", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "show-weekday", "showWeekday", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "short-month-name", "shortMonthName", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "show-year", "showYear", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "show-time", "showTime", this.onSettingChanged);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "use-24h", "use24h", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "layout", "layout", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "custom-font-family", "customFontFamily", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "font-size", "fontSize", this.onSettingChanged);
@@ -111,6 +107,9 @@ MyDesklet.prototype = {
 		this.labelMonth.style = STYLE_LABEL_DAY + " font-weight: bold;";
 
 		// Create labels for weekdays
+		let WEEKDAY_LIST = [...WEEKDAYS];
+		WEEKDAY_NAMES = WEEKDAY_LIST.splice(this.firstDay).concat(WEEKDAY_LIST);
+
 		this.labelWeekdays = [];
 		for (let i = 0; i < 7; i++) {
 			this.labelWeekdays[i] = new St.Label();
@@ -197,30 +196,52 @@ MyDesklet.prototype = {
 			this.boxLayoutToday.add(this.labelTime);
 
 		//////// Month Panel ////////
-		this.labelMonth.set_text(MONTH_NAMES[this.date.getMonth()].substring(0, 3) + " " + this.date.getFullYear());
+		this.labelMonth.set_text(MONTHS[this.date.getMonth()].substring(0, 3) + " " + this.date.getFullYear());
 
+		// Create labels for weekdays
+		let WEEKDAY_LIST = [...WEEKDAYS];
+		WEEKDAY_NAMES = WEEKDAY_LIST.splice(this.firstDay).concat(WEEKDAY_LIST);
+
+		for (let i = 0; i < 7; i++) {
+			this.labelWeekdays[i].set_text(WEEKDAY_NAMES[i].substring(0, 1));
+			if (this.labelWeekdays[i].get_parent())
+				this.tableMonth.remove_child(this.labelWeekdays[i]);
+			this.tableMonth.add(this.labelWeekdays[i], { row: 1, col: i });
+		}
+
+		let isSun;
+		let isSat;
+		let boldDay = this.firstDay === 0 ? now.getDay() : (now.getDay() - 1 < 0 ? 6 : now.getDay() - 1);
 		// Set weekday style
-		for (let i = 0; i < 7; i++)
+		for (let i = 0; i < 7; i++) {
+			isSun = (this.firstDay === 0 && i === 0) || (this.firstDay === 1 && i === 6);
+			isSat = (this.firstDay === 0 && i === 6) || (this.firstDay === 1 && i === 5);
 			this.labelWeekdays[i].style = STYLE_LABEL_DAY + (this.date.getFullYear() == now.getFullYear()
-				&& this.date.getMonth() == now.getMonth() && i == now.getDay() ?
-				" font-weight: bold;" : "") + (i === 0 ? " color: " + this.colourSundays + ";" : "")
-				+ (i === 6 ? " color: " + this.colourSaturdays + ";" : "");
+				&& this.date.getMonth() == now.getMonth() && i == boldDay ?
+				" font-weight: bold;" : "") + (isSun ? " color: " + this.colourSundays + ";" : "")
+				+ (isSat ? " color: " + this.colourSaturdays + ";" : "");
+		}
 
 		// Remove currently added days
 		for (let i = 0; i < 31; i++)
 			if (this.labelDays[i].get_parent())
 				this.tableMonth.remove_child(this.labelDays[i]);
 
-		for (let i = 0, row = 2, col = (new Date(this.date.getFullYear(), this.date.getMonth(), 1)).getDay(),
+		let startOfWeek = (new Date(this.date.getFullYear(), this.date.getMonth(), 1)).getDay() - this.firstDay;
+		let isSunday;
+		let isSaturday;
+		for (let i = 0, row = 2, col = startOfWeek < 0 ? 6 : startOfWeek,
 			monthLength = daysInMonth(this.date.getMonth(), this.date.getFullYear()); i < monthLength; i++) {
 			this.labelDays[i].style = STYLE_LABEL_DAY;
 			// Set specified colour of Sunday and Saturday
-			if (col === 0)
+			isSunday = (this.firstDay === 0 && col === 0) || (this.firstDay === 1 && col === 6);
+			isSaturday = (this.firstDay === 0 && col === 6) || (this.firstDay === 1 && col === 5);
+			if (isSunday)
 				this.labelDays[i].style = this.labelDays[i].style + " color: " + this.colourSundays + ";";
-			else if (col === 6)
+			else if (isSaturday)
 				this.labelDays[i].style = this.labelDays[i].style + " color: " + this.colourSaturdays + ";";
 
-			// Emphasise today's date 
+			// Emphasise today's date
 			if (this.date.getFullYear() == now.getFullYear() && this.date.getMonth() == now.getMonth()
 				&& i + 1 === now.getDate())
 				this.labelDays[i].style = this.labelDays[i].style + "background-color: "
@@ -233,7 +254,7 @@ MyDesklet.prototype = {
 				col = 0;
 			}
 		}
-		this.tooltipMonth.set_text(MONTH_NAMES[this.date.getMonth()] + " " + this.date.getFullYear());
+		this.tooltipMonth.set_text(MONTHS[this.date.getMonth()] + " " + this.date.getFullYear());
 
 		//////// Calendar Layout ////////
 		if (typeof this.boxLayoutCalendar !== "undefined")
@@ -274,13 +295,21 @@ MyDesklet.prototype = {
 		}
 
 		//////// Today Panel ////////
-		let day = WEEKDAY_NAMES[now.getDay()];
-		this.labelDay.set_text(day.substring(0, this.showWeekday !== "full" ? 3 : day.length));
-		this.labelDate.set_text(String(now.getDate()));
-		let month = MONTH_NAMES[now.getMonth()];
-		this.labelMonthYear.set_text(month.substring(0, this.shortMonthName ? 3 : month.length)
-			+ (this.showYear !== "off" ? " " + (String(now.getFullYear()).substring(this.showYear !== "full" ? 2 : 0)) : ""));
-		this.labelTime.set_text(zeroPad(now.getHours()) + ":" + zeroPad(now.getMinutes()));
+		let day = WEEKDAYS[now.getDay()];
+		if (this.labelDay !== null)
+			this.labelDay.set_text(day.substring(0, this.showWeekday !== "full" ? 3 : day.length));
+		if (this.labelDate !== null)
+			this.labelDate.set_text(String(now.getDate()));
+		let month = MONTHS[now.getMonth()];
+		if (this.labelMonthYear !== null)
+			this.labelMonthYear.set_text(month.substring(0, this.shortMonthName ? 3 : month.length)
+				+ (this.showYear !== "off" ? " " + (String(now.getFullYear()).substring(this.showYear !== "full" ? 2 : 0)) : ""));
+		if (this.labelTime !== null) {
+			let timeFormat = "%-l:%M %p";
+			if (this.use24h)
+				timeFormat = "%R";
+			this.labelTime.set_text(now.toLocaleFormat(timeFormat));
+		}
 
 		// Setup loop to update values
 		this.timeout = Mainloop.timeout_add_seconds(this.showTime ? 1 : 10, Lang.bind(this, this.updateValues));

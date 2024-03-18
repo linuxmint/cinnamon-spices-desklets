@@ -14,13 +14,6 @@
         },
         "tooltip": "Select the panels to display in desklet"
     },
-    "auto-advance": {
-        "type": "checkbox",
-        "default": true,
-        "description": "Auto-advance",
-        "tooltip": "When the month changes, update the desklet",
-        "dependency": "panels!=today"
-    },
     "show-weekday": {
         "type": "combobox",
         "default": "full",
@@ -30,13 +23,15 @@
             "Full": "full",
             "Short": "short"
         },
-        "tooltip": "For day of week; show full name, short name or disable showing"
+        "tooltip": "For day of week; show full name, short name or disable showing",
+        "dependency": "panels!=month"
     },
     "short-month-name": {
         "type": "checkbox",
         "default": false,
         "description": "Short month name",
-        "tooltip": "Show short month name"
+        "tooltip": "Show short month name",
+        "dependency": "panels!=month"
     },
     "show-year": {
         "type": "combobox",
@@ -47,13 +42,38 @@
             "Full": "full",
             "Short": "short"
         },
-        "tooltip": "For year; show all digits, show last two digits or disable showing"
+        "tooltip": "For year; show all digits, show last two digits or disable showing",
+        "dependency": "panels!=month"
     },
     "show-time": {
         "type": "checkbox",
         "default": true,
         "description": "Show time",
-        "tooltip": "Show or hide time (hours and minutes)"
+        "tooltip": "Show or hide time (hours and minutes)",
+        "dependency": "panels!=month"
+    },
+    "use-24h": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Use 24h clock",
+        "dependency": "panels!=month"
+    },
+    "auto-advance": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Auto-advance",
+        "tooltip": "When the month changes, update the desklet",
+        "dependency": "panels!=today"
+    },
+    "first-day": {
+        "type": "combobox",
+        "default": 0,
+        "description": "First day of week",
+        "options": {
+            "Sunday": 0,
+            "Monday": 1
+        },
+        "dependency": "panels!=today"
     },
     "seperator": {
         "type": "separator"

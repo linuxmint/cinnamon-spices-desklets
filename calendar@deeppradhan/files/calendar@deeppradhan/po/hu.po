@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-03-17 00:55-0400\n"
+"POT-Creation-Date: 2024-03-18 11:02-0400\n"
 "PO-Revision-Date: 2021-04-11 10:30+0200\n"
 "Last-Translator: Balazs Bosak <bossbob88@gmail.com>\n"
 "Language-Team: \n"
@@ -34,7 +34,7 @@ msgstr "Március"
 msgid "April"
 msgstr "Április"
 
-#: desklet.js:30
+#: desklet.js:29
 msgid "May"
 msgstr "Május"
 
@@ -54,11 +54,11 @@ msgstr "Augusztus"
 msgid "September"
 msgstr "Szeptember"
 
-#: desklet.js:31
+#: desklet.js:30
 msgid "October"
 msgstr "Október"
 
-#: desklet.js:31
+#: desklet.js:30
 msgid "November"
 msgstr "November"
 
@@ -66,10 +66,12 @@ msgstr "November"
 msgid "December"
 msgstr "December"
 
+#. settings-schema.json->first-day->options
 #: desklet.js:34
 msgid "Sunday"
 msgstr "Vasárnap"
 
+#. settings-schema.json->first-day->options
 #: desklet.js:34
 msgid "Monday"
 msgstr "Hétfő"
@@ -94,15 +96,15 @@ msgstr "Péntek"
 msgid "Saturday"
 msgstr "Szombat"
 
-#: desklet.js:136
+#: desklet.js:135
 msgid "Previous month..."
 msgstr "Előző hónap..."
 
-#: desklet.js:138
+#: desklet.js:137
 msgid "Next month..."
 msgstr "Következő hónap..."
 
-#: desklet.js:153
+#: desklet.js:152
 msgid "Calendar"
 msgstr "Naptár"
 
@@ -150,14 +152,6 @@ msgstr "Csak a hónap"
 #. settings-schema.json->panels->tooltip
 msgid "Select the panels to display in desklet"
 msgstr "Válassza ki az asztalkalmazáson megjelenítendő paneleket"
-
-#. settings-schema.json->auto-advance->description
-msgid "Auto-advance"
-msgstr ""
-
-#. settings-schema.json->auto-advance->tooltip
-msgid "When the month changes, update the desklet"
-msgstr ""
 
 #. settings-schema.json->show-weekday->description
 msgid "Show day of week"
@@ -207,6 +201,22 @@ msgstr "Idő megjelenítése"
 #. settings-schema.json->show-time->tooltip
 msgid "Show or hide time (hours and minutes)"
 msgstr "Idő megjelenítése vagy elrejtése (óra, perc)"
+
+#. settings-schema.json->use-24h->description
+msgid "Use 24h clock"
+msgstr "24 órás óra használata"
+
+#. settings-schema.json->auto-advance->description
+msgid "Auto-advance"
+msgstr ""
+
+#. settings-schema.json->auto-advance->tooltip
+msgid "When the month changes, update the desklet"
+msgstr ""
+
+#. settings-schema.json->first-day->description
+msgid "First day of week"
+msgstr "A hét első napja"
 
 #. settings-schema.json->display->description
 msgid "Desklet style configuration"

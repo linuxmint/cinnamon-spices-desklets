@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-03-17 00:55-0400\n"
+"POT-Creation-Date: 2024-03-18 11:02-0400\n"
 "PO-Revision-Date: 2024-03-17 00:33-0400\n"
 "Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
 "Language-Team: \n"
@@ -35,7 +35,7 @@ msgstr "Març"
 msgid "April"
 msgstr "Abril"
 
-#: desklet.js:30
+#: desklet.js:29
 msgid "May"
 msgstr "Maig"
 
@@ -55,11 +55,11 @@ msgstr "Agost"
 msgid "September"
 msgstr "Setembre"
 
-#: desklet.js:31
+#: desklet.js:30
 msgid "October"
 msgstr "Octubre"
 
-#: desklet.js:31
+#: desklet.js:30
 msgid "November"
 msgstr "Novembre"
 
@@ -67,10 +67,12 @@ msgstr "Novembre"
 msgid "December"
 msgstr "Desembre"
 
+#. settings-schema.json->first-day->options
 #: desklet.js:34
 msgid "Sunday"
 msgstr "Diumenge"
 
+#. settings-schema.json->first-day->options
 #: desklet.js:34
 msgid "Monday"
 msgstr "Dilluns"
@@ -95,15 +97,15 @@ msgstr "Divendres"
 msgid "Saturday"
 msgstr "Dissabte"
 
-#: desklet.js:136
+#: desklet.js:135
 msgid "Previous month..."
 msgstr "Mes anterior"
 
-#: desklet.js:138
+#: desklet.js:137
 msgid "Next month..."
 msgstr "Mes següent"
 
-#: desklet.js:153
+#: desklet.js:152
 msgid "Calendar"
 msgstr "Calendari"
 
@@ -152,14 +154,6 @@ msgstr "Mes"
 msgid "Select the panels to display in desklet"
 msgstr "Trieu els plafons que seran visibles en la miniaplicació"
 
-#. settings-schema.json->auto-advance->description
-msgid "Auto-advance"
-msgstr ""
-
-#. settings-schema.json->auto-advance->tooltip
-msgid "When the month changes, update the desklet"
-msgstr ""
-
 #. settings-schema.json->show-weekday->description
 msgid "Show day of week"
 msgstr "Mostra el dia de la setmana"
@@ -206,6 +200,22 @@ msgstr "Mostra l'hora"
 #. settings-schema.json->show-time->tooltip
 msgid "Show or hide time (hours and minutes)"
 msgstr "Determina si es mostra o no l'hora (hora i minuts)"
+
+#. settings-schema.json->use-24h->description
+msgid "Use 24h clock"
+msgstr "Utilitza el rellotge de 24 h"
+
+#. settings-schema.json->auto-advance->description
+msgid "Auto-advance"
+msgstr ""
+
+#. settings-schema.json->auto-advance->tooltip
+msgid "When the month changes, update the desklet"
+msgstr ""
+
+#. settings-schema.json->first-day->description
+msgid "First day of week"
+msgstr "Primer dia de la setmana"
 
 #. settings-schema.json->display->description
 msgid "Desklet style configuration"
