@@ -68,6 +68,7 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "auto-advance", "autoAdvance", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "show-weekday", "showWeekday", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "short-month-name", "shortMonthName", this.onSettingChanged);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "monday-first", "mondayFirst", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "show-year", "showYear", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "show-time", "showTime", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "layout", "layout", this.onSettingChanged);
@@ -113,8 +114,11 @@ MyDesklet.prototype = {
 		// Create labels for weekdays
 		this.labelWeekdays = [];
 		for (let i = 0; i < 7; i++) {
+			let indexx = i;
+			if (this.mondayFirst) 
+				indexx === 6 ? indexx = 0 : ++indexx;
 			this.labelWeekdays[i] = new St.Label();
-			this.labelWeekdays[i].set_text(WEEKDAY_NAMES[i].substring(0, 1));
+			this.labelWeekdays[i].set_text(WEEKDAY_NAMES[indexx].substring(0, 1));
 			this.tableMonth.add(this.labelWeekdays[i], { row: 1, col: i });
 		}
 
@@ -202,22 +206,22 @@ MyDesklet.prototype = {
 		// Set weekday style
 		for (let i = 0; i < 7; i++)
 			this.labelWeekdays[i].style = STYLE_LABEL_DAY + (this.date.getFullYear() == now.getFullYear()
-				&& this.date.getMonth() == now.getMonth() && i == now.getDay() ?
-				" font-weight: bold;" : "") + (i === 0 ? " color: " + this.colourSundays + ";" : "")
-				+ (i === 6 ? " color: " + this.colourSaturdays + ";" : "");
+				&& this.date.getMonth() == now.getMonth() && i + (this.mondayFirst ? 1 : 0) == now.getDay() ?
+				" font-weight: bold;" : "") + (i === (this.mondayFirst ? 6 : 0) ? " color: " + this.colourSundays + ";" : "")
+				+ (i === (this.mondayFirst ? 5 : 6) ? " color: " + this.colourSaturdays + ";" : "");
 
 		// Remove currently added days
 		for (let i = 0; i < 31; i++)
 			if (this.labelDays[i].get_parent())
 				this.tableMonth.remove_child(this.labelDays[i]);
 
-		for (let i = 0, row = 2, col = (new Date(this.date.getFullYear(), this.date.getMonth(), 1)).getDay(),
+		for (let i = 0, row = 2, col = (((new Date(this.date.getFullYear(), this.date.getMonth(), 1)).getDay()) - (this.mondayFirst ? 1 : 0)),
 			monthLength = daysInMonth(this.date.getMonth(), this.date.getFullYear()); i < monthLength; i++) {
 			this.labelDays[i].style = STYLE_LABEL_DAY;
 			// Set specified colour of Sunday and Saturday
-			if (col === 0)
+			if (col === (this.mondayFirst ? 6 : 0))
 				this.labelDays[i].style = this.labelDays[i].style + " color: " + this.colourSundays + ";";
-			else if (col === 6)
+			else if (col === (this.mondayFirst ? 5 : 6))
 				this.labelDays[i].style = this.labelDays[i].style + " color: " + this.colourSaturdays + ";";
 
 			// Emphasise today's date 
