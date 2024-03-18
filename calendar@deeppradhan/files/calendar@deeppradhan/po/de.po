@@ -198,8 +198,8 @@ msgid "Week begins with Monday"
 msgstr "Woche beginnt mit Montag"
 
 #. settings-schema.json->monday-first->tooltip
-msgid "Week begins with Monday"
-msgstr "Woche beginnt mit Montag"
+msgid "Toggle start of the week"
+msgstr "Umschalten des Wochenstarts"
 
 #. settings-schema.json->show-year->description
 msgid "Show year"
