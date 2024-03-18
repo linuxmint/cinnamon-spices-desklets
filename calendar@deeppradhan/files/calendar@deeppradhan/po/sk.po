@@ -193,6 +193,14 @@ msgstr "Skrátený názov mesiaca"
 msgid "Show short month name"
 msgstr "Zobrazí skrátený názov mesiaca"
 
+#. settings-schema.json->monday-first->description
+msgid "Week begins with Monday"
+msgstr ""
+
+#. settings-schema.json->monday-first->tooltip
+msgid "Week begins with Monday"
+msgstr ""
+
 #. settings-schema.json->show-year->description
 msgid "Show year"
 msgstr "Zobrazenie roku"
