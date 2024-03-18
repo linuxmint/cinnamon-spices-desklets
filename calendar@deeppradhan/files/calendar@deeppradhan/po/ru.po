@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-03-17 00:55-0400\n"
+"POT-Creation-Date: 2024-03-18 11:02-0400\n"
 "PO-Revision-Date: \n"
 "Last-Translator: blogdron\n"
 "Language-Team: \n"
@@ -30,7 +30,7 @@ msgstr "Март"
 msgid "April"
 msgstr "Апрель"
 
-#: desklet.js:30
+#: desklet.js:29
 msgid "May"
 msgstr "Май"
 
@@ -50,11 +50,11 @@ msgstr "Август"
 msgid "September"
 msgstr "Сентябрь"
 
-#: desklet.js:31
+#: desklet.js:30
 msgid "October"
 msgstr "Октябрь"
 
-#: desklet.js:31
+#: desklet.js:30
 msgid "November"
 msgstr "Ноябрь"
 
@@ -62,10 +62,12 @@ msgstr "Ноябрь"
 msgid "December"
 msgstr "Декабрь"
 
+#. settings-schema.json->first-day->options
 #: desklet.js:34
 msgid "Sunday"
 msgstr "Воскресенье"
 
+#. settings-schema.json->first-day->options
 #: desklet.js:34
 msgid "Monday"
 msgstr "Понедельник"
@@ -90,15 +92,15 @@ msgstr "Пятница"
 msgid "Saturday"
 msgstr "Суббота"
 
-#: desklet.js:136
+#: desklet.js:135
 msgid "Previous month..."
 msgstr "Предыдущий месяц..."
 
-#: desklet.js:138
+#: desklet.js:137
 msgid "Next month..."
 msgstr "Следующий месяц..."
 
-#: desklet.js:153
+#: desklet.js:152
 msgid "Calendar"
 msgstr "Календарь (Calendar)"
 
@@ -147,14 +149,6 @@ msgstr "Только месяц"
 msgid "Select the panels to display in desklet"
 msgstr "Выберите что отображать в календаре"
 
-#. settings-schema.json->auto-advance->description
-msgid "Auto-advance"
-msgstr ""
-
-#. settings-schema.json->auto-advance->tooltip
-msgid "When the month changes, update the desklet"
-msgstr ""
-
 #. settings-schema.json->show-weekday->description
 msgid "Show day of week"
 msgstr "Показывать день недели"
@@ -201,6 +195,22 @@ msgstr "Показать время"
 #. settings-schema.json->show-time->tooltip
 msgid "Show or hide time (hours and minutes)"
 msgstr "Показать или скрыть время (часы и минуты)"
+
+#. settings-schema.json->use-24h->description
+msgid "Use 24h clock"
+msgstr "Использовать 24-часовой формат"
+
+#. settings-schema.json->auto-advance->description
+msgid "Auto-advance"
+msgstr ""
+
+#. settings-schema.json->auto-advance->tooltip
+msgid "When the month changes, update the desklet"
+msgstr ""
+
+#. settings-schema.json->first-day->description
+msgid "First day of week"
+msgstr "Первый день недели"
 
 #. settings-schema.json->display->description
 msgid "Desklet style configuration"
