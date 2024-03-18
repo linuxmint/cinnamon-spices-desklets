@@ -42,7 +42,7 @@
         "type": "checkbox",
         "default": false,
         "description": "Week begins with Monday",
-        "tooltip": "Week begins with Monday"
+        "tooltip": "Toggle start of the week"
     },
     "show-year": {
         "type": "combobox",
