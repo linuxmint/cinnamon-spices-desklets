@@ -1,0 +1,55 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-08-04 23:06+0200\n"
+"PO-Revision-Date: 2023-08-05 04:35+0200\n"
+"Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: desklet.js:464
+msgid "Open Looking Glass"
+msgstr ""
+
+#: extensions.js:353 extensions.js:381
+msgid "failed to create extension item for uuid"
+msgstr ""
+
+#: inspect.js:126
+msgid "(Press Pause or Control to disable event pass through)"
+msgstr ""
+
+#: inspect.js:128
+msgid "(Press Pause or Control to enable event pass through)"
+msgstr ""
+
+#: inspect.js:446
+msgid "Style Class"
+msgstr ""
+
+#: inspect.js:498
+msgid "Map Elements"
+msgstr ""
+
+#: windows.js:144
+msgid "Windows"
+msgstr ""
+
+#. settings-schema.json->raiseKey->description
+msgid "Raise to top shorcut key"
+msgstr ""
+
+#. settings-schema.json->centerRaised->description
+msgid "Center the desklet on the screen in raised mode"
+msgstr ""
