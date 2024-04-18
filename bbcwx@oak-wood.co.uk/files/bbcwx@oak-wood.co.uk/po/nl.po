@@ -962,7 +962,9 @@ msgstr "Weergave van het weer van verschillende webdiensten op je bureaublad"
 msgid ""
 "Please consider translating the Weather desklet into your language. See the "
 "website for more information."
-msgstr "Overweeg alstublieft om de weer desklet in uw taal te vertalen. Zie de website voor meer informatie."
+msgstr ""
+"Overweeg alstublieft om de weer desklet in uw taal te vertalen. Zie de "
+"website voor meer informatie."
 
 #. metadata.json->contributors
 msgid "Chris Hastie"
@@ -1568,12 +1570,10 @@ msgstr "px"
 msgid "Shadow blur radius"
 msgstr "Schaduwvervagingstraal"
 
-
 #. 5.4->settings-schema.json->shadowblur->tooltip
 #. 3.0->settings-schema.json->shadowblur->tooltip
 msgid "Set the text shadow sharp (1) or blurry (2-7)"
 msgstr "Stel de tekstschaduw scherp (1) of wazig (2-7) in."
-
 
 #. 5.4->settings-schema.json->bgcolor->description
 #. 3.0->settings-schema.json->bgcolor->description
