@@ -1,0 +1,301 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-14 01:54+0100\n"
+"PO-Revision-Date: 2024-04-19 14:24+0200\n"
+"Last-Translator: qadzek\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: soundbox.js:629 soundbox.js:756 2.5/soundbox.js:629 2.5/soundbox.js:756
+#: 2.8/soundbox.js:629 2.8/soundbox.js:756
+msgid "Unmute"
+msgstr "Dempen opheffen"
+
+#: soundbox.js:637 soundbox.js:762 2.5/soundbox.js:637 2.5/soundbox.js:762
+#: 2.8/soundbox.js:637 2.8/soundbox.js:762
+msgid "Mute"
+msgstr "Dempen"
+
+#: soundbox.js:1024 2.5/soundbox.js:1024 2.8/soundbox.js:1024
+msgid "Show player"
+msgstr "Speler weergeven"
+
+#: soundbox.js:1037 2.5/soundbox.js:1037 2.8/soundbox.js:1037
+msgid "Close player"
+msgstr "Speler sluiten"
+
+#: soundbox.js:1151 soundbox.js:1326 2.5/soundbox.js:1151 2.5/soundbox.js:1326
+#: 2.8/soundbox.js:1151 2.8/soundbox.js:1326
+msgid "Unknown Title"
+msgstr "Onbekende titel"
+
+#: soundbox.js:1153 soundbox.js:1324 2.5/soundbox.js:1153 2.5/soundbox.js:1324
+#: 2.8/soundbox.js:1153 2.8/soundbox.js:1324
+msgid "Unknown Album"
+msgstr "Onbekend album"
+
+#: soundbox.js:1155 soundbox.js:1322 2.5/soundbox.js:1155 2.5/soundbox.js:1322
+#: 2.8/soundbox.js:1155 2.8/soundbox.js:1322
+msgid "Unknown Artist"
+msgstr "Onbekende artiest"
+
+#: soundbox.js:1194 2.5/soundbox.js:1194 2.8/soundbox.js:1194
+msgid "Previous"
+msgstr "Vorige"
+
+#: soundbox.js:1200 soundbox.js:1375 soundbox.js:1380 2.5/soundbox.js:1200
+#: 2.5/soundbox.js:1375 2.5/soundbox.js:1380 2.8/soundbox.js:1200
+#: 2.8/soundbox.js:1375 2.8/soundbox.js:1380
+msgid "Play"
+msgstr "Afspelen"
+
+#: soundbox.js:1205 2.5/soundbox.js:1205 2.8/soundbox.js:1205
+msgid "Stop"
+msgstr "Stoppen"
+
+#: soundbox.js:1210 2.5/soundbox.js:1210 2.8/soundbox.js:1210
+msgid "Next"
+msgstr "Volgende"
+
+#: soundbox.js:1217 2.5/soundbox.js:1217 2.8/soundbox.js:1217
+msgid "Repeat"
+msgstr "Herhalen"
+
+#: soundbox.js:1226 2.5/soundbox.js:1226 2.8/soundbox.js:1226
+msgid "Shuffle"
+msgstr "Willekeurig"
+
+#: soundbox.js:1268 2.5/soundbox.js:1268 2.8/soundbox.js:1268
+msgid "Repeat: Off"
+msgstr "Herhalen: Uit"
+
+#: soundbox.js:1272 2.5/soundbox.js:1272 2.8/soundbox.js:1272
+msgid "Repeat: Track"
+msgstr "Herhalen: Nummer"
+
+#: soundbox.js:1276 2.5/soundbox.js:1276 2.8/soundbox.js:1276
+msgid "Repeat: All"
+msgstr "Herhalen: Alles"
+
+#: soundbox.js:1284 2.5/soundbox.js:1284 2.8/soundbox.js:1284
+msgid "Shuffle: On"
+msgstr "Willekeurig: Aan"
+
+#: soundbox.js:1288 2.5/soundbox.js:1288 2.8/soundbox.js:1288
+msgid "Shuffle: Off"
+msgstr "Willekeurig: Uit"
+
+#: soundbox.js:1370 2.5/soundbox.js:1370 2.8/soundbox.js:1370
+msgid "Pause"
+msgstr "Pauze"
+
+#: soundbox.js:1498 2.5/soundbox.js:1498 2.8/soundbox.js:1498
+msgid "Output Devices"
+msgstr "Uitvoerapparaten"
+
+#: soundbox.js:1508 2.5/soundbox.js:1508 2.8/soundbox.js:1508
+msgid "Input Devices"
+msgstr "Invoerapparaten"
+
+#: soundbox.js:1516 2.5/soundbox.js:1516 2.8/soundbox.js:1516
+msgid "Sound Settings"
+msgstr "Geluidsinstellingen"
+
+#. system volume controls
+#: soundbox.js:1524 2.5/soundbox.js:1524 2.8/soundbox.js:1524
+msgid "Volume:"
+msgstr "Volume:"
+
+#: soundbox.js:1530 2.5/soundbox.js:1530 2.8/soundbox.js:1530
+msgid "Input Volume:"
+msgstr "Invoervolume:"
+
+#: soundbox.js:1553 2.5/soundbox.js:1553 2.8/soundbox.js:1553
+msgid "Previous Player"
+msgstr "Vorige speler"
+
+#: soundbox.js:1562 2.5/soundbox.js:1562 2.8/soundbox.js:1562
+msgid "Next Player"
+msgstr "Volgende speler"
+
+#: 2.5/desklet.js:300 2.8/desklet.js:316 desklet.js:295
+msgid "Launch Player"
+msgstr "Speler starten"
+
+#: applet.js:88
+msgid "Players"
+msgstr "Spelers"
+
+#. this.setPanelText();
+#. Cinnamon-Soundbox->metadata.json->name
+#: applet.js:108
+msgid "Soundbox"
+msgstr "Soundbox"
+
+#. 2.5->settings-schema.json->compact->description
+#. 2.8->settings-schema.json->compact->description
+#. Cinnamon-Soundbox->settings-schema.json->compact->description
+msgid "Use compact layout"
+msgstr "Compacte indeling gebruiken"
+
+#. 2.5->settings-schema.json->showApps->description
+#. 2.8->settings-schema.json->showApps->description
+#. Cinnamon-Soundbox->settings-schema.json->showApps->description
+msgid "Show application volume controls"
+msgstr "Toon toepassingsvolumeregelaars"
+
+#. 2.5->settings-schema.json->hideSystray->description
+#. 2.8->settings-schema.json->hideSystray->description
+#. Cinnamon-Soundbox->settings-schema.json->hideSystray->description
+msgid "Hide system tray icons for compatible players"
+msgstr "Verberg systeemvakpictogrammen voor compatibele spelers"
+
+#. 2.5->settings-schema.json->showInput->description
+#. 2.8->settings-schema.json->showInput->description
+#. Cinnamon-Soundbox->settings-schema.json->showInput->description
+msgid "Show input volume controls"
+msgstr "Toon invoervolumeregelaars"
+
+#. 2.5->settings-schema.json->exceedNormVolume->description
+#. 2.8->settings-schema.json->exceedNormVolume->description
+#. Cinnamon-Soundbox->settings-schema.json->exceedNormVolume->description
+msgid "Allow volume control to exceed 100% volume"
+msgstr "Toestaan dat volumeregeling het volume van 100% overschrijdt"
+
+#. 2.5->settings-schema.json->exceedNormVolume->tooltip
+#. 2.8->settings-schema.json->exceedNormVolume->tooltip
+#. Cinnamon-Soundbox->settings-schema.json->exceedNormVolume->tooltip
+msgid "Note: some applications don't sound good over 100% volume"
+msgstr ""
+"Opmerking: sommige toepassingen klinken niet goed bij een volume van meer "
+"dan 100%."
+
+#. 2.5->settings-schema.json->showArt->description
+#. 2.8->settings-schema.json->showArt->description
+#. Cinnamon-Soundbox->settings-schema.json->showArt->description
+msgid "Show album artwork"
+msgstr "Toon albumillustraties"
+
+#. 2.5->settings-schema.json->centerRaised->description
+#. 2.8->settings-schema.json->centerRaised->description
+#. Cinnamon-Soundbox->settings-schema.json->centerRaised->description
+msgid "Center Soundbox on the screen in raised mode"
+msgstr "Centreer Soundbox op het scherm in naar voren gebrachte modus"
+
+#. 2.5->settings-schema.json->theme->description
+#. 2.8->settings-schema.json->theme->description
+#. Cinnamon-Soundbox->settings-schema.json->theme->description
+msgid "Theme"
+msgstr "Thema"
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. Cinnamon-Soundbox->settings-schema.json->theme->options
+msgid "Ghost"
+msgstr "Geest"
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. Cinnamon-Soundbox->settings-schema.json->theme->options
+msgid "Hot Rod"
+msgstr "Hot Rod"
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. Cinnamon-Soundbox->settings-schema.json->theme->options
+msgid "Ice"
+msgstr "IJs"
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. Cinnamon-Soundbox->settings-schema.json->theme->options
+msgid "Mint-X"
+msgstr "Mint-X"
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. Cinnamon-Soundbox->settings-schema.json->theme->options
+msgid "Forest"
+msgstr "Bos"
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. Cinnamon-Soundbox->settings-schema.json->theme->options
+msgid "Clean"
+msgstr "Schoon"
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. Cinnamon-Soundbox->settings-schema.json->theme->options
+msgid "Camouflage (tries to blend in)"
+msgstr "Camouflage (probeert niet op te vallen)"
+
+#. 2.5->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+#. Cinnamon-Soundbox->settings-schema.json->theme->options
+msgid "Mint"
+msgstr "Mint"
+
+#. 2.5->settings-schema.json->artSize->description
+#. 2.8->settings-schema.json->artSize->description
+#. Cinnamon-Soundbox->settings-schema.json->artSize->description
+msgid "Artwork size"
+msgstr "Grootte van illustraties"
+
+#. 2.5->settings-schema.json->appearance->description
+#. 2.8->settings-schema.json->appearance->description
+#. Cinnamon-Soundbox->settings-schema.json->appearance->description
+msgid "Appearance"
+msgstr "Uiterlijk"
+
+#. 2.5->settings-schema.json->countUp->description
+#. 2.8->settings-schema.json->countUp->description
+#. Cinnamon-Soundbox->settings-schema.json->countUp->description
+msgid "Timer counts up"
+msgstr "Timer telt op"
+
+#. 2.5->settings-schema.json->raiseKey->description
+#. 2.8->settings-schema.json->raiseKey->description
+#. Cinnamon-Soundbox->settings-schema.json->raiseKey->description
+msgid "Raise to top shorcut key"
+msgstr "Sneltoets om naar voren te brengen"
+
+#. Cinnamon-Soundbox->metadata.json->description
+msgid "A desklet to view sound settings and manage media controls"
+msgstr ""
+"Een desklet om geluidsinstellingen te bekijken en mediabedieningen te beheren"
+
+#. Cinnamon-Soundbox->metadata.json->contributors
+msgid "Stephen Collins - Author"
+msgstr "Stephen Collins - Auteur"
+
+#. Cinnamon-Soundbox->metadata.json->contributors
+msgid "Bernard(zagortenay333) - Mint-x theme"
+msgstr "Bernard(zagortenay333) - Mint-x thema"
+
+#. Cinnamon-Soundbox->metadata.json->contributors
+msgid "Corbin(RavetcoFX) - Bugfix"
+msgstr "Corbin(RavetcoFX) - Bugfix"
+
+#. Cinnamon-Soundbox->metadata.json->comments
+msgid ""
+"Soundbox is an attractive and easy-to-use Desklet designed to control your "
+"volume and media players. It was originally forked from the Cinnamon sound "
+"applet, but has grown and evolved over time. Feel free to contribute by "
+"submitting pull requests, bug reports and feature requests to my github repo."
+msgstr ""
+"Soundbox is een aantrekkelijke en gebruiksvriendelijke Desklet ontworpen om "
+"uw volume en mediaplayers te bedienen. Het is oorspronkelijk afgeleid van de "
+"Cinnamon-geluidsapplet, maar is in de loop van de tijd gegroeid en "
+"geëvolueerd. Voel u vrij om bij te dragen door pull-verzoeken, bugrapporten "
+"en functieverzoeken in te dienen bij mijn GitHub-repo."
