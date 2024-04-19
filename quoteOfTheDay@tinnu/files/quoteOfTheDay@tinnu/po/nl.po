@@ -1,0 +1,114 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-26 12:46+0800\n"
+"PO-Revision-Date: 2024-04-19 13:09+0200\n"
+"Last-Translator: qadzek\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: desklet.js:32
+msgid "Quote of the day"
+msgstr "Citaat van de dag"
+
+#: desklet.js:52
+msgid "Copy"
+msgstr "Kopiëren"
+
+#. quoteOfTheDay@tinnu->metadata.json->description
+msgid "A desklet that displays quotations from various sources"
+msgstr "Een desklet die citaten weergeeft uit verschillende bronnen"
+
+#. quoteOfTheDay@tinnu->metadata.json->name
+msgid "Quote of the day desklet"
+msgstr "Citaat van de dag desklet"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->font-size->description
+msgid "Font size:"
+msgstr "Lettergrootte:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->vertical-shadow->description
+msgid "Vertical shadow:"
+msgstr "Verticale schaduw:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->vertical-shadow->units
+#. quoteOfTheDay@tinnu->settings-schema.json->shadow-blur->units
+#. quoteOfTheDay@tinnu->settings-schema.json->horizontal-shadow->units
+msgid "px"
+msgstr "px"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->file->description
+msgid "File:"
+msgstr "Bestand:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->font-options-header->description
+msgid "Font options:"
+msgstr "Lettertypeopties:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->shadow-blur->description
+msgid "Shadow blur:"
+msgstr "Schaduwvervaging:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->shadow-color->description
+msgid "Shadow color:"
+msgstr "Schaduwkleur:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->shadow-color->tooltip
+#. quoteOfTheDay@tinnu->settings-schema.json->text-color->tooltip
+msgid "Click to select a new text color"
+msgstr "Klik om een nieuwe tekstkleur te selecteren"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->delay->description
+msgid "Update every:"
+msgstr "Bijwerken elke:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->delay->units
+msgid "minutes"
+msgstr "minuten"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->text-color->description
+msgid "Font color:"
+msgstr "Tekstkleur:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->horizontal-shadow->description
+msgid "Horizontal shadow:"
+msgstr "Horizontale schaduw:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->font-shadow-options-
+#. header->description
+msgid "Text shadow effects:"
+msgstr "Tekstschaduweffecten:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->advanced-options-header->
+#. description
+msgid "Advanced options:"
+msgstr "Geavanceerde opties:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->fortune-params->description
+msgid "Parameters for fortune:"
+msgstr "Parameters voor fortune:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->fortune-params->tooltip
+msgid "E.g. -s, etc.  See README for more info."
+msgstr "Bijv. -s, enz. Zie README voor meer informatie."
+
+#. quoteOfTheDay@tinnu->settings-schema.json->ignore-input-file->description
+msgid "Ignore input file"
+msgstr "Negeer invoerbestand"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->ignore-input-file->tooltip
+msgid ""
+"Use fortune's default behavior instead of an input file.  See README for "
+"more info."
+msgstr ""
+"Gebruik de standaardgedraging van fortune in plaats van een invoerbestand. "
+"Zie README voor meer informatie."
