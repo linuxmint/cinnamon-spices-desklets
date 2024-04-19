@@ -9,9 +9,9 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2024-02-18 14:37-0500\n"
-"PO-Revision-Date: 2023-09-03 14:16-0400\n"
+"PO-Revision-Date: 2024-04-19 15:39+0200\n"
 "Last-Translator: qadzek\n"
-"Language-Team: Dutch <nl@li.org>\n"
+"Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -108,7 +108,6 @@ msgid "Last updated"
 msgstr "Laatst bijgewerkt"
 
 #: 5.4/desklet.js:871
-#, fuzzy
 msgid "No Data Available"
 msgstr "Geen gegevens beschikbaar"
 
@@ -364,12 +363,10 @@ msgid "Snow"
 msgstr "Sneeuw"
 
 #: 5.4/drivers/meteoblue.js:160 5.4/drivers/wxbase.js:340
-#, fuzzy
 msgid "Snow Showers"
 msgstr "Sneeuwbuien"
 
 #: 5.4/drivers/meteoblue.js:161 5.4/drivers/wxbase.js:299
-#, fuzzy
 msgid "Mixed Rain and Snow"
 msgstr "Afwisselende regen en sneeuw"
 
@@ -399,14 +396,12 @@ msgid "Drizzle: Dense Intensity"
 msgstr "Motregen: dichte intensiteit"
 
 #: 5.4/drivers/openmeteo.js:131
-#, fuzzy
 msgid "Freezing Drizzle: Light Intensity"
-msgstr "Opvriezende motregen"
+msgstr "Aanvriezende motregen: Lichte intensiteit"
 
 #: 5.4/drivers/openmeteo.js:132
-#, fuzzy
 msgid "Freezing Drizzle: Dense Intensity"
-msgstr "Opvriezende motregen"
+msgstr "Aanvriezende motregen: dichte intensiteit"
 
 #: 5.4/drivers/openmeteo.js:133
 msgid "Rain: Slight Intensity"
@@ -441,9 +436,8 @@ msgid "Snow Fall: Heavy Intensity"
 msgstr "Sneeuwval: sterke intensiteit"
 
 #: 5.4/drivers/openmeteo.js:141
-#, fuzzy
 msgid "Snow Grains"
-msgstr "Sneeuwvlagen"
+msgstr "Sneeuwkorrels"
 
 #: 5.4/drivers/openmeteo.js:142
 msgid "Rain Showers: Slight"
@@ -458,12 +452,10 @@ msgid "Rain Showers: Violent"
 msgstr "Regenbuien: hevig"
 
 #: 5.4/drivers/openmeteo.js:145
-#, fuzzy
 msgid "Slight Snow Showers"
-msgstr "Lichte Sneeuwbui"
+msgstr "Lichte Sneeuwbuien"
 
 #: 5.4/drivers/openmeteo.js:146
-#, fuzzy
 msgid "Heavy Snow Showers"
 msgstr "Zware sneeuwbuien"
 
@@ -472,12 +464,10 @@ msgid "Thunderstorm With Slight Hail"
 msgstr "Onweer met lichte hagel"
 
 #: 5.4/drivers/openmeteo.js:149
-#, fuzzy
 msgid "Thunderstorm With Heavy Hail"
 msgstr "Onweer met hevige hagel"
 
 #: 5.4/drivers/owm.js:76 5.4/drivers/owmfree.js:40
-#, fuzzy
 msgid "Invalid location format"
 msgstr "Ongeldig locatieformaat"
 
@@ -487,7 +477,6 @@ msgstr "Sneeuwstorm"
 
 #: 5.4/drivers/weatherapi.js:246 5.4/drivers/weatherstack.js:235
 #: 5.4/drivers/wxbase.js:309
-#, fuzzy
 msgid "Blowing Snow"
 msgstr "Stuifsneeuw"
 
@@ -498,66 +487,56 @@ msgstr "Helder"
 
 #: 5.4/drivers/weatherapi.js:250 5.4/drivers/weatherstack.js:239
 #: 5.4/drivers/wxbase.js:302
-#, fuzzy
 msgid "Freezing Drizzle"
-msgstr "Opvriezende motregen"
+msgstr "Aanvriezende motregen"
 
 #: 5.4/drivers/weatherapi.js:251 5.4/drivers/weatherstack.js:240
-#, fuzzy
 msgid "Freezing Fog"
-msgstr "Aanvriezende regen"
+msgstr "Aanvriezende mist"
 
 #: 5.4/drivers/weatherapi.js:252 5.4/drivers/weatherstack.js:241
-#, fuzzy
 msgid "Heavy Freezing Drizzle"
-msgstr "Opvriezende motregen"
+msgstr "Hevig aanvriezende motregen"
 
 #: 5.4/drivers/weatherapi.js:254 5.4/drivers/weatherstack.js:243
-#, fuzzy
 msgid "Heavy Rain at Times"
-msgstr "Zware regen"
+msgstr "Zware regen met momenten"
 
 #: 5.4/drivers/weatherapi.js:256
 msgid "Ice Pellets"
 msgstr "Ijskorrels"
 
 #: 5.4/drivers/weatherapi.js:257 5.4/drivers/weatherstack.js:244
-#, fuzzy
 msgid "Light Drizzle"
-msgstr "Motregen"
+msgstr "Lichte motregen"
 
 #: 5.4/drivers/weatherapi.js:258 5.4/drivers/weatherstack.js:245
-#, fuzzy
 msgid "Light Freezing Rain"
-msgstr "Aanvriezende regen"
+msgstr "Licht aanvriezende regen"
 
 #: 5.4/drivers/weatherapi.js:261
 msgid "Light Showers of Ice Pellets"
 msgstr "Lichte regen van ijskorrels"
 
 #: 5.4/drivers/weatherapi.js:262
-#, fuzzy
 msgid "Light Sleet"
-msgstr "Lichte sneeuw"
+msgstr "Lichte ijzel"
 
 #: 5.4/drivers/weatherapi.js:263
-#, fuzzy
 msgid "Light Sleet Showers"
-msgstr "Lichte Sneeuwbui"
+msgstr "Lichte ijzelbuien"
 
 #: 5.4/drivers/weatherapi.js:265 5.4/drivers/wxbase.js:308
-#, fuzzy
 msgid "Light Snow Showers"
-msgstr "Lichte Sneeuwbui"
+msgstr "Lichte sneeuwbuien"
 
 #: 5.4/drivers/weatherapi.js:267
 msgid "Moderate or Heavy Freezing Rain"
 msgstr "Matige of zware aanvriezende regen"
 
 #: 5.4/drivers/weatherapi.js:268
-#, fuzzy
 msgid "Moderate or Heavy Rain Shower"
-msgstr "Zware regenbuien"
+msgstr "Matige of zware regenbuien"
 
 #: 5.4/drivers/weatherapi.js:269
 msgid "Moderate or Heavy Rain With Thunder"
@@ -576,53 +555,46 @@ msgid "Moderate or Heavy Sleet Showers"
 msgstr "Matige of zware ijzelbuien"
 
 #: 5.4/drivers/weatherapi.js:273
-#, fuzzy
 msgid "Moderate or Heavy Snow Showers"
-msgstr "Zware sneeuwbuien"
+msgstr "Matige of zware sneeuwbuien"
 
 #: 5.4/drivers/weatherapi.js:274
 msgid "Moderate or Heavy Snow With Thunder"
 msgstr "Matige of zware sneeuw met onweer"
 
 #: 5.4/drivers/weatherapi.js:275 5.4/drivers/weatherstack.js:248
-#, fuzzy
 msgid "Moderate Rain"
-msgstr "Zware regen"
+msgstr "Matige regen"
 
 #: 5.4/drivers/weatherapi.js:276 5.4/drivers/weatherstack.js:249
 msgid "Moderate Rain at Times"
 msgstr "Af en toe matige regen"
 
 #: 5.4/drivers/weatherapi.js:277
-#, fuzzy
 msgid "Moderate Snow"
-msgstr "Zware sneeuw"
+msgstr "Matige sneeuw"
 
 #: 5.4/drivers/weatherapi.js:280 5.4/drivers/weatherstack.js:252
-#, fuzzy
 msgid "Patchy Freezing Drizzle Possible"
-msgstr "Opvriezende motregen"
+msgstr "Flarden aanvriezende motregen mogelijk"
 
 #: 5.4/drivers/weatherapi.js:281
-#, fuzzy
 msgid "Patchy Heavy Snow"
-msgstr "Zware sneeuw"
+msgstr "Flarden zware sneeuw"
 
 #: 5.4/drivers/weatherapi.js:282 5.4/drivers/weatherstack.js:253
 msgid "Patchy Light Drizzle"
-msgstr "Lichte motregen"
+msgstr "Flarden lichte motregen"
 
 #: 5.4/drivers/weatherapi.js:283 5.4/drivers/weatherstack.js:254
-#, fuzzy
 msgid "Patchy Light Rain"
-msgstr "Lichte regen"
+msgstr "Flarden lichte regen"
 
 #: 5.4/drivers/weatherapi.js:284
 msgid "Patchy Light Rain With Thunder"
-msgstr "Lichte regen met onweer"
+msgstr "Flarden lichte regen met onweer"
 
 #: 5.4/drivers/weatherapi.js:285
-#, fuzzy
 msgid "Patchy Light Snow"
 msgstr "Flarden lichte sneeuw"
 
@@ -651,14 +623,12 @@ msgid "Thundery Outbreaks Possible"
 msgstr "Onweersbuien mogelijk"
 
 #: 5.4/drivers/weatherapi.js:293
-#, fuzzy
 msgid "Torrential Rain Shower"
-msgstr "Zware regenbuien"
+msgstr "Stortregens"
 
 #: 5.4/drivers/wunderground.js:47
-#, fuzzy
 msgid "Invalid station ID"
-msgstr "Verkrijg getoonde locatie van"
+msgstr "Ongeldig ID van station"
 
 #: 5.4/drivers/wunderground.js:51
 msgid "Invalid geocode"
@@ -733,7 +703,6 @@ msgid "Tornado"
 msgstr "Wervelstorm"
 
 #: 5.4/drivers/wxbase.js:295
-#, fuzzy
 msgid "Tropical Storm"
 msgstr "Tropische storm"
 
@@ -742,7 +711,6 @@ msgid "Hurricane"
 msgstr "Orkaan"
 
 #: 5.4/drivers/wxbase.js:297
-#, fuzzy
 msgid "Severe Thunderstorms"
 msgstr "Zware onweersbuien"
 
@@ -751,24 +719,20 @@ msgid "Thunderstorms"
 msgstr "Onweersbuien"
 
 #: 5.4/drivers/wxbase.js:300
-#, fuzzy
 msgid "Mixed Rain and Sleet"
-msgstr "Regen en natte sneeuw"
+msgstr "Gemengde regen en ijzel"
 
 #: 5.4/drivers/wxbase.js:301
-#, fuzzy
 msgid "Mixed Snow and Sleet"
-msgstr "Sneeuw en ijzel"
+msgstr "Gemengde sneeuw en ijzel"
 
 #: 5.4/drivers/wxbase.js:304
-#, fuzzy
 msgid "Freezing Rain"
 msgstr "Aanvriezende regen"
 
 #: 5.4/drivers/wxbase.js:307
-#, fuzzy
 msgid "Snow Flurries"
-msgstr "Sneeuwvlagen"
+msgstr "Sneeuwbuitjes"
 
 #: 5.4/drivers/wxbase.js:311 3.0/desklet.js:1577
 msgid "Hail"
@@ -803,36 +767,30 @@ msgid "Cold"
 msgstr "Koud"
 
 #: 5.4/drivers/wxbase.js:321 5.4/drivers/wxbase.js:322
-#, fuzzy
 msgid "Mostly Cloudy"
 msgstr "Overwegend bewolkt"
 
 #: 5.4/drivers/wxbase.js:329
-#, fuzzy
 msgid "Mixed Rain and Hail"
-msgstr "Regen en hagel"
+msgstr "Gemengd regen en hagel"
 
 #: 5.4/drivers/wxbase.js:330 3.0/desklet.js:1596
 msgid "Hot"
 msgstr "Warm"
 
 #: 5.4/drivers/wxbase.js:331
-#, fuzzy
 msgid "Isolated Thunderstorms"
-msgstr "Plaatselijke onweersbuien"
+msgstr "Geïsoleerde onweersbuien"
 
 #: 5.4/drivers/wxbase.js:332
-#, fuzzy
 msgid "Scattered Thunderstorms"
 msgstr "Verspreide onweersbuien"
 
 #: 5.4/drivers/wxbase.js:333 5.4/drivers/wxbase.js:334
-#, fuzzy
 msgid "Scattered Showers"
 msgstr "Verspreide regenbuien"
 
 #: 5.4/drivers/wxbase.js:336
-#, fuzzy
 msgid "Scattered Snow Showers"
 msgstr "Verspreide sneeuwbuien"
 
@@ -841,12 +799,10 @@ msgid "Thundershowers"
 msgstr "Onweersbuien"
 
 #: 5.4/drivers/wxbase.js:341
-#, fuzzy
 msgid "Isolated Thundershowers"
-msgstr "Lokale onweersbuien"
+msgstr "Geïsoleerde onweersbuien"
 
 #: 5.4/drivers/wxbase.js:342
-#, fuzzy
 msgid "Not Available"
 msgstr "Niet beschikbaar"
 
@@ -1000,33 +956,28 @@ msgid "Open-Meteo Non-commercial"
 msgstr "Open-Meteo Non-commercial"
 
 #. 5.4->settings-schema.json->webservice->options
-#, fuzzy
 msgid "Open Weather Map Free"
-msgstr "World Weather Online (vereist API-sleutel)"
+msgstr "Open Weather Map Free"
 
 #. 5.4->settings-schema.json->webservice->options
-#, fuzzy
 msgid "Open Weather Map"
-msgstr "World Weather Online (vereist API-sleutel)"
+msgstr "Open Weather Map"
 
 #. 5.4->settings-schema.json->webservice->options
-#, fuzzy
 msgid "Weather API Free"
-msgstr "Het weer"
+msgstr "Weather API Free"
 
 #. 5.4->settings-schema.json->webservice->options
-#, fuzzy
 msgid "weatherstack"
-msgstr "Het weer"
+msgstr "weatherstack"
 
 #. 5.4->settings-schema.json->webservice->options
 msgid "World Weather Online"
 msgstr "World Weather Online"
 
 #. 5.4->settings-schema.json->webservice->options
-#, fuzzy
 msgid "Weather Underground"
-msgstr "Instellingen voor het weer"
+msgstr "Weather Underground"
 
 #. 5.4->settings-schema.json->webservice->tooltip
 #. 3.0->settings-schema.json->webservice->tooltip
@@ -1066,9 +1017,8 @@ msgstr "Locatie hier instellen"
 #. 5.4->settings-schema.json->weatherstack__apikey->description
 #. 5.4->settings-schema.json->wwo__apikey->description
 #. 5.4->settings-schema.json->wunderground__apikey->description
-#, fuzzy
 msgid "API key (required)"
-msgstr "Forecast.io (vereist API-sleutel)"
+msgstr "API-sleutel (vereist)"
 
 #. 5.4->settings-schema.json->meteoblue__apikey->tooltip
 msgid "Enter your API key for meteoblue"
@@ -1099,18 +1049,16 @@ msgid "Station ID"
 msgstr "Station ID"
 
 #. 5.4->settings-schema.json->wunderground__stationID->tooltip
-#, fuzzy
 msgid "Set your station ID here"
-msgstr "Locatie hier instellen"
+msgstr "ID van station hier instellen"
 
 #. 5.4->settings-schema.json->wunderground__geocode->description
 msgid "Geocode"
 msgstr "Geocode"
 
 #. 5.4->settings-schema.json->wunderground__geocode->tooltip
-#, fuzzy
 msgid "Set your geocode here"
-msgstr "Locatie hier instellen"
+msgstr "Geocode hier instellen"
 
 #. 5.4->settings-schema.json->wunderground__apikey->tooltip
 msgid "Enter your API key for Weather Underground"
@@ -1257,9 +1205,8 @@ msgid "Region"
 msgstr "Regio"
 
 #. 5.4->settings-schema.json->display__meta__region->tooltip
-#, fuzzy
 msgid "Check to display the region"
-msgstr "Land tonen"
+msgstr "Vink aan om de regio weer te geven"
 
 #. 5.4->settings-schema.json->display__cc__weather->description
 #. 3.0->settings-schema.json->display__cc__weather->description
@@ -1739,33 +1686,28 @@ msgstr ""
 "wanneer de desklet van grootte verandert."
 
 #. 3.0->settings-schema.json->webservice->options
-#, fuzzy
 msgid "Open Weather Map (requires API key)"
-msgstr "World Weather Online (vereist API-sleutel)"
+msgstr "Open Weather Map (vereist API-sleutel)"
 
 #. 3.0->settings-schema.json->webservice->options
-#, fuzzy
 msgid "Open Weather Map Free (requires API key)"
-msgstr "World Weather Online (vereist API-sleutel)"
+msgstr "Open Weather Map Free (vereist API-sleutel)"
 
 #. 3.0->settings-schema.json->webservice->options
 msgid "Wunderground (requires API key)"
 msgstr "Wunderground (vereist API-sleutel)"
 
 #. 3.0->settings-schema.json->webservice->options
-#, fuzzy
 msgid "World Weather Online (deprecated) (requires API key)"
-msgstr "World Weather Online (vereist API-sleutel)"
+msgstr "World Weather Online (verouderd) (vereist API-sleutel)"
 
 #. 3.0->settings-schema.json->webservice->options
-#, fuzzy
 msgid "World Weather Online Premium (requires API key)"
-msgstr "World Weather Online (vereist API-sleutel)"
+msgstr "World Weather Online Premium (vereist API-sleutel)"
 
 #. 3.0->settings-schema.json->webservice->options
-#, fuzzy
 msgid "APIXU (requires API key)"
-msgstr "Forecast.io (vereist API-sleutel)"
+msgstr "APIXU (vereist API-sleutel)"
 
 #. 3.0->settings-schema.json->webservice->options
 msgid "Forecast.io (requires API key)"
