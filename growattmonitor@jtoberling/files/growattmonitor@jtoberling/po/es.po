@@ -1,0 +1,85 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: growattmonitor@jtoberling 0.0.4\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-04-29 14:50-0400\n"
+"PO-Revision-Date: 2024-04-29 19:44-0400\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: desklet.js:76
+#, javascript-format
+msgid ""
+"'%s' settings..\n"
+"Please enter password:"
+msgstr ""
+"'%s' ajustes..\n"
+"Por favor, introduzca la contraseña:"
+
+#. metadata.json->name
+#: desklet.js:92
+msgid "Growatt Monitor"
+msgstr "Monitor Growatt"
+
+#: desklet.js:306
+msgid "LOGIN_ERROR: Check credentials configuration!"
+msgstr "LOGIN_ERROR: ¡Comprobar configuración de credenciales!"
+
+#. metadata.json->description
+msgid "Growatt Solar Monitor"
+msgstr "Monitor solar Growatt"
+
+#. settings-schema.json->starttime->description
+msgid "Start time of power display"
+msgstr "Hora de inicio de la visualización de energía"
+
+#. settings-schema.json->starttime->units
+#. settings-schema.json->endtime->units
+msgid "Hours"
+msgstr "Horas"
+
+#. settings-schema.json->endtime->description
+msgid "End time of power display"
+msgstr "Hora de finalización de la visualización de energía"
+
+#. settings-schema.json->delay->description
+msgid "Referesh interva"
+msgstr "Intervalo de actualización"
+
+#. settings-schema.json->delay->units
+msgid "seconds"
+msgstr "segundos"
+
+#. settings-schema.json->server->description
+msgid "Growatt server"
+msgstr "Servidor Growatt"
+
+#. settings-schema.json->server->tooltip
+msgid "https://server.growatt.com"
+msgstr "https://server.growatt.com"
+
+#. settings-schema.json->plantId->description
+msgid "Plant Id (empty for default)"
+msgstr "Id de Planta (vacío por defecto)"
+
+#. settings-schema.json->account->description
+msgid "Growatt Account"
+msgstr "Cuenta Growatt"
+
+#. settings-schema.json->account->tooltip
+msgid "Username"
+msgstr "Nombre de usuario"
+
+#. settings-schema.json->savepassword->description
+msgid "Enter and save password ..."
+msgstr "Introducir y guardar contraseña ..."
