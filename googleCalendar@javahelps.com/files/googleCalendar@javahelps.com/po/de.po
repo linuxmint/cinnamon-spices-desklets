@@ -5,13 +5,14 @@
 #
 msgid ""
 msgstr ""
-"MIME-Version: 1.0\n"
 "Project-Id-Version: googleCalendar@javahelps.com\n"
-"Language: de\n"
-"POT-Creation-Date: 2017-09-17 01:06+0200\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-04-29 14:50-0400\n"
 "PO-Revision-Date: 2020-10-05 12:34+0200\n"
 "Last-Translator: michi.schweitzer@gmail.com\n"
 "Language-Team: michi.schweitzer@gmail.com\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,6 +20,7 @@ msgstr ""
 "X-Generator: Poedit 2.3\n"
 
 #. metadata.json->name
+#. settings-schema.json->page_gcalendar->title
 #: desklet.js:104
 msgid "Google Calendar"
 msgstr "Google Kalender"
@@ -27,43 +29,43 @@ msgstr "Google Kalender"
 msgid "Open Google Calendar"
 msgstr "Google Kalender öffnen"
 
-#: desklet.js:227
+#: desklet.js:240
 msgid "No events found"
 msgstr "Keine Ereignisse gefunden"
 
-#: desklet.js:376
+#: desklet.js:389
 msgid "gcalendar is not authorized"
 msgstr "gcalendar ist nicht autorisiert"
 
-#: desklet.js:378
+#: desklet.js:391
 msgid "gcalendar token expired"
 msgstr "gcalendar Token ist abgelaufen"
 
-#: desklet.js:383
+#: desklet.js:396
 msgid "Execute: "
 msgstr "Ausführen: "
 
-#: desklet.js:396
+#: desklet.js:409
 msgid "Unknown Error"
 msgstr "Unbekannter Fehler"
 
-#: desklet.js:399
+#: desklet.js:412
 msgid "Install gcalendar to use this desklet."
 msgstr "Installieren Sie gcalendar, um dieses Desklet zu verwenden."
 
-#: desklet.js:400
+#: desklet.js:413
 msgid "Visit: "
 msgstr "Besuchen Sie: "
 
-#: desklet.js:438
+#: desklet.js:451
 msgid "Unable to retrieve events..."
 msgstr "Ereignisse können nicht abgerufen werden ..."
 
-#: lib/utility.js:165 lib/xdate.js:350
+#: lib/utility.js:158 lib/xdate.js:350
 msgid "AM"
 msgstr "AM"
 
-#: lib/utility.js:165 lib/xdate.js:351
+#: lib/utility.js:158 lib/xdate.js:351
 msgid "PM"
 msgstr "PM"
 
@@ -223,9 +225,15 @@ msgstr "Sa."
 
 #. metadata.json->description
 msgid "A desklet that displays your agenda based on Google Calendar"
-msgstr "Ein Desklet, das Ihren Terminplan basierend auf Google Kalender anzeigt"
+msgstr ""
+"Ein Desklet, das Ihren Terminplan basierend auf Google Kalender anzeigt"
 
-#. settings-schema.json->top->description
+#. settings-schema.json->page_style->title
+#, fuzzy
+msgid "Desklet Style"
+msgstr "Desklet-Stil"
+
+#. settings-schema.json->display0->description
 msgid "Google Calendar authentication"
 msgstr "Google Kalender-Authentifizierung"
 
@@ -234,16 +242,24 @@ msgid "Client Id"
 msgstr "Client ID"
 
 #. settings-schema.json->clientId->tooltip
-msgid "Enter your Google calendar project client id. Leave it empty to use the default client id."
-msgstr "Geben Sie die Client-ID ihres Google Kalenderprojekts ein. Leer lassen, für die Client-ID des Desklets"
+msgid ""
+"Enter your Google calendar project client id. Leave it empty to use the "
+"default client id."
+msgstr ""
+"Geben Sie die Client-ID ihres Google Kalenderprojekts ein. Leer lassen, für "
+"die Client-ID des Desklets"
 
 #. settings-schema.json->clientSecret->description
 msgid "Client secret"
 msgstr "Client secret"
 
 #. settings-schema.json->clientSecret->tooltip
-msgid "Enter your Google calendar project client secret. Leave it empty to use the default client secret."
-msgstr "Geben Sie das Client-Secret ihres Google Kalenderprojekts ein. Leer lassen, für das Client-Secret des Desklets"
+msgid ""
+"Enter your Google calendar project client secret. Leave it empty to use the "
+"default client secret."
+msgstr ""
+"Geben Sie das Client-Secret ihres Google Kalenderprojekts ein. Leer lassen, "
+"für das Client-Secret des Desklets"
 
 #. settings-schema.json->display1->description
 msgid "Calendar configuration"
@@ -262,8 +278,12 @@ msgid "Fill in the list bellow with the names of all my calendars"
 msgstr "Die Liste unten mit den Namen meiner Kalender befüllen"
 
 #. settings-schema.json->allNamesButton->tooltip
-msgid "Click to fill in the list bellow with the names of all your calendars. It may take a little while."
-msgstr "Klicken Sie hier, um die Liste unten mit den Namen ihrer Kalender zu befüllen. Das kann eine Weile dauern."
+msgid ""
+"Click to fill in the list bellow with the names of all your calendars. It "
+"may take a little while."
+msgstr ""
+"Klicken Sie hier, um die Liste unten mit den Namen ihrer Kalender zu "
+"befüllen. Das kann eine Weile dauern."
 
 #. settings-schema.json->calendarNames->description
 msgid "Display these calendars:"
@@ -271,7 +291,9 @@ msgstr "Diese Kalender anzeigen:"
 
 #. settings-schema.json->calendarNames->tooltip
 msgid "If you want to diplay a calendar, set it to TRUE (or check its box)."
-msgstr "Wenn Sie einen Kalender anzeigen möchten, setzen Sie ihn diesn Wert auf  TRUE (oder aktivieren Sie das Kontrollkästchen)."
+msgstr ""
+"Wenn Sie einen Kalender anzeigen möchten, setzen Sie ihn diesn Wert auf  "
+"TRUE (oder aktivieren Sie das Kontrollkästchen)."
 
 #. settings-schema.json->calendarNames->columns->title
 msgid "Calendar"
@@ -300,10 +322,6 @@ msgstr "Aktualisieren alle:"
 #. settings-schema.json->delay->units
 msgid "minutes"
 msgstr "Minuten"
-
-#. settings-schema.json->display2->description
-msgid "Desklet style"
-msgstr "Desklet-Stil"
 
 #. settings-schema.json->date_format->description
 msgid "Date format"
@@ -371,7 +389,9 @@ msgstr "Farbe für ganztägige Ereignisse"
 
 #. settings-schema.json->alldaytextcolor->tooltip
 msgid "Click the button to select a new all day event text color"
-msgstr "Klicken Sie auf die Schaltfläche, um eine neue Farbe für ganztägige Ereignisse auszuwählen"
+msgstr ""
+"Klicken Sie auf die Schaltfläche, um eine neue Farbe für ganztägige "
+"Ereignisse auszuwählen"
 
 #. settings-schema.json->bgcolor->description
 msgid "Background color"
@@ -379,7 +399,8 @@ msgstr "Hintergrundfarbe"
 
 #. settings-schema.json->bgcolor->tooltip
 msgid "Click the button to select a new background color"
-msgstr "Klicken Sie auf die Schaltfläche, um eine neue Hintergrundfarbe auszuwählen"
+msgstr ""
+"Klicken Sie auf die Schaltfläche, um eine neue Hintergrundfarbe auszuwählen"
 
 #. settings-schema.json->diff_calendar->description
 msgid "Differentiate calendars"
@@ -403,7 +424,9 @@ msgstr "Textfarbe Ortsangabe"
 
 #. settings-schema.json->location_color->tooltip
 msgid "Click the button to select a new location text color"
-msgstr "Klicken Sie auf die Schaltfläche, um eine neue Textfarbe für die Ortsangabe auszuwählen"
+msgstr ""
+"Klicken Sie auf die Schaltfläche, um eine neue Textfarbe für die Ortsangabe "
+"auszuwählen"
 
 #. settings-schema.json->cornerradius->units
 msgid "px"

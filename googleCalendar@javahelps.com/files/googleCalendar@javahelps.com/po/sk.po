@@ -6,19 +6,21 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-10 18:45+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-04-29 14:50-0400\n"
 "PO-Revision-Date: 2021-02-10 19:25+0100\n"
+"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: \n"
+"Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.4.1\n"
-"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
-"Language: sk\n"
 
 #. metadata.json->name
+#. settings-schema.json->page_gcalendar->title
 #: desklet.js:104
 msgid "Google Calendar"
 msgstr "Kalendár Google"
@@ -27,43 +29,43 @@ msgstr "Kalendár Google"
 msgid "Open Google Calendar"
 msgstr "Otvoriť kalendár Google"
 
-#: desklet.js:227
+#: desklet.js:240
 msgid "No events found"
 msgstr "Nenašli sa žiadne udalosti"
 
-#: desklet.js:376
+#: desklet.js:389
 msgid "gcalendar is not authorized"
 msgstr "Program gcalendar nie je autorizovaný"
 
-#: desklet.js:378
+#: desklet.js:391
 msgid "gcalendar token expired"
 msgstr "Token programu gcalendar vypršal"
 
-#: desklet.js:383
+#: desklet.js:396
 msgid "Execute: "
 msgstr "Spustiť: "
 
-#: desklet.js:396
+#: desklet.js:409
 msgid "Unknown Error"
 msgstr "Neznáma chyba"
 
-#: desklet.js:399
+#: desklet.js:412
 msgid "Install gcalendar to use this desklet."
 msgstr "Pre použitie tohto deskletu nainštalujte program gcalendar."
 
-#: desklet.js:400
+#: desklet.js:413
 msgid "Visit: "
 msgstr "Navštíviť: "
 
-#: desklet.js:438
+#: desklet.js:451
 msgid "Unable to retrieve events..."
 msgstr "Nie je možné získať udalosti..."
 
-#: lib/utility.js:165 lib/xdate.js:350
+#: lib/utility.js:158 lib/xdate.js:350
 msgid "AM"
 msgstr "dopoludnia"
 
-#: lib/utility.js:165 lib/xdate.js:351
+#: lib/utility.js:158 lib/xdate.js:351
 msgid "PM"
 msgstr "popoludní"
 
@@ -221,7 +223,16 @@ msgstr "Pi"
 msgid "Sat"
 msgstr "So"
 
-#. settings-schema.json->top->description
+#. metadata.json->description
+msgid "A desklet that displays your agenda based on Google Calendar"
+msgstr "Desklet, ktorý zobrazuje vašu agendu postavenú na kalendári Google"
+
+#. settings-schema.json->page_style->title
+#, fuzzy
+msgid "Desklet Style"
+msgstr "Štýl deskletu"
+
+#. settings-schema.json->display0->description
 msgid "Google Calendar authentication"
 msgstr "Overenie totožnosti kalendára Google"
 
@@ -310,10 +321,6 @@ msgstr "Aktualizovať každých:"
 #. settings-schema.json->delay->units
 msgid "minutes"
 msgstr "minúty"
-
-#. settings-schema.json->display2->description
-msgid "Desklet style"
-msgstr "Štýl deskletu"
 
 #. settings-schema.json->date_format->description
 msgid "Date format"
@@ -426,7 +433,3 @@ msgstr "Polomer rohu"
 #. settings-schema.json->cornerradius->tooltip
 msgid "Radius for rounding the desklet's corners"
 msgstr "Polomer zaoblenia rohov deskletu"
-
-#. metadata.json->description
-msgid "A desklet that displays your agenda based on Google Calendar"
-msgstr "Desklet, ktorý zobrazuje vašu agendu postavenú na kalendári Google"

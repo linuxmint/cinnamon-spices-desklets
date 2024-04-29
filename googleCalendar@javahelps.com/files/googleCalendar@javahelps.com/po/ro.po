@@ -5,17 +5,19 @@
 #
 msgid ""
 msgstr ""
-"Content-Transfer-Encoding: 8bit\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language: ro\n"
-"Language-Team: none\n"
-"Last-Translator: Automatically generated\n"
-"MIME-Version: 1.0\n"
-"PO-Revision-Date: 2021-11-14 20:26-0500\n"
-"POT-Creation-Date: 2021-11-14 20:26-0500\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-04-29 14:50-0400\n"
+"PO-Revision-Date: 2021-11-14 20:26-0500\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
 
 #. metadata.json->name
 #. settings-schema.json->page_gcalendar->title
@@ -27,45 +29,43 @@ msgstr "Google Calendar"
 msgid "Open Google Calendar"
 msgstr "Deschide Google Calendar"
 
-#: desklet.js:237
+#: desklet.js:240
 msgid "No events found"
 msgstr "Nu s-au găsit evenimente"
 
-#: desklet.js:386
+#: desklet.js:389
 msgid "gcalendar is not authorized"
 msgstr "gcalendar nu este autorizat"
 
-#: desklet.js:388
+#: desklet.js:391
 msgid "gcalendar token expired"
 msgstr "token gcalendar expirat"
 
-#: desklet.js:393
+#: desklet.js:396
 msgid "Execute: "
 msgstr "Execută:"
 
-#: desklet.js:406
+#: desklet.js:409
 msgid "Unknown Error"
 msgstr "Eroare necunoscută"
 
-#: desklet.js:409
+#: desklet.js:412
 msgid "Install gcalendar to use this desklet."
 msgstr "Instalează gcalendar pentru a utiliza acest desklet."
 
-#: desklet.js:410
+#: desklet.js:413
 msgid "Visit: "
 msgstr "Vizitează:"
 
-#: desklet.js:448
+#: desklet.js:451
 msgid "Unable to retrieve events..."
 msgstr "Nu se pot prelua evenimente..."
 
-#: lib/utility.js:156
-#: lib/xdate.js:350
+#: lib/utility.js:158 lib/xdate.js:350
 msgid "AM"
 msgstr "AM"
 
-#: lib/utility.js:156
-#: lib/xdate.js:351
+#: lib/utility.js:158 lib/xdate.js:351
 msgid "PM"
 msgstr "PM"
 
@@ -240,16 +240,24 @@ msgid "Client Id"
 msgstr "ID client"
 
 #. settings-schema.json->clientId->tooltip
-msgid "Enter your Google calendar project client id. Leave it empty to use the default client id."
-msgstr "Introdu ID-ul de client al proiectului de calendar Google. Lasă-l gol pentru a utiliza ID-ul de client implicit."
+msgid ""
+"Enter your Google calendar project client id. Leave it empty to use the "
+"default client id."
+msgstr ""
+"Introdu ID-ul de client al proiectului de calendar Google. Lasă-l gol pentru "
+"a utiliza ID-ul de client implicit."
 
 #. settings-schema.json->clientSecret->description
 msgid "Client secret"
 msgstr "Secretul clientului"
 
 #. settings-schema.json->clientSecret->tooltip
-msgid "Enter your Google calendar project client secret. Leave it empty to use the default client secret."
-msgstr "Introdu secretul de client al proiectului de calendar Google. Lasă-l gol pentru a utiliza secretul de client implicit."
+msgid ""
+"Enter your Google calendar project client secret. Leave it empty to use the "
+"default client secret."
+msgstr ""
+"Introdu secretul de client al proiectului de calendar Google. Lasă-l gol "
+"pentru a utiliza secretul de client implicit."
 
 #. settings-schema.json->display1->description
 msgid "Calendar configuration"
@@ -268,8 +276,12 @@ msgid "Fill in the list bellow with the names of all my calendars"
 msgstr "Completează lista de mai jos cu numele tuturor calendarelor mele"
 
 #. settings-schema.json->allNamesButton->tooltip
-msgid "Click to fill in the list bellow with the names of all your calendars. It may take a little while."
-msgstr "Fă clic pentru a completa lista de mai jos cu numele tuturor calendarelor tale. Este posibil să dureze puțin timp."
+msgid ""
+"Click to fill in the list bellow with the names of all your calendars. It "
+"may take a little while."
+msgstr ""
+"Fă clic pentru a completa lista de mai jos cu numele tuturor calendarelor "
+"tale. Este posibil să dureze puțin timp."
 
 #. settings-schema.json->calendarNames->description
 msgid "Display these calendars:"
@@ -277,7 +289,9 @@ msgstr "Afișează aceste calendare:"
 
 #. settings-schema.json->calendarNames->tooltip
 msgid "If you want to diplay a calendar, set it to TRUE (or check its box)."
-msgstr "Dacă dorești să afișezi un calendar, setează-l la ADEVĂRAT (sau bifează caseta corespunzătoare)."
+msgstr ""
+"Dacă dorești să afișezi un calendar, setează-l la ADEVĂRAT (sau bifează "
+"caseta corespunzătoare)."
 
 #. settings-schema.json->calendarNames->columns->title
 msgid "Calendar"
@@ -373,7 +387,9 @@ msgstr "Culoarea textului pentru toată ziua"
 
 #. settings-schema.json->alldaytextcolor->tooltip
 msgid "Click the button to select a new all day event text color"
-msgstr "Fă clic pe buton pentru a selecta o nouă culoare a textului pentru evenimentul de toată ziua"
+msgstr ""
+"Fă clic pe buton pentru a selecta o nouă culoare a textului pentru "
+"evenimentul de toată ziua"
 
 #. settings-schema.json->bgcolor->description
 msgid "Background color"

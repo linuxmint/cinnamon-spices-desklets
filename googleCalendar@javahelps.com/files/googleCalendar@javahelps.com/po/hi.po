@@ -7,8 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-12 20:26-0500\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-04-29 14:50-0400\n"
 "PO-Revision-Date: 2023-02-12 20:26-0500\n"
 "Last-Translator: Manish Kumar <mkbhru@gmail.com>\n"
 "Language-Team: \n"
@@ -18,53 +19,56 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-#. metadata.json->name
 
+#. metadata.json->name
+#. settings-schema.json->page_gcalendar->title
 #: desklet.js:104
 msgid "Google Calendar"
 msgstr "Google कैलेंडर"
 
 #: desklet.js:107
-msgid "Google कैलेंडर खोलें"
+#, fuzzy
+msgid "Open Google Calendar"
+msgstr "Google कैलेंडर"
+
+#: desklet.js:240
+msgid "No events found"
 msgstr ""
 
-#: desklet.js:237
-msgid "कोई घटना नहीं मिली"
+#: desklet.js:389
+msgid "gcalendar is not authorized"
 msgstr ""
 
-#: desklet.js:386
-msgid "gcalendar प्राधिकृत नहीं है"
-msgstr ""
+#: desklet.js:391
+#, fuzzy
+msgid "gcalendar token expired"
+msgstr "gcalendar खाता आईडी"
 
-#: desklet.js:388
-msgid "gcalendar टोकन समाप्त हो गया"
-msgstr ""
-
-#: desklet.js:393
+#: desklet.js:396
 msgid "Execute: "
 msgstr "निष्पादित करें:"
 
-#: desklet.js:406
+#: desklet.js:409
 msgid "Unknown Error"
 msgstr "अज्ञात त्रुटि"
 
-#: desklet.js:409
+#: desklet.js:412
 msgid "Install gcalendar to use this desklet."
 msgstr "इस डेस्कलेट का उपयोग करने के लिए gcalendar इंस्टॉल करें."
 
-#: desklet.js:410
+#: desklet.js:413
 msgid "Visit: "
 msgstr "देंखे:"
 
-#: desklet.js:448
+#: desklet.js:451
 msgid "Unable to retrieve events..."
 msgstr "घटनाओं को पुनः प्राप्त करने में असमर्थ..."
 
-#: lib/utility.js:156 lib/xdate.js:350
+#: lib/utility.js:158 lib/xdate.js:350
 msgid "AM"
 msgstr "AM"
 
-#: lib/utility.js:156 lib/xdate.js:351
+#: lib/utility.js:158 lib/xdate.js:351
 msgid "PM"
 msgstr "PM"
 
@@ -243,8 +247,9 @@ msgid ""
 "Enter your Google calendar project client id. Leave it empty to use the "
 "default client id."
 msgstr ""
-"अपना Google कैलेंडर प्रोजेक्ट क्लाइंट आईडी दर्ज करें। उपयोग करने के लिए इसे खाली छोड़ दें"
-"डिफ़ॉल्ट क्लाइंट आईडी।"
+"अपना Google कैलेंडर प्रोजेक्ट क्लाइंट आईडी दर्ज करें। उपयोग करने के लिए इसे खाली छोड़ "
+"देंडिफ़ॉल्ट क्लाइंट आईडी।"
+
 #. settings-schema.json->clientSecret->description
 msgid "Client secret"
 msgstr "क्लाइंट सीक्रेट"
@@ -254,8 +259,9 @@ msgid ""
 "Enter your Google calendar project client secret. Leave it empty to use the "
 "default client secret."
 msgstr ""
-"अपना Google कैलेंडर प्रोजेक्ट क्लाइंट रहस्य दर्ज करें। उपयोग करने के लिए इसे खाली छोड़ दें"
-"डिफ़ॉल्ट ग्राहक रहस्य।"
+"अपना Google कैलेंडर प्रोजेक्ट क्लाइंट रहस्य दर्ज करें। उपयोग करने के लिए इसे खाली छोड़ "
+"देंडिफ़ॉल्ट ग्राहक रहस्य।"
+
 #. settings-schema.json->display1->description
 msgid "Calendar configuration"
 msgstr "कैलेंडर विन्यास"
@@ -277,15 +283,17 @@ msgid ""
 "Click to fill in the list bellow with the names of all your calendars. It "
 "may take a little while."
 msgstr ""
-"अपने सभी कैलेंडर के नामों के साथ नीचे दी गई सूची को भरने के लिए क्लिक करें। यह "
-"थोड़ा समय ले सकता है।"
+"अपने सभी कैलेंडर के नामों के साथ नीचे दी गई सूची को भरने के लिए क्लिक करें। यह थोड़ा समय ले "
+"सकता है।"
+
 #. settings-schema.json->calendarNames->description
 msgid "Display these calendars:"
 msgstr "ये कैलेंडर प्रदर्शित करें:"
 
 #. settings-schema.json->calendarNames->tooltip
 msgid "If you want to diplay a calendar, set it to TRUE (or check its box)."
-msgstr "यदि आप एक कैलेंडर प्रदर्शित करना चाहते हैं, इसे TRUE पर सेट करें (या इसके बॉक्स को चेक करें)।"
+msgstr ""
+"यदि आप एक कैलेंडर प्रदर्शित करना चाहते हैं, इसे TRUE पर सेट करें (या इसके बॉक्स को चेक करें)।"
 
 #. settings-schema.json->calendarNames->columns->title
 msgid "Calendar"
