@@ -6,8 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-14 20:26-0500\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-04-29 14:50-0400\n"
 "PO-Revision-Date: 2022-10-23 19:03+0200\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
@@ -28,43 +29,43 @@ msgstr "Google Kalender"
 msgid "Open Google Calendar"
 msgstr "Åbn Google Kalender"
 
-#: desklet.js:237
+#: desklet.js:240
 msgid "No events found"
 msgstr "Ingen begivenheder fundet"
 
-#: desklet.js:386
+#: desklet.js:389
 msgid "gcalendar is not authorized"
 msgstr "gcalendar er ikke godkendt"
 
-#: desklet.js:388
+#: desklet.js:391
 msgid "gcalendar token expired"
 msgstr "gcalendar-token er udløbet"
 
-#: desklet.js:393
+#: desklet.js:396
 msgid "Execute: "
 msgstr "Udfør: "
 
-#: desklet.js:406
+#: desklet.js:409
 msgid "Unknown Error"
 msgstr "Ukendt fejl"
 
-#: desklet.js:409
+#: desklet.js:412
 msgid "Install gcalendar to use this desklet."
 msgstr "Installér gcalendar for at bruge dette skrivebordsprogram."
 
-#: desklet.js:410
+#: desklet.js:413
 msgid "Visit: "
 msgstr "Besøg: "
 
-#: desklet.js:448
+#: desklet.js:451
 msgid "Unable to retrieve events..."
 msgstr "Kunne ikke hente begivenheder …"
 
-#: lib/utility.js:156 lib/xdate.js:350
+#: lib/utility.js:158 lib/xdate.js:350
 msgid "AM"
 msgstr "AM"
 
-#: lib/utility.js:156 lib/xdate.js:351
+#: lib/utility.js:158 lib/xdate.js:351
 msgid "PM"
 msgstr "PM"
 

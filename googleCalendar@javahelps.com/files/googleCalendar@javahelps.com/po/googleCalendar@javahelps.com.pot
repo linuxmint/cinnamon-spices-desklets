@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is put in the public domain.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-14 20:26-0500\n"
+"Project-Id-Version: googleCalendar@javahelps.com 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-04-29 14:50-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,43 +27,43 @@ msgstr ""
 msgid "Open Google Calendar"
 msgstr ""
 
-#: desklet.js:237
+#: desklet.js:240
 msgid "No events found"
 msgstr ""
 
-#: desklet.js:386
+#: desklet.js:389
 msgid "gcalendar is not authorized"
 msgstr ""
 
-#: desklet.js:388
+#: desklet.js:391
 msgid "gcalendar token expired"
 msgstr ""
 
-#: desklet.js:393
+#: desklet.js:396
 msgid "Execute: "
 msgstr ""
 
-#: desklet.js:406
+#: desklet.js:409
 msgid "Unknown Error"
 msgstr ""
 
-#: desklet.js:409
+#: desklet.js:412
 msgid "Install gcalendar to use this desklet."
 msgstr ""
 
-#: desklet.js:410
+#: desklet.js:413
 msgid "Visit: "
 msgstr ""
 
-#: desklet.js:448
+#: desklet.js:451
 msgid "Unable to retrieve events..."
 msgstr ""
 
-#: lib/utility.js:156 lib/xdate.js:350
+#: lib/utility.js:158 lib/xdate.js:350
 msgid "AM"
 msgstr ""
 
-#: lib/utility.js:156 lib/xdate.js:351
+#: lib/utility.js:158 lib/xdate.js:351
 msgid "PM"
 msgstr ""
 

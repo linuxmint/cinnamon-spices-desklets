@@ -1,0 +1,553 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: cryptocoins@pbojan 1.6\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-04-29 14:50-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. metadata.json->description
+msgid ""
+"Cryptocurrency Ticker (Desklet) for Cinnamon Desktop that displays the "
+"current price for thousands of cryptocurrencies, and their daily percent "
+"changes. The official website for news and updates about this Cryptocurrency "
+"Ticker: https://cryptocurrencyticker.xyz"
+msgstr ""
+
+#. metadata.json->name
+msgid "Cryptocurrency Ticker"
+msgstr ""
+
+#. settings-schema.json->head0->description
+msgid "Settings for cryptocoins@pbojan"
+msgstr ""
+
+#. settings-schema.json->head1->description
+msgid "API Options"
+msgstr ""
+
+#. settings-schema.json->apiKey->description
+msgid "Your CoinMarketCap API Key"
+msgstr ""
+
+#. settings-schema.json->apiKey->tooltip
+msgid ""
+"If you dont have one you can get it for free at https://pro.coinmarketcap."
+"com."
+msgstr ""
+
+#. settings-schema.json->head2->description
+msgid "Cryptocurrency Options"
+msgstr ""
+
+#. settings-schema.json->coinSymbol->description
+msgid "Symbol"
+msgstr ""
+
+#. settings-schema.json->coinSymbol->tooltip
+msgid "The Cryptocurrency Symbol you want to display e.g. BTC, ETH, LTC.."
+msgstr ""
+
+#. settings-schema.json->coinID->description
+msgid "ID (coinmarketcap)"
+msgstr ""
+
+#. settings-schema.json->coinID->tooltip
+msgid ""
+"In same rare cases the Cryptocurrency Symbol is not unique e.g. BTCV so you "
+"can use the CoinID to specify the exact Cryptocurrency you want to display. "
+"Check the documentation to see how to get the CoinID from coinmarketcap."
+msgstr ""
+
+#. settings-schema.json->currency->description
+msgid "Select Currency"
+msgstr ""
+
+#. settings-schema.json->currency->tooltip
+msgid "In which currency to show information on the ticker"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "United States Dollar ($)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Euro (€)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Australian Dollar (A$)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Canadian Dollar  (C$)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Swiss Franc (Fr.)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Pound Sterling (£)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Albanian Lek (L)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Algerian Dinar (د.ج)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Argentine Peso ($)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Armenian Dram (֏)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Bahraini Dinar (.د.ب)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Bangladeshi Taka (৳)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Belarusian Ruble (Br)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Bermudan Dollar ($)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Bolivian Boliviano (Bs.)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Bosnia-Herzegovina Convertible Mark (KM)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Brazilian Real (R$)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Bulgarian Lev (лв)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Cambodian Riel (៛)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Chilean Peso ($)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Chinese Yuan (¥)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Colombian Peso ($)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Costa Rican Colón (₡)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Croatian Kuna (kn)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Cuban Peso ($)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Czech Koruna (Kč)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Danish Krone (kr)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Dominican Peso ($)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Egyptian Pound (£)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Ghanaian Cedi (₵)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Guatemalan Quetzal (Q)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Honduran Lempira (L)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Hong Kong Dollar ($)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Hungarian Forint (Ft)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Icelandic Króna (kr)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Indian Rupee (₹)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Indonesian Rupiah (Rp)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Iranian Rial (﷼)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Iraqi Dinar (ع.د)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Israeli New Shekel (₪)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Jamaican Dollar ($)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Japanese Yen (¥)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Jordanian Dinar (د.ا)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Kazakhstani Tenge (₸)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Kenyan Shilling (Sh)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Kuwaiti Dinar (د.ك)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Kyrgystani Som (с)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Lebanese Pound (ل.ل)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Macedonian Denar (ден)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Malaysian Ringgit (RM)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Mauritian Rupee (₨)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Mexican Peso ($)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Moldovan Leu (L)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Mongolian Tugrik (₮)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Moroccan Dirham (د.م.)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Myanma Kyat (Ks)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Namibian Dollar ($)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Nepalese Rupee (₨)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "New Taiwan Dollar (NT$)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "New Zealand Dollar ($)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Nicaraguan Córdoba (C$)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Nigerian Naira (₦)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Norwegian Krone (kr)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Omani Rial (ر.ع.)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Pakistani Rupee (₨)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Panamanian Balboa (B/.)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Peruvian Sol (S/.)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Philippine Peso (₱)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Polish Złoty (zł)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Qatari Rial (ر.ق)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Romanian Leu (lei)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Russian Ruble (₽)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Saudi Riyal (ر.س)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Serbian Dinar (дин.)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Singapore Dollar (S$)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "South African Rand (R)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "South Korean Won (₩)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "South Sudanese Pound (£)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Sovereign Bolivar (Bs.)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Sri Lankan Rupee (Rs)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Swedish Krona ( kr)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Thai Baht (฿)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Trinidad and Tobago Dollar ($)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Tunisian Dinar (د.ت)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Turkish Lira (₺)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Ugandan Shilling (Sh)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Ukrainian Hryvnia (₴)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "United Arab Emirates Dirham (د.إ)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Uruguayan Peso ($)"
+msgstr ""
+
+#. settings-schema.json->currency->options
+msgid "Vietnamese Dong (₫)"
+msgstr ""
+
+#. settings-schema.json->refreshInterval->description
+msgid "Select Refresh Interval (uses API credits)"
+msgstr ""
+
+#. settings-schema.json->refreshInterval->tooltip
+msgid ""
+"How often to fetch new data for the ticker. Every refresh is one credit per "
+"coin ticker, for more coins recommended value is 30min+."
+msgstr ""
+
+#. settings-schema.json->refreshInterval->options
+msgid "5 Minutes"
+msgstr ""
+
+#. settings-schema.json->refreshInterval->options
+msgid "10 Minutes"
+msgstr ""
+
+#. settings-schema.json->refreshInterval->options
+msgid "15 Minutes"
+msgstr ""
+
+#. settings-schema.json->refreshInterval->options
+msgid "20 Minutes"
+msgstr ""
+
+#. settings-schema.json->refreshInterval->options
+msgid "25 Minutes"
+msgstr ""
+
+#. settings-schema.json->refreshInterval->options
+msgid "30 Minutes"
+msgstr ""
+
+#. settings-schema.json->refreshInterval->options
+msgid "35 Minutes"
+msgstr ""
+
+#. settings-schema.json->refreshInterval->options
+msgid "40 Minutes"
+msgstr ""
+
+#. settings-schema.json->refreshInterval->options
+msgid "45 Minutes"
+msgstr ""
+
+#. settings-schema.json->refreshInterval->options
+msgid "50 Minutes"
+msgstr ""
+
+#. settings-schema.json->refreshInterval->options
+msgid "55 Minutes"
+msgstr ""
+
+#. settings-schema.json->refreshInterval->options
+msgid "1 Hour"
+msgstr ""
+
+#. settings-schema.json->refreshInterval->options
+msgid "2 Hours"
+msgstr ""
+
+#. settings-schema.json->refreshInterval->options
+msgid "4 Hours"
+msgstr ""
+
+#. settings-schema.json->assetsOwned->description
+msgid "Assets Owned"
+msgstr ""
+
+#. settings-schema.json->assetsOwned->tooltip
+msgid "How many of the cryptocurrency assets do you own?"
+msgstr ""
+
+#. settings-schema.json->assetsValue->description
+msgid "Assets Value"
+msgstr ""
+
+#. settings-schema.json->assetsValue->tooltip
+msgid ""
+"For how much did you buy them? Used to calculate profits. Used together with "
+"Assets Owned field."
+msgstr ""
+
+#. settings-schema.json->head3->description
+msgid "Desklet UI"
+msgstr ""
+
+#. settings-schema.json->bgColor->description
+msgid "Background Color"
+msgstr ""
+
+#. settings-schema.json->bgColor->tooltip
+msgid "Background Color for the Desklet."
+msgstr ""
+
+#. settings-schema.json->bgBorderRadius->units
+msgid "pixels"
+msgstr ""
+
+#. settings-schema.json->bgBorderRadius->description
+msgid "Background Border Radius"
+msgstr ""
+
+#. settings-schema.json->bgBorderRadius->tooltip
+msgid "Background Border Radius in px, select 0 to set no border radius."
+msgstr ""
+
+#. settings-schema.json->head4->description
+msgid ""
+"This is an OPEN SOURCE project, if you like it please consider donating! "
+"https://cryptocurrencyticker.xyz"
+msgstr ""

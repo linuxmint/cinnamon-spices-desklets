@@ -6,8 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-18 08:52-0400\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-04-29 14:50-0400\n"
 "PO-Revision-Date: 2023-08-06 21:48+0200\n"
 "Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
 "Language-Team: \n"
@@ -19,6 +20,7 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #. metadata.json->name
+#. settings-schema.json->page_gcalendar->title
 #: desklet.js:104
 msgid "Google Calendar"
 msgstr "Google Calendar"
@@ -27,43 +29,43 @@ msgstr "Google Calendar"
 msgid "Open Google Calendar"
 msgstr "Abrir Google Calendar"
 
-#: desklet.js:227
+#: desklet.js:240
 msgid "No events found"
 msgstr "No se encontraron eventos"
 
-#: desklet.js:376
+#: desklet.js:389
 msgid "gcalendar is not authorized"
 msgstr "gcalendar no está autorizado"
 
-#: desklet.js:378
+#: desklet.js:391
 msgid "gcalendar token expired"
 msgstr "el token de gcalendar expiró"
 
-#: desklet.js:383
+#: desklet.js:396
 msgid "Execute: "
 msgstr "Executar: "
 
-#: desklet.js:396
+#: desklet.js:409
 msgid "Unknown Error"
 msgstr "Error desconocido"
 
-#: desklet.js:399
+#: desklet.js:412
 msgid "Install gcalendar to use this desklet."
 msgstr "Instale gcalendar para usar este desklet."
 
-#: desklet.js:400
+#: desklet.js:413
 msgid "Visit: "
 msgstr "Visitar: "
 
-#: desklet.js:438
+#: desklet.js:451
 msgid "Unable to retrieve events..."
 msgstr "No se pueden recuperar los eventos..."
 
-#: lib/utility.js:165 lib/xdate.js:350
+#: lib/utility.js:158 lib/xdate.js:350
 msgid "AM"
 msgstr "AM"
 
-#: lib/utility.js:165 lib/xdate.js:351
+#: lib/utility.js:158 lib/xdate.js:351
 msgid "PM"
 msgstr "PM"
 
@@ -229,7 +231,7 @@ msgstr "Un desklet que muestra su agenda basada en Google Calendar"
 msgid "Desklet Style"
 msgstr "Estilo del Desklet"
 
-#. settings-schema.json->top->description
+#. settings-schema.json->display0->description
 msgid "Google Calendar authentication"
 msgstr "Autenticación de Google Calendar"
 
@@ -318,10 +320,6 @@ msgstr "Actualizar cada:"
 #. settings-schema.json->delay->units
 msgid "minutes"
 msgstr "minutos"
-
-#. settings-schema.json->display2->description
-msgid "Desklet style"
-msgstr "Estilo del desklet"
 
 #. settings-schema.json->date_format->description
 msgid "Date format"

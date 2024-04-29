@@ -6,188 +6,223 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-25 15:40+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-04-29 14:50-0400\n"
 "PO-Revision-Date: \n"
+"Last-Translator: amaraun <amaraun@gmail.com>\n"
 "Language-Team: \n"
+"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.2.1\n"
-"Last-Translator: amaraun <amaraun@gmail.com>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: eu\n"
 
 #. metadata.json->name
-#: desklet.js:103
+#. settings-schema.json->page_gcalendar->title
+#: desklet.js:104
 msgid "Google Calendar"
 msgstr "Google Egutegia"
 
-#: desklet.js:106
+#: desklet.js:107
 msgid "Open Google Calendar"
 msgstr "Ireki Google Calendar"
 
-#: desklet.js:185
-msgid "No events found..."
+#: desklet.js:240
+#, fuzzy
+msgid "No events found"
 msgstr "Ez dago gertaerarik..."
 
-#: desklet.js:356
+#: desklet.js:389
+msgid "gcalendar is not authorized"
+msgstr ""
+
+#: desklet.js:391
+msgid "gcalendar token expired"
+msgstr ""
+
+#: desklet.js:396
+msgid "Execute: "
+msgstr ""
+
+#: desklet.js:409
+msgid "Unknown Error"
+msgstr ""
+
+#: desklet.js:412
+msgid "Install gcalendar to use this desklet."
+msgstr ""
+
+#: desklet.js:413
+msgid "Visit: "
+msgstr ""
+
+#: desklet.js:451
 msgid "Unable to retrieve events..."
 msgstr "Ezin gertaerarik eskuratu..."
 
-#: lib/utility.js:165 lib/xdate.js:348
+#: lib/utility.js:158 lib/xdate.js:350
 msgid "AM"
 msgstr "AM"
 
-#: lib/utility.js:165 lib/xdate.js:349
+#: lib/utility.js:158 lib/xdate.js:351
 msgid "PM"
 msgstr "PM"
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "January"
 msgstr "Urtarrila"
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "February"
 msgstr "Otsaila"
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "March"
 msgstr "Martxoa"
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "April"
 msgstr "Apirila"
 
-#: lib/xdate.js:344 lib/xdate.js:345
+#: lib/xdate.js:346
+#, fuzzy
+msgctxt "long"
 msgid "May"
 msgstr "Maiatza"
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "June"
 msgstr "Ekaina"
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "July"
 msgstr "Uztaila"
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "August"
 msgstr "Abuztua"
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "September"
 msgstr "Iraila"
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "October"
 msgstr "Urria"
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "November"
 msgstr "Azaroa"
 
-#: lib/xdate.js:344
+#: lib/xdate.js:346
 msgid "December"
 msgstr "Abendua"
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Jan"
 msgstr "Urt"
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Feb"
 msgstr "Ots"
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Mar"
 msgstr "Mar"
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Apr"
 msgstr "Apr"
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
+#, fuzzy
+msgctxt "short"
+msgid "May"
+msgstr "Maiatza"
+
+#: lib/xdate.js:347
 msgid "Jun"
 msgstr "Eka"
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Jul"
 msgstr "Uzt"
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Aug"
 msgstr "Abu"
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Sep"
 msgstr "Ira"
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Oct"
 msgstr "Urr"
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Nov"
 msgstr "Aza"
 
-#: lib/xdate.js:345
+#: lib/xdate.js:347
 msgid "Dec"
 msgstr "Abe"
 
-#: lib/xdate.js:346
+#: lib/xdate.js:348
 msgid "Sunday"
 msgstr "Igandea"
 
-#: lib/xdate.js:346
+#: lib/xdate.js:348
 msgid "Monday"
 msgstr "Astelehena"
 
-#: lib/xdate.js:346
+#: lib/xdate.js:348
 msgid "Tuesday"
 msgstr "Asteartea"
 
-#: lib/xdate.js:346
+#: lib/xdate.js:348
 msgid "Wednesday"
 msgstr "Asteazkena"
 
-#: lib/xdate.js:346
+#: lib/xdate.js:348
 msgid "Thursday"
 msgstr "Osteguna"
 
-#: lib/xdate.js:346
+#: lib/xdate.js:348
 msgid "Friday"
 msgstr "Ostirala"
 
-#: lib/xdate.js:346
+#: lib/xdate.js:348
 msgid "Saturday"
 msgstr "Larunbata"
 
-#: lib/xdate.js:347
+#: lib/xdate.js:349
 msgid "Sun"
 msgstr "Iga"
 
-#: lib/xdate.js:347
+#: lib/xdate.js:349
 msgid "Mon"
 msgstr "Asl"
 
-#: lib/xdate.js:347
+#: lib/xdate.js:349
 msgid "Tue"
 msgstr "Asr"
 
-#: lib/xdate.js:347
+#: lib/xdate.js:349
 msgid "Wed"
 msgstr "Asz"
 
-#: lib/xdate.js:347
+#: lib/xdate.js:349
 msgid "Thu"
 msgstr "Ost"
 
-#: lib/xdate.js:347
+#: lib/xdate.js:349
 msgid "Fri"
 msgstr "Ost"
 
-#: lib/xdate.js:347
+#: lib/xdate.js:349
 msgid "Sat"
 msgstr "Lab"
 
@@ -195,7 +230,12 @@ msgstr "Lab"
 msgid "A desklet that displays your agenda based on Google Calendar"
 msgstr "Zure Google Egutegia erakusten duen deskleta"
 
-#. settings-schema.json->top->description
+#. settings-schema.json->page_style->title
+#, fuzzy
+msgid "Desklet Style"
+msgstr "Deskletaren itxura"
+
+#. settings-schema.json->display0->description
 msgid "Google Calendar authentication"
 msgstr "Google Egutegia egiaztatu"
 
@@ -227,13 +267,41 @@ msgstr ""
 msgid "Calendar configuration"
 msgstr "Egutegiaren ezarpenak"
 
-#. settings-schema.json->calendarName->description
-msgid "Calendar name(s)"
-msgstr "Egutegiaren izena(k)"
+#. settings-schema.json->gcalendarAccount->description
+msgid "gcalendar Account ID"
+msgstr ""
 
-#. settings-schema.json->calendarName->tooltip
-msgid "Enter your calendar names separated by comma here"
-msgstr "Idatz itzazu hemen zure egutegien izenak komaz bereizita"
+#. settings-schema.json->gcalendarAccount->tooltip
+msgid "Enter gcalendar --account id"
+msgstr ""
+
+#. settings-schema.json->allNamesButton->description
+msgid "Fill in the list bellow with the names of all my calendars"
+msgstr ""
+
+#. settings-schema.json->allNamesButton->tooltip
+msgid ""
+"Click to fill in the list bellow with the names of all your calendars. It "
+"may take a little while."
+msgstr ""
+
+#. settings-schema.json->calendarNames->description
+#, fuzzy
+msgid "Display these calendars:"
+msgstr "Egutegiak bereizi"
+
+#. settings-schema.json->calendarNames->tooltip
+msgid "If you want to diplay a calendar, set it to TRUE (or check its box)."
+msgstr ""
+
+#. settings-schema.json->calendarNames->columns->title
+#, fuzzy
+msgid "Calendar"
+msgstr "Google Egutegia"
+
+#. settings-schema.json->calendarNames->columns->title
+msgid "Display it?"
+msgstr ""
 
 #. settings-schema.json->interval->description
 msgid "Number of days to include"
@@ -254,10 +322,6 @@ msgstr "Eguneratze maiztasuna:"
 #. settings-schema.json->delay->units
 msgid "minutes"
 msgstr "minutuak"
-
-#. settings-schema.json->display2->description
-msgid "Desklet style"
-msgstr "Deskletaren itxura"
 
 #. settings-schema.json->date_format->description
 msgid "Date format"

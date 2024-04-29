@@ -437,7 +437,7 @@ TopDesklet.prototype = {
             this.procGrid = Array2D(PID_MAX_LIMIT, 11);
             for (let row = 0; row < this.cfgMaxPidLines; row++) {
                 for (let col = 0; col <= 11; col++) {
-                    this.procGrid[row][col] = new St.Label({text: _(""), style_class: "topValue", style: "color: " + this.cfgValueColor});
+                    this.procGrid[row][col] = new St.Label({text: "", style_class: "topValue", style: "color: " + this.cfgValueColor});
                     this.procTable.add(this.procGrid[row][col], {row: row + 1, col: col});
                 }
             }

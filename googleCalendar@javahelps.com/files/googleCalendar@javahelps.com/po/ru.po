@@ -6,8 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-18 22:38+0500\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-04-29 14:50-0400\n"
 "PO-Revision-Date: 2018-02-18 22:48+0500\n"
 "Last-Translator: Ilis <ilis@inbox.ru>\n"
 "Language-Team: \n"
@@ -16,312 +17,419 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.7.1\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#. googleCalendar@javahelps.com->metadata.json->name
-#: desklet.js:171
+#. metadata.json->name
+#. settings-schema.json->page_gcalendar->title
+#: desklet.js:104
 msgid "Google Calendar"
 msgstr "Календарь Google"
 
-#: desklet.js:230
-msgid "Retrieving events..."
-msgstr "Получение событий..."
+#: desklet.js:107
+#, fuzzy
+msgid "Open Google Calendar"
+msgstr "Календарь Google"
 
-#: desklet.js:298 desklet.js:327
+#: desklet.js:240
+#, fuzzy
+msgid "No events found"
+msgstr "События не найдены..."
+
+#: desklet.js:389
+msgid "gcalendar is not authorized"
+msgstr ""
+
+#: desklet.js:391
+msgid "gcalendar token expired"
+msgstr ""
+
+#: desklet.js:396
+msgid "Execute: "
+msgstr ""
+
+#: desklet.js:409
+msgid "Unknown Error"
+msgstr ""
+
+#: desklet.js:412
+msgid "Install gcalendar to use this desklet."
+msgstr ""
+
+#: desklet.js:413
+msgid "Visit: "
+msgstr ""
+
+#: desklet.js:451
 msgid "Unable to retrieve events..."
 msgstr "Невозможно получить события..."
 
-#: desklet.js:330
-msgid "No events found..."
-msgstr "События не найдены..."
+#: lib/utility.js:158 lib/xdate.js:350
+msgid "AM"
+msgstr "ппн"
 
-#. googleCalendar@javahelps.com->settings-
-#. schema.json->date_format->description
-msgid "Date format"
-msgstr "Формат даты"
+#: lib/utility.js:158 lib/xdate.js:351
+msgid "PM"
+msgstr "ппд"
 
-#. googleCalendar@javahelps.com->settings-schema.json->date_format->tooltip
-msgid "Enter the date format here"
-msgstr "Введите формат даты"
-
-#. googleCalendar@javahelps.com->settings-schema.json->interval->description
-msgid "Number of days to include"
-msgstr "Число дней для повестки дня"
-
-#. googleCalendar@javahelps.com->settings-schema.json->interval->tooltip
-msgid "Show the agenda for these number of days"
-msgstr "Показать повестку на указанное количество дней"
-
-#. googleCalendar@javahelps.com->settings-schema.json->interval->units
-msgid "days"
-msgstr "дней"
-
-#. googleCalendar@javahelps.com->settings-schema.json->top->description
-msgid "Calendar configuration"
-msgstr "Настройка календаря"
-
-#. googleCalendar@javahelps.com->settings-
-#. schema.json->calendarName->description
-msgid "Calendar name(s)"
-msgstr "Названия календарей"
-
-#. googleCalendar@javahelps.com->settings-schema.json->calendarName->tooltip
-msgid "Enter your calendar names separated by comma here"
-msgstr "Введите названия календарей, разделяя их запятой"
-
-#. googleCalendar@javahelps.com->settings-schema.json->zoom->description
-msgid "Zoom by"
-msgstr "Увеличить в"
-
-#. googleCalendar@javahelps.com->settings-schema.json->zoom->tooltip
-msgid "Change the size of the desklet"
-msgstr "Изменяет размер десклета"
-
-#. googleCalendar@javahelps.com->settings-schema.json->zoom->units
-msgid "times"
-msgstr "раз"
-
-#. googleCalendar@javahelps.com->settings-
-#. schema.json->tomorrow_format->description
-msgid "Tomorrow format"
-msgstr "Формат «Завтра»"
-
-#. googleCalendar@javahelps.com->settings-
-#. schema.json->tomorrow_format->tooltip
-msgid "Enter the tomorrow format here"
-msgstr "Введите формат для «Завтра»"
-
-#. googleCalendar@javahelps.com->settings-
-#. schema.json->today_format->description
-msgid "Today format"
-msgstr "Формат «Сегодня»"
-
-#. googleCalendar@javahelps.com->settings-schema.json->today_format->tooltip
-msgid "Enter the today format here"
-msgstr "Введите формат для «Сегодня»"
-
-#. googleCalendar@javahelps.com->settings-schema.json->delay->description
-msgid "Update every:"
-msgstr "Обновлять каждые:"
-
-#. googleCalendar@javahelps.com->settings-schema.json->delay->units
-msgid "minutes"
-msgstr "минут"
-
-#. googleCalendar@javahelps.com->settings-schema.json->bgcolor->description
-msgid "Background color"
-msgstr "Цвет фона"
-
-#. googleCalendar@javahelps.com->settings-schema.json->bgcolor->tooltip
-msgid "Click the button to select a new background color"
-msgstr "Нажмите кнопку для выбора цвета фона"
-
-#. googleCalendar@javahelps.com->settings-
-#. schema.json->cornerradius->description
-msgid "Corner radius"
-msgstr "Радиус закругления углов"
-
-#. googleCalendar@javahelps.com->settings-schema.json->cornerradius->tooltip
-msgid "Radius for rounding the desklet's corners"
-msgstr "Радиус закругления углов десклета"
-
-#. googleCalendar@javahelps.com->settings-schema.json->cornerradius->units
-msgid "px"
-msgstr "пк"
-
-#. googleCalendar@javahelps.com->settings-
-#. schema.json->transparency->description
-msgid "Transparency"
-msgstr "Прозрачность"
-
-#. googleCalendar@javahelps.com->settings-schema.json->transparency->tooltip
-msgid "Set the transparency of the desklet"
-msgstr "Задать прозрачность десклета"
-
-#. googleCalendar@javahelps.com->settings-schema.json->textcolor->description
-msgid "Text color"
-msgstr "Цвет текста"
-
-#. googleCalendar@javahelps.com->settings-schema.json->textcolor->tooltip
-msgid "Click the button to select a new text color"
-msgstr "Нажмите кнопку для выбора цвета текста"
-
-#. googleCalendar@javahelps.com->settings-
-#. schema.json->use_24h_clock->description
-msgid "Use 24h clock"
-msgstr "Использовать 24-часовой формат"
-
-#. googleCalendar@javahelps.com->settings-schema.json->use_24h_clock->tooltip
-msgid "Check to show time in 24h"
-msgstr "Отметьте, чтобы установить 24-часовой формат"
-
-#. googleCalendar@javahelps.com->settings-schema.json->display->description
-msgid "Desklet style"
-msgstr "Стиль десклета"
-
-#. googleCalendar@javahelps.com->metadata.json->description
-msgid "A desklet that displays your agenda based on Google Calendar"
-msgstr "Десклет, показывающий повестку дня из Календаря Google"
-
-#: xdate.js:13
+#: lib/xdate.js:346
 msgid "January"
 msgstr "Январь"
 
-#: xdate.js:13
+#: lib/xdate.js:346
 msgid "February"
 msgstr "Февраль"
 
-#: xdate.js:13
+#: lib/xdate.js:346
 msgid "March"
 msgstr "Март"
 
-#: xdate.js:13
+#: lib/xdate.js:346
 msgid "April"
 msgstr "Апрель"
 
-#: xdate.js:13
+#: lib/xdate.js:346
 msgctxt "long"
 msgid "May"
 msgstr "Май"
 
-#: xdate.js:13
+#: lib/xdate.js:346
+msgid "June"
+msgstr "Июнь"
+
+#: lib/xdate.js:346
+msgid "July"
+msgstr "Июль"
+
+#: lib/xdate.js:346
+msgid "August"
+msgstr "Август"
+
+#: lib/xdate.js:346
+msgid "September"
+msgstr "Сентябрь"
+
+#: lib/xdate.js:346
+msgid "October"
+msgstr "Октябрь"
+
+#: lib/xdate.js:346
+msgid "November"
+msgstr "Ноябрь"
+
+#: lib/xdate.js:346
+msgid "December"
+msgstr "Декабрь"
+
+#: lib/xdate.js:347
+msgid "Jan"
+msgstr "Янв"
+
+#: lib/xdate.js:347
+msgid "Feb"
+msgstr "Фев"
+
+#: lib/xdate.js:347
+msgid "Mar"
+msgstr "Мар"
+
+#: lib/xdate.js:347
+msgid "Apr"
+msgstr "Апр"
+
+#: lib/xdate.js:347
 msgctxt "short"
 msgid "May"
 msgstr "Май"
 
-#: xdate.js:13
-msgid "June"
-msgstr "Июнь"
-
-#: xdate.js:13
-msgid "July"
-msgstr "Июль"
-
-#: xdate.js:13
-msgid "August"
-msgstr "Август"
-
-#: xdate.js:13
-msgid "September"
-msgstr "Сентябрь"
-
-#: xdate.js:13
-msgid "October"
-msgstr "Октябрь"
-
-#: xdate.js:13
-msgid "November"
-msgstr "Ноябрь"
-
-#: xdate.js:13
-msgid "December"
-msgstr "Декабрь"
-
-#: xdate.js:13
-msgid "Jan"
-msgstr "Янв"
-
-#: xdate.js:13
-msgid "Feb"
-msgstr "Фев"
-
-#: xdate.js:13
-msgid "Mar"
-msgstr "Мар"
-
-#: xdate.js:13
-msgid "Apr"
-msgstr "Апр"
-
-#: xdate.js:13
+#: lib/xdate.js:347
 msgid "Jun"
 msgstr "Июн"
 
-#: xdate.js:13
+#: lib/xdate.js:347
 msgid "Jul"
 msgstr "Июл"
 
-#: xdate.js:13
+#: lib/xdate.js:347
 msgid "Aug"
 msgstr "Авг"
 
-#: xdate.js:13
+#: lib/xdate.js:347
 msgid "Sep"
 msgstr "Сен"
 
-#: xdate.js:13
+#: lib/xdate.js:347
 msgid "Oct"
 msgstr "Окт"
 
-#: xdate.js:13
+#: lib/xdate.js:347
 msgid "Nov"
 msgstr "Ноя"
 
-#: xdate.js:13
+#: lib/xdate.js:347
 msgid "Dec"
 msgstr "Дек"
 
-#: xdate.js:13
+#: lib/xdate.js:348
 msgid "Sunday"
 msgstr "Воскресенье"
 
-#: xdate.js:13
+#: lib/xdate.js:348
 msgid "Monday"
 msgstr "Понедельник"
 
-#: xdate.js:13
+#: lib/xdate.js:348
 msgid "Tuesday"
 msgstr "Вторник"
 
-#: xdate.js:13
+#: lib/xdate.js:348
 msgid "Wednesday"
 msgstr "Среда"
 
-#: xdate.js:13
+#: lib/xdate.js:348
 msgid "Thursday"
 msgstr "Четверг"
 
-#: xdate.js:13
+#: lib/xdate.js:348
 msgid "Friday"
 msgstr "Пятница"
 
-#: xdate.js:13
+#: lib/xdate.js:348
 msgid "Saturday"
 msgstr "Суббота"
 
-#: xdate.js:13
+#: lib/xdate.js:349
 msgid "Sun"
 msgstr "Вс"
 
-#: xdate.js:13
+#: lib/xdate.js:349
 msgid "Mon"
 msgstr "Пн"
 
-#: xdate.js:13
+#: lib/xdate.js:349
 msgid "Tue"
 msgstr "Вт"
 
-#: xdate.js:13
+#: lib/xdate.js:349
 msgid "Wed"
 msgstr "Ср"
 
-#: xdate.js:13
+#: lib/xdate.js:349
 msgid "Thu"
 msgstr "Чт"
 
-#: xdate.js:13
+#: lib/xdate.js:349
 msgid "Fri"
 msgstr "Пт"
 
-#: xdate.js:13
+#: lib/xdate.js:349
 msgid "Sat"
 msgstr "Сб"
 
-#: xdate.js:13
-msgid "AM"
-msgstr "ппн"
+#. metadata.json->description
+msgid "A desklet that displays your agenda based on Google Calendar"
+msgstr "Десклет, показывающий повестку дня из Календаря Google"
 
-#: xdate.js:13
-msgid "PM"
-msgstr "ппд"
+#. settings-schema.json->page_style->title
+#, fuzzy
+msgid "Desklet Style"
+msgstr "Стиль десклета"
+
+#. settings-schema.json->display0->description
+#, fuzzy
+msgid "Google Calendar authentication"
+msgstr "Календарь Google"
+
+#. settings-schema.json->clientId->description
+msgid "Client Id"
+msgstr ""
+
+#. settings-schema.json->clientId->tooltip
+msgid ""
+"Enter your Google calendar project client id. Leave it empty to use the "
+"default client id."
+msgstr ""
+
+#. settings-schema.json->clientSecret->description
+msgid "Client secret"
+msgstr ""
+
+#. settings-schema.json->clientSecret->tooltip
+msgid ""
+"Enter your Google calendar project client secret. Leave it empty to use the "
+"default client secret."
+msgstr ""
+
+#. settings-schema.json->display1->description
+msgid "Calendar configuration"
+msgstr "Настройка календаря"
+
+#. settings-schema.json->gcalendarAccount->description
+msgid "gcalendar Account ID"
+msgstr ""
+
+#. settings-schema.json->gcalendarAccount->tooltip
+msgid "Enter gcalendar --account id"
+msgstr ""
+
+#. settings-schema.json->allNamesButton->description
+msgid "Fill in the list bellow with the names of all my calendars"
+msgstr ""
+
+#. settings-schema.json->allNamesButton->tooltip
+msgid ""
+"Click to fill in the list bellow with the names of all your calendars. It "
+"may take a little while."
+msgstr ""
+
+#. settings-schema.json->calendarNames->description
+msgid "Display these calendars:"
+msgstr ""
+
+#. settings-schema.json->calendarNames->tooltip
+msgid "If you want to diplay a calendar, set it to TRUE (or check its box)."
+msgstr ""
+
+#. settings-schema.json->calendarNames->columns->title
+#, fuzzy
+msgid "Calendar"
+msgstr "Календарь Google"
+
+#. settings-schema.json->calendarNames->columns->title
+msgid "Display it?"
+msgstr ""
+
+#. settings-schema.json->interval->description
+msgid "Number of days to include"
+msgstr "Число дней для повестки дня"
+
+#. settings-schema.json->interval->tooltip
+msgid "Show the agenda for these number of days"
+msgstr "Показать повестку на указанное количество дней"
+
+#. settings-schema.json->interval->units
+msgid "days"
+msgstr "дней"
+
+#. settings-schema.json->delay->description
+msgid "Update every:"
+msgstr "Обновлять каждые:"
+
+#. settings-schema.json->delay->units
+msgid "minutes"
+msgstr "минут"
+
+#. settings-schema.json->date_format->description
+msgid "Date format"
+msgstr "Формат даты"
+
+#. settings-schema.json->date_format->tooltip
+msgid "Enter the date format here"
+msgstr "Введите формат даты"
+
+#. settings-schema.json->today_format->description
+msgid "Today format"
+msgstr "Формат «Сегодня»"
+
+#. settings-schema.json->today_format->tooltip
+msgid "Enter the today format here"
+msgstr "Введите формат для «Сегодня»"
+
+#. settings-schema.json->tomorrow_format->description
+msgid "Tomorrow format"
+msgstr "Формат «Завтра»"
+
+#. settings-schema.json->tomorrow_format->tooltip
+msgid "Enter the tomorrow format here"
+msgstr "Введите формат для «Завтра»"
+
+#. settings-schema.json->use_24h_clock->description
+msgid "Use 24h clock"
+msgstr "Использовать 24-часовой формат"
+
+#. settings-schema.json->use_24h_clock->tooltip
+msgid "Check to show time in 24h"
+msgstr "Отметьте, чтобы установить 24-часовой формат"
+
+#. settings-schema.json->zoom->units
+msgid "times"
+msgstr "раз"
+
+#. settings-schema.json->zoom->description
+msgid "Zoom by"
+msgstr "Увеличить в"
+
+#. settings-schema.json->zoom->tooltip
+msgid "Change the size of the desklet"
+msgstr "Изменяет размер десклета"
+
+#. settings-schema.json->transparency->description
+msgid "Transparency"
+msgstr "Прозрачность"
+
+#. settings-schema.json->transparency->tooltip
+msgid "Set the transparency of the desklet"
+msgstr "Задать прозрачность десклета"
+
+#. settings-schema.json->textcolor->description
+msgid "Text color"
+msgstr "Цвет текста"
+
+#. settings-schema.json->textcolor->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Нажмите кнопку для выбора цвета текста"
+
+#. settings-schema.json->alldaytextcolor->description
+msgid "All day event text color"
+msgstr ""
+
+#. settings-schema.json->alldaytextcolor->tooltip
+#, fuzzy
+msgid "Click the button to select a new all day event text color"
+msgstr "Нажмите кнопку для выбора цвета текста"
+
+#. settings-schema.json->bgcolor->description
+msgid "Background color"
+msgstr "Цвет фона"
+
+#. settings-schema.json->bgcolor->tooltip
+msgid "Click the button to select a new background color"
+msgstr "Нажмите кнопку для выбора цвета фона"
+
+#. settings-schema.json->diff_calendar->description
+msgid "Differentiate calendars"
+msgstr ""
+
+#. settings-schema.json->diff_calendar->tooltip
+msgid "Show color bullets in front of events"
+msgstr ""
+
+#. settings-schema.json->show_location->description
+msgid "Show location"
+msgstr ""
+
+#. settings-schema.json->show_location->tooltip
+msgid "Display the event location if available"
+msgstr ""
+
+#. settings-schema.json->location_color->description
+#, fuzzy
+msgid "Location text color"
+msgstr "Цвет текста"
+
+#. settings-schema.json->location_color->tooltip
+#, fuzzy
+msgid "Click the button to select a new location text color"
+msgstr "Нажмите кнопку для выбора цвета текста"
+
+#. settings-schema.json->cornerradius->units
+msgid "px"
+msgstr "пк"
+
+#. settings-schema.json->cornerradius->description
+msgid "Corner radius"
+msgstr "Радиус закругления углов"
+
+#. settings-schema.json->cornerradius->tooltip
+msgid "Radius for rounding the desklet's corners"
+msgstr "Радиус закругления углов десклета"
