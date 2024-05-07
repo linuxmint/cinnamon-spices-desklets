@@ -34,7 +34,7 @@
     },
     "font_scale_size": {
         "type": "scale",
-        "default": 1,
+        "default": 2,
         "min": 0.5,
         "max": 5,
         "step": 0.1,

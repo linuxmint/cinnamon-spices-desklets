@@ -1,4 +1,8 @@
 
+### 1.3.1
+* Update default scale value to 2
+* Update translation files
+
 ### 1.3.0
 * Remove potential ellipsis in titles and values
 * Fix missing import
