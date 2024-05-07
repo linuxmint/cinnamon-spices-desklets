@@ -2,8 +2,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-03 14:07-0400\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-07 06:24-0400\n"
 "PO-Revision-Date: \n"
 "Last-Translator: blogdron\n"
 "Language-Team: \n"
@@ -13,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.1\n"
 
-#: 5.8/desklet.js:43 4.0/desklet.js:35
+#: 4.0/desklet.js:35 5.8/desklet.js:43
 msgid ""
 "Dependencies missing. Please install \n"
 "libgtop \n"
@@ -29,9 +30,34 @@ msgstr ""
 "\t   на Arch: libgtop \n"
 "и перезапустите Cinnamon.\n"
 
+#: 4.0/desklet.js:236 5.8/desklet.js:298 3.0/desklet.js:238
+msgid "CPU:"
+msgstr "Процессор:"
+
+#: 4.0/desklet.js:237 5.8/desklet.js:300 3.0/desklet.js:239
+msgid "Memory:"
+msgstr "Память:"
+
+#: 4.0/desklet.js:238 5.8/desklet.js:302 3.0/desklet.js:240
+msgid "Download:"
+msgstr "Трафик Вх:"
+
+#: 4.0/desklet.js:239 5.8/desklet.js:304 3.0/desklet.js:241
+msgid "Upload:"
+msgstr "Трафик Ис:"
+
+#: 4.0/desklet.js:240 5.8/desklet.js:306 3.0/desklet.js:242
+msgid "Temperature:"
+msgstr "Температура CPU:"
+
+#: 4.0/desklet.js:241 5.8/desklet.js:333 3.0/desklet.js:243
+msgid "GPU:"
+msgstr "Температура GPU:"
+
 #: 5.8/desklet.js:112
 msgid "No temp file detected at CPU path. Resetting to default."
-msgstr "Не обнаружен файл источник данных о температуре CPU. Настройки сброшены."
+msgstr ""
+"Не обнаружен файл источник данных о температуре CPU. Настройки сброшены."
 
 #: 5.8/desklet.js:116
 msgid "Invalid CPU path detected. Resetting to default."
@@ -43,7 +69,8 @@ msgstr "ошибка чтения:"
 
 #: 5.8/desklet.js:153
 msgid "No temp file detected at GPU path. Resetting to default."
-msgstr "Не обнаружен файл источник данных о температуре GPU. Настройки сброшены."
+msgstr ""
+"Не обнаружен файл источник данных о температуре GPU. Настройки сброшены."
 
 #: 5.8/desklet.js:157
 msgid "Invalid GPU path detected. Resetting to default."
@@ -52,30 +79,6 @@ msgstr "Неверный путь к файлу с информацией о GPU
 #: 5.8/desklet.js:212 5.8/desklet.js:230
 msgid "Please install missing dependencies."
 msgstr "Пожалуйста установите отсутствующие зависимости."
-
-#: 5.8/desklet.js:298 4.0/desklet.js:236 3.0/desklet.js:238
-msgid "CPU:"
-msgstr "Процессор:"
-
-#: 5.8/desklet.js:300 4.0/desklet.js:237 3.0/desklet.js:239
-msgid "Memory:"
-msgstr "Память:"
-
-#: 5.8/desklet.js:302 4.0/desklet.js:238 3.0/desklet.js:240
-msgid "Download:"
-msgstr "Трафик Вх:"
-
-#: 5.8/desklet.js:304 4.0/desklet.js:239 3.0/desklet.js:241
-msgid "Upload:"
-msgstr "Трафик Ис:"
-
-#: 5.8/desklet.js:306 4.0/desklet.js:240 3.0/desklet.js:242
-msgid "Temperature:"
-msgstr "Температура CPU:"
-
-#: 5.8/desklet.js:333 4.0/desklet.js:241 3.0/desklet.js:243
-msgid "GPU:"
-msgstr "Температура GPU:"
 
 #: 3.0/desklet.js:37
 msgid ""
@@ -148,8 +151,11 @@ msgid "Scale factor for font size"
 msgstr "Коэффициент масштабирования шрифта"
 
 #. 5.8->settings-schema.json->font_scale_size->tooltip
-msgid "Increase or decrease this value to change the font size scale (1.2 = 120%)"
-msgstr "Увеличьте или уменьшите это значение для изменения размера шрифта (1.2 = 120%)"
+msgid ""
+"Increase or decrease this value to change the font size scale (1.2 = 120%)"
+msgstr ""
+"Увеличьте или уменьшите это значение для изменения размера шрифта (1.2 = "
+"120%)"
 
 #. 5.8->settings-schema.json->font_color->description
 msgid "Font color"
@@ -166,7 +172,8 @@ msgstr "Свой шрифт (пустое значение для шрифта �
 
 #. 5.8->settings-schema.json->font_family->tooltip
 msgid "Set a custom font family for the text (blank to use default font)"
-msgstr "Свой вариант шрифта для текста (пустое значение для шрифта по умолчанию)"
+msgstr ""
+"Свой вариант шрифта для текста (пустое значение для шрифта по умолчанию)"
 
 #. 5.8->settings-schema.json->width->units
 msgid "px"
@@ -177,7 +184,8 @@ msgid "Fixed width for the desklet"
 msgstr "Фиксированная ширина десклета"
 
 #. 5.8->settings-schema.json->width->tooltip
-msgid "Increase or decrease this value to set the boundary width of the desklet"
+msgid ""
+"Increase or decrease this value to set the boundary width of the desklet"
 msgstr "Увеличить или уменьшить размер десклета"
 
 #. 5.8->settings-schema.json->show_decorations->description
@@ -202,12 +210,14 @@ msgstr "Путь к каталогу CPU устройства (/sys,/proc)"
 
 #. 5.8->settings-schema.json->customCPUPath->tooltip
 msgid ""
-"Choose your own thermal CPU object e.g. for monitoring another temperature sensor.\n"
+"Choose your own thermal CPU object e.g. for monitoring another temperature "
+"sensor.\n"
 "\n"
 "Default:\n"
 "/sys/class/thermal/thermal_zone0"
 msgstr ""
-"Выберите путь к системной информации о CPU. Например для мониторинга температуры другого сенсора.\n"
+"Выберите путь к системной информации о CPU. Например для мониторинга "
+"температуры другого сенсора.\n"
 "\n"
 "По умолчанию:\n"
 "/sys/class/thermal/thermal_zone0"
@@ -231,7 +241,8 @@ msgid ""
 "Default:\n"
 "/sys/class/thermal/thermal_zone0"
 msgstr ""
-"Выберите путь к системной информации о GPU. Например для мониторинга температуры другого GPU.\n"
+"Выберите путь к системной информации о GPU. Например для мониторинга "
+"температуры другого GPU.\n"
 "\n"
 "По умолчанию:\n"
 "/sys/class/thermal/thermal_zone0"
