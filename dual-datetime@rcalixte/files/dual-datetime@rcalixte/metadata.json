@@ -5,9 +5,11 @@
     "cinnamon-version": [
         "5.4",
         "5.6",
-        "5.8"
+        "5.8",
+        "6.0",
+        "6.2"
     ],
     "multiversion": true,
     "max-instances": "10",
-    "version": "1.1"
+    "version": "1.2.1"
 }

@@ -18,7 +18,7 @@
     "time_align1": {
         "type": "combobox",
         "description": "Time Alignment",
-        "default": "left",
+        "default": "center",
         "dependency": "title_align=vertical",
         "options": {
             "Left": "left",
@@ -29,7 +29,7 @@
     "time_yalign1": {
         "type": "combobox",
         "description": "Time Alignment",
-        "default": "left",
+        "default": "center",
         "tooltip": "This value only applies if the this time value is a smaller size than the other",
         "dependency": "title_align!=vertical",
         "options": {
@@ -54,7 +54,7 @@
     "time_size1": {
         "type": "scale",
         "description": "Font Size",
-        "default": 2,
+        "default": 5,
         "min": 0.5,
         "max": 20,
         "step": 0.1,
@@ -80,7 +80,7 @@
     "time_align2": {
         "type": "combobox",
         "description": "Time Alignment",
-        "default": "left",
+        "default": "center",
         "dependency": "title_align=vertical",
         "options": {
             "Left": "left",
@@ -91,7 +91,7 @@
     "time_yalign2": {
         "type": "combobox",
         "description": "Time Alignment",
-        "default": "left",
+        "default": "center",
         "tooltip": "This value only applies if the this time value is a smaller size than the other",
         "dependency": "title_align!=vertical",
         "options": {
@@ -116,7 +116,7 @@
     "time_size2": {
         "type": "scale",
         "description": "Font Size",
-        "default": 2,
+        "default": 2.5,
         "min": 0.5,
         "max": 20,
         "step": 0.1,
