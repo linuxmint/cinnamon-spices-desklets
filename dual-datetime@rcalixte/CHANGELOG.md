@@ -1,4 +1,9 @@
 
+### 1.2.1
+* Update default time size to 5
+* Update default date size to 2.5
+* Update default alignments to center for date and time
+
 ### 1.2
 
 * A blank or invalid format string now reset to locale defaults
