@@ -1,15 +1,16 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Daniel <d3vf4n (at) tutanota (dot) com>, 2023.
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-05 13:14+0100\n"
-"PO-Revision-Date: 2023-08-05 22:43+0200\n"
-"Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 00:14+0200\n"
+"PO-Revision-Date: 2024-05-15 00:27+0200\n"
+"Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
 "Language-Team: \n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -18,31 +19,35 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: desklet.js:120
+#: desklet.js:58 desklet.js:129
 msgid "UNKNOWN"
 msgstr "Desconegut"
 
-#: desklet.js:121
+#: desklet.js:114
+msgid "Error executing ping command!"
+msgstr "S'ha produït un error executant l'ordre «ping»"
+
+#: desklet.js:130
 msgid "No ping output"
 msgstr "No hi ha resposta al PING"
 
-#: desklet.js:126 desklet.js:141
+#: desklet.js:135 desklet.js:161 desklet.js:181 desklet.js:203
 msgid "CRIT"
 msgstr "CRÍTIC"
 
-#: desklet.js:130 desklet.js:145
+#: desklet.js:139 desklet.js:185 desklet.js:207
 msgid "OK"
 msgstr "CORRECTE"
 
-#: desklet.js:134 desklet.js:149
+#: desklet.js:143 desklet.js:189 desklet.js:211 desklet.js:218
 msgid "WARN"
 msgstr "AVÍS"
 
-#: desklet.js:138
+#: desklet.js:177 desklet.js:199
 msgid "HTTP Status Code"
 msgstr "Codi d'estat HTTP"
 
-#: desklet.js:164
+#: desklet.js:234
 msgid "s"
 msgstr "s"
 
@@ -64,13 +69,17 @@ msgstr "Ajusts per a hostcheck@schorschii"
 msgid "General"
 msgstr "General"
 
+#. settings-schema.json->host->description
+msgid "Hostname, IP address or HTTP(S)-URL to check"
+msgstr "Nom d'amfitrió, adreça IP o URL HTTP(S) a comprovar"
+
 #. settings-schema.json->type->description
 msgid "Ping or HTTP(S) check"
 msgstr "Comprovació de l'amfitrió"
 
 #. settings-schema.json->type->tooltip
 msgid "Choose, if this desklet should do a ping or HTTP(S) check."
-msgstr "Determina si la comprovació es fa amb PING o HTTP(S)."
+msgstr "Tria si la comprovació es fa amb PING o HTTP(S)."
 
 #. settings-schema.json->type->options
 msgid "Ping"
@@ -80,13 +89,17 @@ msgstr "Ping"
 msgid "HTTP(S)"
 msgstr "HTTP(S)"
 
+#. settings-schema.json->success-status-code->description
+msgid "HTTP success status code"
+msgstr "Codi d'estat HTTP d'èxit"
+
+#. settings-schema.json->success-status-code->tooltip
+msgid "Choose the HTTP status code which should be assumed as success"
+msgstr "Trieu el codi d'estat HTTP que s'interpretarà com a èxit"
+
 #. settings-schema.json->show-notifications->description
 msgid "Show notifications when state changed"
 msgstr "Notifica els canvis d'estat"
-
-#. settings-schema.json->host->description
-msgid "Hostname, IP address or HTTP(S)-URL to check"
-msgstr "Nom d'amfitrió, adreça IP o URL HTTP(S) a comprovar"
 
 #. settings-schema.json->interval->units
 msgid "seconds"

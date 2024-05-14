@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is put in the public domain.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-31 13:06+0100\n"
+"Project-Id-Version: hostcheck@schorschii 1.5.2\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 00:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,31 +17,35 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:121
+#: desklet.js:58 desklet.js:129
 msgid "UNKNOWN"
 msgstr ""
 
-#: desklet.js:122
+#: desklet.js:114
+msgid "Error executing ping command!"
+msgstr ""
+
+#: desklet.js:130
 msgid "No ping output"
 msgstr ""
 
-#: desklet.js:127 desklet.js:142
+#: desklet.js:135 desklet.js:161 desklet.js:181 desklet.js:203
 msgid "CRIT"
 msgstr ""
 
-#: desklet.js:131 desklet.js:146
+#: desklet.js:139 desklet.js:185 desklet.js:207
 msgid "OK"
 msgstr ""
 
-#: desklet.js:135 desklet.js:150
+#: desklet.js:143 desklet.js:189 desklet.js:211 desklet.js:218
 msgid "WARN"
 msgstr ""
 
-#: desklet.js:139
+#: desklet.js:177 desklet.js:199
 msgid "HTTP Status Code"
 msgstr ""
 
-#: desklet.js:166
+#: desklet.js:234
 msgid "s"
 msgstr ""
 
@@ -59,6 +63,10 @@ msgstr ""
 
 #. settings-schema.json->head1->description
 msgid "General"
+msgstr ""
+
+#. settings-schema.json->host->description
+msgid "Hostname, IP address or HTTP(S)-URL to check"
 msgstr ""
 
 #. settings-schema.json->type->description
@@ -87,10 +95,6 @@ msgstr ""
 
 #. settings-schema.json->show-notifications->description
 msgid "Show notifications when state changed"
-msgstr ""
-
-#. settings-schema.json->host->description
-msgid "Hostname, IP address or HTTP(S)-URL to check"
 msgstr ""
 
 #. settings-schema.json->interval->units
