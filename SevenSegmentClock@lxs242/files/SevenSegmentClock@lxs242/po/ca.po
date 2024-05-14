@@ -1,14 +1,15 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Daniel <d3vf4n (at) tutanota (dot) com>, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-20 17:28+0100\n"
-"PO-Revision-Date: 2023-08-05 20:18+0200\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-14 21:49+0200\n"
+"PO-Revision-Date: 2024-05-14 22:02+0200\n"
 "Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
 "Language-Team: \n"
 "Language: ca\n"
@@ -19,18 +20,23 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #. metadata.json->name
-#: desklet.js:133
+#: desklet.js:136
 msgid "Seven Segment Digital Clock"
 msgstr "Rellotge digital de set segments"
 
-#: desklet.js:519
+#: desklet.js:520
 msgid "Time is an illusion"
 msgstr "El temps és una il·lusió"
 
-#. Just adopt the name, unless you're translating into languages with non-latin characters.
-#: desklet.js:519
+#: desklet.js:520
 msgid "Albert Einstein"
 msgstr "Albert Einstein"
+
+#. metadata.json->description
+msgid "Customizable seven segment digital clock with date and Unix time"
+msgstr ""
+"Rellotge digital de set segments personalitzable, que ofereix també data i "
+"temps de Unix"
 
 #. settings-schema.json->general->title
 msgid "General"
@@ -352,62 +358,50 @@ msgid "Style by h2g2bob"
 msgstr "Estil de h2g2bob"
 
 #. settings-schema.json->digit-style->options
-#, fuzzy
 msgid "Keshikan's DSEG Classic Light"
 msgstr "Estil DSEG clàssic clar de Keshikan's"
 
 #. settings-schema.json->digit-style->options
-#, fuzzy
 msgid "Keshikan's DSEG Classic Regular"
 msgstr "Estil DSEG clàssic regular de Keshikan"
 
 #. settings-schema.json->digit-style->options
-#, fuzzy
 msgid "Keshikan's DSEG Classic Bold"
 msgstr "Estil DSEG clàssic en gruixut de Keshikan"
 
 #. settings-schema.json->digit-style->options
-#, fuzzy
 msgid "Keshikan's DSEG Classic Mini Light"
 msgstr "Estil DSEG clàssic mini, prim, de Keshikan"
 
 #. settings-schema.json->digit-style->options
-#, fuzzy
 msgid "Keshikan's DSEG Classic Mini Regular"
 msgstr "Estil DSEG clàssic mini, regular, de Keshikan"
 
 #. settings-schema.json->digit-style->options
-#, fuzzy
 msgid "Keshikan's DSEG Classic Mini Bold"
 msgstr "Estil DSEG clàssic mini, gruixut, de Keshikan"
 
 #. settings-schema.json->digit-style->options
-#, fuzzy
 msgid "Keshikan's DSEG Modern Light"
 msgstr "Estil DSEG modern prim de Keshikan"
 
 #. settings-schema.json->digit-style->options
-#, fuzzy
 msgid "Keshikan's DSEG Modern Regular"
 msgstr "Estil DSEG modern regular de Keshikan"
 
 #. settings-schema.json->digit-style->options
-#, fuzzy
 msgid "Keshikan's DSEG Modern Bold"
 msgstr "Estil DSEG modern, gruixut, de Keshikan"
 
 #. settings-schema.json->digit-style->options
-#, fuzzy
 msgid "Keshikan's DSEG Modern Mini Light"
 msgstr "Estil DSEG modern mini, prim, de Keshikan"
 
 #. settings-schema.json->digit-style->options
-#, fuzzy
 msgid "Keshikan's DSEG Modern Mini Regular"
-msgstr "Estil DSEG moder mini, regular, de Keshikan"
+msgstr "Estil DSEG modernmini, regular, de Keshikan"
 
 #. settings-schema.json->digit-style->options
-#, fuzzy
 msgid "Keshikan's DSEG Modern Mini Bold"
 msgstr "Estil DSEG modern mini, gruixut, de Keshikan"
 
@@ -430,7 +424,3 @@ msgstr "Corbat"
 #. settings-schema.json->digit-style->description
 msgid "Digit style"
 msgstr "Estil dels dígits"
-
-#. metadata.json->description
-msgid "Customizable seven segment digital clock with date and Unix time"
-msgstr "Rellotge digital de set segments personalitzable, que ofereix també data i temps de Unix"
