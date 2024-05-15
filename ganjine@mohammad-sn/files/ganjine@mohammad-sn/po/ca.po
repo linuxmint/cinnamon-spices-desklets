@@ -1,6 +1,6 @@
 # Ganjine desklet for Cinnamon
 # This file is put in the public domain.
-# Daniel <d3vf4n (at) tutanota (dot) com>, 2023.
+# Daniel <d3vf4n (at) tutanota (dot) com>, 2024.
 #
 msgid ""
 msgstr ""
