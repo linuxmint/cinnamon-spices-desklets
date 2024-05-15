@@ -1,15 +1,16 @@
-# SOME DESCRIPTIVE TITLE.
+# DevTools desklet for Cinnamon
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Daniel <d3vf4n (at) tutanota (dot) com>, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-04 23:06+0200\n"
-"PO-Revision-Date: 2023-08-05 04:35+0200\n"
-"Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 12:40+0200\n"
+"PO-Revision-Date: 2024-05-15 12:49+0200\n"
+"Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
 "Language-Team: \n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -53,8 +54,9 @@ msgid "Inspect"
 msgstr "Inspecciona"
 
 #: desklet.js:464
+#, fuzzy
 msgid "Open Looking Glass"
-msgstr ""
+msgstr "Obre l'inspector del sistema"
 
 #: desklet.js:474
 msgid "Reload Theme"
@@ -137,9 +139,8 @@ msgid "Extensions"
 msgstr "Extensions"
 
 #: extensions.js:353 extensions.js:381
-#, fuzzy
 msgid "failed to create extension item for uuid"
-msgstr "no s'ha pogut creat l'ítem d'extensió per a uuid"
+msgstr "no s'ha pogut crear l'extensió de la uuid"
 
 #: extensions.js:361 extensions.js:389
 msgid "No extensions of this type are enabled"
@@ -180,7 +181,6 @@ msgid "Visible"
 msgstr "Visible"
 
 #: inspect.js:446
-#, fuzzy
 msgid "Style Class"
 msgstr "Classe d'estil"
 
@@ -262,7 +262,7 @@ msgstr "Entorn de proves"
 
 #: sandbox.js:165
 msgid "Evaluate"
-msgstr "Evalua"
+msgstr "Avalua"
 
 #: sandbox.js:170
 msgid "Javascript"
@@ -325,7 +325,6 @@ msgid "Close"
 msgstr "Tanca"
 
 #: windows.js:144
-#, fuzzy
 msgid "Windows"
 msgstr "Finestres"
 
@@ -347,8 +346,8 @@ msgid ""
 msgstr ""
 "Aquest miniaplicació d'escriptori ofereix eines per ajudar a solucionar "
 "problemes,\n"
-"veure i controlar certs components del Cinnamon i informació del seu "
-"estat. Fins i tot\n"
+"veure i controlar certs components del Cinnamon i informació del seu estat. "
+"Fins i tot\n"
 "provar nou codi sense reiniciar el Cinnamon."
 
 #. metadata.json->name
@@ -372,12 +371,10 @@ msgid "Collapsed"
 msgstr "Replegat"
 
 #. settings-schema.json->raiseKey->description
-#, fuzzy
 msgid "Raise to top shorcut key"
-msgstr "Drecera per a pujar sobre tot"
+msgstr "Drecera per a pujar al capdamunt"
 
 #. settings-schema.json->centerRaised->description
-#, fuzzy
 msgid "Center the desklet on the screen in raised mode"
 msgstr "Centra la miniaplicació en la pantalla en pujar-la sobre tot"
 
