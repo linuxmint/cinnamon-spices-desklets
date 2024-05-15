@@ -6,42 +6,47 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-31 13:06+0100\n"
-"PO-Revision-Date: 2023-12-31 11:56-0300\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 00:14+0200\n"
+"PO-Revision-Date: 2024-05-15 11:38-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.4.2\n"
 
-#: desklet.js:121
+#: desklet.js:58 desklet.js:129
 msgid "UNKNOWN"
 msgstr "DESCONOCIDO"
 
-#: desklet.js:122
+#: desklet.js:114
+msgid "Error executing ping command!"
+msgstr "¡Error al ejecutar el comando ping!"
+
+#: desklet.js:130
 msgid "No ping output"
 msgstr "Sin salida de ping"
 
-#: desklet.js:127 desklet.js:142
+#: desklet.js:135 desklet.js:161 desklet.js:181 desklet.js:203
 msgid "CRIT"
 msgstr "CRÍTICO"
 
-#: desklet.js:131 desklet.js:146
+#: desklet.js:139 desklet.js:185 desklet.js:207
 msgid "OK"
 msgstr "OK"
 
-#: desklet.js:135 desklet.js:150
+#: desklet.js:143 desklet.js:189 desklet.js:211 desklet.js:218
 msgid "WARN"
 msgstr "AVISO"
 
-#: desklet.js:139
+#: desklet.js:177 desklet.js:199
 msgid "HTTP Status Code"
 msgstr "Código de estado HTTP"
 
-#: desklet.js:166
+#: desklet.js:234
 msgid "s"
 msgstr "s"
 
@@ -61,6 +66,10 @@ msgstr "Configuración para hostcheck@schorschii"
 #. settings-schema.json->head1->description
 msgid "General"
 msgstr "General"
+
+#. settings-schema.json->host->description
+msgid "Hostname, IP address or HTTP(S)-URL to check"
+msgstr "Nombre de host, dirección IP o HTTP(S)-URL a comprobar"
 
 #. settings-schema.json->type->description
 msgid "Ping or HTTP(S) check"
@@ -89,10 +98,6 @@ msgstr "Elija el código de estado HTTP que debe asumirse como correcto"
 #. settings-schema.json->show-notifications->description
 msgid "Show notifications when state changed"
 msgstr "Mostrar notificaciones cuando cambia el estado"
-
-#. settings-schema.json->host->description
-msgid "Hostname, IP address or HTTP(S)-URL to check"
-msgstr "Nombre de host, dirección IP o HTTP(S)-URL a comprobar"
 
 #. settings-schema.json->interval->units
 msgid "seconds"

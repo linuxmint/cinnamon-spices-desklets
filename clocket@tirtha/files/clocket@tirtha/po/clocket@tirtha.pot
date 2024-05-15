@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: clocket@tirtha 2.4\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-05-15 09:42+0200\n"
+"POT-Creation-Date: 2024-05-15 11:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,7 +79,6 @@ msgid "Want weather display ?"
 msgstr ""
 
 #. settings-schema.json->webservice->description
-#. settings-schema.json->loctype->description
 msgid "Data service"
 msgstr ""
 
@@ -101,6 +100,10 @@ msgstr ""
 
 #. settings-schema.json->api-key->tooltip
 msgid "put your api key generated from open-weather-map here"
+msgstr ""
+
+#. settings-schema.json->loctype->description
+msgid "Type of location data"
 msgstr ""
 
 #. settings-schema.json->loctype->options
