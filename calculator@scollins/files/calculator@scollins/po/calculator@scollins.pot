@@ -1,20 +1,20 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is put in the public domain.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-25 20:27+0800\n"
+"Project-Id-Version: calculator@scollins 2.1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-14 23:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: desklet.js:27 desklet.js:50
@@ -49,85 +49,87 @@ msgstr ""
 msgid "Scientific Notation"
 msgstr ""
 
-#: desklet.js:813
+#: desklet.js:791
 msgid "Swap Entries"
 msgstr ""
 
-#: desklet.js:817
+#: desklet.js:795
 msgid "Reciprocal"
 msgstr ""
 
-#. calculator@scollins->settings-schema.json->angleMode->options
-#: desklet.js:1073
+#. settings-schema.json->angleMode->options
+#: desklet.js:1056
 msgid "Degrees"
 msgstr ""
 
-#. calculator@scollins->settings-schema.json->angleMode->options
-#: desklet.js:1081
+#. settings-schema.json->angleMode->options
+#: desklet.js:1064
 msgid "Radians"
 msgstr ""
 
-#: desklet.js:1091
+#: desklet.js:1074
 msgid "RPN"
 msgstr ""
 
-#: desklet.js:1100
+#: desklet.js:1083
 msgid "4-Function"
 msgstr ""
 
-#. calculator@scollins->settings-schema.json->layout->options
-#: desklet.js:1107
+#. settings-schema.json->layout->options
+#: desklet.js:1090
 msgid "Scientific"
 msgstr ""
 
-#: desklet.js:1116
+#: desklet.js:1099
 msgid "Copy"
 msgstr ""
 
-#: desklet.js:1120
+#: desklet.js:1103
 msgid "Paste"
 msgstr ""
 
-#. calculator@scollins->metadata.json->description
-msgid "A calculator Desklet"
-msgstr ""
-
-#. calculator@scollins->metadata.json->name
+#. metadata.json->name
+#: desklet.js:1109
 msgid "Desktop Calculator"
 msgstr ""
 
-#. calculator@scollins->settings-schema.json->style->options
-msgid "Light"
+#. metadata.json->description
+msgid "A calculator Desklet"
 msgstr ""
 
-#. calculator@scollins->settings-schema.json->style->options
-msgid "Dark"
-msgstr ""
-
-#. calculator@scollins->settings-schema.json->raiseKey->description
-msgid "Raise to top shorcut key"
-msgstr ""
-
-#. calculator@scollins->settings-schema.json->layout->description
+#. settings-schema.json->style->description
+#. settings-schema.json->layout->description
 msgid "Style"
 msgstr ""
 
-#. calculator@scollins->settings-schema.json->layout->options
-msgid "4-function"
+#. settings-schema.json->style->options
+msgid "Light"
 msgstr ""
 
-#. calculator@scollins->settings-schema.json->angleMode->description
+#. settings-schema.json->style->options
+msgid "Dark"
+msgstr ""
+
+#. settings-schema.json->angleMode->description
 msgid "Angle Measure"
 msgstr ""
 
-#. calculator@scollins->settings-schema.json->precision->description
+#. settings-schema.json->rpn->description
+msgid "Use Reverse-Polish Notation"
+msgstr ""
+
+#. settings-schema.json->layout->options
+msgid "4-function"
+msgstr ""
+
+#. settings-schema.json->precision->description
 msgid "Precision"
 msgstr ""
 
-#. calculator@scollins->settings-schema.json->precision->units
+#. settings-schema.json->precision->units
 msgid "digits"
 msgstr ""
 
-#. calculator@scollins->settings-schema.json->rpn->description
-msgid "Use Reverse-Polish Notation"
+#. settings-schema.json->raiseKey->description
+msgid "Raise to top shorcut key"
 msgstr ""

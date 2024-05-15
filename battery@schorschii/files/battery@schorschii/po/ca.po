@@ -2,22 +2,23 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2018.
+# Daniel <devf4n (at) tutanota (dot) com>, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-03-14 05:12-0400\n"
-"PO-Revision-Date: 2023-07-07 23:51-0400\n"
-"Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
+"POT-Creation-Date: 2024-05-14 23:14+0200\n"
+"PO-Revision-Date: 2024-05-14 23:24+0200\n"
+"Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
 "Language-Team: \n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: desklet.js:356
 msgid "Battery"
@@ -53,23 +54,21 @@ msgstr ""
 
 #. settings-schema.json->showremaining->description
 msgid "Show remaining battery time"
-msgstr ""
+msgstr "Mostra el temps restant de la bateria"
 
 #. settings-schema.json->showplug->description
 msgid "Show plug/flash icon when power supply is plugged in"
-msgstr ""
-"Mostra la icona de l'endoll o electricitat quan la font d'alimentació està "
-"connectada"
+msgstr "Mostra una icona quan la font d'alimentació està connectada"
 
 #. settings-schema.json->showplug->tooltip
 msgid ""
 "flash icon: power online and battery is charging\n"
 "plug icon: power online but battery is not charging"
 msgstr ""
-"icona d'electricitat: connectat a la xarxa elèctrica i s'està carregant de "
-"la bateria\n"
-"icona d'endoll: connectat a la xarxa elèctrica i però no s'està carregant de "
-"la bateria"
+"icona d'electricitat: connectat a la xarxa elèctrica i s'està carregant la "
+"bateria\n"
+"icona d'endoll: connectat a la xarxa elèctrica però no s'està carregant la "
+"bateria"
 
 #. settings-schema.json->bg-img->description
 msgid "Battery style"
@@ -107,8 +106,8 @@ msgstr ""
 #. settings-schema.json->head2->description
 msgid "Custom desklet label (only visible if decorations are enabled)"
 msgstr ""
-"Etiqueta de miniaplicació d'escriptori personalitzada (només és visible si "
-"les decoracions estan habilitades)"
+"Etiqueta de miniaplicació personalitzada (només visible amb les decoracions "
+"habilitades)"
 
 #. settings-schema.json->use-custom-label->description
 msgid "Use a custom desklet label"
@@ -131,7 +130,7 @@ msgid ""
 msgstr ""
 "Establiu aquí l'etiqueta personalitzada, p. ex. per monitorar diverses "
 "bateries. Aquest camp no està disponible a menys que la casella de selecció "
-"de dalt està habilitada."
+"de dalt estigui habilitada."
 
 #. settings-schema.json->head3->description
 msgid "Advanced"
