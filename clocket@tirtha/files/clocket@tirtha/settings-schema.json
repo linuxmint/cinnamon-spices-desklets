@@ -60,7 +60,7 @@
         "type": "combobox",
         "default" : "city",
         "dependency":"compact",
-        "description" : "Data service",
+        "description" : "Type of location data",
         "options" : {
             "city name" : "city",
             "lat-lon": "lat-lon"
