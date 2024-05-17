@@ -1,6 +1,6 @@
-# SOME DESCRIPTIVE TITLE.
+# XKCD Comic Viewer desklet for Cinnamon
 # This file is put in the public domain.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Daniel <d3vf4n (at) tutanota (dot) com>, 2024.
 #
 msgid ""
 msgstr ""
