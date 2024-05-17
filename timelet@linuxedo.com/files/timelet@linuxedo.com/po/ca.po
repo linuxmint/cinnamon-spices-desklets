@@ -1,14 +1,16 @@
 # Timelet
 # Copyright (C) 2022 Gobinath
 # This file is distributed under the same license as the Timelet package.
+# Daniel <d3vf4n (at) tutanota (dot) com>, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-12 06:11-0500\n"
-"PO-Revision-Date: 2023-08-05 05:06+0200\n"
-"Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-18 00:10+0200\n"
+"PO-Revision-Date: 2024-05-18 00:12+0200\n"
+"Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
 "Language-Team: \n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -22,15 +24,15 @@ msgstr ""
 msgid "Timelet"
 msgstr "Timelet"
 
-#: themes/theme.js:133
+#: themes/theme.js:143
 msgid "AM"
 msgstr "AM"
 
-#: themes/theme.js:135
+#: themes/theme.js:145
 msgid "Noon"
 msgstr "Vespre"
 
-#: themes/theme.js:137
+#: themes/theme.js:147
 msgid "PM"
 msgstr "PM"
 
@@ -45,6 +47,14 @@ msgstr "Ajusts del Timelet"
 #. settings-schema.json->themeName->description
 msgid "Theme"
 msgstr "Tema"
+
+#. settings-schema.json->use24H->description
+msgid "Use 24H"
+msgstr "Format 24h"
+
+#. settings-schema.json->use24H->tooltip
+msgid "Display time in 24H"
+msgstr "Determina si el rellotge es mostra en format de 24 o 12 hores"
 
 #. settings-schema.json->textColor->description
 msgid "Text color"
