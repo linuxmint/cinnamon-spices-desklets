@@ -42,6 +42,14 @@ To disable the debug log mode, delete the "DEBUG" file, and restart the Cinnamon
 
 ## Release Notes
 
+### 0.12.0 - May 22, 2024
+
+Features:
+
+- new setting to manually update data by clicking on the "last update" timestamp label
+- add Dutch translation (courtesy of [qadzek](https://github.com/qadzek))
+- update Spanish translation (courtesy of [haggen88](https://github.com/haggen88))
+
 ### 0.11.0 - March 15, 2024
 
 Features:

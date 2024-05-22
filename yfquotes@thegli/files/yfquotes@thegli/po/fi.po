@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-03-15 19:46+0100\n"
+"POT-Creation-Date: 2024-05-22 21:38+0200\n"
 "PO-Revision-Date: 2023-12-22 11:33+0200\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: \n"
@@ -22,40 +22,40 @@ msgstr ""
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Yahoo Finance palvelu ei ole saatavilla!\\nTila: "
 
-#: desklet.js:728
+#: desklet.js:730
 msgid "Updated at "
 msgstr "Päivitetty klo "
 
-#: desklet.js:736
+#: desklet.js:751
 msgid "Error: "
 msgstr "Virhe: "
 
-#: desklet.js:798
+#: desklet.js:813
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
 msgstr "Valtuutuksen haku epäonnistui! Tietoja ei voi noutaa.\\nTila: "
 
-#: desklet.js:823
+#: desklet.js:838
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr "Suostumuksen käsittely epäonnistui! Tietoja ei voi noutaa.\\nTila: "
 
-#: desklet.js:828
+#: desklet.js:843
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr "Suostumusta ei ole suoritettu loppuun! Tietoja ei voi noutaa.\\nTila: "
 
-#: desklet.js:850
+#: desklet.js:865
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
 msgstr "Valtuutuksen nouto epäonnistui! Tietoja ei voi noutaa.\\nTila: "
 
-#: desklet.js:877
+#: desklet.js:892
 msgid "Cannot display quotes information for symbols: "
 msgstr "Symbolien tietoja ei voi näyttää: "
 
-#: desklet.js:878
+#: desklet.js:893
 msgid "The following error occurred: "
 msgstr "Tapahtui seuraava virhe: "
 
@@ -198,6 +198,14 @@ msgstr "Näytä päivitysaika"
 #. settings-schema.json->showLastUpdateTimestamp->tooltip
 msgid "Display timestamp when quotes were updated last"
 msgstr "Näytää ajan, jolloin kurssit päivitettiin viimeksi."
+
+#. settings-schema.json->manualDataUpdate->description
+msgid "Manual update"
+msgstr ""
+
+#. settings-schema.json->manualDataUpdate->tooltip
+msgid "Click last update timestamp to instantly refresh quotes data"
+msgstr ""
 
 #. settings-schema.json->sendCustomUserAgent->description
 msgid "Send custom User-Agent header"

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-03-15 19:46+0100\n"
+"POT-Creation-Date: 2024-05-22 21:38+0200\n"
 "PO-Revision-Date: 2023-12-12 19:02+0100\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
@@ -22,15 +22,15 @@ msgstr ""
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Il servizio Yahoo Finance non è disponibile!\\nStato: "
 
-#: desklet.js:728
+#: desklet.js:730
 msgid "Updated at "
 msgstr "Aggiornato al "
 
-#: desklet.js:736
+#: desklet.js:751
 msgid "Error: "
 msgstr "Errore: "
 
-#: desklet.js:798
+#: desklet.js:813
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -38,20 +38,20 @@ msgstr ""
 "Impossibile recuperare il parametro di autorizzazione! Impossibile "
 "recuperare i dati delle quotazioni.\\nStato: "
 
-#: desklet.js:823
+#: desklet.js:838
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Elaborazione del consenso non riuscita! Impossibile recuperare i dati delle "
 "quotazioni.\\nStato: "
 
-#: desklet.js:828
+#: desklet.js:843
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Elaborazione del consenso non completata! Impossibile recuperare i dati "
 "delle quotazioni.\\nStato: "
 
-#: desklet.js:850
+#: desklet.js:865
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
@@ -59,11 +59,11 @@ msgstr ""
 "Impossibile recuperare la parte di autorizzazione! Impossibile recuperare i "
 "dati delle quotazioni.\\nStato: "
 
-#: desklet.js:877
+#: desklet.js:892
 msgid "Cannot display quotes information for symbols: "
 msgstr "Impossibile mostrare info sulle quotazioni per i simboli: "
 
-#: desklet.js:878
+#: desklet.js:893
 msgid "The following error occurred: "
 msgstr "È stato riscontrato il seguente errore: "
 
@@ -207,6 +207,14 @@ msgstr "Mostra il timestamp dell'ultimo aggiornamento"
 #. settings-schema.json->showLastUpdateTimestamp->tooltip
 msgid "Display timestamp when quotes were updated last"
 msgstr "Mostra il timestamp di quando le quotazioni sono state aggiornate."
+
+#. settings-schema.json->manualDataUpdate->description
+msgid "Manual update"
+msgstr ""
+
+#. settings-schema.json->manualDataUpdate->tooltip
+msgid "Click last update timestamp to instantly refresh quotes data"
+msgstr ""
 
 #. settings-schema.json->sendCustomUserAgent->description
 msgid "Send custom User-Agent header"
