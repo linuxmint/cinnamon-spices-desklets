@@ -1,4 +1,4 @@
-# German translation for Yahoo Finance Quotes Desklet
+# Yahoo Finance Quotes Desklet
 # Copyright (C) 2018 Thomas Egli
 # This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
 #
@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-03-15 20:39+0100\n"
+"POT-Creation-Date: 2024-05-22 21:38+0200\n"
 "PO-Revision-Date: 2023-08-28 16:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -21,15 +21,15 @@ msgstr ""
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Yahoo Finance Service nicht verfügbar!\\nStatus: "
 
-#: desklet.js:728
+#: desklet.js:730
 msgid "Updated at "
 msgstr "Aktualisiert um "
 
-#: desklet.js:736
+#: desklet.js:751
 msgid "Error: "
 msgstr "Fehler: "
 
-#: desklet.js:798
+#: desklet.js:813
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -37,20 +37,20 @@ msgstr ""
 "Empfang von Autorisierungsparameter ist fehlgeschlagen! Finanzdaten-Abfrage "
 "nicht möglich.\\nStatus: "
 
-#: desklet.js:823
+#: desklet.js:838
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Consent-Erteilung ist fehlgeschlagen! Finanzdaten-Abfrage nicht möglich."
 "\\nStatus: "
 
-#: desklet.js:828
+#: desklet.js:843
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Consent-Erteilung nicht abgeschlossen! Finanzdaten-Abfrage nicht möglich."
 "\\nStatus: "
 
-#: desklet.js:850
+#: desklet.js:865
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
@@ -58,11 +58,11 @@ msgstr ""
 "Emfang von Autorisierungs-Crumb ist fehlgeschlagen! Finanzdaten-Abfrage "
 "nicht möglich.\\nStatus: "
 
-#: desklet.js:877
+#: desklet.js:892
 msgid "Cannot display quotes information for symbols: "
 msgstr "Finanzdaten können nicht angezeigt werden für die Symbole: "
 
-#: desklet.js:878
+#: desklet.js:893
 msgid "The following error occurred: "
 msgstr "Folgender Fehler ist aufgetreten: "
 
@@ -207,6 +207,15 @@ msgstr "Zeitpunkt der letzten Aktualisierung anzeigen"
 #. settings-schema.json->showLastUpdateTimestamp->tooltip
 msgid "Display timestamp when quotes were updated last"
 msgstr "Zeigt den Zeitstempel der letzten Aktualisierung der Finanzdaten an"
+
+#. settings-schema.json->manualDataUpdate->description
+#, fuzzy
+msgid "Manual update"
+msgstr "Manuelle Aktualisierung"
+
+#. settings-schema.json->manualDataUpdate->tooltip
+msgid "Click last update timestamp to instantly refresh quotes data"
+msgstr "Zeitstempel anklicken für sofortige Aktualisierung"
 
 #. settings-schema.json->sendCustomUserAgent->description
 msgid "Send custom User-Agent header"

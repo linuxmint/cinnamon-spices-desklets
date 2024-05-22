@@ -620,6 +620,8 @@ StockQuoteDesklet.prototype = {
             this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showLastUpdateTimestamp", "showLastUpdateTimestamp",
             this.onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "manualDataUpdate", "manualDataUpdate",
+            this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "sendCustomUserAgent", "sendCustomUserAgent",
             this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "customUserAgent", "customUserAgent",
@@ -724,11 +726,24 @@ StockQuoteDesklet.prototype = {
     },
 
     createLastUpdateLabel: function(settings) {
-        return new St.Label({
+        const label = new St.Label({
             text: _("Updated at ") + this.formatCurrentTimestamp(settings),
             style_class: "quotes-last-update",
+            reactive: this.manualDataUpdate,
             style: "color: " + settings.fontColor + "; " + (settings.fontSize > 0 ? "font-size: " + settings.fontSize + "px;" : "")
         });
+        
+        if (this.manualDataUpdate) {
+            const updateButton = new St.Button();
+            updateButton.add_actor(label);
+            updateButton.connect("clicked", Lang.bind(this, function() {
+               this.removeUpdateTimer();
+               this.onUpdate();
+            }));
+            return updateButton;
+        } else {
+            return label;
+        }
     },
 
     createErrorLabel: function(errorMsg) {
