@@ -10,6 +10,7 @@ body:
     default: 0
     label: Desklet name and maintainer
     options:
+    - ''
     - analog-clock@cobinja.de @cobinja
     - battery@schorschii @schorschii
     - bbcwx@oak-wood.co.uk @tipichris
