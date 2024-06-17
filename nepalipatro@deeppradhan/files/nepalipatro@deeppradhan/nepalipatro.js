@@ -49,7 +49,7 @@ function BikramSambat() {
 					gregorian.getMinutes(), gregorian.getSeconds()), gregorian);
 			year = this.epoch.bikramSambat.year;
 			month = this.epoch.bikramSambat.month;
-			date = this.epoch.bikramSambat.date +1 ; ///needed for fixing the day lag .. still days of the months verified with other nepali calender database 
+			date = this.epoch.bikramSambat.date +1 ; //still needed for fixing the day lag .. and days of the months verified with other nepali calender database 
 			while (countGeorgian > 0) {
 				if (typeof(this.monthLength[year]) === "undefined"
 						|| typeof(this.yearLength[year]) === "undefined")
