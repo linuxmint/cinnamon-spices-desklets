@@ -130,11 +130,11 @@ MyDesklet.prototype = {
 								deskletInstance.commandOut = _('No ping output');
 							}
 							else if(deskletInstance.type == 'ping') {
-								if(out.includes(' 100% packet loss')) {
+								if(out.includes(', 100% ')) {
 									deskletInstance.colorClass = 'red';
 									deskletInstance.statusTagString = _('CRIT');
 								}
-								else if(out.includes(' 0% packet loss')) {
+								else if(out.includes(', 0% ')) {
 									deskletInstance.colorClass = 'green';
 									deskletInstance.statusTagString = _('OK');
 								}
