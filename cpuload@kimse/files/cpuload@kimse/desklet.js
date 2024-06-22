@@ -283,6 +283,10 @@ CpuLoadDesklet.prototype = {
         let cpu_active_time = this.cpus_utilization[core];
         let color = this.getCpuColor(core);
 
+        if (isNaN(cpu_active_time)) {
+            cpu_active_time = 100;
+        }
+
         canvas.set_size(this.cpu_container_size, this.cpu_container_size);
         canvas.connect('draw', function(canvas, cr, width, height) {
 
