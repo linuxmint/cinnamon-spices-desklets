@@ -57,8 +57,8 @@ CpuLoadDesklet.prototype = {
         this.normal_font_size = 13;
         this.has_previous_sample = false;
 
-        // Preload CPU activity data and setup the UI.
-        this.refreshCpuActivity(this.setupUI);
+        // Setup the UI
+        this.setupUI();
     },
 
     /**

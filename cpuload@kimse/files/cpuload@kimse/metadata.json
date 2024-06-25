@@ -2,6 +2,6 @@
     "max-instances": "1",
     "description": "Displays CPU load",
     "name": "CPU Load",
-    "version": "0.7",
+    "version": "0.8",
     "uuid": "cpuload@kimse"
 }
