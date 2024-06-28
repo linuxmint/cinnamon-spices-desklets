@@ -14,9 +14,11 @@ var Driver = class Driver extends wxBase.Driver {
   constructor(stationID, version) {
     super(stationID);
     this.capabilities.cc.feelslike = false;
+    this.capabilities.cc.humidity = false;
     this.capabilities.cc.pressure = false;
     this.capabilities.cc.pressure_direction = false;
     this.capabilities.cc.visibility = false;
+    this.capabilities.forecast.humidity = false;
     this.capabilities.forecast.pressure = false;
     this.capabilities.meta.country = false;
     this.capabilities.meta.wgs84 = false;
@@ -109,7 +111,6 @@ var Driver = class Driver extends wxBase.Driver {
     var index = 0;
     var day_name = periods[0].name;
     if (day_name != 'Tonight' && day_name != 'Overnight') var index = 1;
-    this.data.cc.humidity = Math.max(periods[0].relativeHumidity.value, periods[index].relativeHumidity.value);
     this.data.cc.temperature = periods[0].temperature;
     this.data.cc.has_temp = true;
     this.data.cc.wind_speed = periods[0].windSpeed.split(' ')[0];
@@ -126,7 +127,6 @@ var Driver = class Driver extends wxBase.Driver {
 
       let forecastday = periods[i];
       let forecastnight = periods[i + 1];
-      day.humidity = Math.max(forecastday.relativeHumidity.value, forecastnight.relativeHumidity.value);
       day.maximum_temperature = forecastday.temperature;
       day.minimum_temperature = forecastnight.temperature;
       day.wind_speed = forecastday.windSpeed.split(' ')[0];
