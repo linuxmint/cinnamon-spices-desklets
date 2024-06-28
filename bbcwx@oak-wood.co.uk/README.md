@@ -106,7 +106,7 @@ FUNCTIONALITY
 | **Display Capabilities** |         |               |         |               |             |         |                |                  |         |                  |
 |                          |         |               |         |               |             |         |                |                  |         |                  |
 | Current Weather          |         |               |         |               |             |         |                |                  |         |                  |
-| humidity                 |   ✅    |       ❌      |   ✅    |      ✅       |     ✅      |   ✅    |       ✅       |        ✅        |   ✅    |        ✅        |
+| humidity                 |   ✅    |       ❌      |   ❌    |      ✅       |     ✅      |   ✅    |       ✅       |        ✅        |   ✅    |        ✅        |
 | temperature              |   ✅    |       ✅      |   ✅    |      ✅       |     ✅      |   ✅    |       ✅       |        ✅        |   ✅    |        ✅        |
 | pressure                 |   ✅    |       ❌      |   ❌    |      ✅       |     ✅      |   ✅    |       ✅       |        ✅        |   ✅    |        ❌        |
 | pressure direction       |   ✅    |       ❌      |   ❌    |      ❌       |     ❌      |   ❌    |       ❌       |        ❌        |   ❌    |        ❌        |
@@ -117,7 +117,7 @@ FUNCTIONALITY
 | feels like               |   ❌    |       ❌      |   ❌    |      ✅       |     ✅      |   ✅    |       ✅       |        ✅        |   ✅    |        ✅        |
 |                          |         |               |         |               |             |         |                |                  |         |                  |
 | Forecasts                |         |               |         |               |             |         |                |                  |         |                  |
-| humidity                 |   ✅    |       ✅      |   ✅    |      ❌       |     ✅      |   ✅    |       ✅       |        ❌        |   ✅    |        ✅        |
+| humidity                 |   ✅    |       ✅      |   ❌    |      ❌       |     ✅      |   ✅    |       ✅       |        ❌        |   ✅    |        ✅        |
 | max temperature          |   ✅    |       ✅      |   ✅    |      ✅       |     ✅      |   ✅    |       ✅       |        ✅        |   ✅    |        ✅        |
 | min temperature          |   ✅    |       ✅      |   ✅    |      ✅       |     ✅      |   ✅    |       ✅       |        ✅        |   ✅    |        ✅        |
 | pressure                 |   ✅    |       ✅      |   ❌    |      ❌       |     ✅      |   ✅    |       ❌       |        ❌        |   ✅    |        ❌        |
