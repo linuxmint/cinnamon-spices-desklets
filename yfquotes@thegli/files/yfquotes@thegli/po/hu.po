@@ -4,17 +4,18 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: yfquotes@thegli 0.12.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-05-22 21:38+0200\n"
-"PO-Revision-Date: 2023-10-22 20:26+0200\n"
-"Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
+"POT-Creation-Date: 2024-06-29 04:26-0400\n"
+"PO-Revision-Date: 2024-06-29 04:34-0400\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
 #: desklet.js:326 desklet.js:345
@@ -125,7 +126,7 @@ msgstr "Szám formázása"
 
 #. settings-schema.json->presentationDateTimeFormattingSection->title
 msgid "Date and Time Format"
-msgstr ""
+msgstr "Dátum és idő formátum"
 
 #. settings-schema.json->presentationSortingSection->title
 msgid "Sorting"
@@ -133,7 +134,7 @@ msgstr "Válogató"
 
 #. settings-schema.json->presentationFontSection->title
 msgid "Font"
-msgstr ""
+msgstr "Betűtípus"
 
 #. settings-schema.json->presentationColorsSection->title
 msgid "Trend Colors"
@@ -178,13 +179,15 @@ msgstr "A magasabb érték jobban megjeleníti az asztalkalmazás hátterét."
 
 #. settings-schema.json->showVerticalScrollbar->description
 msgid "Show vertical scrollbar"
-msgstr ""
+msgstr "Függőleges görgetősáv megjelenítése"
 
 #. settings-schema.json->showVerticalScrollbar->tooltip
 msgid ""
 "Display a vertical scrollbar when the quote list is longer than the "
 "desklet's height"
 msgstr ""
+"Függőleges görgetősáv megjelenítése, ha az idézetlista hosszabb, mint az "
+"asztalkalmazás magassága"
 
 #. settings-schema.json->delayMinutes->units
 msgid "minutes"
@@ -208,11 +211,13 @@ msgstr "Megjeleníti a megállapítások utolsó frissítéskeresésének időb�
 
 #. settings-schema.json->manualDataUpdate->description
 msgid "Manual update"
-msgstr ""
+msgstr "Kézi frissítés"
 
 #. settings-schema.json->manualDataUpdate->tooltip
 msgid "Click last update timestamp to instantly refresh quotes data"
 msgstr ""
+"Kattintson az utolsó frissítés időbélyegére az árajánlatok adatainak "
+"azonnali frissítéséhez"
 
 #. settings-schema.json->sendCustomUserAgent->description
 msgid "Send custom User-Agent header"
@@ -268,17 +273,20 @@ msgstr ""
 
 #. settings-schema.json->use24HourTime->description
 msgid "Force 24-hour clock"
-msgstr ""
+msgstr "24 órás óra kikényszerítése"
 
 #. settings-schema.json->use24HourTime->tooltip
 msgid ""
 "Always display time in 24-hour notation, overriding system settings.\n"
 "This setting is ignored, when a custom time format is defined."
 msgstr ""
+"Az időt mindig 24 órás jelöléssel jeleníti meg, felülírva a "
+"rendszerbeállításokat.\n"
+"Ez a beállítás figyelmen kívül marad, ha egyéni időformátum van megadva."
 
 #. settings-schema.json->customTimeFormat->description
 msgid "Custom time format"
-msgstr ""
+msgstr "Egyéni időformátum"
 
 #. settings-schema.json->customTimeFormat->tooltip
 msgid ""
@@ -287,10 +295,14 @@ msgid ""
 "%H:%M:%S    23:47:51\n"
 "%I:%M %p    11:47 PM"
 msgstr ""
+"Az idő formázása egyéni formátummal a rendszerbeállítások helyett.\n"
+"Példák:\n"
+"%H:%M:%S    23:47:51\n"
+"%I:%M %p    23:47 PM"
 
 #. settings-schema.json->customDateFormat->description
 msgid "Custom date format"
-msgstr ""
+msgstr "Egyéni dátumformátum"
 
 #. settings-schema.json->customDateFormat->tooltip
 msgid ""
@@ -300,6 +312,11 @@ msgid ""
 "%Y-%m-%d   2024-03-15\n"
 "%A, %b %d   Friday, Mar 15"
 msgstr ""
+"A dátum formázása egyéni formátummal a rendszerbeállítások helyett.\n"
+"Példák:\n"
+"%m/%d          03/15\n"
+"%Y-%m-%d   2024-03-15\n"
+"%A, %b %d   Péntek, Március 15"
 
 #. settings-schema.json->quoteSymbols->description
 msgid "Quote symbols"
@@ -453,31 +470,31 @@ msgstr "Utolsó kereskedési időpont vagy dátum megjelenítése."
 
 #. settings-schema.json->fontColor->description
 msgid "Font color"
-msgstr ""
+msgstr "Betűszín"
 
 #. settings-schema.json->fontColor->tooltip
 msgid "Default text color"
-msgstr ""
+msgstr "Alapértelmezett szövegszín"
 
 #. settings-schema.json->scaleFontSize->description
 msgid "Enable font size scaling"
-msgstr ""
+msgstr "Betűméret méretezés engedélyezése"
 
 #. settings-schema.json->scaleFontSize->tooltip
 msgid "Apply custom font size instead of the system default size"
-msgstr ""
+msgstr "Egyéni betűméret alkalmazása a rendszer alapértelmezett mérete helyett"
 
 #. settings-schema.json->fontScale->units
 msgid "times"
-msgstr ""
+msgstr "alkalommal"
 
 #. settings-schema.json->fontScale->description
 msgid "Font size scale factor"
-msgstr ""
+msgstr "Betűméret skálázási tényező"
 
 #. settings-schema.json->fontScale->tooltip
 msgid "Enlarge/reduce the font size"
-msgstr ""
+msgstr "A betűméret nagyítása/csökkentése"
 
 #. settings-schema.json->uptrendChangeColor->description
 msgid "Uptrend change color"
