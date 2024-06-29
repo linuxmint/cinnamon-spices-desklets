@@ -1,0 +1,194 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: clocket@tirtha 2.4\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 11:37+0200\n"
+"PO-Revision-Date: 2024-06-26 19:43+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: desklet.js:49
+msgid "Clock"
+msgstr "Óra"
+
+#: desklet.js:72
+msgid "Date and Time Settings"
+msgstr "Dátum és idő beállítások"
+
+#. metadata.json->name
+msgid "clocket"
+msgstr "clocket"
+
+#. metadata.json->description
+msgid ""
+"A desklet that displays the time, date, currenty and forecast weather report"
+msgstr ""
+"Egy asztalkalmazás, amely megjeleníti az időt, a dátumot és az aktuális és "
+"az előrejelzett időjárást"
+
+#. metadata.json->comments
+msgid ""
+"Please consider custom Weather Desklet into your language. See the website "
+"for more information"
+msgstr ""
+"Kérjük, fontolja meg az egyéni időjárás asztalkalmazást az ön nyelvén. "
+"További információért lásd a weboldalt"
+
+#. settings-schema.json->top->description
+msgid "Clock configuration"
+msgstr "Óra konfiguráció"
+
+#. settings-schema.json->font-size->units
+msgid "px"
+msgstr "képpont"
+
+#. settings-schema.json->font-size->description
+msgid "Font size"
+msgstr "Betűméret"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Szövegszín"
+
+#. settings-schema.json->text-color->tooltip
+#. settings-schema.json->weather-color->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Új szöveg szín választáshoz kattintson a gombra"
+
+#. settings-schema.json->background-color->description
+msgid "background color"
+msgstr "háttérszín"
+
+#. settings-schema.json->background-color->tooltip
+msgid "Click the button to select a new background color"
+msgstr "Az új háttérszín kiválasztásához kattintson a gombra"
+
+#. settings-schema.json->weatherconf->description
+msgid "weather data service settings"
+msgstr "időjárási adatszolgáltatás beállításai"
+
+#. settings-schema.json->compact->description
+#. settings-schema.json->compact->tooltip
+msgid "Want weather display ?"
+msgstr "Időjárás kijelzőt szeretne ?"
+
+#. settings-schema.json->webservice->description
+msgid "Data service"
+msgstr "Adatszolgáltatás"
+
+#. settings-schema.json->webservice->options
+msgid "BBC"
+msgstr "BBC"
+
+#. settings-schema.json->webservice->options
+msgid "Open Weather Map Free (requires API key)"
+msgstr "Open Weather Map Free (API-kulcs szükséges)"
+
+#. settings-schema.json->webservice->tooltip
+msgid "select the data service"
+msgstr "válassza ki a használni kívánt szolgáltatót"
+
+#. settings-schema.json->api-key->description
+msgid "put api key"
+msgstr "api kulcs beillesztése"
+
+#. settings-schema.json->api-key->tooltip
+msgid "put your api key generated from open-weather-map here"
+msgstr "másolja ide az open-weather-mapból generált api-kulcsát"
+
+#. settings-schema.json->loctype->description
+msgid "Type of location data"
+msgstr "A helymeghatározási adatok típusa"
+
+#. settings-schema.json->loctype->options
+msgid "city name"
+msgstr "város neve"
+
+#. settings-schema.json->loctype->options
+msgid "lat-lon"
+msgstr "szélességi és hosszúsági fok"
+
+#. settings-schema.json->loctype->tooltip
+msgid "select your location type"
+msgstr "válassza ki a helyszín típusát"
+
+#. settings-schema.json->loc->description
+msgid "put your location"
+msgstr "másolja ide a helyszínt"
+
+#. settings-schema.json->loc->tooltip
+msgid "put your lat-long generated from lat-long.html page"
+msgstr ""
+"másolja ide a szélességi és hosszúsági fokot a lat-long.html weboldalról"
+
+#. settings-schema.json->auto-update->description
+msgid "auto-update report"
+msgstr "automatikus frissítés összefoglaló"
+
+#. settings-schema.json->auto-update->tooltip
+msgid "enable or disable auto-update"
+msgstr "automatikus frissítés engedélyezése vagy letiltása"
+
+#. settings-schema.json->update-duration->description
+msgid "set auto update duration(20 min/30 min/60 min)"
+msgstr ""
+"automatikus frissítés időtartamának beállítása (20 perc/30 perc/60 perc)"
+
+#. settings-schema.json->update-duration->tooltip
+msgid "set auto update duration"
+msgstr "automatikus frissítés időtartamának beállítása"
+
+#. settings-schema.json->data-custom->description
+msgid "customize your data"
+msgstr "az adatok testreszabása"
+
+#. settings-schema.json->unit->description
+msgid "unit"
+msgstr "egység"
+
+#. settings-schema.json->unit->options
+msgid "metric"
+msgstr "metrikus"
+
+#. settings-schema.json->unit->tooltip
+msgid "select your unit preferance"
+msgstr "válassza ki a kívánt egységet"
+
+#. settings-schema.json->design->description
+msgid "customize font and bg color"
+msgstr "betűtípus és háttérszín testreszabása"
+
+#. settings-schema.json->weather-color->description
+msgid "weather block text color"
+msgstr "időjárási blokk szöveg színe"
+
+#. settings-schema.json->weather-bg-color->description
+msgid "weather-block bg-color"
+msgstr "időjárási blokk háttérszíne"
+
+#. settings-schema.json->weather-bg-color->tooltip
+msgid "Click the button to select a new bg color"
+msgstr "Kattintson a gombra háttérszín kiválasztásához"
+
+#. settings-schema.json->icon-pack->description
+msgid "Icon pack"
+msgstr "Ikon csomag"
+
+#. settings-schema.json->icon-pack->options
+msgid "default"
+msgstr "alapértelmezett"
+
+#. settings-schema.json->icon-pack->tooltip
+msgid "select your fav icon-pack"
+msgstr "válassza ki a kedvenc ikon csomagját"
