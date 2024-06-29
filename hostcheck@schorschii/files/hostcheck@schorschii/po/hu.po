@@ -1,67 +1,54 @@
-# #-#-#-#-#  hu_regi.po (1.2)  #-#-#-#-#
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-# #-#-#-#-#  hu_uj.po (hostcheck@schorschii 1.5.2)  #-#-#-#-#
 # SOME DESCRIPTIVE TITLE.
 # This file is put in the public domain.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.2\n"
 "Project-Id-Version: hostcheck@schorschii 1.5.2\n"
-"Report-Msgid-Bugs-To: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2021-03-18 18:53+0100\n"
-"POT-Creation-Date: 2024-05-15 00:14+0200\n"
-"PO-Revision-Date: 2024-06-29 08:01+0200\n"
-"PO-Revision-Date: 2024-06-29 08:01+0200\n"
-"Last-Translator: Balazs Bosak <bossbob88@gmail.com>\n"
+"POT-Creation-Date: 2024-06-29 04:26-0400\n"
+"PO-Revision-Date: 2024-06-29 04:29-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language-Team: \n"
-"Language: hu\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: desklet.js:120
+#: desklet.js:58 desklet.js:129
 msgid "UNKNOWN"
 msgstr "ISMERETLEN"
 
-#: desklet.js:121
+#: desklet.js:114
+msgid "Error executing ping command!"
+msgstr "Hiba a ping parancs végrehajtásában!"
+
+#: desklet.js:130
 msgid "No ping output"
 msgstr "Nincs kimenő ping"
 
-#: desklet.js:126 desklet.js:141
+#: desklet.js:135 desklet.js:161 desklet.js:181 desklet.js:203
 msgid "CRIT"
 msgstr "KRIT"
 
-#: desklet.js:130 desklet.js:145
+#: desklet.js:139 desklet.js:185 desklet.js:207
 msgid "OK"
 msgstr "OK"
 
-#: desklet.js:134 desklet.js:149
+#: desklet.js:143 desklet.js:189 desklet.js:211 desklet.js:218
 msgid "WARN"
 msgstr "FIGYELMEZTET"
 
-#: desklet.js:138
+#: desklet.js:177 desklet.js:199
 msgid "HTTP Status Code"
 msgstr "HTTP-Statuscode"
 
-#: desklet.js:164
+#: desklet.js:234
 msgid "s"
 msgstr "s"
 
@@ -82,6 +69,10 @@ msgstr "Hostcheck@schorschii beállításai"
 msgid "General"
 msgstr "Általános"
 
+#. settings-schema.json->host->description
+msgid "Hostname, IP address or HTTP(S)-URL to check"
+msgstr "Hostname, IP cím vagy HTTP(S)-URL ellenőrzése"
+
 #. settings-schema.json->type->description
 msgid "Ping or HTTP(S) check"
 msgstr "Ping vagy HTTP(S) ellenőrzés"
@@ -99,13 +90,17 @@ msgstr "Ping"
 msgid "HTTP(S)"
 msgstr "HTTP(S)"
 
+#. settings-schema.json->success-status-code->description
+msgid "HTTP success status code"
+msgstr "HTTP sikeres állapotkód"
+
+#. settings-schema.json->success-status-code->tooltip
+msgid "Choose the HTTP status code which should be assumed as success"
+msgstr "Válassza ki azt a HTTP állapotkódot, amelyet sikeresnek kell tekinteni"
+
 #. settings-schema.json->show-notifications->description
 msgid "Show notifications when state changed"
 msgstr "Értesítések megjelenítése állapotváltozáskor"
-
-#. settings-schema.json->host->description
-msgid "Hostname, IP address or HTTP(S)-URL to check"
-msgstr "Hostname, IP cím vagy HTTP(S)-URL ellenőrzése"
 
 #. settings-schema.json->interval->units
 msgid "seconds"
@@ -159,15 +154,3 @@ msgid ""
 msgstr ""
 "Itt állítson be egyedi címkét. Ez a mező nem lesz elérhető egészen addig, "
 "amíg a fenti négyzetben ezt nem engedélyezi."
-
-#. settings-schema.json->success-status-code->description
-msgid "HTTP success status code"
-msgstr "HTTP sikeres állapotkód"
-
-#. settings-schema.json->success-status-code->tooltip
-msgid "Choose the HTTP status code which should be assumed as success"
-msgstr "Válassza ki azt a HTTP állapotkódot, amelyet sikeresnek kell tekinteni"
-
-#: desklet.js:114
-msgid "Error executing ping command!"
-msgstr "Hiba a ping parancs végrehajtásában!"
