@@ -1,15 +1,16 @@
-# SOME DESCRIPTIVE TITLE.
+# Hungarian translation
 # This file is put in the public domain.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# First translator: Vajda Örs <ors0092@gmail.com>, 2024.
+# Fixes: Janos Toberling, 2024
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yarr@jtoberling 1.1.1\n"
+"Project-Id-Version: yarr@jtoberling 1.2.2\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2024-03-09 12:56-0500\n"
-"PO-Revision-Date: 2024-03-03 19:23+0100\n"
-"Last-Translator: Vajda Örs <ors0092@gmail.com>\n"
+"PO-Revision-Date: 2024-06-28 19:23+0100\n"
+"Last-Translator: Janos Toberling <jtoberling@gmail.com>\n"
 "Language-Team: \n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -321,7 +322,7 @@ msgstr ""
 
 #. settings-schema.json->refreshsettingsbutton->description
 msgid "Refresh settings"
-msgstr "Frissítési beállítások"
+msgstr "Beállítások firssítése"
 
 #. settings-schema.json->refreshsettingsbutton->tooltip
 msgid "Press this button to relad settings"
@@ -329,4 +330,7 @@ msgstr "Nyomja meg ezt a gombot a beállítások újratöltéséhez"
 
 #. settings-schema.json->enablecopy->description
 msgid "Enable Copy to clipboard button"
-msgstr ""
+msgstr "Másolás a vágólapra gomb engedélyezése"
+
+msgid "Updated"
+msgstr "Frissítve"

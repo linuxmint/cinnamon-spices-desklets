@@ -18,10 +18,16 @@ const Secret = imports.gi.Secret;
 const Pango = imports.gi.Pango;
 const Clutter = imports.gi.Clutter;
 const fromXML = require('./fromXML');
-
-const uuid = "yarr@jtoberling";
-
 const ByteArray = imports.byteArray;
+
+const UUID = "yarr@jtoberling";
+const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
+
+
+function _(str) {
+  return Gettext.dgettext(UUID, str);
+}
+
 
 class YarrDesklet extends Desklet.Desklet {
 
@@ -51,10 +57,16 @@ class YarrDesklet extends Desklet.Desklet {
     clipboard = St.Clipboard.get_default();
 
     constructor (metadata, desklet_id) {
+
+        // translation init: if installed in user context, switch to translations in user's home dir
+        if(!DESKLET_ROOT.startsWith("/usr/share/")) {
+                Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+        }
+        
         super(metadata, desklet_id);
         this.metadata = metadata;
 
-        this.uuid = this.metadata["uuid"];
+        this.uuid = this.metadata["UUID"];
         
         this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, this.instance_id);
 
@@ -625,7 +637,7 @@ class YarrDesklet extends Desklet.Desklet {
     displayItems(context) {
     
         let updated= new Date();
-        context.headTitle.set_text(_('Updated:') + context._formatedDate(new Date()));
+        context.headTitle.set_text(_('Updated') + ': ' + context._formatedDate(new Date()));
     
         context.tableContainer.destroy_all_children();
         
@@ -640,13 +652,13 @@ class YarrDesklet extends Desklet.Desklet {
                 +'\n<small>[ ' + item.category.toString().substring(0,80) + ' ]</small>\n\n'
                 + this.formatTextWrap(this.HTMLPartToTextPart(item.description ?? '-' ),100) 
                 ;
-                
-                
+/*                
             let toolTip = new Tooltips.Tooltip(feedButton, toolTipText );
             toolTip._tooltip.style = 'text-align: left;';
             toolTip._tooltip.clutter_text.set_use_markup(true);
             toolTip._tooltip.clutter_text.allocate_preferred_size(Clutter.AllocationFlags.NONE);
             toolTip._tooltip.queue_relayout();
+*/
 
             lineBox.add(feedButton);
 
@@ -808,7 +820,13 @@ class YarrDesklet extends Desklet.Desklet {
                         
                         var resObj = JSON.parse(result);
                         
-                        var aiResponse = resObj.choices[0].message.content;
+                        var aiResponse = "";
+                        if (resObj.hasOwnProperty("error")) {
+                            global.log('ERROR!')
+                            aiResponse = resObj.error.message;
+                        } else {
+                            aiResponse = resObj.choices[0].message.content;
+                        }
                         
                         item.aiResponse = aiResponse;
                         
