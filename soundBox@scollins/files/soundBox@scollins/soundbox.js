@@ -10,6 +10,9 @@ const Gtk = imports.gi.Gtk;
 const Cvc = imports.gi.Cvc;
 const St = imports.gi.St;
 
+const Cogl = imports.gi.Cogl;
+const GdkPixbuf = imports.gi.GdkPixbuf;
+
 const Interfaces = imports.misc.interfaces;
 const Params = imports.misc.params;
 const Util = imports.misc.util;
@@ -1398,10 +1401,30 @@ Player.prototype = {
         else {
             let l = new Clutter.BinLayout();
             let b = new Clutter.Box();
-            let c = new Clutter.Texture({ height: settings.artSize, keep_aspect_ratio: true, filter_quality: 2, filename: this.coverPath });
+
+            let pixbuf = GdkPixbuf.Pixbuf.new_from_file(this.coverPath);
+            let imgHeight = settings.artSize;
+            let imgWidth = pixbuf.get_width() / pixbuf.get_height() * imgHeight;
+            let pixbufResized = pixbuf.scale_simple(imgWidth, imgHeight, 2);
+
+            let image = new Clutter.Image();
+            image.set_data(
+                pixbufResized.get_pixels(),
+                pixbufResized.get_has_alpha() ? Cogl.PixelFormat.RGBA_8888 : Cogl.PixelFormat.RGB_888,
+                imgWidth,
+                imgHeight,
+                pixbufResized.get_rowstride()
+            );
+
+            let imgActor = new Clutter.Actor();
+            imgActor.set_content(image);
+            imgActor.set_width(imgWidth);
+            imgActor.set_height(imgHeight);
+
             b.set_layout_manager(l);
             b.set_width(settings.artSize);
-            b.add_actor(c);
+            b.add_actor(imgActor);
+
             this.trackCover.set_child(b);
         }
     },
