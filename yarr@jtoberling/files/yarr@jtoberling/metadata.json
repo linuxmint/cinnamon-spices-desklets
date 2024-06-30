@@ -1,10 +1,11 @@
 {
     "max-instances": "1",
-    "description": "Yet Another RSS Reader - with AI (ChatGPT) summaries",
+    "description": "Yet Another RSS Reader - now as Cinnamon Desklet",
     "name": "Yet Another RSS Reader",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "uuid": "yarr@jtoberling",
     "multiversion": true,
     "author": "jtoberling",
-    "prevent-decorations": true
+    "prevent-decorations": true, 
+    "gettext-domain": "yarr@jtoberling"
 }
