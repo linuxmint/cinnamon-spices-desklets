@@ -558,24 +558,8 @@ class YarrDesklet extends Desklet.Desklet {
         .replace('&nbsp;', ' ')
         .replace(/[^\S\r\n][^\S\r\n]+/ig, ' ')
       ;
-    }    
-     
-    formatTextWrap(text, maxLineLength) {
-          const words = text.replace(/[\r\n]+/g, ' ').split(' ');
-          let lineLength = 0;
-          
-          // use functional reduce, instead of for loop 
-          return words.reduce((result, word) => {
-            if (lineLength + word.length >= maxLineLength) {
-              lineLength = word.length;
-              return result + `\n${word}`; // don't add spaces upfront
-            } else {
-              lineLength += word.length + (result ? 1 : 0);
-              return result ? result + ` ${word}` : `${word}`; // add space only when needed
-            }
-          }, '');
-    } 
-     
+    }
+
     getCategoryString(item) {
             let catStr = '';
 
@@ -766,7 +750,7 @@ class YarrDesklet extends Desklet.Desklet {
     
     onChatGPAPIKeySave() {
             let dialog = new PasswordDialog (
-                _("'%s' settings..\nPlease enter ChatGP API key:").format(this._(this._meta.name)),
+                _("'%s' settings..\nPlease enter ChatGPT API key:").format(this._(this._meta.name)),
                 (password) => {
                     Secret.password_store(this.STORE_SCHEMA, {}, Secret.COLLECTION_DEFAULT,
                       "Yarr_ChatGPTApiKey", password, null, this.on_chatgptapikey_stored);
@@ -853,6 +837,22 @@ class YarrDesklet extends Desklet.Desklet {
             })
         );   
         
+    }
+
+    formatTextWrap(text, maxLineLength) {
+        const words = text.replace(/[\r\n]+/g, ' ').split(' ');
+        let lineLength = 0;
+
+        // use functional reduce, instead of for loop
+        return words.reduce((result, word) => {
+          if (lineLength + word.length >= maxLineLength) {
+            lineLength = word.length;
+            return result + `\n${word}`; // don't add spaces upfront
+          } else {
+            lineLength += word.length + (result ? 1 : 0);
+            return result ? result + ` ${word}` : `${word}`; // add space only when needed
+          }
+        }, '');
     }
 }
 

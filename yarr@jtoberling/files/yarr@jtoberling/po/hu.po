@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: yarr@jtoberling 1.2.2\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-03-09 12:56-0500\n"
+"POT-Creation-Date: 2024-06-30 11:08-0400\n"
 "PO-Revision-Date: 2024-06-28 19:23+0100\n"
 "Last-Translator: Janos Toberling <jtoberling@gmail.com>\n"
 "Language-Team: \n"
@@ -19,24 +19,36 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: desklet.js:302
+#: desklet.js:314
 msgid "Enable refresh"
 msgstr "Frissítés engedélyezése"
 
-#: desklet.js:306 desklet.js:344
+#: desklet.js:318 desklet.js:356
 msgid "Disable refresh"
 msgstr "Frissítés letiltása"
 
-#: desklet.js:315
+#: desklet.js:327
 msgid "Yarr"
 msgstr "Yarr"
 
-#: desklet.js:329
+#: desklet.js:341
 msgid "Loading: feeds ..."
 msgstr "Betöltés: hírforrás ..."
 
+#: desklet.js:624
+msgid "Updated"
+msgstr "Frissítve"
+
+#: desklet.js:753
+#, javascript-format
+msgid ""
+"'%s' settings..\n"
+"Please enter ChatGPT API key:"
+msgstr ""
+
 #. metadata.json->description
-msgid "Yet Another RSS Reader - with AI (ChatGPT) summaries"
+#, fuzzy
+msgid "Yet Another RSS Reader - now as Cinnamon Desklet"
 msgstr "Yet Another RSS Reader - MI (ChatGPT) összefoglalóval"
 
 #. metadata.json->name
@@ -331,6 +343,3 @@ msgstr "Nyomja meg ezt a gombot a beállítások újratöltéséhez"
 #. settings-schema.json->enablecopy->description
 msgid "Enable Copy to clipboard button"
 msgstr "Másolás a vágólapra gomb engedélyezése"
-
-msgid "Updated"
-msgstr "Frissítve"
