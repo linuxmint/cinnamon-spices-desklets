@@ -18,10 +18,16 @@ const Secret = imports.gi.Secret;
 const Pango = imports.gi.Pango;
 const Clutter = imports.gi.Clutter;
 const fromXML = require('./fromXML');
-
-const uuid = "yarr@jtoberling";
-
 const ByteArray = imports.byteArray;
+
+const UUID = "yarr@jtoberling";
+const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
+
+
+function _(str) {
+  return Gettext.dgettext(UUID, str);
+}
+
 
 class YarrDesklet extends Desklet.Desklet {
 
@@ -51,10 +57,16 @@ class YarrDesklet extends Desklet.Desklet {
     clipboard = St.Clipboard.get_default();
 
     constructor (metadata, desklet_id) {
+
+        // translation init: if installed in user context, switch to translations in user's home dir
+        if(!DESKLET_ROOT.startsWith("/usr/share/")) {
+                Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+        }
+        
         super(metadata, desklet_id);
         this.metadata = metadata;
 
-        this.uuid = this.metadata["uuid"];
+        this.uuid = this.metadata["UUID"];
         
         this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, this.instance_id);
 
@@ -546,24 +558,8 @@ class YarrDesklet extends Desklet.Desklet {
         .replace('&nbsp;', ' ')
         .replace(/[^\S\r\n][^\S\r\n]+/ig, ' ')
       ;
-    }    
-     
-    formatTextWrap(text, maxLineLength) {
-          const words = text.replace(/[\r\n]+/g, ' ').split(' ');
-          let lineLength = 0;
-          
-          // use functional reduce, instead of for loop 
-          return words.reduce((result, word) => {
-            if (lineLength + word.length >= maxLineLength) {
-              lineLength = word.length;
-              return result + `\n${word}`; // don't add spaces upfront
-            } else {
-              lineLength += word.length + (result ? 1 : 0);
-              return result ? result + ` ${word}` : `${word}`; // add space only when needed
-            }
-          }, '');
-    } 
-     
+    }
+
     getCategoryString(item) {
             let catStr = '';
 
@@ -625,7 +621,7 @@ class YarrDesklet extends Desklet.Desklet {
     displayItems(context) {
     
         let updated= new Date();
-        context.headTitle.set_text(_('Updated:') + context._formatedDate(new Date()));
+        context.headTitle.set_text(_('Updated') + ': ' + context._formatedDate(new Date()));
     
         context.tableContainer.destroy_all_children();
         
@@ -640,13 +636,13 @@ class YarrDesklet extends Desklet.Desklet {
                 +'\n<small>[ ' + item.category.toString().substring(0,80) + ' ]</small>\n\n'
                 + this.formatTextWrap(this.HTMLPartToTextPart(item.description ?? '-' ),100) 
                 ;
-                
-                
+/*                
             let toolTip = new Tooltips.Tooltip(feedButton, toolTipText );
             toolTip._tooltip.style = 'text-align: left;';
             toolTip._tooltip.clutter_text.set_use_markup(true);
             toolTip._tooltip.clutter_text.allocate_preferred_size(Clutter.AllocationFlags.NONE);
             toolTip._tooltip.queue_relayout();
+*/
 
             lineBox.add(feedButton);
 
@@ -754,7 +750,7 @@ class YarrDesklet extends Desklet.Desklet {
     
     onChatGPAPIKeySave() {
             let dialog = new PasswordDialog (
-                _("'%s' settings..\nPlease enter ChatGP API key:").format(this._(this._meta.name)),
+                _("'%s' settings..\nPlease enter ChatGPT API key:").format(this._(this._meta.name)),
                 (password) => {
                     Secret.password_store(this.STORE_SCHEMA, {}, Secret.COLLECTION_DEFAULT,
                       "Yarr_ChatGPTApiKey", password, null, this.on_chatgptapikey_stored);
@@ -808,7 +804,13 @@ class YarrDesklet extends Desklet.Desklet {
                         
                         var resObj = JSON.parse(result);
                         
-                        var aiResponse = resObj.choices[0].message.content;
+                        var aiResponse = "";
+                        if (resObj.hasOwnProperty("error")) {
+                            global.log('ERROR!')
+                            aiResponse = resObj.error.message;
+                        } else {
+                            aiResponse = resObj.choices[0].message.content;
+                        }
                         
                         item.aiResponse = aiResponse;
                         
@@ -835,6 +837,22 @@ class YarrDesklet extends Desklet.Desklet {
             })
         );   
         
+    }
+
+    formatTextWrap(text, maxLineLength) {
+        const words = text.replace(/[\r\n]+/g, ' ').split(' ');
+        let lineLength = 0;
+
+        // use functional reduce, instead of for loop
+        return words.reduce((result, word) => {
+          if (lineLength + word.length >= maxLineLength) {
+            lineLength = word.length;
+            return result + `\n${word}`; // don't add spaces upfront
+          } else {
+            lineLength += word.length + (result ? 1 : 0);
+            return result ? result + ` ${word}` : `${word}`; // add space only when needed
+          }
+        }, '');
     }
 }
 
