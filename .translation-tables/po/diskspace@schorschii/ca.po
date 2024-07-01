@@ -1,0 +1,234 @@
+# Diskspace desklet for Cinnamon
+# This file is put in the public domain.
+# Daniel <d3vf4n (at) tutanota (dot) com>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 11:44+0200\n"
+"PO-Revision-Date: 2024-05-15 12:14+0200\n"
+"Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+#. settings-schema.json->type->options
+#: desklet.js:275 desklet.js:356
+msgid "RAM"
+msgstr "RAM"
+
+#. settings-schema.json->type->options
+#: desklet.js:277 desklet.js:358
+msgid "Swap"
+msgstr "Memòria d'intercanvi"
+
+#. settings-schema.json->type->options
+#: desklet.js:279
+msgid "Filesystem"
+msgstr "Sistema de fitxers"
+
+#: desklet.js:301
+msgid "Not Found"
+msgstr "No s'ha trobat"
+
+#. metadata.json->name
+#: desklet.js:360
+msgid "Disk Space"
+msgstr "Espai de disc"
+
+#. metadata.json->description
+msgid "Displays the usage of a filesystem or RAM."
+msgstr "Mostra l'ús d'un sistema de fitxers o de la RAM."
+
+#. settings-schema.json->head0->description
+msgid "Settings for diskspace@schorschii"
+msgstr "Ajusts per diskspace@schorschii"
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr "General"
+
+#. settings-schema.json->type->description
+msgid "Monitor a file system or RAM usage"
+msgstr "Monitora l'ús d'un sistema de fitxers o de la RAM"
+
+#. settings-schema.json->type->tooltip
+msgid "Choose, if this desklet should show file system or RAM usage."
+msgstr ""
+"Trieu, si aquesta miniaplicació d'escriptori\n"
+"ha de mostrar l'ús d'un sistema de fitxers o de la RAM."
+
+#. settings-schema.json->filesystem->description
+msgid "Filesystem to monitor"
+msgstr "Sistema de fitxers a monitorar"
+
+#. settings-schema.json->filesystem->tooltip
+msgid "Select the file system, which you want to monitor."
+msgstr "Seleccioneu el sistema de fitxers que voleu monitorar."
+
+#. settings-schema.json->onclick-action->description
+msgid "Action on mouse click"
+msgstr "Acció en fer clic"
+
+#. settings-schema.json->onclick-action->tooltip
+msgid "Choose what to do when the desklet was clicked."
+msgstr "Estableix què fer quan feu clic sobre la miniaplicació d'escriptori."
+
+#. settings-schema.json->onclick-action->options
+msgid "Open File Manager"
+msgstr "Obre el gestor de fitxers"
+
+#. settings-schema.json->onclick-action->options
+msgid "Open Partition Manager"
+msgstr "Obre el gestor de particions"
+
+#. settings-schema.json->onclick-action->options
+msgid "Open System Monitor"
+msgstr "Obre el monitor del sistema"
+
+#. settings-schema.json->onclick-action->options
+msgid "Nothing"
+msgstr "Res"
+
+#. settings-schema.json->size-prefix->description
+msgid "Size Prefix"
+msgstr "Prefix de la mida"
+
+#. settings-schema.json->size-prefix->options
+msgid "Decimal"
+msgstr "Decimal"
+
+#. settings-schema.json->size-prefix->options
+msgid "Binary"
+msgstr "Binari"
+
+#. settings-schema.json->reserved-blocks-as-used-space->description
+msgid "Show reserved blocks as used space"
+msgstr "Mostra els blocs reservats com espai utilitzat"
+
+#. settings-schema.json->reserved-blocks-as-used-space->tooltip
+msgid ""
+"Reserved blocks are useable for the root user only and that's why displayed "
+"as used space by default."
+msgstr ""
+"Els blocs reservats son exclusius del superusuari (root), per això es "
+"mostra com espai utilitzat per omissió."
+
+#. settings-schema.json->head2->description
+msgid "Visual"
+msgstr "Visual"
+
+#. settings-schema.json->design->description
+msgid "Design"
+msgstr "Disseny"
+
+#. settings-schema.json->design->options
+msgid "Thin"
+msgstr "Estret"
+
+#. settings-schema.json->design->options
+msgid "Compact"
+msgstr "Compacte"
+
+#. settings-schema.json->design->options
+msgid "Classic (Thick)"
+msgstr "Clàssic (ample)"
+
+#. settings-schema.json->text-view->description
+msgid "Text"
+msgstr "Text"
+
+#. settings-schema.json->text-view->options
+msgid "Name and total space"
+msgstr "Nom i mida total"
+
+#. settings-schema.json->text-view->options
+msgid "Used and total space"
+msgstr "Espai utilitzat i total"
+
+#. settings-schema.json->text-view->options
+msgid "Total and used space"
+msgstr "Espai utilitzat i total"
+
+#. settings-schema.json->text-view->options
+msgid "Free and total space"
+msgstr "Espai lliure i total"
+
+#. settings-schema.json->text-view->options
+msgid "Total and free space"
+msgstr "Espai lliure i total"
+
+#. settings-schema.json->text-view->options
+msgid "No text"
+msgstr "Sense text"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Oculta les decoracions"
+
+#. settings-schema.json->draw-free-space->description
+msgid "Draw free/unused space (gray)"
+msgstr "Dibuixa l'espai lliure o no utilitzat (gris)"
+
+#. settings-schema.json->use-own-circle-color->description
+msgid "Use a custom circle color"
+msgstr "Utilitza un color de cercle personalitzat"
+
+#. settings-schema.json->circle-color->description
+msgid "Circle color"
+msgstr "Color del cercle"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Color del text"
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "factor de canvi d'escala"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Mida de la miniaplicació d'escriptori"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Augmenta o disminueix la mida d'aquesta miniaplicació\n"
+"d'escriptori amb aquest factor de canvi d'escala."
+
+#. settings-schema.json->head3->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Etiqueta de miniaplicació d'escriptori personalitzada (només és visible si "
+"les decoracions estan habilitades)"
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Utilitza una etiqueta de miniaplicació d'escriptori personalitzada"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Si marqueu aquesta casella, podeu establir una etiqueta personalitzada al "
+"camp següent."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Etiqueta de miniaplicació d'escriptori personalitzada"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr ""
+"Establiu aquí la vostra etiqueta personalitzada. Aquest camp no està\n"
+"disponible a menys que la casella de selecció de dalt estigui habilitada."

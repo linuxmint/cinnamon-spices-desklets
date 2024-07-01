@@ -1,0 +1,36 @@
+# DevTools desklet for Cinnamon
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Daniel <d3vf4n (at) tutanota (dot) com>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 12:40+0200\n"
+"PO-Revision-Date: 2024-05-15 12:49+0200\n"
+"Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: desklet.js:464
+msgid "Open Looking Glass"
+msgstr ""
+
+#: inspect.js:126
+msgid "(Press Pause or Control to disable event pass through)"
+msgstr ""
+
+#: inspect.js:128
+msgid "(Press Pause or Control to enable event pass through)"
+msgstr ""
+
+#: inspect.js:498
+msgid "Map Elements"
+msgstr ""
