@@ -30,7 +30,7 @@
         "section1": {
             "type": "section", 
             "title": "Display settings", 
-            "keys": ["refreshsettingsbutton",  "backgroundColor", "transparency", "width", "height", "font", "text-color", "enablecopy" ]
+            "keys": ["refreshsettingsbutton",  "backgroundColor", "transparency", "alternateRowTransparency", "width", "height", "font", "text-color", "enablecopy" ]
         }, 
         
         "section1ai": {
@@ -98,6 +98,15 @@
         "step": 0.05,
         "description": "Background transparency",
         "tooltip": "The higher the value, the more solid the desklet background."
+    },
+    "alternateRowTransparency": {
+        "type": "scale",
+        "default": 0.3,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.05,
+        "description": "Dim of every second rows",
+        "tooltip": "The higher the value, more dim on alternate row backgrounds."
     },
     "refreshInterval-spinner": {
         "type": "spinbutton",

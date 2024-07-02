@@ -77,6 +77,7 @@ class YarrDesklet extends Desklet.Desklet {
         this.settings.bind("height", "height"); //, this.onDisplayChanged);
         this.settings.bind("width", "width"); //, this.onDisplayChanged);
         this.settings.bind("transparency", "transparency"); //, this.onDisplayChanged);
+        this.settings.bind("alternateRowTransparency", "alternateRowTransparency"); //, this.onDisplayChanged);
         this.settings.bind("backgroundColor", "backgroundColor"); //, this.onDisplayChanged);
         this.settings.bind("font", "font"); //, this.onDisplayChanged);
         this.settings.bind("text-color", "color"); //, this.onDisplayChanged);
@@ -625,9 +626,10 @@ class YarrDesklet extends Desklet.Desklet {
     
         context.tableContainer.destroy_all_children();
         
+        let counter = 0;
         for(let [key, item] of context.items ) {
-
-            const lineBox = new St.BoxLayout({ vertical: false });
+            counter++;
+            const lineBox = new St.BoxLayout({ vertical: false }); 
 
             const feedButton = new St.Button({ label: "["+item.channel +"]" , style_class: 'channelbutton', style: 'width: 80px; background-color: ' + item.labelColor });
 
@@ -636,13 +638,6 @@ class YarrDesklet extends Desklet.Desklet {
                 +'\n<small>[ ' + item.category.toString().substring(0,80) + ' ]</small>\n\n'
                 + this.formatTextWrap(this.HTMLPartToTextPart(item.description ?? '-' ),100) 
                 ;
-/*                
-            let toolTip = new Tooltips.Tooltip(feedButton, toolTipText );
-            toolTip._tooltip.style = 'text-align: left;';
-            toolTip._tooltip.clutter_text.set_use_markup(true);
-            toolTip._tooltip.clutter_text.allocate_preferred_size(Clutter.AllocationFlags.NONE);
-            toolTip._tooltip.queue_relayout();
-*/
 
             lineBox.add(feedButton);
 
@@ -681,17 +676,30 @@ class YarrDesklet extends Desklet.Desklet {
             let panelButton = new St.Button({});
   
             const itemLabel = new St.Label({
-                    text: item.title,
+                    text: item.title
             });
+            itemLabel.hexpand = true;
+                
+
             itemLabel.style = context.fontstyle;
+            
             itemLabel.clutter_text.line_wrap = true;
             itemLabel.clutter_text.line_wrap_mode = Pango.WrapMode.WORD;
             itemLabel.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
             
-            itemBoxLayout.add(itemLabel);
+            let subItemBox = new St.BoxLayout({ 
+                vertical: true
+            });
+            if ( (counter % 2 ) == 0) {
+                subItemBox.style = "background-color: rgba(100,100,100,"+ this.alternateRowTransparency +");";
+            }
+
+            subItemBox.add(itemLabel);
+            
+            itemBoxLayout.add(subItemBox);
 
             panelButton.set_child(itemBoxLayout);
-
+            
             let toolTip2 = new Tooltips.Tooltip(panelButton, toolTipText );
             toolTip2._tooltip.style = 'text-align: left;';
             toolTip2._tooltip.clutter_text.set_use_markup(true);
@@ -777,19 +785,19 @@ class YarrDesklet extends Desklet.Desklet {
                     result = result.substring(0,16384);
                 }
                 
-                const reqObj = '{ \
-                        "model": \"'+this.ai_model+'\", \
-                        "messages": [ \
-                            { \
-                                "role": "system", \
-                                "content": ' + JSON.stringify(this.ai_systemprompt)+' \
-                            }, \
-                            { \
-                                "role": "user", \
-                                "content": ' + JSON.stringify(result) + ' \
-                            } \
-                        ] \
-                }';
+                const reqObj = { 
+                        "model": this.ai_model,
+                        "messages": [ 
+                            { 
+                                "role": "system", 
+                                "content": JSON.stringify(this.ai_systemprompt)
+                            },
+                            { 
+                                "role": "user", 
+                                "content": JSON.stringify(result)
+                            } 
+                        ]
+                };
 
                 //(method,url,headers,postParameters,callbackF, bodyMime)
                 this.httpRequest(
@@ -799,7 +807,7 @@ class YarrDesklet extends Desklet.Desklet {
                         ['Authorization', 	'Bearer ' + Secret.password_lookup_sync(this.STORE_SCHEMA, {}, null )], 
                         ['Content-type', 	'application/json']
                     ], 
-                    reqObj,
+                    JSON.stringify(reqObj),
                     function (context, message, result) {
                         
                         var resObj = JSON.parse(result);
@@ -854,6 +862,7 @@ class YarrDesklet extends Desklet.Desklet {
           }
         }, '');
     }
+
 }
 
 function main(metadata, desklet_id) {
