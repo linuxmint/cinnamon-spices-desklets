@@ -20,7 +20,7 @@ MyDesklet.prototype = {
     _init: function(metadata) {
         Desklet.Desklet.prototype._init.call(this, metadata);
 
-        this._mainContainer = new St.BoxLayout({ vertical: false });
+        this._mainContainer = new St.BoxLayout({ vertical: false, style_class: 'main_container' });
 
         this._calenderContainer = new St.BoxLayout({ vertical: true, style_class: 'calender-container' });
         this._panchangContainer = new St.BoxLayout({ vertical: true, style_class: 'panchang-container' });
@@ -45,8 +45,8 @@ MyDesklet.prototype = {
         this._timeContainer.add(this._time);
 
         this._calenderContainer.add(this._dateContainer, { x_fill: true });
-        this._calenderContainer.add(this._monthContainer);
-        this._calenderContainer.add(this._timeContainer);
+        this._calenderContainer.add(this._monthContainer, { x_fill: true});
+        this._calenderContainer.add(this._timeContainer, { x_fill: true});
 
         this._panchangContainer.add(this._vaaram);
         this._panchangContainer.add(this._tithi);
