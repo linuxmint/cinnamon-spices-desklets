@@ -445,7 +445,7 @@ Slider.prototype = {
 
         this.previousMode = global.stage_input_mode;
         global.set_stage_input_mode(Cinnamon.StageInputMode.FULLSCREEN);
-        Clutter.grab_pointer(this.actor);
+        Clutter.get_default_backend().get_default_seat().get_pointer().grab(this.actor);
         this._releaseId = this.actor.connect("button-release-event", Lang.bind(this, this._endDragging));
         this._motionId = this.actor.connect("motion-event", Lang.bind(this, this._motionEvent));
         let absX, absY;
@@ -458,7 +458,7 @@ Slider.prototype = {
             this.actor.disconnect(this._releaseId);
             this.actor.disconnect(this._motionId);
 
-            Clutter.ungrab_pointer();
+            Clutter.get_default_backend().get_default_seat().get_pointer().ungrab();
             if ( this.previousMode ) {
                 global.set_stage_input_mode(this.previousMode);
                 this.previousMode = null;
@@ -887,7 +887,7 @@ TimeControls.prototype = {
     },
 
     onDragEnd: function(slider, value) {
-        seconds = value * this.timeTracker.getTotal();
+        let seconds = value * this.timeTracker.getTotal();
         this.timeTracker.seek(seconds);
     },
 
