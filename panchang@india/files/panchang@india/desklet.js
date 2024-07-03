@@ -674,14 +674,14 @@ function tithi_end(jd, n1, len) {
         knv = Math.floor(((jd - 2415020) / 365.25) * 12.3685);
         itit = n1 + 1;
         aspect = len * itit; // sun n moon in the early tithi
-        if (aspect == 0) {
+        /*if (aspect == 0) {
             jdt = novolun(jd, knv);
             flag = 1;
         }
         if (aspect == 360) {
             jdt = novolun(jd, (knv + 1));
             flag = 1;
-        }
+        }*/
         while (flag < 1) {
             Lsun0 = sun(jdt);
             Lmoon0 = moon(jdt);
