@@ -1,5 +1,6 @@
 {
     "description": "Displaying Hindu Panchnage",
     "uuid": "panchang@india",
-    "name": "Panchang Desklet"
+    "name": "Panchang Desklet",
+    "version": "1.1"
 }
