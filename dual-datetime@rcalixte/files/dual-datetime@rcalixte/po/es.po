@@ -5,8 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.2\n"
-"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/issues\n"
-"POT-Creation-Date: 2024-02-05 15:53-0500\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-07-05 16:24-0400\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,7 +18,8 @@ msgstr ""
 "X-Generator: Poedit 3.4\n"
 
 #. metadata.json->description
-msgid "A highly customizable clock desklet that can display dual datetime strings"
+msgid ""
+"A highly customizable clock desklet that can display dual datetime strings"
 msgstr "Un desklet que puede mostrar cadenas duales de fecha y hora"
 
 #. metadata.json->name
@@ -35,8 +37,12 @@ msgstr "Formato de tiempo"
 
 #. 5.4->settings-schema.json->time_format1->tooltip
 #. 5.4->settings-schema.json->time_format2->tooltip
-msgid "The datetime format to use for the output. See 'Format String Help' below for additional details."
-msgstr "Formato de fecha y hora que se usará para la salida. Consulte 'Ayuda para dar \"formato a cadenas' a continuación para obtener detalles adicionales."
+msgid ""
+"The datetime format to use for the output. See 'Format String Help' below "
+"for additional details."
+msgstr ""
+"Formato de fecha y hora que se usará para la salida. Consulte 'Ayuda para "
+"dar \"formato a cadenas' a continuación para obtener detalles adicionales."
 
 #. 5.4->settings-schema.json->time_align1->description
 #. 5.4->settings-schema.json->time_yalign1->description
@@ -62,8 +68,12 @@ msgstr "Derecha"
 
 #. 5.4->settings-schema.json->time_yalign1->tooltip
 #. 5.4->settings-schema.json->time_yalign2->tooltip
-msgid "This value only applies if the this time value is a smaller size than the other"
-msgstr "Este valor sólo se aplica si el valor de este tiempo es un tamaño menor que el otro"
+msgid ""
+"This value only applies if the this time value is a smaller size than the "
+"other"
+msgstr ""
+"Este valor sólo se aplica si el valor de este tiempo es un tamaño menor que "
+"el otro"
 
 #. 5.4->settings-schema.json->time_yalign1->options
 #. 5.4->settings-schema.json->time_yalign2->options
@@ -103,8 +113,11 @@ msgstr "Tamaño de fuente"
 
 #. 5.4->settings-schema.json->time_size1->tooltip
 #. 5.4->settings-schema.json->time_size2->tooltip
-msgid "Increase or decrease this value to change the font size scale (1.2 = 120%)"
-msgstr "Aumente o disminuya este valor para cambiar la escala del tamaño de la fuente (1.2 = 120%)"
+msgid ""
+"Increase or decrease this value to change the font size scale (1.2 = 120%)"
+msgstr ""
+"Aumente o disminuya este valor para cambiar la escala del tamaño de la "
+"fuente (1.2 = 120%)"
 
 #. 5.4->settings-schema.json->time_custom2->description
 msgid "Customize Second Time Value"
@@ -127,8 +140,11 @@ msgid "Fixed width for the desklet"
 msgstr "Anchura fija para el desklet"
 
 #. 5.4->settings-schema.json->width->tooltip
-msgid "Increase or decrease this value to set the boundary width of the desklet"
-msgstr "Aumente o disminuya este valor para fijar la anchura de los límites del desklet"
+msgid ""
+"Increase or decrease this value to set the boundary width of the desklet"
+msgstr ""
+"Aumente o disminuya este valor para fijar la anchura de los límites del "
+"desklet"
 
 #. 5.4->settings-schema.json->title_align->description
 msgid "Layout"
