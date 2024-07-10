@@ -220,7 +220,6 @@ MyDesklet.prototype = {
             this.setContent(this._imageFrame)
             
             this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-
             this._menu.addAction(_("View latest xkcd"), function () {
                 this.refresh(null);
             }.bind(this));
