@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: yfquotes@thegli 0.11.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-05-22 21:38+0200\n"
+"POT-Creation-Date: 2024-07-10 00:38+0200\n"
 "PO-Revision-Date: 2024-04-19 15:17+0200\n"
 "Last-Translator: qadzek\n"
 "Language-Team: \n"
@@ -16,19 +16,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:326 desklet.js:345
+#: desklet.js:310
+msgid "Empty quotes list. Open settings and add some symbols."
+msgstr ""
+
+#: desklet.js:332 desklet.js:351
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Yahoo Finance service niet beschikbaar!\\nStatus: "
 
-#: desklet.js:730
+#: desklet.js:738
 msgid "Updated at "
 msgstr "Bijgewerkt om "
 
-#: desklet.js:751
+#: desklet.js:759
 msgid "Error: "
 msgstr "Fout: "
 
-#: desklet.js:813
+#: desklet.js:827
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -36,20 +40,20 @@ msgstr ""
 "Kan autorisatieparameter niet ophalen! Kan geen gegevens voor koersen "
 "ophalen.\\nStatus: "
 
-#: desklet.js:838
+#: desklet.js:852
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Toestemming verwerking mislukt! Kan geen gegevens voor koersen ophalen."
 "\\nStatus: "
 
-#: desklet.js:843
+#: desklet.js:857
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Toestemming verwerking niet voltooid! Kan geen gegevens voor koersen ophalen."
 "\\nStatus: "
 
-#: desklet.js:865
+#: desklet.js:879
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
@@ -57,11 +61,11 @@ msgstr ""
 "Kan autorisatiekruimel niet ophalen! Kan geen gegevens voor koersen ophalen."
 "\\nStatus: "
 
-#: desklet.js:892
+#: desklet.js:906
 msgid "Cannot display quotes information for symbols: "
 msgstr "Kan geen koersinformatie weergeven voor symbolen: "
 
-#: desklet.js:893
+#: desklet.js:907
 msgid "The following error occurred: "
 msgstr "De volgende fout is opgetreden: "
 
@@ -175,6 +179,14 @@ msgstr "Achtergrondtransparantie"
 msgid "The higher the value, the more solid the desklet background"
 msgstr "Hoe hoger de waarde, hoe meer effen de achtergrond van de desklet"
 
+#. settings-schema.json->backgroundColor->description
+msgid "Background color"
+msgstr ""
+
+#. settings-schema.json->backgroundColor->tooltip
+msgid "Desklet background color"
+msgstr ""
+
 #. settings-schema.json->showVerticalScrollbar->description
 msgid "Show vertical scrollbar"
 msgstr "Toon verticale schuifbalk"
@@ -208,11 +220,13 @@ msgid "Display timestamp when quotes were updated last"
 msgstr "Toon tijdstempel wanneer de koersen voor het laatst zijn bijgewerkt"
 
 #. settings-schema.json->manualDataUpdate->description
-msgid "Manual update"
+msgid "Manual and automatic update"
 msgstr ""
 
 #. settings-schema.json->manualDataUpdate->tooltip
-msgid "Click last update timestamp to instantly refresh quotes data"
+msgid ""
+"Click last update timestamp to instantly refresh quotes data. Automatic "
+"update is still performed periodically."
 msgstr ""
 
 #. settings-schema.json->sendCustomUserAgent->description
