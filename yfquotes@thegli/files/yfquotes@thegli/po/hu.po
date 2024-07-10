@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: yfquotes@thegli 0.12.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-06-29 04:26-0400\n"
+"POT-Creation-Date: 2024-07-10 00:38+0200\n"
 "PO-Revision-Date: 2024-06-29 04:34-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,19 +18,23 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: desklet.js:326 desklet.js:345
+#: desklet.js:310
+msgid "Empty quotes list. Open settings and add some symbols."
+msgstr ""
+
+#: desklet.js:332 desklet.js:351
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "A Yahoo Finance szolgáltatás pillanatnyilag nem érhető el.\\nÁllapot: "
 
-#: desklet.js:730
+#: desklet.js:738
 msgid "Updated at "
 msgstr "Frissítve: "
 
-#: desklet.js:751
+#: desklet.js:759
 msgid "Error: "
 msgstr "Hiba: "
 
-#: desklet.js:813
+#: desklet.js:827
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -38,20 +42,20 @@ msgstr ""
 "Nem sikerült lekérni az engedélyezési paramétert. Nem sikerült letölteni a "
 "pénzügyi adatokat.\\nÁllapot: "
 
-#: desklet.js:838
+#: desklet.js:852
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Az engedélykezelés nem sikerült. Nem sikerült letölteni a pénzügyi adatokat."
 "\\nÁllapot: "
 
-#: desklet.js:843
+#: desklet.js:857
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Az engedélykezelés nem fejeződött be. Nem sikerült letölteni a pénzügyi "
 "adatokat.\\nÁllapot: "
 
-#: desklet.js:865
+#: desklet.js:879
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
@@ -59,11 +63,11 @@ msgstr ""
 "Nem sikerült lekérni az engedély-sütit. Nem sikerült letölteni a pénzügyi "
 "adatokat.\\nÁllapot: "
 
-#: desklet.js:892
+#: desklet.js:906
 msgid "Cannot display quotes information for symbols: "
 msgstr "Nem jeleníthetőek meg megállapítások a következő szimbólumokhoz: "
 
-#: desklet.js:893
+#: desklet.js:907
 msgid "The following error occurred: "
 msgstr "A következő hiba történt: "
 
@@ -177,6 +181,14 @@ msgstr "Háttér átlátszósága"
 msgid "The higher the value, the more solid the desklet background"
 msgstr "A magasabb érték jobban megjeleníti az asztalkalmazás hátterét."
 
+#. settings-schema.json->backgroundColor->description
+msgid "Background color"
+msgstr ""
+
+#. settings-schema.json->backgroundColor->tooltip
+msgid "Desklet background color"
+msgstr ""
+
 #. settings-schema.json->showVerticalScrollbar->description
 msgid "Show vertical scrollbar"
 msgstr "Függőleges görgetősáv megjelenítése"
@@ -210,11 +222,15 @@ msgid "Display timestamp when quotes were updated last"
 msgstr "Megjeleníti a megállapítások utolsó frissítéskeresésének időbélyegét."
 
 #. settings-schema.json->manualDataUpdate->description
-msgid "Manual update"
+#, fuzzy
+msgid "Manual and automatic update"
 msgstr "Kézi frissítés"
 
 #. settings-schema.json->manualDataUpdate->tooltip
-msgid "Click last update timestamp to instantly refresh quotes data"
+#, fuzzy
+msgid ""
+"Click last update timestamp to instantly refresh quotes data. Automatic "
+"update is still performed periodically."
 msgstr ""
 "Kattintson az utolsó frissítés időbélyegére az árajánlatok adatainak "
 "azonnali frissítéséhez"

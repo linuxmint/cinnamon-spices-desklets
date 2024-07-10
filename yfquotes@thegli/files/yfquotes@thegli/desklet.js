@@ -305,6 +305,12 @@ YahooFinanceQuoteReader.prototype = {
 
     getFinanceData: function(quoteSymbols, customUserAgent, callback) {
         const _that = this;
+        
+        if (quoteSymbols.join().length === 0) {
+            callback.call(_that, _that.buildErrorResponse(_("Empty quotes list. Open settings and add some symbols.")));
+            return;
+        }
+        
         const requestUrl = this.createYahooQueryUrl(quoteSymbols);
         const message = Soup.Message.new("GET", requestUrl);
 
@@ -349,7 +355,7 @@ YahooFinanceQuoteReader.prototype = {
     },
 
     createYahooQueryUrl: function(quoteSymbols) {
-        const queryUrl = "https://query1.finance.yahoo.com/v7/finance/quote?symbols=" + quoteSymbols.join(",") + "&crumb=" + _crumb;
+        const queryUrl = "https://query1.finance.yahoo.com/v7/finance/quote?symbols=" + quoteSymbols.join() + "&crumb=" + _crumb;
         logDebug("YF query URL: " + queryUrl);
         return queryUrl;
     },
@@ -616,6 +622,8 @@ StockQuoteDesklet.prototype = {
             this.onDisplayChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showVerticalScrollbar", "showVerticalScrollbar",
             this.onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "backgroundColor", "backgroundColor",
+            this.onDisplayChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "delayMinutes", "delayMinutes",
             this.onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "showLastUpdateTimestamp", "showLastUpdateTimestamp",
@@ -755,11 +763,17 @@ StockQuoteDesklet.prototype = {
 
     onDisplayChanged: function() {
         this.mainBox.set_size(this.width, this.height);
-        this.setTransparency();
+        this.setBackground();
     },
 
-    setTransparency: function() {
-        this.mainBox.style = "background-color: rgba(0, 0, 0, " + this.transparency + ")";
+    setBackground: function() {
+        this.mainBox.style = "background-color: " + this.buildBackgroundColor(this.backgroundColor, this.transparency);
+    },
+    
+    buildBackgroundColor: function(rgbColorString, transparencyFactor) {
+    	// parse RGB values between "rgb(...)"
+        const rgb = rgbColorString.match(/\((.*?)\)/)[1].split(",");
+        return "rgba(" + parseInt(rgb[0]) + "," + parseInt(rgb[1]) + "," + parseInt(rgb[2]) + "," + transparencyFactor + ")";
     },
 
     onSettingsChanged: function() {
@@ -774,7 +788,7 @@ StockQuoteDesklet.prototype = {
     },
 
     onUpdate: function() {
-        const quoteSymbols = this.quoteSymbolsText.split("\n");
+        const quoteSymbols = this.quoteSymbolsText.trim().split("\n");
         const customUserAgent = this.sendCustomUserAgent ? this.customUserAgent : null;
 
         try {
@@ -948,7 +962,7 @@ StockQuoteDesklet.prototype = {
             height: this.height,
             style_class: "quotes-reader"
         });
-        this.setTransparency();
+        this.setBackground();
 
         this.mainBox.add(scrollView, {
             expand: true
