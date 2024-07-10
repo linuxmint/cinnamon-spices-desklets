@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2024-07-10 00:38+0200\n"
-"PO-Revision-Date: 2024-05-22 18:18-0400\n"
+"PO-Revision-Date: 2024-07-10 19:09-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -20,6 +20,7 @@ msgstr ""
 #: desklet.js:310
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
+"Lista de comillas vacía. Abra la configuración y añada algunos símbolos."
 
 #: desklet.js:332 desklet.js:351
 msgid "Yahoo Finance service not available!\\nStatus: "
@@ -182,11 +183,11 @@ msgstr "Cuanto mayor sea el valor, más sólido será el fondo del escritorio."
 
 #. settings-schema.json->backgroundColor->description
 msgid "Background color"
-msgstr ""
+msgstr "Color de fondo"
 
 #. settings-schema.json->backgroundColor->tooltip
 msgid "Desklet background color"
-msgstr ""
+msgstr "Color de fondo del Desklet"
 
 #. settings-schema.json->showVerticalScrollbar->description
 msgid "Show vertical scrollbar"
@@ -221,18 +222,17 @@ msgid "Display timestamp when quotes were updated last"
 msgstr "Muestra la fecha de la última actualización de las cotizaciones."
 
 #. settings-schema.json->manualDataUpdate->description
-#, fuzzy
 msgid "Manual and automatic update"
-msgstr "Actualización manual"
+msgstr "Actualización manual y automática"
 
 #. settings-schema.json->manualDataUpdate->tooltip
-#, fuzzy
 msgid ""
 "Click last update timestamp to instantly refresh quotes data. Automatic "
 "update is still performed periodically."
 msgstr ""
 "Haga clic en la fecha de la última actualización para actualizar "
-"instantáneamente los datos de las cotizaciones"
+"instantáneamente los datos de las cotizaciones. La actualización automática "
+"sigue realizándose periódicamente."
 
 #. settings-schema.json->sendCustomUserAgent->description
 msgid "Send custom User-Agent header"
