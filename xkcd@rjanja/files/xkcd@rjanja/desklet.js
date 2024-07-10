@@ -220,8 +220,13 @@ MyDesklet.prototype = {
             this.setContent(this._imageFrame)
             
             this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+
             this._menu.addAction(_("View latest xkcd"), function () {
                 this.refresh(null);
+            }.bind(this));
+            this._menu.addAction(_("Random XKCD"), function () {
+                let randomComicID = Math.floor(Math.random() * this.curXkcd.num);
+                this.refresh(randomComicID)
             }.bind(this));
             this._menu.addAction(_("Open save folder"), function () {
                 Util.spawnCommandLine("xdg-open " + this.save_path);
