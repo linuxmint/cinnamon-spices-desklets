@@ -223,7 +223,7 @@ MyDesklet.prototype = {
             this._menu.addAction(_("View latest xkcd"), function () {
                 this.refresh(null);
             }.bind(this));
-            this._menu.addAction(_("Random XKCD"), function () {
+            this._menu.addAction(_("Random xkcd"), function () {
                 let randomComicID = Math.max(1, Math.floor(Math.random() * this.curXkcd.num));
                 this.refresh(randomComicID)
             }.bind(this));
