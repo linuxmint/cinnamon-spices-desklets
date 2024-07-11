@@ -224,7 +224,7 @@ MyDesklet.prototype = {
                 this.refresh(null);
             }.bind(this));
             this._menu.addAction(_("Random XKCD"), function () {
-                let randomComicID = Math.floor(1 + Math.random() * (this.curXkcd.num - 1));
+                let randomComicID = Math.max(1, Math.floor(Math.random() * this.curXkcd.num));
                 this.refresh(randomComicID)
             }.bind(this));
             this._menu.addAction(_("Open save folder"), function () {
