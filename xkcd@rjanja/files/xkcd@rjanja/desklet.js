@@ -94,7 +94,6 @@ MyDesklet.prototype = {
     },
 
     refresh: function(xkcdId) {
-        global.log("Refresh called");
         if (this.updateInProgress) return true;
         this.updateInProgress = true;
         
