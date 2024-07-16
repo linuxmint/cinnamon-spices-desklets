@@ -2,7 +2,6 @@
     "uuid": "vaktija-desklet@muxbh28",
     "name": "Vaktija Desklet",
     "description": "Displays Vaktija available from vaktija.ba API!",
-    "icon": "icon.png",
     "max-instances": "1",
     "about": {
         "version": "1.1",
