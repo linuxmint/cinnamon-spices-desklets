@@ -2,6 +2,7 @@ const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
 const Gio = imports.gi.Gio;
 const ByteArray = imports.byteArray;
+const uuid = "vaktija-desklet@MuxBH28";
 
 function VaktijaDesklet(metadata, desklet_id) {
     this._init(metadata, desklet_id);
