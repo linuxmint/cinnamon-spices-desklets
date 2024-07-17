@@ -4,7 +4,7 @@
 - [Overview](#overview)
   - [How It Works](#how-it-works)
   - [Features](#features)
-- [Installation](#installation)
+  - [Screenshot](#screenshot)
 - [Usage](#usage)
 - [Configuration](#configuration)
 - [Links](#links)
@@ -24,11 +24,9 @@ Vaktija Desklet is a simple desklet that displays prayer times using data from t
 - Displays prayer times for the selected location.
 - Real-time data updates.
 
-## Installation
+### Screenshot
 
-1. Download the files from the [GitHub repository](https://github.com/MuxBH28/vaktija-desklet).
-2. Copy the downloaded files to `~/.local/share/cinnamon/desklets/vaktija-desklet@muxbh28/`.
-3. Restart Cinnamon.
+![image](screenshot.png)
 
 ## Usage
 
