@@ -10,7 +10,7 @@ This desklet is based on the [desklet from fthuin](https://github.com/fthuin/yah
 
 Tested with
 
-- Linux Mint Cinnamon 17 up to 21
+- Linux Mint Cinnamon 17 up to 22
 - Debian 9 with Cinnamon 3.2
 - Manjaro with Cinnamon 3.8
 - Fedora 38 Cinnamon Spin with Cinnamon 5.6 and libsoup3
@@ -41,6 +41,19 @@ Then the Cinnamon desktop needs to be restarted in order to re-initialize the de
 To disable the debug log mode, delete the "DEBUG" file, and restart the Cinnamon desktop.
 
 ## Release Notes
+
+### 0.13.0 - July 10, 2024
+
+Features:
+
+- new setting to customize the background color
+- update Spanish translation (courtesy of [haggen88](https://github.com/haggen88))
+- update Hungarian translation (courtesy of [bossbob88](https://github.com/bossbob88))
+
+Bugfixes:
+
+- display better error message if quotes list is empty
+- improve description for manual update feature
 
 ### 0.12.0 - May 22, 2024
 
@@ -133,7 +146,7 @@ Bugfixes:
 
 Features:
 
-- update Brasilian and German translations
+- update Brazilian and German translations
 - fetch finance data asynchronously to improve responsiveness
 
 Bugfixes:

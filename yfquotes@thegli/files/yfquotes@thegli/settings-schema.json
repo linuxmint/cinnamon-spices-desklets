@@ -90,7 +90,7 @@
     "layoutEffectsSection": {
       "type": "section",
       "title": "Effects",
-      "keys": ["transparency", "showVerticalScrollbar"]
+      "keys": ["transparency", "backgroundColor", "showVerticalScrollbar"]
     }
   },
   "width": {
@@ -122,6 +122,12 @@
     "description": "Background transparency",
     "tooltip": "The higher the value, the more solid the desklet background"
   },
+  "backgroundColor": {
+    "type": "colorchooser",
+    "description": "Background color",
+    "tooltip": "Desklet background color",
+    "default": "rgb(0,0,0)"
+  },
   "showVerticalScrollbar": {
     "type": "checkbox",
     "default": false,
@@ -147,8 +153,8 @@
   "manualDataUpdate": {
     "type": "checkbox",
     "default": false,
-    "description": "Manual update",
-    "tooltip": "Click last update timestamp to instantly refresh quotes data",
+    "description": "Manual and automatic update",
+    "tooltip": "Click last update timestamp to instantly refresh quotes data. Automatic update is still performed periodically.",
     "dependency": "showLastUpdateTimestamp"
   },
   "sendCustomUserAgent": {

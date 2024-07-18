@@ -135,6 +135,10 @@ MyDesklet.prototype = {
         if (success) {
             this.curXkcd = JSON.parse(Cinnamon.get_file_contents_utf8_sync(filename));
 
+            if (this.mostRecentComic < this.curXkcd.num) {
+                this.mostRecentComic = this.curXkcd.num;
+            }
+
             if (this._currentXkcd == this.curXkcd.num) {
                 this.updateInProgress = false;
                 return true;
@@ -210,7 +214,7 @@ MyDesklet.prototype = {
             this._files = [];
             this._xkcds = [];
             this._currentXkcd = null;
-            
+            this.mostRecentComic = 1;
 
             this.setHeader(_("xkcd"));
 
@@ -222,6 +226,10 @@ MyDesklet.prototype = {
             this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
             this._menu.addAction(_("View latest xkcd"), function () {
                 this.refresh(null);
+            }.bind(this));
+            this._menu.addAction(_("Random xkcd"), function () {
+                let randomComicID = Math.max(1, Math.floor(Math.random() * this.mostRecentComic));
+                this.refresh(randomComicID)
             }.bind(this));
             this._menu.addAction(_("Open save folder"), function () {
                 Util.spawnCommandLine("xdg-open " + this.save_path);
