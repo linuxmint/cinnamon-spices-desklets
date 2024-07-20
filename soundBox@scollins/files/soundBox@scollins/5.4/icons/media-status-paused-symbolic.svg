@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg7384"
+   height="16"
+   width="16"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="media-status-paused-symbolic.svg">
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="691"
+     id="namedview8"
+     showgrid="false"
+     inkscape:zoom="20.85965"
+     inkscape:cx="4.4568531"
+     inkscape:cy="7.5108126"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer4-4-1" />
+  <title
+     id="title9167">Gnome Symbolic Icon Theme</title>
+  <metadata
+     id="metadata90">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Gnome Symbolic Icon Theme</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer12"
+     transform="translate(-60,-518)">
+    <g
+       id="layer4-4-1"
+       transform="translate(19,-242)">
+      <rect
+         style="fill:#bebebe;fill-opacity:1;stroke:none"
+         id="rect3759"
+         width="2"
+         height="8"
+         x="46"
+         y="764" />
+      <rect
+         y="764"
+         x="50"
+         height="8"
+         width="2"
+         id="rect3761"
+         style="fill:#bdbdbd;fill-opacity:1;stroke:none" />
+      <path
+         style="font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#bebebe;fill-opacity:1;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans"
+         d="m 43.5,760 c -1.376351,0 -2.5,1.12365 -2.5,2.5 l 0,11 c 0,1.37635 1.123649,2.5 2.5,2.5 l 11,0 c 1.376351,0 2.5,-1.12365 2.5,-2.5 l 0,-11 c 0,-1.37635 -1.123649,-2.5 -2.5,-2.5 l -11,0 z m 0,1 11,0 c 0.839649,0 1.5,0.66035 1.5,1.5 l 0,11 c 0,0.83965 -0.660351,1.5 -1.5,1.5 l -11,0 c -0.839649,0 -1.5,-0.66035 -1.5,-1.5 l 0,-11 c 0,-0.83965 0.660351,-1.5 1.5,-1.5 z"
+         id="rect3763"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>

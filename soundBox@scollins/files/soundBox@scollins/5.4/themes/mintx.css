@@ -1,0 +1,281 @@
+/*mintx theme*/
+.mintx-mainBox {
+    border-image: url("bg-1.png") 6;
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.mintx-mainBox .soundbox-buttonMenu {
+    background-gradient-direction: none;
+    background: none;
+    box-shadow: 0px 0px 0px 0px;
+    color: rgb(70,70,70);
+    border-image: url("button.png") 4;
+    padding: 7px;
+}
+
+.mintx-mainBox .soundbox-buttonMenu:hover {
+    border-image: url("button-hover.png") 4;
+}
+
+.mintx-mainBox .soundbox-buttonMenu:active {
+    border-image: url("button-pressed.png") 4;
+}
+
+.mintx-mainBox .soundbox-divider {
+    background-color: rgb(192,192,192);
+    height: 1px;
+}
+
+.mintx-mainBox .soundbox-divider-box {
+    color: rgb(70,70,70);
+    padding: 0px 30px 0px 30px;
+}
+
+.mintx-mainBox .soundbox-text, .mintx-mainBox .soundbox-buttonText, .mintx-mainBox .soundbox-appTitle, .mintx-mainBox .soundbox-trackInfo-text {
+    color: rgb(70,70,70);
+}
+
+.mintx-mainBox .soundbox-playerTitleText {
+    color: #fff;
+}
+
+.mintx-mainBox .soundbox-volumeBox,
+.mintx-mainBox .soundbox-appBox {
+    padding: 10px 15px 10px 15px;
+}
+
+.mintx-mainBox .soundbox-volumeButton {
+    padding: 2px 3px 2px 3px;
+}
+
+.mintx-mainBox .soundbox-volumeIcon {
+    icon-size: 16px;
+    color: rgb(70,70,70);
+}
+
+.mintx-mainBox .soundbox-slider {
+    border-image: url("slider.png") 10 10 9 9 stretch; 
+    height: 18px;
+    min-width: 15em;
+    -slider-height: 4px;
+    -slider-background-color: rgba(0,0,0,0);
+    -slider-border-color: rgba(0,0,0,0);
+    -slider-active-height: 4px;
+    -slider-active-background-color: rgba(145,255,27,0.4);
+    -slider-active-border-color: rgba(0,0,0,0);
+    -slider-border-width: 1px;
+    -slider-handle-radius: 6px;
+    -slider-handle-color: rgb(70,70,70);
+    -slider-handle-border-color: rgb(70,70,70);
+}
+
+.mintx-mainBox .soundbox-appIcon {
+    icon-size: 20px;
+    padding: 0px 4px 4px 4px;
+}
+
+.mintx-mainBox .soundbox-appTitleBox {
+    padding-bottom: 2px;
+}
+
+.mintx-mainBox .soundbox-titleBar {
+    border-image: url("hover-2.png") 6;
+    color: #fff;
+    background-color: rgba(140, 140, 140, 0);
+    background-gradient-direction: none;
+    padding: 1px;
+}
+
+.mintx-mainBox .soundbox-playerIcon {
+    icon_size: 16px;
+    width: 16px;
+}
+
+.mintx-mainBox .soundbox-playerTitle {
+    padding: 2px 5px;
+}
+
+.mintx-mainBox .soundbox-quitButton {
+    color: #fff;
+    padding: 0px 3px;
+}
+
+.mintx-mainBox .soundbox-playerSelectButton:hover,
+.mintx-mainBox .soundbox-raiseButton:hover,
+.mintx-mainBox .soundbox-quitButton:hover {
+    background-color: #c3e2a3;
+}
+
+.mintx-mainBox .soundbox-trackInfoBox {
+    padding: 5px 0px 5px 0px;
+    margin-top: 5px;
+    width: 200px;
+}
+
+.mintx-mainBox .soundbox-trackInfo {
+    padding: 3px 0px 5px 0px;
+    
+}
+
+.mintx-mainBox .soundbox-trackInfo-icon {
+    icon-size: 1em;
+    color: rgb(70,70,70);
+    padding-right: 4px;
+}
+
+.mintx-mainBox .soundbox-albumCover-box {
+    background: none;
+}
+
+.mintx-mainBox .soundbox-albumCover {
+    border: none;
+    icon_size: 200px;
+    width: 200px;
+    height: 200px;
+}
+
+.mintx-mainBox .soundbox-timeBox {
+    padding: 3px 0px;
+}
+
+.mintx-mainBox .soundbox-buttonBox {
+    padding: 5px 5px 5px 5px;
+}
+
+.mintx-mainBox .soundbox-soundButton-box {
+    padding-right: 3px;
+    padding-left: 3px;
+}
+
+.mintx-mainBox .soundbox-soundButton {
+    width: 22px;
+    height: 22px;
+    padding: 5px;
+    color: rgb(70,70,70);
+    border-image: url("button.png") 4;
+    box-shadow: 0px 0px 0px 0px;
+}
+
+.mintx-mainBox .soundbox-soundButton:hover {
+    border-image: url("button-hover.png") 4;
+}
+
+.mintx-mainBox .soundbox-soundButton:active {
+    border-image: url("button-pressed.png") 4;
+}
+
+.mintx-mainBox .soundbox-soundButton-icon {
+    icon-size: 16px;
+    color: rgb(70,70,70);
+}
+
+#Tooltip.mintx-tooltip {
+    padding: 2px 6px;
+    background-gradient-direction: vertical;
+    background-gradient-start: #fbfbd7;
+    background-gradient-end: #f5f5b7;
+    border: 1px solid #c4c451;
+    color: rgb(50,50,50);
+    border-radius: 0;
+    font-size: 9pt;
+    font-weight: normal;    
+    text-align: center;
+    padding: 2px 12px;
+}
+
+#mintx-popup {
+    -arrow-border-radius: 4px;
+    -arrow-background-color: rgb(228,228,228);
+    -arrow-border-width: 1px;
+    -arrow-border-color: rgba(40,40,40,0.4);
+    -arrow-base: 18px;
+    -arrow-rise: 10px;
+    -boxpointer-gap: 2px;
+}
+
+#mintx-popup .popup-menu-content {
+    border-image: none;
+    text-shadow: 0px 0px 0px 0px;
+}
+
+#mintx-popup .popup-menu-item {
+    border-image: none;
+    border-width: 0px;
+    text-mintx: 0px 0px 0px 0px;
+    color: rgb(70,70,70);
+    border-radius: 0px;
+    padding: .4em 1em;
+    spacing: 1em;
+}
+
+#mintx-popup .popup-menu-item:active {
+    border-image: url("hover-2.png") 6;
+    color: rgb(70,70,70);
+    box-mintx: 0px 0px 0px 0px;
+    border-width: 0px;
+    text-mintx: 0px 0px 0px 0px;
+    background-color: rgba(80,80,80,0);
+    background-gradient-direction: none;
+}
+
+/*compact*/
+.mintx-mainBox:compact {
+    padding: 2px 0px 2px 0px;
+}
+
+.mintx-mainBox:compact .soundbox-buttonMenu {
+    padding: 2px 4px 2px 4px;
+}
+
+.mintx-mainBox:compact .soundbox-divider {
+    background-color: transparent;
+    height: 1px;
+}
+
+.mintx-mainBox:compact .soundbox-divider-box {
+    padding: 4px;
+}
+
+.mintx-mainBox:compact .soundbox-volumeButton {
+    padding: 0px 2px 2px 2px;
+}
+
+.mintx-mainBox:compact .soundbox-volumeIcon {
+    icon-size: 14px;
+}
+
+.mintx-mainBox:compact .soundbox-appIcon {
+    icon-size: 1em;
+}
+
+.mintx-mainBox:compact .soundbox-titleBar {
+    padding: 2px;
+}
+
+.mintx-mainBox:compact .soundbox-trackInfoBox {
+    padding: 2px;
+}
+
+.mintx-mainBox:compact .soundbox-trackInfo {
+    padding: 2px;
+}
+
+.mintx-mainBox:compact .soundbox-trackInfo-icon {
+    icon-size: 1em;
+}
+
+.mintx-mainBox:compact .soundbox-buttonBox:compact{
+    padding: 4px 0 0 0;
+}
+
+.mintx-mainBox:compact .soundbox-soundButton {
+    height: 16px;
+    width: 16px;
+}
+
+.mintx-mainBox:compact .soundbox-soundButton-box {
+    padding: 2px;
+}
