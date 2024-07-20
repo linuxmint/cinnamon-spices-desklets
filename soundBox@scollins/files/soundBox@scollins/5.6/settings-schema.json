@@ -1,0 +1,128 @@
+{
+    "hideSystray": {
+        "type": "checkbox",
+        "description": "Hide system tray icons for compatible players",
+        "default": true
+    },
+    
+    "showInput": {
+        "type": "checkbox",
+        "description": "Show input volume controls",
+        "default": false
+    },
+    
+    "showApps": {
+        "type": "checkbox",
+        "description": "Show application volume controls",
+        "default": false
+    },
+    
+    "exceedNormVolume": {
+        "type": "checkbox",
+        "description": "Allow volume control to exceed 100% volume",
+        "default": false,
+        "tooltip": "Note: some applications don't sound good over 100% volume"
+    },
+    
+    "countUp": {
+        "type": "checkbox",
+        "description": "Timer counts up",
+        "default": true
+    },
+    
+    "raiseKey": {
+        "type": "keybinding",
+        "description": "Raise to top shorcut key",
+        "default": "<Super>s"
+    },
+    
+    "appearance": {
+        "type": "header",
+        "description": "Appearance"
+    },
+    
+    "centerRaised": {
+        "type": "checkbox",
+        "description": "Center Soundbox on the screen in raised mode",
+        "default": false
+    },
+    
+    "theme": {
+        "type": "combobox",
+        "description": "Theme",
+        "default": "mint",
+        "options": {
+            "Mint": "mint",
+            "Mint-X": "mintx",
+            "Clean": "clean",
+            "Ghost": "ghost",
+            "Ice": "ice",
+            "Forest": "forest",
+            "Hot Rod": "hot",
+            "Camouflage (tries to blend in)": "soundbox"
+        }
+    },
+    
+    "compact": {
+        "type": "checkbox",
+        "description": "Use compact layout",
+        "default": false
+    },
+    
+    "showArt": {
+        "type": "checkbox",
+        "description": "Show album artwork",
+        "default": true
+    },
+    
+    "artSize": {
+        "type": "scale",
+        "description": "Artwork size",
+        "min": 50,
+        "max": 300,
+        "default": 200,
+        "step": 10,
+        "indent": true,
+        "dependency": "showArt"
+    },
+    
+    "compatiblePlayers": {
+        "type": "generic",
+        "default": [
+            "amarok",
+            "atunes",
+            "audacious",
+            "banshee",
+            "beatbox",
+            "bmp",
+            "clementine",
+            "deadbeef",
+            "exaile",
+            "gmusicbrowser",
+            "gnome-mplayer",
+            "googlemusicframe",
+            "guayadeque",
+            "mpd",
+            "muine",
+            "musique",
+            "noise",
+            "nuvolaplayer",
+            "pithos",
+            "potamus",
+            "pragha",
+            "qmmp",
+            "quodlibet",
+            "rhythmbox",
+            "rhythmbox3",
+            "songbird",
+            "smplayer",
+            "spotify",
+            "tomahawk",
+            "totem",
+            "vlc",
+            "xbmc",
+            "xmms",
+            "xnoise"
+        ]
+    }
+}

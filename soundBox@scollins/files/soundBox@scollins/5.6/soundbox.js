@@ -1228,7 +1228,7 @@ Player.prototype = {
                 this.controls.add_actor(this._shuffleButton.getActor());
             }
 
-            if ( SUPPORT_SEEK.indexOf(this.name) == -1 ) {
+            if (SUPPORT_SEEK.indexOf(this.name.toLowerCase()) == -1) {
                 this.timeControls.actor.hide();
             }
 
