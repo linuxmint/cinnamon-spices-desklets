@@ -87,8 +87,11 @@ class YarrDesklet extends Desklet.Desklet {
         
         this.settings.bind('ai_enablesummary', 'ai_enablesummary'); //, this.onDisplayChanged);
         this.settings.bind('ai_dumptool', 'ai_dumptool'); //, this.onDisplayChanged);
+        this.settings.bind('ai_url', 'ai_url'); //, this.onDisplayChanged);
         this.settings.bind('ai_systemprompt', 'ai_systemprompt'); //, this.onDisplayChanged);
+        this.settings.bind('ai_use_standard_model', 'ai_use_standard_model'); //, this.onDisplayChanged);
         this.settings.bind('ai_model', 'ai_model'); //, this.onDisplayChanged);
+        this.settings.bind('ai_custom_model', 'ai_custom_model'); //, this.onDisplayChanged);
         this.settings.bind("ai_font", "ai_font"); //, this.onDisplayChanged);
         this.settings.bind("ai_text-color", "ai_color"); //, this.onDisplayChanged);
         
@@ -785,8 +788,12 @@ class YarrDesklet extends Desklet.Desklet {
                     result = result.substring(0,16384);
                 }
                 
+                let usemodel = this.ai_model;
+                if (this.ai_use_standard_model=="optioncustom") {
+                    usemodel = this.ai_custom_model
+                }
                 const reqObj = { 
-                        "model": this.ai_model,
+                        "model": usemodel,
                         "messages": [ 
                             { 
                                 "role": "system", 
@@ -802,14 +809,14 @@ class YarrDesklet extends Desklet.Desklet {
                 //(method,url,headers,postParameters,callbackF, bodyMime)
                 this.httpRequest(
                     'POST', 
-                    'https://api.openai.com/v1/chat/completions', 
+                    this.ai_url,
                     [
                         ['Authorization', 	'Bearer ' + Secret.password_lookup_sync(this.STORE_SCHEMA, {}, null )], 
                         ['Content-type', 	'application/json']
                     ], 
                     JSON.stringify(reqObj),
                     function (context, message, result) {
-                        
+                        global.log('RES: ', result);
                         var resObj = JSON.parse(result);
                         
                         var aiResponse = "";
@@ -817,8 +824,17 @@ class YarrDesklet extends Desklet.Desklet {
                             global.log('ERROR!')
                             aiResponse = resObj.error.message;
                         } else {
-                            aiResponse = resObj.choices[0].message.content;
+                        
+                            if (resObj.hasOwnProperty("choices")) {
+                                aiResponse = resObj.choices[0].message.content;
+                            } else {
+                                aiResponse = "ERROR: " + usemodel + ": ";
+                                if (resObj.hasOwnProperty("detail")) {
+                                    aiResponse += resObj.detail;
+                                }
+                            }
                         }
+                        
                         
                         item.aiResponse = aiResponse;
                         

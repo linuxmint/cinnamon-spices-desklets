@@ -1,7 +1,8 @@
 # Yet Another RSS Reader - with AI assistant
 as of Cinnamon Desklet 
 
-Experimental feature: Summarize with ChatGPT!
+Experimental feature: Summarize with ChatGPT or other compatible providers
+like DeepSeek!
 
   Don't have time? Hate popups and adds? Just want to go quickly through
   the main news? 
@@ -15,3 +16,5 @@ Experimental feature: Summarize with ChatGPT!
   You can find example AI prompts in settings - and you can also write your
   own.
 
+  As of version 1.2.4 custom AI provider and custom model can be setup in
+  settings. (eg: Deepseek.com )

@@ -42,7 +42,9 @@
         "section2": {
             "type": "section", 
             "title": "AI settings", 
-            "keys": ["refreshsettingsbutton",  "ai_label-info", "ai_button-chatgpt-usage", "ai_enablesummary", "ai_button-chatgpt-apikeys", "ai_chatgptapikey", "ai_model", "ai_dumptool", 
+            "keys": ["refreshsettingsbutton",  "ai_label-info", "ai_button-chatgpt-usage", "ai_enablesummary", "ai_url", "ai_button-chatgpt-apikeys", "ai_chatgptapikey", 
+                    "ai_use_standard_model", "ai_model", "ai_custom_model",
+                    "ai_dumptool", 
                      "ai_systemprompt", "ai_systempromptexamples",
                      "ai_example1", "ai_example2", "ai_example3", "ai_example4", "ai_example5", "ai_example6"
                      ]
@@ -214,6 +216,14 @@
         "default": false
     },
     
+    "ai_url": {
+        "description": "URL of Completion Api", 
+        "type": "entry", 
+        "default": "https://api.openai.com/v1/chat/completions", 
+        "indent": false,
+        "tooltip": "https://api.openai.com/v1/chat/completions" 
+    },
+    
     "ai_dumptool": {
         "type": "combobox",
         "default": "w3m", 
@@ -226,18 +236,43 @@
         "tooltip": "You need a command line tool to dump web pages.\nYou have to deploy (apt install ..) one of these manually:\n[ w3m, lynx, links]"
     }, 
     
+    "ai_use_standard_model": {
+       "type": "combobox", 
+       "default": "_optionstandard", 
+       "description": "Use standard AI models.", 
+       "tooltip": "Set to custom to type your model name", 
+       "options": {
+           "Use standard": "optionstandard",
+           "Use custom": "optioncustom"
+       }
+    },
+    
     "ai_model": {
         "type": "combobox", 
         "default": "gpt-3.5-turbo", 
-        "description": "ChatGPT model to use", 
+        "description": "Standard model to use", 
+        "dependency": "ai_use_standard_model=optionstandard",
         "options": {
             "gpt-4-32k": "gpt-4-32k",
             "gpt-4": "gpt-4", 
+            "gpt-4o": "gpt-4o", 
+            "gpt-4o-mini": "gpt-4o-mini", 
             "gpt-3.5-turbo": "gpt-3.5-turbo",
-            "gpt-3.5-turbo-16k": "gpt-3.5-turbo-16k"
+            "gpt-3.5-turbo-16k": "gpt-3.5-turbo-16k", 
+            "deepseek-coder": "deepseek-coder", 
+            "deepseek-coder-v2:latest": "deepseek-coder-v2:latest"
         }, 
         "tooltip": "Some are more clever - but costs more.\nSome require premium class subscription.\nA cheaper can work also well...\nDefault: gpt-3.5-turbo"
     }, 
+    
+    "ai_custom_model": {
+        "description": "Provide model name to use",
+        "type": "entry", 
+        "default": "deepseek-coder", 
+        "tooltip": "deepseek-coder", 
+        "indent": false, 
+        "dependency": "ai_use_standard_model=optioncustom"
+    },
     
     "ai_systemprompt": {
         "type" : "textview",
