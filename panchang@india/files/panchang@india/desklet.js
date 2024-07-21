@@ -20,7 +20,7 @@ MyDesklet.prototype = {
     _init: function(metadata) {
         Desklet.Desklet.prototype._init.call(this, metadata);
 
-        this._mainContainer = new St.BoxLayout({ vertical: false });
+        this._mainContainer = new St.BoxLayout({ vertical: false, style_class: 'main_container' });
 
         this._calenderContainer = new St.BoxLayout({ vertical: true, style_class: 'calender-container' });
         this._panchangContainer = new St.BoxLayout({ vertical: true, style_class: 'panchang-container' });
@@ -45,8 +45,8 @@ MyDesklet.prototype = {
         this._timeContainer.add(this._time);
 
         this._calenderContainer.add(this._dateContainer, { x_fill: true });
-        this._calenderContainer.add(this._monthContainer);
-        this._calenderContainer.add(this._timeContainer);
+        this._calenderContainer.add(this._monthContainer, { x_fill: true});
+        this._calenderContainer.add(this._timeContainer, { x_fill: true});
 
         this._panchangContainer.add(this._vaaram);
         this._panchangContainer.add(this._tithi);
@@ -674,14 +674,14 @@ function tithi_end(jd, n1, len) {
         knv = Math.floor(((jd - 2415020) / 365.25) * 12.3685);
         itit = n1 + 1;
         aspect = len * itit; // sun n moon in the early tithi
-        if (aspect == 0) {
+        /*if (aspect == 0) {
             jdt = novolun(jd, knv);
             flag = 1;
         }
         if (aspect == 360) {
             jdt = novolun(jd, (knv + 1));
             flag = 1;
-        }
+        }*/
         while (flag < 1) {
             Lsun0 = sun(jdt);
             Lmoon0 = moon(jdt);

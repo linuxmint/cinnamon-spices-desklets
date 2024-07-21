@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-05-22 21:38+0200\n"
+"POT-Creation-Date: 2024-07-10 00:38+0200\n"
 "PO-Revision-Date: 2021-09-30 13:34-0300\n"
 "Last-Translator: Marcelo Aof\n"
 "Language-Team: \n"
@@ -18,44 +18,48 @@ msgstr ""
 "X-Generator: Poedit 3.0\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: desklet.js:326 desklet.js:345
+#: desklet.js:310
+msgid "Empty quotes list. Open settings and add some symbols."
+msgstr ""
+
+#: desklet.js:332 desklet.js:351
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "O serviço de finanças do Yahoo não está disponível!"
 
-#: desklet.js:730
+#: desklet.js:738
 msgid "Updated at "
 msgstr "Atualizado em "
 
-#: desklet.js:751
+#: desklet.js:759
 msgid "Error: "
 msgstr "Erro: "
 
-#: desklet.js:813
+#: desklet.js:827
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
 msgstr ""
 
-#: desklet.js:838
+#: desklet.js:852
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 
-#: desklet.js:843
+#: desklet.js:857
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 
-#: desklet.js:865
+#: desklet.js:879
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
 msgstr ""
 
-#: desklet.js:892
+#: desklet.js:906
 msgid "Cannot display quotes information for symbols: "
 msgstr "Não é possível exibir dados financeiros para as cotações de: "
 
-#: desklet.js:893
+#: desklet.js:907
 msgid "The following error occurred: "
 msgstr "O seguinte erro ocorreu: "
 
@@ -169,6 +173,14 @@ msgstr "Transparência do fundo"
 msgid "The higher the value, the more solid the desklet background"
 msgstr "Quanto maior o número, menos transparente é o fundo do desklet."
 
+#. settings-schema.json->backgroundColor->description
+msgid "Background color"
+msgstr ""
+
+#. settings-schema.json->backgroundColor->tooltip
+msgid "Desklet background color"
+msgstr ""
+
 #. settings-schema.json->showVerticalScrollbar->description
 msgid "Show vertical scrollbar"
 msgstr ""
@@ -202,11 +214,13 @@ msgstr ""
 "vez."
 
 #. settings-schema.json->manualDataUpdate->description
-msgid "Manual update"
+msgid "Manual and automatic update"
 msgstr ""
 
 #. settings-schema.json->manualDataUpdate->tooltip
-msgid "Click last update timestamp to instantly refresh quotes data"
+msgid ""
+"Click last update timestamp to instantly refresh quotes data. Automatic "
+"update is still performed periodically."
 msgstr ""
 
 #. settings-schema.json->sendCustomUserAgent->description

@@ -1,3 +1,10 @@
+.main_container {
+    background-color: rgba(0,0,0,0.4);
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+}
+
 .calender-container {
 	padding: 0 10px;
 	text-align: center;
@@ -5,20 +12,20 @@
 
 .date-container {
 	font-size: 48px;
-	color: red;
-	text-align: justify;
+	color: pink;
+	text-align: right;
 }
 
 .month-container {
-	font-size: 18px;
-	color: red;
+	font-size: 16px;
+	color: pink;
 	text-align: right;
 }
 
 .time-container {
-	font-size: 24px;
+	font-size: 20px;
 	color: pink;
-	text-align: center;
+	text-align: right;
 }
 
 

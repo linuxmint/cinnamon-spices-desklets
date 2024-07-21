@@ -1,0 +1,275 @@
+/*forest theme*/
+.forest-mainBox {
+    border: 2px solid #003510;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: rgba(21, 150, 23, 0.8);
+    color: #002a0a;
+    min-width: 250px;
+}
+
+.forest-mainBox .soundbox-buttonMenu {
+    background-gradient-direction: vertical;
+    background-gradient-start: #B76E2A;
+    background-gradient-end: #873E11;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 4px;
+    color: #002510;
+    padding: 7px;
+}
+
+.forest-mainBox .soundbox-buttonMenu:hover {
+    border: 1px solid #003510;
+}
+
+.forest-mainBox .soundbox-divider {
+    background-color: #003510;
+    border-radius: 5px;
+    box-shadow: 0px 1px 0px 0px rgba(255,255,255,0.15);
+    -margin-horizontal: 14px;
+    height: 1px;
+}
+
+.forest-mainBox .soundbox-divider-box {
+    padding: 0px 30px;
+}
+
+.forest-mainBox .soundbox-volumeBox,
+.forest-mainBox .soundbox-appBox {
+    padding: 10px 15px;
+    spacing: 4px;
+}
+
+.forest-mainBox .soundbox-volumeIcon {
+    icon-size: 16px;
+    color: #003510;
+}
+
+.forest-mainBox .soundbox-slider {
+    -slider-handle-radius: 7px;
+    -slider-handle-color: #A04D1C;
+    -slider-handle-border-color: #A04D1C;
+    -slider-handle-border-width: 0px;
+    -slider-height: 6px;
+    -slider-background-color: #003510;
+    -slider-border-color: #003510;
+    -slider-active-height: 6px;
+    -slider-active-background-color: #003510;
+    -slider-active-border-color: #003510;
+    height: 14px;
+    min-width: 175px;
+}
+
+.forest-mainBox .soundbox-appIcon {
+    icon-size: 20px;
+}
+
+.forest-mainBox .soundbox-appTitleBox {
+    spacing: 4px;
+}
+
+.forest-mainBox .soundbox-titleBar {
+    background-gradient-direction: vertical;
+    background-gradient-start: #B76E2A;
+    background-gradient-end: #873E11;
+    border-radius: 3px;
+    color: #002510;
+}
+
+.forest-mainBox .soundbox-playerSelectButton {
+    padding: 0px 2px;
+    border-radius: 3px;
+}
+
+.forest-mainBox .soundbox-playerIcon {
+    icon_size: 16px;
+    width: 16px;
+}
+
+.forest-mainBox .soundbox-playerTitle {
+    padding: 2px 4px;
+}
+
+.forest-mainBox .soundbox-raiseButton {
+    border-radius: 3px;
+}
+
+.forest-mainBox .soundbox-quitButton {
+    border-radius: 3px;
+    padding: 0px 2px;
+}
+
+.forest-mainBox .soundbox-playerSelectButton:hover,
+.forest-mainBox .soundbox-raiseButton:hover,
+.forest-mainBox .soundbox-quitButton:hover {
+    background-gradient-direction: vertical;
+    background-gradient-start: #24D327;
+    background-gradient-end: #46A647;
+}
+
+.forest-mainBox .soundbox-trackInfoBox {
+    padding: 8px 0px 10px 0px;
+    spacing: 5px;
+    margin-top: 5px;
+    width: 200px;
+}
+
+.forest-mainBox .soundbox-trackInfo {
+    spacing: 3px;
+}
+
+.forest-mainBox .soundbox-trackInfo-icon {
+    icon-size: 1em;
+    color: #003510;
+}
+
+.forest-mainBox .soundbox-albumCover {
+    border: 1px solid #003510;
+    border-radius: 10px;
+    icon_size: 200px;
+    width: 200px;
+    height: 200px;
+}
+
+.forest-mainBox .soundbox-timeBox {
+    padding: 10px 0px;
+    spacing: 3px;
+}
+
+.forest-mainBox .soundbox-buttonBox {
+    spacing: 5px;
+}
+
+.forest-mainBox .soundbox-soundButton {
+    background-gradient-direction: vertical;
+    background-gradient-start: #B76E2A;
+    background-gradient-end: #873E11;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 4px;
+    width: 25px;
+    height: 20px;
+    padding: 3px;
+    box-shadow: 0px;
+}
+
+.forest-mainBox .soundbox-soundButton:hover {
+    border: 1px solid #003510;
+}
+
+.forest-mainBox .soundbox-soundButton-icon {
+    icon-size: 16px;
+    color: #003510;
+}
+
+#Tooltip.forest-tooltip {
+    font-size: 12px;
+    border-image: none;
+    color: #003510;
+    border: 1px solid #003510;
+    border-radius: 5px 5px 5px 5px;
+    padding: 4px 16px 4px 16px;
+    background-color: rgb(64, 178, 64);
+    background-gradient-direction: none;
+}
+
+#forest-popup {
+    border-image: none;
+    border: none;
+    -arrow-border-width: 0px;
+    -arrow-base: 0px;
+    -arrow-border-radius: 0px;
+    -boxpointer-gap: 0px;
+    -arrow-rise: 0px;
+    -arrow-border-color: rgba(0,0,0,0);
+    -arrow-background-color: rgba(0,0,0,0);
+}
+
+#forest-popup .popup-menu-content {
+    border-image: none;
+    text-shadow: 0px 0px 0px 0px;
+    color: #003510;
+    border: 2px solid #003510;
+    border-radius: 5px 5px 5px 5px;
+    background-color: rgb(64, 178, 64);
+    padding: 4px 12px 4px 12px;
+}
+
+#forest-popup .popup-menu-item {
+    border-image: none;
+    border: solid 1px rgba(0,0,0,0);
+    text-shadow: 0px 0px 0px 0px;
+    color: #003510;
+    border-radius: 5px 5px 5px 5px;
+    padding: .4em 1em;
+    spacing: 1em;
+}
+
+#forest-popup .popup-menu-item:active {
+    background-gradient-direction: vertical;
+    background-gradient-start: #B76E2A;
+    background-gradient-end: #873E11;
+    box-shadow: 0px 0px 0px 0px;
+    border-image: none;
+    border: solid 1px rgba(0,0,0,0);
+    text-shadow: 0px 0px 0px 0px;
+    color: #002510;
+}
+
+/*compact*/
+.forest-mainBox:compact {
+    padding: 0px 0px 0px 0px;
+}
+
+.forest-mainBox:compact .soundbox-buttonMenu {
+    padding: 2px 4px 2px 4px;
+}
+
+.forest-mainBox:compact .soundbox-divider {
+    background-color: transparent;
+    height: 0px;
+}
+
+.forest-mainBox:compact .soundbox-divider-box {
+    padding: 0px;
+}
+
+.forest-mainBox:compact .soundbox-volumeButton {
+    padding: 0px 2px 2px 2px;
+}
+
+.forest-mainBox:compact .soundbox-volumeIcon {
+    icon-size: 14px;
+}
+
+.forest-mainBox:compact .soundbox-appIcon {
+    icon-size: 1em;
+}
+
+.forest-mainBox:compact .soundbox-titleBar {
+    border-radius: 0px;
+}
+
+.forest-mainBox:compact .soundbox-trackInfoBox {
+    padding: 0px;
+}
+
+.forest-mainBox:compact .soundbox-trackInfo {
+    padding: 0px;
+}
+
+.forest-mainBox:compact .soundbox-trackInfo-icon {
+    icon-size: 1em;
+}
+
+.forest-mainBox:compact .soundbox-buttonBox:compact{
+    padding: 0px;
+}
+
+.forest-mainBox:compact .soundbox-soundButton {
+    height: 14px;
+    width: 20px;
+}
+
+.forest-mainBox:compact .soundbox-soundButton-box {
+    padding: 2px;
+}

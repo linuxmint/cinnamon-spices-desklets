@@ -641,6 +641,16 @@ class YarrDesklet extends Desklet.Desklet {
                 +'\n<small>[ ' + item.category.toString().substring(0,80) + ' ]</small>\n\n'
                 + this.formatTextWrap(this.HTMLPartToTextPart(item.description ?? '-' ),100) 
                 ;
+<<<<<<< HEAD
+=======
+/*                
+            let toolTip = new Tooltips.Tooltip(feedButton, toolTipText );
+            toolTip._tooltip.style = 'text-align: left;';
+            toolTip._tooltip.clutter_text.set_use_markup(true);
+            toolTip._tooltip.clutter_text.allocate_preferred_size(Clutter.AllocationFlags.NONE);
+            toolTip._tooltip.queue_relayout();
+*/
+>>>>>>> e781c6ea8aef29aa6444f2a15ed1956819d718c1
 
             lineBox.add(feedButton);
 
@@ -824,6 +834,7 @@ class YarrDesklet extends Desklet.Desklet {
                             global.log('ERROR!')
                             aiResponse = resObj.error.message;
                         } else {
+<<<<<<< HEAD
                         
                             if (resObj.hasOwnProperty("choices")) {
                                 aiResponse = resObj.choices[0].message.content;
@@ -835,6 +846,10 @@ class YarrDesklet extends Desklet.Desklet {
                             }
                         }
                         
+=======
+                            aiResponse = resObj.choices[0].message.content;
+                        }
+>>>>>>> e781c6ea8aef29aa6444f2a15ed1956819d718c1
                         
                         item.aiResponse = aiResponse;
                         
@@ -878,7 +893,10 @@ class YarrDesklet extends Desklet.Desklet {
           }
         }, '');
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> e781c6ea8aef29aa6444f2a15ed1956819d718c1
 }
 
 function main(metadata, desklet_id) {
