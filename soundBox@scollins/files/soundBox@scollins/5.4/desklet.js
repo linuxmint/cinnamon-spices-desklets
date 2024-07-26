@@ -11,8 +11,13 @@ const St = imports.gi.St;
 const Lang = imports.lang;
 const Signals = imports.signals;
 
-imports.searchPath.push( imports.ui.appletManager.appletMeta["soundBox@scollins"].path );
-const Soundbox = imports.soundbox;
+const uuid = "soundBox@scollins";
+let Soundbox;
+if (typeof require !== 'undefined') {
+    Soundbox = require('./soundbox');
+} else {
+    Soundbox = imports.ui.deskletManager.desklets[uuid].soundbox;
+}
 
 const SETTINGS_KEYS = ["hideSystray", "theme", "showInput", "showApps", "raiseKey", "centerRaised", "compact", "showArt", "artSize", "exceedNormVolume"];
 
@@ -21,7 +26,6 @@ let settings, actionManager;
 let desklet_raised = false;
 
 const Gettext = imports.gettext;
-const uuid = "soundBox@scollins";
 
 Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
 
@@ -41,7 +45,7 @@ ButtonMenu.prototype = {
             this.actor.set_child(content);
             
             this.menuManager = new PopupMenu.PopupMenuManager(this);
-            this.menu = new PopupMenu.PopupMenu(this.actor, 0.5, St.Side.TOP, 0);
+            this.menu = new PopupMenu.PopupMenu(this.actor, St.Side.TOP);
             this.menu.actor.set_name(settings.theme+"-popup");
             this.menuManager.addMenu(this.menu);
             Main.uiGroup.add_actor(this.menu.actor);
@@ -78,6 +82,10 @@ ButtonMenu.prototype = {
         } catch(e) {
             global.logError(e);
         }
+    },
+    
+    destroy: function() {
+        this.menu.destroy()
     },
     
     activate: function() {
@@ -328,7 +336,7 @@ myDesklet.prototype = {
     
     on_desklet_removed: function() {
         Soundbox.unregisterSystrayIcons(this.metadata.uuid);
-        this._dbus.disconnectSignal(this._ownerChangedId);
+        this.playerLauncher.destroy()
     },
     
     bindKey: function() {
