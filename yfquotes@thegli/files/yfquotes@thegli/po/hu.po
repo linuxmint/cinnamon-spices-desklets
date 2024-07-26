@@ -5,22 +5,37 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yfquotes@thegli 0.12.0\n"
+"Project-Id-Version: yfquotes@thegli 0.13.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2024-07-10 00:38+0200\n"
-"PO-Revision-Date: 2024-06-29 04:34-0400\n"
+"POT-Creation-Date: 2024-07-10 00:38+0200\n"
+"PO-Revision-Date: 2024-07-26 08:33+0200\n"
+"PO-Revision-Date: 2024-07-26 08:31+0200\n"
+"Last-Translator: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language-Team: \n"
+"Language: hu\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
 "X-Generator: Poedit 3.0.1\n"
 
 #: desklet.js:310
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
+"Üres idézetek listája. Nyissa meg a beállításokat, és adjon hozzá néhány "
+"szimbólumot."
 
 #: desklet.js:332 desklet.js:351
 msgid "Yahoo Finance service not available!\\nStatus: "
@@ -163,7 +178,7 @@ msgstr "képpont"
 
 #. settings-schema.json->width->tooltip
 msgid "Desklet width in pixels"
-msgstr "Asztalkalmazás szélessége képpontban."
+msgstr "Asztalkalmazás szélessége képpontban"
 
 #. settings-schema.json->height->description
 msgid "Height"
@@ -171,7 +186,7 @@ msgstr "Magasság"
 
 #. settings-schema.json->height->tooltip
 msgid "Desklet height in pixels"
-msgstr "Asztalkalmazás magassága képpontban."
+msgstr "Asztalkalmazás magassága képpontban"
 
 #. settings-schema.json->transparency->description
 msgid "Background transparency"
@@ -179,15 +194,15 @@ msgstr "Háttér átlátszósága"
 
 #. settings-schema.json->transparency->tooltip
 msgid "The higher the value, the more solid the desklet background"
-msgstr "A magasabb érték jobban megjeleníti az asztalkalmazás hátterét."
+msgstr "A magasabb érték jobban megjeleníti az asztalkalmazás hátterét"
 
 #. settings-schema.json->backgroundColor->description
 msgid "Background color"
-msgstr ""
+msgstr "Háttér színe"
 
 #. settings-schema.json->backgroundColor->tooltip
 msgid "Desklet background color"
-msgstr ""
+msgstr "Asztalkalmazás háttér színe"
 
 #. settings-schema.json->showVerticalScrollbar->description
 msgid "Show vertical scrollbar"
@@ -211,7 +226,7 @@ msgstr "Frissítés gyakorisága"
 
 #. settings-schema.json->delayMinutes->tooltip
 msgid "Data refresh frequency, in minutes"
-msgstr "A szinkronizálási gyakorisága percben megadva."
+msgstr "A szinkronizálási gyakorisága percben megadva"
 
 #. settings-schema.json->showLastUpdateTimestamp->description
 msgid "Show last update timestamp"
@@ -219,21 +234,19 @@ msgstr "Utolsó frissítéskeresés időbélyegének megjelenítése"
 
 #. settings-schema.json->showLastUpdateTimestamp->tooltip
 msgid "Display timestamp when quotes were updated last"
-msgstr "Megjeleníti a megállapítások utolsó frissítéskeresésének időbélyegét."
+msgstr "Megjeleníti a megállapítások utolsó frissítéskeresésének időbélyegét"
 
 #. settings-schema.json->manualDataUpdate->description
-#, fuzzy
 msgid "Manual and automatic update"
-msgstr "Kézi frissítés"
+msgstr "Kézi és automatikus frissítés"
 
 #. settings-schema.json->manualDataUpdate->tooltip
-#, fuzzy
 msgid ""
 "Click last update timestamp to instantly refresh quotes data. Automatic "
 "update is still performed periodically."
 msgstr ""
-"Kattintson az utolsó frissítés időbélyegére az árajánlatok adatainak "
-"azonnali frissítéséhez"
+"Kattintson az utolsó frissítés időbélyegére az ajánlatok adatainak azonnali "
+"frissítéséhez. Az automatikus frissítés továbbra is időszakosan történik."
 
 #. settings-schema.json->sendCustomUserAgent->description
 msgid "Send custom User-Agent header"
@@ -245,7 +258,7 @@ msgid ""
 "default, this header is not set"
 msgstr ""
 "A Yahoo Finance Quotes API kéréseiben egyéni felhasználóügynök fejlécet "
-"adjon meg. Alapértelmezés szerint ez a fejléc nincs beállítva."
+"adjon meg. Alapértelmezés szerint ez a fejléc nincs beállítva"
 
 #. settings-schema.json->customUserAgent->description
 msgid "Custom User-Agent header"
@@ -253,7 +266,7 @@ msgstr "Felhasználóügynök fejléc"
 
 #. settings-schema.json->customUserAgent->tooltip
 msgid "Value for User-Agent header to send with all API requests"
-msgstr "Az összes API kérés mellé küldendő felhasználóügynök fejléc értéke."
+msgstr "Az összes API kérés mellé küldendő felhasználóügynök fejléc értéke"
 
 #. settings-schema.json->roundNumbers->description
 msgid "Round numbers"
@@ -261,7 +274,7 @@ msgstr "Kerekítés"
 
 #. settings-schema.json->roundNumbers->tooltip
 msgid "Perform rounding of floating-point numbers"
-msgstr "Számok kerekítése."
+msgstr "Számok kerekítése"
 
 #. settings-schema.json->decimalPlaces->units
 msgid "positions"
@@ -273,7 +286,7 @@ msgstr "Tizedesjegyek száma"
 
 #. settings-schema.json->decimalPlaces->tooltip
 msgid "Number of positions to round to after decimal point"
-msgstr "Megjelenítendő tizedesjegyek száma."
+msgstr "Megjelenítendő tizedesjegyek száma"
 
 #. settings-schema.json->strictRounding->description
 msgid "Strict rounding"
@@ -340,7 +353,7 @@ msgstr "Szimbólumok"
 
 #. settings-schema.json->quoteSymbols->tooltip
 msgid "List of quote symbols, separated with line-breaks"
-msgstr "Szimbólumok listájának megjelenítése itt, sortörésekkel elválasztva."
+msgstr "Szimbólumok listájának megjelenítése itt, sortörésekkel elválasztva"
 
 #. settings-schema.json->sortCriteria->options
 msgid "given order"
@@ -364,7 +377,7 @@ msgstr "Lista rendezése"
 
 #. settings-schema.json->sortCriteria->tooltip
 msgid "Sort the quote list"
-msgstr "Megállapítások rendezése."
+msgstr "Megállapítások rendezése"
 
 #. settings-schema.json->sortDirection->description
 msgid "Sort in ascending order"
@@ -375,7 +388,7 @@ msgid ""
 "Check to sort quotes in ascending order, uncheck to sort in descending order"
 msgstr ""
 "Jelölje be ezt a jelölőnégyzetet növekvő sorrendhez, vagy távolítsa el a "
-"jelölést a csökkenő sorrendhez."
+"jelölést a csökkenő sorrendhez"
 
 #. settings-schema.json->showChangeIcon->description
 msgid "Show change/trend icon"
@@ -385,7 +398,7 @@ msgstr "Változás, azaz trend ikon megjelenítése"
 msgid "Indicates whether the market price moved up, down, or is unchanged"
 msgstr ""
 "Megmutatja, hogy a piaci ár felfelé, illetve lefelé mozdult-e el, vagy nem "
-"változott meg."
+"változott meg"
 
 #. settings-schema.json->showQuoteName->description
 msgid "Show verbose name"
@@ -413,7 +426,7 @@ msgstr "Név webhivatkozássá alakítása"
 
 #. settings-schema.json->linkQuoteName->tooltip
 msgid "Click name to open quote in browser"
-msgstr "Kattintson a névre a megállapítások böngészőben történő megnyitásához."
+msgstr "Kattintson a névre a megállapítások böngészőben történő megnyitásához"
 
 #. settings-schema.json->showQuoteSymbol->description
 msgid "Show ticker/symbol"
@@ -430,7 +443,7 @@ msgstr "Szimbólum webhivatkozássá alakítása"
 #. settings-schema.json->linkQuoteSymbol->tooltip
 msgid "Click symbol to open quote in browser"
 msgstr ""
-"Kattintson a szimbólumra a megállapítások böngészőben történő megnyitásához."
+"Kattintson a szimbólumra a megállapítások böngészőben történő megnyitásához"
 
 #. settings-schema.json->showMarketPrice->description
 msgid "Show price"
@@ -474,7 +487,7 @@ msgstr "Trendszínek használata a százalékos változásnál"
 msgid "Color the percent change to show the trend"
 msgstr ""
 "Százalékos változás színezése a trend megjelenítéséhez (zöld: emelkedő, "
-"piros: csökkenő)."
+"piros: csökkenő)"
 
 #. settings-schema.json->showTradeTime->description
 msgid "Show trading time"
@@ -482,7 +495,7 @@ msgstr "Kereskedési idő megjelenítése"
 
 #. settings-schema.json->showTradeTime->tooltip
 msgid "Display the last trading time (if current day) or date"
-msgstr "Utolsó kereskedési időpont vagy dátum megjelenítése."
+msgstr "Utolsó kereskedési időpont vagy dátum megjelenítése"
 
 #. settings-schema.json->fontColor->description
 msgid "Font color"
@@ -518,7 +531,7 @@ msgstr "Emelkedés színe"
 
 #. settings-schema.json->uptrendChangeColor->tooltip
 msgid "Color of the uptrend change"
-msgstr "Az emelkedő árfolyam színe."
+msgstr "Az emelkedő árfolyam színe"
 
 #. settings-schema.json->downtrendChangeColor->description
 msgid "Downtrend change color"
@@ -530,4 +543,4 @@ msgstr "Változatlan trend színe"
 
 #. settings-schema.json->unchangedTrendColor->tooltip
 msgid "Color of the unchanged trend"
-msgstr "A változatlan árfolyam színe."
+msgstr "A változatlan árfolyam színe"
