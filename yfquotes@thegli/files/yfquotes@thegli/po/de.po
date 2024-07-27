@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-05-22 21:38+0200\n"
+"POT-Creation-Date: 2024-07-10 00:38+0200\n"
 "PO-Revision-Date: 2023-08-28 16:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,19 +17,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
 
-#: desklet.js:326 desklet.js:345
+#: desklet.js:310
+msgid "Empty quotes list. Open settings and add some symbols."
+msgstr ""
+"Liste der Symbole ist leer. Öffne die Einstellungen und füge Symbole hinzu."
+
+#: desklet.js:332 desklet.js:351
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Yahoo Finance Service nicht verfügbar!\\nStatus: "
 
-#: desklet.js:730
+#: desklet.js:738
 msgid "Updated at "
 msgstr "Aktualisiert um "
 
-#: desklet.js:751
+#: desklet.js:759
 msgid "Error: "
 msgstr "Fehler: "
 
-#: desklet.js:813
+#: desklet.js:827
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -37,20 +42,20 @@ msgstr ""
 "Empfang von Autorisierungsparameter ist fehlgeschlagen! Finanzdaten-Abfrage "
 "nicht möglich.\\nStatus: "
 
-#: desklet.js:838
+#: desklet.js:852
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Consent-Erteilung ist fehlgeschlagen! Finanzdaten-Abfrage nicht möglich."
 "\\nStatus: "
 
-#: desklet.js:843
+#: desklet.js:857
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Consent-Erteilung nicht abgeschlossen! Finanzdaten-Abfrage nicht möglich."
 "\\nStatus: "
 
-#: desklet.js:865
+#: desklet.js:879
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
@@ -58,11 +63,11 @@ msgstr ""
 "Emfang von Autorisierungs-Crumb ist fehlgeschlagen! Finanzdaten-Abfrage "
 "nicht möglich.\\nStatus: "
 
-#: desklet.js:892
+#: desklet.js:906
 msgid "Cannot display quotes information for symbols: "
 msgstr "Finanzdaten können nicht angezeigt werden für die Symbole: "
 
-#: desklet.js:893
+#: desklet.js:907
 msgid "The following error occurred: "
 msgstr "Folgender Fehler ist aufgetreten: "
 
@@ -176,6 +181,14 @@ msgstr "Hintergrund Transparenz"
 msgid "The higher the value, the more solid the desklet background"
 msgstr "Je grösser der Wert, desto deckender der Desklet Hintergrund"
 
+#. settings-schema.json->backgroundColor->description
+msgid "Background color"
+msgstr "Hintergrundfarbe"
+
+#. settings-schema.json->backgroundColor->tooltip
+msgid "Desklet background color"
+msgstr "Desklet Hintergrundfarbe"
+
 #. settings-schema.json->showVerticalScrollbar->description
 msgid "Show vertical scrollbar"
 msgstr "Senkrechte Bildlaufleiste anzeigen"
@@ -209,13 +222,16 @@ msgid "Display timestamp when quotes were updated last"
 msgstr "Zeigt den Zeitstempel der letzten Aktualisierung der Finanzdaten an"
 
 #. settings-schema.json->manualDataUpdate->description
-#, fuzzy
-msgid "Manual update"
-msgstr "Manuelle Aktualisierung"
+msgid "Manual and automatic update"
+msgstr "Manuelle und automatische Aktualisierung"
 
 #. settings-schema.json->manualDataUpdate->tooltip
-msgid "Click last update timestamp to instantly refresh quotes data"
-msgstr "Zeitstempel anklicken für sofortige Aktualisierung"
+msgid ""
+"Click last update timestamp to instantly refresh quotes data. Automatic "
+"update is still performed periodically."
+msgstr ""
+"Zeitstempel anklicken für sofortige Aktualisierung. Die automatische "
+"Aktualisierung findet weiterhin periodisch statt."
 
 #. settings-schema.json->sendCustomUserAgent->description
 msgid "Send custom User-Agent header"
