@@ -1,0 +1,11 @@
+{
+    "uuid": "vaktija-desklet@MuxBH28",
+    "name": "Vaktija Desklet",
+    "description": "This desklet fetches and displays prayer times using data from vaktija.ba API.",
+    "max-instances": "1",
+    "version": "1.2",
+    "author": "MuxBH28",
+    "website": "https://sehic.rf.gd/?project=vaktija",
+    "credits": "API created by vaktija.ba - https://github.com/vaktija",
+    "last-edited": 1721249424
+}
