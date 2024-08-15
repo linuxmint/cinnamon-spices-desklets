@@ -83,13 +83,14 @@ body:
     - show-remote-ip-desklet@nejdetckenobi @nejdetckenobi
     - shutdown@phpdreamer
     - simple-system-monitor@ariel @arielandrade
-    - soundBox@scollins @collinss
+    - soundBox@scollins @kawashiro
     - system-monitor-graph@rcassani @rcassani
     - temperature@india @OnlineLearningTutorials
     - temperature@swalladge @swalladge
     - TimeAndDate@nightflame
     - timelet@linuxedo.com @slgobinath
     - top@ryannerd @ryannerd
+    - vaktija-desklet@MuxBH28 @MuxBH28
     - ViennaTextBasedWeather@f-istvan @f-istvan
     - xkcd@rjanja @rjanja
     - yarr@jtoberling @jtoberling

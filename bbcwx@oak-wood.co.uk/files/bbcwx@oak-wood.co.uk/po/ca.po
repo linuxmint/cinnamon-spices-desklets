@@ -9,43 +9,43 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2024-02-18 14:37-0500\n"
-"PO-Revision-Date: 2023-09-03 14:16-0400\n"
-"Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
-"Language-Team: Catalan <ca@li.org>\n"
+"PO-Revision-Date: 2024-07-27 02:02+0200\n"
+"Last-Translator: Odyssey <odysseyhyd@gmail.com>\n"
+"Language-Team: \n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2015-12-04 19:52+0000\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: 5.4/desklet.js:111 3.0/desklet.js:108
 msgid "Mon"
-msgstr "dl."
+msgstr "Dl"
 
 #: 5.4/desklet.js:111 3.0/desklet.js:108
 msgid "Tue"
-msgstr "dt."
+msgstr "Dt"
 
 #: 5.4/desklet.js:111 3.0/desklet.js:108
 msgid "Wed"
-msgstr "dc."
+msgstr "Dc"
 
 #: 5.4/desklet.js:111 3.0/desklet.js:108
 msgid "Thu"
-msgstr "dj."
+msgstr "Dj"
 
 #: 5.4/desklet.js:111 3.0/desklet.js:108
 msgid "Fri"
-msgstr "dv."
+msgstr "Dv"
 
 #: 5.4/desklet.js:111 3.0/desklet.js:108
 msgid "Sat"
-msgstr "ds."
+msgstr "Ds"
 
 #: 5.4/desklet.js:111 3.0/desklet.js:108
 msgid "Sun"
-msgstr "dg."
+msgstr "Dg"
 
 #. metadata.json->name
 #: 5.4/desklet.js:252 3.0/desklet.js:186
@@ -106,10 +106,9 @@ msgstr "Actualitza"
 
 #: 5.4/desklet.js:563
 msgid "Last updated"
-msgstr ""
+msgstr "Última actualització"
 
 #: 5.4/desklet.js:871
-#, fuzzy
 msgid "No Data Available"
 msgstr "No hi ha dades disponibles"
 
@@ -120,7 +119,7 @@ msgstr "Sha produït un error: %s"
 
 #: 5.4/desklet.js:902 5.4/desklet.js:970
 msgid "No Data"
-msgstr ""
+msgstr "No hi ha dades"
 
 #: 5.4/desklet.js:1004 3.0/desklet.js:879
 #, javascript-format
@@ -198,7 +197,7 @@ msgstr "%f km"
 #: 5.4/drivers/owmfree.js:29 5.4/drivers/weatherapi.js:75
 #: 5.4/drivers/weatherstack.js:81 5.4/drivers/wwo.js:74
 msgid "Invalid location"
-msgstr ""
+msgstr "Ubicació invàlida"
 
 #: 5.4/drivers/bbc.js:254 5.4/drivers/meteoblue.js:151
 #: 5.4/drivers/openmeteo.js:122 3.0/desklet.js:1860 3.0/desklet.js:4230
@@ -338,7 +337,7 @@ msgstr "Núvols blancs"
 #: 5.4/drivers/weatherapi.js:79 5.4/drivers/weatherstack.js:85
 #: 5.4/drivers/wunderground.js:55 5.4/drivers/wwo.js:78
 msgid "No API key provided"
-msgstr ""
+msgstr "No s'ha proveït una clau d'API"
 
 #: 5.4/drivers/meteoblue.js:152 5.4/drivers/wxbase.js:327
 #: 5.4/drivers/wxbase.js:328 3.0/desklet.js:1593 3.0/desklet.js:1594
@@ -365,130 +364,120 @@ msgid "Snow"
 msgstr "Neu"
 
 #: 5.4/drivers/meteoblue.js:160 5.4/drivers/wxbase.js:340
-#, fuzzy
 msgid "Snow Showers"
 msgstr "Nevades fortes"
 
 #: 5.4/drivers/meteoblue.js:161 5.4/drivers/wxbase.js:299
-#, fuzzy
 msgid "Mixed Rain and Snow"
 msgstr "Pluja i neu"
 
 #: 5.4/drivers/openmeteo.js:123
 msgid "Mainly Clear"
-msgstr ""
+msgstr "Majoritàriament clar"
 
 #: 5.4/drivers/openmeteo.js:125 5.4/drivers/weatherapi.js:278
 #: 5.4/drivers/weatherstack.js:250
 msgid "Overcast"
-msgstr ""
+msgstr "Cobert de núvols"
 
 #: 5.4/drivers/openmeteo.js:127
 msgid "Depositing Rime Fog"
-msgstr ""
+msgstr "Boira gebradora"
 
 #: 5.4/drivers/openmeteo.js:128
 msgid "Drizzle: Light Intensity"
-msgstr ""
+msgstr "Plugim de baixa intensitat"
 
 #: 5.4/drivers/openmeteo.js:129
 msgid "Drizzle: Moderate Intensity"
-msgstr ""
+msgstr "Plugim d'intensitat moderada"
 
 #: 5.4/drivers/openmeteo.js:130
 msgid "Drizzle: Dense Intensity"
-msgstr ""
+msgstr "Plugim intens"
 
 #: 5.4/drivers/openmeteo.js:131
-#, fuzzy
 msgid "Freezing Drizzle: Light Intensity"
-msgstr "Plugim glaçat"
+msgstr "Plugim d'aiguaneu de baixa intensitat"
 
 #: 5.4/drivers/openmeteo.js:132
-#, fuzzy
 msgid "Freezing Drizzle: Dense Intensity"
-msgstr "Plugim glaçat"
+msgstr "Plugim d'aiguaneu d'intensitat mitjana"
 
 #: 5.4/drivers/openmeteo.js:133
 msgid "Rain: Slight Intensity"
-msgstr ""
+msgstr "Pluja de baixa intensitat"
 
 #: 5.4/drivers/openmeteo.js:134
 msgid "Rain: Moderate Intensity"
-msgstr ""
+msgstr "Pluja d'intensitat moderada"
 
 #: 5.4/drivers/openmeteo.js:135
 msgid "Rain: Heavy Intensity"
-msgstr ""
+msgstr "Pluja intensa"
 
 #: 5.4/drivers/openmeteo.js:136
 msgid "Freezing Rain: Light Intensity"
-msgstr ""
+msgstr "Pluja d'aiguaneu de baixa intensitat"
 
 #: 5.4/drivers/openmeteo.js:137
 msgid "Freezing Rain: Heavy Intensity"
-msgstr ""
+msgstr "Pluja d'aiguaneu intensa"
 
 #: 5.4/drivers/openmeteo.js:138
 msgid "Snow Fall: Slight Intensity"
-msgstr ""
+msgstr "Precipitació de neu de baixa intensitat"
 
 #: 5.4/drivers/openmeteo.js:139
 msgid "Snow Fall: Moderate Intensity"
-msgstr ""
+msgstr "Precipitació de neu d'intensitat moderada"
 
 #: 5.4/drivers/openmeteo.js:140
 msgid "Snow Fall: Heavy Intensity"
-msgstr ""
+msgstr "Precipitació de neu intensa"
 
 #: 5.4/drivers/openmeteo.js:141
-#, fuzzy
 msgid "Snow Grains"
-msgstr "Ràfegues de neu"
+msgstr "Grans de neu"
 
 #: 5.4/drivers/openmeteo.js:142
 msgid "Rain Showers: Slight"
-msgstr ""
+msgstr "Ruixat de pluja lleuger"
 
 #: 5.4/drivers/openmeteo.js:143
 msgid "Rain Showers: Moderate"
-msgstr ""
+msgstr "Ruixat de pluja moderat"
 
 #: 5.4/drivers/openmeteo.js:144
 msgid "Rain Showers: Violent"
-msgstr ""
+msgstr "Ruixat de pluja intens"
 
 #: 5.4/drivers/openmeteo.js:145
-#, fuzzy
 msgid "Slight Snow Showers"
 msgstr "Nevades lleugeres"
 
 #: 5.4/drivers/openmeteo.js:146
-#, fuzzy
 msgid "Heavy Snow Showers"
 msgstr "Nevades intenses"
 
 #: 5.4/drivers/openmeteo.js:148
 msgid "Thunderstorm With Slight Hail"
-msgstr ""
+msgstr "Tempesta elèctrica amb calamarsa lleugera"
 
 #: 5.4/drivers/openmeteo.js:149
-#, fuzzy
 msgid "Thunderstorm With Heavy Hail"
-msgstr "Tempesta elèctrica"
+msgstr "Tempesta elèctrica amb calamarsa moderada"
 
 #: 5.4/drivers/owm.js:76 5.4/drivers/owmfree.js:40
-#, fuzzy
 msgid "Invalid location format"
-msgstr "Obtén la ubicació de"
+msgstr "Format d'ubicació invàlid"
 
 #: 5.4/drivers/weatherapi.js:245 5.4/drivers/weatherstack.js:234
 msgid "Blizzard"
-msgstr ""
+msgstr "Tempesta de vent i neu intensa"
 
 #: 5.4/drivers/weatherapi.js:246 5.4/drivers/weatherstack.js:235
 #: 5.4/drivers/wxbase.js:309
-#, fuzzy
 msgid "Blowing Snow"
 msgstr "Neu aixecada pel vent"
 
@@ -499,171 +488,152 @@ msgstr "Assolellat"
 
 #: 5.4/drivers/weatherapi.js:250 5.4/drivers/weatherstack.js:239
 #: 5.4/drivers/wxbase.js:302
-#, fuzzy
 msgid "Freezing Drizzle"
 msgstr "Plugim glaçat"
 
 #: 5.4/drivers/weatherapi.js:251 5.4/drivers/weatherstack.js:240
-#, fuzzy
 msgid "Freezing Fog"
-msgstr "Pluja glaçada"
+msgstr "Boira glaçada"
 
 #: 5.4/drivers/weatherapi.js:252 5.4/drivers/weatherstack.js:241
-#, fuzzy
 msgid "Heavy Freezing Drizzle"
-msgstr "Plugim glaçat"
+msgstr "Plugim glaçat intens"
 
 #: 5.4/drivers/weatherapi.js:254 5.4/drivers/weatherstack.js:243
-#, fuzzy
 msgid "Heavy Rain at Times"
-msgstr "Pluja intensa"
+msgstr "Pluja intensa intermitent"
 
 #: 5.4/drivers/weatherapi.js:256
 msgid "Ice Pellets"
-msgstr ""
+msgstr "Grans de gel"
 
 #: 5.4/drivers/weatherapi.js:257 5.4/drivers/weatherstack.js:244
-#, fuzzy
 msgid "Light Drizzle"
-msgstr "Plugim"
+msgstr "Plugim lleuger"
 
 #: 5.4/drivers/weatherapi.js:258 5.4/drivers/weatherstack.js:245
-#, fuzzy
 msgid "Light Freezing Rain"
-msgstr "Pluja glaçada"
+msgstr "Pluja glaçada lleugera"
 
 #: 5.4/drivers/weatherapi.js:261
 msgid "Light Showers of Ice Pellets"
-msgstr ""
+msgstr "Cortina de pluja amb pedra"
 
 #: 5.4/drivers/weatherapi.js:262
-#, fuzzy
 msgid "Light Sleet"
-msgstr "Nevada lleugera"
+msgstr "Aiguaneu"
 
 #: 5.4/drivers/weatherapi.js:263
-#, fuzzy
 msgid "Light Sleet Showers"
-msgstr "Nevades lleugeres"
+msgstr "Ruixats d'aiguaneu"
 
 #: 5.4/drivers/weatherapi.js:265 5.4/drivers/wxbase.js:308
-#, fuzzy
 msgid "Light Snow Showers"
 msgstr "Nevades lleugeres"
 
 #: 5.4/drivers/weatherapi.js:267
 msgid "Moderate or Heavy Freezing Rain"
-msgstr ""
+msgstr "Pluja glaçada moderada/intensa"
 
 #: 5.4/drivers/weatherapi.js:268
-#, fuzzy
 msgid "Moderate or Heavy Rain Shower"
-msgstr "Pluja intensa"
+msgstr "Cortina de pluja moderada/intensa"
 
 #: 5.4/drivers/weatherapi.js:269
 msgid "Moderate or Heavy Rain With Thunder"
-msgstr ""
+msgstr "Cortina de pluja moderada amb tempesta elèctrica"
 
 #: 5.4/drivers/weatherapi.js:270
 msgid "Moderate or Heavy Showers of Ice Pellets"
-msgstr ""
+msgstr "Calamarsada intensa amb tempesta elèctrica"
 
 #: 5.4/drivers/weatherapi.js:271
 msgid "Moderate or Heavy Sleet"
-msgstr ""
+msgstr "Ruixat d'aiguaneu moderat/intens"
 
 #: 5.4/drivers/weatherapi.js:272
 msgid "Moderate or Heavy Sleet Showers"
-msgstr ""
+msgstr "Cortina d'aiguaneu intensa"
 
 #: 5.4/drivers/weatherapi.js:273
-#, fuzzy
 msgid "Moderate or Heavy Snow Showers"
-msgstr "Nevades intenses"
+msgstr "Nevada d'intensitat moderada"
 
 #: 5.4/drivers/weatherapi.js:274
 msgid "Moderate or Heavy Snow With Thunder"
-msgstr ""
+msgstr "Nevada d'intensitat moderada amb trons"
 
 #: 5.4/drivers/weatherapi.js:275 5.4/drivers/weatherstack.js:248
-#, fuzzy
 msgid "Moderate Rain"
-msgstr "Pluja intensa"
+msgstr "Pluja moderada"
 
 #: 5.4/drivers/weatherapi.js:276 5.4/drivers/weatherstack.js:249
 msgid "Moderate Rain at Times"
-msgstr ""
+msgstr "Pluja moderada intermitent"
 
 #: 5.4/drivers/weatherapi.js:277
-#, fuzzy
 msgid "Moderate Snow"
-msgstr "Nevada intensa"
+msgstr "Nevada moderada"
 
 #: 5.4/drivers/weatherapi.js:280 5.4/drivers/weatherstack.js:252
-#, fuzzy
 msgid "Patchy Freezing Drizzle Possible"
-msgstr "Plugim glaçat"
+msgstr "Possibilitat de plugim glaçat intermitent"
 
 #: 5.4/drivers/weatherapi.js:281
-#, fuzzy
 msgid "Patchy Heavy Snow"
-msgstr "Nevada intensa"
+msgstr "Neu intensa intermitent"
 
 #: 5.4/drivers/weatherapi.js:282 5.4/drivers/weatherstack.js:253
 msgid "Patchy Light Drizzle"
-msgstr ""
+msgstr "Plugim lleuger intermitent"
 
 #: 5.4/drivers/weatherapi.js:283 5.4/drivers/weatherstack.js:254
-#, fuzzy
 msgid "Patchy Light Rain"
-msgstr "Pluja lleugera"
+msgstr "Pluja lleugera intermitent"
 
 #: 5.4/drivers/weatherapi.js:284
 msgid "Patchy Light Rain With Thunder"
-msgstr ""
+msgstr "Pluja lleugera intermitent amb trons"
 
 #: 5.4/drivers/weatherapi.js:285
-#, fuzzy
 msgid "Patchy Light Snow"
-msgstr "Nevada lleugera"
+msgstr "Nevada lleugera intermitent"
 
 #: 5.4/drivers/weatherapi.js:286
 msgid "Patchy Light Snow With Thunder"
-msgstr ""
+msgstr "Nevada lleugera intermitent amb trons"
 
 #: 5.4/drivers/weatherapi.js:287
 msgid "Patchy Moderate Snow"
-msgstr ""
+msgstr "Nevada moderada intermitent"
 
 #: 5.4/drivers/weatherapi.js:288 5.4/drivers/weatherstack.js:255
 msgid "Patchy Rain Possible"
-msgstr ""
+msgstr "Possibilitat de pluja intermitent"
 
 #: 5.4/drivers/weatherapi.js:289 5.4/drivers/weatherstack.js:256
 msgid "Patchy Sleet Possible"
-msgstr ""
+msgstr "Possibilitat d'aiguaneu intermitent"
 
 #: 5.4/drivers/weatherapi.js:290 5.4/drivers/weatherstack.js:257
 msgid "Patchy Snow Possible"
-msgstr ""
+msgstr "Possibilitat de nevada intermitent"
 
 #: 5.4/drivers/weatherapi.js:292 5.4/drivers/weatherstack.js:259
 msgid "Thundery Outbreaks Possible"
-msgstr ""
+msgstr "Possibilitat de tronades"
 
 #: 5.4/drivers/weatherapi.js:293
-#, fuzzy
 msgid "Torrential Rain Shower"
-msgstr "Pluja intensa"
+msgstr "Cortina de pluja torrencial"
 
 #: 5.4/drivers/wunderground.js:47
-#, fuzzy
 msgid "Invalid station ID"
-msgstr "Obtén la ubicació de"
+msgstr "ID d'estació invàlida"
 
 #: 5.4/drivers/wunderground.js:51
 msgid "Invalid geocode"
-msgstr ""
+msgstr "Codi de geolocalització invàlid"
 
 #: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
 msgid "N"
@@ -734,7 +704,6 @@ msgid "Tornado"
 msgstr "Tornado"
 
 #: 5.4/drivers/wxbase.js:295
-#, fuzzy
 msgid "Tropical Storm"
 msgstr "Tempesta tropical"
 
@@ -743,7 +712,6 @@ msgid "Hurricane"
 msgstr "Huracà"
 
 #: 5.4/drivers/wxbase.js:297
-#, fuzzy
 msgid "Severe Thunderstorms"
 msgstr "Tempesta elèctrica severa"
 
@@ -752,22 +720,18 @@ msgid "Thunderstorms"
 msgstr "Tempesta elèctrica"
 
 #: 5.4/drivers/wxbase.js:300
-#, fuzzy
 msgid "Mixed Rain and Sleet"
 msgstr "Pluja i aiguaneu"
 
 #: 5.4/drivers/wxbase.js:301
-#, fuzzy
 msgid "Mixed Snow and Sleet"
 msgstr "Neu i aiguaneu"
 
 #: 5.4/drivers/wxbase.js:304
-#, fuzzy
 msgid "Freezing Rain"
 msgstr "Pluja glaçada"
 
 #: 5.4/drivers/wxbase.js:307
-#, fuzzy
 msgid "Snow Flurries"
 msgstr "Ràfegues de neu"
 
@@ -804,12 +768,10 @@ msgid "Cold"
 msgstr "Fred"
 
 #: 5.4/drivers/wxbase.js:321 5.4/drivers/wxbase.js:322
-#, fuzzy
 msgid "Mostly Cloudy"
 msgstr "Principalment ennuvolat"
 
 #: 5.4/drivers/wxbase.js:329
-#, fuzzy
 msgid "Mixed Rain and Hail"
 msgstr "Pluja i calamarsa"
 
@@ -818,22 +780,18 @@ msgid "Hot"
 msgstr "Càlid"
 
 #: 5.4/drivers/wxbase.js:331
-#, fuzzy
 msgid "Isolated Thunderstorms"
 msgstr "Tempestes elèctriques aïllades"
 
 #: 5.4/drivers/wxbase.js:332
-#, fuzzy
 msgid "Scattered Thunderstorms"
 msgstr "Tempestes elèctriques disperses"
 
 #: 5.4/drivers/wxbase.js:333 5.4/drivers/wxbase.js:334
-#, fuzzy
 msgid "Scattered Showers"
 msgstr "Ruixats dispersos"
 
 #: 5.4/drivers/wxbase.js:336
-#, fuzzy
 msgid "Scattered Snow Showers"
 msgstr "Nevades disperses"
 
@@ -842,12 +800,10 @@ msgid "Thundershowers"
 msgstr "Tempestes"
 
 #: 5.4/drivers/wxbase.js:341
-#, fuzzy
 msgid "Isolated Thundershowers"
 msgstr "Tempestes aïllades"
 
 #: 5.4/drivers/wxbase.js:342
-#, fuzzy
 msgid "Not Available"
 msgstr "No està disponible"
 
@@ -964,10 +920,12 @@ msgid ""
 "Please consider translating the Weather desklet into your language. See the "
 "website for more information."
 msgstr ""
+"Si us plau, considereu traduir la miniaplicació d'escriptori del Temps al "
+"vostre idioma. Consulteu el lloc web per més informació."
 
 #. metadata.json->contributors
 msgid "Chris Hastie"
-msgstr ""
+msgstr "Chris Hastie"
 
 #. 5.4->settings-schema.json->top->description
 #. 3.0->settings-schema.json->top->description
@@ -988,44 +946,39 @@ msgstr "BBC"
 
 #. 5.4->settings-schema.json->webservice->options
 msgid "meteoblue"
-msgstr ""
+msgstr "meteoblue"
 
 #. 5.4->settings-schema.json->webservice->options
 msgid "National Weather Service (USA Only)"
-msgstr ""
+msgstr "Servei Nacional del Temps (només Estats Units)"
 
 #. 5.4->settings-schema.json->webservice->options
 msgid "Open-Meteo Non-commercial"
-msgstr ""
+msgstr "Open-Meteo (no comercial)"
 
 #. 5.4->settings-schema.json->webservice->options
-#, fuzzy
 msgid "Open Weather Map Free"
-msgstr "Open Weather Map (requereix la clau de l’API)"
+msgstr "Open Weather Map gratis (requereix la clau de l’API)"
 
 #. 5.4->settings-schema.json->webservice->options
-#, fuzzy
 msgid "Open Weather Map"
 msgstr "Open Weather Map (requereix la clau de l’API)"
 
 #. 5.4->settings-schema.json->webservice->options
-#, fuzzy
 msgid "Weather API Free"
-msgstr "Miniaplicació d'escriptori del temps"
+msgstr "Weather API Free"
 
 #. 5.4->settings-schema.json->webservice->options
-#, fuzzy
 msgid "weatherstack"
-msgstr "El temps"
+msgstr "weatherstack"
 
 #. 5.4->settings-schema.json->webservice->options
 msgid "World Weather Online"
-msgstr ""
+msgstr "World Weather Online"
 
 #. 5.4->settings-schema.json->webservice->options
-#, fuzzy
 msgid "Weather Underground"
-msgstr "Configuració del temps"
+msgstr "Weather Underground"
 
 #. 5.4->settings-schema.json->webservice->tooltip
 #. 3.0->settings-schema.json->webservice->tooltip
@@ -1065,55 +1018,52 @@ msgstr "Establiu aquí la vostra ubicació"
 #. 5.4->settings-schema.json->weatherstack__apikey->description
 #. 5.4->settings-schema.json->wwo__apikey->description
 #. 5.4->settings-schema.json->wunderground__apikey->description
-#, fuzzy
 msgid "API key (required)"
-msgstr "APIXU (requereix la clau de l'API)"
+msgstr "Clau API (requerida)"
 
 #. 5.4->settings-schema.json->meteoblue__apikey->tooltip
 msgid "Enter your API key for meteoblue"
-msgstr ""
+msgstr "Introduïu la clau API per meteoblue"
 
 #. 5.4->settings-schema.json->owmfree__apikey->tooltip
 msgid "Enter your API key for Open Weather Map Free"
-msgstr ""
+msgstr "Introduïu la clau API per Open Weather Map free"
 
 #. 5.4->settings-schema.json->owm__apikey->tooltip
 msgid "Enter your API key for Open Weather Map"
-msgstr ""
+msgstr "Introduïu la clau API per Open Weather Map"
 
 #. 5.4->settings-schema.json->weatherapi__apikey->tooltip
 msgid "Enter your API key for Weather API Free"
-msgstr ""
+msgstr "Introduïu la clau API per Weather API free"
 
 #. 5.4->settings-schema.json->weatherstack__apikey->tooltip
 msgid "Enter your API key for weatherstack"
-msgstr ""
+msgstr "Introduïu la clau API per weatherstack"
 
 #. 5.4->settings-schema.json->wwo__apikey->tooltip
 msgid "Enter your API key for World Weather Online"
-msgstr ""
+msgstr "Introduïu la clau API per World Weather Online"
 
 #. 5.4->settings-schema.json->wunderground__stationID->description
 msgid "Station ID"
-msgstr ""
+msgstr "ID de l'estació"
 
 #. 5.4->settings-schema.json->wunderground__stationID->tooltip
-#, fuzzy
 msgid "Set your station ID here"
-msgstr "Establiu aquí la vostra ubicació"
+msgstr "Establiu l'ID de l'estació aquí"
 
 #. 5.4->settings-schema.json->wunderground__geocode->description
 msgid "Geocode"
-msgstr ""
+msgstr "Codi de geolocalització"
 
 #. 5.4->settings-schema.json->wunderground__geocode->tooltip
-#, fuzzy
 msgid "Set your geocode here"
-msgstr "Establiu aquí la vostra ubicació"
+msgstr "Introduïu el vostre codi de geolocalització aquí"
 
 #. 5.4->settings-schema.json->wunderground__apikey->tooltip
 msgid "Enter your API key for Weather Underground"
-msgstr ""
+msgstr "Introduïu la clau API per Weather Underground"
 
 #. 5.4->settings-schema.json->tunits->description
 #. 3.0->settings-schema.json->tunits->description
@@ -1252,10 +1202,9 @@ msgstr "Activeu-ho per mostrar el país"
 
 #. 5.4->settings-schema.json->display__meta__region->description
 msgid "Region"
-msgstr ""
+msgstr "Regió"
 
 #. 5.4->settings-schema.json->display__meta__region->tooltip
-#, fuzzy
 msgid "Check to display the region"
 msgstr "Activeu-ho per mostrar el país"
 
@@ -1545,12 +1494,12 @@ msgstr "Feu clic per seleccionar un color nou de text"
 #. 5.4->settings-schema.json->textshadow->description
 #. 3.0->settings-schema.json->textshadow->description
 msgid "Text shadow"
-msgstr ""
+msgstr "Ombrejat del text"
 
 #. 5.4->settings-schema.json->textshadow->tooltip
 #. 3.0->settings-schema.json->textshadow->tooltip
 msgid "Check to add a text shadow"
-msgstr ""
+msgstr "Marqueu-ho per afegir ombra al text"
 
 #. 5.4->settings-schema.json->shadowblur->units
 #. 5.4->settings-schema.json->cornerradius->units
@@ -1564,12 +1513,12 @@ msgstr "px"
 #. 5.4->settings-schema.json->shadowblur->description
 #. 3.0->settings-schema.json->shadowblur->description
 msgid "Shadow blur radius"
-msgstr ""
+msgstr "Radi del desenfocament de l'ombrejat"
 
 #. 5.4->settings-schema.json->shadowblur->tooltip
 #. 3.0->settings-schema.json->shadowblur->tooltip
 msgid "Set the text shadow sharp (1) or blurry (2-7)"
-msgstr ""
+msgstr "Fa que l'ombra sigui nítida (1) o borrosa (2-7)"
 
 #. 5.4->settings-schema.json->bgcolor->description
 #. 3.0->settings-schema.json->bgcolor->description
