@@ -19,6 +19,7 @@ Install the fonts required by each theme for the best result.
 - Gotham: [GE Inspira](https://fontsgeek.com/fonts/GE-Inspira-Regular)
 - Jelly: [Roboto](https://fonts.google.com/specimen/Roboto)
 - Metro: [Ubuntu](https://fonts.google.com/specimen/Ubuntu)
+- Modern: [Anurati](https://font.download/font/anurati), [Ubuntu](https://fonts.google.com/specimen/Ubuntu)
 
 ## Development
 
