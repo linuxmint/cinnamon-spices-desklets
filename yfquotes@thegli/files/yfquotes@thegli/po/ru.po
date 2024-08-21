@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-07-10 00:38+0200\n"
+"POT-Creation-Date: 2024-08-21 22:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,48 +17,48 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
 
-#: desklet.js:310
+#. desklet.js:321
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 
-#: desklet.js:332 desklet.js:351
+#. desklet.js:343 desklet.js:362
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Сервис Yahoo Finance не доступен!"
 
-#: desklet.js:738
+#. desklet.js:767
 msgid "Updated at "
 msgstr "Обновлено в "
 
-#: desklet.js:759
+#. desklet.js:788
 msgid "Error: "
 msgstr "Ошибка: "
 
-#: desklet.js:827
+#. desklet.js:892
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
 msgstr ""
 
-#: desklet.js:852
+#. desklet.js:917
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 
-#: desklet.js:857
+#. desklet.js:922
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 
-#: desklet.js:879
+#. desklet.js:944
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
 msgstr ""
 
-#: desklet.js:906
+#. desklet.js:983
 msgid "Cannot display quotes information for symbols: "
 msgstr "Невозможно отобразить информацию о котировках для биржевых символов: "
 
-#: desklet.js:907
+#. desklet.js:984
 msgid "The following error occurred: "
 msgstr "Произошла ошибка: "
 
@@ -314,6 +314,14 @@ msgid "List of quote symbols, separated with line-breaks"
 msgstr ""
 "Список биржевых символов (тикеров) котировок, разделенных новой строкой."
 
+#. settings-schema.json->updateDataButton->description
+msgid "Refresh quotes data"
+msgstr ""
+
+#. settings-schema.json->updateDataButton->tooltip
+msgid "Apply and refresh quotes"
+msgstr ""
+
 #. settings-schema.json->sortCriteria->options
 msgid "given order"
 msgstr "не сортировать"
@@ -435,8 +443,8 @@ msgid "Show percent change"
 msgstr "Показывать изменения в процентах"
 
 #. settings-schema.json->showPercentChange->tooltip
-msgid "Display the percent change of the market price (eg. +0.53%)"
-msgstr "Отображение изменений рыночной цены в процентах (например, +0.53%)."
+msgid "Display the percent change of the market price (eg. -0.53%)"
+msgstr "Отображение изменений рыночной цены в процентах (например, -0.53%)."
 
 #. settings-schema.json->colorPercentChange->description
 msgid "Use trend colors for percent change"

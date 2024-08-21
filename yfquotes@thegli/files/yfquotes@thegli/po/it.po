@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-07-10 00:38+0200\n"
+"POT-Creation-Date: 2024-08-21 22:58+0200\n"
 "PO-Revision-Date: 2023-12-12 19:02+0100\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
@@ -18,23 +18,23 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: desklet.js:310
+#. desklet.js:321
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 
-#: desklet.js:332 desklet.js:351
+#. desklet.js:343 desklet.js:362
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Il servizio Yahoo Finance non è disponibile!\\nStato: "
 
-#: desklet.js:738
+#. desklet.js:767
 msgid "Updated at "
 msgstr "Aggiornato al "
 
-#: desklet.js:759
+#. desklet.js:788
 msgid "Error: "
 msgstr "Errore: "
 
-#: desklet.js:827
+#. desklet.js:892
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -42,20 +42,20 @@ msgstr ""
 "Impossibile recuperare il parametro di autorizzazione! Impossibile "
 "recuperare i dati delle quotazioni.\\nStato: "
 
-#: desklet.js:852
+#. desklet.js:917
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Elaborazione del consenso non riuscita! Impossibile recuperare i dati delle "
 "quotazioni.\\nStato: "
 
-#: desklet.js:857
+#. desklet.js:922
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Elaborazione del consenso non completata! Impossibile recuperare i dati "
 "delle quotazioni.\\nStato: "
 
-#: desklet.js:879
+#. desklet.js:944
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
@@ -63,11 +63,11 @@ msgstr ""
 "Impossibile recuperare la parte di autorizzazione! Impossibile recuperare i "
 "dati delle quotazioni.\\nStato: "
 
-#: desklet.js:906
+#. desklet.js:983
 msgid "Cannot display quotes information for symbols: "
 msgstr "Impossibile mostrare info sulle quotazioni per i simboli: "
 
-#: desklet.js:907
+#. desklet.js:984
 msgid "The following error occurred: "
 msgstr "È stato riscontrato il seguente errore: "
 
@@ -326,6 +326,14 @@ msgid "List of quote symbols, separated with line-breaks"
 msgstr ""
 "Elenca i simboli delle quotazioni qui, separandole con interruzioni di riga."
 
+#. settings-schema.json->updateDataButton->description
+msgid "Refresh quotes data"
+msgstr ""
+
+#. settings-schema.json->updateDataButton->tooltip
+msgid "Apply and refresh quotes"
+msgstr ""
+
 #. settings-schema.json->sortCriteria->options
 msgid "given order"
 msgstr "ordine fornito"
@@ -444,9 +452,9 @@ msgid "Show percent change"
 msgstr "Mostra variazione percentuale"
 
 #. settings-schema.json->showPercentChange->tooltip
-msgid "Display the percent change of the market price (eg. +0.53%)"
+msgid "Display the percent change of the market price (eg. -0.53%)"
 msgstr ""
-"Visualizza la variazione percentuale del prezzo di mercato (es. + 0,53%)."
+"Visualizza la variazione percentuale del prezzo di mercato (es. - 0,53%)."
 
 #. settings-schema.json->colorPercentChange->description
 msgid "Use trend colors for percent change"

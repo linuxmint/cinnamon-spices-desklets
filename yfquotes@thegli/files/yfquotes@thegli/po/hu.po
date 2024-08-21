@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: yfquotes@thegli 0.13.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-07-10 00:38+0200\n"
+"POT-Creation-Date: 2024-08-21 22:58+0200\n"
 "PO-Revision-Date: 2024-07-26 07:12-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,25 +18,25 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: desklet.js:310
+#. desklet.js:321
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 "Üres idézetek listája. Nyissa meg a beállításokat, és adjon hozzá néhány "
 "szimbólumot."
 
-#: desklet.js:332 desklet.js:351
+#. desklet.js:343 desklet.js:362
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "A Yahoo Finance szolgáltatás pillanatnyilag nem érhető el.\\nÁllapot: "
 
-#: desklet.js:738
+#. desklet.js:767
 msgid "Updated at "
 msgstr "Frissítve: "
 
-#: desklet.js:759
+#. desklet.js:788
 msgid "Error: "
 msgstr "Hiba: "
 
-#: desklet.js:827
+#. desklet.js:892
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -44,20 +44,20 @@ msgstr ""
 "Nem sikerült lekérni az engedélyezési paramétert. Nem sikerült letölteni a "
 "pénzügyi adatokat.\\nÁllapot: "
 
-#: desklet.js:852
+#. desklet.js:917
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Az engedélykezelés nem sikerült. Nem sikerült letölteni a pénzügyi adatokat."
 "\\nÁllapot: "
 
-#: desklet.js:857
+#. desklet.js:922
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Az engedélykezelés nem fejeződött be. Nem sikerült letölteni a pénzügyi "
 "adatokat.\\nÁllapot: "
 
-#: desklet.js:879
+#. desklet.js:944
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
@@ -65,11 +65,11 @@ msgstr ""
 "Nem sikerült lekérni az engedély-sütit. Nem sikerült letölteni a pénzügyi "
 "adatokat.\\nÁllapot: "
 
-#: desklet.js:906
+#. desklet.js:983
 msgid "Cannot display quotes information for symbols: "
 msgstr "Nem jeleníthetőek meg megállapítások a következő szimbólumokhoz: "
 
-#: desklet.js:907
+#. desklet.js:984
 msgid "The following error occurred: "
 msgstr "A következő hiba történt: "
 
@@ -342,6 +342,14 @@ msgstr "Szimbólumok"
 msgid "List of quote symbols, separated with line-breaks"
 msgstr "Szimbólumok listájának megjelenítése itt, sortörésekkel elválasztva"
 
+#. settings-schema.json->updateDataButton->description
+msgid "Refresh quotes data"
+msgstr ""
+
+#. settings-schema.json->updateDataButton->tooltip
+msgid "Apply and refresh quotes"
+msgstr ""
+
 #. settings-schema.json->sortCriteria->options
 msgid "given order"
 msgstr "megadott sorrend"
@@ -462,9 +470,9 @@ msgid "Show percent change"
 msgstr "Százalékos változás megjelenítése"
 
 #. settings-schema.json->showPercentChange->tooltip
-msgid "Display the percent change of the market price (eg. +0.53%)"
+msgid "Display the percent change of the market price (eg. -0.53%)"
 msgstr ""
-"Piaci ár változásának százalékos értékének megjelenítése (például: +0,53%)."
+"Piaci ár változásának százalékos értékének megjelenítése (például: -0,53%)."
 
 #. settings-schema.json->colorPercentChange->description
 msgid "Use trend colors for percent change"

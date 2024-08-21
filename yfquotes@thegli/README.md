@@ -23,6 +23,36 @@ Either follow the installation instructions on [Cinnamon spices](https://cinnamo
 
 Check out the desklet configuration settings, and choose the data refresh period, the list of quotes to show, and quote details to display. The default list contains the Dow 30 companies.
 
+### Individual Quote Design
+
+By default, all quotes in the list are rendered in the same style and color, following whatever settings are active and selected.  
+Optionally, the *name* and the *symbol* of each quote can have a custom design. These individual design settings override the global settings. They are configured with a set of text properties within the quotes list.
+
+The design properties are appended to the quote symbol in the format `property=value`. Each property/value pair is separated by a semicolon. Also insert a semicolon between the quote symbol and the first property. The order of the properties is irrelevant.  
+The full syntax: `SYMBOL;property1=value1;property2=value2`
+
+The following table explains all supported properties:
+
+| Property | Values | Description |
+|---|---|---|
+| color | any CSS color value | Text color for name and symbol |
+| name | any text, except ';' | Custom name, overrides the original short/long name |
+| style | normal, italic, oblique | Font style for name and symbol |
+| weight | normal, bold, bolder, lighter, 100 - 900 | Font weight (thickness) for name and symbol |
+
+Some examples:
+
+```
+CAT;color=#f6d001;weight=500
+CSCO;name=Cisco;weight=bold;color=#00bceb
+HD;color=#f96300
+MMM;name=Post-It Makers;color=#ff0000
+IBM;name=Big Blue;color=blue;weight=bolder
+KO;name=Bubbly Brown Water;style=oblique;weight=lighter;color=#e61a27
+```
+
+> Note that any changes in the quotes list are not applied immediately (anymore). Press the "Refresh quotes data" button to trigger a manual data update for the current quotes list.
+
 ## Troubleshooting
 
 Problem: The desklet fails to load data, and shows error message "Status: 429 Too Many Requests".  
@@ -41,6 +71,21 @@ Then the Cinnamon desktop needs to be restarted in order to re-initialize the de
 To disable the debug log mode, delete the "DEBUG" file, and restart the Cinnamon desktop.
 
 ## Release Notes
+
+### 0.14.0 - August 21, 2024
+
+Features:
+
+- style each quote individually - see section [Individual Quote Design](#individual-quote-design) for details
+- add Catalan translation (courtesy of [Odyssey]((https://github.com/odyssey))
+- update Dutch translation (courtesy of [qadzek](https://github.com/qadzek))
+- update Hungarian translation (courtesy of [bossbob88](https://github.com/bossbob88))
+- update Spanish translation (courtesy of [haggen88](https://github.com/haggen88))
+
+Bugfixes:
+
+- quotes list sorting is now case-insensitive
+- changes in quotes list are not instantly applied anymore (preventing potential network congestion, and desktop instabilities)
 
 ### 0.13.0 - July 10, 2024
 

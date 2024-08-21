@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: yfquotes@thegli 0.11.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-07-10 00:38+0200\n"
+"POT-Creation-Date: 2024-08-21 22:58+0200\n"
 "PO-Revision-Date: 2024-07-23 23:13+0200\n"
 "Last-Translator: qadzek\n"
 "Language-Team: \n"
@@ -16,23 +16,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:310
+#. desklet.js:321
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr "Lege lijst van koersen. Open instellingen en voeg wat symbolen toe."
 
-#: desklet.js:332 desklet.js:351
+#. desklet.js:343 desklet.js:362
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Yahoo Finance service niet beschikbaar!\\nStatus: "
 
-#: desklet.js:738
+#. desklet.js:767
 msgid "Updated at "
 msgstr "Bijgewerkt om "
 
-#: desklet.js:759
+#. desklet.js:788
 msgid "Error: "
 msgstr "Fout: "
 
-#: desklet.js:827
+#. desklet.js:892
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -40,20 +40,20 @@ msgstr ""
 "Kan autorisatieparameter niet ophalen! Kan geen gegevens voor koersen "
 "ophalen.\\nStatus: "
 
-#: desklet.js:852
+#. desklet.js:917
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Toestemming verwerking mislukt! Kan geen gegevens voor koersen ophalen."
 "\\nStatus: "
 
-#: desklet.js:857
+#. desklet.js:922
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Toestemming verwerking niet voltooid! Kan geen gegevens voor koersen ophalen."
 "\\nStatus: "
 
-#: desklet.js:879
+#. desklet.js:944
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
@@ -61,11 +61,11 @@ msgstr ""
 "Kan autorisatiekruimel niet ophalen! Kan geen gegevens voor koersen ophalen."
 "\\nStatus: "
 
-#: desklet.js:906
+#. desklet.js:983
 msgid "Cannot display quotes information for symbols: "
 msgstr "Kan geen koersinformatie weergeven voor symbolen: "
 
-#: desklet.js:907
+#. desklet.js:984
 msgid "The following error occurred: "
 msgstr "De volgende fout is opgetreden: "
 
@@ -339,6 +339,14 @@ msgstr "Koerssymbolen"
 msgid "List of quote symbols, separated with line-breaks"
 msgstr "Lijst met koerssymbolen, gescheiden door regelafbrekingen"
 
+#. settings-schema.json->updateDataButton->description
+msgid "Refresh quotes data"
+msgstr ""
+
+#. settings-schema.json->updateDataButton->tooltip
+msgid "Apply and refresh quotes"
+msgstr ""
+
 #. settings-schema.json->sortCriteria->options
 msgid "given order"
 msgstr "gegeven volgorde"
@@ -455,8 +463,8 @@ msgid "Show percent change"
 msgstr "Toon procentuele verandering"
 
 #. settings-schema.json->showPercentChange->tooltip
-msgid "Display the percent change of the market price (eg. +0.53%)"
-msgstr "Toon de procentuele verandering van de marktprijs (bijv. +0,53%)"
+msgid "Display the percent change of the market price (eg. -0.53%)"
+msgstr "Toon de procentuele verandering van de marktprijs (bijv. -0,53%)"
 
 #. settings-schema.json->colorPercentChange->description
 msgid "Use trend colors for percent change"
