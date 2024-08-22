@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-07-10 00:38+0200\n"
+"POT-Creation-Date: 2024-08-21 22:58+0200\n"
 "PO-Revision-Date: 2023-12-22 11:33+0200\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: \n"
@@ -18,48 +18,48 @@ msgstr ""
 "X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: desklet.js:310
+#. desklet.js:321
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 
-#: desklet.js:332 desklet.js:351
+#. desklet.js:343 desklet.js:362
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Yahoo Finance palvelu ei ole saatavilla!\\nTila: "
 
-#: desklet.js:738
+#. desklet.js:767
 msgid "Updated at "
 msgstr "Päivitetty klo "
 
-#: desklet.js:759
+#. desklet.js:788
 msgid "Error: "
 msgstr "Virhe: "
 
-#: desklet.js:827
+#. desklet.js:892
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
 msgstr "Valtuutuksen haku epäonnistui! Tietoja ei voi noutaa.\\nTila: "
 
-#: desklet.js:852
+#. desklet.js:917
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr "Suostumuksen käsittely epäonnistui! Tietoja ei voi noutaa.\\nTila: "
 
-#: desklet.js:857
+#. desklet.js:922
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr "Suostumusta ei ole suoritettu loppuun! Tietoja ei voi noutaa.\\nTila: "
 
-#: desklet.js:879
+#. desklet.js:944
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
 msgstr "Valtuutuksen nouto epäonnistui! Tietoja ei voi noutaa.\\nTila: "
 
-#: desklet.js:906
+#. desklet.js:983
 msgid "Cannot display quotes information for symbols: "
 msgstr "Symbolien tietoja ei voi näyttää: "
 
-#: desklet.js:907
+#. desklet.js:984
 msgid "The following error occurred: "
 msgstr "Tapahtui seuraava virhe: "
 
@@ -315,6 +315,14 @@ msgstr "Pörssi symbolit"
 msgid "List of quote symbols, separated with line-breaks"
 msgstr "Luettelo pörssi tunnuksista, erotetaan rivinvaihdoilla."
 
+#. settings-schema.json->updateDataButton->description
+msgid "Refresh quotes data"
+msgstr ""
+
+#. settings-schema.json->updateDataButton->tooltip
+msgid "Apply and refresh quotes"
+msgstr ""
+
 #. settings-schema.json->sortCriteria->options
 msgid "given order"
 msgstr "annettu järjestys"
@@ -433,8 +441,8 @@ msgid "Show percent change"
 msgstr "Näytä muutosposentti"
 
 #. settings-schema.json->showPercentChange->tooltip
-msgid "Display the percent change of the market price (eg. +0.53%)"
-msgstr "Tuo näkyviin markkinahinnan prosentuaalisen muutoksen (esim. +0.53 %)."
+msgid "Display the percent change of the market price (eg. -0.53%)"
+msgstr "Tuo näkyviin markkinahinnan prosentuaalisen muutoksen (esim. -0.53 %)."
 
 #. settings-schema.json->colorPercentChange->description
 msgid "Use trend colors for percent change"
