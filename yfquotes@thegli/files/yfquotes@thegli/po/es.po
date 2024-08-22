@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2024-08-21 22:58+0200\n"
-"PO-Revision-Date: 2024-07-10 19:09-0400\n"
+"PO-Revision-Date: 2024-08-22 15:09-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. desklet.js:321
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
-"Lista de comillas vacía. Abra la configuración y añada algunos símbolos."
+"Lista de cotizaciones vacía. Abra la configuración y añada algunos símbolos."
 
 #. desklet.js:343 desklet.js:362
 msgid "Yahoo Finance service not available!\\nStatus: "
@@ -348,11 +348,11 @@ msgstr "Lista de símbolos de cotización, separados por saltos de línea"
 
 #. settings-schema.json->updateDataButton->description
 msgid "Refresh quotes data"
-msgstr ""
+msgstr "Actualizar datos de cotizaciones"
 
 #. settings-schema.json->updateDataButton->tooltip
 msgid "Apply and refresh quotes"
-msgstr ""
+msgstr "Aplicar y actualizar cotizaciones"
 
 #. settings-schema.json->sortCriteria->options
 msgid "given order"
