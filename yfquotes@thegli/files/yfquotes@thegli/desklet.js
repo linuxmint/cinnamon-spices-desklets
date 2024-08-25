@@ -57,6 +57,10 @@ const BASE_FONT_SIZE = 10;
 
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
+function _(str) {
+    return Gettext.dgettext(UUID, str);
+}
+
 let _httpSession;
 if (IS_SOUP_2) {
     _httpSession = new Soup.SessionAsync();
@@ -73,13 +77,16 @@ Soup.Session.prototype.add_feature.call(_httpSession, _cookieJar);
 
 let _crumb = null;
 
-function _(str) {
-    return Gettext.dgettext(UUID, str);
-}
+let _lastResponse = {
+    responseResult: [],
+    // we should never see this error message
+    responseError: _("No quotes data to display"),
+    lastUpdated: new Date()
+};
 
 function logDebug(msg) {
     if (LOG_DEBUG) {
-        global.log(LOG_PREFIX + 'DEBUG: ' + msg);
+        global.log(LOG_PREFIX + "DEBUG: " + msg);
     }
 }
 
@@ -105,24 +112,51 @@ YahooFinanceQuoteUtils.prototype = {
             && object[property] !== null;
     },
 
-    determineQuoteName: function(quote, symbolCustomization, useLongName) {
-        if (symbolCustomization.name !== null) {
-            return symbolCustomization.name;
-        }
-
-        if (useLongName && this.existsProperty(quote, "longName")) {
-            return quote.longName;
-        }
-
-        if (this.existsProperty(quote, "shortName")) {
-            return quote.shortName;
-        }
-
-        return ABSENT;
+    // convert the quotes list to a comma-separated one-liner, to be used as argument for the YFQ "symbols" parameter
+    buildSymbolsArgument: function(quoteSymbolsText) {
+        return quoteSymbolsText
+            .split("\n")
+            .map((line) => line.trim())
+            .filter((line) => line !== "")
+            .map((line) => line.split(";")[0])
+            .join();
     },
 
-    buildSymbolList: function(symbolCustomizationMap) {
-        return Array.from(symbolCustomizationMap.keys()).join();
+    // extract any customization parameters from each entry in the quotes list, and return them in a map
+    buildSymbolCustomizationMap: function(quoteSymbolsText) {
+        const symbolCustomizations = new Map();
+        for (const line of quoteSymbolsText.trim().split("\n")) {
+            const customization = this.parseSymbolLine(line);
+            symbolCustomizations.set(customization.symbol, customization);
+        }
+        logDebug("symbol customization map size: " + symbolCustomizations.size);
+
+        return symbolCustomizations;
+    },
+
+    parseSymbolLine: function(symbolLine) {
+        const lineParts = symbolLine.trim().split(";");
+
+        const customAttributes = new Map();
+        for (const attr of lineParts.slice(1)) {
+            const [key, value] = attr.split("=");
+            if (key && value) {
+                customAttributes.set(key, value);
+            }
+        }
+
+        return this.buildSymbolCustomization(lineParts[0], customAttributes);
+    },
+
+    // data structure for quote customization parameters
+    buildSymbolCustomization: function(symbol, customAttributes) {
+        return {
+            symbol,
+            name: customAttributes.has("name") ? customAttributes.get("name") : null,
+            style: customAttributes.has("style") ? customAttributes.get("style") : "normal",
+            weight: customAttributes.has("weight") ? customAttributes.get("weight") : "normal",
+            color: customAttributes.has("color") ? customAttributes.get("color") : null,
+        };
     },
 
     isOkStatus: function(soupMessage) {
@@ -160,6 +194,50 @@ YahooFinanceQuoteUtils.prototype = {
             }
         }
         return "no status available";
+    },
+
+    // determine and store the quote name to display within the quote as new property "displayName"
+    populateQuoteDisplayName: function(quote, symbolCustomization, useLongName) {
+        let displayName = ABSENT;
+
+        if (symbolCustomization.name !== null) {
+            displayName = symbolCustomization.name;
+        } else if (useLongName && this.existsProperty(quote, "longName")) {
+            displayName = quote.longName;
+        } else if (this.existsProperty(quote, "shortName")) {
+            displayName = quote.shortName;
+        }
+
+        quote.displayName = displayName;
+    },
+
+    sortQuotesByProperty: function(quotes, prop, direction) {
+        // don't sort if no criteria was given, or the criteria says "natural order", or there is only one quote
+        if (prop === undefined || prop === "none" || quotes.length < 2) {
+            return quotes;
+        }
+
+        // when sort-by-name is configured, then we want to sort by the determined display name
+        if (prop === "shortName") {
+            prop = "displayName";
+        }
+
+        const _that = this;
+        const clone = quotes.slice(0);
+        const numberPattern = /^-?\d+(\.\d+)?$/;
+        clone.sort(function(q1, q2) {
+            let p1 = "";
+            if (_that.existsProperty(q1, prop)) {
+                p1 = q1[prop].toString().match(numberPattern) ? + q1[prop] : q1[prop].toLowerCase();
+            }
+            let p2 = "";
+            if (_that.existsProperty(q2, prop)) {
+                p2 = q2[prop].toString().match(numberPattern) ? + q2[prop] : q2[prop].toLowerCase();
+            }
+
+            return ((p1 < p2) ? -1 : ((p1 > p2) ? 1 : 0)) * direction;
+        });
+        return clone;
     }
 };
 
@@ -314,15 +392,15 @@ YahooFinanceQuoteReader.prototype = {
         }
     },
 
-    getFinanceData: function(symbolList, customUserAgent, callback) {
+    getFinanceData: function(quoteSymbolsArg, customUserAgent, callback) {
         const _that = this;
 
-        if (symbolList.size === 0) {
+        if (quoteSymbolsArg.length === 0) {
             callback.call(_that, _that.buildErrorResponse(_("Empty quotes list. Open settings and add some symbols.")));
             return;
         }
 
-        const requestUrl = this.createYahooQueryUrl(symbolList);
+        const requestUrl = this.createYahooQueryUrl(quoteSymbolsArg);
         const message = Soup.Message.new("GET", requestUrl);
 
         if (IS_SOUP_2) {
@@ -365,8 +443,8 @@ YahooFinanceQuoteReader.prototype = {
         }
     },
 
-    createYahooQueryUrl: function(symbolList) {
-        const queryUrl = "https://query1.finance.yahoo.com/v7/finance/quote?symbols=" + symbolList + "&crumb=" + _crumb;
+    createYahooQueryUrl: function(quoteSymbolsArg) {
+        const queryUrl = "https://query1.finance.yahoo.com/v7/finance/quote?symbols=" + quoteSymbolsArg + "&crumb=" + _crumb;
         logDebug("YF query URL: " + queryUrl);
         return queryUrl;
     },
@@ -400,7 +478,7 @@ QuotesTable.prototype = {
         EQUALS: "\u25B6"
     },
 
-    render: function(quotes, symbolCustomizationMap, settings) {
+    renderTable: function(quotes, symbolCustomizationMap, settings) {
         for (let rowIndex = 0, l = quotes.length; rowIndex < l; rowIndex++) {
             this.renderTableRow(quotes[rowIndex], symbolCustomizationMap, settings, rowIndex);
         }
@@ -415,8 +493,7 @@ QuotesTable.prototype = {
             cellContents.push(this.createPercentChangeIcon(quote, settings));
         }
         if (settings.quoteName) {
-            cellContents.push(this.createQuoteLabel(this.quoteUtils.determineQuoteName(quote, symbolCustomization, settings.useLongName),
-                symbolCustomization, settings.quoteLabelWidth, settings));
+            cellContents.push(this.createQuoteLabel(quote.displayName, symbolCustomization, settings.quoteLabelWidth, settings));
         }
         if (settings.quoteSymbol) {
             cellContents.push(this.createQuoteLabel(symbol, symbolCustomization, settings.quoteSymbolWidth, settings));
@@ -631,95 +708,60 @@ function StockQuoteDesklet(metadata, id) {
 
 StockQuoteDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
-    quoteUtils: new YahooFinanceQuoteUtils(),
 
     init: function(metadata, id) {
         this.metadata = metadata;
         this.id = id;
+        this.updateId = 0;
+        this.updateInProgress = false;
         this.quoteReader = new YahooFinanceQuoteReader();
         this.quoteUtils = new YahooFinanceQuoteUtils();
         this.loadSettings();
-        this.onUpdate();
+        this.onQuotesListChanged();
     },
 
     loadSettings: function() {
         this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, this.id);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "height", "height",
-            this.onDisplayChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "width", "width",
-            this.onDisplayChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "transparency", "transparency",
-            this.onDisplayChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "showVerticalScrollbar", "showVerticalScrollbar",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "backgroundColor", "backgroundColor",
-            this.onDisplayChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "delayMinutes", "delayMinutes",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "showLastUpdateTimestamp", "showLastUpdateTimestamp",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "manualDataUpdate", "manualDataUpdate",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "sendCustomUserAgent", "sendCustomUserAgent",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "customUserAgent", "customUserAgent",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "roundNumbers", "roundNumbers",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "decimalPlaces", "decimalPlaces",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "strictRounding", "strictRounding",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "use24HourTime", "use24HourTime",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "customTimeFormat", "customTimeFormat",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "customDateFormat", "customDateFormat",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "quoteSymbols", "quoteSymbolsText"); // no instant-refresh on change
-        this.settings.bindProperty(Settings.BindingDirection.IN, "sortCriteria", "sortCriteria",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "sortDirection", "sortAscending",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "showChangeIcon", "showChangeIcon",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "showQuoteName", "showQuoteName",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "useLongQuoteName", "useLongQuoteName",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "linkQuoteName", "linkQuoteName",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "showQuoteSymbol", "showQuoteSymbol",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "linkQuoteSymbol", "linkQuoteSymbol",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "showMarketPrice", "showMarketPrice",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "showCurrencyCode", "showCurrencyCode",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "showAbsoluteChange", "showAbsoluteChange",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "showPercentChange", "showPercentChange",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "colorPercentChange", "colorPercentChange",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "showTradeTime", "showTradeTime",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "fontColor", "fontColor",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "scaleFontSize", "scaleFontSize",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "fontScale", "fontScale",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "uptrendChangeColor", "uptrendChangeColor",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "downtrendChangeColor", "downtrendChangeColor",
-            this.onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "unchangedTrendColor", "unchangedTrendColor",
-            this.onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "height", "height", this.onDisplaySettingChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "width", "width", this.onDisplaySettingChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "transparency", "transparency", this.onDisplaySettingChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "showVerticalScrollbar", "showVerticalScrollbar", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "backgroundColor", "backgroundColor", this.onDisplaySettingChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "delayMinutes", "delayMinutes", this.onDataFetchSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "showLastUpdateTimestamp", "showLastUpdateTimestamp", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "manualDataUpdate", "manualDataUpdate", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "sendCustomUserAgent", "sendCustomUserAgent"); // no callback, manual refresh required
+        this.settings.bindProperty(Settings.BindingDirection.IN, "customUserAgent", "customUserAgent");  // no callback, manual refresh required
+        this.settings.bindProperty(Settings.BindingDirection.IN, "roundNumbers", "roundNumbers", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "decimalPlaces", "decimalPlaces", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "strictRounding", "strictRounding", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "use24HourTime", "use24HourTime", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "customTimeFormat", "customTimeFormat", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "customDateFormat", "customDateFormat", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "quoteSymbols", "quoteSymbolsText"); // no callback, manual refresh required
+        this.settings.bindProperty(Settings.BindingDirection.IN, "sortCriteria", "sortCriteria", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "sortDirection", "sortAscending", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "showChangeIcon", "showChangeIcon", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "showQuoteName", "showQuoteName", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "useLongQuoteName", "useLongQuoteName", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "linkQuoteName", "linkQuoteName", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "showQuoteSymbol", "showQuoteSymbol", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "linkQuoteSymbol", "linkQuoteSymbol", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "showMarketPrice", "showMarketPrice", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "showCurrencyCode", "showCurrencyCode", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "showAbsoluteChange", "showAbsoluteChange", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "showPercentChange", "showPercentChange", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "colorPercentChange", "colorPercentChange", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "showTradeTime", "showTradeTime", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "fontColor", "fontColor", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "scaleFontSize", "scaleFontSize", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "fontScale", "fontScale", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "uptrendChangeColor", "uptrendChangeColor", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "downtrendChangeColor", "downtrendChangeColor", this.onRenderSettingsChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "unchangedTrendColor", "unchangedTrendColor", this.onRenderSettingsChanged);
     },
 
-    getQuoteDisplaySettings: function(quotes, symbolCustomizationMap) {
+    getQuoteDisplaySettings: function(quotes) {
         return {
             "changeIcon": this.showChangeIcon,
             "quoteName": this.showQuoteName,
@@ -744,27 +786,13 @@ StockQuoteDesklet.prototype = {
             "downtrendChangeColor": this.downtrendChangeColor,
             "unchangedTrendColor": this.unchangedTrendColor,
             "quoteSymbolWidth": Math.max.apply(Math, quotes.map((quote) => quote.symbol.length)),
-            "quoteLabelWidth": Math.max.apply(Math, quotes.map((quote) => this.quoteUtils.determineQuoteName(quote, symbolCustomizationMap.get(quote.symbol), this.useLongQuoteName).length)) / 2 + 2
+            "quoteLabelWidth": Math.max.apply(Math, quotes.map((quote) => quote.displayName.length)) / 2 + 2
         };
     },
 
-    formatCurrentTimestamp: function(settings) {
-        const now = new Date();
-        if (settings.customTimeFormat) {
-            return now.toLocaleFormat(settings.customTimeFormat);
-        } else {
-            return now.toLocaleTimeString(undefined, {
-                hour: "numeric",
-                hour12: !settings.use24HourTime,
-                minute: "numeric",
-                second: "numeric"
-            });
-        }
-    },
-
-    createLastUpdateLabel: function(settings) {
+    createLastUpdateLabel: function(lastUpdated, settings) {
         const label = new St.Label({
-            text: _("Updated at ") + this.formatCurrentTimestamp(settings),
+            text: _("Updated at ") + this.formatCurrentTimestamp(lastUpdated, settings),
             style_class: "quotes-last-update",
             reactive: this.manualDataUpdate,
             style: "color: " + settings.fontColor + "; " + (settings.fontSize > 0 ? "font-size: " + settings.fontSize + "px;" : "")
@@ -774,12 +802,24 @@ StockQuoteDesklet.prototype = {
             const updateButton = new St.Button();
             updateButton.add_actor(label);
             updateButton.connect("clicked", Lang.bind(this, function() {
-                this.removeUpdateTimer();
-                this.onUpdate();
+                this.onQuotesListChanged();
             }));
             return updateButton;
         } else {
             return label;
+        }
+    },
+
+    formatCurrentTimestamp: function(lastUpdated, settings) {
+        if (settings.customTimeFormat) {
+            return lastUpdated.toLocaleFormat(settings.customTimeFormat);
+        } else {
+            return lastUpdated.toLocaleTimeString(undefined, {
+                hour: "numeric",
+                hour12: !settings.use24HourTime,
+                minute: "numeric",
+                second: "numeric"
+            });
         }
     },
 
@@ -790,7 +830,8 @@ StockQuoteDesklet.prototype = {
         });
     },
 
-    onDisplayChanged: function() {
+    // called on events that change the desklet window
+    onDisplaySettingChanged: function() {
         this.mainBox.set_size(this.width, this.height);
         this.setBackground();
     },
@@ -805,66 +846,58 @@ StockQuoteDesklet.prototype = {
         return "rgba(" + parseInt(rgb[0]) + "," + parseInt(rgb[1]) + "," + parseInt(rgb[2]) + "," + transparencyFactor + ")";
     },
 
-    onSettingsChanged: function() {
-        this.unrender();
-        this.removeUpdateTimer();
-        this.onUpdate();
+    // called on events that change the quotes data layout (sorting, show/hide fields, text color, etc)
+    onRenderSettingsChanged: function() {
+        this.render();
     },
 
+    // called on events that change the way YFQ data are fetched (data refresh interval)
+    onDataFetchSettingsChanged: function() {
+        this.removeUpdateTimer();
+        this.setUpdateTimer();
+    },
+
+    // called on events that change the quotes data (quotes list)
+    // BEWARE: DO NOT use this function as callback in settings.bindProperty() - otherwise multiple YFQ requests are fired, and multiple timers are created!
     onQuotesListChanged: function() {
-        this.removeUpdateTimer();
-        this.onUpdate();
-    },
+        logDebug("onQuotesListChanged");
 
-    on_desklet_removed: function() {
-        this.unrender();
+        if (this.updateInProgress) {
+            logInfo("Data refresh already in progress");
+            return;
+        }
         this.removeUpdateTimer();
-    },
 
-    onUpdate: function() {
-        const symbolCustomizationMap = this.buildSymbolCustomizationMap(this.quoteSymbolsText);
+        const quoteSymbolsArg = this.quoteUtils.buildSymbolsArgument(this.quoteSymbolsText);
         const customUserAgent = this.sendCustomUserAgent ? this.customUserAgent : null;
 
         try {
             if (_crumb) {
-                this.renderFinanceData(symbolCustomizationMap, customUserAgent);
+                this.fetchFinanceDataAndRender(quoteSymbolsArg, customUserAgent);
             } else {
-                this.fetchCookieAndRender(symbolCustomizationMap, customUserAgent);
+                this.fetchCookieAndRender(quoteSymbolsArg, customUserAgent);
             }
         } catch (err) {
-            this.onError(this.quoteUtils.buildSymbolList(symbolCustomizationMap), err);
+            logError("Cannot fetch quotes information for symbol %s due to error: %s".format(quoteSymbolsArg, err));
+            this.processFailedFetch(err);
         }
     },
 
-    buildSymbolCustomizationMap: function(quoteSymbolsText) {
-        const symbolCustomizations = new Map();
-        for (const line of quoteSymbolsText.trim().split("\n")) {
-            const customization = this.createSymbolCustomization(line)
-            symbolCustomizations.set(customization.symbol, customization);
-        }
-        logDebug("symbol customization map size: " + symbolCustomizations.size)
+    fetchFinanceDataAndRender: function(quoteSymbolsArg, customUserAgent) {
+        const _that = this;
 
-        return symbolCustomizations;
-    },
-
-    createSymbolCustomization: function(symbolLine) {
-        const lineParts = symbolLine.trim().split(";");
-
-        const customAttributes = new Map();
-        for (const attr of lineParts.slice(1)) {
-            const [key, value] = attr.split('=');
-            if (key && value) {
-                customAttributes.set(key, value);
-            }
-        }
-
-        return {
-            symbol: lineParts[0],
-            name: customAttributes.has("name") ? customAttributes.get("name") : null,
-            style: customAttributes.has("style") ? customAttributes.get("style") : "normal",
-            weight: customAttributes.has("weight") ? customAttributes.get("weight") : "normal",
-            color: customAttributes.has("color") ? customAttributes.get("color") : null,
-        };
+        this.quoteReader.getFinanceData(quoteSymbolsArg, customUserAgent, function(response) {
+            logDebug("YF query response: " + response);
+            let parsedResponse = JSON.parse(response);
+            _lastResponse =
+            {
+                responseResult: parsedResponse.quoteResponse.result,
+                responseError: parsedResponse.quoteResponse.error,
+                lastUpdated: new Date()
+            };
+            _that.setUpdateTimer();
+            _that.render();
+        });
     },
 
     existsCookie: function(name) {
@@ -878,23 +911,23 @@ StockQuoteDesklet.prototype = {
         return false;
     },
 
-    fetchCookieAndRender: function(symbolCustomizationMap, customUserAgent) {
+    fetchCookieAndRender: function(quoteSymbolsArg, customUserAgent) {
         const _that = this;
 
         this.quoteReader.getCookie(customUserAgent, function(authResponseMessage, responseBody) {
             logDebug("Cookie response body: " + responseBody);
             if (_that.existsCookie(AUTH_COOKIE)) {
-                _that.fetchCrumbAndRender(symbolCustomizationMap, customUserAgent);
+                _that.fetchCrumbAndRender(quoteSymbolsArg, customUserAgent);
             } else if (_that.existsCookie(CONSENT_COOKIE)) {
-                _that.processConsentAndRender(authResponseMessage, responseBody, symbolCustomizationMap, customUserAgent);
+                _that.processConsentAndRender(authResponseMessage, responseBody, quoteSymbolsArg, customUserAgent);
             } else {
                 logWarning("Failed to retrieve auth cookie!");
-                _that.renderErrorMessage(_("Failed to retrieve authorization parameter! Unable to fetch quotes data.\\nStatus: ") + _that.quoteUtils.getMessageStatusInfo(authResponseMessage), symbolCustomizationMap);
+                _that.processFailedFetch(_("Failed to retrieve authorization parameter! Unable to fetch quotes data.\\nStatus: ") + _that.quoteUtils.getMessageStatusInfo(authResponseMessage));
             }
         });
     },
 
-    processConsentAndRender: function(authResponseMessage, consentPage, symbolCustomizationMap, customUserAgent) {
+    processConsentAndRender: function(authResponseMessage, consentPage, quoteSymbolsArg, customUserAgent) {
         const _that = this;
         const formElementRegex = /(<form method="post")(.*)(action="">)/;
         const formInputRegex = /(<input type="hidden" name=")(.*?)(" value=")(.*?)(">)/g;
@@ -911,19 +944,19 @@ StockQuoteDesklet.prototype = {
 
             this.quoteReader.postConsent(customUserAgent, consentFormFields, function(consentResponseMessage) {
                 if (_that.existsCookie(AUTH_COOKIE)) {
-                    _that.fetchCrumbAndRender(symbolCustomizationMap, customUserAgent);
+                    _that.fetchCrumbAndRender(quoteSymbolsArg, customUserAgent);
                 } else {
-                    logWarning("Failed to retrieve auth cookie from consent form.");
-                    _that.renderErrorMessage(_("Consent processing failed! Unable to fetch quotes data.\\nStatus: ") + _that.quoteUtils.getMessageStatusInfo(consentResponseMessage), symbolCustomizationMap);
+                    logWarning("Failed to retrieve auth cookie from consent form");
+                    _that.processFailedFetch(_("Consent processing failed! Unable to fetch quotes data.\\nStatus: ") + _that.quoteUtils.getMessageStatusInfo(consentResponseMessage));
                 }
             });
         } else {
-            logWarning("Consent form not detected.");
-            this.renderErrorMessage(_("Consent processing not completed! Unable to fetch quotes data.\\nStatus: ") + _that.quoteUtils.getMessageStatusInfo(authResponseMessage), symbolCustomizationMap);
+            logWarning("Consent form not detected");
+            this.processFailedFetch(_("Consent processing not completed! Unable to fetch quotes data.\\nStatus: ") + this.quoteUtils.getMessageStatusInfo(authResponseMessage));
         }
     },
 
-    fetchCrumbAndRender: function(symbolCustomizationMap, customUserAgent) {
+    fetchCrumbAndRender: function(quoteSymbolsArg, customUserAgent) {
         const _that = this;
 
         this.quoteReader.getCrumb(customUserAgent, function(crumbResponseMessage, responseBody) {
@@ -937,102 +970,81 @@ StockQuoteDesklet.prototype = {
             }
 
             if (_crumb) {
-                logInfo("Successfully retrieved all authorization parameters.");
-                _that.renderFinanceData(symbolCustomizationMap, customUserAgent);
+                logInfo("Successfully retrieved all authorization parameters");
+                _that.fetchFinanceDataAndRender(quoteSymbolsArg, customUserAgent);
             } else {
                 logWarning("Failed to retrieve crumb!");
-                _that.renderErrorMessage(_("Failed to retrieve authorization crumb! Unable to fetch quotes data.\\nStatus: ") + _that.quoteUtils.getMessageStatusInfo(crumbResponseMessage), symbolCustomizationMap);
+                _that.processFailedFetch(_("Failed to retrieve authorization crumb! Unable to fetch quotes data.\\nStatus: ") + _that.quoteUtils.getMessageStatusInfo(crumbResponseMessage));
             }
         });
     },
 
-    renderFinanceData: function(symbolCustomizationMap, customUserAgent) {
-        const _that = this;
-
-        this.quoteReader.getFinanceData(this.quoteUtils.buildSymbolList(symbolCustomizationMap), customUserAgent, function(response) {
-            logDebug("YF query response: " + response);
-            let parsedResponse = JSON.parse(response);
-            _that.render(
-                {
-                    responseResult: parsedResponse.quoteResponse.result,
-                    responseError: parsedResponse.quoteResponse.error,
-                    symbolCustomization: symbolCustomizationMap
-                }
-            );
-            _that.setUpdateTimer();
-        });
-    },
-
-    renderErrorMessage: function(errorMessage, symbolCustomizationMap) {
+    processFailedFetch: function(errorMessage) {
         const errorResponse = JSON.parse(this.quoteReader.buildErrorResponse(errorMessage));
-        this.render(
-            {
-                responseResult: errorResponse.quoteResponse.result,
-                responseError: errorResponse.quoteResponse.error,
-                symbolCustomization: symbolCustomizationMap
-            }
-        );
+        _lastResponse =
+        {
+            responseResult: errorResponse.quoteResponse.result,
+            responseError: errorResponse.quoteResponse.error,
+            lastUpdated: new Date()
+        };
         this.setUpdateTimer();
+        this.render();
     },
 
     setUpdateTimer: function() {
-        this.updateLoop = Mainloop.timeout_add(this.delayMinutes * 60 * 1000, Lang.bind(this, this.onUpdate));
-    },
-
-    onError: function(quotesList, err) {
-        logError(_("Cannot display quotes information for symbols: ") + quotesList);
-        logError(_("The following error occurred: ") + err);
-    },
-
-    sortByProperty: function(quotes, prop, direction) {
-        if (quotes.length < 2) {
-            return quotes;
+        logDebug("setUpdateTimer");
+        if (this.updateInProgress) {
+            this.updateId = Mainloop.timeout_add(this.delayMinutes * 60000, Lang.bind(this, this.onQuotesListChanged));
+            this.updateInProgress = false;
         }
-
-        const _that = this;
-        const clone = quotes.slice(0);
-        const numberPattern = /^-?\d+(\.\d+)?$/;
-        clone.sort(function(q1, q2) {
-            let p1 = "";
-            if (_that.quoteUtils.existsProperty(q1, prop)) {
-                p1 = q1[prop].toString().match(numberPattern) ? + q1[prop] : q1[prop].toLowerCase();
-            }
-            let p2 = "";
-            if (_that.quoteUtils.existsProperty(q2, prop)) {
-                p2 = q2[prop].toString().match(numberPattern) ? + q2[prop] : q2[prop].toLowerCase();
-            }
-
-            return ((p1 < p2) ? -1 : ((p1 > p2) ? 1 : 0)) * direction;
-        });
-        return clone;
     },
+    // main method to render the desklet, expects populated _lastResponse
+    render: function() {
+        logDebug("render");
+        let responseResult = _lastResponse.responseResult;
+        const responseError = _lastResponse.responseError;
+        const lastUpdated = _lastResponse.lastUpdated;
+        const symbolCustomizationMap = this.quoteUtils.buildSymbolCustomizationMap(this.quoteSymbolsText);
 
-    render: function(responses) {
+        // destroy the current view
+        this.unrender();
+
         const tableContainer = new St.BoxLayout({
             vertical: true
         });
-
-        let responseResult = responses.responseResult;
-        const responseError = responses.responseError;
-        const symbolCustomizationMap = responses.symbolCustomization;
-
-        // optional sort
-        if (this.sortCriteria && this.sortCriteria !== "none") {
-            responseResult = this.sortByProperty(responseResult, this.sortCriteria, this.sortAscending ? 1 : -1);
-        }
 
         // in case of errors, show details
         if (responseError !== null) {
             tableContainer.add_actor(this.createErrorLabel(responseError));
         }
 
+        // some preparations before the rendering starts
+        for (const quote of responseResult) {
+            // sometimes YF returns a symbol we didn't query for
+            // add such "new" symbols to the customization map for easier processing in the various render.. functions
+            const returnedSymbol = quote.symbol;
+            if (!symbolCustomizationMap.has(returnedSymbol)) {
+                logDebug("Adding unknown symbol to customization map: " + returnedSymbol);
+                symbolCustomizationMap.set(returnedSymbol, this.quoteUtils.buildSymbolCustomization(returnedSymbol, new Map()));
+            }
+
+            // based on the custom settings, and the returned information, determine the name and store it directly in the quote
+            this.quoteUtils.populateQuoteDisplayName(quote, symbolCustomizationMap.get(returnedSymbol), this.useLongQuoteName);
+        }
+
+        // (optional) sorting (do after we populated the display name within the quotes)
+        responseResult = this.quoteUtils.sortQuotesByProperty(responseResult, this.sortCriteria, this.sortAscending ? 1 : -1);
+
+        // gather all settings that influence the rendering
+        const displaySettings = this.getQuoteDisplaySettings(responseResult);
+
         const table = new QuotesTable();
-        const settings = this.getQuoteDisplaySettings(responseResult, symbolCustomizationMap);
-        table.render(responseResult, symbolCustomizationMap, settings);
+        // renders the quotes in a table structure
+        table.renderTable(responseResult, symbolCustomizationMap, displaySettings);
         tableContainer.add_actor(table.el);
 
         if (this.showLastUpdateTimestamp) {
-            tableContainer.add_actor(this.createLastUpdateLabel(settings));
+            tableContainer.add_actor(this.createLastUpdateLabel(lastUpdated, displaySettings));
         }
 
         const scrollView = new St.ScrollView();
@@ -1053,16 +1065,26 @@ StockQuoteDesklet.prototype = {
         this.setContent(this.mainBox);
     },
 
+    on_desklet_removed: function() {
+        this.removeUpdateTimer();
+        this.unrender();
+    },
+
     unrender: function() {
-        this.mainBox.destroy_all_children();
-        this.mainBox.destroy();
+        logDebug("unrender");
+        if (this.mainBox) {
+            this.mainBox.destroy_all_children();
+            this.mainBox.destroy();
+        }
     },
 
     removeUpdateTimer: function() {
-        if (this.updateLoop > 0) {
-            Mainloop.source_remove(this.updateLoop);
+        logDebug("removeUpdateTimer");
+        if (this.updateId > 0) {
+            Mainloop.source_remove(this.updateId);
         }
-        this.updateLoop = null;
+        this.updateId = 0;
+        this.updateInProgress = true;
     }
 };
 
