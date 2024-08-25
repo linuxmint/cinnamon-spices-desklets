@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: yfquotes@thegli 0.13.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-08-21 22:58+0200\n"
+"POT-Creation-Date: 2024-08-25 22:42+0200\n"
 "PO-Revision-Date: 2024-08-22 20:58+0200\n"
 "Last-Translator: Odyssey <odysseyhyd@gmail.com>\n"
 "Language-Team: \n"
@@ -18,25 +18,29 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#. desklet.js:321
+#. desklet.js:79
+msgid "No quotes data to display"
+msgstr ""
+
+#. desklet.js:399
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 "Llista de cotitzacions buida. Obriu la configuració i afegiu-hi alguns "
 "símbols."
 
-#. desklet.js:343 desklet.js:362
+#. desklet.js:421 desklet.js:440
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "El servei de Yahoo finances no està disponible!\\nEstat: "
 
-#. desklet.js:767
+#. desklet.js:795
 msgid "Updated at "
 msgstr "Actualitzat a les "
 
-#. desklet.js:788
+#. desklet.js:828
 msgid "Error: "
 msgstr "Error: "
 
-#. desklet.js:892
+#. desklet.js:925
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -44,34 +48,26 @@ msgstr ""
 "Error en recuperar el paràmetre d'autorització. No s'han pogut obtenir les "
 "dades de les cotitzacions.\\nEstat: "
 
-#. desklet.js:917
+#. desklet.js:950
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "No s'ha pogut processar el consentiment! No s'han pogut obtenir les dades de "
 "les cotitzacions.\\nEstat: "
 
-#. desklet.js:922
+#. desklet.js:955
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "No s'ha completat el processament del consentiment. No s'han pogut obtenir "
 "les dades de les cotitzacions.\\nEstat: "
 
-#. desklet.js:944
+#. desklet.js:977
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
 msgstr ""
 "No s'ha pogut recuperar la ruta d'autorització! No s'han pogut obtenir les "
 "dades de les cotitzacions.\\nEstat: "
-
-#. desklet.js:983
-msgid "Cannot display quotes information for symbols: "
-msgstr "No es pot mostrar la informació de les cotitzacions pels símbols: "
-
-#. desklet.js:984
-msgid "The following error occurred: "
-msgstr "Hi ha hagut el següent error: "
 
 #. metadata.json->description
 msgid ""

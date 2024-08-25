@@ -25,12 +25,12 @@
     "dataSymbolsSection": {
       "type": "section",
       "title": "Quotes",
-      "keys": ["quoteSymbols","updateDataButton"]
+      "keys": ["quoteSymbols"]
     },
     "dataUpdateSection": {
       "type": "section",
       "title": "Data Updates",
-      "keys": ["delayMinutes", "showLastUpdateTimestamp", "manualDataUpdate", "sendCustomUserAgent", "customUserAgent"]
+      "keys": ["delayMinutes", "showLastUpdateTimestamp", "manualDataUpdate", "sendCustomUserAgent", "customUserAgent", "updateDataButton"]
     },
     "detailsNameSection": {
       "type": "section",
