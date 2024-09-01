@@ -1,0 +1,125 @@
+{
+    "definitions": {
+        "string-property-partial": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+        },
+        "version-property-partial": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^\\d+(\\.\\d+){1,2}$",
+            "examples": [
+                "MAJOR.MINOR.PATCH"
+            ]
+        }
+    },
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "extension medatada",
+    "description": "Metadata of Cinnamon extension\nhttps://projects.linuxmint.com/reference/git/cinnamon-tutorials/write-applet.html",
+    "type": "object",
+    "properties": {
+        "$schema": {
+            "title": "schema",
+            "description": "A schema used for GUI structure of Cinnamon extension validation\nhttps://projects.linuxmint.com/reference/git/cinnamon-tutorials/write-applet.html",
+            "type": "string"
+        },
+        "uuid": {
+            "title": "uuid",
+            "description": "A UUID of the extension",
+            "type": "string",
+            "pattern": "^[^@]+@[^@]+$",
+            "examples": [
+                "EXTENSION@NICKNAME"
+            ]
+        },
+        "name": {
+            "title": "name",
+            "description": "A name of the extension",
+            "$ref": "#/definitions/string-property-partial"
+        },
+        "description": {
+            "title": "description",
+            "description": "A description of the extension",
+            "$ref": "#/definitions/string-property-partial"
+        },
+        "comments": {
+            "title": "comments",
+            "description": "Comments of the extension",
+            "$ref": "#/definitions/string-property-partial"
+        },
+        "website": {
+            "title": "website",
+            "description": "A site of the extension",
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^https://"
+        },
+        "url": {
+            "title": "url",
+            "description": "A URL of repository of the extension",
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^https://"
+        },
+        "version": {
+            "title": "website",
+            "description": "A site of the extension",
+            "$ref": "#/definitions/version-property-partial"
+        },
+        "shell-version": {
+            "title": "shell version",
+            "description": "Versions of Cinnamon supported by the extension",
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+                "description": "A versions of Cinnamon supported by the extension",
+                "$ref": "#/definitions/version-property-partial"
+            }
+        },
+        "author": {
+            "title": "author",
+            "description": "An author of the extension",
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "examples": [
+                "FIRST_NAME LAST_NAME"
+            ]
+        },
+        "contributors": {
+            "title": "contributors",
+            "description": "Contributors of the extension",
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "examples": [
+                "FIRST_NAME LAST_NAME - WORK_AREA"
+            ]
+        },
+        "prevent-decorations": {
+            "title": "prevent decorations",
+            "description": "Whether to prevent decorations of the extension",
+            "type": "boolean"
+        },
+        "multiversion": {
+            "title": "multiversion",
+            "description": "Whether to allow several versions of the extension",
+            "type": "boolean",
+            "const": true
+        },
+        "max-instances": {
+            "title": "maximum instances",
+            "description": "A count of maximum instances of the extension",
+            "type": "integer",
+            "minimum": -1
+        }
+    },
+    "dependencies": {
+        "multiversion": [
+            "version"
+        ]
+    },
+    "additionalProperties": false
+}

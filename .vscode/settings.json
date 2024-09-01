@@ -5,6 +5,13 @@
                 "*@*/**/settings-schema.json"
             ],
             "url": "./schemas/settings-schema.json"
+        },
+        {
+            "fileMatch": [
+                "*@*/**/metadata.json",
+                "!*@*/**themes/**/metadata.json"
+            ],
+            "url": "./schemas/metadata.json"
         }
     ]
 }
