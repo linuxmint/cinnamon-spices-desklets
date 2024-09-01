@@ -123,6 +123,7 @@
                     "minLength": 1,
                     "examples": [
                         "rgba(RED, GREEN, BLUE, ALPHA)",
+                        "rgb(RED, GREEN, BLUE)",
                         "red"
                     ]
                 },
