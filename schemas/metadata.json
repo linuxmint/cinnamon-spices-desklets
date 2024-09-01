@@ -18,6 +18,7 @@
     "title": "extension medatada",
     "description": "Metadata of Cinnamon extension\nhttps://projects.linuxmint.com/reference/git/cinnamon-tutorials/write-applet.html",
     "type": "object",
+    "required": ["uuid", "name", "description"],
     "properties": {
         "$schema": {
             "title": "schema",
