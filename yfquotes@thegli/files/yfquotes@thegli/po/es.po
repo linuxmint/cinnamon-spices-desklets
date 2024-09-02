@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-08-25 22:42+0200\n"
+"POT-Creation-Date: 2024-09-02 17:00+0200\n"
 "PO-Revision-Date: 2024-08-25 18:54-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.4\n"
 
-#. desklet.js:79
+#. desklet.js:83
 msgid "No quotes data to display"
 msgstr "No hay datos de cotizaciones para mostrar"
 
@@ -30,15 +30,15 @@ msgstr ""
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "El servicio de Yahoo Finanzas no está disponible: "
 
-#. desklet.js:795
+#. desklet.js:798
 msgid "Updated at "
 msgstr "Actualizado en "
 
-#. desklet.js:828
+#. desklet.js:831
 msgid "Error: "
 msgstr "Error: "
 
-#. desklet.js:925
+#. desklet.js:941
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -46,20 +46,20 @@ msgstr ""
 "Error al recuperar el parámetro de autorización. No se han podido recuperar "
 "los datos de las cotizaciones: "
 
-#. desklet.js:950
+#. desklet.js:966
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "No se ha podido procesar el consentimiento. No se han podido recuperar los "
 "datos de las cotizaciones: "
 
-#. desklet.js:955
+#. desklet.js:971
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "No se ha completado el procesamiento del consentimiento. No se han podido "
 "recuperar los datos de las cotizaciones: "
 
-#. desklet.js:977
+#. desklet.js:993
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
@@ -154,6 +154,8 @@ msgstr "Anchura"
 
 #. settings-schema.json->width->units
 #. settings-schema.json->height->units
+#. settings-schema.json->cornerRadius->units
+#. settings-schema.json->borderWidth->units
 msgid "pixels"
 msgstr "píxeles"
 
@@ -174,7 +176,7 @@ msgid "Background transparency"
 msgstr "Transparencia de fondo"
 
 #. settings-schema.json->transparency->tooltip
-msgid "The higher the value, the more solid the desklet background"
+msgid "The higher the value, the more solid the desklet's background"
 msgstr "Cuanto mayor sea el valor, más sólido será el fondo del escritorio."
 
 #. settings-schema.json->backgroundColor->description
@@ -184,6 +186,14 @@ msgstr "Color de fondo"
 #. settings-schema.json->backgroundColor->tooltip
 msgid "Desklet background color"
 msgstr "Color de fondo del Desklet"
+
+#. settings-schema.json->cornerRadius->description
+msgid "Corner radius"
+msgstr ""
+
+#. settings-schema.json->cornerRadius->tooltip
+msgid "The higher the value, the rounder the desklet's corners"
+msgstr ""
 
 #. settings-schema.json->showVerticalScrollbar->description
 msgid "Show vertical scrollbar"
@@ -196,6 +206,24 @@ msgid ""
 msgstr ""
 "Mostrar una barra de desplazamiento vertical cuando la lista de presupuestos "
 "es mayor que la altura del desklet"
+
+#. settings-schema.json->borderWidth->description
+msgid "Border width"
+msgstr ""
+
+#. settings-schema.json->borderWidth->tooltip
+msgid ""
+"The higher the value, the thicker the desklet's border. A value of 0 hides "
+"the border."
+msgstr ""
+
+#. settings-schema.json->borderColor->description
+msgid "Border color"
+msgstr ""
+
+#. settings-schema.json->borderColor->tooltip
+msgid "Desklet border color"
+msgstr ""
 
 #. settings-schema.json->delayMinutes->units
 msgid "minutes"

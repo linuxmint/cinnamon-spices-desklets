@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: yfquotes@thegli 0.13.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-08-25 22:42+0200\n"
+"POT-Creation-Date: 2024-09-02 17:00+0200\n"
 "PO-Revision-Date: 2024-07-26 07:12-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#. desklet.js:79
+#. desklet.js:83
 msgid "No quotes data to display"
 msgstr ""
 
@@ -32,15 +32,15 @@ msgstr ""
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "A Yahoo Finance szolgáltatás pillanatnyilag nem érhető el.\\nÁllapot: "
 
-#. desklet.js:795
+#. desklet.js:798
 msgid "Updated at "
 msgstr "Frissítve: "
 
-#. desklet.js:828
+#. desklet.js:831
 msgid "Error: "
 msgstr "Hiba: "
 
-#. desklet.js:925
+#. desklet.js:941
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -48,20 +48,20 @@ msgstr ""
 "Nem sikerült lekérni az engedélyezési paramétert. Nem sikerült letölteni a "
 "pénzügyi adatokat.\\nÁllapot: "
 
-#. desklet.js:950
+#. desklet.js:966
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Az engedélykezelés nem sikerült. Nem sikerült letölteni a pénzügyi adatokat."
 "\\nÁllapot: "
 
-#. desklet.js:955
+#. desklet.js:971
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Az engedélykezelés nem fejeződött be. Nem sikerült letölteni a pénzügyi "
 "adatokat.\\nÁllapot: "
 
-#. desklet.js:977
+#. desklet.js:993
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
@@ -156,6 +156,8 @@ msgstr "Szélesség"
 
 #. settings-schema.json->width->units
 #. settings-schema.json->height->units
+#. settings-schema.json->cornerRadius->units
+#. settings-schema.json->borderWidth->units
 msgid "pixels"
 msgstr "képpont"
 
@@ -176,7 +178,7 @@ msgid "Background transparency"
 msgstr "Háttér átlátszósága"
 
 #. settings-schema.json->transparency->tooltip
-msgid "The higher the value, the more solid the desklet background"
+msgid "The higher the value, the more solid the desklet's background"
 msgstr "A magasabb érték jobban megjeleníti az asztalkalmazás hátterét"
 
 #. settings-schema.json->backgroundColor->description
@@ -186,6 +188,14 @@ msgstr "Háttér színe"
 #. settings-schema.json->backgroundColor->tooltip
 msgid "Desklet background color"
 msgstr "Asztalkalmazás háttér színe"
+
+#. settings-schema.json->cornerRadius->description
+msgid "Corner radius"
+msgstr ""
+
+#. settings-schema.json->cornerRadius->tooltip
+msgid "The higher the value, the rounder the desklet's corners"
+msgstr ""
 
 #. settings-schema.json->showVerticalScrollbar->description
 msgid "Show vertical scrollbar"
@@ -198,6 +208,24 @@ msgid ""
 msgstr ""
 "Függőleges görgetősáv megjelenítése, ha az idézetlista hosszabb, mint az "
 "asztalkalmazás magassága"
+
+#. settings-schema.json->borderWidth->description
+msgid "Border width"
+msgstr ""
+
+#. settings-schema.json->borderWidth->tooltip
+msgid ""
+"The higher the value, the thicker the desklet's border. A value of 0 hides "
+"the border."
+msgstr ""
+
+#. settings-schema.json->borderColor->description
+msgid "Border color"
+msgstr ""
+
+#. settings-schema.json->borderColor->tooltip
+msgid "Desklet border color"
+msgstr ""
 
 #. settings-schema.json->delayMinutes->units
 msgid "minutes"
