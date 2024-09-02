@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-07-10 00:38+0200\n"
+"POT-Creation-Date: 2024-08-25 22:42+0200\n"
 "PO-Revision-Date: 2023-12-08 08:06+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
@@ -18,23 +18,27 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: desklet.js:310
+#. desklet.js:79
+msgid "No quotes data to display"
+msgstr ""
+
+#. desklet.js:399
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 
-#: desklet.js:332 desklet.js:351
+#. desklet.js:421 desklet.js:440
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Yahoo Finance er ikke tilgængelig!\\nStatus: "
 
-#: desklet.js:738
+#. desklet.js:795
 msgid "Updated at "
 msgstr "Opdateret "
 
-#: desklet.js:759
+#. desklet.js:828
 msgid "Error: "
 msgstr "Fejl: "
 
-#: desklet.js:827
+#. desklet.js:925
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -42,30 +46,22 @@ msgstr ""
 "Kunne ikke hente godkendelsesparameter! Kunne ikke hente kursdata.\n"
 "Status: "
 
-#: desklet.js:852
+#. desklet.js:950
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr "Samtykkebehandling mislykkedes! Kunne ikke hente kursdata.\\nStatus: "
 
-#: desklet.js:857
+#. desklet.js:955
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Samtykkebehandling ikke gennemført! Kunne ikke hente kursdata.\\nStatus: "
 
-#: desklet.js:879
+#. desklet.js:977
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
 msgstr ""
 "Kunne ikke hente godkendelseskrumme! Kunne ikke hente kursdata.\\nStatus: "
-
-#: desklet.js:906
-msgid "Cannot display quotes information for symbols: "
-msgstr "Kan ikke vise kurser for symbolerne: "
-
-#: desklet.js:907
-msgid "The following error occurred: "
-msgstr "Følgende fejl opstod: "
 
 #. metadata.json->description
 msgid ""
@@ -320,6 +316,14 @@ msgstr "Selskabskoder"
 msgid "List of quote symbols, separated with line-breaks"
 msgstr "Liste over selskabskoder, adskilt af linjeskift."
 
+#. settings-schema.json->updateDataButton->description
+msgid "Refresh quotes data"
+msgstr ""
+
+#. settings-schema.json->updateDataButton->tooltip
+msgid "Apply and refresh quotes"
+msgstr ""
+
 #. settings-schema.json->sortCriteria->options
 msgid "given order"
 msgstr "givne rækkefølge"
@@ -436,8 +440,8 @@ msgid "Show percent change"
 msgstr "Vis procentvis ændring"
 
 #. settings-schema.json->showPercentChange->tooltip
-msgid "Display the percent change of the market price (eg. +0.53%)"
-msgstr "Viser ændringen af markedsprisen i procent (f.eks. + 0.12%)."
+msgid "Display the percent change of the market price (eg. -0.53%)"
+msgstr "Viser ændringen af markedsprisen i procent (f.eks. - 0.53%)."
 
 #. settings-schema.json->colorPercentChange->description
 msgid "Use trend colors for percent change"

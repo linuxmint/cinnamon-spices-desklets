@@ -1,75 +1,74 @@
 const St = imports.gi.St;
 const Desklet = imports.ui.desklet;
-const Lang = imports.lang;
 const GLib = imports.gi.GLib;
 const Util = imports.misc.util;
 const Gettext = imports.gettext;
+
 const uuid = "mintoo@sujitagarwal";
 
-Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
+Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale");
 
 function _(str) {
-  return Gettext.dgettext(uuid, str);
+    return Gettext.dgettext(uuid, str);
 }
 
-function MintooDesklet(metadata) {
-    this._init(metadata);
-}
-
-MintooDesklet.prototype = {
-    __proto__: Desklet.Desklet.prototype,
-
-    _init: function (metadata) {
-        Desklet.Desklet.prototype._init.call(this, metadata);
-
+class MintooDesklet extends Desklet.Desklet {
+    constructor(metadata) {
+        super(metadata);
         this.metadata = metadata;
         this.uuid = this.metadata["uuid"];
 
-        this._container = new St.BoxLayout({vertical:true, style_class: "MintooMainContainer"});
-        this._row1 = new St.BoxLayout({style_class: "MintooRowContainer"});
-        this._row2 = new St.BoxLayout({style_class: "MintooRowContainer"});
+        this._createUI();
+    }
 
-        this._mintoolabel = new St.Label({style_class: "MintooButtonMove"});
-        this._container.add(this._mintoolabel);
+    _createUI() {
+        this._container = new St.BoxLayout({ vertical: true, style_class: "mintoo-main-container" });
 
-        this._btnLockDesktop = new St.Button({style_class: "MintooButtonOne"});
-        this._btnLogoutSession = new St.Button({style_class: "MintooButtonTwo"});
-        this._btnLogoutSession.connect("clicked", Lang.bind(this, this._logoutClickAction));
-        this._btnLockDesktop.connect("clicked", Lang.bind(this, this._lockClickAction));
+        this._row1 = new St.BoxLayout({ style_class: "mintoo-row-container" });
+        this._row2 = new St.BoxLayout({ style_class: "mintoo-row-container" });
 
-        this._row1.add(this._btnLockDesktop);
-        this._row1.add(this._btnLogoutSession);
+        this._mintoolabel = new St.Label({ style_class: "mintoo-button-move" });
+
+        const buttonSettings = [
+            { className: "mintoo-button mintoo-button-one", action: this._lockClickAction },
+            { className: "mintoo-button mintoo-button-two", action: this._logoutClickAction },
+            { className: "mintoo-button mintoo-button-three", action: this._shutdownClickAction },
+            { className: "mintoo-button mintoo-button-four", action: this._rebootClickAction }
+        ];
+
+        buttonSettings.forEach((btn, index) => {
+            const button = new St.Button({ style_class: btn.className });
+            button.connect("clicked", btn.action.bind(this));
+            if (index < 2) {
+                this._row1.add(button);
+            } else {
+                this._row2.add(button);
+            }
+        });
+
         this._container.add(this._row1);
-
-        this._btnShutdown = new St.Button({style_class: "MintooButtonThree"});
-        this._btnReboot = new St.Button({style_class: "MintooButtonFour"});
-        this._btnShutdown.connect("clicked", Lang.bind(this, this._shutdownClickAction));
-        this._btnReboot.connect("clicked", Lang.bind(this, this._rebootClickAction));
-        this._row2.add(this._btnShutdown);
-        this._row2.add(this._btnReboot);
         this._container.add(this._row2);
 
         this.setContent(this._container);
-    },
+    }
 
-    _lockClickAction: function () {
+    _lockClickAction() {
         Util.spawnCommandLine("cinnamon-screensaver-command -l");
-    },
+    }
 
-    _logoutClickAction: function () {
+    _logoutClickAction() {
         Util.spawnCommandLine("cinnamon-session-quit --logout");
-    },
+    }
 
-    _shutdownClickAction: function () {
+    _shutdownClickAction() {
         Util.spawnCommandLine("cinnamon-session-quit --power-off");
-    },
+    }
 
-    _rebootClickAction: function () {
+    _rebootClickAction() {
         Util.spawnCommandLine("cinnamon-session-quit --reboot");
     }
 }
 
-function main(metadata, desklet_id) {
-    let desklet = new MintooDesklet(metadata, desklet_id);
-    return desklet;
+function main(metadata) {
+    return new MintooDesklet(metadata);
 }

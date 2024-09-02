@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-07-10 00:38+0200\n"
+"POT-Creation-Date: 2024-08-25 22:42+0200\n"
 "PO-Revision-Date: 2023-08-28 16:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,24 +17,28 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
 
-#: desklet.js:310
+#. desklet.js:79
+msgid "No quotes data to display"
+msgstr "Keine Finanzdaten vorhanden"
+
+#. desklet.js:399
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 "Liste der Symbole ist leer. Öffne die Einstellungen und füge Symbole hinzu."
 
-#: desklet.js:332 desklet.js:351
+#. desklet.js:421 desklet.js:440
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Yahoo Finance Service nicht verfügbar!\\nStatus: "
 
-#: desklet.js:738
+#. desklet.js:795
 msgid "Updated at "
 msgstr "Aktualisiert um "
 
-#: desklet.js:759
+#. desklet.js:828
 msgid "Error: "
 msgstr "Fehler: "
 
-#: desklet.js:827
+#. desklet.js:925
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -42,34 +46,26 @@ msgstr ""
 "Empfang von Autorisierungsparameter ist fehlgeschlagen! Finanzdaten-Abfrage "
 "nicht möglich.\\nStatus: "
 
-#: desklet.js:852
+#. desklet.js:950
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Consent-Erteilung ist fehlgeschlagen! Finanzdaten-Abfrage nicht möglich."
 "\\nStatus: "
 
-#: desklet.js:857
+#. desklet.js:955
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Consent-Erteilung nicht abgeschlossen! Finanzdaten-Abfrage nicht möglich."
 "\\nStatus: "
 
-#: desklet.js:879
+#. desklet.js:977
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
 msgstr ""
 "Emfang von Autorisierungs-Crumb ist fehlgeschlagen! Finanzdaten-Abfrage "
 "nicht möglich.\\nStatus: "
-
-#: desklet.js:906
-msgid "Cannot display quotes information for symbols: "
-msgstr "Finanzdaten können nicht angezeigt werden für die Symbole: "
-
-#: desklet.js:907
-msgid "The following error occurred: "
-msgstr "Folgender Fehler ist aufgetreten: "
 
 #. metadata.json->description
 msgid ""
@@ -235,7 +231,7 @@ msgstr ""
 
 #. settings-schema.json->sendCustomUserAgent->description
 msgid "Send custom User-Agent header"
-msgstr "Sende individuellen User-Agent Header"
+msgstr "Individuellen User-Agent Header senden"
 
 #. settings-schema.json->sendCustomUserAgent->tooltip
 msgid ""
@@ -275,7 +271,7 @@ msgstr "Anzahl der Dezimalstellen nach dem Komma, auf die gerundet wird"
 
 #. settings-schema.json->strictRounding->description
 msgid "Strict rounding"
-msgstr "Runden auf feste Anzahl Dezimalstellen"
+msgstr "Auf feste Anzahl Dezimalstellen runden"
 
 #. settings-schema.json->strictRounding->tooltip
 msgid ""
@@ -340,6 +336,14 @@ msgstr "Finanzinstrument-Symbole"
 msgid "List of quote symbols, separated with line-breaks"
 msgstr "Liste der Symbole von Finanzinstrumenten, durch Zeilenumbruch getrennt"
 
+#. settings-schema.json->updateDataButton->description
+msgid "Refresh quotes data"
+msgstr "Finanzdaten aktualisieren"
+
+#. settings-schema.json->updateDataButton->tooltip
+msgid "Apply and refresh quotes"
+msgstr "Geänderte Finanzdaten aktualisieren"
+
 #. settings-schema.json->sortCriteria->options
 msgid "given order"
 msgstr "Vorgegebene Reihenfolge"
@@ -366,7 +370,7 @@ msgstr "Sortieren der Liste der Finanzinstrumente"
 
 #. settings-schema.json->sortDirection->description
 msgid "Sort in ascending order"
-msgstr "Sortiert in absteigender Reihenfolge"
+msgstr "In absteigender Reihenfolge sortieren"
 
 #. settings-schema.json->sortDirection->tooltip
 msgid ""
@@ -396,7 +400,7 @@ msgstr ""
 
 #. settings-schema.json->useLongQuoteName->description
 msgid "Use long version for verbose name"
-msgstr "Verwende die längere Version des Namens"
+msgstr "Längere Version des Namens verwenden"
 
 #. settings-schema.json->useLongQuoteName->tooltip
 msgid ""
@@ -436,7 +440,7 @@ msgstr "Marktpreis anzeigen"
 
 #. settings-schema.json->showMarketPrice->tooltip
 msgid "Display the current market price (eg. 146.79)"
-msgstr "Zeigt den aktuellen Marktpreis an (z.B. 146.79)"
+msgstr "Zeigt den aktuellen Marktpreis an (z.B. 146,79)"
 
 #. settings-schema.json->showCurrencyCode->description
 msgid "Show currency symbol"
@@ -452,19 +456,19 @@ msgstr "Absolute Veränderung anzeigen"
 
 #. settings-schema.json->showAbsoluteChange->tooltip
 msgid "Display the absolute change of the market price (eg. +0.739)"
-msgstr "Zeigt die absolute Veränderung des Marktpreises an (z.B. +0.739)"
+msgstr "Zeigt die absolute Veränderung des Marktpreises an (z.B. +0,739)"
 
 #. settings-schema.json->showPercentChange->description
 msgid "Show percent change"
 msgstr "Prozentuale Veränderung anzeigen"
 
 #. settings-schema.json->showPercentChange->tooltip
-msgid "Display the percent change of the market price (eg. +0.53%)"
-msgstr "Zeigt die relative Veränderung des Marktpreises an (z.B. +0.53%)"
+msgid "Display the percent change of the market price (eg. -0.53%)"
+msgstr "Zeigt die relative Veränderung des Marktpreises an (z.B. -0,53%)"
 
 #. settings-schema.json->colorPercentChange->description
 msgid "Use trend colors for percent change"
-msgstr "Verwende Trend-Farben bei prozentualer Veränderung"
+msgstr "Trend-Farben bei prozentualer Veränderung anwenden"
 
 #. settings-schema.json->colorPercentChange->tooltip
 msgid "Color the percent change to show the trend"

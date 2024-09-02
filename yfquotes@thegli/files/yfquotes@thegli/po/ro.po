@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-07-10 00:38+0200\n"
+"POT-Creation-Date: 2024-08-25 22:42+0200\n"
 "PO-Revision-Date: 2023-07-19 22:16+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -18,50 +18,46 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
 
-#: desklet.js:310
+#. desklet.js:79
+msgid "No quotes data to display"
+msgstr ""
+
+#. desklet.js:399
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 
-#: desklet.js:332 desklet.js:351
+#. desklet.js:421 desklet.js:440
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Serviciul Yahoo Finance nu este disponibil!"
 
-#: desklet.js:738
+#. desklet.js:795
 msgid "Updated at "
 msgstr "Actualizat la"
 
-#: desklet.js:759
+#. desklet.js:828
 msgid "Error: "
 msgstr "Eroare:"
 
-#: desklet.js:827
+#. desklet.js:925
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
 msgstr ""
 
-#: desklet.js:852
+#. desklet.js:950
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 
-#: desklet.js:857
+#. desklet.js:955
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 
-#: desklet.js:879
+#. desklet.js:977
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
 msgstr ""
-
-#: desklet.js:906
-msgid "Cannot display quotes information for symbols: "
-msgstr "Nu se pot afișa informații privind cotațiile pentru simboluri:"
-
-#: desklet.js:907
-msgid "The following error occurred: "
-msgstr "A apărut următoarea eroare:"
 
 #. metadata.json->description
 msgid ""
@@ -319,6 +315,14 @@ msgstr "Simboluri de cotații"
 msgid "List of quote symbols, separated with line-breaks"
 msgstr "Listă de simboluri de cotații, separate prin întreruperi de linie."
 
+#. settings-schema.json->updateDataButton->description
+msgid "Refresh quotes data"
+msgstr ""
+
+#. settings-schema.json->updateDataButton->tooltip
+msgid "Apply and refresh quotes"
+msgstr ""
+
 #. settings-schema.json->sortCriteria->options
 msgid "given order"
 msgstr "ordin dat"
@@ -437,9 +441,9 @@ msgid "Show percent change"
 msgstr "Afișează modificarea procentuală"
 
 #. settings-schema.json->showPercentChange->tooltip
-msgid "Display the percent change of the market price (eg. +0.53%)"
+msgid "Display the percent change of the market price (eg. -0.53%)"
 msgstr ""
-"Afișează modificarea procentuală a prețului de piață (de exemplu, +0,53%)."
+"Afișează modificarea procentuală a prețului de piață (de exemplu, -0,53%)."
 
 #. settings-schema.json->colorPercentChange->description
 msgid "Use trend colors for percent change"
