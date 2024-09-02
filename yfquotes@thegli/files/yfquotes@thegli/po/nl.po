@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: yfquotes@thegli 0.11.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-08-25 22:42+0200\n"
+"POT-Creation-Date: 2024-09-02 17:00+0200\n"
 "PO-Revision-Date: 2024-07-23 23:13+0200\n"
 "Last-Translator: qadzek\n"
 "Language-Team: \n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. desklet.js:79
+#. desklet.js:83
 msgid "No quotes data to display"
 msgstr ""
 
@@ -28,15 +28,15 @@ msgstr "Lege lijst van koersen. Open instellingen en voeg wat symbolen toe."
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Yahoo Finance service niet beschikbaar!\\nStatus: "
 
-#. desklet.js:795
+#. desklet.js:798
 msgid "Updated at "
 msgstr "Bijgewerkt om "
 
-#. desklet.js:828
+#. desklet.js:831
 msgid "Error: "
 msgstr "Fout: "
 
-#. desklet.js:925
+#. desklet.js:941
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -44,20 +44,20 @@ msgstr ""
 "Kan autorisatieparameter niet ophalen! Kan geen gegevens voor koersen "
 "ophalen.\\nStatus: "
 
-#. desklet.js:950
+#. desklet.js:966
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Toestemming verwerking mislukt! Kan geen gegevens voor koersen ophalen."
 "\\nStatus: "
 
-#. desklet.js:955
+#. desklet.js:971
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Toestemming verwerking niet voltooid! Kan geen gegevens voor koersen ophalen."
 "\\nStatus: "
 
-#. desklet.js:977
+#. desklet.js:993
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
@@ -152,6 +152,8 @@ msgstr "Breedte"
 
 #. settings-schema.json->width->units
 #. settings-schema.json->height->units
+#. settings-schema.json->cornerRadius->units
+#. settings-schema.json->borderWidth->units
 msgid "pixels"
 msgstr "pixels"
 
@@ -172,7 +174,7 @@ msgid "Background transparency"
 msgstr "Achtergrondtransparantie"
 
 #. settings-schema.json->transparency->tooltip
-msgid "The higher the value, the more solid the desklet background"
+msgid "The higher the value, the more solid the desklet's background"
 msgstr "Hoe hoger de waarde, hoe meer effen de achtergrond van de desklet"
 
 #. settings-schema.json->backgroundColor->description
@@ -182,6 +184,14 @@ msgstr "Achtergrondkleur"
 #. settings-schema.json->backgroundColor->tooltip
 msgid "Desklet background color"
 msgstr "Desklet achtergrondkleur"
+
+#. settings-schema.json->cornerRadius->description
+msgid "Corner radius"
+msgstr ""
+
+#. settings-schema.json->cornerRadius->tooltip
+msgid "The higher the value, the rounder the desklet's corners"
+msgstr ""
 
 #. settings-schema.json->showVerticalScrollbar->description
 msgid "Show vertical scrollbar"
@@ -194,6 +204,24 @@ msgid ""
 msgstr ""
 "Toon een verticale schuifbalk wanneer de lijst met koersen langer is dan de "
 "hoogte van de desklet"
+
+#. settings-schema.json->borderWidth->description
+msgid "Border width"
+msgstr ""
+
+#. settings-schema.json->borderWidth->tooltip
+msgid ""
+"The higher the value, the thicker the desklet's border. A value of 0 hides "
+"the border."
+msgstr ""
+
+#. settings-schema.json->borderColor->description
+msgid "Border color"
+msgstr ""
+
+#. settings-schema.json->borderColor->tooltip
+msgid "Desklet border color"
+msgstr ""
 
 #. settings-schema.json->delayMinutes->units
 msgid "minutes"

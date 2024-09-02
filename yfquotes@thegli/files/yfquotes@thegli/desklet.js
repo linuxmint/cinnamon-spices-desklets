@@ -722,43 +722,46 @@ StockQuoteDesklet.prototype = {
 
     loadSettings: function() {
         this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, this.id);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "height", "height", this.onDisplaySettingChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "width", "width", this.onDisplaySettingChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "transparency", "transparency", this.onDisplaySettingChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "showVerticalScrollbar", "showVerticalScrollbar", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "backgroundColor", "backgroundColor", this.onDisplaySettingChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "delayMinutes", "delayMinutes", this.onDataFetchSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "showLastUpdateTimestamp", "showLastUpdateTimestamp", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "manualDataUpdate", "manualDataUpdate", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "sendCustomUserAgent", "sendCustomUserAgent"); // no callback, manual refresh required
-        this.settings.bindProperty(Settings.BindingDirection.IN, "customUserAgent", "customUserAgent");  // no callback, manual refresh required
-        this.settings.bindProperty(Settings.BindingDirection.IN, "roundNumbers", "roundNumbers", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "decimalPlaces", "decimalPlaces", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "strictRounding", "strictRounding", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "use24HourTime", "use24HourTime", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "customTimeFormat", "customTimeFormat", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "customDateFormat", "customDateFormat", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "quoteSymbols", "quoteSymbolsText"); // no callback, manual refresh required
-        this.settings.bindProperty(Settings.BindingDirection.IN, "sortCriteria", "sortCriteria", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "sortDirection", "sortAscending", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "showChangeIcon", "showChangeIcon", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "showQuoteName", "showQuoteName", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "useLongQuoteName", "useLongQuoteName", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "linkQuoteName", "linkQuoteName", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "showQuoteSymbol", "showQuoteSymbol", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "linkQuoteSymbol", "linkQuoteSymbol", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "showMarketPrice", "showMarketPrice", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "showCurrencyCode", "showCurrencyCode", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "showAbsoluteChange", "showAbsoluteChange", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "showPercentChange", "showPercentChange", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "colorPercentChange", "colorPercentChange", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "showTradeTime", "showTradeTime", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "fontColor", "fontColor", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "scaleFontSize", "scaleFontSize", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "fontScale", "fontScale", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "uptrendChangeColor", "uptrendChangeColor", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "downtrendChangeColor", "downtrendChangeColor", this.onRenderSettingsChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "unchangedTrendColor", "unchangedTrendColor", this.onRenderSettingsChanged);
+        this.settings.bind("height", "height", this.onDisplaySettingChanged);
+        this.settings.bind("width", "width", this.onDisplaySettingChanged);
+        this.settings.bind("transparency", "transparency", this.onDisplaySettingChanged);
+        this.settings.bind("showVerticalScrollbar", "showVerticalScrollbar", this.onRenderSettingsChanged);
+        this.settings.bind("backgroundColor", "backgroundColor", this.onDisplaySettingChanged);
+        this.settings.bind("cornerRadius", "cornerRadius", this.onDisplaySettingChanged);
+        this.settings.bind("borderWidth", "borderWidth", this.onDisplaySettingChanged);
+        this.settings.bind("borderColor", "borderColor", this.onDisplaySettingChanged);
+        this.settings.bind("delayMinutes", "delayMinutes", this.onDataFetchSettingsChanged);
+        this.settings.bind("showLastUpdateTimestamp", "showLastUpdateTimestamp", this.onRenderSettingsChanged);
+        this.settings.bind("manualDataUpdate", "manualDataUpdate", this.onRenderSettingsChanged);
+        this.settings.bind("sendCustomUserAgent", "sendCustomUserAgent"); // no callback, manual refresh required
+        this.settings.bind("customUserAgent", "customUserAgent");  // no callback, manual refresh required
+        this.settings.bind("roundNumbers", "roundNumbers", this.onRenderSettingsChanged);
+        this.settings.bind("decimalPlaces", "decimalPlaces", this.onRenderSettingsChanged);
+        this.settings.bind("strictRounding", "strictRounding", this.onRenderSettingsChanged);
+        this.settings.bind("use24HourTime", "use24HourTime", this.onRenderSettingsChanged);
+        this.settings.bind("customTimeFormat", "customTimeFormat", this.onRenderSettingsChanged);
+        this.settings.bind("customDateFormat", "customDateFormat", this.onRenderSettingsChanged);
+        this.settings.bind("quoteSymbols", "quoteSymbolsText"); // no callback, manual refresh required
+        this.settings.bind("sortCriteria", "sortCriteria", this.onRenderSettingsChanged);
+        this.settings.bind("sortDirection", "sortAscending", this.onRenderSettingsChanged);
+        this.settings.bind("showChangeIcon", "showChangeIcon", this.onRenderSettingsChanged);
+        this.settings.bind("showQuoteName", "showQuoteName", this.onRenderSettingsChanged);
+        this.settings.bind("useLongQuoteName", "useLongQuoteName", this.onRenderSettingsChanged);
+        this.settings.bind("linkQuoteName", "linkQuoteName", this.onRenderSettingsChanged);
+        this.settings.bind("showQuoteSymbol", "showQuoteSymbol", this.onRenderSettingsChanged);
+        this.settings.bind("linkQuoteSymbol", "linkQuoteSymbol", this.onRenderSettingsChanged);
+        this.settings.bind("showMarketPrice", "showMarketPrice", this.onRenderSettingsChanged);
+        this.settings.bind("showCurrencyCode", "showCurrencyCode", this.onRenderSettingsChanged);
+        this.settings.bind("showAbsoluteChange", "showAbsoluteChange", this.onRenderSettingsChanged);
+        this.settings.bind("showPercentChange", "showPercentChange", this.onRenderSettingsChanged);
+        this.settings.bind("colorPercentChange", "colorPercentChange", this.onRenderSettingsChanged);
+        this.settings.bind("showTradeTime", "showTradeTime", this.onRenderSettingsChanged);
+        this.settings.bind("fontColor", "fontColor", this.onRenderSettingsChanged);
+        this.settings.bind("scaleFontSize", "scaleFontSize", this.onRenderSettingsChanged);
+        this.settings.bind("fontScale", "fontScale", this.onRenderSettingsChanged);
+        this.settings.bind("uptrendChangeColor", "uptrendChangeColor", this.onRenderSettingsChanged);
+        this.settings.bind("downtrendChangeColor", "downtrendChangeColor", this.onRenderSettingsChanged);
+        this.settings.bind("unchangedTrendColor", "unchangedTrendColor", this.onRenderSettingsChanged);
     },
 
     getQuoteDisplaySettings: function(quotes) {
@@ -832,12 +835,25 @@ StockQuoteDesklet.prototype = {
 
     // called on events that change the desklet window
     onDisplaySettingChanged: function() {
+        logDebug("onDisplaySettingChanged");
         this.mainBox.set_size(this.width, this.height);
-        this.setBackground();
+        this.setDeskletStyle();
     },
 
-    setBackground: function() {
-        this.mainBox.style = "background-color: " + this.buildBackgroundColor(this.backgroundColor, this.transparency);
+    setDeskletStyle: function() {
+        let style = "background-color: " + this.buildBackgroundColor(this.backgroundColor, this.transparency) + "; ";
+
+        let effectiveBorderRadius = this.cornerRadius;
+        if (this.borderWidth > 0) {
+            style += "border: " + this.borderWidth + "px solid " + this.borderColor + "; ";
+            if (this.borderWidth > this.cornerRadius) {
+                effectiveBorderRadius = this.borderWidth;
+            }
+        }
+
+        style += "border-radius: " + effectiveBorderRadius + "px;";
+
+        this.mainBox.style = style;
     },
 
     buildBackgroundColor: function(rgbColorString, transparencyFactor) {
@@ -998,6 +1014,7 @@ StockQuoteDesklet.prototype = {
             this.updateInProgress = false;
         }
     },
+
     // main method to render the desklet, expects populated _lastResponse
     render: function() {
         logDebug("render");
@@ -1057,7 +1074,8 @@ StockQuoteDesklet.prototype = {
             height: this.height,
             style_class: "quotes-reader"
         });
-        this.setBackground();
+        // override default style with custom settings 
+        this.setDeskletStyle();
 
         this.mainBox.add(scrollView, {
             expand: true
