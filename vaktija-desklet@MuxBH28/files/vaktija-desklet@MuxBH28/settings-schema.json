@@ -177,6 +177,17 @@
         "type": "header",
         "description": "Visual settings"
     },
+    "language": {
+        "type": "combobox",
+        "default": "bs",
+        "description": "Language",
+        "tooltip": "Select the language for the desklet.",
+        "options": {
+            "Bosnian": "bs",
+            "English": "en",
+            "Arabic": "ar"
+        }
+    },
     "height": {
         "default": 380,
         "type": "spinbutton",
