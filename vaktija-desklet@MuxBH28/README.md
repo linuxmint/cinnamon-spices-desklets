@@ -23,6 +23,8 @@ Vaktija Desklet is a simple desklet that displays prayer times using data from t
 
 - Displays prayer times for the selected location.
 - Real-time data updates.
+- 3 languages to choose from (Bosnian, English, Arabic).
+- Visual look tweaks
 
 ### Screenshot
 
@@ -37,6 +39,9 @@ Vaktija Desklet is a simple desklet that displays prayer times using data from t
 ## Configuration
 
 Currently, the desklet supports 177 locations across Bosnia and Herzegovina and southern Serbia. Future versions will include additional configuration options and more locations.
+The plan is also to add a notification pop-up system in future versions, as well as more locations.
+
+Any ideas you have, please feel free to ask me to add them!
 
 ## Links
 
