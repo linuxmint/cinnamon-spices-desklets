@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2024-09-02 17:00+0200\n"
-"PO-Revision-Date: 2024-08-25 18:54-0400\n"
+"PO-Revision-Date: 2024-09-03 10:48-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -189,11 +189,12 @@ msgstr "Color de fondo del Desklet"
 
 #. settings-schema.json->cornerRadius->description
 msgid "Corner radius"
-msgstr ""
+msgstr "Radio de la esquina"
 
 #. settings-schema.json->cornerRadius->tooltip
 msgid "The higher the value, the rounder the desklet's corners"
 msgstr ""
+"Cuanto mayor sea el valor, más redondeadas serán las esquinas del desklet"
 
 #. settings-schema.json->showVerticalScrollbar->description
 msgid "Show vertical scrollbar"
@@ -209,21 +210,23 @@ msgstr ""
 
 #. settings-schema.json->borderWidth->description
 msgid "Border width"
-msgstr ""
+msgstr "Ancho del borde"
 
 #. settings-schema.json->borderWidth->tooltip
 msgid ""
 "The higher the value, the thicker the desklet's border. A value of 0 hides "
 "the border."
 msgstr ""
+"Cuanto mayor sea el valor, más grueso será el borde del desklet. Un valor de "
+"0 oculta el borde."
 
 #. settings-schema.json->borderColor->description
 msgid "Border color"
-msgstr ""
+msgstr "Color del borde"
 
 #. settings-schema.json->borderColor->tooltip
 msgid "Desklet border color"
-msgstr ""
+msgstr "Color del borde del escritorio"
 
 #. settings-schema.json->delayMinutes->units
 msgid "minutes"
