@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2024-09-02 17:00+0200\n"
-"PO-Revision-Date: 2024-08-26 03:11+0200\n"
+"PO-Revision-Date: 2024-09-10 20:15+0200\n"
 "Last-Translator: Odyssey <odysseyhyd@gmail.com>\n"
 "Language-Team: \n"
 "Language: ca\n"
@@ -191,11 +191,13 @@ msgstr "Color de fons de la miniaplicació d'escriptori"
 
 #. settings-schema.json->cornerRadius->description
 msgid "Corner radius"
-msgstr ""
+msgstr "Radi de la cantonada"
 
 #. settings-schema.json->cornerRadius->tooltip
 msgid "The higher the value, the rounder the desklet's corners"
 msgstr ""
+"Com a més gran sigui el valor, més rodones seran les cantonades de la "
+"miniaplicació d'escriptori"
 
 #. settings-schema.json->showVerticalScrollbar->description
 msgid "Show vertical scrollbar"
@@ -211,21 +213,23 @@ msgstr ""
 
 #. settings-schema.json->borderWidth->description
 msgid "Border width"
-msgstr ""
+msgstr "Amplada de la vora"
 
 #. settings-schema.json->borderWidth->tooltip
 msgid ""
 "The higher the value, the thicker the desklet's border. A value of 0 hides "
 "the border."
 msgstr ""
+"Com més gran sigui el valor, major serà el gruix de la vora de la "
+"miniaplicació d'escriptori. Un valor de 0 amaga la vora."
 
 #. settings-schema.json->borderColor->description
 msgid "Border color"
-msgstr ""
+msgstr "Color de la vora"
 
 #. settings-schema.json->borderColor->tooltip
 msgid "Desklet border color"
-msgstr ""
+msgstr "Color de la vora de la miniaplicació d'escriptori"
 
 #. settings-schema.json->delayMinutes->units
 msgid "minutes"
