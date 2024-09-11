@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2024-09-02 17:00+0200\n"
-"PO-Revision-Date: 2024-07-23 23:13+0200\n"
+"PO-Revision-Date: 2024-09-11 11:49+0200\n"
 "Last-Translator: qadzek\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #. desklet.js:83
 msgid "No quotes data to display"
-msgstr ""
+msgstr "Geen citatendata om weer te geven"
 
 #. desklet.js:399
 msgid "Empty quotes list. Open settings and add some symbols."
@@ -187,11 +187,11 @@ msgstr "Desklet achtergrondkleur"
 
 #. settings-schema.json->cornerRadius->description
 msgid "Corner radius"
-msgstr ""
+msgstr "Hoekradius"
 
 #. settings-schema.json->cornerRadius->tooltip
 msgid "The higher the value, the rounder the desklet's corners"
-msgstr ""
+msgstr "Hoe hoger de waarde, hoe ronder de hoeken van de desklet"
 
 #. settings-schema.json->showVerticalScrollbar->description
 msgid "Show vertical scrollbar"
@@ -207,21 +207,23 @@ msgstr ""
 
 #. settings-schema.json->borderWidth->description
 msgid "Border width"
-msgstr ""
+msgstr "Randbreedte"
 
 #. settings-schema.json->borderWidth->tooltip
 msgid ""
 "The higher the value, the thicker the desklet's border. A value of 0 hides "
 "the border."
 msgstr ""
+"Hoe hoger de waarde, hoe dikker de rand van de desklet. Een waarde van 0 "
+"verbergt de rand."
 
 #. settings-schema.json->borderColor->description
 msgid "Border color"
-msgstr ""
+msgstr "Randkleur"
 
 #. settings-schema.json->borderColor->tooltip
 msgid "Desklet border color"
-msgstr ""
+msgstr "Randkleur van de desklet"
 
 #. settings-schema.json->delayMinutes->units
 msgid "minutes"
@@ -365,11 +367,11 @@ msgstr "Lijst met koerssymbolen, gescheiden door regelafbrekingen"
 
 #. settings-schema.json->updateDataButton->description
 msgid "Refresh quotes data"
-msgstr ""
+msgstr "Vernieuw citatendata"
 
 #. settings-schema.json->updateDataButton->tooltip
 msgid "Apply and refresh quotes"
-msgstr ""
+msgstr "Toepassen en vernieuwen van citaten"
 
 #. settings-schema.json->sortCriteria->options
 msgid "given order"
