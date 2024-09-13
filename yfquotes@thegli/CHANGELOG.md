@@ -1,3 +1,16 @@
+### 0.15.1 - September 12, 2024
+
+Features:
+
+- update Catalan translation (courtesy of [Odyssey](https://github.com/odyssey))
+- update Dutch translation (courtesy of [qadzek](https://github.com/qadzek))
+- update Spanish translation (courtesy of [haggen88](https://github.com/haggen88))
+
+Bugfixes:
+
+- cache quotes responses for each desklet instance separately
+- restore automatic quotes data refresh on settings import
+
 ### 0.15.0 - September 2, 2024
 
 Features:
