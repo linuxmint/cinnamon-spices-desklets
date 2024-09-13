@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: yfquotes@thegli 0.11.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-09-02 17:00+0200\n"
+"POT-Creation-Date: 2024-09-12 23:49+0200\n"
 "PO-Revision-Date: 2024-09-11 11:49+0200\n"
 "Last-Translator: qadzek\n"
 "Language-Team: \n"
@@ -16,27 +16,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. desklet.js:83
+#. desklet.js:86
 msgid "No quotes data to display"
 msgstr "Geen citatendata om weer te geven"
 
-#. desklet.js:399
+#. desklet.js:415
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr "Lege lijst van koersen. Open instellingen en voeg wat symbolen toe."
 
-#. desklet.js:421 desklet.js:440
+#. desklet.js:437 desklet.js:456
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Yahoo Finance service niet beschikbaar!\\nStatus: "
 
-#. desklet.js:798
+#. desklet.js:815
 msgid "Updated at "
 msgstr "Bijgewerkt om "
 
-#. desklet.js:831
+#. desklet.js:848
 msgid "Error: "
 msgstr "Fout: "
 
-#. desklet.js:941
+#. desklet.js:963
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -44,20 +44,20 @@ msgstr ""
 "Kan autorisatieparameter niet ophalen! Kan geen gegevens voor koersen "
 "ophalen.\\nStatus: "
 
-#. desklet.js:966
+#. desklet.js:989
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Toestemming verwerking mislukt! Kan geen gegevens voor koersen ophalen."
 "\\nStatus: "
 
-#. desklet.js:971
+#. desklet.js:994
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Toestemming verwerking niet voltooid! Kan geen gegevens voor koersen ophalen."
 "\\nStatus: "
 
-#. desklet.js:993
+#. desklet.js:1017
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "

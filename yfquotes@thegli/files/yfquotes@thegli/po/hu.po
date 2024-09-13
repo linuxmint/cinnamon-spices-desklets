@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: yfquotes@thegli 0.13.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-09-02 17:00+0200\n"
+"POT-Creation-Date: 2024-09-12 23:49+0200\n"
 "PO-Revision-Date: 2024-07-26 07:12-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,29 +18,29 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#. desklet.js:83
+#. desklet.js:86
 msgid "No quotes data to display"
 msgstr ""
 
-#. desklet.js:399
+#. desklet.js:415
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 "Üres idézetek listája. Nyissa meg a beállításokat, és adjon hozzá néhány "
 "szimbólumot."
 
-#. desklet.js:421 desklet.js:440
+#. desklet.js:437 desklet.js:456
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "A Yahoo Finance szolgáltatás pillanatnyilag nem érhető el.\\nÁllapot: "
 
-#. desklet.js:798
+#. desklet.js:815
 msgid "Updated at "
 msgstr "Frissítve: "
 
-#. desklet.js:831
+#. desklet.js:848
 msgid "Error: "
 msgstr "Hiba: "
 
-#. desklet.js:941
+#. desklet.js:963
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -48,20 +48,20 @@ msgstr ""
 "Nem sikerült lekérni az engedélyezési paramétert. Nem sikerült letölteni a "
 "pénzügyi adatokat.\\nÁllapot: "
 
-#. desklet.js:966
+#. desklet.js:989
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Az engedélykezelés nem sikerült. Nem sikerült letölteni a pénzügyi adatokat."
 "\\nÁllapot: "
 
-#. desklet.js:971
+#. desklet.js:994
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Az engedélykezelés nem fejeződött be. Nem sikerült letölteni a pénzügyi "
 "adatokat.\\nÁllapot: "
 
-#. desklet.js:993
+#. desklet.js:1017
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
