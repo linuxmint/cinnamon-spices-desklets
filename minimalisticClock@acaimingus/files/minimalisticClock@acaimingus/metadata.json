@@ -1,0 +1,7 @@
+{
+    "uuid": "minimalisticClock@acaimingus",
+    "name": "Minimalistic Clock",
+    "description": "A minimal clock. Will install font on first startup. Please refresh Cinnamon when the resolution changes for scaling to apply.",
+    "version": "1.0",
+    "author": "acaimingus"
+}

@@ -1,0 +1,10 @@
+.grid1 {
+    font-size: 240px;
+    color: white;
+    font-family: "SUSE", sans-serif;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

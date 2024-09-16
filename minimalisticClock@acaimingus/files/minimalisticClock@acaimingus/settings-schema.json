@@ -1,0 +1,26 @@
+{
+    "color-picker": {
+      "type": "colorchooser",
+      "default": "#FFFFFF",
+      "description": "Pick a color for the clock text"
+    },
+    "reset-color-button": {
+      "type": "button",
+      "description": "Reset color to default",
+      "callback": "resetColor",
+      "tooltip": "Click to reset the clock text color to default."
+    },
+    "12-hour-format" : {
+        "type" : "switch",
+        "default" : false,
+        "description": "Check this to use the 12 hour format",
+        "tooltip": "Checking this box will set the clock to the 12 hour format."
+  },
+  "install-font-button": {
+    "type": "button",
+    "description": "Install Clock Font",
+    "callback": "manualFontInstall",
+    "tooltip": "Click to manually install the clock font."
+  }
+}
+  
