@@ -102,6 +102,17 @@ msgstr ""
 msgid "RGB or RGBA"
 msgstr ""
 
+#. 5.4->settings-schema.json->time_weight1->description
+#. 5.4->settings-schema.json->time_weight2->description
+msgid "Font Weight"
+msgstr ""
+
+#. 5.4->settings-schema.json->time_weight1->tooltip
+#. 5.4->settings-schema.json->time_weight2->tooltip
+msgid ""
+"Increase or decrease this value to change the font weight (Normal = 400, Bold = 700)"
+msgstr ""
+
 #. 5.4->settings-schema.json->time_size1->description
 #. 5.4->settings-schema.json->time_size2->description
 msgid "Font Size"
