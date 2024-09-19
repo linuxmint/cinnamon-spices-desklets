@@ -51,6 +51,16 @@
         "tooltip": "RGB or RGBA",
         "dependency": "time_custom1"
     },
+    "time_weight1": {
+        "type": "scale",
+        "description": "Font Weight",
+        "default": 400,
+        "min": 100,
+        "max": 900,
+        "step": 100,
+        "tooltip": "Increase or decrease this value to change the font weight (Normal = 400, Bold = 700)",
+        "dependency": "time_custom1"
+    },
     "time_size1": {
         "type": "scale",
         "description": "Font Size",
@@ -111,6 +121,16 @@
         "description": "Font Color",
         "default": "rgba(255, 255, 255)",
         "tooltip": "RGB or RGBA",
+        "dependency": "time_custom2"
+    },
+    "time_weight2": {
+        "type": "scale",
+        "description": "Font Weight",
+        "default": 400,
+        "min": 100,
+        "max": 900,
+        "step": 100,
+        "tooltip": "Increase or decrease this value to change the font weight (Normal = 400, Bold = 700)",
         "dependency": "time_custom2"
     },
     "time_size2": {

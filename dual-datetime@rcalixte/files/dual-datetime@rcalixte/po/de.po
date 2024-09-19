@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: dual-datetime@rcalixte 1.2.1\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-08-06 22:34-0400\n"
+"POT-Creation-Date: 2024-09-18 21:30-0400\n"
 "PO-Revision-Date: 2024-09-17 08:55+0200\n"
 "Last-Translator: acaimingus <martulaadam@gmail.com>\n"
 "Language-Team: \n"
@@ -106,6 +106,20 @@ msgstr "Schriftfarbe"
 #. 5.4->settings-schema.json->background_color->tooltip
 msgid "RGB or RGBA"
 msgstr "RGB oder RGBA"
+
+#. 5.4->settings-schema.json->time_weight1->description
+#. 5.4->settings-schema.json->time_weight2->description
+msgid "Font Weight"
+msgstr "Schriftbreite"
+
+#. 5.4->settings-schema.json->time_weight1->tooltip
+#. 5.4->settings-schema.json->time_weight2->tooltip
+msgid ""
+"Increase or decrease this value to change the font weight (Normal = 400, "
+"Bold = 700)"
+msgstr ""
+"Erhöhe oder verkleinere diesen Wert um die Schriftbreite zu skalieren "
+"(Normal = 400, Fett = 700)"
 
 #. 5.4->settings-schema.json->time_size1->description
 #. 5.4->settings-schema.json->time_size2->description

@@ -47,6 +47,7 @@ DateTimeDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "time_yalign1", "time_yalign1", this.setupUI);
         this.settings.bindProperty(Settings.BindingDirection.IN, "time_font1", "time_font1", this.on_font_setting_changed, 1);
         this.settings.bindProperty(Settings.BindingDirection.IN, "time_color1", "time_color1", this.setupUI);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "time_weight1", "time_weight1", this.on_font_setting_changed, 1);
         this.settings.bindProperty(Settings.BindingDirection.IN, "time_size1", "time_size1", this.on_font_setting_changed, 1);
         this.settings.bindProperty(Settings.BindingDirection.IN, "time_custom2", "time_custom2", this.setupUI);
         this.settings.bindProperty(Settings.BindingDirection.IN, "time_format2", "time_format2", this.setupUI);
@@ -54,6 +55,7 @@ DateTimeDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "time_yalign2", "time_yalign2", this.setupUI);
         this.settings.bindProperty(Settings.BindingDirection.IN, "time_font2", "time_font2", this.on_font_setting_changed, 2);
         this.settings.bindProperty(Settings.BindingDirection.IN, "time_color2", "time_color2", this.setupUI);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "time_weight2", "time_weight2", this.on_font_setting_changed, 2);
         this.settings.bindProperty(Settings.BindingDirection.IN, "time_size2", "time_size2", this.on_font_setting_changed, 2);
         this.settings.bindProperty(Settings.BindingDirection.IN, "width", "width", this.setupUI);
         this.settings.bindProperty(Settings.BindingDirection.IN, "title_align", "title_align", this.setupUI);
@@ -100,7 +102,7 @@ DateTimeDesklet.prototype = {
         this[`time_font${num}`] = this[`time_font${num}`].replace(/['"`]/g, "");
         this[`font${num}`] = this[`time_font${num}`] !== "" ? ` font-family: '${this["time_font" + num]}';` : "";
         let _padding = this._vertical || num == 1 ? "" : "padding-left: 0.5em; ";
-        this[`container${num}`].style = `${_padding}color: ${this['time_color' + num]}; font-size: ${this['time_size' + num]}em;${this['font' + num]}`;
+        this[`container${num}`].style = `${_padding}color: ${this['time_color' + num]}; font-size: ${this['time_size' + num]}em; font-weight: ${this['time_weight' + num]};${this['font' + num]}`;
         let _alignment = this._vertical ? { x_fill: false, x_align: ST_ALIGNMENT[this[`time_align${num}`]] } : null;
         this._main.add(this[`container${num}`], _alignment);
     },
@@ -161,7 +163,7 @@ DateTimeDesklet.prototype = {
                     global.logError(e);
                 } finally {
                     let _padding = this._vertical || num == 1 ? "" : "padding-left: 0.5em; ";
-                    this[`container${num}`].style = `${_padding}color: ${this["time_color" + num]}; font-size: ${this["time_size" + num]}em;${this["font" + num]}`;
+                    this[`container${num}`].style = `${_padding}color: ${this["time_color" + num]}; font-size: ${this["time_size" + num]}em; font-weight: ${this['time_weight' + num]};${this["font" + num]}`;
                 }
             });
         } catch (e) {
