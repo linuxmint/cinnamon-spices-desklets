@@ -102,7 +102,7 @@ DateTimeDesklet.prototype = {
         this[`time_font${num}`] = this[`time_font${num}`].replace(/['"`]/g, "");
         this[`font${num}`] = this[`time_font${num}`] !== "" ? ` font-family: '${this["time_font" + num]}';` : "";
         let _padding = this._vertical || num == 1 ? "" : "padding-left: 0.5em; ";
-        this[`container${num}`].style = `${_padding}color: ${this['time_color' + num]}; font-size: ${this['time_size' + num]}em;font-weight: ${this['time_weight' + num]};${this['font' + num]}`;
+        this[`container${num}`].style = `${_padding}color: ${this['time_color' + num]}; font-size: ${this['time_size' + num]}em; font-weight: ${this['time_weight' + num]};${this['font' + num]}`;
         let _alignment = this._vertical ? { x_fill: false, x_align: ST_ALIGNMENT[this[`time_align${num}`]] } : null;
         this._main.add(this[`container${num}`], _alignment);
     },
