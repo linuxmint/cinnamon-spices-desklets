@@ -15,7 +15,7 @@
         },
         "visual-page": {
             "type": "page",
-            "title": "Style",
+            "title": "Visual",
             "sections": [
                 "visual-section",
                 "label-section"
@@ -35,7 +35,7 @@
             "keys": [
                 "file",
                 "edit-cmd",
-                "note-text-box"
+                "note-text"
             ]
         },
         "visual-section": {
@@ -88,7 +88,7 @@
         "tooltip": "%f will replaced by the text file path.",
         "allow-none": true
     },
-    "note-text-box": {
+    "note-text": {
         "type": "textview",
         "description": "Write Your Note",
         "dependency": "note-taking-method=desklet",
