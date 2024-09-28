@@ -78,6 +78,8 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "bg-color", "customBgColor", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "file", "file", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "edit-cmd", "editCmd", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "note-taking-method", "noteTakingMethod", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "note-text", "noteText", this.on_setting_changed);
 
 		// initialize desklet gui
 		this.setupUI();
@@ -154,6 +156,12 @@ MyDesklet.prototype = {
 	},
 
 	loadText: function(reloadGraphics = false) {
+		if (this.noteTakingMethod == "desklet") {
+			this.notecontent = this.noteText;
+			this.refreshDesklet(reloadGraphics);
+			return;
+		}
+
 		// get notes text file path
 		this.finalPath = decodeURIComponent(this.file.replace("file://", ""));
 		if(this.finalPath == "") this.finalPath = "note.txt"; // in home dir
@@ -278,7 +286,7 @@ MyDesklet.prototype = {
 	},
 
 	on_desklet_clicked: function() {
-		if(this.editCmd != "") {
+		if(this.noteTakingMethod == "file" && this.editCmd != "") {
 			Util.spawnCommandLine(this.editCmd.replace("%f", '"'+this.finalPath+'"'));
 		}
 	},

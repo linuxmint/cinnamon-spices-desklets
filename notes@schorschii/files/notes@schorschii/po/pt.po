@@ -1,25 +1,26 @@
+# NOTE
+# This file is put in the public domain.
+# schorschii, 2018
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: notes@schorschii 2.4\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2024-09-28 12:45-0400\n"
-"PO-Revision-Date: 2023-12-08 07:45+0100\n"
-"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
-"Language-Team: Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
-"Language: da\n"
+"PO-Revision-Date: 2024-09-28 15:39-0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-SearchPath-0: desklet.js\n"
-"X-Poedit-SearchPath-1: settings-schema.json\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #. desklet.js:133
 msgid "Refresh"
-msgstr "Opdatér"
+msgstr "Atualizar"
 
 #. desklet.js:146
 msgid ""
@@ -28,317 +29,313 @@ msgid ""
 "\n"
 "Click here to edit."
 msgstr ""
-"Kan ikke læse en tekstfil.\n"
-"Vælg en fil under indstillinger.\n"
+"Ficheiro não pode ser lido\n"
+"Selecione um ficheiro nas definições\n"
 "\n"
-"Klik her for at redigere."
+"Clique aqui para editar."
 
 #. desklet.js:272
 msgid "Notepad"
-msgstr "Notesblok"
+msgstr "Bloco de notas"
 
 #. metadata.json->description
 msgid "A desklet to display notes including various themes."
-msgstr ""
-"Et enkelt skrivebordsprogram til visning af noter med forskellige temaer."
+msgstr "Um desklet que mostra notas incluindo diversos temas."
 
 #. metadata.json->name
 #. settings-schema.json->note-section->title
 msgid "Note"
-msgstr "Note"
+msgstr "Nota"
 
 #. settings-schema.json->general-page->title
 #. settings-schema.json->general-section->title
 msgid "General"
-msgstr "Generel"
+msgstr "Geral"
 
 #. settings-schema.json->visual-page->title
 #. settings-schema.json->visual-section->title
 msgid "Visual"
-msgstr "Visuel"
+msgstr "Visual"
 
 #. settings-schema.json->label-section->title
 msgid "Label"
-msgstr ""
+msgstr "Etiqueta"
 
 #. settings-schema.json->note-taking-method->description
 msgid "Note Taking Method"
-msgstr ""
+msgstr "Método de Anotação"
 
 #. settings-schema.json->note-taking-method->options
-#, fuzzy
 msgid "Text File"
-msgstr "Tekstfarve"
+msgstr "Ficheiro de Texto"
 
 #. settings-schema.json->note-taking-method->options
-#, fuzzy
 msgid "Desklet Settings"
-msgstr "Skrivebordsprogrammets størrelse"
+msgstr "Definições do Desktlet"
 
 #. settings-schema.json->file->description
 msgid "Path to note text file"
-msgstr "Sti til notetekstfilen"
+msgstr "Caminho para o ficheiro de texto da nota"
 
 #. settings-schema.json->file->tooltip
 msgid "Select your text file, where to read from and save to."
-msgstr "Vælg din tekstfil, hvor der skal læses fra og gemmes til."
+msgstr "Selecione o seu ficheiro de texto, para ler a partir de e guardar em."
 
 #. settings-schema.json->edit-cmd->description
 msgid "Command for editing this note (on mouse click)"
-msgstr "Kommando til redigering af denne note (ved museklik)"
+msgstr "Comando para editar a sua nota (ao clicar no desklet)"
 
 #. settings-schema.json->edit-cmd->tooltip
 msgid "%f will replaced by the text file path."
-msgstr "%f vil blive erstattet af stien til tekstfilen."
+msgstr "%f será trocado pelo caminho do ficheiro de texto."
 
 #. settings-schema.json->note-text->description
 msgid "Write Your Note"
-msgstr ""
+msgstr "Escreva a Sua nota"
 
 #. settings-schema.json->style->description
 msgid "Notes style"
-msgstr "Notestil"
+msgstr "Estilo da Nota"
 
 #. settings-schema.json->style->options
 msgid "Blank Note - Black"
-msgstr "Tom note — Sort"
+msgstr "Nota em Branco - Preta"
 
 #. settings-schema.json->style->options
 msgid "Blank Note - Blue"
-msgstr "Tom note — Blå"
+msgstr "Nota em Branco - Azul"
 
 #. settings-schema.json->style->options
 msgid "Blank Note - Green"
-msgstr "Tom note — Grøn"
+msgstr "Nota em Branco - Verde"
 
 #. settings-schema.json->style->options
 msgid "Blank Note - Orange"
-msgstr "Tom note — Orange"
+msgstr "Nota em Branco - Laranja"
 
 #. settings-schema.json->style->options
 msgid "Blank Note - Purple"
-msgstr "Tom note — Lilla"
+msgstr "Nota em Branco - Roxa"
 
 #. settings-schema.json->style->options
 msgid "Blank Note - White"
-msgstr "Tom note — Hvid"
+msgstr "Nota em Branco - Branca"
 
 #. settings-schema.json->style->options
 msgid "Blank Note - Yellow"
-msgstr "Tom note — Gul"
+msgstr "Nota em Branco - Amarela"
 
 #. settings-schema.json->style->options
 msgid "White Note - Black Button"
-msgstr "Hvid note — Sort tegnestift"
+msgstr "Nota Branca - Botão Preto"
 
 #. settings-schema.json->style->options
 msgid "White Note - Blue Button"
-msgstr "Hvid note — Blå tegnestift"
+msgstr "Nota Branca - Botão Azul"
 
 #. settings-schema.json->style->options
 msgid "White Note - Green Button"
-msgstr "Hvid note — Grøn tegnestift"
+msgstr "Nota Branca - Botão Verde"
 
 #. settings-schema.json->style->options
 msgid "White Note - Red Button"
-msgstr "Hvid note — Rød tegnestift"
+msgstr "Nota Branca - Botão Vermelho"
 
 #. settings-schema.json->style->options
 msgid "White Note - Yellow Button"
-msgstr "Hvid note — Gul tegnestift"
+msgstr "Nota Branca - Botão Amarelo"
 
 #. settings-schema.json->style->options
 msgid "Yellow Note - Black Clip"
-msgstr "Gul note — Sort papirklips"
+msgstr "Nota Amarela - Clipe Preto"
 
 #. settings-schema.json->style->options
 msgid "Yellow Note - Blue Clip"
-msgstr "Gul note — Blå papirklips"
+msgstr "Nota Amarela - Clipe Azul"
 
 #. settings-schema.json->style->options
 msgid "Yellow Note - Green Clip"
-msgstr "Gul note — Grøn papirklips"
+msgstr "Nota Amarela - Clipe Verde"
 
 #. settings-schema.json->style->options
 msgid "Yellow Note - Jingle Clip"
-msgstr "Gul note — Stribet papirklips"
+msgstr "Nota Amarela - Clipe Jingle"
 
 #. settings-schema.json->style->options
 msgid "Yellow Note - Red Clip"
-msgstr "Gul note — Rød papirklips"
+msgstr "Nota Amarela - Clipe Vermelho"
 
 #. settings-schema.json->style->options
 msgid "Yellow Note - Yellow Clip"
-msgstr "Gul note — Gul papirklips"
+msgstr "Nota Amarela - Clipe Amarelo"
 
 #. settings-schema.json->style->options
 msgid "White Note - Black Magnet"
-msgstr "Hvid note — Sort magnet"
+msgstr "Nota Branca - Ímã Preto"
 
 #. settings-schema.json->style->options
 msgid "Yellow Note - Blue Magnet"
-msgstr "Gul note — Blå magnet"
+msgstr "Nota Amarela - Ímã Azul"
 
 #. settings-schema.json->style->options
 msgid "White Note - Lines and Red Magnet"
-msgstr "Hvid note — Linjeret med rød magnet"
+msgstr "Nota Branca - Ímã Preto e Linhas"
 
 #. settings-schema.json->style->options
 msgid "Black Note - White Magnet"
-msgstr "Sort note — Hvid magnet"
+msgstr "Nota Preta - Ímã Branco"
 
 #. settings-schema.json->style->options
 msgid "Yellow Note - Yellow Magnet"
-msgstr "Gul note — Gul magnet"
+msgstr "Nota Amarela - Ímã Amarelo"
 
 #. settings-schema.json->style->options
 msgid "Blue Paint Strokes"
-msgstr "Blå malestreger"
+msgstr "Traços de Tinta Azul"
 
 #. settings-schema.json->style->options
 msgid "Green Paint Strokes"
-msgstr "Grønne malestreger"
+msgstr "Traços de Tinta Verde"
 
 #. settings-schema.json->style->options
 msgid "Purple Paint Strokes"
-msgstr "Lilla malestreger"
+msgstr "Traços de Tinta Roxa"
 
 #. settings-schema.json->style->options
 msgid "Red Paint Strokes"
-msgstr "Røde malestreger"
+msgstr "Traços de Tinta Vermelha"
 
 #. settings-schema.json->style->options
 msgid "Yellow Paint Strokes"
-msgstr "Gule malestreger"
+msgstr "Traços de Tinta Amarela"
 
 #. settings-schema.json->style->options
 msgid "White Note - Silver Spiral"
-msgstr "Hvid note — Sølvspiral"
+msgstr "Nota Branca - Espiral Prata"
 
 #. settings-schema.json->style->options
 msgid "White Note - Silver Spiral 2"
-msgstr "Hvid note — Sølvspiral 2"
+msgstr "Nota Branca - Espiral Prata 2"
 
 #. settings-schema.json->style->options
 msgid "White Note - Black Spiral"
-msgstr "Hvid note — Sort spiral"
+msgstr "Nota Branca - Espiral Preta"
 
 #. settings-schema.json->style->options
 msgid "White Note Large - Silver Spiral"
-msgstr "Hvid note, stor — Sølvspiral"
+msgstr "Nota Branca Larga - Espiral Prata"
 
 #. settings-schema.json->style->options
 msgid "Yellow Sticker"
-msgstr "Gul post-it"
+msgstr "Adesivo Amarelo"
 
 #. settings-schema.json->style->options
 msgid "Yellow Note (iOS Style)"
-msgstr "Gul note (iOS-stil)"
+msgstr "Adesivo Amarelo (Estilo IOS)"
 
 #. settings-schema.json->style->options
 msgid "Birch Bark"
-msgstr "Birkebark"
+msgstr "Casca de Bétula"
 
 #. settings-schema.json->style->options
 msgid "Burned Paper"
-msgstr "Brændt papir"
+msgstr "Papel Queimado"
 
 #. settings-schema.json->style->options
 msgid "Clay Tablet"
-msgstr "Lertavle"
+msgstr "Tábua de Argila"
 
 #. settings-schema.json->style->options
 msgid "Coffee Stained"
-msgstr "Kaffeplettet"
+msgstr "Mancha de Café"
 
 #. settings-schema.json->style->options
 msgid "Clipboard"
-msgstr "Clipboard"
+msgstr "Prancheta"
 
 #. settings-schema.json->style->options
 msgid "None"
-msgstr "Ingen"
+msgstr "Nenhum"
 
 #. settings-schema.json->style->tooltip
 msgid "Select the background graphic you would like to use."
-msgstr "Vælg den baggrundsgrafik, du ønsker at bruge."
+msgstr "Selecione o gráfico de fundo que gostaria de utilizar."
 
 #. settings-schema.json->bg-color->description
 msgid "Background color"
-msgstr "Baggrundsfarve"
+msgstr "Cor de fundo"
 
 #. settings-schema.json->bg-color->tooltip
 msgid "Set the background color of this desklet."
-msgstr "Angiv baggrundsfarven for dette skrivebordsprogram."
+msgstr "Defina a cor de fundo deste desklet."
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
-msgstr "Skjul boks rundt om skrivebordsprogrammet"
+msgstr "Esconder decorações"
 
 #. settings-schema.json->font->description
 msgid "Font"
-msgstr "Skrifttype"
+msgstr "Fonte"
 
 #. settings-schema.json->size-font->units
 msgid "pixels"
-msgstr "pixels"
+msgstr "pixeis"
 
 #. settings-schema.json->size-font->description
 msgid "Font size"
-msgstr "Skrifttypestørrelse"
+msgstr "Tamanho da fonte"
 
 #. settings-schema.json->size-font->tooltip
 msgid "Increase or decrease the note font size."
-msgstr "Forøg eller formindsk notens skriftstørrelse."
+msgstr "Aumente ou diminua o tamanho da fonte da nota."
 
 #. settings-schema.json->font-bold->description
 msgid "Bold"
-msgstr "Fed"
+msgstr "Negrito"
 
 #. settings-schema.json->font-italic->description
 msgid "Italic"
-msgstr "Kursiv"
+msgstr "Itálico"
 
 #. settings-schema.json->text-color->description
 msgid "Text color"
-msgstr "Tekstfarve"
+msgstr "Cor do texto"
 
 #. settings-schema.json->text-color->tooltip
 msgid "Set the text color of this desklet."
-msgstr "Angiv tekstfarven for dette skrivebordsprogram."
+msgstr "Defina a cor do texto deste desklet."
 
 #. settings-schema.json->scale-size->units
 msgid "scale factor"
-msgstr "skaleringsfaktor"
+msgstr "escala"
 
 #. settings-schema.json->scale-size->description
 msgid "Desklet size"
-msgstr "Skrivebordsprogrammets størrelse"
+msgstr "Tamanho do desklet"
 
 #. settings-schema.json->scale-size->tooltip
 msgid "Increase or decrease the size of this desklet using this scale factor."
 msgstr ""
-"Forøg eller formindsk skrivebordsprogrammets størrelse med denne "
-"skaleringsfaktor."
+"Aumente ou diminua o tamanho deste desklet utilizando este fator de escala."
 
 #. settings-schema.json->use-custom-label->description
 msgid "Use a custom desklet label"
-msgstr "Anvend tilpasset etiket"
+msgstr "Use uma etiqueta personalizada"
 
 #. settings-schema.json->use-custom-label->tooltip
 msgid "Checking this box allows you to set a custom label in the field below."
 msgstr ""
-"Afkrydsning af dette felt lader dig angive en tilpasset etiket i feltet "
-"nedenfor."
+"A marcação desta caixa permite definir um rótulo personalizado no campo "
+"abaixo."
 
 #. settings-schema.json->custom-label->description
 msgid "Custom desklet label"
-msgstr "Tilpasset etiket"
+msgstr "Etiqueta personalizada do desklet"
 
 #. settings-schema.json->custom-label->tooltip
 msgid ""
 "Set your custom label here. This field is unavailable unless the checkbox "
 "above is enabled."
 msgstr ""
-"Angiv din tilpassede etiket her. Dette felt er utilgængeligt, med mindre "
-"afkrydsningsfeltet ovenfor er aktiveret."
+"Defina aqui a sua etiqueta personalizada. Este campo não estará disponível a "
+"menos que a caixa de seleção acima esteja ativada."

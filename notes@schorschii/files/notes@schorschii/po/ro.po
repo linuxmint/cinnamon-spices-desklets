@@ -5,23 +5,25 @@
 #
 msgid ""
 msgstr ""
-"Content-Transfer-Encoding: 8bit\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language: ro\n"
-"Language-Team: none\n"
-"Last-Translator: Automatically generated\n"
-"MIME-Version: 1.0\n"
-"PO-Revision-Date: 2023-04-04 15:06+0200\n"
-"POT-Creation-Date: 2023-04-04 15:06+0200\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-09-28 12:45-0400\n"
+"PO-Revision-Date: 2023-04-04 15:06+0200\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
 
-#: desklet.js:130
+#. desklet.js:133
 msgid "Refresh"
 msgstr "Reîmprospătare"
 
-#: desklet.js:143
+#. desklet.js:146
 msgid ""
 "Can't read text file.\n"
 "Select a file in settings.\n"
@@ -33,7 +35,7 @@ msgstr ""
 "\n"
 "Fă clic aici pentru a edita."
 
-#: desklet.js:263
+#. desklet.js:272
 msgid "Notepad"
 msgstr "Blocul de notițe"
 
@@ -42,16 +44,37 @@ msgid "A desklet to display notes including various themes."
 msgstr "Un desklet pentru afișarea notelor, cu diverse teme."
 
 #. metadata.json->name
+#. settings-schema.json->note-section->title
 msgid "Note"
 msgstr "Notă"
 
-#. settings-schema.json->head0->description
-msgid "Settings for notes@schorschii"
-msgstr "Setări pentru notes@schorschii"
-
-#. settings-schema.json->head1->description
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
 msgid "General"
 msgstr "General"
+
+#. settings-schema.json->visual-page->title
+#. settings-schema.json->visual-section->title
+msgid "Visual"
+msgstr "Vizual"
+
+#. settings-schema.json->label-section->title
+msgid "Label"
+msgstr ""
+
+#. settings-schema.json->note-taking-method->description
+msgid "Note Taking Method"
+msgstr ""
+
+#. settings-schema.json->note-taking-method->options
+#, fuzzy
+msgid "Text File"
+msgstr "Culoarea textului"
+
+#. settings-schema.json->note-taking-method->options
+#, fuzzy
+msgid "Desklet Settings"
+msgstr "Dimensiune Desklet"
 
 #. settings-schema.json->file->description
 msgid "Path to note text file"
@@ -69,9 +92,9 @@ msgstr "Comandă pentru editarea acestei note (la un clic de mouse)"
 msgid "%f will replaced by the text file path."
 msgstr "%f va fi înlocuit cu calea fișierului text."
 
-#. settings-schema.json->head2->description
-msgid "Visual"
-msgstr "Vizual"
+#. settings-schema.json->note-text->description
+msgid "Write Your Note"
+msgstr ""
 
 #. settings-schema.json->style->description
 msgid "Notes style"
@@ -295,11 +318,9 @@ msgstr "Dimensiune Desklet"
 
 #. settings-schema.json->scale-size->tooltip
 msgid "Increase or decrease the size of this desklet using this scale factor."
-msgstr "Mărește sau micșorează dimensiunea acestui desklet folosind acest factor de scară."
-
-#. settings-schema.json->head3->description
-msgid "Custom desklet label (only visible if decorations are enabled)"
-msgstr "Etichetă personalizată pentru desklet (vizibilă numai dacă sunt activate decorațiile)"
+msgstr ""
+"Mărește sau micșorează dimensiunea acestui desklet folosind acest factor de "
+"scară."
 
 #. settings-schema.json->use-custom-label->description
 msgid "Use a custom desklet label"
@@ -307,12 +328,18 @@ msgstr "Folosește o etichetă personalizată pentru desklet"
 
 #. settings-schema.json->use-custom-label->tooltip
 msgid "Checking this box allows you to set a custom label in the field below."
-msgstr "Dacă bifezi această casetă, poți seta o etichetă personalizată în câmpul de mai jos."
+msgstr ""
+"Dacă bifezi această casetă, poți seta o etichetă personalizată în câmpul de "
+"mai jos."
 
 #. settings-schema.json->custom-label->description
 msgid "Custom desklet label"
 msgstr "Etichetă personalizată de birou"
 
 #. settings-schema.json->custom-label->tooltip
-msgid "Set your custom label here. This field is unavailable unless the checkbox above is enabled."
-msgstr "Setează aici eticheta personalizată. Acest câmp nu este disponibil decât dacă caseta de selectare de mai sus este activată."
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr ""
+"Setează aici eticheta personalizată. Acest câmp nu este disponibil decât "
+"dacă caseta de selectare de mai sus este activată."
