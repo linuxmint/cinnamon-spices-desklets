@@ -1,6 +1,6 @@
-# SOME DESCRIPTIVE TITLE.
+# NOTE
 # This file is put in the public domain.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# schorschii, 2018
 #
 #, fuzzy
 msgid ""
@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: notes@schorschii 2.4\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-09-28 15:16-0100\n"
+"POT-Creation-Date: 2024-09-28 12:45-0400\n"
 "PO-Revision-Date: 2024-09-28 15:39-0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.4\n"
 
-#: desklet.js:133
+#. desklet.js:133
 msgid "Refresh"
 msgstr "Atualizar"
 
-#: desklet.js:146
+#. desklet.js:146
 msgid ""
 "Can't read text file.\n"
 "Select a file in settings.\n"
@@ -34,7 +34,7 @@ msgstr ""
 "\n"
 "Clique aqui para editar."
 
-#: desklet.js:272
+#. desklet.js:272
 msgid "Notepad"
 msgstr "Bloco de notas"
 
@@ -337,5 +337,5 @@ msgid ""
 "Set your custom label here. This field is unavailable unless the checkbox "
 "above is enabled."
 msgstr ""
-"Defina aqui a sua etiqueta personalizada. Este campo não estará disponível "
-"a menos que a caixa de seleção acima esteja ativada."
+"Defina aqui a sua etiqueta personalizada. Este campo não estará disponível a "
+"menos que a caixa de seleção acima esteja ativada."

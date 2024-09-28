@@ -1,14 +1,14 @@
-# SOME DESCRIPTIVE TITLE.
+# NOTE
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# schorschii, 2018
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-09-28 15:16-0100\n"
+"POT-Creation-Date: 2024-09-28 12:45-0400\n"
 "PO-Revision-Date: 2023-11-20 20:52-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.4\n"
 
-#: desklet.js:133
+#. desklet.js:133
 msgid "Refresh"
 msgstr "Actualizar"
 
-#: desklet.js:146
+#. desklet.js:146
 msgid ""
 "Can't read text file.\n"
 "Select a file in settings.\n"
@@ -35,7 +35,7 @@ msgstr ""
 "\n"
 "Haga clic aquí para editarlo."
 
-#: desklet.js:272
+#. desklet.js:272
 msgid "Notepad"
 msgstr "Bloc de notas"
 
