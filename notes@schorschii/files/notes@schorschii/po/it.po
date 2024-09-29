@@ -57,8 +57,10 @@ msgid "Visual"
 msgstr "Visuale"
 
 #. settings-schema.json->label-section->title
-msgid "Label"
+msgid "Custom desklet label (only visible if decorations are enabled)"
 msgstr ""
+"Etichetta del desklet personalizzata (visibile solo se le decorazioni sono "
+"abilitate)"
 
 #. settings-schema.json->note-taking-method->description
 msgid "Note Taking Method"

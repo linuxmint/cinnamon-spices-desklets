@@ -58,8 +58,9 @@ msgid "Visual"
 msgstr "Vizuális"
 
 #. settings-schema.json->label-section->title
-msgid "Label"
+msgid "Custom desklet label (only visible if decorations are enabled)"
 msgstr ""
+"Egyéni asztali címke (csak akkor látható, ha a dekoráció engedélyezve van)"
 
 #. settings-schema.json->note-taking-method->description
 msgid "Note Taking Method"
