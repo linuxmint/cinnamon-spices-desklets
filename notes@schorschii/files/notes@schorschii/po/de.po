@@ -65,12 +65,10 @@ msgid "Note Taking Method"
 msgstr "Notizmethode"
 
 #. settings-schema.json->note-taking-method->options
-#, fuzzy
 msgid "Text File"
 msgstr "Textdatei"
 
 #. settings-schema.json->note-taking-method->options
-#, fuzzy
 msgid "Desklet Settings"
 msgstr "Desklet-Einstellungen"
 
@@ -94,7 +92,7 @@ msgstr "%f wird durch den Pfad zur Textdatei ersetzt."
 
 #. settings-schema.json->note-text->description
 msgid "Write Your Note"
-msgstr ""
+msgstr "Schreiben Sie Ihre Notiz hier"
 
 #. settings-schema.json->style->description
 msgid "Notes style"

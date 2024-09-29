@@ -67,14 +67,12 @@ msgid "Note Taking Method"
 msgstr ""
 
 #. settings-schema.json->note-taking-method->options
-#, fuzzy
 msgid "Text File"
-msgstr "Szövegszín"
+msgstr "Szövegfájl"
 
 #. settings-schema.json->note-taking-method->options
-#, fuzzy
 msgid "Desklet Settings"
-msgstr "Asztalkalmazás mérete"
+msgstr "Desklet beállítások"
 
 #. settings-schema.json->file->description
 msgid "Path to note text file"
