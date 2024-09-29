@@ -66,14 +66,12 @@ msgid "Note Taking Method"
 msgstr ""
 
 #. settings-schema.json->note-taking-method->options
-#, fuzzy
 msgid "Text File"
-msgstr "Tekstfarve"
+msgstr "Tekstfil"
 
 #. settings-schema.json->note-taking-method->options
-#, fuzzy
 msgid "Desklet Settings"
-msgstr "Skrivebordsprogrammets størrelse"
+msgstr "Programindstillinger"
 
 #. settings-schema.json->file->description
 msgid "Path to note text file"
