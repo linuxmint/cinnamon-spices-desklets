@@ -55,7 +55,7 @@
         },
         "label-section": {
             "type": "section",
-            "title": "Label",
+            "title": "Custom desklet label (only visible if decorations are enabled)",
             "dependency": "!hide-decorations",
             "keys": [
                 "use-custom-label",

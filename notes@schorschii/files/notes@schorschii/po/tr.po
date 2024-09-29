@@ -62,8 +62,9 @@ msgid "Visual"
 msgstr "Görsel"
 
 #. settings-schema.json->label-section->title
-msgid "Label"
+msgid "Custom desklet label (only visible if decorations are enabled)"
 msgstr ""
+"Masaüstü uygulamacığı özel etiketi (sadece süslemeler etkinse görünür)"
 
 #. settings-schema.json->note-taking-method->description
 msgid "Note Taking Method"

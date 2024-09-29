@@ -57,22 +57,22 @@ msgid "Visual"
 msgstr "Aussehen"
 
 #. settings-schema.json->label-section->title
-msgid "Label"
-msgstr ""
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""Eigenes Deskletlabel (nur sichtbar wenn Dekorationen aktiviert sind)"
 
 #. settings-schema.json->note-taking-method->description
 msgid "Note Taking Method"
-msgstr ""
+msgstr "Notizmethode"
 
 #. settings-schema.json->note-taking-method->options
 #, fuzzy
 msgid "Text File"
-msgstr "Textfarbe"
+msgstr "Textdatei"
 
 #. settings-schema.json->note-taking-method->options
 #, fuzzy
 msgid "Desklet Settings"
-msgstr "Deskletgröße"
+msgstr "Desklet-Einstellungen"
 
 #. settings-schema.json->file->description
 msgid "Path to note text file"
