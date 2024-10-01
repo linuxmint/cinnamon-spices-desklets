@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2024-09-28 12:45-0400\n"
-"PO-Revision-Date: 2023-08-04 19:52+0200\n"
+"PO-Revision-Date: 2024-10-01 03:13+0200\n"
 "Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
 "Language-Team: \n"
 "Language: ca\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: desklet.js\n"
 "X-Poedit-SearchPath-1: settings-schema.json\n"
@@ -65,7 +65,7 @@ msgstr ""
 
 #. settings-schema.json->note-taking-method->description
 msgid "Note Taking Method"
-msgstr ""
+msgstr "Mètode de presa de notes"
 
 #. settings-schema.json->note-taking-method->options
 msgid "Text File"
@@ -93,7 +93,7 @@ msgstr "%f se substituirà amb el camí al fitxer de text."
 
 #. settings-schema.json->note-text->description
 msgid "Write Your Note"
-msgstr ""
+msgstr "Escriviu la vostra nota"
 
 #. settings-schema.json->style->description
 msgid "Notes style"
