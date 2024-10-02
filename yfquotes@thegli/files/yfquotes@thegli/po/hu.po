@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2024-09-12 23:49+0200\n"
-"PO-Revision-Date: 2024-07-26 07:12-0400\n"
+"PO-Revision-Date: 2024-10-02 15:35+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: hu\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. desklet.js:86
 msgid "No quotes data to display"
@@ -191,11 +191,11 @@ msgstr "Asztalkalmazás háttér színe"
 
 #. settings-schema.json->cornerRadius->description
 msgid "Corner radius"
-msgstr ""
+msgstr "Saroksugár"
 
 #. settings-schema.json->cornerRadius->tooltip
 msgid "The higher the value, the rounder the desklet's corners"
-msgstr ""
+msgstr "Minél nagyobb az érték, annál kerekebbek az asztalkalmazás sarkai"
 
 #. settings-schema.json->showVerticalScrollbar->description
 msgid "Show vertical scrollbar"
@@ -211,21 +211,23 @@ msgstr ""
 
 #. settings-schema.json->borderWidth->description
 msgid "Border width"
-msgstr ""
+msgstr "Szegély vastagság"
 
 #. settings-schema.json->borderWidth->tooltip
 msgid ""
 "The higher the value, the thicker the desklet's border. A value of 0 hides "
 "the border."
 msgstr ""
+"Minél nagyobb az érték, annál vastagabb az asztalkalmazás szegély. A 0 érték "
+"elrejti a szegélyt."
 
 #. settings-schema.json->borderColor->description
 msgid "Border color"
-msgstr ""
+msgstr "Szegély színe"
 
 #. settings-schema.json->borderColor->tooltip
 msgid "Desklet border color"
-msgstr ""
+msgstr "Asztalkalmazás szegély színe"
 
 #. settings-schema.json->delayMinutes->units
 msgid "minutes"
@@ -368,11 +370,11 @@ msgstr "Szimbólumok listájának megjelenítése itt, sortörésekkel elválasz
 
 #. settings-schema.json->updateDataButton->description
 msgid "Refresh quotes data"
-msgstr ""
+msgstr "Az idézetek adatainak frissítése"
 
 #. settings-schema.json->updateDataButton->tooltip
 msgid "Apply and refresh quotes"
-msgstr ""
+msgstr "Alkalmazás és frissítse az idézeteket"
 
 #. settings-schema.json->sortCriteria->options
 msgid "given order"
