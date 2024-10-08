@@ -1,0 +1,58 @@
+# German translation for bbcwx
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
+# This file is distributed under the same license as the bbcwx package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bbcwx\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-02-18 14:37-0500\n"
+"PO-Revision-Date: 2024-03-30 15:12+0100\n"
+"Last-Translator: sven <sven@liefgen.lu>\n"
+"Language-Team: German <de@li.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2016-08-01 19:04+0000\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#. metadata.json->comments
+msgid ""
+"Please consider translating the Weather desklet into your language. See the "
+"website for more information."
+msgstr ""
+
+#. metadata.json->contributors
+msgid "Chris Hastie"
+msgstr ""
+
+#. 5.4->settings-schema.json->webservice->options
+msgid "meteoblue"
+msgstr ""
+
+#. 5.4->settings-schema.json->webservice->options
+msgid "National Weather Service (USA Only)"
+msgstr ""
+
+#. 5.4->settings-schema.json->webservice->options
+msgid "Open-Meteo Non-commercial"
+msgstr ""
+
+#. 5.4->settings-schema.json->webservice->options
+msgid "World Weather Online"
+msgstr ""
+
+#. 5.4->settings-schema.json->wunderground__stationID->description
+msgid "Station ID"
+msgstr ""
+
+#. 5.4->settings-schema.json->wunderground__geocode->description
+msgid "Geocode"
+msgstr ""
+
+#. 5.4->settings-schema.json->display__meta__region->description
+msgid "Region"
+msgstr ""
