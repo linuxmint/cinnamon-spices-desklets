@@ -116,8 +116,6 @@ VaktijaDesklet.prototype = {
                 url = url + 'vaktija/v1/' + location;
             }
 
-            global.log("Fetching data from URL: " + url);
-
             let file = Gio.File.new_for_uri(url);
             file.load_contents_async(null, (obj, result) => {
                 try {
@@ -208,7 +206,6 @@ VaktijaDesklet.prototype = {
                 ${this.getTranslation("Jacija")}: ${this.lastFetchedData.vakat[5]}
             `;
 
-            global.log("Display text: " + displayText);
             this.text.set_text(displayText);
         } catch (e) {
             global.logError("Error in updateDisplay: " + e.message);
