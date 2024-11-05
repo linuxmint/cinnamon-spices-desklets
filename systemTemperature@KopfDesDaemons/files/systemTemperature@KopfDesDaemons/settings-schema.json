@@ -1,0 +1,12 @@
+{
+    "tempFilePath": {
+        "type": "entry",
+        "default": "/sys/class/thermal/thermal_zone2/temp",
+        "description": "Path to file with temperature (thermal zone)"
+    },
+    "labelText": {
+        "type": "entry",
+        "default": "CPU Temperature",
+        "description": "Text for the label"
+    }
+}
