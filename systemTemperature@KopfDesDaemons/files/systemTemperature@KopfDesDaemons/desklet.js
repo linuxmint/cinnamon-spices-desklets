@@ -18,12 +18,16 @@ TemperatureDesklet.prototype = {
 
         // Initialize settings
         this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
+        // Get settings
+        this.initialLabelText = this.settings.getValue("labelText") || "CPU temperature:";
+        this.tempFilePath = this.settings.getValue("tempFilePath") || "/sys/class/thermal/thermal_zone2/temp";
 
+        // Bind settings properties
         this.settings.bindProperty(Settings.BindingDirection.IN, "tempFilePath", "tempFilePath", this.on_settings_changed, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "labelText", "labelText", this.on_settings_changed, null);
 
         // Create label for the static text
-        this.label = new St.Label({ text: "CPU temperature:", y_align: St.Align.START });
+        this.label = new St.Label({ text: this.initialLabelText, y_align: St.Align.START });
 
         // Create label for the temperature value
         this.temperatureLabel = new St.Label({ text: "Loading...", style_class: "temperature-label" });
@@ -35,12 +39,14 @@ TemperatureDesklet.prototype = {
         this.setContent(this.box);
 
         this._timeout = null;
+
+        // Start the temperature update loop
         this.updateTemperature();
     },
 
     updateTemperature: function () {
         try {
-            let [result, out] = GLib.spawn_command_line_sync("cat /sys/class/thermal/thermal_zone2/temp");
+            let [result, out] = GLib.spawn_command_line_sync("cat " + this.tempFilePath);
 
             if (result && out !== null) {
                 // Convert temperature from millidegree Celsius to degree Celsius

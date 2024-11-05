@@ -3,5 +3,5 @@
     "name": "System Temperature",
     "description": "Displays the system temperature",
     "version": "1.0",
-    "max-instances": 1
+    "max-instances": "10"
 }
