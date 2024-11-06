@@ -6,7 +6,7 @@
     "tempFilePath": {
         "type": "entry",
         "default": "/sys/class/thermal/thermal_zone2/temp",
-        "description": "Path to file with temperature value(thermal zone)"
+        "description": "Path to file with temperature value (thermal zone)"
     },
     "head1": {
         "type": "header",

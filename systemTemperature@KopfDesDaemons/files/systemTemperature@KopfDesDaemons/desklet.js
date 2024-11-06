@@ -52,6 +52,9 @@ TemperatureDesklet.prototype = {
                 // Convert temperature from millidegree Celsius to degree Celsius
                 let temperature = parseFloat(out.toString().trim()) / 1000.0;
                 this.temperatureLabel.set_text(temperature.toFixed(1) + "°C");
+
+                // Set the color based on the temperature
+                this.updateLabelColor(temperature);
             } else {
                 this.temperatureLabel.set_text("Error");
                 global.logError("Error: Could not retrieve CPU temperature.");
@@ -65,6 +68,23 @@ TemperatureDesklet.prototype = {
             Mainloop.source_remove(this._timeout);
         }
         this._timeout = Mainloop.timeout_add_seconds(2, Lang.bind(this, this.updateTemperature));
+    },
+
+    updateLabelColor: function (temperature) {
+        // Interpolate color from green (low) to red (high)
+        let minTemp = 20;  // Minimum temperature (green)
+        let maxTemp = 90;  // Maximum temperature (red)
+
+        // Clamp the temperature between the min and max values
+        temperature = Math.max(minTemp, Math.min(maxTemp, temperature));
+
+        // Calculate the red and green values
+        let green = Math.max(0, 255 - Math.floor((temperature - minTemp) / (maxTemp - minTemp) * 255));
+        let red = Math.max(0, Math.floor((temperature - minTemp) / (maxTemp - minTemp) * 255));
+
+        // Set the color of the label
+        let color = `rgb(${red}, ${green}, 0)`;
+        this.temperatureLabel.set_style(`color: ${color};`);
     },
 
     on_settings_changed: function () {
