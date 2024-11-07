@@ -26,19 +26,30 @@ TemperatureDesklet.prototype = {
 
         // Initialize settings
         this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
+
         // Get settings
         this.initialLabelText = this.settings.getValue("labelText") || "CPU temperature:";
         this.tempFilePath = this.settings.getValue("tempFilePath") || "/sys/class/thermal/thermal_zone2/temp";
+        this.fontSizeLabel = this.settings.getValue("fontSizeLabel") || 12;
+        this.fontSizeTemperature = this.settings.getValue("fontSizeTemperature") || 20;
+        this.dynamicColorEnabled = this.settings.getValue("dynamicColorEnabled") || true;
+        this.temperatureUnit = this.settings.getValue("temperatureUnit") || "C";
 
         // Bind settings properties
         this.settings.bindProperty(Settings.BindingDirection.IN, "tempFilePath", "tempFilePath", this.on_settings_changed, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "labelText", "labelText", this.on_settings_changed, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "fontSizeLabel", "fontSizeLabel", this.on_settings_changed, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "fontSizeTemperature", "fontSizeTemperature", this.on_settings_changed, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "dynamicColorEnabled", "dynamicColorEnabled", this.on_settings_changed, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "temperatureUnit", "temperatureUnit", this.on_settings_changed, null);
 
         // Create label for the static text
-        this.label = new St.Label({ text: this.initialLabelText, y_align: St.Align.START });
+        this.label = new St.Label({ text: this.initialLabelText, y_align: St.Align.START, style_class: "label-text" });
+        this.label.set_style(`font-size: ${this.fontSizeLabel}px;`);
 
         // Create label for the temperature value
         this.temperatureLabel = new St.Label({ text: "Loading...", style_class: "temperature-label" });
+        this.temperatureLabel.set_style(`font-size: ${this.fontSizeTemperature}px;`);
 
         // Set up the layout
         this.box = new St.BoxLayout({ vertical: true });
@@ -59,10 +70,22 @@ TemperatureDesklet.prototype = {
             if (result && out !== null) {
                 // Convert temperature from millidegree Celsius to degree Celsius
                 let temperature = parseFloat(out.toString().trim()) / 1000.0;
-                this.temperatureLabel.set_text(temperature.toFixed(1) + "°C");
 
-                // Set the color based on the temperature
-                this.updateLabelColor(temperature);
+                // Convert to Fahrenheit if needed
+                if (this.temperatureUnit === "F") {
+                    temperature = (temperature * 9 / 5) + 32;
+                }
+
+                // Update temperature text with the chosen unit
+                this.temperatureLabel.set_text(temperature.toFixed(1) + "°" + this.temperatureUnit);
+
+                // Set the color based on the temperature if dynamic color is enabled
+                if (this.dynamicColorEnabled) {
+                    this.updateLabelColor(temperature);
+                } else {
+                    // Set default color if dynamic color is disabled
+                    this.temperatureLabel.set_style(`color: #ffffff; font-size: ${this.fontSizeTemperature}px;`);
+                }
             } else {
                 this.temperatureLabel.set_text("Error");
                 global.logError("Error: Could not retrieve CPU temperature.");
@@ -79,26 +102,41 @@ TemperatureDesklet.prototype = {
     },
 
     updateLabelColor: function (temperature) {
-        // Interpolate color from green (low) to red (high)
-        let minTemp = 20;  // Minimum temperature (green)
-        let maxTemp = 90;  // Maximum temperature (red)
+        // Grenzwerte für die Farbänderung je nach Temperatureinheit
+        let minTemp, maxTemp;
 
-        // Clamp the temperature between the min and max values
+        if (this.temperatureUnit === "F") {
+            // Konvertiere 20°C und 90°C zu Fahrenheit
+            minTemp = (20 * 9 / 5) + 32;  // Ergibt 68°F
+            maxTemp = (90 * 9 / 5) + 32;  // Ergibt 194°F
+        } else {
+            // Standard Celsius-Grenzwerte
+            minTemp = 20;
+            maxTemp = 90;
+        }
+
+        // Temperatur auf minTemp und maxTemp beschränken
         temperature = Math.max(minTemp, Math.min(maxTemp, temperature));
 
-        // Calculate the red and green values
+        // Berechne Rot- und Grünwerte für die Farbinterpolation
         let green = Math.max(0, 255 - Math.floor((temperature - minTemp) / (maxTemp - minTemp) * 255));
         let red = Math.max(0, Math.floor((temperature - minTemp) / (maxTemp - minTemp) * 255));
 
-        // Set the color of the label
+        // Setze die Farbe des Labels
         let color = `rgb(${red}, ${green}, 0)`;
-        this.temperatureLabel.set_style(`color: ${color};`);
+        this.temperatureLabel.set_style(`color: ${color}; font-size: ${this.fontSizeTemperature}px;`);
     },
 
+
     on_settings_changed: function () {
-        // Update the label text when the settings change
+        // Update the label text and styles when the settings change
         if (this.label && this.labelText) {
             this.label.set_text(this.labelText);
+            this.label.set_style(`font-size: ${this.fontSizeLabel}px;`);
+        }
+
+        if (this.temperatureLabel) {
+            this.temperatureLabel.set_style(`font-size: ${this.fontSizeTemperature}px;`);
         }
     },
 

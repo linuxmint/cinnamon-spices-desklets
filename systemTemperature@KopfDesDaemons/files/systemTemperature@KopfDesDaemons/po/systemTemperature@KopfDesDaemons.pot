@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: systemTemperature@KopfDesDaemons 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-11-06 19:20+0100\n"
+"POT-Creation-Date: 2024-11-07 21:04+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -39,4 +39,16 @@ msgstr ""
 
 #. settings-schema.json->labelText->description
 msgid "Text for the label"
+msgstr ""
+
+#. settings-schema.json->fontSizeLabel->description
+msgid "Font size for the label text"
+msgstr ""
+
+#. settings-schema.json->fontSizeTemperature->description
+msgid "Font size for the temperature display"
+msgstr ""
+
+#. settings-schema.json->dynamicColorEnabled->description
+msgid "Enable dynamic color based on temperature"
 msgstr ""
