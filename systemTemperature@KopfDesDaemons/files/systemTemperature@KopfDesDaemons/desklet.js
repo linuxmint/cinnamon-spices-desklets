@@ -4,6 +4,15 @@ const St = imports.gi.St;
 const Mainloop = imports.mainloop;
 const GLib = imports.gi.GLib;
 const Settings = imports.ui.settings;
+const Gettext = imports.gettext;
+
+const UUID = "systemTemperature@KopfDesDaemons";
+
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale")
+
+function _(str) {
+    return Gettext.dgettext(UUID, str);
+}
 
 function TemperatureDesklet(metadata, deskletId) {
     this._init(metadata, deskletId);
@@ -13,7 +22,6 @@ TemperatureDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
 
     _init: function (metadata, deskletId) {
-        global.log(`TemperatureDesklet: _init(${metadata}, ${deskletId})`);
         Desklet.Desklet.prototype._init.call(this, metadata, deskletId);
 
         // Initialize settings

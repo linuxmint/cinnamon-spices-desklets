@@ -1,0 +1,43 @@
+# SYSTEM TEMPERATURE
+# This file is put in the public domain.
+# KopfDesDaemons, 2024
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: systemTemperature@KopfDesDaemons 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-11-06 18:25+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. metadata.json->name
+msgid "System Temperature"
+msgstr "Systemtemperatur"
+
+#. metadata.json->description
+msgid "Displays the temperature of a thermal zone in the system."
+msgstr "Zeigt die Temperatur einer Thermal-Zone im System an."
+
+#. settings-schema.json->head0->description
+msgid "General"
+msgstr "Allgemein"
+
+#. settings-schema.json->tempFilePath->description
+msgid "Path to file with temperature value (thermal zone)"
+msgstr "Pfad zu der Datei mit dem Temperaturwert (Thermal-Zone)"
+
+#. settings-schema.json->head1->description
+msgid "Style"
+msgstr "Stil"
+
+#. settings-schema.json->labelText->description
+msgid "Text for the label"
+msgstr "Text für das Label"

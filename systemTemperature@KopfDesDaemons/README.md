@@ -26,8 +26,17 @@ This desklet displays the temperature of a specific thermal zone on your system.
 
 ## Development
 
+Importent commands for the desklet development:
+
 Open desklets error log:
 
 ```bash
  tail -f ~/.xsession-errors
+```
+
+Install translation:
+
+```bash
+cd ~/.local/share/cinnamon/desklets/devtest-systemTemperature@KopfDesDaemons
+cinnamon-json-makepot -i
 ```
