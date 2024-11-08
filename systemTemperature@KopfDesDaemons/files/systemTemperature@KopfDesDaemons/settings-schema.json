@@ -53,6 +53,6 @@
     "dynamicColorEnabled": {
         "type": "switch",
         "default": true,
-        "description": "Enable dynamic color based on temperature"
+        "description": "Dynamic color based on temperature"
     }
 }
