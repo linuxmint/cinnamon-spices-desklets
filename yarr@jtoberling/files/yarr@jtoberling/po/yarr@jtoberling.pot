@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
-# This file is put in the public domain.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: yarr@jtoberling 1.2.1\n"
-"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
-"issues\n"
-"POT-Creation-Date: 2024-06-30 11:08-0400\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-11 12:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,27 +17,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:314
+#: desklet.js:318
 msgid "Enable refresh"
 msgstr ""
 
-#: desklet.js:318 desklet.js:356
+#: desklet.js:322 desklet.js:360
 msgid "Disable refresh"
 msgstr ""
 
-#: desklet.js:327
+#: desklet.js:331
 msgid "Yarr"
 msgstr ""
 
-#: desklet.js:341
+#: desklet.js:345
 msgid "Loading: feeds ..."
 msgstr ""
 
-#: desklet.js:624
+#: desklet.js:628
 msgid "Updated"
 msgstr ""
 
-#: desklet.js:753
+#: desklet.js:770
 #, javascript-format
 msgid ""
 "'%s' settings..\n"
@@ -104,6 +104,14 @@ msgstr ""
 
 #. settings-schema.json->transparency->tooltip
 msgid "The higher the value, the more solid the desklet background."
+msgstr ""
+
+#. settings-schema.json->alternateRowTransparency->description
+msgid "Dim of every second rows"
+msgstr ""
+
+#. settings-schema.json->alternateRowTransparency->tooltip
+msgid "The higher the value, more dim on alternate row backgrounds."
 msgstr ""
 
 #. settings-schema.json->refreshInterval-spinner->units
@@ -214,6 +222,14 @@ msgstr ""
 msgid "Enable EXPERIMENTAL AI summary by ChatGPT"
 msgstr ""
 
+#. settings-schema.json->ai_url->description
+msgid "URL of Completion Api"
+msgstr ""
+
+#. settings-schema.json->ai_url->tooltip
+msgid "https://api.openai.com/v1/chat/completions"
+msgstr ""
+
 #. settings-schema.json->ai_dumptool->description
 msgid "Choose a tool to dumping web pages"
 msgstr ""
@@ -237,8 +253,24 @@ msgid ""
 "[ w3m, lynx, links]"
 msgstr ""
 
+#. settings-schema.json->ai_use_standard_model->description
+msgid "Use standard AI models."
+msgstr ""
+
+#. settings-schema.json->ai_use_standard_model->tooltip
+msgid "Set to custom to type your model name"
+msgstr ""
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Use standard"
+msgstr ""
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Use custom"
+msgstr ""
+
 #. settings-schema.json->ai_model->description
-msgid "ChatGPT model to use"
+msgid "Standard model to use"
 msgstr ""
 
 #. settings-schema.json->ai_model->options
@@ -250,11 +282,28 @@ msgid "gpt-4"
 msgstr ""
 
 #. settings-schema.json->ai_model->options
+msgid "gpt-4o"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4o-mini"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
 msgid "gpt-3.5-turbo"
 msgstr ""
 
 #. settings-schema.json->ai_model->options
 msgid "gpt-3.5-turbo-16k"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+#. settings-schema.json->ai_custom_model->tooltip
+msgid "deepseek-coder"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "deepseek-coder-v2:latest"
 msgstr ""
 
 #. settings-schema.json->ai_model->tooltip
@@ -263,6 +312,10 @@ msgid ""
 "Some require premium class subscription.\n"
 "A cheaper can work also well...\n"
 "Default: gpt-3.5-turbo"
+msgstr ""
+
+#. settings-schema.json->ai_custom_model->description
+msgid "Provide model name to use"
 msgstr ""
 
 #. settings-schema.json->ai_systemprompt->description
@@ -286,9 +339,7 @@ msgid "Example Prompt2: Hungarian limerick: 'Foglald össze limerickben.'"
 msgstr ""
 
 #. settings-schema.json->ai_example3->description
-msgid ""
-"Example Prompt3: The point is in the haiku. '俳句のエッセンス      日本語で"
-"は'"
+msgid "Example Prompt3: The point is in the haiku. '俳句のエッセンス      日本語では'"
 msgstr ""
 
 #. settings-schema.json->ai_example4->description
@@ -297,8 +348,7 @@ msgstr ""
 
 #. settings-schema.json->ai_example5->description
 msgid ""
-"Example Prompt5: 'Summarize in 4-8 short bullet points, separtate lines, "
-"English language.\n"
+"Example Prompt5: 'Summarize in 4-8 short bullet points, separtate lines, English language.\n"
 "Omit other references and external links from the summary'"
 msgstr ""
 
@@ -308,8 +358,8 @@ msgstr ""
 
 #. settings-schema.json->ai_systempromptexamples->description
 msgid ""
-"Here are some examples for the AI system prompt. You can rewrite them as you "
-"like."
+"Here are some examples for the AI system prompt. You can rewrite them as you"
+" like."
 msgstr ""
 
 #. settings-schema.json->refreshsettingsbutton->description
