@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: yarr@jtoberling 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-06-30 11:08-0400\n"
+"POT-Creation-Date: 2024-11-11 09:04-0500\n"
 "PO-Revision-Date: 2024-07-27 03:17+0200\n"
 "Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
 "Language-Team: \n"
@@ -18,29 +18,29 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#: desklet.js:314
+#. desklet.js:318
 msgid "Enable refresh"
 msgstr "Habilitar actualització"
 
-#: desklet.js:318 desklet.js:356
+#. desklet.js:322 desklet.js:360
 msgid "Disable refresh"
 msgstr "Deshabilitar actualització"
 
-#: desklet.js:327
+#. desklet.js:331
 msgid "Yarr"
 msgstr "Yarr"
 
 # feed = canal d'entrada d'informació.
 # Consultar el diccionari dictionary.cambridge.org i la memòria de traducció del SoftCatalà
-#: desklet.js:341
+#. desklet.js:345
 msgid "Loading: feeds ..."
 msgstr "S'estan carregant els canals..."
 
-#: desklet.js:624
+#. desklet.js:628
 msgid "Updated"
 msgstr "Actualitzat"
 
-#: desklet.js:753
+#. desklet.js:770
 #, javascript-format
 msgid ""
 "'%s' settings..\n"
@@ -110,6 +110,15 @@ msgstr "Transparència del fons"
 
 #. settings-schema.json->transparency->tooltip
 msgid "The higher the value, the more solid the desklet background."
+msgstr "Com més alt sigui el valor, més opac serà el fons."
+
+#. settings-schema.json->alternateRowTransparency->description
+msgid "Dim of every second rows"
+msgstr ""
+
+#. settings-schema.json->alternateRowTransparency->tooltip
+#, fuzzy
+msgid "The higher the value, more dim on alternate row backgrounds."
 msgstr "Com més alt sigui el valor, més opac serà el fons."
 
 #. settings-schema.json->refreshInterval-spinner->units
@@ -224,6 +233,14 @@ msgstr "Obre la pàgina d'ús del ChatGPT"
 msgid "Enable EXPERIMENTAL AI summary by ChatGPT"
 msgstr "Activa els resums fets amb ChatGPT (experimental)"
 
+#. settings-schema.json->ai_url->description
+msgid "URL of Completion Api"
+msgstr ""
+
+#. settings-schema.json->ai_url->tooltip
+msgid "https://api.openai.com/v1/chat/completions"
+msgstr ""
+
 #. settings-schema.json->ai_dumptool->description
 msgid "Choose a tool to dumping web pages"
 msgstr "Seleccioneu un programa per a descarregar pàgines web"
@@ -251,8 +268,25 @@ msgstr ""
 "Heu d'instal·lar (amb apt) manualment algun dels programes següents: w3m, "
 "lynx, links"
 
+#. settings-schema.json->ai_use_standard_model->description
+msgid "Use standard AI models."
+msgstr ""
+
+#. settings-schema.json->ai_use_standard_model->tooltip
+msgid "Set to custom to type your model name"
+msgstr ""
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Use standard"
+msgstr ""
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Use custom"
+msgstr ""
+
 #. settings-schema.json->ai_model->description
-msgid "ChatGPT model to use"
+#, fuzzy
+msgid "Standard model to use"
 msgstr "Model de ChatGPT"
 
 #. settings-schema.json->ai_model->options
@@ -264,12 +298,31 @@ msgid "gpt-4"
 msgstr "gpt-4"
 
 #. settings-schema.json->ai_model->options
+#, fuzzy
+msgid "gpt-4o"
+msgstr "gpt-4"
+
+#. settings-schema.json->ai_model->options
+#, fuzzy
+msgid "gpt-4o-mini"
+msgstr "gpt-4"
+
+#. settings-schema.json->ai_model->options
 msgid "gpt-3.5-turbo"
 msgstr "gpt-3.5-turbo"
 
 #. settings-schema.json->ai_model->options
 msgid "gpt-3.5-turbo-16k"
 msgstr "gpt-3.5-turbo-16k"
+
+#. settings-schema.json->ai_model->options
+#. settings-schema.json->ai_custom_model->tooltip
+msgid "deepseek-coder"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "deepseek-coder-v2:latest"
+msgstr ""
 
 #. settings-schema.json->ai_model->tooltip
 msgid ""
@@ -282,6 +335,11 @@ msgstr ""
 "Alguns son més llestos que altres, però costen més.\n"
 "Alguns requereixen una subscripció de pagament.\n"
 "Un gratuït o barat també us pot servir"
+
+#. settings-schema.json->ai_custom_model->description
+#, fuzzy
+msgid "Provide model name to use"
+msgstr "Model de ChatGPT"
 
 #. settings-schema.json->ai_systemprompt->description
 msgid "AI system instructions"

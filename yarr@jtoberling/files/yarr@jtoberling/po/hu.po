@@ -1,13 +1,13 @@
-# SOME DESCRIPTIVE TITLE.
+# YET ANOTHER RSS READER
 # This file is put in the public domain.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# jtoberling, 2023
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yarr@jtoberling 1.2.2\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-06-30 11:08-0400\n"
+"POT-Creation-Date: 2024-11-11 09:04-0500\n"
 "PO-Revision-Date: 2024-07-26 07:12-0400\n"
 "Last-Translator: Janos Toberling <jtoberling@gmail.com>\n"
 "Language-Team: \n"
@@ -18,27 +18,27 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: desklet.js:314
+#. desklet.js:318
 msgid "Enable refresh"
 msgstr "Frissítés engedélyezése"
 
-#: desklet.js:318 desklet.js:356
+#. desklet.js:322 desklet.js:360
 msgid "Disable refresh"
 msgstr "Frissítés letiltása"
 
-#: desklet.js:327
+#. desklet.js:331
 msgid "Yarr"
 msgstr "Yarr"
 
-#: desklet.js:341
+#. desklet.js:345
 msgid "Loading: feeds ..."
 msgstr "Betöltés: hírforrás ..."
 
-#: desklet.js:624
+#. desklet.js:628
 msgid "Updated"
 msgstr "Frissítve"
 
-#: desklet.js:753
+#. desklet.js:770
 #, javascript-format
 msgid ""
 "'%s' settings..\n"
@@ -107,6 +107,16 @@ msgstr "Háttér áttetszősége"
 
 #. settings-schema.json->transparency->tooltip
 msgid "The higher the value, the more solid the desklet background."
+msgstr ""
+"Minél magasabb az érték, annál szolidabb az asztali alkalmazás háttere."
+
+#. settings-schema.json->alternateRowTransparency->description
+msgid "Dim of every second rows"
+msgstr ""
+
+#. settings-schema.json->alternateRowTransparency->tooltip
+#, fuzzy
+msgid "The higher the value, more dim on alternate row backgrounds."
 msgstr ""
 "Minél magasabb az érték, annál szolidabb az asztali alkalmazás háttere."
 
@@ -222,6 +232,14 @@ msgstr "Nyissa meg a ChaptGPT használati oldalát"
 msgid "Enable EXPERIMENTAL AI summary by ChatGPT"
 msgstr "A ChatGPT KÍSÉRLETI MI-összefoglalójának engedélyezése"
 
+#. settings-schema.json->ai_url->description
+msgid "URL of Completion Api"
+msgstr ""
+
+#. settings-schema.json->ai_url->tooltip
+msgid "https://api.openai.com/v1/chat/completions"
+msgstr ""
+
 #. settings-schema.json->ai_dumptool->description
 msgid "Choose a tool to dumping web pages"
 msgstr "Válasszon egy eszközt a weboldalak kiíratásához"
@@ -248,8 +266,25 @@ msgstr ""
 "A következők egyikét manuálisan kell telepítenie (apt install ..):\n"
 "[ w3m, lynx, links]"
 
+#. settings-schema.json->ai_use_standard_model->description
+msgid "Use standard AI models."
+msgstr ""
+
+#. settings-schema.json->ai_use_standard_model->tooltip
+msgid "Set to custom to type your model name"
+msgstr ""
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Use standard"
+msgstr ""
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Use custom"
+msgstr ""
+
 #. settings-schema.json->ai_model->description
-msgid "ChatGPT model to use"
+#, fuzzy
+msgid "Standard model to use"
 msgstr "Használandó ChatGPT-modell"
 
 #. settings-schema.json->ai_model->options
@@ -261,12 +296,31 @@ msgid "gpt-4"
 msgstr "gpt-4"
 
 #. settings-schema.json->ai_model->options
+#, fuzzy
+msgid "gpt-4o"
+msgstr "gpt-4"
+
+#. settings-schema.json->ai_model->options
+#, fuzzy
+msgid "gpt-4o-mini"
+msgstr "gpt-4"
+
+#. settings-schema.json->ai_model->options
 msgid "gpt-3.5-turbo"
 msgstr "gpt-3.5-turbo"
 
 #. settings-schema.json->ai_model->options
 msgid "gpt-3.5-turbo-16k"
 msgstr "gpt-3.5-turbo-16k"
+
+#. settings-schema.json->ai_model->options
+#. settings-schema.json->ai_custom_model->tooltip
+msgid "deepseek-coder"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "deepseek-coder-v2:latest"
+msgstr ""
 
 #. settings-schema.json->ai_model->tooltip
 msgid ""
@@ -279,6 +333,11 @@ msgstr ""
 "Némelyikhez prémium osztályú előfizetés szükséges.\n"
 "Egy olcsóbb is jól működhet...\n"
 "Alapértelmezett: gpt-3.5-turbo"
+
+#. settings-schema.json->ai_custom_model->description
+#, fuzzy
+msgid "Provide model name to use"
+msgstr "Használandó ChatGPT-modell"
 
 #. settings-schema.json->ai_systemprompt->description
 msgid "AI system instructions"

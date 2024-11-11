@@ -1,43 +1,43 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# YET ANOTHER RSS READER
+# This file is put in the public domain.
+# jtoberling, 2023
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-11 12:25+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Project-Id-Version: yarr@jtoberling 1.2.4\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-11-11 09:04-0500\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:318
+#. desklet.js:318
 msgid "Enable refresh"
 msgstr ""
 
-#: desklet.js:322 desklet.js:360
+#. desklet.js:322 desklet.js:360
 msgid "Disable refresh"
 msgstr ""
 
-#: desklet.js:331
+#. desklet.js:331
 msgid "Yarr"
 msgstr ""
 
-#: desklet.js:345
+#. desklet.js:345
 msgid "Loading: feeds ..."
 msgstr ""
 
-#: desklet.js:628
+#. desklet.js:628
 msgid "Updated"
 msgstr ""
 
-#: desklet.js:770
+#. desklet.js:770
 #, javascript-format
 msgid ""
 "'%s' settings..\n"
@@ -339,7 +339,9 @@ msgid "Example Prompt2: Hungarian limerick: 'Foglald össze limerickben.'"
 msgstr ""
 
 #. settings-schema.json->ai_example3->description
-msgid "Example Prompt3: The point is in the haiku. '俳句のエッセンス      日本語では'"
+msgid ""
+"Example Prompt3: The point is in the haiku. '俳句のエッセンス      日本語で"
+"は'"
 msgstr ""
 
 #. settings-schema.json->ai_example4->description
@@ -348,7 +350,8 @@ msgstr ""
 
 #. settings-schema.json->ai_example5->description
 msgid ""
-"Example Prompt5: 'Summarize in 4-8 short bullet points, separtate lines, English language.\n"
+"Example Prompt5: 'Summarize in 4-8 short bullet points, separtate lines, "
+"English language.\n"
 "Omit other references and external links from the summary'"
 msgstr ""
 
@@ -358,8 +361,8 @@ msgstr ""
 
 #. settings-schema.json->ai_systempromptexamples->description
 msgid ""
-"Here are some examples for the AI system prompt. You can rewrite them as you"
-" like."
+"Here are some examples for the AI system prompt. You can rewrite them as you "
+"like."
 msgstr ""
 
 #. settings-schema.json->refreshsettingsbutton->description

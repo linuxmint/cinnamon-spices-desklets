@@ -1,12 +1,13 @@
-# SOME DESCRIPTIVE TITLE.
+# YET ANOTHER RSS READER
 # This file is put in the public domain.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# jtoberling, 2023
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yarr@jtoberling 1.2.1\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-11 12:25+0200\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-11-11 09:04-0500\n"
 "PO-Revision-Date: 2024-11-11 12:58+0200\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: \n"
@@ -17,27 +18,27 @@ msgstr ""
 "X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: desklet.js:318
+#. desklet.js:318
 msgid "Enable refresh"
 msgstr "Päivitys päälle"
 
-#: desklet.js:322 desklet.js:360
+#. desklet.js:322 desklet.js:360
 msgid "Disable refresh"
 msgstr "Päivitys pois"
 
-#: desklet.js:331
+#. desklet.js:331
 msgid "Yarr"
 msgstr "Yarr"
 
-#: desklet.js:345
+#. desklet.js:345
 msgid "Loading: feeds ..."
 msgstr "Ladataan: syötteitä ..."
 
-#: desklet.js:628
+#. desklet.js:628
 msgid "Updated"
 msgstr "Päivitetty"
 
-#: desklet.js:770
+#. desklet.js:770
 #, javascript-format
 msgid ""
 "'%s' settings..\n"
@@ -292,12 +293,10 @@ msgid "gpt-4"
 msgstr "gpt-4"
 
 #. settings-schema.json->ai_model->options
-#| msgid "gpt-4"
 msgid "gpt-4o"
 msgstr "gpt-4o"
 
 #. settings-schema.json->ai_model->options
-#| msgid "gpt-4"
 msgid "gpt-4o-mini"
 msgstr "gpt-4o-mini"
 
