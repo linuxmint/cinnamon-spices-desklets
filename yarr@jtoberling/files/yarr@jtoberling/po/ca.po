@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2024-11-11 09:04-0500\n"
-"PO-Revision-Date: 2024-07-27 03:17+0200\n"
+"PO-Revision-Date: 2024-11-20 03:07+0100\n"
 "Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
 "Language-Team: \n"
 "Language: ca\n"
@@ -114,12 +114,12 @@ msgstr "Com més alt sigui el valor, més opac serà el fons."
 
 #. settings-schema.json->alternateRowTransparency->description
 msgid "Dim of every second rows"
-msgstr ""
+msgstr "Enfosquiment de cada segona fila"
 
 #. settings-schema.json->alternateRowTransparency->tooltip
-#, fuzzy
 msgid "The higher the value, more dim on alternate row backgrounds."
-msgstr "Com més alt sigui el valor, més opac serà el fons."
+msgstr ""
+"Com més alt sigui el valor, més opac serà el fons a l'alternació de files."
 
 #. settings-schema.json->refreshInterval-spinner->units
 msgid "seconds"
@@ -235,11 +235,11 @@ msgstr "Activa els resums fets amb ChatGPT (experimental)"
 
 #. settings-schema.json->ai_url->description
 msgid "URL of Completion Api"
-msgstr ""
+msgstr "URL de l'API complementària"
 
 #. settings-schema.json->ai_url->tooltip
 msgid "https://api.openai.com/v1/chat/completions"
-msgstr ""
+msgstr "https://api.openai.com/v1/chat/completions"
 
 #. settings-schema.json->ai_dumptool->description
 msgid "Choose a tool to dumping web pages"
@@ -270,24 +270,23 @@ msgstr ""
 
 #. settings-schema.json->ai_use_standard_model->description
 msgid "Use standard AI models."
-msgstr ""
+msgstr "Utilitzar models d'IA estàndard"
 
 #. settings-schema.json->ai_use_standard_model->tooltip
 msgid "Set to custom to type your model name"
-msgstr ""
+msgstr "Seleccioneu personalitzat per a escriure el nom del vostre model"
 
 #. settings-schema.json->ai_use_standard_model->options
 msgid "Use standard"
-msgstr ""
+msgstr "Utilitzar estàndard"
 
 #. settings-schema.json->ai_use_standard_model->options
 msgid "Use custom"
-msgstr ""
+msgstr "Utilitzar personalitzat"
 
 #. settings-schema.json->ai_model->description
-#, fuzzy
 msgid "Standard model to use"
-msgstr "Model de ChatGPT"
+msgstr "Model estàndard a utilitzar"
 
 #. settings-schema.json->ai_model->options
 msgid "gpt-4-32k"
@@ -298,14 +297,12 @@ msgid "gpt-4"
 msgstr "gpt-4"
 
 #. settings-schema.json->ai_model->options
-#, fuzzy
 msgid "gpt-4o"
-msgstr "gpt-4"
+msgstr "gpt-4o"
 
 #. settings-schema.json->ai_model->options
-#, fuzzy
 msgid "gpt-4o-mini"
-msgstr "gpt-4"
+msgstr "gpt-4o-mini"
 
 #. settings-schema.json->ai_model->options
 msgid "gpt-3.5-turbo"
@@ -318,11 +315,11 @@ msgstr "gpt-3.5-turbo-16k"
 #. settings-schema.json->ai_model->options
 #. settings-schema.json->ai_custom_model->tooltip
 msgid "deepseek-coder"
-msgstr ""
+msgstr "deepseek-coder"
 
 #. settings-schema.json->ai_model->options
 msgid "deepseek-coder-v2:latest"
-msgstr ""
+msgstr "deepseek-coder-v2:latest"
 
 #. settings-schema.json->ai_model->tooltip
 msgid ""
@@ -337,9 +334,8 @@ msgstr ""
 "Un gratuït o barat també us pot servir"
 
 #. settings-schema.json->ai_custom_model->description
-#, fuzzy
 msgid "Provide model name to use"
-msgstr "Model de ChatGPT"
+msgstr "Proveïu el nom del model a utilitzar"
 
 #. settings-schema.json->ai_systemprompt->description
 msgid "AI system instructions"
