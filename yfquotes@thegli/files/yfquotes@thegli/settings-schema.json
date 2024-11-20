@@ -319,7 +319,7 @@
     "quoteSymbols": {
         "type": "textview",
         "height": 400,
-        "default": "MMM\nAMZN\nAXP\nAMGN\nAAPL\nBA\nCAT\nCVX\nCSCO\nKO\nDOW\nGS\nHD\nHON\nINTC\nIBM\nJNJ\nJPM\nMCD\nMRK\nMSFT\nNKE\nPG\nCRM\nTRV\nUNH\nVZ\nV\nWMT\nDIS",
+        "default": "MMM\nAMZN\nAXP\nAMGN\nAAPL\nBA\nCAT\nCVX\nCSCO\nKO\nGS\nHD\nHON\nIBM\nJNJ\nJPM\nMCD\nMRK\nMSFT\nNKE\nNVDA\nPG\nCRM\nSHW\nTRV\nUNH\nVZ\nV\nWMT\nDIS",
         "description": "Quote symbols",
         "tooltip": "List of quote symbols, separated with line-breaks"
     },

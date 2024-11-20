@@ -5,10 +5,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: yfquotes@thegli 0.15.1\n"
+"Project-Id-Version: yfquotes@thegli 0.15.2\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-09-12 23:49+0200\n"
+"POT-Creation-Date: 2024-11-20 20:33+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -21,38 +21,42 @@ msgstr ""
 msgid "No quotes data to display"
 msgstr ""
 
-#. desklet.js:415
+#. desklet.js:427
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 
-#. desklet.js:437 desklet.js:456
+#. desklet.js:450 desklet.js:473
+msgid "Authorization parameters have expired"
+msgstr ""
+
+#. desklet.js:453 desklet.js:476
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr ""
 
-#. desklet.js:815
+#. desklet.js:835
 msgid "Updated at "
 msgstr ""
 
-#. desklet.js:848
+#. desklet.js:868
 msgid "Error: "
 msgstr ""
 
-#. desklet.js:963
+#. desklet.js:983
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
 msgstr ""
 
-#. desklet.js:989
+#. desklet.js:1009
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 
-#. desklet.js:994
+#. desklet.js:1014
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 
-#. desklet.js:1017
+#. desklet.js:1037
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "

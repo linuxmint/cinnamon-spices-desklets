@@ -1,3 +1,16 @@
+### 0.15.2 - November 20, 2024
+
+Features:
+
+- update Hungarian translation (courtesy of [bossbob88](https://github.com/bossbob88))
+- update Finnish translation (courtesy of [MahtiAnkka](https://github.com/MahtiAnkka))
+
+Bugfixes:
+
+- correct documentation for automatic refresh after import
+- detect and replace expired authorization parameters
+- update DOW 30 component symbols
+
 ### 0.15.1 - September 12, 2024
 
 Features:

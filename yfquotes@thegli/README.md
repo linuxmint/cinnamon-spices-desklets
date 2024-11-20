@@ -23,7 +23,7 @@ Either follow the installation instructions on [Cinnamon spices](https://cinnamo
 
 Check out the desklet configuration settings, and choose the data refresh period, the list of quotes to show, and quote details to display. The default list contains the Dow 30 companies.
 
-> Note that **any changes in the quotes list are not applied immediately** (anymore). This is true for manual changes as well as for import settings from a file.  
+> Note that **manual changes in the quotes list are not immediately applied** (anymore).  
 Press the "Refresh quotes data" button to execute an immediate data update, or wait until the next automatic refresh is triggered (depending on the configured interval).
 
 ### Individual Quote Design

@@ -183,6 +183,18 @@ YahooFinanceQuoteUtils.prototype = {
         return false;
     },
 
+    isUnauthorizedStatus: function(soupMessage) {
+        if (soupMessage) {
+            if (IS_SOUP_2) {
+                return soupMessage.status_code === Soup.KnownStatusCode.UNAUTHORIZED;
+            } else {
+                // get_status() throws exception on any value missing in enum SoupStatus, so better check reason_phrase
+                return soupMessage.get_reason_phrase() === "Unauthorized";
+            }
+        }
+        return false;
+    },
+
     getMessageStatusInfo: function(soupMessage) {
         if (soupMessage) {
             if (IS_SOUP_2) {
@@ -432,6 +444,10 @@ YahooFinanceQuoteReader.prototype = {
                     } catch (e) {
                         logError(e);
                     }
+                } else if (_that.quoteUtils.isUnauthorizedStatus(message)) {
+                    logDebug("Current authorization parameters have expired. Discarding them.");
+                    _crumb = null;
+                    callback.call(_that, _that.buildErrorResponse(_("Authorization parameters have expired")), true);
                 } else {
                     logWarning("Error retrieving url " + requestUrl + ". Status: " + _that.quoteUtils.getMessageStatusInfo(message));
                     callback.call(_that, _that.buildErrorResponse(_("Yahoo Finance service not available!\\nStatus: ") + _that.quoteUtils.getMessageStatusInfo(message)));
@@ -451,6 +467,10 @@ YahooFinanceQuoteReader.prototype = {
                     } catch (e) {
                         logError(e);
                     }
+                } else if (_that.quoteUtils.isUnauthorizedStatus(message)) {
+                    logDebug("Current authorization parameters have expired. Discarding them.");
+                    _crumb = null;
+                    callback.call(_that, _that.buildErrorResponse(_("Authorization parameters have expired")), true);
                 } else {
                     logWarning("Error retrieving url " + requestUrl + ". Status: " + _that.quoteUtils.getMessageStatusInfo(message));
                     callback.call(_that, _that.buildErrorResponse(_("Yahoo Finance service not available!\\nStatus: ") + _that.quoteUtils.getMessageStatusInfo(message)));
@@ -922,7 +942,7 @@ StockQuoteDesklet.prototype = {
         logDebug("fetchFinanceDataAndRender. quotes=" + quoteSymbolsArg + ", custom User-Agent: " + customUserAgent);
         const _that = this;
 
-        this.quoteReader.getFinanceData(quoteSymbolsArg, customUserAgent, function(response) {
+        this.quoteReader.getFinanceData(quoteSymbolsArg, customUserAgent, function(response, instantTimer = false) {
             logDebug("YF query response: " + response);
             let parsedResponse = JSON.parse(response);
             _lastResponses.set(_that.id, {
@@ -931,7 +951,7 @@ StockQuoteDesklet.prototype = {
                 responseError: parsedResponse.quoteResponse.error,
                 lastUpdated: new Date()
             });
-            _that.setUpdateTimer();
+            _that.setUpdateTimer(instantTimer);
             _that.render();
         });
     },
@@ -1032,10 +1052,15 @@ StockQuoteDesklet.prototype = {
         this.render();
     },
 
-    setUpdateTimer: function() {
+    setUpdateTimer: function(instantTimer = false) {
         logDebug("setUpdateTimer");
         if (this.updateInProgress) {
-            this.updateId = Mainloop.timeout_add(this.delayMinutes * 60000, Lang.bind(this, this.onQuotesListChanged));
+            let delaySeconds = this.delayMinutes * 60;
+            if (instantTimer) {
+                logDebug("add instant timer");
+                delaySeconds = 1;
+            }
+            this.updateId = Mainloop.timeout_add_seconds(delaySeconds, Lang.bind(this, this.onQuotesListChanged));
             logDebug("new updateId " + this.updateId);
             this.updateInProgress = false;
         }
