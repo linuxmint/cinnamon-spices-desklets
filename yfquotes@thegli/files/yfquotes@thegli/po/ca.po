@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: yfquotes@thegli 0.13.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-09-12 23:49+0200\n"
+"POT-Creation-Date: 2024-11-20 20:33+0100\n"
 "PO-Revision-Date: 2024-09-10 20:15+0200\n"
 "Last-Translator: Odyssey <odysseyhyd@gmail.com>\n"
 "Language-Team: \n"
@@ -22,25 +22,29 @@ msgstr ""
 msgid "No quotes data to display"
 msgstr "No hi ha dades de cotitzacions per mostrar"
 
-#. desklet.js:415
+#. desklet.js:427
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 "Llista de cotitzacions buida. Obriu la configuració i afegiu-hi alguns "
 "símbols."
 
-#. desklet.js:437 desklet.js:456
+#. desklet.js:450 desklet.js:473
+msgid "Authorization parameters have expired"
+msgstr ""
+
+#. desklet.js:453 desklet.js:476
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "El servei de Yahoo finances no està disponible!\\nEstat: "
 
-#. desklet.js:815
+#. desklet.js:835
 msgid "Updated at "
 msgstr "Actualitzat a les "
 
-#. desklet.js:848
+#. desklet.js:868
 msgid "Error: "
 msgstr "Error: "
 
-#. desklet.js:963
+#. desklet.js:983
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -48,20 +52,20 @@ msgstr ""
 "Error en recuperar el paràmetre d'autorització. No s'han pogut obtenir les "
 "dades de les cotitzacions.\\nEstat: "
 
-#. desklet.js:989
+#. desklet.js:1009
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "No s'ha pogut processar el consentiment! No s'han pogut obtenir les dades de "
 "les cotitzacions.\\nEstat: "
 
-#. desklet.js:994
+#. desklet.js:1014
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "No s'ha completat el processament del consentiment. No s'han pogut obtenir "
 "les dades de les cotitzacions.\\nEstat: "
 
-#. desklet.js:1017
+#. desklet.js:1037
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
