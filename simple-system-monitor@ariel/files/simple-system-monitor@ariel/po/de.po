@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2024-05-07 06:24-0400\n"
-"PO-Revision-Date: 2023-09-03 14:08-0400\n"
+"PO-Revision-Date: 2024-11-20 22:10+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: 4.0/desklet.js:35 5.8/desklet.js:43
 msgid ""
@@ -29,10 +29,10 @@ msgid ""
 "and restart Cinnamon.\n"
 msgstr ""
 "Abhängigkeiten fehlen. Bitte installieren Sie\n"
-"libgtop, Network Manager und gir bindings \n"
-"\t    auf Ubuntu/LinuxMint: gir1.2-gtop-2.0, gir1.2-networkmanager-1.0 \n"
-"\t    auf Fedora: libgtop2-devel, NetworkManager-glib-devel \n"
-"\t    auf Arch: libgtop, networkmanager\n"
+"libgtop \n"
+"\t    auf Ubuntu: gir1.2-gtop-2.0 \n"
+"\t    auf Fedora: libgtop2-devel \n"
+"\t    auf Arch: libgtop \n"
 "und starten Sie Cinnamon neu.\n"
 
 #: 4.0/desklet.js:236 5.8/desklet.js:298 3.0/desklet.js:238
@@ -57,31 +57,31 @@ msgstr "Temperatur:"
 
 #: 4.0/desklet.js:241 5.8/desklet.js:333 3.0/desklet.js:243
 msgid "GPU:"
-msgstr ""
+msgstr "GPU:"
 
 #: 5.8/desklet.js:112
 msgid "No temp file detected at CPU path. Resetting to default."
-msgstr ""
+msgstr "Keine \"temp\" Datei im CPU-Pfad erkannt. Setze auf Standard zurück."
 
 #: 5.8/desklet.js:116
 msgid "Invalid CPU path detected. Resetting to default."
-msgstr ""
+msgstr "Ungültiger CPU-Pfad erkannt. Setze auf Standard zurück."
 
 #: 5.8/desklet.js:131 5.8/desklet.js:172
 msgid "error reading:"
-msgstr ""
+msgstr "Fehler beim Lesen:"
 
 #: 5.8/desklet.js:153
 msgid "No temp file detected at GPU path. Resetting to default."
-msgstr ""
+msgstr "Keine \"temp\" Datei im GPU-Pfad erkannt. Setze auf Standard zurück."
 
 #: 5.8/desklet.js:157
 msgid "Invalid GPU path detected. Resetting to default."
-msgstr ""
+msgstr "Ungültiger GPU-Pfad erkannt. Setze auf Standard zurück."
 
 #: 5.8/desklet.js:212 5.8/desklet.js:230
 msgid "Please install missing dependencies."
-msgstr ""
+msgstr "Bitte fehlende Abhängigkeiten installieren."
 
 #: 3.0/desklet.js:37
 msgid ""
@@ -109,104 +109,110 @@ msgstr "Schlichter Systemmonitor"
 
 #. 5.8->settings-schema.json->head0->description
 msgid "General Settings"
-msgstr ""
+msgstr "Allgemeine Einstellungen"
 
 #. 5.8->settings-schema.json->title_align->description
 msgid "Alignment for title strings"
-msgstr ""
+msgstr "Ausrichtung für Titeltext"
 
 #. 5.8->settings-schema.json->title_align->tooltip
 msgid "CPU, Memory, etc."
-msgstr ""
+msgstr "CPU, Speicher, etc."
 
 #. 5.8->settings-schema.json->title_align->options
 #. 5.8->settings-schema.json->value_align->options
 msgid "Left"
-msgstr ""
+msgstr "Links"
 
 #. 5.8->settings-schema.json->title_align->options
 #. 5.8->settings-schema.json->value_align->options
 msgid "Right"
-msgstr ""
+msgstr "Rechts"
 
 #. 5.8->settings-schema.json->value_align->description
 msgid "Alignment for value strings"
-msgstr ""
+msgstr "Ausrichtung Text für Werte"
 
 #. 5.8->settings-schema.json->value_align->tooltip
 msgid "GB, KB, etc."
-msgstr ""
+msgstr "GB, KB, etc."
 
 #. 5.8->settings-schema.json->temp_units->options
 msgid "°C"
-msgstr ""
+msgstr "°C"
 
 #. 5.8->settings-schema.json->temp_units->options
 msgid "°F"
-msgstr ""
+msgstr "°F"
 
 #. 5.8->settings-schema.json->temp_units->description
 msgid "Temperature units to display"
-msgstr ""
+msgstr "Anzuzeigende Temperatureinheiten"
 
 #. 5.8->settings-schema.json->font_scale_size->description
 msgid "Scale factor for font size"
-msgstr ""
+msgstr "Skalierungsfaktor für Schriftgröße"
 
 #. 5.8->settings-schema.json->font_scale_size->tooltip
 msgid ""
 "Increase or decrease this value to change the font size scale (1.2 = 120%)"
 msgstr ""
+"Erhöhe oder verringere diesen Wert, um die Schriftgröße zu ändern (1,2 = "
+"120 %)"
 
 #. 5.8->settings-schema.json->font_color->description
 msgid "Font color"
-msgstr ""
+msgstr "Schriftfarbe"
 
 #. 5.8->settings-schema.json->font_color->tooltip
 #. 5.8->settings-schema.json->background_color->tooltip
 msgid "RGB or RGBA"
-msgstr ""
+msgstr "RGB oder RGBA"
 
 #. 5.8->settings-schema.json->font_family->description
 msgid "Font family for text (blank to use default)"
-msgstr ""
+msgstr "Schriftfamilie für Text (leer, um Standard zu verwenden)"
 
 #. 5.8->settings-schema.json->font_family->tooltip
 msgid "Set a custom font family for the text (blank to use default font)"
 msgstr ""
+"Lege eine benutzerdefinierte Schriftfamilie für den Text fest (leer, um die "
+"Standardschrift zu verwenden)"
 
 #. 5.8->settings-schema.json->width->units
 msgid "px"
-msgstr ""
+msgstr "px"
 
 #. 5.8->settings-schema.json->width->description
 msgid "Fixed width for the desklet"
-msgstr ""
+msgstr "Feste Breite für das Desklet"
 
 #. 5.8->settings-schema.json->width->tooltip
 msgid ""
 "Increase or decrease this value to set the boundary width of the desklet"
 msgstr ""
+"Erhöhe oder verringere diesen Wert, um die Grenzbreite des Desklets "
+"festzulegen"
 
 #. 5.8->settings-schema.json->show_decorations->description
 msgid "Show background decorations"
-msgstr ""
+msgstr "Hintergrunddekorationen anzeigen"
 
 #. 5.8->settings-schema.json->show_decorations->tooltip
 msgid "Toggle to control whether the background is transparent"
-msgstr ""
+msgstr "Umschalten, um zu steuern, ob der Hintergrund transparent ist"
 
 #. 5.8->settings-schema.json->background_color->description
 msgid "Background color"
-msgstr ""
+msgstr "Hintergrundfarbe"
 
 #. 5.8->settings-schema.json->head1->description
 msgid "Advanced Settings"
-msgstr ""
+msgstr "Erweiterte Einstellungen"
 
 #. 5.8->settings-schema.json->customCPUPath->description
 msgid "Path to CPU temperature directory (device path)"
-msgstr ""
+msgstr "Pfad zum CPU-Temperaturverzeichnis (Gerätepfad)"
 
 #. 5.8->settings-schema.json->customCPUPath->tooltip
 msgid ""
@@ -216,18 +222,23 @@ msgid ""
 "Default:\n"
 "/sys/class/thermal/thermal_zone0"
 msgstr ""
+"Wähle einen eigenes Thermal-CPU-Object, z.B zur Überwachung eines weiteren "
+"Temperatursensors.\n"
+"\n"
+"Standard:\n"
+"/sys/class/thermal/thermal_zone0"
 
 #. 5.8->settings-schema.json->display_gpu->description
 msgid "Display GPU temperature"
-msgstr ""
+msgstr "GPU-Temperatur anzeigen"
 
 #. 5.8->settings-schema.json->display_gpu->tooltip
 msgid "Toggle to control whether the GPU temperature is displayed"
-msgstr ""
+msgstr "Umschalten, um zu steuern, ob die GPU-Temperatur angezeigt wird"
 
 #. 5.8->settings-schema.json->customGPUPath->description
 msgid "Path to GPU temperature directory (device path)"
-msgstr ""
+msgstr "Pfad zum GPU-Temperaturverzeichnis (Gerätepfad)"
 
 #. 5.8->settings-schema.json->customGPUPath->tooltip
 msgid ""
@@ -236,3 +247,7 @@ msgid ""
 "Default:\n"
 "/sys/class/thermal/thermal_zone0"
 msgstr ""
+"Wähle einen eigenes Thermal-GPU-Object, z.B. zum Überwachen einer GPU.\n"
+"\n"
+"Standard:\n"
+"/sys/class/thermal/thermal_zone0"
