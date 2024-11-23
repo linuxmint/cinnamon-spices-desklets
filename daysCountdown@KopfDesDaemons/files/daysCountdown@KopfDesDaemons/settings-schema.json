@@ -1,0 +1,16 @@
+{
+    "labelText": {
+        "type": "entry",
+        "default": "New Year Countdown",
+        "description": "Text for the label"
+    },
+    "countdownDate": {
+        "type": "datechooser",
+        "description": "Date to which the countdown counts down.",
+        "default": {
+            "d": 31,
+            "m": 12,
+            "y": 2024
+        }
+    }
+}
