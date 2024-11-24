@@ -31,6 +31,10 @@ MyDesklet.prototype = {
 
         // Get settings
         this.labelText = this.settings.getValue("labelText") || "New Year Countdown";
+        this.fontSizeLabel = this.settings.getValue("fontSizeLabel") || 12;
+        this.fontSizeCountdown = this.settings.getValue("fontSizeCountdown") || 36;
+        this.colorCountdown = this.settings.getValue("colorCountdown") || "rgb(255, 255, 255)";
+        this.colorLabel = this.settings.getValue("colorLabel") || "rgb(255, 255, 255)";
         this.countdownDate = this.settings.getValue("countdownDate") || {
             d: 31,
             m: 12,
@@ -40,11 +44,15 @@ MyDesklet.prototype = {
         // Bind settings properties
         this.settings.bindProperty(Settings.BindingDirection.IN, "labelText", "labelText", this.on_settings_changed, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "countdownDate", "countdownDate", this.on_settings_changed, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "fontSizeLabel", "fontSizeLabel", this.on_settings_changed, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "fontSizeCountdown", "fontSizeCountdown", this.on_settings_changed, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "colorLabel", "colorLabel", this.on_settings_changed, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "colorCountdown", "colorCountdown", this.on_settings_changed, null);
 
         // Set up the layout
         const box = new St.BoxLayout({ vertical: true });
-        this.textLabel = new St.Label({ text: this.labelText, style_class: "label-text" });
-        this.daysLabel = new St.Label({ text: this.getDaysString(), style_class: "days-label" });
+        this.textLabel = new St.Label({ text: this.labelText, style_class: "label-text", style: `font-size: ${this.fontSizeLabel}px; color: ${this.colorLabel};` });
+        this.daysLabel = new St.Label({ text: this.getDaysString(), style_class: "days-label", style: `font-size: ${this.fontSizeCountdown}px; color: ${this.colorCountdown};` });
         box.add_child(this.textLabel);
         box.add_child(this.daysLabel);
         this.setContent(box);
@@ -69,10 +77,12 @@ MyDesklet.prototype = {
         // Update the label text and styles when the settings change
         if (this.textLabel && this.labelText) {
             this.textLabel.set_text(this.labelText);
+            this.textLabel.set_style(`font-size: ${this.fontSizeLabel}px; color: ${this.colorLabel};`);
         }
 
         if (this.daysLabel && this.countdownDate) {
             this.daysLabel.set_text(this.getDaysString());
+            this.daysLabel.set_style(`font-size: ${this.fontSizeCountdown}px; color: ${this.colorCountdown};`);
         }
     },
 };

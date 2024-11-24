@@ -1,16 +1,50 @@
 {
+    "head0": {
+        "type": "header",
+        "description": "General"
+    },
     "labelText": {
         "type": "entry",
-        "default": "New Year Countdown",
+        "default": "New Year 2025 Countdown",
         "description": "Text for the label"
     },
     "countdownDate": {
         "type": "datechooser",
-        "description": "Date to which the countdown counts down.",
+        "description": "Date to which the countdown counts down",
         "default": {
-            "d": 31,
-            "m": 12,
-            "y": 0
+            "d": 1,
+            "m": 1,
+            "y": 2025
         }
+    },
+    "head1": {
+        "type": "header",
+        "description": "Style"
+    },
+    "fontSizeLabel": {
+        "type": "scale",
+        "default": 12,
+        "min": 8,
+        "max": 100,
+        "step": 1,
+        "description": "Font size for the label text"
+    },
+    "colorLabel": {
+        "type": "colorchooser",
+        "default": "rgb(255,255,255)",
+        "description": "Label color"
+    },
+    "fontSizeCountdown": {
+        "type": "scale",
+        "default": 35,
+        "min": 12,
+        "max": 100,
+        "step": 1,
+        "description": "Font size for the countdown text"
+    },
+    "colorCountdown": {
+        "type": "colorchooser",
+        "default": "rgb(255,255,255)",
+        "description": "Countdown color"
     }
 }

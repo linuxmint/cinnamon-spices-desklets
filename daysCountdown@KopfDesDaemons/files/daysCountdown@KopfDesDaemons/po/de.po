@@ -29,7 +29,7 @@ msgid "%f days"
 msgstr "%f Tage"
 
 #. metadata.json->description
-msgid "Countdown of the remaining days to a date."
+msgid "Countdown of the remaining days to a date"
 msgstr "Countdown der verbleibenden Tage bis zu einem Datum."
 
 #. settings-schema.json->labelText->description
