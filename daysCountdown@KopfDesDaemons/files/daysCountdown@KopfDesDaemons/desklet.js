@@ -43,19 +43,26 @@ MyDesklet.prototype = {
 
         // Set up the layout
         const box = new St.BoxLayout({ vertical: true });
-        this.textLabel = new St.Label({ text: this.labelText });
-        this.daysLabel = new St.Label({ text: this._calcDays().toString() });
+        this.textLabel = new St.Label({ text: this.labelText, style_class: "label-text" });
+        this.daysLabel = new St.Label({ text: this.getDaysString(), style_class: "days-label" });
         box.add_child(this.textLabel);
         box.add_child(this.daysLabel);
         this.setContent(box);
     },
 
-    _calcDays() {
+    calcDays() {
+        if (!this.countdownDate) return 0;
         const now = new Date();
         const then = new Date(this.countdownDate.y, this.countdownDate.m - 1, this.countdownDate.d);
         const diff = then.getTime() - now.getTime();
         const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
         return days;
+    },
+
+    getDaysString() {
+        const days = this.calcDays().toString();
+        const daysString = _("%f days");
+        return daysString.format(days);
     },
 
     on_settings_changed: function () {
@@ -65,7 +72,7 @@ MyDesklet.prototype = {
         }
 
         if (this.daysLabel && this.countdownDate) {
-            this.daysLabel.set_text(this._calcDays().toString());
+            this.daysLabel.set_text(this.getDaysString());
         }
     },
 };

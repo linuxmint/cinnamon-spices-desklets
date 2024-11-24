@@ -1,0 +1,41 @@
+# DAYS COUNTDOWN
+# This file is put in the public domain.
+# KopfDesDaemons, 2024
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: daysCountdown@KopfDesDaemons 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-11-24 00:42+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. metadata.json->name
+#. desklet.js:27
+msgid "Days Countdown"
+msgstr "Tages Countdown"
+
+#. desklet.js:64
+#, javascript-format
+msgid "%f days"
+msgstr "%f Tage"
+
+#. metadata.json->description
+msgid "Countdown of the remaining days to a date."
+msgstr "Countdown der verbleibenden Tage bis zu einem Datum."
+
+#. settings-schema.json->labelText->description
+msgid "Text for the label"
+msgstr "Text für das Label"
+
+#. settings-schema.json->countdownDate->description
+msgid "Date to which the countdown counts down."
+msgstr "Datum zu dem der Countdown herunterzählt."
