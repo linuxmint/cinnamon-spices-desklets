@@ -14,11 +14,11 @@ function _(str) {
     return Gettext.dgettext(UUID, str);
 }
 
-function TemperatureDesklet(metadata, deskletId) {
+function MyDesklet(metadata, deskletId) {
     this._init(metadata, deskletId);
 }
 
-TemperatureDesklet.prototype = {
+MyDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
 
     _init: function (metadata, deskletId) {
@@ -140,24 +140,14 @@ TemperatureDesklet.prototype = {
     },
 
     on_desklet_removed: function () {
-        // Clean up the timeout when the desklet is removed
-        if (this._timeout) {
-            Mainloop.source_remove(this._timeout);
-            this._timeout = null;
-        }
+        if (this._timeout) Mainloop.source_remove(this._timeout);
+        if (this.label) this.box.remove_child(this.label);
+        if (this.temperatureLabel) this.box.remove_child(this.temperatureLabel);
 
-        if (this.label) {
-            this.box.remove_child(this.label);
-            this.label = null;
-        }
-
-        if (this.temperatureLabel) {
-            this.box.remove_child(this.temperatureLabel);
-            this.temperatureLabel = null;
-        }
+        this.label = this.temperatureLabel = this._timeout = null;
     }
 };
 
 function main(metadata, deskletId) {
-    return new TemperatureDesklet(metadata, deskletId);
+    return new MyDesklet(metadata, deskletId);
 }
