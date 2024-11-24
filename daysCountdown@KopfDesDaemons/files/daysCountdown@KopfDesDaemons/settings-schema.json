@@ -17,6 +17,20 @@
             "y": 2025
         }
     },
+    "refreshInterval": {
+        "type": "combobox",
+        "default": "only-after-starting",
+        "options": {
+            "only after starting": "only-after-starting",
+            "every 5 minutes": "300",
+            "every 10 minutes": "600",
+            "every 15 minutes": "900",
+            "every 20 minutes": "1200",
+            "every 30 minutes": "1800",
+            "every 60 minutes": "3600"
+        },
+        "description": "Refresh interval"
+    },
     "head1": {
         "type": "header",
         "description": "Style"
@@ -31,7 +45,7 @@
     },
     "colorLabel": {
         "type": "colorchooser",
-        "default": "rgb(255,255,255)",
+        "default": "rgb(98, 160, 234)",
         "description": "Label color"
     },
     "fontSizeCountdown": {
