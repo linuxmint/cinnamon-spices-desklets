@@ -3,5 +3,5 @@
     "name": "Days Countdown",
     "description": "Countdown of the remaining days to a date.",
     "version": "1.0",
-    "max-instances": "50"
+    "max-instances": "-1"
 }
