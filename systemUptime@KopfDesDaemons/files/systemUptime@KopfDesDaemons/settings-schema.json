@@ -1,19 +1,19 @@
 {
     "head0": {
         "type": "header",
-        "description": "Stil"
+        "description": "Style"
     },
     "fontSize": {
         "type": "scale",
         "default": 20,
-        "min": 16,
+        "min": 12,
         "max": 60,
         "step": 1,
         "description": "Font size"
     },
     "colorLabel": {
         "type": "colorchooser",
-        "default": "rgb(98, 160, 234)",
+        "default": "rgb(51, 209, 122)",
         "description": "Label color"
     }
 }

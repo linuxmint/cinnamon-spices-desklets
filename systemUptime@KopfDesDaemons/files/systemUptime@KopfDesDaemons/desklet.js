@@ -17,150 +17,123 @@ function _(str) {
     return Gettext.dgettext(UUID, str);
 }
 
-function MyDesklet(metadata, deskletId) {
-    this._init(metadata, deskletId);
-}
+class MyDesklet extends Desklet.Desklet {
+    constructor(metadata, deskletId) {
+        super(metadata, deskletId);
 
-MyDesklet.prototype = {
-    __proto__: Desklet.Desklet.prototype,
-
-    _init: function (metadata, deskletId) {
-        Desklet.Desklet.prototype._init.call(this, metadata, deskletId);
-
-        this.setHeader(_("System Uptime"));
-
-        // Initialize settings
-        this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], deskletId);
-
-        // Get settings
-        this.fontSize = this.settings.getValue("fontSize") || 20;
-        this.colorLabel = this.settings.getValue("colorLabel") || "rgb(98, 160, 234)";
+        this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
 
         // Bind settings properties
-        this.settings.bindProperty(Settings.BindingDirection.IN, "fontSize", "fontSize", this.on_settings_changed, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "colorLabel", "colorLabel", this.on_settings_changed, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "fontSize", "fontSize", this.onSettingsChanged.bind(this));
+        this.settings.bindProperty(Settings.BindingDirection.IN, "colorLabel", "colorLabel", this.onSettingsChanged.bind(this));
 
-        this.setupLayout();
-
+        this.fontSize = this.settings.getValue("fontSize") || 20;
+        this.colorLabel = this.settings.getValue("colorLabel") || "rgb(51, 209, 122)";
         this._timeout = null;
 
+        this.setHeader(_("System Uptime"));
+        this.setupLayout();
         this.getStartupTime();
-
-        // Start the update loop
         this.updateUptime();
-    },
+    }
 
-    setupLayout: function () {
-        // Create label for the static text
-        this.uptimeLabel = new St.Label({ text: _("Uptime: "), y_align: St.Align.START, style_class: "label-text" });
-        this.uptimeLabel.set_style(`font-size: ${this.fontSize}px; color: ${this.colorLabel};`);
+    setupLayout() {
+        // Create labels for uptime
+        this.uptimeLabel = this.createLabel(_("Uptime:") + " ", this.colorLabel);
+        this.uptimeValue = this.createLabel("Loading...");
 
-        // Create label 
-        this.uptimeValue = new St.Label({ text: "Loading..." });
-        this.uptimeValue.set_style(`font-size: ${this.fontSize}px;`);
+        const uptimeRow = this.createRow([this.uptimeLabel, this.uptimeValue]);
 
-        // Set up the layout
-        this.uptimeRow = new St.BoxLayout();
-        this.uptimeRow.add_child(this.uptimeLabel);
-        this.uptimeRow.add_child(this.uptimeValue);
+        // Create labels for startup time
+        this.startTimeLabel = this.createLabel(_("System start time:") + " ", this.colorLabel);
+        this.startupValue = this.createLabel("Loading...");
 
-        // Create label for the static text
-        this.startupTimelabel = new St.Label({ text: _("Startuptime: "), y_align: St.Align.START, style_class: "label-text" });
-        this.startupTimelabel.set_style(`font-size: ${this.fontSize}px; color: ${this.colorLabel};`);
+        const startupRow = this.createRow([this.startTimeLabel, this.startupValue]);
 
-        // Create label 
-        this.startuptimeValue = new St.Label({ text: "Loading..." });
-        this.startuptimeValue.set_style(`font-size: ${this.fontSize}px;`);
+        // Combine all into the main container
+        const contentBox = new St.BoxLayout({ vertical: true });
+        contentBox.set_style("margin-left: 0.5em;");
+        contentBox.add_child(startupRow);
+        contentBox.add_child(uptimeRow);
 
-        // Set up the layout
-        this.startuptimeRow = new St.BoxLayout();
-        this.startuptimeRow.add_child(this.startupTimelabel);
-        this.startuptimeRow.add_child(this.startuptimeValue);
-
-        this.box = new St.BoxLayout({ vertical: true });
-        this.box.set_style("margin-left: 0.5em;");
-        this.box.add_child(this.startuptimeRow);
-        this.box.add_child(this.uptimeRow);
-
-        const clockIcon = getImageAtScale(this.metadata.path + "/clock.svg", 60, 60, (this.fontSize * 2), 35);
+        const clockIcon = this.getImageAtScale(`${this.metadata.path}/clock.svg`, (this.fontSize * 2), (this.fontSize * 2),);
 
         this.container = new St.BoxLayout();
         this.container.add_child(clockIcon);
-        this.container.add_child(this.box);
+        this.container.add_child(contentBox);
 
         this.setContent(this.container);
-    },
+    }
 
-    updateUptime: function () {
+    createLabel(text, color = "inherit") {
+        return new St.Label({
+            text,
+            y_align: St.Align.START,
+            style: `font-size: ${this.fontSize}px; color: ${color};`
+        });
+    }
+
+    createRow(children) {
+        const row = new St.BoxLayout();
+        children.forEach(child => row.add_child(child));
+        return row;
+    }
+
+    updateUptime() {
         try {
-            // Get system uptime
             const [result, out] = GLib.spawn_command_line_sync("awk '{print $1}' /proc/uptime");
-
-            if (!result || !out) {
-                throw new Error("Could not get system uptime.");
-            }
+            if (!result || !out) throw new Error("Could not get system uptime.");
 
             const uptimeInSeconds = parseFloat(out.toString().trim());
             const hours = Math.floor(uptimeInSeconds / 3600);
             const minutes = Math.floor((uptimeInSeconds % 3600) / 60);
 
-            const displayString = `${hours} ${_("hours")} ${minutes} ${_("minutes")}`;
-            this.uptimeValue.set_text(displayString);
-
-        } catch (e) {
+            this.uptimeValue.set_text(`${hours} ${_("hours")} ${minutes} ${_("minutes")}`);
+        } catch (error) {
             this.uptimeValue.set_text("Error");
-            global.logError(`systemUptime@KopfDesDaemons: Error while getting system uptime: ${e.message}`);
+            global.logError(`${UUID}: ${error.message}`);
         }
 
-        // Reset and set up the interval timeout
         if (this._timeout) Mainloop.source_remove(this._timeout);
         this._timeout = Mainloop.timeout_add_seconds(60, () => this.updateUptime());
-    },
+    }
 
-    getStartupTime: function () {
-        const [result, out] = GLib.spawn_command_line_sync("uptime -s");
+    getStartupTime() {
+        try {
+            const [result, out] = GLib.spawn_command_line_sync("uptime -s");
+            if (!result || !out) throw new Error("Could not get system startup time.");
 
-        if (!result || !out) {
-            throw new Error("Could not get system uptime.");
+            this.startupValue.set_text(out.toString().split(" ")[1].trim());
+        } catch (error) {
+            this.startupValue.set_text("Error");
+            global.logError(`${UUID}: ${error.message}`);
         }
+    }
 
-        this.startuptimeValue.set_text(out.toString().split(" ")[1].toString().trim());
-    },
-
-    on_settings_changed: function () {
+    onSettingsChanged() {
         this.setupLayout();
         this.updateUptime();
         this.getStartupTime();
-    },
+    }
 
-    on_desklet_removed: function () {
+    on_desklet_removed() {
         if (this._timeout) Mainloop.source_remove(this._timeout);
-        if (this.uptimeLabel) this.box.remove_child(this.label);
-        if (this.uptimeValue) this.box.remove_child(this.uptimeValue);
-
-        this.uptimeLabel = this.uptimeValue = this._timeout = null;
-    }
-};
-
-function getImageAtScale(imageFileName, width, height, width2 = 0, height2 = 0) {
-    if (width2 == 0 || height2 == 0) {
-        width2 = width;
-        height2 = height;
     }
 
-    const pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(imageFileName, width, height);
-    const image = new Clutter.Image();
-    image.set_data(
-        pixBuf.get_pixels(),
-        pixBuf.get_has_alpha() ? Cogl.PixelFormat.RGBA_8888 : Cogl.PixelFormat.RGBA_888,
-        width, height,
-        pixBuf.get_rowstride()
-    );
+    getImageAtScale(imageFileName, width, height) {
+        const pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(imageFileName, width, height);
+        const image = new Clutter.Image();
+        image.set_data(
+            pixBuf.get_pixels(),
+            pixBuf.get_has_alpha() ? Cogl.PixelFormat.RGBA_8888 : Cogl.PixelFormat.RGBA_888,
+            width, height,
+            pixBuf.get_rowstride()
+        );
 
-    const actor = new Clutter.Actor({ width: width2, height: height2 });
-    actor.set_content(image);
-
-    return actor;
+        const actor = new Clutter.Actor({ width, height });
+        actor.set_content(image);
+        return actor;
+    }
 }
 
 function main(metadata, deskletId) {
