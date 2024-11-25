@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2024-11-11 09:04-0500\n"
-"PO-Revision-Date: 2024-07-26 07:12-0400\n"
+"PO-Revision-Date: 2024-11-25 13:34+0100\n"
 "Last-Translator: Janos Toberling <jtoberling@gmail.com>\n"
 "Language-Team: \n"
 "Language: hu\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. desklet.js:318
 msgid "Enable refresh"
@@ -112,13 +112,12 @@ msgstr ""
 
 #. settings-schema.json->alternateRowTransparency->description
 msgid "Dim of every second rows"
-msgstr ""
+msgstr "Minden második sor halvány"
 
 #. settings-schema.json->alternateRowTransparency->tooltip
-#, fuzzy
 msgid "The higher the value, more dim on alternate row backgrounds."
 msgstr ""
-"Minél magasabb az érték, annál szolidabb az asztali alkalmazás háttere."
+"Minél magasabb az érték, annál halványabb lesz az alternatív sorháttér."
 
 #. settings-schema.json->refreshInterval-spinner->units
 msgid "seconds"
@@ -234,11 +233,11 @@ msgstr "A ChatGPT KÍSÉRLETI MI-összefoglalójának engedélyezése"
 
 #. settings-schema.json->ai_url->description
 msgid "URL of Completion Api"
-msgstr ""
+msgstr "A Completion API URL-je"
 
 #. settings-schema.json->ai_url->tooltip
 msgid "https://api.openai.com/v1/chat/completions"
-msgstr ""
+msgstr "https://api.openai.com/v1/chat/completions"
 
 #. settings-schema.json->ai_dumptool->description
 msgid "Choose a tool to dumping web pages"
@@ -268,24 +267,23 @@ msgstr ""
 
 #. settings-schema.json->ai_use_standard_model->description
 msgid "Use standard AI models."
-msgstr ""
+msgstr "Használjon szabványos MI modelleket."
 
 #. settings-schema.json->ai_use_standard_model->tooltip
 msgid "Set to custom to type your model name"
-msgstr ""
+msgstr "Állítsa egyénire a modellnév beírásához"
 
 #. settings-schema.json->ai_use_standard_model->options
 msgid "Use standard"
-msgstr ""
+msgstr "Szabvány használata"
 
 #. settings-schema.json->ai_use_standard_model->options
 msgid "Use custom"
-msgstr ""
+msgstr "Egyéni használata"
 
 #. settings-schema.json->ai_model->description
-#, fuzzy
 msgid "Standard model to use"
-msgstr "Használandó ChatGPT-modell"
+msgstr "Használandó szabványos modell"
 
 #. settings-schema.json->ai_model->options
 msgid "gpt-4-32k"
@@ -296,14 +294,12 @@ msgid "gpt-4"
 msgstr "gpt-4"
 
 #. settings-schema.json->ai_model->options
-#, fuzzy
 msgid "gpt-4o"
-msgstr "gpt-4"
+msgstr "gpt-4o"
 
 #. settings-schema.json->ai_model->options
-#, fuzzy
 msgid "gpt-4o-mini"
-msgstr "gpt-4"
+msgstr "gpt-4o-mini"
 
 #. settings-schema.json->ai_model->options
 msgid "gpt-3.5-turbo"
@@ -316,11 +312,11 @@ msgstr "gpt-3.5-turbo-16k"
 #. settings-schema.json->ai_model->options
 #. settings-schema.json->ai_custom_model->tooltip
 msgid "deepseek-coder"
-msgstr ""
+msgstr "deepseek-coder"
 
 #. settings-schema.json->ai_model->options
 msgid "deepseek-coder-v2:latest"
-msgstr ""
+msgstr "deepseek-coder-v2:latest"
 
 #. settings-schema.json->ai_model->tooltip
 msgid ""
@@ -335,9 +331,8 @@ msgstr ""
 "Alapértelmezett: gpt-3.5-turbo"
 
 #. settings-schema.json->ai_custom_model->description
-#, fuzzy
 msgid "Provide model name to use"
-msgstr "Használandó ChatGPT-modell"
+msgstr "Adja meg a használni kívánt modell nevét"
 
 #. settings-schema.json->ai_systemprompt->description
 msgid "AI system instructions"
