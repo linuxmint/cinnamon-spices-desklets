@@ -40,13 +40,13 @@ class MyDesklet extends Desklet.Desklet {
     setupLayout() {
         // Create labels for uptime
         this.uptimeLabel = this.createLabel(_("Uptime:") + " ", this.colorLabel);
-        this.uptimeValue = this.createLabel("Loading...");
+        this.uptimeValue = this.createLabel(_("Loading..."));
 
         const uptimeRow = this.createRow([this.uptimeLabel, this.uptimeValue]);
 
         // Create labels for startup time
         this.startTimeLabel = this.createLabel(_("System start time:") + " ", this.colorLabel);
-        this.startupValue = this.createLabel("Loading...");
+        this.startupValue = this.createLabel(_("Loading..."));
 
         const startupRow = this.createRow([this.startTimeLabel, this.startupValue]);
 

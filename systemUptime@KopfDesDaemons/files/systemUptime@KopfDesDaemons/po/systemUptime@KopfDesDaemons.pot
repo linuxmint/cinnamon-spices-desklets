@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: systemUptime@KopfDesDaemons 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-11-25 23:54+0100\n"
+"POT-Creation-Date: 2024-11-26 19:00+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -24,6 +24,10 @@ msgstr ""
 
 #. desklet.js:42
 msgid "Uptime:"
+msgstr ""
+
+#. desklet.js:43 desklet.js:49
+msgid "Loading..."
 msgstr ""
 
 #. desklet.js:48
