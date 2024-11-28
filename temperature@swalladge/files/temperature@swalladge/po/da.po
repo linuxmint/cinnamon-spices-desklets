@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-12-07 18:00+0300\n"
-"PO-Revision-Date: 2023-12-08 07:56+0100\n"
+"PO-Revision-Date: 2024-11-28 20:31+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
 "Language: da\n"
@@ -36,7 +36,7 @@ msgstr "Indstillinger"
 
 #. settings-schema.json->height->description
 msgid "Height :"
-msgstr "Højde:"
+msgstr "Højde :"
 
 #. settings-schema.json->height->units
 #. settings-schema.json->width->units
@@ -45,8 +45,8 @@ msgstr "pixels"
 
 #. settings-schema.json->width->description
 msgid "Width :"
-msgstr "Bredde:"
+msgstr "Bredde :"
 
 #. settings-schema.json->server->description
 msgid "Server :"
-msgstr "Server:"
+msgstr "Server :"

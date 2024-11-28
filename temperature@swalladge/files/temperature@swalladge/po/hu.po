@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-12-07 18:00+0300\n"
-"PO-Revision-Date: 2023-12-13 12:44+0100\n"
+"PO-Revision-Date: 2024-11-28 20:29+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: hu\n"
@@ -36,7 +36,7 @@ msgstr "Aktuális hőmérséklet beállítások"
 
 #. settings-schema.json->height->description
 msgid "Height :"
-msgstr "Magasság:"
+msgstr "Magasság :"
 
 #. settings-schema.json->height->units
 #. settings-schema.json->width->units
@@ -45,8 +45,8 @@ msgstr "képpont"
 
 #. settings-schema.json->width->description
 msgid "Width :"
-msgstr "Szélesség:"
+msgstr "Szélesség :"
 
 #. settings-schema.json->server->description
 msgid "Server :"
-msgstr "Szerver:"
+msgstr "Szerver :"

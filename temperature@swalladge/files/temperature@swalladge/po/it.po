@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-12-07 18:00+0300\n"
-"PO-Revision-Date: 2023-12-12 18:58+0100\n"
+"PO-Revision-Date: 2024-11-28 20:29+0100\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -36,7 +36,7 @@ msgstr "Impostazioni Temperatura Attuale"
 
 #. settings-schema.json->height->description
 msgid "Height :"
-msgstr "Altezza:"
+msgstr "Altezza :"
 
 #. settings-schema.json->height->units
 #. settings-schema.json->width->units
@@ -45,8 +45,8 @@ msgstr "pixel"
 
 #. settings-schema.json->width->description
 msgid "Width :"
-msgstr "Larghezza:"
+msgstr "Larghezza :"
 
 #. settings-schema.json->server->description
 msgid "Server :"
-msgstr "Server:"
+msgstr "Server :"
