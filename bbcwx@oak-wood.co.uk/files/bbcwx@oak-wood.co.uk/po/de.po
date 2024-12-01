@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2024-02-18 14:37-0500\n"
-"PO-Revision-Date: 2024-03-30 15:12+0100\n"
+"PO-Revision-Date: 2024-12-01 16:07+0100\n"
 "Last-Translator: sven <sven@liefgen.lu>\n"
 "Language-Team: German <de@li.org>\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2016-08-01 19:04+0000\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: 5.4/desklet.js:111 3.0/desklet.js:108
 msgid "Mon"
@@ -920,10 +920,12 @@ msgid ""
 "Please consider translating the Weather desklet into your language. See the "
 "website for more information."
 msgstr ""
+"Bitte überlegen Sie, das Wetter-Desklet in Ihre Sprache zu übersetzen. "
+"Weitere Informationen finden Sie auf der Website."
 
 #. metadata.json->contributors
 msgid "Chris Hastie"
-msgstr ""
+msgstr "Chris Hastie"
 
 #. 5.4->settings-schema.json->top->description
 #. 3.0->settings-schema.json->top->description
@@ -944,15 +946,15 @@ msgstr "BBC"
 
 #. 5.4->settings-schema.json->webservice->options
 msgid "meteoblue"
-msgstr ""
+msgstr "meteoblue"
 
 #. 5.4->settings-schema.json->webservice->options
 msgid "National Weather Service (USA Only)"
-msgstr ""
+msgstr "National Weather Service (Nur USA)"
 
 #. 5.4->settings-schema.json->webservice->options
 msgid "Open-Meteo Non-commercial"
-msgstr ""
+msgstr "Open-Meteo Non-commercial"
 
 #. 5.4->settings-schema.json->webservice->options
 msgid "Open Weather Map Free"
@@ -972,7 +974,7 @@ msgstr "Wetter"
 
 #. 5.4->settings-schema.json->webservice->options
 msgid "World Weather Online"
-msgstr ""
+msgstr "World Weather Online"
 
 #. 5.4->settings-schema.json->webservice->options
 msgid "Weather Underground"
@@ -1045,7 +1047,7 @@ msgstr "Geben Sie Ihren API-Schlüssel für World Weather Online ein"
 
 #. 5.4->settings-schema.json->wunderground__stationID->description
 msgid "Station ID"
-msgstr ""
+msgstr "Stations-ID"
 
 #. 5.4->settings-schema.json->wunderground__stationID->tooltip
 msgid "Set your station ID here"
@@ -1053,7 +1055,7 @@ msgstr "Setzen Sie Ihre Stations-ID"
 
 #. 5.4->settings-schema.json->wunderground__geocode->description
 msgid "Geocode"
-msgstr ""
+msgstr "Geocode"
 
 #. 5.4->settings-schema.json->wunderground__geocode->tooltip
 msgid "Set your geocode here"
@@ -1160,7 +1162,7 @@ msgid ""
 "support all values"
 msgstr ""
 "Anzahl der angezeigten Tage für die Wettervorhersage. Beachten Sie bitte, "
-"dass nicht alle Dienste alle Werte unterstützen."
+"dass nicht alle Dienste alle Werte unterstützen"
 
 #. 5.4->settings-schema.json->refreshtime->units
 #. 3.0->settings-schema.json->refreshtime->units
@@ -1179,7 +1181,7 @@ msgid ""
 "lower refresh times"
 msgstr ""
 "Zeitabstand zwischen Vorhersageaktualisierungen. Bitte beachten, dass nicht "
-"alle Dienste kurze Aktualisierungsraten unterstützen."
+"alle Dienste kurze Aktualisierungsraten unterstützen"
 
 #. 5.4->settings-schema.json->display->description
 #. 3.0->settings-schema.json->display->description
@@ -1201,7 +1203,7 @@ msgstr "Aktivieren, um das Land anzuzeigen"
 
 #. 5.4->settings-schema.json->display__meta__region->description
 msgid "Region"
-msgstr ""
+msgstr "Region"
 
 #. 5.4->settings-schema.json->display__meta__region->tooltip
 msgid "Check to display the region"
@@ -1562,7 +1564,7 @@ msgid ""
 "enabled"
 msgstr ""
 "Wählen Sie die Farbe des Desklet-Rahmens aus. Nur möglich, wenn das "
-"Ankreuzfeld »Rahmen anzeigen« aktiviert ist."
+"Ankreuzfeld »Rahmen anzeigen« aktiviert ist"
 
 #. 5.4->settings-schema.json->borderwidth->description
 #. 3.0->settings-schema.json->borderwidth->description
@@ -1576,7 +1578,7 @@ msgid ""
 "enabled"
 msgstr ""
 "Wählen Sie die Breite des Desklet-Rahmens aus. Nur verfügbar, wenn das "
-"Ankreuzfeld »Rahmen anzeigen« aktiviert ist."
+"Ankreuzfeld »Rahmen anzeigen« aktiviert ist"
 
 #. 5.4->settings-schema.json->locationlookups->description
 #. 3.0->settings-schema.json->locationlookups->description
@@ -1600,7 +1602,7 @@ msgid ""
 "may offer city names in other languages"
 msgstr ""
 "Quelle des Textes, der als aktueller Ort angezeigt wird. Yahoo! und Google "
-"bieten eventuell Städtenamen in anderen Sprachen an."
+"bieten eventuell Städtenamen in anderen Sprachen an"
 
 #. 5.4->settings-schema.json->manuallocation->description
 #. 3.0->settings-schema.json->manuallocation->description
@@ -1687,7 +1689,7 @@ msgid ""
 "remain static as the desklet grows and shrinks"
 msgstr ""
 "Wählen Sie den Verankerungspunkt des Desklets aus. Dieser feststehende Punkt "
-"wird der Ursprung für Skalierungen des Desklets sein."
+"wird der Ursprung für Skalierungen des Desklets sein"
 
 #. 3.0->settings-schema.json->webservice->options
 msgid "Open Weather Map (requires API key)"
@@ -1734,4 +1736,4 @@ msgid ""
 "Required for some services only. Enter your API key for your chosen service"
 msgstr ""
 "Nur für einige Dienste erforderlich. Tragen Sie hier Ihren API-Schlüssel für "
-"den ausgewählten Dienst ein."
+"den ausgewählten Dienst ein"
