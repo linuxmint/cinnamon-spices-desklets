@@ -7,46 +7,46 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 11:47+0200\n"
-"PO-Revision-Date: 2017-04-29 11:48+0200\n"
+"POT-Creation-Date: 2023-12-07 18:00+0300\n"
+"PO-Revision-Date: 2024-12-01 14:34+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: desklet.js:80
 msgid "error"
 msgstr "Fehler"
 
-#. temperature@swalladge->metadata.json->description
-msgid "Displays the current temperature from the temperature server."
-msgstr "Zeigt die aktuelle Temperatur vom Temperaturserver an."
+#. metadata.json->description
+msgid "Displays the current temperature from the rpi temperature server."
+msgstr "Zeigt die aktuelle Temperatur vom RPI-Temperaturserver an."
 
-#. temperature@swalladge->metadata.json->name
+#. metadata.json->name
 msgid "Temperature"
 msgstr "Temperatur"
 
-#. temperature@swalladge->settings-schema.json->width->description
-msgid "Width :"
-msgstr "Breite:"
-
-#. temperature@swalladge->settings-schema.json->width->units
-#. temperature@swalladge->settings-schema.json->height->units
-msgid "pixels"
-msgstr "Pixel"
-
-#. temperature@swalladge->settings-schema.json->head->description
+#. settings-schema.json->head->description
 msgid "Current Temperature Settings"
 msgstr "Aktuelle Temperatureinstellungen"
 
-#. temperature@swalladge->settings-schema.json->server->description
-msgid "Server :"
-msgstr "Server:"
-
-#. temperature@swalladge->settings-schema.json->height->description
+#. settings-schema.json->height->description
 msgid "Height :"
 msgstr "Höhe:"
+
+#. settings-schema.json->height->units
+#. settings-schema.json->width->units
+msgid "pixels"
+msgstr "Pixel"
+
+#. settings-schema.json->width->description
+msgid "Width :"
+msgstr "Breite:"
+
+#. settings-schema.json->server->description
+msgid "Server :"
+msgstr "Server:"
