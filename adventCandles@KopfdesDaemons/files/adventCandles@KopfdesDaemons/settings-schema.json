@@ -1,0 +1,18 @@
+{
+    "deskletScale": {
+        "type": "scale",
+        "default": 1,
+        "min": 0.5,
+        "max": 2,
+        "step": 0.1,
+        "description": "Scale factor for desklet size"
+    },
+    "animationSpeed": {
+        "type": "scale",
+        "default": 300,
+        "min": 100,
+        "max": 1000,
+        "step": 10,
+        "description": "Speed of candle animation in milliseconds"
+    }
+}

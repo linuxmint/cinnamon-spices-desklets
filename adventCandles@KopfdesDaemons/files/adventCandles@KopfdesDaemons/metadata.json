@@ -1,0 +1,7 @@
+{
+    "uuid": "adventCandles@KopfdesDaemons",
+    "name": "Advent Candles",
+    "description": "Advent candles with animations on your desktop.",
+    "version": "1.0",
+    "max-instances": "50"
+}
