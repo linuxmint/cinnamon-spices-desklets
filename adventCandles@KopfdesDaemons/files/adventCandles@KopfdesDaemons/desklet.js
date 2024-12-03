@@ -80,7 +80,6 @@ class MyDesklet extends Desklet.Desklet {
     refreshLoop() {
         const candles = this.getAdventCandlesNumber();
         if (this.candles !== candles) this.loadImage();
-        global.log("Advent Candles: " + candles + ' ' + this.candles);
         if (this._refreshTimeout) Mainloop.source_remove(this._refreshTimeout);
         this._refreshTimeout = Mainloop.timeout_add_seconds(60, Lang.bind(this, this.refreshLoop));
     }
