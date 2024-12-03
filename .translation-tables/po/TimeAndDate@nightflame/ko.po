@@ -1,0 +1,39 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Kevin Kim <root@hamonikr.org>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-26 11:56+0800\n"
+"PO-Revision-Date: 2020-09-02 17:08+0900\n"
+"Last-Translator: Kevin Kim <root@hamonikr.org>\n"
+"Language-Team: \n"
+"Language: ko_KR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: desklet.js:67
+msgid "Time And Date"
+msgstr "날짜와 시간"
+
+#: desklet.js:83
+msgid "Edit Config"
+msgstr "설정 편집"
+
+#: desklet.js:87
+msgid "Help"
+msgstr "도움말"
+
+#. TimeAndDate@nightflame->metadata.json->description
+msgid "A fork desklet that displays the time and date"
+msgstr "간단한 날짜와 시간 데스크릿"
+
+#. TimeAndDate@nightflame->metadata.json->name
+msgid "Time and Date Desklet"
+msgstr "간단한 날짜와 시간 데스크릿"
