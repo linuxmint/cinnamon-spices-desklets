@@ -1,0 +1,10 @@
+# Yahoo Finance Quotes Desklet
+# Copyright (C) 2018 Thomas Egli
+# This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
+#
+msgid ""
+msgstr ""
+
+#. desklet.js:450 desklet.js:473
+msgid "Authorization parameters have expired"
+msgstr ""
