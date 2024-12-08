@@ -27,15 +27,15 @@ msgstr "CobiAnalogClock"
 
 #. metadata.json->description
 msgid "An analog clock desklet"
-msgstr "Ein Analoguhr-Desklet"
+msgstr "Ein Desklet mit einer analogen Uhr"
 
 #: 2.8/settings.ui:7 3.0/settings.ui:7
 msgid "Analog Clock Settings"
-msgstr "Analoguhr-Einstellungen"
+msgstr "Einstellungen für CobiAnalogClock"
 
 #: 2.8/settings.ui:99 3.0/settings.ui:99
 msgid "Theme"
-msgstr "Theme"
+msgstr "Thema"
 
 #: 2.8/settings.ui:138 3.0/settings.ui:138
 msgid "Size"
@@ -47,11 +47,11 @@ msgstr "Sekunden anzeigen"
 
 #: 2.8/settings.ui:220 3.0/settings.ui:220
 msgid "Hide decorations"
-msgstr "Dekorationen ausblenden"
+msgstr "Verzierungen ausblenden"
 
 #: 2.8/settings.ui:259 3.0/settings.ui:259
 msgid "Use specific timezone"
-msgstr "Bestimmte Zeitzone verwenden"
+msgstr "Spezifische Zeitzone verwenden"
 
 #: 2.8/settings.ui:297 3.0/settings.ui:297
 msgid "Display Timezone"
