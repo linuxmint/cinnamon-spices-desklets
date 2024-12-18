@@ -1,6 +1,6 @@
-# Yahoo Finance Quotes Desklet
-# Copyright (C) 2018 Thomas Egli
-# This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
+# YAHOO FINANCE QUOTES
+# This file is put in the public domain.
+# thegli, 2018
 #
 #, fuzzy
 msgid ""
@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: yfquotes@thegli 0.15.2\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-11-20 20:33+0100\n"
+"POT-Creation-Date: 2024-12-18 21:41+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"

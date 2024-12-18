@@ -2,21 +2,20 @@
 # Copyright (C) 2018 Thomas Egli
 # This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: yfquotes@thegli 0.13.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2024-11-20 20:33+0100\n"
-"PO-Revision-Date: 2024-09-10 20:15+0200\n"
-"Last-Translator: Odyssey <odysseyhyd@gmail.com>\n"
+"PO-Revision-Date: 2024-12-18 21:52+0100\n"
+"Last-Translator: Dan <d3vf4n-linux (at) tutanota (dot) com>\n"
 "Language-Team: \n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. desklet.js:86
 msgid "No quotes data to display"
@@ -30,7 +29,7 @@ msgstr ""
 
 #. desklet.js:450 desklet.js:473
 msgid "Authorization parameters have expired"
-msgstr ""
+msgstr "Els paràmetres d'autorització han expirat"
 
 #. desklet.js:453 desklet.js:476
 msgid "Yahoo Finance service not available!\\nStatus: "
@@ -78,8 +77,8 @@ msgid ""
 "Displays financial market information such as stock quotes and commodity "
 "prices from Yahoo Finance"
 msgstr ""
-"Mostra informació sobre mercats financers, com cotitzacions de borsa i preus "
-"de matèries primeres de Yahoo Finances"
+"Mostra informació sobre mercats financers, com ara cotitzacions de borsa i "
+"preus de matèries primeres de Yahoo Finances"
 
 #. metadata.json->name
 msgid "Yahoo Finance Quotes"
@@ -200,7 +199,7 @@ msgstr "Radi de la cantonada"
 #. settings-schema.json->cornerRadius->tooltip
 msgid "The higher the value, the rounder the desklet's corners"
 msgstr ""
-"Com a més gran sigui el valor, més rodones seran les cantonades de la "
+"Com més gran sigui el valor, més rodones seran les cantonades de la "
 "miniaplicació d'escriptori"
 
 #. settings-schema.json->showVerticalScrollbar->description
@@ -305,11 +304,11 @@ msgstr "posicions"
 
 #. settings-schema.json->decimalPlaces->description
 msgid "Decimal places to round"
-msgstr "Número de decimals a arrodonir"
+msgstr "Nombre de decimals a arrodonir"
 
 #. settings-schema.json->decimalPlaces->tooltip
 msgid "Number of positions to round to after decimal point"
-msgstr "Número de posicions a arrodonir després de la coma decimal"
+msgstr "Nombre de posicions a arrodonir després de la coma decimal"
 
 #. settings-schema.json->strictRounding->description
 msgid "Strict rounding"
@@ -408,7 +407,7 @@ msgstr "Ordenar la llista per"
 
 #. settings-schema.json->sortCriteria->tooltip
 msgid "Sort the quote list"
-msgstr "Ordenar la llista de cotitzacions."
+msgstr "Ordenar la llista de cotitzacions"
 
 #. settings-schema.json->sortDirection->description
 msgid "Sort in ascending order"
@@ -441,7 +440,7 @@ msgstr ""
 
 #. settings-schema.json->useLongQuoteName->description
 msgid "Use long version for verbose name"
-msgstr "Utilitzar la versió llarga pel nom de la cotització"
+msgstr "Utilitzar la versió llarga per al nom de la cotització"
 
 #. settings-schema.json->useLongQuoteName->tooltip
 msgid ""
