@@ -1,0 +1,230 @@
+# Swedish translation for diskspace@schorschii
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR: Åke Engelbrektson <eson@svenskasprakfiler.se>, 2019, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: diskspace@schorschii\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 12:23+0200\n"
+"PO-Revision-Date: 2020-01-03 08:19+0100\n"
+"Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
+"Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+#. settings-schema.json->type->options
+#: desklet.js:275 desklet.js:356
+msgid "RAM"
+msgstr "RAM"
+
+#. settings-schema.json->type->options
+#: desklet.js:277 desklet.js:358
+msgid "Swap"
+msgstr ""
+
+#. settings-schema.json->type->options
+#: desklet.js:279
+msgid "Filesystem"
+msgstr "Filsystem"
+
+#: desklet.js:301
+msgid "Not Found"
+msgstr ""
+
+#. metadata.json->name
+#: desklet.js:360
+msgid "Disk Space"
+msgstr "Diskutrymme"
+
+#. metadata.json->description
+msgid "Displays the usage of a filesystem or RAM."
+msgstr "Visar användningen av ett filsystem eller RAM."
+
+#. settings-schema.json->head0->description
+msgid "Settings for diskspace@schorschii"
+msgstr "Inställningar för diskspace@schorschii"
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr "Allmänt"
+
+#. settings-schema.json->type->description
+msgid "Monitor a file system or RAM usage"
+msgstr "Övervaka filsystem- eller RAM-användning"
+
+#. settings-schema.json->type->tooltip
+msgid "Choose, if this desklet should show file system or RAM usage."
+msgstr ""
+"Välj om det här skrivbordsprogrammet skall visa filsystem- eller RAM-"
+"användning."
+
+#. settings-schema.json->filesystem->description
+msgid "Filesystem to monitor"
+msgstr "Filsystem att övervaka"
+
+#. settings-schema.json->filesystem->tooltip
+msgid "Select the file system, which you want to monitor."
+msgstr "Välj det filsystem du vill övervaka."
+
+#. settings-schema.json->onclick-action->description
+msgid "Action on mouse click"
+msgstr ""
+
+#. settings-schema.json->onclick-action->tooltip
+msgid "Choose what to do when the desklet was clicked."
+msgstr ""
+
+#. settings-schema.json->onclick-action->options
+msgid "Open File Manager"
+msgstr ""
+
+#. settings-schema.json->onclick-action->options
+msgid "Open Partition Manager"
+msgstr ""
+
+#. settings-schema.json->onclick-action->options
+#, fuzzy
+msgid "Open System Monitor"
+msgstr "Filsystem att övervaka"
+
+#. settings-schema.json->onclick-action->options
+msgid "Nothing"
+msgstr ""
+
+#. settings-schema.json->size-prefix->description
+msgid "Size Prefix"
+msgstr ""
+
+#. settings-schema.json->size-prefix->options
+msgid "Decimal"
+msgstr ""
+
+#. settings-schema.json->size-prefix->options
+msgid "Binary"
+msgstr ""
+
+#. settings-schema.json->reserved-blocks-as-used-space->description
+msgid "Show reserved blocks as used space"
+msgstr ""
+
+#. settings-schema.json->reserved-blocks-as-used-space->tooltip
+msgid ""
+"Reserved blocks are useable for the root user only and that's why displayed "
+"as used space by default."
+msgstr ""
+
+#. settings-schema.json->head2->description
+msgid "Visual"
+msgstr "Visuellt"
+
+#. settings-schema.json->design->description
+msgid "Design"
+msgstr "Design"
+
+#. settings-schema.json->design->options
+msgid "Thin"
+msgstr "Tunn"
+
+#. settings-schema.json->design->options
+msgid "Compact"
+msgstr ""
+
+#. settings-schema.json->design->options
+msgid "Classic (Thick)"
+msgstr "Klassisk (tjock)"
+
+#. settings-schema.json->text-view->description
+msgid "Text"
+msgstr "Text"
+
+#. settings-schema.json->text-view->options
+#, fuzzy
+msgid "Name and total space"
+msgstr "Namn och total storlek"
+
+#. settings-schema.json->text-view->options
+msgid "Used and total space"
+msgstr "Använt och totalt utrymme"
+
+#. settings-schema.json->text-view->options
+msgid "Total and used space"
+msgstr ""
+
+#. settings-schema.json->text-view->options
+msgid "Free and total space"
+msgstr "Ledigt och totalt utrymme"
+
+#. settings-schema.json->text-view->options
+msgid "Total and free space"
+msgstr ""
+
+#. settings-schema.json->text-view->options
+msgid "No text"
+msgstr ""
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Dölj dekorationer"
+
+#. settings-schema.json->draw-free-space->description
+msgid "Draw free/unused space (gray)"
+msgstr "Rita upp ledigt/oanvänt utrymme (grå)"
+
+#. settings-schema.json->use-own-circle-color->description
+msgid "Use a custom circle color"
+msgstr "Använd anpassad cirkelfärg"
+
+#. settings-schema.json->circle-color->description
+msgid "Circle color"
+msgstr "Cirkelfärg"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Textfärg"
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "skalfaktor"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Visningsstorlek"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Öka eller minska storleken på detta skrivbordsprogram, med denna skalfaktor."
+
+#. settings-schema.json->head3->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr "Anpassad programetikett (synlig endast om dekorationer är aktiverade)."
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Använd anpassad programetikett"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr "Aktivering låter dig ange en anpassad etikett i fältet nedan."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Anpassad programetikett"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr ""
+"Ange din anpassade etikett här. Detta fält är otillgängligt om inte "
+"ovanstående inställning är på."

@@ -1,0 +1,82 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-06 06:00+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: blogdron\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : "
+"n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.4.1\n"
+
+#: desklet.js:279
+#, javascript-format
+msgid "%d point"
+msgid_plural "%d points"
+msgstr[0] "%d голос"
+msgstr[1] "%d голоса"
+msgstr[2] "%d голосов"
+
+#: desklet.js:288
+msgid "by"
+msgstr "от"
+
+#: desklet.js:298
+msgid "to"
+msgstr "для"
+
+#: desklet.js:309
+#, javascript-format
+msgid "%d comment"
+msgid_plural "%d comments"
+msgstr[0] "%d комментарий"
+msgstr[1] "%d комментария"
+msgstr[2] "%d комментариев"
+
+#. metadata.json->name
+msgid "reddit reader desklet"
+msgstr "реддит трекер/читалка (reddit reader desklet)"
+
+#. metadata.json->description
+msgid "A desklet to read subreddits"
+msgstr "Десклет для чтения/отслеживания субреддитов"
+
+#. settings-schema.json->subreddit->description
+msgid "Subreddit:"
+msgstr "Субреддит:"
+
+#. settings-schema.json->subreddit->tooltip
+msgid ""
+"supports multireddits and alterative sorting methods. eg: "
+"TheOnion+NotTheOnion, Linux/new and aww+worldnews/controversial"
+msgstr ""
+"поддерживается множественный выбор и методы сортировки. "
+"Например: TheOnion+NotTheOnion, Linux/new and aww+worldnews/"
+"controversial"
+
+#. settings-schema.json->height->description
+msgid "Height:"
+msgstr "Высота:"
+
+#. settings-schema.json->height->units
+#. settings-schema.json->width->units
+msgid "pixels"
+msgstr "пикселей"
+
+#. settings-schema.json->width->description
+msgid "Width:"
+msgstr "Ширина:"
+
+#. settings-schema.json->refreshRate->description
+msgid "Refresh rate:"
+msgstr "Частота обновления:"
+
+#. settings-schema.json->refreshRate->units
+msgid "minutes"
+msgstr "минуты"
