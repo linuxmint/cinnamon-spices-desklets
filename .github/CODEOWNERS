@@ -5,6 +5,7 @@ InternetTimeDesklet@stefan/*                       @stefan12O
 NumericBinaryClock@ozymandiaslone/*                @ozymandiaslone
 SevenSegmentClock@lxs242/*                         @lxs242
 ViennaTextBasedWeather@f-istvan/*                  @f-istvan
+adventCandles@KopfdesDaemons/*                     @KopfdesDaemons
 analog-clock@cobinja.de/*                          @cobinja
 battery@schorschii/*                               @schorschii
 bbcwx@oak-wood.co.uk/*                             @tipichris
@@ -40,6 +41,7 @@ simple-system-monitor@ariel/*                      @arielandrade
 soundBox@scollins/*                                @kawashiro
 system-monitor-graph@rcassani/*                    @rcassani
 systemTemperature@KopfDesDaemons/*                 @KopfDesDaemons
+systemUptime@KopfDesDaemons/*                      @KopfDesDaemons
 temperature@india/*                                @OnlineLearningTutorials
 temperature@swalladge/*                            @swalladge
 timelet@linuxedo.com/*                             @slgobinath
