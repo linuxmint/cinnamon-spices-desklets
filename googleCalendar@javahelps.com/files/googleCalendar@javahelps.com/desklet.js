@@ -134,7 +134,7 @@ GoogleCalendarDesklet.prototype = {
      */
     onCalendarParamsChanged() {
         this.setCalendarName();
-        if (this.updateID > 0) {
+        if (this.updateID) {
             Mainloop.source_remove(this.updateID);
         }
         this.updateID = null;
@@ -170,7 +170,7 @@ GoogleCalendarDesklet.prototype = {
      * Called when the desklet is removed.
      */
     on_desklet_removed() {
-        if (this.updateID > 0) {
+        if (this.updateID) {
             Mainloop.source_remove(this.updateID);
         }
         this.updateID = null;
