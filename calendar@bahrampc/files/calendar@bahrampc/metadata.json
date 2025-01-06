@@ -1,0 +1,11 @@
+{
+    "comments": "Shamsi Calendar Desklet provides a highly configurable desklet to display current date and browsable months.",
+    "contributors": "Bahram Afzali",
+    "description": "Configurable Calendar desklet",
+    "name": "Shamsi Calendar Desklet",
+    "prevent-decorations": true,
+    "uuid": "calendar@bahrampc",
+    "version": "1.0",
+    "website": "https://github.com/bahrampc",
+    "author": "bahrampc"
+}
