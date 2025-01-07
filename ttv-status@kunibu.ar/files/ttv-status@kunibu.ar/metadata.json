@@ -1,0 +1,8 @@
+{
+  "uuid": "ttv-status@kunibu.ar",
+  "max-instances": "10",
+  "name": "Twitch.tv channel status",
+  "description": "Get live status of twith channels.",
+  "version": "0.6",
+  "author": "francisco-saez"
+}
