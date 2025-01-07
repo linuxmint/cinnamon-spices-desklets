@@ -109,8 +109,9 @@ GoogleCalendarDesklet.prototype = {
         Gtk.IconTheme.get_default().append_search_path(metadata.path + "/icons/");
 
         // Start the update loop
+        this.updateID = null;
         this.updateLoop();
-        this.updateID = Mainloop.timeout_add_seconds(this.delay * 60, Lang.bind(this, this.updateLoop));
+        //~ this.updateID = Mainloop.timeout_add_seconds(this.delay * 60, Lang.bind(this, this.updateLoop));
     },
 
     //////////////////////////////////////////// Event Listeners ////////////////////////////////////////////
@@ -134,10 +135,12 @@ GoogleCalendarDesklet.prototype = {
      */
     onCalendarParamsChanged() {
         this.setCalendarName();
-        //~ if (this.updateID) {
-            //~ Mainloop.source_remove(this.updateID);
-        //~ }
-        //~ this.updateID = null;
+        if (this.updateID != null) {
+            Mainloop.source_remove(this.updateID);
+            this.updateID = null;
+            this.updateID = Mainloop.timeout_add_seconds(this.delay * 60, Lang.bind(this, this.updateLoop));
+        }
+        this.isLooping = true;
         this.retrieveEventsIfAuthorized();
     },
 
@@ -195,6 +198,7 @@ GoogleCalendarDesklet.prototype = {
      * Called when user clicks on the desklet.
      */
     on_desklet_clicked(event) {
+        this.isLooping = true;
         this.retrieveEventsIfAuthorized();
     },
 
@@ -273,7 +277,9 @@ GoogleCalendarDesklet.prototype = {
                 leadingNewline = "\n\n";
             }
             this.lastDate = event.startDate;
+            //~ let eventDate = ""+this.formatEventDate(event.startDateText)
             let label = CalendarUtility.label(leadingNewline + this.formatEventDate(event.startDateText) + SEPARATOR_LINE, this.zoom, this.textcolor);
+            //~ let label = CalendarUtility.label(leadingNewline + `${eventDate}` + SEPARATOR_LINE, this.zoom, this.textcolor);
             this.window.add(label);
             if (label.width > this.maxWidth) {
                 this.maxWidth = label.width;
@@ -344,8 +350,13 @@ GoogleCalendarDesklet.prototype = {
      * Updates every user set seconds
      **/
     updateLoop() {
-        if (this.isLooping)
-            this.retrieveEventsIfAuthorized();
+        this.retrieveEventsIfAuthorized();
+        if (this.isLooping) {
+            if (this.updateID == null)
+                this.updateID = Mainloop.timeout_add_seconds(this.delay * 60, Lang.bind(this, this.updateLoop));
+        } else {
+            this.updateID = null;
+        }
         //~ this.updateID = Mainloop.timeout_add_seconds(this.delay * 60, Lang.bind(this, this.updateLoop));
         return this.isLooping;
     },
@@ -382,6 +393,7 @@ GoogleCalendarDesklet.prototype = {
     },
 
     retrieveEventsIfAuthorized() {
+        if (!this.isLooping) return;
         let accountId = this.gcalendarAccount;
         try {
             // Check the status of gcalendar
