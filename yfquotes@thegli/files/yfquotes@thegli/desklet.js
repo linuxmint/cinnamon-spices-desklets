@@ -480,7 +480,7 @@ YahooFinanceQuoteReader.prototype = {
     },
 
     createYahooQueryUrl: function(quoteSymbolsArg) {
-        const queryUrl = "https://query1.finance.yahoo.com/v7/finance/quote?symbols=" + quoteSymbolsArg + "&crumb=" + _crumb;
+        const queryUrl = "https://query1.finance.yahoo.com/v7/finance/quote?fields=currency,longName,regularMarketPrice,regularMarketChange,regularMarketChangePercent,regularMarketTime,shortName,symbol&lang=en-US&region=US&formatted=false&symbols=" + quoteSymbolsArg + "&crumb=" + _crumb;
         logDebug("YF query URL: " + queryUrl);
         return queryUrl;
     },

@@ -1,3 +1,16 @@
+### 0.15.3 - January 8, 2025
+
+Features:
+
+- update Catalan translation (courtesy of [trikaphundo](https://github.com/trikaphundo))
+- update Dutch translation (courtesy of [qadzek](https://github.com/qadzek))
+- update Hungarian translation (courtesy of [bossbob88](https://github.com/bossbob88))
+- update Spanish translation (courtesy of [haggen88](https://github.com/haggen88))
+
+Bugfixes:
+
+- restore absent quote details
+
 ### 0.15.2 - November 20, 2024
 
 Features:
