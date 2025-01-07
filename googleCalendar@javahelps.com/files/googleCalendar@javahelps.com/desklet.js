@@ -23,6 +23,7 @@ const Cinnamon = imports.gi.Cinnamon;
 const Desklet = imports.ui.desklet;
 const GLib = imports.gi.GLib;
 const Lang = imports.lang;
+const Main = imports.ui.main;
 const Mainloop = imports.mainloop;
 const Settings = imports.ui.settings;
 const Util = imports.misc.util;
@@ -77,6 +78,8 @@ GoogleCalendarDesklet.prototype = {
 
         this._updateDecoration();
 
+        this.isLooping = true;
+
         // Bind properties
         this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], deskletID);
         this.settings.bind("clientId", "clientId", this.onCalendarParamsChanged, null);
@@ -102,15 +105,13 @@ GoogleCalendarDesklet.prototype = {
 
         // Set header
         this.setHeader(_("Google Calendar"));
-        // Set "Open Google Calendar" menu item
+
         Gtk.IconTheme.get_default().append_search_path(metadata.path + "/icons/");
-        let openGoogleCalendarItem = new PopupMenu.PopupIconMenuItem(_("Open Google Calendar"), "google-calendar", St.IconType.SYMBOLIC);
-        openGoogleCalendarItem.connect("activate", (event) => {
-            GLib.spawn_command_line_async("xdg-open https://calendar.google.com");
-        });
-        this._menu.addMenuItem(openGoogleCalendarItem);
+
         // Start the update loop
+        this.updateID = null;
         this.updateLoop();
+        //~ this.updateID = Mainloop.timeout_add_seconds(this.delay * 60, Lang.bind(this, this.updateLoop));
     },
 
     //////////////////////////////////////////// Event Listeners ////////////////////////////////////////////
@@ -134,10 +135,12 @@ GoogleCalendarDesklet.prototype = {
      */
     onCalendarParamsChanged() {
         this.setCalendarName();
-        if (this.updateID) {
+        if (this.updateID != null) {
             Mainloop.source_remove(this.updateID);
+            this.updateID = null;
+            this.updateID = Mainloop.timeout_add_seconds(this.delay * 60, Lang.bind(this, this.updateLoop));
         }
-        this.updateID = null;
+        this.isLooping = true;
         this.retrieveEventsIfAuthorized();
     },
 
@@ -167,19 +170,35 @@ GoogleCalendarDesklet.prototype = {
     },
 
     /**
+     * on_desklet_added_to_desktop:
+     *
+     * This function is called by deskletManager when the desklet is added to the desktop.
+     */
+     on_desklet_added_to_desktop(userEnabled) {
+         // Set "Open Google Calendar" menu item, in top position:
+        let openGoogleCalendarItem = new PopupMenu.PopupIconMenuItem(_("Open Google Calendar"), "google-calendar", St.IconType.SYMBOLIC);
+        openGoogleCalendarItem.connect("activate", (event) => {
+            GLib.spawn_command_line_async("xdg-open https://calendar.google.com");
+        });
+        this._menu.addMenuItem(openGoogleCalendarItem, 0); // 0 for top position.
+    },
+
+    /**
      * Called when the desklet is removed.
      */
     on_desklet_removed() {
-        if (this.updateID) {
-            Mainloop.source_remove(this.updateID);
-        }
-        this.updateID = null;
+        //~ if (this.updateID) {
+            //~ Mainloop.source_remove(this.updateID);
+        //~ }
+        //~ this.updateID = null;
+        this.isLooping = false;
     },
 
     /**
      * Called when user clicks on the desklet.
      */
     on_desklet_clicked(event) {
+        this.isLooping = true;
         this.retrieveEventsIfAuthorized();
     },
 
@@ -258,7 +277,9 @@ GoogleCalendarDesklet.prototype = {
                 leadingNewline = "\n\n";
             }
             this.lastDate = event.startDate;
+            //~ let eventDate = ""+this.formatEventDate(event.startDateText)
             let label = CalendarUtility.label(leadingNewline + this.formatEventDate(event.startDateText) + SEPARATOR_LINE, this.zoom, this.textcolor);
+            //~ let label = CalendarUtility.label(leadingNewline + `${eventDate}` + SEPARATOR_LINE, this.zoom, this.textcolor);
             this.window.add(label);
             if (label.width > this.maxWidth) {
                 this.maxWidth = label.width;
@@ -330,7 +351,14 @@ GoogleCalendarDesklet.prototype = {
      **/
     updateLoop() {
         this.retrieveEventsIfAuthorized();
-        this.updateID = Mainloop.timeout_add_seconds(this.delay * 60, Lang.bind(this, this.updateLoop));
+        if (this.isLooping) {
+            if (this.updateID == null)
+                this.updateID = Mainloop.timeout_add_seconds(this.delay * 60, Lang.bind(this, this.updateLoop));
+        } else {
+            this.updateID = null;
+        }
+        //~ this.updateID = Mainloop.timeout_add_seconds(this.delay * 60, Lang.bind(this, this.updateLoop));
+        return this.isLooping;
     },
 
     /**
@@ -365,6 +393,7 @@ GoogleCalendarDesklet.prototype = {
     },
 
     retrieveEventsIfAuthorized() {
+        if (!this.isLooping) return;
         let accountId = this.gcalendarAccount;
         try {
             // Check the status of gcalendar
