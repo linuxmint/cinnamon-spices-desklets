@@ -134,10 +134,10 @@ GoogleCalendarDesklet.prototype = {
      */
     onCalendarParamsChanged() {
         this.setCalendarName();
-        if (this.updateID) {
-            Mainloop.source_remove(this.updateID);
-        }
-        this.updateID = null;
+        //~ if (this.updateID) {
+            //~ Mainloop.source_remove(this.updateID);
+        //~ }
+        //~ this.updateID = null;
         this.retrieveEventsIfAuthorized();
     },
 
