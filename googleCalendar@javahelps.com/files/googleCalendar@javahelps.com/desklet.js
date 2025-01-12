@@ -24,7 +24,6 @@ const Desklet = imports.ui.desklet;
 const GLib = imports.gi.GLib;
 const Lang = imports.lang;
 const Main = imports.ui.main;
-const Mainloop = imports.mainloop;
 const Settings = imports.ui.settings;
 const Util = imports.misc.util;
 const Gettext = imports.gettext;
@@ -32,7 +31,7 @@ const Gio = imports.gi.Gio;
 const Gtk = imports.gi.Gtk;
 const St = imports.gi.St;
 const PopupMenu = imports.ui.popupMenu;
-const { source_exists } = require("./lib/sourceExists")
+const { timeout_add_seconds, timeout_add, setTimeout, clearTimeout, setInterval, clearInterval, source_exists, source_remove, remove_all_sources } = require("./lib/mainloopTools");
 
 // Import local libraries
 imports.searchPath.unshift(GLib.get_home_dir() + "/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/lib");
@@ -128,12 +127,11 @@ GoogleCalendarDesklet.prototype = {
     },
 
     onDelayChanged() {
-        if (this.isLooping && source_exists(this.updateID)) {
-            Mainloop.source_remove(this.updateID);
-            this.updateID = null;
-        }
+        source_remove(this.updateID);
+        this.updateID = null;
         this.isLooping = true;
-        this.updateID = Mainloop.timeout_add_seconds(this.delay * 60, Lang.bind(this, this.updateLoop));
+        //~ this.updateID = timeout_add_seconds(this.delay * 60, Lang.bind(this, this.updateLoop));
+        this.updateID = timeout_add_seconds(this.delay * 60, this.updateLoop.bind(this));
         this.retrieveEventsIfAuthorized();
     },
 
@@ -195,7 +193,8 @@ GoogleCalendarDesklet.prototype = {
             this.populate_gcalendarAccountOptions();
          // Start the update loop
         this.updateID = null;
-        this.updateID = Mainloop.timeout_add_seconds(this.delay * 60, Lang.bind(this, this.updateLoop));
+        //~ this.updateID = timeout_add_seconds(this.delay * 60, Lang.bind(this, this.updateLoop));
+        this.updateID = timeout_add_seconds(this.delay * 60, this.updateLoop.bind(this));
         this.updateLoop();
          // Set "Open Google Calendar" menu item, in top position:
         let openGoogleCalendarItem = new PopupMenu.PopupIconMenuItem(_("Open Google Calendar"), "google-calendar", St.IconType.SYMBOLIC);
@@ -211,6 +210,7 @@ GoogleCalendarDesklet.prototype = {
     on_desklet_removed() {
         this.isLooping = false;
         this.updateID = null;
+        remove_all_sources();
     },
 
     /**
