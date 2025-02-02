@@ -1,0 +1,135 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-14 23:35+0200\n"
+"PO-Revision-Date: 2024-04-18 13:58+0200\n"
+"Last-Translator: qadzek\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: desklet.js:27 desklet.js:50
+msgid "Back"
+msgstr "Terug"
+
+#: desklet.js:28 desklet.js:52
+msgid "Reset"
+msgstr "Resetten"
+
+#: desklet.js:51
+msgid "Clear Entry"
+msgstr "Invoer wissen"
+
+#: desklet.js:53
+msgid "Copy to Clipboard"
+msgstr "Kopiëren naar klembord"
+
+#: desklet.js:54
+msgid "Paste from Clipboard"
+msgstr "Plakken van klembord"
+
+#: desklet.js:55
+msgid "Inverse"
+msgstr "Omkeren"
+
+#: desklet.js:58
+msgid "Swap Sign"
+msgstr "Tekens omwisselen"
+
+#: desklet.js:82
+msgid "Scientific Notation"
+msgstr "Wetenschappelijke notatie"
+
+#: desklet.js:791
+msgid "Swap Entries"
+msgstr "Invoer omwisselen"
+
+#: desklet.js:795
+msgid "Reciprocal"
+msgstr "Reciproke"
+
+#. settings-schema.json->angleMode->options
+#: desklet.js:1056
+msgid "Degrees"
+msgstr "Graden"
+
+#. settings-schema.json->angleMode->options
+#: desklet.js:1064
+msgid "Radians"
+msgstr "Radialen"
+
+#: desklet.js:1074
+msgid "RPN"
+msgstr "RPN"
+
+#: desklet.js:1083
+msgid "4-Function"
+msgstr "4-Functie"
+
+#. settings-schema.json->layout->options
+#: desklet.js:1090
+msgid "Scientific"
+msgstr "Wetenschappelijk"
+
+#: desklet.js:1099
+msgid "Copy"
+msgstr "Kopiëren"
+
+#: desklet.js:1103
+msgid "Paste"
+msgstr "Plakken"
+
+#. metadata.json->name
+#: desklet.js:1109
+msgid "Desktop Calculator"
+msgstr "Bureaublad rekenmachine"
+
+#. metadata.json->description
+msgid "A calculator Desklet"
+msgstr "Een rekenmachine desklet"
+
+#. settings-schema.json->style->description
+#. settings-schema.json->layout->description
+msgid "Style"
+msgstr "Stijl"
+
+#. settings-schema.json->style->options
+msgid "Light"
+msgstr "Licht"
+
+#. settings-schema.json->style->options
+msgid "Dark"
+msgstr "Donker"
+
+#. settings-schema.json->angleMode->description
+msgid "Angle Measure"
+msgstr "Hoekmeting"
+
+#. settings-schema.json->rpn->description
+msgid "Use Reverse-Polish Notation"
+msgstr "Gebruik omgekeerde Poolse notatie"
+
+#. settings-schema.json->layout->options
+msgid "4-function"
+msgstr "4-functie"
+
+#. settings-schema.json->precision->description
+msgid "Precision"
+msgstr "Precisie"
+
+#. settings-schema.json->precision->units
+msgid "digits"
+msgstr "cijfers"
+
+#. settings-schema.json->raiseKey->description
+msgid "Raise to top shorcut key"
+msgstr "Sneltoets om naar voren te brengen"

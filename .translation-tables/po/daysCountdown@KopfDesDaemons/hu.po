@@ -1,0 +1,97 @@
+# DAYS COUNTDOWN
+# This file is put in the public domain.
+# KopfDesDaemons, 2024
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: daysCountdown@KopfDesDaemons 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-12-18 21:07+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. metadata.json->name
+#. desklet.js:27
+msgid "Days Countdown"
+msgstr "Napok visszaszámlálása"
+
+#. desklet.js:76
+#, javascript-format
+msgid "%f days"
+msgstr "%f nap"
+
+#. metadata.json->description
+msgid "Countdown of the remaining days to a date."
+msgstr "A hátralévő napok visszaszámlálása egy dátumig."
+
+#. settings-schema.json->head0->description
+msgid "General"
+msgstr "Általános"
+
+#. settings-schema.json->labelText->description
+msgid "Text for the label"
+msgstr "Szöveg a címkéhez"
+
+#. settings-schema.json->countdownDate->description
+msgid "Date to which the countdown counts down"
+msgstr "Dátum, ameddig a visszaszámlálás visszaszámol"
+
+#. settings-schema.json->refreshInterval->options
+msgid "only after starting"
+msgstr "csak indítás után"
+
+#. settings-schema.json->refreshInterval->options
+msgid "every 5 minutes"
+msgstr "5 percenként"
+
+#. settings-schema.json->refreshInterval->options
+msgid "every 10 minutes"
+msgstr "10 percenként"
+
+#. settings-schema.json->refreshInterval->options
+msgid "every 15 minutes"
+msgstr "15 percenként"
+
+#. settings-schema.json->refreshInterval->options
+msgid "every 20 minutes"
+msgstr "20 percenként"
+
+#. settings-schema.json->refreshInterval->options
+msgid "every 30 minutes"
+msgstr "30 percenként"
+
+#. settings-schema.json->refreshInterval->options
+msgid "every 60 minutes"
+msgstr "60 percenként"
+
+#. settings-schema.json->refreshInterval->description
+msgid "Refresh interval"
+msgstr "Frissítési időköz"
+
+#. settings-schema.json->head1->description
+msgid "Style"
+msgstr "Stílus"
+
+#. settings-schema.json->fontSizeLabel->description
+msgid "Font size for the label text"
+msgstr "A címke szövegének betűmérete"
+
+#. settings-schema.json->colorLabel->description
+msgid "Label color"
+msgstr "Címke színe"
+
+#. settings-schema.json->fontSizeCountdown->description
+msgid "Font size for the countdown text"
+msgstr "Betűméret a visszaszámláló szöveghez"
+
+#. settings-schema.json->colorCountdown->description
+msgid "Countdown color"
+msgstr "Visszaszámláló színe"

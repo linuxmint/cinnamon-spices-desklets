@@ -1,0 +1,232 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Gökhan GÖKKAYA <gokhanlnx@gmail.com>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 12:23+0200\n"
+"PO-Revision-Date: 2020-12-07 15:59+0300\n"
+"Last-Translator: Serkan ÖNDER <serkanonder@outlook.com>\n"
+"Language-Team: Linux Mint Türkiye <gokhanlnx@gmail.com>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+#. settings-schema.json->type->options
+#: desklet.js:275 desklet.js:356
+msgid "RAM"
+msgstr "RAM"
+
+#. settings-schema.json->type->options
+#: desklet.js:277 desklet.js:358
+msgid "Swap"
+msgstr "Swap(takas)"
+
+#. settings-schema.json->type->options
+#: desklet.js:279
+msgid "Filesystem"
+msgstr "Dosya sistemi"
+
+#: desklet.js:301
+msgid "Not Found"
+msgstr "Bulunamadı"
+
+#. metadata.json->name
+#: desklet.js:360
+msgid "Disk Space"
+msgstr "Disk Alanı"
+
+#. metadata.json->description
+msgid "Displays the usage of a filesystem or RAM."
+msgstr "Dosya sistemi veya RAM kullanımını görüntüler."
+
+#. settings-schema.json->head0->description
+msgid "Settings for diskspace@schorschii"
+msgstr "diskspace@schorschii Ayarları"
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr "Genel"
+
+#. settings-schema.json->type->description
+msgid "Monitor a file system or RAM usage"
+msgstr "Dosya sistemini veya RAM kullanımını izleyin"
+
+#. settings-schema.json->type->tooltip
+msgid "Choose, if this desklet should show file system or RAM usage."
+msgstr ""
+"Masaüstü uygulamacığının dosya sistemi ya da RAM kullanımı gösterimini "
+"buradan seçebilirsiniz."
+
+#. settings-schema.json->filesystem->description
+msgid "Filesystem to monitor"
+msgstr "İzlenecek dosya sistemi"
+
+#. settings-schema.json->filesystem->tooltip
+msgid "Select the file system, which you want to monitor."
+msgstr "İzlemek istediğiniz dosya sistemini seçiniz."
+
+#. settings-schema.json->onclick-action->description
+msgid "Action on mouse click"
+msgstr "Fare tıklamasıyla yapılacak işlem"
+
+#. settings-schema.json->onclick-action->tooltip
+msgid "Choose what to do when the desklet was clicked."
+msgstr "Uygulamaya tıklandığında ne yapılacağını seçin."
+
+#. settings-schema.json->onclick-action->options
+msgid "Open File Manager"
+msgstr "Dosya Yöneticisini Aç"
+
+#. settings-schema.json->onclick-action->options
+msgid "Open Partition Manager"
+msgstr "Bölüm Yöneticisini Aç"
+
+#. settings-schema.json->onclick-action->options
+#, fuzzy
+msgid "Open System Monitor"
+msgstr "İzlenecek dosya sistemi"
+
+#. settings-schema.json->onclick-action->options
+msgid "Nothing"
+msgstr "Hiçbiri"
+
+#. settings-schema.json->size-prefix->description
+msgid "Size Prefix"
+msgstr "Boyut Öneki"
+
+#. settings-schema.json->size-prefix->options
+msgid "Decimal"
+msgstr "Ondalık"
+
+#. settings-schema.json->size-prefix->options
+msgid "Binary"
+msgstr "İkili"
+
+#. settings-schema.json->reserved-blocks-as-used-space->description
+msgid "Show reserved blocks as used space"
+msgstr ""
+
+#. settings-schema.json->reserved-blocks-as-used-space->tooltip
+msgid ""
+"Reserved blocks are useable for the root user only and that's why displayed "
+"as used space by default."
+msgstr ""
+
+#. settings-schema.json->head2->description
+msgid "Visual"
+msgstr "Görsel"
+
+#. settings-schema.json->design->description
+msgid "Design"
+msgstr "Tasarım"
+
+#. settings-schema.json->design->options
+msgid "Thin"
+msgstr "İnce"
+
+#. settings-schema.json->design->options
+msgid "Compact"
+msgstr "Kompakt"
+
+#. settings-schema.json->design->options
+msgid "Classic (Thick)"
+msgstr "Klasik (Kalın)"
+
+#. settings-schema.json->text-view->description
+msgid "Text"
+msgstr "Metin"
+
+#. settings-schema.json->text-view->options
+#, fuzzy
+msgid "Name and total space"
+msgstr "İsim ve toplam boyut"
+
+#. settings-schema.json->text-view->options
+msgid "Used and total space"
+msgstr "Kullanılan ve toplam boyut"
+
+#. settings-schema.json->text-view->options
+msgid "Total and used space"
+msgstr ""
+
+#. settings-schema.json->text-view->options
+msgid "Free and total space"
+msgstr "Boş alan ve toplam boyut"
+
+#. settings-schema.json->text-view->options
+msgid "Total and free space"
+msgstr ""
+
+#. settings-schema.json->text-view->options
+msgid "No text"
+msgstr "Yazı yok"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Süslemeleri gizle"
+
+#. settings-schema.json->draw-free-space->description
+msgid "Draw free/unused space (gray)"
+msgstr "Boş/kullanılmayan alanı göster (gri)"
+
+#. settings-schema.json->use-own-circle-color->description
+msgid "Use a custom circle color"
+msgstr "Özel bir daire rengi kullan"
+
+#. settings-schema.json->circle-color->description
+msgid "Circle color"
+msgstr "Daire rengi"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Metin rengi"
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "ölçü çarpanı"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Masaüstü uygulamacığının boyutu"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Bu ölçü çarpanını kullanarak bu masaüstü uygulamacığının boyutunu artırın "
+"veya azaltın."
+
+#. settings-schema.json->head3->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr "Masaüstü uygulamacığı özel etiketi (sadece süslemeler etkinse görünür)"
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Masaüstü uygulamacığı için özel bir etiketi kullan"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Bu kutuyu işaretlemek, aşağıda açılacak alandan özel bir etiket ayarlamanıza "
+"izin verir."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Özel masaüstü uygulamacığı etiketi"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr ""
+"Burada özel etiketinizi ayarlayabilirsiniz. Bu alan yukarıdaki onay kutusu "
+"etkin olmadıkça kullanılamaz."
