@@ -76,7 +76,8 @@
         "description": "GPU manufacturer",
         "tooltip": "Select the GPU manufacturer.",
         "options" : {
-            "NVIDIA" : "nvidia"
+            "NVIDIA" : "nvidia",
+            "AMDGPU" : "amdgpu"
         },
         "dependency": "type=gpu"
     },

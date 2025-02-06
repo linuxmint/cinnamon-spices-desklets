@@ -251,9 +251,35 @@ SystemMonitorGraph.prototype = {
                             break;
                     }
                     break;
-
+                case "amdgpu":
+                    switch (this.gpu_variable) {
+                        case "usage":
+                            this.get_amdgpu_gpu_use();
+                            value = this.gpu_use / 100;
+                            text1 = _("GPU Usage");
+                            text2 = Math.round(this.gpu_use).toString() + "%";
+                            break;
+                        case "memory":
+                            this.get_amdgpu_gpu_mem();
+                            let gpu_mem_use = 100 * this.gpu_mem[1] / this.gpu_mem[0];
+                            value = gpu_mem_use / 100;
+                            let gpumem_prefix = "";
+                            if (this.data_prefix_gpumem == 1) {
+                                // decimal prefix
+                                gpumem_prefix =  _("GB");
+                            } else {
+                                // binary prefix
+                                gpumem_prefix =  _("GiB");
+                            }
+                            text1 = _("GPU Memory");
+                            text2 = Math.round(gpu_mem_use).toString() + "%"
+                            text3 = this.gpu_mem[1].toFixed(1) + " / "
+                                  + this.gpu_mem[0].toFixed(1) + " " + gpumem_prefix;
+                            break;
+                    }
+                    break;
                 case "other":
-                    break
+                    break;
               }
               break;
         }
@@ -541,6 +567,47 @@ SystemMonitorGraph.prototype = {
             this.gpu_mem[0] = mem_tot;
             this.gpu_mem[1] = mem_usd;
         });
+    },
+
+    get_amdgpu_gpu_use: function() {
+      // Sysfs directory with files related to the chosen gpu
+      let gpu_dir = "/sys/class/drm/card" + this.gpu_id + "/device/";
+
+      // File gpu_busy_percent contains the percentage of time that the gpu is busy
+      // expresed as an integer number from 0 to 100
+      let [, gpu_use_bytes, ] = Gio.File.new_for_path(gpu_dir + "gpu_busy_percent").load_contents(null);
+      let gpu_use = parseInt(ByteArray.toString(gpu_use_bytes));
+      GLib.free(gpu_use_bytes);
+
+      this.gpu_use = gpu_use_bytes;
+    },
+
+    get_amdgpu_gpu_mem: function() {
+      // Sysfs directory with files related to the chosen gpu
+      let gpu_dir = "/sys/class/drm/card" + this.gpu_id + "/device/";
+
+      // File mem_info_vram_total contains the total amount of gpu VRAM in bytes
+      let [, mem_tot_bytes, ] = Gio.File.new_for_path(gpu_dir + "mem_info_vram_total").load_contents(null);
+      let mem_tot = parseInt(ByteArray.toString(mem_tot_bytes));
+      GLib.free(mem_tot_bytes);
+
+      // File mem_info_vram_used contains the used amount of gpu VRAM in bytes
+      let [, mem_usd_bytes, ] = Gio.File.new_for_path(gpu_dir + "mem_info_vram_used").load_contents(null);
+      let mem_usd = parseInt(ByteArray.toString(mem_usd_bytes));
+      GLib.free(mem_usd_bytes);
+
+      // Math here is different, because nvidia-smi returns memory amounts in MiB,
+      // but amdgpu provides them in bytes
+      if (this.data_prefix_gpumem == 1) {
+        mem_tot = mem_tot / GB_TO_B;
+        mem_usd = mem_usd / GB_TO_B;
+      } else {
+        mem_tot = mem_tot / 1024 / 1024 / GIB_TO_MIB;
+        mem_usd = mem_usd / 1024 / 1024 / GIB_TO_MIB;
+      }
+
+      this.gpu_mem[0] = mem_tot;
+      this.gpu_mem[1] = mem_usd;
     }
 
 };
