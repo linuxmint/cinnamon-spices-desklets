@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: yarr@jtoberling 1.2.2\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-11-11 09:04-0500\n"
+"POT-Creation-Date: 2025-02-08 18:32-0500\n"
 "PO-Revision-Date: 2024-11-25 13:34+0100\n"
 "Last-Translator: Janos Toberling <jtoberling@gmail.com>\n"
 "Language-Team: \n"
@@ -18,34 +18,41 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#. desklet.js:318
+#. desklet.js:479
 msgid "Enable refresh"
 msgstr "Frissítés engedélyezése"
 
-#. desklet.js:322 desklet.js:360
+#. desklet.js:483 desklet.js:689
 msgid "Disable refresh"
 msgstr "Frissítés letiltása"
 
-#. desklet.js:331
+#. desklet.js:491
 msgid "Yarr"
 msgstr "Yarr"
 
-#. desklet.js:345
+#. desklet.js:536
 msgid "Loading: feeds ..."
 msgstr "Betöltés: hírforrás ..."
 
-#. desklet.js:628
-msgid "Updated"
-msgstr "Frissítve"
-
-#. desklet.js:770
-#, javascript-format
-msgid ""
-"'%s' settings..\n"
-"Please enter ChatGPT API key:"
+#. desklet.js:566 desklet.js:671
+msgid " Search..."
 msgstr ""
-"'%s' beállítások...\n"
-"Kérjük, adja meg a ChatGPT API kulcsát:"
+
+#. desklet.js:599
+msgid "Search Articles"
+msgstr ""
+
+#. desklet.js:610
+msgid "Type to search..."
+msgstr ""
+
+#. desklet.js:644
+msgid "Cancel"
+msgstr ""
+
+#. desklet.js:649
+msgid "Search"
+msgstr ""
 
 #. metadata.json->description
 msgid "Yet Another RSS Reader - now as Cinnamon Desklet"
@@ -397,3 +404,21 @@ msgstr "Nyomja meg ezt a gombot a beállítások újratöltéséhez"
 #. settings-schema.json->enablecopy->description
 msgid "Enable Copy to clipboard button"
 msgstr "Másolás a vágólapra gomb engedélyezése"
+
+#. settings-schema.json->temperature->description
+msgid "Temperature for AI responses"
+msgstr ""
+
+#. settings-schema.json->temperature->tooltip
+msgid ""
+"Controls the randomness of the AI's responses. Higher values mean more "
+"randomness."
+msgstr ""
+
+#. settings-schema.json->enableFeedButton->description
+msgid "Hide feed button"
+msgstr ""
+
+#. settings-schema.json->enableTimestamp->description
+msgid "Hide timestamp"
+msgstr ""

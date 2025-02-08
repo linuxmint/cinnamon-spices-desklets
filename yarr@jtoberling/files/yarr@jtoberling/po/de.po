@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: yarr@jtoberling 1.2.4\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-11-11 09:04-0500\n"
+"POT-Creation-Date: 2025-02-08 18:32-0500\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,34 +18,41 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#. desklet.js:318
+#. desklet.js:479
 msgid "Enable refresh"
 msgstr "Aktiviere Aktualisierung"
 
-#. desklet.js:322 desklet.js:360
+#. desklet.js:483 desklet.js:689
 msgid "Disable refresh"
 msgstr "Deaktiviere Aktualisierung"
 
-#. desklet.js:331
+#. desklet.js:491
 msgid "Yarr"
 msgstr "Yarr"
 
-#. desklet.js:345
+#. desklet.js:536
 msgid "Loading: feeds ..."
 msgstr "Lade: Feeds..."
 
-#. desklet.js:628
-msgid "Updated"
-msgstr "Aktualisiert"
-
-#. desklet.js:770
-#, javascript-format
-msgid ""
-"'%s' settings..\n"
-"Please enter ChatGPT API key:"
+#. desklet.js:566 desklet.js:671
+msgid " Search..."
 msgstr ""
-"'%s' Einstellungen\n"
-"Bitte ChatGPT API Key eingeben:"
+
+#. desklet.js:599
+msgid "Search Articles"
+msgstr ""
+
+#. desklet.js:610
+msgid "Type to search..."
+msgstr ""
+
+#. desklet.js:644
+msgid "Cancel"
+msgstr ""
+
+#. desklet.js:649
+msgid "Search"
+msgstr ""
 
 #. metadata.json->description
 msgid "Yet Another RSS Reader - now as Cinnamon Desklet"
@@ -401,3 +408,21 @@ msgstr "Diesen Button zum Neuladen drücken"
 #. settings-schema.json->enablecopy->description
 msgid "Enable Copy to clipboard button"
 msgstr "Aktiviere \"In Zwischenablage kopieren\" Button"
+
+#. settings-schema.json->temperature->description
+msgid "Temperature for AI responses"
+msgstr ""
+
+#. settings-schema.json->temperature->tooltip
+msgid ""
+"Controls the randomness of the AI's responses. Higher values mean more "
+"randomness."
+msgstr ""
+
+#. settings-schema.json->enableFeedButton->description
+msgid "Hide feed button"
+msgstr ""
+
+#. settings-schema.json->enableTimestamp->description
+msgid "Hide timestamp"
+msgstr ""
