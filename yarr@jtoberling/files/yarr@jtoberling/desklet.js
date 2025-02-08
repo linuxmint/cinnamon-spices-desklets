@@ -63,6 +63,20 @@ class YarrDesklet extends Desklet.Desklet {
     // Add new property for search
     searchFilter = '';
 
+    // Add resource monitoring
+    _resourceUsage = {
+        lastUpdate: 0,
+        updateCount: 0,
+        errorCount: 0
+    };
+    
+    // Adaptive refresh rate
+    _adaptiveRefresh = {
+        minDelay: 300,  // 5 minutes
+        maxDelay: 1800, // 30 minutes
+        currentDelay: 300
+    };
+
     constructor (metadata, desklet_id) {
 
         // translation init: if installed in user context, switch to translations in user's home dir
@@ -150,6 +164,31 @@ class YarrDesklet extends Desklet.Desklet {
         let theme = themeContext.get_theme();
         
         theme.load_stylesheet(DESKLET_ROOT + '/style.css');
+
+        // Add cleanup handler
+        this.actor.connect('destroy', () => this._onDestroy());
+    }
+
+    _onDestroy() {
+        // Clear timers
+        if (this.timerInProgress) {
+            Mainloop.source_remove(this.timerInProgress);
+        }
+        if (this.updateDownloadedTimer) {
+            Mainloop.source_remove(this.updateDownloadedTimer);
+        }
+        
+        // Disconnect signals
+        this._signals.disconnectAllSignals();
+        
+        // Clear items map
+        this.items.clear();
+        
+        // Clear HTTP session
+        if (this.httpSession) {
+            this.httpSession.abort();
+            this.httpSession = null;
+        }
     }
 
     invertbrightness(rgb) {
@@ -274,8 +313,18 @@ class YarrDesklet extends Desklet.Desklet {
     /*
         This function creates all of our HTTP requests.
     */
-    httpRequest(method,url,headers,postParameters,callbackF, bodyMime='application/x-www-form-urlencoded') {
-    
+    httpRequest(method, url, headers, postParameters, callbackF, bodyMime='application/x-www-form-urlencoded') {
+        // Add request timeout
+        if (Soup.MAJOR_VERSION === 2) {
+            this.httpSession.timeout = 10;
+        } else {
+            this.httpSession.timeout = 10;
+        }
+        
+        // Cache control headers
+        if (!headers) headers = [];
+        headers.push(['Cache-Control', 'max-age=300']); // 5 minutes cache
+        
         var message = Soup.Message.new(
             method,
             url
@@ -332,10 +381,20 @@ class YarrDesklet extends Desklet.Desklet {
     }
 
     setUpdateTimer(timeOut) {
-    
-        if (this._setUpdateTimerInProgress) {
-            return;
+        // Add adaptive refresh rate based on error count
+        if (this._resourceUsage.errorCount > 5) {
+            this._adaptiveRefresh.currentDelay = Math.min(
+                this._adaptiveRefresh.currentDelay * 1.5,
+                this._adaptiveRefresh.maxDelay
+            );
+            this._resourceUsage.errorCount = 0;
         }
+        
+        // Use adaptive delay instead of fixed delay
+        const actualDelay = timeOut === 1 ? timeOut : this._adaptiveRefresh.currentDelay;
+        
+        if (this._setUpdateTimerInProgress) return;
+        
         this._setUpdateTimerInProgress = true;
     
 
@@ -343,7 +402,7 @@ class YarrDesklet extends Desklet.Desklet {
             Mainloop.source_remove(this.timerInProgress);
         }
         
-        this.timerInProgress = Mainloop.timeout_add_seconds(timeOut, Lang.bind(this, this.onTimerEvent));
+        this.timerInProgress = Mainloop.timeout_add_seconds(actualDelay, Lang.bind(this, this.onTimerEvent));
         
         this._setUpdateTimerInProgress = false;
     }
@@ -675,97 +734,112 @@ class YarrDesklet extends Desklet.Desklet {
     }
     
     onUpdateDownloadedTimer() {
-
         this.onUpdateDownloadedTick++;
 
-        if ( (this.updateDownloadCounter < 1) || (this.onUpdateDownloadedTick > 10)) {
-            Mainloop.source_remove(this.updateDownloadedTimer);
+        if (this.updateDownloadCounter < 1 || this.onUpdateDownloadedTick > 10) {
+            if (this.updateDownloadedTimer) {
+                Mainloop.source_remove(this.updateDownloadedTimer);
+                this.updateDownloadedTimer = null;
+            }
             this.displayItems(this);
-            this.refreshIcon.set_icon_name('reload');
+            if (this.refreshIcon) {
+                this.refreshIcon.set_icon_name('reload');
+            }
+            return GLib.SOURCE_REMOVE;
         }
         return GLib.SOURCE_CONTINUE;
     }
     
     collectFeeds() {
-    
-        if (!this.refreshEnabled) {
-            return;
-        }
-    
-        let freshItems = [];
+        if (!this.refreshEnabled) return;
         
-        this.refreshIcon.set_icon_name('system-run');
-
-        this.updateDownloadCounter = this.feeds.length -1;
+        const CONCURRENT_REQUESTS = 3; // Limit concurrent requests
+        const feeds = [...this.feeds].filter(f => f.active && f.url.length > 0);
+        
+        this.updateDownloadCounter = feeds.length;
         this.onUpdateDownloadedTick = 0;
-        this.updateDownloadedTimer = Mainloop.timeout_add_seconds(1, Lang.bind(this, this.onUpdateDownloadedTimer));
         
-        for(let i=0; i < this.feeds.length; i++ ) {
+        // Start download timer
+        this.updateDownloadedTimer = Mainloop.timeout_add_seconds(1, 
+            Lang.bind(this, this.onUpdateDownloadedTimer)
+        );
+        
+        // Process feeds in batches
+        const processBatch = (startIndex) => {
+            const batch = feeds.slice(startIndex, startIndex + CONCURRENT_REQUESTS);
+            if (batch.length === 0) return;
             
-            let feed = this.feeds[i];
-            let feedRegexp = new RegExp(feed.filter);
+            batch.forEach(feed => {
+                let feedRegexp = new RegExp(feed.filter);
 
-            if (feed.active && feed.url.length > 0) {
-                    
-                    this.httpRequest('GET', feed.url, 
-                        null,  // headers
-                        null,  // post
-                        function(context, message, result) {
+                this.httpRequest('GET', feed.url, 
+                    null,  // headers
+                    null,  // post
+                    function(context, message, result) {
                         
-                            let resJSON = null;
-                            try {
-                                resJSON = fromXML(result);
+                        let resJSON = null;
+                        try {
+                            resJSON = fromXML(result);
+                            
+                            let channel = resJSON.rss.channel.title;
+                            
+                            for(let j=0; j < resJSON.rss.channel.item.length ; j++ ) {
+                            
+                                let item = resJSON.rss.channel.item[j];
                                 
-                                let channel = resJSON.rss.channel.title;
+                                let catStr = context.getCategoryString(item);
                                 
-                                for(let j=0; j < resJSON.rss.channel.item.length ; j++ ) {
-                                
-                                    let item = resJSON.rss.channel.item[j];
-                                    
-                                    let catStr = context.getCategoryString(item);
-                                    
-                                    let doInsert = true;
-                                    if (feed.filter.length > 0)  {
-                                        doInsert = feedRegexp.test(catStr);                                    
-                                    }
-                                    
-                                    if (context.listfilter.length > 0 && context.inGlobalFilter(context, item.title, catStr, item.description)) {
-                                        doInsert = false;
-                                    }
-                                    
-                                    if (doInsert) {
-                                        let parsedDate = new Date(item.pubDate);
-                                        context.additems(
-                                            context,
-                                            { 
-                                                'channel': 	feed.name,
-                                                'timestamp': 	parsedDate,
-                                                'pubDate':	item.pubDate, 
-                                                'title':	item.title, 
-                                                'link':		item.link,
-                                                'category': 	catStr,
-                                                'description': 	item.description, 
-                                                'labelColor': 	feed.labelcolor,
-                                                'aiResponse': 	''
-                                             }
-                                        );
-                                    }
+                                let doInsert = true;
+                                if (feed.filter.length > 0)  {
+                                    doInsert = feedRegexp.test(catStr);                                    
                                 }
+                                
+                                if (context.listfilter.length > 0 && context.inGlobalFilter(context, item.title, catStr, item.description)) {
+                                    doInsert = false;
+                                }
+                                
+                                if (doInsert) {
+                                    let parsedDate = new Date(item.pubDate);
+                                    context.additems(
+                                        context,
+                                        { 
+                                            'channel': 	feed.name,
+                                            'timestamp': 	parsedDate,
+                                            'pubDate':	item.pubDate, 
+                                            'title':	item.title, 
+                                            'link':		item.link,
+                                            'category': 	catStr,
+                                            'description': 	item.description, 
+                                            'labelColor': 	feed.labelcolor,
+                                            'aiResponse': 	''
+                                         }
+                                    );
+                                }
+                            }
                           
 //                                context.displayItems(context);
                                 
-                            } catch (e) {
-                                global.log('ERROR', 'PARSEERROR');
-                                global.log(e);
-                            }
-
-                          context.updateDownloadCounter--;
-                            
+                        } catch (e) {
+                            global.log('ERROR', 'PARSEERROR');
+                            global.log(e);
                         }
-                    );                                    
-            }            
-        }
 
+                      context.updateDownloadCounter--;
+                            
+                    }
+                );                                    
+            });
+            
+            // Schedule next batch
+            if (startIndex + CONCURRENT_REQUESTS < feeds.length) {
+                GLib.timeout_add(GLib.PRIORITY_DEFAULT, 1000, () => {
+                    processBatch(startIndex + CONCURRENT_REQUESTS);
+                    return GLib.SOURCE_REMOVE;
+                });
+            }
+        };
+        
+        processBatch(0);
     }
     
     HTMLPartToTextPart(HTMLPart) {
@@ -841,166 +915,183 @@ class YarrDesklet extends Desklet.Desklet {
     
     
     displayItems(context) {
-    
-        let updated= new Date();
+        // Batch updates using Mainloop idle
+        const ITEMS_PER_BATCH = 10;
+        
+        let updated = new Date();
         context.headTitle.set_text(_('Updated') + ': ' + context._formatedDate(new Date()));
-    
+        
         context.tableContainer.destroy_all_children();
         
+        // Filter items first
+        const filteredItems = Array.from(context.items.entries()).filter(([key, item]) => {
+            if (!context.searchFilter) return true;
+            try {
+                const regexp = new RegExp(context.searchFilter, 'i');
+                return regexp.test(item.title) || 
+                       regexp.test(item.description) || 
+                       regexp.test(item.channel) ||
+                       regexp.test(item.category);
+            } catch(e) {
+                global.log('YarrDesklet: Invalid regexp:', e);
+                return true;
+            }
+        });
+
+        // Process items in batches
+        let currentIndex = 0;
         let counter = 0;
-        for(let [key, item] of context.items ) {
-            // Add search filter
-            if (context.searchFilter) {
-                try {
-                    let regexp = new RegExp(context.searchFilter, 'i');
-                    let matches = regexp.test(item.title) || 
-                                regexp.test(item.description) || 
-                                regexp.test(item.channel) ||
-                                regexp.test(item.category);
-                    global.log('YarrDesklet: Item match result:', matches, 'for item:', item.title);
-                    if (!matches) {
-                        continue;
-                    }
-                } catch(e) {
-                    global.log('YarrDesklet: Invalid regexp:', e);
-                }
-            }
-            
-            counter++;
-            const lineBox = new St.BoxLayout({ vertical: false }); 
-
-            const feedButton = new St.Button({ label: "["+item.channel +"]" , style_class: 'channelbutton', style: 'width: 80px; background-color: ' + item.labelColor });
-
-            let toolTipText = 
-                '<span size="large"><b><u>' + this.formatTextWrap(item.channel + ': ' + item.title, 100) + '</u></b></span>'
-                +'\n<span size="small">[ ' + item.category.toString().substring(0,80) + ' ]</span>\n\n'
-                + '<span>' + this.formatTextWrap(this.HTMLPartToTextPart(item.description ?? '-' ),100) + '</span>'
-                ;
-
-            // Create tooltip but don't show it initially
-            let toolTip = new Tooltips.Tooltip(feedButton);
-            toolTip._tooltip.style = 'text-align: left;';
-            toolTip._tooltip.clutter_text.set_use_markup(true);
-            toolTip._tooltip.clutter_text.set_line_wrap(true);
-            toolTip._tooltip.clutter_text.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
-            toolTip._tooltip.clutter_text.set_markup(toolTipText);
-            toolTip._tooltip.allocate_preferred_size(Clutter.AllocationFlags.NONE);
-            toolTip._tooltip.queue_relayout();
-            
-            // Show tooltip only on hover
-            feedButton.connect('enter-event', () => {
-                toolTip._tooltip.clutter_text.set_markup(toolTipText);
-                toolTip.show();
-            });
-            
-            feedButton.connect('leave-event', () => {
-                toolTip.hide();
-            });
-
-            lineBox.add(feedButton);
-
-            this._signals.connect( feedButton, 'clicked', (...args) => this.onClickedButton(...args, item.link) ); 
-
-            const itemBoxLayout = new St.BoxLayout({ vertical: true });
-
-            if (this.ai_enablesummary) {
-                const sumButton = new St.Button({ style: 'width: 24px;'});
-                const sumIcon = new St.Icon({
-                              icon_name: 'gtk-zoom-fit',
-                              icon_size: 20, 
-                              icon_type: St.IconType.SYMBOLIC
-                });
-                sumButton.set_child(sumIcon);
-                lineBox.add(sumButton);
-                this._signals.connect( sumButton, 'clicked', (...args) => this.onClickedSumButton(...args, item, itemBoxLayout, sumIcon));
-            }
-
-            if (this.enablecopy) {
-                const copyButton = new St.Button({ style: 'width: 24px;'});
-                const copyIcon = new St.Icon({
-                              icon_name: 'gtk-copy',
-                              icon_size: 20, 
-                              icon_type: St.IconType.SYMBOLIC
-                              });
-                copyButton.set_child(copyIcon);
-                lineBox.add(copyButton);
-                this._signals.connect( copyButton, 'clicked', (...args) => this.onClickedCopyButton(...args, item, itemBoxLayout));
-            }
-            
-            
-            const dateLabel = new St.Label({  text: ' ' + context._formatedDate(item.timestamp, false) + ' ', style: 'text-align: center;'   });
-            lineBox.add(dateLabel);
-            
-            let panelButton = new St.Button({});
-  
-            const itemLabel = new St.Label({
-                    text: item.title
-            });
-            itemLabel.hexpand = true;
-                
-
-            itemLabel.style = context.fontstyle;
-            
-            itemLabel.clutter_text.line_wrap = true;
-            itemLabel.clutter_text.line_wrap_mode = Pango.WrapMode.WORD;
-            itemLabel.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
-            
-            let subItemBox = new St.BoxLayout({ 
-                vertical: true
-            });
-            if ( (counter % 2 ) == 0) {
-                subItemBox.style = "background-color: rgba(100,100,100,"+ this.alternateRowTransparency +");";
-            }
-
-            subItemBox.add(itemLabel);
-            
-            itemBoxLayout.add(subItemBox);
-
-            panelButton.set_child(itemBoxLayout);
-            
-            let toolTip2 = new Tooltips.Tooltip(panelButton);
-            toolTip2._tooltip.style = 'text-align: left;';
-            toolTip2._tooltip.clutter_text.set_use_markup(true);
-            toolTip2._tooltip.clutter_text.set_line_wrap(true);
-            toolTip2._tooltip.clutter_text.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
-            toolTip2._tooltip.clutter_text.set_markup(toolTipText);
-            toolTip2._tooltip.allocate_preferred_size(Clutter.AllocationFlags.NONE);
-            toolTip2._tooltip.queue_relayout();
-            
-            // Show tooltip only on hover
-            panelButton.connect('enter-event', () => {
-                toolTip2._tooltip.clutter_text.set_markup(toolTipText);
-                toolTip2.show();
-            });
-            
-            panelButton.connect('leave-event', () => {
-                toolTip2.hide();
-            });
-            
-            lineBox.add_actor( panelButton );
-            
-            
-            if (item.aiResponse.length > 0) {
-            
-                const aiLabel = new St.Label({  
-                    text:   item.aiResponse + '\n------------------------------------------------------', 
-                    style: 'text-align: left;'   
-                });
-                aiLabel.style = context.ai_fontstyle;
-                
-                aiLabel.clutter_text.line_wrap = true;
-                aiLabel.clutter_text.line_wrap_mode = Pango.WrapMode.WORD;
-                aiLabel.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
-                 
-                itemBoxLayout.add(aiLabel);
-            }
-            
-            
-            context.tableContainer.add( lineBox );
-            
-        }
         
+        const processNextBatch = () => {
+            const batch = filteredItems.slice(currentIndex, currentIndex + ITEMS_PER_BATCH);
+            if (batch.length === 0) return;
+            
+            batch.forEach(([key, item]) => {
+                counter++;
+                const lineBox = new St.BoxLayout({ vertical: false }); 
+
+                const feedButton = new St.Button({ label: "["+item.channel +"]" , style_class: 'channelbutton', style: 'width: 80px; background-color: ' + item.labelColor });
+
+                let toolTipText = 
+                    '<span size="large"><b><u>' + this.formatTextWrap(item.channel + ': ' + item.title, 100) + '</u></b></span>'
+                    +'\n<span size="small">[ ' + item.category.toString().substring(0,80) + ' ]</span>\n\n'
+                    + '<span>' + this.formatTextWrap(this.HTMLPartToTextPart(item.description ?? '-' ),100) + '</span>'
+                    ;
+
+                // Create tooltip but don't show it initially
+                let toolTip = new Tooltips.Tooltip(feedButton);
+                toolTip._tooltip.style = 'text-align: left;';
+                toolTip._tooltip.clutter_text.set_use_markup(true);
+                toolTip._tooltip.clutter_text.set_line_wrap(true);
+                toolTip._tooltip.clutter_text.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
+                toolTip._tooltip.clutter_text.set_markup(toolTipText);
+                toolTip._tooltip.allocate_preferred_size(Clutter.AllocationFlags.NONE);
+                toolTip._tooltip.queue_relayout();
                 
+                // Show tooltip only on hover
+                feedButton.connect('enter-event', () => {
+                    toolTip._tooltip.clutter_text.set_markup(toolTipText);
+                    toolTip.show();
+                });
+                
+                feedButton.connect('leave-event', () => {
+                    toolTip.hide();
+                });
+
+                lineBox.add(feedButton);
+
+                this._signals.connect( feedButton, 'clicked', (...args) => this.onClickedButton(...args, item.link) ); 
+
+                const itemBoxLayout = new St.BoxLayout({ vertical: true });
+
+                if (this.ai_enablesummary) {
+                    const sumButton = new St.Button({ style: 'width: 24px;'});
+                    const sumIcon = new St.Icon({
+                                  icon_name: 'gtk-zoom-fit',
+                                  icon_size: 20, 
+                                  icon_type: St.IconType.SYMBOLIC
+                    });
+                    sumButton.set_child(sumIcon);
+                    lineBox.add(sumButton);
+                    this._signals.connect( sumButton, 'clicked', (...args) => this.onClickedSumButton(...args, item, itemBoxLayout, sumIcon));
+                }
+
+                if (this.enablecopy) {
+                    const copyButton = new St.Button({ style: 'width: 24px;'});
+                    const copyIcon = new St.Icon({
+                                  icon_name: 'gtk-copy',
+                                  icon_size: 20, 
+                                  icon_type: St.IconType.SYMBOLIC
+                                  });
+                    copyButton.set_child(copyIcon);
+                    lineBox.add(copyButton);
+                    this._signals.connect( copyButton, 'clicked', (...args) => this.onClickedCopyButton(...args, item, itemBoxLayout));
+                }
+                
+                
+                const dateLabel = new St.Label({  text: ' ' + context._formatedDate(item.timestamp, false) + ' ', style: 'text-align: center;'   });
+                lineBox.add(dateLabel);
+                
+                let panelButton = new St.Button({});
+      
+                const itemLabel = new St.Label({
+                        text: item.title
+                });
+                itemLabel.hexpand = true;
+                    
+
+                itemLabel.style = context.fontstyle;
+                
+                itemLabel.clutter_text.line_wrap = true;
+                itemLabel.clutter_text.line_wrap_mode = Pango.WrapMode.WORD;
+                itemLabel.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
+                
+                let subItemBox = new St.BoxLayout({ 
+                    vertical: true
+                });
+                if ( (counter % 2 ) == 0) {
+                    subItemBox.style = "background-color: rgba(100,100,100,"+ this.alternateRowTransparency +");";
+                }
+
+                subItemBox.add(itemLabel);
+                
+                itemBoxLayout.add(subItemBox);
+
+                panelButton.set_child(itemBoxLayout);
+                
+                let toolTip2 = new Tooltips.Tooltip(panelButton);
+                toolTip2._tooltip.style = 'text-align: left;';
+                toolTip2._tooltip.clutter_text.set_use_markup(true);
+                toolTip2._tooltip.clutter_text.set_line_wrap(true);
+                toolTip2._tooltip.clutter_text.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
+                toolTip2._tooltip.clutter_text.set_markup(toolTipText);
+                toolTip2._tooltip.allocate_preferred_size(Clutter.AllocationFlags.NONE);
+                toolTip2._tooltip.queue_relayout();
+                
+                // Show tooltip only on hover
+                panelButton.connect('enter-event', () => {
+                    toolTip2._tooltip.clutter_text.set_markup(toolTipText);
+                    toolTip2.show();
+                });
+                
+                panelButton.connect('leave-event', () => {
+                    toolTip2.hide();
+                });
+                
+                lineBox.add_actor( panelButton );
+                
+                
+                if (item.aiResponse.length > 0) {
+                
+                    const aiLabel = new St.Label({  
+                        text:   item.aiResponse + '\n------------------------------------------------------', 
+                        style: 'text-align: left;'   
+                    });
+                    aiLabel.style = context.ai_fontstyle;
+                    
+                    aiLabel.clutter_text.line_wrap = true;
+                    aiLabel.clutter_text.line_wrap_mode = Pango.WrapMode.WORD;
+                    aiLabel.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
+                     
+                    itemBoxLayout.add(aiLabel);
+                }
+                
+                
+                context.tableContainer.add( lineBox );
+                
+            });
+            
+            currentIndex += ITEMS_PER_BATCH;
+            
+            if (currentIndex < filteredItems.length) {
+                GLib.idle_add(GLib.PRIORITY_DEFAULT_IDLE, () => {
+                    processNextBatch();
+                    return GLib.SOURCE_REMOVE;
+                });
+            }
+        };
+        
+        processNextBatch();
     }
 
     onTimerEvent() {
