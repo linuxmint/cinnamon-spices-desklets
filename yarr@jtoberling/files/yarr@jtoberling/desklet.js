@@ -444,7 +444,29 @@ class YarrDesklet extends Desklet.Desklet {
     }
 
     onRefreshClicked() {
-        this.setUpdateTimer(3);
+        // Set refresh icon to indicate loading
+        if (this.refreshIcon) {
+            this.refreshIcon.set_icon_name('process-working');
+        }
+
+        // Immediately collect feeds
+        this.collectFeeds()
+            .then(() => {
+                // Reset icon after successful refresh
+                if (this.refreshIcon) {
+                    this.refreshIcon.set_icon_name('reload');
+                }
+            })
+            .catch(error => {
+                // Reset icon and log error
+                if (this.refreshIcon) {
+                    this.refreshIcon.set_icon_name('reload');
+                }
+                global.log('Error refreshing feeds:', error);
+            });
+
+        // Also reset the timer for next automatic refresh
+        this.setUpdateTimer(this.delay);
     }
 
     onClickedToggleRefresh(selfObj, p2, context) {
@@ -464,6 +486,7 @@ class YarrDesklet extends Desklet.Desklet {
     buildInitialDisplay() {
         this.setHeader(_('Yarr'));
         
+        // Main container
         this.mainBox = new St.BoxLayout({
             vertical: true,
             width: this.width,
@@ -471,10 +494,19 @@ class YarrDesklet extends Desklet.Desklet {
             style_class: "desklet"
         });
 
-        // Create header box with better styling
+        // Fixed height header container that won't be affected by scroll
+        this.headerContainer = new St.BoxLayout({
+            vertical: true,
+            x_expand: true,
+            height: 40,
+            style: 'min-height: 40px; background-color: rgba(0,0,0,0.2);'  // Make header visually distinct
+        });
+
+        // Header content
         this.headBox = new St.BoxLayout({ 
             vertical: false,
-            style: 'padding: 4px; spacing: 6px;'
+            x_expand: true,
+            style: 'padding: 4px; margin: 0 1rem;'
         });
         
         // Left side: Title and search
@@ -505,10 +537,10 @@ class YarrDesklet extends Desklet.Desklet {
         titleBox.add(this.headTitle);
         leftBox.add(titleBox);
 
-        // Replace search box with a simple button
+        // Search box right after title
         this.searchBox = new St.BoxLayout({ 
             vertical: false,
-            style: 'spacing: 4px;'
+            style: 'spacing: 4px; margin-left: 1rem;'  // Add margin after title
         });
         
         this.searchButton = new St.Button({
@@ -641,10 +673,11 @@ class YarrDesklet extends Desklet.Desklet {
         this.searchBox.add(this.clearSearchButton);
         leftBox.add(this.searchBox);
 
-        // Right side: Control buttons
+        // Right side: Control buttons with right alignment
         let rightBox = new St.BoxLayout({ 
             vertical: false,
-            style: 'spacing: 6px;'
+            style: 'spacing: 6px;',
+            x_align: St.Align.END  // Align to the right
         });
 
         // Toggle refresh button with icon
@@ -677,31 +710,48 @@ class YarrDesklet extends Desklet.Desklet {
         rightBox.add(this.toggleRefresh);
         rightBox.add(this.refreshButton);
 
-        // Add everything to header with flexible space
+        // Add everything to header with proper spacing
         this.headBox.add(leftBox);
-        this.headBox.add(new St.Bin({ x_expand: true, x_fill: true }));
+        this.headBox.add(new St.Bin({ x_expand: true }));  // Flexible space
         this.headBox.add(rightBox);
         
-        this.mainBox.add(this.headBox);
+        this.headerContainer.add(this.headBox);
+
+        // Separate scrollable content container
+        let scrollContainer = new St.BoxLayout({
+            vertical: true,
+            x_expand: true,
+            y_expand: true,
+            style: 'margin-top: 2px;'
+        });
 
         // Create scrollview with proper policy
         let scrollBox = new St.ScrollView({
             style_class: 'yarr-scrollbox',
             x_fill: true,
-            y_fill: true
+            y_fill: true,
+            x_expand: true,
+            y_expand: true
         });
+        
         scrollBox.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
 
-        // Create container for feed items
+        // Container for feed items
         this.dataBox = new St.BoxLayout({
             vertical: true,
             style_class: 'yarr-feeds-box',
             y_expand: true,
-            style: 'spacing: 2px;'  // Add spacing between items
+            x_expand: true,
+            style: 'spacing: 2px;'
         });
 
+        // Proper layout hierarchy
         scrollBox.add_actor(this.dataBox);
-        this.mainBox.add(scrollBox, { expand: true });
+        scrollContainer.add(scrollBox);
+
+        // Add components in correct order
+        this.mainBox.add(this.headerContainer);  // Fixed header first
+        this.mainBox.add(scrollContainer);       // Scrollable content second
 
         this.setContent(this.mainBox);
     }
@@ -975,6 +1025,15 @@ class YarrDesklet extends Desklet.Desklet {
                 .sort((a, b) => b.timestamp - a.timestamp)
                 .slice(0, this.itemlimit || 50);
 
+            // Update header text with last refresh time
+            if (this.headTitle) {
+                const now = new Date();
+                const timeStr = now.getHours().toString().padStart(2, '0') + ':' +
+                              now.getMinutes().toString().padStart(2, '0') + ':' +
+                              now.getSeconds().toString().padStart(2, '0');
+                this.headTitle.set_text(_('Last refresh: %s').format(timeStr));
+            }
+
             // Calculate channel width once
             const channelWidth = Math.min(Math.max(...sortedItems.map(item => item.channel.length)) * 8, 120);
 
@@ -1034,10 +1093,10 @@ class YarrDesklet extends Desklet.Desklet {
                 // Title and content panel
                 let panelButton = new St.Button({
                     style_class: 'yarr-panel-button',
-                    reactive: true,
-                    track_hover: true,
+                    reactive: true,  // Keep reactive for tooltip
+                    track_hover: true,  // Keep hover for tooltip
                     x_expand: true,
-                    x_align: St.Align.START,  // Force left alignment for the button
+                    x_align: St.Align.START,
                     style: 'padding: 5px; border-radius: 4px;'
                 });
 
@@ -1046,7 +1105,7 @@ class YarrDesklet extends Desklet.Desklet {
                     text: item.title,
                     style: this.fontstyle,
                     x_expand: true,
-                    x_align: St.Align.START  // Force left alignment for the label
+                    x_align: St.Align.START
                 });
                 titleLabel.clutter_text.set_line_wrap(true);
                 titleLabel.clutter_text.set_line_wrap_mode(Pango.WrapMode.WORD);
@@ -1055,27 +1114,30 @@ class YarrDesklet extends Desklet.Desklet {
                 let subItemBox = new St.BoxLayout({
                     vertical: true,
                     x_expand: true,
-                    x_align: St.Align.START  // Force left alignment for the box
+                    x_align: St.Align.START
                 });
                 subItemBox.add(titleLabel);
 
-                itemBoxLayout.add(subItemBox);
-                panelButton.set_child(itemBoxLayout);
-
                 // AI response if exists
                 if (item.aiResponse) {
-                    const aiLabel = new St.Label({  
+                    const aiLabel = new St.Label({
                         text: item.aiResponse,
-                        style: this.ai_fontstyle
+                        style: this.ai_fontstyle,
+                        x_expand: true,
+                        x_align: St.Align.START
                     });
                     aiLabel.clutter_text.set_line_wrap(true);
                     aiLabel.clutter_text.set_line_wrap_mode(Pango.WrapMode.WORD);
                     aiLabel.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
                     
-                    itemBoxLayout.add(aiLabel);
+                    subItemBox.add(aiLabel);
                 }
 
-                // Add tooltip before adding to lineBox
+                itemBoxLayout.add(subItemBox);
+                panelButton.set_child(itemBoxLayout);
+
+                // Remove click handler from panelButton
+                // Only keep the tooltip functionality
                 if (item.description) {
                     let tooltip = new Tooltips.Tooltip(panelButton);
                     tooltip.set_markup(`<b>${item.title}</b>\n${item.pubDate}\n\n${this.HTMLPartToTextPart(item.description)}`);
@@ -1093,19 +1155,12 @@ class YarrDesklet extends Desklet.Desklet {
                     tooltip._tooltip.clutter_text.set_line_wrap(true);
                     tooltip._tooltip.clutter_text.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
                     tooltip._tooltip.clutter_text.set_ellipsize(Pango.EllipsizeMode.NONE);
-                    tooltip._tooltip.set_x_align(St.Align.START);  // Force left alignment for tooltip
-                    tooltip._tooltip.clutter_text.set_x_align(Clutter.ActorAlign.START);  // Force left alignment for tooltip text
+                    tooltip._tooltip.set_x_align(St.Align.START);
+                    tooltip._tooltip.clutter_text.set_x_align(Clutter.ActorAlign.START);
                 }
 
-                // Add click handler to open the article
-                panelButton.connect('clicked', () => {
-                    if (item.link) {
-                        Gio.app_info_launch_default_for_uri(item.link, global.create_app_launch_context());
-                    }
-                });
-
                 // Add all elements to lineBox
-                lineBox.add(feedBtn);
+                lineBox.add(feedBtn);  // This already has the click handler for opening the article
                 lineBox.add(timeLabel);
                 lineBox.add(buttonBox);
                 lineBox.add(panelButton);
