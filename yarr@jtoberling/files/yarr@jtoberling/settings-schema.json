@@ -30,7 +30,7 @@
         "section1": {
             "type": "section", 
             "title": "Display settings", 
-            "keys": ["refreshsettingsbutton",  "backgroundColor", "transparency", "alternateRowTransparency", "width", "height", "font", "text-color", "enablecopy" ]
+            "keys": ["refreshsettingsbutton", "backgroundColor", "transparency", "alternateRowTransparency", "width", "height", "font", "text-color", "enablecopy", "enableFeedButton", "enableTimestamp" ]
         }, 
         
         "section1ai": {
@@ -361,6 +361,17 @@
         "step": 0.1,
         "description": "Temperature for AI responses",
         "tooltip": "Controls the randomness of the AI's responses. Higher values mean more randomness."
+    },
+    
+    "enableFeedButton": {
+        "description": "Hide feed button",
+        "type": "switch",
+        "default": false
+    },
+    "enableTimestamp": {
+        "description": "Hide timestamp",
+        "type": "switch",
+        "default": false
     }
     
     

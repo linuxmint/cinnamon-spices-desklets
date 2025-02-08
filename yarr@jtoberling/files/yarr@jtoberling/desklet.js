@@ -138,6 +138,10 @@ class YarrDesklet extends Desklet.Desklet {
         this.settings.bind("ai_text-color", "ai_color");
         this.settings.bind("temperature", "temperature");
         
+        // Add new settings bindings
+        this.settings.bind('enableFeedButton', 'enableFeedButton');
+        this.settings.bind('enableTimestamp', 'enableTimestamp');
+        
             // Initialize SignalManager
         this._signals = new SignalManager.SignalManager(null);
 
@@ -1041,7 +1045,7 @@ class YarrDesklet extends Desklet.Desklet {
             sortedItems.forEach((item, i) => {
                 // Main row container
                 const lineBox = new St.BoxLayout({
-                    vertical: false,  // Keep horizontal for main row
+                    vertical: false,
                     style: `
                         background-color: ${i % 2 ? 
                             `rgba(100,100,100, ${this.alternateRowTransparency})` : 
@@ -1051,34 +1055,38 @@ class YarrDesklet extends Desklet.Desklet {
                     `
                 });
 
-                // 1. Feed button
-                const feedBtn = new St.Button({
-                    style: `
-                        background-color: ${item.labelColor}; 
-                        border-radius: 4px; 
-                        margin: 0 5px; 
-                        width: ${channelWidth}px;
-                    `
-                });
-                feedBtn.set_child(new St.Label({ text: item.channel }));
-                feedBtn.connect('clicked', () => item.link && Util.spawnCommandLine(`xdg-open "${item.link}"`));
+                // Only add feed button if NOT hidden
+                if (!this.enableFeedButton) {
+                    const feedBtn = new St.Button({
+                        style: `
+                            background-color: ${item.labelColor}; 
+                            border-radius: 4px; 
+                            margin: 0 5px; 
+                            width: ${channelWidth}px;
+                        `
+                    });
+                    feedBtn.set_child(new St.Label({ text: item.channel }));
+                    feedBtn.connect('clicked', () => item.link && Util.spawnCommandLine(`xdg-open "${item.link}"`));
+                    lineBox.add(feedBtn);
+                }
 
-                // 2. Time label
-                const timeLabel = new St.Label({
-                    text: this._formatedDate(item.timestamp, false),
-                    style: 'font-size: 0.8em; width: 65px; text-align: center;'
-                });
+                // Only add timestamp if NOT hidden
+                if (!this.enableTimestamp) {
+                    const timeLabel = new St.Label({
+                        text: this._formatedDate(item.timestamp, false),
+                        style: 'font-size: 0.8em; width: 65px; text-align: center;'
+                    });
+                    lineBox.add(timeLabel);
+                }
 
-                const itemBoxLayout = new St.BoxLayout({ vertical: true });
-
-                // 3. Action buttons
+                // Action buttons
                 const buttonBox = new St.BoxLayout({ style: 'spacing: 5px; padding: 0 5px;' });
 
                 if (this.ai_enablesummary && item.description) {
                     const sumBtn = new St.Button({ style_class: 'yarr-button' });
                     const sumIcon = new St.Icon({ icon_name: 'gtk-zoom-fit', icon_size: 16 });
                     sumBtn.set_child(sumIcon);
-                    sumBtn.connect('clicked', () => this.onClickedSumButton(null, null, item, itemBoxLayout, sumIcon));
+                    sumBtn.connect('clicked', () => this.onClickedSumButton(null, null, item, lineBox, sumIcon));
                     buttonBox.add(sumBtn);
                 }
 
@@ -1086,18 +1094,25 @@ class YarrDesklet extends Desklet.Desklet {
                     const copyBtn = new St.Button({ style_class: 'yarr-button' });
                     const copyIcon = new St.Icon({ icon_name: 'edit-copy-symbolic', icon_size: 16 });
                     copyBtn.set_child(copyIcon);
-                    copyBtn.connect('clicked', () => this.onClickedCopyButton(null, null, item, itemBoxLayout));
+                    copyBtn.connect('clicked', () => this.onClickedCopyButton(null, null, item, lineBox));
                     buttonBox.add(copyBtn);
                 }
 
                 // Title and content panel
                 let panelButton = new St.Button({
                     style_class: 'yarr-panel-button',
-                    reactive: true,  // Keep reactive for tooltip
-                    track_hover: true,  // Keep hover for tooltip
+                    reactive: true,
+                    track_hover: true,
                     x_expand: true,
                     x_align: St.Align.START,
                     style: 'padding: 5px; border-radius: 4px;'
+                });
+
+                // Create subItemBox for title and AI response
+                let subItemBox = new St.BoxLayout({
+                    vertical: true,
+                    x_expand: true,
+                    x_align: St.Align.START
                 });
 
                 // Title
@@ -1110,12 +1125,7 @@ class YarrDesklet extends Desklet.Desklet {
                 titleLabel.clutter_text.set_line_wrap(true);
                 titleLabel.clutter_text.set_line_wrap_mode(Pango.WrapMode.WORD);
                 titleLabel.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
-
-                let subItemBox = new St.BoxLayout({
-                    vertical: true,
-                    x_expand: true,
-                    x_align: St.Align.START
-                });
+                
                 subItemBox.add(titleLabel);
 
                 // AI response if exists
@@ -1133,11 +1143,9 @@ class YarrDesklet extends Desklet.Desklet {
                     subItemBox.add(aiLabel);
                 }
 
-                itemBoxLayout.add(subItemBox);
-                panelButton.set_child(itemBoxLayout);
+                panelButton.set_child(subItemBox);
 
-                // Remove click handler from panelButton
-                // Only keep the tooltip functionality
+                // Tooltip setup
                 if (item.description) {
                     let tooltip = new Tooltips.Tooltip(panelButton);
                     tooltip.set_markup(`<b>${item.title}</b>\n${item.pubDate}\n\n${this.HTMLPartToTextPart(item.description)}`);
@@ -1159,9 +1167,7 @@ class YarrDesklet extends Desklet.Desklet {
                     tooltip._tooltip.clutter_text.set_x_align(Clutter.ActorAlign.START);
                 }
 
-                // Add all elements to lineBox
-                lineBox.add(feedBtn);  // This already has the click handler for opening the article
-                lineBox.add(timeLabel);
+                // Add elements to lineBox
                 lineBox.add(buttonBox);
                 lineBox.add(panelButton);
 
