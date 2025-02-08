@@ -1,8 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 15:06+0200\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-09-28 12:45-0400\n"
 "PO-Revision-Date: 2023-12-12 18:46+0100\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
@@ -16,11 +17,11 @@ msgstr ""
 "X-Poedit-SearchPath-0: desklet.js\n"
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
-#: desklet.js:130
+#. desklet.js:133
 msgid "Refresh"
 msgstr "Aggiorna"
 
-#: desklet.js:143
+#. desklet.js:146
 msgid ""
 "Can't read text file.\n"
 "Select a file in settings.\n"
@@ -32,7 +33,7 @@ msgstr ""
 "\n"
 "Clicca qui per modificare."
 
-#: desklet.js:263
+#. desklet.js:272
 msgid "Notepad"
 msgstr "Blocco note"
 
@@ -41,16 +42,37 @@ msgid "A desklet to display notes including various themes."
 msgstr "Un desklet per mostrare note includendo vari temi."
 
 #. metadata.json->name
+#. settings-schema.json->note-section->title
 msgid "Note"
 msgstr "Nota"
 
-#. settings-schema.json->head0->description
-msgid "Settings for notes@schorschii"
-msgstr "Impostazioni di notes@schorschii"
-
-#. settings-schema.json->head1->description
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
 msgid "General"
 msgstr "Generale"
+
+#. settings-schema.json->visual-page->title
+#. settings-schema.json->visual-section->title
+msgid "Visual"
+msgstr "Visuale"
+
+#. settings-schema.json->label-section->title
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Etichetta del desklet personalizzata (visibile solo se le decorazioni sono "
+"abilitate)"
+
+#. settings-schema.json->note-taking-method->description
+msgid "Note Taking Method"
+msgstr ""
+
+#. settings-schema.json->note-taking-method->options
+msgid "Text File"
+msgstr "File di testo"
+
+#. settings-schema.json->note-taking-method->options
+msgid "Desklet Settings"
+msgstr "Impostazioni Desklet"
 
 #. settings-schema.json->file->description
 msgid "Path to note text file"
@@ -68,9 +90,9 @@ msgstr "Comando per modificare questa nota (al clic del mouse)"
 msgid "%f will replaced by the text file path."
 msgstr "%f verrà sostituito dal percorso del file di testo."
 
-#. settings-schema.json->head2->description
-msgid "Visual"
-msgstr "Visuale"
+#. settings-schema.json->note-text->description
+msgid "Write Your Note"
+msgstr ""
 
 #. settings-schema.json->style->description
 msgid "Notes style"
@@ -298,12 +320,6 @@ msgstr ""
 "Aumenta o riduci le dimensioni di questo desklet utilizzando questo fattore "
 "di scala."
 
-#. settings-schema.json->head3->description
-msgid "Custom desklet label (only visible if decorations are enabled)"
-msgstr ""
-"Etichetta del desklet personalizzata (visibile solo se le decorazioni sono "
-"abilitate)"
-
 #. settings-schema.json->use-custom-label->description
 msgid "Use a custom desklet label"
 msgstr "Utilizzare un'etichetta desklet personalizzata"
@@ -325,9 +341,3 @@ msgid ""
 msgstr ""
 "Imposta qui la tua etichetta personalizzata. Questo campo non è disponibile "
 "a meno che la casella sopra non sia abilitata."
-
-#~ msgid "Yellow"
-#~ msgstr "Giallo"
-
-#~ msgid "White"
-#~ msgstr "Bianco"

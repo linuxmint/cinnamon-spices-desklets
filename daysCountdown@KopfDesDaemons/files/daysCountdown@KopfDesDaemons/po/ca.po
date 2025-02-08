@@ -1,0 +1,97 @@
+# DAYS COUNTDOWN
+# This file is put in the public domain.
+# KopfDesDaemons, 2024
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: daysCountdown@KopfDesDaemons 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-12-18 21:07+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Dan <d3vf4n-linux (at) tutanota (dot) com>\n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. metadata.json->name
+#. desklet.js:27
+msgid "Days Countdown"
+msgstr "Compte enrere de dies"
+
+#. desklet.js:76
+#, javascript-format
+msgid "%f days"
+msgstr "%f dies"
+
+#. metadata.json->description
+msgid "Countdown of the remaining days to a date."
+msgstr "Compte enrere dels dies que falten fins a una data."
+
+#. settings-schema.json->head0->description
+msgid "General"
+msgstr "General"
+
+#. settings-schema.json->labelText->description
+msgid "Text for the label"
+msgstr "Etiqueta del comptador"
+
+#. settings-schema.json->countdownDate->description
+msgid "Date to which the countdown counts down"
+msgstr "Data fins on compta el compte enrere"
+
+#. settings-schema.json->refreshInterval->options
+msgid "only after starting"
+msgstr "només en iniciar"
+
+#. settings-schema.json->refreshInterval->options
+msgid "every 5 minutes"
+msgstr "cada 5 minuts"
+
+#. settings-schema.json->refreshInterval->options
+msgid "every 10 minutes"
+msgstr "cada 10 minuts"
+
+#. settings-schema.json->refreshInterval->options
+msgid "every 15 minutes"
+msgstr "cada 15 minuts"
+
+#. settings-schema.json->refreshInterval->options
+msgid "every 20 minutes"
+msgstr "cada 20 minuts"
+
+#. settings-schema.json->refreshInterval->options
+msgid "every 30 minutes"
+msgstr "cada 30 minuts"
+
+#. settings-schema.json->refreshInterval->options
+msgid "every 60 minutes"
+msgstr "cada 60 minuts"
+
+#. settings-schema.json->refreshInterval->description
+msgid "Refresh interval"
+msgstr "Interval d'actualització"
+
+#. settings-schema.json->head1->description
+msgid "Style"
+msgstr "Estil"
+
+#. settings-schema.json->fontSizeLabel->description
+msgid "Font size for the label text"
+msgstr "Mida de la lletra de l'etiqueta"
+
+#. settings-schema.json->colorLabel->description
+msgid "Label color"
+msgstr "Color de l'etiqueta"
+
+#. settings-schema.json->fontSizeCountdown->description
+msgid "Font size for the countdown text"
+msgstr "Mida de la lletra del comptador"
+
+#. settings-schema.json->colorCountdown->description
+msgid "Countdown color"
+msgstr "Color del comptador"

@@ -1,4 +1,7 @@
 
+### 1.3.0
+* Add an option for font weight
+
 ### 1.2.1
 * Update default time size to 5
 * Update default date size to 2.5

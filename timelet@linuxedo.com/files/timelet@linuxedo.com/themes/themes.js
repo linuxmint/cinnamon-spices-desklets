@@ -24,6 +24,7 @@ const FlairTheme = imports.flair.FlairTheme;
 const GothamTheme = imports.gotham.GothamTheme;
 const JellyTheme = imports.jelly.JellyTheme;
 const MetroTheme = imports.metro.MetroTheme;
+const ModernTheme = imports.modern.ModernTheme;
 
 /**
  * A factory class acts as a theme register.
@@ -41,7 +42,7 @@ var Themes = class Themes {
      * @returns Return the list of registered theme names.
      */
     static getThemeNames() {
-        return ["Digital", "Flair", "Gotham", "Jelly", "Metro"];
+        return ["Digital", "Flair", "Gotham", "Jelly", "Metro", "Modern"];
     }
 
     /**
@@ -61,6 +62,8 @@ var Themes = class Themes {
             return new JellyTheme(config);
         } else if (themeName == "Metro") {
             return new MetroTheme(config);
+        } else if (themeName == "Modern") {
+            return new ModernTheme(config);
         }
     }
 }

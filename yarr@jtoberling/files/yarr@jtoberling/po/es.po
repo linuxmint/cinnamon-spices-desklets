@@ -1,14 +1,14 @@
-# SOME DESCRIPTIVE TITLE.
+# YET ANOTHER RSS READER
 # This file is put in the public domain.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# jtoberling, 2023
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yarr@jtoberling 1.1.1\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-06-30 11:08-0400\n"
-"PO-Revision-Date: 2024-06-30 12:32-0400\n"
+"POT-Creation-Date: 2024-11-11 09:04-0500\n"
+"PO-Revision-Date: 2024-11-11 20:07-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -17,27 +17,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.4\n"
 
-#: desklet.js:314
+#. desklet.js:318
 msgid "Enable refresh"
 msgstr "Habilitar actualización"
 
-#: desklet.js:318 desklet.js:356
+#. desklet.js:322 desklet.js:360
 msgid "Disable refresh"
 msgstr "Deshabilitar actualización"
 
-#: desklet.js:327
+#. desklet.js:331
 msgid "Yarr"
 msgstr "Yarr"
 
-#: desklet.js:341
+#. desklet.js:345
 msgid "Loading: feeds ..."
 msgstr "Cargando: feeds ..."
 
-#: desklet.js:624
+#. desklet.js:628
 msgid "Updated"
 msgstr "Actualizado"
 
-#: desklet.js:753
+#. desklet.js:770
 #, javascript-format
 msgid ""
 "'%s' settings..\n"
@@ -107,6 +107,15 @@ msgstr "Transparencia del fondo"
 #. settings-schema.json->transparency->tooltip
 msgid "The higher the value, the more solid the desklet background."
 msgstr "Cuanto mayor sea el valor, más sólido será el fondo del escritorio."
+
+#. settings-schema.json->alternateRowTransparency->description
+msgid "Dim of every second rows"
+msgstr "Oscurecimiento de cada segunda fila"
+
+#. settings-schema.json->alternateRowTransparency->tooltip
+msgid "The higher the value, more dim on alternate row backgrounds."
+msgstr ""
+"Cuanto mayor sea el valor, más oscuro será el fondo de las filas alternadas."
 
 #. settings-schema.json->refreshInterval-spinner->units
 msgid "seconds"
@@ -220,6 +229,14 @@ msgstr "Abrir la página de uso de ChaptGPT"
 msgid "Enable EXPERIMENTAL AI summary by ChatGPT"
 msgstr "Activar el resumen EXPERIMENTAL AI de ChatGPT"
 
+#. settings-schema.json->ai_url->description
+msgid "URL of Completion Api"
+msgstr "URL de API complementaria"
+
+#. settings-schema.json->ai_url->tooltip
+msgid "https://api.openai.com/v1/chat/completions"
+msgstr "https://api.openai.com/v1/chat/completions"
+
 #. settings-schema.json->ai_dumptool->description
 msgid "Choose a tool to dumping web pages"
 msgstr "Elija una herramienta para volcar páginas web"
@@ -246,9 +263,25 @@ msgstr ""
 "Tienes que desplegar una de estas manualmente (apt install ..):\n"
 "[ w3m, lynx, links]"
 
+#. settings-schema.json->ai_use_standard_model->description
+msgid "Use standard AI models."
+msgstr "Utilizar modelos de IA estándar."
+
+#. settings-schema.json->ai_use_standard_model->tooltip
+msgid "Set to custom to type your model name"
+msgstr "Personalizar para escribir el nombre del modelo"
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Use standard"
+msgstr "Utilice el estándar"
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Use custom"
+msgstr "Usar personalizado"
+
 #. settings-schema.json->ai_model->description
-msgid "ChatGPT model to use"
-msgstr "Modelo ChatGPT a utilizar"
+msgid "Standard model to use"
+msgstr "Modelo estándar a utilizar"
 
 #. settings-schema.json->ai_model->options
 msgid "gpt-4-32k"
@@ -259,12 +292,29 @@ msgid "gpt-4"
 msgstr "gpt-4"
 
 #. settings-schema.json->ai_model->options
+msgid "gpt-4o"
+msgstr "gpt-4o"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4o-mini"
+msgstr "gpt-4o-mini"
+
+#. settings-schema.json->ai_model->options
 msgid "gpt-3.5-turbo"
 msgstr "gpt-3.5-turbo"
 
 #. settings-schema.json->ai_model->options
 msgid "gpt-3.5-turbo-16k"
 msgstr "gpt-3.5-turbo-16k"
+
+#. settings-schema.json->ai_model->options
+#. settings-schema.json->ai_custom_model->tooltip
+msgid "deepseek-coder"
+msgstr "deepseek-coder"
+
+#. settings-schema.json->ai_model->options
+msgid "deepseek-coder-v2:latest"
+msgstr "deepseek-coder-v2:latest"
 
 #. settings-schema.json->ai_model->tooltip
 msgid ""
@@ -277,6 +327,10 @@ msgstr ""
 "Algunos requieren suscripción de clase premium.\n"
 "Uno más barato también puede funcionar bien...\n"
 "Por defecto: gpt-3.5-turbo"
+
+#. settings-schema.json->ai_custom_model->description
+msgid "Provide model name to use"
+msgstr "Indique el nombre del modelo que desea utilizar"
 
 #. settings-schema.json->ai_systemprompt->description
 msgid "AI system instructions"

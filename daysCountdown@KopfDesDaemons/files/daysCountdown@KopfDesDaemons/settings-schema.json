@@ -1,0 +1,64 @@
+{
+    "head0": {
+        "type": "header",
+        "description": "General"
+    },
+    "labelText": {
+        "type": "entry",
+        "default": "New Year 2025 Countdown",
+        "description": "Text for the label"
+    },
+    "countdownDate": {
+        "type": "datechooser",
+        "description": "Date to which the countdown counts down",
+        "default": {
+            "d": 1,
+            "m": 1,
+            "y": 2025
+        }
+    },
+    "refreshInterval": {
+        "type": "combobox",
+        "default": "only-after-starting",
+        "options": {
+            "only after starting": "only-after-starting",
+            "every 5 minutes": "300",
+            "every 10 minutes": "600",
+            "every 15 minutes": "900",
+            "every 20 minutes": "1200",
+            "every 30 minutes": "1800",
+            "every 60 minutes": "3600"
+        },
+        "description": "Refresh interval"
+    },
+    "head1": {
+        "type": "header",
+        "description": "Style"
+    },
+    "fontSizeLabel": {
+        "type": "scale",
+        "default": 12,
+        "min": 8,
+        "max": 100,
+        "step": 1,
+        "description": "Font size for the label text"
+    },
+    "colorLabel": {
+        "type": "colorchooser",
+        "default": "rgb(98, 160, 234)",
+        "description": "Label color"
+    },
+    "fontSizeCountdown": {
+        "type": "scale",
+        "default": 35,
+        "min": 12,
+        "max": 100,
+        "step": 1,
+        "description": "Font size for the countdown text"
+    },
+    "colorCountdown": {
+        "type": "colorchooser",
+        "default": "rgb(255,255,255)",
+        "description": "Countdown color"
+    }
+}

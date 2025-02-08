@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-07-10 00:38+0200\n"
+"POT-Creation-Date: 2024-11-20 20:33+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,50 +17,50 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
 
-#: desklet.js:310
+#. desklet.js:86
+msgid "No quotes data to display"
+msgstr ""
+
+#. desklet.js:427
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 
-#: desklet.js:332 desklet.js:351
+#. desklet.js:450 desklet.js:473
+msgid "Authorization parameters have expired"
+msgstr ""
+
+#. desklet.js:453 desklet.js:476
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Сервис Yahoo Finance не доступен!"
 
-#: desklet.js:738
+#. desklet.js:835
 msgid "Updated at "
 msgstr "Обновлено в "
 
-#: desklet.js:759
+#. desklet.js:868
 msgid "Error: "
 msgstr "Ошибка: "
 
-#: desklet.js:827
+#. desklet.js:983
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
 msgstr ""
 
-#: desklet.js:852
+#. desklet.js:1009
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 
-#: desklet.js:857
+#. desklet.js:1014
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 
-#: desklet.js:879
+#. desklet.js:1037
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
 msgstr ""
-
-#: desklet.js:906
-msgid "Cannot display quotes information for symbols: "
-msgstr "Невозможно отобразить информацию о котировках для биржевых символов: "
-
-#: desklet.js:907
-msgid "The following error occurred: "
-msgstr "Произошла ошибка: "
 
 #. metadata.json->description
 msgid ""
@@ -149,6 +149,8 @@ msgstr "Ширина"
 
 #. settings-schema.json->width->units
 #. settings-schema.json->height->units
+#. settings-schema.json->cornerRadius->units
+#. settings-schema.json->borderWidth->units
 msgid "pixels"
 msgstr "пиксели"
 
@@ -169,7 +171,7 @@ msgid "Background transparency"
 msgstr "Прозрачность фона"
 
 #. settings-schema.json->transparency->tooltip
-msgid "The higher the value, the more solid the desklet background"
+msgid "The higher the value, the more solid the desklet's background"
 msgstr "Чем выше значение, тем больше прозрачность фона."
 
 #. settings-schema.json->backgroundColor->description
@@ -180,6 +182,14 @@ msgstr ""
 msgid "Desklet background color"
 msgstr ""
 
+#. settings-schema.json->cornerRadius->description
+msgid "Corner radius"
+msgstr ""
+
+#. settings-schema.json->cornerRadius->tooltip
+msgid "The higher the value, the rounder the desklet's corners"
+msgstr ""
+
 #. settings-schema.json->showVerticalScrollbar->description
 msgid "Show vertical scrollbar"
 msgstr ""
@@ -188,6 +198,24 @@ msgstr ""
 msgid ""
 "Display a vertical scrollbar when the quote list is longer than the "
 "desklet's height"
+msgstr ""
+
+#. settings-schema.json->borderWidth->description
+msgid "Border width"
+msgstr ""
+
+#. settings-schema.json->borderWidth->tooltip
+msgid ""
+"The higher the value, the thicker the desklet's border. A value of 0 hides "
+"the border."
+msgstr ""
+
+#. settings-schema.json->borderColor->description
+msgid "Border color"
+msgstr ""
+
+#. settings-schema.json->borderColor->tooltip
+msgid "Desklet border color"
 msgstr ""
 
 #. settings-schema.json->delayMinutes->units
@@ -314,6 +342,14 @@ msgid "List of quote symbols, separated with line-breaks"
 msgstr ""
 "Список биржевых символов (тикеров) котировок, разделенных новой строкой."
 
+#. settings-schema.json->updateDataButton->description
+msgid "Refresh quotes data"
+msgstr ""
+
+#. settings-schema.json->updateDataButton->tooltip
+msgid "Apply and refresh quotes"
+msgstr ""
+
 #. settings-schema.json->sortCriteria->options
 msgid "given order"
 msgstr "не сортировать"
@@ -435,8 +471,8 @@ msgid "Show percent change"
 msgstr "Показывать изменения в процентах"
 
 #. settings-schema.json->showPercentChange->tooltip
-msgid "Display the percent change of the market price (eg. +0.53%)"
-msgstr "Отображение изменений рыночной цены в процентах (например, +0.53%)."
+msgid "Display the percent change of the market price (eg. -0.53%)"
+msgstr "Отображение изменений рыночной цены в процентах (например, -0.53%)."
 
 #. settings-schema.json->colorPercentChange->description
 msgid "Use trend colors for percent change"

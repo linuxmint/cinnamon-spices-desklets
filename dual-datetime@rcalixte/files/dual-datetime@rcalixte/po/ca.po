@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: dual-datetime@rcalixte 1.2.1\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-07-05 16:24-0400\n"
-"PO-Revision-Date: 2024-05-15 13:58+0200\n"
+"POT-Creation-Date: 2024-09-18 21:30-0400\n"
+"PO-Revision-Date: 2024-09-21 22:11+0200\n"
 "Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
 "Language-Team: \n"
 "Language: ca\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. metadata.json->description
 msgid ""
@@ -106,6 +106,20 @@ msgstr "Color de la lletra"
 #. 5.4->settings-schema.json->background_color->tooltip
 msgid "RGB or RGBA"
 msgstr "RGB o RGBA"
+
+#. 5.4->settings-schema.json->time_weight1->description
+#. 5.4->settings-schema.json->time_weight2->description
+msgid "Font Weight"
+msgstr "Pes de la lletra"
+
+#. 5.4->settings-schema.json->time_weight1->tooltip
+#. 5.4->settings-schema.json->time_weight2->tooltip
+msgid ""
+"Increase or decrease this value to change the font weight (Normal = 400, "
+"Bold = 700)"
+msgstr ""
+"Incrementeu o reduïu aquest valor per a canviar el pes de la lletra (Normal "
+"= 400, Negreta = 700)"
 
 #. 5.4->settings-schema.json->time_size1->description
 #. 5.4->settings-schema.json->time_size2->description

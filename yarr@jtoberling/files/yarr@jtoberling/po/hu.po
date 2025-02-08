@@ -1,15 +1,14 @@
-# Hungarian translation
+# YET ANOTHER RSS READER
 # This file is put in the public domain.
-# First translator: Vajda Örs <ors0092@gmail.com>, 2024.
-# Fixes: Janos Toberling, 2024
+# jtoberling, 2023
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yarr@jtoberling 1.2.2\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-06-30 11:08-0400\n"
-"PO-Revision-Date: 2024-06-28 19:23+0100\n"
+"POT-Creation-Date: 2024-11-11 09:04-0500\n"
+"PO-Revision-Date: 2024-11-25 13:34+0100\n"
 "Last-Translator: Janos Toberling <jtoberling@gmail.com>\n"
 "Language-Team: \n"
 "Language: hu\n"
@@ -17,39 +16,40 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
-#: desklet.js:314
+#. desklet.js:318
 msgid "Enable refresh"
 msgstr "Frissítés engedélyezése"
 
-#: desklet.js:318 desklet.js:356
+#. desklet.js:322 desklet.js:360
 msgid "Disable refresh"
 msgstr "Frissítés letiltása"
 
-#: desklet.js:327
+#. desklet.js:331
 msgid "Yarr"
 msgstr "Yarr"
 
-#: desklet.js:341
+#. desklet.js:345
 msgid "Loading: feeds ..."
 msgstr "Betöltés: hírforrás ..."
 
-#: desklet.js:624
+#. desklet.js:628
 msgid "Updated"
 msgstr "Frissítve"
 
-#: desklet.js:753
+#. desklet.js:770
 #, javascript-format
 msgid ""
 "'%s' settings..\n"
 "Please enter ChatGPT API key:"
 msgstr ""
+"'%s' beállítások...\n"
+"Kérjük, adja meg a ChatGPT API kulcsát:"
 
 #. metadata.json->description
-#, fuzzy
 msgid "Yet Another RSS Reader - now as Cinnamon Desklet"
-msgstr "Yet Another RSS Reader - MI (ChatGPT) összefoglalóval"
+msgstr "Még egy RSS olvasó - most mint Cinnamon Asztalkalmazás"
 
 #. metadata.json->name
 msgid "Yet Another RSS Reader"
@@ -109,6 +109,15 @@ msgstr "Háttér áttetszősége"
 msgid "The higher the value, the more solid the desklet background."
 msgstr ""
 "Minél magasabb az érték, annál szolidabb az asztali alkalmazás háttere."
+
+#. settings-schema.json->alternateRowTransparency->description
+msgid "Dim of every second rows"
+msgstr "Minden második sor halvány"
+
+#. settings-schema.json->alternateRowTransparency->tooltip
+msgid "The higher the value, more dim on alternate row backgrounds."
+msgstr ""
+"Minél magasabb az érték, annál halványabb lesz az alternatív sorháttér."
 
 #. settings-schema.json->refreshInterval-spinner->units
 msgid "seconds"
@@ -222,6 +231,14 @@ msgstr "Nyissa meg a ChaptGPT használati oldalát"
 msgid "Enable EXPERIMENTAL AI summary by ChatGPT"
 msgstr "A ChatGPT KÍSÉRLETI MI-összefoglalójának engedélyezése"
 
+#. settings-schema.json->ai_url->description
+msgid "URL of Completion Api"
+msgstr "A Completion API URL-je"
+
+#. settings-schema.json->ai_url->tooltip
+msgid "https://api.openai.com/v1/chat/completions"
+msgstr "https://api.openai.com/v1/chat/completions"
+
 #. settings-schema.json->ai_dumptool->description
 msgid "Choose a tool to dumping web pages"
 msgstr "Válasszon egy eszközt a weboldalak kiíratásához"
@@ -248,9 +265,25 @@ msgstr ""
 "A következők egyikét manuálisan kell telepítenie (apt install ..):\n"
 "[ w3m, lynx, links]"
 
+#. settings-schema.json->ai_use_standard_model->description
+msgid "Use standard AI models."
+msgstr "Használjon szabványos MI modelleket."
+
+#. settings-schema.json->ai_use_standard_model->tooltip
+msgid "Set to custom to type your model name"
+msgstr "Állítsa egyénire a modellnév beírásához"
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Use standard"
+msgstr "Szabvány használata"
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Use custom"
+msgstr "Egyéni használata"
+
 #. settings-schema.json->ai_model->description
-msgid "ChatGPT model to use"
-msgstr "Használandó ChatGPT-modell"
+msgid "Standard model to use"
+msgstr "Használandó szabványos modell"
 
 #. settings-schema.json->ai_model->options
 msgid "gpt-4-32k"
@@ -261,12 +294,29 @@ msgid "gpt-4"
 msgstr "gpt-4"
 
 #. settings-schema.json->ai_model->options
+msgid "gpt-4o"
+msgstr "gpt-4o"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4o-mini"
+msgstr "gpt-4o-mini"
+
+#. settings-schema.json->ai_model->options
 msgid "gpt-3.5-turbo"
 msgstr "gpt-3.5-turbo"
 
 #. settings-schema.json->ai_model->options
 msgid "gpt-3.5-turbo-16k"
 msgstr "gpt-3.5-turbo-16k"
+
+#. settings-schema.json->ai_model->options
+#. settings-schema.json->ai_custom_model->tooltip
+msgid "deepseek-coder"
+msgstr "deepseek-coder"
+
+#. settings-schema.json->ai_model->options
+msgid "deepseek-coder-v2:latest"
+msgstr "deepseek-coder-v2:latest"
 
 #. settings-schema.json->ai_model->tooltip
 msgid ""
@@ -279,6 +329,10 @@ msgstr ""
 "Némelyikhez prémium osztályú előfizetés szükséges.\n"
 "Egy olcsóbb is jól működhet...\n"
 "Alapértelmezett: gpt-3.5-turbo"
+
+#. settings-schema.json->ai_custom_model->description
+msgid "Provide model name to use"
+msgstr "Adja meg a használni kívánt modell nevét"
 
 #. settings-schema.json->ai_systemprompt->description
 msgid "AI system instructions"

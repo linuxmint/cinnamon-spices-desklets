@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: yfquotes@thegli 0.11.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-07-10 00:38+0200\n"
-"PO-Revision-Date: 2024-04-19 15:17+0200\n"
+"POT-Creation-Date: 2024-11-20 20:33+0100\n"
+"PO-Revision-Date: 2024-11-28 15:43+0100\n"
 "Last-Translator: qadzek\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -16,23 +16,31 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:310
-msgid "Empty quotes list. Open settings and add some symbols."
-msgstr ""
+#. desklet.js:86
+msgid "No quotes data to display"
+msgstr "Geen citatendata om weer te geven"
 
-#: desklet.js:332 desklet.js:351
+#. desklet.js:427
+msgid "Empty quotes list. Open settings and add some symbols."
+msgstr "Lege lijst van koersen. Open instellingen en voeg wat symbolen toe."
+
+#. desklet.js:450 desklet.js:473
+msgid "Authorization parameters have expired"
+msgstr "Autorisatieparameters zijn verlopen."
+
+#. desklet.js:453 desklet.js:476
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Yahoo Finance service niet beschikbaar!\\nStatus: "
 
-#: desklet.js:738
+#. desklet.js:835
 msgid "Updated at "
 msgstr "Bijgewerkt om "
 
-#: desklet.js:759
+#. desklet.js:868
 msgid "Error: "
 msgstr "Fout: "
 
-#: desklet.js:827
+#. desklet.js:983
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -40,34 +48,26 @@ msgstr ""
 "Kan autorisatieparameter niet ophalen! Kan geen gegevens voor koersen "
 "ophalen.\\nStatus: "
 
-#: desklet.js:852
+#. desklet.js:1009
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Toestemming verwerking mislukt! Kan geen gegevens voor koersen ophalen."
 "\\nStatus: "
 
-#: desklet.js:857
+#. desklet.js:1014
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Toestemming verwerking niet voltooid! Kan geen gegevens voor koersen ophalen."
 "\\nStatus: "
 
-#: desklet.js:879
+#. desklet.js:1037
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
 msgstr ""
 "Kan autorisatiekruimel niet ophalen! Kan geen gegevens voor koersen ophalen."
 "\\nStatus: "
-
-#: desklet.js:906
-msgid "Cannot display quotes information for symbols: "
-msgstr "Kan geen koersinformatie weergeven voor symbolen: "
-
-#: desklet.js:907
-msgid "The following error occurred: "
-msgstr "De volgende fout is opgetreden: "
 
 #. metadata.json->description
 msgid ""
@@ -156,6 +156,8 @@ msgstr "Breedte"
 
 #. settings-schema.json->width->units
 #. settings-schema.json->height->units
+#. settings-schema.json->cornerRadius->units
+#. settings-schema.json->borderWidth->units
 msgid "pixels"
 msgstr "pixels"
 
@@ -176,16 +178,24 @@ msgid "Background transparency"
 msgstr "Achtergrondtransparantie"
 
 #. settings-schema.json->transparency->tooltip
-msgid "The higher the value, the more solid the desklet background"
+msgid "The higher the value, the more solid the desklet's background"
 msgstr "Hoe hoger de waarde, hoe meer effen de achtergrond van de desklet"
 
 #. settings-schema.json->backgroundColor->description
 msgid "Background color"
-msgstr ""
+msgstr "Achtergrondkleur"
 
 #. settings-schema.json->backgroundColor->tooltip
 msgid "Desklet background color"
-msgstr ""
+msgstr "Desklet achtergrondkleur"
+
+#. settings-schema.json->cornerRadius->description
+msgid "Corner radius"
+msgstr "Hoekradius"
+
+#. settings-schema.json->cornerRadius->tooltip
+msgid "The higher the value, the rounder the desklet's corners"
+msgstr "Hoe hoger de waarde, hoe ronder de hoeken van de desklet"
 
 #. settings-schema.json->showVerticalScrollbar->description
 msgid "Show vertical scrollbar"
@@ -198,6 +208,26 @@ msgid ""
 msgstr ""
 "Toon een verticale schuifbalk wanneer de lijst met koersen langer is dan de "
 "hoogte van de desklet"
+
+#. settings-schema.json->borderWidth->description
+msgid "Border width"
+msgstr "Randbreedte"
+
+#. settings-schema.json->borderWidth->tooltip
+msgid ""
+"The higher the value, the thicker the desklet's border. A value of 0 hides "
+"the border."
+msgstr ""
+"Hoe hoger de waarde, hoe dikker de rand van de desklet. Een waarde van 0 "
+"verbergt de rand."
+
+#. settings-schema.json->borderColor->description
+msgid "Border color"
+msgstr "Randkleur"
+
+#. settings-schema.json->borderColor->tooltip
+msgid "Desklet border color"
+msgstr "Randkleur van de desklet"
 
 #. settings-schema.json->delayMinutes->units
 msgid "minutes"
@@ -221,13 +251,16 @@ msgstr "Toon tijdstempel wanneer de koersen voor het laatst zijn bijgewerkt"
 
 #. settings-schema.json->manualDataUpdate->description
 msgid "Manual and automatic update"
-msgstr ""
+msgstr "Manuele en automatische update"
 
 #. settings-schema.json->manualDataUpdate->tooltip
 msgid ""
 "Click last update timestamp to instantly refresh quotes data. Automatic "
 "update is still performed periodically."
 msgstr ""
+"Klik op de tijdstempel van de laatste update om de gegevens van de koersen "
+"onmiddellijk te verversen. Automatische update wordt nog steeds periodiek "
+"uitgevoerd."
 
 #. settings-schema.json->sendCustomUserAgent->description
 msgid "Send custom User-Agent header"
@@ -335,6 +368,14 @@ msgstr "Koerssymbolen"
 #. settings-schema.json->quoteSymbols->tooltip
 msgid "List of quote symbols, separated with line-breaks"
 msgstr "Lijst met koerssymbolen, gescheiden door regelafbrekingen"
+
+#. settings-schema.json->updateDataButton->description
+msgid "Refresh quotes data"
+msgstr "Vernieuw citatendata"
+
+#. settings-schema.json->updateDataButton->tooltip
+msgid "Apply and refresh quotes"
+msgstr "Toepassen en vernieuwen van citaten"
 
 #. settings-schema.json->sortCriteria->options
 msgid "given order"
@@ -452,8 +493,8 @@ msgid "Show percent change"
 msgstr "Toon procentuele verandering"
 
 #. settings-schema.json->showPercentChange->tooltip
-msgid "Display the percent change of the market price (eg. +0.53%)"
-msgstr "Toon de procentuele verandering van de marktprijs (bijv. +0,53%)"
+msgid "Display the percent change of the market price (eg. -0.53%)"
+msgstr "Toon de procentuele verandering van de marktprijs (bijv. -0,53%)"
 
 #. settings-schema.json->colorPercentChange->description
 msgid "Use trend colors for percent change"

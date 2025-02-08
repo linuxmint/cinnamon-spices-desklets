@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: 1.2\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-07-05 16:24-0400\n"
+"POT-Creation-Date: 2024-09-18 21:30-0400\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
@@ -108,6 +108,22 @@ msgstr "Colore carattere"
 #. 5.4->settings-schema.json->background_color->tooltip
 msgid "RGB or RGBA"
 msgstr "RGB o RGBA"
+
+#. 5.4->settings-schema.json->time_weight1->description
+#. 5.4->settings-schema.json->time_weight2->description
+#, fuzzy
+msgid "Font Weight"
+msgstr "Dimensione carattere"
+
+#. 5.4->settings-schema.json->time_weight1->tooltip
+#. 5.4->settings-schema.json->time_weight2->tooltip
+#, fuzzy
+msgid ""
+"Increase or decrease this value to change the font weight (Normal = 400, "
+"Bold = 700)"
+msgstr ""
+"Aumenta o diminuisci questo valore per modificare la scala delle dimensioni "
+"del carattere (1.2 = 120%)"
 
 #. 5.4->settings-schema.json->time_size1->description
 #. 5.4->settings-schema.json->time_size2->description

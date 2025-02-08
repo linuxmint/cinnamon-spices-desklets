@@ -944,6 +944,16 @@ RaisedBox.prototype = {
                 return true;
             }
 
+            if ( type == Clutter.EventType.BUTTON_PRESS ) {
+                // get focus again on click
+                this.actor.show();
+                global.set_stage_input_mode(Cinnamon.StageInputMode.FOCUSED);
+                global.stage.set_key_focus(this.actor);
+                this.actor.grab_key_focus();
+                global.set_stage_input_mode(Cinnamon.StageInputMode.FULLSCREEN);
+                return;
+            }
+
             let target = event.get_source();
             if ( target == this.desklet.actor || this.desklet.actor.contains(target) ||
                  target == this.contextMenu.actor || this.contextMenu.actor.contains(target) ) return false;

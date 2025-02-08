@@ -1,0 +1,96 @@
+# DAYS COUNTDOWN
+# This file is put in the public domain.
+# KopfDesDaemons, 2024
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: daysCountdown@KopfDesDaemons 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-12-18 21:07+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. metadata.json->name
+#. desklet.js:27
+msgid "Days Countdown"
+msgstr ""
+
+#. desklet.js:76
+#, javascript-format
+msgid "%f days"
+msgstr ""
+
+#. metadata.json->description
+msgid "Countdown of the remaining days to a date."
+msgstr ""
+
+#. settings-schema.json->head0->description
+msgid "General"
+msgstr ""
+
+#. settings-schema.json->labelText->description
+msgid "Text for the label"
+msgstr ""
+
+#. settings-schema.json->countdownDate->description
+msgid "Date to which the countdown counts down"
+msgstr ""
+
+#. settings-schema.json->refreshInterval->options
+msgid "only after starting"
+msgstr ""
+
+#. settings-schema.json->refreshInterval->options
+msgid "every 5 minutes"
+msgstr ""
+
+#. settings-schema.json->refreshInterval->options
+msgid "every 10 minutes"
+msgstr ""
+
+#. settings-schema.json->refreshInterval->options
+msgid "every 15 minutes"
+msgstr ""
+
+#. settings-schema.json->refreshInterval->options
+msgid "every 20 minutes"
+msgstr ""
+
+#. settings-schema.json->refreshInterval->options
+msgid "every 30 minutes"
+msgstr ""
+
+#. settings-schema.json->refreshInterval->options
+msgid "every 60 minutes"
+msgstr ""
+
+#. settings-schema.json->refreshInterval->description
+msgid "Refresh interval"
+msgstr ""
+
+#. settings-schema.json->head1->description
+msgid "Style"
+msgstr ""
+
+#. settings-schema.json->fontSizeLabel->description
+msgid "Font size for the label text"
+msgstr ""
+
+#. settings-schema.json->colorLabel->description
+msgid "Label color"
+msgstr ""
+
+#. settings-schema.json->fontSizeCountdown->description
+msgid "Font size for the countdown text"
+msgstr ""
+
+#. settings-schema.json->colorCountdown->description
+msgid "Countdown color"
+msgstr ""
