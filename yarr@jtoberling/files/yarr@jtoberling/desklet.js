@@ -19,6 +19,10 @@ const Pango = imports.gi.Pango;
 const Clutter = imports.gi.Clutter;
 const fromXML = require('./fromXML');
 const ByteArray = imports.byteArray;
+const Extension = imports.ui.extension;
+const PopupMenu = imports.ui.popupMenu;
+const DeskletManager = imports.ui.deskletManager;
+const Main = imports.ui.main;
 
 const UUID = "yarr@jtoberling";
 const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
@@ -55,6 +59,9 @@ class YarrDesklet extends Desklet.Desklet {
     
 
     clipboard = St.Clipboard.get_default();
+
+    // Add new property for search
+    searchFilter = '';
 
     constructor (metadata, desklet_id) {
 
@@ -109,6 +116,40 @@ class YarrDesklet extends Desklet.Desklet {
 
         this.setUpdateTimer(1);
 
+        // Remove or comment out any existing tooltip setup
+        // Add hover-based tooltip instead
+        this.actor.connect('enter-event', Lang.bind(this, function() {
+            this.set_applet_tooltip(this._toolTipText);
+        }));
+        
+        this.actor.connect('leave-event', Lang.bind(this, function() {
+            this.set_applet_tooltip("");
+        }));
+
+        // Add right-click menu item for reload
+        global.log('YarrDesklet: Adding reload menu item');
+        this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+        this._menu.addAction(_("Reload"), () => {
+            global.log('YarrDesklet: Reload clicked');
+            try {
+                // Try to reload using GLib
+                let [success, pid] = GLib.spawn_async(null, 
+                    ['sh', '-c', 'dbus-send --session --dest=org.Cinnamon.LookingGlass ' +
+                    '--type=method_call /org/Cinnamon/LookingGlass ' +
+                    'org.Cinnamon.LookingGlass.ReloadExtension ' +
+                    'string:yarr@jtoberling string:DESKLET'],
+                    null, GLib.SpawnFlags.SEARCH_PATH, null);
+                global.log('YarrDesklet: Reload command sent, success:', success);
+            } catch(e) {
+                global.log('YarrDesklet: Error during reload:', e);
+            }
+        });
+
+        // Add custom modal styling
+        let themeContext = St.ThemeContext.get_for_stage(global.stage);
+        let theme = themeContext.get_theme();
+        
+        theme.load_stylesheet(DESKLET_ROOT + '/style.css');
     }
 
     invertbrightness(rgb) {
@@ -327,7 +368,6 @@ class YarrDesklet extends Desklet.Desklet {
     }
     
     buildInitialDisplay() {
-    
         this.setHeader(_('Yarr'));
         
         this.mainBox = new St.BoxLayout({
@@ -336,49 +376,228 @@ class YarrDesklet extends Desklet.Desklet {
             height: this.height,
             style_class: "desklet"
         });
-        
 
-        this.headBox = new St.BoxLayout({ vertical: false });
+        // Create header box with better styling
+        this.headBox = new St.BoxLayout({ 
+            vertical: false,
+            style: 'padding: 4px; spacing: 6px;'
+        });
+        
+        // Left side: Title and search
+        let leftBox = new St.BoxLayout({ 
+            vertical: false,
+            style: 'spacing: 10px;'
+        });
+        
+        // Title with icon
+        let titleBox = new St.BoxLayout({ 
+            vertical: false,
+            style: 'spacing: 4px;'
+        });
+        
+        let titleIcon = new St.Icon({
+            icon_name: 'feed-subscribe',
+            icon_type: St.IconType.SYMBOLIC,
+            icon_size: 20,
+            style: 'padding-top: 2px;'
+        });
+        
+        this.headTitle = new St.Label({
+            text: _('Loading: feeds ...'),
+            style: 'font-weight: bold; padding-top: 3px;'
+        });
+        
+        titleBox.add(titleIcon);
+        titleBox.add(this.headTitle);
+        leftBox.add(titleBox);
+
+        // Replace search box with a simple button
+        this.searchBox = new St.BoxLayout({ 
+            vertical: false,
+            style: 'spacing: 4px;'
+        });
+        
+        this.searchButton = new St.Button({
+            style_class: 'search-button',
+            style: 'padding: 4px 8px;',
+            reactive: true,
+            track_hover: true
+        });
+
+        let searchButtonBox = new St.BoxLayout();
+        
+        let searchIcon = new St.Icon({
+            icon_name: 'edit-find',
+            icon_type: St.IconType.SYMBOLIC,
+            icon_size: 16
+        });
+
+        this.searchLabel = new St.Label({
+            text: _(" Search..."),
+            style: 'padding-left: 5px;'
+        });
+
+        searchButtonBox.add(searchIcon);
+        searchButtonBox.add(this.searchLabel);
+        this.searchButton.set_child(searchButtonBox);
+
+        // Add clear search button
+        this.clearSearchButton = new St.Button({
+            style_class: 'clear-search-button',
+            style: 'padding: 4px;',
+            visible: false
+        });
+
+        let clearIcon = new St.Icon({
+            icon_name: 'edit-clear',
+            icon_type: St.IconType.SYMBOLIC,
+            icon_size: 16
+        });
+        this.clearSearchButton.set_child(clearIcon);
+
+        // Connect search button to show modal dialog
+        this.searchButton.connect('clicked', () => {
+            let dialog = new ModalDialog.ModalDialog();
             
-        this.headTitle = new St.Label({});
+            // Add title
+            let titleBin = new St.Bin({
+                style_class: 'search-title',
+                style: 'margin-bottom: 10px;'
+            });
+            
+            let titleLabel = new St.Label({
+                text: _("Search Articles"),
+                style_class: 'search-title-text',
+                style: 'font-size: 16px; font-weight: bold;'
+            });
+            
+            titleBin.set_child(titleLabel);
+            dialog.contentLayout.add(titleBin);
+            
+            // Add search entry
+            let entry = new St.Entry({
+                name: 'searchEntry',
+                hint_text: _("Type to search..."),
+                track_hover: true,
+                reactive: true,
+                can_focus: true,
+                style: 'width: 250px; min-width: 250px;'
+            });
+            
+            // Set initial text if there's an existing filter
+            if (this.searchFilter) {
+                entry.set_text(this.searchFilter);
+            }
+            
+            dialog.contentLayout.add(entry);
+            
+            // Handle Enter key
+            entry.clutter_text.connect('key-press-event', (actor, event) => {
+                let symbol = event.get_key_symbol();
+                if (symbol === Clutter.KEY_Return || symbol === Clutter.KEY_KP_Enter) {
+                    let text = entry.get_text();
+                    if (text) {
+                        this.searchFilter = text;
+                        this.searchLabel.text = " " + text;
+                        this.clearSearchButton.visible = true;
+                        this.displayItems(this);
+                    }
+                    dialog.close();
+                    return Clutter.EVENT_STOP;
+                }
+                return Clutter.EVENT_PROPAGATE;
+            });
+            
+            // Add buttons
+            dialog.setButtons([
+                {
+                    label: _("Cancel"),
+                    action: () => dialog.close(),
+                    key: Clutter.KEY_Escape
+                },
+                {
+                    label: _("Search"),
+                    action: () => {
+                        let text = entry.get_text();
+                        if (text) {
+                            this.searchFilter = text;
+                            this.searchLabel.text = " " + text;
+                            this.clearSearchButton.visible = true;
+                            this.displayItems(this);
+                        }
+                        dialog.close();
+                    },
+                    key: Clutter.KEY_Return
+                }
+            ]);
+            
+            dialog.open();
+            global.stage.set_key_focus(entry);
+        });
+
+        // Connect clear button
+        this.clearSearchButton.connect('clicked', () => {
+            this.searchFilter = '';
+            this.searchLabel.text = _(" Search...");
+            this.clearSearchButton.visible = false;
+            this.displayItems(this);
+        });
+
+        this.searchBox.add(this.searchButton);
+        this.searchBox.add(this.clearSearchButton);
+        leftBox.add(this.searchBox);
+
+        // Right side: Control buttons
+        let rightBox = new St.BoxLayout({ 
+            vertical: false,
+            style: 'spacing: 6px;'
+        });
+
+        // Toggle refresh button with icon
+        this.toggleRefresh = new St.Button({ 
+            label: _("Disable refresh"),
+            style_class: 'toggleButtonOn',
+            style: 'padding: 4px 8px;'
+        });
         
-        this.headTitle.set_text(_('Loading: feeds ...' ));
-        
-        let paddingBox = new St.Bin({ width: 10 });
-    
-        this.refreshButton = new St.Button({style_class: 'feedRefreshButton'});
+        // Refresh button with icon
+        this.refreshButton = new St.Button({
+            style_class: 'feedRefreshButton',
+            style: 'padding: 4px;'
+        });
         
         this.refreshIcon = new St.Icon({
-                          icon_name: 'reload',
-                          icon_size: 20, 
-                          icon_type: St.IconType.SYMBOLIC
+            icon_name: 'reload',
+            icon_type: St.IconType.SYMBOLIC,
+            icon_size: 16
         });
         
         this.refreshButton.set_child(this.refreshIcon);
-        this.refreshButton.connect("clicked", Lang.bind(this, this.onRefreshClicked));
-                        
-        this.toggleRefresh = new St.Button({ label: _("Disable refresh"), style_class: 'toggleButtonOn'});    
-        let context = this;
-        this._signals.connect( this.toggleRefresh, 'clicked', (...args) => this.onClickedToggleRefresh(...args, this) );
         
-        this.headBox.add(this.headTitle);
-        this.headBox.add(paddingBox, { expand: true });
-        this.headBox.add_actor(this.toggleRefresh);
-        this.headBox.add_actor(this.refreshButton);
+        // Connect button events
+        this.refreshButton.connect("clicked", Lang.bind(this, this.onRefreshClicked));
+        this._signals.connect(this.toggleRefresh, 'clicked', (...args) => 
+            this.onClickedToggleRefresh(...args, this)
+        );
+
+        rightBox.add(this.toggleRefresh);
+        rightBox.add(this.refreshButton);
+
+        // Add everything to header with flexible space
+        this.headBox.add(leftBox);
+        this.headBox.add(new St.Bin({ x_expand: true, x_fill: true }));
+        this.headBox.add(rightBox);
         
         this.mainBox.add(this.headBox);
 
-        
-        this.dataBox = new St.ScrollView(); //St.BoxLayout({ vertical: true });
+        // Create scrollview and container
+        this.dataBox = new St.ScrollView();
         this.dataBox.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
-
         this.tableContainer = new St.BoxLayout({ vertical: true });
         this.dataBox.add_actor(this.tableContainer);
-
         this.mainBox.add(this.dataBox, { expand: true });
 
         this.setContent(this.mainBox);
-        
     }
 
     hashCode(str) {
@@ -387,30 +606,29 @@ class YarrDesklet extends Desklet.Desklet {
     }
 
     
-    additems(context, itemobj ) {
-        
+    additems(context, itemobj) {
         let key = itemobj.title + '|' + itemobj.link;
         let hash = context.hashCode(key);
         
         if (!context.items.has(hash)) {
-            context.items.set( hash, itemobj);
+            context.items.set(hash, itemobj);
         }
         
         const newMap = Array.from(context.items).sort(
-            (a,b)	=> { return Number(b[1].timestamp) - Number(a[1].timestamp); }
+            (a, b) => Number(b[1].timestamp) - Number(a[1].timestamp)
         );
         
         context.items = new Map(newMap);
 
         const itemsize = context.items.size;
-    
-        let i=0;
-        for( let [key, value] of context.items ) {
+
+        let i = 0;
+        for (let [key, value] of context.items) {
             i++;
             if (i > context.itemlimit) {
                 context.items.delete(key);
             }
-        }        
+        }
     }
     
     inGlobalFilter(context, title, catStr, description) {
@@ -631,23 +849,54 @@ class YarrDesklet extends Desklet.Desklet {
         
         let counter = 0;
         for(let [key, item] of context.items ) {
+            // Add search filter
+            if (context.searchFilter) {
+                try {
+                    let regexp = new RegExp(context.searchFilter, 'i');
+                    let matches = regexp.test(item.title) || 
+                                regexp.test(item.description) || 
+                                regexp.test(item.channel) ||
+                                regexp.test(item.category);
+                    global.log('YarrDesklet: Item match result:', matches, 'for item:', item.title);
+                    if (!matches) {
+                        continue;
+                    }
+                } catch(e) {
+                    global.log('YarrDesklet: Invalid regexp:', e);
+                }
+            }
+            
             counter++;
             const lineBox = new St.BoxLayout({ vertical: false }); 
 
             const feedButton = new St.Button({ label: "["+item.channel +"]" , style_class: 'channelbutton', style: 'width: 80px; background-color: ' + item.labelColor });
 
             let toolTipText = 
-                '<big><b><u>' + this.formatTextWrap(item.channel + ': ' + item.title, 100) + '</u></b></big>'
-                +'\n<small>[ ' + item.category.toString().substring(0,80) + ' ]</small>\n\n'
-                + this.formatTextWrap(this.HTMLPartToTextPart(item.description ?? '-' ),100) 
+                '<span size="large"><b><u>' + this.formatTextWrap(item.channel + ': ' + item.title, 100) + '</u></b></span>'
+                +'\n<span size="small">[ ' + item.category.toString().substring(0,80) + ' ]</span>\n\n'
+                + '<span>' + this.formatTextWrap(this.HTMLPartToTextPart(item.description ?? '-' ),100) + '</span>'
                 ;
-/*                
-            let toolTip = new Tooltips.Tooltip(feedButton, toolTipText );
+
+            // Create tooltip but don't show it initially
+            let toolTip = new Tooltips.Tooltip(feedButton);
             toolTip._tooltip.style = 'text-align: left;';
             toolTip._tooltip.clutter_text.set_use_markup(true);
-            toolTip._tooltip.clutter_text.allocate_preferred_size(Clutter.AllocationFlags.NONE);
+            toolTip._tooltip.clutter_text.set_line_wrap(true);
+            toolTip._tooltip.clutter_text.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
+            toolTip._tooltip.clutter_text.set_markup(toolTipText);
+            toolTip._tooltip.allocate_preferred_size(Clutter.AllocationFlags.NONE);
             toolTip._tooltip.queue_relayout();
-*/
+            
+            // Show tooltip only on hover
+            feedButton.connect('enter-event', () => {
+                toolTip._tooltip.clutter_text.set_markup(toolTipText);
+                toolTip.show();
+            });
+            
+            feedButton.connect('leave-event', () => {
+                toolTip.hide();
+            });
+
             lineBox.add(feedButton);
 
             this._signals.connect( feedButton, 'clicked', (...args) => this.onClickedButton(...args, item.link) ); 
@@ -709,11 +958,24 @@ class YarrDesklet extends Desklet.Desklet {
 
             panelButton.set_child(itemBoxLayout);
             
-            let toolTip2 = new Tooltips.Tooltip(panelButton, toolTipText );
+            let toolTip2 = new Tooltips.Tooltip(panelButton);
             toolTip2._tooltip.style = 'text-align: left;';
             toolTip2._tooltip.clutter_text.set_use_markup(true);
-            toolTip2._tooltip.clutter_text.allocate_preferred_size(Clutter.AllocationFlags.NONE);
+            toolTip2._tooltip.clutter_text.set_line_wrap(true);
+            toolTip2._tooltip.clutter_text.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
+            toolTip2._tooltip.clutter_text.set_markup(toolTipText);
+            toolTip2._tooltip.allocate_preferred_size(Clutter.AllocationFlags.NONE);
             toolTip2._tooltip.queue_relayout();
+            
+            // Show tooltip only on hover
+            panelButton.connect('enter-event', () => {
+                toolTip2._tooltip.clutter_text.set_markup(toolTipText);
+                toolTip2.show();
+            });
+            
+            panelButton.connect('leave-event', () => {
+                toolTip2.hide();
+            });
             
             lineBox.add_actor( panelButton );
             

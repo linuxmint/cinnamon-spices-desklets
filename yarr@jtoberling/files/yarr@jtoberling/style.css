@@ -1,0 +1,48 @@
+.yarr-search-modal {
+    background-color: rgba(40, 40, 40, 0.95);
+    border: 1px solid rgba(120, 120, 120, 0.5);
+    border-radius: 8px;
+    padding: 20px;
+    width: 400px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+    margin: 0;
+}
+
+.yarr-search-modal .modal-dialog-content-box {
+    padding: 0;
+    spacing: 0;
+}
+
+.yarr-search-modal .modal-dialog-button-box {
+    spacing: 10px;
+}
+
+.yarr-search-modal .modal-dialog-button {
+    background-color: rgba(80, 80, 80, 0.8);
+    border: 1px solid rgba(120, 120, 120, 0.5);
+    border-radius: 4px;
+    color: rgb(220, 220, 220);
+    font-size: 12px;
+    margin: 15px 8px 0;
+    padding: 6px 12px;
+    transition: all 200ms ease;
+}
+
+.yarr-search-modal .modal-dialog-button:hover {
+    background-color: rgba(100, 100, 100, 0.9);
+    border-color: rgba(140, 140, 140, 0.7);
+}
+
+.yarr-search-modal StEntry {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(120, 120, 120, 0.3);
+    border-radius: 4px;
+    color: rgb(220, 220, 220);
+    transition: all 200ms ease;
+    selection-background-color: rgba(120, 120, 120, 0.8);
+}
+
+.yarr-search-modal StEntry:focus {
+    border-color: rgba(140, 140, 140, 0.7);
+    box-shadow: 0 0 4px rgba(140, 140, 140, 0.5);
+} 
