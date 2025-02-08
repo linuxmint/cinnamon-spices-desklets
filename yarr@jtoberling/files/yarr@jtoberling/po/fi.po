@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: yarr@jtoberling 1.2.1\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-11-11 09:04-0500\n"
+"POT-Creation-Date: 2025-02-08 18:32-0500\n"
 "PO-Revision-Date: 2024-11-11 12:58+0200\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: \n"
@@ -18,34 +18,41 @@ msgstr ""
 "X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. desklet.js:318
+#. desklet.js:479
 msgid "Enable refresh"
 msgstr "Päivitys päälle"
 
-#. desklet.js:322 desklet.js:360
+#. desklet.js:483 desklet.js:689
 msgid "Disable refresh"
 msgstr "Päivitys pois"
 
-#. desklet.js:331
+#. desklet.js:491
 msgid "Yarr"
 msgstr "Yarr"
 
-#. desklet.js:345
+#. desklet.js:536
 msgid "Loading: feeds ..."
 msgstr "Ladataan: syötteitä ..."
 
-#. desklet.js:628
-msgid "Updated"
-msgstr "Päivitetty"
-
-#. desklet.js:770
-#, javascript-format
-msgid ""
-"'%s' settings..\n"
-"Please enter ChatGPT API key:"
+#. desklet.js:566 desklet.js:671
+msgid " Search..."
 msgstr ""
-"\"%s\" asetukset...\n"
-"Anna ChatGPT APIAVAIN:"
+
+#. desklet.js:599
+msgid "Search Articles"
+msgstr ""
+
+#. desklet.js:610
+msgid "Type to search..."
+msgstr ""
+
+#. desklet.js:644
+msgid "Cancel"
+msgstr ""
+
+#. desklet.js:649
+msgid "Search"
+msgstr ""
 
 #. metadata.json->description
 msgid "Yet Another RSS Reader - now as Cinnamon Desklet"
@@ -396,3 +403,21 @@ msgstr "Paina painiketta ladataksesi asetukset uudelleen"
 #. settings-schema.json->enablecopy->description
 msgid "Enable Copy to clipboard button"
 msgstr "Kopioi leikepöydälle - painike käyttöön"
+
+#. settings-schema.json->temperature->description
+msgid "Temperature for AI responses"
+msgstr ""
+
+#. settings-schema.json->temperature->tooltip
+msgid ""
+"Controls the randomness of the AI's responses. Higher values mean more "
+"randomness."
+msgstr ""
+
+#. settings-schema.json->enableFeedButton->description
+msgid "Hide feed button"
+msgstr ""
+
+#. settings-schema.json->enableTimestamp->description
+msgid "Hide timestamp"
+msgstr ""

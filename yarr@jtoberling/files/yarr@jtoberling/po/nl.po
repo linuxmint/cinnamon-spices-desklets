@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: yarr@jtoberling 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-11-11 09:04-0500\n"
+"POT-Creation-Date: 2025-02-08 18:32-0500\n"
 "PO-Revision-Date: 2024-11-28 15:42+0100\n"
 "Last-Translator: qadzek\n"
 "Language-Team: \n"
@@ -16,34 +16,41 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. desklet.js:318
+#. desklet.js:479
 msgid "Enable refresh"
 msgstr "Vernieuwen inschakelen"
 
-#. desklet.js:322 desklet.js:360
+#. desklet.js:483 desklet.js:689
 msgid "Disable refresh"
 msgstr "Vernieuwen uitschakelen"
 
-#. desklet.js:331
+#. desklet.js:491
 msgid "Yarr"
 msgstr "Yarr"
 
-#. desklet.js:345
+#. desklet.js:536
 msgid "Loading: feeds ..."
 msgstr "Laden: feeds ..."
 
-#. desklet.js:628
-msgid "Updated"
-msgstr "Bijgewerkt"
-
-#. desklet.js:770
-#, javascript-format
-msgid ""
-"'%s' settings..\n"
-"Please enter ChatGPT API key:"
+#. desklet.js:566 desklet.js:671
+msgid " Search..."
 msgstr ""
-"'%s' instellingen..\n"
-"Voer alsjeblieft je ChatGPT API sleutel in:"
+
+#. desklet.js:599
+msgid "Search Articles"
+msgstr ""
+
+#. desklet.js:610
+msgid "Type to search..."
+msgstr ""
+
+#. desklet.js:644
+msgid "Cancel"
+msgstr ""
+
+#. desklet.js:649
+msgid "Search"
+msgstr ""
 
 #. metadata.json->description
 msgid "Yet Another RSS Reader - now as Cinnamon Desklet"
@@ -396,3 +403,21 @@ msgstr "Druk op deze knop om instellingen opnieuw te laden"
 #. settings-schema.json->enablecopy->description
 msgid "Enable Copy to clipboard button"
 msgstr "Schakel knop 'Kopiëren naar klembord' in"
+
+#. settings-schema.json->temperature->description
+msgid "Temperature for AI responses"
+msgstr ""
+
+#. settings-schema.json->temperature->tooltip
+msgid ""
+"Controls the randomness of the AI's responses. Higher values mean more "
+"randomness."
+msgstr ""
+
+#. settings-schema.json->enableFeedButton->description
+msgid "Hide feed button"
+msgstr ""
+
+#. settings-schema.json->enableTimestamp->description
+msgid "Hide timestamp"
+msgstr ""
