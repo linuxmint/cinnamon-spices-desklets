@@ -42,12 +42,28 @@
         "section2": {
             "type": "section", 
             "title": "AI settings", 
-            "keys": ["refreshsettingsbutton",  "ai_label-info", "ai_button-chatgpt-usage", "ai_enablesummary", "ai_url", "ai_button-chatgpt-apikeys", "ai_chatgptapikey", 
-                    "ai_use_standard_model", "ai_model", "ai_custom_model",
-                    "ai_dumptool", 
-                     "ai_systemprompt", "ai_systempromptexamples",
-                     "ai_example1", "ai_example2", "ai_example3", "ai_example4", "ai_example5", "ai_example6"
-                     ]
+            "keys": [
+                "refreshsettingsbutton", 
+                "ai_label-info", 
+                "ai_button-chatgpt-usage", 
+                "ai_enablesummary", 
+                "ai_url", 
+                "ai_button-chatgpt-apikeys", 
+                "ai_chatgptapikey", 
+                "ai_use_standard_model", 
+                "ai_model", 
+                "ai_custom_model",
+                "ai_dumptool", 
+                "ai_systemprompt", 
+                "ai_systempromptexamples",
+                "ai_example1", 
+                "ai_example2", 
+                "ai_example3", 
+                "ai_example4", 
+                "ai_example5", 
+                "ai_example6",
+                "temperature"
+            ]
         }
     
     }, 
@@ -335,6 +351,16 @@
         "description": "Enable Copy to clipboard button",
         "type": "switch",
         "default": true
+    },
+    
+    "temperature": {
+        "type": "scale",
+        "default": 0.2,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.1,
+        "description": "Temperature for AI responses",
+        "tooltip": "Controls the randomness of the AI's responses. Higher values mean more randomness."
     }
     
     

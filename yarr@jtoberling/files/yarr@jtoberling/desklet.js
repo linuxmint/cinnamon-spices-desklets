@@ -50,7 +50,7 @@ class YarrDesklet extends Desklet.Desklet {
     dataBox = null;	// Object holder for display
     headTitle = null;
     
-    timerInProgress = false;		// Semaphore
+    timerInProgress = 0;
     _setUpdateTimerInProgress = false; 	// Semaphore
 
     onUpdateDownloadedTick = -1;    
@@ -79,97 +79,93 @@ class YarrDesklet extends Desklet.Desklet {
 
     constructor (metadata, desklet_id) {
 
-        // translation init: if installed in user context, switch to translations in user's home dir
+            // Call parent constructor FIRST
+            super(metadata, desklet_id);
+            
+            // translation init
         if(!DESKLET_ROOT.startsWith("/usr/share/")) {
                 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
         }
         
-        super(metadata, desklet_id);
-        this.metadata = metadata;
+            // Initialize Secret schema
+            this.STORE_SCHEMA = new Secret.Schema("org.YarrDesklet.Schema", Secret.SchemaFlags.NONE, {});
+            
+            // Initialize basic properties
+            this.refreshEnabled = true;
+            this.delay = 300; // 5 minutes default
+            this.items = new Map();
+            this._updateInProgress = false;
+            this.timerInProgress = 0;
+            this._setUpdateTimerInProgress = false;
+            
+            // Initialize settings
+            this.settings = new Settings.DeskletSettings(this, metadata.uuid, desklet_id);
 
-        this.uuid = this.metadata["UUID"];
-        
-        this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, this.instance_id);
+            // Initialize HTTP session
+            if (Soup.MAJOR_VERSION === 2) {
+                this.httpSession = new Soup.SessionAsync();
+                Soup.Session.prototype.add_feature.call(this.httpSession, new Soup.ProxyResolverDefault());
+            } else {
+                this.httpSession = new Soup.Session();
+            }
 
-        this.STORE_SCHEMA = new Secret.Schema("org.YarrDesklet.Schema",Secret.SchemaFlags.NONE,{});
+            this.httpSession.timeout = 60;
+            this.httpSession.idle_timeout = 60;
+            this.httpSession.user_agent = 'Mozilla/5.0 YarrDesklet/1.0';
 
-        this.settings.bind('refreshInterval-spinner', 'delay'); //, this.onSettingsChanged);
-        this.settings.bind('feeds', 'feeds'); //, this.onSettingsChanged);
-        this.settings.bind("height", "height"); //, this.onDisplayChanged);
-        this.settings.bind("width", "width"); //, this.onDisplayChanged);
-        this.settings.bind("transparency", "transparency"); //, this.onDisplayChanged);
-        this.settings.bind("alternateRowTransparency", "alternateRowTransparency"); //, this.onDisplayChanged);
-        this.settings.bind("backgroundColor", "backgroundColor"); //, this.onDisplayChanged);
-        this.settings.bind("font", "font"); //, this.onDisplayChanged);
-        this.settings.bind("text-color", "color"); //, this.onDisplayChanged);
-        this.settings.bind("numberofitems", "itemlimit"); //, this.onSettingsChanged, 50);
-        this.settings.bind("listfilter", "listfilter"); //, this.onSetttingChanged);
+            // Bind all settings
+        this.settings.bind('refreshInterval-spinner', 'delay');
+        this.settings.bind('feeds', 'feeds');
+        this.settings.bind("height", "height");
+        this.settings.bind("width", "width");
+        this.settings.bind("transparency", "transparency");
+        this.settings.bind("alternateRowTransparency", "alternateRowTransparency");
+        this.settings.bind("backgroundColor", "backgroundColor");
+        this.settings.bind("font", "font");
+        this.settings.bind("text-color", "color");
+        this.settings.bind("numberofitems", "itemlimit");
+        this.settings.bind("listfilter", "listfilter");
         this.settings.bind('enablecopy', 'enablecopy'); 
         
-        this.settings.bind('ai_enablesummary', 'ai_enablesummary'); //, this.onDisplayChanged);
-        this.settings.bind('ai_dumptool', 'ai_dumptool'); //, this.onDisplayChanged);
-        this.settings.bind('ai_url', 'ai_url'); //, this.onDisplayChanged);
-        this.settings.bind('ai_systemprompt', 'ai_systemprompt'); //, this.onDisplayChanged);
-        this.settings.bind('ai_use_standard_model', 'ai_use_standard_model'); //, this.onDisplayChanged);
-        this.settings.bind('ai_model', 'ai_model'); //, this.onDisplayChanged);
-        this.settings.bind('ai_custom_model', 'ai_custom_model'); //, this.onDisplayChanged);
-        this.settings.bind("ai_font", "ai_font"); //, this.onDisplayChanged);
-        this.settings.bind("ai_text-color", "ai_color"); //, this.onDisplayChanged);
+        this.settings.bind('ai_enablesummary', 'ai_enablesummary');
+        this.settings.bind('ai_dumptool', 'ai_dumptool');
+        this.settings.bind('ai_url', 'ai_url');
+        this.settings.bind('ai_systemprompt', 'ai_systemprompt');
+        this.settings.bind('ai_use_standard_model', 'ai_use_standard_model');
+        this.settings.bind('ai_model', 'ai_model');
+        this.settings.bind('ai_custom_model', 'ai_custom_model');
+        this.settings.bind("ai_font", "ai_font");
+        this.settings.bind("ai_text-color", "ai_color");
+        this.settings.bind("temperature", "temperature");
         
-        if (Soup.MAJOR_VERSION === 2) {
-            this.httpSession = new Soup.SessionAsync();
-        } else {
-            this.httpSession = new Soup.Session();
-        }
-
+            // Initialize SignalManager
         this._signals = new SignalManager.SignalManager(null);
 
+            // Load feeds from settings
+            this.feeds = this.settings.getValue('feeds');
+
+            // Build UI
         this.buildInitialDisplay();
         this.onDisplayChanged();
         this.onSettingsChanged();
 
-        this.setUpdateTimer(1);
-
-        // Remove or comment out any existing tooltip setup
-        // Add hover-based tooltip instead
-        this.actor.connect('enter-event', Lang.bind(this, function() {
-            this.set_applet_tooltip(this._toolTipText);
-        }));
-        
-        this.actor.connect('leave-event', Lang.bind(this, function() {
-            this.set_applet_tooltip("");
-        }));
-
-        // Add right-click menu item for reload
-        global.log('YarrDesklet: Adding reload menu item');
-        this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-        this._menu.addAction(_("Reload"), () => {
-            global.log('YarrDesklet: Reload clicked');
-            try {
-                // Try to reload using GLib
-                let [success, pid] = GLib.spawn_async(null, 
-                    ['sh', '-c', 'dbus-send --session --dest=org.Cinnamon.LookingGlass ' +
-                    '--type=method_call /org/Cinnamon/LookingGlass ' +
-                    'org.Cinnamon.LookingGlass.ReloadExtension ' +
-                    'string:yarr@jtoberling string:DESKLET'],
-                    null, GLib.SpawnFlags.SEARCH_PATH, null);
-                global.log('YarrDesklet: Reload command sent, success:', success);
-            } catch(e) {
-                global.log('YarrDesklet: Error during reload:', e);
-            }
-        });
-
-        // Add custom modal styling
-        let themeContext = St.ThemeContext.get_for_stage(global.stage);
-        let theme = themeContext.get_theme();
-        
-        theme.load_stylesheet(DESKLET_ROOT + '/style.css');
+            // Start initial feed collection
+            this.setUpdateTimer(1);  // Start first update in 1 second
+            
+            // Force immediate feed collection after short delay
+            GLib.timeout_add(GLib.PRIORITY_DEFAULT, 100, () => {
+                this.collectFeeds();
+                return GLib.SOURCE_REMOVE;
+            });
 
         // Add cleanup handler
         this.actor.connect('destroy', () => this._onDestroy());
+
+        
     }
 
     _onDestroy() {
+        try {
         // Clear timers
         if (this.timerInProgress) {
             Mainloop.source_remove(this.timerInProgress);
@@ -183,23 +179,29 @@ class YarrDesklet extends Desklet.Desklet {
         
         // Clear items map
         this.items.clear();
+            
+            // Clean up menu
+            if (this._menu) {
+                this._menu.destroy();
+            }
         
         // Clear HTTP session
         if (this.httpSession) {
             this.httpSession.abort();
             this.httpSession = null;
+            }
+        } catch (e) {
+            global.log('Error in _onDestroy:', e);
         }
     }
 
     invertbrightness(rgb) {
-        rgb = Array.prototype.join.call(arguments).match(/(-?[0-9\.]+)/g);
-        let brightness = 255 * 3
-        for (var i = 0; i < rgb.length && i < 3; i++) {
+        rgb = Array.prototype.join.call(arguments).match(/(-?[0-9.]+)/g);
+        let brightness = 255 * 3;
+        for (let i = 0; i < rgb.length && i < 3; i++) {
             brightness -= rgb[i];
         }
-        if (brightness > 255 * 1.5)
-            return '255, 255, 255';
-        return '0, 0, 0';
+        return brightness > 255 * 1.5 ? '255, 255, 255' : '0, 0, 0';
     }
     
     openChatGPTAPIKeys() {
@@ -309,104 +311,137 @@ class YarrDesklet extends Desklet.Desklet {
 
     //------------------------
 
-    //HTTP request creator function
-    /*
-        This function creates all of our HTTP requests.
-    */
-    httpRequest(method, url, headers, postParameters, callbackF, bodyMime='application/x-www-form-urlencoded') {
-        // Add request timeout
-        if (Soup.MAJOR_VERSION === 2) {
-            this.httpSession.timeout = 10;
-        } else {
-            this.httpSession.timeout = 10;
-        }
-        
-        // Cache control headers
-        if (!headers) headers = [];
-        headers.push(['Cache-Control', 'max-age=300']); // 5 minutes cache
-        
-        var message = Soup.Message.new(
-            method,
-            url
-        );
-
-        if (headers !== null) {
-            for (let i = 0;i < headers.length;i++) {
-                message.request_headers.append(headers[i][0],headers[i][1]);
-            }
-        }
-        if (Soup.MAJOR_VERSION === 2) {
-            if (postParameters !== null) {
-                message.set_request(bodyMime,2,postParameters);
-            }
-
-            this.httpSession.queue_message(message,
-
-                Lang.bind(this, function(session, response) {
-
-                  let body = response.response_body.data;
-
-                  let result = {
-                    result: ''
-                  }; 
-                  try {
-                      result = message.response_body.data;
-                  } catch(e) {
-                      global.log('ERROR', e);
-                  }
-                  
-                  callbackF(this, message, result);
-                })
-            );
-        } else {
-            if (postParameters !== null) {
-                const bytes = GLib.Bytes.new(ByteArray.fromString(postParameters));
-                message.set_request_body_from_bytes(bodyMime, bytes);
-            }
-
-            this.httpSession.send_and_read_async(message, 0, null, (session, res) => {
-                let result = {
-                    result: ''
-                };
-                try {
-                    const bytes = session.send_and_read_finish(res);
-                    result = ByteArray.toString(bytes.get_data());
-                } catch (e) {
-                    global.log('ERROR', e);
+    // HTTP request creator function
+    httpRequest(method, url, headers = null, body = null) {
+        return new Promise((resolve, reject) => {
+            try {
+                const message = Soup.Message.new(method, url);
+                if (!message) {
+                    throw new Error(`Failed to create message for URL: ${url}`);
                 }
 
-                callbackF(this, message, result);
-            });
-        }
+                // Add headers
+                message.request_headers.append('User-Agent', 'Mozilla/5.0 YarrDesklet/1.0');
+                if (headers) {
+                    headers.forEach(([key, value]) => {
+                message.request_headers.append(key, value);
+                    });
+            }
+
+                // Add body for POST requests
+                if (method === 'POST' && body) {
+        if (Soup.MAJOR_VERSION === 2) {
+                        message.set_request('application/json', 2, body);
+                    } else {
+                        message.set_request_body_from_bytes('application/json', 
+                            new GLib.Bytes(body));
+                    }
+                }
+
+                // Handle Soup v2 vs v3
+                if (Soup.MAJOR_VERSION === 2) {
+                    this.httpSession.queue_message(message, (session, response) => {
+                        if (response.status_code !== 200) {
+                            reject(new Error(`HTTP ${response.status_code}: ${response.reason_phrase}`));
+                            return;
+                        }
+                        resolve(message.response_body.data);
+                    });
+                } else {
+                    this.httpSession.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null, 
+                        (session, result) => {
+                            try {
+                                const bytes = session.send_and_read_finish(result);
+                                if (!bytes) {
+                                    reject(new Error('No response data'));
+                                    return;
+                                }
+                                const response = ByteArray.toString(bytes.get_data());
+                                resolve(response);
+                            } catch (error) {
+                                reject(error);
+                            }
+                        });
+                }
+            } catch (error) {
+                reject(error);
+            }
+        });
     }
 
     setUpdateTimer(timeOut) {
-        // Add adaptive refresh rate based on error count
-        if (this._resourceUsage.errorCount > 5) {
-            this._adaptiveRefresh.currentDelay = Math.min(
-                this._adaptiveRefresh.currentDelay * 1.5,
-                this._adaptiveRefresh.maxDelay
-            );
-            this._resourceUsage.errorCount = 0;
-        }
-        
-        // Use adaptive delay instead of fixed delay
-        const actualDelay = timeOut === 1 ? timeOut : this._adaptiveRefresh.currentDelay;
-        
         if (this._setUpdateTimerInProgress) return;
-        
         this._setUpdateTimerInProgress = true;
     
-
+        try {
+            // Clear existing timer if any
         if (this.timerInProgress) {
+                try {
             Mainloop.source_remove(this.timerInProgress);
-        }
-        
-        this.timerInProgress = Mainloop.timeout_add_seconds(actualDelay, Lang.bind(this, this.onTimerEvent));
-        
+                } catch (e) {
+                    global.log('Error removing existing timer:', e);
+                }
+                this.timerInProgress = 0;
+            }
+
+            // Set minimum delay to prevent excessive CPU usage
+            const delay = Math.max(timeOut === 1 ? 1 : 300, this.delay);
+
+            // Create new timer
+            this.timerInProgress = Mainloop.timeout_add_seconds(delay, () => {
+                // Clear timer ID since it's about to fire
+                this.timerInProgress = 0;
+                
+                // Execute timer event
+                this.onTimerEvent();
+                
+                // Return false to prevent auto-repeat
+                return false;
+            });
+
+            if (!this.timerInProgress) {
+                global.log('Failed to create timer');
+            }
+
+        } catch (e) {
+            global.log('Error in setUpdateTimer:', e);
+            this.timerInProgress = 0;
+        } finally {
         this._setUpdateTimerInProgress = false;
+        }
     }
 
+    onTimerEvent() {
+        // Prevent concurrent updates
+        if (this._updateInProgress) {
+            this.setUpdateTimer(this.delay);
+            return;
+        }
+
+        this._updateInProgress = true;
+
+        try {
+            // Execute feed collection
+            this.collectFeeds()
+                .catch(error => {
+                    global.log('Error collecting feeds:', error);
+                })
+                .finally(() => {
+                    this._updateInProgress = false;
+                    global.log('Feed collection completed, scheduling next update');
+                    // Schedule next update
+                    if (this.refreshEnabled) {
+                        this.setUpdateTimer(this.delay);
+                    }
+                });
+        } catch (e) {
+            global.log('Error in timer event:', e);
+            this._updateInProgress = false;
+            if (this.refreshEnabled) {
+                this.setUpdateTimer(this.delay);
+            }
+        }
+    }
 
     onRefreshClicked() {
         this.setUpdateTimer(3);
@@ -649,12 +684,24 @@ class YarrDesklet extends Desklet.Desklet {
         
         this.mainBox.add(this.headBox);
 
-        // Create scrollview and container
-        this.dataBox = new St.ScrollView();
-        this.dataBox.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
-        this.tableContainer = new St.BoxLayout({ vertical: true });
-        this.dataBox.add_actor(this.tableContainer);
-        this.mainBox.add(this.dataBox, { expand: true });
+        // Create scrollview with proper policy
+        let scrollBox = new St.ScrollView({
+            style_class: 'yarr-scrollbox',
+            x_fill: true,
+            y_fill: true
+        });
+        scrollBox.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
+
+        // Create container for feed items
+        this.dataBox = new St.BoxLayout({
+            vertical: true,
+            style_class: 'yarr-feeds-box',
+            y_expand: true,
+            style: 'spacing: 2px;'  // Add spacing between items
+        });
+
+        scrollBox.add_actor(this.dataBox);
+        this.mainBox.add(scrollBox, { expand: true });
 
         this.setContent(this.mainBox);
     }
@@ -665,72 +712,79 @@ class YarrDesklet extends Desklet.Desklet {
     }
 
     
-    additems(context, itemobj) {
-        let key = itemobj.title + '|' + itemobj.link;
-        let hash = context.hashCode(key);
+    _cleanupItem(item) {
+        if (!item) return;
         
-        if (!context.items.has(hash)) {
-            context.items.set(hash, itemobj);
+        // Clear references
+        if (item.aiResponse) {
+            item.aiResponse = '';
         }
-        
-        const newMap = Array.from(context.items).sort(
-            (a, b) => Number(b[1].timestamp) - Number(a[1].timestamp)
-        );
-        
-        context.items = new Map(newMap);
+        if (item.description) {
+            item.description = '';
+        }
+        // Clean other fields...
+    }
 
-        const itemsize = context.items.size;
-
-        let i = 0;
-        for (let [key, value] of context.items) {
-            i++;
-            if (i > context.itemlimit) {
-                context.items.delete(key);
-            }
+    additems(context, itemobj) {
+        try {
+            // Generate unique key
+            const key = `${itemobj.channel}-${itemobj.title}-${itemobj.timestamp.getTime()}`;
+            
+            // Add new item to map
+            context.items.set(key, {
+                ...itemobj,  // spread operator to clone
+                key: key     // store key for later use
+            });
+            
+            // Schedule display update using Promise to avoid UI blocking
+            Promise.resolve().then(() => {
+                // Limit size and clean old elements if needed
+                if (context.items.size > context.itemlimit) {
+        const sortedItems = Array.from(context.items.entries())
+            .sort((a, b) => b[1].timestamp - a[1].timestamp);
+        
+                    // Keep only the newest items
+                    context.items = new Map(sortedItems.slice(0, context.itemlimit));
+                }
+                
+                // Schedule UI update
+                GLib.idle_add(GLib.PRIORITY_DEFAULT_IDLE, () => {
+                    this.displayItems();
+                    return GLib.SOURCE_REMOVE;
+                });
+            }).catch(e => {
+                global.log('Error in additems:', e);
+            });
+            
+        } catch (e) {
+            global.log('Error in additems:', e);
         }
     }
     
-    inGlobalFilter(context, title, catStr, description) {
-    
-        let found = false;
+    // Helper function to check if text matches filter
+    _checkMatch(filter, title, category, description) {
+        const regexp = new RegExp(filter.filter, 'i');
         
-        let itemRegexArr = [];
-        
-        
-        for(let i=0; i < context.listfilter.length ; i++ ) {
-        
-            let filterElem = context.listfilter[i];
+        return (filter.inTitle && title && regexp.test(title)) ||
+               (filter.inCategory && category && regexp.test(category)) ||
+               (filter.inDescription && description && regexp.test(description));
+    }
+
+    // Simplified main filter function
+    inGlobalFilter(self, title, category, description) {
+        if (!self?.listfilter?.length) return true;
+
+        for (const filter of self.listfilter) {
+            if (!filter?.active) continue;
             
-            if (filterElem.active) {
-                if (filterElem.unmatch) {
-                    found = true;
-                }
-            
-                let itemRegexp = new RegExp(filterElem.filter);
-
-                if (filterElem.inTitle) {
-                    if (itemRegexp.test(title)) {
-                        found = (filterElem.unmatch)?false:true;
-                        break;
-                    }
-                }
-
-                if (filterElem.inCategory) {
-                    if (itemRegexp.test(catStr)) {
-                        found = (filterElem.unmatch)?false:true;
-                        break;
-                    }
-                }
-
-                if (filterElem.inDescription) {
-                    if (itemRegexp.test(description)) {
-                        found = (filterElem.unmatch)?false:true;
-                        break;
-                    }
-                }
+            try {
+                const matches = this._checkMatch(filter, title, category, description);
+                if (filter.unmatch ? !matches : matches) return false;
+            } catch {
+                continue;
             }
         }
-        return found;
+        return true;
     }
     
     onUpdateDownloadedTimer() {
@@ -750,133 +804,57 @@ class YarrDesklet extends Desklet.Desklet {
         return GLib.SOURCE_CONTINUE;
     }
     
-    collectFeeds() {
-        if (!this.refreshEnabled) return;
-        
-        const CONCURRENT_REQUESTS = 3; // Limit concurrent requests
-        const feeds = [...this.feeds].filter(f => f.active && f.url.length > 0);
-        
-        this.updateDownloadCounter = feeds.length;
-        this.onUpdateDownloadedTick = 0;
-        
-        // Start download timer
-        this.updateDownloadedTimer = Mainloop.timeout_add_seconds(1, 
-            Lang.bind(this, this.onUpdateDownloadedTimer)
-        );
-        
-        // Process feeds in batches
-        const processBatch = (startIndex) => {
-            const batch = feeds.slice(startIndex, startIndex + CONCURRENT_REQUESTS);
-            if (batch.length === 0) return;
-            
-            batch.forEach(feed => {
-                let feedRegexp = new RegExp(feed.filter);
+    async collectFeeds() {
+        if (!this.refreshEnabled || !this.httpSession) return;
 
-                this.httpRequest('GET', feed.url, 
-                    null,  // headers
-                    null,  // post
-                    function(context, message, result) {
-                        
-                        let resJSON = null;
-                        try {
-                            resJSON = fromXML(result);
-                            
-                            let channel = resJSON.rss.channel.title;
-                            
-                            for(let j=0; j < resJSON.rss.channel.item.length ; j++ ) {
-                            
-                                let item = resJSON.rss.channel.item[j];
-                                
-                                let catStr = context.getCategoryString(item);
-                                
-                                let doInsert = true;
-                                if (feed.filter.length > 0)  {
-                                    doInsert = feedRegexp.test(catStr);                                    
-                                }
-                                
-                                if (context.listfilter.length > 0 && context.inGlobalFilter(context, item.title, catStr, item.description)) {
-                                    doInsert = false;
-                                }
-                                
-                                if (doInsert) {
-                                    let parsedDate = new Date(item.pubDate);
-                                    context.additems(
-                                        context,
-                                        { 
-                                            'channel': 	feed.name,
-                                            'timestamp': 	parsedDate,
-                                            'pubDate':	item.pubDate, 
-                                            'title':	item.title, 
-                                            'link':		item.link,
-                                            'category': 	catStr,
-                                            'description': 	item.description, 
-                                            'labelColor': 	feed.labelcolor,
-                                            'aiResponse': 	''
-                                         }
-                                    );
-                                }
-                            }
-                          
-//                                context.displayItems(context);
-                                
-                        } catch (e) {
-                            global.log('ERROR', 'PARSEERROR');
-                            global.log(e);
-                        }
+        try {
+            const feeds = [...this.feeds].filter(f => f?.active && f?.url?.length);
+            if (!feeds?.length) return;
 
-                      context.updateDownloadCounter--;
-                            
-                    }
-                );                                    
-            });
-            
-            // Schedule next batch
-            if (startIndex + CONCURRENT_REQUESTS < feeds.length) {
-                GLib.timeout_add(GLib.PRIORITY_DEFAULT, 1000, () => {
-                    processBatch(startIndex + CONCURRENT_REQUESTS);
-                    return GLib.SOURCE_REMOVE;
-                });
-            }
-        };
-        
-        processBatch(0);
-    }
-    
-    HTMLPartToTextPart(HTMLPart) {
-      return HTMLPart
-        .replace(/\n/ig, '')
-        .replace(/<style[^>]*>[\s\S]*?<\/style[^>]*>/ig, '')
-        .replace(/<head[^>]*>[\s\S]*?<\/head[^>]*>/ig, '')
-        .replace(/<script[^>]*>[\s\S]*?<\/script[^>]*>/ig, '')
-        .replace(/<\/\s*(?:p|div)>/ig, '\n\n')
-        .replace(/<br[^>]*\/?>/ig, '\n')
-        .replace(/<[^>]*>/ig, '')
-        .replace('&nbsp;', ' ')
-        .replace(/[^\S\r\n][^\S\r\n]+/ig, ' ')
-      ;
-    }
-
-    getCategoryString(item) {
-            let catStr = '';
-
-            if (typeof item.category === 'string') {
-                catStr = item.category.toString();
-            } else {
-                if (typeof item.category === 'object') {
-                    let catArr = Array.from(item.category);
-                    let arrText = [];
-                    for(let i=0; i < catArr.length ; i++ ) {
-                        if (typeof catArr[i] === 'string' ) {
-                            arrText.push( catArr[i] );
-                        } else {
-                            arrText.push( catArr[i]['#'] );
-                        }
-                    }
-                    catStr = arrText.join(' / ');
+            for (const feed of feeds) {
+                try {
+                    const result = await this.httpRequest('GET', feed.url);
+                    this.processFeedResult(feed, result);
+                } catch (error) {
+                    global.log(`Error processing feed ${feed.name}:`, error);
                 }
             }
             
-            return catStr;
+            this.displayItems(this);
+        } catch (error) {
+            global.log('Error in collectFeeds:', error);
+            throw error;
+        }
+    }
+    
+    HTMLPartToTextPart(HTMLPart) {
+        return HTMLPart
+            .replace(/\n/ig, '')
+            .replace(/<style[^>]*>[\s\S]*?<\/style[^>]*>/ig, '')
+            .replace(/<head[^>]*>[\s\S]*?<\/head[^>]*>/ig, '')
+            .replace(/<script[^>]*>[\s\S]*?<\/script[^>]*>/ig, '')
+            .replace(/<\/\s*(?:p|div)>/ig, '\n\n')
+            .replace(/<br[^>]*\/?>/ig, '\n')
+            .replace(/<[^>]*>/ig, '')
+            .replace('&nbsp;', ' ')
+            .replace(/[^\S\r\n][^\S\r\n]+/ig, ' ')
+        ;
+    }
+
+    getCategoryString(item) {
+        if (typeof item.category === 'string') {
+            return item.category.toString();
+        }
+        
+        if (typeof item.category === 'object') {
+            let catArr = Array.from(item.category);
+            let arrText = catArr.map(elem => 
+                typeof elem === 'string' ? elem : elem['#']
+            );
+            return arrText.join(' / ');
+        }
+        
+        return '';
     } 
     
     _formatedDate( pDate, withYear = true ) {
@@ -894,7 +872,72 @@ class YarrDesklet extends Desklet.Desklet {
     }
     
     onClickedSumButton(selfObj, p2, item, lineBox, sumIcon) {
-        this.summarizeUri(this.ai_dumptool, item, lineBox, sumIcon);
+        if (sumIcon) {
+            sumIcon.set_icon_name('process-working-symbolic');
+        }
+        
+        this.summarizeUri(this.ai_dumptool, item, lineBox, sumIcon)
+            .then(() => {
+                if (sumIcon) {
+                    sumIcon.set_icon_name('document-edit-symbolic');
+                }
+            })
+            .catch(() => {
+                if (sumIcon) {
+                    sumIcon.set_icon_name('dialog-error-symbolic');
+                }
+            });
+    }
+    
+    async summarizeUri(dumptool, item, lineBox, sumIcon) {
+        try {
+            const apiKey = await Secret.password_lookup_sync(this.STORE_SCHEMA,{}, null);
+            if (!apiKey) {
+                throw new Error('No API key found. Please set your API key in settings.');
+            }
+            
+            const content = `${item.title}\n\n${this.HTMLPartToTextPart(item.description)}`;
+
+            const requestBody = {
+                model: this.ai_use_standard_model ? this.ai_model : this.ai_custom_model,
+                messages: [
+                    {
+                        role: "system",
+                        content: this.ai_systemprompt
+                    },
+                    {
+                        role: "user",
+                        content: content
+                    }
+                ],
+                temperature: this.temperature
+            };
+
+            const response = await this.httpRequest(
+                'POST',
+                this.ai_url,
+                [
+                    ['Content-Type', 'application/json'],
+                    ['Authorization', `Bearer ${apiKey}`]
+                ],
+                JSON.stringify(requestBody)
+            );
+
+            const jsonResponse = JSON.parse(response);
+            
+            if (!jsonResponse?.choices?.[0]) {
+                throw new Error('Invalid API response');
+            }
+
+            item.aiResponse = jsonResponse.choices[0].message.content;
+            this.displayItems();
+
+        } catch (error) {
+            if (sumIcon) {
+                sumIcon.set_icon_name('dialog-error-symbolic');
+            }
+            throw error;
+        }
     }
     
     onClickedCopyButton(selfObj, p2, item, lineBox) {
@@ -914,310 +957,165 @@ class YarrDesklet extends Desklet.Desklet {
     }
     
     
-    displayItems(context) {
-        // Batch updates using Mainloop idle
-        const ITEMS_PER_BATCH = 10;
-        
-        let updated = new Date();
-        context.headTitle.set_text(_('Updated') + ': ' + context._formatedDate(new Date()));
-        
-        context.tableContainer.destroy_all_children();
-        
-        // Filter items first
-        const filteredItems = Array.from(context.items.entries()).filter(([key, item]) => {
-            if (!context.searchFilter) return true;
-            try {
-                const regexp = new RegExp(context.searchFilter, 'i');
-                return regexp.test(item.title) || 
-                       regexp.test(item.description) || 
-                       regexp.test(item.channel) ||
-                       regexp.test(item.category);
-            } catch(e) {
-                global.log('YarrDesklet: Invalid regexp:', e);
-                return true;
-            }
-        });
+    displayItems() {
+        try {
+            if (!this.dataBox) return;
+            this.dataBox.destroy_all_children();
 
-        // Process items in batches
-        let currentIndex = 0;
-        let counter = 0;
-        
-        const processNextBatch = () => {
-            const batch = filteredItems.slice(currentIndex, currentIndex + ITEMS_PER_BATCH);
-            if (batch.length === 0) return;
-            
-            batch.forEach(([key, item]) => {
-                counter++;
-                const lineBox = new St.BoxLayout({ vertical: false }); 
+            // Get filtered and sorted items
+            const sortedItems = Array.from(this.items.values())
+                .filter(item => {
+                    if (this.searchFilter) {
+                        const searchText = this.searchFilter.toLowerCase();
+                        return item.title.toLowerCase().includes(searchText) ||
+                               item.description.toLowerCase().includes(searchText);
+                    }
+                    return this.inGlobalFilter(this, item.title, item.category, item.description);
+                })
+                .sort((a, b) => b.timestamp - a.timestamp)
+                .slice(0, this.itemlimit || 50);
 
-                const feedButton = new St.Button({ label: "["+item.channel +"]" , style_class: 'channelbutton', style: 'width: 80px; background-color: ' + item.labelColor });
+            // Calculate channel width once
+            const channelWidth = Math.min(Math.max(...sortedItems.map(item => item.channel.length)) * 8, 120);
 
-                let toolTipText = 
-                    '<span size="large"><b><u>' + this.formatTextWrap(item.channel + ': ' + item.title, 100) + '</u></b></span>'
-                    +'\n<span size="small">[ ' + item.category.toString().substring(0,80) + ' ]</span>\n\n'
-                    + '<span>' + this.formatTextWrap(this.HTMLPartToTextPart(item.description ?? '-' ),100) + '</span>'
-                    ;
-
-                // Create tooltip but don't show it initially
-                let toolTip = new Tooltips.Tooltip(feedButton);
-                toolTip._tooltip.style = 'text-align: left;';
-                toolTip._tooltip.clutter_text.set_use_markup(true);
-                toolTip._tooltip.clutter_text.set_line_wrap(true);
-                toolTip._tooltip.clutter_text.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
-                toolTip._tooltip.clutter_text.set_markup(toolTipText);
-                toolTip._tooltip.allocate_preferred_size(Clutter.AllocationFlags.NONE);
-                toolTip._tooltip.queue_relayout();
-                
-                // Show tooltip only on hover
-                feedButton.connect('enter-event', () => {
-                    toolTip._tooltip.clutter_text.set_markup(toolTipText);
-                    toolTip.show();
-                });
-                
-                feedButton.connect('leave-event', () => {
-                    toolTip.hide();
+            // Create items
+            sortedItems.forEach((item, i) => {
+                // Main row container
+                const lineBox = new St.BoxLayout({
+                    vertical: false,  // Keep horizontal for main row
+                    style: `
+                        background-color: ${i % 2 ? 
+                            `rgba(100,100,100, ${this.alternateRowTransparency})` : 
+                            `rgba(${this.backgroundColor.replace('rgb(', '').replace(')', '')}, ${this.transparency})`
+                        };
+                        padding: 4px;
+                    `
                 });
 
-                lineBox.add(feedButton);
+                // 1. Feed button
+                const feedBtn = new St.Button({
+                    style: `
+                        background-color: ${item.labelColor}; 
+                        border-radius: 4px; 
+                        margin: 0 5px; 
+                        width: ${channelWidth}px;
+                    `
+                });
+                feedBtn.set_child(new St.Label({ text: item.channel }));
+                feedBtn.connect('clicked', () => item.link && Util.spawnCommandLine(`xdg-open "${item.link}"`));
 
-                this._signals.connect( feedButton, 'clicked', (...args) => this.onClickedButton(...args, item.link) ); 
+                // 2. Time label
+                const timeLabel = new St.Label({
+                    text: this._formatedDate(item.timestamp, false),
+                    style: 'font-size: 0.8em; width: 65px; text-align: center;'
+                });
 
                 const itemBoxLayout = new St.BoxLayout({ vertical: true });
 
-                if (this.ai_enablesummary) {
-                    const sumButton = new St.Button({ style: 'width: 24px;'});
-                    const sumIcon = new St.Icon({
-                                  icon_name: 'gtk-zoom-fit',
-                                  icon_size: 20, 
-                                  icon_type: St.IconType.SYMBOLIC
-                    });
-                    sumButton.set_child(sumIcon);
-                    lineBox.add(sumButton);
-                    this._signals.connect( sumButton, 'clicked', (...args) => this.onClickedSumButton(...args, item, itemBoxLayout, sumIcon));
+                // 3. Action buttons
+                const buttonBox = new St.BoxLayout({ style: 'spacing: 5px; padding: 0 5px;' });
+
+                if (this.ai_enablesummary && item.description) {
+                    const sumBtn = new St.Button({ style_class: 'yarr-button' });
+                    const sumIcon = new St.Icon({ icon_name: 'gtk-zoom-fit', icon_size: 16 });
+                    sumBtn.set_child(sumIcon);
+                    sumBtn.connect('clicked', () => this.onClickedSumButton(null, null, item, itemBoxLayout, sumIcon));
+                    buttonBox.add(sumBtn);
                 }
 
                 if (this.enablecopy) {
-                    const copyButton = new St.Button({ style: 'width: 24px;'});
-                    const copyIcon = new St.Icon({
-                                  icon_name: 'gtk-copy',
-                                  icon_size: 20, 
-                                  icon_type: St.IconType.SYMBOLIC
-                                  });
-                    copyButton.set_child(copyIcon);
-                    lineBox.add(copyButton);
-                    this._signals.connect( copyButton, 'clicked', (...args) => this.onClickedCopyButton(...args, item, itemBoxLayout));
-                }
-                
-                
-                const dateLabel = new St.Label({  text: ' ' + context._formatedDate(item.timestamp, false) + ' ', style: 'text-align: center;'   });
-                lineBox.add(dateLabel);
-                
-                let panelButton = new St.Button({});
-      
-                const itemLabel = new St.Label({
-                        text: item.title
-                });
-                itemLabel.hexpand = true;
-                    
-
-                itemLabel.style = context.fontstyle;
-                
-                itemLabel.clutter_text.line_wrap = true;
-                itemLabel.clutter_text.line_wrap_mode = Pango.WrapMode.WORD;
-                itemLabel.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
-                
-                let subItemBox = new St.BoxLayout({ 
-                    vertical: true
-                });
-                if ( (counter % 2 ) == 0) {
-                    subItemBox.style = "background-color: rgba(100,100,100,"+ this.alternateRowTransparency +");";
+                    const copyBtn = new St.Button({ style_class: 'yarr-button' });
+                    const copyIcon = new St.Icon({ icon_name: 'edit-copy-symbolic', icon_size: 16 });
+                    copyBtn.set_child(copyIcon);
+                    copyBtn.connect('clicked', () => this.onClickedCopyButton(null, null, item, itemBoxLayout));
+                    buttonBox.add(copyBtn);
                 }
 
-                subItemBox.add(itemLabel);
-                
+                // Title and content panel
+                let panelButton = new St.Button({
+                    style_class: 'yarr-panel-button',
+                    reactive: true,
+                    track_hover: true,
+                    x_expand: true,
+                    x_align: St.Align.START,  // Force left alignment for the button
+                    style: 'padding: 5px; border-radius: 4px;'
+                });
+
+                // Title
+                const titleLabel = new St.Label({
+                    text: item.title,
+                    style: this.fontstyle,
+                    x_expand: true,
+                    x_align: St.Align.START  // Force left alignment for the label
+                });
+                titleLabel.clutter_text.set_line_wrap(true);
+                titleLabel.clutter_text.set_line_wrap_mode(Pango.WrapMode.WORD);
+                titleLabel.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
+
+                let subItemBox = new St.BoxLayout({
+                    vertical: true,
+                    x_expand: true,
+                    x_align: St.Align.START  // Force left alignment for the box
+                });
+                subItemBox.add(titleLabel);
+
                 itemBoxLayout.add(subItemBox);
-
                 panelButton.set_child(itemBoxLayout);
-                
-                let toolTip2 = new Tooltips.Tooltip(panelButton);
-                toolTip2._tooltip.style = 'text-align: left;';
-                toolTip2._tooltip.clutter_text.set_use_markup(true);
-                toolTip2._tooltip.clutter_text.set_line_wrap(true);
-                toolTip2._tooltip.clutter_text.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
-                toolTip2._tooltip.clutter_text.set_markup(toolTipText);
-                toolTip2._tooltip.allocate_preferred_size(Clutter.AllocationFlags.NONE);
-                toolTip2._tooltip.queue_relayout();
-                
-                // Show tooltip only on hover
-                panelButton.connect('enter-event', () => {
-                    toolTip2._tooltip.clutter_text.set_markup(toolTipText);
-                    toolTip2.show();
-                });
-                
-                panelButton.connect('leave-event', () => {
-                    toolTip2.hide();
-                });
-                
-                lineBox.add_actor( panelButton );
-                
-                
-                if (item.aiResponse.length > 0) {
-                
+
+                // AI response if exists
+                if (item.aiResponse) {
                     const aiLabel = new St.Label({  
-                        text:   item.aiResponse + '\n------------------------------------------------------', 
-                        style: 'text-align: left;'   
+                        text: item.aiResponse,
+                        style: this.ai_fontstyle
                     });
-                    aiLabel.style = context.ai_fontstyle;
-                    
-                    aiLabel.clutter_text.line_wrap = true;
-                    aiLabel.clutter_text.line_wrap_mode = Pango.WrapMode.WORD;
+                    aiLabel.clutter_text.set_line_wrap(true);
+                    aiLabel.clutter_text.set_line_wrap_mode(Pango.WrapMode.WORD);
                     aiLabel.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
-                     
+                    
                     itemBoxLayout.add(aiLabel);
                 }
-                
-                
-                context.tableContainer.add( lineBox );
-                
-            });
-            
-            currentIndex += ITEMS_PER_BATCH;
-            
-            if (currentIndex < filteredItems.length) {
-                GLib.idle_add(GLib.PRIORITY_DEFAULT_IDLE, () => {
-                    processNextBatch();
-                    return GLib.SOURCE_REMOVE;
+
+                // Add tooltip before adding to lineBox
+                if (item.description) {
+                    let tooltip = new Tooltips.Tooltip(panelButton);
+                    tooltip.set_markup(`<b>${item.title}</b>\n${item.pubDate}\n\n${this.HTMLPartToTextPart(item.description)}`);
+                    tooltip._tooltip.style = `
+                        text-align: left;
+                        max-width: 600px;
+                        padding: 12px;
+                        font-size: 1.1em;
+                        line-height: 1.4;
+                        background-color: rgba(32, 32, 32, 0.85);
+                        border: 1px solid rgba(255,255,255,0.1);
+                        border-radius: 4px;
+                        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+                    `;
+                    tooltip._tooltip.clutter_text.set_line_wrap(true);
+                    tooltip._tooltip.clutter_text.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
+                    tooltip._tooltip.clutter_text.set_ellipsize(Pango.EllipsizeMode.NONE);
+                    tooltip._tooltip.set_x_align(St.Align.START);  // Force left alignment for tooltip
+                    tooltip._tooltip.clutter_text.set_x_align(Clutter.ActorAlign.START);  // Force left alignment for tooltip text
+                }
+
+                // Add click handler to open the article
+                panelButton.connect('clicked', () => {
+                    if (item.link) {
+                        Gio.app_info_launch_default_for_uri(item.link, global.create_app_launch_context());
+                    }
                 });
-            }
-        };
-        
-        processNextBatch();
-    }
 
-    onTimerEvent() {
-    
-        this.timerInProgress = false;
+                // Add all elements to lineBox
+                lineBox.add(feedBtn);
+                lineBox.add(timeLabel);
+                lineBox.add(buttonBox);
+                lineBox.add(panelButton);
 
-        if (this._updateInProgress) {
-            this.setUpdateTimer(this.delay);
-            return;
-        } else {
+                this.dataBox.add(lineBox);
+            });
 
-            this._updateInProgress = true;
-
-            this.collectFeeds();	// ReShedule this...
-            
-            this.setUpdateTimer(this.delay);
-
-            this._updateInProgress = false;
+        } catch (e) {
+            global.log('Error in displayItems:', e.toString());
         }
-
-    }
-    
-    on_chatgptapikey_stored(source, result) {
-        Secret.password_store_finish(result);
-    }
-    
-    onChatGPAPIKeySave() {
-            let dialog = new PasswordDialog (
-                _("'%s' settings..\nPlease enter ChatGPT API key:").format(this._(this._meta.name)),
-                (password) => {
-                    Secret.password_store(this.STORE_SCHEMA, {}, Secret.COLLECTION_DEFAULT,
-                      "Yarr_ChatGPTApiKey", password, null, this.on_chatgptapikey_stored);
-                }, 
-                this
-            );
-            dialog.open();
-    }
-
-    summarizeUri(tool, item, lineBox, sumIcon) {
-    
-        sumIcon.set_icon_name('system-run');
-
-        const cmd = "/usr/bin/timeout -k 10 10 /usr/bin/"+tool+" -dump '" + item.link + "' || echo 'ERROR: TIMEOUT'"; 
-        
-        Util.spawn_async(
-            [
-                "/bin/bash", 
-                "-c", 
-                cmd
-            ],
-            Lang.bind(this, function (result) {
-                if (result.length > 16384) {
-                    result = result.substring(0,16384);
-                }
-                
-                let usemodel = this.ai_model;
-                if (this.ai_use_standard_model=="optioncustom") {
-                    usemodel = this.ai_custom_model
-                }
-                const reqObj = { 
-                        "model": usemodel,
-                        "messages": [ 
-                            { 
-                                "role": "system", 
-                                "content": JSON.stringify(this.ai_systemprompt)
-                            },
-                            { 
-                                "role": "user", 
-                                "content": JSON.stringify(result)
-                            } 
-                        ]
-                };
-
-                //(method,url,headers,postParameters,callbackF, bodyMime)
-                this.httpRequest(
-                    'POST', 
-                    this.ai_url,
-                    [
-                        ['Authorization', 	'Bearer ' + Secret.password_lookup_sync(this.STORE_SCHEMA, {}, null )], 
-                        ['Content-type', 	'application/json']
-                    ], 
-                    JSON.stringify(reqObj),
-                    function (context, message, result) {
-                        global.log('RES: ', result);
-                        var resObj = JSON.parse(result);
-                        
-                        var aiResponse = "";
-                        if (resObj.hasOwnProperty("error")) {
-                            global.log('ERROR!')
-                            aiResponse = resObj.error.message;
-                        } else {
-                            if (resObj.hasOwnProperty("choices")) {
-                                aiResponse = resObj.choices[0].message.content;
-                            } else {
-                                aiResponse = "ERROR: " + usemodel + ": ";
-                                if (resObj.hasOwnProperty("detail")) {
-                                    aiResponse += resObj.detail;
-                                }
-                            }
-                        }
-                        
-                        item.aiResponse = aiResponse;
-                        
-                        const aiLabel = new St.Label({  
-                            text:   aiResponse + '\n------------------------------------------------------', 
-                            style: 'text-align: left; width: 100px; display: flex; max-width: 200px;'   
-                        });
-                        aiLabel.style = context.ai_fontstyle;
-                        
-                        aiLabel.clutter_text.line_wrap = true;
-                        aiLabel.clutter_text.line_wrap_mode = Pango.WrapMode.WORD;
-                        aiLabel.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
-                         
-                        lineBox.add(aiLabel);
-                        sumIcon.set_icon_name('gtk-zoom-fit');
-                        
-
-                    }, 
-                    'application/json'
-                ); 
-                    
-                
-                
-            })
-        );   
-        
     }
 
     formatTextWrap(text, maxLineLength) {
@@ -1235,6 +1133,122 @@ class YarrDesklet extends Desklet.Desklet {
           }
         }, '');
     }
+
+    // Resource monitoring functions
+    _updateResourceMetrics() {
+        const now = Date.now();
+        
+        // Track update frequency
+        if (this._resourceUsage.lastUpdate) {
+            const updateInterval = now - this._resourceUsage.lastUpdate;
+            this._resourceUsage.updateIntervals = 
+                this._resourceUsage.updateIntervals || [];
+            this._resourceUsage.updateIntervals.push(updateInterval);
+            
+            // Keep only last 10 intervals
+            if (this._resourceUsage.updateIntervals.length > 10) {
+                this._resourceUsage.updateIntervals.shift();
+            }
+        }
+        
+        this._resourceUsage.lastUpdate = now;
+        this._resourceUsage.updateCount++;
+        
+        // Calculate adaptive refresh interval
+        if (this._resourceUsage.updateIntervals?.length > 5) {
+            const avgInterval = this._resourceUsage.updateIntervals.reduce((a,b) => a + b, 0) / 
+                              this._resourceUsage.updateIntervals.length;
+            this._adaptiveRefresh.currentDelay = Math.max(
+                this._adaptiveRefresh.minDelay,
+                Math.min(this._adaptiveRefresh.maxDelay, Math.floor(avgInterval / 1000))
+            );
+        }
+    }
+
+    // Error handling functions
+    _handleError(error, context = '') {
+        this._resourceUsage.errorCount++;
+        
+        // Track error types
+        this._resourceUsage.errors = this._resourceUsage.errors || {};
+        const errorType = error.name || 'UnknownError';
+        this._resourceUsage.errors[errorType] = 
+            (this._resourceUsage.errors[errorType] || 0) + 1;
+        
+        global.log(`YarrDesklet Error [${context}]:`, error);
+        
+        // Adaptive error handling
+        if (this._resourceUsage.errorCount > 5) {
+            this._adaptiveRefresh.currentDelay = Math.min(
+                this._adaptiveRefresh.currentDelay * 1.5,
+                this._adaptiveRefresh.maxDelay
+            );
+            this._resourceUsage.errorCount = 0;
+        }
+    }
+
+    processFeedResult(feed, result) {
+        try {
+            if (!result) return;
+            const resJSON = fromXML(result);
+            if (!resJSON?.rss?.channel?.item) return;
+
+            const items = Array.isArray(resJSON.rss.channel.item) 
+                ? resJSON.rss.channel.item 
+                : [resJSON.rss.channel.item];
+
+            items.forEach(item => {
+                try {
+                    const catStr = this.getCategoryString(item);
+                    const timestamp = new Date(item.pubDate);
+                    
+                    if (isNaN(timestamp.getTime())) {
+                        return;
+                    }
+
+                    const key = `${feed.name}-${item.link}-${timestamp.getTime()}`;
+                    
+                    this.items.set(key, {
+                        channel: feed.name,
+                        timestamp: timestamp,
+                        pubDate: item.pubDate,
+                        title: item.title || 'No Title',
+                        link: item.link || '',
+                        category: catStr,
+                        description: item.description || '',
+                        labelColor: feed.labelcolor || '#ffffff',
+                        aiResponse: ''
+                    });
+                } catch (e) {}
+            });
+        } catch (error) {
+            global.log('Error in processFeedResult:', error);
+            throw error;
+        }
+    }
+
+    on_chatgptapikey_stored(source, result) {
+        Secret.password_store_finish(result);
+    }
+
+    onChatGPAPIKeySave() {
+        let dialog = new PasswordDialog(
+            _("'%s' settings..\nPlease enter ChatGPT API key:").format(this._(this._meta.name)),
+            (password) => {
+                Secret.password_store(
+                    this.STORE_SCHEMA, 
+                    {}, 
+                    Secret.COLLECTION_DEFAULT,
+                    "Yarr_ChatGPTApiKey", 
+                    password, 
+                    null, 
+                    this.on_chatgptapikey_stored
+                );
+            },
+            this
+        );
+        dialog.open();
+    }
 }
 
 function main(metadata, desklet_id) {
@@ -1246,33 +1260,27 @@ function main(metadata, desklet_id) {
 //--------------------------------------------
 
 class PasswordDialog extends ModalDialog.ModalDialog {
-
-    constructor(label, callback, parent){
-        super();
+    constructor(label, callback, parent) {
+        super();  // This must be first!
+        this.callback = callback;  // Store callback before using
         
-        this.password = Secret.password_lookup_sync(parent.STORE_SCHEMA, {}, null );
-
+        this.password = Secret.password_lookup_sync(parent.STORE_SCHEMA, {}, null);
         this.contentLayout.add(new St.Label({ text: label }));
-        this.callback = callback;
 
         this.passwordBox = new St.BoxLayout({ vertical: false });
-
         this.entry = new St.Entry({ style: 'background: green; color:yellow;'});
         this.entry.clutter_text.set_password_char('\u25cf');
         this.entry.clutter_text.set_text(this.password);
-
         this.passwordBox.add(this.entry);
-
         this.contentLayout.add(this.passwordBox);
-
-        this.setInitialKeyFocus( this.entry.clutter_text );
+        this.setInitialKeyFocus(this.entry.clutter_text);
 
         this.setButtons([
           {
               label: "Save", 
-              action: ()  => {
+                action: () => {
                   const pwd = this.entry.get_text();
-                  this.callback( pwd );
+                    this.callback(pwd);
                   this.destroy();
               }, 
               key: Clutter.KEY_Return, 
@@ -1280,8 +1288,7 @@ class PasswordDialog extends ModalDialog.ModalDialog {
           },
           {
               label: "Show/Hide password",
-              action: ()  => {
-                
+                action: () => {
                  if (this.entry.clutter_text.get_password_char()) { 
                      this.entry.clutter_text.set_password_char('');
                  } else {
@@ -1292,14 +1299,13 @@ class PasswordDialog extends ModalDialog.ModalDialog {
           },
           {
               label: "Cancel", 
-              action: ()  => {
+                action: () => {
                   this.destroy();
               },  
               key: null, 
               focused: false
           }
         ]);
-
     }
 }
 
