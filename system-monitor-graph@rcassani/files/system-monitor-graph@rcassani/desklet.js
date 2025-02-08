@@ -223,65 +223,41 @@ SystemMonitorGraph.prototype = {
               break;
 
           case "gpu":
-              switch (this.gpu_manufacturer) {
-                case "nvidia":
-                    switch (this.gpu_variable) {
-                        case "usage":
-                            this.get_nvidia_gpu_use();
-                            value = this.gpu_use / 100;
-                            text1 = _("GPU Usage");
-                            text2 = Math.round(this.gpu_use).toString() + "%";
-                            break;
-                        case "memory":
-                            this.get_nvidia_gpu_mem();
-                            let gpu_mem_use = 100 * this.gpu_mem[1] / this.gpu_mem[0];
-                            value = gpu_mem_use / 100;
-                            let gpumem_prefix = "";
-                            if (this.data_prefix_gpumem == 1) {
-                                // decimal prefix
-                                gpumem_prefix =  _("GB");
-                            } else {
-                                // binary prefix
-                                gpumem_prefix =  _("GiB");
-                            }
-                            text1 = _("GPU Memory");
-                            text2 = Math.round(gpu_mem_use).toString() + "%"
-                            text3 = this.gpu_mem[1].toFixed(1) + " / "
-                                  + this.gpu_mem[0].toFixed(1) + " " + gpumem_prefix;
-                            break;
+              switch (this.gpu_variable) {
+                  case "usage":
+                      switch (this.gpu_manufacturer) {
+                          case "nvidia":
+                              this.get_nvidia_gpu_use();
+                          case "amdgpu":
+                              this.get_amdgpu_gpu_use();
+                      }
+                      value = this.gpu_use / 100;
+                      text1 = _("GPU Usage");
+                      text2 = Math.round(this.gpu_use).toString() + "%";
+                      break;
+                  case "memory":
+                      switch (this.gpu_manufacturer) {
+                          case "nvidia":
+                              this.get_nvidia_gpu_mem();
+                          case "amdgpu":
+                              this.get_amdgpu_gpu_mem();
+                      }
+                      let gpu_mem_use = 100 * this.gpu_mem[1] / this.gpu_mem[0];
+                      value = gpu_mem_use / 100;
+                      let gpumem_prefix = "";
+                      if (this.data_prefix_gpumem == 1) {
+                          // decimal prefix
+                          gpumem_prefix =  _("GB");
+                      } else {
+                          // binary prefix
+                          gpumem_prefix =  _("GiB");
+                      }
+                      text1 = _("GPU Memory");
+                      text2 = Math.round(gpu_mem_use).toString() + "%"
+                      text3 = this.gpu_mem[1].toFixed(1) + " / "
+                            + this.gpu_mem[0].toFixed(1) + " " + gpumem_prefix;
+                      break;
                     }
-                    break;
-                case "amdgpu":
-                    switch (this.gpu_variable) {
-                        case "usage":
-                            this.get_amdgpu_gpu_use();
-                            value = this.gpu_use / 100;
-                            text1 = _("GPU Usage");
-                            text2 = Math.round(this.gpu_use).toString() + "%";
-                            break;
-                        case "memory":
-                            this.get_amdgpu_gpu_mem();
-                            let gpu_mem_use = 100 * this.gpu_mem[1] / this.gpu_mem[0];
-                            value = gpu_mem_use / 100;
-                            let gpumem_prefix = "";
-                            if (this.data_prefix_gpumem == 1) {
-                                // decimal prefix
-                                gpumem_prefix =  _("GB");
-                            } else {
-                                // binary prefix
-                                gpumem_prefix =  _("GiB");
-                            }
-                            text1 = _("GPU Memory");
-                            text2 = Math.round(gpu_mem_use).toString() + "%"
-                            text3 = this.gpu_mem[1].toFixed(1) + " / "
-                                  + this.gpu_mem[0].toFixed(1) + " " + gpumem_prefix;
-                            break;
-                    }
-                    break;
-                case "other":
-                    break;
-              }
-              break;
         }
 
         // concatenate new value
