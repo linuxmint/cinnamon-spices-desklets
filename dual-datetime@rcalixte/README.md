@@ -12,8 +12,9 @@ Adjust the following options for each datetime value using the settings:
 
 * Time Format
 * Time Alignment (per Layout)
-* Font
+* Font Family
 * Color
+* Font Weight
 * Size
 
 Additional desklet options include:

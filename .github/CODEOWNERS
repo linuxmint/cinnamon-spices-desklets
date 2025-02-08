@@ -5,6 +5,7 @@ InternetTimeDesklet@stefan/*                       @stefan12O
 NumericBinaryClock@ozymandiaslone/*                @ozymandiaslone
 SevenSegmentClock@lxs242/*                         @lxs242
 ViennaTextBasedWeather@f-istvan/*                  @f-istvan
+adventCandles@KopfdesDaemons/*                     @KopfdesDaemons
 analog-clock@cobinja.de/*                          @cobinja
 battery@schorschii/*                               @schorschii
 bbcwx@oak-wood.co.uk/*                             @tipichris
@@ -17,6 +18,7 @@ clocket@tirtha/*                                   @tirtharajsinha
 commandResult@ZimiZones/*                          @ZimiZones
 cpuload@kimse/*                                    @schorschii
 cryptocoins@pbojan/*                               @pbojan
+daysCountdown@KopfDesDaemons/*                     @KopfDesDaemons
 deskNote@BrainAxe/*                                @BrainAxe
 devTools@scollins/*                                @collinss
 diskspace@schorschii/*                             @schorschii
@@ -38,6 +40,8 @@ show-remote-ip-desklet@nejdetckenobi/*             @nejdetckenobi
 simple-system-monitor@ariel/*                      @arielandrade
 soundBox@scollins/*                                @kawashiro
 system-monitor-graph@rcassani/*                    @rcassani
+systemTemperature@KopfDesDaemons/*                 @KopfDesDaemons
+systemUptime@KopfDesDaemons/*                      @KopfDesDaemons
 temperature@india/*                                @OnlineLearningTutorials
 temperature@swalladge/*                            @swalladge
 timelet@linuxedo.com/*                             @slgobinath

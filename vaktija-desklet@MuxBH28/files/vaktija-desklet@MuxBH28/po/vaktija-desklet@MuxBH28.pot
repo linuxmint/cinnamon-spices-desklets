@@ -1,0 +1,647 @@
+# VAKTIJA DESKLET
+# This file is put in the public domain.
+# MuxBH28, 2024
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: vaktija-desklet@MuxBH28 1.3\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-09-02 16:20-0400\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. metadata.json->name
+msgid "Vaktija Desklet"
+msgstr ""
+
+#. metadata.json->description
+msgid ""
+"This desklet fetches and displays prayer times using data from vaktija.ba "
+"API."
+msgstr ""
+
+#. settings-schema.json->head0->description
+msgid "Desklet Settings for Vaktija Desklet"
+msgstr ""
+
+#. settings-schema.json->head1->description
+msgid "API Settings"
+msgstr ""
+
+#. settings-schema.json->api-url->description
+msgid "API"
+msgstr ""
+
+#. settings-schema.json->api-url->tooltip
+msgid "Select the API that provides prayer times data."
+msgstr ""
+
+#. settings-schema.json->api-url->options
+msgid "Vaktija API (Bosnia)"
+msgstr ""
+
+#. settings-schema.json->api-location->description
+msgid "Location (for Vaktija.ba API)"
+msgstr ""
+
+#. settings-schema.json->api-location->tooltip
+msgid "Select the location that provides vaktija.ba API."
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Banovići"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Banja Luka"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Bihać"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Bijeljina"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Bileća"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Bosanski Brod"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Bosanska Dubica"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Bosanska Gradiška"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Bosansko Grahovo"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Bosanska Krupa"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Bosanski Novi"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Bosanski Petrovac"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Bosanski Šamac"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Bratunac"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Brčko"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Breza"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Bugojno"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Busovača"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Bužim"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Cazin"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Čajniče"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Čapljina"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Čelić"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Čelinac"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Čitluk"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Derventa"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Doboj"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Donji Vakuf"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Drvar"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Foča"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Fojnica"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Gacko"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Glamoč"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Goražde"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Gornji Vakuf"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Gračanica"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Gradačac"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Grude"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Hadžići"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Han-Pijesak"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Hlivno"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Ilijaš"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Jablanica"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Jajce"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Kakanj"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Kalesija"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Kalinovik"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Kiseljak"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Kladanj"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Ključ"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Konjic"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Kotor-Varoš"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Kreševo"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Kupres"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Laktaši"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Lopare"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Lukavac"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Ljubinje"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Ljubuški"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Maglaj"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Modriča"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Mostar"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Mrkonjić-Grad"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Neum"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Nevesinje"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Novi Travnik"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Odžak"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Olovo"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Orašje"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Pale"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Posušje"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Prijedor"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Prnjavor"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Prozor"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Rogatica"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Rudo"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Sanski Most"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Sarajevo"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Skender-Vakuf"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Sokolac"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Srbac"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Srebrenica"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Srebrenik"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Stolac"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Šekovići"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Šipovo"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Široki Brijeg"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Teslić"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Tešanj"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Tomislav-Grad"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Travnik"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Trebinje"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Trnovo"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Tuzla"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Ugljevik"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Vareš"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Velika Kladuša"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Visoko"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Višegrad"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Vitez"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Vlasenica"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Zavidovići"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Zenica"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Zvornik"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Žepa"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Žepče"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Živinice"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Bijelo Polje"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Gusinje"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Nova Varoš"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Novi Pazar"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Plav"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Pljevlja"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Priboj"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Prijepolje"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Rožaje"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Sjenica"
+msgstr ""
+
+#. settings-schema.json->api-location->options
+msgid "Tutin"
+msgstr ""
+
+#. settings-schema.json->head2->description
+msgid "Date and time"
+msgstr ""
+
+#. settings-schema.json->update-interval->description
+msgid "Update Interval (seconds)"
+msgstr ""
+
+#. settings-schema.json->update-interval->tooltip
+msgid "Number of seconds between data updates."
+msgstr ""
+
+#. settings-schema.json->show-date->description
+msgid "Show Gregorian calendar date"
+msgstr ""
+
+#. settings-schema.json->show-date->tooltip
+msgid "Whether to show today's Gregorian calendar date."
+msgstr ""
+
+#. settings-schema.json->show-islamic-date->description
+msgid "Show Hijri Calendar Date"
+msgstr ""
+
+#. settings-schema.json->show-islamic-date->tooltip
+msgid "Whether to show today's Hijri Calendar date."
+msgstr ""
+
+#. settings-schema.json->show-seconds->description
+msgid "Show Seconds"
+msgstr ""
+
+#. settings-schema.json->show-seconds->tooltip
+msgid "Whether to show seconds in the time display."
+msgstr ""
+
+#. settings-schema.json->head3->description
+msgid "Visual settings"
+msgstr ""
+
+#. settings-schema.json->language->description
+msgid "Language"
+msgstr ""
+
+#. settings-schema.json->language->tooltip
+msgid "Select the language for the desklet."
+msgstr ""
+
+#. settings-schema.json->language->options
+msgid "Bosnian"
+msgstr ""
+
+#. settings-schema.json->language->options
+msgid "English"
+msgstr ""
+
+#. settings-schema.json->language->options
+msgid "Arabic"
+msgstr ""
+
+#. settings-schema.json->height->description
+msgid "Height :"
+msgstr ""
+
+#. settings-schema.json->height->units
+#. settings-schema.json->width->units
+msgid "pixels"
+msgstr ""
+
+#. settings-schema.json->width->description
+msgid "Width :"
+msgstr ""
+
+#. settings-schema.json->transparency->description
+msgid "Background transparency"
+msgstr ""
+
+#. settings-schema.json->transparency->tooltip
+msgid "The higher the value, the more solid the desklet background"
+msgstr ""
+
+#. settings-schema.json->backgroundColor->description
+msgid "Background color"
+msgstr ""
+
+#. settings-schema.json->backgroundColor->tooltip
+msgid "Desklet background color"
+msgstr ""
+
+#. settings-schema.json->head4->description
+msgid "Troubleshoot"
+msgstr ""
+
+#. settings-schema.json->reload-button->description
+msgid "Reload Desklet"
+msgstr ""
+
+#. settings-schema.json->head5->description
+msgid "Links"
+msgstr ""
+
+#. settings-schema.json->help-entry1->description
+msgid "Issues"
+msgstr ""
+
+#. settings-schema.json->help-entry1->tooltip
+#. settings-schema.json->help-entry2->tooltip
+#. settings-schema.json->help-entry3->tooltip
+msgid "Copy link and paste it into Your browser"
+msgstr ""
+
+#. settings-schema.json->help-entry2->description
+msgid "Cinnamon Spices"
+msgstr ""
+
+#. settings-schema.json->help-entry3->description
+msgid "Author"
+msgstr ""

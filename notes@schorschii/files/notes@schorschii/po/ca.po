@@ -1,9 +1,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 15:06+0200\n"
-"PO-Revision-Date: 2023-08-04 19:52+0200\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-09-28 12:45-0400\n"
+"PO-Revision-Date: 2024-10-01 03:13+0200\n"
 "Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
 "Language-Team: \n"
 "Language: ca\n"
@@ -11,16 +12,16 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: desklet.js\n"
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
-#: desklet.js:130
+#. desklet.js:133
 msgid "Refresh"
 msgstr "Actualitza"
 
-#: desklet.js:143
+#. desklet.js:146
 msgid ""
 "Can't read text file.\n"
 "Select a file in settings.\n"
@@ -32,7 +33,7 @@ msgstr ""
 "\n"
 "Feu clic aquí per editar-ho."
 
-#: desklet.js:263
+#. desklet.js:272
 msgid "Notepad"
 msgstr "Llibreta"
 
@@ -42,16 +43,37 @@ msgstr ""
 "Una miniaplicació d'escriptori senzilla per mostrar notes amb diversos temes."
 
 #. metadata.json->name
+#. settings-schema.json->note-section->title
 msgid "Note"
 msgstr "Nota"
 
-#. settings-schema.json->head0->description
-msgid "Settings for notes@schorschii"
-msgstr "Ajusts per notes@schorschii"
-
-#. settings-schema.json->head1->description
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
 msgid "General"
 msgstr "General"
+
+#. settings-schema.json->visual-page->title
+#. settings-schema.json->visual-section->title
+msgid "Visual"
+msgstr "Visual"
+
+#. settings-schema.json->label-section->title
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Etiqueta de miniaplicació d'escriptori personalitzada (només és visible si "
+"les decoracions estan habilitades)"
+
+#. settings-schema.json->note-taking-method->description
+msgid "Note Taking Method"
+msgstr "Mètode de presa de notes"
+
+#. settings-schema.json->note-taking-method->options
+msgid "Text File"
+msgstr "Fitxer de text"
+
+#. settings-schema.json->note-taking-method->options
+msgid "Desklet Settings"
+msgstr "Configuració de Desklet"
 
 #. settings-schema.json->file->description
 msgid "Path to note text file"
@@ -69,9 +91,9 @@ msgstr "Ordre per editar aquesta nota (amb el clic del ratolí)"
 msgid "%f will replaced by the text file path."
 msgstr "%f se substituirà amb el camí al fitxer de text."
 
-#. settings-schema.json->head2->description
-msgid "Visual"
-msgstr "Visual"
+#. settings-schema.json->note-text->description
+msgid "Write Your Note"
+msgstr "Escriviu la vostra nota"
 
 #. settings-schema.json->style->description
 msgid "Notes style"
@@ -299,12 +321,6 @@ msgstr ""
 "Augmenta o disminueix la mida de la nota\n"
 "amb aquest factor de canvi d'escala."
 
-#. settings-schema.json->head3->description
-msgid "Custom desklet label (only visible if decorations are enabled)"
-msgstr ""
-"Etiqueta de miniaplicació d'escriptori personalitzada (només és visible si "
-"les decoracions estan habilitades)"
-
 #. settings-schema.json->use-custom-label->description
 msgid "Use a custom desklet label"
 msgstr "Utilitza una etiqueta de miniaplicació d'escriptori personalitzada"
@@ -327,15 +343,3 @@ msgstr ""
 "Establiu aquí la vostra etiqueta personalitzada. Aquest camp no està "
 "disponible\n"
 "a menys que la casella de selecció de dalt estigui habilitada."
-
-#~ msgid "Note size"
-#~ msgstr "Mida de la nota"
-
-#~ msgid "White"
-#~ msgstr "Blanc"
-
-#~ msgid "Desklet width"
-#~ msgstr "Amplada de la miniaplicació d'escriptori"
-
-#~ msgid "Desklet height"
-#~ msgstr "Alçada de la miniaplicació d'escriptori"

@@ -43,6 +43,7 @@ body:
     label: Desklet name and maintainer
     options:
     - ''
+    - adventCandles@KopfdesDaemons @KopfdesDaemons
     - analog-clock@cobinja.de @cobinja
     - battery@schorschii @schorschii
     - bbcwx@oak-wood.co.uk @tipichris
@@ -58,6 +59,7 @@ body:
     - commandResult@ZimiZones @ZimiZones
     - cpuload@kimse @schorschii
     - cryptocoins@pbojan @pbojan
+    - daysCountdown@KopfDesDaemons @KopfDesDaemons
     - deskNote@BrainAxe @BrainAxe
     - devTools@scollins @collinss
     - diskspace@schorschii @schorschii
@@ -85,6 +87,8 @@ body:
     - simple-system-monitor@ariel @arielandrade
     - soundBox@scollins @kawashiro
     - system-monitor-graph@rcassani @rcassani
+    - systemTemperature@KopfDesDaemons @KopfDesDaemons
+    - systemUptime@KopfDesDaemons @KopfDesDaemons
     - temperature@india @OnlineLearningTutorials
     - temperature@swalladge @swalladge
     - TimeAndDate@nightflame

@@ -1,0 +1,58 @@
+{
+    "head0": {
+        "type": "header",
+        "description": "General"
+    },
+    "tempFilePath": {
+        "type": "entry",
+        "default": "/sys/class/thermal/thermal_zone2/temp",
+        "description": "Path to file with temperature value (thermal zone)"
+    },
+    "labelText": {
+        "type": "entry",
+        "default": "CPU Temperature",
+        "description": "Text for the label"
+    },
+    "temperatureUnit": {
+        "type": "combobox",
+        "default": "C",
+        "options": {
+            "\u00b0C": "C",
+            "\u00b0F": "F"
+        },
+        "description": "Temperature unit (Celsius or Fahrenheit)"
+    },
+    "updateInterval": {
+        "type": "scale",
+        "default": 1,
+        "min": 1,
+        "max": 60,
+        "step": 1,
+        "description": "Update interval in seconds"
+    },
+    "head1": {
+        "type": "header",
+        "description": "Style"
+    },
+    "fontSizeLabel": {
+        "type": "scale",
+        "default": 12,
+        "min": 8,
+        "max": 100,
+        "step": 1,
+        "description": "Font size for the label text"
+    },
+    "fontSizeTemperature": {
+        "type": "scale",
+        "default": 35,
+        "min": 12,
+        "max": 100,
+        "step": 1,
+        "description": "Font size for the temperature display"
+    },
+    "dynamicColorEnabled": {
+        "type": "switch",
+        "default": true,
+        "description": "Dynamic color based on temperature"
+    }
+}

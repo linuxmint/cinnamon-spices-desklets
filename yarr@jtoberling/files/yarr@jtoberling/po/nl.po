@@ -1,14 +1,14 @@
-# SOME DESCRIPTIVE TITLE.
+# YET ANOTHER RSS READER
 # This file is put in the public domain.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# jtoberling, 2023
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yarr@jtoberling 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-06-30 11:08-0400\n"
-"PO-Revision-Date: 2024-04-19 14:59+0200\n"
+"POT-Creation-Date: 2024-11-11 09:04-0500\n"
+"PO-Revision-Date: 2024-11-28 15:42+0100\n"
 "Last-Translator: qadzek\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -16,37 +16,38 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:314
+#. desklet.js:318
 msgid "Enable refresh"
 msgstr "Vernieuwen inschakelen"
 
-#: desklet.js:318 desklet.js:356
+#. desklet.js:322 desklet.js:360
 msgid "Disable refresh"
 msgstr "Vernieuwen uitschakelen"
 
-#: desklet.js:327
+#. desklet.js:331
 msgid "Yarr"
 msgstr "Yarr"
 
-#: desklet.js:341
+#. desklet.js:345
 msgid "Loading: feeds ..."
 msgstr "Laden: feeds ..."
 
-#: desklet.js:624
+#. desklet.js:628
 msgid "Updated"
-msgstr ""
+msgstr "Bijgewerkt"
 
-#: desklet.js:753
+#. desklet.js:770
 #, javascript-format
 msgid ""
 "'%s' settings..\n"
 "Please enter ChatGPT API key:"
 msgstr ""
+"'%s' instellingen..\n"
+"Voer alsjeblieft je ChatGPT API sleutel in:"
 
 #. metadata.json->description
-#, fuzzy
 msgid "Yet Another RSS Reader - now as Cinnamon Desklet"
-msgstr "Nog een RSS-lezer - met AI (ChatGPT) samenvattingen"
+msgstr "Nog een RSS-lezer - nu als Cinnamon Desklet"
 
 #. metadata.json->name
 msgid "Yet Another RSS Reader"
@@ -105,6 +106,16 @@ msgstr "Achtergrondtransparantie"
 #. settings-schema.json->transparency->tooltip
 msgid "The higher the value, the more solid the desklet background."
 msgstr "Hoe hoger de waarde, hoe meer effen de achtergrond van de desklet."
+
+#. settings-schema.json->alternateRowTransparency->description
+msgid "Dim of every second rows"
+msgstr "Dimmen van elke tweede rij"
+
+#. settings-schema.json->alternateRowTransparency->tooltip
+msgid "The higher the value, more dim on alternate row backgrounds."
+msgstr ""
+"Hoe hoger de waarde, hoe meer gedimd de achtergrond van de alternatieve "
+"rijen."
 
 #. settings-schema.json->refreshInterval-spinner->units
 msgid "seconds"
@@ -217,6 +228,14 @@ msgstr "Open ChatGPT pagina over verbruik"
 msgid "Enable EXPERIMENTAL AI summary by ChatGPT"
 msgstr "Schakel EXPERIMENTELE AI-samenvatting door ChatGPT in"
 
+#. settings-schema.json->ai_url->description
+msgid "URL of Completion Api"
+msgstr "URL van Completion API"
+
+#. settings-schema.json->ai_url->tooltip
+msgid "https://api.openai.com/v1/chat/completions"
+msgstr "https://api.openai.com/v1/chat/completions"
+
 #. settings-schema.json->ai_dumptool->description
 msgid "Choose a tool to dumping web pages"
 msgstr "Kies een tool om webpagina's te dumpen"
@@ -243,9 +262,25 @@ msgstr ""
 "U moet handmatig één van deze installeren (apt install ..):\n"
 "[ w3m, lynx, links]"
 
+#. settings-schema.json->ai_use_standard_model->description
+msgid "Use standard AI models."
+msgstr "Gebruik standaard AI-modellen."
+
+#. settings-schema.json->ai_use_standard_model->tooltip
+msgid "Set to custom to type your model name"
+msgstr "Stel in op aangepast om je modelnaam in te voeren."
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Use standard"
+msgstr "Gebruik standaard"
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Use custom"
+msgstr "Gebruik aangepast"
+
 #. settings-schema.json->ai_model->description
-msgid "ChatGPT model to use"
-msgstr "ChatGPT-model om te gebruiken"
+msgid "Standard model to use"
+msgstr "Standaard model om te gebruiken"
 
 #. settings-schema.json->ai_model->options
 msgid "gpt-4-32k"
@@ -256,12 +291,29 @@ msgid "gpt-4"
 msgstr "gpt-4"
 
 #. settings-schema.json->ai_model->options
+msgid "gpt-4o"
+msgstr "gpt-4o"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4o-mini"
+msgstr "gpt-4o-mini"
+
+#. settings-schema.json->ai_model->options
 msgid "gpt-3.5-turbo"
 msgstr "gpt-3.5-turbo"
 
 #. settings-schema.json->ai_model->options
 msgid "gpt-3.5-turbo-16k"
 msgstr "gpt-3.5-turbo-16k"
+
+#. settings-schema.json->ai_model->options
+#. settings-schema.json->ai_custom_model->tooltip
+msgid "deepseek-coder"
+msgstr "deepseek-coder"
+
+#. settings-schema.json->ai_model->options
+msgid "deepseek-coder-v2:latest"
+msgstr "deepseek-coder-v2:latest"
 
 #. settings-schema.json->ai_model->tooltip
 msgid ""
@@ -274,6 +326,10 @@ msgstr ""
 "Sommige vereisen een premium abonnement.\n"
 "Een goedkopere kan ook goed werken...\n"
 "Standaard: gpt-3.5-turbo"
+
+#. settings-schema.json->ai_custom_model->description
+msgid "Provide model name to use"
+msgstr "Voer de te gebruiken modelnaam in"
 
 #. settings-schema.json->ai_systemprompt->description
 msgid "AI system instructions"

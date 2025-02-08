@@ -1,37 +1,105 @@
 {
-    "head0": {
-        "type": "header",
-        "description": "Settings for notes@schorschii"
+    "layout": {
+        "type": "layout",
+        "pages": [
+            "general-page",
+            "visual-page"
+        ],
+        "general-page": {
+            "type": "page",
+            "title": "General",
+            "sections": [
+                "general-section",
+                "note-section"
+            ]
+        },
+        "visual-page": {
+            "type": "page",
+            "title": "Visual",
+            "sections": [
+                "visual-section",
+                "label-section"
+            ]
+        },
+        "general-section": {
+            "type": "section",
+            "title": "General",
+            "keys": [
+                "style",
+                "note-taking-method"
+            ]
+        },
+        "note-section": {
+            "type": "section",
+            "title": "Note",
+            "keys": [
+                "file",
+                "edit-cmd",
+                "note-text"
+            ]
+        },
+        "visual-section": {
+            "type": "section",
+            "title": "Visual",
+            "keys": [
+                "style",
+                "scale-size",
+                "hide-decorations",
+                "bg-color",
+                "font",
+                "size-font",
+                "font-bold",
+                "font-italic",
+                "text-color"
+            ]
+        },
+        "label-section": {
+            "type": "section",
+            "title": "Custom desklet label (only visible if decorations are enabled)",
+            "dependency": "!hide-decorations",
+            "keys": [
+                "use-custom-label",
+                "custom-label"
+            ]
+        }
     },
-
-    "head1": {
-        "type": "header",
-        "description": "General"
+    "note-taking-method": {
+        "type": "combobox",
+        "default": "file",
+        "description": "Note Taking Method",
+        "options": {
+            "Text File": "file",
+            "Desklet Settings": "desklet"
+        }
     },
     "file": {
         "type": "filechooser",
+        "dependency": "note-taking-method=file",
         "default": "",
         "description": "Path to note text file",
         "tooltip": "Select your text file, where to read from and save to.",
-        "allow-none" : true
+        "allow-none": true
     },
     "edit-cmd": {
         "type": "entry",
+        "dependency": "note-taking-method=file",
         "default": "xed %f",
         "description": "Command for editing this note (on mouse click)",
         "tooltip": "%f will replaced by the text file path.",
-        "allow-none" : true
+        "allow-none": true
     },
-
-    "head2": {
-        "type": "header",
-        "description": "Visual"
+    "note-text": {
+        "type": "textview",
+        "description": "Write Your Note",
+        "dependency": "note-taking-method=desklet",
+        "default": "",
+        "height": 200
     },
-    "style" : {
+    "style": {
         "type": "combobox",
-        "default" : "Niki_black_magnet",
-        "description" : "Notes style",
-        "options" : {
+        "default": "Niki_black_magnet",
+        "description": "Notes style",
+        "options": {
             "Blank Note - Black": "Niki_blank_black",
             "Blank Note - Blue": "Niki_blank_blue",
             "Blank Note - Green": "Niki_blank_green",
@@ -39,37 +107,31 @@
             "Blank Note - Purple": "Niki_blank_purple",
             "Blank Note - White": "Niki_blank_white",
             "Blank Note - Yellow": "Niki_blank_yellow",
-
             "White Note - Black Button": "Niki_black_button",
             "White Note - Blue Button": "Niki_blue_button",
             "White Note - Green Button": "Niki_green_button",
             "White Note - Red Button": "Niki_red_button",
             "White Note - Yellow Button": "Niki_yellow_button",
-
             "Yellow Note - Black Clip": "Niki_black_clip",
             "Yellow Note - Blue Clip": "Niki_blue_clip",
             "Yellow Note - Green Clip": "Niki_green_clip",
             "Yellow Note - Jingle Clip": "Niki_jingle_clip",
             "Yellow Note - Red Clip": "Niki_red_clip",
             "Yellow Note - Yellow Clip": "Niki_yellow_clip",
-
             "White Note - Black Magnet": "Niki_black_magnet",
             "Yellow Note - Blue Magnet": "Niki_blue_magnet",
             "White Note - Lines and Red Magnet": "Niki_red_magnet",
             "Black Note - White Magnet": "Niki_white_magnet",
             "Yellow Note - Yellow Magnet": "Niki_yellow_magnet",
-
             "Blue Paint Strokes": "Niki_blue_paint_strokes",
             "Green Paint Strokes": "Niki_green_paint_strokes",
             "Purple Paint Strokes": "Niki_purple_paint_strokes",
             "Red Paint Strokes": "Niki_red_paint_strokes",
             "Yellow Paint Strokes": "Niki_yellow_paint_strokes",
-
             "White Note - Silver Spiral": "schorschii_white",
             "White Note - Silver Spiral 2": "Niki_white",
             "White Note - Black Spiral": "Niki_white_black_spiral",
             "White Note Large - Silver Spiral": "Niki_white_large",
-
             "Yellow Sticker": "Niki_sticker",
             "Yellow Note (iOS Style)": "schorschii_yellow",
             "Birch Bark": "Niki_birch_bark",
@@ -77,10 +139,9 @@
             "Clay Tablet": "Niki_clay_tablet",
             "Coffee Stained": "Niki_coffee_stained",
             "Clipboard": "Niki_board_tablet",
-
             "None": "none"
         },
-        "tooltip" : "Select the background graphic you would like to use."
+        "tooltip": "Select the background graphic you would like to use."
     },
     "bg-color": {
         "type": "colorchooser",
@@ -90,7 +151,7 @@
         "dependency": "style=none"
     },
     "hide-decorations": {
-        "type": "checkbox",
+        "type": "switch",
         "description": "Hide decorations",
         "default": false
     },
@@ -134,11 +195,6 @@
         "units": "scale factor",
         "description": "Desklet size",
         "tooltip": "Increase or decrease the size of this desklet using this scale factor."
-    },
-
-    "head3": {
-        "type": "header",
-        "description": "Custom desklet label (only visible if decorations are enabled)"
     },
     "use-custom-label": {
         "type": "checkbox",
