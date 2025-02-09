@@ -228,8 +228,10 @@ SystemMonitorGraph.prototype = {
                       switch (this.gpu_manufacturer) {
                           case "nvidia":
                               this.get_nvidia_gpu_use();
+                              break;
                           case "amdgpu":
                               this.get_amdgpu_gpu_use();
+                              break;
                       }
                       value = this.gpu_use / 100;
                       text1 = _("GPU Usage");
@@ -239,8 +241,10 @@ SystemMonitorGraph.prototype = {
                       switch (this.gpu_manufacturer) {
                           case "nvidia":
                               this.get_nvidia_gpu_mem();
+                              break;
                           case "amdgpu":
                               this.get_amdgpu_gpu_mem();
+                              break;
                       }
                       let gpu_mem_use = 100 * this.gpu_mem[1] / this.gpu_mem[0];
                       value = gpu_mem_use / 100;
@@ -257,7 +261,7 @@ SystemMonitorGraph.prototype = {
                       text3 = this.gpu_mem[1].toFixed(1) + " / "
                             + this.gpu_mem[0].toFixed(1) + " " + gpumem_prefix;
                       break;
-                    }
+              }
         }
 
         // concatenate new value
