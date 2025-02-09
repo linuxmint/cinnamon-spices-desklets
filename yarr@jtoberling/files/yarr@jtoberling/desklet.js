@@ -10,7 +10,6 @@ const Mainloop = imports.mainloop;
 const Soup = imports.gi.Soup;
 const Signals = imports.signals;
 const SignalManager = imports.misc.signalManager;
-const GObject = imports.gi.GObject;
 const Gio = imports.gi.Gio;
 const Tooltips = imports.ui.tooltips
 const ModalDialog = imports.ui.modalDialog;
@@ -19,19 +18,13 @@ const Pango = imports.gi.Pango;
 const Clutter = imports.gi.Clutter;
 const fromXML = require('./fromXML');
 const ByteArray = imports.byteArray;
-const Extension = imports.ui.extension;
-const PopupMenu = imports.ui.popupMenu;
-const DeskletManager = imports.ui.deskletManager;
-const Main = imports.ui.main;
 
 const UUID = "yarr@jtoberling";
 const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
 
-
 function _(str) {
     return Gettext.dgettext(UUID, str);
 }
-
 
 class YarrDesklet extends Desklet.Desklet {
 
@@ -93,6 +86,8 @@ class YarrDesklet extends Desklet.Desklet {
     // Add new settings binding
     articleSpacing = 0.2;
 
+    lastRefresh = null;
+
     constructor(metadata, desklet_id) {
 
         // Call parent constructor FIRST
@@ -144,6 +139,7 @@ class YarrDesklet extends Desklet.Desklet {
         this.settings.bind('enablecopy', 'enablecopy');
 
         this.settings.bind('ai_enablesummary', 'ai_enablesummary');
+        this.settings.bind('ai_add_description_to_summary', 'ai_add_description_to_summary');
         this.settings.bind('ai_dumptool', 'ai_dumptool');
         this.settings.bind('ai_url', 'ai_url');
         this.settings.bind('ai_systemprompt', 'ai_systemprompt');
@@ -937,6 +933,7 @@ class YarrDesklet extends Desklet.Desklet {
                 }
             }
 
+            this.lastRefresh = new Date();
             this.displayItems(this);
         } catch (error) {
             global.log('Error in collectFeeds:', error);
@@ -979,7 +976,7 @@ class YarrDesklet extends Desklet.Desklet {
         if (withYear) {
             retStr += pDate.getFullYear().toString() + '-';
         }
-        retStr += (pDate.getMonth() + 1).toString().padStart(2, '0') + '-' + pDate.getDate().toString().padStart(2, '0') + ' ' +
+        retStr += (pDate.getMonth() + 1).toString().padStart(2, '0') + '-' + pDate.getDate().toString().padStart(2, '0') + '\n' +
             pDate.getHours().toString().padStart(2, '0') + ':' + pDate.getMinutes().toString().padStart(2, '0');
         return retStr;
     }
@@ -1013,7 +1010,23 @@ class YarrDesklet extends Desklet.Desklet {
                 throw new Error('No API key found. Please set your API key in settings.');
             }
 
-            const content = `${item.title}\n\n${this.HTMLPartToTextPart(item.description)}`;
+            // First get the full article content using dumptool
+            const [success, stdout, stderr] = GLib.spawn_command_line_sync(
+                `/usr/bin/timeout -k 10 10 /usr/bin/${dumptool} -dump '${item.link}' || echo 'ERROR: TIMEOUT'`
+            );
+
+            if (!success) {
+                throw new Error(`Failed to get article content: ${stderr.toString()}`);
+            }
+
+            let articleContent =
+                `${item.title}\n${this.HTMLPartToTextPart(item.description)}\n` +
+                ByteArray.toString(stdout);
+
+            // Limit content length to prevent API issues
+            if (articleContent.length > 16384) {
+                articleContent = articleContent.substring(0, 16384);
+            }
 
             const requestBody = {
                 model: this.ai_use_standard_model ? this.ai_model : this.ai_custom_model,
@@ -1024,7 +1037,7 @@ class YarrDesklet extends Desklet.Desklet {
                     },
                     {
                         role: "user",
-                        content: content
+                        content: articleContent
                     }
                 ],
                 temperature: this.temperature
@@ -1046,10 +1059,22 @@ class YarrDesklet extends Desklet.Desklet {
                 throw new Error('Invalid API response');
             }
 
-            item.aiResponse = jsonResponse.choices[0].message.content;
+            item.aiResponse = "";
+
+            if (this.ai_add_description_to_summary) {
+                item.aiResponse = this.HTMLPartToTextPart(item.description).replace(/\n/ig, ' ') + '\n----\n';
+            }
+
+            item.aiResponse += jsonResponse.choices[0].message.content;
+
             this.displayItems();
 
+            if (sumIcon) {
+                sumIcon.set_icon_name('document-edit-symbolic');
+            }
+
         } catch (error) {
+            global.log('Error in summarizeUri:', error);
             if (sumIcon) {
                 sumIcon.set_icon_name('dialog-error-symbolic');
             }
@@ -1059,8 +1084,8 @@ class YarrDesklet extends Desklet.Desklet {
 
     onClickedCopyButton(selfObj, p2, item, lineBox) {
 
-        const message = item.channel + ' ' + item.category + ' @' + item.pubDate + '\n' + d
-        item.title + '\n' +
+        const message = item.channel + ' ' + item.category + ' @' + item.pubDate + '\n' +
+            item.title + '\n' +
             '---------------------------\n' +
             item.description + '\n' +
             '---------------------------\n' +
@@ -1109,10 +1134,13 @@ class YarrDesklet extends Desklet.Desklet {
 
             // Update header text with additional info about favorites
             if (this.headTitle) {
-                const now = new Date();
-                const timeStr = now.getHours().toString().padStart(2, '0') + ':' +
-                    now.getMinutes().toString().padStart(2, '0') + ':' +
-                    now.getSeconds().toString().padStart(2, '0');
+                const now = this.lastRefresh ?? new Date(0);
+
+                const timeStr =
+                    (now.getMonth() + 1).toString().padStart(2, '0') + '-' +
+                    now.getDate().toString().padStart(2, '0') + ' ' +
+                    now.getHours().toString().padStart(2, '0') + ':' +
+                    now.getMinutes().toString().padStart(2, '0');
                 let titleText = _('Last refresh: %s').format(timeStr);
                 this.headTitle.set_text(titleText);
             }
@@ -1152,11 +1180,19 @@ class YarrDesklet extends Desklet.Desklet {
 
                 // Only add timestamp if NOT hidden
                 if (!this.enableTimestamp) {
+                    const timeBox = new St.BoxLayout({
+                        vertical: false,
+                        style: 'width: 50px; margin: auto;'
+                    });
+
                     const timeLabel = new St.Label({
                         text: this._formatedDate(item.timestamp, false),
-                        style: 'font-size: 0.8em; width: 65px; text-align: center;'
+                        y_align: Clutter.ActorAlign.CENTER,
+                        style: 'font-size: 0.8em; text-align: center; margin: auto;'
                     });
-                    lineBox.add(timeLabel);
+
+                    timeBox.add(timeLabel);
+                    lineBox.add(timeBox);
                 }
 
                 // Action buttons
@@ -1518,7 +1554,7 @@ class PasswordDialog extends ModalDialog.ModalDialog {
         this.contentLayout.add(new St.Label({ text: label }));
 
         this.passwordBox = new St.BoxLayout({ vertical: false });
-        this.entry = new St.Entry({style: 'background: green; color:yellow; max-width: 400px;'});
+        this.entry = new St.Entry({ style: 'background: green; color:yellow; max-width: 400px;' });
         this.entry.clutter_text.set_password_char('\u25cf');
         this.entry.clutter_text.set_text(this.password);
         this.passwordBox.add(this.entry);

@@ -47,6 +47,7 @@
                 "ai_label-info", 
                 "ai_button-chatgpt-usage", 
                 "ai_enablesummary", 
+                "ai_add_description_to_summary",
                 "ai_url", 
                 "ai_button-chatgpt-apikeys", 
                 "ai_chatgptapikey", 
@@ -230,6 +231,12 @@
         "description": "Enable EXPERIMENTAL AI summary by ChatGPT",
         "type": "switch",
         "default": false
+    },
+
+    "ai_add_description_to_summary": {
+        "description": "Add description to beginning of AI summary",
+        "type": "switch",
+        "default": true
     },
     
     "ai_url": {
