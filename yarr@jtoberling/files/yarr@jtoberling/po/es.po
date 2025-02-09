@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: yarr@jtoberling 1.1.1\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-02-08 08:12+0100\n"
+"POT-Creation-Date: 2025-02-09 10:09-0500\n"
 "PO-Revision-Date: 2025-02-09 08:22+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,39 +17,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#: desklet.js:511
+#. desklet.js:507
 msgid "Enable refresh"
 msgstr "Habilitar actualización"
 
-#: desklet.js:515 desklet.js:751
+#. desklet.js:511 desklet.js:747
 msgid "Disable refresh"
 msgstr "Deshabilitar actualización"
 
-#: desklet.js:523
+#. desklet.js:519
 msgid "Yarr"
 msgstr "Yarr"
 
-#: desklet.js:568
+#. desklet.js:564
 msgid "Loading: feeds ..."
 msgstr "Cargando: feeds ..."
 
-#: desklet.js:628 desklet.js:733
+#. desklet.js:624 desklet.js:729
 msgid " Search..."
 msgstr ""
 
-#: desklet.js:661
+#. desklet.js:657
 msgid "Search Articles"
 msgstr ""
 
-#: desklet.js:672
+#. desklet.js:668
 msgid "Type to search..."
 msgstr ""
 
-#: desklet.js:706
+#. desklet.js:702
 msgid "Cancel"
 msgstr ""
 
-#: desklet.js:711
+#. desklet.js:707
 msgid "Search"
 msgstr ""
 
@@ -235,6 +235,10 @@ msgstr "Abrir la página de uso de ChaptGPT"
 #. settings-schema.json->ai_enablesummary->description
 msgid "Enable EXPERIMENTAL AI summary by ChatGPT"
 msgstr "Activar el resumen EXPERIMENTAL AI de ChatGPT"
+
+#. settings-schema.json->ai_add_description_to_summary->description
+msgid "Add description to beginning of AI summary"
+msgstr ""
 
 #. settings-schema.json->ai_url->description
 msgid "URL of Completion Api"
