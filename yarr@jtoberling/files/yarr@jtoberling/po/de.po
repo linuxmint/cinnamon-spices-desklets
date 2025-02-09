@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: yarr@jtoberling 1.2.4\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-02-08 18:32-0500\n"
+"POT-Creation-Date: 2025-02-08 08:12+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,41 +16,41 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
-#. desklet.js:479
+#: desklet.js:511
 msgid "Enable refresh"
 msgstr "Aktiviere Aktualisierung"
 
-#. desklet.js:483 desklet.js:689
+#: desklet.js:515 desklet.js:751
 msgid "Disable refresh"
 msgstr "Deaktiviere Aktualisierung"
 
-#. desklet.js:491
+#: desklet.js:523
 msgid "Yarr"
 msgstr "Yarr"
 
-#. desklet.js:536
+#: desklet.js:568
 msgid "Loading: feeds ..."
 msgstr "Lade: Feeds..."
 
-#. desklet.js:566 desklet.js:671
+#: desklet.js:628 desklet.js:733
 msgid " Search..."
 msgstr ""
 
-#. desklet.js:599
+#: desklet.js:661
 msgid "Search Articles"
 msgstr ""
 
-#. desklet.js:610
+#: desklet.js:672
 msgid "Type to search..."
 msgstr ""
 
-#. desklet.js:644
+#: desklet.js:706
 msgid "Cancel"
 msgstr ""
 
-#. desklet.js:649
+#: desklet.js:711
 msgid "Search"
 msgstr ""
 
@@ -425,4 +425,22 @@ msgstr ""
 
 #. settings-schema.json->enableTimestamp->description
 msgid "Hide timestamp"
+msgstr ""
+
+#. settings-schema.json->enableFavoriteFeature->description
+msgid "Enable favorite feature"
+msgstr ""
+
+#. settings-schema.json->loadFavoritesOnStartup->description
+msgid "Load favorites on startup"
+msgstr ""
+
+#. settings-schema.json->articleSpacing->description
+msgid "Article spacing density"
+msgstr ""
+
+#. settings-schema.json->articleSpacing->tooltip
+msgid ""
+"Adjust the spacing between articles. Lower values make the list more "
+"compact, higher values add more space between articles."
 msgstr ""

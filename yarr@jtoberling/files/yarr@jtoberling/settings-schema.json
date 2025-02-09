@@ -30,7 +30,7 @@
         "section1": {
             "type": "section", 
             "title": "Display settings", 
-            "keys": ["refreshsettingsbutton", "backgroundColor", "transparency", "alternateRowTransparency", "width", "height", "font", "text-color", "enablecopy", "enableFeedButton", "enableTimestamp" ]
+            "keys": ["refreshsettingsbutton", "backgroundColor", "transparency", "alternateRowTransparency", "width", "height", "font", "text-color", "enablecopy", "enableFeedButton", "enableTimestamp",  "enableFavoriteFeature" ]
         }, 
         
         "section1ai": {
@@ -372,6 +372,25 @@
         "description": "Hide timestamp",
         "type": "switch",
         "default": false
+    },
+    "enableFavoriteFeature": {
+        "description": "Enable favorite feature",
+        "type": "switch",
+        "default": true
+    },
+    "loadFavoritesOnStartup": {
+        "description": "Load favorites on startup",
+        "type": "switch",
+        "default": true
+    },
+    "articleSpacing": {
+        "type": "scale",
+        "default": 0.2,
+        "min": 0.0,
+        "max": 2.0,
+        "step": 0.05,
+        "description": "Article spacing density",
+        "tooltip": "Adjust the spacing between articles. Lower values make the list more compact, higher values add more space between articles."
     }
     
     

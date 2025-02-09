@@ -17,3 +17,5 @@ Experimental feature: Summarize with ChatGPT or other compatible providers.
 
   As of version 1.2.4 custom AI provider and custom model can be setup in
   settings. (eg: Deepseek.com )
+
+  v1.4.0 - Check the Favories feature - it can save your articles too!
