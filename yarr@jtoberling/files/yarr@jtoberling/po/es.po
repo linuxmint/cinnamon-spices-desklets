@@ -7,44 +7,51 @@ msgstr ""
 "Project-Id-Version: yarr@jtoberling 1.1.1\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-06-30 11:08-0400\n"
-"PO-Revision-Date: 2024-06-30 12:32-0400\n"
+"POT-Creation-Date: 2025-02-09 08:05-0500\n"
+"PO-Revision-Date: 2025-02-09 08:05-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.4.2\n"
 
-#: desklet.js:314
+#: desklet.js:511
 msgid "Enable refresh"
 msgstr "Habilitar actualización"
 
-#: desklet.js:318 desklet.js:356
+#: desklet.js:515 desklet.js:751
 msgid "Disable refresh"
 msgstr "Deshabilitar actualización"
 
-#: desklet.js:327
+#: desklet.js:523
 msgid "Yarr"
 msgstr "Yarr"
 
-#: desklet.js:341
+#: desklet.js:568
 msgid "Loading: feeds ..."
 msgstr "Cargando: feeds ..."
 
-#: desklet.js:624
-msgid "Updated"
-msgstr "Actualizado"
-
-#: desklet.js:753
-#, javascript-format
-msgid ""
-"'%s' settings..\n"
-"Please enter ChatGPT API key:"
+#: desklet.js:628 desklet.js:733
+msgid " Search..."
 msgstr ""
-"'%s' ajustes..\n"
-"Por favor, introduzca la clave API ChatGPT:"
+
+#: desklet.js:661
+msgid "Search Articles"
+msgstr ""
+
+#: desklet.js:672
+msgid "Type to search..."
+msgstr "'%s' ajustes.."
+
+#: desklet.js:706
+msgid "Cancel"
+msgstr ""
+
+#: desklet.js:711
+msgid "Search"
+msgstr ""
 
 #. metadata.json->description
 msgid "Yet Another RSS Reader - now as Cinnamon Desklet"
@@ -106,6 +113,15 @@ msgstr "Transparencia del fondo"
 
 #. settings-schema.json->transparency->tooltip
 msgid "The higher the value, the more solid the desklet background."
+msgstr "Cuanto mayor sea el valor, más sólido será el fondo del escritorio."
+
+#. settings-schema.json->alternateRowTransparency->description
+msgid "Dim of every second rows"
+msgstr ""
+
+#. settings-schema.json->alternateRowTransparency->tooltip
+#, fuzzy
+msgid "The higher the value, more dim on alternate row backgrounds."
 msgstr "Cuanto mayor sea el valor, más sólido será el fondo del escritorio."
 
 #. settings-schema.json->refreshInterval-spinner->units
@@ -220,6 +236,14 @@ msgstr "Abrir la página de uso de ChaptGPT"
 msgid "Enable EXPERIMENTAL AI summary by ChatGPT"
 msgstr "Activar el resumen EXPERIMENTAL AI de ChatGPT"
 
+#. settings-schema.json->ai_url->description
+msgid "URL of Completion Api"
+msgstr ""
+
+#. settings-schema.json->ai_url->tooltip
+msgid "https://api.openai.com/v1/chat/completions"
+msgstr ""
+
 #. settings-schema.json->ai_dumptool->description
 msgid "Choose a tool to dumping web pages"
 msgstr "Elija una herramienta para volcar páginas web"
@@ -246,8 +270,25 @@ msgstr ""
 "Tienes que desplegar una de estas manualmente (apt install ..):\n"
 "[ w3m, lynx, links]"
 
+#. settings-schema.json->ai_use_standard_model->description
+msgid "Use standard AI models."
+msgstr ""
+
+#. settings-schema.json->ai_use_standard_model->tooltip
+msgid "Set to custom to type your model name"
+msgstr ""
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Use standard"
+msgstr ""
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Use custom"
+msgstr ""
+
 #. settings-schema.json->ai_model->description
-msgid "ChatGPT model to use"
+#, fuzzy
+msgid "Standard model to use"
 msgstr "Modelo ChatGPT a utilizar"
 
 #. settings-schema.json->ai_model->options
@@ -259,12 +300,31 @@ msgid "gpt-4"
 msgstr "gpt-4"
 
 #. settings-schema.json->ai_model->options
+#, fuzzy
+msgid "gpt-4o"
+msgstr "gpt-4"
+
+#. settings-schema.json->ai_model->options
+#, fuzzy
+msgid "gpt-4o-mini"
+msgstr "gpt-4"
+
+#. settings-schema.json->ai_model->options
 msgid "gpt-3.5-turbo"
 msgstr "gpt-3.5-turbo"
 
 #. settings-schema.json->ai_model->options
 msgid "gpt-3.5-turbo-16k"
 msgstr "gpt-3.5-turbo-16k"
+
+#. settings-schema.json->ai_model->options
+#. settings-schema.json->ai_custom_model->tooltip
+msgid "deepseek-coder"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "deepseek-coder-v2:latest"
+msgstr ""
 
 #. settings-schema.json->ai_model->tooltip
 msgid ""
@@ -277,6 +337,11 @@ msgstr ""
 "Algunos requieren suscripción de clase premium.\n"
 "Uno más barato también puede funcionar bien...\n"
 "Por defecto: gpt-3.5-turbo"
+
+#. settings-schema.json->ai_custom_model->description
+#, fuzzy
+msgid "Provide model name to use"
+msgstr "Modelo ChatGPT a utilizar"
 
 #. settings-schema.json->ai_systemprompt->description
 msgid "AI system instructions"
@@ -343,3 +408,39 @@ msgstr "Pulse este botón para recargar la configuración"
 #. settings-schema.json->enablecopy->description
 msgid "Enable Copy to clipboard button"
 msgstr "Habilitar el botón Copiar al portapapeles"
+
+#. settings-schema.json->temperature->description
+msgid "Temperature for AI responses"
+msgstr ""
+
+#. settings-schema.json->temperature->tooltip
+msgid ""
+"Controls the randomness of the AI's responses. Higher values mean more "
+"randomness."
+msgstr ""
+
+#. settings-schema.json->enableFeedButton->description
+msgid "Hide feed button"
+msgstr ""
+
+#. settings-schema.json->enableTimestamp->description
+msgid "Hide timestamp"
+msgstr ""
+
+#. settings-schema.json->enableFavoriteFeature->description
+msgid "Enable favorite feature"
+msgstr ""
+
+#. settings-schema.json->loadFavoritesOnStartup->description
+msgid "Load favorites on startup"
+msgstr ""
+
+#. settings-schema.json->articleSpacing->description
+msgid "Article spacing density"
+msgstr ""
+
+#. settings-schema.json->articleSpacing->tooltip
+msgid ""
+"Adjust the spacing between articles. Lower values make the list more "
+"compact, higher values add more space between articles."
+msgstr ""

@@ -90,6 +90,9 @@ class YarrDesklet extends Desklet.Desklet {
     // Add new settings binding
     loadFavoritesOnStartup = true;
 
+    // Add new settings binding
+    articleSpacing = 0.2;
+
     constructor(metadata, desklet_id) {
 
         // Call parent constructor FIRST
@@ -156,6 +159,7 @@ class YarrDesklet extends Desklet.Desklet {
         this.settings.bind('enableTimestamp', 'enableTimestamp');
         this.settings.bind('enableFavoriteFeature', 'enableFavoriteFeature');
         this.settings.bind('loadFavoritesOnStartup', 'loadFavoritesOnStartup');
+        this.settings.bind("articleSpacing", "articleSpacing");
 
         // Initialize SignalManager
         this._signals = new SignalManager.SignalManager(null);
@@ -266,8 +270,12 @@ class YarrDesklet extends Desklet.Desklet {
 
 
     onRefreshSettings() {
+        // Existing display updates
         this.onDisplayChanged();
         this.onSettingsChanged();
+
+        // Add items redisplay
+        this.displayItems();
     }
 
     onSettingsChanged() {
@@ -334,7 +342,7 @@ class YarrDesklet extends Desklet.Desklet {
 
         this.mainBox.set_size(this.width, this.height);
 
-        this.mainBox.style = "background-color: rgba(" + (this.backgroundColor.replace('rgb(', '').replace(')', '')) + "," + this.transparency + ")";
+        this.mainBox.style = "background-color: rgba(" + (this.backgroundColor.replace('rgb(', '').replace(')', '') + "," + this.transparency + ")");
     }
 
     //------------------------
@@ -1122,7 +1130,8 @@ class YarrDesklet extends Desklet.Desklet {
                             `rgba(100,100,100, ${this.alternateRowTransparency})` :
                             `rgba(${this.backgroundColor.replace('rgb(', '').replace(')', '')}, ${this.transparency})`
                         };
-                        padding: 1px;
+                        padding: ${1 * this.articleSpacing}px;
+                        margin: ${1 * this.articleSpacing}px 0;
                     `
                 });
 
@@ -1219,14 +1228,15 @@ class YarrDesklet extends Desklet.Desklet {
                     track_hover: true,
                     x_expand: true,
                     x_align: St.Align.START,
-                    style: 'padding: 5px; border-radius: 4px;'
+                    style: `padding: ${3 * this.articleSpacing}px; border-radius: 4px;`
                 });
 
                 // Create subItemBox for title and AI response
                 let subItemBox = new St.BoxLayout({
                     vertical: true,
                     x_expand: true,
-                    x_align: St.Align.START
+                    x_align: St.Align.START,
+                    style: `spacing: ${2 * this.articleSpacing}px;`
                 });
 
                 // Title
@@ -1503,10 +1513,12 @@ class PasswordDialog extends ModalDialog.ModalDialog {
         this.callback = callback;  // Store callback before using
 
         this.password = Secret.password_lookup_sync(parent.STORE_SCHEMA, {}, null);
+
+        this.contentLayout.set_style('width: auto; max-width: 500px;'); // Match dialog width
         this.contentLayout.add(new St.Label({ text: label }));
 
         this.passwordBox = new St.BoxLayout({ vertical: false });
-        this.entry = new St.Entry({ style: 'background: green; color:yellow;' });
+        this.entry = new St.Entry({style: 'background: green; color:yellow; max-width: 400px;'});
         this.entry.clutter_text.set_password_char('\u25cf');
         this.entry.clutter_text.set_text(this.password);
         this.passwordBox.add(this.entry);

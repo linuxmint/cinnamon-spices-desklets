@@ -1,85 +1,138 @@
 {
     "layout1": {
-        "type": "layout", 
-        "pages": ["page1", "page2", "page3"], 
-        
+        "type": "layout",
+        "pages": [
+            "page1",
+            "page2",
+            "page3"
+        ],
         "page1": {
-            "type": "page", 
-            "title": "Feed settings", 
-            "sections": ["section0"]
+            "type": "page",
+            "title": "Feed settings",
+            "sections": [
+                "section0"
+            ]
         },
-        
         "page2": {
-            "type": "page", 
-            "title": "Display settings", 
-            "sections": ["section1", "section1ai"]
+            "type": "page",
+            "title": "Display settings",
+            "sections": [
+                "section1",
+                "section1ai"
+            ]
         },
-        
         "page3": {
-            "type": "page", 
-            "title": "AI settings", 
-            "sections": ["section2"]
+            "type": "page",
+            "title": "AI settings",
+            "sections": [
+                "section2"
+            ]
         },
-        
         "section0": {
-            "type": "section", 
-            "title": "Feed settings", 
-            "keys": ["refreshsettingsbutton", "feeds", "refreshInterval-spinner", "numberofitems", "filterlabel", "listfilter" ]
-        },
-        
-        "section1": {
-            "type": "section", 
-            "title": "Display settings", 
-            "keys": ["refreshsettingsbutton", "backgroundColor", "transparency", "alternateRowTransparency", "width", "height", "font", "text-color", "enablecopy", "enableFeedButton", "enableTimestamp",  "enableFavoriteFeature" ]
-        }, 
-        
-        "section1ai": {
-            "type": "section", 
-            "title": "Display settings for AI feature", 
-            "keys": ["refreshsettingsbutton",  "ai_font", "ai_text-color" ]
-        }, 
-        
-        "section2": {
-            "type": "section", 
-            "title": "AI settings", 
+            "type": "section",
+            "title": "Feed settings",
             "keys": [
-                "refreshsettingsbutton", 
-                "ai_label-info", 
-                "ai_button-chatgpt-usage", 
-                "ai_enablesummary", 
-                "ai_url", 
-                "ai_button-chatgpt-apikeys", 
-                "ai_chatgptapikey", 
-                "ai_use_standard_model", 
-                "ai_model", 
+                "refreshsettingsbutton",
+                "feeds",
+                "refreshInterval-spinner",
+                "numberofitems",
+                "filterlabel",
+                "listfilter"
+            ]
+        },
+        "section1": {
+            "type": "section",
+            "title": "Display settings",
+            "keys": [
+                "refreshsettingsbutton",
+                "backgroundColor",
+                "transparency",
+                "alternateRowTransparency",
+                "width",
+                "height",
+                "font",
+                "text-color",
+                "enablecopy",
+                "enableFeedButton",
+                "enableTimestamp",
+                "enableFavoriteFeature"
+            ]
+        },
+        "section1ai": {
+            "type": "section",
+            "title": "Display settings for AI feature",
+            "keys": [
+                "refreshsettingsbutton",
+                "ai_font",
+                "ai_text-color"
+            ]
+        },
+        "section2": {
+            "type": "section",
+            "title": "AI settings",
+            "keys": [
+                "refreshsettingsbutton",
+                "ai_label-info",
+                "ai_button-chatgpt-usage",
+                "ai_enablesummary",
+                "ai_url",
+                "ai_button-chatgpt-apikeys",
+                "ai_chatgptapikey",
+                "ai_use_standard_model",
+                "ai_model",
                 "ai_custom_model",
-                "ai_dumptool", 
-                "ai_systemprompt", 
+                "ai_dumptool",
+                "ai_systemprompt",
                 "ai_systempromptexamples",
-                "ai_example1", 
-                "ai_example2", 
-                "ai_example3", 
-                "ai_example4", 
-                "ai_example5", 
+                "ai_example1",
+                "ai_example2",
+                "ai_example3",
+                "ai_example4",
+                "ai_example5",
                 "ai_example6",
                 "temperature"
             ]
         }
-    
-    }, 
-
-
-    "feeds" : {
-        "type" : "list",
-        "description" : "Feed settings",
-        "columns" : [
-            {"id": "name", "title": "Name", "type": "string"},
-            {"id": "active", "title": "Active", "type": "boolean" , "default": true },
-            {"id": "url", "title": "Feed URL", "type": "string", "default": ""},
-            {"id": "labelcolor", "title": "Label Color (#rrggbb)", "type": "string", "default": "#ffffff", "description": "", "tooltip": "#rrggbb (eg: #ffffff --> white)"}, 
-            {"id": "filter", "title": "ChannelFilter (Regexp eg: '.*')", "type": "string", "default": "", "description": "Regexp filter on channels", "tooltip": "Leave empty for all"}
+    },
+    "feeds": {
+        "type": "list",
+        "description": "Feed settings",
+        "columns": [
+            {
+                "id": "name",
+                "title": "Name",
+                "type": "string"
+            },
+            {
+                "id": "active",
+                "title": "Active",
+                "type": "boolean",
+                "default": true
+            },
+            {
+                "id": "url",
+                "title": "Feed URL",
+                "type": "string",
+                "default": ""
+            },
+            {
+                "id": "labelcolor",
+                "title": "Label Color (#rrggbb)",
+                "type": "string",
+                "default": "#ffffff",
+                "description": "",
+                "tooltip": "#rrggbb (eg: #ffffff --> white)"
+            },
+            {
+                "id": "filter",
+                "title": "ChannelFilter (Regexp eg: '.*')",
+                "type": "string",
+                "default": "",
+                "description": "Regexp filter on channels",
+                "tooltip": "Leave empty for all"
+            }
         ],
-        "default" : [
+        "default": [
             {
                 "name": "NYT",
                 "active": true,
@@ -105,9 +158,9 @@
     },
     "backgroundColor": {
         "type": "colorchooser",
-        "default": "rgb(0,40,64)", 
+        "default": "rgb(0,40,64)",
         "description": "Background color"
-    }, 
+    },
     "transparency": {
         "type": "scale",
         "default": 0.8,
@@ -135,8 +188,8 @@
         "units": "seconds",
         "description": "Refresh Interval for Display",
         "tooltip": "Increase or decrease this spinner value to change the refresh interval"
-     },     
-      "width": {
+    },
+    "width": {
         "type": "spinbutton",
         "default": 900,
         "min": 40,
@@ -145,8 +198,8 @@
         "description": "Width",
         "units": "pixels",
         "tooltip": "Desklet width in pixels."
-      },
-      "height": {
+    },
+    "height": {
         "type": "spinbutton",
         "default": 640,
         "min": 40,
@@ -155,30 +208,30 @@
         "units": "pixels",
         "description": "Height",
         "tooltip": "Desklet height in pixels."
-      },
-      "font": {
+    },
+    "font": {
         "type": "fontchooser",
         "default": "Ubuntu Regular 12",
         "description": "Font"
-      },
-      "text-color": {
-	    "type": "colorchooser",
-	    "default": "rgb(48,192,128)",
-	    "description": "Text color",
-	    "tooltip": "Click the button to select a new text color"
-      },     
-      "ai_font": {
+    },
+    "text-color": {
+        "type": "colorchooser",
+        "default": "rgb(48,192,128)",
+        "description": "Text color",
+        "tooltip": "Click the button to select a new text color"
+    },
+    "ai_font": {
         "type": "fontchooser",
         "default": "Ubuntu Regular 10",
         "description": "Font for explanation text"
-      },
-      "ai_text-color": {
-	    "type": "colorchooser",
-	    "default": "rgb(255,164,72)",
-	    "description": "Text color of explanation",
-	    "tooltip": "Click the button to select a new text color"
-      },     
-      "numberofitems": {
+    },
+    "ai_text-color": {
+        "type": "colorchooser",
+        "default": "rgb(255,164,72)",
+        "description": "Text color of explanation",
+        "tooltip": "Click the button to select a new text color"
+    },
+    "numberofitems": {
         "type": "spinbutton",
         "default": 75,
         "min": 10,
@@ -186,173 +239,190 @@
         "step": 1,
         "description": "Number of displayed articles",
         "tooltip": "Number of displayed articles in the list window."
-      },
-
+    },
     "filterlabel": {
-        "type": "label", 
+        "type": "label",
         "description": "Exclude filters for articles"
     },
-
-
-      "listfilter" : {
-        "type" : "list",
-        "description" : "Message RegExp filters",
-        "columns" : [
-            {"id": "name", "title": "Name", "type": "string"},
-            {"id": "active", "title": "Active", "type": "boolean" , "default": true },
-            {"id": "unmatch", "title": "Unmatch", "type": "boolean" , "default": false },
-            {"id": "filter", "title": "Filter (Regexp eg: '.*')", "type": "string", "default": "", "description": "Regexp filter on channels", "tooltip": "Leave empty for all"}, 
-            {"id": "inTitle", "title": "Match in Title", "type": "boolean", "default": true }, 
-            {"id": "inCategory", "title": "Match in Category", "type": "boolean", "default": true }, 
-            {"id": "inDescription", "title": "Match in Description", "type": "boolean", "default": false }
+    "listfilter": {
+        "type": "list",
+        "description": "Message RegExp filters",
+        "columns": [
+            {
+                "id": "name",
+                "title": "Name",
+                "type": "string"
+            },
+            {
+                "id": "active",
+                "title": "Active",
+                "type": "boolean",
+                "default": true
+            },
+            {
+                "id": "unmatch",
+                "title": "Unmatch",
+                "type": "boolean",
+                "default": false
+            },
+            {
+                "id": "filter",
+                "title": "Filter (Regexp eg: '.*')",
+                "type": "string",
+                "default": "",
+                "description": "Regexp filter on channels",
+                "tooltip": "Leave empty for all"
+            },
+            {
+                "id": "inTitle",
+                "title": "Match in Title",
+                "type": "boolean",
+                "default": true
+            },
+            {
+                "id": "inCategory",
+                "title": "Match in Category",
+                "type": "boolean",
+                "default": true
+            },
+            {
+                "id": "inDescription",
+                "title": "Match in Description",
+                "type": "boolean",
+                "default": false
+            }
         ],
-        "default" : []
-    }, 
-    
+        "default": []
+    },
     "ai_label-info": {
-        "type": "label", 
+        "type": "label",
         "description": "These are experimental AI features. Use at your own risk!\nAlso they are needing ChatGPT account, and can cost money! $$$ "
     },
-    
     "ai_button-chatgpt-apikeys": {
-        "type": "button", 
-        "description": "Open ChaptGPT API keys page", 
+        "type": "button",
+        "description": "Open ChaptGPT API keys page",
         "callback": "openChatGPTAPIKeys"
-    }, 
-    
+    },
     "ai_button-chatgpt-usage": {
-        "type": "button", 
-        "description": "Open ChaptGPT Usage page", 
+        "type": "button",
+        "description": "Open ChaptGPT Usage page",
         "callback": "openChatGPTUsage"
-    }, 
-    
+    },
     "ai_enablesummary": {
         "description": "Enable EXPERIMENTAL AI summary by ChatGPT",
         "type": "switch",
         "default": false
     },
-    
     "ai_url": {
-        "description": "URL of Completion Api", 
-        "type": "entry", 
-        "default": "https://api.openai.com/v1/chat/completions", 
+        "description": "URL of Completion Api",
+        "type": "entry",
+        "default": "https://api.openai.com/v1/chat/completions",
         "indent": false,
-        "tooltip": "https://api.openai.com/v1/chat/completions" 
+        "tooltip": "https://api.openai.com/v1/chat/completions"
     },
-    
     "ai_dumptool": {
         "type": "combobox",
-        "default": "w3m", 
-        "description": "Choose a tool to dumping web pages", 
+        "default": "w3m",
+        "description": "Choose a tool to dumping web pages",
         "options": {
-            "w3m": "w3m", 
-            "lynx": "lynx", 
+            "w3m": "w3m",
+            "lynx": "lynx",
             "links": "links"
         },
         "tooltip": "You need a command line tool to dump web pages.\nYou have to deploy (apt install ..) one of these manually:\n[ w3m, lynx, links]"
-    }, 
-    
-    "ai_use_standard_model": {
-       "type": "combobox", 
-       "default": "_optionstandard", 
-       "description": "Use standard AI models.", 
-       "tooltip": "Set to custom to type your model name", 
-       "options": {
-           "Use standard": "optionstandard",
-           "Use custom": "optioncustom"
-       }
     },
-    
+    "ai_use_standard_model": {
+        "type": "combobox",
+        "default": "_optionstandard",
+        "description": "Use standard AI models.",
+        "tooltip": "Set to custom to type your model name",
+        "options": {
+            "Use standard": "optionstandard",
+            "Use custom": "optioncustom"
+        }
+    },
     "ai_model": {
-        "type": "combobox", 
-        "default": "gpt-3.5-turbo", 
-        "description": "Standard model to use", 
+        "type": "combobox",
+        "default": "gpt-3.5-turbo",
+        "description": "Standard model to use",
         "dependency": "ai_use_standard_model=optionstandard",
         "options": {
             "gpt-4-32k": "gpt-4-32k",
-            "gpt-4": "gpt-4", 
-            "gpt-4o": "gpt-4o", 
-            "gpt-4o-mini": "gpt-4o-mini", 
+            "gpt-4": "gpt-4",
+            "gpt-4o": "gpt-4o",
+            "gpt-4o-mini": "gpt-4o-mini",
             "gpt-3.5-turbo": "gpt-3.5-turbo",
-            "gpt-3.5-turbo-16k": "gpt-3.5-turbo-16k", 
-            "deepseek-coder": "deepseek-coder", 
+            "gpt-3.5-turbo-16k": "gpt-3.5-turbo-16k",
+            "deepseek-coder": "deepseek-coder",
             "deepseek-coder-v2:latest": "deepseek-coder-v2:latest"
-        }, 
+        },
         "tooltip": "Some are more clever - but costs more.\nSome require premium class subscription.\nA cheaper can work also well...\nDefault: gpt-3.5-turbo"
-    }, 
-    
+    },
     "ai_custom_model": {
         "description": "Provide model name to use",
-        "type": "entry", 
-        "default": "deepseek-coder", 
-        "tooltip": "deepseek-coder", 
-        "indent": false, 
+        "type": "entry",
+        "default": "deepseek-coder",
+        "tooltip": "deepseek-coder",
+        "indent": false,
         "dependency": "ai_use_standard_model=optioncustom"
     },
-    
     "ai_systemprompt": {
-        "type" : "textview",
-        "description" : "AI system instructions", 
-        "default" : "Summarize the following text",
-        "tooltip" : "Add instructions to AI Agent",
-        "height" : 100
+        "type": "textview",
+        "description": "AI system instructions",
+        "default": "Summarize the following text",
+        "tooltip": "Add instructions to AI Agent",
+        "height": 100
     },
-    
     "ai_chatgptapikey": {
         "type": "button",
         "description": "Enter and save ChatGPT API key",
         "callback": "onChatGPAPIKeySave"
-    }, 
-    
+    },
     "ai_example1": {
-        "type": "button", 
+        "type": "button",
         "description": "Example Prompt1: 'Summarize in four sentences.'",
         "callback": "onAIPromptExample1"
     },
     "ai_example2": {
-        "type": "button", 
-        "description": "Example Prompt2: Hungarian limerick: 'Foglald össze limerickben.'",
+        "type": "button",
+        "description": "Example Prompt2: Hungarian limerick: 'Foglald \u00f6ssze limerickben.'",
         "callback": "onAIPromptExample2"
     },
     "ai_example3": {
-        "type": "button", 
-        "description": "Example Prompt3: The point is in the haiku. '俳句のエッセンス      日本語では'",
+        "type": "button",
+        "description": "Example Prompt3: The point is in the haiku. '\u4ff3\u53e5\u306e\u30a8\u30c3\u30bb\u30f3\u30b9      \u65e5\u672c\u8a9e\u3067\u306f'",
         "callback": "onAIPromptExample3"
     },
     "ai_example4": {
-        "type": "button", 
+        "type": "button",
         "description": "Example Prompt4: Hungarian: 'Summarize in four sentences.'",
         "callback": "onAIPromptExample4"
     },
     "ai_example5": {
-        "type": "button", 
+        "type": "button",
         "description": "Example Prompt5: 'Summarize in 4-8 short bullet points, separtate lines, English language.\nOmit other references and external links from the summary'",
         "callback": "onAIPromptExample5"
     },
     "ai_example6": {
-        "type": "button", 
-        "description": "Example Prompt6: 'Hungarian bullet points...'", 
+        "type": "button",
+        "description": "Example Prompt6: 'Hungarian bullet points...'",
         "callback": "onAIPromptExample6"
     },
-    
     "ai_systempromptexamples": {
-        "type": "label", 
+        "type": "label",
         "description": "Here are some examples for the AI system prompt. You can rewrite them as you like."
     },
-    
     "refreshsettingsbutton": {
-        "type": "button", 
-        "description": "Refresh settings", 
-        "callback": "onRefreshSettings", 
+        "type": "button",
+        "description": "Refresh settings",
+        "callback": "onRefreshSettings",
         "tooltip": "Press this button to relad settings"
     },
-    
     "enablecopy": {
         "description": "Enable Copy to clipboard button",
         "type": "switch",
         "default": true
     },
-    
     "temperature": {
         "type": "scale",
         "default": 0.2,
@@ -362,7 +432,6 @@
         "description": "Temperature for AI responses",
         "tooltip": "Controls the randomness of the AI's responses. Higher values mean more randomness."
     },
-    
     "enableFeedButton": {
         "description": "Hide feed button",
         "type": "switch",
@@ -382,8 +451,14 @@
         "description": "Load favorites on startup",
         "type": "switch",
         "default": true
+    },
+    "articleSpacing": {
+        "type": "scale",
+        "default": 0.2,
+        "min": 0.0,
+        "max": 2.0,
+        "step": 0.05,
+        "description": "Article spacing density",
+        "tooltip": "Adjust the spacing between articles. Lower values make the list more compact, higher values add more space between articles."
     }
-    
-    
 }
-

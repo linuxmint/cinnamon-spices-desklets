@@ -5,10 +5,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: yarr@jtoberling 1.2.1\n"
+"Project-Id-Version: yarr@jtoberling 1.4.1\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-06-30 11:08-0400\n"
+"POT-Creation-Date: 2025-02-09 08:05-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,31 +17,40 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:314
+#: desklet.js:511
 msgid "Enable refresh"
 msgstr ""
 
-#: desklet.js:318 desklet.js:356
+#: desklet.js:515 desklet.js:751
 msgid "Disable refresh"
 msgstr ""
 
-#: desklet.js:327
+#: desklet.js:523
 msgid "Yarr"
 msgstr ""
 
-#: desklet.js:341
+#: desklet.js:568
 msgid "Loading: feeds ..."
 msgstr ""
 
-#: desklet.js:624
-msgid "Updated"
+#: desklet.js:628 desklet.js:733
+msgid " Search..."
 msgstr ""
 
-#: desklet.js:753
-#, javascript-format
-msgid ""
-"'%s' settings..\n"
-"Please enter ChatGPT API key:"
+#: desklet.js:661
+msgid "Search Articles"
+msgstr ""
+
+#: desklet.js:672
+msgid "Type to search..."
+msgstr ""
+
+#: desklet.js:706
+msgid "Cancel"
+msgstr ""
+
+#: desklet.js:711
+msgid "Search"
 msgstr ""
 
 #. metadata.json->description
@@ -104,6 +113,14 @@ msgstr ""
 
 #. settings-schema.json->transparency->tooltip
 msgid "The higher the value, the more solid the desklet background."
+msgstr ""
+
+#. settings-schema.json->alternateRowTransparency->description
+msgid "Dim of every second rows"
+msgstr ""
+
+#. settings-schema.json->alternateRowTransparency->tooltip
+msgid "The higher the value, more dim on alternate row backgrounds."
 msgstr ""
 
 #. settings-schema.json->refreshInterval-spinner->units
@@ -214,6 +231,14 @@ msgstr ""
 msgid "Enable EXPERIMENTAL AI summary by ChatGPT"
 msgstr ""
 
+#. settings-schema.json->ai_url->description
+msgid "URL of Completion Api"
+msgstr ""
+
+#. settings-schema.json->ai_url->tooltip
+msgid "https://api.openai.com/v1/chat/completions"
+msgstr ""
+
 #. settings-schema.json->ai_dumptool->description
 msgid "Choose a tool to dumping web pages"
 msgstr ""
@@ -237,8 +262,24 @@ msgid ""
 "[ w3m, lynx, links]"
 msgstr ""
 
+#. settings-schema.json->ai_use_standard_model->description
+msgid "Use standard AI models."
+msgstr ""
+
+#. settings-schema.json->ai_use_standard_model->tooltip
+msgid "Set to custom to type your model name"
+msgstr ""
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Use standard"
+msgstr ""
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Use custom"
+msgstr ""
+
 #. settings-schema.json->ai_model->description
-msgid "ChatGPT model to use"
+msgid "Standard model to use"
 msgstr ""
 
 #. settings-schema.json->ai_model->options
@@ -250,11 +291,28 @@ msgid "gpt-4"
 msgstr ""
 
 #. settings-schema.json->ai_model->options
+msgid "gpt-4o"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4o-mini"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
 msgid "gpt-3.5-turbo"
 msgstr ""
 
 #. settings-schema.json->ai_model->options
 msgid "gpt-3.5-turbo-16k"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+#. settings-schema.json->ai_custom_model->tooltip
+msgid "deepseek-coder"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "deepseek-coder-v2:latest"
 msgstr ""
 
 #. settings-schema.json->ai_model->tooltip
@@ -263,6 +321,10 @@ msgid ""
 "Some require premium class subscription.\n"
 "A cheaper can work also well...\n"
 "Default: gpt-3.5-turbo"
+msgstr ""
+
+#. settings-schema.json->ai_custom_model->description
+msgid "Provide model name to use"
 msgstr ""
 
 #. settings-schema.json->ai_systemprompt->description
@@ -322,4 +384,40 @@ msgstr ""
 
 #. settings-schema.json->enablecopy->description
 msgid "Enable Copy to clipboard button"
+msgstr ""
+
+#. settings-schema.json->temperature->description
+msgid "Temperature for AI responses"
+msgstr ""
+
+#. settings-schema.json->temperature->tooltip
+msgid ""
+"Controls the randomness of the AI's responses. Higher values mean more "
+"randomness."
+msgstr ""
+
+#. settings-schema.json->enableFeedButton->description
+msgid "Hide feed button"
+msgstr ""
+
+#. settings-schema.json->enableTimestamp->description
+msgid "Hide timestamp"
+msgstr ""
+
+#. settings-schema.json->enableFavoriteFeature->description
+msgid "Enable favorite feature"
+msgstr ""
+
+#. settings-schema.json->loadFavoritesOnStartup->description
+msgid "Load favorites on startup"
+msgstr ""
+
+#. settings-schema.json->articleSpacing->description
+msgid "Article spacing density"
+msgstr ""
+
+#. settings-schema.json->articleSpacing->tooltip
+msgid ""
+"Adjust the spacing between articles. Lower values make the list more "
+"compact, higher values add more space between articles."
 msgstr ""
