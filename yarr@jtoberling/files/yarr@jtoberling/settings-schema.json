@@ -377,6 +377,11 @@
         "description": "Enable favorite feature",
         "type": "switch",
         "default": true
+    },
+    "loadFavoritesOnStartup": {
+        "description": "Load favorites on startup",
+        "type": "switch",
+        "default": true
     }
     
     
