@@ -63,6 +63,12 @@ class YarrDesklet extends Desklet.Desklet {
     // Add new property for search
     searchFilter = '';
 
+    // Add new property for favorite feature
+    enableFavoriteFeature = true; // Default value
+
+    // Add new property for favorite filtering
+    showOnlyFavorites = false;
+
     // Add resource monitoring
     _resourceUsage = {
         lastUpdate: 0,
@@ -141,6 +147,7 @@ class YarrDesklet extends Desklet.Desklet {
         // Add new settings bindings
         this.settings.bind('enableFeedButton', 'enableFeedButton');
         this.settings.bind('enableTimestamp', 'enableTimestamp');
+        this.settings.bind('enableFavoriteFeature', 'enableFavoriteFeature');
         
             // Initialize SignalManager
         this._signals = new SignalManager.SignalManager(null);
@@ -541,10 +548,40 @@ class YarrDesklet extends Desklet.Desklet {
         titleBox.add(this.headTitle);
         leftBox.add(titleBox);
 
-        // Search box right after title
+        // Add favorite filter button before search if feature is enabled
+        if (this.enableFavoriteFeature) {
+            this.favoriteFilterBtn = new St.Button({
+                style_class: 'yarr-button',
+                style: 'padding: 4px; margin-left: 10px;'
+            });
+            
+            this.favoriteFilterIcon = new St.Icon({
+                icon_name: 'non-starred',
+                icon_type: St.IconType.SYMBOLIC,
+                icon_size: 16,
+                style: 'color: #888888;'
+            });
+            
+            this.favoriteFilterBtn.set_child(this.favoriteFilterIcon);
+            
+            this.favoriteFilterBtn.connect('clicked', () => {
+                this.showOnlyFavorites = !this.showOnlyFavorites;
+                
+                // Update icon
+                this.favoriteFilterIcon.set_icon_name(this.showOnlyFavorites ? 'starred' : 'non-starred');
+                this.favoriteFilterIcon.style = this.showOnlyFavorites ? 'color: #ffd700;' : 'color: #888888;';
+                
+                // Refresh display with filter
+                this.displayItems();
+            });
+            
+            leftBox.add(this.favoriteFilterBtn);
+        }
+
+        // Search box after title and favorite button
         this.searchBox = new St.BoxLayout({ 
             vertical: false,
-            style: 'spacing: 4px; margin-left: 1rem;'  // Add margin after title
+            style: 'spacing: 4px; margin-left: 1rem;'
         });
         
         this.searchButton = new St.Button({
@@ -681,7 +718,7 @@ class YarrDesklet extends Desklet.Desklet {
         let rightBox = new St.BoxLayout({ 
             vertical: false,
             style: 'spacing: 6px;',
-            x_align: St.Align.END  // Align to the right
+            x_align: St.Align.END
         });
 
         // Toggle refresh button with icon
@@ -784,10 +821,11 @@ class YarrDesklet extends Desklet.Desklet {
             // Generate unique key
             const key = `${itemobj.channel}-${itemobj.title}-${itemobj.timestamp.getTime()}`;
             
-            // Add new item to map
+            // Add new item to map with isFavorite property
             context.items.set(key, {
                 ...itemobj,  // spread operator to clone
-                key: key     // store key for later use
+                key: key,    // store key for later use
+                isFavorite: false  // default favorite status
             });
             
             // Schedule display update using Promise to avoid UI blocking
@@ -1019,6 +1057,12 @@ class YarrDesklet extends Desklet.Desklet {
             // Get filtered and sorted items
             const sortedItems = Array.from(this.items.values())
                 .filter(item => {
+                    // Apply favorite filter if enabled
+                    if (this.showOnlyFavorites && !item.isFavorite) {
+                        return false;
+                    }
+                    
+                    // Apply search filter
                     if (this.searchFilter) {
                         const searchText = this.searchFilter.toLowerCase();
                         return item.title.toLowerCase().includes(searchText) ||
@@ -1029,13 +1073,17 @@ class YarrDesklet extends Desklet.Desklet {
                 .sort((a, b) => b.timestamp - a.timestamp)
                 .slice(0, this.itemlimit || 50);
 
-            // Update header text with last refresh time
+            // Update header text with additional info about favorites
             if (this.headTitle) {
                 const now = new Date();
                 const timeStr = now.getHours().toString().padStart(2, '0') + ':' +
                               now.getMinutes().toString().padStart(2, '0') + ':' +
                               now.getSeconds().toString().padStart(2, '0');
-                this.headTitle.set_text(_('Last refresh: %s').format(timeStr));
+                let titleText = _('Last refresh: %s').format(timeStr);
+                if (this.showOnlyFavorites) {
+                    titleText += ' ' + _('(Favorites only)');
+                }
+                this.headTitle.set_text(titleText);
             }
 
             // Calculate channel width once
@@ -1051,7 +1099,7 @@ class YarrDesklet extends Desklet.Desklet {
                             `rgba(100,100,100, ${this.alternateRowTransparency})` : 
                             `rgba(${this.backgroundColor.replace('rgb(', '').replace(')', '')}, ${this.transparency})`
                         };
-                        padding: 4px;
+                        padding: 1px;
                     `
                 });
 
@@ -1096,6 +1144,41 @@ class YarrDesklet extends Desklet.Desklet {
                     copyBtn.set_child(copyIcon);
                     copyBtn.connect('clicked', () => this.onClickedCopyButton(null, null, item, lineBox));
                     buttonBox.add(copyBtn);
+                }
+
+                // Add favorite button if enabled
+                if (this.enableFavoriteFeature) {
+                    const favoriteBtn = new St.Button({ 
+                        style_class: 'yarr-button',
+                        style: 'padding: 2px;'
+                    });
+                    
+                    // Set the appropriate icon based on favorite status
+                    const favoriteIcon = new St.Icon({ 
+                        icon_name: item.isFavorite ? 'starred' : 'non-starred',  // or 'star-new' for empty star
+                        icon_type: St.IconType.SYMBOLIC,
+                        icon_size: 16,
+                        style: item.isFavorite ? 'color: #ffd700;' : 'color: #888888;' // gold color if favorite
+                    });
+                    
+                    favoriteBtn.set_child(favoriteIcon);
+                    
+                    favoriteBtn.connect('clicked', () => {
+                        // Toggle favorite status
+                        item.isFavorite = !item.isFavorite;
+                        
+                        // Update icon
+                        favoriteIcon.set_icon_name(item.isFavorite ? 'starred' : 'non-starred');
+                        favoriteIcon.style = item.isFavorite ? 'color: #ffd700;' : 'color: #888888;';
+                        
+                        // Log status change
+                        global.log(`${item.isFavorite ? 'Added to' : 'Removed from'} favorites: ${item.title}`);
+                        
+                        // Here you could add code to persist favorites status
+                        // For example, save to a file or settings
+                    });
+                    
+                    buttonBox.add(favoriteBtn);
                 }
 
                 // Title and content panel
@@ -1278,7 +1361,8 @@ class YarrDesklet extends Desklet.Desklet {
                         category: catStr,
                         description: item.description || '',
                         labelColor: feed.labelcolor || '#ffffff',
-                        aiResponse: ''
+                        aiResponse: '',
+                        isFavorite: false
                     });
                 } catch (e) {}
             });
