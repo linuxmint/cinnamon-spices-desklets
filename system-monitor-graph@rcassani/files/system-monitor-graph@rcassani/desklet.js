@@ -555,26 +555,41 @@ SystemMonitorGraph.prototype = {
 
       // File gpu_busy_percent contains the percentage of time that the gpu is busy
       // expresed as an integer number from 0 to 100
-      let [, gpu_use_bytes, ] = Gio.File.new_for_path(gpu_dir + "gpu_busy_percent").load_contents(null);
-      let gpu_use = parseInt(ByteArray.toString(gpu_use_bytes));
-      GLib.free(gpu_use_bytes);
-
-      this.gpu_use = gpu_use_bytes;
+      Gio.File.new_for_path(gpu_dir + "gpu_busy_percent").load_contents_async(null, (file, response) => {
+        let [success, contents, tag] = file.load_contents_finish(response);
+        if(success) {
+          this.gpu_use = parseInt(ByteArray.toString(contents));
+        }
+        GLib.free(contents);
+      });
     },
 
     get_amdgpu_gpu_mem: function() {
       // Sysfs directory with files related to the chosen gpu
       let gpu_dir = "/sys/class/drm/card" + this.gpu_id + "/device/";
 
+      //Define mem_tot and mem_usd to avoid undefined variable errorrs if
+      //file reading doesn't work
+      let mem_tot = 0;
+      let mem_usd = 0;
+
       // File mem_info_vram_total contains the total amount of gpu VRAM in bytes
-      let [, mem_tot_bytes, ] = Gio.File.new_for_path(gpu_dir + "mem_info_vram_total").load_contents(null);
-      let mem_tot = parseInt(ByteArray.toString(mem_tot_bytes));
-      GLib.free(mem_tot_bytes);
+      Gio.File.new_for_path(gpu_dir + "mem_info_vram_total").load_contents_async(null, (file, response) => {
+        let [success, contents, tag] = file.load_contents_finish(response);
+        if(success) {
+          mem_tot = parseInt(ByteArray.toString(contents));
+        }
+        GLib.free(contents);
+      });
 
       // File mem_info_vram_used contains the used amount of gpu VRAM in bytes
-      let [, mem_usd_bytes, ] = Gio.File.new_for_path(gpu_dir + "mem_info_vram_used").load_contents(null);
-      let mem_usd = parseInt(ByteArray.toString(mem_usd_bytes));
-      GLib.free(mem_usd_bytes);
+      Gio.File.new_for_path(gpu_dir + "mem_info_vram_used").load_contents_async(null, (file, response) => {
+        let [success, contents, tag] = file.load_contents_finish(response);
+        if(success) {
+          mem_usd = parseInt(ByteArray.toString(contents));
+        }
+        GLib.free(contents);
+      });
 
       // Math here is different, because nvidia-smi returns memory amounts in MiB,
       // but amdgpu provides them in bytes
