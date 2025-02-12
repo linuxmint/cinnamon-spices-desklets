@@ -568,16 +568,16 @@ SystemMonitorGraph.prototype = {
       // Sysfs directory with files related to the chosen gpu
       let gpu_dir = "/sys/class/drm/card" + this.gpu_id + "/device/";
 
-      //Define mem_tot and mem_usd to avoid undefined variable errorrs if
-      //file reading doesn't work
-      let mem_tot = 0;
-      let mem_usd = 0;
-
       // File mem_info_vram_total contains the total amount of gpu VRAM in bytes
       Gio.File.new_for_path(gpu_dir + "mem_info_vram_total").load_contents_async(null, (file, response) => {
         let [success, contents, tag] = file.load_contents_finish(response);
         if(success) {
-          mem_tot = parseInt(ByteArray.toString(contents));
+          let mem_tot = parseInt(ByteArray.toString(contents));
+          if (this.data_prefix_gpumem == 1) {
+            this.gpu_mem[0] = mem_tot / GB_TO_B;
+          } else {
+            this.gpu_mem[0] = mem_tot / 1024 / 1024 / GIB_TO_MIB;
+          }
         }
         GLib.free(contents);
       });
@@ -586,23 +586,15 @@ SystemMonitorGraph.prototype = {
       Gio.File.new_for_path(gpu_dir + "mem_info_vram_used").load_contents_async(null, (file, response) => {
         let [success, contents, tag] = file.load_contents_finish(response);
         if(success) {
-          mem_usd = parseInt(ByteArray.toString(contents));
+          let mem_usd = parseInt(ByteArray.toString(contents));
+          if (this.data_prefix_gpumem == 1) {
+            this.gpu_mem[1] = mem_usd / GB_TO_B;
+          } else {
+            this.gpu_mem[1] = mem_usd / 1024 / 1024 / GIB_TO_MIB;
+          }
         }
         GLib.free(contents);
       });
-
-      // Math here is different, because nvidia-smi returns memory amounts in MiB,
-      // but amdgpu provides them in bytes
-      if (this.data_prefix_gpumem == 1) {
-        mem_tot = mem_tot / GB_TO_B;
-        mem_usd = mem_usd / GB_TO_B;
-      } else {
-        mem_tot = mem_tot / 1024 / 1024 / GIB_TO_MIB;
-        mem_usd = mem_usd / 1024 / 1024 / GIB_TO_MIB;
-      }
-
-      this.gpu_mem[0] = mem_tot;
-      this.gpu_mem[1] = mem_usd;
     }
 
 };
