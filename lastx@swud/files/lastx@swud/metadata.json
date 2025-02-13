@@ -1,0 +1,9 @@
+
+{
+  "uuid": "lastx@swud",
+  "name": "Last.fm Stats",
+  "description": "desklet that fetches and displays your currently playing or last listened track, including the song title, artist name, timestamp and album cover.",
+  "version": "1.0",
+  "max-instances": 1,
+  "icon": "icon.png"
+}
