@@ -1,0 +1,495 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 14:25+0200\n"
+"PO-Revision-Date: 2025-02-02 19:37+0200\n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
+"Language-Team: \n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.5\n"
+
+#: desklet.js:291
+msgid "Reply"
+msgstr ""
+
+#: desklet.js:375
+#, fuzzy
+msgid "Available Devices"
+msgstr "Ei saatavilla olevia laitteita"
+
+#: desklet.js:396
+#, fuzzy
+msgid "Reload Desklet"
+msgstr "Lataa sovelma uudelleen"
+
+#: desklet.js:401
+#, fuzzy
+msgid "KDEConnect is not running!"
+msgstr "KDE Connect ei ole käytettävissä"
+
+#: desklet.js:451
+msgid "No Device Selected!"
+msgstr ""
+
+#: desklet.js:580
+#, fuzzy
+msgid "No paired devices!"
+msgstr "Ei saatavilla olevia laitteita"
+
+#. metadata.json->name
+#, fuzzy
+msgid "KDEConnect Desklet"
+msgstr "KDE Connect sovelma"
+
+#. metadata.json->description
+#, fuzzy
+msgid ""
+"Desklet for displaying information about a Device connected with KDeConnect."
+msgstr "Mahdollistaa yhteyden KDE Connectin kautta yhdistettyille laitteille"
+
+#. settings-schema.json->header->description
+#, fuzzy
+msgid "Device Settings"
+msgstr "Laitteet"
+
+#. settings-schema.json->selected-device-id->description
+msgid "Device ID of selected Device"
+msgstr ""
+
+#. settings-schema.json->selected-device-id->tooltip
+#, fuzzy
+msgid "KDEConnect Device ID"
+msgstr "Ei kytkettyjä laitteita!"
+
+#~ msgid "No Modules available"
+#~ msgstr "Moduuleja ei ole saatavilla"
+
+#~ msgid "KDE Connect not available, make sure it's installed and running."
+#~ msgstr ""
+#~ "KDE Connect ei ole käytettävissä, varmista että se on asennettu ja "
+#~ "käynnissä."
+
+#~ msgid "Invalid KDE Connect version returned!"
+#~ msgstr "Väärä KDE Connect versio havaittu!"
+
+#~ msgid ""
+#~ "The KDE Connect DBus service returned an invalid version, please try "
+#~ "reloading the Applet!"
+#~ msgstr ""
+#~ "KDE Connect DBus palvelu ilmoitti väärän versionumeron, yritä ladata "
+#~ "sovelma uudelleen!"
+
+#~ msgid "Add them in the KDE Connect settings"
+#~ msgstr "Lisää ne KDE Connect asetuksiin"
+
+#~ msgid "Debug Stuff, don't touch!"
+#~ msgstr "Virheenkorjaus, älä koske!"
+
+#~ msgid "KDE Connect Version: {version}"
+#~ msgstr "KDE Connect versio: {version}"
+
+#~ msgid "Own ID: {own_id}"
+#~ msgstr "Oma ID: {own_id}"
+
+#~ msgid "own ID"
+#~ msgstr "oma ID"
+
+#~ msgid "Click to copy own ID"
+#~ msgstr "Kopioi oma id painamalla"
+
+#~ msgid "Configure KDE Connect"
+#~ msgstr "Määritä KDE Connect"
+
+#~ msgid "Click to open KDE Connect Configuration"
+#~ msgstr "Avaa KDE Connect määritykset painamalla"
+
+#~ msgid "{deviceCount} available device"
+#~ msgstr "{deviceCount} laite saatavilla"
+
+#~ msgid "{deviceCount} available devices"
+#~ msgstr "{deviceCount} laitetta saatavilla"
+
+#~ msgid "Copied {typestring} to the clipboard"
+#~ msgstr "Kopioitu {typestring} leikepöydälle"
+
+#~ msgid "Charging"
+#~ msgstr "Latauksessa"
+
+#~ msgid "ID: {id}"
+#~ msgstr "ID: {id}"
+
+#~ msgid "Device ID"
+#~ msgstr "Laite ID"
+
+#~ msgid "Click to copy ID"
+#~ msgstr "Kopioi id painamalla"
+
+#~ msgid "No Signal"
+#~ msgstr "Ei signaalia"
+
+#~ msgid "Low"
+#~ msgstr "Matala"
+
+#~ msgid "Ok"
+#~ msgstr "Selvä"
+
+#~ msgid "Good"
+#~ msgstr "Hyvä"
+
+#~ msgid "Excellent"
+#~ msgstr "Erinomainen"
+
+#~ msgid "Unknown"
+#~ msgstr "Tuntematon"
+
+#~ msgid "Ring device"
+#~ msgstr "Lähetä äänimerkki"
+
+#~ msgid "Click to ring the device"
+#~ msgstr "Lähetä äänimerkki painamalla"
+
+#~ msgid "Photo received from '{deviceName}'"
+#~ msgstr "Kuva vastaanotettu '{deviceName}'"
+
+#~ msgid "Click to open in default application"
+#~ msgstr "Paina ja avaa oletussovelluksessa"
+
+#~ msgid "Request Photo"
+#~ msgstr "Pyydä valokuva"
+
+#~ msgid "Click to request a photo from the device"
+#~ msgstr "Pyydä laitteelta valokuvaa painamalla"
+
+#~ msgid "Ping!"
+#~ msgstr "Lähetä kilahdus!"
+
+#~ msgid "Sent ping to device '{deviceName}'"
+#~ msgstr "Kilahdus lähetetty laitteeseen '{deviceName}'"
+
+#~ msgid "Ping Device"
+#~ msgstr "Kilauta laitetta"
+
+#~ msgid "Click to send a ping to the device"
+#~ msgstr "Lähetä kilautus laitteeseen painamalla"
+
+#~ msgid "Share received from '{deviceName}'"
+#~ msgstr "Jako vastaanotettu '{deviceName}'"
+
+#~ msgid "Share"
+#~ msgstr "Jako"
+
+#~ msgid "Send URL"
+#~ msgstr "Lähetä URL"
+
+#~ msgid "Click to send a URL to the device"
+#~ msgstr "Lähetä URL laitteeseen painamalla"
+
+#~ msgid "Send Text"
+#~ msgstr "Lähetä teksti"
+
+#~ msgid "Click to send text to the device"
+#~ msgstr "Lähetä teksti laitteeseen painamalla"
+
+#~ msgid "Send File(s)"
+#~ msgstr "Lähetä tiedosto"
+
+#~ msgid "Click to send file(s) to the device"
+#~ msgstr "Lähetä tiedostot laitteeseen painamalla"
+
+#~ msgid "Unmount"
+#~ msgstr "Poista laite"
+
+#~ msgid "Mount"
+#~ msgstr "Liitä laite"
+
+#~ msgid "Click to unmount"
+#~ msgstr "Poista laite painamalla"
+
+#~ msgid "Click to mount"
+#~ msgstr "Liitä laite painamalla"
+
+#~ msgid "Click to browse files"
+#~ msgstr "Selaa tiedostoja painamalla"
+
+#~ msgid "SMS"
+#~ msgstr "Tekstiviesti"
+
+#~ msgid "Launch SMS App"
+#~ msgstr "Tekstiviestit"
+
+#~ msgid "Click to open the KDE Connect SMS App"
+#~ msgstr "Avaa KDE Connect tekstiviestisovellus painamalla"
+
+#~ msgid "Send SMS"
+#~ msgstr "Lähetä tekstiviesti"
+
+#~ msgid "Move selected entry up"
+#~ msgstr "Siirrä valittu kohta ylöspäin"
+
+#~ msgid "Move selected entry down"
+#~ msgstr "Siirrä valittu kohta alaspäin"
+
+#, python-brace-format
+#~ msgid "Send URL to '{device_name}'"
+#~ msgstr "Lähetä URL '{device_name}'"
+
+#~ msgid "Cancel"
+#~ msgstr "Peru"
+
+#~ msgid "Send"
+#~ msgstr "Lähetä"
+
+#, python-brace-format
+#~ msgid "Enter a URL to send to '{device_name}'"
+#~ msgstr "Kirjoita URL ja lähetä se '{device_name}'"
+
+#~ msgid "URL"
+#~ msgstr "URL"
+
+#, python-brace-format
+#~ msgid "Send SMS using '{device_name}'"
+#~ msgstr "Lähetä tekstiviesti '{device_name}'"
+
+#~ msgid "Phone Number:"
+#~ msgstr "Puhelinnumero:"
+
+#~ msgid "Phone Number"
+#~ msgstr "Puhelinnumero"
+
+#~ msgid "Message:"
+#~ msgstr "Viesti:"
+
+#, python-brace-format
+#~ msgid "Send text to '{device_name}'"
+#~ msgstr "Lähetä teksti '{device_name}'"
+
+#~ msgid "Text to send:"
+#~ msgstr "Lähetettävä teksti:"
+
+#, python-brace-format
+#~ msgid "Select files to send to '{deviceName}'"
+#~ msgstr "Valitse tiedostot ja lähetä '{deviceName}'"
+
+#, python-brace-format
+#~ msgid "Select where to save photo received from '{deviceName}'"
+#~ msgstr "Valitse, mihin tallennat vastaanotetun valokuvan '{deviceName}'"
+
+#~ msgid "photo.jpg"
+#~ msgstr "photo.jpg"
+
+#~ msgid "JPEG Photo"
+#~ msgstr "JPEG kuva"
+
+#~ msgid ""
+#~ "KDE Connect Applet makes it easy to use the various features provided by "
+#~ "KDE Connect to interact with connected devices, like sending files, "
+#~ "sending SMS messages, browsing the storage of the device and more"
+#~ msgstr ""
+#~ "KDE Connect sovelman tarjoaa helpon tavan käyttää KDE Connectin tarjoamia "
+#~ "ominaisuuksia yhdistettyjen laitteiden kanssa, kuten tiedostojen ja "
+#~ "tekstiviestien lähettäminen, sekä tallennustilan selaaminen"
+
+#~ msgid "Johannes Schoeneberger - Author"
+#~ msgstr "Kehittäjä - Johannes Schoeneberger"
+
+#~ msgid "Severga - Inspiration for the Applet"
+#~ msgstr "Severga - inspiraatio tähän sovelmaan"
+
+#~ msgid "General"
+#~ msgstr "Yleistä"
+
+#~ msgid "Modules"
+#~ msgstr "Moduulit"
+
+#~ msgid "Context Menu"
+#~ msgstr "Pudotusvalikko"
+
+#~ msgid "Panel"
+#~ msgstr "Paneeli"
+
+#~ msgid "Info Modules"
+#~ msgstr "Moduulien tiedot"
+
+#~ msgid "Action Modules"
+#~ msgstr "Moduulien toiminta"
+
+#~ msgid "Battery Info Module"
+#~ msgstr "Akkutieto moduuli"
+
+#~ msgid "Device-Info Info Module"
+#~ msgstr "Laitetieto moduuli"
+
+#~ msgid "Connectivity Info Module"
+#~ msgstr "Yhteystieto moduuli"
+
+#~ msgid "FindMyPhone Action Module"
+#~ msgstr "Etsi puhelimeni moduuli"
+
+#~ msgid "Request-Photo Action Module"
+#~ msgstr "Pyydä kuvaa moduuli"
+
+#~ msgid "Ping Action Module"
+#~ msgstr "Kilautus moduuli"
+
+#~ msgid "Share Action Module"
+#~ msgstr "Jakaminen moduuli"
+
+#~ msgid "SFTP Action Module"
+#~ msgstr "SFTP moduuli"
+
+#~ msgid "SMS Action Module"
+#~ msgstr "Tekstiviesti moduuli"
+
+#~ msgid "Show own ID in the context menu of the applet"
+#~ msgstr "Näytä oma id sovelman valikossa"
+
+#~ msgid "Show KDE Connect version in the context menu of the applet"
+#~ msgstr "Näytä KDE Connect versio sovelman valikossa"
+
+#~ msgid "Show the number of connected devices next to the icon in the panel"
+#~ msgstr "Näytä yhdistettyjen laitteiden määrä paneelin kuvakkeen vieressä"
+
+#~ msgid "Show the device count in the tooltip of the applet"
+#~ msgstr "Näytä laitteiden lukumäärä sovelman valikossa"
+
+#~ msgid "Icon type"
+#~ msgstr "Kuvakkeen tyyppi"
+
+#~ msgid "Symbolic"
+#~ msgstr "Symbolinen"
+
+#~ msgid "Color"
+#~ msgstr "Väri"
+
+#~ msgid "Use custom icon"
+#~ msgstr "Käytä omaa kuvaketta"
+
+#~ msgid "Custom icon to use"
+#~ msgstr "Kuvake jota käytetään"
+
+#~ msgid "Open KDE Connect Configuration"
+#~ msgstr "KDE Connect määritykset"
+
+#~ msgid ""
+#~ "Expand the device sub menu automatically, if only one device is available"
+#~ msgstr ""
+#~ "Avaa laitteen alavalikot automaattisesti, jos käytössä on vain yksi laite"
+
+#~ msgid "Name"
+#~ msgstr "Nimi"
+
+#~ msgid "Expand"
+#~ msgstr "Laajenna"
+
+#~ msgid "UUID"
+#~ msgstr "UUID"
+
+#~ msgid "Enabled"
+#~ msgstr "Käytössä"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Shows the current battery charge and charging status of the device"
+#~ msgstr "Näyttää laitteen akun latauksen ja lataustilan"
+
+#~ msgid "Shows the device icon along with its ID"
+#~ msgstr "Näyttää laitteen kuvakkeen ja sen id:n"
+
+#~ msgid "Shows the current connectivity status and network type of the device"
+#~ msgstr "Näyttää laitteen nykyisen yhteystilan ja verkon tyypin"
+
+#~ msgid "Show the mobile network type"
+#~ msgstr "Näytä matkapuhelinverkko"
+
+#~ msgid ""
+#~ "Lets you make the device ring, so you can find it, if you have misplaced "
+#~ "it"
+#~ msgstr "Voit saada laitteen soimaan, joten voit löytää sen helposti"
+
+#~ msgid ""
+#~ "Lets you request a photo from the remote device and save it on this device"
+#~ msgstr ""
+#~ "Voit pyytää valokuvaa puhelimesta tai tabletista ja tallentaa se tähän "
+#~ "tietokoneeseen"
+
+#~ msgid "Save received photos directly to directory"
+#~ msgstr "Tallenna vastaanotettu kuva suoraan kansioon"
+
+#~ msgid "The directory to save received photos to"
+#~ msgstr "Kansio, johon vastaanotetut valokuvat tallennetaan"
+
+#~ msgid "Lets you ping the the device to make sure it's connected"
+#~ msgstr "Voit kutsua laitetta ja varmistaa, että se on kytketty verkkoon"
+
+#~ msgid "Use custom message for ping"
+#~ msgstr "Käytä omaa viestiä kutsuun"
+
+#~ msgid "Custom message"
+#~ msgstr "Oma viesti"
+
+#~ msgid "Lets you share URLs, files or text to the device"
+#~ msgstr "Voit jakaa URL-osoitteella, tiedostoja tai tekstiä laitteeseen"
+
+#~ msgid "Show menu items in sub menu"
+#~ msgstr "Näytä valikossa alivalikot"
+
+#~ msgid "Enable the menu item to send a URL"
+#~ msgstr "Ota käyttöön kohde valikossa URL-osoitteen lähettämiseksi"
+
+#~ msgid "Enable the menu item to send some text"
+#~ msgstr "Ota käyttöön kohde tekstiviestien lähettämiseksi"
+
+#~ msgid "Enable the menu item to send file(s)"
+#~ msgstr "Ota käyttöön kohde tiedostojen lähettämiseksi"
+
+#~ msgid "Lets you remotely browse the storage selected on the device"
+#~ msgstr "Voit selata laitteelle valittua tallennustilaa"
+
+#~ msgid "Lets you remotely send SMS messages from the device"
+#~ msgstr "Voit lähettää tekstiviestejä laitteesta"
+
+#~ msgid "Enable the menu item to send an SMS message"
+#~ msgstr "Ota käyttöön kohta tekstiviestin lähettämiseksi"
+
+#~ msgid "Enable the menu item to launch the KDE Connect SMS app"
+#~ msgstr ""
+#~ "Ota käyttöön kohta,  joka käynnistää KDE Connect tekstiviestit sovelluksen"
+
+#~ msgid "Battery Module"
+#~ msgstr "Akku moduuli"
+
+#~ msgid "Device-Info Module"
+#~ msgstr "Laitetieto moduuli"
+
+#~ msgid "Connectivity Module"
+#~ msgstr "Yhteystieto moduuli"
+
+#~ msgid "FindMyPhone Module"
+#~ msgstr "Etsi puhelimeni moduuli"
+
+#~ msgid "Request Photo Module"
+#~ msgstr "Pyydä kuvaa moduuli"
+
+#~ msgid "Ping Module"
+#~ msgstr "Kilauta moduuli"
+
+#~ msgid "Share Module"
+#~ msgstr "Jakaminen moduuli"
+
+#~ msgid "SFTP Module"
+#~ msgstr "SFTP moduuli"
+
+#~ msgid "SMS Module"
+#~ msgstr "Tekstiviesti moduuli"
