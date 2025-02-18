@@ -106,7 +106,7 @@ SystemMonitorGraph.prototype = {
             this.ram_values  = new Array(2).fill(0.0);
             this.swap_values = new Array(2).fill(0.0);
             this.hdd_values  = new Array(4).fill(0.0);
-            this.gpu_use     = 0;
+            this.gpu_use     = NaN;
             this.gpu_mem     = new Array(2).fill(0.0);
 
             // set colors
