@@ -106,7 +106,7 @@ SystemMonitorGraph.prototype = {
             this.ram_values  = new Array(2).fill(0.0);
             this.swap_values = new Array(2).fill(0.0);
             this.hdd_values  = new Array(4).fill(0.0);
-            this.gpu_use     = 0;
+            this.gpu_use     = NaN;
             this.gpu_mem     = new Array(2).fill(0.0);
 
             // set colors
@@ -514,10 +514,15 @@ SystemMonitorGraph.prototype = {
     },
 
     get_nvidia_gpu_use: function() {
-        let subprocess = Gio.Subprocess.new(
-            ['/usr/bin/nvidia-smi', '--query-gpu=utilization.gpu', '--format=csv', '--id='+ this.gpu_id],
-            Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE
-        );
+        let subprocess
+        try {
+            subprocess = Gio.Subprocess.new(
+                ['/usr/bin/nvidia-smi', '--query-gpu=utilization.gpu', '--format=csv', '--id='+ this.gpu_id],
+                Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE
+            );
+        } catch (err) {
+            return;
+        }
         subprocess.communicate_utf8_async(null, null, (subprocess, result) => {
             let [, stdout, stderr] = subprocess.communicate_utf8_finish(result);
             this.gpu_use =  parseInt(stdout.match(/[^\r\n]+/g)[1]); // parse integer in second line
@@ -525,10 +530,15 @@ SystemMonitorGraph.prototype = {
     },
 
     get_nvidia_gpu_mem: function() {
-        let subprocess = Gio.Subprocess.new(
-            ['/usr/bin/nvidia-smi', '--query-gpu=memory.total,memory.used', '--format=csv', '--id='+ this.gpu_id],
-            Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE
-        );
+        let subprocess
+        try {
+            subprocess = Gio.Subprocess.new(
+                ['/usr/bin/nvidia-smi', '--query-gpu=memory.total,memory.used', '--format=csv', '--id='+ this.gpu_id],
+                Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE
+            );
+        } catch {
+            return;
+        }
         subprocess.communicate_utf8_async(null, null, (subprocess, result) => {
             let [, stdout, stderr] = subprocess.communicate_utf8_finish(result);
             let fslines = stdout.split(/\r?\n/); // Line0:Headers Line1:Values
