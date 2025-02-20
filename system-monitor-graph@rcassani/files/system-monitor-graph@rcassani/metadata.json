@@ -3,6 +3,6 @@
     "uuid": "system-monitor-graph@rcassani",
     "name": "System monitor graph",
     "description": "Creates graphs for system variables.",
-    "version": "1.8",
+    "version": "1.9",
     "prevent-decorations": true
 }
