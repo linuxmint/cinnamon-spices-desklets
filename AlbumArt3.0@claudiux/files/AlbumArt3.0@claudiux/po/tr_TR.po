@@ -1,0 +1,111 @@
+# ALBUM ART FOR RADIO3.0
+# This file is put in the public domain.
+# Serkan ÖNDER <serkanonder@outlook.com, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: AlbumArt3.0@claudiux 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-02-11 11:04+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Serkan ÖNDER <serkanonder@outlook.com>\n"
+"Language-Team: \n"
+"Language: tr_TR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. desklet.js:66
+msgid "Radio3.0 Album Art"
+msgstr "Radio3.0 Albüm Kapağı"
+
+#. desklet.js:301
+msgid "Display Album Art at full size"
+msgstr "Albüm Kapağını tam boyutta görüntüle"
+
+#. metadata.json->name
+msgid "Album Art for Radio3.0"
+msgstr "Radio3.0 için Albüm Kapağı"
+
+#. metadata.json->description
+msgid ""
+"A digital photo frame desklet to display the Radio3.0 album art, if available"
+msgstr ""
+"Mevcutsa, Radio3.0 albüm kapak resmini görüntülemek için bir dijital "
+"fotoğraf çerçevesi uygulamacığı"
+
+#. settings-schema.json->height->description
+msgid "Height"
+msgstr "Boy"
+
+#. settings-schema.json->height->units
+#. settings-schema.json->width->units
+msgid "pixels"
+msgstr "piksel"
+
+#. settings-schema.json->width->description
+msgid "Width"
+msgstr "En"
+
+#. settings-schema.json->fade-effect->description
+msgid "Fade"
+msgstr "Solma"
+
+#. settings-schema.json->fade-effect->options
+msgid "None"
+msgstr "Hiçbiri"
+
+#. settings-schema.json->fade-effect->options
+msgid "Quad"
+msgstr "Dörtlü"
+
+#. settings-schema.json->fade-effect->options
+msgid "Cubic"
+msgstr "Kübik"
+
+#. settings-schema.json->fade-effect->options
+msgid "Quart"
+msgstr "Çeyrek"
+
+#. settings-schema.json->fade-effect->options
+msgid "Quint"
+msgstr "Beşinci"
+
+#. settings-schema.json->fade-effect->options
+msgid "Sine"
+msgstr "Sinüs"
+
+#. settings-schema.json->fade-effect->options
+msgid "Expo"
+msgstr "Sergi"
+
+#. settings-schema.json->fade-effect->options
+msgid "Circ"
+msgstr "Dairesel"
+
+#. settings-schema.json->fade-effect->options
+msgid "Elastic"
+msgstr "Elastik"
+
+#. settings-schema.json->fade-effect->options
+msgid "Back"
+msgstr "Geri"
+
+#. settings-schema.json->fade-effect->options
+msgid "Bounce"
+msgstr "Sıçrama"
+
+#. settings-schema.json->fade-delay->description
+msgid "Fade delay"
+msgstr "Solma gecikmesi"
+
+#. settings-schema.json->fade-delay->units
+msgid "seconds"
+msgstr "saniye"
+
+#. settings-schema.json->fade-delay->tooltip
+msgid "0 means no fade"
+msgstr "0 solma olmadığı anlamına gelir"
