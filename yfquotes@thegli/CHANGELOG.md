@@ -1,3 +1,9 @@
+### 0.15.4 - February 10, 2025
+
+Bugfixes:
+
+- fix infinite loop on empty quotes list
+
 ### 0.15.3 - January 8, 2025
 
 Features:
