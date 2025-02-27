@@ -164,10 +164,7 @@ YahooFinanceQuoteUtils.prototype = {
 
     compareSymbolsArgument: function(symbolsArgument, quoteSymbolsText) {
         const argumentFromText = this.buildSymbolsArgument(quoteSymbolsText);
-        if (symbolsArgument.length === 0 || argumentFromText.length === 0) {
-            return false;
-        }
-
+        logDebug("compare symbolsArgument(" + symbolsArgument + ") with argumentFromText(" + argumentFromText + ")");
         return symbolsArgument === argumentFromText;
     },
 
@@ -1076,6 +1073,7 @@ StockQuoteDesklet.prototype = {
             existingId = this.id;
         }
 
+        // check if quotes list was changed but no call of onQuotesListChanged() occurred, e.g. on layout changes
         if (!this.quoteUtils.compareSymbolsArgument(_lastResponses.get(existingId).symbolsArgument, this.quoteSymbolsText)) {
             logDebug("Detected changed quotes list, refreshing data for desklet id " + this.id);
             this.onQuotesListChanged();

@@ -106,7 +106,7 @@ SystemMonitorGraph.prototype = {
             this.ram_values  = new Array(2).fill(0.0);
             this.swap_values = new Array(2).fill(0.0);
             this.hdd_values  = new Array(4).fill(0.0);
-            this.gpu_use     = 0;
+            this.gpu_use     = NaN;
             this.gpu_mem     = new Array(2).fill(0.0);
 
             // set colors
@@ -514,10 +514,15 @@ SystemMonitorGraph.prototype = {
     },
 
     get_nvidia_gpu_use: function() {
-        let subprocess = Gio.Subprocess.new(
-            ['/usr/bin/nvidia-smi', '--query-gpu=utilization.gpu', '--format=csv', '--id='+ this.gpu_id],
-            Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE
-        );
+        let subprocess
+        try {
+            subprocess = Gio.Subprocess.new(
+                ['/usr/bin/nvidia-smi', '--query-gpu=utilization.gpu', '--format=csv', '--id='+ this.gpu_id],
+                Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE
+            );
+        } catch (err) {
+            return;
+        }
         subprocess.communicate_utf8_async(null, null, (subprocess, result) => {
             let [, stdout, stderr] = subprocess.communicate_utf8_finish(result);
             this.gpu_use =  parseInt(stdout.match(/[^\r\n]+/g)[1]); // parse integer in second line
@@ -525,10 +530,15 @@ SystemMonitorGraph.prototype = {
     },
 
     get_nvidia_gpu_mem: function() {
-        let subprocess = Gio.Subprocess.new(
-            ['/usr/bin/nvidia-smi', '--query-gpu=memory.total,memory.used', '--format=csv', '--id='+ this.gpu_id],
-            Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE
-        );
+        let subprocess
+        try {
+            subprocess = Gio.Subprocess.new(
+                ['/usr/bin/nvidia-smi', '--query-gpu=memory.total,memory.used', '--format=csv', '--id='+ this.gpu_id],
+                Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE
+            );
+        } catch {
+            return;
+        }
         subprocess.communicate_utf8_async(null, null, (subprocess, result) => {
             let [, stdout, stderr] = subprocess.communicate_utf8_finish(result);
             let fslines = stdout.split(/\r?\n/); // Line0:Headers Line1:Values
@@ -555,11 +565,13 @@ SystemMonitorGraph.prototype = {
 
       // File gpu_busy_percent contains the percentage of time that the gpu is busy
       // expresed as an integer number from 0 to 100
-      let [, gpu_use_bytes, ] = Gio.File.new_for_path(gpu_dir + "gpu_busy_percent").load_contents(null);
-      let gpu_use = parseInt(ByteArray.toString(gpu_use_bytes));
-      GLib.free(gpu_use_bytes);
-
-      this.gpu_use = gpu_use_bytes;
+      Gio.File.new_for_path(gpu_dir + "gpu_busy_percent").load_contents_async(null, (file, response) => {
+        let [success, contents, tag] = file.load_contents_finish(response);
+        if(success) {
+          this.gpu_use = parseInt(ByteArray.toString(contents));
+        }
+        GLib.free(contents);
+      });
     },
 
     get_amdgpu_gpu_mem: function() {
@@ -567,27 +579,32 @@ SystemMonitorGraph.prototype = {
       let gpu_dir = "/sys/class/drm/card" + this.gpu_id + "/device/";
 
       // File mem_info_vram_total contains the total amount of gpu VRAM in bytes
-      let [, mem_tot_bytes, ] = Gio.File.new_for_path(gpu_dir + "mem_info_vram_total").load_contents(null);
-      let mem_tot = parseInt(ByteArray.toString(mem_tot_bytes));
-      GLib.free(mem_tot_bytes);
+      Gio.File.new_for_path(gpu_dir + "mem_info_vram_total").load_contents_async(null, (file, response) => {
+        let [success, contents, tag] = file.load_contents_finish(response);
+        if(success) {
+          let mem_tot = parseInt(ByteArray.toString(contents));
+          if (this.data_prefix_gpumem == 1) {
+            this.gpu_mem[0] = mem_tot / GB_TO_B;
+          } else {
+            this.gpu_mem[0] = mem_tot / 1024 / 1024 / GIB_TO_MIB;
+          }
+        }
+        GLib.free(contents);
+      });
 
       // File mem_info_vram_used contains the used amount of gpu VRAM in bytes
-      let [, mem_usd_bytes, ] = Gio.File.new_for_path(gpu_dir + "mem_info_vram_used").load_contents(null);
-      let mem_usd = parseInt(ByteArray.toString(mem_usd_bytes));
-      GLib.free(mem_usd_bytes);
-
-      // Math here is different, because nvidia-smi returns memory amounts in MiB,
-      // but amdgpu provides them in bytes
-      if (this.data_prefix_gpumem == 1) {
-        mem_tot = mem_tot / GB_TO_B;
-        mem_usd = mem_usd / GB_TO_B;
-      } else {
-        mem_tot = mem_tot / 1024 / 1024 / GIB_TO_MIB;
-        mem_usd = mem_usd / 1024 / 1024 / GIB_TO_MIB;
-      }
-
-      this.gpu_mem[0] = mem_tot;
-      this.gpu_mem[1] = mem_usd;
+      Gio.File.new_for_path(gpu_dir + "mem_info_vram_used").load_contents_async(null, (file, response) => {
+        let [success, contents, tag] = file.load_contents_finish(response);
+        if(success) {
+          let mem_usd = parseInt(ByteArray.toString(contents));
+          if (this.data_prefix_gpumem == 1) {
+            this.gpu_mem[1] = mem_usd / GB_TO_B;
+          } else {
+            this.gpu_mem[1] = mem_usd / 1024 / 1024 / GIB_TO_MIB;
+          }
+        }
+        GLib.free(contents);
+      });
     }
 
 };

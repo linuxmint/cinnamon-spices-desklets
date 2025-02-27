@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: yfquotes@thegli 0.13.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-11-20 20:33+0100\n"
+"POT-Creation-Date: 2025-02-10 20:46+0100\n"
 "PO-Revision-Date: 2024-12-18 21:52+0100\n"
 "Last-Translator: Dan <d3vf4n-linux (at) tutanota (dot) com>\n"
 "Language-Team: \n"
@@ -21,29 +21,29 @@ msgstr ""
 msgid "No quotes data to display"
 msgstr "No hi ha dades de cotitzacions per mostrar"
 
-#. desklet.js:427
+#. desklet.js:424
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 "Llista de cotitzacions buida. Obriu la configuració i afegiu-hi alguns "
 "símbols."
 
-#. desklet.js:450 desklet.js:473
+#. desklet.js:447 desklet.js:470
 msgid "Authorization parameters have expired"
 msgstr "Els paràmetres d'autorització han expirat"
 
-#. desklet.js:453 desklet.js:476
+#. desklet.js:450 desklet.js:473
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "El servei de Yahoo finances no està disponible!\\nEstat: "
 
-#. desklet.js:835
+#. desklet.js:832
 msgid "Updated at "
 msgstr "Actualitzat a les "
 
-#. desklet.js:868
+#. desklet.js:865
 msgid "Error: "
 msgstr "Error: "
 
-#. desklet.js:983
+#. desklet.js:980
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -51,20 +51,20 @@ msgstr ""
 "Error en recuperar el paràmetre d'autorització. No s'han pogut obtenir les "
 "dades de les cotitzacions.\\nEstat: "
 
-#. desklet.js:1009
+#. desklet.js:1006
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "No s'ha pogut processar el consentiment! No s'han pogut obtenir les dades de "
 "les cotitzacions.\\nEstat: "
 
-#. desklet.js:1014
+#. desklet.js:1011
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "No s'ha completat el processament del consentiment. No s'han pogut obtenir "
 "les dades de les cotitzacions.\\nEstat: "
 
-#. desklet.js:1037
+#. desklet.js:1034
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
