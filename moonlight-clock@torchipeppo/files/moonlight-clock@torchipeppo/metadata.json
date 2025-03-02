@@ -1,0 +1,10 @@
+{
+    "uuid": "moonlight-clock@torchipeppo",
+    "name": "Moonlight Clock",
+    "description": "An aesthetic and customizable desklet that can function as clock, weather display, and/or tracker of important dates. Based on Persona 3.",
+    "comments": "Best placed in the top right corner on the screen. Use the \"offset\" configuration for precise alignment.",
+    "author": "torchipeppo",
+    "version": "0.1.0",
+    "prevent-decorations": true,
+    "multiversion": true
+}
