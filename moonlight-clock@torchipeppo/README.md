@@ -15,20 +15,18 @@ A multipurpose display for current date, time, weather, and/or custom important 
 - Last but not least, tweak the appearance to your liking: color, size, font, ...
 
 ## Screenshots
-<!-- TODO must become https://cinnamon-spices.linuxmint.com/git/desklets/<UUID>/<REPO-PATH> -->
-
 <p align="center">
-<img src="screenshot.png" align="middle"><br>
+<img src="https://cinnamon-spices.linuxmint.com/git/desklets/moonlight-clock@torchipeppo/screenshot.png" align="middle"><br>
 Default look after enabling WeatherAPI. The default font depends on your system configuration.
 </p>
 
 <p align="center">
-<img src="assets/screenshot-customization-showcase.png" align="middle"><br>
+<img src="https://cinnamon-spices.linuxmint.com/git/desklets/moonlight-clock@torchipeppo/assets/screenshot-customization-showcase.png" align="middle"><br>
 A few example customizations that can be made with the desklet's settings.
 </p>
 
 <p align="center">
-<img src="assets/screenshot-p3-mode.png" align="middle"><br>
+<img src="https://cinnamon-spices.linuxmint.com/git/desklets/moonlight-clock@torchipeppo/assets/screenshot-p3-mode.png" align="middle"><br>
 Configuration that replicates the inspiration material as closely as possible.
 </p>
 
