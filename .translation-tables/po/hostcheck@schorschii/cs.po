@@ -1,0 +1,149 @@
+# Čeština
+# Copyright (C) 2023
+# This file is distributed under the same license as the PACKAGE package.
+# Gujenczek <EMAIL@ADDRESS>, May 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.2\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 00:14+0200\n"
+"PO-Revision-Date: 2023-05-05 13:16+0100\n"
+"Last-Translator: Gujenczek <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: desklet.js:58 desklet.js:129
+msgid "UNKNOWN"
+msgstr "NEZNÁMÝ"
+
+#: desklet.js:114
+msgid "Error executing ping command!"
+msgstr ""
+
+#: desklet.js:130
+msgid "No ping output"
+msgstr "Bez pingu"
+
+#: desklet.js:135 desklet.js:161 desklet.js:181 desklet.js:203
+msgid "CRIT"
+msgstr "KRITICKÉ"
+
+#: desklet.js:139 desklet.js:185 desklet.js:207
+msgid "OK"
+msgstr "CAJK"
+
+#: desklet.js:143 desklet.js:189 desklet.js:211 desklet.js:218
+msgid "WARN"
+msgstr "VAROVÁNÍ"
+
+#: desklet.js:177 desklet.js:199
+msgid "HTTP Status Code"
+msgstr "Kód statusu HTTP"
+
+#: desklet.js:234
+msgid "s"
+msgstr "s"
+
+#. metadata.json->description
+msgid "Checks a host via ping or HTTP(S) and displays if it is available."
+msgstr "Kontrola hostitele přes ping nebo HTTP(S) a zobrazení dostupnosti"
+
+#. metadata.json->name
+msgid "Host Check"
+msgstr "Kontrola hostitele"
+
+#. settings-schema.json->head0->description
+msgid "Settings for hostcheck@schorschii"
+msgstr "Nastavení deskletu hostcheck@schorschii"
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr "Obecné"
+
+#. settings-schema.json->host->description
+msgid "Hostname, IP address or HTTP(S)-URL to check"
+msgstr "Název hostitele, IP adresa nebo HTTP(S) url adresa ke kontrolování"
+
+#. settings-schema.json->type->description
+msgid "Ping or HTTP(S) check"
+msgstr "Kontrola ping nebo HTTP(S)"
+
+#. settings-schema.json->type->tooltip
+msgid "Choose, if this desklet should do a ping or HTTP(S) check."
+msgstr ""
+"Vyber, jestli má desklet provádět kontrolu pomocí ping odezvy nebo načtením "
+"HTTP(S)."
+
+#. settings-schema.json->type->options
+msgid "Ping"
+msgstr "Ping"
+
+#. settings-schema.json->type->options
+msgid "HTTP(S)"
+msgstr "HTTP(S)"
+
+#. settings-schema.json->success-status-code->description
+#, fuzzy
+msgid "HTTP success status code"
+msgstr "Kód statusu HTTP"
+
+#. settings-schema.json->success-status-code->tooltip
+msgid "Choose the HTTP status code which should be assumed as success"
+msgstr ""
+
+#. settings-schema.json->show-notifications->description
+msgid "Show notifications when state changed"
+msgstr "Zobrazit upozornění na změnu stavu"
+
+#. settings-schema.json->interval->units
+msgid "seconds"
+msgstr "sekund"
+
+#. settings-schema.json->interval->description
+msgid "Time's interval of check"
+msgstr "Časový interval kontroly"
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "faktor měřítka"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Velikost deskletu"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr "Zvětšete nebo zmenšete velikost tohoto deskletu pomocí tohoto měřítka."
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Schovat dekorace"
+
+#. settings-schema.json->head3->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr "Vlastní štítek deskletu (viditelné jen při zapnuté dekoraci)"
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Použít vlastní štítek deskletu"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr "Zaškrtnutím tohoto políčka můžete nastavit vlastní štítek v poli níže."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Vlastní štítek"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr ""
+"Zde nastavte svůj vlastní štítek. Toto pole není k dispozici, pokud není "
+"povoleno zaškrtávací políčko výše."
