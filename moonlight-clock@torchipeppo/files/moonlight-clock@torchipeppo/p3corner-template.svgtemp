@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="614"
+   height="387"
+   viewBox="0 0 162.58381 102.44753"
+   version="1.1"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="linearGradient13840">
+      <stop
+         style="stop-color:%corner2%;stop-opacity:1;"
+         offset="0" />
+      <stop
+         style="stop-color:%corner2%;stop-opacity:0.40156043"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4745">
+      <stop
+         style="stop-color:%corner1%;stop-opacity:0.64977455"
+         offset="0" />
+      <stop
+         style="stop-color:%corner1%;stop-opacity:1"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       xlink:href="#linearGradient4745"
+       id="linearGradient4747"
+       x1="187.98688"
+       y1="79.204407"
+       x2="350.45828"
+       y2="29.072369"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       xlink:href="#linearGradient13840"
+       id="linearGradient13842"
+       x1="260.47723"
+       y1="47.67659"
+       x2="354.05386"
+       y2="91.771309"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g transform="translate(-187.87433,-29.072369)">
+    <path
+       style="display:inline;fill:url(#linearGradient4747);fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 350.45827,79.102735 V 29.072369 H 187.87433 c 17.50975,1.871036 45.05444,9.677796 72.60291,18.60422 41.04153,13.298524 82.09146,29.082123 89.98103,31.426146 z"
+        />
+    <path
+       style="display:inline;fill:url(#linearGradient13842);fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 350.45827,79.102735 V 131.5199 C 335.5672,111.80516 307.36638,77.043507 260.47724,47.676589 c 27.16373,8.207546 82.09146,29.082123 89.98103,31.426146 z"
+        />
+  </g>
+</svg>

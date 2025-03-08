@@ -1,0 +1,83 @@
+{
+    "blue": {
+        "corner1": "#67baff",
+        "corner2": "#000000",
+        "time": "white",
+        "date": "#226182",
+        "bottom": "aliceblue",
+        "shadow": "#447fab",
+        "highlight": "#7bffff"
+    },
+    "pink": {
+        "corner1": "#fc99b6",
+        "corner2": "#000000",
+        "time": "white",
+        "date": "#9f262d",
+        "bottom": "lavenderblush",
+        "shadow": "#9f262d",
+        "highlight": "#ffa4d8"
+    },
+    "green": {
+        "corner1": "#3ba960",
+        "corner2": "#000000",
+        "time": "mintcream",
+        "date": "#052808",
+        "bottom": "mintcream",
+        "shadow": "#052808",
+        "highlight": "#74ff8c"
+    },
+    "yellow": {
+        "corner1": "#fbfa0b",
+        "corner2": "#000000",
+        "time": "white",
+        "date": "#776e03",
+        "bottom": "lightyellow",
+        "shadow": "#b6a906",
+        "highlight": "#ffff80"
+    },
+    "red": {
+        "corner1": "#ee1600",
+        "corner2": "#000000",
+        "time": "white",
+        "date": "#400000",
+        "bottom": "#FFF0F0",
+        "shadow": "#400000",
+        "highlight": "#fe0000"
+    },
+    "light-green": {
+        "corner1": "#98fe1e",
+        "corner2": "#000000",
+        "time": "white",
+        "date": "#468000",
+        "bottom": "mintcream",
+        "shadow": "#79b82b",
+        "highlight": "#c2ff7a"
+    },
+    "purple": {
+        "corner1": "blueviolet",
+        "corner2": "#000000",
+        "time": "lavender",
+        "date": "#3b0066",
+        "bottom": "lavender",
+        "shadow": "indigo",
+        "highlight": "mediumpurple"
+    },
+    "dark-blue": {
+        "corner1": "#0000b0",
+        "corner2": "#000000",
+        "time": "white",
+        "date": "#000020",
+        "bottom": "aliceblue",
+        "shadow": "#000040",
+        "highlight": "#0000ff"
+    },
+    "grey": {
+        "corner1": "lightgrey",
+        "corner2": "#000000",
+        "time": "white",
+        "date": "dimgrey",
+        "bottom": "#f0f0f0",
+        "shadow": "grey",
+        "highlight": "#999999"
+    }
+}
