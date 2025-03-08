@@ -3,8 +3,8 @@ const St = imports.gi.St;
 const GLib = imports.gi.GLib;
 const Util = imports.misc.util;
 const Cinnamon = imports.gi.Cinnamon;
-const Mainloop = imports.mainloop;
-const Lang = imports.lang;
+//~ const Mainloop = imports.mainloop;
+//~ const Lang = imports.lang;
 const Settings = imports.ui.settings;
 const Main = imports.ui.main;
 const Clutter = imports.gi.Clutter;
@@ -119,7 +119,7 @@ MyDesklet.prototype = {
 			timeoutval = Math.ceil(3000 - (1000*seconds + mseconds/1000) % 3000);
 		else if(this.smooth_seconds_hand == false)
 			timeoutval = Math.ceil(1000 - mseconds/1000);
-		this.timeout = Mainloop.timeout_add(timeoutval, Lang.bind(this, this.refresh));
+		this.timeout = GLib.timeout_add(GLib.PRIORITY_DEFAULT, timeoutval, () => { this.refresh() });
 	},
 
 	refreshSize: function() {
@@ -202,11 +202,11 @@ MyDesklet.prototype = {
 		this.refreshSize();
 
 		// settings changed; instant refresh
-		Mainloop.source_remove(this.timeout);
+		GLib.source_remove(this.timeout);
 		this.refresh();
 	},
 
 	on_desklet_removed: function() {
-		Mainloop.source_remove(this.timeout);
+		GLib.source_remove(this.timeout);
 	}
 }
