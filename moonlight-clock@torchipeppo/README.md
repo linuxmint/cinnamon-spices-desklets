@@ -55,5 +55,5 @@ or my personal one!
 ## Compatibility
 Developed, tested and extensively used by the author on Cinnamon 5.0.7 and Cinnamon 6.0.
 
-Likely to work in near-future versions. May also work in some previous versions,
-but it's untested there, so there's no guarantee.
+Likely to work in near-future versions. Unlikely to work in too many older
+versions due to a simplification made for ease of maintenance.

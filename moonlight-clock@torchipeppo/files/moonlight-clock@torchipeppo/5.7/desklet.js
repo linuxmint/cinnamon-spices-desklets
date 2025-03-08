@@ -1,1 +1,0 @@
-../desklet.js
