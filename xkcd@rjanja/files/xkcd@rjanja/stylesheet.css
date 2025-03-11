@@ -4,3 +4,12 @@
     background-color: rgba(150, 168, 200, 0.7);
     border-radius: 5px;
 }
+
+.xkcd-alt-text {
+    font-size: 12px;
+    padding: 5px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    text-align: center;
+}
