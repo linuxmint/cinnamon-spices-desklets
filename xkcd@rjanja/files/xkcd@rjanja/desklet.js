@@ -35,6 +35,113 @@ function MyDesklet(metadata){
 }
 
 MyDesklet.prototype = {
+    
+    _init: function(metadata){
+        try {            
+            Desklet.Desklet.prototype._init.call(this, metadata);
+            this.metadata = metadata
+            this.updateInProgress = false;
+            this._files = [];
+            this._xkcds = [];
+            this._currentXkcd = null;
+            this.mostRecentComic = 1;
+
+            this.setHeader(_("xkcd"));
+
+            // Create container for image and alt text
+            this._mainBox = new St.BoxLayout({ vertical: true });
+
+            this._image = new Clutter.Image();
+            this._imageFrame = new Clutter.Actor({width: 0, height: 0})
+            this._imageFrame.set_content(this._image)
+            //this.setContent(this._imageFrame)
+            
+            // Add textbox to Image Frame
+            this._mainBox.add_actor(this._imageFrame);
+            
+             // Label for alt text
+            this._altTextLabel = new St.Label({
+            text: "",
+            style_class: "xkcd-alt-text",
+            x_align: Clutter.ActorAlign.FILL,
+            y_align: Clutter.ActorAlign.FILL
+            });
+            this._mainBox.add_actor(this._altTextLabel);
+
+            this.setContent(this._mainBox);
+
+            this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+            this._menu.addAction(_("View latest xkcd"), function () {
+                this.refresh(null);
+            }.bind(this));
+            this._menu.addAction(_("Random xkcd"), function () {
+                let randomComicID = Math.max(1, Math.floor(Math.random() * this.mostRecentComic));
+                this.refresh(randomComicID)
+            }.bind(this));
+            this._menu.addAction(_("Open save folder"), function () {
+                Util.spawnCommandLine("xdg-open " + this.save_path);
+            }.bind(this));
+
+            let dir_path = this.metadata["directory"];
+
+            // Replace special directory name if any, e.g. DIRECTORY_PICTURES/xkcd replaced by /home/username/Pictures/xkcd.
+            let special_dir_name = dir_path.substring(dir_path.indexOf("<") + 1, dir_path.indexOf(">"))
+            if (dir_path.indexOf("<") == 0 && special_dir_name != "") {
+                let special_dir_enumvalue = eval("GLib.UserDirectory." + special_dir_name)
+
+                // If invalid speciale dir name, get_user_special_dir falls back to desktop folder. Here we default to ~/Pictures
+                if(special_dir_enumvalue != undefined) {
+                    let special_dir_path = GLib.get_user_special_dir(special_dir_enumvalue)
+                    dir_path = dir_path.replace("<" + special_dir_name + ">", special_dir_path);
+                }
+                else {
+                    dir_path = dir_path.replace(/\<.*\>/g, "~/Pictures"); // Regex capture all between "< >"
+                }
+            }
+
+            this.save_path = dir_path.replace('~', GLib.get_home_dir());
+            let saveFolder = Gio.file_new_for_path(this.save_path);
+            if (!saveFolder.query_exists(null)) {
+                saveFolder.make_directory_with_parents(null);
+            }
+
+            this.set_tooltip(null);
+            
+            
+            let dir = Gio.file_new_for_path(this.save_path);
+            if (dir.query_exists(null)) {
+                let fileEnum = dir.enumerate_children('standard::*', Gio.FileQueryInfoFlags.NONE, null);
+                let info;
+                while ((info = fileEnum.next_file(null)) != null) {
+                    let fileType = info.get_file_type();
+                    if (fileType != Gio.FileType.DIRECTORY && info.get_content_type() == 'image/png') {
+                        let filename = info.get_name();
+                        let xkcdId = filename.substr(0, filename.indexOf('.'));
+                        this._xkcds.push(xkcdId);
+                    }
+                }
+                fileEnum.close(null);
+            }
+            this._xkcds.sort();
+            
+            this.updateInProgress = false;
+
+            if (this._xkcds.length == 0)
+            {
+                this.refresh(null);
+            }
+            else
+            {
+                this.refresh(this._xkcds[this._xkcds.length - 1]);
+                this._timeoutId = Mainloop.timeout_add_seconds(5, this.refresh.bind(this, null));
+            }            
+        }
+        catch (e) {
+            global.logError(e);
+        }
+        return true;
+    },
+    
     __proto__: Desklet.Desklet.prototype,
 
     download_file: function(url, localFilename, callback) {
@@ -164,6 +271,8 @@ MyDesklet.prototype = {
                 catch (e) {}
             }
             
+            this._altTextLabel.set_text(this.curXkcd.alt); // Set alt text
+
             this.set_tooltip(null);
             
             let imgFilename = this.save_path + '/' + this.curXkcd.num + '.png';
@@ -206,95 +315,7 @@ MyDesklet.prototype = {
         });
     },
 
-    _init: function(metadata){
-        try {            
-            Desklet.Desklet.prototype._init.call(this, metadata);
-            this.metadata = metadata
-            this.updateInProgress = false;
-            this._files = [];
-            this._xkcds = [];
-            this._currentXkcd = null;
-            this.mostRecentComic = 1;
-
-            this.setHeader(_("xkcd"));
-
-            this._image = new Clutter.Image();
-            this._imageFrame = new Clutter.Actor({width: 0, height: 0})
-            this._imageFrame.set_content(this._image)
-            this.setContent(this._imageFrame)
-            
-            this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-            this._menu.addAction(_("View latest xkcd"), function () {
-                this.refresh(null);
-            }.bind(this));
-            this._menu.addAction(_("Random xkcd"), function () {
-                let randomComicID = Math.max(1, Math.floor(Math.random() * this.mostRecentComic));
-                this.refresh(randomComicID)
-            }.bind(this));
-            this._menu.addAction(_("Open save folder"), function () {
-                Util.spawnCommandLine("xdg-open " + this.save_path);
-            }.bind(this));
-
-            let dir_path = this.metadata["directory"];
-
-            // Replace special directory name if any, e.g. DIRECTORY_PICTURES/xkcd replaced by /home/username/Pictures/xkcd.
-            let special_dir_name = dir_path.substring(dir_path.indexOf("<") + 1, dir_path.indexOf(">"))
-            if (dir_path.indexOf("<") == 0 && special_dir_name != "") {
-                let special_dir_enumvalue = eval("GLib.UserDirectory." + special_dir_name)
-
-                // If invalid speciale dir name, get_user_special_dir falls back to desktop folder. Here we default to ~/Pictures
-                if(special_dir_enumvalue != undefined) {
-                    let special_dir_path = GLib.get_user_special_dir(special_dir_enumvalue)
-                    dir_path = dir_path.replace("<" + special_dir_name + ">", special_dir_path);
-                }
-                else {
-                    dir_path = dir_path.replace(/\<.*\>/g, "~/Pictures"); // Regex capture all between "< >"
-                }
-            }
-
-            this.save_path = dir_path.replace('~', GLib.get_home_dir());
-            let saveFolder = Gio.file_new_for_path(this.save_path);
-            if (!saveFolder.query_exists(null)) {
-                saveFolder.make_directory_with_parents(null);
-            }
-
-            this.set_tooltip(null);
-            
-            
-            let dir = Gio.file_new_for_path(this.save_path);
-            if (dir.query_exists(null)) {
-                let fileEnum = dir.enumerate_children('standard::*', Gio.FileQueryInfoFlags.NONE, null);
-                let info;
-                while ((info = fileEnum.next_file(null)) != null) {
-                    let fileType = info.get_file_type();
-                    if (fileType != Gio.FileType.DIRECTORY && info.get_content_type() == 'image/png') {
-                        let filename = info.get_name();
-                        let xkcdId = filename.substr(0, filename.indexOf('.'));
-                        this._xkcds.push(xkcdId);
-                    }
-                }
-                fileEnum.close(null);
-            }
-            this._xkcds.sort();
-            
-            this.updateInProgress = false;
-
-            if (this._xkcds.length == 0)
-            {
-                this.refresh(null);
-            }
-            else
-            {
-                this.refresh(this._xkcds[this._xkcds.length - 1]);
-                this._timeoutId = Mainloop.timeout_add_seconds(5, this.refresh.bind(this, null));
-            }            
-        }
-        catch (e) {
-            global.logError(e);
-        }
-        return true;
-    },
-
+    
     _update: function(){
         try {
             let idx = this._xkcds.indexOf(this._currentXkcd);
@@ -326,3 +347,4 @@ function main(metadata, desklet_id){
     let desklet = new MyDesklet(metadata);
     return desklet;
 }
+
