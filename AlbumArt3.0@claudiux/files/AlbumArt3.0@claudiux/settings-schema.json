@@ -44,5 +44,13 @@
         "units" : "seconds",
         "step": 5,
         "tooltip": "0 means no fade"
-     }
+    },
+    "desklet-x": {
+        "type": "generic",
+        "default": -1
+    },
+    "desklet-y": {
+        "type": "generic",
+        "default": -1
+    }
 }

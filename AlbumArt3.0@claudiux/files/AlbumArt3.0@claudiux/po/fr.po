@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: AlbumArt3.0@claudiux 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-02-11 11:04+0100\n"
+"POT-Creation-Date: 2025-03-13 20:09+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: claudiux\n"
 "Language-Team: \n"
@@ -18,24 +18,30 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#. desklet.js:66
-msgid "Radio3.0 Album Art"
-msgstr "Radio3.0 Album Art"
+#. desklet.js:134
+msgid "Album Art"
+msgstr "Album Art (Pochette d'album)"
 
-#. desklet.js:301
+#. desklet.js:410
 msgid "Display Album Art at full size"
 msgstr "Afficher la pochette de l'album en taille réelle"
 
+#. desklet.js:417
+msgid "Don't display this image"
+msgstr "Ne pas afficher cette image"
+
+#. desklet.js:427
+msgid "Don't display any new image"
+msgstr "Ne plus afficher aucune image"
+
 #. metadata.json->name
-msgid "Album Art for Radio3.0"
-msgstr "Pochette d'album pour Radio3.0"
+msgid "Album Art for Radio3.0 and Enhanced Sound applets"
+msgstr "Pochette d'album pour l'applet Radio3.0 et l'applet Son améliorée"
 
 #. metadata.json->description
-msgid ""
-"A digital photo frame desklet to display the Radio3.0 album art, if available"
+msgid "A digital photo frame desklet to display an album art, if available"
 msgstr ""
-"Un cadre photo numérique pour afficher la pochette de l'album Radio3.0, si "
-"disponible"
+"Un cadre photo numérique pour afficher une pochette d'album, si disponible"
 
 #. settings-schema.json->height->description
 msgid "Height"

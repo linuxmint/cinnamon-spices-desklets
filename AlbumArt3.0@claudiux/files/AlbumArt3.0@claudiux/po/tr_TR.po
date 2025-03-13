@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: AlbumArt3.0@claudiux 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-02-11 11:04+0100\n"
+"POT-Creation-Date: 2025-03-13 20:09+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Serkan ÖNDER <serkanonder@outlook.com>\n"
 "Language-Team: \n"
@@ -18,21 +18,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#. desklet.js:66
-msgid "Radio3.0 Album Art"
+#. desklet.js:134
+#, fuzzy
+msgid "Album Art"
 msgstr "Radio3.0 Albüm Kapağı"
 
-#. desklet.js:301
+#. desklet.js:410
 msgid "Display Album Art at full size"
 msgstr "Albüm Kapağını tam boyutta görüntüle"
 
+#. desklet.js:417
+msgid "Don't display this image"
+msgstr ""
+
+#. desklet.js:427
+msgid "Don't display any new image"
+msgstr ""
+
 #. metadata.json->name
-msgid "Album Art for Radio3.0"
+#, fuzzy
+msgid "Album Art for Radio3.0 and Enhanced Sound applets"
 msgstr "Radio3.0 için Albüm Kapağı"
 
 #. metadata.json->description
-msgid ""
-"A digital photo frame desklet to display the Radio3.0 album art, if available"
+#, fuzzy
+msgid "A digital photo frame desklet to display an album art, if available"
 msgstr ""
 "Mevcutsa, Radio3.0 albüm kapak resmini görüntülemek için bir dijital "
 "fotoğraf çerçevesi uygulamacığı"
