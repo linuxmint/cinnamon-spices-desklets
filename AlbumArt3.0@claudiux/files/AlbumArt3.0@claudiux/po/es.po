@@ -18,9 +18,8 @@ msgstr ""
 "X-Generator: Poedit 3.4.4\n"
 
 #. desklet.js:134
-#, fuzzy
 msgid "Album Art"
-msgstr "Carátula del álbum para Radio3.0"
+msgstr "Carátula del álbum"
 
 #. desklet.js:410
 msgid "Display Album Art at full size"
@@ -28,23 +27,21 @@ msgstr "Mostrar la carátula del álbum a tamaño completo"
 
 #. desklet.js:417
 msgid "Don't display this image"
-msgstr ""
+msgstr "No mostrar esta imagen"
 
 #. desklet.js:427
 msgid "Don't display any new image"
-msgstr ""
+msgstr "No mostrar ninguna nueva imagen"
 
 #. metadata.json->name
-#, fuzzy
 msgid "Album Art for Radio3.0 and Enhanced Sound applets"
-msgstr "Carátula del álbum para Radio3.0"
+msgstr "Carátula del álbum para los applets Radio3.0 y Sonido mejorado"
 
 #. metadata.json->description
-#, fuzzy
 msgid "A digital photo frame desklet to display an album art, if available"
 msgstr ""
 "Un marco de fotos digital para mostrar la carátula del álbum Radio3.0, si "
-"está disponible."
+"está disponible"
 
 #. settings-schema.json->height->description
 msgid "Height"
