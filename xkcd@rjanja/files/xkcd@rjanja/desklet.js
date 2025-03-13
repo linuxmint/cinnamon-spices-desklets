@@ -9,10 +9,12 @@ const Util = imports.misc.util;
 const GdkPixbuf = imports.gi.GdkPixbuf;
 const Cogl = imports.gi.Cogl;
 
+const Pango = imports.gi.Pango;
 const Tooltips = imports.ui.tooltips;
 const PopupMenu = imports.ui.popupMenu;
 const Cinnamon = imports.gi.Cinnamon;
 const Soup = imports.gi.Soup
+
 let session
 if (Soup.get_major_version() == "2") {
     session = new Soup.SessionAsync();
@@ -164,6 +166,8 @@ MyDesklet.prototype = {
                 catch (e) {}
             }
             
+            this._altTextLabel.set_text(this.curXkcd.alt); // Set alt text
+
             this.set_tooltip(null);
             
             let imgFilename = this.save_path + '/' + this.curXkcd.num + '.png';
@@ -218,11 +222,34 @@ MyDesklet.prototype = {
 
             this.setHeader(_("xkcd"));
 
+            // Create container for image and alt text
+            this._mainBox = new St.BoxLayout({ vertical: true });
+
             this._image = new Clutter.Image();
             this._imageFrame = new Clutter.Actor({width: 0, height: 0})
             this._imageFrame.set_content(this._image)
-            this.setContent(this._imageFrame)
+            //this.setContent(this._imageFrame)
             
+            // Add textbox to Image Frame
+            this._mainBox.add_actor(this._imageFrame);
+            
+             // Label for alt text
+            this._altTextLabel = new St.Label({
+            text: "",
+            style_class: "xkcd-alt-text",
+            x_align: Clutter.ActorAlign.FILL,
+            y_align: Clutter.ActorAlign.START
+            });
+
+            // Enable text wrapping on the underlying Clutter.Text
+            this._altTextLabel.clutter_text.set_line_wrap(true);
+            this._altTextLabel.clutter_text.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
+            this._altTextLabel.clutter_text.set_ellipsize(Pango.EllipsizeMode.NONE);
+
+            this._mainBox.add_actor(this._altTextLabel);
+
+            this.setContent(this._mainBox);
+
             this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
             this._menu.addAction(_("View latest xkcd"), function () {
                 this.refresh(null);

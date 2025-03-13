@@ -4,3 +4,10 @@
     background-color: rgba(150, 168, 200, 0.7);
     border-radius: 5px;
 }
+
+.xkcd-alt-text {
+    white-space: normal;
+    word-wrap: break-word;
+    /* Optionally, define a max-width so the label knows when to wrap */
+    max-width: 300px;
+}
