@@ -1,6 +1,13 @@
 .xkcd-box {
     padding: 5px;
-    border: 2px solid #96A8C8;
+    border: 2px solid #96a8c8;
     background-color: rgba(150, 168, 200, 0.7);
+    border-radius: 5px;
+}
+.xkcd-alt-text {
+    font-size: 16px;
+    padding: 5px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 5px;
 }
