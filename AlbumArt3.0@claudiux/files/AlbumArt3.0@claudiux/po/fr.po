@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: AlbumArt3.0@claudiux 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-03-13 20:09+0100\n"
+"POT-Creation-Date: 2025-03-14 02:12+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: claudiux\n"
 "Language-Team: \n"
@@ -22,15 +22,15 @@ msgstr ""
 msgid "Album Art"
 msgstr "Album Art (Pochette d'album)"
 
-#. desklet.js:410
+#. desklet.js:412
 msgid "Display Album Art at full size"
 msgstr "Afficher la pochette de l'album en taille réelle"
 
-#. desklet.js:417
+#. desklet.js:419
 msgid "Don't display this image"
 msgstr "Ne pas afficher cette image"
 
-#. desklet.js:427
+#. desklet.js:429
 msgid "Don't display any new image"
 msgstr "Ne plus afficher aucune image"
 
@@ -115,3 +115,7 @@ msgstr "secondes"
 #. settings-schema.json->fade-delay->tooltip
 msgid "0 means no fade"
 msgstr "0 signifie aucun fondu"
+
+#. settings-schema.json->enable-at-startup->description
+msgid "Activate Album Art display at startup"
+msgstr "Activer l'affichage des pochettes d'album au démarrage"
