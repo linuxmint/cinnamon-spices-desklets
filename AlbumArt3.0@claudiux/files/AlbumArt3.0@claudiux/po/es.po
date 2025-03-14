@@ -118,4 +118,4 @@ msgstr "0 significa que no hay desvanecimiento"
 
 #. settings-schema.json->enable-at-startup->description
 msgid "Activate Album Art display at startup"
-msgstr ""
+msgstr "Activar la visualización de la carátula del álbum al inicio"
