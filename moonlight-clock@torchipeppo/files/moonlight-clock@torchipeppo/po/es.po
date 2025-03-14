@@ -1,0 +1,776 @@
+# MOONLIGHT CLOCK
+# This file is put in the public domain.
+# torchipeppo, 2025
+#
+#
+# Please read the associated README for context guidance.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: moonlight-clock@torchipeppo 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-03-08 19:15+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#. 3.4/constants.js:43 5.4/constants.js:43
+msgid "Next"
+msgstr "Siguiente"
+
+#. 3.4/constants.js:100 5.4/constants.js:100
+msgid "New Moon"
+msgstr "Luna nueva"
+
+#. 3.4/constants.js:101 5.4/constants.js:101
+msgid "Waxing Crescent"
+msgstr "Luna nueva visible"
+
+#. 3.4/constants.js:102 5.4/constants.js:102
+msgid "First Quarter"
+msgstr "Cuarto creciente"
+
+#. 3.4/constants.js:103 5.4/constants.js:103
+msgid "Waxing Gibbous"
+msgstr "Gibosa creciente"
+
+#. 3.4/constants.js:104 5.4/constants.js:104
+msgid "Full Moon"
+msgstr "Luna llena"
+
+#. 3.4/constants.js:105 5.4/constants.js:105
+msgid "Waning Gibbous"
+msgstr "Gibosa menguante"
+
+#. 3.4/constants.js:106 5.4/constants.js:106
+msgid "Last Quarter"
+msgstr "Cuarto menguante"
+
+#. 3.4/constants.js:107 5.4/constants.js:107
+msgid "Waning Crescent"
+msgstr "Luna menguante"
+
+#. 3.4/constants.js:111 5.4/constants.js:111
+msgid "New"
+msgstr "Nueva"
+
+#. 3.4/constants.js:112 3.4/constants.js:114 5.4/constants.js:112
+#. 5.4/constants.js:114
+msgid "Half"
+msgstr "Media"
+
+#. 3.4/constants.js:113 5.4/constants.js:113
+msgid "Full"
+msgstr "Llena"
+
+#. 3.4/constants.js:170 5.4/constants.js:170
+msgid "Clear"
+msgstr "Despejado"
+
+#. 3.4/constants.js:171 3.4/constants.js:172 5.4/constants.js:171
+#. 5.4/constants.js:172
+msgid "Cloudy"
+msgstr "Nuvoso"
+
+#. 3.4/constants.js:173 5.4/constants.js:173
+msgid "Fog"
+msgstr "Niebla"
+
+#. 3.4/constants.js:174 3.4/constants.js:175 3.4/weatherapi_source.js:154
+#. 5.4/constants.js:174 5.4/constants.js:175 5.4/weatherapi_source.js:154
+msgid "Rain"
+msgstr "Lluvia"
+
+#. 3.4/constants.js:176 5.4/constants.js:176
+msgid "Storm"
+msgstr "Tormenta"
+
+#. 3.4/constants.js:177 5.4/constants.js:177
+msgid ""
+"Cold\n"
+"precip."
+msgstr ""
+"Precip.\n"
+"frío"
+
+#. 3.4/desklet.js:149 5.4/desklet.js:149
+msgid "Date and Time Settings"
+msgstr "Configuración de fecha y hora"
+
+#. 3.4/desklet.js:408 3.4/desklet.js:439 5.4/desklet.js:408 5.4/desklet.js:439
+msgid "Limit"
+msgstr "Límite"
+
+#. 3.4->settings-schema.json->bottom-emoji-type->options
+#. 3.4->settings-schema.json->bottom-caption-type->options
+#. 5.4->settings-schema.json->bottom-emoji-type->options
+#. 5.4->settings-schema.json->bottom-caption-type->options
+#. 3.4/desklet.js:412 5.4/desklet.js:412
+msgid "None"
+msgstr "Ninguno"
+
+#. 3.4/desklet.js:454 5.4/desklet.js:454
+msgid ""
+"Right-click\n"
+"to configure!"
+msgstr ""
+"¡Haz clic derecho \n"
+"para configurar!"
+
+#. metadata.json->name
+#. 3.4/desklet.js:507 5.4/desklet.js:507
+msgid "Moonlight Clock"
+msgstr "Reloj de luz de luna"
+
+#. 3.4/wallclock_source.js:13 5.4/wallclock_source.js:13
+msgid "Late Night"
+msgstr "Tarde noche"
+
+#. 3.4/wallclock_source.js:16 5.4/wallclock_source.js:16
+msgid "Early Morning"
+msgstr "Madrugada"
+
+#. 3.4/wallclock_source.js:19 5.4/wallclock_source.js:19
+msgid "Morning"
+msgstr "Por la mañana"
+
+#. 3.4/wallclock_source.js:22 5.4/wallclock_source.js:22
+msgid "Daytime"
+msgstr "De día"
+
+#. 3.4/wallclock_source.js:25 5.4/wallclock_source.js:25
+msgid "Afternoon"
+msgstr "Por la tarde"
+
+#. 3.4/wallclock_source.js:28 5.4/wallclock_source.js:28
+msgid "Evening"
+msgstr "Por la noche"
+
+#. 3.4/wallclock_source.js:125 5.4/wallclock_source.js:125
+msgid "Today"
+msgstr "Hoy"
+
+#. 3.4/weatherapi_source.js:102 5.4/weatherapi_source.js:102
+msgid ""
+"No network,\n"
+"retrying..."
+msgstr ""
+"Sin red, \n"
+"reintentando..."
+
+#. 3.4/weatherapi_source.js:105 5.4/weatherapi_source.js:105
+msgid ""
+"Error: see log\n"
+"Super + L"
+msgstr ""
+"Error: ver registro\n"
+"Super + L"
+
+#. 3.4/weatherapi_source.js:157 5.4/weatherapi_source.js:157
+msgid "Temp"
+msgstr "Temp"
+
+#. 3.4/loadDialog.py:27 3.4/saveDialog.py:30 5.4/loadDialog.py:27
+#. 5.4/saveDialog.py:30
+msgid "JSON files"
+msgstr "Archivo JSON"
+
+#. 3.4/loadDialog.py:30 5.4/loadDialog.py:30
+msgid "Load"
+msgstr "Cargar"
+
+#. 3.4/saveDialog.py:33 5.4/saveDialog.py:33
+msgid "Save"
+msgstr "Guardar"
+
+#. 3.4/settingsWidgets.py:129 5.4/settingsWidgets.py:129
+msgid "Enabled"
+msgstr "Habilitada"
+
+#. 3.4/settingsWidgets.py:130 5.4/settingsWidgets.py:130
+msgid "Persistent"
+msgstr "Persistente"
+
+#. 3.4/settingsWidgets.py:131 5.4/settingsWidgets.py:131
+msgid "Date"
+msgstr "Fecha"
+
+#. 3.4/settingsWidgets.py:132 5.4/settingsWidgets.py:132
+msgid "Name"
+msgstr "Nombre"
+
+#. 3.4/settingsWidgets.py:233 3.4/settingsWidgets.py:329
+#. 5.4/settingsWidgets.py:233 5.4/settingsWidgets.py:329
+msgid "Add new entry"
+msgstr "Añadir nueva entrada"
+
+#. 3.4/settingsWidgets.py:237 5.4/settingsWidgets.py:237
+msgid "Remove selected entry"
+msgstr "Eliminar la entrada seleccionada"
+
+#. 3.4/settingsWidgets.py:242 5.4/settingsWidgets.py:242
+msgid "Edit selected entry"
+msgstr "Editar la entrada seleccionada"
+
+#. 3.4/settingsWidgets.py:247 5.4/settingsWidgets.py:247
+msgid "Move selected entry up"
+msgstr "Mover la entrada seleccionada hacia arriba"
+
+#. 3.4/settingsWidgets.py:252 5.4/settingsWidgets.py:252
+msgid "Move selected entry down"
+msgstr "Mover la entrada seleccionada hacia abajo"
+
+#. 3.4/settingsWidgets.py:331 5.4/settingsWidgets.py:331
+msgid "Edit entry"
+msgstr "Editar entrada"
+
+#. metadata.json->description
+msgid ""
+"An aesthetic and customizable desklet that can function as clock, weather "
+"display, and/or tracker of important dates. Based on Persona 3."
+msgstr ""
+"Un escritorio estético y personalizable que puede funcionar como reloj, "
+"indicador del tiempo y/o rastreador de fechas importantes. Basado en Persona "
+"3."
+
+#. metadata.json->comments
+msgid ""
+"Best placed in the top right corner on the screen. Use the \"offset\" "
+"configuration for precise alignment."
+msgstr ""
+"Se coloca mejor en la esquina superior derecha de la pantalla. Utilice la "
+"configuración \"offset\" para una alineación precisa."
+
+#. 3.4->settings-schema.json->global-page->title
+#. 5.4->settings-schema.json->global-page->title
+msgid "Global"
+msgstr "Global"
+
+#. 3.4->settings-schema.json->top-page->title
+#. 5.4->settings-schema.json->top-page->title
+msgid "Top row"
+msgstr "Fila superior"
+
+#. 3.4->settings-schema.json->middle-page->title
+#. 5.4->settings-schema.json->middle-page->title
+msgid "Middle row"
+msgstr "Fila central"
+
+#. 3.4->settings-schema.json->bottom-page->title
+#. 5.4->settings-schema.json->bottom-page->title
+msgid "Bottom row"
+msgstr "Fila inferior"
+
+#. 3.4->settings-schema.json->data-page->title
+#. 5.4->settings-schema.json->data-page->title
+msgid "Data"
+msgstr "Datos"
+
+#. 3.4->settings-schema.json->save-load-page->title
+#. 5.4->settings-schema.json->save-load-page->title
+msgid "Save/Load"
+msgstr "Guardar/Cargar"
+
+#. 3.4->settings-schema.json->global-positioning-section->title
+#. 5.4->settings-schema.json->global-positioning-section->title
+msgid "Positioning"
+msgstr "Posicionamiento"
+
+#. 3.4->settings-schema.json->global-scale-section->title
+#. 3.4->settings-schema.json->bottom-emoji-size->description
+#. 5.4->settings-schema.json->global-scale-section->title
+#. 5.4->settings-schema.json->bottom-emoji-size->description
+msgid "Size"
+msgstr "Tamaño"
+
+#. 3.4->settings-schema.json->global-color-section->title
+#. 5.4->settings-schema.json->global-color-section->title
+msgid "Color"
+msgstr "Color"
+
+#. 3.4->settings-schema.json->top-format-section->title
+#. 3.4->settings-schema.json->middle-format-section->title
+#. 5.4->settings-schema.json->top-format-section->title
+#. 5.4->settings-schema.json->middle-format-section->title
+msgid "Time format"
+msgstr "Formato de tiempo"
+
+#. 3.4->settings-schema.json->top-appearance-section->title
+#. 3.4->settings-schema.json->middle-appearance-section->title
+#. 5.4->settings-schema.json->top-appearance-section->title
+#. 5.4->settings-schema.json->middle-appearance-section->title
+msgid "Appearance"
+msgstr "Apariencia"
+
+#. 3.4->settings-schema.json->bottom-requirements-section->title
+#. 5.4->settings-schema.json->bottom-requirements-section->title
+msgid "Requirements"
+msgstr "Requisitos"
+
+#. 3.4->settings-schema.json->bottom-emoji-section->title
+#. 5.4->settings-schema.json->bottom-emoji-section->title
+msgid "Emoji settings"
+msgstr "Configuración de emojis"
+
+#. 3.4->settings-schema.json->bottom-label-section->title
+#. 5.4->settings-schema.json->bottom-label-section->title
+msgid "Caption settings"
+msgstr "Configuración de subtítulos"
+
+#. 3.4->settings-schema.json->data-weatherapi-section->title
+#. 5.4->settings-schema.json->data-weatherapi-section->title
+msgid "WeatherAPI settings"
+msgstr "Configuración de WeatherAPI"
+
+#. 3.4->settings-schema.json->data-countdown-section->title
+#. 5.4->settings-schema.json->data-countdown-section->title
+msgid "Custom countdown dates"
+msgstr "Fechas de cuenta regresiva personalizada"
+
+#. 3.4->settings-schema.json->save-section->title
+#. 5.4->settings-schema.json->save-section->title
+msgid "Save configuration"
+msgstr "Guardar configuración"
+
+#. 3.4->settings-schema.json->load-section->title
+#. 5.4->settings-schema.json->load-section->title
+msgid "Load configuration"
+msgstr "Cargar configuración"
+
+#. 3.4->settings-schema.json->global-positioning-help->description
+#. 5.4->settings-schema.json->global-positioning-help->description
+msgid ""
+"Set these offsets with respect to your desklet grid so that this fits "
+"precisely into your top right corner."
+msgstr ""
+"Ajusta estos desplazamientos con respecto a la cuadrícula de tu desklet para "
+"que encaje exactamente en la esquina superior derecha."
+
+#. 3.4->settings-schema.json->global-h-offset->description
+#. 5.4->settings-schema.json->global-h-offset->description
+msgid "Horizontal offset"
+msgstr "Desplazamiento horizontal"
+
+#. 3.4->settings-schema.json->global-v-offset->description
+#. 3.4->settings-schema.json->top-v-offset->description
+#. 3.4->settings-schema.json->middle-v-offset->description
+#. 3.4->settings-schema.json->bottom-caption-v-offset->description
+#. 5.4->settings-schema.json->global-v-offset->description
+#. 5.4->settings-schema.json->top-v-offset->description
+#. 5.4->settings-schema.json->middle-v-offset->description
+#. 5.4->settings-schema.json->bottom-caption-v-offset->description
+msgid "Vertical offset"
+msgstr "Desplazamiento vertical"
+
+#. 3.4->settings-schema.json->global-scale->description
+#. 5.4->settings-schema.json->global-scale->description
+msgid "Global scale"
+msgstr "Escala global"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Blue"
+msgstr "Azul"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Pink"
+msgstr "Rosa"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Green"
+msgstr "Verde"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Yellow"
+msgstr "Amarillo"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Red"
+msgstr "Rojo"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Light Green"
+msgstr "Verde claro"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Purple"
+msgstr "Morado"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Dark Blue"
+msgstr "Azul oscuro"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Grey"
+msgstr "Gris"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Custom"
+msgstr "Personalizado"
+
+#. 3.4->settings-schema.json->global-color-scheme->description
+#. 5.4->settings-schema.json->global-color-scheme->description
+msgid "Color scheme"
+msgstr "Esquema de colores"
+
+#. 3.4->settings-schema.json->global-custom-corner1->description
+#. 5.4->settings-schema.json->global-custom-corner1->description
+msgid "Main color 1"
+msgstr "Color principal 1"
+
+#. 3.4->settings-schema.json->global-custom-corner2->description
+#. 5.4->settings-schema.json->global-custom-corner2->description
+msgid "Main color 2"
+msgstr "Color principal 2"
+
+#. 3.4->settings-schema.json->global-custom-time->description
+#. 5.4->settings-schema.json->global-custom-time->description
+msgid "Middle row text"
+msgstr "Texto de la fila central"
+
+#. 3.4->settings-schema.json->global-custom-shadow->description
+#. 5.4->settings-schema.json->global-custom-shadow->description
+msgid "Text drop shadow"
+msgstr "Sombra de texto"
+
+#. 3.4->settings-schema.json->global-custom-date->description
+#. 5.4->settings-schema.json->global-custom-date->description
+msgid "Top row text"
+msgstr "Texto de la fila superior"
+
+#. 3.4->settings-schema.json->global-custom-bottom->description
+#. 5.4->settings-schema.json->global-custom-bottom->description
+msgid "Bottom row text"
+msgstr "Texto de la fila inferior"
+
+#. 3.4->settings-schema.json->global-custom-highlight->description
+#. 5.4->settings-schema.json->global-custom-highlight->description
+msgid "Highlight color"
+msgstr "Color de resaltado"
+
+#. 3.4->settings-schema.json->global-color-invert-bottom->description
+#. 5.4->settings-schema.json->global-color-invert-bottom->description
+msgid "Invert bottom colors"
+msgstr "Invertir colores de fondo"
+
+#. 3.4->settings-schema.json->global-color-invert-bottom->tooltip
+#. 5.4->settings-schema.json->global-color-invert-bottom->tooltip
+msgid ""
+"May be useful if the bottom caption doesn't stand out against your background"
+msgstr "Puede ser útil si la leyenda inferior no destaca sobre el fondo"
+
+#. 3.4->settings-schema.json->global-color-use-highlight->description
+#. 5.4->settings-schema.json->global-color-use-highlight->description
+msgid "Highlight bottom number display"
+msgstr "Resaltar el número inferior de la pantalla"
+
+#. 3.4->settings-schema.json->global-color-use-highlight->tooltip
+#. 5.4->settings-schema.json->global-color-use-highlight->tooltip
+msgid "Affects: rain chance display, temperature display, countdown displays"
+msgstr ""
+"Afecta a: indicador de probabilidad de lluvia, indicador de temperatura, "
+"indicadores de cuenta regresiva"
+
+#. 3.4->settings-schema.json->top-format->description
+#. 3.4->settings-schema.json->middle-format->description
+#. 5.4->settings-schema.json->top-format->description
+#. 5.4->settings-schema.json->middle-format->description
+msgid "Format specification"
+msgstr "Especificación de formato"
+
+#. 3.4->settings-schema.json->top-format-help->description
+#. 5.4->settings-schema.json->top-format-help->description
+msgid ""
+"This uses standard strftime, with the addition of the %! specifier to show "
+"an approximate phase of the day (e.g. Morning, Afternoon, Evening, ...). "
+"Leave empty to show a default date according to your locale and settings."
+msgstr ""
+"El formato es el estándar de strftime, con el añadido de la secuencia "
+"especial %! que muestra una fase aproximada del día (Mañana, Tarde, "
+"Noche, ...). Déjelo en blanco para mostrar la fecha de hoy en un formato "
+"predeterminado según su idioma y configuración."
+
+#. 3.4->settings-schema.json->top-font->description
+#. 3.4->settings-schema.json->middle-font->description
+#. 3.4->settings-schema.json->bottom-caption-font->description
+#. 5.4->settings-schema.json->top-font->description
+#. 5.4->settings-schema.json->middle-font->description
+#. 5.4->settings-schema.json->bottom-caption-font->description
+msgid "Font"
+msgstr "Fuente"
+
+#. 3.4->settings-schema.json->top-v-offset->tooltip
+#. 3.4->settings-schema.json->middle-v-offset->tooltip
+#. 3.4->settings-schema.json->bottom-caption-v-offset->tooltip
+#. 5.4->settings-schema.json->top-v-offset->tooltip
+#. 5.4->settings-schema.json->middle-v-offset->tooltip
+#. 5.4->settings-schema.json->bottom-caption-v-offset->tooltip
+msgid ""
+"Can help conpensate for the varying vertical alignment of different fonts."
+msgstr ""
+"Puede ayudar a compensar la diferente alineación vertical de los distintos "
+"tipos de letra."
+
+#. 3.4->settings-schema.json->top-weekday->description
+#. 5.4->settings-schema.json->top-weekday->description
+msgid "Show separate weekday (fixed size)"
+msgstr "Mostrar día de la semana por separado (tamaño fijo)"
+
+#. 3.4->settings-schema.json->middle-format-help->description
+#. 5.4->settings-schema.json->middle-format-help->description
+msgid ""
+"This uses standard strftime, with the addition of the %! specifier to show "
+"an approximate phase of the day (e.g. Morning, Afternoon, Evening, ...). "
+"Leave empty to show a default clock according to your locale and settings."
+msgstr ""
+"Utiliza strftime estándar, con la adición del especificador %! para mostrar "
+"una fase aproximada del día (por ejemplo, Mañana, Tarde, Noche, ...). Deje "
+"vacío para mostrar un reloj por defecto de acuerdo con su configuración "
+"regional."
+
+#. 3.4->settings-schema.json->middle-shadow->description
+#. 3.4->settings-schema.json->bottom-caption-shadow->description
+#. 5.4->settings-schema.json->middle-shadow->description
+#. 5.4->settings-schema.json->bottom-caption-shadow->description
+msgid "Drop shadow"
+msgstr "Sombra paralela"
+
+#. 3.4->settings-schema.json->middle-shadow-offset->description
+#. 3.4->settings-schema.json->bottom-caption-shadow-offset->description
+#. 5.4->settings-schema.json->middle-shadow-offset->description
+#. 5.4->settings-schema.json->bottom-caption-shadow-offset->description
+msgid "Drop shadow offset"
+msgstr "Desplazamiento de sombra paralela"
+
+#. 3.4->settings-schema.json->bottom-requirements-help->description
+#. 5.4->settings-schema.json->bottom-requirements-help->description
+msgid ""
+"(W) - A valid WeatherAPI key is required. Go to the \"Data\" page to enable "
+"it.\n"
+"(C?) - OPTIONAL: precision can be improved by generating a local lunar "
+"calendar. See https://github.com/torchipeppo/p3-clock-for-cinnamon/tree/"
+"master/lunar_calendar_generation for instructions.\n"
+"(D) - You must provide one or more important dates to count down to in the "
+"\"Data\" page."
+msgstr ""
+"(W) - Se necesita una clave WeatherAPI válida. Vaya a la página \"Datos\" "
+"para activarla.\n"
+"(C?) - OPCIONAL: la precisión puede mejorarse generando un calendario lunar "
+"local. Consulte https://github.com/torchipeppo/p3-clock-for-cinnamon/tree/"
+"master/lunar_calendar_generation para obtener instrucciones.\n"
+"(D) - Debe proporcionar una o más fechas importantes para la cuenta atrás en "
+"la página \"Datos\"."
+
+#. 3.4->settings-schema.json->wapi-help->description
+#. 5.4->settings-schema.json->wapi-help->description
+msgid ""
+"To access weather data from WeatherAPI, an API key is required. Sign up on "
+"weatherapi.com to get one. Be mindful of your request budget when setting "
+"the update frequency or manually requesting updates."
+msgstr ""
+"Para acceder a los datos meteorológicos de WeatherAPI, se necesita una clave "
+"API. Regístrese en weatherapi.com para obtener una. Ten en cuenta el "
+"presupuesto de tu solicitud cuando establezcas la frecuencia de "
+"actualización o solicites actualizaciones manualmente."
+
+#. 3.4->settings-schema.json->wapi-enable->description
+#. 5.4->settings-schema.json->wapi-enable->description
+msgid "Enable WeatherAPI for weather display"
+msgstr "Activar WeatherAPI para la visualización del tiempo"
+
+#. 3.4->settings-schema.json->wapi-key->description
+#. 5.4->settings-schema.json->wapi-key->description
+msgid "WeatherAPI key"
+msgstr "Clave de WeatherAPI"
+
+#. 3.4->settings-schema.json->wapi-key->tooltip
+#. 5.4->settings-schema.json->wapi-key->tooltip
+msgid "Your API key for WeatherAPI. Leave empty to disable weather display."
+msgstr ""
+"Su clave API para WeatherAPI. Deje vacío para desactivar la visualización "
+"del tiempo."
+
+#. 3.4->settings-schema.json->wapi-query->description
+#. 5.4->settings-schema.json->wapi-query->description
+msgid "Weather location"
+msgstr "Ubicación meteorológica"
+
+#. 3.4->settings-schema.json->wapi-query->tooltip
+#. 5.4->settings-schema.json->wapi-query->tooltip
+msgid ""
+"Enter your location name (e.g. \"Tokyo\"), your coordinates (e.g. "
+"\"123.45,98.765\"), or \"auto:ip\" for automatic lookup based on your IP "
+"address."
+msgstr ""
+"Introduzca el nombre de su ubicación (por ejemplo, \"Tokio\"), sus "
+"coordenadas (por ejemplo, \"123.45,98.765\") o \"auto:ip\" para una búsqueda "
+"automática basada en su dirección IP."
+
+#. 3.4->settings-schema.json->wapi-update-period-minutes->options
+#. 5.4->settings-schema.json->wapi-update-period-minutes->options
+msgid "60 minutes"
+msgstr "60 minutos"
+
+#. 3.4->settings-schema.json->wapi-update-period-minutes->description
+#. 5.4->settings-schema.json->wapi-update-period-minutes->description
+msgid "Update frequency"
+msgstr "Frecuencia de actualización"
+
+#. 3.4->settings-schema.json->wapi-update-button->description
+#. 5.4->settings-schema.json->wapi-update-button->description
+msgid "Refresh WeatherAPI"
+msgstr "Actualizar WeatherAPI"
+
+#. 3.4->settings-schema.json->bottom-emoji-type->options
+#. 3.4->settings-schema.json->bottom-caption-type->options
+#. 5.4->settings-schema.json->bottom-emoji-type->options
+#. 5.4->settings-schema.json->bottom-caption-type->options
+msgid "Weather (W)"
+msgstr "Tiempo (W)"
+
+#. 3.4->settings-schema.json->bottom-emoji-type->options
+#. 3.4->settings-schema.json->bottom-caption-type->options
+#. 5.4->settings-schema.json->bottom-emoji-type->options
+#. 5.4->settings-schema.json->bottom-caption-type->options
+msgid "Moon phase (C?)"
+msgstr "Fase lunar (C?)"
+
+#. 3.4->settings-schema.json->bottom-emoji-type->description
+#. 5.4->settings-schema.json->bottom-emoji-type->description
+msgid "Emoji display"
+msgstr "Mostrar Emoji"
+
+#. 3.4->settings-schema.json->bottom-caption-type->options
+#. 5.4->settings-schema.json->bottom-caption-type->options
+msgid "Chance of rain (W)"
+msgstr "Probabilidad de lluvia (W)"
+
+#. 3.4->settings-schema.json->bottom-caption-type->options
+#. 5.4->settings-schema.json->bottom-caption-type->options
+msgid "Temperature °C (W)"
+msgstr "Temperatura °C (W)"
+
+#. 3.4->settings-schema.json->bottom-caption-type->options
+#. 5.4->settings-schema.json->bottom-caption-type->options
+msgid "Temperature °F (W)"
+msgstr "Temperatura °F (O)"
+
+#. 3.4->settings-schema.json->bottom-caption-type->options
+#. 5.4->settings-schema.json->bottom-caption-type->options
+msgid "Full moon countdown (C?)"
+msgstr "Cuenta regresiva de luna llena (C?)"
+
+#. 3.4->settings-schema.json->bottom-caption-type->options
+#. 5.4->settings-schema.json->bottom-caption-type->options
+msgid "Custom countdown (D)"
+msgstr "Cuenta regresiva personalizada (D)"
+
+#. 3.4->settings-schema.json->bottom-caption-type->description
+#. 5.4->settings-schema.json->bottom-caption-type->description
+msgid "Caption display"
+msgstr "Mostrar subtítulos"
+
+#. 3.4->settings-schema.json->bottom-show-secondary-countdowns->description
+#. 5.4->settings-schema.json->bottom-show-secondary-countdowns->description
+msgid "Show more countdowns in secondary text (D)"
+msgstr "Mostrar más cuentas regresivas en el texto secundario (D)"
+
+#. 3.4->settings-schema.json->custom-countdown-list-label->description
+#. 5.4->settings-schema.json->custom-countdown-list-label->description
+msgid ""
+"Enter one or more dates to count down to when selecting \"Custom countdown\" "
+"(1 date) and/or \"Show more countdowns in secondary text\" (up to 2 "
+"additional dates).\n"
+"The order of the list represents the priority order for the dates.\n"
+"Disable dates to skip them.\n"
+"Dates set in the past are also skipped unless they are \"persistent\".\n"
+"\n"
+msgstr ""
+"Introduzca una o más fechas para la cuenta regresiva cuando seleccione "
+"\"Cuenta atrás personalizada\" (1 fecha) y/o \"Mostrar más cuentas regresiva "
+"en el texto secundario\" (hasta 2 fechas adicionales).\n"
+"El orden de la lista representa el orden de prioridad de las fechas.\n"
+"Desactive las fechas para omitirlas.\n"
+"Las fechas establecidas en el pasado también se omiten a menos que sean "
+"\"persistentes\".\n"
+"\n"
+
+#. 3.4->settings-schema.json->save-help->description
+#. 5.4->settings-schema.json->save-help->description
+msgid ""
+"Click the button below to save the following settings to a JSON file:\n"
+"- color scheme,\n"
+"- text style (including font selection, shadow offset, and emoji size),\n"
+"- content (including date-time format strings and bottom row selections),\n"
+"- countdown dates.\n"
+"Does NOT correspond to a full export of the configuration."
+msgstr ""
+"Haga clic en el botón de abajo para guardar los siguientes ajustes en un "
+"archivo JSON:\n"
+"- combinación de colores,\n"
+"- estilo de texto (incluyendo selección de fuente, desplazamiento de sombra "
+"y tamaño de emoji),\n"
+"- contenido (incluidas las cadenas de formato fecha-hora y las selecciones "
+"de la fila inferior),\n"
+"- fechas de cuenta atrás.\n"
+"NO corresponde a una exportación completa de la configuración."
+
+#. 3.4->settings-schema.json->save-button->description
+#. 5.4->settings-schema.json->save-button->description
+msgid "Save customization"
+msgstr "Guardar personalización"
+
+#. 3.4->settings-schema.json->load-help->description
+#. 5.4->settings-schema.json->load-help->description
+msgid ""
+"Choose which options to load from a previous save, then click the button "
+"below to select a file to load.\n"
+"WARNING: the selected settings will be overwritten, and their original "
+"values will be lost! Unselected settings will be left untouched."
+msgstr ""
+"Elija qué opciones desea cargar de un archivo guardado anteriormente y, a "
+"continuación, haga clic en el botón de abajo para seleccionar el archivo que "
+"desea cargar.\n"
+"ATENCIÓN: las opciones seleccionadas se sobrescribirán y se perderán sus "
+"valores originales. Los ajustes no seleccionados no se modificarán."
+
+#. 3.4->settings-schema.json->load-colors->description
+#. 5.4->settings-schema.json->load-colors->description
+msgid "Load color scheme"
+msgstr "Cargar esquema de color"
+
+#. 3.4->settings-schema.json->load-style->description
+#. 5.4->settings-schema.json->load-style->description
+msgid "Load text style"
+msgstr "Cargar estilo de texto"
+
+#. 3.4->settings-schema.json->load-content->description
+#. 5.4->settings-schema.json->load-content->description
+msgid "Load content"
+msgstr "Cargar contenido"
+
+#. 3.4->settings-schema.json->load-countdown-list->description
+#. 5.4->settings-schema.json->load-countdown-list->description
+msgid "Load countdown dates"
+msgstr "Cargar fechas de cuenta regresiva"
+
+#. 3.4->settings-schema.json->load-button->description
+#. 5.4->settings-schema.json->load-button->description
+msgid "Load selected options"
+msgstr "Cargar las opciones seleccionadas"
