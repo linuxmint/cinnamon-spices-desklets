@@ -1,3 +1,6 @@
+### v2.1.0~20250314
+  * Added option "Activate Album Art display at startup".
+
 ### v2.0.0~20250313
   * Also works with the Enhanced Sound applet.
   * Many changes.

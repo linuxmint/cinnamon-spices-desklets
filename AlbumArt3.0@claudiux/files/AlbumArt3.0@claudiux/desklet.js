@@ -406,7 +406,9 @@ class AlbumArtRadio30 extends Desklet.Desklet {
      * This function is called by deskletManager when the desklet is added to the desktop.
      */
      on_desklet_added_to_desktop(userEnabled) {
-         // Set "Display Album Art at full size" menu item, in top position:
+        if (this.settings.getValue("enable-at-startup"))
+            Util.spawn(["touch", ALBUMART_ON]);
+        // Set "Display Album Art at full size" menu item, in top position:
         let displayCoverArtInRealSize = new PopupMenu.PopupIconMenuItem(_("Display Album Art at full size"), "view-image-generic-symbolic", St.IconType.SYMBOLIC);
         displayCoverArtInRealSize.connect("activate", (event) => {
             if (this.currentPicture != null)

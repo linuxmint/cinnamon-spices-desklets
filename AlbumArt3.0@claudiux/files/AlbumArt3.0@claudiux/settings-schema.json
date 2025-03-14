@@ -45,6 +45,11 @@
         "step": 5,
         "tooltip": "0 means no fade"
     },
+    "enable-at-startup": {
+        "default": false,
+        "type": "switch",
+        "description" : "Activate Album Art display at startup"
+    },
     "desklet-x": {
         "type": "generic",
         "default": -1
