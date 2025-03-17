@@ -249,7 +249,7 @@ MyDesklet.prototype = {
             });
 
             this.altText.clutter_text.set_line_wrap(true);
-            this.altText.clutter_text.set_line_wrap_mode(1);
+            this.altText.clutter_text.set_line_wrap_mode(0);
             this.altText.clutter_text.set_ellipsize(0);
 
             this.image = new Clutter.Image();
