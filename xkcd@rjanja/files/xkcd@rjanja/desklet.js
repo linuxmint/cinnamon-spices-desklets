@@ -162,6 +162,7 @@ MyDesklet.prototype = {
             );
 
             this.altText.set_text(this.curXkcd.alt);
+            this.label.set_text(this.curXkcd.num.toString());
 
             if (this.mostRecentComic < this.curXkcd.num) {
                 this.mostRecentComic = this.curXkcd.num;
@@ -248,6 +249,11 @@ MyDesklet.prototype = {
                 style_class: "xkcd-alt-text",
             });
 
+            this.label = new St.Label({
+                text: "",
+                style_class: "xkcd-label",
+            });
+
             this.altText.clutter_text.set_line_wrap(true);
             this.altText.clutter_text.set_line_wrap_mode(0);
             this.altText.clutter_text.set_ellipsize(0);
@@ -256,6 +262,7 @@ MyDesklet.prototype = {
             this.imageFrame = new Clutter.Actor({ width: 0, height: 0 });
             this.imageFrame.set_content(this.image);
 
+            this.window.add_actor(this.label);
             this.window.add_actor(this.imageFrame);
             this.window.add_actor(this.altText);
 

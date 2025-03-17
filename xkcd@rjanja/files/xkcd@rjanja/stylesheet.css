@@ -4,10 +4,18 @@
     background-color: rgba(150, 168, 200, 0.7);
     border-radius: 5px;
 }
+.xkcd-label {
+    font-size: 12px;
+    text-align: center;
+    padding: 3px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px 5px 0 0;
+}
 .xkcd-alt-text {
     font-size: 16px;
     padding: 5px;
     color: white;
     background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
+    border-radius: 0 0 5px 5px;
 }
