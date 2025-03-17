@@ -1,14 +1,14 @@
-# ALBUM ART FOR RADIO3.0
+# ALBUM ART FOR RADIO3.0 AND ENHANCED SOUND APPLETS
 # This file is put in the public domain.
-# claudiux, 2017
+# claudiux, 2025
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: AlbumArt3.0@claudiux 1.0\n"
+"Project-Id-Version: AlbumArt3.0@claudiux 2.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-02-11 11:04+0100\n"
+"POT-Creation-Date: 2025-03-14 02:12+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,21 +17,28 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. desklet.js:66
-msgid "Radio3.0 Album Art"
+#. desklet.js:134
+msgid "Album Art"
 msgstr ""
 
-#. desklet.js:301
+#. desklet.js:412
 msgid "Display Album Art at full size"
 msgstr ""
 
+#. desklet.js:419
+msgid "Don't display this image"
+msgstr ""
+
+#. desklet.js:429
+msgid "Don't display any new image"
+msgstr ""
+
 #. metadata.json->name
-msgid "Album Art for Radio3.0"
+msgid "Album Art for Radio3.0 and Enhanced Sound applets"
 msgstr ""
 
 #. metadata.json->description
-msgid ""
-"A digital photo frame desklet to display the Radio3.0 album art, if available"
+msgid "A digital photo frame desklet to display an album art, if available"
 msgstr ""
 
 #. settings-schema.json->height->description
@@ -105,4 +112,8 @@ msgstr ""
 
 #. settings-schema.json->fade-delay->tooltip
 msgid "0 means no fade"
+msgstr ""
+
+#. settings-schema.json->enable-at-startup->description
+msgid "Activate Album Art display at startup"
 msgstr ""

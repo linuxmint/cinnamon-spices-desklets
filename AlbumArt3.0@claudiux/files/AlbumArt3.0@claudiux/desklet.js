@@ -13,16 +13,41 @@ const Util = imports.misc.util;
 const Settings = imports.ui.settings;
 const Gettext = imports.gettext;
 //Mainloop:
-const { timeout_add_seconds, timeout_add, setTimeout, clearTimeout, setInterval, clearInterval, source_exists, source_remove, remove_all_sources } = require("mainloopTools");
+const { timeout_add_seconds,
+        timeout_add,
+        setTimeout,
+        clearTimeout,
+        setInterval,
+        clearInterval,
+        source_exists,
+        source_remove,
+        remove_all_sources
+} = require("mainloopTools");
 
 
 const APPLET_UUID = "Radio3.0@claudiux";
 const DESKLET_UUID = "AlbumArt3.0@claudiux";
-Gettext.bindtextdomain(APPLET_UUID, GLib.get_home_dir() + "/.local/share/locale");
+const HOME_DIR = GLib.get_home_dir();
+const DESKLET_DIR = HOME_DIR + "/.local/share/cinnamon/desklets/" + DESKLET_UUID;
+const ENABLED_DESKLETS_KEY = 'enabled-desklets';
+const XDG_RUNTIME_DIR = GLib.getenv("XDG_RUNTIME_DIR");
+const TMP_ALBUMART_DIR = XDG_RUNTIME_DIR + "/AlbumArt";
+const ALBUMART_ON = TMP_ALBUMART_DIR + "/ON";
+const ALBUMART_PICS_DIR = TMP_ALBUMART_DIR + "/song-art";
+const TRANSPARENT_PNG = DESKLET_DIR + "/transparent.png";
+
+const DEL_SONG_ARTS_SCRIPT = DESKLET_DIR + "/del_song_arts.sh";
+
+Gettext.bindtextdomain(DESKLET_UUID, HOME_DIR + "/.local/share/locale");
+Gettext.bindtextdomain(APPLET_UUID, HOME_DIR + "/.local/share/locale");
 Gettext.bindtextdomain("cinnamon", "/usr/share/locale");
 
 function _(str) {
-    let customTrans = Gettext.dgettext(APPLET_UUID, str);
+    let customTrans = Gettext.dgettext(DESKLET_UUID, str);
+    if (customTrans !== str && customTrans.length > 0)
+        return customTrans;
+
+    customTrans = Gettext.dgettext(APPLET_UUID, str);
     if (customTrans !== str && customTrans.length > 0)
         return customTrans;
 
@@ -45,7 +70,12 @@ class AlbumArtRadio30 extends Desklet.Desklet {
         this.isLooping = true;
         this.dir_monitor_loop_is_active = true;
 
-        this.dir = "file://"+GLib.get_home_dir()+"/.config/Radio3.0/song-art";
+        //~ this.dir = "file://"+GLib.get_home_dir()+"/.config/Radio3.0/song-art";
+        this.dir = "file://"+ALBUMART_PICS_DIR;
+        GLib.mkdir_with_parents(ALBUMART_PICS_DIR, 0o755);
+        this.realWidth = 1280;
+        this.realHeight = 720;
+
         this.shuffle = false;
         this.delay = 3;
         //this.fade_delay = 0;
@@ -58,12 +88,50 @@ class AlbumArtRadio30 extends Desklet.Desklet {
         this.settings.bind('width', 'width', this.on_setting_changed);
         this.settings.bind('fade-delay', 'fade_delay', this.on_setting_changed);
         this.settings.bind('fade-effect', 'fade_effect', this.on_setting_changed);
+        this.settings.bind("desklet-x", "desklet_x");
+        this.desklet_x = Math.ceil(this.desklet_x);
+        this.settings.bind("desklet-y", "desklet_y");
+        this.desklet_y = Math.ceil(this.desklet_y);
+        if (this.desklet_x < 0 || this.desklet_x >= global.screen_width) {
+            this.desklet_x = global.screen_width - 600;
+            global.log("AlbumArt3.0: this.desklet_x CHANGED for: " + this.desklet_x);
+        }
+        if (this.desklet_y < 0 || this.desklet_y >= global.screen_height) {
+            this.desklet_y = global.screen_height - 500;
+            global.log("AlbumArt3.0: this.desklet_y CHANGED for: " + this.desklet_y);
+        }
+
+        // enabledDesklets will contain all desklets:
+        var enabledDesklets = global.settings.get_strv(ENABLED_DESKLETS_KEY);
+        //~ var deskletEDKline = "";
+        var modify_ENABLED_DESKLETS_KEY = false;
+        for (let i = 0; i < enabledDesklets.length; i++) {
+            let [name, dId, x, y] = enabledDesklets[i].split(":");
+            //~ logDebug("Desklet name: "+name);
+            if (name == DESKLET_UUID) {
+                //~ deskletEDKline = "" + enabledDesklets[i];
+                if (Math.ceil(x) != Math.ceil(this.desklet_x)) {
+                    modify_ENABLED_DESKLETS_KEY = true;
+                    x = "" + this.desklet_x;
+                }
+                if (Math.ceil(y) != Math.ceil(this.desklet_y)) {
+                    modify_ENABLED_DESKLETS_KEY = true;
+                    y = "" + this.desklet_y;
+                }
+                if (modify_ENABLED_DESKLETS_KEY) {
+                    enabledDesklets[i] = [name, dId, x, y].join(":");
+                }
+            }
+        }
+        if (modify_ENABLED_DESKLETS_KEY) {
+            global.settings.set_strv(ENABLED_DESKLETS_KEY, enabledDesklets);
+        }
 
         this.dir_monitor_id = null;
         this.dir_monitor = null;
         this.dir_file = null;
 
-        this.setHeader(_("Radio3.0 Album Art"));
+        this.setHeader(_("Album Art"));
         this._setup_dir_monitor();
         this.setup_display();
         this._updateDecoration(); // once again?
@@ -132,6 +200,18 @@ class AlbumArtRadio30 extends Desklet.Desklet {
             this._bin = null;
         }
 
+        var enabledDesklets = global.settings.get_strv(ENABLED_DESKLETS_KEY);
+        for (let i = 0; i < enabledDesklets.length; i++) {
+            let [name, dId, x, y] = enabledDesklets[i].split(":");
+            //~ logDebug("Desklet name: "+name);
+            if (name == DESKLET_UUID) {
+                //~ deskletEDKline = "" + enabledDesklets[i];
+                this.desklet_x = Math.ceil(x);
+                this.desklet_y = Math.ceil(y);
+                break
+            }
+        }
+
         remove_all_sources();
     }
 
@@ -184,10 +264,22 @@ class AlbumArtRadio30 extends Desklet.Desklet {
     }
 
     _update_loop() {
+        var enabledDesklets = global.settings.get_strv(ENABLED_DESKLETS_KEY);
+        for (let i = 0; i < enabledDesklets.length; i++) {
+            let [name, dId, x, y] = enabledDesklets[i].split(":");
+            if (name == DESKLET_UUID) {
+                if (Math.ceil(x) != Math.ceil(this.desklet_x) || Math.ceil(y) != Math.ceil(this.desklet_y)) {
+                    this.desklet_x = Math.ceil(x);
+                    this.desklet_y = Math.ceil(y);
+                    global.log(DESKLET_UUID + " _update_loop: position changed!");
+                }
+                break
+            }
+        }
+
         if (!this.isLooping) return false;
         this._update();
         if (this.isLooping)
-            //~ this.update_id = Mainloop.timeout_add_seconds(this.delay, Lang.bind(this, this._update_loop));
             this.update_id = timeout_add_seconds(this.delay, () => { this._update_loop() });
         else
             return false;
@@ -197,7 +289,7 @@ class AlbumArtRadio30 extends Desklet.Desklet {
         image.disconnect(image._notif_id);
 
         let height, width;
-        let imageRatio = image.width / image.height;
+        let imageRatio = this.realWidth / this.realHeight;
         let frameRatio = this.width / this.height;
 
         if (imageRatio > frameRatio) {
@@ -208,10 +300,19 @@ class AlbumArtRadio30 extends Desklet.Desklet {
             width = this.height * imageRatio;
         }
 
+        if (isNaN(height))
+            height = -1;
+        if (isNaN(width))
+            width = -1;
+
         image.set_size(width, height);
+        this._bin.set_size(width, height);
+
+        image._notif_id = image.connect('notify::size', (image) => { this._size_pic(image); });
     }
 
     _update() {
+        this.emit('notify::size');
         if (this.updateInProgress) {
             return;
         }
@@ -237,6 +338,15 @@ class AlbumArtRadio30 extends Desklet.Desklet {
         }
 
         let image = this._loadImage(image_path);
+
+        if (! GLib.file_test(ALBUMART_ON, GLib.FileTest.EXISTS)) {
+            image = null;
+
+            Util.spawnCommandLine("bash -c '%s'".format(DEL_SONG_ARTS_SCRIPT));
+            image = this._loadImage(TRANSPARENT_PNG);
+            this.realWidth = 1280;
+            this.realHeight = 720;
+        }
 
         if (image == null) {
             this.updateInProgress = false;
@@ -287,7 +397,6 @@ class AlbumArtRadio30 extends Desklet.Desklet {
                     Util.spawn(['xdg-open', this.currentPicture.path]);
             }
         } catch (e) {
-            global.logError(e);
         }
     }
 
@@ -297,24 +406,64 @@ class AlbumArtRadio30 extends Desklet.Desklet {
      * This function is called by deskletManager when the desklet is added to the desktop.
      */
      on_desklet_added_to_desktop(userEnabled) {
-         // Set "Display Album Art at full size" menu item, in top position:
-        let displayCoverArtInRealSize = new PopupMenu.PopupIconMenuItem(_("Display Album Art at full size"), "image-x-generic-symbolic", St.IconType.SYMBOLIC);
+        if (this.settings.getValue("enable-at-startup"))
+            Util.spawn(["touch", ALBUMART_ON]);
+        // Set "Display Album Art at full size" menu item, in top position:
+        let displayCoverArtInRealSize = new PopupMenu.PopupIconMenuItem(_("Display Album Art at full size"), "view-image-generic-symbolic", St.IconType.SYMBOLIC);
         displayCoverArtInRealSize.connect("activate", (event) => {
             if (this.currentPicture != null)
                 GLib.spawn_command_line_async("xdg-open "+this.currentPicture.path);
         });
         this._menu.addMenuItem(displayCoverArtInRealSize, 0); // 0 for top position.
+
+        let removeThisImage = new PopupMenu.PopupIconMenuItem(_("Don't display this image"), "dont-show-symbolic", St.IconType.SYMBOLIC);
+        removeThisImage.connect("activate", (event) => {
+            Util.spawnCommandLine("bash -c '%s'".format(DEL_SONG_ARTS_SCRIPT));
+            this.image_path = TRANSPARENT_PNG;
+            this.realWidth = 1280;
+            this.realHeight = 720;
+            this._update();
+        });
+        this._menu.addMenuItem(removeThisImage, 1);
+
+        let stopDesklet = new PopupMenu.PopupIconMenuItem(_("Don't display any new image"), "dont-show-any-symbolic", St.IconType.SYMBOLIC);
+        stopDesklet.connect("activate", (event) => {
+            Util.spawnCommandLine("bash -c '%s'".format(DEL_SONG_ARTS_SCRIPT));
+            GLib.spawn_command_line_async(`rm -f ${ALBUMART_ON}`);
+            this.image_path = TRANSPARENT_PNG;
+            this.realWidth = 1280;
+            this.realHeight = 720;
+            this._update();
+        });
+        this._menu.addMenuItem(stopDesklet, 2);
     }
 
     _loadImage(filePath) {
+        let image;
+        if (! GLib.file_test(ALBUMART_ON, GLib.FileTest.EXISTS)) {
+            filePath = "file://" + TRANSPARENT_PNG;
+            this.realWidth = 1280;
+            this.realHeight = 720;
+        }
         try {
-            let image = St.TextureCache.get_default().load_uri_async(filePath, this.width, this.height);
+            const GET_IMAGE_SIZE = DESKLET_DIR + "/get-image-size.sh";
+            let command = GET_IMAGE_SIZE + " " + filePath;
+            Util.spawnCommandLineAsyncIO(command, (stdout, stderr, exitCode) => {
+                if (exitCode === 0) {
+                    [this.realWidth, this.realHeight] = stdout.split("x");
+                } else {
+                    this.realWidth = 1280;
+                    this.realHeight = 720;
+                }
+            });
+            image = St.TextureCache.get_default().load_uri_async(filePath, this.width, this.height);
 
-            //~ image._notif_id = image.connect('notify::size', Lang.bind(this, this._size_pic));
             image._notif_id = image.connect('notify::size', (image) => { this._size_pic(image); });
 
+            this._size_pic(image);
+
             return image;
-        } catch (x) {
+        } catch (e) {
             // Probably a non-image is in the folder
             return null;
         }
