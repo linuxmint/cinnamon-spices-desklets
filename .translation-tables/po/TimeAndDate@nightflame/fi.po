@@ -1,0 +1,39 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-26 11:56+0800\n"
+"PO-Revision-Date: 2025-01-23 10:51+0200\n"
+"Last-Translator: JTi65 <j.tiilikainen@yahoo.com>\n"
+"Language-Team: \n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: desklet.js:67
+msgid "Time And Date"
+msgstr "Aika ja päivä"
+
+#: desklet.js:83
+msgid "Edit Config"
+msgstr "Muokkaa asetuksia"
+
+#: desklet.js:87
+msgid "Help"
+msgstr "Ohje"
+
+#. TimeAndDate@nightflame->metadata.json->description
+msgid "A fork desklet that displays the time and date"
+msgstr "Työpöytäsovelma, joka näyttää kellonajan ja päivämäärän"
+
+#. TimeAndDate@nightflame->metadata.json->name
+msgid "Time and Date Desklet"
+msgstr "Aika ja päivä työpöytäsovelma"
