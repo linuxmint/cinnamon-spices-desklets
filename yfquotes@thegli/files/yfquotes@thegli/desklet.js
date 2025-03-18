@@ -18,8 +18,6 @@ const GLib = imports.gi.GLib;
 const Gtk = imports.gi.Gtk;
 const Soup = imports.gi.Soup;
 const ByteArray = imports.byteArray;
-// for periodic data reload
-const Mainloop = imports.mainloop;
 // Binding desklet to mainloop function
 const Lang = imports.lang;
 // Settings loader based on settings-schema.json file
@@ -860,9 +858,12 @@ StockQuoteDesklet.prototype = {
         }
     },
 
-    createErrorLabel: function(errorMsg) {
+    createErrorLabel: function(responseError) {
+        const errorMsg = _("Error: ") + JSON.stringify(responseError);
+        logWarning(errorMsg);
+
         return new St.Label({
-            text: _("Error: ") + errorMsg,
+            text: errorMsg,
             style_class: "error-label"
         });
     },
@@ -1057,7 +1058,7 @@ StockQuoteDesklet.prototype = {
                 logDebug("add instant timer");
                 delaySeconds = 1;
             }
-            this.updateId = Mainloop.timeout_add_seconds(delaySeconds, Lang.bind(this, this.onQuotesListChanged));
+            this.updateId = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, delaySeconds, () => {this.onQuotesListChanged()});
             logDebug("new updateId " + this.updateId);
             this.updateInProgress = false;
         }
@@ -1080,11 +1081,6 @@ StockQuoteDesklet.prototype = {
             return;
         }
 
-        let responseResult = _lastResponses.get(existingId).responseResult;
-        const responseError = _lastResponses.get(existingId).responseError;
-        const lastUpdated = _lastResponses.get(existingId).lastUpdated;
-        const symbolCustomizationMap = this.quoteUtils.buildSymbolCustomizationMap(this.quoteSymbolsText);
-
         // destroy the current view
         this.unrender();
 
@@ -1093,37 +1089,43 @@ StockQuoteDesklet.prototype = {
         });
 
         // in case of errors, show details
+        const responseError = _lastResponses.get(existingId).responseError;
         if (responseError !== null) {
             tableContainer.add_actor(this.createErrorLabel(responseError));
         }
 
-        // some preparations before the rendering starts
-        for (const quote of responseResult) {
-            // sometimes YF returns a symbol we didn't query for
-            // add such "new" symbols to the customization map for easier processing in the various render.. functions
-            const returnedSymbol = quote.symbol;
-            if (!symbolCustomizationMap.has(returnedSymbol)) {
-                logDebug("Adding unknown symbol to customization map: " + returnedSymbol);
-                symbolCustomizationMap.set(returnedSymbol, this.quoteUtils.buildSymbolCustomization(returnedSymbol, new Map()));
+        const responseResult = _lastResponses.get(existingId).responseResult;
+        if (responseResult !== null) {
+            const symbolCustomizationMap = this.quoteUtils.buildSymbolCustomizationMap(this.quoteSymbolsText);
+            
+            // some preparations before the rendering starts
+            for (const quote of responseResult) {
+                // sometimes YF returns a symbol we didn't query for
+                // add such "new" symbols to the customization map for easier processing in the various render.. functions
+                const returnedSymbol = quote.symbol;
+                if (!symbolCustomizationMap.has(returnedSymbol)) {
+                    logDebug("Adding unknown symbol to customization map: " + returnedSymbol);
+                    symbolCustomizationMap.set(returnedSymbol, this.quoteUtils.buildSymbolCustomization(returnedSymbol, new Map()));
+                }
+    
+                // based on the custom settings, and the returned information, determine the name and store it directly in the quote
+                this.quoteUtils.populateQuoteDisplayName(quote, symbolCustomizationMap.get(returnedSymbol), this.useLongQuoteName);
             }
-
-            // based on the custom settings, and the returned information, determine the name and store it directly in the quote
-            this.quoteUtils.populateQuoteDisplayName(quote, symbolCustomizationMap.get(returnedSymbol), this.useLongQuoteName);
-        }
-
-        // (optional) sorting (do after we populated the display name within the quotes)
-        responseResult = this.quoteUtils.sortQuotesByProperty(responseResult, this.sortCriteria, this.sortAscending ? 1 : -1);
-
-        // gather all settings that influence the rendering
-        const displaySettings = this.getQuoteDisplaySettings(responseResult);
-
-        const table = new QuotesTable();
-        // renders the quotes in a table structure
-        table.renderTable(responseResult, symbolCustomizationMap, displaySettings);
-        tableContainer.add_actor(table.el);
-
-        if (this.showLastUpdateTimestamp) {
-            tableContainer.add_actor(this.createLastUpdateLabel(lastUpdated, displaySettings));
+    
+            // (optional) sorting (do after we populated the display name within the quotes)
+            const sortedResponseResult = this.quoteUtils.sortQuotesByProperty(responseResult, this.sortCriteria, this.sortAscending ? 1 : -1);
+    
+            // gather all settings that influence the rendering
+            const displaySettings = this.getQuoteDisplaySettings(sortedResponseResult);
+    
+            const table = new QuotesTable();
+            // renders the quotes in a table structure
+            table.renderTable(sortedResponseResult, symbolCustomizationMap, displaySettings);
+            tableContainer.add_actor(table.el);
+            
+            if (this.showLastUpdateTimestamp) {
+                tableContainer.add_actor(this.createLastUpdateLabel(_lastResponses.get(existingId).lastUpdated, displaySettings));
+            }
         }
 
         const scrollView = new St.ScrollView();
@@ -1164,7 +1166,7 @@ StockQuoteDesklet.prototype = {
     removeUpdateTimer: function() {
         logDebug("removeUpdateTimer for updateId " + this.updateId);
         if (this.updateId > 0) {
-            Mainloop.source_remove(this.updateId);
+            GLib.source_remove(this.updateId);
         }
         this.updateId = 0;
         this.updateInProgress = true;
