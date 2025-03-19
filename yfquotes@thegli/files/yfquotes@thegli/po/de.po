@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-02-10 20:46+0100\n"
+"POT-Creation-Date: 2025-03-18 20:08+0100\n"
 "PO-Revision-Date: 2023-08-28 16:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,32 +17,32 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
 
-#. desklet.js:86
+#. desklet.js:84
 msgid "No quotes data to display"
 msgstr "Keine Finanzdaten vorhanden"
 
-#. desklet.js:424
+#. desklet.js:422
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 "Liste der Symbole ist leer. Öffne die Einstellungen und füge Symbole hinzu."
 
-#. desklet.js:447 desklet.js:470
+#. desklet.js:445 desklet.js:468
 msgid "Authorization parameters have expired"
 msgstr "Autorisierungsparameter sind abgelaufen"
 
-#. desklet.js:450 desklet.js:473
+#. desklet.js:448 desklet.js:471
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Yahoo Finance Service nicht verfügbar!\\nStatus: "
 
-#. desklet.js:832
+#. desklet.js:830
 msgid "Updated at "
 msgstr "Aktualisiert um "
 
-#. desklet.js:865
+#. desklet.js:862
 msgid "Error: "
 msgstr "Fehler: "
 
-#. desklet.js:980
+#. desklet.js:981
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -50,20 +50,20 @@ msgstr ""
 "Empfang von Autorisierungsparameter ist fehlgeschlagen! Finanzdaten-Abfrage "
 "nicht möglich.\\nStatus: "
 
-#. desklet.js:1006
+#. desklet.js:1007
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Consent-Erteilung ist fehlgeschlagen! Finanzdaten-Abfrage nicht möglich."
 "\\nStatus: "
 
-#. desklet.js:1011
+#. desklet.js:1012
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Consent-Erteilung nicht abgeschlossen! Finanzdaten-Abfrage nicht möglich."
 "\\nStatus: "
 
-#. desklet.js:1034
+#. desklet.js:1035
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
