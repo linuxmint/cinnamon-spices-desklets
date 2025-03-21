@@ -1,0 +1,12 @@
+{
+  "theme": "Default",
+  "size": 150,
+  "show-seconds": true,
+  "hide-decorations": false,
+  "timezone-use": false,
+  "timezone": {
+    "city": "Berlin",
+    "region": "Europe"
+  }, 
+  "timezone-display": true
+}
