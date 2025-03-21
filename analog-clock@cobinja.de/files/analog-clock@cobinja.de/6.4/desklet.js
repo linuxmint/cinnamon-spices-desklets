@@ -466,7 +466,7 @@ CobiAnalogClock.prototype = {
       this._clock.second.actor.set_rotation_angle(Clutter.RotateAxis.Z_AXIS, DEG_PER_SECOND * seconds);
     }
     
-    this._timeoutId = Mainloop.timeout_add_seconds(newTimeoutSeconds, Lang.bind(this, this._updateClock));
+    this._timeoutId = timeout_add_seconds(newTimeoutSeconds, () => { this._updateClock() });
     return false;
   },
   
