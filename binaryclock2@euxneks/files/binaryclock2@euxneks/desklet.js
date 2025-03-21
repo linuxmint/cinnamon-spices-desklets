@@ -3,13 +3,17 @@ const St = imports.gi.St;
 
 const Desklet = imports.ui.desklet;
 
-const Lang = imports.lang;
-const Mainloop = imports.mainloop;
 const Cairo = imports.cairo;
 const Clutter = imports.gi.Clutter;
 const Util = imports.misc.util;
 const UPowerGlib = imports.gi.UPowerGlib;
 const Settings = imports.ui.settings;
+const {
+  timeout_add_seconds,
+  source_remove,
+  remove_all_sources
+} = require("./lib/mainloopTools");
+
 
 const M_PI = 3.141592654;
 const LINE_WIDTH = 1;
@@ -58,15 +62,15 @@ MyDesklet.prototype = {
         this.bs = this.settings.getValue("size");
         this._binaryClock.width=6*(this.bs + 2) + 4*LINE_WIDTH + MARGIN*2;
         this._binaryClock.height=3*(this.bs + 2) - 2 + 2*LINE_WIDTH + MARGIN*2;
-        this._binaryClock.connect('repaint', Lang.bind(this, this._onBinaryClockRepaint));
+        this._binaryClock.connect('repaint', (area) => { this._onBinaryClockRepaint(area) });
 
         this.setContent(this._binaryClock);
         this.setHeader(_("Clock"));
         this._upClient = new UPowerGlib.Client();
         try {
-            this._upClient.connect('notify-resume', Lang.bind(this, this._updateClock));
+            this._upClient.connect('notify-resume', () => { this._updateClock() });
         } catch (e) {
-            this._upClient.connect('notify::resume', Lang.bind(this, this._updateClock));
+            this._upClient.connect('notify::resume', () => { this._updateClock() });
         }
 
         this.on_setting_changed();
@@ -96,7 +100,7 @@ MyDesklet.prototype = {
             this._displayTime = [displayDate.getHours(), displayDate.getMinutes()];
         this._binaryClock.queue_repaint();
 
-        Mainloop.timeout_add_seconds(1, Lang.bind(this, this._updateClock));
+        this.timeout = timeout_add_seconds(1, () => { this._updateClock() });
         return false;
     },
 
@@ -138,6 +142,12 @@ MyDesklet.prototype = {
             }
             cr.translate(-6 * step, step);
         }
+    },
+
+    on_desklet_removed: function() {
+       if (this.timeout)
+          source_remove(this.timeout);
+       remove_all_sources();
     }
 }
 
