@@ -1,0 +1,570 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: cryptocoins@pbojan 1.6\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-19 18:58+0200\n"
+"PO-Revision-Date: 2024-07-23 22:31+0200\n"
+"Last-Translator: qadzek\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. metadata.json->description
+msgid ""
+"Cryptocurrency Ticker (Desklet) for Cinnamon Desktop that displays the "
+"current price for thousands of cryptocurrencies, and their daily percent "
+"changes. The official website for news and updates about this Cryptocurrency "
+"Ticker: https://cryptocurrencyticker.xyz"
+msgstr ""
+"Cryptomunt Ticker (Desklet) voor Cinnamon Desktop dat de huidige prijs toont "
+"van duizenden cryptomunten en hun dagelijkse procentuele veranderingen. De "
+"officiële website voor nieuws en updates over deze CryptoMunt Ticker: "
+"https://cryptocurrencyticker.xyz"
+
+#. metadata.json->name
+msgid "Cryptocurrency Ticker"
+msgstr "Cryptomunt Ticker"
+
+#. settings-schema.json->head0->description
+msgid "Settings for cryptocoins@pbojan"
+msgstr "Instellingen voor cryptocoins@pbojan"
+
+#. settings-schema.json->head1->description
+msgid "API Options"
+msgstr "API Opties"
+
+#. settings-schema.json->apiKey->description
+msgid "Your CoinMarketCap API Key"
+msgstr "Uw CoinMarketCap API-sleutel"
+
+#. settings-schema.json->apiKey->tooltip
+msgid ""
+"If you dont have one you can get it for free at https://pro.coinmarketcap."
+"com."
+msgstr ""
+"Als u deze nog niet heeft, kunt u deze gratis verkrijgen op https://pro."
+"coinmarketcap.com."
+
+#. settings-schema.json->head2->description
+msgid "Cryptocurrency Options"
+msgstr "Cryptomunt Opties"
+
+#. settings-schema.json->coinSymbol->description
+msgid "Symbol"
+msgstr "Symbool"
+
+#. settings-schema.json->coinSymbol->tooltip
+msgid "The Cryptocurrency Symbol you want to display e.g. BTC, ETH, LTC.."
+msgstr "Het Cryptomunt Symbool dat u wilt weergeven, bijv. BTC, ETH, LTC.."
+
+#. settings-schema.json->coinID->description
+msgid "ID (coinmarketcap)"
+msgstr "ID (coinmarketcap)"
+
+#. settings-schema.json->coinID->tooltip
+msgid ""
+"In same rare cases the Cryptocurrency Symbol is not unique e.g. BTCV so you "
+"can use the CoinID to specify the exact Cryptocurrency you want to display. "
+"Check the documentation to see how to get the CoinID from coinmarketcap."
+msgstr ""
+"In enkele zeldzame gevallen is het Cryptomunt Symbool niet uniek, bijv. "
+"BTCV, dus u kunt de CoinID gebruiken om de exacte Cryptomunt te specificeren "
+"die u wilt weergeven. Raadpleeg de documentatie om te zien hoe u de CoinID "
+"van coinmarketcap kunt verkrijgen."
+
+#. settings-schema.json->currency->description
+msgid "Select Currency"
+msgstr "Selecteer Valuta"
+
+#. settings-schema.json->currency->tooltip
+msgid "In which currency to show information on the ticker"
+msgstr "In welke valuta informatie op de ticker weergeven"
+
+#. settings-schema.json->currency->options
+msgid "United States Dollar ($)"
+msgstr "Amerikaanse Dollar ($)"
+
+#. settings-schema.json->currency->options
+msgid "Euro (€)"
+msgstr "Euro (€)"
+
+#. settings-schema.json->currency->options
+msgid "Australian Dollar (A$)"
+msgstr "Australische Dollar (A$)"
+
+#. settings-schema.json->currency->options
+msgid "Canadian Dollar  (C$)"
+msgstr "Canadese Dollar (C$)"
+
+#. settings-schema.json->currency->options
+msgid "Swiss Franc (Fr.)"
+msgstr "Zwitserse Frank (Fr.)"
+
+#. settings-schema.json->currency->options
+msgid "Pound Sterling (£)"
+msgstr "Britse Pond (£)"
+
+#. settings-schema.json->currency->options
+msgid "Albanian Lek (L)"
+msgstr "Albanees Lek (L)"
+
+#. settings-schema.json->currency->options
+msgid "Algerian Dinar (د.ج)"
+msgstr "Algerijnse Dinar (د.ج)"
+
+#. settings-schema.json->currency->options
+msgid "Argentine Peso ($)"
+msgstr "Argentijnse Peso ($)"
+
+#. settings-schema.json->currency->options
+msgid "Armenian Dram (֏)"
+msgstr "Armeense Dram (֏)"
+
+#. settings-schema.json->currency->options
+msgid "Bahraini Dinar (.د.ب)"
+msgstr "Bahreinse Dinar (.د.ب)"
+
+#. settings-schema.json->currency->options
+msgid "Bangladeshi Taka (৳)"
+msgstr "Bangladeshi Taka (৳)"
+
+#. settings-schema.json->currency->options
+msgid "Belarusian Ruble (Br)"
+msgstr "Wit-Russische Roebel (Br)"
+
+#. settings-schema.json->currency->options
+msgid "Bermudan Dollar ($)"
+msgstr "Bermudiaanse Dollar ($)"
+
+#. settings-schema.json->currency->options
+msgid "Bolivian Boliviano (Bs.)"
+msgstr "Boliviaanse Boliviano (Bs.)"
+
+#. settings-schema.json->currency->options
+msgid "Bosnia-Herzegovina Convertible Mark (KM)"
+msgstr "Bosnië-Herzegovina Convertible Mark (KM)"
+
+#. settings-schema.json->currency->options
+msgid "Brazilian Real (R$)"
+msgstr "Braziliaanse Real (R$)"
+
+#. settings-schema.json->currency->options
+msgid "Bulgarian Lev (лв)"
+msgstr "Bulgarische Lev (лв)"
+
+#. settings-schema.json->currency->options
+msgid "Cambodian Riel (៛)"
+msgstr "Cambodjaanse Riel (៛)"
+
+#. settings-schema.json->currency->options
+msgid "Chilean Peso ($)"
+msgstr "Chileense Peso ($)"
+
+#. settings-schema.json->currency->options
+msgid "Chinese Yuan (¥)"
+msgstr "Chinese Yuan (¥)"
+
+#. settings-schema.json->currency->options
+msgid "Colombian Peso ($)"
+msgstr "Colombiaanse Peso ($)"
+
+#. settings-schema.json->currency->options
+msgid "Costa Rican Colón (₡)"
+msgstr "Costa Ricaanse Colón (₡)"
+
+#. settings-schema.json->currency->options
+msgid "Croatian Kuna (kn)"
+msgstr "Kroatische Kuna (kn)"
+
+#. settings-schema.json->currency->options
+msgid "Cuban Peso ($)"
+msgstr "Cubaanse Peso ($)"
+
+#. settings-schema.json->currency->options
+msgid "Czech Koruna (Kč)"
+msgstr "Tsjechische Kroon (Kč)"
+
+#. settings-schema.json->currency->options
+msgid "Danish Krone (kr)"
+msgstr "Deense Kroon (kr)"
+
+#. settings-schema.json->currency->options
+msgid "Dominican Peso ($)"
+msgstr "Dominicaanse Peso ($)"
+
+#. settings-schema.json->currency->options
+msgid "Egyptian Pound (£)"
+msgstr "Egyptisch Pond (£)"
+
+#. settings-schema.json->currency->options
+msgid "Ghanaian Cedi (₵)"
+msgstr "Ghanese Cedi (₵)"
+
+#. settings-schema.json->currency->options
+msgid "Guatemalan Quetzal (Q)"
+msgstr "Guatemalteekse Quetzal (Q)"
+
+#. settings-schema.json->currency->options
+msgid "Honduran Lempira (L)"
+msgstr "Hondurese Lempira (L)"
+
+#. settings-schema.json->currency->options
+msgid "Hong Kong Dollar ($)"
+msgstr "Hong Kong Dollar ($)"
+
+#. settings-schema.json->currency->options
+msgid "Hungarian Forint (Ft)"
+msgstr "Hongaarse Forint (Ft)"
+
+#. settings-schema.json->currency->options
+msgid "Icelandic Króna (kr)"
+msgstr "IJslandse Króna (kr)"
+
+#. settings-schema.json->currency->options
+msgid "Indian Rupee (₹)"
+msgstr "Indiase Roepie (₹)"
+
+#. settings-schema.json->currency->options
+msgid "Indonesian Rupiah (Rp)"
+msgstr "Indonesische Roepia (Rp)"
+
+#. settings-schema.json->currency->options
+msgid "Iranian Rial (﷼)"
+msgstr "Iraanse Rial (﷼)"
+
+#. settings-schema.json->currency->options
+msgid "Iraqi Dinar (ع.د)"
+msgstr "Irakese Dinar (ع.د)"
+
+#. settings-schema.json->currency->options
+msgid "Israeli New Shekel (₪)"
+msgstr "Israëlische Nieuwe Shekel (₪)"
+
+#. settings-schema.json->currency->options
+msgid "Jamaican Dollar ($)"
+msgstr "Jamaicaanse Dollar ($)"
+
+#. settings-schema.json->currency->options
+msgid "Japanese Yen (¥)"
+msgstr "Japanse Yen (¥)"
+
+#. settings-schema.json->currency->options
+msgid "Jordanian Dinar (د.ا)"
+msgstr "Jordaanse Dinar (د.ا)"
+
+#. settings-schema.json->currency->options
+msgid "Kazakhstani Tenge (₸)"
+msgstr "Kazachse Tenge (₸)"
+
+#. settings-schema.json->currency->options
+msgid "Kenyan Shilling (Sh)"
+msgstr "Kenyaanse Shilling (Sh)"
+
+#. settings-schema.json->currency->options
+msgid "Kuwaiti Dinar (د.ك)"
+msgstr "Koeweitse Dinar (د.ك)"
+
+#. settings-schema.json->currency->options
+msgid "Kyrgystani Som (с)"
+msgstr "Kirgizische Som (с)"
+
+#. settings-schema.json->currency->options
+msgid "Lebanese Pound (ل.ل)"
+msgstr "Libanese Pond (ل.ل)"
+
+#. settings-schema.json->currency->options
+msgid "Macedonian Denar (ден)"
+msgstr "Macedonische Denar (ден)"
+
+#. settings-schema.json->currency->options
+msgid "Malaysian Ringgit (RM)"
+msgstr "Maleisische Ringgit (RM)"
+
+#. settings-schema.json->currency->options
+msgid "Mauritian Rupee (₨)"
+msgstr "Mauritiaanse Roepie (₨)"
+
+#. settings-schema.json->currency->options
+msgid "Mexican Peso ($)"
+msgstr "Mexicaanse Peso ($)"
+
+#. settings-schema.json->currency->options
+msgid "Moldovan Leu (L)"
+msgstr "Moldavische Leu (L)"
+
+#. settings-schema.json->currency->options
+msgid "Mongolian Tugrik (₮)"
+msgstr "Mongoolse Tugrik (₮)"
+
+#. settings-schema.json->currency->options
+msgid "Moroccan Dirham (د.م.)"
+msgstr "Marokkaanse Dirham (د.م.)"
+
+#. settings-schema.json->currency->options
+msgid "Myanma Kyat (Ks)"
+msgstr "Myanmarese Kyat (Ks)"
+
+#. settings-schema.json->currency->options
+msgid "Namibian Dollar ($)"
+msgstr "Namibische Dollar ($)"
+
+#. settings-schema.json->currency->options
+msgid "Nepalese Rupee (₨)"
+msgstr "Nepalese Roepie (₨)"
+
+#. settings-schema.json->currency->options
+msgid "New Taiwan Dollar (NT$)"
+msgstr "Nieuwe Taiwan Dollar (NT$)"
+
+#. settings-schema.json->currency->options
+msgid "New Zealand Dollar ($)"
+msgstr "Nieuw-Zeelandse Dollar ($)"
+
+#. settings-schema.json->currency->options
+msgid "Nicaraguan Córdoba (C$)"
+msgstr "Nicaraguaanse Córdoba (C$)"
+
+#. settings-schema.json->currency->options
+msgid "Nigerian Naira (₦)"
+msgstr "Nigeriaanse Naira (₦)"
+
+#. settings-schema.json->currency->options
+msgid "Norwegian Krone (kr)"
+msgstr "Noorse Kroon (kr)"
+
+#. settings-schema.json->currency->options
+msgid "Omani Rial (ر.ع.)"
+msgstr "Omaanse Rial (ر.ع.)"
+
+#. settings-schema.json->currency->options
+msgid "Pakistani Rupee (₨)"
+msgstr "Pakistaanse Roepie (₨)"
+
+#. settings-schema.json->currency->options
+msgid "Panamanian Balboa (B/.)"
+msgstr "Panamese Balboa (B/.)"
+
+#. settings-schema.json->currency->options
+msgid "Peruvian Sol (S/.)"
+msgstr "Peruviaanse Sol (S/.)"
+
+#. settings-schema.json->currency->options
+msgid "Philippine Peso (₱)"
+msgstr "Filippijnse Peso (₱)"
+
+#. settings-schema.json->currency->options
+msgid "Polish Złoty (zł)"
+msgstr "Poolse Złoty (zł)"
+
+#. settings-schema.json->currency->options
+msgid "Qatari Rial (ر.ق)"
+msgstr "Qatarese Rial (ر.ق)"
+
+#. settings-schema.json->currency->options
+msgid "Romanian Leu (lei)"
+msgstr "Roemeense Leu (lei)"
+
+#. settings-schema.json->currency->options
+msgid "Russian Ruble (₽)"
+msgstr "Russische Roebel (₽)"
+
+#. settings-schema.json->currency->options
+msgid "Saudi Riyal (ر.س)"
+msgstr "Saoedische Riyal (ر.س)"
+
+#. settings-schema.json->currency->options
+msgid "Serbian Dinar (дин.)"
+msgstr "Servische Dinar (дин.)"
+
+#. settings-schema.json->currency->options
+msgid "Singapore Dollar (S$)"
+msgstr "Singaporese Dollar (S$)"
+
+#. settings-schema.json->currency->options
+msgid "South African Rand (R)"
+msgstr "Zuid-Afrikaanse Rand (R)"
+
+#. settings-schema.json->currency->options
+msgid "South Korean Won (₩)"
+msgstr "Zuid-Koreaanse Won (₩)"
+
+#. settings-schema.json->currency->options
+msgid "South Sudanese Pound (£)"
+msgstr "Zuid-Soedanese Pond (£)"
+
+#. settings-schema.json->currency->options
+msgid "Sovereign Bolivar (Bs.)"
+msgstr "Souvereine Bolivar (Bs.)"
+
+#. settings-schema.json->currency->options
+msgid "Sri Lankan Rupee (Rs)"
+msgstr "Sri Lankaanse Roepie (Rs)"
+
+#. settings-schema.json->currency->options
+msgid "Swedish Krona ( kr)"
+msgstr "Zweedse Kroon (kr)"
+
+#. settings-schema.json->currency->options
+msgid "Thai Baht (฿)"
+msgstr "Thaise Baht (฿)"
+
+#. settings-schema.json->currency->options
+msgid "Trinidad and Tobago Dollar ($)"
+msgstr "Trinidadiaanse en Tobago Dollar ($)"
+
+#. settings-schema.json->currency->options
+msgid "Tunisian Dinar (د.ت)"
+msgstr "Tunesische Dinar (د.ت)"
+
+#. settings-schema.json->currency->options
+msgid "Turkish Lira (₺)"
+msgstr "Turkse Lira (₺)"
+
+#. settings-schema.json->currency->options
+msgid "Ugandan Shilling (Sh)"
+msgstr "Oegandese Shilling (Sh)"
+
+#. settings-schema.json->currency->options
+msgid "Ukrainian Hryvnia (₴)"
+msgstr "Oekraïense Hryvnia (₴)"
+
+#. settings-schema.json->currency->options
+msgid "United Arab Emirates Dirham (د.إ)"
+msgstr "Verenigde Arabische Emiraten Dirham (د.إ)"
+
+#. settings-schema.json->currency->options
+msgid "Uruguayan Peso ($)"
+msgstr "Uruguayanse Peso ($)"
+
+#. settings-schema.json->currency->options
+msgid "Vietnamese Dong (₫)"
+msgstr "Vietnamees Dong (₫)"
+
+#. settings-schema.json->refreshInterval->description
+msgid "Select Refresh Interval (uses API credits)"
+msgstr "Selecteer Vernieuwingsinterval (maakt gebruik van API-tegoeden)"
+
+#. settings-schema.json->refreshInterval->tooltip
+msgid ""
+"How often to fetch new data for the ticker. Every refresh is one credit per "
+"coin ticker, for more coins recommended value is 30min+."
+msgstr ""
+"Hoe vaak nieuwe gegevens voor de ticker ophalen. Elke vernieuwing kost één "
+"krediet per munt-ticker; voor meer munten wordt een waarde van 30 min of "
+"meer aanbevolen."
+
+#. settings-schema.json->refreshInterval->options
+msgid "5 Minutes"
+msgstr "5 Minuten"
+
+#. settings-schema.json->refreshInterval->options
+msgid "10 Minutes"
+msgstr "10 Minuten"
+
+#. settings-schema.json->refreshInterval->options
+msgid "15 Minutes"
+msgstr "15 Minuten"
+
+#. settings-schema.json->refreshInterval->options
+msgid "20 Minutes"
+msgstr "20 Minuten"
+
+#. settings-schema.json->refreshInterval->options
+msgid "25 Minutes"
+msgstr "25 Minuten"
+
+#. settings-schema.json->refreshInterval->options
+msgid "30 Minutes"
+msgstr "30 Minuten"
+
+#. settings-schema.json->refreshInterval->options
+msgid "35 Minutes"
+msgstr "35 Minuten"
+
+#. settings-schema.json->refreshInterval->options
+msgid "40 Minutes"
+msgstr "40 Minuten"
+
+#. settings-schema.json->refreshInterval->options
+msgid "45 Minutes"
+msgstr "45 Minuten"
+
+#. settings-schema.json->refreshInterval->options
+msgid "50 Minutes"
+msgstr "50 Minuten"
+
+#. settings-schema.json->refreshInterval->options
+msgid "55 Minutes"
+msgstr "55 Minuten"
+
+#. settings-schema.json->refreshInterval->options
+msgid "1 Hour"
+msgstr "1 Uur"
+
+#. settings-schema.json->refreshInterval->options
+msgid "2 Hours"
+msgstr "2 Uur"
+
+#. settings-schema.json->refreshInterval->options
+msgid "4 Hours"
+msgstr "4 Uur"
+
+#. settings-schema.json->assetsOwned->description
+msgid "Assets Owned"
+msgstr "Bezit van Activa"
+
+#. settings-schema.json->assetsOwned->tooltip
+msgid "How many of the cryptocurrency assets do you own?"
+msgstr "Hoeveel van de cryptomunt-activa bezit u?"
+
+#. settings-schema.json->assetsValue->description
+msgid "Assets Value"
+msgstr "Waarde van Activa"
+
+#. settings-schema.json->assetsValue->tooltip
+msgid ""
+"For how much did you buy them? Used to calculate profits. Used together with "
+"Assets Owned field."
+msgstr ""
+"Hoeveel heeft u ervoor betaald? Wordt gebruikt om winst te berekenen. Samen "
+"te gebruiken met het veld Bezit van Activa."
+
+#. settings-schema.json->head3->description
+msgid "Desklet UI"
+msgstr "Desklet UI"
+
+#. settings-schema.json->bgColor->description
+msgid "Background Color"
+msgstr "Achtergrondkleur"
+
+#. settings-schema.json->bgColor->tooltip
+msgid "Background Color for the Desklet."
+msgstr "Achtergrondkleur voor de Desklet."
+
+#. settings-schema.json->bgBorderRadius->units
+msgid "pixels"
+msgstr "pixels"
+
+#. settings-schema.json->bgBorderRadius->description
+msgid "Background Border Radius"
+msgstr "Achtergrond radius van de rand"
+
+#. settings-schema.json->bgBorderRadius->tooltip
+msgid "Background Border Radius in px, select 0 to set no border radius."
+msgstr ""
+"Achtergrond rand radius in px, selecteer 0 om geen rand radius in te stellen."
+
+#. settings-schema.json->head4->description
+msgid ""
+"This is an OPEN SOURCE project, if you like it please consider donating! "
+"https://cryptocurrencyticker.xyz"
+msgstr ""
+"Dit is een OPEN SOURCE-project. Als u het leuk vindt, overweeg dan om te "
+"doneren! https://cryptocurrencyticker.xyz"

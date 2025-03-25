@@ -1,0 +1,30 @@
+# ALBUM ART FOR RADIO3.0
+# This file is put in the public domain.
+# claudiux, 2017
+#
+msgid ""
+msgstr ""
+
+#. desklet.js:134
+msgid "Album Art"
+msgstr ""
+
+#. desklet.js:419
+msgid "Don't display this image"
+msgstr ""
+
+#. desklet.js:429
+msgid "Don't display any new image"
+msgstr ""
+
+#. metadata.json->name
+msgid "Album Art for Radio3.0 and Enhanced Sound applets"
+msgstr ""
+
+#. metadata.json->description
+msgid "A digital photo frame desklet to display an album art, if available"
+msgstr ""
+
+#. settings-schema.json->enable-at-startup->description
+msgid "Activate Album Art display at startup"
+msgstr ""
