@@ -3,7 +3,7 @@
 # torchipeppo, 2025
 #
 #
-# Please read the associated README for context guidance.
+# Please read TRANSLATORS.md for context guidance.
 #
 #
 #, fuzzy
