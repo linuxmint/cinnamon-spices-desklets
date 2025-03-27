@@ -2,6 +2,7 @@
   "max-instances": "3",
   "description": "A numeric binary clock - formatted: 00000 : 000000 : 000000",
   "name": "Binary Clock (Numeric)",
-  "version": "0.0",
-  "uuid": "NumericBinaryClock@ozymandiaslone"
+  "version": "0.1",
+  "uuid": "NumericBinaryClock@ozymandiaslone",
+  "author": "ozymandiaslone"
 }
