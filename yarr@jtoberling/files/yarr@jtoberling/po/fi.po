@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: yarr@jtoberling 1.2.1\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-02-08 18:32-0500\n"
+"POT-Creation-Date: 2025-02-09 10:09-0500\n"
 "PO-Revision-Date: 2024-11-11 12:58+0200\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: \n"
@@ -18,39 +18,39 @@ msgstr ""
 "X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. desklet.js:479
+#. desklet.js:507
 msgid "Enable refresh"
 msgstr "Päivitys päälle"
 
-#. desklet.js:483 desklet.js:689
+#. desklet.js:511 desklet.js:747
 msgid "Disable refresh"
 msgstr "Päivitys pois"
 
-#. desklet.js:491
+#. desklet.js:519
 msgid "Yarr"
 msgstr "Yarr"
 
-#. desklet.js:536
+#. desklet.js:564
 msgid "Loading: feeds ..."
 msgstr "Ladataan: syötteitä ..."
 
-#. desklet.js:566 desklet.js:671
+#. desklet.js:624 desklet.js:729
 msgid " Search..."
 msgstr ""
 
-#. desklet.js:599
+#. desklet.js:657
 msgid "Search Articles"
 msgstr ""
 
-#. desklet.js:610
+#. desklet.js:668
 msgid "Type to search..."
 msgstr ""
 
-#. desklet.js:644
+#. desklet.js:702
 msgid "Cancel"
 msgstr ""
 
-#. desklet.js:649
+#. desklet.js:707
 msgid "Search"
 msgstr ""
 
@@ -236,6 +236,10 @@ msgstr "Avaa ChaptGPT sivusto"
 msgid "Enable EXPERIMENTAL AI summary by ChatGPT"
 msgstr "Käytä ChatGPT AI KOKEELLINEN"
 
+#. settings-schema.json->ai_add_description_to_summary->description
+msgid "Add description to beginning of AI summary"
+msgstr ""
+
 #. settings-schema.json->ai_url->description
 msgid "URL of Completion Api"
 msgstr "Täydennys API URL"
@@ -420,4 +424,23 @@ msgstr ""
 
 #. settings-schema.json->enableTimestamp->description
 msgid "Hide timestamp"
+msgstr ""
+
+#. settings-schema.json->enableFavoriteFeature->description
+#, fuzzy
+msgid "Enable favorite feature"
+msgstr "Päivitys päälle"
+
+#. settings-schema.json->loadFavoritesOnStartup->description
+msgid "Load favorites on startup"
+msgstr ""
+
+#. settings-schema.json->articleSpacing->description
+msgid "Article spacing density"
+msgstr ""
+
+#. settings-schema.json->articleSpacing->tooltip
+msgid ""
+"Adjust the spacing between articles. Lower values make the list more "
+"compact, higher values add more space between articles."
 msgstr ""

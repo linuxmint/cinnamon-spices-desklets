@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: yarr@jtoberling 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-02-08 18:32-0500\n"
-"PO-Revision-Date: 2024-11-20 03:07+0100\n"
+"POT-Creation-Date: 2025-02-09 10:09-0500\n"
+"PO-Revision-Date: 2025-02-17 12:06+0100\n"
 "Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
 "Language-Team: \n"
 "Language: ca\n"
@@ -18,43 +18,43 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#. desklet.js:479
+#. desklet.js:507
 msgid "Enable refresh"
 msgstr "Habilitar actualització"
 
-#. desklet.js:483 desklet.js:689
+#. desklet.js:511 desklet.js:747
 msgid "Disable refresh"
 msgstr "Deshabilitar actualització"
 
-#. desklet.js:491
+#. desklet.js:519
 msgid "Yarr"
 msgstr "Yarr"
 
 # feed = canal d'entrada d'informació.
 # Consultar el diccionari dictionary.cambridge.org i la memòria de traducció del SoftCatalà
-#. desklet.js:536
+#. desklet.js:564
 msgid "Loading: feeds ..."
 msgstr "S'estan carregant els canals..."
 
-#. desklet.js:566 desklet.js:671
+#. desklet.js:624 desklet.js:729
 msgid " Search..."
-msgstr ""
+msgstr " Buscar..."
 
-#. desklet.js:599
+#. desklet.js:657
 msgid "Search Articles"
-msgstr ""
+msgstr "Buscador d'articles"
 
-#. desklet.js:610
+#. desklet.js:668
 msgid "Type to search..."
-msgstr ""
+msgstr "Escriviu per a buscar..."
 
-#. desklet.js:644
+#. desklet.js:702
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel·lar"
 
-#. desklet.js:649
+#. desklet.js:707
 msgid "Search"
-msgstr ""
+msgstr "Buscar"
 
 #. metadata.json->description
 msgid "Yet Another RSS Reader - now as Cinnamon Desklet"
@@ -240,6 +240,10 @@ msgstr "Obre la pàgina d'ús del ChatGPT"
 msgid "Enable EXPERIMENTAL AI summary by ChatGPT"
 msgstr "Activa els resums fets amb ChatGPT (experimental)"
 
+#. settings-schema.json->ai_add_description_to_summary->description
+msgid "Add description to beginning of AI summary"
+msgstr "Afegeix una descripció al començament a mode de resum generat per IA"
+
 #. settings-schema.json->ai_url->description
 msgid "URL of Completion Api"
 msgstr "URL de l'API complementària"
@@ -277,7 +281,7 @@ msgstr ""
 
 #. settings-schema.json->ai_use_standard_model->description
 msgid "Use standard AI models."
-msgstr "Utilitzar models d'IA estàndard"
+msgstr "Utilitzar models d'IA estàndard."
 
 #. settings-schema.json->ai_use_standard_model->tooltip
 msgid "Set to custom to type your model name"
@@ -412,18 +416,40 @@ msgstr "Habilita el botó per copiar al portarretalls"
 
 #. settings-schema.json->temperature->description
 msgid "Temperature for AI responses"
-msgstr ""
+msgstr "Temperatura per a les respostes d'IA"
 
 #. settings-schema.json->temperature->tooltip
 msgid ""
 "Controls the randomness of the AI's responses. Higher values mean more "
 "randomness."
 msgstr ""
+"Controla la precisió de les respostes de l'IA. Un valor més alt implica més "
+"aleatorietat."
 
 #. settings-schema.json->enableFeedButton->description
 msgid "Hide feed button"
-msgstr ""
+msgstr "Amaga el botó del canal"
 
 #. settings-schema.json->enableTimestamp->description
 msgid "Hide timestamp"
+msgstr "Amaga la data"
+
+#. settings-schema.json->enableFavoriteFeature->description
+msgid "Enable favorite feature"
+msgstr "Activa la funcionalitat de preferit"
+
+#. settings-schema.json->loadFavoritesOnStartup->description
+msgid "Load favorites on startup"
+msgstr "Carrega els preferits a l'inici"
+
+#. settings-schema.json->articleSpacing->description
+msgid "Article spacing density"
+msgstr "Densitat de l'espaiat entre articles"
+
+#. settings-schema.json->articleSpacing->tooltip
+msgid ""
+"Adjust the spacing between articles. Lower values make the list more "
+"compact, higher values add more space between articles."
 msgstr ""
+"Ajusta l'espai entre articles. Valors més petits fan que la llista sigui més "
+"compacta, mentre que valors més alts afegeixen més espai entre articles."

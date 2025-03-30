@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-11-20 20:33+0100\n"
+"POT-Creation-Date: 2025-03-18 20:08+0100\n"
 "PO-Revision-Date: 2023-07-19 22:16+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -18,46 +18,46 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
 
-#. desklet.js:86
+#. desklet.js:84
 msgid "No quotes data to display"
 msgstr ""
 
-#. desklet.js:427
+#. desklet.js:422
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 
-#. desklet.js:450 desklet.js:473
+#. desklet.js:445 desklet.js:468
 msgid "Authorization parameters have expired"
 msgstr ""
 
-#. desklet.js:453 desklet.js:476
+#. desklet.js:448 desklet.js:471
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Serviciul Yahoo Finance nu este disponibil!"
 
-#. desklet.js:835
+#. desklet.js:830
 msgid "Updated at "
 msgstr "Actualizat la"
 
-#. desklet.js:868
+#. desklet.js:862
 msgid "Error: "
 msgstr "Eroare:"
 
-#. desklet.js:983
+#. desklet.js:981
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
 msgstr ""
 
-#. desklet.js:1009
+#. desklet.js:1007
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 
-#. desklet.js:1014
+#. desklet.js:1012
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 
-#. desklet.js:1037
+#. desklet.js:1035
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "

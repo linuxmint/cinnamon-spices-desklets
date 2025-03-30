@@ -88,9 +88,12 @@ class YarrDesklet extends Desklet.Desklet {
 
     lastRefresh = null;
 
+<<<<<<< HEAD
     // Add memory monitoring capability
     _memoryMetrics = null;
 
+=======
+>>>>>>> refs/remotes/origin/master
     constructor(metadata, desklet_id) {
 
         // Call parent constructor FIRST
@@ -192,8 +195,12 @@ class YarrDesklet extends Desklet.Desklet {
         // Add cleanup handler
         this.actor.connect('destroy', () => this._onDestroy());
 
+<<<<<<< HEAD
         // Add memory usage monitoring
         this._monitorMemoryUsage();
+=======
+
+>>>>>>> refs/remotes/origin/master
     }
 
     _onDestroy() {
@@ -949,6 +956,7 @@ class YarrDesklet extends Desklet.Desklet {
         }
     }
 
+<<<<<<< HEAD
     processFeedResult(feed, result) {
         try {
             if (!result) {
@@ -1035,6 +1043,8 @@ class YarrDesklet extends Desklet.Desklet {
         }
     }
 
+=======
+>>>>>>> refs/remotes/origin/master
     HTMLPartToTextPart(HTMLPart) {
         return HTMLPart
             .replace(/\n/ig, '')
@@ -1079,6 +1089,7 @@ class YarrDesklet extends Desklet.Desklet {
         Gio.app_info_launch_default_for_uri(uri, global.create_app_launch_context());
     }
 
+<<<<<<< HEAD
     onClickedFavoriteButton(selfObj, p2, item, lineBox, favIcon) {
         try {
             // Toggle favorite status
@@ -1105,6 +1116,8 @@ class YarrDesklet extends Desklet.Desklet {
         }
     }
 
+=======
+>>>>>>> refs/remotes/origin/master
     onClickedSumButton(selfObj, p2, item, lineBox, sumIcon) {
         if (sumIcon) {
             sumIcon.set_icon_name('process-working-symbolic');
@@ -1203,6 +1216,10 @@ class YarrDesklet extends Desklet.Desklet {
     }
 
     onClickedCopyButton(selfObj, p2, item, lineBox) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/master
         const message = item.channel + ' ' + item.category + ' @' + item.pubDate + '\n' +
             item.title + '\n' +
             '---------------------------\n' +
@@ -1214,6 +1231,7 @@ class YarrDesklet extends Desklet.Desklet {
             ;
 
         this.clipboard.set_text(St.ClipboardType.CLIPBOARD, message);
+<<<<<<< HEAD
     }
 
     // Add method to load favorite articles
@@ -1259,6 +1277,11 @@ class YarrDesklet extends Desklet.Desklet {
             global.log('Error in loadFavoriteArticles:', e);
         }
     }
+=======
+
+    }
+
+>>>>>>> refs/remotes/origin/master
 
     displayItems() {
         try {
@@ -1500,6 +1523,137 @@ class YarrDesklet extends Desklet.Desklet {
         }
     }
 
+<<<<<<< HEAD
+=======
+    formatTextWrap(text, maxLineLength) {
+        const words = text.replace(/[\r\n]+/g, ' ').split(' ');
+        let lineLength = 0;
+
+        // use functional reduce, instead of for loop
+        return words.reduce((result, word) => {
+            if (lineLength + word.length >= maxLineLength) {
+                lineLength = word.length;
+                return result + `\n${word}`; // don't add spaces upfront
+            } else {
+                lineLength += word.length + (result ? 1 : 0);
+                return result ? result + ` ${word}` : `${word}`; // add space only when needed
+            }
+        }, '');
+    }
+
+    // Resource monitoring functions
+    _updateResourceMetrics() {
+        const now = Date.now();
+
+        // Track update frequency
+        if (this._resourceUsage.lastUpdate) {
+            const updateInterval = now - this._resourceUsage.lastUpdate;
+            this._resourceUsage.updateIntervals =
+                this._resourceUsage.updateIntervals || [];
+            this._resourceUsage.updateIntervals.push(updateInterval);
+
+            // Keep only last 10 intervals
+            if (this._resourceUsage.updateIntervals.length > 10) {
+                this._resourceUsage.updateIntervals.shift();
+            }
+        }
+
+        this._resourceUsage.lastUpdate = now;
+        this._resourceUsage.updateCount++;
+
+        // Calculate adaptive refresh interval
+        if (this._resourceUsage.updateIntervals?.length > 5) {
+            const avgInterval = this._resourceUsage.updateIntervals.reduce((a, b) => a + b, 0) /
+                this._resourceUsage.updateIntervals.length;
+            this._adaptiveRefresh.currentDelay = Math.max(
+                this._adaptiveRefresh.minDelay,
+                Math.min(this._adaptiveRefresh.maxDelay, Math.floor(avgInterval / 1000))
+            );
+        }
+    }
+
+    // Error handling functions
+    _handleError(error, context = '') {
+        this._resourceUsage.errorCount++;
+
+        // Track error types
+        this._resourceUsage.errors = this._resourceUsage.errors || {};
+        const errorType = error.name || 'UnknownError';
+        this._resourceUsage.errors[errorType] =
+            (this._resourceUsage.errors[errorType] || 0) + 1;
+
+        global.log(`YarrDesklet Error [${context}]:`, error);
+
+        // Adaptive error handling
+        if (this._resourceUsage.errorCount > 5) {
+            this._adaptiveRefresh.currentDelay = Math.min(
+                this._adaptiveRefresh.currentDelay * 1.5,
+                this._adaptiveRefresh.maxDelay
+            );
+            this._resourceUsage.errorCount = 0;
+        }
+    }
+
+    processFeedResult(feed, result) {
+        try {
+            if (!result) return;
+            const resJSON = fromXML(result);
+            if (!resJSON?.rss?.channel?.item) return;
+
+            const items = Array.isArray(resJSON.rss.channel.item)
+                ? resJSON.rss.channel.item
+                : [resJSON.rss.channel.item];
+
+            items.forEach(item => {
+                try {
+                    // Skip if no link (we need it for SHA256)
+                    if (!item.link) return;
+
+                    const catStr = this.getCategoryString(item);
+                    const timestamp = new Date(item.pubDate);
+                    if (isNaN(timestamp.getTime())) return;
+
+                    // Calculate SHA256 of URL
+                    const id = this.favoritesDb._calculateSHA256(item.link);
+                    if (!id) return;
+
+                    // Generate map key using SHA256
+                    const key = `${id}`;
+
+                    // Check if this item already exists as a favorite
+                    const existingItem = Array.from(this.items.values())
+                        .find(existing =>
+                            existing.isFavorite &&
+                            this.favoritesDb._calculateSHA256(existing.link) === id
+                        );
+
+                    // Skip if item exists as a favorite
+                    if (existingItem) return;
+
+                    // Add new item
+                    this.items.set(key, {
+                        channel: feed.name,
+                        timestamp: timestamp,
+                        pubDate: item.pubDate,
+                        title: item.title || 'No Title',
+                        link: item.link,
+                        category: catStr,
+                        description: item.description || '',
+                        labelColor: feed.labelcolor || '#ffffff',
+                        aiResponse: '',
+                        isFavorite: this.favoriteKeys.has(item.link)
+                    });
+                } catch (e) {
+                    global.log('Error processing feed item:', e);
+                }
+            });
+        } catch (error) {
+            global.log('Error in processFeedResult:', error);
+            throw error;
+        }
+    }
+
+>>>>>>> refs/remotes/origin/master
     on_chatgptapikey_stored(source, result) {
         Secret.password_store_finish(result);
     }
@@ -1523,6 +1677,7 @@ class YarrDesklet extends Desklet.Desklet {
         dialog.open();
     }
 
+<<<<<<< HEAD
     // Clean up old items to reduce memory pressure
     _cleanupOldItems() {
         try {
@@ -1832,6 +1987,51 @@ class PasswordDialog extends ModalDialog.ModalDialog {
             }
         ]);
     }
+=======
+    // Add new method to load favorite articles
+    async loadFavoriteArticles() {
+        try {
+            const sql = `
+                SELECT * FROM favorites 
+                ORDER BY timestamp DESC
+            `;
+
+            const [success, stdout, stderr] = GLib.spawn_command_line_sync(
+                `sqlite3 "${this.favoritesDb.dbFile}" "${sql}" -json`
+            );
+
+            if (!success) {
+                global.log('Error loading favorites:', stderr.toString());
+                return;
+            }
+
+            const favorites = JSON.parse(stdout.toString() || '[]');
+            favorites.forEach(item => {
+                // Calculate SHA256 of URL for consistent key
+                const id = this.favoritesDb._calculateSHA256(item.link);
+                if (!id) return;
+
+                // Use SHA256 as key
+                const key = `${id}`;
+
+                this.items.set(key, {
+                    channel: item.channel,
+                    timestamp: new Date(parseInt(item.timestamp)),
+                    pubDate: item.pubDate,
+                    title: item.title,
+                    link: item.link,
+                    category: item.category,
+                    description: item.description,
+                    labelColor: item.labelColor,
+                    aiResponse: item.aiResponse,
+                    isFavorite: true
+                });
+            });
+        } catch (e) {
+            global.log('Error in loadFavoriteArticles:', e);
+        }
+    }
+>>>>>>> refs/remotes/origin/master
 }
 
 function main(metadata, desklet_id) {
@@ -1839,3 +2039,201 @@ function main(metadata, desklet_id) {
     return desklet;
 }
 
+<<<<<<< HEAD
+=======
+
+//--------------------------------------------
+
+class PasswordDialog extends ModalDialog.ModalDialog {
+    constructor(label, callback, parent) {
+        super();  // This must be first!
+        this.callback = callback;  // Store callback before using
+
+        this.password = Secret.password_lookup_sync(parent.STORE_SCHEMA, {}, null);
+
+        this.contentLayout.set_style('width: auto; max-width: 500px;'); // Match dialog width
+        this.contentLayout.add(new St.Label({ text: label }));
+
+        this.passwordBox = new St.BoxLayout({ vertical: false });
+        this.entry = new St.Entry({ style: 'background: green; color:yellow; max-width: 400px;' });
+        this.entry.clutter_text.set_password_char('\u25cf');
+        this.entry.clutter_text.set_text(this.password);
+        this.passwordBox.add(this.entry);
+        this.contentLayout.add(this.passwordBox);
+        this.setInitialKeyFocus(this.entry.clutter_text);
+
+        this.setButtons([
+            {
+                label: "Save",
+                action: () => {
+                    const pwd = this.entry.get_text();
+                    this.callback(pwd);
+                    this.destroy();
+                },
+                key: Clutter.KEY_Return,
+                focused: false
+            },
+            {
+                label: "Show/Hide password",
+                action: () => {
+                    if (this.entry.clutter_text.get_password_char()) {
+                        this.entry.clutter_text.set_password_char('');
+                    } else {
+                        this.entry.clutter_text.set_password_char('\u25cf');
+                    }
+                },
+                focused: false
+            },
+            {
+                label: "Cancel",
+                action: () => {
+                    this.destroy();
+                },
+                key: null,
+                focused: false
+            }
+        ]);
+    }
+}
+
+// Add new class for database management
+class FavoritesDB {
+    constructor() {
+        this.dbFile = GLib.build_filenamev([GLib.get_user_data_dir(), 'yarr_favorites.db']);
+        this.initDatabase();
+    }
+
+    initDatabase() {
+        try {
+            // Create database with all fields
+            const sql = `
+                CREATE TABLE IF NOT EXISTS favorites (
+                    id TEXT PRIMARY KEY,
+                    title TEXT,
+                    link TEXT,
+                    channel TEXT,
+                    category TEXT,
+                    description TEXT,
+                    aiResponse TEXT,
+                    labelColor TEXT,
+                    timestamp INTEGER,
+                    pubDate TEXT,
+                    created_at INTEGER DEFAULT (strftime('%s', 'now')),
+                    updated_at INTEGER DEFAULT (strftime('%s', 'now'))
+                )
+            `;
+
+            const [success, stdout, stderr] = GLib.spawn_command_line_sync(
+                `sqlite3 "${this.dbFile}" "${sql}"`
+            );
+
+            if (!success) {
+                global.log('Error initializing database:', stderr.toString());
+            }
+        } catch (e) {
+            global.log('Error in initDatabase:', e);
+        }
+    }
+
+    // Helper function to calculate SHA256
+    _calculateSHA256(str) {
+        try {
+            const bytes = new TextEncoder().encode(str);
+            const checksum = GLib.Checksum.new(GLib.ChecksumType.SHA256);
+            checksum.update(bytes);
+            return checksum.get_string();
+        } catch (e) {
+            global.log('Error calculating SHA256:', e);
+            return null;
+        }
+    }
+
+    addFavorite(item) {
+        try {
+            // Calculate SHA256 of URL as primary key
+            const id = this._calculateSHA256(item.link || '');
+            if (!id) return false;
+
+            const sql = `
+                INSERT OR REPLACE INTO favorites (
+                    id, title, link, channel, category, description, 
+                    aiResponse, labelColor, timestamp, pubDate, updated_at
+                ) VALUES (
+                    '${this._escapeString(id)}',
+                    '${this._escapeString(item.title)}',
+                    '${this._escapeString(item.link)}',
+                    '${this._escapeString(item.channel)}',
+                    '${this._escapeString(item.category)}',
+                    '${this._escapeString(item.description)}',
+                    '${this._escapeString(item.aiResponse)}',
+                    '${this._escapeString(item.labelColor)}',
+                    ${item.timestamp.getTime()},
+                    '${this._escapeString(item.pubDate)}',
+                    strftime('%s', 'now')
+                )
+            `;
+
+            const [success, stdout, stderr] = GLib.spawn_command_line_sync(
+                `sqlite3 "${this.dbFile}" "${sql}"`
+            );
+
+            if (!success) {
+                global.log('Error adding favorite:', stderr.toString());
+            }
+            return success;
+        } catch (e) {
+            global.log('Error in addFavorite:', e);
+            return false;
+        }
+    }
+
+    removeFavorite(url) {
+        try {
+            const id = this._calculateSHA256(url);
+            if (!id) return false;
+
+            const sql = `DELETE FROM favorites WHERE id = '${this._escapeString(id)}'`;
+
+            const [success, stdout, stderr] = GLib.spawn_command_line_sync(
+                `sqlite3 "${this.dbFile}" "${sql}"`
+            );
+
+            if (!success) {
+                global.log('Error removing favorite:', stderr.toString());
+            }
+            return success;
+        } catch (e) {
+            global.log('Error in removeFavorite:', e);
+            return false;
+        }
+    }
+
+    getFavorites() {
+        try {
+            // Get all data from favorites
+            const sql = "SELECT link FROM favorites";
+
+            const [success, stdout, stderr] = GLib.spawn_command_line_sync(
+                `sqlite3 "${this.dbFile}" "${sql}"`
+            );
+
+            if (!success) {
+                global.log('Error getting favorites:', stderr.toString());
+                return new Set();
+            }
+
+            const favorites = stdout.toString().split('\n').filter(Boolean);
+            return new Set(favorites);
+        } catch (e) {
+            global.log('Error in getFavorites:', e);
+            return new Set();
+        }
+    }
+
+    _escapeString(str) {
+        if (!str) return '';
+        return str.replace(/'/g, "''");
+    }
+}
+
+>>>>>>> refs/remotes/origin/master

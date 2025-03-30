@@ -1,3 +1,20 @@
+### 0.15.5 - March 18, 2025
+
+Features:
+
+- improve display of error details
+- replace Mainloop with GLib for timer functionality
+
+Bugfixes:
+
+- fix "TypeError: responseResult is null"
+
+### 0.15.4 - February 10, 2025
+
+Bugfixes:
+
+- fix infinite loop on empty quotes list
+
 ### 0.15.3 - January 8, 2025
 
 Features:

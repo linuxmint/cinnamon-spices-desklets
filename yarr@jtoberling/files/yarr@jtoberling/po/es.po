@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: yarr@jtoberling 1.1.1\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-02-08 18:32-0500\n"
-"PO-Revision-Date: 2024-11-11 20:07-0300\n"
+"POT-Creation-Date: 2025-02-09 10:09-0500\n"
+"PO-Revision-Date: 2025-02-10 11:25-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -17,41 +17,41 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.4\n"
 
-#. desklet.js:479
+#. desklet.js:507
 msgid "Enable refresh"
 msgstr "Habilitar actualización"
 
-#. desklet.js:483 desklet.js:689
+#. desklet.js:511 desklet.js:747
 msgid "Disable refresh"
 msgstr "Deshabilitar actualización"
 
-#. desklet.js:491
+#. desklet.js:519
 msgid "Yarr"
 msgstr "Yarr"
 
-#. desklet.js:536
+#. desklet.js:564
 msgid "Loading: feeds ..."
 msgstr "Cargando: feeds ..."
 
-#. desklet.js:566 desklet.js:671
+#. desklet.js:624 desklet.js:729
 msgid " Search..."
-msgstr ""
+msgstr " Buscar…"
 
-#. desklet.js:599
+#. desklet.js:657
 msgid "Search Articles"
-msgstr ""
+msgstr "Buscar artículos"
 
-#. desklet.js:610
+#. desklet.js:668
 msgid "Type to search..."
-msgstr ""
+msgstr "Escriba para buscar..."
 
-#. desklet.js:644
+#. desklet.js:702
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
-#. desklet.js:649
+#. desklet.js:707
 msgid "Search"
-msgstr ""
+msgstr "Buscar"
 
 #. metadata.json->description
 msgid "Yet Another RSS Reader - now as Cinnamon Desklet"
@@ -236,6 +236,10 @@ msgstr "Abrir la página de uso de ChaptGPT"
 msgid "Enable EXPERIMENTAL AI summary by ChatGPT"
 msgstr "Activar el resumen EXPERIMENTAL AI de ChatGPT"
 
+#. settings-schema.json->ai_add_description_to_summary->description
+msgid "Add description to beginning of AI summary"
+msgstr "Añadir una descripción al principio del resumen de la IA"
+
 #. settings-schema.json->ai_url->description
 msgid "URL of Completion Api"
 msgstr "URL de API complementaria"
@@ -407,18 +411,42 @@ msgstr "Habilitar el botón Copiar al portapapeles"
 
 #. settings-schema.json->temperature->description
 msgid "Temperature for AI responses"
-msgstr ""
+msgstr "Temperatura para las respuestas de la IA"
 
 #. settings-schema.json->temperature->tooltip
 msgid ""
 "Controls the randomness of the AI's responses. Higher values mean more "
 "randomness."
 msgstr ""
+"Controla la aleatoriedad de las respuestas de la IA. Los valores más altos "
+"significan más aleatoriedad."
 
 #. settings-schema.json->enableFeedButton->description
 msgid "Hide feed button"
-msgstr ""
+msgstr "Ocultar el botón de feed"
 
 #. settings-schema.json->enableTimestamp->description
 msgid "Hide timestamp"
+msgstr "Ocultar marca de tiempo"
+
+#. settings-schema.json->enableFavoriteFeature->description
+msgid "Enable favorite feature"
+msgstr "Activar la función de favoritos"
+
+#. settings-schema.json->loadFavoritesOnStartup->description
+msgid "Load favorites on startup"
+msgstr "Cargar favoritos al iniciar"
+
+#. settings-schema.json->articleSpacing->description
+msgid "Article spacing density"
 msgstr ""
+"Ajuste el espaciado entre artículos. Los valores más bajos hacen la lista "
+"más compacta, los valores más altos añaden más espacio entre los artículos"
+
+#. settings-schema.json->articleSpacing->tooltip
+msgid ""
+"Adjust the spacing between articles. Lower values make the list more "
+"compact, higher values add more space between articles."
+msgstr ""
+"Ajuste el espaciado entre artículos. Los valores más bajos hacen la lista "
+"más compacta, los valores más altos añaden más espacio entre los artículos."
