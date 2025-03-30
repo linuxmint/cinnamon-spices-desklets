@@ -2,11 +2,7 @@
     "max-instances": "1",
     "description": "Yet Another RSS Reader - now as Cinnamon Desklet",
     "name": "Yet Another RSS Reader",
-<<<<<<< HEAD
     "version": "1.4.2",
-=======
-    "version": "1.4.1",
->>>>>>> refs/remotes/origin/master
     "uuid": "yarr@jtoberling",
     "multiversion": true,
     "author": "jtoberling",
