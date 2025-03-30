@@ -88,6 +88,9 @@ class YarrDesklet extends Desklet.Desklet {
 
     lastRefresh = null;
 
+    // Add memory monitoring capability
+    _memoryMetrics = null;
+
     constructor(metadata, desklet_id) {
 
         // Call parent constructor FIRST
@@ -189,7 +192,8 @@ class YarrDesklet extends Desklet.Desklet {
         // Add cleanup handler
         this.actor.connect('destroy', () => this._onDestroy());
 
-
+        // Add memory usage monitoring
+        this._monitorMemoryUsage();
     }
 
     _onDestroy() {
@@ -924,9 +928,13 @@ class YarrDesklet extends Desklet.Desklet {
             const feeds = [...this.feeds].filter(f => f?.active && f?.url?.length);
             if (!feeds?.length) return;
 
+            global.log(`Collecting ${feeds.length} feeds`);
+
             for (const feed of feeds) {
                 try {
+                    global.log(`Fetching feed: ${feed.name} from URL: ${feed.url}`);
                     const result = await this.httpRequest('GET', feed.url);
+                    global.log(`Got response for ${feed.name}, length: ${result ? result.length : 0} bytes`);
                     this.processFeedResult(feed, result);
                 } catch (error) {
                     global.log(`Error processing feed ${feed.name}:`, error);
@@ -937,6 +945,92 @@ class YarrDesklet extends Desklet.Desklet {
             this.displayItems(this);
         } catch (error) {
             global.log('Error in collectFeeds:', error);
+            throw error;
+        }
+    }
+
+    processFeedResult(feed, result) {
+        try {
+            if (!result) {
+                global.log(`No result data for feed: ${feed.name}`);
+                return;
+            }
+
+            global.log(`Parsing XML for feed: ${feed.name}`);
+            const resJSON = fromXML(result);
+
+            if (!resJSON) {
+                global.log(`fromXML returned null/undefined for feed: ${feed.name}`);
+                return;
+            }
+
+            if (!resJSON.rss) {
+                global.log(`No RSS element in feed: ${feed.name}, keys: ${Object.keys(resJSON).join(', ')}`);
+                return;
+            }
+
+            if (!resJSON.rss.channel) {
+                global.log(`No channel element in feed: ${feed.name}, keys: ${Object.keys(resJSON.rss).join(', ')}`);
+                return;
+            }
+
+            if (!resJSON.rss.channel.item) {
+                global.log(`No items in feed: ${feed.name}`);
+                return;
+            }
+
+            const items = Array.isArray(resJSON.rss.channel.item)
+                ? resJSON.rss.channel.item
+                : [resJSON.rss.channel.item];
+
+            global.log(`Processing ${items.length} items from feed: ${feed.name}`);
+
+            // Continue with the rest as before
+            items.forEach(item => {
+                try {
+                    // Skip if no link (we need it for SHA256)
+                    if (!item.link) return;
+
+                    const catStr = this.getCategoryString(item);
+                    const timestamp = new Date(item.pubDate);
+                    if (isNaN(timestamp.getTime())) return;
+
+                    // Calculate SHA256 of URL
+                    const id = this.favoritesDb._calculateSHA256(item.link);
+                    if (!id) return;
+
+                    // Generate map key using SHA256
+                    const key = `${id}`;
+
+                    // Check if this item already exists as a favorite
+                    const existingItem = Array.from(this.items.values())
+                        .find(existing =>
+                            existing.isFavorite &&
+                            this.favoritesDb._calculateSHA256(existing.link) === id
+                        );
+
+                    // Skip if item exists as a favorite
+                    if (existingItem) return;
+
+                    // Add new item
+                    this.items.set(key, {
+                        channel: feed.name,
+                        timestamp: timestamp,
+                        pubDate: item.pubDate,
+                        title: item.title || 'No Title',
+                        link: item.link,
+                        category: catStr,
+                        description: item.description || '',
+                        labelColor: feed.labelcolor || '#ffffff',
+                        aiResponse: '',
+                        isFavorite: this.favoriteKeys.has(item.link)
+                    });
+                } catch (e) {
+                    global.log('Error processing feed item:', e);
+                }
+            });
+        } catch (error) {
+            global.log('Error in processFeedResult:', error);
             throw error;
         }
     }
@@ -983,6 +1077,32 @@ class YarrDesklet extends Desklet.Desklet {
 
     onClickedButton(selfObj, p2, uri) {
         Gio.app_info_launch_default_for_uri(uri, global.create_app_launch_context());
+    }
+
+    onClickedFavoriteButton(selfObj, p2, item, lineBox, favIcon) {
+        try {
+            // Toggle favorite status
+            item.isFavorite = !item.isFavorite;
+
+            if (item.isFavorite) {
+                // Add to favorites
+                this.favoritesDb.addFavorite(item);
+                if (favIcon) {
+                    favIcon.set_icon_name('starred-symbolic');
+                }
+            } else {
+                // Remove from favorites
+                this.favoritesDb.removeFavorite(item.link);
+                if (favIcon) {
+                    favIcon.set_icon_name('non-starred-symbolic');
+                }
+            }
+
+            // Refresh display after toggling favorite
+            this.displayItems();
+        } catch (e) {
+            global.log('Error toggling favorite:', e);
+        }
     }
 
     onClickedSumButton(selfObj, p2, item, lineBox, sumIcon) {
@@ -1083,7 +1203,6 @@ class YarrDesklet extends Desklet.Desklet {
     }
 
     onClickedCopyButton(selfObj, p2, item, lineBox) {
-
         const message = item.channel + ' ' + item.category + ' @' + item.pubDate + '\n' +
             item.title + '\n' +
             '---------------------------\n' +
@@ -1095,9 +1214,51 @@ class YarrDesklet extends Desklet.Desklet {
             ;
 
         this.clipboard.set_text(St.ClipboardType.CLIPBOARD, message);
-
     }
 
+    // Add method to load favorite articles
+    async loadFavoriteArticles() {
+        try {
+            const sql = `
+                SELECT * FROM favorites 
+                ORDER BY timestamp DESC
+            `;
+
+            const [success, stdout, stderr] = GLib.spawn_command_line_sync(
+                `sqlite3 "${this.favoritesDb.dbFile}" "${sql}" -json`
+            );
+
+            if (!success) {
+                global.log('Error loading favorites:', stderr.toString());
+                return;
+            }
+
+            const favorites = JSON.parse(stdout.toString() || '[]');
+            favorites.forEach(item => {
+                // Calculate SHA256 of URL for consistent key
+                const id = this.favoritesDb._calculateSHA256(item.link);
+                if (!id) return;
+
+                // Use SHA256 as key
+                const key = `${id}`;
+
+                this.items.set(key, {
+                    channel: item.channel,
+                    timestamp: new Date(parseInt(item.timestamp)),
+                    pubDate: item.pubDate,
+                    title: item.title,
+                    link: item.link,
+                    category: item.category,
+                    description: item.description,
+                    labelColor: item.labelColor,
+                    aiResponse: item.aiResponse,
+                    isFavorite: true
+                });
+            });
+        } catch (e) {
+            global.log('Error in loadFavoriteArticles:', e);
+        }
+    }
 
     displayItems() {
         try {
@@ -1339,134 +1500,6 @@ class YarrDesklet extends Desklet.Desklet {
         }
     }
 
-    formatTextWrap(text, maxLineLength) {
-        const words = text.replace(/[\r\n]+/g, ' ').split(' ');
-        let lineLength = 0;
-
-        // use functional reduce, instead of for loop
-        return words.reduce((result, word) => {
-            if (lineLength + word.length >= maxLineLength) {
-                lineLength = word.length;
-                return result + `\n${word}`; // don't add spaces upfront
-            } else {
-                lineLength += word.length + (result ? 1 : 0);
-                return result ? result + ` ${word}` : `${word}`; // add space only when needed
-            }
-        }, '');
-    }
-
-    // Resource monitoring functions
-    _updateResourceMetrics() {
-        const now = Date.now();
-
-        // Track update frequency
-        if (this._resourceUsage.lastUpdate) {
-            const updateInterval = now - this._resourceUsage.lastUpdate;
-            this._resourceUsage.updateIntervals =
-                this._resourceUsage.updateIntervals || [];
-            this._resourceUsage.updateIntervals.push(updateInterval);
-
-            // Keep only last 10 intervals
-            if (this._resourceUsage.updateIntervals.length > 10) {
-                this._resourceUsage.updateIntervals.shift();
-            }
-        }
-
-        this._resourceUsage.lastUpdate = now;
-        this._resourceUsage.updateCount++;
-
-        // Calculate adaptive refresh interval
-        if (this._resourceUsage.updateIntervals?.length > 5) {
-            const avgInterval = this._resourceUsage.updateIntervals.reduce((a, b) => a + b, 0) /
-                this._resourceUsage.updateIntervals.length;
-            this._adaptiveRefresh.currentDelay = Math.max(
-                this._adaptiveRefresh.minDelay,
-                Math.min(this._adaptiveRefresh.maxDelay, Math.floor(avgInterval / 1000))
-            );
-        }
-    }
-
-    // Error handling functions
-    _handleError(error, context = '') {
-        this._resourceUsage.errorCount++;
-
-        // Track error types
-        this._resourceUsage.errors = this._resourceUsage.errors || {};
-        const errorType = error.name || 'UnknownError';
-        this._resourceUsage.errors[errorType] =
-            (this._resourceUsage.errors[errorType] || 0) + 1;
-
-        global.log(`YarrDesklet Error [${context}]:`, error);
-
-        // Adaptive error handling
-        if (this._resourceUsage.errorCount > 5) {
-            this._adaptiveRefresh.currentDelay = Math.min(
-                this._adaptiveRefresh.currentDelay * 1.5,
-                this._adaptiveRefresh.maxDelay
-            );
-            this._resourceUsage.errorCount = 0;
-        }
-    }
-
-    processFeedResult(feed, result) {
-        try {
-            if (!result) return;
-            const resJSON = fromXML(result);
-            if (!resJSON?.rss?.channel?.item) return;
-
-            const items = Array.isArray(resJSON.rss.channel.item)
-                ? resJSON.rss.channel.item
-                : [resJSON.rss.channel.item];
-
-            items.forEach(item => {
-                try {
-                    // Skip if no link (we need it for SHA256)
-                    if (!item.link) return;
-
-                    const catStr = this.getCategoryString(item);
-                    const timestamp = new Date(item.pubDate);
-                    if (isNaN(timestamp.getTime())) return;
-
-                    // Calculate SHA256 of URL
-                    const id = this.favoritesDb._calculateSHA256(item.link);
-                    if (!id) return;
-
-                    // Generate map key using SHA256
-                    const key = `${id}`;
-
-                    // Check if this item already exists as a favorite
-                    const existingItem = Array.from(this.items.values())
-                        .find(existing =>
-                            existing.isFavorite &&
-                            this.favoritesDb._calculateSHA256(existing.link) === id
-                        );
-
-                    // Skip if item exists as a favorite
-                    if (existingItem) return;
-
-                    // Add new item
-                    this.items.set(key, {
-                        channel: feed.name,
-                        timestamp: timestamp,
-                        pubDate: item.pubDate,
-                        title: item.title || 'No Title',
-                        link: item.link,
-                        category: catStr,
-                        description: item.description || '',
-                        labelColor: feed.labelcolor || '#ffffff',
-                        aiResponse: '',
-                        isFavorite: this.favoriteKeys.has(item.link)
-                    });
-                } catch (e) {
-                    global.log('Error processing feed item:', e);
-                }
-            });
-        } catch (error) {
-            global.log('Error in processFeedResult:', error);
-            throw error;
-        }
-    }
-
     on_chatgptapikey_stored(source, result) {
         Secret.password_store_finish(result);
     }
@@ -1490,108 +1523,120 @@ class YarrDesklet extends Desklet.Desklet {
         dialog.open();
     }
 
-    // Add new method to load favorite articles
-    async loadFavoriteArticles() {
+    // Clean up old items to reduce memory pressure
+    _cleanupOldItems() {
         try {
-            const sql = `
-                SELECT * FROM favorites 
-                ORDER BY timestamp DESC
-            `;
+            if (this.items.size <= this.itemlimit) return;
 
-            const [success, stdout, stderr] = GLib.spawn_command_line_sync(
-                `sqlite3 "${this.favoritesDb.dbFile}" "${sql}" -json`
-            );
+            // Keep only the newest items up to itemlimit
+            const sortedItems = Array.from(this.items.entries())
+                .sort((a, b) => b[1].timestamp - a[1].timestamp);
 
-            if (!success) {
-                global.log('Error loading favorites:', stderr.toString());
+            // Create a new map with only the items we want to keep
+            this.items = new Map(sortedItems.slice(0, this.itemlimit));
+
+            global.log(`Cleaned up items. Reduced to ${this.items.size} items.`);
+        } catch (e) {
+            global.log('Error in _cleanupOldItems:', e);
+        }
+    }
+
+    // Add memory monitoring capability
+    _monitorMemoryUsage() {
+        try {
+            // Check if we can access memory usage
+            const memInfoPath = '/proc/self/statm';
+            const memInfoExists = GLib.file_test(memInfoPath, GLib.FileTest.EXISTS);
+
+            if (!memInfoExists) {
+                global.log('Cannot monitor memory usage: ' + memInfoPath + ' not available');
                 return;
             }
 
-            const favorites = JSON.parse(stdout.toString() || '[]');
-            favorites.forEach(item => {
-                // Calculate SHA256 of URL for consistent key
-                const id = this.favoritesDb._calculateSHA256(item.link);
-                if (!id) return;
-
-                // Use SHA256 as key
-                const key = `${id}`;
-
-                this.items.set(key, {
-                    channel: item.channel,
-                    timestamp: new Date(parseInt(item.timestamp)),
-                    pubDate: item.pubDate,
-                    title: item.title,
-                    link: item.link,
-                    category: item.category,
-                    description: item.description,
-                    labelColor: item.labelColor,
-                    aiResponse: item.aiResponse,
-                    isFavorite: true
-                });
-            });
-        } catch (e) {
-            global.log('Error in loadFavoriteArticles:', e);
-        }
-    }
-}
-
-function main(metadata, desklet_id) {
-    let desklet = new YarrDesklet(metadata, desklet_id);
-    return desklet;
-}
-
-
-//--------------------------------------------
-
-class PasswordDialog extends ModalDialog.ModalDialog {
-    constructor(label, callback, parent) {
-        super();  // This must be first!
-        this.callback = callback;  // Store callback before using
-
-        this.password = Secret.password_lookup_sync(parent.STORE_SCHEMA, {}, null);
-
-        this.contentLayout.set_style('width: auto; max-width: 500px;'); // Match dialog width
-        this.contentLayout.add(new St.Label({ text: label }));
-
-        this.passwordBox = new St.BoxLayout({ vertical: false });
-        this.entry = new St.Entry({ style: 'background: green; color:yellow; max-width: 400px;' });
-        this.entry.clutter_text.set_password_char('\u25cf');
-        this.entry.clutter_text.set_text(this.password);
-        this.passwordBox.add(this.entry);
-        this.contentLayout.add(this.passwordBox);
-        this.setInitialKeyFocus(this.entry.clutter_text);
-
-        this.setButtons([
-            {
-                label: "Save",
-                action: () => {
-                    const pwd = this.entry.get_text();
-                    this.callback(pwd);
-                    this.destroy();
-                },
-                key: Clutter.KEY_Return,
-                focused: false
-            },
-            {
-                label: "Show/Hide password",
-                action: () => {
-                    if (this.entry.clutter_text.get_password_char()) {
-                        this.entry.clutter_text.set_password_char('');
-                    } else {
-                        this.entry.clutter_text.set_password_char('\u25cf');
-                    }
-                },
-                focused: false
-            },
-            {
-                label: "Cancel",
-                action: () => {
-                    this.destroy();
-                },
-                key: null,
-                focused: false
+            // Read memory information
+            const [success, contents] = GLib.file_get_contents(memInfoPath);
+            if (!success) {
+                global.log('Failed to read memory information');
+                return;
             }
-        ]);
+
+            // Parse memory information - first number is pages of memory
+            const memInfo = ByteArray.toString(contents).trim().split(' ');
+            const totalPages = parseInt(memInfo[0]);
+            const residentPages = parseInt(memInfo[1]);
+
+            // Page size is typically 4KB
+            const pageSize = 4096;
+
+            // Calculate memory usage in MB
+            const totalMB = (totalPages * pageSize) / (1024 * 1024);
+            const residentMB = (residentPages * pageSize) / (1024 * 1024);
+
+            // Get item count stats
+            const totalItems = this.items.size;
+            const favoriteItems = Array.from(this.items.values()).filter(item => item.isFavorite).length;
+
+            // Log memory usage
+            global.log(`Memory usage: Total=${totalMB.toFixed(2)}MB, Resident=${residentMB.toFixed(2)}MB, Items=${totalItems}, Favorites=${favoriteItems}`);
+
+            // Store in memory metrics
+            if (!this._memoryMetrics) {
+                this._memoryMetrics = {
+                    samples: [],
+                    lastReport: Date.now()
+                };
+            }
+
+            // Add sample and maintain a limited history
+            this._memoryMetrics.samples.push({
+                timestamp: Date.now(),
+                total: totalMB,
+                resident: residentMB,
+                items: totalItems
+            });
+
+            // Keep only the last 10 samples
+            if (this._memoryMetrics.samples.length > 10) {
+                this._memoryMetrics.samples.shift();
+            }
+
+            // Check for memory growth
+            this._checkMemoryGrowth();
+
+        } catch (e) {
+            global.log('Error monitoring memory usage:', e);
+        }
+
+        // Schedule next check after 5 minutes
+        GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 300, () => {
+            this._monitorMemoryUsage();
+            return GLib.SOURCE_REMOVE;
+        });
+    }
+
+    _checkMemoryGrowth() {
+        if (!this._memoryMetrics || this._memoryMetrics.samples.length < 2) {
+            return;
+        }
+
+        const samples = this._memoryMetrics.samples;
+        const first = samples[0];
+        const last = samples[samples.length - 1];
+
+        // Calculate growth rate
+        const timeDiffMinutes = (last.timestamp - first.timestamp) / (1000 * 60);
+        if (timeDiffMinutes < 5) return; // Need at least 5 minutes of data
+
+        const memoryGrowthMB = last.resident - first.resident;
+        const growthRateMB = memoryGrowthMB / timeDiffMinutes;
+
+        // Log significant growth
+        if (growthRateMB > 0.1) {  // More than 0.1 MB per minute
+            global.log(`WARNING: Memory growing at ${growthRateMB.toFixed(2)}MB/minute. Consider restarting desklet.`);
+
+            // Attempt to reduce memory pressure
+            this._cleanupOldItems();
+        }
     }
 }
 
@@ -1733,5 +1778,64 @@ class FavoritesDB {
         if (!str) return '';
         return str.replace(/'/g, "''");
     }
+}
+
+//--------------------------------------------
+
+class PasswordDialog extends ModalDialog.ModalDialog {
+    constructor(label, callback, parent) {
+        super();  // This must be first!
+        this.callback = callback;  // Store callback before using
+
+        this.password = Secret.password_lookup_sync(parent.STORE_SCHEMA, {}, null);
+
+        this.contentLayout.set_style('width: auto; max-width: 500px;'); // Match dialog width
+        this.contentLayout.add(new St.Label({ text: label }));
+
+        this.passwordBox = new St.BoxLayout({ vertical: false });
+        this.entry = new St.Entry({ style: 'background: green; color:yellow; max-width: 400px;' });
+        this.entry.clutter_text.set_password_char('\u25cf');
+        this.entry.clutter_text.set_text(this.password);
+        this.passwordBox.add(this.entry);
+        this.contentLayout.add(this.passwordBox);
+        this.setInitialKeyFocus(this.entry.clutter_text);
+
+        this.setButtons([
+            {
+                label: "Save",
+                action: () => {
+                    const pwd = this.entry.get_text();
+                    this.callback(pwd);
+                    this.destroy();
+                },
+                key: Clutter.KEY_Return,
+                focused: false
+            },
+            {
+                label: "Show/Hide password",
+                action: () => {
+                    if (this.entry.clutter_text.get_password_char()) {
+                        this.entry.clutter_text.set_password_char('');
+                    } else {
+                        this.entry.clutter_text.set_password_char('\u25cf');
+                    }
+                },
+                focused: false
+            },
+            {
+                label: "Cancel",
+                action: () => {
+                    this.destroy();
+                },
+                key: null,
+                focused: false
+            }
+        ]);
+    }
+}
+
+function main(metadata, desklet_id) {
+    let desklet = new YarrDesklet(metadata, desklet_id);
+    return desklet;
 }
 
