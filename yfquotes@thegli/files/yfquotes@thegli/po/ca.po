@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: yfquotes@thegli 0.13.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-03-18 20:08+0100\n"
+"POT-Creation-Date: 2025-04-03 22:18+0200\n"
 "PO-Revision-Date: 2024-12-18 21:52+0100\n"
 "Last-Translator: Dan <d3vf4n-linux (at) tutanota (dot) com>\n"
 "Language-Team: \n"
@@ -35,15 +35,15 @@ msgstr "Els paràmetres d'autorització han expirat"
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "El servei de Yahoo finances no està disponible!\\nEstat: "
 
-#. desklet.js:830
+#. desklet.js:849
 msgid "Updated at "
 msgstr "Actualitzat a les "
 
-#. desklet.js:862
+#. desklet.js:881
 msgid "Error: "
 msgstr "Error: "
 
-#. desklet.js:981
+#. desklet.js:1000
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -51,20 +51,20 @@ msgstr ""
 "Error en recuperar el paràmetre d'autorització. No s'han pogut obtenir les "
 "dades de les cotitzacions.\\nEstat: "
 
-#. desklet.js:1007
+#. desklet.js:1026
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "No s'ha pogut processar el consentiment! No s'han pogut obtenir les dades de "
 "les cotitzacions.\\nEstat: "
 
-#. desklet.js:1012
+#. desklet.js:1031
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "No s'ha completat el processament del consentiment. No s'han pogut obtenir "
 "les dades de les cotitzacions.\\nEstat: "
 
-#. desklet.js:1035
+#. desklet.js:1054
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "

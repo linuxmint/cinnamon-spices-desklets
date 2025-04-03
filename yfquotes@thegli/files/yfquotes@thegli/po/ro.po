@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-03-18 20:08+0100\n"
+"POT-Creation-Date: 2025-04-03 22:18+0200\n"
 "PO-Revision-Date: 2023-07-19 22:16+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -34,30 +34,30 @@ msgstr ""
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Serviciul Yahoo Finance nu este disponibil!"
 
-#. desklet.js:830
+#. desklet.js:849
 msgid "Updated at "
 msgstr "Actualizat la"
 
-#. desklet.js:862
+#. desklet.js:881
 msgid "Error: "
 msgstr "Eroare:"
 
-#. desklet.js:981
+#. desklet.js:1000
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
 msgstr ""
 
-#. desklet.js:1007
+#. desklet.js:1026
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 
-#. desklet.js:1012
+#. desklet.js:1031
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 
-#. desklet.js:1035
+#. desklet.js:1054
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
