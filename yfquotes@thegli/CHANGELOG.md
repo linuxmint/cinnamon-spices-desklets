@@ -1,3 +1,14 @@
+### 0.15.6 - April 3, 2025
+
+Features:
+
+- add symbols for most currencies
+- update Finnish translation (courtesy of [MahtiAnkka](https://github.com/MahtiAnkka))
+
+Bugfixes:
+
+- fix currency symbol for INR
+
 ### 0.15.5 - March 18, 2025
 
 Features:
