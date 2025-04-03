@@ -122,80 +122,80 @@ msgstr "Activar la visualización de la carátula del álbum al inicio"
 
 #. settings-schema.json->show-title->description
 msgid "Show the title"
-msgstr ""
+msgstr "Mostrar el título"
 
 #. settings-schema.json->style-font-weight->description
 msgid "Font weight"
-msgstr ""
+msgstr "Peso de la fuente"
 
 #. settings-schema.json->style-font-weight->options
 msgid "normal"
-msgstr ""
+msgstr "normal"
 
 #. settings-schema.json->style-font-weight->options
 msgid "bold"
-msgstr ""
+msgstr "negrita"
 
 #. settings-schema.json->style-font-family->description
 msgid "Font family"
-msgstr ""
+msgstr "Familia de fuentes"
 
 #. settings-schema.json->style-font-family->options
 msgid "monospace"
-msgstr ""
+msgstr "monoespacio"
 
 #. settings-schema.json->style-font-family->options
 msgid "sans-serif"
-msgstr ""
+msgstr "sans-serif"
 
 #. settings-schema.json->style-font-family->options
 msgid "serif"
-msgstr ""
+msgstr "serif"
 
 #. settings-schema.json->style-font-family->options
 msgid "cursive"
-msgstr ""
+msgstr "cursiva"
 
 #. settings-schema.json->style-font-family->options
 msgid "fantasy"
-msgstr ""
+msgstr "fantasía"
 
 #. settings-schema.json->style-font-size->description
 msgid "Font size"
-msgstr ""
+msgstr "Tamaño de fuente"
 
 #. settings-schema.json->style-font-size->options
 msgid "xx-small"
-msgstr ""
+msgstr "xx-pequeña"
 
 #. settings-schema.json->style-font-size->options
 msgid "x-small"
-msgstr ""
+msgstr "x-pequeña"
 
 #. settings-schema.json->style-font-size->options
 msgid "small"
-msgstr ""
+msgstr "pequeña"
 
 #. settings-schema.json->style-font-size->options
 msgid "medium"
-msgstr ""
+msgstr "media"
 
 #. settings-schema.json->style-font-size->options
 msgid "large"
-msgstr ""
+msgstr "grande"
 
 #. settings-schema.json->style-font-size->options
 msgid "x-large"
-msgstr ""
+msgstr "x-grande"
 
 #. settings-schema.json->style-font-size->options
 msgid "xx-large"
-msgstr ""
+msgstr "xx-grande"
 
 #. settings-schema.json->style-color->description
 msgid "Font color"
-msgstr ""
+msgstr "Color de la fuente"
 
 #. settings-schema.json->style-background-color->description
 msgid "Background color"
-msgstr ""
+msgstr "Color de fondo"
