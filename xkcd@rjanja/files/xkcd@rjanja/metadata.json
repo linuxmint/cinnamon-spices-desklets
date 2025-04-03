@@ -4,8 +4,6 @@
     "description": "A viewer for today's xkcd comic",
     "directory": "<DIRECTORY_PICTURES>/xkcd",
     "prevent-decorations": true,
-    "delay": 5,
-    "quality": 2,
     "author": "rjanja",
     "last-edited": 1742400521
 }

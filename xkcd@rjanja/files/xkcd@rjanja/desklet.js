@@ -7,10 +7,11 @@ const GLib = imports.gi.GLib;
 const Util = imports.misc.util;
 const GdkPixbuf = imports.gi.GdkPixbuf;
 const Cogl = imports.gi.Cogl;
-
+const Settings = imports.ui.settings;
 const PopupMenu = imports.ui.popupMenu;
 const Cinnamon = imports.gi.Cinnamon;
 const Soup = imports.gi.Soup;
+
 let session;
 if (Soup.get_major_version() == "2") {
     session = new Soup.SessionAsync();
@@ -32,14 +33,14 @@ function _(str) {
     return Gettext.dgettext(UUID, str);
 }
 
-function MyDesklet(metadata) {
-    this._init(metadata);
+function MyDesklet(metadata, deskletID) {
+    this._init(metadata, deskletID);
 }
 
 MyDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
 
-    download_file: function (url, localFilename, callback) {
+    download_file(url, localFilename, callback) {
         let outFile = Gio.file_new_for_path(localFilename);
         var outStream = new Gio.DataOutputStream({
             base_stream: outFile.replace(
@@ -118,7 +119,7 @@ MyDesklet.prototype = {
         }
     },
 
-    refresh: function (xkcdId) {
+    refresh(xkcdId) {
         if (this.updateInProgress) return true;
         this.updateInProgress = true;
 
@@ -155,14 +156,14 @@ MyDesklet.prototype = {
         return true;
     },
 
-    on_json_downloaded: function (success, filename, cached) {
+    on_json_downloaded(success, filename, cached) {
         if (success) {
             this.curXkcd = JSON.parse(
                 Cinnamon.get_file_contents_utf8_sync(filename),
             );
 
             this.altText.set_text(this.curXkcd.alt);
-            this.label.set_text(this.curXkcd.num.toString());
+            this.label.set_text("#" + this.curXkcd.num.toString());
 
             if (this.mostRecentComic < this.curXkcd.num) {
                 this.mostRecentComic = this.curXkcd.num;
@@ -209,7 +210,7 @@ MyDesklet.prototype = {
         return true;
     },
 
-    on_xkcd_downloaded: function (success, file, cached) {
+    on_xkcd_downloaded(success, file, cached) {
         this.updateInProgress = false;
         let pixbuf = GdkPixbuf.Pixbuf.new_from_file(file);
         if (pixbuf != null) {
@@ -230,9 +231,28 @@ MyDesklet.prototype = {
         }
     },
 
-    _init: function (metadata) {
+    format() {
+        this.window.style =
+            "border-radius: " + this.cornerRadius + "px; " +
+            "background-color: " + this.bgColor
+                .replace(")", "," + this.transparency + ")")
+                .replace("rgb", "rgba") + "; " +
+            "color: " + this.textColor;
+
+        this.altText.style =
+            "text-align: " + this.altTextAlign + "; " +
+            "font-size: " + this.altTextFontSize +
+            "px; padding: " + this.altTextPadding + "px";
+
+        this.label.style =
+            "text-align: center; "
+            "font-size: " + this.altTextFontSize * this.labelScale + "px; " +
+            "padding: " + this.altTextPadding * this.labelScale + "px";
+    },
+
+    _init(metadata, deskletID) {
         try {
-            Desklet.Desklet.prototype._init.call(this, metadata);
+            Desklet.Desklet.prototype._init.call(this, metadata, deskletID);
             this.metadata = metadata;
             this.updateInProgress = false;
             this._files = [];
@@ -242,32 +262,38 @@ MyDesklet.prototype = {
 
             this.setHeader(_("xkcd"));
 
+            // bind properties
+            this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], deskletID);
+            this.settings.bind("altTextFontSize", "altTextFontSize", this.format);
+            this.settings.bind("altTextPadding", "altTextPadding", this.format);
+            this.settings.bind("cornerRadius", "cornerRadius", this.format);
+            this.settings.bind("bgColor", "bgColor", this.format);
+            this.settings.bind("transparency", "transparency", this.format);
+            this.settings.bind("textColor", "textColor", this.format);
+            this.settings.bind("labelScale", "labelScale", this.format);
+            this.settings.bind("altTextAlign", "altTextAlign", this.format);
+
+            // create window and actors
             this.window = new St.BoxLayout({ vertical: true });
-
-            this.altText = new St.Label({
-                text: "",
-                style_class: "xkcd-alt-text",
-            });
-
-            this.label = new St.Label({
-                text: "",
-                style_class: "xkcd-label",
-            });
-
-            this.altText.clutter_text.set_line_wrap(true);
-            this.altText.clutter_text.set_line_wrap_mode(0);
-            this.altText.clutter_text.set_ellipsize(0);
-
+            this.altText = new St.Label({ text: "" });
+            this.label = new St.Label({ text: "" });
             this.image = new Clutter.Image();
             this.imageFrame = new Clutter.Actor({ width: 0, height: 0 });
             this.imageFrame.set_content(this.image);
 
+            // set window and text specific styling
+            this.format();
+            this.altText.clutter_text.set_line_wrap(true);
+            this.altText.clutter_text.set_line_wrap_mode(0);
+            this.altText.clutter_text.set_ellipsize(0);
+
+            // add actors to window
             this.window.add_actor(this.label);
             this.window.add_actor(this.imageFrame);
             this.window.add_actor(this.altText);
-
             this.setContent(this.window);
 
+            // popup menu items
             this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
             this._menu.addAction(
                 _("View latest xkcd"),
@@ -372,7 +398,7 @@ MyDesklet.prototype = {
         return true;
     },
 
-    _update: function () {
+    _update() {
         try {
             let idx = this._xkcds.indexOf(this._currentXkcd);
             let nextId = idx > 0 ? this._xkcds[idx - 1] : this._currentXkcd - 1;
@@ -386,7 +412,7 @@ MyDesklet.prototype = {
         }
     },
 
-    on_desklet_clicked: function (event) {
+    on_desklet_clicked(event) {
         try {
             if (event.get_button() == 1) {
                 this._update();
@@ -397,7 +423,7 @@ MyDesklet.prototype = {
     },
 };
 
-function main(metadata, desklet_id) {
-    let desklet = new MyDesklet(metadata);
+function main(metadata, deskletID) {
+    let desklet = new MyDesklet(metadata, deskletID);
     return desklet;
 }
