@@ -50,6 +50,61 @@
         "type": "switch",
         "description" : "Activate Album Art display at startup"
     },
+    "show-title": {
+        "default": true,
+        "type": "switch",
+        "description" : "Show the title"
+    },
+    "style-font-weight": {
+        "type": "combobox",
+        "default": "normal",
+        "dependency": "show-title",
+        "description": "Font weight",
+        "options": {
+            "normal": "normal",
+            "bold": "bold"
+        }
+    },
+    "style-font-family": {
+        "type": "combobox",
+        "default": "sans-serif",
+        "dependency": "show-title",
+        "description": "Font family",
+        "options": {
+            "monospace": "monospace",
+            "sans-serif": "sans-serif",
+            "serif": "serif",
+            "cursive": "cursive",
+            "fantasy": "fantasy"
+        }
+    },
+    "style-font-size": {
+        "type": "combobox",
+        "default": "medium",
+        "dependency": "show-title",
+        "description": "Font size",
+        "options": {
+            "xx-small": "xx-small",
+            "x-small": "x-small",
+            "small": "small",
+            "medium": "medium",
+            "large": "large",
+            "x-large": "x-large",
+            "xx-large": "xx-large"
+        }
+    },
+    "style-color": {
+        "type": "colorchooser",
+        "default": "red",
+        "dependency": "show-title",
+        "description": "Font color"
+    },
+    "style-background-color": {
+        "type": "colorchooser",
+        "default": "lightgray",
+        "dependency": "show-title",
+        "description": "Background color"
+    },
     "desklet-x": {
         "type": "generic",
         "default": -1

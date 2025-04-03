@@ -1,3 +1,7 @@
+### v2.2.0~20250403
+  * New option "Show the title".
+  * New options for title style.
+
 ### v2.1.0~20250314
   * Added option "Activate Album Art display at startup".
 

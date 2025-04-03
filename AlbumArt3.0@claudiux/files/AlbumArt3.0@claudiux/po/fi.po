@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: AlbumArt3.0@claudiux 2.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-03-14 02:12+0100\n"
+"POT-Creation-Date: 2025-04-03 09:04+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: \n"
@@ -18,19 +18,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#. desklet.js:134
+#. desklet.js:128
 msgid "Album Art"
 msgstr "Album Art"
 
-#. desklet.js:412
+#. desklet.js:434
 msgid "Display Album Art at full size"
 msgstr "Näytä kuva sovelluksella"
 
-#. desklet.js:419
+#. desklet.js:441
 msgid "Don't display this image"
 msgstr "Älä näytä tätä kuvaa"
 
-#. desklet.js:429
+#. desklet.js:451
 msgid "Don't display any new image"
 msgstr "Älä näytä uusia kuvia"
 
@@ -119,3 +119,83 @@ msgstr "0 tarkoittaa, ettei häivytystä"
 #. settings-schema.json->enable-at-startup->description
 msgid "Activate Album Art display at startup"
 msgstr "Aktivoi Album Art käynnistyksen yhteydessä"
+
+#. settings-schema.json->show-title->description
+msgid "Show the title"
+msgstr ""
+
+#. settings-schema.json->style-font-weight->description
+msgid "Font weight"
+msgstr ""
+
+#. settings-schema.json->style-font-weight->options
+msgid "normal"
+msgstr ""
+
+#. settings-schema.json->style-font-weight->options
+msgid "bold"
+msgstr ""
+
+#. settings-schema.json->style-font-family->description
+msgid "Font family"
+msgstr ""
+
+#. settings-schema.json->style-font-family->options
+msgid "monospace"
+msgstr ""
+
+#. settings-schema.json->style-font-family->options
+msgid "sans-serif"
+msgstr ""
+
+#. settings-schema.json->style-font-family->options
+msgid "serif"
+msgstr ""
+
+#. settings-schema.json->style-font-family->options
+msgid "cursive"
+msgstr ""
+
+#. settings-schema.json->style-font-family->options
+msgid "fantasy"
+msgstr ""
+
+#. settings-schema.json->style-font-size->description
+msgid "Font size"
+msgstr ""
+
+#. settings-schema.json->style-font-size->options
+msgid "xx-small"
+msgstr ""
+
+#. settings-schema.json->style-font-size->options
+msgid "x-small"
+msgstr ""
+
+#. settings-schema.json->style-font-size->options
+msgid "small"
+msgstr ""
+
+#. settings-schema.json->style-font-size->options
+msgid "medium"
+msgstr ""
+
+#. settings-schema.json->style-font-size->options
+msgid "large"
+msgstr ""
+
+#. settings-schema.json->style-font-size->options
+msgid "x-large"
+msgstr ""
+
+#. settings-schema.json->style-font-size->options
+msgid "xx-large"
+msgstr ""
+
+#. settings-schema.json->style-color->description
+msgid "Font color"
+msgstr ""
+
+#. settings-schema.json->style-background-color->description
+msgid "Background color"
+msgstr ""
