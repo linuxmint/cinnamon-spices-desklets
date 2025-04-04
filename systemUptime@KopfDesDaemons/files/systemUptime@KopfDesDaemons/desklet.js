@@ -130,7 +130,10 @@ class MyDesklet extends Desklet.Desklet {
             pixBuf.get_rowstride()
         );
 
-        const actor = new Clutter.Actor({ width, height });
+        const actor = new Clutter.Actor({
+            width: 1.35 * width + 2, // account for padding
+            height: height,
+        });
         actor.set_content(image);
         return actor;
     }
