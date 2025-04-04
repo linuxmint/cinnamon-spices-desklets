@@ -1,0 +1,40 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Marcelo Aof, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-06 03:37+0300\n"
+"PO-Revision-Date: 2021-09-27 17:03-0300\n"
+"Last-Translator: Marcelo Aof\n"
+"Language-Team: \n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: desklet.js:55
+msgid "Time And Date"
+msgstr "Hora e data"
+
+#: desklet.js:71
+msgid "Edit Config"
+msgstr "Editar configurações"
+
+#: desklet.js:75
+msgid "Help"
+msgstr "Ajuda"
+
+#. metadata.json->description
+msgid "A fork desklet that displays the time and date in Jalali"
+msgstr ""
+"Um desklet que mostra a hora e a data de acordo com o calendário Jalali/persa"
+
+#. metadata.json->name
+msgid "Jalali Time and Date Desklet"
+msgstr "Desklet de hora e data em jalali"

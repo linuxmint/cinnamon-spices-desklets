@@ -1,0 +1,450 @@
+# YET ANOTHER RSS READER
+# This file is put in the public domain.
+# jtoberling, 2023
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: yarr@jtoberling 1.2.4\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-02-09 10:09-0500\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. desklet.js:507
+msgid "Enable refresh"
+msgstr "Aktiviere Aktualisierung"
+
+#. desklet.js:511 desklet.js:747
+msgid "Disable refresh"
+msgstr "Deaktiviere Aktualisierung"
+
+#. desklet.js:519
+msgid "Yarr"
+msgstr "Yarr"
+
+#. desklet.js:564
+msgid "Loading: feeds ..."
+msgstr "Lade: Feeds..."
+
+#. desklet.js:624 desklet.js:729
+msgid " Search..."
+msgstr ""
+
+#. desklet.js:657
+msgid "Search Articles"
+msgstr ""
+
+#. desklet.js:668
+msgid "Type to search..."
+msgstr ""
+
+#. desklet.js:702
+msgid "Cancel"
+msgstr ""
+
+#. desklet.js:707
+msgid "Search"
+msgstr ""
+
+#. metadata.json->description
+msgid "Yet Another RSS Reader - now as Cinnamon Desklet"
+msgstr "Noch ein RSS-Reader - nun als Cinnamon Desklet"
+
+#. metadata.json->name
+msgid "Yet Another RSS Reader"
+msgstr "Noch ein RSS-Reader"
+
+#. settings-schema.json->page1->title
+#. settings-schema.json->section0->title
+#. settings-schema.json->feeds->description
+msgid "Feed settings"
+msgstr "Feed Einstellungen"
+
+#. settings-schema.json->page2->title
+#. settings-schema.json->section1->title
+msgid "Display settings"
+msgstr "Anzeigeeinstellungen"
+
+#. settings-schema.json->page3->title
+#. settings-schema.json->section2->title
+msgid "AI settings"
+msgstr "KI Einstellungen"
+
+#. settings-schema.json->section1ai->title
+msgid "Display settings for AI feature"
+msgstr "Anzeigeeinstellungen für KI-Feature"
+
+#. settings-schema.json->feeds->columns->title
+#. settings-schema.json->listfilter->columns->title
+msgid "Name"
+msgstr "Name"
+
+#. settings-schema.json->feeds->columns->title
+#. settings-schema.json->listfilter->columns->title
+msgid "Active"
+msgstr "Aktiv"
+
+#. settings-schema.json->feeds->columns->title
+msgid "Feed URL"
+msgstr "Feed URL"
+
+#. settings-schema.json->feeds->columns->title
+msgid "Label Color (#rrggbb)"
+msgstr "Label Farbe (#rrggbb)"
+
+#. settings-schema.json->feeds->columns->title
+msgid "ChannelFilter (Regexp eg: '.*')"
+msgstr "Channelfilter (Regulärer Ausdruck z.B.: '.*')"
+
+#. settings-schema.json->backgroundColor->description
+msgid "Background color"
+msgstr "Hintergrundfarbe"
+
+#. settings-schema.json->transparency->description
+msgid "Background transparency"
+msgstr "Hintergrundtransparenz"
+
+#. settings-schema.json->transparency->tooltip
+msgid "The higher the value, the more solid the desklet background."
+msgstr "Je höher der Wert, desto solider ist der Desklet-Hintergrund."
+
+#. settings-schema.json->alternateRowTransparency->description
+msgid "Dim of every second rows"
+msgstr "Abdunklung jeder zweiten Zeile"
+
+#. settings-schema.json->alternateRowTransparency->tooltip
+msgid "The higher the value, more dim on alternate row backgrounds."
+msgstr ""
+"Je höher der Wert, desto dunkler sind die Hintergründe auf abwechselnden "
+"Zeilen."
+
+#. settings-schema.json->refreshInterval-spinner->units
+msgid "seconds"
+msgstr "Sekunden"
+
+#. settings-schema.json->refreshInterval-spinner->description
+msgid "Refresh Interval for Display"
+msgstr "Aktualisierungsintervall für die Anzeige"
+
+#. settings-schema.json->refreshInterval-spinner->tooltip
+msgid "Increase or decrease this spinner value to change the refresh interval"
+msgstr ""
+"Erhöhe oder verringere den Spinner-Wert, um das Aktualisierungsintervall zu "
+"ändern"
+
+#. settings-schema.json->width->description
+msgid "Width"
+msgstr "Breite"
+
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+msgid "pixels"
+msgstr "Pixel"
+
+#. settings-schema.json->width->tooltip
+msgid "Desklet width in pixels."
+msgstr "Deskletbreite in Pixeln."
+
+#. settings-schema.json->height->description
+msgid "Height"
+msgstr "Höhe"
+
+#. settings-schema.json->height->tooltip
+msgid "Desklet height in pixels."
+msgstr "Desklethöhe in Pixeln."
+
+#. settings-schema.json->font->description
+msgid "Font"
+msgstr "Schrift"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Textfarbe"
+
+#. settings-schema.json->text-color->tooltip
+#. settings-schema.json->ai_text-color->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Klicke auf den Button, um eine neue Farbe auszuwählen"
+
+#. settings-schema.json->ai_font->description
+msgid "Font for explanation text"
+msgstr "Schrift für den Erklärungstext"
+
+#. settings-schema.json->ai_text-color->description
+msgid "Text color of explanation"
+msgstr "Textfarbe der Erklärung"
+
+#. settings-schema.json->numberofitems->description
+msgid "Number of displayed articles"
+msgstr "Anzahl der angezeigten Artikel"
+
+#. settings-schema.json->numberofitems->tooltip
+msgid "Number of displayed articles in the list window."
+msgstr "Anzahl der angezeigten Artikel im List-Window."
+
+#. settings-schema.json->filterlabel->description
+msgid "Exclude filters for articles"
+msgstr "Filter für Artikel ausschließen"
+
+#. settings-schema.json->listfilter->description
+msgid "Message RegExp filters"
+msgstr "Nachricht Regulärer Ausdruck Filter"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Unmatch"
+msgstr "Nicht übereinstimmend"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Filter (Regexp eg: '.*')"
+msgstr "Filter (Regulärer Ausdruck, z.B.: '.*')"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Match in Title"
+msgstr "Übereinstimmung im Titel"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Match in Category"
+msgstr "Übereinstimmung in der Kategorie"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Match in Description"
+msgstr "Übereinstimmung in der Beschreibung"
+
+#. settings-schema.json->ai_label-info->description
+msgid ""
+"These are experimental AI features. Use at your own risk!\n"
+"Also they are needing ChatGPT account, and can cost money! $$$ "
+msgstr ""
+"Dies sind experimentelle KI-Funktionen. Die Nutzung erfolgt auf eigene "
+"Gefahr!\n"
+"Außerdem ist ein ChatGPT-Konto erforderlich und es können Kosten entstehen! $"
+"$$"
+
+#. settings-schema.json->ai_button-chatgpt-apikeys->description
+msgid "Open ChaptGPT API keys page"
+msgstr "Öffne ChaptGPT API Keys Seite"
+
+#. settings-schema.json->ai_button-chatgpt-usage->description
+msgid "Open ChaptGPT Usage page"
+msgstr "Öffne die ChatGPT \"Usage\" Seite"
+
+#. settings-schema.json->ai_enablesummary->description
+msgid "Enable EXPERIMENTAL AI summary by ChatGPT"
+msgstr "Aktiviere die EXPERIMENTELLE KI-Zusammenfassung durch ChatGPT"
+
+#. settings-schema.json->ai_add_description_to_summary->description
+msgid "Add description to beginning of AI summary"
+msgstr ""
+
+#. settings-schema.json->ai_url->description
+msgid "URL of Completion Api"
+msgstr "URL der Vervollständigungs-API"
+
+#. settings-schema.json->ai_url->tooltip
+msgid "https://api.openai.com/v1/chat/completions"
+msgstr "https://api.openai.com/v1/chat/completions"
+
+#. settings-schema.json->ai_dumptool->description
+msgid "Choose a tool to dumping web pages"
+msgstr "Wähle ein Tool zum Dumpen von Webseiten"
+
+#. settings-schema.json->ai_dumptool->options
+msgid "w3m"
+msgstr "w3m"
+
+#. settings-schema.json->ai_dumptool->options
+msgid "lynx"
+msgstr "lynx"
+
+#. settings-schema.json->ai_dumptool->options
+msgid "links"
+msgstr "links"
+
+#. settings-schema.json->ai_dumptool->tooltip
+msgid ""
+"You need a command line tool to dump web pages.\n"
+"You have to deploy (apt install ..) one of these manually:\n"
+"[ w3m, lynx, links]"
+msgstr ""
+"Es wird ein Kommandozeilentool benötigt, um Webseiten zu Dumpen.\n"
+"Eines davon muss manuell bereit gestellt werden (apt install ..):\n"
+"[ w3m, lynx, links]"
+
+#. settings-schema.json->ai_use_standard_model->description
+msgid "Use standard AI models."
+msgstr "Verwende Standard-KI-Modelle."
+
+#. settings-schema.json->ai_use_standard_model->tooltip
+msgid "Set to custom to type your model name"
+msgstr "Stelle auf \"Benutzerdefiniert\" um einen Modellnamen einzugeben"
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Use standard"
+msgstr "Standard verwenden"
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Use custom"
+msgstr "Benutzerdefiniert verwenden"
+
+#. settings-schema.json->ai_model->description
+msgid "Standard model to use"
+msgstr "Zu verwendendes Standardmodell"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4-32k"
+msgstr "gpt-4-32k"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4"
+msgstr "gpt-4"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4o"
+msgstr "gpt-4o"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4o-mini"
+msgstr "gpt-4o-mini"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-3.5-turbo"
+msgstr "gpt-3.5-turbo"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-3.5-turbo-16k"
+msgstr "gpt-3.5-turbo-16k"
+
+#. settings-schema.json->ai_model->options
+#. settings-schema.json->ai_custom_model->tooltip
+msgid "deepseek-coder"
+msgstr "deepseek-coder"
+
+#. settings-schema.json->ai_model->options
+msgid "deepseek-coder-v2:latest"
+msgstr "deepseek-coder-v2:latest"
+
+#. settings-schema.json->ai_model->tooltip
+msgid ""
+"Some are more clever - but costs more.\n"
+"Some require premium class subscription.\n"
+"A cheaper can work also well...\n"
+"Default: gpt-3.5-turbo"
+msgstr ""
+"Manche sind cleverer – kosten aber mehr.\n"
+"Manche erfordern ein Premium-Abonnement.\n"
+"Ein billigeres kann auch gut funktionieren …\n"
+"Standard: gpt-3.5-turbo"
+
+#. settings-schema.json->ai_custom_model->description
+msgid "Provide model name to use"
+msgstr "Gib Modellname zum Benutzen bereit"
+
+#. settings-schema.json->ai_systemprompt->description
+msgid "AI system instructions"
+msgstr "Anweisungen für das KI-System"
+
+#. settings-schema.json->ai_systemprompt->tooltip
+msgid "Add instructions to AI Agent"
+msgstr "Anweisungen zum KI Agent hinzufügen"
+
+#. settings-schema.json->ai_chatgptapikey->description
+msgid "Enter and save ChatGPT API key"
+msgstr "ChatGPT API Key eingeben und speichern"
+
+#. settings-schema.json->ai_example1->description
+msgid "Example Prompt1: 'Summarize in four sentences.'"
+msgstr "Beispiel-Befehl1: „Fasse in vier Sätzen zusammen.“"
+
+#. settings-schema.json->ai_example2->description
+msgid "Example Prompt2: Hungarian limerick: 'Foglald össze limerickben.'"
+msgstr "Beispiel-Befehl2: Ungarischer Limerick: 'Foglald össze limerickben.'"
+
+#. settings-schema.json->ai_example3->description
+msgid ""
+"Example Prompt3: The point is in the haiku. '俳句のエッセンス      日本語で"
+"は'"
+msgstr ""
+"Beispiel-Befehl3: Der Punkt liegt im Haiku. '俳句のエッセンス      日本語で"
+"は'"
+
+#. settings-schema.json->ai_example4->description
+msgid "Example Prompt4: Hungarian: 'Summarize in four sentences.'"
+msgstr "Beispiel-Befehl4: Ungarisch: „In vier Sätzen zusammenfassen.“"
+
+#. settings-schema.json->ai_example5->description
+msgid ""
+"Example Prompt5: 'Summarize in 4-8 short bullet points, separtate lines, "
+"English language.\n"
+"Omit other references and external links from the summary'"
+msgstr ""
+"Beispiel-Befehl5: „Fasse in 4–8 kurzen Aufzählungspunkten, separaten Zeilen "
+"und in englischer Sprache zusammen.\n"
+"Lass in der Zusammenfassung andere Referenzen und externe Links weg.“"
+
+#. settings-schema.json->ai_example6->description
+msgid "Example Prompt6: 'Hungarian bullet points...'"
+msgstr "Beispiel-Befehl6: „Ungarische Aufzählungspunkte…“"
+
+#. settings-schema.json->ai_systempromptexamples->description
+msgid ""
+"Here are some examples for the AI system prompt. You can rewrite them as you "
+"like."
+msgstr ""
+"Hier sind einige Beispiele für die Befehle des KI-Systems. Diese können "
+"beliebig umgeschrieben werden."
+
+#. settings-schema.json->refreshsettingsbutton->description
+msgid "Refresh settings"
+msgstr "Einstellungen aktualisieren"
+
+#. settings-schema.json->refreshsettingsbutton->tooltip
+msgid "Press this button to relad settings"
+msgstr "Diesen Button zum Neuladen drücken"
+
+#. settings-schema.json->enablecopy->description
+msgid "Enable Copy to clipboard button"
+msgstr "Aktiviere \"In Zwischenablage kopieren\" Button"
+
+#. settings-schema.json->temperature->description
+msgid "Temperature for AI responses"
+msgstr ""
+
+#. settings-schema.json->temperature->tooltip
+msgid ""
+"Controls the randomness of the AI's responses. Higher values mean more "
+"randomness."
+msgstr ""
+
+#. settings-schema.json->enableFeedButton->description
+msgid "Hide feed button"
+msgstr ""
+
+#. settings-schema.json->enableTimestamp->description
+msgid "Hide timestamp"
+msgstr ""
+
+#. settings-schema.json->enableFavoriteFeature->description
+msgid "Enable favorite feature"
+msgstr ""
+
+#. settings-schema.json->loadFavoritesOnStartup->description
+msgid "Load favorites on startup"
+msgstr ""
+
+#. settings-schema.json->articleSpacing->description
+msgid "Article spacing density"
+msgstr ""
+
+#. settings-schema.json->articleSpacing->tooltip
+msgid ""
+"Adjust the spacing between articles. Lower values make the list more "
+"compact, higher values add more space between articles."
+msgstr ""

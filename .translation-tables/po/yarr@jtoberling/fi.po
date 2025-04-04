@@ -1,0 +1,447 @@
+# YET ANOTHER RSS READER
+# This file is put in the public domain.
+# jtoberling, 2023
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: yarr@jtoberling 1.2.1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-02-09 10:09-0500\n"
+"PO-Revision-Date: 2025-04-02 15:17+0300\n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
+"Language-Team: \n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. desklet.js:507
+msgid "Enable refresh"
+msgstr "POIS"
+
+#. desklet.js:511 desklet.js:747
+msgid "Disable refresh"
+msgstr "ON"
+
+#. desklet.js:519
+msgid "Yarr"
+msgstr "Yarr"
+
+#. desklet.js:564
+msgid "Loading: feeds ..."
+msgstr "Ladataan: syötteitä ..."
+
+#. desklet.js:624 desklet.js:729
+msgid " Search..."
+msgstr " Haku..."
+
+#. desklet.js:657
+msgid "Search Articles"
+msgstr "Hae artikkeleista"
+
+#. desklet.js:668
+msgid "Type to search..."
+msgstr "Kirjoita haku..."
+
+#. desklet.js:702
+msgid "Cancel"
+msgstr "Peru"
+
+#. desklet.js:707
+msgid "Search"
+msgstr "Haku"
+
+#. metadata.json->description
+msgid "Yet Another RSS Reader - now as Cinnamon Desklet"
+msgstr "RSS-syötteiden lukija. Voit lisätä myös tekoälyn tähän sovelmaan"
+
+#. metadata.json->name
+msgid "Yet Another RSS Reader"
+msgstr "Yet Another RSS Reader"
+
+#. settings-schema.json->page1->title
+#. settings-schema.json->section0->title
+#. settings-schema.json->feeds->description
+msgid "Feed settings"
+msgstr "Asetukset"
+
+#. settings-schema.json->page2->title
+#. settings-schema.json->section1->title
+msgid "Display settings"
+msgstr "Näkymä"
+
+#. settings-schema.json->page3->title
+#. settings-schema.json->section2->title
+msgid "AI settings"
+msgstr "Tekoäly"
+
+#. settings-schema.json->section1ai->title
+msgid "Display settings for AI feature"
+msgstr "Tekoälyn asetukset"
+
+#. settings-schema.json->feeds->columns->title
+#. settings-schema.json->listfilter->columns->title
+msgid "Name"
+msgstr "Nimi"
+
+#. settings-schema.json->feeds->columns->title
+#. settings-schema.json->listfilter->columns->title
+msgid "Active"
+msgstr "Aktiivinen"
+
+#. settings-schema.json->feeds->columns->title
+msgid "Feed URL"
+msgstr "Syöte"
+
+#. settings-schema.json->feeds->columns->title
+msgid "Label Color (#rrggbb)"
+msgstr "Väri (#rrggbb)"
+
+#. settings-schema.json->feeds->columns->title
+msgid "ChannelFilter (Regexp eg: '.*')"
+msgstr "Suodatin (lause esim.: \".*\")"
+
+#. settings-schema.json->backgroundColor->description
+msgid "Background color"
+msgstr "Taustaväri"
+
+#. settings-schema.json->transparency->description
+msgid "Background transparency"
+msgstr "Taustan läpinäkyvyys"
+
+#. settings-schema.json->transparency->tooltip
+msgid "The higher the value, the more solid the desklet background."
+msgstr "Mitä suurempi arvo, sitä vähemmän läpinäkyvä."
+
+#. settings-schema.json->alternateRowTransparency->description
+msgid "Dim of every second rows"
+msgstr "Himmeä joka toinen rivi"
+
+#. settings-schema.json->alternateRowTransparency->tooltip
+msgid "The higher the value, more dim on alternate row backgrounds."
+msgstr "Mitä suurempi arvo, sitä himmeämpi joka toinen rivi."
+
+#. settings-schema.json->refreshInterval-spinner->units
+msgid "seconds"
+msgstr "sekuntia"
+
+#. settings-schema.json->refreshInterval-spinner->description
+msgid "Refresh Interval for Display"
+msgstr "Päivitysväli"
+
+#. settings-schema.json->refreshInterval-spinner->tooltip
+msgid "Increase or decrease this spinner value to change the refresh interval"
+msgstr "Suurenna tai pienennä arvoa muuttaaksesi päivitysväliä"
+
+#. settings-schema.json->width->description
+msgid "Width"
+msgstr "Leveys"
+
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+msgid "pixels"
+msgstr "pikseliä"
+
+#. settings-schema.json->width->tooltip
+msgid "Desklet width in pixels."
+msgstr "Leveys työpöydällä pikseleinä."
+
+#. settings-schema.json->height->description
+msgid "Height"
+msgstr "Korkeus"
+
+#. settings-schema.json->height->tooltip
+msgid "Desklet height in pixels."
+msgstr "Korkeus työpöydällä pikseleinä."
+
+#. settings-schema.json->font->description
+msgid "Font"
+msgstr "Fontti"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Tekstiväri"
+
+#. settings-schema.json->text-color->tooltip
+#. settings-schema.json->ai_text-color->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Valitse tekstin väri painamalla nappia"
+
+#. settings-schema.json->ai_font->description
+msgid "Font for explanation text"
+msgstr "Fontti selityksiä varten"
+
+#. settings-schema.json->ai_text-color->description
+msgid "Text color of explanation"
+msgstr "Tekstiväri selityksiä varten"
+
+#. settings-schema.json->numberofitems->description
+msgid "Number of displayed articles"
+msgstr "Artikkeleiden määrä"
+
+#. settings-schema.json->numberofitems->tooltip
+msgid "Number of displayed articles in the list window."
+msgstr "Ikkunassa näytettyjen artikkelien määrä."
+
+#. settings-schema.json->filterlabel->description
+msgid "Exclude filters for articles"
+msgstr "Pois sulkevat suodattimet"
+
+#. settings-schema.json->listfilter->description
+msgid "Message RegExp filters"
+msgstr "Viestin poissulkeva suodatin"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Unmatch"
+msgstr "Ei täsmää"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Filter (Regexp eg: '.*')"
+msgstr "Sulkeva (\".*\")"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Match in Title"
+msgstr "Otsikko täsmää"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Match in Category"
+msgstr "Ryhmä täsmää"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Match in Description"
+msgstr "Kuvaus täsmää"
+
+#. settings-schema.json->ai_label-info->description
+msgid ""
+"These are experimental AI features. Use at your own risk!\n"
+"Also they are needing ChatGPT account, and can cost money! $$$ "
+msgstr ""
+"Kokeellisia tekoäly-ominaisuuksia. Käyttö omalla vastuulla!\n"
+"Lisäksi tarvitset ChatGPT-tilin, joka voi olla maksullinen! €€€ "
+
+#. settings-schema.json->ai_button-chatgpt-apikeys->description
+msgid "Open ChaptGPT API keys page"
+msgstr "Avaa ChaptGPT APIAVAIMET sivusto"
+
+#. settings-schema.json->ai_button-chatgpt-usage->description
+msgid "Open ChaptGPT Usage page"
+msgstr "Avaa ChaptGPT sivusto"
+
+#. settings-schema.json->ai_enablesummary->description
+msgid "Enable EXPERIMENTAL AI summary by ChatGPT"
+msgstr "Käytä ChatGPT AI KOKEELLINEN"
+
+#. settings-schema.json->ai_add_description_to_summary->description
+msgid "Add description to beginning of AI summary"
+msgstr "Lisää kuvaus tekoälyn tiivistelmän alkuun"
+
+#. settings-schema.json->ai_url->description
+msgid "URL of Completion Api"
+msgstr "Täydennys API URL"
+
+#. settings-schema.json->ai_url->tooltip
+msgid "https://api.openai.com/v1/chat/completions"
+msgstr "https://api.openai.com/v1/chat/completions"
+
+#. settings-schema.json->ai_dumptool->description
+msgid "Choose a tool to dumping web pages"
+msgstr "Valitse työkalu verkkosivujen vedostamiseen"
+
+#. settings-schema.json->ai_dumptool->options
+msgid "w3m"
+msgstr "w3m"
+
+#. settings-schema.json->ai_dumptool->options
+msgid "lynx"
+msgstr "lynx"
+
+#. settings-schema.json->ai_dumptool->options
+msgid "links"
+msgstr "links"
+
+#. settings-schema.json->ai_dumptool->tooltip
+msgid ""
+"You need a command line tool to dump web pages.\n"
+"You have to deploy (apt install ..) one of these manually:\n"
+"[ w3m, lynx, links]"
+msgstr ""
+"Tarvitset työkalun komentoriville verkkosivujen vedostamiseksi.\n"
+"Asenna päätteessä käyttäen komentoja (apt install ..) ja valitse yksi "
+"seuraavista:\n"
+"[ w3m, lynx, links]"
+
+#. settings-schema.json->ai_use_standard_model->description
+msgid "Use standard AI models."
+msgstr "Käytä standardi AI-malleja."
+
+#. settings-schema.json->ai_use_standard_model->tooltip
+msgid "Set to custom to type your model name"
+msgstr "Määritä mukautettu, jos haluat kirjoittaa mallin nimen"
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Use standard"
+msgstr "Käytä standardia"
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Use custom"
+msgstr "Käytä mukautettua"
+
+#. settings-schema.json->ai_model->description
+msgid "Standard model to use"
+msgstr "Käytettävä standardi"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4-32k"
+msgstr "gpt-4-32k"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4"
+msgstr "gpt-4"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4o"
+msgstr "gpt-4o"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4o-mini"
+msgstr "gpt-4o-mini"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-3.5-turbo"
+msgstr "gpt-3.5-turbo"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-3.5-turbo-16k"
+msgstr "gpt-3.5-turbo-16k"
+
+#. settings-schema.json->ai_model->options
+#. settings-schema.json->ai_custom_model->tooltip
+msgid "deepseek-coder"
+msgstr "deepseek-coder"
+
+#. settings-schema.json->ai_model->options
+msgid "deepseek-coder-v2:latest"
+msgstr "deepseek-coder-v2:latest"
+
+#. settings-schema.json->ai_model->tooltip
+msgid ""
+"Some are more clever - but costs more.\n"
+"Some require premium class subscription.\n"
+"A cheaper can work also well...\n"
+"Default: gpt-3.5-turbo"
+msgstr ""
+"Jotkut ovat älykkäämpiä ja maksavat enemmän.\n"
+"Jotkut vaativat premium tilauksen.\n"
+"Halvempikin voi toimia hyvin...\n"
+"Oletus: gpt-3.5-turbo"
+
+#. settings-schema.json->ai_custom_model->description
+msgid "Provide model name to use"
+msgstr "Anna käytettävän mallin nimi"
+
+#. settings-schema.json->ai_systemprompt->description
+msgid "AI system instructions"
+msgstr "AI-tekoäly ja ohjeet"
+
+#. settings-schema.json->ai_systemprompt->tooltip
+msgid "Add instructions to AI Agent"
+msgstr "Lisää ohjeet AI-agentille"
+
+#. settings-schema.json->ai_chatgptapikey->description
+msgid "Enter and save ChatGPT API key"
+msgstr "Anna ja tallenna ChatGPT APIAVAIN"
+
+#. settings-schema.json->ai_example1->description
+msgid "Example Prompt1: 'Summarize in four sentences.'"
+msgstr "Esimerkki 1: Summarize in four sentences."
+
+#. settings-schema.json->ai_example2->description
+msgid "Example Prompt2: Hungarian limerick: 'Foglald össze limerickben.'"
+msgstr "Esimerkki 2: Unkariksi: \"Foglald össze limerickben.\""
+
+#. settings-schema.json->ai_example3->description
+msgid ""
+"Example Prompt3: The point is in the haiku. '俳句のエッセンス      日本語で"
+"は'"
+msgstr "Esimerkki 3: Asia on haiku:ssa. \"俳句のエッセンス      日本語では\""
+
+#. settings-schema.json->ai_example4->description
+msgid "Example Prompt4: Hungarian: 'Summarize in four sentences.'"
+msgstr "Esimerkki 4: Unkariksi: \"Summarize in four sentences.\""
+
+#. settings-schema.json->ai_example5->description
+msgid ""
+"Example Prompt5: 'Summarize in 4-8 short bullet points, separtate lines, "
+"English language.\n"
+"Omit other references and external links from the summary'"
+msgstr ""
+"Eesimerkki  5: \"Summarize in 4-8 short bullet points, separtate lines, "
+"English language.\n"
+"Omit other references and external links from the summary\""
+
+#. settings-schema.json->ai_example6->description
+msgid "Example Prompt6: 'Hungarian bullet points...'"
+msgstr "Esimerkki 6: \"Hungarian bullet points...\""
+
+#. settings-schema.json->ai_systempromptexamples->description
+msgid ""
+"Here are some examples for the AI system prompt. You can rewrite them as you "
+"like."
+msgstr ""
+"Tässä esimerkkejä AI-lauseista. Voit kirjoittaa ne haluamallasi tavalla "
+"uudelleen."
+
+#. settings-schema.json->refreshsettingsbutton->description
+msgid "Refresh settings"
+msgstr "Päivitä asetukset"
+
+#. settings-schema.json->refreshsettingsbutton->tooltip
+msgid "Press this button to relad settings"
+msgstr "Paina painiketta ladataksesi asetukset uudelleen"
+
+#. settings-schema.json->enablecopy->description
+msgid "Enable Copy to clipboard button"
+msgstr "Kopioi leikepöydälle - painike käyttöön"
+
+#. settings-schema.json->temperature->description
+msgid "Temperature for AI responses"
+msgstr "Lämpötila AI-vastauksille"
+
+#. settings-schema.json->temperature->tooltip
+msgid ""
+"Controls the randomness of the AI's responses. Higher values mean more "
+"randomness."
+msgstr ""
+"Ohjaa tekoälyn vastausten satunnaisuutta. Suuremmat arvot tarkoittavat "
+"enemmän satunnaisuutta."
+
+#. settings-schema.json->enableFeedButton->description
+msgid "Hide feed button"
+msgstr "Piilota syötepainike"
+
+#. settings-schema.json->enableTimestamp->description
+msgid "Hide timestamp"
+msgstr "Piilota aikaleima"
+
+#. settings-schema.json->enableFavoriteFeature->description
+msgid "Enable favorite feature"
+msgstr "Suosikit käyttöön"
+
+#. settings-schema.json->loadFavoritesOnStartup->description
+msgid "Load favorites on startup"
+msgstr "Lataa suosikit käynnistettäessä"
+
+#. settings-schema.json->articleSpacing->description
+msgid "Article spacing density"
+msgstr "Artikkelin tiheys"
+
+#. settings-schema.json->articleSpacing->tooltip
+msgid ""
+"Adjust the spacing between articles. Lower values make the list more "
+"compact, higher values add more space between articles."
+msgstr ""
+"Säädä artikkelien väliä. Pienemmät arvot tekevät luettelosta tiiviimmän, "
+"korkeammat arvot lisäävät väliin tilaa."
