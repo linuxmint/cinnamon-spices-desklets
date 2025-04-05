@@ -1012,7 +1012,10 @@ class YarrDesklet extends Desklet.Desklet {
                     // Skip if item exists as a favorite
                     if (existingItem) return;
 
-                    // Add new item
+                    // Check if the item already exists in our map
+                    const existingNonFavorite = this.items.get(key);
+
+                    // Add new item or update existing one
                     this.items.set(key, {
                         channel: feed.name,
                         timestamp: timestamp,
@@ -1022,7 +1025,8 @@ class YarrDesklet extends Desklet.Desklet {
                         category: catStr,
                         description: item.description || '',
                         labelColor: feed.labelcolor || '#ffffff',
-                        aiResponse: '',
+                        // Preserve existing aiResponse if it exists
+                        aiResponse: existingNonFavorite?.aiResponse || '',
                         isFavorite: this.favoriteKeys.has(item.link)
                     });
                 } catch (e) {
