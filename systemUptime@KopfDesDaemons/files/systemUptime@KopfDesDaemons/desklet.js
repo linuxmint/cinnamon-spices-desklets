@@ -56,11 +56,23 @@ class MyDesklet extends Desklet.Desklet {
         contentBox.add_child(startupRow);
         contentBox.add_child(uptimeRow);
 
-        const clockIcon = this.getImageAtScale(`${this.metadata.path}/clock.svg`, (this.fontSize * 2), (this.fontSize * 2),);
-
         this.container = new St.BoxLayout();
-        this.container.add_child(clockIcon);
         this.container.add_child(contentBox);
+
+        Mainloop.idle_add(() => {
+            let computedHeight = contentBox.get_height();
+
+            const clockIcon = this.getImageAtScale(
+                `${this.metadata.path}/clock.svg`,
+                computedHeight,
+                computedHeight,
+            );
+
+            this.container.insert_child_below(clockIcon, contentBox);
+            clockIcon.queue_relayout();
+
+            return false;
+        });
 
         this.setContent(this.container);
     }
