@@ -61,7 +61,6 @@ class MyDesklet extends Desklet.Desklet {
 
         Mainloop.idle_add(() => {
             let computedHeight = contentBox.get_height();
-            global.log("Computed height in idle: " + computedHeight);
 
             const clockIcon = this.getImageAtScale(
                 `${this.metadata.path}/clock.svg`,
