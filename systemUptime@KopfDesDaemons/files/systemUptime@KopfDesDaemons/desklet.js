@@ -56,11 +56,24 @@ class MyDesklet extends Desklet.Desklet {
         contentBox.add_child(startupRow);
         contentBox.add_child(uptimeRow);
 
-        const clockIcon = this.getImageAtScale(`${this.metadata.path}/clock.svg`, (this.fontSize * 2), (this.fontSize * 2),);
-
         this.container = new St.BoxLayout();
-        this.container.add_child(clockIcon);
         this.container.add_child(contentBox);
+
+        Mainloop.idle_add(() => {
+            let computedHeight = contentBox.get_height();
+            global.log("Computed height in idle: " + computedHeight);
+
+            const clockIcon = this.getImageAtScale(
+                `${this.metadata.path}/clock.svg`,
+                computedHeight,
+                computedHeight,
+            );
+
+            this.container.insert_child_below(clockIcon, contentBox);
+            clockIcon.queue_relayout();
+
+            return false;
+        });
 
         this.setContent(this.container);
     }
@@ -130,10 +143,7 @@ class MyDesklet extends Desklet.Desklet {
             pixBuf.get_rowstride()
         );
 
-        const actor = new Clutter.Actor({
-            width: 1.35 * width + 2, // account for padding
-            height: height,
-        });
+        const actor = new Clutter.Actor({ width, height });
         actor.set_content(image);
         return actor;
     }
