@@ -15,10 +15,7 @@ const Soup = imports.gi.Soup;
 let session;
 if (Soup.get_major_version() == "2") {
     session = new Soup.SessionAsync();
-    Soup.Session.prototype.add_feature.call(
-        session,
-        new Soup.ProxyResolverDefault(),
-    );
+    Soup.Session.prototype.add_feature.call(session, new Soup.ProxyResolverDefault());
 } else {
     //Soup 3
     session = new Soup.Session();
@@ -43,12 +40,7 @@ MyDesklet.prototype = {
     download_file(url, localFilename, callback) {
         let outFile = Gio.file_new_for_path(localFilename);
         var outStream = new Gio.DataOutputStream({
-            base_stream: outFile.replace(
-                null,
-                false,
-                Gio.FileCreateFlags.NONE,
-                null,
-            ),
+            base_stream: outFile.replace(null, false, Gio.FileCreateFlags.NONE, null),
         });
 
         var message = Soup.Message.new("GET", url);
@@ -57,21 +49,15 @@ MyDesklet.prototype = {
             session.queue_message(message, function (session, response) {
                 if (response.status_code !== Soup.KnownStatusCode.OK) {
                     global.log(
-                        "Error during download: response code " +
-                            response.status_code +
-                            ": " +
-                            response.reason_phrase +
-                            " - " +
-                            response.response_body.data,
+                        `Error during download: response code ${response.status_code}:
+                        ${response.reason_phrase} - ${response.response_body.data}`,
                     );
                     callback(false, null);
                     return true;
                 }
 
                 try {
-                    let contents = message.response_body
-                        .flatten()
-                        .get_as_bytes(); // For Soup 2.4
+                    let contents = message.response_body.flatten().get_as_bytes(); // For Soup 2.4
                     outStream.write_bytes(contents, null);
                     outStream.close(null);
                 } catch (e) {
@@ -86,18 +72,10 @@ MyDesklet.prototype = {
             });
         } else {
             //Soup 3
-            session.send_and_read_async(
-                message,
-                Soup.MessagePriority.NORMAL,
-                null,
+            session.send_and_read_async(message, Soup.MessagePriority.NORMAL, null,
                 (session, response) => {
                     if (message.status_code !== Soup.Status.OK) {
-                        global.log(
-                            "Error during download: response code " +
-                                message.status_code +
-                                ": " +
-                                message.reason_phrase,
-                        );
+                        global.log(`Error during download: response code ${message.status_code}: ${message.reason_phrase}`);
                         callback(false, null);
                         return true;
                     }
@@ -132,24 +110,16 @@ MyDesklet.prototype = {
 
         if (xkcdId === null || xkcdId === undefined) {
             url = "http://www.xkcd.com/info.0.json";
-            filename = this.save_path + "/temp.json";
-            this.download_file(
-                url,
-                filename,
-                this.on_json_downloaded.bind(this),
-            );
+            filename = `${this.save_path}/temp.json`;
+            this.download_file(url, filename, this.on_json_downloaded.bind(this));
         } else {
-            url = "http://www.xkcd.com/" + xkcdId + "/info.0.json";
-            filename = this.save_path + "/" + xkcdId + ".json";
+            url = `http://www.xkcd.com/${xkcdId}/info.0.json`;
+            filename = `${this.save_path}/${xkcdId}.json`;
             let jsonFile = Gio.file_new_for_path(filename);
             if (jsonFile.query_exists(null)) {
                 this.on_json_downloaded(true, filename, true);
             } else {
-                this.download_file(
-                    url,
-                    filename,
-                    this.on_json_downloaded.bind(this),
-                );
+                this.download_file(url, filename, this.on_json_downloaded.bind(this));
             }
         }
 
@@ -169,16 +139,15 @@ MyDesklet.prototype = {
                 this.mostRecentComic = this.curXkcd.num;
             }
 
-            if (this._currentXkcd == this.curXkcd.num) {
+            if (this.currentXkcd == this.curXkcd.num) {
                 this.updateInProgress = false;
                 return true;
             }
 
-            this._currentXkcd = this.curXkcd.num;
+            this.currentXkcd = this.curXkcd.num;
 
             let tempFile, jsonFile;
-            let finalFilename =
-                this.save_path + "/" + this.curXkcd.num + ".json";
+            let finalFilename = `${this.save_path}/${this.curXkcd.num}.json`;
 
             if (cached !== true && filename != finalFilename) {
                 tempFile = Gio.file_new_for_path(filename);
@@ -189,20 +158,16 @@ MyDesklet.prototype = {
                 } catch (e) {}
 
                 try {
-                    tempFile.set_display_name(this.curXkcd.num + ".json", null);
+                    tempFile.set_display_name(`${this.curXkcd.num}.json`, null);
                 } catch (e) {}
             }
 
-            let imgFilename = this.save_path + "/" + this.curXkcd.num + ".png";
+            let imgFilename = `${this.save_path}/${this.curXkcd.num}.png`;
             let imgFile = Gio.file_new_for_path(imgFilename);
             if (imgFile.query_exists(null)) {
                 this.on_xkcd_downloaded(true, imgFilename, true);
             } else {
-                this.download_file(
-                    this.curXkcd.img,
-                    imgFilename,
-                    this.on_xkcd_downloaded.bind(this),
-                );
+                this.download_file(this.curXkcd.img, imgFilename, this.on_xkcd_downloaded.bind(this));
             }
         } else {
             //global.log('No joy, no json');
@@ -231,23 +196,23 @@ MyDesklet.prototype = {
         }
     },
 
-    format() {
+    on_settings_changed() {
         this.window.style =
-            "border-radius: " + this.cornerRadius + "px; " +
-            "background-color: " + this.bgColor
-                .replace(")", "," + this.transparency + ")")
-                .replace("rgb", "rgba") + "; " +
-            "color: " + this.textColor;
+            `border-radius: ${this.cornerRadius}px;
+            background-color: ${this.bgColor
+                .replace(")", `,${this.transparency})`)
+                .replace("rgb", "rgba")};
+            color: ${this.textColor}`;
 
         this.altText.style =
-            "text-align: " + this.altTextAlign + "; " +
-            "font-size: " + this.altTextFontSize +
-            "px; padding: " + this.altTextPadding + "px";
+            `text-align: ${this.altTextAlign};
+            font-size: ${this.altTextFontSize}px;
+            padding: ${this.altTextPadding}px`;
 
         this.label.style =
-            "text-align: center; "
-            "font-size: " + this.altTextFontSize * this.labelScale + "px; " +
-            "padding: " + this.altTextPadding * this.labelScale + "px";
+            `text-align: center;
+            font-size: ${this.altTextFontSize * this.labelScale}px;
+            padding: ${this.altTextPadding * this.labelScale}px`;
     },
 
     _init(metadata, deskletID) {
@@ -255,23 +220,32 @@ MyDesklet.prototype = {
             Desklet.Desklet.prototype._init.call(this, metadata, deskletID);
             this.metadata = metadata;
             this.updateInProgress = false;
-            this._files = [];
-            this._xkcds = [];
-            this._currentXkcd = null;
+            this.cachedXkcds = [];
+            this.currentXkcd = null;
             this.mostRecentComic = 1;
 
             this.setHeader(_("xkcd"));
 
             // bind properties
             this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], deskletID);
-            this.settings.bind("altTextFontSize", "altTextFontSize", this.format);
-            this.settings.bind("altTextPadding", "altTextPadding", this.format);
-            this.settings.bind("cornerRadius", "cornerRadius", this.format);
-            this.settings.bind("bgColor", "bgColor", this.format);
-            this.settings.bind("transparency", "transparency", this.format);
-            this.settings.bind("textColor", "textColor", this.format);
-            this.settings.bind("labelScale", "labelScale", this.format);
-            this.settings.bind("altTextAlign", "altTextAlign", this.format);
+
+            const bindProperties = (properties, func) => { // doing my future self a favor
+                for (let i = 0; i < properties.length; i++) {
+                    this.settings.bind(properties[i], properties[i], func);
+                }
+            }
+
+            bindProperties(
+                ["altTextFontSize",
+                "altTextPadding",
+                "cornerRadius",
+                "bgColor",
+                "transparency",
+                "textColor",
+                "labelScale",
+                "altTextAlign"],
+                this.on_settings_changed,
+            );
 
             // create window and actors
             this.window = new St.BoxLayout({ vertical: true });
@@ -282,7 +256,7 @@ MyDesklet.prototype = {
             this.imageFrame.set_content(this.image);
 
             // set window and text specific styling
-            this.format();
+            this.on_settings_changed();
             this.altText.clutter_text.set_line_wrap(true);
             this.altText.clutter_text.set_line_wrap_mode(0);
             this.altText.clutter_text.set_ellipsize(0);
@@ -295,36 +269,22 @@ MyDesklet.prototype = {
 
             // popup menu items
             this._menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-            this._menu.addAction(
-                _("View latest xkcd"),
-                function () {
-                    this.refresh(null);
-                }.bind(this),
-            );
-            this._menu.addAction(
-                _("Random xkcd"),
-                function () {
-                    let randomComicID = Math.max(
-                        1,
-                        Math.floor(Math.random() * this.mostRecentComic),
-                    );
-                    this.refresh(randomComicID);
-                }.bind(this),
-            );
-            this._menu.addAction(
-                _("Open save folder"),
-                function () {
-                    Util.spawnCommandLine("xdg-open " + this.save_path);
-                }.bind(this),
-            );
-            this._menu.addAction(
-                _("Veiw in browser"),
-                function () {
-                    Util.spawnCommandLine(
-                        "xdg-open https://www.xkcd.com/" + this.curXkcd.num,
-                    );
-                }.bind(this),
-            );
+            this._menu.addAction(_("View latest xkcd"), () => {
+                this.refresh(null);
+            });
+
+            this._menu.addAction(_("Random xkcd"), () => {
+                const randomComicID = Math.max(1, Math.floor(Math.random() * this.mostRecentComic));
+                this.refresh(randomComicID);
+            });
+
+            this._menu.addAction(_("Open save folder"), () => {
+                Util.spawnCommandLine(`xdg-open ${this.save_path}`);
+            });
+
+            this._menu.addAction(_("View in browser"), () => {
+                Util.spawnCommandLine(`xdg-open https://www.xkcd.com/${this.curXkcd.num}`);
+            });
 
             let dir_path = this.metadata["directory"];
 
@@ -335,14 +295,12 @@ MyDesklet.prototype = {
             );
             if (dir_path.indexOf("<") == 0 && special_dir_name != "") {
                 let special_dir_enumvalue = eval(
-                    "GLib.UserDirectory." + special_dir_name,
+                    `GLib.UserDirectory.${special_dir_name}`,
                 );
 
                 // If invalid speciale dir name, get_user_special_dir falls back to desktop folder. Here we default to ~/Pictures
                 if (special_dir_enumvalue != undefined) {
-                    let special_dir_path = GLib.get_user_special_dir(
-                        special_dir_enumvalue,
-                    );
+                    let special_dir_path = GLib.get_user_special_dir(special_dir_enumvalue);
                     dir_path = dir_path.replace(
                         "<" + special_dir_name + ">",
                         special_dir_path,
@@ -360,37 +318,27 @@ MyDesklet.prototype = {
 
             let dir = Gio.file_new_for_path(this.save_path);
             if (dir.query_exists(null)) {
-                let fileEnum = dir.enumerate_children(
-                    "standard::*",
-                    Gio.FileQueryInfoFlags.NONE,
-                    null,
-                );
+                let fileEnum = dir.enumerate_children("standard::*", Gio.FileQueryInfoFlags.NONE, null);
                 let info;
                 while ((info = fileEnum.next_file(null)) != null) {
                     let fileType = info.get_file_type();
-                    if (
-                        fileType != Gio.FileType.DIRECTORY &&
-                        info.get_content_type() == "image/png"
-                    ) {
+                    if (fileType != Gio.FileType.DIRECTORY && info.get_content_type() == "image/png") {
                         let filename = info.get_name();
                         let xkcdId = filename.substr(0, filename.indexOf("."));
-                        this._xkcds.push(xkcdId);
+                        this.cachedXkcds.push(xkcdId);
                     }
                 }
                 fileEnum.close(null);
             }
-            this._xkcds.sort();
+            this.cachedXkcds.sort();
 
             this.updateInProgress = false;
 
-            if (this._xkcds.length == 0) {
+            if (this.cachedXkcds.length == 0) {
                 this.refresh(null);
             } else {
-                this.refresh(this._xkcds[this._xkcds.length - 1]);
-                this._timeoutId = Mainloop.timeout_add_seconds(
-                    5,
-                    this.refresh.bind(this, null),
-                );
+                this.refresh(this.cachedXkcds[this.cachedXkcds.length - 1]);
+                this._timeoutId = Mainloop.timeout_add_seconds(5, this.refresh.bind(this, null));
             }
         } catch (e) {
             global.logError(e);
@@ -398,24 +346,15 @@ MyDesklet.prototype = {
         return true;
     },
 
-    _update() {
-        try {
-            let idx = this._xkcds.indexOf(this._currentXkcd);
-            let nextId = idx > 0 ? this._xkcds[idx - 1] : this._currentXkcd - 1;
-            if (nextId < 0) {
-                nextId = null;
-            }
-
-            this.refresh(nextId);
-        } catch (e) {
-            global.logError(e);
-        }
-    },
-
     on_desklet_clicked(event) {
         try {
             if (event.get_button() == 1) {
-                this._update();
+                let idx = this.cachedXkcds.indexOf(this.currentXkcd);
+                let nextId = idx > 0 ? this.cachedXkcds[idx - 1] : this.currentXkcd - 1;
+                if (nextId < 0) {
+                    nextId = null;
+                }
+                this.refresh(nextId);
             }
         } catch (e) {
             global.logError(e);
