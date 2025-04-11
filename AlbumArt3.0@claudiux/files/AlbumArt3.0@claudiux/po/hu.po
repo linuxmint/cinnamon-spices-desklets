@@ -1,0 +1,202 @@
+# ALBUM ART FOR RADIO3.0 AND ENHANCED SOUND APPLETS
+# This file is put in the public domain.
+# claudiux, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: AlbumArt3.0@claudiux 2.2.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-04-03 09:04+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. desklet.js:128
+msgid "Album Art"
+msgstr "Albumborító"
+
+#. desklet.js:434
+msgid "Display Album Art at full size"
+msgstr "Albumborító megjelenítése teljes méretben"
+
+#. desklet.js:441
+msgid "Don't display this image"
+msgstr "Ne jelenítse meg ezt a képet"
+
+#. desklet.js:451
+msgid "Don't display any new image"
+msgstr "Ne jelenítsen meg új képet"
+
+#. metadata.json->name
+msgid "Album Art for Radio3.0 and Enhanced Sound applets"
+msgstr "Albumborító a Radio3.0-hoz és a Továbbfejleszett hangkisalkalmazáshoz"
+
+#. metadata.json->description
+msgid "A digital photo frame desklet to display an album art, if available"
+msgstr ""
+"Egy digitális képkeret asztalkalmazás albumborítók megjelenítéséhez, ha "
+"elérhető"
+
+#. settings-schema.json->height->description
+msgid "Height"
+msgstr "Magasság"
+
+#. settings-schema.json->height->units
+#. settings-schema.json->width->units
+msgid "pixels"
+msgstr "képpont"
+
+#. settings-schema.json->width->description
+msgid "Width"
+msgstr "Szélesség"
+
+#. settings-schema.json->fade-effect->description
+msgid "Fade"
+msgstr "Elhalványul"
+
+#. settings-schema.json->fade-effect->options
+msgid "None"
+msgstr "Semmi"
+
+#. settings-schema.json->fade-effect->options
+msgid "Quad"
+msgstr "Négyszög"
+
+#. settings-schema.json->fade-effect->options
+msgid "Cubic"
+msgstr "Kocka alakú"
+
+#. settings-schema.json->fade-effect->options
+msgid "Quart"
+msgstr "Kvart"
+
+#. settings-schema.json->fade-effect->options
+msgid "Quint"
+msgstr "Kvint"
+
+#. settings-schema.json->fade-effect->options
+msgid "Sine"
+msgstr "Szinusz"
+
+#. settings-schema.json->fade-effect->options
+msgid "Expo"
+msgstr "Expo"
+
+#. settings-schema.json->fade-effect->options
+msgid "Circ"
+msgstr "Kör"
+
+#. settings-schema.json->fade-effect->options
+msgid "Elastic"
+msgstr "Elasztikus"
+
+#. settings-schema.json->fade-effect->options
+msgid "Back"
+msgstr "Vissza"
+
+#. settings-schema.json->fade-effect->options
+msgid "Bounce"
+msgstr "Pattagó"
+
+#. settings-schema.json->fade-delay->description
+msgid "Fade delay"
+msgstr "Halványítási késleltetés"
+
+#. settings-schema.json->fade-delay->units
+msgid "seconds"
+msgstr "másodperc"
+
+#. settings-schema.json->fade-delay->tooltip
+msgid "0 means no fade"
+msgstr "A 0 azt jelenti, hogy nincs elhalványulás"
+
+#. settings-schema.json->enable-at-startup->description
+msgid "Activate Album Art display at startup"
+msgstr "Albumborító megjelenítése rendszerinduláskor"
+
+#. settings-schema.json->show-title->description
+msgid "Show the title"
+msgstr "Cím megjelenítése"
+
+#. settings-schema.json->style-font-weight->description
+msgid "Font weight"
+msgstr "Betű súlya"
+
+#. settings-schema.json->style-font-weight->options
+msgid "normal"
+msgstr "normál"
+
+#. settings-schema.json->style-font-weight->options
+msgid "bold"
+msgstr "félkövér"
+
+#. settings-schema.json->style-font-family->description
+msgid "Font family"
+msgstr "Betűcsalád"
+
+#. settings-schema.json->style-font-family->options
+msgid "monospace"
+msgstr "monospace"
+
+#. settings-schema.json->style-font-family->options
+msgid "sans-serif"
+msgstr "sans-serif"
+
+#. settings-schema.json->style-font-family->options
+msgid "serif"
+msgstr "serif"
+
+#. settings-schema.json->style-font-family->options
+msgid "cursive"
+msgstr "dőlt"
+
+#. settings-schema.json->style-font-family->options
+msgid "fantasy"
+msgstr "fantasy"
+
+#. settings-schema.json->style-font-size->description
+msgid "Font size"
+msgstr "Betűméret"
+
+#. settings-schema.json->style-font-size->options
+msgid "xx-small"
+msgstr "xx-kicsi"
+
+#. settings-schema.json->style-font-size->options
+msgid "x-small"
+msgstr "x-kicsi"
+
+#. settings-schema.json->style-font-size->options
+msgid "small"
+msgstr "kicsi"
+
+#. settings-schema.json->style-font-size->options
+msgid "medium"
+msgstr "közepes"
+
+#. settings-schema.json->style-font-size->options
+msgid "large"
+msgstr "nagy"
+
+#. settings-schema.json->style-font-size->options
+msgid "x-large"
+msgstr "x-nagy"
+
+#. settings-schema.json->style-font-size->options
+msgid "xx-large"
+msgstr "xx-nagy"
+
+#. settings-schema.json->style-color->description
+msgid "Font color"
+msgstr "Betűszín"
+
+#. settings-schema.json->style-background-color->description
+msgid "Background color"
+msgstr "Háttérszín"
