@@ -1,0 +1,66 @@
+# KDEConnect desklet for Cinnamon
+# This file is put in the public domain.
+# Daniel <d3vf4n (at) tutanota (dot) com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kdecdesklet@joejoetv 0.1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 14:25+0200\n"
+"PO-Revision-Date: 2024-05-15 14:36+0200\n"
+"Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: desklet.js:291
+msgid "Reply"
+msgstr "Respon"
+
+#: desklet.js:375
+msgid "Available Devices"
+msgstr "Dispositius disponibles"
+
+#: desklet.js:396
+msgid "Reload Desklet"
+msgstr "Recarrega la miniaplicació"
+
+#: desklet.js:401
+msgid "KDEConnect is not running!"
+msgstr "KDEConnect no s'està executant"
+
+#: desklet.js:451
+msgid "No Device Selected!"
+msgstr "No heu seleccionat cap dispositiu"
+
+#: desklet.js:580
+msgid "No paired devices!"
+msgstr "No hi ha dispositius connectats"
+
+#. metadata.json->name
+msgid "KDEConnect Desklet"
+msgstr "Miniaplicació d'escriptori de KDEConnect"
+
+#. metadata.json->description
+msgid ""
+"Desklet for displaying information about a Device connected with KDeConnect."
+msgstr ""
+"Miniaplicació d'escriptori per a mostrar informació de dispositius "
+"connectats via KDEConnect."
+
+#. settings-schema.json->header->description
+msgid "Device Settings"
+msgstr "Ajusts del dispositiu"
+
+#. settings-schema.json->selected-device-id->description
+msgid "Device ID of selected Device"
+msgstr "ID del dispositiu seleccionat"
+
+#. settings-schema.json->selected-device-id->tooltip
+msgid "KDEConnect Device ID"
+msgstr "ID del dispositiu en KDEConnect"
