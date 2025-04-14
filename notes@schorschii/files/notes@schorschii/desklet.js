@@ -75,6 +75,8 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "size-font", "sizeFont", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "style", "style", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "customTextColor", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "text-shadow", "textShadow", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "text-shadow-color", "textShadowColor", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "bg-color", "customBgColor", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "file", "file", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "edit-cmd", "editCmd", this.on_setting_changed);
@@ -241,7 +243,8 @@ MyDesklet.prototype = {
 								+ "font-size: " + this.sizeFont + "px;"
 								+ "color:" + this.textColor + ";"
 								+ "font-weight:" + (this.fontBold ? "bold" : "normal") + ";"
-								+ "font-style:" + (this.fontItalic ? "italic" : "normal") + ";";
+								+ "font-style:" + (this.fontItalic ? "italic" : "normal") + ";"
+								+ "text-shadow:" + (this.textShadow ? "0px 0px 12px "+this.textShadowColor : "none") + ";";
 
 			if (this.bgImg === "none") {
 				this.notetext.style += "background-color:" + this.bgColor + ";"
