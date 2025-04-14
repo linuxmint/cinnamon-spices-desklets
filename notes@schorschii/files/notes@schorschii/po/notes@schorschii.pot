@@ -256,6 +256,14 @@ msgstr ""
 msgid "Select the background graphic you would like to use."
 msgstr ""
 
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr ""
+
+#. settings-schema.json->text-shadow-color->description
+msgid "Text shadow color"
+msgstr ""
+
 #. settings-schema.json->bg-color->description
 msgid "Background color"
 msgstr ""

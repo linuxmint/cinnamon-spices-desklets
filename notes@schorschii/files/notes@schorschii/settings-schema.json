@@ -45,6 +45,8 @@
                 "style",
                 "scale-size",
                 "hide-decorations",
+                "text-shadow",
+                "text-shadow-color",
                 "bg-color",
                 "font",
                 "size-font",
@@ -142,6 +144,17 @@
             "None": "none"
         },
         "tooltip": "Select the background graphic you would like to use."
+    },
+    "text-shadow": {
+        "type": "switch",
+        "description": "Text shadow",
+        "default": false
+    },
+    "text-shadow-color": {
+        "type": "colorchooser",
+        "default": "rgba(0,0,0,1)",
+        "description": "Text shadow color",
+        "dependency": "text-shadow"
     },
     "bg-color": {
         "type": "colorchooser",
