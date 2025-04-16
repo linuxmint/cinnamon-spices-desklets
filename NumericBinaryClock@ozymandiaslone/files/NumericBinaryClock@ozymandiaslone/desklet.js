@@ -1,7 +1,11 @@
 const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
-const Mainloop = imports.mainloop;
 const GLib = imports.gi.GLib;
+const {
+  timeout_add_seconds,
+  source_remove,
+  remove_all_sources
+} = require("./lib/mainloopTools");
 
 function BinClockDesklet(metadata, desklet_id) {
   this._init(metadata, desklet_id);
@@ -12,9 +16,10 @@ BinClockDesklet.prototype = {
 
   _init: function(metadata, desklet_id) {
     Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
-    Mainloop.timeout_add_seconds(1, () => {
-      this.updateUI();   
-      return true;
+    this.isRunning = true;
+    this.timeout = timeout_add_seconds(1, () => {
+      this.updateUI();
+      return this.isRunning;
     });
     this.setupUI();
   },
@@ -36,6 +41,12 @@ BinClockDesklet.prototype = {
       bin_mins + " : " +
       bin_secs
     );
+  },
+  on_desklet_removed: function() {
+    this.isRunning = false;
+    if (this.timeout)
+      source_remove(this.timeout);
+    remove_all_sources();
   }
 }
 
