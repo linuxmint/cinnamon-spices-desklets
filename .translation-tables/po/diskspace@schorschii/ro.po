@@ -1,0 +1,230 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 12:23+0200\n"
+"PO-Revision-Date: 2018-01-12 18:07+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+#. settings-schema.json->type->options
+#: desklet.js:275 desklet.js:356
+msgid "RAM"
+msgstr "RAM"
+
+#. settings-schema.json->type->options
+#: desklet.js:277 desklet.js:358
+msgid "Swap"
+msgstr "Schimbă"
+
+#. settings-schema.json->type->options
+#: desklet.js:279
+msgid "Filesystem"
+msgstr "Sistem de fișiere"
+
+#: desklet.js:301
+msgid "Not Found"
+msgstr "Nu a fost găsit"
+
+#. metadata.json->name
+#: desklet.js:360
+msgid "Disk Space"
+msgstr "Spațiu pe disc"
+
+#. metadata.json->description
+msgid "Displays the usage of a filesystem or RAM."
+msgstr ""
+"Afișează gradul de utilizare a unui sistem de fișiere sau a memoriei RAM."
+
+#. settings-schema.json->head0->description
+msgid "Settings for diskspace@schorschii"
+msgstr "Setări pentru diskspace@schorschii"
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr "General"
+
+#. settings-schema.json->type->description
+msgid "Monitor a file system or RAM usage"
+msgstr "Monitorizează un sistem de fișiere sau utilizarea RAM"
+
+#. settings-schema.json->type->tooltip
+msgid "Choose, if this desklet should show file system or RAM usage."
+msgstr ""
+"Alege dacă acest desklet trebuie să afișeze utilizarea sistemului de fișiere "
+"sau a memoriei RAM."
+
+#. settings-schema.json->filesystem->description
+msgid "Filesystem to monitor"
+msgstr "Sistemul de fișiere de monitorizat"
+
+#. settings-schema.json->filesystem->tooltip
+msgid "Select the file system, which you want to monitor."
+msgstr "Selectează sistemul de fișiere pe care dorești să îl monitorizezi."
+
+#. settings-schema.json->onclick-action->description
+msgid "Action on mouse click"
+msgstr "Acțiune la clicul mouse-ului"
+
+#. settings-schema.json->onclick-action->tooltip
+msgid "Choose what to do when the desklet was clicked."
+msgstr "Alege ce să faci atunci când se face clic pe desklet."
+
+#. settings-schema.json->onclick-action->options
+msgid "Open File Manager"
+msgstr "Deschide Managerul de fișiere"
+
+#. settings-schema.json->onclick-action->options
+msgid "Open Partition Manager"
+msgstr "Deschide Partition Manager"
+
+#. settings-schema.json->onclick-action->options
+msgid "Open System Monitor"
+msgstr "Deschide Monitorul de sistem"
+
+#. settings-schema.json->onclick-action->options
+msgid "Nothing"
+msgstr "Nimic"
+
+#. settings-schema.json->size-prefix->description
+msgid "Size Prefix"
+msgstr "Dimensiune Prefix"
+
+#. settings-schema.json->size-prefix->options
+msgid "Decimal"
+msgstr "Decimal"
+
+#. settings-schema.json->size-prefix->options
+msgid "Binary"
+msgstr "Binary"
+
+#. settings-schema.json->reserved-blocks-as-used-space->description
+msgid "Show reserved blocks as used space"
+msgstr ""
+
+#. settings-schema.json->reserved-blocks-as-used-space->tooltip
+msgid ""
+"Reserved blocks are useable for the root user only and that's why displayed "
+"as used space by default."
+msgstr ""
+
+#. settings-schema.json->head2->description
+msgid "Visual"
+msgstr "Vizual"
+
+#. settings-schema.json->design->description
+msgid "Design"
+msgstr "Design"
+
+#. settings-schema.json->design->options
+msgid "Thin"
+msgstr "Subțire"
+
+#. settings-schema.json->design->options
+msgid "Compact"
+msgstr "Compact"
+
+#. settings-schema.json->design->options
+msgid "Classic (Thick)"
+msgstr "Clasic (gros)"
+
+#. settings-schema.json->text-view->description
+msgid "Text"
+msgstr "Text"
+
+#. settings-schema.json->text-view->options
+msgid "Name and total space"
+msgstr "Nume și spațiu total"
+
+#. settings-schema.json->text-view->options
+msgid "Used and total space"
+msgstr "Spațiu utilizat și spațiu total"
+
+#. settings-schema.json->text-view->options
+msgid "Total and used space"
+msgstr "Spațiu total și utilizat"
+
+#. settings-schema.json->text-view->options
+msgid "Free and total space"
+msgstr "Spațiu liber și total"
+
+#. settings-schema.json->text-view->options
+msgid "Total and free space"
+msgstr "Spațiu total și liber"
+
+#. settings-schema.json->text-view->options
+msgid "No text"
+msgstr "Fără text"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Ascunde decorațiunile"
+
+#. settings-schema.json->draw-free-space->description
+msgid "Draw free/unused space (gray)"
+msgstr "Desenează spațiul liber/neutilizat (gri)"
+
+#. settings-schema.json->use-own-circle-color->description
+msgid "Use a custom circle color"
+msgstr "Utilizează o culoare personalizată a cercului"
+
+#. settings-schema.json->circle-color->description
+msgid "Circle color"
+msgstr "Culoarea cercului"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Culoarea textului"
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "factor de scalare"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Dimensiune Desklet"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Mărește sau micșorează dimensiunea acestui desklet folosind acest factor de "
+"scalare."
+
+#. settings-schema.json->head3->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Etichetă personalizată pentru desklet (vizibilă numai dacă sunt activate "
+"decorațiile)"
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Folosește o etichetă personalizată pentru desklet"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Dacă bifezi această casetă, poți seta o etichetă personalizată în câmpul de "
+"mai jos."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Etichetă personalizată de birou"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr ""
+"Setează aici eticheta personalizată. Acest câmp nu este disponibil decât "
+"dacă caseta de selectare de mai sus este activată."

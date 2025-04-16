@@ -1,0 +1,304 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-05 18:14+0100\n"
+"PO-Revision-Date: 2023-12-12 18:57+0100\n"
+"Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. settings-schema.json->type->options
+#: desklet.js:153
+msgid "CPU"
+msgstr "CPU"
+
+#. settings-schema.json->type->options
+#: desklet.js:161
+msgid "RAM"
+msgstr "RAM"
+
+#: desklet.js:164 desklet.js:174 desklet.js:207
+msgid "GiB"
+msgstr "GiB"
+
+#. settings-schema.json->type->options
+#: desklet.js:171
+msgid "Swap"
+msgstr "Swap"
+
+#: desklet.js:186
+msgid "free of"
+msgstr "liberi su"
+
+#: desklet.js:187
+msgid "GB"
+msgstr "GB"
+
+#: desklet.js:197
+msgid "GPU Usage"
+msgstr "Utilizzo GPU"
+
+#: desklet.js:204
+msgid "GPU Memory"
+msgstr "Memoria GPU"
+
+#. metadata.json->name
+msgid "System monitor graph"
+msgstr "Grafico di Monitoraggio del Sistema"
+
+#. metadata.json->description
+msgid "Creates graphs for system variables."
+msgstr "Crea grafici per variabili di sistema."
+
+#. settings-schema.json->head0->description
+msgid "Settings for system-monitor-graph@rcassani"
+msgstr "Impostazioni per system-monitor-graph@rcassani"
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr "Generale"
+
+#. settings-schema.json->type->description
+msgid "System variable for graph"
+msgstr "Variabile di Sistema per grafico"
+
+#. settings-schema.json->type->tooltip
+msgid "Select the system variable to monitor."
+msgstr "Seleziona la variabile di sistema da monitorare."
+
+#. settings-schema.json->type->options
+msgid "HDD"
+msgstr "HDD"
+
+#. settings-schema.json->type->options
+msgid "GPU"
+msgstr "GPU"
+
+#. settings-schema.json->data-prefix-ram->options
+#. settings-schema.json->data-prefix-swap->options
+#. settings-schema.json->data-prefix-hdd->options
+#. settings-schema.json->data-prefix-gpumem->options
+msgid "Binary prefix or IEC (1 GiB = 1024³ bytes)"
+msgstr "Prefisso binario o IEC (1 GiB = 1024³ byte)"
+
+#. settings-schema.json->data-prefix-ram->options
+#. settings-schema.json->data-prefix-swap->options
+#. settings-schema.json->data-prefix-hdd->options
+#. settings-schema.json->data-prefix-gpumem->options
+msgid "Decimal prefix (1 GB = 1000³ bytes)"
+msgstr "Prefisso decimale (1 GB = 1000³ byte)"
+
+#. settings-schema.json->data-prefix-ram->description
+#. settings-schema.json->data-prefix-swap->description
+#. settings-schema.json->data-prefix-hdd->description
+#. settings-schema.json->data-prefix-gpumem->description
+msgid "Prefix for data units"
+msgstr "Prefisso per le unità dati"
+
+#. settings-schema.json->data-prefix-ram->tooltip
+msgid "Unit prefix for RAM size."
+msgstr "Prefisso dell'unità per la dimensione della RAM."
+
+#. settings-schema.json->data-prefix-swap->tooltip
+msgid "Unit prefix for Swap size."
+msgstr "Prefisso dell'unità per la dimensione dello Swap."
+
+#. settings-schema.json->data-prefix-hdd->tooltip
+msgid "Unit prefix for Filesystem size."
+msgstr "Prefisso dell'unità per la dimensione del file system."
+
+#. settings-schema.json->filesystem->description
+msgid "Filesystem to monitor"
+msgstr "Filesystem da monitorare"
+
+#. settings-schema.json->filesystem->tooltip
+msgid "Select a directory in the filesystem to monitor."
+msgstr "Seleziona la directory nel filesystem da monitorare."
+
+#. settings-schema.json->filesystem-label->description
+msgid "Filesystem label"
+msgstr "Etichetta filesystem"
+
+#. settings-schema.json->filesystem-label->tooltip
+msgid "Empty uses the filesystem name from df."
+msgstr "Vuoto significa utilizzare il nome del filesystem da \"df\"."
+
+#. settings-schema.json->gpu-manufacturer->description
+msgid "GPU manufacturer"
+msgstr "Produttore GPU"
+
+#. settings-schema.json->gpu-manufacturer->tooltip
+msgid "Select the GPU manufacturer."
+msgstr "Seleziona il produttore della GPU."
+
+#. settings-schema.json->gpu-manufacturer->options
+msgid "NVIDIA"
+msgstr "NVIDIA"
+
+#. settings-schema.json->gpu-id->description
+msgid "Id of GPU to monitor"
+msgstr "Id della GPU da monitorare"
+
+#. settings-schema.json->gpu-id->tooltip
+msgid "Check GPU id with nvidia-smi -L"
+msgstr "Controlla l'id della GPU con \"nvidia-smi -L\""
+
+#. settings-schema.json->gpu-variable->description
+msgid "GPU variable to monitor"
+msgstr "Variabile GPU da monitorare"
+
+#. settings-schema.json->gpu-variable->tooltip
+msgid "Select the GPU variable to monitor."
+msgstr "Seleziona la variabile della GPU da monitorare."
+
+#. settings-schema.json->gpu-variable->options
+msgid "Usage"
+msgstr "Utilizzo"
+
+#. settings-schema.json->gpu-variable->options
+msgid "Memory"
+msgstr "Memoria"
+
+#. settings-schema.json->data-prefix-gpumem->tooltip
+msgid "Unit prefix for GPU memory size."
+msgstr "Prefisso dell'unità per la dimensione della memoria della GPU."
+
+#. settings-schema.json->duration->description
+msgid "Duration of the graph"
+msgstr "Durata del grafico"
+
+#. settings-schema.json->duration->tooltip
+msgid "Maximum among of time to show in the graph."
+msgstr "Tempo massimo di visualizzazione nel grafico."
+
+#. settings-schema.json->duration->options
+#. settings-schema.json->refresh-interval->options
+msgid "30 s"
+msgstr "30 s"
+
+#. settings-schema.json->duration->options
+msgid " 1 min"
+msgstr " 1 min"
+
+#. settings-schema.json->duration->options
+msgid " 2 min"
+msgstr " 2 min"
+
+#. settings-schema.json->duration->options
+msgid " 5 min"
+msgstr " 5 min"
+
+#. settings-schema.json->duration->options
+msgid "10 min"
+msgstr "10 min"
+
+#. settings-schema.json->duration->options
+msgid "30 min"
+msgstr "30 min"
+
+#. settings-schema.json->duration->options
+msgid "60 min"
+msgstr "60 min"
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval"
+msgstr "Intervallo di aggiornamento"
+
+#. settings-schema.json->refresh-interval->tooltip
+msgid "How often a new value of the variable will be calculated."
+msgstr "Quanto spesso verrà calcolato un nuovo valore della variabile."
+
+#. settings-schema.json->refresh-interval->options
+msgid " 1 s"
+msgstr " 1 s"
+
+#. settings-schema.json->refresh-interval->options
+msgid " 2 s"
+msgstr " 2 s"
+
+#. settings-schema.json->refresh-interval->options
+msgid " 5 s"
+msgstr " 5 s"
+
+#. settings-schema.json->refresh-interval->options
+msgid "10 s"
+msgstr "10 s"
+
+#. settings-schema.json->refresh-interval->options
+msgid "60 s"
+msgstr "60 s"
+
+#. settings-schema.json->head2->description
+msgid "Visual"
+msgstr "Visuale"
+
+#. settings-schema.json->background-color->description
+msgid "Background color"
+msgstr "Colore di sfondo"
+
+#. settings-schema.json->background-color->tooltip
+#. settings-schema.json->text-color->tooltip
+#. settings-schema.json->midline-color->tooltip
+msgid "RGB or RGBA."
+msgstr "RGB o RGBA."
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Colore del testo"
+
+#. settings-schema.json->line-color-cpu->description
+msgid "Line color CPU"
+msgstr "Colore linea CPU"
+
+#. settings-schema.json->line-color-cpu->tooltip
+#. settings-schema.json->line-color-ram->tooltip
+#. settings-schema.json->line-color-swap->tooltip
+#. settings-schema.json->line-color-hdd->tooltip
+#. settings-schema.json->line-color-gpu->tooltip
+msgid "RGB or RGBA. Alpha is ignored"
+msgstr "RGB o RGBA. Alfa è ignorato"
+
+#. settings-schema.json->line-color-ram->description
+msgid "Line color RAM"
+msgstr "Colore linea RAM"
+
+#. settings-schema.json->line-color-swap->description
+msgid "Line color Swap"
+msgstr "Colore linea Swap"
+
+#. settings-schema.json->line-color-hdd->description
+msgid "Line color HDD"
+msgstr "Colore linea HDD"
+
+#. settings-schema.json->line-color-gpu->description
+msgid "Line color GPU"
+msgstr "Colore linea GPU"
+
+#. settings-schema.json->midline-color->description
+msgid "Grid color"
+msgstr "Colore griglia"
+
+#. settings-schema.json->h-midlines->description
+msgid "Number of horizontal lines in the grid"
+msgstr "Numero di linee orizzontali nella griglia"
+
+#. settings-schema.json->v-midlines->description
+msgid "Number of vertical lines in the grid"
+msgstr "Numero di linee verticali nella griglia"
+
+#. settings-schema.json->scale-size->description
+msgid "Scale factor for desklet size (scale factor of 1 = 330 x 120 px)"
+msgstr ""
+"Fattore di scala per le dimensioni del desklet (fattore di scala di 1 = 300 "
+"x 120 px)"
