@@ -233,7 +233,7 @@ class AlbumArtRadio30 extends Desklet.Desklet {
         this._photoFrame.remove_all_children();
 
         this._titleText = new St.Label({style_class:"albumart30-text", x_align: St.Align.MIDDLE, x_expand: true});
-        this._titleText.set_text("Author\nTitle");
+        this._titleText.set_text("");
         if (GLib.file_test(ALBUMART_TITLE_FILE, GLib.FileTest.EXISTS)) {
             this._titleText.set_text(to_string(GLib.file_get_contents(ALBUMART_TITLE_FILE)[1]));
         }
