@@ -235,7 +235,7 @@ MyDesklet.prototype = {
             let poemlink = '';
             for (let i = 0; i < lines.length; i++) {
                 if (lines[i].includes('-m1') || lines[i].includes('-m2'))
-                    this.abyat.push(lines[i].substring(lines[i].indexOf('>') + 1, lines[i].lastIndexOf('<')));
+                    this.abyat.push(lines[i].substring(lines[i].indexOf('>') + 1, lines[i].lastIndexOf('<')).replace('&#x200C;', '\u200C'));
                 if (lines[i].includes('ganjoor-poet')) {
                     let href_st = lines[i].indexOf('<a href="') + 9;
                     let href_end = lines[i].indexOf('"', href_st);
