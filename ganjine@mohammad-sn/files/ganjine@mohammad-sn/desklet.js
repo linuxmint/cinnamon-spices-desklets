@@ -235,7 +235,7 @@ MyDesklet.prototype = {
             let poemlink = '';
             for (let i = 0; i < lines.length; i++) {
                 if (lines[i].includes('-m1') || lines[i].includes('-m2'))
-                    this.abyat.push(lines[i].substring(lines[i].indexOf('>') + 1, lines[i].lastIndexOf('<')).replace('&#x200C;', '\u200C'));
+                    this.abyat.push(lines[i].substring(lines[i].indexOf('>') + 1, lines[i].lastIndexOf('<')));
                 if (lines[i].includes('ganjoor-poet')) {
                     let href_st = lines[i].indexOf('<a href="') + 9;
                     let href_end = lines[i].indexOf('"', href_st);
@@ -252,6 +252,7 @@ MyDesklet.prototype = {
             else if (this.abyat.length == 4)
                 text = this.abyat[0] + '\t\t' + this.abyat[1] + '\n' + this.abyat[2] + '\t\t' + this.abyat[3];
             text = text + '||' + poetname + '||' + poemlink;
+            text = text.replace(/&#x([0-9A-Fa-f]+);/g, (match, hex) => String.fromCharCode(parseInt(hex, 16)));
             this.setText(text, true);
 
             if (this.PoemHistory.length > 99)
