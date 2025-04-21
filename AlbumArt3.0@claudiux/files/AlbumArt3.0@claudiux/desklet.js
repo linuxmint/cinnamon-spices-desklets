@@ -225,10 +225,7 @@ class AlbumArtRadio30 extends Desklet.Desklet {
 
     setup_display() {
         if (!this.isLooping) return;
-        //~ this.canvas = new Clutter.Actor();
-        //~ this.canvas.remove_all_children();
 
-        //~ this._photoFrame = new St.Bin({style_class: 'albumart30-box', x_align: St.Align.START});
         this._photoFrame = new Clutter.Actor();
         this._photoFrame.remove_all_children();
 
@@ -238,17 +235,13 @@ class AlbumArtRadio30 extends Desklet.Desklet {
             this._titleText.set_text(to_string(GLib.file_get_contents(ALBUMART_TITLE_FILE)[1]));
         }
         this._titleText.hide();
-        //~ this._titleText.set_position(Math.ceil(this.width / 2), this.height);
         this._titleText.set_position(null, this.height);
 
         this._bin = new St.Bin();
         this._bin.set_size(this.width, this.height);
-        //~ this._bin.set_child(this._titleText);
-        //~ this._bin.add_actor(this._titleText);
 
         this._images = [];
         if (this._photoFrame && (this._bin != null)) {
-            //~ this._photoFrame.set_child(this._bin);
             this._photoFrame.add_actor(this._bin);
             this._photoFrame.add_actor(this._titleText);
             this.setContent(this._photoFrame);
@@ -308,7 +301,6 @@ class AlbumArtRadio30 extends Desklet.Desklet {
 
         image.set_size(width, height);
         this._bin.set_size(width, height);
-        //~ this._titleText.set_position(Math.ceil((width - this._titleText.get_text().length) / 2), height);
         this._titleText.set_position(null, height);
 
         image._notif_id = image.connect('notify::size', (image) => { this._size_pic(image); });
@@ -320,13 +312,16 @@ class AlbumArtRadio30 extends Desklet.Desklet {
             return;
         }
         this.updateInProgress = true;
-        let image_path;
-        if (!this.shuffle) {
-            image_path = this._images.shift();
-            this._images.push(image_path);
-        } else {
-            image_path = this._images[Math.floor(Math.random() * this._images.length)];
-        }
+
+        // let image_path;
+        // if (!this.shuffle) {
+            // image_path = this._images.shift();
+            // this._images.push(image_path);
+        // } else {
+            // image_path = this._images[Math.floor(Math.random() * this._images.length)];
+        // }
+
+        let image_path = this._images[0];
 
         if (this.currentPicture && this.old_image_path && this.old_image_path == image_path) {
             this.updateInProgress = false;
