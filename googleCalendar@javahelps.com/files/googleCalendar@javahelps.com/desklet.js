@@ -61,7 +61,7 @@ function GoogleCalendarDesklet(metadata, deskletID) {
 
 class SliderMenuItem extends PopupMenu.PopupSliderMenuItem {
     constructor (applet) {
-        super(applet.interval);
+        super(applet.interval / 62);
         this.applet = applet;
         this.tooltipText = _("Number of days to include") + _(": ") + Math.round(this.applet.interval).toString();
         this.tooltip = new Tooltips.Tooltip(this.actor, this.tooltipText);
