@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: googleCalendar@javahelps.com\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-04-29 14:50-0400\n"
+"POT-Creation-Date: 2025-04-21 23:14+0200\n"
 "PO-Revision-Date: 2020-01-06 11:03+0100\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -19,210 +19,219 @@ msgstr ""
 "X-Generator: Poedit 2.0.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. settings-schema.json->interval->description
+#. desklet.js:66 desklet.js:74
+msgid "Number of days to include"
+msgstr "Antal dagar att inkludera"
+
+#. desklet.js:66 desklet.js:74
+msgid ": "
+msgstr ""
+
 #. metadata.json->name
 #. settings-schema.json->page_gcalendar->title
-#: desklet.js:104
+#. desklet.js:126
 msgid "Google Calendar"
 msgstr "Google Kalender"
 
-#: desklet.js:107
+#. desklet.js:219
 msgid "Open Google Calendar"
 msgstr "Öppna Google Kalender"
 
-#: desklet.js:240
+#. desklet.js:302
 #, fuzzy
 msgid "No events found"
 msgstr "Inga händelser hittades..."
 
-#: desklet.js:389
+#. desklet.js:467
 msgid "gcalendar is not authorized"
 msgstr ""
 
-#: desklet.js:391
+#. desklet.js:469
 msgid "gcalendar token expired"
 msgstr ""
 
-#: desklet.js:396
+#. desklet.js:474
 msgid "Execute: "
 msgstr ""
 
-#: desklet.js:409
+#. desklet.js:487
 msgid "Unknown Error"
 msgstr ""
 
-#: desklet.js:412
+#. desklet.js:490
 msgid "Install gcalendar to use this desklet."
 msgstr ""
 
-#: desklet.js:413
+#. desklet.js:491
 msgid "Visit: "
 msgstr ""
 
-#: desklet.js:451
+#. desklet.js:529
 msgid "Unable to retrieve events..."
 msgstr "Kunde inte hämta händelser..."
 
-#: lib/utility.js:158 lib/xdate.js:350
+#. lib/utility.js:158 lib/xdate.js:350
 msgid "AM"
 msgstr "FM"
 
-#: lib/utility.js:158 lib/xdate.js:351
+#. lib/utility.js:158 lib/xdate.js:351
 msgid "PM"
 msgstr "PM"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "January"
 msgstr "Januari"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "February"
 msgstr "Februari"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "March"
 msgstr "Mars"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "April"
 msgstr "April"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 #, fuzzy
 msgctxt "long"
 msgid "May"
 msgstr "Maj"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "June"
 msgstr "Juni"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "July"
 msgstr "Juli"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "August"
 msgstr "Augusti"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "September"
 msgstr "September"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "October"
 msgstr "Oktober"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "November"
 msgstr "November"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "December"
 msgstr "December"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Jan"
 msgstr "Jan"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Feb"
 msgstr "Feb"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Mar"
 msgstr "Mar"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Apr"
 msgstr "Apr"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 #, fuzzy
 msgctxt "short"
 msgid "May"
 msgstr "Maj"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Jun"
 msgstr "Jun"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Jul"
 msgstr "Jul"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Aug"
 msgstr "Aug"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Sep"
 msgstr "Sep"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Oct"
 msgstr "Okt"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Nov"
 msgstr "Nov"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Dec"
 msgstr "Dec"
 
-#: lib/xdate.js:348
+#. lib/xdate.js:348
 msgid "Sunday"
 msgstr "Söndag"
 
-#: lib/xdate.js:348
+#. lib/xdate.js:348
 msgid "Monday"
 msgstr "Måndag"
 
-#: lib/xdate.js:348
+#. lib/xdate.js:348
 msgid "Tuesday"
 msgstr "Tisdag"
 
-#: lib/xdate.js:348
+#. lib/xdate.js:348
 msgid "Wednesday"
 msgstr "Onsdag"
 
-#: lib/xdate.js:348
+#. lib/xdate.js:348
 msgid "Thursday"
 msgstr "Torsdag"
 
-#: lib/xdate.js:348
+#. lib/xdate.js:348
 msgid "Friday"
 msgstr "Fredag"
 
-#: lib/xdate.js:348
+#. lib/xdate.js:348
 msgid "Saturday"
 msgstr "Lördag"
 
-#: lib/xdate.js:349
+#. lib/xdate.js:349
 msgid "Sun"
 msgstr "Sön"
 
-#: lib/xdate.js:349
+#. lib/xdate.js:349
 msgid "Mon"
 msgstr "Mån"
 
-#: lib/xdate.js:349
+#. lib/xdate.js:349
 msgid "Tue"
 msgstr "Tis"
 
-#: lib/xdate.js:349
+#. lib/xdate.js:349
 msgid "Wed"
 msgstr "Ons"
 
-#: lib/xdate.js:349
+#. lib/xdate.js:349
 msgid "Thu"
 msgstr "Tor"
 
-#: lib/xdate.js:349
+#. lib/xdate.js:349
 msgid "Fri"
 msgstr "Fre"
 
-#: lib/xdate.js:349
+#. lib/xdate.js:349
 msgid "Sat"
 msgstr "Lör"
 
@@ -275,6 +284,10 @@ msgstr ""
 msgid "Enter gcalendar --account id"
 msgstr ""
 
+#. settings-schema.json->gcalendarAccount->options
+msgid "default"
+msgstr ""
+
 #. settings-schema.json->allNamesButton->description
 msgid "Fill in the list bellow with the names of all my calendars"
 msgstr "Fyll i nedanstående lista med namnen på alla mina kalendrar"
@@ -303,10 +316,6 @@ msgstr "Kalender"
 #. settings-schema.json->calendarNames->columns->title
 msgid "Display it?"
 msgstr "Vill du visa den?"
-
-#. settings-schema.json->interval->description
-msgid "Number of days to include"
-msgstr "Antal dagar att inkludera"
 
 #. settings-schema.json->interval->tooltip
 msgid "Show the agenda for these number of days"
@@ -435,3 +444,20 @@ msgstr "Hörnradie"
 #. settings-schema.json->cornerradius->tooltip
 msgid "Radius for rounding the desklet's corners"
 msgstr "Radie för att runda av skrivbordsprogrammets hörnen"
+
+#. settings-schema.json->display_mode->description
+#, fuzzy
+msgid "Display mode"
+msgstr "Vill du visa den?"
+
+#. settings-schema.json->display_mode->options
+msgid "normal"
+msgstr ""
+
+#. settings-schema.json->display_mode->options
+msgid "compact"
+msgstr ""
+
+#. settings-schema.json->display_mode->options
+msgid "ultra compact"
+msgstr ""

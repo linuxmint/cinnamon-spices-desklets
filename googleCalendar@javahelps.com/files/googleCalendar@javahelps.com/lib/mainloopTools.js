@@ -1,5 +1,4 @@
 const  GLib = imports.gi.GLib;
-const Mainloop = imports.mainloop;
 
 /**
  * _sourceIds

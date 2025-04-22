@@ -1,4 +1,4 @@
-# SOME DESCRIPTIVE TITLE.
+# GOOGLE CALENDAR
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Daniel <d3vf4n (at) tutanota (dot) com>, 2023.
@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-05-15 00:09+0200\n"
+"POT-Creation-Date: 2025-04-21 23:14+0200\n"
 "PO-Revision-Date: 2024-05-15 00:10+0200\n"
 "Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
 "Language-Team: \n"
@@ -19,207 +19,216 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
+#. settings-schema.json->interval->description
+#. desklet.js:66 desklet.js:74
+msgid "Number of days to include"
+msgstr "Dies a l'agenda"
+
+#. desklet.js:66 desklet.js:74
+msgid ": "
+msgstr ""
+
 #. metadata.json->name
 #. settings-schema.json->page_gcalendar->title
-#: desklet.js:104
+#. desklet.js:126
 msgid "Google Calendar"
 msgstr "Google Calendar"
 
-#: desklet.js:107
+#. desklet.js:219
 msgid "Open Google Calendar"
 msgstr "Obre el Calendari de Google"
 
-#: desklet.js:240
+#. desklet.js:302
 msgid "No events found"
 msgstr "No s'ha trobat cap esdeveniment"
 
-#: desklet.js:389
+#. desklet.js:467
 msgid "gcalendar is not authorized"
 msgstr "«gcalendar» no té autorització"
 
-#: desklet.js:391
+#. desklet.js:469
 msgid "gcalendar token expired"
 msgstr "la clau de «gcalendar» ha expirat"
 
-#: desklet.js:396
+#. desklet.js:474
 msgid "Execute: "
 msgstr "Executeu:  "
 
-#: desklet.js:409
+#. desklet.js:487
 msgid "Unknown Error"
 msgstr "Error desconegut"
 
-#: desklet.js:412
+#. desklet.js:490
 msgid "Install gcalendar to use this desklet."
 msgstr "Instal·leu «gcalendar» per a fer servir aquesta miniaplicació."
 
-#: desklet.js:413
+#. desklet.js:491
 msgid "Visit: "
 msgstr "Visiteu: "
 
-#: desklet.js:451
+#. desklet.js:529
 msgid "Unable to retrieve events..."
 msgstr "No es pot consultar cap esdeveniment."
 
-#: lib/utility.js:158 lib/xdate.js:350
+#. lib/utility.js:158 lib/xdate.js:350
 msgid "AM"
 msgstr "AM"
 
-#: lib/utility.js:158 lib/xdate.js:351
+#. lib/utility.js:158 lib/xdate.js:351
 msgid "PM"
 msgstr "PM"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "January"
 msgstr "Gener"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "February"
 msgstr "Febrer"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "March"
 msgstr "Març"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "April"
 msgstr "Abril"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgctxt "long"
 msgid "May"
 msgstr "Maig"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "June"
 msgstr "Juny"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "July"
 msgstr "Juliol"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "August"
 msgstr "Agost"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "September"
 msgstr "Setembre"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "October"
 msgstr "Octubre"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "November"
 msgstr "Novembre"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "December"
 msgstr "Desembre"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Jan"
 msgstr "Gen"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Feb"
 msgstr "Febr"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Mar"
 msgstr "Març"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Apr"
 msgstr "Abr"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgctxt "short"
 msgid "May"
 msgstr "Maig"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Jun"
 msgstr "Juny"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Jul"
 msgstr "Jul"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Aug"
 msgstr "Ag"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Sep"
 msgstr "Set"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Oct"
 msgstr "Oct"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Nov"
 msgstr "Nov"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Dec"
 msgstr "Des"
 
-#: lib/xdate.js:348
+#. lib/xdate.js:348
 msgid "Sunday"
 msgstr "Diumenge"
 
-#: lib/xdate.js:348
+#. lib/xdate.js:348
 msgid "Monday"
 msgstr "Dilluns"
 
-#: lib/xdate.js:348
+#. lib/xdate.js:348
 msgid "Tuesday"
 msgstr "Dimarts"
 
-#: lib/xdate.js:348
+#. lib/xdate.js:348
 msgid "Wednesday"
 msgstr "Dimecres"
 
-#: lib/xdate.js:348
+#. lib/xdate.js:348
 msgid "Thursday"
 msgstr "Dijous"
 
-#: lib/xdate.js:348
+#. lib/xdate.js:348
 msgid "Friday"
 msgstr "Divendres"
 
-#: lib/xdate.js:348
+#. lib/xdate.js:348
 msgid "Saturday"
 msgstr "Dissabte"
 
-#: lib/xdate.js:349
+#. lib/xdate.js:349
 msgid "Sun"
 msgstr "Dg"
 
-#: lib/xdate.js:349
+#. lib/xdate.js:349
 msgid "Mon"
 msgstr "Dl"
 
-#: lib/xdate.js:349
+#. lib/xdate.js:349
 msgid "Tue"
 msgstr "Dm"
 
-#: lib/xdate.js:349
+#. lib/xdate.js:349
 msgid "Wed"
 msgstr "Dc"
 
-#: lib/xdate.js:349
+#. lib/xdate.js:349
 msgid "Thu"
 msgstr "Dj"
 
-#: lib/xdate.js:349
+#. lib/xdate.js:349
 msgid "Fri"
 msgstr "Dv"
 
-#: lib/xdate.js:349
+#. lib/xdate.js:349
 msgid "Sat"
 msgstr "Ds"
 
@@ -272,6 +281,10 @@ msgstr "Id del compte en gcalendar"
 msgid "Enter gcalendar --account id"
 msgstr "Inseriu gcalendar --account id"
 
+#. settings-schema.json->gcalendarAccount->options
+msgid "default"
+msgstr ""
+
 #. settings-schema.json->allNamesButton->description
 msgid "Fill in the list bellow with the names of all my calendars"
 msgstr "Omple la llista inferior amb els noms de tots els meus calendaris"
@@ -299,10 +312,6 @@ msgstr "Calendari"
 #. settings-schema.json->calendarNames->columns->title
 msgid "Display it?"
 msgstr "Mostra el calendari"
-
-#. settings-schema.json->interval->description
-msgid "Number of days to include"
-msgstr "Dies a l'agenda"
 
 #. settings-schema.json->interval->tooltip
 msgid "Show the agenda for these number of days"
@@ -433,3 +442,20 @@ msgstr "Radi cantonades"
 #. settings-schema.json->cornerradius->tooltip
 msgid "Radius for rounding the desklet's corners"
 msgstr "Definiu el radi de les cantonades arrodonides de la miniaplicació"
+
+#. settings-schema.json->display_mode->description
+#, fuzzy
+msgid "Display mode"
+msgstr "Mostra el calendari"
+
+#. settings-schema.json->display_mode->options
+msgid "normal"
+msgstr ""
+
+#. settings-schema.json->display_mode->options
+msgid "compact"
+msgstr ""
+
+#. settings-schema.json->display_mode->options
+msgid "ultra compact"
+msgstr ""
