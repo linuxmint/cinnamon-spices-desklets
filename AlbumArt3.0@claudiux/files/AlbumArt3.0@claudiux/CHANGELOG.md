@@ -1,3 +1,6 @@
+### v2.3.1~20250422
+  * Code cleanup.
+
 ### v2.3.0~20250420
   * Improved display.
 

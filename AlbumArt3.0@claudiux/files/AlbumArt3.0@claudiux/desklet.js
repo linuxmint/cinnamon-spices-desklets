@@ -21,8 +21,8 @@ const { timeout_add_seconds,
         source_exists,
         source_remove,
         remove_all_sources
-} = require("mainloopTools");
-const { to_string } = require("to-string");
+} = require("./lib/mainloopTools");
+const { to_string } = require("./lib/to-string");
 
 
 const DESKLET_UUID = "AlbumArt3.0@claudiux";
@@ -36,7 +36,9 @@ const ALBUMART_PICS_DIR = TMP_ALBUMART_DIR + "/song-art";
 const TRANSPARENT_PNG = DESKLET_DIR + "/transparent.png";
 const ALBUMART_TITLE_FILE = TMP_ALBUMART_DIR + "/title.txt";
 
-const DEL_SONG_ARTS_SCRIPT = DESKLET_DIR + "/del_song_arts.sh";
+const DEL_SONG_ARTS_SCRIPT = DESKLET_DIR + "/scripts/del_song_arts.sh";
+const GET_IMAGE_SIZE_SCRIPT = DESKLET_DIR + "/scripts/get-image-size.sh";
+
 
 Gettext.bindtextdomain(DESKLET_UUID, HOME_DIR + "/.local/share/locale");
 Gettext.bindtextdomain("cinnamon", "/usr/share/locale");
@@ -463,8 +465,7 @@ class AlbumArtRadio30 extends Desklet.Desklet {
             this.realHeight = 720;
         }
         try {
-            const GET_IMAGE_SIZE = DESKLET_DIR + "/get-image-size.sh";
-            let command = GET_IMAGE_SIZE + " " + filePath;
+            let command = GET_IMAGE_SIZE_SCRIPT + " " + filePath;
             Util.spawnCommandLineAsyncIO(command, (stdout, stderr, exitCode) => {
                 if (exitCode === 0) {
                     [this.realWidth, this.realHeight] = stdout.split("x");
