@@ -1,0 +1,14 @@
+# Editor files
+*.swp
+*~
+*.bak
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Optional local test files
+*.ics
+
+# My test script
+deploy.sh

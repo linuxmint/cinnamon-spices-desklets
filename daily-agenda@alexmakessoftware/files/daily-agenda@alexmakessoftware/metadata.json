@@ -1,0 +1,12 @@
+{
+  "uuid": "daily-agenda@alexmakessoftware",
+  "name": "Daily Agenda",
+  "description": "Displays today's events from your calendar",
+  "version": 1,
+  "show-on-panel": false,
+  "show-on-desktop": true,
+  "prevent-decorations": false,
+  "settings-schema": "settings-schema.json",
+  "license": "MIT",
+  "icon": "icon.png"
+}
