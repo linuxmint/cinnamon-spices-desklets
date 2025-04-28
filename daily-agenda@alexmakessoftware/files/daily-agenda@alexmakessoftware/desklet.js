@@ -191,7 +191,7 @@ IcsDesklet.prototype = {
     
         for (let eventText of events) {
             let dtstartMatch = eventText.match(/DTSTART[^:]*:(\d{8})T?(\d{4})?/);  // Match date and optional time
-            let summaryMatch = eventText.match(/SUMMARY:(.*)/);
+            let summaryMatch = eventText.match(/SUMMARY(;[^:]+)?\s*:\s*(.*)/);
         
             if (dtstartMatch && summaryMatch) {
                 let datePart = dtstartMatch[1];
@@ -209,7 +209,7 @@ IcsDesklet.prototype = {
             
                         eventList.push({
                             time: eventDate,
-                            label: `${timeStr} - ${summaryMatch[1].trim()}`,                            
+                            label: `${timeStr} ${summaryMatch[2].trim()}`,                            
                         });
                     }
                 }
