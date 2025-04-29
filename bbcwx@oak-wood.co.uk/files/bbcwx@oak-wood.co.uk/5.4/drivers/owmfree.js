@@ -19,6 +19,49 @@ var Driver = class Driver extends wxBase.Driver {
     this._baseURL = 'https://api.openweathermap.org/data/2.5/';
     // this will be dynamically reset when data is loaded
     this.linkURL = 'https://openweathermap.org';
+    
+    // Add automatic language mapping from API
+    this.lang_map = {
+      'ar': 'ar',
+      'bg': 'bg',
+      'ca': 'ca',
+      'cz': 'cz',
+      'da': 'da',
+      'de': 'de',
+      'el': 'el',
+      'en': 'en',
+      'es': 'es',
+      'fa': 'fa',
+      'fi': 'fi',
+      'fr': 'fr',
+      'gl': 'gl',
+      'hi': 'hi',
+      'hr': 'hr',
+      'hu': 'hu',
+      'id': 'id',
+      'it': 'it',
+      'ja': 'ja',
+      'kr': 'kr',
+      'la': 'la',
+      'lt': 'lt',
+      'mk': 'mk',
+      'nl': 'nl',
+      'no': 'no',
+      'pl': 'pl',
+      'pt': 'pt',
+      'pt_br': 'pt_br',
+      'ro': 'ro',
+      'ru': 'ru',
+      'sk': 'sk',
+      'sl': 'sl',
+      'sr': 'sr',
+      'th': 'th',
+      'tr': 'tr',
+      'ua': 'ua',
+      'vi': 'vi',
+      'zh_cn': 'zh_cn',
+      'zu': 'zu'
+    };
   }
 
   refreshData(deskletObj) {
