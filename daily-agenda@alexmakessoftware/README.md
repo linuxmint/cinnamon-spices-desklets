@@ -31,5 +31,3 @@ If you're hosting entirely locally or downloading an ics file from some system, 
 If you find this desklet useful, do please consider buying me a coffee to say thanks, it would mean a lot to me:
 [Buy me a coffee](buymeacoffee.com/alexmakessoftware)
 
-## Reporting bugs.
-If you find a bug with this widget, you can report it at the [main repository](https://github.com/linuxmint/cinnamon-spices-desklets), please be sure to read the 'guidelines for contributing' first and follow the instructions.

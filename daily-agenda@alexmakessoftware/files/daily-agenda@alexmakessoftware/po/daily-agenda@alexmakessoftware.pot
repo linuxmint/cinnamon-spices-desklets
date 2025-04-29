@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: daily-agenda@alexmakessoftware 1\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-04-28 06:01-0400\n"
+"POT-Creation-Date: 2025-04-28 15:09+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,6 +16,62 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#. desklet.js:143
+msgid "ICS Today: problem reading calendar file, result = "
+msgstr ""
+
+#. desklet.js:147
+msgid "ICS Today: Failed to read file: "
+msgstr ""
+
+#. desklet.js:150
+msgid "Error reading calendar. Try 'right click, configure...'"
+msgstr ""
+
+#. desklet.js:162
+msgid "ICS Today: Failed to fetch calendar from URL."
+msgstr ""
+
+#. desklet.js:163
+msgid "Could not fetch calendar from URL."
+msgstr ""
+
+#. desklet.js:167
+msgid "ICS Today: Error during curl fetch: "
+msgstr ""
+
+#. desklet.js:168
+msgid "Error fetching calendar from URL."
+msgstr ""
+
+#. desklet.js:174
+msgid "ICS Today: Unknown source type: "
+msgstr ""
+
+#. desklet.js:175
+msgid "Calendar source type not recognised."
+msgstr ""
+
+#. desklet.js:183
+msgid "Last checked"
+msgstr ""
+
+#. desklet.js:188
+msgid "Next"
+msgstr ""
+
+#. desklet.js:220
+msgid "All day"
+msgstr ""
+
+#. desklet.js:234
+msgid "Today's Events:"
+msgstr ""
+
+#. desklet.js:236
+msgid "No events today."
+msgstr ""
 
 #. metadata.json->name
 msgid "Daily Agenda"

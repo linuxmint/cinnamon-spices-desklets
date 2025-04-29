@@ -4,27 +4,40 @@ const Settings = imports.ui.settings;
 const Mainloop = imports.mainloop;
 const GLib = imports.gi.GLib;
 const Gio = imports.gi.Gio;
+const Gettext = imports.gettext;
+
+let UUID;
 
 
 function main(metadata, desklet_id) {
     return new IcsDesklet(metadata, desklet_id);
 }
 
+
 function IcsDesklet(metadata, desklet_id) {    
     this._init(metadata, desklet_id);
 }
+
+
+function _(str) {
+    return Gettext.dgettext(UUID, str);
+}
+
 
 IcsDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
 
     _init: function(metadata, desklet_id) {     
         Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
+        
+        UUID = metadata.uuid;
+        Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
         this.container = new St.BoxLayout({ vertical: true });
         this.label = new St.Label({ text: "...", style_class: "calendar-label" });
         this.footerBox = new St.BoxLayout({ vertical: false, x_expand: true });    
         this._nextScheduledUpdate = null;
-        this.timeLabel = new St.Label({ text: "..." });
+        this.timeLabel = new St.Label({ text: "...", style_class: "time-label" });
         this.refreshIcon = new St.Icon({
             icon_name: "view-refresh-symbolic",
             style_class: "system-status-icon",
@@ -128,14 +141,14 @@ IcsDesklet.prototype = {
                         callback(eventsText);
                         return;
                     } else {
-                        global.logError("ICS Today: problem reading calendar file, result = " + result[0]);
+                        global.logError(_("ICS Today: problem reading calendar file, result = ") + result[0]);
                     }
                 }
             } catch (e) {
-                global.logError("ICS Today: Failed to read file: " + e);
+                global.logError(_("ICS Today: Failed to read file: ") + e);
             }
     
-            this.label.set_text("Error reading calendar. Try 'right click, configure...'");
+            this.label.set_text(_("Error reading calendar. Try 'right click, configure...'"));
             callback(null);
         }
     
@@ -147,20 +160,20 @@ IcsDesklet.prototype = {
                     let eventsText = result[1].toString();
                     callback(eventsText);
                 } else {
-                    global.logError("ICS Today: Failed to fetch calendar from URL.");
-                    this.label.set_text("Could not fetch calendar from URL.");
+                    global.logError(_("ICS Today: Failed to fetch calendar from URL."));
+                    this.label.set_text(_("Could not fetch calendar from URL."));
                     callback(null);
                 }
             } catch (e) {
-                global.logError("ICS Today: Error during curl fetch: " + e);
-                this.label.set_text("Error fetching calendar from URL.");
+                global.logError(_("ICS Today: Error during curl fetch: ") + e);
+                this.label.set_text(_("Error fetching calendar from URL."));
                 callback(null);
             }
         }
     
         else {
-            global.logError("ICS Today: Unknown source type: " + this.sourceType);
-            this.label.set_text("Calendar source type not recognised.");
+            global.logError(_("ICS Today: Unknown source type: ") + this.sourceType);
+            this.label.set_text(_("Calendar source type not recognised."));
             callback(null);
         }
     },    
@@ -168,12 +181,12 @@ IcsDesklet.prototype = {
 
     _updateCheckedText: function(now) {
         let timeStr = now.getHours().toString().padStart(2, "0") + ":" + now.getMinutes().toString().padStart(2, "0");
-        let text = `Last checked: ${timeStr} `;
+        let text = `${_("Last checked")}: ${timeStr} `;
         
         if (this._nextScheduledUpdate) {
             let nh = String(this._nextScheduledUpdate.getHours()).padStart(2, "0");
             let nm = String(this._nextScheduledUpdate.getMinutes()).padStart(2, "0");
-            text += `• Next: ${nh}:${nm} `;
+            text += `• ${_("Next")}: ${nh}:${nm} `;
         }
 
         this.timeLabel.set_text(text);       
@@ -205,7 +218,7 @@ IcsDesklet.prototype = {
                     if (!dtstartMatch[2] || eventDate >= now) {
                         let timeStr = dtstartMatch[2]
                             ? timePart.slice(0, 2) + ":" + timePart.slice(2, 4)
-                            : "All day";
+                            : _("All day");
             
                         eventList.push({
                             time: eventDate,
@@ -219,9 +232,9 @@ IcsDesklet.prototype = {
         }
     
         if (eventList.length > 0) {
-            this.label.set_text("Today's Events:\n" + eventList.map(e => e.label).join("\n"));
+            this.label.set_text(_("Today's Events:") + "\n" + eventList.map(e => e.label).join("\n"));
         } else {
-            this.label.set_text("No events today.");
+            this.label.set_text(_("No events today."));
         }
     }
     
