@@ -45,7 +45,6 @@
                 "style",
                 "scale-size",
                 "enable-word-wrap",
-                "wrap-scale-size",
                 "hide-decorations",
                 "text-shadow",
                 "text-shadow-color",
@@ -215,16 +214,6 @@
         "units": "scale factor",
         "description": "Desklet size",
         "tooltip": "Increase or decrease the size of this desklet using this scale factor."
-    },
-    "wrap-scale-size": {
-        "type": "spinbutton",
-        "default": 1.2,
-        "min": 1.0,
-        "max": 2.0,
-        "step": 0.1,
-        "units": "scale factor",
-        "description": "Word-wrap: font scale factor",
-        "tooltip": "Increase or decrease the size to better word-wrap using this scale factor."
     },
     "use-custom-label": {
         "type": "checkbox",
