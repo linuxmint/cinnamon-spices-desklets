@@ -80,6 +80,8 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "bg-color", "customBgColor", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "file", "file", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "edit-cmd", "editCmd", this.on_setting_changed);
+                this.settings.bindProperty(Settings.BindingDirection.IN, "wrap-scale-size", "wrapScaleSize", this.on_setting_changed); 
+		this.settings.bindProperty(Settings.BindingDirection.IN, "enable-word-wrap", "enableWordWrap", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "note-taking-method", "noteTakingMethod", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "note-text", "noteText", this.on_setting_changed);
 
@@ -261,11 +263,40 @@ MyDesklet.prototype = {
 			//Main.notifyError("Complete Refresh Done", " "); // debug
 		}
 
+        let displayedText;
+        if (this.enableWordWrap) {
+            //word-wrap: as notetext is a label, it cannot be word-wrapped automatically, so 
+            //manual word-wrapping is needed. This one estimates width (number of chars) 
+            let width = (this.desklet_width / this.sizeFont * this.wrapScaleSize) | 0;
+            let arr = this.notecontent.split("\n");
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i].length > width)
+                  arr[i] = this.stringDivider(arr[i], width, "\n");
+            }
+            displayedText = arr.join("\n");
+        } else {
+            displayedText = this.notecontent;
+        }
+               
 		// refresh text
-		this.notetext.set_text(this.notecontent);
+		this.notetext.set_text(displayedText);
 
 		//Main.notifyError("Text Refresh Done", " "); // debug
 	},
+
+    stringDivider: function(str, width, spaceReplacer) {
+        if (str.length>width) {
+            let p=width
+            for (;p>0 && str[p]!=' ' && str[p]!='\n' ;p--) {
+            }
+            if (p>0) {
+                let left = str.substring(0, p);
+                let right = str.substring(p+1);
+                return left + spaceReplacer + this.stringDivider(right, width, spaceReplacer);
+            }
+        }
+        return str;
+    },
 
 	refreshDecoration: function() {
 		// desklet label (header)
