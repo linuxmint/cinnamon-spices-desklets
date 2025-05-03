@@ -1,4 +1,14 @@
-// weatherstack Driver
+/*
+* weatherstack.js - Driver for the bbcwx desklet that gets weather data
+* from the Weatherstack API (https://weatherstack.com).
+*
+*Key features:
+* - Support for free and paid plans
+* - Automatic day/night icons
+* - Robust error handling
+* - Internationalization
+*/
+
 const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
 const UUID = 'bbcwx@oak-wood.co.uk';
@@ -11,13 +21,14 @@ const SERVICE_STATUS_OK = wxBase.SERVICE_STATUS_OK;
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + '/.local/share/locale');
 
 function _(str) {
-  if (str) return Gettext.dgettext(UUID, str);
+  return Gettext.dgettext(UUID, str) || str;
 }
 
 var Driver = class Driver extends wxBase.Driver {
-  // initialize the driver
   constructor(stationID, apikey) {
     super(stationID, apikey);
+    
+    // Configuration of driver capabilities
     this.capabilities.cc.pressure_direction = false;
     this.capabilities.forecast.humidity = false;
     this.capabilities.forecast.pressure = false;
@@ -26,244 +37,328 @@ var Driver = class Driver extends wxBase.Driver {
     this.capabilities.forecast.weathertext = false;
 
     this.drivertype = 'weatherstack';
-    this.maxDays = 7;
+    
+    // Weatherstack supports up to 14 days for paid plans
+    this.maxDays = 1; //Default value, will be adjusted after check
+    
     this.linkText = 'weatherstack';
+    this.linkURL = 'https://weatherstack.com';
     this._baseURL = 'https://api.weatherstack.com/current';
-    this.lang_map = {
-      'ar': 'ar',
-      'bn': 'bn',
-      'bg': 'bg',
-      'zh': 'zh',
-      'zh_cn': 'zh',
-      'zh_tw': 'zh_tw',
-      'zh_cmn': 'zh_cmn',
-      'zh_wuu': 'zh_wuu',
-      'zh_hsn': 'zh_hsn',
-      'zh_yue': 'zh_yue',
-      'cs': 'cs',
-      'da': 'da',
-      'nl': 'nl',
-      'fi': 'fi',
-      'fr': 'fr',
-      'de': 'de',
-      'el': 'el',
-      'hi': 'hi',
-      'hu': 'hu',
-      'it': 'it',
-      'ja': 'ja',
-      'jv': 'jv',
-      'ko': 'ko',
-      'mr': 'mr',
-      'pa': 'pa',
-      'pl': 'pl',
-      'pt': 'pt',
-      'ro': 'ro',
-      'ru': 'ru',
-      'sr': 'sr',
-      'si': 'si',
-      'sk': 'sk',
-      'es': 'es',
-      'sv': 'sv',
-      'ta': 'ta',
-      'te': 'te',
-      'tr': 'tr',
-      'uk': 'uk',
-      'ur': 'ur',
-      'vi': 'vi',
-      'zu': 'zu'
-    };
+    this._forecastURL = 'https://api.weatherstack.com/forecast';
+    
+    // 1-hour limit for free plans
+    this.minTTL = 3600; // Default value, will be adjusted after check
+
+    this.isFreePlan = true; // Assumes free plan until check
+    this.hasForecast = false;
   }
 
   refreshData(deskletObj) {
-    // reset the data object
+  	// Initializes with free settings (more conservative)
+    this._setFreePlan();
+    
     this._emptyData();
+    
     if (!this.stationID || this.stationID.length < 3) {
       this._showError(deskletObj, _('Invalid location'));
       return;
     }
+    
     if (!this.apikey) {
       this._showError(deskletObj, _('No API key provided'));
       return;
     }
+    
     this.langcode = this.getLangCode();
-
+    
+    // Common Parameters
     let params = {
-      'access_key': encodeURIComponent(this.apikey),
-      'query': encodeURIComponent(this.stationID)
+      'access_key': this.apikey,
+      'query': this.stationID,
+      'units': 'm' // Metric for consistency with wxbase
     };
+    
+    if (this.langcode) params.language = this.langcode;
 
-    if (this.langcode) params['language'] = this.langcode;
-
-    // process the forecast
-    let a = this._getWeather(this._baseURL, function (weather) {
-      if (weather) {
-        this._load_forecast(weather);
+    // First search for current data
+    this._getWeather(this._baseURL, (data) => {
+      if (!data) {
+        this._showError(deskletObj, _('Failed to get weather data'));
+        return;
       }
-      // get the main object to update the display
-      deskletObj.displayForecast();
-      deskletObj.displayCurrent();
-      deskletObj.displayMeta();
+
+      try {
+        const json = JSON.parse(data);
+        this._processCurrentData(json);
+        
+        // Checks if it is incompatible plan error
+        if (json.error && json.error.code === 105) {
+          this.isFreePlan = true;
+          this.hasForecast = false;
+          global.logWarning("Weatherstack: Free plan detected - forecast disabled");
+        }
+
+        // Processes current data even if there is error 105
+        this._processCurrentData(json);
+        
+        // If it is not free plan, try to seek forecast
+        if (!this.isFreePlan && this.hasForecast) {
+          this._getWeather(this._forecastURL, (forecastData) => {
+            if (forecastData) {
+              this._processForecastData(forecastData);
+            }
+            deskletObj.displayForecast();
+            deskletObj.displayCurrent();
+            deskletObj.displayMeta();
+          }, {...params, forecast_days: this.maxDays});
+        } else {
+          deskletObj.displayForecast();
+          deskletObj.displayCurrent();
+          deskletObj.displayMeta();
+        }
+      } catch (e) {
+        this._showError(deskletObj, _('Error processing weather data'));
+        global.logError(e);
+      }
     }, params);
   }
 
-  // process the data for a multi day forecast and populate this.data
-  _load_forecast(data) {
-    if (!data) {
-      this._showError();
-      return;
-    }
+  _processCurrentData(json) {
+    // Error verification of API
+    if (json.error) {
+    	if (json.error && json.error.code !== 105) {	// Code 105 = flat does not support feature
+    		this._setFreePlan();
+            global.logWarning("Weatherstack: Free plan detected");
+        } else {
+      		throw new Error(json.error.info || _('API error'));
+    	}
+    	} else {
+        	// If there was no error 105 and has forecast_days available, takes on paid plan
+        	if (json.forecast && json.forecast.forecast_days) {
+            	this._setPaidPlan();
+            }
+        }
 
-    let json = JSON.parse(data);
+    const current = json.current || {};
+    const location = json.location || {};
+    const isDay = current.is_day === 'yes';
+    
+    this.data.cc = {
+      temperature: current.temperature,
+      has_temp: current.temperature !== undefined,
+      feelslike: current.feelslike,
+      humidity: current.humidity,
+      pressure: current.pressure,
+      wind_speed: current.wind_speed,
+      wind_direction: current.wind_dir,
+      weathertext: this._mapDescription(current.weather_descriptions?.[0]),
+      visibility: current.visibility,
+      icon: this._mapIcon(current.weather_code, isDay)
+    };
 
-    if (typeof json.error !== 'undefined') {
-      this._showError(null, json.error.info);
-      global.logWarning('Error from weatherstack: ' + json.error.info);
-      return;
-    }
+    this.data.city = location.name;
+    this.data.region = location.region;
+    this.data.country = location.country;
+    this.data.wgs84 = {
+      lat: location.lat,
+      lon: location.lon
+    };
 
+    this.data.status.cc = SERVICE_STATUS_OK;
+    this.data.status.meta = SERVICE_STATUS_OK;
+  }
+
+
+  //Configure parameters for free plane
+  _setFreePlan() {
+   	this.isFreePlan = true;
+	this.hasForecast = false;
+	this.maxDays = 1;
+	this.minTTL = 3600; // 1 hour for free plans
+	global.log("Configure for FREE plane: maxDays=1, minTTL=3600");
+  }
+
+  //Configure parameters for paid plan
+  _setPaidPlan() {
+    this.isFreePlan = false;
+    this.hasForecast = true;
+    this.maxDays = 7; // Supports up to 14 days
+    this.minTTL = 900; // 15 minutes for paid plans
+    global.log("Configure for PAID plane: maxDays=7, minTTL=900");
+  }
+
+  _processForecastData(data) {
     try {
-      // forecast days
-      var day_count = 0;
-      for (const [date, days] of Object.entries(json.forecast)) {
-        let day = new Object();
-        day.day = this._getDayName(new Date(days.date).getUTCDay());
-        day.minimum_temperature = days.mintemp;
-        day.maximum_temperature = days.maxtemp;
-        day.icon = ' ';
-
-        this.data.days[day_count] = day;
-        day_count += 1;
-
+      const json = JSON.parse(data);
+      if (json.error) {
+        // If there is error 105 in the forecast, disables for future calls
+        if (json.error.code === 105) {
+          this.isFreePlan = true;
+          this.hasForecast = false;
+        }
+        return;
       }
 
-      let cc = json.current;
-
-      this.data.cc.humidity = cc.humidity;
-      this.data.cc.temperature = cc.temperature;
-      this.data.cc.has_temp = true;
-      this.data.cc.pressure = cc.pressure;
-      this.data.cc.wind_speed = cc.wind_speed;
-      this.data.cc.wind_direction = cc.wind_dir;
-      this.data.cc.weathertext = this._mapDescription(cc.weather_descriptions[0]);
-      this.data.cc.visibility = cc.visibility;
-      this.data.cc.feelslike = cc.feelslike;
-      this.data.cc.icon = this._mapIcon(cc.weather_code);
-
-      let locdata = json.location;
-      this.data.city = locdata.name;
-      this.data.country = locdata.country;
-      this.data.region = locdata.region;
-      this.data.wgs84.lat = locdata.lat;
-      this.data.wgs84.lon = locdata.lon;
-
-      this.data.status.meta = SERVICE_STATUS_OK;
-      this.data.status.cc = SERVICE_STATUS_OK;
+      let dayCount = 0;
+      for (const [date, dayData] of Object.entries(json.forecast || {})) {
+        if (dayCount >= this.maxDays) break;
+        
+        this.data.days[dayCount] = {
+          day: this._getDayName(new Date(date).getUTCDay()),
+          minimum_temperature: dayData.mintemp,
+          maximum_temperature: dayData.maxtemp,
+          icon: this._mapIcon(dayData.condition, true), // Assumes day for forecast
+          weathertext: this._mapDescription(dayData.condition)
+        };
+        dayCount++;
+      }
+      
       this.data.status.forecast = SERVICE_STATUS_OK;
     } catch (e) {
-      this._showError();
-      global.logError(e);
+      global.logError("Error processing forecast data: " + e);
     }
   }
 
-  _mapIcon(iconcode) {
-    // https://weatherstack.com/site_resources/weatherstack-weather-condition-codes.zip
-    // weatherstack uses wwo weather codes from here:
-    // https://www.worldweatheronline.com/feed/wwoConditionCodes.txt
-    let icon_name = 'na';
-    let iconmap = {
-      '395': '16',
-      '392': '13',
-      '389': '04',
-      '386': '37',
-      '377': '18',
-      '374': '18',
-      '371': '16',
-      '368': '13',
-      '365': '18',
-      '362': '18',
-      '359': '39',
-      '356': '39',
-      '353': '39',
-      '350': '18',
-      '338': '16',
-      '335': '16',
-      '332': '14',
-      '329': '14',
-      '326': '13',
-      '323': '13',
-      '320': '06',
-      '317': '06',
-      '314': '10',
-      '311': '08',
-      '308': '12',
-      '305': '12',
-      '302': '11',
-      '299': '11',
-      '296': '09',
-      '293': '09',
-      '284': '08',
-      '281': '08',
-      '266': '09',
-      '263': '09',
-      '260': '20',
-      '248': '20',
-      '230': '15',
-      '227': '15',
-      '200': '38',
-      '185': '08',
-      '182': '06',
-      '179': '13',
-      '176': '39',
-      '143': '20',
-      '122': '26',
-      '119': '26',
-      '116': '30',
-      '113': '32'
+  _mapIcon(iconcode, isDay) {
+    // Completer mapping of condition codes for icons
+    const iconMapDay = {
+      '113': '32', // Sunny/Clear
+      '116': '30', // Partly cloudy
+      '119': '26', // Cloudy
+      '122': '26', // Overcast
+      '143': '20', // Mist
+      '176': '39', // Patchy rain possible
+      '179': '13', // Patchy snow possible
+      '182': '06', // Patchy sleet possible
+      '185': '08', // Patchy freezing drizzle possible
+      '200': '38', // Thundery outbreaks possible
+      '227': '15', // Blowing snow
+      '230': '15', // Blizzard
+      '248': '20', // Fog
+      '260': '20', // Freezing fog
+      '263': '09', // Patchy light drizzle
+      '266': '09', // Light drizzle
+      '281': '08', // Freezing drizzle
+      '284': '08', // Heavy freezing drizzle
+      '293': '09', // Patchy light rain
+      '296': '09', // Light rain
+      '299': '11', // Moderate rain at times
+      '302': '11', // Moderate rain
+      '305': '12', // Heavy rain at times
+      '308': '12', // Heavy rain
+      '311': '08', // Light freezing rain
+      '314': '08', // Moderate or heavy freezing rain
+      '317': '06', // Light sleet
+      '320': '06', // Moderate or heavy sleet
+      '323': '13', // Patchy light snow
+      '326': '13', // Light snow
+      '329': '14', // Patchy moderate snow
+      '332': '14', // Moderate snow
+      '335': '16', // Patchy heavy snow
+      '338': '16', // Heavy snow
+      '350': '18', // Ice pellets
+      '353': '39', // Light rain shower
+      '356': '39', // Moderate or heavy rain shower
+      '359': '39', // Torrential rain shower
+      '362': '18', // Light sleet showers
+      '365': '18', // Moderate or heavy sleet showers
+      '368': '13', // Light snow showers
+      '371': '16', // Moderate or heavy snow showers
+      '374': '18', // Light showers of ice pellets
+      '377': '18', // Moderate or heavy showers of ice pellets
+      '386': '37', // Patchy light rain with thunder
+      '389': '04', // Moderate or heavy rain with thunder
+      '392': '13', // Patchy light snow with thunder
+      '395': '16'  // Moderate or heavy snow with thunder
     };
 
-    if (iconcode && (typeof iconmap[iconcode] !== 'undefined')) {
-      icon_name = iconmap[iconcode];
-    }
-
-    return icon_name;
+    const iconMapNight = {
+      '113': '31', // Clear night
+      '116': '29', // Partly cloudy night
+      '119': '26', // Cloudy (same as day)
+      '122': '26', // Overcast (same as day)
+      '143': '20', // Mist (same as day)
+      '176': '45', // Patchy rain possible night
+      '179': '46', // Patchy snow possible night
+      '182': '46', // Patchy sleet possible night
+      '185': '46', // Patchy freezing drizzle possible night
+      '200': '47', // Thundery outbreaks possible night
+      '227': '15', // Blowing snow (same as day)
+      '230': '15', // Blizzard (same as day)
+      '248': '20', // Fog (same as day)
+      '260': '20', // Freezing fog (same as day)
+      '263': '09', // Patchy light drizzle (same as day)
+      '266': '09', // Light drizzle (same as day)
+      '281': '08', // Freezing drizzle (same as day)
+      '284': '08', // Heavy freezing drizzle (same as day)
+      '293': '09', // Patchy light rain (same as day)
+      '296': '09', // Light rain (same as day)
+      '299': '11', // Moderate rain at times (same as day)
+      '302': '11', // Moderate rain (same as day)
+      '305': '12', // Heavy rain at times (same as day)
+      '308': '12', // Heavy rain (same as day)
+      '311': '08', // Light freezing rain (same as day)
+      '314': '08', // Moderate or heavy freezing rain (same as day)
+      '317': '06', // Light sleet (same as day)
+      '320': '06', // Moderate or heavy sleet (same as day)
+      '323': '13', // Patchy light snow (same as day)
+      '326': '13', // Light snow (same as day)
+      '329': '14', // Patchy moderate snow (same as day)
+      '332': '14', // Moderate snow (same as day)
+      '335': '16', // Patchy heavy snow (same as day)
+      '338': '16', // Heavy snow (same as day)
+      '350': '18', // Ice pellets (same as day)
+      '353': '45', // Light rain shower night
+      '356': '45', // Moderate or heavy rain shower night
+      '359': '45', // Torrential rain shower night
+      '362': '18', // Light sleet showers (same as day)
+      '365': '18', // Moderate or heavy sleet showers (same as day)
+      '368': '13', // Light snow showers (same as day)
+      '371': '16', // Moderate or heavy snow showers (same as day)
+      '374': '18', // Light showers of ice pellets (same as day)
+      '377': '18', // Moderate or heavy showers of ice pellets (same as day)
+      '386': '47', // Patchy light rain with thunder night
+      '389': '47', // Moderate or heavy rain with thunder night
+      '392': '46', // Patchy light snow with thunder night
+      '395': '46'  // Moderate or heavy snow with thunder night
+    };
+    
+    return iconcode ? (isDay ? iconMapDay : iconMapNight)[iconcode] || 'na' : 'na';
   }
 
   _mapDescription(description) {
-    let condition = description.toLowerCase();
-    let conditionmap = {
-      'blizzard': _('Blizzard'),
-      'blowing snow': _('Blowing Snow'),
-      'clear': _('Clear'),
-      'cloudy': _('Cloudy'),
-      'fog': _('Fog'),
-      'freezing drizzle': _('Freezing Drizzle'),
-      'freezing fog': _('Freezing Fog'),
-      'heavy freezing drizzle': _('Heavy Freezing Drizzle'),
-      'heavy rain': _('Heavy Rain'),
-      'heavy rain at times': _('Heavy Rain at Times'),
-      'light drizzle': _('Light Drizzle'),
-      'light freezing rain': _('Light Freezing Rain'),
-      'light rain': _('Light Rain'),
-      'mist': _('Mist'),
-      'moderate rain': _('Moderate Rain'),
-      'moderate rain at times': _('Moderate Rain at Times'),
-      'overcast': _('Overcast'),
-      'partly cloudy': _('Partly Cloudy'),
-      'patchy freezing drizzle possible': _('Patchy Freezing Drizzle Possible'),
-      'patchy light drizzle': _('Patchy Light Drizzle'),
-      'patchy light rain': _('Patchy Light Rain'),
-      'patchy rain possible': _('Patchy Rain Possible'),
-      'patchy sleet possible': _('Patchy Sleet Possible'),
-      'patchy snow possible': _('Patchy Snow Possible'),
+    if (!description) return '';
+    
+    // Standardizes the description for mapping
+    const desc = typeof description === 'string' ? 
+      description.toLowerCase() : 
+      (description[0] ? description[0].toLowerCase() : '');
+    
+    const descriptionMap = {
       'sunny': _('Sunny'),
-      'thundery outbreaks possible': _('Thundery Outbreaks Possible')
+      'clear': _('Clear'),
+      'partly cloudy': _('Partly Cloudy'),
+      'cloudy': _('Cloudy'),
+      'overcast': _('Overcast'),
+      'mist': _('Mist'),
+      'fog': _('Fog'),
+      'freezing fog': _('Freezing Fog'),
+      'patchy rain possible': _('Patchy Rain Possible'),
+      'light rain': _('Light Rain'),
+      'moderate rain': _('Moderate Rain'),
+      'heavy rain': _('Heavy Rain'),
+      'light snow': _('Light Snow'),
+      'moderate snow': _('Moderate Snow'),
+      'heavy snow': _('Heavy Snow'),
+      'light sleet': _('Light Sleet'),
+      'moderate sleet': _('Moderate Sleet'),
+      'light rain shower': _('Light Rain Shower'),
+      'moderate rain shower': _('Moderate Rain Shower'),
+      'heavy rain shower': _('Heavy Rain Shower'),
+      'thundery outbreaks possible': _('Thundery Outbreaks Possible'),
+      'blizzard': _('Blizzard')
     };
-
-    if (description && (typeof conditionmap[condition] !== 'undefined')) {
-      condition = conditionmap[condition];
-      return condition;
-    }
-
-    return description;
+    
+    return descriptionMap[desc] || description;
   }
 };
