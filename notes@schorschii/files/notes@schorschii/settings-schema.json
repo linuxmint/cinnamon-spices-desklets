@@ -44,6 +44,7 @@
             "keys": [
                 "style",
                 "scale-size",
+                "enable-word-wrap",
                 "hide-decorations",
                 "text-shadow",
                 "text-shadow-color",
@@ -162,6 +163,11 @@
         "description": "Background color",
         "tooltip": "Set the background color of this desklet.",
         "dependency": "style=none"
+    },
+    "enable-word-wrap": {
+        "type": "switch",
+        "description": "Enable word wrap",
+        "default": true
     },
     "hide-decorations": {
         "type": "switch",

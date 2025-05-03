@@ -14,6 +14,8 @@ const Gio = imports.gi.Gio;
 const PopupMenu = imports.ui.popupMenu;
 const Gettext = imports.gettext;
 const ByteArray = imports.byteArray;
+const Pango = imports.gi.Pango;
+
 
 const UUID = "notes@schorschii";
 const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
@@ -80,6 +82,7 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "bg-color", "customBgColor", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "file", "file", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "edit-cmd", "editCmd", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "enable-word-wrap", "enableWordWrap", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "note-taking-method", "noteTakingMethod", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "note-text", "noteText", this.on_setting_changed);
 
@@ -261,8 +264,19 @@ MyDesklet.prototype = {
 			//Main.notifyError("Complete Refresh Done", " "); // debug
 		}
 
-		// refresh text
+		// set the raw text
 		this.notetext.set_text(this.notecontent);
+
+		// grab the Clutter.Text layout
+		let ct = this.notetext.get_clutter_text();
+
+		// turn wrapping on/off
+		ct.set_line_wrap(this.enableWordWrap);
+		ct.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
+
+		// constrain its width in Pango units (pixels * Pango.SCALE)
+		let wrapWidthPx = this.desklet_width; 
+		ct.set_size(wrapWidthPx * Pango.SCALE, -1);
 
 		//Main.notifyError("Text Refresh Done", " "); // debug
 	},
