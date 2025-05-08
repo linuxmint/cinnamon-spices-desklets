@@ -1,3 +1,9 @@
+### 0.15.7 - May 8, 2025
+
+Bugfixes:
+
+- fix unlimited retries when authorization step failed, stops now after 5 attempts
+
 ### 0.15.6 - April 3, 2025
 
 Features:
