@@ -50,6 +50,7 @@ const ERROR_RESPONSE_BEGIN = "{\"quoteResponse\":{\"result\":[],\"error\":\"";
 const ERROR_RESPONSE_END = "\"}}";
 const LOG_PREFIX = UUID + " - ";
 const LOG_DEBUG = Gio.file_new_for_path(DESKLET_DIR + "/DEBUG").query_exists(null);
+const MAX_AUTH_ATTEMPTS = 5;
 
 const BASE_FONT_SIZE = 10;
 
@@ -342,7 +343,7 @@ YahooFinanceQuoteReader.prototype = {
                 }
             });
         } else {
-            message.get_request_headers().append(ACCEPT_HEADER, ACCEPT_VALUE_CRUMB);
+            message.get_request_headers().append(ACCEPT_HEADER, ACCEPT_VALUE_COOKIE);
             message.get_request_headers().append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
             if (customUserAgent != null) {
                 message.get_request_headers().append(USER_AGENT_HEADER, customUserAgent);
@@ -765,6 +766,7 @@ StockQuoteDesklet.prototype = {
         this.id = id;
         this.updateId = 0;
         this.updateInProgress = false;
+        this.authAttempts = 0;
         this.quoteReader = new YahooFinanceQuoteReader();
         this.quoteUtils = new YahooFinanceQuoteUtils();
         this.loadSettings();
@@ -856,7 +858,7 @@ StockQuoteDesklet.prototype = {
             const updateButton = new St.Button();
             updateButton.add_actor(label);
             updateButton.connect("clicked", Lang.bind(this, function() {
-                this.onQuotesListChanged();
+                this.onManualRefreshRequested();
             }));
             return updateButton;
         } else {
@@ -929,6 +931,13 @@ StockQuoteDesklet.prototype = {
         this.setUpdateTimer();
     },
 
+    // called when user requests a data refresh (by button from settings, or by link on last-update-timestamp)
+    onManualRefreshRequested: function() {
+        // reset auth attempts counter here, since user explicitly requests a refresh
+        this.authAttempts = 0;
+        this.onQuotesListChanged();
+    },
+
     // called on events that change the quotes data (quotes list)
     // BEWARE: DO NOT use this function as callback in settings.bind() - otherwise multiple YFQ requests are fired, and multiple timers are created!
     onQuotesListChanged: function() {
@@ -946,9 +955,9 @@ StockQuoteDesklet.prototype = {
         try {
             if (_crumb) {
                 this.fetchFinanceDataAndRender(quoteSymbolsArg, customUserAgent);
-            } else {
+            } else if (this.hasRemainingAuthAttempts()) {
                 this.fetchCookieAndRender(quoteSymbolsArg, customUserAgent);
-            }
+            } // else give up on authorization
         } catch (err) {
             logError("Cannot fetch quotes information for symbol %s due to error: %s".format(quoteSymbolsArg, err));
             this.processFailedFetch(err);
@@ -997,6 +1006,7 @@ StockQuoteDesklet.prototype = {
                 _that.processConsentAndRender(authResponseMessage, responseBody, quoteSymbolsArg, customUserAgent);
             } else {
                 logWarning("Failed to retrieve auth cookie!");
+                _that.authAttempts++;
                 _that.processFailedFetch(_("Failed to retrieve authorization parameter! Unable to fetch quotes data.\\nStatus: ") + _that.quoteUtils.getMessageStatusInfo(authResponseMessage));
             }
         });
@@ -1023,18 +1033,24 @@ StockQuoteDesklet.prototype = {
                     _that.fetchCrumbAndRender(quoteSymbolsArg, customUserAgent);
                 } else {
                     logWarning("Failed to retrieve auth cookie from consent form");
+                    _that.authAttempts++;
                     _that.processFailedFetch(_("Consent processing failed! Unable to fetch quotes data.\\nStatus: ") + _that.quoteUtils.getMessageStatusInfo(consentResponseMessage));
                 }
             });
         } else {
             logWarning("Consent form not detected");
-            this.processFailedFetch(_("Consent processing not completed! Unable to fetch quotes data.\\nStatus: ") + this.quoteUtils.getMessageStatusInfo(authResponseMessage));
+            this.authAttempts++;
+            this.processFailedFetch(_("Consent processing not completed! Unable to fetch quotes data.\\nStatus: ") + this.quoteUtils.getMessageStatusInfo(authResponseMessage));;
         }
     },
 
     fetchCrumbAndRender: function(quoteSymbolsArg, customUserAgent) {
         logDebug("fetchCrumbAndRender");
         const _that = this;
+
+        if (!this.hasRemainingAuthAttempts()) {
+            return;
+        }
 
         this.quoteReader.getCrumb(customUserAgent, function(crumbResponseMessage, responseBody) {
             logDebug("Crumb response body: " + responseBody);
@@ -1051,9 +1067,14 @@ StockQuoteDesklet.prototype = {
                 _that.fetchFinanceDataAndRender(quoteSymbolsArg, customUserAgent);
             } else {
                 logWarning("Failed to retrieve crumb!");
-                _that.processFailedFetch(_("Failed to retrieve authorization crumb! Unable to fetch quotes data.\\nStatus: ") + _that.quoteUtils.getMessageStatusInfo(crumbResponseMessage));
+                _that.authAttempts++;
+                _that.processFailedFetch(_('Failed to retrieve authorization crumb! Unable to fetch quotes data.\\nStatus: ') + _that.quoteUtils.getMessageStatusInfo(crumbResponseMessage));
             }
         });
+    },
+
+    hasRemainingAuthAttempts: function() {
+        return this.authAttempts < MAX_AUTH_ATTEMPTS;
     },
 
     processFailedFetch: function(errorMessage) {
@@ -1077,7 +1098,7 @@ StockQuoteDesklet.prototype = {
                 logDebug("add instant timer");
                 delaySeconds = 1;
             }
-            this.updateId = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, delaySeconds, () => {this.onQuotesListChanged()});
+            this.updateId = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, delaySeconds, () => { this.onQuotesListChanged() });
             logDebug("new updateId " + this.updateId);
             this.updateInProgress = false;
         }
@@ -1094,7 +1115,8 @@ StockQuoteDesklet.prototype = {
         }
 
         // check if quotes list was changed but no call of onQuotesListChanged() occurred, e.g. on layout changes
-        if (!this.quoteUtils.compareSymbolsArgument(_lastResponses.get(existingId).symbolsArgument, this.quoteSymbolsText)) {
+        if (this.hasRemainingAuthAttempts() &&
+            !this.quoteUtils.compareSymbolsArgument(_lastResponses.get(existingId).symbolsArgument, this.quoteSymbolsText)) {
             logDebug("Detected changed quotes list, refreshing data for desklet id " + this.id);
             this.onQuotesListChanged();
             return;
@@ -1116,7 +1138,7 @@ StockQuoteDesklet.prototype = {
         const responseResult = _lastResponses.get(existingId).responseResult;
         if (responseResult !== null) {
             const symbolCustomizationMap = this.quoteUtils.buildSymbolCustomizationMap(this.quoteSymbolsText);
-            
+
             // some preparations before the rendering starts
             for (const quote of responseResult) {
                 // sometimes YF returns a symbol we didn't query for
@@ -1126,22 +1148,22 @@ StockQuoteDesklet.prototype = {
                     logDebug("Adding unknown symbol to customization map: " + returnedSymbol);
                     symbolCustomizationMap.set(returnedSymbol, this.quoteUtils.buildSymbolCustomization(returnedSymbol, new Map()));
                 }
-    
+
                 // based on the custom settings, and the returned information, determine the name and store it directly in the quote
                 this.quoteUtils.populateQuoteDisplayName(quote, symbolCustomizationMap.get(returnedSymbol), this.useLongQuoteName);
             }
-    
+
             // (optional) sorting (do after we populated the display name within the quotes)
             const sortedResponseResult = this.quoteUtils.sortQuotesByProperty(responseResult, this.sortCriteria, this.sortAscending ? 1 : -1);
-    
+
             // gather all settings that influence the rendering
             const displaySettings = this.getQuoteDisplaySettings(sortedResponseResult);
-    
+
             const table = new QuotesTable();
             // renders the quotes in a table structure
             table.renderTable(sortedResponseResult, symbolCustomizationMap, displaySettings);
             tableContainer.add_actor(table.el);
-            
+
             if (this.showLastUpdateTimestamp) {
                 tableContainer.add_actor(this.createLastUpdateLabel(_lastResponses.get(existingId).lastUpdated, displaySettings));
             }
