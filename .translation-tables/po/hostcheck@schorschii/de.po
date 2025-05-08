@@ -1,0 +1,152 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.2\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 00:14+0200\n"
+"PO-Revision-Date: 2024-12-01 13:40+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+#: desklet.js:58 desklet.js:129
+msgid "UNKNOWN"
+msgstr "UNBEKANNT"
+
+#: desklet.js:114
+msgid "Error executing ping command!"
+msgstr "Fehler beim Ausführen des Ping-Befehls"
+
+#: desklet.js:130
+msgid "No ping output"
+msgstr "Ping-Befehl lieferte keine Ausgabe"
+
+#: desklet.js:135 desklet.js:161 desklet.js:181 desklet.js:203
+msgid "CRIT"
+msgstr "CRIT"
+
+#: desklet.js:139 desklet.js:185 desklet.js:207
+msgid "OK"
+msgstr "OK"
+
+#: desklet.js:143 desklet.js:189 desklet.js:211 desklet.js:218
+msgid "WARN"
+msgstr "WARN"
+
+#: desklet.js:177 desklet.js:199
+msgid "HTTP Status Code"
+msgstr "HTTP-Statuscode"
+
+#: desklet.js:234
+msgid "s"
+msgstr "s"
+
+#. metadata.json->description
+msgid "Checks a host via ping or HTTP(S) and displays if it is available."
+msgstr "Zeigt grafisch an, ob ein Host via Ping oder HTTP(S) erreichbar ist."
+
+#. metadata.json->name
+msgid "Host Check"
+msgstr "Host Check"
+
+#. settings-schema.json->head0->description
+msgid "Settings for hostcheck@schorschii"
+msgstr "Einstellungen für hostcheck@schorschii"
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr "Allgemein"
+
+#. settings-schema.json->host->description
+msgid "Hostname, IP address or HTTP(S)-URL to check"
+msgstr "Zu überprüfender Hostname, IP-Adresse oder HTTP(S)-URL"
+
+#. settings-schema.json->type->description
+msgid "Ping or HTTP(S) check"
+msgstr "Ping oder HTTP(S) verwenden"
+
+#. settings-schema.json->type->tooltip
+msgid "Choose, if this desklet should do a ping or HTTP(S) check."
+msgstr ""
+"Wählen Sie aus, ob dieses Desklet den Host via Ping oder HTTP(S) überprüfen "
+"soll."
+
+#. settings-schema.json->type->options
+msgid "Ping"
+msgstr "Ping"
+
+#. settings-schema.json->type->options
+msgid "HTTP(S)"
+msgstr "HTTP(S)"
+
+#. settings-schema.json->success-status-code->description
+msgid "HTTP success status code"
+msgstr "Erfolgreicher HTTP-Statuscode"
+
+#. settings-schema.json->success-status-code->tooltip
+msgid "Choose the HTTP status code which should be assumed as success"
+msgstr "Wählen Sie den HTTP-Statuscode, welcher als Erfolg gilt"
+
+#. settings-schema.json->show-notifications->description
+msgid "Show notifications when state changed"
+msgstr "Benachrichtigungen anzeigen, wenn sich der Status ändert"
+
+#. settings-schema.json->interval->units
+msgid "seconds"
+msgstr "Sekunden"
+
+#. settings-schema.json->interval->description
+msgid "Time's interval of check"
+msgstr "Zeitintervall der Überprüfung"
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "Skalierungsfaktor"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Deskletgröße"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Vergrößern oder verkleinern Sie dieses Desklet, indem Sie diesen "
+"Skalierungsfaktor verändern."
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Dekorationen verstecken"
+
+#. settings-schema.json->head3->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr "Eigenes Desklet-Label (nur sichtbar, wenn Dekorationen aktiviert sind)"
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Ein eigenes Desklet-Label verwenden"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Wenn Sie diese Option aktivieren, können Sie ein eigenes Desklet-Label im "
+"Feld darunter festlegen."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Eigenes Desklet-Label"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr ""
+"Legen Sie hier ihr eigenes Label fest. Dieses Feld ist nicht verfügbar, "
+"solange die Option darüber nicht aktiviert wurde."

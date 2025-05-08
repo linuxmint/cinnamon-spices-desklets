@@ -1,0 +1,455 @@
+# Feed reader desklet for Cinnamon
+# This file is put in the public domain.
+# Daniel <d3vf4n (at) tutanota (dot) com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: yarr@jtoberling 1.2.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-02-09 10:09-0500\n"
+"PO-Revision-Date: 2025-02-17 12:06+0100\n"
+"Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. desklet.js:507
+msgid "Enable refresh"
+msgstr "Habilitar actualització"
+
+#. desklet.js:511 desklet.js:747
+msgid "Disable refresh"
+msgstr "Deshabilitar actualització"
+
+#. desklet.js:519
+msgid "Yarr"
+msgstr "Yarr"
+
+# feed = canal d'entrada d'informació.
+# Consultar el diccionari dictionary.cambridge.org i la memòria de traducció del SoftCatalà
+#. desklet.js:564
+msgid "Loading: feeds ..."
+msgstr "S'estan carregant els canals..."
+
+#. desklet.js:624 desklet.js:729
+msgid " Search..."
+msgstr " Buscar..."
+
+#. desklet.js:657
+msgid "Search Articles"
+msgstr "Buscador d'articles"
+
+#. desklet.js:668
+msgid "Type to search..."
+msgstr "Escriviu per a buscar..."
+
+#. desklet.js:702
+msgid "Cancel"
+msgstr "Cancel·lar"
+
+#. desklet.js:707
+msgid "Search"
+msgstr "Buscar"
+
+#. metadata.json->description
+msgid "Yet Another RSS Reader - now as Cinnamon Desklet"
+msgstr ""
+"Yet Another RSS Reader - ara com a miniaplicació d'escriptori de Cinnamon"
+
+#. metadata.json->name
+msgid "Yet Another RSS Reader"
+msgstr "Un altre lector més de canals RSS"
+
+#. settings-schema.json->page1->title
+#. settings-schema.json->section0->title
+#. settings-schema.json->feeds->description
+msgid "Feed settings"
+msgstr "Ajusts dels canals"
+
+#. settings-schema.json->page2->title
+#. settings-schema.json->section1->title
+msgid "Display settings"
+msgstr "Ajusts de visualització"
+
+#. settings-schema.json->page3->title
+#. settings-schema.json->section2->title
+msgid "AI settings"
+msgstr "Ajusts d'IA"
+
+#. settings-schema.json->section1ai->title
+msgid "Display settings for AI feature"
+msgstr "Ajusts de visualització de la IA"
+
+#. settings-schema.json->feeds->columns->title
+#. settings-schema.json->listfilter->columns->title
+msgid "Name"
+msgstr "Nom"
+
+#. settings-schema.json->feeds->columns->title
+#. settings-schema.json->listfilter->columns->title
+msgid "Active"
+msgstr "Actiu"
+
+#. settings-schema.json->feeds->columns->title
+msgid "Feed URL"
+msgstr "URL del canal"
+
+#. settings-schema.json->feeds->columns->title
+msgid "Label Color (#rrggbb)"
+msgstr "Color de l'etiqueta (#rrggbb)"
+
+#. settings-schema.json->feeds->columns->title
+msgid "ChannelFilter (Regexp eg: '.*')"
+msgstr "Filtre en canal (RegExp)"
+
+#. settings-schema.json->backgroundColor->description
+msgid "Background color"
+msgstr "Color de fons"
+
+#. settings-schema.json->transparency->description
+msgid "Background transparency"
+msgstr "Transparència del fons"
+
+#. settings-schema.json->transparency->tooltip
+msgid "The higher the value, the more solid the desklet background."
+msgstr "Com més alt sigui el valor, més opac serà el fons."
+
+#. settings-schema.json->alternateRowTransparency->description
+msgid "Dim of every second rows"
+msgstr "Enfosquiment de cada segona fila"
+
+#. settings-schema.json->alternateRowTransparency->tooltip
+msgid "The higher the value, more dim on alternate row backgrounds."
+msgstr ""
+"Com més alt sigui el valor, més opac serà el fons a l'alternació de files."
+
+#. settings-schema.json->refreshInterval-spinner->units
+msgid "seconds"
+msgstr "segons"
+
+#. settings-schema.json->refreshInterval-spinner->description
+msgid "Refresh Interval for Display"
+msgstr "Interval d'actualització de la llista"
+
+#. settings-schema.json->refreshInterval-spinner->tooltip
+msgid "Increase or decrease this spinner value to change the refresh interval"
+msgstr ""
+"Defineix el període d'actualització incrementant o disminuint el valor de "
+"l'indicador"
+
+#. settings-schema.json->width->description
+msgid "Width"
+msgstr "Amplada"
+
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+msgid "pixels"
+msgstr "píxels"
+
+#. settings-schema.json->width->tooltip
+msgid "Desklet width in pixels."
+msgstr "Amplada de la miniaplicació (píxels)"
+
+#. settings-schema.json->height->description
+msgid "Height"
+msgstr "Alçada"
+
+#. settings-schema.json->height->tooltip
+msgid "Desklet height in pixels."
+msgstr "Alçada de la miniaplicació (píxels)"
+
+#. settings-schema.json->font->description
+msgid "Font"
+msgstr "Lletra"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Color del text"
+
+#. settings-schema.json->text-color->tooltip
+#. settings-schema.json->ai_text-color->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Feu clic per seleccionar un color nou de text"
+
+#. settings-schema.json->ai_font->description
+msgid "Font for explanation text"
+msgstr "Lletra de les explicacions"
+
+#. settings-schema.json->ai_text-color->description
+msgid "Text color of explanation"
+msgstr "Color de lletra de les explicacions"
+
+#. settings-schema.json->numberofitems->description
+msgid "Number of displayed articles"
+msgstr "Nombre d'articles visibles"
+
+#. settings-schema.json->numberofitems->tooltip
+msgid "Number of displayed articles in the list window."
+msgstr "La quantitat d'articles que es mostran a la llista."
+
+#. settings-schema.json->filterlabel->description
+msgid "Exclude filters for articles"
+msgstr "Filtres d'exclusió d'articles"
+
+#. settings-schema.json->listfilter->description
+msgid "Message RegExp filters"
+msgstr "Filtres d'exclusió de missatges (RegExp)"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Unmatch"
+msgstr "No coincidència"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Filter (Regexp eg: '.*')"
+msgstr "Filtre (RegExp)"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Match in Title"
+msgstr "Coincidència en títol"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Match in Category"
+msgstr "Coincidència en categoria"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Match in Description"
+msgstr "Coincidència en descripció"
+
+#. settings-schema.json->ai_label-info->description
+msgid ""
+"These are experimental AI features. Use at your own risk!\n"
+"Also they are needing ChatGPT account, and can cost money! $$$ "
+msgstr ""
+"Aquestes funcions d'IA son experimentals. Feu-les servir amb compte.\n"
+"A més, requereixen un compte de ChatGPT i poden costar diners "
+
+#. settings-schema.json->ai_button-chatgpt-apikeys->description
+msgid "Open ChaptGPT API keys page"
+msgstr "Obre la pàgina de claus d'API de ChatGPT"
+
+#. settings-schema.json->ai_button-chatgpt-usage->description
+msgid "Open ChaptGPT Usage page"
+msgstr "Obre la pàgina d'ús del ChatGPT"
+
+#. settings-schema.json->ai_enablesummary->description
+msgid "Enable EXPERIMENTAL AI summary by ChatGPT"
+msgstr "Activa els resums fets amb ChatGPT (experimental)"
+
+#. settings-schema.json->ai_add_description_to_summary->description
+msgid "Add description to beginning of AI summary"
+msgstr "Afegeix una descripció al començament a mode de resum generat per IA"
+
+#. settings-schema.json->ai_url->description
+msgid "URL of Completion Api"
+msgstr "URL de l'API complementària"
+
+#. settings-schema.json->ai_url->tooltip
+msgid "https://api.openai.com/v1/chat/completions"
+msgstr "https://api.openai.com/v1/chat/completions"
+
+#. settings-schema.json->ai_dumptool->description
+msgid "Choose a tool to dumping web pages"
+msgstr "Seleccioneu un programa per a descarregar pàgines web"
+
+#. settings-schema.json->ai_dumptool->options
+msgid "w3m"
+msgstr "w3m"
+
+#. settings-schema.json->ai_dumptool->options
+msgid "lynx"
+msgstr "lynx"
+
+#. settings-schema.json->ai_dumptool->options
+msgid "links"
+msgstr "links"
+
+#. settings-schema.json->ai_dumptool->tooltip
+msgid ""
+"You need a command line tool to dump web pages.\n"
+"You have to deploy (apt install ..) one of these manually:\n"
+"[ w3m, lynx, links]"
+msgstr ""
+"Es necessita un programa de línia d'ordres (terminal) per a obtenir les "
+"pàgines web.\n"
+"Heu d'instal·lar (amb apt) manualment algun dels programes següents: w3m, "
+"lynx, links"
+
+#. settings-schema.json->ai_use_standard_model->description
+msgid "Use standard AI models."
+msgstr "Utilitzar models d'IA estàndard."
+
+#. settings-schema.json->ai_use_standard_model->tooltip
+msgid "Set to custom to type your model name"
+msgstr "Seleccioneu personalitzat per a escriure el nom del vostre model"
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Use standard"
+msgstr "Utilitzar estàndard"
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Use custom"
+msgstr "Utilitzar personalitzat"
+
+#. settings-schema.json->ai_model->description
+msgid "Standard model to use"
+msgstr "Model estàndard a utilitzar"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4-32k"
+msgstr "gpt-4-32k"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4"
+msgstr "gpt-4"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4o"
+msgstr "gpt-4o"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4o-mini"
+msgstr "gpt-4o-mini"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-3.5-turbo"
+msgstr "gpt-3.5-turbo"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-3.5-turbo-16k"
+msgstr "gpt-3.5-turbo-16k"
+
+#. settings-schema.json->ai_model->options
+#. settings-schema.json->ai_custom_model->tooltip
+msgid "deepseek-coder"
+msgstr "deepseek-coder"
+
+#. settings-schema.json->ai_model->options
+msgid "deepseek-coder-v2:latest"
+msgstr "deepseek-coder-v2:latest"
+
+#. settings-schema.json->ai_model->tooltip
+msgid ""
+"Some are more clever - but costs more.\n"
+"Some require premium class subscription.\n"
+"A cheaper can work also well...\n"
+"Default: gpt-3.5-turbo"
+msgstr ""
+"Predeterminat: gpt-3.5-turbo\n"
+"Alguns son més llestos que altres, però costen més.\n"
+"Alguns requereixen una subscripció de pagament.\n"
+"Un gratuït o barat també us pot servir"
+
+#. settings-schema.json->ai_custom_model->description
+msgid "Provide model name to use"
+msgstr "Proveïu el nom del model a utilitzar"
+
+#. settings-schema.json->ai_systemprompt->description
+msgid "AI system instructions"
+msgstr "Instruccions de la IA"
+
+#. settings-schema.json->ai_systemprompt->tooltip
+msgid "Add instructions to AI Agent"
+msgstr "Afegeix instruccions a la IA generativa"
+
+#. settings-schema.json->ai_chatgptapikey->description
+msgid "Enter and save ChatGPT API key"
+msgstr "Inseriu la clau API de ChatGPT"
+
+#. settings-schema.json->ai_example1->description
+msgid "Example Prompt1: 'Summarize in four sentences.'"
+msgstr "Instrucció d'exemple 1: Summarize in four sentences"
+
+#. settings-schema.json->ai_example2->description
+msgid "Example Prompt2: Hungarian limerick: 'Foglald össze limerickben.'"
+msgstr "Instrucció d'exemple 2: Fes un resum enginyós en format d'epigrama"
+
+#. settings-schema.json->ai_example3->description
+msgid ""
+"Example Prompt3: The point is in the haiku. '俳句のエッセンス      日本語で"
+"は'"
+msgstr ""
+"Instrucció d'exemple 3: The point is in the haiku. '俳句のエッセンス      日"
+"本語では'"
+
+#. settings-schema.json->ai_example4->description
+msgid "Example Prompt4: Hungarian: 'Summarize in four sentences.'"
+msgstr "Instrucció d'exemple 4: Fes un resum en quatre frases, en català"
+
+#. settings-schema.json->ai_example5->description
+msgid ""
+"Example Prompt5: 'Summarize in 4-8 short bullet points, separtate lines, "
+"English language.\n"
+"Omit other references and external links from the summary'"
+msgstr ""
+"Instrucció d'exemple 5: Resumeix en una llista de 4 a 8 punts, en línies "
+"separades, en català.\n"
+"Omet altres referències o enllaços externs en el resum"
+
+#. settings-schema.json->ai_example6->description
+msgid "Example Prompt6: 'Hungarian bullet points...'"
+msgstr "Instrucció d'exemple 6: 'Vinyetes hongareses...'"
+
+#. settings-schema.json->ai_systempromptexamples->description
+msgid ""
+"Here are some examples for the AI system prompt. You can rewrite them as you "
+"like."
+msgstr ""
+"Aquí teniu alguns exemples d'instruccions per a la IA generativa. Podeu "
+"reescriure'ls com vulgueu."
+
+#. settings-schema.json->refreshsettingsbutton->description
+msgid "Refresh settings"
+msgstr "Aplica la configuració"
+
+#. settings-schema.json->refreshsettingsbutton->tooltip
+msgid "Press this button to relad settings"
+msgstr "Premeu aquest botó per a carregar aquesta configuració"
+
+#. settings-schema.json->enablecopy->description
+msgid "Enable Copy to clipboard button"
+msgstr "Habilita el botó per copiar al portarretalls"
+
+#. settings-schema.json->temperature->description
+msgid "Temperature for AI responses"
+msgstr "Temperatura per a les respostes d'IA"
+
+#. settings-schema.json->temperature->tooltip
+msgid ""
+"Controls the randomness of the AI's responses. Higher values mean more "
+"randomness."
+msgstr ""
+"Controla la precisió de les respostes de l'IA. Un valor més alt implica més "
+"aleatorietat."
+
+#. settings-schema.json->enableFeedButton->description
+msgid "Hide feed button"
+msgstr "Amaga el botó del canal"
+
+#. settings-schema.json->enableTimestamp->description
+msgid "Hide timestamp"
+msgstr "Amaga la data"
+
+#. settings-schema.json->enableFavoriteFeature->description
+msgid "Enable favorite feature"
+msgstr "Activa la funcionalitat de preferit"
+
+#. settings-schema.json->loadFavoritesOnStartup->description
+msgid "Load favorites on startup"
+msgstr "Carrega els preferits a l'inici"
+
+#. settings-schema.json->articleSpacing->description
+msgid "Article spacing density"
+msgstr "Densitat de l'espaiat entre articles"
+
+#. settings-schema.json->articleSpacing->tooltip
+msgid ""
+"Adjust the spacing between articles. Lower values make the list more "
+"compact, higher values add more space between articles."
+msgstr ""
+"Ajusta l'espai entre articles. Valors més petits fan que la llista sigui més "
+"compacta, mentre que valors més alts afegeixen més espai entre articles."
