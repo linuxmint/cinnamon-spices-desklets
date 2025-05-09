@@ -2,6 +2,10 @@
 
 This is a lightweight Cinnamon desklet that displays today’s calendar events from either an `.ics` file — either loaded from a local file or downloaded directly from a URL (e.g. Proton Calendar, Google Calendar, etc.).
 
+## Requirements
+
+Please note that this requires libsoup 3.0+. You should have it if your system is up to date, but on older systems, maybe not.
+
 ## Features
 
 - Shows events for **today only**
