@@ -56,8 +56,15 @@ KO;name=Bubbly Brown Water;style=oblique;weight=lighter;color=#e61a27
 
 ## Troubleshooting
 
+> Please note that any changes happening on Yahoo Finance side may break the operability of the desklet.
+
 Problem: The desklet fails to load data, and shows error message "Status: 429 Too Many Requests".  
-Solution: Enable option *Send custom User-Agent header* found on the first tab "Quotes" in the configuration settings.
+Solution:
+
+- Enable option *Send custom User-Agent header*
+- Enable and configure external program *curl*
+
+Both options are found on the tab "Network" in the configuration settings.
 
 ### Debug Logging
 
