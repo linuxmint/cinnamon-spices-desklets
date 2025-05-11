@@ -280,7 +280,7 @@ msgstr "Wählen Sie die Hintergrundfarbe für dieses Desklet."
 
 #. settings-schema.json->enable-word-wrap->description
 msgid "Enable word wrap"
-msgstr ""
+msgstr "Zeilenumbruch aktivieren"
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
