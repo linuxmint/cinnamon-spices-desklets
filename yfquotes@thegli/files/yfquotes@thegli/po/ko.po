@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Yahoo Finance Quotes Desklet\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-04-03 22:18+0200\n"
+"POT-Creation-Date: 2025-05-12 00:33+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,46 +17,46 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
 
-#. desklet.js:84
+#. desklet.js:119
 msgid "No quotes data to display"
 msgstr ""
 
-#. desklet.js:422
+#. desklet.js:516
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 
-#. desklet.js:445 desklet.js:468
+#. desklet.js:561 desklet.js:585
 msgid "Authorization parameters have expired"
 msgstr ""
 
-#. desklet.js:448 desklet.js:471
+#. desklet.js:564 desklet.js:588
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Yahoo Finance 서비스를 사용할 수 없습니다!"
 
-#. desklet.js:849
+#. desklet.js:988
 msgid "Updated at "
 msgstr "업데이트 날짜 "
 
-#. desklet.js:881
+#. desklet.js:1020
 msgid "Error: "
 msgstr "오류: "
 
-#. desklet.js:1000
+#. desklet.js:1146
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
 msgstr ""
 
-#. desklet.js:1026
+#. desklet.js:1173
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 
-#. desklet.js:1031
+#. desklet.js:1179
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 
-#. desklet.js:1054
+#. desklet.js:1207
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
@@ -73,10 +73,6 @@ msgstr ""
 msgid "Yahoo Finance Quotes"
 msgstr "야후 금융 지수"
 
-#. settings-schema.json->layoutPage->title
-msgid "Layout"
-msgstr ""
-
 #. settings-schema.json->dataPage->title
 #. settings-schema.json->dataSymbolsSection->title
 msgid "Quotes"
@@ -88,6 +84,14 @@ msgstr ""
 
 #. settings-schema.json->presentationPage->title
 msgid "Presentation"
+msgstr ""
+
+#. settings-schema.json->layoutPage->title
+msgid "Layout"
+msgstr ""
+
+#. settings-schema.json->networkPage->title
+msgid "Network"
 msgstr ""
 
 #. settings-schema.json->dataUpdateSection->title
@@ -140,6 +144,10 @@ msgstr ""
 
 #. settings-schema.json->layoutEffectsSection->title
 msgid "Effects"
+msgstr ""
+
+#. settings-schema.json->networkSessionSection->title
+msgid "HTTP Session"
 msgstr ""
 
 #. settings-schema.json->width->description
@@ -245,24 +253,6 @@ msgstr ""
 msgid ""
 "Click last update timestamp to instantly refresh quotes data. Automatic "
 "update is still performed periodically."
-msgstr ""
-
-#. settings-schema.json->sendCustomUserAgent->description
-msgid "Send custom User-Agent header"
-msgstr ""
-
-#. settings-schema.json->sendCustomUserAgent->tooltip
-msgid ""
-"Include a custom User-Agent header in Yahoo Finance Quotes API requests. By "
-"default, this header is not set"
-msgstr ""
-
-#. settings-schema.json->customUserAgent->description
-msgid "Custom User-Agent header"
-msgstr ""
-
-#. settings-schema.json->customUserAgent->tooltip
-msgid "Value for User-Agent header to send with all API requests"
 msgstr ""
 
 #. settings-schema.json->roundNumbers->description
@@ -530,3 +520,43 @@ msgstr ""
 msgid "Color of the unchanged trend"
 msgstr ""
 "퍼센트 변화에 색상을 지정하여 추세를 표시합니다 (녹색은 상승, 빨간색은 하락)."
+
+#. settings-schema.json->sendCustomUserAgent->description
+msgid "Send custom User-Agent header"
+msgstr ""
+
+#. settings-schema.json->sendCustomUserAgent->tooltip
+msgid "Include a custom User-Agent header in Yahoo Finance Quotes API requests"
+msgstr ""
+
+#. settings-schema.json->customUserAgent->description
+msgid "Custom User-Agent header"
+msgstr ""
+
+#. settings-schema.json->customUserAgent->tooltip
+msgid "Value for User-Agent header to send with all API requests"
+msgstr ""
+
+#. settings-schema.json->enableCurl->description
+msgid "Use external tool curl"
+msgstr ""
+
+#. settings-schema.json->enableCurl->tooltip
+msgid "Requires separate installation of curl."
+msgstr ""
+
+#. settings-schema.json->curlCommand->description
+msgid "Path of curl executable"
+msgstr ""
+
+#. settings-schema.json->curlCommand->tooltip
+msgid "Provide absolute path of curl program file"
+msgstr ""
+
+#. settings-schema.json->applyNetworkSettingsButton->description
+msgid "Apply network settings"
+msgstr ""
+
+#. settings-schema.json->applyNetworkSettingsButton->tooltip
+msgid "Fetches new authorization parameters and refreshes quotes data"
+msgstr ""

@@ -1,3 +1,19 @@
+### 0.16.0 - May 11, 2025
+
+Features:
+
+- integrate external program *curl* (needed to deal with recent Yahoo Finance changes) - see new *Network* section in settings
+
+Bugfixes:
+
+- adapt to recent changes in Yahoo Finance Quotes API (**requires curl to work**)
+
+### 0.15.7 - May 8, 2025
+
+Bugfixes:
+
+- fix unlimited retries when authorization step failed, stops now after 5 attempts
+
 ### 0.15.6 - April 3, 2025
 
 Features:

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: yfquotes@thegli 0.11.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-04-03 22:18+0200\n"
+"POT-Creation-Date: 2025-05-12 00:33+0200\n"
 "PO-Revision-Date: 2024-11-28 15:43+0100\n"
 "Last-Translator: qadzek\n"
 "Language-Team: \n"
@@ -16,31 +16,31 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. desklet.js:84
+#. desklet.js:119
 msgid "No quotes data to display"
 msgstr "Geen citatendata om weer te geven"
 
-#. desklet.js:422
+#. desklet.js:516
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr "Lege lijst van koersen. Open instellingen en voeg wat symbolen toe."
 
-#. desklet.js:445 desklet.js:468
+#. desklet.js:561 desklet.js:585
 msgid "Authorization parameters have expired"
 msgstr "Autorisatieparameters zijn verlopen."
 
-#. desklet.js:448 desklet.js:471
+#. desklet.js:564 desklet.js:588
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Yahoo Finance service niet beschikbaar!\\nStatus: "
 
-#. desklet.js:849
+#. desklet.js:988
 msgid "Updated at "
 msgstr "Bijgewerkt om "
 
-#. desklet.js:881
+#. desklet.js:1020
 msgid "Error: "
 msgstr "Fout: "
 
-#. desklet.js:1000
+#. desklet.js:1146
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
@@ -48,20 +48,20 @@ msgstr ""
 "Kan autorisatieparameter niet ophalen! Kan geen gegevens voor koersen "
 "ophalen.\\nStatus: "
 
-#. desklet.js:1026
+#. desklet.js:1173
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Toestemming verwerking mislukt! Kan geen gegevens voor koersen ophalen."
 "\\nStatus: "
 
-#. desklet.js:1031
+#. desklet.js:1179
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 "Toestemming verwerking niet voltooid! Kan geen gegevens voor koersen ophalen."
 "\\nStatus: "
 
-#. desklet.js:1054
+#. desklet.js:1207
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
@@ -81,10 +81,6 @@ msgstr ""
 msgid "Yahoo Finance Quotes"
 msgstr "Yahoo Finance Koersen"
 
-#. settings-schema.json->layoutPage->title
-msgid "Layout"
-msgstr "Indeling"
-
 #. settings-schema.json->dataPage->title
 #. settings-schema.json->dataSymbolsSection->title
 msgid "Quotes"
@@ -97,6 +93,14 @@ msgstr "Details"
 #. settings-schema.json->presentationPage->title
 msgid "Presentation"
 msgstr "Presentatie"
+
+#. settings-schema.json->layoutPage->title
+msgid "Layout"
+msgstr "Indeling"
+
+#. settings-schema.json->networkPage->title
+msgid "Network"
+msgstr ""
 
 #. settings-schema.json->dataUpdateSection->title
 msgid "Data Updates"
@@ -149,6 +153,10 @@ msgstr "Dimensie"
 #. settings-schema.json->layoutEffectsSection->title
 msgid "Effects"
 msgstr "Effecten"
+
+#. settings-schema.json->networkSessionSection->title
+msgid "HTTP Session"
+msgstr ""
 
 #. settings-schema.json->width->description
 msgid "Width"
@@ -261,26 +269,6 @@ msgstr ""
 "Klik op de tijdstempel van de laatste update om de gegevens van de koersen "
 "onmiddellijk te verversen. Automatische update wordt nog steeds periodiek "
 "uitgevoerd."
-
-#. settings-schema.json->sendCustomUserAgent->description
-msgid "Send custom User-Agent header"
-msgstr "Aangepaste User-Agent-header verzenden"
-
-#. settings-schema.json->sendCustomUserAgent->tooltip
-msgid ""
-"Include a custom User-Agent header in Yahoo Finance Quotes API requests. By "
-"default, this header is not set"
-msgstr ""
-"Een aangepaste User-Agent-header opnemen in Yahoo Finance Quotes API-"
-"verzoeken. Standaard is deze header niet ingesteld"
-
-#. settings-schema.json->customUserAgent->description
-msgid "Custom User-Agent header"
-msgstr "Aangepaste User-Agent-header"
-
-#. settings-schema.json->customUserAgent->tooltip
-msgid "Value for User-Agent header to send with all API requests"
-msgstr "Waarde voor User-Agent-header om mee te sturen met alle API-verzoeken"
 
 #. settings-schema.json->roundNumbers->description
 msgid "Round numbers"
@@ -561,3 +549,49 @@ msgstr "Ongewijzigde trend kleur"
 #. settings-schema.json->unchangedTrendColor->tooltip
 msgid "Color of the unchanged trend"
 msgstr "Kleur van de ongewijzigde trend"
+
+#. settings-schema.json->sendCustomUserAgent->description
+msgid "Send custom User-Agent header"
+msgstr "Aangepaste User-Agent-header verzenden"
+
+#. settings-schema.json->sendCustomUserAgent->tooltip
+#, fuzzy
+msgid "Include a custom User-Agent header in Yahoo Finance Quotes API requests"
+msgstr ""
+"Een aangepaste User-Agent-header opnemen in Yahoo Finance Quotes API-"
+"verzoeken. Standaard is deze header niet ingesteld"
+
+#. settings-schema.json->customUserAgent->description
+msgid "Custom User-Agent header"
+msgstr "Aangepaste User-Agent-header"
+
+#. settings-schema.json->customUserAgent->tooltip
+msgid "Value for User-Agent header to send with all API requests"
+msgstr "Waarde voor User-Agent-header om mee te sturen met alle API-verzoeken"
+
+#. settings-schema.json->enableCurl->description
+msgid "Use external tool curl"
+msgstr ""
+
+#. settings-schema.json->enableCurl->tooltip
+msgid "Requires separate installation of curl."
+msgstr ""
+
+#. settings-schema.json->curlCommand->description
+msgid "Path of curl executable"
+msgstr ""
+
+#. settings-schema.json->curlCommand->tooltip
+msgid "Provide absolute path of curl program file"
+msgstr ""
+
+#. settings-schema.json->applyNetworkSettingsButton->description
+msgid "Apply network settings"
+msgstr ""
+
+#. settings-schema.json->applyNetworkSettingsButton->tooltip
+#, fuzzy
+msgid "Fetches new authorization parameters and refreshes quotes data"
+msgstr ""
+"Kan autorisatieparameter niet ophalen! Kan geen gegevens voor koersen "
+"ophalen.\\nStatus: "
