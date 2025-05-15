@@ -2,12 +2,31 @@
 const GLib = imports.gi.GLib;
 
 
-function isSameDay(a, b) {
+function isSameDayIgnoringTime(a, b) {
     return (
         a.getFullYear() === b.getFullYear() &&
         a.getMonth() === b.getMonth() &&
         a.getDate() === b.getDate()
     );
+}
+
+function combineDateAndTime(thatDate, thisTime) {
+    // Extract the date part from `thatDate`
+    const year = thatDate.getFullYear();
+    const month = thatDate.getMonth();
+    const date = thatDate.getDate();
+
+    // Extract the time part from `thisTime`
+    const hours = thisTime.getHours();
+    const minutes = thisTime.getMinutes();
+    const seconds = thisTime.getSeconds();
+    const milliseconds = thisTime.getMilliseconds();
+
+    // Combine the date from `thatDate` with the time from `thisTime`
+    const combinedDate = new Date(year, month, date, hours, minutes, seconds, milliseconds);
+
+    // Return the new combined date
+    return combinedDate;
 }
 
 
@@ -66,10 +85,50 @@ class IcsHelperImpl {
             date: new Date(glibDateInTimeZone.to_unix() * 1000),
             hasTime
         };
-    }
-    
+    }    
 
-    parseTodaysEvents(eventsText, todayDate) {
+
+    _createEvent(eventDate, summary, hasTime) {
+        let displayDate = eventDate;
+
+        // If there's no 'time component' of this date (because it's all day), set it to midnight. 
+        if (!hasTime) {
+            displayDate = new Date(eventDate);
+            displayDate.setHours(0, 0, 0, 0);
+        }
+    
+        return {
+            time: displayDate,
+            summary: summary.trim(),
+            is_all_day: !hasTime
+        };
+    }
+
+
+    _parseRepeatCount(rrule) {
+        const countMatch = rrule.match(/COUNT=(\d+)/);
+        return countMatch ? parseInt(countMatch[1], 10) : Infinity;
+    }
+
+
+    _eventExpired(rrule, now) {
+        const untilMatch = rrule.match(/UNTIL=([0-9T\-]+)/);
+        let untilDate = null;
+        if (untilMatch) {
+            untilDate = this._parseToLocalisedDate(untilMatch[1]).date;
+        } else {
+            return false;
+        }
+        
+        if (untilDate <= now) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    parseTodaysEvents(eventsText, todayDate = new Date()) {
         eventsText = unfoldIcs(eventsText);
         const eventList = [];
         const events = eventsText.split("BEGIN:VEVENT").slice(1);
@@ -77,26 +136,65 @@ class IcsHelperImpl {
         for (let eventText of events) {
             const dtstartMatch = eventText.match(/DTSTART[^:]*:([^\r\n]+)/);
             const summaryMatch = eventText.match(/SUMMARY(?:;[^:\n]*)?:\s*(.+)/);
+            const rruleMatch = eventText.match(/RRULE:(.+)/); // Capture the RRULE line
     
             if (dtstartMatch && summaryMatch) {
-                const dtstartString = dtstartMatch[1]; // e.g. 20250501T090000Z
+                const dtstartString = dtstartMatch[1]; // e.g., 20250501T090000Z
                 const { date: eventDate, hasTime } = this._parseToLocalisedDate(dtstartString);
-    
-                if (isSameDay(eventDate, todayDate)) {
-                    if (!hasTime || eventDate >= todayDate) {
-                        let displayDate = eventDate;
 
-                        // Normalise all-day events to 00:00 on that day
-                        if (!hasTime) {
-                            displayDate = new Date(eventDate);
-                            displayDate.setHours(0, 0, 0, 0); // clear time part
+                // Handle recurrence rule (RRULE) if it exists
+                let isRecurring = false;
+                let repeatCount = 0;                
+
+                if (rruleMatch && (eventDate <= todayDate)) {                    
+                    const rrule = rruleMatch[1]; 
+                    const frequency = rrule.split(";")[0].split("=")[1];
+                    repeatCount = this._parseRepeatCount(rrule);
+                    isRecurring = true;
+
+                    if(this._eventExpired(rrule, todayDate)) continue;                   
+
+                    let useDateTime = hasTime? combineDateAndTime(todayDate, eventDate) : todayDate;
+                    let occurrencesPassed = 0;
+
+                    const daysDifference = Math.floor((todayDate - eventDate) / (1000 * 60 * 60 * 24));                    
+
+                    if (frequency === "DAILY") {                                    
+                        occurrencesPassed = daysDifference + 1;
+                        //check not expired.
+                        if (occurrencesPassed < repeatCount) {                            
+                            eventList.push(this._createEvent(useDateTime, summaryMatch[1], hasTime));                        
                         }
+                    } else if (frequency === "WEEKLY") {                        
+                        if (eventDate.getDay() === todayDate.getDay()) {
+                            const weeksPast = Math.floor(daysDifference / 7);
+                            occurrencesPassed = weeksPast + 1;
+                            //check not expired.
+                            if(occurrencesPassed < repeatCount) {
+                                eventList.push(this._createEvent(useDateTime, summaryMatch[1], hasTime));
+                            }
+                        }
+                    } else if (frequency === "YEARLY") {
+                        const yearsPast = todayDate.getFullYear() - eventDate.getFullYear();
 
-                        eventList.push({
-                            time: eventDate,                            
-                            summary: summaryMatch[1].trim(),
-                            is_all_day: !hasTime
-                        });
+                        // Check if today is the correct day (same day and month)
+                        if (todayDate.getMonth() === eventDate.getMonth() && todayDate.getDate() === eventDate.getDate()) {
+                            occurrencesPassed = yearsPast + 1; // Include the first occurrence
+                    
+                            // Check if the occurrences haven't exceeded the repeat count
+                            if (occurrencesPassed <= repeatCount) {
+                                eventList.push(this._createEvent(useDateTime, summaryMatch[1], hasTime));
+                            }
+                        }
+                    }
+                } else {
+                    // event is in the future. Ignoring.
+                }
+    
+                // If no recurrence rule, just check if the event happens today
+                if (!isRecurring && isSameDayIgnoringTime(eventDate, todayDate)) {
+                    if (!hasTime || eventDate >= todayDate) {
+                        eventList.push(this._createEvent(eventDate, summaryMatch[1], hasTime));
                     }
                 }
             }
@@ -104,7 +202,8 @@ class IcsHelperImpl {
     
         eventList.sort((a, b) => a.time - b.time);
         return eventList;
-    }
+    }    
+    
 }
 
 //export for GJS

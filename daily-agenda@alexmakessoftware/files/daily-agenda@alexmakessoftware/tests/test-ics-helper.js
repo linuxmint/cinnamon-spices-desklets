@@ -195,6 +195,260 @@ function testParsesRealIcsDate() {
 }
 
 
+function testDailyRepeatingEvent() {
+    const IcsHelper = imports['ics-helper'].IcsHelper;
+    const helper = new IcsHelper(() => GLib.TimeZone.new("UTC"));
+    const fixedToday = new Date("2025-05-14T00:00:00Z");  // UTC date
+
+    // Create a daily repeating event
+    const dailyEvent = [
+        "BEGIN:VEVENT",
+        "DTSTART:20250513T090000",  // Event starts the day before, but repeats daily
+        "SUMMARY:Daily Event",
+        "RRULE:FREQ=DAILY;COUNT=5", // Daily recurrence, 5 occurrences
+        "END:VEVENT"
+    ];
+
+    // Convert the array to a single string
+    const eventsText = dailyEvent.join("\n");  // Join array elements with a newline
+
+    // Pass in the fixed "today" date
+    const events = helper.parseTodaysEvents(eventsText, fixedToday);    
+
+    // Ensure there are repeating events for today
+    assert(events.length > 0, `Should have at least one repeating event for 'today' (${fixedToday})`);
+
+    //Ensure the event appears on the correct day    
+    assert(events.some(event => {
+        return isOnSameDay(new Date(event.time), fixedToday);
+    }), "Repeating event not found for today");    
+
+    print("✔ testDailyRepeatingEvent passed");
+}
+
+
+function isOnSameDay(a,b) {
+    // console.log("comparing", a,b);
+
+    // console.log(a.getFullYear() === b.getFullYear());
+    // console.log(a.getMonth() === b.getMonth());
+    // console.log(a.getDate() === b.getDate());
+
+    return a.getFullYear() === b.getFullYear() &&
+    a.getMonth() === b.getMonth() &&
+    a.getDate() === b.getDate();
+}
+
+
+function testWeeklyRepeatingEvent() {
+    const IcsHelper = imports['ics-helper'].IcsHelper;
+    const helper = new IcsHelper(() => GLib.TimeZone.new("UTC"));
+    const fixedToday = new Date("2025-05-14T00:00:00Z"); //UTC
+
+    // Create a weekly repeating event
+    const weeklyEvent = [
+        "BEGIN:VEVENT",
+        "DTSTART:20250507T090000",  // Previous event date, repeats weekly
+        "SUMMARY:Weekly Event",
+        "RRULE:FREQ=WEEKLY;COUNT=5", // Weekly recurrence, 5 occurrences
+        "END:VEVENT"
+    ];
+
+    // Convert the array to a single string
+    const eventsText = weeklyEvent.join("\n");  // Join array elements with a newline
+
+    // Pass in the fixed "today" date
+    const events = helper.parseTodaysEvents(eventsText, fixedToday);    
+
+    // Ensure there are weekly events for today
+    assert(events.length > 0, "Should have at least one weekly event for today");
+
+    // Ensure the event appears on the correct day    
+    assert(events.some(event => {
+        const eventDate = new Date(event.time);
+        return isOnSameDay(eventDate, fixedToday);
+    }), "Weekly event not found for today");
+
+    print("✔ testWeeklyRepeatingEvent passed");
+}
+
+
+function testDailyRepeatingEventPastCount() {
+    const IcsHelper = imports['ics-helper'].IcsHelper;
+    const helper = new IcsHelper(() => GLib.TimeZone.new("UTC"));
+
+    // Set a "today" date that's past the repeat count
+    const fixedToday = new Date("2025-05-18T00:00:00Z");  // UTC date, after 5 occurrences
+
+    // Create a daily repeating event with 5 occurrences
+    const dailyEvent = [
+        "BEGIN:VEVENT",
+        "DTSTART:20250513T090000",  // Event starts the day before, but repeats daily
+        "SUMMARY:Daily Event",
+        "RRULE:FREQ=DAILY;COUNT=5", // Daily recurrence, 5 occurrences
+        "END:VEVENT"
+    ];
+
+    // Convert the array to a single string
+    const eventsText = dailyEvent.join("\n");  // Join array elements with a newline
+
+    // Pass in the fixed "today" date
+    const events = helper.parseTodaysEvents(eventsText, fixedToday);
+
+    // Ensure no events are added past the 5th occurrence
+    assert(events.length === 0, `No repeating events should be found for 'today' (${fixedToday}), as they have exceeded the count`);
+
+    print("✔ testDailyRepeatingEventPastCount passed");
+}
+
+
+function testWeeklyRepeatingEventPastCount() {
+    const IcsHelper = imports['ics-helper'].IcsHelper;
+    const helper = new IcsHelper(() => GLib.TimeZone.new("UTC"));
+
+    // Set a "today" date that's past the repeat count (e.g., 6th occurrence)
+    const fixedToday = new Date("2025-06-10T00:00:00Z");  // UTC date, after 5 occurrences of a weekly event
+
+    // Create a weekly repeating event with 5 occurrences
+    const weeklyEvent = [
+        "BEGIN:VEVENT",
+        "DTSTART:20250513T090000",  // Event starts the day before, but repeats weekly
+        "SUMMARY:Weekly Event",
+        "RRULE:FREQ=WEEKLY;COUNT=4", // Weekly recurrence, 5 occurrences
+        "END:VEVENT"
+    ];
+
+    // Convert the array to a single string
+    const eventsText = weeklyEvent.join("\n");
+
+    // Pass in the fixed "today" date
+    const events = helper.parseTodaysEvents(eventsText, fixedToday);
+
+    // Ensure no events are added past the 5th occurrence
+    assert(events.length === 0, `No repeating events should be found for 'today' (${fixedToday}), as they have exceeded the count`);
+
+    print("✔ testWeeklyRepeatingEventPastCount passed");
+}
+
+
+function testYearlyRepeatingEvent() {
+    const IcsHelper = imports['ics-helper'].IcsHelper;
+    const helper = new IcsHelper(() => GLib.TimeZone.new("UTC"));
+
+    // Set a "today" date that matches the second occurrence of the yearly event
+    const fixedToday = new Date("2026-05-13T00:00:00Z");  // The second occurrence is May 13, 2026    
+
+    // Create a yearly repeating event with 5 occurrences
+    const yearlyEvent = [
+        "BEGIN:VEVENT",
+        "DTSTART:20250513T090000",  // Event starts on May 13, 2025
+        "SUMMARY:Yearly Event",
+        "RRULE:FREQ=YEARLY;COUNT=5", // Yearly recurrence, 5 occurrences
+        "END:VEVENT"
+    ];
+
+    // Convert the array to a single string
+    const eventsText = yearlyEvent.join("\n");
+
+    // Pass in the fixed "today" date
+    const events = helper.parseTodaysEvents(eventsText, fixedToday);
+
+    // Ensure the event is added for today (first occurrence)
+    assert(events.length === 1, `There should be one repeating event for 'today' (${fixedToday})`);
+
+    // Ensure the event appears on the correct day    
+    assert(events.some(event => {
+        return isOnSameDay(new Date(event.time), fixedToday);
+    }), "Repeating event not found for today");
+
+    print("✔ testYearlyRepeatingEvent passed");
+}
+
+
+function testYearlyRepeatingEventPastCount() {
+    const IcsHelper = imports['ics-helper'].IcsHelper;
+    const helper = new IcsHelper(() => GLib.TimeZone.new("UTC"));
+    
+    const fixedToday = new Date("2030-05-13T00:00:00Z");  // 6th occurrence 
+
+    // Create a yearly repeating event with 5 occurrences
+    const yearlyEvent = [
+        "BEGIN:VEVENT",
+        "DTSTART:20250513T090000",  // Event starts on May 13, 2025
+        "SUMMARY:Yearly Event",
+        "RRULE:FREQ=YEARLY;COUNT=5", // Yearly recurrence, 5 occurrences
+        "END:VEVENT"
+    ];
+
+    // Convert the array to a single string
+    const eventsText = yearlyEvent.join("\n");
+
+    // Pass in the fixed "today" date
+    const events = helper.parseTodaysEvents(eventsText, fixedToday);
+
+    // Ensure no events are added past the 5th occurrence
+    assert(events.length === 0, `No repeating events should be found for 'today' (${fixedToday}), as they have exceeded the count`);
+
+    print("✔ testYearlyRepeatingEventPastCount passed");
+}
+
+
+function testDailyRepeatingEventUntil() {
+    const IcsHelper = imports['ics-helper'].IcsHelper;
+    const helper = new IcsHelper(() => GLib.TimeZone.new("UTC"));
+
+    // Set "today" date to be inside the UNTIL range
+    const fixedToday = new Date("2025-05-12T00:00:00Z");  // This is one day before the UNTIL date
+
+    // Create a daily repeating event with UNTIL
+    const dailyEvent = [
+        "BEGIN:VEVENT",
+        "DTSTART:20250510T090000",  // Event starts on May 10, 2025
+        "SUMMARY:Daily Event",
+        "RRULE:FREQ=DAILY;UNTIL=20250513T000000Z", // Daily recurrence, until May 13, 2025
+        "END:VEVENT"
+    ];
+
+    const eventsText = dailyEvent.join("\n");
+
+    const events = helper.parseTodaysEvents(eventsText, fixedToday);
+
+    assert(events.length > 0, `Event should be found for 'today' (${fixedToday}), as it's within the UNTIL range`);
+
+    print("✔ testDailyRepeatingEventUntil passed");
+}
+
+
+function testDailyRepeatingEventUntilExpired() {
+    const IcsHelper = imports['ics-helper'].IcsHelper;
+    const helper = new IcsHelper(() => GLib.TimeZone.new("UTC"));
+
+    // Set a "today" date that's after the UNTIL range
+    const fixedToday = new Date("2025-05-14T00:00:00Z");  // This is after the UNTIL date of May 13, 2025
+
+    console.log(fixedToday); // Log the fixed today date
+
+    // Create a daily repeating event with UNTIL (May 13, 2025)
+    const dailyEvent = [
+        "BEGIN:VEVENT",
+        "DTSTART:20250510T090000",  // Event starts on May 10, 2025
+        "SUMMARY:Daily Event",
+        "RRULE:FREQ=DAILY;UNTIL=20250513T000000Z", // UNTIL is May 13, 2025
+        "END:VEVENT"
+    ];
+
+    const eventsText = dailyEvent.join("\n");
+
+    const events = helper.parseTodaysEvents(eventsText, fixedToday);
+
+    console.log(events);
+
+    assert(events.length === 0, `No repeating events should be found for 'today' (${fixedToday}), as it's past the UNTIL date`);
+
+    print("✔ testDailyRepeatingEventUntilExpired passed");
+}
+
+
 // Run all tests
 try {
     testFoldedSummaryParsesCorrectly();
@@ -206,7 +460,16 @@ try {
     testParseToLocalisedDate_respectsTimezone();
     testParsesAllDayEvent_withValueDate();
     testParsesRealIcsDate();
+    testDailyRepeatingEvent();
+    testWeeklyRepeatingEvent();
+    testDailyRepeatingEventPastCount();
+    testWeeklyRepeatingEventPastCount();
+    testYearlyRepeatingEvent();
+    testYearlyRepeatingEventPastCount();
+    testDailyRepeatingEventUntil();
+    testDailyRepeatingEventUntilExpired();
+
     print("\nAll tests completed ok.");
-} catch (e) {
-    printerr("Test failed: " + e.message);
+} catch (e) {    
+    console.log(`Tests failed. ${e}\n Stack trace:\n`, e.stack);
 }
