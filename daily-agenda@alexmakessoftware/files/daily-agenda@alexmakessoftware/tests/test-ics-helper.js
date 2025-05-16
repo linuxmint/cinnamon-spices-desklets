@@ -419,14 +419,52 @@ function testDailyRepeatingEventUntil() {
 }
 
 
+function test_byDayMatches_weeklyByday_match() {
+    const helper = new imports['ics-helper'].IcsHelper(() => GLib.TimeZone.new("UTC"));
+
+    const rrule = "FREQ=WEEKLY;BYDAY=MO,WE,FR";
+    const eventStart = new Date("2025-05-05T09:00:00Z"); // Monday
+    const referenceDate = new Date("2025-05-16T00:00:00Z"); // Friday (following week)
+
+    assert(helper._byDayMatches(rrule, referenceDate, eventStart) === true,
+        "Should match Friday in BYDAY even if event started on Monday");
+
+    print("✔ test_byDayMatches_weeklyByday_match passed");
+}
+
+function test_byDayMatches_rejects_nomatch() {
+    const helper = new imports['ics-helper'].IcsHelper(() => GLib.TimeZone.new("UTC"));
+
+    const rrule = "FREQ=WEEKLY;BYDAY=MO,WE,FR";
+    const eventStart = new Date("2025-05-05T09:00:00Z"); // Monday
+    const referenceDate = new Date("2025-05-15T00:00:00Z"); // Thursday
+
+    assert(helper._byDayMatches(rrule, referenceDate, eventStart) === false,
+        "Should not match Thursday, not in BYDAY");
+
+    print("✔ test_byDayMatches_rejects_nomatch passed");
+}
+
+function test_byDayMatches_noByDay_allDaysAllowed() {
+    const helper = new imports['ics-helper'].IcsHelper(() => GLib.TimeZone.new("UTC"));
+
+    const rrule = "FREQ=WEEKLY"; // no BYDAY
+    const eventStart = new Date("2025-05-01T09:00:00Z");
+    const referenceDate = new Date("2025-05-20T00:00:00Z"); // any day
+
+    assert(helper._byDayMatches(rrule, referenceDate, eventStart) === true,
+        "Should match any day if BYDAY is not specified");
+
+    print("✔ test_byDayMatches_noByDay_allDaysAllowed passed");
+}
+
+
 function testDailyRepeatingEventUntilExpired() {
     const IcsHelper = imports['ics-helper'].IcsHelper;
     const helper = new IcsHelper(() => GLib.TimeZone.new("UTC"));
 
     // Set a "today" date that's after the UNTIL range
     const fixedToday = new Date("2025-05-14T00:00:00Z");  // This is after the UNTIL date of May 13, 2025
-
-    console.log(fixedToday); // Log the fixed today date
 
     // Create a daily repeating event with UNTIL (May 13, 2025)
     const dailyEvent = [
@@ -441,12 +479,43 @@ function testDailyRepeatingEventUntilExpired() {
 
     const events = helper.parseTodaysEvents(eventsText, fixedToday);
 
-    console.log(events);
-
     assert(events.length === 0, `No repeating events should be found for 'today' (${fixedToday}), as it's past the UNTIL date`);
 
     print("✔ testDailyRepeatingEventUntilExpired passed");
 }
+
+
+function testRepeatsByDay() {
+    const IcsHelper = imports['ics-helper'].IcsHelper;
+    const helper = new IcsHelper(() => GLib.TimeZone.new("UTC"));
+
+    // The event starts on Monday, 2025-05-05 and repeats every M/W/F indefinitely
+    const repeatingEvent = [
+        "BEGIN:VEVENT",
+        "DTSTART:20250505T090000",  // Monday
+        "SUMMARY:MWF Repeating Event",
+        "RRULE:FREQ=WEEKLY;BYDAY=MO,WE,FR",
+        "END:VEVENT"
+    ];
+
+    const eventsText = repeatingEvent.join("\n");
+
+    // Test Thursday, 2025-05-15 — should NOT match
+    const thursday = new Date("2025-05-15T00:00:00Z");
+    const thursdayEvents = helper.parseTodaysEvents(eventsText, thursday);
+    assert(thursdayEvents.length === 0, `Expected no event on Thursday (${thursday.toISOString()})`);
+
+    // Test Friday, 2025-05-16 — should match
+    const friday = new Date("2025-05-16T00:00:00Z");
+    const fridayEvents = helper.parseTodaysEvents(eventsText, friday);
+
+    console.log(fridayEvents);
+
+    assert(fridayEvents.length === 1, `Expected one event on Friday (${friday.toISOString()})`);
+
+    print("✔ testRepeatsByDay passed");
+}
+
 
 
 // Run all tests
@@ -467,7 +536,13 @@ try {
     testYearlyRepeatingEvent();
     testYearlyRepeatingEventPastCount();
     testDailyRepeatingEventUntil();
+
+    test_byDayMatches_weeklyByday_match();
+    test_byDayMatches_rejects_nomatch();
+    test_byDayMatches_noByDay_allDaysAllowed();
+
     testDailyRepeatingEventUntilExpired();
+    testRepeatsByDay();
 
     print("\nAll tests completed ok.");
 } catch (e) {    

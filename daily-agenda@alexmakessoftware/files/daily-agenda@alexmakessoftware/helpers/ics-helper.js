@@ -128,6 +128,54 @@ class IcsHelperImpl {
     }
 
 
+    _byDayToJsDay(icsDay) {
+        const map = {
+            MO: 1,
+            TU: 2,
+            WE: 3,
+            TH: 4,
+            FR: 5,
+            SA: 6,
+            SU: 0
+        };
+        return map[icsDay];
+    }
+
+
+    _byDayMatches(rrule, referenceDate, eventStartDate, frequency) {
+        const byDayMatch = rrule.match(/BYDAY=([A-Z0-9,]+)/);
+
+        if (!byDayMatch) {
+            if (frequency === "WEEKLY") {
+                // No BYDAY for a weekly event: default to weekday of DTSTART
+                return referenceDate.getDay() === eventStartDate.getDay();
+            } else {
+                // For DAILY, MONTHLY, YEARLY, etc., BYDAY doesn't apply unless specified
+                return true;
+            }
+        }
+
+        const allowedDays = byDayMatch[1].split(",").map(dayStr => {
+            const match = dayStr.match(/^([+-]?\d)?([A-Z]{2})$/);
+            const prefix = match[1]; // currently unsupported
+            const weekday = match[2];
+            const jsDay = this._byDayToJsDay(weekday);
+
+            return { jsDay, prefix };
+        });
+
+        for (let { jsDay, prefix } of allowedDays) {
+            if (prefix === undefined) {
+                if (referenceDate.getDay() === jsDay) return true;
+            } else {
+                // Skip ordinals like 1MO for now
+            }
+        }
+
+        return false;
+    }
+
+
     parseTodaysEvents(eventsText, todayDate = new Date()) {
         eventsText = unfoldIcs(eventsText);
         const eventList = [];
@@ -159,21 +207,25 @@ class IcsHelperImpl {
 
                     const daysDifference = Math.floor((todayDate - eventDate) / (1000 * 60 * 60 * 24));                    
 
+                    if (!this._byDayMatches(rrule, todayDate, eventDate, frequency)) continue;
+
                     if (frequency === "DAILY") {                                    
                         occurrencesPassed = daysDifference + 1;
                         //check not expired.
-                        if (occurrencesPassed < repeatCount) {                            
-                            eventList.push(this._createEvent(useDateTime, summaryMatch[1], hasTime));                        
-                        }
+                        if (occurrencesPassed >= repeatCount) continue;
+
+                        eventList.push(this._createEvent(useDateTime, summaryMatch[1], hasTime));                        
+                        
                     } else if (frequency === "WEEKLY") {                        
-                        if (eventDate.getDay() === todayDate.getDay()) {
-                            const weeksPast = Math.floor(daysDifference / 7);
-                            occurrencesPassed = weeksPast + 1;
-                            //check not expired.
-                            if(occurrencesPassed < repeatCount) {
-                                eventList.push(this._createEvent(useDateTime, summaryMatch[1], hasTime));
-                            }
-                        }
+                        const weeksPast = Math.floor(daysDifference / 7);
+                        occurrencesPassed = weeksPast + 1;
+
+                        console.log(`occurrencesPassed : ${occurrencesPassed}, repeatCount : ${repeatCount}`);
+
+                        //check not expired.
+                        if(occurrencesPassed >= repeatCount) continue;
+
+                        eventList.push(this._createEvent(useDateTime, summaryMatch[1], hasTime));                            
                     } else if (frequency === "YEARLY") {
                         const yearsPast = todayDate.getFullYear() - eventDate.getFullYear();
 
@@ -182,11 +234,11 @@ class IcsHelperImpl {
                             occurrencesPassed = yearsPast + 1; // Include the first occurrence
                     
                             // Check if the occurrences haven't exceeded the repeat count
-                            if (occurrencesPassed <= repeatCount) {
-                                eventList.push(this._createEvent(useDateTime, summaryMatch[1], hasTime));
-                            }
+                            if (occurrencesPassed >= repeatCount) continue;
+
+                            eventList.push(this._createEvent(useDateTime, summaryMatch[1], hasTime));                            
                         }
-                    }
+                    } //TODO: add MONTHLY!
                 } else {
                     // event is in the future. Ignoring.
                 }

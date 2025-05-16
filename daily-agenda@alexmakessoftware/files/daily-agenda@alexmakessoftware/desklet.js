@@ -273,3 +273,7 @@ IcsDesklet.prototype = {
     }
     
 };
+
+
+//TODO: should we make sure that past events today fall off the list?
+// What other bits of the spec do we need to implement, esp around repeating events, I feel we're missing quite a bit.
