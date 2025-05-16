@@ -1,0 +1,358 @@
+# Romanian translations for PACKAGE package.
+# Copyright (C) 2023 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-05-03 11:37-0400\n"
+"PO-Revision-Date: 2023-04-04 15:06+0200\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+
+#. desklet.js:138
+msgid "Refresh"
+msgstr "Reîmprospătare"
+
+#. desklet.js:151
+msgid ""
+"Can't read text file.\n"
+"Select a file in settings.\n"
+"\n"
+"Click here to edit."
+msgstr ""
+"Nu se poate citi fișierul text.\n"
+"Selectează un fișier în setări.\n"
+"\n"
+"Fă clic aici pentru a edita."
+
+#. desklet.js:289
+msgid "Notepad"
+msgstr "Blocul de notițe"
+
+#. metadata.json->description
+msgid "A desklet to display notes including various themes."
+msgstr "Un desklet pentru afișarea notelor, cu diverse teme."
+
+#. metadata.json->name
+#. settings-schema.json->note-section->title
+msgid "Note"
+msgstr "Notă"
+
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
+msgid "General"
+msgstr "General"
+
+#. settings-schema.json->visual-page->title
+#. settings-schema.json->visual-section->title
+msgid "Visual"
+msgstr "Vizual"
+
+#. settings-schema.json->label-section->title
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Etichetă personalizată pentru desklet (vizibilă numai dacă sunt activate "
+"decorațiile)"
+
+#. settings-schema.json->note-taking-method->description
+msgid "Note Taking Method"
+msgstr ""
+
+#. settings-schema.json->note-taking-method->options
+msgid "Text File"
+msgstr "Fișier text"
+
+#. settings-schema.json->note-taking-method->options
+msgid "Desklet Settings"
+msgstr "Setări Desklet"
+
+#. settings-schema.json->file->description
+msgid "Path to note text file"
+msgstr "Cale de acces la fișierul text al notei"
+
+#. settings-schema.json->file->tooltip
+msgid "Select your text file, where to read from and save to."
+msgstr "Selectează fișierul text, de unde să citește și unde să se salvează."
+
+#. settings-schema.json->edit-cmd->description
+msgid "Command for editing this note (on mouse click)"
+msgstr "Comandă pentru editarea acestei note (la un clic de mouse)"
+
+#. settings-schema.json->edit-cmd->tooltip
+msgid "%f will replaced by the text file path."
+msgstr "%f va fi înlocuit cu calea fișierului text."
+
+#. settings-schema.json->note-text->description
+msgid "Write Your Note"
+msgstr ""
+
+#. settings-schema.json->style->description
+msgid "Notes style"
+msgstr "Note de stil"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Black"
+msgstr "Notă albă - negru"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Blue"
+msgstr "Notă albă - Albastru"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Green"
+msgstr "Notă albă - verde"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Orange"
+msgstr "Notă albă - Portocaliu"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Purple"
+msgstr "Notă albă - violet"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - White"
+msgstr "Notă albă - Alb"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Yellow"
+msgstr "Notă albă - galben"
+
+#. settings-schema.json->style->options
+msgid "White Note - Black Button"
+msgstr "Notă albă - Buton negru"
+
+#. settings-schema.json->style->options
+msgid "White Note - Blue Button"
+msgstr "Notă albă - Buton albastru"
+
+#. settings-schema.json->style->options
+msgid "White Note - Green Button"
+msgstr "Notă albă - Buton verde"
+
+#. settings-schema.json->style->options
+msgid "White Note - Red Button"
+msgstr "Notă albă - Buton roșu"
+
+#. settings-schema.json->style->options
+msgid "White Note - Yellow Button"
+msgstr "Notă albă - Buton galben"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Black Clip"
+msgstr "Notă galbenă - Clip negru"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Blue Clip"
+msgstr "Notă galbenă - Clip albastru"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Green Clip"
+msgstr "Notă galbenă - Clip verde"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Jingle Clip"
+msgstr "Notă galbenă - Jingle Clip"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Red Clip"
+msgstr "Notă galbenă - Clip roșu"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Yellow Clip"
+msgstr "Notă galbenă - Clip galben"
+
+#. settings-schema.json->style->options
+msgid "White Note - Black Magnet"
+msgstr "Notă albă - Magnet negru"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Blue Magnet"
+msgstr "Notă galbenă - Magnet albastru"
+
+#. settings-schema.json->style->options
+msgid "White Note - Lines and Red Magnet"
+msgstr "Notă albă - linii și magnet roșu"
+
+#. settings-schema.json->style->options
+msgid "Black Note - White Magnet"
+msgstr "Notă neagră - Magnet alb"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Yellow Magnet"
+msgstr "Notă galbenă - Magnet galben"
+
+#. settings-schema.json->style->options
+msgid "Blue Paint Strokes"
+msgstr "Pictura albastră Strokes"
+
+#. settings-schema.json->style->options
+msgid "Green Paint Strokes"
+msgstr "Pictura verde Strokes"
+
+#. settings-schema.json->style->options
+msgid "Purple Paint Strokes"
+msgstr "Pictura violet Strokes"
+
+#. settings-schema.json->style->options
+msgid "Red Paint Strokes"
+msgstr "Picturi de vopsea roșie"
+
+#. settings-schema.json->style->options
+msgid "Yellow Paint Strokes"
+msgstr "Pictura galbenă Strokes"
+
+#. settings-schema.json->style->options
+msgid "White Note - Silver Spiral"
+msgstr "Notă albă - spirală argintie"
+
+#. settings-schema.json->style->options
+msgid "White Note - Silver Spiral 2"
+msgstr "Notă albă - spirală argintie 2"
+
+#. settings-schema.json->style->options
+msgid "White Note - Black Spiral"
+msgstr "Notă albă - Spirală neagră"
+
+#. settings-schema.json->style->options
+msgid "White Note Large - Silver Spiral"
+msgstr "Notă albă mare - spirală argintie"
+
+#. settings-schema.json->style->options
+msgid "Yellow Sticker"
+msgstr "Autocolant galben"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note (iOS Style)"
+msgstr "Notă galbenă (stil iOS)"
+
+#. settings-schema.json->style->options
+msgid "Birch Bark"
+msgstr "Scoarță de mesteacăn"
+
+#. settings-schema.json->style->options
+msgid "Burned Paper"
+msgstr "Hârtie arsă"
+
+#. settings-schema.json->style->options
+msgid "Clay Tablet"
+msgstr "Tabletă de lut"
+
+#. settings-schema.json->style->options
+msgid "Coffee Stained"
+msgstr "Pătat cu cafea"
+
+#. settings-schema.json->style->options
+msgid "Clipboard"
+msgstr "Clipboard"
+
+#. settings-schema.json->style->options
+msgid "None"
+msgstr "Nici unul"
+
+#. settings-schema.json->style->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Selectează grafica de fundal pe care dorești să o utilizezi."
+
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr ""
+
+#. settings-schema.json->text-shadow-color->description
+#, fuzzy
+msgid "Text shadow color"
+msgstr "Culoarea textului"
+
+#. settings-schema.json->bg-color->description
+msgid "Background color"
+msgstr "Culoarea de fundal"
+
+#. settings-schema.json->bg-color->tooltip
+msgid "Set the background color of this desklet."
+msgstr "Setează culoarea de fundal a acestui desklet."
+
+#. settings-schema.json->enable-word-wrap->description
+msgid "Enable word wrap"
+msgstr ""
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Ascunde decorațiunile"
+
+#. settings-schema.json->font->description
+msgid "Font"
+msgstr "Font"
+
+#. settings-schema.json->size-font->units
+msgid "pixels"
+msgstr "pixeli"
+
+#. settings-schema.json->size-font->description
+msgid "Font size"
+msgstr "Mărimea fontului"
+
+#. settings-schema.json->size-font->tooltip
+msgid "Increase or decrease the note font size."
+msgstr "Mărește sau micșorează dimensiunea fontului notei."
+
+#. settings-schema.json->font-bold->description
+msgid "Bold"
+msgstr "Bold"
+
+#. settings-schema.json->font-italic->description
+msgid "Italic"
+msgstr "Italic"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Culoarea textului"
+
+#. settings-schema.json->text-color->tooltip
+msgid "Set the text color of this desklet."
+msgstr "Setează culoarea textului din acest desklet."
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "factor de scară"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Dimensiune Desklet"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Mărește sau micșorează dimensiunea acestui desklet folosind acest factor de "
+"scară."
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Folosește o etichetă personalizată pentru desklet"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Dacă bifezi această casetă, poți seta o etichetă personalizată în câmpul de "
+"mai jos."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Etichetă personalizată de birou"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr ""
+"Setează aici eticheta personalizată. Acest câmp nu este disponibil decât "
+"dacă caseta de selectare de mai sus este activată."

@@ -1,0 +1,82 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-06 06:00+0300\n"
+"PO-Revision-Date: 2021-04-11 10:53+0200\n"
+"Last-Translator: Balazs Bosak <bossbob88@gmail.com>\n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.3\n"
+
+#: desklet.js:279
+#, javascript-format
+msgid "%d point"
+msgid_plural "%d points"
+msgstr[0] "%d pont"
+msgstr[1] "%d pont"
+
+#: desklet.js:288
+msgid "by"
+msgstr "ettől"
+
+#: desklet.js:298
+msgid "to"
+msgstr "ennek"
+
+#: desklet.js:309
+#, javascript-format
+msgid "%d comment"
+msgid_plural "%d comments"
+msgstr[0] "%d hozzászólás"
+msgstr[1] "%d hozzászólás"
+
+#. metadata.json->name
+msgid "reddit reader desklet"
+msgstr "reddit olvasó asztalkalmazás"
+
+#. metadata.json->description
+msgid "A desklet to read subreddits"
+msgstr "Egy asztalkalmazás subreddit-ek olvasásához"
+
+#. settings-schema.json->subreddit->description
+msgid "Subreddit:"
+msgstr "Subreddit:"
+
+#. settings-schema.json->subreddit->tooltip
+msgid ""
+"supports multireddits and alterative sorting methods. eg: "
+"TheOnion+NotTheOnion, Linux/new and aww+worldnews/controversial"
+msgstr ""
+"támogatja a multireddit-eket és az alternatív szűrési módokat. Például: "
+"TheOnion+NotTheOnion, Linux/new és aww+worldnews/controversial"
+
+#. settings-schema.json->height->description
+msgid "Height:"
+msgstr "Magasság:"
+
+#. settings-schema.json->height->units
+#. settings-schema.json->width->units
+msgid "pixels"
+msgstr "képpont"
+
+#. settings-schema.json->width->description
+msgid "Width:"
+msgstr "Szélesség:"
+
+#. settings-schema.json->refreshRate->description
+msgid "Refresh rate:"
+msgstr "Frissítési gyakoriság:"
+
+#. settings-schema.json->refreshRate->units
+msgid "minutes"
+msgstr "perc"
