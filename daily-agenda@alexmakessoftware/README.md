@@ -6,6 +6,10 @@ This is a lightweight Cinnamon desklet that displays today’s calendar events f
 
 Please note that this requires libsoup 3.0+. You should have it if your system is up to date, but on older systems, maybe not.
 
+## Requirements
+
+Please note that this requires libsoup 3.0+. You should have it if your system is up to date, but on older systems, maybe not.
+
 ## Features
 
 - Shows events for **today only**

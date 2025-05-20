@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2025-05-12 00:33+0200\n"
-"PO-Revision-Date: 2024-11-28 15:43+0100\n"
+"PO-Revision-Date: 2025-05-16 18:37+0200\n"
 "Last-Translator: qadzek\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -100,7 +100,7 @@ msgstr "Indeling"
 
 #. settings-schema.json->networkPage->title
 msgid "Network"
-msgstr ""
+msgstr "Netwerk"
 
 #. settings-schema.json->dataUpdateSection->title
 msgid "Data Updates"
@@ -156,7 +156,7 @@ msgstr "Effecten"
 
 #. settings-schema.json->networkSessionSection->title
 msgid "HTTP Session"
-msgstr ""
+msgstr "HTTP-sessie"
 
 #. settings-schema.json->width->description
 msgid "Width"
@@ -555,11 +555,10 @@ msgid "Send custom User-Agent header"
 msgstr "Aangepaste User-Agent-header verzenden"
 
 #. settings-schema.json->sendCustomUserAgent->tooltip
-#, fuzzy
 msgid "Include a custom User-Agent header in Yahoo Finance Quotes API requests"
 msgstr ""
-"Een aangepaste User-Agent-header opnemen in Yahoo Finance Quotes API-"
-"verzoeken. Standaard is deze header niet ingesteld"
+"Voeg een aangepaste User-Agent-header toe aan Yahoo Finance Quotes API-"
+"verzoeken"
 
 #. settings-schema.json->customUserAgent->description
 msgid "Custom User-Agent header"
@@ -571,27 +570,24 @@ msgstr "Waarde voor User-Agent-header om mee te sturen met alle API-verzoeken"
 
 #. settings-schema.json->enableCurl->description
 msgid "Use external tool curl"
-msgstr ""
+msgstr "Gebruik extern hulpmiddel curl"
 
 #. settings-schema.json->enableCurl->tooltip
 msgid "Requires separate installation of curl."
-msgstr ""
+msgstr "Vereist aparte installatie van curl."
 
 #. settings-schema.json->curlCommand->description
 msgid "Path of curl executable"
-msgstr ""
+msgstr "Pad naar curl uitvoerbaar bestand"
 
 #. settings-schema.json->curlCommand->tooltip
 msgid "Provide absolute path of curl program file"
-msgstr ""
+msgstr "Geef het absolute pad op van het curl-programmabestand"
 
 #. settings-schema.json->applyNetworkSettingsButton->description
 msgid "Apply network settings"
-msgstr ""
+msgstr "Netwerkinstellingen toepassen"
 
 #. settings-schema.json->applyNetworkSettingsButton->tooltip
-#, fuzzy
 msgid "Fetches new authorization parameters and refreshes quotes data"
-msgstr ""
-"Kan autorisatieparameter niet ophalen! Kan geen gegevens voor koersen "
-"ophalen.\\nStatus: "
+msgstr "Haalt nieuwe autorisatieparameters op en ververst koersgegevens"

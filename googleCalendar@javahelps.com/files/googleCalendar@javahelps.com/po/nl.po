@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2025-04-21 23:14+0200\n"
-"PO-Revision-Date: 2024-04-19 12:20+0200\n"
+"PO-Revision-Date: 2025-05-16 16:44+0200\n"
 "Last-Translator: qadzek\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -24,7 +24,7 @@ msgstr "Aantal dagen om op te nemen"
 
 #. desklet.js:66 desklet.js:74
 msgid ": "
-msgstr ""
+msgstr ": "
 
 #. metadata.json->name
 #. settings-schema.json->page_gcalendar->title
@@ -280,7 +280,7 @@ msgstr "Voer gcalendar --account id in"
 
 #. settings-schema.json->gcalendarAccount->options
 msgid "default"
-msgstr ""
+msgstr "standaard"
 
 #. settings-schema.json->allNamesButton->description
 msgid "Fill in the list bellow with the names of all my calendars"
@@ -443,18 +443,17 @@ msgid "Radius for rounding the desklet's corners"
 msgstr "Straal voor het afronden van de hoeken van de desklet"
 
 #. settings-schema.json->display_mode->description
-#, fuzzy
 msgid "Display mode"
-msgstr "Weergeven?"
+msgstr "Weergavemodus"
 
 #. settings-schema.json->display_mode->options
 msgid "normal"
-msgstr ""
+msgstr "normaal"
 
 #. settings-schema.json->display_mode->options
 msgid "compact"
-msgstr ""
+msgstr "compact"
 
 #. settings-schema.json->display_mode->options
 msgid "ultra compact"
-msgstr ""
+msgstr "ultracompact"
