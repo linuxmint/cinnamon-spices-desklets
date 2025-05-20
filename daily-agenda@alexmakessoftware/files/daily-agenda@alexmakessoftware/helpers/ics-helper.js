@@ -211,7 +211,7 @@ class IcsHelperImpl {
 
                     if (frequency === "DAILY") {                                    
                         occurrencesPassed = daysDifference + 1;
-                        //check not expired.
+
                         if (occurrencesPassed >= repeatCount) continue;
 
                         eventList.push(this._createEvent(useDateTime, summaryMatch[1], hasTime));                        
@@ -220,12 +220,19 @@ class IcsHelperImpl {
                         const weeksPast = Math.floor(daysDifference / 7);
                         occurrencesPassed = weeksPast + 1;
 
-                        console.log(`occurrencesPassed : ${occurrencesPassed}, repeatCount : ${repeatCount}`);
-
-                        //check not expired.
                         if(occurrencesPassed >= repeatCount) continue;
 
                         eventList.push(this._createEvent(useDateTime, summaryMatch[1], hasTime));                            
+                    } else if (frequency === "MONTHLY") { 
+                        if (todayDate.getDate() !== eventDate.getDate()) continue;                            
+                            const yearsDiff = todayDate.getFullYear() - eventDate.getFullYear();
+                            const monthsDiff = todayDate.getMonth() - eventDate.getMonth() + yearsDiff * 12;
+                            occurrencesPassed = monthsDiff + 1;
+                            
+                            if (occurrencesPassed > repeatCount) continue;
+
+                            eventList.push(this._createEvent(useDateTime, summaryMatch[1], hasTime));
+
                     } else if (frequency === "YEARLY") {
                         const yearsPast = todayDate.getFullYear() - eventDate.getFullYear();
 
@@ -238,7 +245,7 @@ class IcsHelperImpl {
 
                             eventList.push(this._createEvent(useDateTime, summaryMatch[1], hasTime));                            
                         }
-                    } //TODO: add MONTHLY!
+                    } 
                 } else {
                     // event is in the future. Ignoring.
                 }
@@ -253,6 +260,12 @@ class IcsHelperImpl {
         }
     
         eventList.sort((a, b) => a.time - b.time);
+
+        // const filteredEvents = eventList.filter(event => {
+        //     if (event.is_all_day) return true; // Keep all-day events
+        //     return event.time > todayDate; // remove passed.            
+        // });
+
         return eventList;
     }    
     
