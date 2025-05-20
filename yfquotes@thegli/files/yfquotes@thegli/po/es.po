@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2025-05-12 00:33+0200\n"
-"PO-Revision-Date: 2024-11-20 18:34-0300\n"
+"PO-Revision-Date: 2025-05-16 12:24-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -102,7 +102,7 @@ msgstr "Disposición"
 
 #. settings-schema.json->networkPage->title
 msgid "Network"
-msgstr ""
+msgstr "Red"
 
 #. settings-schema.json->dataUpdateSection->title
 msgid "Data Updates"
@@ -158,7 +158,7 @@ msgstr "Efectos"
 
 #. settings-schema.json->networkSessionSection->title
 msgid "HTTP Session"
-msgstr ""
+msgstr "Sesión HTTP"
 
 #. settings-schema.json->width->description
 msgid "Width"
@@ -564,12 +564,10 @@ msgid "Send custom User-Agent header"
 msgstr "Enviar encabezado User-Agent personalizado"
 
 #. settings-schema.json->sendCustomUserAgent->tooltip
-#, fuzzy
 msgid "Include a custom User-Agent header in Yahoo Finance Quotes API requests"
 msgstr ""
 "Incluir un encabezado User-Agent personalizado en las solicitudes de la API "
-"de cotizaciones de Yahoo Finanzas. Por defecto, este encabezado no está "
-"configurado"
+"de cotizaciones de Yahoo Finanzas"
 
 #. settings-schema.json->customUserAgent->description
 msgid "Custom User-Agent header"
@@ -583,27 +581,26 @@ msgstr ""
 
 #. settings-schema.json->enableCurl->description
 msgid "Use external tool curl"
-msgstr ""
+msgstr "Usar herramienta curl externa"
 
 #. settings-schema.json->enableCurl->tooltip
 msgid "Requires separate installation of curl."
-msgstr ""
+msgstr "Requiere instalación separada de curl."
 
 #. settings-schema.json->curlCommand->description
 msgid "Path of curl executable"
-msgstr ""
+msgstr "Ruta del ejecutable curl"
 
 #. settings-schema.json->curlCommand->tooltip
 msgid "Provide absolute path of curl program file"
-msgstr ""
+msgstr "Proporcionar la ruta absoluta del archivo del programa curl"
 
 #. settings-schema.json->applyNetworkSettingsButton->description
 msgid "Apply network settings"
-msgstr ""
+msgstr "Aplicar configuración de red"
 
 #. settings-schema.json->applyNetworkSettingsButton->tooltip
-#, fuzzy
 msgid "Fetches new authorization parameters and refreshes quotes data"
 msgstr ""
-"Error al recuperar el parámetro de autorización. No se han podido recuperar "
-"los datos de las cotizaciones: "
+"Obtiene nuevos parámetros de autorización y actualiza los datos de las "
+"cotizaciones"
