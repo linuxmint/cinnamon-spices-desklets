@@ -30,7 +30,6 @@ SUMMARY:Meeting with
 END:VEVENT`;
 
     const results = helper.parseTodaysEvents(ics, fakeDate(2025, 5, 1));
-
     assert(results.length === 1, "Folded SUMMARY line should be parsed as a single logical line");
     assert(results[0].summary.includes("Meeting with Alice"), "Summary should include unfolded text");
     print("✔ testFoldedSummaryParsesCorrectly");
@@ -509,12 +508,100 @@ function testRepeatsByDay() {
     const friday = new Date("2025-05-16T00:00:00Z");
     const fridayEvents = helper.parseTodaysEvents(eventsText, friday);
 
-    console.log(fridayEvents);
-
     assert(fridayEvents.length === 1, `Expected one event on Friday (${friday.toISOString()})`);
 
     print("✔ testRepeatsByDay passed");
 }
+
+
+function testRepeatsMonthlyEvent() {
+    const helper = new IcsHelper(() => GLib.TimeZone.new("Europe/London"));
+    const ics = `BEGIN:VEVENT
+DTSTART:20250115T090000
+RRULE:FREQ=MONTHLY
+SUMMARY:Monthly Report
+END:VEVENT`;
+
+    const testDate = fakeDate(2025, 5, 15); // 15 May 2025
+
+    const results = helper.parseTodaysEvents(ics, testDate);
+
+    assert(results.length === 1, "Monthly recurrence should include this date");
+    assert(results[0].summary.includes("Monthly Report"), "Event summary should match");
+    print("✔ testRepeatsMonthlyEvent");
+}
+
+
+function testMonthlyExpiration() {
+    const startDateString = "20220519T090000Z"; // 19 May 2022
+    const todayDate = new Date(2025, 4, 19);   // 19 May 2025
+
+    const count = 36; // 3 years × 12 months
+
+    const rrule = `FREQ=MONTHLY;COUNT=${count}`;
+
+    const eventsText = `
+BEGIN:VEVENT
+DTSTART:${startDateString}
+SUMMARY:Monthly Test Event
+RRULE:${rrule}
+END:VEVENT
+`;
+
+    const icsHelper = new IcsHelper();
+    const events = icsHelper.parseTodaysEvents(eventsText, todayDate);
+
+    if (events.length !== 0) {
+        throw new Error(`Expected no events, but found ${events.length}`);
+    }
+
+    print("✔ testMonthlyExpiration");
+}
+
+
+function testMiddayFilter() {
+    const todayDate = new Date(2025, 4, 19, 11, 0, 0); // 19 May 2025, 11:00 local time
+
+    const eventsText = `
+BEGIN:VEVENT
+DTSTART:20250519T080000Z
+SUMMARY:Too Early
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250519T120000Z
+SUMMARY:Just Right
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250519T160000Z
+SUMMARY:Later Still
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20250519
+SUMMARY:All Day Event
+END:VEVENT
+`;
+
+    const icsHelper = new IcsHelper();
+    const events = icsHelper.parseTodaysEvents(eventsText, todayDate);
+    const summaries = events.map(e => e.summary);
+
+    const expected = ["Just Right", "Later Still", "All Day Event"];
+
+    for (const summary of expected) {
+        if (!summaries.includes(summary)) {
+            throw new Error(`Expected to find '${summary}' in event list`);
+        }
+    }
+
+    if (summaries.includes("Too Early")) {
+        throw new Error("Unexpected event 'Too Early' was included");
+    }
+
+    console.log(summaries);
+
+    print("✔ testMiddayFilter");
+}
+
 
 
 
@@ -536,14 +623,14 @@ try {
     testYearlyRepeatingEvent();
     testYearlyRepeatingEventPastCount();
     testDailyRepeatingEventUntil();
-
     test_byDayMatches_weeklyByday_match();
     test_byDayMatches_rejects_nomatch();
     test_byDayMatches_noByDay_allDaysAllowed();
-
     testDailyRepeatingEventUntilExpired();
     testRepeatsByDay();
-
+    testRepeatsMonthlyEvent();
+    testMonthlyExpiration();
+    testMiddayFilter();
     print("\nAll tests completed ok.");
 } catch (e) {    
     console.log(`Tests failed. ${e}\n Stack trace:\n`, e.stack);
