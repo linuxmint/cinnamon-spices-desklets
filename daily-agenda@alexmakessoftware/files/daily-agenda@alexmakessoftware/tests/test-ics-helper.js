@@ -202,7 +202,7 @@ function testDailyRepeatingEvent() {
     // Create a daily repeating event
     const dailyEvent = [
         "BEGIN:VEVENT",
-        "DTSTART:20250513T090000",  // Event starts the day before, but repeats daily
+        "DTSTART:20250513T090000Z",  // Event starts the day before, but repeats daily
         "SUMMARY:Daily Event",
         "RRULE:FREQ=DAILY;COUNT=5", // Daily recurrence, 5 occurrences
         "END:VEVENT"
@@ -282,7 +282,7 @@ function testDailyRepeatingEventPastCount() {
     // Create a daily repeating event with 5 occurrences
     const dailyEvent = [
         "BEGIN:VEVENT",
-        "DTSTART:20250513T090000",  // Event starts the day before, but repeats daily
+        "DTSTART:20250513T090000Z",  // Event starts the day before, but repeats daily
         "SUMMARY:Daily Event",
         "RRULE:FREQ=DAILY;COUNT=5", // Daily recurrence, 5 occurrences
         "END:VEVENT"
@@ -597,12 +597,141 @@ END:VEVENT
         throw new Error("Unexpected event 'Too Early' was included");
     }
 
-    console.log(summaries);
-
     print("✔ testMiddayFilter");
 }
 
 
+function testExdateExclusion() {
+    const startDateString = "20250519T090000Z"; // 21 May 2025 at 09:00
+    const todayDate = fakeDate(2025,5,21,10,0);
+
+    const rrule = "FREQ=DAILY;COUNT=5";
+    const exdate = "20250521T090000Z"; // Exclude today
+
+    const eventsText = `
+BEGIN:VEVENT
+DTSTART:${startDateString}
+SUMMARY:Daily Test Event
+RRULE:${rrule}
+EXDATE:${exdate}
+END:VEVENT
+`;
+
+    const icsHelper = new IcsHelper(() => GLib.TimeZone.new("UTC"));
+    const events = icsHelper.parseTodaysEvents(eventsText, todayDate);
+
+    if (events.length !== 0) {
+        throw new Error(`Expected no events for today due to EXDATE, but found ${events.length}`);
+    }
+
+    print("✔ testExdateExclusion");
+}
+
+
+function testExdateExclusionOnStartDate() {    
+    const startDateString = "20250521T090000Z"; // 21 May 2025 at 09:00
+    const todayDate = fakeDate(2025,5,21,10,0); // same day.
+
+    const rrule = "FREQ=DAILY;COUNT=5";
+    const exdate = "20250521T090000Z"; // Exclude today
+
+    const eventsText = `
+BEGIN:VEVENT
+DTSTART:${startDateString}
+SUMMARY:Daily Test Event
+RRULE:${rrule}
+EXDATE:${exdate}
+END:VEVENT
+`;
+
+    const icsHelper = new IcsHelper(() => GLib.TimeZone.new("UTC"));
+    const events = icsHelper.parseTodaysEvents(eventsText, todayDate);
+
+    if (events.length !== 0) {
+        throw new Error(`Expected no events for today due to EXDATE, but found ${events.length}`);
+    }
+
+    print("✔ testExdateExclusionOnStartDate");
+}
+
+
+function testBiWeeklyEvent() {
+    const startDateString = "20250507T090000Z"; // Wednesday 7 May 2025
+    const todayDate = fakeDate(2025, 5, 14, 10, 0); // Wednesday 14 May 2025
+
+    const rrule = "FREQ=WEEKLY;INTERVAL=2";
+
+    const eventsText = `
+BEGIN:VEVENT
+DTSTART:${startDateString}
+SUMMARY:Bi-Weekly Test Event
+RRULE:${rrule}
+END:VEVENT
+`;
+
+    const icsHelper = new IcsHelper(() => GLib.TimeZone.new("UTC"));
+    const events = icsHelper.parseTodaysEvents(eventsText, todayDate);    
+
+    if (events.length !== 0) {
+        throw new Error(`Expected no events for today due to bi-weekly rule, but found ${events.length}`);
+    }
+
+    print("✔ testBiWeeklyEvent");
+}
+
+
+function testUntil() {
+    const IcsHelper = imports['ics-helper'].IcsHelper;
+    const helper = new IcsHelper(() => GLib.TimeZone.new("UTC"));
+
+    const ics = [
+        "BEGIN:VEVENT",
+        "DTSTART:20250513T090000Z",
+        "SUMMARY:Event with UNTIL",
+        "RRULE:FREQ=DAILY;UNTIL=20250515T090000Z", // Repeats 13th, 14th, 15th
+        "END:VEVENT"
+    ].join("\n");
+
+    const includedDate = new Date("2025-05-15T00:00:00Z"); // still within UNTIL
+    const excludedDate = new Date("2025-05-16T00:00:00Z"); // beyond UNTIL
+
+    const included = helper.parseTodaysEvents(ics, includedDate);
+    const excluded = helper.parseTodaysEvents(ics, excludedDate);
+
+    assert(included.length === 1, "Event should be included on UNTIL date");
+    assert(excluded.length === 0, "Event should not appear after UNTIL date");
+
+    print("✔ testUntil passed");
+}
+
+
+function testPreferUntilOverCount() {
+    // If both UNTIL and COUNT are specified (invalid per RFC 5545 but common in the wild), prefer UNTIL, ignore COUNT.
+    const IcsHelper = imports['ics-helper'].IcsHelper;
+    const helper = new IcsHelper(() => GLib.TimeZone.new("UTC"));
+
+    const ics = [
+        "BEGIN:VEVENT",
+        "DTSTART:20250513T090000Z",
+        "SUMMARY:Prefer UNTIL over COUNT",
+        "RRULE:FREQ=DAILY;COUNT=10;UNTIL=20250515T090000Z", // COUNT would allow up to 22nd, but UNTIL says 15th
+        "END:VEVENT"
+    ].join("\n");
+
+    const beforeUntil = new Date("2025-05-14T00:00:00Z");
+    const onUntil = new Date("2025-05-15T00:00:00Z");
+    const afterUntil = new Date("2025-05-16T00:00:00Z");
+
+    const eventsBefore = helper.parseTodaysEvents(ics, beforeUntil);
+    const eventsOnUntil = helper.parseTodaysEvents(ics, onUntil);
+    const eventsAfter = helper.parseTodaysEvents(ics, afterUntil);
+
+    assert(eventsBefore.length === 1, "Event should appear before UNTIL date");
+    assert(eventsOnUntil.length === 1, "Event should appear on UNTIL date");
+    assert(eventsAfter.length === 0, "Event should not appear after UNTIL date even if COUNT allows it");
+
+    print("✔ testPreferUntilOverCount passed");
+}
 
 
 // Run all tests
@@ -631,6 +760,11 @@ try {
     testRepeatsMonthlyEvent();
     testMonthlyExpiration();
     testMiddayFilter();
+    testExdateExclusion();
+    testExdateExclusionOnStartDate();
+    testBiWeeklyEvent();
+    testUntil();
+    testPreferUntilOverCount();
     print("\nAll tests completed ok.");
 } catch (e) {    
     console.log(`Tests failed. ${e}\n Stack trace:\n`, e.stack);
