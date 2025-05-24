@@ -1,0 +1,221 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 12:23+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: blogdron\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.1\n"
+
+#. settings-schema.json->type->options
+#: desklet.js:275 desklet.js:356
+msgid "RAM"
+msgstr "Оперативная память"
+
+#. settings-schema.json->type->options
+#: desklet.js:277 desklet.js:358
+msgid "Swap"
+msgstr "Подкачка"
+
+#. settings-schema.json->type->options
+#: desklet.js:279
+msgid "Filesystem"
+msgstr "Файловая система"
+
+#: desklet.js:301
+msgid "Not Found"
+msgstr "Не найдено"
+
+#. metadata.json->name
+#: desklet.js:360
+msgid "Disk Space"
+msgstr "Дисковое Пространство (Disk Space)"
+
+#. metadata.json->description
+msgid "Displays the usage of a filesystem or RAM."
+msgstr ""
+"Отображает использование дискового пространства или оперативной памяти."
+
+#. settings-schema.json->head0->description
+msgid "Settings for diskspace@schorschii"
+msgstr "Настройки для diskspace@schorschii"
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr "Общие настройки"
+
+#. settings-schema.json->type->description
+msgid "Monitor a file system or RAM usage"
+msgstr "Монитор накопителей и оперативной памяти"
+
+#. settings-schema.json->type->tooltip
+msgid "Choose, if this desklet should show file system or RAM usage."
+msgstr ""
+"Выберите, отображать использование файловой системы или оперативной памяти."
+
+#. settings-schema.json->filesystem->description
+msgid "Filesystem to monitor"
+msgstr "Файловая система для мониторинга"
+
+#. settings-schema.json->filesystem->tooltip
+msgid "Select the file system, which you want to monitor."
+msgstr "Выберите файловую систему которую желаете отслеживать."
+
+#. settings-schema.json->onclick-action->description
+msgid "Action on mouse click"
+msgstr "Действие при нажатии мыши"
+
+#. settings-schema.json->onclick-action->tooltip
+msgid "Choose what to do when the desklet was clicked."
+msgstr "Выберите действие для клика мышью на десклете."
+
+#. settings-schema.json->onclick-action->options
+msgid "Open File Manager"
+msgstr "Открыть Файловый Менеджер"
+
+#. settings-schema.json->onclick-action->options
+msgid "Open Partition Manager"
+msgstr "Открыть Менеджер Дисков"
+
+#. settings-schema.json->onclick-action->options
+msgid "Open System Monitor"
+msgstr "Открыть Системный Монитор"
+
+#. settings-schema.json->onclick-action->options
+msgid "Nothing"
+msgstr "Ничего не делать"
+
+#. settings-schema.json->size-prefix->description
+msgid "Size Prefix"
+msgstr "Единица измерения"
+
+#. settings-schema.json->size-prefix->options
+msgid "Decimal"
+msgstr "Десятичная"
+
+#. settings-schema.json->size-prefix->options
+msgid "Binary"
+msgstr "Двоичная"
+
+#. settings-schema.json->reserved-blocks-as-used-space->description
+msgid "Show reserved blocks as used space"
+msgstr "Показывать зарезервированные блоки как использованное пространство"
+
+#. settings-schema.json->reserved-blocks-as-used-space->tooltip
+msgid ""
+"Reserved blocks are useable for the root user only and that's why displayed "
+"as used space by default."
+msgstr ""
+"Зарезервированные блоги могут использоваться пользователем root, поэтому "
+"отображаются как использованное пространство диска по умолчанию."
+
+#. settings-schema.json->head2->description
+msgid "Visual"
+msgstr "Внешний вид"
+
+#. settings-schema.json->design->description
+msgid "Design"
+msgstr "Дизайн"
+
+#. settings-schema.json->design->options
+msgid "Thin"
+msgstr "Тонкий"
+
+#. settings-schema.json->design->options
+msgid "Compact"
+msgstr "Компактный"
+
+#. settings-schema.json->design->options
+msgid "Classic (Thick)"
+msgstr "Классический (Широкий)"
+
+#. settings-schema.json->text-view->description
+msgid "Text"
+msgstr "Отображение текстовой информации"
+
+#. settings-schema.json->text-view->options
+msgid "Name and total space"
+msgstr "Название и общий размер"
+
+#. settings-schema.json->text-view->options
+msgid "Used and total space"
+msgstr "Использованное и общее пространство"
+
+#. settings-schema.json->text-view->options
+msgid "Total and used space"
+msgstr "Общее и использованное пространство"
+
+#. settings-schema.json->text-view->options
+msgid "Free and total space"
+msgstr "Свободное и общее пространство"
+
+#. settings-schema.json->text-view->options
+msgid "Total and free space"
+msgstr "Общее и свободное пространство"
+
+#. settings-schema.json->text-view->options
+msgid "No text"
+msgstr "Без текста"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Скрыть декорации"
+
+#. settings-schema.json->draw-free-space->description
+msgid "Draw free/unused space (gray)"
+msgstr "Отображать свободное/неиспользованное (серым)"
+
+#. settings-schema.json->use-own-circle-color->description
+msgid "Use a custom circle color"
+msgstr "Использовать свой цвет индикации"
+
+#. settings-schema.json->circle-color->description
+msgid "Circle color"
+msgstr "Цвет индикации"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Цвет текста"
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "величина масштабирования"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Размер десклета"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr "Увеличить или уменьшить размер десклета используя масштабирование."
+
+#. settings-schema.json->head3->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Пользовательская текстовая метка на десклете (видно только если декорация "
+"включена)"
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Использовать свою текстовую метку"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr "Включите для возможности установки своей текстовой метки."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Пользовательская текстовая метка"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr "Напишите свою текстовую метку здесь."

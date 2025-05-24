@@ -1,0 +1,26 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-05 18:14+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: blogdron\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.1\n"
+
+#: desklet.js:164 desklet.js:174 desklet.js:207
+msgid "GiB"
+msgstr ""
+
+#: desklet.js:187
+msgid "GB"
+msgstr ""
+
+#. settings-schema.json->gpu-manufacturer->options
+msgid "NVIDIA"
+msgstr ""
