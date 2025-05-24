@@ -12,12 +12,14 @@ body:
     options:
     - ''
     - adventCandles@KopfdesDaemons @KopfdesDaemons
+    - AlbumArt3.0@claudiux @claudiux
     - analog-clock@cobinja.de @cobinja
     - battery@schorschii @schorschii
     - bbcwx@oak-wood.co.uk @tipichris
     - binaryclock2@euxneks
     - calc@ptandler @ptandler
     - calculator@scollins @schorschii
+    - calendar@bahrampc @bahrampc
     - calendar@deeppradhan @kanchudeep
     - calendar@schorschii @schorschii
     - clock@schorschii @schorschii
@@ -27,6 +29,7 @@ body:
     - commandResult@ZimiZones @ZimiZones
     - cpuload@kimse @schorschii
     - cryptocoins@pbojan @pbojan
+    - daily-agenda@alexmakessoftware @AlexMakesSoftware
     - daysCountdown@KopfDesDaemons @KopfDesDaemons
     - deskNote@BrainAxe @BrainAxe
     - devTools@scollins @collinss
@@ -42,6 +45,7 @@ body:
     - jira@codeunifier @codeunifier
     - kdecdesklet@joejoetv @JoeJoeTV
     - mintoo@sujitagarwal @sujitagarwal
+    - moonlight-clock@torchipeppo @torchipeppo
     - nepalipatro@deeppradhan @kanchudeep
     - netusage@30yavash.com @pdcurtis
     - notes@schorschii @schorschii
