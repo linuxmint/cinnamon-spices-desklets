@@ -1,0 +1,11 @@
+{
+    "uuid": "prayertimes@linworx.org",
+    "name": "Muslim prayer times",
+    "description": "Muslim daily prayer times desklet",
+    "prevent-decorations": true,
+    "author": "linworx.org",
+    "max-instances": "2",
+    "cinnamon-versions": [
+        "5.8"
+    ]
+}
