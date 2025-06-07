@@ -1,6 +1,6 @@
 # Quick Links
 
-The Quick Links desklet allows you to create beautiful themed desktop shortcuts for your most used folders/commands. You can link folders, applications or your custom commands. The image above shows variety of styles this desklet can create.
+The Quick Links desklet allows you to create beautiful themed desktop shortcuts for your most used folders or custom commands. The image above showcases a variety of styles this desklet can create.
 
 ### What was it designed for?
 
