@@ -1,0 +1,219 @@
+{
+    "layout": {
+        "type": "layout",
+        "pages": [
+            "general-page",
+            "theme-page"
+        ],
+        "general-page": {
+            "type": "page",
+            "title": "Links",
+            "sections": [
+                "links-section",
+                "iconselect-section"
+            ]
+        },
+        "theme-page": {
+            "type": "page",
+            "title": "Theme",
+            "sections": [
+                "layout-section",
+                "font-section",
+                "label-section"
+            ]
+        },
+        "links-section": {
+            "type": "section",
+            "title": "Set up your links here",
+            "keys": [
+                "links-text",
+                "link-update-button"
+            ]
+        },
+        "iconselect-section": {
+            "type": "section",
+            "title": "Find icon names here",
+            "keys": [
+                "icon-picker"
+            ]
+        },
+        "layout-section": {
+            "type": "section",
+            "title": "Layout",
+            "keys": [
+                "scale-size",
+                "desklet-layout",
+                "column-number",
+                "text-align",
+                "transparent-bg",
+                "bg-color",
+                "icon-size",
+                "hide-decorations"
+            ]
+        },
+        "font-section": {
+            "type": "section",
+            "title": "Font",
+            "keys": [
+                "font",
+                "size-font",
+                "font-bold",
+                "font-italic",
+                "text-color",
+                "text-shadow",
+                "text-shadow-color"
+            ]
+        },
+        "label-section": {
+            "type": "section",
+            "title": "Custom desklet label (only visible if decorations are enabled)",
+            "dependency": "!hide-decorations",
+            "keys": [
+                "use-custom-label",
+                "custom-label"
+            ]
+        }
+    },
+    "links-text": {
+        "type": "textview",
+        "description": "Each link has 4 attributes you can change: \n - name that will be displayed,\n - icon name: you can choose any system icon,\n - command to be executed when clicked\n - true/false if you want the terminal to show up.\nEach attribute must be separated by a comma and each link must be separated with an Enter key (newline).\nCommas can be escaped with '\\,' and newlines can be placed with '\\n'.\nYou can open folders using ex. `nemo <path>` command.\nIf you need to see the output of a command, set the last attribute to true.",
+        "default": "Home folder,folder_home,nemo,false\nMy folder,folder,nemo,false\nRoot folder,disks,nemo /,false\nComputer,computer,nemo computer://,false\nTerminal,terminal,gnome-terminal,false\nSome App,go-next-symbolic,top,true\nCustom cmd\\,\\nls -alF,someicon,ls -alF --color=auto && bash,true\nNo Icon,,,false\nConfigure links\\nin the settings.\\nRight click\\nthen configure.,settings,,false",
+        "height": 200
+    },
+    "link-update-button": {
+        "type": "button",
+        "description": "Update",
+        "callback": "on_reset_links_callback"
+    },
+    "icon-picker": {
+        "type": "iconfilechooser",
+        "default": "folder",
+        "description": "This setting does not impact the desklet. It's here for convenience.\nYou can browse through icons here and find their names easily.",
+        "tooltip": "Click the icon on the right to browse. This setting is not used anywhere. "
+    },
+    "desklet-layout": {
+        "type": "radiogroup",
+        "description": "Choose how links should be laid out.\n(You might also want to change text alignment.)",
+        "default": "list",
+        "options" : {
+            "List view" : "list",
+            "Tile view" : "tile"
+        },
+        "tooltip": "Pick a layout for this desklet."
+    }, 
+    "text-align": {
+        "type": "radiogroup",
+        "description": "Text alignment",
+        "default": "left",
+        "options" : {
+            "Left" : "left",
+            "Center" : "center",
+            "Right" : "right"
+        }
+    },    
+    "column-number": {
+        "type": "spinbutton",
+        "default": 2,
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "description": "Number of columns",
+        "tooltip": "Increase or decrease the number of columns on the layout."
+    },
+    "text-shadow": {
+        "type": "switch",
+        "description": "Text shadow",
+        "default": true
+    },
+    "text-shadow-color": {
+        "type": "colorchooser",
+        "default": "rgba(0,0,0,0.8)",
+        "description": "Text shadow color",
+        "dependency": "text-shadow"
+    },
+    "transparent-bg": {
+        "type": "switch",
+        "default": false,
+        "description": "Transparent background (works well with no decorations)",
+        "tooltip": "Select if you want a transparent background."
+    },
+    "bg-color": {
+        "type": "colorchooser",
+        "dependency": "!transparent-bg",
+        "default": "rgb(40,105,198)",
+        "description": "Link background color",
+        "tooltip": "Set the color of the links background."
+    },
+    "hide-decorations": {
+        "type": "switch",
+        "description": "Hide desklet decorations",
+        "default": false
+    },
+    "icon-size": {
+        "type": "spinbutton",
+        "default": 38,
+        "min": 0,
+        "max": 200,
+        "step": 1,
+        "units": "pixels",
+        "description": "Icon size",
+        "tooltip": "Increase or decrease the icon size (set to 0 to disable icons)."
+    },
+    "font": {
+        "type": "entry",
+        "description": "Font name",
+        "default": "Noto Sans",
+        "tooltip": "Change font family ex. Ubuntu, Roboto, DejaVu Serif"
+    },
+    "size-font": {
+        "type": "spinbutton",
+        "default": 16,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "units": "pixels",
+        "description": "Font size",
+        "tooltip": "Increase or decrease the font size."
+    },
+    "font-bold": {
+        "type": "checkbox",
+        "description": "Bold",
+        "default": false
+    },
+    "font-italic": {
+        "type": "checkbox",
+        "description": "Italic",
+        "default": false
+    },
+    "text-color": {
+        "type": "colorchooser",
+        "default": "rgb(255,255,255)",
+        "description": "Text color",
+        "tooltip": "Set the text color of this desklet."
+    },
+    "scale-size": {
+        "type": "spinbutton",
+        "default": 2,
+        "min": 0.5,
+        "max": 15,
+        "step": 0.2,
+        "units": "scale factor",
+        "description": "Desklet size, mostly impacts width",
+        "tooltip": "Increase or decrease the size of this desklet using this scale factor."
+    },
+    "use-custom-label": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Use a custom desklet label",
+        "tooltip": "Checking this box allows you to set a custom label in the field below.",
+        "value": false
+    },
+    "custom-label": {
+        "type": "entry",
+        "default": "Quick Links",
+        "description": "Custom desklet label",
+        "indent": true,
+        "dependency": "use-custom-label",
+        "tooltip": "Set your custom label here. This field is unavailable unless the checkbox above is enabled."
+    }
+}
