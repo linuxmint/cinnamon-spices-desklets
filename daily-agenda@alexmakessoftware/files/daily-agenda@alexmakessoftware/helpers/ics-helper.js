@@ -51,6 +51,15 @@ function unfoldIcs(text) {
     return text.replace(/\r?\n[ \t]/g, ' ');
 }
 
+
+function daysBetween(date1, date2) {
+    // Use UTC to avoid timezone shifts
+    const d1 = Date.UTC(date1.getFullYear(), date1.getMonth(), date1.getDate());
+    const d2 = Date.UTC(date2.getFullYear(), date2.getMonth(), date2.getDate());
+    return Math.floor((d2 - d1) / (1000 * 60 * 60 * 24));
+}
+
+
 class IcsHelperImpl {
     constructor(timezoneProvider = () => GLib.TimeZone.new_local()) {
         this.getLocalTimezone = timezoneProvider;       
@@ -176,6 +185,72 @@ class IcsHelperImpl {
     }
 
 
+    _excludedDates(exdateMatches) {
+        let excludedDates = new Set();
+        for (const match of exdateMatches) {
+            const dates = match[1].split(",");
+            for (const dateStr of dates) {
+                const { date } = this._parseToLocalisedDate(dateStr.trim());
+                excludedDates.add(date.toDateString()); // Use string form for comparison
+            }
+        }        
+
+        return excludedDates;
+    }
+
+
+    _isRecurringInstanceValid(frequency, eventDate, todayDate, repeatCount, interval = 1) {
+        const daysDifference = daysBetween(eventDate, todayDate);
+
+        let occurrencesPassed;
+        switch (frequency) {
+            case "DAILY": {
+                if (daysDifference % interval !== 0) return false;
+                occurrencesPassed = Math.floor(daysDifference / interval) + 1;
+                break;
+            }
+
+            case "WEEKLY": {
+                const weeksPassed = Math.floor(daysDifference / 7);
+                if (weeksPassed % interval !== 0) return false;
+                occurrencesPassed = Math.floor(weeksPassed / interval) + 1;
+                break;
+            }
+
+            case "MONTHLY": {
+                if (todayDate.getDate() !== eventDate.getDate()) return false;
+                const yearsDiff = todayDate.getFullYear() - eventDate.getFullYear();
+                const monthsDiff = todayDate.getMonth() - eventDate.getMonth() + yearsDiff * 12;
+                if (monthsDiff % interval !== 0) return false;
+                occurrencesPassed = Math.floor(monthsDiff / interval) + 1;
+                break;
+            }
+
+            case "YEARLY": {
+                if (todayDate.getMonth() !== eventDate.getMonth()) return false;
+                if (todayDate.getDate() !== eventDate.getDate()) return false;
+                const yearsPassed = todayDate.getFullYear() - eventDate.getFullYear();
+                if (yearsPassed % interval !== 0) return false;
+                occurrencesPassed = Math.floor(yearsPassed / interval) + 1;
+                break;
+            }
+
+            default:
+                return false;
+        }
+
+        if (occurrencesPassed > repeatCount) return false;
+
+        return true;
+    }
+
+
+    _parseInterval(rrule) {
+        const match = rrule.match(/INTERVAL=(\d+)/);
+        return match ? parseInt(match[1], 10) : 1;
+    }
+
+
     parseTodaysEvents(eventsText, todayDate = new Date()) {
         eventsText = unfoldIcs(eventsText);
         const eventList = [];
@@ -185,67 +260,37 @@ class IcsHelperImpl {
             const dtstartMatch = eventText.match(/DTSTART[^:]*:([^\r\n]+)/);
             const summaryMatch = eventText.match(/SUMMARY(?:;[^:\n]*)?:\s*(.+)/);
             const rruleMatch = eventText.match(/RRULE:(.+)/); // Capture the RRULE line
-    
+            const exdateMatches = [...eventText.matchAll(/EXDATE(?:;[^:]*)?:(.+)/g)];            
+
             if (dtstartMatch && summaryMatch) {
                 const dtstartString = dtstartMatch[1]; // e.g., 20250501T090000Z
                 const { date: eventDate, hasTime } = this._parseToLocalisedDate(dtstartString);
 
                 // Handle recurrence rule (RRULE) if it exists
                 let isRecurring = false;
-                let repeatCount = 0;                
+                let repeatCount = 0;
 
-                if (rruleMatch && (eventDate <= todayDate)) {                    
+                if (rruleMatch && (eventDate <= todayDate)) { 
                     const rrule = rruleMatch[1]; 
                     const frequency = rrule.split(";")[0].split("=")[1];
                     repeatCount = this._parseRepeatCount(rrule);
                     isRecurring = true;
+                    
+                    if(this._eventExpired(rrule, todayDate)) continue;                    
 
-                    if(this._eventExpired(rrule, todayDate)) continue;                   
+                    let useDateTime = hasTime? combineDateAndTime(todayDate, eventDate) : todayDate;                    
 
-                    let useDateTime = hasTime? combineDateAndTime(todayDate, eventDate) : todayDate;
-                    let occurrencesPassed = 0;
+                    if (this._excludedDates(exdateMatches).has(useDateTime.toDateString())) continue;                    
 
                     const daysDifference = Math.floor((todayDate - eventDate) / (1000 * 60 * 60 * 24));                    
 
                     if (!this._byDayMatches(rrule, todayDate, eventDate, frequency)) continue;
 
-                    if (frequency === "DAILY") {                                    
-                        occurrencesPassed = daysDifference + 1;
+                    const interval = this._parseInterval(rrule);
 
-                        if (occurrencesPassed >= repeatCount) continue;
-
-                        eventList.push(this._createEvent(useDateTime, summaryMatch[1], hasTime));                        
-                        
-                    } else if (frequency === "WEEKLY") {                        
-                        const weeksPast = Math.floor(daysDifference / 7);
-                        occurrencesPassed = weeksPast + 1;
-
-                        if(occurrencesPassed >= repeatCount) continue;
-
-                        eventList.push(this._createEvent(useDateTime, summaryMatch[1], hasTime));                            
-                    } else if (frequency === "MONTHLY") { 
-                        if (todayDate.getDate() !== eventDate.getDate()) continue;                            
-                            const yearsDiff = todayDate.getFullYear() - eventDate.getFullYear();
-                            const monthsDiff = todayDate.getMonth() - eventDate.getMonth() + yearsDiff * 12;
-                            occurrencesPassed = monthsDiff + 1;
-                            
-                            if (occurrencesPassed > repeatCount) continue;
-
-                            eventList.push(this._createEvent(useDateTime, summaryMatch[1], hasTime));
-
-                    } else if (frequency === "YEARLY") {
-                        const yearsPast = todayDate.getFullYear() - eventDate.getFullYear();
-
-                        // Check if today is the correct day (same day and month)
-                        if (todayDate.getMonth() === eventDate.getMonth() && todayDate.getDate() === eventDate.getDate()) {
-                            occurrencesPassed = yearsPast + 1; // Include the first occurrence
-                    
-                            // Check if the occurrences haven't exceeded the repeat count
-                            if (occurrencesPassed >= repeatCount) continue;
-
-                            eventList.push(this._createEvent(useDateTime, summaryMatch[1], hasTime));                            
-                        }
-                    } 
+                    if (this._isRecurringInstanceValid(frequency, eventDate, todayDate, repeatCount, interval)) {
+                        eventList.push(this._createEvent(useDateTime, summaryMatch[1], hasTime));
+                    }
                 } else {
                     // event is in the future. Ignoring.
                 }
