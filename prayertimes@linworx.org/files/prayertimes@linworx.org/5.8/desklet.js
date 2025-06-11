@@ -63,10 +63,17 @@ class MuslimPrayerTimesDesklet extends Desklet.Desklet {
 
 	async getLocation() {
 
+		if (typeof this._retryId !== 'undefined') {
+			Mainloop.source_remove(this._retryId);
+		}
+
 		if (this.autolocation !== 'automatic') {
 			this.logger.Log(`Auto-location is disabled`);
-			if (this.longitude && this.latitude) {
+
+			if (!Number.isNaN(parseFloat(this.longitude)) && !Number.isNaN(parseFloat(this.latitude))) {
 				this.city = "Manual location";
+				this.longitude = parseFloat(this.longitude);
+				this.latitude = parseFloat(this.latitude);
 				this.calculatePrayerTimes();
 			} else {
 				this.city = "Please enter your location";
@@ -84,7 +91,8 @@ class MuslimPrayerTimesDesklet extends Desklet.Desklet {
 			this.city = parsed.city;
 			this.calculatePrayerTimes();
 		} catch (e) {
-			this.logger.Log(e)
+			this.logger.Log(`Could not get location: ${e.message}, retrying in 10 seconds`);
+			this._retryId = Mainloop.timeout_add_seconds(10, Lang.bind(this, this.getLocation));
 		}
 		this.logger.Log(`Got location: ${this.latitude}, ${this.longitude}`)
 	}
