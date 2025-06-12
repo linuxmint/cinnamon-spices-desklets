@@ -20,9 +20,11 @@ You can customize this desklet to your taste. Choose from two layouts a list or 
 
 ### What can be improved?
 
-* This desklet is currently only available in English, it could use more translations. I will likely add a Polish translation myself in the future.
+* This desklet is currently only available in English, it could use more translations. I might add a Polish translation myself in the future.
 
-* Unfortunately, the settings API at this moment doesn't have the functionality that would let me create a nice user interface for adding links. For now, links can only be configured with a somewhat annoying and complicated text-based method.
+* More visual customizations could be added.
+
+* Unfortunately, the xlet settings API at this moment doesn't support `iconfilechooser` within `list` setting, so icons have to be typed in by name, which is somewhat annoying.
 
 
 

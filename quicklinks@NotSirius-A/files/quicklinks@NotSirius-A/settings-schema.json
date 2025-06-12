@@ -26,14 +26,16 @@
             "type": "section",
             "title": "Set up your links here",
             "keys": [
-                "links-text",
-                "link-update-button"
+                "links-top-label",
+                "links-list",
+                "links-bottom-label"
             ]
         },
         "iconselect-section": {
             "type": "section",
             "title": "Find icon names here",
             "keys": [
+                "icon-picker-label",
                 "icon-picker"
             ]
         },
@@ -74,21 +76,106 @@
             ]
         }
     },
-    "links-text": {
-        "type": "textview",
-        "description": "Each link has 4 attributes you can change: \n - name that will be displayed,\n - icon name: you can choose any system icon,\n - command to be executed when clicked\n - true/false if you want the terminal to show up.\nEach attribute must be separated by a comma and each link must be separated with an Enter key (newline).\nCommas can be escaped with '\\,' and newlines can be placed with '\\n'.\nYou can open folders using ex. `nemo <path>` command.\nIf you need to see the output of a command, set the last attribute to true.",
-        "default": "Home folder,folder_home,nemo,false\nMy folder,folder,nemo,false\nRoot folder,disks,nemo /,false\nComputer,computer,nemo computer://,false\nTerminal,terminal,gnome-terminal,false\nSome App,go-next-symbolic,top,true\nCustom cmd\\,\\nls -alF,someicon,ls -alF --color=auto && bash,true\nNo Icon,,,false\nConfigure links\\nin the settings.\\nRight click\\nthen configure.,settings,,false",
-        "height": 200
+    "links-top-label": {
+        "type": "label",
+        "description": "Each link has 5 attributes you can change:\n - Display: determines whether your link will be shown or not \n - Name that will be displayed\n - Icon name: you can choose any system icon or leave blank\n - Command to be executed when clicked\n - Shell: select if you want the terminal to show up after clicking"
     },
-    "link-update-button": {
-        "type": "button",
-        "description": "Update",
-        "callback": "on_reset_links_callback"
+    "links-bottom-label": {
+        "type": "label",
+        "description": "Some tips:\nYou can open folders using ex. `nemo <path>` command.\nIf you need to see the output of a command, set the last attribute to true.\nYou can break your links' names into multiple lines by typing \\n where you want a break.\nSet `Shell` to enabled if your command only outputs to the console ex. `ls` or `htop`.\nIf you want multiple link categories/panels just create new instances of this desklet\n (click the `+` sign in system desklet manager)."
+    },
+    "links-list" : {
+        "type" : "list",
+        "columns" : [
+            {"id": "is-visible", "title": "Display", "type": "boolean", "default": true},
+            {"id": "name", "title": "Name", "type": "string", "default": "Name"},
+            {"id": "icon-name", "title": "Icon name", "type": "string", "default": "folder"},
+            {"id": "command", "title": "Command", "type": "string", "default": "nemo /"},
+            {"id": "shell", "title": "Shell", "type": "boolean", "default": false, "align": 0}
+        ],
+		"height": 250,
+        "default" : [
+            {
+                "is-visible": true,
+                "name": "Home folder",
+                "icon-name": "folder_home",
+                "command": "nemo",
+                "shell": false
+            },
+            {
+                "is-visible": true,
+                "name": "My folder",
+                "icon-name": "folder",
+                "command": "nemo",
+                "shell": false
+            },
+            {
+                "is-visible": true,
+                "name": "Root folder",
+                "icon-name": "disks",
+                "command": "nemo /",
+                "shell": false
+            },
+            {
+                "is-visible": true,
+                "name": "Computer",
+                "icon-name": "computer",
+                "command": "nemo computer://",
+                "shell": false
+            },
+            {
+                "is-visible": true,
+                "name": "Terminal",
+                "icon-name": "terminal",
+                "command": "gnome-terminal",
+                "shell": false
+            },
+            {
+                "is-visible": false,
+                "name": "VS Code project",
+                "icon-name": "vscode",
+                "command": "code myproject.code-workspace",
+                "shell": false
+            },
+            {
+                "is-visible": false,
+                "name": "Firefox",
+                "icon-name": "firefox",
+                "command": "firefox",
+                "shell": false
+            },
+            {
+                "is-visible": true,
+                "name": "Custom cmd",
+                "icon-name": "exec",
+                "command": "ls -alF --color=auto && bash",
+                "shell": true
+            },
+            {
+                "is-visible": false,
+                "name": "No Icon example",
+                "icon-name": "",
+                "command": "",
+                "shell": false
+            },
+            {
+                "is-visible": true,
+                "name": "Configure links\\nin the settings.\\nRight click\\nthen configure.",
+                "icon-name": "settings",
+                "command": "xlet-settings desklet quicklinks@NotSirius-A",
+                "shell": false
+            }
+        ],
+		"show-buttons": true
+    },
+    "icon-picker-label": {
+        "type": "label",
+        "description": "The setting below does not impact the desklet. It's here for convenience.\nYou can browse through icons here and find their names easily."
     },
     "icon-picker": {
         "type": "iconfilechooser",
         "default": "folder",
-        "description": "This setting does not impact the desklet. It's here for convenience.\nYou can browse through icons here and find their names easily.",
+        "description": "Click the icon to browse",
         "tooltip": "Click the icon on the right to browse. This setting is not used anywhere. "
     },
     "desklet-layout": {
@@ -156,7 +243,7 @@
         "max": 200,
         "step": 1,
         "units": "pixels",
-        "description": "Icon size",
+        "description": "Icon size (set to 0 do disable icons)",
         "tooltip": "Increase or decrease the icon size (set to 0 to disable icons)."
     },
     "font": {

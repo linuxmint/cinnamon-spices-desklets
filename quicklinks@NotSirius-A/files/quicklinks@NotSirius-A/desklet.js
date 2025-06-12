@@ -13,7 +13,7 @@ const Gettext = imports.gettext;
 const Pango = imports.gi.Pango;
 const Tooltips = imports.ui.tooltips;
 
-const UUID = "devtest-quicklinks@NotSirius-A";
+const UUID = "quicklinks@NotSirius-A";
 const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
 
 // translation support
@@ -40,6 +40,8 @@ MyDesklet.prototype = {
 	_init: function(metadata, desklet_id) {
 		Desklet.Desklet.prototype._init.call(this, metadata);
 
+		this.desklet_id = desklet_id;
+
 		// Import settings to app
 		this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this.on_setting_changed);
@@ -59,7 +61,7 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "customTextColor", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "text-shadow", "textShadow", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "text-shadow-color", "textShadowColor", this.on_setting_changed);
-		this.settings.bindProperty(Settings.BindingDirection.IN, "links-text", "linksText", ()=>{});
+		this.settings.bindProperty(Settings.BindingDirection.IN, "links-list", "linksList", this.on_setting_changed);
 
 
 		this.runDesklet();
@@ -70,78 +72,47 @@ MyDesklet.prototype = {
 	* Starts desklet, imports links, renders UI 
 	*/
 	runDesklet: function() {
-
-		try {
-			this.links = this.parseLinks(this.linksText);
-		}
-		catch(err) {
-			Main.notifyError(_("Quick Links: Error while parsing links: ") + err, " ");
-			return;
-		}
 		
-		if (this.links !== false) {
-			// Render desklet gui
-			this.renderGUI();
+		this.links = this.getLinks(this.linksList);
 
-			// Render system desklet decorations
-			this.renderDecorations();
-		}
+		// Render desklet gui
+		this.renderGUI();
 
-		
+		// Render system desklet decorations
+		this.renderDecorations();
 
 	},
 
 
 	/**
-	* Parses links in text format to objects, performs some validity checks
-	* @param {string} a - Links in text format
-	* @returns {(Object[]|bool)} Array of objects representing links or false if failed
+	* Process raw links and output links that are ready to be rendered onto the screen
+	* @param {Object[]} linksRaw - List of raw links objects
+	* @returns {Object[]} Array of objects representing links
 	*/
-	parseLinks: function(linksText) {
+	getLinks: function(linksRaw) {
 		let links_parsed = [];
 
-		// Links are separated by not escaped newlines
-		const link_lines = linksText.split("\n");
+		// Add a placeholder link to let to user know there are no links to be displayed
+		let noDisplayLinks = linksRaw.length < 1 || !linksRaw.some((el) => el["is-visible"])
+		if (noDisplayLinks) {
+			return [{
+				"is-visible": true,
+				"name": "No visible\nlinks found.\nConfigure links\nin the settings.\nRight click\non desklet\nthen configure.",
+				"icon-name": "",
+				"command": "xlet-settings desklet " + UUID + " " + this.desklet_id,
+				"shell": false,
+			},]
+		} 
 
-		link_lines.forEach(line => {
-			line = line.trim();
+		linksRaw.forEach(link => {
+			// Replace escaped newlines with actual newlines to allow user to split name into multiple lines
+			link["name"] = link["name"].replaceAll("\\n", "\n");
 
-			if (line.length < 2) {
-				return // continue to next item if empty line
+			// Add only links which are set to visible
+			if (link["is-visible"]) {
+				links_parsed.push(link);
 			}
-
-			// Attrs are separated by commas
-			// Match commas if not preceded by \, this allows to easily escape commas
-			// Replace `\,` with actual `,`
-			const attrs = line.split(/(?<!\\),/).map((el) => el.replaceAll("\\,", ","));
-
-			if (attrs.length < 4) {
-				Main.notifyError(_("Quick Links: Invalid format - not enough attributes `") + attrs.length + _("`, expected 4. On line: `") + line + "`", " ");
-				return	// continue to next item
-			} else if (attrs.length > 4) {
-				Main.notifyError(_("Quick Links: Invalid format - too many attributes `") + attrs.length + _("`, expected 4. On line: `") + line + "`", " ");
-				return	// continue to next item 				
-			}
-
-
-			// Main.notifyError(attrs.toString(), " "); // debug
-
-			// Replace escaped newlines with actual newlines
-			attrs[0] = attrs[0].replaceAll("\\n", "\n");
-
-			const parsed = {
-				"name": attrs[0],
-				"icon": attrs[1],
-				"cmd": attrs[2],
-				"shell": (attrs[3].toLowerCase() === 'true'),
-			};
-			links_parsed.push(parsed);
-		});
-
-		if (links_parsed.length < 1) {
-			Main.notifyError(_("Quick Links: No links found, make sure to put each link on a new line"), " ");
-			return false;
-		}
+		})
 
 
 		return links_parsed;
@@ -223,8 +194,8 @@ MyDesklet.prototype = {
 		link_content_container.set_layout_manager(link_content_grid);
 
 
-		if (link_data["icon"].length > 1 && this.iconSize > 1) {
-			let link_icon = new St.Icon({ icon_name: link_data["icon"], icon_type: St.IconType.APPLICATION, icon_size: this.iconSize, style_class:"link-icon" });
+		if (link_data["icon-name"].length > 1 && this.iconSize > 1) {
+			let link_icon = new St.Icon({ icon_name: link_data["icon-name"], icon_type: St.IconType.APPLICATION, icon_size: this.iconSize, style_class:"link-icon" });
 			if (this.deskletLayout === "tile") {
 				link_icon.set_width(Math.round(this.link_width * 0.95));
 			}
@@ -265,11 +236,14 @@ MyDesklet.prototype = {
 		
 				
 		// Run command when link clicked, open shell if user set shell=true 
-		let command_line = link_data["cmd"];
+		let command_line = link_data["command"];
 		let shell = link_data["shell"];
-		link_el.connect("clicked", Lang.bind(this, function() {
-			this.runCommandOnClick(command_line, shell)
-		}));
+
+		if (command_line.length > 0) {
+			link_el.connect("clicked", Lang.bind(this, function() {
+				this.runCommandOnClick(command_line, shell)
+			}));
+		}
 		
 		// Add command to tooltip - display command when hovering over link element
 		new Tooltips.Tooltip(link_el, command_line);
