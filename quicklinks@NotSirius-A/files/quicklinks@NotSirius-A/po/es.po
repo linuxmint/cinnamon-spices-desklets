@@ -1,0 +1,288 @@
+# QUICK LINKS
+# This file is put in the public domain.
+# NotSirius-A, 2017
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: quicklinks@NotSirius-A 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-06-07 12:26+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+
+#. desklet.js:78
+msgid "Quick Links: Error while parsing links: "
+msgstr "Enlaces directos: Error al analizar los enlaces: "
+
+#. desklet.js:119
+msgid "Quick Links: Invalid format - not enough attributes `"
+msgstr "Enlaces directos: Formato no válido - no hay suficientes atributos `"
+
+#. desklet.js:119 desklet.js:122
+msgid "`, expected 4. On line: `"
+msgstr "`, esperado 4. En línea: `"
+
+#. desklet.js:122
+msgid "Quick Links: Invalid format - too many attributes `"
+msgstr "Enlaces directos: Formato no válido - demasiados atributos `"
+
+#. desklet.js:142
+msgid "Quick Links: No links found, make sure to put each link on a new line"
+msgstr ""
+"Enlaces directos: No se han encontrado enlaces, asegúrese de poner cada "
+"enlace en una nueva línea"
+
+#. desklet.js:297
+msgid "Quick Links: Command parse error: "
+msgstr "Enlaces directos: Error de análisis de comandos: "
+
+#. metadata.json->name
+#. desklet.js:320
+msgid "Quick Links"
+msgstr "Enlaces directos"
+
+#. metadata.json->description
+msgid ""
+"Customizable quick links panel. Allows you to create beautiful themed "
+"desktop shortcuts for your most used folders/commands."
+msgstr ""
+"Panel de enlaces directos personalizables. Permite crear bonitos accesos "
+"directos temáticos en el escritorio para las carpetas/comandos más "
+"utilizados."
+
+#. settings-schema.json->general-page->title
+msgid "Links"
+msgstr "Enlaces"
+
+#. settings-schema.json->theme-page->title
+msgid "Theme"
+msgstr "Tema"
+
+#. settings-schema.json->links-section->title
+msgid "Set up your links here"
+msgstr "Configure sus enlaces aquí"
+
+#. settings-schema.json->iconselect-section->title
+msgid "Find icon names here"
+msgstr "Encuentre aquí los nombres de los iconos"
+
+#. settings-schema.json->layout-section->title
+msgid "Layout"
+msgstr "Disposición"
+
+#. settings-schema.json->font-section->title
+msgid "Font"
+msgstr "Fuente"
+
+#. settings-schema.json->label-section->title
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Etiqueta personalizada del desklet (sólo visible si las decoraciones están "
+"activadas)"
+
+#. settings-schema.json->links-text->description
+msgid ""
+"Each link has 4 attributes you can change: \n"
+" - name that will be displayed,\n"
+" - icon name: you can choose any system icon,\n"
+" - command to be executed when clicked\n"
+" - true/false if you want the terminal to show up.\n"
+"Each attribute must be separated by a comma and each link must be separated "
+"with an Enter key (newline).\n"
+"Commas can be escaped with '\\,' and newlines can be placed with '\\n'.\n"
+"You can open folders using ex. `nemo <path>` command.\n"
+"If you need to see the output of a command, set the last attribute to true."
+msgstr ""
+"Cada enlace tiene 4 atributos que puedes cambiar\n"
+" - nombre que se mostrará,\n"
+" - nombre del icono: puede elegir cualquier icono del sistema,\n"
+" - comando que se ejecutará al hacer clic\n"
+" - true/false si quieres que aparezca el terminal.\n"
+"Cada atributo debe ir separado por una coma y cada enlace debe ir separado "
+"con una tecla Enter (nueva línea).\n"
+"Las comas pueden escaparse con '\\', y las nuevas líneas pueden colocarse "
+"con '\\n'.\n"
+"Puede abrir carpetas utilizando, por ejemplo, el comando `nemo <path>`.\n"
+"Si necesita ver la salida de un comando, establezca el último atributo en "
+"true."
+
+#. settings-schema.json->link-update-button->description
+msgid "Update"
+msgstr "Actualizar"
+
+#. settings-schema.json->icon-picker->description
+msgid ""
+"This setting does not impact the desklet. It's here for convenience.\n"
+"You can browse through icons here and find their names easily."
+msgstr ""
+"Este ajuste no afecta al desklet. Está aquí por comodidad.\n"
+"Puedes navegar por los iconos aquí y encontrar sus nombres fácilmente."
+
+#. settings-schema.json->icon-picker->tooltip
+msgid ""
+"Click the icon on the right to browse. This setting is not used anywhere. "
+msgstr ""
+"Haga clic en el icono de la derecha para navegar. Este ajuste no se utiliza "
+"en ninguna parte. "
+
+#. settings-schema.json->desklet-layout->description
+msgid ""
+"Choose how links should be laid out.\n"
+"(You might also want to change text alignment.)"
+msgstr ""
+"Elija la disposición de los enlaces.\n"
+"(También puede cambiar la alineación del texto)."
+
+#. settings-schema.json->desklet-layout->options
+msgid "List view"
+msgstr "Vista de lista"
+
+#. settings-schema.json->desklet-layout->options
+msgid "Tile view"
+msgstr "Vista de mosaico"
+
+#. settings-schema.json->desklet-layout->tooltip
+msgid "Pick a layout for this desklet."
+msgstr "Elige un diseño para este desklet."
+
+#. settings-schema.json->text-align->description
+msgid "Text alignment"
+msgstr "Alineación del texto"
+
+#. settings-schema.json->text-align->options
+msgid "Left"
+msgstr "A la izquierda"
+
+#. settings-schema.json->text-align->options
+msgid "Center"
+msgstr "En el centro"
+
+#. settings-schema.json->text-align->options
+msgid "Right"
+msgstr "A la derecha"
+
+#. settings-schema.json->column-number->description
+msgid "Number of columns"
+msgstr "Número de columnas"
+
+#. settings-schema.json->column-number->tooltip
+msgid "Increase or decrease the number of columns on the layout."
+msgstr "Aumentar o reducir el número de columnas de la disposición."
+
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr "Sombra de texto"
+
+#. settings-schema.json->text-shadow-color->description
+msgid "Text shadow color"
+msgstr "Color de la sombra del texto"
+
+#. settings-schema.json->transparent-bg->description
+msgid "Transparent background (works well with no decorations)"
+msgstr "Fondo transparente (funciona bien sin decoraciones)"
+
+#. settings-schema.json->transparent-bg->tooltip
+msgid "Select if you want a transparent background."
+msgstr "Seleccione si desea un fondo transparente."
+
+#. settings-schema.json->bg-color->description
+msgid "Link background color"
+msgstr "Color de fondo del enlace"
+
+#. settings-schema.json->bg-color->tooltip
+msgid "Set the color of the links background."
+msgstr "Establecer el color del fondo de los enlaces."
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide desklet decorations"
+msgstr "Ocultar decoraciones del desklet"
+
+#. settings-schema.json->icon-size->units
+#. settings-schema.json->size-font->units
+msgid "pixels"
+msgstr "píxeles"
+
+#. settings-schema.json->icon-size->description
+msgid "Icon size"
+msgstr "Tamaño del icono"
+
+#. settings-schema.json->icon-size->tooltip
+msgid "Increase or decrease the icon size (set to 0 to disable icons)."
+msgstr ""
+"Aumentar o disminuir el tamaño de los iconos (poner a 0 para desactivar los "
+"iconos)."
+
+#. settings-schema.json->font->description
+msgid "Font name"
+msgstr "Nombre de la fuente"
+
+#. settings-schema.json->font->tooltip
+msgid "Change font family ex. Ubuntu, Roboto, DejaVu Serif"
+msgstr "Cambiar la familia de fuentes ex. Ubuntu, Roboto, DejaVu Serif"
+
+#. settings-schema.json->size-font->description
+msgid "Font size"
+msgstr "Tamaño de la fuente"
+
+#. settings-schema.json->size-font->tooltip
+msgid "Increase or decrease the font size."
+msgstr "Aumentar o disminuir el tamaño de la fuente."
+
+#. settings-schema.json->font-bold->description
+msgid "Bold"
+msgstr "Negrita"
+
+#. settings-schema.json->font-italic->description
+msgid "Italic"
+msgstr "Cursiva"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Color del texto"
+
+#. settings-schema.json->text-color->tooltip
+msgid "Set the text color of this desklet."
+msgstr "Establecer el color del texto de este desklet."
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "factor de escala"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size, mostly impacts width"
+msgstr "El tamaño del Desklet afecta principalmente el ancho"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Aumentar o disminuir el tamaño de este desklet utilizando este factor de "
+"escala."
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Utilizar una etiqueta de desklet personalizada"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Si marca esta casilla, podrá establecer una etiqueta personalizada en el "
+"campo inferior."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Etiqueta del desklet personalizada"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr ""
+"Establezca aquí su etiqueta personalizada. Este campo no está disponible a "
+"menos que la casilla anterior esté activada."
