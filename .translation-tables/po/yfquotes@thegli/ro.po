@@ -1,0 +1,574 @@
+# Yahoo Finance Quotes Desklet
+# Copyright (C) 2018 Thomas Egli
+# This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-05-12 00:33+0200\n"
+"PO-Revision-Date: 2023-07-19 22:16+0200\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+
+#. desklet.js:119
+msgid "No quotes data to display"
+msgstr ""
+
+#. desklet.js:516
+msgid "Empty quotes list. Open settings and add some symbols."
+msgstr ""
+
+#. desklet.js:561 desklet.js:585
+msgid "Authorization parameters have expired"
+msgstr ""
+
+#. desklet.js:564 desklet.js:588
+msgid "Yahoo Finance service not available!\\nStatus: "
+msgstr "Serviciul Yahoo Finance nu este disponibil!"
+
+#. desklet.js:988
+msgid "Updated at "
+msgstr "Actualizat la"
+
+#. desklet.js:1020
+msgid "Error: "
+msgstr "Eroare:"
+
+#. desklet.js:1146
+msgid ""
+"Failed to retrieve authorization parameter! Unable to fetch quotes data."
+"\\nStatus: "
+msgstr ""
+
+#. desklet.js:1173
+msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
+msgstr ""
+
+#. desklet.js:1179
+msgid ""
+"Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
+msgstr ""
+
+#. desklet.js:1207
+msgid ""
+"Failed to retrieve authorization crumb! Unable to fetch quotes data."
+"\\nStatus: "
+msgstr ""
+
+#. metadata.json->description
+msgid ""
+"Displays financial market information such as stock quotes and commodity "
+"prices from Yahoo Finance"
+msgstr ""
+"Afișează informații de pe piața financiară, cum ar fi cotațiile bursiere și "
+"prețurile mărfurilor de pe Yahoo Finance"
+
+#. metadata.json->name
+msgid "Yahoo Finance Quotes"
+msgstr "Cotații Yahoo Finance"
+
+#. settings-schema.json->dataPage->title
+#. settings-schema.json->dataSymbolsSection->title
+msgid "Quotes"
+msgstr "Cotații"
+
+#. settings-schema.json->detailsPage->title
+msgid "Details"
+msgstr "Detalii"
+
+#. settings-schema.json->presentationPage->title
+msgid "Presentation"
+msgstr "Prezentare"
+
+#. settings-schema.json->layoutPage->title
+msgid "Layout"
+msgstr "Layout"
+
+#. settings-schema.json->networkPage->title
+msgid "Network"
+msgstr ""
+
+#. settings-schema.json->dataUpdateSection->title
+msgid "Data Updates"
+msgstr "Actualizări de date"
+
+#. settings-schema.json->detailsNameSection->title
+msgid "Name"
+msgstr "Nume"
+
+#. settings-schema.json->detailsSymbolSection->title
+msgid "Symbol"
+msgstr "Simbol"
+
+#. settings-schema.json->detailsPriceSection->title
+msgid "Price"
+msgstr "Preț"
+
+#. settings-schema.json->detailsChangeSection->title
+msgid "Change"
+msgstr "Schimbare"
+
+#. settings-schema.json->detailsDateTimeSection->title
+msgid "Date and Time"
+msgstr "Data și ora"
+
+#. settings-schema.json->presentationFormattingSection->title
+msgid "Number Format"
+msgstr "Formatarea numerelor"
+
+#. settings-schema.json->presentationDateTimeFormattingSection->title
+msgid "Date and Time Format"
+msgstr ""
+
+#. settings-schema.json->presentationSortingSection->title
+msgid "Sorting"
+msgstr "Sortează"
+
+#. settings-schema.json->presentationFontSection->title
+msgid "Font"
+msgstr ""
+
+#. settings-schema.json->presentationColorsSection->title
+msgid "Trend Colors"
+msgstr "Culori"
+
+#. settings-schema.json->layoutDimensionSection->title
+msgid "Dimension"
+msgstr "Dimensiune"
+
+#. settings-schema.json->layoutEffectsSection->title
+msgid "Effects"
+msgstr "Efecte"
+
+#. settings-schema.json->networkSessionSection->title
+msgid "HTTP Session"
+msgstr ""
+
+#. settings-schema.json->width->description
+msgid "Width"
+msgstr "Lățime"
+
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+#. settings-schema.json->cornerRadius->units
+#. settings-schema.json->borderWidth->units
+msgid "pixels"
+msgstr "pixeli"
+
+#. settings-schema.json->width->tooltip
+msgid "Desklet width in pixels"
+msgstr "Lățimea deskletului în pixeli."
+
+#. settings-schema.json->height->description
+msgid "Height"
+msgstr "Înălțime"
+
+#. settings-schema.json->height->tooltip
+msgid "Desklet height in pixels"
+msgstr "Înălțimea deskletului în pixeli."
+
+#. settings-schema.json->transparency->description
+msgid "Background transparency"
+msgstr "Transparența fundalului"
+
+#. settings-schema.json->transparency->tooltip
+msgid "The higher the value, the more solid the desklet's background"
+msgstr ""
+"Cu cât valoarea este mai mare, cu atât fundalul deskletului este mai solid."
+
+#. settings-schema.json->backgroundColor->description
+msgid "Background color"
+msgstr ""
+
+#. settings-schema.json->backgroundColor->tooltip
+msgid "Desklet background color"
+msgstr ""
+
+#. settings-schema.json->cornerRadius->description
+msgid "Corner radius"
+msgstr ""
+
+#. settings-schema.json->cornerRadius->tooltip
+msgid "The higher the value, the rounder the desklet's corners"
+msgstr ""
+
+#. settings-schema.json->showVerticalScrollbar->description
+msgid "Show vertical scrollbar"
+msgstr ""
+
+#. settings-schema.json->showVerticalScrollbar->tooltip
+msgid ""
+"Display a vertical scrollbar when the quote list is longer than the "
+"desklet's height"
+msgstr ""
+
+#. settings-schema.json->borderWidth->description
+msgid "Border width"
+msgstr ""
+
+#. settings-schema.json->borderWidth->tooltip
+msgid ""
+"The higher the value, the thicker the desklet's border. A value of 0 hides "
+"the border."
+msgstr ""
+
+#. settings-schema.json->borderColor->description
+msgid "Border color"
+msgstr ""
+
+#. settings-schema.json->borderColor->tooltip
+msgid "Desklet border color"
+msgstr ""
+
+#. settings-schema.json->delayMinutes->units
+msgid "minutes"
+msgstr "minute"
+
+#. settings-schema.json->delayMinutes->description
+msgid "Update frequency"
+msgstr "Frecvența de actualizare"
+
+#. settings-schema.json->delayMinutes->tooltip
+msgid "Data refresh frequency, in minutes"
+msgstr "Frecvența de reîmprospătare a datelor, în minute."
+
+#. settings-schema.json->showLastUpdateTimestamp->description
+msgid "Show last update timestamp"
+msgstr "Afișează data și ora ultimei actualizări"
+
+#. settings-schema.json->showLastUpdateTimestamp->tooltip
+msgid "Display timestamp when quotes were updated last"
+msgstr "Afișează data și ora la care au fost actualizate ultimele cotații."
+
+#. settings-schema.json->manualDataUpdate->description
+msgid "Manual and automatic update"
+msgstr ""
+
+#. settings-schema.json->manualDataUpdate->tooltip
+msgid ""
+"Click last update timestamp to instantly refresh quotes data. Automatic "
+"update is still performed periodically."
+msgstr ""
+
+#. settings-schema.json->roundNumbers->description
+msgid "Round numbers"
+msgstr "Numere rotunde"
+
+#. settings-schema.json->roundNumbers->tooltip
+msgid "Perform rounding of floating-point numbers"
+msgstr "Efectuează rotunjirea numerelor în virgulă mobilă."
+
+#. settings-schema.json->decimalPlaces->units
+msgid "positions"
+msgstr "poziții"
+
+#. settings-schema.json->decimalPlaces->description
+msgid "Decimal places to round"
+msgstr "Zecimale de rotunjit"
+
+#. settings-schema.json->decimalPlaces->tooltip
+msgid "Number of positions to round to after decimal point"
+msgstr "Numărul de zecimale la care se rotunjește după virgulă."
+
+#. settings-schema.json->strictRounding->description
+msgid "Strict rounding"
+msgstr "Rotunjire strictă"
+
+#. settings-schema.json->strictRounding->tooltip
+msgid ""
+"Strict rounding to the specified decimal places (eg. 0 will be presented as "
+"0.00)"
+msgstr ""
+"Rotunjire strictă la zecimalele specificate (de exemplu, 0 va fi prezentat "
+"ca 0,00)."
+
+#. settings-schema.json->use24HourTime->description
+msgid "Force 24-hour clock"
+msgstr ""
+
+#. settings-schema.json->use24HourTime->tooltip
+msgid ""
+"Always display time in 24-hour notation, overriding system settings.\n"
+"This setting is ignored, when a custom time format is defined."
+msgstr ""
+
+#. settings-schema.json->customTimeFormat->description
+msgid "Custom time format"
+msgstr ""
+
+#. settings-schema.json->customTimeFormat->tooltip
+msgid ""
+"Format time with custom format instead of system settings.\n"
+"Examples:\n"
+"%H:%M:%S    23:47:51\n"
+"%I:%M %p    11:47 PM"
+msgstr ""
+
+#. settings-schema.json->customDateFormat->description
+msgid "Custom date format"
+msgstr ""
+
+#. settings-schema.json->customDateFormat->tooltip
+msgid ""
+"Format date with custom format instead of system settings.\n"
+"Examples:\n"
+"%m/%d          03/15\n"
+"%Y-%m-%d   2024-03-15\n"
+"%A, %b %d   Friday, Mar 15"
+msgstr ""
+
+#. settings-schema.json->quoteSymbols->description
+msgid "Quote symbols"
+msgstr "Simboluri de cotații"
+
+#. settings-schema.json->quoteSymbols->tooltip
+msgid "List of quote symbols, separated with line-breaks"
+msgstr "Listă de simboluri de cotații, separate prin întreruperi de linie."
+
+#. settings-schema.json->updateDataButton->description
+msgid "Refresh quotes data"
+msgstr ""
+
+#. settings-schema.json->updateDataButton->tooltip
+msgid "Apply and refresh quotes"
+msgstr ""
+
+#. settings-schema.json->sortCriteria->options
+msgid "given order"
+msgstr "ordin dat"
+
+#. settings-schema.json->sortCriteria->options
+msgid "percent change"
+msgstr "schimbare procentuală"
+
+#. settings-schema.json->sortCriteria->options
+msgid "name"
+msgstr "nume"
+
+#. settings-schema.json->sortCriteria->options
+msgid "symbol"
+msgstr "simbol"
+
+#. settings-schema.json->sortCriteria->description
+msgid "Sort list by"
+msgstr "Sortează lista după"
+
+#. settings-schema.json->sortCriteria->tooltip
+msgid "Sort the quote list"
+msgstr "Sortează lista de cotații."
+
+#. settings-schema.json->sortDirection->description
+msgid "Sort in ascending order"
+msgstr "Sortează în ordine crescătoare"
+
+#. settings-schema.json->sortDirection->tooltip
+msgid ""
+"Check to sort quotes in ascending order, uncheck to sort in descending order"
+msgstr ""
+"Bifează pentru a sorta cotațiile în ordine crescătoare, debifezi pentru a le "
+"sorta în ordine descrescătoare."
+
+#. settings-schema.json->showChangeIcon->description
+msgid "Show change/trend icon"
+msgstr "Afișează pictograma de schimbare/tendință"
+
+#. settings-schema.json->showChangeIcon->tooltip
+msgid "Indicates whether the market price moved up, down, or is unchanged"
+msgstr "Indică dacă prețul pieței a crescut, a scăzut sau a rămas neschimbat."
+
+#. settings-schema.json->showQuoteName->description
+msgid "Show verbose name"
+msgstr "Afișează numele detaliat"
+
+#. settings-schema.json->showQuoteName->tooltip
+msgid "Display the quote name (eg. International Business Machines)"
+msgstr ""
+"Afișează numele cotației (de exemplu, International Business Machines)."
+
+#. settings-schema.json->useLongQuoteName->description
+msgid "Use long version for verbose name"
+msgstr "Utilizează versiunea lungă pentru numele detaliat"
+
+#. settings-schema.json->useLongQuoteName->tooltip
+msgid ""
+"Use the long version for quote name, if available (eg. International "
+"Business Machines Corporation)"
+msgstr ""
+"Folosește versiunea lungă pentru numele cotației, dacă este disponibilă (de "
+"exemplu, International Business Machines Corporation)."
+
+#. settings-schema.json->linkQuoteName->description
+msgid "Add web link to name"
+msgstr "Adaugă un link web la nume"
+
+#. settings-schema.json->linkQuoteName->tooltip
+msgid "Click name to open quote in browser"
+msgstr "Fă clic pe nume pentru a deschide cotația în browser."
+
+#. settings-schema.json->showQuoteSymbol->description
+msgid "Show ticker/symbol"
+msgstr "Afișează tickerul/simbolul"
+
+#. settings-schema.json->showQuoteSymbol->tooltip
+msgid "Display the quote symbol (eg. IBM)"
+msgstr "Afișează simbolul cotației (de exemplu, IBM)."
+
+#. settings-schema.json->linkQuoteSymbol->description
+msgid "Add web link to ticker/symbol"
+msgstr "Adaugă un link web la ticker/simbol"
+
+#. settings-schema.json->linkQuoteSymbol->tooltip
+msgid "Click symbol to open quote in browser"
+msgstr "Fă clic pe simbol pentru a deschide cotația în browser."
+
+#. settings-schema.json->showMarketPrice->description
+msgid "Show price"
+msgstr "Afișează prețul"
+
+#. settings-schema.json->showMarketPrice->tooltip
+msgid "Display the current market price (eg. 146.79)"
+msgstr "Afișează prețul actual al pieței (de exemplu, 146,79)."
+
+#. settings-schema.json->showCurrencyCode->description
+msgid "Show currency symbol"
+msgstr "Afișează simbolul monedei"
+
+#. settings-schema.json->showCurrencyCode->tooltip
+msgid "Display the currency symbol of the price (eg. $)"
+msgstr "Afișează simbolul valutar al prețului (de exemplu, $)."
+
+#. settings-schema.json->showAbsoluteChange->description
+msgid "Show absolute change"
+msgstr "Afișează modificarea absolută"
+
+#. settings-schema.json->showAbsoluteChange->tooltip
+msgid "Display the absolute change of the market price (eg. +0.739)"
+msgstr ""
+"Afișează modificarea absolută a prețului de piață (de exemplu, +0,739)."
+
+#. settings-schema.json->showPercentChange->description
+msgid "Show percent change"
+msgstr "Afișează modificarea procentuală"
+
+#. settings-schema.json->showPercentChange->tooltip
+msgid "Display the percent change of the market price (eg. -0.53%)"
+msgstr ""
+"Afișează modificarea procentuală a prețului de piață (de exemplu, -0,53%)."
+
+#. settings-schema.json->colorPercentChange->description
+msgid "Use trend colors for percent change"
+msgstr "Folosește culori de tendință pentru schimbarea procentuală"
+
+#. settings-schema.json->colorPercentChange->tooltip
+msgid "Color the percent change to show the trend"
+msgstr "Colorează modificarea procentuală pentru a arăta tendința."
+
+#. settings-schema.json->showTradeTime->description
+msgid "Show trading time"
+msgstr "Afișează timpul de tranzacționare"
+
+#. settings-schema.json->showTradeTime->tooltip
+msgid "Display the last trading time (if current day) or date"
+msgstr ""
+"Afișează ultima oră de tranzacționare (dacă este ziua curentă) sau data."
+
+#. settings-schema.json->fontColor->description
+msgid "Font color"
+msgstr ""
+
+#. settings-schema.json->fontColor->tooltip
+msgid "Default text color"
+msgstr ""
+
+#. settings-schema.json->scaleFontSize->description
+msgid "Enable font size scaling"
+msgstr ""
+
+#. settings-schema.json->scaleFontSize->tooltip
+msgid "Apply custom font size instead of the system default size"
+msgstr ""
+
+#. settings-schema.json->fontScale->units
+msgid "times"
+msgstr ""
+
+#. settings-schema.json->fontScale->description
+msgid "Font size scale factor"
+msgstr ""
+
+#. settings-schema.json->fontScale->tooltip
+msgid "Enlarge/reduce the font size"
+msgstr ""
+
+#. settings-schema.json->uptrendChangeColor->description
+msgid "Uptrend change color"
+msgstr "Schimbare de culoare a tendinței ascendente"
+
+#. settings-schema.json->uptrendChangeColor->tooltip
+msgid "Color of the uptrend change"
+msgstr "Culoarea schimbării tendinței ascendente."
+
+#. settings-schema.json->downtrendChangeColor->description
+msgid "Downtrend change color"
+msgstr "Schimbare de culoare a tendinței descendente"
+
+#. settings-schema.json->unchangedTrendColor->description
+msgid "Unchanged trend color"
+msgstr "Culoare tendință neschimbată"
+
+#. settings-schema.json->unchangedTrendColor->tooltip
+msgid "Color of the unchanged trend"
+msgstr "Culoarea tendinței neschimbate."
+
+#. settings-schema.json->sendCustomUserAgent->description
+msgid "Send custom User-Agent header"
+msgstr "Trimite antetul personalizat User-Agent"
+
+#. settings-schema.json->sendCustomUserAgent->tooltip
+#, fuzzy
+msgid "Include a custom User-Agent header in Yahoo Finance Quotes API requests"
+msgstr ""
+"Include un antet User-Agent personalizat în solicitările API Yahoo Finance "
+"Quotes. În mod implicit, acest antet nu este setat."
+
+#. settings-schema.json->customUserAgent->description
+msgid "Custom User-Agent header"
+msgstr "Antet personalizat User-Agent"
+
+#. settings-schema.json->customUserAgent->tooltip
+msgid "Value for User-Agent header to send with all API requests"
+msgstr ""
+"Valoarea pentru antetul User-Agent care trebuie trimisă cu toate cererile "
+"API."
+
+#. settings-schema.json->enableCurl->description
+msgid "Use external tool curl"
+msgstr ""
+
+#. settings-schema.json->enableCurl->tooltip
+msgid "Requires separate installation of curl."
+msgstr ""
+
+#. settings-schema.json->curlCommand->description
+msgid "Path of curl executable"
+msgstr ""
+
+#. settings-schema.json->curlCommand->tooltip
+msgid "Provide absolute path of curl program file"
+msgstr ""
+
+#. settings-schema.json->applyNetworkSettingsButton->description
+msgid "Apply network settings"
+msgstr ""
+
+#. settings-schema.json->applyNetworkSettingsButton->tooltip
+msgid "Fetches new authorization parameters and refreshes quotes data"
+msgstr ""

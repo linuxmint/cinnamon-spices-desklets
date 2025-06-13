@@ -1,0 +1,355 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-05-03 11:37-0400\n"
+"PO-Revision-Date: 2023-12-08 07:45+0100\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"Language-Team: Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+#. desklet.js:138
+msgid "Refresh"
+msgstr "Opdatér"
+
+#. desklet.js:151
+msgid ""
+"Can't read text file.\n"
+"Select a file in settings.\n"
+"\n"
+"Click here to edit."
+msgstr ""
+"Kan ikke læse en tekstfil.\n"
+"Vælg en fil under indstillinger.\n"
+"\n"
+"Klik her for at redigere."
+
+#. desklet.js:289
+msgid "Notepad"
+msgstr "Notesblok"
+
+#. metadata.json->description
+msgid "A desklet to display notes including various themes."
+msgstr ""
+"Et enkelt skrivebordsprogram til visning af noter med forskellige temaer."
+
+#. metadata.json->name
+#. settings-schema.json->note-section->title
+msgid "Note"
+msgstr "Note"
+
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
+msgid "General"
+msgstr "Generel"
+
+#. settings-schema.json->visual-page->title
+#. settings-schema.json->visual-section->title
+msgid "Visual"
+msgstr "Visuel"
+
+#. settings-schema.json->label-section->title
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr "Tilpasset etiket (kun synlig hvis boksen rundt om er aktiveret)"
+
+#. settings-schema.json->note-taking-method->description
+msgid "Note Taking Method"
+msgstr ""
+
+#. settings-schema.json->note-taking-method->options
+msgid "Text File"
+msgstr "Tekstfil"
+
+#. settings-schema.json->note-taking-method->options
+msgid "Desklet Settings"
+msgstr "Programindstillinger"
+
+#. settings-schema.json->file->description
+msgid "Path to note text file"
+msgstr "Sti til notetekstfilen"
+
+#. settings-schema.json->file->tooltip
+msgid "Select your text file, where to read from and save to."
+msgstr "Vælg din tekstfil, hvor der skal læses fra og gemmes til."
+
+#. settings-schema.json->edit-cmd->description
+msgid "Command for editing this note (on mouse click)"
+msgstr "Kommando til redigering af denne note (ved museklik)"
+
+#. settings-schema.json->edit-cmd->tooltip
+msgid "%f will replaced by the text file path."
+msgstr "%f vil blive erstattet af stien til tekstfilen."
+
+#. settings-schema.json->note-text->description
+msgid "Write Your Note"
+msgstr ""
+
+#. settings-schema.json->style->description
+msgid "Notes style"
+msgstr "Notestil"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Black"
+msgstr "Tom note — Sort"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Blue"
+msgstr "Tom note — Blå"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Green"
+msgstr "Tom note — Grøn"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Orange"
+msgstr "Tom note — Orange"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Purple"
+msgstr "Tom note — Lilla"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - White"
+msgstr "Tom note — Hvid"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Yellow"
+msgstr "Tom note — Gul"
+
+#. settings-schema.json->style->options
+msgid "White Note - Black Button"
+msgstr "Hvid note — Sort tegnestift"
+
+#. settings-schema.json->style->options
+msgid "White Note - Blue Button"
+msgstr "Hvid note — Blå tegnestift"
+
+#. settings-schema.json->style->options
+msgid "White Note - Green Button"
+msgstr "Hvid note — Grøn tegnestift"
+
+#. settings-schema.json->style->options
+msgid "White Note - Red Button"
+msgstr "Hvid note — Rød tegnestift"
+
+#. settings-schema.json->style->options
+msgid "White Note - Yellow Button"
+msgstr "Hvid note — Gul tegnestift"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Black Clip"
+msgstr "Gul note — Sort papirklips"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Blue Clip"
+msgstr "Gul note — Blå papirklips"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Green Clip"
+msgstr "Gul note — Grøn papirklips"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Jingle Clip"
+msgstr "Gul note — Stribet papirklips"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Red Clip"
+msgstr "Gul note — Rød papirklips"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Yellow Clip"
+msgstr "Gul note — Gul papirklips"
+
+#. settings-schema.json->style->options
+msgid "White Note - Black Magnet"
+msgstr "Hvid note — Sort magnet"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Blue Magnet"
+msgstr "Gul note — Blå magnet"
+
+#. settings-schema.json->style->options
+msgid "White Note - Lines and Red Magnet"
+msgstr "Hvid note — Linjeret med rød magnet"
+
+#. settings-schema.json->style->options
+msgid "Black Note - White Magnet"
+msgstr "Sort note — Hvid magnet"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Yellow Magnet"
+msgstr "Gul note — Gul magnet"
+
+#. settings-schema.json->style->options
+msgid "Blue Paint Strokes"
+msgstr "Blå malestreger"
+
+#. settings-schema.json->style->options
+msgid "Green Paint Strokes"
+msgstr "Grønne malestreger"
+
+#. settings-schema.json->style->options
+msgid "Purple Paint Strokes"
+msgstr "Lilla malestreger"
+
+#. settings-schema.json->style->options
+msgid "Red Paint Strokes"
+msgstr "Røde malestreger"
+
+#. settings-schema.json->style->options
+msgid "Yellow Paint Strokes"
+msgstr "Gule malestreger"
+
+#. settings-schema.json->style->options
+msgid "White Note - Silver Spiral"
+msgstr "Hvid note — Sølvspiral"
+
+#. settings-schema.json->style->options
+msgid "White Note - Silver Spiral 2"
+msgstr "Hvid note — Sølvspiral 2"
+
+#. settings-schema.json->style->options
+msgid "White Note - Black Spiral"
+msgstr "Hvid note — Sort spiral"
+
+#. settings-schema.json->style->options
+msgid "White Note Large - Silver Spiral"
+msgstr "Hvid note, stor — Sølvspiral"
+
+#. settings-schema.json->style->options
+msgid "Yellow Sticker"
+msgstr "Gul post-it"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note (iOS Style)"
+msgstr "Gul note (iOS-stil)"
+
+#. settings-schema.json->style->options
+msgid "Birch Bark"
+msgstr "Birkebark"
+
+#. settings-schema.json->style->options
+msgid "Burned Paper"
+msgstr "Brændt papir"
+
+#. settings-schema.json->style->options
+msgid "Clay Tablet"
+msgstr "Lertavle"
+
+#. settings-schema.json->style->options
+msgid "Coffee Stained"
+msgstr "Kaffeplettet"
+
+#. settings-schema.json->style->options
+msgid "Clipboard"
+msgstr "Clipboard"
+
+#. settings-schema.json->style->options
+msgid "None"
+msgstr "Ingen"
+
+#. settings-schema.json->style->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Vælg den baggrundsgrafik, du ønsker at bruge."
+
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr ""
+
+#. settings-schema.json->text-shadow-color->description
+#, fuzzy
+msgid "Text shadow color"
+msgstr "Tekstfarve"
+
+#. settings-schema.json->bg-color->description
+msgid "Background color"
+msgstr "Baggrundsfarve"
+
+#. settings-schema.json->bg-color->tooltip
+msgid "Set the background color of this desklet."
+msgstr "Angiv baggrundsfarven for dette skrivebordsprogram."
+
+#. settings-schema.json->enable-word-wrap->description
+msgid "Enable word wrap"
+msgstr ""
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Skjul boks rundt om skrivebordsprogrammet"
+
+#. settings-schema.json->font->description
+msgid "Font"
+msgstr "Skrifttype"
+
+#. settings-schema.json->size-font->units
+msgid "pixels"
+msgstr "pixels"
+
+#. settings-schema.json->size-font->description
+msgid "Font size"
+msgstr "Skrifttypestørrelse"
+
+#. settings-schema.json->size-font->tooltip
+msgid "Increase or decrease the note font size."
+msgstr "Forøg eller formindsk notens skriftstørrelse."
+
+#. settings-schema.json->font-bold->description
+msgid "Bold"
+msgstr "Fed"
+
+#. settings-schema.json->font-italic->description
+msgid "Italic"
+msgstr "Kursiv"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Tekstfarve"
+
+#. settings-schema.json->text-color->tooltip
+msgid "Set the text color of this desklet."
+msgstr "Angiv tekstfarven for dette skrivebordsprogram."
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "skaleringsfaktor"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Skrivebordsprogrammets størrelse"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Forøg eller formindsk skrivebordsprogrammets størrelse med denne "
+"skaleringsfaktor."
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Anvend tilpasset etiket"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Afkrydsning af dette felt lader dig angive en tilpasset etiket i feltet "
+"nedenfor."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Tilpasset etiket"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr ""
+"Angiv din tilpassede etiket her. Dette felt er utilgængeligt, med mindre "
+"afkrydsningsfeltet ovenfor er aktiveret."

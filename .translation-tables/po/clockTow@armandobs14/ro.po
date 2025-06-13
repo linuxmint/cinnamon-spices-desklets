@@ -1,0 +1,31 @@
+# Romanian translations for PACKAGE package.
+# Copyright (C) 2023 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-26 13:17+0800\n"
+"PO-Revision-Date: 2017-04-26 13:17+0800\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+
+#: desklet.js:46
+msgid "Clock"
+msgstr "Ceas"
+
+#. clockTow@armandobs14->metadata.json->description
+msgid "A fork desklet that displays the time"
+msgstr "Un desklet derivat care afișează ora"
+
+#. clockTow@armandobs14->metadata.json->name
+msgid "ClockTow desklet"
+msgstr "ClockTow desklet"
