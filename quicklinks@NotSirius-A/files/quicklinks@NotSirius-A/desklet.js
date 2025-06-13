@@ -53,16 +53,20 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "transparent-bg", "isTransparentBg", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "bg-color", "customBgColor", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "icon-size", "iconSize", this.on_setting_changed);
-		this.settings.bindProperty(Settings.BindingDirection.IN, "font", "font", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "font", "fontRaw", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "font-bold", "fontBold", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "font-italic", "fontItalic", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this.on_setting_changed);
-		this.settings.bindProperty(Settings.BindingDirection.IN, "size-font", "sizeFont", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "font-enabled", "fontEnabled", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "customTextColor", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "text-shadow", "textShadow", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "text-shadow-color", "textShadowColor", this.on_setting_changed);
-		this.settings.bindProperty(Settings.BindingDirection.IN, "links-list", "linksList", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "links-list", "linksList", ()=>{});
 
+		// List settings type seems to be a bit buggy
+		// Using a callback on list type settings seems to trigger multiple refreshes when changing ANY settings 
+		//   even when bound variable is not used anywhere here
+		// Its probably safer to create a refresh button that using a callback on lists
 
 		this.runDesklet();
 	},
@@ -72,15 +76,35 @@ MyDesklet.prototype = {
 	* Starts desklet, imports links, renders UI 
 	*/
 	runDesklet: function() {
-		
-		this.links = this.getLinks(this.linksList);
 
+		// MAKE SURE to create a deepcopy of linkList, otherwise you could modify actual desklet settings using this variable
+		let links_list_deepcopy = JSON.parse(JSON.stringify(this.linksList));
+		this.links = this.getLinks(links_list_deepcopy);
+		
+		this.font = this.parseFont(this.fontRaw);
 		// Render desklet gui
 		this.renderGUI();
 
 		// Render system desklet decorations
 		this.renderDecorations();
+	},
 
+	/**
+	* Parse raw font string, TODO improve parsing, detect bold/italic etc.
+	* @param {string} fontString - Font descriptor
+	* @returns {{"family": string, "size": Number}} Font descriptor object
+	*/
+	parseFont: function(fontString) {
+		fontString = fontString.trim();
+		const font_split = fontString.split(" ");
+
+		const font_size = parseInt(font_split.pop());
+		let font_family = font_split.join(" ");
+
+		return {
+			"family": font_family,
+			"size": font_size
+		};
 	},
 
 
@@ -137,28 +161,33 @@ MyDesklet.prototype = {
 		const link_row_spacing = default_row_spacing * this.scale * spacing_scale;
 		const link_column_spacing = default_column_spacing * this.scale * spacing_scale;
 
-		
-		let root_el = new Clutter.Actor();
-		this.setContent(root_el); 
-		// Destroy all children before refreshing to make sure it doesn't render multiple versions on top of each other 
-		// There were issues with cinnamon crashing when refreshing desklet without destroying children
-		root_el.destroy_all_children();
+		// Destroy root_el and its children to avoid creating multiple copies and orphaned elements.
+		if (this.root_el) {
+			this.root_el.destroy_all_children();
+			this.root_el.destroy();
+		}
+
+		this.root_el = new Clutter.Actor();
+		this.setContent(this.root_el); 
+
 		
 		// Add layout name as a class so that it can be used in css
 		let container = new St.Group({style_class: "container " + this.deskletLayout}); 
-		root_el.add_child(container);
+		this.root_el.add_child(container);
 
 		let links_grid = new Clutter.GridLayout(); 
 		links_grid.set_row_spacing(Math.round(link_row_spacing));
 		links_grid.set_column_spacing(Math.round(link_column_spacing));
 		container.set_layout_manager(links_grid);
 
+
+
 		// Render link elements on the grid
 		for (let i = 0; i < this.links.length; ++i) {
 			this.renderLinkElement(i, links_grid);
 		}
 		
-		// Main.notifyError("renderUI done", " "); // debug
+		// Main.notifyError("renderGUI done", " "); // debug
 	},
 
 	
@@ -173,8 +202,9 @@ MyDesklet.prototype = {
 		let link_el = new St.Button({style_class:"link"});
 		link_el.set_width(Math.round(this.link_width));
 
-		link_el.style = "font-family: '" + this.font + "';"
-							+ "font-size: " + this.sizeFont + "px;"
+
+		link_el.style = "font-family: '" + this.font["family"] + "';"
+							+ "font-size: " + this.font["size"] + "px;"
 							+ "color:" + this.customTextColor + ";"
 							+ "font-weight:" + (this.fontBold ? "bold" : "normal") + ";"
 							+ "font-style:" + (this.fontItalic ? "italic" : "normal") + ";"
@@ -194,6 +224,7 @@ MyDesklet.prototype = {
 		link_content_container.set_layout_manager(link_content_grid);
 
 
+		// Render icon
 		if (link_data["icon-name"].length > 1 && this.iconSize > 1) {
 			let link_icon = new St.Icon({ icon_name: link_data["icon-name"], icon_type: St.IconType.APPLICATION, icon_size: this.iconSize, style_class:"link-icon" });
 			if (this.deskletLayout === "tile") {
@@ -202,40 +233,46 @@ MyDesklet.prototype = {
 			link_content_grid.attach(link_icon, 0, 0, 1, 1);
 		}	
 		
-		let link_label = new St.Label({style_class:"link-label"});
 
-		// Calculate the max width of a label based on current layout and icon size
-		// Multipliers are based on experimentation
-		let label_width;
-		if (this.deskletLayout === "tile") {
-			label_width = Math.round(this.link_width * 0.92);
-		} else {
-			label_width = Math.round(this.link_width - this.iconSize*2.3 - this.sizeFont * 1.5)
-			label_width = Math.max(label_width, 0);
-		}
-		link_label.set_width(label_width);
+		// Render label
+		if (this.fontEnabled) {
 
-		let label_container = new St.Group({style_class:"label-container"});
-		label_container.add_child(link_label);
+			let link_label = new St.Label({style_class:"link-label"});
+
+			// Calculate the max width of a label based on current layout and icon size
+			// Multipliers are based on experimentation
+			let label_width;
+			if (this.deskletLayout === "tile") {
+				label_width = Math.round(this.link_width * 0.92);
+			} else {
+				label_width = Math.round(this.link_width - this.iconSize*2.3 - this.font["size"] * 1.5)
+				label_width = Math.max(label_width, 0);
+			}
+			link_label.set_width(label_width);
 		
-		// Layout to center the label
-		let label_box = new Clutter.BoxLayout();
-		label_box.set_homogeneous(true);
-		label_container.set_layout_manager(label_box);
+
+			link_label.set_text(link_data["name"]);
+			
+			let label_container = new St.Group({style_class:"label-container"});
+			label_container.add_child(link_label);
+			
+			// Layout to center the label
+			let label_box = new Clutter.BoxLayout();
+			label_box.set_homogeneous(true);
+			label_container.set_layout_manager(label_box);
 
 
 
-		if (this.deskletLayout === "tile") {
-			link_content_grid.attach(label_container, 0, 1, 1, 1);
-		} else {
-			link_content_grid.attach(label_container, 1, 0, 1, 1);
+			if (this.deskletLayout === "tile") {
+				link_content_grid.attach(label_container, 0, 1, 1, 1);
+			} else {
+				link_content_grid.attach(label_container, 1, 0, 1, 1);
+			}
+
 		}
-
-
-		link_label.set_text(link_data["name"]); 
 		
 				
-		// Run command when link clicked, open shell if user set shell=true 
+		// Attach command when link clicked, open shell if user set shell=true 
 		let command_line = link_data["command"];
 		let shell = link_data["shell"];
 

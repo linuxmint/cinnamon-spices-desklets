@@ -22,6 +22,8 @@ You can customize this desklet to your taste. Choose from two layouts a list or 
 
 * This desklet is currently only available in English, it could use more translations. I might add a Polish translation myself in the future.
 
+* Improve font parsing.
+
 * More visual customizations could be added.
 
 * Unfortunately, the xlet settings API at this moment doesn't support `iconfilechooser` within `list` setting, so icons have to be typed in by name, which is somewhat annoying.
