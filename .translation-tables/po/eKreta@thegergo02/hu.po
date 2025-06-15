@@ -1,0 +1,286 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: eKreta@thegergo02 0.3\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-04-29 14:50-0400\n"
+"PO-Revision-Date: 2024-06-29 07:53+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: desklet.js:174
+msgid ""
+"Error: Couldn't login with the credetinals given. (Check the desklet "
+"settings.)"
+msgstr ""
+"Hiba: Nem sikerült bejelentkezni a megadott hitelesítő adatokkal. "
+"(Ellenőrizze az asztalkalmazás beállításait.)"
+
+#: desklet.js:557
+msgid "Monday"
+msgstr "Hétfő"
+
+#: desklet.js:561
+msgid "Tuesday"
+msgstr "Kedd"
+
+#: desklet.js:565
+msgid "Wednesday"
+msgstr "Szerda"
+
+#: desklet.js:569
+msgid "Thursday"
+msgstr "Csütörtök"
+
+#: desklet.js:573
+msgid "Friday"
+msgstr "Péntek"
+
+#: desklet.js:577
+msgid "Saturday"
+msgstr "Szombat"
+
+#: desklet.js:581
+msgid "Sunday"
+msgstr "Vasárnap"
+
+#: desklet.js:585
+msgid "Not a day"
+msgstr "Nem egy nap"
+
+#. metadata.json->name
+msgid "eKreta desklet"
+msgstr "eKreta asztalkalmazás\t"
+
+#. metadata.json->description
+msgid "Displays your grades from the eKreta API."
+msgstr "Megjeleníti az eKreta API-ból származó osztályzatokat."
+
+#. settings-schema.json->head0->description
+msgid "Settings for eKreta desklet."
+msgstr "Az eKreta asztalkalmazás beállításai."
+
+#. settings-schema.json->inst_id->description
+msgid "Institution ID (klik*********)"
+msgstr "Intézmény azonosító (klik*********)"
+
+#. settings-schema.json->inst_id->tooltip
+msgid "When you got your URL to login, before the first dot you got the ID."
+msgstr ""
+"Amikor megkapta az URL-t a bejelentkezéshez, az első pont előtt megkapta az "
+"azonosítót."
+
+#. settings-schema.json->usr->description
+msgid "Your username for the eKreta system."
+msgstr "Az Ön felhasználóneve az eKreta rendszerben."
+
+#. settings-schema.json->usr->tooltip
+#. settings-schema.json->pass->tooltip
+msgid "You need this to fetch data from the eKreta system."
+msgstr "Erre az eKreta rendszerből történő adatlekérdezéshez van szükség."
+
+#. settings-schema.json->pass->description
+msgid "Your password for the eKreta system."
+msgstr "Az ön jelszava az eKreta rendszerhez."
+
+#. settings-schema.json->delay_minutes->description
+msgid "Data update time interval."
+msgstr "Adatfrissítési időintervallum."
+
+#. settings-schema.json->delay_minutes->tooltip
+msgid "The time to wait till' the next data update. (In minutes)."
+msgstr "Várakozási idő a következő adatfrissítésig. (percben)."
+
+#. settings-schema.json->gzip_enabled->description
+msgid "Enable gZip"
+msgstr "gZip engedélyezése"
+
+#. settings-schema.json->gzip_enabled->tooltip
+msgid ""
+"Enable this if you want faster responses. On really old hardware, (if it can "
+"run Cinnamon, it can't be that old) it's better to turn off compression."
+msgstr ""
+"Engedélyezze ezt, ha gyorsabb válaszokat szeretne. Nagyon régi hardvereken "
+"(ha a Cinnamon fut rajta, akkor nem lehet annyira régi) jobb, ha kikapcsolja "
+"a tömörítést."
+
+#. settings-schema.json->head1->description
+msgid "Grade averages"
+msgstr "Osztályzatátlagok"
+
+#. settings-schema.json->show_grades->description
+msgid "Your grade averages"
+msgstr "Az ön osztályzatátlagai"
+
+#. settings-schema.json->show_grades->tooltip
+msgid "Show your grade averages."
+msgstr "Az ön osztályzatátlagainak megjelenítése"
+
+#. settings-schema.json->group_sub_categ->description
+msgid "Group by subject category"
+msgstr "Csoportosítás tantárgykategória szerint"
+
+#. settings-schema.json->group_sub_categ->tooltip
+msgid "Group your average grades by their category. (Doesn't look always good)"
+msgstr ""
+"Csoportosítsd az átlagos osztályzatokat kategóriájuk szerint. (Nem mindig "
+"néz ki jól)"
+
+#. settings-schema.json->show_class_av->description
+msgid "Class averages"
+msgstr "Osztályátlagok"
+
+#. settings-schema.json->show_class_av->tooltip
+msgid "Show class averages next to your averages."
+msgstr "Mutassa az osztályátlagokat az ön átlagai mellett."
+
+#. settings-schema.json->show_grade_diff->description
+msgid "Show grade average difference"
+msgstr "Az osztályzatok átlagai közti különbség megjelenítése"
+
+#. settings-schema.json->show_grade_diff->tooltip
+msgid ""
+"Show the difference between your avereages, and your class's averages (You "
+"have to turn on class averages)."
+msgstr ""
+"Mutasd meg a különbséget az ön átlagai és az ön osztályának átlagai között "
+"(be kell kapcsolnia az osztályátlagokat)."
+
+#. settings-schema.json->perfect_grade_value->description
+msgid "Perfect Grade."
+msgstr "Tökéletes osztályzat."
+
+#. settings-schema.json->perfect_grade_value->tooltip
+msgid "If your grade equals to this, it will be displayed as a perfect grade."
+msgstr ""
+"Ha az osztályzata megegyezik ezzel, akkor az tökéletes osztályzatként "
+"jelenik meg."
+
+#. settings-schema.json->almost_perfect_grade_value->description
+msgid "Almost Perfect Grade."
+msgstr "Majdnem kitűnő osztályzat."
+
+#. settings-schema.json->almost_perfect_grade_value->tooltip
+msgid ""
+"If your grade greater or equals to this, it will be displayed as an almost "
+"perfect grade."
+msgstr ""
+"Ha az osztályzata ennél nagyobb vagy egyenlő, akkor majdnem tökéletes "
+"osztályzatként jelenik meg."
+
+#. settings-schema.json->good_grade_value->description
+msgid "Good Grade."
+msgstr "Jó osztályzat"
+
+#. settings-schema.json->good_grade_value->tooltip
+msgid ""
+"If your grade greater or equals to this, it will be displayed as a good "
+"grade."
+msgstr ""
+"Ha az osztályzata ennél nagyobb vagy egyenlő, akkor az jó osztályzatként "
+"jelenik meg."
+
+#. settings-schema.json->middle_grade_value->description
+msgid "Middle Grade."
+msgstr "Közepes osztályzat"
+
+#. settings-schema.json->middle_grade_value->tooltip
+msgid ""
+"If your grade greater or equals to this, it will be displayed as a middle "
+"grade."
+msgstr ""
+"Ha az osztályzata ennél nagyobb vagy egyenlő, akkor az közepes "
+"osztályzatként jelenik meg."
+
+#. settings-schema.json->bad_grade_value->description
+msgid "Bad Grade."
+msgstr "Rossz osztályzat."
+
+#. settings-schema.json->bad_grade_value->tooltip
+msgid ""
+"If your grade greater or equals to this, it will be displayed as a bad grade."
+msgstr ""
+"Ha az osztályzata ennél nagyobb vagy egyenlő, akkor az rossz osztályzatként "
+"jelenik meg."
+
+#. settings-schema.json->really_bad_grade_value->description
+msgid "Really Bad Grade."
+msgstr "Nagyon rossz osztályzat."
+
+#. settings-schema.json->really_bad_grade_value->tooltip
+msgid ""
+"If your grade greater or equals to this, it will be displayed as a really "
+"bad grade. (Study sometimes...)"
+msgstr ""
+"Ha az osztályzata ennél nagyobb vagy egyenlő, akkor az nagyon rossz "
+"osztályzatként jelenik meg. (Néha tanuljon is egy kicsit...)"
+
+#. settings-schema.json->head2->description
+msgid "Grades"
+msgstr "Osztályzatok"
+
+#. settings-schema.json->show_grade_panel->description
+msgid "Your grades"
+msgstr "Az ön osztályzatai"
+
+#. settings-schema.json->show_grade_panel->tooltip
+msgid "Show your grades."
+msgstr "Az ön osztályzatainak megjelenítése"
+
+#. settings-schema.json->group_grades_sub->description
+msgid "Group grades by subject"
+msgstr "Osztályzatok csoportosítása tantárgyanként"
+
+#. settings-schema.json->group_grades_sub->tooltip
+msgid "Group your grades by the subject."
+msgstr "Osztályzatok csoportosítása a tantárgy alapján."
+
+#. settings-schema.json->head3->description
+msgid "Absences"
+msgstr "Távollétek"
+
+#. settings-schema.json->show_absences->description
+msgid "Your absences"
+msgstr "Az ön távollétei"
+
+#. settings-schema.json->show_absences->tooltip
+msgid "Show your absences."
+msgstr "Az ön távolléteinek megjelenítése."
+
+#. settings-schema.json->sort_absences->description
+msgid "Sort absences by subject"
+msgstr "Távollétek szűrése tantárgyak szerint"
+
+#. settings-schema.json->sort_absences->tooltip
+msgid "Organize your absences by your subjects."
+msgstr "Az ön távolléteinek rendezése tantárgyak szerint"
+
+#. settings-schema.json->head4->description
+msgid "Lessons"
+msgstr "Tanórák"
+
+#. settings-schema.json->show_lessons->description
+msgid "Show lessons"
+msgstr "Tanórák megjelenítése"
+
+#. settings-schema.json->show_lessons->tooltip
+msgid "Show your lessons."
+msgstr "Az ön tanóráinak megejelenítése."
+
+#. settings-schema.json->show_filtered_days->description
+msgid "Filter days"
+msgstr "Napok szűrése"
+
+#. settings-schema.json->show_filtered_days->tooltip
+msgid "Show just days you have lessons."
+msgstr "Csak azon napok megjelenítése amikor önnek tanórái vannak."

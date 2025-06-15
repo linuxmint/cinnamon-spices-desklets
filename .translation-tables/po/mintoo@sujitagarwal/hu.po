@@ -1,0 +1,27 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mintoo@sujitagarwal 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-18 09:20+0200\n"
+"PO-Revision-Date: 2024-06-29 08:06+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. metadata.json->name
+msgid "Mintoo - The Mint Assistant"
+msgstr "Mintoo - A Mint asszisztens"
+
+#. metadata.json->description
+msgid "A friendly assistant for your Linux Mint."
+msgstr "Egy barátságos asszisztens a Linux Mint számára."

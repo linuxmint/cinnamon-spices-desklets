@@ -1,0 +1,228 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 12:23+0200\n"
+"PO-Revision-Date: 2018-02-15 18:58+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+#. settings-schema.json->type->options
+#: desklet.js:275 desklet.js:356
+msgid "RAM"
+msgstr "Arbeitsspeicher"
+
+#. settings-schema.json->type->options
+#: desklet.js:277 desklet.js:358
+msgid "Swap"
+msgstr "Swap-Speicher"
+
+#. settings-schema.json->type->options
+#: desklet.js:279
+msgid "Filesystem"
+msgstr "Dateisystem"
+
+#: desklet.js:301
+msgid "Not Found"
+msgstr "Nicht gef."
+
+#. metadata.json->name
+#: desklet.js:360
+msgid "Disk Space"
+msgstr "Speicherplatzanzeige"
+
+#. metadata.json->description
+msgid "Displays the usage of a filesystem or RAM."
+msgstr "Zeigt die Auslastung eines Dateisystems oder des Arbeitsspeichers an."
+
+#. settings-schema.json->head0->description
+msgid "Settings for diskspace@schorschii"
+msgstr "Einstellungen für diskspace@schorschii"
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr "Allgemein"
+
+#. settings-schema.json->type->description
+msgid "Monitor a file system or RAM usage"
+msgstr "Ein Dateisystem oder den Arbeitsspeicher überwachen"
+
+#. settings-schema.json->type->tooltip
+msgid "Choose, if this desklet should show file system or RAM usage."
+msgstr ""
+"Wählen Sie, ob das Desklet die Auslastung eines Dateisystems oder des "
+"Arbeitsspeichers anzeigen soll."
+
+#. settings-schema.json->filesystem->description
+msgid "Filesystem to monitor"
+msgstr "Dateisystem, welches angezeigt werden soll"
+
+#. settings-schema.json->filesystem->tooltip
+msgid "Select the file system, which you want to monitor."
+msgstr "Wählen Sie das Dateisystem, welches Sie anzeigen möchten."
+
+#. settings-schema.json->onclick-action->description
+msgid "Action on mouse click"
+msgstr "Aktion bei Mausklick"
+
+#. settings-schema.json->onclick-action->tooltip
+msgid "Choose what to do when the desklet was clicked."
+msgstr "Wählen Sie, was passieren soll, wenn auf das Desklet geklickt wird."
+
+#. settings-schema.json->onclick-action->options
+msgid "Open File Manager"
+msgstr "Dateimanager öffnen"
+
+#. settings-schema.json->onclick-action->options
+msgid "Open Partition Manager"
+msgstr "Partitions-Editor öffnen"
+
+#. settings-schema.json->onclick-action->options
+msgid "Open System Monitor"
+msgstr "Systemüberwachung öffnen"
+
+#. settings-schema.json->onclick-action->options
+msgid "Nothing"
+msgstr "Nichts"
+
+#. settings-schema.json->size-prefix->description
+msgid "Size Prefix"
+msgstr "Präfixe"
+
+#. settings-schema.json->size-prefix->options
+msgid "Decimal"
+msgstr "Dezimal"
+
+#. settings-schema.json->size-prefix->options
+msgid "Binary"
+msgstr "Binär"
+
+#. settings-schema.json->reserved-blocks-as-used-space->description
+msgid "Show reserved blocks as used space"
+msgstr "Zeige reservierte Blöcke als verwendeten Speicher"
+
+#. settings-schema.json->reserved-blocks-as-used-space->tooltip
+msgid ""
+"Reserved blocks are useable for the root user only and that's why displayed "
+"as used space by default."
+msgstr ""
+"Reservierte Blöcke sind nur vom root-Benutzer verwendbar und daher "
+"standardmäßig ausgeblendet."
+
+#. settings-schema.json->head2->description
+msgid "Visual"
+msgstr "Visuelle Einstellungen"
+
+#. settings-schema.json->design->description
+msgid "Design"
+msgstr "Design"
+
+#. settings-schema.json->design->options
+msgid "Thin"
+msgstr "Dünn"
+
+#. settings-schema.json->design->options
+msgid "Compact"
+msgstr "Kompakt"
+
+#. settings-schema.json->design->options
+msgid "Classic (Thick)"
+msgstr "Klassisch (Dick)"
+
+#. settings-schema.json->text-view->description
+msgid "Text"
+msgstr "Text"
+
+#. settings-schema.json->text-view->options
+msgid "Name and total space"
+msgstr "Bezeichnung und Kapazität"
+
+#. settings-schema.json->text-view->options
+msgid "Used and total space"
+msgstr "Belegter Speicherplatz und Kapazität"
+
+#. settings-schema.json->text-view->options
+msgid "Total and used space"
+msgstr "Kapazität und Belegter Speicherplatz"
+
+#. settings-schema.json->text-view->options
+msgid "Free and total space"
+msgstr "Freier Speicherplatz und Kapazität"
+
+#. settings-schema.json->text-view->options
+msgid "Total and free space"
+msgstr "Kapazität und Freier Speicherplatz"
+
+#. settings-schema.json->text-view->options
+msgid "No text"
+msgstr "Kein Text"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Dekorationen verstecken"
+
+#. settings-schema.json->draw-free-space->description
+msgid "Draw free/unused space (gray)"
+msgstr "Zeichne freien/unbenutzten Speicherplatz (grau)"
+
+#. settings-schema.json->use-own-circle-color->description
+msgid "Use a custom circle color"
+msgstr "Kreisfarbe selbst festlegen"
+
+#. settings-schema.json->circle-color->description
+msgid "Circle color"
+msgstr "Kreisfarbe"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Textfarbe"
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "Skalierungsfaktor"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Deskletgröße"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Vergrößern oder verkleinern Sie dieses Desklet, indem Sie diesen "
+"Skalierungsfaktor verändern."
+
+#. settings-schema.json->head3->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr "Eigenes Desklet-Label (nur sichtbar, wenn Dekorationen aktiviert sind)"
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Ein eigenes Desklet-Label verwenden"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Wenn Sie diese Option aktivieren, können Sie ein eigenes Desklet-Label im "
+"Feld darunter festlegen."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Eigenes Desklet-Label"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr ""
+"Legen Sie hier ihr eigenes Label fest. Dieses Feld ist nicht verfügbar, "
+"solange die Option darüber nicht aktiviert wurde."
