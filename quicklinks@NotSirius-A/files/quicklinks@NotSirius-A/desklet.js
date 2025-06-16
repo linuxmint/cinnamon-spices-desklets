@@ -44,9 +44,8 @@ MyDesklet.prototype = {
 
 		// Import settings to app
 		this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
-		this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this.on_setting_changed);
-		this.settings.bindProperty(Settings.BindingDirection.IN, "use-custom-label", "useCustomLabel", this.on_setting_changed);
-		this.settings.bindProperty(Settings.BindingDirection.IN, "custom-label", "customLabel", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "show-decorations", "showDecorations", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "desklet-header", "deskletHeader", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "desklet-layout", "deskletLayout", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "text-align", "textAlign", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "column-number", "numOfColumns", this.on_setting_changed);
@@ -62,6 +61,8 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "text-shadow", "textShadow", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "text-shadow-color", "textShadowColor", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "links-list", "linksList", ()=>{});
+		this.settings.bindProperty(Settings.BindingDirection.IN, "click-type", "clickType", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "click-timeout", "clickTimeout", this.on_setting_changed);
 
 		// List settings type seems to be a bit buggy
 		// Using a callback on list type settings seems to trigger multiple refreshes when changing ANY settings 
@@ -76,6 +77,11 @@ MyDesklet.prototype = {
 	* Starts desklet, imports links, renders UI 
 	*/
 	runDesklet: function() {
+
+		this.lastClick = {
+			"link_index": null,
+			"time": Infinity,
+		};
 
 		// MAKE SURE to create a deepcopy of linkList, otherwise you could modify actual desklet settings using this variable
 		let links_list_deepcopy = JSON.parse(JSON.stringify(this.linksList));
@@ -121,7 +127,7 @@ MyDesklet.prototype = {
 		if (noDisplayLinks) {
 			return [{
 				"is-visible": true,
-				"name": "No visible\nlinks found.\nConfigure links\nin the settings.\nRight click\non desklet\nthen configure.",
+				"name": _("No visible\nlinks found.\nConfigure links\nin the settings.\nRight click\non desklet\nthen configure."),
 				"icon-name": "",
 				"command": "xlet-settings desklet " + UUID + " " + this.desklet_id,
 				"shell": false,
@@ -193,9 +199,11 @@ MyDesklet.prototype = {
 	
 	/**
 	* Renders a single link element on the parent grid according to its index
+	* @param {number} link_index - Integer index of link element
+	* @param {Clutter.GridLayout} parent_grid - Grid on which links are to be placed
 	*/
-	renderLinkElement: function(index, parent_grid) {
-		const link_data = this.links[index];
+	renderLinkElement: function(link_index, parent_grid) {
+		const link_data = this.links[link_index];
 		// Main.notifyError("Rendering link: " + link_data["name"], " "); // debug
 
 		// Link has to be a button so that it can be clickable
@@ -213,8 +221,8 @@ MyDesklet.prototype = {
 							+ "text-align:" + this.textAlign + ";";
 
 
-		const row = index%this.numOfColumns;
-		const column = Math.floor(index/this.numOfColumns);
+		const row = link_index%this.numOfColumns;
+		const column = Math.floor(link_index/this.numOfColumns);
 		parent_grid.attach(link_el, row, column, 1, 1);
 
 		let link_content_container = new St.Group({style_class:"link-content-container"});
@@ -262,7 +270,6 @@ MyDesklet.prototype = {
 			label_container.set_layout_manager(label_box);
 
 
-
 			if (this.deskletLayout === "tile") {
 				link_content_grid.attach(label_container, 0, 1, 1, 1);
 			} else {
@@ -270,28 +277,57 @@ MyDesklet.prototype = {
 			}
 
 		}
-		
-				
-		// Attach command when link clicked, open shell if user set shell=true 
-		let command_line = link_data["command"];
-		let shell = link_data["shell"];
 
-		if (command_line.length > 0) {
-			link_el.connect("clicked", Lang.bind(this, function() {
-				this.runCommandOnClick(command_line, shell)
-			}));
-		}
+		// Attach a callback to execute when St.Button is clicked
+		link_el.connect("clicked", Lang.bind(this, function() {
+			this.onLinkClick(link_index);
+		}));
+
 		
 		// Add command to tooltip - display command when hovering over link element
+		const command_line = link_data["command"];
 		new Tooltips.Tooltip(link_el, command_line);
 	},
 
 	/**
-	* This function should be executed when user clicks a link
+	* Execute this function when link is clicked 
+	* @param {number} link_index - Integer index of link element
+	*/
+	onLinkClick: function(link_index) {
+		const DBLCLICK_TIMEOUT = this.clickTimeout;
+		// Check is this click should be considered a doubleclick based on previous click
+		const is_dblclick = (this.lastClick["link_index"] === link_index) && (Date.now() - this.lastClick["time"]  < DBLCLICK_TIMEOUT);
+		
+		const command_line = this.links[link_index]["command"];
+		const shell = this.links[link_index]["shell"];
+
+		// Run command if this click is a doubleclick or single clicks are set
+		if (is_dblclick || this.clickType === "single") {
+			this.runLinkCommand(command_line, shell);
+
+			this.lastClick = {
+				"link_index": null,
+				"time": Infinity
+			};
+		} else {
+			this.lastClick = {
+				"link_index": link_index,
+				"time": Date.now()
+			};
+		}
+		
+	},
+
+	/**
+	* This function should be executed when link is activated
 	* @param {string} command_line - Bash command to be executed
 	* @param {boolean} shell - if true execute command in a gnome-terminal shell, otherwise execute in background
 	*/
-	runCommandOnClick: function(command_line, shell = true) {
+	runLinkCommand: function(command_line, shell = true) {
+		if (command_line.length < 0) {
+			return;
+		}
+
 		// Run command in gnome-terminal with bash -c if shell=true
 		const shell_argv  = ['gnome-terminal', '--', 'bash', '-c'];
 
@@ -324,14 +360,10 @@ MyDesklet.prototype = {
 	* Render desklet decorations
 	*/
 	renderDecorations: function() {
-		if(this.useCustomLabel == true) {
-			this.setHeader(this.customLabel);
-		}
-		else {
-			this.setHeader(_("Quick Links"));
-		}
-		// prevent decorations?
-		this.metadata["prevent-decorations"] = this.hideDecorations;
+
+		this.setHeader(this.deskletHeader);
+
+		this.metadata["prevent-decorations"] = !this.showDecorations;
 		this._updateDecoration();
 	},
 
