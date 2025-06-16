@@ -20,7 +20,7 @@ You can customize this desklet to your taste. Choose from two layouts a list or 
 
 ### What can be improved?
 
-* This desklet is currently only available in English, it could use more translations. I might add a Polish translation myself in the future.
+* This desklet could use more translations. I might add a Polish translation myself in the future.
 
 * Improve font parsing.
 
@@ -32,4 +32,4 @@ You can customize this desklet to your taste. Choose from two layouts a list or 
 
 ### Remarks
 
-@schorschii thank You for your notes@schorschii desklet. I've used it as a template for this desklet (I also use it on my PC). Also, thanks to the other desklet author I've used some of your code as a reference.
+@schorschii thank You for your notes@schorschii desklet. I've used it as a template for this desklet (I also use it on my PC). Also, thanks to the other desklet authors I've used some of your code as a reference.
