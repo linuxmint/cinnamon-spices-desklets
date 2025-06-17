@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: quicklinks@NotSirius-A 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-06-07 12:26+0200\n"
+"POT-Creation-Date: 2025-06-16 14:10+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,36 +17,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.6\n"
 
-#. desklet.js:78
-msgid "Quick Links: Error while parsing links: "
-msgstr "Enlaces directos: Error al analizar los enlaces: "
-
-#. desklet.js:119
-msgid "Quick Links: Invalid format - not enough attributes `"
-msgstr "Enlaces directos: Formato no válido - no hay suficientes atributos `"
-
-#. desklet.js:119 desklet.js:122
-msgid "`, expected 4. On line: `"
-msgstr "`, esperado 4. En línea: `"
-
-#. desklet.js:122
-msgid "Quick Links: Invalid format - too many attributes `"
-msgstr "Enlaces directos: Formato no válido - demasiados atributos `"
-
-#. desklet.js:142
-msgid "Quick Links: No links found, make sure to put each link on a new line"
+#. desklet.js:130
+msgid ""
+"No visible\n"
+"links found.\n"
+"Configure links\n"
+"in the settings.\n"
+"Right click\n"
+"on desklet\n"
+"then configure."
 msgstr ""
-"Enlaces directos: No se han encontrado enlaces, asegúrese de poner cada "
-"enlace en una nueva línea"
+"No se han encontrado\n"
+"enlaces visibles en\n"
+"Configure los enlaces\n"
+"en los ajustes.\n"
+"Haga clic derecho\n"
+"en desklet\n"
+"luego configurar."
 
-#. desklet.js:297
+#. desklet.js:344
 msgid "Quick Links: Command parse error: "
 msgstr "Enlaces directos: Error de análisis de comandos: "
-
-#. metadata.json->name
-#. desklet.js:320
-msgid "Quick Links"
-msgstr "Enlaces directos"
 
 #. metadata.json->description
 msgid ""
@@ -57,9 +48,17 @@ msgstr ""
 "directos temáticos en el escritorio para las carpetas/comandos más "
 "utilizados."
 
-#. settings-schema.json->general-page->title
+#. metadata.json->name
+msgid "Quick Links"
+msgstr "Enlaces directos"
+
+#. settings-schema.json->links-page->title
 msgid "Links"
 msgstr "Enlaces"
+
+#. settings-schema.json->actions-page->title
+msgid "Actions"
+msgstr "Acciones"
 
 #. settings-schema.json->theme-page->title
 msgid "Theme"
@@ -73,6 +72,10 @@ msgstr "Configure sus enlaces aquí"
 msgid "Find icon names here"
 msgstr "Encuentre aquí los nombres de los iconos"
 
+#. settings-schema.json->click-section->title
+msgid "Change how links are activated"
+msgstr "Cambiar el modo de activación de los enlaces"
+
 #. settings-schema.json->layout-section->title
 msgid "Layout"
 msgstr "Disposición"
@@ -81,49 +84,89 @@ msgstr "Disposición"
 msgid "Font"
 msgstr "Fuente"
 
-#. settings-schema.json->label-section->title
-msgid "Custom desklet label (only visible if decorations are enabled)"
-msgstr ""
-"Etiqueta personalizada del desklet (sólo visible si las decoraciones están "
-"activadas)"
+#. settings-schema.json->desklet-decorations-section->title
+msgid "Desklet decorations"
+msgstr "Decoraciones del desklet"
 
-#. settings-schema.json->links-text->description
+#. settings-schema.json->links-top-label->description
 msgid ""
-"Each link has 4 attributes you can change: \n"
-" - name that will be displayed,\n"
-" - icon name: you can choose any system icon,\n"
-" - command to be executed when clicked\n"
-" - true/false if you want the terminal to show up.\n"
-"Each attribute must be separated by a comma and each link must be separated "
-"with an Enter key (newline).\n"
-"Commas can be escaped with '\\,' and newlines can be placed with '\\n'.\n"
-"You can open folders using ex. `nemo <path>` command.\n"
-"If you need to see the output of a command, set the last attribute to true."
+"Each link has 5 attributes you can change:\n"
+" - Display: determines whether your link will be shown or not \n"
+" - Name that will be displayed\n"
+" - Icon name: you can choose any system icon or leave blank\n"
+" - Command to be executed when clicked\n"
+" - Shell: select if you want the terminal to show up after clicking"
 msgstr ""
-"Cada enlace tiene 4 atributos que puedes cambiar\n"
-" - nombre que se mostrará,\n"
-" - nombre del icono: puede elegir cualquier icono del sistema,\n"
-" - comando que se ejecutará al hacer clic\n"
-" - true/false si quieres que aparezca el terminal.\n"
-"Cada atributo debe ir separado por una coma y cada enlace debe ir separado "
-"con una tecla Enter (nueva línea).\n"
-"Las comas pueden escaparse con '\\', y las nuevas líneas pueden colocarse "
-"con '\\n'.\n"
-"Puede abrir carpetas utilizando, por ejemplo, el comando `nemo <path>`.\n"
-"Si necesita ver la salida de un comando, establezca el último atributo en "
-"true."
+"Cada enlace tiene 5 atributos que puede cambiar:\n"
+" - Mostrar: determina si su enlace se mostrará o no.\n"
+" - Nombre que se mostrará\n"
+" - Nombre del icono: puede elegir cualquier icono del sistema o dejarlo en "
+"blanco\n"
+" - Comando que se ejecutará al hacer clic\n"
+" - Shell: selecciona si quieres que aparezca el terminal después de hacer "
+"clic"
+
+#. settings-schema.json->links-bottom-label->description
+msgid ""
+"Some tips:\n"
+"You can open folders using ex. `nemo <path>` command.\n"
+"If you need to see the output of a command, set the last attribute to true.\n"
+"You can break your links' names into multiple lines by typing \\n where you "
+"want a break.\n"
+"Set `Shell` to enabled if your command only outputs to the console ex. `ls` "
+"or `htop`.\n"
+"If you want multiple link categories/panels just create new instances of "
+"this desklet\n"
+" (click the `+` sign in system desklet manager)."
+msgstr ""
+"Algunos consejos:\n"
+"Puede abrir carpetas usando, por ejemplo, el comando `nemo <path>`.\n"
+"Si necesita ver el resultado de un comando, configure el último atributo "
+"como `true`.\n"
+"Puede dividir los nombres de sus enlaces en varias líneas escribiendo `\\n` "
+"donde desee un salto de línea.\n"
+"Configure `Shell` como habilitado si su comando solo muestra la salida en la "
+"consola, por ejemplo, `ls` o `htop`.\n"
+"Si desea varias categorías/paneles de enlaces, simplemente cree nuevas "
+"instancias de este desklet \n"
+"(haga clic en el signo `+` en el administrador de desklets del sistema)."
+
+#. settings-schema.json->links-list->columns->title
+msgid "Display"
+msgstr "Mostrar"
+
+#. settings-schema.json->links-list->columns->title
+msgid "Name"
+msgstr "Nombre"
+
+#. settings-schema.json->links-list->columns->title
+msgid "Icon name"
+msgstr "Nombre del icono"
+
+#. settings-schema.json->links-list->columns->title
+msgid "Command"
+msgstr "Comando"
+
+#. settings-schema.json->links-list->columns->title
+msgid "Shell"
+msgstr "Shell"
 
 #. settings-schema.json->link-update-button->description
 msgid "Update"
 msgstr "Actualizar"
 
-#. settings-schema.json->icon-picker->description
+#. settings-schema.json->icon-picker-label->description
 msgid ""
-"This setting does not impact the desklet. It's here for convenience.\n"
+"The setting below does not impact the desklet. It's here for convenience.\n"
 "You can browse through icons here and find their names easily."
 msgstr ""
-"Este ajuste no afecta al desklet. Está aquí por comodidad.\n"
-"Puedes navegar por los iconos aquí y encontrar sus nombres fácilmente."
+"La siguiente configuración no afecta al desklet. Está aquí por "
+"conveniencia.\n"
+"Puede navegar por los iconos aquí y encontrar sus nombres fácilmente."
+
+#. settings-schema.json->icon-picker->description
+msgid "Click the icon to browse"
+msgstr "Haz clic en el icono para navegar"
 
 #. settings-schema.json->icon-picker->tooltip
 msgid ""
@@ -131,6 +174,30 @@ msgid ""
 msgstr ""
 "Haga clic en el icono de la derecha para navegar. Este ajuste no se utiliza "
 "en ninguna parte. "
+
+#. settings-schema.json->click-type->description
+msgid "Click type"
+msgstr "Tipo de clic"
+
+#. settings-schema.json->click-type->options
+msgid "Single click"
+msgstr "Un solo clic"
+
+#. settings-schema.json->click-type->options
+msgid "Double click"
+msgstr "Doble clic"
+
+#. settings-schema.json->click-type->tooltip
+msgid "Choose how you want to active your links."
+msgstr "Elija cómo desea activar sus enlaces."
+
+#. settings-schema.json->click-timeout->description
+msgid "Double-click timeout"
+msgstr "Tiempo de espera del doble clic"
+
+#. settings-schema.json->click-timeout->tooltip
+msgid "Set the maximum time between clicks in double-click."
+msgstr "Establece el tiempo máximo entre clics en doble clic."
 
 #. settings-schema.json->desklet-layout->description
 msgid ""
@@ -200,18 +267,17 @@ msgstr "Color de fondo del enlace"
 msgid "Set the color of the links background."
 msgstr "Establecer el color del fondo de los enlaces."
 
-#. settings-schema.json->hide-decorations->description
-msgid "Hide desklet decorations"
-msgstr "Ocultar decoraciones del desklet"
+#. settings-schema.json->show-decorations->description
+msgid "Show desklet decorations"
+msgstr "Mostrar decoraciones del desklet"
 
 #. settings-schema.json->icon-size->units
-#. settings-schema.json->size-font->units
 msgid "pixels"
 msgstr "píxeles"
 
 #. settings-schema.json->icon-size->description
-msgid "Icon size"
-msgstr "Tamaño del icono"
+msgid "Icon size (set to 0 do disable icons)"
+msgstr "Tamaño de los iconos (0 para desactivar los iconos)"
 
 #. settings-schema.json->icon-size->tooltip
 msgid "Increase or decrease the icon size (set to 0 to disable icons)."
@@ -219,21 +285,17 @@ msgstr ""
 "Aumentar o disminuir el tamaño de los iconos (poner a 0 para desactivar los "
 "iconos)."
 
+#. settings-schema.json->font-enabled->description
+msgid "Display text"
+msgstr "Mostrar texto"
+
 #. settings-schema.json->font->description
-msgid "Font name"
-msgstr "Nombre de la fuente"
+msgid "Font name (choose regular versions)"
+msgstr "Nombre de la fuente (elija versiones normales)"
 
 #. settings-schema.json->font->tooltip
-msgid "Change font family ex. Ubuntu, Roboto, DejaVu Serif"
-msgstr "Cambiar la familia de fuentes ex. Ubuntu, Roboto, DejaVu Serif"
-
-#. settings-schema.json->size-font->description
-msgid "Font size"
-msgstr "Tamaño de la fuente"
-
-#. settings-schema.json->size-font->tooltip
-msgid "Increase or decrease the font size."
-msgstr "Aumentar o disminuir el tamaño de la fuente."
+msgid "Change font family"
+msgstr "Cambiar la familia de fuentes"
 
 #. settings-schema.json->font-bold->description
 msgid "Bold"
@@ -265,24 +327,108 @@ msgstr ""
 "Aumentar o disminuir el tamaño de este desklet utilizando este factor de "
 "escala."
 
-#. settings-schema.json->use-custom-label->description
-msgid "Use a custom desklet label"
-msgstr "Utilizar una etiqueta de desklet personalizada"
-
-#. settings-schema.json->use-custom-label->tooltip
-msgid "Checking this box allows you to set a custom label in the field below."
-msgstr ""
-"Si marca esta casilla, podrá establecer una etiqueta personalizada en el "
-"campo inferior."
-
-#. settings-schema.json->custom-label->description
-msgid "Custom desklet label"
-msgstr "Etiqueta del desklet personalizada"
-
-#. settings-schema.json->custom-label->tooltip
+#. settings-schema.json->desklet-decorations-note->description
 msgid ""
-"Set your custom label here. This field is unavailable unless the checkbox "
-"above is enabled."
+"Following settings require desklet decorations to be enabled on your "
+"system.\n"
+"Desklet preferences are located in System Settings > Desklets > General "
+"Settings tab; there you will be able to enable border/header decorations."
 msgstr ""
-"Establezca aquí su etiqueta personalizada. Este campo no está disponible a "
-"menos que la casilla anterior esté activada."
+"Los siguientes ajustes requieren que las decoraciones de los Desklets estén "
+"habilitadas en su sistema.\n"
+"Las preferencias de Desklet se encuentran en Configuración del sistema > "
+"Desklets > pestaña Configuración general; allí podrá habilitar las "
+"decoraciones de borde/cabecera."
+
+#. settings-schema.json->desklet-header->description
+msgid "Desklet header"
+msgstr "Cabecera de Desklet"
+
+#. settings-schema.json->desklet-header->tooltip
+msgid ""
+"Set your desklet header. Make sure desklet headers are enabled in system "
+"settings."
+msgstr ""
+"Configure la cabecera de su desklet. Asegúrate de que los encabezados de "
+"desklet están activados en la configuración del sistema."
+
+#~ msgid "Quick Links: Error while parsing links: "
+#~ msgstr "Enlaces directos: Error al analizar los enlaces: "
+
+#~ msgid "Quick Links: Invalid format - not enough attributes `"
+#~ msgstr ""
+#~ "Enlaces directos: Formato no válido - no hay suficientes atributos `"
+
+#~ msgid "`, expected 4. On line: `"
+#~ msgstr "`, esperado 4. En línea: `"
+
+#~ msgid "Quick Links: Invalid format - too many attributes `"
+#~ msgstr "Enlaces directos: Formato no válido - demasiados atributos `"
+
+#~ msgid ""
+#~ "Quick Links: No links found, make sure to put each link on a new line"
+#~ msgstr ""
+#~ "Enlaces directos: No se han encontrado enlaces, asegúrese de poner cada "
+#~ "enlace en una nueva línea"
+
+#~ msgid "Custom desklet label (only visible if decorations are enabled)"
+#~ msgstr ""
+#~ "Etiqueta personalizada del desklet (sólo visible si las decoraciones "
+#~ "están activadas)"
+
+#~ msgid ""
+#~ "Each link has 4 attributes you can change: \n"
+#~ " - name that will be displayed,\n"
+#~ " - icon name: you can choose any system icon,\n"
+#~ " - command to be executed when clicked\n"
+#~ " - true/false if you want the terminal to show up.\n"
+#~ "Each attribute must be separated by a comma and each link must be "
+#~ "separated with an Enter key (newline).\n"
+#~ "Commas can be escaped with '\\,' and newlines can be placed with '\\n'.\n"
+#~ "You can open folders using ex. `nemo <path>` command.\n"
+#~ "If you need to see the output of a command, set the last attribute to "
+#~ "true."
+#~ msgstr ""
+#~ "Cada enlace tiene 4 atributos que puedes cambiar\n"
+#~ " - nombre que se mostrará,\n"
+#~ " - nombre del icono: puede elegir cualquier icono del sistema,\n"
+#~ " - comando que se ejecutará al hacer clic\n"
+#~ " - true/false si quieres que aparezca el terminal.\n"
+#~ "Cada atributo debe ir separado por una coma y cada enlace debe ir "
+#~ "separado con una tecla Enter (nueva línea).\n"
+#~ "Las comas pueden escaparse con '\\', y las nuevas líneas pueden colocarse "
+#~ "con '\\n'.\n"
+#~ "Puede abrir carpetas utilizando, por ejemplo, el comando `nemo <path>`.\n"
+#~ "Si necesita ver la salida de un comando, establezca el último atributo en "
+#~ "true."
+
+#~ msgid "Icon size"
+#~ msgstr "Tamaño del icono"
+
+#~ msgid "Change font family ex. Ubuntu, Roboto, DejaVu Serif"
+#~ msgstr "Cambiar la familia de fuentes ex. Ubuntu, Roboto, DejaVu Serif"
+
+#~ msgid "Font size"
+#~ msgstr "Tamaño de la fuente"
+
+#~ msgid "Increase or decrease the font size."
+#~ msgstr "Aumentar o disminuir el tamaño de la fuente."
+
+#~ msgid "Use a custom desklet label"
+#~ msgstr "Utilizar una etiqueta de desklet personalizada"
+
+#~ msgid ""
+#~ "Checking this box allows you to set a custom label in the field below."
+#~ msgstr ""
+#~ "Si marca esta casilla, podrá establecer una etiqueta personalizada en el "
+#~ "campo inferior."
+
+#~ msgid "Custom desklet label"
+#~ msgstr "Etiqueta del desklet personalizada"
+
+#~ msgid ""
+#~ "Set your custom label here. This field is unavailable unless the checkbox "
+#~ "above is enabled."
+#~ msgstr ""
+#~ "Establezca aquí su etiqueta personalizada. Este campo no está disponible "
+#~ "a menos que la casilla anterior esté activada."
