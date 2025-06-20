@@ -44,7 +44,10 @@
             "keys": [
                 "style",
                 "scale-size",
+                "enable-word-wrap",
                 "hide-decorations",
+                "text-shadow",
+                "text-shadow-color",
                 "bg-color",
                 "font",
                 "size-font",
@@ -143,12 +146,28 @@
         },
         "tooltip": "Select the background graphic you would like to use."
     },
+    "text-shadow": {
+        "type": "switch",
+        "description": "Text shadow",
+        "default": false
+    },
+    "text-shadow-color": {
+        "type": "colorchooser",
+        "default": "rgba(0,0,0,1)",
+        "description": "Text shadow color",
+        "dependency": "text-shadow"
+    },
     "bg-color": {
         "type": "colorchooser",
         "default": "rgba(0,0,0,0)",
         "description": "Background color",
         "tooltip": "Set the background color of this desklet.",
         "dependency": "style=none"
+    },
+    "enable-word-wrap": {
+        "type": "switch",
+        "description": "Enable word wrap",
+        "default": true
     },
     "hide-decorations": {
         "type": "switch",

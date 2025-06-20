@@ -32,6 +32,7 @@ const Gtk = imports.gi.Gtk;
 const St = imports.gi.St;
 const PopupMenu = imports.ui.popupMenu;
 const { timeout_add_seconds, timeout_add, setTimeout, clearTimeout, setInterval, clearInterval, source_exists, source_remove, remove_all_sources } = require("./lib/mainloopTools");
+const Tooltips = imports.ui.tooltips;
 
 // Import local libraries
 imports.searchPath.unshift(GLib.get_home_dir() + "/.local/share/cinnamon/desklets/googleCalendar@javahelps.com/lib");
@@ -56,6 +57,23 @@ function _(str) {
 
 function GoogleCalendarDesklet(metadata, deskletID) {
     this._init(metadata, deskletID);
+}
+
+class SliderMenuItem extends PopupMenu.PopupSliderMenuItem {
+    constructor (applet) {
+        super(applet.interval / 62);
+        this.applet = applet;
+        this.tooltipText = _("Number of days to include") + _(": ") + Math.round(this.applet.interval).toString();
+        this.tooltip = new Tooltips.Tooltip(this.actor, this.tooltipText);
+        this.connect("value-changed", () => this._onValueChanged());
+    }
+
+    _onValueChanged() {
+        if (this._value < 7 / 62) this._value = 7 / 62;
+        this.applet.interval = Math.round(this._value * 62);
+        this.tooltipText = _("Number of days to include") + _(": ") + Math.round(this.applet.interval).toString();
+        this.tooltip.set_text(this.tooltipText);
+    }
 }
 
 GoogleCalendarDesklet.prototype = {
@@ -101,6 +119,7 @@ GoogleCalendarDesklet.prototype = {
         this.settings.bind("location_color", "location_color", this.onDeskletFormatChanged.bind(this));
         this.settings.bind("transparency", "transparency", this.onDeskletFormatChanged.bind(this));
         this.settings.bind("cornerradius", "cornerradius", this.onDeskletFormatChanged.bind(this));
+        this.settings.bind("display_mode", "display_mode", this.onDeskletFormatChanged.bind(this));
         this.setCalendarName();
 
         // Set header
@@ -202,6 +221,8 @@ GoogleCalendarDesklet.prototype = {
             GLib.spawn_command_line_async("xdg-open https://calendar.google.com");
         });
         this._menu.addMenuItem(openGoogleCalendarItem, 0); // 0 for top position.
+        let intervalItem = new SliderMenuItem(this);
+        this._menu.addMenuItem(intervalItem, 1);
     },
 
     /**
@@ -296,7 +317,16 @@ GoogleCalendarDesklet.prototype = {
         if (this.lastDate === null || event.startDate.diffDays(this.lastDate) <= -1) {
             let leadingNewline = "";
             if (this.lastDate) {
-                leadingNewline = "\n\n";
+                switch (this.display_mode ) {
+                    case "normal":
+                        leadingNewline = "\n\n";
+                        break;
+                    case "compact":
+                        leadingNewline = "\n";
+                        break;
+                    case "ultra":
+                        leadingNewline = "";
+                }
             }
             this.lastDate = event.startDate;
             //~ let eventDate = ""+this.formatEventDate(event.startDateText)

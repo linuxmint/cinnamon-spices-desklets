@@ -3,7 +3,6 @@ const St = imports.gi.St;
 const CinnamonDesktop = imports.gi.CinnamonDesktop;
 const Desklet = imports.ui.desklet;
 const Settings = imports.ui.settings;
-const Lang = imports.lang;
 const Json = imports.gi.Json;
 const Soup = imports.gi.Soup;
 const ByteArray = imports.byteArray;
@@ -395,7 +394,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
         let comicon = this._getIconImage("/icons/icon.png", 45);
         this.comiconbtn = new St.Button();
         this.comiconbtn.set_child(comicon);
-        this.comiconbtn.connect('clicked', Lang.bind(this, this._get_compact_update));
+        this.comiconbtn.connect('clicked', () => { this._get_compact_update() });
         this.comtemp = new St.Label({ style_class: "comtemp_label_style" });
         this.comtemp.set_text("30℃");
         this.comdes = new St.Label({ style_class: "comloc_label_style" });

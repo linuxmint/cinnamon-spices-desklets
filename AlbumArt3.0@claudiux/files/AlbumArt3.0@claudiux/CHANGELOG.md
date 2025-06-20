@@ -1,3 +1,9 @@
+### v2.3.1~20250422
+  * Code cleanup.
+
+### v2.3.0~20250420
+  * Improved display.
+
 ### v2.2.0~20250403
   * New option "Show the title".
   * New options for title style.

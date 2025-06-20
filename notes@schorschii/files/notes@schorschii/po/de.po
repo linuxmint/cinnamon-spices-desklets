@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-09-28 12:45-0400\n"
+"POT-Creation-Date: 2025-05-03 11:37-0400\n"
 "PO-Revision-Date: 2023-04-04 15:06+0200\n"
 "Last-Translator: Georg Sieber\n"
 "Language-Team: \n"
@@ -17,11 +17,11 @@ msgstr ""
 "X-Poedit-SearchPath-0: desklet.js\n"
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
-#. desklet.js:133
+#. desklet.js:138
 msgid "Refresh"
 msgstr "Aktualisieren"
 
-#. desklet.js:146
+#. desklet.js:151
 msgid ""
 "Can't read text file.\n"
 "Select a file in settings.\n"
@@ -33,7 +33,7 @@ msgstr ""
 "\n"
 "Klicken Sie hier zum Bearbeiten."
 
-#. desklet.js:272
+#. desklet.js:289
 msgid "Notepad"
 msgstr "Notizblock"
 
@@ -262,6 +262,14 @@ msgstr "–"
 msgid "Select the background graphic you would like to use."
 msgstr "Wählen Sie die Hintergrundgrafik, die Sie verwenden möchten."
 
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr "Textschatten"
+
+#. settings-schema.json->text-shadow-color->description
+msgid "Text shadow color"
+msgstr "Textschatten-Farbe"
+
 #. settings-schema.json->bg-color->description
 msgid "Background color"
 msgstr "Hintergrundfarbe"
@@ -269,6 +277,10 @@ msgstr "Hintergrundfarbe"
 #. settings-schema.json->bg-color->tooltip
 msgid "Set the background color of this desklet."
 msgstr "Wählen Sie die Hintergrundfarbe für dieses Desklet."
+
+#. settings-schema.json->enable-word-wrap->description
+msgid "Enable word wrap"
+msgstr "Zeilenumbruch aktivieren"
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"

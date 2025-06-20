@@ -1,0 +1,41 @@
+.link {
+	color: black;
+	font-weight: 500; /* normal */
+	border-radius: 0.32em;
+	padding: 0.25em 0.05em;
+}
+
+.link:hover {
+	border-radius: 0.5em;
+	box-shadow: 0px 0px 0px 999px inset rgba(255,255,255,0.15);
+	background-color: rgba(255,255,255,0.1);
+
+	/* Cursor property currently doesn't work */
+	cursor: pointer;
+}
+
+.link:active {
+	border-radius: 1.1em;
+	box-shadow: 0px 0px 0px 999px inset rgba(255,255,255,0.4);
+	background-color: rgba(255,255,255,0.3);
+
+	/* Cursor property currently doesn't work */
+	cursor: progress;
+}
+
+.list .link-icon {
+	padding-left: 0.35em;
+	padding-right: 0.55em;
+}
+
+.tile .link-icon {
+	padding: 0.1em 0px;
+}
+
+.list .link-label {
+	margin: 0.3em 0;
+}
+
+.tile .link-label {
+	margin: 0.15em 0;
+}

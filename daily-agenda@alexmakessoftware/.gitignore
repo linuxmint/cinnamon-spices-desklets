@@ -1,0 +1,14 @@
+# Editor files
+*.swp
+*~
+*.bak
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Optional local test files
+*.ics
+
+# Developer notes (personal waffle)
+developer_notes.txt

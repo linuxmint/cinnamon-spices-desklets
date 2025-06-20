@@ -1,0 +1,174 @@
+# DAILY AGENDA
+# This file is put in the public domain.
+# AlexMakesSoftware, 2025
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: daily-agenda@alexmakessoftware 1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-04-28 15:09+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#. desklet.js:143
+msgid "ICS Today: problem reading calendar file, result = "
+msgstr "ICS Hoy: problema al leer el archivo del calendario, resultado = "
+
+#. desklet.js:147
+msgid "ICS Today: Failed to read file: "
+msgstr "ICS Hoy: Error al leer el archivo: "
+
+#. desklet.js:150
+msgid "Error reading calendar. Try 'right click, configure...'"
+msgstr ""
+"Error al leer el calendario. Prueba con 'clic derecho, configurar...'."
+
+#. desklet.js:162
+msgid "ICS Today: Failed to fetch calendar from URL."
+msgstr "ICS Hoy: No se pudo obtener el calendario desde la URL."
+
+#. desklet.js:163
+msgid "Could not fetch calendar from URL."
+msgstr "No se pudo obtener el calendario desde la URL."
+
+#. desklet.js:167
+msgid "ICS Today: Error during curl fetch: "
+msgstr "ICS Hoy: Error durante la obtención de curl: "
+
+#. desklet.js:168
+msgid "Error fetching calendar from URL."
+msgstr "Error al obtener el calendario desde la URL."
+
+#. desklet.js:174
+msgid "ICS Today: Unknown source type: "
+msgstr "ICS Hoy: Tipo de fuente desconocida: "
+
+#. desklet.js:175
+msgid "Calendar source type not recognised."
+msgstr "Tipo de fuente del calendario no reconocido."
+
+#. desklet.js:183
+msgid "Last checked"
+msgstr "Última comprobación"
+
+#. desklet.js:188
+msgid "Next"
+msgstr "Siguiente"
+
+#. desklet.js:220
+msgid "All day"
+msgstr "Todo el día"
+
+#. desklet.js:234
+msgid "Today's Events:"
+msgstr "Eventos de hoy:"
+
+#. desklet.js:236
+msgid "No events today."
+msgstr "No hay eventos hoy."
+
+#. metadata.json->name
+msgid "Daily Agenda"
+msgstr "Agenda diaria"
+
+#. metadata.json->description
+msgid "Displays today's events from your calendar"
+msgstr "Muestra los eventos de hoy de tu calendario"
+
+#. settings-schema.json->head0->description
+msgid "Calendar Source"
+msgstr "Calendario Fuente"
+
+#. settings-schema.json->sourceType->description
+msgid "Calendar source"
+msgstr "Calendario fuente"
+
+#. settings-schema.json->sourceType->options
+msgid "From URL"
+msgstr "Desde URL"
+
+#. settings-schema.json->sourceType->options
+msgid "From local file"
+msgstr "Desde archivo local"
+
+#. settings-schema.json->icsUrl->description
+msgid "Calendar URL"
+msgstr "URL del calendario"
+
+#. settings-schema.json->icsUrl->tooltip
+msgid ""
+"Only used if source is set to 'From URL'. Paste a public .ics (calendar "
+"share) link from Proton, Google, etc."
+msgstr ""
+"Sólo se utiliza si la fuente está configurada como 'Desde URL'. Pegue un "
+"enlace .ics público (calendario compartido) de Proton, Google, etc."
+
+#. settings-schema.json->icsFilePath->description
+msgid "Path to local .ics file"
+msgstr "Ruta de acceso al archivo .ics"
+
+#. settings-schema.json->icsFilePath->tooltip
+msgid "Only used if source is set to 'From local file', point to an ICS file."
+msgstr ""
+"Sólo se utiliza si la fuente está configurada como 'Desde archivo local', "
+"apunta a un archivo ICS."
+
+#. settings-schema.json->head1->description
+msgid "Widget Dimensions"
+msgstr "Dimensiones del widget"
+
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->width->description
+msgid "Widget width"
+msgstr "Ancho del widget"
+
+#. settings-schema.json->height->description
+msgid "Widget height"
+msgstr "Alto del widget"
+
+#. settings-schema.json->head2->description
+msgid "Text Style"
+msgstr "Estilo de texto"
+
+#. settings-schema.json->font->description
+msgid "Font family"
+msgstr "Familia de fuente"
+
+#. settings-schema.json->font->tooltip
+msgid "Example: Sans, Monospace, Serif"
+msgstr "Ejemplo: Sans, Monospace, Serif"
+
+#. settings-schema.json->fontSize->units
+msgid "pt"
+msgstr "pt"
+
+#. settings-schema.json->fontSize->description
+msgid "Font size"
+msgstr "Tamaño de fuente"
+
+#. settings-schema.json->head3->description
+msgid "Update Schedule"
+msgstr "Actualizar el calendario"
+
+#. settings-schema.json->checkInterval->units
+msgid "minutes"
+msgstr "minutos"
+
+#. settings-schema.json->checkInterval->description
+msgid "Check interval"
+msgstr "Intervalo de comprobación"
+
+#. settings-schema.json->checkInterval->tooltip
+msgid "How often to check the calendar file for updates"
+msgstr "Frecuencia de actualización del archivo de calendario"

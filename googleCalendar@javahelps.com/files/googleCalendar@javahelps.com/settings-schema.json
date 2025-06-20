@@ -51,7 +51,8 @@
         "diff_calendar",
         "show_location",
         "location_color",
-        "cornerradius"
+        "cornerradius",
+        "display_mode"
       ]
     }
   },
@@ -227,5 +228,15 @@
     "units": "px",
     "description": "Corner radius",
     "tooltip": "Radius for rounding the desklet's corners"
+  },
+  "display_mode": {
+      "type": "combobox",
+      "default": "normal",
+      "description": "Display mode",
+      "options": {
+          "normal": "normal",
+          "compact": "compact",
+          "ultra compact": "ultra"
+      }
   }
 }
