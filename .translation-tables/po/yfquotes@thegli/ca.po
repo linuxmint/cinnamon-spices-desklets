@@ -1,0 +1,606 @@
+# Yahoo Finance Quotes Desklet
+# Copyright (C) 2018 Thomas Egli
+# This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: yfquotes@thegli 0.13.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-05-12 00:33+0200\n"
+"PO-Revision-Date: 2024-12-18 21:52+0100\n"
+"Last-Translator: Dan <d3vf4n-linux (at) tutanota (dot) com>\n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. desklet.js:119
+msgid "No quotes data to display"
+msgstr "No hi ha dades de cotitzacions per mostrar"
+
+#. desklet.js:516
+msgid "Empty quotes list. Open settings and add some symbols."
+msgstr ""
+"Llista de cotitzacions buida. Obriu la configuració i afegiu-hi alguns "
+"símbols."
+
+#. desklet.js:561 desklet.js:585
+msgid "Authorization parameters have expired"
+msgstr "Els paràmetres d'autorització han expirat"
+
+#. desklet.js:564 desklet.js:588
+msgid "Yahoo Finance service not available!\\nStatus: "
+msgstr "El servei de Yahoo finances no està disponible!\\nEstat: "
+
+#. desklet.js:988
+msgid "Updated at "
+msgstr "Actualitzat a les "
+
+#. desklet.js:1020
+msgid "Error: "
+msgstr "Error: "
+
+#. desklet.js:1146
+msgid ""
+"Failed to retrieve authorization parameter! Unable to fetch quotes data."
+"\\nStatus: "
+msgstr ""
+"Error en recuperar el paràmetre d'autorització. No s'han pogut obtenir les "
+"dades de les cotitzacions.\\nEstat: "
+
+#. desklet.js:1173
+msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
+msgstr ""
+"No s'ha pogut processar el consentiment! No s'han pogut obtenir les dades de "
+"les cotitzacions.\\nEstat: "
+
+#. desklet.js:1179
+msgid ""
+"Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
+msgstr ""
+"No s'ha completat el processament del consentiment. No s'han pogut obtenir "
+"les dades de les cotitzacions.\\nEstat: "
+
+#. desklet.js:1207
+msgid ""
+"Failed to retrieve authorization crumb! Unable to fetch quotes data."
+"\\nStatus: "
+msgstr ""
+"No s'ha pogut recuperar la ruta d'autorització! No s'han pogut obtenir les "
+"dades de les cotitzacions.\\nEstat: "
+
+#. metadata.json->description
+msgid ""
+"Displays financial market information such as stock quotes and commodity "
+"prices from Yahoo Finance"
+msgstr ""
+"Mostra informació sobre mercats financers, com ara cotitzacions de borsa i "
+"preus de matèries primeres de Yahoo Finances"
+
+#. metadata.json->name
+msgid "Yahoo Finance Quotes"
+msgstr "Cotitzacions de Yahoo Finances"
+
+#. settings-schema.json->dataPage->title
+#. settings-schema.json->dataSymbolsSection->title
+msgid "Quotes"
+msgstr "Cotitzacions"
+
+#. settings-schema.json->detailsPage->title
+msgid "Details"
+msgstr "Detalls"
+
+#. settings-schema.json->presentationPage->title
+msgid "Presentation"
+msgstr "Presentació"
+
+#. settings-schema.json->layoutPage->title
+msgid "Layout"
+msgstr "Disposició"
+
+#. settings-schema.json->networkPage->title
+msgid "Network"
+msgstr ""
+
+#. settings-schema.json->dataUpdateSection->title
+msgid "Data Updates"
+msgstr "Actualitzacions de dades"
+
+#. settings-schema.json->detailsNameSection->title
+msgid "Name"
+msgstr "Nom"
+
+#. settings-schema.json->detailsSymbolSection->title
+msgid "Symbol"
+msgstr "Símbol"
+
+#. settings-schema.json->detailsPriceSection->title
+msgid "Price"
+msgstr "Preu"
+
+#. settings-schema.json->detailsChangeSection->title
+msgid "Change"
+msgstr "Canvi"
+
+#. settings-schema.json->detailsDateTimeSection->title
+msgid "Date and Time"
+msgstr "Data i hora"
+
+#. settings-schema.json->presentationFormattingSection->title
+msgid "Number Format"
+msgstr "Format de números"
+
+#. settings-schema.json->presentationDateTimeFormattingSection->title
+msgid "Date and Time Format"
+msgstr "Format de data i hora"
+
+#. settings-schema.json->presentationSortingSection->title
+msgid "Sorting"
+msgstr "Ordenació"
+
+#. settings-schema.json->presentationFontSection->title
+msgid "Font"
+msgstr "Font"
+
+#. settings-schema.json->presentationColorsSection->title
+msgid "Trend Colors"
+msgstr "Colors"
+
+#. settings-schema.json->layoutDimensionSection->title
+msgid "Dimension"
+msgstr "Dimensió"
+
+#. settings-schema.json->layoutEffectsSection->title
+msgid "Effects"
+msgstr "Efectes"
+
+#. settings-schema.json->networkSessionSection->title
+msgid "HTTP Session"
+msgstr ""
+
+#. settings-schema.json->width->description
+msgid "Width"
+msgstr "Amplada"
+
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+#. settings-schema.json->cornerRadius->units
+#. settings-schema.json->borderWidth->units
+msgid "pixels"
+msgstr "píxels"
+
+#. settings-schema.json->width->tooltip
+msgid "Desklet width in pixels"
+msgstr "Amplada de la miniaplicació d'escriptori en píxels"
+
+#. settings-schema.json->height->description
+msgid "Height"
+msgstr "Alçada"
+
+#. settings-schema.json->height->tooltip
+msgid "Desklet height in pixels"
+msgstr "Alçada de la miniaplicació d'escriptori en píxels"
+
+#. settings-schema.json->transparency->description
+msgid "Background transparency"
+msgstr "Transparència del fons"
+
+#. settings-schema.json->transparency->tooltip
+msgid "The higher the value, the more solid the desklet's background"
+msgstr "Quan més gran sigui el valor, més sòlid serà el fons de l'escriptori"
+
+#. settings-schema.json->backgroundColor->description
+msgid "Background color"
+msgstr "Color de fons"
+
+#. settings-schema.json->backgroundColor->tooltip
+msgid "Desklet background color"
+msgstr "Color de fons de la miniaplicació d'escriptori"
+
+#. settings-schema.json->cornerRadius->description
+msgid "Corner radius"
+msgstr "Radi de la cantonada"
+
+#. settings-schema.json->cornerRadius->tooltip
+msgid "The higher the value, the rounder the desklet's corners"
+msgstr ""
+"Com més gran sigui el valor, més rodones seran les cantonades de la "
+"miniaplicació d'escriptori"
+
+#. settings-schema.json->showVerticalScrollbar->description
+msgid "Show vertical scrollbar"
+msgstr "Mostrar la barra de desplaçament vertical"
+
+#. settings-schema.json->showVerticalScrollbar->tooltip
+msgid ""
+"Display a vertical scrollbar when the quote list is longer than the "
+"desklet's height"
+msgstr ""
+"Mostra una barra de desplaçament vertical quan la llista de pressupostos és "
+"major que l'altura de la miniaplicació d'escriptori"
+
+#. settings-schema.json->borderWidth->description
+msgid "Border width"
+msgstr "Amplada de la vora"
+
+#. settings-schema.json->borderWidth->tooltip
+msgid ""
+"The higher the value, the thicker the desklet's border. A value of 0 hides "
+"the border."
+msgstr ""
+"Com més gran sigui el valor, major serà el gruix de la vora de la "
+"miniaplicació d'escriptori. Un valor de 0 amaga la vora."
+
+#. settings-schema.json->borderColor->description
+msgid "Border color"
+msgstr "Color de la vora"
+
+#. settings-schema.json->borderColor->tooltip
+msgid "Desklet border color"
+msgstr "Color de la vora de la miniaplicació d'escriptori"
+
+#. settings-schema.json->delayMinutes->units
+msgid "minutes"
+msgstr "minuts"
+
+#. settings-schema.json->delayMinutes->description
+msgid "Update frequency"
+msgstr "Freqüència d'actualització"
+
+#. settings-schema.json->delayMinutes->tooltip
+msgid "Data refresh frequency, in minutes"
+msgstr "Freqüència d'actualització de les dades, en minuts"
+
+#. settings-schema.json->showLastUpdateTimestamp->description
+msgid "Show last update timestamp"
+msgstr "Mostrar la data de l'última actualització"
+
+#. settings-schema.json->showLastUpdateTimestamp->tooltip
+msgid "Display timestamp when quotes were updated last"
+msgstr "Mostra la data de l'última actualització de les cotitzacions"
+
+#. settings-schema.json->manualDataUpdate->description
+msgid "Manual and automatic update"
+msgstr "Actualització manual i automàtica"
+
+#. settings-schema.json->manualDataUpdate->tooltip
+msgid ""
+"Click last update timestamp to instantly refresh quotes data. Automatic "
+"update is still performed periodically."
+msgstr ""
+"Cliqueu la data de l'última actualització per actualitzar d'immediat totes "
+"les dades de cotitzacions. L'actualització automàtica segueix efectuant-se "
+"periòdicament."
+
+#. settings-schema.json->roundNumbers->description
+msgid "Round numbers"
+msgstr "Arrodoniment"
+
+#. settings-schema.json->roundNumbers->tooltip
+msgid "Perform rounding of floating-point numbers"
+msgstr "Arrodoneix els números de coma flotant"
+
+#. settings-schema.json->decimalPlaces->units
+msgid "positions"
+msgstr "posicions"
+
+#. settings-schema.json->decimalPlaces->description
+msgid "Decimal places to round"
+msgstr "Nombre de decimals a arrodonir"
+
+#. settings-schema.json->decimalPlaces->tooltip
+msgid "Number of positions to round to after decimal point"
+msgstr "Nombre de posicions a arrodonir després de la coma decimal"
+
+#. settings-schema.json->strictRounding->description
+msgid "Strict rounding"
+msgstr "Arrodoniment estricte"
+
+#. settings-schema.json->strictRounding->tooltip
+msgid ""
+"Strict rounding to the specified decimal places (eg. 0 will be presented as "
+"0.00)"
+msgstr ""
+"Arrodoniment estricte als decimals especificats (per exemple: 0 es "
+"presentarà com 0,00)"
+
+#. settings-schema.json->use24HourTime->description
+msgid "Force 24-hour clock"
+msgstr "Forçar rellotge de 24 hores"
+
+#. settings-schema.json->use24HourTime->tooltip
+msgid ""
+"Always display time in 24-hour notation, overriding system settings.\n"
+"This setting is ignored, when a custom time format is defined."
+msgstr ""
+"Mostrar sempre l'hora en notació de 24 hores, anul·lant la configuració del "
+"sistema.\n"
+"Aquest ajust s'ignora quan es defineix un format d'hora personalitzat."
+
+#. settings-schema.json->customTimeFormat->description
+msgid "Custom time format"
+msgstr "Format d'hora personalitzat"
+
+#. settings-schema.json->customTimeFormat->tooltip
+msgid ""
+"Format time with custom format instead of system settings.\n"
+"Examples:\n"
+"%H:%M:%S    23:47:51\n"
+"%I:%M %p    11:47 PM"
+msgstr ""
+"Format d'hora personalitzat en lloc del format del sistema.\n"
+"Exemples:\n"
+"%H:%M%S    23:47:51\n"
+"%I:%M %p    11:47 PM"
+
+#. settings-schema.json->customDateFormat->description
+msgid "Custom date format"
+msgstr "Format de data personalitzat"
+
+#. settings-schema.json->customDateFormat->tooltip
+msgid ""
+"Format date with custom format instead of system settings.\n"
+"Examples:\n"
+"%m/%d          03/15\n"
+"%Y-%m-%d   2024-03-15\n"
+"%A, %b %d   Friday, Mar 15"
+msgstr ""
+"Format de data personalitzat en lloc del format del sistema.\n"
+"Exemples:\n"
+"%m/%d          03/15\n"
+"%Y-%m-%d   2024-03-15\n"
+"%A, %b %d   Divendres, Març 15"
+
+#. settings-schema.json->quoteSymbols->description
+msgid "Quote symbols"
+msgstr "Símbols de cotització"
+
+#. settings-schema.json->quoteSymbols->tooltip
+msgid "List of quote symbols, separated with line-breaks"
+msgstr "Llista de símbols de cotització, separats per salts de línia"
+
+#. settings-schema.json->updateDataButton->description
+msgid "Refresh quotes data"
+msgstr "Actualitzar informació de cotitzacions"
+
+#. settings-schema.json->updateDataButton->tooltip
+msgid "Apply and refresh quotes"
+msgstr "Actualitza les cotitzacions i aplica els canvis"
+
+#. settings-schema.json->sortCriteria->options
+msgid "given order"
+msgstr "ordre donat"
+
+#. settings-schema.json->sortCriteria->options
+msgid "percent change"
+msgstr "canvi percentual"
+
+#. settings-schema.json->sortCriteria->options
+msgid "name"
+msgstr "nom"
+
+#. settings-schema.json->sortCriteria->options
+msgid "symbol"
+msgstr "símbol"
+
+#. settings-schema.json->sortCriteria->description
+msgid "Sort list by"
+msgstr "Ordenar la llista per"
+
+#. settings-schema.json->sortCriteria->tooltip
+msgid "Sort the quote list"
+msgstr "Ordenar la llista de cotitzacions"
+
+#. settings-schema.json->sortDirection->description
+msgid "Sort in ascending order"
+msgstr "Ordenació ascendent"
+
+#. settings-schema.json->sortDirection->tooltip
+msgid ""
+"Check to sort quotes in ascending order, uncheck to sort in descending order"
+msgstr ""
+"Marqueu aquesta casella per ordenar les cotitzacions de manera ascendent, "
+"desmarqueu la casella per ordenar-les de manera descendent"
+
+#. settings-schema.json->showChangeIcon->description
+msgid "Show change/trend icon"
+msgstr "Mostrar icona de canvi/tendència"
+
+#. settings-schema.json->showChangeIcon->tooltip
+msgid "Indicates whether the market price moved up, down, or is unchanged"
+msgstr "Indica si el preu del mercat ha pujat, baixat, o no ha variat"
+
+#. settings-schema.json->showQuoteName->description
+msgid "Show verbose name"
+msgstr "Mostrar nom detallat"
+
+#. settings-schema.json->showQuoteName->tooltip
+msgid "Display the quote name (eg. International Business Machines)"
+msgstr ""
+"Mostra el nom de la cotització (per exemple: International Business "
+"Machines)."
+
+#. settings-schema.json->useLongQuoteName->description
+msgid "Use long version for verbose name"
+msgstr "Utilitzar la versió llarga per al nom de la cotització"
+
+#. settings-schema.json->useLongQuoteName->tooltip
+msgid ""
+"Use the long version for quote name, if available (eg. International "
+"Business Machines Corporation)"
+msgstr ""
+"Utilitza la versió llarga pel nom de la cotització, si està disponible (per "
+"exemple: International Business Machines Corporation)."
+
+#. settings-schema.json->linkQuoteName->description
+msgid "Add web link to name"
+msgstr "Afegir enllaç web al nom"
+
+#. settings-schema.json->linkQuoteName->tooltip
+msgid "Click name to open quote in browser"
+msgstr "Cliqueu al nom per obrir la cotització al navegador"
+
+#. settings-schema.json->showQuoteSymbol->description
+msgid "Show ticker/symbol"
+msgstr "Mostrar ticker/símbol"
+
+#. settings-schema.json->showQuoteSymbol->tooltip
+msgid "Display the quote symbol (eg. IBM)"
+msgstr "Mostra el símbol de cotització (per exemple, IBM)."
+
+#. settings-schema.json->linkQuoteSymbol->description
+msgid "Add web link to ticker/symbol"
+msgstr "Afegir enllaç web al ticker/símbol"
+
+#. settings-schema.json->linkQuoteSymbol->tooltip
+msgid "Click symbol to open quote in browser"
+msgstr "Cliqueu el símbol per obrir la cotització al navegador"
+
+#. settings-schema.json->showMarketPrice->description
+msgid "Show price"
+msgstr "Mostrar preu"
+
+#. settings-schema.json->showMarketPrice->tooltip
+msgid "Display the current market price (eg. 146.79)"
+msgstr "Mostra el preu de mercat actual (per exemple, 146.79)"
+
+#. settings-schema.json->showCurrencyCode->description
+msgid "Show currency symbol"
+msgstr "Mostrar símbol de moneda"
+
+#. settings-schema.json->showCurrencyCode->tooltip
+msgid "Display the currency symbol of the price (eg. $)"
+msgstr "Mostra el símbol de moneda del preu (per exemple, $)"
+
+#. settings-schema.json->showAbsoluteChange->description
+msgid "Show absolute change"
+msgstr "Mostrar canvi absolut"
+
+#. settings-schema.json->showAbsoluteChange->tooltip
+msgid "Display the absolute change of the market price (eg. +0.739)"
+msgstr "Mostra el canvi absolut del preu de mercat (per exemple, +0,739)"
+
+#. settings-schema.json->showPercentChange->description
+msgid "Show percent change"
+msgstr "Mostrar canvi percentual"
+
+#. settings-schema.json->showPercentChange->tooltip
+msgid "Display the percent change of the market price (eg. -0.53%)"
+msgstr "Mostra la variació percentual del preu de mercat (per exemple, -0.53%)"
+
+#. settings-schema.json->colorPercentChange->description
+msgid "Use trend colors for percent change"
+msgstr "Utilitzar colors de tendència pel canvi percentual"
+
+#. settings-schema.json->colorPercentChange->tooltip
+msgid "Color the percent change to show the trend"
+msgstr "Acoloreix el canvi percentual per mostrar la tendència"
+
+#. settings-schema.json->showTradeTime->description
+msgid "Show trading time"
+msgstr "Mostrar temps de negociació"
+
+#. settings-schema.json->showTradeTime->tooltip
+msgid "Display the last trading time (if current day) or date"
+msgstr "Mostra l'última hora de la negociació (si és el dia actual) o la data"
+
+#. settings-schema.json->fontColor->description
+msgid "Font color"
+msgstr "Color de la font"
+
+#. settings-schema.json->fontColor->tooltip
+msgid "Default text color"
+msgstr "Color del text per defecte"
+
+#. settings-schema.json->scaleFontSize->description
+msgid "Enable font size scaling"
+msgstr "Activar l'escalat de la mida de la font"
+
+#. settings-schema.json->scaleFontSize->tooltip
+msgid "Apply custom font size instead of the system default size"
+msgstr ""
+"Aplicar una mida de la font personalitzada en lloc de la definida al sistema"
+
+#. settings-schema.json->fontScale->units
+msgid "times"
+msgstr "vegades"
+
+#. settings-schema.json->fontScale->description
+msgid "Font size scale factor"
+msgstr "Factor d'escalat de la mida de la font"
+
+#. settings-schema.json->fontScale->tooltip
+msgid "Enlarge/reduce the font size"
+msgstr "Ampliar/Reduir la mida de la lletra"
+
+#. settings-schema.json->uptrendChangeColor->description
+msgid "Uptrend change color"
+msgstr "Canvi de color de la tendència a l'alça"
+
+#. settings-schema.json->uptrendChangeColor->tooltip
+msgid "Color of the uptrend change"
+msgstr "Color de la tendència a l'alça"
+
+#. settings-schema.json->downtrendChangeColor->description
+msgid "Downtrend change color"
+msgstr "Canvi de color de la tendència a la baixa"
+
+#. settings-schema.json->unchangedTrendColor->description
+msgid "Unchanged trend color"
+msgstr "Color de la tendència a la baixa"
+
+#. settings-schema.json->unchangedTrendColor->tooltip
+msgid "Color of the unchanged trend"
+msgstr "Color de la tendència sense canvis"
+
+#. settings-schema.json->sendCustomUserAgent->description
+msgid "Send custom User-Agent header"
+msgstr "Enviar capçalera User-Agent personalitzada"
+
+#. settings-schema.json->sendCustomUserAgent->tooltip
+#, fuzzy
+msgid "Include a custom User-Agent header in Yahoo Finance Quotes API requests"
+msgstr ""
+"Inclou una capçalera User-Agent personalitzada a les sol·licituds de l'API "
+"de cotitzacions de Yahoo Finances. Per defecte, aquesta capçalera no està "
+"configurada"
+
+#. settings-schema.json->customUserAgent->description
+msgid "Custom User-Agent header"
+msgstr "Capçalera User-Agent personalitzada"
+
+#. settings-schema.json->customUserAgent->tooltip
+msgid "Value for User-Agent header to send with all API requests"
+msgstr ""
+"Valor de la capçalera User-Agent que s'enviarà amb totes les sol·licituds de "
+"l'API"
+
+#. settings-schema.json->enableCurl->description
+msgid "Use external tool curl"
+msgstr ""
+
+#. settings-schema.json->enableCurl->tooltip
+msgid "Requires separate installation of curl."
+msgstr ""
+
+#. settings-schema.json->curlCommand->description
+msgid "Path of curl executable"
+msgstr ""
+
+#. settings-schema.json->curlCommand->tooltip
+msgid "Provide absolute path of curl program file"
+msgstr ""
+
+#. settings-schema.json->applyNetworkSettingsButton->description
+msgid "Apply network settings"
+msgstr ""
+
+#. settings-schema.json->applyNetworkSettingsButton->tooltip
+#, fuzzy
+msgid "Fetches new authorization parameters and refreshes quotes data"
+msgstr ""
+"Error en recuperar el paràmetre d'autorització. No s'han pogut obtenir les "
+"dades de les cotitzacions.\\nEstat: "
