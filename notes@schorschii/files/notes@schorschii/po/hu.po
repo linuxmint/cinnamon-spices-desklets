@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2025-05-03 11:37-0400\n"
-"PO-Revision-Date: 2024-10-02 14:46+0200\n"
+"PO-Revision-Date: 2025-06-21 14:25+0200\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: \n"
 "Language: hu\n"
@@ -264,12 +264,11 @@ msgstr "Válasszon ki egy háttérgrafikát a használathoz."
 
 #. settings-schema.json->text-shadow->description
 msgid "Text shadow"
-msgstr ""
+msgstr "Szövegárnyék"
 
 #. settings-schema.json->text-shadow-color->description
-#, fuzzy
 msgid "Text shadow color"
-msgstr "Szövegszín"
+msgstr "Szövegárnyék színe"
 
 #. settings-schema.json->bg-color->description
 msgid "Background color"
@@ -281,7 +280,7 @@ msgstr "Asztalkalmazás szövegszínének beállítása."
 
 #. settings-schema.json->enable-word-wrap->description
 msgid "Enable word wrap"
-msgstr ""
+msgstr "Sortörés engedélyezése"
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
