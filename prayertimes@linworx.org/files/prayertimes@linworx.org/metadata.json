@@ -1,7 +1,7 @@
 {
     "uuid": "prayertimes@linworx.org",
-    "name": "Muslim prayer times",
-    "description": "Muslim daily prayer times desklet",
+    "name": "Salat prayer times",
+    "description": "Salat (namaz) daily prayer times desklet",
     "prevent-decorations": true,
     "author": "mkessas",
     "max-instances": "2"
