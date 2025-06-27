@@ -26,6 +26,7 @@ imports.searchPath.unshift(`${DESKLET_DIR}/helpers`);
 //helper module imports (must be at module scope)
 const IcsHelperModule = imports['ics-helper']; 
 const helper = new IcsHelperModule.IcsHelper();
+// helper.setLogger(global.log); //uncomment to enabled debugging of helper.
 
 
 function _(str) {
@@ -34,26 +35,26 @@ function _(str) {
 
 
 function formatTime(date) {
-    const hours = date.getHours().toString().padStart(2, "0");
-    const minutes = date.getMinutes().toString().padStart(2, "0");
+    const hours = date.get_hour().toString().padStart(2, "0");
+    const minutes = date.get_minute().toString().padStart(2, "0");
     return `${hours}:${minutes}`;
 }
 
 
-function main(metadata, desklet_id) {
-    return new IcsDesklet(metadata, desklet_id);
+function main(metadata, desklet_id) {    
+    return new IcsDesklet(metadata, desklet_id);    
 }
 
 
-function IcsDesklet(metadata, desklet_id) {    
-    this._init(metadata, desklet_id);
+function IcsDesklet(metadata, desklet_id) {
+    this._init(metadata, desklet_id);    
 }
 
 
 IcsDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
 
-    _init: function(metadata, desklet_id) {     
+    _init: function(metadata, desklet_id) {               
         Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
         Gettext.bindtextdomain(metadata.uuid, GLib.get_home_dir() + "/.local/share/locale");
         this._timeoutId = null;
@@ -176,7 +177,7 @@ IcsDesklet.prototype = {
 
             const now = new Date();
             this._updateCheckedText(now);
-            const eventList = helper.parseTodaysEvents(rawIcsText, now);
+            const eventList = helper.parseTodaysEvents(rawIcsText);
             this._renderEventList(eventList);
         });
     },
