@@ -1,0 +1,8 @@
+{
+    "max-instances": "5",
+    "description": "Themeable, customizable, and easy-to-use TODO desklet.",
+    "name": "TODO Desklet",
+    "version": "1.0",
+    "uuid": "todo@NotSirius-A",
+    "author": "NotSirius-A"
+}

@@ -1,0 +1,25 @@
+.table {
+  padding: 16px;
+}
+.current_prayer {
+  font-size: 24px;
+  text-align: center;
+  padding: 20px;
+}
+.prayer_name {
+  font-size: 18px;
+  padding: 5px 0;
+  width: 100px;
+}
+.prayer_time {
+  font-size: 24px;
+  font-family: monospace;
+}
+.hijri_date {
+  font-size: 14px;
+  padding: 10px;
+}
+.location {
+  padding: 10px;
+}
+

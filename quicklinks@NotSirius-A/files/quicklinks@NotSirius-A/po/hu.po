@@ -1,0 +1,358 @@
+# QUICK LINKS
+# This file is put in the public domain.
+# NotSirius-A, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: quicklinks@NotSirius-A 1.1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-06-16 14:10+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. desklet.js:130
+msgid ""
+"No visible\n"
+"links found.\n"
+"Configure links\n"
+"in the settings.\n"
+"Right click\n"
+"on desklet\n"
+"then configure."
+msgstr ""
+"Nem találhatók látható\n"
+"linkek.\n"
+"Konfigurálja a linkeket\n"
+"a beállításokban.\n"
+"Kattintson jobb gombbal\n"
+"a deskletre,\n"
+"majd konfigurálja."
+
+#. desklet.js:344
+msgid "Quick Links: Command parse error: "
+msgstr "Gyorslinkek: Parancselemzési hiba: "
+
+#. metadata.json->description
+msgid ""
+"Customizable quick links panel. Allows you to create beautiful themed "
+"desktop shortcuts for your most used folders/commands."
+msgstr ""
+"Testreszabható gyorshivatkozások panel. Lehetővé teszi gyönyörű, tematikus "
+"asztali parancsikonok létrehozását a leggyakrabban használt mappákhoz/"
+"parancsokhoz."
+
+#. metadata.json->name
+msgid "Quick Links"
+msgstr "Gyorslinkek"
+
+#. settings-schema.json->links-page->title
+msgid "Links"
+msgstr "Linkek"
+
+#. settings-schema.json->actions-page->title
+msgid "Actions"
+msgstr "Műveletek"
+
+#. settings-schema.json->theme-page->title
+msgid "Theme"
+msgstr "Téma"
+
+#. settings-schema.json->links-section->title
+msgid "Set up your links here"
+msgstr "Állítsa be a linkjeit itt"
+
+#. settings-schema.json->iconselect-section->title
+msgid "Find icon names here"
+msgstr "Ikonnevek itt találhatók"
+
+#. settings-schema.json->click-section->title
+msgid "Change how links are activated"
+msgstr "A linkek aktiválásának módosítása"
+
+#. settings-schema.json->layout-section->title
+msgid "Layout"
+msgstr "Elrendezés"
+
+#. settings-schema.json->font-section->title
+msgid "Font"
+msgstr "Betű"
+
+#. settings-schema.json->desklet-decorations-section->title
+msgid "Desklet decorations"
+msgstr "Asztalkalmazás dekorációk"
+
+#. settings-schema.json->links-top-label->description
+msgid ""
+"Each link has 5 attributes you can change:\n"
+" - Display: determines whether your link will be shown or not \n"
+" - Name that will be displayed\n"
+" - Icon name: you can choose any system icon or leave blank\n"
+" - Command to be executed when clicked\n"
+" - Shell: select if you want the terminal to show up after clicking"
+msgstr ""
+"Minden hivatkozásnak 5 attribútuma van, amelyeket megváltoztathatsz:\n"
+"- Megjelenítés: meghatározza, hogy a hivatkozásod megjelenjen-e vagy sem\n"
+"- Megjelenítendő név\n"
+"- Ikon neve: választhatsz egy tetszőleges rendszerikont, vagy üresen is "
+"hagyhatod\n"
+"- Kattintáskor végrehajtandó parancs\n"
+"- Héj: kiválaszthatod, hogy a terminál megjelenjen-e kattintás után"
+
+#. settings-schema.json->links-bottom-label->description
+msgid ""
+"Some tips:\n"
+"You can open folders using ex. `nemo <path>` command.\n"
+"If you need to see the output of a command, set the last attribute to "
+"true.\n"
+"You can break your links' names into multiple lines by typing \\n where you "
+"want a break.\n"
+"Set `Shell` to enabled if your command only outputs to the console ex. `ls` "
+"or `htop`.\n"
+"If you want multiple link categories/panels just create new instances of "
+"this desklet\n"
+" (click the `+` sign in system desklet manager)."
+msgstr ""
+"Néhány tipp:\n"
+"Mappákat megnyithatsz például a `nemo <path>` paranccsal.\n"
+"Ha egy parancs kimenetét szeretnéd látni, állítsd az utolsó attribútumot "
+"igazra.\n"
+"A hivatkozások nevét több sorra bonthatod a \\n beírásával oda, ahová a "
+"sortörést szeretnéd.\n"
+"\n"
+"A `Shell`-t engedélyezd, ha a parancs csak a konzolra ír ki kimenetet, "
+"például `ls` vagy `htop`.\n"
+"Ha több hivatkozáskategóriát/panelt szeretnél, egyszerűen hozz létre új "
+"példányokat ebből a deskletből\n"
+"(kattints a `+` jelre a rendszer deskletkezelőjében)."
+
+#. settings-schema.json->links-list->columns->title
+msgid "Display"
+msgstr "Megjelenítés"
+
+#. settings-schema.json->links-list->columns->title
+msgid "Name"
+msgstr "Név"
+
+#. settings-schema.json->links-list->columns->title
+msgid "Icon name"
+msgstr "Ikonnév"
+
+#. settings-schema.json->links-list->columns->title
+msgid "Command"
+msgstr "Parancs"
+
+#. settings-schema.json->links-list->columns->title
+msgid "Shell"
+msgstr "Shell"
+
+#. settings-schema.json->link-update-button->description
+msgid "Update"
+msgstr "Frissítés"
+
+#. settings-schema.json->icon-picker-label->description
+msgid ""
+"The setting below does not impact the desklet. It's here for convenience.\n"
+"You can browse through icons here and find their names easily."
+msgstr ""
+"Az alábbi beállítás nem befolyásolja az asztali számítógépet. A kényelem "
+"érdekében itt található.\n"
+"Itt böngészhet az ikonok között, és könnyen megtalálhatja a nevüket."
+
+#. settings-schema.json->icon-picker->description
+msgid "Click the icon to browse"
+msgstr "Kattintson az ikonra a böngészéshez"
+
+#. settings-schema.json->icon-picker->tooltip
+msgid ""
+"Click the icon on the right to browse. This setting is not used anywhere. "
+msgstr ""
+"Kattintson a jobb oldali ikonra a böngészéshez. Ez a beállítás sehol sincs "
+"használatban. "
+
+#. settings-schema.json->click-type->description
+msgid "Click type"
+msgstr "Kattintás típusa"
+
+#. settings-schema.json->click-type->options
+msgid "Single click"
+msgstr "Egyetlen kattintás"
+
+#. settings-schema.json->click-type->options
+msgid "Double click"
+msgstr "Dupla kattintás"
+
+#. settings-schema.json->click-type->tooltip
+msgid "Choose how you want to active your links."
+msgstr "Válaszd ki, hogyan szeretnéd aktiválni a linkjeidet."
+
+#. settings-schema.json->click-timeout->description
+msgid "Double-click timeout"
+msgstr "Dupla kattintás időtúllépése"
+
+#. settings-schema.json->click-timeout->tooltip
+msgid "Set the maximum time between clicks in double-click."
+msgstr ""
+"Állítsa be a kattintások közötti maximális időt dupla kattintás esetén."
+
+#. settings-schema.json->desklet-layout->description
+msgid ""
+"Choose how links should be laid out.\n"
+"(You might also want to change text alignment.)"
+msgstr ""
+"Válaszd ki, hogyan legyenek elrendezve a linkek.\n"
+"\n"
+"(Érdemes lehet a szöveg igazítását is módosítani.)"
+
+#. settings-schema.json->desklet-layout->options
+msgid "List view"
+msgstr "Lista nézet"
+
+#. settings-schema.json->desklet-layout->options
+msgid "Tile view"
+msgstr "Csempe nézet"
+
+#. settings-schema.json->desklet-layout->tooltip
+msgid "Pick a layout for this desklet."
+msgstr "Válasszon elrendezést ehhez az asztalkalmazáshoz."
+
+#. settings-schema.json->text-align->description
+msgid "Text alignment"
+msgstr "Szöveg elrendezés"
+
+#. settings-schema.json->text-align->options
+msgid "Left"
+msgstr "Bal"
+
+#. settings-schema.json->text-align->options
+msgid "Center"
+msgstr "Közép"
+
+#. settings-schema.json->text-align->options
+msgid "Right"
+msgstr "Jobb"
+
+#. settings-schema.json->column-number->description
+msgid "Number of columns"
+msgstr "Oszlopok száma"
+
+#. settings-schema.json->column-number->tooltip
+msgid "Increase or decrease the number of columns on the layout."
+msgstr "Növelje vagy csökkentse az oszlopok számát az elrendezésen."
+
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr "Szövegárnyék"
+
+#. settings-schema.json->text-shadow-color->description
+msgid "Text shadow color"
+msgstr "Szövegárnyék színe"
+
+#. settings-schema.json->transparent-bg->description
+msgid "Transparent background (works well with no decorations)"
+msgstr "Átlátszó háttér (díszítés nélkül is jól működik)"
+
+#. settings-schema.json->transparent-bg->tooltip
+msgid "Select if you want a transparent background."
+msgstr "Válassza ki, ha átlátszó hátteret szeretne."
+
+#. settings-schema.json->bg-color->description
+msgid "Link background color"
+msgstr "Link háttérszíne"
+
+#. settings-schema.json->bg-color->tooltip
+msgid "Set the color of the links background."
+msgstr "Állítsa be a linkek hátterének színét."
+
+#. settings-schema.json->show-decorations->description
+msgid "Show desklet decorations"
+msgstr "Asztalkalmazás dekorációk megjelenítése"
+
+#. settings-schema.json->icon-size->units
+msgid "pixels"
+msgstr "képpont"
+
+#. settings-schema.json->icon-size->description
+msgid "Icon size (set to 0 do disable icons)"
+msgstr "Ikonméret (0-ra állítva letiltja az ikonokat)"
+
+#. settings-schema.json->icon-size->tooltip
+msgid "Increase or decrease the icon size (set to 0 to disable icons)."
+msgstr ""
+"Növelje vagy csökkentse az ikon méretét (az ikonok letiltásához állítsa 0-"
+"ra)."
+
+#. settings-schema.json->font-enabled->description
+msgid "Display text"
+msgstr "Szöveg kijelzése"
+
+#. settings-schema.json->font->description
+msgid "Font name (choose regular versions)"
+msgstr "Betűtípus neve (válassza a normál verziókat)"
+
+#. settings-schema.json->font->tooltip
+msgid "Change font family"
+msgstr "Betűtípuscsalád módosítása"
+
+#. settings-schema.json->font-bold->description
+msgid "Bold"
+msgstr "Félkövér"
+
+#. settings-schema.json->font-italic->description
+msgid "Italic"
+msgstr "Dőlt"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Szöveg színe"
+
+#. settings-schema.json->text-color->tooltip
+msgid "Set the text color of this desklet."
+msgstr "Állítsa be az asztalkalmazás szövegének színét."
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "méretezési lépték"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size, mostly impacts width"
+msgstr "Asztalkalmazás mérete, ami leginkább a szélességet befolyásolja"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Növelje vagy csökkentse a asztalkalmazás méretét ezzel a méretezési "
+"tényezővel."
+
+#. settings-schema.json->desklet-decorations-note->description
+msgid ""
+"Following settings require desklet decorations to be enabled on your "
+"system.\n"
+"Desklet preferences are located in System Settings > Desklets > General "
+"Settings tab; there you will be able to enable border/header decorations."
+msgstr ""
+"A következő beállításokhoz engedélyezni kell a Desklet dekorációkat a "
+"rendszeren.\n"
+"\n"
+"A Desklet beállításai a Rendszerbeállítások > Asztalkalmazások > Általános "
+"beállítások lapon találhatók; ott engedélyezheti a szegély-/"
+"fejlécdekorációkat."
+
+#. settings-schema.json->desklet-header->description
+msgid "Desklet header"
+msgstr "Asztalkalmazás fejléc"
+
+#. settings-schema.json->desklet-header->tooltip
+msgid ""
+"Set your desklet header. Make sure desklet headers are enabled in system "
+"settings."
+msgstr ""
+"Állítsa be az asztalkalmazás fejlécét. Győződjön meg arról, hogy az "
+"asztalkalmazás fejlécek engedélyezve vannak a rendszerbeállításokban."
