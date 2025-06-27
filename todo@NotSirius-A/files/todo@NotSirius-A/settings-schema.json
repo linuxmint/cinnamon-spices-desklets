@@ -1,0 +1,295 @@
+{
+    "layout": {
+        "type": "layout",
+        "pages": [
+            "todo-page",
+            "preferences-page",
+            "theme-page"
+        ],
+        "todo-page": {
+            "type": "page",
+            "title": "TODO",
+            "sections": [
+                "todo-section"
+            ]
+        },
+        "preferences-page": {
+            "type": "page",
+            "title": "Preferences",
+            "sections": [
+                "toolbar-preferences-section",
+                "todo-preferences-section",
+                "desklet-decorations-section"
+            ]
+        },
+        "theme-page": {
+            "type": "page",
+            "title": "Theme",
+            "sections": [
+                "layout-section",
+                "TODO-task-theme-section",
+                "toolbar-theme-section"
+            ]
+        },
+        "todo-section": {
+            "type": "section",
+            "title": "Add or modify your tasks here",
+            "keys": [
+                "todo-list",
+                "update-button",
+                "todo-bottom-label"
+            ]
+        },
+        "toolbar-preferences-section": {
+            "type": "section",
+            "title": "Toolbar",
+            "keys": [
+                "is-toolbar-enabled"
+            ]
+        },
+        "todo-preferences-section": {
+            "type": "section",
+            "title": "TODO list",
+            "keys": [
+                "is-sort-enabled",
+                "is-sort-reversed"
+            ]
+        },
+        "layout-section": {
+            "type": "section",
+            "title": "Layout",
+            "keys": [
+                "scale-size",
+                "column-number"
+            ]
+        },
+        "TODO-task-theme-section": {
+            "type": "section",
+            "title": "TODO tasks",
+            "keys": [
+                "is-task-bg-transparent",
+                "task-background",
+                "task-icon-size",
+                "task-not-marked-icon",
+                "task-marked-icon",
+                "font",
+                "font-bold",
+                "font-italic",
+                "text-color",
+                "text-shadow",
+                "text-shadow-color"
+            ]
+        },  
+        "toolbar-theme-section": {
+            "type": "section",
+            "title": "Toolbar",
+            "keys": [
+                "toolbar-background",
+                "toolbar-font-color",
+                "toolbar-icon-size"
+            ],
+            "dependency": "is-toolbar-enabled"
+        },  
+        "desklet-decorations-section": {
+            "type": "section",
+            "title": "Desklet decorations",
+            "keys": [
+                "desklet-decorations-note",
+                "show-decorations",
+                "desklet-header"
+            ]
+        }
+    },
+    "todo-bottom-label": {
+        "type": "label",
+        "description": "How to use this desklet:\nYou can add/edit tasks here or by interacting with the desklet itself:\n - Left-click on task name to edit it\n - Left-click on the task icon to mark it done/not done\n - Right-click to select multiple tasks (only relevant if using toolbar)\n - Middle-click to remove\n - If you want to add more tasks, right-click anywhere on the desklet and select the `Add new task` option inside the popup menu \nYou can find more information about this desklet on its webpage."
+    },
+    "todo-list" : {
+        "type" : "list",
+        "columns" : [
+            {"id": "is-marked-done", "title": "Marked done", "type": "boolean", "default": false},
+            {"id": "name", "title": "Name", "type": "string", "default": "Name"}
+        ],
+		"height": 350,
+        "default" : [
+            {
+                "is-marked-done": false,
+                "name": "Left click on task name to edit"
+            },
+            {
+                "is-marked-done": false,
+                "name": "Left click the icon to mark as done"
+            },
+            {
+                "is-marked-done": false,
+                "name": "Right click to select"
+            },
+            {
+                "is-marked-done": false,
+                "name": "Toolbar works on selected tasks"
+            },
+            {
+                "is-marked-done": false,
+                "name": "Middle click to delete"
+            },
+            {
+                "is-marked-done": true,
+                "name": "Im a completed task"
+            },
+            {
+                "is-marked-done": true,
+                "name": "Thanks for downloading"
+            }
+        ],
+		"show-buttons": true
+    },
+    "update-button": {
+        "type": "button",
+        "description": "Update",
+        "callback": "on_update_button_callback"
+    },
+    "is-toolbar-enabled": {
+        "type": "switch",
+        "description": "Enable toolbar",
+        "default": true,
+        "tooltip": "Select if you want the toolbar to show up (tasks can be selected only when toolbar is enabled)."
+    },
+    "is-sort-enabled": {
+        "type": "switch",
+        "description": "Sort marked/not marked tasks",
+        "default": true,
+        "tooltip": "Select if you tasks to be sorted based on whether they're marked done or not."
+    },
+    "is-sort-reversed": {
+        "type": "switch",
+        "description": "Reverse order",
+        "default": false,
+        "tooltip": "Select if you unmarked tasks to be at the top.",
+        "dependency": "is-sort-enabled"
+    },   
+    "column-number": {
+        "type": "spinbutton",
+        "default": 1,
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "description": "Number of columns",
+        "tooltip": "Increase or decrease the number of columns on the layout."
+    },
+    "text-shadow": {
+        "type": "switch",
+        "description": "Text shadow",
+        "default": false
+    },
+    "text-shadow-color": {
+        "type": "colorchooser",
+        "default": "rgba(0,0,0,0.8)",
+        "description": "Text shadow color",
+        "dependency": "text-shadow"
+    },
+    "show-decorations": {
+        "type": "switch",
+        "description": "Show desklet decorations",
+        "default": true
+    },
+    "font": {
+        "type": "fontchooser",
+        "description": "Font name (choose regular versions)",
+        "default": "Ubuntu Regular 15",
+        "tooltip": "Change font family"
+    },
+    "font-bold": {
+        "type": "switch",
+        "description": "Bold",
+        "default": false
+    },
+    "font-italic": {
+        "type": "switch",
+        "description": "Italic",
+        "default": false
+    },
+    "text-color": {
+        "type": "colorchooser",
+        "default": "rgb(255,255,255)",
+        "description": "Text color",
+        "tooltip": "Set the task text color."
+    },
+    "scale-size": {
+        "type": "spinbutton",
+        "default": 2,
+        "min": 0.5,
+        "max": 15,
+        "step": 0.2,
+        "units": "scale factor",
+        "description": "Desklet size, mostly impacts width",
+        "tooltip": "Increase or decrease the size of this desklet using this scale factor."
+    },
+    "is-task-bg-transparent": {
+        "type": "switch",
+        "default": false,
+        "description": "Transparent background",
+        "tooltip": "Select if you want a transparent background."
+    },
+    "task-background": {
+        "type": "colorchooser",
+        "default": "rgb(40,105,198)",
+        "description": "Task background",
+        "tooltip": "Set the task background.",
+        "dependency": "!is-task-bg-transparent"
+    },
+    "task-icon-size": {
+        "type": "spinbutton",
+        "default": 13,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "units": "pixels",
+        "description": "Task icon size (set to 0 to disable icons)",
+        "tooltip": "Increase or decrease the icon size (set to 0 to disable icons)."
+    },
+    "task-marked-icon": {
+        "type": "iconfilechooser",
+        "default": "radio-checked-symbolic",
+        "description": "Icon marked",
+        "dependency": "task-icon-size>0"
+    },
+    "task-not-marked-icon": {
+        "type": "iconfilechooser",
+        "default": "radio-symbolic",
+        "description": "Icon not marked",
+        "dependency": "task-icon-size>0"
+    },
+    "toolbar-icon-size": {
+        "type": "spinbutton",
+        "default": 23,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "units": "pixels",
+        "description": "Toolbar icon size",
+        "tooltip": "Increase or decrease the icon size."
+    },
+    "toolbar-background": {
+        "type": "colorchooser",
+        "default": "rgb(40,105,198)",
+        "description": "Toolbar background",
+        "tooltip": "Set the toolbar background."
+    },
+    "toolbar-font-color": {
+        "type": "colorchooser",
+        "default": "rgb(255,255,255)",
+        "description": "Toolbar icon color",
+        "tooltip": "Set the color of toolbar icons."
+    },
+    "desklet-decorations-note": {
+        "type": "label",
+        "description": "Following settings require desklet decorations to be enabled on your system.\nDesklet preferences are located in System Settings > Desklets > General Settings tab; there you will be able to enable border/header decorations."
+    },
+    "desklet-header": {
+        "type": "entry",
+        "default": "TODO",
+        "description": "Desklet header",
+        "tooltip": "Set your desklet header. Make sure desklet headers are enabled in system settings.",
+        "dependency": "show-decorations"
+    }
+}
