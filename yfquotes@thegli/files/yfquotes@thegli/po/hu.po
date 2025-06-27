@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2025-05-12 00:33+0200\n"
-"PO-Revision-Date: 2024-11-25 13:35+0100\n"
+"PO-Revision-Date: 2025-06-21 14:49+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: hu\n"
@@ -104,7 +104,7 @@ msgstr "Elrendezés"
 
 #. settings-schema.json->networkPage->title
 msgid "Network"
-msgstr ""
+msgstr "Hálózat"
 
 #. settings-schema.json->dataUpdateSection->title
 msgid "Data Updates"
@@ -160,7 +160,7 @@ msgstr "Hatások"
 
 #. settings-schema.json->networkSessionSection->title
 msgid "HTTP Session"
-msgstr ""
+msgstr "HTTP-munkamenet"
 
 #. settings-schema.json->width->description
 msgid "Width"
@@ -563,11 +563,9 @@ msgid "Send custom User-Agent header"
 msgstr "Egyedi felhasználóügynök fejléc küldése"
 
 #. settings-schema.json->sendCustomUserAgent->tooltip
-#, fuzzy
 msgid "Include a custom User-Agent header in Yahoo Finance Quotes API requests"
 msgstr ""
-"A Yahoo Finance Quotes API kéréseiben egyéni felhasználóügynök fejlécet "
-"adjon meg. Alapértelmezés szerint ez a fejléc nincs beállítva"
+"Egyéni User-Agent fejléc beillesztése a Yahoo Finance Quotes API kérésekbe"
 
 #. settings-schema.json->customUserAgent->description
 msgid "Custom User-Agent header"
@@ -579,27 +577,25 @@ msgstr "Az összes API kérés mellé küldendő felhasználóügynök fejléc �
 
 #. settings-schema.json->enableCurl->description
 msgid "Use external tool curl"
-msgstr ""
+msgstr "Külső curl eszköz használata"
 
 #. settings-schema.json->enableCurl->tooltip
 msgid "Requires separate installation of curl."
-msgstr ""
+msgstr "A curl külön telepítését igényli."
 
 #. settings-schema.json->curlCommand->description
 msgid "Path of curl executable"
-msgstr ""
+msgstr "A curl futtatható fájl elérési útja"
 
 #. settings-schema.json->curlCommand->tooltip
 msgid "Provide absolute path of curl program file"
-msgstr ""
+msgstr "Adja meg a curl programfájl abszolút elérési útját"
 
 #. settings-schema.json->applyNetworkSettingsButton->description
 msgid "Apply network settings"
-msgstr ""
+msgstr "Hálózati beállítások alkalmazása"
 
 #. settings-schema.json->applyNetworkSettingsButton->tooltip
-#, fuzzy
 msgid "Fetches new authorization parameters and refreshes quotes data"
 msgstr ""
-"Nem sikerült lekérni az engedélyezési paramétert. Nem sikerült letölteni a "
-"pénzügyi adatokat.\\nÁllapot: "
+"Új engedélyezési paramétereket kér le és frissíti az árajánlatok adatait"
