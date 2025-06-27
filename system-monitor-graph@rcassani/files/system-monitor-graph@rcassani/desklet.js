@@ -489,7 +489,10 @@ SystemMonitorGraph.prototype = {
             102400,         // 100 KiB/s
             1048576,        // 1 MiB/s
             10485760,       // 10 MiB/s
+            50000000,       // 50 MiB/s
             104857600,      // 100 MiB/s
+            250000000,      // 250 MiB/s
+            500000000,      // 500 MiB/s
             1073741824,     // 1 GiB/s
             10737418240     // 10 GiB/s
         ];
@@ -506,6 +509,7 @@ SystemMonitorGraph.prototype = {
         // For very high speeds, use next power of 2
         let power = Math.ceil(Math.log2(target));
         return Math.pow(2, power);
+        
     },
 
     format_network_speed: function(speed_bytes_per_sec) {
