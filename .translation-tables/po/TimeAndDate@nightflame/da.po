@@ -1,0 +1,39 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-26 11:56+0800\n"
+"PO-Revision-Date: 2017-06-13 16:28+0200\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"Language-Team: \n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:67
+msgid "Time And Date"
+msgstr "Tid og dato"
+
+#: desklet.js:83
+msgid "Edit Config"
+msgstr "Redigér konfigurationen"
+
+#: desklet.js:87
+msgid "Help"
+msgstr "Hjælp"
+
+#. TimeAndDate@nightflame->metadata.json->description
+msgid "A fork desklet that displays the time and date"
+msgstr "Et forgrenet skrivebordsprogram som viser tid og dato"
+
+#. TimeAndDate@nightflame->metadata.json->name
+msgid "Time and Date Desklet"
+msgstr "Tid- og dato"

@@ -1,0 +1,363 @@
+# Translation for notes@schorschii.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Gökhan GÖKKAYA <gokhanlnx@gmail.com>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-05-03 11:37-0400\n"
+"PO-Revision-Date: 2018-11-27 15:10+0300\n"
+"Last-Translator: Gökhan GÖKKAYA <gokhanlnx@gmail.com>\n"
+"Language-Team: Linux Mint Türkiye <gokhanlnx@gmail.com>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+#. desklet.js:138
+msgid "Refresh"
+msgstr ""
+
+#. desklet.js:151
+msgid ""
+"Can't read text file.\n"
+"Select a file in settings.\n"
+"\n"
+"Click here to edit."
+msgstr ""
+"Metin dosyası okunamadı.\n"
+"Ayarlardan bir dosya seçiniz.\n"
+"\n"
+"Düzenlemek için buraya tıklayınız."
+
+#. desklet.js:289
+msgid "Notepad"
+msgstr "Not defteri"
+
+#. metadata.json->description
+msgid "A desklet to display notes including various themes."
+msgstr "Notları çeşitli temalarla gösteren bir masaüstü uygulamacığı."
+
+#. metadata.json->name
+#. settings-schema.json->note-section->title
+msgid "Note"
+msgstr "Not"
+
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
+msgid "General"
+msgstr "Genel"
+
+#. settings-schema.json->visual-page->title
+#. settings-schema.json->visual-section->title
+msgid "Visual"
+msgstr "Görsel"
+
+#. settings-schema.json->label-section->title
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr "Masaüstü uygulamacığı özel etiketi (sadece süslemeler etkinse görünür)"
+
+#. settings-schema.json->note-taking-method->description
+msgid "Note Taking Method"
+msgstr ""
+
+#. settings-schema.json->note-taking-method->options
+msgid "Text File"
+msgstr "Metin Dosyası"
+
+#. settings-schema.json->note-taking-method->options
+msgid "Desklet Settings"
+msgstr "Program Ayarları"
+
+#. settings-schema.json->file->description
+msgid "Path to note text file"
+msgstr "Not metin dosyasının yolu"
+
+#. settings-schema.json->file->tooltip
+msgid "Select your text file, where to read from and save to."
+msgstr "Okumak ve kaydetmek için metin dosyasını seçin."
+
+#. settings-schema.json->edit-cmd->description
+msgid "Command for editing this note (on mouse click)"
+msgstr "Bu notu düzenlemek için komut (üstüne tıklandığında)"
+
+#. settings-schema.json->edit-cmd->tooltip
+msgid "%f will replaced by the text file path."
+msgstr "%f metin dosyası yolu ile değiştirilecek."
+
+#. settings-schema.json->note-text->description
+msgid "Write Your Note"
+msgstr ""
+
+#. settings-schema.json->style->description
+msgid "Notes style"
+msgstr "Notların tarzı"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Black"
+msgstr "Boş Not - Siyah"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Blue"
+msgstr "Boş Not - Mavi"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Green"
+msgstr "Boş Not - Yeşil"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Orange"
+msgstr "Boş Not - Turuncu"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Purple"
+msgstr "Boş Not - Mor"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - White"
+msgstr "Boş Not - Beyaz"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Yellow"
+msgstr "Boş Not - Sarı"
+
+#. settings-schema.json->style->options
+msgid "White Note - Black Button"
+msgstr "Beyaz Not - Siyah Raptiye"
+
+#. settings-schema.json->style->options
+msgid "White Note - Blue Button"
+msgstr "Beyaz Not - Mavi Raptiye"
+
+#. settings-schema.json->style->options
+msgid "White Note - Green Button"
+msgstr "Beyaz Not - Yeşil Raptiye"
+
+#. settings-schema.json->style->options
+msgid "White Note - Red Button"
+msgstr "Beyaz Not - Kırmızı Raptiye"
+
+#. settings-schema.json->style->options
+msgid "White Note - Yellow Button"
+msgstr "Beyaz Not - Sarı Raptiye"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Black Clip"
+msgstr "Sarı Not - Siyah Ataç"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Blue Clip"
+msgstr "Sarı Not - Mavi Ataç"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Green Clip"
+msgstr "Sarı Not - Yeşil Ataç"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Jingle Clip"
+msgstr "Sarı Not - Renkli Ataç"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Red Clip"
+msgstr "Sarı Not - Kırmızı Ataç"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Yellow Clip"
+msgstr "Sarı Not - Sarı Ataç"
+
+#. settings-schema.json->style->options
+msgid "White Note - Black Magnet"
+msgstr "Beyaz Not- Siyah Mıknatıs"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Blue Magnet"
+msgstr "Sarı Not- Mavi Mıknatıs"
+
+#. settings-schema.json->style->options
+msgid "White Note - Lines and Red Magnet"
+msgstr "Beyaz Not - Satırlar ve Kırmızı Mıknatıs"
+
+#. settings-schema.json->style->options
+msgid "Black Note - White Magnet"
+msgstr "Siyah Not- Beyaz Mıknatıs"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Yellow Magnet"
+msgstr "Sarı Not- Sarı Mıknatıs"
+
+#. settings-schema.json->style->options
+msgid "Blue Paint Strokes"
+msgstr "Mavi Fırça Darbesi"
+
+#. settings-schema.json->style->options
+msgid "Green Paint Strokes"
+msgstr "Yeşil Fırça Darbesi"
+
+#. settings-schema.json->style->options
+msgid "Purple Paint Strokes"
+msgstr "Turuncu Fırça Darbesi"
+
+#. settings-schema.json->style->options
+msgid "Red Paint Strokes"
+msgstr "Kırmızı Fırça Darbesi"
+
+#. settings-schema.json->style->options
+msgid "Yellow Paint Strokes"
+msgstr "Sarı Fırça Darbesi"
+
+#. settings-schema.json->style->options
+msgid "White Note - Silver Spiral"
+msgstr "Beyaz Not - Gümüş Sarmal"
+
+#. settings-schema.json->style->options
+msgid "White Note - Silver Spiral 2"
+msgstr "Beyaz Not - Gümüş Sarmal 2"
+
+#. settings-schema.json->style->options
+msgid "White Note - Black Spiral"
+msgstr "Beyaz Not - Siyah Sarmal"
+
+#. settings-schema.json->style->options
+msgid "White Note Large - Silver Spiral"
+msgstr "Beyaz Not Büyük - Gümüş Sarmal"
+
+#. settings-schema.json->style->options
+msgid "Yellow Sticker"
+msgstr "Sarı Yapışkan"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note (iOS Style)"
+msgstr "Sarı Not (iOS Tarzı)"
+
+#. settings-schema.json->style->options
+msgid "Birch Bark"
+msgstr "Huş Kabuğu"
+
+#. settings-schema.json->style->options
+msgid "Burned Paper"
+msgstr "Yanmış Kağıt"
+
+#. settings-schema.json->style->options
+msgid "Clay Tablet"
+msgstr "Kil Levha"
+
+#. settings-schema.json->style->options
+msgid "Coffee Stained"
+msgstr "Kahve Lekeli"
+
+#. settings-schema.json->style->options
+msgid "Clipboard"
+msgstr "Pano"
+
+#. settings-schema.json->style->options
+msgid "None"
+msgstr ""
+
+#. settings-schema.json->style->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Kullanmak istediğiniz arkaplan grafiğini seçin."
+
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr ""
+
+#. settings-schema.json->text-shadow-color->description
+#, fuzzy
+msgid "Text shadow color"
+msgstr "Metin rengi"
+
+#. settings-schema.json->bg-color->description
+msgid "Background color"
+msgstr ""
+
+#. settings-schema.json->bg-color->tooltip
+#, fuzzy
+msgid "Set the background color of this desklet."
+msgstr "Bu masaüstü uygulamacığının metin rengini ayarla"
+
+#. settings-schema.json->enable-word-wrap->description
+msgid "Enable word wrap"
+msgstr ""
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Süslemeleri gizle"
+
+#. settings-schema.json->font->description
+msgid "Font"
+msgstr "Yazıtipi"
+
+#. settings-schema.json->size-font->units
+msgid "pixels"
+msgstr "piksel"
+
+#. settings-schema.json->size-font->description
+msgid "Font size"
+msgstr "Yazıtipi boyutu"
+
+#. settings-schema.json->size-font->tooltip
+#, fuzzy
+msgid "Increase or decrease the note font size."
+msgstr ""
+"Bu ölçü çarpanını kullanarak bu masaüstü uygulamacığının boyutunu artırın "
+"veya azaltın."
+
+#. settings-schema.json->font-bold->description
+msgid "Bold"
+msgstr "Kalın"
+
+#. settings-schema.json->font-italic->description
+msgid "Italic"
+msgstr "Eğik"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Metin rengi"
+
+#. settings-schema.json->text-color->tooltip
+msgid "Set the text color of this desklet."
+msgstr "Bu masaüstü uygulamacığının metin rengini ayarla"
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "ölçü çarpanı"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Masaüstü uygulamacığının boyutu"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Bu ölçü çarpanını kullanarak bu masaüstü uygulamacığının boyutunu artırın "
+"veya azaltın."
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Masaüstü uygulamacığı için özel bir etiketi kullan"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Bu kutuyu işaretlemek, aşağıda açılacak alandan özel bir etiket ayarlamanıza "
+"izin verir."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Özel masaüstü uygulamacığı etiketi"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr ""
+"Burada özel etiketinizi ayarlayabilirsiniz. Bu alan yukarıdaki onay kutusu "
+"etkin olmadıkça kullanılamaz."

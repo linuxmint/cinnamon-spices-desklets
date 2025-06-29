@@ -1,0 +1,158 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-05 11:05+0300\n"
+"PO-Revision-Date: 2022-06-03 12:31+0200\n"
+"Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+#: desklet.js:232
+#, javascript-format
+msgid "Core %d"
+msgstr "Core %d"
+
+#: desklet.js:232
+msgid "CPU usage"
+msgstr "Utilizzo CPU"
+
+#. metadata.json->description
+msgid "Displays CPU load"
+msgstr "Mostra il carico della CPU"
+
+#. metadata.json->name
+msgid "CPU Load"
+msgstr "Carico CPU"
+
+#. settings-schema.json->head0->description
+msgid "Settings for the CPU Load desklet"
+msgstr "Impostazione del desklet Carico CPU"
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr "Generale"
+
+#. settings-schema.json->per-core->description
+msgid "Show all CPU cores"
+msgstr "Mostra tutti i core della CPU"
+
+#. settings-schema.json->per-core->tooltip
+msgid "Display utilization of each CPU core rather than total CPU utilization."
+msgstr "Mostra l'utilizzo di ogni core della CPU invece di un totale."
+
+#. settings-schema.json->refresh-interval->units
+msgid "seconds"
+msgstr "secondi"
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval"
+msgstr "Intervallo di aggiornamento"
+
+#. settings-schema.json->refresh-interval->tooltip
+msgid "Increase or decrease refresh interval in seconds."
+msgstr "Incrementa o decrementa l'intervallo di aggiornamento in secondi."
+
+#. settings-schema.json->head2->description
+msgid "Layout"
+msgstr "Layout"
+
+#. settings-schema.json->design->description
+msgid "Design"
+msgstr "Design"
+
+#. settings-schema.json->design->options
+msgid "Thin"
+msgstr "Sottile"
+
+#. settings-schema.json->design->options
+msgid "Compact"
+msgstr "Compatto"
+
+#. settings-schema.json->design->options
+msgid "Thick"
+msgstr "Spesso"
+
+#. settings-schema.json->circle->description
+msgid "Circle"
+msgstr "Circolare"
+
+#. settings-schema.json->circle->options
+msgid "Speedometer"
+msgstr "Tachimetro"
+
+#. settings-schema.json->circle->options
+msgid "Full Circle"
+msgstr "Cerchio Completo"
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "fattore di scala"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Dimensione desklet"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of the desklet."
+msgstr "Aumenta o riduci le dimensioni di questo desklet."
+
+#. settings-schema.json->number-of-columns->units
+msgid "columns"
+msgstr "colonne"
+
+#. settings-schema.json->number-of-columns->description
+msgid "Number of columns"
+msgstr "Numero di colonne"
+
+#. settings-schema.json->number-of-columns->tooltip
+msgid "Increase or decrease number of columns."
+msgstr "Incrementa o decrementa il numero di colonne."
+
+#. settings-schema.json->head3->description
+msgid "Colors"
+msgstr "Colori"
+
+#. settings-schema.json->font-color->description
+msgid "Font color"
+msgstr "Colore font"
+
+#. settings-schema.json->color-theme->description
+msgid "Color theme"
+msgstr "Colore tema"
+
+#. settings-schema.json->color-theme->options
+msgid "Random"
+msgstr "Casuale"
+
+#. settings-schema.json->color-theme->options
+msgid "Static"
+msgstr "Statico"
+
+#. settings-schema.json->color-theme->options
+msgid "Dynamic"
+msgstr "Dinamico"
+
+#. settings-schema.json->static-theme-color->description
+msgid "Static theme color"
+msgstr "Colore tema statico"
+
+#. settings-schema.json->head4->description
+msgid "Background"
+msgstr "Sfondo"
+
+#. settings-schema.json->show-background->description
+msgid "Show background"
+msgstr "Mostra sfondo"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Nascondi decorazioni"
