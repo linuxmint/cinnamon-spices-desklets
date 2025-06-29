@@ -526,29 +526,29 @@ SystemMonitorGraph.prototype = {
             // Decimal prefix (1000-based)
             if (speed >= 1000000000) {
                 speed = speed / 1000000000;
-                unit = "GB/s";
+                unit = _("GB") + "/s";
             } else if (speed >= 1000000) {
                 speed = speed / 1000000;
-                unit = "MB/s";
+                unit = _("MB") + "/s";
             } else if (speed >= 1000) {
                 speed = speed / 1000;
-                unit = "KB/s";
+                unit = _("KB") + "/s";
             } else {
-                unit = "B/s";
+                unit = _("B") + "/s";
             }
         } else {
             // Binary prefix (1024-based)
             if (speed >= 1073741824) { // 1024^3
                 speed = speed / 1073741824;
-                unit = "GiB/s";
+                unit = _("GiB") + "/s";
             } else if (speed >= 1048576) { // 1024^2
                 speed = speed / 1048576;
-                unit = "MiB/s";
+                unit = _("MiB") + "/s";
             } else if (speed >= 1024) {
                 speed = speed / 1024;
-                unit = "KiB/s";
+                unit = _("KiB") + "/s";
             } else {
-                unit = "B/s";
+                unit = _("B") + "/s";
             }
         }
         
