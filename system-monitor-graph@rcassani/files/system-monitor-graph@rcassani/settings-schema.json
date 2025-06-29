@@ -18,7 +18,8 @@
             "RAM" : "ram",
             "Swap" : "swap",
             "HDD" : "hdd",
-            "GPU" : "gpu"
+            "GPU" : "gpu",
+            "Network" : "network"
         }
     },
     "data-prefix-ram": {
@@ -53,6 +54,24 @@
         "description": "Prefix for data units",
         "tooltip": "Unit prefix for Filesystem size.",
         "dependency": "type=hdd"
+    },
+    "data-prefix-network": {
+        "type": "combobox",
+        "default": 0,
+        "options": {
+            "Binary prefix or IEC (1 KiB = 1024 bytes)" : 0,
+            "Decimal prefix (1 KB = 1000 bytes)" : 1
+        },
+        "description": "Prefix for data units",
+        "tooltip": "Unit prefix for network speed.",
+        "dependency": "type=network"
+    },
+    "network-interface": {
+        "type": "entry",
+        "default": "",
+        "description": "Network interface to monitor",
+        "tooltip": "Leave empty to monitor all interfaces combined. Examples: eth0, wlan0, enp0s3",
+        "dependency": "type=network"
     },
     "filesystem": {
         "type": "filechooser",
@@ -190,6 +209,20 @@
         "default": "rgba(197,86,133,1.0)",
         "description": "Line color GPU",
         "dependency": "type=gpu",
+        "tooltip": "RGB or RGBA. Alpha is ignored"
+    },
+    "line-color-network-down": {
+        "type": "colorchooser",
+        "default": "rgba(100,180,120,1.0)",
+        "description": "Line color Network Download",
+        "dependency": "type=network",
+        "tooltip": "RGB or RGBA. Alpha is ignored"
+    },
+    "line-color-network-up": {
+        "type": "colorchooser",
+        "default": "rgba(180,120,100,1.0)",
+        "description": "Line color Network Upload",
+        "dependency": "type=network",
         "tooltip": "RGB or RGBA. Alpha is ignored"
     },
     "midline-color": {
