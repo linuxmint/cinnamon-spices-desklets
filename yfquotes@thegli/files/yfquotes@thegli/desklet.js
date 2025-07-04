@@ -154,7 +154,7 @@ YahooFinanceQuoteUtils.prototype = {
             .split("\n")
             .map((line) => line.trim())
             .filter((line) => line !== "")
-            .map((line) => line.split(";")[0])
+            .map((line) => line.split(";")[0].toUpperCase())
             .join();
     },
 
@@ -187,7 +187,7 @@ YahooFinanceQuoteUtils.prototype = {
     // data structure for quote customization parameters
     buildSymbolCustomization: function(symbol, customAttributes) {
         return {
-            symbol,
+            symbol: symbol.toUpperCase(),
             name: customAttributes.has("name") ? customAttributes.get("name") : null,
             style: customAttributes.has("style") ? customAttributes.get("style") : "normal",
             weight: customAttributes.has("weight") ? customAttributes.get("weight") : "normal",
