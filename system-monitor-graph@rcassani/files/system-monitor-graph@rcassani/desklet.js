@@ -389,12 +389,19 @@ SystemMonitorGraph.prototype = {
             Math.round((2.5 * unit_size) - this.text2.get_height())
         );
         this.text3.set_text(text3);
-        this.text3.style = "font-size: " + text3_size + "px;"
-                         + "color: " + this.text_color + ";";
-        this.text3.set_position(
-            Math.round((21 * unit_size) - this.text3.get_width()),
-            Math.round((2.5 * unit_size) - this.text3.get_height())
-        );
+        if (this.type !== "network") {
+            this.text3.style = "font-size: " + text3_size + "px;"
+                             + "color: " + this.text_color + ";";
+            this.text3.set_position(
+                Math.round((21 * unit_size) - this.text3.get_width()),
+                Math.round((2.5 * unit_size) - this.text3.get_height()));
+        } else {
+            this.text3.style = "font-size: " + text2_size + "px;"
+                             + "color: " + this.text_color + ";";
+            this.text3.set_position(
+                Math.round(this.text1.get_width() + (9 * unit_size)),
+                Math.round((2.5 * unit_size) - this.text3.get_height()));
+        }
 
 
         // update canvas
@@ -515,7 +522,7 @@ SystemMonitorGraph.prototype = {
     format_network_speed: function(speed_bytes_per_sec) {
         // Enhanced error handling for speed formatting
         if (!speed_bytes_per_sec || isNaN(speed_bytes_per_sec) || !isFinite(speed_bytes_per_sec) || speed_bytes_per_sec < 0) {
-            return "0 B/s";
+            return "0 " + _("B") + "/s";
         }
         
         // Convert bytes per second to appropriate units
@@ -553,12 +560,10 @@ SystemMonitorGraph.prototype = {
         }
         
         // Format with appropriate decimal places
-        if (speed >= 100) {
+        if (speed >= 10) {
             return Math.round(speed).toString() + " " + unit;
-        } else if (speed >= 10) {
-            return speed.toFixed(1) + " " + unit;
         } else {
-            return speed.toFixed(2) + " " + unit;
+            return speed.toFixed(1) + " " + unit;
         }
     },
 
