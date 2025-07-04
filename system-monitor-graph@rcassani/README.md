@@ -10,7 +10,7 @@ Four instances of the Desklet in action.
 This project has been inspired from other Desklets such as [Disk Space](https://cinnamon-spices.linuxmint.com/desklets/view/39), [CPU Load](https://cinnamon-spices.linuxmint.com/desklets/view/44), [Simple system monitor](https://cinnamon-spices.linuxmint.com/desklets/view/29), [Network usage monitor](https://cinnamon-spices.linuxmint.com/desklets/view/15), [Top](https://cinnamon-spices.linuxmint.com/desklets/view/41), and the  [Rainmeter Win10 Widgets](https://win10widgets.com/).
 
 ## Features
-### Variables to monitor (v1.4 - July 2025)
+### Variables to monitor (v2.0 - July 2025)
 
 | System variable | Description |
 | -----------     | ----------- |
