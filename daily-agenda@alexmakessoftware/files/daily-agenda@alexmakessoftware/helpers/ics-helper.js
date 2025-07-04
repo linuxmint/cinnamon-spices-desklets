@@ -371,6 +371,21 @@ class IcsHelperImpl {
     }
 
 
+    _extractUidAndRecurrenceId(eventText) {
+        const uidLine = this._extractICalLine(eventText, 'UID');
+        const ridLine = this._extractICalLine(eventText, 'RECURRENCE-ID');
+
+        const { value: uid } = this._parseLineParts(uidLine || "") || {};
+        const { value: rid, params: ridParams } = this._parseLineParts(ridLine || "") || {};
+
+        return {
+            uid,
+            recurrenceId: rid || null,
+            recurrenceIdParams: ridParams || {}
+        };
+    }
+
+
     parseTodaysEvents(eventsText, todayDate = GLib.DateTime.new_now(this.getLocalTimezone())) {
         if (!(todayDate instanceof GLib.DateTime)) {
             throw new Error("Expected a GLib.DateTime for todayDate");
@@ -379,13 +394,40 @@ class IcsHelperImpl {
         eventsText = unfoldIcs(eventsText);
         const eventList = [];
         const events = eventsText.split("BEGIN:VEVENT").slice(1);
+        const overridesByUidAndRecurrenceId = {}; // [ADDED] Track RECURRENCE-ID overrides
+        const masterEventsByUid = {};             // [ADDED] Track master events
 
+        console.log("starting list of event text:",events);//TODO: remove me.
+
+        // First pass: parse overrides and masters
         for (let eventText of events) {
+            const { uid, recurrenceId } = this._extractUidAndRecurrenceId(eventText);
+
+            if (!uid) {
+                this._log("Skipping event with missing UID (spec violation)");
+                continue;
+            }
+
+            if (recurrenceId) {
+                // It's an override
+                const key = `${uid}|${recurrenceId}`;
+                overridesByUidAndRecurrenceId[key] = eventText;
+            } else {
+                // It's a master event
+                masterEventsByUid[uid] = eventText;
+            }
+        }
+
+        // Second pass: process all events (including overrides)
+        for (let uid in masterEventsByUid) {
+            const eventText = masterEventsByUid[uid];
             const {
                 dtstartMatch, dtstartparams, dtstartvalue,
                 dtendMatch, dtendparams, dtendvalue,
                 summary, rruleLine, exdateStrArr
             } = this._extractEventFields(eventText);
+
+            console.log("eventText:",eventText);//TODO: remove me.
 
             if (!dtstartMatch || !summary) continue;
 
@@ -412,6 +454,13 @@ class IcsHelperImpl {
                 if (!this._byDayMatches(rruleParams, todayDate, eventDate)) continue;
 
                 if (this._isRecurringInstanceValid(rruleParams.freq, eventDate, todayDate, repeatCount, interval)) {
+                    // [ADDED] Check if there's an override for this instance
+                    const recurrenceKey = `${uid}|${eventDate.format("%Y%m%dT%H%M%S")}`;
+                    if (overridesByUidAndRecurrenceId[recurrenceKey]) {
+                        this._log(`Skipping overridden instance at ${eventDate} for UID ${uid}`);
+                        continue; // overridden
+                    }
+
                     if (hasTime && instanceEnd && instanceEnd.compare(todayDate) < 0) {
                         this._log(`skipping past instance of recurring event: '${summary}' at:${instanceStart}`);
                         continue;
@@ -429,6 +478,34 @@ class IcsHelperImpl {
                     eventList.push(this._createEvent(eventDate, summary, hasTime));
                 }
             }
+        }
+
+        // [ADDED] Add the overrides themselves as standalone events
+        for (let key in overridesByUidAndRecurrenceId) {
+            const eventText = overridesByUidAndRecurrenceId[key];
+
+            const { uid } = this._extractUidAndRecurrenceId(eventText);
+
+            if (!uid) {
+                this._log("Skipping override event with missing UID (spec violation)");
+                continue;
+            }
+
+            const {
+                dtstartMatch, dtstartparams, dtstartvalue,
+                dtendMatch, dtendparams, dtendvalue,
+                summary
+            } = this._extractEventFields(eventText);
+
+            if (!dtstartMatch || !summary) continue;
+
+            const { datetime: eventDate, hasTime } = this._parseToLocalisedDate(dtstartvalue, dtstartparams.TZID);
+            const endDate = this._computeEndDate(eventDate, dtendvalue, dtendparams?.TZID, hasTime);
+
+            if (!isSameDayIgnoringTime(eventDate, todayDate)) continue;
+            if (hasTime && endDate && endDate.compare(todayDate) < 0) continue;
+
+            eventList.push(this._createEvent(eventDate, summary, hasTime));
         }
 
         eventList.sort((a, b) => a.time.to_unix() - b.time.to_unix());

@@ -114,6 +114,7 @@ function test_parseLineParts_variants() {
 function testFoldedSummaryParsesCorrectly() {
     const helper = new IcsHelper(() => GLib.TimeZone.new("Europe/London"));
     const ics = `BEGIN:VEVENT
+UID:blah:whatever.com
 DTSTART:20250501T0900
 SUMMARY:Meeting with
  Alice
@@ -129,6 +130,7 @@ END:VEVENT`; //n.b. the space before Alice is important. It indicates that this 
 function testHandlesStartTimesWithTimezones() {
     const helper = new IcsHelper(() => GLib.TimeZone.new("Europe/London"));
     const ics = `BEGIN:VEVENT
+UID:blah:whatever.com
 DTSTART;TZID=Europe/London:20250501T1400
 SUMMARY:Tea with vicar
 END:VEVENT`;
@@ -144,6 +146,7 @@ END:VEVENT`;
 function testTolleratesTrailingZOnTimezone() {
     const helper = new IcsHelper(() => GLib.TimeZone.new("Europe/London"));
     const ics = `BEGIN:VEVENT
+UID:blah:whatever.com
 DTSTART:20250501T070000Z
 SUMMARY:Call with New York
 END:VEVENT`;
@@ -160,6 +163,7 @@ function testConvertsTZIDToLocalDate() {
     const helper = new IcsHelper(() => GLib.TimeZone.new("UTC"));
 
     const ics = `BEGIN:VEVENT
+UID:blah:whatever.com
 DTSTART;TZID=Europe/London:20250501T090000
 SUMMARY:Morning meeting
 END:VEVENT`;
@@ -185,6 +189,7 @@ END:VEVENT`;
 function testConvertsUtcZTimeToLocal() {
     const helper = new IcsHelper(() => GLib.TimeZone.new("Europe/London"));
     const ics = `BEGIN:VEVENT
+UID:blah:whatever.com
 DTSTART:20250501T080000Z
 SUMMARY:Global conference call
 END:VEVENT`;
@@ -254,6 +259,7 @@ function testParseToLocalisedDate_respectsTimezone() {
 function testParsesAllDayEvent_withValueDate() {
     const helper = new IcsHelper(() => GLib.TimeZone.new("Europe/London"));
     const ics = `BEGIN:VEVENT
+UID:blah:whatever.com
 DTSTART;VALUE=DATE:20250501
 SUMMARY:Bank Holiday
 END:VEVENT`;
@@ -403,6 +409,7 @@ function testDailyRepeatingEvent() {
     // Create a daily repeating event
     const dailyEvent = [
         "BEGIN:VEVENT",
+        "UID:blah:whatever.com",
         "DTSTART:20250513T090000Z",  // Event starts the day before, but repeats daily
         "SUMMARY:Daily Event",
         "RRULE:FREQ=DAILY;COUNT=5", // Daily recurrence, 5 occurrences
@@ -436,6 +443,7 @@ function testWeeklyRepeatingEvent() {
     // Create a weekly repeating event
     const weeklyEvent = [
         "BEGIN:VEVENT",
+        "UID:blah:whatever.com",
         "DTSTART:20250507T090000",  // Previous event date, repeats weekly
         "SUMMARY:Weekly Event",
         "RRULE:FREQ=WEEKLY;COUNT=5", // Weekly recurrence, 5 occurrences
@@ -515,6 +523,7 @@ function testDailyRepeatingEventPastCount() {
     // Create a daily repeating event with 5 occurrences
     const dailyEvent = [
         "BEGIN:VEVENT",
+        "UID:expected@example.com",
         "DTSTART:20250513T090000Z",  // Event starts the day before, but repeats daily
         "SUMMARY:Daily Event",
         "RRULE:FREQ=DAILY;COUNT=5", // Daily recurrence, 5 occurrences
@@ -543,6 +552,7 @@ function testWeeklyRepeatingEventPastCount() {
     // Create a weekly repeating event with 5 occurrences
     const weeklyEvent = [
         "BEGIN:VEVENT",
+        "UID:expected@example.com",
         "DTSTART:20250513T090000",  // Event starts the day before, but repeats weekly
         "SUMMARY:Weekly Event",
         "RRULE:FREQ=WEEKLY;COUNT=4", // Weekly recurrence, 5 occurrences
@@ -572,6 +582,7 @@ function testYearlyRepeatingEvent() {
     // Create a yearly repeating event with 5 occurrences
     const yearlyEvent = [
         "BEGIN:VEVENT",
+        "UID:expected@example.com",
         "DTSTART:20250513T090000",  // Event starts on May 13, 2025
         "SUMMARY:Yearly Event",
         "RRULE:FREQ=YEARLY;COUNT=5", // Yearly recurrence, 5 occurrences
@@ -605,6 +616,7 @@ function testYearlyRepeatingEventPastCount() {
     // Create a yearly repeating event with 5 occurrences
     const yearlyEvent = [
         "BEGIN:VEVENT",
+        "UID:expected@example.com",
         "DTSTART:20250513T090000",  // Event starts on May 13, 2025
         "SUMMARY:Yearly Event",
         "RRULE:FREQ=YEARLY;COUNT=5", // Yearly recurrence, 5 occurrences
@@ -634,6 +646,7 @@ function testDailyRepeatingEventUntil() {
     // Create a daily repeating event with UNTIL
     const dailyEvent = [
         "BEGIN:VEVENT",
+        "UID:expected@example.com",
         "DTSTART:20250510T090000",  // Event starts on May 10, 2025
         "SUMMARY:Daily Event",
         "RRULE:FREQ=DAILY;UNTIL=20250513T000000Z", // Daily recurrence, until May 13, 2025
@@ -660,6 +673,7 @@ function testDailyRepeatingEventUntilExpired() {
     // Create a daily repeating event with UNTIL (May 13, 2025)
     const dailyEvent = [
         "BEGIN:VEVENT",
+        "UID:expected@example.com",
         "DTSTART:20250510T090000",  // Event starts on May 10, 2025
         "SUMMARY:Daily Event",
         "RRULE:FREQ=DAILY;UNTIL=20250513T000000Z", // UNTIL is May 13, 2025
@@ -683,6 +697,7 @@ function testRepeatsByDay() {
     // The event starts on Monday, 2025-05-05 and repeats every M/W/F indefinitely
     const repeatingEvent = [
         "BEGIN:VEVENT",
+        "UID:expected@example.com",
         "DTSTART:20250505T090000",  // Monday
         "SUMMARY:MWF Repeating Event",
         "RRULE:FREQ=WEEKLY;BYDAY=MO,WE,FR",
@@ -709,6 +724,7 @@ function testRepeatsByDay() {
 function testRepeatsMonthlyEvent() {
     const helper = new IcsHelper(() => GLib.TimeZone.new("Europe/London"));
     const ics = `BEGIN:VEVENT
+UID:expected@example.com
 DTSTART:20250115T090000
 RRULE:FREQ=MONTHLY
 SUMMARY:Monthly Report
@@ -729,6 +745,7 @@ function testMonthlyExpiration() {
     const count = 36; // 3 years × 12 months    
     const eventsText = `
 BEGIN:VEVENT
+UID:expected@example.com
 DTSTART:20220519T090000Z
 SUMMARY:Monthly Test Event
 RRULE:FREQ=MONTHLY;COUNT=${count}
@@ -750,18 +767,22 @@ function testMiddayFilter() {
 
     const eventsText = `
 BEGIN:VEVENT
+UID:expected@example.com
 DTSTART:20250519T080000Z
 SUMMARY:Too Early
 END:VEVENT
 BEGIN:VEVENT
+UID:expected2@example.com
 DTSTART:20250519T120000Z
 SUMMARY:Just Right
 END:VEVENT
 BEGIN:VEVENT
+UID:expected3@example.com
 DTSTART:20250519T160000Z
 SUMMARY:Later Still
 END:VEVENT
 BEGIN:VEVENT
+UID:expected4@example.com
 DTSTART;VALUE=DATE:20250519
 SUMMARY:All Day Event
 END:VEVENT
@@ -771,6 +792,8 @@ END:VEVENT
     const events = helper.parseTodaysEvents(eventsText, todayDate);
     const summaries = events.map(e => e.summary);
     const expected = ["Just Right", "Later Still", "All Day Event"];
+
+    console.log("returned: ",events);//TODO: remove me.
 
     for (const summary of expected) {
         if (!summaries.includes(summary)) {
@@ -791,6 +814,7 @@ function testExdateExclusion() {
     const todayDate = makeGlibDateTime(2025,5,21,10,0, "UTC");    
     const eventsText = `
 BEGIN:VEVENT
+UID:expected@example.com
 DTSTART:20250516T090000Z
 SUMMARY:Daily Test Event
 RRULE:FREQ=DAILY
@@ -812,6 +836,7 @@ function testExdateExclusionOnStartDate() {
     const todayDate = makeGlibDateTime(2025,5,21,8,0); // same day.
     const eventsText = `
 BEGIN:VEVENT
+UID:expected@example.com
 DTSTART:20250521T090000Z
 SUMMARY:Daily Test Event
 RRULE:FREQ=DAILY;COUNT=5
@@ -836,6 +861,7 @@ function testExdateExclusionAllDay() {
 
     const eventsText = `
 BEGIN:VEVENT
+UID:expected@example.com
 DTSTART;VALUE=DATE:20250516
 SUMMARY:Daily All-Day Event
 RRULE:FREQ=DAILY
@@ -862,6 +888,7 @@ function testBiWeeklyEvent() {
 
     const eventsText = `
 BEGIN:VEVENT
+UID:expected@example.com
 DTSTART:${startDateString}
 SUMMARY:Bi-Weekly Test Event
 RRULE:${rrule}
@@ -937,6 +964,7 @@ function testUntil() {
 
     const ics = [
         "BEGIN:VEVENT",
+        "UID:expected@example.com",
         "DTSTART:20250513T090000Z",
         "SUMMARY:Event with UNTIL",
         "RRULE:FREQ=DAILY;UNTIL=20250515T090000Z", // Repeats 13th, 14th, 15th
@@ -963,6 +991,7 @@ function testPreferUntilOverCount() {
 
     const ics = [
         "BEGIN:VEVENT",
+        "UID:expected@example.com",
         "DTSTART:20250513T090000Z",
         "SUMMARY:Prefer UNTIL over COUNT",
         "RRULE:FREQ=DAILY;COUNT=10;UNTIL=20250515T090000Z", // COUNT would allow up to 22nd, but UNTIL says 15th
@@ -1055,6 +1084,7 @@ function testRecurringInstanceValid_expiry() {
     print("✔ testRecurringInstanceValid_expiry");
 }
 
+
 function testRepeatedEventsTimePassedButNotRemovedBugFix() {
     const IcsHelper = imports['ics-helper'].IcsHelper;
     const helper = new IcsHelper(() => GLib.TimeZone.new("UTC"));
@@ -1067,6 +1097,7 @@ function testRepeatedEventsTimePassedButNotRemovedBugFix() {
     const ics = [
         // Daily 09:00 event – 40 minutes duration
         "BEGIN:VEVENT",
+        "UID:expected@example.com",
         "DTSTART:20250501T090000Z",
         "DTEND:20250501T094000Z",
         "SUMMARY:09:00 event",
@@ -1075,6 +1106,7 @@ function testRepeatedEventsTimePassedButNotRemovedBugFix() {
 
         // Daily 10:00 event – 40 minutes duration
         "BEGIN:VEVENT",
+        "UID:expected2@example.com",
         "DTSTART:20250501T100000Z",
         "DTEND:20250501T104000Z",
         "SUMMARY:10:00 event",
@@ -1083,6 +1115,7 @@ function testRepeatedEventsTimePassedButNotRemovedBugFix() {
 
         // Daily 11:00 event – 40 minutes duration
         "BEGIN:VEVENT",
+        "UID:expected3@example.com",
         "DTSTART:20250501T110000Z",
         "DTEND:20250501T114000Z",
         "SUMMARY:11:00 event",
@@ -1144,16 +1177,19 @@ function testOngoingEventNotExcluded() {
 
     const eventsText = `
 BEGIN:VEVENT
+UID:ongoing-event-20250620@example.com
 DTSTART:20250620T110000Z
 DTEND:20250620T130000Z
 SUMMARY:Ongoing Event
 END:VEVENT
 BEGIN:VEVENT
+UID:past-event-20250620@example.com
 DTSTART:20250620T090000Z
 DTEND:20250620T100000Z
 SUMMARY:Past Event
 END:VEVENT
 BEGIN:VEVENT
+UID:future-event-20250620@example.com
 DTSTART:20250620T130000Z
 DTEND:20250620T140000Z
 SUMMARY:Future Event
@@ -1177,6 +1213,49 @@ END:VEVENT
 
     print("✔ testOngoingEventNotExcluded passed");
 }
+
+
+function testRecurringEventOverride() {
+    const helper = new IcsHelper(() => GLib.TimeZone.new("Europe/London"));
+    const testDate = makeGlibDateTime(2025, 7, 4, 12, 0, "Europe/London"); // test override day
+
+    const ics = `
+BEGIN:VEVENT
+UID:X0l2m-DWWnf-AjtamssjYqRt0KDS@proton.me
+DTSTAMP:20250703T162127Z
+SUMMARY:Test
+DTSTART;TZID=Europe/London:20250701T173000
+DTEND;TZID=Europe/London:20250701T180000
+SEQUENCE:0
+RRULE:FREQ=DAILY
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:X0l2m-DWWnf-AjtamssjYqRt0KDS@proton.me
+DTSTAMP:20250704T101933Z
+SUMMARY:Test
+DTSTART;TZID=Europe/London:20250704T190000
+DTEND;TZID=Europe/London:20250704T193000
+SEQUENCE:1
+RECURRENCE-ID;TZID=Europe/London:20250704T173000
+STATUS:CONFIRMED
+END:VEVENT
+`;
+
+    const events = helper.parseTodaysEvents(ics, testDate);
+    const summaries = events.map(e => `${e.summary} @ ${e.time.format('%H:%M')}`);
+
+    if (!summaries.includes("Test @ 19:00")) {
+        throw new Error("Expected to find overridden event at 19:00");
+    }
+
+    if (summaries.includes("Test @ 17:30")) {
+        throw new Error("Did not expect original recurring instance at 17:30");
+    }
+
+    print("✔ testRecurringEventOverride passed");
+}
+
 
 
 // Run all tests
@@ -1219,6 +1298,7 @@ try {
     testRepeatedEventsTimePassedButNotRemovedBugFix();
     testRecurringEventWithOverride();
     testOngoingEventNotExcluded();
+    testRecurringEventOverride();
 
     print("\nAll tests completed ok.");
 } catch (e) {    
