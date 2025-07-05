@@ -1,0 +1,177 @@
+# DAILY AGENDA
+# This file is put in the public domain.
+# AlexMakesSoftware, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: daily-agenda@alexmakessoftware 1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-04-28 15:09+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. desklet.js:143
+msgid "ICS Today: problem reading calendar file, result = "
+msgstr "ICS Ma: probléma a naptárfájl olvasása közben, eredmény = "
+
+#. desklet.js:147
+msgid "ICS Today: Failed to read file: "
+msgstr "ICS Ma: Nem sikerült beolvasni a fájlt: "
+
+#. desklet.js:150
+msgid "Error reading calendar. Try 'right click, configure...'"
+msgstr ""
+"Hiba történt a naptár olvasása közben. Próbálja ki a „jobb kattintás, "
+"konfigurálás...” műveletet."
+
+#. desklet.js:162
+msgid "ICS Today: Failed to fetch calendar from URL."
+msgstr "ICS Ma: Nem sikerült lekérni a naptárat az URL-címről."
+
+#. desklet.js:163
+msgid "Could not fetch calendar from URL."
+msgstr "Nem sikerült lekérni a naptárat az URL-címről."
+
+#. desklet.js:167
+msgid "ICS Today: Error during curl fetch: "
+msgstr "ICS Ma: Hiba a curl lekérése során: "
+
+#. desklet.js:168
+msgid "Error fetching calendar from URL."
+msgstr "Hiba történt a naptár URL-címről való lekérésekor."
+
+#. desklet.js:174
+msgid "ICS Today: Unknown source type: "
+msgstr "ICS Ma: Ismeretlen forrástípus: "
+
+#. desklet.js:175
+msgid "Calendar source type not recognised."
+msgstr "A naptár forrástípusa nem ismert."
+
+#. desklet.js:183
+msgid "Last checked"
+msgstr "Utolsó ellenőrzés"
+
+#. desklet.js:188
+msgid "Next"
+msgstr "Következő"
+
+#. desklet.js:220
+msgid "All day"
+msgstr "Minden nap"
+
+#. desklet.js:234
+msgid "Today's Events:"
+msgstr "Mai események:"
+
+#. desklet.js:236
+msgid "No events today."
+msgstr "Ma nincsenek események"
+
+#. metadata.json->name
+msgid "Daily Agenda"
+msgstr "Napi program"
+
+#. metadata.json->description
+msgid "Displays today's events from your calendar"
+msgstr "Megjeleníti a mai eseményeket a naptárból"
+
+#. settings-schema.json->head0->description
+msgid "Calendar Source"
+msgstr "Naptár Forrása"
+
+#. settings-schema.json->sourceType->description
+msgid "Calendar source"
+msgstr "Naptár forrása"
+
+#. settings-schema.json->sourceType->options
+msgid "From URL"
+msgstr "URL-ből"
+
+#. settings-schema.json->sourceType->options
+msgid "From local file"
+msgstr "Helyi fájlból"
+
+#. settings-schema.json->icsUrl->description
+msgid "Calendar URL"
+msgstr "Naptár URL"
+
+#. settings-schema.json->icsUrl->tooltip
+msgid ""
+"Only used if source is set to 'From URL'. Paste a public .ics (calendar "
+"share) link from Proton, Google, etc."
+msgstr ""
+"Csak akkor használatos, ha a forrás „Forrás URL”-re van állítva. Illesszen "
+"be egy nyilvános .ics (naptármegosztási) linket a Protonból, a Google-ból "
+"stb."
+
+#. settings-schema.json->icsFilePath->description
+msgid "Path to local .ics file"
+msgstr "A helyi .ics fájl elérési útja"
+
+#. settings-schema.json->icsFilePath->tooltip
+msgid "Only used if source is set to 'From local file', point to an ICS file."
+msgstr ""
+"Csak akkor használatos, ha a forrás „Helyi fájlból” értékre van állítva, és "
+"egy ICS fájlra kell mutatni."
+
+#. settings-schema.json->head1->description
+msgid "Widget Dimensions"
+msgstr "Widget méretei"
+
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->width->description
+msgid "Widget width"
+msgstr "Widget szélessége"
+
+#. settings-schema.json->height->description
+msgid "Widget height"
+msgstr "Widget magassága"
+
+#. settings-schema.json->head2->description
+msgid "Text Style"
+msgstr "Szövegstílus"
+
+#. settings-schema.json->font->description
+msgid "Font family"
+msgstr "Betűcsalád"
+
+#. settings-schema.json->font->tooltip
+msgid "Example: Sans, Monospace, Serif"
+msgstr "Példa: Sans, Monospace, Serif"
+
+#. settings-schema.json->fontSize->units
+msgid "pt"
+msgstr "Betűméret (pt)"
+
+#. settings-schema.json->fontSize->description
+msgid "Font size"
+msgstr "Betűméret"
+
+#. settings-schema.json->head3->description
+msgid "Update Schedule"
+msgstr "Frissítési ütemterv"
+
+#. settings-schema.json->checkInterval->units
+msgid "minutes"
+msgstr "perc"
+
+#. settings-schema.json->checkInterval->description
+msgid "Check interval"
+msgstr "Ellenőrzési intervallum"
+
+#. settings-schema.json->checkInterval->tooltip
+msgid "How often to check the calendar file for updates"
+msgstr "A naptárfájl frissítéseinek ellenőrzésének gyakorisága"
