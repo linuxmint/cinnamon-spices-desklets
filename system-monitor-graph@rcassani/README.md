@@ -1,5 +1,5 @@
 # System monitor graph Desklet
-Desklet to show graphs for the level of activity in various system variables including: CPU, memory, and disks. The desklet supports multiple instances with different system variables with the idea of presenting them in a uniform way.
+Desklet to show graphs for the level of activity in various system variables including: CPU, memory, network and disks. The desklet supports multiple instances with different system variables with the idea of presenting them in a uniform way.
 
 <p align="center">
 <img src="https://cinnamon-spices.linuxmint.com/git/desklets/system-monitor-graph@rcassani/simple.gif" width="400" align="middle"><br>
@@ -10,7 +10,7 @@ Four instances of the Desklet in action.
 This project has been inspired from other Desklets such as [Disk Space](https://cinnamon-spices.linuxmint.com/desklets/view/39), [CPU Load](https://cinnamon-spices.linuxmint.com/desklets/view/44), [Simple system monitor](https://cinnamon-spices.linuxmint.com/desklets/view/29), [Network usage monitor](https://cinnamon-spices.linuxmint.com/desklets/view/15), [Top](https://cinnamon-spices.linuxmint.com/desklets/view/41), and the  [Rainmeter Win10 Widgets](https://win10widgets.com/).
 
 ## Features
-### Variables to monitor (v1.3 - April 2022)
+### Variables to monitor (v2.0 - July 2025)
 
 | System variable | Description |
 | -----------     | ----------- |
@@ -20,6 +20,7 @@ This project has been inspired from other Desklets such as [Disk Space](https://
 | HDD             | % of I/O activity, and free and total space in the filesystem (partition)  indicated by the user |
 | GPU Usage       | GPU usage in % |
 | GPU Memory      | GPU memory usage in % |
+| Network         | Real-time upload and download speeds with dual-line graph, configurable interface monitoring |
 
 Each variable is calculated every `Refresh interval` seconds (Min. 1 s, Max. 60 s.), and the graph shows the last `Duration of the graph` period (Min. 30 s, Max. 60 min).
 
@@ -40,9 +41,16 @@ The Desklet is fully customizable.
 <img src="https://cinnamon-spices.linuxmint.com/git/desklets/system-monitor-graph@rcassani/screenshot2.png" width="900" align="middle"><br>
 A simple screenshot.
 </p>
+<br>
+
+<p align="center">
+<img src="https://cinnamon-spices.linuxmint.com/git/desklets/system-monitor-graph@rcassani/screenshot3.png" width="900" align="middle"><br>
+Another screenshot.
+</p>
+
 
 ## TODO
-- [ ] Add other variables such as network, CPU and GPU temperatures, battery levels for PC and peripherals.
+- [ ] Add other variables such as ~~network~~, CPU and GPU temperatures, battery levels for PC and peripherals.
 
 ### Resources
 This is my first Desklet and the first time using JavaScript. Below, some resources that I used for the development of this Desklet.
