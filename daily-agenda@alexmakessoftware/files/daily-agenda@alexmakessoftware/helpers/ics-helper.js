@@ -268,7 +268,6 @@ class IcsHelperImpl {
     }
 
 
-    //TODO: don't think we're handling interval?
     _isRecurringInstanceValid(frequency, eventDate, todayDate, repeatCount, interval = 1) {
         const daysDifference = daysBetween(eventDate, todayDate);
         let occurrencesPassed;
