@@ -56,18 +56,25 @@
 
   "head2": {
     "type": "header",
-    "description": "Text Style"
+    "description": "Custom Styles"
   },
 
+  "overrideTheme": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Override desktop theme (enables the settings below)",
+    "tooltip": "Check this to override the desktop theme and configure the appearance manually"
+  },
   "font": {
     "type": "entry",
+    "dependency": "overrideTheme",
     "default": "Sans",
     "description": "Font family",
     "tooltip": "Example: Sans, Monospace, Serif"
   },
-
   "fontSize": {
     "type": "spinbutton",
+    "dependency": "overrideTheme",
     "default": 10,
     "min": 6,
     "max": 48,
@@ -75,7 +82,31 @@
     "units": "pt",
     "description": "Font size"
   },
+  "textcolor": {
+        "type": "colorchooser",
+        "indent": true,
+        "dependency": "overrideTheme",
+        "default": "rgb(255,255,255)",
+        "description": "Text color",
+        "tooltip": "Click the button to select a new text color"
+    },
 
+  "head4": {
+    "type": "header",
+    "description": "Footer Options"
+  },
+
+  "showLastChecked" : {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show 'last checked' line"
+  },
+
+  "showRefreshNowButton" : {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show 'refresh now' button"
+  },
 
   "head3": {
     "type": "header",
@@ -92,4 +123,6 @@
     "description": "Check interval",
     "tooltip": "How often to check the calendar file for updates"
   }
+
 }
+
