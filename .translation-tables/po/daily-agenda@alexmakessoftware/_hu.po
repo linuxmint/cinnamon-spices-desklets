@@ -1,0 +1,44 @@
+# DAILY AGENDA
+# This file is put in the public domain.
+# AlexMakesSoftware, 2025
+#
+msgid ""
+msgstr ""
+
+#. desklet.js:267
+msgid "ICS Today: Failed to fetch calendar from URL: "
+msgstr ""
+
+#. settings-schema.json->head2->description
+msgid "Custom Styles"
+msgstr ""
+
+#. settings-schema.json->overrideTheme->description
+msgid "Override desktop theme (enables the settings below)"
+msgstr ""
+
+#. settings-schema.json->overrideTheme->tooltip
+msgid ""
+"Check this to override the desktop theme and configure the appearance "
+"manually"
+msgstr ""
+
+#. settings-schema.json->textcolor->description
+msgid "Text color"
+msgstr ""
+
+#. settings-schema.json->textcolor->tooltip
+msgid "Click the button to select a new text color"
+msgstr ""
+
+#. settings-schema.json->head4->description
+msgid "Footer Options"
+msgstr ""
+
+#. settings-schema.json->showLastChecked->description
+msgid "Show 'last checked' line"
+msgstr ""
+
+#. settings-schema.json->showRefreshNowButton->description
+msgid "Show 'refresh now' button"
+msgstr ""

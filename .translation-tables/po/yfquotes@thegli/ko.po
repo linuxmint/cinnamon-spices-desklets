@@ -1,0 +1,562 @@
+# Yahoo Finance Quotes Desklet
+# Copyright (C) 2018 Thomas Egli
+# This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Yahoo Finance Quotes Desklet\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-05-12 00:33+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+
+#. desklet.js:119
+msgid "No quotes data to display"
+msgstr ""
+
+#. desklet.js:516
+msgid "Empty quotes list. Open settings and add some symbols."
+msgstr ""
+
+#. desklet.js:561 desklet.js:585
+msgid "Authorization parameters have expired"
+msgstr ""
+
+#. desklet.js:564 desklet.js:588
+msgid "Yahoo Finance service not available!\\nStatus: "
+msgstr "Yahoo Finance 서비스를 사용할 수 없습니다!"
+
+#. desklet.js:988
+msgid "Updated at "
+msgstr "업데이트 날짜 "
+
+#. desklet.js:1020
+msgid "Error: "
+msgstr "오류: "
+
+#. desklet.js:1146
+msgid ""
+"Failed to retrieve authorization parameter! Unable to fetch quotes data."
+"\\nStatus: "
+msgstr ""
+
+#. desklet.js:1173
+msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
+msgstr ""
+
+#. desklet.js:1179
+msgid ""
+"Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
+msgstr ""
+
+#. desklet.js:1207
+msgid ""
+"Failed to retrieve authorization crumb! Unable to fetch quotes data."
+"\\nStatus: "
+msgstr ""
+
+#. metadata.json->description
+msgid ""
+"Displays financial market information such as stock quotes and commodity "
+"prices from Yahoo Finance"
+msgstr ""
+"Yahoo Finance의 주식 시세 및 상품 가격과 같은 금융 시장 정보를 표시합니다."
+
+#. metadata.json->name
+msgid "Yahoo Finance Quotes"
+msgstr "야후 금융 지수"
+
+#. settings-schema.json->dataPage->title
+#. settings-schema.json->dataSymbolsSection->title
+msgid "Quotes"
+msgstr ""
+
+#. settings-schema.json->detailsPage->title
+msgid "Details"
+msgstr ""
+
+#. settings-schema.json->presentationPage->title
+msgid "Presentation"
+msgstr ""
+
+#. settings-schema.json->layoutPage->title
+msgid "Layout"
+msgstr ""
+
+#. settings-schema.json->networkPage->title
+msgid "Network"
+msgstr ""
+
+#. settings-schema.json->dataUpdateSection->title
+msgid "Data Updates"
+msgstr ""
+
+#. settings-schema.json->detailsNameSection->title
+msgid "Name"
+msgstr ""
+
+#. settings-schema.json->detailsSymbolSection->title
+msgid "Symbol"
+msgstr ""
+
+#. settings-schema.json->detailsPriceSection->title
+msgid "Price"
+msgstr ""
+
+#. settings-schema.json->detailsChangeSection->title
+msgid "Change"
+msgstr ""
+
+#. settings-schema.json->detailsDateTimeSection->title
+msgid "Date and Time"
+msgstr ""
+
+#. settings-schema.json->presentationFormattingSection->title
+msgid "Number Format"
+msgstr ""
+
+#. settings-schema.json->presentationDateTimeFormattingSection->title
+msgid "Date and Time Format"
+msgstr ""
+
+#. settings-schema.json->presentationSortingSection->title
+msgid "Sorting"
+msgstr ""
+
+#. settings-schema.json->presentationFontSection->title
+msgid "Font"
+msgstr ""
+
+#. settings-schema.json->presentationColorsSection->title
+msgid "Trend Colors"
+msgstr ""
+
+#. settings-schema.json->layoutDimensionSection->title
+msgid "Dimension"
+msgstr ""
+
+#. settings-schema.json->layoutEffectsSection->title
+msgid "Effects"
+msgstr ""
+
+#. settings-schema.json->networkSessionSection->title
+msgid "HTTP Session"
+msgstr ""
+
+#. settings-schema.json->width->description
+msgid "Width"
+msgstr "가로"
+
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+#. settings-schema.json->cornerRadius->units
+#. settings-schema.json->borderWidth->units
+msgid "pixels"
+msgstr "픽셀"
+
+#. settings-schema.json->width->tooltip
+msgid "Desklet width in pixels"
+msgstr "데스크릿 너비 (픽셀)."
+
+#. settings-schema.json->height->description
+msgid "Height"
+msgstr "세로"
+
+#. settings-schema.json->height->tooltip
+msgid "Desklet height in pixels"
+msgstr "데스크릿 높이 (픽셀)."
+
+#. settings-schema.json->transparency->description
+msgid "Background transparency"
+msgstr "배경 투명도"
+
+#. settings-schema.json->transparency->tooltip
+msgid "The higher the value, the more solid the desklet's background"
+msgstr "값이 높을수록 데스크릿 배경이 더 진하게 보입니다."
+
+#. settings-schema.json->backgroundColor->description
+msgid "Background color"
+msgstr ""
+
+#. settings-schema.json->backgroundColor->tooltip
+msgid "Desklet background color"
+msgstr ""
+
+#. settings-schema.json->cornerRadius->description
+msgid "Corner radius"
+msgstr ""
+
+#. settings-schema.json->cornerRadius->tooltip
+msgid "The higher the value, the rounder the desklet's corners"
+msgstr ""
+
+#. settings-schema.json->showVerticalScrollbar->description
+msgid "Show vertical scrollbar"
+msgstr ""
+
+#. settings-schema.json->showVerticalScrollbar->tooltip
+msgid ""
+"Display a vertical scrollbar when the quote list is longer than the "
+"desklet's height"
+msgstr ""
+
+#. settings-schema.json->borderWidth->description
+msgid "Border width"
+msgstr ""
+
+#. settings-schema.json->borderWidth->tooltip
+msgid ""
+"The higher the value, the thicker the desklet's border. A value of 0 hides "
+"the border."
+msgstr ""
+
+#. settings-schema.json->borderColor->description
+msgid "Border color"
+msgstr ""
+
+#. settings-schema.json->borderColor->tooltip
+msgid "Desklet border color"
+msgstr ""
+
+#. settings-schema.json->delayMinutes->units
+msgid "minutes"
+msgstr "분"
+
+#. settings-schema.json->delayMinutes->description
+msgid "Update frequency"
+msgstr "업데이트 빈도"
+
+#. settings-schema.json->delayMinutes->tooltip
+msgid "Data refresh frequency, in minutes"
+msgstr "데이터 새로 고침 빈도 (분)."
+
+#. settings-schema.json->showLastUpdateTimestamp->description
+msgid "Show last update timestamp"
+msgstr "마지막 업데이트 타임 표시"
+
+#. settings-schema.json->showLastUpdateTimestamp->tooltip
+msgid "Display timestamp when quotes were updated last"
+msgstr "견적이 마지막으로 업데이트 된 타임을 표시합니다."
+
+#. settings-schema.json->manualDataUpdate->description
+msgid "Manual and automatic update"
+msgstr ""
+
+#. settings-schema.json->manualDataUpdate->tooltip
+msgid ""
+"Click last update timestamp to instantly refresh quotes data. Automatic "
+"update is still performed periodically."
+msgstr ""
+
+#. settings-schema.json->roundNumbers->description
+msgid "Round numbers"
+msgstr "반올림"
+
+#. settings-schema.json->roundNumbers->tooltip
+msgid "Perform rounding of floating-point numbers"
+msgstr "부동 소수점 숫자의 반올림을 수행합니다."
+
+#. settings-schema.json->decimalPlaces->units
+msgid "positions"
+msgstr "위치"
+
+#. settings-schema.json->decimalPlaces->description
+msgid "Decimal places to round"
+msgstr "반올림 할 소수 자릿수"
+
+#. settings-schema.json->decimalPlaces->tooltip
+msgid "Number of positions to round to after decimal point"
+msgstr "소수점 뒤에서 반올림 할 위치 수입니다."
+
+#. settings-schema.json->strictRounding->description
+msgid "Strict rounding"
+msgstr ""
+
+#. settings-schema.json->strictRounding->tooltip
+msgid ""
+"Strict rounding to the specified decimal places (eg. 0 will be presented as "
+"0.00)"
+msgstr ""
+
+#. settings-schema.json->use24HourTime->description
+msgid "Force 24-hour clock"
+msgstr ""
+
+#. settings-schema.json->use24HourTime->tooltip
+msgid ""
+"Always display time in 24-hour notation, overriding system settings.\n"
+"This setting is ignored, when a custom time format is defined."
+msgstr ""
+
+#. settings-schema.json->customTimeFormat->description
+msgid "Custom time format"
+msgstr ""
+
+#. settings-schema.json->customTimeFormat->tooltip
+msgid ""
+"Format time with custom format instead of system settings.\n"
+"Examples:\n"
+"%H:%M:%S    23:47:51\n"
+"%I:%M %p    11:47 PM"
+msgstr ""
+
+#. settings-schema.json->customDateFormat->description
+msgid "Custom date format"
+msgstr ""
+
+#. settings-schema.json->customDateFormat->tooltip
+msgid ""
+"Format date with custom format instead of system settings.\n"
+"Examples:\n"
+"%m/%d          03/15\n"
+"%Y-%m-%d   2024-03-15\n"
+"%A, %b %d   Friday, Mar 15"
+msgstr ""
+
+#. settings-schema.json->quoteSymbols->description
+msgid "Quote symbols"
+msgstr "종목코드 : 종목코드 + .KS(코스피) 또는 .KQ(코스닥)"
+
+#. settings-schema.json->quoteSymbols->tooltip
+msgid "List of quote symbols, separated with line-breaks"
+msgstr "여기에 따옴표를 줄 바꿈으로 구분하여 나열하십시오."
+
+#. settings-schema.json->updateDataButton->description
+msgid "Refresh quotes data"
+msgstr ""
+
+#. settings-schema.json->updateDataButton->tooltip
+msgid "Apply and refresh quotes"
+msgstr ""
+
+#. settings-schema.json->sortCriteria->options
+msgid "given order"
+msgstr "주어진 명령"
+
+#. settings-schema.json->sortCriteria->options
+msgid "percent change"
+msgstr "퍼센트 변화"
+
+#. settings-schema.json->sortCriteria->options
+msgid "name"
+msgstr "이름"
+
+#. settings-schema.json->sortCriteria->options
+msgid "symbol"
+msgstr "기호"
+
+#. settings-schema.json->sortCriteria->description
+msgid "Sort list by"
+msgstr "목록 정렬 기준"
+
+#. settings-schema.json->sortCriteria->tooltip
+msgid "Sort the quote list"
+msgstr "목록을 정렬합니다."
+
+#. settings-schema.json->sortDirection->description
+msgid "Sort in ascending order"
+msgstr "오름차순으로 정렬"
+
+#. settings-schema.json->sortDirection->tooltip
+msgid ""
+"Check to sort quotes in ascending order, uncheck to sort in descending order"
+msgstr ""
+"오름차순으로 정렬하려면 선택하고 내림차순으로 정렬하려면 선택을 취소하십시오."
+
+#. settings-schema.json->showChangeIcon->description
+msgid "Show change/trend icon"
+msgstr "변경 아이콘 표시"
+
+#. settings-schema.json->showChangeIcon->tooltip
+msgid "Indicates whether the market price moved up, down, or is unchanged"
+msgstr "시장 가격이 상승, 하락 또는 변경되지 않았는지 여부를 나타냅니다."
+
+#. settings-schema.json->showQuoteName->description
+msgid "Show verbose name"
+msgstr "자세한 이름 표시"
+
+#. settings-schema.json->showQuoteName->tooltip
+msgid "Display the quote name (eg. International Business Machines)"
+msgstr "이름을 표시합니다 (예 : International Business Machines)."
+
+#. settings-schema.json->useLongQuoteName->description
+msgid "Use long version for verbose name"
+msgstr "자세한 이름에 긴 버전 사용"
+
+#. settings-schema.json->useLongQuoteName->tooltip
+msgid ""
+"Use the long version for quote name, if available (eg. International "
+"Business Machines Corporation)"
+msgstr ""
+"가능한 경우 견적 이름에 긴 버전을 사용하십시오 (예 : International Business "
+"Machines Corporation)."
+
+#. settings-schema.json->linkQuoteName->description
+msgid "Add web link to name"
+msgstr "이름에 웹 링크 추가"
+
+#. settings-schema.json->linkQuoteName->tooltip
+msgid "Click name to open quote in browser"
+msgstr "이름을 클릭하여 브라우저에서 엽니다."
+
+#. settings-schema.json->showQuoteSymbol->description
+msgid "Show ticker/symbol"
+msgstr "티커 / 기호 표시"
+
+#. settings-schema.json->showQuoteSymbol->tooltip
+msgid "Display the quote symbol (eg. IBM)"
+msgstr "종목을 표시합니다 (예 : IBM)."
+
+#. settings-schema.json->linkQuoteSymbol->description
+msgid "Add web link to ticker/symbol"
+msgstr "티커 / 기호에 웹 링크 추가"
+
+#. settings-schema.json->linkQuoteSymbol->tooltip
+msgid "Click symbol to open quote in browser"
+msgstr "기호를 클릭하여 브라우저에서 정보를 엽니다."
+
+#. settings-schema.json->showMarketPrice->description
+msgid "Show price"
+msgstr "가격 표시"
+
+#. settings-schema.json->showMarketPrice->tooltip
+msgid "Display the current market price (eg. 146.79)"
+msgstr "현재 시장 가격을 표시합니다 (예 : 146.79)."
+
+#. settings-schema.json->showCurrencyCode->description
+msgid "Show currency symbol"
+msgstr "통화 기호 표시"
+
+#. settings-schema.json->showCurrencyCode->tooltip
+msgid "Display the currency symbol of the price (eg. $)"
+msgstr "가격의 통화 기호를 표시합니다 (예 : $)."
+
+#. settings-schema.json->showAbsoluteChange->description
+msgid "Show absolute change"
+msgstr "절대적인 변화 보여주기"
+
+#. settings-schema.json->showAbsoluteChange->tooltip
+msgid "Display the absolute change of the market price (eg. +0.739)"
+msgstr "시장 가격의 절대 변화를 표시합니다 (예 : +0.739)."
+
+#. settings-schema.json->showPercentChange->description
+msgid "Show percent change"
+msgstr "변화율 표시"
+
+#. settings-schema.json->showPercentChange->tooltip
+msgid "Display the percent change of the market price (eg. -0.53%)"
+msgstr "시장 가격의 백분율 변화를 표시합니다 (예 : + 0.53 %)."
+
+#. settings-schema.json->colorPercentChange->description
+msgid "Use trend colors for percent change"
+msgstr "퍼센트 변화에 트렌드 색상 사용"
+
+#. settings-schema.json->colorPercentChange->tooltip
+msgid "Color the percent change to show the trend"
+msgstr ""
+"퍼센트 변화에 색상을 지정하여 추세를 표시합니다 (녹색은 상승, 빨간색은 하락)."
+
+#. settings-schema.json->showTradeTime->description
+msgid "Show trading time"
+msgstr "거래 시간 표시"
+
+#. settings-schema.json->showTradeTime->tooltip
+msgid "Display the last trading time (if current day) or date"
+msgstr "마지막 거래 시간 (당일 인 경우) 또는 날짜를 표시합니다."
+
+#. settings-schema.json->fontColor->description
+msgid "Font color"
+msgstr ""
+
+#. settings-schema.json->fontColor->tooltip
+msgid "Default text color"
+msgstr ""
+
+#. settings-schema.json->scaleFontSize->description
+msgid "Enable font size scaling"
+msgstr ""
+
+#. settings-schema.json->scaleFontSize->tooltip
+msgid "Apply custom font size instead of the system default size"
+msgstr ""
+
+#. settings-schema.json->fontScale->units
+msgid "times"
+msgstr ""
+
+#. settings-schema.json->fontScale->description
+msgid "Font size scale factor"
+msgstr ""
+
+#. settings-schema.json->fontScale->tooltip
+msgid "Enlarge/reduce the font size"
+msgstr ""
+
+#. settings-schema.json->uptrendChangeColor->description
+msgid "Uptrend change color"
+msgstr ""
+
+#. settings-schema.json->uptrendChangeColor->tooltip
+msgid "Color of the uptrend change"
+msgstr ""
+"퍼센트 변화에 색상을 지정하여 추세를 표시합니다 (녹색은 상승, 빨간색은 하락)."
+
+#. settings-schema.json->downtrendChangeColor->description
+msgid "Downtrend change color"
+msgstr ""
+
+#. settings-schema.json->unchangedTrendColor->description
+msgid "Unchanged trend color"
+msgstr ""
+
+#. settings-schema.json->unchangedTrendColor->tooltip
+msgid "Color of the unchanged trend"
+msgstr ""
+"퍼센트 변화에 색상을 지정하여 추세를 표시합니다 (녹색은 상승, 빨간색은 하락)."
+
+#. settings-schema.json->sendCustomUserAgent->description
+msgid "Send custom User-Agent header"
+msgstr ""
+
+#. settings-schema.json->sendCustomUserAgent->tooltip
+msgid "Include a custom User-Agent header in Yahoo Finance Quotes API requests"
+msgstr ""
+
+#. settings-schema.json->customUserAgent->description
+msgid "Custom User-Agent header"
+msgstr ""
+
+#. settings-schema.json->customUserAgent->tooltip
+msgid "Value for User-Agent header to send with all API requests"
+msgstr ""
+
+#. settings-schema.json->enableCurl->description
+msgid "Use external tool curl"
+msgstr ""
+
+#. settings-schema.json->enableCurl->tooltip
+msgid "Requires separate installation of curl."
+msgstr ""
+
+#. settings-schema.json->curlCommand->description
+msgid "Path of curl executable"
+msgstr ""
+
+#. settings-schema.json->curlCommand->tooltip
+msgid "Provide absolute path of curl program file"
+msgstr ""
+
+#. settings-schema.json->applyNetworkSettingsButton->description
+msgid "Apply network settings"
+msgstr ""
+
+#. settings-schema.json->applyNetworkSettingsButton->tooltip
+msgid "Fetches new authorization parameters and refreshes quotes data"
+msgstr ""

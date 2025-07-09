@@ -1,0 +1,70 @@
+# SYSTEM TEMPERATURE
+# This file is put in the public domain.
+# KopfDesDaemons, 2024
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: systemTemperature@KopfDesDaemons 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-11-08 19:56+0100\n"
+"PO-Revision-Date: 2024-11-28 15:30+0100\n"
+"Last-Translator: qadzek\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. metadata.json->name
+#. desklet.js:27
+msgid "System Temperature"
+msgstr "Systeemtemperatuur"
+
+#. metadata.json->description
+msgid "Displays the temperature of a thermal zone in the system."
+msgstr "Toont de temperatuur van een thermische zone in het systeem."
+
+#. settings-schema.json->head0->description
+msgid "General"
+msgstr "Algemeen"
+
+#. settings-schema.json->tempFilePath->description
+msgid "Path to file with temperature value (thermal zone)"
+msgstr "Pad naar bestand met temperatuurwaarde (thermische zone)"
+
+#. settings-schema.json->labelText->description
+msgid "Text for the label"
+msgstr "Tekst voor het label"
+
+#. settings-schema.json->temperatureUnit->options
+msgid "°C"
+msgstr "°C"
+
+#. settings-schema.json->temperatureUnit->options
+msgid "°F"
+msgstr "°F"
+
+#. settings-schema.json->temperatureUnit->description
+msgid "Temperature unit (Celsius or Fahrenheit)"
+msgstr "Temperatuureenheid (Celsius of Fahrenheit)"
+
+#. settings-schema.json->updateInterval->description
+msgid "Update interval in seconds"
+msgstr "Verversinterval in seconden"
+
+#. settings-schema.json->head1->description
+msgid "Style"
+msgstr "Stijl"
+
+#. settings-schema.json->fontSizeLabel->description
+msgid "Font size for the label text"
+msgstr "Lettergrootte voor de labeltekst"
+
+#. settings-schema.json->fontSizeTemperature->description
+msgid "Font size for the temperature display"
+msgstr "Lettergrootte voor de temperatuurweergave"
+
+#. settings-schema.json->dynamicColorEnabled->description
+msgid "Dynamic color based on temperature"
+msgstr "Dynamische kleur op basis van temperatuur"
