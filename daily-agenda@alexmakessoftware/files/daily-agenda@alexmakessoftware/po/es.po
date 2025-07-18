@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.6\n"
 
 #. metadata.json->name
 #. desklet.js:60
@@ -35,9 +35,8 @@ msgid "ICS Today: Failed to read file: "
 msgstr "ICS Hoy: Error al leer el archivo: "
 
 #. desklet.js:267
-#, fuzzy
 msgid "ICS Today: Failed to fetch calendar from URL: "
-msgstr "ICS Hoy: No se pudo obtener el calendario desde la URL."
+msgstr "ICS Hoy: Fallo al obtener el calendario de la URL: "
 
 #. desklet.js:277
 msgid "Last checked"
@@ -119,19 +118,22 @@ msgid "Widget height"
 msgstr "Alto del widget"
 
 #. settings-schema.json->head2->description
-#, fuzzy
 msgid "Custom Styles"
-msgstr "Estilo de texto"
+msgstr "Estilos personalizados"
 
 #. settings-schema.json->overrideTheme->description
 msgid "Override desktop theme (enables the settings below)"
 msgstr ""
+"Anular el tema del escritorio (activa la configuración que aparece a "
+"continuación)"
 
 #. settings-schema.json->overrideTheme->tooltip
 msgid ""
 "Check this to override the desktop theme and configure the appearance "
 "manually"
 msgstr ""
+"Marque esta opción para anular el tema de escritorio y configurar la "
+"apariencia manualmente"
 
 #. settings-schema.json->font->description
 msgid "Font family"
@@ -150,26 +152,24 @@ msgid "Font size"
 msgstr "Tamaño de fuente"
 
 #. settings-schema.json->textcolor->description
-#, fuzzy
 msgid "Text color"
-msgstr "Estilo de texto"
+msgstr "Color del texto"
 
 #. settings-schema.json->textcolor->tooltip
 msgid "Click the button to select a new text color"
-msgstr ""
+msgstr "Pulse el botón para seleccionar un nuevo color de texto"
 
 #. settings-schema.json->head4->description
 msgid "Footer Options"
-msgstr ""
+msgstr "Opciones de pie de página"
 
 #. settings-schema.json->showLastChecked->description
-#, fuzzy
 msgid "Show 'last checked' line"
-msgstr "Última comprobación"
+msgstr "Mostrar la línea \"Última comprobación\""
 
 #. settings-schema.json->showRefreshNowButton->description
 msgid "Show 'refresh now' button"
-msgstr ""
+msgstr "Mostrar el botón \"Actualizar ahora\""
 
 #. settings-schema.json->head3->description
 msgid "Update Schedule"
