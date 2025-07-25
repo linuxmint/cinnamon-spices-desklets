@@ -36,29 +36,30 @@ If you're unsure what to use, URL or File: Most people will just want to use a U
 
 The 'File' option is just for if you're hosting entirely locally or downloading an ics file from somewhere. 
 
+## Supported ICS Features
 
-## Supported ICS features
+* `DTSTART` parsing with optional time and timezone support (UTC, local, or named zones via GLib)
+* All-day events (dates without time)
+* `RRULE` support for:
 
-* Parsing DTSTART with optional time and timezone (UTC, local, or named zones via GLib).
-* Handling all-day events (dates without time).
-* Recurrence rules (RRULE) for DAILY, WEEKLY, MONTHLY, YEARLY frequencies.
-* Repeat count (COUNT) and expiration by UNTIL date.
-* Basic BYDAY filtering for weekly recurrences (matching weekdays).
-* Sorting events by time.
-* Unfolding folded ICS lines.
+  * Frequencies: `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`
+  * `INTERVAL` handling (e.g. every 2 days/weeks)
+  * `COUNT` and `UNTIL` (limit total number of repeats or until a date)
+  * `BYDAY` filtering (e.g. `MO,WE,FR`; ordinal prefixes like `1MO` are skipped)
+* `EXDATE` exclusion support (with proper timezone handling)
+* Recurrence overrides using `RECURRENCE-ID` (e.g. rescheduling or modifying a specific recurring instance)
+* Events sorted chronologically
+* Support for unfolding folded lines
 
-## Not supported or limited
+## Not Supported or Limited
 
-* VTIMEZONE components and embedded timezone definitions.
-* Complex BYDAY patterns with ordinal prefixes (e.g., 1MO, -1SU).
-* Other RRULE parts like BYMONTHDAY, BYYEARDAY, BYWEEKNO, BYHOUR, BYMINUTE, BYSECOND.
-* EXDATE and EXRULE for exclusions.
-* RDATE for additional recurrence dates.
-* Recurrence exceptions or modifications.
-* Timezone transitions and daylight saving time changes beyond GLib timezones.
-* Support for multiple calendar components beyond VEVENT.
-* Parsing and handling VALARM or other calendar subcomponents.
-
+* `EXRULE` exclusions (deprecated in RFC5545, and rarely used)
+* `RDATE` for additional recurrence dates
+* Ordinal `BYDAY` prefixes (e.g. `1MO`, `-1SU`) – currently ignored
+* Other RRULE components like `BYMONTHDAY`, `BYYEARDAY`, `BYWEEKNO`, `BYHOUR`, `BYMINUTE`, `BYSECOND`
+* VTIMEZONE components and embedded timezone definitions (relies on system GLib timezones)
+* Timezone transitions and daylight saving handling beyond what GLib supports
+* Calendar subcomponents such as `VALARM` or non-VEVENT types
 
 ## ☕ Support
 If you find this desklet useful, do please consider buying me a coffee to say thanks, it would mean a lot to me:

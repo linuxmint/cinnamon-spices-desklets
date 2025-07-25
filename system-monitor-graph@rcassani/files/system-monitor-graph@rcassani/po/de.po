@@ -1,13 +1,14 @@
-# SOME DESCRIPTIVE TITLE.
+# SYSTEM MONITOR GRAPH
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# rcassani, 2020
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-28 13:30-0500\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-07-05 08:35-0400\n"
 "PO-Revision-Date: 2022-04-17 18:13+0100\n"
 "Last-Translator: Georg Sieber\n"
 "Language-Team: \n"
@@ -17,40 +18,67 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. settings-schema.json->type->options
-#: desklet.js:149
+#. desklet.js:183
 msgid "CPU"
 msgstr "CPU"
 
-#. settings-schema.json->type->options
-#: desklet.js:157
-msgid "RAM"
-msgstr "RAM"
+#. desklet.js:194 desklet.js:212 desklet.js:232 desklet.js:273 desklet.js:536
+msgid "GB"
+msgstr "GB"
 
-#: desklet.js:160
-#: desklet.js:193
+#. desklet.js:197 desklet.js:215 desklet.js:235 desklet.js:276 desklet.js:550
 msgid "GiB"
 msgstr "GiB"
 
 #. settings-schema.json->type->options
-#: desklet.js:171
+#. desklet.js:199
+msgid "RAM"
+msgstr "RAM"
+
+#. settings-schema.json->type->options
+#. desklet.js:217
 msgid "Swap"
 msgstr "Swap"
 
-#: desklet.js:172
+#. desklet.js:240
 msgid "free of"
 msgstr "frei von"
 
-#: desklet.js:173
-msgid "GB"
-msgstr "GB"
-
-#: desklet.js:183
+#. desklet.js:256
 msgid "GPU Usage"
 msgstr "GPU-Auslastung"
 
-#: desklet.js:190
+#. desklet.js:278
 msgid "GPU Memory"
 msgstr "GPU-Speicher"
+
+#. settings-schema.json->type->options
+#. desklet.js:290
+msgid "Network"
+msgstr ""
+
+#. desklet.js:525 desklet.js:544 desklet.js:558
+#, fuzzy
+msgid "B"
+msgstr "GB"
+
+#. desklet.js:539
+msgid "MB"
+msgstr ""
+
+#. desklet.js:542
+msgid "KB"
+msgstr ""
+
+#. desklet.js:553
+#, fuzzy
+msgid "MiB"
+msgstr "GiB"
+
+#. desklet.js:556
+#, fuzzy
+msgid "KiB"
+msgstr "GiB"
 
 #. metadata.json->name
 msgid "System monitor graph"
@@ -101,6 +129,7 @@ msgstr "Dezimal (1 GB = 1000³ Bytes)"
 #. settings-schema.json->data-prefix-ram->description
 #. settings-schema.json->data-prefix-swap->description
 #. settings-schema.json->data-prefix-hdd->description
+#. settings-schema.json->data-prefix-network->description
 #. settings-schema.json->data-prefix-gpumem->description
 msgid "Prefix for data units"
 msgstr "Präfixe für Speichergrößen"
@@ -117,13 +146,39 @@ msgstr "Einheiten-Präfix für Swap-Größe."
 msgid "Unit prefix for Filesystem size."
 msgstr "Einheiten-Präfix für Dateisystem-Größe."
 
+#. settings-schema.json->data-prefix-network->options
+#, fuzzy
+msgid "Binary prefix or IEC (1 KiB = 1024 bytes)"
+msgstr "Binär bzw. IEC (1 GiB = 1024³ Bytes)"
+
+#. settings-schema.json->data-prefix-network->options
+#, fuzzy
+msgid "Decimal prefix (1 KB = 1000 bytes)"
+msgstr "Dezimal (1 GB = 1000³ Bytes)"
+
+#. settings-schema.json->data-prefix-network->tooltip
+#, fuzzy
+msgid "Unit prefix for network speed."
+msgstr "Einheiten-Präfix für Swap-Größe."
+
+#. settings-schema.json->network-interface->description
+#, fuzzy
+msgid "Network interface to monitor"
+msgstr "Wählen Sie die anzuzeigende GPU-Variable."
+
+#. settings-schema.json->network-interface->tooltip
+msgid ""
+"Leave empty to monitor all interfaces combined. Examples: eth0, wlan0, enp0s3"
+msgstr ""
+
 #. settings-schema.json->filesystem->description
 msgid "Filesystem to monitor"
 msgstr "Anzuzeigendes Dateisystem"
 
 #. settings-schema.json->filesystem->tooltip
 msgid "Select a directory in the filesystem to monitor."
-msgstr "Wähöen Sie ein Verzeichnis im Dateisystem, welches angezeigt werden soll."
+msgstr ""
+"Wähöen Sie ein Verzeichnis im Dateisystem, welches angezeigt werden soll."
 
 #. settings-schema.json->filesystem-label->description
 msgid "Filesystem label"
@@ -144,6 +199,10 @@ msgstr "Wählen Sie den GPU-Hersteller."
 #. settings-schema.json->gpu-manufacturer->options
 msgid "NVIDIA"
 msgstr "NVIDIA"
+
+#. settings-schema.json->gpu-manufacturer->options
+msgid "AMDGPU"
+msgstr ""
 
 #. settings-schema.json->gpu-id->description
 msgid "Id of GPU to monitor"
@@ -262,8 +321,11 @@ msgstr "CPU-Linienfarbe"
 
 #. settings-schema.json->line-color-cpu->tooltip
 #. settings-schema.json->line-color-ram->tooltip
+#. settings-schema.json->line-color-swap->tooltip
 #. settings-schema.json->line-color-hdd->tooltip
 #. settings-schema.json->line-color-gpu->tooltip
+#. settings-schema.json->line-color-network-down->tooltip
+#. settings-schema.json->line-color-network-up->tooltip
 msgid "RGB or RGBA. Alpha is ignored"
 msgstr "RGB oder RGBA. Alpha wird ignoriert"
 
@@ -283,6 +345,16 @@ msgstr "HDD-Linienfarbe"
 msgid "Line color GPU"
 msgstr "GPU-Linienfarbe"
 
+#. settings-schema.json->line-color-network-down->description
+#, fuzzy
+msgid "Line color Network Download"
+msgstr "Swap-Linienfarbe"
+
+#. settings-schema.json->line-color-network-up->description
+#, fuzzy
+msgid "Line color Network Upload"
+msgstr "Swap-Linienfarbe"
+
 #. settings-schema.json->midline-color->description
 msgid "Grid color"
 msgstr "Diagrammfarbe"
@@ -297,4 +369,5 @@ msgstr "Anzahl vertikaler Linien im Diagramm"
 
 #. settings-schema.json->scale-size->description
 msgid "Scale factor for desklet size (scale factor of 1 = 330 x 120 px)"
-msgstr "Skalierungsfaktor für die Deskletgröße (Skalierungsfaktor 1 = 330 x 120 px)"
+msgstr ""
+"Skalierungsfaktor für die Deskletgröße (Skalierungsfaktor 1 = 330 x 120 px)"

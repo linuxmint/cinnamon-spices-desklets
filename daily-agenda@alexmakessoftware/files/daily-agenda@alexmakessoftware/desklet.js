@@ -26,6 +26,7 @@ imports.searchPath.unshift(`${DESKLET_DIR}/helpers`);
 //helper module imports (must be at module scope)
 const IcsHelperModule = imports['ics-helper']; 
 const helper = new IcsHelperModule.IcsHelper();
+// helper.setLogger(global.log); //uncomment to enabled debugging of helper.
 
 
 function _(str) {
@@ -34,28 +35,29 @@ function _(str) {
 
 
 function formatTime(date) {
-    const hours = date.getHours().toString().padStart(2, "0");
-    const minutes = date.getMinutes().toString().padStart(2, "0");
+    const hours = date.get_hour().toString().padStart(2, "0");
+    const minutes = date.get_minute().toString().padStart(2, "0");
     return `${hours}:${minutes}`;
 }
 
 
-function main(metadata, desklet_id) {
-    return new IcsDesklet(metadata, desklet_id);
+function main(metadata, desklet_id) {    
+    return new IcsDesklet(metadata, desklet_id);    
 }
 
 
-function IcsDesklet(metadata, desklet_id) {    
-    this._init(metadata, desklet_id);
+function IcsDesklet(metadata, desklet_id) {
+    this._init(metadata, desklet_id);    
 }
 
 
 IcsDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
 
-    _init: function(metadata, desklet_id) {     
+    _init: function(metadata, desklet_id) {               
         Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
         Gettext.bindtextdomain(metadata.uuid, GLib.get_home_dir() + "/.local/share/locale");
+        this.setHeader(_("Daily Agenda"));
         this._timeoutId = null;
         this._nextScheduledUpdate = null;
         this._httpSession = new Soup.Session();
@@ -78,23 +80,23 @@ IcsDesklet.prototype = {
 
 
     _prepareGUI: function() {
-        const footerBox = new St.BoxLayout({ vertical: false, x_expand: true });
+        this.footerBox = new St.BoxLayout({ vertical: false, x_expand: true });
     
         this.timeLabel = new St.Label({ text: "..." });
-        footerBox.add_child(this.timeLabel);
+        this.footerBox.add_child(this.timeLabel);
     
-        const refreshIcon = new St.Icon({
+        this.refreshIcon = new St.Icon({
             icon_name: "view-refresh-symbolic",
             style_class: "system-status-icon",
             reactive: true,
             track_hover: true,
             can_focus: true
         });
-        footerBox.add_child(refreshIcon);
-        refreshIcon.connect("button-press-event", () => {
+        this.footerBox.add_child(this.refreshIcon);
+        this.refreshIcon.connect("button-press-event", () => {
             this._updateTodaysEvents();
         });
-        footerBox.set_style("justify-content: space-between; padding-top: 4px;");
+        this.footerBox.set_style("justify-content: space-between; padding-top: 4px;");
             
         this.label = new St.Label({
             text: "...",
@@ -115,27 +117,44 @@ IcsDesklet.prototype = {
     
         this.container = new St.BoxLayout({ vertical: true });
         this.container.add_child(labelClip);
-        this.container.add_child(footerBox);
+        this.container.add_child(this.footerBox);
     
         this.setContent(this.container);
     },  
 
 
     _updateUIStyles: function() {
-        this.label.set_style(`            
+
+        let style = `
             font-family: ${this.font};
             font-size: ${this.fontSize}pt;
-        `);
+        `;
+
+        if (this.overrideTheme && this.textcolor) {
+            style += ` color: ${this.textcolor};`;
+        }
+
+        if (this.overrideTheme) {
+            this.label.set_style(style);
+            this.timeLabel.set_style(style);
+            this.refreshIcon.set_style(style);
+        } else {
+            // reset to theme default
+            this.label.set_style("");
+            this.timeLabel.set_style("");
+            this.refreshIcon.set_style("");
+        }
+
         this.label.set_x_expand(true);
         this.label.set_y_expand(true);
-    
+
         this.container.set_style(`
             width: ${this.width}px;
             height: ${this.height}px;            
         `);
     },
 
-
+    
     _bindSettings: function(uuid, desklet_id) {
         this.settings = new Settings.DeskletSettings(this, uuid, desklet_id);
         this.settings.bind("sourceType", "sourceType", this._updateTodaysEvents.bind(this));
@@ -143,9 +162,16 @@ IcsDesklet.prototype = {
         this.settings.bind("icsFilePath", "icsFilePath", this._updateTodaysEvents.bind(this));        
         this.settings.bind("width", "width", this._updateTodaysEvents.bind(this));
         this.settings.bind("height", "height", this._updateTodaysEvents.bind(this));
-        this.settings.bind("font", "font", this._updateTodaysEvents.bind(this));
-        this.settings.bind("fontSize", "fontSize", this._updateTodaysEvents.bind(this));
-        this.settings.bind("checkInterval", "checkInterval", this._resetUpdateTimer.bind(this));
+        
+        this.settings.bind("overrideTheme", "overrideTheme", this._updateUIStyles.bind(this));
+        this.settings.bind("font", "font", this._updateUIStyles.bind(this));
+        this.settings.bind("fontSize", "fontSize", this._updateUIStyles.bind(this));        
+        this.settings.bind("textcolor", "textcolor", this._updateUIStyles.bind(this));
+
+        this.settings.bind("checkInterval", "checkInterval", this._resetUpdateTimer.bind(this));        
+        this.settings.bind("showLastChecked", "showLastChecked", this._updateTodaysEvents.bind(this));
+        this.settings.bind("showRefreshNowButton", "showRefreshNowButton", this._updateTodaysEvents.bind(this));        
+
     },
 
 
@@ -176,7 +202,7 @@ IcsDesklet.prototype = {
 
             const now = new Date();
             this._updateCheckedText(now);
-            const eventList = helper.parseTodaysEvents(rawIcsText, now);
+            const eventList = helper.parseTodaysEvents(rawIcsText);
             this._renderEventList(eventList);
         });
     },
@@ -256,7 +282,19 @@ IcsDesklet.prototype = {
             text += `• ${_("Next")}: ${nh}:${nm} `;
         }
 
-        this.timeLabel.set_text(text);       
+        this.timeLabel.set_text(text);
+
+        if (this.showLastChecked) {
+            this.timeLabel.show();
+        } else {
+            this.timeLabel.hide();
+        }
+
+        if(this.showRefreshNowButton) {
+            this.refreshIcon.show();
+        } else {
+            this.refreshIcon.hide();
+        }
     },
 
 
