@@ -1,13 +1,14 @@
-# SOME DESCRIPTIVE TITLE.
+# SYSTEM MONITOR GRAPH
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# rcassani, 2020
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-05 18:14+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-07-05 08:35-0400\n"
 "PO-Revision-Date: 2023-12-13 12:42+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,39 +20,67 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #. settings-schema.json->type->options
-#: desklet.js:153
+#. desklet.js:183
 msgid "CPU"
 msgstr "CPU"
 
-#. settings-schema.json->type->options
-#: desklet.js:161
-msgid "RAM"
-msgstr "RAM"
+#. desklet.js:194 desklet.js:212 desklet.js:232 desklet.js:273 desklet.js:536
+msgid "GB"
+msgstr "GB"
 
-#: desklet.js:164 desklet.js:174 desklet.js:207
+#. desklet.js:197 desklet.js:215 desklet.js:235 desklet.js:276 desklet.js:550
 msgid "GiB"
 msgstr "GiB"
 
 #. settings-schema.json->type->options
-#: desklet.js:171
+#. desklet.js:199
+msgid "RAM"
+msgstr "RAM"
+
+#. settings-schema.json->type->options
+#. desklet.js:217
 msgid "Swap"
 msgstr "Cserehely"
 
-#: desklet.js:186
+#. desklet.js:240
 msgid "free of"
 msgstr "szabad, összesen:"
 
-#: desklet.js:187
-msgid "GB"
-msgstr "GB"
-
-#: desklet.js:197
+#. desklet.js:256
 msgid "GPU Usage"
 msgstr "GPU használat"
 
-#: desklet.js:204
+#. desklet.js:278
 msgid "GPU Memory"
 msgstr "GPU memória"
+
+#. settings-schema.json->type->options
+#. desklet.js:290
+msgid "Network"
+msgstr ""
+
+#. desklet.js:525 desklet.js:544 desklet.js:558
+#, fuzzy
+msgid "B"
+msgstr "GB"
+
+#. desklet.js:539
+msgid "MB"
+msgstr ""
+
+#. desklet.js:542
+msgid "KB"
+msgstr ""
+
+#. desklet.js:553
+#, fuzzy
+msgid "MiB"
+msgstr "GiB"
+
+#. desklet.js:556
+#, fuzzy
+msgid "KiB"
+msgstr "GiB"
 
 #. metadata.json->name
 msgid "System monitor graph"
@@ -102,6 +131,7 @@ msgstr "Tizedes előtag (1 GB = 1000³ bájt)"
 #. settings-schema.json->data-prefix-ram->description
 #. settings-schema.json->data-prefix-swap->description
 #. settings-schema.json->data-prefix-hdd->description
+#. settings-schema.json->data-prefix-network->description
 #. settings-schema.json->data-prefix-gpumem->description
 msgid "Prefix for data units"
 msgstr "Az adategységek előtagja"
@@ -118,6 +148,31 @@ msgstr "A cserehely méretének egység előtagja."
 msgid "Unit prefix for Filesystem size."
 msgstr "A fájlrendszer méretének egység előtagja."
 
+#. settings-schema.json->data-prefix-network->options
+#, fuzzy
+msgid "Binary prefix or IEC (1 KiB = 1024 bytes)"
+msgstr "Bináris előtag vagy IEC (1 GiB = 1024³ bájt)"
+
+#. settings-schema.json->data-prefix-network->options
+#, fuzzy
+msgid "Decimal prefix (1 KB = 1000 bytes)"
+msgstr "Tizedes előtag (1 GB = 1000³ bájt)"
+
+#. settings-schema.json->data-prefix-network->tooltip
+#, fuzzy
+msgid "Unit prefix for network speed."
+msgstr "A cserehely méretének egység előtagja."
+
+#. settings-schema.json->network-interface->description
+#, fuzzy
+msgid "Network interface to monitor"
+msgstr "Válassza ki a megfigyelendő GPU jellemzőket."
+
+#. settings-schema.json->network-interface->tooltip
+msgid ""
+"Leave empty to monitor all interfaces combined. Examples: eth0, wlan0, enp0s3"
+msgstr ""
+
 #. settings-schema.json->filesystem->description
 msgid "Filesystem to monitor"
 msgstr "Megfigyelendő fájlrendszer"
@@ -132,7 +187,9 @@ msgstr "Fájlrendszer címkeFájlrendszercímke"
 
 #. settings-schema.json->filesystem-label->tooltip
 msgid "Empty uses the filesystem name from df."
-msgstr "Amennyiben üresen hagyja, a fájlrendszer neve a df parancs alapján lesz megadva."
+msgstr ""
+"Amennyiben üresen hagyja, a fájlrendszer neve a df parancs alapján lesz "
+"megadva."
 
 #. settings-schema.json->gpu-manufacturer->description
 msgid "GPU manufacturer"
@@ -145,6 +202,10 @@ msgstr "Válassza ki a GPU gyártóját."
 #. settings-schema.json->gpu-manufacturer->options
 msgid "NVIDIA"
 msgstr "NVIDIA"
+
+#. settings-schema.json->gpu-manufacturer->options
+msgid "AMDGPU"
+msgstr ""
 
 #. settings-schema.json->gpu-id->description
 msgid "Id of GPU to monitor"
@@ -266,6 +327,8 @@ msgstr "CPU vonalszín"
 #. settings-schema.json->line-color-swap->tooltip
 #. settings-schema.json->line-color-hdd->tooltip
 #. settings-schema.json->line-color-gpu->tooltip
+#. settings-schema.json->line-color-network-down->tooltip
+#. settings-schema.json->line-color-network-up->tooltip
 msgid "RGB or RGBA. Alpha is ignored"
 msgstr "RGB vagy RGBA. Az Alfa csatorna figyelmen kívül hagyásával"
 
@@ -284,6 +347,16 @@ msgstr "HDD vonalszín"
 #. settings-schema.json->line-color-gpu->description
 msgid "Line color GPU"
 msgstr "GPU vonalszín"
+
+#. settings-schema.json->line-color-network-down->description
+#, fuzzy
+msgid "Line color Network Download"
+msgstr "Cserehely vonalszín"
+
+#. settings-schema.json->line-color-network-up->description
+#, fuzzy
+msgid "Line color Network Upload"
+msgstr "Cserehely vonalszín"
 
 #. settings-schema.json->midline-color->description
 msgid "Grid color"

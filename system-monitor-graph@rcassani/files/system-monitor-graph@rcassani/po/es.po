@@ -1,14 +1,15 @@
-# SOME DESCRIPTIVE TITLE.
+# SYSTEM MONITOR GRAPH
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# rcassani, 2020
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-04 22:27+0200\n"
-"PO-Revision-Date: 2023-08-04 22:52+0200\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-07-05 08:35-0400\n"
+"PO-Revision-Date: 2025-07-05 18:24-0400\n"
 "Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -16,42 +17,67 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.6\n"
 
 #. settings-schema.json->type->options
-#: desklet.js:164
+#. desklet.js:183
 msgid "CPU"
 msgstr "CPU"
 
-#: desklet.js:175 desklet.js:193 desklet.js:213 desklet.js:242
+#. desklet.js:194 desklet.js:212 desklet.js:232 desklet.js:273 desklet.js:536
 msgid "GB"
 msgstr "GB"
 
-#: desklet.js:178 desklet.js:196 desklet.js:216 desklet.js:245
+#. desklet.js:197 desklet.js:215 desklet.js:235 desklet.js:276 desklet.js:550
 msgid "GiB"
 msgstr "GiB"
 
 #. settings-schema.json->type->options
-#: desklet.js:180
+#. desklet.js:199
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#: desklet.js:198
+#. desklet.js:217
 msgid "Swap"
 msgstr "Swap"
 
-#: desklet.js:221
+#. desklet.js:240
 msgid "free of"
 msgstr "libres de"
 
-#: desklet.js:232
+#. desklet.js:256
 msgid "GPU Usage"
 msgstr "Uso de GPU"
 
-#: desklet.js:247
+#. desklet.js:278
 msgid "GPU Memory"
 msgstr "Memoria de GPU"
+
+#. settings-schema.json->type->options
+#. desklet.js:290
+msgid "Network"
+msgstr "Red"
+
+#. desklet.js:525 desklet.js:544 desklet.js:558
+msgid "B"
+msgstr "B"
+
+#. desklet.js:539
+msgid "MB"
+msgstr "MB"
+
+#. desklet.js:542
+msgid "KB"
+msgstr "KB"
+
+#. desklet.js:553
+msgid "MiB"
+msgstr "MiB"
+
+#. desklet.js:556
+msgid "KiB"
+msgstr "KiB"
 
 #. metadata.json->name
 msgid "System monitor graph"
@@ -102,6 +128,7 @@ msgstr "Prefijo decimal (1 GB = 1000³ octetos)"
 #. settings-schema.json->data-prefix-ram->description
 #. settings-schema.json->data-prefix-swap->description
 #. settings-schema.json->data-prefix-hdd->description
+#. settings-schema.json->data-prefix-network->description
 #. settings-schema.json->data-prefix-gpumem->description
 msgid "Prefix for data units"
 msgstr "Prefijo de las unidades de los datos"
@@ -119,6 +146,29 @@ msgstr ""
 #. settings-schema.json->data-prefix-hdd->tooltip
 msgid "Unit prefix for Filesystem size."
 msgstr "Prefijo de la unidad de medida del sistema de archivos."
+
+#. settings-schema.json->data-prefix-network->options
+msgid "Binary prefix or IEC (1 KiB = 1024 bytes)"
+msgstr "Prefijo binario o del IEC (1 KiB = 1024 bytes)"
+
+#. settings-schema.json->data-prefix-network->options
+msgid "Decimal prefix (1 KB = 1000 bytes)"
+msgstr "Prefijo decimal (1 KB = 1000 bytes)"
+
+#. settings-schema.json->data-prefix-network->tooltip
+msgid "Unit prefix for network speed."
+msgstr "Prefijo de unidad para la velocidad de red."
+
+#. settings-schema.json->network-interface->description
+msgid "Network interface to monitor"
+msgstr "Interfaz de red a monitorear"
+
+#. settings-schema.json->network-interface->tooltip
+msgid ""
+"Leave empty to monitor all interfaces combined. Examples: eth0, wlan0, enp0s3"
+msgstr ""
+"Dejar vacío para monitorizar todas las interfaces combinadas. Ejemplos: "
+"eth0, wlan0, enp0s3"
 
 #. settings-schema.json->filesystem->description
 msgid "Filesystem to monitor"
@@ -149,6 +199,10 @@ msgstr "Seleccione el fabricante de la GPU."
 #. settings-schema.json->gpu-manufacturer->options
 msgid "NVIDIA"
 msgstr "NVIDIA"
+
+#. settings-schema.json->gpu-manufacturer->options
+msgid "AMDGPU"
+msgstr "AMDGPU"
 
 #. settings-schema.json->gpu-id->description
 msgid "Id of GPU to monitor"
@@ -270,6 +324,8 @@ msgstr "Color de la línea de la CPU"
 #. settings-schema.json->line-color-swap->tooltip
 #. settings-schema.json->line-color-hdd->tooltip
 #. settings-schema.json->line-color-gpu->tooltip
+#. settings-schema.json->line-color-network-down->tooltip
+#. settings-schema.json->line-color-network-up->tooltip
 msgid "RGB or RGBA. Alpha is ignored"
 msgstr ""
 "El color se puede guardar en formato RGB o RGBA, pero se ignorará la opacidad"
@@ -289,6 +345,14 @@ msgstr "Color de la línea del Disco duro"
 #. settings-schema.json->line-color-gpu->description
 msgid "Line color GPU"
 msgstr "Color de la línea de la GPU"
+
+#. settings-schema.json->line-color-network-down->description
+msgid "Line color Network Download"
+msgstr "Color de la línea de descarga de la red"
+
+#. settings-schema.json->line-color-network-up->description
+msgid "Line color Network Upload"
+msgstr "Color de la línea de la carga de la red"
 
 #. settings-schema.json->midline-color->description
 msgid "Grid color"

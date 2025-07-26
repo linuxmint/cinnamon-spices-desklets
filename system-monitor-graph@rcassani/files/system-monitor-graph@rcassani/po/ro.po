@@ -5,54 +5,82 @@
 #
 msgid ""
 msgstr ""
-"Content-Transfer-Encoding: 8bit\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language: ro\n"
-"Language-Team: none\n"
-"Last-Translator: Automatically generated\n"
-"MIME-Version: 1.0\n"
-"PO-Revision-Date: 2022-04-17 23:21+0200\n"
-"POT-Creation-Date: 2022-04-17 23:21+0200\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-07-05 08:35-0400\n"
+"PO-Revision-Date: 2022-04-17 23:21+0200\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
 
 #. settings-schema.json->type->options
-#: desklet.js:153
+#. desklet.js:183
 msgid "CPU"
 msgstr "CPU"
 
-#. settings-schema.json->type->options
-#: desklet.js:161
-msgid "RAM"
-msgstr "RAM"
+#. desklet.js:194 desklet.js:212 desklet.js:232 desklet.js:273 desklet.js:536
+msgid "GB"
+msgstr "GB"
 
-#: desklet.js:164
-#: desklet.js:174
-#: desklet.js:207
+#. desklet.js:197 desklet.js:215 desklet.js:235 desklet.js:276 desklet.js:550
 msgid "GiB"
 msgstr "GiB"
 
 #. settings-schema.json->type->options
-#: desklet.js:171
+#. desklet.js:199
+msgid "RAM"
+msgstr "RAM"
+
+#. settings-schema.json->type->options
+#. desklet.js:217
 msgid "Swap"
 msgstr "Schimbă"
 
-#: desklet.js:186
+#. desklet.js:240
 msgid "free of"
 msgstr "liber din"
 
-#: desklet.js:187
-msgid "GB"
-msgstr "GB"
-
-#: desklet.js:197
+#. desklet.js:256
 msgid "GPU Usage"
 msgstr "Utilizare GPU"
 
-#: desklet.js:204
+#. desklet.js:278
 msgid "GPU Memory"
 msgstr "Memorie GPU"
+
+#. settings-schema.json->type->options
+#. desklet.js:290
+msgid "Network"
+msgstr ""
+
+#. desklet.js:525 desklet.js:544 desklet.js:558
+#, fuzzy
+msgid "B"
+msgstr "GB"
+
+#. desklet.js:539
+msgid "MB"
+msgstr ""
+
+#. desklet.js:542
+msgid "KB"
+msgstr ""
+
+#. desklet.js:553
+#, fuzzy
+msgid "MiB"
+msgstr "GiB"
+
+#. desklet.js:556
+#, fuzzy
+msgid "KiB"
+msgstr "GiB"
 
 #. metadata.json->name
 msgid "System monitor graph"
@@ -86,13 +114,71 @@ msgstr "HDD"
 msgid "GPU"
 msgstr "GPU"
 
+#. settings-schema.json->data-prefix-ram->options
+#. settings-schema.json->data-prefix-swap->options
+#. settings-schema.json->data-prefix-hdd->options
+#. settings-schema.json->data-prefix-gpumem->options
+msgid "Binary prefix or IEC (1 GiB = 1024³ bytes)"
+msgstr ""
+
+#. settings-schema.json->data-prefix-ram->options
+#. settings-schema.json->data-prefix-swap->options
+#. settings-schema.json->data-prefix-hdd->options
+#. settings-schema.json->data-prefix-gpumem->options
+msgid "Decimal prefix (1 GB = 1000³ bytes)"
+msgstr ""
+
+#. settings-schema.json->data-prefix-ram->description
+#. settings-schema.json->data-prefix-swap->description
+#. settings-schema.json->data-prefix-hdd->description
+#. settings-schema.json->data-prefix-network->description
+#. settings-schema.json->data-prefix-gpumem->description
+msgid "Prefix for data units"
+msgstr ""
+
+#. settings-schema.json->data-prefix-ram->tooltip
+msgid "Unit prefix for RAM size."
+msgstr ""
+
+#. settings-schema.json->data-prefix-swap->tooltip
+msgid "Unit prefix for Swap size."
+msgstr ""
+
+#. settings-schema.json->data-prefix-hdd->tooltip
+msgid "Unit prefix for Filesystem size."
+msgstr ""
+
+#. settings-schema.json->data-prefix-network->options
+msgid "Binary prefix or IEC (1 KiB = 1024 bytes)"
+msgstr ""
+
+#. settings-schema.json->data-prefix-network->options
+msgid "Decimal prefix (1 KB = 1000 bytes)"
+msgstr ""
+
+#. settings-schema.json->data-prefix-network->tooltip
+msgid "Unit prefix for network speed."
+msgstr ""
+
+#. settings-schema.json->network-interface->description
+#, fuzzy
+msgid "Network interface to monitor"
+msgstr "Selectează variabila GPU care urmează să fie monitorizată."
+
+#. settings-schema.json->network-interface->tooltip
+msgid ""
+"Leave empty to monitor all interfaces combined. Examples: eth0, wlan0, enp0s3"
+msgstr ""
+
 #. settings-schema.json->filesystem->description
 msgid "Filesystem to monitor"
 msgstr "Sistemul de fișiere de monitorizat"
 
 #. settings-schema.json->filesystem->tooltip
 msgid "Select a directory in the filesystem to monitor."
-msgstr "Selectează un director din sistemul de fișiere care urmează să fie monitorizat."
+msgstr ""
+"Selectează un director din sistemul de fișiere care urmează să fie "
+"monitorizat."
 
 #. settings-schema.json->filesystem-label->description
 msgid "Filesystem label"
@@ -113,6 +199,10 @@ msgstr "Selectează producătorul GPU."
 #. settings-schema.json->gpu-manufacturer->options
 msgid "NVIDIA"
 msgstr "NVIDIA"
+
+#. settings-schema.json->gpu-manufacturer->options
+msgid "AMDGPU"
+msgstr ""
 
 #. settings-schema.json->gpu-id->description
 msgid "Id of GPU to monitor"
@@ -137,6 +227,10 @@ msgstr "Utilizare"
 #. settings-schema.json->gpu-variable->options
 msgid "Memory"
 msgstr "Memorie"
+
+#. settings-schema.json->data-prefix-gpumem->tooltip
+msgid "Unit prefix for GPU memory size."
+msgstr ""
 
 #. settings-schema.json->duration->description
 msgid "Duration of the graph"
@@ -230,6 +324,8 @@ msgstr "Culoarea liniei CPU"
 #. settings-schema.json->line-color-swap->tooltip
 #. settings-schema.json->line-color-hdd->tooltip
 #. settings-schema.json->line-color-gpu->tooltip
+#. settings-schema.json->line-color-network-down->tooltip
+#. settings-schema.json->line-color-network-up->tooltip
 msgid "RGB or RGBA. Alpha is ignored"
 msgstr "RGB sau RGBA. Alpha este ignorat."
 
@@ -249,6 +345,16 @@ msgstr "Culoarea liniei HDD"
 msgid "Line color GPU"
 msgstr "Culoarea liniei GPU"
 
+#. settings-schema.json->line-color-network-down->description
+#, fuzzy
+msgid "Line color Network Download"
+msgstr "Culoarea liniei Swap"
+
+#. settings-schema.json->line-color-network-up->description
+#, fuzzy
+msgid "Line color Network Upload"
+msgstr "Culoarea liniei Swap"
+
 #. settings-schema.json->midline-color->description
 msgid "Grid color"
 msgstr "Culoarea grilei"
@@ -263,4 +369,6 @@ msgstr "Numărul de linii verticale din grilă"
 
 #. settings-schema.json->scale-size->description
 msgid "Scale factor for desklet size (scale factor of 1 = 330 x 120 px)"
-msgstr "Factorul de scară pentru dimensiunea deskletului (factor de scară de 1 = 330 x 120 px)"
+msgstr ""
+"Factorul de scară pentru dimensiunea deskletului (factor de scară de 1 = 330 "
+"x 120 px)"

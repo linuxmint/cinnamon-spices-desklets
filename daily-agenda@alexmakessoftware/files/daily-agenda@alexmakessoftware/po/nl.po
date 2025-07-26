@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: daily-agenda@alexmakessoftware 1\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-04-28 15:09+0100\n"
+"POT-Creation-Date: 2025-07-07 21:15+0100\n"
 "PO-Revision-Date: 2025-05-16 16:42+0200\n"
 "Last-Translator: qadzek\n"
 "Language-Team: \n"
@@ -16,66 +16,47 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. desklet.js:143
-msgid "ICS Today: problem reading calendar file, result = "
-msgstr "ICS Vandaag: probleem bij lezen van kalenderbestand, resultaat = "
+#. metadata.json->name
+#. desklet.js:60
+msgid "Daily Agenda"
+msgstr "Dagelijkse Agenda"
 
-#. desklet.js:147
-msgid "ICS Today: Failed to read file: "
-msgstr "ICS Vandaag: Lezen van bestand mislukt: "
-
-#. desklet.js:150
-msgid "Error reading calendar. Try 'right click, configure...'"
-msgstr ""
-"Fout bij lezen van kalender. Probeer 'rechtermuisklik, configureren...'"
-
-#. desklet.js:162
-msgid "ICS Today: Failed to fetch calendar from URL."
-msgstr "ICS Vandaag: Kalender ophalen via URL mislukt."
-
-#. desklet.js:163
-msgid "Could not fetch calendar from URL."
-msgstr "Kan kalender niet ophalen via URL."
-
-#. desklet.js:167
-msgid "ICS Today: Error during curl fetch: "
-msgstr "ICS Vandaag: Fout tijdens ophalen met curl: "
-
-#. desklet.js:168
-msgid "Error fetching calendar from URL."
-msgstr "Fout bij het ophalen van kalender via URL."
-
-#. desklet.js:174
+#. desklet.js:219
 msgid "ICS Today: Unknown source type: "
 msgstr "ICS Vandaag: Onbekend brontype: "
 
-#. desklet.js:175
-msgid "Calendar source type not recognised."
-msgstr "Brontype van kalendar niet herkend."
+#. desklet.js:246
+msgid "ICS Today: problem reading calendar file, result = "
+msgstr "ICS Vandaag: probleem bij lezen van kalenderbestand, resultaat = "
 
-#. desklet.js:183
+#. desklet.js:250
+msgid "ICS Today: Failed to read file: "
+msgstr "ICS Vandaag: Lezen van bestand mislukt: "
+
+#. desklet.js:267
+#, fuzzy
+msgid "ICS Today: Failed to fetch calendar from URL: "
+msgstr "ICS Vandaag: Kalender ophalen via URL mislukt."
+
+#. desklet.js:277
 msgid "Last checked"
 msgstr "Laatst gecontroleerd"
 
-#. desklet.js:188
+#. desklet.js:282
 msgid "Next"
 msgstr "Volgende"
 
-#. desklet.js:220
+#. desklet.js:302
 msgid "All day"
 msgstr "Hele dag"
 
-#. desklet.js:234
+#. desklet.js:305
 msgid "Today's Events:"
 msgstr "Evenementen vandaag:"
 
-#. desklet.js:236
+#. desklet.js:309
 msgid "No events today."
 msgstr "Geen evenementen vandaag."
-
-#. metadata.json->name
-msgid "Daily Agenda"
-msgstr "Dagelijkse Agenda"
 
 #. metadata.json->description
 msgid "Displays today's events from your calendar"
@@ -137,8 +118,19 @@ msgid "Widget height"
 msgstr "Widgethoogte"
 
 #. settings-schema.json->head2->description
-msgid "Text Style"
+#, fuzzy
+msgid "Custom Styles"
 msgstr "Tekstopmaak"
+
+#. settings-schema.json->overrideTheme->description
+msgid "Override desktop theme (enables the settings below)"
+msgstr ""
+
+#. settings-schema.json->overrideTheme->tooltip
+msgid ""
+"Check this to override the desktop theme and configure the appearance "
+"manually"
+msgstr ""
 
 #. settings-schema.json->font->description
 msgid "Font family"
@@ -155,6 +147,28 @@ msgstr "pt"
 #. settings-schema.json->fontSize->description
 msgid "Font size"
 msgstr "Lettergrootte"
+
+#. settings-schema.json->textcolor->description
+#, fuzzy
+msgid "Text color"
+msgstr "Tekstopmaak"
+
+#. settings-schema.json->textcolor->tooltip
+msgid "Click the button to select a new text color"
+msgstr ""
+
+#. settings-schema.json->head4->description
+msgid "Footer Options"
+msgstr ""
+
+#. settings-schema.json->showLastChecked->description
+#, fuzzy
+msgid "Show 'last checked' line"
+msgstr "Laatst gecontroleerd"
+
+#. settings-schema.json->showRefreshNowButton->description
+msgid "Show 'refresh now' button"
+msgstr ""
 
 #. settings-schema.json->head3->description
 msgid "Update Schedule"

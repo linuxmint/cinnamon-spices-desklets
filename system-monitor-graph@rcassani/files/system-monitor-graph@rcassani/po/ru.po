@@ -2,8 +2,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-05 18:14+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-07-05 08:35-0400\n"
 "PO-Revision-Date: \n"
 "Last-Translator: blogdron\n"
 "Language-Team: \n"
@@ -14,39 +15,64 @@ msgstr ""
 "X-Generator: Poedit 3.4.1\n"
 
 #. settings-schema.json->type->options
-#: desklet.js:153
+#. desklet.js:183
 msgid "CPU"
 msgstr "Процессор"
 
-#. settings-schema.json->type->options
-#: desklet.js:161
-msgid "RAM"
-msgstr "Память"
+#. desklet.js:194 desklet.js:212 desklet.js:232 desklet.js:273 desklet.js:536
+msgid "GB"
+msgstr ""
 
-#: desklet.js:164 desklet.js:174 desklet.js:207
+#. desklet.js:197 desklet.js:215 desklet.js:235 desklet.js:276 desklet.js:550
 msgid "GiB"
 msgstr ""
 
 #. settings-schema.json->type->options
-#: desklet.js:171
+#. desklet.js:199
+msgid "RAM"
+msgstr "Память"
+
+#. settings-schema.json->type->options
+#. desklet.js:217
 msgid "Swap"
 msgstr "Подкачка"
 
-#: desklet.js:186
+#. desklet.js:240
 msgid "free of"
 msgstr "свободно из"
 
-#: desklet.js:187
-msgid "GB"
-msgstr ""
-
-#: desklet.js:197
+#. desklet.js:256
 msgid "GPU Usage"
 msgstr "Загрузка Процессора"
 
-#: desklet.js:204
+#. desklet.js:278
 msgid "GPU Memory"
 msgstr "Использовано Памяти"
+
+#. settings-schema.json->type->options
+#. desklet.js:290
+msgid "Network"
+msgstr ""
+
+#. desklet.js:525 desklet.js:544 desklet.js:558
+msgid "B"
+msgstr ""
+
+#. desklet.js:539
+msgid "MB"
+msgstr ""
+
+#. desklet.js:542
+msgid "KB"
+msgstr ""
+
+#. desklet.js:553
+msgid "MiB"
+msgstr ""
+
+#. desklet.js:556
+msgid "KiB"
+msgstr ""
 
 #. metadata.json->name
 msgid "System monitor graph"
@@ -97,6 +123,7 @@ msgstr "Десятичная префикс (1 GB = 1000³ bytes)"
 #. settings-schema.json->data-prefix-ram->description
 #. settings-schema.json->data-prefix-swap->description
 #. settings-schema.json->data-prefix-hdd->description
+#. settings-schema.json->data-prefix-network->description
 #. settings-schema.json->data-prefix-gpumem->description
 msgid "Prefix for data units"
 msgstr "Система счисления"
@@ -112,6 +139,31 @@ msgstr "Система счисления для Подкачки."
 #. settings-schema.json->data-prefix-hdd->tooltip
 msgid "Unit prefix for Filesystem size."
 msgstr "Система счисления для Файловых систем."
+
+#. settings-schema.json->data-prefix-network->options
+#, fuzzy
+msgid "Binary prefix or IEC (1 KiB = 1024 bytes)"
+msgstr "Бинарная или IEC (1 GiB = 1024³ bytes)"
+
+#. settings-schema.json->data-prefix-network->options
+#, fuzzy
+msgid "Decimal prefix (1 KB = 1000 bytes)"
+msgstr "Десятичная префикс (1 GB = 1000³ bytes)"
+
+#. settings-schema.json->data-prefix-network->tooltip
+#, fuzzy
+msgid "Unit prefix for network speed."
+msgstr "Система счисления для Подкачки."
+
+#. settings-schema.json->network-interface->description
+#, fuzzy
+msgid "Network interface to monitor"
+msgstr "Выберите что нужно отслеживать."
+
+#. settings-schema.json->network-interface->tooltip
+msgid ""
+"Leave empty to monitor all interfaces combined. Examples: eth0, wlan0, enp0s3"
+msgstr ""
 
 #. settings-schema.json->filesystem->description
 msgid "Filesystem to monitor"
@@ -139,6 +191,10 @@ msgstr "Выберите производителя GPU."
 
 #. settings-schema.json->gpu-manufacturer->options
 msgid "NVIDIA"
+msgstr ""
+
+#. settings-schema.json->gpu-manufacturer->options
+msgid "AMDGPU"
 msgstr ""
 
 #. settings-schema.json->gpu-id->description
@@ -261,6 +317,8 @@ msgstr "Цвет линии Процессора"
 #. settings-schema.json->line-color-swap->tooltip
 #. settings-schema.json->line-color-hdd->tooltip
 #. settings-schema.json->line-color-gpu->tooltip
+#. settings-schema.json->line-color-network-down->tooltip
+#. settings-schema.json->line-color-network-up->tooltip
 msgid "RGB or RGBA. Alpha is ignored"
 msgstr "RGB или RGBA. Альфа канал игнорируется"
 
@@ -279,6 +337,16 @@ msgstr "Цвет линии для Накопителя"
 #. settings-schema.json->line-color-gpu->description
 msgid "Line color GPU"
 msgstr "Цвет линии для Видеокарты"
+
+#. settings-schema.json->line-color-network-down->description
+#, fuzzy
+msgid "Line color Network Download"
+msgstr "Цвет линии для Подкачки"
+
+#. settings-schema.json->line-color-network-up->description
+#, fuzzy
+msgid "Line color Network Upload"
+msgstr "Цвет линии для Подкачки"
 
 #. settings-schema.json->midline-color->description
 msgid "Grid color"
