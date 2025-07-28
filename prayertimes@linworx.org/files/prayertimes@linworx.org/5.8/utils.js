@@ -1,24 +1,30 @@
+const locale = new Intl.NumberFormat().resolvedOptions().locale;
+
 var capitalise = s => {
   return [s.slice(0, 1).toUpperCase(), s.slice(1)].join('');
 };
 
-var formatTime = date => timeString(date ? date.getHours() : null, date ? date.getMinutes() : null);
+var formatTime = (date, format24) => timeString({ h: date ? date.getHours() : null, m: date ? date.getMinutes() : null, format24 });
 
-var roundTime = t => {
-  let hrs = Math.floor(t / 3600) * -1;
-  const min = Math.abs(Math.floor((t % 3600) / 60));
-  const sec = Math.abs(Math.floor(t % 60));
+var roundTime = (startDate) => {
+  const endDate = new Date();
+  const diffMs = Math.abs(endDate - startDate); // Get difference in milliseconds
+  const totalSeconds = Math.floor(diffMs / 1000);
 
-  if (t < 0) hrs = hrs - 1;
-  return timeString(hrs, min, sec);
-  // return `${(t >= 0 ? hrs : hrs - 1).toString()}:${(t >= 0 ? min : min - 1).toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
-};
+  const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+  const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+  const seconds = String(totalSeconds % 60).padStart(2, '0');
 
-const timeString = (h, m, s) => {
-  const elems = [
-    m != undefined ? m.toString().padStart(2, '0') : '--',
-  ]
-  if (h != undefined) elems.unshift(h.toString().padStart(2, '0'));
-  if (s != undefined) elems.push(s.toString().padStart(2, '0'));
-  return elems.join(':')
+  return `${endDate < startDate ? '-' : '+'}${hours}:${minutes}:${seconds}`;
+}
+
+const timeString = ({ h, m, s, format24 }) => {
+
+  const d = new Date();
+  const millis = (h * 3600 + (m + d.getTimezoneOffset()) * 60 + (s || 0)) * 1000;
+  return new Date(millis).toLocaleTimeString(locale, {
+    hour12: !format24,
+    timeStyle: 'short',
+  }).replace(/\s/g, '');
+
 }

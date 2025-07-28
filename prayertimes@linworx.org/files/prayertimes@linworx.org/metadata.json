@@ -4,5 +4,5 @@
     "description": "Salat (namaz) daily prayer times desklet",
     "prevent-decorations": true,
     "author": "mkessas",
-    "max-instances": "2"
+    "max-instances": "10"
 }
