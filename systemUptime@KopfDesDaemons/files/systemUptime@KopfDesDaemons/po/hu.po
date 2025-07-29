@@ -32,15 +32,19 @@ msgid "Loading..."
 msgstr "Betöltés..."
 
 #. desklet.js:48
-msgid "System start time:"
-msgstr "A rendszer indulási ideje:"
+msgid "Start time:"
+msgstr "Indítási idő:"
 
 #. desklet.js:91
-msgid "hours"
+msgid "days"
+msgstr "napok"
+
+#. desklet.js:91
+msgid "hrs"
 msgstr "óra"
 
 #. desklet.js:91
-msgid "minutes"
+msgid "min"
 msgstr "perc"
 
 #. metadata.json->description

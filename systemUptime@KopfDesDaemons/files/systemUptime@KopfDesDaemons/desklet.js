@@ -45,7 +45,7 @@ class MyDesklet extends Desklet.Desklet {
         const uptimeRow = this.createRow([this.uptimeLabel, this.uptimeValue]);
 
         // Create labels for startup time
-        this.startTimeLabel = this.createLabel(_("System start time:") + " ", this.colorLabel);
+        this.startTimeLabel = this.createLabel(_("Start time:") + " ", this.colorLabel);
         this.startupValue = this.createLabel(_("Loading..."));
 
         const startupRow = this.createRow([this.startTimeLabel, this.startupValue]);
@@ -97,10 +97,11 @@ class MyDesklet extends Desklet.Desklet {
             if (!result || !out) throw new Error("Could not get system uptime.");
 
             const uptimeInSeconds = parseFloat(out.toString().trim());
-            const hours = Math.floor(uptimeInSeconds / 3600);
-            const minutes = Math.floor((uptimeInSeconds % 3600) / 60);
+            const days = Math.floor(uptimeInSeconds / 86400);
+            const hours = Math.floor((uptimeInSeconds % 86400) / 3600);
+            const minutes = Math.floor(((uptimeInSeconds % 86400) % 3600) / 60);
 
-            this.uptimeValue.set_text(`${hours} ${_("hours")} ${minutes} ${_("minutes")}`);
+            this.uptimeValue.set_text(`${days} ${_("days")}, ${hours} ${_("hrs")} ${minutes} ${_("min")}`);
         } catch (error) {
             this.uptimeValue.set_text("Error");
             global.logError(`${UUID}: ${error.message}`);
@@ -115,7 +116,9 @@ class MyDesklet extends Desklet.Desklet {
             const [result, out] = GLib.spawn_command_line_sync("uptime -s");
             if (!result || !out) throw new Error("Could not get system startup time.");
 
-            this.startupValue.set_text(out.toString().split(" ")[1].trim());
+            let dateTime = out.toString().split(" ");
+            let date = dateTime[0].split("-");
+            this.startupValue.set_text(date[2]+"."+date[1]+"."+date[0]+" "+dateTime[1].trim());
         } catch (error) {
             this.startupValue.set_text("Error");
             global.logError(`${UUID}: ${error.message}`);

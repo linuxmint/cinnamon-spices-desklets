@@ -31,15 +31,19 @@ msgid "Loading..."
 msgstr "Cargando…"
 
 #. desklet.js:48
-msgid "System start time:"
-msgstr "Hora de inicio del sistema:"
+msgid "Start time:"
+msgstr "Hora de inicio:"
 
 #. desklet.js:91
-msgid "hours"
+msgid "days"
+msgstr "días"
+
+#. desklet.js:91
+msgid "hrs"
 msgstr "horas"
 
 #. desklet.js:91
-msgid "minutes"
+msgid "min"
 msgstr "minutos"
 
 #. metadata.json->description

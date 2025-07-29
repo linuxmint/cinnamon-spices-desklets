@@ -3,5 +3,7 @@
     "name": "System Uptime",
     "description": "Displays the current system uptime.",
     "version": "1.0",
-    "max-instances": "50"
+    "max-instances": "50",
+    "author": "KopfDesDaemons",
+    "last-edited": 1744390204
 }
