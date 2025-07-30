@@ -59,8 +59,9 @@
         "type": "combobox",
         "default": 0,
         "options": {
-            "Binary prefix or IEC (1 KiB = 1024 bytes)" : 0,
-            "Decimal prefix (1 KB = 1000 bytes)" : 1
+            "Bits (1 Kb = 1000 bit)" : 2,
+            "Bytes - Binary prefix or IEC (1 KiB = 1024 bytes)" : 0,
+            "Bytes - Decimal prefix (1 KB = 1000 bytes)" : 1
         },
         "description": "Prefix for data units",
         "tooltip": "Unit prefix for network speed.",
