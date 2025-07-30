@@ -164,7 +164,7 @@ msgstr "Einheiten-Präfix für Swap-Größe."
 #. settings-schema.json->network-interface->description
 #, fuzzy
 msgid "Network interface to monitor"
-msgstr "Wählen Sie die anzuzeigende GPU-Variable."
+msgstr "Zu überwachendes Netzwerkinterface"
 
 #. settings-schema.json->network-interface->tooltip
 msgid ""
@@ -348,12 +348,12 @@ msgstr "GPU-Linienfarbe"
 #. settings-schema.json->line-color-network-down->description
 #, fuzzy
 msgid "Line color Network Download"
-msgstr "Swap-Linienfarbe"
+msgstr "Netzwerk-Download-Linienfarbe"
 
 #. settings-schema.json->line-color-network-up->description
 #, fuzzy
 msgid "Line color Network Upload"
-msgstr "Swap-Linienfarbe"
+msgstr "Netzwerk-Upload-Linienfarbe"
 
 #. settings-schema.json->midline-color->description
 msgid "Grid color"
