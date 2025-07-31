@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-05-15 11:44+0200\n"
+"POT-Creation-Date: 2025-07-31 12:29-0400\n"
 "PO-Revision-Date: 2024-05-15 12:14+0200\n"
 "Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
 "Language-Team: \n"
@@ -22,26 +22,26 @@ msgstr ""
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
 #. settings-schema.json->type->options
-#: desklet.js:275 desklet.js:356
+#. desklet.js:275 desklet.js:361
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#: desklet.js:277 desklet.js:358
+#. desklet.js:277 desklet.js:363
 msgid "Swap"
 msgstr "Memòria d'intercanvi"
 
 #. settings-schema.json->type->options
-#: desklet.js:279
+#. desklet.js:279
 msgid "Filesystem"
 msgstr "Sistema de fitxers"
 
-#: desklet.js:301
+#. desklet.js:306
 msgid "Not Found"
 msgstr "No s'ha trobat"
 
 #. metadata.json->name
-#: desklet.js:360
+#. desklet.js:365
 msgid "Disk Space"
 msgstr "Espai de disc"
 
@@ -120,8 +120,8 @@ msgid ""
 "Reserved blocks are useable for the root user only and that's why displayed "
 "as used space by default."
 msgstr ""
-"Els blocs reservats son exclusius del superusuari (root), per això es "
-"mostra com espai utilitzat per omissió."
+"Els blocs reservats son exclusius del superusuari (root), per això es mostra "
+"com espai utilitzat per omissió."
 
 #. settings-schema.json->head2->description
 msgid "Visual"
@@ -150,6 +150,11 @@ msgstr "Text"
 #. settings-schema.json->text-view->options
 msgid "Name and total space"
 msgstr "Nom i mida total"
+
+#. settings-schema.json->text-view->options
+#, fuzzy
+msgid "Name and free space"
+msgstr "Espai lliure i total"
 
 #. settings-schema.json->text-view->options
 msgid "Used and total space"
