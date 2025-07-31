@@ -83,6 +83,9 @@ msgstr "Text"
 msgid "Name and total space"
 msgstr "Bezeichnung und Kapazität"
 
+msgid "Name and free space"
+msgstr "Bezeichnung und freier Speicherplatz"
+
 msgid "Used and total space"
 msgstr "Belegter Speicherplatz und Kapazität"
 
@@ -93,7 +96,7 @@ msgid "Free and total space"
 msgstr "Freier Speicherplatz und Kapazität"
 
 msgid "Total and free space"
-msgstr "Kapazität und Freier Speicherplatz"
+msgstr "Kapazität und freier Speicherplatz"
 
 msgid "No text"
 msgstr "Kein Text"

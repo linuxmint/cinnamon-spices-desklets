@@ -144,6 +144,10 @@ msgid "Name and total space"
 msgstr ""
 
 #. settings-schema.json->text-view->options
+msgid "Name and free space"
+msgstr ""
+
+#. settings-schema.json->text-view->options
 msgid "Used and total space"
 msgstr ""
 
