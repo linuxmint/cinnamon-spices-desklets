@@ -75,6 +75,7 @@
         "description": "Text",
         "options" : {
             "Name and total space" : "name-size",
+            "Name and free space" : "name-free",
             "Used and total space": "used-size",
             "Total and used space": "size-used",
             "Free and total space": "free-size",

@@ -36,6 +36,7 @@ class MuslimPrayerTimesDesklet extends Desklet.Desklet {
 		this.settings.bind("shafaq", "shafaq", this._onSettingsChanged);
 		this.settings.bind("rounding", "rounding", this._onSettingsChanged);
 
+		this.settings.bind("24hour", "format24", this.setupUI);
 		this.settings.bind("vertical_layout", "vertical_layout", this.setupUI);
 		this.settings.bind("desklet_size", "desklet_size", this.setupUI);
 		this.settings.bind("color", "color", this.setupUI);
@@ -119,7 +120,7 @@ class MuslimPrayerTimesDesklet extends Desklet.Desklet {
 
 		if (this.show_table) {
 			const table = new St.Table({ style_class: 'table' })
-			table.style = `min-width: 180px; width: ${this.vertical_layout ? this.desklet_size * 12 : this.desklet_size * 18 + 300}px`
+			table.style = `min-width: 180px; width: ${this.vertical_layout ? this.desklet_size * 13 : this.desklet_size * 18 + 300}px`
 
 			let i = 1;
 			for (const time of ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha']) {
@@ -128,10 +129,10 @@ class MuslimPrayerTimesDesklet extends Desklet.Desklet {
 				const color = isNext ? this.color : textMuted;
 
 				const label = new St.Label({ text: Utils.capitalise(time), style_class: `prayer_name` });
-				label.style = `font-size: ${this.desklet_size}px; color: ${color}; padding: ${this.desklet_size * 5 / 18}px ${this.vertical_layout ? this.desklet_size : 0}px`;
+				label.style = `font-size: ${this.desklet_size}px; color: ${color}; padding: ${this.desklet_size * 5 / 18}px 0px`;
 				table.add(label, { row: this.vertical_layout ? i : 0, col: this.vertical_layout ? 0 : i });
 
-				const value = new St.Label({ text: Utils.formatTime(this.prayerTimes[time]), style_class: `prayer_time` });
+				const value = new St.Label({ text: Utils.formatTime(this.prayerTimes[time], this.format24), style_class: `prayer_time` });
 				value.style = `font-size: ${this.desklet_size * 4 / 3}px; color: ${color}`;
 				table.add(value, { row: this.vertical_layout ? i : 1, col: this.vertical_layout ? 1 : i });
 				i++;
@@ -153,7 +154,7 @@ class MuslimPrayerTimesDesklet extends Desklet.Desklet {
 
 	get countdown() {
 		if (!this.currentPrayer) return '--:--:--';
-		return Utils.roundTime((this.prayerTimes[this.currentPrayer].getTime() - new Date().getTime()) / 1000)
+		return Utils.roundTime(this.prayerTimes[this.currentPrayer])
 	}
 
 
