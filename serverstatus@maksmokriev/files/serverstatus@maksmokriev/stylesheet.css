@@ -1,0 +1,31 @@
+.init {
+    font-size: 16px;
+    line-height: 2;
+    margin-left: 5px;
+}
+
+.error {
+    color: orange;
+}
+
+.container {
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.box {
+    margin: 2px;
+    padding: 10px;
+    border-radius: 10px;
+    vertical-align: middle;
+}
+
+.rotating-icon {
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
