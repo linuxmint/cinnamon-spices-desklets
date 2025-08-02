@@ -43,38 +43,34 @@ class StopwatchDesklet extends Desklet.Desklet {
   }
 
   _setupLayout() {
-    // Der Main-Container, der alle anderen Elemente enthält.
-    this.mainContainer = new Clutter.Actor();
+    this.mainContainer = new St.Widget({
+      layout_manager: new Clutter.BinLayout(),
+    });
     this.setContent(this.mainContainer);
 
     const absoluteSize = this.default_size * this.scale_size;
 
-    // Erstellen Sie einen Clutter.Actor, um den Kreis zu zeichnen und fügen Sie ihn direkt dem mainContainer hinzu.
     this.circleActor = new Clutter.Actor({
       width: absoluteSize,
       height: absoluteSize,
     });
-    this.mainContainer.add_actor(this.circleActor);
+    this.mainContainer.add_child(this.circleActor);
 
-    // Erstellen Sie einen Container für die inneren Elemente.
-    // Dieser Container muss die gleiche Größe wie der Kreis haben,
-    // damit die Zentrierung von St.BoxLayout korrekt funktioniert.
-    const innerContainer = new St.BoxLayout({
+    this.centerContent = new St.BoxLayout({
       vertical: true,
-      width: absoluteSize,
-      height: absoluteSize,
       x_align: St.Align.MIDDLE,
       y_align: St.Align.MIDDLE,
-      style: "background-color: red;",
+      style_class: "stopwatch-content",
     });
-    this.mainContainer.add_actor(innerContainer);
 
     // Time label
     this.timeLabel = this._createLabel(_("00.000"), this.colorLabel);
-    innerContainer.add_child(this.timeLabel);
+    this.timeLabelBox = new St.Bin({ x_align: St.Align.MIDDLE });
+    this.timeLabelBox.set_child(this.timeLabel);
+    this.centerContent.add_child(this.timeLabelBox);
 
     // Buttons
-    const computedHeight = 50;
+    const computedHeight = 40;
     const playIcon = this._getImageAtScale(`${this.metadata.path}/play.svg`, computedHeight, computedHeight);
     this.playButton = new St.Button({ child: playIcon });
     this.playButton.connect("clicked", this._startStopwatch.bind(this));
@@ -87,14 +83,14 @@ class StopwatchDesklet extends Desklet.Desklet {
     this.stopButton = new St.Button({ child: stopIcon });
     this.stopButton.connect("clicked", this._resetStopwatch.bind(this));
 
-    this.buttonRow = new St.BoxLayout({
-      x_align: St.Align.MIDDLE,
-    });
+    this.buttonRow = new St.BoxLayout({ style: "spacing: 10px;" });
     this.buttonRow.add_child(this.playButton);
     this.buttonRow.add_child(this.pauseButton);
     this.buttonRow.add_child(this.stopButton);
 
-    innerContainer.add_child(this.buttonRow);
+    this.centerContent.add_child(this.buttonRow);
+
+    this.mainContainer.add_child(this.centerContent);
 
     this._drawCircle();
   }
@@ -198,13 +194,6 @@ class StopwatchDesklet extends Desklet.Desklet {
     const absoluteSize = this.default_size * this.scale_size;
     canvas.set_size(absoluteSize * global.ui_scale, absoluteSize * global.ui_scale);
 
-    const use = 50;
-    const size = 100;
-    const circle_r = 0.3;
-    const circle_g = 0.8;
-    const circle_b = 0.5;
-    const circle_a = 1.0;
-
     canvas.connect("draw", function (canvas, cr, width, height) {
       cr.save();
       cr.setOperator(Cairo.Operator.CLEAR);
@@ -214,22 +203,21 @@ class StopwatchDesklet extends Desklet.Desklet {
       cr.scale(width, height);
       cr.translate(0.5, 0.5);
 
-      let offset = Math.PI * 0.5;
-      let start = 0 - offset;
-      let end = (use * (Math.PI * 2)) / size - offset;
-
       // draw the circle
       cr.setSourceRGBA(1, 1, 1, 0.2);
-      cr.setLineWidth(0.19);
+      cr.setLineWidth(0.1);
       cr.arc(0, 0, 0.4, 0, Math.PI * 2);
       cr.stroke();
 
-      if (size > 0) {
-        cr.setSourceRGBA(circle_r, circle_g, circle_b, circle_a);
-        cr.setLineWidth(0.19);
-        cr.arc(0, 0, 0.4, start, end);
-        cr.stroke();
-      }
+      // draw indicator
+      const size = 10;
+      const offset = Math.PI * 0.5;
+      const start = 0 - offset;
+      const end = (size * (Math.PI * 2)) / 100 - offset;
+      cr.setSourceRGBA(0.3, 0.8, 0.5, 1);
+      cr.setLineWidth(0.1);
+      cr.arc(0, 0, 0.4, start, end);
+      cr.stroke();
 
       return true;
     });
