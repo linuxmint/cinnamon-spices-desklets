@@ -40,7 +40,7 @@ class StopwatchDesklet extends Desklet.Desklet {
   }
 
   _setupLayout() {
-    this.timeLabel = this._createLabel(_("00:00:00"), this.colorLabel);
+    this.timeLabel = this._createLabel(_("00.000"), this.colorLabel);
 
     const computedHeight = 50;
 
@@ -109,11 +109,22 @@ class StopwatchDesklet extends Desklet.Desklet {
     const currentTime = new Date().getTime();
     const elapsedTime = this._elapsedTime + (this._isRunning ? currentTime - this._startTime : 0);
     const totalSeconds = Math.floor(elapsedTime / 1000);
-    const seconds = totalSeconds % 60;
-    const minutes = Math.floor(totalSeconds / 60) % 60;
     const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor(totalSeconds / 60) % 60;
+    const seconds = totalSeconds % 60;
+    const milliseconds = elapsedTime % 1000;
 
-    const formattedTime = `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    let formattedTime;
+    if (hours === 0 && minutes === 0) {
+      formattedTime = `${String(seconds).padStart(2, "0")}.${String(milliseconds).padStart(3, "0")}`;
+    } else if (hours === 0) {
+      formattedTime = `${String(minutes).padStart(2, "0")}.${String(seconds).padStart(2, "0")}:${String(milliseconds).padStart(3, "0")}`;
+    } else {
+      formattedTime = `${String(hours).padStart(2, "0")}.${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}:${String(
+        milliseconds
+      ).padStart(3, "0")}`;
+    }
+
     this.timeLabel.set_text(formattedTime);
     return true;
   }
@@ -121,7 +132,7 @@ class StopwatchDesklet extends Desklet.Desklet {
   _startStopwatch() {
     if (!this._isRunning) {
       this._startTime = new Date().getTime();
-      this._timeout = Mainloop.timeout_add(100, this._updateTime.bind(this));
+      this._timeout = Mainloop.timeout_add(10, this._updateTime.bind(this));
       this._isRunning = true;
       this.playButton.hide();
       this.pauseButton.show();
@@ -147,7 +158,7 @@ class StopwatchDesklet extends Desklet.Desklet {
     this._startTime = 0;
     this._elapsedTime = 0;
     this._isRunning = false;
-    this.timeLabel.set_text(_("00:00:00"));
+    this.timeLabel.set_text(_("00.000"));
     this.playButton.show();
     this.pauseButton.hide();
   }
