@@ -33,6 +33,7 @@ class StopwatchDesklet extends Desklet.Desklet {
     this.fontSize = this.settings.getValue("fontSize") || 20;
     this.colorLabel = this.settings.getValue("colorLabel") || "rgb(51, 209, 122)";
     this._timeout = null;
+    this._animationTimeout = null;
     this._startTime = 0;
     this._elapsedTime = 0;
     this._isRunning = false;
@@ -56,6 +57,7 @@ class StopwatchDesklet extends Desklet.Desklet {
     });
     this.mainContainer.add_child(this.circleActor);
 
+    // Boxlayout for the elements in the middle of the circle
     this.centerContent = new St.BoxLayout({
       vertical: true,
       x_align: St.Align.MIDDLE,
@@ -63,13 +65,13 @@ class StopwatchDesklet extends Desklet.Desklet {
       style_class: "stopwatch-content",
     });
 
-    // Time label
+    // time label
     this.timeLabel = this._createLabel(_("00.000"), this.colorLabel);
     this.timeLabelBox = new St.Bin({ x_align: St.Align.MIDDLE });
     this.timeLabelBox.set_child(this.timeLabel);
     this.centerContent.add_child(this.timeLabelBox);
 
-    // Buttons
+    // buttons
     const computedHeight = 40;
     const playIcon = this._getImageAtScale(`${this.metadata.path}/play.svg`, computedHeight, computedHeight);
     this.playButton = new St.Button({ child: playIcon });
@@ -89,7 +91,6 @@ class StopwatchDesklet extends Desklet.Desklet {
     this.buttonRow.add_child(this.stopButton);
 
     this.centerContent.add_child(this.buttonRow);
-
     this.mainContainer.add_child(this.centerContent);
 
     this._drawCircle();
@@ -136,14 +137,19 @@ class StopwatchDesklet extends Desklet.Desklet {
     if (hours === 0 && minutes === 0) {
       formattedTime = `${String(seconds).padStart(2, "0")}.${String(milliseconds).padStart(3, "0")}`;
     } else if (hours === 0) {
-      formattedTime = `${String(minutes).padStart(2, "0")}.${String(seconds).padStart(2, "0")}:${String(milliseconds).padStart(3, "0")}`;
+      formattedTime = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}.${String(milliseconds).padStart(3, "0")}`;
     } else {
-      formattedTime = `${String(hours).padStart(2, "0")}.${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}:${String(
+      formattedTime = `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}.${String(
         milliseconds
       ).padStart(3, "0")}`;
     }
 
     this.timeLabel.set_text(formattedTime);
+    return true;
+  }
+
+  _animateIndicator() {
+    this.circleActor.rotation_angle_z = (this.circleActor.rotation_angle_z + 2) % 360;
     return true;
   }
 
@@ -154,6 +160,9 @@ class StopwatchDesklet extends Desklet.Desklet {
       this._isRunning = true;
       this.playButton.hide();
       this.pauseButton.show();
+
+      // start the animation loop when the stopwatch starts
+      this._animationTimeout = Mainloop.timeout_add(16, this._animateIndicator.bind(this));
     }
   }
 
@@ -165,6 +174,12 @@ class StopwatchDesklet extends Desklet.Desklet {
       this._isRunning = false;
       this.playButton.show();
       this.pauseButton.hide();
+
+      // stop the animation loop when the stopwatch is paused
+      if (this._animationTimeout) {
+        Mainloop.source_remove(this._animationTimeout);
+        this._animationTimeout = null;
+      }
     }
   }
 
@@ -173,6 +188,15 @@ class StopwatchDesklet extends Desklet.Desklet {
       Mainloop.source_remove(this._timeout);
       this._timeout = null;
     }
+
+    // stop the animation loop when the stopwatch is reset
+    if (this._animationTimeout) {
+      Mainloop.source_remove(this._animationTimeout);
+      this._animationTimeout = null;
+    }
+    // reset the indicator's rotation
+    this.circleActor.rotation_angle_z = 0;
+
     this._startTime = 0;
     this._elapsedTime = 0;
     this._isRunning = false;
@@ -187,6 +211,7 @@ class StopwatchDesklet extends Desklet.Desklet {
 
   on_desklet_removed() {
     if (this._timeout) Mainloop.source_remove(this._timeout);
+    if (this._animationTimeout) Mainloop.source_remove(this._animationTimeout);
   }
 
   _drawCircle() {
@@ -224,6 +249,9 @@ class StopwatchDesklet extends Desklet.Desklet {
 
     canvas.invalidate();
     this.circleActor.set_content(canvas);
+
+    // Set the pivot point for the rotation to the center of the actor
+    this.circleActor.set_pivot_point(0.5, 0.5);
   }
 }
 
