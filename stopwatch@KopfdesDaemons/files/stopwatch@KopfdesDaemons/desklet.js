@@ -26,18 +26,24 @@ class StopwatchDesklet extends Desklet.Desklet {
 
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
 
-    this.settings.bindProperty(Settings.BindingDirection.IN, "fontSize", "fontSize", this.onSettingsChanged.bind(this));
-    this.settings.bindProperty(Settings.BindingDirection.IN, "colorLabel", "colorLabel", this.onSettingsChanged.bind(this));
-    this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scale_size", this.on_setting_changed);
+    // bind the settings
+    this.settings.bindProperty(Settings.BindingDirection.IN, "font-size", "fontSize", this.onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "label-color", "labelColor", this.onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this.onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "indicator-color", "indicatorColor", this.onSettingsChanged.bind(this));
 
+    // get the settings
     this.fontSize = this.settings.getValue("fontSize") || 20;
-    this.colorLabel = this.settings.getValue("colorLabel") || "rgb(51, 209, 122)";
+    this.labelColor = this.settings.getValue("colorLabel") || "rgb(51, 209, 122)";
+    this.scaleSize = this.settings.getValue("scale-size") || 1;
+    this.indicatorColor = this.settings.getValue("indicator-color") || "rgb(51, 209, 122)";
+
     this._timeout = null;
     this._animationTimeout = null;
     this._startTime = 0;
     this._elapsedTime = 0;
     this._isRunning = false;
-    this.default_size = 150;
+    this.default_size = 180;
 
     this.setHeader(_("Stopwatch"));
     this._setupLayout();
@@ -49,7 +55,7 @@ class StopwatchDesklet extends Desklet.Desklet {
     });
     this.setContent(this.mainContainer);
 
-    const absoluteSize = this.default_size * this.scale_size;
+    const absoluteSize = this.default_size * this.scaleSize;
 
     this.circleActor = new Clutter.Actor({
       width: absoluteSize,
@@ -66,7 +72,7 @@ class StopwatchDesklet extends Desklet.Desklet {
     });
 
     // time label
-    this.timeLabel = this._createLabel(_("00.000"), this.colorLabel);
+    this.timeLabel = this._createLabel(_("00.000"), this.labelColor);
     this.timeLabelBox = new St.Bin({ x_align: St.Align.MIDDLE });
     this.timeLabelBox.set_child(this.timeLabel);
     this.centerContent.add_child(this.timeLabelBox);
@@ -98,6 +104,18 @@ class StopwatchDesklet extends Desklet.Desklet {
 
   _createLabel(text, color = "inherit") {
     return new St.Label({ text, style: `font-size: ${this.fontSize}px; color: ${color};` });
+  }
+
+  _rgbToRgba(colorString) {
+    let rgba = [0.3, 0.8, 0.5, 1];
+    const rgbValues = colorString.match(/\d+/g).map(Number);
+    if (rgbValues.length === 3) {
+      const r = rgbValues[0] / 255;
+      const g = rgbValues[1] / 255;
+      const b = rgbValues[2] / 255;
+      rgba = [r, g, b, 1];
+    }
+    return rgba;
   }
 
   _getImageAtScale(imageFileName, requestedWidth, requestedHeight) {
@@ -206,7 +224,9 @@ class StopwatchDesklet extends Desklet.Desklet {
   }
 
   onSettingsChanged() {
-    this.timeLabel.style = `font-size: ${this.fontSize}px; color: ${this.colorLabel};`;
+    this.timeLabel.style = `font-size: ${this.fontSize}px; color: ${this.labelColor};`;
+    this.indicatorColor = this.settings.getValue("indicator-color");
+    this._setupLayout();
   }
 
   on_desklet_removed() {
@@ -216,10 +236,10 @@ class StopwatchDesklet extends Desklet.Desklet {
 
   _drawCircle() {
     let canvas = new Clutter.Canvas();
-    const absoluteSize = this.default_size * this.scale_size;
+    const absoluteSize = this.default_size * this.scaleSize;
     canvas.set_size(absoluteSize * global.ui_scale, absoluteSize * global.ui_scale);
 
-    canvas.connect("draw", function (canvas, cr, width, height) {
+    canvas.connect("draw", (canvas, cr, width, height) => {
       cr.save();
       cr.setOperator(Cairo.Operator.CLEAR);
       cr.paint();
@@ -239,7 +259,8 @@ class StopwatchDesklet extends Desklet.Desklet {
       const offset = Math.PI * 0.5;
       const start = 0 - offset;
       const end = (size * (Math.PI * 2)) / 100 - offset;
-      cr.setSourceRGBA(0.3, 0.8, 0.5, 1);
+      const rgbaColor = this._rgbToRgba(this.indicatorColor);
+      cr.setSourceRGBA(rgbaColor[0], rgbaColor[1], rgbaColor[2], rgbaColor[3]);
       cr.setLineWidth(0.1);
       cr.arc(0, 0, 0.4, start, end);
       cr.stroke();

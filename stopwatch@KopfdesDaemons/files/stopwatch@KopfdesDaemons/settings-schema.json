@@ -3,7 +3,7 @@
     "type": "header",
     "description": "Style"
   },
-  "fontSize": {
+  "font-size": {
     "type": "scale",
     "default": 20,
     "min": 12,
@@ -11,19 +11,22 @@
     "step": 1,
     "description": "Font size"
   },
-  "colorLabel": {
+  "label-color": {
     "type": "colorchooser",
     "default": "rgb(51, 209, 122)",
     "description": "Label color"
   },
+  "indicator-color": {
+    "type": "colorchooser",
+    "default": "rgb(51, 209, 122)",
+    "description": "Indicator color"
+  },
   "scale-size": {
-    "type": "spinbutton",
+    "type": "scale",
     "default": 1,
     "min": 0.4,
-    "max": 10,
+    "max": 5,
     "step": 0.05,
-    "units": "scale factor",
-    "description": "Desklet size",
-    "tooltip": "Increase or decrease the size of this desklet using this scale factor."
+    "description": "Desklet size"
   }
 }
