@@ -3,14 +3,6 @@
     "type": "header",
     "description": "Style"
   },
-  "font-size": {
-    "type": "scale",
-    "default": 20,
-    "min": 12,
-    "max": 60,
-    "step": 1,
-    "description": "Font size"
-  },
   "label-color": {
     "type": "colorchooser",
     "default": "rgb(51, 209, 122)",

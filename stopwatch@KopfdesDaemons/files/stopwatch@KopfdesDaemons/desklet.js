@@ -27,13 +27,11 @@ class StopwatchDesklet extends Desklet.Desklet {
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
 
     // bind the settings
-    this.settings.bindProperty(Settings.BindingDirection.IN, "font-size", "fontSize", this.onSettingsChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "label-color", "labelColor", this.onSettingsChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this.onSettingsChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "indicator-color", "indicatorColor", this.onSettingsChanged.bind(this));
 
     // get the settings
-    this.fontSize = this.settings.getValue("fontSize") || 20;
     this.labelColor = this.settings.getValue("colorLabel") || "rgb(51, 209, 122)";
     this.scaleSize = this.settings.getValue("scale-size") || 1;
     this.indicatorColor = this.settings.getValue("indicator-color") || "rgb(51, 209, 122)";
@@ -73,12 +71,13 @@ class StopwatchDesklet extends Desklet.Desklet {
 
     // time label
     this.timeLabel = this._createLabel(_("00.000"), this.labelColor);
+    this.timeLabel.style = `font-size: ${20 * this.scaleSize}px; color: ${this.labelColor};`;
     this.timeLabelBox = new St.Bin({ x_align: St.Align.MIDDLE });
     this.timeLabelBox.set_child(this.timeLabel);
     this.centerContent.add_child(this.timeLabelBox);
 
     // buttons
-    const computedHeight = 40;
+    const computedHeight = 40 * this.scaleSize;
     const playIcon = this._getImageAtScale(`${this.metadata.path}/play.svg`, computedHeight, computedHeight);
     this.playButton = new St.Button({ child: playIcon });
     this.playButton.connect("clicked", this._startStopwatch.bind(this));
@@ -224,9 +223,11 @@ class StopwatchDesklet extends Desklet.Desklet {
   }
 
   onSettingsChanged() {
-    this.timeLabel.style = `font-size: ${this.fontSize}px; color: ${this.labelColor};`;
-    this.indicatorColor = this.settings.getValue("indicator-color");
     this._setupLayout();
+    if (this._isRunning) {
+      this.playButton.hide();
+      this.pauseButton.show();
+    }
   }
 
   on_desklet_removed() {
