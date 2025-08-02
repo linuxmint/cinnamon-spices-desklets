@@ -1,19 +1,29 @@
 {
-    "head0": {
-        "type": "header",
-        "description": "Style"
-    },
-    "fontSize": {
-        "type": "scale",
-        "default": 20,
-        "min": 12,
-        "max": 60,
-        "step": 1,
-        "description": "Font size"
-    },
-    "colorLabel": {
-        "type": "colorchooser",
-        "default": "rgb(51, 209, 122)",
-        "description": "Label color"
-    }
+  "head0": {
+    "type": "header",
+    "description": "Style"
+  },
+  "fontSize": {
+    "type": "scale",
+    "default": 20,
+    "min": 12,
+    "max": 60,
+    "step": 1,
+    "description": "Font size"
+  },
+  "colorLabel": {
+    "type": "colorchooser",
+    "default": "rgb(51, 209, 122)",
+    "description": "Label color"
+  },
+  "scale-size": {
+    "type": "spinbutton",
+    "default": 1,
+    "min": 0.4,
+    "max": 10,
+    "step": 0.05,
+    "units": "scale factor",
+    "description": "Desklet size",
+    "tooltip": "Increase or decrease the size of this desklet using this scale factor."
+  }
 }
