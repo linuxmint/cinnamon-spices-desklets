@@ -1,0 +1,22 @@
+# SYSTEM UPTIME
+# This file is put in the public domain.
+# KopfDesDaemons, 2024
+#
+msgid ""
+msgstr ""
+
+#. desklet.js:146
+msgid "hours"
+msgstr ""
+
+#. desklet.js:146
+msgid "minutes"
+msgstr ""
+
+#. settings-schema.json->showStartDate->description
+msgid "Show start date"
+msgstr ""
+
+#. settings-schema.json->showUptimeInDays->description
+msgid "Show uptime in days"
+msgstr ""

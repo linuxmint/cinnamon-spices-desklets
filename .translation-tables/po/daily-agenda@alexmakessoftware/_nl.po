@@ -1,0 +1,55 @@
+# DAILY AGENDA
+# This file is put in the public domain.
+# AlexMakesSoftware, 2025
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: daily-agenda@alexmakessoftware 1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-07-07 21:15+0100\n"
+"PO-Revision-Date: 2025-05-16 16:42+0200\n"
+"Last-Translator: qadzek\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. desklet.js:267
+msgid "ICS Today: Failed to fetch calendar from URL: "
+msgstr ""
+
+#. settings-schema.json->head2->description
+msgid "Custom Styles"
+msgstr ""
+
+#. settings-schema.json->overrideTheme->description
+msgid "Override desktop theme (enables the settings below)"
+msgstr ""
+
+#. settings-schema.json->overrideTheme->tooltip
+msgid ""
+"Check this to override the desktop theme and configure the appearance "
+"manually"
+msgstr ""
+
+#. settings-schema.json->textcolor->description
+msgid "Text color"
+msgstr ""
+
+#. settings-schema.json->textcolor->tooltip
+msgid "Click the button to select a new text color"
+msgstr ""
+
+#. settings-schema.json->head4->description
+msgid "Footer Options"
+msgstr ""
+
+#. settings-schema.json->showLastChecked->description
+msgid "Show 'last checked' line"
+msgstr ""
+
+#. settings-schema.json->showRefreshNowButton->description
+msgid "Show 'refresh now' button"
+msgstr ""
