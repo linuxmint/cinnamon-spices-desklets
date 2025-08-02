@@ -293,8 +293,8 @@ SystemMonitorGraph.prototype = {
               let down_speed_formatted = this.format_network_speed(this.net_down_speed);
               let up_speed_formatted = this.format_network_speed(this.net_up_speed);
               
-              text2 = "↓ " + down_speed_formatted;
-              text3 = "↑ " + up_speed_formatted;
+              text2 = "";
+              text3 = "↓ " + down_speed_formatted + "  ↑ " + up_speed_formatted;
               break;
         }
 
@@ -389,19 +389,11 @@ SystemMonitorGraph.prototype = {
             Math.round((2.5 * unit_size) - this.text2.get_height())
         );
         this.text3.set_text(text3);
-        if (this.type !== "network") {
-            this.text3.style = "font-size: " + text3_size + "px;"
-                             + "color: " + this.text_color + ";";
-            this.text3.set_position(
-                Math.round((21 * unit_size) - this.text3.get_width()),
-                Math.round((2.5 * unit_size) - this.text3.get_height()));
-        } else {
-            this.text3.style = "font-size: " + text2_size + "px;"
-                             + "color: " + this.text_color + ";";
-            this.text3.set_position(
-                Math.round(this.text1.get_width() + (9 * unit_size)),
-                Math.round((2.5 * unit_size) - this.text3.get_height()));
-        }
+        this.text3.style = "font-size: " + text3_size + "px;"
+                         + "color: " + this.text_color + ";";
+        this.text3.set_position(
+            Math.round((21 * unit_size) - this.text3.get_width()),
+            Math.round((2.5 * unit_size) - this.text3.get_height()));
 
 
         // update canvas
@@ -522,15 +514,34 @@ SystemMonitorGraph.prototype = {
     format_network_speed: function(speed_bytes_per_sec) {
         // Enhanced error handling for speed formatting
         if (!speed_bytes_per_sec || isNaN(speed_bytes_per_sec) || !isFinite(speed_bytes_per_sec) || speed_bytes_per_sec < 0) {
-            return "0 " + _("B") + "/s";
+            if (this.data_prefix_network == 2) {
+                return "0 " + _("b") + "/s";
+            } else {
+                return "0 " + _("B") + "/s";
+            }
         }
         
         // Convert bytes per second to appropriate units
         let speed = speed_bytes_per_sec;
         let unit = "";
         
-        if (this.data_prefix_network == 1) {
-            // Decimal prefix (1000-based)
+        if (this.data_prefix_network == 2) {
+            // Decimal prefix (1000-based) bit
+            speed = speed * 8;
+            if (speed >= 1000000000) {
+                speed = speed / 1000000000;
+                unit = _("Gb") + "/s";
+            } else if (speed >= 1000000) {
+                speed = speed / 1000000;
+                unit = _("Mb") + "/s";
+            } else if (speed >= 1000) {
+                speed = speed / 1000;
+                unit = _("Kb") + "/s";
+            } else {
+                unit = _("b") + "/s";
+            }
+        } else if (this.data_prefix_network == 1) {
+            // Decimal prefix (1000-based) bytes
             if (speed >= 1000000000) {
                 speed = speed / 1000000000;
                 unit = _("GB") + "/s";
@@ -544,7 +555,7 @@ SystemMonitorGraph.prototype = {
                 unit = _("B") + "/s";
             }
         } else {
-            // Binary prefix (1024-based)
+            // Binary prefix (1024-based) bytes
             if (speed >= 1073741824) { // 1024^3
                 speed = speed / 1073741824;
                 unit = _("GiB") + "/s";
