@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-07-05 08:35-0400\n"
+"POT-Creation-Date: 2025-08-01 22:18-0400\n"
 "PO-Revision-Date: \n"
 "Last-Translator: blogdron\n"
 "Language-Team: \n"
@@ -19,11 +19,11 @@ msgstr ""
 msgid "CPU"
 msgstr "Процессор"
 
-#. desklet.js:194 desklet.js:212 desklet.js:232 desklet.js:273 desklet.js:536
+#. desklet.js:194 desklet.js:212 desklet.js:232 desklet.js:273 desklet.js:547
 msgid "GB"
 msgstr ""
 
-#. desklet.js:197 desklet.js:215 desklet.js:235 desklet.js:276 desklet.js:550
+#. desklet.js:197 desklet.js:215 desklet.js:235 desklet.js:276 desklet.js:561
 msgid "GiB"
 msgstr ""
 
@@ -54,23 +54,39 @@ msgstr "Использовано Памяти"
 msgid "Network"
 msgstr ""
 
-#. desklet.js:525 desklet.js:544 desklet.js:558
+#. desklet.js:518 desklet.js:541
+msgid "b"
+msgstr ""
+
+#. desklet.js:520 desklet.js:555 desklet.js:569
 msgid "B"
 msgstr ""
 
+#. desklet.js:533
+msgid "Gb"
+msgstr ""
+
+#. desklet.js:536
+msgid "Mb"
+msgstr ""
+
 #. desklet.js:539
+msgid "Kb"
+msgstr ""
+
+#. desklet.js:550
 msgid "MB"
 msgstr ""
 
-#. desklet.js:542
+#. desklet.js:553
 msgid "KB"
 msgstr ""
 
-#. desklet.js:553
+#. desklet.js:564
 msgid "MiB"
 msgstr ""
 
-#. desklet.js:556
+#. desklet.js:567
 msgid "KiB"
 msgstr ""
 
@@ -142,12 +158,17 @@ msgstr "Система счисления для Файловых систем."
 
 #. settings-schema.json->data-prefix-network->options
 #, fuzzy
-msgid "Binary prefix or IEC (1 KiB = 1024 bytes)"
+msgid "Bytes - Binary prefix or IEC (1 KiB = 1024 bytes)"
 msgstr "Бинарная или IEC (1 GiB = 1024³ bytes)"
 
 #. settings-schema.json->data-prefix-network->options
 #, fuzzy
-msgid "Decimal prefix (1 KB = 1000 bytes)"
+msgid "Bytes - Decimal prefix (1 KB = 1000 bytes)"
+msgstr "Десятичная префикс (1 GB = 1000³ bytes)"
+
+#. settings-schema.json->data-prefix-network->options
+#, fuzzy
+msgid "Bits - Decimal prefix (1 Kb = 1000 bits)"
 msgstr "Десятичная префикс (1 GB = 1000³ bytes)"
 
 #. settings-schema.json->data-prefix-network->tooltip
