@@ -1,0 +1,7 @@
+{
+  "uuid": "steamGameStarter@KopfdesDaemons",
+  "name": "Steam Game Starter",
+  "description": "Start Steam games from your desktop.",
+  "version": "1.0",
+  "max-instances": "50"
+}
