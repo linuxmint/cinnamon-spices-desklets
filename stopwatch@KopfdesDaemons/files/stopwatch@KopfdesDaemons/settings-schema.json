@@ -8,11 +8,6 @@
     "default": "rgb(51, 209, 122)",
     "description": "Label color"
   },
-  "indicator-color": {
-    "type": "colorchooser",
-    "default": "rgb(51, 209, 122)",
-    "description": "Indicator color"
-  },
   "scale-size": {
     "type": "scale",
     "default": 1,
@@ -21,6 +16,20 @@
     "step": 0.05,
     "description": "Desklet size"
   },
+  "head1": {
+    "type": "header",
+    "description": "Indicator"
+  },
+  "indicator-color": {
+    "type": "colorchooser",
+    "default": "rgb(51, 209, 122)",
+    "description": "Indicator color"
+  },
+  "circle-color": {
+    "type": "colorchooser",
+    "default": "rgb(255, 255, 255)",
+    "description": "Circle color"
+  },
   "animation-speed": {
     "type": "scale",
     "default": 2,
@@ -28,5 +37,21 @@
     "max": 10,
     "step": 0.1,
     "description": "Animation speed"
+  },
+  "circle-width": {
+    "type": "scale",
+    "default": 0.1,
+    "min": 0.01,
+    "max": 0.2,
+    "step": 0.01,
+    "description": "Circle width"
+  },
+  "indicator-length": {
+    "type": "scale",
+    "default": 10,
+    "min": 1,
+    "max": 100,
+    "step": 1,
+    "description": "Indicator length"
   }
 }

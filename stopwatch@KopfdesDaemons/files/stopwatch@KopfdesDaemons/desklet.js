@@ -38,6 +38,9 @@ class StopwatchDesklet extends Desklet.Desklet {
     this.scaleSize = 1;
     this.indicatorColor = "rgb(51, 209, 122)";
     this.rotationSpeed = 2;
+    this.cricleWidth = 0.1;
+    this.indicatorLength = 10;
+    this.circleColor = "rgb(255, 255, 255)";
 
     // Setup settings and bind them to properties
     const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
@@ -45,6 +48,9 @@ class StopwatchDesklet extends Desklet.Desklet {
     settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "indicator-color", "indicatorColor", this._onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "animation-speed", "rotationSpeed", this._onSettingsChanged.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "circle-width", "cricleWidth", this._onSettingsChanged.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "indicator-length", "indicatorLength", this._onSettingsChanged.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "circle-color", "circleColor", this._onSettingsChanged.bind(this));
 
     // Set the desklet header and build the layout
     this.setHeader(_("Stopwatch"));
@@ -277,16 +283,17 @@ class StopwatchDesklet extends Desklet.Desklet {
       cr.translate(0.5, 0.5);
 
       // Draw the background circle
-      cr.setSourceRGBA(1, 1, 1, 0.2);
-      cr.setLineWidth(0.1);
+      const rgbaCircle = this._rgbToRgba(this.circleColor);
+      cr.setSourceRGBA(rgbaCircle[0], rgbaCircle[1], rgbaCircle[2], 0.2);
+      cr.setLineWidth(this.cricleWidth);
       cr.arc(0, 0, 0.4, 0, Math.PI * 2);
       cr.stroke();
 
       // Draw the indicator arc
-      const rgbaColor = this._rgbToRgba(this.indicatorColor);
-      cr.setSourceRGBA(rgbaColor[0], rgbaColor[1], rgbaColor[2], 1);
-      cr.setLineWidth(0.1);
-      const arcEnd = (10 * (Math.PI * 2)) / 100 - Math.PI * 0.5;
+      const rgbaIndicator = this._rgbToRgba(this.indicatorColor);
+      cr.setSourceRGBA(rgbaIndicator[0], rgbaIndicator[1], rgbaIndicator[2], 1);
+      cr.setLineWidth(this.cricleWidth);
+      const arcEnd = (this.indicatorLength * (Math.PI * 2)) / 100 - Math.PI * 0.5;
       cr.arc(0, 0, 0.4, 0 - Math.PI * 0.5, arcEnd);
       cr.stroke();
 
