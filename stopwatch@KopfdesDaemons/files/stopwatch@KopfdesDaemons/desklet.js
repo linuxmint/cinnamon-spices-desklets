@@ -62,12 +62,7 @@ class StopwatchDesklet extends Desklet.Desklet {
     this.mainContainer.add_child(this.circleActor);
 
     // Boxlayout for the elements in the middle of the circle
-    this.centerContent = new St.BoxLayout({
-      vertical: true,
-      x_align: St.Align.MIDDLE,
-      y_align: St.Align.MIDDLE,
-      style_class: "stopwatch-content",
-    });
+    this.centerContent = new St.BoxLayout({ vertical: true });
 
     // time label
     this.timeLabel = this._createLabel(_("00.000"), this.labelColor);
@@ -95,7 +90,9 @@ class StopwatchDesklet extends Desklet.Desklet {
     this.buttonRow.add_child(this.pauseButton);
     this.buttonRow.add_child(this.stopButton);
 
-    this.centerContent.add_child(this.buttonRow);
+    const buttonRowBox = new St.Bin({ x_align: St.Align.MIDDLE });
+    buttonRowBox.set_child(this.buttonRow);
+    this.centerContent.add_child(buttonRowBox);
     this.mainContainer.add_child(this.centerContent);
 
     this._drawCircle();
@@ -159,6 +156,7 @@ class StopwatchDesklet extends Desklet.Desklet {
       formattedTime = `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}.${String(
         milliseconds
       ).padStart(3, "0")}`;
+      this.timeLabel.style = `font-size: ${16 * this.scaleSize}px; color: ${this.labelColor};`;
     }
 
     this.timeLabel.set_text(formattedTime);
@@ -217,6 +215,7 @@ class StopwatchDesklet extends Desklet.Desklet {
     this._startTime = 0;
     this._elapsedTime = 0;
     this._isRunning = false;
+    this.timeLabel.style = `font-size: ${20 * this.scaleSize}px; color: ${this.labelColor};`;
     this.timeLabel.set_text(_("00.000"));
     this.playButton.show();
     this.pauseButton.hide();
