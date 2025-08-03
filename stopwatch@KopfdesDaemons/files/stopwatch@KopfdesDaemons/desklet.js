@@ -37,12 +37,14 @@ class StopwatchDesklet extends Desklet.Desklet {
     this.labelColor = "rgb(51, 209, 122)";
     this.scaleSize = 1;
     this.indicatorColor = "rgb(51, 209, 122)";
+    this.rotationSpeed = 2;
 
     // Setup settings and bind them to properties
     const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
     settings.bindProperty(Settings.BindingDirection.IN, "label-color", "labelColor", this._onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "indicator-color", "indicatorColor", this._onSettingsChanged.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "animation-speed", "rotationSpeed", this._onSettingsChanged.bind(this));
 
     // Set the desklet header and build the layout
     this.setHeader(_("Stopwatch"));
@@ -181,7 +183,7 @@ class StopwatchDesklet extends Desklet.Desklet {
 
   // Rotates the indicator actor for animation
   _animateIndicator() {
-    this.circleActor.rotation_angle_z = (this.circleActor.rotation_angle_z + 2) % 360;
+    this.circleActor.rotation_angle_z = (this.circleActor.rotation_angle_z + this.rotationSpeed) % 360;
     return true;
   }
 
