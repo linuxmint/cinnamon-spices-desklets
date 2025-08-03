@@ -79,7 +79,7 @@ class StopwatchDesklet extends Desklet.Desklet {
 
     // Create and style the time label
     this.timeLabel = new St.Label({
-      text: _("00.000"),
+      text: "00.000",
       style: `font-size: ${20 * this.scaleSize}px; color: ${this.labelColor};`,
     });
     this.centerContent.add_child(new St.Bin({ child: this.timeLabel, x_align: St.Align.MIDDLE }));
@@ -235,7 +235,7 @@ class StopwatchDesklet extends Desklet.Desklet {
     this._elapsedTime = 0;
     this._isRunning = false;
     this.timeLabel.style = `font-size: ${20 * this.scaleSize}px; color: ${this.labelColor};`;
-    this.timeLabel.set_text(_("00.000"));
+    this.timeLabel.set_text("00.000");
     this.playButton.show();
     this.pauseButton.hide();
   }
