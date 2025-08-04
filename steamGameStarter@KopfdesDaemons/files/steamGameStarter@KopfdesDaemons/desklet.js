@@ -68,9 +68,9 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
     const gamesToDisplay = sortedGames.slice(0, 5);
 
     gamesToDisplay.forEach((game) => {
-      const gameContainer = new St.BoxLayout({ vertical: true });
+      const gameContainer = new St.BoxLayout({ style_class: "game-container" });
 
-      const imageActor = this._getGameHeaderImage(game.appid, 277, 143);
+      const imageActor = this._getGameHeaderImage(game.appid, 139, 72);
       if (imageActor) {
         imageActor.connect("button-press-event", () => {
           GLib.spawn_command_line_async(`steam steam://store/${game.appid}`);
@@ -79,14 +79,16 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
         gameContainer.add_child(imageActor);
       }
 
-      const gameLabel = new St.Label({ text: game.name });
-      gameContainer.add_child(gameLabel);
+      const labelContainer = new St.BoxLayout({ vertical: true, style_class: "label-container" });
+      const gameLabel = new St.Label({ text: game.name, style_class: "game-label" });
+      labelContainer.add_child(gameLabel);
+      gameContainer.add_child(labelContainer);
 
       // Format the last played date and add a label
       const lastPlayedDate = new Date(parseInt(game.lastPlayed, 10) * 1000);
       const formattedDate = lastPlayedDate.toLocaleDateString();
       const dateLabel = new St.Label({ text: _("Last played:") + ` ${formattedDate}` });
-      gameContainer.add_child(dateLabel);
+      labelContainer.add_child(dateLabel);
 
       mainContainer.add_child(gameContainer);
     });
@@ -151,18 +153,26 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
     }
 
     if (pixBuf && imageFileName) {
+      // Create image
       const image = new Clutter.Image();
       const pixelFormat = pixBuf.get_has_alpha() ? Cogl.PixelFormat.RGBA_8888 : Cogl.PixelFormat.RGB_888;
       image.set_data(pixBuf.get_pixels(), pixelFormat, pixBuf.get_width(), pixBuf.get_height(), pixBuf.get_rowstride());
 
-      const clickableActor = new Clutter.Actor({
+      // Clickable bin
+      const clickableBin = new St.Bin({
+        reactive: true,
+        width: pixBuf.get_width(),
+        height: pixBuf.get_height(),
+      });
+
+      const imageActor = new Clutter.Actor({
         content: image,
         width: pixBuf.get_width(),
         height: pixBuf.get_height(),
-        reactive: true,
       });
+      clickableBin.set_child(imageActor);
 
-      return clickableActor;
+      return clickableBin;
     }
 
     // Return a simple label if no image could be loaded

@@ -1,0 +1,16 @@
+.game-container {
+  margin: 0.5em;
+}
+
+.game-label {
+  font-weight: bold;
+  max-width: 250px;
+}
+
+.game-label:hover {
+  color: green;
+}
+
+.label-container {
+  margin-left: 0.5em;
+}
