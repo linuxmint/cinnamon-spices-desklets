@@ -64,8 +64,8 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
       .filter((game) => game.lastPlayed && game.lastPlayed !== "0")
       .sort((a, b) => parseInt(b.lastPlayed, 10) - parseInt(a.lastPlayed, 10));
 
-    // Display the top 5 games
-    const gamesToDisplay = sortedGames.slice(0, 5);
+    // Slice the first 10 games
+    const gamesToDisplay = sortedGames.slice(0, 10);
 
     gamesToDisplay.forEach((game) => {
       const gameContainer = new St.BoxLayout({ style_class: "game-container", reactive: true, track_hover: true });
@@ -90,10 +90,31 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
       const dateLabel = new St.Label({ text: _("Last played:") + ` ${formattedDate}` });
       labelContainer.add_child(dateLabel);
 
+      const buttonRow = new St.BoxLayout({ style: "spacing: 10px;" });
+      const buttonHeight = 22;
+      const createButton = (iconName, callback, syleClass) => {
+        const icon = this._getImageAtScale(`${this.metadata.path}/${iconName}.svg`, buttonHeight, buttonHeight);
+        const button = new St.Button({ child: icon, style_class: syleClass });
+        button.connect("clicked", callback.bind(this));
+        return button;
+      };
+
+      const playButton = createButton("play", () => GLib.spawn_command_line_async(`steam steam://rungameid/${game.appid}`), "play-button");
+      buttonRow.add_child(playButton);
+      const shopButton = createButton("shop", () => GLib.spawn_command_line_async(`steam steam://store/${game.appid}`), "shop-button");
+      buttonRow.add_child(shopButton);
+      labelContainer.add_child(buttonRow);
+
       mainContainer.add_child(gameContainer);
     });
 
-    this.setContent(mainContainer);
+    const scrollView = new St.ScrollView({
+      style_class: "desklet-scroll-view",
+      overlay_scrollbars: true,
+    });
+    scrollView.add_actor(mainContainer);
+
+    this.setContent(scrollView);
   }
 
   // Helper to read the paths of the Steam library folders
@@ -132,27 +153,32 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
 
   // Helper to load a game's header image from the Steam appcache
   _getGameHeaderImage(appid, requestedWidth, requestedHeight) {
-    const imagePaths = [
-      GLib.get_home_dir() + "/.steam/steam/appcache/librarycache/" + appid + "/header.jpg",
-      GLib.get_home_dir() + "/.steam/steam/appcache/librarycache/" + appid + "/library_header.jpg",
-    ];
+    const appCachePath = GLib.get_home_dir() + "/.steam/steam/appcache/librarycache/";
+    const appImagePath = GLib.build_filenamev([appCachePath, appid]);
 
-    let pixBuf = null;
-    let imageFileName = null;
+    const commonImageNames = ["header.jpg", "library_header.jpg", "library_hero.jpg"];
 
-    for (const path of imagePaths) {
-      if (GLib.file_test(path, GLib.FileTest.EXISTS)) {
-        try {
-          pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(path, requestedWidth, requestedHeight);
-          imageFileName = path;
-          break; // Found and loaded an image, so break the loop
-        } catch (e) {
-          global.logError(`Error loading image from path ${path}: ${e}`);
-        }
+    let imagePath = null;
+
+    for (const name of commonImageNames) {
+      const potentialPath = GLib.build_filenamev([appImagePath, name]);
+      if (GLib.file_test(potentialPath, GLib.FileTest.EXISTS)) {
+        imagePath = potentialPath;
+        break;
       }
     }
 
-    if (pixBuf && imageFileName) {
+    let pixBuf = null;
+
+    if (imagePath) {
+      try {
+        pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(imagePath, requestedWidth, requestedHeight);
+      } catch (e) {
+        global.logError(`Error loading image ${imagePath}: ${e}`);
+      }
+    }
+
+    if (pixBuf) {
       // Create image
       const image = new Clutter.Image();
       const pixelFormat = pixBuf.get_has_alpha() ? Cogl.PixelFormat.RGBA_8888 : Cogl.PixelFormat.RGB_888;
@@ -178,6 +204,25 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
     // Return a simple label if no image could be loaded
     global.logError(`Could not load an image for appid ${appid}`);
     return new St.Label({ text: "Error" });
+  }
+
+  // Helper to load and scale an SVG image
+  _getImageAtScale(imageFileName, requestedWidth, requestedHeight) {
+    try {
+      const pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(imageFileName, requestedWidth, requestedHeight);
+      const image = new Clutter.Image();
+      image.set_data(
+        pixBuf.get_pixels(),
+        pixBuf.get_has_alpha() ? Cogl.PixelFormat.RGBA_8888 : Cogl.PixelFormat.RGBA_888,
+        pixBuf.get_width(),
+        pixBuf.get_height(),
+        pixBuf.get_rowstride()
+      );
+      return new Clutter.Actor({ content: image, width: pixBuf.get_width(), height: pixBuf.get_height() });
+    } catch (e) {
+      global.logError(`Error loading image ${imageFileName}: ${e}`);
+      return new St.Label({ text: "Error" });
+    }
   }
 }
 
