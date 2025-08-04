@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2025-08-01 22:18-0400\n"
-"PO-Revision-Date: 2025-07-05 18:24-0400\n"
+"PO-Revision-Date: 2025-08-04 19:01-0400\n"
 "Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -61,7 +61,7 @@ msgstr "Red"
 
 #. desklet.js:518 desklet.js:541
 msgid "b"
-msgstr ""
+msgstr "b"
 
 #. desklet.js:520 desklet.js:555 desklet.js:569
 msgid "B"
@@ -69,15 +69,15 @@ msgstr "B"
 
 #. desklet.js:533
 msgid "Gb"
-msgstr ""
+msgstr "Gb"
 
 #. desklet.js:536
 msgid "Mb"
-msgstr ""
+msgstr "Mb"
 
 #. desklet.js:539
 msgid "Kb"
-msgstr ""
+msgstr "Kb"
 
 #. desklet.js:550
 msgid "MB"
@@ -164,19 +164,16 @@ msgid "Unit prefix for Filesystem size."
 msgstr "Prefijo de la unidad de medida del sistema de archivos."
 
 #. settings-schema.json->data-prefix-network->options
-#, fuzzy
 msgid "Bytes - Binary prefix or IEC (1 KiB = 1024 bytes)"
-msgstr "Prefijo binario o del IEC (1 KiB = 1024 bytes)"
+msgstr "Bytes - Prefijo binario o del IEC (1 KiB = 1024 bytes)"
 
 #. settings-schema.json->data-prefix-network->options
-#, fuzzy
 msgid "Bytes - Decimal prefix (1 KB = 1000 bytes)"
-msgstr "Prefijo decimal (1 KB = 1000 bytes)"
+msgstr "Bytes - Prefijo decimal (1 KB = 1000 bytes)"
 
 #. settings-schema.json->data-prefix-network->options
-#, fuzzy
 msgid "Bits - Decimal prefix (1 Kb = 1000 bits)"
-msgstr "Prefijo decimal (1 KB = 1000 bytes)"
+msgstr "Bits - Prefijo decimal (1 KB = 1000 bytes)"
 
 #. settings-schema.json->data-prefix-network->tooltip
 msgid "Unit prefix for network speed."
