@@ -92,9 +92,9 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
 
       const buttonRow = new St.BoxLayout({ style: "spacing: 10px;" });
       const buttonHeight = 22;
-      const createButton = (iconName, callback, syleClass) => {
+      const createButton = (iconName, callback, styleClass) => {
         const icon = this._getImageAtScale(`${this.metadata.path}/${iconName}.svg`, buttonHeight, buttonHeight);
-        const button = new St.Button({ child: icon, style_class: syleClass });
+        const button = new St.Button({ child: icon, style_class: styleClass });
         button.connect("clicked", callback.bind(this));
         return button;
       };
@@ -151,17 +151,27 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
     return null;
   }
 
+  // Helper to create an actor from a Pixbuf
+  _createActorFromPixbuf(pixBuf) {
+    const pixelFormat = pixBuf.get_has_alpha() ? Cogl.PixelFormat.RGBA_8888 : Cogl.PixelFormat.RGB_888;
+    const image = new Clutter.Image();
+    image.set_data(pixBuf.get_pixels(), pixelFormat, pixBuf.get_width(), pixBuf.get_height(), pixBuf.get_rowstride());
+
+    return new Clutter.Actor({
+      content: image,
+      width: pixBuf.get_width(),
+      height: pixBuf.get_height(),
+    });
+  }
+
   // Helper to load a game's header image from the Steam appcache
   _getGameHeaderImage(appid, requestedWidth, requestedHeight) {
     const appCachePath = GLib.get_home_dir() + "/.steam/steam/appcache/librarycache/";
-    const appImagePath = GLib.build_filenamev([appCachePath, appid]);
-
     const commonImageNames = ["header.jpg", "library_header.jpg", "library_hero.jpg"];
 
     let imagePath = null;
-
     for (const name of commonImageNames) {
-      const potentialPath = GLib.build_filenamev([appImagePath, name]);
+      const potentialPath = GLib.build_filenamev([appCachePath, appid, name]);
       if (GLib.file_test(potentialPath, GLib.FileTest.EXISTS)) {
         imagePath = potentialPath;
         break;
@@ -169,7 +179,6 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
     }
 
     let pixBuf = null;
-
     if (imagePath) {
       try {
         pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(imagePath, requestedWidth, requestedHeight);
@@ -179,29 +188,17 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
     }
 
     if (pixBuf) {
-      // Create image
-      const image = new Clutter.Image();
-      const pixelFormat = pixBuf.get_has_alpha() ? Cogl.PixelFormat.RGBA_8888 : Cogl.PixelFormat.RGB_888;
-      image.set_data(pixBuf.get_pixels(), pixelFormat, pixBuf.get_width(), pixBuf.get_height(), pixBuf.get_rowstride());
+      const imageActor = this._createActorFromPixbuf(pixBuf);
 
-      // Clickable bin
       const clickableBin = new St.Bin({
         reactive: true,
         width: pixBuf.get_width(),
         height: pixBuf.get_height(),
       });
-
-      const imageActor = new Clutter.Actor({
-        content: image,
-        width: pixBuf.get_width(),
-        height: pixBuf.get_height(),
-      });
       clickableBin.set_child(imageActor);
-
       return clickableBin;
     }
 
-    // Return a simple label if no image could be loaded
     global.logError(`Could not load an image for appid ${appid}`);
     return new St.Label({ text: "Error" });
   }
@@ -210,15 +207,7 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
   _getImageAtScale(imageFileName, requestedWidth, requestedHeight) {
     try {
       const pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(imageFileName, requestedWidth, requestedHeight);
-      const image = new Clutter.Image();
-      image.set_data(
-        pixBuf.get_pixels(),
-        pixBuf.get_has_alpha() ? Cogl.PixelFormat.RGBA_8888 : Cogl.PixelFormat.RGBA_888,
-        pixBuf.get_width(),
-        pixBuf.get_height(),
-        pixBuf.get_rowstride()
-      );
-      return new Clutter.Actor({ content: image, width: pixBuf.get_width(), height: pixBuf.get_height() });
+      return this._createActorFromPixbuf(pixBuf);
     } catch (e) {
       global.logError(`Error loading image ${imageFileName}: ${e}`);
       return new St.Label({ text: "Error" });
@@ -226,7 +215,6 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
   }
 }
 
-// Main entry point for the desklet
 function main(metadata, deskletId) {
   return new SteamGameStarterDesklet(metadata, deskletId);
 }
