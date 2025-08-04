@@ -39,6 +39,7 @@ MyDesklet.prototype = {
             this.settings.bind("delay", "delay", this.onSettingChanged);
             this.settings.bind("timeout", "timeout", this.onSettingChanged);
             this.settings.bind("commands", "commands", this.onSettingChanged);
+            this.settings.bind("render-ansi", "renderAnsi", this.onSettingChanged); // New setting
 
             this.settings.bind("font", "font", this.onStyleSettingChanged);
             this.settings.bind("font-color", "fontColor", this.onStyleSettingChanged);
@@ -201,6 +202,67 @@ MyDesklet.prototype = {
     },
 
     /**
+     * Parse ANSI escape sequences and convert to CSS styles
+     */
+    _parseAnsi(result) {
+    global.log("Parsing ANSI input: " + result);
+    if (!this.renderAnsi) {
+        let stripped = result.replace(/\x1B\[[\d;]*?m/g, '');
+        global.log("Stripped output: " + stripped);
+        return stripped;
+    }
+
+    const ansiColors = {
+        '30': 'black',
+        '31': 'red',
+        '32': 'green',
+        '33': 'yellow',
+        '34': 'blue',
+        '35': 'magenta',
+        '36': 'cyan',
+        '37': 'white',
+        '90': 'gray',
+        '91': '#ff5555',
+        '92': '#55ff55',
+        '93': '#ffff55',
+        '94': '#5555ff',
+        '95': '#ff55ff',
+        '96': '#55ffff',
+        '97': 'white'
+    };
+
+    let openSpans = 0;
+    let styledResult = result.replace(/\x1B\[([\d;]*?)m/g, (match, codes) => {
+        const codeList = codes.split(';');
+        let attributes = [];
+
+        for (let code of codeList) {
+            if (ansiColors[code]) {
+                attributes.push(`foreground="${ansiColors[code]}"`);
+            } else if (code === '1') {
+                attributes.push('weight="bold"');
+            } else if (code === '4') {
+                attributes.push('underline="single"');
+            } else if (code === '0') {
+                let reset = '</span>'.repeat(openSpans);
+                openSpans = 0;
+                return reset;
+            }
+        }
+
+        if (attributes.length > 0) {
+            openSpans++;
+            return `<span ${attributes.join(' ')}>`;
+        }
+        return '';
+    });
+
+    styledResult += '</span>'.repeat(openSpans);
+    global.log("Parsed ANSI output: " + styledResult);
+    return styledResult;
+},
+
+    /**
      * Display new command results
      **/
     _update() {
@@ -226,15 +288,23 @@ MyDesklet.prototype = {
     /**
      * Callback for _getCommandResult to set the command result when spawn_async returns
      **/
-    _setNewCommandResult(result, command) {
-        if(result[result.length - 1] === "\n"){
-            result = result.slice(0, -1);
-        }
+     /**
+ * Callback for _getCommandResult to set the command result
+ */
+_setNewCommandResult(result, command) {
+    if (result[result.length - 1] === "\n") {
+        result = result.slice(0, -1);
+    }
 
-        command.loading = false;
-        command.labels.label.set_text(command.label);
-        command.labels.result.set_text(result);
-    },
+    command.loading = false;
+    command.labels.label.set_text(command.label);
+    if (this.renderAnsi) {
+        // Use clutter_text.set_markup for ANSI-styled output
+        command.labels.result.clutter_text.set_markup(this._parseAnsi(result));
+    } else {
+        command.labels.result.set_text(this._parseAnsi(result));
+    }
+},
 
     _addLabel(command, left, labelAlignRight, right, commandAlignRight) {          
         command.labels = {
