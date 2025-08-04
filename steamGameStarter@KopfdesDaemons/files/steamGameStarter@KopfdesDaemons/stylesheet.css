@@ -2,13 +2,15 @@
   margin: 0.5em;
 }
 
+.game-container:hover {
+  background-color: rgba(0, 1, 54, 0.315);
+  margin: 0.5em;
+  cursor: pointer;
+}
+
 .game-label {
   font-weight: bold;
   max-width: 250px;
-}
-
-.game-label:hover {
-  color: green;
 }
 
 .label-container {

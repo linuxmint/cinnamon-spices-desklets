@@ -68,7 +68,7 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
     const gamesToDisplay = sortedGames.slice(0, 5);
 
     gamesToDisplay.forEach((game) => {
-      const gameContainer = new St.BoxLayout({ style_class: "game-container" });
+      const gameContainer = new St.BoxLayout({ style_class: "game-container", reactive: true, track_hover: true });
 
       const imageActor = this._getGameHeaderImage(game.appid, 139, 72);
       if (imageActor) {
