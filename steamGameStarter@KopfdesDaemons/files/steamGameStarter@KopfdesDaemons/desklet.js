@@ -39,13 +39,14 @@ class StopwatchDesklet extends Desklet.Desklet {
     for (const libraryPath of this.libraryPaths) {
       const steamAppsPath = libraryPath + "/steamapps/";
       try {
+        // Find all appmanifest files
         const [, out] = GLib.spawn_command_line_sync(`find ${steamAppsPath} -name "*.acf"`);
         if (out === null) throw new Error("Could not retrieve Steam library folder content.");
+
+        // Extract the appmanifest paths
         const paths = out.toString().trim().split("\n");
         for (const path of paths) {
-          if (path) {
-            appmanifestPaths.push(path);
-          }
+          if (path) appmanifestPaths.push(path);
         }
       } catch (e) {
         global.logError(`Error finding appmanifest files in ${steamAppsPath}: ${e}`);
@@ -55,13 +56,8 @@ class StopwatchDesklet extends Desklet.Desklet {
     // Extract the game info from the appmanifest files
     for (const path of appmanifestPaths) {
       const game = this._extractGameInfo(path);
-      if (game) {
-        this.games.push(game);
-      }
+      if (game) this.games.push(game);
     }
-
-    // Zeige die extrahierten Spiele in der Konsole
-    global.log(this.games);
 
     // Set the desklet header and build the layout
     this.setHeader(_("Steam Game Starter"));
@@ -70,47 +66,38 @@ class StopwatchDesklet extends Desklet.Desklet {
 
   // Setup the entire visual layout of the desklet
   _setupLayout() {
-    // Erstelle einen Hauptcontainer, der vertikal angeordnet ist
     const mainContainer = new St.BoxLayout({ vertical: true });
 
-    // Filtere Spiele, die zuletzt gespielt wurden, und sortiere sie absteigend nach dem Datum
+    // Filter and sort the games by last played
     const sortedGames = this.games
       .filter((game) => game.lastPlayed && game.lastPlayed !== "0")
       .sort((a, b) => parseInt(b.lastPlayed, 10) - parseInt(a.lastPlayed, 10));
 
-    // Begrenze die Liste auf die 5 zuletzt gespielten Spiele
-    const top5Games = sortedGames.slice(0, 5);
+    // Take the top 5 games
+    const gamesToDisplay = sortedGames.slice(0, 5);
 
-    // Iteriere durch die 5 meistgespielten Spiele
-    for (const game of top5Games) {
-      // Erstelle einen Container für jedes Spiel, um Name und Datum zu gruppieren
+    for (const game of gamesToDisplay) {
       const gameContainer = new St.BoxLayout({ vertical: true });
 
-      // Lade das Bild
-      const image = this._getImageAtScale(game.appid, 277, 143);
+      const image = this._getGameHeaderImage(game.appid, 277, 143);
       gameContainer.add_child(image);
 
-      // Erstelle das Label für den Spielnamen
       const gameLabel = new St.Label({ text: game.name });
 
-      // Formatiere das Datum des letzten Spiels
+      // Format the last played date
       const lastPlayedTimestamp = parseInt(game.lastPlayed, 10) * 1000;
       const lastPlayedDate = new Date(lastPlayedTimestamp);
-      const dateOptions = { year: "numeric", month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" };
-      const formattedDate = lastPlayedDate.toLocaleDateString("de-DE", dateOptions);
+      const formattedDate = lastPlayedDate.toLocaleDateString();
 
-      // Erstelle das Label für das Datum
-      const dateLabel = new St.Label({ text: `Zuletzt gespielt: ${formattedDate}` });
+      // Date label
+      const dateLabel = new St.Label({ text: _("Last played:") + ` ${formattedDate}` });
 
-      // Füge die Labels zum Spiel-Container hinzu
       gameContainer.add_child(gameLabel);
       gameContainer.add_child(dateLabel);
 
-      // Füge den Spiel-Container zum Hauptcontainer hinzu
       mainContainer.add_child(gameContainer);
     }
 
-    // Setze den Hauptcontainer als Inhalt des Desklets
     this.setContent(mainContainer);
   }
 
@@ -125,6 +112,7 @@ class StopwatchDesklet extends Desklet.Desklet {
     return paths;
   }
 
+  // Helper to extract the game info from the appmanifests
   _extractGameInfo(filePath) {
     try {
       const [, out] = GLib.spawn_command_line_sync(`cat ${filePath}`);
@@ -155,18 +143,18 @@ class StopwatchDesklet extends Desklet.Desklet {
     }
   }
 
-  _getImageAtScale(appid, requestedWidth, requestedHeight) {
+  _getGameHeaderImage(appid, requestedWidth, requestedHeight) {
     const headerPath = GLib.get_home_dir() + "/.steam/steam/appcache/librarycache/" + appid + "/header.jpg";
     const libraryHeaderPath = GLib.get_home_dir() + "/.steam/steam/appcache/librarycache/" + appid + "/library_header.jpg";
     let imageFileName = null;
     let pixBuf = null;
 
     try {
-      // Versuch, header.jpg zu laden
+      // Try to load header.jpg
       pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(headerPath, requestedWidth, requestedHeight);
       imageFileName = headerPath;
     } catch (e) {
-      // Wenn header.jpg fehlschlägt, versuche library_header.jpg zu laden
+      // Try to load library_header.jpg
       try {
         pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(libraryHeaderPath, requestedWidth, requestedHeight);
         imageFileName = libraryHeaderPath;
@@ -182,15 +170,13 @@ class StopwatchDesklet extends Desklet.Desklet {
 
       image.set_data(pixBuf.get_pixels(), pixelFormat, pixBuf.get_width(), pixBuf.get_height(), pixBuf.get_rowstride());
 
-      // Erstelle einen Clutter.Actor, der klickbar ist
       const clickableActor = new Clutter.Actor({
         content: image,
         width: pixBuf.get_width(),
         height: pixBuf.get_height(),
-        reactive: true, // Wichtig, um Klicks zu empfangen
+        reactive: true,
       });
 
-      // Verbinde das Klick-Event mit der Funktion zum Öffnen der Bibliotheksseite
       clickableActor.connect("button-press-event", () => {
         global.log(`Opening Steam library for appid ${appid}`);
         GLib.spawn_command_line_async(`steam steam://store/${appid}`);
