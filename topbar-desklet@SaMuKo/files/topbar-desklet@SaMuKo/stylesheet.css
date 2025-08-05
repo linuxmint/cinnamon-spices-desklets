@@ -1,0 +1,258 @@
+/* Barra desklet vertical minimalista y moderna */
+.topbar-desklet-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    z-index: 9999;
+    pointer-events: auto;
+    align-items: center;
+    justify-content: flex-start;
+}
+.open-json-btn {
+    background: #4cb124;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 0;
+    font-size: 1.1em;
+    font-weight: bold;
+    width: 100%;
+    margin: 18px 0 12px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    outline: none;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.open-json-btn:hover {
+    background: #388e1f;
+    color: #e0ffe0;
+}
+        /* La barra desklet principal */
+        .topbar-desklet {
+            background: rgba(30, 30, 30, 0.97); /* Fondo oscuro semitransparente */
+            border-radius: 18px; /* Esquinas redondeadas */
+            box-shadow: 0 4px 24px rgba(0,0,0,0.35); /* Sombra sutil */
+            padding: 12px 10px; /* Espaciado interno */
+            min-width: 70px; /* Ancho mínimo */
+            max-width: 100px; /* Ancho máximo */
+            width: 80px; /* Ancho fijo */
+            min-height: 0; /* Altura mínima */
+            /* Se eliminó 'height: 0;' aquí para permitir que max-height controle la transición */
+            max-height: 0; /* Altura inicial colapsada */
+            display: flex;
+            flex-direction: row; /* Iconos apilados horizontalmente */
+            align-items: center; /* Centrar iconos verticalmente */
+            justify-content: flex-start; /* Alinear iconos al principio */
+            transition: opacity 0.4s ease-out, max-width 0.4s ease-out; /* Transición suave para expandir/colapsar */
+            margin-top: 0;
+            margin-left: 0;
+            overflow: hidden; /* Oculta el contenido cuando está colapsado */
+            opacity: 0; /* Invisible cuando está colapsado */
+        }
+
+.topbar-tab {
+    background: #4cb124;
+    border-radius: 0 0 10px 10px;
+    width: 80px;
+    height: 32px;
+    margin-left: 0;
+    margin-top: 0;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: background 0.2s;
+    font-weight: bold;
+    color: #fff;
+    font-size: 16px;
+}
+.topbar-tab:hover {
+    background: #444;
+}
+
+.topbar-app-btn {
+    background: transparent;
+    border: none;
+    margin: 0 8px; /* Ajustar margen para horizontal */
+    padding: 0;
+    box-shadow: none;
+    transition: background 0.2s, transform 0.2s;
+    border-radius: 12px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.topbar-app-btn:hover {
+    background: rgba(255,255,255,0.10);
+    transform: scale(1.08);
+}
+
+.topbar-app-btn.focused {
+    background: rgba(255,255,255,0.15);
+    border: 2px solid #4cb124;
+    transform: scale(1.08);
+}
+
+.topbar-app-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(219, 6, 6, 0.18);
+}
+
+.app-config-dialog {
+    background-color: #23272e;
+    border-radius: 12px;
+    border: 2px solid #3a3f4b;
+    padding: 24px 32px;
+    min-width: 350px;
+    color: #f0f0f0;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+}
+
+.dialog-title {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 18px;
+    color: #8ec07c;
+}
+
+.dialog-entry {
+    background: #f0f0f0;
+    color: #141414;
+    border-radius: 6px;
+    border: 1px solid #444;
+    padding: 10px 12px;
+    min-width: 260px;
+    min-height: 120px;
+    max-width: 100%;
+    max-height: 300px;
+    font-family: monospace;
+    font-size: 1.05em;
+    margin: 10px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    resize: vertical;
+    overflow-y: auto;
+   /* white-space: pre-wrap;*/
+    line-height: 1.4;
+}
+
+.dialog-add-btn, .dialog-save-btn, .dialog-cancel-btn, .dialog-del-btn {
+    background: #3a3f4b;
+    color: #f0f0f0;
+    border-radius: 6px;
+    border: none;
+    padding: 6px 14px;
+    margin: 6px 4px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+.dialog-add-btn:hover, .dialog-save-btn:hover, .dialog-cancel-btn:hover, .dialog-del-btn:hover {
+    background: #8ec07c;
+    color: #23272e;
+}
+
+.app-config-float {
+    background-color: #23272e;
+    border-radius: 16px;
+    border: 2px solid #3a3f4b;
+    padding: 24px;
+    min-width: 350px;
+    min-height: 200px;
+    color: #f0f0f0;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    z-index: 99999;
+}
+
+.close-button {
+    background:#3a3f4b;
+    border: none;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.close-button:hover {
+    background: rgba(255,255,255,0.08);
+}
+
+.close-icon {
+    color: #e06c75;
+    width: 18px;
+    height: 18px;
+}
+
+
+/* Estilos para la ventana de configuración */
+.config-dialog {
+    background-color: #23272e;
+    border-radius: 12px;
+    border: 2px solid #3a3f4b;
+    padding: 24px 32px;
+    min-width: 350px;
+    color: #f0f0f0;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+}
+
+.config-title {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 18px;
+    color: #8ec07c;
+}
+
+.config-entry {
+    background: #f0f0f0;
+    color: #141414;
+    border-radius: 6px;
+    border: 1px solid #444;
+    padding: 10px 12px;
+    min-width: 260px;
+    min-height: 120px;
+    max-width: 100%;
+    max-height: 300px;
+    font-family: monospace;
+    font-size: 1.05em;
+    margin: 10px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    resize: vertical;
+    overflow-y: auto;
+   /* white-space: pre-wrap;*/
+    line-height: 1.4;
+}
+
+.config-save-btn, .config-cancel-btn {
+    background: #3a3f4b;
+    color: #f0f0f0;
+    border-radius: 6px;
+    border: none;
+    padding: 6px 14px;
+    margin: 6px 4px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+.config-save-btn:hover, .config-cancel-btn:hover {
+    background: #8ec07c;
+    color: #23272e;
+}
