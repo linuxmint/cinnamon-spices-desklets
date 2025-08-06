@@ -1,0 +1,60 @@
+# YARR Desklet Development Rules
+
+## Critical Rules
+
+1. NEVER restore old code versions without explicit user request
+2. When user points to backup/reference code, it's for LEARNING, not for restoring
+3. Keep all enhancements and improvements made - they are valuable work
+4. NEVER consolidate modular code into one huge file - keep code organized and separated
+
+## Module System Rules
+
+1. Use require() for local module imports in Cinnamon desklets
+2. Keep related functionality in separate modules:
+   - database-managers.js: Database operations
+   - async-managers.js: Async operations and timers
+   - ui-components.js: UI dialogs and components
+   - fromXML.js: XML parsing utility
+
+## Code Organization Rules
+
+1. Keep files focused and manageable:
+   - Each file should have a single responsibility
+   - Keep related code together
+   - Don't mix concerns across files
+2. Maintain proper exports in each module:
+   - Export only what's needed
+   - Use clear, consistent export patterns
+
+## Enhancement Rules
+
+1. Keep track of all improvements made
+2. Don't lose enhancements when fixing bugs
+3. Document major changes for future reference
+4. Test thoroughly after any changes
+
+## Backup Rules
+
+1. Backups are for reference only
+2. Never automatically restore from backup
+3. Learn from backup code structure but keep current improvements
+
+## Communication Rules
+
+1. Ask for clarification when unsure about user's intent
+2. Don't make assumptions about user's requests
+3. Explain changes before making them
+4. Be clear about what's being modified and why
+
+## Error Handling Rules
+
+1. Fix errors without losing improvements
+2. Keep error handling code in place
+3. Maintain proper logging
+4. Don't remove error checks when fixing issues
+
+Remember: KISS - Keep It Simple and Stupid
+
+- Only do what user asks
+- Don't invent complete new logic unless confirmed by user
+- Don't overthink or overcomplicate solutions
