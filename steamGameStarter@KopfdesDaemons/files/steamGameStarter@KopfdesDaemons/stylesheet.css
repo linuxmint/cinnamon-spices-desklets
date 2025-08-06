@@ -42,8 +42,10 @@
   font-size: 2em;
 }
 
-.error-label {
-  color: red;
-  max-width: 250px;
-  text-wrap: normal;
+.error-layout {
+  height: 400px;
+}
+
+.error-icon {
+  margin: 1em;
 }

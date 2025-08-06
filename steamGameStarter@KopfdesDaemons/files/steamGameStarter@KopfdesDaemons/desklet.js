@@ -31,7 +31,7 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
       this.games = [];
 
       // Get Steam library paths
-      const libraryfoldersDataPath = GLib.get_home_dir() + "/.steam/steam/steamapps/librXaryfolders.vdf";
+      const libraryfoldersDataPath = GLib.get_home_dir() + "/.steam/steam/steamapps/libraryfolders.vdf";
       const libraryfoldersData = GLib.file_get_contents(libraryfoldersDataPath)[1].toString();
       const libraryPaths = this._extractLibraryPaths(libraryfoldersData);
 
@@ -128,13 +128,27 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
 
     const errorLayout = new St.BoxLayout({ style_class: "error-layout", vertical: true });
 
+    const errorIcon = this._getImageAtScale(`${this.metadata.path}/error.svg`, 48, 48);
+    const iconBin = new St.Bin({ child: errorIcon, style_class: "error-icon" });
+    errorLayout.add_child(iconBin);
+
     if (gamesToDisplay.length === 0) {
       const noGamesLabel = new St.Label({ text: _("No games found"), style_class: "no-games-label" });
       errorLayout.add_child(noGamesLabel);
     }
 
     if (this.error) {
-      const errorLabel = new St.Label({ text: "Error: " + this.error.message, style_class: "error-label" });
+      const clutterText = new Clutter.Text({
+        text: "Error: " + this.error.message,
+        line_wrap: true,
+        color: new Clutter.Color({ red: 255, green: 0, blue: 0, alpha: 255 }),
+      });
+
+      const errorLabel = new St.Bin({
+        child: clutterText,
+        style_class: "error-label",
+      });
+
       errorLayout.add_child(errorLabel);
     }
 
