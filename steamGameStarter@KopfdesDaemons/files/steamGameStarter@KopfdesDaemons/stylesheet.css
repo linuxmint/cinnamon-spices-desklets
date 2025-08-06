@@ -3,7 +3,7 @@
 }
 
 .game-container:hover {
-  background-color: rgba(0, 1, 54, 0.315);
+  background-color: rgba(58, 64, 74, 0.5);
   margin: 0.5em;
   cursor: pointer;
 }
@@ -21,7 +21,19 @@
   max-height: 400px;
 }
 
+.play-button,
+.shop-button,
+.reload-button {
+  border-radius: 5px;
+}
+
+.reload-button:hover,
 .play-button:hover,
 .shop-button:hover {
-  background-color: rgb(38, 0, 255);
+  background-color: #67707b;
+}
+
+.header-label {
+  font-weight: bold;
+  font-size: 2em;
 }

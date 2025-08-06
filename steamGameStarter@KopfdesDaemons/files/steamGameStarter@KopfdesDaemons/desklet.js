@@ -26,6 +26,8 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
   // Load game data and set up the UI
   _loadGamesAndSetupUI() {
     try {
+      this.games = [];
+
       // Get Steam library paths
       const libraryfoldersDataPath = GLib.get_home_dir() + "/.steam/steam/steamapps/libraryfolders.vdf";
       const libraryfoldersData = GLib.file_get_contents(libraryfoldersDataPath)[1].toString();
@@ -59,6 +61,18 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
   _setupLayout() {
     const mainContainer = new St.BoxLayout({ vertical: true });
 
+    // Setup header
+    const headerContaier = new St.BoxLayout({ style_class: "header-container", reactive: true, track_hover: true });
+    mainContainer.add_child(headerContaier);
+    const headerLabel = new St.Label({ text: _("Steam Game Starter"), style_class: "header-label" });
+    headerContaier.add_child(headerLabel);
+    const spacer = new St.BoxLayout({ x_expand: true });
+    headerContaier.add_child(spacer);
+    const reloadIcon = this._getImageAtScale(`${this.metadata.path}/reload.svg`, 24, 24);
+    const reloadButton = new St.Button({ child: reloadIcon, style_class: "reload-button" });
+    reloadButton.connect("clicked", () => this._loadGamesAndSetupUI());
+    headerContaier.add_child(reloadButton);
+
     // Filter and sort the games by last played date (newest first)
     const sortedGames = this.games
       .filter((game) => game.lastPlayed && game.lastPlayed !== "0")
@@ -66,6 +80,8 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
 
     // Slice the first 10 games
     const gamesToDisplay = sortedGames.slice(0, 10);
+
+    const gamesContainer = new St.BoxLayout({ vertical: true, style_class: "games-container" });
 
     gamesToDisplay.forEach((game) => {
       const gameContainer = new St.BoxLayout({ style_class: "game-container", reactive: true, track_hover: true });
@@ -105,16 +121,18 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
       buttonRow.add_child(shopButton);
       labelContainer.add_child(buttonRow);
 
-      mainContainer.add_child(gameContainer);
+      gamesContainer.add_child(gameContainer);
     });
 
     const scrollView = new St.ScrollView({
       style_class: "desklet-scroll-view",
       overlay_scrollbars: true,
+      clip_to_allocation: true,
     });
-    scrollView.add_actor(mainContainer);
+    scrollView.add_actor(gamesContainer);
+    mainContainer.add_child(scrollView);
 
-    this.setContent(scrollView);
+    this.setContent(mainContainer);
   }
 
   // Helper to read the paths of the Steam library folders
