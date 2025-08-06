@@ -18,6 +18,7 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
     this.games = [];
+    this.error = null;
 
     this.setHeader(_("Steam Game Starter"));
     this._loadGamesAndSetupUI();
@@ -26,10 +27,11 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
   // Load game data and set up the UI
   _loadGamesAndSetupUI() {
     try {
+      this.error = null;
       this.games = [];
 
       // Get Steam library paths
-      const libraryfoldersDataPath = GLib.get_home_dir() + "/.steam/steam/steamapps/libraryfolders.vdf";
+      const libraryfoldersDataPath = GLib.get_home_dir() + "/.steam/steam/steamapps/librXaryfolders.vdf";
       const libraryfoldersData = GLib.file_get_contents(libraryfoldersDataPath)[1].toString();
       const libraryPaths = this._extractLibraryPaths(libraryfoldersData);
 
@@ -50,16 +52,16 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
           if (game) this.games.push(game);
         }
       }
-
-      this._setupLayout();
     } catch (e) {
+      this.error = e;
       global.logError(`Error initializing desklet: ${e}`);
     }
+    this._setupLayout();
   }
 
   // Setup the entire visual layout of the desklet
   _setupLayout() {
-    const mainContainer = new St.BoxLayout({ vertical: true });
+    const mainContainer = new St.BoxLayout({ vertical: true, style_class: "main-container" });
 
     // Setup header
     const headerContaier = new St.BoxLayout({ style_class: "header-container", reactive: true, track_hover: true });
@@ -124,12 +126,28 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
       gamesContainer.add_child(gameContainer);
     });
 
+    const errorLayout = new St.BoxLayout({ style_class: "error-layout", vertical: true });
+
+    if (gamesToDisplay.length === 0) {
+      const noGamesLabel = new St.Label({ text: _("No games found"), style_class: "no-games-label" });
+      errorLayout.add_child(noGamesLabel);
+    }
+
+    if (this.error) {
+      const errorLabel = new St.Label({ text: "Error: " + this.error.message, style_class: "error-label" });
+      errorLayout.add_child(errorLabel);
+    }
+
     const scrollView = new St.ScrollView({
       style_class: "desklet-scroll-view",
       overlay_scrollbars: true,
       clip_to_allocation: true,
     });
-    scrollView.add_actor(gamesContainer);
+    if (this.error || gamesToDisplay.length === 0) {
+      scrollView.add_actor(errorLayout);
+    } else {
+      scrollView.add_actor(gamesContainer);
+    }
     mainContainer.add_child(scrollView);
 
     this.setContent(mainContainer);
@@ -150,23 +168,18 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
 
   // Helper to extract game info from an appmanifest file
   _extractGameInfo(filePath) {
-    try {
-      const content = GLib.file_get_contents(filePath)[1].toString();
-      const nameMatch = content.match(/"name"\s*"(.*?)"/);
-      const appidMatch = content.match(/"appid"\s*"(.*?)"/);
-      const lastPlayedMatch = content.match(/"LastPlayed"\s*"(.*?)"/);
+    const content = GLib.file_get_contents(filePath)[1].toString();
+    const nameMatch = content.match(/"name"\s*"(.*?)"/);
+    const appidMatch = content.match(/"appid"\s*"(.*?)"/);
+    const lastPlayedMatch = content.match(/"LastPlayed"\s*"(.*?)"/);
 
-      if (nameMatch && appidMatch && lastPlayedMatch) {
-        return {
-          name: nameMatch[1],
-          appid: appidMatch[1],
-          lastPlayed: lastPlayedMatch[1],
-        };
-      }
-    } catch (e) {
-      global.logError(`Error processing file ${filePath}: ${e}`);
+    if (nameMatch && appidMatch && lastPlayedMatch) {
+      return {
+        name: nameMatch[1],
+        appid: appidMatch[1],
+        lastPlayed: lastPlayedMatch[1],
+      };
     }
-    return null;
   }
 
   // Helper to create an actor from a Pixbuf

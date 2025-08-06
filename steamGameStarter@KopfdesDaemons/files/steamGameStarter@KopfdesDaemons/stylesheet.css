@@ -1,3 +1,7 @@
+.main-container {
+  width: 400px;
+}
+
 .game-container {
   margin: 0.5em;
 }
@@ -36,4 +40,10 @@
 .header-label {
   font-weight: bold;
   font-size: 2em;
+}
+
+.error-label {
+  color: red;
+  max-width: 250px;
+  text-wrap: normal;
 }
