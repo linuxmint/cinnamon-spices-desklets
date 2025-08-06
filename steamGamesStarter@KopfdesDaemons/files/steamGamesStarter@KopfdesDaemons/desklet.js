@@ -8,14 +8,14 @@ const GdkPixbuf = imports.gi.GdkPixbuf;
 const Cogl = imports.gi.Cogl;
 const Settings = imports.ui.settings;
 
-const UUID = "steamGameStarter@KopfdesDaemons";
+const UUID = "steamGamesStarter@KopfdesDaemons";
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
 function _(str) {
   return Gettext.dgettext(UUID, str);
 }
 
-class SteamGameStarterDesklet extends Desklet.Desklet {
+class SteamGamesStarterDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
     this.games = [];
@@ -27,7 +27,7 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
     const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
     settings.bindProperty(Settings.BindingDirection.IN, "steam-install-type", "steamInstallType", this._loadGamesAndSetupUI.bind(this));
 
-    this.setHeader(_("Steam Game Starter"));
+    this.setHeader(_("Steam Games Starter"));
     this._loadGamesAndSetupUI();
   }
 
@@ -83,7 +83,7 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
     // Setup header
     const headerContaier = new St.BoxLayout({ style_class: "header-container", reactive: true, track_hover: true });
     mainContainer.add_child(headerContaier);
-    const headerLabel = new St.Label({ text: _("Steam Game Starter"), style_class: "header-label" });
+    const headerLabel = new St.Label({ text: _("Steam Games Starter"), style_class: "header-label" });
     headerContaier.add_child(headerLabel);
     const spacer = new St.BoxLayout({ x_expand: true });
     headerContaier.add_child(spacer);
@@ -284,5 +284,5 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
 }
 
 function main(metadata, deskletId) {
-  return new SteamGameStarterDesklet(metadata, deskletId);
+  return new SteamGamesStarterDesklet(metadata, deskletId);
 }
