@@ -1,0 +1,15 @@
+{
+  "head0": {
+    "type": "header",
+    "description": "Style"
+  },
+  "steam-install-type": {
+    "type": "combobox",
+    "default": "system package",
+    "description": "Steam installation type",
+    "options": {
+      "System package": "system package",
+      "Flatpak": "flatpak"
+    }
+  }
+}

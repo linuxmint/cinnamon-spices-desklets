@@ -6,6 +6,7 @@ const Gettext = imports.gettext;
 const Clutter = imports.gi.Clutter;
 const GdkPixbuf = imports.gi.GdkPixbuf;
 const Cogl = imports.gi.Cogl;
+const Settings = imports.ui.settings;
 
 const UUID = "steamGameStarter@KopfdesDaemons";
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
@@ -19,6 +20,12 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
     super(metadata, deskletId);
     this.games = [];
     this.error = null;
+    this.steamInstallationType = "system package";
+    this.cmdPromt = "/usr/games/steam";
+
+    // Setup settings and bind them to properties
+    const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
+    settings.bindProperty(Settings.BindingDirection.IN, "steam-install-type", "steamInstallType", this._loadGamesAndSetupUI.bind(this));
 
     this.setHeader(_("Steam Game Starter"));
     this._loadGamesAndSetupUI();
@@ -30,8 +37,18 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
       this.error = null;
       this.games = [];
 
+      // Set command prompt based on the installation type
+      if (this.steamInstallType === "flatpak") {
+        this.cmdPromt = "flatpak run com.valvesoftware.Steam";
+      } else {
+        this.cmdPromt = "/usr/games/steam";
+      }
+
       // Get Steam library paths
-      const libraryfoldersDataPath = GLib.get_home_dir() + "/.steam/steam/steamapps/libraryfolders.vdf";
+      let libraryfoldersDataPath = GLib.get_home_dir() + "/.steam/steam/steamapps/libraryfolders.vdf";
+      if (this.steamInstallType === "flatpak") {
+        libraryfoldersDataPath = GLib.get_home_dir() + "/.var/app/com.valvesoftware.Steam/data/Steam/steamapps/libraryfolders.vdf";
+      }
       const libraryfoldersData = GLib.file_get_contents(libraryfoldersDataPath)[1].toString();
       const libraryPaths = this._extractLibraryPaths(libraryfoldersData);
 
@@ -76,9 +93,10 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
     headerContaier.add_child(reloadButton);
 
     // Filter and sort the games by last played date (newest first)
-    const sortedGames = this.games
-      .filter((game) => game.lastPlayed && game.lastPlayed !== "0")
-      .sort((a, b) => parseInt(b.lastPlayed, 10) - parseInt(a.lastPlayed, 10));
+    let sortedGames = this.games.filter((game) => game.lastPlayed).sort((a, b) => parseInt(b.lastPlayed, 10) - parseInt(a.lastPlayed, 10));
+
+    // Filter "Proton Experimental" and "Steam Linux Runtime 3.0 (sniper)" and "Steam Linux Runtime 2.0 (sniper)"
+    sortedGames = sortedGames.filter((game) => game.appid != "1628350" && game.appid != "1493710" && game.appid != "1391110");
 
     // Slice the first 10 games
     const gamesToDisplay = sortedGames.slice(0, 10);
@@ -91,7 +109,7 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
       const imageActor = this._getGameHeaderImage(game.appid, 139, 72);
       if (imageActor) {
         imageActor.connect("button-press-event", () => {
-          GLib.spawn_command_line_async(`steam steam://store/${game.appid}`);
+          GLib.spawn_command_line_async(`${this.cmdPromt} steam://store/${game.appid}`);
           return Clutter.EVENT_PROPAGATE;
         });
         gameContainer.add_child(imageActor);
@@ -117,9 +135,17 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
         return button;
       };
 
-      const playButton = createButton("play", () => GLib.spawn_command_line_async(`steam steam://rungameid/${game.appid}`), "play-button");
+      const playButton = createButton(
+        "play",
+        () => GLib.spawn_command_line_async(`${this.cmdPromt} steam://rungameid/${game.appid}`),
+        "play-button"
+      );
       buttonRow.add_child(playButton);
-      const shopButton = createButton("shop", () => GLib.spawn_command_line_async(`steam steam://store/${game.appid}`), "shop-button");
+      const shopButton = createButton(
+        "shop",
+        () => GLib.spawn_command_line_async(`${this.cmdPromt} steam://store/${game.appid}`),
+        "shop-button"
+      );
       buttonRow.add_child(shopButton);
       labelContainer.add_child(buttonRow);
 
@@ -133,22 +159,19 @@ class SteamGameStarterDesklet extends Desklet.Desklet {
     errorLayout.add_child(iconBin);
 
     if (gamesToDisplay.length === 0) {
-      const noGamesLabel = new St.Label({ text: _("No games found"), style_class: "no-games-label" });
+      const noGamesLabel = new St.Label({ text: _("No installed games found"), style_class: "no-games-label" });
       errorLayout.add_child(noGamesLabel);
     }
 
     if (this.error) {
+      // Use Clutter.Text to display the error message with line wrapping
       const clutterText = new Clutter.Text({
         text: "Error: " + this.error.message,
         line_wrap: true,
         color: new Clutter.Color({ red: 255, green: 0, blue: 0, alpha: 255 }),
       });
 
-      const errorLabel = new St.Bin({
-        child: clutterText,
-        style_class: "error-label",
-      });
-
+      const errorLabel = new St.Bin({ child: clutterText, style_class: "error-label" });
       errorLayout.add_child(errorLabel);
     }
 
