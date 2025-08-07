@@ -22,10 +22,15 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     this.error = null;
     this.steamInstallationType = "system package";
     this.cmdPromt = "/usr/games/steam";
+    this.numberOfGames = 10;
+    this.maxDeskletHeight = 400;
+    this.scrollView = null;
 
     // Setup settings and bind them to properties
     const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
     settings.bindProperty(Settings.BindingDirection.IN, "steam-install-type", "steamInstallType", this._loadGamesAndSetupUI.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "number-of-games", "numberOfGames", this._loadGamesAndSetupUI.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "max-desklet-height", "maxDeskletHeight", this._onDeskletHeightChanged.bind(this));
 
     this.setHeader(_("Steam Games Starter"));
     this._loadGamesAndSetupUI();
@@ -98,8 +103,8 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     // Filter "Proton Experimental" and "Steam Linux Runtime 3.0 (sniper)" and "Steam Linux Runtime 2.0 (sniper)"
     sortedGames = sortedGames.filter((game) => game.appid != "1628350" && game.appid != "1493710" && game.appid != "1391110");
 
-    // Slice the first 10 games
-    const gamesToDisplay = sortedGames.slice(0, 10);
+    // Slice the games to display
+    const gamesToDisplay = sortedGames.slice(0, this.numberOfGames);
 
     const gamesContainer = new St.BoxLayout({ vertical: true, style_class: "games-container" });
 
@@ -175,17 +180,17 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
       errorLayout.add_child(errorLabel);
     }
 
-    const scrollView = new St.ScrollView({
-      style_class: "desklet-scroll-view",
+    this.scrollView = new St.ScrollView({
+      style: "max-height:" + this.maxDeskletHeight + "px; background-color: rgba(58, 64, 74, 0.5);",
       overlay_scrollbars: true,
       clip_to_allocation: true,
     });
     if (this.error || gamesToDisplay.length === 0) {
-      scrollView.add_actor(errorLayout);
+      this.scrollView.add_actor(errorLayout);
     } else {
-      scrollView.add_actor(gamesContainer);
+      this.scrollView.add_actor(gamesContainer);
     }
-    mainContainer.add_child(scrollView);
+    mainContainer.add_child(this.scrollView);
 
     this.setContent(mainContainer);
   }
@@ -279,6 +284,12 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     } catch (e) {
       global.logError(`Error loading image ${imageFileName}: ${e}`);
       return new St.Label({ text: "Error" });
+    }
+  }
+
+  _onDeskletHeightChanged() {
+    if (this.scrollView) {
+      this.scrollView.set_style("max-height:" + this.maxDeskletHeight + "px; background-color: rgba(58, 64, 74, 0.5);");
     }
   }
 }
