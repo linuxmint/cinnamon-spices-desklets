@@ -25,12 +25,14 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     this.numberOfGames = 10;
     this.maxDeskletHeight = 400;
     this.scrollView = null;
+    this.backgroundColor = "rgba(58, 64, 74, 0.5)";
 
     // Setup settings and bind them to properties
     const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
     settings.bindProperty(Settings.BindingDirection.IN, "steam-install-type", "steamInstallType", this._loadGamesAndSetupUI.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "number-of-games", "numberOfGames", this._loadGamesAndSetupUI.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "max-desklet-height", "maxDeskletHeight", this._onDeskletHeightChanged.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "max-desklet-height", "maxDeskletHeight", this._updateScrollViewStyle.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "background-color", "backgroundColor", this._updateScrollViewStyle.bind(this));
 
     this.setHeader(_("Steam Games Starter"));
     this._loadGamesAndSetupUI();
@@ -43,19 +45,15 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
       this.games = [];
 
       // Set command prompt based on the installation type
-      if (this.steamInstallType === "flatpak") {
-        this.cmdPromt = "flatpak run com.valvesoftware.Steam";
-      } else {
-        this.cmdPromt = "/usr/games/steam";
-      }
+      this.steamInstallType === "flatpak" ? (this.cmdPromt = "flatpak run com.valvesoftware.Steam") : (this.cmdPromt = "/usr/games/steam");
 
       // Get Steam library paths
-      let libraryfoldersDataPath = GLib.get_home_dir() + "/.steam/steam/steamapps/libraryfolders.vdf";
+      let libraryfoldersFilePath = GLib.get_home_dir() + "/.steam/steam/steamapps/libraryfolders.vdf";
       if (this.steamInstallType === "flatpak") {
-        libraryfoldersDataPath = GLib.get_home_dir() + "/.var/app/com.valvesoftware.Steam/data/Steam/steamapps/libraryfolders.vdf";
+        libraryfoldersFilePath = GLib.get_home_dir() + "/.var/app/com.valvesoftware.Steam/data/Steam/steamapps/libraryfolders.vdf";
       }
-      const libraryfoldersData = GLib.file_get_contents(libraryfoldersDataPath)[1].toString();
-      const libraryPaths = this._extractLibraryPaths(libraryfoldersData);
+      const libraryfoldersFileContent = GLib.file_get_contents(libraryfoldersFilePath)[1].toString();
+      const libraryPaths = this._extractLibraryPaths(libraryfoldersFileContent);
 
       // Find all appmanifest files in the library paths
       const appmanifestPaths = [];
@@ -132,26 +130,17 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
       labelContainer.add_child(dateLabel);
 
       const buttonRow = new St.BoxLayout({ style: "spacing: 10px;" });
-      const buttonHeight = 22;
-      const createButton = (iconName, callback, styleClass) => {
-        const icon = this._getImageAtScale(`${this.metadata.path}/${iconName}.svg`, buttonHeight, buttonHeight);
-        const button = new St.Button({ child: icon, style_class: styleClass });
-        button.connect("clicked", callback.bind(this));
-        return button;
-      };
 
-      const playButton = createButton(
-        "play",
-        () => GLib.spawn_command_line_async(`${this.cmdPromt} steam://rungameid/${game.appid}`),
-        "play-button"
-      );
+      const playIcon = this._getImageAtScale(`${this.metadata.path}/play.svg`, 22, 22);
+      const playButton = new St.Button({ child: playIcon, style_class: "play-button" });
+      playButton.connect("clicked", () => GLib.spawn_command_line_async(`${this.cmdPromt} steam://rungameid/${game.appid}`));
       buttonRow.add_child(playButton);
-      const shopButton = createButton(
-        "shop",
-        () => GLib.spawn_command_line_async(`${this.cmdPromt} steam://store/${game.appid}`),
-        "shop-button"
-      );
+
+      const shopIcon = this._getImageAtScale(`${this.metadata.path}/shop.svg`, 22, 22);
+      const shopButton = new St.Button({ child: shopIcon, style_class: "shop-button" });
+      shopButton.connect("clicked", () => GLib.spawn_command_line_async(`${this.cmdPromt} steam://store/${game.appid}`));
       buttonRow.add_child(shopButton);
+
       labelContainer.add_child(buttonRow);
 
       gamesContainer.add_child(gameContainer);
@@ -180,18 +169,16 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
       errorLayout.add_child(errorLabel);
     }
 
-    this.scrollView = new St.ScrollView({
-      style: "max-height:" + this.maxDeskletHeight + "px; background-color: rgba(58, 64, 74, 0.5);",
-      overlay_scrollbars: true,
-      clip_to_allocation: true,
-    });
+    this.scrollView = new St.ScrollView({ overlay_scrollbars: true, clip_to_allocation: true });
+    this._updateScrollViewStyle();
+
     if (this.error || gamesToDisplay.length === 0) {
       this.scrollView.add_actor(errorLayout);
     } else {
       this.scrollView.add_actor(gamesContainer);
     }
-    mainContainer.add_child(this.scrollView);
 
+    mainContainer.add_child(this.scrollView);
     this.setContent(mainContainer);
   }
 
@@ -287,10 +274,9 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     }
   }
 
-  _onDeskletHeightChanged() {
-    if (this.scrollView) {
-      this.scrollView.set_style("max-height:" + this.maxDeskletHeight + "px; background-color: rgba(58, 64, 74, 0.5);");
-    }
+  _updateScrollViewStyle() {
+    if (!this.scrollView) return;
+    this.scrollView.set_style("max-height:" + this.maxDeskletHeight + "px; background-color: " + this.backgroundColor + ";");
   }
 }
 

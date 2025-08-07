@@ -1,7 +1,7 @@
 {
   "head0": {
     "type": "header",
-    "description": "Style"
+    "description": "General"
   },
   "steam-install-type": {
     "type": "combobox",
@@ -20,6 +20,10 @@
     "step": 1,
     "description": "Maximum number of games"
   },
+  "head1": {
+    "type": "header",
+    "description": "Style"
+  },
   "max-desklet-height": {
     "type": "scale",
     "default": 400,
@@ -27,5 +31,10 @@
     "max": 1000,
     "step": 1,
     "description": "Maximum height of the desklet"
+  },
+  "background-color": {
+    "type": "colorchooser",
+    "default": "rgba(58, 64, 74, 0.5)",
+    "description": "Background color"
   }
 }
