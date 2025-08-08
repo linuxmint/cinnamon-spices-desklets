@@ -51,11 +51,13 @@
         "enableFeedButton",
         "enableTimestamp",
         "enableFavoriteFeature",
+        "loadFavoritesOnStartup",
         "showRefreshSeparators",
         "articleSpacing",
         "enableDebugLogs",
         "showReadStatusCheckbox",
-        "ai_chatgptapikey"
+        "dimReadTitles",
+        "readTitleColor"
       ]
     },
 
@@ -69,7 +71,6 @@
       "type": "section",
       "title": "AI settings",
       "keys": [
-        "refreshsettingsbutton",
         "ai_label-info",
         "ai_button-chatgpt-usage",
         "ai_enablesummary",
@@ -276,7 +277,7 @@
 
   "ai_label-info": {
     "type": "label",
-    "description": "These are experimental AI features. Use at your own risk!\nAlso they are needing ChatGPT account, and can cost money! $$$ "
+    "description": "These are experimental AI features. Use at your own risk!\nAlso they are needing ChatGPT/DeepSeek account or compatible API."
   },
 
   "ai_button-chatgpt-apikeys": {
@@ -486,5 +487,17 @@
     "description": "Show read status checkbox",
     "type": "switch",
     "default": true
+  },
+  "dimReadTitles": {
+    "description": "Dim read article titles",
+    "type": "switch",
+    "default": true,
+    "tooltip": "When enabled, read titles are slightly dimmed for better visual distinction"
+  },
+  "readTitleColor": {
+    "type": "colorchooser",
+    "default": "rgb(180,180,180)",
+    "description": "Color for read article titles",
+    "tooltip": "Choose a color applied to read titles"
   }
 }

@@ -1,3 +1,26 @@
+rules:
+
+- name: "Disallow direct global.log in production code"
+  applies_to:
+
+  - "\*_/_.js"
+    excludes:
+  - "logger.js"
+    pattern: /(^|\W)global\.log\(/
+    message: "Use the central logger. In modules, use `const Logger = require('./logger');` and `Logger.log(msg, isError?)`. In `desklet.js`, prefer the local `log(...)` helper which delegates to the central logger."
+    suggest: "Replace with `Logger.log(` (or `log(` inside `desklet.js`)."
+
+- name: "Centralized debug control"
+  applies_to:
+
+  - "desklet.js"
+    message: "Keep debug flag wired via settings: call `Logger.setDebugEnabled(this.enableDebugLogs)` and never reference `window.yarrDebugEnabled` directly."
+
+- name: "Consistent Yarr log prefixes"
+  applies_to:
+  - "\*_/_.js"
+    message: "Prefix errors with `[Yarr Error]` and use debug logs `[Yarr Debug]` when helpful; central logger already adds prefixes when missing."
+
 # YARR Desklet Development Rules
 
 ## Critical Rules

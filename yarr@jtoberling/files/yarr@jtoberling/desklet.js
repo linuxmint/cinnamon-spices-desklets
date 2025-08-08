@@ -22,6 +22,9 @@ const Main = imports.ui.main;
 const PopupMenu = imports.ui.popupMenu;
 const ByteArray = imports.byteArray;
 
+// Central logger
+const Logger = require('./logger');
+
 // Import our modules in correct dependency order
 let fromXML;
 try {
@@ -31,9 +34,9 @@ try {
         throw new Error('fromXML export is not a function');
     }
 } catch (e) {
-    global.log('[Yarr Critical] XML parser failed: ' + e);
+    Logger.log('[Yarr Critical] XML parser failed: ' + e, true);
     fromXML = function (xml) {
-        global.log('[Yarr Warning] Using fallback XML parser');
+        Logger.log('[Yarr Warning] Using fallback XML parser');
         return { items: [], title: 'Parser Error' };
     };
 }
@@ -44,8 +47,9 @@ try {
     var AsyncDatabaseManager = AsyncManagers.AsyncDatabaseManager;
     var TimerManager = AsyncManagers.TimerManager;
     var UIUpdateManager = AsyncManagers.UIUpdateManager;
+    var AsyncErrorHandler = AsyncManagers.AsyncErrorHandler;
 } catch (e) {
-    global.log('[Yarr Error] async-managers import failed: ' + e);
+    Logger.log('[Yarr Error] async-managers import failed: ' + e, true);
     throw e;
 }
 
@@ -55,7 +59,7 @@ try {
     var RefreshDB = DatabaseManagers.RefreshDB;
     var ReadStatusDB = DatabaseManagers.ReadStatusDB;
 } catch (e) {
-    global.log('[Yarr Error] database-managers import failed: ' + e);
+    Logger.log('[Yarr Error] database-managers import failed: ' + e, true);
     throw e;
 }
 
@@ -65,7 +69,7 @@ try {
     var createRssSearchDialog = UIComponents.createRssSearchDialog;
     var createFeedSelectionDialog = UIComponents.createFeedSelectionDialog;
 } catch (e) {
-    global.log('[Yarr Error] ui-components import failed: ' + e);
+    Logger.log('[Yarr Error] ui-components import failed: ' + e, true);
     throw e;
 }
 
@@ -75,21 +79,13 @@ function _(str) {
     return Gettext.dgettext(UUID, str);
 }
 
-// Logging helper function
+// Logging helper function (delegates to central logger)
 function log(message, isError = false) {
-    if (isError) {
-        // Always log errors
-        global.log('[Yarr Error] ' + message);
-    } else {
-        // Only log debug messages if enabled via settings
-        if (window.yarrDebugEnabled) {
-            global.log('[Yarr Debug] ' + message);
-        }
-    }
+    Logger.log(message, isError);
 }
 
-// Global access to debug setting
-window.yarrDebugEnabled = false;
+// Initialize debug setting
+Logger.setDebugEnabled(false);
 
 
 
@@ -184,6 +180,9 @@ class YarrDesklet extends Desklet.Desklet {
 
     // Add new property for read feature
     readArticleIds = new Set();
+    // Read title styling
+    dimReadTitles = true;
+    readTitleColor = 'rgb(180,180,180)';
 
     constructor(metadata, desklet_id) {
 
@@ -193,15 +192,11 @@ class YarrDesklet extends Desklet.Desklet {
         // Store desklet_id for later use
         this._desklet_id = desklet_id;
 
-        global.log("----------------------------------- YARR DESKLET INITIALIZING -----------------------------------------------");
+        Logger.log("----------------------------------- YARR DESKLET INITIALIZING -----------------------------------------------");
 
         try {
-            // Add custom menu items to the default menu during initialization
-            // Use a small delay to ensure menu is available
-            GLib.timeout_add(GLib.PRIORITY_DEFAULT, 50, () => {
-                this._addCustomMenuItems();
-                return GLib.SOURCE_REMOVE;
-            });
+            // Ensure menu items are ready; attempt immediately
+            this._addCustomMenuItems();
 
             // translation init
             if (DESKLET_ROOT && !DESKLET_ROOT.startsWith("/usr/share/")) {
@@ -284,14 +279,17 @@ class YarrDesklet extends Desklet.Desklet {
             this.settings.bind("articleSpacing", "articleSpacing");
             this.settings.bind("showRefreshSeparators", "showRefreshSeparators");
             this.settings.bind("enableDebugLogs", "enableDebugLogs");
+            // Read-title styling bindings
+            this.settings.bind('dimReadTitles', 'dimReadTitles');
+            this.settings.bind('readTitleColor', 'readTitleColor');
 
             // Set global debug flag
-            window.yarrDebugEnabled = this.enableDebugLogs;
+            Logger.setDebugEnabled(this.enableDebugLogs);
 
             // Log settings changes
             this.settings.connect("changed::enableDebugLogs", () => {
-                window.yarrDebugEnabled = this.enableDebugLogs;
-                log("Debug logging " + (this.enableDebugLogs ? "enabled" : "disabled"));
+                Logger.setDebugEnabled(this.enableDebugLogs);
+                Logger.log("Debug logging " + (this.enableDebugLogs ? "enabled" : "disabled"));
             });
 
             // Initialize SignalManager
@@ -309,9 +307,12 @@ class YarrDesklet extends Desklet.Desklet {
             this.refreshDb = new RefreshDB();
             this.refreshHistory = [];
 
-            // Load favorites if enabled
+            // Load favorites if enabled (defer slightly to avoid blocking activation)
             if (this.loadFavoritesOnStartup) {
-                this.loadFavoriteArticles();
+                GLib.timeout_add(GLib.PRIORITY_LOW, 500, () => {
+                    this.loadFavoriteArticles();
+                    return GLib.SOURCE_REMOVE;
+                });
             }
 
             // Initialize data asynchronously
@@ -322,14 +323,9 @@ class YarrDesklet extends Desklet.Desklet {
             this.onDisplayChanged();
             this.onSettingsChanged();
 
-            // Start initial feed collection
+            // Start initial feed collection with single one-shot timer
+            // Avoid overlapping with an immediate manual call which can cause contention at startup
             this.setUpdateTimer(1);  // Start first update in 1 second
-
-            // Force immediate feed collection after short delay
-            GLib.timeout_add(GLib.PRIORITY_DEFAULT, 100, () => {
-                this.collectFeeds();
-                return GLib.SOURCE_REMOVE;
-            });
 
             // Add cleanup handler
             this.actor.connect('destroy', () => this._onDestroy());
@@ -366,17 +362,17 @@ class YarrDesklet extends Desklet.Desklet {
                 });
             }
         } catch (e) {
-            global.log('[Yarr Error] Constructor error: ' + e);
+            log('[Yarr Error] Constructor error: ' + e);
             throw e;
         }
     }
 
     on_desklet_added_to_desktop() {
-        global.log("YARR DESKLET: on_desklet_added_to_desktop called");
+        log("YARR DESKLET: on_desklet_added_to_desktop called");
         this._log("Desklet added to desktop, connecting wake-up signal.");
 
         // Try to connect the wake-up signal with a delay to ensure Main.screenShield is available
-        GLib.timeout_add(GLib.PRIORITY_DEFAULT, 1000, () => {
+        GLib.timeout_add(GLib.PRIORITY_LOW, 1000, () => {
             this._connectWakeUpSignal();
             return GLib.SOURCE_REMOVE;
         });
@@ -409,8 +405,8 @@ class YarrDesklet extends Desklet.Desklet {
     }
 
     _startFallbackWakeUpDetection() {
-        // Check every 30 seconds if the system has woken up
-        this._wakeUpCheckTimer = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 30, () => {
+        // Check every 30 seconds if the system has woken up (low priority)
+        this._wakeUpCheckTimer = GLib.timeout_add_seconds(GLib.PRIORITY_LOW, 30, () => {
             this._checkForWakeUp();
             return GLib.SOURCE_CONTINUE;
         });
@@ -437,14 +433,11 @@ class YarrDesklet extends Desklet.Desklet {
         try {
             this._log("Applying post-reload/wake-up fixes now.");
             if (this.actor) {
-                this.actor.reactive = true;
-                this.actor.can_focus = true;
-                this.actor.show();
-                this.actor.raise_top();
-                this.actor.queue_redraw();
-                // Force the desklet to be the top-most actor and receive events
+                // Keep adjustments minimal to avoid compositor contention
                 this.actor.set_reactive(true);
                 this.actor.set_can_focus(true);
+                this.actor.show();
+                this.actor.queue_redraw();
                 this._log("Post-reload/wake-up fixes applied successfully.");
             } else {
                 this._log("Actor not found, cannot apply fixes.", true);
@@ -476,13 +469,28 @@ class YarrDesklet extends Desklet.Desklet {
             this.refreshHistory = await this.refreshDb.getRefreshHistory();
             this._log(`Loaded ${this.refreshHistory.length} refresh events`);
 
+            // Load favorites key set early for correct favorite marking
+            try {
+                const favSet = await this.favoritesDb.getFavorites();
+                if (favSet && favSet.size !== undefined) {
+                    this.favoriteKeys = favSet;
+                    this._log(`Loaded favoriteKeys: ${this.favoriteKeys.size}`);
+                }
+            } catch (e) {
+                this._log('Error loading favorite keys: ' + e, true);
+            }
+
             // Load read status for last 3 months
             const threeMonthsAgo = Date.now() - (90 * 24 * 60 * 60 * 1000);
             this.readArticleIds = await this.readStatusDb.getReadIds(threeMonthsAgo);
             this._log(`Loaded ${this.readArticleIds.size} read article IDs`);
 
-            // Refresh display to show loaded data
-            this.displayItems();
+            // Refresh display to show loaded data (batch to avoid many rapid calls)
+            if (this.uiUpdateManager) {
+                this.uiUpdateManager.scheduleUpdate();
+            } else {
+                this.displayItems();
+            }
 
         } catch (e) {
             this._log('Error initializing data: ' + e, true);
@@ -504,6 +512,14 @@ class YarrDesklet extends Desklet.Desklet {
                     Mainloop.source_remove(this.updateDownloadedTimer);
                 } catch (e) {
                     this._log('Error removing updateDownloadedTimer: ' + e, true);
+                }
+            }
+            // Clear fallback wake-up timer if set
+            if (this._wakeUpCheckTimer && this._wakeUpCheckTimer > 0) {
+                try {
+                    GLib.source_remove(this._wakeUpCheckTimer);
+                } catch (e) {
+                    this._log('Error removing _wakeUpCheckTimer: ' + e, true);
                 }
             }
 
@@ -557,7 +573,7 @@ class YarrDesklet extends Desklet.Desklet {
 
     onSearchRssFeeds() {
         // Add detailed logging
-        global.log('onSearchRssFeeds called - creating RSS search dialog');
+        log('onSearchRssFeeds called - creating RSS search dialog');
 
         // Create and show the RSS search dialog
         let rssSearchDialog = createRssSearchDialog(
@@ -569,10 +585,10 @@ class YarrDesklet extends Desklet.Desklet {
     }
 
     _onRssSearchResult(baseUrl) {
-        global.log('_onRssSearchResult called with URL: ' + baseUrl);
+        log('_onRssSearchResult called with URL: ' + baseUrl);
 
         if (!baseUrl) {
-            global.log('No URL provided, aborting search');
+            log('No URL provided, aborting search');
             return;
         }
 
@@ -585,44 +601,44 @@ class YarrDesklet extends Desklet.Desklet {
 
     _testCommand() {
         try {
-            global.log("Starting basic command test...");
+            log("Starting basic command test...");
 
             // Test 1: Can we run a simple echo command?
             AsyncCommandExecutor.executeCommand('echo "Hello World"', (success1, stdout1, stderr1) => {
                 if (success1) {
-                    global.log("Echo test successful: " + stdout1);
+                    log("Echo test successful: " + stdout1);
                 } else {
-                    global.log("Echo test failed: " + (stderr1 || "Unknown error"));
+                    log("Echo test failed: " + (stderr1 || "Unknown error"));
                 }
 
                 // Test 2: Can we run the which command to find curl?
                 AsyncCommandExecutor.executeCommand('which curl', (success2, stdout2, stderr2) => {
                     if (success2 && stdout2 && stdout2.length > 0) {
-                        global.log("Curl found at: " + stdout2);
+                        log("Curl found at: " + stdout2);
                     } else {
-                        global.log("Curl not found: " + (stderr2 || "Not in PATH"));
+                        log("Curl not found: " + (stderr2 || "Not in PATH"));
                     }
 
                     // Test 3: Can we try a very simple curl command?
                     AsyncCommandExecutor.executeCommand('curl --version', (success3, stdout3, stderr3) => {
                         if (success3) {
-                            global.log("Curl version test successful");
+                            log("Curl version test successful");
                         } else {
-                            global.log("Curl version test failed: " + (stderr3 || "Unknown error"));
+                            log("Curl version test failed: " + (stderr3 || "Unknown error"));
                         }
 
-                        global.log("Basic command test completed");
+                        log("Basic command test completed");
                     });
                 });
             });
         } catch (e) {
-            global.log("Error in _testCommand: " + e.message);
+            log("Error in _testCommand: " + e.message);
         }
     }
 
     _showSimpleNotification(message) {
         try {
-            global.log('Showing simple notification: ' + message);
+            log('Showing simple notification: ' + message);
 
             // Create a simple notification using a normal dialog
             let dialog = new ModalDialog.ModalDialog();
@@ -649,25 +665,25 @@ class YarrDesklet extends Desklet.Desklet {
             ]);
 
             dialog.open();
-            global.log('Simple notification shown');
+            log('Simple notification shown');
 
             return dialog;
         } catch (e) {
-            global.log('Error showing simple notification: ' + e);
+            log('Error showing simple notification: ' + e);
             return null;
         }
     }
 
     _searchForRssFeeds(baseUrl) {
         try {
-            global.log('Starting simplified RSS feed search for: ' + baseUrl);
+            log('Starting simplified RSS feed search for: ' + baseUrl);
 
             // Make sure the URL has a protocol prefix
             if (!baseUrl.startsWith('http://') && !baseUrl.startsWith('https://')) {
                 baseUrl = 'https://' + baseUrl;
             }
 
-            global.log('Processed URL: ' + baseUrl);
+            log('Processed URL: ' + baseUrl);
 
             // Just check the base URL and maybe a couple of common paths
             const pathsToCheck = [
@@ -733,7 +749,7 @@ class YarrDesklet extends Desklet.Desklet {
 
             let foundFeeds = [];
 
-            global.log('Will check ' + pathsToCheck.length + ' URLs');
+            log('Will check ' + pathsToCheck.length + ' URLs');
 
             // Use async approach - check URLs in parallel
             let completedChecks = 0;
@@ -747,37 +763,37 @@ class YarrDesklet extends Desklet.Desklet {
                 }
                 url += path;
 
-                global.log('Checking URL: ' + url);
+                log('Checking URL: ' + url);
 
                 // Very simple command
                 let command = 'curl -s -L --max-time 3 --connect-timeout 2 "' + url + '"';
-                global.log('Running command: ' + command);
+                log('Running command: ' + command);
 
                 AsyncCommandExecutor.executeCommand(command, (success, stdout, stderr) => {
                     completedChecks++;
-                    global.log(`Command completed for ${url}: success=${success}, stdout length=${stdout ? stdout.length : 0}, stderr=${stderr || 'none'}`);
+                    log(`Command completed for ${url}: success=${success}, stdout length=${stdout ? stdout.length : 0}, stderr=${stderr || 'none'}`);
 
                     if (!success) {
-                        global.log('Command failed for ' + url);
+                        log('Command failed for ' + url);
                     } else {
                         let content = '';
                         if (stdout && stdout.length > 0) {
                             content = stdout;
-                            global.log('Got content of length: ' + content.length);
+                            log('Got content of length: ' + content.length);
                         } else {
-                            global.log('No content received');
+                            log('No content received');
                         }
 
                         // Very simple check
                         if (content.includes('<rss') || content.includes('<feed') || content.includes('<channel')) {
-                            global.log('Found potential feed at: ' + url);
+                            log('Found potential feed at: ' + url);
 
                             // Extract title
                             let title = url;
                             const titleMatch = content.match(/<title>(.*?)<\/title>/i);
                             if (titleMatch && titleMatch[1]) {
                                 title = titleMatch[1].trim();
-                                global.log('Feed title: ' + title);
+                                log('Feed title: ' + title);
                             }
 
                             foundFeeds.push({
@@ -785,20 +801,20 @@ class YarrDesklet extends Desklet.Desklet {
                                 title: title
                             });
                         } else {
-                            global.log('Not a feed: ' + url);
+                            log('Not a feed: ' + url);
                         }
                     }
 
                     // Check if all URLs have been processed
                     if (completedChecks === totalChecks) {
-                        global.log('Search completed, found ' + foundFeeds.length + ' feeds');
+                        log('Search completed, found ' + foundFeeds.length + ' feeds');
 
                         // Show results
                         if (foundFeeds.length > 0) {
-                            global.log('Showing feed selection dialog with ' + foundFeeds.length + ' feeds');
+                            log('Showing feed selection dialog with ' + foundFeeds.length + ' feeds');
                             this._showFeedSelectionDialog(foundFeeds);
                         } else {
-                            global.log('No feeds found, showing notification');
+                            log('No feeds found, showing notification');
                             this._showSimpleNotification(_("No RSS feeds found at ") + baseUrl);
                         }
                     }
@@ -806,7 +822,7 @@ class YarrDesklet extends Desklet.Desklet {
             }
 
         } catch (err) {
-            global.log('Error in simplified _searchForRssFeeds: ' + err);
+            log('Error in simplified _searchForRssFeeds: ' + err);
             this._showSimpleNotification(_("Error searching for RSS feeds: ") + err.message);
         }
     }
@@ -996,9 +1012,23 @@ class YarrDesklet extends Desklet.Desklet {
                     }
                 }
 
+                // Add a hard timeout as a safety net
+                let timeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 30000, () => {
+                    reject(new Error('HTTP request timed out'));
+                    return GLib.SOURCE_REMOVE;
+                });
+
+                const clearTimeout = () => {
+                    if (timeoutId) {
+                        try { GLib.source_remove(timeoutId); } catch (e) { }
+                        timeoutId = 0;
+                    }
+                };
+
                 // Handle Soup v2 vs v3
                 if (Soup.MAJOR_VERSION === 2) {
                     this.httpSession.queue_message(message, (session, response) => {
+                        clearTimeout();
                         if (response.status_code !== 200) {
                             reject(new Error(`HTTP ${response.status_code}: ${response.reason_phrase}`));
                             return;
@@ -1010,6 +1040,7 @@ class YarrDesklet extends Desklet.Desklet {
                         (session, result) => {
                             try {
                                 const bytes = session.send_and_read_finish(result);
+                                clearTimeout();
                                 if (!bytes) {
                                     reject(new Error('No response data'));
                                     return;
@@ -1017,6 +1048,7 @@ class YarrDesklet extends Desklet.Desklet {
                                 const response = ByteArray.toString(bytes.get_data());
                                 resolve(response);
                             } catch (error) {
+                                clearTimeout();
                                 reject(error);
                             }
                         });
@@ -1042,8 +1074,10 @@ class YarrDesklet extends Desklet.Desklet {
                 this.timerInProgress = 0;
             }
 
-            // Set minimum delay to prevent excessive CPU usage
-            const delay = Math.max(timeOut === 1 ? 1 : 300, this.delay);
+            // Set delay: 1s for immediate one-shot, otherwise at least 300s or user-defined delay
+            const delay = (timeOut === 1)
+                ? 1
+                : Math.max(300, this.delay);
 
             // Create new timer
             this.timerInProgress = Mainloop.timeout_add_seconds(delay, () => {
@@ -1079,8 +1113,8 @@ class YarrDesklet extends Desklet.Desklet {
         this._updateInProgress = true;
 
         try {
-            // Execute feed collection
-            this.collectFeeds()
+            // Execute feed collection with timeout to avoid hangs
+            AsyncErrorHandler.withTimeout(() => this.collectFeeds(), 30000)
                 .catch(error => {
                     this._log('Error collecting feeds: ' + error, true);
                 })
@@ -1107,8 +1141,13 @@ class YarrDesklet extends Desklet.Desklet {
             this.refreshIcon.set_icon_name('process-working');
         }
 
-        // Immediately collect feeds
-        this.collectFeeds()
+        // Immediately collect feeds (guarded by _updateInProgress to avoid overlap)
+        if (this._updateInProgress) {
+            this.setUpdateTimer(this.delay);
+            return;
+        }
+        this._updateInProgress = true;
+        AsyncErrorHandler.withTimeout(() => this.collectFeeds(), 30000)
             .then(() => {
                 // Reset icon after successful refresh
                 if (this.refreshIcon) {
@@ -1120,7 +1159,10 @@ class YarrDesklet extends Desklet.Desklet {
                 if (this.refreshIcon) {
                     this.refreshIcon.set_icon_name('reload');
                 }
-                global.log('Error refreshing feeds:', error);
+                log('Error refreshing feeds:', error);
+            })
+            .finally(() => {
+                this._updateInProgress = false;
             });
 
         // Also reset the timer for next automatic refresh
@@ -1518,11 +1560,11 @@ class YarrDesklet extends Desklet.Desklet {
                     return GLib.SOURCE_REMOVE;
                 });
             }).catch(e => {
-                global.log('Error in additems:', e);
+                log('Error in additems:', e);
             });
 
         } catch (e) {
-            global.log('Error in additems:', e);
+            log('Error in additems:', e);
         }
     }
 
@@ -1573,6 +1615,7 @@ class YarrDesklet extends Desklet.Desklet {
         if (!this.refreshEnabled || !this.httpSession) return;
 
         try {
+            this._isRefreshing = true;
             const feeds = [...this.feeds].filter(f => f?.active && f?.url?.length);
             if (!feeds?.length) return;
 
@@ -1593,6 +1636,15 @@ class YarrDesklet extends Desklet.Desklet {
                     const result = await this.httpRequest('GET', feed.url);
                     this._log(`Got response for ${feed.name}, length: ${result ? result.length : 0} bytes`);
                     this.processFeedResult(feed, result);
+                    // Avoid frequent full list rebuilds during refresh
+                    this._scheduleThrottledDisplay();
+                    // Yield to main loop between feeds to keep UI responsive
+                    await new Promise(resolve => {
+                        GLib.idle_add(GLib.PRIORITY_DEFAULT_IDLE, () => {
+                            resolve();
+                            return GLib.SOURCE_REMOVE;
+                        });
+                    });
                 } catch (error) {
                     this._log(`Error processing feed ${feed.name}: ${error}`, true);
                 }
@@ -1629,10 +1681,14 @@ class YarrDesklet extends Desklet.Desklet {
             }
 
             this.lastRefresh = new Date(refreshTimestamp);
+            // Final UI update at the end of collection
+            this._cancelThrottledDisplay();
             this.displayItems();
         } catch (error) {
             this._log('Error in collectFeeds: ' + error, true);
             throw error;
+        } finally {
+            this._isRefreshing = false;
         }
     }
 
@@ -1693,60 +1749,77 @@ class YarrDesklet extends Desklet.Desklet {
             // Get the latest refresh event timestamp
             const latestRefresh = this.refreshHistory[0]?.timestamp || Date.now();
 
-            items.forEach(item => {
-                try {
-                    // Skip if no link (we need it for key generation)
-                    if (!item.link) return;
+            // Process items in small chunks to keep UI responsive
+            const processChunk = (startIndex) => {
+                const CHUNK_SIZE = 10;
+                for (let i = startIndex; i < Math.min(items.length, startIndex + CHUNK_SIZE); i++) {
+                    const item = items[i];
+                    try {
+                        // Skip if no link (we need it for key generation)
+                        if (!item.link) return;
 
-                    const catStr = this.getCategoryString(item);
-                    const timestamp = new Date(item.pubDate);
-                    if (isNaN(timestamp.getTime())) return;
+                        const catStr = this.getCategoryString(item);
+                        const timestamp = new Date(item.pubDate);
+                        if (isNaN(timestamp.getTime())) return;
 
-                    // Generate map key using simple hash
-                    const key = this._simpleHash(item.link);
+                        // Generate map key using simple hash
+                        const key = this._simpleHash(item.link);
 
-                    // Check if this item already exists as a favorite
-                    const existingItem = Array.from(this.items.values())
-                        .find(existing =>
-                            existing.isFavorite &&
-                            existing.link === item.link
-                        );
+                        // Check if this item already exists as a favorite
+                        const existingItem = Array.from(this.items.values())
+                            .find(existing =>
+                                existing.isFavorite &&
+                                existing.link === item.link
+                            );
 
-                    // Skip if item exists as a favorite
-                    if (existingItem) return;
+                        // Skip if item exists as a favorite
+                        if (existingItem) return;
 
-                    // Check if the item already exists in our map
-                    const existingNonFavorite = this.items.get(key);
+                        // Check if the item already exists in our map
+                        const existingNonFavorite = this.items.get(key);
 
-                    // Add new item or update existing one
-                    this.items.set(key, {
-                        channel: feed.name,
-                        timestamp: timestamp,
-                        pubDate: item.pubDate,
-                        title: item.title || 'No Title',
-                        link: item.link,
-                        category: catStr,
-                        description: item.description || '',
-                        labelColor: feed.labelcolor || '#ffffff',
-                        // Preserve existing aiResponse if it exists
-                        aiResponse: existingNonFavorite?.aiResponse || '',
-                        isFavorite: (() => {
-                            if (!this.favoriteKeys || typeof this.favoriteKeys.has !== 'function') {
-                                return false;
-                            }
-                            const isFav = this.favoriteKeys.has(item.link);
-                            if (isFav) {
-                                this._log(`Item is favorite: ${item.title}`);
-                            }
-                            return isFav;
-                        })(),
-                        // Use the latest refresh event timestamp
-                        downloadTimestamp: latestRefresh
-                    });
-                } catch (e) {
-                    this._log('Error processing feed item: ' + e, true);
+                        // Add new item or update existing one
+                        this.items.set(key, {
+                            channel: feed.name,
+                            timestamp: timestamp,
+                            pubDate: item.pubDate,
+                            title: item.title || 'No Title',
+                            link: item.link,
+                            category: catStr,
+                            description: item.description || '',
+                            labelColor: feed.labelcolor || '#ffffff',
+                            // Preserve existing aiResponse if it exists
+                            aiResponse: existingNonFavorite?.aiResponse || '',
+                            isFavorite: (() => {
+                                if (!this.favoriteKeys || typeof this.favoriteKeys.has !== 'function') {
+                                    return false;
+                                }
+                                const isFav = this.favoriteKeys.has(item.link);
+                                if (isFav) {
+                                    this._log(`Item is favorite: ${item.title}`);
+                                }
+                                return isFav;
+                            })(),
+                            // Use the latest refresh event timestamp
+                            key: key,
+                            downloadTimestamp: latestRefresh
+                        });
+                    } catch (e) {
+                        this._log('Error processing feed item: ' + e, true);
+                    }
                 }
-            });
+                // After each chunk, request a throttled UI update so content appears progressively
+                this._scheduleThrottledDisplay();
+
+                // Schedule next chunk if needed
+                if (startIndex + CHUNK_SIZE < items.length) {
+                    GLib.timeout_add(GLib.PRIORITY_DEFAULT_IDLE, 0, () => {
+                        processChunk(startIndex + CHUNK_SIZE);
+                        return GLib.SOURCE_REMOVE;
+                    });
+                }
+            };
+            processChunk(0);
         } catch (error) {
             this._log('Error in processFeedResult: ' + error, true);
             throw error;
@@ -1819,7 +1892,7 @@ class YarrDesklet extends Desklet.Desklet {
             // Refresh display after toggling favorite
             this.displayItems();
         } catch (e) {
-            global.log('Error toggling favorite:', e);
+            log('Error toggling favorite:', e);
         }
     }
 
@@ -1897,11 +1970,11 @@ class YarrDesklet extends Desklet.Desklet {
                 jsonResponse = JSON.parse(response);
                 // Log the parsed JSON response for inspection if parsing is successful
                 if (this.enableDebugLogs) {
-                    global.log(`Parsed JSON Response: ${JSON.stringify(jsonResponse, null, 2)}`);
+                    log(`Parsed JSON Response: ${JSON.stringify(jsonResponse, null, 2)}`);
                 }
             } catch (e) {
                 if (this.enableDebugLogs) {
-                    global.log(`ERROR: Failed to parse JSON response. Raw response: "${response}". Error: ${e.message}`);
+                    log(`ERROR: Failed to parse JSON response. Raw response: "${response}". Error: ${e.message}`);
                 }
                 throw new Error('Failed to parse API response into JSON.'); // Re-throw a clearer error
             }
@@ -1909,14 +1982,14 @@ class YarrDesklet extends Desklet.Desklet {
             // Now, check the structure of the *successfully parsed* jsonResponse
             if (!jsonResponse || !jsonResponse.choices || !Array.isArray(jsonResponse.choices) || jsonResponse.choices.length === 0) {
                 if (this.enableDebugLogs) {
-                    global.log(`ERROR: Invalid API response structure. Missing 'choices' or 'choices' is empty. Parsed response: ${JSON.stringify(jsonResponse, null, 2)}`);
+                    log(`ERROR: Invalid API response structure. Missing 'choices' or 'choices' is empty. Parsed response: ${JSON.stringify(jsonResponse, null, 2)}`);
                 }
                 throw new Error('Invalid API response: "choices" array is missing or empty.');
             }
 
             if (!jsonResponse.choices[0]) {
                 if (this.enableDebugLogs) {
-                    global.log(`ERROR: Invalid API response structure. First choice is missing. Parsed response: ${JSON.stringify(jsonResponse, null, 2)}`);
+                    log(`ERROR: Invalid API response structure. First choice is missing. Parsed response: ${JSON.stringify(jsonResponse, null, 2)}`);
                 }
                 throw new Error('Invalid API response: First choice is missing.');
             }
@@ -1929,18 +2002,18 @@ class YarrDesklet extends Desklet.Desklet {
             }
 
             item.aiResponse += jsonResponse.choices[0].message.content;
-            global.log('EEEEEEEEEEEEEEEE 4');
+            log('EEEEEEEEEEEEEEEE 4');
 
             this.displayItems();
 
-            global.log('EEEEEEEEEEEEEEEE 5');
+            log('EEEEEEEEEEEEEEEE 5');
 
             if (sumIcon) {
                 sumIcon.set_icon_name('document-edit-symbolic');
             }
 
         } catch (error) {
-            global.log('Error in summarizeUri:', error);
+            log('Error in summarizeUri:', error);
             if (sumIcon) {
                 sumIcon.set_icon_name('dialog-error-symbolic');
             }
@@ -1966,21 +2039,13 @@ class YarrDesklet extends Desklet.Desklet {
     async loadFavoriteArticles() {
         try {
             this._log('Starting loadFavoriteArticles...');
-
-            // Use direct GLib call with proper JSON output
+            // Query via AsyncDatabaseManager to avoid blocking UI
             const sql = `SELECT * FROM favorites ORDER BY timestamp DESC`;
-            const command = `sqlite3 "${this.favoritesDb.dbPath}" "${sql}" -json`;
-
-            this._log('Executing command: ' + command);
-
-            const [success, stdout, stderr] = GLib.spawn_command_line_sync(command);
-
-            if (!success) {
-                this._log('Error loading favorites: ' + stderr.toString(), true);
+            const rawResult = await this.favoritesDb.executeQuery(sql);
+            if (!rawResult) {
+                this._log('Error loading favorites: empty result', true);
                 return;
             }
-
-            const rawResult = stdout.toString();
             this._log('Raw result length: ' + rawResult.length);
             this._log('Raw result preview: ' + rawResult.substring(0, 200));
 
@@ -2011,18 +2076,26 @@ class YarrDesklet extends Desklet.Desklet {
                 // Use the same hash function as processFeedResult for consistent keys
                 const key = this._simpleHash(item.link);
 
+                // Derive channel name and color if not stored in DB
+                const inferred = this._inferChannelFromLink(item.link);
+
+                // Normalize timestamp; fall back to now if not present
+                let tsMs = parseInt(item.timestamp);
+                if (!tsMs || isNaN(tsMs)) tsMs = now;
+
                 this.items.set(key, {
-                    channel: item.channel || 'Unknown',
-                    timestamp: new Date(parseInt(item.timestamp)),
-                    pubDate: item.pubDate,
-                    title: item.title,
+                    channel: item.channel || inferred.name,
+                    timestamp: new Date(tsMs),
+                    pubDate: item.pubDate || new Date(tsMs).toUTCString(),
+                    title: item.title || '(no title)',
                     link: item.link,
-                    category: item.category,
-                    description: item.description,
-                    labelColor: item.labelColor || '#ffffff',
+                    category: item.category || '',
+                    description: item.description || '',
+                    labelColor: item.labelColor || inferred.color || '#ffffff',
                     aiResponse: item.aiResponse || '',
                     isFavorite: true,
-                    downloadTimestamp: now // Set generic timestamp for favorites
+                    downloadTimestamp: now,
+                    key: key
                 });
 
                 // Add to favoriteKeys Set for consistency
@@ -2034,9 +2107,73 @@ class YarrDesklet extends Desklet.Desklet {
 
             this._log(`favoriteKeys size after: ${this.favoriteKeys?.size || 0}`);
             this._log('loadFavoriteArticles completed');
+
+            // Refresh display so favorites appear immediately
+            if (this.uiUpdateManager) {
+                this.uiUpdateManager.scheduleUpdate();
+            } else {
+                this.displayItems();
+            }
         } catch (e) {
             this._log('Error in loadFavoriteArticles: ' + e, true);
         }
+    }
+
+    _inferChannelFromLink(link) {
+        try {
+            const urlObj = this._safeParseUrl(link);
+            const host = urlObj?.hostname || null;
+
+            if (Array.isArray(this.feeds) && host) {
+                for (const feed of this.feeds) {
+                    try {
+                        const feedHost = this._safeParseUrl(feed?.url)?.hostname;
+                        if (!feedHost) continue;
+                        if (this._hostnameMatches(host, feedHost)) {
+                            return { name: feed.name || host, color: feed.labelcolor || '#ffffff' };
+                        }
+                    } catch (_ignored) { }
+                }
+            }
+
+            return { name: host || 'Unknown', color: '#ffffff' };
+        } catch (_e) {
+            return { name: 'Unknown', color: '#ffffff' };
+        }
+    }
+
+    _safeParseUrl(raw) {
+        try { return new URL(String(raw)); } catch (_e) { return null; }
+    }
+
+
+    _hostnameMatches(a, b) {
+        if (!a || !b) return false;
+        if (a === b) return true;
+        return a.endsWith('.' + b) || b.endsWith('.' + a);
+    }
+
+    // Throttle expensive full list rebuilds to keep UI responsive while downloading
+    _scheduleThrottledDisplay(intervalMs = 1000) {
+        try {
+            // During bulk refresh, avoid heavy rebuilds entirely; final update will happen at the end
+            if (this._isRefreshing) return;
+            if (this._uiUpdateTimer && this._uiUpdateTimer !== 0) return;
+            this._uiUpdateTimer = GLib.timeout_add(GLib.PRIORITY_DEFAULT_IDLE, intervalMs, () => {
+                this._uiUpdateTimer = 0;
+                try { this.displayItems(); } catch (_e) { }
+                return GLib.SOURCE_REMOVE;
+            });
+        } catch (_ignored) { }
+    }
+
+    _cancelThrottledDisplay() {
+        try {
+            if (this._uiUpdateTimer && this._uiUpdateTimer !== 0) {
+                Mainloop.source_remove(this._uiUpdateTimer);
+                this._uiUpdateTimer = 0;
+            }
+        } catch (_ignored) { this._uiUpdateTimer = 0; }
     }
 
     displayItems() {
@@ -2104,7 +2241,7 @@ class YarrDesklet extends Desklet.Desklet {
             }
 
             // Calculate channel width once
-            const channelWidth = Math.min(Math.max(...sortedItems.map(item => item.channel.length)) * 8, 120);
+            const channelWidth = Math.min(Math.max(...sortedItems.map(item => (item.channel || 'Unknown').length)) * 8, 120);
 
             // Get refresh timestamps and sort them newest first
             // Debug: Check what refreshHistory actually is
@@ -2253,13 +2390,13 @@ class YarrDesklet extends Desklet.Desklet {
             if (!this.enableTimestamp) {
                 const timeBox = new St.BoxLayout({
                     vertical: false,
-                    style: 'width: 60px; margin: auto;'
+                    style: 'width: 90px; margin: auto;'
                 });
 
                 const timeLabel = new St.Label({
                     text: this._formatedDate(item.timestamp, false),
                     y_align: Clutter.ActorAlign.CENTER,
-                    style: 'font-size: 0.8em; text-align: center; margin: auto;'
+                    style: 'font-size: 0.8em; text-align: center; margin: auto; width: 90px;'
                 });
 
                 timeBox.add(timeLabel);
@@ -2271,7 +2408,7 @@ class YarrDesklet extends Desklet.Desklet {
 
             // Conditionally add read status checkbox button
             let readIcon = null;
-            if (this.showReadStatusCheckbox && false) { // Temporarily disabled to avoid errors
+            if (this.showReadStatusCheckbox) {
                 // Debug: Check what readArticleIds actually is
                 this._log(`readArticleIds type: ${typeof this.readArticleIds}, constructor: ${this.readArticleIds?.constructor?.name}`);
                 this._log(`readArticleIds instanceof Set: ${this.readArticleIds instanceof Set}`);
@@ -2462,7 +2599,8 @@ class YarrDesklet extends Desklet.Desklet {
             let baseFont = this.fontstyle.replace(/font-weight:[^;]+;/i, '');
             const titleLabel = new St.Label({
                 text: item.title || 'Untitled',
-                style: baseFont + (isRead ? ' font-weight: normal;' : ' font-weight: bold;'),
+                style: baseFont + (isRead ? ' font-weight: normal;' : ' font-weight: bold;') +
+                    (isRead && this.dimReadTitles ? ` color: ${this.readTitleColor}; opacity: 0.85;` : ''),
                 x_expand: true,
                 x_align: St.Align.START
             });
@@ -2489,16 +2627,17 @@ class YarrDesklet extends Desklet.Desklet {
 
             panelButton.set_child(subItemBox);
 
-            // Set up click handlers for read status and tooltip
-            panelButton.connect('clicked', () => {
-                this._toggleReadStatus(item, this.showReadStatusCheckbox ? readIcon : null, titleLabel);
-            });
-
-            // Setup double-click for tooltip
+            // Consolidated click handling:
+            // - Single click: mark as read (idempotent)
+            // - Double click: open tooltip
             panelButton.connect('button-press-event', (actor, event) => {
-                if (event.get_click_count() === 2) {
-                    // Show tooltip
+                const count = event.get_click_count();
+                if (count === 2) {
                     this._showArticleTooltip(item, event);
+                    return Clutter.EVENT_STOP;
+                }
+                if (count === 1) {
+                    this._markItemAsRead(item, this.showReadStatusCheckbox ? readIcon : null, titleLabel);
                     return Clutter.EVENT_STOP;
                 }
                 return Clutter.EVENT_PROPAGATE;
@@ -2653,7 +2792,7 @@ class YarrDesklet extends Desklet.Desklet {
             Main.uiGroup.add_actor(customTooltip);
             this._currentTooltip = customTooltip;
 
-            // Mark article as read when tooltip is shown
+            // Mark article as read when tooltip is shown (pass full item for consistent logic)
             this._markItemAsRead(item, this.showReadStatusCheckbox ? null : null, null);
 
             // --- Tooltip Positioning ---
@@ -2752,8 +2891,7 @@ class YarrDesklet extends Desklet.Desklet {
                     outsideClickHandler = null;
                 }
             });
-            // Mark article as read when tooltip is shown
-            this._markItemAsRead(item.key, null);
+            // Keep logic single-source; already marked above via _markItemAsRead(item, ...)
             return true;
         } catch (e) {
             this._log(`Error showing article tooltip: ${e}`, true);
@@ -2870,9 +3008,9 @@ class YarrDesklet extends Desklet.Desklet {
             // Create a new map with only the items we want to keep
             this.items = new Map(sortedItems.slice(0, this.itemlimit));
 
-            global.log(`Cleaned up items. Reduced to ${this.items.size} items.`);
+            log(`Cleaned up items. Reduced to ${this.items.size} items.`);
         } catch (e) {
-            global.log('Error in _cleanupOldItems:', e);
+            log('Error in _cleanupOldItems:', e);
         }
     }
 
@@ -3079,8 +3217,9 @@ class YarrDesklet extends Desklet.Desklet {
                     readIcon.style = 'color: #4a90e2;';
                 }
                 if (titleLabel && titleLabel.style) {
-                    let newStyle = titleLabel.style.replace(/font-weight:[^;]+;/i, 'font-weight: normal;');
-                    if (newStyle === titleLabel.style) newStyle += ' font-weight: normal;';
+                    const baseFont = this.fontstyle.replace(/font-weight:[^;]+;/i, '');
+                    let newStyle = baseFont + ' font-weight: normal;';
+                    if (this.dimReadTitles) newStyle += ` color: ${this.readTitleColor}; opacity: 0.85;`;
                     titleLabel.style = newStyle;
                 }
                 this._log(`Marked article as read: ${item.title}`);
@@ -3093,9 +3232,8 @@ class YarrDesklet extends Desklet.Desklet {
                     readIcon.style = 'color: #888888;';
                 }
                 if (titleLabel && titleLabel.style) {
-                    let newStyle = titleLabel.style.replace(/font-weight:[^;]+;/i, 'font-weight: bold;');
-                    if (newStyle === titleLabel.style) newStyle += ' font-weight: bold;';
-                    titleLabel.style = newStyle;
+                    const baseFont = this.fontstyle.replace(/font-weight:[^;]+;/i, '');
+                    titleLabel.style = baseFont + ' font-weight: bold;';
                 }
                 this._log(`Marked article as unread: ${item.title}`);
             }
@@ -3130,8 +3268,9 @@ class YarrDesklet extends Desklet.Desklet {
                 readIcon.style = 'color: #4a90e2;';
             }
             if (titleLabel && titleLabel.style) {
-                let newStyle = titleLabel.style.replace(/font-weight:[^;]+;/i, 'font-weight: normal;');
-                if (newStyle === titleLabel.style) newStyle += ' font-weight: normal;';
+                const baseFont = this.fontstyle.replace(/font-weight:[^;]+;/i, '');
+                let newStyle = baseFont + ' font-weight: normal;';
+                if (this.dimReadTitles) newStyle += ` color: ${this.readTitleColor}; opacity: 0.85;`;
                 titleLabel.style = newStyle;
             }
         }
@@ -3152,8 +3291,8 @@ class YarrDesklet extends Desklet.Desklet {
         // Get the default menu that was created by the parent
         let menu = this._menu;
         if (!menu) {
-            // If menu doesn't exist yet, schedule this to run later
-            GLib.timeout_add(GLib.PRIORITY_DEFAULT, 100, () => {
+            // Try again on the next iteration quickly, but do not block UI
+            GLib.idle_add(GLib.PRIORITY_DEFAULT_IDLE, () => {
                 this._addCustomMenuItems();
                 return GLib.SOURCE_REMOVE;
             });

@@ -1,7 +1,7 @@
 // UI Components for Yarr desklet - dialogs and UI elements
 // VERSION: Function-based approach v2.0 - NO CLASSES!
-
-global.log('[Yarr Debug] Loading ui-components.js - Function-based version 2.0');
+const Logger = require('./logger');
+Logger.log('[Yarr Debug] Loading ui-components.js - Function-based version 2.0');
 
 // Deferred imports for Cinnamon compatibility with require()
 function getSt() { return imports.gi.St; }
@@ -18,31 +18,31 @@ function _(str) {
 }
 
 function createPasswordDialog(label, callback, parent) {
-    global.log('[Yarr Debug] createPasswordDialog called');
-    global.log('[Yarr Debug] ModalDialog type: ' + typeof ModalDialog);
-    global.log('[Yarr Debug] ModalDialog.ModalDialog type: ' + typeof ModalDialog.ModalDialog);
+    Logger.log('[Yarr Debug] createPasswordDialog called');
+    Logger.log('[Yarr Debug] ModalDialog type: ' + typeof ModalDialog);
+    Logger.log('[Yarr Debug] ModalDialog.ModalDialog type: ' + typeof ModalDialog.ModalDialog);
 
     // Create dialog using the same pattern as working examples
-    global.log('[Yarr Debug] About to create ModalDialog instance...');
+    Logger.log('[Yarr Debug] About to create ModalDialog instance...');
     let dialog = new ModalDialog.ModalDialog();
-    global.log('[Yarr Debug] ModalDialog instance created successfully');
+    Logger.log('[Yarr Debug] ModalDialog instance created successfully');
 
     // Safely get password, handling case where STORE_SCHEMA might not be available
     let password = '';
     try {
-        global.log('[Yarr Debug] About to lookup password...');
+        Logger.log('[Yarr Debug] About to lookup password...');
         password = getSecret().password_lookup_sync(parent.STORE_SCHEMA, {}, null);
-        global.log('[Yarr Debug] Password lookup completed');
+        Logger.log('[Yarr Debug] Password lookup completed');
     } catch (e) {
-        global.log('[Yarr Debug] Could not load existing password: ' + e);
+        Logger.log('[Yarr Debug] Could not load existing password: ' + e);
     }
 
-    global.log('[Yarr Debug] About to set dialog content...');
+    Logger.log('[Yarr Debug] About to set dialog content...');
     dialog.contentLayout.set_style('width: auto; max-width: 500px;');
     dialog.contentLayout.add(new (getSt().Label)({ text: label }));
-    global.log('[Yarr Debug] Dialog content set');
+    Logger.log('[Yarr Debug] Dialog content set');
 
-    global.log('[Yarr Debug] About to create UI elements...');
+    Logger.log('[Yarr Debug] About to create UI elements...');
     let passwordBox = new (getSt().BoxLayout)({ vertical: false });
     let entry = new (getSt().Entry)({ style: 'background: green; color:yellow; max-width: 400px;' });
     entry.clutter_text.set_password_char('\u25cf');
@@ -50,9 +50,9 @@ function createPasswordDialog(label, callback, parent) {
     passwordBox.add(entry);
     dialog.contentLayout.add(passwordBox);
     dialog.setInitialKeyFocus(entry.clutter_text);
-    global.log('[Yarr Debug] UI elements created');
+    Logger.log('[Yarr Debug] UI elements created');
 
-    global.log('[Yarr Debug] About to set buttons...');
+    Logger.log('[Yarr Debug] About to set buttons...');
     dialog.setButtons([
         {
             label: "Save",
@@ -84,9 +84,9 @@ function createPasswordDialog(label, callback, parent) {
             focused: false
         }
     ]);
-    global.log('[Yarr Debug] Buttons set');
+    Logger.log('[Yarr Debug] Buttons set');
 
-    global.log('[Yarr Debug] About to set custom open method...');
+    Logger.log('[Yarr Debug] About to set custom open method...');
     // Store reference to original open method and override to focus password entry
     let originalOpen = dialog.open;
     dialog.open = function () {
@@ -94,9 +94,9 @@ function createPasswordDialog(label, callback, parent) {
         // Focus the password entry after dialog opens
         entry.grab_key_focus();
     };
-    global.log('[Yarr Debug] Custom open method set');
+    Logger.log('[Yarr Debug] Custom open method set');
 
-    global.log('[Yarr Debug] createPasswordDialog completed successfully');
+    Logger.log('[Yarr Debug] createPasswordDialog completed successfully');
     return dialog;
 }
 
@@ -314,9 +314,9 @@ function createFeedSelectionDialog(title, feeds, callback, parent) {
 }
 
 // Verify we're exporting functions, not classes
-global.log('[Yarr Debug] Exporting functions: createPasswordDialog=' + typeof createPasswordDialog);
-global.log('[Yarr Debug] Exporting functions: createRssSearchDialog=' + typeof createRssSearchDialog);
-global.log('[Yarr Debug] Exporting functions: createFeedSelectionDialog=' + typeof createFeedSelectionDialog);
+Logger.log('[Yarr Debug] Exporting functions: createPasswordDialog=' + typeof createPasswordDialog);
+Logger.log('[Yarr Debug] Exporting functions: createRssSearchDialog=' + typeof createRssSearchDialog);
+Logger.log('[Yarr Debug] Exporting functions: createFeedSelectionDialog=' + typeof createFeedSelectionDialog);
 
 module.exports = {
     createPasswordDialog,

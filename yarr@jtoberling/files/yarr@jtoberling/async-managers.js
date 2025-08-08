@@ -1,6 +1,7 @@
 // Async managers for Yarr desklet - prevents compositor blocking
 
 // Defer imports to avoid issues with require()
+const Logger = require('./logger');
 let GLib, Gio;
 
 function getGLib() {
@@ -136,9 +137,9 @@ class AsyncDatabaseManager {
                 : ['sqlite3', this.dbPath, escapedSql];
 
             // Log the command for debugging
-            global.log('[Yarr Debug] SQLite command: ' + command.join(' '));
-            global.log('[Yarr Debug] Escaped SQL: ' + escapedSql);
-            global.log('[Yarr Debug] Parameters: ' + JSON.stringify(operation.params));
+            Logger.log('SQLite command: ' + command.join(' '));
+            Logger.log('Escaped SQL: ' + escapedSql);
+            Logger.log('Parameters: ' + JSON.stringify(operation.params));
 
             const glib = getGLib();
             let [success, pid, stdin, stdout, stderr] = glib.spawn_async_with_pipes(
@@ -232,25 +233,25 @@ class AsyncDatabaseManager {
     _escapeSql(sql, params) {
         // SQLite uses ? placeholders - replace them one by one
         let escapedSql = sql;
-        global.log('[Yarr Debug] Original SQL: ' + sql);
-        global.log('[Yarr Debug] Parameters: ' + JSON.stringify(params));
+        Logger.log('Original SQL: ' + sql);
+        Logger.log('Parameters: ' + JSON.stringify(params));
 
         params.forEach((param, index) => {
             const placeholderIndex = escapedSql.indexOf('?');
             if (placeholderIndex !== -1) {
                 const replacement = typeof param === 'number' ? param.toString() : `'${this._escapeString(param)}'`;
                 escapedSql = escapedSql.substring(0, placeholderIndex) + replacement + escapedSql.substring(placeholderIndex + 1);
-                global.log(`[Yarr Debug] Replaced ?${index + 1} with: ${replacement}`);
+                Logger.log(`Replaced ?${index + 1} with: ${replacement}`);
             }
         });
 
-        global.log('[Yarr Debug] Final escaped SQL: ' + escapedSql);
+        Logger.log('Final escaped SQL: ' + escapedSql);
         return escapedSql;
     }
 
     _escapeString(str) {
         if (typeof str !== 'string') {
-            global.log('[Yarr Warning] Non-string value passed to _escapeString');
+            Logger.log('[Yarr Warning] Non-string value passed to _escapeString');
             return '';
         }
         // Escape single quotes by doubling them, and also escape backslashes

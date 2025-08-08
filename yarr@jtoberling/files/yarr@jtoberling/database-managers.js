@@ -1,6 +1,7 @@
 // Database managers for Yarr desklet - async database operations
 
 // Defer imports to avoid issues with require()
+const Logger = require('./logger');
 let GLib;
 
 function getGLib() {
@@ -13,37 +14,29 @@ const { AsyncDatabaseManager, AsyncCommandExecutor } = require('./async-managers
 
 // Logging helper function
 function log(message, isError = false) {
-    if (isError) {
-        // Always log errors
-        global.log('[Yarr Error] ' + message);
-    } else {
-        // Only log debug messages if enabled via settings
-        if (window.yarrDebugEnabled) {
-            global.log('[Yarr Debug] ' + message);
-        }
-    }
+    Logger.log(message, isError);
 }
 
 // Add new class for database management
 class FavoritesDB extends AsyncDatabaseManager {
     constructor() {
         try {
-            global.log('[Yarr Debug] FavoritesDB constructor starting');
+            Logger.log('[Yarr Debug] FavoritesDB constructor starting');
             const glib = getGLib();
             if (!glib) throw new Error('GLib not available');
 
-            global.log('[Yarr Debug] GLib obtained');
+            Logger.log('[Yarr Debug] GLib obtained');
             const userDataDir = glib.get_user_data_dir();
             if (!userDataDir) throw new Error('Could not get user data directory');
 
             const dbFile = glib.build_filenamev([userDataDir, 'yarr_favorites.db']);
             if (!dbFile) throw new Error('Could not build database file path');
 
-            global.log('[Yarr Debug] Database file path: ' + dbFile);
+            Logger.log('[Yarr Debug] Database file path: ' + dbFile);
             super(dbFile);
             this._log(`Favorites database path: ${dbFile}`);
         } catch (e) {
-            global.log('[Yarr Error] Fatal: Could not determine database path: ' + e);
+            Logger.log('[Yarr Error] Fatal: Could not determine database path: ' + e, true);
             throw new Error('Could not initialize database: ' + e.message);
         }
         this.initDatabase();
@@ -64,7 +57,10 @@ class FavoritesDB extends AsyncDatabaseManager {
                     description TEXT,
                     category TEXT,
                     timestamp INTEGER,
-                    hash TEXT
+                    hash TEXT,
+                    channel TEXT,
+                    labelColor TEXT,
+                    pubDate TEXT
                 )
             `;
             await this.executeQuery(createSql);
@@ -77,6 +73,36 @@ class FavoritesDB extends AsyncDatabaseManager {
                 this._log('Hash column missing, adding it...');
                 await this.executeQuery("ALTER TABLE favorites ADD COLUMN hash TEXT");
                 this._log('Hash column added to favorites table');
+            }
+
+            // Check and add channel column
+            try {
+                await this.executeQuery("SELECT channel FROM favorites LIMIT 1");
+                this._log('Channel column exists in favorites table');
+            } catch (e) {
+                this._log('Channel column missing, adding it...');
+                await this.executeQuery("ALTER TABLE favorites ADD COLUMN channel TEXT");
+                this._log('Channel column added to favorites table');
+            }
+
+            // Check and add labelColor column
+            try {
+                await this.executeQuery("SELECT labelColor FROM favorites LIMIT 1");
+                this._log('labelColor column exists in favorites table');
+            } catch (e) {
+                this._log('labelColor column missing, adding it...');
+                await this.executeQuery("ALTER TABLE favorites ADD COLUMN labelColor TEXT");
+                this._log('labelColor column added to favorites table');
+            }
+
+            // Check and add pubDate column
+            try {
+                await this.executeQuery("SELECT pubDate FROM favorites LIMIT 1");
+                this._log('pubDate column exists in favorites table');
+            } catch (e) {
+                this._log('pubDate column missing, adding it...');
+                await this.executeQuery("ALTER TABLE favorites ADD COLUMN pubDate TEXT");
+                this._log('pubDate column added to favorites table');
             }
 
             this._log('Favorites database initialized successfully');
@@ -103,13 +129,27 @@ class FavoritesDB extends AsyncDatabaseManager {
     async addFavorite(item) {
         try {
             const hash = await this._calculateSHA256(item.link);
-            const now = Date.now();
+            // Use article publish time if available; fall back to now
+            let publishMs = Date.now();
+            try {
+                if (item && item.timestamp) {
+                    if (typeof item.timestamp.getTime === 'function') {
+                        publishMs = item.timestamp.getTime();
+                    } else {
+                        const parsed = parseInt(item.timestamp);
+                        if (!isNaN(parsed)) publishMs = parsed;
+                    }
+                } else if (item && item.pubDate) {
+                    const d = new Date(item.pubDate);
+                    if (!isNaN(d.getTime())) publishMs = d.getTime();
+                }
+            } catch (_ignored) { }
 
             const sql = `
                 INSERT OR REPLACE INTO favorites (
-                    link, title, description, category, timestamp, hash
+                    link, title, description, category, timestamp, hash, channel, labelColor, pubDate
                 ) VALUES (
-                    ?, ?, ?, ?, ?, ?
+                    ?, ?, ?, ?, ?, ?, ?, ?, ?
                 )
             `;
 
@@ -118,8 +158,11 @@ class FavoritesDB extends AsyncDatabaseManager {
                 item.title || '',
                 item.description || '',
                 item.category || '',
-                now,
-                hash || ''
+                publishMs,
+                hash || '',
+                item.channel || '',
+                item.labelColor || '',
+                item.pubDate || ''
             ]);
 
             this._log(`Added favorite: ${item.title}`);
@@ -147,9 +190,21 @@ class FavoritesDB extends AsyncDatabaseManager {
             const sql = "SELECT link FROM favorites";
             const result = await this.executeQuery(sql);
 
-            if (result) {
-                const favorites = result.split('\n').filter(Boolean);
-                return new Set(favorites);
+            if (!result) return new Set();
+
+            // Result is JSON when using AsyncDatabaseManager SELECT
+            try {
+                const rows = JSON.parse(result);
+                if (Array.isArray(rows)) {
+                    const links = rows
+                        .map(r => (typeof r === 'object' ? r.link : null))
+                        .filter(Boolean);
+                    return new Set(links);
+                }
+            } catch (_e) {
+                // Fallback for non-JSON result (should not happen)
+                const links = String(result).split('\n').filter(Boolean);
+                return new Set(links);
             }
             return new Set();
         } catch (e) {
@@ -160,7 +215,7 @@ class FavoritesDB extends AsyncDatabaseManager {
 
     _escapeString(str) {
         if (typeof str !== 'string') {
-            global.log('[Yarr Warning] Non-string value passed to _escapeString');
+            Logger.log('[Yarr Warning] Non-string value passed to _escapeString');
             return '';
         }
         return str.replace(/'/g, "''");
@@ -171,22 +226,22 @@ class FavoritesDB extends AsyncDatabaseManager {
 class RefreshDB extends AsyncDatabaseManager {
     constructor() {
         try {
-            global.log('[Yarr Debug] RefreshDB constructor starting');
+            Logger.log('[Yarr Debug] RefreshDB constructor starting');
             const glib = getGLib();
             if (!glib) throw new Error('GLib not available');
 
-            global.log('[Yarr Debug] GLib obtained for RefreshDB');
+            Logger.log('[Yarr Debug] GLib obtained for RefreshDB');
             const userDataDir = glib.get_user_data_dir();
             if (!userDataDir) throw new Error('Could not get user data directory');
 
             const dbFile = glib.build_filenamev([userDataDir, 'yarr_refreshes.db']);
             if (!dbFile) throw new Error('Could not build database file path');
 
-            global.log('[Yarr Debug] RefreshDB file path: ' + dbFile);
+            Logger.log('[Yarr Debug] RefreshDB file path: ' + dbFile);
             super(dbFile);
             this._log(`Refresh database path: ${dbFile}`);
         } catch (e) {
-            global.log('[Yarr Error] Fatal: Could not determine database path: ' + e);
+            Logger.log('[Yarr Error] Fatal: Could not determine database path: ' + e, true);
             throw new Error('Could not initialize database: ' + e.message);
         }
 
@@ -406,7 +461,7 @@ class ReadStatusDB extends AsyncDatabaseManager {
 
     _escapeString(str) {
         if (typeof str !== 'string') {
-            global.log('[Yarr Warning] Non-string value passed to _escapeString');
+            Logger.log('[Yarr Warning] Non-string value passed to _escapeString');
             return '';
         }
         return str.replace(/'/g, "''");
