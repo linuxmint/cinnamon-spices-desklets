@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: AlbumArt3.0@claudiux 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-03-14 02:12+0100\n"
+"POT-Creation-Date: 2025-04-03 09:04+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,19 +17,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.4\n"
 
-#. desklet.js:134
+#. desklet.js:128
 msgid "Album Art"
 msgstr "Carátula del álbum"
 
-#. desklet.js:412
+#. desklet.js:434
 msgid "Display Album Art at full size"
 msgstr "Mostrar la carátula del álbum a tamaño completo"
 
-#. desklet.js:419
+#. desklet.js:441
 msgid "Don't display this image"
 msgstr "No mostrar esta imagen"
 
-#. desklet.js:429
+#. desklet.js:451
 msgid "Don't display any new image"
 msgstr "No mostrar ninguna nueva imagen"
 
@@ -119,3 +119,83 @@ msgstr "0 significa que no hay desvanecimiento"
 #. settings-schema.json->enable-at-startup->description
 msgid "Activate Album Art display at startup"
 msgstr "Activar la visualización de la carátula del álbum al inicio"
+
+#. settings-schema.json->show-title->description
+msgid "Show the title"
+msgstr "Mostrar el título"
+
+#. settings-schema.json->style-font-weight->description
+msgid "Font weight"
+msgstr "Peso de la fuente"
+
+#. settings-schema.json->style-font-weight->options
+msgid "normal"
+msgstr "normal"
+
+#. settings-schema.json->style-font-weight->options
+msgid "bold"
+msgstr "negrita"
+
+#. settings-schema.json->style-font-family->description
+msgid "Font family"
+msgstr "Familia de fuentes"
+
+#. settings-schema.json->style-font-family->options
+msgid "monospace"
+msgstr "monoespacio"
+
+#. settings-schema.json->style-font-family->options
+msgid "sans-serif"
+msgstr "sans-serif"
+
+#. settings-schema.json->style-font-family->options
+msgid "serif"
+msgstr "serif"
+
+#. settings-schema.json->style-font-family->options
+msgid "cursive"
+msgstr "cursiva"
+
+#. settings-schema.json->style-font-family->options
+msgid "fantasy"
+msgstr "fantasía"
+
+#. settings-schema.json->style-font-size->description
+msgid "Font size"
+msgstr "Tamaño de fuente"
+
+#. settings-schema.json->style-font-size->options
+msgid "xx-small"
+msgstr "xx-pequeña"
+
+#. settings-schema.json->style-font-size->options
+msgid "x-small"
+msgstr "x-pequeña"
+
+#. settings-schema.json->style-font-size->options
+msgid "small"
+msgstr "pequeña"
+
+#. settings-schema.json->style-font-size->options
+msgid "medium"
+msgstr "media"
+
+#. settings-schema.json->style-font-size->options
+msgid "large"
+msgstr "grande"
+
+#. settings-schema.json->style-font-size->options
+msgid "x-large"
+msgstr "x-grande"
+
+#. settings-schema.json->style-font-size->options
+msgid "xx-large"
+msgstr "xx-grande"
+
+#. settings-schema.json->style-color->description
+msgid "Font color"
+msgstr "Color de la fuente"
+
+#. settings-schema.json->style-background-color->description
+msgid "Background color"
+msgstr "Color de fondo"

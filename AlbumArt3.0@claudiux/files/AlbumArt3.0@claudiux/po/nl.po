@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: AlbumArt3.0@claudiux 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-03-14 02:12+0100\n"
-"PO-Revision-Date: 2025-02-21 08:56+0100\n"
+"POT-Creation-Date: 2025-04-03 09:04+0200\n"
+"PO-Revision-Date: 2025-05-16 16:35+0200\n"
 "Last-Translator: qadzek\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -16,33 +16,30 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. desklet.js:134
-#, fuzzy
+#. desklet.js:128
 msgid "Album Art"
-msgstr "Radio3.0 Albumillustratie"
+msgstr "Albumillustratie"
 
-#. desklet.js:412
+#. desklet.js:434
 msgid "Display Album Art at full size"
 msgstr "Toon albumillustratie op volledige grootte"
 
-#. desklet.js:419
+#. desklet.js:441
 msgid "Don't display this image"
-msgstr ""
+msgstr "Deze afbeelding niet weergeven"
 
-#. desklet.js:429
+#. desklet.js:451
 msgid "Don't display any new image"
-msgstr ""
+msgstr "Geen nieuwe afbeeldingen weergeven"
 
 #. metadata.json->name
-#, fuzzy
 msgid "Album Art for Radio3.0 and Enhanced Sound applets"
-msgstr "Albumillustratie voor Radio3.0"
+msgstr "Albumillustratie voor Radio3.0- en Enhanced Sound-applets"
 
 #. metadata.json->description
-#, fuzzy
 msgid "A digital photo frame desklet to display an album art, if available"
 msgstr ""
-"Een digitale fotolijst-desklet om de Radio3.0-albumillustratie weer te "
+"Een digitale fotolijst-bureaubladwidget om een albumillustratie weer te "
 "geven, indien beschikbaar"
 
 #. settings-schema.json->height->description
@@ -120,4 +117,84 @@ msgstr "0 betekent geen vervaging"
 
 #. settings-schema.json->enable-at-startup->description
 msgid "Activate Album Art display at startup"
-msgstr ""
+msgstr "Activeer het weergeven van albumillustratie bij opstarten"
+
+#. settings-schema.json->show-title->description
+msgid "Show the title"
+msgstr "Toon de titel"
+
+#. settings-schema.json->style-font-weight->description
+msgid "Font weight"
+msgstr "Lettertypegewicht"
+
+#. settings-schema.json->style-font-weight->options
+msgid "normal"
+msgstr "normaal"
+
+#. settings-schema.json->style-font-weight->options
+msgid "bold"
+msgstr "vet"
+
+#. settings-schema.json->style-font-family->description
+msgid "Font family"
+msgstr "Lettertypefamilie"
+
+#. settings-schema.json->style-font-family->options
+msgid "monospace"
+msgstr "monospace"
+
+#. settings-schema.json->style-font-family->options
+msgid "sans-serif"
+msgstr "sans-serif"
+
+#. settings-schema.json->style-font-family->options
+msgid "serif"
+msgstr "serif"
+
+#. settings-schema.json->style-font-family->options
+msgid "cursive"
+msgstr "cursief"
+
+#. settings-schema.json->style-font-family->options
+msgid "fantasy"
+msgstr "fantasie"
+
+#. settings-schema.json->style-font-size->description
+msgid "Font size"
+msgstr "Lettergrootte"
+
+#. settings-schema.json->style-font-size->options
+msgid "xx-small"
+msgstr "xx-klein"
+
+#. settings-schema.json->style-font-size->options
+msgid "x-small"
+msgstr "x-klein"
+
+#. settings-schema.json->style-font-size->options
+msgid "small"
+msgstr "klein"
+
+#. settings-schema.json->style-font-size->options
+msgid "medium"
+msgstr "medium"
+
+#. settings-schema.json->style-font-size->options
+msgid "large"
+msgstr "groot"
+
+#. settings-schema.json->style-font-size->options
+msgid "x-large"
+msgstr "x-groot"
+
+#. settings-schema.json->style-font-size->options
+msgid "xx-large"
+msgstr "xx-groot"
+
+#. settings-schema.json->style-color->description
+msgid "Font color"
+msgstr "Letterkleur"
+
+#. settings-schema.json->style-background-color->description
+msgid "Background color"
+msgstr "Achtergrondkleur"

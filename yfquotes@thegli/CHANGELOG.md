@@ -1,3 +1,43 @@
+### 0.16.1 - July 3, 2025
+
+Features:
+
+- update default User-Agent header to latest Firefox ESR release
+- update Dutch translation (courtesy of [qadzek](https://github.com/qadzek))
+- update Hungarian translation (courtesy of [bossbob88](https://github.com/bossbob88))
+- update Spanish translation (courtesy of [haggen88](https://github.com/haggen88))
+
+Bugfixes:
+
+- apply individual quote style independent of capitalization of the symbol
+
+### 0.16.0 - May 11, 2025
+
+Features:
+
+- integrate external program *curl* (needed to deal with recent Yahoo Finance changes) - see new *Network* section in settings
+
+Bugfixes:
+
+- adapt to recent changes in Yahoo Finance Quotes API (**requires curl to work**)
+
+### 0.15.7 - May 8, 2025
+
+Bugfixes:
+
+- fix unlimited retries when authorization step failed, stops now after 5 attempts
+
+### 0.15.6 - April 3, 2025
+
+Features:
+
+- add symbols for most currencies
+- update Finnish translation (courtesy of [MahtiAnkka](https://github.com/MahtiAnkka))
+
+Bugfixes:
+
+- fix currency symbol for INR
+
 ### 0.15.5 - March 18, 2025
 
 Features:

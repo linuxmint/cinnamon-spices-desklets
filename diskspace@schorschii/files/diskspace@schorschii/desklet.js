@@ -270,18 +270,23 @@ MyDesklet.prototype = {
 
 		let textSub1 = "";
 		let textSub2 = "";
+		let name = "";
+		if(type == "ram") {
+			name = this.shortText(_("RAM"));
+		} else if(type == "swap") {
+			name = this.shortText(_("Swap"));
+		} else if(fs == "/") {
+			name = this.shortText(_("Filesystem"));
+		} else {
+			let pathparts = fs.split("/");
+			name = this.shortText(pathparts[pathparts.length-1]);
+		}
 		if(this.text_view == "name-size") {
-			if(type == "ram") {
-				textSub1 = this.shortText(_("RAM"));
-			} else if(type == "swap") {
-				textSub1 = this.shortText(_("Swap"));
-			} else if(fs == "/") {
-				textSub1 = this.shortText(_("Filesystem"));
-			} else {
-				let pathparts = fs.split("/");
-				textSub1 = this.shortText(pathparts[pathparts.length-1]);
-			}
+			textSub1 = name;
 			textSub2 = this.niceSize(size);
+		} else if(this.text_view == "name-free") {
+			textSub1 = name;
+			textSub2 = this.niceSize(avail);
 		} else if(this.text_view == "used-size") {
 			textSub1 = this.niceSize(use);
 			textSub2 = this.niceSize(size);

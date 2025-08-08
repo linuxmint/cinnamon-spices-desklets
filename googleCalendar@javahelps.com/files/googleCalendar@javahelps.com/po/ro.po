@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-04-29 14:50-0400\n"
+"POT-Creation-Date: 2025-04-21 23:14+0200\n"
 "PO-Revision-Date: 2021-11-14 20:26-0500\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -19,207 +19,216 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
 
+#. settings-schema.json->interval->description
+#. desklet.js:66 desklet.js:74
+msgid "Number of days to include"
+msgstr "Numărul de zile de inclus"
+
+#. desklet.js:66 desklet.js:74
+msgid ": "
+msgstr ""
+
 #. metadata.json->name
 #. settings-schema.json->page_gcalendar->title
-#: desklet.js:104
+#. desklet.js:126
 msgid "Google Calendar"
 msgstr "Google Calendar"
 
-#: desklet.js:107
+#. desklet.js:219
 msgid "Open Google Calendar"
 msgstr "Deschide Google Calendar"
 
-#: desklet.js:240
+#. desklet.js:302
 msgid "No events found"
 msgstr "Nu s-au găsit evenimente"
 
-#: desklet.js:389
+#. desklet.js:467
 msgid "gcalendar is not authorized"
 msgstr "gcalendar nu este autorizat"
 
-#: desklet.js:391
+#. desklet.js:469
 msgid "gcalendar token expired"
 msgstr "token gcalendar expirat"
 
-#: desklet.js:396
+#. desklet.js:474
 msgid "Execute: "
 msgstr "Execută:"
 
-#: desklet.js:409
+#. desklet.js:487
 msgid "Unknown Error"
 msgstr "Eroare necunoscută"
 
-#: desklet.js:412
+#. desklet.js:490
 msgid "Install gcalendar to use this desklet."
 msgstr "Instalează gcalendar pentru a utiliza acest desklet."
 
-#: desklet.js:413
+#. desklet.js:491
 msgid "Visit: "
 msgstr "Vizitează:"
 
-#: desklet.js:451
+#. desklet.js:529
 msgid "Unable to retrieve events..."
 msgstr "Nu se pot prelua evenimente..."
 
-#: lib/utility.js:158 lib/xdate.js:350
+#. lib/utility.js:158 lib/xdate.js:350
 msgid "AM"
 msgstr "AM"
 
-#: lib/utility.js:158 lib/xdate.js:351
+#. lib/utility.js:158 lib/xdate.js:351
 msgid "PM"
 msgstr "PM"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "January"
 msgstr "Ianuarie"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "February"
 msgstr "Februarie"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "March"
 msgstr "Martie"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "April"
 msgstr "Aprilie"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgctxt "long"
 msgid "May"
 msgstr "Mai"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "June"
 msgstr "Iunie"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "July"
 msgstr "Iulie"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "August"
 msgstr "August"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "September"
 msgstr "Septembrie"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "October"
 msgstr "Octombrie"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "November"
 msgstr "Noiembrie"
 
-#: lib/xdate.js:346
+#. lib/xdate.js:346
 msgid "December"
 msgstr "Decembrie"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Jan"
 msgstr "Jan"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Feb"
 msgstr "Feb"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Mar"
 msgstr "Mar"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Apr"
 msgstr "Apr"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgctxt "short"
 msgid "May"
 msgstr "Mai"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Jun"
 msgstr "Jun"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Jul"
 msgstr "Iulie"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Aug"
 msgstr "Aug"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Sep"
 msgstr "Sep"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Oct"
 msgstr "Octombrie"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Nov"
 msgstr "Noiembrie"
 
-#: lib/xdate.js:347
+#. lib/xdate.js:347
 msgid "Dec"
 msgstr "Dec"
 
-#: lib/xdate.js:348
+#. lib/xdate.js:348
 msgid "Sunday"
 msgstr "Duminică"
 
-#: lib/xdate.js:348
+#. lib/xdate.js:348
 msgid "Monday"
 msgstr "Luni"
 
-#: lib/xdate.js:348
+#. lib/xdate.js:348
 msgid "Tuesday"
 msgstr "Marți"
 
-#: lib/xdate.js:348
+#. lib/xdate.js:348
 msgid "Wednesday"
 msgstr "Miercuri"
 
-#: lib/xdate.js:348
+#. lib/xdate.js:348
 msgid "Thursday"
 msgstr "Joi"
 
-#: lib/xdate.js:348
+#. lib/xdate.js:348
 msgid "Friday"
 msgstr "Vineri"
 
-#: lib/xdate.js:348
+#. lib/xdate.js:348
 msgid "Saturday"
 msgstr "Sâmbătă"
 
-#: lib/xdate.js:349
+#. lib/xdate.js:349
 msgid "Sun"
 msgstr "Sun"
 
-#: lib/xdate.js:349
+#. lib/xdate.js:349
 msgid "Mon"
 msgstr "Luni"
 
-#: lib/xdate.js:349
+#. lib/xdate.js:349
 msgid "Tue"
 msgstr "Marți"
 
-#: lib/xdate.js:349
+#. lib/xdate.js:349
 msgid "Wed"
 msgstr "Miercuri"
 
-#: lib/xdate.js:349
+#. lib/xdate.js:349
 msgid "Thu"
 msgstr "Joi"
 
-#: lib/xdate.js:349
+#. lib/xdate.js:349
 msgid "Fri"
 msgstr "vineri"
 
-#: lib/xdate.js:349
+#. lib/xdate.js:349
 msgid "Sat"
 msgstr "Sâmbătă"
 
@@ -271,6 +280,10 @@ msgstr "ID-ul contului gcalendar"
 msgid "Enter gcalendar --account id"
 msgstr "Introdu gcalendar --account id"
 
+#. settings-schema.json->gcalendarAccount->options
+msgid "default"
+msgstr ""
+
 #. settings-schema.json->allNamesButton->description
 msgid "Fill in the list bellow with the names of all my calendars"
 msgstr "Completează lista de mai jos cu numele tuturor calendarelor mele"
@@ -300,10 +313,6 @@ msgstr "Calendar"
 #. settings-schema.json->calendarNames->columns->title
 msgid "Display it?"
 msgstr "Să-l afișăm?"
-
-#. settings-schema.json->interval->description
-msgid "Number of days to include"
-msgstr "Numărul de zile de inclus"
 
 #. settings-schema.json->interval->tooltip
 msgid "Show the agenda for these number of days"
@@ -434,3 +443,20 @@ msgstr "Raza colțului"
 #. settings-schema.json->cornerradius->tooltip
 msgid "Radius for rounding the desklet's corners"
 msgstr "Raza de rotunjire a colțurilor deskletului"
+
+#. settings-schema.json->display_mode->description
+#, fuzzy
+msgid "Display mode"
+msgstr "Să-l afișăm?"
+
+#. settings-schema.json->display_mode->options
+msgid "normal"
+msgstr ""
+
+#. settings-schema.json->display_mode->options
+msgid "compact"
+msgstr ""
+
+#. settings-schema.json->display_mode->options
+msgid "ultra compact"
+msgstr ""

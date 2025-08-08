@@ -5,16 +5,9 @@
             "dataPage",
             "detailsPage",
             "presentationPage",
-            "layoutPage"
+            "layoutPage",
+            "networkPage"
         ],
-        "layoutPage": {
-            "type": "page",
-            "title": "Layout",
-            "sections": [
-                "layoutDimensionSection",
-                "layoutEffectsSection"
-            ]
-        },
         "dataPage": {
             "type": "page",
             "title": "Quotes",
@@ -35,7 +28,7 @@
             ]
         },
         "presentationPage": {
-            "type": "section",
+            "type": "page",
             "title": "Presentation",
             "sections": [
                 "presentationFormattingSection",
@@ -43,6 +36,21 @@
                 "presentationSortingSection",
                 "presentationFontSection",
                 "presentationColorsSection"
+            ]
+        },
+        "layoutPage": {
+            "type": "page",
+            "title": "Layout",
+            "sections": [
+                "layoutDimensionSection",
+                "layoutEffectsSection"
+            ]
+        },
+        "networkPage": {
+            "type": "page",
+            "title": "Network",
+            "sections": [
+                "networkSessionSection"
             ]
         },
         "dataSymbolsSection": {
@@ -59,8 +67,6 @@
                 "delayMinutes",
                 "showLastUpdateTimestamp",
                 "manualDataUpdate",
-                "sendCustomUserAgent",
-                "customUserAgent",
                 "updateDataButton"
             ]
         },
@@ -169,6 +175,17 @@
                 "borderWidth",
                 "borderColor"
             ]
+        },
+        "networkSessionSection": {
+            "type": "section",
+            "title": "HTTP Session",
+            "keys": [
+                "sendCustomUserAgent",
+                "customUserAgent",
+                "enableCurl",
+                "curlCommand",
+                "applyNetworkSettingsButton"
+            ]
         }
     },
     "width": {
@@ -261,19 +278,6 @@
         "tooltip": "Click last update timestamp to instantly refresh quotes data. Automatic update is still performed periodically.",
         "dependency": "showLastUpdateTimestamp"
     },
-    "sendCustomUserAgent": {
-        "type": "checkbox",
-        "default": true,
-        "description": "Send custom User-Agent header",
-        "tooltip": "Include a custom User-Agent header in Yahoo Finance Quotes API requests. By default, this header is not set"
-    },
-    "customUserAgent": {
-        "type": "entry",
-        "default": "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0",
-        "description": "Custom User-Agent header",
-        "tooltip": "Value for User-Agent header to send with all API requests",
-        "dependency": "sendCustomUserAgent"
-    },
     "roundNumbers": {
         "type": "checkbox",
         "default": true,
@@ -325,7 +329,7 @@
     },
     "updateDataButton": {
         "type": "button",
-        "callback": "onQuotesListChanged",
+        "callback": "onManualRefreshRequested",
         "description": "Refresh quotes data",
         "tooltip": "Apply and refresh quotes"
     },
@@ -464,5 +468,37 @@
         "description": "Unchanged trend color",
         "tooltip": "Color of the unchanged trend",
         "default": "grey"
+    },
+    "sendCustomUserAgent": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Send custom User-Agent header",
+        "tooltip": "Include a custom User-Agent header in Yahoo Finance Quotes API requests"
+    },
+    "customUserAgent": {
+        "type": "entry",
+        "default": "Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0",
+        "description": "Custom User-Agent header",
+        "tooltip": "Value for User-Agent header to send with all API requests",
+        "dependency": "sendCustomUserAgent"
+    },
+    "enableCurl": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Use external tool curl",
+        "tooltip": "Requires separate installation of curl."
+    },
+    "curlCommand": {
+        "type": "entry",
+        "default": "/usr/bin/curl",
+        "description": "Path of curl executable",
+        "tooltip": "Provide absolute path of curl program file",
+        "dependency": "enableCurl"
+    },
+    "applyNetworkSettingsButton": {
+        "type": "button",
+        "callback": "onNetworkSettingsChanged",
+        "description": "Apply network settings",
+        "tooltip": "Fetches new authorization parameters and refreshes quotes data"
     }
 }

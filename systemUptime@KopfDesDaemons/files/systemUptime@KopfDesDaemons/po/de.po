@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: systemUptime@KopfDesDaemons 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-11-26 19:00+0100\n"
+"POT-Creation-Date: 2025-07-31 22:57+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,30 +16,42 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. metadata.json->name
-#. desklet.js:34
+#. desklet.js:61
 msgid "System Uptime"
 msgstr "Systembetriebszeit"
 
-#. desklet.js:42
+#. desklet.js:69
 msgid "Uptime:"
 msgstr "Betriebszeit:"
 
-#. desklet.js:43 desklet.js:49
+#. desklet.js:70 desklet.js:79
 msgid "Loading..."
 msgstr "Lade..."
 
-#. desklet.js:48
-msgid "System start time:"
-msgstr "Systemstartzeitpunkt:"
+#. desklet.js:76
+msgid "Start time:"
+msgstr "Startzeit:"
 
-#. desklet.js:91
+#. desklet.js:139
+msgid "days"
+msgstr "Tage"
+
+#. desklet.js:139
+msgid "hrs"
+msgstr "Std."
+
+#. desklet.js:139
+msgid "min"
+msgstr "Min."
+
+#. desklet.js:146
 msgid "hours"
 msgstr "Stunden"
 
-#. desklet.js:91
+#. desklet.js:146
 msgid "minutes"
 msgstr "Minuten"
 
@@ -58,3 +70,11 @@ msgstr "Schriftgröße"
 #. settings-schema.json->colorLabel->description
 msgid "Label color"
 msgstr "Labelfarbe"
+
+#. settings-schema.json->showStartDate->description
+msgid "Show start date"
+msgstr "Zeige Startdatum"
+
+#. settings-schema.json->showUptimeInDays->description
+msgid "Show uptime in days"
+msgstr "Zeige Betriebszeit in Tagen"

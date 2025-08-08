@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-09-28 12:45-0400\n"
-"PO-Revision-Date: 2024-10-02 14:46+0200\n"
+"POT-Creation-Date: 2025-05-03 11:37-0400\n"
+"PO-Revision-Date: 2025-06-21 14:25+0200\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: \n"
 "Language: hu\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#. desklet.js:133
+#. desklet.js:138
 msgid "Refresh"
 msgstr "Frissítés"
 
-#. desklet.js:146
+#. desklet.js:151
 msgid ""
 "Can't read text file.\n"
 "Select a file in settings.\n"
@@ -34,7 +34,7 @@ msgstr ""
 "\n"
 "Kattintson ide a szerkesztéshez."
 
-#. desklet.js:272
+#. desklet.js:289
 msgid "Notepad"
 msgstr "Jegyzettömb"
 
@@ -262,6 +262,14 @@ msgstr "Nincs"
 msgid "Select the background graphic you would like to use."
 msgstr "Válasszon ki egy háttérgrafikát a használathoz."
 
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr "Szövegárnyék"
+
+#. settings-schema.json->text-shadow-color->description
+msgid "Text shadow color"
+msgstr "Szövegárnyék színe"
+
 #. settings-schema.json->bg-color->description
 msgid "Background color"
 msgstr "Háttérszín"
@@ -269,6 +277,10 @@ msgstr "Háttérszín"
 #. settings-schema.json->bg-color->tooltip
 msgid "Set the background color of this desklet."
 msgstr "Asztalkalmazás szövegszínének beállítása."
+
+#. settings-schema.json->enable-word-wrap->description
+msgid "Enable word wrap"
+msgstr "Sortörés engedélyezése"
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"

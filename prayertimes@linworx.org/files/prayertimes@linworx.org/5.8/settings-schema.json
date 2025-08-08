@@ -1,0 +1,313 @@
+{
+    "layout": {
+        "type": "layout",
+        "pages": [
+            "calculation_page",
+            "adjustments_page",
+            "appearance_page"
+        ],
+        "calculation_page": {
+            "type": "page",
+            "title": "Calculation Options",
+            "sections": [
+                "location_section",
+                "calculation_section"
+            ]
+        },
+        "location_section": {
+            "type": "section",
+            "title": "Your location",
+            "keys": [
+                "autolocation",
+                "latitude",
+                "longitude"
+            ]
+        },
+        "calculation_section": {
+            "type": "section",
+            "title": "Prayer Calculation Method",
+            "keys": [
+                "method",
+                "madhab",
+                "highlatitude",
+                "polar",
+                "shafaq",
+                "rounding"
+            ]
+        },
+        "adjustments_page": {
+            "type": "page",
+            "title": "Time & Date Adjustments",
+            "sections": [
+                "prayer_adjustment_section",
+                "date_adjustment_section"
+            ]
+        },
+        "prayer_adjustment_section": {
+            "type": "section",
+            "title": "Prayer Time Adjustments",
+            "keys": [
+                "adjust_fajr",
+                "adjust_dhuhr",
+                "adjust_asr",
+                "adjust_maghrib",
+                "adjust_isha"
+            ]
+        },
+        "date_adjustment_section": {
+            "type": "section",
+            "title": "Hijri Date Adjustment",
+            "keys": [
+                "adjust_date"
+            ]
+        },
+        "appearance_page": {
+            "type": "page",
+            "title": "Desklet Appearance",
+            "sections": [
+                "appearance_section",
+                "components_section"
+            ]
+        },
+        "appearance_section": {
+            "type": "section",
+            "title": "Appearance",
+            "keys": [
+                "vertical_layout",
+                "24hour",
+                "desklet_size",
+                "transparency",
+                "color"
+            ]
+        },
+        "components_section": {
+            "type": "section",
+            "title": "Widgets",
+            "keys": [
+                "show_city",
+                "show_countdown",
+                "show_table",
+                "show_date"
+            ]
+        }
+    },
+    "autolocation": {
+        "type": "combobox",
+        "default": "automatic",
+        "options": {
+            "Auto-detect location": "automatic",
+            "Manual location": "manual"
+        },
+        "description": "Detect location automatically",
+        "tooltip": "Automatic location uses Internet"
+    },
+    "latitude": {
+        "type": "entry",
+        "dependency": "autolocation=manual",
+        "default": "",
+        "description": "Enter your location latitude",
+        "tooltip": "Input your latitude and longitude manually"
+    },
+    "longitude": {
+        "type": "entry",
+        "dependency": "autolocation=manual",
+        "default": "",
+        "description": "Enter your location longitude",
+        "tooltip": "Input your latitude and longitude manually"
+    },
+    "method": {
+        "type": "combobox",
+        "default": "MuslimWorldLeague",
+        "description": "Prayer time calcuation method",
+        "tooltip": "Choose a method for calcuating your prayer times",
+        "options": {
+            "Muslim World Leauge": "MuslimWorldLeague",
+            "Egyptian General Survey Authority": "Egyptian",
+            "Karachi": "Karachi",
+            "Umm al Qura": "UmmAlQura",
+            "Dubai": "Dubai",
+            "Qatar": "Qatar",
+            "Kuwait": "Kuwait",
+            "Moonsighting Committee": "MoonsightingCommittee",
+            "Singapore": "Singapore",
+            "Turkey": "Turkey",
+            "Tehran": "Tehran",
+            "Islamic Society of North America (ISNA)": "NorthAmerica"
+        }
+    },
+    "madhab": {
+        "type": "combobox",
+        "default": "shafi",
+        "description": "Madhab",
+        "tooltip": "Choose a method for calculating the Asr prayer",
+        "options": {
+            "Shafi, Maliki, Hanbali (earlier Asr)": "shafi",
+            "Hanafi (later Asr)": "hanafi"
+        }
+    },
+    "highlatitude": {
+        "type": "combobox",
+        "default": "twilightangle",
+        "description": "High Latitude Rule",
+        "tooltip": "Choose a method for calcuating prayer times in high latitude locations",
+        "options": {
+            "Middle of the night": "middleofthenight",
+            "One-seventh of The Night": "seventhofthenight",
+            "Twilight Angle": "twilightangle"
+        }
+    },
+    "polar": {
+        "type": "combobox",
+        "default": "Unresolved",
+        "description": "Polar circle resolution",
+        "tooltip": "Choose a method for calcuating prayer times within the polar circle",
+        "options": {
+            "Use the nearest location (Aqrab Balad)": "AqrabBalad",
+            "Use the cloest date": "AqrabYaum",
+            "Leave sunrsie & sunset undefined": "Unresolved"
+        }
+    },
+    "shafaq": {
+        "type": "combobox",
+        "default": "general",
+        "dependency": "method=MoonsightingCommittee",
+        "description": "Shafaq Isha calculation method",
+        "tooltip": "Shafaq is used by the Moon sighting committee method to calculate Isha",
+        "options": {
+            "General": "general",
+            "Red (ahmer)": "ahmer",
+            "White (abyad)": "abyad"
+        }
+    },
+    "rounding": {
+        "type": "combobox",
+        "default": "nearest",
+        "description": "Rounding method",
+        "tooltip": "Method used to round prayer times",
+        "options": {
+            "Nearest": "nearest",
+            "Up": "up",
+            "None": "none"
+        }
+    },
+    "adjust_fajr": {
+        "type": "spinbutton",
+        "default": 0,
+        "min": -120,
+        "max": 120,
+        "step": 1,
+        "units": "minutes",
+        "description": "Fajr adjustment",
+        "tooltip": "Fajr time will be adjusted by this many minutes"
+    },
+    "adjust_dhuhr": {
+        "type": "spinbutton",
+        "default": 0,
+        "min": -120,
+        "max": 120,
+        "step": 1,
+        "units": "minutes",
+        "description": "Dhuhr adjustment",
+        "tooltip": "Dhuhr time will be adjusted by this many minutes"
+    },
+    "adjust_asr": {
+        "type": "spinbutton",
+        "default": 0,
+        "min": -120,
+        "max": 120,
+        "step": 1,
+        "units": "minutes",
+        "description": "Asr adjustment",
+        "tooltip": "Asr time will be adjusted by this many minutes"
+    },
+    "adjust_maghrib": {
+        "type": "spinbutton",
+        "default": 0,
+        "min": -120,
+        "max": 120,
+        "step": 1,
+        "units": "minutes",
+        "description": "Maghrib adjustment",
+        "tooltip": "Maghrib time will be adjusted by this many minutes"
+    },
+    "adjust_isha": {
+        "type": "spinbutton",
+        "default": 0,
+        "min": -120,
+        "max": 120,
+        "step": 1,
+        "units": "minutes",
+        "description": "Isha adjustment",
+        "tooltip": "Isha time will be adjusted by this many minutes"
+    },
+    "adjust_date": {
+        "type": "spinbutton",
+        "default": 0,
+        "min": -2,
+        "max": 2,
+        "step": 1,
+        "units": "days",
+        "description": "Adjust hijri date",
+        "tooltip": "The hijri date will be adjusted by this many days"
+    },
+    "24hour": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Use 24-hour time formatting",
+        "tooltip": "Toggle between 24-hour and 12-hour time formats"
+    },
+    "vertical_layout": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Vertical layout",
+        "tooltip": "Choose vertical or horizontal layout"
+    },
+    "desklet_size": {
+        "type": "scale",
+        "default": 18,
+        "min": 9,
+        "max": 36,
+        "step": 1,
+        "description": "Size",
+        "tooltip": "Set the size of the desklet"
+    },
+    "transparency": {
+        "type": "scale",
+        "default": 50,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "description": "Opacity level",
+        "tooltip": "Set the opacity level of the desklet"
+    },
+    "color": {
+        "type": "colorchooser",
+        "default": "rgba(255,255,255,255)",
+        "description": "Text color",
+        "tooltip": "The color of the text on the desklet"
+    },
+    "show_city": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show location & city",
+        "tooltip": "Show your current location or manual location in the desklet"
+    },
+    "show_countdown": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show next prayer countdown",
+        "tooltip": "Show the amount of time remaining before the next prayer"
+    },
+    "show_table": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show daily prayer times table",
+        "tooltip": "Show the daily prayer times"
+    },
+    "show_date": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show Hijri date",
+        "tooltip": "Show today's Hijri date"
+    }
+}

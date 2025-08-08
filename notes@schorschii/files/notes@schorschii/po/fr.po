@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-09-28 12:45-0400\n"
+"POT-Creation-Date: 2025-05-03 11:37-0400\n"
 "PO-Revision-Date: 2020-01-24 23:40+0100\n"
 "Last-Translator: Anonymous <ano@nymo.us>\n"
 "Language-Team: \n"
@@ -17,11 +17,11 @@ msgstr ""
 "X-Poedit-SearchPath-0: desklet.js\n"
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
-#. desklet.js:133
+#. desklet.js:138
 msgid "Refresh"
 msgstr ""
 
-#. desklet.js:146
+#. desklet.js:151
 msgid ""
 "Can't read text file.\n"
 "Select a file in settings.\n"
@@ -33,7 +33,7 @@ msgstr ""
 "\n"
 "Cliquez ici pour modifier."
 
-#. desklet.js:272
+#. desklet.js:289
 msgid "Notepad"
 msgstr "Bloc Note"
 
@@ -60,7 +60,7 @@ msgstr "Visuel"
 msgid "Custom desklet label (only visible if decorations are enabled)"
 msgstr ""
 "Étiquette de desklet personnalisée (visible seulement si décorations "
-"activées)" 
+"activées)"
 
 #. settings-schema.json->note-taking-method->description
 msgid "Note Taking Method"
@@ -262,6 +262,15 @@ msgstr ""
 msgid "Select the background graphic you would like to use."
 msgstr "Sélectionnez le fond graphique que vous souhaitez utiliser."
 
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr ""
+
+#. settings-schema.json->text-shadow-color->description
+#, fuzzy
+msgid "Text shadow color"
+msgstr "Couleur du texte"
+
 #. settings-schema.json->bg-color->description
 msgid "Background color"
 msgstr ""
@@ -269,6 +278,10 @@ msgstr ""
 #. settings-schema.json->bg-color->tooltip
 msgid "Set the background color of this desklet."
 msgstr "Changer la couleur du texte de ce desklet."
+
+#. settings-schema.json->enable-word-wrap->description
+msgid "Enable word wrap"
+msgstr ""
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
