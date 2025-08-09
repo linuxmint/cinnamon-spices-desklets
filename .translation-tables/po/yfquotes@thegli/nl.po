@@ -1,0 +1,593 @@
+# Yahoo Finance Quotes Desklet
+# Copyright (C) 2018 Thomas Egli
+# This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: yfquotes@thegli 0.11.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-05-12 00:33+0200\n"
+"PO-Revision-Date: 2025-05-16 18:37+0200\n"
+"Last-Translator: qadzek\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. desklet.js:119
+msgid "No quotes data to display"
+msgstr "Geen citatendata om weer te geven"
+
+#. desklet.js:516
+msgid "Empty quotes list. Open settings and add some symbols."
+msgstr "Lege lijst van koersen. Open instellingen en voeg wat symbolen toe."
+
+#. desklet.js:561 desklet.js:585
+msgid "Authorization parameters have expired"
+msgstr "Autorisatieparameters zijn verlopen."
+
+#. desklet.js:564 desklet.js:588
+msgid "Yahoo Finance service not available!\\nStatus: "
+msgstr "Yahoo Finance service niet beschikbaar!\\nStatus: "
+
+#. desklet.js:988
+msgid "Updated at "
+msgstr "Bijgewerkt om "
+
+#. desklet.js:1020
+msgid "Error: "
+msgstr "Fout: "
+
+#. desklet.js:1146
+msgid ""
+"Failed to retrieve authorization parameter! Unable to fetch quotes data."
+"\\nStatus: "
+msgstr ""
+"Kan autorisatieparameter niet ophalen! Kan geen gegevens voor koersen "
+"ophalen.\\nStatus: "
+
+#. desklet.js:1173
+msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
+msgstr ""
+"Toestemming verwerking mislukt! Kan geen gegevens voor koersen ophalen."
+"\\nStatus: "
+
+#. desklet.js:1179
+msgid ""
+"Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
+msgstr ""
+"Toestemming verwerking niet voltooid! Kan geen gegevens voor koersen ophalen."
+"\\nStatus: "
+
+#. desklet.js:1207
+msgid ""
+"Failed to retrieve authorization crumb! Unable to fetch quotes data."
+"\\nStatus: "
+msgstr ""
+"Kan autorisatiekruimel niet ophalen! Kan geen gegevens voor koersen ophalen."
+"\\nStatus: "
+
+#. metadata.json->description
+msgid ""
+"Displays financial market information such as stock quotes and commodity "
+"prices from Yahoo Finance"
+msgstr ""
+"Toont financiële marktinformatie zoals aandelenkoersen en grondstofprijzen "
+"van Yahoo Finance"
+
+#. metadata.json->name
+msgid "Yahoo Finance Quotes"
+msgstr "Yahoo Finance Koersen"
+
+#. settings-schema.json->dataPage->title
+#. settings-schema.json->dataSymbolsSection->title
+msgid "Quotes"
+msgstr "Koersen"
+
+#. settings-schema.json->detailsPage->title
+msgid "Details"
+msgstr "Details"
+
+#. settings-schema.json->presentationPage->title
+msgid "Presentation"
+msgstr "Presentatie"
+
+#. settings-schema.json->layoutPage->title
+msgid "Layout"
+msgstr "Indeling"
+
+#. settings-schema.json->networkPage->title
+msgid "Network"
+msgstr "Netwerk"
+
+#. settings-schema.json->dataUpdateSection->title
+msgid "Data Updates"
+msgstr "Gegevensupdates"
+
+#. settings-schema.json->detailsNameSection->title
+msgid "Name"
+msgstr "Naam"
+
+#. settings-schema.json->detailsSymbolSection->title
+msgid "Symbol"
+msgstr "Symbool"
+
+#. settings-schema.json->detailsPriceSection->title
+msgid "Price"
+msgstr "Prijs"
+
+#. settings-schema.json->detailsChangeSection->title
+msgid "Change"
+msgstr "Verandering"
+
+#. settings-schema.json->detailsDateTimeSection->title
+msgid "Date and Time"
+msgstr "Datum en tijd"
+
+#. settings-schema.json->presentationFormattingSection->title
+msgid "Number Format"
+msgstr "Nummerformaat"
+
+#. settings-schema.json->presentationDateTimeFormattingSection->title
+msgid "Date and Time Format"
+msgstr "Datum- en tijdformaat"
+
+#. settings-schema.json->presentationSortingSection->title
+msgid "Sorting"
+msgstr "Sorteren"
+
+#. settings-schema.json->presentationFontSection->title
+msgid "Font"
+msgstr "Lettertype"
+
+#. settings-schema.json->presentationColorsSection->title
+msgid "Trend Colors"
+msgstr "Trendkleuren"
+
+#. settings-schema.json->layoutDimensionSection->title
+msgid "Dimension"
+msgstr "Dimensie"
+
+#. settings-schema.json->layoutEffectsSection->title
+msgid "Effects"
+msgstr "Effecten"
+
+#. settings-schema.json->networkSessionSection->title
+msgid "HTTP Session"
+msgstr "HTTP-sessie"
+
+#. settings-schema.json->width->description
+msgid "Width"
+msgstr "Breedte"
+
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+#. settings-schema.json->cornerRadius->units
+#. settings-schema.json->borderWidth->units
+msgid "pixels"
+msgstr "pixels"
+
+#. settings-schema.json->width->tooltip
+msgid "Desklet width in pixels"
+msgstr "Breedte van de desklet in pixels"
+
+#. settings-schema.json->height->description
+msgid "Height"
+msgstr "Hoogte"
+
+#. settings-schema.json->height->tooltip
+msgid "Desklet height in pixels"
+msgstr "Hoogte van de desklet in pixels"
+
+#. settings-schema.json->transparency->description
+msgid "Background transparency"
+msgstr "Achtergrondtransparantie"
+
+#. settings-schema.json->transparency->tooltip
+msgid "The higher the value, the more solid the desklet's background"
+msgstr "Hoe hoger de waarde, hoe meer effen de achtergrond van de desklet"
+
+#. settings-schema.json->backgroundColor->description
+msgid "Background color"
+msgstr "Achtergrondkleur"
+
+#. settings-schema.json->backgroundColor->tooltip
+msgid "Desklet background color"
+msgstr "Desklet achtergrondkleur"
+
+#. settings-schema.json->cornerRadius->description
+msgid "Corner radius"
+msgstr "Hoekradius"
+
+#. settings-schema.json->cornerRadius->tooltip
+msgid "The higher the value, the rounder the desklet's corners"
+msgstr "Hoe hoger de waarde, hoe ronder de hoeken van de desklet"
+
+#. settings-schema.json->showVerticalScrollbar->description
+msgid "Show vertical scrollbar"
+msgstr "Toon verticale schuifbalk"
+
+#. settings-schema.json->showVerticalScrollbar->tooltip
+msgid ""
+"Display a vertical scrollbar when the quote list is longer than the "
+"desklet's height"
+msgstr ""
+"Toon een verticale schuifbalk wanneer de lijst met koersen langer is dan de "
+"hoogte van de desklet"
+
+#. settings-schema.json->borderWidth->description
+msgid "Border width"
+msgstr "Randbreedte"
+
+#. settings-schema.json->borderWidth->tooltip
+msgid ""
+"The higher the value, the thicker the desklet's border. A value of 0 hides "
+"the border."
+msgstr ""
+"Hoe hoger de waarde, hoe dikker de rand van de desklet. Een waarde van 0 "
+"verbergt de rand."
+
+#. settings-schema.json->borderColor->description
+msgid "Border color"
+msgstr "Randkleur"
+
+#. settings-schema.json->borderColor->tooltip
+msgid "Desklet border color"
+msgstr "Randkleur van de desklet"
+
+#. settings-schema.json->delayMinutes->units
+msgid "minutes"
+msgstr "minuten"
+
+#. settings-schema.json->delayMinutes->description
+msgid "Update frequency"
+msgstr "Vernieuwingsfrequentie"
+
+#. settings-schema.json->delayMinutes->tooltip
+msgid "Data refresh frequency, in minutes"
+msgstr "Frequentie van gegevensvernieuwing, in minuten"
+
+#. settings-schema.json->showLastUpdateTimestamp->description
+msgid "Show last update timestamp"
+msgstr "Toon tijdstempel laatste update"
+
+#. settings-schema.json->showLastUpdateTimestamp->tooltip
+msgid "Display timestamp when quotes were updated last"
+msgstr "Toon tijdstempel wanneer de koersen voor het laatst zijn bijgewerkt"
+
+#. settings-schema.json->manualDataUpdate->description
+msgid "Manual and automatic update"
+msgstr "Manuele en automatische update"
+
+#. settings-schema.json->manualDataUpdate->tooltip
+msgid ""
+"Click last update timestamp to instantly refresh quotes data. Automatic "
+"update is still performed periodically."
+msgstr ""
+"Klik op de tijdstempel van de laatste update om de gegevens van de koersen "
+"onmiddellijk te verversen. Automatische update wordt nog steeds periodiek "
+"uitgevoerd."
+
+#. settings-schema.json->roundNumbers->description
+msgid "Round numbers"
+msgstr "Afronden van getallen"
+
+#. settings-schema.json->roundNumbers->tooltip
+msgid "Perform rounding of floating-point numbers"
+msgstr "Afronden van zwevende kommagetallen uitvoeren"
+
+#. settings-schema.json->decimalPlaces->units
+msgid "positions"
+msgstr "posities"
+
+#. settings-schema.json->decimalPlaces->description
+msgid "Decimal places to round"
+msgstr "Decimale plaatsen om af te ronden"
+
+#. settings-schema.json->decimalPlaces->tooltip
+msgid "Number of positions to round to after decimal point"
+msgstr "Aantal posities om naar af te ronden na de komma"
+
+#. settings-schema.json->strictRounding->description
+msgid "Strict rounding"
+msgstr "Strikt afronden"
+
+#. settings-schema.json->strictRounding->tooltip
+msgid ""
+"Strict rounding to the specified decimal places (eg. 0 will be presented as "
+"0.00)"
+msgstr ""
+"Strikt afronden naar het opgegeven aantal decimalen (bijv. 0 wordt "
+"gepresenteerd als 0,00)"
+
+#. settings-schema.json->use24HourTime->description
+msgid "Force 24-hour clock"
+msgstr "Forceer 24-uurs klok"
+
+#. settings-schema.json->use24HourTime->tooltip
+msgid ""
+"Always display time in 24-hour notation, overriding system settings.\n"
+"This setting is ignored, when a custom time format is defined."
+msgstr ""
+"Tijd altijd weergeven in 24-uursnotatie, ongeacht de systeeminstellingen.\n"
+"Deze instelling wordt genegeerd wanneer een aangepast tijdsformaat is "
+"gedefinieerd."
+
+#. settings-schema.json->customTimeFormat->description
+msgid "Custom time format"
+msgstr "Aangepast tijdsformaat"
+
+#. settings-schema.json->customTimeFormat->tooltip
+msgid ""
+"Format time with custom format instead of system settings.\n"
+"Examples:\n"
+"%H:%M:%S    23:47:51\n"
+"%I:%M %p    11:47 PM"
+msgstr ""
+"Tijd opmaken met aangepast formaat in plaats van systeeminstellingen.\n"
+"Voorbeelden:\n"
+"%H:%M:%S    23:47:51\n"
+"%I:%M %p    11:47 PM"
+
+#. settings-schema.json->customDateFormat->description
+msgid "Custom date format"
+msgstr "Aangepast datumformaat"
+
+#. settings-schema.json->customDateFormat->tooltip
+msgid ""
+"Format date with custom format instead of system settings.\n"
+"Examples:\n"
+"%m/%d          03/15\n"
+"%Y-%m-%d   2024-03-15\n"
+"%A, %b %d   Friday, Mar 15"
+msgstr ""
+"Datum opmaken met aangepast formaat in plaats van systeeminstellingen.\n"
+"Voorbeelden:\n"
+"%m/%d          03/15\n"
+"%Y-%m-%d   2024-03-15\n"
+"%A, %b %d   Vrijdag, mrt 15"
+
+#. settings-schema.json->quoteSymbols->description
+msgid "Quote symbols"
+msgstr "Koerssymbolen"
+
+#. settings-schema.json->quoteSymbols->tooltip
+msgid "List of quote symbols, separated with line-breaks"
+msgstr "Lijst met koerssymbolen, gescheiden door regelafbrekingen"
+
+#. settings-schema.json->updateDataButton->description
+msgid "Refresh quotes data"
+msgstr "Vernieuw citatendata"
+
+#. settings-schema.json->updateDataButton->tooltip
+msgid "Apply and refresh quotes"
+msgstr "Toepassen en vernieuwen van citaten"
+
+#. settings-schema.json->sortCriteria->options
+msgid "given order"
+msgstr "gegeven volgorde"
+
+#. settings-schema.json->sortCriteria->options
+msgid "percent change"
+msgstr "procentuele verandering"
+
+#. settings-schema.json->sortCriteria->options
+msgid "name"
+msgstr "naam"
+
+#. settings-schema.json->sortCriteria->options
+msgid "symbol"
+msgstr "symbool"
+
+#. settings-schema.json->sortCriteria->description
+msgid "Sort list by"
+msgstr "Sorteer lijst op"
+
+#. settings-schema.json->sortCriteria->tooltip
+msgid "Sort the quote list"
+msgstr "Sorteer de lijst met koersen"
+
+#. settings-schema.json->sortDirection->description
+msgid "Sort in ascending order"
+msgstr "Sorteren in oplopende volgorde"
+
+#. settings-schema.json->sortDirection->tooltip
+msgid ""
+"Check to sort quotes in ascending order, uncheck to sort in descending order"
+msgstr ""
+"Aanvinken om koersen in oplopende volgorde te sorteren, uitvinken om in "
+"aflopende volgorde te sorteren"
+
+#. settings-schema.json->showChangeIcon->description
+msgid "Show change/trend icon"
+msgstr "Toon wijzigings/trendpictogram"
+
+#. settings-schema.json->showChangeIcon->tooltip
+msgid "Indicates whether the market price moved up, down, or is unchanged"
+msgstr "Geeft aan of de marktprijs omhoog, omlaag is gegaan of ongewijzigd is"
+
+#. settings-schema.json->showQuoteName->description
+msgid "Show verbose name"
+msgstr "Toon uitgebreide naam"
+
+#. settings-schema.json->showQuoteName->tooltip
+msgid "Display the quote name (eg. International Business Machines)"
+msgstr "Toon de koersnaam (bijv. International Business Machines)"
+
+#. settings-schema.json->useLongQuoteName->description
+msgid "Use long version for verbose name"
+msgstr "Gebruik lange versie voor uitgebreide naam"
+
+#. settings-schema.json->useLongQuoteName->tooltip
+msgid ""
+"Use the long version for quote name, if available (eg. International "
+"Business Machines Corporation)"
+msgstr ""
+"Gebruik de lange versie voor koersnaam, indien beschikbaar (bijv. "
+"International Business Machines Corporation)"
+
+#. settings-schema.json->linkQuoteName->description
+msgid "Add web link to name"
+msgstr "Voeg weblink toe aan naam"
+
+#. settings-schema.json->linkQuoteName->tooltip
+msgid "Click name to open quote in browser"
+msgstr "Klik op naam om koers in browser te openen"
+
+#. settings-schema.json->showQuoteSymbol->description
+msgid "Show ticker/symbol"
+msgstr "Toon ticker/symbool"
+
+#. settings-schema.json->showQuoteSymbol->tooltip
+msgid "Display the quote symbol (eg. IBM)"
+msgstr "Toon het koerssymbool (bijv. IBM)"
+
+#. settings-schema.json->linkQuoteSymbol->description
+msgid "Add web link to ticker/symbol"
+msgstr "Voeg weblink toe aan ticker/symbool"
+
+#. settings-schema.json->linkQuoteSymbol->tooltip
+msgid "Click symbol to open quote in browser"
+msgstr "Klik op symbool om koers in browser te openen"
+
+#. settings-schema.json->showMarketPrice->description
+msgid "Show price"
+msgstr "Toon prijs"
+
+#. settings-schema.json->showMarketPrice->tooltip
+msgid "Display the current market price (eg. 146.79)"
+msgstr "Toon de huidige marktprijs (bijv. 146,79)"
+
+#. settings-schema.json->showCurrencyCode->description
+msgid "Show currency symbol"
+msgstr "Toon valutasymbool"
+
+#. settings-schema.json->showCurrencyCode->tooltip
+msgid "Display the currency symbol of the price (eg. $)"
+msgstr "Toon het valutasymbool van de prijs (bijv. $)"
+
+#. settings-schema.json->showAbsoluteChange->description
+msgid "Show absolute change"
+msgstr "Toon absolute verandering"
+
+#. settings-schema.json->showAbsoluteChange->tooltip
+msgid "Display the absolute change of the market price (eg. +0.739)"
+msgstr "Toon de absolute verandering van de marktprijs (bijv. +0,739)"
+
+#. settings-schema.json->showPercentChange->description
+msgid "Show percent change"
+msgstr "Toon procentuele verandering"
+
+#. settings-schema.json->showPercentChange->tooltip
+msgid "Display the percent change of the market price (eg. -0.53%)"
+msgstr "Toon de procentuele verandering van de marktprijs (bijv. -0,53%)"
+
+#. settings-schema.json->colorPercentChange->description
+msgid "Use trend colors for percent change"
+msgstr "Gebruik trendkleuren voor procentuele verandering"
+
+#. settings-schema.json->colorPercentChange->tooltip
+msgid "Color the percent change to show the trend"
+msgstr "Kleur de procentuele verandering om de trend weer te geven"
+
+#. settings-schema.json->showTradeTime->description
+msgid "Show trading time"
+msgstr "Toon handelstijd"
+
+#. settings-schema.json->showTradeTime->tooltip
+msgid "Display the last trading time (if current day) or date"
+msgstr "Toon het laatste handelstijdstip (indien de huidige dag) of datum"
+
+#. settings-schema.json->fontColor->description
+msgid "Font color"
+msgstr "Letterkleur"
+
+#. settings-schema.json->fontColor->tooltip
+msgid "Default text color"
+msgstr "Standaardtekstkleur"
+
+#. settings-schema.json->scaleFontSize->description
+msgid "Enable font size scaling"
+msgstr "Schakel schaalvergroting van lettergrootte in"
+
+#. settings-schema.json->scaleFontSize->tooltip
+msgid "Apply custom font size instead of the system default size"
+msgstr ""
+"Pas aangepaste lettergrootte toe in plaats van de standaardgrootte van het "
+"systeem"
+
+#. settings-schema.json->fontScale->units
+msgid "times"
+msgstr "keer"
+
+#. settings-schema.json->fontScale->description
+msgid "Font size scale factor"
+msgstr "Schaalfactor voor lettergrootte"
+
+#. settings-schema.json->fontScale->tooltip
+msgid "Enlarge/reduce the font size"
+msgstr "Lettergrootte vergroten/verkleinen"
+
+#. settings-schema.json->uptrendChangeColor->description
+msgid "Uptrend change color"
+msgstr "Stijgende trend kleur"
+
+#. settings-schema.json->uptrendChangeColor->tooltip
+msgid "Color of the uptrend change"
+msgstr "Kleur van de stijgende trend"
+
+#. settings-schema.json->downtrendChangeColor->description
+msgid "Downtrend change color"
+msgstr "Dalende trend kleur"
+
+#. settings-schema.json->unchangedTrendColor->description
+msgid "Unchanged trend color"
+msgstr "Ongewijzigde trend kleur"
+
+#. settings-schema.json->unchangedTrendColor->tooltip
+msgid "Color of the unchanged trend"
+msgstr "Kleur van de ongewijzigde trend"
+
+#. settings-schema.json->sendCustomUserAgent->description
+msgid "Send custom User-Agent header"
+msgstr "Aangepaste User-Agent-header verzenden"
+
+#. settings-schema.json->sendCustomUserAgent->tooltip
+msgid "Include a custom User-Agent header in Yahoo Finance Quotes API requests"
+msgstr ""
+"Voeg een aangepaste User-Agent-header toe aan Yahoo Finance Quotes API-"
+"verzoeken"
+
+#. settings-schema.json->customUserAgent->description
+msgid "Custom User-Agent header"
+msgstr "Aangepaste User-Agent-header"
+
+#. settings-schema.json->customUserAgent->tooltip
+msgid "Value for User-Agent header to send with all API requests"
+msgstr "Waarde voor User-Agent-header om mee te sturen met alle API-verzoeken"
+
+#. settings-schema.json->enableCurl->description
+msgid "Use external tool curl"
+msgstr "Gebruik extern hulpmiddel curl"
+
+#. settings-schema.json->enableCurl->tooltip
+msgid "Requires separate installation of curl."
+msgstr "Vereist aparte installatie van curl."
+
+#. settings-schema.json->curlCommand->description
+msgid "Path of curl executable"
+msgstr "Pad naar curl uitvoerbaar bestand"
+
+#. settings-schema.json->curlCommand->tooltip
+msgid "Provide absolute path of curl program file"
+msgstr "Geef het absolute pad op van het curl-programmabestand"
+
+#. settings-schema.json->applyNetworkSettingsButton->description
+msgid "Apply network settings"
+msgstr "Netwerkinstellingen toepassen"
+
+#. settings-schema.json->applyNetworkSettingsButton->tooltip
+msgid "Fetches new authorization parameters and refreshes quotes data"
+msgstr "Haalt nieuwe autorisatieparameters op en ververst koersgegevens"

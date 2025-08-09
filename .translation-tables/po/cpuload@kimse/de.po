@@ -1,0 +1,160 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-05 11:05+0300\n"
+"PO-Revision-Date: 2021-03-14 17:40+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+#: desklet.js:232
+#, javascript-format
+msgid "Core %d"
+msgstr "Kern %d"
+
+#: desklet.js:232
+msgid "CPU usage"
+msgstr "CPU-Nutzung"
+
+#. metadata.json->description
+msgid "Displays CPU load"
+msgstr "Zeigt die CPU-Auslastung an"
+
+#. metadata.json->name
+msgid "CPU Load"
+msgstr "CPU-Auslastung"
+
+#. settings-schema.json->head0->description
+msgid "Settings for the CPU Load desklet"
+msgstr "Einstellungen für das CPU-Auslastungs-Desklet"
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr "Allgemein"
+
+#. settings-schema.json->per-core->description
+msgid "Show all CPU cores"
+msgstr "Zeige CPU-Auslastung für jeden Kern"
+
+#. settings-schema.json->per-core->tooltip
+msgid "Display utilization of each CPU core rather than total CPU utilization."
+msgstr "Zeige separate CPU-Auslastungsanzeige für jeden Prozessorkern."
+
+#. settings-schema.json->refresh-interval->units
+msgid "seconds"
+msgstr "Sekunden"
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval"
+msgstr "Aktualisierungsintervall"
+
+#. settings-schema.json->refresh-interval->tooltip
+msgid "Increase or decrease refresh interval in seconds."
+msgstr "Erhöhen oder verringern Sie das Aktualisierungsintervall."
+
+#. settings-schema.json->head2->description
+msgid "Layout"
+msgstr "Visuelle Einstellungen"
+
+#. settings-schema.json->design->description
+msgid "Design"
+msgstr "Design"
+
+#. settings-schema.json->design->options
+msgid "Thin"
+msgstr "Dünn"
+
+#. settings-schema.json->design->options
+msgid "Compact"
+msgstr "Kompakt"
+
+#. settings-schema.json->design->options
+msgid "Thick"
+msgstr "Dick"
+
+#. settings-schema.json->circle->description
+msgid "Circle"
+msgstr "Kreis"
+
+#. settings-schema.json->circle->options
+msgid "Speedometer"
+msgstr "Tachometer"
+
+#. settings-schema.json->circle->options
+msgid "Full Circle"
+msgstr "Voller Kreis"
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "Skalierungsfaktor"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Deskletgröße"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of the desklet."
+msgstr ""
+"Vergrößern oder verkleinern Sie dieses Desklet, indem Sie diesen "
+"Skalierungsfaktor verändern."
+
+#. settings-schema.json->number-of-columns->units
+msgid "columns"
+msgstr "Spalten"
+
+#. settings-schema.json->number-of-columns->description
+msgid "Number of columns"
+msgstr "Spaltenanzahl"
+
+#. settings-schema.json->number-of-columns->tooltip
+msgid "Increase or decrease number of columns."
+msgstr "Erhöhen oder verringern Sie die Spaltenanzahl."
+
+#. settings-schema.json->head3->description
+msgid "Colors"
+msgstr "Farbeinstellungen"
+
+#. settings-schema.json->font-color->description
+msgid "Font color"
+msgstr "Schriftfarbe"
+
+#. settings-schema.json->color-theme->description
+msgid "Color theme"
+msgstr "Kreisfarbe"
+
+#. settings-schema.json->color-theme->options
+msgid "Random"
+msgstr "Zufällig"
+
+#. settings-schema.json->color-theme->options
+msgid "Static"
+msgstr "Statisch"
+
+#. settings-schema.json->color-theme->options
+msgid "Dynamic"
+msgstr "Nach CPU-Auslastung einfärben (grün-rot)"
+
+#. settings-schema.json->static-theme-color->description
+msgid "Static theme color"
+msgstr "Statische Kreisfarbe"
+
+#. settings-schema.json->head4->description
+msgid "Background"
+msgstr "Hintergrundeinstellungen"
+
+#. settings-schema.json->show-background->description
+msgid "Show background"
+msgstr "Zeichne ungenutzte Ressourcen (grau)"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Dekorationen ausblenden"

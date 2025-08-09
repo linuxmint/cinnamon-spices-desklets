@@ -1,0 +1,185 @@
+# Feed reader desklet for Cinnamon
+# This file is put in the public domain.
+# Daniel <d3vf4n (at) tutanota (dot) com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: yarr@jtoberling 1.2.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-08-08 12:09-0400\n"
+"PO-Revision-Date: 2025-02-17 12:06+0100\n"
+"Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. desklet.js:580
+msgid "Search for RSS Feeds"
+msgstr ""
+
+#. desklet.js:596
+msgid "Searching for RSS feeds at "
+msgstr ""
+
+#. desklet.js:662
+msgid "OK"
+msgstr ""
+
+#. desklet.js:818
+msgid "No RSS feeds found at "
+msgstr ""
+
+#. desklet.js:826
+msgid "Error searching for RSS feeds: "
+msgstr ""
+
+#. desklet.js:841
+msgid "Select RSS Feeds to Add"
+msgstr ""
+
+#. desklet.js:872
+msgid "Added "
+msgstr ""
+
+#. desklet.js:872
+msgid " new RSS feeds"
+msgstr ""
+
+#. desklet.js:1254
+msgid " Add article"
+msgstr ""
+
+#. desklet.js:2239
+#, javascript-format
+msgid "Last refresh: %s"
+msgstr ""
+
+#. desklet.js:2972
+msgid "Enter your OpenAI API key:"
+msgstr ""
+
+#. desklet.js:2984
+msgid "API key saved successfully!"
+msgstr ""
+
+#. desklet.js:2995
+msgid "Error opening API key dialog. Please check the logs."
+msgstr ""
+
+#. desklet.js:3030
+msgid "Add Article by URL"
+msgstr ""
+
+#. desklet.js:3038
+msgid "Paste article or feed URL..."
+msgstr ""
+
+#. desklet.js:3064
+msgid "Add"
+msgstr ""
+
+#. desklet.js:3087
+msgid "No content received from URL."
+msgstr ""
+
+#. desklet.js:3101 desklet.js:3116 desklet.js:3133
+msgid "Manual"
+msgstr ""
+
+#. desklet.js:3104 desklet.js:3119 desklet.js:3144
+msgid "No Title"
+msgstr ""
+
+#. desklet.js:3148
+msgid "Article added!"
+msgstr ""
+
+#. desklet.js:3150
+msgid "Failed to add article: "
+msgstr ""
+
+#. desklet.js:3311
+msgid "Restart desklet"
+msgstr ""
+
+# feed = canal d'entrada d'informació.
+# Consultar el diccionari dictionary.cambridge.org i la memòria de traducció del SoftCatalà
+#. desklet.js:3340
+msgid "Reloading desklet code..."
+msgstr ""
+
+#. ui-components.js:122
+msgid "Enter website URL to search for RSS feeds:"
+msgstr ""
+
+#. ui-components.js:132
+msgid "e.g., example.com"
+msgstr ""
+
+#. ui-components.js:211
+msgid "Select the RSS feeds you want to add:"
+msgstr ""
+
+#. ui-components.js:305
+msgid "Add Selected"
+msgstr ""
+
+#. settings-schema.json->ai_label-info->description
+msgid ""
+"These are experimental AI features. Use at your own risk!\n"
+"Also they are needing ChatGPT/DeepSeek account or compatible API."
+msgstr ""
+
+#. settings-schema.json->searchRssButton->description
+msgid "Search for RSS feeds"
+msgstr ""
+
+#. settings-schema.json->searchRssButton->tooltip
+msgid "Search for RSS feeds from a website URL"
+msgstr ""
+
+#. settings-schema.json->showRefreshSeparators->description
+msgid "Show refresh separators between articles"
+msgstr ""
+
+#. settings-schema.json->showRefreshSeparators->tooltip
+msgid ""
+"Shows separator lines with timestamps between articles from different "
+"refresh batches"
+msgstr ""
+
+#. settings-schema.json->enableDebugLogs->description
+msgid "Enable debug logs"
+msgstr ""
+
+#. settings-schema.json->enableDebugLogs->tooltip
+msgid ""
+"When enabled, detailed debug information will be logged to the system logs. "
+"Only enable when troubleshooting issues."
+msgstr ""
+
+#. settings-schema.json->showReadStatusCheckbox->description
+msgid "Show read status checkbox"
+msgstr ""
+
+#. settings-schema.json->dimReadTitles->description
+msgid "Dim read article titles"
+msgstr ""
+
+#. settings-schema.json->dimReadTitles->tooltip
+msgid ""
+"When enabled, read titles are slightly dimmed for better visual distinction"
+msgstr ""
+
+#. settings-schema.json->readTitleColor->description
+msgid "Color for read article titles"
+msgstr ""
+
+#. settings-schema.json->readTitleColor->tooltip
+msgid "Choose a color applied to read titles"
+msgstr ""

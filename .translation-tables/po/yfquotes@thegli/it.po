@@ -1,0 +1,588 @@
+# Yahoo Finance Quotes Desklet
+# Copyright (C) 2018 Thomas Egli
+# This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-05-12 00:33+0200\n"
+"PO-Revision-Date: 2023-12-12 19:02+0100\n"
+"Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. desklet.js:119
+msgid "No quotes data to display"
+msgstr ""
+
+#. desklet.js:516
+msgid "Empty quotes list. Open settings and add some symbols."
+msgstr ""
+
+#. desklet.js:561 desklet.js:585
+msgid "Authorization parameters have expired"
+msgstr ""
+
+#. desklet.js:564 desklet.js:588
+msgid "Yahoo Finance service not available!\\nStatus: "
+msgstr "Il servizio Yahoo Finance non è disponibile!\\nStato: "
+
+#. desklet.js:988
+msgid "Updated at "
+msgstr "Aggiornato al "
+
+#. desklet.js:1020
+msgid "Error: "
+msgstr "Errore: "
+
+#. desklet.js:1146
+msgid ""
+"Failed to retrieve authorization parameter! Unable to fetch quotes data."
+"\\nStatus: "
+msgstr ""
+"Impossibile recuperare il parametro di autorizzazione! Impossibile "
+"recuperare i dati delle quotazioni.\\nStato: "
+
+#. desklet.js:1173
+msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
+msgstr ""
+"Elaborazione del consenso non riuscita! Impossibile recuperare i dati delle "
+"quotazioni.\\nStato: "
+
+#. desklet.js:1179
+msgid ""
+"Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
+msgstr ""
+"Elaborazione del consenso non completata! Impossibile recuperare i dati "
+"delle quotazioni.\\nStato: "
+
+#. desklet.js:1207
+msgid ""
+"Failed to retrieve authorization crumb! Unable to fetch quotes data."
+"\\nStatus: "
+msgstr ""
+"Impossibile recuperare la parte di autorizzazione! Impossibile recuperare i "
+"dati delle quotazioni.\\nStato: "
+
+#. metadata.json->description
+msgid ""
+"Displays financial market information such as stock quotes and commodity "
+"prices from Yahoo Finance"
+msgstr ""
+"Visualizza le informazioni sul mercato finanziario come quotazioni di azioni "
+"e prezzi delle materie prime da Yahoo Finance"
+
+#. metadata.json->name
+msgid "Yahoo Finance Quotes"
+msgstr "Quotazioni Yahoo Finance"
+
+#. settings-schema.json->dataPage->title
+#. settings-schema.json->dataSymbolsSection->title
+msgid "Quotes"
+msgstr "Quotazioni"
+
+#. settings-schema.json->detailsPage->title
+msgid "Details"
+msgstr "Dettaglio"
+
+#. settings-schema.json->presentationPage->title
+msgid "Presentation"
+msgstr "Presentazione"
+
+#. settings-schema.json->layoutPage->title
+msgid "Layout"
+msgstr "Disposizione"
+
+#. settings-schema.json->networkPage->title
+msgid "Network"
+msgstr ""
+
+#. settings-schema.json->dataUpdateSection->title
+msgid "Data Updates"
+msgstr "Aggiornamento dei dati"
+
+#. settings-schema.json->detailsNameSection->title
+msgid "Name"
+msgstr "Nome"
+
+#. settings-schema.json->detailsSymbolSection->title
+msgid "Symbol"
+msgstr "Simbolo"
+
+#. settings-schema.json->detailsPriceSection->title
+msgid "Price"
+msgstr "Prezzo"
+
+#. settings-schema.json->detailsChangeSection->title
+msgid "Change"
+msgstr "Variazione"
+
+#. settings-schema.json->detailsDateTimeSection->title
+msgid "Date and Time"
+msgstr "Data e ora"
+
+#. settings-schema.json->presentationFormattingSection->title
+msgid "Number Format"
+msgstr "Formattazione Numerica"
+
+#. settings-schema.json->presentationDateTimeFormattingSection->title
+msgid "Date and Time Format"
+msgstr ""
+
+#. settings-schema.json->presentationSortingSection->title
+msgid "Sorting"
+msgstr "Ordinamento"
+
+#. settings-schema.json->presentationFontSection->title
+msgid "Font"
+msgstr ""
+
+#. settings-schema.json->presentationColorsSection->title
+msgid "Trend Colors"
+msgstr "Colori"
+
+#. settings-schema.json->layoutDimensionSection->title
+msgid "Dimension"
+msgstr "Dimensione"
+
+#. settings-schema.json->layoutEffectsSection->title
+msgid "Effects"
+msgstr "Effeti"
+
+#. settings-schema.json->networkSessionSection->title
+msgid "HTTP Session"
+msgstr ""
+
+#. settings-schema.json->width->description
+msgid "Width"
+msgstr "Larghezza"
+
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+#. settings-schema.json->cornerRadius->units
+#. settings-schema.json->borderWidth->units
+msgid "pixels"
+msgstr "pixels"
+
+#. settings-schema.json->width->tooltip
+msgid "Desklet width in pixels"
+msgstr "Larghezza del desklet in pixels."
+
+#. settings-schema.json->height->description
+msgid "Height"
+msgstr "Altezza"
+
+#. settings-schema.json->height->tooltip
+msgid "Desklet height in pixels"
+msgstr "Altezza del desklet in pixels."
+
+#. settings-schema.json->transparency->description
+msgid "Background transparency"
+msgstr "Trasparenza sfondo"
+
+#. settings-schema.json->transparency->tooltip
+msgid "The higher the value, the more solid the desklet's background"
+msgstr ""
+"Più alto è il valore, maggiore sarà la solidità dello sfondo del desklet."
+
+#. settings-schema.json->backgroundColor->description
+msgid "Background color"
+msgstr ""
+
+#. settings-schema.json->backgroundColor->tooltip
+msgid "Desklet background color"
+msgstr ""
+
+#. settings-schema.json->cornerRadius->description
+msgid "Corner radius"
+msgstr ""
+
+#. settings-schema.json->cornerRadius->tooltip
+msgid "The higher the value, the rounder the desklet's corners"
+msgstr ""
+
+#. settings-schema.json->showVerticalScrollbar->description
+msgid "Show vertical scrollbar"
+msgstr ""
+
+#. settings-schema.json->showVerticalScrollbar->tooltip
+msgid ""
+"Display a vertical scrollbar when the quote list is longer than the "
+"desklet's height"
+msgstr ""
+
+#. settings-schema.json->borderWidth->description
+msgid "Border width"
+msgstr ""
+
+#. settings-schema.json->borderWidth->tooltip
+msgid ""
+"The higher the value, the thicker the desklet's border. A value of 0 hides "
+"the border."
+msgstr ""
+
+#. settings-schema.json->borderColor->description
+msgid "Border color"
+msgstr ""
+
+#. settings-schema.json->borderColor->tooltip
+msgid "Desklet border color"
+msgstr ""
+
+#. settings-schema.json->delayMinutes->units
+msgid "minutes"
+msgstr "minuti"
+
+#. settings-schema.json->delayMinutes->description
+msgid "Update frequency"
+msgstr "Frequenza di aggiornamento"
+
+#. settings-schema.json->delayMinutes->tooltip
+msgid "Data refresh frequency, in minutes"
+msgstr "Frequenza di aggiornamento dei dati, in minuti."
+
+#. settings-schema.json->showLastUpdateTimestamp->description
+msgid "Show last update timestamp"
+msgstr "Mostra il timestamp dell'ultimo aggiornamento"
+
+#. settings-schema.json->showLastUpdateTimestamp->tooltip
+msgid "Display timestamp when quotes were updated last"
+msgstr "Mostra il timestamp di quando le quotazioni sono state aggiornate."
+
+#. settings-schema.json->manualDataUpdate->description
+msgid "Manual and automatic update"
+msgstr ""
+
+#. settings-schema.json->manualDataUpdate->tooltip
+msgid ""
+"Click last update timestamp to instantly refresh quotes data. Automatic "
+"update is still performed periodically."
+msgstr ""
+
+#. settings-schema.json->roundNumbers->description
+msgid "Round numbers"
+msgstr "Arrotonda numeri"
+
+#. settings-schema.json->roundNumbers->tooltip
+msgid "Perform rounding of floating-point numbers"
+msgstr "Esegue l'arrotondamento sui numeri in virgola mobile."
+
+#. settings-schema.json->decimalPlaces->units
+msgid "positions"
+msgstr "posizioni"
+
+#. settings-schema.json->decimalPlaces->description
+msgid "Decimal places to round"
+msgstr "Posizioni decimali da arrotondare"
+
+#. settings-schema.json->decimalPlaces->tooltip
+msgid "Number of positions to round to after decimal point"
+msgstr "Numero di posizioni da arrotondare dopo il punto decimale."
+
+#. settings-schema.json->strictRounding->description
+msgid "Strict rounding"
+msgstr "Arrotondamento rigoroso"
+
+#. settings-schema.json->strictRounding->tooltip
+msgid ""
+"Strict rounding to the specified decimal places (eg. 0 will be presented as "
+"0.00)"
+msgstr ""
+"Arrotondamento rigoroso alle cifre decimali specificate (ad es. 0 verrà "
+"presentato come 0,00)."
+
+#. settings-schema.json->use24HourTime->description
+msgid "Force 24-hour clock"
+msgstr ""
+
+#. settings-schema.json->use24HourTime->tooltip
+msgid ""
+"Always display time in 24-hour notation, overriding system settings.\n"
+"This setting is ignored, when a custom time format is defined."
+msgstr ""
+
+#. settings-schema.json->customTimeFormat->description
+msgid "Custom time format"
+msgstr ""
+
+#. settings-schema.json->customTimeFormat->tooltip
+msgid ""
+"Format time with custom format instead of system settings.\n"
+"Examples:\n"
+"%H:%M:%S    23:47:51\n"
+"%I:%M %p    11:47 PM"
+msgstr ""
+
+#. settings-schema.json->customDateFormat->description
+msgid "Custom date format"
+msgstr ""
+
+#. settings-schema.json->customDateFormat->tooltip
+msgid ""
+"Format date with custom format instead of system settings.\n"
+"Examples:\n"
+"%m/%d          03/15\n"
+"%Y-%m-%d   2024-03-15\n"
+"%A, %b %d   Friday, Mar 15"
+msgstr ""
+
+#. settings-schema.json->quoteSymbols->description
+msgid "Quote symbols"
+msgstr "Simboli delle quotazioni"
+
+#. settings-schema.json->quoteSymbols->tooltip
+msgid "List of quote symbols, separated with line-breaks"
+msgstr ""
+"Elenca i simboli delle quotazioni qui, separandole con interruzioni di riga."
+
+#. settings-schema.json->updateDataButton->description
+msgid "Refresh quotes data"
+msgstr ""
+
+#. settings-schema.json->updateDataButton->tooltip
+msgid "Apply and refresh quotes"
+msgstr ""
+
+#. settings-schema.json->sortCriteria->options
+msgid "given order"
+msgstr "ordine fornito"
+
+#. settings-schema.json->sortCriteria->options
+msgid "percent change"
+msgstr "percentuale cambiamento"
+
+#. settings-schema.json->sortCriteria->options
+msgid "name"
+msgstr "nome"
+
+#. settings-schema.json->sortCriteria->options
+msgid "symbol"
+msgstr "simbolo"
+
+#. settings-schema.json->sortCriteria->description
+msgid "Sort list by"
+msgstr "Ordine lista per"
+
+#. settings-schema.json->sortCriteria->tooltip
+msgid "Sort the quote list"
+msgstr "Ordina la lista delle quotazioni."
+
+#. settings-schema.json->sortDirection->description
+msgid "Sort in ascending order"
+msgstr "Ordina in ordine crescente"
+
+#. settings-schema.json->sortDirection->tooltip
+msgid ""
+"Check to sort quotes in ascending order, uncheck to sort in descending order"
+msgstr ""
+"Abilita per ordinare le quotazioni in ordine crescente, disabilita per "
+"ordinare in ordine decrescente."
+
+#. settings-schema.json->showChangeIcon->description
+msgid "Show change/trend icon"
+msgstr "Mostra icona cambiamento"
+
+#. settings-schema.json->showChangeIcon->tooltip
+msgid "Indicates whether the market price moved up, down, or is unchanged"
+msgstr ""
+"Indica quando il prezzo di mercato si sposta su, giù o rimane invariato."
+
+#. settings-schema.json->showQuoteName->description
+msgid "Show verbose name"
+msgstr "Mostra nome dettagliato"
+
+#. settings-schema.json->showQuoteName->tooltip
+msgid "Display the quote name (eg. International Business Machines)"
+msgstr ""
+"Visualizza il nome della quotazione (es. International Business Machines)."
+
+#. settings-schema.json->useLongQuoteName->description
+msgid "Use long version for verbose name"
+msgstr "Usa la versione lunga per il nome dettagliato"
+
+#. settings-schema.json->useLongQuoteName->tooltip
+msgid ""
+"Use the long version for quote name, if available (eg. International "
+"Business Machines Corporation)"
+msgstr ""
+"Utilizzare la versione lunga per il nome della quotazione, se disponibile "
+"(ad es. International Business Machines Corporation)."
+
+#. settings-schema.json->linkQuoteName->description
+msgid "Add web link to name"
+msgstr "Aggiungi link web al nome"
+
+#. settings-schema.json->linkQuoteName->tooltip
+msgid "Click name to open quote in browser"
+msgstr "Fare clic sul nome per aprire la quotazione nel browser."
+
+#. settings-schema.json->showQuoteSymbol->description
+msgid "Show ticker/symbol"
+msgstr "Mostra ticker/simbolo"
+
+#. settings-schema.json->showQuoteSymbol->tooltip
+msgid "Display the quote symbol (eg. IBM)"
+msgstr "Visualizza il simbolo della quotazione (es. IBM)."
+
+#. settings-schema.json->linkQuoteSymbol->description
+msgid "Add web link to ticker/symbol"
+msgstr "Aggiungi link web a ticker/simbolo"
+
+#. settings-schema.json->linkQuoteSymbol->tooltip
+msgid "Click symbol to open quote in browser"
+msgstr "Fare clic sul simbolo per aprire la quotazione nel browser."
+
+#. settings-schema.json->showMarketPrice->description
+msgid "Show price"
+msgstr "Mostra prezzo"
+
+#. settings-schema.json->showMarketPrice->tooltip
+msgid "Display the current market price (eg. 146.79)"
+msgstr "Visualizza il prezzo corrente di mercato (es. 146,79)."
+
+#. settings-schema.json->showCurrencyCode->description
+msgid "Show currency symbol"
+msgstr "Mostra il simbolo della valuta"
+
+#. settings-schema.json->showCurrencyCode->tooltip
+msgid "Display the currency symbol of the price (eg. $)"
+msgstr "Visualizza il simbolo della valuta del prezzo (es. $)."
+
+#. settings-schema.json->showAbsoluteChange->description
+msgid "Show absolute change"
+msgstr "Mostra il cambiamento assoluto"
+
+#. settings-schema.json->showAbsoluteChange->tooltip
+msgid "Display the absolute change of the market price (eg. +0.739)"
+msgstr "Visualizza la variazione assoluta del prezzo di mercato (es. +0,739)."
+
+#. settings-schema.json->showPercentChange->description
+msgid "Show percent change"
+msgstr "Mostra variazione percentuale"
+
+#. settings-schema.json->showPercentChange->tooltip
+msgid "Display the percent change of the market price (eg. -0.53%)"
+msgstr ""
+"Visualizza la variazione percentuale del prezzo di mercato (es. - 0,53%)."
+
+#. settings-schema.json->colorPercentChange->description
+msgid "Use trend colors for percent change"
+msgstr "Usa i colori di tendenza per la variazione percentuale"
+
+#. settings-schema.json->colorPercentChange->tooltip
+msgid "Color the percent change to show the trend"
+msgstr ""
+"Colora la variazione percentuale per mostrare la tendenza (verde in alto, "
+"rosso in basso)."
+
+#. settings-schema.json->showTradeTime->description
+msgid "Show trading time"
+msgstr "Mostra il tempo di trading"
+
+#. settings-schema.json->showTradeTime->tooltip
+msgid "Display the last trading time (if current day) or date"
+msgstr ""
+"Visualizza l'ultima ora di negoziazione (se durante il giorno corrente) o la "
+"data."
+
+#. settings-schema.json->fontColor->description
+msgid "Font color"
+msgstr ""
+
+#. settings-schema.json->fontColor->tooltip
+msgid "Default text color"
+msgstr ""
+
+#. settings-schema.json->scaleFontSize->description
+msgid "Enable font size scaling"
+msgstr ""
+
+#. settings-schema.json->scaleFontSize->tooltip
+msgid "Apply custom font size instead of the system default size"
+msgstr ""
+
+#. settings-schema.json->fontScale->units
+msgid "times"
+msgstr ""
+
+#. settings-schema.json->fontScale->description
+msgid "Font size scale factor"
+msgstr ""
+
+#. settings-schema.json->fontScale->tooltip
+msgid "Enlarge/reduce the font size"
+msgstr ""
+
+#. settings-schema.json->uptrendChangeColor->description
+msgid "Uptrend change color"
+msgstr "Colore del cambiamento trend in rialzo"
+
+#. settings-schema.json->uptrendChangeColor->tooltip
+msgid "Color of the uptrend change"
+msgstr ""
+"Imposta il colore con cui evidenziare il cambiamento del trend in rialzo."
+
+#. settings-schema.json->downtrendChangeColor->description
+msgid "Downtrend change color"
+msgstr "Colore del cambiamento trend al ribasso"
+
+#. settings-schema.json->unchangedTrendColor->description
+msgid "Unchanged trend color"
+msgstr "Colore della tendenza invariata"
+
+#. settings-schema.json->unchangedTrendColor->tooltip
+msgid "Color of the unchanged trend"
+msgstr "Colore per la tendenza invariata."
+
+#. settings-schema.json->sendCustomUserAgent->description
+msgid "Send custom User-Agent header"
+msgstr "Invia header User-Agent personalizzato"
+
+#. settings-schema.json->sendCustomUserAgent->tooltip
+#, fuzzy
+msgid "Include a custom User-Agent header in Yahoo Finance Quotes API requests"
+msgstr ""
+"Includi un header User-Agent personalizzato nelle richieste API Yahoo "
+"Finance Quotes. Per impostazione predefinita, questo header non è impostato."
+
+#. settings-schema.json->customUserAgent->description
+msgid "Custom User-Agent header"
+msgstr "Header User-Agent personalizzato"
+
+#. settings-schema.json->customUserAgent->tooltip
+msgid "Value for User-Agent header to send with all API requests"
+msgstr "Valore per l'header User-Agent da inviare con tutte le richieste API."
+
+#. settings-schema.json->enableCurl->description
+msgid "Use external tool curl"
+msgstr ""
+
+#. settings-schema.json->enableCurl->tooltip
+msgid "Requires separate installation of curl."
+msgstr ""
+
+#. settings-schema.json->curlCommand->description
+msgid "Path of curl executable"
+msgstr ""
+
+#. settings-schema.json->curlCommand->tooltip
+msgid "Provide absolute path of curl program file"
+msgstr ""
+
+#. settings-schema.json->applyNetworkSettingsButton->description
+msgid "Apply network settings"
+msgstr ""
+
+#. settings-schema.json->applyNetworkSettingsButton->tooltip
+#, fuzzy
+msgid "Fetches new authorization parameters and refreshes quotes data"
+msgstr ""
+"Impossibile recuperare il parametro di autorizzazione! Impossibile "
+"recuperare i dati delle quotazioni.\\nStato: "
