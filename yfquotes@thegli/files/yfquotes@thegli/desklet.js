@@ -192,6 +192,7 @@ YahooFinanceQuoteUtils.prototype = {
             style: customAttributes.has("style") ? customAttributes.get("style") : "normal",
             weight: customAttributes.has("weight") ? customAttributes.get("weight") : "normal",
             color: customAttributes.has("color") ? customAttributes.get("color") : null,
+            shares: customAttributes.has("shares") ? customAttributes.get("shares") : null,
         };
     },
 
@@ -648,7 +649,8 @@ QuotesTable.prototype = {
 
     renderTable: function(quotes, symbolCustomizationMap, settings) {
         for (let rowIndex = 0, l = quotes.length; rowIndex < l; rowIndex++) {
-            this.renderTableRow(quotes[rowIndex], symbolCustomizationMap, settings, rowIndex);
+                this.renderTableRow(quotes[rowIndex], symbolCustomizationMap, settings, rowIndex);
+            
         }
     },
 
@@ -667,10 +669,10 @@ QuotesTable.prototype = {
             cellContents.push(this.createQuoteLabel(symbol, symbolCustomization, settings.quoteSymbolWidth, settings));
         }
         if (settings.marketPrice) {
-            cellContents.push(this.createMarketPriceLabel(quote, settings));
+            cellContents.push(this.createMarketPriceLabel(quote,symbolCustomization, settings));
         }
         if (settings.absoluteChange) {
-            cellContents.push(this.createAbsoluteChangeLabel(quote, settings));
+            cellContents.push(this.createAbsoluteChangeLabel(quote,symbolCustomization, settings));
         }
         if (settings.percentChange) {
             cellContents.push(this.createPercentChangeLabel(quote, settings));
@@ -707,24 +709,24 @@ QuotesTable.prototype = {
         }
     },
 
-    createMarketPriceLabel: function(quote, settings) {
+    createMarketPriceLabel: function(quote, symbolCustomization,settings) {
         let currencySymbol = "";
         if (settings.currencySymbol && this.quoteUtils.existsProperty(quote, "currency")) {
             currencySymbol = this.currencyCodeToSymbolMap[quote.currency] || quote.currency;
         }
         return new St.Label({
             text: currencySymbol + (this.quoteUtils.existsProperty(quote, "regularMarketPrice")
-                ? this.roundAmount(quote.regularMarketPrice, settings.decimalPlaces, settings.strictRounding)
+                ? this.roundAmount(quote.regularMarketPrice*(symbolCustomization.shares != null?parseFloat(symbolCustomization.shares):1.0), settings.decimalPlaces, settings.strictRounding)
                 : ABSENT),
             style_class: "quotes-number",
             style: this.buildFontStyle(settings)
         });
     },
 
-    createAbsoluteChangeLabel: function(quote, settings) {
+    createAbsoluteChangeLabel: function(quote,symbolCustomization,settings) {
         let absoluteChangeText = "";
         if (this.quoteUtils.existsProperty(quote, "regularMarketChange")) {
-            let absoluteChange = this.roundAmount(quote.regularMarketChange, settings.decimalPlaces, settings.strictRounding);
+            let absoluteChange = this.roundAmount(quote.regularMarketChange*(symbolCustomization.shares != null?parseFloat(symbolCustomization.shares):1.0), settings.decimalPlaces, settings.strictRounding);
             if (absoluteChange > 0.0) {
                 absoluteChangeText = "+";
             }
