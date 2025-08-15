@@ -1,0 +1,36 @@
+# ADVENT CANDLES
+# This file is put in the public domain.
+# KopfdesDaemons, 2017
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: adventCandles@KopfdesDaemons 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-12-03 01:54+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. metadata.json->name
+#. desklet.js:23
+msgid "Advent Candles"
+msgstr "Adventskerzen"
+
+#. metadata.json->description
+msgid "Advent candles with animations on your desktop."
+msgstr "Adventskerzen mit Animationen auf Ihrem Desktop."
+
+#. settings-schema.json->deskletScale->description
+msgid "Scale factor for desklet size"
+msgstr "Skalierungsfaktor für Deskletgröße"
+
+#. settings-schema.json->animationSpeed->description
+msgid "Speed of candle animation in milliseconds"
+msgstr "Geschwindigkeit der Kerzenanimation in Millisekunden"

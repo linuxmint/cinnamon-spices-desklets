@@ -1,0 +1,585 @@
+# Yahoo Finance Quotes Desklet
+# Copyright (C) 2018 Thomas Egli
+# This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-05-12 00:33+0200\n"
+"PO-Revision-Date: 2025-04-02 14:13+0300\n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
+"Language-Team: \n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. desklet.js:119
+msgid "No quotes data to display"
+msgstr "Ei näytettäviä tietoja"
+
+#. desklet.js:516
+msgid "Empty quotes list. Open settings and add some symbols."
+msgstr "Tyhjä luettelo. Avaa asetukset ja lisää symboleja."
+
+#. desklet.js:561 desklet.js:585
+msgid "Authorization parameters have expired"
+msgstr "Valtuutusarvot ovat vanhentuneet"
+
+#. desklet.js:564 desklet.js:588
+msgid "Yahoo Finance service not available!\\nStatus: "
+msgstr "Yahoo Finance palvelu ei ole saatavilla!\\nTila: "
+
+#. desklet.js:988
+msgid "Updated at "
+msgstr "Päivitetty klo "
+
+#. desklet.js:1020
+msgid "Error: "
+msgstr "Virhe: "
+
+#. desklet.js:1146
+msgid ""
+"Failed to retrieve authorization parameter! Unable to fetch quotes data."
+"\\nStatus: "
+msgstr "Valtuutuksen haku epäonnistui! Tietoja ei voi noutaa.\\nTila: "
+
+#. desklet.js:1173
+msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
+msgstr "Suostumuksen käsittely epäonnistui! Tietoja ei voi noutaa.\\nTila: "
+
+#. desklet.js:1179
+msgid ""
+"Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
+msgstr "Suostumusta ei ole suoritettu loppuun! Tietoja ei voi noutaa.\\nTila: "
+
+#. desklet.js:1207
+msgid ""
+"Failed to retrieve authorization crumb! Unable to fetch quotes data."
+"\\nStatus: "
+msgstr "Valtuutuksen nouto epäonnistui! Tietoja ei voi noutaa.\\nTila: "
+
+#. metadata.json->description
+msgid ""
+"Displays financial market information such as stock quotes and commodity "
+"prices from Yahoo Finance"
+msgstr ""
+"Näyttää rahoitusmarkkinoiden tiedot, kuten Yahoo Financen osakekurssit ja "
+"hyödykkeiden hinnat"
+
+#. metadata.json->name
+msgid "Yahoo Finance Quotes"
+msgstr "Yahoo Finance Quotes"
+
+#. settings-schema.json->dataPage->title
+#. settings-schema.json->dataSymbolsSection->title
+msgid "Quotes"
+msgstr "Pörssi"
+
+#. settings-schema.json->detailsPage->title
+msgid "Details"
+msgstr "Tiedot"
+
+#. settings-schema.json->presentationPage->title
+msgid "Presentation"
+msgstr "Näkymä"
+
+#. settings-schema.json->layoutPage->title
+msgid "Layout"
+msgstr "Asettelu"
+
+#. settings-schema.json->networkPage->title
+msgid "Network"
+msgstr ""
+
+#. settings-schema.json->dataUpdateSection->title
+msgid "Data Updates"
+msgstr "Tietojen päivitys"
+
+#. settings-schema.json->detailsNameSection->title
+msgid "Name"
+msgstr "Nimi"
+
+#. settings-schema.json->detailsSymbolSection->title
+msgid "Symbol"
+msgstr "Symboli"
+
+#. settings-schema.json->detailsPriceSection->title
+msgid "Price"
+msgstr "Hinta"
+
+#. settings-schema.json->detailsChangeSection->title
+msgid "Change"
+msgstr "Muutos"
+
+#. settings-schema.json->detailsDateTimeSection->title
+msgid "Date and Time"
+msgstr "Päiväys ja aika"
+
+#. settings-schema.json->presentationFormattingSection->title
+msgid "Number Format"
+msgstr "Numeron muotoilu"
+
+#. settings-schema.json->presentationDateTimeFormattingSection->title
+msgid "Date and Time Format"
+msgstr "Aika ja päiväys"
+
+#. settings-schema.json->presentationSortingSection->title
+msgid "Sorting"
+msgstr "Lajittelu"
+
+#. settings-schema.json->presentationFontSection->title
+msgid "Font"
+msgstr "Fontti"
+
+#. settings-schema.json->presentationColorsSection->title
+msgid "Trend Colors"
+msgstr "Värit"
+
+#. settings-schema.json->layoutDimensionSection->title
+msgid "Dimension"
+msgstr "Mittasuhteet"
+
+#. settings-schema.json->layoutEffectsSection->title
+msgid "Effects"
+msgstr "Tehosteet"
+
+#. settings-schema.json->networkSessionSection->title
+msgid "HTTP Session"
+msgstr ""
+
+#. settings-schema.json->width->description
+msgid "Width"
+msgstr "Leveys"
+
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+#. settings-schema.json->cornerRadius->units
+#. settings-schema.json->borderWidth->units
+msgid "pixels"
+msgstr "pikseliä"
+
+#. settings-schema.json->width->tooltip
+msgid "Desklet width in pixels"
+msgstr "Leveys työpöydällä pikseleinä"
+
+#. settings-schema.json->height->description
+msgid "Height"
+msgstr "Korkeus"
+
+#. settings-schema.json->height->tooltip
+msgid "Desklet height in pixels"
+msgstr "Korkeus työpöydällä pikseleinä"
+
+#. settings-schema.json->transparency->description
+msgid "Background transparency"
+msgstr "Taustan läpinäkyvyys"
+
+#. settings-schema.json->transparency->tooltip
+msgid "The higher the value, the more solid the desklet's background"
+msgstr "Mitä suurempi arvo, sitä vähemmän läpinäkyvä"
+
+#. settings-schema.json->backgroundColor->description
+msgid "Background color"
+msgstr "Taustaväri"
+
+#. settings-schema.json->backgroundColor->tooltip
+msgid "Desklet background color"
+msgstr "Sovelman taustaväri"
+
+#. settings-schema.json->cornerRadius->description
+msgid "Corner radius"
+msgstr "Kulmien pyöristys"
+
+#. settings-schema.json->cornerRadius->tooltip
+msgid "The higher the value, the rounder the desklet's corners"
+msgstr "Mitä suurempi arvo, sitä enemmän sovelman kulmat pyöristyy"
+
+#. settings-schema.json->showVerticalScrollbar->description
+msgid "Show vertical scrollbar"
+msgstr "Näytä vierityspalkki"
+
+#. settings-schema.json->showVerticalScrollbar->tooltip
+msgid ""
+"Display a vertical scrollbar when the quote list is longer than the "
+"desklet's height"
+msgstr ""
+"Näytä vierityspalkki, jos luettelo on pidempi kuin korkeudessa mahtuisi "
+"näkymään"
+
+#. settings-schema.json->borderWidth->description
+msgid "Border width"
+msgstr "Reunan paksuus"
+
+#. settings-schema.json->borderWidth->tooltip
+msgid ""
+"The higher the value, the thicker the desklet's border. A value of 0 hides "
+"the border."
+msgstr ""
+"Mitä suurempi arvo, sitä paksummat sovelluksen reunakehykset. Arvo 0 "
+"piilottaa reunan."
+
+#. settings-schema.json->borderColor->description
+msgid "Border color"
+msgstr "Reunan väri"
+
+#. settings-schema.json->borderColor->tooltip
+msgid "Desklet border color"
+msgstr "Sovelman reunakehyksen väri"
+
+#. settings-schema.json->delayMinutes->units
+msgid "minutes"
+msgstr "minuuttia"
+
+#. settings-schema.json->delayMinutes->description
+msgid "Update frequency"
+msgstr "Päivitysväli"
+
+#. settings-schema.json->delayMinutes->tooltip
+msgid "Data refresh frequency, in minutes"
+msgstr "Tietojen päivitysväli minuuteissa"
+
+#. settings-schema.json->showLastUpdateTimestamp->description
+msgid "Show last update timestamp"
+msgstr "Näytä päivitysaika"
+
+#. settings-schema.json->showLastUpdateTimestamp->tooltip
+msgid "Display timestamp when quotes were updated last"
+msgstr "Näytää ajan, jolloin kurssit päivitettiin"
+
+#. settings-schema.json->manualDataUpdate->description
+msgid "Manual and automatic update"
+msgstr "Manuaalinen ja automaattinen päivitys"
+
+#. settings-schema.json->manualDataUpdate->tooltip
+msgid ""
+"Click last update timestamp to instantly refresh quotes data. Automatic "
+"update is still performed periodically."
+msgstr ""
+"Paina viimeisintä päivitysaikaa ja tiedot päivitetään välittömästi "
+"uudelleen. Autom. päivitys suoritetaan edelleen säännöllisesti."
+
+#. settings-schema.json->roundNumbers->description
+msgid "Round numbers"
+msgstr "Desimaalipyöristys"
+
+#. settings-schema.json->roundNumbers->tooltip
+msgid "Perform rounding of floating-point numbers"
+msgstr "Suorita liukulukujen pyöristys"
+
+#. settings-schema.json->decimalPlaces->units
+msgid "positions"
+msgstr "alkaa desimaalista"
+
+#. settings-schema.json->decimalPlaces->description
+msgid "Decimal places to round"
+msgstr "Pyöristyskohta"
+
+#. settings-schema.json->decimalPlaces->tooltip
+msgid "Number of positions to round to after decimal point"
+msgstr "Desimaalipilkun jälkeen tehtävä pyöristys"
+
+#. settings-schema.json->strictRounding->description
+msgid "Strict rounding"
+msgstr "Tiukka pyöristys"
+
+#. settings-schema.json->strictRounding->tooltip
+msgid ""
+"Strict rounding to the specified decimal places (eg. 0 will be presented as "
+"0.00)"
+msgstr ""
+"Tiukka pyöristys määritettyihin desimaaleihin (esim. 0 esitetään 0,00:na)."
+
+#. settings-schema.json->use24HourTime->description
+msgid "Force 24-hour clock"
+msgstr "Pakota 24h kello"
+
+#. settings-schema.json->use24HourTime->tooltip
+msgid ""
+"Always display time in 24-hour notation, overriding system settings.\n"
+"This setting is ignored, when a custom time format is defined."
+msgstr ""
+"Näytä aika 24h merkinnällä, ohittaen tietokoneen asetukset.\n"
+"Tämä asetus ohitetaan, jos mukautettu aikamuoto annetaan."
+
+#. settings-schema.json->customTimeFormat->description
+msgid "Custom time format"
+msgstr "Mukautettu aika"
+
+#. settings-schema.json->customTimeFormat->tooltip
+msgid ""
+"Format time with custom format instead of system settings.\n"
+"Examples:\n"
+"%H:%M:%S    23:47:51\n"
+"%I:%M %p    11:47 PM"
+msgstr ""
+"Aseta aika mukautettuna tietokoneen asetusten sijaan.\n"
+"Esimerkki:\n"
+"%H:%M:%S    23:47:51\n"
+"%I:%M %p    11:47 PM"
+
+#. settings-schema.json->customDateFormat->description
+msgid "Custom date format"
+msgstr "Mukautettu päivämäärä"
+
+#. settings-schema.json->customDateFormat->tooltip
+msgid ""
+"Format date with custom format instead of system settings.\n"
+"Examples:\n"
+"%m/%d          03/15\n"
+"%Y-%m-%d   2024-03-15\n"
+"%A, %b %d   Friday, Mar 15"
+msgstr ""
+"Aseta päiväys mukautettuna tietokoneen asetusten sijaan.\n"
+"Esimerkki:\n"
+"%m/%d          03/15\n"
+"%Y-%m-%d   2024-03-15\n"
+"%A, %b %d   Friday, Mar 15"
+
+#. settings-schema.json->quoteSymbols->description
+msgid "Quote symbols"
+msgstr "Pörssi symbolit"
+
+#. settings-schema.json->quoteSymbols->tooltip
+msgid "List of quote symbols, separated with line-breaks"
+msgstr "Luettelo pörssi tunnuksista, erotetaan rivinvaihdoilla"
+
+#. settings-schema.json->updateDataButton->description
+msgid "Refresh quotes data"
+msgstr "Päivitä pörssitiedot"
+
+#. settings-schema.json->updateDataButton->tooltip
+msgid "Apply and refresh quotes"
+msgstr "Käytä ja päivitä pörssitiedot"
+
+#. settings-schema.json->sortCriteria->options
+msgid "given order"
+msgstr "pörssilista"
+
+#. settings-schema.json->sortCriteria->options
+msgid "percent change"
+msgstr "muutos %"
+
+#. settings-schema.json->sortCriteria->options
+msgid "name"
+msgstr "nimi"
+
+#. settings-schema.json->sortCriteria->options
+msgid "symbol"
+msgstr "symboli"
+
+#. settings-schema.json->sortCriteria->description
+msgid "Sort list by"
+msgstr "Lajittele lista"
+
+#. settings-schema.json->sortCriteria->tooltip
+msgid "Sort the quote list"
+msgstr "Järjestää pörssilistan ehdon mukaan"
+
+#. settings-schema.json->sortDirection->description
+msgid "Sort in ascending order"
+msgstr "Järjestä nousevasti"
+
+#. settings-schema.json->sortDirection->tooltip
+msgid ""
+"Check to sort quotes in ascending order, uncheck to sort in descending order"
+msgstr ""
+"Valitse, jos haluat lajitella pörssikurssit nousevaan järjestykseen, poista "
+"valinta niin lajitellaan laskevaan järjestykseen"
+
+#. settings-schema.json->showChangeIcon->description
+msgid "Show change/trend icon"
+msgstr "Näytä muutos/suunta kuvake"
+
+#. settings-schema.json->showChangeIcon->tooltip
+msgid "Indicates whether the market price moved up, down, or is unchanged"
+msgstr ""
+"Osoittaa, onko markkinahinta liikkunut ylös, alas vai pysyykö muuttumattomana"
+
+#. settings-schema.json->showQuoteName->description
+msgid "Show verbose name"
+msgstr "Näytä yhtiön nimi"
+
+#. settings-schema.json->showQuoteName->tooltip
+msgid "Display the quote name (eg. International Business Machines)"
+msgstr "Näytä yhtiön nimen (esim. International Business Machines)."
+
+#. settings-schema.json->useLongQuoteName->description
+msgid "Use long version for verbose name"
+msgstr "Käytä nimen pitkää versiota"
+
+#. settings-schema.json->useLongQuoteName->tooltip
+msgid ""
+"Use the long version for quote name, if available (eg. International "
+"Business Machines Corporation)"
+msgstr ""
+"Käytä nimen pitkää versiota, jos saatavilla (esim. International Business "
+"Machines Corporation)."
+
+#. settings-schema.json->linkQuoteName->description
+msgid "Add web link to name"
+msgstr "Lisää verkkolinkki nimeen"
+
+#. settings-schema.json->linkQuoteName->tooltip
+msgid "Click name to open quote in browser"
+msgstr "Avaa pörssikurssi selaimessa painamalla nimeä"
+
+#. settings-schema.json->showQuoteSymbol->description
+msgid "Show ticker/symbol"
+msgstr "Näytä tunnus/symboli"
+
+#. settings-schema.json->showQuoteSymbol->tooltip
+msgid "Display the quote symbol (eg. IBM)"
+msgstr "Tuo näkyviin pörssi-tunnus (esim. IBM)."
+
+#. settings-schema.json->linkQuoteSymbol->description
+msgid "Add web link to ticker/symbol"
+msgstr "Lisää verkkolinkki tunnus/symboli"
+
+#. settings-schema.json->linkQuoteSymbol->tooltip
+msgid "Click symbol to open quote in browser"
+msgstr "Avaa pörssikurssi selaimessa painamalla symbolia"
+
+#. settings-schema.json->showMarketPrice->description
+msgid "Show price"
+msgstr "Näytä hinta"
+
+#. settings-schema.json->showMarketPrice->tooltip
+msgid "Display the current market price (eg. 146.79)"
+msgstr "Näytä nykyinen markkinahinta (esim. 146.79)."
+
+#. settings-schema.json->showCurrencyCode->description
+msgid "Show currency symbol"
+msgstr "Näytä valuutta"
+
+#. settings-schema.json->showCurrencyCode->tooltip
+msgid "Display the currency symbol of the price (eg. $)"
+msgstr "Tuo näkyviin valuutan tunnuksen (esim. $)."
+
+#. settings-schema.json->showAbsoluteChange->description
+msgid "Show absolute change"
+msgstr "Näytä kurssimuutos"
+
+#. settings-schema.json->showAbsoluteChange->tooltip
+msgid "Display the absolute change of the market price (eg. +0.739)"
+msgstr "Tuo näkyviin markkinahinnan muutoksen (esim. +0.739)."
+
+#. settings-schema.json->showPercentChange->description
+msgid "Show percent change"
+msgstr "Näytä muutosposentti"
+
+#. settings-schema.json->showPercentChange->tooltip
+msgid "Display the percent change of the market price (eg. -0.53%)"
+msgstr "Tuo näkyviin markkinahinnan prosentuaalisen muutoksen (esim. -0.53 %)."
+
+#. settings-schema.json->colorPercentChange->description
+msgid "Use trend colors for percent change"
+msgstr "Käytä % muutoksessa värejä"
+
+#. settings-schema.json->colorPercentChange->tooltip
+msgid "Color the percent change to show the trend"
+msgstr "Väritä prosentuaalisen muutoksen suunta"
+
+#. settings-schema.json->showTradeTime->description
+msgid "Show trading time"
+msgstr "Näytä kaupankäyntiaika"
+
+#. settings-schema.json->showTradeTime->tooltip
+msgid "Display the last trading time (if current day) or date"
+msgstr "Näyttää viimeisen kaupankäyntiajan (jos kuluva päivä) tai päivämäärä"
+
+#. settings-schema.json->fontColor->description
+msgid "Font color"
+msgstr "Fontin väri"
+
+#. settings-schema.json->fontColor->tooltip
+msgid "Default text color"
+msgstr "Tekstin oletusväri"
+
+#. settings-schema.json->scaleFontSize->description
+msgid "Enable font size scaling"
+msgstr "Fontin koon skaalaus"
+
+#. settings-schema.json->scaleFontSize->tooltip
+msgid "Apply custom font size instead of the system default size"
+msgstr "Käytä mukautettua fonttikokoa tietokoneen oletuskoon sijaan"
+
+#. settings-schema.json->fontScale->units
+msgid "times"
+msgstr "kerroin"
+
+#. settings-schema.json->fontScale->description
+msgid "Font size scale factor"
+msgstr "Fontin skaalaus"
+
+#. settings-schema.json->fontScale->tooltip
+msgid "Enlarge/reduce the font size"
+msgstr "Suurenna/pienennä fonttikokoa"
+
+#. settings-schema.json->uptrendChangeColor->description
+msgid "Uptrend change color"
+msgstr "Noususuunta vaihtaa väriksi"
+
+#. settings-schema.json->uptrendChangeColor->tooltip
+msgid "Color of the uptrend change"
+msgstr "Nousevan trendin värimuutos"
+
+#. settings-schema.json->downtrendChangeColor->description
+msgid "Downtrend change color"
+msgstr "Laskususuunta vaihtaa väriksi"
+
+#. settings-schema.json->unchangedTrendColor->description
+msgid "Unchanged trend color"
+msgstr "Muuttumaton vaihtaa väriksi"
+
+#. settings-schema.json->unchangedTrendColor->tooltip
+msgid "Color of the unchanged trend"
+msgstr "Muuttumattoman trendin väri"
+
+#. settings-schema.json->sendCustomUserAgent->description
+msgid "Send custom User-Agent header"
+msgstr "Lähetä mukautetut selaimen asetukset"
+
+#. settings-schema.json->sendCustomUserAgent->tooltip
+#, fuzzy
+msgid "Include a custom User-Agent header in Yahoo Finance Quotes API requests"
+msgstr ""
+"Sisällytä mukautettu User-Agent otsake Yahoo Finance Quotes API pyyntöihin. "
+"Oletuksena tätä ei ole asetettu"
+
+#. settings-schema.json->customUserAgent->description
+msgid "Custom User-Agent header"
+msgstr "Mukautettu selainasetus"
+
+#. settings-schema.json->customUserAgent->tooltip
+msgid "Value for User-Agent header to send with all API requests"
+msgstr "Kaikkien API-pyyntöjen yhteydessä lähetettävä arvo"
+
+#. settings-schema.json->enableCurl->description
+msgid "Use external tool curl"
+msgstr ""
+
+#. settings-schema.json->enableCurl->tooltip
+msgid "Requires separate installation of curl."
+msgstr ""
+
+#. settings-schema.json->curlCommand->description
+msgid "Path of curl executable"
+msgstr ""
+
+#. settings-schema.json->curlCommand->tooltip
+msgid "Provide absolute path of curl program file"
+msgstr ""
+
+#. settings-schema.json->applyNetworkSettingsButton->description
+msgid "Apply network settings"
+msgstr ""
+
+#. settings-schema.json->applyNetworkSettingsButton->tooltip
+#, fuzzy
+msgid "Fetches new authorization parameters and refreshes quotes data"
+msgstr "Valtuutuksen haku epäonnistui! Tietoja ei voi noutaa.\\nTila: "

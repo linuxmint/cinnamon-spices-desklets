@@ -1,0 +1,140 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-08-04 17:19+0200\n"
+"PO-Revision-Date: 2024-04-18 14:59+0200\n"
+"Last-Translator: qadzek\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: desklet.js:32 4.0/desklet.js:32
+msgid "Command result"
+msgstr "Commandoresultaat"
+
+#. metadata.json->name
+#. 4.0->metadata.json->name
+msgid "Command result desklet"
+msgstr "Commandoresultaat desklet"
+
+#. metadata.json->description
+#. 4.0->metadata.json->description
+msgid "A desklet that displays command result."
+msgstr "Een desklet die het resultaat van een commando weergeeft."
+
+#. metadata.json->contributors
+#. 4.0->metadata.json->contributors
+msgid "Zimi Zones"
+msgstr "Zimi Zones"
+
+#. settings-schema.json->top->description
+#. 4.0->settings-schema.json->top->description
+msgid "Commands configuration"
+msgstr "Configuratie van commando's"
+
+#. settings-schema.json->delay->description
+#. 4.0->settings-schema.json->delay->description
+msgid "Update every"
+msgstr "Bijwerken om de"
+
+#. settings-schema.json->delay->units
+#. settings-schema.json->timeout->units
+#. 4.0->settings-schema.json->delay->units
+#. 4.0->settings-schema.json->timeout->units
+msgid "seconds"
+msgstr "seconden"
+
+#. settings-schema.json->timeout->description
+#. 4.0->settings-schema.json->timeout->description
+msgid "Cancel command after"
+msgstr "Commando annuleren na"
+
+#. settings-schema.json->commands->description
+#. 4.0->settings-schema.json->commands->description
+msgid "Commands"
+msgstr "Commando's"
+
+#. settings-schema.json->commands->columns->title
+#. 4.0->settings-schema.json->commands->columns->title
+msgid "Label"
+msgstr "Label"
+
+#. settings-schema.json->commands->columns->title
+#. 4.0->settings-schema.json->commands->columns->title
+msgid "Align label right"
+msgstr "Label rechts uitlijnen"
+
+#. settings-schema.json->commands->columns->title
+#. 4.0->settings-schema.json->commands->columns->title
+msgid "Command"
+msgstr "Commando"
+
+#. settings-schema.json->commands->columns->title
+#. 4.0->settings-schema.json->commands->columns->title
+msgid "Align command result right"
+msgstr "Commandoresultaat rechts uitlijnen"
+
+#. settings-schema.json->style-options-header->description
+#. 4.0->settings-schema.json->style-options-header->description
+msgid "Style"
+msgstr "Stijl"
+
+#. settings-schema.json->font->description
+#. 4.0->settings-schema.json->font->description
+msgid "Font"
+msgstr "Lettertype"
+
+#. settings-schema.json->font-color->description
+#. settings-schema.json->font-color->tooltip
+#. 4.0->settings-schema.json->font-color->description
+#. 4.0->settings-schema.json->font-color->tooltip
+msgid "Font color"
+msgstr "Letterkleur"
+
+#. settings-schema.json->background-color->description
+#. 4.0->settings-schema.json->background-color->description
+msgid "Background color"
+msgstr "Achtergrondkleur"
+
+#. settings-schema.json->background-color->tooltip
+#. 4.0->settings-schema.json->background-color->tooltip
+msgid "Click to select the background color"
+msgstr "Klik om de achtergrondkleur te selecteren"
+
+#. settings-schema.json->background-transparency->description
+#. 4.0->settings-schema.json->background-transparency->description
+msgid "Transparency"
+msgstr "Transparantie"
+
+#. settings-schema.json->background-transparency->tooltip
+#. 4.0->settings-schema.json->background-transparency->tooltip
+msgid "Transparency of the desklet"
+msgstr "Transparantie van de desklet"
+
+#. settings-schema.json->border-color->description
+#. 4.0->settings-schema.json->border-color->description
+msgid "Border color"
+msgstr "Randkleur"
+
+#. settings-schema.json->border-color->tooltip
+#. 4.0->settings-schema.json->border-color->tooltip
+msgid "Click to select the border color"
+msgstr "Klik om de randkleur te selecteren"
+
+#. settings-schema.json->border-width->units
+#. 4.0->settings-schema.json->border-width->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->border-width->description
+#. 4.0->settings-schema.json->border-width->description
+msgid "Border width"
+msgstr "Randbreedte"
