@@ -1,307 +1,294 @@
-// Async managers for Yarr desklet - prevents compositor blocking
-
-// Defer imports to avoid issues with require()
 const Logger = require('./logger');
+
+// Import GLib and Gio with error handling
 let GLib, Gio;
-
-function getGLib() {
-    if (!GLib) GLib = imports.gi.GLib;
-    return GLib;
+try {
+    GLib = imports.gi.GLib;
+    Gio = imports.gi.Gio;
+    Logger.debug('GLib and Gio imported successfully');
+} catch (e) {
+    Logger.error('Failed to import GLib/Gio:', e);
+    throw e;
 }
 
-function getGio() {
-    if (!Gio) Gio = imports.gi.Gio;
-    return Gio;
-}
+// Async Operation Manager for cancellation and cleanup
+class AsyncOperationManager {
+    constructor() {
+        this.activeOperations = new Map();
+        this.operationCounter = 0;
+        this.isShuttingDown = false;
+        this.cancellationTokens = new Set();
+    }
 
-// Async Command Executor to prevent compositor blocking
-class AsyncCommandExecutor {
-    static executeCommand(command, callback) {
-        try {
-            const glib = getGLib();
-            let [success, argv] = glib.shell_parse_argv(command);
-            if (!success) {
-                callback(false, null, "Failed to parse command");
-                return;
-            }
+    // Create a new cancellation token
+    createCancellationToken() {
+        const token = `token_${++this.operationCounter}`;
+        this.cancellationTokens.add(token);
+        return token;
+    }
 
-            let [exit, pid, stdin, stdout, stderr] = glib.spawn_async_with_pipes(
-                null, argv, null,
-                glib.SpawnFlags.SEARCH_PATH | glib.SpawnFlags.DO_NOT_REAP_CHILD,
-                null
-            );
+    // Check if operation should be cancelled
+    isCancelled(token) {
+        return this.isShuttingDown || !this.cancellationTokens.has(token);
+    }
 
-            if (!exit) {
-                callback(false, null, "Failed to spawn process");
-                return;
-            }
+    // Register an async operation
+    registerOperation(operationId, operationType, cancellationToken) {
+        if (this.isShuttingDown) {
+            Logger.warn(`Operation ${operationId} rejected - system shutting down`);
+            return false;
+        }
 
-            // Set up async reading
-            this._setupAsyncReading(stdout, stderr, pid, callback);
+        this.activeOperations.set(operationId, {
+            type: operationType,
+            token: cancellationToken,
+            startTime: Date.now(),
+            status: 'active'
+        });
 
-        } catch (error) {
-            callback(false, null, error.message);
+        Logger.debug(`Registered async operation: ${operationId} (${operationType})`);
+        return true;
+    }
+
+    // Unregister a completed operation
+    unregisterOperation(operationId) {
+        const operation = this.activeOperations.get(operationId);
+        if (operation) {
+            operation.status = 'completed';
+            operation.endTime = Date.now();
+            this.activeOperations.delete(operationId);
+            Logger.debug(`Unregistered async operation: ${operationId}`);
         }
     }
 
-    static _setupAsyncReading(stdout, stderr, pid, callback) {
-        const gio = getGio();
-        const stdoutStream = new gio.UnixInputStream({ fd: stdout, close_fd: true });
-        const stderrStream = new gio.UnixInputStream({ fd: stderr, close_fd: true });
+    // Cancel all operations
+    cancelAllOperations() {
+        Logger.info('Cancelling all async operations...');
+        this.isShuttingDown = true;
 
-        const stdoutData = new gio.DataInputStream({ base_stream: stdoutStream });
-        const stderrData = new gio.DataInputStream({ base_stream: stderrStream });
+        const operationCount = this.activeOperations.size;
+        this.activeOperations.clear();
+        this.cancellationTokens.clear();
 
-        let stdoutResult = '';
-        let stderrResult = '';
-        let stdoutDone = false;
-        let stderrDone = false;
+        Logger.info(`Cancelled ${operationCount} async operations`);
+    }
 
-        const checkComplete = () => {
-            if (stdoutDone && stderrDone) {
-                // Clean up child process
-                getGLib().spawn_close_pid(pid);
-                callback(true, stdoutResult, stderrResult);
-            }
+    // Get operation status
+    getOperationStatus() {
+        return {
+            total: this.activeOperations.size,
+            shuttingDown: this.isShuttingDown,
+            operations: Array.from(this.activeOperations.entries()).map(([id, op]) => ({
+                id,
+                type: op.type,
+                status: op.status,
+                duration: op.startTime ? Date.now() - op.startTime : 0
+            }))
         };
-
-        // Read stdout asynchronously
-        stdoutData.fill_async(-1, getGLib().PRIORITY_DEFAULT, null, (stream, result) => {
-            try {
-                const bytes = stdoutData.fill_finish(result);
-                if (bytes > 0) {
-                    stdoutResult += stream.peek_buffer().toString();
-                    stdoutData.fill_async(-1, getGLib().PRIORITY_DEFAULT, null, arguments.callee);
-                } else {
-                    stdoutDone = true;
-                    checkComplete();
-                }
-            } catch (e) {
-                stdoutDone = true;
-                checkComplete();
-            }
-        });
-
-        // Read stderr asynchronously
-        stderrData.fill_async(-1, getGLib().PRIORITY_DEFAULT, null, (stream, result) => {
-            try {
-                const bytes = stderrData.fill_finish(result);
-                if (bytes > 0) {
-                    stderrResult += stream.peek_buffer().toString();
-                    stderrData.fill_async(-1, getGLib().PRIORITY_DEFAULT, null, arguments.callee);
-                } else {
-                    stderrDone = true;
-                    checkComplete();
-                }
-            } catch (e) {
-                stderrDone = true;
-                checkComplete();
-            }
-        });
-    }
-}
-
-// Async Database Manager to replace synchronous SQLite operations
-class AsyncDatabaseManager {
-    constructor(dbPath) {
-        this.dbPath = dbPath;
-        this.operationQueue = [];
-        this.isProcessing = false;
     }
 
-    async executeQuery(sql, params = []) {
-        return new Promise((resolve, reject) => {
-            this.operationQueue.push({ sql, params, resolve, reject });
-            this._processQueue();
-        });
-    }
-
-    _processQueue() {
-        if (this.isProcessing || this.operationQueue.length === 0) return;
-
-        this.isProcessing = true;
-        const operation = this.operationQueue.shift();
-
-        this._executeAsync(operation);
-    }
-
-    _executeAsync(operation) {
+    // Cleanup method
+    cleanup() {
         try {
-            // Escape SQL and parameters
-            const escapedSql = this._escapeSql(operation.sql, operation.params);
-
-            // Add JSON output for SELECT queries
-            const isSelectQuery = operation.sql.trim().toUpperCase().startsWith('SELECT');
-            const command = isSelectQuery
-                ? ['sqlite3', this.dbPath, escapedSql, '-json']
-                : ['sqlite3', this.dbPath, escapedSql];
-
-            // Log the command for debugging
-            Logger.log('SQLite command: ' + command.join(' '));
-            Logger.log('Escaped SQL: ' + escapedSql);
-            Logger.log('Parameters: ' + JSON.stringify(operation.params));
-
-            const glib = getGLib();
-            let [success, pid, stdin, stdout, stderr] = glib.spawn_async_with_pipes(
-                null, command, null,
-                glib.SpawnFlags.SEARCH_PATH | glib.SpawnFlags.DO_NOT_REAP_CHILD,
-                null
-            );
-
-            if (!success) {
-                operation.reject(new Error('Failed to spawn sqlite3 process'));
-                this.isProcessing = false;
-                this._processQueue();
-                return;
-            }
-
-            // Set up async result handling
-            this._handleAsyncResult(stdout, stderr, pid, operation);
-
-        } catch (error) {
-            operation.reject(error);
-            this.isProcessing = false;
-            this._processQueue();
+            Logger.info('Cleaning up AsyncOperationManager');
+            this.cancelAllOperations();
+            Logger.info('AsyncOperationManager cleanup completed');
+        } catch (e) {
+            Logger.error('Error in AsyncOperationManager cleanup: ' + e);
         }
-    }
-
-    _handleAsyncResult(stdout, stderr, pid, operation) {
-        const gio = getGio();
-        const stdoutStream = new gio.UnixInputStream({ fd: stdout, close_fd: true });
-        const stderrStream = new gio.UnixInputStream({ fd: stderr, close_fd: true });
-
-        const stdoutData = new gio.DataInputStream({ base_stream: stdoutStream });
-        const stderrData = new gio.DataInputStream({ base_stream: stderrStream });
-
-        let stdoutResult = '';
-        let stderrResult = '';
-        let stdoutDone = false;
-        let stderrDone = false;
-
-        const checkComplete = () => {
-            if (stdoutDone && stderrDone) {
-                getGLib().spawn_close_pid(pid);
-
-                if (stderrResult.trim()) {
-                    operation.reject(new Error(`SQLite error: ${stderrResult}`));
-                } else {
-                    operation.resolve(stdoutResult.trim());
-                }
-
-                this.isProcessing = false;
-                this._processQueue();
-            }
-        };
-
-        const glib = getGLib();
-
-        // Read stdout
-        stdoutData.fill_async(-1, glib.PRIORITY_DEFAULT, null, (stream, result) => {
-            try {
-                const bytes = stdoutData.fill_finish(result);
-                if (bytes > 0) {
-                    stdoutResult += stream.peek_buffer().toString();
-                    stdoutData.fill_async(-1, glib.PRIORITY_DEFAULT, null, arguments.callee);
-                } else {
-                    stdoutDone = true;
-                    checkComplete();
-                }
-            } catch (e) {
-                stdoutDone = true;
-                checkComplete();
-            }
-        });
-
-        // Read stderr
-        stderrData.fill_async(-1, glib.PRIORITY_DEFAULT, null, (stream, result) => {
-            try {
-                const bytes = stderrData.fill_finish(result);
-                if (bytes > 0) {
-                    stderrResult += stream.peek_buffer().toString();
-                    stderrData.fill_async(-1, glib.PRIORITY_DEFAULT, null, arguments.callee);
-                } else {
-                    stderrDone = true;
-                    checkComplete();
-                }
-            } catch (e) {
-                stderrDone = true;
-                checkComplete();
-            }
-        });
-    }
-
-    _escapeSql(sql, params) {
-        // SQLite uses ? placeholders - replace them one by one
-        let escapedSql = sql;
-        Logger.log('Original SQL: ' + sql);
-        Logger.log('Parameters: ' + JSON.stringify(params));
-
-        params.forEach((param, index) => {
-            const placeholderIndex = escapedSql.indexOf('?');
-            if (placeholderIndex !== -1) {
-                const replacement = typeof param === 'number' ? param.toString() : `'${this._escapeString(param)}'`;
-                escapedSql = escapedSql.substring(0, placeholderIndex) + replacement + escapedSql.substring(placeholderIndex + 1);
-                Logger.log(`Replaced ?${index + 1} with: ${replacement}`);
-            }
-        });
-
-        Logger.log('Final escaped SQL: ' + escapedSql);
-        return escapedSql;
-    }
-
-    _escapeString(str) {
-        if (typeof str !== 'string') {
-            Logger.log('[Yarr Warning] Non-string value passed to _escapeString');
-            return '';
-        }
-        // Escape single quotes by doubling them, and also escape backslashes
-        return str.replace(/\\/g, '\\\\').replace(/'/g, "''");
     }
 }
 
-// Timer Manager to prevent overlapping operations and memory leaks
+// Enhanced Timer Manager to prevent overlapping operations and memory leaks
 class TimerManager {
     constructor() {
         this.activeTimers = new Map();
         this.timerCounter = 0;
+        this.glibTimers = new Map(); // Track GLib timers
+        this.setTimeoutTimers = new Map(); // Track setTimeout timers
+        this.mainloopTimers = new Map(); // Track Mainloop timers
     }
 
     addTimer(interval, callback, isSeconds = false) {
         const timerId = `timer_${++this.timerCounter}`;
-        const glib = getGLib();
 
         const glibTimerId = isSeconds
-            ? glib.timeout_add_seconds(glib.PRIORITY_DEFAULT, interval, () => {
+            ? GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, interval, () => {
                 const shouldContinue = callback();
                 if (!shouldContinue) {
                     this.activeTimers.delete(timerId);
+                    this.glibTimers.delete(timerId);
                 }
                 return shouldContinue;
             })
-            : glib.timeout_add(glib.PRIORITY_DEFAULT, interval, () => {
+            : GLib.timeout_add(GLib.PRIORITY_DEFAULT, interval, () => {
                 const shouldContinue = callback();
                 if (!shouldContinue) {
                     this.activeTimers.delete(timerId);
+                    this.glibTimers.delete(timerId);
                 }
                 return shouldContinue;
             });
 
         this.activeTimers.set(timerId, glibTimerId);
+        this.glibTimers.set(timerId, glibTimerId);
+        return timerId;
+    }
+
+    // Add GLib timer with tracking
+    addGLibTimer(interval, callback, priority = GLib.PRIORITY_DEFAULT, isSeconds = false) {
+        const timerId = `glib_${++this.timerCounter}`;
+
+        const glibTimerId = isSeconds
+            ? GLib.timeout_add_seconds(priority, interval, () => {
+                const shouldContinue = callback();
+                if (!shouldContinue) {
+                    this.glibTimers.delete(timerId);
+                }
+                return shouldContinue;
+            })
+            : GLib.timeout_add(priority, interval, () => {
+                const shouldContinue = callback();
+                if (!shouldContinue) {
+                    this.glibTimers.delete(timerId);
+                }
+                return shouldContinue;
+            });
+
+        this.glibTimers.set(timerId, glibTimerId);
+        return timerId;
+    }
+
+    // Add setTimeout timer with tracking
+    addSetTimeoutTimer(callback, delay) {
+        const timerId = `settimeout_${++this.timerCounter}`;
+
+        const timeoutId = setTimeout(() => {
+            callback();
+            this.setTimeoutTimers.delete(timerId);
+        }, delay);
+
+        this.setTimeoutTimers.set(timerId, timeoutId);
+        return timerId;
+    }
+
+    // Add Mainloop timer with tracking
+    addMainloopTimer(interval, callback, isSeconds = false) {
+        const timerId = `mainloop_${++this.timerCounter}`;
+
+        const Mainloop = imports.mainloop;
+        const mainloopTimerId = isSeconds
+            ? Mainloop.timeout_add_seconds(interval, () => {
+                const shouldContinue = callback();
+                if (!shouldContinue) {
+                    this.mainloopTimers.delete(timerId);
+                }
+                return shouldContinue;
+            })
+            : Mainloop.timeout_add(interval, () => {
+                const shouldContinue = callback();
+                if (!shouldContinue) {
+                    this.mainloopTimers.delete(timerId);
+                }
+                return shouldContinue;
+            });
+
+        this.mainloopTimers.set(timerId, mainloopTimerId);
         return timerId;
     }
 
     removeTimer(timerId) {
         const glibTimerId = this.activeTimers.get(timerId);
         if (glibTimerId) {
-            getGLib().source_remove(glibTimerId);
+            GLib.source_remove(glibTimerId);
             this.activeTimers.delete(timerId);
+            this.glibTimers.delete(timerId);
+        }
+    }
+
+    removeGLibTimer(timerId) {
+        const glibTimerId = this.glibTimers.get(timerId);
+        if (glibTimerId) {
+            GLib.source_remove(glibTimerId);
+            this.glibTimers.delete(timerId);
+        }
+    }
+
+    removeSetTimeoutTimer(timerId) {
+        const timeoutId = this.setTimeoutTimers.get(timerId);
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+            this.setTimeoutTimers.delete(timerId);
+        }
+    }
+
+    removeMainloopTimer(timerId) {
+        const mainloopTimerId = this.mainloopTimers.get(timerId);
+        if (mainloopTimerId) {
+            const Mainloop = imports.mainloop;
+            Mainloop.source_remove(mainloopTimerId);
+            this.mainloopTimers.delete(timerId);
         }
     }
 
     clearAllTimers() {
-        const glib = getGLib();
-        this.activeTimers.forEach(glibTimerId => glib.source_remove(glibTimerId));
+        // Clear GLib timers
+        this.glibTimers.forEach(glibTimerId => {
+            try {
+                GLib.source_remove(glibTimerId);
+            } catch (e) {
+                Logger.debug('Error removing GLib timer: ' + e);
+            }
+        });
+        this.glibTimers.clear();
+
+        // Clear setTimeout timers
+        this.setTimeoutTimers.forEach(timeoutId => {
+            try {
+                clearTimeout(timeoutId);
+            } catch (e) {
+                Logger.debug('Error removing setTimeout timer: ' + e);
+            }
+        });
+        this.setTimeoutTimers.clear();
+
+        // Clear Mainloop timers
+        this.mainloopTimers.forEach(mainloopTimerId => {
+            try {
+                const Mainloop = imports.mainloop;
+                Mainloop.source_remove(mainloopTimerId);
+            } catch (e) {
+                Logger.debug('Error removing Mainloop timer: ' + e);
+            }
+        });
+        this.mainloopTimers.clear();
+
+        // Clear active timers
         this.activeTimers.clear();
+    }
+
+    // Get timer counts for debugging
+    getTimerCounts() {
+        return {
+            total: this.activeTimers.size + this.glibTimers.size + this.setTimeoutTimers.size + this.mainloopTimers.size,
+            active: this.activeTimers.size,
+            glib: this.glibTimers.size,
+            setTimeout: this.setTimeoutTimers.size,
+            mainloop: this.mainloopTimers.size
+        };
+    }
+
+    // Cleanup method to prevent memory leaks
+    cleanup() {
+        try {
+            Logger.info('Cleaning up TimerManager');
+            const counts = this.getTimerCounts();
+            Logger.info(`Timer counts before cleanup: ${JSON.stringify(counts)}`);
+            this.clearAllTimers();
+            Logger.info('TimerManager cleanup completed');
+        } catch (e) {
+            Logger.error('Error in TimerManager cleanup: ' + e);
+        }
     }
 }
 
@@ -312,15 +299,16 @@ class UIUpdateManager {
         this.updateScheduled = false;
         this.BATCH_SIZE = 10; // Items per frame
         this.RAF_INTERVAL = 16; // ~60fps
+        this.scheduledTimerId = null; // Track scheduled timer
     }
 
     scheduleUpdate() {
         if (this.updateScheduled) return;
 
         this.updateScheduled = true;
-        const glib = getGLib();
-        glib.timeout_add(glib.PRIORITY_DEFAULT, this.RAF_INTERVAL, () => {
+        this.scheduledTimerId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, this.RAF_INTERVAL, () => {
             this.updateScheduled = false;
+            this.scheduledTimerId = null;
             this._performBatchedUpdate();
             return false;
         });
@@ -336,44 +324,105 @@ class UIUpdateManager {
     setUpdateCallback(callback) {
         this.onUpdateCallback = callback;
     }
-}
 
-// Async Error Handler with retry mechanisms
-class AsyncErrorHandler {
-    static async withRetry(operation, maxRetries = 3, backoffMs = 1000) {
-        for (let attempt = 1; attempt <= maxRetries; attempt++) {
-            try {
-                return await operation();
-            } catch (error) {
-                if (attempt === maxRetries) {
-                    throw new Error(`Operation failed after ${maxRetries} attempts: ${error.message}`);
-                }
-
-                // Exponential backoff
-                const delay = backoffMs * Math.pow(2, attempt - 1);
-                await this._delay(delay);
+    // Cleanup method to prevent memory leaks
+    cleanup() {
+        try {
+            Logger.info('Cleaning up UIUpdateManager');
+            if (this.scheduledTimerId) {
+                GLib.source_remove(this.scheduledTimerId);
+                this.scheduledTimerId = null;
             }
+        } catch (e) {
+            Logger.error('Error in UIUpdateManager cleanup: ' + e);
         }
     }
+}
 
-    static async withTimeout(operation, timeoutMs = 30000) {
-        return Promise.race([
-            operation(),
-            new Promise((_, reject) =>
-                setTimeout(() => reject(new Error('Operation timed out')), timeoutMs)
-            )
-        ]);
-    }
+// Async Command Executor using Gio.Subprocess for proper async execution
+class AsyncCommandExecutor {
+    static executeCommand(command, callback) {
+        try {
+            // Parse the command into argv array
+            let [success, argv] = GLib.shell_parse_argv(command);
+            if (!success) {
+                callback(false, null, "Failed to parse command");
+                return;
+            }
 
-    static _delay(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
+            Logger.debug(`Executing command: ${command}`);
+            Logger.debug(`Parsed argv: ${JSON.stringify(argv)}`);
+
+            // Create subprocess with proper flags
+            let process = new Gio.Subprocess({
+                argv: argv,
+                flags: Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_PIPE,
+            });
+
+            process.init(null);
+
+            // Set up timeout to prevent hanging
+            const timeoutId = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 15, () => {
+                Logger.debug('Command execution timed out, terminating process');
+                try {
+                    process.force_exit();
+                } catch (e) {
+                    Logger.debug('Error forcing process exit: ' + e.message);
+                }
+                callback(false, null, "Command timed out after 15 seconds");
+                return false;
+            });
+
+            // Execute command asynchronously
+            process.communicate_utf8_async(null, null, (proc, res) => {
+                try {
+                    // Clean up timeout
+                    try {
+                        GLib.source_remove(timeoutId);
+                    } catch (e) {
+                        // Ignore cleanup errors
+                    }
+
+                    let [stdout, stderr] = proc.communicate_utf8_finish(res);
+                    let exitStatus = proc.get_exit_status();
+
+                    Logger.debug(`Command completed with exit status: ${exitStatus}`);
+                    Logger.debug(`Stdout length: ${stdout ? stdout.length : 0}`);
+                    Logger.debug(`Stderr length: ${stderr ? stderr.length : 0}`);
+
+                    if (exitStatus === 0 || (stdout && stdout.length > 0)) {
+                        // Success - we got output
+                        callback(true, stdout || '', stderr || '');
+                    } else if (stderr && stderr.length > 0) {
+                        // Check if stderr contains feed content
+                        if (stderr.includes('<rss') || stderr.includes('<feed') || stderr.includes('<channel')) {
+                            Logger.debug('Found feed content in stderr');
+                            callback(true, stderr, null);
+                        } else {
+                            Logger.debug('Command failed with stderr output');
+                            callback(false, null, stderr);
+                        }
+                    } else {
+                        Logger.debug('Command completed with no output');
+                        callback(false, null, "No output received");
+                    }
+
+                } catch (e) {
+                    Logger.debug('Error in command communication: ' + e.message);
+                    callback(false, null, "Communication error: " + e.message);
+                }
+            });
+
+        } catch (error) {
+            Logger.debug('Error executing command: ' + error.message);
+            callback(false, null, error.message);
+        }
     }
 }
 
 module.exports = {
-    AsyncCommandExecutor,
-    AsyncDatabaseManager,
     TimerManager,
     UIUpdateManager,
-    AsyncErrorHandler
+    AsyncCommandExecutor,
+    AsyncOperationManager
 };
