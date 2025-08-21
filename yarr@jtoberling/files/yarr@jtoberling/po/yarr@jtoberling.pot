@@ -5,10 +5,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: yarr@jtoberling 2.0.0\n"
+"Project-Id-Version: yarr@jtoberling 2.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-08-08 12:09-0400\n"
+"POT-Creation-Date: 2025-08-21 09:05-0400\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,151 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. desklet.js:580
-msgid "Search for RSS Feeds"
-msgstr ""
-
-#. desklet.js:596
-msgid "Searching for RSS feeds at "
-msgstr ""
-
-#. desklet.js:662
-msgid "OK"
-msgstr ""
-
-#. desklet.js:818
-msgid "No RSS feeds found at "
-msgstr ""
-
-#. desklet.js:826
-msgid "Error searching for RSS feeds: "
-msgstr ""
-
-#. desklet.js:841
-msgid "Select RSS Feeds to Add"
-msgstr ""
-
-#. desklet.js:872
-msgid "Added "
-msgstr ""
-
-#. desklet.js:872
-msgid " new RSS feeds"
-msgstr ""
-
-#. desklet.js:1175
-msgid "Enable refresh"
-msgstr ""
-
-#. desklet.js:1179 desklet.js:1438
-msgid "Disable refresh"
-msgstr ""
-
-#. desklet.js:1187
-msgid "Yarr"
-msgstr ""
-
-#. desklet.js:1234
-msgid "Loading: feeds ..."
-msgstr ""
-
-#. desklet.js:1254
-msgid " Add article"
-msgstr ""
-
-#. desklet.js:1315 desklet.js:1420
-msgid " Search..."
-msgstr ""
-
-#. desklet.js:1348
-msgid "Search Articles"
-msgstr ""
-
-#. desklet.js:1359
-msgid "Type to search..."
-msgstr ""
-
-#. desklet.js:1393 desklet.js:3059 ui-components.js:143 ui-components.js:298
-msgid "Cancel"
-msgstr ""
-
-#. desklet.js:1398 ui-components.js:150
-msgid "Search"
-msgstr ""
-
-#. desklet.js:2239
-#, javascript-format
-msgid "Last refresh: %s"
-msgstr ""
-
-#. desklet.js:2972
-msgid "Enter your OpenAI API key:"
-msgstr ""
-
-#. desklet.js:2984
-msgid "API key saved successfully!"
-msgstr ""
-
-#. desklet.js:2995
-msgid "Error opening API key dialog. Please check the logs."
-msgstr ""
-
-#. desklet.js:3030
-msgid "Add Article by URL"
-msgstr ""
-
-#. desklet.js:3038
-msgid "Paste article or feed URL..."
-msgstr ""
-
-#. desklet.js:3064
-msgid "Add"
-msgstr ""
-
-#. desklet.js:3087
-msgid "No content received from URL."
-msgstr ""
-
-#. desklet.js:3101 desklet.js:3116 desklet.js:3133
-msgid "Manual"
-msgstr ""
-
-#. desklet.js:3104 desklet.js:3119 desklet.js:3144
-msgid "No Title"
-msgstr ""
-
-#. desklet.js:3148
-msgid "Article added!"
-msgstr ""
-
-#. desklet.js:3150
-msgid "Failed to add article: "
-msgstr ""
-
-#. desklet.js:3311
-msgid "Restart desklet"
-msgstr ""
-
-#. desklet.js:3340
-msgid "Reloading desklet code..."
-msgstr ""
-
-#. ui-components.js:122
-msgid "Enter website URL to search for RSS feeds:"
-msgstr ""
-
-#. ui-components.js:132
-msgid "e.g., example.com"
-msgstr ""
-
-#. ui-components.js:211
-msgid "Select the RSS feeds you want to add:"
-msgstr ""
-
-#. ui-components.js:305
-msgid "Add Selected"
-msgstr ""
-
 #. metadata.json->description
 #. metadata.json->name
 msgid "Yet Another RSS Reader"
@@ -169,7 +24,6 @@ msgstr ""
 
 #. settings-schema.json->page1->title
 #. settings-schema.json->section0->title
-#. settings-schema.json->feeds->description
 msgid "Feed settings"
 msgstr ""
 
@@ -183,8 +37,17 @@ msgstr ""
 msgid "AI settings"
 msgstr ""
 
+#. settings-schema.json->page4->title
+#. settings-schema.json->section3->title
+msgid "Debug settings"
+msgstr ""
+
 #. settings-schema.json->section1ai->title
 msgid "Display settings for AI feature"
+msgstr ""
+
+#. settings-schema.json->feeds->description
+msgid "Feed settings (supports RSS and Atom)"
 msgstr ""
 
 #. settings-schema.json->feeds->columns->title
@@ -321,36 +184,60 @@ msgstr ""
 
 #. settings-schema.json->ai_label-info->description
 msgid ""
-"These are experimental AI features. Use at your own risk!\n"
-"Also they are needing ChatGPT/DeepSeek account or compatible API."
-msgstr ""
-
-#. settings-schema.json->ai_button-chatgpt-apikeys->description
-msgid "Open ChaptGPT API keys page"
-msgstr ""
-
-#. settings-schema.json->ai_button-chatgpt-usage->description
-msgid "Open ChaptGPT Usage page"
+"AI-powered article summarization using various language models. Configure "
+"your preferred AI service and summarization behavior."
 msgstr ""
 
 #. settings-schema.json->ai_enablesummary->description
-msgid "Enable EXPERIMENTAL AI summary by ChatGPT"
+msgid "Enable AI article summarization"
 msgstr ""
 
 #. settings-schema.json->ai_add_description_to_summary->description
-msgid "Add description to beginning of AI summary"
+msgid "Include article description"
+msgstr ""
+
+#. settings-schema.json->ai_provider->description
+msgid "AI Service Provider"
+msgstr ""
+
+#. settings-schema.json->ai_provider->options
+msgid "OpenAI (GPT models)"
+msgstr ""
+
+#. settings-schema.json->ai_provider->options
+msgid "DeepSeek (coding focus)"
+msgstr ""
+
+#. settings-schema.json->ai_provider->options
+msgid "Anthropic (Claude models)"
+msgstr ""
+
+#. settings-schema.json->ai_provider->tooltip
+msgid ""
+"Select your AI service provider. Each provider has different model "
+"capabilities and pricing."
+msgstr ""
+
+#. settings-schema.json->ai_use_custom_url->description
+msgid "Override default API endpoint"
+msgstr ""
+
+#. settings-schema.json->ai_use_custom_url->tooltip
+msgid "Enable to use a custom API endpoint instead of the provider's default"
 msgstr ""
 
 #. settings-schema.json->ai_url->description
-msgid "URL of Completion Api"
+msgid "Custom API endpoint"
 msgstr ""
 
 #. settings-schema.json->ai_url->tooltip
-msgid "https://api.openai.com/v1/chat/completions"
+msgid ""
+"Enter the API endpoint URL to override the default provider endpoint (useful "
+"for local models, custom deployments, etc.)"
 msgstr ""
 
 #. settings-schema.json->ai_dumptool->description
-msgid "Choose a tool to dumping web pages"
+msgid "Content extractor"
 msgstr ""
 
 #. settings-schema.json->ai_dumptool->options
@@ -367,25 +254,24 @@ msgstr ""
 
 #. settings-schema.json->ai_dumptool->tooltip
 msgid ""
-"You need a command line tool to dump web pages.\n"
-"You have to deploy (apt install ..) one of these manually:\n"
-"[ w3m, lynx, links]"
+"Tool to extract article content from web pages. Install: apt install w3m (or "
+"lynx/links)"
 msgstr ""
 
 #. settings-schema.json->ai_use_standard_model->description
-msgid "Use standard AI models."
+msgid "Model selection"
 msgstr ""
 
 #. settings-schema.json->ai_use_standard_model->tooltip
-msgid "Set to custom to type your model name"
+msgid "Choose from predefined models or enter a custom model name"
 msgstr ""
 
 #. settings-schema.json->ai_use_standard_model->options
-msgid "Use standard"
+msgid "Predefined models"
 msgstr ""
 
 #. settings-schema.json->ai_use_standard_model->options
-msgid "Use custom"
+msgid "Custom model"
 msgstr ""
 
 #. settings-schema.json->ai_model->description
@@ -393,11 +279,7 @@ msgid "Standard model to use"
 msgstr ""
 
 #. settings-schema.json->ai_model->options
-msgid "gpt-4-32k"
-msgstr ""
-
-#. settings-schema.json->ai_model->options
-msgid "gpt-4"
+msgid "gpt-5"
 msgstr ""
 
 #. settings-schema.json->ai_model->options
@@ -409,15 +291,22 @@ msgid "gpt-4o-mini"
 msgstr ""
 
 #. settings-schema.json->ai_model->options
+msgid "gpt-4-turbo"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
 msgid "gpt-3.5-turbo"
 msgstr ""
 
 #. settings-schema.json->ai_model->options
-msgid "gpt-3.5-turbo-16k"
+msgid "deepseek-chat"
 msgstr ""
 
 #. settings-schema.json->ai_model->options
-#. settings-schema.json->ai_custom_model->tooltip
 msgid "deepseek-coder"
 msgstr ""
 
@@ -425,63 +314,81 @@ msgstr ""
 msgid "deepseek-coder-v2:latest"
 msgstr ""
 
+#. settings-schema.json->ai_model->options
+msgid "deepseek-math"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "claude-3-5-sonnet"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "claude-3-5-haiku"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "claude-3-opus"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "claude-3-sonnet"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "claude-3-haiku"
+msgstr ""
+
 #. settings-schema.json->ai_model->tooltip
 msgid ""
-"Some are more clever - but costs more.\n"
-"Some require premium class subscription.\n"
-"A cheaper can work also well...\n"
-"Default: gpt-3.5-turbo"
+"GPT-5 is the latest model (requires GPT-5 access).\n"
+"GPT-4o models offer best performance/value.\n"
+"DeepSeek models are great for coding.\n"
+"Claude models via compatible APIs.\n"
+"Select 'Custom' to use your own model name."
 msgstr ""
 
 #. settings-schema.json->ai_custom_model->description
-msgid "Provide model name to use"
+msgid "Custom model name"
+msgstr ""
+
+#. settings-schema.json->ai_custom_model->tooltip
+msgid "Enter the exact model name from your AI provider"
 msgstr ""
 
 #. settings-schema.json->ai_systemprompt->description
-msgid "AI system instructions"
+msgid "AI instructions"
 msgstr ""
 
 #. settings-schema.json->ai_systemprompt->tooltip
-msgid "Add instructions to AI Agent"
+msgid "Instructions sent to the AI model before processing each article"
 msgstr ""
 
-#. settings-schema.json->ai_chatgptapikey->description
-msgid "Enter and save ChatGPT API key"
+#. settings-schema.json->ai_apikey->description
+msgid "Set API key"
 msgstr ""
 
 #. settings-schema.json->ai_example1->description
-msgid "Example Prompt1: 'Summarize in four sentences.'"
+msgid "Concise (4 sentences)"
 msgstr ""
 
 #. settings-schema.json->ai_example2->description
-msgid "Example Prompt2: Hungarian limerick: 'Foglald össze limerickben.'"
+msgid "Bullet points"
 msgstr ""
 
 #. settings-schema.json->ai_example3->description
-msgid ""
-"Example Prompt3: The point is in the haiku. '俳句のエッセンス      日本語で"
-"は'"
+msgid "Technical"
 msgstr ""
 
 #. settings-schema.json->ai_example4->description
-msgid "Example Prompt4: Hungarian: 'Summarize in four sentences.'"
+msgid "Creative"
 msgstr ""
 
 #. settings-schema.json->ai_example5->description
-msgid ""
-"Example Prompt5: 'Summarize in 4-8 short bullet points, separtate lines, "
-"English language.\n"
-"Omit other references and external links from the summary'"
+msgid "Professional"
 msgstr ""
 
 #. settings-schema.json->ai_example6->description
-msgid "Example Prompt6: 'Hungarian bullet points...'"
-msgstr ""
-
-#. settings-schema.json->ai_systempromptexamples->description
-msgid ""
-"Here are some examples for the AI system prompt. You can rewrite them as you "
-"like."
+msgid "Minimal"
 msgstr ""
 
 #. settings-schema.json->refreshsettingsbutton->description
@@ -489,15 +396,27 @@ msgid "Refresh settings"
 msgstr ""
 
 #. settings-schema.json->refreshsettingsbutton->tooltip
-msgid "Press this button to relad settings"
+msgid "Press this button to reload settings and update display immediately"
+msgstr ""
+
+#. settings-schema.json->refreshFeedsButton->description
+msgid "Refresh RSS Feeds"
+msgstr ""
+
+#. settings-schema.json->refreshFeedsButton->tooltip
+msgid ""
+"Press this button to immediately refresh all RSS feeds and download new "
+"articles"
 msgstr ""
 
 #. settings-schema.json->searchRssButton->description
-msgid "Search for RSS feeds"
+msgid "Search for RSS & Atom feeds"
 msgstr ""
 
 #. settings-schema.json->searchRssButton->tooltip
-msgid "Search for RSS feeds from a website URL"
+msgid ""
+"Search for RSS and Atom feeds from a website URL. Automatically detects both "
+"feed formats."
 msgstr ""
 
 #. settings-schema.json->enablecopy->description
@@ -560,6 +479,44 @@ msgid ""
 "Only enable when troubleshooting issues."
 msgstr ""
 
+#. settings-schema.json->debugVerbosity->description
+msgid "Debug verbosity level"
+msgstr ""
+
+#. settings-schema.json->debugVerbosity->options
+msgid "minimal"
+msgstr ""
+
+#. settings-schema.json->debugVerbosity->options
+msgid "basic"
+msgstr ""
+
+#. settings-schema.json->debugVerbosity->options
+msgid "verbose"
+msgstr ""
+
+#. settings-schema.json->debugVerbosity->tooltip
+msgid "Control how much debug information is logged"
+msgstr ""
+
+#. settings-schema.json->databasePath->description
+msgid "Database base directory"
+msgstr ""
+
+#. settings-schema.json->databasePath->tooltip
+msgid ""
+"Base directory where separate Yarr databases are stored (yarr_favorites.db, "
+"yarr_read_status.db, etc.)"
+msgstr ""
+
+#. settings-schema.json->databaseInfo->description
+msgid ""
+"Yarr uses separate databases for different data types. Database names are "
+"fixed and cannot be changed: yarr_favorites.db, yarr_read_status.db, "
+"yarr_article_cache.db, yarr_feed_button_states.db, yarr_refresh.db, "
+"yarr_readstatus.db"
+msgstr ""
+
 #. settings-schema.json->showReadStatusCheckbox->description
 msgid "Show read status checkbox"
 msgstr ""
@@ -579,4 +536,32 @@ msgstr ""
 
 #. settings-schema.json->readTitleColor->tooltip
 msgid "Choose a color applied to read titles"
+msgstr ""
+
+#. settings-schema.json->enableHeaderFeedButtons->description
+msgid "Enable header feed buttons"
+msgstr ""
+
+#. settings-schema.json->enableHeaderFeedButtons->tooltip
+msgid ""
+"Show toggleable feed buttons below the header to control which feeds are "
+"displayed in the article list"
+msgstr ""
+
+#. settings-schema.json->openLookingGlass->description
+msgid "Open Looking Glass"
+msgstr ""
+
+#. settings-schema.json->openLookingGlass->tooltip
+msgid ""
+"Opens Cinnamon's Looking Glass debugger to inspect the desklet's JavaScript "
+"context"
+msgstr ""
+
+#. settings-schema.json->restartDesklet->description
+msgid "Restart desklet"
+msgstr ""
+
+#. settings-schema.json->restartDesklet->tooltip
+msgid "Restarts the desklet to reload all code and settings"
 msgstr ""
