@@ -1,7 +1,9 @@
 // UI Components for Yarr desklet - dialogs and UI elements
 // VERSION: Function-based approach v2.0 - NO CLASSES!
 const Logger = require('./logger');
-Logger.log('[Yarr Debug] Loading ui-components.js - Function-based version 2.0');
+
+// Loading ui-components.js - Function-based version 2.0
+Logger.debug('Loading ui-components.js - Function-based version 2.0');
 
 // Deferred imports for Cinnamon compatibility with require()
 function getSt() { return imports.gi.St; }
@@ -18,31 +20,31 @@ function _(str) {
 }
 
 function createPasswordDialog(label, callback, parent) {
-    Logger.log('[Yarr Debug] createPasswordDialog called');
-    Logger.log('[Yarr Debug] ModalDialog type: ' + typeof ModalDialog);
-    Logger.log('[Yarr Debug] ModalDialog.ModalDialog type: ' + typeof ModalDialog.ModalDialog);
+    Logger.debug('createPasswordDialog called');
+    Logger.debug('ModalDialog type: ' + typeof ModalDialog);
+    Logger.debug('ModalDialog.ModalDialog type: ' + typeof ModalDialog.ModalDialog);
 
     // Create dialog using the same pattern as working examples
-    Logger.log('[Yarr Debug] About to create ModalDialog instance...');
+    Logger.debug('About to create ModalDialog instance...');
     let dialog = new ModalDialog.ModalDialog();
-    Logger.log('[Yarr Debug] ModalDialog instance created successfully');
+    Logger.debug('ModalDialog instance created successfully');
 
     // Safely get password, handling case where STORE_SCHEMA might not be available
     let password = '';
     try {
-        Logger.log('[Yarr Debug] About to lookup password...');
+        Logger.debug('About to lookup password...');
         password = getSecret().password_lookup_sync(parent.STORE_SCHEMA, {}, null);
-        Logger.log('[Yarr Debug] Password lookup completed');
+        Logger.debug('Password lookup completed');
     } catch (e) {
-        Logger.log('[Yarr Debug] Could not load existing password: ' + e);
+        Logger.debug('Could not load existing password: ' + e);
     }
 
-    Logger.log('[Yarr Debug] About to set dialog content...');
+    Logger.debug('About to set dialog content...');
     dialog.contentLayout.set_style('width: auto; max-width: 500px;');
     dialog.contentLayout.add(new (getSt().Label)({ text: label }));
-    Logger.log('[Yarr Debug] Dialog content set');
+    Logger.debug('Dialog content set');
 
-    Logger.log('[Yarr Debug] About to create UI elements...');
+    Logger.debug('About to create UI elements...');
     let passwordBox = new (getSt().BoxLayout)({ vertical: false });
     let entry = new (getSt().Entry)({ style: 'background: green; color:yellow; max-width: 400px;' });
     entry.clutter_text.set_password_char('\u25cf');
@@ -50,9 +52,9 @@ function createPasswordDialog(label, callback, parent) {
     passwordBox.add(entry);
     dialog.contentLayout.add(passwordBox);
     dialog.setInitialKeyFocus(entry.clutter_text);
-    Logger.log('[Yarr Debug] UI elements created');
+    Logger.debug('UI elements created');
 
-    Logger.log('[Yarr Debug] About to set buttons...');
+    Logger.debug('About to set buttons...');
     dialog.setButtons([
         {
             label: "Save",
@@ -84,9 +86,9 @@ function createPasswordDialog(label, callback, parent) {
             focused: false
         }
     ]);
-    Logger.log('[Yarr Debug] Buttons set');
+    Logger.debug('Buttons set');
 
-    Logger.log('[Yarr Debug] About to set custom open method...');
+    Logger.debug('About to set custom open method...');
     // Store reference to original open method and override to focus password entry
     let originalOpen = dialog.open;
     dialog.open = function () {
@@ -94,9 +96,9 @@ function createPasswordDialog(label, callback, parent) {
         // Focus the password entry after dialog opens
         entry.grab_key_focus();
     };
-    Logger.log('[Yarr Debug] Custom open method set');
+    Logger.debug('Custom open method set');
 
-    Logger.log('[Yarr Debug] createPasswordDialog completed successfully');
+    Logger.debug('createPasswordDialog completed successfully');
     return dialog;
 }
 
@@ -191,11 +193,11 @@ function createFeedSelectionDialog(title, feeds, callback, parent) {
     let dialog = new ModalDialog.ModalDialog();
     let selectedFeeds = new Set();
 
-    // Create the content area with proper styling
+    // Create the content area with proper styling - BIGGER SIZE
     let contentBox = new (getSt().BoxLayout)({
         vertical: true,
         style_class: 'feed-selection-dialog-content',
-        style: 'spacing: 10px; padding: 10px; width: 400px;'
+        style: 'spacing: 15px; padding: 15px; width: 600px;'
     });
 
     // Add title with proper styling
@@ -218,44 +220,111 @@ function createFeedSelectionDialog(title, feeds, callback, parent) {
         style_class: 'feed-selection-scrollview',
         x_fill: true,
         y_fill: true,
-        style: 'max-height: 300px;'
+        style: 'max-height: 400px;'
     });
 
     let feedContainer = new (getSt().BoxLayout)({
         vertical: true,
         style_class: 'feed-selection-container',
-        style: 'spacing: 5px;'
+        style: 'spacing: 12px;'
     });
 
     // Add a selectable item for each feed
     feeds.forEach((feed, index) => {
-        // Create a container for each item
+        // Create a container for each item - BIGGER SPACING
         let itemBox = new (getSt().BoxLayout)({
             vertical: false,
-            style: 'spacing: 8px; padding: 6px;'
+            style: 'spacing: 12px; padding: 10px;'
         });
 
-        // Custom checkbox using an icon
+        // Custom checkbox using an icon - BIGGER SIZE
         let checkIcon = new (getSt().Icon)({
             icon_name: 'checkbox-checked',
             icon_type: getSt().IconType.SYMBOLIC,
-            icon_size: 16
+            icon_size: 20
         });
 
-        // Feed title/url
-        let label = new (getSt().Label)({
-            text: feed.title || feed.url,
-            style: 'padding-top: 2px;'
+        // Create a vertical container for feed details - BIGGER SPACING
+        let feedDetailsBox = new (getSt().BoxLayout)({
+            vertical: true,
+            style: 'spacing: 4px;'
         });
-        label.clutter_text.set_line_wrap(true);
-        label.clutter_text.set_line_wrap_mode(getPango().WrapMode.WORD_CHAR);
+
+        // Feed title (primary display) - BIGGER FONT
+        let titleLabel = new (getSt().Label)({
+            text: feed.title || 'Untitled Feed',
+            style: 'font-weight: bold; padding-top: 4px; font-size: 16px; color: #2c3e50;'
+        });
+        titleLabel.clutter_text.set_line_wrap(true);
+        titleLabel.clutter_text.set_line_wrap_mode(getPango().WrapMode.WORD_CHAR);
+
+        // Feed URL (secondary display) - BIGGER FONT
+        let urlLabel = new (getSt().Label)({
+            text: feed.url,
+            style: 'font-size: 14px; color: #3498db; padding-top: 2px;'
+        });
+        urlLabel.clutter_text.set_line_wrap(true);
+        urlLabel.clutter_text.set_line_wrap_mode(getPango().WrapMode.WORD_CHAR);
+
+        // Feed type indicator - BIGGER FONT
+        let typeLabel = new (getSt().Label)({
+            text: `📡 Type: ${feed.type || 'Unknown'}`,
+            style: 'font-size: 13px; color: #e74c3c; font-weight: bold; padding-top: 2px;'
+        });
+
+        // Category (if available) - BIGGER FONT
+        let categoryLabel = null;
+        if (feed.category) {
+            categoryLabel = new (getSt().Label)({
+                text: `🏷️ Category: ${feed.category}`,
+                style: 'font-size: 13px; color: #27ae60; font-weight: bold; padding-top: 2px;'
+            });
+        }
+
+        // Description (if available) - BIGGER FONT
+        let descLabel = null;
+        if (feed.description) {
+            descLabel = new (getSt().Label)({
+                text: `📝 ${feed.description}`,
+                style: 'font-size: 13px; color: #34495e; font-style: italic; padding-top: 2px; line-height: 1.3;'
+            });
+            descLabel.clutter_text.set_line_wrap(true);
+            descLabel.clutter_text.set_line_wrap_mode(getPango().WrapMode.WORD_CHAR);
+        }
+
+        // Add feed size/length info if available
+        let sizeLabel = null;
+        if (feed.contentLength) {
+            sizeLabel = new (getSt().Label)({
+                text: `📊 Size: ${feed.contentLength} characters`,
+                style: 'font-size: 12px; color: #95a5a6; padding-top: 2px;'
+            });
+        }
+
+        // Add last updated info if available
+        let updatedLabel = null;
+        if (feed.lastUpdated) {
+            updatedLabel = new (getSt().Label)({
+                text: `🕒 Updated: ${feed.lastUpdated}`,
+                style: 'font-size: 12px; color: #f39c12; padding-top: 2px;'
+            });
+        }
+
+        // Add all labels to the details box
+        feedDetailsBox.add(titleLabel);
+        feedDetailsBox.add(urlLabel);
+        feedDetailsBox.add(typeLabel);
+        if (categoryLabel) feedDetailsBox.add(categoryLabel);
+        if (descLabel) feedDetailsBox.add(descLabel);
+        if (sizeLabel) feedDetailsBox.add(sizeLabel);
+        if (updatedLabel) feedDetailsBox.add(updatedLabel);
 
         // Store the selected state
         let isSelected = true;
 
         // Add elements to the item container
         itemBox.add(checkIcon);
-        itemBox.add(label);
+        itemBox.add(feedDetailsBox);
 
         // Make the entire row clickable
         let button = new (getSt().Button)({
@@ -314,9 +383,9 @@ function createFeedSelectionDialog(title, feeds, callback, parent) {
 }
 
 // Verify we're exporting functions, not classes
-Logger.log('[Yarr Debug] Exporting functions: createPasswordDialog=' + typeof createPasswordDialog);
-Logger.log('[Yarr Debug] Exporting functions: createRssSearchDialog=' + typeof createRssSearchDialog);
-Logger.log('[Yarr Debug] Exporting functions: createFeedSelectionDialog=' + typeof createFeedSelectionDialog);
+Logger.debug('Exporting functions: createPasswordDialog=' + typeof createPasswordDialog);
+Logger.debug('Exporting functions: createRssSearchDialog=' + typeof createRssSearchDialog);
+Logger.debug('Exporting functions: createFeedSelectionDialog=' + typeof createFeedSelectionDialog);
 
 module.exports = {
     createPasswordDialog,

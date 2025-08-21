@@ -1,7 +1,7 @@
 {
   "layout1": {
     "type": "layout",
-    "pages": ["page1", "page2", "page3"],
+    "pages": ["page1", "page2", "page3", "page4"],
 
     "page1": {
       "type": "page",
@@ -19,6 +19,12 @@
       "type": "page",
       "title": "AI settings",
       "sections": ["section2"]
+    },
+
+    "page4": {
+      "type": "page",
+      "title": "Debug settings",
+      "sections": ["section3"]
     },
 
     "section0": {
@@ -54,10 +60,10 @@
         "loadFavoritesOnStartup",
         "showRefreshSeparators",
         "articleSpacing",
-        "enableDebugLogs",
         "showReadStatusCheckbox",
         "dimReadTitles",
-        "readTitleColor"
+        "readTitleColor",
+        "enableHeaderFeedButtons"
       ]
     },
 
@@ -72,36 +78,50 @@
       "title": "AI settings",
       "keys": [
         "ai_label-info",
-        "ai_button-chatgpt-usage",
         "ai_enablesummary",
-        "ai_add_description_to_summary",
+        "ai_provider",
+        "ai_apikey",
+        "ai_use_custom_url",
         "ai_url",
-        "ai_button-chatgpt-apikeys",
-        "ai_chatgptapikey",
         "ai_use_standard_model",
         "ai_model",
         "ai_custom_model",
-        "ai_dumptool",
         "ai_systemprompt",
-        "ai_systempromptexamples",
         "ai_example1",
         "ai_example2",
         "ai_example3",
         "ai_example4",
         "ai_example5",
         "ai_example6",
+        "ai_add_description_to_summary",
+        "ai_dumptool",
         "temperature"
+      ]
+    },
+
+    "section3": {
+      "type": "section",
+      "title": "Debug settings",
+      "keys": [
+        "refreshsettingsbutton",
+        "enableDebugLogs",
+        "debugVerbosity",
+        "databasePath",
+        "databaseInfo",
+        "openLookingGlass",
+        "restartDesklet"
       ]
     }
   },
 
   "feeds": {
     "type": "list",
-    "description": "Feed settings",
+    "description": "Feed settings (supports RSS and Atom)",
     "columns": [
       { "id": "name", "title": "Name", "type": "string" },
       { "id": "active", "title": "Active", "type": "boolean", "default": true },
       { "id": "url", "title": "Feed URL", "type": "string", "default": "" },
+
       {
         "id": "labelcolor",
         "title": "Label Color (#rrggbb)",
@@ -277,153 +297,171 @@
 
   "ai_label-info": {
     "type": "label",
-    "description": "These are experimental AI features. Use at your own risk!\nAlso they are needing ChatGPT/DeepSeek account or compatible API."
-  },
-
-  "ai_button-chatgpt-apikeys": {
-    "type": "button",
-    "description": "Open ChaptGPT API keys page",
-    "callback": "openChatGPTAPIKeys"
-  },
-
-  "ai_button-chatgpt-usage": {
-    "type": "button",
-    "description": "Open ChaptGPT Usage page",
-    "callback": "openChatGPTUsage"
+    "description": "AI-powered article summarization using various language models. Configure your preferred AI service and summarization behavior."
   },
 
   "ai_enablesummary": {
-    "description": "Enable EXPERIMENTAL AI summary by ChatGPT",
+    "description": "Enable AI article summarization",
     "type": "switch",
     "default": false
   },
 
   "ai_add_description_to_summary": {
-    "description": "Add description to beginning of AI summary",
+    "description": "Include article description",
     "type": "switch",
     "default": true
   },
 
+  "ai_provider": {
+    "type": "combobox",
+    "default": "openai",
+    "description": "AI Service Provider",
+    "options": {
+      "OpenAI (GPT models)": "openai",
+      "DeepSeek (coding focus)": "deepseek",
+      "Anthropic (Claude models)": "anthropic",
+      "Custom API": "custom"
+    },
+    "tooltip": "Select your AI service provider. Each provider has different model capabilities and pricing."
+  },
+
+  "ai_use_custom_url": {
+    "description": "Override default API endpoint",
+    "type": "switch",
+    "default": false,
+    "tooltip": "Enable to use a custom API endpoint instead of the provider's default"
+  },
+
   "ai_url": {
-    "description": "URL of Completion Api",
+    "description": "Custom API endpoint",
     "type": "entry",
     "default": "https://api.openai.com/v1/chat/completions",
     "indent": false,
-    "tooltip": "https://api.openai.com/v1/chat/completions"
+    "dependency": "ai_use_custom_url=true",
+    "tooltip": "Enter the API endpoint URL to override the default provider endpoint (useful for local models, custom deployments, etc.)"
   },
 
   "ai_dumptool": {
     "type": "combobox",
     "default": "w3m",
-    "description": "Choose a tool to dumping web pages",
+    "description": "Content extractor",
     "options": {
       "w3m": "w3m",
       "lynx": "lynx",
       "links": "links"
     },
-    "tooltip": "You need a command line tool to dump web pages.\nYou have to deploy (apt install ..) one of these manually:\n[ w3m, lynx, links]"
+    "tooltip": "Tool to extract article content from web pages. Install: apt install w3m (or lynx/links)"
   },
 
   "ai_use_standard_model": {
     "type": "combobox",
-    "default": "_optionstandard",
-    "description": "Use standard AI models.",
-    "tooltip": "Set to custom to type your model name",
+    "default": "optionstandard",
+    "description": "Model selection",
+    "tooltip": "Choose from predefined models or enter a custom model name",
     "options": {
-      "Use standard": "optionstandard",
-      "Use custom": "optioncustom"
+      "Predefined models": "optionstandard",
+      "Custom model": "optioncustom"
     }
   },
 
   "ai_model": {
     "type": "combobox",
-    "default": "gpt-3.5-turbo",
+    "default": "gpt-4o-mini",
     "description": "Standard model to use",
-    "dependency": "ai_use_standard_model=optionstandard",
     "options": {
-      "gpt-4-32k": "gpt-4-32k",
-      "gpt-4": "gpt-4",
+      "gpt-5": "gpt-5",
       "gpt-4o": "gpt-4o",
       "gpt-4o-mini": "gpt-4o-mini",
+      "gpt-4-turbo": "gpt-4-turbo",
+      "gpt-4": "gpt-4",
       "gpt-3.5-turbo": "gpt-3.5-turbo",
-      "gpt-3.5-turbo-16k": "gpt-3.5-turbo-16k",
+      "deepseek-chat": "deepseek-chat",
       "deepseek-coder": "deepseek-coder",
-      "deepseek-coder-v2:latest": "deepseek-coder-v2:latest"
+      "deepseek-coder-v2:latest": "deepseek-coder-v2:latest",
+      "deepseek-math": "deepseek-math",
+      "claude-3-5-sonnet": "claude-3-5-sonnet",
+      "claude-3-5-haiku": "claude-3-5-haiku",
+      "claude-3-opus": "claude-3-opus",
+      "claude-3-sonnet": "claude-3-sonnet",
+      "claude-3-haiku": "claude-3-haiku",
+      "Custom": "custom"
     },
-    "tooltip": "Some are more clever - but costs more.\nSome require premium class subscription.\nA cheaper can work also well...\nDefault: gpt-3.5-turbo"
+    "tooltip": "GPT-5 is the latest model (requires GPT-5 access).\nGPT-4o models offer best performance/value.\nDeepSeek models are great for coding.\nClaude models via compatible APIs.\nSelect 'Custom' to use your own model name."
   },
 
   "ai_custom_model": {
-    "description": "Provide model name to use",
+    "description": "Custom model name",
     "type": "entry",
-    "default": "deepseek-coder",
-    "tooltip": "deepseek-coder",
-    "indent": false,
-    "dependency": "ai_use_standard_model=optioncustom"
+    "default": "",
+    "dependency": "ai_use_standard_model=optioncustom",
+    "tooltip": "Enter the exact model name from your AI provider",
+    "indent": false
   },
 
   "ai_systemprompt": {
     "type": "textview",
-    "description": "AI system instructions",
-    "default": "Summarize the following text",
-    "tooltip": "Add instructions to AI Agent",
-    "height": 100
+    "description": "AI instructions",
+    "default": "Summarize the following text in a clear and concise manner",
+    "tooltip": "Instructions sent to the AI model before processing each article",
+    "height": 80
   },
 
-  "ai_chatgptapikey": {
+  "ai_apikey": {
     "type": "button",
-    "description": "Enter and save ChatGPT API key",
+    "description": "Set API key",
     "callback": "onChatGPAPIKeySave"
   },
 
   "ai_example1": {
     "type": "button",
-    "description": "Example Prompt1: 'Summarize in four sentences.'",
+    "description": "Concise (4 sentences)",
     "callback": "onAIPromptExample1"
   },
   "ai_example2": {
     "type": "button",
-    "description": "Example Prompt2: Hungarian limerick: 'Foglald össze limerickben.'",
+    "description": "Bullet points",
     "callback": "onAIPromptExample2"
   },
   "ai_example3": {
     "type": "button",
-    "description": "Example Prompt3: The point is in the haiku. '俳句のエッセンス      日本語では'",
+    "description": "Technical",
     "callback": "onAIPromptExample3"
   },
   "ai_example4": {
     "type": "button",
-    "description": "Example Prompt4: Hungarian: 'Summarize in four sentences.'",
+    "description": "Creative",
     "callback": "onAIPromptExample4"
   },
   "ai_example5": {
     "type": "button",
-    "description": "Example Prompt5: 'Summarize in 4-8 short bullet points, separtate lines, English language.\nOmit other references and external links from the summary'",
+    "description": "Professional",
     "callback": "onAIPromptExample5"
   },
   "ai_example6": {
     "type": "button",
-    "description": "Example Prompt6: 'Hungarian bullet points...'",
+    "description": "Minimal",
     "callback": "onAIPromptExample6"
-  },
-
-  "ai_systempromptexamples": {
-    "type": "label",
-    "description": "Here are some examples for the AI system prompt. You can rewrite them as you like."
   },
 
   "refreshsettingsbutton": {
     "type": "button",
     "description": "Refresh settings",
     "callback": "onRefreshSettings",
-    "tooltip": "Press this button to relad settings"
+    "tooltip": "Press this button to reload settings and update display immediately"
+  },
+
+  "refreshFeedsButton": {
+    "type": "button",
+    "description": "Refresh RSS Feeds",
+    "callback": "onRefreshFeeds",
+    "tooltip": "Press this button to immediately refresh all RSS feeds and download new articles"
   },
 
   "searchRssButton": {
     "type": "button",
-    "description": "Search for RSS feeds",
+    "description": "Search for RSS & Atom feeds",
     "callback": "onSearchRssFeeds",
-    "tooltip": "Search for RSS feeds from a website URL"
+    "tooltip": "Search for RSS and Atom feeds from a website URL. Automatically detects both feed formats."
   },
 
   "enablecopy": {
@@ -483,6 +521,30 @@
     "default": false,
     "tooltip": "When enabled, detailed debug information will be logged to the system logs. Only enable when troubleshooting issues."
   },
+
+  "debugVerbosity": {
+    "description": "Debug verbosity level",
+    "type": "combobox",
+    "default": "minimal",
+    "options": {
+      "minimal": "Minimal (errors only)",
+      "basic": "Basic (errors + key operations)",
+      "verbose": "Verbose (all debug info)"
+    },
+    "tooltip": "Control how much debug information is logged"
+  },
+
+  "databasePath": {
+    "description": "Database base directory",
+    "type": "entry",
+    "default": "~/.local/share",
+    "tooltip": "Base directory where separate Yarr databases are stored (yarr_favorites.db, yarr_read_status.db, etc.)"
+  },
+
+  "databaseInfo": {
+    "type": "label",
+    "description": "Yarr uses separate databases for different data types. Database names are fixed and cannot be changed: yarr_favorites.db, yarr_read_status.db, yarr_article_cache.db, yarr_feed_button_states.db, yarr_refresh.db, yarr_readstatus.db"
+  },
   "showReadStatusCheckbox": {
     "description": "Show read status checkbox",
     "type": "switch",
@@ -499,5 +561,25 @@
     "default": "rgb(180,180,180)",
     "description": "Color for read article titles",
     "tooltip": "Choose a color applied to read titles"
+  },
+  "enableHeaderFeedButtons": {
+    "description": "Enable header feed buttons",
+    "type": "switch",
+    "default": true,
+    "tooltip": "Show toggleable feed buttons below the header to control which feeds are displayed in the article list"
+  },
+
+  "openLookingGlass": {
+    "type": "button",
+    "description": "Open Looking Glass",
+    "callback": "onOpenLookingGlass",
+    "tooltip": "Opens Cinnamon's Looking Glass debugger to inspect the desklet's JavaScript context"
+  },
+
+  "restartDesklet": {
+    "type": "button",
+    "description": "Restart desklet",
+    "callback": "onRestartDesklet",
+    "tooltip": "Restarts the desklet to reload all code and settings"
   }
 }
