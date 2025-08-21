@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-05-12 00:33+0200\n"
+"POT-Creation-Date: 2025-08-21 21:41+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,46 +17,46 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
 
-#. desklet.js:119
-msgid "No quotes data to display"
-msgstr ""
-
-#. desklet.js:516
+#. desklet.js:690
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 
-#. desklet.js:561 desklet.js:585
+#. desklet.js:724 desklet.js:750 desklet.js:773
 msgid "Authorization parameters have expired"
 msgstr ""
 
-#. desklet.js:564 desklet.js:588
+#. desklet.js:727 desklet.js:753 desklet.js:776
 msgid "Yahoo Finance service not available!\\nStatus: "
 msgstr "Сервис Yahoo Finance не доступен!"
 
-#. desklet.js:988
+#. desklet.js:1087
+msgid "No quotes data to display"
+msgstr ""
+
+#. desklet.js:1197
 msgid "Updated at "
 msgstr "Обновлено в "
 
-#. desklet.js:1020
+#. desklet.js:1229
 msgid "Error: "
 msgstr "Ошибка: "
 
-#. desklet.js:1146
+#. desklet.js:1373
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data."
 "\\nStatus: "
 msgstr ""
 
-#. desklet.js:1173
+#. desklet.js:1400
 msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 
-#. desklet.js:1179
+#. desklet.js:1406
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
 
-#. desklet.js:1207
+#. desklet.js:1442
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data."
 "\\nStatus: "
@@ -529,6 +529,14 @@ msgstr "Цвет неизменного тренда"
 #. settings-schema.json->unchangedTrendColor->tooltip
 msgid "Color of the unchanged trend"
 msgstr "Цвет отображения неизменного тренда."
+
+#. settings-schema.json->cacheAuthorizationParameters->description
+msgid "Cache authorization parameters"
+msgstr ""
+
+#. settings-schema.json->cacheAuthorizationParameters->tooltip
+msgid "Remember fetched authorization parameters for desklet instance"
+msgstr ""
 
 #. settings-schema.json->sendCustomUserAgent->description
 msgid "Send custom User-Agent header"
