@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-08-21 21:41+0200\n"
+"POT-Creation-Date: 2025-08-22 22:21+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,49 +17,47 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
 
-#. desklet.js:690
+#. desklet.js:687
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 
-#. desklet.js:724 desklet.js:750 desklet.js:773
+#. desklet.js:721 desklet.js:747 desklet.js:770
 msgid "Authorization parameters have expired"
 msgstr ""
 
-#. desklet.js:727 desklet.js:753 desklet.js:776
-msgid "Yahoo Finance service not available!\\nStatus: "
+#. desklet.js:724 desklet.js:750 desklet.js:773
+msgid "Yahoo Finance service not available! Status: "
 msgstr "Сервис Yahoo Finance не доступен!"
 
-#. desklet.js:1087
+#. desklet.js:1084
 msgid "No quotes data to display"
 msgstr ""
 
-#. desklet.js:1197
+#. desklet.js:1194
 msgid "Updated at "
 msgstr "Обновлено в "
 
-#. desklet.js:1229
+#. desklet.js:1226
 msgid "Error: "
 msgstr "Ошибка: "
 
-#. desklet.js:1373
+#. desklet.js:1376
 msgid ""
-"Failed to retrieve authorization parameter! Unable to fetch quotes data."
-"\\nStatus: "
+"Failed to retrieve authorization parameter! Unable to fetch quotes data. "
+"Status: "
 msgstr ""
 
-#. desklet.js:1400
-msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
+#. desklet.js:1403
+msgid "Consent processing failed! Unable to fetch quotes data. Status: "
 msgstr ""
 
-#. desklet.js:1406
-msgid ""
-"Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
+#. desklet.js:1409
+msgid "Consent processing not completed! Unable to fetch quotes data. Status: "
 msgstr ""
 
-#. desklet.js:1442
+#. desklet.js:1445
 msgid ""
-"Failed to retrieve authorization crumb! Unable to fetch quotes data."
-"\\nStatus: "
+"Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: "
 msgstr ""
 
 #. metadata.json->description

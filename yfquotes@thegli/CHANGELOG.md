@@ -1,3 +1,10 @@
+### 0.17.1 - August 22, 2025
+
+Bugfixes:
+
+- fix libsoup2 support for cache authorization parameters
+- enable line-wrapping in displayed error messages
+
 ### 0.17.0 - August 21, 2025
 
 Features:
