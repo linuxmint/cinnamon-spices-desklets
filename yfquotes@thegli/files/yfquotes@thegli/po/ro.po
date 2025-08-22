@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-08-21 21:41+0200\n"
+"POT-Creation-Date: 2025-08-22 22:21+0200\n"
 "PO-Revision-Date: 2023-07-19 22:16+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -18,49 +18,47 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
 
-#. desklet.js:690
+#. desklet.js:687
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 
-#. desklet.js:724 desklet.js:750 desklet.js:773
+#. desklet.js:721 desklet.js:747 desklet.js:770
 msgid "Authorization parameters have expired"
 msgstr ""
 
-#. desklet.js:727 desklet.js:753 desklet.js:776
-msgid "Yahoo Finance service not available!\\nStatus: "
+#. desklet.js:724 desklet.js:750 desklet.js:773
+msgid "Yahoo Finance service not available! Status: "
 msgstr "Serviciul Yahoo Finance nu este disponibil!"
 
-#. desklet.js:1087
+#. desklet.js:1084
 msgid "No quotes data to display"
 msgstr ""
 
-#. desklet.js:1197
+#. desklet.js:1194
 msgid "Updated at "
 msgstr "Actualizat la"
 
-#. desklet.js:1229
+#. desklet.js:1226
 msgid "Error: "
 msgstr "Eroare:"
 
-#. desklet.js:1373
+#. desklet.js:1376
 msgid ""
-"Failed to retrieve authorization parameter! Unable to fetch quotes data."
-"\\nStatus: "
+"Failed to retrieve authorization parameter! Unable to fetch quotes data. "
+"Status: "
 msgstr ""
 
-#. desklet.js:1400
-msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
+#. desklet.js:1403
+msgid "Consent processing failed! Unable to fetch quotes data. Status: "
 msgstr ""
 
-#. desklet.js:1406
-msgid ""
-"Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
+#. desklet.js:1409
+msgid "Consent processing not completed! Unable to fetch quotes data. Status: "
 msgstr ""
 
-#. desklet.js:1442
+#. desklet.js:1445
 msgid ""
-"Failed to retrieve authorization crumb! Unable to fetch quotes data."
-"\\nStatus: "
+"Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: "
 msgstr ""
 
 #. metadata.json->description
@@ -541,7 +539,6 @@ msgid "Send custom User-Agent header"
 msgstr "Trimite antetul personalizat User-Agent"
 
 #. settings-schema.json->sendCustomUserAgent->tooltip
-#, fuzzy
 msgid "Include a custom User-Agent header in Yahoo Finance Quotes API requests"
 msgstr ""
 "Include un antet User-Agent personalizat în solicitările API Yahoo Finance "
