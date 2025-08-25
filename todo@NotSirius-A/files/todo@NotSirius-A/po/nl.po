@@ -1,0 +1,281 @@
+# TODO DESKLET
+# This file is put in the public domain.
+# NotSirius-A, 2025
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: todo@NotSirius-A 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-06-26 19:13+0200\n"
+"PO-Revision-Date: 2025-08-25 18:06+0200\n"
+"Last-Translator: qadzek\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. settings-schema.json->todo-page->title
+#. MyToolBar.js:74 desklet.js:238
+msgid "TODO"
+msgstr "TODO"
+
+#. TODOList.js:263 TODOList.js:311 TODOList.js:365
+msgid "Are you sure you want to remove this task?"
+msgstr "Weet je zeker dat je deze taak wilt verwijderen?"
+
+#. desklet.js:235
+msgid "Add new task"
+msgstr "Nieuwe taak toevoegen"
+
+#. metadata.json->description
+msgid "Themeable, customizable, and easy-to-use TODO desklet."
+msgstr "Thematiseerbaar, aanpasbaar en gebruiksvriendelijk TODO desklet"
+
+#. metadata.json->name
+msgid "TODO Desklet"
+msgstr "TODO Desklet"
+
+#. settings-schema.json->preferences-page->title
+msgid "Preferences"
+msgstr "Voorkeuren"
+
+#. settings-schema.json->theme-page->title
+msgid "Theme"
+msgstr "Thema"
+
+#. settings-schema.json->todo-section->title
+msgid "Add or modify your tasks here"
+msgstr "Voeg hier taken toe of wijzig ze"
+
+#. settings-schema.json->toolbar-preferences-section->title
+#. settings-schema.json->toolbar-theme-section->title
+msgid "Toolbar"
+msgstr "Werkbalk"
+
+#. settings-schema.json->todo-preferences-section->title
+msgid "TODO list"
+msgstr "TODO lijst"
+
+#. settings-schema.json->layout-section->title
+msgid "Layout"
+msgstr "Lay-out"
+
+#. settings-schema.json->TODO-task-theme-section->title
+msgid "TODO tasks"
+msgstr "TODO taken"
+
+#. settings-schema.json->desklet-decorations-section->title
+msgid "Desklet decorations"
+msgstr "Desklet decoraties"
+
+#. settings-schema.json->todo-bottom-label->description
+msgid ""
+"How to use this desklet:\n"
+"You can add/edit tasks here or by interacting with the desklet itself:\n"
+" - Left-click on task name to edit it\n"
+" - Left-click on the task icon to mark it done/not done\n"
+" - Right-click to select multiple tasks (only relevant if using toolbar)\n"
+" - Middle-click to remove\n"
+" - If you want to add more tasks, right-click anywhere on the desklet and "
+"select the `Add new task` option inside the popup menu \n"
+"You can find more information about this desklet on its webpage."
+msgstr ""
+"Hoe deze desklet te gebruiken:\n"
+"Je kan taken hier toevoegen/bewerken, of je kan interactie hebben met de "
+"desklet zelf:\n"
+" - Linkerklik op taaknaam om het te bewerken\n"
+" - Linkerklik op taakicoon om als gedaan/niet gedaan te markeren\n"
+" - Rechterklik om meerdere taken te selecteren (alleen relevant als werkbalk "
+"gebruikt wordt)\n"
+" - Middelklik om te verwijderen\n"
+" - Als je meer taken wil toevoegen, rechterklik eender waar op de desklet en "
+"selecteer de `Nieuwe taak toevoegen` optie in het pop-up menu.\n"
+"Je kan meer info over deze desklet vinden op haar webpagina."
+
+#. settings-schema.json->todo-list->columns->title
+msgid "Marked done"
+msgstr "Gemarkeerd als gedaan"
+
+#. settings-schema.json->todo-list->columns->title
+msgid "Name"
+msgstr "Naam"
+
+#. settings-schema.json->update-button->description
+msgid "Update"
+msgstr "Bijwerken"
+
+#. settings-schema.json->is-toolbar-enabled->description
+msgid "Enable toolbar"
+msgstr "Werkbalk inschakelen"
+
+#. settings-schema.json->is-toolbar-enabled->tooltip
+msgid ""
+"Select if you want the toolbar to show up (tasks can be selected only when "
+"toolbar is enabled)."
+msgstr ""
+"Selecteer als je de werkbalk wil tonen (taken kunnen enkel geselecteerd "
+"worden wanneer de werkbalk ingeschakeld is)"
+
+#. settings-schema.json->is-sort-enabled->description
+msgid "Sort marked/not marked tasks"
+msgstr "Sorteer gemarkeerde/niet-gemarkeerde taken"
+
+#. settings-schema.json->is-sort-enabled->tooltip
+msgid ""
+"Select if you tasks to be sorted based on whether they're marked done or not."
+msgstr ""
+"Selecteer of je taken wilt sorteren op basis van of ze als voltooid "
+"gemarkeerd zijn of niet."
+
+#. settings-schema.json->is-sort-reversed->description
+msgid "Reverse order"
+msgstr "Omgekeerde volgorde"
+
+#. settings-schema.json->is-sort-reversed->tooltip
+msgid "Select if you unmarked tasks to be at the top."
+msgstr "Selecteer of je ongemarkeerde taken bovenaan wilt hebben."
+
+#. settings-schema.json->column-number->description
+msgid "Number of columns"
+msgstr "Aantal kolommen"
+
+#. settings-schema.json->column-number->tooltip
+msgid "Increase or decrease the number of columns on the layout."
+msgstr "Verhoog of verlaag het aantal kolommen in de lay-out."
+
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr "Tekstschaduw"
+
+#. settings-schema.json->text-shadow-color->description
+msgid "Text shadow color"
+msgstr "Kleur tekstschaduw"
+
+#. settings-schema.json->show-decorations->description
+msgid "Show desklet decorations"
+msgstr "Toon desklet-decoraties"
+
+#. settings-schema.json->font->description
+msgid "Font name (choose regular versions)"
+msgstr "Lettertype naam (kies reguliere versies)"
+
+#. settings-schema.json->font->tooltip
+msgid "Change font family"
+msgstr "Wijzig lettertypefamilie"
+
+#. settings-schema.json->font-bold->description
+msgid "Bold"
+msgstr "Vet"
+
+#. settings-schema.json->font-italic->description
+msgid "Italic"
+msgstr "Cursief"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Tekstkleur"
+
+#. settings-schema.json->text-color->tooltip
+msgid "Set the task text color."
+msgstr "Stel de tekstkleur van de taak in."
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "Schaalfactor"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size, mostly impacts width"
+msgstr "Deskletgrootte, beïnvloedt voornamelijk de breedte"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr "Vergroot of verklein deze desklet met behulp van deze schaalfactor."
+
+#. settings-schema.json->is-task-bg-transparent->description
+msgid "Transparent background"
+msgstr "Transparante achtergrond"
+
+#. settings-schema.json->is-task-bg-transparent->tooltip
+msgid "Select if you want a transparent background."
+msgstr "Selecteer of je een transparante achtergrond wilt."
+
+#. settings-schema.json->task-background->description
+msgid "Task background"
+msgstr "Taakachtergrond"
+
+#. settings-schema.json->task-background->tooltip
+msgid "Set the task background."
+msgstr "Stel de achtergrond van de taak in."
+
+#. settings-schema.json->task-icon-size->units
+#. settings-schema.json->toolbar-icon-size->units
+msgid "pixels"
+msgstr "pixels"
+
+#. settings-schema.json->task-icon-size->description
+msgid "Task icon size (set to 0 to disable icons)"
+msgstr "Taakpictogramgrootte (stel in op 0 om pictogrammen uit te schakelen)"
+
+#. settings-schema.json->task-icon-size->tooltip
+msgid "Increase or decrease the icon size (set to 0 to disable icons)."
+msgstr ""
+"Vergroot of verklein de pictogrammen (stel in op 0 om pictogrammen uit te "
+"schakelen)."
+
+#. settings-schema.json->task-marked-icon->description
+msgid "Icon marked"
+msgstr "Pictogram gemarkeerd"
+
+#. settings-schema.json->task-not-marked-icon->description
+msgid "Icon not marked"
+msgstr "Pictogram niet gemarkeerd"
+
+#. settings-schema.json->toolbar-icon-size->description
+msgid "Toolbar icon size"
+msgstr "Werkbalkpictogramgrootte"
+
+#. settings-schema.json->toolbar-icon-size->tooltip
+msgid "Increase or decrease the icon size."
+msgstr "Vergroot of verklein de pictogrammen."
+
+#. settings-schema.json->toolbar-background->description
+msgid "Toolbar background"
+msgstr "Werkbalkachtergrond"
+
+#. settings-schema.json->toolbar-background->tooltip
+msgid "Set the toolbar background."
+msgstr "Stel de achtergrond van de werkbalk in."
+
+#. settings-schema.json->toolbar-font-color->description
+msgid "Toolbar icon color"
+msgstr "Werkbalkpictogramkleur"
+
+#. settings-schema.json->toolbar-font-color->tooltip
+msgid "Set the color of toolbar icons."
+msgstr "Stel de kleur van de werkbalkpictogrammen in."
+
+#. settings-schema.json->desklet-decorations-note->description
+msgid ""
+"Following settings require desklet decorations to be enabled on your "
+"system.\n"
+"Desklet preferences are located in System Settings > Desklets > General "
+"Settings tab; there you will be able to enable border/header decorations."
+msgstr ""
+"De volgende instellingen vereisen dat desklet-decoraties zijn ingeschakeld "
+"op je systeem.\n"
+"Desklet-voorkeuren bevinden zich in Systeeminstellingen > Desklets > Tabblad "
+"Algemene instellingen; daar kan je rand-/koptekstdecoraties inschakelen."
+
+#. settings-schema.json->desklet-header->description
+msgid "Desklet header"
+msgstr "Desklet koptekst"
+
+#. settings-schema.json->desklet-header->tooltip
+msgid ""
+"Set your desklet header. Make sure desklet headers are enabled in system "
+"settings."
+msgstr ""
+"Stel je desklet koptekst in. Zorg ervoor dat desklet-kopteksten zijn "
+"ingeschakeld in de systeeminstellingen."
