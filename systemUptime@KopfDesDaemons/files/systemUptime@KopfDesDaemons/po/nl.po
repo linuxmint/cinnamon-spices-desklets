@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2025-07-31 22:57+0200\n"
-"PO-Revision-Date: 2024-11-28 15:34+0100\n"
+"PO-Revision-Date: 2025-08-25 16:26+0200\n"
 "Last-Translator: qadzek\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -47,11 +47,11 @@ msgstr "minuten"
 
 #. desklet.js:146
 msgid "hours"
-msgstr ""
+msgstr "uren"
 
 #. desklet.js:146
 msgid "minutes"
-msgstr ""
+msgstr "minuten"
 
 #. metadata.json->description
 msgid "Displays the current system uptime."
@@ -70,10 +70,9 @@ msgid "Label color"
 msgstr "Labelkleur"
 
 #. settings-schema.json->showStartDate->description
-#, fuzzy
 msgid "Show start date"
-msgstr "Opstarttijd:"
+msgstr "Toon startdatum"
 
 #. settings-schema.json->showUptimeInDays->description
 msgid "Show uptime in days"
-msgstr ""
+msgstr "Toon uptime in dagen"
