@@ -1,0 +1,26 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# Daniel <d3vf4n (at) tutanota (dot) com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: InternetTimeDesklet@stefan 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 08:35+0200\n"
+"PO-Revision-Date: 2024-05-15 08:42+0200\n"
+"Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. metadata.json->name
+msgid "Internet Time"
+msgstr "Temps d'Internet"
+
+#. metadata.json->description
+msgid "Shows the Internet Time in .beat"
+msgstr "Rellotge que pren el temps d'Internet i el mostra en format «.beat»"

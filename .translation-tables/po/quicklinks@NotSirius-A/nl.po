@@ -1,0 +1,344 @@
+# QUICK LINKS
+# This file is put in the public domain.
+# NotSirius-A, 2025
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: quicklinks@NotSirius-A 1.1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-06-16 14:10+0200\n"
+"PO-Revision-Date: 2025-08-25 16:16+0200\n"
+"Last-Translator: qadzek\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. desklet.js:130
+msgid ""
+"No visible\n"
+"links found.\n"
+"Configure links\n"
+"in the settings.\n"
+"Right click\n"
+"on desklet\n"
+"then configure."
+msgstr ""
+"Geen zichtbare\n"
+"links gevonden.\n"
+"Configureer links\n"
+"in de instellingen.\n"
+"Rechtsklik\n"
+"op desklet\n"
+"daarna configureren."
+
+#. desklet.js:344
+msgid "Quick Links: Command parse error: "
+msgstr "Quick Links: Fout bij commando parser: "
+
+#. metadata.json->description
+msgid ""
+"Customizable quick links panel. Allows you to create beautiful themed "
+"desktop shortcuts for your most used folders/commands."
+msgstr ""
+"Aanpasbaar quick links paneel. Hiermee kun je mooie thematische bureaublad "
+"snelkoppelingen maken voor je meest gebruikte mappen/commando's."
+
+#. metadata.json->name
+msgid "Quick Links"
+msgstr "Quick Links"
+
+#. settings-schema.json->links-page->title
+msgid "Links"
+msgstr "Links"
+
+#. settings-schema.json->actions-page->title
+msgid "Actions"
+msgstr "Acties"
+
+#. settings-schema.json->theme-page->title
+msgid "Theme"
+msgstr "Thema"
+
+#. settings-schema.json->links-section->title
+msgid "Set up your links here"
+msgstr "Stel hier je links in"
+
+#. settings-schema.json->iconselect-section->title
+msgid "Find icon names here"
+msgstr "Vind icoonnamen hier"
+
+#. settings-schema.json->click-section->title
+msgid "Change how links are activated"
+msgstr "Wijzig hoe links geactiveerd worden"
+
+#. settings-schema.json->layout-section->title
+msgid "Layout"
+msgstr "Lay-out"
+
+#. settings-schema.json->font-section->title
+msgid "Font"
+msgstr "Lettertype"
+
+#. settings-schema.json->desklet-decorations-section->title
+msgid "Desklet decorations"
+msgstr "Desklet decoraties"
+
+#. settings-schema.json->links-top-label->description
+msgid ""
+"Each link has 5 attributes you can change:\n"
+" - Display: determines whether your link will be shown or not \n"
+" - Name that will be displayed\n"
+" - Icon name: you can choose any system icon or leave blank\n"
+" - Command to be executed when clicked\n"
+" - Shell: select if you want the terminal to show up after clicking"
+msgstr ""
+"Elke link heeft 5 attributen die je kunt wijzigen:\n"
+" - Weergave: bepaalt of de link al dan niet getoond wordt\n"
+" - Naam die weergegeven wordt\n"
+" - Icoonnaam: kies een systeemicoon of laat leeg\n"
+" - Commando dat uitgevoerd wordt bij klikken\n"
+" - Shell: selecteer als je wilt dat de terminal opent na klikken"
+
+#. settings-schema.json->links-bottom-label->description
+msgid ""
+"Some tips:\n"
+"You can open folders using ex. `nemo <path>` command.\n"
+"If you need to see the output of a command, set the last attribute to true.\n"
+"You can break your links' names into multiple lines by typing \\n where you "
+"want a break.\n"
+"Set `Shell` to enabled if your command only outputs to the console ex. `ls` "
+"or `htop`.\n"
+"If you want multiple link categories/panels just create new instances of "
+"this desklet\n"
+" (click the `+` sign in system desklet manager)."
+msgstr ""
+"Enkele tips:\n"
+"Je kan mappen openen via bv. `nemo <pad>` commando.\n"
+"Als je de output van een commando wilt zien, stel laatste attribuut in op "
+"true.\n"
+"Je kunt namen van links opsplitsen in meerdere lijnen door \\n te typen waar "
+"je een nieuwe regel wenst.\n"
+"Stel `Shell` in op ingeschakeld als je commando enkel console-output heeft, "
+"bv. `ls` of `htop`.\n"
+"Voor meerdere linkcategorieën/panelen maak je gewoon nieuwe instanties van "
+"deze desklet aan\n"
+"(klik op het `+` sybmool in deskletbeheer)."
+
+#. settings-schema.json->links-list->columns->title
+msgid "Display"
+msgstr "Weergave"
+
+#. settings-schema.json->links-list->columns->title
+msgid "Name"
+msgstr "Naam"
+
+#. settings-schema.json->links-list->columns->title
+msgid "Icon name"
+msgstr "Icoonnaam"
+
+#. settings-schema.json->links-list->columns->title
+msgid "Command"
+msgstr "Commando"
+
+#. settings-schema.json->links-list->columns->title
+msgid "Shell"
+msgstr "Shell"
+
+#. settings-schema.json->link-update-button->description
+msgid "Update"
+msgstr "Bijwerken"
+
+#. settings-schema.json->icon-picker-label->description
+msgid ""
+"The setting below does not impact the desklet. It's here for convenience.\n"
+"You can browse through icons here and find their names easily."
+msgstr ""
+"Onderstaande instelling beïnvloedt de desklet niet. Het is hier alleen voor "
+"gemak.\n"
+"Je kan hier door iconen bladeren en hun namen makkelijk vinden."
+
+#. settings-schema.json->icon-picker->description
+msgid "Click the icon to browse"
+msgstr "Klik het icoon om te bladeren"
+
+#. settings-schema.json->icon-picker->tooltip
+msgid ""
+"Click the icon on the right to browse. This setting is not used anywhere. "
+msgstr ""
+"Rechterklik het icoon om te bladeren. Deze instelling wordt nergens gebruikt."
+
+#. settings-schema.json->click-type->description
+msgid "Click type"
+msgstr "Klik type"
+
+#. settings-schema.json->click-type->options
+msgid "Single click"
+msgstr "Enkele klik"
+
+#. settings-schema.json->click-type->options
+msgid "Double click"
+msgstr "Dubbele klik"
+
+#. settings-schema.json->click-type->tooltip
+msgid "Choose how you want to active your links."
+msgstr "Kies hoe je je links wil activeren."
+
+#. settings-schema.json->click-timeout->description
+msgid "Double-click timeout"
+msgstr "Dubbele klik timeout"
+
+#. settings-schema.json->click-timeout->tooltip
+msgid "Set the maximum time between clicks in double-click."
+msgstr "Stel maximale tijd in tussen klikken voor dubbele klik."
+
+#. settings-schema.json->desklet-layout->description
+msgid ""
+"Choose how links should be laid out.\n"
+"(You might also want to change text alignment.)"
+msgstr ""
+"Kies hoe links worden weergegeven.\n"
+"(Je wil mogelijk ook tekstuitlijning aanpassen.)"
+
+#. settings-schema.json->desklet-layout->options
+msgid "List view"
+msgstr "Lijstweergave"
+
+#. settings-schema.json->desklet-layout->options
+msgid "Tile view"
+msgstr "Tegelweergave"
+
+#. settings-schema.json->desklet-layout->tooltip
+msgid "Pick a layout for this desklet."
+msgstr "Kies een lay-out voor deze desklet."
+
+#. settings-schema.json->text-align->description
+msgid "Text alignment"
+msgstr "Tekstuitlijning"
+
+#. settings-schema.json->text-align->options
+msgid "Left"
+msgstr "Links"
+
+#. settings-schema.json->text-align->options
+msgid "Center"
+msgstr "Midden"
+
+#. settings-schema.json->text-align->options
+msgid "Right"
+msgstr "Rechts"
+
+#. settings-schema.json->column-number->description
+msgid "Number of columns"
+msgstr "Aantal kolommen"
+
+#. settings-schema.json->column-number->tooltip
+msgid "Increase or decrease the number of columns on the layout."
+msgstr "Verhoog of verlaag het aantal kolommen in de layout"
+
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr "Tekstschaduw"
+
+#. settings-schema.json->text-shadow-color->description
+msgid "Text shadow color"
+msgstr "Kleur van tekstschaduw"
+
+#. settings-schema.json->transparent-bg->description
+msgid "Transparent background (works well with no decorations)"
+msgstr "Transparante achtergrond (werkt goed met geen decoraties)"
+
+#. settings-schema.json->transparent-bg->tooltip
+msgid "Select if you want a transparent background."
+msgstr "Selecteer indien je een transparante achtergrond wil"
+
+#. settings-schema.json->bg-color->description
+msgid "Link background color"
+msgstr "Achtergrondkleur van links"
+
+#. settings-schema.json->bg-color->tooltip
+msgid "Set the color of the links background."
+msgstr "Stel de kleur van de achtergrond van links in."
+
+#. settings-schema.json->show-decorations->description
+msgid "Show desklet decorations"
+msgstr "Toon desklet decoraties"
+
+#. settings-schema.json->icon-size->units
+msgid "pixels"
+msgstr "pixels"
+
+#. settings-schema.json->icon-size->description
+msgid "Icon size (set to 0 do disable icons)"
+msgstr "Icoongrootte (stel in op 0 om iconen uit te schakelen)"
+
+#. settings-schema.json->icon-size->tooltip
+msgid "Increase or decrease the icon size (set to 0 to disable icons)."
+msgstr "Vergroot of verklein iconen (stel in op 0 om iconen uit te schakelen)"
+
+#. settings-schema.json->font-enabled->description
+msgid "Display text"
+msgstr "Tekst weergeven"
+
+#. settings-schema.json->font->description
+msgid "Font name (choose regular versions)"
+msgstr "Lettertype naam (kies reguliere versies)"
+
+#. settings-schema.json->font->tooltip
+msgid "Change font family"
+msgstr "Wijzig lettertype familie"
+
+#. settings-schema.json->font-bold->description
+msgid "Bold"
+msgstr "Vet"
+
+#. settings-schema.json->font-italic->description
+msgid "Italic"
+msgstr "Cursief"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Tekstkleur"
+
+#. settings-schema.json->text-color->tooltip
+msgid "Set the text color of this desklet."
+msgstr "Stel de tekstkleur van deze desklet in."
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "schaalfactor"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size, mostly impacts width"
+msgstr "Desklet grootte, heeft vooral impact op de breedte"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr "Vergroot of verklein deze desklet via deze schaalfactor."
+
+#. settings-schema.json->desklet-decorations-note->description
+msgid ""
+"Following settings require desklet decorations to be enabled on your "
+"system.\n"
+"Desklet preferences are located in System Settings > Desklets > General "
+"Settings tab; there you will be able to enable border/header decorations."
+msgstr ""
+"Volgende instellingen vereisen dat desklet decoraties zijn ingeschakeld op "
+"je systeem.\n"
+"Desklet voorkeuren zijn te vinden in Systeeminstellingen > Desklets > "
+"Algemene Instellingen tabblad; daar kan je rand/koptekst decoraties "
+"inschakelen."
+
+#. settings-schema.json->desklet-header->description
+msgid "Desklet header"
+msgstr "Desklet koptekst"
+
+#. settings-schema.json->desklet-header->tooltip
+msgid ""
+"Set your desklet header. Make sure desklet headers are enabled in system "
+"settings."
+msgstr ""
+"Stel koptekst van je desklet in. Zorg dat desklet kopteksten ingeschakeld "
+"zijn in systeeminstellingen."
