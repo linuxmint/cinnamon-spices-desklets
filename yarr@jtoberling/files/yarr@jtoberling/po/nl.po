@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2025-08-21 09:05-0400\n"
-"PO-Revision-Date: 2025-02-21 09:16+0100\n"
+"PO-Revision-Date: 2025-08-25 18:22+0200\n"
 "Last-Translator: qadzek\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -39,9 +39,8 @@ msgstr "AI instellingen"
 
 #. settings-schema.json->page4->title
 #. settings-schema.json->section3->title
-#, fuzzy
 msgid "Debug settings"
-msgstr "Feed instellingen"
+msgstr "Debug-instellingen"
 
 #. settings-schema.json->section1ai->title
 msgid "Display settings for AI feature"
@@ -49,7 +48,7 @@ msgstr "Weergave instellingen voor AI functie"
 
 #. settings-schema.json->feeds->description
 msgid "Feed settings (supports RSS and Atom)"
-msgstr ""
+msgstr "Feed-instellingen (ondersteunt RSS en Atom)"
 
 #. settings-schema.json->feeds->columns->title
 #. settings-schema.json->listfilter->columns->title
@@ -191,58 +190,66 @@ msgid ""
 "AI-powered article summarization using various language models. Configure "
 "your preferred AI service and summarization behavior."
 msgstr ""
+"AI-aangedreven artikel-samenvatting met behulp van verschillende "
+"taalmodellen. Configureer je voorkeur-AI-service en samenvattingsgedrag."
 
 #. settings-schema.json->ai_enablesummary->description
 msgid "Enable AI article summarization"
-msgstr ""
+msgstr "AI-artikelsamenvatting inschakelen"
 
 #. settings-schema.json->ai_add_description_to_summary->description
 msgid "Include article description"
-msgstr ""
+msgstr "Artikelbeschrijving opnemen"
 
 #. settings-schema.json->ai_provider->description
 msgid "AI Service Provider"
-msgstr ""
+msgstr "AI-serviceprovider"
 
 #. settings-schema.json->ai_provider->options
 msgid "OpenAI (GPT models)"
-msgstr ""
+msgstr "OpenAI (GPT-modellen)"
 
 #. settings-schema.json->ai_provider->options
 msgid "DeepSeek (coding focus)"
-msgstr ""
+msgstr "DeepSeek (focus op programmeren)"
 
 #. settings-schema.json->ai_provider->options
 msgid "Anthropic (Claude models)"
-msgstr ""
+msgstr "Anthropic (Claude-modellen)"
 
 #. settings-schema.json->ai_provider->tooltip
 msgid ""
 "Select your AI service provider. Each provider has different model "
 "capabilities and pricing."
 msgstr ""
+"Selecteer je AI-serviceprovider. Elke provider heeft verschillende "
+"modelmogelijkheden en prijzen."
 
 #. settings-schema.json->ai_use_custom_url->description
 msgid "Override default API endpoint"
-msgstr ""
+msgstr "Overschrijf standaard API-endpoint"
 
 #. settings-schema.json->ai_use_custom_url->tooltip
 msgid "Enable to use a custom API endpoint instead of the provider's default"
 msgstr ""
+"Inschakelen om een aangepast API-endpoint te gebruiken in plaats van de "
+"standaard van de provider"
 
 #. settings-schema.json->ai_url->description
 msgid "Custom API endpoint"
-msgstr ""
+msgstr "Aangepast API-endpoint"
 
 #. settings-schema.json->ai_url->tooltip
 msgid ""
 "Enter the API endpoint URL to override the default provider endpoint (useful "
 "for local models, custom deployments, etc.)"
 msgstr ""
+"Voer de API-endpoint-URL in om de standaard van de provider te overschrijven "
+"(nuttig voor lokale modellen, aangepaste implementaties, enz.)"
 
 #. settings-schema.json->ai_dumptool->description
 msgid "Content extractor"
-msgstr ""
+msgstr "Inhoudsextractor"
 
 #. settings-schema.json->ai_dumptool->options
 msgid "w3m"
@@ -261,31 +268,33 @@ msgid ""
 "Tool to extract article content from web pages. Install: apt install w3m (or "
 "lynx/links)"
 msgstr ""
+"Hulpmiddel om artikelinhoud uit webpagina’s te halen. Te installeren: apt "
+"install w3m (of lynx/links)"
 
 #. settings-schema.json->ai_use_standard_model->description
 msgid "Model selection"
-msgstr ""
+msgstr "Modelselectie"
 
 #. settings-schema.json->ai_use_standard_model->tooltip
 msgid "Choose from predefined models or enter a custom model name"
 msgstr ""
+"Kies uit vooraf gedefinieerde modellen of voer een aangepaste modelnaam in"
 
 #. settings-schema.json->ai_use_standard_model->options
 msgid "Predefined models"
-msgstr ""
+msgstr "Vooraf gedefinieerde modellen"
 
 #. settings-schema.json->ai_use_standard_model->options
 msgid "Custom model"
-msgstr ""
+msgstr "Aangepast model"
 
 #. settings-schema.json->ai_model->description
 msgid "Standard model to use"
 msgstr "Standaard model om te gebruiken"
 
 #. settings-schema.json->ai_model->options
-#, fuzzy
 msgid "gpt-5"
-msgstr "gpt-4"
+msgstr "gpt-5"
 
 #. settings-schema.json->ai_model->options
 msgid "gpt-4o"
@@ -296,9 +305,8 @@ msgid "gpt-4o-mini"
 msgstr "gpt-4o-mini"
 
 #. settings-schema.json->ai_model->options
-#, fuzzy
 msgid "gpt-4-turbo"
-msgstr "gpt-3.5-turbo"
+msgstr "gpt-4-turbo"
 
 #. settings-schema.json->ai_model->options
 msgid "gpt-4"
@@ -309,9 +317,8 @@ msgid "gpt-3.5-turbo"
 msgstr "gpt-3.5-turbo"
 
 #. settings-schema.json->ai_model->options
-#, fuzzy
 msgid "deepseek-chat"
-msgstr "deepseek-coder"
+msgstr "deepseek-chat"
 
 #. settings-schema.json->ai_model->options
 msgid "deepseek-coder"
@@ -322,29 +329,28 @@ msgid "deepseek-coder-v2:latest"
 msgstr "deepseek-coder-v2:latest"
 
 #. settings-schema.json->ai_model->options
-#, fuzzy
 msgid "deepseek-math"
-msgstr "deepseek-coder"
+msgstr "deepseek-math"
 
 #. settings-schema.json->ai_model->options
 msgid "claude-3-5-sonnet"
-msgstr ""
+msgstr "claude-3-5-sonnet"
 
 #. settings-schema.json->ai_model->options
 msgid "claude-3-5-haiku"
-msgstr ""
+msgstr "claude-3-5-haiku"
 
 #. settings-schema.json->ai_model->options
 msgid "claude-3-opus"
-msgstr ""
+msgstr "claude-3-opus"
 
 #. settings-schema.json->ai_model->options
 msgid "claude-3-sonnet"
-msgstr ""
+msgstr "claude-3-sonnet"
 
 #. settings-schema.json->ai_model->options
 msgid "claude-3-haiku"
-msgstr ""
+msgstr "claude-3-haiku"
 
 #. settings-schema.json->ai_model->tooltip
 msgid ""
@@ -354,81 +360,91 @@ msgid ""
 "Claude models via compatible APIs.\n"
 "Select 'Custom' to use your own model name."
 msgstr ""
+"GPT-5 is het nieuwste model (vereist GPT-5-toegang).\n"
+"GPT-4o-modellen bieden de beste prestatie/waarde.\n"
+"DeepSeek-modellen zijn geweldig voor programmeren.\n"
+"Claude-modellen via compatibele API's.\n"
+"Selecteer 'Aangepast' om je eigen modelnaam te gebruiken."
 
 #. settings-schema.json->ai_custom_model->description
 msgid "Custom model name"
-msgstr ""
+msgstr "Aangepaste modelnaam"
 
 #. settings-schema.json->ai_custom_model->tooltip
 msgid "Enter the exact model name from your AI provider"
-msgstr ""
+msgstr "Voer de exacte modelnaam in van je AI-provider"
 
 #. settings-schema.json->ai_systemprompt->description
-#, fuzzy
 msgid "AI instructions"
-msgstr "AI-systeeminstructies"
+msgstr "AI-instructies"
 
 #. settings-schema.json->ai_systemprompt->tooltip
 msgid "Instructions sent to the AI model before processing each article"
 msgstr ""
+"Instructies die naar het AI-model worden gestuurd vóór de verwerking van elk "
+"artikel"
 
 #. settings-schema.json->ai_apikey->description
 msgid "Set API key"
-msgstr ""
+msgstr "Stel API-sleutel in"
 
 #. settings-schema.json->ai_example1->description
 msgid "Concise (4 sentences)"
-msgstr ""
+msgstr "Bondig (4 zinnen)"
 
 #. settings-schema.json->ai_example2->description
 msgid "Bullet points"
-msgstr ""
+msgstr "Opsommingstekens"
 
 #. settings-schema.json->ai_example3->description
 msgid "Technical"
-msgstr ""
+msgstr "Technisch"
 
 #. settings-schema.json->ai_example4->description
 msgid "Creative"
-msgstr ""
+msgstr "Creatief"
 
 #. settings-schema.json->ai_example5->description
 msgid "Professional"
-msgstr ""
+msgstr "Professioneel"
 
 #. settings-schema.json->ai_example6->description
 msgid "Minimal"
-msgstr ""
+msgstr "Minimaal"
 
 #. settings-schema.json->refreshsettingsbutton->description
 msgid "Refresh settings"
 msgstr "Vernieuw instellingen"
 
 #. settings-schema.json->refreshsettingsbutton->tooltip
-#, fuzzy
 msgid "Press this button to reload settings and update display immediately"
-msgstr "Druk op deze knop om instellingen opnieuw te laden"
+msgstr ""
+"Druk op deze knop om instellingen opnieuw te laden en de weergave "
+"onmiddellijk bij te werken"
 
 #. settings-schema.json->refreshFeedsButton->description
-#, fuzzy
 msgid "Refresh RSS Feeds"
-msgstr "Vernieuw instellingen"
+msgstr "RSS-feeds vernieuwen"
 
 #. settings-schema.json->refreshFeedsButton->tooltip
 msgid ""
 "Press this button to immediately refresh all RSS feeds and download new "
 "articles"
 msgstr ""
+"Druk op deze knop om onmiddellijk alle RSS-feeds te vernieuwen en nieuwe "
+"artikelen te downloaden"
 
 #. settings-schema.json->searchRssButton->description
 msgid "Search for RSS & Atom feeds"
-msgstr ""
+msgstr "Zoek naar RSS- & Atom-feeds"
 
 #. settings-schema.json->searchRssButton->tooltip
 msgid ""
 "Search for RSS and Atom feeds from a website URL. Automatically detects both "
 "feed formats."
 msgstr ""
+"Zoek naar RSS- en Atom-feeds vanuit een website-URL. Detecteert automatisch "
+"beide feedformaten."
 
 #. settings-schema.json->enablecopy->description
 msgid "Enable Copy to clipboard button"
@@ -476,53 +492,59 @@ msgstr ""
 
 #. settings-schema.json->showRefreshSeparators->description
 msgid "Show refresh separators between articles"
-msgstr ""
+msgstr "Toon vernieuwingsscheidingstekens tussen artikelen"
 
 #. settings-schema.json->showRefreshSeparators->tooltip
 msgid ""
 "Shows separator lines with timestamps between articles from different "
 "refresh batches"
 msgstr ""
+"Toont scheidingslijnen met tijdstempels tussen artikelen uit verschillende "
+"vernieuwingsrondes"
 
 #. settings-schema.json->enableDebugLogs->description
 msgid "Enable debug logs"
-msgstr ""
+msgstr "Debuglogs inschakelen"
 
 #. settings-schema.json->enableDebugLogs->tooltip
 msgid ""
 "When enabled, detailed debug information will be logged to the system logs. "
 "Only enable when troubleshooting issues."
 msgstr ""
+"Indien ingeschakeld, dan wordt gedetailleerde debuginformatie gelogd in de "
+"systeemlogs. Schakel dit alleen in bij het oplossen van problemen."
 
 #. settings-schema.json->debugVerbosity->description
 msgid "Debug verbosity level"
-msgstr ""
+msgstr "Niveau debug-gedetailleerdheid"
 
 #. settings-schema.json->debugVerbosity->options
 msgid "minimal"
-msgstr ""
+msgstr "minimaal"
 
 #. settings-schema.json->debugVerbosity->options
 msgid "basic"
-msgstr ""
+msgstr "basis"
 
 #. settings-schema.json->debugVerbosity->options
 msgid "verbose"
-msgstr ""
+msgstr "uitgebreid"
 
 #. settings-schema.json->debugVerbosity->tooltip
 msgid "Control how much debug information is logged"
-msgstr ""
+msgstr "Bepaal hoeveel debuginformatie wordt gelogd"
 
 #. settings-schema.json->databasePath->description
 msgid "Database base directory"
-msgstr ""
+msgstr "Database-basismap"
 
 #. settings-schema.json->databasePath->tooltip
 msgid ""
 "Base directory where separate Yarr databases are stored (yarr_favorites.db, "
 "yarr_read_status.db, etc.)"
 msgstr ""
+"Basismap waar afzonderlijke Yarr-databases worden opgeslagen (yarr_favorites."
+"db, yarr_read_status.db, enz.)"
 
 #. settings-schema.json->databaseInfo->description
 msgid ""
@@ -531,53 +553,62 @@ msgid ""
 "yarr_article_cache.db, yarr_feed_button_states.db, yarr_refresh.db, "
 "yarr_readstatus.db"
 msgstr ""
+"Yarr gebruikt afzonderlijke databases voor verschillende gegevenstypen. "
+"Databasenamen staan vast en kunnen niet worden gewijzigd: yarr_favorites.db, "
+"yarr_read_status.db, yarr_article_cache.db, yarr_feed_button_states.db, "
+"yarr_refresh.db, yarr_readstatus.db"
 
 #. settings-schema.json->showReadStatusCheckbox->description
 msgid "Show read status checkbox"
-msgstr ""
+msgstr "Toon gelezen-status selectievakje"
 
 #. settings-schema.json->dimReadTitles->description
 msgid "Dim read article titles"
-msgstr ""
+msgstr "Verduister gelezen artikelkoppen"
 
 #. settings-schema.json->dimReadTitles->tooltip
 msgid ""
 "When enabled, read titles are slightly dimmed for better visual distinction"
 msgstr ""
+"Indien ingeschakeld, dan worden gelezen titels een beetje verduisterd voor "
+"betere visuele onderscheiding"
 
 #. settings-schema.json->readTitleColor->description
 msgid "Color for read article titles"
-msgstr ""
+msgstr "Kleur voor gelezen artikelkoppen"
 
 #. settings-schema.json->readTitleColor->tooltip
 msgid "Choose a color applied to read titles"
-msgstr ""
+msgstr "Kies een kleur die wordt toegepast op gelezen titels"
 
 #. settings-schema.json->enableHeaderFeedButtons->description
-#, fuzzy
 msgid "Enable header feed buttons"
-msgstr "Verberg feed-knop"
+msgstr "Kop-feedknoppen inschakelen"
 
 #. settings-schema.json->enableHeaderFeedButtons->tooltip
 msgid ""
 "Show toggleable feed buttons below the header to control which feeds are "
 "displayed in the article list"
 msgstr ""
+"Toon schakelbare feedknoppen onder de kop om te bepalen welke feeds in de "
+"artikelijst worden weergegeven"
 
 #. settings-schema.json->openLookingGlass->description
 msgid "Open Looking Glass"
-msgstr ""
+msgstr "Open Looking Glass"
 
 #. settings-schema.json->openLookingGlass->tooltip
 msgid ""
 "Opens Cinnamon's Looking Glass debugger to inspect the desklet's JavaScript "
 "context"
 msgstr ""
+"Opent de Looking Glass-debugger van Cinnamon om de JavaScript-context van de "
+"desklet te inspecteren"
 
 #. settings-schema.json->restartDesklet->description
 msgid "Restart desklet"
-msgstr ""
+msgstr "Herstart desklet"
 
 #. settings-schema.json->restartDesklet->tooltip
 msgid "Restarts the desklet to reload all code and settings"
-msgstr ""
+msgstr "Herstart de desklet om alle code en instellingen opnieuw te laden"
