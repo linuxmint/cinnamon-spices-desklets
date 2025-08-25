@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2025-08-01 22:18-0400\n"
-"PO-Revision-Date: 2024-04-19 14:32+0200\n"
+"PO-Revision-Date: 2025-08-25 16:25+0200\n"
 "Last-Translator: qadzek\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -55,46 +55,43 @@ msgstr "GPU Geheugen"
 #. settings-schema.json->type->options
 #. desklet.js:290
 msgid "Network"
-msgstr ""
+msgstr "Netwerk"
 
 #. desklet.js:518 desklet.js:541
 msgid "b"
-msgstr ""
+msgstr "b"
 
 #. desklet.js:520 desklet.js:555 desklet.js:569
-#, fuzzy
 msgid "B"
-msgstr "GB"
+msgstr "B"
 
 #. desklet.js:533
 msgid "Gb"
-msgstr ""
+msgstr "Gb"
 
 #. desklet.js:536
 msgid "Mb"
-msgstr ""
+msgstr "Mb"
 
 #. desklet.js:539
 msgid "Kb"
-msgstr ""
+msgstr "Kb"
 
 #. desklet.js:550
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 #. desklet.js:553
 msgid "KB"
-msgstr ""
+msgstr "KB"
 
 #. desklet.js:564
-#, fuzzy
 msgid "MiB"
-msgstr "GiB"
+msgstr "MiB"
 
 #. desklet.js:567
-#, fuzzy
 msgid "KiB"
-msgstr "GiB"
+msgstr "KiB"
 
 #. metadata.json->name
 msgid "System monitor graph"
@@ -163,34 +160,31 @@ msgid "Unit prefix for Filesystem size."
 msgstr "Eenheid voorvoegsel voor Bestandssysteemgrootte."
 
 #. settings-schema.json->data-prefix-network->options
-#, fuzzy
 msgid "Bytes - Binary prefix or IEC (1 KiB = 1024 bytes)"
-msgstr "Binair voorvoegsel of IEC (1 GiB = 1024³ bytes)"
+msgstr "Bytes - Binaire prefix of IEC (1 KiB = 1024 bytes)"
 
 #. settings-schema.json->data-prefix-network->options
-#, fuzzy
 msgid "Bytes - Decimal prefix (1 KB = 1000 bytes)"
-msgstr "Decimaal voorvoegsel (1 GB = 1000³ bytes)"
+msgstr "Bytes - Decimale prefix (1 KB = 1000 bytes)"
 
 #. settings-schema.json->data-prefix-network->options
-#, fuzzy
 msgid "Bits - Decimal prefix (1 Kb = 1000 bits)"
-msgstr "Decimaal voorvoegsel (1 GB = 1000³ bytes)"
+msgstr "Bits - Decimale prefix (1 Kb = 1000 bits)"
 
 #. settings-schema.json->data-prefix-network->tooltip
-#, fuzzy
 msgid "Unit prefix for network speed."
-msgstr "Eenheid voorvoegsel voor Swap-grootte."
+msgstr "Eenheid prefix voor netwerksnelheid."
 
 #. settings-schema.json->network-interface->description
-#, fuzzy
 msgid "Network interface to monitor"
-msgstr "Selecteer de GPU-variabele om te monitoren."
+msgstr "Netwerkinterface om te monitoren"
 
 #. settings-schema.json->network-interface->tooltip
 msgid ""
 "Leave empty to monitor all interfaces combined. Examples: eth0, wlan0, enp0s3"
 msgstr ""
+"Leeg laten om alle interfaces samen te monitoren. Voorbeelden: eth0, wlan0, "
+"enp0s3"
 
 #. settings-schema.json->filesystem->description
 msgid "Filesystem to monitor"
@@ -222,7 +216,7 @@ msgstr "NVIDIA"
 
 #. settings-schema.json->gpu-manufacturer->options
 msgid "AMDGPU"
-msgstr ""
+msgstr "AMDGPU"
 
 #. settings-schema.json->gpu-id->description
 msgid "Id of GPU to monitor"
@@ -366,14 +360,12 @@ msgid "Line color GPU"
 msgstr "Lijnkleur GPU"
 
 #. settings-schema.json->line-color-network-down->description
-#, fuzzy
 msgid "Line color Network Download"
-msgstr "Lijnkleur Swap"
+msgstr "Lijnkleur Netwerk Download"
 
 #. settings-schema.json->line-color-network-up->description
-#, fuzzy
 msgid "Line color Network Upload"
-msgstr "Lijnkleur Swap"
+msgstr "Lijnkleur Netwerk Upload"
 
 #. settings-schema.json->midline-color->description
 msgid "Grid color"
