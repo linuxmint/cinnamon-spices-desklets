@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2025-07-31 12:29-0400\n"
-"PO-Revision-Date: 2023-12-12 18:38+0100\n"
+"PO-Revision-Date: 2025-08-26 19:32+0200\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: desklet.js\n"
 "X-Poedit-SearchPath-1: settings-schema.json\n"
@@ -149,9 +149,8 @@ msgid "Name and total space"
 msgstr "Nome e dimensione totale"
 
 #. settings-schema.json->text-view->options
-#, fuzzy
 msgid "Name and free space"
-msgstr "Spazio totale e libero"
+msgstr "Nome e spazio libero"
 
 #. settings-schema.json->text-view->options
 msgid "Used and total space"

@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2025-08-01 22:18-0400\n"
-"PO-Revision-Date: 2023-12-12 18:57+0100\n"
+"PO-Revision-Date: 2025-08-26 19:59+0200\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. settings-schema.json->type->options
 #. desklet.js:183
@@ -57,46 +57,43 @@ msgstr "Memoria GPU"
 #. settings-schema.json->type->options
 #. desklet.js:290
 msgid "Network"
-msgstr ""
+msgstr "Rete"
 
 #. desklet.js:518 desklet.js:541
 msgid "b"
-msgstr ""
+msgstr "b"
 
 #. desklet.js:520 desklet.js:555 desklet.js:569
-#, fuzzy
 msgid "B"
-msgstr "GB"
+msgstr "B"
 
 #. desklet.js:533
 msgid "Gb"
-msgstr ""
+msgstr "Gb"
 
 #. desklet.js:536
 msgid "Mb"
-msgstr ""
+msgstr "Mb"
 
 #. desklet.js:539
 msgid "Kb"
-msgstr ""
+msgstr "Kb"
 
 #. desklet.js:550
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 #. desklet.js:553
 msgid "KB"
-msgstr ""
+msgstr "KB"
 
 #. desklet.js:564
-#, fuzzy
 msgid "MiB"
-msgstr "GiB"
+msgstr "MiB"
 
 #. desklet.js:567
-#, fuzzy
 msgid "KiB"
-msgstr "GiB"
+msgstr "KiB"
 
 #. metadata.json->name
 msgid "System monitor graph"
@@ -165,34 +162,31 @@ msgid "Unit prefix for Filesystem size."
 msgstr "Prefisso dell'unità per la dimensione del file system."
 
 #. settings-schema.json->data-prefix-network->options
-#, fuzzy
 msgid "Bytes - Binary prefix or IEC (1 KiB = 1024 bytes)"
-msgstr "Prefisso binario o IEC (1 GiB = 1024³ byte)"
+msgstr "Bytes - Prefisso binario o IEC (1 KiB = 1024 bytes)"
 
 #. settings-schema.json->data-prefix-network->options
-#, fuzzy
 msgid "Bytes - Decimal prefix (1 KB = 1000 bytes)"
-msgstr "Prefisso decimale (1 GB = 1000³ byte)"
+msgstr "Bytes - Prefisso decimale (1 KB = 1000 bytes)"
 
 #. settings-schema.json->data-prefix-network->options
-#, fuzzy
 msgid "Bits - Decimal prefix (1 Kb = 1000 bits)"
-msgstr "Prefisso decimale (1 GB = 1000³ byte)"
+msgstr "Bits - Prefisso decimale (1 Kb = 1000 bits)"
 
 #. settings-schema.json->data-prefix-network->tooltip
-#, fuzzy
 msgid "Unit prefix for network speed."
-msgstr "Prefisso dell'unità per la dimensione dello Swap."
+msgstr "Prefisso dell'unità per la velocità di rete."
 
 #. settings-schema.json->network-interface->description
-#, fuzzy
 msgid "Network interface to monitor"
-msgstr "Seleziona la variabile della GPU da monitorare."
+msgstr "Interfaccia di rete da monitorare"
 
 #. settings-schema.json->network-interface->tooltip
 msgid ""
 "Leave empty to monitor all interfaces combined. Examples: eth0, wlan0, enp0s3"
 msgstr ""
+"Lasciare vuoto per monitorare tutte le interfacce combinate. Esempi: eth0, "
+"wlan0, enp0s3"
 
 #. settings-schema.json->filesystem->description
 msgid "Filesystem to monitor"
@@ -224,7 +218,7 @@ msgstr "NVIDIA"
 
 #. settings-schema.json->gpu-manufacturer->options
 msgid "AMDGPU"
-msgstr ""
+msgstr "AMDGPU"
 
 #. settings-schema.json->gpu-id->description
 msgid "Id of GPU to monitor"
@@ -368,14 +362,12 @@ msgid "Line color GPU"
 msgstr "Colore linea GPU"
 
 #. settings-schema.json->line-color-network-down->description
-#, fuzzy
 msgid "Line color Network Download"
-msgstr "Colore linea Swap"
+msgstr "Colore linea Download"
 
 #. settings-schema.json->line-color-network-up->description
-#, fuzzy
 msgid "Line color Network Upload"
-msgstr "Colore linea Swap"
+msgstr "Colore linea Upload"
 
 #. settings-schema.json->midline-color->description
 msgid "Grid color"

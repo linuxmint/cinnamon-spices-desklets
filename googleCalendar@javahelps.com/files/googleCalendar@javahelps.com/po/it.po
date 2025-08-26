@@ -9,15 +9,15 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2025-04-21 23:14+0200\n"
-"PO-Revision-Date: 2022-06-03 12:37+0200\n"
+"PO-Revision-Date: 2025-08-26 19:39+0200\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. settings-schema.json->interval->description
 #. desklet.js:66 desklet.js:74
@@ -26,7 +26,7 @@ msgstr "Numero di giorni da visualizzare"
 
 #. desklet.js:66 desklet.js:74
 msgid ": "
-msgstr ""
+msgstr ": "
 
 #. metadata.json->name
 #. settings-schema.json->page_gcalendar->title
@@ -282,7 +282,7 @@ msgstr "Digita gcalendar --acount id"
 
 #. settings-schema.json->gcalendarAccount->options
 msgid "default"
-msgstr ""
+msgstr "predefinita"
 
 #. settings-schema.json->allNamesButton->description
 msgid "Fill in the list bellow with the names of all my calendars"
@@ -444,18 +444,17 @@ msgid "Radius for rounding the desklet's corners"
 msgstr "Imposta la dimensione del raccordo sugli spigoli del desklet"
 
 #. settings-schema.json->display_mode->description
-#, fuzzy
 msgid "Display mode"
-msgstr "Mostrarlo?"
+msgstr "Modalità di visualizzazione"
 
 #. settings-schema.json->display_mode->options
 msgid "normal"
-msgstr ""
+msgstr "normale"
 
 #. settings-schema.json->display_mode->options
 msgid "compact"
-msgstr ""
+msgstr "compatta"
 
 #. settings-schema.json->display_mode->options
 msgid "ultra compact"
-msgstr ""
+msgstr "ultra compatta"
