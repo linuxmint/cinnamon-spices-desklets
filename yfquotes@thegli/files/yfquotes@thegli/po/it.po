@@ -5,9 +5,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
 "POT-Creation-Date: 2025-08-22 22:21+0200\n"
-"PO-Revision-Date: 2025-08-26 20:17+0200\n"
+"PO-Revision-Date: 2025-08-26 22:12+0200\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -42,24 +43,39 @@ msgid "Error: "
 msgstr "Errore: "
 
 #. desklet.js:1376
-msgid "Failed to retrieve authorization parameter! Unable to fetch quotes data. Status: "
-msgstr "Impossibile recuperare il parametro di autorizzazione! Impossibile recuperare i dati delle quotazioni. Stato: "
+msgid ""
+"Failed to retrieve authorization parameter! Unable to fetch quotes data. "
+"Status: "
+msgstr ""
+"Impossibile recuperare il parametro di autorizzazione! Impossibile "
+"recuperare i dati delle quotazioni. Stato: "
 
 #. desklet.js:1403
 msgid "Consent processing failed! Unable to fetch quotes data. Status: "
-msgstr "Elaborazione del consenso non riuscita! Impossibile recuperare i dati delle quotazioni. Stato: "
+msgstr ""
+"Elaborazione del consenso non riuscita! Impossibile recuperare i dati delle "
+"quotazioni. Stato: "
 
 #. desklet.js:1409
 msgid "Consent processing not completed! Unable to fetch quotes data. Status: "
-msgstr "Elaborazione del consenso non completata! Impossibile recuperare i dati delle quotazioni. Stato: "
+msgstr ""
+"Elaborazione del consenso non completata! Impossibile recuperare i dati "
+"delle quotazioni. Stato: "
 
 #. desklet.js:1445
-msgid "Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: "
-msgstr "Impossibile recuperare la parte di autorizzazione! Impossibile recuperare i dati delle quotazioni. Stato: "
+msgid ""
+"Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: "
+msgstr ""
+"Impossibile recuperare la parte di autorizzazione! Impossibile recuperare i "
+"dati delle quotazioni. Stato: "
 
 #. metadata.json->description
-msgid "Displays financial market information such as stock quotes and commodity prices from Yahoo Finance"
-msgstr "Visualizza le informazioni sul mercato finanziario come quotazioni di azioni e prezzi delle materie prime da Yahoo Finance"
+msgid ""
+"Displays financial market information such as stock quotes and commodity "
+"prices from Yahoo Finance"
+msgstr ""
+"Visualizza le informazioni sul mercato finanziario come quotazioni di azioni "
+"e prezzi delle materie prime da Yahoo Finance"
 
 #. metadata.json->name
 msgid "Yahoo Finance Quotes"
@@ -147,6 +163,9 @@ msgid "Width"
 msgstr "Larghezza"
 
 #. settings-schema.json->width->units
+#. settings-schema.json->height->units
+#. settings-schema.json->cornerRadius->units
+#. settings-schema.json->borderWidth->units
 msgid "pixels"
 msgstr "pixels"
 
@@ -168,7 +187,8 @@ msgstr "Trasparenza sfondo"
 
 #. settings-schema.json->transparency->tooltip
 msgid "The higher the value, the more solid the desklet's background"
-msgstr "Più alto è il valore, maggiore sarà la solidità dello sfondo del desklet."
+msgstr ""
+"Più alto è il valore, maggiore sarà la solidità dello sfondo del desklet."
 
 #. settings-schema.json->backgroundColor->description
 msgid "Background color"
@@ -191,16 +211,24 @@ msgid "Show vertical scrollbar"
 msgstr "Mostra barra di scorrimento verticale"
 
 #. settings-schema.json->showVerticalScrollbar->tooltip
-msgid "Display a vertical scrollbar when the quote list is longer than the desklet's height"
-msgstr "Mostra una barra di scorrimento verticale quando la lista delle quotazioni è più lunga dell'altezza del desklet"
+msgid ""
+"Display a vertical scrollbar when the quote list is longer than the "
+"desklet's height"
+msgstr ""
+"Mostra una barra di scorrimento verticale quando la lista delle quotazioni è "
+"più lunga dell'altezza del desklet"
 
 #. settings-schema.json->borderWidth->description
 msgid "Border width"
 msgstr "Spessore del bordo"
 
 #. settings-schema.json->borderWidth->tooltip
-msgid "The higher the value, the thicker the desklet's border. A value of 0 hides the border."
-msgstr "Più alto è il valore, più spesso sarà il bordo del desklet. Un valore di 0 nasconde il bordo."
+msgid ""
+"The higher the value, the thicker the desklet's border. A value of 0 hides "
+"the border."
+msgstr ""
+"Più alto è il valore, più spesso sarà il bordo del desklet. Un valore di 0 "
+"nasconde il bordo."
 
 #. settings-schema.json->borderColor->description
 msgid "Border color"
@@ -228,15 +256,21 @@ msgstr "Mostra il timestamp dell'ultimo aggiornamento"
 
 #. settings-schema.json->showLastUpdateTimestamp->tooltip
 msgid "Display timestamp when quotes were updated last"
-msgstr "Mostra il timestamp di quando le quotazioni sono state aggiornate per l'ultima volta."
+msgstr ""
+"Mostra il timestamp di quando le quotazioni sono state aggiornate per "
+"l'ultima volta."
 
 #. settings-schema.json->manualDataUpdate->description
 msgid "Manual and automatic update"
 msgstr "Aggiornamento manuale e automatico"
 
 #. settings-schema.json->manualDataUpdate->tooltip
-msgid "Click last update timestamp to instantly refresh quotes data. Automatic update is still performed periodically."
-msgstr "Clicca sul timestamp dell'ultimo aggiornamento per aggiornare subito i dati delle quotazioni. L'aggiornamento automatico avviene comunque periodicamente."
+msgid ""
+"Click last update timestamp to instantly refresh quotes data. Automatic "
+"update is still performed periodically."
+msgstr ""
+"Clicca sul timestamp dell'ultimo aggiornamento per aggiornare subito i dati "
+"delle quotazioni. L'aggiornamento automatico avviene comunque periodicamente."
 
 #. settings-schema.json->roundNumbers->description
 msgid "Round numbers"
@@ -263,8 +297,12 @@ msgid "Strict rounding"
 msgstr "Arrotondamento rigoroso"
 
 #. settings-schema.json->strictRounding->tooltip
-msgid "Strict rounding to the specified decimal places (eg. 0 will be presented as 0.00)"
-msgstr "Arrotondamento rigoroso alle cifre decimali specificate (es. 0 sarà mostrato come 0,00)."
+msgid ""
+"Strict rounding to the specified decimal places (eg. 0 will be presented as "
+"0.00)"
+msgstr ""
+"Arrotondamento rigoroso alle cifre decimali specificate (es. 0 sarà mostrato "
+"come 0,00)."
 
 #. settings-schema.json->use24HourTime->description
 msgid "Force 24-hour clock"
@@ -275,8 +313,10 @@ msgid ""
 "Always display time in 24-hour notation, overriding system settings.\n"
 "This setting is ignored, when a custom time format is defined."
 msgstr ""
-"Mostra sempre l'ora in formato 24 ore, ignorando le impostazioni di sistema.\n"
-"Questa impostazione viene ignorata se è definito un formato orario personalizzato."
+"Mostra sempre l'ora in formato 24 ore, ignorando le impostazioni di "
+"sistema.\n"
+"Questa impostazione viene ignorata se è definito un formato orario "
+"personalizzato."
 
 #. settings-schema.json->customTimeFormat->description
 msgid "Custom time format"
@@ -286,13 +326,14 @@ msgstr "Formato orario personalizzato"
 msgid ""
 "Format time with custom format instead of system settings.\n"
 "Examples:\n"
-"%H:%M:%S 23:47:51\n"
-"%I:%M %p 11:47 PM"
+"%H:%M:%S    23:47:51\n"
+"%I:%M %p    11:47 PM"
 msgstr ""
-"Formatta l'ora con un formato personalizzato invece delle impostazioni di sistema.\n"
+"Formatta l'ora con un formato personalizzato invece delle impostazioni di "
+"sistema.\n"
 "Esempi:\n"
-"%H:%M:%S 23:47:51\n"
-"%I:%M %p 11:47 PM"
+"%H:%M:%S    23:47:51\n"
+"%I:%M %p    11:47 PM"
 
 #. settings-schema.json->customDateFormat->description
 msgid "Custom date format"
@@ -302,15 +343,16 @@ msgstr "Formato data personalizzato"
 msgid ""
 "Format date with custom format instead of system settings.\n"
 "Examples:\n"
-"%m/%d 03/15\n"
-"%Y-%m-%d 2024-03-15\n"
-"%A, %b %d Friday, Mar 15"
+"%m/%d          03/15\n"
+"%Y-%m-%d   2024-03-15\n"
+"%A, %b %d   Friday, Mar 15"
 msgstr ""
-"Formatta la data con un formato personalizzato invece delle impostazioni di sistema.\n"
+"Formatta la data con un formato personalizzato invece delle impostazioni di "
+"sistema.\n"
 "Esempi:\n"
-"%m/%d 03/15\n"
-"%Y-%m-%d 2024-03-15\n"
-"%A, %b %d venerdì, 15 mar"
+"%m/%d          03/15\n"
+"%Y-%m-%d   2024-03-15\n"
+"%A, %b %d   venerdì, 15 mar"
 
 #. settings-schema.json->quoteSymbols->description
 msgid "Quote symbols"
@@ -357,8 +399,11 @@ msgid "Sort in ascending order"
 msgstr "Ordina in ordine crescente"
 
 #. settings-schema.json->sortDirection->tooltip
-msgid "Check to sort quotes in ascending order, uncheck to sort in descending order"
-msgstr "Seleziona per ordinare in ordine crescente, deseleziona per ordinare in ordine decrescente"
+msgid ""
+"Check to sort quotes in ascending order, uncheck to sort in descending order"
+msgstr ""
+"Seleziona per ordinare in ordine crescente, deseleziona per ordinare in "
+"ordine decrescente"
 
 #. settings-schema.json->showChangeIcon->description
 msgid "Show change/trend icon"
@@ -381,8 +426,12 @@ msgid "Use long version for verbose name"
 msgstr "Usa versione lunga per nome dettagliato"
 
 #. settings-schema.json->useLongQuoteName->tooltip
-msgid "Use the long version for quote name, if available (eg. International Business Machines Corporation)"
-msgstr "Usa la versione lunga per il nome della quotazione, se disponibile (es. International Business Machines Corporation)"
+msgid ""
+"Use the long version for quote name, if available (eg. International "
+"Business Machines Corporation)"
+msgstr ""
+"Usa la versione lunga per il nome della quotazione, se disponibile (es. "
+"International Business Machines Corporation)"
 
 #. settings-schema.json->linkQuoteName->description
 msgid "Add web link to name"
@@ -470,7 +519,8 @@ msgstr "Abilita scala dimensione font"
 
 #. settings-schema.json->scaleFontSize->tooltip
 msgid "Apply custom font size instead of the system default size"
-msgstr "Applica dimensione font personalizzata invece della dimensione predefinita"
+msgstr ""
+"Applica dimensione font personalizzata invece della dimensione predefinita"
 
 #. settings-schema.json->fontScale->units
 msgid "times"
@@ -510,7 +560,8 @@ msgstr "Memorizza parametri di autorizzazione"
 
 #. settings-schema.json->cacheAuthorizationParameters->tooltip
 msgid "Remember fetched authorization parameters for desklet instance"
-msgstr "Ricorda i parametri di autorizzazione recuperati per l'istanza del desklet"
+msgstr ""
+"Ricorda i parametri di autorizzazione recuperati per l'istanza del desklet"
 
 #. settings-schema.json->sendCustomUserAgent->description
 msgid "Send custom User-Agent header"
@@ -518,7 +569,9 @@ msgstr "Invia header User-Agent personalizzato"
 
 #. settings-schema.json->sendCustomUserAgent->tooltip
 msgid "Include a custom User-Agent header in Yahoo Finance Quotes API requests"
-msgstr "Includi un header User-Agent personalizzato nelle richieste API di Yahoo Finance Quotes"
+msgstr ""
+"Includi un header User-Agent personalizzato nelle richieste API di Yahoo "
+"Finance Quotes"
 
 #. settings-schema.json->customUserAgent->description
 msgid "Custom User-Agent header"
@@ -550,4 +603,5 @@ msgstr "Applica impostazioni di rete"
 
 #. settings-schema.json->applyNetworkSettingsButton->tooltip
 msgid "Fetches new authorization parameters and refreshes quotes data"
-msgstr "Recupera nuovi parametri di autorizzazione e aggiorna i dati quotazioni"
+msgstr ""
+"Recupera nuovi parametri di autorizzazione e aggiorna i dati quotazioni"
