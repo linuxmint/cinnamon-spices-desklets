@@ -1,75 +1,98 @@
 const St = imports.gi.St;
 const Desklet = imports.ui.desklet;
-const Lang = imports.lang;
 const GLib = imports.gi.GLib;
 const Util = imports.misc.util;
 const Gettext = imports.gettext;
+const Settings = imports.ui.settings; 
+
 const uuid = "mintoo@sujitagarwal";
 
-Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale")
+Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale");
 
 function _(str) {
-  return Gettext.dgettext(uuid, str);
+    return Gettext.dgettext(uuid, str);
 }
 
-function MintooDesklet(metadata) {
-    this._init(metadata);
-}
-
-MintooDesklet.prototype = {
-    __proto__: Desklet.Desklet.prototype,
-
-    _init: function (metadata) {
-        Desklet.Desklet.prototype._init.call(this, metadata);
-
+class MintooDesklet extends Desklet.Desklet {
+    constructor(metadata) {
+        super(metadata);
         this.metadata = metadata;
         this.uuid = this.metadata["uuid"];
 
-        this._container = new St.BoxLayout({vertical:true, style_class: "MintooMainContainer"});
-        this._row1 = new St.BoxLayout({style_class: "MintooRowContainer"});
-        this._row2 = new St.BoxLayout({style_class: "MintooRowContainer"});
+        // Add this line to load settings
+        this.settings = new Settings.DeskletSettings(this, this.uuid, this.metadata["instanceId"]);
+        this.settings.bind("desklet-size", "deskletSize", this._onSettingsChanged.bind(this));
+        this.settings.bind("button-color", "buttonColor", this._onSettingsChanged.bind(this));
+        this.settings.bind("button-hover-color", "buttonHoverColor", this._onSettingsChanged.bind(this));
+        this.settings.bind("button-radius", "borderRadius", this._onSettingsChanged.bind(this));
 
-        this._mintoolabel = new St.Label({style_class: "MintooButtonMove"});
-        this._container.add(this._mintoolabel);
+        this._createUI();
+    }
 
-        this._btnLockDesktop = new St.Button({style_class: "MintooButtonOne"});
-        this._btnLogoutSession = new St.Button({style_class: "MintooButtonTwo"});
-        this._btnLogoutSession.connect("clicked", Lang.bind(this, this._logoutClickAction));
-        this._btnLockDesktop.connect("clicked", Lang.bind(this, this._lockClickAction));
+    _createUI() {
+        this._container = new St.BoxLayout({ vertical: true, style_class: "mintoo-main-container" });
 
-        this._row1.add(this._btnLockDesktop);
-        this._row1.add(this._btnLogoutSession);
+        this._row1 = new St.BoxLayout({ style_class: "mintoo-row-container" });
+        this._row2 = new St.BoxLayout({ style_class: "mintoo-row-container" });
+
+        this._mintoolabel = new St.Label({ style_class: "mintoo-button-move" });
+
+        const buttonSettings = [
+            { className: "mintoo-button mintoo-button-one", action: this._lockClickAction },
+            { className: "mintoo-button mintoo-button-two", action: this._logoutClickAction },
+            { className: "mintoo-button mintoo-button-three", action: this._shutdownClickAction },
+            { className: "mintoo-button mintoo-button-four", action: this._rebootClickAction }
+        ];
+
+        let defaultColor = this.buttonColor; // Default color if not set
+
+        buttonSettings.forEach((btn, index) => {
+            const button = new St.Button({
+                style_class: btn.className,
+                width: this.deskletSize,
+                height: this.deskletSize,
+            });
+            button.set_style(`background-color: ${this.buttonColor || defaultColor};`);
+            button.connect("clicked", btn.action.bind(this));
+            button.connect("enter-event", () => {
+                button.set_style(`background-color: ${this.buttonHoverColor};`);
+            });
+            button.connect("leave-event", () => {
+                button.set_style(`background-color: ${this.buttonColor};`);
+            });
+            if (index < 2) {
+                this._row1.add(button);
+            } else {
+                this._row2.add(button);
+            }
+        });
+
         this._container.add(this._row1);
-
-        this._btnShutdown = new St.Button({style_class: "MintooButtonThree"});
-        this._btnReboot = new St.Button({style_class: "MintooButtonFour"});
-        this._btnShutdown.connect("clicked", Lang.bind(this, this._shutdownClickAction));
-        this._btnReboot.connect("clicked", Lang.bind(this, this._rebootClickAction));
-        this._row2.add(this._btnShutdown);
-        this._row2.add(this._btnReboot);
         this._container.add(this._row2);
-
         this.setContent(this._container);
-    },
+    }
 
-    _lockClickAction: function () {
+    _onSettingsChanged() {    
+        this._createUI();
+    }
+
+    _lockClickAction() {
         Util.spawnCommandLine("cinnamon-screensaver-command -l");
-    },
+    }
 
-    _logoutClickAction: function () {
+    _logoutClickAction() {
         Util.spawnCommandLine("cinnamon-session-quit --logout");
-    },
+    }
 
-    _shutdownClickAction: function () {
+    _shutdownClickAction() {
         Util.spawnCommandLine("cinnamon-session-quit --power-off");
-    },
+    }
 
-    _rebootClickAction: function () {
+    _rebootClickAction() {
         Util.spawnCommandLine("cinnamon-session-quit --reboot");
     }
 }
 
-function main(metadata, desklet_id) {
-    let desklet = new MintooDesklet(metadata, desklet_id);
-    return desklet;
+function main(metadata) {
+    return new MintooDesklet(metadata);
 }

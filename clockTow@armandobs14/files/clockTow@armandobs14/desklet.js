@@ -3,10 +3,14 @@ const St = imports.gi.St;
 
 const Desklet = imports.ui.desklet;
 
-const Lang = imports.lang;
-const Mainloop = imports.mainloop;
 const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
+const {
+  timeout_add_seconds,
+  source_remove,
+  remove_all_sources
+} = require("./lib/mainloopTools");
+
 const UUID = "clockTow@armandobs14";
 
 // l10n/translation support
@@ -55,7 +59,9 @@ MyDesklet.prototype = {
     //},
         
     on_desklet_removed: function() {
-	Mainloop.source_remove(this.timeout);
+       if (this.timeout)
+          source_remove(this.timeout);
+       remove_all_sources();
     },
 
     _updateDate: function() {
@@ -79,7 +85,7 @@ MyDesklet.prototype = {
            month: "long",
            weekday: "long"
         }));
-       this.timeout = Mainloop.timeout_add_seconds(1, Lang.bind(this, this._updateDate));
+       this.timeout = timeout_add_seconds(1, () => { this._updateDate() });
     }
 }
 

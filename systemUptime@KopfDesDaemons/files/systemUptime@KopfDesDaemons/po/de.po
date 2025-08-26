@@ -1,0 +1,80 @@
+# SYSTEM UPTIME
+# This file is put in the public domain.
+# KopfDesDaemons, 2024
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: systemUptime@KopfDesDaemons 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-07-31 22:57+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. metadata.json->name
+#. desklet.js:61
+msgid "System Uptime"
+msgstr "Systembetriebszeit"
+
+#. desklet.js:69
+msgid "Uptime:"
+msgstr "Betriebszeit:"
+
+#. desklet.js:70 desklet.js:79
+msgid "Loading..."
+msgstr "Lade..."
+
+#. desklet.js:76
+msgid "Start time:"
+msgstr "Startzeit:"
+
+#. desklet.js:139
+msgid "days"
+msgstr "Tage"
+
+#. desklet.js:139
+msgid "hrs"
+msgstr "Std."
+
+#. desklet.js:139
+msgid "min"
+msgstr "Min."
+
+#. desklet.js:146
+msgid "hours"
+msgstr "Stunden"
+
+#. desklet.js:146
+msgid "minutes"
+msgstr "Minuten"
+
+#. metadata.json->description
+msgid "Displays the current system uptime."
+msgstr "Zeigt die aktuelle Systembetriebszeit."
+
+#. settings-schema.json->head0->description
+msgid "Style"
+msgstr "Stil"
+
+#. settings-schema.json->fontSize->description
+msgid "Font size"
+msgstr "Schriftgröße"
+
+#. settings-schema.json->colorLabel->description
+msgid "Label color"
+msgstr "Labelfarbe"
+
+#. settings-schema.json->showStartDate->description
+msgid "Show start date"
+msgstr "Zeige Startdatum"
+
+#. settings-schema.json->showUptimeInDays->description
+msgid "Show uptime in days"
+msgstr "Zeige Betriebszeit in Tagen"

@@ -1,8 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 15:06+0200\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-05-03 11:37-0400\n"
 "PO-Revision-Date: 2023-04-04 15:06+0200\n"
 "Last-Translator: Georg Sieber\n"
 "Language-Team: \n"
@@ -16,11 +17,11 @@ msgstr ""
 "X-Poedit-SearchPath-0: desklet.js\n"
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
-#: desklet.js:130
+#. desklet.js:138
 msgid "Refresh"
 msgstr "Aktualisieren"
 
-#: desklet.js:143
+#. desklet.js:151
 msgid ""
 "Can't read text file.\n"
 "Select a file in settings.\n"
@@ -32,7 +33,7 @@ msgstr ""
 "\n"
 "Klicken Sie hier zum Bearbeiten."
 
-#: desklet.js:263
+#. desklet.js:289
 msgid "Notepad"
 msgstr "Notizblock"
 
@@ -41,16 +42,35 @@ msgid "A desklet to display notes including various themes."
 msgstr "Ein Desklet mit verschiedenen Designs um Notizen anzuzeigen."
 
 #. metadata.json->name
+#. settings-schema.json->note-section->title
 msgid "Note"
 msgstr "Notiz"
 
-#. settings-schema.json->head0->description
-msgid "Settings for notes@schorschii"
-msgstr "Einstellungen für notes@schorschii"
-
-#. settings-schema.json->head1->description
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
 msgid "General"
 msgstr "Allgemein"
+
+#. settings-schema.json->visual-page->title
+#. settings-schema.json->visual-section->title
+msgid "Visual"
+msgstr "Aussehen"
+
+#. settings-schema.json->label-section->title
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr "Eigenes Deskletlabel (nur sichtbar wenn Dekorationen aktiviert sind)"
+
+#. settings-schema.json->note-taking-method->description
+msgid "Note Taking Method"
+msgstr "Notizmethode"
+
+#. settings-schema.json->note-taking-method->options
+msgid "Text File"
+msgstr "Textdatei"
+
+#. settings-schema.json->note-taking-method->options
+msgid "Desklet Settings"
+msgstr "Desklet-Einstellungen"
 
 #. settings-schema.json->file->description
 msgid "Path to note text file"
@@ -70,9 +90,9 @@ msgstr "Befehlszeile zum Bearbeiten von Notizen (bei Mausklick)"
 msgid "%f will replaced by the text file path."
 msgstr "%f wird durch den Pfad zur Textdatei ersetzt."
 
-#. settings-schema.json->head2->description
-msgid "Visual"
-msgstr "Aussehen"
+#. settings-schema.json->note-text->description
+msgid "Write Your Note"
+msgstr "Schreiben Sie Ihre Notiz hier"
 
 #. settings-schema.json->style->description
 msgid "Notes style"
@@ -242,6 +262,14 @@ msgstr "–"
 msgid "Select the background graphic you would like to use."
 msgstr "Wählen Sie die Hintergrundgrafik, die Sie verwenden möchten."
 
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr "Textschatten"
+
+#. settings-schema.json->text-shadow-color->description
+msgid "Text shadow color"
+msgstr "Textschatten-Farbe"
+
 #. settings-schema.json->bg-color->description
 msgid "Background color"
 msgstr "Hintergrundfarbe"
@@ -249,6 +277,10 @@ msgstr "Hintergrundfarbe"
 #. settings-schema.json->bg-color->tooltip
 msgid "Set the background color of this desklet."
 msgstr "Wählen Sie die Hintergrundfarbe für dieses Desklet."
+
+#. settings-schema.json->enable-word-wrap->description
+msgid "Enable word wrap"
+msgstr "Zeilenumbruch aktivieren"
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
@@ -269,12 +301,6 @@ msgstr "Schriftgröße"
 #. settings-schema.json->size-font->tooltip
 msgid "Increase or decrease the note font size."
 msgstr "Erhöhen oder verringern Sie die Schriftgröße der Notiz."
-
-#. settings-schema.json->scale-size->tooltip
-msgid "Increase or decrease the size of this desklet using this scale factor."
-msgstr ""
-"Erhöhen oder verringern Sie die Größe dieses Desklets indem Sie diesen "
-"Skalierungsfaktor anpassen."
 
 #. settings-schema.json->font-bold->description
 msgid "Bold"
@@ -300,9 +326,11 @@ msgstr "Skalierungsfaktor"
 msgid "Desklet size"
 msgstr "Deskletgröße"
 
-#. settings-schema.json->head3->description
-msgid "Custom desklet label (only visible if decorations are enabled)"
-msgstr "Eigenes Deskletlabel (nur sichtbar wenn Dekorationen aktiviert sind)"
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Erhöhen oder verringern Sie die Größe dieses Desklets indem Sie diesen "
+"Skalierungsfaktor anpassen."
 
 #. settings-schema.json->use-custom-label->description
 msgid "Use a custom desklet label"
@@ -325,9 +353,3 @@ msgid ""
 msgstr ""
 "Legen Sie hier Ihr eigenes Deskletlabel fest. Dieses Feld ist deaktiviert, "
 "wenn Sie die Option darüber nicht aktiviert haben."
-
-#~ msgid "Yellow"
-#~ msgstr "Gelb"
-
-#~ msgid "White"
-#~ msgstr "Weiß"

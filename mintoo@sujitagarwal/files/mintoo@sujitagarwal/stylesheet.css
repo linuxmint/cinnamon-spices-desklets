@@ -1,138 +1,54 @@
-.MintooMainContainer {
-	min-width:92px;
+/* General Container Styles */
+.mintoo-main-container,
+.mintoo-row-container {
+    min-width: 92px;
 }
 
-.MintooRowContainer {
-	min-width:92px;
+/* Button Base Styles */
+.mintoo-button {
+    background-color: #333333;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 30px;
+    display: inline-block;
+    font-size: 20px;
+    color: #ffffff;
+    width: 30px;
+    height: 30px;
+    padding: 20px;
+    border: 0 solid #aba367;
+    background-position: 20px 20px;
+    background-size: 32px 32px;
+    cursor: pointer;
+    background-position: center center;
 }
 
-.MintooButtonMove {
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size: 8px;
-	padding: 0px 16px;
-	min-height:14px;
-	min-width:92px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #2f6627;
-	background-position: 46px -5px; 
-	background-size: 32px 32px; 
-	background-image: url('image/move.png'); 
-	margin-bottom: 5px;
-	margin-right: 5px;
-	cursor:move;
-}
-.MintooButtonMove:hover {
-	background-color:#5cbf2a;
+.mintoo-button:hover {
+    background-color: #5cbf2a;
 }
 
-.MintooButtonOne {
-	background-color:#333333;
-	text-decoration:none;
-	text-indent:0px;
-	line-height:30px;
-	-moz-border-radius:30px 30px 0 30px;
-	-webkit-border-radius:30px 30px 0 30px;
-	border-radius:30px 30px 0 30px;
-	display:inline-block;
-	font-size:20px;
-	color:#ffffff;
-	width:30px;
-	height:30px;
-	padding:15px;
-	border-color:#aba367;
-	border-width:0px;
-	border-style:solid;
-	background-position: 15px 15px; 
-	background-size: 32px 32px; 
-	background-image: url('image/lock.png'); 
-	margin-bottom: 5px;
-	margin-right: 5px;
-	cursor:pointer;
-}
-.MintooButtonOne:hover {
-	background-color:#5cbf2a;
+/* Button-Specific Styles */
+
+.mintoo-button-one {
+    border-radius: 30px 30px 0 30px;
+    background-image: url('image/lock.png');
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
-.MintooButtonTwo {
-	background-color:#333333;
-	text-decoration:none;
-	text-indent:0px;
-	line-height:30px;
-	-moz-border-radius:30px 30px 30px 0;
-	-webkit-border-radius:30px 30px 30px 0;
-	border-radius:30px 30px 30px 0;
-	display:inline-block;
-	font-size:20px;
-	color:#ffffff;
-	width:30px;
-	height:30px;
-	padding:15px;
-	border-color:#aba367;
-	border-width:0px;
-	border-style:solid;
-	background-position: 15px 15px; 
-	background-size: 32px 32px; 
-	background-image: url('image/logout.png'); 
-	margin-bottom: 5px;
-	cursor:pointer;
-}
-.MintooButtonTwo:hover {
-	background-color:#5cbf2a;
+.mintoo-button-two {
+    border-radius: 30px 30px 30px 0;
+    background-image: url('image/logout.png');
+    margin-bottom: 10px;
 }
 
-.MintooButtonThree {
-	background-color:#333333;
-	text-decoration:none;
-	text-indent:0px;
-	line-height:30px;
-	-moz-border-radius:30px 0px 30px 30px;
-	-webkit-border-radius:30px 0px 30px 30px;
-	border-radius:30px 0px 30px 30px;
-	display:inline-block;
-	font-size:20px;
-	color:#ffffff;
-	width:30px;
-	height:30px;
-	padding:15px;
-	border-color:#aba367;
-	border-width:0px;
-	border-style:solid;
-	background-position: 15px 15px; 
-	background-size: 32px 32px; 
-	background-image: url('image/shutdown.png'); 
-	margin-bottom: 5px;
-	margin-right: 5px;
-	cursor:pointer;
-}
-.MintooButtonThree:hover {
-	background-color:#5cbf2a;
+.mintoo-button-three {
+    border-radius: 30px 0 30px 30px;
+    background-image: url('image/shutdown.png');
+    margin-right: 10px;
 }
 
-.MintooButtonFour {
-	background-color:#333333;
-	text-decoration:none;
-	text-indent:0px;
-	line-height:30px;
-	-moz-border-radius:0 30px 30px 30px;
-	-webkit-border-radius:0 30px 30px 30px;
-	border-radius:0 30px 30px 30px;
-	display:inline-block;
-	font-size:20px;
-	color:#ffffff;
-	width:30px;
-	height:30px;
-	padding:15px;
-	border-color:#aba367;
-	border-width:0px;
-	border-style:solid;
-	background-position: 15px 15px; 
-	background-size: 32px 32px; 
-	background-image: url('image/reboot.png'); 
-	margin-bottom: 5px;
-	cursor:pointer;
-}
-.MintooButtonFour:hover {
-	background-color:#5cbf2a;
+.mintoo-button-four {
+    border-radius: 0 30px 30px 30px;
+    background-image: url('image/reboot.png');
 }

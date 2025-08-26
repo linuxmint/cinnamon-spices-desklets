@@ -252,6 +252,7 @@ MyDesklet.prototype = {
             else if (this.abyat.length == 4)
                 text = this.abyat[0] + '\t\t' + this.abyat[1] + '\n' + this.abyat[2] + '\t\t' + this.abyat[3];
             text = text + '||' + poetname + '||' + poemlink;
+            text = text.replace(/&#x([0-9A-Fa-f]+);/g, (match, hex) => String.fromCharCode(parseInt(hex, 16)));
             this.setText(text, true);
 
             if (this.PoemHistory.length > 99)

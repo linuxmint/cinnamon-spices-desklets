@@ -49,3 +49,143 @@
   background-color: navz;
 }
 
+/* RSS Search Dialog Styles */
+.rss-search-dialog-content {
+  spacing: 12px;
+  padding: 16px;
+}
+
+.rss-search-dialog-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+
+.rss-search-url-label {
+  font-size: 12px;
+  color: white;
+  padding-top: 10px;
+}
+
+.rss-search-url-entry {
+  padding: 8px;
+  border-radius: 4px;
+  min-width: 300px;
+}
+
+/* Feed Selection Dialog Styles */
+.feed-selection-dialog-content {
+  spacing: 12px;
+  padding: 16px;
+  min-width: 400px;
+  min-height: 300px;
+}
+
+.feed-selection-dialog-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+
+.feed-selection-instruction {
+  font-size: 12px;
+  color: white;
+  padding-top: 10px;
+}
+
+.feed-selection-scrollview {
+  min-height: 200px;
+  padding: 10px;
+}
+
+.feed-selection-container {
+  spacing: 8px;
+}
+
+.feed-selection-checkbox {
+  padding: 4px;
+}
+
+/* Notification styles */
+.yarr-notification {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
+  padding: 12px;
+  min-width: 300px;
+  max-width: 400px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.yarr-notification-message {
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.yarr-notification-progress {
+  color: #cccccc;
+  font-size: 12px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.yarr-notification-buttons {
+  margin-top: 8px;
+  justify-content: center;
+}
+
+.yarr-notification-cancel-button {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-size: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.yarr-notification-cancel-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.yarr-notification-cancel-button:active {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Fix stacking context issues */
+.yarr-scrollbox {
+  /* Ensure scroll view content doesn't overflow its bounds */
+  overflow: hidden;
+}
+
+.yarr-feeds-box {
+  /* Ensure feed items container doesn't expand beyond parent */
+  overflow: visible;
+}
+
+/* Header button styles to ensure they're always clickable */
+.yarr-button {
+  /* Ensure buttons are always interactive */
+  reactive: true;
+  track-hover: true;
+}
+
+.search-button {
+  /* Ensure search button is always interactive */
+  reactive: true;
+  track-hover: true;
+}
+
+.toggleButtonOn, .toggleButtonOff {
+  /* Ensure toggle buttons are always interactive */
+  reactive: true;
+  track-hover: true;
+}
+
+.feedRefreshButton {
+  /* Ensure refresh button is always interactive */
+  reactive: true;
+  track-hover: true;
+}
+

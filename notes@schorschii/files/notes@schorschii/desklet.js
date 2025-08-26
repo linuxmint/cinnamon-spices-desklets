@@ -14,6 +14,8 @@ const Gio = imports.gi.Gio;
 const PopupMenu = imports.ui.popupMenu;
 const Gettext = imports.gettext;
 const ByteArray = imports.byteArray;
+const Pango = imports.gi.Pango;
+
 
 const UUID = "notes@schorschii";
 const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
@@ -75,9 +77,14 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "size-font", "sizeFont", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "style", "style", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "customTextColor", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "text-shadow", "textShadow", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "text-shadow-color", "textShadowColor", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "bg-color", "customBgColor", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "file", "file", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "edit-cmd", "editCmd", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "enable-word-wrap", "enableWordWrap", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "note-taking-method", "noteTakingMethod", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "note-text", "noteText", this.on_setting_changed);
 
 		// initialize desklet gui
 		this.setupUI();
@@ -154,6 +161,12 @@ MyDesklet.prototype = {
 	},
 
 	loadText: function(reloadGraphics = false) {
+		if (this.noteTakingMethod == "desklet") {
+			this.notecontent = this.noteText;
+			this.refreshDesklet(reloadGraphics);
+			return;
+		}
+
 		// get notes text file path
 		this.finalPath = decodeURIComponent(this.file.replace("file://", ""));
 		if(this.finalPath == "") this.finalPath = "note.txt"; // in home dir
@@ -233,7 +246,8 @@ MyDesklet.prototype = {
 								+ "font-size: " + this.sizeFont + "px;"
 								+ "color:" + this.textColor + ";"
 								+ "font-weight:" + (this.fontBold ? "bold" : "normal") + ";"
-								+ "font-style:" + (this.fontItalic ? "italic" : "normal") + ";";
+								+ "font-style:" + (this.fontItalic ? "italic" : "normal") + ";"
+								+ "text-shadow:" + (this.textShadow ? "0px 0px 12px "+this.textShadowColor : "none") + ";";
 
 			if (this.bgImg === "none") {
 				this.notetext.style += "background-color:" + this.bgColor + ";"
@@ -250,8 +264,19 @@ MyDesklet.prototype = {
 			//Main.notifyError("Complete Refresh Done", " "); // debug
 		}
 
-		// refresh text
+		// set the raw text
 		this.notetext.set_text(this.notecontent);
+
+		// grab the Clutter.Text layout
+		let ct = this.notetext.get_clutter_text();
+
+		// turn wrapping on/off
+		ct.set_line_wrap(this.enableWordWrap);
+		ct.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
+
+		// constrain its width in Pango units (pixels * Pango.SCALE)
+		let wrapWidthPx = this.desklet_width; 
+		ct.set_size(wrapWidthPx * Pango.SCALE, -1);
 
 		//Main.notifyError("Text Refresh Done", " "); // debug
 	},
@@ -278,7 +303,7 @@ MyDesklet.prototype = {
 	},
 
 	on_desklet_clicked: function() {
-		if(this.editCmd != "") {
+		if(this.noteTakingMethod == "file" && this.editCmd != "") {
 			Util.spawnCommandLine(this.editCmd.replace("%f", '"'+this.finalPath+'"'));
 		}
 	},

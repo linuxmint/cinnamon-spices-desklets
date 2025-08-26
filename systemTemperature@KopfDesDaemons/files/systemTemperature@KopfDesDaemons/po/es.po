@@ -1,0 +1,71 @@
+# SYSTEM TEMPERATURE
+# This file is put in the public domain.
+# KopfDesDaemons, 2024
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: systemTemperature@KopfDesDaemons 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-11-08 19:56+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#. metadata.json->name
+#. desklet.js:27
+msgid "System Temperature"
+msgstr "Temperatura del sistema"
+
+#. metadata.json->description
+msgid "Displays the temperature of a thermal zone in the system."
+msgstr "Muestra la temperatura de una zona térmica del sistema."
+
+#. settings-schema.json->head0->description
+msgid "General"
+msgstr "General"
+
+#. settings-schema.json->tempFilePath->description
+msgid "Path to file with temperature value (thermal zone)"
+msgstr "Ruta al archivo con el valor de temperatura (zona térmica)"
+
+#. settings-schema.json->labelText->description
+msgid "Text for the label"
+msgstr "Texto para la etiqueta"
+
+#. settings-schema.json->temperatureUnit->options
+msgid "°C"
+msgstr "°C"
+
+#. settings-schema.json->temperatureUnit->options
+msgid "°F"
+msgstr "°F"
+
+#. settings-schema.json->temperatureUnit->description
+msgid "Temperature unit (Celsius or Fahrenheit)"
+msgstr "Unidad de temperatura (Celsius o Fahrenheit)"
+
+#. settings-schema.json->updateInterval->description
+msgid "Update interval in seconds"
+msgstr "Intervalo de actualización en segundos"
+
+#. settings-schema.json->head1->description
+msgid "Style"
+msgstr "Estilo"
+
+#. settings-schema.json->fontSizeLabel->description
+msgid "Font size for the label text"
+msgstr "Tamaño de letra para el texto de la etiqueta"
+
+#. settings-schema.json->fontSizeTemperature->description
+msgid "Font size for the temperature display"
+msgstr "Tamaño de fuente para la visualización de la temperatura"
+
+#. settings-schema.json->dynamicColorEnabled->description
+msgid "Dynamic color based on temperature"
+msgstr "Color dinámico según la temperatura"

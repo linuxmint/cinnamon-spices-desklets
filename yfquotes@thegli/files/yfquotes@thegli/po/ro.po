@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-07-10 00:38+0200\n"
+"POT-Creation-Date: 2025-08-22 22:21+0200\n"
 "PO-Revision-Date: 2023-07-19 22:16+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -18,50 +18,48 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
 
-#: desklet.js:310
+#. desklet.js:687
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 
-#: desklet.js:332 desklet.js:351
-msgid "Yahoo Finance service not available!\\nStatus: "
+#. desklet.js:721 desklet.js:747 desklet.js:770
+msgid "Authorization parameters have expired"
+msgstr ""
+
+#. desklet.js:724 desklet.js:750 desklet.js:773
+msgid "Yahoo Finance service not available! Status: "
 msgstr "Serviciul Yahoo Finance nu este disponibil!"
 
-#: desklet.js:738
+#. desklet.js:1084
+msgid "No quotes data to display"
+msgstr ""
+
+#. desklet.js:1194
 msgid "Updated at "
 msgstr "Actualizat la"
 
-#: desklet.js:759
+#. desklet.js:1226
 msgid "Error: "
 msgstr "Eroare:"
 
-#: desklet.js:827
+#. desklet.js:1376
 msgid ""
-"Failed to retrieve authorization parameter! Unable to fetch quotes data."
-"\\nStatus: "
+"Failed to retrieve authorization parameter! Unable to fetch quotes data. "
+"Status: "
 msgstr ""
 
-#: desklet.js:852
-msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
+#. desklet.js:1403
+msgid "Consent processing failed! Unable to fetch quotes data. Status: "
 msgstr ""
 
-#: desklet.js:857
+#. desklet.js:1409
+msgid "Consent processing not completed! Unable to fetch quotes data. Status: "
+msgstr ""
+
+#. desklet.js:1445
 msgid ""
-"Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
+"Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: "
 msgstr ""
-
-#: desklet.js:879
-msgid ""
-"Failed to retrieve authorization crumb! Unable to fetch quotes data."
-"\\nStatus: "
-msgstr ""
-
-#: desklet.js:906
-msgid "Cannot display quotes information for symbols: "
-msgstr "Nu se pot afișa informații privind cotațiile pentru simboluri:"
-
-#: desklet.js:907
-msgid "The following error occurred: "
-msgstr "A apărut următoarea eroare:"
 
 #. metadata.json->description
 msgid ""
@@ -75,10 +73,6 @@ msgstr ""
 msgid "Yahoo Finance Quotes"
 msgstr "Cotații Yahoo Finance"
 
-#. settings-schema.json->layoutPage->title
-msgid "Layout"
-msgstr "Layout"
-
 #. settings-schema.json->dataPage->title
 #. settings-schema.json->dataSymbolsSection->title
 msgid "Quotes"
@@ -91,6 +85,14 @@ msgstr "Detalii"
 #. settings-schema.json->presentationPage->title
 msgid "Presentation"
 msgstr "Prezentare"
+
+#. settings-schema.json->layoutPage->title
+msgid "Layout"
+msgstr "Layout"
+
+#. settings-schema.json->networkPage->title
+msgid "Network"
+msgstr ""
 
 #. settings-schema.json->dataUpdateSection->title
 msgid "Data Updates"
@@ -144,12 +146,18 @@ msgstr "Dimensiune"
 msgid "Effects"
 msgstr "Efecte"
 
+#. settings-schema.json->networkSessionSection->title
+msgid "HTTP Session"
+msgstr ""
+
 #. settings-schema.json->width->description
 msgid "Width"
 msgstr "Lățime"
 
 #. settings-schema.json->width->units
 #. settings-schema.json->height->units
+#. settings-schema.json->cornerRadius->units
+#. settings-schema.json->borderWidth->units
 msgid "pixels"
 msgstr "pixeli"
 
@@ -170,7 +178,7 @@ msgid "Background transparency"
 msgstr "Transparența fundalului"
 
 #. settings-schema.json->transparency->tooltip
-msgid "The higher the value, the more solid the desklet background"
+msgid "The higher the value, the more solid the desklet's background"
 msgstr ""
 "Cu cât valoarea este mai mare, cu atât fundalul deskletului este mai solid."
 
@@ -182,6 +190,14 @@ msgstr ""
 msgid "Desklet background color"
 msgstr ""
 
+#. settings-schema.json->cornerRadius->description
+msgid "Corner radius"
+msgstr ""
+
+#. settings-schema.json->cornerRadius->tooltip
+msgid "The higher the value, the rounder the desklet's corners"
+msgstr ""
+
 #. settings-schema.json->showVerticalScrollbar->description
 msgid "Show vertical scrollbar"
 msgstr ""
@@ -190,6 +206,24 @@ msgstr ""
 msgid ""
 "Display a vertical scrollbar when the quote list is longer than the "
 "desklet's height"
+msgstr ""
+
+#. settings-schema.json->borderWidth->description
+msgid "Border width"
+msgstr ""
+
+#. settings-schema.json->borderWidth->tooltip
+msgid ""
+"The higher the value, the thicker the desklet's border. A value of 0 hides "
+"the border."
+msgstr ""
+
+#. settings-schema.json->borderColor->description
+msgid "Border color"
+msgstr ""
+
+#. settings-schema.json->borderColor->tooltip
+msgid "Desklet border color"
 msgstr ""
 
 #. settings-schema.json->delayMinutes->units
@@ -221,28 +255,6 @@ msgid ""
 "Click last update timestamp to instantly refresh quotes data. Automatic "
 "update is still performed periodically."
 msgstr ""
-
-#. settings-schema.json->sendCustomUserAgent->description
-msgid "Send custom User-Agent header"
-msgstr "Trimite antetul personalizat User-Agent"
-
-#. settings-schema.json->sendCustomUserAgent->tooltip
-msgid ""
-"Include a custom User-Agent header in Yahoo Finance Quotes API requests. By "
-"default, this header is not set"
-msgstr ""
-"Include un antet User-Agent personalizat în solicitările API Yahoo Finance "
-"Quotes. În mod implicit, acest antet nu este setat."
-
-#. settings-schema.json->customUserAgent->description
-msgid "Custom User-Agent header"
-msgstr "Antet personalizat User-Agent"
-
-#. settings-schema.json->customUserAgent->tooltip
-msgid "Value for User-Agent header to send with all API requests"
-msgstr ""
-"Valoarea pentru antetul User-Agent care trebuie trimisă cu toate cererile "
-"API."
 
 #. settings-schema.json->roundNumbers->description
 msgid "Round numbers"
@@ -318,6 +330,14 @@ msgstr "Simboluri de cotații"
 #. settings-schema.json->quoteSymbols->tooltip
 msgid "List of quote symbols, separated with line-breaks"
 msgstr "Listă de simboluri de cotații, separate prin întreruperi de linie."
+
+#. settings-schema.json->updateDataButton->description
+msgid "Refresh quotes data"
+msgstr ""
+
+#. settings-schema.json->updateDataButton->tooltip
+msgid "Apply and refresh quotes"
+msgstr ""
 
 #. settings-schema.json->sortCriteria->options
 msgid "given order"
@@ -437,9 +457,9 @@ msgid "Show percent change"
 msgstr "Afișează modificarea procentuală"
 
 #. settings-schema.json->showPercentChange->tooltip
-msgid "Display the percent change of the market price (eg. +0.53%)"
+msgid "Display the percent change of the market price (eg. -0.53%)"
 msgstr ""
-"Afișează modificarea procentuală a prețului de piață (de exemplu, +0,53%)."
+"Afișează modificarea procentuală a prețului de piață (de exemplu, -0,53%)."
 
 #. settings-schema.json->colorPercentChange->description
 msgid "Use trend colors for percent change"
@@ -505,3 +525,55 @@ msgstr "Culoare tendință neschimbată"
 #. settings-schema.json->unchangedTrendColor->tooltip
 msgid "Color of the unchanged trend"
 msgstr "Culoarea tendinței neschimbate."
+
+#. settings-schema.json->cacheAuthorizationParameters->description
+msgid "Cache authorization parameters"
+msgstr ""
+
+#. settings-schema.json->cacheAuthorizationParameters->tooltip
+msgid "Remember fetched authorization parameters for desklet instance"
+msgstr ""
+
+#. settings-schema.json->sendCustomUserAgent->description
+msgid "Send custom User-Agent header"
+msgstr "Trimite antetul personalizat User-Agent"
+
+#. settings-schema.json->sendCustomUserAgent->tooltip
+msgid "Include a custom User-Agent header in Yahoo Finance Quotes API requests"
+msgstr ""
+"Include un antet User-Agent personalizat în solicitările API Yahoo Finance "
+"Quotes. În mod implicit, acest antet nu este setat."
+
+#. settings-schema.json->customUserAgent->description
+msgid "Custom User-Agent header"
+msgstr "Antet personalizat User-Agent"
+
+#. settings-schema.json->customUserAgent->tooltip
+msgid "Value for User-Agent header to send with all API requests"
+msgstr ""
+"Valoarea pentru antetul User-Agent care trebuie trimisă cu toate cererile "
+"API."
+
+#. settings-schema.json->enableCurl->description
+msgid "Use external tool curl"
+msgstr ""
+
+#. settings-schema.json->enableCurl->tooltip
+msgid "Requires separate installation of curl."
+msgstr ""
+
+#. settings-schema.json->curlCommand->description
+msgid "Path of curl executable"
+msgstr ""
+
+#. settings-schema.json->curlCommand->tooltip
+msgid "Provide absolute path of curl program file"
+msgstr ""
+
+#. settings-schema.json->applyNetworkSettingsButton->description
+msgid "Apply network settings"
+msgstr ""
+
+#. settings-schema.json->applyNetworkSettingsButton->tooltip
+msgid "Fetches new authorization parameters and refreshes quotes data"
+msgstr ""

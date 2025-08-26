@@ -1,359 +1,516 @@
 {
-  "settingsLayout": {
-    "type": "layout",
-    "pages": ["dataPage", "detailsPage", "presentationPage", "layoutPage"],
-    "layoutPage": {
-      "type": "page",
-      "title": "Layout",
-      "sections": ["layoutDimensionSection", "layoutEffectsSection"]
+    "settingsLayout": {
+        "type": "layout",
+        "pages": [
+            "dataPage",
+            "detailsPage",
+            "presentationPage",
+            "layoutPage",
+            "networkPage"
+        ],
+        "dataPage": {
+            "type": "page",
+            "title": "Quotes",
+            "sections": [
+                "dataSymbolsSection",
+                "dataUpdateSection"
+            ]
+        },
+        "detailsPage": {
+            "type": "page",
+            "title": "Details",
+            "sections": [
+                "detailsNameSection",
+                "detailsSymbolSection",
+                "detailsPriceSection",
+                "detailsChangeSection",
+                "detailsDateTimeSection"
+            ]
+        },
+        "presentationPage": {
+            "type": "page",
+            "title": "Presentation",
+            "sections": [
+                "presentationFormattingSection",
+                "presentationDateTimeFormattingSection",
+                "presentationSortingSection",
+                "presentationFontSection",
+                "presentationColorsSection"
+            ]
+        },
+        "layoutPage": {
+            "type": "page",
+            "title": "Layout",
+            "sections": [
+                "layoutDimensionSection",
+                "layoutEffectsSection"
+            ]
+        },
+        "networkPage": {
+            "type": "page",
+            "title": "Network",
+            "sections": [
+                "networkSessionSection"
+            ]
+        },
+        "dataSymbolsSection": {
+            "type": "section",
+            "title": "Quotes",
+            "keys": [
+                "quoteSymbols"
+            ]
+        },
+        "dataUpdateSection": {
+            "type": "section",
+            "title": "Data Updates",
+            "keys": [
+                "delayMinutes",
+                "showLastUpdateTimestamp",
+                "manualDataUpdate",
+                "updateDataButton"
+            ]
+        },
+        "detailsNameSection": {
+            "type": "section",
+            "title": "Name",
+            "keys": [
+                "showQuoteName",
+                "useLongQuoteName",
+                "linkQuoteName"
+            ]
+        },
+        "detailsSymbolSection": {
+            "type": "section",
+            "title": "Symbol",
+            "keys": [
+                "showQuoteSymbol",
+                "linkQuoteSymbol"
+            ]
+        },
+        "detailsPriceSection": {
+            "type": "section",
+            "title": "Price",
+            "keys": [
+                "showMarketPrice",
+                "showCurrencyCode"
+            ]
+        },
+        "detailsChangeSection": {
+            "type": "section",
+            "title": "Change",
+            "keys": [
+                "showChangeIcon",
+                "showAbsoluteChange",
+                "showPercentChange",
+                "colorPercentChange"
+            ]
+        },
+        "detailsDateTimeSection": {
+            "type": "section",
+            "title": "Date and Time",
+            "keys": [
+                "showTradeTime"
+            ]
+        },
+        "presentationFormattingSection": {
+            "type": "section",
+            "title": "Number Format",
+            "keys": [
+                "roundNumbers",
+                "decimalPlaces",
+                "strictRounding"
+            ]
+        },
+        "presentationDateTimeFormattingSection": {
+            "type": "section",
+            "title": "Date and Time Format",
+            "keys": [
+                "use24HourTime",
+                "customTimeFormat",
+                "customDateFormat"
+            ]
+        },
+        "presentationSortingSection": {
+            "type": "section",
+            "title": "Sorting",
+            "keys": [
+                "sortCriteria",
+                "sortDirection"
+            ]
+        },
+        "presentationFontSection": {
+            "type": "section",
+            "title": "Font",
+            "keys": [
+                "fontColor",
+                "scaleFontSize",
+                "fontScale"
+            ]
+        },
+        "presentationColorsSection": {
+            "type": "section",
+            "title": "Trend Colors",
+            "keys": [
+                "uptrendChangeColor",
+                "downtrendChangeColor",
+                "unchangedTrendColor"
+            ]
+        },
+        "layoutDimensionSection": {
+            "type": "section",
+            "title": "Dimension",
+            "keys": [
+                "width",
+                "height"
+            ]
+        },
+        "layoutEffectsSection": {
+            "type": "section",
+            "title": "Effects",
+            "keys": [
+                "transparency",
+                "backgroundColor",
+                "showVerticalScrollbar",
+                "cornerRadius",
+                "borderWidth",
+                "borderColor"
+            ]
+        },
+        "networkSessionSection": {
+            "type": "section",
+            "title": "HTTP Session",
+            "keys": [
+                "sendCustomUserAgent",
+                "customUserAgent",
+                "enableCurl",
+                "curlCommand",
+                "cacheAuthorizationParameters",
+                "authorizationParameters",
+                "applyNetworkSettingsButton"
+            ]
+        }
     },
-    "dataPage": {
-      "type": "page",
-      "title": "Quotes",
-      "sections": ["dataSymbolsSection", "dataUpdateSection"]
+    "width": {
+        "type": "spinbutton",
+        "default": 600,
+        "min": 40,
+        "max": 4000,
+        "step": 20,
+        "description": "Width",
+        "units": "pixels",
+        "tooltip": "Desklet width in pixels"
     },
-    "detailsPage": {
-      "type": "page",
-      "title": "Details",
-      "sections": ["detailsNameSection", "detailsSymbolSection", "detailsPriceSection", "detailsChangeSection", "detailsDateTimeSection"]
+    "height": {
+        "type": "spinbutton",
+        "default": 640,
+        "min": 40,
+        "max": 4000,
+        "step": 20,
+        "units": "pixels",
+        "description": "Height",
+        "tooltip": "Desklet height in pixels"
     },
-    "presentationPage": {
-      "type": "section",
-      "title": "Presentation",
-      "sections": ["presentationFormattingSection", "presentationDateTimeFormattingSection", "presentationSortingSection", "presentationFontSection", "presentationColorsSection"]
+    "transparency": {
+        "type": "scale",
+        "default": 0.7,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.05,
+        "description": "Background transparency",
+        "tooltip": "The higher the value, the more solid the desklet's background"
     },
-    "dataSymbolsSection": {
-      "type": "section",
-      "title": "Quotes",
-      "keys": ["quoteSymbols"]
+    "backgroundColor": {
+        "type": "colorchooser",
+        "default": "rgb(0,0,0)",
+        "description": "Background color",
+        "tooltip": "Desklet background color"
     },
-    "dataUpdateSection": {
-      "type": "section",
-      "title": "Data Updates",
-      "keys": ["delayMinutes", "showLastUpdateTimestamp", "manualDataUpdate", "sendCustomUserAgent", "customUserAgent"]
+    "cornerRadius": {
+        "type": "spinbutton",
+        "default": 12,
+        "min": 0,
+        "max": 40,
+        "step": 1,
+        "units": "pixels",
+        "description": "Corner radius",
+        "tooltip": "The higher the value, the rounder the desklet's corners"
     },
-    "detailsNameSection": {
-      "type": "section",
-      "title": "Name",
-      "keys": ["showQuoteName", "useLongQuoteName", "linkQuoteName"]
+    "showVerticalScrollbar": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Show vertical scrollbar",
+        "tooltip": "Display a vertical scrollbar when the quote list is longer than the desklet's height"
     },
-    "detailsSymbolSection": {
-      "type": "section",
-      "title": "Symbol",
-      "keys": ["showQuoteSymbol", "linkQuoteSymbol"]
+    "borderWidth": {
+        "type": "spinbutton",
+        "default": 2,
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "units": "pixels",
+        "description": "Border width",
+        "tooltip": "The higher the value, the thicker the desklet's border. A value of 0 hides the border."
     },
-    "detailsPriceSection": {
-      "type": "section",
-      "title": "Price",
-      "keys": ["showMarketPrice", "showCurrencyCode"]
+    "borderColor": {
+        "type": "colorchooser",
+        "default": "white",
+        "description": "Border color",
+        "tooltip": "Desklet border color"
     },
-    "detailsChangeSection": {
-      "type": "section",
-      "title": "Change",
-      "keys": ["showChangeIcon", "showAbsoluteChange", "showPercentChange", "colorPercentChange"]
+    "delayMinutes": {
+        "type": "spinbutton",
+        "default": 10,
+        "min": 1,
+        "max": 1440,
+        "step": 1,
+        "units": "minutes",
+        "description": "Update frequency",
+        "tooltip": "Data refresh frequency, in minutes"
     },
-    "detailsDateTimeSection": {
-      "type": "section",
-      "title": "Date and Time",
-      "keys": ["showTradeTime"]
+    "showLastUpdateTimestamp": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show last update timestamp",
+        "tooltip": "Display timestamp when quotes were updated last"
     },
-    "presentationFormattingSection": {
-      "type": "section",
-      "title": "Number Format",
-      "keys": ["roundNumbers", "decimalPlaces", "strictRounding"]
+    "manualDataUpdate": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Manual and automatic update",
+        "tooltip": "Click last update timestamp to instantly refresh quotes data. Automatic update is still performed periodically.",
+        "dependency": "showLastUpdateTimestamp"
     },
-    "presentationDateTimeFormattingSection": {
-      "type": "section",
-      "title": "Date and Time Format",
-      "keys": ["use24HourTime", "customTimeFormat", "customDateFormat"]
+    "roundNumbers": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Round numbers",
+        "tooltip": "Perform rounding of floating-point numbers"
     },
-    "presentationSortingSection": {
-      "type": "section",
-      "title": "Sorting",
-      "keys": ["sortCriteria", "sortDirection"]
+    "decimalPlaces": {
+        "type": "spinbutton",
+        "default": 2,
+        "min": 0,
+        "max": 12,
+        "step": 1,
+        "units": "positions",
+        "description": "Decimal places to round",
+        "tooltip": "Number of positions to round to after decimal point",
+        "dependency": "roundNumbers"
     },
-    "presentationFontSection": {
-      "type": "section",
-      "title": "Font",
-      "keys": ["fontColor", "scaleFontSize", "fontScale"]
+    "strictRounding": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Strict rounding",
+        "tooltip": "Strict rounding to the specified decimal places (eg. 0 will be presented as 0.00)",
+        "dependency": "roundNumbers"
     },
-    "presentationColorsSection": {
-      "type": "section",
-      "title": "Trend Colors",
-      "keys": ["uptrendChangeColor", "downtrendChangeColor", "unchangedTrendColor"]
+    "use24HourTime": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Force 24-hour clock",
+        "tooltip": "Always display time in 24-hour notation, overriding system settings.\nThis setting is ignored, when a custom time format is defined."
     },
-    "layoutDimensionSection": {
-      "type": "section",
-      "title": "Dimension",
-      "keys": ["width", "height"]
+    "customTimeFormat": {
+        "type": "entry",
+        "default": "",
+        "description": "Custom time format",
+        "tooltip": "Format time with custom format instead of system settings.\nExamples:\n%H:%M:%S    23:47:51\n%I:%M %p    11:47 PM"
     },
-    "layoutEffectsSection": {
-      "type": "section",
-      "title": "Effects",
-      "keys": ["transparency", "backgroundColor", "showVerticalScrollbar"]
+    "customDateFormat": {
+        "type": "entry",
+        "default": "",
+        "description": "Custom date format",
+        "tooltip": "Format date with custom format instead of system settings.\nExamples:\n%m/%d          03/15\n%Y-%m-%d   2024-03-15\n%A, %b %d   Friday, Mar 15"
+    },
+    "quoteSymbols": {
+        "type": "textview",
+        "height": 400,
+        "default": "MMM\nAMZN\nAXP\nAMGN\nAAPL\nBA\nCAT\nCVX\nCSCO\nKO\nGS\nHD\nHON\nIBM\nJNJ\nJPM\nMCD\nMRK\nMSFT\nNKE\nNVDA\nPG\nCRM\nSHW\nTRV\nUNH\nVZ\nV\nWMT\nDIS",
+        "description": "Quote symbols",
+        "tooltip": "List of quote symbols, separated with line-breaks"
+    },
+    "updateDataButton": {
+        "type": "button",
+        "callback": "onManualRefreshRequested",
+        "description": "Refresh quotes data",
+        "tooltip": "Apply and refresh quotes"
+    },
+    "sortCriteria": {
+        "type": "radiogroup",
+        "default": "none",
+        "options": {
+            "given order": "none",
+            "percent change": "regularMarketChangePercent",
+            "name": "shortName",
+            "symbol": "symbol"
+        },
+        "description": "Sort list by",
+        "tooltip": "Sort the quote list"
+    },
+    "sortDirection": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Sort in ascending order",
+        "tooltip": "Check to sort quotes in ascending order, uncheck to sort in descending order"
+    },
+    "showChangeIcon": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show change/trend icon",
+        "tooltip": "Indicates whether the market price moved up, down, or is unchanged"
+    },
+    "showQuoteName": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show verbose name",
+        "tooltip": "Display the quote name (eg. International Business Machines)"
+    },
+    "useLongQuoteName": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Use long version for verbose name",
+        "tooltip": "Use the long version for quote name, if available (eg. International Business Machines Corporation)",
+        "dependency": "showQuoteName"
+    },
+    "linkQuoteName": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Add web link to name",
+        "tooltip": "Click name to open quote in browser",
+        "dependency": "showQuoteName"
+    },
+    "showQuoteSymbol": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show ticker/symbol",
+        "tooltip": "Display the quote symbol (eg. IBM)"
+    },
+    "linkQuoteSymbol": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Add web link to ticker/symbol",
+        "tooltip": "Click symbol to open quote in browser",
+        "dependency": "showQuoteSymbol"
+    },
+    "showMarketPrice": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show price",
+        "tooltip": "Display the current market price (eg. 146.79)"
+    },
+    "showCurrencyCode": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show currency symbol",
+        "tooltip": "Display the currency symbol of the price (eg. $)",
+        "dependency": "showMarketPrice"
+    },
+    "showAbsoluteChange": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show absolute change",
+        "tooltip": "Display the absolute change of the market price (eg. +0.739)"
+    },
+    "showPercentChange": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show percent change",
+        "tooltip": "Display the percent change of the market price (eg. -0.53%)"
+    },
+    "colorPercentChange": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Use trend colors for percent change",
+        "tooltip": "Color the percent change to show the trend",
+        "dependency": "showPercentChange"
+    },
+    "showTradeTime": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show trading time",
+        "tooltip": "Display the last trading time (if current day) or date"
+    },
+    "fontColor": {
+        "type": "colorchooser",
+        "description": "Font color",
+        "tooltip": "Default text color",
+        "default": "white"
+    },
+    "scaleFontSize": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Enable font size scaling",
+        "tooltip": "Apply custom font size instead of the system default size"
+    },
+    "fontScale": {
+        "type": "spinbutton",
+        "default": 1.3,
+        "min": 0.1,
+        "max": 20.0,
+        "step": 0.1,
+        "units": "times",
+        "description": "Font size scale factor",
+        "tooltip": "Enlarge/reduce the font size",
+        "dependency": "scaleFontSize"
+    },
+    "uptrendChangeColor": {
+        "type": "colorchooser",
+        "description": "Uptrend change color",
+        "tooltip": "Color of the uptrend change",
+        "default": "green"
+    },
+    "downtrendChangeColor": {
+        "type": "colorchooser",
+        "description": "Downtrend change color",
+        "v": "Color of the downtrend change",
+        "default": "red"
+    },
+    "unchangedTrendColor": {
+        "type": "colorchooser",
+        "description": "Unchanged trend color",
+        "tooltip": "Color of the unchanged trend",
+        "default": "grey"
+    },
+    "cacheAuthorizationParameters": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Cache authorization parameters",
+        "tooltip": "Remember fetched authorization parameters for desklet instance"
+    },
+    "authorizationParameters": {
+        "type": "generic",
+        "default": "{\"version\": 1}"
+    },
+    "sendCustomUserAgent": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Send custom User-Agent header",
+        "tooltip": "Include a custom User-Agent header in Yahoo Finance Quotes API requests"
+    },
+    "customUserAgent": {
+        "type": "entry",
+        "default": "Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0",
+        "description": "Custom User-Agent header",
+        "tooltip": "Value for User-Agent header to send with all API requests",
+        "dependency": "sendCustomUserAgent"
+    },
+    "enableCurl": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Use external tool curl",
+        "tooltip": "Requires separate installation of curl."
+    },
+    "curlCommand": {
+        "type": "entry",
+        "default": "/usr/bin/curl",
+        "description": "Path of curl executable",
+        "tooltip": "Provide absolute path of curl program file",
+        "dependency": "enableCurl"
+    },
+    "applyNetworkSettingsButton": {
+        "type": "button",
+        "callback": "onNetworkSettingsChanged",
+        "description": "Apply network settings",
+        "tooltip": "Fetches new authorization parameters and refreshes quotes data"
     }
-  },
-  "width": {
-    "type": "spinbutton",
-    "default": 600,
-    "min": 40,
-    "max": 4000,
-    "step": 20,
-    "description": "Width",
-    "units": "pixels",
-    "tooltip": "Desklet width in pixels"
-  },
-  "height": {
-    "type": "spinbutton",
-    "default": 640,
-    "min": 40,
-    "max": 4000,
-    "step": 20,
-    "units": "pixels",
-    "description": "Height",
-    "tooltip": "Desklet height in pixels"
-  },
-  "transparency": {
-    "type": "scale",
-    "default": 0.7,
-    "min": 0.0,
-    "max": 1.0,
-    "step": 0.05,
-    "description": "Background transparency",
-    "tooltip": "The higher the value, the more solid the desklet background"
-  },
-  "backgroundColor": {
-    "type": "colorchooser",
-    "description": "Background color",
-    "tooltip": "Desklet background color",
-    "default": "rgb(0,0,0)"
-  },
-  "showVerticalScrollbar": {
-    "type": "checkbox",
-    "default": false,
-    "description": "Show vertical scrollbar",
-    "tooltip": "Display a vertical scrollbar when the quote list is longer than the desklet's height"
-  },
-  "delayMinutes": {
-    "type": "spinbutton",
-    "default": 10,
-    "min": 1,
-    "max": 1440,
-    "step": 1,
-    "units": "minutes",
-    "description": "Update frequency",
-    "tooltip": "Data refresh frequency, in minutes"
-  },
-  "showLastUpdateTimestamp": {
-    "type": "checkbox",
-    "default": true,
-    "description": "Show last update timestamp",
-    "tooltip": "Display timestamp when quotes were updated last"
-  },
-  "manualDataUpdate": {
-    "type": "checkbox",
-    "default": false,
-    "description": "Manual and automatic update",
-    "tooltip": "Click last update timestamp to instantly refresh quotes data. Automatic update is still performed periodically.",
-    "dependency": "showLastUpdateTimestamp"
-  },
-  "sendCustomUserAgent": {
-    "type": "checkbox",
-    "default": true,
-    "description": "Send custom User-Agent header",
-    "tooltip": "Include a custom User-Agent header in Yahoo Finance Quotes API requests. By default, this header is not set"
-  },
-  "customUserAgent": {
-    "type": "entry",
-    "default": "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0",
-    "description": "Custom User-Agent header",
-    "tooltip": "Value for User-Agent header to send with all API requests",
-    "dependency": "sendCustomUserAgent"
-  },
-  "roundNumbers": {
-    "type": "checkbox",
-    "default": true,
-    "description": "Round numbers",
-    "tooltip": "Perform rounding of floating-point numbers"
-  },
-  "decimalPlaces": {
-    "type": "spinbutton",
-    "default": 2,
-    "min": 0,
-    "max": 12,
-    "step": 1,
-    "units": "positions",
-    "description": "Decimal places to round",
-    "tooltip": "Number of positions to round to after decimal point",
-    "dependency": "roundNumbers"
-  },
-  "strictRounding": {
-    "type": "checkbox",
-    "default": false,
-    "description": "Strict rounding",
-    "tooltip": "Strict rounding to the specified decimal places (eg. 0 will be presented as 0.00)",
-    "dependency": "roundNumbers"
-  },
-  "use24HourTime": {
-    "type": "checkbox",
-    "default": false,
-    "description": "Force 24-hour clock",
-    "tooltip": "Always display time in 24-hour notation, overriding system settings.\nThis setting is ignored, when a custom time format is defined."
-  },
-  "customTimeFormat": {
-    "type": "entry",
-    "default": "",
-    "description": "Custom time format",
-    "tooltip": "Format time with custom format instead of system settings.\nExamples:\n%H:%M:%S    23:47:51\n%I:%M %p    11:47 PM"
-  },
-  "customDateFormat": {
-    "type": "entry",
-    "default": "",
-    "description": "Custom date format",
-    "tooltip": "Format date with custom format instead of system settings.\nExamples:\n%m/%d          03/15\n%Y-%m-%d   2024-03-15\n%A, %b %d   Friday, Mar 15"
-  },
-  "quoteSymbols": {
-    "type": "textview",
-    "height": 400,
-    "default": "MMM\nAMZN\nAXP\nAMGN\nAAPL\nBA\nCAT\nCVX\nCSCO\nKO\nDOW\nGS\nHD\nHON\nINTC\nIBM\nJNJ\nJPM\nMCD\nMRK\nMSFT\nNKE\nPG\nCRM\nTRV\nUNH\nVZ\nV\nWMT\nDIS",
-    "description": "Quote symbols",
-    "tooltip": "List of quote symbols, separated with line-breaks"
-  },
-  "sortCriteria": {
-    "type": "radiogroup",
-    "default": "none",
-    "options": {
-      "given order": "none",
-      "percent change": "regularMarketChangePercent",
-      "name": "shortName",
-      "symbol": "symbol"
-      
-    },
-    "description": "Sort list by",
-    "tooltip": "Sort the quote list"
-  },
-  "sortDirection": {
-    "type": "checkbox",
-    "default": false,
-    "description": "Sort in ascending order",
-    "tooltip": "Check to sort quotes in ascending order, uncheck to sort in descending order"
-  },
-  "showChangeIcon": {
-    "type": "checkbox",
-    "default": true,
-    "description": "Show change/trend icon",
-    "tooltip": "Indicates whether the market price moved up, down, or is unchanged"
-  },
-  "showQuoteName": {
-    "type": "checkbox",
-    "default": true,
-    "description": "Show verbose name",
-    "tooltip": "Display the quote name (eg. International Business Machines)"
-  },
-  "useLongQuoteName": {
-    "type": "checkbox",
-    "default": true,
-    "description": "Use long version for verbose name",
-    "tooltip": "Use the long version for quote name, if available (eg. International Business Machines Corporation)",
-    "dependency": "showQuoteName"
-  },
-  "linkQuoteName": {
-    "type": "checkbox",
-    "default": true,
-    "description": "Add web link to name",
-    "tooltip": "Click name to open quote in browser",
-    "dependency": "showQuoteName"
-  },
-  "showQuoteSymbol": {
-    "type": "checkbox",
-    "default": true,
-    "description": "Show ticker/symbol",
-    "tooltip": "Display the quote symbol (eg. IBM)"
-  },
-  "linkQuoteSymbol": {
-    "type": "checkbox",
-    "default": true,
-    "description": "Add web link to ticker/symbol",
-    "tooltip": "Click symbol to open quote in browser",
-    "dependency": "showQuoteSymbol"
-  },
-  "showMarketPrice": {
-    "type": "checkbox",
-    "default": true,
-    "description": "Show price",
-    "tooltip": "Display the current market price (eg. 146.79)"
-  },
-  "showCurrencyCode": {
-    "type": "checkbox",
-    "default": true,
-    "description": "Show currency symbol",
-    "tooltip": "Display the currency symbol of the price (eg. $)",
-    "dependency": "showMarketPrice"
-  },
-  "showAbsoluteChange": {
-    "type": "checkbox",
-    "default": true,
-    "description": "Show absolute change",
-    "tooltip": "Display the absolute change of the market price (eg. +0.739)"
-  },
-  "showPercentChange": {
-    "type": "checkbox",
-    "default": true,
-    "description": "Show percent change",
-    "tooltip": "Display the percent change of the market price (eg. +0.53%)"
-  },
-  "colorPercentChange": {
-    "type": "checkbox",
-    "default": true,
-    "description": "Use trend colors for percent change",
-    "tooltip": "Color the percent change to show the trend",
-    "dependency": "showPercentChange"
-  },
-  "showTradeTime": {
-    "type": "checkbox",
-    "default": true,
-    "description": "Show trading time",
-    "tooltip": "Display the last trading time (if current day) or date"
-  },
-  "fontColor": {
-    "type": "colorchooser",
-    "description": "Font color",
-    "tooltip": "Default text color",
-    "default": "white"
-  },
-  "scaleFontSize": {
-    "type": "checkbox",
-    "default": false,
-    "description": "Enable font size scaling",
-    "tooltip": "Apply custom font size instead of the system default size"
-  },
-  "fontScale": {
-    "type": "spinbutton",
-    "default": 1.3,
-    "min": 0.1,
-    "max": 20.0,
-    "step": 0.1,
-    "units": "times",
-    "description": "Font size scale factor",
-    "tooltip": "Enlarge/reduce the font size",
-    "dependency": "scaleFontSize"
-  },
-  "uptrendChangeColor": {
-    "type": "colorchooser",
-    "description": "Uptrend change color",
-    "tooltip": "Color of the uptrend change",
-    "default": "green"
-  },
-  "downtrendChangeColor": {
-    "type": "colorchooser",
-    "description": "Downtrend change color",
-    "v": "Color of the downtrend change",
-    "default": "red"
-  },
-  "unchangedTrendColor": {
-    "type": "colorchooser",
-    "description": "Unchanged trend color",
-    "tooltip": "Color of the unchanged trend",
-    "default": "grey"
-  }
 }

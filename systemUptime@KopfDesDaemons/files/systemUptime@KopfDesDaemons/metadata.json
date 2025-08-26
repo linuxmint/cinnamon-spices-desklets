@@ -1,0 +1,8 @@
+{
+  "uuid": "systemUptime@KopfDesDaemons",
+  "name": "System Uptime",
+  "description": "Displays the current system uptime.",
+  "version": "1.0",
+  "max-instances": "50",
+  "author": "KopfdesDaemons"
+}

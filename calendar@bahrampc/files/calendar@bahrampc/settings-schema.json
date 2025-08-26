@@ -1,0 +1,130 @@
+{
+    "top": {
+        "type": "header",
+        "description": "Shamsi calendar configuration"
+    },
+    "panels": {
+        "type": "combobox",
+        "default": "both",
+        "description": "Panels to show",
+        "options": {
+            "Both Today & Month": "both",
+            "Today only": "today",
+            "Month only": "month"
+        },
+        "tooltip": "Select the panels to display in desklet"
+    },
+    "show-weekday": {
+        "type": "combobox",
+        "default": "full",
+        "description": "Show day of week",
+        "options": {
+            "No": "off",
+            "Full": "full",
+            "Short": "short"
+        },
+        "tooltip": "For day of week; show full name, short name or disable showing",
+        "dependency": "panels!=month"
+    },
+    "short-month-name": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Short month name",
+        "tooltip": "Show short month name",
+        "dependency": "panels!=month"
+    },
+    "show-year": {
+        "type": "combobox",
+        "default": "full",
+        "description": "Show year",
+        "options": {
+            "No": "off",
+            "Full": "full",
+            "Short": "short"
+        },
+        "tooltip": "For year; show all digits, show last two digits or disable showing",
+        "dependency": "panels!=month"
+    },
+    "show-time": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show time",
+        "tooltip": "Show or hide time (hours and minutes)",
+        "dependency": "panels!=month"
+    },
+    "use-24h": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Use 24h clock",
+        "dependency": "panels!=month"
+    },
+    "auto-advance": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Auto-advance",
+        "tooltip": "When the month changes, update the desklet",
+        "dependency": "panels!=today"
+    },
+    "seperator": {
+        "type": "separator"
+    },
+    "display": {
+        "type": "header",
+        "description": "Desklet style configuration"
+    },
+    "layout": {
+        "type": "combobox",
+        "default": "horizontal",
+        "description": "Layout of desklet",
+        "options": {
+            "Horizontal": "horizontal",
+            "Vertical": "vertical"
+        },
+        "tooltip": "Set the overall layout to horizontal/vertical of desklet"
+    },
+    "custom-font-family": {
+        "type": "entry",
+        "default": "",
+        "description": "Custom font family for text (blank to use default)",
+        "tooltip": "Set a custom font family for the text (blank to use default font)"
+    },
+    "font-size": {
+        "type": "scale",
+        "default": 12,
+        "min": 6,
+        "max": 36,
+        "step": 0.5,
+        "description": "Font size (pt)",
+        "tooltip": "Set the text font size in points"
+    },
+    "colour-text": {
+        "type": "colorchooser",
+        "indent": true,
+        "default": "rgb(255,255,255)",
+        "description": "Text colour",
+        "tooltip": "Set text colour of desklet"
+    },
+    "colour-friday": {
+        "type": "colorchooser",
+        "default": "rgb(255, 51, 51)",
+        "description": "Text colour for Fridays",
+        "tooltip": "Set text colour for Fridays"
+    },
+    "colour-background": {
+        "type": "colorchooser",
+        "indent": true,
+        "default": "rgb(0,0,0)",
+        "description": "Background colour",
+        "tooltip": "Set background colour of desklet"
+    },
+    "transparency": {
+        "type": "scale",
+        "indent": true,
+        "default": 50,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "description": "Transparency (%)",
+        "tooltip": "Set the transparency of desklet in percentage"
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "uuid": "systemTemperature@KopfDesDaemons",
+    "name": "System Temperature",
+    "description": "Displays the temperature of a thermal zone in the system.",
+    "version": "1.0",
+    "max-instances": "10"
+}

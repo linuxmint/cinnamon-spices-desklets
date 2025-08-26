@@ -1,0 +1,79 @@
+# SYSTEM UPTIME
+# This file is put in the public domain.
+# KopfDesDaemons, 2024
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: systemUptime@KopfDesDaemons 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-07-31 22:57+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+
+#. metadata.json->name
+#. desklet.js:61
+msgid "System Uptime"
+msgstr "Tiempo de actividad del sistema"
+
+#. desklet.js:69
+msgid "Uptime:"
+msgstr "Tiempo de actividad:"
+
+#. desklet.js:70 desklet.js:79
+msgid "Loading..."
+msgstr "Cargando…"
+
+#. desklet.js:76
+msgid "Start time:"
+msgstr "Hora de inicio:"
+
+#. desklet.js:139
+msgid "days"
+msgstr "días"
+
+#. desklet.js:139
+msgid "hrs"
+msgstr "horas"
+
+#. desklet.js:139
+msgid "min"
+msgstr "minutos"
+
+#. desklet.js:146
+msgid "hours"
+msgstr "horas"
+
+#. desklet.js:146
+msgid "minutes"
+msgstr "minutos"
+
+#. metadata.json->description
+msgid "Displays the current system uptime."
+msgstr "Muestra el tiempo de actividad actual del sistema."
+
+#. settings-schema.json->head0->description
+msgid "Style"
+msgstr "Estilo"
+
+#. settings-schema.json->fontSize->description
+msgid "Font size"
+msgstr "Tamaño de la fuente"
+
+#. settings-schema.json->colorLabel->description
+msgid "Label color"
+msgstr "Color de la etiqueta"
+
+#. settings-schema.json->showStartDate->description
+msgid "Show start date"
+msgstr "Mostrar fecha de inicio"
+
+#. settings-schema.json->showUptimeInDays->description
+msgid "Show uptime in days"
+msgstr "Mostrar el tiempo de actividad en días"

@@ -51,7 +51,8 @@
         "diff_calendar",
         "show_location",
         "location_color",
-        "cornerradius"
+        "cornerradius",
+        "display_mode"
       ]
     }
   },
@@ -79,10 +80,14 @@
     "description": "Calendar configuration"
   },
   "gcalendarAccount": {
-    "type": "entry",
-    "default": "",
+    "type": "combobox",
+    "default": "default",
     "description": "gcalendar Account ID",
-    "tooltip": "Enter gcalendar --account id"
+    "tooltip": "Enter gcalendar --account id",
+    "options": {
+            "": "default",
+            "default": "default"
+    }
   },
   "allNamesButton": {
     "type": "button",
@@ -111,9 +116,9 @@
   },
   "interval": {
     "default": 7,
-    "type": "spinbutton",
+    "type": "scale",
     "min": 1,
-    "max": 30,
+    "max": 62,
     "description": "Number of days to include",
     "tooltip": "Show the agenda for these number of days",
     "units": "days",
@@ -121,7 +126,7 @@
   },
   "delay": {
     "default": 15,
-    "type": "spinbutton",
+    "type": "scale",
     "min": 1,
     "max": 1440,
     "description": "Update every:",
@@ -223,5 +228,15 @@
     "units": "px",
     "description": "Corner radius",
     "tooltip": "Radius for rounding the desklet's corners"
+  },
+  "display_mode": {
+      "type": "combobox",
+      "default": "normal",
+      "description": "Display mode",
+      "options": {
+          "normal": "normal",
+          "compact": "compact",
+          "ultra compact": "ultra"
+      }
   }
 }

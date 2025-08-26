@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import glob
 import json
 import os
 import sys
@@ -11,14 +12,17 @@ if len(sys.argv) != 2:
     print("./validate-spice --all")
     sys.exit(1)
 
-SPICE_TYPE="desklet"
+SPICE_TYPE = "desklet"
+
 
 class CheckError(Exception):
     pass
 
+
 # function with checks for an xlet
 def validate_xlet(uuid):
     valid = False
+    uuid = uuid.rstrip('/')
     os.chdir(uuid)
 
     try:
@@ -27,10 +31,26 @@ def validate_xlet(uuid):
             if not os.path.exists(file):
                 raise CheckError("[%s] Missing file: %s" % (uuid, file))
 
+        # Check if there are any improperly placed files
+        for file in glob.glob("*"):
+            if file.endswith(".po") or file.endswith(".pot"):
+                raise CheckError(f"[{uuid}] Invalid location for translation files!")
+
+        # Check if there is an improperly duplicated file
+        if len(glob.glob("files/*/po/*.pot")) > 1:
+            raise CheckError(f"[{uuid}] Too many .pot files!")
+
+        # Check if there are any improperly named file(s)
+        for file in glob.glob("files/*/po/*"):
+            if not (file.endswith(".po") or file.endswith(".pot")):
+                raise CheckError(f"[{uuid}] Invalid file found in translation directory: {file}")
+
         found = False
         for root, dirs, files in os.walk("files/%s" % uuid):
             if any(ext.endswith(".po") for ext in files) and not any(ext.endswith(".pot") for ext in files):
-                raise CheckError("[%s] Invalid location for translation files!" % (uuid))
+                raise CheckError("[%s] Invalid location for translation files! (Move any .po or .pot to files/%s/po)" % (uuid, uuid))
+            if any(ext.endswith(".mo") for ext in files):
+                raise CheckError("[%s] Translation files should not be compiled! (Delete any .mo files in %s)" % (uuid, uuid))
             for file in files:
                 if file == "%s.js" % SPICE_TYPE:
                     found = True
@@ -122,7 +142,8 @@ def validate_xlet(uuid):
     os.chdir("..")
     return valid
 
-def quit(valid):
+
+def exit_status(valid):
     if (valid):
         print ("No errors found. Everything looks good.")
         sys.exit(0)
@@ -130,6 +151,7 @@ def quit(valid):
         print ("\nErrors were found! Once you fix the issue, please re-run "
                "'validate-spice <uuid>'' to check for further errors.")
         sys.exit(1)
+
 
 if sys.argv[1] == "--all":
     valid = True
@@ -139,4 +161,4 @@ if sys.argv[1] == "--all":
 else:
     valid = validate_xlet(sys.argv[1])
 
-quit(valid)
+exit_status(valid)

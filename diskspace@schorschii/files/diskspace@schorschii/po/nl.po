@@ -1,14 +1,15 @@
-# SOME DESCRIPTIVE TITLE.
+# DISK SPACE
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# schorschii, 2018
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-06 01:23+0300\n"
-"PO-Revision-Date: 2024-04-18 15:23+0200\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-07-31 12:29-0400\n"
+"PO-Revision-Date: 2025-08-25 15:27+0200\n"
 "Last-Translator: qadzek\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -17,26 +18,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. settings-schema.json->type->options
-#: desklet.js:275 desklet.js:356
+#. desklet.js:275 desklet.js:361
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#: desklet.js:277 desklet.js:358
+#. desklet.js:277 desklet.js:363
 msgid "Swap"
 msgstr "Swap"
 
 #. settings-schema.json->type->options
-#: desklet.js:279
+#. desklet.js:279
 msgid "Filesystem"
 msgstr "Bestandssysteem"
 
-#: desklet.js:301
+#. desklet.js:306
 msgid "Not Found"
 msgstr "Niet gevonden"
 
 #. metadata.json->name
-#: desklet.js:360
+#. desklet.js:365
 msgid "Disk Space"
 msgstr "Schijfruimte"
 
@@ -144,6 +145,10 @@ msgstr "Tekst"
 #. settings-schema.json->text-view->options
 msgid "Name and total space"
 msgstr "Naam en totale ruimte"
+
+#. settings-schema.json->text-view->options
+msgid "Name and free space"
+msgstr "Naam en vrije ruimte"
 
 #. settings-schema.json->text-view->options
 msgid "Used and total space"

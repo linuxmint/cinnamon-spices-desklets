@@ -1,0 +1,128 @@
+{
+  "head0": {
+    "type": "header",
+    "description": "Calendar Source"
+  },
+
+  "sourceType": {
+    "type": "combobox",
+    "default": "url",
+    "description": "Calendar source",
+    "options": {
+      "From URL": "url",
+      "From local file": "file"
+    }
+  },
+
+  "icsUrl": {
+    "type": "entry",
+    "default": "",
+    "description": "Calendar URL",
+    "tooltip": "Only used if source is set to 'From URL'. Paste a public .ics (calendar share) link from Proton, Google, etc."
+  },
+
+  "icsFilePath": {
+    "type": "filechooser",
+    "default": "",
+    "description": "Path to local .ics file",
+    "tooltip": "Only used if source is set to 'From local file', point to an ICS file.",
+    "allow-none": true
+  },
+
+  "head1": {
+    "type": "header",
+    "description": "Widget Dimensions"
+  },
+
+  "width": {
+    "type": "spinbutton",
+    "default": 250,
+    "min": 100,
+    "max": 1000,
+    "step": 10,
+    "units": "px",
+    "description": "Widget width"
+  },
+
+  "height": {
+    "type": "spinbutton",
+    "default": 150,
+    "min": 50,
+    "max": 1000,
+    "step": 10,
+    "units": "px",
+    "description": "Widget height"
+  },
+
+  "head2": {
+    "type": "header",
+    "description": "Custom Styles"
+  },
+
+  "overrideTheme": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Override desktop theme (enables the settings below)",
+    "tooltip": "Check this to override the desktop theme and configure the appearance manually"
+  },
+  "font": {
+    "type": "entry",
+    "dependency": "overrideTheme",
+    "default": "Sans",
+    "description": "Font family",
+    "tooltip": "Example: Sans, Monospace, Serif"
+  },
+  "fontSize": {
+    "type": "spinbutton",
+    "dependency": "overrideTheme",
+    "default": 10,
+    "min": 6,
+    "max": 48,
+    "step": 1,
+    "units": "pt",
+    "description": "Font size"
+  },
+  "textcolor": {
+        "type": "colorchooser",
+        "indent": true,
+        "dependency": "overrideTheme",
+        "default": "rgb(255,255,255)",
+        "description": "Text color",
+        "tooltip": "Click the button to select a new text color"
+    },
+
+  "head4": {
+    "type": "header",
+    "description": "Footer Options"
+  },
+
+  "showLastChecked" : {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show 'last checked' line"
+  },
+
+  "showRefreshNowButton" : {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show 'refresh now' button"
+  },
+
+  "head3": {
+    "type": "header",
+    "description": "Update Schedule"
+  },
+
+  "checkInterval": {
+    "type": "spinbutton",
+    "default": 20,
+    "min": 1,
+    "max": 1440,
+    "step": 1,
+    "units": "minutes",
+    "description": "Check interval",
+    "tooltip": "How often to check the calendar file for updates"
+  }
+
+}
+

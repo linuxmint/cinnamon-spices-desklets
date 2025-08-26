@@ -1,0 +1,29 @@
+{
+  "head0": {
+    "type": "header",
+    "description": "Style"
+  },
+  "fontSize": {
+    "type": "scale",
+    "default": 20,
+    "min": 12,
+    "max": 60,
+    "step": 1,
+    "description": "Font size"
+  },
+  "colorLabel": {
+    "type": "colorchooser",
+    "default": "rgb(51, 209, 122)",
+    "description": "Label color"
+  },
+  "showStartDate": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Show start date"
+  },
+  "showUptimeInDays": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Show uptime in days"
+  }
+}

@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: yfquotes@thegli 0.13.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-07-10 00:38+0200\n"
-"PO-Revision-Date: 2024-07-26 07:12-0400\n"
+"POT-Creation-Date: 2025-08-22 22:21+0200\n"
+"PO-Revision-Date: 2025-06-21 14:49+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: hu\n"
@@ -16,62 +16,60 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
-#: desklet.js:310
+#. desklet.js:687
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 "Üres idézetek listája. Nyissa meg a beállításokat, és adjon hozzá néhány "
 "szimbólumot."
 
-#: desklet.js:332 desklet.js:351
-msgid "Yahoo Finance service not available!\\nStatus: "
-msgstr "A Yahoo Finance szolgáltatás pillanatnyilag nem érhető el.\\nÁllapot: "
+#. desklet.js:721 desklet.js:747 desklet.js:770
+msgid "Authorization parameters have expired"
+msgstr "Az engedélyezési paraméterek lejártak"
 
-#: desklet.js:738
+#. desklet.js:724 desklet.js:750 desklet.js:773
+msgid "Yahoo Finance service not available! Status: "
+msgstr "A Yahoo Finance szolgáltatás pillanatnyilag nem érhető el. Állapot: "
+
+#. desklet.js:1084
+msgid "No quotes data to display"
+msgstr "Nincs megjeleníthető idézet adat"
+
+#. desklet.js:1194
 msgid "Updated at "
 msgstr "Frissítve: "
 
-#: desklet.js:759
+#. desklet.js:1226
 msgid "Error: "
 msgstr "Hiba: "
 
-#: desklet.js:827
+#. desklet.js:1376
 msgid ""
-"Failed to retrieve authorization parameter! Unable to fetch quotes data."
-"\\nStatus: "
+"Failed to retrieve authorization parameter! Unable to fetch quotes data. "
+"Status: "
 msgstr ""
 "Nem sikerült lekérni az engedélyezési paramétert. Nem sikerült letölteni a "
-"pénzügyi adatokat.\\nÁllapot: "
+"pénzügyi adatokat. Állapot: "
 
-#: desklet.js:852
-msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
+#. desklet.js:1403
+msgid "Consent processing failed! Unable to fetch quotes data. Status: "
 msgstr ""
-"Az engedélykezelés nem sikerült. Nem sikerült letölteni a pénzügyi adatokat."
-"\\nÁllapot: "
+"Az engedélykezelés nem sikerült. Nem sikerült letölteni a pénzügyi adatokat. "
+"Állapot: "
 
-#: desklet.js:857
-msgid ""
-"Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
+#. desklet.js:1409
+msgid "Consent processing not completed! Unable to fetch quotes data. Status: "
 msgstr ""
 "Az engedélykezelés nem fejeződött be. Nem sikerült letölteni a pénzügyi "
-"adatokat.\\nÁllapot: "
+"adatokat. Állapot: "
 
-#: desklet.js:879
+#. desklet.js:1445
 msgid ""
-"Failed to retrieve authorization crumb! Unable to fetch quotes data."
-"\\nStatus: "
+"Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: "
 msgstr ""
 "Nem sikerült lekérni az engedély-sütit. Nem sikerült letölteni a pénzügyi "
-"adatokat.\\nÁllapot: "
-
-#: desklet.js:906
-msgid "Cannot display quotes information for symbols: "
-msgstr "Nem jeleníthetőek meg megállapítások a következő szimbólumokhoz: "
-
-#: desklet.js:907
-msgid "The following error occurred: "
-msgstr "A következő hiba történt: "
+"adatokat. Állapot: "
 
 #. metadata.json->description
 msgid ""
@@ -85,10 +83,6 @@ msgstr ""
 msgid "Yahoo Finance Quotes"
 msgstr "Yahoo Finance Quotes"
 
-#. settings-schema.json->layoutPage->title
-msgid "Layout"
-msgstr "Elrendezés"
-
 #. settings-schema.json->dataPage->title
 #. settings-schema.json->dataSymbolsSection->title
 msgid "Quotes"
@@ -101,6 +95,14 @@ msgstr "Részletei"
 #. settings-schema.json->presentationPage->title
 msgid "Presentation"
 msgstr "Bemutatás"
+
+#. settings-schema.json->layoutPage->title
+msgid "Layout"
+msgstr "Elrendezés"
+
+#. settings-schema.json->networkPage->title
+msgid "Network"
+msgstr "Hálózat"
 
 #. settings-schema.json->dataUpdateSection->title
 msgid "Data Updates"
@@ -154,12 +156,18 @@ msgstr "Mértékben"
 msgid "Effects"
 msgstr "Hatások"
 
+#. settings-schema.json->networkSessionSection->title
+msgid "HTTP Session"
+msgstr "HTTP-munkamenet"
+
 #. settings-schema.json->width->description
 msgid "Width"
 msgstr "Szélesség"
 
 #. settings-schema.json->width->units
 #. settings-schema.json->height->units
+#. settings-schema.json->cornerRadius->units
+#. settings-schema.json->borderWidth->units
 msgid "pixels"
 msgstr "képpont"
 
@@ -180,7 +188,7 @@ msgid "Background transparency"
 msgstr "Háttér átlátszósága"
 
 #. settings-schema.json->transparency->tooltip
-msgid "The higher the value, the more solid the desklet background"
+msgid "The higher the value, the more solid the desklet's background"
 msgstr "A magasabb érték jobban megjeleníti az asztalkalmazás hátterét"
 
 #. settings-schema.json->backgroundColor->description
@@ -190,6 +198,14 @@ msgstr "Háttér színe"
 #. settings-schema.json->backgroundColor->tooltip
 msgid "Desklet background color"
 msgstr "Asztalkalmazás háttér színe"
+
+#. settings-schema.json->cornerRadius->description
+msgid "Corner radius"
+msgstr "Saroksugár"
+
+#. settings-schema.json->cornerRadius->tooltip
+msgid "The higher the value, the rounder the desklet's corners"
+msgstr "Minél nagyobb az érték, annál kerekebbek az asztalkalmazás sarkai"
 
 #. settings-schema.json->showVerticalScrollbar->description
 msgid "Show vertical scrollbar"
@@ -202,6 +218,26 @@ msgid ""
 msgstr ""
 "Függőleges görgetősáv megjelenítése, ha az idézetlista hosszabb, mint az "
 "asztalkalmazás magassága"
+
+#. settings-schema.json->borderWidth->description
+msgid "Border width"
+msgstr "Szegély vastagság"
+
+#. settings-schema.json->borderWidth->tooltip
+msgid ""
+"The higher the value, the thicker the desklet's border. A value of 0 hides "
+"the border."
+msgstr ""
+"Minél nagyobb az érték, annál vastagabb az asztalkalmazás szegély. A 0 érték "
+"elrejti a szegélyt."
+
+#. settings-schema.json->borderColor->description
+msgid "Border color"
+msgstr "Szegély színe"
+
+#. settings-schema.json->borderColor->tooltip
+msgid "Desklet border color"
+msgstr "Asztalkalmazás szegély színe"
 
 #. settings-schema.json->delayMinutes->units
 msgid "minutes"
@@ -234,26 +270,6 @@ msgid ""
 msgstr ""
 "Kattintson az utolsó frissítés időbélyegére az ajánlatok adatainak azonnali "
 "frissítéséhez. Az automatikus frissítés továbbra is időszakosan történik."
-
-#. settings-schema.json->sendCustomUserAgent->description
-msgid "Send custom User-Agent header"
-msgstr "Egyedi felhasználóügynök fejléc küldése"
-
-#. settings-schema.json->sendCustomUserAgent->tooltip
-msgid ""
-"Include a custom User-Agent header in Yahoo Finance Quotes API requests. By "
-"default, this header is not set"
-msgstr ""
-"A Yahoo Finance Quotes API kéréseiben egyéni felhasználóügynök fejlécet "
-"adjon meg. Alapértelmezés szerint ez a fejléc nincs beállítva"
-
-#. settings-schema.json->customUserAgent->description
-msgid "Custom User-Agent header"
-msgstr "Felhasználóügynök fejléc"
-
-#. settings-schema.json->customUserAgent->tooltip
-msgid "Value for User-Agent header to send with all API requests"
-msgstr "Az összes API kérés mellé küldendő felhasználóügynök fejléc értéke"
 
 #. settings-schema.json->roundNumbers->description
 msgid "Round numbers"
@@ -341,6 +357,14 @@ msgstr "Szimbólumok"
 #. settings-schema.json->quoteSymbols->tooltip
 msgid "List of quote symbols, separated with line-breaks"
 msgstr "Szimbólumok listájának megjelenítése itt, sortörésekkel elválasztva"
+
+#. settings-schema.json->updateDataButton->description
+msgid "Refresh quotes data"
+msgstr "Az idézetek adatainak frissítése"
+
+#. settings-schema.json->updateDataButton->tooltip
+msgid "Apply and refresh quotes"
+msgstr "Alkalmazás és frissítse az idézeteket"
 
 #. settings-schema.json->sortCriteria->options
 msgid "given order"
@@ -462,9 +486,9 @@ msgid "Show percent change"
 msgstr "Százalékos változás megjelenítése"
 
 #. settings-schema.json->showPercentChange->tooltip
-msgid "Display the percent change of the market price (eg. +0.53%)"
+msgid "Display the percent change of the market price (eg. -0.53%)"
 msgstr ""
-"Piaci ár változásának százalékos értékének megjelenítése (például: +0,53%)."
+"Piaci ár változásának százalékos értékének megjelenítése (például: -0,53%)."
 
 #. settings-schema.json->colorPercentChange->description
 msgid "Use trend colors for percent change"
@@ -531,3 +555,53 @@ msgstr "Változatlan trend színe"
 #. settings-schema.json->unchangedTrendColor->tooltip
 msgid "Color of the unchanged trend"
 msgstr "A változatlan árfolyam színe"
+
+#. settings-schema.json->cacheAuthorizationParameters->description
+msgid "Cache authorization parameters"
+msgstr ""
+
+#. settings-schema.json->cacheAuthorizationParameters->tooltip
+msgid "Remember fetched authorization parameters for desklet instance"
+msgstr ""
+
+#. settings-schema.json->sendCustomUserAgent->description
+msgid "Send custom User-Agent header"
+msgstr "Egyedi felhasználóügynök fejléc küldése"
+
+#. settings-schema.json->sendCustomUserAgent->tooltip
+msgid "Include a custom User-Agent header in Yahoo Finance Quotes API requests"
+msgstr ""
+"Egyéni User-Agent fejléc beillesztése a Yahoo Finance Quotes API kérésekbe"
+
+#. settings-schema.json->customUserAgent->description
+msgid "Custom User-Agent header"
+msgstr "Felhasználóügynök fejléc"
+
+#. settings-schema.json->customUserAgent->tooltip
+msgid "Value for User-Agent header to send with all API requests"
+msgstr "Az összes API kérés mellé küldendő felhasználóügynök fejléc értéke"
+
+#. settings-schema.json->enableCurl->description
+msgid "Use external tool curl"
+msgstr "Külső curl eszköz használata"
+
+#. settings-schema.json->enableCurl->tooltip
+msgid "Requires separate installation of curl."
+msgstr "A curl külön telepítését igényli."
+
+#. settings-schema.json->curlCommand->description
+msgid "Path of curl executable"
+msgstr "A curl futtatható fájl elérési útja"
+
+#. settings-schema.json->curlCommand->tooltip
+msgid "Provide absolute path of curl program file"
+msgstr "Adja meg a curl programfájl abszolút elérési útját"
+
+#. settings-schema.json->applyNetworkSettingsButton->description
+msgid "Apply network settings"
+msgstr "Hálózati beállítások alkalmazása"
+
+#. settings-schema.json->applyNetworkSettingsButton->tooltip
+msgid "Fetches new authorization parameters and refreshes quotes data"
+msgstr ""
+"Új engedélyezési paramétereket kér le és frissíti az árajánlatok adatait"
