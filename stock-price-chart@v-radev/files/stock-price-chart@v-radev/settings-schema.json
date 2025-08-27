@@ -1,0 +1,368 @@
+{
+    "settingsLayout": {
+        "type": "layout",
+        "pages": [
+            "dataPage",
+            "detailsPage",
+            "presentationPage",
+            "layoutPage",
+            "networkPage"
+        ],
+        "dataPage": {
+            "type": "page",
+            "title": "Quotes",
+            "sections": [
+                "dataUpdateSection"
+            ]
+        },
+        "detailsPage": {
+            "type": "page",
+            "title": "Details",
+            "sections": [
+                "detailsNameSection"
+            ]
+        },
+        "presentationPage": {
+            "type": "page",
+            "title": "Presentation",
+            "sections": [
+                "presentationFormattingSection",
+                "presentationDateTimeFormattingSection",
+                "presentationFontSection",
+                "presentationColorsSection"
+            ]
+        },
+        "layoutPage": {
+            "type": "page",
+            "title": "Layout",
+            "sections": [
+                "layoutDimensionSection",
+                "layoutEffectsSection"
+            ]
+        },
+        "networkPage": {
+            "type": "page",
+            "title": "Network",
+            "sections": [
+                "networkSessionSection"
+            ]
+        },
+        "dataUpdateSection": {
+            "type": "section",
+            "title": "Data Updates",
+            "keys": [
+                "delayMinutes",
+                "showLastUpdateTimestamp",
+                "manualDataUpdate",
+                "updateDataButton"
+            ]
+        },
+        "detailsNameSection": {
+            "type": "section",
+            "title": "Name",
+            "keys": [
+                "showQuoteName",
+                "useLongQuoteName",
+                "linkQuoteName"
+            ]
+        },
+        "presentationFormattingSection": {
+            "type": "section",
+            "title": "Number Format",
+            "keys": [
+                "roundNumbers",
+                "decimalPlaces",
+                "strictRounding"
+            ]
+        },
+        "presentationDateTimeFormattingSection": {
+            "type": "section",
+            "title": "Date and Time Format",
+            "keys": [
+                "use24HourTime",
+                "customTimeFormat",
+                "customDateFormat"
+            ]
+        },
+        "presentationFontSection": {
+            "type": "section",
+            "title": "Font",
+            "keys": [
+                "fontColor",
+                "scaleFontSize",
+                "fontScale"
+            ]
+        },
+        "presentationColorsSection": {
+            "type": "section",
+            "title": "Trend Colors",
+            "keys": [
+                "uptrendChangeColor",
+                "downtrendChangeColor",
+                "unchangedTrendColor"
+            ]
+        },
+        "layoutDimensionSection": {
+            "type": "section",
+            "title": "Dimension",
+            "keys": [
+                "width",
+                "height"
+            ]
+        },
+        "layoutEffectsSection": {
+            "type": "section",
+            "title": "Effects",
+            "keys": [
+                "transparency",
+                "backgroundColor",
+                "showVerticalScrollbar",
+                "cornerRadius",
+                "borderWidth",
+                "borderColor"
+            ]
+        },
+        "networkSessionSection": {
+            "type": "section",
+            "title": "HTTP Session",
+            "keys": [
+                "sendCustomUserAgent",
+                "customUserAgent",
+                "enableCurl",
+                "curlCommand",
+                "applyNetworkSettingsButton"
+            ]
+        }
+    },
+    "width": {
+        "type": "spinbutton",
+        "default": 600,
+        "min": 40,
+        "max": 4000,
+        "step": 20,
+        "description": "Width",
+        "units": "pixels",
+        "tooltip": "Desklet width in pixels"
+    },
+    "height": {
+        "type": "spinbutton",
+        "default": 640,
+        "min": 40,
+        "max": 4000,
+        "step": 20,
+        "units": "pixels",
+        "description": "Height",
+        "tooltip": "Desklet height in pixels"
+    },
+    "transparency": {
+        "type": "scale",
+        "default": 0.7,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.05,
+        "description": "Background transparency",
+        "tooltip": "The higher the value, the more solid the desklet's background"
+    },
+    "backgroundColor": {
+        "type": "colorchooser",
+        "default": "rgb(0,0,0)",
+        "description": "Background color",
+        "tooltip": "Desklet background color"
+    },
+    "cornerRadius": {
+        "type": "spinbutton",
+        "default": 12,
+        "min": 0,
+        "max": 40,
+        "step": 1,
+        "units": "pixels",
+        "description": "Corner radius",
+        "tooltip": "The higher the value, the rounder the desklet's corners"
+    },
+    "showVerticalScrollbar": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Show vertical scrollbar",
+        "tooltip": "Display a vertical scrollbar when the quote list is longer than the desklet's height"
+    },
+    "borderWidth": {
+        "type": "spinbutton",
+        "default": 2,
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "units": "pixels",
+        "description": "Border width",
+        "tooltip": "The higher the value, the thicker the desklet's border. A value of 0 hides the border."
+    },
+    "borderColor": {
+        "type": "colorchooser",
+        "default": "white",
+        "description": "Border color",
+        "tooltip": "Desklet border color"
+    },
+    "delayMinutes": {
+        "type": "spinbutton",
+        "default": 10,
+        "min": 1,
+        "max": 1440,
+        "step": 1,
+        "units": "minutes",
+        "description": "Update frequency",
+        "tooltip": "Data refresh frequency, in minutes"
+    },
+    "showLastUpdateTimestamp": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show last update timestamp",
+        "tooltip": "Display timestamp when quotes were updated last"
+    },
+    "manualDataUpdate": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Manual and automatic update",
+        "tooltip": "Click last update timestamp to instantly refresh quotes data. Automatic update is still performed periodically.",
+        "dependency": "showLastUpdateTimestamp"
+    },
+    "roundNumbers": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Round numbers",
+        "tooltip": "Perform rounding of floating-point numbers"
+    },
+    "decimalPlaces": {
+        "type": "spinbutton",
+        "default": 2,
+        "min": 0,
+        "max": 12,
+        "step": 1,
+        "units": "positions",
+        "description": "Decimal places to round",
+        "tooltip": "Number of positions to round to after decimal point",
+        "dependency": "roundNumbers"
+    },
+    "strictRounding": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Strict rounding",
+        "tooltip": "Strict rounding to the specified decimal places (eg. 0 will be presented as 0.00)",
+        "dependency": "roundNumbers"
+    },
+    "use24HourTime": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Force 24-hour clock",
+        "tooltip": "Always display time in 24-hour notation, overriding system settings.\nThis setting is ignored, when a custom time format is defined."
+    },
+    "customTimeFormat": {
+        "type": "entry",
+        "default": "",
+        "description": "Custom time format",
+        "tooltip": "Format time with custom format instead of system settings.\nExamples:\n%H:%M:%S    23:47:51\n%I:%M %p    11:47 PM"
+    },
+    "customDateFormat": {
+        "type": "entry",
+        "default": "",
+        "description": "Custom date format",
+        "tooltip": "Format date with custom format instead of system settings.\nExamples:\n%m/%d          03/15\n%Y-%m-%d   2024-03-15\n%A, %b %d   Friday, Mar 15"
+    },
+    "updateDataButton": {
+        "type": "button",
+        "callback": "onManualRefreshRequested",
+        "description": "Refresh quotes data",
+        "tooltip": "Apply and refresh quotes"
+    },
+    "showQuoteName": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show verbose name",
+        "tooltip": "Display the quote name (eg. International Business Machines)"
+    },
+    "useLongQuoteName": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Use long version for verbose name",
+        "tooltip": "Use the long version for quote name, if available (eg. International Business Machines Corporation)",
+        "dependency": "showQuoteName"
+    },
+    "linkQuoteName": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Add web link to name",
+        "tooltip": "Click name to open quote in browser",
+        "dependency": "showQuoteName"
+    },
+    "fontColor": {
+        "type": "colorchooser",
+        "description": "Font color",
+        "tooltip": "Default text color",
+        "default": "white"
+    },
+    "scaleFontSize": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Enable font size scaling",
+        "tooltip": "Apply custom font size instead of the system default size"
+    },
+    "fontScale": {
+        "type": "spinbutton",
+        "default": 1.3,
+        "min": 0.1,
+        "max": 20.0,
+        "step": 0.1,
+        "units": "times",
+        "description": "Font size scale factor",
+        "tooltip": "Enlarge/reduce the font size",
+        "dependency": "scaleFontSize"
+    },
+    "uptrendChangeColor": {
+        "type": "colorchooser",
+        "description": "Uptrend change color",
+        "tooltip": "Color of the uptrend change",
+        "default": "green"
+    },
+    "downtrendChangeColor": {
+        "type": "colorchooser",
+        "description": "Downtrend change color",
+        "tooltip": "Color of the downtrend change",
+        "default": "red"
+    },
+    "unchangedTrendColor": {
+        "type": "colorchooser",
+        "description": "Unchanged trend color",
+        "tooltip": "Color of the unchanged trend",
+        "default": "grey"
+    },
+    "sendCustomUserAgent": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Send custom User-Agent header",
+        "tooltip": "Include a custom User-Agent header in Yahoo Finance Quotes API requests"
+    },
+    "customUserAgent": {
+        "type": "entry",
+        "default": "Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0",
+        "description": "Custom User-Agent header",
+        "tooltip": "Value for User-Agent header to send with all API requests",
+        "dependency": "sendCustomUserAgent"
+    },
+    "enableCurl": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Use external tool curl",
+        "tooltip": "Requires separate installation of curl."
+    },
+    "curlCommand": {
+        "type": "entry",
+        "default": "/usr/bin/curl",
+        "description": "Path of curl executable",
+        "tooltip": "Provide absolute path of curl program file",
+        "dependency": "enableCurl"
+    },
+    "applyNetworkSettingsButton": {
+        "type": "button",
+        "callback": "onNetworkSettingsChanged",
+        "description": "Apply network settings",
+        "tooltip": "Fetches new authorization parameters and refreshes quotes data"
+    }
+}

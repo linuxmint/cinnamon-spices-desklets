@@ -1,0 +1,7 @@
+{
+        "uuid": "stock-price-chart@v-radev",
+        "name": "Stock Price Chart",
+        "description": "Displays a chart for a financial market stock price of specific ticker.",
+        "max-instances": "15",
+        "version": "0.1.0"
+}
