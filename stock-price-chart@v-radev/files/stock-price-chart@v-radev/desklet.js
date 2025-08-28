@@ -8,6 +8,7 @@ const St = imports.gi.St;
 const Settings = imports.ui.settings;
 const Lang = imports.lang;
 const Clutter = imports.gi.Clutter;
+const Cairo = imports.cairo;
 const Mainloop = imports.mainloop;
 
 const UUID = 'stock-price-chart@v-radev';
@@ -15,6 +16,7 @@ const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 
 imports.searchPath.unshift(`${DESKLET_DIR}/lib`);
 const LoggerModule = imports['logger'];
+const ChartModule = imports['chart'];
 const logger = new LoggerModule.LoggerClass();
 
 logger.setLogger(global.log); // Uncomment to enabled debugging
@@ -83,24 +85,39 @@ StockPriceChartDesklet.prototype = {
 
   on_desklet_removed: function() {
     logger.log('Removing desklet: ' + this.metadata.name + ' (Instance: ' + this.instanceId + ')');
+
+    if (this.timeout) {
+      Mainloop.source_remove(this.timeout);
+    }
+  },
+
+  //TODO this should get called when some of the settings are changed
+  on_setting_changed: function() {
+    if (this.timeout) {
+      Mainloop.source_remove(this.timeout);
+    }
+
+    this.firstRun = true;
+    this.updateCanvasLoop();
   },
 
   on_desklet_added_to_desktop() {
     logger.log('Desklet added to desktop: ' + this.metadata.name + ' (Instance: ' + this.instanceId + ')');
 
-    this.canvas = new Clutter.Actor();
-    this.canvas.remove_all_children();
+    this.clutterActor = new Clutter.Actor();
+    this.clutterActor.remove_all_children();
     this.text1 = new St.Label();
     this.text2 = new St.Label();
     this.text3 = new St.Label();
-    this.canvas.add_actor(this.text1);
-    this.canvas.add_actor(this.text2);
-    this.canvas.add_actor(this.text3);
-    this.setContent(this.canvas);
+    this.clutterActor.add_actor(this.text1);
+    this.clutterActor.add_actor(this.text2);
+    this.clutterActor.add_actor(this.text3);
+    this.setContent(this.clutterActor);
 
     this.firstRun = true;
 
-    this.updateCanvasLoop();
+    // this.updateCanvasLoop();
+    this.newChartDraw();
   },
 
   updateCanvasLoop: function() {
@@ -128,7 +145,8 @@ StockPriceChartDesklet.prototype = {
     }
 
     // Desklet proportions
-    let unit_size = 15 * this.scale_size * global.ui_scale; //TODO scale_size is configurable
+    const scaleSize = 1; //TODO scale_size is configurable
+    let unit_size = 15 * scaleSize * global.ui_scale;
     var line_width = unit_size / 15;
     var margin_up = 3 * unit_size;
     var graph_w = 20 * unit_size;
@@ -156,6 +174,8 @@ StockPriceChartDesklet.prototype = {
     var text3 = '';
     var line_colors = this.parseRgbaValues(this.line_color);
 
+    logger.log('Line colors parsed: ' + line_colors.toString());
+
     // Current value for this interval of the graph
     const value = randomUseValue / 100;
 
@@ -167,12 +187,16 @@ StockPriceChartDesklet.prototype = {
     var background_colors = this.parseRgbaValues('rgba(50,50,50,1)'); //TODO is configurable
     var midline_colors = this.parseRgbaValues('rgba(127,127,127,1)'); //TODO is configurable
 
+    logger.log('Value added: ' + value.toString());
+
     // Draws graph
     let canvas = new Clutter.Canvas();
 
     canvas.set_size(desklet_w, desklet_h);
 
     canvas.connect('draw', (canvas, ctx, desklet_w, desklet_h) => {
+      logger.log('Start canvas draw function.');
+
       ctx.save();
       ctx.setOperator(Cairo.Operator.CLEAR);
       ctx.paint();
@@ -180,6 +204,7 @@ StockPriceChartDesklet.prototype = {
       ctx.setOperator(Cairo.Operator.OVER);
       ctx.setLineWidth(2 * line_width);
 
+      logger.log('-- Start background.');
       // Desklet background
       ctx.setSourceRGBA(background_colors[0], background_colors[1], background_colors[2], background_colors[3]);
       ctx.newSubPath();
@@ -190,11 +215,14 @@ StockPriceChartDesklet.prototype = {
       ctx.closePath();
       ctx.fill();
 
+      logger.log('-- Start midlines.');
       // Graph X and Y axis midlines
       ctx.setSourceRGBA(midline_colors[0], midline_colors[1], midline_colors[2], 1);
       ctx.setLineWidth(line_width);
 
+      logger.log('-- Start loop.');
       for (let i = 1; i < v_midlines; i++){
+        logger.log('Loop midlines - i = ' + i.toString());
         ctx.moveTo((i * graph_w / v_midlines) + unit_size, margin_up);
         ctx.relLineTo(0, graph_h);
         ctx.stroke();
@@ -228,8 +256,12 @@ StockPriceChartDesklet.prototype = {
       ctx.rectangle(unit_size, margin_up, graph_w, graph_h);
       ctx.stroke();
 
+      logger.log('Finish drawing on canvas.');
+
       return false;
     });
+
+    logger.log('Add text strings to canvas.');
 
     // Labels text, style and position
     this.text1.set_text(text1);
@@ -259,8 +291,32 @@ StockPriceChartDesklet.prototype = {
     // Update canvas
     canvas.invalidate();
 
-    this.canvas.set_content(canvas);
-    this.canvas.set_size(desklet_w, desklet_h);
+    this.clutterActor.set_content(canvas);
+    this.clutterActor.set_size(desklet_w, desklet_h);
+  },
+
+  newChartDraw: function() {
+    // Desklet proportions
+    const scaleSize = 1; //TODO scale_size is configurable
+    let unit_size = 15 * scaleSize * global.ui_scale;
+    var graph_w = 20 * unit_size;
+    var graph_h =  4 * unit_size;
+    let desklet_w = graph_w + (2 * unit_size);
+    let desklet_h = graph_h + (4 * unit_size);
+
+    let labels = ['20 Aug', '21 Aug', '22 Aug', '23 Aug', '24 Aug', '25 Aug'];
+    let values = [149, 108, 115, 122, 135, 148];
+
+    const chart = new ChartModule.ChartClass(labels, values);
+    const canvas = chart.drawCanvas(desklet_w, desklet_h);
+
+    // Update canvas
+    canvas.invalidate();
+
+    this.clutterActor.set_content(canvas);
+    this.clutterActor.set_size(desklet_w, desklet_h);
+
+    // Clutter.main();
   },
 
   parseRgbaValues: function(colorString) {
