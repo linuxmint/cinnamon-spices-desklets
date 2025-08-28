@@ -1,0 +1,80 @@
+# SYSTEM UPTIME
+# This file is put in the public domain.
+# KopfDesDaemons, 2024
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: systemUptime@KopfDesDaemons 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-07-31 22:57+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+
+#. metadata.json->name
+#. desklet.js:61
+msgid "System Uptime"
+msgstr "Rendszer üzemidő"
+
+#. desklet.js:69
+msgid "Uptime:"
+msgstr "Üzemidő:"
+
+#. desklet.js:70 desklet.js:79
+msgid "Loading..."
+msgstr "Betöltés..."
+
+#. desklet.js:76
+msgid "Start time:"
+msgstr "Indítási idő:"
+
+#. desklet.js:139
+msgid "days"
+msgstr "napok"
+
+#. desklet.js:139
+msgid "hrs"
+msgstr "óra"
+
+#. desklet.js:139
+msgid "min"
+msgstr "perc"
+
+#. desklet.js:146
+msgid "hours"
+msgstr "óra"
+
+#. desklet.js:146
+msgid "minutes"
+msgstr "perc"
+
+#. metadata.json->description
+msgid "Displays the current system uptime."
+msgstr "Megjeleníti a rendszer aktuális üzemidejét."
+
+#. settings-schema.json->head0->description
+msgid "Style"
+msgstr "Stílus"
+
+#. settings-schema.json->fontSize->description
+msgid "Font size"
+msgstr "Betűméret"
+
+#. settings-schema.json->colorLabel->description
+msgid "Label color"
+msgstr "Címke színe"
+
+#. settings-schema.json->showStartDate->description
+msgid "Show start date"
+msgstr "Indítási idő megjelenítése"
+
+#. settings-schema.json->showUptimeInDays->description
+msgid "Show uptime in days"
+msgstr "Üzemidő megjelenítése napokban"

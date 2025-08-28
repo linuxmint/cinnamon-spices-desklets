@@ -1,0 +1,461 @@
+# GOOGLE CALENDAR
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# slgobinath, 2017
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-04-21 23:14+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: amaraun <amaraun@gmail.com>\n"
+"Language-Team: \n"
+"Language: eu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. settings-schema.json->interval->description
+#. desklet.js:66 desklet.js:74
+msgid "Number of days to include"
+msgstr "Erakutsi beharreko egun kopurua"
+
+#. desklet.js:66 desklet.js:74
+msgid ": "
+msgstr ""
+
+#. metadata.json->name
+#. settings-schema.json->page_gcalendar->title
+#. desklet.js:126
+msgid "Google Calendar"
+msgstr "Google Egutegia"
+
+#. desklet.js:219
+msgid "Open Google Calendar"
+msgstr "Ireki Google Calendar"
+
+#. desklet.js:302
+#, fuzzy
+msgid "No events found"
+msgstr "Ez dago gertaerarik..."
+
+#. desklet.js:467
+msgid "gcalendar is not authorized"
+msgstr ""
+
+#. desklet.js:469
+msgid "gcalendar token expired"
+msgstr ""
+
+#. desklet.js:474
+msgid "Execute: "
+msgstr ""
+
+#. desklet.js:487
+msgid "Unknown Error"
+msgstr ""
+
+#. desklet.js:490
+msgid "Install gcalendar to use this desklet."
+msgstr ""
+
+#. desklet.js:491
+msgid "Visit: "
+msgstr ""
+
+#. desklet.js:529
+msgid "Unable to retrieve events..."
+msgstr "Ezin gertaerarik eskuratu..."
+
+#. lib/utility.js:158 lib/xdate.js:350
+msgid "AM"
+msgstr "AM"
+
+#. lib/utility.js:158 lib/xdate.js:351
+msgid "PM"
+msgstr "PM"
+
+#. lib/xdate.js:346
+msgid "January"
+msgstr "Urtarrila"
+
+#. lib/xdate.js:346
+msgid "February"
+msgstr "Otsaila"
+
+#. lib/xdate.js:346
+msgid "March"
+msgstr "Martxoa"
+
+#. lib/xdate.js:346
+msgid "April"
+msgstr "Apirila"
+
+#. lib/xdate.js:346
+#, fuzzy
+msgctxt "long"
+msgid "May"
+msgstr "Maiatza"
+
+#. lib/xdate.js:346
+msgid "June"
+msgstr "Ekaina"
+
+#. lib/xdate.js:346
+msgid "July"
+msgstr "Uztaila"
+
+#. lib/xdate.js:346
+msgid "August"
+msgstr "Abuztua"
+
+#. lib/xdate.js:346
+msgid "September"
+msgstr "Iraila"
+
+#. lib/xdate.js:346
+msgid "October"
+msgstr "Urria"
+
+#. lib/xdate.js:346
+msgid "November"
+msgstr "Azaroa"
+
+#. lib/xdate.js:346
+msgid "December"
+msgstr "Abendua"
+
+#. lib/xdate.js:347
+msgid "Jan"
+msgstr "Urt"
+
+#. lib/xdate.js:347
+msgid "Feb"
+msgstr "Ots"
+
+#. lib/xdate.js:347
+msgid "Mar"
+msgstr "Mar"
+
+#. lib/xdate.js:347
+msgid "Apr"
+msgstr "Apr"
+
+#. lib/xdate.js:347
+#, fuzzy
+msgctxt "short"
+msgid "May"
+msgstr "Maiatza"
+
+#. lib/xdate.js:347
+msgid "Jun"
+msgstr "Eka"
+
+#. lib/xdate.js:347
+msgid "Jul"
+msgstr "Uzt"
+
+#. lib/xdate.js:347
+msgid "Aug"
+msgstr "Abu"
+
+#. lib/xdate.js:347
+msgid "Sep"
+msgstr "Ira"
+
+#. lib/xdate.js:347
+msgid "Oct"
+msgstr "Urr"
+
+#. lib/xdate.js:347
+msgid "Nov"
+msgstr "Aza"
+
+#. lib/xdate.js:347
+msgid "Dec"
+msgstr "Abe"
+
+#. lib/xdate.js:348
+msgid "Sunday"
+msgstr "Igandea"
+
+#. lib/xdate.js:348
+msgid "Monday"
+msgstr "Astelehena"
+
+#. lib/xdate.js:348
+msgid "Tuesday"
+msgstr "Asteartea"
+
+#. lib/xdate.js:348
+msgid "Wednesday"
+msgstr "Asteazkena"
+
+#. lib/xdate.js:348
+msgid "Thursday"
+msgstr "Osteguna"
+
+#. lib/xdate.js:348
+msgid "Friday"
+msgstr "Ostirala"
+
+#. lib/xdate.js:348
+msgid "Saturday"
+msgstr "Larunbata"
+
+#. lib/xdate.js:349
+msgid "Sun"
+msgstr "Iga"
+
+#. lib/xdate.js:349
+msgid "Mon"
+msgstr "Asl"
+
+#. lib/xdate.js:349
+msgid "Tue"
+msgstr "Asr"
+
+#. lib/xdate.js:349
+msgid "Wed"
+msgstr "Asz"
+
+#. lib/xdate.js:349
+msgid "Thu"
+msgstr "Ost"
+
+#. lib/xdate.js:349
+msgid "Fri"
+msgstr "Ost"
+
+#. lib/xdate.js:349
+msgid "Sat"
+msgstr "Lab"
+
+#. metadata.json->description
+msgid "A desklet that displays your agenda based on Google Calendar"
+msgstr "Zure Google Egutegia erakusten duen deskleta"
+
+#. settings-schema.json->page_style->title
+#, fuzzy
+msgid "Desklet Style"
+msgstr "Deskletaren itxura"
+
+#. settings-schema.json->display0->description
+msgid "Google Calendar authentication"
+msgstr "Google Egutegia egiaztatu"
+
+#. settings-schema.json->clientId->description
+msgid "Client Id"
+msgstr "Bezeroaren IDa"
+
+#. settings-schema.json->clientId->tooltip
+msgid ""
+"Enter your Google calendar project client id. Leave it empty to use the "
+"default client id."
+msgstr ""
+"Sartu zure Google Egutegiaren proiektuaren Bezero IDa. Bete gabe utzi "
+"lehenetsitakoa erabiltzekotan."
+
+#. settings-schema.json->clientSecret->description
+msgid "Client secret"
+msgstr "Bezero-sekretua"
+
+#. settings-schema.json->clientSecret->tooltip
+msgid ""
+"Enter your Google calendar project client secret. Leave it empty to use the "
+"default client secret."
+msgstr ""
+"Sartu zure Google Egutegiaren proiektuaren Bezero-sekretua. Bete gabe utzi "
+"lehenetsitakoa erabiltzekotan."
+
+#. settings-schema.json->display1->description
+msgid "Calendar configuration"
+msgstr "Egutegiaren ezarpenak"
+
+#. settings-schema.json->gcalendarAccount->description
+msgid "gcalendar Account ID"
+msgstr ""
+
+#. settings-schema.json->gcalendarAccount->tooltip
+msgid "Enter gcalendar --account id"
+msgstr ""
+
+#. settings-schema.json->gcalendarAccount->options
+msgid "default"
+msgstr ""
+
+#. settings-schema.json->allNamesButton->description
+msgid "Fill in the list bellow with the names of all my calendars"
+msgstr ""
+
+#. settings-schema.json->allNamesButton->tooltip
+msgid ""
+"Click to fill in the list bellow with the names of all your calendars. It "
+"may take a little while."
+msgstr ""
+
+#. settings-schema.json->calendarNames->description
+#, fuzzy
+msgid "Display these calendars:"
+msgstr "Egutegiak bereizi"
+
+#. settings-schema.json->calendarNames->tooltip
+msgid "If you want to diplay a calendar, set it to TRUE (or check its box)."
+msgstr ""
+
+#. settings-schema.json->calendarNames->columns->title
+#, fuzzy
+msgid "Calendar"
+msgstr "Google Egutegia"
+
+#. settings-schema.json->calendarNames->columns->title
+msgid "Display it?"
+msgstr ""
+
+#. settings-schema.json->interval->tooltip
+msgid "Show the agenda for these number of days"
+msgstr "Erakutsi agenda egun kopuru honetarako"
+
+#. settings-schema.json->interval->units
+msgid "days"
+msgstr "egunak"
+
+#. settings-schema.json->delay->description
+msgid "Update every:"
+msgstr "Eguneratze maiztasuna:"
+
+#. settings-schema.json->delay->units
+msgid "minutes"
+msgstr "minutuak"
+
+#. settings-schema.json->date_format->description
+msgid "Date format"
+msgstr "Dataren formatua"
+
+#. settings-schema.json->date_format->tooltip
+msgid "Enter the date format here"
+msgstr "Sartu hemen dataren formatua"
+
+#. settings-schema.json->today_format->description
+msgid "Today format"
+msgstr "GAUR-eko formatua"
+
+#. settings-schema.json->today_format->tooltip
+msgid "Enter the today format here"
+msgstr "Sartu hemen GAUR adierazteko formatua"
+
+#. settings-schema.json->tomorrow_format->description
+msgid "Tomorrow format"
+msgstr "BIHAR-eko formatua"
+
+#. settings-schema.json->tomorrow_format->tooltip
+msgid "Enter the tomorrow format here"
+msgstr "Sartu hemen BIHAR adierazteko formatua"
+
+#. settings-schema.json->use_24h_clock->description
+msgid "Use 24h clock"
+msgstr "24 orduko ordutegia"
+
+#. settings-schema.json->use_24h_clock->tooltip
+msgid "Check to show time in 24h"
+msgstr "Aukeratu 24 orduko ordutegia erabiltzeko"
+
+#. settings-schema.json->zoom->units
+msgid "times"
+msgstr "bider"
+
+#. settings-schema.json->zoom->description
+msgid "Zoom by"
+msgstr "Zooma"
+
+#. settings-schema.json->zoom->tooltip
+msgid "Change the size of the desklet"
+msgstr "Deskletaren tamaina aldatu"
+
+#. settings-schema.json->transparency->description
+msgid "Transparency"
+msgstr "Gardentasuna"
+
+#. settings-schema.json->transparency->tooltip
+msgid "Set the transparency of the desklet"
+msgstr "Deskletaren gardentasuna ezarri"
+
+#. settings-schema.json->textcolor->description
+msgid "Text color"
+msgstr "Testuaren kolorea"
+
+#. settings-schema.json->textcolor->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Sakatu botoia testu kolorea aldatzeko"
+
+#. settings-schema.json->alldaytextcolor->description
+msgid "All day event text color"
+msgstr "Egun osoko gertaeraren kolorea"
+
+#. settings-schema.json->alldaytextcolor->tooltip
+msgid "Click the button to select a new all day event text color"
+msgstr "Sakatu botoia egun osoko kolorea aldatzeko"
+
+#. settings-schema.json->bgcolor->description
+msgid "Background color"
+msgstr "Atzealdeko kolorea"
+
+#. settings-schema.json->bgcolor->tooltip
+msgid "Click the button to select a new background color"
+msgstr "Sakatu botoia atzealdeko kolorea aldatzeko"
+
+#. settings-schema.json->diff_calendar->description
+msgid "Differentiate calendars"
+msgstr "Egutegiak bereizi"
+
+#. settings-schema.json->diff_calendar->tooltip
+msgid "Show color bullets in front of events"
+msgstr "Kolore desberdineko buletak gertaeretarako"
+
+#. settings-schema.json->show_location->description
+msgid "Show location"
+msgstr "Gertaeraren lekua erakutsi"
+
+#. settings-schema.json->show_location->tooltip
+msgid "Display the event location if available"
+msgstr "Eskura egonez gero, gertaeraren lekua erakusten du"
+
+#. settings-schema.json->location_color->description
+msgid "Location text color"
+msgstr "Gertaeraren testu kolorea"
+
+#. settings-schema.json->location_color->tooltip
+msgid "Click the button to select a new location text color"
+msgstr "Sakatu botoia gertaeraren testu kolorea aldatzeko"
+
+#. settings-schema.json->cornerradius->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->cornerradius->description
+msgid "Corner radius"
+msgstr "Izkinaren erradioa"
+
+#. settings-schema.json->cornerradius->tooltip
+msgid "Radius for rounding the desklet's corners"
+msgstr "Deskletaren izkinak borobiltzeko erradioa"
+
+#. settings-schema.json->display_mode->description
+msgid "Display mode"
+msgstr ""
+
+#. settings-schema.json->display_mode->options
+msgid "normal"
+msgstr ""
+
+#. settings-schema.json->display_mode->options
+msgid "compact"
+msgstr ""
+
+#. settings-schema.json->display_mode->options
+msgid "ultra compact"
+msgstr ""
