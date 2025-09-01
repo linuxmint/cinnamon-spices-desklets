@@ -8,14 +8,14 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2025-08-22 22:21+0200\n"
-"PO-Revision-Date: 2025-05-16 12:24-0400\n"
+"PO-Revision-Date: 2025-08-31 21:15-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.7\n"
 
 #. desklet.js:687
 msgid "Empty quotes list. Open settings and add some symbols."
@@ -555,15 +555,17 @@ msgstr "Color de tendencia sin cambios"
 
 #. settings-schema.json->unchangedTrendColor->tooltip
 msgid "Color of the unchanged trend"
-msgstr "Color de la tendencia sin cambios."
+msgstr "Color de la tendencia sin cambios"
 
 #. settings-schema.json->cacheAuthorizationParameters->description
 msgid "Cache authorization parameters"
-msgstr ""
+msgstr "Parámetros de autorización de la caché"
 
 #. settings-schema.json->cacheAuthorizationParameters->tooltip
 msgid "Remember fetched authorization parameters for desklet instance"
 msgstr ""
+"Recordar los parámetros de autorización recuperados para la instancia del "
+"desklet"
 
 #. settings-schema.json->sendCustomUserAgent->description
 msgid "Send custom User-Agent header"
