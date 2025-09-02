@@ -104,17 +104,22 @@ StockPriceChartDesklet.prototype = {
   on_desklet_added_to_desktop() {
     logger.log('Desklet added to desktop: ' + this.metadata.name + ' (Instance: ' + this.instanceId + ')');
 
-    this.clutterActor = new Clutter.Actor();
-    this.clutterActor.remove_all_children();
+    this.mainBox = new St.BoxLayout({
+      style_class: 'stock-price-chart_mainBox',
+    });
+
+    //TODO do I use this text?
     this.text1 = new St.Label();
     this.text2 = new St.Label();
     this.text3 = new St.Label();
-    this.clutterActor.add_actor(this.text1);
-    this.clutterActor.add_actor(this.text2);
-    this.clutterActor.add_actor(this.text3);
-    this.setContent(this.clutterActor);
+    this.mainBox.add_actor(this.text1);
+    this.mainBox.add_actor(this.text2);
+    this.mainBox.add_actor(this.text3);
+    this.setContent(this.mainBox);
 
     this.firstRun = true;
+
+    this.mainBox.style = "border: 1px solid rgba(90,90,90,1); border-radius: 12px;";
 
     // this.updateCanvasLoop();
     this.newChartDraw();
@@ -291,32 +296,32 @@ StockPriceChartDesklet.prototype = {
     // Update canvas
     canvas.invalidate();
 
-    this.clutterActor.set_content(canvas);
-    this.clutterActor.set_size(desklet_w, desklet_h);
+    this.mainBox.set_content(canvas);
+    this.mainBox.set_size(desklet_w, desklet_h);
   },
 
   newChartDraw: function() {
+    //TODO need .po files, follow the scripts in the readme
+
     // Desklet proportions
-    const scaleSize = 1; //TODO scale_size is configurable
-    let unit_size = 15 * scaleSize * global.ui_scale;
-    var graph_w = 20 * unit_size;
-    var graph_h =  4 * unit_size;
-    let desklet_w = graph_w + (2 * unit_size);
-    let desklet_h = graph_h + (4 * unit_size);
+    const scaleSize = 1.5; //TODO scale_size is configurable
+    const unitSize = 15 * scaleSize * global.ui_scale;
+    const graph_w = 20 * unitSize;
+    const graph_h =  4 * unitSize;
+    const desklet_w = graph_w + (2 * unitSize);
+    const desklet_h = graph_h + (4 * unitSize);
 
-    let labels = ['20 Aug', '21 Aug', '22 Aug', '23 Aug', '24 Aug', '25 Aug'];
-    let values = [149, 108, 115, 122, 135, 148];
+    //TODO dynamic values from API
+    const labels = ['20 Aug', '21 Aug', '22 Aug', '23 Aug', '24 Aug', '25 Aug', '26 Aug'];
+    const values = [149, 108, 115, 122, 135, 148, 142];
 
-    const chart = new ChartModule.ChartClass(labels, values);
-    const canvas = chart.drawCanvas(desklet_w, desklet_h);
+    const chartObject = new ChartModule.ChartClass(labels, values);
+    const canvas = chartObject.drawCanvas(desklet_w, desklet_h, unitSize);
 
-    // Update canvas
     canvas.invalidate();
 
-    this.clutterActor.set_content(canvas);
-    this.clutterActor.set_size(desklet_w, desklet_h);
-
-    // Clutter.main();
+    this.mainBox.set_content(canvas);
+    this.mainBox.set_size(desklet_w, desklet_h);
   },
 
   parseRgbaValues: function(colorString) {
