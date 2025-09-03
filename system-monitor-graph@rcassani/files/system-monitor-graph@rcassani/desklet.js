@@ -19,6 +19,122 @@ const KIB_TO_B = 1024;      // 1 KiB = 1,024 B
 const UUID = "system-monitor-graph@rcassani";
 const DESKLET_PATH = imports.ui.deskletManager.deskletMeta[UUID].path;
 
+// Global SSH connection manager for sharing connections between multiple desklet instances
+var SSHConnectionManager = {
+    connections: new Map(), // Map of "host:port" -> connection info
+    
+    getConnectionKey: function(host, port) {
+        return `${host}:${port || 22}`;
+    },
+    
+    getConnection: function(host, port) {
+        let key = this.getConnectionKey(host, port);
+        return this.connections.get(key);
+    },
+    
+    setConnection: function(host, port, connectionInfo) {
+        let key = this.getConnectionKey(host, port);
+        this.connections.set(key, connectionInfo);
+    },
+    
+    testConnection: function(host, port, ssh_key_path) {
+        let key = this.getConnectionKey(host, port);
+        let connInfo = this.connections.get(key);
+        
+        // Check if we have a recent test result
+        let now = Date.now();
+        if (connInfo && (now - connInfo.last_test) < 30000) { // 30 seconds cache
+            return connInfo.is_connected;
+        }
+        
+        // Initialize connection info if not exists
+        if (!connInfo) {
+            connInfo = {
+                last_test: 0,
+                is_connected: false,
+                active_instances: 0
+            };
+            this.connections.set(key, connInfo);
+        }
+        
+        connInfo.last_test = now;
+        
+        // Build test command
+        let ssh_args = ['ssh'];
+        if (port && port !== 22) {
+            ssh_args.push('-p', port.toString());
+        }
+        if (ssh_key_path) {
+            ssh_args.push('-i', ssh_key_path);
+        }
+        
+        ssh_args.push(
+            '-o', 'ConnectTimeout=5',
+            '-o', 'ServerAliveInterval=30',
+            '-o', 'ServerAliveCountMax=3',
+            '-o', 'ControlMaster=auto',
+            '-o', 'ControlPath=/tmp/ssh-monitor-%r@%h:%p',
+            '-o', 'ControlPersist=60',
+            '-o', 'BatchMode=yes',
+            '-o', 'StrictHostKeyChecking=no'
+        );
+        
+        ssh_args.push(host, 'echo "SSH_OK"');
+        
+        try {
+            let [success, pid, stdin, stdout, stderr] = GLib.spawn_async_with_pipes(
+                null, ssh_args, null,
+                GLib.SpawnFlags.DO_NOT_REAP_CHILD | GLib.SpawnFlags.SEARCH_PATH,
+                null
+            );
+
+            if (success) {
+                GLib.close(stdin);
+                GLib.close(stderr);
+                
+                let channel = GLib.IOChannel.unix_new(stdout);
+                let [status, output] = channel.read_to_end();
+                channel.shutdown(true);
+                
+                connInfo.is_connected = output.toString().trim() === "SSH_OK";
+                GLib.spawn_close_pid(pid);
+                return connInfo.is_connected;
+            }
+        } catch (error) {
+            global.logError("SSH connection test failed: " + error);
+        }
+        
+        connInfo.is_connected = false;
+        return false;
+    },
+    
+    registerInstance: function(host, port) {
+        let key = this.getConnectionKey(host, port);
+        let connInfo = this.connections.get(key);
+        if (!connInfo) {
+            connInfo = {
+                last_test: 0,
+                is_connected: false,
+                active_instances: 0
+            };
+            this.connections.set(key, connInfo);
+        }
+        connInfo.active_instances++;
+    },
+    
+    unregisterInstance: function(host, port) {
+        let key = this.getConnectionKey(host, port);
+        let connInfo = this.connections.get(key);
+        if (connInfo) {
+            connInfo.active_instances--;
+            if (connInfo.active_instances <= 0) {
+                // Clean up connection when no more instances are using it
+                this.connections.delete(key);
+            }
+        }
+    }
+};
+
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
 function _(str) {
@@ -42,6 +158,10 @@ SystemMonitorGraph.prototype = {
         // initialize settings
         this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
         this.settings.bindProperty(Settings.BindingDirection.IN, "type", "type", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "enable-ssh", "enable_ssh", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "ssh-host", "ssh_host", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "ssh-port", "ssh_port", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "ssh-key-path", "ssh_key_path", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "data-prefix-ram", "data_prefix_ram", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "data-prefix-swap", "data_prefix_swap", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "data-prefix-hdd", "data_prefix_hdd", this.on_setting_changed);
@@ -68,6 +188,15 @@ SystemMonitorGraph.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-gpu", "line_color_gpu", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-network-down", "line_color_network_down", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-network-up", "line_color_network_up", this.on_setting_changed);
+
+        // SSH connection cache and optimization
+        this.ssh_connection_key = null;
+        
+        // Register SSH connection if enabled and properly configured
+        if (this.enable_ssh && this.ssh_host && this.ssh_host.trim() !== '') {
+            SSHConnectionManager.registerInstance(this.ssh_host, this.ssh_port);
+            this.ssh_connection_key = SSHConnectionManager.getConnectionKey(this.ssh_host, this.ssh_port);
+        }
 
         // initialize desklet GUI
         this.setupUI();
@@ -159,8 +288,8 @@ SystemMonitorGraph.prototype = {
         let desklet_h = graph_h + (4 * unit_size);
         var h_midlines = this.h_midlines;
         var v_midlines = this.v_midlines;
-        let text1_size = (4 * unit_size / 3) / global.ui_scale;
-        let text2_size = (4 * unit_size / 3) / global.ui_scale;
+        let text1_size = (3.2 * unit_size / 3) / global.ui_scale;
+        let text2_size = (3.2 * unit_size / 3) / global.ui_scale;
         let text3_size = (3 * unit_size / 3) / global.ui_scale;
         var radius = 2 * unit_size / 3;;
         var degrees = Math.PI / 180.0;
@@ -178,14 +307,29 @@ SystemMonitorGraph.prototype = {
         // current values
         switch (this.type) {
           case "cpu":
-              this.get_cpu_use();
+              if (this.is_ssh_configured()) {
+                  this.get_cpu_use_ssh();
+              } else {
+                  this.get_cpu_use();
+              }
               value = this.cpu_use / 100;
               text1 = _("CPU");
               text2 = Math.round(this.cpu_use).toString() + "%";
+              if (this.enable_ssh) {
+                  if (this.is_ssh_configured()) {
+                      text1 += " (SSH)";
+                  } else {
+                      text1 += " (SSH: Sin configurar)";
+                  }
+              }
               break;
 
           case "ram":
-              this.get_ram_values();
+              if (this.is_ssh_configured()) {
+                  this.get_ram_values_ssh();
+              } else {
+                  this.get_ram_values();
+              }
               let ram_use = 100 * this.ram_values[1] / this.ram_values[0];
               value = ram_use / 100;
               let ram_prefix = "";
@@ -197,13 +341,24 @@ SystemMonitorGraph.prototype = {
                   ram_prefix =  _("GiB");
               }
               text1 = _("RAM");
+              if (this.enable_ssh) {
+                  if (this.is_ssh_configured()) {
+                      text1 += " (SSH)";
+                  } else {
+                      text1 += " (SSH: Sin configurar)";
+                  }
+              }
               text2 = Math.round(ram_use).toString() + "%"
               text3 = this.ram_values[1].toFixed(1) + " / "
                     + this.ram_values[0].toFixed(1) + " " + ram_prefix;
               break;
 
           case "swap":
-            this.get_swap_values();
+            if (this.is_ssh_configured()) {
+                this.get_swap_values_ssh();
+            } else {
+                this.get_swap_values();
+            }
             let swap_use = 100 * this.swap_values[1] / this.swap_values[0];
             value = swap_use / 100;
             let swap_prefix = "";
@@ -215,6 +370,13 @@ SystemMonitorGraph.prototype = {
                 swap_prefix =  _("GiB");
             }
             text1 = _("Swap");
+            if (this.enable_ssh) {
+                if (this.is_ssh_configured()) {
+                    text1 += " (SSH)";
+                } else {
+                    text1 += " (SSH: Sin configurar)";
+                }
+            }
             text2 = Math.round(swap_use).toString() + "%"
             text3 = this.swap_values[1].toFixed(1) + " / "
                   + this.swap_values[0].toFixed(1) + " " + swap_prefix;
@@ -223,7 +385,11 @@ SystemMonitorGraph.prototype = {
           case "hdd":
               let dir_path = decodeURIComponent(this.filesystem.replace("file://", "").trim());
               if(dir_path == null || dir_path == "") dir_path = "/";
-              this.get_hdd_values(dir_path);
+              if (this.is_ssh_configured()) {
+                  this.get_hdd_values_ssh(dir_path);
+              } else {
+                  this.get_hdd_values(dir_path);
+              }
               let hdd_use = Math.min(this.hdd_values[1], 100); //already in %
               value = hdd_use / 100;
               let hdd_prefix = "";
@@ -236,6 +402,13 @@ SystemMonitorGraph.prototype = {
               }
               text1 = this.filesystem_label;
               if (text1 == "") text1 = this.hdd_values[0].toString();
+              if (this.enable_ssh) {
+                  if (this.is_ssh_configured()) {
+                      text1 += " (SSH)";
+                  } else {
+                      text1 += " (SSH: Sin configurar)";
+                  }
+              }
               text2 = Math.round(hdd_use).toString() + "%"
               text3 = this.hdd_values[3].toFixed(0) + " " + hdd_prefix + " " + _("free of") + " "
                     + this.hdd_values[2].toFixed(0) + " " + hdd_prefix;
@@ -246,23 +419,46 @@ SystemMonitorGraph.prototype = {
                   case "usage":
                       switch (this.gpu_manufacturer) {
                           case "nvidia":
-                              this.get_nvidia_gpu_use();
+                              if (this.is_ssh_configured()) {
+                                  this.get_nvidia_gpu_use_ssh();
+                              } else {
+                                  this.get_nvidia_gpu_use();
+                              }
                               break;
                           case "amdgpu":
-                              this.get_amdgpu_gpu_use();
+                              if (this.is_ssh_configured()) {
+                                  this.get_amdgpu_gpu_use_ssh();
+                              } else {
+                                  this.get_amdgpu_gpu_use();
+                              }
                               break;
                       }
                       value = this.gpu_use / 100;
                       text1 = _("GPU Usage");
+                      if (this.enable_ssh) {
+                          if (this.is_ssh_configured()) {
+                              text1 += " (SSH)";
+                          } else {
+                              text1 += " (SSH: Sin configurar)";
+                          }
+                      }
                       text2 = Math.round(this.gpu_use).toString() + "%";
                       break;
                   case "memory":
                       switch (this.gpu_manufacturer) {
                           case "nvidia":
-                              this.get_nvidia_gpu_mem();
+                              if (this.is_ssh_configured()) {
+                                  this.get_nvidia_gpu_mem_ssh();
+                              } else {
+                                  this.get_nvidia_gpu_mem();
+                              }
                               break;
                           case "amdgpu":
-                              this.get_amdgpu_gpu_mem();
+                              if (this.is_ssh_configured()) {
+                                  this.get_amdgpu_gpu_mem_ssh();
+                              } else {
+                                  this.get_amdgpu_gpu_mem();
+                              }
                               break;
                       }
                       let gpu_mem_use = 100 * this.gpu_mem[1] / this.gpu_mem[0];
@@ -276,6 +472,13 @@ SystemMonitorGraph.prototype = {
                           gpumem_prefix =  _("GiB");
                       }
                       text1 = _("GPU Memory");
+                      if (this.enable_ssh) {
+                          if (this.is_ssh_configured()) {
+                              text1 += " (SSH)";
+                          } else {
+                              text1 += " (SSH: Sin configurar)";
+                          }
+                      }
                       text2 = Math.round(gpu_mem_use).toString() + "%"
                       text3 = this.gpu_mem[1].toFixed(1) + " / "
                             + this.gpu_mem[0].toFixed(1) + " " + gpumem_prefix;
@@ -284,10 +487,21 @@ SystemMonitorGraph.prototype = {
               break;
 
           case "network":
-              this.get_network_values();
+              if (this.is_ssh_configured()) {
+                  this.get_network_info_ssh();
+              } else {
+                  this.get_network_values();
+              }
               // For network, we don't use the single 'value' variable as we have dual lines
               value = 0; // Not used for network type
               text1 = _("Network");
+              if (this.enable_ssh) {
+                  if (this.is_ssh_configured()) {
+                      text1 += " (SSH)";
+                  } else {
+                      text1 += " (SSH: Sin configurar)";
+                  }
+              }
               
               // Format speeds with appropriate units
               let down_speed_formatted = this.format_network_speed(this.net_down_speed);
@@ -579,6 +793,30 @@ SystemMonitorGraph.prototype = {
     },
 
     on_setting_changed: function() {
+        // Handle SSH connection changes
+        let old_ssh_key = this.ssh_connection_key;
+        let new_ssh_key = null;
+        
+        if (this.enable_ssh && this.ssh_host && this.ssh_host.trim() !== '') {
+            new_ssh_key = SSHConnectionManager.getConnectionKey(this.ssh_host, this.ssh_port);
+        }
+        
+        // If SSH settings changed, update connection management
+        if (old_ssh_key !== new_ssh_key) {
+            // Unregister old connection
+            if (old_ssh_key && this.ssh_connection_key) {
+                let [old_host, old_port] = old_ssh_key.split(':');
+                SSHConnectionManager.unregisterInstance(old_host, parseInt(old_port));
+            }
+            
+            // Register new connection
+            if (new_ssh_key) {
+                SSHConnectionManager.registerInstance(this.ssh_host, this.ssh_port);
+            }
+            
+            this.ssh_connection_key = new_ssh_key;
+        }
+        
         // settings changed; instant refresh
         if (this.timeout) {
             Mainloop.source_remove(this.timeout);
@@ -590,6 +828,11 @@ SystemMonitorGraph.prototype = {
     on_desklet_removed: function() {
         if (this.timeout) {
             Mainloop.source_remove(this.timeout);
+        }
+        
+        // Unregister SSH connection
+        if (this.enable_ssh && this.ssh_host && this.ssh_host.trim() !== '') {
+            SSHConnectionManager.unregisterInstance(this.ssh_host, this.ssh_port);
         }
     },
 
@@ -963,6 +1206,449 @@ SystemMonitorGraph.prototype = {
         }
         GLib.free(contents);
       });
+    },
+
+    // SSH Connection Management - Optimized and Cached
+    build_ssh_command: function(remote_command) {
+        if (!this.enable_ssh || !this.ssh_host) {
+            return null;
+        }
+
+        let ssh_args = ['ssh'];
+        
+        // Add port if specified
+        if (this.ssh_port && this.ssh_port !== 22) {
+            ssh_args.push('-p', this.ssh_port.toString());
+        }
+        
+        // Add key file if specified
+        if (this.ssh_key_path) {
+            ssh_args.push('-i', this.ssh_key_path);
+        }
+        
+        // SSH optimization flags for monitoring
+        ssh_args.push(
+            '-o', 'ConnectTimeout=5',       // Quick timeout
+            '-o', 'ServerAliveInterval=30', // Keep alive
+            '-o', 'ServerAliveCountMax=3',  // Max retries
+            '-o', 'ControlMaster=auto',     // Connection reuse
+            '-o', 'ControlPath=/tmp/ssh-monitor-%r@%h:%p',
+            '-o', 'ControlPersist=60',      // Keep connection for 60s
+            '-o', 'BatchMode=yes',          // No interactive prompts
+            '-o', 'StrictHostKeyChecking=no' // Auto accept hosts (security consideration)
+        );
+        
+        ssh_args.push(this.ssh_host, remote_command);
+        
+        return ssh_args;
+    },
+
+    test_ssh_connection: function() {
+        if (!this.enable_ssh || !this.ssh_host || this.ssh_host.trim() === '') {
+            return false;
+        }
+        
+        return SSHConnectionManager.testConnection(this.ssh_host, this.ssh_port, this.ssh_key_path);
+    },
+
+    is_ssh_configured: function() {
+        return this.enable_ssh && 
+               this.ssh_host && 
+               this.ssh_host.trim() !== '' && 
+               this.ssh_host.trim() !== 'localhost' &&
+               this.ssh_host.trim() !== '127.0.0.1';
+    },
+
+    execute_ssh_command: function(command, callback) {
+        // Check if SSH is properly configured before attempting connection
+        if (!this.is_ssh_configured()) {
+            callback(null, "SSH not configured - please set host");
+            return;
+        }
+
+        if (!this.test_ssh_connection()) {
+            callback(null, "SSH connection failed");
+            return;
+        }
+
+        let ssh_command = this.build_ssh_command(command);
+        if (!ssh_command) {
+            callback(null, "Invalid SSH configuration");
+            return;
+        }
+
+        try {
+            let [success, pid, stdin, stdout, stderr] = GLib.spawn_async_with_pipes(
+                null, ssh_command, null,
+                GLib.SpawnFlags.DO_NOT_REAP_CHILD | GLib.SpawnFlags.SEARCH_PATH,
+                null
+            );
+
+            if (!success) {
+                callback(null, "Failed to execute SSH command");
+                return;
+            }
+
+            GLib.close(stdin);
+            
+            // Set up timeout for SSH command (5 seconds)
+            let timeout_id = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 5000, () => {
+                try {
+                    GLib.spawn_close_pid(pid);
+                } catch (e) {}
+                callback(null, "SSH command timeout");
+                return GLib.SOURCE_REMOVE;
+            });
+
+            let stdout_channel = GLib.IOChannel.unix_new(stdout);
+            let stderr_channel = GLib.IOChannel.unix_new(stderr);
+            
+            GLib.io_add_watch(stdout_channel, GLib.PRIORITY_DEFAULT, 
+                GLib.IOCondition.IN | GLib.IOCondition.HUP,
+                (channel, condition) => {
+                    if (condition === GLib.IOCondition.HUP) {
+                        channel.shutdown(true);
+                        GLib.source_remove(timeout_id);
+                        GLib.spawn_close_pid(pid);
+                        return GLib.SOURCE_REMOVE;
+                    }
+                    
+                    let [status, output] = channel.read_to_end();
+                    channel.shutdown(true);
+                    stderr_channel.shutdown(true);
+                    GLib.source_remove(timeout_id);
+                    GLib.spawn_close_pid(pid);
+                    
+                    callback(output.toString(), null);
+                    return GLib.SOURCE_REMOVE;
+                }
+            );
+
+        } catch (error) {
+            callback(null, "SSH execution error: " + error);
+        }
+    },
+
+    // SSH-enabled system monitoring functions
+    get_cpu_use_ssh: function() {
+        this.execute_ssh_command('cat /proc/stat | head -1', (output, error) => {
+            if (error) {
+                // Only log real errors, not configuration issues
+                if (!error.includes("not configured")) {
+                    global.logError("SSH CPU monitoring error: " + error);
+                }
+                this.cpu_use = 0;
+                return;
+            }
+            
+            let cpu_values = output.split(/\s+/);
+            let cpu_idl = parseFloat(cpu_values[4]);
+            let cpu_tot = 0;
+            for (let i = 1; i < 10; i++) {
+                cpu_tot += parseFloat(cpu_values[i]);
+            }
+            
+            this.cpu_use = 100 * (1 - (cpu_idl - this.cpu_cpu_idl) / (cpu_tot - this.cpu_cpu_tot));
+            this.cpu_cpu_tot = cpu_tot;
+            this.cpu_cpu_idl = cpu_idl;
+        });
+    },
+
+    get_ram_values_ssh: function() {
+        this.execute_ssh_command('cat /proc/meminfo | grep -E "MemTotal|MemAvailable"', (output, error) => {
+            if (error) {
+                if (!error.includes("not configured")) {
+                    global.logError("SSH RAM monitoring error: " + error);
+                }
+                this.ram_values = [0, 0];
+                return;
+            }
+            
+            let lines = output.split('\n');
+            let mem_tot = 0, mem_avl = 0;
+            
+            lines.forEach(line => {
+                if (line.includes('MemTotal')) {
+                    mem_tot = parseInt(line.match(/(\d+)/)[1]);
+                } else if (line.includes('MemAvailable')) {
+                    mem_avl = parseInt(line.match(/(\d+)/)[1]);
+                }
+            });
+            
+            let mem_usd = mem_tot - mem_avl;
+            let ram_tot, ram_usd;
+            
+            if (this.data_prefix_ram == 1) {
+                ram_tot = mem_tot * 1024 / GB_TO_B;
+                ram_usd = mem_usd * 1024 / GB_TO_B;
+            } else {
+                ram_tot = mem_tot / GIB_TO_KIB;
+                ram_usd = mem_usd / GIB_TO_KIB;
+            }
+            
+            this.ram_values = [ram_tot, ram_usd];
+        });
+    },
+
+    get_network_info_ssh: function() {
+        let interface_cmd = this.network_interface ? 
+            `cat /proc/net/dev | grep ${this.network_interface}` : 
+            'cat /proc/net/dev | tail -n +3';
+            
+        this.execute_ssh_command(interface_cmd, (output, error) => {
+            if (error) {
+                if (!error.includes("not configured")) {
+                    global.logError("SSH Network monitoring error: " + error);
+                }
+                this.net_down_speed = 0;
+                this.net_up_speed = 0;
+                return;
+            }
+            
+            // Parse network data similar to local implementation
+            let lines = output.split('\n').filter(line => line.trim());
+            let total_down = 0, total_up = 0;
+            
+            lines.forEach(line => {
+                let parts = line.trim().split(/[:\s]+/);
+                if (parts.length >= 10) {
+                    // Skip loopback interface
+                    if (parts[0] === 'lo') return;
+                    
+                    // If specific interface is configured, only monitor that one
+                    if (this.network_interface && this.network_interface.trim() !== '') {
+                        if (parts[0] !== this.network_interface.trim()) return;
+                    }
+                    
+                    total_down += parseInt(parts[1]) || 0;  // RX bytes
+                    total_up += parseInt(parts[9]) || 0;    // TX bytes
+                }
+            });
+            
+            // Calculate speeds
+            let now = Date.now() / 1000;
+            if (this.last_net_time) {
+                let time_diff = now - this.last_net_time;
+                if (time_diff > 0) {
+                    // Check for counter rollover
+                    let rx_delta = total_down >= this.last_net_down ? 
+                        (total_down - this.last_net_down) / time_diff : 0;
+                    let tx_delta = total_up >= this.last_net_up ? 
+                        (total_up - this.last_net_up) / time_diff : 0;
+                    
+                    // Sanity check for unrealistic speeds (> 10 GiB/s)
+                    const MAX_REASONABLE_SPEED = 10 * 1024 * 1024 * 1024;
+                    if (rx_delta > MAX_REASONABLE_SPEED) rx_delta = 0;
+                    if (tx_delta > MAX_REASONABLE_SPEED) tx_delta = 0;
+                    
+                    this.net_down_speed = Math.max(0, rx_delta);
+                    this.net_up_speed = Math.max(0, tx_delta);
+                    
+                    // Ensure arrays are initialized
+                    if (!this.net_down_values || !this.net_up_values) {
+                        this.net_down_values = new Array(this.n_values).fill(0.0);
+                        this.net_up_values = new Array(this.n_values).fill(0.0);
+                    }
+                    
+                    // Add to time series arrays
+                    this.net_down_values.push(this.net_down_speed);
+                    this.net_up_values.push(this.net_up_speed);
+                    this.net_down_values.shift();
+                    this.net_up_values.shift();
+                }
+            }
+            
+            this.last_net_time = now;
+            this.last_net_down = total_down;
+            this.last_net_up = total_up;
+        });
+    },
+
+    get_swap_values_ssh: function() {
+        this.execute_ssh_command('cat /proc/meminfo | grep -E "SwapTotal|SwapFree"', (output, error) => {
+            if (error) {
+                global.logError("SSH Swap monitoring error: " + error);
+                this.swap_values = [0, 0];
+                return;
+            }
+            
+            let lines = output.split('\n');
+            let swap_tot = 0, swap_free = 0;
+            
+            lines.forEach(line => {
+                if (line.includes('SwapTotal')) {
+                    swap_tot = parseInt(line.match(/(\d+)/)[1]);
+                } else if (line.includes('SwapFree')) {
+                    swap_free = parseInt(line.match(/(\d+)/)[1]);
+                }
+            });
+            
+            let swap_usd = swap_tot - swap_free;
+            let swap_total, swap_used;
+            
+            if (this.data_prefix_swap == 1) {
+                swap_total = swap_tot * 1024 / GB_TO_B;
+                swap_used = swap_usd * 1024 / GB_TO_B;
+            } else {
+                swap_total = swap_tot / GIB_TO_KIB;
+                swap_used = swap_usd / GIB_TO_KIB;
+            }
+            
+            this.swap_values = [swap_total, swap_used];
+        });
+    },
+
+    get_hdd_values_ssh: function(dir_path) {
+        let df_command = `df -k "${dir_path}" | tail -1`;
+        this.execute_ssh_command(df_command, (output, error) => {
+            if (error) {
+                global.logError("SSH HDD monitoring error: " + error);
+                this.hdd_values = [0, 0, 0, 0];
+                return;
+            }
+            
+            let parts = output.trim().split(/\s+/);
+            if (parts.length >= 6) {
+                let filesystem = parts[0].split('/').pop(); // Extract filesystem name
+                let total_kb = parseInt(parts[1]);
+                let used_kb = parseInt(parts[2]);
+                let free_kb = parseInt(parts[3]);
+                let use_percent = parseFloat(parts[4].replace('%', ''));
+                
+                let hdd_total, hdd_free;
+                
+                if (this.data_prefix_hdd == 1) {
+                    hdd_total = total_kb * 1024 / GB_TO_B;
+                    hdd_free = free_kb * 1024 / GB_TO_B;
+                } else {
+                    hdd_total = total_kb / GIB_TO_KIB;
+                    hdd_free = free_kb / GIB_TO_KIB;
+                }
+                
+                // Format: [filesystem, use_percent, total, free]
+                this.hdd_values = [filesystem, use_percent, hdd_total, hdd_free];
+            } else {
+                this.hdd_values = [dir_path, 0, 0, 0];
+            }
+        });
+    },
+
+    // SSH GPU monitoring functions
+    get_nvidia_gpu_use_ssh: function() {
+        let nvidia_command = `nvidia-smi --query-gpu=utilization.gpu --format=csv --id=${this.gpu_id}`;
+        this.execute_ssh_command(nvidia_command, (output, error) => {
+            if (error) {
+                global.logError("SSH NVIDIA GPU usage monitoring error: " + error);
+                this.gpu_use = 0;
+                return;
+            }
+            
+            let lines = output.split('\n').filter(line => line.trim());
+            if (lines.length >= 2) {
+                // Second line contains the usage percentage
+                let usage_line = lines[1].trim();
+                let usage_match = usage_line.match(/(\d+)/);
+                if (usage_match) {
+                    this.gpu_use = parseInt(usage_match[1]);
+                } else {
+                    this.gpu_use = 0;
+                }
+            } else {
+                this.gpu_use = 0;
+            }
+        });
+    },
+
+    get_nvidia_gpu_mem_ssh: function() {
+        let nvidia_command = `nvidia-smi --query-gpu=memory.total,memory.used --format=csv --id=${this.gpu_id}`;
+        this.execute_ssh_command(nvidia_command, (output, error) => {
+            if (error) {
+                global.logError("SSH NVIDIA GPU memory monitoring error: " + error);
+                this.gpu_mem = [0, 0];
+                return;
+            }
+            
+            let lines = output.split('\n').filter(line => line.trim());
+            if (lines.length >= 2) {
+                // Second line contains memory info
+                let mem_line = lines[1].trim();
+                let parts = mem_line.split(',');
+                if (parts.length >= 2) {
+                    let total_mb = parseInt(parts[0].trim().match(/(\d+)/)[1]);
+                    let used_mb = parseInt(parts[1].trim().match(/(\d+)/)[1]);
+                    
+                    let mem_tot, mem_usd;
+                    if (this.data_prefix_gpumem == 1) {
+                        // decimal prefix
+                        mem_tot = total_mb * 1024 * 1024 / GB_TO_B;
+                        mem_usd = used_mb * 1024 * 1024 / GB_TO_B;
+                    } else {
+                        // binary prefix
+                        mem_tot = total_mb / GIB_TO_MIB;
+                        mem_usd = used_mb / GIB_TO_MIB;
+                    }
+                    this.gpu_mem = [mem_tot, mem_usd];
+                } else {
+                    this.gpu_mem = [0, 0];
+                }
+            } else {
+                this.gpu_mem = [0, 0];
+            }
+        });
+    },
+
+    get_amdgpu_gpu_use_ssh: function() {
+        let gpu_dir = `/sys/class/drm/card${this.gpu_id}/device/`;
+        let amd_command = `cat ${gpu_dir}gpu_busy_percent`;
+        this.execute_ssh_command(amd_command, (output, error) => {
+            if (error) {
+                global.logError("SSH AMDGPU usage monitoring error: " + error);
+                this.gpu_use = 0;
+                return;
+            }
+            
+            let usage = parseInt(output.trim());
+            this.gpu_use = isNaN(usage) ? 0 : usage;
+        });
+    },
+
+    get_amdgpu_gpu_mem_ssh: function() {
+        let gpu_dir = `/sys/class/drm/card${this.gpu_id}/device/`;
+        let total_command = `cat ${gpu_dir}mem_info_vram_total`;
+        let used_command = `cat ${gpu_dir}mem_info_vram_used`;
+        
+        // Get total memory
+        this.execute_ssh_command(total_command, (total_output, total_error) => {
+            if (total_error) {
+                global.logError("SSH AMDGPU total memory error: " + total_error);
+                this.gpu_mem = [0, 0];
+                return;
+            }
+            
+            let total_bytes = parseInt(total_output.trim());
+            
+            // Get used memory
+            this.execute_ssh_command(used_command, (used_output, used_error) => {
+                if (used_error) {
+                    global.logError("SSH AMDGPU used memory error: " + used_error);
+                    this.gpu_mem = [0, 0];
+                    return;
+                }
+                
+                let used_bytes = parseInt(used_output.trim());
+                
+                let mem_tot, mem_usd;
+                if (this.data_prefix_gpumem == 1) {
+                    mem_tot = total_bytes / GB_TO_B;
+                    mem_usd = used_bytes / GB_TO_B;
+                } else {
+                    mem_tot = total_bytes / 1024 / 1024 / GIB_TO_MIB;
+                    mem_usd = used_bytes / 1024 / 1024 / GIB_TO_MIB;
+                }
+                
+                this.gpu_mem = [mem_tot, mem_usd];
+            });
+        });
     }
 
 };

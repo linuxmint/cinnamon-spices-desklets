@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: system-monitor-graph@rcassani 2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-08-27 21:38-0400\n"
+"POT-Creation-Date: 2025-09-03 00:00-0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,83 +18,87 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:183
+#. desklet.js:316
 msgid "CPU"
 msgstr ""
 
-#. desklet.js:194 desklet.js:212 desklet.js:232 desklet.js:273 desklet.js:547
-msgid "GB"
-msgstr ""
-
-#. desklet.js:197 desklet.js:215 desklet.js:235 desklet.js:276 desklet.js:561
-msgid "GiB"
-msgstr ""
-
 #. settings-schema.json->type->options
-#. desklet.js:199
+#. desklet.js:343
 msgid "RAM"
 msgstr ""
 
 #. settings-schema.json->type->options
-#. desklet.js:217
+#. desklet.js:372
 msgid "Swap"
 msgstr ""
 
-#. desklet.js:240
-msgid "free of"
-msgstr ""
-
-#. desklet.js:256
-msgid "GPU Usage"
-msgstr ""
-
-#. desklet.js:278
-msgid "GPU Memory"
-msgstr ""
-
 #. settings-schema.json->type->options
-#. desklet.js:290
+#. desklet.js:497
 msgid "Network"
 msgstr ""
 
-#. desklet.js:518 desklet.js:541
-msgid "b"
+#. desklet.js:437
+msgid "GPU Usage"
 msgstr ""
 
-#. desklet.js:520 desklet.js:555 desklet.js:569
-msgid "B"
+#. desklet.js:474
+msgid "GPU Memory"
 msgstr ""
 
-#. desklet.js:533
-msgid "Gb"
+#. desklet.js:413
+msgid "free of"
 msgstr ""
 
-#. desklet.js:536
-msgid "Mb"
+#. desklet.js:338 desklet.js:367 desklet.js:398 desklet.js:469 desklet.js:761
+msgid "GB"
 msgstr ""
 
-#. desklet.js:539
-msgid "Kb"
+#. desklet.js:341 desklet.js:370 desklet.js:401 desklet.js:472 desklet.js:775
+msgid "GiB"
 msgstr ""
 
-#. desklet.js:550
+#. desklet.js:764
 msgid "MB"
 msgstr ""
 
-#. desklet.js:553
-msgid "KB"
-msgstr ""
-
-#. desklet.js:564
+#. desklet.js:778
 msgid "MiB"
 msgstr ""
 
-#. desklet.js:567
+#. desklet.js:767
+msgid "KB"
+msgstr ""
+
+#. desklet.js:781
 msgid "KiB"
 msgstr ""
 
-#. desklet.js:844 desklet.js:882
-msgid "Error executing nvidia-smi command."
+#. desklet.js:734 desklet.js:769 desklet.js:783
+msgid "B"
+msgstr ""
+
+#. desklet.js:747
+msgid "Gb"
+msgstr ""
+
+#. desklet.js:750
+msgid "Mb"
+msgstr ""
+
+#. desklet.js:753
+msgid "Kb"
+msgstr ""
+
+#. desklet.js:732 desklet.js:755
+msgid "b"
+msgstr ""
+
+#. metadata.json->name
+msgid "System Monitor Graph"
+msgstr ""
+
+#. metadata.json->description
+msgid "A simple system monitor applet with a graph. It will show graphs for CPU, RAM, Swap, HDD, Network and GPU use. SSH support for remote monitoring."
 msgstr ""
 
 #. metadata.json->name

@@ -2,7 +2,7 @@
     "max-instances": "20",
     "uuid": "system-monitor-graph@rcassani",
     "name": "System monitor graph",
-    "description": "Creates graphs for system variables.",
-    "version": "2.0",
+    "description": "Creates graphs for system variables with SSH remote monitoring support.",
+    "version": "2.1",
     "prevent-decorations": true
 }

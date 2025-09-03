@@ -8,16 +8,100 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-08-27 21:38-0400\n"
-"PO-Revision-Date: 2021-11-29 15:20-0300\n"
-"Last-Translator: Marcelo Aof\n"
+"POT-Creation-Date: 2025-09-03 00:00-0000\n"
+"PO-Revision-Date: 2025-09-03 00:00-0000\n"
+"Last-Translator: chmodmasx\n"
 "Language-Team: \n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Manual\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. settings-schema.json->type->options
+#. desklet.js:316
+msgid "CPU"
+msgstr "CPU"
+
+#. settings-schema.json->type->options
+#. desklet.js:343
+msgid "RAM"
+msgstr "RAM"
+
+#. settings-schema.json->type->options
+#. desklet.js:372
+msgid "Swap"
+msgstr "Swap"
+
+#. settings-schema.json->type->options
+#. desklet.js:497
+msgid "Network"
+msgstr "Rede"
+
+#. desklet.js:437
+msgid "GPU Usage"
+msgstr "Uso da GPU"
+
+#. desklet.js:474
+msgid "GPU Memory"
+msgstr "Memória da GPU"
+
+#. desklet.js:413
+msgid "free of"
+msgstr "livre de"
+
+#. desklet.js:338 desklet.js:367 desklet.js:398 desklet.js:469 desklet.js:761
+msgid "GB"
+msgstr "GB"
+
+#. desklet.js:341 desklet.js:370 desklet.js:401 desklet.js:472 desklet.js:775
+msgid "GiB"
+msgstr "GiB"
+
+#. desklet.js:764
+msgid "MB"
+msgstr "MB"
+
+#. desklet.js:778
+msgid "MiB"
+msgstr "MiB"
+
+#. desklet.js:767
+msgid "KB"
+msgstr "KB"
+
+#. desklet.js:781
+msgid "KiB"
+msgstr "KiB"
+
+#. desklet.js:734 desklet.js:769 desklet.js:783
+msgid "B"
+msgstr "B"
+
+#. desklet.js:747
+msgid "Gb"
+msgstr "Gb"
+
+#. desklet.js:750
+msgid "Mb"
+msgstr "Mb"
+
+#. desklet.js:753
+msgid "Kb"
+msgstr "Kb"
+
+#. desklet.js:732 desklet.js:755
+msgid "b"
+msgstr "b"
+
+#. metadata.json->name
+msgid "System Monitor Graph"
+msgstr "Gráfico do Monitor do Sistema"
+
+#. metadata.json->description
+msgid "A simple system monitor applet with a graph. It will show graphs for CPU, RAM, Swap, HDD, Network and GPU use. SSH support for remote monitoring."
+msgstr "Um applet simples de monitoramento do sistema com gráfico. Mostrará gráficos para uso de CPU, RAM, Swap, HDD, Rede e GPU. Suporte SSH para monitoramento remoto."
 
 #. settings-schema.json->type->options
 #. desklet.js:183

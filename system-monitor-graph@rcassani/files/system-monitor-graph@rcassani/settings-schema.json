@@ -22,6 +22,36 @@
             "Network" : "network"
         }
     },
+    "enable-ssh": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Enable SSH remote monitoring",
+        "tooltip": "Enable remote system monitoring via SSH. Configure host below before enabling."
+    },
+    "ssh-host": {
+        "type": "entry",
+        "default": "",
+        "description": "SSH connection string (Required)",
+        "tooltip": "Format: user@hostname (e.g., user@domain/ip.tld). Must be configured before SSH connections will work.",
+        "dependency": "enable-ssh"
+    },
+    "ssh-port": {
+        "type": "spinbutton",
+        "default": 22,
+        "min": 1,
+        "max": 65535,
+        "step": 1,
+        "description": "SSH port",
+        "tooltip": "SSH port number (default: 22)",
+        "dependency": "enable-ssh"
+    },
+    "ssh-key-path": {
+        "type": "filechooser",
+        "default": "",
+        "description": "SSH private key path (optional)",
+        "tooltip": "Leave empty to use default SSH keys or password authentication",
+        "dependency": "enable-ssh"
+    },
     "data-prefix-ram": {
         "type": "combobox",
         "default": 0,
