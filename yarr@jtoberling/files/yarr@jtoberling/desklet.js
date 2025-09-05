@@ -240,7 +240,11 @@ class YarrDesklet extends Desklet.Desklet {
             // Initialize async managers
             this.timerManager = new TimerManager();
             this.uiUpdateManager = new UIUpdateManager();
-            this.uiUpdateManager.setUpdateCallback(() => this.displayItems());
+            this.uiUpdateManager.setUpdateCallback(() => {
+                if (this.uiDisplay && typeof this.uiDisplay.displayItems === 'function') {
+                    this.uiDisplay.displayItems();
+                }
+            });
             // AsyncErrorHandler is available from logger module
             this.asyncCommandExecutor = AsyncCommandExecutor;
 
@@ -1067,23 +1071,13 @@ class YarrDesklet extends Desklet.Desklet {
     // Internal method to perform the actual display update
     _performDisplayUpdate() {
         try {
-            Logger.debug(`_performDisplayUpdate called`);
-            Logger.debug(`uiUpdateManager available: ${!!this.uiUpdateManager}`);
-            Logger.debug(`uiUpdateManager.scheduleUpdate available: ${!!(this.uiUpdateManager && typeof this.uiUpdateManager.scheduleUpdate === 'function')}`);
-
-            // PERFORMANCE FIX: Removed timing tracking that was causing system lag
-
             // Use UI update manager for batching if available
             if (this.uiUpdateManager && typeof this.uiUpdateManager.scheduleUpdate === 'function') {
-                Logger.debug(`Using UI update manager for display update`);
                 this.uiUpdateManager.scheduleUpdate();
             } else {
-                Logger.debug(`UI update manager not available, using direct update`);
                 // Fallback: direct update with error handling
                 if (this.uiDisplay && typeof this.uiDisplay.displayItems === 'function') {
-                    Logger.debug(`Calling uiDisplay.displayItems() directly`);
                     this.uiDisplay.displayItems();
-                    Logger.debug(`uiDisplay.displayItems() completed`);
                 } else {
                     Logger.error("UI display not available for display update");
                 }
