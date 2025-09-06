@@ -256,8 +256,8 @@ MyDesklet.prototype = {
             text = text.replace(/&#x([0-9A-Fa-f]+);/g, (match, hex) => String.fromCharCode(parseInt(hex, 16)));
             this.setText(text, true);
 
-            if (this.PoemHistory.length > HistorySize)
-                this.PoemHistory.splice(Math.floor(Math.random() * this.PoemHistory.length), this.PoemHistory.length - HistorySize);
+            if (this.PoemHistory.length > this.HistorySize)
+                this.PoemHistory.splice(Math.floor(Math.random() * this.PoemHistory.length), this.PoemHistory.length - this.HistorySize);
             this.PoemHistory.push(text);
             this.settings._saveToFile();
         } else {
