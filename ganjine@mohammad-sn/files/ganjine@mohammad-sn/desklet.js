@@ -100,6 +100,7 @@ MyDesklet.prototype = {
         this.settings.bind("selected-poet", "selected_poet", this._updateBeyt);
         this.settings.bind("x-l", "XL", null);
         this.settings.bind("poem-history", "PoemHistory", null);
+	    this.settings.bind("history-size", "HistorySize", null);
 
         this._clipboard = St.Clipboard.get_default();
 
@@ -255,8 +256,8 @@ MyDesklet.prototype = {
             text = text.replace(/&#x([0-9A-Fa-f]+);/g, (match, hex) => String.fromCharCode(parseInt(hex, 16)));
             this.setText(text, true);
 
-            if (this.PoemHistory.length > 99)
-                this.PoemHistory.splice(Math.floor(Math.random() * this.PoemHistory.length), this.PoemHistory.length - 99);
+            if (this.PoemHistory.length > this.HistorySize)
+                this.PoemHistory.splice(Math.floor(Math.random() * this.PoemHistory.length), this.PoemHistory.length - this.HistorySize);
             this.PoemHistory.push(text);
             this.settings._saveToFile();
         } else {
