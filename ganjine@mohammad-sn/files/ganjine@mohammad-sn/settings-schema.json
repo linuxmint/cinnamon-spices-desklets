@@ -37,10 +37,8 @@
         "type": "spinbutton",
         "min": 1,
         "max": 99,
-        "units": "numbers",
         "step": 1,
-        "description": "Number of poems to keep in history",
-        "value": 1.0
+        "description": "Number of poems to keep in history"
     },
     "limit-poems": {
         "default": false,
