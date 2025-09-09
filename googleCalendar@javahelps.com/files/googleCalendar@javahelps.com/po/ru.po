@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-04-21 23:14+0200\n"
+"POT-Creation-Date: 2025-09-09 15:26+0200\n"
 "PO-Revision-Date: 2018-02-18 22:48+0500\n"
 "Last-Translator: Ilis <ilis@inbox.ru>\n"
 "Language-Team: \n"
@@ -27,7 +27,7 @@ msgstr "Число дней для повестки дня"
 
 #. desklet.js:66 desklet.js:74
 msgid ": "
-msgstr ""
+msgstr ": "
 
 #. metadata.json->name
 #. settings-schema.json->page_gcalendar->title
@@ -47,27 +47,27 @@ msgstr "События не найдены..."
 
 #. desklet.js:467
 msgid "gcalendar is not authorized"
-msgstr ""
+msgstr "gcalendar не авторизован"
 
 #. desklet.js:469
 msgid "gcalendar token expired"
-msgstr ""
+msgstr "gcalendar истек токен"
 
 #. desklet.js:474
 msgid "Execute: "
-msgstr ""
+msgstr "Выполнить: "
 
 #. desklet.js:487
 msgid "Unknown Error"
-msgstr ""
+msgstr "Неизвестная ошибка"
 
 #. desklet.js:490
 msgid "Install gcalendar to use this desklet."
-msgstr ""
+msgstr "Установить gcalendar для использования этого десклета."
 
 #. desklet.js:491
 msgid "Visit: "
-msgstr ""
+msgstr "Посетить: "
 
 #. desklet.js:529
 msgid "Unable to retrieve events..."
@@ -240,34 +240,32 @@ msgid "A desklet that displays your agenda based on Google Calendar"
 msgstr "Десклет, показывающий повестку дня из Календаря Google"
 
 #. settings-schema.json->page_style->title
-#, fuzzy
 msgid "Desklet Style"
-msgstr "Стиль десклета"
+msgstr "Отображение десклета"
 
 #. settings-schema.json->display0->description
-#, fuzzy
 msgid "Google Calendar authentication"
-msgstr "Календарь Google"
+msgstr "Авторизация в Календаре Google"
 
 #. settings-schema.json->clientId->description
 msgid "Client Id"
-msgstr ""
+msgstr "Client Id"
 
 #. settings-schema.json->clientId->tooltip
 msgid ""
 "Enter your Google calendar project client id. Leave it empty to use the "
 "default client id."
-msgstr ""
+msgstr "Укажите Client Id профиля Календаря Google. Оставьте пустым, чтобы использовать значение по умолчанию"
 
 #. settings-schema.json->clientSecret->description
 msgid "Client secret"
-msgstr ""
+msgstr "Client secret"
 
 #. settings-schema.json->clientSecret->tooltip
 msgid ""
 "Enter your Google calendar project client secret. Leave it empty to use the "
 "default client secret."
-msgstr ""
+msgstr "Укажите Сlient secret профиля Календаря Google. Оставьте пустым, чтобы использовать значение по умолчанию"
 
 #. settings-schema.json->display1->description
 msgid "Calendar configuration"
@@ -275,42 +273,42 @@ msgstr "Настройка календаря"
 
 #. settings-schema.json->gcalendarAccount->description
 msgid "gcalendar Account ID"
-msgstr ""
+msgstr "gcalendar Account ID"
 
 #. settings-schema.json->gcalendarAccount->tooltip
 msgid "Enter gcalendar --account id"
-msgstr ""
+msgstr "Введите: gcalendar --account id"
 
 #. settings-schema.json->gcalendarAccount->options
 msgid "default"
-msgstr ""
+msgstr "По умолчанию"
 
 #. settings-schema.json->allNamesButton->description
 msgid "Fill in the list bellow with the names of all my calendars"
-msgstr ""
+msgstr "Заполнить список ниже всеми доступными каленадрями"
 
 #. settings-schema.json->allNamesButton->tooltip
 msgid ""
 "Click to fill in the list bellow with the names of all your calendars. It "
 "may take a little while."
-msgstr ""
+msgstr "Нажмите, чтобы заполнить список ниже названиями всех ваших календарей. Это "
+"может занять некоторое время."
 
 #. settings-schema.json->calendarNames->description
 msgid "Display these calendars:"
-msgstr ""
+msgstr "Показывать эти календари:"
 
 #. settings-schema.json->calendarNames->tooltip
 msgid "If you want to diplay a calendar, set it to TRUE (or check its box)."
-msgstr ""
+msgstr "Если вы хотите отобразить календарь, установите для него значение TRUE (или установите флажок)."
 
 #. settings-schema.json->calendarNames->columns->title
-#, fuzzy
 msgid "Calendar"
 msgstr "Календарь Google"
 
 #. settings-schema.json->calendarNames->columns->title
 msgid "Display it?"
-msgstr ""
+msgstr "Отобразить?"
 
 #. settings-schema.json->interval->tooltip
 msgid "Show the agenda for these number of days"
@@ -318,7 +316,7 @@ msgstr "Показать повестку на указанное количес
 
 #. settings-schema.json->interval->units
 msgid "days"
-msgstr "дней"
+msgstr " дней"
 
 #. settings-schema.json->delay->description
 msgid "Update every:"
@@ -326,7 +324,7 @@ msgstr "Обновлять каждые:"
 
 #. settings-schema.json->delay->units
 msgid "minutes"
-msgstr "минут"
+msgstr " минут"
 
 #. settings-schema.json->date_format->description
 msgid "Date format"
@@ -390,12 +388,11 @@ msgstr "Нажмите кнопку для выбора цвета текста"
 
 #. settings-schema.json->alldaytextcolor->description
 msgid "All day event text color"
-msgstr ""
+msgstr "Цвет текста мероприятия на весь день"
 
 #. settings-schema.json->alldaytextcolor->tooltip
-#, fuzzy
 msgid "Click the button to select a new all day event text color"
-msgstr "Нажмите кнопку для выбора цвета текста"
+msgstr "Нажмите кнопку, чтобы выбрать новый цвет текста события на весь день."
 
 #. settings-schema.json->bgcolor->description
 msgid "Background color"
@@ -407,33 +404,31 @@ msgstr "Нажмите кнопку для выбора цвета фона"
 
 #. settings-schema.json->diff_calendar->description
 msgid "Differentiate calendars"
-msgstr ""
+msgstr "Разделять календари"
 
 #. settings-schema.json->diff_calendar->tooltip
 msgid "Show color bullets in front of events"
-msgstr ""
+msgstr "Показывать цветные маркеры перед событиями"
 
 #. settings-schema.json->show_location->description
 msgid "Show location"
-msgstr ""
+msgstr "Показывать местоположение"
 
 #. settings-schema.json->show_location->tooltip
 msgid "Display the event location if available"
-msgstr ""
+msgstr "Показывать местоположение мероприятия если доступно"
 
 #. settings-schema.json->location_color->description
-#, fuzzy
 msgid "Location text color"
-msgstr "Цвет текста"
+msgstr "Цвет текста местоположения"
 
 #. settings-schema.json->location_color->tooltip
-#, fuzzy
 msgid "Click the button to select a new location text color"
-msgstr "Нажмите кнопку для выбора цвета текста"
+msgstr "Нажмите кнопку, чтобы выбрать новый цвет текста местоположения."
 
 #. settings-schema.json->cornerradius->units
 msgid "px"
-msgstr "пк"
+msgstr "px"
 
 #. settings-schema.json->cornerradius->description
 msgid "Corner radius"
@@ -445,16 +440,16 @@ msgstr "Радиус закругления углов десклета"
 
 #. settings-schema.json->display_mode->description
 msgid "Display mode"
-msgstr ""
+msgstr "Режим отображения"
 
 #. settings-schema.json->display_mode->options
 msgid "normal"
-msgstr ""
+msgstr "нормальный"
 
 #. settings-schema.json->display_mode->options
 msgid "compact"
-msgstr ""
+msgstr "компактный"
 
 #. settings-schema.json->display_mode->options
 msgid "ultra compact"
-msgstr ""
+msgstr "ультра компактный"
