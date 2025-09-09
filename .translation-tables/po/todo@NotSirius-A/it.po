@@ -1,0 +1,284 @@
+# TODO DESKLET
+# This file is put in the public domain.
+# NotSirius-A, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: todo@NotSirius-A 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-06-26 19:13+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. settings-schema.json->todo-page->title
+#. MyToolBar.js:74 desklet.js:238
+msgid "TODO"
+msgstr "DA FARE"
+
+#. TODOList.js:263 TODOList.js:311 TODOList.js:365
+msgid "Are you sure you want to remove this task?"
+msgstr "Sei sicuro di voler rimuovere questa attività?"
+
+#. desklet.js:235
+msgid "Add new task"
+msgstr "Aggiungi nuova attività"
+
+#. metadata.json->description
+msgid "Themeable, customizable, and easy-to-use TODO desklet."
+msgstr "Desklet TODO tematico, personalizzabile e facile da usare."
+
+#. metadata.json->name
+msgid "TODO Desklet"
+msgstr "Desklet TODO"
+
+#. settings-schema.json->preferences-page->title
+msgid "Preferences"
+msgstr "Preferenze"
+
+#. settings-schema.json->theme-page->title
+msgid "Theme"
+msgstr "Tema"
+
+#. settings-schema.json->todo-section->title
+msgid "Add or modify your tasks here"
+msgstr "Aggiungi o modifica le tue attività qui"
+
+#. settings-schema.json->toolbar-preferences-section->title
+#. settings-schema.json->toolbar-theme-section->title
+msgid "Toolbar"
+msgstr "Barra degli strumenti"
+
+#. settings-schema.json->todo-preferences-section->title
+msgid "TODO list"
+msgstr "Lista TODO"
+
+#. settings-schema.json->layout-section->title
+msgid "Layout"
+msgstr "Layout"
+
+#. settings-schema.json->TODO-task-theme-section->title
+msgid "TODO tasks"
+msgstr "Attività TODO"
+
+#. settings-schema.json->desklet-decorations-section->title
+msgid "Desklet decorations"
+msgstr "Decorazioni desklet"
+
+#. settings-schema.json->todo-bottom-label->description
+msgid ""
+"How to use this desklet:\n"
+"You can add/edit tasks here or by interacting with the desklet itself:\n"
+" - Left-click on task name to edit it\n"
+" - Left-click on the task icon to mark it done/not done\n"
+" - Right-click to select multiple tasks (only relevant if using toolbar)\n"
+" - Middle-click to remove\n"
+" - If you want to add more tasks, right-click anywhere on the desklet and "
+"select the `Add new task` option inside the popup menu \n"
+"You can find more information about this desklet on its webpage."
+msgstr ""
+"Come usare questo desklet:\n"
+"Puoi aggiungere/modificare attività qui o interagendo direttamente con il "
+"desklet:\n"
+" - Clic sinistro sul nome dell’attività per modificarla\n"
+" - Clic sinistro sull’icona dell’attività per marcarla come completata/non "
+"completata\n"
+" - Clic destro per selezionare più attività (utile solo se usi la barra "
+"degli strumenti)\n"
+" - Clic centrale per rimuovere\n"
+" - Per aggiungere altre attività, clic destro in qualsiasi punto del desklet "
+"e seleziona ‘Aggiungi nuova attività’ dal menu\n"
+"Puoi trovare più informazioni su questo desklet nella sua pagina web."
+
+#. settings-schema.json->todo-list->columns->title
+msgid "Marked done"
+msgstr "Contrassegnato come fatto"
+
+#. settings-schema.json->todo-list->columns->title
+msgid "Name"
+msgstr "Nome"
+
+#. settings-schema.json->update-button->description
+msgid "Update"
+msgstr "Aggiorna"
+
+#. settings-schema.json->is-toolbar-enabled->description
+msgid "Enable toolbar"
+msgstr "Abilita barra degli strumenti"
+
+#. settings-schema.json->is-toolbar-enabled->tooltip
+msgid ""
+"Select if you want the toolbar to show up (tasks can be selected only when "
+"toolbar is enabled)."
+msgstr ""
+"Seleziona se vuoi mostrare la barra degli strumenti (le attività possono "
+"essere selezionate solo se la barra è abilitata)."
+
+#. settings-schema.json->is-sort-enabled->description
+msgid "Sort marked/not marked tasks"
+msgstr "Ordina attività marcate/non marcate"
+
+#. settings-schema.json->is-sort-enabled->tooltip
+msgid ""
+"Select if you tasks to be sorted based on whether they're marked done or not."
+msgstr ""
+"Seleziona se vuoi ordinare le attività in base allo stato di completamento."
+
+#. settings-schema.json->is-sort-reversed->description
+msgid "Reverse order"
+msgstr "Ordine invertito"
+
+#. settings-schema.json->is-sort-reversed->tooltip
+msgid "Select if you unmarked tasks to be at the top."
+msgstr "Seleziona per mettere le attività non completate in cima."
+
+#. settings-schema.json->column-number->description
+msgid "Number of columns"
+msgstr "Numero di colonne"
+
+#. settings-schema.json->column-number->tooltip
+msgid "Increase or decrease the number of columns on the layout."
+msgstr "Aumenta o diminuisci il numero di colonne nel layout."
+
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr "Ombreggiatura del testo"
+
+#. settings-schema.json->text-shadow-color->description
+msgid "Text shadow color"
+msgstr "Colore ombreggiatura del testo"
+
+#. settings-schema.json->show-decorations->description
+msgid "Show desklet decorations"
+msgstr "Mostra decorazioni desklet"
+
+#. settings-schema.json->font->description
+msgid "Font name (choose regular versions)"
+msgstr "Nome font (scegli versioni normali)"
+
+#. settings-schema.json->font->tooltip
+msgid "Change font family"
+msgstr "Cambia famiglia del font"
+
+#. settings-schema.json->font-bold->description
+msgid "Bold"
+msgstr "Grassetto"
+
+#. settings-schema.json->font-italic->description
+msgid "Italic"
+msgstr "Corsivo"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Colore del testo"
+
+#. settings-schema.json->text-color->tooltip
+msgid "Set the task text color."
+msgstr "Imposta il colore del testo delle attività."
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "fattore di scala"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size, mostly impacts width"
+msgstr "Dimensione desklet, influisce principalmente sulla larghezza"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Aumenta o diminuisci la dimensione di questo desklet usando questo fattore "
+"di scala."
+
+#. settings-schema.json->is-task-bg-transparent->description
+msgid "Transparent background"
+msgstr "Sfondo trasparente"
+
+#. settings-schema.json->is-task-bg-transparent->tooltip
+msgid "Select if you want a transparent background."
+msgstr "Seleziona se vuoi uno sfondo trasparente."
+
+#. settings-schema.json->task-background->description
+msgid "Task background"
+msgstr "Sfondo attività"
+
+#. settings-schema.json->task-background->tooltip
+msgid "Set the task background."
+msgstr "Imposta lo sfondo delle attività."
+
+#. settings-schema.json->task-icon-size->units
+#. settings-schema.json->toolbar-icon-size->units
+msgid "pixels"
+msgstr "pixel"
+
+#. settings-schema.json->task-icon-size->description
+msgid "Task icon size (set to 0 to disable icons)"
+msgstr "Dimensione icona attività (imposta a 0 per disabilitare le icone)"
+
+#. settings-schema.json->task-icon-size->tooltip
+msgid "Increase or decrease the icon size (set to 0 to disable icons)."
+msgstr "Aumenta o diminuisci la dimensione dell’icona (0 per disabilitarle)."
+
+#. settings-schema.json->task-marked-icon->description
+msgid "Icon marked"
+msgstr "Icona marcata"
+
+#. settings-schema.json->task-not-marked-icon->description
+msgid "Icon not marked"
+msgstr "Icona non marcata"
+
+#. settings-schema.json->toolbar-icon-size->description
+msgid "Toolbar icon size"
+msgstr "Dimensione icona barra strumenti"
+
+#. settings-schema.json->toolbar-icon-size->tooltip
+msgid "Increase or decrease the icon size."
+msgstr "Aumenta o diminuisci la dimensione dell’icona."
+
+#. settings-schema.json->toolbar-background->description
+msgid "Toolbar background"
+msgstr "Sfondo barra strumenti"
+
+#. settings-schema.json->toolbar-background->tooltip
+msgid "Set the toolbar background."
+msgstr "Imposta lo sfondo della barra strumenti."
+
+#. settings-schema.json->toolbar-font-color->description
+msgid "Toolbar icon color"
+msgstr "Colore icone barra strumenti"
+
+#. settings-schema.json->toolbar-font-color->tooltip
+msgid "Set the color of toolbar icons."
+msgstr "Imposta il colore delle icone della barra strumenti."
+
+#. settings-schema.json->desklet-decorations-note->description
+msgid ""
+"Following settings require desklet decorations to be enabled on your "
+"system.\n"
+"Desklet preferences are located in System Settings > Desklets > General "
+"Settings tab; there you will be able to enable border/header decorations."
+msgstr ""
+"Le seguenti impostazioni richiedono che le decorazioni dei desklet siano "
+"abilitate nel sistema.\n"
+"Le preferenze dei desklet si trovano in Impostazioni di sistema > Desklet > "
+"Scheda Impostazioni generali; lì puoi attivare le decorazioni di bordo e "
+"intestazione."
+
+#. settings-schema.json->desklet-header->description
+msgid "Desklet header"
+msgstr "Intestazione desklet"
+
+#. settings-schema.json->desklet-header->tooltip
+msgid ""
+"Set your desklet header. Make sure desklet headers are enabled in system "
+"settings."
+msgstr ""
+"Imposta l’intestazione del desklet. Verifica che le intestazioni desklet "
+"siano abilitate nelle impostazioni di sistema."

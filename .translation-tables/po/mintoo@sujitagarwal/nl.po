@@ -1,0 +1,138 @@
+# MINTOO - THE MINT ASSISTANT
+# This file is put in the public domain.
+# sujitagarwal, 2020
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mintoo@sujitagarwal 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-08-15 14:52-0400\n"
+"PO-Revision-Date: 2025-08-25 15:35+0200\n"
+"Last-Translator: qadzek\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. metadata.json->name
+msgid "Mintoo - The Mint Assistant"
+msgstr "Mintoo - de Mint Assistent"
+
+#. metadata.json->description
+msgid ""
+"A friendly assistant for your Linux Mint. Now with more features to "
+"customize the look and feel!"
+msgstr ""
+"Een vriendelijke assistent voor je Linux Mint. Nu met meer functies om het "
+"uiterlijk aan te passen!"
+
+#. settings-schema.json->head0->description
+msgid "Settings for Mintoo"
+msgstr "Instellingen voor Mintoo"
+
+#. settings-schema.json->desklet-size->units
+msgid "pixels"
+msgstr "pixels"
+
+#. settings-schema.json->desklet-size->description
+msgid "Desklet size"
+msgstr "Grootte van desklet"
+
+#. settings-schema.json->desklet-size->tooltip
+msgid "Increase or decrease the size of the Mintoo Desklet."
+msgstr "Vergroot of verklein de Mintoo desklet."
+
+#. settings-schema.json->button-color->description
+msgid "Button Color"
+msgstr "Knopkleur"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Linux Mint Green"
+msgstr "Linux Mint Groen"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Black"
+msgstr "Zwart"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Blue (Light)"
+msgstr "Blauw (licht)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Blue (Dark)"
+msgstr "Blauw (donker)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Green (Light)"
+msgstr "Groen (licht)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Green (Dark)"
+msgstr "Groen (donker)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Red (Light)"
+msgstr "Rood (licht)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Red (Dark)"
+msgstr "Rood (donker)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Purple (Light)"
+msgstr "Paars (licht)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Purple (Dark)"
+msgstr "Paars (donker)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Orange (Light)"
+msgstr "Oranje (licht)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Orange (Dark)"
+msgstr "Oranje (donker)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Pink (Light)"
+msgstr "Roze (licht)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Pink (Dark)"
+msgstr "Roze (donker)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Gray (Light)"
+msgstr "Grijs (licht)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Gray (Dark)"
+msgstr "Grijs (donker)"
+
+#. settings-schema.json->button-color->tooltip
+#. settings-schema.json->button-hover-color->tooltip
+msgid "Select the button hover style."
+msgstr "Selecteer de stijl van de knop bij hoveren met de muis."
+
+#. settings-schema.json->button-hover-color->description
+msgid "Button Hover Color"
+msgstr "Knopkleur bij hoveren"
