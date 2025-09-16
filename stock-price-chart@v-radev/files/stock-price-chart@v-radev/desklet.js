@@ -17,7 +17,9 @@ const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 imports.searchPath.unshift(`${DESKLET_DIR}/lib`);
 const LoggerModule = imports['logger'];
 const ChartModule = imports['chart'];
+const YahooModule = imports['yahoo_client'];
 const logger = new LoggerModule.LoggerClass();
+const yahooClient = new YahooModule.YahooClient();
 
 logger.setLogger(global.log); // Uncomment to enabled debugging
 
@@ -317,6 +319,19 @@ StockPriceChartDesklet.prototype = {
 
     const chartObject = new ChartModule.ChartClass(labels, values);
     const canvas = chartObject.drawCanvas(desklet_w, desklet_h, unitSize);
+
+    try {
+      const appleData = yahooClient.getTickerData(
+        'AAPL',
+        '1d',
+        new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+        new Date()
+      );
+
+      logger.log('Apple data: ' + JSON.stringify(appleData));
+    } catch (e) {
+      logger.log('Error fetching data from Yahoo Finance: ' + e.message);
+    }
 
     canvas.invalidate();
 

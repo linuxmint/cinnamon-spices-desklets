@@ -1,4 +1,3 @@
-
 class LoggerClassDeclaration {
   constructor() {
     this._logger = () => {};
