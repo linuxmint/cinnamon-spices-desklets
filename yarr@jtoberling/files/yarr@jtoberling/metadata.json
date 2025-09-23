@@ -2,7 +2,7 @@
   "max-instances": "1",
   "description": "Yet Another RSS Reader",
   "name": "Yet Another RSS Reader",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "uuid": "yarr@jtoberling",
   "multiversion": true,
   "author": "jtoberling",

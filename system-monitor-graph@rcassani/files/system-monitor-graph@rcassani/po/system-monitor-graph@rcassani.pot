@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: system-monitor-graph@rcassani 2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-08-01 22:18-0400\n"
+"POT-Creation-Date: 2025-08-27 21:38-0400\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -91,6 +91,10 @@ msgstr ""
 
 #. desklet.js:567
 msgid "KiB"
+msgstr ""
+
+#. desklet.js:844 desklet.js:882
+msgid "Error executing nvidia-smi command."
 msgstr ""
 
 #. metadata.json->name
