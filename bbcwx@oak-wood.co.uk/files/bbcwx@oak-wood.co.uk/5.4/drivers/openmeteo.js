@@ -50,15 +50,20 @@ var Driver = class Driver extends wxBase.Driver {
     };
 
     // process the forecast
-    let a = this._getWeather(this._baseURL, function (weather) {
-      if (weather) {
-        this._load_forecast(weather);
-      }
-      // get the main object to update the display
-      deskletObj.displayCurrent();
-      deskletObj.displayForecast();
-      deskletObj.displayMeta();
-    }, params);
+fetch(`${this._baseURL}?latitude=${params.latitude}&longitude=${params.longitude}&current=${params.current.join(',')}&daily=${params.daily.join(',')}&timezone=${params.timezone}`)
+  .then(response => response.json())
+  .then(weather => {
+    if (weather) {
+      this._load_forecast(weather);
+    }
+    // get the main object to update the display
+    deskletObj.displayCurrent();
+    deskletObj.displayForecast();
+    deskletObj.displayMeta();
+  })
+  .catch(error => {
+    console.error('Error fetching weather data:', error);
+  });
   }
 
   // process the data for a forecast and populate this.data
