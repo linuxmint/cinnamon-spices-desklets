@@ -1,0 +1,140 @@
+# Feed reader desklet for Cinnamon
+# This file is put in the public domain.
+# Daniel <d3vf4n (at) tutanota (dot) com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mintoo@sujitagarwal 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-08-15 14:52-0400\n"
+"PO-Revision-Date: 2025-09-29 03:47+0200\n"
+"Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.6\n"
+
+#. metadata.json->name
+msgid "Mintoo - The Mint Assistant"
+msgstr "Mintoo - l'assistent de Mint"
+
+#. metadata.json->description
+msgid ""
+"A friendly assistant for your Linux Mint. Now with more features to "
+"customize the look and feel!"
+msgstr ""
+"Un assistent amigable per a Linux Mint. Ara amb més funcionalitats i "
+"personalització d'estils!"
+
+#. settings-schema.json->head0->description
+msgid "Settings for Mintoo"
+msgstr "Opcions de Mintoo"
+
+#. settings-schema.json->desklet-size->units
+msgid "pixels"
+msgstr "píxels"
+
+#. settings-schema.json->desklet-size->description
+msgid "Desklet size"
+msgstr "Mida de la miniaplicació d'escriptori"
+
+#. settings-schema.json->desklet-size->tooltip
+msgid "Increase or decrease the size of the Mintoo Desklet."
+msgstr "Augmenteu o reduïu la mida del widget"
+
+#. settings-schema.json->button-color->description
+msgid "Button Color"
+msgstr "Color dels botons"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Linux Mint Green"
+msgstr "Verd Linux Mint"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Black"
+msgstr "Negre"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Blue (Light)"
+msgstr "Blau clar"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Blue (Dark)"
+msgstr "Blau fosc"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Green (Light)"
+msgstr "Verd clar"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Green (Dark)"
+msgstr "Verd fosc"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Red (Light)"
+msgstr "Vermell clar"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Red (Dark)"
+msgstr "Vermell fosc"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Purple (Light)"
+msgstr "Lila clar"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Purple (Dark)"
+msgstr "Lila fosc"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Orange (Light)"
+msgstr "Taronja clar"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Orange (Dark)"
+msgstr "Taronja fosc"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Pink (Light)"
+msgstr "Rosa clar"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Pink (Dark)"
+msgstr "Rosa fosc"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Gray (Light)"
+msgstr "Gris clar"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Gray (Dark)"
+msgstr "Gris fosc"
+
+#. settings-schema.json->button-color->tooltip
+#. settings-schema.json->button-hover-color->tooltip
+msgid "Select the button hover style."
+msgstr "Seleccioneu l'estil en passar per sobre dels botons"
+
+#. settings-schema.json->button-hover-color->description
+msgid "Button Hover Color"
+msgstr "Color dels botons en passar-hi el punter per sobre"

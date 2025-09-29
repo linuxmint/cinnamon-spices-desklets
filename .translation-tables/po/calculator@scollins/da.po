@@ -1,0 +1,137 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-14 23:35+0200\n"
+"PO-Revision-Date: 2020-12-09 17:26+0100\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"Language-Team: \n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:27 desklet.js:50
+msgid "Back"
+msgstr "Tilbage"
+
+#: desklet.js:28 desklet.js:52
+msgid "Reset"
+msgstr "Nulstil"
+
+#: desklet.js:51
+msgid "Clear Entry"
+msgstr "Ryd indtastning"
+
+#: desklet.js:53
+msgid "Copy to Clipboard"
+msgstr "Kopiér til udklipsholderen"
+
+#: desklet.js:54
+msgid "Paste from Clipboard"
+msgstr "Indsæt fra udklipsholderen"
+
+#: desklet.js:55
+msgid "Inverse"
+msgstr "Invers"
+
+#: desklet.js:58
+msgid "Swap Sign"
+msgstr "Skift fortegn"
+
+#: desklet.js:82
+msgid "Scientific Notation"
+msgstr "Videnskabelig notation"
+
+#: desklet.js:791
+msgid "Swap Entries"
+msgstr "Ombyt indtastninger"
+
+#: desklet.js:795
+msgid "Reciprocal"
+msgstr "Reciprok"
+
+#. settings-schema.json->angleMode->options
+#: desklet.js:1056
+msgid "Degrees"
+msgstr "Grader"
+
+#. settings-schema.json->angleMode->options
+#: desklet.js:1064
+msgid "Radians"
+msgstr "Radianer"
+
+#: desklet.js:1074
+msgid "RPN"
+msgstr "OPN"
+
+#: desklet.js:1083
+msgid "4-Function"
+msgstr "4-funktioner"
+
+#. settings-schema.json->layout->options
+#: desklet.js:1090
+msgid "Scientific"
+msgstr "Videnskabelig"
+
+#: desklet.js:1099
+msgid "Copy"
+msgstr "Kopiér"
+
+#: desklet.js:1103
+msgid "Paste"
+msgstr "Indsæt"
+
+#. metadata.json->name
+#: desklet.js:1109
+msgid "Desktop Calculator"
+msgstr "Skrivebordslommeregner"
+
+#. metadata.json->description
+msgid "A calculator Desklet"
+msgstr "Et lommeregner-skrivebordsprogram"
+
+#. settings-schema.json->style->description
+#. settings-schema.json->layout->description
+msgid "Style"
+msgstr "Stil"
+
+#. settings-schema.json->style->options
+msgid "Light"
+msgstr "Lys"
+
+#. settings-schema.json->style->options
+msgid "Dark"
+msgstr "Mørk"
+
+#. settings-schema.json->angleMode->description
+msgid "Angle Measure"
+msgstr "Vinkelmål"
+
+#. settings-schema.json->rpn->description
+msgid "Use Reverse-Polish Notation"
+msgstr "Anvend omvendt polsk notation"
+
+#. settings-schema.json->layout->options
+msgid "4-function"
+msgstr "4-funktioner"
+
+#. settings-schema.json->precision->description
+msgid "Precision"
+msgstr "Præcision"
+
+#. settings-schema.json->precision->units
+msgid "digits"
+msgstr "decimaler"
+
+#. settings-schema.json->raiseKey->description
+msgid "Raise to top shorcut key"
+msgstr "Genvejstast til at flytte øverst"

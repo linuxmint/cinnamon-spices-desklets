@@ -1,0 +1,360 @@
+# NOTE
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Marcelo Aof, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-05-03 11:37-0400\n"
+"PO-Revision-Date: 2021-09-28 22:12-0300\n"
+"Last-Translator: Marcelo Aof\n"
+"Language-Team: \n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. desklet.js:138
+msgid "Refresh"
+msgstr ""
+
+#. desklet.js:151
+msgid ""
+"Can't read text file.\n"
+"Select a file in settings.\n"
+"\n"
+"Click here to edit."
+msgstr ""
+"Não foi possível ler o arquivo de texto.\n"
+"Selecione um arquivo nas configurações.\n"
+"\n"
+"Clique aqui para editar."
+
+#. desklet.js:289
+msgid "Notepad"
+msgstr "Bloco de notas"
+
+#. metadata.json->description
+msgid "A desklet to display notes including various themes."
+msgstr ""
+"Um desklet que exibe anotações em uma grande variedade visual de notas."
+
+#. metadata.json->name
+#. settings-schema.json->note-section->title
+msgid "Note"
+msgstr "Anotação"
+
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
+msgid "General"
+msgstr "Visão geral"
+
+#. settings-schema.json->visual-page->title
+#. settings-schema.json->visual-section->title
+msgid "Visual"
+msgstr "Visual"
+
+#. settings-schema.json->label-section->title
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Rótulo personalizado do desklet (visível apenas se as decorações não "
+"estiverem escondidas)"
+
+#. settings-schema.json->note-taking-method->description
+msgid "Note Taking Method"
+msgstr ""
+
+#. settings-schema.json->note-taking-method->options
+msgid "Text File"
+msgstr "Arquivo de texto"
+
+#. settings-schema.json->note-taking-method->options
+msgid "Desklet Settings"
+msgstr "Configurações do Desklet"
+
+#. settings-schema.json->file->description
+msgid "Path to note text file"
+msgstr "Endereço do arquivo de texto (a anotação)"
+
+#. settings-schema.json->file->tooltip
+msgid "Select your text file, where to read from and save to."
+msgstr ""
+"Selecione o seu arquivo de texto, para ser lido e salvo no mesmo lugar."
+
+#. settings-schema.json->edit-cmd->description
+msgid "Command for editing this note (on mouse click)"
+msgstr "Comando para editar essa anotação (com um clique do mouse)"
+
+#. settings-schema.json->edit-cmd->tooltip
+msgid "%f will replaced by the text file path."
+msgstr "%f se refere ao endereço do arquivo de texto."
+
+#. settings-schema.json->note-text->description
+msgid "Write Your Note"
+msgstr ""
+
+#. settings-schema.json->style->description
+msgid "Notes style"
+msgstr "Estilo das anotações"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Black"
+msgstr "Nota adesiva - Preto"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Blue"
+msgstr "Nota adesiva - Azul"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Green"
+msgstr "Nota adesiva - Verde"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Orange"
+msgstr "Nota adesiva - Laranja"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Purple"
+msgstr "Nota adesiva - Roxo"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - White"
+msgstr "Nota adesiva - Branco"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Yellow"
+msgstr "Nota adesiva - Amarelo"
+
+#. settings-schema.json->style->options
+msgid "White Note - Black Button"
+msgstr "Nota branca - Alfinete preto"
+
+#. settings-schema.json->style->options
+msgid "White Note - Blue Button"
+msgstr "Nota branca - Alfinete azul"
+
+#. settings-schema.json->style->options
+msgid "White Note - Green Button"
+msgstr "Nota branca - Alfinete verde"
+
+#. settings-schema.json->style->options
+msgid "White Note - Red Button"
+msgstr "Nota branca - Alfinete vermelho"
+
+#. settings-schema.json->style->options
+msgid "White Note - Yellow Button"
+msgstr "Nota branca - Alfinete amarelo"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Black Clip"
+msgstr "Nota amarela - Clipe de papel preto"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Blue Clip"
+msgstr "Nota amarela - Clipe de papel azul"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Green Clip"
+msgstr "Nota amarela - Clipe de papel verde"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Jingle Clip"
+msgstr "Nota amarela - Clipe de papel listrado"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Red Clip"
+msgstr "Nota amarela - Clipe de papel vermelho"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Yellow Clip"
+msgstr "Nota amarela - Clipe de papel amarelo"
+
+#. settings-schema.json->style->options
+msgid "White Note - Black Magnet"
+msgstr "Nota branca - Ímã preto"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Blue Magnet"
+msgstr "Nota amarela - Ímã azul"
+
+#. settings-schema.json->style->options
+msgid "White Note - Lines and Red Magnet"
+msgstr "Nota branca com linhas - Ímã vermelho"
+
+#. settings-schema.json->style->options
+msgid "Black Note - White Magnet"
+msgstr "Nota preta - Ímã branco"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Yellow Magnet"
+msgstr "Nota amarela - Ímã amarelo"
+
+#. settings-schema.json->style->options
+msgid "Blue Paint Strokes"
+msgstr "Traços de tinta azul"
+
+#. settings-schema.json->style->options
+msgid "Green Paint Strokes"
+msgstr "Traços de tinta verde"
+
+#. settings-schema.json->style->options
+msgid "Purple Paint Strokes"
+msgstr "Traços de tinta roxa"
+
+#. settings-schema.json->style->options
+msgid "Red Paint Strokes"
+msgstr "Traços de tinta vermelha"
+
+#. settings-schema.json->style->options
+msgid "Yellow Paint Strokes"
+msgstr "Traços de tinta amarela"
+
+#. settings-schema.json->style->options
+msgid "White Note - Silver Spiral"
+msgstr "Nota branca - Espiral prateada"
+
+#. settings-schema.json->style->options
+msgid "White Note - Silver Spiral 2"
+msgstr "Nota branca - Espiral prateada 2"
+
+#. settings-schema.json->style->options
+msgid "White Note - Black Spiral"
+msgstr "Nota branca - Espiral preta"
+
+#. settings-schema.json->style->options
+msgid "White Note Large - Silver Spiral"
+msgstr "Nota branca grande - Espiral prateada"
+
+#. settings-schema.json->style->options
+msgid "Yellow Sticker"
+msgstr "Nota realista e amarela"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note (iOS Style)"
+msgstr "Nota amarela (estilo do iOS)"
+
+#. settings-schema.json->style->options
+msgid "Birch Bark"
+msgstr "Casca de bétula"
+
+#. settings-schema.json->style->options
+msgid "Burned Paper"
+msgstr "Papel queimado"
+
+#. settings-schema.json->style->options
+msgid "Clay Tablet"
+msgstr "Bloco de argila"
+
+#. settings-schema.json->style->options
+msgid "Coffee Stained"
+msgstr "Manchado de café"
+
+#. settings-schema.json->style->options
+msgid "Clipboard"
+msgstr "Prancheta"
+
+#. settings-schema.json->style->options
+msgid "None"
+msgstr "Nenhum"
+
+#. settings-schema.json->style->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Selecione a cor da anotação de sua preferência."
+
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr ""
+
+#. settings-schema.json->text-shadow-color->description
+#, fuzzy
+msgid "Text shadow color"
+msgstr "Cor do texto"
+
+#. settings-schema.json->bg-color->description
+msgid "Background color"
+msgstr ""
+
+#. settings-schema.json->bg-color->tooltip
+#, fuzzy
+msgid "Set the background color of this desklet."
+msgstr "Defina a cor do texto desse desklet."
+
+#. settings-schema.json->enable-word-wrap->description
+msgid "Enable word wrap"
+msgstr ""
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Esconder decorações do sistema"
+
+#. settings-schema.json->font->description
+msgid "Font"
+msgstr "Fonte"
+
+#. settings-schema.json->size-font->units
+msgid "pixels"
+msgstr "pixels"
+
+#. settings-schema.json->size-font->description
+msgid "Font size"
+msgstr "Tamanho da fonte"
+
+#. settings-schema.json->size-font->tooltip
+msgid "Increase or decrease the note font size."
+msgstr "Aumente ou diminua o tamanho da fonte da anotação."
+
+#. settings-schema.json->font-bold->description
+msgid "Bold"
+msgstr "Negrito"
+
+#. settings-schema.json->font-italic->description
+msgid "Italic"
+msgstr "Itálico"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Cor do texto"
+
+#. settings-schema.json->text-color->tooltip
+msgid "Set the text color of this desklet."
+msgstr "Defina a cor do texto desse desklet."
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "escala de proporção"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Tamanho do desklet"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Aumente ou diminua o tamanho desse desklet usando esta escala de proporção."
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Usar um rótulo personalizado do desklet"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Ao marcar essa opção, você poderá definir um rótulo personalizado no campo "
+"abaixo."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Rótulo personalizado do desklet"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr ""
+"Digite o seu rótulo personalizado aqui. Essa opção tem efeito quando a caixa "
+"de seleção acima estiver ativada."
