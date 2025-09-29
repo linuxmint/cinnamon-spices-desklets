@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2025-08-21 09:05-0400\n"
-"PO-Revision-Date: 2025-02-17 12:06+0100\n"
+"PO-Revision-Date: 2025-09-29 05:16+0200\n"
 "Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
 "Language-Team: \n"
 "Language: ca\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.6\n"
 
 #. metadata.json->description
 #. metadata.json->name
@@ -40,9 +40,8 @@ msgstr "Ajusts d'IA"
 
 #. settings-schema.json->page4->title
 #. settings-schema.json->section3->title
-#, fuzzy
 msgid "Debug settings"
-msgstr "Ajusts dels canals"
+msgstr "Opcions de debug"
 
 #. settings-schema.json->section1ai->title
 msgid "Display settings for AI feature"
@@ -50,7 +49,7 @@ msgstr "Ajusts de visualització de la IA"
 
 #. settings-schema.json->feeds->description
 msgid "Feed settings (supports RSS and Atom)"
-msgstr ""
+msgstr "Configuració de feeds (compatible amb RSS i Atom)"
 
 #. settings-schema.json->feeds->columns->title
 #. settings-schema.json->listfilter->columns->title
@@ -192,58 +191,67 @@ msgid ""
 "AI-powered article summarization using various language models. Configure "
 "your preferred AI service and summarization behavior."
 msgstr ""
+"Resum d'articles utilitzant IA mitjançant varis models de llenguatge. "
+"Configureu el vostre servei d'IA preferit i el comportament a l'hora de "
+"resumir."
 
 #. settings-schema.json->ai_enablesummary->description
 msgid "Enable AI article summarization"
-msgstr ""
+msgstr "Activar el resum d'articles via IA"
 
 #. settings-schema.json->ai_add_description_to_summary->description
 msgid "Include article description"
-msgstr ""
+msgstr "Incloure la descripció de l'article"
 
 #. settings-schema.json->ai_provider->description
 msgid "AI Service Provider"
-msgstr ""
+msgstr "Proveïdor de servei d'IA"
 
 #. settings-schema.json->ai_provider->options
 msgid "OpenAI (GPT models)"
-msgstr ""
+msgstr "OpenAI (models GPT)"
 
 #. settings-schema.json->ai_provider->options
 msgid "DeepSeek (coding focus)"
-msgstr ""
+msgstr "DeepSeek (centrat en programació)"
 
 #. settings-schema.json->ai_provider->options
 msgid "Anthropic (Claude models)"
-msgstr ""
+msgstr "Antròpic (models Claude)"
 
 #. settings-schema.json->ai_provider->tooltip
 msgid ""
 "Select your AI service provider. Each provider has different model "
 "capabilities and pricing."
 msgstr ""
+"Seleccioneu el vostre servei proveïdor d'IA. Cada proveïdor té diferents "
+"capacitats i preus."
 
 #. settings-schema.json->ai_use_custom_url->description
 msgid "Override default API endpoint"
-msgstr ""
+msgstr "Sobreescriu el punt de sortida de l'API per defecte"
 
 #. settings-schema.json->ai_use_custom_url->tooltip
 msgid "Enable to use a custom API endpoint instead of the provider's default"
 msgstr ""
+"Activeu-ho per a usar un punt de sortida d'API personalitzat en lloc del "
+"proveït per defecte"
 
 #. settings-schema.json->ai_url->description
 msgid "Custom API endpoint"
-msgstr ""
+msgstr "Punt de sortida d'API personalitzat"
 
 #. settings-schema.json->ai_url->tooltip
 msgid ""
 "Enter the API endpoint URL to override the default provider endpoint (useful "
 "for local models, custom deployments, etc.)"
 msgstr ""
+"Introduïu la URL del punt de sortida personalitzat per a sobreescriure el "
+"proveït per defecte (útil per a models locals)"
 
 #. settings-schema.json->ai_dumptool->description
 msgid "Content extractor"
-msgstr ""
+msgstr "Extractor de contingut"
 
 #. settings-schema.json->ai_dumptool->options
 msgid "w3m"
@@ -262,31 +270,33 @@ msgid ""
 "Tool to extract article content from web pages. Install: apt install w3m (or "
 "lynx/links)"
 msgstr ""
+"Eina per a extreure contingut d'articles de llocs web. Per a instal·lar: apt "
+"install w3m (o lynx/links)"
 
 #. settings-schema.json->ai_use_standard_model->description
 msgid "Model selection"
-msgstr ""
+msgstr "Selecció de model"
 
 #. settings-schema.json->ai_use_standard_model->tooltip
 msgid "Choose from predefined models or enter a custom model name"
 msgstr ""
+"Trieu entre els models predefinits o introduïu un nom de model personalitzat"
 
 #. settings-schema.json->ai_use_standard_model->options
 msgid "Predefined models"
-msgstr ""
+msgstr "Models predefinits"
 
 #. settings-schema.json->ai_use_standard_model->options
 msgid "Custom model"
-msgstr ""
+msgstr "Model personalitzat"
 
 #. settings-schema.json->ai_model->description
 msgid "Standard model to use"
 msgstr "Model estàndard a utilitzar"
 
 #. settings-schema.json->ai_model->options
-#, fuzzy
 msgid "gpt-5"
-msgstr "gpt-4"
+msgstr "gpt-5"
 
 #. settings-schema.json->ai_model->options
 msgid "gpt-4o"
@@ -297,9 +307,8 @@ msgid "gpt-4o-mini"
 msgstr "gpt-4o-mini"
 
 #. settings-schema.json->ai_model->options
-#, fuzzy
 msgid "gpt-4-turbo"
-msgstr "gpt-3.5-turbo"
+msgstr "gpt-4-turbo"
 
 #. settings-schema.json->ai_model->options
 msgid "gpt-4"
@@ -310,9 +319,8 @@ msgid "gpt-3.5-turbo"
 msgstr "gpt-3.5-turbo"
 
 #. settings-schema.json->ai_model->options
-#, fuzzy
 msgid "deepseek-chat"
-msgstr "deepseek-coder"
+msgstr "deepseek-chat"
 
 #. settings-schema.json->ai_model->options
 msgid "deepseek-coder"
@@ -323,29 +331,28 @@ msgid "deepseek-coder-v2:latest"
 msgstr "deepseek-coder-v2:latest"
 
 #. settings-schema.json->ai_model->options
-#, fuzzy
 msgid "deepseek-math"
-msgstr "deepseek-coder"
+msgstr "deepseek-math"
 
 #. settings-schema.json->ai_model->options
 msgid "claude-3-5-sonnet"
-msgstr ""
+msgstr "claude-3-5-sonnet"
 
 #. settings-schema.json->ai_model->options
 msgid "claude-3-5-haiku"
-msgstr ""
+msgstr "claude-3-5-haiku"
 
 #. settings-schema.json->ai_model->options
 msgid "claude-3-opus"
-msgstr ""
+msgstr "claude-3-opus"
 
 #. settings-schema.json->ai_model->options
 msgid "claude-3-sonnet"
-msgstr ""
+msgstr "claude-3-sonnet"
 
 #. settings-schema.json->ai_model->options
 msgid "claude-3-haiku"
-msgstr ""
+msgstr "claude-3-haiku"
 
 #. settings-schema.json->ai_model->tooltip
 msgid ""
@@ -355,81 +362,89 @@ msgid ""
 "Claude models via compatible APIs.\n"
 "Select 'Custom' to use your own model name."
 msgstr ""
+"GPT-5 és el model més recent (necessita accés a GPT-5).\n"
+"Els models GPT-4o ofereixen el millor valor rendiment/preu.\n"
+"Els models DeepSeek son bons per a programar.\n"
+"Els models Claude via APIs compatibles.\n"
+"Seleccioneu 'Personalitzat' per a utilitzar el nom del vostre model propi."
 
 #. settings-schema.json->ai_custom_model->description
 msgid "Custom model name"
-msgstr ""
+msgstr "Nom del model personalitzat"
 
 #. settings-schema.json->ai_custom_model->tooltip
 msgid "Enter the exact model name from your AI provider"
-msgstr ""
+msgstr "Introduïu el nom exacte del model del vostre proveïdor d'IA"
 
 #. settings-schema.json->ai_systemprompt->description
-#, fuzzy
 msgid "AI instructions"
 msgstr "Instruccions de la IA"
 
 #. settings-schema.json->ai_systemprompt->tooltip
 msgid "Instructions sent to the AI model before processing each article"
-msgstr ""
+msgstr "Instruccions enviades al model d'IA abans de processar cada article"
 
 #. settings-schema.json->ai_apikey->description
 msgid "Set API key"
-msgstr ""
+msgstr "Assigneu la clau de l'API"
 
 #. settings-schema.json->ai_example1->description
 msgid "Concise (4 sentences)"
-msgstr ""
+msgstr "Concís (4 frases)"
 
 #. settings-schema.json->ai_example2->description
 msgid "Bullet points"
-msgstr ""
+msgstr "Punts clau"
 
 #. settings-schema.json->ai_example3->description
 msgid "Technical"
-msgstr ""
+msgstr "Tècnic"
 
 #. settings-schema.json->ai_example4->description
 msgid "Creative"
-msgstr ""
+msgstr "Creatiu"
 
 #. settings-schema.json->ai_example5->description
 msgid "Professional"
-msgstr ""
+msgstr "Professional"
 
 #. settings-schema.json->ai_example6->description
 msgid "Minimal"
-msgstr ""
+msgstr "Minimalista"
 
 #. settings-schema.json->refreshsettingsbutton->description
 msgid "Refresh settings"
 msgstr "Aplica la configuració"
 
 #. settings-schema.json->refreshsettingsbutton->tooltip
-#, fuzzy
 msgid "Press this button to reload settings and update display immediately"
-msgstr "Premeu aquest botó per a carregar aquesta configuració"
+msgstr ""
+"Premeu aquest botó per a recarregar la configuració i actualitzar la mostra "
+"immediatament"
 
 #. settings-schema.json->refreshFeedsButton->description
-#, fuzzy
 msgid "Refresh RSS Feeds"
-msgstr "Aplica la configuració"
+msgstr "Actualitza els feeds RSS"
 
 #. settings-schema.json->refreshFeedsButton->tooltip
 msgid ""
 "Press this button to immediately refresh all RSS feeds and download new "
 "articles"
 msgstr ""
+"Premeu aquest botó per a refrescar immediatament tots els feeds RSS i "
+"descarregar els articles nous"
 
 #. settings-schema.json->searchRssButton->description
 msgid "Search for RSS & Atom feeds"
-msgstr ""
+msgstr "Busca feeds per RSS & Atom"
 
 #. settings-schema.json->searchRssButton->tooltip
 msgid ""
 "Search for RSS and Atom feeds from a website URL. Automatically detects both "
 "feed formats."
 msgstr ""
+"Busca feeds per RSS i Atom a una URL determinada. Detecta ambdós formats de "
+"feed automàticament."
 
 #. settings-schema.json->enablecopy->description
 msgid "Enable Copy to clipboard button"
@@ -477,53 +492,59 @@ msgstr ""
 
 #. settings-schema.json->showRefreshSeparators->description
 msgid "Show refresh separators between articles"
-msgstr ""
+msgstr "Mostra separadors d'actualització entre articles"
 
 #. settings-schema.json->showRefreshSeparators->tooltip
 msgid ""
 "Shows separator lines with timestamps between articles from different "
 "refresh batches"
 msgstr ""
+"Mostra línies de separació entre articles amb dates dels diferents temps "
+"d'actualització"
 
 #. settings-schema.json->enableDebugLogs->description
 msgid "Enable debug logs"
-msgstr ""
+msgstr "Activar els registres de debug"
 
 #. settings-schema.json->enableDebugLogs->tooltip
 msgid ""
 "When enabled, detailed debug information will be logged to the system logs. "
 "Only enable when troubleshooting issues."
 msgstr ""
+"En estar activat, es guardaran registres d'informació detallada de debug. "
+"Activeu-ho només amb l'objectiu de detectar o solucionar problemes."
 
 #. settings-schema.json->debugVerbosity->description
 msgid "Debug verbosity level"
-msgstr ""
+msgstr "Nivell de detall del debug"
 
 #. settings-schema.json->debugVerbosity->options
 msgid "minimal"
-msgstr ""
+msgstr "Minimalista"
 
 #. settings-schema.json->debugVerbosity->options
 msgid "basic"
-msgstr ""
+msgstr "Bàsic"
 
 #. settings-schema.json->debugVerbosity->options
 msgid "verbose"
-msgstr ""
+msgstr "Extens"
 
 #. settings-schema.json->debugVerbosity->tooltip
 msgid "Control how much debug information is logged"
-msgstr ""
+msgstr "Controleu quanta informació de debug es guarda"
 
 #. settings-schema.json->databasePath->description
 msgid "Database base directory"
-msgstr ""
+msgstr "Directori base de les bases de dades"
 
 #. settings-schema.json->databasePath->tooltip
 msgid ""
 "Base directory where separate Yarr databases are stored (yarr_favorites.db, "
 "yarr_read_status.db, etc.)"
 msgstr ""
+"Directori base on es guarden diferents bases de dades de Yarr per separat "
+"(yarr_favorites.db, yarr_read_status.db, etc.)"
 
 #. settings-schema.json->databaseInfo->description
 msgid ""
@@ -532,53 +553,64 @@ msgid ""
 "yarr_article_cache.db, yarr_feed_button_states.db, yarr_refresh.db, "
 "yarr_readstatus.db"
 msgstr ""
+"Yarr utilitza diferents bases de dades per diferents tipus de dades. Els "
+"noms són fixos i no es poden canviar: yarr_favorites.db, "
+"yarr_read_status.db, yarr_article_cache.db, yarr_feed_button_states.db, "
+"yarr_refresh.db, yarr_readstatus.db"
 
 #. settings-schema.json->showReadStatusCheckbox->description
 msgid "Show read status checkbox"
-msgstr ""
+msgstr "Mostra la casella d'estat de lectura"
 
 #. settings-schema.json->dimReadTitles->description
 msgid "Dim read article titles"
-msgstr ""
+msgstr "Atenua els títols dels articles llegits"
 
 #. settings-schema.json->dimReadTitles->tooltip
 msgid ""
 "When enabled, read titles are slightly dimmed for better visual distinction"
 msgstr ""
+"En estar activar, s'atenuen lleugerament els títols dels articles llegits "
+"per a una millor distinció visual"
 
 #. settings-schema.json->readTitleColor->description
 msgid "Color for read article titles"
-msgstr ""
+msgstr "Color pels títols dels articles llegits"
 
 #. settings-schema.json->readTitleColor->tooltip
 msgid "Choose a color applied to read titles"
-msgstr ""
+msgstr "Trieu un color que s'aplicarà als títols dels articles llegits"
 
 #. settings-schema.json->enableHeaderFeedButtons->description
-#, fuzzy
 msgid "Enable header feed buttons"
-msgstr "Amaga el botó del canal"
+msgstr "Activa els botons de la capçalera del feed"
 
 #. settings-schema.json->enableHeaderFeedButtons->tooltip
 msgid ""
 "Show toggleable feed buttons below the header to control which feeds are "
 "displayed in the article list"
 msgstr ""
+"Mostra botons a sota de la capçalera del feed que controlen quins feeds es "
+"mostren a la llista d'articles"
 
 #. settings-schema.json->openLookingGlass->description
 msgid "Open Looking Glass"
-msgstr ""
+msgstr "Obre Looking Glass"
 
 #. settings-schema.json->openLookingGlass->tooltip
 msgid ""
 "Opens Cinnamon's Looking Glass debugger to inspect the desklet's JavaScript "
 "context"
 msgstr ""
+"Obre el debugger Looking Glass de Cinnamon per a inspeccionar els contexts "
+"JavaScript de la miniaplicació d'escriptori"
 
 #. settings-schema.json->restartDesklet->description
 msgid "Restart desklet"
-msgstr ""
+msgstr "Reinicia la miniaplicació d'escriptori"
 
 #. settings-schema.json->restartDesklet->tooltip
 msgid "Restarts the desklet to reload all code and settings"
 msgstr ""
+"Reinicia la miniaplicació d'escriptori per a recarregar-ne totes les opcions "
+"i el codi"
