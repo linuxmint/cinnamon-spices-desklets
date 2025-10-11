@@ -34,23 +34,18 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     settings.bindProperty(Settings.BindingDirection.IN, "background-color", "backgroundColor", this._updateScrollViewStyle.bind(this));
 
     this.setHeader(_("Steam Games Starter"));
+    this._initUI();
     this._loadGamesAndSetupUI();
   }
 
-  async _loadGamesAndSetupUI() {
-    if (!this.mainContainer) {
-      this.mainContainer = new St.BoxLayout({ vertical: true, style_class: "main-container" });
-      this.mainContainer.add_child(UiHelper.createHeader(this.metadata.path, this._loadGamesAndSetupUI.bind(this)));
-    }
-    if (this.scrollView) {
-      this.mainContainer.remove_child(this.scrollView);
-      this.scrollView.destroy();
-    }
-    this.scrollView = new St.ScrollView({ overlay_scrollbars: true, clip_to_allocation: true });
-    this._updateScrollViewStyle();
+  _initUI() {
+    this.mainContainer = new St.BoxLayout({ vertical: true, style_class: "main-container" });
+    this.mainContainer.add_child(UiHelper.createHeader(this.metadata.path, this._loadGamesAndSetupUI.bind(this)));
+    this.setContent(this.mainContainer);
+  }
 
-    this.scrollView.add_actor(UiHelper.createLoadingView());
-    this.mainContainer.add_child(this.scrollView);
+  async _loadGamesAndSetupUI() {
+    this._setupLayout(true);
 
     this.error = null;
     this.games = [];
@@ -60,17 +55,12 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     } catch (e) {
       this.error = e;
       global.logError(`Error getting Steam games: ${e}`);
-    } finally {
-      this._setupLayout();
     }
+
+    this._setupLayout();
   }
 
-  _setupLayout() {
-    if (!this.mainContainer) {
-      this.mainContainer = new St.BoxLayout({ vertical: true, style_class: "main-container" });
-      this.mainContainer.add_child(UiHelper.createHeader(this.metadata.path, this._loadGamesAndSetupUI.bind(this)));
-    }
-
+  _setupLayout(loading = false) {
     const gamesToDisplay = this.games.slice(0, this.numberOfGames);
 
     if (this.scrollView) {
@@ -81,7 +71,9 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     this.scrollView = new St.ScrollView({ overlay_scrollbars: true, clip_to_allocation: true });
     this._updateScrollViewStyle();
 
-    if (this.error || gamesToDisplay.length === 0) {
+    if (loading) {
+      this.scrollView.add_actor(UiHelper.createLoadingView());
+    } else if (this.error || gamesToDisplay.length === 0) {
       this.scrollView.add_actor(UiHelper.createErrorView(this.error, gamesToDisplay.length > 0, this.metadata.path));
     } else {
       const gamesContainer = new St.BoxLayout({ vertical: true, style_class: "games-container" });
@@ -93,7 +85,6 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     }
 
     this.mainContainer.add_child(this.scrollView);
-    this.setContent(this.mainContainer);
   }
 
   _updateScrollViewStyle() {
