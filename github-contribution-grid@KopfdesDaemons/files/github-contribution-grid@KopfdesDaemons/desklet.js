@@ -8,6 +8,7 @@ const UUID = "github-contribution-grid@KopfdesDaemons";
 
 const { GitHubHelper } = require("./helpers/github.helper");
 const { Day } = require("./models/day.model");
+const { Week } = require("./models/week.model");
 
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
@@ -44,11 +45,13 @@ class MyDesklet extends Desklet.Desklet {
     }
 
     try {
-      const weeks = await GitHubHelper.getContributionData(this.githubUsername, this.githubToken);
+      const response = await GitHubHelper.getContributionData(this.githubUsername, this.githubToken);
 
-      const days = [];
+      const weeks = [];
 
-      for (const week of weeks) {
+      for (const week of response) {
+        const days = [];
+
         const contributionDays = week.contributionDays;
         for (const day of contributionDays) {
           const date = day.date;
@@ -56,12 +59,22 @@ class MyDesklet extends Desklet.Desklet {
 
           days.push(new Day(date, contributionCount));
         }
+        weeks.push(new Week(days));
       }
 
-      const box = new St.BoxLayout({ vertical: true, style_class: "main-container" });
-      for (const day of days) {
-        const label = new St.Label({ text: `${day.contributionCount}` });
-        box.add_child(label);
+      const box = new St.BoxLayout({ style_class: "main-container" });
+      for (const week of weeks) {
+        const weekBox = new St.BoxLayout({ vertical: true, style_class: "week-container" });
+
+        for (const day of week.contributionDays) {
+          const bin = new St.Bin({ style_class: "day-bin" });
+
+          const label = new St.Label({ text: `${day.contributionCount}`, style_class: "day-label" });
+          bin.set_child(label);
+          global.log(day.contributionCount);
+          weekBox.add_child(bin);
+        }
+        box.add_child(weekBox);
       }
       this.setContent(box);
     } catch (e) {
