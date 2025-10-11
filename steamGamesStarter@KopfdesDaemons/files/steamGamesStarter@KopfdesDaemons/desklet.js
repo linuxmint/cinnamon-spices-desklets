@@ -7,6 +7,8 @@ const Clutter = imports.gi.Clutter;
 const GdkPixbuf = imports.gi.GdkPixbuf;
 const Cogl = imports.gi.Cogl;
 const Settings = imports.ui.settings;
+const Util = imports.misc.util;
+const Gio = imports.gi.Gio;
 
 const UUID = "steamGamesStarter@KopfdesDaemons";
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
@@ -39,48 +41,58 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
   }
 
   // Load game data and set up the UI
-  _loadGamesAndSetupUI() {
+  async _loadGamesAndSetupUI() {
     try {
       this.error = null;
       this.games = [];
 
       // Set command prompt based on the installation type
-      this.steamInstallType === "flatpak" ? (this.cmdPromt = "flatpak run com.valvesoftware.Steam") : (this.cmdPromt = "/usr/games/steam");
+      this.cmdPromt = this.steamInstallType === "flatpak" ? "flatpak run com.valvesoftware.Steam" : "/usr/games/steam";
 
       // Get Steam library paths
       let libraryfoldersFilePath = GLib.get_home_dir() + "/.steam/steam/steamapps/libraryfolders.vdf";
       if (this.steamInstallType === "flatpak") {
         libraryfoldersFilePath = GLib.get_home_dir() + "/.var/app/com.valvesoftware.Steam/data/Steam/steamapps/libraryfolders.vdf";
       }
-      const libraryfoldersFileContent = GLib.file_get_contents(libraryfoldersFilePath)[1].toString();
+
+      const libraryfoldersFile = Gio.file_new_for_path(libraryfoldersFilePath);
+      const [, libraryfoldersFileContentBytes] = await new Promise(resolve =>
+        libraryfoldersFile.load_contents_async(null, (obj, res) => resolve(obj.load_contents_finish(res)))
+      );
+      const libraryfoldersFileContent = new TextDecoder("utf-8").decode(libraryfoldersFileContentBytes);
       const libraryPaths = this._extractLibraryPaths(libraryfoldersFileContent);
 
       // Find all appmanifest files in the library paths
       const appmanifestPaths = [];
       for (const path of libraryPaths) {
         const steamAppsPath = GLib.build_filenamev([path, "steamapps"]);
-        const [, out] = GLib.spawn_command_line_sync(`find "${steamAppsPath}" -name "*.acf"`);
-        if (out) {
-          appmanifestPaths.push(...out.toString().trim().split("\n"));
-        }
+        const out = await new Promise(resolve => Util.spawn_async(["find", steamAppsPath, "-name", "*.acf"], stdout => resolve(stdout)));
+        if (out) appmanifestPaths.push(...out.trim().split("\n"));
       }
 
       // Extract game info from each appmanifest file
+      const gamePromises = [];
       for (const path of appmanifestPaths) {
         if (path) {
-          const game = this._extractGameInfo(path);
-          if (game) this.games.push(game);
+          gamePromises.push(this._extractGameInfo(path));
         }
       }
+
+      const games = await Promise.all(gamePromises);
+      this.games = games.filter(game => game !== null);
     } catch (e) {
       this.error = e;
       global.logError(`Error initializing desklet: ${e}`);
+    } finally {
+      this._setupLayout();
     }
-    this._setupLayout();
   }
 
   // Setup the entire visual layout of the desklet
   _setupLayout() {
+    // Clear previous content
+    this.setContent(new St.BoxLayout());
+
     const mainContainer = new St.BoxLayout({ vertical: true, style_class: "main-container" });
 
     // Setup header
@@ -96,17 +108,17 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     headerContaier.add_child(reloadButton);
 
     // Filter and sort the games by last played date (newest first)
-    let sortedGames = this.games.filter((game) => game.lastPlayed).sort((a, b) => parseInt(b.lastPlayed, 10) - parseInt(a.lastPlayed, 10));
+    let sortedGames = this.games.filter(game => game.lastPlayed).sort((a, b) => parseInt(b.lastPlayed, 10) - parseInt(a.lastPlayed, 10));
 
     // Filter "Proton Experimental" and "Steam Linux Runtime 3.0 (sniper)" and "Steam Linux Runtime 2.0 (sniper)"
-    sortedGames = sortedGames.filter((game) => game.appid != "1628350" && game.appid != "1493710" && game.appid != "1391110");
+    sortedGames = sortedGames.filter(game => game.appid != "1628350" && game.appid != "1493710" && game.appid != "1391110");
 
     // Slice the games to display
     const gamesToDisplay = sortedGames.slice(0, this.numberOfGames);
 
     const gamesContainer = new St.BoxLayout({ vertical: true, style_class: "games-container" });
 
-    gamesToDisplay.forEach((game) => {
+    gamesToDisplay.forEach(game => {
       const gameContainer = new St.BoxLayout({ style_class: "game-container", reactive: true, track_hover: true });
 
       const imageActor = this._getGameHeaderImage(game.appid, 139, 72);
@@ -196,11 +208,16 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
   }
 
   // Helper to extract game info from an appmanifest file
-  _extractGameInfo(filePath) {
-    const content = GLib.file_get_contents(filePath)[1].toString();
-    const nameMatch = content.match(/"name"\s*"(.*?)"/);
-    const appidMatch = content.match(/"appid"\s*"(.*?)"/);
-    const lastPlayedMatch = content.match(/"LastPlayed"\s*"(.*?)"/);
+  async _extractGameInfo(filePath) {
+    const file = Gio.file_new_for_path(filePath);
+    const [, contentBytes] = await new Promise(resolve =>
+      file.load_contents_async(null, (obj, res) => resolve(obj.load_contents_finish(res)))
+    );
+    const content = new TextDecoder("utf-8").decode(contentBytes);
+
+    const nameMatch = /"name"\s*"(.*?)"/.exec(content);
+    const appidMatch = /"appid"\s*"(.*?)"/.exec(content);
+    const lastPlayedMatch = /"LastPlayed"\s*"(.*?)"/.exec(content);
 
     if (nameMatch && appidMatch && lastPlayedMatch) {
       return {
@@ -209,6 +226,7 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
         lastPlayed: lastPlayedMatch[1],
       };
     }
+    return null;
   }
 
   // Helper to create an actor from a Pixbuf
