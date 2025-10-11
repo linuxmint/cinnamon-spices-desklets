@@ -1,14 +1,12 @@
 const Desklet = imports.ui.desklet;
-const Lang = imports.lang;
 const St = imports.gi.St;
 const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
 const Clutter = imports.gi.Clutter;
-const GdkPixbuf = imports.gi.GdkPixbuf;
-const Cogl = imports.gi.Cogl;
 const Settings = imports.ui.settings;
-const Util = imports.misc.util;
-const Gio = imports.gi.Gio;
+
+const { ImageHelper } = require("./helpers/image.helper");
+const { SteamHelper } = require("./helpers/steam.helper");
 
 const UUID = "steamGamesStarter@KopfdesDaemons";
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
@@ -41,9 +39,7 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     this._loadGamesAndSetupUI();
   }
 
-  // Load game data and set up the UI
   async _loadGamesAndSetupUI() {
-    // First, set up the loading view
     if (!this.mainContainer) {
       this.mainContainer = new St.BoxLayout({ vertical: true, style_class: "main-container" });
       this._setupHeader();
@@ -57,48 +53,12 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
 
     this._setupLoadingView();
 
+    this.error = null;
+    this.games = [];
+    this.cmdPromt = this.steamInstallType === "flatpak" ? "flatpak run com.valvesoftware.Steam" : "/usr/games/steam";
+
     try {
-      this.error = null;
-      this.games = [];
-
-      // Set command prompt based on the installation type
-      this.cmdPromt = this.steamInstallType === "flatpak" ? "flatpak run com.valvesoftware.Steam" : "/usr/games/steam";
-
-      // Get Steam library paths
-      let libraryfoldersFilePath = GLib.get_home_dir() + "/.steam/steam/steamapps/libraryfolders.vdf";
-      if (this.steamInstallType === "flatpak") {
-        libraryfoldersFilePath = GLib.get_home_dir() + "/.var/app/com.valvesoftware.Steam/data/Steam/steamapps/libraryfolders.vdf";
-      }
-
-      const libraryfoldersFile = Gio.file_new_for_path(libraryfoldersFilePath);
-      if (!libraryfoldersFile.query_exists(null)) {
-        throw new Error(`Steam library file not found at: ${libraryfoldersFilePath}`);
-      }
-
-      const [success, libraryfoldersFileContentBytes] = await new Promise(resolve =>
-        libraryfoldersFile.load_contents_async(null, (obj, res) => resolve(obj.load_contents_finish(res)))
-      );
-      const libraryfoldersFileContent = new TextDecoder("utf-8").decode(libraryfoldersFileContentBytes);
-      const libraryPaths = this._extractLibraryPaths(libraryfoldersFileContent);
-
-      // Find all appmanifest files in the library paths
-      const appmanifestPaths = [];
-      for (const path of libraryPaths) {
-        const steamAppsPath = GLib.build_filenamev([path, "steamapps"]);
-        const out = await new Promise(resolve => Util.spawn_async(["find", steamAppsPath, "-name", "*.acf"], stdout => resolve(stdout)));
-        if (out) appmanifestPaths.push(...out.trim().split("\n"));
-      }
-
-      // Extract game info from each appmanifest file
-      const gamePromises = [];
-      for (const path of appmanifestPaths) {
-        if (path) {
-          gamePromises.push(this._extractGameInfo(path));
-        }
-      }
-
-      const games = await Promise.all(gamePromises);
-      this.games = games.filter(game => game !== null);
+      this.games = await SteamHelper.getGames(this.steamInstallType);
     } catch (e) {
       this.error = e;
       global.logError(`Error initializing desklet: ${e}`);
@@ -107,7 +67,6 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     }
   }
 
-  // Setup the entire visual layout of the desklet
   _setupLayout() {
     if (!this.mainContainer) {
       this.mainContainer = new St.BoxLayout({ vertical: true, style_class: "main-container" });
@@ -128,7 +87,7 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     gamesToDisplay.forEach(game => {
       const gameContainer = new St.BoxLayout({ style_class: "game-container", reactive: true, track_hover: true });
 
-      const imageActor = this._getGameHeaderImage(game.appid, 139, 72);
+      const imageActor = SteamHelper.getGameHeaderImage(game.appid, 139, 72);
       if (imageActor) {
         imageActor.connect("button-press-event", () => {
           GLib.spawn_command_line_async(`${this.cmdPromt} steam://store/${game.appid}`);
@@ -150,12 +109,12 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
 
       const buttonRow = new St.BoxLayout({ style: "spacing: 10px;" });
 
-      const playIcon = this._getImageAtScale(`${this.metadata.path}/play.svg`, 22, 22);
+      const playIcon = ImageHelper.getImageAtScale(`${this.metadata.path}/play.svg`, 22, 22);
       const playButton = new St.Button({ child: playIcon, style_class: "play-button" });
       playButton.connect("clicked", () => GLib.spawn_command_line_async(`${this.cmdPromt} steam://rungameid/${game.appid}`));
       buttonRow.add_child(playButton);
 
-      const shopIcon = this._getImageAtScale(`${this.metadata.path}/shop.svg`, 22, 22);
+      const shopIcon = ImageHelper.getImageAtScale(`${this.metadata.path}/shop.svg`, 22, 22);
       const shopButton = new St.Button({ child: shopIcon, style_class: "shop-button" });
       shopButton.connect("clicked", () => GLib.spawn_command_line_async(`${this.cmdPromt} steam://store/${game.appid}`));
       buttonRow.add_child(shopButton);
@@ -167,7 +126,7 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
 
     const errorLayout = new St.BoxLayout({ style_class: "error-layout", vertical: true });
 
-    const errorIcon = this._getImageAtScale(`${this.metadata.path}/error.svg`, 48, 48);
+    const errorIcon = ImageHelper.getImageAtScale(`${this.metadata.path}/error.svg`, 48, 48);
     const iconBin = new St.Bin({ child: errorIcon, style_class: "error-icon" });
     errorLayout.add_child(iconBin);
 
@@ -211,7 +170,7 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     headerContainer.add_child(new St.Label({ text: _("Steam Games Starter"), style_class: "header-label" }));
     headerContainer.add_child(new St.BoxLayout({ x_expand: true }));
     const reloadButton = new St.Button({
-      child: this._getImageAtScale(`${this.metadata.path}/reload.svg`, 24, 24),
+      child: ImageHelper.getImageAtScale(`${this.metadata.path}/reload.svg`, 24, 24),
       style_class: "reload-button",
     });
     reloadButton.connect("clicked", () => this._loadGamesAndSetupUI());
@@ -226,104 +185,6 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     this.scrollView.add_actor(box);
     this.mainContainer.add_child(this.scrollView);
     this.setContent(this.mainContainer);
-  }
-
-  // Helper to read the paths of the Steam library folders
-  _extractLibraryPaths(vdfString) {
-    const paths = [];
-    const regex = /"path"\s*"(.*?)"/g;
-    let match;
-    while ((match = regex.exec(vdfString)) !== null) {
-      if (!match[0].includes("debian-installation")) {
-        paths.push(match[1]);
-      }
-    }
-    return paths;
-  }
-
-  // Helper to extract game info from an appmanifest file
-  async _extractGameInfo(filePath) {
-    const file = Gio.file_new_for_path(filePath);
-    const [, contentBytes] = await new Promise(resolve =>
-      file.load_contents_async(null, (obj, res) => resolve(obj.load_contents_finish(res)))
-    );
-    const content = new TextDecoder("utf-8").decode(contentBytes);
-
-    const nameMatch = /"name"\s*"(.*?)"/.exec(content);
-    const appidMatch = /"appid"\s*"(.*?)"/.exec(content);
-    const lastPlayedMatch = /"LastPlayed"\s*"(.*?)"/.exec(content);
-
-    if (nameMatch && appidMatch && lastPlayedMatch) {
-      return {
-        name: nameMatch[1],
-        appid: appidMatch[1],
-        lastPlayed: lastPlayedMatch[1],
-      };
-    }
-    return null;
-  }
-
-  // Helper to create an actor from a Pixbuf
-  _createActorFromPixbuf(pixBuf) {
-    const pixelFormat = pixBuf.get_has_alpha() ? Cogl.PixelFormat.RGBA_8888 : Cogl.PixelFormat.RGB_888;
-    const image = new Clutter.Image();
-    image.set_data(pixBuf.get_pixels(), pixelFormat, pixBuf.get_width(), pixBuf.get_height(), pixBuf.get_rowstride());
-
-    return new Clutter.Actor({
-      content: image,
-      width: pixBuf.get_width(),
-      height: pixBuf.get_height(),
-    });
-  }
-
-  // Helper to load a game's header image from the Steam appcache
-  _getGameHeaderImage(appid, requestedWidth, requestedHeight) {
-    const appCachePath = GLib.get_home_dir() + "/.steam/steam/appcache/librarycache/";
-    const commonImageNames = ["header.jpg", "library_header.jpg", "library_hero.jpg"];
-
-    let imagePath = null;
-    for (const name of commonImageNames) {
-      const potentialPath = GLib.build_filenamev([appCachePath, appid, name]);
-      if (GLib.file_test(potentialPath, GLib.FileTest.EXISTS)) {
-        imagePath = potentialPath;
-        break;
-      }
-    }
-
-    let pixBuf = null;
-    if (imagePath) {
-      try {
-        pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(imagePath, requestedWidth, requestedHeight);
-      } catch (e) {
-        global.logError(`Error loading image ${imagePath}: ${e}`);
-      }
-    }
-
-    if (pixBuf) {
-      const imageActor = this._createActorFromPixbuf(pixBuf);
-
-      const clickableBin = new St.Bin({
-        reactive: true,
-        width: pixBuf.get_width(),
-        height: pixBuf.get_height(),
-      });
-      clickableBin.set_child(imageActor);
-      return clickableBin;
-    }
-
-    global.logError(`Could not load an image for appid ${appid}`);
-    return new St.Label({ text: "Error" });
-  }
-
-  // Helper to load and scale an SVG image
-  _getImageAtScale(imageFileName, requestedWidth, requestedHeight) {
-    try {
-      const pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(imageFileName, requestedWidth, requestedHeight);
-      return this._createActorFromPixbuf(pixBuf);
-    } catch (e) {
-      global.logError(`Error loading image ${imageFileName}: ${e}`);
-      return new St.Label({ text: "Error" });
-    }
   }
 
   _updateScrollViewStyle() {
