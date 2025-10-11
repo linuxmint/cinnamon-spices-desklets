@@ -27,6 +27,7 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     this.numberOfGames = 10;
     this.maxDeskletHeight = 400;
     this.scrollView = null;
+    this.mainContainer = null;
     this.backgroundColor = "rgba(58, 64, 74, 0.5)";
 
     // Setup settings and bind them to properties
@@ -42,6 +43,20 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
 
   // Load game data and set up the UI
   async _loadGamesAndSetupUI() {
+    // First, set up the loading view
+    if (!this.mainContainer) {
+      this.mainContainer = new St.BoxLayout({ vertical: true, style_class: "main-container" });
+      this._setupHeader();
+    }
+    if (this.scrollView) {
+      this.mainContainer.remove_child(this.scrollView);
+      this.scrollView.destroy();
+    }
+    this.scrollView = new St.ScrollView({ overlay_scrollbars: true, clip_to_allocation: true });
+    this._updateScrollViewStyle();
+
+    this._setupLoadingView();
+
     try {
       this.error = null;
       this.games = [];
@@ -56,7 +71,11 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
       }
 
       const libraryfoldersFile = Gio.file_new_for_path(libraryfoldersFilePath);
-      const [, libraryfoldersFileContentBytes] = await new Promise(resolve =>
+      if (!libraryfoldersFile.query_exists(null)) {
+        throw new Error(`Steam library file not found at: ${libraryfoldersFilePath}`);
+      }
+
+      const [success, libraryfoldersFileContentBytes] = await new Promise(resolve =>
         libraryfoldersFile.load_contents_async(null, (obj, res) => resolve(obj.load_contents_finish(res)))
       );
       const libraryfoldersFileContent = new TextDecoder("utf-8").decode(libraryfoldersFileContentBytes);
@@ -90,22 +109,10 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
 
   // Setup the entire visual layout of the desklet
   _setupLayout() {
-    // Clear previous content
-    this.setContent(new St.BoxLayout());
-
-    const mainContainer = new St.BoxLayout({ vertical: true, style_class: "main-container" });
-
-    // Setup header
-    const headerContaier = new St.BoxLayout({ style_class: "header-container", reactive: true, track_hover: true });
-    mainContainer.add_child(headerContaier);
-    const headerLabel = new St.Label({ text: _("Steam Games Starter"), style_class: "header-label" });
-    headerContaier.add_child(headerLabel);
-    const spacer = new St.BoxLayout({ x_expand: true });
-    headerContaier.add_child(spacer);
-    const reloadIcon = this._getImageAtScale(`${this.metadata.path}/reload.svg`, 24, 24);
-    const reloadButton = new St.Button({ child: reloadIcon, style_class: "reload-button" });
-    reloadButton.connect("clicked", () => this._loadGamesAndSetupUI());
-    headerContaier.add_child(reloadButton);
+    if (!this.mainContainer) {
+      this.mainContainer = new St.BoxLayout({ vertical: true, style_class: "main-container" });
+      this._setupHeader();
+    }
 
     // Filter and sort the games by last played date (newest first)
     let sortedGames = this.games.filter(game => game.lastPlayed).sort((a, b) => parseInt(b.lastPlayed, 10) - parseInt(a.lastPlayed, 10));
@@ -181,7 +188,12 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
       errorLayout.add_child(errorLabel);
     }
 
-    this.scrollView = new St.ScrollView({ overlay_scrollbars: true, clip_to_allocation: true });
+    if (this.scrollView) {
+      this.mainContainer.remove_child(this.scrollView);
+      this.scrollView.destroy();
+    }
+
+    this.scrollView = new St.ScrollView({ overlay_scrollbars: true, clip_to_allocation: true, style_class: "vfade" });
     this._updateScrollViewStyle();
 
     if (this.error || gamesToDisplay.length === 0) {
@@ -190,8 +202,30 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
       this.scrollView.add_actor(gamesContainer);
     }
 
-    mainContainer.add_child(this.scrollView);
-    this.setContent(mainContainer);
+    this.mainContainer.add_child(this.scrollView);
+    this.setContent(this.mainContainer);
+  }
+
+  _setupHeader() {
+    const headerContainer = new St.BoxLayout({ style_class: "header-container", reactive: true, track_hover: true });
+    headerContainer.add_child(new St.Label({ text: _("Steam Games Starter"), style_class: "header-label" }));
+    headerContainer.add_child(new St.BoxLayout({ x_expand: true }));
+    const reloadButton = new St.Button({
+      child: this._getImageAtScale(`${this.metadata.path}/reload.svg`, 24, 24),
+      style_class: "reload-button",
+    });
+    reloadButton.connect("clicked", () => this._loadGamesAndSetupUI());
+    headerContainer.add_child(reloadButton);
+    this.mainContainer.add_child(headerContainer);
+  }
+
+  _setupLoadingView() {
+    const loadingLabel = new St.Label({ text: _("Loading..."), style_class: "loading-label" });
+    const box = new St.BoxLayout({ vertical: true, style_class: "loading-layout" });
+    box.add_child(new St.Bin({ child: loadingLabel, x_align: St.Align.MIDDLE, y_expand: true }));
+    this.scrollView.add_actor(box);
+    this.mainContainer.add_child(this.scrollView);
+    this.setContent(this.mainContainer);
   }
 
   // Helper to read the paths of the Steam library folders

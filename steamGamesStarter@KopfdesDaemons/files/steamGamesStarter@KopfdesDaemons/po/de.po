@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: steamGamesStarter@KopfdesDaemons 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-08-07 19:23+0200\n"
+"POT-Creation-Date: 2025-10-11 14:57+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,17 +19,21 @@ msgstr ""
 "X-Generator: Poedit 3.4.2\n"
 
 #. metadata.json->name
-#. desklet.js:37 desklet.js:89
+#. desklet.js:40 desklet.js:211
 msgid "Steam Games Starter"
 msgstr "Steam-Spiele-Starter"
 
-#. desklet.js:129
+#. desklet.js:148
 msgid "Last played:"
 msgstr "Zuletzt gespielt:"
 
-#. desklet.js:156
+#. desklet.js:175
 msgid "No installed games found"
 msgstr "Keine installierten Spiele gefunden"
+
+#. desklet.js:223
+msgid "Loading..."
+msgstr "Lade..."
 
 #. metadata.json->description
 msgid "Start Steam games from your desktop."
