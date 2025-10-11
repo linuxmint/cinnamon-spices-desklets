@@ -1,0 +1,16 @@
+{
+  "head0": {
+    "type": "header",
+    "description": "API Settings"
+  },
+  "github-username": {
+    "type": "entry",
+    "default": "",
+    "description": "GitHub Username"
+  },
+  "github-token": {
+    "type": "entry",
+    "default": "",
+    "description": "GitHub Token"
+  }
+}
