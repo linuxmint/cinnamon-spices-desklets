@@ -20,7 +20,6 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     this.games = [];
     this.error = null;
     this.steamInstallationType = "system package";
-    this.cmdPromt = "/usr/games/steam";
     this.numberOfGames = 10;
     this.maxDeskletHeight = 400;
     this.scrollView = null;
@@ -55,7 +54,6 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
 
     this.error = null;
     this.games = [];
-    this.cmdPromt = this.steamInstallType === "flatpak" ? "flatpak run com.valvesoftware.Steam" : "/usr/games/steam";
 
     try {
       this.games = await SteamHelper.getGames(this.steamInstallType);
@@ -88,7 +86,7 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     } else {
       const gamesContainer = new St.BoxLayout({ vertical: true, style_class: "games-container" });
       gamesToDisplay.forEach(game => {
-        const gameItem = UiHelper.createGameItem(game, this.cmdPromt, this.metadata.path);
+        const gameItem = UiHelper.createGameItem(game, this.steamInstallType, this.metadata.path);
         gamesContainer.add_child(gameItem);
       });
       this.scrollView.add_actor(gamesContainer);

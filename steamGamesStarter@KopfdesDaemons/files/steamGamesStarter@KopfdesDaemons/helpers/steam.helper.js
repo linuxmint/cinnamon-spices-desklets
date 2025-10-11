@@ -136,4 +136,18 @@ class SteamHelper {
     global.logError(`Could not load an image for appid ${appid}`);
     return new St.Label({ text: "Error" });
   }
+
+  static getSteamCommand(steamInstallType) {
+    return steamInstallType === "flatpak" ? "flatpak run com.valvesoftware.Steam" : "/usr/games/steam";
+  }
+
+  static runGame(appid, steamInstallType) {
+    const cmd = this.getSteamCommand(steamInstallType);
+    GLib.spawn_command_line_async(`${cmd} steam://rungameid/${appid}`);
+  }
+
+  static openStorePage(appid, steamInstallType) {
+    const cmd = this.getSteamCommand(steamInstallType);
+    GLib.spawn_command_line_async(`${cmd} steam://store/${appid}`);
+  }
 }

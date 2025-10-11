@@ -29,13 +29,13 @@ class UiHelper {
     return headerContainer;
   }
 
-  static createGameItem(game, cmdPromt, metadataPath) {
+  static createGameItem(game, steamInstallType, metadataPath) {
     const gameContainer = new St.BoxLayout({ style_class: "game-container", reactive: true, track_hover: true });
 
     const imageActor = SteamHelper.getGameHeaderImage(game.appid, 139, 72);
     if (imageActor) {
       imageActor.connect("button-press-event", () => {
-        GLib.spawn_command_line_async(`${cmdPromt} steam://store/${game.appid}`);
+        SteamHelper.openStorePage(game.appid, steamInstallType);
         return Clutter.EVENT_PROPAGATE;
       });
       gameContainer.add_child(imageActor);
@@ -55,12 +55,12 @@ class UiHelper {
 
     const playIcon = ImageHelper.getImageAtScale(`${metadataPath}/play.svg`, 22, 22);
     const playButton = new St.Button({ child: playIcon, style_class: "play-button" });
-    playButton.connect("clicked", () => GLib.spawn_command_line_async(`${cmdPromt} steam://rungameid/${game.appid}`));
+    playButton.connect("clicked", () => SteamHelper.runGame(game.appid, steamInstallType));
     buttonRow.add_child(playButton);
 
     const shopIcon = ImageHelper.getImageAtScale(`${metadataPath}/shop.svg`, 22, 22);
     const shopButton = new St.Button({ child: shopIcon, style_class: "shop-button" });
-    shopButton.connect("clicked", () => GLib.spawn_command_line_async(`${cmdPromt} steam://store/${game.appid}`));
+    shopButton.connect("clicked", () => SteamHelper.openStorePage(game.appid, steamInstallType));
     buttonRow.add_child(shopButton);
 
     labelContainer.add_child(buttonRow);
