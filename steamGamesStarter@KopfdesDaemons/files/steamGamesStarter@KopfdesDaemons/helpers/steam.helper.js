@@ -5,6 +5,13 @@ const St = imports.gi.St;
 const Util = imports.misc.util;
 const { ImageHelper } = require("./helpers/image.helper");
 
+// AppIDs for games/tools to be filtered out from the list
+const FILTERED_APP_IDS = [
+  "1628350", // Proton Experimental
+  "1493710", // Steam Linux Runtime 3.0 (sniper)
+  "1391110", // Steam Linux Runtime 2.0 (soldier)
+];
+
 class SteamHelper {
   // Helper to read the paths of the Steam library folders
   static extractLibraryPaths(vdfString) {
@@ -83,7 +90,12 @@ class SteamHelper {
     }
 
     const games = await Promise.all(gamePromises);
-    return games.filter(game => game !== null);
+    const filteredGames = games.filter(game => game !== null && game.lastPlayed && !FILTERED_APP_IDS.includes(game.appid));
+
+    // Filter and sort the games by last played date (newest first)
+    const sortedGames = filteredGames.sort((a, b) => parseInt(b.lastPlayed, 10) - parseInt(a.lastPlayed, 10));
+
+    return sortedGames;
   }
 
   // Helper to load a game's header image from the Steam appcache
