@@ -1,5 +1,5 @@
-.github-contribution-grid-main-container {
-  /* background-color: rgba(110, 111, 128, 0.459); */
+.github-contribution-grid-container {
+  border-radius: 2px;
 }
 
 .day-bin {

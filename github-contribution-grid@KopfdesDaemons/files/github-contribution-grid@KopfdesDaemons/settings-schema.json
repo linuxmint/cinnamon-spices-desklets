@@ -12,5 +12,40 @@
     "type": "entry",
     "default": "",
     "description": "GitHub Token"
+  },
+  "refresh-interval": {
+    "type": "spinbutton",
+    "default": 15,
+    "min": 1,
+    "max": 60,
+    "step": 1,
+    "description": "Refresh interval in minutes"
+  },
+  "head1": {
+    "type": "header",
+    "description": "Style"
+  },
+  "block-size": {
+    "type": "scale",
+    "default": 11,
+    "min": 5,
+    "max": 50,
+    "step": 1,
+    "description": "Block size in pixels"
+  },
+  "background-color": {
+    "type": "colorchooser",
+    "default": "rgba(255, 255, 255, 0)",
+    "description": "Background color"
+  },
+  "show-contribution-count": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Show contribution count"
+  },
+  "show-username": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show username"
   }
 }
