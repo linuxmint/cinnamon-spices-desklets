@@ -7,8 +7,6 @@ const Settings = imports.ui.settings;
 const UUID = "github-contribution-grid@KopfdesDaemons";
 
 const { GitHubHelper } = require("./helpers/github.helper");
-const { Day } = require("./models/day.model");
-const { Week } = require("./models/week.model");
 
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
@@ -29,58 +27,64 @@ class MyDesklet extends Desklet.Desklet {
     this.settings.bindProperty(Settings.BindingDirection.IN, "github-token", "githubToken", this._setupLayout.bind(this));
 
     this.setHeader(_("Github Contribution Grid"));
-    this._initUI();
-  }
-
-  _initUI() {
-    this.setContent(new St.Label({ text: "Hello World!" }));
     this._setupLayout();
   }
 
   async _setupLayout() {
     if (!this.githubUsername || !this.githubToken) {
-      this.setContent(new St.Label({ text: _("Please configure username and token in settings.") }));
-      global.log("setup layout...");
+      this.setContent(
+        new St.Label({
+          text: _("Please configure username and token in settings."),
+        })
+      );
       return;
     }
 
     try {
       const response = await GitHubHelper.getContributionData(this.githubUsername, this.githubToken);
-
-      const weeks = [];
-
-      for (const week of response) {
-        const days = [];
-
-        const contributionDays = week.contributionDays;
-        for (const day of contributionDays) {
-          const date = day.date;
-          const contributionCount = day.contributionCount;
-
-          days.push(new Day(date, contributionCount));
-        }
-        weeks.push(new Week(days));
-      }
-
-      const box = new St.BoxLayout({ style_class: "main-container" });
-      for (const week of weeks) {
-        const weekBox = new St.BoxLayout({ vertical: true, style_class: "week-container" });
-
-        for (const day of week.contributionDays) {
-          const bin = new St.Bin({ style_class: "day-bin" });
-
-          const label = new St.Label({ text: `${day.contributionCount}`, style_class: "day-label" });
-          bin.set_child(label);
-          global.log(day.contributionCount);
-          weekBox.add_child(bin);
-        }
-        box.add_child(weekBox);
-      }
-      this.setContent(box);
+      this._renderGrid(response);
     } catch (e) {
       global.logError(`[${UUID}] Error fetching contribution data: ${e}`);
       this.setContent(new St.Label({ text: _("Error fetching data. See logs for details.") }));
     }
+  }
+
+  _renderGrid(weeks) {
+    const container = new St.BoxLayout({
+      style_class: "github-contribution-grid-main-container",
+      x_expand: true,
+    });
+
+    for (const week of weeks) {
+      const weekBox = new St.BoxLayout({
+        vertical: true,
+        style_class: "week-container",
+      });
+
+      for (const day of week.contributionDays) {
+        const dayBin = new St.Bin({
+          style_class: "day-bin",
+          style: `background-color: ${this._getContributionColor(day.contributionCount)};`,
+        });
+        // const label = new St.Label({
+        //   text: day.contributionCount.toString(),
+        //   style: "color: white;",
+        // });
+        // dayBin.set_child(label);
+        weekBox.add_child(dayBin);
+      }
+      container.add_child(weekBox);
+    }
+    this.setContent(container);
+  }
+
+  _getContributionColor(count) {
+    if (count >= 10) return "#56d364";
+    if (count >= 9) return "#2ea043";
+    if (count >= 6) return "#196c2e";
+    if (count >= 4) return "#196c2e";
+    if (count > 0) return "#033a16";
+    if (count === 0) return "#151b23";
   }
 }
 

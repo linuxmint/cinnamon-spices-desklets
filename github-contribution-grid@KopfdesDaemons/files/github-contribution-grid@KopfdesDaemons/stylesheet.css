@@ -1,14 +1,10 @@
-.main-container {
-  background-color: red;
-}
-
-.week-container {
-  background-color: blue;
+.github-contribution-grid-main-container {
+  /* background-color: rgba(110, 111, 128, 0.459); */
 }
 
 .day-bin {
-  background-color: green;
   margin: 0.2em;
   width: 1em;
   height: 1em;
+  border-radius: 2px;
 }
