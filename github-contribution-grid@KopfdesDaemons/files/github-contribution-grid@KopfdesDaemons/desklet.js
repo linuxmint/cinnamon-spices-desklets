@@ -19,40 +19,37 @@ function _(str) {
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
-
-    this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
-
-    this.githubUsername = this.settings.getValue("github-username") || "";
-    this.githubToken = this.settings.getValue("github-token") || "";
-    this.blockSize = this.settings.getValue("block-size") || 11;
-    this.refreshInterval = this.settings.getValue("refresh-interval") || 15;
-    this.backgroundColor = this.settings.getValue("background-color") || "rgba(255, 255, 255, 0)";
-    this.showContributionCount = this.settings.getValue("show-contribution-count") || false;
-    this.showUsername = this.settings.getValue("show-username") || true;
-
-    this.settings.bindProperty(Settings.BindingDirection.IN, "github-username", "githubUsername", this.onDataSettingChanged);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "github-token", "githubToken", this.onDataSettingChanged);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refreshInterval", this.onDataSettingChanged);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "block-size", "blockSize", this.onStyleSettingChanged);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "backgroundColor", this.onStyleSettingChanged);
-    this.settings.bindProperty(
-      Settings.BindingDirection.IN,
-      "show-contribution-count",
-      "showContributionCount",
-      this.onStyleSettingChanged
-    );
-    this.settings.bindProperty(Settings.BindingDirection.IN, "show-username", "showUsername", this.onStyleSettingChanged);
-
+    this.githubUsername = "";
+    this.githubToken = "";
+    this.blockSize = 11;
+    this.refreshInterval = 15;
+    this.backgroundColor = "rgba(255, 255, 255, 0)";
+    this.showContributionCount = false;
+    this.showUsername = true;
     this.timeoutId = null;
     this.contributionData = null;
     this.mainContainer = null;
+
+    this.bindSettings(metadata, deskletId);
 
     this.setHeader(_("Github Contribution Grid"));
 
     this.mainContainer = new St.BoxLayout({ vertical: true, style_class: "github-contribution-grid-main-container" });
     this.mainContainer.add_child(this._createHeader());
     this.setContent(this.mainContainer);
+
     this._updateLoop();
+  }
+
+  bindSettings(metadata, deskletId) {
+    this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "github-username", "githubUsername", this.onDataSettingChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "github-token", "githubToken", this.onDataSettingChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refreshInterval", this.onDataSettingChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "block-size", "blockSize", this.onStyleSettingChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "backgroundColor", this.onStyleSettingChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-username", "showUsername", this.onStyleSettingChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-contribution-count", "showContributionCount", this.onStyleSettingChanged);
   }
 
   on_desklet_removed() {
@@ -93,17 +90,15 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _createHeader() {
-    const headerContainer = new St.BoxLayout({
-      style_class: "github-contribution-grid-header-container",
-    });
+    const headerContainer = new St.BoxLayout({ style_class: "github-contribution-grid-header-container" });
+
+    // Reload button
     const reloadBin = new St.Bin({
       style_class: "github-contribution-grid-reload-bin",
       reactive: true,
       track_hover: true,
     });
-    reloadBin.connect("button-press-event", () => {
-      this._setupContributionData();
-    });
+    reloadBin.connect("button-press-event", () => this._setupContributionData());
     const reloadIcon = new St.Icon({
       icon_name: "view-refresh-symbolic",
       icon_type: St.IconType.SYMBOLIC,
@@ -112,12 +107,14 @@ class MyDesklet extends Desklet.Desklet {
     reloadBin.set_child(reloadIcon);
     headerContainer.add_child(reloadBin);
 
+    // Username
     if (this.showUsername) {
       const labelBin = new St.Bin({ style_class: "github-contribution-grid-label-bin" });
       const label = new St.Label({ text: this.githubUsername });
       labelBin.set_child(label);
       headerContainer.add_child(labelBin);
     }
+
     return headerContainer;
   }
 
@@ -134,6 +131,7 @@ class MyDesklet extends Desklet.Desklet {
     });
 
     if (!this.githubUsername || !this.githubToken) {
+      // UI for Desklet Setup
       const messageBox = new St.BoxLayout({ vertical: true, style_class: "github-contribution-grid-message-box" });
       messageBox.add_child(new St.Label({ text: _("Please configure username and token in settings.") }));
 
@@ -150,24 +148,24 @@ class MyDesklet extends Desklet.Desklet {
 
       this.contentContainer.add_child(messageBox);
     } else if (error) {
+      // Error UI
       const messageBox = new St.BoxLayout({ vertical: true });
       messageBox.add_child(new St.Label({ text: _("Error:") }));
       messageBox.add_child(new St.Label({ text: error, style_class: "github-contribution-grid-error-message" }));
       this.contentContainer.add_child(messageBox);
     } else if (weeks) {
+      // Render GitHub Grid
       const gridBox = new St.BoxLayout({ style_class: "github-contribution-grid-grid-box" });
 
       for (const week of weeks) {
-        const weekBox = new St.BoxLayout({
-          vertical: true,
-          style_class: "week-container",
-        });
+        const weekBox = new St.BoxLayout({ vertical: true, style_class: "week-container" });
 
         for (const day of week.contributionDays) {
           const dayBin = new St.Bin({
             style_class: "day-bin",
             style: `font-size: ${this.blockSize}px; background-color: ${GitHubHelper.getContributionColor(day.contributionCount)};`,
           });
+
           if (this.showContributionCount) {
             const label = new St.Label({ text: day.contributionCount.toString() });
             dayBin.set_child(label);
