@@ -1,0 +1,80 @@
+# GITHUB CONTRIBUTION GRID
+# This file is put in the public domain.
+# KopfdesDaemons, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: github-contribution-grid@KopfdesDaemons 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-10-12 16:53+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. metadata.json->name
+#. desklet.js:35
+msgid "GitHub Contribution Grid"
+msgstr ""
+
+#. desklet.js:84 desklet.js:146
+msgid "Please configure username and token in settings."
+msgstr ""
+
+#. desklet.js:152
+msgid "Create a GitHub token"
+msgstr ""
+
+#. desklet.js:164
+msgid "Error:"
+msgstr ""
+
+#. desklet.js:170
+msgid "Reload"
+msgstr ""
+
+#. metadata.json->description
+msgid ""
+"Displays the daily contributions heatmap for a specified GitHub user profile."
+msgstr ""
+
+#. settings-schema.json->head0->description
+msgid "API Settings"
+msgstr ""
+
+#. settings-schema.json->github-username->description
+msgid "GitHub Username"
+msgstr ""
+
+#. settings-schema.json->github-token->description
+msgid "GitHub Token"
+msgstr ""
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval in minutes"
+msgstr ""
+
+#. settings-schema.json->head1->description
+msgid "Style"
+msgstr ""
+
+#. settings-schema.json->block-size->description
+msgid "Block size in pixels"
+msgstr ""
+
+#. settings-schema.json->background-color->description
+msgid "Background color"
+msgstr ""
+
+#. settings-schema.json->show-contribution-count->description
+msgid "Show contribution count"
+msgstr ""
+
+#. settings-schema.json->show-username->description
+msgid "Show username"
+msgstr ""

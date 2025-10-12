@@ -32,7 +32,7 @@ class MyDesklet extends Desklet.Desklet {
 
     this.bindSettings(metadata, deskletId);
 
-    this.setHeader(_("Github Contribution Grid"));
+    this.setHeader(_("GitHub Contribution Grid"));
 
     this.mainContainer = new St.BoxLayout({ vertical: true, style_class: "github-contribution-grid-main-container" });
     this.mainContainer.add_child(this._createHeader());
