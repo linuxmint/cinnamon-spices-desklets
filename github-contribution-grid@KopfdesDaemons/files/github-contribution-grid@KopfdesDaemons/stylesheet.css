@@ -19,3 +19,16 @@
 .github-contribution-grid-reload-bin:hover {
   background-color: rgba(80, 80, 80, 0.363);
 }
+
+.github-contribution-grid-link {
+  padding: 0.5em;
+  border: 1px solid gray;
+}
+
+.github-contribution-grid-link:hover {
+  background-color: rgba(80, 80, 80, 0.3);
+}
+
+.github-contribution-grid-error-message {
+  color: red;
+}

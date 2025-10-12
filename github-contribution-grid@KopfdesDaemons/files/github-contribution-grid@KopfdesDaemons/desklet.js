@@ -3,6 +3,7 @@ const GLib = imports.gi.GLib;
 const Mainloop = imports.mainloop;
 const St = imports.gi.St;
 const Gettext = imports.gettext;
+const Util = imports.misc.util;
 const Settings = imports.ui.settings;
 
 const UUID = "github-contribution-grid@KopfdesDaemons";
@@ -29,18 +30,18 @@ class MyDesklet extends Desklet.Desklet {
     this.showContributionCount = this.settings.getValue("show-contribution-count") || false;
     this.showUsername = this.settings.getValue("show-username") || true;
 
-    this.settings.bindProperty(Settings.BindingDirection.IN, "github-username", "githubUsername", this.on_data_setting_changed);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "github-token", "githubToken", this.on_data_setting_changed);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refreshInterval", this.on_data_setting_changed);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "block-size", "blockSize", this.on_style_setting_changed);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "backgroundColor", this.on_style_setting_changed);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "github-username", "githubUsername", this.onDataSettingChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "github-token", "githubToken", this.onDataSettingChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refreshInterval", this.onDataSettingChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "block-size", "blockSize", this.onStyleSettingChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "backgroundColor", this.onStyleSettingChanged);
     this.settings.bindProperty(
       Settings.BindingDirection.IN,
       "show-contribution-count",
       "showContributionCount",
-      this.on_style_setting_changed
+      this.onStyleSettingChanged
     );
-    this.settings.bindProperty(Settings.BindingDirection.IN, "show-username", "showUsername", this.on_style_setting_changed);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-username", "showUsername", this.onStyleSettingChanged);
 
     this.timeoutId = null;
     this.contributionData = null;
@@ -57,24 +58,27 @@ class MyDesklet extends Desklet.Desklet {
   on_desklet_removed() {
     if (this.timeoutId) {
       Mainloop.source_remove(this.timeoutId);
+      this.timeoutId = null;
     }
   }
 
-  on_data_setting_changed() {
+  onDataSettingChanged = () => {
+    this.mainContainer.remove_all_children();
+    this.mainContainer.add_child(this._createHeader());
     this._setupContributionData();
-  }
+  };
 
-  on_style_setting_changed() {
+  onStyleSettingChanged = () => {
     this.mainContainer.remove_all_children();
     this.mainContainer.add_child(this._createHeader());
     this._renderContent(this.contributionData);
-  }
+  };
 
   async _setupContributionData() {
     this.contributionData = null;
 
     if (!this.githubUsername || !this.githubToken) {
-      this.setContent(new St.Label({ text: _("Please configure username and token in settings.") }));
+      this._renderContent(null, _("Please configure username and token in settings."));
       return;
     }
 
@@ -130,10 +134,29 @@ class MyDesklet extends Desklet.Desklet {
     });
 
     if (!this.githubUsername || !this.githubToken) {
-      this.contentContainer.add_child(new St.Label({ text: _("Please configure username and token in settings.") }));
+      const messageBox = new St.BoxLayout({ vertical: true, style_class: "github-contribution-grid-message-box" });
+      messageBox.add_child(new St.Label({ text: _("Please configure username and token in settings.") }));
+
+      const linkButton = new St.Button({
+        reactive: true,
+        track_hover: true,
+        style_class: "github-contribution-grid-link",
+        label: _("Create a GitHub token"),
+      });
+      linkButton.connect("clicked", () => {
+        Util.spawnCommandLine(`xdg-open "${GitHubHelper.gitHubTokenCrationURL}"`);
+      });
+      messageBox.add_child(linkButton);
+
+      this.contentContainer.add_child(messageBox);
     } else if (error) {
-      this.contentContainer.add_child(new St.Label({ text: error }));
+      const messageBox = new St.BoxLayout({ vertical: true });
+      messageBox.add_child(new St.Label({ text: _("Error:") }));
+      messageBox.add_child(new St.Label({ text: error, style_class: "github-contribution-grid-error-message" }));
+      this.contentContainer.add_child(messageBox);
     } else if (weeks) {
+      const gridBox = new St.BoxLayout({ style_class: "github-contribution-grid-grid-box" });
+
       for (const week of weeks) {
         const weekBox = new St.BoxLayout({
           vertical: true,
@@ -143,33 +166,20 @@ class MyDesklet extends Desklet.Desklet {
         for (const day of week.contributionDays) {
           const dayBin = new St.Bin({
             style_class: "day-bin",
-            style: `font-size: ${this.blockSize}px; background-color: ${this._getContributionColor(day.contributionCount)};`,
-            reactive: true,
-            track_hover: true,
+            style: `font-size: ${this.blockSize}px; background-color: ${GitHubHelper.getContributionColor(day.contributionCount)};`,
           });
           if (this.showContributionCount) {
-            const label = new St.Label({
-              text: day.contributionCount.toString(),
-              style: "color: white;",
-            });
+            const label = new St.Label({ text: day.contributionCount.toString() });
             dayBin.set_child(label);
           }
           weekBox.add_child(dayBin);
         }
-        this.contentContainer.add_child(weekBox);
+        gridBox.add_child(weekBox);
       }
+      this.contentContainer.add_child(gridBox);
     }
 
     this.mainContainer.add_child(this.contentContainer);
-  }
-
-  _getContributionColor(count) {
-    if (count >= 10) return "#56d364";
-    if (count >= 9) return "#2ea043";
-    if (count >= 6) return "#196c2e";
-    if (count >= 4) return "#196c2e";
-    if (count > 0) return "#033a16";
-    if (count === 0) return "#151b23";
   }
 
   _updateLoop() {

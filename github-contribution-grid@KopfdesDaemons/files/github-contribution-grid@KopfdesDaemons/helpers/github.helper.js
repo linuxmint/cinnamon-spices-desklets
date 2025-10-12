@@ -5,6 +5,8 @@ const GLib = imports.gi.GLib;
 const _httpSession = new Soup.Session();
 
 class GitHubHelper {
+  static gitHubTokenCrationURL = "https://github.com/settings/tokens/new?description=Cinnamon%20Desklet";
+
   static async getContributionData(username, token) {
     const query = `
       query {
@@ -56,5 +58,14 @@ class GitHubHelper {
         }
       });
     });
+  }
+
+  static getContributionColor(count) {
+    if (count >= 10) return "#56d364";
+    if (count >= 9) return "#2ea043";
+    if (count >= 6) return "#196c2e";
+    if (count >= 4) return "#196c2e";
+    if (count > 0) return "#033a16";
+    if (count === 0) return "#151b23";
   }
 }
