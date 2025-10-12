@@ -6,5 +6,16 @@
   margin: 0.2em;
   width: 1em;
   height: 1em;
-  border-radius: 2px;
+}
+
+.github-contribution-grid-reload-bin {
+  background-color: transparent;
+  margin: 0.2em;
+  width: 1em;
+  height: 1em;
+  padding: 0.5em;
+}
+
+.github-contribution-grid-reload-bin:hover {
+  background-color: rgba(80, 80, 80, 0.363);
 }

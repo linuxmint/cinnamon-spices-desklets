@@ -29,20 +29,28 @@ class MyDesklet extends Desklet.Desklet {
     this.showContributionCount = this.settings.getValue("show-contribution-count") || false;
     this.showUsername = this.settings.getValue("show-username") || true;
 
-    this.settings.bindProperty(Settings.BindingDirection.IN, "github-username", "githubUsername", this.on_setting_changed);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "github-token", "githubToken", this.on_setting_changed);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "block-size", "blockSize", this.on_setting_changed);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refreshInterval", this.on_setting_changed);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "backgroundColor", this.on_setting_changed);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "show-contribution-count", "showContributionCount", this.on_setting_changed);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "show-username", "showUsername", this.on_setting_changed);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "github-username", "githubUsername", this.on_data_setting_changed);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "github-token", "githubToken", this.on_data_setting_changed);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refreshInterval", this.on_data_setting_changed);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "block-size", "blockSize", this.on_style_setting_changed);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "backgroundColor", this.on_style_setting_changed);
+    this.settings.bindProperty(
+      Settings.BindingDirection.IN,
+      "show-contribution-count",
+      "showContributionCount",
+      this.on_style_setting_changed
+    );
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-username", "showUsername", this.on_style_setting_changed);
 
     this.timeoutId = null;
+    this.contributionData = null;
+    this.mainContainer = null;
 
     this.setHeader(_("Github Contribution Grid"));
 
-    // Delay the initial load to prevent race conditions on startup
-    Mainloop.timeout_add_seconds(5, () => this._setupLayout());
+    this.mainContainer = new St.BoxLayout({ vertical: true, style_class: "github-contribution-grid-main-container" });
+    this.mainContainer.add_child(this._createHeader());
+    this.setContent(this.mainContainer);
     this._updateLoop();
   }
 
@@ -52,11 +60,19 @@ class MyDesklet extends Desklet.Desklet {
     }
   }
 
-  on_setting_changed() {
-    this._setupLayout();
+  on_data_setting_changed() {
+    this._setupContributionData();
   }
 
-  async _setupLayout() {
+  on_style_setting_changed() {
+    this.mainContainer.remove_all_children();
+    this.mainContainer.add_child(this._createHeader());
+    this._renderContent(this.contributionData);
+  }
+
+  async _setupContributionData() {
+    this.contributionData = null;
+
     if (!this.githubUsername || !this.githubToken) {
       this.setContent(new St.Label({ text: _("Please configure username and token in settings.") }));
       return;
@@ -64,64 +80,87 @@ class MyDesklet extends Desklet.Desklet {
 
     try {
       const response = await GitHubHelper.getContributionData(this.githubUsername, this.githubToken);
-      this._renderGrid(response);
+      this.contributionData = response;
+      this._renderContent(this.contributionData);
     } catch (e) {
       global.logError(`[${UUID}] Error fetching contribution data: ${e}`);
-      this.setContent(new St.Label({ text: _("Error fetching data. See logs for details.") }));
+      this._renderContent(null, e.message);
     }
   }
 
-  _renderGrid(weeks) {
-    const mainContainer = new St.BoxLayout({
-      vertical: true,
-      style_class: "github-contribution-grid-main-container",
-    });
+  _createHeader() {
     const headerContainer = new St.BoxLayout({
       style_class: "github-contribution-grid-header-container",
     });
+    const reloadBin = new St.Bin({
+      style_class: "github-contribution-grid-reload-bin",
+      reactive: true,
+      track_hover: true,
+    });
+    reloadBin.connect("button-press-event", () => {
+      this._setupContributionData();
+    });
+    const reloadIcon = new St.Icon({
+      icon_name: "view-refresh-symbolic",
+      icon_type: St.IconType.SYMBOLIC,
+      icon_size: 16,
+    });
+    reloadBin.set_child(reloadIcon);
+    headerContainer.add_child(reloadBin);
+
     if (this.showUsername) {
-      const labelBin = new St.Bin({
-        style_class: "github-contribution-grid-label-bin",
-      });
-      const label = new St.Label({
-        text: this.githubUsername,
-        style_class: "github-contribution-grid-label",
-      });
+      const labelBin = new St.Bin({ style_class: "github-contribution-grid-label-bin" });
+      const label = new St.Label({ text: this.githubUsername });
       labelBin.set_child(label);
       headerContainer.add_child(labelBin);
     }
+    return headerContainer;
+  }
 
-    const gridContainer = new St.BoxLayout({
+  _renderContent(weeks, error = null) {
+    if (this.contentContainer) {
+      this.mainContainer.remove_child(this.contentContainer);
+      this.contentContainer.destroy();
+    }
+
+    this.contentContainer = new St.BoxLayout({
       style_class: "github-contribution-grid-container",
       x_expand: true,
       style: `background-color: ${this.backgroundColor};`,
     });
-    mainContainer.add_child(headerContainer);
-    mainContainer.add_child(gridContainer);
 
-    for (const week of weeks) {
-      const weekBox = new St.BoxLayout({
-        vertical: true,
-        style_class: "week-container",
-      });
-
-      for (const day of week.contributionDays) {
-        const dayBin = new St.Bin({
-          style_class: "day-bin",
-          style: `font-size: ${this.blockSize}px; background-color: ${this._getContributionColor(day.contributionCount)};`,
+    if (!this.githubUsername || !this.githubToken) {
+      this.contentContainer.add_child(new St.Label({ text: _("Please configure username and token in settings.") }));
+    } else if (error) {
+      this.contentContainer.add_child(new St.Label({ text: error }));
+    } else if (weeks) {
+      for (const week of weeks) {
+        const weekBox = new St.BoxLayout({
+          vertical: true,
+          style_class: "week-container",
         });
-        if (this.showContributionCount) {
-          const label = new St.Label({
-            text: day.contributionCount.toString(),
-            style: "color: white;",
+
+        for (const day of week.contributionDays) {
+          const dayBin = new St.Bin({
+            style_class: "day-bin",
+            style: `font-size: ${this.blockSize}px; background-color: ${this._getContributionColor(day.contributionCount)};`,
+            reactive: true,
+            track_hover: true,
           });
-          dayBin.set_child(label);
+          if (this.showContributionCount) {
+            const label = new St.Label({
+              text: day.contributionCount.toString(),
+              style: "color: white;",
+            });
+            dayBin.set_child(label);
+          }
+          weekBox.add_child(dayBin);
         }
-        weekBox.add_child(dayBin);
+        this.contentContainer.add_child(weekBox);
       }
-      gridContainer.add_child(weekBox);
     }
-    this.setContent(mainContainer);
+
+    this.mainContainer.add_child(this.contentContainer);
   }
 
   _getContributionColor(count) {
@@ -134,7 +173,7 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _updateLoop() {
-    this._setupLayout();
+    this._setupContributionData();
     this.timeoutId = Mainloop.timeout_add_seconds(this.refreshInterval * 60, () => {
       this._updateLoop();
     });
