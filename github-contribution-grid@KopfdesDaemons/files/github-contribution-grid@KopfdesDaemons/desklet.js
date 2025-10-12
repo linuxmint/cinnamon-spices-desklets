@@ -38,7 +38,10 @@ class MyDesklet extends Desklet.Desklet {
     this.mainContainer.add_child(this._createHeader());
     this.setContent(this.mainContainer);
 
-    this._updateLoop();
+    // Delay to ensure network services are ready.
+    this.timeoutId = Mainloop.timeout_add_seconds(10, () => {
+      this._updateLoop();
+    });
   }
 
   bindSettings(metadata, deskletId) {
@@ -181,9 +184,10 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _updateLoop() {
-    this._setupContributionData();
-    this.timeoutId = Mainloop.timeout_add_seconds(this.refreshInterval * 60, () => {
-      this._updateLoop();
+    this._setupContributionData().finally(() => {
+      this.timeoutId = Mainloop.timeout_add_seconds(this.refreshInterval * 60, () => {
+        this._updateLoop();
+      });
     });
   }
 }
