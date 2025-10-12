@@ -38,9 +38,12 @@ class MyDesklet extends Desklet.Desklet {
     this.mainContainer.add_child(this._createHeader());
     this.setContent(this.mainContainer);
 
-    // Delay to ensure network services are ready.
-    this.timeoutId = Mainloop.timeout_add_seconds(10, () => {
-      this._updateLoop();
+    this._updateLoop();
+
+    // The first request after system start will fail
+    // Delay to ensure network services are ready and try again
+    Mainloop.timeout_add_seconds(10, () => {
+      this._setupContributionData();
     });
   }
 
