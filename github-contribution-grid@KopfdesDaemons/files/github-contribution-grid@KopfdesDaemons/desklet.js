@@ -115,7 +115,10 @@ class MyDesklet extends Desklet.Desklet {
 
     // Username
     if (this.showUsername) {
-      const labelBin = new St.Bin({ style_class: "github-contribution-grid-label-bin" });
+      const labelBin = new St.Bin({ style_class: "github-contribution-grid-label-bin", reactive: true, track_hover: true });
+      labelBin.connect("button-press-event", () => {
+        Util.spawnCommandLine(`xdg-open "https://github.com/${this.githubUsername}"`);
+      });
       const label = new St.Label({ text: this.githubUsername });
       labelBin.set_child(label);
       headerContainer.add_child(labelBin);
@@ -138,8 +141,9 @@ class MyDesklet extends Desklet.Desklet {
 
     if (!this.githubUsername || !this.githubToken) {
       // UI for Desklet Setup
-      const messageBox = new St.BoxLayout({ vertical: true, style_class: "github-contribution-grid-message-box" });
-      messageBox.add_child(new St.Label({ text: _("Please configure username and token in settings.") }));
+      const setupBox = new St.BoxLayout({ vertical: true, style_class: "github-contribution-grid-setup-container" });
+      setupBox.add_child(new St.Label({ text: "GitHub Contribution Grid", style_class: "github-contribution-grid-setup-headline" }));
+      setupBox.add_child(new St.Label({ text: _("Please configure username and token in settings.") }));
 
       const linkButton = new St.Button({
         reactive: true,
@@ -150,15 +154,26 @@ class MyDesklet extends Desklet.Desklet {
       linkButton.connect("clicked", () => {
         Util.spawnCommandLine(`xdg-open "${GitHubHelper.gitHubTokenCrationURL}"`);
       });
-      messageBox.add_child(linkButton);
+      setupBox.add_child(linkButton);
 
-      this.contentContainer.add_child(messageBox);
+      this.contentContainer.add_child(setupBox);
     } else if (error) {
       // Error UI
-      const messageBox = new St.BoxLayout({ vertical: true });
-      messageBox.add_child(new St.Label({ text: _("Error:") }));
-      messageBox.add_child(new St.Label({ text: error, style_class: "github-contribution-grid-error-message" }));
-      this.contentContainer.add_child(messageBox);
+      const errorBox = new St.BoxLayout({ vertical: true, style_class: "github-contribution-grid-error-container" });
+      errorBox.add_child(new St.Label({ text: "GitHub Contribution Grid", style_class: "github-contribution-grid-error-headline" }));
+      errorBox.add_child(new St.Label({ text: _("Error:") }));
+      errorBox.add_child(new St.Label({ text: error, style_class: "github-contribution-grid-error-message" }));
+      const reloadButton = new St.Button({
+        reactive: true,
+        track_hover: true,
+        style_class: "github-contribution-grid-error-reload-button",
+        label: _("Reload"),
+      });
+      reloadButton.connect("clicked", () => {
+        this._setupContributionData();
+      });
+      errorBox.add_child(reloadButton);
+      this.contentContainer.add_child(errorBox);
     } else if (weeks) {
       // Render GitHub Grid
       const gridBox = new St.BoxLayout({ style_class: "github-contribution-grid-grid-box" });
