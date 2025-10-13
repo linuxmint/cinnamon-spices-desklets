@@ -54,6 +54,7 @@ MyDesklet.prototype = {
         Desklet.Desklet.prototype._init.call(this, metadata);
 
         this.desklet_id = desklet_id;
+        this.DESKLET_ROOT = DESKLET_ROOT;
 
         // Import settings to app
         this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
@@ -63,6 +64,8 @@ MyDesklet.prototype = {
         
         this.settings.bindProperty(Settings.BindingDirection.IN, "is-task-bg-transparent", "isTaskTransparentBg", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "task-background", "taskBackground", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "task-border-width", "taskBorderWidth", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "task-border-color", "taskBorderColor", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "task-icon-size", "taskIconSize", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "task-not-marked-icon", "taskNotMarkedDoneIcon", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "task-marked-icon", "taskMarkedDoneIcon", this.on_setting_changed);
@@ -73,13 +76,21 @@ MyDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "text-shadow", "textShadow", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "text-shadow-color", "textShadowColor", this.on_setting_changed);
 
+        this.settings.bindProperty(Settings.BindingDirection.IN, "task-background-important", "taskBackgroundImportant", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "task-border-color-important", "taskBorderColorImportant", this.on_setting_changed);
+
         this.settings.bindProperty(Settings.BindingDirection.IN, "is-toolbar-enabled", "isToolbarEnabled", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "are-toolbar-tooltips-enabled", "areToolbarTooltipsEnabled", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "are-task-tooltips-enabled", "areTaskTooltipsEnabled", this.on_setting_changed);
+        
         this.settings.bindProperty(Settings.BindingDirection.IN, "is-sort-enabled", "isSortEnabled", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "is-sort-reversed", "isSortReversed", this.on_setting_changed);
 
         this.settings.bindProperty(Settings.BindingDirection.IN, "toolbar-background", "toolbarBackground", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "toolbar-icon-size", "toolbarIconSize", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "toolbar-font-color", "toolbarFontColor", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "toolbar-border-width", "toolbarBorderWidth", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "toolbar-border-color", "toolbarBorderColor", this.on_setting_changed);
 
         this.settings.bindProperty(Settings.BindingDirection.IN, "show-decorations", "showDecorations", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "desklet-header", "deskletHeader", this.on_setting_changed);
@@ -114,18 +125,24 @@ MyDesklet.prototype = {
         const default_item_width = 150;
         this.scale = this.scaleSize * global.ui_scale;
 
+        const desktop_settings = new Gio.Settings({ schema_id: "org.cinnamon.desktop.interface" });
+        this.text_scale = desktop_settings.get_double("text-scaling-factor");
+
         this.theme = {
             "scale": this.scale,
+            "text_scale": this.text_scale,
             "toolbar" : {
                 "background_color": this.toolbarBackground,
                 "font_color": this.toolbarFontColor,
-                "icon_size": this.toolbarIconSize,
+                "icon_size": this.toolbarIconSize * this.text_scale,
+                "border_color": this.toolbarBorderColor,
+                "border_width": this.toolbarBorderWidth,
             },
             "TODOlist": {
                 "num_of_columns": this.numOfColumns,
-                "item_width": default_item_width * this.scale,
+                "item_width": default_item_width * this.scale * this.text_scale,
                 "font_family": this.font["family"],
-                "font_size": this.font["size"],
+                "font_size": this.font["size"] * this.text_scale,
                 "font_color": this.customTextColor,
                 "font_bold": this.fontBold,
                 "font_italic": this.fontItalic,
@@ -134,11 +151,15 @@ MyDesklet.prototype = {
                 "text_shadow_color": this.textShadowColor,
                 "is_transparent_bg": this.isTaskTransparentBg,
                 "background_color": this.taskBackground,
-                "icon_size": this.taskIconSize,
+                "border_color": this.taskBorderColor,
+                "border_width": this.taskBorderWidth,
+                "icon_size": this.taskIconSize * this.text_scale,
                 "unmarked_opacity": 255,
                 "marked_opacity": 160,
                 "not_marked_icon_name": this.taskNotMarkedDoneIcon,
                 "marked_icon_name": this.taskMarkedDoneIcon,
+                "background_color_important": this.taskBackgroundImportant,
+                "border_color_important": this.taskBorderColorImportant,
             }
         };
 
@@ -170,6 +191,8 @@ MyDesklet.prototype = {
         
         let container = new St.Group({style_class: "container"}); 
         this.root_el.add_child(container);
+
+        container.style = (this.showDecorations ? "padding: 0.2em;" : "padding: 1em;");
 
         let root_grid = new Clutter.GridLayout(); 
         root_grid.set_row_spacing(4 * this.scale);
