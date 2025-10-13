@@ -107,15 +107,15 @@ class MyDesklet extends Desklet.Desklet {
       icon_type: St.IconType.SYMBOLIC,
       icon_size: 16,
     });
+    new Tooltips.Tooltip(reloadButton, _("Reload"));
     reloadButton.set_child(reloadIcon);
     headerContainer.add_child(reloadButton);
 
     // Username
     if (this.showUsername) {
-      const usernameButton = new St.Button({ style_class: "github-contribution-grid-label-bin" });
+      const usernameButton = new St.Button({ label: this.githubUsername, style_class: "github-contribution-grid-label-bin" });
       usernameButton.connect("button-press-event", () => Util.spawnCommandLine(`xdg-open "https://github.com/${this.githubUsername}"`));
-      const label = new St.Label({ text: this.githubUsername });
-      usernameButton.set_child(label);
+      new Tooltips.Tooltip(usernameButton, _("Open GitHub profile"));
       headerContainer.add_child(usernameButton);
     }
 
