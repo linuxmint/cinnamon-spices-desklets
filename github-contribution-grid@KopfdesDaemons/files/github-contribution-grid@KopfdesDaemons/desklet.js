@@ -5,6 +5,7 @@ const St = imports.gi.St;
 const Gettext = imports.gettext;
 const Util = imports.misc.util;
 const Settings = imports.ui.settings;
+const Tooltips = imports.ui.tooltips;
 
 const UUID = "github-contribution-grid@KopfdesDaemons";
 
@@ -99,29 +100,23 @@ class MyDesklet extends Desklet.Desklet {
     const headerContainer = new St.BoxLayout({ style_class: "github-contribution-grid-header-container" });
 
     // Reload button
-    const reloadBin = new St.Bin({
-      style_class: "github-contribution-grid-reload-bin",
-      reactive: true,
-      track_hover: true,
-    });
-    reloadBin.connect("button-press-event", () => this._setupContributionData());
+    const reloadButton = new St.Button({ style_class: "github-contribution-grid-reload-bin" });
+    reloadButton.connect("button-press-event", () => this._setupContributionData());
     const reloadIcon = new St.Icon({
       icon_name: "view-refresh-symbolic",
       icon_type: St.IconType.SYMBOLIC,
       icon_size: 16,
     });
-    reloadBin.set_child(reloadIcon);
-    headerContainer.add_child(reloadBin);
+    reloadButton.set_child(reloadIcon);
+    headerContainer.add_child(reloadButton);
 
     // Username
     if (this.showUsername) {
-      const labelBin = new St.Bin({ style_class: "github-contribution-grid-label-bin", reactive: true, track_hover: true });
-      labelBin.connect("button-press-event", () => {
-        Util.spawnCommandLine(`xdg-open "https://github.com/${this.githubUsername}"`);
-      });
+      const usernameButton = new St.Button({ style_class: "github-contribution-grid-label-bin" });
+      usernameButton.connect("button-press-event", () => Util.spawnCommandLine(`xdg-open "https://github.com/${this.githubUsername}"`));
       const label = new St.Label({ text: this.githubUsername });
-      labelBin.set_child(label);
-      headerContainer.add_child(labelBin);
+      usernameButton.set_child(label);
+      headerContainer.add_child(usernameButton);
     }
 
     return headerContainer;
@@ -145,16 +140,9 @@ class MyDesklet extends Desklet.Desklet {
       setupBox.add_child(new St.Label({ text: "GitHub Contribution Grid", style_class: "github-contribution-grid-setup-headline" }));
       setupBox.add_child(new St.Label({ text: _("Please configure username and token in settings.") }));
 
-      const linkButton = new St.Button({
-        reactive: true,
-        track_hover: true,
-        style_class: "github-contribution-grid-link",
-        label: _("Create a GitHub token"),
-      });
-      linkButton.connect("clicked", () => {
-        Util.spawnCommandLine(`xdg-open "${GitHubHelper.gitHubTokenCrationURL}"`);
-      });
-      setupBox.add_child(linkButton);
+      const createTokenButton = new St.Button({ style_class: "github-contribution-grid-link", label: _("Create a GitHub token") });
+      createTokenButton.connect("clicked", () => Util.spawnCommandLine(`xdg-open "${GitHubHelper.gitHubTokenCrationURL}"`));
+      setupBox.add_child(createTokenButton);
 
       this.contentContainer.add_child(setupBox);
     } else if (error) {
@@ -163,15 +151,8 @@ class MyDesklet extends Desklet.Desklet {
       errorBox.add_child(new St.Label({ text: "GitHub Contribution Grid", style_class: "github-contribution-grid-error-headline" }));
       errorBox.add_child(new St.Label({ text: _("Error:") }));
       errorBox.add_child(new St.Label({ text: error, style_class: "github-contribution-grid-error-message" }));
-      const reloadButton = new St.Button({
-        reactive: true,
-        track_hover: true,
-        style_class: "github-contribution-grid-error-reload-button",
-        label: _("Reload"),
-      });
-      reloadButton.connect("clicked", () => {
-        this._setupContributionData();
-      });
+      const reloadButton = new St.Button({ style_class: "github-contribution-grid-error-reload-button", label: _("Reload") });
+      reloadButton.connect("clicked", () => this._setupContributionData());
       errorBox.add_child(reloadButton);
       this.contentContainer.add_child(errorBox);
     } else if (weeks) {
@@ -184,12 +165,16 @@ class MyDesklet extends Desklet.Desklet {
         for (const day of week.contributionDays) {
           const dayBin = new St.Bin({
             style_class: "day-bin",
+            reactive: true,
+            track_hover: true,
             style: `font-size: ${this.blockSize}px; background-color: ${GitHubHelper.getContributionColor(day.contributionCount)};`,
           });
 
+          new Tooltips.Tooltip(dayBin, `${day.date} ${day.contributionCount} ` + _("contributions"));
+
           if (this.showContributionCount) {
-            const label = new St.Label({ text: day.contributionCount.toString() });
-            dayBin.set_child(label);
+            const countLabel = new St.Label({ text: day.contributionCount.toString() });
+            dayBin.set_child(countLabel);
           }
           weekBox.add_child(dayBin);
         }

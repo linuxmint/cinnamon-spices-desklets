@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: github-contribution-grid@KopfdesDaemons 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-10-12 16:53+0200\n"
+"POT-Creation-Date: 2025-10-13 22:32+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,24 +18,28 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. metadata.json->name
-#. desklet.js:35
+#. desklet.js:36
 msgid "GitHub Contribution Grid"
 msgstr ""
 
-#. desklet.js:84 desklet.js:146
+#. desklet.js:85 desklet.js:141
 msgid "Please configure username and token in settings."
 msgstr ""
 
-#. desklet.js:152
+#. desklet.js:143
 msgid "Create a GitHub token"
 msgstr ""
 
-#. desklet.js:164
+#. desklet.js:152
 msgid "Error:"
 msgstr ""
 
-#. desklet.js:170
+#. desklet.js:154
 msgid "Reload"
+msgstr ""
+
+#. desklet.js:173
+msgid "contributions"
 msgstr ""
 
 #. metadata.json->description
