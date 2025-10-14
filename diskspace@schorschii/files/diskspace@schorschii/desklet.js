@@ -50,6 +50,7 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "design", "design", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "draw-free-space", "draw_free_space", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "circle-color", "circle_color", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "circle-color-free-space", "circle_color_free_space", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "use-own-circle-color", "use_own_circle_color", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "filesystem", "filesystem", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "type", "type", this.on_setting_changed);
@@ -200,7 +201,7 @@ MyDesklet.prototype = {
 		// canvas setup
 		let canvas = new Clutter.Canvas();
 		canvas.set_size(absoluteSize * global.ui_scale, absoluteSize * global.ui_scale);
-		canvas.connect("draw", function (canvas, cr, width, height) {
+		canvas.connect("draw", (canvas, cr, width, height) => {
 			cr.save();
 			cr.setOperator(Cairo.Operator.CLEAR);
 			cr.paint();
@@ -213,9 +214,15 @@ MyDesklet.prototype = {
 			let start = 0 - offset;
 			let end = ((use*(Math.PI*2))/size) - offset;
 
+			const free_space_colors = this.circle_color_free_space.match(/\((.*?)\)/)[1].split(","); // get contents inside brackets: "rgb(...)"
+			const free_space_color_r = this.use_own_circle_color ? parseInt(free_space_colors[0])/255 : 1;
+			const free_space_color_g  = this.use_own_circle_color ? parseInt(free_space_colors[1])/255 : 1;
+			const free_space_color_b  = this.use_own_circle_color ? parseInt(free_space_colors[2])/255 : 1;
+			const free_space_color_a =  this.use_own_circle_color ? (free_space_colors.length >= 4 ? parseFloat(free_space_colors[3]) : 1.0) : 0.2;
+
 			if(design == "thin") {
 				if(drawFreeSpace) {
-					cr.setSourceRGBA(1, 1, 1, 0.2);
+					cr.setSourceRGBA(free_space_color_r, free_space_color_g, free_space_color_b, free_space_color_a);
 					cr.setLineWidth(0.045);
 					cr.arc(0, 0, 0.45, 0, Math.PI*2);
 					cr.stroke();
@@ -229,7 +236,7 @@ MyDesklet.prototype = {
 				}
 			} else if(design == "compact") {
 				if(drawFreeSpace) {
-					cr.setSourceRGBA(1, 1, 1, 0.2);
+					cr.setSourceRGBA(free_space_color_r, free_space_color_g, free_space_color_b, free_space_color_a);
 					cr.setLineWidth(0.4);
 					cr.arc(0, 0, 0.2, 0, Math.PI*2);
 					cr.stroke();
@@ -242,7 +249,7 @@ MyDesklet.prototype = {
 				}
 			} else { // classic design
 				if(drawFreeSpace) {
-					cr.setSourceRGBA(1, 1, 1, 0.2);
+					cr.setSourceRGBA(free_space_color_r, free_space_color_g, free_space_color_b, free_space_color_a);
 					cr.setLineWidth(0.19);
 					cr.arc(0, 0, 0.4, 0, Math.PI*2);
 					cr.stroke();

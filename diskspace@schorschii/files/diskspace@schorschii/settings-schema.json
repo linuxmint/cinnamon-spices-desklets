@@ -105,6 +105,12 @@
         "description": "Circle color",
         "dependency": "use-own-circle-color"
     },
+    "circle-color-free-space": {
+        "type": "colorchooser",
+        "default": "rgba(255,255,255,0.2)",
+        "description": "Circle color for free space",
+        "dependency": "use-own-circle-color"
+    },
     "text-color": {
         "type": "colorchooser",
         "default": "rgba(255,255,255,1.0)",
