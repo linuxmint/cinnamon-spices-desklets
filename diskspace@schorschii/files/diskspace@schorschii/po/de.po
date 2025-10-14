@@ -3,41 +3,41 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-07-31 12:29-0400\n"
-"PO-Revision-Date: 2018-02-15 18:58+0100\n"
+"POT-Creation-Date: 2025-10-15 00:30+0200\n"
+"PO-Revision-Date: 2025-10-15 00:34+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
-"X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+"X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: desklet.js\n"
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:275 desklet.js:361
+#. desklet.js:304 desklet.js:390
 msgid "RAM"
 msgstr "Arbeitsspeicher"
 
 #. settings-schema.json->type->options
-#. desklet.js:277 desklet.js:363
+#. desklet.js:306 desklet.js:392
 msgid "Swap"
 msgstr "Swap-Speicher"
 
 #. settings-schema.json->type->options
-#. desklet.js:279
+#. desklet.js:308
 msgid "Filesystem"
 msgstr "Dateisystem"
 
-#. desklet.js:306
+#. desklet.js:335
 msgid "Not Found"
 msgstr "Nicht gef."
 
 #. metadata.json->name
-#. desklet.js:365
+#. desklet.js:394
 msgid "Disk Space"
 msgstr "Speicherplatzanzeige"
 
@@ -179,6 +179,18 @@ msgstr "Dekorationen verstecken"
 msgid "Draw free/unused space (gray)"
 msgstr "Zeichne freien/unbenutzten Speicherplatz (grau)"
 
+#. settings-schema.json->fill-circle-background->description
+msgid "Fill circle background"
+msgstr "Kreishintergrund ausfüllen"
+
+#. settings-schema.json->fill-circle-background->tooltip
+msgid "Fill the inside of the circle with color."
+msgstr "Fülle das Innere des Kreises mit Farbe."
+
+#. settings-schema.json->fill-circle-background-color->description
+msgid "Background fill color"
+msgstr "Hintergrundfüllfarbe"
+
 #. settings-schema.json->use-own-circle-color->description
 msgid "Use a custom circle color"
 msgstr "Kreisfarbe selbst festlegen"
@@ -186,6 +198,10 @@ msgstr "Kreisfarbe selbst festlegen"
 #. settings-schema.json->circle-color->description
 msgid "Circle color"
 msgstr "Kreisfarbe"
+
+#. settings-schema.json->circle-color-free-space->description
+msgid "Circle color for free space"
+msgstr "Kreisfarbe für freien Bereich"
 
 #. settings-schema.json->text-color->description
 msgid "Text color"
