@@ -93,6 +93,18 @@
         "description": "Draw free/unused space (gray)",
         "default": true
     },
+    "fill-circle-background": {
+        "type": "checkbox",
+        "description": "Fill circle background",
+        "tooltip": "Fill the inside of the circle with color.",
+        "default": false
+    },
+    "fill-circle-background-color": {
+        "type": "colorchooser",
+        "default": "rgba(128,128,128,0.25)",
+        "description": "Background fill color",
+        "dependency": "fill-circle-background"
+    },
     "use-own-circle-color": {
         "type": "checkbox",
         "default": false,

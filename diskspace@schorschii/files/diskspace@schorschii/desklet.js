@@ -49,6 +49,8 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "text_color", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "design", "design", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "draw-free-space", "draw_free_space", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "fill-circle-background", "fill_circle_background", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "fill-circle-background-color", "fill_circle_background_color", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "circle-color", "circle_color", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "circle-color-free-space", "circle_color_free_space", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "use-own-circle-color", "use_own_circle_color", this.on_setting_changed);
@@ -221,6 +223,16 @@ MyDesklet.prototype = {
 			const free_space_color_a =  this.use_own_circle_color ? (free_space_colors.length >= 4 ? parseFloat(free_space_colors[3]) : 1.0) : 0.2;
 
 			if(design == "thin") {
+				if(this.fill_circle_background) {
+					const bg_fill_colors = this.fill_circle_background_color.match(/\((.*?)\)/)[1].split(",");
+					const bg_fill_r = parseInt(bg_fill_colors[0])/255;
+					const bg_fill_g = parseInt(bg_fill_colors[1])/255;
+					const bg_fill_b = parseInt(bg_fill_colors[2])/255;
+					const bg_fill_a = bg_fill_colors.length >= 4 ? parseFloat(bg_fill_colors[3]) : 1.0;
+					cr.setSourceRGBA(bg_fill_r, bg_fill_g, bg_fill_b, bg_fill_a);
+					cr.arc(0, 0, 0.45 - (0.045 / 2), 0, Math.PI*2);
+					cr.fill();
+				}
 				if(drawFreeSpace) {
 					cr.setSourceRGBA(free_space_color_r, free_space_color_g, free_space_color_b, free_space_color_a);
 					cr.setLineWidth(0.045);
@@ -248,6 +260,16 @@ MyDesklet.prototype = {
 					cr.stroke();
 				}
 			} else { // classic design
+				if(this.fill_circle_background) {
+					const bg_fill_colors = this.fill_circle_background_color.match(/\((.*?)\)/)[1].split(",");
+					const bg_fill_r = parseInt(bg_fill_colors[0])/255;
+					const bg_fill_g = parseInt(bg_fill_colors[1])/255;
+					const bg_fill_b = parseInt(bg_fill_colors[2])/255;
+					const bg_fill_a = bg_fill_colors.length >= 4 ? parseFloat(bg_fill_colors[3]) : 1.0;
+					cr.setSourceRGBA(bg_fill_r, bg_fill_g, bg_fill_b, bg_fill_a);
+					cr.arc(0, 0, 0.4 - (0.19 / 2), 0, Math.PI*2);
+					cr.fill();
+				}
 				if(drawFreeSpace) {
 					cr.setSourceRGBA(free_space_color_r, free_space_color_g, free_space_color_b, free_space_color_a);
 					cr.setLineWidth(0.19);
