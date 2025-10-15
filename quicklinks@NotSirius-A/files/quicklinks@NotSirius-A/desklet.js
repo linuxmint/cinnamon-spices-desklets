@@ -49,8 +49,12 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "desklet-layout", "deskletLayout", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "text-align", "textAlign", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "column-number", "numOfColumns", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "row-spacing", "rowSpacing", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "column-spacing", "columnSpacing", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "transparent-bg", "isTransparentBg", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "bg-color", "customBgColor", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "link-border-width", "linkBorderWidth", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "link-border-color", "linkBorderColor", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "icon-size", "iconSize", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "font", "fontRaw", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "font-bold", "fontBold", this.on_setting_changed);
@@ -63,6 +67,7 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "links-list", "linksList", ()=>{});
 		this.settings.bindProperty(Settings.BindingDirection.IN, "click-type", "clickType", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "click-timeout", "clickTimeout", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "are-tooltips-enabled", "areTooltipsEnabled", this.on_setting_changed);
 
 		// List settings type seems to be a bit buggy
 		// Using a callback on list type settings seems to trigger multiple refreshes when changing ANY settings 
@@ -153,19 +158,23 @@ MyDesklet.prototype = {
 	* Renders entire GUI except for decorations
 	*/
 	renderGUI: function() {
-		const default_link_width = 95;
-		const default_row_spacing = 5;
-		const default_column_spacing = 5;
+        const desktop_settings = new Gio.Settings({ schema_id: "org.cinnamon.desktop.interface" });
+        this.text_scale = desktop_settings.get_double("text-scaling-factor");
+
+		this.font["size"] = this.font["size"] * this.text_scale;
+
+		// For some reason the border is inside the element not outside like normal CSS?? So border needs to be taken into account here
+		const default_link_width = 80 + this.linkBorderWidth*12;
 
 		// Calculate new sizes based on scale and layout
 		// Multipliers are based on experimentation with what looks good 
 		const width_scale = (this.deskletLayout === "tile")? 0.7 : 1
 		this.scale = this.scaleSize * global.ui_scale * width_scale;
-		this.link_width = default_link_width * this.scale;
+		this.link_width = default_link_width * this.scale * this.text_scale;
 
 		const spacing_scale = (this.deskletLayout === "tile")? 2 : 1;
-		const link_row_spacing = default_row_spacing * this.scale * spacing_scale;
-		const link_column_spacing = default_column_spacing * this.scale * spacing_scale;
+		const link_row_spacing = this.rowSpacing * this.scale * spacing_scale;
+		const link_column_spacing = this.columnSpacing * this.scale * spacing_scale;
 
 		// Destroy root_el and its children to avoid creating multiple copies and orphaned elements.
 		if (this.root_el) {
@@ -180,6 +189,8 @@ MyDesklet.prototype = {
 		// Add layout name as a class so that it can be used in css
 		let container = new St.Group({style_class: "container " + this.deskletLayout}); 
 		this.root_el.add_child(container);
+
+		container.style = (this.showDecorations ? "padding: 0.2em;" : "padding: 1em;");
 
 		let links_grid = new Clutter.GridLayout(); 
 		links_grid.set_row_spacing(Math.round(link_row_spacing));
@@ -212,13 +223,14 @@ MyDesklet.prototype = {
 
 
 		link_el.style = "font-family: '" + this.font["family"] + "';"
-							+ "font-size: " + this.font["size"] + "px;"
-							+ "color:" + this.customTextColor + ";"
-							+ "font-weight:" + (this.fontBold ? "bold" : "normal") + ";"
-							+ "font-style:" + (this.fontItalic ? "italic" : "normal") + ";"
-							+ "text-shadow:" + (this.textShadow ? "1px 1px 6px "+this.textShadowColor : "none") + ";"
-							+ "background-color:" + (this.isTransparentBg ? "unset" : this.customBgColor) + ";"
-							+ "text-align:" + this.textAlign + ";";
+						+ "font-size: " + this.font["size"] + "px;"
+						+ "color:" + this.customTextColor + ";"
+						+ "font-weight:" + (this.fontBold ? "bold" : "normal") + ";"
+						+ "font-style:" + (this.fontItalic ? "italic" : "normal") + ";"
+						+ "text-shadow:" + (this.textShadow ? "1px 1px 6px "+this.textShadowColor : "none") + ";"
+						+ "background-color:" + (this.isTransparentBg ? "unset" : this.customBgColor) + ";"
+						+ "text-align:" + this.textAlign + ";"
+						+ "border: solid " + this.linkBorderWidth + "px " + this.linkBorderColor + ";";
 
 
 		const row = link_index%this.numOfColumns;
@@ -253,7 +265,7 @@ MyDesklet.prototype = {
 			if (this.deskletLayout === "tile") {
 				label_width = Math.round(this.link_width * 0.92);
 			} else {
-				label_width = Math.round(this.link_width - this.iconSize*2.3 - this.font["size"] * 1.5)
+				label_width = Math.round(this.link_width - global.ui_scale * (this.iconSize*1.1 + this.font["size"]*1.15 + 5))
 				label_width = Math.max(label_width, 0);
 			}
 			link_label.set_width(label_width);
@@ -283,10 +295,11 @@ MyDesklet.prototype = {
 			this.onLinkClick(link_index);
 		}));
 
-		
-		// Add command to tooltip - display command when hovering over link element
-		const command_line = link_data["command"];
-		new Tooltips.Tooltip(link_el, command_line);
+		if (this.areTooltipsEnabled) {
+			// Add command to tooltip - display command when hovering over link element
+			const command_line = link_data["command"];
+			new Tooltips.Tooltip(link_el, command_line);
+		}
 	},
 
 	/**

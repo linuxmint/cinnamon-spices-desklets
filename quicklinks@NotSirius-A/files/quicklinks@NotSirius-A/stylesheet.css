@@ -2,7 +2,7 @@
 	color: black;
 	font-weight: 500; /* normal */
 	border-radius: 0.32em;
-	padding: 0.25em 0.05em;
+	padding: 0.2em 0.05em;
 }
 
 .link:hover {
@@ -24,8 +24,8 @@
 }
 
 .list .link-icon {
-	padding-left: 0.35em;
-	padding-right: 0.55em;
+	padding-left: 0.08em;
+	padding-right: 0.5em;
 }
 
 .tile .link-icon {
