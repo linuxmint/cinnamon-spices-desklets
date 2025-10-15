@@ -1,0 +1,91 @@
+# GITHUB CONTRIBUTION GRID
+# This file is put in the public domain.
+# KopfdesDaemons, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: github-contribution-grid@KopfdesDaemons 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-10-13 22:42+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. metadata.json->name
+#. desklet.js:36
+msgid "GitHub Contribution Grid"
+msgstr "GitHub Contribution Grid"
+
+#. desklet.js:85 desklet.js:141
+msgid "Please configure username and token in settings."
+msgstr "Bitte konfiguriere Benutzername und Token in den Einstellungen."
+
+#. desklet.js:110 desklet.js:154
+msgid "Reload"
+msgstr "Neuladen"
+
+#. desklet.js:118
+msgid "Open GitHub profile"
+msgstr "GitHub Profil öffnen"
+
+#. desklet.js:143
+msgid "Create a GitHub token"
+msgstr "Einen GitHub Token erstellen"
+
+#. desklet.js:152
+msgid "Error:"
+msgstr "Error:"
+
+#. desklet.js:173
+msgid "contributions"
+msgstr "Beiträge"
+
+#. metadata.json->description
+msgid ""
+"Displays the daily contributions heatmap for a specified GitHub user profile."
+msgstr ""
+"Zeigt die Heatmap der täglichen Beiträge für ein angegebenes GitHub-"
+"Benutzerprofil an."
+
+#. settings-schema.json->head0->description
+msgid "API Settings"
+msgstr "API-Einstellungen"
+
+#. settings-schema.json->github-username->description
+msgid "GitHub Username"
+msgstr "GitHub Benutzername"
+
+#. settings-schema.json->github-token->description
+msgid "GitHub Token"
+msgstr "GitHub Token"
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval in minutes"
+msgstr "Aktualisierungsintervall in Minuten"
+
+#. settings-schema.json->head1->description
+msgid "Style"
+msgstr "Stil"
+
+#. settings-schema.json->block-size->description
+msgid "Block size in pixels"
+msgstr "Blockgröße in Pixel"
+
+#. settings-schema.json->background-color->description
+msgid "Background color"
+msgstr "Hintergrundfarbe"
+
+#. settings-schema.json->show-contribution-count->description
+msgid "Show contribution count"
+msgstr "Beitragsanzahl anzeigen"
+
+#. settings-schema.json->show-username->description
+msgid "Show username"
+msgstr "Benutzername anzeigen"
