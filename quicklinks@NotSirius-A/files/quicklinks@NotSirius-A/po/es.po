@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: quicklinks@NotSirius-A 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-06-16 14:10+0200\n"
+"POT-Creation-Date: 2025-10-14 20:05+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -15,9 +15,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.7\n"
 
-#. desklet.js:130
+#. desklet.js:135
 msgid ""
 "No visible\n"
 "links found.\n"
@@ -35,7 +35,7 @@ msgstr ""
 "en desklet\n"
 "luego configurar."
 
-#. desklet.js:344
+#. desklet.js:355
 msgid "Quick Links: Command parse error: "
 msgstr "Enlaces directos: Error de análisis de comandos: "
 
@@ -56,9 +56,9 @@ msgstr "Enlaces directos"
 msgid "Links"
 msgstr "Enlaces"
 
-#. settings-schema.json->actions-page->title
-msgid "Actions"
-msgstr "Acciones"
+#. settings-schema.json->preferences-page->title
+msgid "Preferences"
+msgstr "Preferencias"
 
 #. settings-schema.json->theme-page->title
 msgid "Theme"
@@ -72,9 +72,9 @@ msgstr "Configure sus enlaces aquí"
 msgid "Find icon names here"
 msgstr "Encuentre aquí los nombres de los iconos"
 
-#. settings-schema.json->click-section->title
-msgid "Change how links are activated"
-msgstr "Cambiar el modo de activación de los enlaces"
+#. settings-schema.json->general-section->title
+msgid "General"
+msgstr "General"
 
 #. settings-schema.json->layout-section->title
 msgid "Layout"
@@ -243,6 +243,22 @@ msgstr "Número de columnas"
 msgid "Increase or decrease the number of columns on the layout."
 msgstr "Aumentar o reducir el número de columnas de la disposición."
 
+#. settings-schema.json->row-spacing->description
+msgid "Row spacing"
+msgstr "Espacio entre filas"
+
+#. settings-schema.json->row-spacing->tooltip
+msgid "Change how far apart are link rows."
+msgstr "Cambia la distancia entre las filas de enlaces."
+
+#. settings-schema.json->column-spacing->description
+msgid "Column spacing"
+msgstr "Espacio entre columnas"
+
+#. settings-schema.json->column-spacing->tooltip
+msgid "Change how far apart are link columns."
+msgstr "Cambia la distancia entre las columnas de enlaces."
+
 #. settings-schema.json->text-shadow->description
 msgid "Text shadow"
 msgstr "Sombra de texto"
@@ -313,6 +329,26 @@ msgstr "Color del texto"
 msgid "Set the text color of this desklet."
 msgstr "Establecer el color del texto de este desklet."
 
+#. settings-schema.json->link-border-width->description
+msgid "Border width (set to 0 to disable border)"
+msgstr "Ancho del borde (establecer en 0 para desactivar el borde)"
+
+#. settings-schema.json->link-border-width->tooltip
+msgid "Increase or decrease the link border width."
+msgstr "Aumentar o disminuir el ancho del borde del enlace."
+
+#. settings-schema.json->link-border-color->description
+msgid "Border color"
+msgstr "Color del borde"
+
+#. settings-schema.json->link-border-color->tooltip
+msgid ""
+"Set the link border color (Transparent border will add more padding to "
+"links)."
+msgstr ""
+"Establece el color del borde del enlace (un borde transparente añadirá más "
+"relleno a los enlaces)."
+
 #. settings-schema.json->scale-size->units
 msgid "scale factor"
 msgstr "factor de escala"
@@ -351,6 +387,22 @@ msgid ""
 msgstr ""
 "Configure la cabecera de su desklet. Asegúrate de que los encabezados de "
 "desklet están activados en la configuración del sistema."
+
+#. settings-schema.json->are-tooltips-enabled->description
+msgid "Enable link tooltips"
+msgstr "Habilitar información sobre herramientas de enlaces"
+
+#. settings-schema.json->are-tooltips-enabled->tooltip
+msgid "Select if you want tooltips to show up when hovering over links."
+msgstr ""
+"Selecciona si deseas que aparezcan sugerencias al pasar el cursor sobre los "
+"enlaces."
+
+#~ msgid "Actions"
+#~ msgstr "Acciones"
+
+#~ msgid "Change how links are activated"
+#~ msgstr "Cambiar el modo de activación de los enlaces"
 
 #~ msgid "Quick Links: Error while parsing links: "
 #~ msgstr "Enlaces directos: Error al analizar los enlaces: "
@@ -410,9 +462,6 @@ msgstr ""
 
 #~ msgid "Font size"
 #~ msgstr "Tamaño de la fuente"
-
-#~ msgid "Increase or decrease the font size."
-#~ msgstr "Aumentar o disminuir el tamaño de la fuente."
 
 #~ msgid "Use a custom desklet label"
 #~ msgstr "Utilizar una etiqueta de desklet personalizada"
