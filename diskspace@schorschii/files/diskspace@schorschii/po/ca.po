@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-07-31 12:29-0400\n"
+"POT-Creation-Date: 2025-10-15 00:30+0200\n"
 "PO-Revision-Date: 2025-09-29 03:41+0200\n"
 "Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
 "Language-Team: \n"
@@ -22,26 +22,26 @@ msgstr ""
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:275 desklet.js:361
+#. desklet.js:304 desklet.js:390
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#. desklet.js:277 desklet.js:363
+#. desklet.js:306 desklet.js:392
 msgid "Swap"
 msgstr "Memòria d'intercanvi"
 
 #. settings-schema.json->type->options
-#. desklet.js:279
+#. desklet.js:308
 msgid "Filesystem"
 msgstr "Sistema de fitxers"
 
-#. desklet.js:306
+#. desklet.js:335
 msgid "Not Found"
 msgstr "No s'ha trobat"
 
 #. metadata.json->name
-#. desklet.js:365
+#. desklet.js:394
 msgid "Disk Space"
 msgstr "Espai de disc"
 
@@ -183,12 +183,29 @@ msgstr "Oculta les decoracions"
 msgid "Draw free/unused space (gray)"
 msgstr "Dibuixa l'espai lliure o no utilitzat (gris)"
 
+#. settings-schema.json->fill-circle-background->description
+msgid "Fill circle background"
+msgstr ""
+
+#. settings-schema.json->fill-circle-background->tooltip
+msgid "Fill the inside of the circle with color."
+msgstr ""
+
+#. settings-schema.json->fill-circle-background-color->description
+msgid "Background fill color"
+msgstr ""
+
 #. settings-schema.json->use-own-circle-color->description
 msgid "Use a custom circle color"
 msgstr "Utilitza un color de cercle personalitzat"
 
 #. settings-schema.json->circle-color->description
 msgid "Circle color"
+msgstr "Color del cercle"
+
+#. settings-schema.json->circle-color-free-space->description
+#, fuzzy
+msgid "Circle color for free space"
 msgstr "Color del cercle"
 
 #. settings-schema.json->text-color->description
