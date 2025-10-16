@@ -1,12 +1,13 @@
 # Timelet
 # Copyright (C) 2022 Gobinath
 # This file is distributed under the same license as the Timelet package.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-10 21:39-0400\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-10-16 23:33+0200\n"
 "PO-Revision-Date: 2023-12-07 18:26+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,19 +18,19 @@ msgstr ""
 "X-Generator: Poedit 3.4.1\n"
 
 #. metadata.json->name
-#: desklet.js:50
+#. desklet.js:50
 msgid "Timelet"
 msgstr ""
 
-#: themes/theme.js:143
+#. themes/theme.js:143
 msgid "AM"
 msgstr ""
 
-#: themes/theme.js:145
+#. themes/theme.js:145
 msgid "Noon"
 msgstr "Полдень"
 
-#: themes/theme.js:147
+#. themes/theme.js:147
 msgid "PM"
 msgstr ""
 
@@ -50,7 +51,8 @@ msgid "Use 24H"
 msgstr "Использовать 24 часовой формат"
 
 #. settings-schema.json->use24H->tooltip
-msgid "Display time in 24H if the theme supports it"
+#, fuzzy
+msgid "Display time in 24H"
 msgstr "Отображать время в 24 часовом формате, если тема поддерживает это"
 
 #. settings-schema.json->textColor->description
@@ -92,3 +94,7 @@ msgstr "Радиус скруглённых углов"
 #. settings-schema.json->cornerRadius->tooltip
 msgid "Radius for rounding the desklet's corners"
 msgstr "Выберите, как сильно должны быть скруглены углы десклета"
+
+#. settings-schema.json->hideDecorations->description
+msgid "Hide decorations"
+msgstr ""
