@@ -50,13 +50,14 @@ Timelet.prototype = {
         this.setHeader(_("Timelet"));
 
         this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], this.instance_id);
-        this.settings.bind("themeName", "themeName", this.onSettingChanged);
-        this.settings.bind("use24H", "use24H", this.onSettingChanged);
-        this.settings.bind("textColor", "textColor", this.onSettingChanged);
-        this.settings.bind("bgColor", "bgColor", this.onSettingChanged);
-        this.settings.bind("scale", "scale", this.onSettingChanged);
-        this.settings.bind("transparency", "transparency", this.onSettingChanged);
-        this.settings.bind("cornerRadius", "cornerRadius", this.onSettingChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "themeName", "themeName", Lang.bind(this, this._setTheme));
+        this.settings.bindProperty(Settings.BindingDirection.IN, "use24H", "use24H", Lang.bind(this, this._setTheme));
+        this.settings.bindProperty(Settings.BindingDirection.IN, "textColor", "textColor", Lang.bind(this, this._setTheme));
+        this.settings.bindProperty(Settings.BindingDirection.IN, "bgColor", "bgColor", Lang.bind(this, this._setTheme));
+        this.settings.bindProperty(Settings.BindingDirection.IN, "scale", "scale", Lang.bind(this, this._setTheme));
+        this.settings.bindProperty(Settings.BindingDirection.IN, "transparency", "transparency", Lang.bind(this, this._setTheme));
+        this.settings.bindProperty(Settings.BindingDirection.IN, "cornerRadius", "cornerRadius", Lang.bind(this, this._setTheme));
+        this.settings.bindProperty(Settings.BindingDirection.IN, "hideDecorations", "hideDecorations", Lang.bind(this, this._toggleDecoration));
 
         // Populate the theme names
         let themeNames = {};
@@ -69,10 +70,6 @@ Timelet.prototype = {
 
         this._setTheme();
         this._updateDateTime();
-    },
-
-    onSettingChanged() {
-        this._setTheme();
     },
 
     on_desklet_removed: function () {
@@ -116,7 +113,12 @@ Timelet.prototype = {
         }
         this._theme.setDateTime(new Date(), locale);
         this.timeout = Mainloop.timeout_add_seconds(1, Lang.bind(this, this._updateDateTime));
-    }
+    },
+
+    _toggleDecoration() {
+        this.metadata['prevent-decorations'] = this.hideDecorations;
+        this._updateDecoration();
+    },
 }
 
 function main(metadata, deskletID) {

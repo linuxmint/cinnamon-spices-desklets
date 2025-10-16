@@ -1,13 +1,13 @@
 # Timelet
 # Copyright (C) 2022 Gobinath
 # This file is distributed under the same license as the Timelet package.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-05-18 00:10+0200\n"
+"POT-Creation-Date: 2025-10-16 23:33+0200\n"
 "PO-Revision-Date: 2024-05-17 18:44-0400\n"
 "Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
 "Language-Team: \n"
@@ -19,19 +19,19 @@ msgstr ""
 "X-Generator: Poedit 3.4.2\n"
 
 #. metadata.json->name
-#: desklet.js:50
+#. desklet.js:50
 msgid "Timelet"
 msgstr "Timelet"
 
-#: themes/theme.js:143
+#. themes/theme.js:143
 msgid "AM"
 msgstr "AM"
 
-#: themes/theme.js:145
+#. themes/theme.js:145
 msgid "Noon"
 msgstr "Mediodía"
 
-#: themes/theme.js:147
+#. themes/theme.js:147
 msgid "PM"
 msgstr "PM"
 
@@ -94,3 +94,7 @@ msgstr "Radio de las esquinas"
 #. settings-schema.json->cornerRadius->tooltip
 msgid "Radius for rounding the desklet's corners"
 msgstr "Radio para redondear las esquinas del desklet"
+
+#. settings-schema.json->hideDecorations->description
+msgid "Hide decorations"
+msgstr ""
