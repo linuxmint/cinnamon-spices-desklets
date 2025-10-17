@@ -1,5 +1,6 @@
 const Clutter = imports.gi.Clutter;
 const St = imports.gi.St;
+const Pango = imports.gi.Pango;
 const Lang = imports.lang;
 const Cinnamon = imports.gi.Cinnamon;
 const Main = imports.ui.main;
@@ -48,6 +49,10 @@ class TODOList {
         }
     }
 
+    getSelected() {
+        return this._items.filter((item) => {return item.is_selected});
+    }
+
     getSelectedCount() {
         return this._items.filter((item) => {return item.is_selected}).length;
     }
@@ -75,51 +80,78 @@ class TODOList {
             // Replace escaped newlines with actual newlines to allow user to split name into multiple lines
             item["name"] = item["name"].replaceAll("\\n", "\n");
 
-            this.addItem(item["name"], item["is-marked-done"]);
+            this.addItem(item["name"], item["is-marked-done"], item["is-marked-important"]);
             
         })
 
     }
 
-    addItem(name, is_marked_done=false) {
+    addItem(name, is_marked_done=false, is_marked_important=false, save=true) {
         this._items.push(
             new TODOItem.TODOItem(
                 name,
                 is_marked_done,
+                is_marked_important,
                 this.is_selection_enabled,
             )
         );
 
-        this.saveItemsToSettings();
+        if (save) {
+            this.saveItemsToSettings();
+        }  
     }
 
-    removeItems(only_selected=true) {
+    removeItems(only_selected=true, save=true) {
         if (only_selected) {
             this._items = this._items.filter((item) => {return !item.is_selected});
         } else {
             // Clear array
             this._items.length = 0;
+        }
+
+        if (save) {
+            this.saveItemsToSettings();
         }     
     }
 
-    removeItem(index) {
+    removeItem(index, save=true) {
         if (index < this._items.length && index >= 0) {
             this._items.splice(index, 1);
+            
+            if (save) {
+                this.saveItemsToSettings();
+            }  
             return true;
         } else {
             return false;
         }
     }
 
-    markItemsDone(done = true, only_selected=true) {
+    markItemsDone(done = true, only_selected=true, save=true) {
         for(let i = 0; i < this._items.length; ++i) {
             const item = this.getItem(i); 
             if (item.is_selected || !only_selected) {
                 item.is_marked_done = done;
             }
+        }
+        
+        if (save) {
+            this.saveItemsToSettings();
         }  
     }
     
+    markItemsImportant(important=true, only_selected=true, save=true) {
+        for(let i = 0; i < this._items.length; ++i) {
+            const item = this.getItem(i); 
+            if (item.is_selected || !only_selected) {
+                item.is_marked_important = important;
+            }
+        }
+        
+        if (save) {
+            this.saveItemsToSettings();
+        }          
+    }
 
     deselectAllItems() {
         for(let i = 0; i < this._items.length; ++i) {
@@ -173,6 +205,8 @@ class TODOList {
         this.grid = new Clutter.GridLayout(); 
         this.grid.set_row_spacing(Math.round(row_spacing));
         this.grid.set_column_spacing(Math.round(column_spacing));
+        this.grid.set_column_homogeneous(true);
+        this.grid.set_row_homogeneous(false);
         this.container.set_layout_manager(this.grid);
 
         if (this.is_sort_enabled) {
@@ -210,8 +244,17 @@ class TODOList {
                             + "color:" + th["font_color"] + ";"
                             + "font-weight:" + (th["font_bold"] ? "bold" : "normal") + ";"
                             + "font-style:" + (th["font_italic"] ? "italic" : "normal") + ";"
-                            + "text-shadow:" + (th["text_shadow_enabled"] ? "1px 1px 6px " + th["text_shadow_color"] : "none") + ";"
-                            + "background-color:" + (th["is_transparent_bg"] ? "unset" : th["background_color"]) + ";";
+                            + "text-shadow:" + (th["text_shadow_enabled"] ? "1px 1px 6px " + th["text_shadow_color"] : "none") + ";";
+
+        if (Item.is_marked_important) {
+            parent_button.style += "background-color:" + (th["is_transparent_bg"] ? "unset" : th["background_color_important"]) + ";"
+                                + "border: solid " + th["border_width"] + "px " + th["border_color_important"] + ";";
+        } else {
+            parent_button.style += "background-color:" + (th["is_transparent_bg"] ? "unset" : th["background_color"]) + ";"
+                                + "border: solid " + th["border_width"] + "px " + th["border_color"] + ";";
+        }
+
+ 
 
 
         const opacity = (Item.is_marked_done ? th["marked_opacity"]: th["unmarked_opacity"]);
@@ -263,7 +306,6 @@ class TODOList {
                     _(`Are you sure you want to remove this task?`),
                     () => {
                         this.removeItem(item_index);
-                        this.saveItemsToSettings()
                         this.render();
                         return;
                     }
@@ -286,15 +328,37 @@ class TODOList {
         // I've tried setting text in many weird ways. I've tried making a desklet with just one St.Entry element to check if it's not triggered by my app, but it always gives errors.
         // Maybe this is a bug in St.Entry implementation? Maybe not?
         // I don't know exactly why this error occurs, but it doesn't seem to affect any functionality here, so im ignoring it for now.
-        // If you happen to know the solution to this problem please let me know, I've already looked everywhere I could.
+        // If you happen to know the solution to this problem please let me know, I've already looked everywhere I could.        
         let entry = new St.Entry({ style_class: "todo-item-entry"});
+        Item.StEntry = entry;
 
 
         // This minimizes the number of errors explained in a comment above
         entry.clutter_text.set_editable(false);
-        entry.set_text(Item.name);
+        entry.clutter_text.set_text(Item.name);
 
-        Item.StEntry = entry;
+
+        entry.style = "text-decoration:" + (Item.is_marked_done ? "line-through": "none") + ";";
+
+        // Calculate the max width of a label based on current layout and icon size
+        // Multipliers are based on experimentation
+        let label_width = Math.round(th["item_width"] - global.ui_scale * (th["icon_size"] * 0.9 + th["font_size"] * 1 + 3) );
+        label_width = Math.max(label_width, 0);
+        
+        entry.set_width(label_width);
+
+
+        // Allowing multi line input with was a nightmare, it only kind of works now
+        // I've tried many methods, including making my own version of St.Entry from Clutter.Text it failed
+        // Most important setting is the set_single_line_mode(false), this basically allows multiline
+        // Unfortunately it also breaks many things and doesn't work well with user input
+        // I could get ClutterText to adjust its size based on its text, only the first line is within ClutterText, so only one line is clickable
+
+        // entry.clutter_text.set_line_wrap(true);
+        entry.clutter_text.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
+        // entry.clutter_text.set_line_alignment(Pango.Alignment.LEFT)
+        entry.clutter_text.set_ellipsize(Pango.EllipsizeMode.END);
+        entry.clutter_text.set_single_line_mode(false);
 
 
         entry.clutter_text.connect("button_press_event", Lang.bind(this, (actor, event) => {
@@ -311,7 +375,6 @@ class TODOList {
                     _(`Are you sure you want to remove this task?`),
                     () => {
                         this.removeItem(item_index);
-                        this.saveItemsToSettings();
                         this.render();
                         return;
                     }
@@ -319,12 +382,13 @@ class TODOList {
                 dialog.open();
             }
 
+            
             // Set editable when users click on St.Entry, this is needed to minimize errors, see comments above
             entry.clutter_text.set_editable(true);
 
             if ( global.stage_input_mode == Cinnamon.StageInputMode.FULLSCREEN ) return;
             global.set_stage_input_mode(Cinnamon.StageInputMode.FOCUSED);
-            item.StEntry.grab_key_focus();
+            entry.grab_key_focus();
             global.set_stage_input_mode(Cinnamon.StageInputMode.NORMAL);  
 
         }));
@@ -334,21 +398,13 @@ class TODOList {
         }));
         entry.clutter_text.connect("key_focus_out", Lang.bind(this, ()=> {
             this.saveItemsToSettings();
+            // entry.clutter_text.set_editable(false);
         }));
-
-        entry.style = "text-decoration:" + (Item.is_marked_done ? "line-through": "none") + ";";
-
-        // Calculate the max width of a label based on current layout and icon size
-        // Multipliers are based on experimentation
-        let label_width = Math.round(th["item_width"] - th["icon_size"] * 2.4 - th["font_size"] * 2.7);
-        label_width = Math.max(label_width, 0);
-        
-        entry.set_width(label_width);
-
 
         
         let label_container = new St.Group({style_class:"label-container"});
         label_container.add_child(entry);
+
         
         // Layout to center the label
         let label_box = new Clutter.BoxLayout();
@@ -358,6 +414,20 @@ class TODOList {
         content_grid.attach(label_container, 1, 0, 1, 1);
 
 
+        // Turns out reading element height at this point just straight up gives nonsense results
+        // I think its because the element is not rendered yet so stuff like text wrapping is not taken into account
+        // I've tried reading height when element is fully shown asynchronously using some signal
+        // Every signal I've tried didn't work.. it either gave the wrong height, didn't fire or fired constantly
+        // It's hard to understand what signals like `realize` of `show` mean when there's no description in the """documentation"""
+        // Main.notifyError(entry.clutter_text.get_layout().get_line_count().toString())
+        // const [_, text_height] = entry.clutter_text.get_preferred_height(label_width)
+        // entry.clutter_text.set_height(text_height);
+
+        // label_container.connect("realize", Lang.bind(this, function(a, event) {
+        //     Main.notifyError(entry.clutter_text.get_layout().get_line_count().toString())
+        //     const [_, text_height] = label_container.get_preferred_height(label_width)
+        // }
+
 
         parent_button.connect("button-press-event", Lang.bind(this, function(a, event) {
             if (event.get_button() === Clutter.BUTTON_MIDDLE) {
@@ -365,7 +435,6 @@ class TODOList {
                     _(`Are you sure you want to remove this task?`),
                     () => {
                         this.removeItem(item_index);
-                        this.saveItemsToSettings()
                         this.render();
                         return;
                     }
@@ -380,8 +449,10 @@ class TODOList {
         }));
 
    
-        const command_line = Item.name;
-        new Tooltips.Tooltip(parent_button, command_line);
+
+        if (this.desklet.areTaskTooltipsEnabled) {
+            new Tooltips.Tooltip(parent_button, Item.name);
+        }
 
     }   
 

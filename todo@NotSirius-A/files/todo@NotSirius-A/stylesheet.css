@@ -1,6 +1,6 @@
 .toolbar-container {
 	border-radius: 0.32em;
-	padding: 0.3em 0.35em;
+	padding: 5px 10px;
 }
 
 .toolbar-icon-btn {
@@ -19,10 +19,10 @@
 
 .todo-item {
 	color: black;
-	font-weight: 500; /* normal */
+	font-weight: 500; 
 	border-radius: 0.32em;
-	padding: 0.3em 0.15em;
-	margin: 0.2em 0;
+	padding: 0.12em 0.15em;
+	margin: 0.12em 0;
 }
 
 .todo-item:hover {
@@ -40,13 +40,23 @@
 .todo-item-icon {
 	padding-left: 0.15em;
 	padding-right: 0.15em;
-	margin-left: 0.2em;
-	margin-right: 0.25em;
+	margin-left: 0.1em;
+	margin-right: 0.15em;
 }
 
+.todo-item-icon-btn:hover {
+	border-radius: 0.32em;
+	box-shadow: 0px 0px 0px 999px inset rgba(255,255,255,0.15);
+	background-color: rgba(255,255,255,0.1);
+}
+.todo-item-icon-btn:active {
+	border-radius: 0.5em;
+	box-shadow: 0px 0px 0px 999px inset rgba(255,255,255,0.4);
+	background-color: rgba(255,255,255,0.3);
+}
 
 .todo-item-entry {
-	padding: 0.05em 0.1em;
+	padding: 0.00em 0.1em;
 }
 
 

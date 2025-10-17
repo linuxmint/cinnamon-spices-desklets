@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: todo@NotSirius-A 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-06-26 19:13+0200\n"
+"POT-Creation-Date: 2025-10-13 15:24+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,15 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. settings-schema.json->todo-page->title
-#. MyToolBar.js:74 desklet.js:238
+#. MyToolBar.js:93 desklet.js:261
 msgid "TODO"
 msgstr ""
 
-#. TODOList.js:263 TODOList.js:311 TODOList.js:365
+#. TODOList.js:306 TODOList.js:375 TODOList.js:435
 msgid "Are you sure you want to remove this task?"
 msgstr ""
 
-#. desklet.js:235
+#. desklet.js:258
 msgid "Add new task"
 msgstr ""
 
@@ -50,9 +50,8 @@ msgstr ""
 msgid "Add or modify your tasks here"
 msgstr ""
 
-#. settings-schema.json->toolbar-preferences-section->title
-#. settings-schema.json->toolbar-theme-section->title
-msgid "Toolbar"
+#. settings-schema.json->general-preferences-section->title
+msgid "General"
 msgstr ""
 
 #. settings-schema.json->todo-preferences-section->title
@@ -65,6 +64,10 @@ msgstr ""
 
 #. settings-schema.json->TODO-task-theme-section->title
 msgid "TODO tasks"
+msgstr ""
+
+#. settings-schema.json->toolbar-theme-section->title
+msgid "Toolbar"
 msgstr ""
 
 #. settings-schema.json->desklet-decorations-section->title
@@ -81,11 +84,17 @@ msgid ""
 " - Middle-click to remove\n"
 " - If you want to add more tasks, right-click anywhere on the desklet and "
 "select the `Add new task` option inside the popup menu \n"
+" - Shift+Enter while editing task to place a new line\n"
+" - Ibus/Fcitx input is possible only through the edit button or settings\n"
 "You can find more information about this desklet on its webpage."
 msgstr ""
 
 #. settings-schema.json->todo-list->columns->title
-msgid "Marked done"
+msgid "Done"
+msgstr ""
+
+#. settings-schema.json->todo-list->columns->title
+msgid "Important"
 msgstr ""
 
 #. settings-schema.json->todo-list->columns->title
@@ -167,10 +176,6 @@ msgstr ""
 msgid "Set the task text color."
 msgstr ""
 
-#. settings-schema.json->scale-size->units
-msgid "scale factor"
-msgstr ""
-
 #. settings-schema.json->scale-size->description
 msgid "Desklet size, mostly impacts width"
 msgstr ""
@@ -188,16 +193,49 @@ msgid "Select if you want a transparent background."
 msgstr ""
 
 #. settings-schema.json->task-background->description
-msgid "Task background"
+#. settings-schema.json->toolbar-background->description
+msgid "Background color"
 msgstr ""
 
 #. settings-schema.json->task-background->tooltip
 msgid "Set the task background."
 msgstr ""
 
-#. settings-schema.json->task-icon-size->units
-#. settings-schema.json->toolbar-icon-size->units
-msgid "pixels"
+#. settings-schema.json->task-border-width->description
+msgid "Border width (set to 0 to disable border)"
+msgstr ""
+
+#. settings-schema.json->task-border-width->tooltip
+msgid "Increase or decrease the task border width."
+msgstr ""
+
+#. settings-schema.json->task-border-color->description
+#. settings-schema.json->toolbar-border-color->description
+msgid "Border color"
+msgstr ""
+
+#. settings-schema.json->task-border-color->tooltip
+msgid ""
+"Set the task border color (Transparent border will add more padding to "
+"tasks)."
+msgstr ""
+
+#. settings-schema.json->task-background-important->description
+msgid "Background when marked as important"
+msgstr ""
+
+#. settings-schema.json->task-background-important->tooltip
+msgid "Set the task background when marked as important."
+msgstr ""
+
+#. settings-schema.json->task-border-color-important->description
+msgid "Border color when marked as important"
+msgstr ""
+
+#. settings-schema.json->task-border-color-important->tooltip
+msgid ""
+"Set the task border color when marked as important (Transparent border will "
+"add more padding to tasks)."
 msgstr ""
 
 #. settings-schema.json->task-icon-size->description
@@ -217,15 +255,11 @@ msgid "Icon not marked"
 msgstr ""
 
 #. settings-schema.json->toolbar-icon-size->description
-msgid "Toolbar icon size"
+msgid "Icon size"
 msgstr ""
 
 #. settings-schema.json->toolbar-icon-size->tooltip
 msgid "Increase or decrease the icon size."
-msgstr ""
-
-#. settings-schema.json->toolbar-background->description
-msgid "Toolbar background"
 msgstr ""
 
 #. settings-schema.json->toolbar-background->tooltip
@@ -233,11 +267,26 @@ msgid "Set the toolbar background."
 msgstr ""
 
 #. settings-schema.json->toolbar-font-color->description
-msgid "Toolbar icon color"
+msgid "Icon color"
 msgstr ""
 
 #. settings-schema.json->toolbar-font-color->tooltip
 msgid "Set the color of toolbar icons."
+msgstr ""
+
+#. settings-schema.json->toolbar-border-width->description
+msgid "Border width"
+msgstr ""
+
+#. settings-schema.json->toolbar-border-width->tooltip
+msgid ""
+"Increase or decrease the toolbar border width (set to 0 to disable border)."
+msgstr ""
+
+#. settings-schema.json->toolbar-border-color->tooltip
+msgid ""
+"Set the toolbar border color (Transparent border will add more padding to "
+"toolbar)."
 msgstr ""
 
 #. settings-schema.json->desklet-decorations-note->description
@@ -256,4 +305,29 @@ msgstr ""
 msgid ""
 "Set your desklet header. Make sure desklet headers are enabled in system "
 "settings."
+msgstr ""
+
+#. settings-schema.json->are-toolbar-tooltips-enabled->description
+msgid "Enable toolbar tooltips"
+msgstr ""
+
+#. settings-schema.json->are-toolbar-tooltips-enabled->tooltip
+msgid ""
+"Select if you want tooltips to show up when hovering over toolbar buttons."
+msgstr ""
+
+#. settings-schema.json->are-task-tooltips-enabled->description
+msgid "Enable task tooltips"
+msgstr ""
+
+#. settings-schema.json->are-task-tooltips-enabled->tooltip
+msgid "Select if you want tooltips to show up when hovering over tasks."
+msgstr ""
+
+#. edit_dialog_gtk.ui:7
+msgid "Edit task name"
+msgstr ""
+
+#. edit_dialog_gtk.ui:74
+msgid "Name:"
 msgstr ""
