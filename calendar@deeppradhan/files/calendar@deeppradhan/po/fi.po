@@ -1,110 +1,110 @@
-# SOME DESCRIPTIVE TITLE.
+# CALENDAR DESKLET
 # This file is put in the public domain.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# kanchudeep, 2018
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: calendar@deeppradhan 1.2\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-05-14 23:55+0200\n"
+"POT-Creation-Date: 2025-10-17 20:29+0200\n"
 "PO-Revision-Date: 2024-11-07 11:14+0200\n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: \n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
-"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: fi\n"
 
-#: desklet.js:29
+#. desklet.js:29
 msgid "January"
 msgstr "Tammikuu"
 
-#: desklet.js:29
+#. desklet.js:29
 msgid "February"
 msgstr "Helmikuu"
 
-#: desklet.js:29
+#. desklet.js:29
 msgid "March"
 msgstr "Maaliskuu"
 
-#: desklet.js:29
+#. desklet.js:29
 msgid "April"
 msgstr "Huhtikuu"
 
-#: desklet.js:29
+#. desklet.js:29
 msgid "May"
 msgstr "Toukokuu"
 
-#: desklet.js:30
+#. desklet.js:30
 msgid "June"
 msgstr "Kesäkuu"
 
-#: desklet.js:30
+#. desklet.js:30
 msgid "July"
 msgstr "Heinäkuu"
 
-#: desklet.js:30
+#. desklet.js:30
 msgid "August"
 msgstr "Elokuu"
 
-#: desklet.js:30
+#. desklet.js:30
 msgid "September"
 msgstr "Syyskuu"
 
-#: desklet.js:30
+#. desklet.js:30
 msgid "October"
 msgstr "Lokakuu"
 
-#: desklet.js:30
+#. desklet.js:30
 msgid "November"
 msgstr "Marraskuu"
 
-#: desklet.js:31
+#. desklet.js:31
 msgid "December"
 msgstr "Joulukuu"
 
 #. settings-schema.json->first-day->options
-#: desklet.js:34
+#. desklet.js:34
 msgid "Sunday"
 msgstr "Sunnuntai"
 
 #. settings-schema.json->first-day->options
-#: desklet.js:34
+#. desklet.js:34
 msgid "Monday"
 msgstr "Maanantai"
 
-#: desklet.js:34
+#. desklet.js:34
 msgid "Tuesday"
 msgstr "Tiistai"
 
-#: desklet.js:34
+#. desklet.js:34
 msgid "Wednesday"
 msgstr "Keskiviikko"
 
-#: desklet.js:35
+#. desklet.js:35
 msgid "Thursday"
 msgstr "Torstai"
 
-#: desklet.js:35
+#. desklet.js:35
 msgid "Friday"
 msgstr "Perjantai"
 
-#: desklet.js:35
+#. desklet.js:35
 msgid "Saturday"
 msgstr "Launtai"
 
-#: desklet.js:135
+#. desklet.js:136
 msgid "Previous month..."
 msgstr "Edellinen kuukausi..."
 
-#: desklet.js:137
+#. desklet.js:138
 msgid "Next month..."
 msgstr "Seuraava kuukausi..."
 
-#: desklet.js:152
+#. desklet.js:153
 msgid "Calendar"
 msgstr "Kalenteri"
 
@@ -151,6 +151,32 @@ msgstr "Vain kuukausi"
 #. settings-schema.json->panels->tooltip
 msgid "Select the panels to display in desklet"
 msgstr "Valitse työpöydällä näytettävät asiat"
+
+#. settings-schema.json->primary-display->description
+msgid "Primary display"
+msgstr ""
+
+#. settings-schema.json->primary-display->options
+#, fuzzy
+msgid "Day"
+msgstr "Toukokuu"
+
+#. settings-schema.json->primary-display->options
+#, fuzzy
+msgid "Month"
+msgstr "Vain kuukausi"
+
+#. settings-schema.json->primary-display->options
+msgid "Date"
+msgstr ""
+
+#. settings-schema.json->primary-display->options
+msgid "Time"
+msgstr ""
+
+#. settings-schema.json->primary-display->tooltip
+msgid "The biggest text"
+msgstr ""
 
 #. settings-schema.json->show-weekday->description
 msgid "Show day of week"
