@@ -1,14 +1,14 @@
-# SOME DESCRIPTIVE TITLE.
+# CALENDAR DESKLET
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# kanchudeep, 2018
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-03-18 11:02-0400\n"
+"POT-Creation-Date: 2025-10-17 20:29+0200\n"
 "PO-Revision-Date: 2022-10-20 19:33+0200\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
@@ -19,93 +19,93 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: desklet.js:29
+#. desklet.js:29
 msgid "January"
 msgstr "Januar"
 
-#: desklet.js:29
+#. desklet.js:29
 msgid "February"
 msgstr "Februar"
 
-#: desklet.js:29
+#. desklet.js:29
 msgid "March"
 msgstr "Marts"
 
-#: desklet.js:29
+#. desklet.js:29
 msgid "April"
 msgstr "April"
 
-#: desklet.js:29
+#. desklet.js:29
 msgid "May"
 msgstr "Maj"
 
-#: desklet.js:30
+#. desklet.js:30
 msgid "June"
 msgstr "Juni"
 
-#: desklet.js:30
+#. desklet.js:30
 msgid "July"
 msgstr "Juli"
 
-#: desklet.js:30
+#. desklet.js:30
 msgid "August"
 msgstr "August"
 
-#: desklet.js:30
+#. desklet.js:30
 msgid "September"
 msgstr "September"
 
-#: desklet.js:30
+#. desklet.js:30
 msgid "October"
 msgstr "Oktober"
 
-#: desklet.js:30
+#. desklet.js:30
 msgid "November"
 msgstr "November"
 
-#: desklet.js:31
+#. desklet.js:31
 msgid "December"
 msgstr "December"
 
 #. settings-schema.json->first-day->options
-#: desklet.js:34
+#. desklet.js:34
 msgid "Sunday"
 msgstr "Søndag"
 
 #. settings-schema.json->first-day->options
-#: desklet.js:34
+#. desklet.js:34
 msgid "Monday"
 msgstr "Mandag"
 
-#: desklet.js:34
+#. desklet.js:34
 msgid "Tuesday"
 msgstr "Tirsdag"
 
-#: desklet.js:34
+#. desklet.js:34
 msgid "Wednesday"
 msgstr "Onsdag"
 
-#: desklet.js:35
+#. desklet.js:35
 msgid "Thursday"
 msgstr "Torsdag"
 
-#: desklet.js:35
+#. desklet.js:35
 msgid "Friday"
 msgstr "Fredag"
 
-#: desklet.js:35
+#. desklet.js:35
 msgid "Saturday"
 msgstr "Lørdag"
 
-#: desklet.js:135
+#. desklet.js:136
 msgid "Previous month..."
 msgstr "Forrige måned ..."
 
-#: desklet.js:137
+#. desklet.js:138
 msgid "Next month..."
 msgstr "Næste måned ..."
 
-#: desklet.js:152
+#. desklet.js:153
 msgid "Calendar"
 msgstr "Kalender"
 
@@ -153,6 +153,32 @@ msgstr "Kun måned"
 #. settings-schema.json->panels->tooltip
 msgid "Select the panels to display in desklet"
 msgstr "Vælg de paneler, som skal vises i skrivebordsprogrammet"
+
+#. settings-schema.json->primary-display->description
+msgid "Primary display"
+msgstr ""
+
+#. settings-schema.json->primary-display->options
+#, fuzzy
+msgid "Day"
+msgstr "Maj"
+
+#. settings-schema.json->primary-display->options
+#, fuzzy
+msgid "Month"
+msgstr "Kun måned"
+
+#. settings-schema.json->primary-display->options
+msgid "Date"
+msgstr ""
+
+#. settings-schema.json->primary-display->options
+msgid "Time"
+msgstr ""
+
+#. settings-schema.json->primary-display->tooltip
+msgid "The biggest text"
+msgstr ""
 
 #. settings-schema.json->show-weekday->description
 msgid "Show day of week"

@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-03-18 11:02-0400\n"
+"POT-Creation-Date: 2025-10-17 20:29+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: blogdron\n"
 "Language-Team: \n"
@@ -14,93 +14,93 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.1\n"
 
-#: desklet.js:29
+#. desklet.js:29
 msgid "January"
 msgstr "Январь"
 
-#: desklet.js:29
+#. desklet.js:29
 msgid "February"
 msgstr "Февраль"
 
-#: desklet.js:29
+#. desklet.js:29
 msgid "March"
 msgstr "Март"
 
-#: desklet.js:29
+#. desklet.js:29
 msgid "April"
 msgstr "Апрель"
 
-#: desklet.js:29
+#. desklet.js:29
 msgid "May"
 msgstr "Май"
 
-#: desklet.js:30
+#. desklet.js:30
 msgid "June"
 msgstr "Июнь"
 
-#: desklet.js:30
+#. desklet.js:30
 msgid "July"
 msgstr "Июль"
 
-#: desklet.js:30
+#. desklet.js:30
 msgid "August"
 msgstr "Август"
 
-#: desklet.js:30
+#. desklet.js:30
 msgid "September"
 msgstr "Сентябрь"
 
-#: desklet.js:30
+#. desklet.js:30
 msgid "October"
 msgstr "Октябрь"
 
-#: desklet.js:30
+#. desklet.js:30
 msgid "November"
 msgstr "Ноябрь"
 
-#: desklet.js:31
+#. desklet.js:31
 msgid "December"
 msgstr "Декабрь"
 
 #. settings-schema.json->first-day->options
-#: desklet.js:34
+#. desklet.js:34
 msgid "Sunday"
 msgstr "Воскресенье"
 
 #. settings-schema.json->first-day->options
-#: desklet.js:34
+#. desklet.js:34
 msgid "Monday"
 msgstr "Понедельник"
 
-#: desklet.js:34
+#. desklet.js:34
 msgid "Tuesday"
 msgstr "Вторник"
 
-#: desklet.js:34
+#. desklet.js:34
 msgid "Wednesday"
 msgstr "Среда"
 
-#: desklet.js:35
+#. desklet.js:35
 msgid "Thursday"
 msgstr "Четверг"
 
-#: desklet.js:35
+#. desklet.js:35
 msgid "Friday"
 msgstr "Пятница"
 
-#: desklet.js:35
+#. desklet.js:35
 msgid "Saturday"
 msgstr "Суббота"
 
-#: desklet.js:135
+#. desklet.js:136
 msgid "Previous month..."
 msgstr "Предыдущий месяц..."
 
-#: desklet.js:137
+#. desklet.js:138
 msgid "Next month..."
 msgstr "Следующий месяц..."
 
-#: desklet.js:152
+#. desklet.js:153
 msgid "Calendar"
 msgstr "Календарь (Calendar)"
 
@@ -148,6 +148,32 @@ msgstr "Только месяц"
 #. settings-schema.json->panels->tooltip
 msgid "Select the panels to display in desklet"
 msgstr "Выберите что отображать в календаре"
+
+#. settings-schema.json->primary-display->description
+msgid "Primary display"
+msgstr ""
+
+#. settings-schema.json->primary-display->options
+#, fuzzy
+msgid "Day"
+msgstr "Май"
+
+#. settings-schema.json->primary-display->options
+#, fuzzy
+msgid "Month"
+msgstr "Только месяц"
+
+#. settings-schema.json->primary-display->options
+msgid "Date"
+msgstr ""
+
+#. settings-schema.json->primary-display->options
+msgid "Time"
+msgstr ""
+
+#. settings-schema.json->primary-display->tooltip
+msgid "The biggest text"
+msgstr ""
 
 #. settings-schema.json->show-weekday->description
 msgid "Show day of week"

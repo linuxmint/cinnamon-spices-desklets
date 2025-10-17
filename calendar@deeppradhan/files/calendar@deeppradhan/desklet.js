@@ -59,6 +59,7 @@ MyDesklet.prototype = {
 		// Initialise settings
 		this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, desklet_id);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "panels", "panels", this.onSettingChanged);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "primary-display", "primaryDisplay", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "auto-advance", "autoAdvance", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "first-day", "firstDay", this.onSettingChanged);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "show-weekday", "showWeekday", this.onSettingChanged);
@@ -178,23 +179,47 @@ MyDesklet.prototype = {
 
 		this.lastUpdate = { fullYear: now.getFullYear(), month: now.getMonth(), date: now.getDate() };
 
+		this.labelDay.style = STYLE_TEXT_CENTER;
+		this.labelDate.style = STYLE_TEXT_CENTER;
+		this.labelMonthYear.style = STYLE_TEXT_CENTER;
+		this.labelTime.style = STYLE_TEXT_CENTER;
+
 		//////// Today Panel ////////
-		this.labelDate.style = (now.getDay() === 0 ? "color: " + this.colourSundays + "; " : "")
-			+ (now.getDay() === 6 ? "color: " + this.colourSaturdays + "; " : "")
-			+ "font-size: 4em; " + STYLE_TEXT_CENTER;
-
-		if (now.getDay() === 0 || now.getDay() === 6)
-			this.labelDay.style = "color: " + (now.getDay() === 0 ?
-				this.colourSundays : this.colourSaturdays) + "; " + STYLE_TEXT_CENTER;
-
 		this.boxLayoutToday.remove_all_children();
-		if (this.showWeekday !== "off")
-			this.boxLayoutToday.add(this.labelDay);
-		this.boxLayoutToday.add(this.labelDate);
-		this.boxLayoutToday.add(this.labelMonthYear);
-		if (this.showTime)
-			this.boxLayoutToday.add(this.labelTime);
 
+		const primaryDisplayMap = {
+			day:   { label: this.labelDay,       size: "3em", order: ["monthYear", "day", "date", "time"] },
+			date:  { label: this.labelDate,      size: "4em", order: ["day", "date", "monthYear", "time"] },
+			month: { label: this.labelMonthYear, size: "2em", order: ["day", "monthYear", "date", "time"] },
+			time:  { label: this.labelTime,      size: "4em", order: ["day", "time", "date", "monthYear"] }
+		};
+
+		const primary = primaryDisplayMap[this.primaryDisplay] || primaryDisplayMap.date;
+		primary.label.style += `font-size: ${primary.size};`;
+
+		const allLabels = {
+			day:       { label: this.labelDay,       show: this.showWeekday !== "off" },
+			date:      { label: this.labelDate,      show: true },
+			monthYear: { label: this.labelMonthYear, show: true },
+			time:      { label: this.labelTime,      show: this.showTime }
+		};
+
+		primary.order.forEach(key => {
+			const item = allLabels[key];
+			if (item && item.show) {
+				this.boxLayoutToday.add(item.label);
+			}
+		});
+
+		if (now.getDay() === 0) {
+			this.labelDate.style += "color: " + this.colourSundays + ";";
+			this.labelDay.style += "color: " + this.colourSundays + ";";
+		}
+		if (now.getDay() === 6) {
+			this.labelDate.style += "color: " + this.colourSaturdays + ";";
+			this.labelDay.style += "color: " + this.colourSaturdays + ";";
+		}
+		
 		//////// Month Panel ////////
 		this.labelMonth.set_text(MONTHS[this.date.getMonth()].substring(0, 3) + " " + this.date.getFullYear());
 

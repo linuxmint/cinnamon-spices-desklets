@@ -14,6 +14,19 @@
         },
         "tooltip": "Select the panels to display in desklet"
     },
+    "primary-display": {
+        "type": "combobox",
+        "default": "date",
+        "description": "Primary display",
+        "options": {
+            "Day": "day",
+            "Month": "month",
+            "Date": "date",
+            "Time": "time"
+        },
+        "tooltip": "The biggest text",
+        "dependency": "panels!=month"
+    },
     "show-weekday": {
         "type": "combobox",
         "default": "full",
