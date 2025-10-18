@@ -20,13 +20,16 @@ function _(str) {
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
-    this.defaultImagePath = this.metadata.path + "/images/default-1.png";
+    this.defaultImagePath = this.metadata.path + "/images/default.png";
 
     // Setup settings and bind them to properties
     const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
     settings.bindProperty(Settings.BindingDirection.IN, "image-path", "imagePath", this._initUI.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "shape", "shape", this._initUI.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "size", "size", this._initUI.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "show-border", "showBorder", this._initUI.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "border-color", "borderColor", this._initUI.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "border-width", "borderWidth", this._initUI.bind(this));
 
     this.setHeader(_("Picture Frame"));
     this._initUI();
@@ -179,11 +182,20 @@ class MyDesklet extends Desklet.Desklet {
       cr.paint();
       cr.restore();
 
-      const borderWidth = 4.0;
-      cr.setSourceRGBA(1.0, 1.0, 1.0, 1.0); // White color
-      cr.setLineWidth(borderWidth);
-      this._drawShapePath(cr, this.shape, width / 2, height / 2, (width - borderWidth) / 2);
-      cr.stroke();
+      if (this.showBorder) {
+        const borderWidth = this.borderWidth;
+        const [success, color] = Clutter.Color.from_string(this.borderColor);
+
+        if (success) {
+          cr.setSourceRGBA(color.red / 255, color.green / 255, color.blue / 255, color.alpha / 255);
+        } else {
+          // Fallback to white if color string is invalid
+          cr.setSourceRGBA(1.0, 1.0, 1.0, 1.0);
+        }
+        cr.setLineWidth(borderWidth);
+        this._drawShapePath(cr, this.shape, width / 2, height / 2, (width - borderWidth) / 2);
+        cr.stroke();
+      }
     } catch (e) {
       global.logError(`Error drawing shaped image: ${e}`);
     }
