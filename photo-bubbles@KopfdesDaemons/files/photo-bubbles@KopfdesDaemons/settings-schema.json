@@ -9,7 +9,7 @@
   },
   "shape": {
     "type": "combobox",
-    "default": "circle",
+    "default": "wave",
     "description": "Shape",
     "options": {
       "Circle": "circle",

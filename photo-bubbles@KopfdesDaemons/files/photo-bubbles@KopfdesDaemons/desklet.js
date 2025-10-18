@@ -8,6 +8,7 @@ const GdkPixbuf = imports.gi.GdkPixbuf;
 const Gdk = imports.gi.Gdk;
 const Clutter = imports.gi.Clutter;
 const Cogl = imports.gi.Cogl;
+const Gio = imports.gi.Gio;
 
 const UUID = "photo-bubbles@KopfdesDaemons";
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
@@ -105,61 +106,92 @@ class MyDesklet extends Desklet.Desklet {
   _createShapedImageActor(imagePath, size) {
     const canvas = new Clutter.Canvas();
     canvas.set_size(size, size);
+    const actor = new Clutter.Actor({ width: size, height: size, content: canvas });
+    const file = Gio.file_new_for_path(imagePath);
+    let pixbuf = null;
 
     canvas.connect("draw", (canvas, cr, width, height) => {
-      try {
-        // Clear the canvas before drawing
-        cr.save();
-        cr.setOperator(Cairo.Operator.CLEAR);
-        cr.paint();
-        cr.restore();
-        cr.setOperator(Cairo.Operator.OVER);
+      // Clear the canvas
+      cr.save();
+      cr.setOperator(Cairo.Operator.CLEAR);
+      cr.paint();
+      cr.restore();
+      cr.setOperator(Cairo.Operator.OVER);
 
-        const pixbuf = GdkPixbuf.Pixbuf.new_from_file(imagePath);
-
-        // Preserve aspect ratio
-        const originalWidth = pixbuf.get_width();
-        const originalHeight = pixbuf.get_height();
-        const aspect = originalWidth / originalHeight;
-
-        let newWidth, newHeight;
-        if (aspect > 1) {
-          // Wider than tall
-          newHeight = height;
-          newWidth = height * aspect;
-        } else {
-          // Taller than wide or square
-          newWidth = width;
-          newHeight = width / aspect;
-        }
-
-        const scaledPixbuf = pixbuf.scale_simple(newWidth, newHeight, GdkPixbuf.InterpType.BILINEAR);
-        const pixbufWithAlpha = scaledPixbuf.add_alpha(false, 0, 0, 0);
-
-        cr.save();
-        this._drawShapePath(cr, this.shape, width / 2, height / 2, width / 2);
-        cr.clip();
-
-        const drawX = (width - newWidth) / 2;
-        const drawY = (height - newHeight) / 2;
-        Gdk.cairo_set_source_pixbuf(cr, pixbufWithAlpha, drawX, drawY);
-        cr.paint();
-        cr.restore();
-
-        const borderWidth = 4.0;
-        cr.setSourceRGBA(1.0, 1.0, 1.0, 1.0); // White color
-        cr.setLineWidth(borderWidth);
-        this._drawShapePath(cr, this.shape, width / 2, height / 2, (width - borderWidth) / 2);
-        cr.stroke();
-      } catch (e) {
-        global.logError(`Error drawing circular image: ${e}`);
+      if (pixbuf === null) {
+        // Draw loading text
+        cr.setSourceRGBA(1.0, 1.0, 1.0, 0.7); // Semi-transparent white
+        cr.selectFontFace("sans-serif", Cairo.FontSlant.NORMAL, Cairo.FontWeight.NORMAL);
+        cr.setFontSize(20);
+        const text = _("Loading...");
+        const extents = cr.textExtents(text);
+        cr.moveTo(width / 2 - extents.width / 2, height / 2);
+        cr.showText(text);
+      } else {
+        // Draw the shaped image once pixbuf is loaded
+        this._drawFinalImage(cr, pixbuf, width, height);
       }
       return true;
     });
+    canvas.invalidate(); // Initial draw with "Loading..."
 
-    const actor = new Clutter.Actor({ width: size, height: size, content: canvas });
-    actor.get_content().invalidate(); // Force a redraw
+    file.read_async(GLib.PRIORITY_DEFAULT, null, (source, res) => {
+      try {
+        const stream = source.read_finish(res);
+        GdkPixbuf.Pixbuf.new_from_stream_async(stream, null, (source, res) => {
+          try {
+            pixbuf = GdkPixbuf.Pixbuf.new_from_stream_finish(res);
+            canvas.invalidate(); // Force a redraw now that the pixbuf is loaded
+          } catch (e) {
+            global.logError(`Error creating pixbuf from stream: ${e}`);
+          }
+        });
+      } catch (e) {
+        global.logError(`Error reading file async: ${e}`);
+      }
+    });
     return actor;
+  }
+
+  _drawFinalImage(cr, pixbuf, width, height) {
+    try {
+      // Preserve aspect ratio
+      const originalWidth = pixbuf.get_width();
+      const originalHeight = pixbuf.get_height();
+      const aspect = originalWidth / originalHeight;
+
+      let newWidth, newHeight;
+      if (aspect > 1) {
+        // Wider than tall
+        newHeight = height;
+        newWidth = height * aspect;
+      } else {
+        // Taller than wide or square
+        newWidth = width;
+        newHeight = width / aspect;
+      }
+
+      const scaledPixbuf = pixbuf.scale_simple(newWidth, newHeight, GdkPixbuf.InterpType.BILINEAR);
+      const pixbufWithAlpha = scaledPixbuf.add_alpha(false, 0, 0, 0);
+
+      cr.save();
+      this._drawShapePath(cr, this.shape, width / 2, height / 2, width / 2);
+      cr.clip();
+
+      const drawX = (width - newWidth) / 2;
+      const drawY = (height - newHeight) / 2;
+      Gdk.cairo_set_source_pixbuf(cr, pixbufWithAlpha, drawX, drawY);
+      cr.paint();
+      cr.restore();
+
+      const borderWidth = 4.0;
+      cr.setSourceRGBA(1.0, 1.0, 1.0, 1.0); // White color
+      cr.setLineWidth(borderWidth);
+      this._drawShapePath(cr, this.shape, width / 2, height / 2, (width - borderWidth) / 2);
+      cr.stroke();
+    } catch (e) {
+      global.logError(`Error drawing shaped image: ${e}`);
+    }
   }
 
   // Helper to create an actor from a Pixbuf
