@@ -41,6 +41,23 @@ class MyDesklet extends Desklet.Desklet {
     this.setContent(mainContainer);
   }
 
+  _drawStarPath(cr, centerX, centerY, radius, numPetals = 8) {
+    const angleStep = (2 * Math.PI) / (numPetals * 2);
+    const outerRadius = radius;
+    const innerRadius = radius * 0.6;
+
+    cr.moveTo(centerX + outerRadius, centerY);
+
+    for (let i = 1; i <= numPetals * 2; i++) {
+      const currentRadius = i % 2 === 1 ? innerRadius : outerRadius;
+      const angle = i * angleStep;
+      const x = centerX + currentRadius * Math.cos(angle);
+      const y = centerY + currentRadius * Math.sin(angle);
+      cr.lineTo(x, y);
+    }
+    cr.closePath();
+  }
+
   _createCircularImageActor(imagePath, size) {
     const canvas = new Clutter.Canvas();
     canvas.set_size(size, size);
@@ -68,8 +85,8 @@ class MyDesklet extends Desklet.Desklet {
         const scaledPixbuf = pixbuf.scale_simple(newWidth, newHeight, GdkPixbuf.InterpType.BILINEAR);
         const pixbufWithAlpha = scaledPixbuf.add_alpha(false, 0, 0, 0);
 
-        cr.save(); // Save the current state of the Cairo context
-        cr.arc(width / 2, height / 2, width / 2, 0, 2 * Math.PI);
+        cr.save();
+        this._drawStarPath(cr, width / 2, height / 2, width / 2);
         cr.clip();
 
         const drawX = (width - newWidth) / 2;
@@ -81,7 +98,7 @@ class MyDesklet extends Desklet.Desklet {
         const borderWidth = 4.0;
         cr.setSourceRGBA(1.0, 1.0, 1.0, 1.0); // White color
         cr.setLineWidth(borderWidth);
-        cr.arc(width / 2, height / 2, (width - borderWidth) / 2, 0, 2 * Math.PI);
+        this._drawStarPath(cr, width / 2, height / 2, (width - borderWidth) / 2);
         cr.stroke();
       } catch (e) {
         global.logError(`Error drawing circular image: ${e}`);
