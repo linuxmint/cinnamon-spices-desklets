@@ -15,7 +15,8 @@
       "Circle": "circle",
       "Square": "square",
       "Triangle": "triangle",
-      "Star": "star"
+      "Star": "star",
+      "Wave": "wave"
     }
   }
 }

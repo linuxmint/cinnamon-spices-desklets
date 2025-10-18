@@ -56,12 +56,33 @@ class MyDesklet extends Desklet.Desklet {
       case "star":
         this._drawStarPath(cr, centerX, centerY, radius);
         break;
+      case "wave":
+        this._drawWavePath(cr, centerX, centerY, radius);
+        break;
       case "circle":
       default:
         cr.arc(centerX, centerY, radius, 0, 2 * Math.PI);
         cr.closePath();
         break;
     }
+  }
+
+  _drawWavePath(cr, centerX, centerY, radius, numWaves = 10, amplitude = 0.05) {
+    const baseRadius = radius * (1 - amplitude);
+    const waveAmplitude = radius * amplitude;
+    const points = 100; // Number of points for a smooth curve
+
+    // Move to the starting point
+    const startAngle = 0;
+    const startR = baseRadius + waveAmplitude * Math.sin(startAngle * numWaves);
+    cr.moveTo(centerX + startR * Math.cos(startAngle), centerY + startR * Math.sin(startAngle));
+
+    for (let i = 1; i <= points; i++) {
+      const angle = (i / points) * 2 * Math.PI;
+      const r = baseRadius + waveAmplitude * Math.sin(angle * numWaves);
+      cr.lineTo(centerX + r * Math.cos(angle), centerY + r * Math.sin(angle));
+    }
+    cr.closePath();
   }
 
   _drawStarPath(cr, centerX, centerY, radius, numPetals = 8) {
