@@ -32,6 +32,8 @@ class MyDesklet extends Desklet.Desklet {
     settings.bindProperty(Settings.BindingDirection.IN, "border-width", "borderWidth", this._initUI.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "waves-number", "wavesNumber", this._initUI.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "spikes-number", "spikesNumber", this._initUI.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "wave-depth", "waveDepth", this._initUI.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "spikes-depth", "spikesDepth", this._initUI.bind(this));
 
     this.setHeader(_("Picture Frame"));
     this._initUI();
@@ -68,7 +70,7 @@ class MyDesklet extends Desklet.Desklet {
     }
   }
 
-  _drawWavePath(cr, centerX, centerY, radius, numWaves = this.wavesNumber, amplitude = 0.05) {
+  _drawWavePath(cr, centerX, centerY, radius, numWaves = this.wavesNumber, amplitude = this.waveDepth / 100) {
     const baseRadius = radius * (1 - amplitude);
     const waveAmplitude = radius * amplitude;
     const points = 100; // Number of points for a smooth curve
@@ -89,7 +91,7 @@ class MyDesklet extends Desklet.Desklet {
   _drawStarPath(cr, centerX, centerY, radius, numSpikes = this.spikesNumber) {
     const angleStep = (2 * Math.PI) / (numSpikes * 2);
     const outerRadius = radius;
-    const innerRadius = radius * 0.8;
+    const innerRadius = (radius * (100 - this.spikesDepth)) / 100;
 
     cr.moveTo(centerX + outerRadius, centerY);
 
