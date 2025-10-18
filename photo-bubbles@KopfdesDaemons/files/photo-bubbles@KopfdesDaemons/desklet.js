@@ -26,6 +26,7 @@ class MyDesklet extends Desklet.Desklet {
     const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
     settings.bindProperty(Settings.BindingDirection.IN, "image-path", "imagePath", this._initUI.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "shape", "shape", this._initUI.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "size", "size", this._initUI.bind(this));
 
     this.setHeader(_("Photo Bubble"));
     this._initUI();
@@ -35,7 +36,7 @@ class MyDesklet extends Desklet.Desklet {
     const mainContainer = new St.BoxLayout({ vertical: true });
     if (!this.imagePath) this.imagePath = this.defaultImagePath;
 
-    const size = 150;
+    const size = this.size;
     const finalImagePath = decodeURIComponent(this.imagePath.replace("file://", ""));
     const imageActor = this._createShapedImageActor(finalImagePath, size);
 
@@ -47,12 +48,6 @@ class MyDesklet extends Desklet.Desklet {
     switch (shape) {
       case "square":
         cr.rectangle(centerX - radius, centerY - radius, radius * 2, radius * 2);
-        break;
-      case "triangle":
-        cr.moveTo(centerX, centerY - radius); // Top point
-        cr.lineTo(centerX + radius, centerY + radius); // Bottom right
-        cr.lineTo(centerX - radius, centerY + radius); // Bottom left
-        cr.closePath();
         break;
       case "star":
         this._drawStarPath(cr, centerX, centerY, radius);
@@ -86,10 +81,10 @@ class MyDesklet extends Desklet.Desklet {
     cr.closePath();
   }
 
-  _drawStarPath(cr, centerX, centerY, radius, numPetals = 8) {
+  _drawStarPath(cr, centerX, centerY, radius, numPetals = 12) {
     const angleStep = (2 * Math.PI) / (numPetals * 2);
     const outerRadius = radius;
-    const innerRadius = radius * 0.6;
+    const innerRadius = radius * 0.8;
 
     cr.moveTo(centerX + outerRadius, centerY);
 

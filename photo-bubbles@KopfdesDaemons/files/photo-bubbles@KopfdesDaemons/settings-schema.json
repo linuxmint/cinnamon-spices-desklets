@@ -14,9 +14,16 @@
     "options": {
       "Circle": "circle",
       "Square": "square",
-      "Triangle": "triangle",
       "Star": "star",
       "Wave": "wave"
     }
+  },
+  "size": {
+    "type": "scale",
+    "default": 150,
+    "min": 30,
+    "max": 800,
+    "step": 1,
+    "description": "Size"
   }
 }
