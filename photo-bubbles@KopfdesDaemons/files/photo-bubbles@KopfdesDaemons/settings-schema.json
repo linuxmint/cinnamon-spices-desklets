@@ -1,0 +1,10 @@
+{
+  "image-path": {
+    "type": "filechooser",
+    "default": "",
+    "description": "Image path",
+    "tooltip": "The path of the image.",
+    "allow-none": false,
+    "select-dir": false
+  }
+}

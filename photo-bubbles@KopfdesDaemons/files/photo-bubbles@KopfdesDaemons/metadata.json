@@ -1,0 +1,8 @@
+{
+  "uuid": "photo-bubbles@KopfdesDaemons",
+  "name": "Photo Bubbles",
+  "description": "Photos in different frame shapes.",
+  "version": "1.0",
+  "prevent-decorations": true,
+  "max-instances": "50"
+}
