@@ -108,6 +108,13 @@ class MyDesklet extends Desklet.Desklet {
 
     canvas.connect("draw", (canvas, cr, width, height) => {
       try {
+        // Clear the canvas before drawing
+        cr.save();
+        cr.setOperator(Cairo.Operator.CLEAR);
+        cr.paint();
+        cr.restore();
+        cr.setOperator(Cairo.Operator.OVER);
+
         const pixbuf = GdkPixbuf.Pixbuf.new_from_file(imagePath);
 
         // Preserve aspect ratio
