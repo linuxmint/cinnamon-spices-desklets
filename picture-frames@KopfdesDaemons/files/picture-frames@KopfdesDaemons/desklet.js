@@ -10,7 +10,7 @@ const Clutter = imports.gi.Clutter;
 const Cogl = imports.gi.Cogl;
 const Gio = imports.gi.Gio;
 
-const UUID = "photo-bubbles@KopfdesDaemons";
+const UUID = "picture-frames@KopfdesDaemons";
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
 function _(str) {
@@ -28,7 +28,7 @@ class MyDesklet extends Desklet.Desklet {
     settings.bindProperty(Settings.BindingDirection.IN, "shape", "shape", this._initUI.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "size", "size", this._initUI.bind(this));
 
-    this.setHeader(_("Photo Bubble"));
+    this.setHeader(_("Picture Frame"));
     this._initUI();
   }
 
@@ -208,7 +208,7 @@ class MyDesklet extends Desklet.Desklet {
       return this._createActorFromPixbuf(pixBuf);
     } catch (e) {
       global.logError(`Error loading image ${imageFileName}: ${e}`);
-      return new St.Label({ text: "Error" + e.message, style_class: "photo-bubble-error-label" });
+      return new St.Label({ text: "Error" + e.message, style_class: "picture-frame-error-label" });
     }
   }
 }
