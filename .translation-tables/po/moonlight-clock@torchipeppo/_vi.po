@@ -1,0 +1,15 @@
+# MOONLIGHT CLOCK
+# This file is put in the public domain.
+# torchipeppo, 2025
+#
+#
+# Please read TRANSLATORS.md for context guidance.
+#
+#
+msgid ""
+msgstr ""
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Red"
+msgstr ""

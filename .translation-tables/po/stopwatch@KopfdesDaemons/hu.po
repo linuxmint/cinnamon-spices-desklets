@@ -1,0 +1,64 @@
+# STOPWATCH
+# This file is put in the public domain.
+# KopfdesDaemons, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: stopwatch@KopfdesDaemons 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-08-03 11:24+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+
+#. metadata.json->name
+#. desklet.js:56
+msgid "Stopwatch"
+msgstr "Stopperóra"
+
+#. metadata.json->description
+msgid "A simple stopwatch."
+msgstr "Egy egyszerű stopperóra."
+
+#. settings-schema.json->head0->description
+msgid "Style"
+msgstr "Stílus"
+
+#. settings-schema.json->label-color->description
+msgid "Label color"
+msgstr "Címke színe"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Asztalkalmazás mérete"
+
+#. settings-schema.json->head1->description
+msgid "Indicator"
+msgstr "Indikátor"
+
+#. settings-schema.json->indicator-color->description
+msgid "Indicator color"
+msgstr "Indikátor színe"
+
+#. settings-schema.json->circle-color->description
+msgid "Circle color"
+msgstr "Kör színe"
+
+#. settings-schema.json->animation-speed->description
+msgid "Animation speed"
+msgstr "Animáció sebessége"
+
+#. settings-schema.json->circle-width->description
+msgid "Circle width"
+msgstr "Kör szélessége"
+
+#. settings-schema.json->indicator-length->description
+msgid "Indicator length"
+msgstr "Indikátor hossza"
