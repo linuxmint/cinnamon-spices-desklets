@@ -6,5 +6,16 @@
     "tooltip": "The path of the image.",
     "allow-none": false,
     "select-dir": false
+  },
+  "shape": {
+    "type": "combobox",
+    "default": "circle",
+    "description": "Shape",
+    "options": {
+      "Circle": "circle",
+      "Square": "square",
+      "Triangle": "triangle",
+      "Star": "star"
+    }
   }
 }

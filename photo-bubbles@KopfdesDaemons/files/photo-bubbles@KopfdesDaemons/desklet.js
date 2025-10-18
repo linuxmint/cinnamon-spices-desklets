@@ -24,6 +24,7 @@ class MyDesklet extends Desklet.Desklet {
     // Setup settings and bind them to properties
     const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
     settings.bindProperty(Settings.BindingDirection.IN, "image-path", "imagePath", this._initUI.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "shape", "shape", this._initUI.bind(this));
 
     this.setHeader(_("Photo Bubble"));
     this._initUI();
@@ -35,10 +36,32 @@ class MyDesklet extends Desklet.Desklet {
 
     const size = 150;
     const finalImagePath = decodeURIComponent(this.imagePath.replace("file://", ""));
-    const imageActor = this._createCircularImageActor(finalImagePath, size);
+    const imageActor = this._createShapedImageActor(finalImagePath, size);
 
     mainContainer.add_child(imageActor);
     this.setContent(mainContainer);
+  }
+
+  _drawShapePath(cr, shape, centerX, centerY, radius) {
+    switch (shape) {
+      case "square":
+        cr.rectangle(centerX - radius, centerY - radius, radius * 2, radius * 2);
+        break;
+      case "triangle":
+        cr.moveTo(centerX, centerY - radius); // Top point
+        cr.lineTo(centerX + radius, centerY + radius); // Bottom right
+        cr.lineTo(centerX - radius, centerY + radius); // Bottom left
+        cr.closePath();
+        break;
+      case "star":
+        this._drawStarPath(cr, centerX, centerY, radius);
+        break;
+      case "circle":
+      default:
+        cr.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+        cr.closePath();
+        break;
+    }
   }
 
   _drawStarPath(cr, centerX, centerY, radius, numPetals = 8) {
@@ -58,7 +81,7 @@ class MyDesklet extends Desklet.Desklet {
     cr.closePath();
   }
 
-  _createCircularImageActor(imagePath, size) {
+  _createShapedImageActor(imagePath, size) {
     const canvas = new Clutter.Canvas();
     canvas.set_size(size, size);
 
@@ -86,7 +109,7 @@ class MyDesklet extends Desklet.Desklet {
         const pixbufWithAlpha = scaledPixbuf.add_alpha(false, 0, 0, 0);
 
         cr.save();
-        this._drawStarPath(cr, width / 2, height / 2, width / 2);
+        this._drawShapePath(cr, this.shape, width / 2, height / 2, width / 2);
         cr.clip();
 
         const drawX = (width - newWidth) / 2;
@@ -98,7 +121,7 @@ class MyDesklet extends Desklet.Desklet {
         const borderWidth = 4.0;
         cr.setSourceRGBA(1.0, 1.0, 1.0, 1.0); // White color
         cr.setLineWidth(borderWidth);
-        this._drawStarPath(cr, width / 2, height / 2, (width - borderWidth) / 2);
+        this._drawShapePath(cr, this.shape, width / 2, height / 2, (width - borderWidth) / 2);
         cr.stroke();
       } catch (e) {
         global.logError(`Error drawing circular image: ${e}`);
