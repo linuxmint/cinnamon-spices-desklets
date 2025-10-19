@@ -23,7 +23,8 @@
       "Circle": "circle",
       "Square": "square",
       "Star": "star",
-      "Wave": "wave"
+      "Wave": "wave",
+      "Heart": "heart"
     }
   },
   "waves-number": {

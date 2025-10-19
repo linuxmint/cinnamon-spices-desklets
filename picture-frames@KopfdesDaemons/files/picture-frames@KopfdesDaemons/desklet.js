@@ -62,6 +62,9 @@ class MyDesklet extends Desklet.Desklet {
       case "wave":
         this._drawWavePath(cr, centerX, centerY, radius);
         break;
+      case "heart":
+        this._drawHeartPath(cr, centerX, centerY, radius);
+        break;
       case "circle":
       default:
         cr.arc(centerX, centerY, radius, 0, 2 * Math.PI);
@@ -102,6 +105,25 @@ class MyDesklet extends Desklet.Desklet {
       const y = centerY + currentRadius * Math.sin(angle);
       cr.lineTo(x, y);
     }
+    cr.closePath();
+  }
+
+  _drawHeartPath(cr, centerX, centerY, radius) {
+    const yOffset = radius * 0.2; // Offset to center the heart vertically
+    const topY = centerY - radius * 0.4 - yOffset;
+    const bottomY = centerY + radius - yOffset;
+    const rightX = centerX + radius;
+    const leftX = centerX - radius;
+    const rightCp1X = centerX + radius * 1.5;
+    const leftCp1X = centerX - radius * 1.5;
+    const cp2Y = centerY - radius - yOffset;
+
+    // Start at the bottom point
+    cr.moveTo(centerX, bottomY);
+    // Right side
+    cr.curveTo(rightCp1X, centerY, rightX, cp2Y, centerX, topY);
+    // Left side
+    cr.curveTo(leftX, cp2Y, leftCp1X, centerY, centerX, bottomY);
     cr.closePath();
   }
 
