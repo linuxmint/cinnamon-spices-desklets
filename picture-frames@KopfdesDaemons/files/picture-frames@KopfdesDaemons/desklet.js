@@ -34,6 +34,8 @@ class MyDesklet extends Desklet.Desklet {
     settings.bindProperty(Settings.BindingDirection.IN, "spikes-number", "spikesNumber", this._initUI.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "wave-depth", "waveDepth", this._initUI.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "spikes-depth", "spikesDepth", this._initUI.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "align-x", "alignX", this._initUI.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "align-y", "alignY", this._initUI.bind(this));
 
     this.setHeader(_("Picture Frame"));
     this._initUI();
@@ -202,8 +204,8 @@ class MyDesklet extends Desklet.Desklet {
       this._drawShapePath(cr, this.shape, width / 2, height / 2, width / 2);
       cr.clip();
 
-      const drawX = (width - newWidth) / 2;
-      const drawY = (height - newHeight) / 2;
+      const drawX = (width - newWidth) * (this.alignX / 100);
+      const drawY = (height - newHeight) * (this.alignY / 100);
       Gdk.cairo_set_source_pixbuf(cr, pixbufWithAlpha, drawX, drawY);
       cr.paint();
       cr.restore();

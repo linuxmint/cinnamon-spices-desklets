@@ -1,4 +1,8 @@
 {
+  "head1": {
+    "type": "header",
+    "description": "Image Settings"
+  },
   "image-path": {
     "type": "filechooser",
     "default": "",
@@ -14,6 +18,26 @@
     "max": 800,
     "step": 1,
     "description": "Size"
+  },
+  "align-x": {
+    "type": "scale",
+    "description": "Horizontal alignment",
+    "default": 50,
+    "min": 0,
+    "max": 100,
+    "step": 1
+  },
+  "align-y": {
+    "type": "scale",
+    "description": "Vertical alignment",
+    "default": 50,
+    "min": 0,
+    "max": 100,
+    "step": 1
+  },
+  "head2": {
+    "type": "header",
+    "description": "Frame Settings"
   },
   "shape": {
     "type": "combobox",

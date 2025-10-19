@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: picture-frames@KopfdesDaemons 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-10-19 10:50+0200\n"
+"POT-Creation-Date: 2025-10-19 11:16+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. desklet.js:38
+#. desklet.js:40
 msgid "Picture Frame"
 msgstr ""
 
-#. desklet.js:150
+#. desklet.js:152
 msgid "Loading..."
 msgstr ""
 
@@ -31,6 +31,10 @@ msgstr ""
 
 #. metadata.json->description
 msgid "Displays photos in different picture frames."
+msgstr ""
+
+#. settings-schema.json->head1->description
+msgid "Image Settings"
 msgstr ""
 
 #. settings-schema.json->image-path->description
@@ -43,6 +47,18 @@ msgstr ""
 
 #. settings-schema.json->size->description
 msgid "Size"
+msgstr ""
+
+#. settings-schema.json->align-x->description
+msgid "Horizontal alignment"
+msgstr ""
+
+#. settings-schema.json->align-y->description
+msgid "Vertical alignment"
+msgstr ""
+
+#. settings-schema.json->head2->description
+msgid "Frame Settings"
 msgstr ""
 
 #. settings-schema.json->shape->description
