@@ -94,13 +94,13 @@
   },
   "border-color": {
     "type": "colorchooser",
-    "default": "rgb(255,255,255)",
+    "default": "rgba(33, 170, 70, 0.5)",
     "description": "Border color",
     "dependency": "show-border"
   },
   "border-width": {
     "type": "scale",
-    "default": 4,
+    "default": 15,
     "min": 1,
     "max": 30,
     "step": 1,

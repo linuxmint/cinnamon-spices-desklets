@@ -20,7 +20,7 @@ function _(str) {
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
-    this.defaultImagePath = this.metadata.path + "/images/default.png";
+    this.defaultImagePath = this.metadata.path + "/images/default.jpg";
 
     // Setup settings and bind them to properties
     const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
