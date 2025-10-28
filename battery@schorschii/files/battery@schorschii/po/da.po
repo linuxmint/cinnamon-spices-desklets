@@ -49,7 +49,7 @@ msgstr "Batteriets kapacitet vises kun, når stik-/lynikonet ikke er synligt."
 
 #. settings-schema.json->showremaining->description
 msgid "Show remaining battery time"
-msgstr ""
+msgstr "Vis resterende batteritid"
 
 #. settings-schema.json->showplug->description
 msgid "Show plug/flash icon when power supply is plugged in"
