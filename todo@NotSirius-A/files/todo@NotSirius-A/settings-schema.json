@@ -46,7 +46,9 @@
             "keys": [
                 "is-toolbar-enabled",
                 "are-toolbar-tooltips-enabled",
-                "are-task-tooltips-enabled"
+                "are-task-tooltips-enabled",
+                "are-delete-task-dialogs-enabled",
+                "are-delete-toolbar-dialogs-enabled"
             ]
         },
         "todo-preferences-section": {
@@ -372,5 +374,17 @@
         "default": false,
         "description": "Enable task tooltips",
         "tooltip": "Select if you want tooltips to show up when hovering over tasks."
+    },
+    "are-delete-task-dialogs-enabled": {
+        "type": "switch",
+        "default": true,
+        "description": "Enable task delete confirmation popup",
+        "tooltip": "Select if you want a delete confirmation dialog to show up when deleting individual tasks."
+    },
+    "are-delete-toolbar-dialogs-enabled": {
+        "type": "switch",
+        "default": true,
+        "description": "Enable toolbar delete confirmation popup",
+        "tooltip": "Select if you want a delete confirmation dialog to show up when deleting tasks using toolbar."
     }
 }

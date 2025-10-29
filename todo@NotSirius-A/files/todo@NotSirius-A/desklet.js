@@ -82,6 +82,9 @@ MyDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "is-toolbar-enabled", "isToolbarEnabled", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "are-toolbar-tooltips-enabled", "areToolbarTooltipsEnabled", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "are-task-tooltips-enabled", "areTaskTooltipsEnabled", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "are-delete-task-dialogs-enabled", "areDeleteTaskDialogsEnabled", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "are-delete-toolbar-dialogs-enabled", "areDeleteToolbarDialogsEnabled", this.on_setting_changed);
+        
         
         this.settings.bindProperty(Settings.BindingDirection.IN, "is-sort-enabled", "isSortEnabled", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "is-sort-reversed", "isSortReversed", this.on_setting_changed);

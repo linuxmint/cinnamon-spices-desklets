@@ -98,16 +98,19 @@ class MyToolBar {
         remove_icon_btn.connect("clicked", Lang.bind(this,() => {
             const selected_num = this.desklet.TODOlist.getSelectedCount();
 
-            if (selected_num > 0) {
+
+            if (selected_num > 0 && this.desklet.areDeleteToolbarDialogsEnabled) {
                 let dialog = new ModalDialog.ConfirmDialog(
                     _(`Are you sure you want to remove ${selected_num} tasks?`),
                     () => {
                         this.desklet.TODOlist.removeItems(true);
-                        this.desklet.TODOlist.saveItemsToSettings();
                         this.desklet.TODOlist.render();
                     }
                 );
                 dialog.open();
+            } else if (selected_num > 0){
+                this.desklet.TODOlist.removeItems(true);
+                this.desklet.TODOlist.render();
             }
         }));
 

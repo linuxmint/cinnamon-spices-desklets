@@ -302,15 +302,20 @@ class TODOList {
             }
 
             if (button.get_button() === Clutter.BUTTON_MIDDLE) {
-                let dialog = new ModalDialog.ConfirmDialog(
-                    _(`Are you sure you want to remove this task?`),
-                    () => {
-                        this.removeItem(item_index);
-                        this.render();
-                        return;
-                    }
-                );
-                dialog.open();
+                if (this.desklet.areDeleteTaskDialogsEnabled == false) {
+                    this.removeItem(item_index);
+                    this.render();                
+                } else {
+                    let dialog = new ModalDialog.ConfirmDialog(
+                        _(`Are you sure you want to remove this task?`),
+                        () => {
+                            this.removeItem(item_index);
+                            this.render();
+                        }
+                    );
+                    dialog.open();
+                }
+                return;
             }
 
             item.toggleMarkedDone();
@@ -371,15 +376,20 @@ class TODOList {
             }
 
             if (event.get_button() === Clutter.BUTTON_MIDDLE) {
-                let dialog = new ModalDialog.ConfirmDialog(
-                    _(`Are you sure you want to remove this task?`),
-                    () => {
-                        this.removeItem(item_index);
-                        this.render();
-                        return;
-                    }
-                );
-                dialog.open();
+                if (this.desklet.areDeleteTaskDialogsEnabled == false) {
+                    this.removeItem(item_index);
+                    this.render();                
+                } else {
+                    let dialog = new ModalDialog.ConfirmDialog(
+                        _(`Are you sure you want to remove this task?`),
+                        () => {
+                            this.removeItem(item_index);
+                            this.render();
+                        }
+                    );
+                    dialog.open();
+                }
+                return;
             }
 
             
@@ -431,15 +441,20 @@ class TODOList {
 
         parent_button.connect("button-press-event", Lang.bind(this, function(a, event) {
             if (event.get_button() === Clutter.BUTTON_MIDDLE) {
-                let dialog = new ModalDialog.ConfirmDialog(
-                    _(`Are you sure you want to remove this task?`),
-                    () => {
-                        this.removeItem(item_index);
-                        this.render();
-                        return;
-                    }
-                );
-                dialog.open();
+                if (this.desklet.areDeleteTaskDialogsEnabled == false) {
+                    this.removeItem(item_index);
+                    this.render();                
+                } else {
+                    let dialog = new ModalDialog.ConfirmDialog(
+                        _(`Are you sure you want to remove this task?`),
+                        () => {
+                            this.removeItem(item_index);
+                            this.render();
+                        }
+                    );
+                    dialog.open();
+                }
+                return;
             }
 
             let item = this.getItem(item_index);

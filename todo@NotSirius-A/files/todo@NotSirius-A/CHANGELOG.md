@@ -12,7 +12,7 @@
 - Invisible padding without desklet decorations to make it easier to grab
 - Options to disable/enable tooltips
 - Added some visual indication when hovering over mark done/not done icons
-
+- New options to disable/enable delete confirmation dialogs
 
 ### Changed
 
