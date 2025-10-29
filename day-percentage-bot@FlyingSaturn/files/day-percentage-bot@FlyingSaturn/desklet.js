@@ -23,17 +23,27 @@ class MyDesklet extends Desklet.Desklet {
 
     this.setHeader(_("Day percentage"));
     this._setupUI();
-    this._update();
   }
 
   _setupUI() {
-    this.container = new St.Group();
+    const iconSize = 32;
+    const radius = 80;
+    const containerWidth = radius * 2 + iconSize;
+    const containerHeight = radius + iconSize * 1.5;
+
+    this.window = new St.Bin({
+      width: containerWidth,
+      height: containerHeight,
+    });
+    this.container = new Clutter.Actor({
+      width: this.window.width,
+      height: this.window.height,
+    });
 
     this.text = new St.Label();
     this.text.set_text("... %");
     this.text.style = "font-size: 24px; text-align: center;";
 
-    const iconSize = 32;
     const deskletPath = this.metadata.path;
 
     try {
@@ -52,7 +62,12 @@ class MyDesklet extends Desklet.Desklet {
     this.container.add_actor(this.sunIcon);
     this.container.add_actor(this.moonIcon);
 
-    this.setContent(this.container);
+    this.window.add_actor(this.container);
+    this.setContent(this.window);
+
+    Mainloop.idle_add(() => {
+      this._update();
+    });
   }
 
   _update() {
@@ -60,35 +75,37 @@ class MyDesklet extends Desklet.Desklet {
       Mainloop.source_remove(this.timeout);
     }
 
+    this._updateContent();
+
+    // update every second
+    this.timeout = Mainloop.timeout_add_seconds(1, Lang.bind(this, this._update));
+  }
+
+  _updateContent() {
     const dayPercent = this._calcPercent();
     const now = new Date();
     const hour = now.getHours();
 
     this.text.set_text(dayPercent.toFixed(1) + " %");
 
-    // Position icon in a semi-circle
     const radius = 80;
-    const textWidth = this.text.get_width();
-    const textHeight = this.text.get_height();
-    const centerX = textWidth / 2;
-    const centerY = textHeight / 2;
+    const centerX = this.window.get_width() / 2;
+    const centerY = this.window.get_height() - this.text.get_height() / 2;
 
-    // Angle from 180 (left) to 0 (right) degrees
     const angle = Math.PI * (dayPercent / 100.0);
-
     const iconX = centerX - radius * Math.cos(angle);
-    const iconY = centerY - radius * Math.pow(Math.sin(angle), 0.7) + 10 * (1 - Math.sin(angle));
+    const iconY = centerY - radius * Math.sin(angle);
 
     const isDay = hour >= 6 && hour < 18;
     this.sunIcon.visible = isDay;
     this.moonIcon.visible = !isDay;
-
     const currentIcon = isDay ? this.sunIcon : this.moonIcon;
-    currentIcon.set_position(iconX - currentIcon.get_width() / 2, iconY - currentIcon.get_height() / 2);
-    this.text.set_position(0, currentIcon.get_height() / 2);
 
-    // update every second
-    this.timeout = Mainloop.timeout_add_seconds(1, Lang.bind(this, this._update));
+    const iconWidth = currentIcon.get_width();
+    const iconHeight = currentIcon.get_height();
+    const textWidth = this.text.get_width();
+    currentIcon.set_position(iconX - iconWidth / 2, iconY - iconHeight / 2);
+    this.text.set_position(centerX - textWidth / 2, this.window.get_height() - this.text.get_height());
   }
 
   _calcPercent() {
@@ -120,8 +137,8 @@ class MyDesklet extends Desklet.Desklet {
     if (this.timeout) {
       Mainloop.source_remove(this.timeout);
     }
-    this.container.destroy_all_children();
-    this.container.destroy();
+    this.window.destroy_all_children();
+    this.window.destroy();
   }
 }
 
