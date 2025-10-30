@@ -1,5 +1,6 @@
 const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
+const Settings = imports.ui.settings;
 const Mainloop = imports.mainloop;
 const Lang = imports.lang;
 const GLib = imports.gi.GLib;
@@ -8,7 +9,7 @@ const GdkPixbuf = imports.gi.GdkPixbuf;
 const Clutter = imports.gi.Clutter;
 const Cogl = imports.gi.Cogl;
 
-const UUID = "day-percentage-bot@FlyingSaturn";
+const UUID = "daypercentagebot@FlyingSaturn";
 
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
@@ -20,54 +21,30 @@ class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
     this.metadata = metadata;
+    this.iconSize = 32;
+
+    const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
+    settings.bindProperty(Settings.BindingDirection.IN, "icon-size", "iconSize", this._onSettingsChanged.bind(this));
 
     this.setHeader(_("Day percentage"));
-    this._setupUI();
+    this._initUI();
+    this._update();
   }
 
-  _setupUI() {
-    const iconSize = 32;
-    const radius = 80;
-    const containerWidth = radius * 2 + iconSize;
-    const containerHeight = radius + iconSize * 1.5;
-
-    this.window = new St.Bin({
-      width: containerWidth,
-      height: containerHeight,
-    });
-    this.container = new Clutter.Actor({
-      width: this.window.width,
-      height: this.window.height,
-    });
-
+  _initUI() {
+    this.window = new St.Bin();
+    this.container = new Clutter.Actor();
     this.text = new St.Label();
     this.text.set_text("... %");
     this.text.style = "font-size: 24px; text-align: center;";
 
-    const deskletPath = this.metadata.path;
-
-    try {
-      this.sunIcon = this._getImageAtScale(`${deskletPath}/images/sun.svg`, iconSize, iconSize);
-      this.moonIcon = this._getImageAtScale(`${deskletPath}/images/moon.svg`, iconSize, iconSize);
-    } catch (e) {
-      global.logError(`[${UUID}] Error loading icons: ${e}`);
-      this.sunIcon = new St.Label({ text: "S" });
-      this.moonIcon = new St.Label({ text: "M" });
-    }
-
-    this.sunIcon.set_pivot_point(0.5, 0.5);
-    this.moonIcon.set_pivot_point(0.5, 0.5);
+    this._createIcons();
 
     this.container.add_actor(this.text);
     this.container.add_actor(this.sunIcon);
     this.container.add_actor(this.moonIcon);
-
     this.window.add_actor(this.container);
     this.setContent(this.window);
-
-    Mainloop.idle_add(() => {
-      this._update();
-    });
   }
 
   _update() {
@@ -81,6 +58,35 @@ class MyDesklet extends Desklet.Desklet {
     this.timeout = Mainloop.timeout_add_seconds(1, Lang.bind(this, this._update));
   }
 
+  _onSettingsChanged() {
+    this.sunIcon.destroy();
+    this.moonIcon.destroy();
+
+    this._createIcons();
+
+    this.container.add_actor(this.sunIcon);
+    this.container.add_actor(this.moonIcon);
+
+    this._updateContent();
+  }
+
+  _createIcons() {
+    const iconSize = this.iconSize;
+    const deskletPath = this.metadata.path;
+
+    try {
+      this.sunIcon = this._getImageAtScale(`${deskletPath}/images/sun.svg`, iconSize, iconSize);
+      this.moonIcon = this._getImageAtScale(`${deskletPath}/images/moon.svg`, iconSize, iconSize);
+    } catch (e) {
+      global.logError(`[${UUID}] Error loading icons: ${e}`);
+      this.sunIcon = new St.Label({ text: "S" });
+      this.moonIcon = new St.Label({ text: "M" });
+    }
+
+    this.sunIcon.set_pivot_point(0.5, 0.5);
+    this.moonIcon.set_pivot_point(0.5, 0.5);
+  }
+
   _updateContent() {
     const dayPercent = this._calcPercent();
     const now = new Date();
@@ -88,7 +94,14 @@ class MyDesklet extends Desklet.Desklet {
 
     this.text.set_text(dayPercent.toFixed(1) + " %");
 
+    const iconSize = this.iconSize;
     const radius = 80;
+    const containerWidth = radius * 2 + iconSize;
+    const containerHeight = radius + iconSize * 1.5;
+
+    this.window.set_size(containerWidth, containerHeight);
+    this.container.set_size(containerWidth, containerHeight);
+
     const centerX = this.window.get_width() / 2;
     const centerY = this.window.get_height() - this.text.get_height() / 2;
 
@@ -137,8 +150,7 @@ class MyDesklet extends Desklet.Desklet {
     if (this.timeout) {
       Mainloop.source_remove(this.timeout);
     }
-    this.window.destroy_all_children();
-    this.window.destroy();
+    this.container.destroy();
   }
 }
 
