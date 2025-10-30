@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: moonlight-clock@torchipeppo 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-03-08 19:15+0100\n"
+"POT-Creation-Date: 2025-10-22 18:32+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
 "Language-Team: \n"
@@ -22,88 +22,90 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#. 3.4/constants.js:43 5.4/constants.js:43
+#. 3.4/constants.js:45 5.4/constants.js:45
 msgid "Next"
 msgstr "Tiếp theo"
 
-#. 3.4/constants.js:100 5.4/constants.js:100
+#. 3.4/constants.js:90 5.4/constants.js:90
 msgid "New Moon"
 msgstr "Trăng non"
 
-#. 3.4/constants.js:101 5.4/constants.js:101
+#. 3.4/constants.js:91 5.4/constants.js:91
 msgid "Waxing Crescent"
 msgstr "Trăng lưỡi liềm đầu tháng"
 
-#. 3.4/constants.js:102 5.4/constants.js:102
+#. 3.4/constants.js:92 5.4/constants.js:92
 msgid "First Quarter"
 msgstr "Trăng bán nguyệt đầu tháng"
 
-#. 3.4/constants.js:103 5.4/constants.js:103
+#. 3.4/constants.js:93 5.4/constants.js:93
 msgid "Waxing Gibbous"
 msgstr "Trăng khuyết đầu tháng"
 
-#. 3.4/constants.js:104 5.4/constants.js:104
+#. 3.4/constants.js:94 5.4/constants.js:94
 msgid "Full Moon"
 msgstr "Trăng tròn"
 
-#. 3.4/constants.js:105 5.4/constants.js:105
+#. 3.4/constants.js:95 5.4/constants.js:95
 msgid "Waning Gibbous"
 msgstr "Trăng khuyết cuối tháng"
 
-#. 3.4/constants.js:106 5.4/constants.js:106
+#. 3.4/constants.js:96 5.4/constants.js:96
 msgid "Last Quarter"
 msgstr "Trăng bán nguyệt cuối tháng"
 
-#. 3.4/constants.js:107 5.4/constants.js:107
+#. 3.4/constants.js:97 5.4/constants.js:97
 msgid "Waning Crescent"
 msgstr "Trăng lưỡi liềm cuối tháng"
 
-#. 3.4/constants.js:111 5.4/constants.js:111
+#. 3.4/constants.js:101 5.4/constants.js:101
 msgid "New"
 msgstr "Mới"
 
-#. 3.4/constants.js:112 3.4/constants.js:114 5.4/constants.js:112
-#. 5.4/constants.js:114
+#. 3.4/constants.js:102 3.4/constants.js:104 5.4/constants.js:102
+#. 5.4/constants.js:104
 msgid "Half"
 msgstr "Nửa"
 
-#. 3.4/constants.js:113 5.4/constants.js:113
+#. 3.4/constants.js:103 5.4/constants.js:103
 msgid "Full"
 msgstr "Đầy"
 
-#. 3.4/constants.js:170 5.4/constants.js:170
+#. 3.4/constants.js:160 5.4/constants.js:160
 msgid "Clear"
 msgstr "Quang đãng"
 
-#. 3.4/constants.js:171 3.4/constants.js:172 5.4/constants.js:171
-#. 5.4/constants.js:172
+#. 3.4/constants.js:161 3.4/constants.js:162 5.4/constants.js:161
+#. 5.4/constants.js:162
 msgid "Cloudy"
 msgstr "Nhiều mây"
 
-#. 3.4/constants.js:173 5.4/constants.js:173
+#. 3.4/constants.js:163 5.4/constants.js:163
 msgid "Fog"
 msgstr "Sương mù"
 
-#. 3.4/constants.js:174 3.4/constants.js:175 3.4/weatherapi_source.js:154
-#. 5.4/constants.js:174 5.4/constants.js:175 5.4/weatherapi_source.js:154
+#. 3.4/constants.js:164 3.4/constants.js:165 3.4/weatherapi_source.js:154
+#. 5.4/constants.js:164 5.4/constants.js:165 5.4/weatherapi_source.js:154
 msgid "Rain"
 msgstr "Mưa"
 
-#. 3.4/constants.js:176 5.4/constants.js:176
+#. 3.4/constants.js:166 5.4/constants.js:166
 msgid "Storm"
 msgstr "Bão"
 
-#. 3.4/constants.js:177 5.4/constants.js:177
+#. 3.4/constants.js:167 5.4/constants.js:167
 msgid ""
 "Cold\n"
 "precip."
-msgstr "Mưa\nlạnh"
+msgstr ""
+"Mưa\n"
+"lạnh"
 
-#. 3.4/desklet.js:149 5.4/desklet.js:149
+#. 3.4/desklet.js:143 5.4/desklet.js:143
 msgid "Date and Time Settings"
 msgstr "Cài đặt Ngày giờ"
 
-#. 3.4/desklet.js:408 3.4/desklet.js:439 5.4/desklet.js:408 5.4/desklet.js:439
+#. 3.4/desklet.js:400 3.4/desklet.js:431 5.4/desklet.js:400 5.4/desklet.js:431
 msgid "Limit"
 msgstr "Giới hạn"
 
@@ -111,46 +113,48 @@ msgstr "Giới hạn"
 #. 3.4->settings-schema.json->bottom-caption-type->options
 #. 5.4->settings-schema.json->bottom-emoji-type->options
 #. 5.4->settings-schema.json->bottom-caption-type->options
-#. 3.4/desklet.js:412 5.4/desklet.js:412
+#. 3.4/desklet.js:404 5.4/desklet.js:404
 msgid "None"
 msgstr "Không"
 
-#. 3.4/desklet.js:454 5.4/desklet.js:454
+#. 3.4/desklet.js:446 5.4/desklet.js:446
 msgid ""
 "Right-click\n"
 "to configure!"
-msgstr "Nhấp chuột phải\nđể cấu hình!"
+msgstr ""
+"Nhấp chuột phải\n"
+"để cấu hình!"
 
 #. metadata.json->name
-#. 3.4/desklet.js:507 5.4/desklet.js:507
+#. 3.4/desklet.js:499 5.4/desklet.js:499
 msgid "Moonlight Clock"
 msgstr "Đồng hồ Moonlight"
 
-#. 3.4/wallclock_source.js:13 5.4/wallclock_source.js:13
+#. 3.4/wallclock_source.js:14 5.4/wallclock_source.js:14
 msgid "Late Night"
 msgstr "Khuya"
 
-#. 3.4/wallclock_source.js:16 5.4/wallclock_source.js:16
+#. 3.4/wallclock_source.js:17 5.4/wallclock_source.js:17
 msgid "Early Morning"
 msgstr "Sáng sớm"
 
-#. 3.4/wallclock_source.js:19 5.4/wallclock_source.js:19
+#. 3.4/wallclock_source.js:20 5.4/wallclock_source.js:20
 msgid "Morning"
 msgstr "Buổi sáng"
 
-#. 3.4/wallclock_source.js:22 5.4/wallclock_source.js:22
+#. 3.4/wallclock_source.js:23 5.4/wallclock_source.js:23
 msgid "Daytime"
 msgstr "Ban ngày"
 
-#. 3.4/wallclock_source.js:25 5.4/wallclock_source.js:25
+#. 3.4/wallclock_source.js:26 5.4/wallclock_source.js:26
 msgid "Afternoon"
 msgstr "Buổi chiều"
 
-#. 3.4/wallclock_source.js:28 5.4/wallclock_source.js:28
+#. 3.4/wallclock_source.js:29 5.4/wallclock_source.js:29
 msgid "Evening"
 msgstr "Buổi tối"
 
-#. 3.4/wallclock_source.js:125 5.4/wallclock_source.js:125
+#. 3.4/wallclock_source.js:126 5.4/wallclock_source.js:126
 msgid "Today"
 msgstr "Hôm nay"
 
@@ -158,13 +162,17 @@ msgstr "Hôm nay"
 msgid ""
 "No network,\n"
 "retrying..."
-msgstr "Không có mạng,\nđang thử lại..."
+msgstr ""
+"Không có mạng,\n"
+"đang thử lại..."
 
 #. 3.4/weatherapi_source.js:105 5.4/weatherapi_source.js:105
 msgid ""
 "Error: see log\n"
 "Super + L"
-msgstr "Lỗi: xem nhật ký\nSuper + L"
+msgstr ""
+"Lỗi: xem nhật ký\n"
+"Super + L"
 
 #. 3.4/weatherapi_source.js:157 5.4/weatherapi_source.js:157
 msgid "Temp"
@@ -183,44 +191,44 @@ msgstr "Tải"
 msgid "Save"
 msgstr "Lưu"
 
-#. 3.4/settingsWidgets.py:129 5.4/settingsWidgets.py:129
+#. 3.4/settingsWidgets.py:128 5.4/settingsWidgets.py:128
 msgid "Enabled"
 msgstr "Đã bật"
 
-#. 3.4/settingsWidgets.py:130 5.4/settingsWidgets.py:130
+#. 3.4/settingsWidgets.py:129 5.4/settingsWidgets.py:129
 msgid "Persistent"
 msgstr "Liên tục"
 
-#. 3.4/settingsWidgets.py:131 5.4/settingsWidgets.py:131
+#. 3.4/settingsWidgets.py:130 5.4/settingsWidgets.py:130
 msgid "Date"
 msgstr "Ngày"
 
-#. 3.4/settingsWidgets.py:132 5.4/settingsWidgets.py:132
+#. 3.4/settingsWidgets.py:131 5.4/settingsWidgets.py:131
 msgid "Name"
 msgstr "Tên"
 
-#. 3.4/settingsWidgets.py:233 3.4/settingsWidgets.py:329
-#. 5.4/settingsWidgets.py:233 5.4/settingsWidgets.py:329
+#. 3.4/settingsWidgets.py:232 3.4/settingsWidgets.py:328
+#. 5.4/settingsWidgets.py:232 5.4/settingsWidgets.py:328
 msgid "Add new entry"
 msgstr "Thêm mục mới"
 
-#. 3.4/settingsWidgets.py:237 5.4/settingsWidgets.py:237
+#. 3.4/settingsWidgets.py:236 5.4/settingsWidgets.py:236
 msgid "Remove selected entry"
 msgstr "Xóa mục đã chọn"
 
-#. 3.4/settingsWidgets.py:242 5.4/settingsWidgets.py:242
+#. 3.4/settingsWidgets.py:241 5.4/settingsWidgets.py:241
 msgid "Edit selected entry"
 msgstr "Sửa mục đã chọn"
 
-#. 3.4/settingsWidgets.py:247 5.4/settingsWidgets.py:247
+#. 3.4/settingsWidgets.py:246 5.4/settingsWidgets.py:246
 msgid "Move selected entry up"
 msgstr "Di chuyển mục đã chọn lên"
 
-#. 3.4/settingsWidgets.py:252 5.4/settingsWidgets.py:252
+#. 3.4/settingsWidgets.py:251 5.4/settingsWidgets.py:251
 msgid "Move selected entry down"
 msgstr "Di chuyển mục đã chọn xuống"
 
-#. 3.4/settingsWidgets.py:331 5.4/settingsWidgets.py:331
+#. 3.4/settingsWidgets.py:330 5.4/settingsWidgets.py:330
 msgid "Edit entry"
 msgstr "Sửa mục"
 
@@ -228,13 +236,17 @@ msgstr "Sửa mục"
 msgid ""
 "An aesthetic and customizable desklet that can function as clock, weather "
 "display, and/or tracker of important dates. Based on Persona 3."
-msgstr "Một desklet thẩm mỹ và có thể tùy chỉnh, có chức năng như đồng hồ, hiển thị thời tiết và/hoặc theo dõi ngày quan trọng. Dựa trên Persona 3"
+msgstr ""
+"Một desklet thẩm mỹ và có thể tùy chỉnh, có chức năng như đồng hồ, hiển thị "
+"thời tiết và/hoặc theo dõi ngày quan trọng. Dựa trên Persona 3"
 
 #. metadata.json->comments
 msgid ""
 "Best placed in the top right corner on the screen. Use the \"offset\" "
 "configuration for precise alignment."
-msgstr "Nên đặt ở góc trên bên phải màn hình. Sử dụng cấu hình \"offset\" để căn chỉnh chính xác"
+msgstr ""
+"Nên đặt ở góc trên bên phải màn hình. Sử dụng cấu hình \"offset\" để căn "
+"chỉnh chính xác"
 
 #. 3.4->settings-schema.json->global-page->title
 #. 5.4->settings-schema.json->global-page->title
@@ -337,7 +349,9 @@ msgstr "Tải cấu hình"
 msgid ""
 "Set these offsets with respect to your desklet grid so that this fits "
 "precisely into your top right corner."
-msgstr "Đặt các giá trị offset này so với lưới desklet của bạn để nó vừa khít với góc trên bên phải"
+msgstr ""
+"Đặt các giá trị offset này so với lưới desklet của bạn để nó vừa khít với "
+"góc trên bên phải"
 
 #. 3.4->settings-schema.json->global-h-offset->description
 #. 5.4->settings-schema.json->global-h-offset->description
@@ -459,7 +473,8 @@ msgstr "Đảo ngược màu hàng dưới"
 #. 5.4->settings-schema.json->global-color-invert-bottom->tooltip
 msgid ""
 "May be useful if the bottom caption doesn't stand out against your background"
-msgstr "Có thể hữu ích nếu chú thích hàng dưới không nổi bật so với nền của bạn"
+msgstr ""
+"Có thể hữu ích nếu chú thích hàng dưới không nổi bật so với nền của bạn"
 
 #. 3.4->settings-schema.json->global-color-use-highlight->description
 #. 5.4->settings-schema.json->global-color-use-highlight->description
@@ -469,7 +484,8 @@ msgstr "Làm nổi bật hiển thị số hàng dưới"
 #. 3.4->settings-schema.json->global-color-use-highlight->tooltip
 #. 5.4->settings-schema.json->global-color-use-highlight->tooltip
 msgid "Affects: rain chance display, temperature display, countdown displays"
-msgstr "Ảnh hưởng: hiển thị xác suất mưa, hiển thị nhiệt độ, hiển thị đếm ngược"
+msgstr ""
+"Ảnh hưởng: hiển thị xác suất mưa, hiển thị nhiệt độ, hiển thị đếm ngược"
 
 #. 3.4->settings-schema.json->top-format->description
 #. 3.4->settings-schema.json->middle-format->description
@@ -484,7 +500,10 @@ msgid ""
 "This uses standard strftime, with the addition of the %! specifier to show "
 "an approximate phase of the day (e.g. Morning, Afternoon, Evening, ...). "
 "Leave empty to show a default date according to your locale and settings."
-msgstr "Sử dụng strftime chuẩn, với bổ sung %! để hiển thị khoảng thời gian trong ngày (ví dụ: Sáng, Chiều, Tối, ...). Để trống để hiển thị ngày mặc định theo ngôn ngữ và cài đặt của bạn"
+msgstr ""
+"Sử dụng strftime chuẩn, với bổ sung %! để hiển thị khoảng thời gian trong "
+"ngày (ví dụ: Sáng, Chiều, Tối, ...). Để trống để hiển thị ngày mặc định theo "
+"ngôn ngữ và cài đặt của bạn"
 
 #. 3.4->settings-schema.json->top-font->description
 #. 3.4->settings-schema.json->middle-font->description
@@ -503,7 +522,8 @@ msgstr "Phông chữ"
 #. 5.4->settings-schema.json->bottom-caption-v-offset->tooltip
 msgid ""
 "Can help conpensate for the varying vertical alignment of different fonts."
-msgstr "Có thể giúp bù đắp cho sự căn chỉnh dọc khác nhau của các phông chữ khác nhau"
+msgstr ""
+"Có thể giúp bù đắp cho sự căn chỉnh dọc khác nhau của các phông chữ khác nhau"
 
 #. 3.4->settings-schema.json->top-weekday->description
 #. 5.4->settings-schema.json->top-weekday->description
@@ -516,7 +536,10 @@ msgid ""
 "This uses standard strftime, with the addition of the %! specifier to show "
 "an approximate phase of the day (e.g. Morning, Afternoon, Evening, ...). "
 "Leave empty to show a default clock according to your locale and settings."
-msgstr "Sử dụng strftime chuẩn, với bổ sung %! để hiển thị khoảng thời gian trong ngày (ví dụ: Sáng, Chiều, Tối, ...). Để trống để hiển thị đồng hồ mặc định theo ngôn ngữ và cài đặt của bạn"
+msgstr ""
+"Sử dụng strftime chuẩn, với bổ sung %! để hiển thị khoảng thời gian trong "
+"ngày (ví dụ: Sáng, Chiều, Tối, ...). Để trống để hiển thị đồng hồ mặc định "
+"theo ngôn ngữ và cài đặt của bạn"
 
 #. 3.4->settings-schema.json->middle-shadow->description
 #. 3.4->settings-schema.json->bottom-caption-shadow->description
@@ -542,7 +565,13 @@ msgid ""
 "master/lunar_calendar_generation for instructions.\n"
 "(D) - You must provide one or more important dates to count down to in the "
 "\"Data\" page."
-msgstr "(W) - Cần có khóa WeatherAPI hợp lệ. Truy cập trang \"Dữ liệu\" để bật nó\n(C?) - TÙY CHỌN: độ chính xác có thể được cải thiện bằng cách tạo lịch âm địa phương. Xem https://github.com/torchipeppo/p3-clock-for-cinnamon/tree/master/lunar_calendar_generation để biết hướng dẫn\n(D) - Bạn phải cung cấp một hoặc nhiều ngày quan trọng để đếm ngược trong trang \"Dữ liệu\""
+msgstr ""
+"(W) - Cần có khóa WeatherAPI hợp lệ. Truy cập trang \"Dữ liệu\" để bật nó\n"
+"(C?) - TÙY CHỌN: độ chính xác có thể được cải thiện bằng cách tạo lịch âm "
+"địa phương. Xem https://github.com/torchipeppo/p3-clock-for-cinnamon/tree/"
+"master/lunar_calendar_generation để biết hướng dẫn\n"
+"(D) - Bạn phải cung cấp một hoặc nhiều ngày quan trọng để đếm ngược trong "
+"trang \"Dữ liệu\""
 
 #. 3.4->settings-schema.json->wapi-help->description
 #. 5.4->settings-schema.json->wapi-help->description
@@ -550,7 +579,10 @@ msgid ""
 "To access weather data from WeatherAPI, an API key is required. Sign up on "
 "weatherapi.com to get one. Be mindful of your request budget when setting "
 "the update frequency or manually requesting updates."
-msgstr "Để truy cập dữ liệu thời tiết từ WeatherAPI, cần có khóa API. Đăng ký trên weatherapi.com để lấy một khóa. Hãy lưu ý đến hạn mức yêu cầu của bạn khi đặt tần suất cập nhật hoặc yêu cầu cập nhật thủ công"
+msgstr ""
+"Để truy cập dữ liệu thời tiết từ WeatherAPI, cần có khóa API. Đăng ký trên "
+"weatherapi.com để lấy một khóa. Hãy lưu ý đến hạn mức yêu cầu của bạn khi "
+"đặt tần suất cập nhật hoặc yêu cầu cập nhật thủ công"
 
 #. 3.4->settings-schema.json->wapi-enable->description
 #. 5.4->settings-schema.json->wapi-enable->description
@@ -578,7 +610,10 @@ msgid ""
 "Enter your location name (e.g. \"Tokyo\"), your coordinates (e.g. "
 "\"123.45,98.765\"), or \"auto:ip\" for automatic lookup based on your IP "
 "address."
-msgstr "Nhập tên vị trí của bạn (ví dụ: \"Tokyo\"), tọa độ của bạn (ví dụ: \"123.45,98.765\"), hoặc \"auto:ip\" để tra cứu tự động dựa trên địa chỉ IP của bạn"
+msgstr ""
+"Nhập tên vị trí của bạn (ví dụ: \"Tokyo\"), tọa độ của bạn (ví dụ: "
+"\"123.45,98.765\"), hoặc \"auto:ip\" để tra cứu tự động dựa trên địa chỉ IP "
+"của bạn"
 
 #. 3.4->settings-schema.json->wapi-update-period-minutes->options
 #. 5.4->settings-schema.json->wapi-update-period-minutes->options
@@ -631,7 +666,8 @@ msgstr "Nhiệt độ °F (W)"
 
 #. 3.4->settings-schema.json->bottom-caption-type->options
 #. 5.4->settings-schema.json->bottom-caption-type->options
-msgid "Full moon countdown (C?)"
+#, fuzzy
+msgid "Moon countdown (C?)"
 msgstr "Đếm ngược trăng tròn (C?)"
 
 #. 3.4->settings-schema.json->bottom-caption-type->options
@@ -649,6 +685,31 @@ msgstr "Hiển thị chú thích"
 msgid "Show more countdowns in secondary text (D)"
 msgstr "Hiển thị thêm đếm ngược trong văn bản phụ (D)"
 
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "Select moon phases"
+msgstr ""
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌑"
+msgstr ""
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌓"
+msgstr ""
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌕"
+msgstr ""
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌗"
+msgstr ""
+
 #. 3.4->settings-schema.json->custom-countdown-list-label->description
 #. 5.4->settings-schema.json->custom-countdown-list-label->description
 msgid ""
@@ -659,7 +720,13 @@ msgid ""
 "Disable dates to skip them.\n"
 "Dates set in the past are also skipped unless they are \"persistent\".\n"
 "\n"
-msgstr "Nhập một hoặc nhiều ngày để đếm ngược khi chọn \"Đếm ngược tùy chỉnh\" (1 ngày) và/hoặc \"Hiển thị thêm đếm ngược trong văn bản phụ\" (tối đa 2 ngày bổ sung)\nThứ tự trong danh sách đại diện cho thứ tự ưu tiên của các ngày\nVô hiệu hóa ngày để bỏ qua chúng\nCác ngày đặt trong quá khứ cũng sẽ bị bỏ qua trừ khi chúng \"liên tục\"\n"
+msgstr ""
+"Nhập một hoặc nhiều ngày để đếm ngược khi chọn \"Đếm ngược tùy chỉnh\" (1 "
+"ngày) và/hoặc \"Hiển thị thêm đếm ngược trong văn bản phụ\" (tối đa 2 ngày "
+"bổ sung)\n"
+"Thứ tự trong danh sách đại diện cho thứ tự ưu tiên của các ngày\n"
+"Vô hiệu hóa ngày để bỏ qua chúng\n"
+"Các ngày đặt trong quá khứ cũng sẽ bị bỏ qua trừ khi chúng \"liên tục\"\n"
 
 #. 3.4->settings-schema.json->save-help->description
 #. 5.4->settings-schema.json->save-help->description
@@ -670,7 +737,14 @@ msgid ""
 "- content (including date-time format strings and bottom row selections),\n"
 "- countdown dates.\n"
 "Does NOT correspond to a full export of the configuration."
-msgstr "Nhấp vào nút bên dưới để lưu các cài đặt sau vào tập tin JSON:\n- bảng màu,\n- kiểu văn bản (bao gồm lựa chọn phông chữ, độ lệch bóng và kích thước emoji),\n- nội dung (bao gồm chuỗi định dạng ngày giờ và lựa chọn hàng dưới),\n- ngày đếm ngược\nKHÔNG tương ứng với xuất toàn bộ cấu hình"
+msgstr ""
+"Nhấp vào nút bên dưới để lưu các cài đặt sau vào tập tin JSON:\n"
+"- bảng màu,\n"
+"- kiểu văn bản (bao gồm lựa chọn phông chữ, độ lệch bóng và kích thước "
+"emoji),\n"
+"- nội dung (bao gồm chuỗi định dạng ngày giờ và lựa chọn hàng dưới),\n"
+"- ngày đếm ngược\n"
+"KHÔNG tương ứng với xuất toàn bộ cấu hình"
 
 #. 3.4->settings-schema.json->save-button->description
 #. 5.4->settings-schema.json->save-button->description
@@ -684,7 +758,11 @@ msgid ""
 "below to select a file to load.\n"
 "WARNING: the selected settings will be overwritten, and their original "
 "values will be lost! Unselected settings will be left untouched."
-msgstr "Chọn tùy chọn nào để tải từ bản lưu trước đó, sau đó nhấp vào nút bên dưới để chọn tập tin để tải\nCẢNH BÁO: các cài đặt được chọn sẽ bị ghi đè và giá trị gốc của chúng sẽ bị mất! Các cài đặt không được chọn sẽ được giữ nguyên"
+msgstr ""
+"Chọn tùy chọn nào để tải từ bản lưu trước đó, sau đó nhấp vào nút bên dưới "
+"để chọn tập tin để tải\n"
+"CẢNH BÁO: các cài đặt được chọn sẽ bị ghi đè và giá trị gốc của chúng sẽ bị "
+"mất! Các cài đặt không được chọn sẽ được giữ nguyên"
 
 #. 3.4->settings-schema.json->load-colors->description
 #. 5.4->settings-schema.json->load-colors->description
