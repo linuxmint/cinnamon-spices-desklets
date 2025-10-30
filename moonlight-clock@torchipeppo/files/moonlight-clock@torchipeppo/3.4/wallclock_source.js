@@ -4,6 +4,7 @@
 
 const Settings = imports.ui.settings;
 
+const CONSTANTS = require("./constants");
 const ShellUtils = require("./shell_utils");
 const Translation = require("./translation");
 const _ = Translation._;
@@ -44,7 +45,7 @@ function _get_days_left(date_json_string) {
         countdown_target.d
     );
 
-    return Math.round((target - today) / (1000 * 60 * 60 * 24));
+    return Math.round((target - today) / (CONSTANTS.ONE_DAY_MSEC));
 }
 
 class WallclockSource {

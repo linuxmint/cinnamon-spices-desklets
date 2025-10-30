@@ -21,13 +21,30 @@ class SunCalcSource {
 
         this.settings.bind("bottom-emoji-type", "emoji_type");
         this.settings.bind("bottom-caption-type", "caption_type");
+        this.settings.bind("bottom-moon-countdown-selection", "moon_countdown_selection_table", this._onMoonChanged);
+
+        this._onMoonChanged();
+    }
+
+    _onMoonChanged() {
+        this.selected_moon_phase_codes = [];
+        let row = this.moon_countdown_selection_table[0];
+        for (let pc of ["new", "fq", "full", "lq"]) {
+            if (row[pc]) {
+                this.selected_moon_phase_codes.push(pc);
+            }
+        }
+        if (!this.selected_moon_phase_codes.length) {
+            // default
+            this.selected_moon_phase_codes.push("full");
+        }
     }
 
     get_emoji_text() {
         switch (this.emoji_type) {
             case "moon":
-                let moon_phase_name = this._find_moon_phase_name();
-                return CONSTANTS.MOON_PHASES_BY_WEATHERAPI_NAME[moon_phase_name];
+                let moon_phase_code = this._find_moon_phase_code();
+                return CONSTANTS.MOON_PHASE_EMOJIS[moon_phase_code];
             default:
                 return "";
         }
@@ -35,8 +52,8 @@ class SunCalcSource {
     get_label_text() {
         switch (this.caption_type) {
             case "moon":
-                let moon_phase_name = this._find_moon_phase_name();
-                moon_phase_name = CONSTANTS.TRANSLATED_MOON_PHASE_NAMES[moon_phase_name];
+                let moon_phase_code = this._find_moon_phase_code();
+                let moon_phase_name = CONSTANTS.MOON_PHASE_NAMES[moon_phase_code];
                 return moon_phase_name.replace(" ", "\n");
             case "cntdn-full":
                 return this._get_full_moon_countdown_str();
@@ -45,9 +62,9 @@ class SunCalcSource {
         }
     }
 
-    _find_moon_phase_name() {
+    _find_moon_phase_code() {
         let today = new_midnight_date();
-        return CONSTANTS.MOON_PHASE_NAMES_BY_LUNCAL_RESULT[this._get_moon_phase(today)];
+        return this._get_moon_phase(today);
     }
 
     _get_full_moon_countdown_str() {
@@ -58,8 +75,8 @@ class SunCalcSource {
             return CONSTANTS.MOON_PHASE_SHORTNAMES[phase_code];
         }
         else {
-            let next = new_midnight_date(this._get_next_full_moon(today));
-            let days_left = Math.round((next - today) / (1000 * 60 * 60 * 24));
+            let next = new_midnight_date(this._get_next_moon_quarter(today, this.selected_moon_phase_codes));
+            let days_left = Math.round((next - today) / (CONSTANTS.ONE_DAY_MSEC));
             return SU.countdown_formatting(days_left);
         }
     }
@@ -104,31 +121,42 @@ class SunCalcSource {
     // getMoonIllumination a bunch of times, so let's get smart
 
     _get_moon_phase(today) {
-        if (!(this.cached_today_date && Math.abs(this.cached_today_date - today) < 1000 * 60 * 60 * 24)) {
+        if (!(this.cached_today_date && Math.abs(this.cached_today_date - today) < CONSTANTS.ONE_DAY_MSEC)) {
             this._refresh_cache(today);
         }
         return this.cached_today_phase;
     }
 
     _get_moon_illumination(today) {
-        if (!(this.cached_today_date && Math.abs(this.cached_today_date - today) < 1000 * 60 * 60 * 24)) {
+        if (!(this.cached_today_date && Math.abs(this.cached_today_date - today) < CONSTANTS.ONE_DAY_MSEC)) {
             this._refresh_cache(today);
         }
         return this.cached_today_illumination;
     }
 
-    _get_next_full_moon(today) {
-        if (!(this.cached_today_date && Math.abs(this.cached_today_date - today) < 1000 * 60 * 60 * 24)) {
+    _get_next_moon_quarter(today, phase_codes) {
+        if (!(this.cached_today_date && Math.abs(this.cached_today_date - today) < CONSTANTS.ONE_DAY_MSEC)) {
             this._refresh_cache(today);
         }
-        return this.cached_today_next_full;
+        let min_date = this.cached_today_next_quarters[phase_codes[0]];
+        for (let pc of phase_codes) {
+            if (this.cached_today_next_quarters[pc] < min_date) {
+                min_date = this.cached_today_next_quarters[pc];
+            }
+        }  
+        return min_date;
     }
 
     _refresh_cache(today) {
         this.cached_today_date = today;
         this.cached_today_illumination = SunCalc.getMoonIllumination(today);
         this.cached_today_phase = this._calculate_moon_phase(today, this.cached_today_illumination);
-        this.cached_today_next_full = this._calculate_next_full(today, this.cached_today_illumination);
+        this.cached_today_next_quarters = {
+            "new": this._calculate_next_quarter(today, this.cached_today_illumination, 0.0),
+            "fq": this._calculate_next_quarter(today, this.cached_today_illumination, 0.25),
+            "full": this._calculate_next_quarter(today, this.cached_today_illumination, 0.5),
+            "lq": this._calculate_next_quarter(today, this.cached_today_illumination, 0.75),
+        };
     }
 
     _calculate_moon_phase(today, today_illumination) {
@@ -193,20 +221,23 @@ class SunCalcSource {
         }
     }
 
-    _calculate_next_full(today, today_illumination) {
+    // memo: 0=new, 0.25=fq, 0.5=full, 0.75=lq
+    // TODO could be rewritten to find all four quarters in one go
+    //      rather than calling this repeatedly and starting over four times
+    _calculate_next_quarter(today, today_illumination, quarter) {
         // special initial case: checking wrt yesterday
         let yesterday = new Date(today);
         yesterday.setDate(yesterday.getDate() - 1);
         let today_pv = today_illumination.phase;
         let yesterday_pv = SunCalc.getMoonIllumination(yesterday).phase;
-        if (this._check_quarter_threshold_one(today_pv, yesterday_pv, 0.5)) {
+        if (this._check_quarter_threshold_one(today_pv, yesterday_pv, quarter)) {
             return today;
         }
 
         // now the true function begins
         let current_date = today;
         let current_pv = today_pv;
-        // we should be guaranteed to hit a full moon before 60 days,
+        // we should be guaranteed to hit a full moon (or the specified quarter) before 60 days,
         // but having Cinnamon hang would be bad, so let's not use `while true` anyway
         // just in case there's a rare numerical error or something
         for (let i=0; i<60; i++) {
@@ -214,20 +245,20 @@ class SunCalcSource {
             next_date.setDate(next_date.getDate() + 1);
             let next_pv = SunCalc.getMoonIllumination(next_date).phase;
 
-            if (this._check_quarter_threshold_one(current_pv, next_pv, 0.5)) {
+            if (this._check_quarter_threshold_one(current_pv, next_pv, quarter)) {
                 return current_date;
             }
             // checking sequentially, so I can do the "yesterday check" in advance
-            if (this._check_quarter_threshold_one(next_pv, current_pv, 0.5)) {
+            if (this._check_quarter_threshold_one(next_pv, current_pv, quarter)) {
                 return next_date;
             }
             current_date = next_date;
             current_pv = next_pv;
         }
-        // if we haven't found a full moon in the next 60 days,
+        // if we haven't found a full moon (or the specified quarter) in the next 60 days,
         // either some calculation went wrong (floating point stuff?)
-        // or Moonbase Alpha went on a little journey through the cosmos,
-        // anyway, it's nothing my little desklet can solve.
+        // or Moonbase Alpha went on a little journey through the cosmos.
+        // Anyway, it's nothing my little desklet can solve.
         // I guess this is better than returning undefined.
         return current_date;
     }
