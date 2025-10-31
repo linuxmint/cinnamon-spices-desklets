@@ -13,7 +13,7 @@
   },
   "decoration": {
     "type": "checkbox",
-    "default": false,
+    "default": true,
     "description": "Show decoration"
   },
   "font-size-label": {
