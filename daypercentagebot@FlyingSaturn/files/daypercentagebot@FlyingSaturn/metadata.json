@@ -2,5 +2,6 @@
   "uuid": "daypercentagebot@FlyingSaturn",
   "name": "Day Percentage",
   "description": "Uses percentage to show how much of the day has passed.",
-  "max-instances": "50"
+  "max-instances": "50",
+  "version": "1.0"
 }

@@ -28,7 +28,7 @@ class MyDesklet extends Desklet.Desklet {
     settings.bindProperty(Settings.BindingDirection.IN, "font-size-label", "fontSizeLabel", this._onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "show-sun-and-moon", "showSunAndMoon", this._onSettingsChanged.bind(this));
 
-    this.setHeader(_("Day percentage"));
+    this.setHeader(_("Day Percentage"));
     this._initUI();
     this._update();
   }
