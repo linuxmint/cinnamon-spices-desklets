@@ -21,10 +21,12 @@ class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
     this.metadata = metadata;
-    this.iconSize = 32;
+    this.metadata["prevent-decorations"] = !this.decoration;
+    this._updateDecoration();
 
     const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
     settings.bindProperty(Settings.BindingDirection.IN, "icon-size", "iconSize", this._onSettingsChanged.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "decoration", "decoration", this._onSettingsChanged.bind(this));
 
     this.setHeader(_("Day percentage"));
     this._initUI();
@@ -62,6 +64,9 @@ class MyDesklet extends Desklet.Desklet {
     this.sunIcon.destroy();
     this.moonIcon.destroy();
 
+    this.metadata["prevent-decorations"] = !this.decoration;
+    this._updateDecoration();
+
     this._createIcons();
 
     this.container.add_actor(this.sunIcon);
@@ -95,7 +100,7 @@ class MyDesklet extends Desklet.Desklet {
     this.text.set_text(dayPercent.toFixed(1) + " %");
 
     const iconSize = this.iconSize;
-    const radius = 80;
+    const radius = this.iconSize * 1.5;
     const containerWidth = radius * 2 + iconSize;
     const containerHeight = radius + iconSize * 1.5;
 
@@ -103,7 +108,7 @@ class MyDesklet extends Desklet.Desklet {
     this.container.set_size(containerWidth, containerHeight);
 
     const centerX = this.window.get_width() / 2;
-    const centerY = this.window.get_height() - this.text.get_height() / 2;
+    const centerY = this.window.get_height() - this.text.get_height() - iconSize / 2;
 
     const angle = Math.PI * (dayPercent / 100.0);
     const iconX = centerX - radius * Math.cos(angle);
@@ -118,7 +123,7 @@ class MyDesklet extends Desklet.Desklet {
     const iconHeight = currentIcon.get_height();
     const textWidth = this.text.get_width();
     currentIcon.set_position(iconX - iconWidth / 2, iconY - iconHeight / 2);
-    this.text.set_position(centerX - textWidth / 2, this.window.get_height() - this.text.get_height());
+    this.text.set_position(centerX - textWidth / 2, this.window.get_height() - this.text.get_height() - iconSize / 2);
   }
 
   _calcPercent() {

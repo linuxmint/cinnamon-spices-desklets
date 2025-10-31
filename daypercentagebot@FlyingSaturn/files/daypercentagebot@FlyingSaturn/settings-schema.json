@@ -6,9 +6,14 @@
   "icon-size": {
     "type": "scale",
     "default": 32,
-    "min": 12,
-    "max": 250,
+    "min": 30,
+    "max": 150,
     "step": 1,
     "description": "Icon size of the sun and moon."
+  },
+  "decoration": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Show decoration"
   }
 }
