@@ -19,7 +19,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.8\n"
 
 #. 3.4/constants.js:45 5.4/constants.js:45
 msgid "Next"
@@ -97,8 +97,8 @@ msgid ""
 "Cold\n"
 "precip."
 msgstr ""
-"Precip.\n"
-"frío"
+"Precipitación\n"
+"fría."
 
 #. 3.4/desklet.js:143 5.4/desklet.js:143
 msgid "Date and Time Settings"
@@ -673,9 +673,8 @@ msgstr "Temperatura °F (O)"
 
 #. 3.4->settings-schema.json->bottom-caption-type->options
 #. 5.4->settings-schema.json->bottom-caption-type->options
-#, fuzzy
 msgid "Moon countdown (C?)"
-msgstr "Cuenta regresiva de luna llena (C?)"
+msgstr "Cuenta regresiva lunar (C?)"
 
 #. 3.4->settings-schema.json->bottom-caption-type->options
 #. 5.4->settings-schema.json->bottom-caption-type->options
@@ -695,34 +694,34 @@ msgstr "Mostrar más cuentas regresivas en el texto secundario (D)"
 #. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
 #. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
 msgid "Select moon phases"
-msgstr ""
+msgstr "Seleccionar fases lunares"
 
 #. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
 #. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
 msgid "🌑"
-msgstr ""
+msgstr "🌑"
 
 #. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
 #. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
 msgid "🌓"
-msgstr ""
+msgstr "🌓"
 
 #. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
 #. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
 msgid "🌕"
-msgstr ""
+msgstr "🌕"
 
 #. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
 #. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
 msgid "🌗"
-msgstr ""
+msgstr "🌗"
 
 #. 3.4->settings-schema.json->custom-countdown-list-label->description
 #. 5.4->settings-schema.json->custom-countdown-list-label->description
 msgid ""
-"Enter one or more dates to count down to when selecting \"Custom "
-"countdown\" (1 date) and/or \"Show more countdowns in secondary text\" (up "
-"to 2 additional dates).\n"
+"Enter one or more dates to count down to when selecting \"Custom countdown\" "
+"(1 date) and/or \"Show more countdowns in secondary text\" (up to 2 "
+"additional dates).\n"
 "The order of the list represents the priority order for the dates.\n"
 "Disable dates to skip them.\n"
 "Dates set in the past are also skipped unless they are \"persistent\".\n"
