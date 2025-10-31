@@ -21,12 +21,12 @@ class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
     this.metadata = metadata;
-    this.metadata["prevent-decorations"] = !this.decoration;
-    this._updateDecoration();
 
     const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
     settings.bindProperty(Settings.BindingDirection.IN, "icon-size", "iconSize", this._onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "decoration", "decoration", this._onSettingsChanged.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "font-size-label", "fontSizeLabel", this._onSettingsChanged.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "show-sun-and-moon", "showSunAndMoon", this._onSettingsChanged.bind(this));
 
     this.setHeader(_("Day percentage"));
     this._initUI();
@@ -38,7 +38,10 @@ class MyDesklet extends Desklet.Desklet {
     this.container = new Clutter.Actor();
     this.text = new St.Label();
     this.text.set_text("... %");
-    this.text.style = "font-size: 24px; text-align: center;";
+    this.text.style = `font-size: ${this.fontSizeLabel}px; text-align: center;`;
+
+    this.metadata["prevent-decorations"] = !this.decoration;
+    this._updateDecoration();
 
     this._createIcons();
 
@@ -66,6 +69,7 @@ class MyDesklet extends Desklet.Desklet {
 
     this.metadata["prevent-decorations"] = !this.decoration;
     this._updateDecoration();
+    this.text.set_style(`font-size: ${this.fontSizeLabel}px; text-align: center;`);
 
     this._createIcons();
 
@@ -94,10 +98,21 @@ class MyDesklet extends Desklet.Desklet {
 
   _updateContent() {
     const dayPercent = this._calcPercent();
+    this.text.set_text(dayPercent.toFixed(1) + " %");
+
+    if (!this.showSunAndMoon) {
+      this.sunIcon.visible = false;
+      this.moonIcon.visible = false;
+      const containerHeight = this.text.get_height();
+      const containerWidth = this.text.get_width();
+      this.window.set_size(containerWidth, containerHeight);
+      this.container.set_size(containerWidth, containerHeight);
+      this.text.set_position(0, 0);
+      return;
+    }
+
     const now = new Date();
     const hour = now.getHours();
-
-    this.text.set_text(dayPercent.toFixed(1) + " %");
 
     const iconSize = this.iconSize;
     const radius = this.iconSize * 1.5;
