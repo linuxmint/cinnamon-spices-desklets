@@ -58,5 +58,10 @@
     "step": 1,
     "description": "Background Corner radius",
     "tooltip": "Radius for rounding the desklet's corners"
+  },
+  "hideDecorations": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Hide decorations"
   }
 }

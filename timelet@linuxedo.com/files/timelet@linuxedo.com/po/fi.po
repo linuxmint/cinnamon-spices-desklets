@@ -1,37 +1,37 @@
-# SOME DESCRIPTIVE TITLE.
+# TIMELET
 # This file is put in the public domain.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# slgobinath, 2022
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: timelet@linuxedo.com 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-05-18 00:10+0200\n"
+"POT-Creation-Date: 2025-10-16 23:33+0200\n"
 "PO-Revision-Date: 2024-11-11 10:21+0200\n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: \n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
-"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: fi\n"
 
 #. metadata.json->name
-#: desklet.js:50
+#. desklet.js:50
 msgid "Timelet"
 msgstr "Timelet"
 
-#: themes/theme.js:143
+#. themes/theme.js:143
 msgid "AM"
 msgstr "AM"
 
-#: themes/theme.js:145
+#. themes/theme.js:145
 msgid "Noon"
 msgstr "Keskipäivä"
 
-#: themes/theme.js:147
+#. themes/theme.js:147
 msgid "PM"
 msgstr "PM"
 
@@ -94,3 +94,7 @@ msgstr "Kulmien pyöristys"
 #. settings-schema.json->cornerRadius->tooltip
 msgid "Radius for rounding the desklet's corners"
 msgstr "Säde sovelman kulmien pyöristämiseen"
+
+#. settings-schema.json->hideDecorations->description
+msgid "Hide decorations"
+msgstr ""
