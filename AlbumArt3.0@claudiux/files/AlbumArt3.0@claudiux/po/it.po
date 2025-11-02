@@ -26,11 +26,11 @@ msgid "Display Album Art at full size"
 msgstr "Visualizza copertina album a dimensione reale"
 
 #. desklet.js:441
-msgid "Don't display this image"
+msgid "Do not display this image"
 msgstr "Non visualizzare questa immagine"
 
 #. desklet.js:451
-msgid "Don't display any new image"
+msgid "Do not display any new image"
 msgstr "Non visualizzare alcuna nuova immagine"
 
 #. metadata.json->name

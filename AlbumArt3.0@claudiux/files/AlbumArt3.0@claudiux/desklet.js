@@ -277,6 +277,8 @@ class AlbumArtRadio30 extends Desklet.Desklet {
             }
         }
 
+        this.emit('notify::size');
+
         if (!this.isLooping) return false;
         this._update();
         if (this.isLooping)
@@ -440,7 +442,7 @@ class AlbumArtRadio30 extends Desklet.Desklet {
         });
         this._menu.addMenuItem(displayCoverArtInRealSize, 0); // 0 for top position.
 
-        let removeThisImage = new PopupMenu.PopupIconMenuItem(_("Don't display this image"), "dont-show-symbolic", St.IconType.SYMBOLIC);
+        let removeThisImage = new PopupMenu.PopupIconMenuItem(_("Do not display this image"), "dont-show-symbolic", St.IconType.SYMBOLIC);
         removeThisImage.connect("activate", (event) => {
             Util.spawnCommandLine("bash -c '%s'".format(DEL_SONG_ARTS_SCRIPT));
             this.image_path = TRANSPARENT_PNG;
@@ -450,7 +452,7 @@ class AlbumArtRadio30 extends Desklet.Desklet {
         });
         this._menu.addMenuItem(removeThisImage, 1);
 
-        let stopDesklet = new PopupMenu.PopupIconMenuItem(_("Don't display any new image"), "dont-show-any-symbolic", St.IconType.SYMBOLIC);
+        let stopDesklet = new PopupMenu.PopupIconMenuItem(_("Do not display any new image"), "dont-show-any-symbolic", St.IconType.SYMBOLIC);
         stopDesklet.connect("activate", (event) => {
             Util.spawnCommandLine("bash -c '%s'".format(DEL_SONG_ARTS_SCRIPT));
             Util.spawnCommandLine(`rm -f ${ALBUMART_ON}`);

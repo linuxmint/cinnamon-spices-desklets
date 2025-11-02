@@ -27,11 +27,11 @@ msgid "Display Album Art at full size"
 msgstr "Hiển thị Bìa Album ở kích thước đầy đủ"
 
 #. desklet.js:441
-msgid "Don't display this image"
+msgid "Do not display this image"
 msgstr "Không hiển thị hình ảnh này"
 
 #. desklet.js:451
-msgid "Don't display any new image"
+msgid "Do not display any new image"
 msgstr "Không hiển thị hình ảnh mới nào"
 
 #. metadata.json->name
