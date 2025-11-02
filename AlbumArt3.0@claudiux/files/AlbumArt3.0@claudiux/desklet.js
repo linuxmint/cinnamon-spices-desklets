@@ -169,7 +169,9 @@ class AlbumArtRadio30 extends Desklet.Desklet {
         return true;
     }
 
-    on_desklet_removed() {
+    on_desklet_removed(deleteConfig) {
+        if (this._menu != null)
+            this._menu.removeAll();
         if (this.dir_monitor != null) {
             if (this.dir_monitor_id != null) {
                 this.dir_monitor.disconnect(this.dir_monitor_id);
@@ -229,7 +231,9 @@ class AlbumArtRadio30 extends Desklet.Desklet {
         if (!this.isLooping) return;
 
         this._photoFrame = new Clutter.Actor();
-        this._photoFrame.remove_all_children();
+        try {
+            this._photoFrame.remove_all_children();
+        } catch(e) {}
 
         this._titleText = new St.Label({style_class:"albumart30-text", x_align: St.Align.MIDDLE, x_expand: true});
         this._titleText.set_text("");
@@ -412,8 +416,8 @@ class AlbumArtRadio30 extends Desklet.Desklet {
             if (event.get_button() == 1) {
                 this.on_setting_changed();
             } else if (event.get_button() == 2) {
-                if (this.currentPicture != null)
-                    Util.spawn(['xdg-open', this.currentPicture.path]);
+                if (this.currentPicture != null && GLib.file_test(this.currentPicture.path.replace("file://", ""), GLib.FileTest.EXISTS))
+                    Util.spawnCommandLine("xdg-open "+this.currentPicture.path);
             }
         } catch (e) {
         }
@@ -430,8 +434,9 @@ class AlbumArtRadio30 extends Desklet.Desklet {
         // Set "Display Album Art at full size" menu item, in top position:
         let displayCoverArtInRealSize = new PopupMenu.PopupIconMenuItem(_("Display Album Art at full size"), "view-image-generic-symbolic", St.IconType.SYMBOLIC);
         displayCoverArtInRealSize.connect("activate", (event) => {
-            if (this.currentPicture != null)
-                GLib.spawn_command_line_async("xdg-open "+this.currentPicture.path);
+            if (this.currentPicture != null && GLib.file_test(this.currentPicture.path.replace("file://", ""), GLib.FileTest.EXISTS)) {
+                Util.spawnCommandLine("xdg-open "+this.currentPicture.path);
+            }
         });
         this._menu.addMenuItem(displayCoverArtInRealSize, 0); // 0 for top position.
 
@@ -448,7 +453,7 @@ class AlbumArtRadio30 extends Desklet.Desklet {
         let stopDesklet = new PopupMenu.PopupIconMenuItem(_("Don't display any new image"), "dont-show-any-symbolic", St.IconType.SYMBOLIC);
         stopDesklet.connect("activate", (event) => {
             Util.spawnCommandLine("bash -c '%s'".format(DEL_SONG_ARTS_SCRIPT));
-            GLib.spawn_command_line_async(`rm -f ${ALBUMART_ON}`);
+            Util.spawnCommandLine(`rm -f ${ALBUMART_ON}`);
             this.image_path = TRANSPARENT_PNG;
             this.realWidth = 1280;
             this.realHeight = 720;
