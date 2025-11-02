@@ -1,0 +1,426 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Marcelo Aof, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-14 21:49+0200\n"
+"PO-Revision-Date: 2021-09-28 18:24-0300\n"
+"Last-Translator: Marcelo Aof\n"
+"Language-Team: \n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. metadata.json->name
+#: desklet.js:136
+msgid "Seven Segment Digital Clock"
+msgstr "Relógio digital de sete segmentos"
+
+#: desklet.js:520
+msgid "Time is an illusion"
+msgstr "O tempo é uma ilusão"
+
+#: desklet.js:520
+msgid "Albert Einstein"
+msgstr "Albert Einstein"
+
+#. metadata.json->description
+msgid "Customizable seven segment digital clock with date and Unix time"
+msgstr ""
+"Relógio digital de sete segmentos personalizável com data e hora do Unix"
+
+#. settings-schema.json->general->title
+msgid "General"
+msgstr "Visão geral"
+
+#. settings-schema.json->digit->title
+msgid "Digits"
+msgstr "Dígitos"
+
+#. settings-schema.json->clock->title
+msgid "Clock"
+msgstr "Relógio"
+
+#. settings-schema.json->date-unix->title
+msgid "Date and Unix time"
+msgstr "Data e hora do Unix"
+
+#. settings-schema.json->general-layout->title
+msgid "Main layout"
+msgstr "Ajustes principais"
+
+#. settings-schema.json->background->title
+msgid "Background"
+msgstr "Fundo"
+
+#. settings-schema.json->digit-appearance->title
+msgid "Digit appearance"
+msgstr "Aparência dos dígitos"
+
+#. settings-schema.json->digit-darksegments->title
+msgid "Dark segments"
+msgstr "Grade dos dígitos"
+
+#. settings-schema.json->digit-stroke->title
+msgid "Stroke"
+msgstr "Contorno"
+
+#. settings-schema.json->clock-appearance->title
+msgid "Clock appearance"
+msgstr "Aparência do relógio"
+
+#. settings-schema.json->date-appearance->title
+msgid "Date appearance"
+msgstr "Aparência da data"
+
+#. settings-schema.json->unix-appearance->title
+msgid "Unix time appearance"
+msgstr "Aparência do tempo do Unix"
+
+#. settings-schema.json->main-layout->options
+msgid "Clock - Date - Unix"
+msgstr "Relógio - Data - Unix"
+
+#. settings-schema.json->main-layout->options
+msgid "Clock - Unix - Date"
+msgstr "Relógio - Unix - Data"
+
+#. settings-schema.json->main-layout->options
+msgid "Date - Clock - Unix"
+msgstr "Data - Relógio - Unix"
+
+#. settings-schema.json->main-layout->options
+msgid "Date - Unix - Clock"
+msgstr "Data - Unix - Relógio"
+
+#. settings-schema.json->main-layout->options
+msgid "Unix - Clock - Date"
+msgstr "Unix - Relógio - Data"
+
+#. settings-schema.json->main-layout->options
+msgid "Unix - Date - Clock"
+msgstr "Unix - Data - Relógio"
+
+#. settings-schema.json->main-layout->description
+msgid "Vertical order of main elements"
+msgstr "Ordem vertical dos elementos principais"
+
+#. settings-schema.json->layout-gap->units
+#. settings-schema.json->stroke-width->units
+#. settings-schema.json->clock-height->units
+#. settings-schema.json->date-height->units
+#. settings-schema.json->unix-height->units
+msgid "pixel"
+msgstr "pixel"
+
+#. settings-schema.json->layout-gap->description
+msgid "Space between main elements"
+msgstr "Espaço entre os elementos principais"
+
+#. settings-schema.json->show-background->description
+msgid "Show background"
+msgstr "Mostrar o fundo"
+
+#. settings-schema.json->background-color->description
+#. settings-schema.json->digit-color->description
+#. settings-schema.json->dark-color->description
+#. settings-schema.json->stroke-color->description
+msgid "Color"
+msgstr "Cor"
+
+#. settings-schema.json->background-opacity->units
+#. settings-schema.json->digit-opacity->units
+#. settings-schema.json->digit-margin->units
+#. settings-schema.json->dark-opacity->units
+#. settings-schema.json->stroke-opacity->units
+msgid "percent"
+msgstr "porcentagem"
+
+#. settings-schema.json->background-opacity->description
+#. settings-schema.json->digit-opacity->description
+#. settings-schema.json->dark-opacity->description
+#. settings-schema.json->stroke-opacity->description
+msgid "Opacity"
+msgstr "Opacidade"
+
+#. settings-schema.json->round-corners->description
+msgid "Round corners"
+msgstr "Cantos arredondados"
+
+#. settings-schema.json->background-shadow->description
+msgid "Shadow"
+msgstr "Sombra"
+
+#. settings-schema.json->digit-skew->units
+msgid "degrees"
+msgstr "graus"
+
+#. settings-schema.json->digit-skew->description
+msgid "Skew"
+msgstr "Inclinação"
+
+#. settings-schema.json->digit-margin->description
+msgid "Relative space between digits"
+msgstr "Espaço relativo entre os dígitos"
+
+#. settings-schema.json->digit-margin->tooltip
+msgid "This value will be increasingly reduced by the digit skew."
+msgstr "O espaço relativo será menor, quanto maior for a inclinação do dígito."
+
+#. settings-schema.json->digit-alt69->description
+msgid "Alternative 6 and 9"
+msgstr "Dígitos 6 e 9 alternativos"
+
+#. settings-schema.json->digit-alt7->description
+msgid "Alternative 7"
+msgstr "Dígito 7 alternativo"
+
+#. settings-schema.json->dark-enabled->description
+msgid "Show dark segments of the digits"
+msgstr "Mostrar a grade dos dígitos"
+
+#. settings-schema.json->dark-color->options
+msgid "Black"
+msgstr "Preta"
+
+#. settings-schema.json->dark-color->options
+msgid "White"
+msgstr "Branca"
+
+#. settings-schema.json->dark-color->options
+msgid "same as illuminated"
+msgstr "Mesma cor do dígito"
+
+#. settings-schema.json->stroke-enabled->description
+msgid "Add stroke"
+msgstr "Mostrar contorno"
+
+#. settings-schema.json->stroke-width->description
+msgid "Width"
+msgstr "Largura"
+
+#. settings-schema.json->show-clock->description
+msgid "Show clock"
+msgstr "Mostrar o relógio"
+
+#. settings-schema.json->clock-height->description
+#. settings-schema.json->date-height->description
+#. settings-schema.json->unix-height->description
+msgid "Digit height"
+msgstr "Altura do dígito"
+
+#. settings-schema.json->show-seconds->description
+msgid "Show seconds"
+msgstr "Mostrar segundos"
+
+#. settings-schema.json->small-seconds->description
+msgid "Smaller seconds"
+msgstr "Segundos menores"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "none"
+msgstr "Nenhum"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "half space"
+msgstr "Meio espaço"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "full space"
+msgstr "Espaço completo"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "decimal point"
+msgstr "Ponto decimal"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "colon"
+msgstr "Dois pontos"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "dash"
+msgstr "Traço"
+
+#. settings-schema.json->clock-divider->description
+#. settings-schema.json->date-divider->description
+#. settings-schema.json->unix-divider->description
+msgid "Divider type"
+msgstr "Tipo de divisor"
+
+#. settings-schema.json->clock-blink->description
+msgid "Blinking divider (only decimal point and colon)"
+msgstr ""
+"Divisor piscando (visível apenas nos divisores Ponto decimal e Dois pontos)"
+
+#. settings-schema.json->leading-zero->options
+msgid "on"
+msgstr "Ligado"
+
+#. settings-schema.json->leading-zero->options
+msgid "off"
+msgstr "Desligado"
+
+#. settings-schema.json->leading-zero->options
+#. settings-schema.json->clock-ampm->options
+msgid "hide"
+msgstr "Escondido"
+
+#. settings-schema.json->leading-zero->options
+msgid "remove"
+msgstr "Desconsiderado"
+
+#. settings-schema.json->leading-zero->description
+msgid "Leading zero in hours"
+msgstr "Zero à esquerda em horas"
+
+#. settings-schema.json->clock-12h->description
+msgid "12h instead of 24h"
+msgstr "12h em vez de 24h"
+
+#. settings-schema.json->clock-ampm->options
+msgid "only A and P"
+msgstr "Somente A e P"
+
+#. settings-schema.json->clock-ampm->options
+msgid "with M variant 1"
+msgstr "AM e PM, variante 1"
+
+#. settings-schema.json->clock-ampm->options
+msgid "with M variant 2"
+msgstr "AM e PM, variante 2"
+
+#. settings-schema.json->clock-ampm->description
+msgid "AM/PM indicator"
+msgstr "Indicador de AM/PM"
+
+#. settings-schema.json->show-date->description
+msgid "Show date"
+msgstr "Mostrar a data"
+
+#. settings-schema.json->date-format->options
+msgid "Year - Month - Day"
+msgstr "Ano - Mês - Dia"
+
+#. settings-schema.json->date-format->options
+msgid "Year - Day - Month"
+msgstr "Ano - Dia - Mês"
+
+#. settings-schema.json->date-format->options
+msgid "Day - Month - Year"
+msgstr "Dia - Mês - Ano"
+
+#. settings-schema.json->date-format->options
+msgid "Month - Day - Year"
+msgstr "Mês - Dia - Ano"
+
+#. settings-schema.json->date-format->description
+msgid "Date format"
+msgstr "Formato da data"
+
+#. settings-schema.json->show-unix->description
+msgid "Show Unix time"
+msgstr "Mostrar o tempo do Unix"
+
+#. settings-schema.json->digit-style->options
+msgid "Style by OpenClipart"
+msgstr "Style by OpenClipart"
+
+#. settings-schema.json->digit-style->options
+msgid "Style by alex8664"
+msgstr "Estilo de alex8664"
+
+#. settings-schema.json->digit-style->options
+msgid "Style by Cfaerber"
+msgstr "Estilo de Cfaerber"
+
+#. settings-schema.json->digit-style->options
+msgid "Style by h2g2bob"
+msgstr "Estilo de h2g2bob"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Light"
+msgstr "DSEG Clássico Leve de Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Regular"
+msgstr "DSEG Clássico Regular de Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Bold"
+msgstr "DSEG Clássico Negrito de Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Mini Light"
+msgstr "DSEG Clássico Mini Leve de Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Mini Regular"
+msgstr "DSEG Clássico Mini Regular de Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Mini Bold"
+msgstr "DSEG Clássico Mini Negrito de Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Light"
+msgstr "DSEG Moderno Leve de Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Regular"
+msgstr "DSEG Moderno Regular de Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Bold"
+msgstr "DSEG Moderno Negrito de Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Mini Light"
+msgstr "DSEG Moderno Mini Leve de Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Mini Regular"
+msgstr "DSEG Moderno Mini Regular de Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Mini Bold"
+msgstr "DSEG Moderno Mini Negrito de Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Simple 1"
+msgstr "Simples 1"
+
+#. settings-schema.json->digit-style->options
+msgid "Simple 2"
+msgstr "Simples 2"
+
+#. settings-schema.json->digit-style->options
+msgid "Simple 3"
+msgstr "Simples 3"
+
+#. settings-schema.json->digit-style->options
+msgid "Curved"
+msgstr "Curvado"
+
+#. settings-schema.json->digit-style->description
+msgid "Digit style"
+msgstr "Estilo do dígito"

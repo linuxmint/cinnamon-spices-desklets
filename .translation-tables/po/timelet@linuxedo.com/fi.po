@@ -1,0 +1,96 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: timelet@linuxedo.com 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-18 00:10+0200\n"
+"PO-Revision-Date: 2024-11-11 10:21+0200\n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
+"Language-Team: \n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. metadata.json->name
+#: desklet.js:50
+msgid "Timelet"
+msgstr "Timelet"
+
+#: themes/theme.js:143
+msgid "AM"
+msgstr "AM"
+
+#: themes/theme.js:145
+msgid "Noon"
+msgstr "Keskipäivä"
+
+#: themes/theme.js:147
+msgid "PM"
+msgstr "PM"
+
+#. metadata.json->description
+msgid "A themeable desklet that shows the time"
+msgstr "Kello- ja päivämäärä sovelma joka sisältää useita teemoja"
+
+#. settings-schema.json->head0->description
+msgid "Timelet Settings"
+msgstr "Asetukset Timelet"
+
+#. settings-schema.json->themeName->description
+msgid "Theme"
+msgstr "Teema"
+
+#. settings-schema.json->use24H->description
+msgid "Use 24H"
+msgstr "Käytä 24h kelloa"
+
+#. settings-schema.json->use24H->tooltip
+msgid "Display time in 24H"
+msgstr "Aika 24h muodossa"
+
+#. settings-schema.json->textColor->description
+msgid "Text color"
+msgstr "Tekstin väri"
+
+#. settings-schema.json->textColor->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Valitse tekstin väri painamalla nappia"
+
+#. settings-schema.json->bgColor->description
+msgid "Background color"
+msgstr "Taustaväri"
+
+#. settings-schema.json->bgColor->tooltip
+msgid "Click the button to select a new background color"
+msgstr "Valitse uusi taustaväri painamalla nappia"
+
+#. settings-schema.json->scale->description
+msgid "Scale"
+msgstr "Skaalaus"
+
+#. settings-schema.json->scale->tooltip
+msgid "Change the size of the desklet"
+msgstr "Muuta sovelman kokoa"
+
+#. settings-schema.json->transparency->description
+msgid "Background Transparency"
+msgstr "Taustan läpinäkyvyys"
+
+#. settings-schema.json->transparency->tooltip
+msgid "Set the transparency of the desklet"
+msgstr "Aseta sovelman läpikuultavuus"
+
+#. settings-schema.json->cornerRadius->description
+msgid "Background Corner radius"
+msgstr "Kulmien pyöristys"
+
+#. settings-schema.json->cornerRadius->tooltip
+msgid "Radius for rounding the desklet's corners"
+msgstr "Säde sovelman kulmien pyöristämiseen"

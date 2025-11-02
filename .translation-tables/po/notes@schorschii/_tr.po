@@ -1,0 +1,63 @@
+# Translation for notes@schorschii.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Gökhan GÖKKAYA <gokhanlnx@gmail.com>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-05-03 11:37-0400\n"
+"PO-Revision-Date: 2018-11-27 15:10+0300\n"
+"Last-Translator: Gökhan GÖKKAYA <gokhanlnx@gmail.com>\n"
+"Language-Team: Linux Mint Türkiye <gokhanlnx@gmail.com>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+#. desklet.js:138
+msgid "Refresh"
+msgstr ""
+
+#. settings-schema.json->note-taking-method->description
+msgid "Note Taking Method"
+msgstr ""
+
+#. settings-schema.json->note-text->description
+msgid "Write Your Note"
+msgstr ""
+
+#. settings-schema.json->style->options
+msgid "None"
+msgstr ""
+
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr ""
+
+#. settings-schema.json->text-shadow-color->description
+msgid "Text shadow color"
+msgstr ""
+
+#. settings-schema.json->bg-color->description
+msgid "Background color"
+msgstr ""
+
+#. settings-schema.json->bg-color->tooltip
+msgid "Set the background color of this desklet."
+msgstr ""
+
+#. settings-schema.json->enable-word-wrap->description
+msgid "Enable word wrap"
+msgstr ""
+
+#. settings-schema.json->size-font->tooltip
+msgid "Increase or decrease the note font size."
+msgstr ""
