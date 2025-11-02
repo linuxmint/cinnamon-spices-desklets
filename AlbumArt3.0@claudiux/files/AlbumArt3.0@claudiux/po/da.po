@@ -27,11 +27,11 @@ msgid "Display Album Art at full size"
 msgstr "Vis albumcover i fuld størrelse"
 
 #. desklet.js:441
-msgid "Don't display this image"
+msgid "Do not display this image"
 msgstr "Vis ikke dette billede"
 
 #. desklet.js:451
-msgid "Don't display any new image"
+msgid "Do not display any new image"
 msgstr "Vis ikke noget nyt billede"
 
 #. metadata.json->name
