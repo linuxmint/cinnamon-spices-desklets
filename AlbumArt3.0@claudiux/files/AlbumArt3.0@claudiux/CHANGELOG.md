@@ -1,3 +1,6 @@
+### v2.3.2~20251101
+  * Improved stability.
+
 ### v2.3.1~20250422
   * Code cleanup.
 
