@@ -5,10 +5,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: ttv-status@kunibu.ar 0.4\n"
+"Project-Id-Version: ttv-status@francisco-saez 0.6\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-01-05 13:33-0300\n"
+"POT-Creation-Date: 2025-11-03 14:56-0500\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -22,7 +22,7 @@ msgid "Twitch.tv channel status"
 msgstr ""
 
 #. metadata.json->description
-msgid "Get live status of twith channel."
+msgid "Get live status of Twitch channels."
 msgstr ""
 
 #. settings-schema.json->head0->description
@@ -51,15 +51,14 @@ msgid "minutes"
 msgstr ""
 
 #. settings-schema.json->refresh_rate_option->description
+#. settings-schema.json->refresh_rate_online->description
 msgid "Online refresh rate"
 msgstr ""
 
 #. settings-schema.json->refresh_rate_option->tooltip
-msgid "This option allows you to adjust the refresh rate for when the channel is online, which can help save data transfer."
-msgstr ""
-
-#. settings-schema.json->refresh_rate_online->description
-msgid "Online refresh rate"
+msgid ""
+"This option allows you to adjust the refresh rate for when the channel is "
+"online, which can help save data transfer."
 msgstr ""
 
 #. settings-schema.json->head1->description
@@ -92,7 +91,9 @@ msgid "Custom style"
 msgstr ""
 
 #. settings-schema.json->hide_decorations->tooltip
-msgid "Selecting this option allows for UI customization by ignoring the Cinnamon theme and style."
+msgid ""
+"Selecting this option allows for UI customization by ignoring the Cinnamon "
+"theme and style."
 msgstr ""
 
 #. settings-schema.json->border_radius->description

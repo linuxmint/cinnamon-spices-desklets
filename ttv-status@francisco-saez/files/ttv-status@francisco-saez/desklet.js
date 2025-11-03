@@ -6,7 +6,7 @@ const Mainloop = imports.mainloop;
 const Lang = imports.lang;
 const Util = imports.misc.util;
 
-const UUID = 'ttv-status@kunibu.ar';
+const UUID = 'ttv-status@francisco-saez';
 
 const _dev = false;
 
