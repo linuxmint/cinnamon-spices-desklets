@@ -1,0 +1,119 @@
+{
+    "head0": {
+        "type": "header",
+        "description": "Channel options"
+    },
+    "channel": {
+        "default": "twitch",
+        "type": "entry",
+        "description": "Twitch channel",
+        "tooltip" : "Channel name can be found in the twitch url."
+    },
+    "channel_name": {
+        "default": "Channel",
+        "type": "entry",
+        "description": "Display name"
+    },
+    "refresh_rate": {
+        "default": 3,
+        "type": "spinbutton",
+        "min": 1,
+        "max": 60,
+        "step": 1,
+        "description": "Refresh rate",
+        "units": "minutes"
+    },
+    "refresh_rate_option": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Online refresh rate",
+        "tooltip": "This option allows you to adjust the refresh rate for when the channel is online, which can help save data transfer.",
+        "value": true
+    },
+    "refresh_rate_online": {
+        "default": 20,
+        "type": "spinbutton",
+        "min": 1,
+        "max": 60,
+        "step": 5,
+        "description": "Online refresh rate",
+        "units": "minutes",
+        "dependency": "refresh_rate_option"
+    },
+    "head1": {
+        "type": "header",
+        "description": "Desklet UI"
+    },
+    "use_custom_size": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Custom width and height",
+        "tooltip": "Checking this box allows you to set custom size.",
+        "value": false
+    },
+    "width": {
+        "default": 200,
+        "type": "spinbutton",
+        "min": 30,
+        "max": 1000,
+        "step": 10,
+        "description": "Width",
+        "units": "pixels",
+        "dependency": "use_custom_size"
+    },
+    "height": {
+        "default": 50,
+        "type": "spinbutton",
+        "min": 10,
+        "max": 500,
+        "step": 5,
+        "description": "Height",
+        "units": "pixels",
+        "dependency": "use_custom_size"
+    },
+    "hide_decorations": {
+        "type": "checkbox",
+        "description": "Custom style",
+        "tooltip": "Selecting this option allows for UI customization by ignoring the Cinnamon theme and style.",
+        "default": false
+    },
+    "border_radius": {
+        "type": "scale",
+        "indent": true,
+        "default": 10,
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "description": "Border radius",
+        "tooltip": "Radius for rounding the desklet's corners",
+        "dependency": "hide_decorations"
+    },
+    "padding_vertical": {
+        "type": "scale",
+        "indent": true,
+        "default": 4,
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "description": "Vertical padding",
+        "tooltip": "The extra space around the container",
+        "dependency": "hide_decorations"
+    },
+    "padding_horizontal": {
+        "type": "scale",
+        "indent": true,
+        "default": 3,
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "description": "Horizontal padding",
+        "tooltip": "The extra space around the container",
+        "dependency": "hide_decorations"
+    },
+    "bg_color": {
+        "type": "colorchooser",
+        "default": "rgba(50,50,50,1)",
+        "description": "Background color",
+        "dependency": "hide_decorations"
+    }
+}
