@@ -1,0 +1,127 @@
+# TWITCH.TV CHANNEL STATUS
+# This file is put in the public domain.
+# francisco-saez, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: ttv-status@francisco-saez 0.6\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-11-03 14:56-0500\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+
+#. metadata.json->name
+msgid "Twitch.tv channel status"
+msgstr "Estado del canal Twitch.tv"
+
+#. metadata.json->description
+msgid "Get live status of Twitch channels."
+msgstr "Consigue el estado en directo de los canales de Twitch."
+
+#. settings-schema.json->head0->description
+msgid "Channel options"
+msgstr "Opciones del canal"
+
+#. settings-schema.json->channel->description
+msgid "Twitch channel"
+msgstr "Canal de Twitch"
+
+#. settings-schema.json->channel->tooltip
+msgid "Channel name can be found in the twitch url."
+msgstr "El nombre del canal se puede encontrar en la URL de Twitch."
+
+#. settings-schema.json->channel_name->description
+msgid "Display name"
+msgstr "Nombre a mostrar"
+
+#. settings-schema.json->refresh_rate->description
+msgid "Refresh rate"
+msgstr "Frecuencia de actualización"
+
+#. settings-schema.json->refresh_rate->units
+#. settings-schema.json->refresh_rate_online->units
+msgid "minutes"
+msgstr "minutos"
+
+#. settings-schema.json->refresh_rate_option->description
+#. settings-schema.json->refresh_rate_online->description
+msgid "Online refresh rate"
+msgstr "Tasa de actualización en línea"
+
+#. settings-schema.json->refresh_rate_option->tooltip
+msgid ""
+"This option allows you to adjust the refresh rate for when the channel is "
+"online, which can help save data transfer."
+msgstr ""
+"Esta opción le permite ajustar la frecuencia de actualización cuando el "
+"canal está en línea, lo que puede ayudar a ahorrar transferencia de datos."
+
+#. settings-schema.json->head1->description
+msgid "Desklet UI"
+msgstr "Interfaz de usuario del Desklet"
+
+#. settings-schema.json->use_custom_size->description
+msgid "Custom width and height"
+msgstr "Ancho y alto personalizados"
+
+#. settings-schema.json->use_custom_size->tooltip
+msgid "Checking this box allows you to set custom size."
+msgstr "Al marcar esta casilla, podrás establecer un tamaño personalizado."
+
+#. settings-schema.json->width->description
+msgid "Width"
+msgstr "Ancho"
+
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+msgid "pixels"
+msgstr "píxeles"
+
+#. settings-schema.json->height->description
+msgid "Height"
+msgstr "Altura"
+
+#. settings-schema.json->hide_decorations->description
+msgid "Custom style"
+msgstr "Estilo personalizado"
+
+#. settings-schema.json->hide_decorations->tooltip
+msgid ""
+"Selecting this option allows for UI customization by ignoring the Cinnamon "
+"theme and style."
+msgstr ""
+"Al seleccionar esta opción, se permite personalizar la interfaz de usuario "
+"ignorando el tema y el estilo de Cinnamon."
+
+#. settings-schema.json->border_radius->description
+msgid "Border radius"
+msgstr "Radio del borde"
+
+#. settings-schema.json->border_radius->tooltip
+msgid "Radius for rounding the desklet's corners"
+msgstr "Radio para redondear las esquinas del desklet"
+
+#. settings-schema.json->padding_vertical->description
+msgid "Vertical padding"
+msgstr "Relleno vertical"
+
+#. settings-schema.json->padding_vertical->tooltip
+#. settings-schema.json->padding_horizontal->tooltip
+msgid "The extra space around the container"
+msgstr "El espacio adicional alrededor del contenedor"
+
+#. settings-schema.json->padding_horizontal->description
+msgid "Horizontal padding"
+msgstr "Relleno horizontal"
+
+#. settings-schema.json->bg_color->description
+msgid "Background color"
+msgstr "Color de fondo"
