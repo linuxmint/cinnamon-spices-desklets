@@ -1,16 +1,17 @@
 const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
 const GLib = imports.gi.GLib;
-const Cinnamon = imports.gi.Cinnamon;
-const Mainloop = imports.mainloop;
+// const Cinnamon = imports.gi.Cinnamon;
+// const Mainloop = imports.mainloop;
 const Lang = imports.lang;
 const Settings = imports.ui.settings;
 const Main = imports.ui.main;
 const Clutter = imports.gi.Clutter;
-const Gio = imports.gi.Gio;
+// const Gio = imports.gi.Gio;
 const Gettext = imports.gettext;
-const Tooltips = imports.ui.tooltips;
-const PopupMenu = imports.ui.popupMenu;
+// const Tooltips = imports.ui.tooltips;
+// const PopupMenu = imports.ui.popupMenu;
+const Util = imports.misc.util;
 
 
 const UUID = "shutdown@phpdreamer";
