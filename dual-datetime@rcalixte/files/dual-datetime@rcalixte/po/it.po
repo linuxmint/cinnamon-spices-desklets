@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. metadata.json->description
 msgid ""
@@ -111,19 +111,17 @@ msgstr "RGB o RGBA"
 
 #. 5.4->settings-schema.json->time_weight1->description
 #. 5.4->settings-schema.json->time_weight2->description
-#, fuzzy
 msgid "Font Weight"
-msgstr "Dimensione carattere"
+msgstr "Peso carattere"
 
 #. 5.4->settings-schema.json->time_weight1->tooltip
 #. 5.4->settings-schema.json->time_weight2->tooltip
-#, fuzzy
 msgid ""
 "Increase or decrease this value to change the font weight (Normal = 400, "
 "Bold = 700)"
 msgstr ""
-"Aumenta o diminuisci questo valore per modificare la scala delle dimensioni "
-"del carattere (1.2 = 120%)"
+"Aumenta o diminuisci questo valore per modificare il peso del carattere "
+"(Normale = 400, Grassetto = 700)"
 
 #. 5.4->settings-schema.json->time_size1->description
 #. 5.4->settings-schema.json->time_size2->description

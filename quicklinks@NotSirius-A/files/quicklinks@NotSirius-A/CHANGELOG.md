@@ -1,5 +1,26 @@
 # Changelog
 
+
+## [1.2] - 14.10.2025
+
+### Added
+
+- Added new border styling + settings
+- Added new spacing styling + settings
+- Option to disable tooltips
+- Invisible padding without desklet decorations to make it easier to grab
+
+### Changed
+
+- Some default settings
+- Some setting names/positions
+- Decreased link padding slightly in `stylesheet.css`
+
+### Fixed
+
+- Incorrect width scaling width different display scales
+
+
 ## [1.1] - 16.06.2025
 
 ### Added

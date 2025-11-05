@@ -110,7 +110,7 @@ class StopwatchDesklet extends Desklet.Desklet {
 
     const createButton = (iconName, callback) => {
       const icon = this._getImageAtScale(`${this.metadata.path}/${iconName}.svg`, buttonHeight, buttonHeight);
-      const button = new St.Button({ child: icon });
+      const button = new St.Button({ child: icon, style_class: "stopwatch-button" });
       button.connect("clicked", callback.bind(this));
       return button;
     };
@@ -136,7 +136,7 @@ class StopwatchDesklet extends Desklet.Desklet {
   _rgbToRgba(colorString) {
     const match = colorString.match(/\d+/g);
     if (match && match.length === 3) {
-      return match.map(Number).map((c) => c / 255);
+      return match.map(Number).map(c => c / 255);
     }
     return [0.3, 0.8, 0.5]; // Default color if parsing fails
   }

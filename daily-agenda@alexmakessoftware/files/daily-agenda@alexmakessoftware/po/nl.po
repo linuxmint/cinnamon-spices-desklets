@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2025-07-07 21:15+0100\n"
-"PO-Revision-Date: 2025-05-16 16:42+0200\n"
+"PO-Revision-Date: 2025-08-25 15:25+0200\n"
 "Last-Translator: qadzek\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -34,9 +34,8 @@ msgid "ICS Today: Failed to read file: "
 msgstr "ICS Vandaag: Lezen van bestand mislukt: "
 
 #. desklet.js:267
-#, fuzzy
 msgid "ICS Today: Failed to fetch calendar from URL: "
-msgstr "ICS Vandaag: Kalender ophalen via URL mislukt."
+msgstr "ICS Vandaag: Kon kalender niet ophalen van URL:"
 
 #. desklet.js:277
 msgid "Last checked"
@@ -118,19 +117,20 @@ msgid "Widget height"
 msgstr "Widgethoogte"
 
 #. settings-schema.json->head2->description
-#, fuzzy
 msgid "Custom Styles"
-msgstr "Tekstopmaak"
+msgstr "Aangepaste stijlen"
 
 #. settings-schema.json->overrideTheme->description
 msgid "Override desktop theme (enables the settings below)"
-msgstr ""
+msgstr "Desktopthema overschrijven (activeert onderstaande instellingen)"
 
 #. settings-schema.json->overrideTheme->tooltip
 msgid ""
 "Check this to override the desktop theme and configure the appearance "
 "manually"
 msgstr ""
+"Vink dit aan om het desktopthema te overschrijven en de weergave handmatig "
+"aan te passen"
 
 #. settings-schema.json->font->description
 msgid "Font family"
@@ -149,26 +149,24 @@ msgid "Font size"
 msgstr "Lettergrootte"
 
 #. settings-schema.json->textcolor->description
-#, fuzzy
 msgid "Text color"
-msgstr "Tekstopmaak"
+msgstr "Tekstkleur"
 
 #. settings-schema.json->textcolor->tooltip
 msgid "Click the button to select a new text color"
-msgstr ""
+msgstr "Klik op de knop om een nieuwe tekstkleur te selecteren"
 
 #. settings-schema.json->head4->description
 msgid "Footer Options"
-msgstr ""
+msgstr "Voettekstopties"
 
 #. settings-schema.json->showLastChecked->description
-#, fuzzy
 msgid "Show 'last checked' line"
-msgstr "Laatst gecontroleerd"
+msgstr "Laat 'laatst gecontroleerd' regel zien"
 
 #. settings-schema.json->showRefreshNowButton->description
 msgid "Show 'refresh now' button"
-msgstr ""
+msgstr "Laat 'nu vernieuwen' knop zien"
 
 #. settings-schema.json->head3->description
 msgid "Update Schedule"

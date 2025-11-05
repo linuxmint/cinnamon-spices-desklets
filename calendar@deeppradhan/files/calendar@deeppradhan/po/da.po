@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2024-03-18 11:02-0400\n"
-"PO-Revision-Date: 2022-10-20 19:33+0200\n"
+"PO-Revision-Date: 2025-10-30 19:38+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
 "Language: da\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: desklet.js:29
 msgid "January"
@@ -208,11 +208,11 @@ msgstr "Anvend 24-timers ur"
 
 #. settings-schema.json->auto-advance->description
 msgid "Auto-advance"
-msgstr ""
+msgstr "Skift automatisk"
 
 #. settings-schema.json->auto-advance->tooltip
 msgid "When the month changes, update the desklet"
-msgstr ""
+msgstr "Opdatér skrivebordsprogrammet, når måneden skifter"
 
 #. settings-schema.json->first-day->description
 msgid "First day of week"

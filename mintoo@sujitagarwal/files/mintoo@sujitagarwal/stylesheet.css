@@ -20,6 +20,7 @@
     background-position: 20px 20px;
     background-size: 32px 32px;
     cursor: pointer;
+    background-position: center center;
 }
 
 .mintoo-button:hover {

@@ -1,0 +1,110 @@
+{
+    "update-interval": {
+        "type": "spinbutton",
+        "default": 0.2,
+        "min": 0.1,
+        "max": 10.0,
+        "step": 0.1,
+        "units": "seconds",
+        "description": "Update interval",
+        "tooltip": "How often to sample GPU data (in seconds)"
+    },
+    "data-points": {
+        "type": "spinbutton",
+        "default": 600,
+        "min": 60,
+        "max": 3600,
+        "step": 60,
+        "units": "points",
+        "description": "Maximum data points",
+        "tooltip": "Number of data points to keep in memory (600 = 120 seconds at 0.2s interval)"
+    },
+    "gpu-index": {
+        "type": "combobox",
+        "default": 0,
+        "options": {
+            "GPU 0": 0,
+            "GPU 1": 1,
+            "GPU 2": 2,
+            "GPU 3": 3,
+            "GPU 4": 4,
+            "GPU 5": 5,
+            "GPU 6": 6,
+            "GPU 7": 7
+        },
+        "description": "GPU to Monitor",
+        "tooltip": "Select which GPU to monitor"
+    },
+    "desklet-width": {
+        "type": "spinbutton",
+        "default": 400,
+        "min": 200,
+        "max": 1200,
+        "step": 10,
+        "units": "pixels",
+        "description": "Desklet width",
+        "tooltip": "Width of the desklet window"
+    },
+    "desklet-height": {
+        "type": "spinbutton",
+        "default": 300,
+        "min": 150,
+        "max": 800,
+        "step": 10,
+        "units": "pixels",
+        "description": "Desklet height",
+        "tooltip": "Height of the desklet window"
+    },
+    "compute-color": {
+        "type": "colorchooser",
+        "default": "#88c0d0",
+        "description": "Compute usage color",
+        "tooltip": "Color for the GPU compute usage line"
+    },
+    "memory-color": {
+        "type": "colorchooser",
+        "default": "#d08770",
+        "description": "Memory usage color",
+        "tooltip": "Color for the GPU memory usage line"
+    },
+    "temp-color": {
+        "type": "colorchooser",
+        "default": "#bf616a",
+        "description": "Temperature color",
+        "tooltip": "Color for the GPU temperature line"
+    },
+    "background-color": {
+        "type": "colorchooser",
+        "default": "#2e3440",
+        "description": "Background color",
+        "tooltip": "Background color of the desklet"
+    },
+    "border-color": {
+        "type": "colorchooser",
+        "default": "#5e81ac",
+        "description": "Border color",
+        "tooltip": "Border and grid color"
+    },
+    "transparency": {
+        "type": "spinbutton",
+        "default": 85,
+        "min": 10,
+        "max": 100,
+        "step": 5,
+        "units": "%",
+        "description": "Background transparency",
+        "tooltip": "Transparency level of the background (100% = opaque)"
+    },
+    "show-legend": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show legend",
+        "tooltip": "Display legend showing what each line represents"
+    },
+    "show-temperature": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Show temperature",
+        "tooltip": "Display GPU temperature as a third line on the chart"
+    }
+}

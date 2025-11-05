@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-05-12 00:33+0200\n"
+"POT-Creation-Date: 2025-08-22 22:21+0200\n"
 "PO-Revision-Date: 2023-12-08 08:06+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
@@ -18,54 +18,51 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#. desklet.js:119
-msgid "No quotes data to display"
-msgstr ""
-
-#. desklet.js:516
+#. desklet.js:687
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 
-#. desklet.js:561 desklet.js:585
+#. desklet.js:721 desklet.js:747 desklet.js:770
 msgid "Authorization parameters have expired"
 msgstr ""
 
-#. desklet.js:564 desklet.js:588
-msgid "Yahoo Finance service not available!\\nStatus: "
-msgstr "Yahoo Finance er ikke tilgængelig!\\nStatus: "
+#. desklet.js:724 desklet.js:750 desklet.js:773
+msgid "Yahoo Finance service not available! Status: "
+msgstr "Yahoo Finance er ikke tilgængelig! Status: "
 
-#. desklet.js:988
+#. desklet.js:1084
+msgid "No quotes data to display"
+msgstr ""
+
+#. desklet.js:1194
 msgid "Updated at "
 msgstr "Opdateret "
 
-#. desklet.js:1020
+#. desklet.js:1226
 msgid "Error: "
 msgstr "Fejl: "
 
-#. desklet.js:1146
+#. desklet.js:1376
 msgid ""
-"Failed to retrieve authorization parameter! Unable to fetch quotes data."
-"\\nStatus: "
-msgstr ""
-"Kunne ikke hente godkendelsesparameter! Kunne ikke hente kursdata.\n"
+"Failed to retrieve authorization parameter! Unable to fetch quotes data. "
 "Status: "
-
-#. desklet.js:1173
-msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
-msgstr "Samtykkebehandling mislykkedes! Kunne ikke hente kursdata.\\nStatus: "
-
-#. desklet.js:1179
-msgid ""
-"Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
 msgstr ""
-"Samtykkebehandling ikke gennemført! Kunne ikke hente kursdata.\\nStatus: "
+"Kunne ikke hente godkendelsesparameter! Kunne ikke hente kursdata. Status: "
 
-#. desklet.js:1207
-msgid ""
-"Failed to retrieve authorization crumb! Unable to fetch quotes data."
-"\\nStatus: "
+#. desklet.js:1403
+msgid "Consent processing failed! Unable to fetch quotes data. Status: "
+msgstr "Samtykkebehandling mislykkedes! Kunne ikke hente kursdata. Status: "
+
+#. desklet.js:1409
+msgid "Consent processing not completed! Unable to fetch quotes data. Status: "
 msgstr ""
-"Kunne ikke hente godkendelseskrumme! Kunne ikke hente kursdata.\\nStatus: "
+"Samtykkebehandling ikke gennemført! Kunne ikke hente kursdata. Status: "
+
+#. desklet.js:1445
+msgid ""
+"Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: "
+msgstr ""
+"Kunne ikke hente godkendelseskrumme! Kunne ikke hente kursdata. Status: "
 
 #. metadata.json->description
 msgid ""
@@ -527,12 +524,19 @@ msgstr "Farve for uændret tendens"
 msgid "Color of the unchanged trend"
 msgstr "Farven for uændret tendens."
 
+#. settings-schema.json->cacheAuthorizationParameters->description
+msgid "Cache authorization parameters"
+msgstr ""
+
+#. settings-schema.json->cacheAuthorizationParameters->tooltip
+msgid "Remember fetched authorization parameters for desklet instance"
+msgstr ""
+
 #. settings-schema.json->sendCustomUserAgent->description
 msgid "Send custom User-Agent header"
 msgstr "Send brugerdefineret User-Agent-header"
 
 #. settings-schema.json->sendCustomUserAgent->tooltip
-#, fuzzy
 msgid "Include a custom User-Agent header in Yahoo Finance Quotes API requests"
 msgstr ""
 "Inkludér en brugerdefineret User-Agent-header i Yahoo Finans kursers API-"
@@ -567,8 +571,5 @@ msgid "Apply network settings"
 msgstr ""
 
 #. settings-schema.json->applyNetworkSettingsButton->tooltip
-#, fuzzy
 msgid "Fetches new authorization parameters and refreshes quotes data"
 msgstr ""
-"Kunne ikke hente godkendelsesparameter! Kunne ikke hente kursdata.\n"
-"Status: "
