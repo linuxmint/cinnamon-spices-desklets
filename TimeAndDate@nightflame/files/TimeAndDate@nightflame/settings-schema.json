@@ -1,0 +1,258 @@
+{
+    "layout": {
+        "type": "layout",
+        "pages": [
+            "preferences-page",
+            "theme-page"
+        ],
+        "preferences-page": {
+            "type": "page",
+            "title": "Preferences",
+            "sections": [
+                "general-preferences-section",
+                "desklet-decorations-section"
+            ]
+        },
+        "theme-page": {
+            "type": "page",
+            "title": "Theme",
+            "sections": [
+                "theme-section",
+                "time-theme-section",
+                "date-theme-section"
+            ]
+        },
+        "general-preferences-section": {
+            "type": "section",
+            "title": "General",
+            "keys": [
+                "time-format",
+                "date-format",
+                "datetime-format-label",
+                "refresh-period",
+                "is-order-reversed",
+                "is-two-column",
+                "is-width-forced",
+                "forced-width-size"
+            ]            
+        },
+        "theme-section": {
+            "type": "section",
+            "title": "Theme",
+            "keys": [
+                "desklet-background",
+                "desklet-border-radius",
+                "desklet-border-width",
+                "desklet-border-color",
+                "padding-scale"
+            ]
+        }, 
+        "time-theme-section": {
+            "type": "section",
+            "title": "Time label font",
+            "keys": [
+                "time-font",
+                "time-font-bold",
+                "time-font-italic",
+                "time-text-color",
+                "time-text-shadow",
+                "time-text-shadow-color"
+            ]
+        }, 
+        "date-theme-section": {
+            "type": "section",
+            "title": "Date label font",
+            "keys": [
+                "date-font",
+                "date-font-bold",
+                "date-font-italic",
+                "date-text-color",
+                "date-text-shadow",
+                "date-text-shadow-color"
+            ]
+        }, 
+        "desklet-decorations-section": {
+            "type": "section",
+            "title": "Desklet decorations",
+            "keys": [
+                "desklet-decorations-note",
+                "show-decorations",
+                "desklet-header"
+            ]
+        }
+    },
+    "time-format": {
+        "type": "entry",
+        "default": "%H:%M",
+        "description": "Time format",
+        "tooltip": "Set your time format."
+    },
+    "date-format": {
+        "type": "entry",
+        "default": "%A,%e %B",
+        "description": "Date format",
+        "tooltip": "Set the date format."
+    },
+    "datetime-format-label": {
+        "type": "label",
+        "description": "Date/time format follows `strftime` formatting. Read more on desklet's webpage or `strftime` documentation: \nhttps://pubs.opengroup.org/onlinepubs/007908799/xsh/strftime.html"
+    },
+    "refresh-period": {
+        "type": "spinbutton",
+        "default": 10000,
+        "min": 500,
+        "max": 100000,
+        "step": 500,
+        "unit": "ms",
+        "description": "Refresh period",
+        "tooltip": "Set how quickly the clock should refresh itself."
+    },
+    "is-order-reversed": {
+        "type": "switch",
+        "description": "Reverse label order",
+        "default": false
+    },
+    "is-two-column": {
+        "type": "switch",
+        "description": "Two column layout",
+        "default": false
+    },
+    "is-width-forced": {
+        "type": "switch",
+        "description": "Force specific width",
+        "default": false,
+        "tooltip": "Select if you want to force the desklet to have a certain width, so it won't scale with different date length."
+    },
+    "forced-width-size": {
+        "type": "spinbutton",
+        "default": 300,
+        "min": 100,
+        "max": 2000,
+        "step": 5,
+        "description": "Forced width size",
+        "tooltip": "Force desklet width.",
+        "dependency": "is-width-forced"
+    },
+    "time-font": {
+        "type": "fontchooser",
+        "description": "Font name (choose regular versions)",
+        "default": "Ubuntu Regular 42",
+        "tooltip": "Change font family"
+    },
+    "time-font-bold": {
+        "type": "switch",
+        "description": "Bold",
+        "default": true
+    },
+    "time-font-italic": {
+        "type": "switch",
+        "description": "Italic",
+        "default": false
+    },
+    "time-text-color": {
+        "type": "colorchooser",
+        "default": "rgb(255,255,255)",
+        "description": "Text color",
+        "tooltip": "Set the text color."
+    },
+    "time-text-shadow": {
+        "type": "switch",
+        "description": "Text shadow",
+        "default": true
+    },
+    "time-text-shadow-color": {
+        "type": "colorchooser",
+        "default": "rgba(0,0,0,0.8)",
+        "description": "Text shadow color",
+        "dependency": "time-text-shadow"
+    },
+    "date-font": {
+        "type": "fontchooser",
+        "description": "Font name (choose regular versions)",
+        "default": "Ubuntu Regular 14",
+        "tooltip": "Change font family"
+    },
+    "date-font-bold": {
+        "type": "switch",
+        "description": "Bold",
+        "default": false
+    },
+    "date-font-italic": {
+        "type": "switch",
+        "description": "Italic",
+        "default": false
+    },
+    "date-text-color": {
+        "type": "colorchooser",
+        "default": "rgb(255,255,255)",
+        "description": "Text color",
+        "tooltip": "Set the text color."
+    },
+    "date-text-shadow": {
+        "type": "switch",
+        "description": "Text shadow",
+        "default": true
+    },
+    "date-text-shadow-color": {
+        "type": "colorchooser",
+        "default": "rgba(0,0,0,0.8)",
+        "description": "Text shadow color",
+        "dependency": "date-text-shadow"
+    },
+    "desklet-background": {
+        "type": "colorchooser",
+        "default": "rgba(255,255,255,0.3)",
+        "description": "Background color",
+        "tooltip": "Set the desklet background."
+    },
+    "desklet-border-radius": {
+        "type": "spinbutton",
+        "default": 20,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "description": "Border radius",
+        "tooltip": "Increase or decrease border curvature."
+    },
+    "desklet-border-width": {
+        "type": "spinbutton",
+        "default": 4,
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "description": "Border width (set to 0 to disable border)",
+        "tooltip": "Increase or decrease the desklet border width."
+    },
+    "desklet-border-color": {
+        "type": "colorchooser",
+        "default": "rgba(0,0,0,0.4)",
+        "description": "Border color",
+        "tooltip": "Set the desklet border color.",
+        "dependency": "desklet-border-width>0"
+    },
+    "padding-scale": {
+        "type": "spinbutton",
+        "default": 2,
+        "min": 0,
+        "max": 10,
+        "step": 0.2,
+        "description": "Padding scale",
+        "tooltip": "Increase or decrease padding between elements."
+    },
+    "show-decorations": {
+        "type": "switch",
+        "description": "Show desklet decorations",
+        "default": false
+    },
+    "desklet-decorations-note": {
+        "type": "label",
+        "description": "Following settings require desklet decorations to be enabled on your system.\nDesklet preferences are located in System Settings > Desklets > General Settings tab; there you will be able to enable border/header decorations."
+    },
+    "desklet-header": {
+        "type": "entry",
+        "default": "Time and Date",
+        "description": "Desklet header",
+        "tooltip": "Set your desklet header. Make sure desklet headers are enabled in system settings.",
+        "dependency": "show-decorations"
+    }
+}
