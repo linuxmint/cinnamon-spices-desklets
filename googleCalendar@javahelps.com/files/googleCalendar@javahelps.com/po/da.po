@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2025-04-21 23:14+0200\n"
-"PO-Revision-Date: 2022-10-23 19:03+0200\n"
+"PO-Revision-Date: 2025-11-06 17:28+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. settings-schema.json->interval->description
 #. desklet.js:66 desklet.js:74
@@ -26,7 +26,7 @@ msgstr "Antal dage der skal medtages"
 
 #. desklet.js:66 desklet.js:74
 msgid ": "
-msgstr ""
+msgstr ": "
 
 #. metadata.json->name
 #. settings-schema.json->page_gcalendar->title
@@ -282,7 +282,7 @@ msgstr "Indtast gcalendar --account id"
 
 #. settings-schema.json->gcalendarAccount->options
 msgid "default"
-msgstr ""
+msgstr "standard"
 
 #. settings-schema.json->allNamesButton->description
 msgid "Fill in the list bellow with the names of all my calendars"
@@ -442,18 +442,17 @@ msgid "Radius for rounding the desklet's corners"
 msgstr "Radius for rundingen på skrivebordsprogrammets hjørner"
 
 #. settings-schema.json->display_mode->description
-#, fuzzy
 msgid "Display mode"
-msgstr "Vis den?"
+msgstr "Visning"
 
 #. settings-schema.json->display_mode->options
 msgid "normal"
-msgstr ""
+msgstr "normal"
 
 #. settings-schema.json->display_mode->options
 msgid "compact"
-msgstr ""
+msgstr "kompakt"
 
 #. settings-schema.json->display_mode->options
 msgid "ultra compact"
-msgstr ""
+msgstr "ultrakompakt"
