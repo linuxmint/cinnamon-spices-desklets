@@ -1,3 +1,7 @@
+### v2.3.3~20251106
+  * Improved stability.
+  * Improved translation.
+
 ### v2.3.2~20251101
   * Improved stability.
 
