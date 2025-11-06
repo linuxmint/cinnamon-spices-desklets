@@ -52,8 +52,6 @@
             "title": "Time label font",
             "keys": [
                 "time-font",
-                "time-font-bold",
-                "time-font-italic",
                 "time-text-color",
                 "time-text-shadow",
                 "time-text-shadow-color"
@@ -64,8 +62,6 @@
             "title": "Date label font",
             "keys": [
                 "date-font",
-                "date-font-bold",
-                "date-font-italic",
                 "date-text-color",
                 "date-text-shadow",
                 "date-text-shadow-color"
@@ -135,19 +131,9 @@
     },
     "time-font": {
         "type": "fontchooser",
-        "description": "Font name (choose regular versions)",
+        "description": "Time label font",
         "default": "Ubuntu Regular 42",
-        "tooltip": "Change font family"
-    },
-    "time-font-bold": {
-        "type": "switch",
-        "description": "Bold",
-        "default": true
-    },
-    "time-font-italic": {
-        "type": "switch",
-        "description": "Italic",
-        "default": false
+        "tooltip": "Change the font and its size"
     },
     "time-text-color": {
         "type": "colorchooser",
@@ -168,19 +154,9 @@
     },
     "date-font": {
         "type": "fontchooser",
-        "description": "Font name (choose regular versions)",
+        "description": "Date label font",
         "default": "Ubuntu Regular 14",
-        "tooltip": "Change font family"
-    },
-    "date-font-bold": {
-        "type": "switch",
-        "description": "Bold",
-        "default": false
-    },
-    "date-font-italic": {
-        "type": "switch",
-        "description": "Italic",
-        "default": false
+        "tooltip": "Change the font and its size"
     },
     "date-text-color": {
         "type": "colorchooser",
