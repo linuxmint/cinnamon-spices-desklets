@@ -27,7 +27,7 @@ const PopupMenu = imports.ui.popupMenu;
 const Util = imports.misc.util;
 const Gettext = imports.gettext;
 
-const UUID = "devtest-TimeAndDate@nightflame";
+const UUID = "TimeAndDate@nightflame";
 const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
 
 // translation support
