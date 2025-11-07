@@ -43,8 +43,6 @@
                 "button-icon-name",
                 "button-icon-color",
                 "font",
-                "font-bold",
-                "font-italic",
                 "text-color",
                 "text-shadow",
                 "text-shadow-color"
@@ -76,16 +74,6 @@
         "description": "Font name (choose regular versions)",
         "default": "Ubuntu Regular 16",
         "tooltip": "Change font family"
-    },
-    "font-bold": {
-        "type": "switch",
-        "description": "Bold",
-        "default": false
-    },
-    "font-italic": {
-        "type": "switch",
-        "description": "Italic",
-        "default": false
     },
     "text-color": {
         "type": "colorchooser",

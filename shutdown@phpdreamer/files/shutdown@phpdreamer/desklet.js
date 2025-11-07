@@ -7,6 +7,7 @@ const Lang = imports.lang;
 const Settings = imports.ui.settings;
 const Main = imports.ui.main;
 const Clutter = imports.gi.Clutter;
+const Pango = imports.gi.Pango;
 // const Gio = imports.gi.Gio;
 const Gettext = imports.gettext;
 // const Tooltips = imports.ui.tooltips;
@@ -61,8 +62,6 @@ ShutdownDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "button-icon-color", "buttonIconColor", this.on_setting_changed);
 
         this.settings.bindProperty(Settings.BindingDirection.IN, "font", "fontRaw", this.on_setting_changed);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "font-bold", "fontBold", this.on_setting_changed);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "font-italic", "fontItalic", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "textColor", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "text-shadow", "textShadow", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "text-shadow-color", "textShadowColor", this.on_setting_changed);
@@ -80,7 +79,7 @@ ShutdownDesklet.prototype = {
     runDesklet: function() {
 
         this.lastClickedTimestamp = Date.now();
-        this.font = this.parseFont(this.fontRaw);
+        this.font = this.parseFontStringToCSS(this.fontRaw);
 
         this.renderGUI();
 
@@ -113,16 +112,16 @@ ShutdownDesklet.prototype = {
 
         container.add_child(button);
 
-        button.style = "font-family: '" + this.font["family"] + "';"
-                        + "font-size: " + this.font["size"] + "px;"
+        button.style = "font-family: '" + this.font["font-family"] + "';"
+                        + "font-size: " + this.font["font-size"] + "px;"
                         + "color:" + this.textColor + ";"
-                        + "font-weight:" + (this.fontBold ? "bold" : "normal") + ";"
-                        + "font-style:" + (this.fontItalic ? "italic" : "normal") + ";"
+                        + "font-weight:" + this.font["font-weight"] + ";"
+                        + "font-style:" + this.font["font-style"] + ";"
+                        + "font-stretch:" + this.font["font-stretch"] + ";"
                         + "text-shadow:" + (this.textShadow ? "1px 1px 6px " + this.textShadowColor : "none") + ";"
                         + "background-color:" + (this.isdeskletTransparentBg ? "unset" : this.deskletBackground) + ";"
                         + "border: solid " + this.deskletBorderWidth + "px " + this.deskletBorderColor + ";";
         
-
         button.connect("clicked", Lang.bind(this, () => {
             const is_dblclick = (Date.now() - this.lastClickedTimestamp)  < this.clickTimeout
 
@@ -186,23 +185,68 @@ ShutdownDesklet.prototype = {
 
 
     /**
-    * Parse raw font string, TODO improve parsing, detect bold/italic etc.
-    * @param {string} font_string - Font descriptor
-    * @returns {{"family": string, "size": Number}} Font descriptor object
+    * Parse raw font string.
+    * @param {string} font_string - Font descriptor string
+    * @returns {{"font-family": string, "font-size": Number, "font-weight": Number, "font-style": string, "font-stretch": string}} Font descriptor object
     */
-    parseFont: function(font_string) {
-        // String are passed by reference here so
+    parseFontStringToCSS: function(font_string) {
+        // Some fonts don't work, so a fallback font is a good idea
+        const fallback_font_str = "Ubuntu Regular 16";
+    
+        // String are passed by reference here
         // make sure to copy the string to avoid triggering settings callback on change
         const font_string_copy = font_string.slice().trim();
+        
+        let css_font;
+        try {
+            const my_font_description = Pango.font_description_from_string(font_string_copy);
+            css_font = this._PangoFontDescriptionToCSS(my_font_description);
+        } catch (e) {
+            Main.notifyError(
+                _("Sorry, this font is not supported, please select a different one.") 
+                + _(" Font: `") + font_string_copy + _("` Error: ") 
+                + e.toString()
+            );
 
-        const font_split = font_string_copy.split(" ");
+            const fallback_font_description = Pango.font_description_from_string(fallback_font_str);
+            css_font = this._PangoFontDescriptionToCSS(fallback_font_description);
+        } finally {
+            return css_font;
+        }
+        
+    },
 
-        const font_size = parseInt(font_split.pop());
-        let font_family = font_split.join(" ");
 
+    /**
+    * Process Pango.FontDescription and return valid CSS values
+    * @param {Pango.FontDescription} font_description - Font descriptor
+    * @returns {{"font-family": string, "font-size": Number, "font-weight": Number, "font-style": string, "font-stretch": string}} Font descriptor object
+    */
+    _PangoFontDescriptionToCSS: function(font_description) {
+        const PangoStyle_to_CSS_map = {
+            [Pango.Style.NORMAL]: "normal", 
+            [Pango.Style.OBLIQUE]: "oblique", 
+            [Pango.Style.ITALIC]: "italic", 
+        };
+
+        // font-stretch CSS property seems to be ignored by the CSS renderer
+        const PangoStretch_to_CSS_map = {
+            [Pango.Stretch.ULTRA_CONDENSED]: "ultra-condensed", 
+            [Pango.Stretch.EXTRA_CONDENSED]: "extra-condensed", 
+            [Pango.Stretch.CONDENSED]: "condensed", 
+            [Pango.Stretch.NORMAL]: "normal", 
+            [Pango.Stretch.SEMI_EXPANDED]: "semi-expanded", 
+            [Pango.Stretch.EXPANDED]: "expanded", 
+            [Pango.Stretch.EXTRA_EXPANDED]: "extra-expanded", 
+            [Pango.Stretch.ULTRA_EXPANDED]: "ultra-expanded", 
+        };
+        
         return {
-            "family": font_family,
-            "size": font_size
+            "font-family": font_description.get_family(),
+            "font-size": Math.floor(font_description.get_size() / Pango.SCALE),
+            "font-weight": font_description.get_weight(),
+            "font-style": PangoStyle_to_CSS_map[font_description.get_style()],
+            "font-stretch": PangoStretch_to_CSS_map[font_description.get_stretch()]
         };
     },
 
@@ -210,9 +254,7 @@ ShutdownDesklet.prototype = {
     * This function should be used as a callback when settings change
     */
     on_setting_changed: function() {
-        this.font = this.parseFont(this.fontRaw);
-        this.renderGUI();
-        this.renderDecorations();
+        this.runDesklet();
     },
 }
 
