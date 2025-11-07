@@ -1,8 +1,7 @@
 {
-    "description": "Shutdown",
-    "version": "1.1",
-    "prevent-decorations": true,
-    "uuid": "shutdown@phpdreamer",
-    "name": "shutdown linux",
-    "color": "#00000010"
+    "max-instances": "5",
+    "description": "Click to shutdown the system. New overhauled version.",
+    "name": "Shutdown Linux",
+    "version": "2.0",
+    "uuid": "shutdown@phpdreamer"
 }
