@@ -48,11 +48,10 @@ def copy_xlet(uuid, change_uuid=False):
 
         if change_uuid:
             desklet_js_file = f'{dev_dest}/desklet.js'
-            with open(desklet_js_file, 'r') as file:
+            with open(desklet_js_file, 'r+') as file:
                 js_code = file.read()
-                
-            js_code = js_code.replace(uuid, f"{DEV_PREFIX}{uuid}")
-            with open(desklet_js_file, 'w') as file:
+                file.seek(0)
+                js_code = js_code.replace(uuid, f"{DEV_PREFIX}{uuid}")
                 file.write(js_code)
 
         reload_xlet(f'{DEV_PREFIX}{uuid}')
