@@ -1,4 +1,17 @@
 
+## [1.1.1] - 8.11.2025
+
+### Changed
+
+- Improved font parsing
+- Slightly increased task paddings and margins in `stylesheet.css`
+- Adjusted some default theme options to improve default visuals (IMO)
+- Updated `README.md`
+
+### Deleted
+
+- Font bold/italic options, because they are no longer needed
+
 ## [1.1] - 13.10.2025
 
 ### Added

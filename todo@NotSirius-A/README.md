@@ -46,8 +46,6 @@ I have spent many hours trying to make ibus/fcitx work while directly editing ta
 
 ### What can be improved?
 
-* Improve font parsing.
-
 * Fix the `clutter_focus` error.
 
 * Somehow add alternate input methods support to St.Entry??

@@ -21,8 +21,8 @@
 	color: black;
 	font-weight: 500; 
 	border-radius: 0.32em;
-	padding: 0.12em 0.15em;
-	margin: 0.12em 0;
+	padding: 0.18em 0.25em;
+	margin: 0.14em 0;
 }
 
 .todo-item:hover {
@@ -41,7 +41,7 @@
 	padding-left: 0.15em;
 	padding-right: 0.15em;
 	margin-left: 0.1em;
-	margin-right: 0.15em;
+	margin-right: 0.2em;
 }
 
 .todo-item-icon-btn:hover {
@@ -56,7 +56,7 @@
 }
 
 .todo-item-entry {
-	padding: 0.00em 0.1em;
+	padding: 0.00em 0.15em;
 }
 
 

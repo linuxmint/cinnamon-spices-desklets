@@ -242,8 +242,9 @@ class TODOList {
         parent_button.style = "font-family: '" + th["font_family"] + "';"
                             + "font-size: " + th["font_size"] + "px;"
                             + "color:" + th["font_color"] + ";"
-                            + "font-weight:" + (th["font_bold"] ? "bold" : "normal") + ";"
-                            + "font-style:" + (th["font_italic"] ? "italic" : "normal") + ";"
+                            + "font-weight:" + th["font_weight"] + ";"
+                            + "font-style:" + th["font_style"] + ";"
+                            + "font-stretch:" + th["font_stretch"] + ";"
                             + "text-shadow:" + (th["text_shadow_enabled"] ? "1px 1px 6px " + th["text_shadow_color"] : "none") + ";";
 
         if (Item.is_marked_important) {
