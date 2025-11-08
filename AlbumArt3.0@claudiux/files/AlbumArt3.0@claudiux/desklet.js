@@ -508,9 +508,10 @@ class AlbumArtRadio30 extends Desklet.Desklet {
             });
             image = St.TextureCache.get_default().load_uri_async(filePath, this.width, this.height);
 
-            image._notif_id = image.connect('notify::size', (image) => { this._size_pic(image); });
-
-            this._size_pic(image);
+            if (image != null) {
+                image._notif_id = image.connect('notify::size', (image) => { this._size_pic(image); });
+                this._size_pic(image);
+            }
 
             return image;
         } catch (e) {
