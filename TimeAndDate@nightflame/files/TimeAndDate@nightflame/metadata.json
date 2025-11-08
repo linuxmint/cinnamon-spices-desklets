@@ -1,10 +1,7 @@
 {
-    "description": "A fork desklet that displays the time and date", 
-    "prevent-decorations": false, 
+    "max-instances": "5",
+    "description": "Themeable desklet that displays the time and date. New overhauled version.", 
     "uuid": "TimeAndDate@nightflame", 
-    "name": "Time and Date Desklet",
-    "timeFormat": "%H:%M",
-    "timeSize": "40pt",
-    "dateFormat": "%A,%e %B",
-    "dateSize": "15pt"
+    "version": "2.0",
+    "name": "Time and Date Desklet"
 }
