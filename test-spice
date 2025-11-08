@@ -29,7 +29,7 @@ def validate_spice(uuid):
         return False
 
 
-def copy_xlet(uuid):
+def copy_xlet(uuid, change_uuid=False):
     """
     Copy the UUID directory and action file for testing purposes
     """
@@ -45,9 +45,18 @@ def copy_xlet(uuid):
             data['uuid'] = f"{DEV_PREFIX}{data['uuid']}"
             data['name'] = f"({DEV_PREFIX.replace('-', '')}) {data['name']}"
             json.dump(data, metadata, indent=4)
+
+        if change_uuid:
+            desklet_js_file = f'{dev_dest}/desklet.js'
+            with open(desklet_js_file, 'r+') as file:
+                js_code = file.read()
+                file.seek(0)
+                js_code = js_code.replace(uuid, f"{DEV_PREFIX}{uuid}")
+                file.write(js_code)
+
         reload_xlet(f'{DEV_PREFIX}{uuid}')
     except (FileNotFoundError, KeyError):
-        # metadata.json file not found or missing valid keys
+        # metadata.json or desklet.js file not found or missing valid keys
         pass
 
 
@@ -72,6 +81,8 @@ def main():
                         help='Remove all test Spices')
     parser.add_argument('-s', '--skip', action='store_true',
                         help='Skip Spice validation with validate-spice')
+    parser.add_argument('-c', '--changeuuid', action='store_true',
+                        help=f'Change uuid in desklet.js copy to {DEV_PREFIX}uuid')
     parser.add_argument('uuid', type=str, metavar='UUID', nargs='?',
                         help='the UUID of the Spice')
     args = parser.parse_args()
@@ -84,10 +95,10 @@ def main():
                     shutil.rmtree(rm_path)
         sys.exit(0)
     elif args.skip and args.uuid:
-        copy_xlet(args.uuid.rstrip('/'))
+        copy_xlet(args.uuid.rstrip('/'), args.changeuuid)
     elif args.uuid and not args.remove:
         if validate_spice(args.uuid.rstrip('/')):
-            copy_xlet(args.uuid.rstrip('/'))
+            copy_xlet(args.uuid.rstrip('/'), args.changeuuid)
     else:
         parser.print_help()
         sys.exit(2)

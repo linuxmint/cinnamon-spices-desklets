@@ -10,42 +10,39 @@ msgstr ""
 "issues\n"
 "POT-Creation-Date: 2025-04-03 09:04+0200\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Odyssey<odysseyhyd@gmail.com>\n"
+"Last-Translator: Odyssey <odysseyhyd@gmail.com>\n"
 "Language-Team: \n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.6\n"
 
 #. desklet.js:128
-#, fuzzy
 msgid "Album Art"
-msgstr "Àlbum Art Ràdio3.0"
+msgstr "Àlbum Art"
 
 #. desklet.js:434
 msgid "Display Album Art at full size"
 msgstr "Mostra l'art de l'àlbum a mida completa"
 
 #. desklet.js:441
-msgid "Don't display this image"
-msgstr ""
+msgid "Do not display this image"
+msgstr "No mostris aquesta imatge"
 
 #. desklet.js:451
-msgid "Don't display any new image"
-msgstr ""
+msgid "Do not display any new image"
+msgstr "No mostris cap imatge nova"
 
 #. metadata.json->name
-#, fuzzy
 msgid "Album Art for Radio3.0 and Enhanced Sound applets"
-msgstr "Àlbum Art per a Ràdio3.0"
+msgstr "Àlbum Art per a Ràdio3.0 i les miniaplicacions de So millorat"
 
 #. metadata.json->description
-#, fuzzy
 msgid "A digital photo frame desklet to display an album art, if available"
 msgstr ""
-"Una miniaplicació d'escriptori de marc de fotografies digitals per art "
-"d'àlbums, si està disponible"
+"Una miniaplicació d'escriptori que genera un marc de fotografia digital per "
+"a mostrar la caràtula d'un àlbum, si està disponible"
 
 #. settings-schema.json->height->description
 msgid "Height"
@@ -122,84 +119,84 @@ msgstr "0 significa sense desaparició"
 
 #. settings-schema.json->enable-at-startup->description
 msgid "Activate Album Art display at startup"
-msgstr ""
+msgstr "Activar la mostra de la caràtula de l'àlbum a l'inici"
 
 #. settings-schema.json->show-title->description
 msgid "Show the title"
-msgstr ""
+msgstr "Mostra el títol"
 
 #. settings-schema.json->style-font-weight->description
 msgid "Font weight"
-msgstr ""
+msgstr "Gruix de la font"
 
 #. settings-schema.json->style-font-weight->options
 msgid "normal"
-msgstr ""
+msgstr "normal"
 
 #. settings-schema.json->style-font-weight->options
 msgid "bold"
-msgstr ""
+msgstr "negreta"
 
 #. settings-schema.json->style-font-family->description
 msgid "Font family"
-msgstr ""
+msgstr "Família de fonts"
 
 #. settings-schema.json->style-font-family->options
 msgid "monospace"
-msgstr ""
+msgstr "monospace"
 
 #. settings-schema.json->style-font-family->options
 msgid "sans-serif"
-msgstr ""
+msgstr "sans-serif"
 
 #. settings-schema.json->style-font-family->options
 msgid "serif"
-msgstr ""
+msgstr "serif"
 
 #. settings-schema.json->style-font-family->options
 msgid "cursive"
-msgstr ""
+msgstr "cursiva"
 
 #. settings-schema.json->style-font-family->options
 msgid "fantasy"
-msgstr ""
+msgstr "fantasy"
 
 #. settings-schema.json->style-font-size->description
 msgid "Font size"
-msgstr ""
+msgstr "Mida de la font"
 
 #. settings-schema.json->style-font-size->options
 msgid "xx-small"
-msgstr ""
+msgstr "xx-petita"
 
 #. settings-schema.json->style-font-size->options
 msgid "x-small"
-msgstr ""
+msgstr "x-petita"
 
 #. settings-schema.json->style-font-size->options
 msgid "small"
-msgstr ""
+msgstr "petita"
 
 #. settings-schema.json->style-font-size->options
 msgid "medium"
-msgstr ""
+msgstr "mitjana"
 
 #. settings-schema.json->style-font-size->options
 msgid "large"
-msgstr ""
+msgstr "gran"
 
 #. settings-schema.json->style-font-size->options
 msgid "x-large"
-msgstr ""
+msgstr "x-gran"
 
 #. settings-schema.json->style-font-size->options
 msgid "xx-large"
-msgstr ""
+msgstr "xx-gran"
 
 #. settings-schema.json->style-color->description
 msgid "Font color"
-msgstr ""
+msgstr "Color de la font"
 
 #. settings-schema.json->style-background-color->description
 msgid "Background color"
-msgstr ""
+msgstr "Color del fons"

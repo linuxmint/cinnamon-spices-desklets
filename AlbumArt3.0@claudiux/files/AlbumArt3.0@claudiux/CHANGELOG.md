@@ -1,3 +1,13 @@
+### v2.3.4~20251107
+  * Fixes error loading image.
+
+### v2.3.3~20251106
+  * Improved stability.
+  * Improved translation.
+
+### v2.3.2~20251101
+  * Improved stability.
+
 ### v2.3.1~20250422
   * Code cleanup.
 

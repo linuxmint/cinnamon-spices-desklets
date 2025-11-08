@@ -27,11 +27,11 @@ msgid "Display Album Art at full size"
 msgstr "Albumborító megjelenítése teljes méretben"
 
 #. desklet.js:441
-msgid "Don't display this image"
+msgid "Do not display this image"
 msgstr "Ne jelenítse meg ezt a képet"
 
 #. desklet.js:451
-msgid "Don't display any new image"
+msgid "Do not display any new image"
 msgstr "Ne jelenítsen meg új képet"
 
 #. metadata.json->name

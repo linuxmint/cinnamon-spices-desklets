@@ -1,5 +1,9 @@
 #!/usr/bin/python3
 
+# for SettingsWidget and the _() function
+# pyright: reportMissingImports=false
+# pyright: reportUndefinedVariable=false
+
 import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version("GLib", "2.0")
@@ -120,7 +124,6 @@ class ListOfDates(SettingsWidget):
     bind_dir = None
 
     def __init__(self, info, key, settings):
-        # log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
         self.info = info
         self.key = key
         self.settings = settings

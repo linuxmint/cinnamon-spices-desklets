@@ -1,0 +1,40 @@
+{
+  "head0": {
+    "type": "header",
+    "description": "General"
+  },
+  "steam-install-type": {
+    "type": "combobox",
+    "default": "system package",
+    "description": "Steam installation type",
+    "options": {
+      "System package": "system package",
+      "Flatpak": "flatpak"
+    }
+  },
+  "number-of-games": {
+    "type": "spinbutton",
+    "default": 10,
+    "min": 1,
+    "max": 100,
+    "step": 1,
+    "description": "Maximum number of games"
+  },
+  "head1": {
+    "type": "header",
+    "description": "Style"
+  },
+  "max-desklet-height": {
+    "type": "scale",
+    "default": 400,
+    "min": 80,
+    "max": 1000,
+    "step": 1,
+    "description": "Maximum height of the desklet"
+  },
+  "background-color": {
+    "type": "colorchooser",
+    "default": "rgba(58, 64, 74, 0.5)",
+    "description": "Background color"
+  }
+}

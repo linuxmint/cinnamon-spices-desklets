@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2025-05-03 11:37-0400\n"
-"PO-Revision-Date: 2024-10-01 03:13+0200\n"
+"PO-Revision-Date: 2025-09-29 04:18+0200\n"
 "Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
 "Language-Team: \n"
 "Language: ca\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.6\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: desklet.js\n"
 "X-Poedit-SearchPath-1: settings-schema.json\n"
@@ -265,12 +265,11 @@ msgstr "Seleccioneu el gràfic de fons que voleu utilitzar."
 
 #. settings-schema.json->text-shadow->description
 msgid "Text shadow"
-msgstr ""
+msgstr "Ombrejat del text"
 
 #. settings-schema.json->text-shadow-color->description
-#, fuzzy
 msgid "Text shadow color"
-msgstr "Color del text"
+msgstr "Color de l'ombrejat del text"
 
 #. settings-schema.json->bg-color->description
 msgid "Background color"
@@ -282,7 +281,7 @@ msgstr "Estableix el color del fons de la nota."
 
 #. settings-schema.json->enable-word-wrap->description
 msgid "Enable word wrap"
-msgstr ""
+msgstr "Activa la compressió de paraules"
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"

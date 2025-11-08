@@ -92,6 +92,10 @@ this read "Shadow" or "Text shadow".
 These refer to the target dates you count down to, in case this
 guides the choice of grammatical gender for languages where it matters.
 
+### Emoji
+One list-type setting has emoji headings to keep it compact.
+Please leave the emoji.
+
 
 ## Coherence with Cinnamon
 
