@@ -4,6 +4,6 @@
   "name": "Album Art for Radio3.0 and Enhanced Sound applets",
   "description": "A digital photo frame desklet to display an album art, if available",
   "prevent-decorations": true,
-  "version": "2.3.3",
+  "version": "2.3.4",
   "author": "claudiux"
 }

@@ -79,8 +79,6 @@
                 "task-not-marked-icon",
                 "task-marked-icon",
                 "font",
-                "font-bold",
-                "font-italic",
                 "text-color",
                 "text-shadow",
                 "text-shadow-color",
@@ -222,19 +220,9 @@
     },
     "font": {
         "type": "fontchooser",
-        "description": "Font name (choose regular versions)",
-        "default": "Ubuntu Regular 12",
-        "tooltip": "Change font family"
-    },
-    "font-bold": {
-        "type": "switch",
-        "description": "Bold",
-        "default": false
-    },
-    "font-italic": {
-        "type": "switch",
-        "description": "Italic",
-        "default": false
+        "description": "Font",
+        "default": "Ubuntu Regular 13",
+        "tooltip": "Change the font (some fonts may not work)"
     },
     "text-color": {
         "type": "colorchooser",
@@ -275,7 +263,7 @@
     },
     "task-border-color": {
         "type": "colorchooser",
-        "default": "rgba(0,0,0,0.3)",
+        "default": "rgba(0,0,0,0.45)",
         "description": "Border color",
         "tooltip": "Set the task border color (Transparent border will add more padding to tasks).",
         "dependency": "task-border-width>0"
@@ -289,14 +277,14 @@
     },
     "task-border-color-important": {
         "type": "colorchooser",
-        "default": "rgb(70,0,0)",
+        "default": "rgba(255,255,255,0.2)",
         "description": "Border color when marked as important",
         "tooltip": "Set the task border color when marked as important (Transparent border will add more padding to tasks).",
         "dependency": "task-border-width>0"
     },
     "task-icon-size": {
         "type": "spinbutton",
-        "default": 11,
+        "default": 10,
         "min": 0,
         "max": 100,
         "step": 1,
@@ -317,7 +305,7 @@
     },
     "toolbar-icon-size": {
         "type": "spinbutton",
-        "default": 20,
+        "default": 18,
         "min": 0,
         "max": 100,
         "step": 1,
@@ -338,7 +326,7 @@
     },
     "toolbar-border-width": {
         "type": "spinbutton",
-        "default": 0,
+        "default": 2,
         "min": 0,
         "max": 20,
         "step": 1,
@@ -347,7 +335,7 @@
     },
     "toolbar-border-color": {
         "type": "colorchooser",
-        "default": "rgb(0,0,0)",
+        "default": "rgba(0,0,0, 0.45)",
         "description": "Border color",
         "tooltip": "Set the toolbar border color (Transparent border will add more padding to toolbar).",
         "dependency": "toolbar-border-width>0"
