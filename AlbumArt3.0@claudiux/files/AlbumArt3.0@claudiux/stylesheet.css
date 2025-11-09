@@ -6,5 +6,6 @@
 }
 .albumart30-text {
     text-align: center;
+    overflow: hidden;
 }
 
