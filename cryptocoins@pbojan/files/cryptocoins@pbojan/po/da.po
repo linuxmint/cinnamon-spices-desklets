@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2025-11-09 15:34+0100\n"
-"PO-Revision-Date: 2025-11-02 11:31+0100\n"
+"PO-Revision-Date: 2025-11-10 17:28+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
 "Language: da\n"
@@ -19,16 +19,13 @@ msgstr ""
 "X-Generator: Poedit 3.4.2\n"
 
 #. metadata.json->description
-#, fuzzy
 msgid ""
 "Cryptocurrency Ticker (Desklet) for Cinnamon Desktop that displays the "
 "current price for thousands of cryptocurrencies, and their daily percent "
 "changes."
 msgstr ""
 "Kryptovaluta-ticker til Cinnamon-skrivebordet, der viser den aktuelle pris "
-"for tusindvis af kryptovalutaer og deres daglige procentvise ændringer. Den "
-"officielle hjemmeside for nyheder og opdateringer om denne kryptovaluta-"
-"ticker: https://cryptocurrencyticker.xyz"
+"for tusindvis af kryptovalutaer og deres daglige procentvise ændringer."
 
 #. metadata.json->name
 msgid "Cryptocurrency Ticker"
@@ -537,55 +534,55 @@ msgstr ""
 
 #. settings-schema.json->head3->description
 msgid "Price Change % Options"
-msgstr ""
+msgstr "Indstillinger for prisændringer i procent"
 
 #. settings-schema.json->percent-change-1h->description
 msgid "Change 1h"
-msgstr ""
+msgstr "Ændring på 1 time"
 
 #. settings-schema.json->percent-change-1h->tooltip
 msgid "Disable to not see the 1h change in the ticker."
-msgstr ""
+msgstr "Deaktivér for ikke at se 1-times ændringen i tickeren."
 
 #. settings-schema.json->percent-change-24h->description
 msgid "Change 24h"
-msgstr ""
+msgstr "Ændring på 24 timer"
 
 #. settings-schema.json->percent-change-24h->tooltip
 msgid "Disable to not see the 24h change in the ticker."
-msgstr ""
+msgstr "Deaktivér for ikke at se 24-timers ændringen i tickeren."
 
 #. settings-schema.json->percent-change-7d->description
 msgid "Change 7d"
-msgstr ""
+msgstr "Ændring på 7 dage"
 
 #. settings-schema.json->percent-change-7d->tooltip
 msgid "Disable to not see the 7d change in the ticker."
-msgstr ""
+msgstr "Deaktivér for ikke at se 7-dages ændringen i tickeren."
 
 #. settings-schema.json->percent-change-30d->description
 msgid "Change 30d"
-msgstr ""
+msgstr "Ændring på 30 dage"
 
 #. settings-schema.json->percent-change-30d->tooltip
 msgid "Disable to not see the 30d change in the ticker."
-msgstr ""
+msgstr "Deaktivér for ikke at se 30-dages ændringen i tickeren."
 
 #. settings-schema.json->percent-change-60d->description
 msgid "Change 60d"
-msgstr ""
+msgstr "Ændring på 60 dage"
 
 #. settings-schema.json->percent-change-60d->tooltip
 msgid "Disable to not see the 60d change in the ticker."
-msgstr ""
+msgstr "Deaktivér for ikke at se 60-dages ændringen i tickeren."
 
 #. settings-schema.json->percent-change-90d->description
 msgid "Change 90d"
-msgstr ""
+msgstr "Ændring på 90 dage"
 
 #. settings-schema.json->percent-change-90d->tooltip
 msgid "Disable to not see the 90d change in the ticker."
-msgstr ""
+msgstr "Deaktivér for ikke at se 90-dages ændringen i tickeren."
 
 #. settings-schema.json->head4->description
 msgid "Desklet UI"
@@ -612,9 +609,8 @@ msgid "Background Border Radius in px, select 0 to set no border radius."
 msgstr "Baggrundsrammens radius i pixel. Vælg 0 for at angive ingen kant."
 
 #. settings-schema.json->head5->description
-#, fuzzy
 msgid ""
 "This is an OPEN SOURCE project, if you like it please consider donating!"
 msgstr ""
 "Dette er et OPEN SOURCE-projekt. Hvis du kan lide det, kan du overveje at "
-"donere! https://cryptocurrencyticker.xyz"
+"donere!"
