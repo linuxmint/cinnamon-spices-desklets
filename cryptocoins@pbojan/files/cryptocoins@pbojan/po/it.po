@@ -1,6 +1,6 @@
-# SOME DESCRIPTIVE TITLE.
+# CRYPTOCURRENCY TICKER
 # This file is put in the public domain.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# pbojan, 2018
 #
 #, fuzzy
 msgid ""
@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: cryptocoins@pbojan 1.6\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-05-19 18:58+0200\n"
+"POT-Creation-Date: 2025-11-09 15:34+0100\n"
 "PO-Revision-Date: 2025-08-26 19:28+0200\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
@@ -19,11 +19,11 @@ msgstr ""
 "X-Generator: Poedit 3.4.2\n"
 
 #. metadata.json->description
+#, fuzzy
 msgid ""
 "Cryptocurrency Ticker (Desklet) for Cinnamon Desktop that displays the "
 "current price for thousands of cryptocurrencies, and their daily percent "
-"changes. The official website for news and updates about this Cryptocurrency "
-"Ticker: https://cryptocurrencyticker.xyz"
+"changes."
 msgstr ""
 "Desklet per Cinnamon Desktop che mostra il prezzo corrente di migliaia di "
 "criptovalute e le variazioni percentuali giornaliere. Il sito ufficiale per "
@@ -102,7 +102,6 @@ msgid "Australian Dollar (A$)"
 msgstr "Dollaro australiano (A$)"
 
 #. settings-schema.json->currency->options
-#| msgid "Canadian Dollar (C$)"
 msgid "Canadian Dollar  (C$)"
 msgstr "Canadian Dollar  (C$)"
 
@@ -143,7 +142,6 @@ msgid "Belarusian Ruble (Br)"
 msgstr "Belarusian Ruble (Br)"
 
 #. settings-schema.json->currency->options
-#| msgid "Canadian Dollar (C$)"
 msgid "Bermudan Dollar ($)"
 msgstr "Bermudan Dollar ($)"
 
@@ -160,7 +158,6 @@ msgid "Brazilian Real (R$)"
 msgstr "Brazilian Real (R$)"
 
 #. settings-schema.json->currency->options
-#| msgid "Albanian Lek (L)"
 msgid "Bulgarian Lev (лв)"
 msgstr "Bulgarian Lev (лв)"
 
@@ -169,7 +166,6 @@ msgid "Cambodian Riel (៛)"
 msgstr "Cambodian Riel (៛)"
 
 #. settings-schema.json->currency->options
-#| msgid "Argentine Peso ($)"
 msgid "Chilean Peso ($)"
 msgstr "Chilean Peso ($)"
 
@@ -178,7 +174,6 @@ msgid "Chinese Yuan (¥)"
 msgstr "Chinese Yuan (¥)"
 
 #. settings-schema.json->currency->options
-#| msgid "Argentine Peso ($)"
 msgid "Colombian Peso ($)"
 msgstr "Colombian Peso ($)"
 
@@ -191,7 +186,6 @@ msgid "Croatian Kuna (kn)"
 msgstr "Croatian Kuna (kn)"
 
 #. settings-schema.json->currency->options
-#| msgid "Argentine Peso ($)"
 msgid "Cuban Peso ($)"
 msgstr "Cuban Peso ($)"
 
@@ -204,7 +198,6 @@ msgid "Danish Krone (kr)"
 msgstr "Danish Krone (kr)"
 
 #. settings-schema.json->currency->options
-#| msgid "Argentine Peso ($)"
 msgid "Dominican Peso ($)"
 msgstr "Dominican Peso ($)"
 
@@ -225,7 +218,6 @@ msgid "Honduran Lempira (L)"
 msgstr "Honduran Lempira (L)"
 
 #. settings-schema.json->currency->options
-#| msgid "Canadian Dollar (C$)"
 msgid "Hong Kong Dollar ($)"
 msgstr "Hong Kong Dollar ($)"
 
@@ -250,7 +242,6 @@ msgid "Iranian Rial (﷼)"
 msgstr "Iranian Rial (﷼)"
 
 #. settings-schema.json->currency->options
-#| msgid "Bahraini Dinar (.د.ب)"
 msgid "Iraqi Dinar (ع.د)"
 msgstr "Iraqi Dinar (ع.د)"
 
@@ -259,7 +250,6 @@ msgid "Israeli New Shekel (₪)"
 msgstr "Israeli New Shekel (₪)"
 
 #. settings-schema.json->currency->options
-#| msgid "Canadian Dollar (C$)"
 msgid "Jamaican Dollar ($)"
 msgstr "Jamaican Dollar ($)"
 
@@ -268,7 +258,6 @@ msgid "Japanese Yen (¥)"
 msgstr "Japanese Yen (¥)"
 
 #. settings-schema.json->currency->options
-#| msgid "Algerian Dinar (د.ج)"
 msgid "Jordanian Dinar (د.ا)"
 msgstr "Jordanian Dinar (د.ا)"
 
@@ -281,7 +270,6 @@ msgid "Kenyan Shilling (Sh)"
 msgstr "Kenyan Shilling (Sh)"
 
 #. settings-schema.json->currency->options
-#| msgid "Bahraini Dinar (.د.ب)"
 msgid "Kuwaiti Dinar (د.ك)"
 msgstr "Kuwaiti Dinar (د.ك)"
 
@@ -306,12 +294,10 @@ msgid "Mauritian Rupee (₨)"
 msgstr "Mauritian Rupee (₨)"
 
 #. settings-schema.json->currency->options
-#| msgid "Argentine Peso ($)"
 msgid "Mexican Peso ($)"
 msgstr "Mexican Peso ($)"
 
 #. settings-schema.json->currency->options
-#| msgid "Albanian Lek (L)"
 msgid "Moldovan Leu (L)"
 msgstr "Moldovan Leu (L)"
 
@@ -328,7 +314,6 @@ msgid "Myanma Kyat (Ks)"
 msgstr "Myanma Kyat (Ks)"
 
 #. settings-schema.json->currency->options
-#| msgid "Canadian Dollar (C$)"
 msgid "Namibian Dollar ($)"
 msgstr "Namibian Dollar ($)"
 
@@ -337,7 +322,6 @@ msgid "Nepalese Rupee (₨)"
 msgstr "Nepalese Rupee (₨)"
 
 #. settings-schema.json->currency->options
-#| msgid "Canadian Dollar (C$)"
 msgid "New Taiwan Dollar (NT$)"
 msgstr "New Taiwan Dollar (NT$)"
 
@@ -555,6 +539,58 @@ msgstr ""
 "con Cripto possedute."
 
 #. settings-schema.json->head3->description
+msgid "Price Change % Options"
+msgstr ""
+
+#. settings-schema.json->percent-change-1h->description
+msgid "Change 1h"
+msgstr ""
+
+#. settings-schema.json->percent-change-1h->tooltip
+msgid "Disable to not see the 1h change in the ticker."
+msgstr ""
+
+#. settings-schema.json->percent-change-24h->description
+msgid "Change 24h"
+msgstr ""
+
+#. settings-schema.json->percent-change-24h->tooltip
+msgid "Disable to not see the 24h change in the ticker."
+msgstr ""
+
+#. settings-schema.json->percent-change-7d->description
+msgid "Change 7d"
+msgstr ""
+
+#. settings-schema.json->percent-change-7d->tooltip
+msgid "Disable to not see the 7d change in the ticker."
+msgstr ""
+
+#. settings-schema.json->percent-change-30d->description
+msgid "Change 30d"
+msgstr ""
+
+#. settings-schema.json->percent-change-30d->tooltip
+msgid "Disable to not see the 30d change in the ticker."
+msgstr ""
+
+#. settings-schema.json->percent-change-60d->description
+msgid "Change 60d"
+msgstr ""
+
+#. settings-schema.json->percent-change-60d->tooltip
+msgid "Disable to not see the 60d change in the ticker."
+msgstr ""
+
+#. settings-schema.json->percent-change-90d->description
+msgid "Change 90d"
+msgstr ""
+
+#. settings-schema.json->percent-change-90d->tooltip
+msgid "Disable to not see the 90d change in the ticker."
+msgstr ""
+
+#. settings-schema.json->head4->description
 msgid "Desklet UI"
 msgstr "Interfaccia Desklet"
 
@@ -579,10 +615,10 @@ msgid "Background Border Radius in px, select 0 to set no border radius."
 msgstr ""
 "Raggio di arrotondamento bordo sfondo in pixel, 0 per nessun arrotondamento."
 
-#. settings-schema.json->head4->description
+#. settings-schema.json->head5->description
+#, fuzzy
 msgid ""
-"This is an OPEN SOURCE project, if you like it please consider donating! "
-"https://cryptocurrencyticker.xyz"
+"This is an OPEN SOURCE project, if you like it please consider donating!"
 msgstr ""
 "Questo è un progetto OPEN SOURCE, se ti piace considera una donazione! "
 "https://cryptocurrencyticker.xyz"

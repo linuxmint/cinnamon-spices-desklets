@@ -173,6 +173,53 @@
 
   "head3": {
     "type": "header",
+    "description": "Price Change % Options"
+  },
+
+  "percent-change-1h": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Change 1h",
+    "tooltip": "Disable to not see the 1h change in the ticker."
+  },
+
+  "percent-change-24h": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Change 24h",
+    "tooltip": "Disable to not see the 24h change in the ticker."
+  },
+
+  "percent-change-7d": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Change 7d",
+    "tooltip": "Disable to not see the 7d change in the ticker."
+  },
+
+  "percent-change-30d": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Change 30d",
+    "tooltip": "Disable to not see the 30d change in the ticker."
+  },
+
+  "percent-change-60d": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Change 60d",
+    "tooltip": "Disable to not see the 60d change in the ticker."
+  },
+
+  "percent-change-90d": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Change 90d",
+    "tooltip": "Disable to not see the 90d change in the ticker."
+  },
+
+  "head4": {
+    "type": "header",
     "description": "Desklet UI"
   },
 
@@ -194,8 +241,8 @@
     "tooltip": "Background Border Radius in px, select 0 to set no border radius."
   },
 
-  "head4": {
+  "head5": {
     "type": "header",
-    "description": "This is an OPEN SOURCE project, if you like it please consider donating! https://cryptocurrencyticker.xyz"
+    "description": "This is an OPEN SOURCE project, if you like it please consider donating!"
   }
 }

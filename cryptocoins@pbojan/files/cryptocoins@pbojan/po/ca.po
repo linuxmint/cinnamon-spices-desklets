@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: cryptocoins@pbojan 1.6\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-05-19 18:58+0200\n"
+"POT-Creation-Date: 2025-11-09 15:34+0100\n"
 "PO-Revision-Date: 2024-05-19 23:56+0200\n"
 "Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
 "Language-Team: \n"
@@ -24,11 +24,11 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #. metadata.json->description
+#, fuzzy
 msgid ""
 "Cryptocurrency Ticker (Desklet) for Cinnamon Desktop that displays the "
 "current price for thousands of cryptocurrencies, and their daily percent "
-"changes. The official website for news and updates about this Cryptocurrency "
-"Ticker: https://cryptocurrencyticker.xyz"
+"changes."
 msgstr ""
 "Miniaplicació d'escriptori del Cinnamon per a mostrar informació de milers "
 "de criptodivises: el preu i percentatge de canvi diari. El web oficial on "
@@ -545,6 +545,58 @@ msgstr ""
 "dels actius que teniu en possessió."
 
 #. settings-schema.json->head3->description
+msgid "Price Change % Options"
+msgstr ""
+
+#. settings-schema.json->percent-change-1h->description
+msgid "Change 1h"
+msgstr ""
+
+#. settings-schema.json->percent-change-1h->tooltip
+msgid "Disable to not see the 1h change in the ticker."
+msgstr ""
+
+#. settings-schema.json->percent-change-24h->description
+msgid "Change 24h"
+msgstr ""
+
+#. settings-schema.json->percent-change-24h->tooltip
+msgid "Disable to not see the 24h change in the ticker."
+msgstr ""
+
+#. settings-schema.json->percent-change-7d->description
+msgid "Change 7d"
+msgstr ""
+
+#. settings-schema.json->percent-change-7d->tooltip
+msgid "Disable to not see the 7d change in the ticker."
+msgstr ""
+
+#. settings-schema.json->percent-change-30d->description
+msgid "Change 30d"
+msgstr ""
+
+#. settings-schema.json->percent-change-30d->tooltip
+msgid "Disable to not see the 30d change in the ticker."
+msgstr ""
+
+#. settings-schema.json->percent-change-60d->description
+msgid "Change 60d"
+msgstr ""
+
+#. settings-schema.json->percent-change-60d->tooltip
+msgid "Disable to not see the 60d change in the ticker."
+msgstr ""
+
+#. settings-schema.json->percent-change-90d->description
+msgid "Change 90d"
+msgstr ""
+
+#. settings-schema.json->percent-change-90d->tooltip
+msgid "Disable to not see the 90d change in the ticker."
+msgstr ""
+
+#. settings-schema.json->head4->description
 msgid "Desklet UI"
 msgstr "Aspecte"
 
@@ -568,10 +620,10 @@ msgstr "Radi de les cantonades del fons"
 msgid "Background Border Radius in px, select 0 to set no border radius."
 msgstr "El radi de les cantonades del fons, en píxels."
 
-#. settings-schema.json->head4->description
+#. settings-schema.json->head5->description
+#, fuzzy
 msgid ""
-"This is an OPEN SOURCE project, if you like it please consider donating! "
-"https://cryptocurrencyticker.xyz"
+"This is an OPEN SOURCE project, if you like it please consider donating!"
 msgstr ""
 "Aquest és un projecte de CODI OBERT. Si us agrada, considereu fer una "
 "donació: https://cryptocurrencyticker.xyz"
