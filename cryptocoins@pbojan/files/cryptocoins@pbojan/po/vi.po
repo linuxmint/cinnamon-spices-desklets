@@ -1,6 +1,6 @@
-# SOME DESCRIPTIVE TITLE.
+# CRYPTOCURRENCY TICKER
 # This file is put in the public domain.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# pbojan, 2018
 #
 #, fuzzy
 msgid ""
@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: cryptocoins@pbojan 1.6\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-05-19 18:58+0200\n"
+"POT-Creation-Date: 2025-11-09 15:34+0100\n"
 "PO-Revision-Date: 2025-10-19 04:26+0700\n"
 "Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
 "Language-Team: \n"
@@ -19,12 +19,16 @@ msgstr ""
 "X-Generator: Poedit 3.4.2\n"
 
 #. metadata.json->description
+#, fuzzy
 msgid ""
 "Cryptocurrency Ticker (Desklet) for Cinnamon Desktop that displays the "
 "current price for thousands of cryptocurrencies, and their daily percent "
-"changes. The official website for news and updates about this Cryptocurrency "
-"Ticker: https://cryptocurrencyticker.xyz"
-msgstr "Cryptocurrency Ticker (Desklet) cho Cinnamon Desktop hiển thị giá hiện tại của hàng nghìn loại tiền điện tử và phần trăm thay đổi hàng ngày của chúng. Trang web chính thức để cập nhật tin tức về Cryptocurrency Ticker này: https://cryptocurrencyticker.xyz"
+"changes."
+msgstr ""
+"Cryptocurrency Ticker (Desklet) cho Cinnamon Desktop hiển thị giá hiện tại "
+"của hàng nghìn loại tiền điện tử và phần trăm thay đổi hàng ngày của chúng. "
+"Trang web chính thức để cập nhật tin tức về Cryptocurrency Ticker này: "
+"https://cryptocurrencyticker.xyz"
 
 #. metadata.json->name
 msgid "Cryptocurrency Ticker"
@@ -46,7 +50,8 @@ msgstr "Khóa API CoinMarketCap của bạn"
 msgid ""
 "If you dont have one you can get it for free at https://pro.coinmarketcap."
 "com."
-msgstr "Nếu bạn chưa có, bạn có thể nhận miễn phí tại https://pro.coinmarketcap.com."
+msgstr ""
+"Nếu bạn chưa có, bạn có thể nhận miễn phí tại https://pro.coinmarketcap.com."
 
 #. settings-schema.json->head2->description
 msgid "Cryptocurrency Options"
@@ -69,7 +74,11 @@ msgid ""
 "In same rare cases the Cryptocurrency Symbol is not unique e.g. BTCV so you "
 "can use the CoinID to specify the exact Cryptocurrency you want to display. "
 "Check the documentation to see how to get the CoinID from coinmarketcap."
-msgstr "Trong một số trường hợp hiếm, ký hiệu tiền điện tử không phải là duy nhất, ví dụ: BTCV, vì vậy bạn có thể sử dụng CoinID để xác định chính xác loại tiền điện tử bạn muốn hiển thị. Kiểm tra tài liệu để xem cách lấy CoinID từ coinmarketcap."
+msgstr ""
+"Trong một số trường hợp hiếm, ký hiệu tiền điện tử không phải là duy nhất, "
+"ví dụ: BTCV, vì vậy bạn có thể sử dụng CoinID để xác định chính xác loại "
+"tiền điện tử bạn muốn hiển thị. Kiểm tra tài liệu để xem cách lấy CoinID từ "
+"coinmarketcap."
 
 #. settings-schema.json->currency->description
 msgid "Select Currency"
@@ -447,7 +456,10 @@ msgstr "Chọn khoảng thời gian làm mới (sử dụng tín dụng API)"
 msgid ""
 "How often to fetch new data for the ticker. Every refresh is one credit per "
 "coin ticker, for more coins recommended value is 30min+."
-msgstr "Tần suất lấy dữ liệu mới cho biểu giá. Mỗi lần làm mới là một tín dụng cho mỗi biểu giá coin, đối với nhiều coin hơn, giá trị khuyến nghị là 30 phút trở lên."
+msgstr ""
+"Tần suất lấy dữ liệu mới cho biểu giá. Mỗi lần làm mới là một tín dụng cho "
+"mỗi biểu giá coin, đối với nhiều coin hơn, giá trị khuyến nghị là 30 phút "
+"trở lên."
 
 #. settings-schema.json->refreshInterval->options
 msgid "5 Minutes"
@@ -521,9 +533,63 @@ msgstr "Giá trị tài sản"
 msgid ""
 "For how much did you buy them? Used to calculate profits. Used together with "
 "Assets Owned field."
-msgstr "Bạn đã mua chúng với giá bao nhiêu? Được sử dụng để tính toán lợi nhuận. Sử dụng cùng với trường Tài sản sở hữu."
+msgstr ""
+"Bạn đã mua chúng với giá bao nhiêu? Được sử dụng để tính toán lợi nhuận. Sử "
+"dụng cùng với trường Tài sản sở hữu."
 
 #. settings-schema.json->head3->description
+msgid "Price Change % Options"
+msgstr ""
+
+#. settings-schema.json->percent-change-1h->description
+msgid "Change 1h"
+msgstr ""
+
+#. settings-schema.json->percent-change-1h->tooltip
+msgid "Disable to not see the 1h change in the ticker."
+msgstr ""
+
+#. settings-schema.json->percent-change-24h->description
+msgid "Change 24h"
+msgstr ""
+
+#. settings-schema.json->percent-change-24h->tooltip
+msgid "Disable to not see the 24h change in the ticker."
+msgstr ""
+
+#. settings-schema.json->percent-change-7d->description
+msgid "Change 7d"
+msgstr ""
+
+#. settings-schema.json->percent-change-7d->tooltip
+msgid "Disable to not see the 7d change in the ticker."
+msgstr ""
+
+#. settings-schema.json->percent-change-30d->description
+msgid "Change 30d"
+msgstr ""
+
+#. settings-schema.json->percent-change-30d->tooltip
+msgid "Disable to not see the 30d change in the ticker."
+msgstr ""
+
+#. settings-schema.json->percent-change-60d->description
+msgid "Change 60d"
+msgstr ""
+
+#. settings-schema.json->percent-change-60d->tooltip
+msgid "Disable to not see the 60d change in the ticker."
+msgstr ""
+
+#. settings-schema.json->percent-change-90d->description
+msgid "Change 90d"
+msgstr ""
+
+#. settings-schema.json->percent-change-90d->tooltip
+msgid "Disable to not see the 90d change in the ticker."
+msgstr ""
+
+#. settings-schema.json->head4->description
 msgid "Desklet UI"
 msgstr "Giao diện Desklet"
 
@@ -547,8 +613,10 @@ msgstr "Bán kính viền nền"
 msgid "Background Border Radius in px, select 0 to set no border radius."
 msgstr "Bán kính viền nền tính bằng px, chọn 0 để không đặt bán kính viền."
 
-#. settings-schema.json->head4->description
+#. settings-schema.json->head5->description
+#, fuzzy
 msgid ""
-"This is an OPEN SOURCE project, if you like it please consider donating! "
+"This is an OPEN SOURCE project, if you like it please consider donating!"
+msgstr ""
+"Đây là một dự án MÃ NGUỒN MỞ, nếu bạn thích nó, hãy cân nhắc quyên góp! "
 "https://cryptocurrencyticker.xyz"
-msgstr "Đây là một dự án MÃ NGUỒN MỞ, nếu bạn thích nó, hãy cân nhắc quyên góp! https://cryptocurrencyticker.xyz"
