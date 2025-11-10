@@ -12,6 +12,7 @@ const Gio = imports.gi.Gio;
 const Gettext = imports.gettext;
 const Pango = imports.gi.Pango;
 const Tooltips = imports.ui.tooltips;
+const PopupMenu = imports.ui.popupMenu;
 
 const UUID = "quicklinks@NotSirius-A";
 const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
@@ -57,8 +58,6 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "link-border-color", "linkBorderColor", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "icon-size", "iconSize", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "font", "fontRaw", this.on_setting_changed);
-		this.settings.bindProperty(Settings.BindingDirection.IN, "font-bold", "fontBold", this.on_setting_changed);
-		this.settings.bindProperty(Settings.BindingDirection.IN, "font-italic", "fontItalic", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "font-enabled", "fontEnabled", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "customTextColor", this.on_setting_changed);
@@ -82,41 +81,95 @@ MyDesklet.prototype = {
 	* Starts desklet, imports links, renders UI 
 	*/
 	runDesklet: function() {
+		this.initializeData();
 
+		// Render desklet gui
+		this.renderGUI();
+
+		this.populateContextMenu();
+
+		// Render system desklet decorations
+		this.renderDecorations();
+	},
+
+	initializeData: function() {
 		this.lastClick = {
 			"link_index": null,
 			"time": Infinity,
 		};
 
 		// MAKE SURE to create a deepcopy of linkList, otherwise you could modify actual desklet settings using this variable
-		let links_list_deepcopy = JSON.parse(JSON.stringify(this.linksList));
-		this.links = this.getLinks(links_list_deepcopy);
+		this.links_list_deepcopy = JSON.parse(JSON.stringify(this.linksList));
+		this.links = this.getLinks(this.links_list_deepcopy);
 		
-		this.font = this.parseFont(this.fontRaw);
-		// Render desklet gui
-		this.renderGUI();
-
-		// Render system desklet decorations
-		this.renderDecorations();
+		this.font = this.parseFontStringToCSS(this.fontRaw);
 	},
 
-	/**
-	* Parse raw font string, TODO improve parsing, detect bold/italic etc.
-	* @param {string} fontString - Font descriptor
-	* @returns {{"family": string, "size": Number}} Font descriptor object
-	*/
-	parseFont: function(fontString) {
-		fontString = fontString.trim();
-		const font_split = fontString.split(" ");
+    /**
+    * Parse raw font string.
+    * @param {string} font_string - Font descriptor string
+    * @returns {{"font-family": string, "font-size": Number, "font-weight": Number, "font-style": string, "font-stretch": string}} Font descriptor object
+    */
+    parseFontStringToCSS: function(font_string) {
+        // Some fonts don't work, so a fallback font is a good idea
+        const fallback_font_str = "Ubuntu Regular 16";
+    
+        // String are passed by reference here
+        // make sure to copy the string to avoid triggering settings callback on change
+        const font_string_copy = font_string.slice().trim();
+        
+        let css_font;
+        try {
+            const my_font_description = Pango.font_description_from_string(font_string_copy);
+            css_font = this._PangoFontDescriptionToCSS(my_font_description);
+        } catch (e) {
+            Main.notifyError(
+                _("Sorry, this font is not supported, please select a different one.") 
+                + _(" Font: `") + font_string_copy + _("` Error: ") 
+                + e.toString()
+            );
 
-		const font_size = parseInt(font_split.pop());
-		let font_family = font_split.join(" ");
+            const fallback_font_description = Pango.font_description_from_string(fallback_font_str);
+            css_font = this._PangoFontDescriptionToCSS(fallback_font_description);
+        } finally {
+            return css_font;
+        }
+        
+    },
 
-		return {
-			"family": font_family,
-			"size": font_size
-		};
-	},
+
+    /**
+    * Process Pango.FontDescription and return valid CSS values
+    * @param {Pango.FontDescription} font_description - Font descriptor
+    * @returns {{"font-family": string, "font-size": Number, "font-weight": Number, "font-style": string, "font-stretch": string}} Font descriptor object
+    */
+    _PangoFontDescriptionToCSS: function(font_description) {
+        const PangoStyle_to_CSS_map = {
+            [Pango.Style.NORMAL]: "normal", 
+            [Pango.Style.OBLIQUE]: "oblique", 
+            [Pango.Style.ITALIC]: "italic", 
+        };
+
+        // font-stretch CSS property seems to be ignored by the CSS renderer
+        const PangoStretch_to_CSS_map = {
+            [Pango.Stretch.ULTRA_CONDENSED]: "ultra-condensed", 
+            [Pango.Stretch.EXTRA_CONDENSED]: "extra-condensed", 
+            [Pango.Stretch.CONDENSED]: "condensed", 
+            [Pango.Stretch.NORMAL]: "normal", 
+            [Pango.Stretch.SEMI_EXPANDED]: "semi-expanded", 
+            [Pango.Stretch.EXPANDED]: "expanded", 
+            [Pango.Stretch.EXTRA_EXPANDED]: "extra-expanded", 
+            [Pango.Stretch.ULTRA_EXPANDED]: "ultra-expanded", 
+        };
+        
+        return {
+            "font-family": font_description.get_family(),
+            "font-size": Math.floor(font_description.get_size() / Pango.SCALE),
+            "font-weight": font_description.get_weight(),
+            "font-style": PangoStyle_to_CSS_map[font_description.get_style()],
+            "font-stretch": PangoStretch_to_CSS_map[font_description.get_stretch()]
+        };
+    },
 
 
 	/**
@@ -161,16 +214,17 @@ MyDesklet.prototype = {
         const desktop_settings = new Gio.Settings({ schema_id: "org.cinnamon.desktop.interface" });
         this.text_scale = desktop_settings.get_double("text-scaling-factor");
 
-		this.font["size"] = this.font["size"] * this.text_scale;
+		this.font["font-size"] = this.font["font-size"] * this.text_scale;
 
-		// For some reason the border is inside the element not outside like normal CSS?? So border needs to be taken into account here
-		const default_link_width = 80 + this.linkBorderWidth*12;
+		const default_link_width = 80;
 
 		// Calculate new sizes based on scale and layout
 		// Multipliers are based on experimentation with what looks good 
 		const width_scale = (this.deskletLayout === "tile")? 0.7 : 1
 		this.scale = this.scaleSize * global.ui_scale * width_scale;
-		this.link_width = default_link_width * this.scale * this.text_scale;
+
+		// For some reason the border is inside the element not outside like normal CSS?? So border needs to be taken into account here
+		this.link_width = default_link_width * this.scale * this.text_scale + this.linkBorderWidth*2;
 
 		const spacing_scale = (this.deskletLayout === "tile")? 2 : 1;
 		const link_row_spacing = this.rowSpacing * this.scale * spacing_scale;
@@ -222,12 +276,13 @@ MyDesklet.prototype = {
 		link_el.set_width(Math.round(this.link_width));
 
 
-		link_el.style = "font-family: '" + this.font["family"] + "';"
-						+ "font-size: " + this.font["size"] + "px;"
+		link_el.style = "font-family: '" + this.font["font-family"] + "';"
+						+ "font-size: " + this.font["font-size"] + "px;"
 						+ "color:" + this.customTextColor + ";"
-						+ "font-weight:" + (this.fontBold ? "bold" : "normal") + ";"
-						+ "font-style:" + (this.fontItalic ? "italic" : "normal") + ";"
-						+ "text-shadow:" + (this.textShadow ? "1px 1px 6px "+this.textShadowColor : "none") + ";"
+						+ "font-weight:" + this.font["font-weight"] + ";"
+						+ "font-style:" + this.font["font-style"] + ";"
+						+ "font-stretch:" + this.font["font-stretch"] + ";"
+						+ "text-shadow:" + (this.textShadow ? "2px 2px 4px "+this.textShadowColor : "none") + ";"
 						+ "background-color:" + (this.isTransparentBg ? "unset" : this.customBgColor) + ";"
 						+ "text-align:" + this.textAlign + ";"
 						+ "border: solid " + this.linkBorderWidth + "px " + this.linkBorderColor + ";";
@@ -265,7 +320,7 @@ MyDesklet.prototype = {
 			if (this.deskletLayout === "tile") {
 				label_width = Math.round(this.link_width * 0.92);
 			} else {
-				label_width = Math.round(this.link_width - global.ui_scale * (this.iconSize*1.1 + this.font["size"]*1.15 + 5))
+				label_width = Math.round(this.link_width - global.ui_scale * (this.iconSize*1.1 + this.font["font-size"]*1.15 + 5) - this.linkBorderWidth*1.1)
 				label_width = Math.max(label_width, 0);
 			}
 			link_label.set_width(label_width);
@@ -369,6 +424,75 @@ MyDesklet.prototype = {
 
 	},
 
+    /**
+    * Add options to context menu
+    */
+	populateContextMenu: function() {
+		let menuItem = new PopupMenu.PopupMenuItem(_("Add new link"));
+		this._menu.addMenuItem(menuItem);
+		menuItem.connect("activate", Lang.bind(this, Lang.bind(this, () => {
+            this.handleAddEditDialog();
+        })));
+	},
+
+    handleAddEditDialog() {
+        try {
+            
+			// Column ids here must match columns ids in the settings
+			const columns = [
+				{"id": "is-visible", "title": "Display", "type": "boolean", "default": true},
+				{"id": "name", "title": "Name", "type": "string", "default": "Name"},
+				{"id": "icon-name", "title": "Icon", "type": "icon", "default": "folder"},
+				{"id": "command", "title": "Command", "type": "string", "default": "nemo /"},
+				{"id": "shell", "title": "Shell", "type": "boolean", "default": true, "align": 0}
+			];
+
+			const [success_, command_argv] = GLib.shell_parse_argv(
+				`python3 ${DESKLET_ROOT}/open_add_edit_dialog_gtk.py '${JSON.stringify(columns).replaceAll("'", "")}'`
+			);
+
+
+            const proc = Gio.Subprocess.new(
+                command_argv,
+                Gio.SubprocessFlags.STDOUT_PIPE
+            );
+
+            // Python script prints the output of the dialog when user accepts it, code here is retrieving this output from the stdout pipe
+            proc.wait_async(null, () => {
+                proc.communicate_utf8_async(null, null, (proc, result) => {
+						
+                    const [is_ok, dialog_output, _] = proc.communicate_utf8_finish(result);
+					let dialog_json;
+					try {
+						dialog_json = JSON.parse(dialog_output);
+					} catch(e) {
+						global.logError(e);
+						return;
+					}
+	
+					// Add a new link when communication was correct and response doesn't have error:true
+                    if (is_ok && (!dialog_json.error || dialog_json.error === undefined)) { 
+
+						try {
+							let new_settings_list = this.links_list_deepcopy.concat(JSON.parse(dialog_output));
+							this.settings.setValue("links-list", new_settings_list);
+							this.initializeData();
+							this.renderGUI();
+						} catch (e) {
+							global.logError(e);
+							return;
+						}
+
+                    }
+                });
+            });    
+                
+        } catch (e) {
+            global.logError(e);
+        } 
+    },
+
+
 	/**
 	* Render desklet decorations
 	*/
@@ -384,7 +508,9 @@ MyDesklet.prototype = {
 	* This function should be used as a callback when settings change
 	*/
 	on_setting_changed: function() {
-		this.runDesklet();
+		this.initializeData();
+		this.renderGUI();
+		this.renderDecorations();
 	},
 
 
@@ -392,7 +518,8 @@ MyDesklet.prototype = {
 	* This function should be used as a callback user clicks a button in the settings
 	*/
 	on_reset_links_callback: function() {
-		this.runDesklet();
+		this.initializeData();
+		this.renderGUI();
 	}
 
 }
