@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: todo@NotSirius-A 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-06-26 19:13+0200\n"
+"POT-Creation-Date: 2025-10-13 15:24+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,18 +16,18 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 
 #. settings-schema.json->todo-page->title
-#. MyToolBar.js:74 desklet.js:238
+#. MyToolBar.js:93 desklet.js:261
 msgid "TODO"
 msgstr "TENNIVALÓ"
 
-#. TODOList.js:263 TODOList.js:311 TODOList.js:365
+#. TODOList.js:306 TODOList.js:375 TODOList.js:435
 msgid "Are you sure you want to remove this task?"
 msgstr "Biztosan eltávolítja ezt a feladatot?"
 
-#. desklet.js:235
+#. desklet.js:258
 msgid "Add new task"
 msgstr "Új feladat hozzáadása"
 
@@ -52,10 +52,9 @@ msgstr "Téma"
 msgid "Add or modify your tasks here"
 msgstr "Itt adhatod hozzá vagy módosíthatod a feladataidat"
 
-#. settings-schema.json->toolbar-preferences-section->title
-#. settings-schema.json->toolbar-theme-section->title
-msgid "Toolbar"
-msgstr "Eszköztár"
+#. settings-schema.json->general-preferences-section->title
+msgid "General"
+msgstr "Általános"
 
 #. settings-schema.json->todo-preferences-section->title
 msgid "TODO list"
@@ -68,6 +67,10 @@ msgstr "Elrendezés"
 #. settings-schema.json->TODO-task-theme-section->title
 msgid "TODO tasks"
 msgstr "TENNIVALÓ feladatok"
+
+#. settings-schema.json->toolbar-theme-section->title
+msgid "Toolbar"
+msgstr "Eszköztár"
 
 #. settings-schema.json->desklet-decorations-section->title
 msgid "Desklet decorations"
@@ -83,25 +86,34 @@ msgid ""
 " - Middle-click to remove\n"
 " - If you want to add more tasks, right-click anywhere on the desklet and "
 "select the `Add new task` option inside the popup menu \n"
+" - Shift+Enter while editing task to place a new line\n"
+" - Ibus/Fcitx input is possible only through the edit button or settings\n"
 "You can find more information about this desklet on its webpage."
 msgstr ""
-"Az asztalkalmazás használata:\n"
-"Feladatokat itt, vagy magával az asztalkalmazással is hozzáadhat/"
-"szerkeszthet:\n"
+"A desklet használata:\n"
+"Feladatokat itt, vagy magával a desklettel is hozzáadhat/szerkeszthet:\n"
 "- Kattintson a bal egérgombbal a feladat nevére a szerkesztéshez\n"
 "- Kattintson a bal egérgombbal a feladat ikonjára a kész/nem kész "
-"megjelöléshez\n"
+"megjelöléséhez\n"
 "- Kattintson a jobb gombbal több feladat kiválasztásához (csak eszköztár "
 "használata esetén releváns)\n"
 "- Kattintson a középső egérgombbal az eltávolításhoz\n"
-"- Ha további feladatokat szeretne hozzáadni, kattintson a jobb gombbal az "
-"asztalkalmazás bármely pontjára, és válassza az „Új feladat hozzáadása” "
-"lehetőséget a felugró menüben.\n"
-"További információkat erről az asztalkalmazásról a weboldalán talál."
+"- Ha további feladatokat szeretne hozzáadni, kattintson jobb gombbal a "
+"desklet bármely pontjára, és válassza az „Új feladat hozzáadása” lehetőséget "
+"a felugró menüben\n"
+"- A feladat szerkesztése közben nyomja meg a Shift+Enter "
+"billentyűkombinációt új sor beszúrásához\n"
+"- Az Ibus/Fcitx bevitel csak a szerkesztőgombon vagy a beállításokon "
+"keresztül lehetséges\n"
+"További információkat erről a deskletről a weboldalán talál."
 
 #. settings-schema.json->todo-list->columns->title
-msgid "Marked done"
-msgstr "Készként megjelölve"
+msgid "Done"
+msgstr "Kész"
+
+#. settings-schema.json->todo-list->columns->title
+msgid "Important"
+msgstr "Fontos"
 
 #. settings-schema.json->todo-list->columns->title
 msgid "Name"
@@ -188,10 +200,6 @@ msgstr "Szöveg színe"
 msgid "Set the task text color."
 msgstr "Állítsa be a feladat szövegének színét."
 
-#. settings-schema.json->scale-size->units
-msgid "scale factor"
-msgstr "méretaránytényező"
-
 #. settings-schema.json->scale-size->description
 msgid "Desklet size, mostly impacts width"
 msgstr "Asztalkalmazás mérete, ami leginkább a szélességet befolyásolja"
@@ -211,17 +219,54 @@ msgid "Select if you want a transparent background."
 msgstr "Válassza ki, ha átlátszó hátteret szeretne."
 
 #. settings-schema.json->task-background->description
-msgid "Task background"
-msgstr "Feladat háttere"
+#. settings-schema.json->toolbar-background->description
+msgid "Background color"
+msgstr "Háttészín"
 
 #. settings-schema.json->task-background->tooltip
 msgid "Set the task background."
 msgstr "Állítsa be a feladat hátterét."
 
-#. settings-schema.json->task-icon-size->units
-#. settings-schema.json->toolbar-icon-size->units
-msgid "pixels"
-msgstr "képpont"
+#. settings-schema.json->task-border-width->description
+msgid "Border width (set to 0 to disable border)"
+msgstr "Szegély szélessége (a szegély letiltásához állítsa 0-ra)"
+
+#. settings-schema.json->task-border-width->tooltip
+msgid "Increase or decrease the task border width."
+msgstr "Növelje vagy csökkentse a feladat szegélyének szélességét."
+
+#. settings-schema.json->task-border-color->description
+#. settings-schema.json->toolbar-border-color->description
+msgid "Border color"
+msgstr "Szegély színe"
+
+#. settings-schema.json->task-border-color->tooltip
+msgid ""
+"Set the task border color (Transparent border will add more padding to "
+"tasks)."
+msgstr ""
+"Állítsa be a feladat szegélyének színét (az átlátszó szegély több kitöltést "
+"ad a feladatokhoz)."
+
+#. settings-schema.json->task-background-important->description
+msgid "Background when marked as important"
+msgstr "Background when marked as important"
+
+#. settings-schema.json->task-background-important->tooltip
+msgid "Set the task background when marked as important."
+msgstr "Beállítja a feladat hátterét, ha fontosként van megjelölve."
+
+#. settings-schema.json->task-border-color-important->description
+msgid "Border color when marked as important"
+msgstr "Szegélyszín fontosként megjelölve"
+
+#. settings-schema.json->task-border-color-important->tooltip
+msgid ""
+"Set the task border color when marked as important (Transparent border will "
+"add more padding to tasks)."
+msgstr ""
+"Beállítja a feladat szegélyének színét, ha a feladat fontosként van "
+"megjelölve (az átlátszó szegély több kitöltést ad a feladatokhoz)."
 
 #. settings-schema.json->task-icon-size->description
 msgid "Task icon size (set to 0 to disable icons)"
@@ -242,28 +287,43 @@ msgid "Icon not marked"
 msgstr "Nincs megjelölve ikon"
 
 #. settings-schema.json->toolbar-icon-size->description
-msgid "Toolbar icon size"
-msgstr "Eszköztár ikon mérete"
+msgid "Icon size"
+msgstr "Ikon mérete"
 
 #. settings-schema.json->toolbar-icon-size->tooltip
 msgid "Increase or decrease the icon size."
 msgstr "Növelje vagy csökkentse az ikon méretét."
-
-#. settings-schema.json->toolbar-background->description
-msgid "Toolbar background"
-msgstr "Eszköztár háttere"
 
 #. settings-schema.json->toolbar-background->tooltip
 msgid "Set the toolbar background."
 msgstr "Eszköztár hátterének beállítása."
 
 #. settings-schema.json->toolbar-font-color->description
-msgid "Toolbar icon color"
-msgstr "Eszköztár ikon színe"
+msgid "Icon color"
+msgstr "Ikon színe"
 
 #. settings-schema.json->toolbar-font-color->tooltip
 msgid "Set the color of toolbar icons."
 msgstr "Az eszköztár ikonjainak színének beállítása."
+
+#. settings-schema.json->toolbar-border-width->description
+msgid "Border width"
+msgstr "Szegély szélessége"
+
+#. settings-schema.json->toolbar-border-width->tooltip
+msgid ""
+"Increase or decrease the toolbar border width (set to 0 to disable border)."
+msgstr ""
+"Növelje vagy csökkentse az eszköztár szegélyének szélességét (a szegély "
+"letiltásához állítsa 0-ra)."
+
+#. settings-schema.json->toolbar-border-color->tooltip
+msgid ""
+"Set the toolbar border color (Transparent border will add more padding to "
+"toolbar)."
+msgstr ""
+"Eszköztár szegélyének színének beállítása (az átlátszó szegély nagyobb "
+"kitöltést ad az eszköztárhoz)."
 
 #. settings-schema.json->desklet-decorations-note->description
 msgid ""
@@ -289,3 +349,47 @@ msgid ""
 msgstr ""
 "Állítsd be az asztalkalmazás fejlécét. Ellenőrizd hogy az asztalkalmazás "
 "fejlécek be vannak-e kapcsolva a rendszerbeállításokban."
+
+#. settings-schema.json->are-toolbar-tooltips-enabled->description
+msgid "Enable toolbar tooltips"
+msgstr "Eszköztár eszköztippek engedélyezése"
+
+#. settings-schema.json->are-toolbar-tooltips-enabled->tooltip
+msgid ""
+"Select if you want tooltips to show up when hovering over toolbar buttons."
+msgstr ""
+"Válassza ki, hogy megjelenjenek-e az eszköztár gombjai fölé vigyük az "
+"egérmutatót, ha eszköztippek jelennek meg."
+
+#. settings-schema.json->are-task-tooltips-enabled->description
+msgid "Enable task tooltips"
+msgstr "Feladat eszköztippek engedélyezése"
+
+#. settings-schema.json->are-task-tooltips-enabled->tooltip
+msgid "Select if you want tooltips to show up when hovering over tasks."
+msgstr ""
+"Válassza ki, hogy megjelenjenek-e az eszköztippek, amikor az egérmutatót a "
+"feladatok fölé viszi."
+
+#. edit_dialog_gtk.ui:7
+msgid "Edit task name"
+msgstr "Feladat nevének szerkesztése"
+
+#. edit_dialog_gtk.ui:74
+msgid "Name:"
+msgstr "Név:"
+
+#~ msgid "Marked done"
+#~ msgstr "Készként megjelölve"
+
+#~ msgid "scale factor"
+#~ msgstr "méretaránytényező"
+
+#~ msgid "Task background"
+#~ msgstr "Feladat háttere"
+
+#~ msgid "pixels"
+#~ msgstr "képpont"
+
+#~ msgid "Toolbar background"
+#~ msgstr "Eszköztár háttere"
