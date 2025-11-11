@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2025-08-22 22:21+0200\n"
-"PO-Revision-Date: 2025-06-21 14:49+0200\n"
+"PO-Revision-Date: 2025-11-11 10:28+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: hu\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.8\n"
 
 #. desklet.js:687
 msgid "Empty quotes list. Open settings and add some symbols."
@@ -558,11 +558,11 @@ msgstr "A változatlan árfolyam színe"
 
 #. settings-schema.json->cacheAuthorizationParameters->description
 msgid "Cache authorization parameters"
-msgstr ""
+msgstr "Gyorsítótár-engedélyezési paraméterek"
 
 #. settings-schema.json->cacheAuthorizationParameters->tooltip
 msgid "Remember fetched authorization parameters for desklet instance"
-msgstr ""
+msgstr "Az asztalkalmazás példány lekért jogosultságparamétereinek megjegyzése"
 
 #. settings-schema.json->sendCustomUserAgent->description
 msgid "Send custom User-Agent header"

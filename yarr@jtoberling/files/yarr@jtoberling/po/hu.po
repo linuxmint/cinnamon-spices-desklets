@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2025-08-21 09:05-0400\n"
-"PO-Revision-Date: 2025-04-11 18:43+0200\n"
+"PO-Revision-Date: 2025-11-11 10:38+0100\n"
 "Last-Translator: Janos Toberling <jtoberling@gmail.com>\n"
 "Language-Team: \n"
 "Language: hu\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.8\n"
 
 #. metadata.json->description
 #. metadata.json->name
@@ -40,9 +40,8 @@ msgstr "MI beállítások"
 
 #. settings-schema.json->page4->title
 #. settings-schema.json->section3->title
-#, fuzzy
 msgid "Debug settings"
-msgstr "Hírforrás beállítások"
+msgstr "Hibakeresési beállítások"
 
 #. settings-schema.json->section1ai->title
 msgid "Display settings for AI feature"
@@ -50,7 +49,7 @@ msgstr "MI beállítások megjelenítése"
 
 #. settings-schema.json->feeds->description
 msgid "Feed settings (supports RSS and Atom)"
-msgstr ""
+msgstr "Hírcsatorna-beállítások (RSS és Atom támogatás)"
 
 #. settings-schema.json->feeds->columns->title
 #. settings-schema.json->listfilter->columns->title
@@ -193,58 +192,67 @@ msgid ""
 "AI-powered article summarization using various language models. Configure "
 "your preferred AI service and summarization behavior."
 msgstr ""
+"Mesterséges intelligencia által vezérelt cikk-összefoglaló különböző nyelvi "
+"modellek használatával. Konfigurálja a kívánt mesterséges intelligencia "
+"által nyújtott szolgáltatást és összefoglaló viselkedést."
 
 #. settings-schema.json->ai_enablesummary->description
 msgid "Enable AI article summarization"
-msgstr ""
+msgstr "Mesterséges intelligencia általi cikkösszefoglaló engedélyezése"
 
 #. settings-schema.json->ai_add_description_to_summary->description
 msgid "Include article description"
-msgstr ""
+msgstr "Cikk leírásának hozzáadása"
 
 #. settings-schema.json->ai_provider->description
 msgid "AI Service Provider"
-msgstr ""
+msgstr "MI-szolgáltató"
 
 #. settings-schema.json->ai_provider->options
 msgid "OpenAI (GPT models)"
-msgstr ""
+msgstr "OpenAI (GPT modellek)"
 
 #. settings-schema.json->ai_provider->options
 msgid "DeepSeek (coding focus)"
-msgstr ""
+msgstr "DeepSeek (kódolásra fókuszálva)"
 
 #. settings-schema.json->ai_provider->options
 msgid "Anthropic (Claude models)"
-msgstr ""
+msgstr "Antropikus (Claude modellek)"
 
 #. settings-schema.json->ai_provider->tooltip
 msgid ""
 "Select your AI service provider. Each provider has different model "
 "capabilities and pricing."
 msgstr ""
+"Válassza ki a mesterséges intelligencia szolgáltatóját. Minden "
+"szolgáltatónak eltérő modelljei és árai vannak."
 
 #. settings-schema.json->ai_use_custom_url->description
 msgid "Override default API endpoint"
-msgstr ""
+msgstr "Alapértelmezett API-végpont felülbírálása"
 
 #. settings-schema.json->ai_use_custom_url->tooltip
 msgid "Enable to use a custom API endpoint instead of the provider's default"
 msgstr ""
+"Egyéni API-végpont használatának engedélyezése a szolgáltató "
+"alapértelmezettje helyett"
 
 #. settings-schema.json->ai_url->description
 msgid "Custom API endpoint"
-msgstr ""
+msgstr "Egyéni API-végpont"
 
 #. settings-schema.json->ai_url->tooltip
 msgid ""
 "Enter the API endpoint URL to override the default provider endpoint (useful "
 "for local models, custom deployments, etc.)"
 msgstr ""
+"Adja meg az API végpont URL-címét az alapértelmezett szolgáltatói végpont "
+"felülírásához (hasznos helyi modellekhez, egyéni telepítésekhez stb.)"
 
 #. settings-schema.json->ai_dumptool->description
 msgid "Content extractor"
-msgstr ""
+msgstr "Tartalomkinyerő"
 
 #. settings-schema.json->ai_dumptool->options
 msgid "w3m"
@@ -263,31 +271,34 @@ msgid ""
 "Tool to extract article content from web pages. Install: apt install w3m (or "
 "lynx/links)"
 msgstr ""
+"Eszköz cikkek tartalmának weboldalakról való kinyeréséhez. Telepítés: apt "
+"install w3m (vagy lynx/links)"
 
 #. settings-schema.json->ai_use_standard_model->description
 msgid "Model selection"
-msgstr ""
+msgstr "Modellválasztás"
 
 #. settings-schema.json->ai_use_standard_model->tooltip
 msgid "Choose from predefined models or enter a custom model name"
 msgstr ""
+"Válasszon az előre meghatározott modellek közül, vagy adjon meg egyéni "
+"modellnevet"
 
 #. settings-schema.json->ai_use_standard_model->options
 msgid "Predefined models"
-msgstr ""
+msgstr "Előre definiált modellek"
 
 #. settings-schema.json->ai_use_standard_model->options
 msgid "Custom model"
-msgstr ""
+msgstr "Egyedi modell"
 
 #. settings-schema.json->ai_model->description
 msgid "Standard model to use"
 msgstr "Használandó szabványos modell"
 
 #. settings-schema.json->ai_model->options
-#, fuzzy
 msgid "gpt-5"
-msgstr "gpt-4"
+msgstr "gpt-5"
 
 #. settings-schema.json->ai_model->options
 msgid "gpt-4o"
@@ -298,9 +309,8 @@ msgid "gpt-4o-mini"
 msgstr "gpt-4o-mini"
 
 #. settings-schema.json->ai_model->options
-#, fuzzy
 msgid "gpt-4-turbo"
-msgstr "gpt-3.5-turbo"
+msgstr "gpt-4-turbo"
 
 #. settings-schema.json->ai_model->options
 msgid "gpt-4"
@@ -311,9 +321,8 @@ msgid "gpt-3.5-turbo"
 msgstr "gpt-3.5-turbo"
 
 #. settings-schema.json->ai_model->options
-#, fuzzy
 msgid "deepseek-chat"
-msgstr "deepseek-coder"
+msgstr "deepseek-chat"
 
 #. settings-schema.json->ai_model->options
 msgid "deepseek-coder"
@@ -324,29 +333,28 @@ msgid "deepseek-coder-v2:latest"
 msgstr "deepseek-coder-v2:latest"
 
 #. settings-schema.json->ai_model->options
-#, fuzzy
 msgid "deepseek-math"
-msgstr "deepseek-coder"
+msgstr "deepseek-math"
 
 #. settings-schema.json->ai_model->options
 msgid "claude-3-5-sonnet"
-msgstr ""
+msgstr "claude-3-5-sonnet"
 
 #. settings-schema.json->ai_model->options
 msgid "claude-3-5-haiku"
-msgstr ""
+msgstr "claude-3-5-haiku"
 
 #. settings-schema.json->ai_model->options
 msgid "claude-3-opus"
-msgstr ""
+msgstr "claude-3-opus"
 
 #. settings-schema.json->ai_model->options
 msgid "claude-3-sonnet"
-msgstr ""
+msgstr "claude-3-sonnet"
 
 #. settings-schema.json->ai_model->options
 msgid "claude-3-haiku"
-msgstr ""
+msgstr "claude-3-haiku"
 
 #. settings-schema.json->ai_model->tooltip
 msgid ""
@@ -356,81 +364,90 @@ msgid ""
 "Claude models via compatible APIs.\n"
 "Select 'Custom' to use your own model name."
 msgstr ""
+"A GPT-5 a legújabb modell (GPT-5 hozzáférést igényel).\n"
+"A GPT-4o modellek kínálják a legjobb teljesítményt/érték arányt.\n"
+"A DeepSeek modellek nagyszerűek kódoláshoz.\n"
+"A Claude modellek kompatibilis API-kon keresztül használhatók.\n"
+"Válassza az „Egyéni” lehetőséget a saját modellnév használatához."
 
 #. settings-schema.json->ai_custom_model->description
 msgid "Custom model name"
-msgstr ""
+msgstr "Egyéni modell neve"
 
 #. settings-schema.json->ai_custom_model->tooltip
 msgid "Enter the exact model name from your AI provider"
-msgstr ""
+msgstr "Add meg a pontos modellnevet az AI-szolgáltatódtól"
 
 #. settings-schema.json->ai_systemprompt->description
-#, fuzzy
 msgid "AI instructions"
-msgstr "MI rendszer utasításai"
+msgstr "MI utasítások"
 
 #. settings-schema.json->ai_systemprompt->tooltip
 msgid "Instructions sent to the AI model before processing each article"
 msgstr ""
+"Az MI-modellnek küldött utasítások minden egyes cikk feldolgozása előtt"
 
 #. settings-schema.json->ai_apikey->description
 msgid "Set API key"
-msgstr ""
+msgstr "API-kulcs beállítása"
 
 #. settings-schema.json->ai_example1->description
 msgid "Concise (4 sentences)"
-msgstr ""
+msgstr "Tömör (4 mondat)"
 
 #. settings-schema.json->ai_example2->description
 msgid "Bullet points"
-msgstr ""
+msgstr "Felsorolásjelek"
 
 #. settings-schema.json->ai_example3->description
 msgid "Technical"
-msgstr ""
+msgstr "Műszaki"
 
 #. settings-schema.json->ai_example4->description
 msgid "Creative"
-msgstr ""
+msgstr "Kretív"
 
 #. settings-schema.json->ai_example5->description
 msgid "Professional"
-msgstr ""
+msgstr "Professzionális"
 
 #. settings-schema.json->ai_example6->description
 msgid "Minimal"
-msgstr ""
+msgstr "Minimális"
 
 #. settings-schema.json->refreshsettingsbutton->description
 msgid "Refresh settings"
 msgstr "Beállítások firssítése"
 
 #. settings-schema.json->refreshsettingsbutton->tooltip
-#, fuzzy
 msgid "Press this button to reload settings and update display immediately"
-msgstr "Nyomja meg ezt a gombot a beállítások újratöltéséhez"
+msgstr ""
+"Nyomja meg ezt a gombot a beállítások újratöltéséhez és a kijelző azonnali "
+"frissítéséhez"
 
 #. settings-schema.json->refreshFeedsButton->description
-#, fuzzy
 msgid "Refresh RSS Feeds"
-msgstr "Beállítások firssítése"
+msgstr "RSS-hírcsatornák frissítése"
 
 #. settings-schema.json->refreshFeedsButton->tooltip
 msgid ""
 "Press this button to immediately refresh all RSS feeds and download new "
 "articles"
 msgstr ""
+"Nyomja meg ezt a gombot az összes RSS-hírcsatorna azonnali frissítéséhez és "
+"az új cikkek letöltéséhez"
 
 #. settings-schema.json->searchRssButton->description
 msgid "Search for RSS & Atom feeds"
-msgstr ""
+msgstr "RSS és Atom hírcsatornák keresése"
 
 #. settings-schema.json->searchRssButton->tooltip
 msgid ""
 "Search for RSS and Atom feeds from a website URL. Automatically detects both "
 "feed formats."
 msgstr ""
+"RSS és Atom hírcsatornák keresése egy webhely URL-címéről. Automatikusan "
+"felismeri mindkét hírcsatorna-formátumot."
 
 #. settings-schema.json->enablecopy->description
 msgid "Enable Copy to clipboard button"
@@ -478,53 +495,59 @@ msgstr ""
 
 #. settings-schema.json->showRefreshSeparators->description
 msgid "Show refresh separators between articles"
-msgstr ""
+msgstr "Frissítési elválasztók megjelenítése a cikkek között"
 
 #. settings-schema.json->showRefreshSeparators->tooltip
 msgid ""
 "Shows separator lines with timestamps between articles from different "
 "refresh batches"
 msgstr ""
+"Időbélyegekkel ellátott elválasztó vonalakat jelenít meg a különböző "
+"frissítési kötegekből származó cikkek között"
 
 #. settings-schema.json->enableDebugLogs->description
 msgid "Enable debug logs"
-msgstr ""
+msgstr "Hibakeresési naplók engedélyezése"
 
 #. settings-schema.json->enableDebugLogs->tooltip
 msgid ""
 "When enabled, detailed debug information will be logged to the system logs. "
 "Only enable when troubleshooting issues."
 msgstr ""
+"Engedélyezés esetén a részletes hibakeresési információk naplózódnak a "
+"rendszernaplókban. Csak hibák elhárításakor engedélyezze."
 
 #. settings-schema.json->debugVerbosity->description
 msgid "Debug verbosity level"
-msgstr ""
+msgstr "Hibakeresési részletességi szint"
 
 #. settings-schema.json->debugVerbosity->options
 msgid "minimal"
-msgstr ""
+msgstr "minimális"
 
 #. settings-schema.json->debugVerbosity->options
 msgid "basic"
-msgstr ""
+msgstr "alap"
 
 #. settings-schema.json->debugVerbosity->options
 msgid "verbose"
-msgstr ""
+msgstr "bőbeszédű"
 
 #. settings-schema.json->debugVerbosity->tooltip
 msgid "Control how much debug information is logged"
-msgstr ""
+msgstr "A hibakeresési információk naplózásának szabályozása"
 
 #. settings-schema.json->databasePath->description
 msgid "Database base directory"
-msgstr ""
+msgstr "Adatbázis alapkönyvtár"
 
 #. settings-schema.json->databasePath->tooltip
 msgid ""
 "Base directory where separate Yarr databases are stored (yarr_favorites.db, "
 "yarr_read_status.db, etc.)"
 msgstr ""
+"Az alapkönyvtár, ahol a különálló Yarr adatbázisok tárolódnak "
+"(yarr_favorites.db, yarr_read_status.db stb.)"
 
 #. settings-schema.json->databaseInfo->description
 msgid ""
@@ -533,53 +556,62 @@ msgid ""
 "yarr_article_cache.db, yarr_feed_button_states.db, yarr_refresh.db, "
 "yarr_readstatus.db"
 msgstr ""
+"A Yarr külön adatbázisokat használ a különböző adattípusokhoz. Az "
+"adatbázisnevek rögzítettek és nem módosíthatók: yarr_favorites.db, "
+"yarr_read_status.db, yarr_article_cache.db, yarr_feed_button_states.db, "
+"yarr_refresh.db, yarr_readstatus.db"
 
 #. settings-schema.json->showReadStatusCheckbox->description
 msgid "Show read status checkbox"
-msgstr ""
+msgstr "Olvasási állapot jelölőnégyzet megjelenítése"
 
 #. settings-schema.json->dimReadTitles->description
 msgid "Dim read article titles"
-msgstr ""
+msgstr "Dim cikkcímeket olvas"
 
 #. settings-schema.json->dimReadTitles->tooltip
 msgid ""
 "When enabled, read titles are slightly dimmed for better visual distinction"
 msgstr ""
+"Ha engedélyezve van, az olvasott címek kissé halványan jelennek meg a jobb "
+"vizuális megkülönböztetés érdekében."
 
 #. settings-schema.json->readTitleColor->description
 msgid "Color for read article titles"
-msgstr ""
+msgstr "Az olvasott cikkek címének színe"
 
 #. settings-schema.json->readTitleColor->tooltip
 msgid "Choose a color applied to read titles"
-msgstr ""
+msgstr "Válasszon színt a címek felolvasásához"
 
 #. settings-schema.json->enableHeaderFeedButtons->description
-#, fuzzy
 msgid "Enable header feed buttons"
-msgstr "Cikkcsatorna gomb elrejtése."
+msgstr "Fejléc hírfolyam gombjainak engedélyezése"
 
 #. settings-schema.json->enableHeaderFeedButtons->tooltip
 msgid ""
 "Show toggleable feed buttons below the header to control which feeds are "
 "displayed in the article list"
 msgstr ""
+"A fejléc alatt megjeleníthető hírfolyam-gombok segítségével szabályozhatja, "
+"hogy mely hírfolyamok jelenjenek meg a cikklistában."
 
 #. settings-schema.json->openLookingGlass->description
 msgid "Open Looking Glass"
-msgstr ""
+msgstr "Looking Glass megnyitása"
 
 #. settings-schema.json->openLookingGlass->tooltip
 msgid ""
 "Opens Cinnamon's Looking Glass debugger to inspect the desklet's JavaScript "
 "context"
 msgstr ""
+"Megnyitja a Cinnamon Looking Glass hibakeresőjét a desklet JavaScript "
+"kontextusának vizsgálatához."
 
 #. settings-schema.json->restartDesklet->description
 msgid "Restart desklet"
-msgstr ""
+msgstr "Asztalkalmazás újraindítása"
 
 #. settings-schema.json->restartDesklet->tooltip
 msgid "Restarts the desklet to reload all code and settings"
-msgstr ""
+msgstr "Újraindítja az asztalkalmazást az összes kód és beállítás betöltéséhez"
