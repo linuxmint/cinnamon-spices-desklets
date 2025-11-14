@@ -1,238 +1,96 @@
-# Translation for simple-system-monitor@ariel.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: timelet@linuxedo.com 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-05-07 06:24-0400\n"
-"PO-Revision-Date: 2023-09-03 14:08-0400\n"
-"Last-Translator: Peyu Yovev <spacy00001@gmail.com>\n"
+"POT-Creation-Date: 2024-05-18 00:10+0200\n"
+"PO-Revision-Date: 2025-11-13 21:57+0200\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.1\n"
-
-#: 4.0/desklet.js:35 5.8/desklet.js:43
-msgid ""
-"Dependencies missing. Please install \n"
-"libgtop \n"
-"\t    on Ubuntu: gir1.2-gtop-2.0 \n"
-"\t    on Fedora: libgtop2-devel \n"
-"\t    on Arch: libgtop \n"
-"and restart Cinnamon.\n"
-msgstr ""
-"Липсват зависимости. Моля инсталирайте \n"
-"libgtop, Network Manager и gir bindings \n"
-"\t    за Ubuntu: gir1.2-gtop-2.0, gir1.2-networkmanager-1.0 \n"
-"\t    за Fedora: libgtop2-devel, NetworkManager-glib-devel \n"
-"\t   за Arch: libgtop, networkmanager\n"
-"и рестартирайте Cinnamon.\n"
-
-#: 4.0/desklet.js:236 5.8/desklet.js:298 3.0/desklet.js:238
-msgid "CPU:"
-msgstr "ЦПУ:"
-
-#: 4.0/desklet.js:237 5.8/desklet.js:300 3.0/desklet.js:239
-msgid "Memory:"
-msgstr "Памет:"
-
-#: 4.0/desklet.js:238 5.8/desklet.js:302 3.0/desklet.js:240
-msgid "Download:"
-msgstr "Сваляне:"
-
-#: 4.0/desklet.js:239 5.8/desklet.js:304 3.0/desklet.js:241
-msgid "Upload:"
-msgstr "Качване:"
-
-#: 4.0/desklet.js:240 5.8/desklet.js:306 3.0/desklet.js:242
-msgid "Temperature:"
-msgstr "Температура:"
-
-#: 4.0/desklet.js:241 5.8/desklet.js:333 3.0/desklet.js:243
-msgid "GPU:"
-msgstr ""
-
-#: 5.8/desklet.js:112
-msgid "No temp file detected at CPU path. Resetting to default."
-msgstr ""
-
-#: 5.8/desklet.js:116
-msgid "Invalid CPU path detected. Resetting to default."
-msgstr ""
-
-#: 5.8/desklet.js:131 5.8/desklet.js:172
-msgid "error reading:"
-msgstr ""
-
-#: 5.8/desklet.js:153
-msgid "No temp file detected at GPU path. Resetting to default."
-msgstr ""
-
-#: 5.8/desklet.js:157
-msgid "Invalid GPU path detected. Resetting to default."
-msgstr ""
-
-#: 5.8/desklet.js:212 5.8/desklet.js:230
-msgid "Please install missing dependencies."
-msgstr ""
-
-#: 3.0/desklet.js:37
-msgid ""
-"Dependencies missing. Please install \n"
-"libgtop, Network Manager and gir bindings \n"
-"\t    on Ubuntu: gir1.2-gtop-2.0, gir1.2-networkmanager-1.0 \n"
-"\t    on Fedora: libgtop2-devel, NetworkManager-glib-devel \n"
-"\t    on Arch: libgtop, networkmanager\n"
-"and restart Cinnamon.\n"
-msgstr ""
-"Липсват зависимости. Моля инсталирайте \n"
-"libgtop, Network Manager и gir bindings \n"
-"\t    за Ubuntu: gir1.2-gtop-2.0, gir1.2-networkmanager-1.0 \n"
-"\t    за Fedora: libgtop2-devel, NetworkManager-glib-devel \n"
-"\t   за Arch: libgtop, networkmanager\n"
-"и рестартирайте Cinnamon.\n"
-
-#. metadata.json->description
-msgid "Shows some system status values"
-msgstr "Показва някои системни статистики"
+"X-Generator: Poedit 3.4.2\n"
 
 #. metadata.json->name
-msgid "Simple System Monitor"
-msgstr "Семпъл системен монитор"
+#: desklet.js:50
+msgid "Timelet"
+msgstr "Timelet"
 
-#. 5.8->settings-schema.json->head0->description
-msgid "General Settings"
-msgstr ""
+#: themes/theme.js:143
+msgid "AM"
+msgstr "Предиобед"
 
-#. 5.8->settings-schema.json->title_align->description
-msgid "Alignment for title strings"
-msgstr ""
+#: themes/theme.js:145
+msgid "Noon"
+msgstr "Обед"
 
-#. 5.8->settings-schema.json->title_align->tooltip
-msgid "CPU, Memory, etc."
-msgstr ""
+#: themes/theme.js:147
+msgid "PM"
+msgstr "Следобед"
 
-#. 5.8->settings-schema.json->title_align->options
-#. 5.8->settings-schema.json->value_align->options
-msgid "Left"
-msgstr ""
+#. metadata.json->description
+msgid "A themeable desklet that shows the time"
+msgstr "Десклет за часа с поддръжка на теми"
 
-#. 5.8->settings-schema.json->title_align->options
-#. 5.8->settings-schema.json->value_align->options
-msgid "Right"
-msgstr ""
+#. settings-schema.json->head0->description
+msgid "Timelet Settings"
+msgstr "Настройки на Timelet"
 
-#. 5.8->settings-schema.json->value_align->description
-msgid "Alignment for value strings"
-msgstr ""
+#. settings-schema.json->themeName->description
+msgid "Theme"
+msgstr "Тема"
 
-#. 5.8->settings-schema.json->value_align->tooltip
-msgid "GB, KB, etc."
-msgstr ""
+#. settings-schema.json->use24H->description
+msgid "Use 24H"
+msgstr "Използвай 24-часов"
 
-#. 5.8->settings-schema.json->temp_units->options
-msgid "°C"
-msgstr ""
+#. settings-schema.json->use24H->tooltip
+msgid "Display time in 24H"
+msgstr "Покажи във вид на 24 часа"
 
-#. 5.8->settings-schema.json->temp_units->options
-msgid "°F"
-msgstr ""
+#. settings-schema.json->textColor->description
+msgid "Text color"
+msgstr "Цвят на текста"
 
-#. 5.8->settings-schema.json->temp_units->description
-msgid "Temperature units to display"
-msgstr ""
+#. settings-schema.json->textColor->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Натиснете бутона за да изберете цвят за текста"
 
-#. 5.8->settings-schema.json->font_scale_size->description
-msgid "Scale factor for font size"
-msgstr ""
-
-#. 5.8->settings-schema.json->font_scale_size->tooltip
-msgid ""
-"Increase or decrease this value to change the font size scale (1.2 = 120%)"
-msgstr ""
-
-#. 5.8->settings-schema.json->font_color->description
-msgid "Font color"
-msgstr ""
-
-#. 5.8->settings-schema.json->font_color->tooltip
-#. 5.8->settings-schema.json->background_color->tooltip
-msgid "RGB or RGBA"
-msgstr ""
-
-#. 5.8->settings-schema.json->font_family->description
-msgid "Font family for text (blank to use default)"
-msgstr ""
-
-#. 5.8->settings-schema.json->font_family->tooltip
-msgid "Set a custom font family for the text (blank to use default font)"
-msgstr ""
-
-#. 5.8->settings-schema.json->width->units
-msgid "px"
-msgstr ""
-
-#. 5.8->settings-schema.json->width->description
-msgid "Fixed width for the desklet"
-msgstr ""
-
-#. 5.8->settings-schema.json->width->tooltip
-msgid ""
-"Increase or decrease this value to set the boundary width of the desklet"
-msgstr ""
-
-#. 5.8->settings-schema.json->show_decorations->description
-msgid "Show background decorations"
-msgstr ""
-
-#. 5.8->settings-schema.json->show_decorations->tooltip
-msgid "Toggle to control whether the background is transparent"
-msgstr ""
-
-#. 5.8->settings-schema.json->background_color->description
+#. settings-schema.json->bgColor->description
 msgid "Background color"
-msgstr ""
+msgstr "Фонов цвят"
 
-#. 5.8->settings-schema.json->head1->description
-msgid "Advanced Settings"
-msgstr ""
+#. settings-schema.json->bgColor->tooltip
+msgid "Click the button to select a new background color"
+msgstr "Натиснете бутона за да изберете фонов цвят"
 
-#. 5.8->settings-schema.json->customCPUPath->description
-msgid "Path to CPU temperature directory (device path)"
-msgstr ""
+#. settings-schema.json->scale->description
+msgid "Scale"
+msgstr "Размер"
 
-#. 5.8->settings-schema.json->customCPUPath->tooltip
-msgid ""
-"Choose your own thermal CPU object e.g. for monitoring another temperature "
-"sensor.\n"
-"\n"
-"Default:\n"
-"/sys/class/thermal/thermal_zone0"
-msgstr ""
+#. settings-schema.json->scale->tooltip
+msgid "Change the size of the desklet"
+msgstr "Променете размера на десклета"
 
-#. 5.8->settings-schema.json->display_gpu->description
-msgid "Display GPU temperature"
-msgstr ""
+#. settings-schema.json->transparency->description
+msgid "Background Transparency"
+msgstr "Прозрачност на фона"
 
-#. 5.8->settings-schema.json->display_gpu->tooltip
-msgid "Toggle to control whether the GPU temperature is displayed"
-msgstr ""
+#. settings-schema.json->transparency->tooltip
+msgid "Set the transparency of the desklet"
+msgstr "Настройте прозрачността на десклета"
 
-#. 5.8->settings-schema.json->customGPUPath->description
-msgid "Path to GPU temperature directory (device path)"
-msgstr ""
+#. settings-schema.json->cornerRadius->description
+msgid "Background Corner radius"
+msgstr "Радиус на ъглите на фона"
 
-#. 5.8->settings-schema.json->customGPUPath->tooltip
-msgid ""
-"Choose your own thermal GPU object e.g. for monitoring a GPU.\n"
-"\n"
-"Default:\n"
-"/sys/class/thermal/thermal_zone0"
-msgstr ""
+#. settings-schema.json->cornerRadius->tooltip
+msgid "Radius for rounding the desklet's corners"
+msgstr "Радиус на ъгъла на заобляне на десклета"
