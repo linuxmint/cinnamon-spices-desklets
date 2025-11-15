@@ -1,3 +1,13 @@
+### 0.18.0 - November 16, 2025
+
+Refactoring:
+
+- extract utilities to separate module
+- extract constants to separate module
+- extract logging functionality to separate module
+- extract quote reading functionality to separate module
+- extract soup resolver functionality to separate module
+
 ### 0.17.1 - August 22, 2025
 
 Bugfixes:
