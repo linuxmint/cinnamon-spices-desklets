@@ -1,8 +1,8 @@
 {
     "max-instances": "10",
-    "description": "Customizable quick links panel. Allows you to create beautiful themed desktop shortcuts for your most used folders/commands.",
-    "name": "Quick Links",
-    "version": "1.2",
+    "description": "Customizable quick links launcher panel. Allows you to create beautiful themed desktop shortcuts for your most used folders/commands.",
+    "name": "Quick Links - Launcher",
+    "version": "1.3",
     "uuid": "quicklinks@NotSirius-A",
     "author": "NotSirius-A"
 }
