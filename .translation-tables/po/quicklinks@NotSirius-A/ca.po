@@ -1,0 +1,398 @@
+# QUICK LINKS
+# This file is put in the public domain.
+# NotSirius-A, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: quicklinks@NotSirius-A 1.1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-10-14 20:05+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+
+#. desklet.js:135
+msgid ""
+"No visible\n"
+"links found.\n"
+"Configure links\n"
+"in the settings.\n"
+"Right click\n"
+"on desklet\n"
+"then configure."
+msgstr ""
+"No s'han trobat\n"
+"enllaços visibles.\n"
+"Configureu-los\n"
+"a les opcions.\n"
+"Feu clic dret\n"
+"al widget\n"
+"i configureu-los."
+
+#. desklet.js:355
+msgid "Quick Links: Command parse error: "
+msgstr "Enllaços ràpids: Error en interpretar l'ordre: "
+
+#. metadata.json->description
+msgid ""
+"Customizable quick links panel. Allows you to create beautiful themed "
+"desktop shortcuts for your most used folders/commands."
+msgstr ""
+"Tauler personalitzable d'enllaços ràpids. Us permet crear accessos directes "
+"temàtics a l'escriptori per a les vostres carpetes o ordres més utilitzades."
+
+#. metadata.json->name
+msgid "Quick Links"
+msgstr "Enllaços Ràpids"
+
+#. settings-schema.json->links-page->title
+msgid "Links"
+msgstr "Enllaços"
+
+#. settings-schema.json->preferences-page->title
+msgid "Preferences"
+msgstr ""
+
+#. settings-schema.json->theme-page->title
+msgid "Theme"
+msgstr "Tema"
+
+#. settings-schema.json->links-section->title
+msgid "Set up your links here"
+msgstr "Configureu els vostres enllaços aquí"
+
+#. settings-schema.json->iconselect-section->title
+msgid "Find icon names here"
+msgstr "Trobeu noms d'icones aquí"
+
+#. settings-schema.json->general-section->title
+msgid "General"
+msgstr ""
+
+#. settings-schema.json->layout-section->title
+msgid "Layout"
+msgstr "Disposició"
+
+#. settings-schema.json->font-section->title
+msgid "Font"
+msgstr "Font"
+
+#. settings-schema.json->desklet-decorations-section->title
+msgid "Desklet decorations"
+msgstr "Decoracions de la miniaplicació d'escriptori"
+
+#. settings-schema.json->links-top-label->description
+msgid ""
+"Each link has 5 attributes you can change:\n"
+" - Display: determines whether your link will be shown or not \n"
+" - Name that will be displayed\n"
+" - Icon name: you can choose any system icon or leave blank\n"
+" - Command to be executed when clicked\n"
+" - Shell: select if you want the terminal to show up after clicking"
+msgstr ""
+"Cada enllaç té 5 atributs que podeu canviar:\n"
+"- Mostra: determina si l'enllaç es mostrarà o no\n"
+"- Nom que serà mostrat\n"
+"- Nom de la icona: pot ser una icona del sistema o buit\n"
+"- Ordre a executar en clicar l'enllaç\n"
+"- Shell: seleccioneu si voleu que aparegui un terminal en clicar"
+
+#. settings-schema.json->links-bottom-label->description
+msgid ""
+"Some tips:\n"
+"You can open folders using ex. `nemo <path>` command.\n"
+"If you need to see the output of a command, set the last attribute to true.\n"
+"You can break your links' names into multiple lines by typing \\n where you "
+"want a break.\n"
+"Set `Shell` to enabled if your command only outputs to the console ex. `ls` "
+"or `htop`.\n"
+"If you want multiple link categories/panels just create new instances of "
+"this desklet\n"
+" (click the `+` sign in system desklet manager)."
+msgstr ""
+"Consells:\n"
+"Podeu obrir carpetes utilitzant l'ordre `nemo <ruta>`.\n"
+"Si necessiteu veure la sortida d'una ordre, assigneu true a l'últim "
+"atribut.\n"
+"Podeu trencar els noms dels vostres enllaços separant múltiples línies "
+"escrivint \\n on vulgueu un salt.\n"
+"Assigneu 'Shell' com a activat si la vostra ordre només s'executa en un "
+"terminal, com ara `ls` o `htop`.\n"
+"Si voleu múltiples taulers o categories d'enllaços, creeu noves instàncies "
+"d'aquesta miniaplicació\n"
+"(feu clic al símbol `+` al gestor de miniaplicacions d'escriptori)."
+
+#. settings-schema.json->links-list->columns->title
+msgid "Display"
+msgstr "Mostrar"
+
+#. settings-schema.json->links-list->columns->title
+msgid "Name"
+msgstr "Nom"
+
+#. settings-schema.json->links-list->columns->title
+msgid "Icon name"
+msgstr "Nom de la icona"
+
+#. settings-schema.json->links-list->columns->title
+msgid "Command"
+msgstr "Ordre"
+
+#. settings-schema.json->links-list->columns->title
+msgid "Shell"
+msgstr "Shell"
+
+#. settings-schema.json->link-update-button->description
+msgid "Update"
+msgstr "Actualitzar"
+
+#. settings-schema.json->icon-picker-label->description
+msgid ""
+"The setting below does not impact the desklet. It's here for convenience.\n"
+"You can browse through icons here and find their names easily."
+msgstr ""
+"La opció de sota no afecta a la miniaplicació. És aquí per conveniència.\n"
+"Podeu navegar a través de les icones i trobar-ne el nom fàcilment."
+
+#. settings-schema.json->icon-picker->description
+msgid "Click the icon to browse"
+msgstr "Feu clic per a navegar"
+
+#. settings-schema.json->icon-picker->tooltip
+msgid ""
+"Click the icon on the right to browse. This setting is not used anywhere. "
+msgstr ""
+"Feu clic a la icona de la dreta per a navegar. Aquesta opció no s'usa "
+"enlloc. "
+
+#. settings-schema.json->click-type->description
+msgid "Click type"
+msgstr "Tipus de clic"
+
+#. settings-schema.json->click-type->options
+msgid "Single click"
+msgstr "Un sol clic"
+
+#. settings-schema.json->click-type->options
+msgid "Double click"
+msgstr "Doble clic"
+
+#. settings-schema.json->click-type->tooltip
+msgid "Choose how you want to active your links."
+msgstr "Trieu com voleu activar els vostres enllaços."
+
+#. settings-schema.json->click-timeout->description
+msgid "Double-click timeout"
+msgstr "Finestra de temps del doble clic"
+
+#. settings-schema.json->click-timeout->tooltip
+msgid "Set the maximum time between clicks in double-click."
+msgstr "Assigneu el temps màxim entre clics per a fer efectiu el doble clic."
+
+#. settings-schema.json->desklet-layout->description
+msgid ""
+"Choose how links should be laid out.\n"
+"(You might also want to change text alignment.)"
+msgstr ""
+"Trieu com s'han de mostrar els enllaços.\n"
+"(Potser també voleu canviar l'alineació del text.)"
+
+#. settings-schema.json->desklet-layout->options
+msgid "List view"
+msgstr "Vista de llista"
+
+#. settings-schema.json->desklet-layout->options
+msgid "Tile view"
+msgstr "Vista de caselles"
+
+#. settings-schema.json->desklet-layout->tooltip
+msgid "Pick a layout for this desklet."
+msgstr "Trieu una disposició per a la miniaplicació."
+
+#. settings-schema.json->text-align->description
+msgid "Text alignment"
+msgstr "Alineació del text"
+
+#. settings-schema.json->text-align->options
+msgid "Left"
+msgstr "Esquerra"
+
+#. settings-schema.json->text-align->options
+msgid "Center"
+msgstr "Centre"
+
+#. settings-schema.json->text-align->options
+msgid "Right"
+msgstr "Dreta"
+
+#. settings-schema.json->column-number->description
+msgid "Number of columns"
+msgstr "Número de columnes"
+
+#. settings-schema.json->column-number->tooltip
+msgid "Increase or decrease the number of columns on the layout."
+msgstr "Augmenteu o reduïu el número de columnes de la disposició."
+
+#. settings-schema.json->row-spacing->description
+msgid "Row spacing"
+msgstr ""
+
+#. settings-schema.json->row-spacing->tooltip
+msgid "Change how far apart are link rows."
+msgstr ""
+
+#. settings-schema.json->column-spacing->description
+msgid "Column spacing"
+msgstr ""
+
+#. settings-schema.json->column-spacing->tooltip
+msgid "Change how far apart are link columns."
+msgstr ""
+
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr "Ombrejat del text"
+
+#. settings-schema.json->text-shadow-color->description
+msgid "Text shadow color"
+msgstr "Color de l'ombrejat del text"
+
+#. settings-schema.json->transparent-bg->description
+msgid "Transparent background (works well with no decorations)"
+msgstr "Fons transparent (funciona bé sense decoracions)"
+
+#. settings-schema.json->transparent-bg->tooltip
+msgid "Select if you want a transparent background."
+msgstr "Seleccioneu si voleu un fons transparent."
+
+#. settings-schema.json->bg-color->description
+msgid "Link background color"
+msgstr "Color de fons de l'enllaç"
+
+#. settings-schema.json->bg-color->tooltip
+msgid "Set the color of the links background."
+msgstr "Assigneu el color de fons de l'enllaç."
+
+#. settings-schema.json->show-decorations->description
+msgid "Show desklet decorations"
+msgstr "Mostrar les decoracions de la miniaplicació"
+
+#. settings-schema.json->icon-size->units
+msgid "pixels"
+msgstr "píxels"
+
+#. settings-schema.json->icon-size->description
+msgid "Icon size (set to 0 do disable icons)"
+msgstr "Mida de la icona (0 per a desactivar icones)"
+
+#. settings-schema.json->icon-size->tooltip
+msgid "Increase or decrease the icon size (set to 0 to disable icons)."
+msgstr "Augmenteu o reduïu la mida de les icones (0 per a desactivar)."
+
+#. settings-schema.json->font-enabled->description
+msgid "Display text"
+msgstr "Text a mostrar"
+
+#. settings-schema.json->font->description
+msgid "Font name (choose regular versions)"
+msgstr "Nom de la font (trieu versions regulars)"
+
+#. settings-schema.json->font->tooltip
+msgid "Change font family"
+msgstr "Canviar la família de fonts"
+
+#. settings-schema.json->font-bold->description
+msgid "Bold"
+msgstr "Negreta"
+
+#. settings-schema.json->font-italic->description
+msgid "Italic"
+msgstr "Cursiva"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Color del text"
+
+#. settings-schema.json->text-color->tooltip
+msgid "Set the text color of this desklet."
+msgstr "Assigneu el color del text d'aquesta miniaplicació."
+
+#. settings-schema.json->link-border-width->description
+#, fuzzy
+msgid "Border width (set to 0 to disable border)"
+msgstr "Mida de la icona (0 per a desactivar icones)"
+
+#. settings-schema.json->link-border-width->tooltip
+#, fuzzy
+msgid "Increase or decrease the link border width."
+msgstr "Augmenteu o reduïu el número de columnes de la disposició."
+
+#. settings-schema.json->link-border-color->description
+#, fuzzy
+msgid "Border color"
+msgstr "Color del text"
+
+#. settings-schema.json->link-border-color->tooltip
+msgid ""
+"Set the link border color (Transparent border will add more padding to "
+"links)."
+msgstr ""
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "Factor d'escalat"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size, mostly impacts width"
+msgstr "Mida de la miniaplicació. Afecta especialment a l'amplada."
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Augmenteu o reduïu la mida d'aquesta miniaplicació utilitzant el factor "
+"d'escalat."
+
+#. settings-schema.json->desklet-decorations-note->description
+msgid ""
+"Following settings require desklet decorations to be enabled on your "
+"system.\n"
+"Desklet preferences are located in System Settings > Desklets > General "
+"Settings tab; there you will be able to enable border/header decorations."
+msgstr ""
+"Les opcions següents requereixen tenir les decoracions de miniaplicacions "
+"activades al vostre sistema.\n"
+"Els ajusts de miniaplicacions són a Sistema > Miniaplicacions > Opcions "
+"generals; allí és on podreu activar-hi els elements decoratius."
+
+#. settings-schema.json->desklet-header->description
+msgid "Desklet header"
+msgstr "Capçalera de la miniaplicació"
+
+#. settings-schema.json->desklet-header->tooltip
+msgid ""
+"Set your desklet header. Make sure desklet headers are enabled in system "
+"settings."
+msgstr ""
+"Assigneu la capçalera de la miniaplicació. La opció ha d'estar activada a "
+"les opcions del sistema."
+
+#. settings-schema.json->are-tooltips-enabled->description
+msgid "Enable link tooltips"
+msgstr ""
+
+#. settings-schema.json->are-tooltips-enabled->tooltip
+msgid "Select if you want tooltips to show up when hovering over links."
+msgstr ""
+
+#~ msgid "Actions"
+#~ msgstr "Accions"
+
+#~ msgid "Change how links are activated"
+#~ msgstr "Canvieu com s'activaran els enllaços"

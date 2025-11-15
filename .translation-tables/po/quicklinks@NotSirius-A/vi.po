@@ -1,0 +1,350 @@
+# QUICK LINKS
+# This file is put in the public domain.
+# NotSirius-A, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: quicklinks@NotSirius-A 1.2\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-10-14 20:05+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
+"Language-Team: \n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. desklet.js:135
+msgid ""
+"No visible\n"
+"links found.\n"
+"Configure links\n"
+"in the settings.\n"
+"Right click\n"
+"on desklet\n"
+"then configure."
+msgstr "Không tìm thấy\nliên kết hiển thị.\nCấu hình liên kết\ntrong cài đặt.\nNhấp chuột phải\ntrên desklet\nsau đó cấu hình."
+
+#. desklet.js:355
+msgid "Quick Links: Command parse error: "
+msgstr "Liên kết Nhanh: Lỗi phân tích lệnh: "
+
+#. metadata.json->description
+msgid ""
+"Customizable quick links panel. Allows you to create beautiful themed "
+"desktop shortcuts for your most used folders/commands."
+msgstr "Bảng liên kết nhanh có thể tùy chỉnh. Cho phép bạn tạo lối tắt trên màn hình có chủ đề đẹp mắt cho các thư mục/lệnh bạn sử dụng nhiều nhất."
+
+#. metadata.json->name
+msgid "Quick Links"
+msgstr "Liên kết Nhanh"
+
+#. settings-schema.json->links-page->title
+msgid "Links"
+msgstr "Liên kết"
+
+#. settings-schema.json->preferences-page->title
+msgid "Preferences"
+msgstr "Tùy chọn"
+
+#. settings-schema.json->theme-page->title
+msgid "Theme"
+msgstr "Chủ đề"
+
+#. settings-schema.json->links-section->title
+msgid "Set up your links here"
+msgstr "Thiết lập liên kết của bạn tại đây"
+
+#. settings-schema.json->iconselect-section->title
+msgid "Find icon names here"
+msgstr "Tìm tên biểu tượng tại đây"
+
+#. settings-schema.json->general-section->title
+msgid "General"
+msgstr "Chung"
+
+#. settings-schema.json->layout-section->title
+msgid "Layout"
+msgstr "Bố cục"
+
+#. settings-schema.json->font-section->title
+msgid "Font"
+msgstr "Phông chữ"
+
+#. settings-schema.json->desklet-decorations-section->title
+msgid "Desklet decorations"
+msgstr "Trang trí desklet"
+
+#. settings-schema.json->links-top-label->description
+msgid ""
+"Each link has 5 attributes you can change:\n"
+" - Display: determines whether your link will be shown or not \n"
+" - Name that will be displayed\n"
+" - Icon name: you can choose any system icon or leave blank\n"
+" - Command to be executed when clicked\n"
+" - Shell: select if you want the terminal to show up after clicking"
+msgstr "Mỗi liên kết có 5 thuộc tính bạn có thể thay đổi:\n - Hiển thị: xác định liên kết của bạn sẽ được hiển thị hay không\n - Tên sẽ được hiển thị\n - Tên biểu tượng: bạn có thể chọn bất kỳ biểu tượng hệ thống nào hoặc để trống\n - Lệnh sẽ được thực thi khi nhấp\n - Shell: chọn nếu bạn muốn terminal hiển thị sau khi nhấp"
+
+#. settings-schema.json->links-bottom-label->description
+msgid ""
+"Some tips:\n"
+"You can open folders using ex. `nemo <path>` command.\n"
+"If you need to see the output of a command, set the last attribute to "
+"true.\n"
+"You can break your links' names into multiple lines by typing \\n where you "
+"want a break.\n"
+"Set `Shell` to enabled if your command only outputs to the console ex. `ls` "
+"or `htop`.\n"
+"If you want multiple link categories/panels just create new instances of "
+"this desklet\n"
+" (click the `+` sign in system desklet manager)."
+msgstr "Một số mẹo:\nBạn có thể mở thư mục bằng ví dụ: lệnh `nemo <đường dẫn>`.\nNếu bạn cần xem đầu ra của lệnh, hãy đặt thuộc tính cuối cùng thành true.\nBạn có thể chia tên liên kết của mình thành nhiều dòng bằng cách gõ \\n ở nơi bạn muốn ngắt.\nĐặt `Shell` thành bật nếu lệnh của bạn chỉ xuất ra console ví dụ: `ls` hoặc `htop`.\nNếu bạn muốn nhiều danh mục/bảng liên kết, chỉ cần tạo các phiên bản mới của desklet này\n (nhấp vào dấu `+` trong trình quản lý desklet hệ thống)."
+
+#. settings-schema.json->links-list->columns->title
+msgid "Display"
+msgstr "Hiển thị"
+
+#. settings-schema.json->links-list->columns->title
+msgid "Name"
+msgstr "Tên"
+
+#. settings-schema.json->links-list->columns->title
+msgid "Icon name"
+msgstr "Tên biểu tượng"
+
+#. settings-schema.json->links-list->columns->title
+msgid "Command"
+msgstr "Lệnh"
+
+#. settings-schema.json->links-list->columns->title
+msgid "Shell"
+msgstr "Shell"
+
+#. settings-schema.json->link-update-button->description
+msgid "Update"
+msgstr "Cập nhật"
+
+#. settings-schema.json->icon-picker-label->description
+msgid ""
+"The setting below does not impact the desklet. It's here for convenience.\n"
+"You can browse through icons here and find their names easily."
+msgstr "Cài đặt bên dưới không ảnh hưởng đến desklet. Nó ở đây để tiện lợi.\nBạn có thể duyệt qua các biểu tượng ở đây và tìm tên của chúng dễ dàng."
+
+#. settings-schema.json->icon-picker->description
+msgid "Click the icon to browse"
+msgstr "Nhấp vào biểu tượng để duyệt"
+
+#. settings-schema.json->icon-picker->tooltip
+msgid ""
+"Click the icon on the right to browse. This setting is not used anywhere. "
+msgstr "Nhấp vào biểu tượng bên phải để duyệt. Cài đặt này không được sử dụng ở bất kỳ đâu. "
+
+#. settings-schema.json->click-type->description
+msgid "Click type"
+msgstr "Loại nhấp chuột"
+
+#. settings-schema.json->click-type->options
+msgid "Single click"
+msgstr "Nhấp đơn"
+
+#. settings-schema.json->click-type->options
+msgid "Double click"
+msgstr "Nhấp đôi"
+
+#. settings-schema.json->click-type->tooltip
+msgid "Choose how you want to active your links."
+msgstr "Chọn cách bạn muốn kích hoạt liên kết của mình."
+
+#. settings-schema.json->click-timeout->description
+msgid "Double-click timeout"
+msgstr "Thời gian chờ nhấp đôi"
+
+#. settings-schema.json->click-timeout->tooltip
+msgid "Set the maximum time between clicks in double-click."
+msgstr "Đặt thời gian tối đa giữa các lần nhấp trong nhấp đôi."
+
+#. settings-schema.json->desklet-layout->description
+msgid ""
+"Choose how links should be laid out.\n"
+"(You might also want to change text alignment.)"
+msgstr "Chọn cách bố trí liên kết.\n(Bạn cũng có thể muốn thay đổi căn chỉnh văn bản.)"
+
+#. settings-schema.json->desklet-layout->options
+msgid "List view"
+msgstr "Chế độ xem danh sách"
+
+#. settings-schema.json->desklet-layout->options
+msgid "Tile view"
+msgstr "Chế độ xem ô"
+
+#. settings-schema.json->desklet-layout->tooltip
+msgid "Pick a layout for this desklet."
+msgstr "Chọn bố cục cho desklet này."
+
+#. settings-schema.json->text-align->description
+msgid "Text alignment"
+msgstr "Căn chỉnh văn bản"
+
+#. settings-schema.json->text-align->options
+msgid "Left"
+msgstr "Trái"
+
+#. settings-schema.json->text-align->options
+msgid "Center"
+msgstr "Giữa"
+
+#. settings-schema.json->text-align->options
+msgid "Right"
+msgstr "Phải"
+
+#. settings-schema.json->column-number->description
+msgid "Number of columns"
+msgstr "Số cột"
+
+#. settings-schema.json->column-number->tooltip
+msgid "Increase or decrease the number of columns on the layout."
+msgstr "Tăng hoặc giảm số lượng cột trên bố cục."
+
+#. settings-schema.json->row-spacing->description
+msgid "Row spacing"
+msgstr "Khoảng cách hàng"
+
+#. settings-schema.json->row-spacing->tooltip
+msgid "Change how far apart are link rows."
+msgstr "Thay đổi khoảng cách giữa các hàng liên kết."
+
+#. settings-schema.json->column-spacing->description
+msgid "Column spacing"
+msgstr "Khoảng cách cột"
+
+#. settings-schema.json->column-spacing->tooltip
+msgid "Change how far apart are link columns."
+msgstr "Thay đổi khoảng cách giữa các cột liên kết."
+
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr "Đổ bóng chữ"
+
+#. settings-schema.json->text-shadow-color->description
+msgid "Text shadow color"
+msgstr "Màu đổ bóng chữ"
+
+#. settings-schema.json->transparent-bg->description
+msgid "Transparent background (works well with no decorations)"
+msgstr "Nền trong suốt (hoạt động tốt khi không có trang trí)"
+
+#. settings-schema.json->transparent-bg->tooltip
+msgid "Select if you want a transparent background."
+msgstr "Chọn nếu bạn muốn nền trong suốt."
+
+#. settings-schema.json->bg-color->description
+msgid "Link background color"
+msgstr "Màu nền liên kết"
+
+#. settings-schema.json->bg-color->tooltip
+msgid "Set the color of the links background."
+msgstr "Đặt màu nền của các liên kết."
+
+#. settings-schema.json->show-decorations->description
+msgid "Show desklet decorations"
+msgstr "Hiển thị trang trí desklet"
+
+#. settings-schema.json->icon-size->units
+msgid "pixels"
+msgstr "pixel"
+
+#. settings-schema.json->icon-size->description
+msgid "Icon size (set to 0 do disable icons)"
+msgstr "Kích thước biểu tượng (đặt thành 0 để tắt biểu tượng)"
+
+#. settings-schema.json->icon-size->tooltip
+msgid "Increase or decrease the icon size (set to 0 to disable icons)."
+msgstr "Tăng hoặc giảm kích thước biểu tượng (đặt thành 0 để tắt biểu tượng)."
+
+#. settings-schema.json->font-enabled->description
+msgid "Display text"
+msgstr "Hiển thị văn bản"
+
+#. settings-schema.json->font->description
+msgid "Font name (choose regular versions)"
+msgstr "Tên phông chữ (chọn phiên bản thông thường)"
+
+#. settings-schema.json->font->tooltip
+msgid "Change font family"
+msgstr "Thay đổi họ phông chữ"
+
+#. settings-schema.json->font-bold->description
+msgid "Bold"
+msgstr "Đậm"
+
+#. settings-schema.json->font-italic->description
+msgid "Italic"
+msgstr "Nghiêng"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Màu chữ"
+
+#. settings-schema.json->text-color->tooltip
+msgid "Set the text color of this desklet."
+msgstr "Đặt màu chữ cho desklet này."
+
+#. settings-schema.json->link-border-width->description
+msgid "Border width (set to 0 to disable border)"
+msgstr "Độ rộng viền (đặt thành 0 để tắt viền)"
+
+#. settings-schema.json->link-border-width->tooltip
+msgid "Increase or decrease the link border width."
+msgstr "Tăng hoặc giảm độ rộng viền liên kết."
+
+#. settings-schema.json->link-border-color->description
+msgid "Border color"
+msgstr "Màu viền"
+
+#. settings-schema.json->link-border-color->tooltip
+msgid ""
+"Set the link border color (Transparent border will add more padding to "
+"links)."
+msgstr "Đặt màu viền liên kết (Viền trong suốt sẽ thêm nhiều khoảng đệm cho liên kết)."
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "hệ số tỷ lệ"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size, mostly impacts width"
+msgstr "Kích thước desklet, chủ yếu ảnh hưởng đến chiều rộng"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr "Tăng hoặc giảm kích thước của desklet này bằng hệ số tỷ lệ này."
+
+#. settings-schema.json->desklet-decorations-note->description
+msgid ""
+"Following settings require desklet decorations to be enabled on your "
+"system.\n"
+"Desklet preferences are located in System Settings > Desklets > General "
+"Settings tab; there you will be able to enable border/header decorations."
+msgstr "Các cài đặt sau yêu cầu trang trí desklet được bật trên hệ thống của bạn.\nTùy chọn desklet nằm trong Cài đặt Hệ thống > Desklets > tab Cài đặt Chung; ở đó bạn sẽ có thể bật trang trí viền/tiêu đề."
+
+#. settings-schema.json->desklet-header->description
+msgid "Desklet header"
+msgstr "Tiêu đề desklet"
+
+#. settings-schema.json->desklet-header->tooltip
+msgid ""
+"Set your desklet header. Make sure desklet headers are enabled in system "
+"settings."
+msgstr "Đặt tiêu đề desklet của bạn. Đảm bảo tiêu đề desklet được bật trong cài đặt hệ thống."
+
+#. settings-schema.json->are-tooltips-enabled->description
+msgid "Enable link tooltips"
+msgstr "Bật chú giải công cụ liên kết"
+
+#. settings-schema.json->are-tooltips-enabled->tooltip
+msgid "Select if you want tooltips to show up when hovering over links."
+msgstr "Chọn nếu bạn muốn chú giải công cụ hiển thị khi di chuột qua liên kết."

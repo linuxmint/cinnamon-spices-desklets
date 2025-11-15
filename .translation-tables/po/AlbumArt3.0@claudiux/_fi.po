@@ -1,0 +1,86 @@
+# ALBUM ART FOR RADIO3.0 AND ENHANCED SOUND APPLETS
+# This file is put in the public domain.
+# claudiux, 2025
+#
+msgid ""
+msgstr ""
+
+#. settings-schema.json->show-title->description
+msgid "Show the title"
+msgstr ""
+
+#. settings-schema.json->style-font-weight->description
+msgid "Font weight"
+msgstr ""
+
+#. settings-schema.json->style-font-weight->options
+msgid "normal"
+msgstr ""
+
+#. settings-schema.json->style-font-weight->options
+msgid "bold"
+msgstr ""
+
+#. settings-schema.json->style-font-family->description
+msgid "Font family"
+msgstr ""
+
+#. settings-schema.json->style-font-family->options
+msgid "monospace"
+msgstr ""
+
+#. settings-schema.json->style-font-family->options
+msgid "sans-serif"
+msgstr ""
+
+#. settings-schema.json->style-font-family->options
+msgid "serif"
+msgstr ""
+
+#. settings-schema.json->style-font-family->options
+msgid "cursive"
+msgstr ""
+
+#. settings-schema.json->style-font-family->options
+msgid "fantasy"
+msgstr ""
+
+#. settings-schema.json->style-font-size->description
+msgid "Font size"
+msgstr ""
+
+#. settings-schema.json->style-font-size->options
+msgid "xx-small"
+msgstr ""
+
+#. settings-schema.json->style-font-size->options
+msgid "x-small"
+msgstr ""
+
+#. settings-schema.json->style-font-size->options
+msgid "small"
+msgstr ""
+
+#. settings-schema.json->style-font-size->options
+msgid "medium"
+msgstr ""
+
+#. settings-schema.json->style-font-size->options
+msgid "large"
+msgstr ""
+
+#. settings-schema.json->style-font-size->options
+msgid "x-large"
+msgstr ""
+
+#. settings-schema.json->style-font-size->options
+msgid "xx-large"
+msgstr ""
+
+#. settings-schema.json->style-color->description
+msgid "Font color"
+msgstr ""
+
+#. settings-schema.json->style-background-color->description
+msgid "Background color"
+msgstr ""

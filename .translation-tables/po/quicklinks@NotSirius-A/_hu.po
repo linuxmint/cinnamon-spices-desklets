@@ -1,0 +1,56 @@
+# QUICK LINKS
+# This file is put in the public domain.
+# NotSirius-A, 2025
+#
+msgid ""
+msgstr ""
+
+#. settings-schema.json->preferences-page->title
+msgid "Preferences"
+msgstr ""
+
+#. settings-schema.json->general-section->title
+msgid "General"
+msgstr ""
+
+#. settings-schema.json->row-spacing->description
+msgid "Row spacing"
+msgstr ""
+
+#. settings-schema.json->row-spacing->tooltip
+msgid "Change how far apart are link rows."
+msgstr ""
+
+#. settings-schema.json->column-spacing->description
+msgid "Column spacing"
+msgstr ""
+
+#. settings-schema.json->column-spacing->tooltip
+msgid "Change how far apart are link columns."
+msgstr ""
+
+#. settings-schema.json->link-border-width->description
+msgid "Border width (set to 0 to disable border)"
+msgstr ""
+
+#. settings-schema.json->link-border-width->tooltip
+msgid "Increase or decrease the link border width."
+msgstr ""
+
+#. settings-schema.json->link-border-color->description
+msgid "Border color"
+msgstr ""
+
+#. settings-schema.json->link-border-color->tooltip
+msgid ""
+"Set the link border color (Transparent border will add more padding to "
+"links)."
+msgstr ""
+
+#. settings-schema.json->are-tooltips-enabled->description
+msgid "Enable link tooltips"
+msgstr ""
+
+#. settings-schema.json->are-tooltips-enabled->tooltip
+msgid "Select if you want tooltips to show up when hovering over links."
+msgstr ""
