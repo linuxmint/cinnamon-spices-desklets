@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: quicklinks@NotSirius-A 1.1\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-06-16 14:10+0200\n"
+"POT-Creation-Date: 2025-10-14 20:05+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,9 +16,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.8\n"
 
-#. desklet.js:130
+#. desklet.js:135
 msgid ""
 "No visible\n"
 "links found.\n"
@@ -36,7 +36,7 @@ msgstr ""
 "a deskletre,\n"
 "majd konfigurálja."
 
-#. desklet.js:344
+#. desklet.js:355
 msgid "Quick Links: Command parse error: "
 msgstr "Gyorslinkek: Parancselemzési hiba: "
 
@@ -57,9 +57,9 @@ msgstr "Gyorslinkek"
 msgid "Links"
 msgstr "Linkek"
 
-#. settings-schema.json->actions-page->title
-msgid "Actions"
-msgstr "Műveletek"
+#. settings-schema.json->preferences-page->title
+msgid "Preferences"
+msgstr "Beállítások"
 
 #. settings-schema.json->theme-page->title
 msgid "Theme"
@@ -73,9 +73,9 @@ msgstr "Állítsa be a linkjeit itt"
 msgid "Find icon names here"
 msgstr "Ikonnevek itt találhatók"
 
-#. settings-schema.json->click-section->title
-msgid "Change how links are activated"
-msgstr "A linkek aktiválásának módosítása"
+#. settings-schema.json->general-section->title
+msgid "General"
+msgstr "Általános"
 
 #. settings-schema.json->layout-section->title
 msgid "Layout"
@@ -247,6 +247,22 @@ msgstr "Oszlopok száma"
 msgid "Increase or decrease the number of columns on the layout."
 msgstr "Növelje vagy csökkentse az oszlopok számát az elrendezésen."
 
+#. settings-schema.json->row-spacing->description
+msgid "Row spacing"
+msgstr "Sortávolság"
+
+#. settings-schema.json->row-spacing->tooltip
+msgid "Change how far apart are link rows."
+msgstr "Módosítsa a hivatkozássorok távolságát egymástól."
+
+#. settings-schema.json->column-spacing->description
+msgid "Column spacing"
+msgstr "Oszloptávolság"
+
+#. settings-schema.json->column-spacing->tooltip
+msgid "Change how far apart are link columns."
+msgstr "Módosítsa a hivatkozás oszlopok távolságát egymástól."
+
 #. settings-schema.json->text-shadow->description
 msgid "Text shadow"
 msgstr "Szövegárnyék"
@@ -317,6 +333,26 @@ msgstr "Szöveg színe"
 msgid "Set the text color of this desklet."
 msgstr "Állítsa be az asztalkalmazás szövegének színét."
 
+#. settings-schema.json->link-border-width->description
+msgid "Border width (set to 0 to disable border)"
+msgstr "Szegély szélessége (a szegély letiltásához állítsa 0-ra)"
+
+#. settings-schema.json->link-border-width->tooltip
+msgid "Increase or decrease the link border width."
+msgstr "Növelje vagy csökkentse a hivatkozás szegélyének szélességét."
+
+#. settings-schema.json->link-border-color->description
+msgid "Border color"
+msgstr "Szegély színe"
+
+#. settings-schema.json->link-border-color->tooltip
+msgid ""
+"Set the link border color (Transparent border will add more padding to "
+"links)."
+msgstr ""
+"Állítsd be a hivatkozás szegélyének színét (az átlátszó szegély több "
+"kitöltést ad a hivatkozásokhoz)."
+
 #. settings-schema.json->scale-size->units
 msgid "scale factor"
 msgstr "méretezési lépték"
@@ -356,3 +392,19 @@ msgid ""
 msgstr ""
 "Állítsa be az asztalkalmazás fejlécét. Győződjön meg arról, hogy az "
 "asztalkalmazás fejlécek engedélyezve vannak a rendszerbeállításokban."
+
+#. settings-schema.json->are-tooltips-enabled->description
+msgid "Enable link tooltips"
+msgstr "Link eszköztippek engedélyezése"
+
+#. settings-schema.json->are-tooltips-enabled->tooltip
+msgid "Select if you want tooltips to show up when hovering over links."
+msgstr ""
+"Válassza ki, hogy megjelenjenek-e az eszköztippek, amikor az egérmutatót a "
+"hivatkozások fölé viszi."
+
+#~ msgid "Actions"
+#~ msgstr "Műveletek"
+
+#~ msgid "Change how links are activated"
+#~ msgstr "A linkek aktiválásának módosítása"
