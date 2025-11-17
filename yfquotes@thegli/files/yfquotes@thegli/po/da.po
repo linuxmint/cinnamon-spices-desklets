@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2025-08-22 22:21+0200\n"
-"PO-Revision-Date: 2023-12-08 08:06+0100\n"
+"PO-Revision-Date: 2025-11-17 17:19+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
 "Language: da\n"
@@ -16,15 +16,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. desklet.js:687
 msgid "Empty quotes list. Open settings and add some symbols."
-msgstr ""
+msgstr "Kurslisten er tom. Åbn indstillingerne og tilføj nogle selskabskoder."
 
 #. desklet.js:721 desklet.js:747 desklet.js:770
 msgid "Authorization parameters have expired"
-msgstr ""
+msgstr "Godkendelsesparametre er udløbet"
 
 #. desklet.js:724 desklet.js:750 desklet.js:773
 msgid "Yahoo Finance service not available! Status: "
@@ -32,7 +32,7 @@ msgstr "Yahoo Finance er ikke tilgængelig! Status: "
 
 #. desklet.js:1084
 msgid "No quotes data to display"
-msgstr ""
+msgstr "Der er ingen kursdata at vise"
 
 #. desklet.js:1194
 msgid "Updated at "
@@ -95,7 +95,7 @@ msgstr "Layout"
 
 #. settings-schema.json->networkPage->title
 msgid "Network"
-msgstr ""
+msgstr "Netværk"
 
 #. settings-schema.json->dataUpdateSection->title
 msgid "Data Updates"
@@ -127,7 +127,7 @@ msgstr "Talformatering"
 
 #. settings-schema.json->presentationDateTimeFormattingSection->title
 msgid "Date and Time Format"
-msgstr ""
+msgstr "Dato- og tidsformat"
 
 #. settings-schema.json->presentationSortingSection->title
 msgid "Sorting"
@@ -135,7 +135,7 @@ msgstr "Sortering"
 
 #. settings-schema.json->presentationFontSection->title
 msgid "Font"
-msgstr ""
+msgstr "Skrifttype"
 
 #. settings-schema.json->presentationColorsSection->title
 msgid "Trend Colors"
@@ -151,7 +151,7 @@ msgstr "Effekter"
 
 #. settings-schema.json->networkSessionSection->title
 msgid "HTTP Session"
-msgstr ""
+msgstr "HTTP-session"
 
 #. settings-schema.json->width->description
 msgid "Width"
@@ -186,47 +186,51 @@ msgstr "Jo højere værdi, desto mindre gennemsigtig er baggrunden."
 
 #. settings-schema.json->backgroundColor->description
 msgid "Background color"
-msgstr ""
+msgstr "Baggrundsfarve"
 
 #. settings-schema.json->backgroundColor->tooltip
 msgid "Desklet background color"
-msgstr ""
+msgstr "Skrivebordsprogrammets baggrundsfarve"
 
 #. settings-schema.json->cornerRadius->description
 msgid "Corner radius"
-msgstr ""
+msgstr "Hjørneradius"
 
 #. settings-schema.json->cornerRadius->tooltip
 msgid "The higher the value, the rounder the desklet's corners"
-msgstr ""
+msgstr "Større værdi giver mere afrundede hjørner"
 
 #. settings-schema.json->showVerticalScrollbar->description
 msgid "Show vertical scrollbar"
-msgstr ""
+msgstr "Vis lodret rullebjælke"
 
 #. settings-schema.json->showVerticalScrollbar->tooltip
 msgid ""
 "Display a vertical scrollbar when the quote list is longer than the "
 "desklet's height"
 msgstr ""
+"Vis en lodret rullebjælke, når kurslisten er længere end "
+"skrivebordsprogrammets højde"
 
 #. settings-schema.json->borderWidth->description
 msgid "Border width"
-msgstr ""
+msgstr "Rammebredde"
 
 #. settings-schema.json->borderWidth->tooltip
 msgid ""
 "The higher the value, the thicker the desklet's border. A value of 0 hides "
 "the border."
 msgstr ""
+"Jo højere værdien er, desto tykkere bliver skrivebordsprogrammets ramme. En "
+"værdi på 0 skjuler rammen."
 
 #. settings-schema.json->borderColor->description
 msgid "Border color"
-msgstr ""
+msgstr "Rammefarve"
 
 #. settings-schema.json->borderColor->tooltip
 msgid "Desklet border color"
-msgstr ""
+msgstr "Skrivebordsprogrammets rammefarve"
 
 #. settings-schema.json->delayMinutes->units
 msgid "minutes"
@@ -250,13 +254,15 @@ msgstr "Viser tidsstempel for den sidste opdatering af kurserne."
 
 #. settings-schema.json->manualDataUpdate->description
 msgid "Manual and automatic update"
-msgstr ""
+msgstr "Manuel og automatisk opdatering"
 
 #. settings-schema.json->manualDataUpdate->tooltip
 msgid ""
 "Click last update timestamp to instantly refresh quotes data. Automatic "
 "update is still performed periodically."
 msgstr ""
+"Klik på sidste opdateringstidspunkt for øjeblikkeligt at opdatere kursdata. "
+"Automatisk opdatering udføres stadig med jævne mellemrum."
 
 #. settings-schema.json->roundNumbers->description
 msgid "Round numbers"
@@ -292,17 +298,20 @@ msgstr ""
 
 #. settings-schema.json->use24HourTime->description
 msgid "Force 24-hour clock"
-msgstr ""
+msgstr "Gennemtving 24-timers ur"
 
 #. settings-schema.json->use24HourTime->tooltip
 msgid ""
 "Always display time in 24-hour notation, overriding system settings.\n"
 "This setting is ignored, when a custom time format is defined."
 msgstr ""
+"Vis altid klokkeslættet i 24-timers format uanset systemindstillingerne.\n"
+"Denne indstilling ignoreres, når der er oprettet et brugerdefineret "
+"tidsformat."
 
 #. settings-schema.json->customTimeFormat->description
 msgid "Custom time format"
-msgstr ""
+msgstr "Brugerdefineret tidsformat"
 
 #. settings-schema.json->customTimeFormat->tooltip
 msgid ""
@@ -311,10 +320,14 @@ msgid ""
 "%H:%M:%S    23:47:51\n"
 "%I:%M %p    11:47 PM"
 msgstr ""
+"Formatér tid med brugerdefineret format i stedet for systemindstillinger.\n"
+"Eksempler:\n"
+"%H:%M:%S    23:47:51\n"
+"%I:%M %p    11:47 PM"
 
 #. settings-schema.json->customDateFormat->description
 msgid "Custom date format"
-msgstr ""
+msgstr "Brugerdefineret datoformat"
 
 #. settings-schema.json->customDateFormat->tooltip
 msgid ""
@@ -324,6 +337,11 @@ msgid ""
 "%Y-%m-%d   2024-03-15\n"
 "%A, %b %d   Friday, Mar 15"
 msgstr ""
+"Formatér dato med brugerdefineret format i stedet for systemindstillinger.\n"
+"Eksempler:\n"
+"%m/%d          03/15\n"
+"%Y-%m-%d   2024-03-15\n"
+"%A, %b %d   Friday, Mar 15"
 
 #. settings-schema.json->quoteSymbols->description
 msgid "Quote symbols"
@@ -335,11 +353,11 @@ msgstr "Liste over selskabskoder, adskilt af linjeskift."
 
 #. settings-schema.json->updateDataButton->description
 msgid "Refresh quotes data"
-msgstr ""
+msgstr "Opdatér kursdata"
 
 #. settings-schema.json->updateDataButton->tooltip
 msgid "Apply and refresh quotes"
-msgstr ""
+msgstr "Anvend og opdatér kurser"
 
 #. settings-schema.json->sortCriteria->options
 msgid "given order"
@@ -478,31 +496,33 @@ msgstr "Viser det seneste handelstidspunkt eller -dato."
 
 #. settings-schema.json->fontColor->description
 msgid "Font color"
-msgstr ""
+msgstr "Skrifttypefarve"
 
 #. settings-schema.json->fontColor->tooltip
 msgid "Default text color"
-msgstr ""
+msgstr "Standardtekstfarve"
 
 #. settings-schema.json->scaleFontSize->description
 msgid "Enable font size scaling"
-msgstr ""
+msgstr "Aktivér skalering af skriftstørrelse"
 
 #. settings-schema.json->scaleFontSize->tooltip
 msgid "Apply custom font size instead of the system default size"
 msgstr ""
+"Anvend brugerdefineret skriftstørrelse i stedet for systemets "
+"standardstørrelse"
 
 #. settings-schema.json->fontScale->units
 msgid "times"
-msgstr ""
+msgstr "gange"
 
 #. settings-schema.json->fontScale->description
 msgid "Font size scale factor"
-msgstr ""
+msgstr "Skriftstørrelsens skaleringsfaktor"
 
 #. settings-schema.json->fontScale->tooltip
 msgid "Enlarge/reduce the font size"
-msgstr ""
+msgstr "Forøg eller formindsk skriftstørrelsen"
 
 #. settings-schema.json->uptrendChangeColor->description
 msgid "Uptrend change color"
@@ -526,11 +546,11 @@ msgstr "Farven for uændret tendens."
 
 #. settings-schema.json->cacheAuthorizationParameters->description
 msgid "Cache authorization parameters"
-msgstr ""
+msgstr "Lagr godkendelsesparametre"
 
 #. settings-schema.json->cacheAuthorizationParameters->tooltip
 msgid "Remember fetched authorization parameters for desklet instance"
-msgstr ""
+msgstr "Husk hentede godkendelsesparametre for instansen"
 
 #. settings-schema.json->sendCustomUserAgent->description
 msgid "Send custom User-Agent header"
@@ -552,24 +572,24 @@ msgstr "Værdi for User-Agent-header som skal sendes med alle API-anmodninger."
 
 #. settings-schema.json->enableCurl->description
 msgid "Use external tool curl"
-msgstr ""
+msgstr "Brug eksternt curl-værktøj"
 
 #. settings-schema.json->enableCurl->tooltip
 msgid "Requires separate installation of curl."
-msgstr ""
+msgstr "Kræver separat installation af curl."
 
 #. settings-schema.json->curlCommand->description
 msgid "Path of curl executable"
-msgstr ""
+msgstr "Sti til curl"
 
 #. settings-schema.json->curlCommand->tooltip
 msgid "Provide absolute path of curl program file"
-msgstr ""
+msgstr "Angiv den absolutte sti til curl-programfilen."
 
 #. settings-schema.json->applyNetworkSettingsButton->description
 msgid "Apply network settings"
-msgstr ""
+msgstr "Anvend netværksindstillinger"
 
 #. settings-schema.json->applyNetworkSettingsButton->tooltip
 msgid "Fetches new authorization parameters and refreshes quotes data"
-msgstr ""
+msgstr "Henter nye godkendelsesparametre og opdaterer kursdata"
