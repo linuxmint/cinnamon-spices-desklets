@@ -35,8 +35,7 @@ class MyDesklet extends Desklet.Desklet {
 
     this.setHeader(_("System Uptime"));
     this.setupLayout();
-    this.getStartupTime();
-    this.updateUptime();
+    this.updateValues();
   }
 
   setupLayout() {
@@ -62,7 +61,7 @@ class MyDesklet extends Desklet.Desklet {
     this.container.add_child(contentBox);
 
     Mainloop.idle_add(() => {
-      let computedHeight = contentBox.get_height();
+      const computedHeight = contentBox.get_height();
 
       const clockIcon = this.getImageAtScale(`${this.metadata.path}/clock.svg`, computedHeight, computedHeight);
 
@@ -112,19 +111,16 @@ class MyDesklet extends Desklet.Desklet {
       this.uptimeValue.set_text("Error");
       global.logError(`${UUID}: ${error.message}`);
     }
-
-    if (this._timeout) Mainloop.source_remove(this._timeout);
-    this._timeout = Mainloop.timeout_add_seconds(60, () => this.updateUptime());
   }
-
+  
   getStartupTime() {
     try {
       const [result, out] = GLib.spawn_command_line_sync("uptime -s");
       if (!result || !out) throw new Error("Could not get system startup time.");
-
+      
       const dateTime = out.toString().split(" ");
       const date = dateTime[0].split("-");
-
+      
       if (this.showStartDate) {
         this.startupValue.set_text(date[2] + "." + date[1] + "." + date[0] + ", " + dateTime[1].trim());
       } else {
@@ -136,10 +132,16 @@ class MyDesklet extends Desklet.Desklet {
     }
   }
 
-  onSettingsChanged() {
-    this.setupLayout();
+  updateValues() {
     this.updateUptime();
     this.getStartupTime();
+    if (this._timeout) Mainloop.source_remove(this._timeout);
+    this._timeout = Mainloop.timeout_add_seconds(60, () => this.updateValues());
+  }
+
+  onSettingsChanged() {
+    this.setupLayout();
+    this.updateValues();
   }
 
   on_desklet_removed() {
