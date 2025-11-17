@@ -1,0 +1,110 @@
+{
+  "head1": {
+    "type": "header",
+    "description": "Image Settings"
+  },
+  "image-path": {
+    "type": "filechooser",
+    "default": "",
+    "description": "Image path",
+    "tooltip": "The path of the image.",
+    "allow-none": false,
+    "select-dir": false
+  },
+  "size": {
+    "type": "scale",
+    "default": 250,
+    "min": 30,
+    "max": 800,
+    "step": 1,
+    "description": "Size"
+  },
+  "align-x": {
+    "type": "scale",
+    "description": "Horizontal alignment",
+    "default": 50,
+    "min": 0,
+    "max": 100,
+    "step": 1
+  },
+  "align-y": {
+    "type": "scale",
+    "description": "Vertical alignment",
+    "default": 50,
+    "min": 0,
+    "max": 100,
+    "step": 1
+  },
+  "head2": {
+    "type": "header",
+    "description": "Frame Settings"
+  },
+  "shape": {
+    "type": "combobox",
+    "default": "wave",
+    "description": "Shape",
+    "options": {
+      "Circle": "circle",
+      "Square": "square",
+      "Star": "star",
+      "Wave": "wave",
+      "Heart": "heart"
+    }
+  },
+  "waves-number": {
+    "type": "scale",
+    "default": 10,
+    "min": 1,
+    "max": 20,
+    "step": 1,
+    "description": "Number of waves",
+    "dependency": "shape=wave"
+  },
+  "wave-depth": {
+    "type": "scale",
+    "default": 5,
+    "min": 1,
+    "max": 30,
+    "step": 1,
+    "description": "Depth of the waves",
+    "dependency": "shape=wave"
+  },
+  "spikes-number": {
+    "type": "scale",
+    "default": 10,
+    "min": 2,
+    "max": 30,
+    "step": 1,
+    "description": "Number of spikes",
+    "dependency": "shape=star"
+  },
+  "spikes-depth": {
+    "type": "scale",
+    "default": 15,
+    "min": 1,
+    "max": 60,
+    "step": 1,
+    "description": "Depth of the spikes",
+    "dependency": "shape=star"
+  },
+  "show-border": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show border"
+  },
+  "border-color": {
+    "type": "colorchooser",
+    "default": "rgba(33, 170, 70, 0.5)",
+    "description": "Border color",
+    "dependency": "show-border"
+  },
+  "border-width": {
+    "type": "scale",
+    "default": 15,
+    "min": 1,
+    "max": 30,
+    "step": 1,
+    "description": "Border width",
+    "dependency": "show-border"
+  }
+}
