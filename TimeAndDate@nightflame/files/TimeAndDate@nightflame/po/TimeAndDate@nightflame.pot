@@ -1,38 +1,211 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# TIME AND DATE DESKLET
+# This file is put in the public domain.
+# nightflame, 2017
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-26 11:56+0800\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Project-Id-Version: TimeAndDate@nightflame 2.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-11-05 19:28+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:67
-msgid "Time And Date"
+#. metadata.json->description
+msgid ""
+"Themeable desklet that displays the time and date. New overhauled version."
 msgstr ""
 
-#: desklet.js:83
-msgid "Edit Config"
-msgstr ""
-
-#: desklet.js:87
-msgid "Help"
-msgstr ""
-
-#. TimeAndDate@nightflame->metadata.json->description
-msgid "A fork desklet that displays the time and date"
-msgstr ""
-
-#. TimeAndDate@nightflame->metadata.json->name
+#. metadata.json->name
 msgid "Time and Date Desklet"
+msgstr ""
+
+#. settings-schema.json->preferences-page->title
+msgid "Preferences"
+msgstr ""
+
+#. settings-schema.json->theme-page->title
+#. settings-schema.json->theme-section->title
+msgid "Theme"
+msgstr ""
+
+#. settings-schema.json->general-preferences-section->title
+msgid "General"
+msgstr ""
+
+#. settings-schema.json->time-theme-section->title
+msgid "Time label font"
+msgstr ""
+
+#. settings-schema.json->date-theme-section->title
+msgid "Date label font"
+msgstr ""
+
+#. settings-schema.json->desklet-decorations-section->title
+msgid "Desklet decorations"
+msgstr ""
+
+#. settings-schema.json->time-format->description
+msgid "Time format"
+msgstr ""
+
+#. settings-schema.json->time-format->tooltip
+msgid "Set your time format."
+msgstr ""
+
+#. settings-schema.json->date-format->description
+msgid "Date format"
+msgstr ""
+
+#. settings-schema.json->date-format->tooltip
+msgid "Set the date format."
+msgstr ""
+
+#. settings-schema.json->datetime-format-label->description
+msgid ""
+"Date/time format follows `strftime` formatting. Read more on desklet's "
+"webpage or `strftime` documentation: \n"
+"https://pubs.opengroup.org/onlinepubs/007908799/xsh/strftime.html"
+msgstr ""
+
+#. settings-schema.json->refresh-period->description
+msgid "Refresh period"
+msgstr ""
+
+#. settings-schema.json->refresh-period->tooltip
+msgid "Set how quickly the clock should refresh itself."
+msgstr ""
+
+#. settings-schema.json->is-order-reversed->description
+msgid "Reverse label order"
+msgstr ""
+
+#. settings-schema.json->is-two-column->description
+msgid "Two column layout"
+msgstr ""
+
+#. settings-schema.json->is-width-forced->description
+msgid "Force specific width"
+msgstr ""
+
+#. settings-schema.json->is-width-forced->tooltip
+msgid ""
+"Select if you want to force the desklet to have a certain width, so it won't "
+"scale with different date length."
+msgstr ""
+
+#. settings-schema.json->forced-width-size->description
+msgid "Forced width size"
+msgstr ""
+
+#. settings-schema.json->forced-width-size->tooltip
+msgid "Force desklet width."
+msgstr ""
+
+#. settings-schema.json->time-font->description
+#. settings-schema.json->date-font->description
+msgid "Font name (choose regular versions)"
+msgstr ""
+
+#. settings-schema.json->time-font->tooltip
+#. settings-schema.json->date-font->tooltip
+msgid "Change font family"
+msgstr ""
+
+#. settings-schema.json->time-font-bold->description
+#. settings-schema.json->date-font-bold->description
+msgid "Bold"
+msgstr ""
+
+#. settings-schema.json->time-font-italic->description
+#. settings-schema.json->date-font-italic->description
+msgid "Italic"
+msgstr ""
+
+#. settings-schema.json->time-text-color->description
+#. settings-schema.json->date-text-color->description
+msgid "Text color"
+msgstr ""
+
+#. settings-schema.json->time-text-color->tooltip
+#. settings-schema.json->date-text-color->tooltip
+msgid "Set the text color."
+msgstr ""
+
+#. settings-schema.json->time-text-shadow->description
+#. settings-schema.json->date-text-shadow->description
+msgid "Text shadow"
+msgstr ""
+
+#. settings-schema.json->time-text-shadow-color->description
+#. settings-schema.json->date-text-shadow-color->description
+msgid "Text shadow color"
+msgstr ""
+
+#. settings-schema.json->desklet-background->description
+msgid "Background color"
+msgstr ""
+
+#. settings-schema.json->desklet-background->tooltip
+msgid "Set the desklet background."
+msgstr ""
+
+#. settings-schema.json->desklet-border-radius->description
+msgid "Border radius"
+msgstr ""
+
+#. settings-schema.json->desklet-border-radius->tooltip
+msgid "Increase or decrease border curvature."
+msgstr ""
+
+#. settings-schema.json->desklet-border-width->description
+msgid "Border width (set to 0 to disable border)"
+msgstr ""
+
+#. settings-schema.json->desklet-border-width->tooltip
+msgid "Increase or decrease the desklet border width."
+msgstr ""
+
+#. settings-schema.json->desklet-border-color->description
+msgid "Border color"
+msgstr ""
+
+#. settings-schema.json->desklet-border-color->tooltip
+msgid "Set the desklet border color."
+msgstr ""
+
+#. settings-schema.json->padding-scale->description
+msgid "Padding scale"
+msgstr ""
+
+#. settings-schema.json->padding-scale->tooltip
+msgid "Increase or decrease padding between elements."
+msgstr ""
+
+#. settings-schema.json->show-decorations->description
+msgid "Show desklet decorations"
+msgstr ""
+
+#. settings-schema.json->desklet-decorations-note->description
+msgid ""
+"Following settings require desklet decorations to be enabled on your "
+"system.\n"
+"Desklet preferences are located in System Settings > Desklets > General "
+"Settings tab; there you will be able to enable border/header decorations."
+msgstr ""
+
+#. settings-schema.json->desklet-header->description
+msgid "Desklet header"
+msgstr ""
+
+#. settings-schema.json->desklet-header->tooltip
+msgid ""
+"Set your desklet header. Make sure desklet headers are enabled in system "
+"settings."
 msgstr ""
