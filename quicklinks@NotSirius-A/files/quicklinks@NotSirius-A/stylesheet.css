@@ -1,12 +1,12 @@
 .link {
 	color: black;
 	font-weight: 500; /* normal */
-	border-radius: 0.32em;
+	border-radius: 0.4em;
 	padding: 0.2em 0.05em;
 }
 
 .link:hover {
-	border-radius: 0.5em;
+	border-radius: 0.7em;
 	box-shadow: 0px 0px 0px 999px inset rgba(255,255,255,0.15);
 	background-color: rgba(255,255,255,0.1);
 

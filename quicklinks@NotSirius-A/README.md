@@ -25,12 +25,6 @@ You can customize this desklet to your taste. Choose from two layouts a list or 
 - You can add a transparent border to your link to make them look bigger.
 - When you disable desklet decorations you can still grab the desklet by the invisible border around it.
 
-### What can be improved?
-
-* Improve font parsing.
-
-* Unfortunately, the xlet settings API at this moment doesn't support `iconfilechooser` within `list` setting, so icons have to be typed in by name, which is somewhat annoying.
-
 
 ### Remarks
 
