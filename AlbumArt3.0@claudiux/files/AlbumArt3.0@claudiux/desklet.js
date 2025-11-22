@@ -78,6 +78,8 @@ class AlbumArtRadio30 extends Desklet.Desklet {
         GLib.mkdir_with_parents(ALBUMART_PICS_DIR, 0o755);
         this.realWidth = 1280;
         this.realHeight = 720;
+        this.oldRealWidth = 1280;
+        this.oldRealHeight = 720;
 
         this.MSG_DISPLAY_AT_FULL_SIZE = _("Display Album Art at full size");
         this.MSG_DONT_DISPLAY_THIS_IMAGE = _("Do not display this image");
@@ -150,10 +152,10 @@ class AlbumArtRadio30 extends Desklet.Desklet {
 
         this._setup_dir_monitor();
         if (this.currentPicture) {
-            this.currentPicture.destroy();
+            try { this.currentPicture.destroy() } catch(e) {};
         }
         if (this._photoFrame) {
-            this._photoFrame.destroy();
+            try { this._photoFrame.destroy() } catch(e) {};
         }
         this.isLooping = true;
         this.setup_display();
@@ -198,8 +200,8 @@ class AlbumArtRadio30 extends Desklet.Desklet {
         if (this._bin != null) {
             if (Tweener.getTweenCount(this._bin) > 0)
                 Tweener.removeTweens(this._bin);
-            this._bin.destroy_all_children();
-            this._bin.destroy();
+            try { this._bin.destroy_all_children() } catch(e) {};
+            try { this._bin.destroy() } catch(e) {};
             this._bin = null;
         }
 
@@ -293,10 +295,18 @@ class AlbumArtRadio30 extends Desklet.Desklet {
 
         if (!this.isLooping) return false;
         this._update();
-        if (this.isLooping)
+        
+        if (this.isLooping) {
+            if (this.oldRealWidth != this.realWidth || this.oldRealHeight != this.realHeight) {
+                this.oldRealWidth = this.realWidth;
+                this.oldRealHeight = this.realHeight;
+                this.on_setting_changed();
+            }
+            
             this.update_id = timeout_add_seconds(this.delay, () => { this._update_loop() });
-        else
+        } else {
             return false;
+        }
     }
 
     _size_pic(image) {
@@ -422,6 +432,7 @@ class AlbumArtRadio30 extends Desklet.Desklet {
         } else {
             if (this._bin != null) this._bin.set_child(this.currentPicture);
         }
+        
         this.updateInProgress = false;
     }
 
