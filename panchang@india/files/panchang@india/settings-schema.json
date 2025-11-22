@@ -1,0 +1,63 @@
+{
+    "head0":
+    {
+        "type": "header",
+        "description": "Settings for Panchang Visual Style"
+    },
+
+    "head1":
+    {
+        "type": "header",
+        "description": "Visual"
+    },
+    "text-color":
+    {
+        "type": "colorchooser",
+        "default": "white",
+        "description": "Text color",
+        "tooltip": "Set the text color of this desklet."
+    },
+    "border-color":
+    {
+        "type": "colorchooser",
+        "default": "black",
+        "description": "Set the color of desklet border",
+        "tooltip": "Set the border color of this desklet."
+    },
+    "background-color":
+    {
+        "type": "colorchooser",
+        "default": "black",
+        "description": "Set the color of desklet background",
+        "tooltip": "Set the background color of this desklet."
+    },
+    "head2":
+    {
+        "type": "header",
+        "description": "Place Coordinates"
+    },
+    "mylat":
+    {
+        "type": "spinbutton",
+        "default": 27.0,
+        "min": -90.0,
+        "max": 90.0,
+        "step": 0.0001,
+        "units": "scale factor",
+        "description": "Select the latitude of your place",
+        "tooltip": "Select your latitude of place"
+    },
+    "mylong":
+    {
+        "type": "spinbutton",
+        "default": 77.0,
+        "min": -180.0,
+        "max": 180.0,
+        "step": 0.0001,
+        "units": "scale factor",
+        "description": "Select the longitude of your place",
+        "tooltip": "Select your longitude of place"
+    }
+
+
+}

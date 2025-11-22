@@ -2,5 +2,7 @@
     "description": "Displaying Hindu Panchnage",
     "uuid": "panchang@india",
     "name": "Panchang Desklet",
-    "version": "1.1"
+    "version": "1.2",
+    "author": "OnlineLearningTutorials",
+    "last-edited": 1762968642
 }
