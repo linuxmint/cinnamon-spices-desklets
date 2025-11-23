@@ -1,0 +1,114 @@
+{
+    "head0": {
+        "type": "header",
+        "description": "General"
+    },
+    "power-source": {
+        "type": "combobox",
+        "default": "BAT0",
+        "description": "Power Source",
+        "tooltip": "In case you have more than 1 battery",
+        "options": {
+            "BAT0": "BAT0",
+            "BAT1": "BAT1"
+        }
+    },
+    "refresh-interval": {
+        "type": "combobox",
+        "default": 1,
+        "description": "Refresh interval",
+        "tooltip": "How often a new value of the variable will be calculated.",
+        "options": {
+            " 1 s": 1,
+            " 2 s": 2,
+            " 5 s": 5,
+            "10 s": 10,
+            "30 s": 30,
+            "60 s": 60
+        }
+    },
+    "data-points": {
+        "type": "spinbutton",
+        "default": 300,
+        "min": 60,
+        "max": 3600,
+        "step": 60,
+        "units": "points",
+        "description": "Maximum data points",
+        "tooltip": "Number of data points to keep in memory (600 = 10 minutes at 1.0s interval)"
+    },
+    "show-status-bar": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show Status Bar",
+        "tooltip": "Toggle to control whether the status bar will be shown."
+    },
+    "desklet-width": {
+        "type": "spinbutton",
+        "default": 500,
+        "min": 200,
+        "max": 1200,
+        "step": 10,
+        "units": "pixels",
+        "description": "Desklet width",
+        "tooltip": "Width of the desklet window"
+    },
+    "desklet-height": {
+        "type": "spinbutton",
+        "default": 300,
+        "min": 150,
+        "max": 800,
+        "step": 10,
+        "units": "pixels",
+        "description": "Desklet height",
+        "tooltip": "Height of the desklet window"
+    },
+    "head1": {
+        "type": "header",
+        "description": "Color settings"
+    },
+    "data-line-style": {
+        "type": "combobox",
+        "default": "GRADIENT",
+        "description": "Line style",
+        "tooltip": "Style of the power rate line.",
+        "options": {
+            "Gradient": "GRADIENT",
+            "Line": "Line"
+        }
+    },
+    "charging-color": {
+        "type": "colorchooser",
+        "default": "#a6da95",
+        "description": "Charging Color",
+        "tooltip": "Line color if battery is charging"
+    },
+    "discharging-color": {
+        "type": "colorchooser",
+        "default": "#ed8796",
+        "description": "Discharging color",
+        "tooltip": "Line color if battery is discharging"
+    },
+    "background-color": {
+        "type": "colorchooser",
+        "default": "#2e3440",
+        "description": "Background color",
+        "tooltip": "Background color of the desklet"
+    },
+    "border-color": {
+        "type": "colorchooser",
+        "default": "#2e3440",
+        "description": "Border color",
+        "tooltip": "Border and grid color"
+    },
+    "transparency": {
+        "type": "spinbutton",
+        "default": 85,
+        "min": 10,
+        "max": 100,
+        "step": 5,
+        "units": "%",
+        "description": "Background transparency",
+        "tooltip": "Transparency level of the background (100% = opaque)"
+    }
+}
