@@ -9,7 +9,7 @@ const Util = imports.misc.util;
 const Settings = imports.ui.settings;
 const UUID = "panchang@india";
 
-var n_karan, n_kar, karanaend, karanaendhms, displayDate, tzone, julianDays, vaaram, ayanamsa, sunDegrees, moonDeg, nakshatra, tithi, nakshatraend, nakshatraendhms, tithiend, tithiendhms, n_yoga, yogaend, jdt, z, iyog, Lsun0, Lmoon0, dmoonYoga, dsunYoga, asp1, z1, z2, f, alf, a, b, d, c, e, days, kday, kmon, kyear, hh1, khr, kmin, ksek, s, nakshatra_degree, tithi_degree, mylat, mylong, background_color, border_color, text_color, latitude, longitude;
+var n_karan, n_kar, karanaend, karanaendhms, displayDate, tzone, julianDays, vaaram, ayanamsa, sunDegrees, moonDeg, nakshatra, tithi, nakshatraend, nakshatraendhms, tithiend, tithiendhms, n_yoga, yogaend, jdt, z, iyog, Lsun0, Lmoon0, dmoonYoga, dsunYoga, asp1, z1, z2, f, alf, a, b, d, c, e, days, kday, kmon, kyear, hh1, khr, kmin, ksek, s, nakshatra_degree, tithi_degree, mylat, mylong, background_color, border_color, text_color, latitude, longitude, font_size_normal, font_size_h2, font_size_h1;
 var minutes = 1000 * 60; //Milliseconds
 var hours = minutes * 60; //Milliseconds
 var day = hours * 24; //Milliseconds
@@ -32,6 +32,11 @@ MyDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "text_color", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "mylat", "mylat", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "mylong", "mylong", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scale_size", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "show-in-degrees", "show_in_degrees", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "show-remaining-time", "show_remaining_time", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "show-last-time", "show_last_time", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "refreshtime", "refreshtime", this.on_setting_changed);
 
         this._mainContainer = new St.BoxLayout({ vertical: false, style_class: 'main_container' });
 
@@ -51,6 +56,7 @@ MyDesklet.prototype = {
         this.sunrise_nakshtra_label = new St.Label();
         this.sunrise_tithi_label = new St.Label();
         this._ayanamsa_label = new St.Label();
+        this._place_latlon_label = new St.Label();
 
         this._nakshtra = new St.Label();
         this._tithi = new St.Label();
@@ -74,6 +80,7 @@ MyDesklet.prototype = {
         this._calenderContainer.add(this._sunrise_label, { x_fill: true });
         // this._calenderContainer.add(this._sunset_label, { x_fill: true });
         this._calenderContainer.add(this._ayanamsa_label);
+        this._calenderContainer.add(this._place_latlon_label);
 
 
         this._panchangContainer.add(this._vaaram);
@@ -95,27 +102,33 @@ MyDesklet.prototype = {
     },
 
     on_setting_changed: function() {
-        this.latitude = mylat;
-        this.longitude = -(mylong);
+        this.latitude = this.mylat;
+        this.longitude = -(this.mylong);
+        this.font_size_normal = 12*this.scale_size;
+        this.font_size_h2 = (16/12)*12*this.scale_size;
+        this.font_size_h1 = (36/12)*12*this.scale_size;
 
         this._mainContainer.style = "background-color: "+this.background_color+"; border: 1px solid "+this.border_color+"; border-radius: 10px; padding: 10px;"
 
-        this._date.style = "font-size: 36px; color: "+this.text_color+";";
-        this._month.style =  "font-size: 16px; color: "+this.text_color+";";
-        this._time.style =  "font-size: 16px; color: "+this.text_color+";";
-        this._sunrise_label.style = "font-size: 12px; color: "+this.text_color+";";
-        this._sunset_label.style =  "font-size: 12px; color: "+this.text_color+";";
-        this.sunrise_nakshtra_label.style =  "font-size: 12px; color: "+this.text_color+";";
-        this.sunrise_tithi_label.style =  "font-size: 12px; color: "+this.text_color+";";
-        this._ayanamsa_label.style =  "font-size: 12px; color: "+this.text_color+";";
+        this._date.style = "font-size: "+this.font_size_h1+"px; color: "+this.text_color+";";
+        this._month.style =  "font-size: "+this.font_size_h2+"px; color: "+this.text_color+";";
+        this._time.style =  "font-size: "+this.font_size_h2+"px; color: "+this.text_color+";";
+        this._sunrise_label.style = "font-size: "+this.font_size_normal+"px; color: "+this.text_color+";";
+        this._sunset_label.style =  "font-size: "+this.font_size_normal+"px; color: "+this.text_color+";";
+        this.sunrise_nakshtra_label.style =  "font-size: "+this.font_size_normal+"px; color: "+this.text_color+";";
+        this.sunrise_tithi_label.style =  "font-size: "+this.font_size_normal+"px; color: "+this.text_color+";";
+        this._ayanamsa_label.style =  "font-size: "+this.font_size_normal+"px; color: "+this.text_color+";";
 
-        this._nakshtra.style =  "font-size: 12px; color: "+this.text_color+";";
-        this._tithi.style =  "font-size: 12px; color: "+this.text_color+";";
-        this._vaaram.style = "font-size: 12px; color: "+this.text_color+";";
-        this._karan.style =  "font-size: 12px; color: "+this.text_color+";";
-        this._yoga.style = "font-size: 12px; color: "+this.text_color+";";
-        this._sun_deg.style =  "font-size: 12px; color: "+this.text_color+";";
-        this._moon_deg.style =  "font-size: 12px; color: "+this.text_color+";";
+        this._nakshtra.style =  "font-size: "+this.font_size_normal+"px; color: "+this.text_color+";";
+        this._tithi.style =  "font-size: "+this.font_size_normal+"px; color: "+this.text_color+";";
+        this._vaaram.style = "font-size: "+this.font_size_normal+"px; color: "+this.text_color+";";
+        this._karan.style =  "font-size: "+this.font_size_normal+"px; color: "+this.text_color+";";
+        this._yoga.style = "font-size: "+this.font_size_normal+"px; color: "+this.text_color+";";
+        this._sun_deg.style =  "font-size: "+this.font_size_normal+"px; color: "+this.text_color+";";
+        this._moon_deg.style =  "font-size: "+this.font_size_normal+"px; color: "+this.text_color+";";
+        this._place_latlon_label.style =  "font-size: "+this.font_size_normal+"px; color: "+this.text_color+";";
+        
+        this.init_at_sunrise();
     },
 
     on_desklet_removed: function() {
@@ -127,12 +140,12 @@ MyDesklet.prototype = {
 
         this.sunrise = new Date();
         this.sunrise_next = new Date();
-        var sr = this.calcSunriseGMT(this.DtJ(displayDate), latitude, longitude);
-        var sr2 = this.calcSunriseGMT(this.DtJ(displayDate + day), latitude, longitude);
+        var sr = this.calcSunriseGMT(this.DtJ(displayDate), this.mylat, -this.mylong);
+        var sr2 = this.calcSunriseGMT(this.DtJ(displayDate + day), this.mylat, -this.mylong);
         this.sunrise.setTime(parseInt(displayDate / day) * day + sr * minutes);
         this.sunrise_next.setTime(parseInt(displayDate / day) * day + day + sr2 * minutes);
         this.sunset = new Date();
-        var ss = this.calcSunsetGMT(this.DtJ(displayDate), latitude, longitude);
+        var ss = this.calcSunsetGMT(this.DtJ(displayDate), this.mylat, -this.mylong);
         this.sunset.setTime(parseInt(displayDate / day) * day + ss * minutes);
         this._sunrise_label.set_text("🌅 " + this.fTs(this.sunrise) + " 🌇 " + this.fTs(this.sunset));
         // this._sunset_label.set_text("🌇 "+this.fTs(this.sunset));
@@ -146,9 +159,12 @@ MyDesklet.prototype = {
         var tithi_degree = fix360(moonDeg - sunDegrees);
         nakshatra = Math.floor(nakshatra_degree * 6 / 80);
         tithi = Math.floor(tithi_degree / 12);
+        tithiend = fromJulian(tithi_end(julianDays, tithi, 12));
+        nakshatraend = fromJulian(nakshatra_end(julianDays, nakshatra, ayanamsa));
         this._ayanamsa_label.set_text("अयनांश: "+lon2dms(ayanamsa));
-        this.sunrise_nakshtra_label.set_text("नक्षत्र-" + naks[nakshatra] + " (" + parseInt(nakshatra_degree) + "°)");
-        this.sunrise_tithi_label.set_text("तिथि-" + tith[tithi] + " (" + parseInt(tithi_degree) + "°)");
+        this.sunrise_nakshtra_label.set_text("नक्षत्र-" + naks[nakshatra] + (this.show_in_degrees?" (" + parseInt(nakshatra_degree) + "°)":"")+(this.show_last_time?nakshatraend.toLocaleFormat(" %H:%M:%S"):""));
+        this.sunrise_tithi_label.set_text("तिथि-" + tith[tithi] +  (this.show_in_degrees?" (" + parseInt(tithi_degree) + "°)":"")+ (this.show_last_time?tithiend.toLocaleFormat(" %H:%M:%S"):""));
+        this._place_latlon_label.set_text("📍 "+lon2dms(this.mylat)+((this.mylat>0)?"N":"S")+"  "+lon2dms(this.mylong)+((this.mylong>0)?"E":"W" ));
     },
 
     fT: function(d) {
@@ -267,35 +283,35 @@ MyDesklet.prototype = {
         tithi = Math.floor((tithi_degree) / 12);
         nakshatraend = fromJulian(nakshatra_end(julianDays, nakshatra, ayanamsa));
         var nakshatra_time_remian = new Date(nakshatraend - displayDate);
-        nakshatraendhms = " " + String(parseInt((nakshatraend - displayDate) / 3600000)).padStart(2, '0') + ":" + String(parseInt(((nakshatraend - displayDate) / 60000) % 60)).padStart(2, '0') + ":" + String(parseInt(((nakshatraend - displayDate) / 1000) % 60)).padStart(2, '0');
+        nakshatraendhms = (this.show_remaining_time?" " + String(parseInt((nakshatraend - displayDate) / 3600000)).padStart(2, '0') + ":" + String(parseInt(((nakshatraend - displayDate) / 60000) % 60)).padStart(2, '0') + ":" + String(parseInt(((nakshatraend - displayDate) / 1000) % 60)).padStart(2, '0'):"");
         tithiend = fromJulian(tithi_end(julianDays, tithi, 12));
-        tithiendhms = " " + String(parseInt((tithiend - displayDate) / 3600000)).padStart(2, '0') + ":" + String(parseInt(((tithiend - displayDate) / 60000) % 60)).padStart(2, '0') + ":" + String(parseInt(((tithiend - displayDate) / 1000) % 60)).padStart(2, '0');
+        tithiendhms = (this.show_remaining_time?" " + String(parseInt((tithiend - displayDate) / 3600000)).padStart(2, '0') + ":" + String(parseInt(((tithiend - displayDate) / 60000) % 60)).padStart(2, '0') + ":" + String(parseInt(((tithiend - displayDate) / 1000) % 60)).padStart(2, '0'):"");
         //n_yoga = Math.floor((sunDegrees + moonDeg + 2 * ayanamsa - 528119.989395531) * 6 / 80);
         var yoga_deg = fix360(sunDegrees + moonDeg + 2 * ayanamsa - 528119.989395531);
         n_yoga = Math.floor(yoga_deg * 6 / 80);
         yogaend = fromJulian(yogaendcalc(julianDays, yoga_deg));
-        var yogaendhms = " " + parseInt((yogaend - displayDate) / 3600000) + ":" + parseInt(((yogaend - displayDate) / 60000) % 60) + ":" + parseInt(((yogaend - displayDate) / 1000) % 60);
+        var yogaendhms = (this.show_remaining_time?" " + parseInt((yogaend - displayDate) / 3600000) + ":" + parseInt(((yogaend - displayDate) / 60000) % 60) + ":" + parseInt(((yogaend - displayDate) / 1000) % 60):"");
         var karan_deg = fix360(moonDeg - sunDegrees);
         // while (n_yoga < 0) n_yoga += 27;
         // while (n_yoga > 27) n_yoga -= 27;
         n_karan = n_karana(moonDeg, sunDegrees, julianDays);
         var karanend = fromJulian(tithi_end(julianDays, Math.floor(karan_deg / 6), 6));
-        karanaendhms = " " + parseInt((karanend - displayDate) / 3600000) + ":" + parseInt(((karanend - displayDate) / 60000) % 60) + ":" + parseInt(((karanend - displayDate) / 1000) % 60);
+        karanaendhms = (this.show_remaining_time?" " + parseInt((karanend - displayDate) / 3600000) + ":" + parseInt(((karanend - displayDate) / 60000) % 60) + ":" + parseInt(((karanend - displayDate) / 1000) % 60):"");
 
 
 
-        this._time.set_text(displayDate.toLocaleFormat("%H:%M:%S "));
+        this._time.set_text(displayDate.toLocaleFormat("%H:%M:%S, %A"));
         this._date.set_text(displayDate.toLocaleFormat("%e "));
         this._month.set_text(displayDate.toLocaleFormat("%B, %Y "));
 
         this._vaaram.set_text("वार-" + vaaram);
-        this._nakshtra.set_text("नक्षत्र-" + naks[nakshatra] + " (" + parseInt(nakshatra_degree) + "°) " + nakshatraendhms);
-        this._tithi.set_text("तिथि-" + tith[tithi] + " (" + parseInt(tithi_degree) + "°) " + tithiendhms);
-        this._yoga.set_text("योग-" + yog[n_yoga] + " (" + parseInt(yoga_deg) + "°) " + yogaendhms);
-        this._karan.set_text("करण-" + kar[n_karan] + " (" + parseInt(karan_deg) + "°) " + karanaendhms);
+        this._nakshtra.set_text("नक्षत्र-" + naks[nakshatra] + (this.show_in_degrees?" (" + parseInt(nakshatra_degree) + "°) ":"") + nakshatraendhms + (this.show_last_time?nakshatraend.toLocaleFormat("  %H:%M:%S"):"") );
+        this._tithi.set_text("तिथि-" + tith[tithi] + (this.show_in_degrees?" (" + parseInt(tithi_degree) + "°) ":"") + tithiendhms + (this.show_last_time?tithiend.toLocaleFormat("  %H:%M:%S"):"") );
+        this._yoga.set_text("योग-" + yog[n_yoga] + (this.show_in_degrees?" (" + parseInt(yoga_deg) + "°) ":"") + yogaendhms + (this.show_last_time?yogaend.toLocaleFormat("  %H:%M:%S"):"") );
+        this._karan.set_text("करण-" + kar[n_karan] + (this.show_in_degrees?" (" + parseInt(karan_deg) + "°) ":"") + karanaendhms + (this.show_last_time?karanend.toLocaleFormat("  %H:%M:%S"):"") );
         this._sun_deg.set_text("सूर्य-" + parseInt(sunDegrees) + "° ( " + zn[Math.floor(sunDegrees * 12 / 360)] + " राशि ) ");
         this._moon_deg.set_text("चंद्र-" + parseInt(moonDeg) + "° ( " + zn[Math.floor(moonDeg * 12 / 360)] + " राशि ) ");
-        this.timeout = Mainloop.timeout_add_seconds(1, Lang.bind(this, this._updateDate));
+        this.timeout = Mainloop.timeout_add_seconds(this.refreshtime, Lang.bind(this, this._updateDate));
 
     }
 }
