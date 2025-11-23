@@ -1,0 +1,344 @@
+# NOTE
+# This file is put in the public domain.
+# schorschii, 2018
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: notes@schorschii 2.6\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-05-03 11:37-0400\n"
+"PO-Revision-Date: \n"
+"Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
+"Language-Team: \n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. desklet.js:138
+msgid "Refresh"
+msgstr "Làm mới"
+
+#. desklet.js:151
+msgid ""
+"Can't read text file.\n"
+"Select a file in settings.\n"
+"\n"
+"Click here to edit."
+msgstr "Không thể đọc tập tin văn bản.\nChọn một tập tin trong cài đặt.\n\nNhấp vào đây để chỉnh sửa."
+
+#. desklet.js:289
+msgid "Notepad"
+msgstr "Sổ ghi chép"
+
+#. metadata.json->description
+msgid "A desklet to display notes including various themes."
+msgstr "Một desklet để hiển thị ghi chú bao gồm nhiều chủ đề khác nhau."
+
+#. metadata.json->name
+#. settings-schema.json->note-section->title
+msgid "Note"
+msgstr "Ghi chú"
+
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
+msgid "General"
+msgstr "Chung"
+
+#. settings-schema.json->visual-page->title
+#. settings-schema.json->visual-section->title
+msgid "Visual"
+msgstr "Hiển thị"
+
+#. settings-schema.json->label-section->title
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr "Nhãn desklet tùy chỉnh (chỉ hiển thị nếu trang trí được bật)"
+
+#. settings-schema.json->note-taking-method->description
+msgid "Note Taking Method"
+msgstr "Phương thức Ghi chú"
+
+#. settings-schema.json->note-taking-method->options
+msgid "Text File"
+msgstr "Tập tin Văn bản"
+
+#. settings-schema.json->note-taking-method->options
+msgid "Desklet Settings"
+msgstr "Cài đặt Desklet"
+
+#. settings-schema.json->file->description
+msgid "Path to note text file"
+msgstr "Đường dẫn đến tập tin văn bản ghi chú"
+
+#. settings-schema.json->file->tooltip
+msgid "Select your text file, where to read from and save to."
+msgstr "Chọn tập tin văn bản của bạn, nơi để đọc và lưu."
+
+#. settings-schema.json->edit-cmd->description
+msgid "Command for editing this note (on mouse click)"
+msgstr "Lệnh để chỉnh sửa ghi chú này (khi nhấp chuột)"
+
+#. settings-schema.json->edit-cmd->tooltip
+msgid "%f will replaced by the text file path."
+msgstr "%f sẽ được thay thế bằng đường dẫn tập tin văn bản."
+
+#. settings-schema.json->note-text->description
+msgid "Write Your Note"
+msgstr "Viết Ghi chú của Bạn"
+
+#. settings-schema.json->style->description
+msgid "Notes style"
+msgstr "Kiểu ghi chú"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Black"
+msgstr "Ghi chú Trống - Đen"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Blue"
+msgstr "Ghi chú Trống - Xanh dương"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Green"
+msgstr "Ghi chú Trống - Xanh lá"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Orange"
+msgstr "Ghi chú Trống - Cam"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Purple"
+msgstr "Ghi chú Trống - Tím"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - White"
+msgstr "Ghi chú Trống - Trắng"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Yellow"
+msgstr "Ghi chú Trống - Vàng"
+
+#. settings-schema.json->style->options
+msgid "White Note - Black Button"
+msgstr "Ghi chú Trắng - Nút Đen"
+
+#. settings-schema.json->style->options
+msgid "White Note - Blue Button"
+msgstr "Ghi chú Trắng - Nút Xanh dương"
+
+#. settings-schema.json->style->options
+msgid "White Note - Green Button"
+msgstr "Ghi chú Trắng - Nút Xanh lá"
+
+#. settings-schema.json->style->options
+msgid "White Note - Red Button"
+msgstr "Ghi chú Trắng - Nút Đỏ"
+
+#. settings-schema.json->style->options
+msgid "White Note - Yellow Button"
+msgstr "Ghi chú Trắng - Nút Vàng"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Black Clip"
+msgstr "Ghi chú Vàng - Kẹp Đen"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Blue Clip"
+msgstr "Ghi chú Vàng - Kẹp Xanh dương"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Green Clip"
+msgstr "Ghi chú Vàng - Kẹp Xanh lá"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Jingle Clip"
+msgstr "Ghi chú Vàng - Kẹp Leng keng"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Red Clip"
+msgstr "Ghi chú Vàng - Kẹp Đỏ"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Yellow Clip"
+msgstr "Ghi chú Vàng - Kẹp Vàng"
+
+#. settings-schema.json->style->options
+msgid "White Note - Black Magnet"
+msgstr "Ghi chú Trắng - Nam châm Đen"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Blue Magnet"
+msgstr "Ghi chú Vàng - Nam châm Xanh dương"
+
+#. settings-schema.json->style->options
+msgid "White Note - Lines and Red Magnet"
+msgstr "Ghi chú Trắng - Dòng kẻ và Nam châm Đỏ"
+
+#. settings-schema.json->style->options
+msgid "Black Note - White Magnet"
+msgstr "Ghi chú Đen - Nam châm Trắng"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Yellow Magnet"
+msgstr "Ghi chú Vàng - Nam châm Vàng"
+
+#. settings-schema.json->style->options
+msgid "Blue Paint Strokes"
+msgstr "Nét vẽ Xanh dương"
+
+#. settings-schema.json->style->options
+msgid "Green Paint Strokes"
+msgstr "Nét vẽ Xanh lá"
+
+#. settings-schema.json->style->options
+msgid "Purple Paint Strokes"
+msgstr "Nét vẽ Tím"
+
+#. settings-schema.json->style->options
+msgid "Red Paint Strokes"
+msgstr "Nét vẽ Đỏ"
+
+#. settings-schema.json->style->options
+msgid "Yellow Paint Strokes"
+msgstr "Nét vẽ Vàng"
+
+#. settings-schema.json->style->options
+msgid "White Note - Silver Spiral"
+msgstr "Ghi chú Trắng - Xoắn ốc Bạc"
+
+#. settings-schema.json->style->options
+msgid "White Note - Silver Spiral 2"
+msgstr "Ghi chú Trắng - Xoắn ốc Bạc 2"
+
+#. settings-schema.json->style->options
+msgid "White Note - Black Spiral"
+msgstr "Ghi chú Trắng - Xoắn ốc Đen"
+
+#. settings-schema.json->style->options
+msgid "White Note Large - Silver Spiral"
+msgstr "Ghi chú Trắng Lớn - Xoắn ốc Bạc"
+
+#. settings-schema.json->style->options
+msgid "Yellow Sticker"
+msgstr "Nhãn dán Vàng"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note (iOS Style)"
+msgstr "Ghi chú Vàng (Kiểu iOS)"
+
+#. settings-schema.json->style->options
+msgid "Birch Bark"
+msgstr "Vỏ cây Bạch dương"
+
+#. settings-schema.json->style->options
+msgid "Burned Paper"
+msgstr "Giấy Cháy"
+
+#. settings-schema.json->style->options
+msgid "Clay Tablet"
+msgstr "Bảng Đất sét"
+
+#. settings-schema.json->style->options
+msgid "Coffee Stained"
+msgstr "Vết cà phê"
+
+#. settings-schema.json->style->options
+msgid "Clipboard"
+msgstr "Bảng kẹp"
+
+#. settings-schema.json->style->options
+msgid "None"
+msgstr "Không có"
+
+#. settings-schema.json->style->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Chọn hình nền bạn muốn sử dụng."
+
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr "Đổ bóng chữ"
+
+#. settings-schema.json->text-shadow-color->description
+msgid "Text shadow color"
+msgstr "Màu đổ bóng chữ"
+
+#. settings-schema.json->bg-color->description
+msgid "Background color"
+msgstr "Màu nền"
+
+#. settings-schema.json->bg-color->tooltip
+msgid "Set the background color of this desklet."
+msgstr "Đặt màu nền cho desklet này."
+
+#. settings-schema.json->enable-word-wrap->description
+msgid "Enable word wrap"
+msgstr "Bật ngắt dòng"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Ẩn trang trí"
+
+#. settings-schema.json->font->description
+msgid "Font"
+msgstr "Phông chữ"
+
+#. settings-schema.json->size-font->units
+msgid "pixels"
+msgstr "pixel"
+
+#. settings-schema.json->size-font->description
+msgid "Font size"
+msgstr "Cỡ chữ"
+
+#. settings-schema.json->size-font->tooltip
+msgid "Increase or decrease the note font size."
+msgstr "Tăng hoặc giảm cỡ chữ ghi chú."
+
+#. settings-schema.json->font-bold->description
+msgid "Bold"
+msgstr "Đậm"
+
+#. settings-schema.json->font-italic->description
+msgid "Italic"
+msgstr "Nghiêng"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Màu chữ"
+
+#. settings-schema.json->text-color->tooltip
+msgid "Set the text color of this desklet."
+msgstr "Đặt màu chữ cho desklet này."
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "hệ số tỷ lệ"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Kích thước desklet"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr "Tăng hoặc giảm kích thước của desklet này bằng hệ số tỷ lệ này."
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Sử dụng nhãn desklet tùy chỉnh"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr "Chọn hộp này cho phép bạn đặt nhãn tùy chỉnh trong trường bên dưới."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Nhãn desklet tùy chỉnh"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr "Đặt nhãn tùy chỉnh của bạn ở đây. Trường này không khả dụng trừ khi hộp kiểm ở trên được bật."

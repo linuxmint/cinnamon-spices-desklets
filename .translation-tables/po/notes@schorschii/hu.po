@@ -1,0 +1,354 @@
+# NOTE
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# schorschii, 2018
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-05-03 11:37-0400\n"
+"PO-Revision-Date: 2025-06-21 14:25+0200\n"
+"Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. desklet.js:138
+msgid "Refresh"
+msgstr "Frissítés"
+
+#. desklet.js:151
+msgid ""
+"Can't read text file.\n"
+"Select a file in settings.\n"
+"\n"
+"Click here to edit."
+msgstr ""
+"Nem olvasható a szövegfájl.\n"
+"Válasszon egy fájlt a beállításokban.\n"
+"\n"
+"Kattintson ide a szerkesztéshez."
+
+#. desklet.js:289
+msgid "Notepad"
+msgstr "Jegyzettömb"
+
+#. metadata.json->description
+msgid "A desklet to display notes including various themes."
+msgstr "Jegyzetek megjelenítésére szolgáló asztalkalmazás különféle témákkal."
+
+#. metadata.json->name
+#. settings-schema.json->note-section->title
+msgid "Note"
+msgstr "Jegyzet"
+
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
+msgid "General"
+msgstr "Általános"
+
+#. settings-schema.json->visual-page->title
+#. settings-schema.json->visual-section->title
+msgid "Visual"
+msgstr "Vizuális"
+
+#. settings-schema.json->label-section->title
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Egyéni asztali címke (csak akkor látható, ha a dekoráció engedélyezve van)"
+
+#. settings-schema.json->note-taking-method->description
+msgid "Note Taking Method"
+msgstr "Jegyzetkészítési módszer"
+
+#. settings-schema.json->note-taking-method->options
+msgid "Text File"
+msgstr "Szövegfájl"
+
+#. settings-schema.json->note-taking-method->options
+msgid "Desklet Settings"
+msgstr "Desklet beállítások"
+
+#. settings-schema.json->file->description
+msgid "Path to note text file"
+msgstr "A jegyzet szöveges fájljának útvonala"
+
+#. settings-schema.json->file->tooltip
+msgid "Select your text file, where to read from and save to."
+msgstr "Válassza ki az olvasáshoz és mentéshez használandó szöveges fájlt."
+
+#. settings-schema.json->edit-cmd->description
+msgid "Command for editing this note (on mouse click)"
+msgstr "A jegyzet szerkesztéséhez használt parancs (egérkattintásra)"
+
+#. settings-schema.json->edit-cmd->tooltip
+msgid "%f will replaced by the text file path."
+msgstr "%f a szöveges fájl elérési útvonalára lesz cserélve."
+
+#. settings-schema.json->note-text->description
+msgid "Write Your Note"
+msgstr "Írja meg jegyzetét"
+
+#. settings-schema.json->style->description
+msgid "Notes style"
+msgstr "Jegyzettek stílusa"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Black"
+msgstr "Egyszerű - fekete háttérrel"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Blue"
+msgstr "Egyszerű - kék háttérrel"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Green"
+msgstr "Egyszerű - zöld háttérrel"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Orange"
+msgstr "Egyszerű - narancssárga háttérrel"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Purple"
+msgstr "Egyszerű - lila háttérrel"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - White"
+msgstr "Egyszerű - fehér háttérrel"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Yellow"
+msgstr "Egyszerű - sárga háttérrel"
+
+#. settings-schema.json->style->options
+msgid "White Note - Black Button"
+msgstr "Fehér lap - fekete rajzszöggel"
+
+#. settings-schema.json->style->options
+msgid "White Note - Blue Button"
+msgstr "Fehér lap - kék rajzszöggel"
+
+#. settings-schema.json->style->options
+msgid "White Note - Green Button"
+msgstr "Fehér lap - zöld rajzszöggel"
+
+#. settings-schema.json->style->options
+msgid "White Note - Red Button"
+msgstr "Fehér lap - piros rajzszöggel"
+
+#. settings-schema.json->style->options
+msgid "White Note - Yellow Button"
+msgstr "Fehér lap - sárga rajzszöggel"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Black Clip"
+msgstr "Sárga lap - fekete gemkapoccsal"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Blue Clip"
+msgstr "Sárga lap - kék gemkapoccsal"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Green Clip"
+msgstr "Sárga lap - zöld gemkapoccsal"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Jingle Clip"
+msgstr "Sárga lap - karácsonyi gemkapoccsal"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Red Clip"
+msgstr "Sárga lap - piros gemkapoccsal"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Yellow Clip"
+msgstr "Sárga lap - sárga gemkapoccsal"
+
+#. settings-schema.json->style->options
+msgid "White Note - Black Magnet"
+msgstr "Fehér lap - fekete mágnessel"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Blue Magnet"
+msgstr "Sárga lap - kék mágnessel"
+
+#. settings-schema.json->style->options
+msgid "White Note - Lines and Red Magnet"
+msgstr "Vonalas fehér lap - piros mágnessel"
+
+#. settings-schema.json->style->options
+msgid "Black Note - White Magnet"
+msgstr "Fekete lap - fehér mágnes"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Yellow Magnet"
+msgstr "Sárga lap - sárga mágnes"
+
+#. settings-schema.json->style->options
+msgid "Blue Paint Strokes"
+msgstr "Kék festékvonások"
+
+#. settings-schema.json->style->options
+msgid "Green Paint Strokes"
+msgstr "Zöld festékvonások"
+
+#. settings-schema.json->style->options
+msgid "Purple Paint Strokes"
+msgstr "Lila festékvonások"
+
+#. settings-schema.json->style->options
+msgid "Red Paint Strokes"
+msgstr "Vörös festékvonások"
+
+#. settings-schema.json->style->options
+msgid "Yellow Paint Strokes"
+msgstr "Sárga festékvonások"
+
+#. settings-schema.json->style->options
+msgid "White Note - Silver Spiral"
+msgstr "Fehér lap - fémspirállal"
+
+#. settings-schema.json->style->options
+msgid "White Note - Silver Spiral 2"
+msgstr "Fehér lap - kettős fémspirállal"
+
+#. settings-schema.json->style->options
+msgid "White Note - Black Spiral"
+msgstr "Fehér lap - fekete kettős spirállal"
+
+#. settings-schema.json->style->options
+msgid "White Note Large - Silver Spiral"
+msgstr "Hosszú fehér lap - fémspirállal"
+
+#. settings-schema.json->style->options
+msgid "Yellow Sticker"
+msgstr "Sárga Post-it"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note (iOS Style)"
+msgstr "Sárga lap (iOS stílusú)"
+
+#. settings-schema.json->style->options
+msgid "Birch Bark"
+msgstr "Nyírfakéreg"
+
+#. settings-schema.json->style->options
+msgid "Burned Paper"
+msgstr "Égett papír"
+
+#. settings-schema.json->style->options
+msgid "Clay Tablet"
+msgstr "Agyagtábla"
+
+#. settings-schema.json->style->options
+msgid "Coffee Stained"
+msgstr "Kávéfoltos"
+
+#. settings-schema.json->style->options
+msgid "Clipboard"
+msgstr "Vágólap"
+
+#. settings-schema.json->style->options
+msgid "None"
+msgstr "Nincs"
+
+#. settings-schema.json->style->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Válasszon ki egy háttérgrafikát a használathoz."
+
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr "Szövegárnyék"
+
+#. settings-schema.json->text-shadow-color->description
+msgid "Text shadow color"
+msgstr "Szövegárnyék színe"
+
+#. settings-schema.json->bg-color->description
+msgid "Background color"
+msgstr "Háttérszín"
+
+#. settings-schema.json->bg-color->tooltip
+msgid "Set the background color of this desklet."
+msgstr "Asztalkalmazás szövegszínének beállítása."
+
+#. settings-schema.json->enable-word-wrap->description
+msgid "Enable word wrap"
+msgstr "Sortörés engedélyezése"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Dekorációk elrejtése"
+
+#. settings-schema.json->font->description
+msgid "Font"
+msgstr "Betűtípus"
+
+#. settings-schema.json->size-font->units
+msgid "pixels"
+msgstr "képpont"
+
+#. settings-schema.json->size-font->description
+msgid "Font size"
+msgstr "Betűméret"
+
+#. settings-schema.json->size-font->tooltip
+msgid "Increase or decrease the note font size."
+msgstr "Növelje vagy csökkentse a jegyzet betűméretét."
+
+#. settings-schema.json->font-bold->description
+msgid "Bold"
+msgstr "Félkövér"
+
+#. settings-schema.json->font-italic->description
+msgid "Italic"
+msgstr "Dőlt"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Szövegszín"
+
+#. settings-schema.json->text-color->tooltip
+msgid "Set the text color of this desklet."
+msgstr "Asztalkalmazás szövegszínének beállítása."
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "léptéktényező"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Asztalkalmazás mérete"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Növelje vagy csökkentse az asztalkalmazás méretét a skála segítéségével."
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Egyéni asztalkalmazás címke használata"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Ennek a négyzetnek a bejelölésével egyéni címkét állíthat be az alábbi "
+"mezőben."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Egyéni asztalkalmazás címke"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr ""
+"Itt állítson be egyedi címkét. Ez a mező nem lesz látható egészen addig, "
+"amíg a fenti négyzet nincs bejelölve."

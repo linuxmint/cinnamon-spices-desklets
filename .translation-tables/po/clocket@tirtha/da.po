@@ -1,0 +1,191 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: clocket@tirtha 2.4\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 11:37+0200\n"
+"PO-Revision-Date: 2025-10-30 19:57+0100\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"Language-Team: \n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: desklet.js:49
+msgid "Clock"
+msgstr "Ur"
+
+#: desklet.js:72
+msgid "Date and Time Settings"
+msgstr "Indstillinger for dato og tid"
+
+#. metadata.json->name
+msgid "clocket"
+msgstr "clocket"
+
+#. metadata.json->description
+msgid ""
+"A desklet that displays the time, date, currenty and forecast weather report"
+msgstr ""
+"Et skrivebordsprogram der viser klokkeslæt, dato, aktuelt vejr og vejrudsigt"
+
+#. metadata.json->comments
+msgid ""
+"Please consider custom Weather Desklet into your language. See the website "
+"for more information"
+msgstr ""
+"Overvej at oversætte skrivebordsprogrammet til dit sprog. Find flere "
+"oplysninger på webstedet."
+
+#. settings-schema.json->top->description
+msgid "Clock configuration"
+msgstr "Indstilling af ur"
+
+#. settings-schema.json->font-size->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->font-size->description
+msgid "Font size"
+msgstr "Skrifttypestørrelse"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Tekstfarve"
+
+#. settings-schema.json->text-color->tooltip
+#. settings-schema.json->weather-color->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Klik på knappen for at vælge en ny tekstfarve"
+
+#. settings-schema.json->background-color->description
+msgid "background color"
+msgstr "baggrundsfarve"
+
+#. settings-schema.json->background-color->tooltip
+msgid "Click the button to select a new background color"
+msgstr "Klik på knappen for at vælge en ny baggrundsfarve"
+
+#. settings-schema.json->weatherconf->description
+msgid "weather data service settings"
+msgstr "Indstillinger for vejrtjeneste"
+
+#. settings-schema.json->compact->description
+#. settings-schema.json->compact->tooltip
+msgid "Want weather display ?"
+msgstr "Vis vejret"
+
+#. settings-schema.json->webservice->description
+msgid "Data service"
+msgstr "Datatjeneste"
+
+#. settings-schema.json->webservice->options
+msgid "BBC"
+msgstr "BBC"
+
+#. settings-schema.json->webservice->options
+msgid "Open Weather Map Free (requires API key)"
+msgstr "Open Weather Map Free (requires API key)"
+
+#. settings-schema.json->webservice->tooltip
+msgid "select the data service"
+msgstr "Vælg datatjenesten"
+
+#. settings-schema.json->api-key->description
+msgid "put api key"
+msgstr "Indtast API-nøgle"
+
+#. settings-schema.json->api-key->tooltip
+msgid "put your api key generated from open-weather-map here"
+msgstr "Indtast din API-nøgle fra Open Weather Map her"
+
+#. settings-schema.json->loctype->description
+msgid "Type of location data"
+msgstr "Lokationsdatatype"
+
+#. settings-schema.json->loctype->options
+msgid "city name"
+msgstr "Bynavn"
+
+#. settings-schema.json->loctype->options
+msgid "lat-lon"
+msgstr "Læng-bred"
+
+#. settings-schema.json->loctype->tooltip
+msgid "select your location type"
+msgstr "Vælg din lokationstype"
+
+#. settings-schema.json->loc->description
+msgid "put your location"
+msgstr "Indtast din lokation"
+
+#. settings-schema.json->loc->tooltip
+msgid "put your lat-long generated from lat-long.html page"
+msgstr "Indtast længde- og breddegrad fra lat-long.html"
+
+#. settings-schema.json->auto-update->description
+msgid "auto-update report"
+msgstr "Automatisk opdatering"
+
+#. settings-schema.json->auto-update->tooltip
+msgid "enable or disable auto-update"
+msgstr "Aktivér eller deaktivér automatisk opdatering"
+
+#. settings-schema.json->update-duration->description
+msgid "set auto update duration(20 min/30 min/60 min)"
+msgstr "Angiv opdateringsinterval (20 min/30 min/60 min)"
+
+#. settings-schema.json->update-duration->tooltip
+msgid "set auto update duration"
+msgstr "Angiv opdateringsintervallet"
+
+#. settings-schema.json->data-custom->description
+msgid "customize your data"
+msgstr "Tilpas dine data"
+
+#. settings-schema.json->unit->description
+msgid "unit"
+msgstr "Enhed"
+
+#. settings-schema.json->unit->options
+msgid "metric"
+msgstr "Metrisk"
+
+#. settings-schema.json->unit->tooltip
+msgid "select your unit preferance"
+msgstr "Vælg dine foretrukne enheder"
+
+#. settings-schema.json->design->description
+msgid "customize font and bg color"
+msgstr "Tilpas skrifttype og baggrundsfarve"
+
+#. settings-schema.json->weather-color->description
+msgid "weather block text color"
+msgstr "Tekstfarve for vejret"
+
+#. settings-schema.json->weather-bg-color->description
+msgid "weather-block bg-color"
+msgstr "Baggrundsfarve for vejret"
+
+#. settings-schema.json->weather-bg-color->tooltip
+msgid "Click the button to select a new bg color"
+msgstr "Klik på knappen for at vælge en ny baggrundsfarve"
+
+#. settings-schema.json->icon-pack->description
+msgid "Icon pack"
+msgstr "Ikoner"
+
+#. settings-schema.json->icon-pack->options
+msgid "default"
+msgstr "Standard"
+
+#. settings-schema.json->icon-pack->tooltip
+msgid "select your fav icon-pack"
+msgstr "Vælg dine foretrukne ikoner"
