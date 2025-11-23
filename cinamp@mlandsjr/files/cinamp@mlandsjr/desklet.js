@@ -11,7 +11,7 @@ const Clutter = imports.gi.Clutter;
 const Tooltips = imports.ui.tooltips;
 const Cairo = imports.cairo;
 
-const DEFAULT_DIR = GLib.get_home_dir() + "/Music";
+const DEFAULT_DIR = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_MUSIC);
 const AUDIO_EXT = ['.wav', '.ogg', '.mp3', '.oga', '.flac', '.m4a', '.aac', '.wma', '.aiff'];
 
 const STANDARD_ART_SIZE = 108;
