@@ -1,0 +1,91 @@
+{
+    "music-dir": {
+        "type": "filechooser",
+        "default": "",
+        "description": "Local music folder path",
+        "select-dir": true
+    },
+    "volume": {
+        "type": "scale",
+        "min": 0,
+        "max": 1,
+        "step": 0.05,
+        "default": 0.7,
+        "description": "Volume Level"
+    },
+    "show-album-art": {
+        "type": "switch",
+        "default": true,
+        "description": "Show album art"
+    },
+    "start-with-visualizer": {
+        "type": "switch",
+        "default": false,
+        "description": "Start with Visualizer (Graph) instead of Album Art"
+    },
+    "show-playlist": {
+        "type": "switch",
+        "default": true,
+        "description": "Show playlist"
+    },
+    "shuffle": {
+        "type": "switch",
+        "default": false,
+        "description": "Shuffle playlist"
+    },
+    "repeat-mode": {
+        "type": "combobox",
+        "default": 0,
+        "options": {
+            "Off": 0,
+            "All": 1,
+            "One": 2
+        },
+        "description": "Repeat mode"
+    },
+    "minimal-mode": {
+        "type": "switch",
+        "default": false,
+        "description": "Start in Minimal Mode"
+    },
+    "vis-decay-rate": {
+        "type": "scale",
+        "min": 0.05,
+        "max": 0.5,
+        "step": 0.05,
+        "default": 0.2,
+        "description": "Peak Decay Speed (Faster = bars fall quicker)"
+    },
+    "vis-sensitivity": {
+        "type": "scale",
+        "min": 0.5,
+        "max": 2.0,
+        "step": 0.1,
+        "default": 1.0,
+        "description": "Visualizer Amplitude Sensitivity (Higher = bars are taller)"
+    },
+    "vis-bass-boost": {
+        "type": "scale",
+        "min": 1.0,
+        "max": 3.0,
+        "step": 0.1,
+        "default": 1.5,
+        "description": "Visualizer Bass Boost (Amplifies lower frequency bars)"
+    },
+    "vis-peak-factor": {
+        "type": "scale",
+        "min": 0.1,
+        "max": 2.0,
+        "step": 0.1,
+        "default": 0.9,
+        "description": "Bar Jitter/Randomness Factor"
+    },
+    "vis-update-rate": {
+        "type": "scale",
+        "min": 0.01,
+        "max": 0.1,
+        "step": 0.01,
+        "default": 0.05,
+        "description": "Visualizer Update Rate"
+    }
+}
