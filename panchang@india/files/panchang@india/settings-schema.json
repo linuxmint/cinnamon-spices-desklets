@@ -1,0 +1,97 @@
+{
+    "head0":
+    {
+        "type": "header",
+        "description": "Settings for Panchang Visual Style"
+    },
+
+    "head1":
+    {
+        "type": "header",
+        "description": "Visual"
+    },
+    "text-color":
+    {
+        "type": "colorchooser",
+        "default": "white",
+        "description": "Text color",
+        "tooltip": "Set the text color of this desklet."
+    },
+    "border-color":
+    {
+        "type": "colorchooser",
+        "default": "black",
+        "description": "Set the color of desklet border",
+        "tooltip": "Set the border color of this desklet."
+    },
+    "background-color":
+    {
+        "type": "colorchooser",
+        "default": "black",
+        "description": "Set the color of desklet background",
+        "tooltip": "Set the background color of this desklet."
+    },
+     "show-in-degrees": {
+        "type": "checkbox",
+        "description": "Show the value in 360° degrees",
+        "default": false
+    },
+     "show-remaining-time": {
+        "type": "checkbox",
+        "description": "Show remaining time of tithi and nakshatra",
+        "default": true
+    },
+     "show-last-time": {
+        "type": "checkbox",
+        "description": "Show end time of tithi and nakshatra",
+        "default": false
+    },
+     "scale-size": {
+        "type": "spinbutton",
+        "default": 1.0,
+        "min": 0.4,
+        "max": 5.0,
+        "step": 0.05,
+        "units": "scale factor",
+        "description": "Desklet size",
+        "tooltip": "Increase or decrease the size of the desklet using this scale factor."
+    },
+      "refreshtime": {
+        "type": "spinbutton",
+        "default": 1,
+        "min": 1,
+        "max": 300,
+        "step": 1,
+        "units": "seconds",
+        "description": "Refresh panchang in every"
+    },
+    "head2":
+    {
+        "type": "header",
+        "description": "Place Coordinates"
+    },
+    "mylat":
+    {
+        "type": "spinbutton",
+        "default": 27.0,
+        "min": -90.0,
+        "max": 90.0,
+        "step": 0.0001,
+        "units": "scale factor",
+        "description": "Select the latitude of your place",
+        "tooltip": "Select your latitude of place"
+    },
+    "mylong":
+    {
+        "type": "spinbutton",
+        "default": 77.0,
+        "min": -180.0,
+        "max": 180.0,
+        "step": 0.0001,
+        "units": "scale factor",
+        "description": "Select the longitude of your place",
+        "tooltip": "Select your longitude of place"
+    }
+
+
+}
