@@ -53,6 +53,7 @@ const text_content_keys = [
     "date_weekday_enabled",
     "emoji_type",
     "caption_type",
+    "moon_countdown_selection",
     "show_secondary_countdowns",
 ];
 const countdown_keys = [
@@ -128,6 +129,7 @@ class P3Desklet extends Desklet.Desklet {
         this.settings.bind("bottom-caption-shadow", "caption_shadow_enabled", this._onUISettingsChanged);
         this.settings.bind("bottom-caption-shadow-offset", "caption_shadow_offset", this._onUISettingsChanged);
         this.settings.bind("bottom-show-secondary-countdowns", "show_secondary_countdowns", this._onUISettingsChanged);
+        this.settings.bind("bottom-moon-countdown-selection", "moon_countdown_selection", this._onSettingsChanged);
 
         this.settings.bind("custom-countdown-list", "countdown_list", this._onSettingsChanged);
 
@@ -312,8 +314,6 @@ class P3Desklet extends Desklet.Desklet {
     }
 
     _updateClock() {
-        // global.log("BABYBABYBABYBABYBABY");
-
         let formatted_time = this.clock_source.get_time_text();
         this._time_label.set_text(formatted_time);
         this._time_shadow_label.set_text(this.time_shadow_enabled ? formatted_time : "");

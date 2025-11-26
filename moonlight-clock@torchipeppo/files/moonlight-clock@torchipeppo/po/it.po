@@ -675,8 +675,8 @@ msgstr "Temperatura °F (W)"
 
 #. 3.4->settings-schema.json->bottom-caption-type->options
 #. 5.4->settings-schema.json->bottom-caption-type->options
-msgid "Full moon countdown (C?)"
-msgstr "Conto alla rivescia: Luna piena (C?)"
+msgid "Moon countdown (C?)"
+msgstr "Conto alla rivescia: Luna (C?)"
 
 #. 3.4->settings-schema.json->bottom-caption-type->options
 #. 5.4->settings-schema.json->bottom-caption-type->options
@@ -692,6 +692,31 @@ msgstr "Didascalia mostrata"
 #. 5.4->settings-schema.json->bottom-show-secondary-countdowns->description
 msgid "Show more countdowns in secondary text (D)"
 msgstr "Mostra più conti alla rovescia nel testo secondario (D)"
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "Select moon phases"
+msgstr "Seleziona fasi lunari"
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌑"
+msgstr "🌑"
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌓"
+msgstr "🌓"
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌕"
+msgstr "🌕"
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌗"
+msgstr "🌗"
 
 #. 3.4->settings-schema.json->custom-countdown-list-label->description
 #. 5.4->settings-schema.json->custom-countdown-list-label->description

@@ -1,30 +1,79 @@
+const UUID = "yarr@jtoberling";
+
 const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
+const Clutter = imports.gi.Clutter;
 const Settings = imports.ui.settings;
 const Lang = imports.lang;
 const GLib = imports.gi.GLib;
 const Util = imports.misc.util;
 const Gettext = imports.gettext;
-const Gtk = imports.gi.Gtk;
 const Mainloop = imports.mainloop;
 const Soup = imports.gi.Soup;
-const Signals = imports.signals;
 const SignalManager = imports.misc.signalManager;
 const Gio = imports.gi.Gio;
-const Tooltips = imports.ui.tooltips
-const ModalDialog = imports.ui.modalDialog;
 const Secret = imports.gi.Secret;
-const Pango = imports.gi.Pango;
-const Clutter = imports.gi.Clutter;
-const fromXML = require('./fromXML');
-const ByteArray = imports.byteArray;
+const Main = imports.ui.main;
+const PopupMenu = imports.ui.popupMenu;
+const ModalDialog = imports.ui.modalDialog;
 
-const UUID = "yarr@jtoberling";
-const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
+// Central logger
+const Logger = require('./logger');
+
+// Import our new modular components
+const { FeedProcessor } = require('./feed-processors');
+const { UIDisplay } = require('./ui-display');
+const { FeedCollection } = require('./feed-collection');
+const { ArticleManagement } = require('./article-management');
+const { AIManagers } = require('./ai-managers');
+const { Utilities } = require('./utilities');
+const { SearchManagers } = require('./search-managers');
+const { FavoritesManagers } = require('./favorites-managers');
+
+// Import our modules in correct dependency order
+const fromXMLModule = require('./fromXML');
+let fromXML = fromXMLModule.fromXML;
+
+try {
+    const managers = require('./async-managers');
+    // Make classes available globally
+    var AsyncCommandExecutor = managers.AsyncCommandExecutor;
+    var TimerManager = managers.TimerManager;
+    var UIUpdateManager = managers.UIUpdateManager;
+    var AsyncOperationManager = managers.AsyncOperationManager;
+    // AsyncErrorHandler is now imported from logger module
+} catch (e) {
+    Logger.error('async-managers import failed: ' + e);
+    throw e;
+}
+
+try {
+    const DatabaseManager = require('./database-manager');
+    // Don't create database manager yet - will be created after settings are bound
+    var DatabaseManagerClass = DatabaseManager;
+} catch (e) {
+    Logger.error('database-managers import failed: ' + e);
+    throw e;
+}
+
+try {
+    const UIComponents = require('./ui-components');
+    var createPasswordDialog = UIComponents.createPasswordDialog;
+    var createRssSearchDialog = UIComponents.createRssSearchDialog;
+    var createFeedSelectionDialog = UIComponents.createFeedSelectionDialog;
+} catch (e) {
+    Logger.error('ui-components import failed: ' + e);
+    throw e;
+}
+
+const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID] ? imports.ui.deskletManager.deskletMeta[UUID].path : null;
 
 function _(str) {
     return Gettext.dgettext(UUID, str);
 }
+
+// Initialize debug setting
+// Logger.setDebugEnabled(false); // REMOVED - this was setting debug to false before settings loaded
 
 class YarrDesklet extends Desklet.Desklet {
 
@@ -62,6 +111,26 @@ class YarrDesklet extends Desklet.Desklet {
     // Add new property for favorite filtering
     showOnlyFavorites = false;
 
+    // CRITICAL DEBUG: Track all changes to showOnlyFavorites
+    get showOnlyFavorites() {
+        return this._showOnlyFavorites || false;
+    }
+
+    set showOnlyFavorites(value) {
+        const oldValue = this._showOnlyFavorites;
+        this._showOnlyFavorites = value;
+        if (oldValue !== value) {
+            Logger.debug(`CRITICAL DEBUG: showOnlyFavorites changed from ${oldValue} to ${value}`, true);
+            // Print stack trace to see where this is being set
+            Logger.debug(`CRITICAL DEBUG: Stack trace:`, true);
+            try {
+                throw new Error('Stack trace for showOnlyFavorites change');
+            } catch (e) {
+                Logger.debug(`CRITICAL DEBUG: ${e.stack}`, true);
+            }
+        }
+    }
+
     // Add resource monitoring
     _resourceUsage = {
         lastUpdate: 0,
@@ -77,7 +146,6 @@ class YarrDesklet extends Desklet.Desklet {
     };
 
     // Add to class properties
-    favoritesDb = null;
     favoriteKeys = new Set();
 
     // Add new settings binding
@@ -91,123 +159,1332 @@ class YarrDesklet extends Desklet.Desklet {
     // Add memory monitoring capability
     _memoryMetrics = null;
 
+    // Add refresh history tracking
+    refreshHistory = [];
+
+    // Add setting for showing refresh separators
+    showRefreshSeparators = true;
+
+    // Add setting for debug logs
+    enableDebugLogs = false;
+    debugVerbosity = 'minimal';
+
+    // Add new property for read feature
+    readArticleIds = new Set();
+    // Read title styling
+    dimReadTitles = true;
+    readTitleColor = 'rgb(180,180,180)';
+
+    // Add missing properties that are accessed by modules
+    showReadStatusCheckbox = false;
+    fontstyle = '';
+    itemlimit = 50;
+    refreshIcon = null;
+    refreshButton = null;
+    addArticleButton = null;
+    mainBox = null;
+    headerContainer = null;
+    headBox = null;
+    uiComponents = null;
+    ModalDialog = null;
+
     constructor(metadata, desklet_id) {
+        // Constructor flow: Initialize → Build UI → Install Handlers → Load Data → Start Feeds
+        // This ensures handlers (RightMenu/Config) are available immediately
 
         // Call parent constructor FIRST
         super(metadata, desklet_id);
 
-        // translation init
-        if (!DESKLET_ROOT.startsWith("/usr/share/")) {
-            Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+        // Store desklet_id for later use
+        this._desklet_id = desklet_id;
+
+        // Set initialization flag
+        this._isInitializing = true;
+
+        global.log("\n\n\n----------------------------------- YARR DESKLET INITIALIZING -----------------------------------------------");
+
+        try {
+
+            // translation init
+            if (DESKLET_ROOT && !DESKLET_ROOT.startsWith("/usr/share/")) {
+                Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+            }
+
+            // Initialize Secret schema for API key storage
+            this.STORE_SCHEMA = new Secret.Schema("org.YarrDesklet.Schema", Secret.SchemaFlags.NONE, {});
+
+            // Initialize basic properties
+            this.refreshEnabled = true;
+            this.delay = 300; // 5 minutes default
+            this.items = new Map();
+            this.favoriteKeys = new Set(); // Initialize the Set properly
+            this.readArticleIds = new Set(); // Initialize read status Set
+
+            // Initialize AI provider default
+            this.ai_provider = 'openai';
+
+            // Ensure Sets are properly initialized
+            if (!(this.favoriteKeys instanceof Set)) {
+                this.favoriteKeys = new Set();
+            }
+            if (!(this.readArticleIds instanceof Set)) {
+                this.readArticleIds = new Set();
+            }
+
+            this._updateInProgress = false;
+            this.timerInProgress = 0;
+            this._setUpdateTimerInProgress = false;
+            this._feedsInitialized = false;
+            this._displayUpdateStartTime = null;
+
+            // Initialize async managers
+            this.timerManager = new TimerManager();
+            this.uiUpdateManager = new UIUpdateManager();
+            this.uiUpdateManager.setUpdateCallback(() => {
+                if (this.uiDisplay && typeof this.uiDisplay.displayItems === 'function') {
+                    this.uiDisplay.displayItems();
+                }
+            });
+            // AsyncErrorHandler is available from logger module
+            this.asyncCommandExecutor = AsyncCommandExecutor;
+
+            // Initialize our new modular components
+            this.feedProcessor = new FeedProcessor();
+            this.uiDisplay = new UIDisplay(this);
+            this.feedCollection = new FeedCollection(this);
+            this.articleManagement = new ArticleManagement(this);
+            this.aiManagers = new AIManagers(this);
+            this.utilities = new Utilities();
+            this.searchManagers = new SearchManagers(this);
+            this.favoritesManagers = new FavoritesManagers(this);
+
+            // Initialize uiComponents for use by other modules
+            this.uiComponents = {
+                createPasswordDialog: createPasswordDialog,
+                createRssSearchDialog: createRssSearchDialog,
+                createFeedSelectionDialog: createFeedSelectionDialog
+            };
+
+            // Initialize ModalDialog for use by other modules
+            this.ModalDialog = ModalDialog;
+
+            // Initialize St for use by other modules
+            this.St = St;
+
+            // Initialize Clutter for use by other modules
+            this.Clutter = Clutter;
+
+            // Initialize clipboard for use by other modules
+            this.clipboard = St.Clipboard.get_default();
+
+            // Initialize settings
+            this.settings = new Settings.DeskletSettings(this, metadata.uuid, desklet_id);
+
+            // Initialize HTTP session
+            if (Soup.MAJOR_VERSION === 2) {
+                this.httpSession = new Soup.SessionAsync();
+                Soup.Session.prototype.add_feature.call(this.httpSession, new Soup.ProxyResolverDefault());
+            } else {
+                this.httpSession = new Soup.Session();
+            }
+
+            this.httpSession.timeout = 60
+            this.httpSession.idle_timeout = 60;
+            this.httpSession.user_agent = 'Mozilla/5.0 YarrDesklet/1.0';
+
+            Logger.info(`HTTP session initialized: ${this.httpSession ? 'success' : 'failed'}`);
+            if (this.httpSession) {
+                Logger.info(`HTTP session timeout: ${this.httpSession.timeout}s, idle timeout: ${this.httpSession.idle_timeout}s`);
+            }
+
+            // Bind all settings
+            this.settings.bind('refreshInterval-spinner', 'delay');
+            this.settings.bind('feeds', 'feeds');
+            Logger.debug(`Feeds setting bound, current value: ${this.feeds ? this.feeds.length : 'null'}`, false, 'basic');
+            this.settings.bind("height", "height");
+            this.settings.bind("width", "width");
+            this.settings.bind("transparency", "transparency");
+            this.settings.bind("alternateRowTransparency", "alternateRowTransparency");
+            this.settings.bind("backgroundColor", "backgroundColor");
+            this.settings.bind("font", "font");
+            this.settings.bind("text-color", "color");
+            this.settings.bind("numberofitems", "itemlimit");
+            this.settings.bind("listfilter", "listfilter");
+            this.settings.bind('enablecopy', 'enablecopy');
+
+            this.settings.bind('ai_enablesummary', 'ai_enablesummary');
+            this.settings.bind('ai_add_description_to_summary', 'ai_add_description_to_summary');
+            this.settings.bind('ai_provider', 'ai_provider');
+            this.settings.bind('ai_use_custom_url', 'ai_use_custom_url');
+            this.settings.bind('ai_dumptool', 'ai_dumptool');
+            this.settings.bind('ai_url', 'ai_url');
+            this.settings.bind('ai_systemprompt', 'ai_systemprompt');
+            this.settings.bind('ai_use_standard_model', 'ai_use_standard_model');
+            this.settings.bind('ai_model', 'ai_model');
+            this.settings.bind('ai_custom_model', 'ai_custom_model');
+            this.settings.bind("ai_font", "ai_font");
+            this.settings.bind("ai_text-color", "ai_color");
+            this.settings.bind("temperature", "temperature");
+
+            // Add new settings bindings
+            this.settings.bind('enableFeedButton', 'enableFeedButton');
+            this.settings.bind('enableTimestamp', 'enableTimestamp');
+            this.settings.bind('enableFavoriteFeature', 'enableFavoriteFeature');
+            this.settings.bind('loadFavoritesOnStartup', 'loadFavoritesOnStartup');
+            this.settings.bind("articleSpacing", "articleSpacing");
+            this.settings.bind("showRefreshSeparators", "showRefreshSeparators");
+            this.settings.bind("enableDebugLogs", "enableDebugLogs");
+            this.settings.bind("debugVerbosity", "debugVerbosity");
+            this.settings.bind("databasePath", "databasePath");
+
+            // Initialize database manager after settings are bound
+            try {
+                Logger.debug(`Settings bound, databasePath value: ${this.databasePath}`);
+                Logger.debug(`Settings type: ${typeof this.databasePath}`);
+
+                // Use database base directory setting for existing separate databases
+                Logger.debug(`Database base directory: ${this.databasePath}`);
+                Logger.debug(`Creating database manager to use existing separate databases in: ${this.databasePath}`);
+                this.databaseManager = new DatabaseManagerClass(this.databasePath); // Base directory for existing DBs
+
+                // Set desklet reference for cancellation support
+                this.databaseManager.setDeskletReference(this);
+
+                // Force update the database path in the manager if it was created with the old path
+                if (this.databaseManager.databasePath !== this.databasePath) {
+                    Logger.debug(`Updating database manager path from ${this.databaseManager.databasePath} to ${this.databasePath}`);
+                    this.databaseManager.databasePath = this.databasePath;
+                }
+
+                // Initialize the database asynchronously but ensure it completes before proceeding
+                Logger.debug('Initializing database manager...');
+                this.databaseManager.initialize().then(() => {
+                    Logger.debug('Database manager initialized successfully');
+
+                    // Log all database paths after initialization
+                    if (this.databaseManager.getExpandedDatabasePath) {
+                        const actualPath = this.databaseManager.getExpandedDatabasePath();
+                        Logger.debug(`Database will be saved to: ${actualPath}`);
+                    }
+
+                    // Check if there are multiple database configurations
+                    Logger.debug(`Database manager state: initialized=${this.databaseManager.initialized}, hasDB=${!!this.databaseManager.db}, path=${this.databasePath}`);
+
+                    // Log comprehensive database information
+                    if (this.databaseManager.getDatabaseInfo) {
+                        const dbInfo = this.databaseManager.getDatabaseInfo();
+                        Logger.debug(`Database Info:`, dbInfo);
+                    }
+
+                    // Show database summary
+                    if (this.databaseManager.logDatabaseSummary) {
+                        this.databaseManager.logDatabaseSummary();
+                    }
+
+                    // Mark database as ready for operations
+                    this._databaseReady = true;
+
+                }).catch(error => {
+                    Logger.error('Failed to initialize database manager: ' + error);
+                    this._databaseReady = false;
+                });
+
+                // Log the actual database path being used
+                if (this.databaseManager.getExpandedDatabasePath) {
+                    const actualPath = this.databaseManager.getExpandedDatabasePath();
+                    Logger.debug(`Database will be saved to: ${actualPath}`);
+                }
+
+                // Initialize database ready flag
+                this._databaseReady = false;
+            } catch (e) {
+                Logger.error('Failed to create database manager: ' + e);
+                throw e;
+            }
+
+            // Read-title styling bindings
+            this.settings.bind('dimReadTitles', 'dimReadTitles');
+            this.settings.bind('readTitleColor', 'readTitleColor');
+            this.settings.bind('enableHeaderFeedButtons', 'enableHeaderFeedButtons');
+
+            // Set global debug flag and verbosity
+            Logger.setDebugEnabled(this.enableDebugLogs);
+            Logger.setDebugVerbosity(this.debugVerbosity);
+
+
+            // Defer logger configuration to ensure settings are fully loaded
+            this.timerManager.addGLibTimer(100, () => {
+                Logger.setDebugEnabled(this.enableDebugLogs);
+                Logger.setDebugVerbosity(this.debugVerbosity);
+                Logger.debug("Logger configured with settings: debug=" + this.enableDebugLogs + ", verbosity=" + this.debugVerbosity);
+                return GLib.SOURCE_REMOVE;
+            });
+
+            // Log settings changes
+            this.settings.connect("changed::enableDebugLogs", () => {
+                Logger.setDebugEnabled(this.enableDebugLogs);
+                Logger.debug("Debug logging " + (this.enableDebugLogs ? "enabled" : "disabled"));
+            });
+
+            // Log verbosity changes
+            this.settings.connect("changed::debugVerbosity", () => {
+                Logger.setDebugVerbosity(this.debugVerbosity);
+                Logger.debug("Debug verbosity changed to: " + this.debugVerbosity);
+            });
+
+            // Header feed buttons setting change handler
+            this.settings.connect("changed::enableHeaderFeedButtons", () => {
+                Logger.info(`Header feed buttons setting changed to: ${this.enableHeaderFeedButtons}`);
+                if (this.uiDisplay && this.uiDisplay.buildHeaderFeedButtons && !this._isInitializing) {
+                    this.uiDisplay.buildHeaderFeedButtons();
+                }
+            });
+
+            // Note: Display settings change handlers will be connected after UI is built
+            // to avoid calling them during initialization
+
+            // Add method to wait for database to be ready
+            this.waitForDatabase = async () => {
+                if (this._databaseReady) return true;
+
+                // Wait up to 5 seconds for database to be ready
+                for (let i = 0; i < 50; i++) {
+                    if (this._databaseReady) return true;
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }
+
+                Logger.error('Database failed to become ready within timeout');
+                return false;
+            };
+
+            // Add feeds change handler
+            this.settings.connect("changed::feeds", () => {
+                Logger.info(`Feeds changed - new count: ${this.feeds ? this.feeds.length : 0}`);
+                if (this.feeds && this.feeds.length > 0) {
+                    this.feeds.forEach((feed, index) => {
+                        // Initialize runtime display state if not already set
+                        if (typeof feed.runtimeDisplayEnabled === 'undefined') {
+                            feed.runtimeDisplayEnabled = true;
+                        }
+                        Logger.info(`Feed ${index}: ${feed.name} (${feed.url}) - Active: ${feed.active}, Runtime Display: ${feed.runtimeDisplayEnabled}`);
+                    });
+
+                    // Load saved button states from database
+                    this.loadFeedButtonStates();
+
+                    // Start timer if this is the first time feeds are loaded
+                    if (!this._feedsInitialized) {
+                        this._feedsInitialized = true;
+                        Logger.info(`Feeds initialized for the first time, starting timer`);
+                        this.feedCollection.setUpdateTimer(2);
+                    }
+                }
+
+                // Update header feed buttons when feeds change (only when needed)
+                if (this.uiDisplay && this.uiDisplay.buildHeaderFeedButtons && !this._isInitializing) {
+                    this.uiDisplay.buildHeaderFeedButtons();
+                }
+            });
+
+            // Initialize SignalManager
+            this._signals = new SignalManager.SignalManager(null);
+
+            // Initialize AsyncOperationManager for cancellation
+            this.asyncOperationManager = new AsyncOperationManager();
+
+            // Feeds are automatically loaded via settings binding
+            Logger.info(`Feeds will be loaded via settings binding`);
+
+            // Database manager already initialized above after settings binding
+            Logger.debug('Database manager initialized:', this.databaseManager);
+            Logger.debug('Database manager type:', typeof this.databaseManager);
+            if (this.databaseManager) {
+                Logger.debug('Database manager methods:', Object.getOwnPropertyNames(Object.getPrototypeOf(this.databaseManager)));
+            }
+
+            Logger.debug('this.databaseManager assigned:', this.databaseManager);
+            Logger.debug('this.databaseManager type:', typeof this.databaseManager);
+            Logger.debug('this.databaseManager methods:', Object.getOwnPropertyNames(Object.getPrototypeOf(this.databaseManager)));
+
+            // Bind methods to ensure proper context
+            if (this.databaseManager.saveAllFeedStates) {
+                this.databaseManager.saveAllFeedStates = this.databaseManager.saveAllFeedStates.bind(this.databaseManager);
+                Logger.debug('saveAllFeedStates method bound');
+            }
+
+            // Initialize favoriteKeys as empty Set - it will be populated by loadFavoriteArticles
+            this.favoriteKeys = new Set();
+
+            // Assign the fromXML function to the desklet instance
+            this.fromXML = fromXML;
+
+            // Initialize refresh history
+            this.refreshHistory = []; // Will be populated in _initializeData
+
+            // Load feed button states from database
+            this.loadFeedButtonStates();
+
+            // Load favorites if enabled (defer slightly to avoid blocking activation)
+            if (this.loadFavoritesOnStartup) {
+                GLib.timeout_add(GLib.PRIORITY_LOW, 1000, () => {
+                    this.favoritesManagers.loadFavoriteArticles();
+
+                    // Update header to show favorites loaded - only once
+                    if (this.uiDisplay && this.uiDisplay.setSimpleHeaderTitle) {
+                        const favoriteCount = this.favoriteKeys ? this.favoriteKeys.size : 0;
+                        const feedCount = this.feeds ? this.feeds.filter(f => f?.active).length : 0;
+                        this.uiDisplay.setSimpleHeaderTitle(`Yarr (${favoriteCount} favorites, ${feedCount} feeds)`);
+                    }
+
+                    // Refresh display to show loaded favorites
+                    if (this.uiDisplay && this.uiDisplay.displayItems) {
+                        this.safeDisplayUpdate('favorites loaded');
+                    }
+
+                    // CRITICAL FIX: Safety check - if no favorites loaded, ensure filter is OFF
+                    if (this.favoriteKeys.size === 0) {
+                        Logger.debug(`CRITICAL FIX: No favorites loaded, forcing favorites filter OFF`);
+                        this._showOnlyFavorites = false;
+                    }
+
+                    // Save database after loading favorites
+                    if (this.databaseManager && this.databaseManager.saveDatabase) {
+                        this.databaseManager.saveDatabase();
+                    }
+
+                    return GLib.SOURCE_REMOVE;
+                });
+            }
+
+            // Load cached AI responses after favorites are loaded
+            GLib.timeout_add(GLib.PRIORITY_LOW, 2000, () => {
+                this.loadCachedAIResponses();
+                return GLib.SOURCE_REMOVE;
+            });
+
+            // Build UI first - this ensures the menu is available
+            this.buildInitialDisplay();
+
+            // UI is built, feeds will be loaded via settings binding
+
+            // Initialize essential components once during construction
+            this._initializeEssentialComponents();
+
+            // Apply initial display settings after handlers are installed
+            // Use a flag to indicate this is the initial call
+            this._isInitializing = false;
+
+            // PERFORMANCE FIX: Apply settings immediately to reduce system load
+            this._applyInitialDisplaySettings();
+
+            // Load feed button states after display settings are applied (with delay to ensure database is ready)
+            GLib.timeout_add(GLib.PRIORITY_DEFAULT, 300, () => {
+                this.loadFeedButtonStates();
+                return GLib.SOURCE_REMOVE;
+            });
+
+            // Initialize data asynchronously after a delay to ensure database is ready
+            GLib.timeout_add(GLib.PRIORITY_DEFAULT, 500, () => {
+                this._initializeData();
+                return GLib.SOURCE_REMOVE;
+            });
+
+            // Apply settings changes after essential components are initialized (this loads feeds)
+            if (!this._essentialComponentsInitialized) {
+                this.onSettingsChanged();
+            }
+
+            // Wait for feeds to be loaded before starting timer
+            GLib.timeout_add(GLib.PRIORITY_DEFAULT, 100, () => {
+                // Start initial feed collection after feeds are loaded from settings
+                Logger.debug(`Starting initial feed collection in 2 seconds`, false, 'basic');
+                Logger.debug(`Current feeds: ${this.feeds ? this.feeds.length : 0} total, ${this.feeds ? this.feeds.filter(f => f?.active).length : 0} active`, false, 'basic');
+
+                // Debug: Check if feeds are properly loaded
+                if (this.feeds && this.feeds.length > 0) {
+                    Logger.debug(`Feed details:`, false, 'basic');
+                    this.feeds.forEach((feed, index) => {
+                        Logger.debug(`  Feed ${index}: ${feed.name} - Active: ${feed.active} - URL: ${feed.url}`, false, 'basic');
+                    });
+
+                    // Set timer after feeds are loaded
+                    this.feedCollection.setUpdateTimer(2);  // Start first update in 2 seconds
+                } else {
+                    Logger.debug(`No feeds found! This might be the issue.`, false, 'basic');
+                    // Wait a bit longer for feeds to load, then try again
+                    GLib.timeout_add(GLib.PRIORITY_DEFAULT, 2000, () => {
+                        if (this.feeds && this.feeds.length > 0) {
+                            Logger.debug(`Feeds loaded after delay, starting timer now`, false, 'basic');
+                            this.feedCollection.setUpdateTimer(2);
+                        } else {
+                            Logger.debug(`Still no feeds after delay, starting timer anyway`, false, 'basic');
+                            this.feedCollection.setUpdateTimer(2);
+                        }
+                        return GLib.SOURCE_REMOVE;
+                    });
+                }
+
+                return GLib.SOURCE_REMOVE;
+            });
+
+            // Add cleanup handler and store signal ID for proper cleanup
+            this._destroySignalId = this.actor.connect('destroy', () => this._onDestroy());
+
+            // CRITICAL FIX: Force favorites filter to OFF on every startup
+            this._showOnlyFavorites = false;
+            Logger.debug(`Forced favorites filter reset to OFF on startup: showOnlyFavorites = ${this.showOnlyFavorites}`);
+
+            // Add periodic focus check to prevent background handler interception
+            this._startPeriodicFocusCheck();
+
+
+
+            this.settings.bind('showReadStatusCheckbox', 'showReadStatusCheckbox');
+
+            // Load read status for last 3 months
+            const threeMonthsAgo = Date.now() - (90 * 24 * 60 * 60 * 1000);
+            this.readArticleIds = new Set(); // Will be loaded in _initializeData
+            // Periodically clean up old records
+            GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 3600, () => {
+                this.databaseManager.cleanupOldRecords();
+                return GLib.SOURCE_REMOVE;
+            });
+
+            // Initialize essential components flag
+            this._essentialComponentsInitialized = false;
+
+            // Initialize display settings flag
+            this._initialDisplaySettingsApplied = false;
+
+            // Initialize suspend state flag
+            this._isSuspended = false;
+            this._resumeInProgress = false;
+            this._lastFocusRestoration = 0;
+            this._deferredDisplayUpdateScheduled = false;
+
+            // Store click signal ID for reinitialization
+            this._clickSignalId = null;
+            // Signal ID for wake-up handler
+            this._wakeUpSignalId = null;
+            // Signal ID for destroy handler
+            this._destroySignalId = null;
+            // Only store critical signals that need special handling
+            this._destroySignalId = null;
+            this._wakeUpSignalId = null;
+
+            // PERFORMANCE FIX: Removed complex reload fixes that were causing system lag
+            if (global.YARR_IS_RELOADING) {
+                delete global.YARR_IS_RELOADING;
+            }
+
+        } catch (e) {
+            Logger.error('Constructor error: ' + e);
+            throw e;
         }
+    }
 
-        // Initialize Secret schema
-        this.STORE_SCHEMA = new Secret.Schema("org.YarrDesklet.Schema", Secret.SchemaFlags.NONE, {});
+    on_desklet_added_to_desktop() {
+        Logger.debug("Desklet added to desktop, connecting wake-up signal.", false, 'basic');
 
-        // Initialize basic properties
-        this.refreshEnabled = true;
-        this.delay = 300; // 5 minutes default
-        this.items = new Map();
-        this._updateInProgress = false;
-        this.timerInProgress = 0;
-        this._setUpdateTimerInProgress = false;
+        // Desklet is ready for use
 
-        // Initialize settings
-        this.settings = new Settings.DeskletSettings(this, metadata.uuid, desklet_id);
-
-        // Initialize HTTP session
-        if (Soup.MAJOR_VERSION === 2) {
-            this.httpSession = new Soup.SessionAsync();
-            Soup.Session.prototype.add_feature.call(this.httpSession, new Soup.ProxyResolverDefault());
-        } else {
-            this.httpSession = new Soup.Session();
-        }
-
-        this.httpSession.timeout = 60;
-        this.httpSession.idle_timeout = 60;
-        this.httpSession.user_agent = 'Mozilla/5.0 YarrDesklet/1.0';
-
-        // Bind all settings
-        this.settings.bind('refreshInterval-spinner', 'delay');
-        this.settings.bind('feeds', 'feeds');
-        this.settings.bind("height", "height");
-        this.settings.bind("width", "width");
-        this.settings.bind("transparency", "transparency");
-        this.settings.bind("alternateRowTransparency", "alternateRowTransparency");
-        this.settings.bind("backgroundColor", "backgroundColor");
-        this.settings.bind("font", "font");
-        this.settings.bind("text-color", "color");
-        this.settings.bind("numberofitems", "itemlimit");
-        this.settings.bind("listfilter", "listfilter");
-        this.settings.bind('enablecopy', 'enablecopy');
-
-        this.settings.bind('ai_enablesummary', 'ai_enablesummary');
-        this.settings.bind('ai_add_description_to_summary', 'ai_add_description_to_summary');
-        this.settings.bind('ai_dumptool', 'ai_dumptool');
-        this.settings.bind('ai_url', 'ai_url');
-        this.settings.bind('ai_systemprompt', 'ai_systemprompt');
-        this.settings.bind('ai_use_standard_model', 'ai_use_standard_model');
-        this.settings.bind('ai_model', 'ai_model');
-        this.settings.bind('ai_custom_model', 'ai_custom_model');
-        this.settings.bind("ai_font", "ai_font");
-        this.settings.bind("ai_text-color", "ai_color");
-        this.settings.bind("temperature", "temperature");
-
-        // Add new settings bindings
-        this.settings.bind('enableFeedButton', 'enableFeedButton');
-        this.settings.bind('enableTimestamp', 'enableTimestamp');
-        this.settings.bind('enableFavoriteFeature', 'enableFavoriteFeature');
-        this.settings.bind('loadFavoritesOnStartup', 'loadFavoritesOnStartup');
-        this.settings.bind("articleSpacing", "articleSpacing");
-
-        // Initialize SignalManager
-        this._signals = new SignalManager.SignalManager(null);
-
-        // Load feeds from settings
-        this.feeds = this.settings.getValue('feeds');
-
-        // Initialize favorites database
-        this.favoritesDb = new FavoritesDB();
-        this.favoriteKeys = this.favoritesDb.getFavorites();
-
-        // Load favorites if enabled
-        if (this.loadFavoritesOnStartup) {
-            this.loadFavoriteArticles();
-        }
-
-        // Build UI
-        this.buildInitialDisplay();
-        this.onDisplayChanged();
-        this.onSettingsChanged();
-
-        // Start initial feed collection
-        this.setUpdateTimer(1);  // Start first update in 1 second
-
-        // Force immediate feed collection after short delay
-        GLib.timeout_add(GLib.PRIORITY_DEFAULT, 100, () => {
-            this.collectFeeds();
+        // Try to connect the wake-up signal with a delay to ensure Main.screenShield is available
+        GLib.timeout_add(GLib.PRIORITY_LOW, 1000, () => {
+            this._connectWakeUpSignal();
             return GLib.SOURCE_REMOVE;
         });
+    }
 
-        // Add cleanup handler
-        this.actor.connect('destroy', () => this._onDestroy());
+    _connectWakeUpSignal() {
+        Logger.debug("Connecting to system suspend/resume signals...");
 
-        // Add memory usage monitoring
-        this._monitorMemoryUsage();
+        // SIMPLIFIED: Use only essential wake-up detection to prevent Cinnamon conflicts
+        // Multiple signal connections can cause system instability and black screens
+        try {
+            if (Main.screenShield) {
+                this._wakeUpSignalId = Main.screenShield.connect('wake-up-screen', Lang.bind(this, this._onWakeUpScreen));
+                Logger.info("Wake-up signal connected (simplified approach).");
+            } else {
+                Logger.debug("No wake-up signals available, using minimal fallback detection.");
+                this._startFallbackWakeUpDetection();
+            }
+        } catch (e) {
+            Logger.error("Error connecting wake-up signal: " + e);
+            this._startFallbackWakeUpDetection();
+        }
+    }
+
+    _startFallbackWakeUpDetection() {
+        // Check every 5 minutes if the system has woken up (very low priority, minimal system impact)
+        this._wakeUpCheckTimer = this.timerManager.addGLibTimer(300, () => {
+            this._checkForWakeUp();
+            return GLib.SOURCE_CONTINUE;
+        });
+    }
+
+    _checkForWakeUp() {
+        // Simple wake-up detection based on time difference
+        let now = Date.now();
+        if (!this._lastWakeUpCheck) {
+            this._lastWakeUpCheck = now;
+            return;
+        }
+
+        // If more than 10 minutes have passed, assume the system was sleeping (very conservative)
+        if (now - this._lastWakeUpCheck > 600000) {
+            Logger.info("Detected potential wake-up event (fallback method)");
+            this._onWakeUpScreen();
+        }
+
+        this._lastWakeUpCheck = now;
+    }
+
+    _applyInitialDisplaySettings() {
+        try {
+            Logger.info("Applying initial display settings...");
+
+            // Update font styles
+            if (this.font) {
+                let fontprep = this.font.split(' ');
+                let fontsize = fontprep.pop();
+                let fontweight = '';
+                let fontstyle = '';
+                let fontname = fontprep.join(' ').replace(/,/g, ' ');
+                ['Italic', 'Oblique'].forEach(function (item, i) {
+                    if (fontname.includes(item)) {
+                        fontstyle = item;
+                        fontname = fontname.replace(item, '');
+                    }
+                });
+
+                ['Bold', 'Light', 'Medium', 'Heavy'].forEach(function (item, i) {
+                    if (fontname.includes(item)) {
+                        fontweight = item;
+                        fontname = fontname.replace(item, '');
+                    }
+                });
+
+                this.fontstyle = ("font-family: " + fontname + "; " +
+                    "font-size: " + fontsize + "pt; " +
+                    (fontstyle ? "font-style: " + fontstyle + "; " : "") +
+                    (fontweight ? "font-weight: " + fontweight + "; " : "") +
+                    "color: " + this.color + "; " +
+                    "text-shadow: " + "0px 1px 6px rgba(" + this.utilities.invertBrightness(this.color) + ", 0.2); " +
+                    "padding: 2px 2px;").toLowerCase();
+            }
+
+            // Update AI font styles
+            if (this.ai_font) {
+                let ai_fontprep = this.ai_font.split(' ');
+                let ai_fontsize = ai_fontprep.pop();
+                let ai_fontweight = '';
+                let ai_fontstyle = '';
+                let ai_fontname = ai_fontprep.join(' ').replace(/,/g, ' ');
+                ['Italic', 'Oblique'].forEach(function (item, i) {
+                    if (ai_fontname.includes(item)) {
+                        ai_fontstyle = item;
+                        ai_fontname = ai_fontname.replace(item, '');
+                    }
+                });
+
+                ['Bold', 'Light', 'Medium', 'Heavy'].forEach(function (item, i) {
+                    if (ai_fontname.includes(item)) {
+                        ai_fontweight = item;
+                        ai_fontname = ai_fontname.replace(item, '');
+                    }
+                });
+
+                this.ai_fontstyle = ("font-family: " + ai_fontname + "; " +
+                    "font-size: " + ai_fontsize + "pt; " +
+                    (ai_fontstyle ? "font-style: " + fontstyle + "; " : "") +
+                    (ai_fontweight ? "font-weight: " + ai_fontweight + "; " : "") +
+                    "color: " + this.ai_color + "; " +
+                    "text-shadow: " + "0px 1px 6px rgba(" + this.utilities.invertBrightness(this.ai_color) + ", 0.2); " +
+                    "padding: 2px 2px;").toLowerCase();
+            }
+
+            // Update main box size and style if it exists
+            if (this.mainBox) {
+                this.mainBox.set_size(this.width, this.height);
+
+                if (this.backgroundColor && this.transparency !== undefined) {
+                    this.mainBox.style = "background-color: rgba(" + this.backgroundColor.replace('rgb(', '').replace(')', '') + "," + this.transparency + ")";
+                }
+            }
+
+            Logger.info("Initial display settings applied successfully");
+            this._initialDisplaySettingsApplied = true;
+        } catch (e) {
+            Logger.error("Error applying initial display settings: " + e);
+        }
+    }
+
+    _applyPostReloadFixes() {
+        try {
+            // Prevent duplicate execution within short time
+            const now = Date.now();
+            if (this._lastFocusRestoration && (now - this._lastFocusRestoration < 5000)) {
+                Logger.info("Focus restoration executed recently, skipping to avoid contention");
+                return;
+            }
+            this._lastFocusRestoration = now;
+
+            Logger.info("Applying post-reload/wake-up fixes now.");
+            if (this.actor) {
+                // Minimal focus restoration to avoid system contention
+                this.actor.set_reactive(true);
+                this.actor.set_can_focus(true);
+                this.actor.show();
+
+                // REMOVED: Unnecessary queue_redraw that can cause system instability
+                // Only show() is needed, queue_redraw() can conflict with Cinnamon's compositor
+
+                // Minimal main container restoration
+                if (this.mainBox) {
+                    this.mainBox.set_reactive(true);
+                    this.mainBox.set_can_focus(true);
+                    this.mainBox.show();
+                }
+
+                // Restore scroll event handling for desklet components only
+                this._restoreScrollEventHandling();
+
+                Logger.info("Post-reload/wake-up fixes applied successfully (minimal impact)");
+            } else {
+                Logger.debug("Actor not found, cannot apply fixes.", true);
+            }
+        } catch (e) {
+            Logger.error('Error applying fixes: ' + e);
+        }
+    }
+
+    _restoreScrollEventHandling() {
+        try {
+            Logger.debug("Restoring scroll event handling for desklet components only...");
+
+            // Only restore scroll handling for our specific scroll components
+            if (this.uiDisplay && this.uiDisplay.desklet && this.uiDisplay.desklet.dataBox) {
+                const scrollView = this.uiDisplay.desklet.dataBox.get_parent();
+                if (scrollView && scrollView.set_reactive) {
+                    scrollView.set_reactive(true);
+                    scrollView.set_can_focus(true);
+                    Logger.debug("Scroll view reactivity restored");
+                }
+            }
+
+            // Restore main container scroll capability
+            if (this.mainBox) {
+                this.mainBox.set_reactive(true);
+                this.mainBox.set_can_focus(true);
+                Logger.debug("Main box scroll capability restored");
+            }
+
+            // Restore desklet actor scroll capability
+            if (this.actor) {
+                this.actor.set_reactive(true);
+                this.actor.set_can_focus(true);
+                Logger.debug("Desklet actor scroll capability restored");
+            }
+
+            Logger.info("Targeted scroll event handling restored successfully");
+        } catch (e) {
+            Logger.error('Error restoring scroll event handling: ' + e);
+        }
+    }
+
+    _restoreDeskletFocus() {
+        try {
+            // Prevent duplicate execution within short time
+            const now = Date.now();
+            if (this._lastFocusRestoration && (now - this._lastFocusRestoration < 5000)) {
+                Logger.debug("Focus restoration executed recently, skipping to avoid contention");
+                return;
+            }
+            this._lastFocusRestoration = now;
+
+            Logger.debug("Restoring desklet focus (targeted approach)...");
+
+            if (!this.actor) {
+                Logger.debug("Actor not available for focus restoration");
+                return;
+            }
+
+            // TARGETED APPROACH: Only restore focus for desklet components
+            // Avoid any global stage manipulation that can interfere with system events
+
+            // Ensure actor is visible and reactive
+            this.actor.set_reactive(true);
+            this.actor.set_can_focus(true);
+            this.actor.show();
+
+            // Restore focus on main container
+            if (this.mainBox) {
+                this.mainBox.set_reactive(true);
+                this.mainBox.set_can_focus(true);
+                this.mainBox.show();
+            }
+
+            // Restore focus on scroll container specifically
+            if (this.uiDisplay && this.uiDisplay.desklet && this.uiDisplay.desklet.dataBox) {
+                const scrollView = this.uiDisplay.desklet.dataBox.get_parent();
+                if (scrollView && scrollView.set_reactive) {
+                    scrollView.set_reactive(true);
+                    scrollView.set_can_focus(true);
+                }
+            }
+
+            // Restore header container reactivity
+            if (this.headerContainer) {
+                this.headerContainer.set_reactive(true);
+                this.headerContainer.set_can_focus(true);
+            }
+
+            Logger.info("Targeted focus restoration completed - no global interference");
+
+        } catch (e) {
+            Logger.error('Error in targeted focus restoration: ' + e);
+        }
+    }
+
+    _startPeriodicFocusCheck() {
+        try {
+            Logger.info("Starting periodic focus check to prevent background handler interception");
+
+            // Check focus every 15 minutes (minimal system impact to prevent Cinnamon conflicts)
+            this._focusCheckTimer = this.timerManager.addGLibTimer(900, () => {
+                // Only check if system appears stable and not busy
+                if (this._isSystemStable() && !this._resumeInProgress && !this._isSuspended) {
+                    this._checkAndRestoreFocus();
+                } else {
+                    Logger.debug("System appears busy, skipping focus check");
+                }
+                return GLib.SOURCE_CONTINUE;
+            });
+
+        } catch (e) {
+            Logger.error('Error starting periodic focus check: ' + e);
+        }
+    }
+
+    _isSystemStable() {
+        try {
+            // Comprehensive stability check
+            if (this._isSuspended) {
+                Logger.debug('System suspended, not stable');
+                return false;
+            }
+
+            if (this._resumeInProgress) {
+                Logger.debug('Resume in progress, not stable');
+                return false;
+            }
+
+            // Check if we recently performed focus restoration
+            if (this._lastFocusRestoration && (Date.now() - this._lastFocusRestoration < 3000)) {
+                Logger.debug('Recent focus restoration, system may not be stable');
+                return false;
+            }
+
+            return true;
+        } catch (e) {
+            Logger.debug('Error checking system stability: ' + e);
+            return false; // Default to safe
+        }
+    }
+
+    _isSystemStableForDisplay() {
+        try {
+            // Less restrictive checks for better responsiveness
+            if (this._isSuspended || this._resumeInProgress) {
+                Logger.debug('System suspended or resuming, not stable for display');
+                return false;
+            }
+
+            // Check if display update has been in progress too long (stuck)
+            if (this._isUpdatingDisplay && this._displayUpdateStartTime) {
+                const elapsed = Date.now() - this._displayUpdateStartTime;
+                if (elapsed > 3000) {
+                    Logger.debug('Display update has been running too long, considering system unstable');
+                    return false;
+                }
+            }
+
+            // Check if UI components are ready
+            if (!this.uiDisplay || !this.mainBox) {
+                Logger.debug('UI components not ready, deferring display update');
+                return false;
+            }
+
+            return true;
+        } catch (e) {
+            Logger.debug('Error checking display stability: ' + e);
+            return false; // Default to safe
+        }
+    }
+
+    _scheduleDeferredDisplayUpdate() {
+        try {
+            // Prevent multiple deferred updates
+            if (this._deferredDisplayUpdateScheduled) {
+                return;
+            }
+
+            this._deferredDisplayUpdateScheduled = true;
+
+            // Schedule display update for when system is stable
+            this.timerManager.addGLibTimer(2000, () => {
+                this._deferredDisplayUpdateScheduled = false;
+
+                if (this._isSystemStableForDisplay()) {
+                    Logger.info("System now stable, performing deferred display update");
+                    this._performDisplayUpdate();
+                } else {
+                    Logger.debug("System still not stable, rescheduling deferred update");
+                    this._scheduleDeferredDisplayUpdate();
+                }
+
+                return GLib.SOURCE_REMOVE;
+            });
+
+        } catch (e) {
+            Logger.error('Error scheduling deferred display update: ' + e);
+            this._deferredDisplayUpdateScheduled = false;
+        }
+    }
+
+    // Safe display update method for use by other modules
+    safeDisplayUpdate(reason = 'unknown') {
+        try {
+            Logger.debug(`safeDisplayUpdate called with reason: ${reason}`);
+            Logger.debug(`uiDisplay available: ${!!this.uiDisplay}`);
+            Logger.debug(`uiDisplay.displayItems available: ${!!(this.uiDisplay && typeof this.uiDisplay.displayItems === 'function')}`);
+
+            // PERFORMANCE FIX: Simplified to prevent system lag
+            this._performDisplayUpdate();
+
+            Logger.debug(`safeDisplayUpdate completed for reason: ${reason}`);
+        } catch (e) {
+            Logger.error(`Error in safe display update (${reason}): ` + e);
+        }
+    }
+
+    // Internal method to perform the actual display update
+    _performDisplayUpdate() {
+        try {
+            // Use UI update manager for batching if available
+            if (this.uiUpdateManager && typeof this.uiUpdateManager.scheduleUpdate === 'function') {
+                this.uiUpdateManager.scheduleUpdate();
+            } else {
+                // Fallback: direct update with error handling
+                if (this.uiDisplay && typeof this.uiDisplay.displayItems === 'function') {
+                    this.uiDisplay.displayItems();
+                } else {
+                    Logger.error("UI display not available for display update");
+                }
+            }
+        } catch (e) {
+            Logger.error('Error in _performDisplayUpdate: ' + e);
+            // Clear flag on error to prevent getting stuck
+            this._isUpdatingDisplay = false;
+            this._displayUpdateStartTime = null;
+        }
+    }
+
+    _checkAndRestoreFocus() {
+        try {
+            if (!this.actor || (typeof this.actor.isDestroyed === 'function' && this.actor.isDestroyed())) {
+                return;
+            }
+
+            // Check if focus restoration is already in progress
+            if (this._lastFocusRestoration && (Date.now() - this._lastFocusRestoration < 5000)) {
+                Logger.debug("Focus restoration recently performed, skipping check");
+                return;
+            }
+
+            let focusRestorationNeeded = false;
+
+            // Check if the actor is still reactive and can focus
+            if (!this.actor.reactive || !this.actor.can_focus) {
+                Logger.debug("Detected actor focus loss");
+                focusRestorationNeeded = true;
+            }
+
+            // Check if mainBox is still reactive
+            if (this.mainBox && (!this.mainBox.reactive || !this.mainBox.can_focus)) {
+                Logger.debug("Detected main box focus loss");
+                focusRestorationNeeded = true;
+            }
+
+            // Check scroll container reactivity
+            if (this.uiDisplay && this.uiDisplay.desklet && this.uiDisplay.desklet.dataBox) {
+                const scrollView = this.uiDisplay.desklet.dataBox.get_parent();
+                if (scrollView && scrollView.set_reactive && (!scrollView.reactive || !scrollView.can_focus)) {
+                    Logger.debug("Detected scroll view focus loss");
+                    focusRestorationNeeded = true;
+                }
+            }
+
+            // Only restore focus if needed - targeted approach only
+            if (focusRestorationNeeded) {
+                Logger.debug("Targeted focus restoration needed, applying fix...");
+                this._restoreDeskletFocus();
+            }
+
+        } catch (e) {
+            Logger.debug('Error in focus check: ' + e);
+        }
+    }
+
+    _onSystemSuspend() {
+        // SIMPLIFIED: Minimal suspend handling to prevent system conflicts
+        Logger.debug("System is suspending (minimal handling)...", false, 'basic');
+        this._isSuspended = true;
+    }
+
+    _simpleResumeProcess() {
+        try {
+            Logger.info("Starting simple resume process...");
+
+            // Prevent duplicate execution
+            if (this._resumeInProgress) {
+                Logger.info("Resume process already in progress, skipping");
+                return;
+            }
+
+            // Mark resume in progress to prevent interference
+            this._resumeInProgress = true;
+
+            // Single timeout: resume operations and restore focus after system settles
+            GLib.timeout_add(GLib.PRIORITY_DEFAULT, 3000, () => {
+                // Check if system got suspended again during the wait
+                if (this._isSuspended) {
+                    Logger.info("System suspended again during resume wait, aborting resume process");
+                    this._resumeInProgress = false;
+                    return GLib.SOURCE_REMOVE;
+                }
+
+                this._resumeDeskletOperations();
+                this._applyPostReloadFixes();
+                this._resumeInProgress = false;
+                return GLib.SOURCE_REMOVE;
+            });
+
+        } catch (e) {
+            Logger.error('Error starting resume process: ' + e);
+            this._resumeInProgress = false;
+        }
+    }
+
+    _resumeDeskletOperations() {
+        try {
+            Logger.info("Resuming desklet operations after system resume...");
+
+            // Validate state before proceeding
+            if (this._isSuspended) {
+                Logger.info("System still suspended, skipping resume operations");
+                return;
+            }
+
+            // Resume timer operations only if they were actually paused
+            if (this.timerManager && typeof this.timerManager.resume === 'function') {
+                try {
+                    // Check if timers were actually paused before resuming
+                    if (this.timerManager.isPaused && typeof this.timerManager.isPaused === 'function') {
+                        if (this.timerManager.isPaused()) {
+                            this.timerManager.resume();
+                            Logger.info("Timer operations resumed");
+                        } else {
+                            Logger.info("Timers were not paused, skipping resume");
+                        }
+                    } else {
+                        // Fallback: assume timers need resuming if method not available
+                        this.timerManager.resume();
+                        Logger.info("Timer operations resumed (fallback)");
+                    }
+                } catch (e) {
+                    Logger.error('Error resuming timer operations: ' + e);
+                }
+            }
+
+            // Refresh display to ensure it reflects current state
+            if (this.displayItems) {
+                this.safeDisplayUpdate('settings refresh');
+            }
+
+            // Reload feed button states
+            if (this.feeds && this.feeds.length > 0) {
+                this.loadFeedButtonStates();
+            }
+
+            // Ensure scroll events are restored after resume
+            this._restoreScrollEventHandling();
+
+            Logger.info("Desklet operations resumed successfully");
+        } catch (e) {
+            Logger.error('Error resuming desklet operations: ' + e);
+        }
+    }
+
+
+
+    _onSystemResume() {
+        // SIMPLIFIED: Minimal resume handling to prevent system conflicts
+        Logger.debug("System is resuming (minimal handling)...", false, 'basic');
+        this._isSuspended = false;
+        this._resumeInProgress = false;
+    }
+
+    _onWakeUpScreen() {
+        // SIMPLIFIED: Minimal wake-up handling to prevent system conflicts
+        Logger.debug("Screen is waking up (minimal handling)...", false, 'basic');
+
+        // Only run if system resume hasn't already handled this
+        if (this._resumeInProgress || this._isSuspended) {
+            Logger.info("System resume already handling wake-up, skipping duplicate logic");
+            return;
+        }
+
+        // Single minimal timeout to avoid aggressive system manipulation
+        GLib.timeout_add(GLib.PRIORITY_LOW, 5000, () => {
+            // Just ensure basic visibility without aggressive focus restoration
+            if (this.actor) {
+                this.actor.show();
+            }
+            if (this.mainBox) {
+                this.mainBox.show();
+            }
+            return GLib.SOURCE_REMOVE;
+        });
+    }
+
+    async _initializeData() {
+        try {
+            Logger.info('Initializing data asynchronously...');
+
+            // Wait for database to be ready
+            if (!(await this.waitForDatabase())) {
+                Logger.error('Database not ready for _initializeData');
+                return;
+            }
+
+            // Load refresh history
+            this.refreshHistory = await this.databaseManager.getRefreshHistory();
+            Logger.debug(`Loaded ${this.refreshHistory.length} refresh events`);
+            Logger.debug(` refreshHistory type: ${typeof this.refreshHistory}, isArray: ${Array.isArray(this.refreshHistory)}`);
+            if (this.refreshHistory.length > 0) {
+                Logger.debug(` First refresh event: ${JSON.stringify(this.refreshHistory[0])}`);
+            }
+
+            // Load favorites key set early for correct favorite marking
+            try {
+                const favArray = await this.databaseManager.getFavorites();
+                if (favArray && Array.isArray(favArray)) {
+                    // Convert array of favorite objects to Set of links
+                    this.favoriteKeys = new Set(favArray.map(fav => fav.link).filter(link => link));
+                    Logger.debug(`Loaded favoriteKeys: ${this.favoriteKeys.size}`,);
+                } else {
+                    this.favoriteKeys = new Set();
+                    Logger.debug('No favorites found or invalid format, initialized empty Set');
+                }
+            } catch (e) {
+                Logger.error('Error loading favorite keys: ' + e);
+                this.favoriteKeys = new Set();
+            }
+
+            // Load read status for last 3 months
+            const threeMonthsAgo = Date.now() - (90 * 24 * 60 * 60 * 1000);
+            const readIdsArray = await this.databaseManager.getReadIds();
+            this.readArticleIds = new Set(readIdsArray);
+            Logger.debug(`Loaded ${this.readArticleIds.size} read article IDs`,);
+
+            // Save database after loading read status
+            if (this.databaseManager && this.databaseManager.saveDatabase) {
+                this.databaseManager.saveDatabase();
+            }
+
+            // Refresh display to show loaded data (batch to avoid many rapid calls)
+            if (this.uiUpdateManager) {
+                this.uiUpdateManager.scheduleUpdate();
+            } else {
+                this.safeDisplayUpdate('data loaded');
+            }
+
+            // Update header to show loaded data
+            if (this.uiDisplay && this.uiDisplay.setSimpleHeaderTitle) {
+                const totalArticles = this.items.size;
+                const feedCount = this.feeds ? this.feeds.filter(f => f?.active).length : 0;
+                this.uiDisplay.setSimpleHeaderTitle(`Yarr (${totalArticles} articles, ${feedCount} feeds)`);
+            }
+
+            // Build header feed buttons once after data is initialized
+            if (this.uiDisplay && this.uiDisplay.buildHeaderFeedButtons) {
+                this.uiDisplay.buildHeaderFeedButtons();
+            }
+
+            // Load feed button states after data is initialized
+            this.loadFeedButtonStates();
+
+        } catch (e) {
+            Logger.error('Error initializing data: ' + e);
+        }
+    }
+
+    _formatTimeAgo(timestamp) {
+        const now = Date.now();
+        const diff = now - timestamp;
+
+        if (diff < 0) {
+            return 'in the future';
+        }
+
+        const seconds = Math.floor(diff / 1000);
+        const minutes = Math.floor(seconds / 60);
+        const hours = Math.floor(minutes / 60);
+        const days = Math.floor(hours / 24);
+        const months = Math.floor(days / 30);
+        const years = Math.floor(months / 12);
+
+        if (seconds < 60) {
+            return `${seconds} second${seconds > 1 ? 's' : ''} ago`;
+        } else if (minutes < 60) {
+            return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+        } else if (hours < 24) {
+            return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+        } else if (days < 30) {
+            return `${days} day${days > 1 ? 's' : ''} ago`;
+        } else if (months < 12) {
+            return `${months} month${months > 1 ? 's' : ''} ago`;
+        } else {
+            return `${years} year${years > 1 ? 's' : ''} ago`;
+        }
     }
 
     _onDestroy() {
         try {
-            // Clear timers
-            if (this.timerInProgress) {
-                Mainloop.source_remove(this.timerInProgress);
-            }
-            if (this.updateDownloadedTimer) {
-                Mainloop.source_remove(this.updateDownloadedTimer);
+            Logger.debug('Cleaning up desklet resources...');
+
+            // Clear all timers using enhanced timer manager
+            if (this.timerManager && typeof this.timerManager.cleanup === 'function') {
+                try {
+                    this.timerManager.cleanup();
+                    Logger.debug('Timer manager cleanup completed');
+                } catch (e) {
+                    Logger.error('Error in timer manager cleanup: ' + e);
+                }
             }
 
-            // Disconnect signals
+            // Clear legacy timers for backward compatibility
+            if (this.timerInProgress && this.timerInProgress > 0) {
+                try {
+                    Mainloop.source_remove(this.timerInProgress);
+                    this.timerInProgress = 0;
+                } catch (e) {
+                    Logger.error('Error removing timerInProgress: ' + e);
+                }
+            }
+            if (this.updateDownloadedTimer && this.updateDownloadedTimer > 0) {
+                try {
+                    Mainloop.source_remove(this.updateDownloadedTimer);
+                    this.updateDownloadedTimer = 0;
+                } catch (e) {
+                    Logger.error('Error removing updateDownloadedTimer: ' + e);
+                }
+            }
+
+            // Disconnect all signal handlers to prevent memory leaks
             this._signals.disconnectAllSignals();
+
+            // Disconnect wake-up signal
+            if (this._wakeUpSignalId && Main.screenShield) {
+                try {
+                    Main.screenShield.disconnect(this._wakeUpSignalId);
+                    this._wakeUpSignalId = null;
+                } catch (e) {
+                    Logger.error('Error disconnecting wake-up signal: ' + e);
+                }
+            }
+
+            // Disconnect session signals
+            if (this._suspendSignalId && Main.session) {
+                try {
+                    Main.session.disconnect(this._suspendSignalId);
+                    this._suspendSignalId = null;
+                } catch (e) {
+                    Logger.error('Error disconnecting suspend signal: ' + e);
+                }
+            }
+
+            if (this._resumeSignalId && Main.session) {
+                try {
+                    Main.session.disconnect(this._resumeSignalId);
+                    this._resumeSignalId = null;
+                } catch (e) {
+                    Logger.error('Error disconnecting resume signal: ' + e);
+                }
+            }
+
+            // Disconnect actor signals
+            if (this.actor && typeof this.actor.isDestroyed === 'function' && !this.actor.isDestroyed()) {
+                try {
+                    // Disconnect destroy signal
+                    if (this._destroySignalId) {
+                        this.actor.disconnect(this._destroySignalId);
+                        this._destroySignalId = null;
+                    }
+                } catch (e) {
+                    Logger.error('Error disconnecting actor signals: ' + e);
+                }
+            }
+
+            // Disconnect all settings signals (handled by SignalManager)
+            // The _signals.disconnectAllSignals() call above handles most signals
+
+            // Clean up database manager to prevent zombie processes
+            if (this.databaseManager && typeof this.databaseManager.cleanup === 'function') {
+                try {
+                    this.databaseManager.cleanup();
+                } catch (e) {
+                    Logger.error('Error cleaning up database manager: ' + e);
+                }
+            }
+
+
+
+            // Clean up async operations first to prevent modification of destroyed objects
+            if (this.asyncOperationManager && typeof this.asyncOperationManager.cleanup === 'function') {
+                try {
+                    this.asyncOperationManager.cleanup();
+                    Logger.debug('Async operation manager cleanup completed');
+                } catch (e) {
+                    Logger.error('Error cleaning up async operation manager: ' + e);
+                }
+            }
+
+            // Clean up timer and UI update managers
+            if (this.timerManager && typeof this.timerManager.cleanup === 'function') {
+                try {
+                    this.timerManager.cleanup();
+                } catch (e) {
+                    Logger.error('Error cleaning up timer manager: ' + e);
+                }
+            }
+            if (this.uiUpdateManager && typeof this.uiUpdateManager.cleanup === 'function') {
+                try {
+                    this.uiUpdateManager.cleanup();
+                } catch (e) {
+                    Logger.error('Error cleaning up UI update manager: ' + e);
+                }
+            }
+
+            // Clean up UI display module
+            if (this.uiDisplay && typeof this.uiDisplay.cleanup === 'function') {
+                try {
+                    this.uiDisplay.cleanup();
+                } catch (e) {
+                    Logger.error('Error cleaning up UI display: ' + e);
+                }
+            }
 
             // Clear items map
             this.items.clear();
@@ -217,292 +1494,154 @@ class YarrDesklet extends Desklet.Desklet {
                 this._menu.destroy();
             }
 
+            // Reset essential components flag only if we're actually recreating the menu
+            if (this._menu && this._menu.isDestroyed()) {
+                this._essentialComponentsInitialized = false;
+            }
+
+            // Save feed button states before destroying
+            if (this.saveFeedButtonStates) {
+                this.saveFeedButtonStates();
+            }
+
             // Clear HTTP session
             if (this.httpSession) {
                 this.httpSession.abort();
                 this.httpSession = null;
             }
+
+            // Clear global state to prevent interference with new instances
+            if (global.YARR_IS_RELOADING) {
+                delete global.YARR_IS_RELOADING;
+            }
+
+            // Clean up essential components
+            this._cleanupEssentialComponents();
+
+            // Reset all flags
+
+            this._isInitializing = false;
+            this._isUpdatingDisplay = false;
+            this._displayUpdateStartTime = null;
+            this._deferredDisplayUpdateScheduled = false;
+
+            Logger.debug('Desklet cleanup completed successfully');
+
         } catch (e) {
-            global.log('Error in _onDestroy:', e);
+            Logger.error('Error in _onDestroy: ' + e);
         }
     }
 
-    invertbrightness(rgb) {
-        rgb = Array.prototype.join.call(arguments).match(/(-?[0-9.]+)/g);
-        let brightness = 255 * 3;
-        for (let i = 0; i < rgb.length && i < 3; i++) {
-            brightness -= rgb[i];
-        }
-        return brightness > 255 * 1.5 ? '255, 255, 255' : '0, 0, 0';
-    }
+    // invertbrightness is now handled by Utilities module
 
     openChatGPTAPIKeys() {
         Gio.app_info_launch_default_for_uri("https://platform.openai.com/api-keys", global.create_app_launch_context());
     }
 
     openChatGPTUsage() {
-        Gio.app_info_launch_default_for_uri("https://platform.openai.com/usage", global.create_app_launch_context());
-    }
-
-    onAIPromptExample1() {
-        this.ai_systemprompt = 'Summarize in four sentences.';
-    }
-
-    onAIPromptExample2() {
-        this.ai_systemprompt = 'Foglald össze limerick-ben.';
-    }
-
-    onAIPromptExample3() {
-        this.ai_systemprompt = '俳句のエッセンス\n日本語では';
-    }
-
-    onAIPromptExample4() {
-        this.ai_systemprompt = 'Foglald össze 4 mondatban.';
-    }
-
-    onAIPromptExample5() {
-        this.ai_systemprompt = 'Summarize in 4-8 short bullet points, separtate lines, English language.\nOmit other references and external links from the summary.';
-    }
-
-    onAIPromptExample6() {
-        this.ai_systemprompt = 'Foglald össze 4-8 rövid bullet pontban, mind külön sorban, magyarul.\nHaggyd ki a többi az oldalon olvasható cikket és hivatkozást a felsorolásból.';
+        Util.spawnCommandLine('xdg-open https://platform.openai.com/usage');
     }
 
 
-    onRefreshSettings() {
-        // Existing display updates
-        this.onDisplayChanged();
-        this.onSettingsChanged();
-
-        // Add items redisplay
-        this.displayItems();
-    }
 
     onSettingsChanged() {
-        this.setUpdateTimer(1);
+        // Only set timer if feeds are loaded and we're not in initialization
+        if (this.feeds && this.feeds.length > 0 && !this._isInitializing) {
+            Logger.debug(`Settings changed, setting update timer for ${this.feeds.length} feeds`, false, 'basic');
+            this.feedCollection.setUpdateTimer(1);
+        } else {
+            Logger.debug(`Settings changed but feeds not ready yet (feeds: ${this.feeds ? this.feeds.length : 'null'}, initializing: ${this._isInitializing})`, false, 'basic');
+        }
+
+
     }
 
     onDisplayChanged() {
-
-        let fontprep = this.font.split(' ');
-        let fontsize = fontprep.pop();
-        let fontweight = '';
-        let fontstyle = '';
-        let fontname = fontprep.join(' ').replace(/,/g, ' ');
-        ['Italic', 'Oblique'].forEach(function (item, i) {
-            if (fontname.includes(item)) {
-                fontstyle = item;
-                fontname = fontname.replace(item, '');
-            }
-        });
-
-        ['Bold', 'Light', 'Medium', 'Heavy'].forEach(function (item, i) {
-            if (fontname.includes(item)) {
-                fontweight = item;
-                fontname = fontname.replace(item, '');
-            }
-        });
-
-        this.fontstyle = ("font-family: " + fontname + "; " +
-            "font-size: " + fontsize + "pt; " +
-            (fontstyle ? "font-style: " + fontstyle + "; " : "") +
-            (fontweight ? "font-weight: " + fontweight + "; " : "") +
-            "color: " + this.color + "; " +
-            "text-shadow: " + "0px 1px 6px rgba(" + this.invertbrightness(this.color) + ", 0.2); " +
-            "padding: 2px 2px;").toLowerCase();
-
-        // -----------------------------------------------
-
-        let ai_fontprep = this.ai_font.split(' ');
-        let ai_fontsize = ai_fontprep.pop();
-        let ai_fontweight = '';
-        let ai_fontstyle = '';
-        let ai_fontname = ai_fontprep.join(' ').replace(/,/g, ' ');
-        ['Italic', 'Oblique'].forEach(function (item, i) {
-            if (ai_fontname.includes(item)) {
-                ai_fontstyle = item;
-                ai_fontname = ai_fontname.replace(item, '');
-            }
-        });
-
-        ['Bold', 'Light', 'Medium', 'Heavy'].forEach(function (item, i) {
-            if (ai_fontname.includes(item)) {
-                ai_fontweight = item;
-                ai_fontname = ai_fontname.replace(item, '');
-            }
-        });
-
-        this.ai_fontstyle = ("font-family: " + ai_fontname + "; " +
-            "font-size: " + ai_fontsize + "pt; " +
-            (ai_fontstyle ? "font-style: " + ai_fontstyle + "; " : "") +
-            (ai_fontweight ? "font-weight: " + ai_fontweight + "; " : "") +
-            "color: " + this.ai_color + "; " +
-            "text-shadow: " + "0px 1px 6px rgba(" + this.invertbrightness(this.ai_color) + ", 0.2); " +
-            "padding: 2px 2px;").toLowerCase();
-
-        this.mainBox.set_size(this.width, this.height);
-
-        this.mainBox.style = "background-color: rgba(" + (this.backgroundColor.replace('rgb(', '').replace(')', '') + "," + this.transparency + ")");
-    }
-
-    //------------------------
-
-    // HTTP request creator function
-    httpRequest(method, url, headers = null, body = null) {
-        return new Promise((resolve, reject) => {
-            try {
-                const message = Soup.Message.new(method, url);
-                if (!message) {
-                    throw new Error(`Failed to create message for URL: ${url}`);
-                }
-
-                // Add headers
-                message.request_headers.append('User-Agent', 'Mozilla/5.0 YarrDesklet/1.0');
-                if (headers) {
-                    headers.forEach(([key, value]) => {
-                        message.request_headers.append(key, value);
-                    });
-                }
-
-                // Add body for POST requests
-                if (method === 'POST' && body) {
-                    if (Soup.MAJOR_VERSION === 2) {
-                        message.set_request('application/json', 2, body);
-                    } else {
-                        message.set_request_body_from_bytes('application/json',
-                            new GLib.Bytes(body));
-                    }
-                }
-
-                // Handle Soup v2 vs v3
-                if (Soup.MAJOR_VERSION === 2) {
-                    this.httpSession.queue_message(message, (session, response) => {
-                        if (response.status_code !== 200) {
-                            reject(new Error(`HTTP ${response.status_code}: ${response.reason_phrase}`));
-                            return;
-                        }
-                        resolve(message.response_body.data);
-                    });
-                } else {
-                    this.httpSession.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null,
-                        (session, result) => {
-                            try {
-                                const bytes = session.send_and_read_finish(result);
-                                if (!bytes) {
-                                    reject(new Error('No response data'));
-                                    return;
-                                }
-                                const response = ByteArray.toString(bytes.get_data());
-                                resolve(response);
-                            } catch (error) {
-                                reject(error);
-                            }
-                        });
-                }
-            } catch (error) {
-                reject(error);
-            }
-        });
-    }
-
-    setUpdateTimer(timeOut) {
-        if (this._setUpdateTimerInProgress) return;
-        this._setUpdateTimerInProgress = true;
-
         try {
-            // Clear existing timer if any
-            if (this.timerInProgress) {
-                try {
-                    Mainloop.source_remove(this.timerInProgress);
-                } catch (e) {
-                    global.log('Error removing existing timer:', e);
-                }
-                this.timerInProgress = 0;
+            // PERFORMANCE FIX: Simplified to prevent system lag
+            if (this._isInitializing || this._isUpdatingDisplay) {
+                return;
             }
+            this._isUpdatingDisplay = true;
 
-            // Set minimum delay to prevent excessive CPU usage
-            const delay = Math.max(timeOut === 1 ? 1 : 300, this.delay);
-
-            // Create new timer
-            this.timerInProgress = Mainloop.timeout_add_seconds(delay, () => {
-                // Clear timer ID since it's about to fire
-                this.timerInProgress = 0;
-
-                // Execute timer event
-                this.onTimerEvent();
-
-                // Return false to prevent auto-repeat
-                return false;
-            });
-
-            if (!this.timerInProgress) {
-                global.log('Failed to create timer');
-            }
-
-        } catch (e) {
-            global.log('Error in setUpdateTimer:', e);
-            this.timerInProgress = 0;
-        } finally {
-            this._setUpdateTimerInProgress = false;
-        }
-    }
-
-    onTimerEvent() {
-        // Prevent concurrent updates
-        if (this._updateInProgress) {
-            this.setUpdateTimer(this.delay);
-            return;
-        }
-
-        this._updateInProgress = true;
-
-        try {
-            // Execute feed collection
-            this.collectFeeds()
-                .catch(error => {
-                    global.log('Error collecting feeds:', error);
-                })
-                .finally(() => {
-                    this._updateInProgress = false;
-                    global.log('Feed collection completed, scheduling next update');
-                    // Schedule next update
-                    if (this.refreshEnabled) {
-                        this.setUpdateTimer(this.delay);
+            // Update font styles
+            if (this.font) {
+                let fontprep = this.font.split(' ');
+                let fontsize = fontprep.pop();
+                let fontweight = '';
+                let fontstyle = '';
+                let fontname = fontprep.join(' ').replace(/,/g, ' ');
+                ['Italic', 'Oblique'].forEach(function (item, i) {
+                    if (fontname.includes(item)) {
+                        fontstyle = item;
+                        fontname = fontname.replace(item, '');
                     }
                 });
-        } catch (e) {
-            global.log('Error in timer event:', e);
-            this._updateInProgress = false;
-            if (this.refreshEnabled) {
-                this.setUpdateTimer(this.delay);
+
+                ['Bold', 'Light', 'Medium', 'Heavy'].forEach(function (item, i) {
+                    if (fontname.includes(item)) {
+                        fontweight = item;
+                        fontname = fontname.replace(item, '');
+                    }
+                });
+
+                this.fontstyle = ("font-family: " + fontname + "; " +
+                    "font-size: " + fontsize + "pt; " +
+                    (fontstyle ? "font-style: " + fontstyle + "; " : "") +
+                    (fontweight ? "font-weight: " + fontweight + "; " : "") +
+                    "color: " + this.color + "; " +
+                    "text-shadow: " + "0px 1px 6px rgba(" + this.utilities.invertBrightness(this.color) + ", 0.2); " +
+                    "padding: 2px 2px;").toLowerCase();
             }
-        }
-    }
 
-    onRefreshClicked() {
-        // Set refresh icon to indicate loading
-        if (this.refreshIcon) {
-            this.refreshIcon.set_icon_name('process-working');
-        }
+            // Update AI font styles
+            if (this.ai_font) {
+                let ai_fontprep = this.ai_font.split(' ');
+                let ai_fontsize = ai_fontprep.pop();
+                let ai_fontweight = '';
+                let ai_fontstyle = '';
+                let ai_fontname = ai_fontprep.join(' ').replace(/,/g, ' ');
+                ['Italic', 'Oblique'].forEach(function (item, i) {
+                    if (ai_fontname.includes(item)) {
+                        ai_fontstyle = item;
+                        ai_fontname = ai_fontname.replace(item, '');
+                    }
+                });
 
-        // Immediately collect feeds
-        this.collectFeeds()
-            .then(() => {
-                // Reset icon after successful refresh
-                if (this.refreshIcon) {
-                    this.refreshIcon.set_icon_name('reload');
+                ['Bold', 'Light', 'Medium', 'Heavy'].forEach(function (item, i) {
+                    if (ai_fontname.includes(item)) {
+                        ai_fontweight = item;
+                        ai_fontname = ai_fontname.replace(item, '');
+                    }
+                });
+
+                this.ai_fontstyle = ("font-family: " + ai_fontname + "; " +
+                    "font-size: " + ai_fontsize + "pt; " +
+                    (ai_fontstyle ? "font-style: " + fontstyle + "; " : "") +
+                    (ai_fontweight ? "font-weight: " + ai_fontweight + "; " : "") +
+                    "color: " + this.ai_color + "; " +
+                    "text-shadow: " + "0px 1px 6px rgba(" + this.utilities.invertBrightness(this.ai_color) + ", 0.2); " +
+                    "padding: 2px 2px;").toLowerCase();
+            }
+
+            // Update main box size and style if it exists
+            if (this.mainBox) {
+                this.mainBox.set_size(this.width, this.height);
+
+                if (this.backgroundColor && this.transparency !== undefined) {
+                    this.mainBox.style = "background-color: rgba(" + this.backgroundColor.replace('rgb(', '').replace(')', '') + "," + this.transparency + ")";
                 }
-            })
-            .catch(error => {
-                // Reset icon and log error
-                if (this.refreshIcon) {
-                    this.refreshIcon.set_icon_name('reload');
-                }
-                global.log('Error refreshing feeds:', error);
-            });
+            }
 
-        // Also reset the timer for next automatic refresh
-        this.setUpdateTimer(this.delay);
+
+
+            Logger.debug("Display settings updated successfully");
+        } catch (e) {
+            Logger.error("Error updating display settings: " + e);
+        } finally {
+            // Reset the updating flag
+            this._isUpdatingDisplay = false;
+        }
     }
 
     onClickedToggleRefresh(selfObj, p2, context) {
@@ -515,343 +1654,208 @@ class YarrDesklet extends Desklet.Desklet {
             context.toggleRefresh.set_label(_('Disable refresh'));
             context.toggleRefresh.set_style_class_name('toggleButtonOn');
             context.refreshEnabled = true;
-            context.setUpdateTimer(3);
+            context.feedCollection.setUpdateTimer(3);
         }
     }
 
     buildInitialDisplay() {
-        this.setHeader(_('Yarr'));
+        // Delegate to UI display module
+        this.uiDisplay.buildInitialDisplay();
 
-        // Main container
-        this.mainBox = new St.BoxLayout({
-            vertical: true,
-            width: this.width,
-            height: this.height,
-            style_class: "desklet"
-        });
 
-        // Fixed height header container that won't be affected by scroll
-        this.headerContainer = new St.BoxLayout({
-            vertical: true,
-            x_expand: true,
-            height: 40,
-            style: 'min-height: 40px; background-color: rgba(0,0,0,0.2);'  // Make header visually distinct
-        });
 
-        // Header content
-        this.headBox = new St.BoxLayout({
-            vertical: false,
-            x_expand: true,
-            style: 'padding: 4px; margin: 0 1rem;'
-        });
+        // Now that UI is built, connect display settings change handlers
+        this._connectDisplaySettingsHandlers();
 
-        // Left side: Title and search
-        let leftBox = new St.BoxLayout({
-            vertical: false,
-            style: 'spacing: 10px;'
-        });
+        // Apply initial display settings after UI is built to ensure proper styling
+        this._applyInitialDisplaySettings();
+    }
 
-        // Title with icon
-        let titleBox = new St.BoxLayout({
-            vertical: false,
-            style: 'spacing: 4px;'
-        });
+    _connectDisplaySettingsHandlers() {
+        try {
+            Logger.debug("Connecting display settings change handlers");
 
-        let titleIcon = new St.Icon({
-            icon_name: 'feed-subscribe',
-            icon_type: St.IconType.SYMBOLIC,
-            icon_size: 20,
-            style: 'padding-top: 2px;'
-        });
-
-        this.headTitle = new St.Label({
-            text: _('Loading: feeds ...'),
-            style: 'font-weight: bold; padding-top: 3px;'
-        });
-
-        titleBox.add(titleIcon);
-        titleBox.add(this.headTitle);
-        leftBox.add(titleBox);
-
-        // Add favorite filter button before search if feature is enabled
-        if (this.enableFavoriteFeature) {
-            this.favoriteFilterBtn = new St.Button({
-                style_class: 'yarr-button',
-                style: 'padding: 4px; margin-left: 10px;'
-            });
-
-            this.favoriteFilterIcon = new St.Icon({
-                icon_name: 'non-starred',
-                icon_type: St.IconType.SYMBOLIC,
-                icon_size: 16,
-                style: 'color: #888888;'
-            });
-
-            this.favoriteFilterBtn.set_child(this.favoriteFilterIcon);
-
-            this.favoriteFilterBtn.connect('clicked', () => {
-                this.showOnlyFavorites = !this.showOnlyFavorites;
-
-                // Update icon
-                this.favoriteFilterIcon.set_icon_name(this.showOnlyFavorites ? 'starred' : 'non-starred');
-                this.favoriteFilterIcon.style = this.showOnlyFavorites ? 'color: #ffd700;' : 'color: #888888;';
-
-                // Refresh display with filter
-                this.displayItems();
-            });
-
-            leftBox.add(this.favoriteFilterBtn);
-        }
-
-        // Search box after title and favorite button
-        this.searchBox = new St.BoxLayout({
-            vertical: false,
-            style: 'spacing: 4px; margin-left: 1rem;'
-        });
-
-        this.searchButton = new St.Button({
-            style_class: 'search-button',
-            style: 'padding: 4px 8px;',
-            reactive: true,
-            track_hover: true
-        });
-
-        let searchButtonBox = new St.BoxLayout();
-
-        let searchIcon = new St.Icon({
-            icon_name: 'edit-find',
-            icon_type: St.IconType.SYMBOLIC,
-            icon_size: 16
-        });
-
-        this.searchLabel = new St.Label({
-            text: _(" Search..."),
-            style: 'padding-left: 5px;'
-        });
-
-        searchButtonBox.add(searchIcon);
-        searchButtonBox.add(this.searchLabel);
-        this.searchButton.set_child(searchButtonBox);
-
-        // Add clear search button
-        this.clearSearchButton = new St.Button({
-            style_class: 'clear-search-button',
-            style: 'padding: 4px;',
-            visible: false
-        });
-
-        let clearIcon = new St.Icon({
-            icon_name: 'edit-clear',
-            icon_type: St.IconType.SYMBOLIC,
-            icon_size: 16
-        });
-        this.clearSearchButton.set_child(clearIcon);
-
-        // Connect search button to show modal dialog
-        this.searchButton.connect('clicked', () => {
-            let dialog = new ModalDialog.ModalDialog();
-
-            // Add title
-            let titleBin = new St.Bin({
-                style_class: 'search-title',
-                style: 'margin-bottom: 10px;'
-            });
-
-            let titleLabel = new St.Label({
-                text: _("Search Articles"),
-                style_class: 'search-title-text',
-                style: 'font-size: 16px; font-weight: bold;'
-            });
-
-            titleBin.set_child(titleLabel);
-            dialog.contentLayout.add(titleBin);
-
-            // Add search entry
-            let entry = new St.Entry({
-                name: 'searchEntry',
-                hint_text: _("Type to search..."),
-                track_hover: true,
-                reactive: true,
-                can_focus: true,
-                style: 'width: 250px; min-width: 250px;'
-            });
-
-            // Set initial text if there's an existing filter
-            if (this.searchFilter) {
-                entry.set_text(this.searchFilter);
-            }
-
-            dialog.contentLayout.add(entry);
-
-            // Handle Enter key
-            entry.clutter_text.connect('key-press-event', (actor, event) => {
-                let symbol = event.get_key_symbol();
-                if (symbol === Clutter.KEY_Return || symbol === Clutter.KEY_KP_Enter) {
-                    let text = entry.get_text();
-                    if (text) {
-                        this.searchFilter = text;
-                        this.searchLabel.text = " " + text;
-                        this.clearSearchButton.visible = true;
-                        this.displayItems(this);
-                    }
-                    dialog.close();
-                    return Clutter.EVENT_STOP;
+            // Connect display settings change handlers
+            this.settings.connect("changed::width", () => {
+                Logger.debug("Width changed to: " + this.width);
+                if (this.mainBox && this.uiDisplay && !this._isInitializing && this._initialDisplaySettingsApplied) {
+                    this.onDisplayChanged();
                 }
-                return Clutter.EVENT_PROPAGATE;
             });
 
-            // Add buttons
-            dialog.setButtons([
-                {
-                    label: _("Cancel"),
-                    action: () => dialog.close(),
-                    key: Clutter.KEY_Escape
-                },
-                {
-                    label: _("Search"),
-                    action: () => {
-                        let text = entry.get_text();
-                        if (text) {
-                            this.searchFilter = text;
-                            this.searchLabel.text = " " + text;
-                            this.clearSearchButton.visible = true;
-                            this.displayItems(this);
-                        }
-                        dialog.close();
-                    },
-                    key: Clutter.KEY_Return
+            this.settings.connect("changed::height", () => {
+                Logger.debug("Height changed to: " + this.height);
+                if (this.mainBox && this.uiDisplay && !this._isInitializing && this._initialDisplaySettingsApplied) {
+                    this.onDisplayChanged();
                 }
-            ]);
+            });
 
-            dialog.open();
-            global.stage.set_key_focus(entry);
-        });
+            this.settings.connect("changed::backgroundColor", () => {
+                Logger.debug("Background color changed to: " + this.backgroundColor);
+                if (this.mainBox && this.uiDisplay && !this._isInitializing && this._initialDisplaySettingsApplied) {
+                    this.onDisplayChanged();
+                }
+            });
 
-        // Connect clear button
-        this.clearSearchButton.connect('clicked', () => {
-            this.searchFilter = '';
-            this.searchLabel.text = _(" Search...");
-            this.clearSearchButton.visible = false;
-            this.displayItems(this);
-        });
+            this.settings.connect("changed::transparency", () => {
+                Logger.debug("Transparency changed to: " + this.transparency);
+                if (this.mainBox && this.uiDisplay && !this._isInitializing && this._initialDisplaySettingsApplied) {
+                    this.onDisplayChanged();
+                }
+            });
 
-        this.searchBox.add(this.searchButton);
-        this.searchBox.add(this.clearSearchButton);
-        leftBox.add(this.searchBox);
+            this.settings.connect("changed::alternateRowTransparency", () => {
+                Logger.debug("Alternate row transparency changed to: " + this.alternateRowTransparency);
+                if (this.mainBox && this.uiDisplay && !this._isInitializing && this._initialDisplaySettingsApplied) {
+                    this.onDisplayChanged();
+                }
+            });
 
-        // Right side: Control buttons with right alignment
-        let rightBox = new St.BoxLayout({
-            vertical: false,
-            style: 'spacing: 6px;',
-            x_align: St.Align.END
-        });
+            this.settings.connect("changed::font", () => {
+                Logger.debug("Font changed to: " + this.font);
+                if (this.mainBox && this.uiDisplay && !this._isInitializing && this._initialDisplaySettingsApplied) {
+                    this.onDisplayChanged();
+                }
+            });
 
-        // Toggle refresh button with icon
-        this.toggleRefresh = new St.Button({
-            label: _("Disable refresh"),
-            style_class: 'toggleButtonOn',
-            style: 'padding: 4px 8px;'
-        });
+            this.settings.connect("changed::text-color", () => {
+                Logger.debug("Text color changed to: " + this.color);
+                if (this.mainBox && this.uiDisplay && !this._isInitializing && this._initialDisplaySettingsApplied) {
+                    this.onDisplayChanged();
+                }
+            });
 
-        // Refresh button with icon
-        this.refreshButton = new St.Button({
-            style_class: 'feedRefreshButton',
-            style: 'padding: 4px;'
-        });
+            this.settings.connect("changed::ai_font", () => {
+                Logger.debug("AI font changed to: " + this.ai_font);
+                if (this.mainBox && this.uiDisplay && !this._isInitializing) {
+                    this.onDisplayChanged();
+                }
+            });
 
-        this.refreshIcon = new St.Icon({
-            icon_name: 'reload',
-            icon_type: St.IconType.SYMBOLIC,
-            icon_size: 16
-        });
+            this.settings.connect("changed::ai_text-color", () => {
+                Logger.debug("AI text color changed to: " + this.ai_color);
+                if (this.mainBox && this.uiDisplay && !this._isInitializing) {
+                    this.onDisplayChanged();
+                }
+            });
 
-        this.refreshButton.set_child(this.refreshIcon);
+            this.settings.connect("changed::articleSpacing", () => {
+                Logger.debug("Article spacing changed to: " + this.articleSpacing);
+                if (this.mainBox && this.uiDisplay && !this._isInitializing) {
+                    this.onDisplayChanged();
+                }
+            });
 
-        // Connect button events
-        this.refreshButton.connect("clicked", Lang.bind(this, this.onRefreshClicked));
-        this._signals.connect(this.toggleRefresh, 'clicked', (...args) =>
-            this.onClickedToggleRefresh(...args, this)
-        );
+            this.settings.connect("changed::dimReadTitles", () => {
+                Logger.debug("Dim read titles changed to: " + this.dimReadTitles);
+                if (this.mainBox && this.uiDisplay && !this._isInitializing) {
+                    this.onDisplayChanged();
+                }
+            });
 
-        rightBox.add(this.toggleRefresh);
-        rightBox.add(this.refreshButton);
+            this.settings.connect("changed::readTitleColor", () => {
+                Logger.debug("Read title color changed to: " + this.readTitleColor);
+                if (this.mainBox && this.uiDisplay && !this._isInitializing) {
+                    this.onDisplayChanged();
+                }
+            });
 
-        // Add everything to header with proper spacing
-        this.headBox.add(leftBox);
-        this.headBox.add(new St.Bin({ x_expand: true }));  // Flexible space
-        this.headBox.add(rightBox);
+            // Add more settings change handlers
+            this.settings.connect("changed::enableFavoriteFeature", () => {
+                Logger.debug("Favorite feature " + (this.enableFavoriteFeature ? "enabled" : "disabled"));
+                if (this.mainBox && this.uiDisplay && !this._isInitializing) {
+                    this.onDisplayChanged();
+                }
+            });
 
-        this.headerContainer.add(this.headBox);
+            this.settings.connect("changed::showReadStatusCheckbox", () => {
+                Logger.debug("Read status checkbox " + (this.showReadStatusCheckbox ? "enabled" : "disabled"));
+                if (this.mainBox && this.uiDisplay && !this._isInitializing) {
+                    this.onDisplayChanged();
+                }
+            });
 
-        // Separate scrollable content container
-        let scrollContainer = new St.BoxLayout({
-            vertical: true,
-            x_expand: true,
-            y_expand: true,
-            style: 'margin-top: 2px;'
-        });
+            this.settings.connect("changed::showRefreshSeparators", () => {
+                Logger.debug("Refresh separators " + (this.showRefreshSeparators ? "enabled" : "disabled"));
+                if (this.mainBox && this.uiDisplay && !this._isInitializing) {
+                    this.onDisplayChanged();
+                }
+            });
 
-        // Create scrollview with proper policy
-        let scrollBox = new St.ScrollView({
-            style_class: 'yarr-scrollbox',
-            x_fill: true,
-            y_fill: true,
-            x_expand: true,
-            y_expand: true
-        });
+            this.settings.connect("changed::numberofitems", () => {
+                Logger.debug("Number of items changed to: " + this.itemlimit);
+                if (this.mainBox && this.uiDisplay && !this._isInitializing) {
+                    this.onDisplayChanged();
+                }
+            });
 
-        scrollBox.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
-
-        // Container for feed items
-        this.dataBox = new St.BoxLayout({
-            vertical: true,
-            style_class: 'yarr-feeds-box',
-            y_expand: true,
-            x_expand: true,
-            style: 'spacing: 2px;'
-        });
-
-        // Proper layout hierarchy
-        scrollBox.add_actor(this.dataBox);
-        scrollContainer.add(scrollBox);
-
-        // Add components in correct order
-        this.mainBox.add(this.headerContainer);  // Fixed header first
-        this.mainBox.add(scrollContainer);       // Scrollable content second
-
-        this.setContent(this.mainBox);
-    }
-
-    hashCode(str) {
-        return str.split('').reduce((prevHash, currVal) =>
-            (((prevHash << 5) - prevHash) + currVal.charCodeAt(0)) | 0, 0);
-    }
-
-
-    _cleanupItem(item) {
-        if (!item) return;
-
-        // Clear references
-        if (item.aiResponse) {
-            item.aiResponse = '';
+            Logger.debug("Display settings change handlers connected successfully");
+        } catch (e) {
+            Logger.error("Error connecting display settings handlers: " + e);
         }
-        if (item.description) {
-            item.description = '';
-        }
-        // Clean other fields...
     }
+
 
     additems(context, itemobj) {
         try {
-            // Generate unique key
-            const key = `${itemobj.channel}-${itemobj.title}-${itemobj.timestamp.getTime()}`;
+            // Generate unique key using the same strategy as feed processing
+            const key = this.utilities.simpleHash(itemobj.link);
 
-            // Add new item to map with isFavorite property
+            // Check if item already exists to preserve favorite status
+            const existingItem = context.items.get(key);
+            const isFavorite = existingItem ? existingItem.isFavorite : false;
+
+            // Add new item to map with isFavorite property first
             context.items.set(key, {
                 ...itemobj,  // spread operator to clone
                 key: key,    // store key for later use
-                isFavorite: false  // default favorite status
+                isFavorite: isFavorite,  // preserve existing favorite status or default to false
+                downloadTimestamp: Date.now(), // when this article was downloaded
+                aiResponse: existingItem?.aiResponse || '' // preserve existing AI response or start empty
             });
+
+            // Now check for cached article data to save costs (async)
+            if (itemobj.link && this.databaseManager && !existingItem?.aiResponse) {
+                this.databaseManager.getArticleFromCache(key).then(cachedArticle => {
+                    if (cachedArticle && cachedArticle.aiResponse) {
+                        Logger.info(`Found cached article data for: ${itemobj.title || 'Untitled'} (saving API costs)`);
+
+                        // Update the item with all cached data
+                        const currentItem = context.items.get(key);
+                        if (currentItem) {
+                            // Restore all cached attributes
+                            currentItem.title = cachedArticle.title || currentItem.title;
+                            currentItem.description = cachedArticle.description || currentItem.description;
+                            currentItem.category = cachedArticle.category || currentItem.category;
+                            currentItem.channel = cachedArticle.channel || currentItem.channel;
+                            currentItem.labelColor = cachedArticle.labelColor || currentItem.labelColor;
+                            currentItem.pubDate = cachedArticle.pubDate || currentItem.pubDate;
+                            currentItem.timestamp = cachedArticle.timestamp || currentItem.timestamp;
+                            currentItem.aiResponse = cachedArticle.aiResponse;
+
+                            // Trigger display update to show cached data
+                            this.timerManager.addSetTimeoutTimer(() => {
+                                this.safeDisplayUpdate('cached article data loaded');
+                            }, 1);
+                        }
+                    } else {
+                        // Cache this article data for future use (even without AI response)
+                        this.databaseManager.cacheArticleData(key, itemobj.link, {
+                            title: itemobj.title || '',
+                            description: itemobj.description || '',
+                            category: itemobj.category || '',
+                            channel: itemobj.channel || '',
+                            labelColor: itemobj.labelColor || '#ffffff',
+                            pubDate: itemobj.pubDate || '',
+                            timestamp: itemobj.timestamp || Date.now()
+                        }).catch(e => {
+                            Logger.error('Error caching article data: ' + e);
+                        });
+                    }
+                }).catch(e => {
+                    Logger.error('Error checking article cache: ' + e);
+                });
+            }
 
             // Schedule display update using Promise to avoid UI blocking
             Promise.resolve().then(() => {
@@ -864,44 +1868,127 @@ class YarrDesklet extends Desklet.Desklet {
                     context.items = new Map(sortedItems.slice(0, context.itemlimit));
                 }
 
-                // Schedule UI update
-                GLib.idle_add(GLib.PRIORITY_DEFAULT_IDLE, () => {
-                    this.displayItems();
-                    return GLib.SOURCE_REMOVE;
-                });
+                // Schedule UI update asynchronously to prevent blocking
+                this.timerManager.addSetTimeoutTimer(() => {
+                    this.safeDisplayUpdate('new articles added');
+                }, 1);
             }).catch(e => {
-                global.log('Error in additems:', e);
+                Logger.error('Error in additems:', e);
             });
 
         } catch (e) {
-            global.log('Error in additems:', e);
+            Logger.error('Error in additems:', e);
         }
     }
 
-    // Helper function to check if text matches filter
-    _checkMatch(filter, title, category, description) {
-        const regexp = new RegExp(filter.filter, 'i');
+    // _checkMatch and inGlobalFilter are now handled by ArticleManagement module
 
-        return (filter.inTitle && title && regexp.test(title)) ||
-            (filter.inCategory && category && regexp.test(category)) ||
-            (filter.inDescription && description && regexp.test(description));
-    }
-
-    // Simplified main filter function
+    // Expose inGlobalFilter function for use by other modules
     inGlobalFilter(self, title, category, description) {
-        if (!self?.listfilter?.length) return true;
+        return this.articleManagement.inGlobalFilter(self, title, category, description);
+    }
 
-        for (const filter of self.listfilter) {
-            if (!filter?.active) continue;
+    // Expose _simpleHash function for use by other modules
+    _simpleHash(str) {
+        return this.utilities.simpleHash(str);
+    }
 
-            try {
-                const matches = this._checkMatch(filter, title, category, description);
-                if (filter.unmatch ? !matches : matches) return false;
-            } catch {
-                continue;
+    // Expose _markItemAsRead function for use by other modules
+    _markItemAsRead(item, showReadStatusCheckbox, titleLabel) {
+        return this.favoritesManagers._markItemAsRead(item, showReadStatusCheckbox, titleLabel);
+    }
+
+    // Expose other functions for use by other modules
+    _showAddArticleDialog() {
+        return this.articleManagement._showAddArticleDialog();
+    }
+
+    onRefreshClicked() {
+        return this.feedCollection.onRefreshClicked();
+    }
+
+
+
+    _toggleReadStatus(item, readIcon, titleLabel) {
+        return this.favoritesManagers._toggleReadStatus(item, readIcon, titleLabel);
+    }
+
+    summarizeUri(dumptool, item, lineBox, sumIcon) {
+        return this.aiManagers.summarizeUri(dumptool, item, lineBox, sumIcon);
+    }
+
+    onClickedCopyButton(selfObj, p2, item, lineBox) {
+        return this.articleManagement.onClickedCopyButton(selfObj, p2, item, lineBox);
+    }
+
+    HTMLPartToTextPart(html) {
+        return this.feedProcessor.HTMLPartToTextPart(html);
+    }
+
+    // Expose translation function for use by other modules
+    _(str) {
+        return Gettext.dgettext(UUID, str);
+    }
+
+    // Expose onRefreshSettings function for use by other modules
+    onRefreshSettings() {
+        try {
+            Logger.debug("onRefreshSettings called - refreshing settings and updating display");
+
+            // Reload settings and update display
+            if (this.settings && typeof this.settings.reload === 'function') {
+                this.settings.reload();
+                Logger.debug("Settings reloaded successfully");
+            } else if (this.settings) {
+                Logger.debug("Settings object exists but reload method not available, skipping reload");
+            } else {
+                Logger.error("Settings object not available");
+                return;
             }
+
+            // Only update display if UI is ready and not initializing
+            if (this.mainBox && this.uiDisplay && !this._isInitializing) {
+                this.onDisplayChanged();
+                this.onSettingsChanged();
+                // Don't call displayItems here as it might interfere with normal operation
+                Logger.debug("Display updated successfully");
+            } else {
+                Logger.debug("UI not ready or still initializing, skipping display update");
+            }
+
+            Logger.debug("Settings refresh completed successfully");
+        } catch (e) {
+            Logger.error("Error in onRefreshSettings: " + e);
         }
-        return true;
+    }
+
+    // Expose tooltip functions for use by other modules
+    showTooltip(item) {
+        if (this.uiDisplay && this.uiDisplay._showTooltip) {
+            // Find the panel button for this item and show tooltip
+            // This is a simplified version - in practice, you'd need to find the actual button
+            this.uiDisplay._showTooltip(null, item);
+        }
+    }
+
+    hideTooltip() {
+        if (this.uiDisplay && this.uiDisplay._hideTooltip) {
+            this.uiDisplay._hideTooltip();
+        }
+    }
+
+    isTooltipVisible() {
+        return this.uiDisplay && this.uiDisplay.isTooltipVisible ? this.uiDisplay.isTooltipVisible() : false;
+    }
+
+    // Expose _onRssSearchResult function for use by other modules
+    _onRssSearchResult(result) {
+        return this.searchManagers._onRssSearchResult(result);
+    }
+
+    // Expose _onFeedSelectionResult function for use by other modules
+    _onFeedSelectionResult(result) {
+        return this.searchManagers._onFeedSelectionResult(result);
     }
 
     onUpdateDownloadedTimer() {
@@ -921,582 +2008,29 @@ class YarrDesklet extends Desklet.Desklet {
         return GLib.SOURCE_CONTINUE;
     }
 
-    async collectFeeds() {
-        if (!this.refreshEnabled || !this.httpSession) return;
 
-        try {
-            const feeds = [...this.feeds].filter(f => f?.active && f?.url?.length);
-            if (!feeds?.length) return;
-
-            global.log(`Collecting ${feeds.length} feeds`);
-
-            for (const feed of feeds) {
-                try {
-                    global.log(`Fetching feed: ${feed.name} from URL: ${feed.url}`);
-                    const result = await this.httpRequest('GET', feed.url);
-                    global.log(`Got response for ${feed.name}, length: ${result ? result.length : 0} bytes`);
-                    this.processFeedResult(feed, result);
-                } catch (error) {
-                    global.log(`Error processing feed ${feed.name}:`, error);
-                }
-            }
-
-            this.lastRefresh = new Date();
-            this.displayItems(this);
-        } catch (error) {
-            global.log('Error in collectFeeds:', error);
-            throw error;
-        }
-    }
-
-    processFeedResult(feed, result) {
-        try {
-            if (!result) {
-                global.log(`No result data for feed: ${feed.name}`);
-                return;
-            }
-
-            global.log(`Parsing XML for feed: ${feed.name}`);
-            const resJSON = fromXML(result);
-
-            if (!resJSON) {
-                global.log(`fromXML returned null/undefined for feed: ${feed.name}`);
-                return;
-            }
-
-            if (!resJSON.rss) {
-                global.log(`No RSS element in feed: ${feed.name}, keys: ${Object.keys(resJSON).join(', ')}`);
-                return;
-            }
-
-            if (!resJSON.rss.channel) {
-                global.log(`No channel element in feed: ${feed.name}, keys: ${Object.keys(resJSON.rss).join(', ')}`);
-                return;
-            }
-
-            if (!resJSON.rss.channel.item) {
-                global.log(`No items in feed: ${feed.name}`);
-                return;
-            }
-
-            const items = Array.isArray(resJSON.rss.channel.item)
-                ? resJSON.rss.channel.item
-                : [resJSON.rss.channel.item];
-
-            global.log(`Processing ${items.length} items from feed: ${feed.name}`);
-
-            // Continue with the rest as before
-            items.forEach(item => {
-                try {
-                    // Skip if no link (we need it for SHA256)
-                    if (!item.link) return;
-
-                    const catStr = this.getCategoryString(item);
-                    const timestamp = new Date(item.pubDate);
-                    if (isNaN(timestamp.getTime())) return;
-
-                    // Calculate SHA256 of URL
-                    const id = this.favoritesDb._calculateSHA256(item.link);
-                    if (!id) return;
-
-                    // Generate map key using SHA256
-                    const key = `${id}`;
-
-                    // Check if this item already exists as a favorite
-                    const existingItem = Array.from(this.items.values())
-                        .find(existing =>
-                            existing.isFavorite &&
-                            this.favoritesDb._calculateSHA256(existing.link) === id
-                        );
-
-                    // Skip if item exists as a favorite
-                    if (existingItem) return;
-
-                    // Add new item
-                    this.items.set(key, {
-                        channel: feed.name,
-                        timestamp: timestamp,
-                        pubDate: item.pubDate,
-                        title: item.title || 'No Title',
-                        link: item.link,
-                        category: catStr,
-                        description: item.description || '',
-                        labelColor: feed.labelcolor || '#ffffff',
-                        aiResponse: '',
-                        isFavorite: this.favoriteKeys.has(item.link)
-                    });
-                } catch (e) {
-                    global.log('Error processing feed item:', e);
-                }
-            });
-        } catch (error) {
-            global.log('Error in processFeedResult:', error);
-            throw error;
-        }
-    }
-
-    HTMLPartToTextPart(HTMLPart) {
-        return HTMLPart
-            .replace(/\n/ig, '')
-            .replace(/<style[^>]*>[\s\S]*?<\/style[^>]*>/ig, '')
-            .replace(/<head[^>]*>[\s\S]*?<\/head[^>]*>/ig, '')
-            .replace(/<script[^>]*>[\s\S]*?<\/script[^>]*>/ig, '')
-            .replace(/<\/\s*(?:p|div)>/ig, '\n\n')
-            .replace(/<br[^>]*\/?>/ig, '\n')
-            .replace(/<[^>]*>/ig, '')
-            .replace('&nbsp;', ' ')
-            .replace(/[^\S\r\n][^\S\r\n]+/ig, ' ')
-            ;
-    }
-
-    getCategoryString(item) {
-        if (typeof item.category === 'string') {
-            return item.category.toString();
-        }
-
-        if (typeof item.category === 'object') {
-            let catArr = Array.from(item.category);
-            let arrText = catArr.map(elem =>
-                typeof elem === 'string' ? elem : elem['#']
-            );
-            return arrText.join(' / ');
-        }
-
-        return '';
-    }
-
-    _formatedDate(pDate, withYear = true) {
-        let retStr = '';
-        if (withYear) {
-            retStr += pDate.getFullYear().toString() + '-';
-        }
-        retStr += (pDate.getMonth() + 1).toString().padStart(2, '0') + '-' + pDate.getDate().toString().padStart(2, '0') + '\n' +
-            pDate.getHours().toString().padStart(2, '0') + ':' + pDate.getMinutes().toString().padStart(2, '0');
-        return retStr;
-    }
-
-    onClickedButton(selfObj, p2, uri) {
-        Gio.app_info_launch_default_for_uri(uri, global.create_app_launch_context());
-    }
-
-    onClickedFavoriteButton(selfObj, p2, item, lineBox, favIcon) {
-        try {
-            // Toggle favorite status
-            item.isFavorite = !item.isFavorite;
-
-            if (item.isFavorite) {
-                // Add to favorites
-                this.favoritesDb.addFavorite(item);
-                if (favIcon) {
-                    favIcon.set_icon_name('starred-symbolic');
-                }
-            } else {
-                // Remove from favorites
-                this.favoritesDb.removeFavorite(item.link);
-                if (favIcon) {
-                    favIcon.set_icon_name('non-starred-symbolic');
-                }
-            }
-
-            // Refresh display after toggling favorite
-            this.displayItems();
-        } catch (e) {
-            global.log('Error toggling favorite:', e);
-        }
-    }
-
-    onClickedSumButton(selfObj, p2, item, lineBox, sumIcon) {
-        if (sumIcon) {
-            sumIcon.set_icon_name('process-working-symbolic');
-        }
-
-        this.summarizeUri(this.ai_dumptool, item, lineBox, sumIcon)
-            .then(() => {
-                if (sumIcon) {
-                    sumIcon.set_icon_name('document-edit-symbolic');
-                }
-            })
-            .catch(() => {
-                if (sumIcon) {
-                    sumIcon.set_icon_name('dialog-error-symbolic');
-                }
-            });
-    }
-
-    async summarizeUri(dumptool, item, lineBox, sumIcon) {
-        try {
-            const apiKey = await Secret.password_lookup_sync(this.STORE_SCHEMA, {}, null);
-            if (!apiKey) {
-                throw new Error('No API key found. Please set your API key in settings.');
-            }
-
-            // First get the full article content using dumptool
-            const [success, stdout, stderr] = GLib.spawn_command_line_sync(
-                `/usr/bin/timeout -k 10 10 /usr/bin/${dumptool} -dump '${item.link}' || echo 'ERROR: TIMEOUT'`
-            );
-
-            if (!success) {
-                throw new Error(`Failed to get article content: ${stderr.toString()}`);
-            }
-
-            let articleContent =
-                `${item.title}\n${this.HTMLPartToTextPart(item.description)}\n` +
-                ByteArray.toString(stdout);
-
-            // Limit content length to prevent API issues
-            if (articleContent.length > 16384) {
-                articleContent = articleContent.substring(0, 16384);
-            }
-
-            const requestBody = {
-                model: this.ai_use_standard_model ? this.ai_model : this.ai_custom_model,
-                messages: [
-                    {
-                        role: "system",
-                        content: this.ai_systemprompt
-                    },
-                    {
-                        role: "user",
-                        content: articleContent
-                    }
-                ],
-                temperature: this.temperature
-            };
-
-            const response = await this.httpRequest(
-                'POST',
-                this.ai_url,
-                [
-                    ['Content-Type', 'application/json'],
-                    ['Authorization', `Bearer ${apiKey}`]
-                ],
-                JSON.stringify(requestBody)
-            );
-
-            const jsonResponse = JSON.parse(response);
-
-            if (!jsonResponse?.choices?.[0]) {
-                throw new Error('Invalid API response');
-            }
-
-            item.aiResponse = "";
-
-            if (this.ai_add_description_to_summary) {
-                item.aiResponse = this.HTMLPartToTextPart(item.description).replace(/\n/ig, ' ') + '\n----\n';
-            }
-
-            item.aiResponse += jsonResponse.choices[0].message.content;
-
-            this.displayItems();
-
-            if (sumIcon) {
-                sumIcon.set_icon_name('document-edit-symbolic');
-            }
-
-        } catch (error) {
-            global.log('Error in summarizeUri:', error);
-            if (sumIcon) {
-                sumIcon.set_icon_name('dialog-error-symbolic');
-            }
-            throw error;
-        }
-    }
-
-    onClickedCopyButton(selfObj, p2, item, lineBox) {
-        const message = item.channel + ' ' + item.category + ' @' + item.pubDate + '\n' +
-            item.title + '\n' +
-            '---------------------------\n' +
-            item.description + '\n' +
-            '---------------------------\n' +
-            item.aiResponse + '\n' +
-            '---------------------------\n' +
-            'URL: ' + item.link + '\n'
-            ;
-
-        this.clipboard.set_text(St.ClipboardType.CLIPBOARD, message);
-    }
-
-    // Add method to load favorite articles
-    async loadFavoriteArticles() {
-        try {
-            const sql = `
-                SELECT * FROM favorites 
-                ORDER BY timestamp DESC
-            `;
-
-            const [success, stdout, stderr] = GLib.spawn_command_line_sync(
-                `sqlite3 "${this.favoritesDb.dbFile}" "${sql}" -json`
-            );
-
-            if (!success) {
-                global.log('Error loading favorites:', stderr.toString());
-                return;
-            }
-
-            const favorites = JSON.parse(stdout.toString() || '[]');
-            favorites.forEach(item => {
-                // Calculate SHA256 of URL for consistent key
-                const id = this.favoritesDb._calculateSHA256(item.link);
-                if (!id) return;
-
-                // Use SHA256 as key
-                const key = `${id}`;
-
-                this.items.set(key, {
-                    channel: item.channel,
-                    timestamp: new Date(parseInt(item.timestamp)),
-                    pubDate: item.pubDate,
-                    title: item.title,
-                    link: item.link,
-                    category: item.category,
-                    description: item.description,
-                    labelColor: item.labelColor,
-                    aiResponse: item.aiResponse,
-                    isFavorite: true
-                });
-            });
-        } catch (e) {
-            global.log('Error in loadFavoriteArticles:', e);
-        }
-    }
 
     displayItems() {
         try {
-            if (!this.dataBox) return;
-            this.dataBox.destroy_all_children();
+            // PERFORMANCE FIX: Simplified to prevent system lag
 
-            // Calculate effective item limit
-            let effectiveLimit = this.itemlimit || 50;
-            if (this.loadFavoritesOnStartup) {
-                // Count favorite items
-                const favoriteCount = Array.from(this.items.values())
-                    .filter(item => item.isFavorite).length;
-                effectiveLimit += favoriteCount;
+            // Basic concurrent update prevention
+            if (this._isUpdatingDisplay) {
+                return;
             }
 
-            // Get filtered and sorted items
-            const sortedItems = Array.from(this.items.values())
-                .filter(item => {
-                    // Apply favorite filter if enabled
-                    if (this.showOnlyFavorites && !item.isFavorite) {
-                        return false;
-                    }
+            this._isUpdatingDisplay = true;
 
-                    // Apply search filter
-                    if (this.searchFilter) {
-                        const searchText = this.searchFilter.toLowerCase();
-                        return item.title.toLowerCase().includes(searchText) ||
-                            item.description.toLowerCase().includes(searchText);
-                    }
-                    return this.inGlobalFilter(this, item.title, item.category, item.description);
-                })
-                .sort((a, b) => b.timestamp - a.timestamp)
-                .slice(0, effectiveLimit);  // Use effectiveLimit instead of itemlimit
+            // Use the internal display method
+            this._performDisplayUpdate();
 
-            // Update header text with additional info about favorites
-            if (this.headTitle) {
-                const now = this.lastRefresh ?? new Date(0);
-
-                const timeStr =
-                    (now.getMonth() + 1).toString().padStart(2, '0') + '-' +
-                    now.getDate().toString().padStart(2, '0') + ' ' +
-                    now.getHours().toString().padStart(2, '0') + ':' +
-                    now.getMinutes().toString().padStart(2, '0');
-                let titleText = _('Last refresh: %s').format(timeStr);
-                this.headTitle.set_text(titleText);
-            }
-
-            // Calculate channel width once
-            const channelWidth = Math.min(Math.max(...sortedItems.map(item => item.channel.length)) * 8, 120);
-
-            // Create items
-            sortedItems.forEach((item, i) => {
-                // Main row container
-                const lineBox = new St.BoxLayout({
-                    vertical: false,
-                    style: `
-                        background-color: ${i % 2 ?
-                            `rgba(100,100,100, ${this.alternateRowTransparency})` :
-                            `rgba(${this.backgroundColor.replace('rgb(', '').replace(')', '')}, ${this.transparency})`
-                        };
-                        padding: ${1 * this.articleSpacing}px;
-                        margin: ${1 * this.articleSpacing}px 0;
-                    `
-                });
-
-                // Only add feed button if NOT hidden
-                if (!this.enableFeedButton) {
-                    const feedBtn = new St.Button({
-                        style: `
-                            background-color: ${item.labelColor}; 
-                            border-radius: 4px; 
-                            margin: 0 5px; 
-                            width: ${channelWidth}px;
-                        `
-                    });
-                    feedBtn.set_child(new St.Label({ text: item.channel }));
-                    feedBtn.connect('clicked', () => item.link && Util.spawnCommandLine(`xdg-open "${item.link}"`));
-                    lineBox.add(feedBtn);
-                }
-
-                // Only add timestamp if NOT hidden
-                if (!this.enableTimestamp) {
-                    const timeBox = new St.BoxLayout({
-                        vertical: false,
-                        style: 'width: 50px; margin: auto;'
-                    });
-
-                    const timeLabel = new St.Label({
-                        text: this._formatedDate(item.timestamp, false),
-                        y_align: Clutter.ActorAlign.CENTER,
-                        style: 'font-size: 0.8em; text-align: center; margin: auto;'
-                    });
-
-                    timeBox.add(timeLabel);
-                    lineBox.add(timeBox);
-                }
-
-                // Action buttons
-                const buttonBox = new St.BoxLayout({ style: 'spacing: 5px; padding: 0 5px;' });
-
-                if (this.ai_enablesummary && item.description) {
-                    const sumBtn = new St.Button({ style_class: 'yarr-button' });
-                    const sumIcon = new St.Icon({ icon_name: 'gtk-zoom-fit', icon_size: 16 });
-                    sumBtn.set_child(sumIcon);
-                    sumBtn.connect('clicked', () => this.onClickedSumButton(null, null, item, lineBox, sumIcon));
-                    buttonBox.add(sumBtn);
-                }
-
-                if (this.enablecopy) {
-                    const copyBtn = new St.Button({ style_class: 'yarr-button' });
-                    const copyIcon = new St.Icon({ icon_name: 'edit-copy-symbolic', icon_size: 16 });
-                    copyBtn.set_child(copyIcon);
-                    copyBtn.connect('clicked', () => this.onClickedCopyButton(null, null, item, lineBox));
-                    buttonBox.add(copyBtn);
-                }
-
-                // Add favorite button if enabled
-                if (this.enableFavoriteFeature) {
-                    const favoriteBtn = new St.Button({
-                        style_class: 'yarr-button',
-                        style: 'padding: 2px;'
-                    });
-
-                    // Set the appropriate icon based on favorite status
-                    const favoriteIcon = new St.Icon({
-                        icon_name: item.isFavorite ? 'starred' : 'non-starred',  // or 'star-new' for empty star
-                        icon_type: St.IconType.SYMBOLIC,
-                        icon_size: 16,
-                        style: item.isFavorite ? 'color: #ffd700;' : 'color: #888888;' // gold color if favorite
-                    });
-
-                    favoriteBtn.set_child(favoriteIcon);
-
-                    favoriteBtn.connect('clicked', () => {
-                        // Toggle favorite status
-                        item.isFavorite = !item.isFavorite;
-
-                        // Update database
-                        if (item.isFavorite) {
-                            if (this.favoritesDb.addFavorite(item)) {
-                                this.favoriteKeys.add(item.link);  // Use URL instead of key
-                            }
-                        } else {
-                            if (this.favoritesDb.removeFavorite(item.link)) {  // Use URL instead of key
-                                this.favoriteKeys.delete(item.link);
-                            }
-                        }
-
-                        // Update icon
-                        favoriteIcon.set_icon_name(item.isFavorite ? 'starred' : 'non-starred');
-                        favoriteIcon.style = item.isFavorite ? 'color: #ffd700;' : 'color: #888888;';
-
-                        // Log status change
-                        global.log(`${item.isFavorite ? 'Added to' : 'Removed from'} favorites: ${item.title}`);
-                    });
-
-                    buttonBox.add(favoriteBtn);
-                }
-
-                // Title and content panel
-                let panelButton = new St.Button({
-                    style_class: 'yarr-panel-button',
-                    reactive: true,
-                    track_hover: true,
-                    x_expand: true,
-                    x_align: St.Align.START,
-                    style: `padding: ${3 * this.articleSpacing}px; border-radius: 4px;`
-                });
-
-                // Create subItemBox for title and AI response
-                let subItemBox = new St.BoxLayout({
-                    vertical: true,
-                    x_expand: true,
-                    x_align: St.Align.START,
-                    style: `spacing: ${2 * this.articleSpacing}px;`
-                });
-
-                // Title
-                const titleLabel = new St.Label({
-                    text: item.title,
-                    style: this.fontstyle,
-                    x_expand: true,
-                    x_align: St.Align.START
-                });
-                titleLabel.clutter_text.set_line_wrap(true);
-                titleLabel.clutter_text.set_line_wrap_mode(Pango.WrapMode.WORD);
-                titleLabel.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
-
-                subItemBox.add(titleLabel);
-
-                // AI response if exists
-                if (item.aiResponse) {
-                    const aiLabel = new St.Label({
-                        text: item.aiResponse,
-                        style: this.ai_fontstyle,
-                        x_expand: true,
-                        x_align: St.Align.START
-                    });
-                    aiLabel.clutter_text.set_line_wrap(true);
-                    aiLabel.clutter_text.set_line_wrap_mode(Pango.WrapMode.WORD);
-                    aiLabel.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
-
-                    subItemBox.add(aiLabel);
-                }
-
-                panelButton.set_child(subItemBox);
-
-                // Tooltip setup
-                if (item.description) {
-                    let tooltip = new Tooltips.Tooltip(panelButton);
-                    tooltip.set_markup(`<b>${item.title}</b>\n${item.pubDate}\n\n${this.HTMLPartToTextPart(item.description)}`);
-                    tooltip._tooltip.style = `
-                        text-align: left;
-                        max-width: 600px;
-                        padding: 12px;
-                        font-size: 1.1em;
-                        line-height: 1.4;
-                        background-color: rgba(32, 32, 32, 0.85);
-                        border: 1px solid rgba(255,255,255,0.1);
-                        border-radius: 4px;
-                        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-                    `;
-                    tooltip._tooltip.clutter_text.set_line_wrap(true);
-                    tooltip._tooltip.clutter_text.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
-                    tooltip._tooltip.clutter_text.set_ellipsize(Pango.EllipsizeMode.NONE);
-                    tooltip._tooltip.set_x_align(St.Align.START);
-                    tooltip._tooltip.clutter_text.set_x_align(Clutter.ActorAlign.START);
-                }
-
-                // Add elements to lineBox
-                lineBox.add(buttonBox);
-                lineBox.add(panelButton);
-
-                this.dataBox.add(lineBox);
-            });
+            // Reset flag immediately after successful update
+            this._isUpdatingDisplay = false;
 
         } catch (e) {
-            global.log('Error in displayItems:', e.toString());
+            Logger.error('Error in displayItems: ' + e);
+            // Always clear flag on error
+            this._isUpdatingDisplay = false;
         }
     }
 
@@ -1505,337 +2039,388 @@ class YarrDesklet extends Desklet.Desklet {
     }
 
     onChatGPAPIKeySave() {
-        let dialog = new PasswordDialog(
-            _("'%s' settings..\nPlease enter ChatGPT API key:").format(this._(this._meta.name)),
-            (password) => {
-                Secret.password_store(
-                    this.STORE_SCHEMA,
-                    {},
-                    Secret.COLLECTION_DEFAULT,
-                    "Yarr_ChatGPTApiKey",
-                    password,
-                    null,
-                    this.on_chatgptapikey_stored
-                );
-            },
-            this
-        );
-        dialog.open();
-    }
-
-    // Clean up old items to reduce memory pressure
-    _cleanupOldItems() {
         try {
-            if (this.items.size <= this.itemlimit) return;
+            Logger.debug('Opening API key dialog...');
 
-            // Keep only the newest items up to itemlimit
-            const sortedItems = Array.from(this.items.entries())
-                .sort((a, b) => b[1].timestamp - a[1].timestamp);
-
-            // Create a new map with only the items we want to keep
-            this.items = new Map(sortedItems.slice(0, this.itemlimit));
-
-            global.log(`Cleaned up items. Reduced to ${this.items.size} items.`);
-        } catch (e) {
-            global.log('Error in _cleanupOldItems:', e);
-        }
-    }
-
-    // Add memory monitoring capability
-    _monitorMemoryUsage() {
-        try {
-            // Check if we can access memory usage
-            const memInfoPath = '/proc/self/statm';
-            const memInfoExists = GLib.file_test(memInfoPath, GLib.FileTest.EXISTS);
-
-            if (!memInfoExists) {
-                global.log('Cannot monitor memory usage: ' + memInfoPath + ' not available');
-                return;
-            }
-
-            // Read memory information
-            const [success, contents] = GLib.file_get_contents(memInfoPath);
-            if (!success) {
-                global.log('Failed to read memory information');
-                return;
-            }
-
-            // Parse memory information - first number is pages of memory
-            const memInfo = ByteArray.toString(contents).trim().split(' ');
-            const totalPages = parseInt(memInfo[0]);
-            const residentPages = parseInt(memInfo[1]);
-
-            // Page size is typically 4KB
-            const pageSize = 4096;
-
-            // Calculate memory usage in MB
-            const totalMB = (totalPages * pageSize) / (1024 * 1024);
-            const residentMB = (residentPages * pageSize) / (1024 * 1024);
-
-            // Get item count stats
-            const totalItems = this.items.size;
-            const favoriteItems = Array.from(this.items.values()).filter(item => item.isFavorite).length;
-
-            // Log memory usage
-            global.log(`Memory usage: Total=${totalMB.toFixed(2)}MB, Resident=${residentMB.toFixed(2)}MB, Items=${totalItems}, Favorites=${favoriteItems}`);
-
-            // Store in memory metrics
-            if (!this._memoryMetrics) {
-                this._memoryMetrics = {
-                    samples: [],
-                    lastReport: Date.now()
-                };
-            }
-
-            // Add sample and maintain a limited history
-            this._memoryMetrics.samples.push({
-                timestamp: Date.now(),
-                total: totalMB,
-                resident: residentMB,
-                items: totalItems
-            });
-
-            // Keep only the last 10 samples
-            if (this._memoryMetrics.samples.length > 10) {
-                this._memoryMetrics.samples.shift();
-            }
-
-            // Check for memory growth
-            this._checkMemoryGrowth();
-
-        } catch (e) {
-            global.log('Error monitoring memory usage:', e);
-        }
-
-        // Schedule next check after 5 minutes
-        GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 300, () => {
-            this._monitorMemoryUsage();
-            return GLib.SOURCE_REMOVE;
-        });
-    }
-
-    _checkMemoryGrowth() {
-        if (!this._memoryMetrics || this._memoryMetrics.samples.length < 2) {
-            return;
-        }
-
-        const samples = this._memoryMetrics.samples;
-        const first = samples[0];
-        const last = samples[samples.length - 1];
-
-        // Calculate growth rate
-        const timeDiffMinutes = (last.timestamp - first.timestamp) / (1000 * 60);
-        if (timeDiffMinutes < 5) return; // Need at least 5 minutes of data
-
-        const memoryGrowthMB = last.resident - first.resident;
-        const growthRateMB = memoryGrowthMB / timeDiffMinutes;
-
-        // Log significant growth
-        if (growthRateMB > 0.1) {  // More than 0.1 MB per minute
-            global.log(`WARNING: Memory growing at ${growthRateMB.toFixed(2)}MB/minute. Consider restarting desklet.`);
-
-            // Attempt to reduce memory pressure
-            this._cleanupOldItems();
-        }
-    }
-}
-
-// Add new class for database management
-class FavoritesDB {
-    constructor() {
-        this.dbFile = GLib.build_filenamev([GLib.get_user_data_dir(), 'yarr_favorites.db']);
-        this.initDatabase();
-    }
-
-    initDatabase() {
-        try {
-            // Create database with all fields
-            const sql = `
-                CREATE TABLE IF NOT EXISTS favorites (
-                    id TEXT PRIMARY KEY,
-                    title TEXT,
-                    link TEXT,
-                    channel TEXT,
-                    category TEXT,
-                    description TEXT,
-                    aiResponse TEXT,
-                    labelColor TEXT,
-                    timestamp INTEGER,
-                    pubDate TEXT,
-                    created_at INTEGER DEFAULT (strftime('%s', 'now')),
-                    updated_at INTEGER DEFAULT (strftime('%s', 'now'))
-                )
-            `;
-
-            const [success, stdout, stderr] = GLib.spawn_command_line_sync(
-                `sqlite3 "${this.dbFile}" "${sql}"`
-            );
-
-            if (!success) {
-                global.log('Error initializing database:', stderr.toString());
-            }
-        } catch (e) {
-            global.log('Error in initDatabase:', e);
-        }
-    }
-
-    // Helper function to calculate SHA256
-    _calculateSHA256(str) {
-        try {
-            const bytes = new TextEncoder().encode(str);
-            const checksum = GLib.Checksum.new(GLib.ChecksumType.SHA256);
-            checksum.update(bytes);
-            return checksum.get_string();
-        } catch (e) {
-            global.log('Error calculating SHA256:', e);
-            return null;
-        }
-    }
-
-    addFavorite(item) {
-        try {
-            // Calculate SHA256 of URL as primary key
-            const id = this._calculateSHA256(item.link || '');
-            if (!id) return false;
-
-            const sql = `
-                INSERT OR REPLACE INTO favorites (
-                    id, title, link, channel, category, description, 
-                    aiResponse, labelColor, timestamp, pubDate, updated_at
-                ) VALUES (
-                    '${this._escapeString(id)}',
-                    '${this._escapeString(item.title)}',
-                    '${this._escapeString(item.link)}',
-                    '${this._escapeString(item.channel)}',
-                    '${this._escapeString(item.category)}',
-                    '${this._escapeString(item.description)}',
-                    '${this._escapeString(item.aiResponse)}',
-                    '${this._escapeString(item.labelColor)}',
-                    ${item.timestamp.getTime()},
-                    '${this._escapeString(item.pubDate)}',
-                    strftime('%s', 'now')
-                )
-            `;
-
-            const [success, stdout, stderr] = GLib.spawn_command_line_sync(
-                `sqlite3 "${this.dbFile}" "${sql}"`
-            );
-
-            if (!success) {
-                global.log('Error adding favorite:', stderr.toString());
-            }
-            return success;
-        } catch (e) {
-            global.log('Error in addFavorite:', e);
-            return false;
-        }
-    }
-
-    removeFavorite(url) {
-        try {
-            const id = this._calculateSHA256(url);
-            if (!id) return false;
-
-            const sql = `DELETE FROM favorites WHERE id = '${this._escapeString(id)}'`;
-
-            const [success, stdout, stderr] = GLib.spawn_command_line_sync(
-                `sqlite3 "${this.dbFile}" "${sql}"`
-            );
-
-            if (!success) {
-                global.log('Error removing favorite:', stderr.toString());
-            }
-            return success;
-        } catch (e) {
-            global.log('Error in removeFavorite:', e);
-            return false;
-        }
-    }
-
-    getFavorites() {
-        try {
-            // Get all data from favorites
-            const sql = "SELECT link FROM favorites";
-
-            const [success, stdout, stderr] = GLib.spawn_command_line_sync(
-                `sqlite3 "${this.dbFile}" "${sql}"`
-            );
-
-            if (!success) {
-                global.log('Error getting favorites:', stderr.toString());
-                return new Set();
-            }
-
-            const favorites = stdout.toString().split('\n').filter(Boolean);
-            return new Set(favorites);
-        } catch (e) {
-            global.log('Error in getFavorites:', e);
-            return new Set();
-        }
-    }
-
-    _escapeString(str) {
-        if (!str) return '';
-        return str.replace(/'/g, "''");
-    }
-}
-
-//--------------------------------------------
-
-class PasswordDialog extends ModalDialog.ModalDialog {
-    constructor(label, callback, parent) {
-        super();  // This must be first!
-        this.callback = callback;  // Store callback before using
-
-        this.password = Secret.password_lookup_sync(parent.STORE_SCHEMA, {}, null);
-
-        this.contentLayout.set_style('width: auto; max-width: 500px;'); // Match dialog width
-        this.contentLayout.add(new St.Label({ text: label }));
-
-        this.passwordBox = new St.BoxLayout({ vertical: false });
-        this.entry = new St.Entry({ style: 'background: green; color:yellow; max-width: 400px;' });
-        this.entry.clutter_text.set_password_char('\u25cf');
-        this.entry.clutter_text.set_text(this.password);
-        this.passwordBox.add(this.entry);
-        this.contentLayout.add(this.passwordBox);
-        this.setInitialKeyFocus(this.entry.clutter_text);
-
-        this.setButtons([
-            {
-                label: "Save",
-                action: () => {
-                    const pwd = this.entry.get_text();
-                    this.callback(pwd);
-                    this.destroy();
-                },
-                key: Clutter.KEY_Return,
-                focused: false
-            },
-            {
-                label: "Show/Hide password",
-                action: () => {
-                    if (this.entry.clutter_text.get_password_char()) {
-                        this.entry.clutter_text.set_password_char('');
-                    } else {
-                        this.entry.clutter_text.set_password_char('\u25cf');
+            // Use the existing createPasswordDialog from ui-components
+            let dialog = createPasswordDialog(
+                _("Enter your API key:"),
+                (newKey) => {
+                    if (newKey && newKey.trim()) {
+                        Secret.password_store(
+                            this.STORE_SCHEMA,
+                            {},
+                            Secret.COLLECTION_DEFAULT,
+                            "Yarr_ChatGPTApiKey",
+                            newKey.trim(),
+                            null,
+                            this.on_chatgptapikey_stored
+                        );
+                        this.articleManagement._showSimpleNotification(_("API key saved successfully!"));
                     }
                 },
-                focused: false
-            },
-            {
-                label: "Cancel",
-                action: () => {
-                    this.destroy();
-                },
-                key: null,
-                focused: false
-            }
-        ]);
+                this
+            );
+
+            // Actually open the dialog!
+            dialog.open();
+
+        } catch (e) {
+            Logger.error('Error opening API key dialog: ' + e);
+            this.articleManagement._showSimpleNotification(_("Error opening API key dialog. Please check the logs."));
+        }
     }
+
+    onOpenLookingGlass() {
+        try {
+            Logger.debug('Opening Looking Glass debugger...');
+
+            // SAFER: Check if command exists before spawning to prevent system conflicts
+            if (GLib.find_program_in_path('cinnamon-looking-glass')) {
+                GLib.spawn_command_line_async('cinnamon-looking-glass');
+            } else {
+                Logger.error('Looking Glass command not found');
+                this.articleManagement._showSimpleNotification(_("Looking Glass debugger not available."));
+            }
+
+        } catch (e) {
+            Logger.error('Error opening Looking Glass: ' + e);
+            this.articleManagement._showSimpleNotification(_("Error opening Looking Glass. Please check the logs."));
+        }
+    }
+
+    onRestartDesklet() {
+        try {
+            Logger.debug('Restarting desklet...');
+            this._restartDesklet();
+        } catch (e) {
+            Logger.error('Error restarting desklet: ' + e);
+        }
+    }
+
+    _restartDesklet() {
+        try {
+            // Set a global flag to indicate that a reload is happening
+            global.YARR_IS_RELOADING = true;
+
+            // Use a detached Python helper to reload the desklet code
+            let deskletId = this._desklet_id || this._desklet_id;
+            let helperPath = DESKLET_ROOT ? DESKLET_ROOT + '/restart_helper.py' : null;
+
+            Logger.debug("Reloading desklet code using helper: " + deskletId);
+
+            // SAFER: Execute the helper script with proper error checking
+            let command = `python3 "${helperPath}" "${UUID}" "${deskletId}"`;
+
+            try {
+                if (GLib.find_program_in_path('python3') && GLib.file_test(helperPath, GLib.FileTest.EXISTS)) {
+                    GLib.spawn_command_line_async(command);
+                    // Show a brief notification that reload is in progress
+                    this.articleManagement._showSimpleNotification(_("Reloading desklet code..."));
+                } else {
+                    Logger.error('Python3 or helper script not found');
+                    this.articleManagement._showSimpleNotification(_("Restart helper not available."));
+                }
+            } catch (e) {
+                Logger.error('Error spawning restart command: ' + e);
+                this.articleManagement._showSimpleNotification(_("Failed to restart desklet."));
+            }
+
+        } catch (e) {
+            Logger.error('Error restarting desklet: ' + e);
+        }
+    }
+
+    // Override the default desklet context menu
+    on_desklet_clicked() {
+        // Call the parent method to show the default menu
+        super.on_desklet_clicked();
+    }
+
+    on_desklet_right_clicked() {
+        // Call the parent method to show the default menu
+        super.on_desklet_right_clicked();
+    }
+
+
+    _initializeEssentialComponents() {
+        // Check if we already processed this to prevent duplicates
+        if (this._essentialComponentsInitialized) return;
+
+        this._essentialComponentsInitialized = true;
+
+        // Build header feed buttons when essential components are initialized (only if not already built)
+        if (this.uiDisplay && this.uiDisplay.buildHeaderFeedButtons && !this._headerFeedButtonsBuilt) {
+            this.uiDisplay.buildHeaderFeedButtons();
+            this._headerFeedButtonsBuilt = true;
+        }
+
+        // Load feed button states after essential components are initialized
+        this.loadFeedButtonStates();
+
+        Logger.debug('Essential components initialized successfully');
+    }
+
+    _cleanupEssentialComponents() {
+        // Reset flags to allow re-initialization if needed
+        this._essentialComponentsInitialized = false;
+        this._headerFeedButtonsBuilt = false;
+        Logger.debug('Essential components cleanup completed');
+    }
+
+    _reloadDeskletCode() {
+        try {
+            // Set a global flag to indicate that a reload is happening
+            global.YARR_IS_RELOADING = true;
+
+            // Use a detached Python helper to reload the desklet code
+            let deskletId = this._desklet_id || this._desklet_id;
+            let helperPath = DESKLET_ROOT ? DESKLET_ROOT + '/restart_helper.py' : null;
+
+            Logger.debug("Reloading desklet code using helper: " + deskletId);
+
+            // SAFER: Execute the helper script with proper error checking
+            let command = `python3 "${helperPath}" "${UUID}" "${deskletId}"`;
+
+            try {
+                if (GLib.find_program_in_path('python3') && GLib.file_test(helperPath, GLib.FileTest.EXISTS)) {
+                    GLib.spawn_command_line_async(command);
+                    // Show a brief notification that reload is in progress
+                    this.articleManagement._showSimpleNotification(_("Reloading desklet code..."));
+                } else {
+                    Logger.error('Python3 or helper script not found');
+                    this.articleManagement._showSimpleNotification(_("Reload helper not available."));
+                }
+            } catch (e) {
+                Logger.error('Error spawning reload command: ' + e);
+                this.articleManagement._showSimpleNotification(_("Failed to reload desklet."));
+            }
+
+        } catch (e) {
+            Logger.error('Error reloading desklet: ' + e);
+        }
+    }
+
+    // Load feed button states from database
+    async loadFeedButtonStates() {
+        try {
+            if (!this.databaseManager) {
+                Logger.debug('Database manager not available');
+                return;
+            }
+
+            // Wait for database to be ready
+            if (!(await this.waitForDatabase())) {
+                Logger.error('Database not ready for loadFeedButtonStates');
+                return;
+            }
+
+            const savedStates = await this.databaseManager.getFeedStates();
+            Logger.info(`Loaded ${savedStates.size} saved feed button states`);
+
+            // Apply saved states to current feeds
+            if (this.feeds && savedStates.size > 0) {
+                this.feeds.forEach(feed => {
+                    if (feed.name && savedStates.has(feed.name)) {
+                        feed.runtimeDisplayEnabled = savedStates.get(feed.name);
+                        Logger.debug(`Restored state for ${feed.name}: ${feed.runtimeDisplayEnabled}`);
+                    }
+                });
+            }
+        } catch (e) {
+            Logger.error('Error loading feed button states: ' + e);
+        }
+    }
+
+    // Save feed button states to database
+    async saveFeedButtonStates() {
+        try {
+            Logger.debug('saveFeedButtonStates called');
+            Logger.debug('this.databaseManager:', this.databaseManager);
+            Logger.debug('this.databaseManager type:', typeof this.databaseManager);
+
+            if (!this.databaseManager) {
+                Logger.error('Database manager is null/undefined');
+                return;
+            }
+
+            // Wait for database to be ready
+            if (!(await this.waitForDatabase())) {
+                Logger.error('Database not ready for saveFeedButtonStates');
+                return;
+            }
+
+            if (typeof this.databaseManager.saveAllFeedStates !== 'function') {
+                Logger.error('saveAllFeedStates method not found on database manager');
+                Logger.debug('Available methods:', Object.getOwnPropertyNames(Object.getPrototypeOf(this.databaseManager)));
+                return;
+            }
+
+            if (!this.feeds) {
+                Logger.error('Feeds not available');
+                return;
+            }
+
+            const activeFeeds = this.feeds.filter(f => f.active);
+            Logger.debug('Active feeds count:', activeFeeds.length);
+
+            await this.databaseManager.saveAllFeedStates(activeFeeds);
+            Logger.debug('Feed button states saved to database');
+        } catch (e) {
+            Logger.error('Error saving feed button states: ' + e);
+            Logger.error('Error stack:', e.stack);
+        }
+    }
+
+    // Cache all current articles for future AI processing
+    async cacheAllCurrentArticles() {
+        try {
+            if (!this.databaseManager || !this.items || this.items.size === 0) {
+                Logger.debug('No articles to cache');
+                return;
+            }
+
+            Logger.info(`Starting to cache ${this.items.size} articles for future AI processing...`);
+            let cachedCount = 0;
+            let skippedCount = 0;
+
+            for (const [key, item] of this.items) {
+                if (item.link) {
+                    try {
+                        // Check if already cached
+                        const cacheInfo = await this.databaseManager.isArticleCached(key);
+                        if (!cacheInfo.isCached) {
+                            await this.databaseManager.cacheArticleData(key, item.link, {
+                                title: item.title || '',
+                                description: item.description || '',
+                                category: item.category || '',
+                                channel: item.channel || '',
+                                labelColor: item.labelColor || '#ffffff',
+                                pubDate: item.pubDate || '',
+                                timestamp: item.timestamp || Date.now()
+                            });
+                            cachedCount++;
+                        } else {
+                            skippedCount++;
+                        }
+                    } catch (e) {
+                        Logger.error(`Error caching article ${item.title || 'Untitled'}: ` + e);
+                    }
+                }
+            }
+
+            Logger.info(`Article caching completed: ${cachedCount} cached, ${skippedCount} already cached`);
+            this.articleManagement._showSimpleNotification(`Cached ${cachedCount} articles for future AI processing`);
+        } catch (e) {
+            Logger.error('Error in bulk article caching: ' + e);
+        }
+    }
+
+    // Load cached AI responses for all current articles
+    async loadCachedAIResponses() {
+        try {
+            if (!this.databaseManager || !this.items || this.items.size === 0) {
+                Logger.debug('No articles to load cached responses for');
+                return;
+            }
+
+            Logger.info(`Loading cached AI responses for ${this.items.size} articles...`);
+            let loadedCount = 0;
+            let skippedCount = 0;
+
+            for (const [key, item] of this.items) {
+                if (item.link && !item.aiResponse) {
+                    try {
+                        const cachedArticle = await this.databaseManager.getArticleFromCache(key);
+                        if (cachedArticle && cachedArticle.aiResponse) {
+                            // Restore all cached attributes
+                            item.title = cachedArticle.title || item.title;
+                            item.description = cachedArticle.description || item.description;
+                            item.category = cachedArticle.category || item.category;
+                            item.channel = cachedArticle.channel || item.channel;
+                            item.labelColor = cachedArticle.labelColor || item.labelColor;
+                            item.pubDate = cachedArticle.pubDate || item.pubDate;
+                            item.timestamp = cachedArticle.timestamp || item.timestamp;
+                            item.aiResponse = cachedArticle.aiResponse;
+                            loadedCount++;
+                        } else {
+                            skippedCount++;
+                        }
+                    } catch (e) {
+                        Logger.error(`Error loading cached response for ${item.title || 'Untitled'}: ` + e);
+                    }
+                } else {
+                    skippedCount++;
+                }
+            }
+
+            Logger.info(`AI response loading completed: ${loadedCount} loaded, ${skippedCount} skipped`);
+
+            // Update display to show loaded responses
+            if (loadedCount > 0) {
+                this.safeDisplayUpdate('cached AI responses loaded');
+                this.articleManagement._showSimpleNotification(`Loaded ${loadedCount} cached AI responses`);
+            }
+        } catch (e) {
+            Logger.error('Error in loading cached AI responses: ' + e);
+        }
+    }
+
+    async testDatabaseConnection() {
+        try {
+            Logger.debug('Testing database connection...');
+            const isConnected = await this.databaseManager.testConnection();
+            if (isConnected) {
+                this.articleManagement._showSimpleNotification(_("Database connection successful!"));
+                Logger.debug('Database connection successful.');
+            } else {
+                this.articleManagement._showSimpleNotification(_("Database connection failed. Please check logs."));
+                Logger.error('Database connection failed.');
+            }
+        } catch (e) {
+            Logger.error('Error testing database connection: ' + e);
+            this.articleManagement._showSimpleNotification(_("Error testing database connection. Please check logs."));
+        }
+    }
+
+    // Show current database path
+    showDatabasePath() {
+        if (this.databaseManager && this.databaseManager.getExpandedDatabasePath) {
+            const actualPath = this.databaseManager.getExpandedDatabasePath();
+            Logger.debug(`Current database path: ${actualPath}`);
+            if (this.articleManagement && this.articleManagement._showSimpleNotification) {
+                this.articleManagement._showSimpleNotification(`Database path: ${actualPath}`);
+            }
+        } else {
+            Logger.debug('Database manager not available');
+        }
+    }
+
+    // RSS Search button callback - bound to settings
+    onSearchRssFeeds() {
+        Logger.debug('onSearchRssFeeds called from desklet');
+        if (this.searchManagers && this.searchManagers.onSearchRssFeeds) {
+            this.searchManagers.onSearchRssFeeds();
+        } else {
+            Logger.error('Search managers not available for RSS search');
+        }
+    }
+
+
 }
 
 function main(metadata, desklet_id) {
     let desklet = new YarrDesklet(metadata, desklet_id);
+
+    // Build header feed buttons once when desklet is created
+    if (desklet.uiDisplay && desklet.uiDisplay.buildHeaderFeedButtons) {
+        desklet.uiDisplay.buildHeaderFeedButtons();
+    }
+
     return desklet;
 }
+
+
+
+
 

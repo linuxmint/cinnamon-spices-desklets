@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-07-05 08:35-0400\n"
+"POT-Creation-Date: 2025-08-27 21:38-0400\n"
 "PO-Revision-Date: 2022-04-17 18:13+0100\n"
 "Last-Translator: Georg Sieber\n"
 "Language-Team: \n"
@@ -22,11 +22,11 @@ msgstr ""
 msgid "CPU"
 msgstr "CPU"
 
-#. desklet.js:194 desklet.js:212 desklet.js:232 desklet.js:273 desklet.js:536
+#. desklet.js:194 desklet.js:212 desklet.js:232 desklet.js:273 desklet.js:547
 msgid "GB"
 msgstr "GB"
 
-#. desklet.js:197 desklet.js:215 desklet.js:235 desklet.js:276 desklet.js:550
+#. desklet.js:197 desklet.js:215 desklet.js:235 desklet.js:276 desklet.js:561
 msgid "GiB"
 msgstr "GiB"
 
@@ -57,28 +57,48 @@ msgstr "GPU-Speicher"
 msgid "Network"
 msgstr ""
 
-#. desklet.js:525 desklet.js:544 desklet.js:558
+#. desklet.js:518 desklet.js:541
+msgid "b"
+msgstr ""
+
+#. desklet.js:520 desklet.js:555 desklet.js:569
 #, fuzzy
 msgid "B"
 msgstr "GB"
 
+#. desklet.js:533
+msgid "Gb"
+msgstr ""
+
+#. desklet.js:536
+msgid "Mb"
+msgstr ""
+
 #. desklet.js:539
+msgid "Kb"
+msgstr ""
+
+#. desklet.js:550
 msgid "MB"
 msgstr ""
 
-#. desklet.js:542
+#. desklet.js:553
 msgid "KB"
 msgstr ""
 
-#. desklet.js:553
+#. desklet.js:564
 #, fuzzy
 msgid "MiB"
 msgstr "GiB"
 
-#. desklet.js:556
+#. desklet.js:567
 #, fuzzy
 msgid "KiB"
 msgstr "GiB"
+
+#. desklet.js:844 desklet.js:882
+msgid "Error executing nvidia-smi command."
+msgstr ""
 
 #. metadata.json->name
 msgid "System monitor graph"
@@ -148,12 +168,17 @@ msgstr "Einheiten-Präfix für Dateisystem-Größe."
 
 #. settings-schema.json->data-prefix-network->options
 #, fuzzy
-msgid "Binary prefix or IEC (1 KiB = 1024 bytes)"
+msgid "Bytes - Binary prefix or IEC (1 KiB = 1024 bytes)"
 msgstr "Binär bzw. IEC (1 GiB = 1024³ Bytes)"
 
 #. settings-schema.json->data-prefix-network->options
 #, fuzzy
-msgid "Decimal prefix (1 KB = 1000 bytes)"
+msgid "Bytes - Decimal prefix (1 KB = 1000 bytes)"
+msgstr "Dezimal (1 GB = 1000³ Bytes)"
+
+#. settings-schema.json->data-prefix-network->options
+#, fuzzy
+msgid "Bits - Decimal prefix (1 Kb = 1000 bits)"
 msgstr "Dezimal (1 GB = 1000³ Bytes)"
 
 #. settings-schema.json->data-prefix-network->tooltip
@@ -164,7 +189,7 @@ msgstr "Einheiten-Präfix für Swap-Größe."
 #. settings-schema.json->network-interface->description
 #, fuzzy
 msgid "Network interface to monitor"
-msgstr "Wählen Sie die anzuzeigende GPU-Variable."
+msgstr "Zu überwachendes Netzwerkinterface"
 
 #. settings-schema.json->network-interface->tooltip
 msgid ""
@@ -348,12 +373,12 @@ msgstr "GPU-Linienfarbe"
 #. settings-schema.json->line-color-network-down->description
 #, fuzzy
 msgid "Line color Network Download"
-msgstr "Swap-Linienfarbe"
+msgstr "Netzwerk-Download-Linienfarbe"
 
 #. settings-schema.json->line-color-network-up->description
 #, fuzzy
 msgid "Line color Network Upload"
-msgstr "Swap-Linienfarbe"
+msgstr "Netzwerk-Upload-Linienfarbe"
 
 #. settings-schema.json->midline-color->description
 msgid "Grid color"

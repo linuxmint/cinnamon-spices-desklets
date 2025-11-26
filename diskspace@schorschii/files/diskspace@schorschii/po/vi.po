@@ -1,0 +1,239 @@
+# DISK SPACE
+# This file is put in the public domain.
+# schorschii, 2018
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: diskspace@schorschii 1.18\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-10-15 00:30+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
+"Language-Team: \n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. settings-schema.json->type->options
+#. desklet.js:304 desklet.js:390
+msgid "RAM"
+msgstr "RAM"
+
+#. settings-schema.json->type->options
+#. desklet.js:306 desklet.js:392
+msgid "Swap"
+msgstr "Swap"
+
+#. settings-schema.json->type->options
+#. desklet.js:308
+msgid "Filesystem"
+msgstr "Hệ thống tập tin"
+
+#. desklet.js:335
+msgid "Not Found"
+msgstr "Không tìm thấy"
+
+#. metadata.json->name
+#. desklet.js:394
+msgid "Disk Space"
+msgstr "Không gian đĩa"
+
+#. metadata.json->description
+msgid "Displays the usage of a filesystem or RAM."
+msgstr "Hiển thị mức sử dụng của hệ thống tập tin hoặc RAM."
+
+#. settings-schema.json->head0->description
+msgid "Settings for diskspace@schorschii"
+msgstr "Cài đặt cho diskspace@schorschii"
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr "Chung"
+
+#. settings-schema.json->type->description
+msgid "Monitor a file system or RAM usage"
+msgstr "Giám sát hệ thống tập tin hoặc mức sử dụng RAM"
+
+#. settings-schema.json->type->tooltip
+msgid "Choose, if this desklet should show file system or RAM usage."
+msgstr "Chọn xem desklet này nên hiển thị hệ thống tập tin hay mức sử dụng RAM."
+
+#. settings-schema.json->filesystem->description
+msgid "Filesystem to monitor"
+msgstr "Hệ thống tập tin cần giám sát"
+
+#. settings-schema.json->filesystem->tooltip
+msgid "Select the file system, which you want to monitor."
+msgstr "Chọn hệ thống tập tin mà bạn muốn giám sát."
+
+#. settings-schema.json->onclick-action->description
+msgid "Action on mouse click"
+msgstr "Hành động khi nhấp chuột"
+
+#. settings-schema.json->onclick-action->tooltip
+msgid "Choose what to do when the desklet was clicked."
+msgstr "Chọn việc cần làm khi desklet được nhấp chuột."
+
+#. settings-schema.json->onclick-action->options
+msgid "Open File Manager"
+msgstr "Mở Trình quản lý tập tin"
+
+#. settings-schema.json->onclick-action->options
+msgid "Open Partition Manager"
+msgstr "Mở Trình quản lý phân vùng"
+
+#. settings-schema.json->onclick-action->options
+msgid "Open System Monitor"
+msgstr "Mở Trình giám sát hệ thống"
+
+#. settings-schema.json->onclick-action->options
+msgid "Nothing"
+msgstr "Không làm gì"
+
+#. settings-schema.json->size-prefix->description
+msgid "Size Prefix"
+msgstr "Tiền tố kích thước"
+
+#. settings-schema.json->size-prefix->options
+msgid "Decimal"
+msgstr "Thập phân"
+
+#. settings-schema.json->size-prefix->options
+msgid "Binary"
+msgstr "Nhị phân"
+
+#. settings-schema.json->reserved-blocks-as-used-space->description
+msgid "Show reserved blocks as used space"
+msgstr "Hiển thị khối dành riêng như không gian đã sử dụng"
+
+#. settings-schema.json->reserved-blocks-as-used-space->tooltip
+msgid ""
+"Reserved blocks are useable for the root user only and that's why displayed "
+"as used space by default."
+msgstr "Các khối dành riêng chỉ có thể sử dụng bởi người dùng root và đó là lý do tại sao chúng được hiển thị như không gian đã sử dụng theo mặc định."
+
+#. settings-schema.json->head2->description
+msgid "Visual"
+msgstr "Hiển thị"
+
+#. settings-schema.json->design->description
+msgid "Design"
+msgstr "Thiết kế"
+
+#. settings-schema.json->design->options
+msgid "Thin"
+msgstr "Mỏng"
+
+#. settings-schema.json->design->options
+msgid "Compact"
+msgstr "Nhỏ gọn"
+
+#. settings-schema.json->design->options
+msgid "Classic (Thick)"
+msgstr "Cổ điển (Dày)"
+
+#. settings-schema.json->text-view->description
+msgid "Text"
+msgstr "Văn bản"
+
+#. settings-schema.json->text-view->options
+msgid "Name and total space"
+msgstr "Tên và tổng không gian"
+
+#. settings-schema.json->text-view->options
+msgid "Name and free space"
+msgstr "Tên và không gian trống"
+
+#. settings-schema.json->text-view->options
+msgid "Used and total space"
+msgstr "Đã sử dụng và tổng không gian"
+
+#. settings-schema.json->text-view->options
+msgid "Total and used space"
+msgstr "Tổng và đã sử dụng không gian"
+
+#. settings-schema.json->text-view->options
+msgid "Free and total space"
+msgstr "Trống và tổng không gian"
+
+#. settings-schema.json->text-view->options
+msgid "Total and free space"
+msgstr "Tổng và trống không gian"
+
+#. settings-schema.json->text-view->options
+msgid "No text"
+msgstr "Không có văn bản"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Ẩn trang trí"
+
+#. settings-schema.json->draw-free-space->description
+msgid "Draw free/unused space (gray)"
+msgstr "Vẽ không gian trống/chưa sử dụng (xám)"
+
+#. settings-schema.json->fill-circle-background->description
+msgid "Fill circle background"
+msgstr "Tô màu nền hình tròn"
+
+#. settings-schema.json->fill-circle-background->tooltip
+msgid "Fill the inside of the circle with color."
+msgstr "Tô màu bên trong hình tròn."
+
+#. settings-schema.json->fill-circle-background-color->description
+msgid "Background fill color"
+msgstr "Màu tô nền"
+
+#. settings-schema.json->use-own-circle-color->description
+msgid "Use a custom circle color"
+msgstr "Sử dụng màu hình tròn tùy chỉnh"
+
+#. settings-schema.json->circle-color->description
+msgid "Circle color"
+msgstr "Màu hình tròn"
+
+#. settings-schema.json->circle-color-free-space->description
+msgid "Circle color for free space"
+msgstr "Màu hình tròn cho không gian trống"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Màu chữ"
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "hệ số tỷ lệ"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Kích thước desklet"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr "Tăng hoặc giảm kích thước của desklet này bằng hệ số tỷ lệ này."
+
+#. settings-schema.json->head3->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr "Nhãn desklet tùy chỉnh (chỉ hiển thị nếu trang trí được bật)"
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Sử dụng nhãn desklet tùy chỉnh"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr "Chọn hộp này cho phép bạn đặt nhãn tùy chỉnh trong trường bên dưới."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Nhãn desklet tùy chỉnh"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr "Đặt nhãn tùy chỉnh của bạn tại đây. Trường này không khả dụng trừ khi hộp kiểm trên được bật."

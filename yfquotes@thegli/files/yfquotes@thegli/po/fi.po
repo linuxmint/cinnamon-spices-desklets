@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-05-12 00:33+0200\n"
+"POT-Creation-Date: 2025-08-22 22:21+0200\n"
 "PO-Revision-Date: 2025-04-02 14:13+0300\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: \n"
@@ -18,50 +18,48 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#. desklet.js:119
-msgid "No quotes data to display"
-msgstr "Ei näytettäviä tietoja"
-
-#. desklet.js:516
+#. desklet.js:687
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr "Tyhjä luettelo. Avaa asetukset ja lisää symboleja."
 
-#. desklet.js:561 desklet.js:585
+#. desklet.js:721 desklet.js:747 desklet.js:770
 msgid "Authorization parameters have expired"
 msgstr "Valtuutusarvot ovat vanhentuneet"
 
-#. desklet.js:564 desklet.js:588
-msgid "Yahoo Finance service not available!\\nStatus: "
-msgstr "Yahoo Finance palvelu ei ole saatavilla!\\nTila: "
+#. desklet.js:724 desklet.js:750 desklet.js:773
+msgid "Yahoo Finance service not available! Status: "
+msgstr "Yahoo Finance palvelu ei ole saatavilla! Tila: "
 
-#. desklet.js:988
+#. desklet.js:1084
+msgid "No quotes data to display"
+msgstr "Ei näytettäviä tietoja"
+
+#. desklet.js:1194
 msgid "Updated at "
 msgstr "Päivitetty klo "
 
-#. desklet.js:1020
+#. desklet.js:1226
 msgid "Error: "
 msgstr "Virhe: "
 
-#. desklet.js:1146
+#. desklet.js:1376
 msgid ""
-"Failed to retrieve authorization parameter! Unable to fetch quotes data."
-"\\nStatus: "
-msgstr "Valtuutuksen haku epäonnistui! Tietoja ei voi noutaa.\\nTila: "
+"Failed to retrieve authorization parameter! Unable to fetch quotes data. "
+"Status: "
+msgstr "Valtuutuksen haku epäonnistui! Tietoja ei voi noutaa. Tila: "
 
-#. desklet.js:1173
-msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
-msgstr "Suostumuksen käsittely epäonnistui! Tietoja ei voi noutaa.\\nTila: "
+#. desklet.js:1403
+msgid "Consent processing failed! Unable to fetch quotes data. Status: "
+msgstr "Suostumuksen käsittely epäonnistui! Tietoja ei voi noutaa. Tila: "
 
-#. desklet.js:1179
+#. desklet.js:1409
+msgid "Consent processing not completed! Unable to fetch quotes data. Status: "
+msgstr "Suostumusta ei ole suoritettu loppuun! Tietoja ei voi noutaa. Tila: "
+
+#. desklet.js:1445
 msgid ""
-"Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
-msgstr "Suostumusta ei ole suoritettu loppuun! Tietoja ei voi noutaa.\\nTila: "
-
-#. desklet.js:1207
-msgid ""
-"Failed to retrieve authorization crumb! Unable to fetch quotes data."
-"\\nStatus: "
-msgstr "Valtuutuksen nouto epäonnistui! Tietoja ei voi noutaa.\\nTila: "
+"Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: "
+msgstr "Valtuutuksen nouto epäonnistui! Tietoja ei voi noutaa. Tila: "
 
 #. metadata.json->description
 msgid ""
@@ -540,12 +538,19 @@ msgstr "Muuttumaton vaihtaa väriksi"
 msgid "Color of the unchanged trend"
 msgstr "Muuttumattoman trendin väri"
 
+#. settings-schema.json->cacheAuthorizationParameters->description
+msgid "Cache authorization parameters"
+msgstr ""
+
+#. settings-schema.json->cacheAuthorizationParameters->tooltip
+msgid "Remember fetched authorization parameters for desklet instance"
+msgstr ""
+
 #. settings-schema.json->sendCustomUserAgent->description
 msgid "Send custom User-Agent header"
 msgstr "Lähetä mukautetut selaimen asetukset"
 
 #. settings-schema.json->sendCustomUserAgent->tooltip
-#, fuzzy
 msgid "Include a custom User-Agent header in Yahoo Finance Quotes API requests"
 msgstr ""
 "Sisällytä mukautettu User-Agent otsake Yahoo Finance Quotes API pyyntöihin. "
@@ -580,6 +585,5 @@ msgid "Apply network settings"
 msgstr ""
 
 #. settings-schema.json->applyNetworkSettingsButton->tooltip
-#, fuzzy
 msgid "Fetches new authorization parameters and refreshes quotes data"
-msgstr "Valtuutuksen haku epäonnistui! Tietoja ei voi noutaa.\\nTila: "
+msgstr ""

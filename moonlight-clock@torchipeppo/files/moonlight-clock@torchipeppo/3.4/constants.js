@@ -1,6 +1,8 @@
 const Translation = require("./translation");
 const _ = Translation._;
 
+const ONE_DAY_MSEC = 1000 * 60 * 60 * 24;
+
 const CAPTION_TYPE_SPECS = {
     "" : {
         caption_label: "",
@@ -73,38 +75,26 @@ const FONT_WEIGHTS_TO_NUMERIC = {
 const FONT_WEIGHTS = Object.keys(FONT_WEIGHTS_TO_NUMERIC);
 const FONT_STYLES = ["italic", "oblique"]
 
-const MOON_PHASES_BY_WEATHERAPI_NAME = {
-    "New Moon": "🌑",
-    "Waxing Crescent": "🌒",
-    "First Quarter": "🌓",
-    "Waxing Gibbous": "🌔",
-    "Full Moon": "🌕",
-    "Waning Gibbous": "🌖",
-    "Last Quarter": "🌗",
-    "Waning Crescent": "🌘",
+const MOON_PHASE_EMOJIS = {
+    "new": "🌑",
+    "new-fq": "🌒",
+    "fq": "🌓",
+    "fq-full": "🌔",
+    "full": "🌕",
+    "full-lq": "🌖",
+    "lq": "🌗",
+    "lq-new": "🌘",
 }
 
-const MOON_PHASE_NAMES_BY_LUNCAL_RESULT = {
-    "new": "New Moon",
-    "new-fq": "Waxing Crescent",
-    "fq": "First Quarter",
-    "fq-full": "Waxing Gibbous",
-    "full": "Full Moon",
-    "full-lq": "Waning Gibbous",
-    "lq": "Last Quarter",
-    "lq-new": "Waning Crescent",
-}
-
-// to mark them with the _() function
-const TRANSLATED_MOON_PHASE_NAMES = {
-    "New Moon": _("New Moon"),
-    "Waxing Crescent": _("Waxing Crescent"),
-    "First Quarter": _("First Quarter"),
-    "Waxing Gibbous": _("Waxing Gibbous"),
-    "Full Moon": _("Full Moon"),
-    "Waning Gibbous": _("Waning Gibbous"),
-    "Last Quarter": _("Last Quarter"),
-    "Waning Crescent": _("Waning Crescent"),
+const MOON_PHASE_NAMES = {
+    "new": _("New Moon"),
+    "new-fq": _("Waxing Crescent"),
+    "fq": _("First Quarter"),
+    "fq-full": _("Waxing Gibbous"),
+    "full": _("Full Moon"),
+    "full-lq": _("Waning Gibbous"),
+    "lq": _("Last Quarter"),
+    "lq-new": _("Waning Crescent"),
 }
 
 const MOON_PHASE_SHORTNAMES = {

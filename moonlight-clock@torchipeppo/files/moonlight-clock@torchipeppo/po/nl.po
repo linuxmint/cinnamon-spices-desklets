@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: moonlight-clock@torchipeppo 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-03-08 19:15+0100\n"
+"POT-Creation-Date: 2025-10-22 18:32+0200\n"
 "PO-Revision-Date: 2025-05-16 18:31+0200\n"
 "Last-Translator: qadzek\n"
 "Language-Team: \n"
@@ -20,78 +20,78 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. 3.4/constants.js:43 5.4/constants.js:43
+#. 3.4/constants.js:45 5.4/constants.js:45
 msgid "Next"
 msgstr "Volgende"
 
-#. 3.4/constants.js:100 5.4/constants.js:100
+#. 3.4/constants.js:90 5.4/constants.js:90
 msgid "New Moon"
 msgstr "Nieuwe maan"
 
-#. 3.4/constants.js:101 5.4/constants.js:101
+#. 3.4/constants.js:91 5.4/constants.js:91
 msgid "Waxing Crescent"
 msgstr "Wassende maansikkel"
 
-#. 3.4/constants.js:102 5.4/constants.js:102
+#. 3.4/constants.js:92 5.4/constants.js:92
 msgid "First Quarter"
 msgstr "Eerste kwartier"
 
-#. 3.4/constants.js:103 5.4/constants.js:103
+#. 3.4/constants.js:93 5.4/constants.js:93
 msgid "Waxing Gibbous"
 msgstr "Wassende maan"
 
-#. 3.4/constants.js:104 5.4/constants.js:104
+#. 3.4/constants.js:94 5.4/constants.js:94
 msgid "Full Moon"
 msgstr "Volle maan"
 
-#. 3.4/constants.js:105 5.4/constants.js:105
+#. 3.4/constants.js:95 5.4/constants.js:95
 msgid "Waning Gibbous"
 msgstr "Afnemende maan"
 
-#. 3.4/constants.js:106 5.4/constants.js:106
+#. 3.4/constants.js:96 5.4/constants.js:96
 msgid "Last Quarter"
 msgstr "Laatste kwartier"
 
-#. 3.4/constants.js:107 5.4/constants.js:107
+#. 3.4/constants.js:97 5.4/constants.js:97
 msgid "Waning Crescent"
 msgstr "Afnemende maansikkel"
 
-#. 3.4/constants.js:111 5.4/constants.js:111
+#. 3.4/constants.js:101 5.4/constants.js:101
 msgid "New"
 msgstr "Nieuw"
 
-#. 3.4/constants.js:112 3.4/constants.js:114 5.4/constants.js:112
-#. 5.4/constants.js:114
+#. 3.4/constants.js:102 3.4/constants.js:104 5.4/constants.js:102
+#. 5.4/constants.js:104
 msgid "Half"
 msgstr "Half"
 
-#. 3.4/constants.js:113 5.4/constants.js:113
+#. 3.4/constants.js:103 5.4/constants.js:103
 msgid "Full"
 msgstr "Vol"
 
-#. 3.4/constants.js:170 5.4/constants.js:170
+#. 3.4/constants.js:160 5.4/constants.js:160
 msgid "Clear"
 msgstr "Helder"
 
-#. 3.4/constants.js:171 3.4/constants.js:172 5.4/constants.js:171
-#. 5.4/constants.js:172
+#. 3.4/constants.js:161 3.4/constants.js:162 5.4/constants.js:161
+#. 5.4/constants.js:162
 msgid "Cloudy"
 msgstr "Bewolkt"
 
-#. 3.4/constants.js:173 5.4/constants.js:173
+#. 3.4/constants.js:163 5.4/constants.js:163
 msgid "Fog"
 msgstr "Mist"
 
-#. 3.4/constants.js:174 3.4/constants.js:175 3.4/weatherapi_source.js:154
-#. 5.4/constants.js:174 5.4/constants.js:175 5.4/weatherapi_source.js:154
+#. 3.4/constants.js:164 3.4/constants.js:165 3.4/weatherapi_source.js:154
+#. 5.4/constants.js:164 5.4/constants.js:165 5.4/weatherapi_source.js:154
 msgid "Rain"
 msgstr "Regen"
 
-#. 3.4/constants.js:176 5.4/constants.js:176
+#. 3.4/constants.js:166 5.4/constants.js:166
 msgid "Storm"
 msgstr "Storm"
 
-#. 3.4/constants.js:177 5.4/constants.js:177
+#. 3.4/constants.js:167 5.4/constants.js:167
 msgid ""
 "Cold\n"
 "precip."
@@ -99,11 +99,11 @@ msgstr ""
 "Koud\n"
 "neerslag"
 
-#. 3.4/desklet.js:149 5.4/desklet.js:149
+#. 3.4/desklet.js:143 5.4/desklet.js:143
 msgid "Date and Time Settings"
 msgstr "Datum- en tijdinstellingen"
 
-#. 3.4/desklet.js:408 3.4/desklet.js:439 5.4/desklet.js:408 5.4/desklet.js:439
+#. 3.4/desklet.js:400 3.4/desklet.js:431 5.4/desklet.js:400 5.4/desklet.js:431
 msgid "Limit"
 msgstr "Limiet"
 
@@ -111,11 +111,11 @@ msgstr "Limiet"
 #. 3.4->settings-schema.json->bottom-caption-type->options
 #. 5.4->settings-schema.json->bottom-emoji-type->options
 #. 5.4->settings-schema.json->bottom-caption-type->options
-#. 3.4/desklet.js:412 5.4/desklet.js:412
+#. 3.4/desklet.js:404 5.4/desklet.js:404
 msgid "None"
 msgstr "Geen"
 
-#. 3.4/desklet.js:454 5.4/desklet.js:454
+#. 3.4/desklet.js:446 5.4/desklet.js:446
 msgid ""
 "Right-click\n"
 "to configure!"
@@ -124,35 +124,35 @@ msgstr ""
 "om te configureren!"
 
 #. metadata.json->name
-#. 3.4/desklet.js:507 5.4/desklet.js:507
+#. 3.4/desklet.js:499 5.4/desklet.js:499
 msgid "Moonlight Clock"
 msgstr "Maanlichtklok"
 
-#. 3.4/wallclock_source.js:13 5.4/wallclock_source.js:13
+#. 3.4/wallclock_source.js:14 5.4/wallclock_source.js:14
 msgid "Late Night"
 msgstr "Late nacht"
 
-#. 3.4/wallclock_source.js:16 5.4/wallclock_source.js:16
+#. 3.4/wallclock_source.js:17 5.4/wallclock_source.js:17
 msgid "Early Morning"
 msgstr "Vroege ochtend"
 
-#. 3.4/wallclock_source.js:19 5.4/wallclock_source.js:19
+#. 3.4/wallclock_source.js:20 5.4/wallclock_source.js:20
 msgid "Morning"
 msgstr "Ochtend"
 
-#. 3.4/wallclock_source.js:22 5.4/wallclock_source.js:22
+#. 3.4/wallclock_source.js:23 5.4/wallclock_source.js:23
 msgid "Daytime"
 msgstr "Overdag"
 
-#. 3.4/wallclock_source.js:25 5.4/wallclock_source.js:25
+#. 3.4/wallclock_source.js:26 5.4/wallclock_source.js:26
 msgid "Afternoon"
 msgstr "Namiddag"
 
-#. 3.4/wallclock_source.js:28 5.4/wallclock_source.js:28
+#. 3.4/wallclock_source.js:29 5.4/wallclock_source.js:29
 msgid "Evening"
 msgstr "Avond"
 
-#. 3.4/wallclock_source.js:125 5.4/wallclock_source.js:125
+#. 3.4/wallclock_source.js:126 5.4/wallclock_source.js:126
 msgid "Today"
 msgstr "Vandaag"
 
@@ -189,44 +189,44 @@ msgstr "Laden"
 msgid "Save"
 msgstr "Opslaan"
 
-#. 3.4/settingsWidgets.py:129 5.4/settingsWidgets.py:129
+#. 3.4/settingsWidgets.py:128 5.4/settingsWidgets.py:128
 msgid "Enabled"
 msgstr "Ingeschakeld"
 
-#. 3.4/settingsWidgets.py:130 5.4/settingsWidgets.py:130
+#. 3.4/settingsWidgets.py:129 5.4/settingsWidgets.py:129
 msgid "Persistent"
 msgstr "Persistent"
 
-#. 3.4/settingsWidgets.py:131 5.4/settingsWidgets.py:131
+#. 3.4/settingsWidgets.py:130 5.4/settingsWidgets.py:130
 msgid "Date"
 msgstr "Datum"
 
-#. 3.4/settingsWidgets.py:132 5.4/settingsWidgets.py:132
+#. 3.4/settingsWidgets.py:131 5.4/settingsWidgets.py:131
 msgid "Name"
 msgstr "Naam"
 
-#. 3.4/settingsWidgets.py:233 3.4/settingsWidgets.py:329
-#. 5.4/settingsWidgets.py:233 5.4/settingsWidgets.py:329
+#. 3.4/settingsWidgets.py:232 3.4/settingsWidgets.py:328
+#. 5.4/settingsWidgets.py:232 5.4/settingsWidgets.py:328
 msgid "Add new entry"
 msgstr "Nieuwe invoer toevoegen"
 
-#. 3.4/settingsWidgets.py:237 5.4/settingsWidgets.py:237
+#. 3.4/settingsWidgets.py:236 5.4/settingsWidgets.py:236
 msgid "Remove selected entry"
 msgstr "Geselecteerde invoer verwijderen"
 
-#. 3.4/settingsWidgets.py:242 5.4/settingsWidgets.py:242
+#. 3.4/settingsWidgets.py:241 5.4/settingsWidgets.py:241
 msgid "Edit selected entry"
 msgstr "Geselecteerde invoer bewerken"
 
-#. 3.4/settingsWidgets.py:247 5.4/settingsWidgets.py:247
+#. 3.4/settingsWidgets.py:246 5.4/settingsWidgets.py:246
 msgid "Move selected entry up"
 msgstr "Geselecteerde invoer omhoog verplaatsen"
 
-#. 3.4/settingsWidgets.py:252 5.4/settingsWidgets.py:252
+#. 3.4/settingsWidgets.py:251 5.4/settingsWidgets.py:251
 msgid "Move selected entry down"
 msgstr "Geselecteerde invoer omlaag verplaatsen"
 
-#. 3.4/settingsWidgets.py:331 5.4/settingsWidgets.py:331
+#. 3.4/settingsWidgets.py:330 5.4/settingsWidgets.py:330
 msgid "Edit entry"
 msgstr "Invoer bewerken"
 
@@ -672,7 +672,8 @@ msgstr "Temperatuur °F (W)"
 
 #. 3.4->settings-schema.json->bottom-caption-type->options
 #. 5.4->settings-schema.json->bottom-caption-type->options
-msgid "Full moon countdown (C?)"
+#, fuzzy
+msgid "Moon countdown (C?)"
 msgstr "Volle maan aftellen (C?)"
 
 #. 3.4->settings-schema.json->bottom-caption-type->options
@@ -689,6 +690,31 @@ msgstr "Onderschriftweergave"
 #. 5.4->settings-schema.json->bottom-show-secondary-countdowns->description
 msgid "Show more countdowns in secondary text (D)"
 msgstr "Toon meer aftellingen in secundaire tekst (D)"
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "Select moon phases"
+msgstr ""
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌑"
+msgstr ""
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌓"
+msgstr ""
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌕"
+msgstr ""
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌗"
+msgstr ""
 
 #. 3.4->settings-schema.json->custom-countdown-list-label->description
 #. 5.4->settings-schema.json->custom-countdown-list-label->description

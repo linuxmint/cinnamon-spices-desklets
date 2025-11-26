@@ -75,6 +75,7 @@
         "description": "Text",
         "options" : {
             "Name and total space" : "name-size",
+            "Name and free space" : "name-free",
             "Used and total space": "used-size",
             "Total and used space": "size-used",
             "Free and total space": "free-size",
@@ -92,6 +93,18 @@
         "description": "Draw free/unused space (gray)",
         "default": true
     },
+    "fill-circle-background": {
+        "type": "checkbox",
+        "description": "Fill circle background",
+        "tooltip": "Fill the inside of the circle with color.",
+        "default": false
+    },
+    "fill-circle-background-color": {
+        "type": "colorchooser",
+        "default": "rgba(128,128,128,0.25)",
+        "description": "Background fill color",
+        "dependency": "fill-circle-background"
+    },
     "use-own-circle-color": {
         "type": "checkbox",
         "default": false,
@@ -102,6 +115,12 @@
         "type": "colorchooser",
         "default": "rgba(83,199,160,1.0)",
         "description": "Circle color",
+        "dependency": "use-own-circle-color"
+    },
+    "circle-color-free-space": {
+        "type": "colorchooser",
+        "default": "rgba(255,255,255,0.2)",
+        "description": "Circle color for free space",
         "dependency": "use-own-circle-color"
     },
     "text-color": {

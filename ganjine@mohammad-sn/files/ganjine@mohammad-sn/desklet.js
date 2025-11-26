@@ -100,6 +100,8 @@ MyDesklet.prototype = {
         this.settings.bind("selected-poet", "selected_poet", this._updateBeyt);
         this.settings.bind("x-l", "XL", null);
         this.settings.bind("poem-history", "PoemHistory", null);
+        this.settings.bind("history-save", "HistorySave", null);
+	    this.settings.bind("history-size", "HistorySize", null);
 
         this._clipboard = St.Clipboard.get_default();
 
@@ -107,6 +109,11 @@ MyDesklet.prototype = {
         openLinkMenuItem.connect('activate', Lang.bind(this, function(menuItem, event) {
             if (this.poet.link)
                 Gio.app_info_launch_default_for_uri(this.poet.link, global.create_app_launch_context());
+        }));
+
+        let nextPoemMenuItem = new PopupMenu.PopupIconMenuItem("Next", "go-next", St.IconType.SYMBOLIC);
+        nextPoemMenuItem.connect('activate', Lang.bind(this, function(menuItem, event) {
+            this._updateBeyt();
         }));
 
         let previousPoemMenuItem = new PopupMenu.PopupIconMenuItem("Previous", "go-previous", St.IconType.SYMBOLIC);
@@ -136,6 +143,7 @@ MyDesklet.prototype = {
         this._menu.addMenuItem(takeShotMenuItem, 0);
         this._menu.addMenuItem(copyLinkMenuItem, 0);
         this._menu.addMenuItem(copyMenuItem, 0);
+        this._menu.addMenuItem(nextPoemMenuItem, 0);
         this._menu.addMenuItem(previousPoemMenuItem, 0);
         this._menu.addMenuItem(openLinkMenuItem, 0);
 
@@ -255,10 +263,12 @@ MyDesklet.prototype = {
             text = text.replace(/&#x([0-9A-Fa-f]+);/g, (match, hex) => String.fromCharCode(parseInt(hex, 16)));
             this.setText(text, true);
 
-            if (this.PoemHistory.length > 99)
-                this.PoemHistory.splice(Math.floor(Math.random() * this.PoemHistory.length), this.PoemHistory.length - 99);
+            if (this.HistorySave) {
+            if (this.PoemHistory.length > this.HistorySize)
+                this.PoemHistory.splice(Math.floor(Math.random() * this.PoemHistory.length), this.PoemHistory.length - this.HistorySize);
             this.PoemHistory.push(text);
             this.settings._saveToFile();
+            }
         } else {
             this.setText(this.PoemHistory[Math.floor(Math.random() * this.PoemHistory.length)], false);
         }

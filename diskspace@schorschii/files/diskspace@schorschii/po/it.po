@@ -1,9 +1,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-06 01:23+0300\n"
-"PO-Revision-Date: 2023-12-12 18:38+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-10-15 00:30+0200\n"
+"PO-Revision-Date: 2025-08-26 19:32+0200\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -11,32 +12,32 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: desklet.js\n"
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
 #. settings-schema.json->type->options
-#: desklet.js:275 desklet.js:356
+#. desklet.js:304 desklet.js:390
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#: desklet.js:277 desklet.js:358
+#. desklet.js:306 desklet.js:392
 msgid "Swap"
 msgstr "Swap"
 
 #. settings-schema.json->type->options
-#: desklet.js:279
+#. desklet.js:308
 msgid "Filesystem"
 msgstr "Filesystem"
 
-#: desklet.js:301
+#. desklet.js:335
 msgid "Not Found"
 msgstr "Non Trovato"
 
 #. metadata.json->name
-#: desklet.js:360
+#. desklet.js:394
 msgid "Disk Space"
 msgstr "Spazio su Disco"
 
@@ -148,6 +149,10 @@ msgid "Name and total space"
 msgstr "Nome e dimensione totale"
 
 #. settings-schema.json->text-view->options
+msgid "Name and free space"
+msgstr "Nome e spazio libero"
+
+#. settings-schema.json->text-view->options
 msgid "Used and total space"
 msgstr "Spazio usato e totale"
 
@@ -175,12 +180,29 @@ msgstr "Nascondi decorazioni"
 msgid "Draw free/unused space (gray)"
 msgstr "Disegna spazio libero/inutilizzato (grigio)"
 
+#. settings-schema.json->fill-circle-background->description
+msgid "Fill circle background"
+msgstr ""
+
+#. settings-schema.json->fill-circle-background->tooltip
+msgid "Fill the inside of the circle with color."
+msgstr ""
+
+#. settings-schema.json->fill-circle-background-color->description
+msgid "Background fill color"
+msgstr ""
+
 #. settings-schema.json->use-own-circle-color->description
 msgid "Use a custom circle color"
 msgstr "Usa un colore personalizzato per il cerchio"
 
 #. settings-schema.json->circle-color->description
 msgid "Circle color"
+msgstr "Colore cerchio"
+
+#. settings-schema.json->circle-color-free-space->description
+#, fuzzy
+msgid "Circle color for free space"
 msgstr "Colore cerchio"
 
 #. settings-schema.json->text-color->description

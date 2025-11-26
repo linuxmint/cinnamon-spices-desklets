@@ -3,7 +3,7 @@
         "type": "layout",
         "pages": [
             "links-page",
-            "actions-page",
+            "preferences-page",
             "theme-page"
         ],
         "links-page": {
@@ -14,11 +14,12 @@
                 "iconselect-section"
             ]
         },
-        "actions-page": {
+        "preferences-page": {
             "type": "page",
-            "title": "Actions",
+            "title": "Preferences",
             "sections": [
-                "click-section"
+                "general-section",
+                "desklet-decorations-section"
             ]
         },
         "theme-page": {
@@ -26,8 +27,7 @@
             "title": "Theme",
             "sections": [
                 "layout-section",
-                "font-section",
-                "desklet-decorations-section"
+                "font-section"
             ]
         },
         "links-section": {
@@ -48,12 +48,13 @@
                 "icon-picker"
             ]
         },
-        "click-section": {
+        "general-section": {
             "type": "section",
-            "title": "Change how links are activated",
+            "title": "General",
             "keys": [
                 "click-type",
-                "click-timeout"
+                "click-timeout",
+                "are-tooltips-enabled"
             ]
         },
         "layout-section": {
@@ -63,9 +64,13 @@
                 "scale-size",
                 "desklet-layout",
                 "column-number",
+                "row-spacing",
+                "column-spacing",
                 "text-align",
-                "transparent-bg",
                 "bg-color",
+                "transparent-bg",
+                "link-border-width",
+                "link-border-color",
                 "icon-size"
             ]
         },
@@ -98,7 +103,7 @@
     },
     "links-bottom-label": {
         "type": "label",
-        "description": "Some tips:\nYou can open folders using ex. `nemo <path>` command.\nIf you need to see the output of a command, set the last attribute to true.\nYou can break your links' names into multiple lines by typing \\n where you want a break.\nSet `Shell` to enabled if your command only outputs to the console ex. `ls` or `htop`.\nIf you want multiple link categories/panels just create new instances of this desklet\n (click the `+` sign in system desklet manager)."
+        "description": "Some tips:\nYou can open folders using ex. `nemo <path>` command.\nYou can break your links' names into multiple lines by typing \\n where you want a break.\nSet `Shell` to enabled if your command only outputs to the console ex. `ls` or `htop`.\nIf you want multiple link categories/panels just create new instances of this desklet\n (click the `+` sign in system desklet manager)."
     },
     "links-list" : {
         "type" : "list",
@@ -109,7 +114,7 @@
             {"id": "command", "title": "Command", "type": "string", "default": "nemo /"},
             {"id": "shell", "title": "Shell", "type": "boolean", "default": false, "align": 0}
         ],
-		"height": 275,
+		"height": 250,
         "default" : [
             {
                 "is-visible": true,
@@ -248,6 +253,25 @@
         "description": "Number of columns",
         "tooltip": "Increase or decrease the number of columns on the layout."
     },
+    "row-spacing": {
+        "type": "spinbutton",
+        "default": 5,
+        "min": 0,
+        "max": 25,
+        "step": 1,
+        "description": "Row spacing",
+        "tooltip": "Change how far apart are link rows."
+    },
+    "column-spacing": {
+        "type": "spinbutton",
+        "default": 5,
+        "min": 0,
+        "max": 25,
+        "step": 1,
+        "description": "Column spacing",
+        "tooltip": "Change how far apart are link columns.",
+        "dependency": "column-number>1"
+    },
     "text-shadow": {
         "type": "switch",
         "description": "Text shadow",
@@ -280,7 +304,7 @@
     },
     "icon-size": {
         "type": "spinbutton",
-        "default": 38,
+        "default": 35,
         "min": 0,
         "max": 200,
         "step": 1,
@@ -296,7 +320,7 @@
     "font": {
         "type": "fontchooser",
         "description": "Font name (choose regular versions)",
-        "default": "Noto Sans Regular 16",
+        "default": "Noto Sans Regular 13",
         "tooltip": "Change font family",
         "dependency": "font-enabled"
     },
@@ -319,6 +343,22 @@
         "dependency": "font-enabled",
         "tooltip": "Set the text color of this desklet."
     },
+    "link-border-width": {
+        "type": "spinbutton",
+        "default": 1,
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "description": "Border width (set to 0 to disable border)",
+        "tooltip": "Increase or decrease the link border width."
+    },
+    "link-border-color": {
+        "type": "colorchooser",
+        "default": "rgba(0,0,0,0.0)",
+        "description": "Border color",
+        "tooltip": "Set the link border color (Transparent border will add more padding to links).",
+        "dependency": "link-border-width>0"
+    },
     "scale-size": {
         "type": "spinbutton",
         "default": 2,
@@ -338,5 +378,11 @@
         "default": "Quick Links",
         "description": "Desklet header",
         "tooltip": "Set your desklet header. Make sure desklet headers are enabled in system settings."
+    },
+    "are-tooltips-enabled": {
+        "type": "switch",
+        "default": true,
+        "description": "Enable link tooltips",
+        "tooltip": "Select if you want tooltips to show up when hovering over links."
     }
 }

@@ -5,11 +5,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: simple-system-monitor@ariel\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2024-05-07 06:24-0400\n"
-"PO-Revision-Date: 2023-09-03 14:08-0400\n"
+"PO-Revision-Date: 2025-11-14 21:23+0200\n"
 "Last-Translator: Peyu Yovev <spacy00001@gmail.com>\n"
 "Language-Team: \n"
 "Language: bg\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: 4.0/desklet.js:35 5.8/desklet.js:43
 msgid ""
@@ -37,7 +37,7 @@ msgstr ""
 
 #: 4.0/desklet.js:236 5.8/desklet.js:298 3.0/desklet.js:238
 msgid "CPU:"
-msgstr "ЦПУ:"
+msgstr "Процесор:"
 
 #: 4.0/desklet.js:237 5.8/desklet.js:300 3.0/desklet.js:239
 msgid "Memory:"
@@ -57,31 +57,35 @@ msgstr "Температура:"
 
 #: 4.0/desklet.js:241 5.8/desklet.js:333 3.0/desklet.js:243
 msgid "GPU:"
-msgstr ""
+msgstr "Видео:"
 
 #: 5.8/desklet.js:112
 msgid "No temp file detected at CPU path. Resetting to default."
 msgstr ""
+"Няма намерен файл за температурата в пътя на процесора. Връщане до "
+"стандартния."
 
 #: 5.8/desklet.js:116
 msgid "Invalid CPU path detected. Resetting to default."
-msgstr ""
+msgstr "Засечен е невалиден път. Връщане до стандартния."
 
 #: 5.8/desklet.js:131 5.8/desklet.js:172
 msgid "error reading:"
-msgstr ""
+msgstr "грешка при четене:"
 
 #: 5.8/desklet.js:153
 msgid "No temp file detected at GPU path. Resetting to default."
 msgstr ""
+"Няма намерен файл за температурата в пътя на видеото. Връщане до "
+"стандартния."
 
 #: 5.8/desklet.js:157
 msgid "Invalid GPU path detected. Resetting to default."
-msgstr ""
+msgstr "Засечен е невалиден път. Връщане до стандартния."
 
 #: 5.8/desklet.js:212 5.8/desklet.js:230
 msgid "Please install missing dependencies."
-msgstr ""
+msgstr "Моля инсталирайте липсващите зависимости."
 
 #: 3.0/desklet.js:37
 msgid ""
@@ -109,104 +113,110 @@ msgstr "Семпъл системен монитор"
 
 #. 5.8->settings-schema.json->head0->description
 msgid "General Settings"
-msgstr ""
+msgstr "Общи настройки"
 
 #. 5.8->settings-schema.json->title_align->description
 msgid "Alignment for title strings"
-msgstr ""
+msgstr "Подравняване на заглавните редове"
 
 #. 5.8->settings-schema.json->title_align->tooltip
 msgid "CPU, Memory, etc."
-msgstr ""
+msgstr "Процесор, памет и т.н."
 
 #. 5.8->settings-schema.json->title_align->options
 #. 5.8->settings-schema.json->value_align->options
 msgid "Left"
-msgstr ""
+msgstr "Ляво"
 
 #. 5.8->settings-schema.json->title_align->options
 #. 5.8->settings-schema.json->value_align->options
 msgid "Right"
-msgstr ""
+msgstr "Дясно"
 
 #. 5.8->settings-schema.json->value_align->description
 msgid "Alignment for value strings"
-msgstr ""
+msgstr "Подравняване на редовете със стойности"
 
 #. 5.8->settings-schema.json->value_align->tooltip
 msgid "GB, KB, etc."
-msgstr ""
+msgstr "Гб, Кб и т.н."
 
 #. 5.8->settings-schema.json->temp_units->options
 msgid "°C"
-msgstr ""
+msgstr "°C"
 
 #. 5.8->settings-schema.json->temp_units->options
 msgid "°F"
-msgstr ""
+msgstr "°F"
 
 #. 5.8->settings-schema.json->temp_units->description
 msgid "Temperature units to display"
-msgstr ""
+msgstr "Единици за температура"
 
 #. 5.8->settings-schema.json->font_scale_size->description
 msgid "Scale factor for font size"
-msgstr ""
+msgstr "Мащабиращ фактор за размер на шрифта"
 
 #. 5.8->settings-schema.json->font_scale_size->tooltip
 msgid ""
 "Increase or decrease this value to change the font size scale (1.2 = 120%)"
 msgstr ""
+"Увеличете или намалете тази стойност за да промените размера на шрифта (1.2 "
+"= 120%)"
 
 #. 5.8->settings-schema.json->font_color->description
 msgid "Font color"
-msgstr ""
+msgstr "Цвят на шрифта"
 
 #. 5.8->settings-schema.json->font_color->tooltip
 #. 5.8->settings-schema.json->background_color->tooltip
 msgid "RGB or RGBA"
-msgstr ""
+msgstr "RGB или RGBA"
 
 #. 5.8->settings-schema.json->font_family->description
 msgid "Font family for text (blank to use default)"
-msgstr ""
+msgstr "Вид шрифт на текста (оставете празно ако стандартния ви харесва)"
 
 #. 5.8->settings-schema.json->font_family->tooltip
 msgid "Set a custom font family for the text (blank to use default font)"
 msgstr ""
+"Задаване на потребителски шрифт на текста (оставете празно за да използвате "
+"стандартния)"
 
 #. 5.8->settings-schema.json->width->units
 msgid "px"
-msgstr ""
+msgstr "пкс"
 
 #. 5.8->settings-schema.json->width->description
 msgid "Fixed width for the desklet"
-msgstr ""
+msgstr "Фиксирана ширина на десклета"
 
 #. 5.8->settings-schema.json->width->tooltip
 msgid ""
 "Increase or decrease this value to set the boundary width of the desklet"
 msgstr ""
+"Увеличете или намалете стойността за да зададете ширината на рамките на "
+"десклета"
 
 #. 5.8->settings-schema.json->show_decorations->description
 msgid "Show background decorations"
-msgstr ""
+msgstr "Покажи фоновата декорация"
 
 #. 5.8->settings-schema.json->show_decorations->tooltip
 msgid "Toggle to control whether the background is transparent"
-msgstr ""
+msgstr "Превключете, за да контролирате дали фона да е прозрачен"
 
 #. 5.8->settings-schema.json->background_color->description
 msgid "Background color"
-msgstr ""
+msgstr "Фонов цвят"
 
 #. 5.8->settings-schema.json->head1->description
 msgid "Advanced Settings"
-msgstr ""
+msgstr "Разширени настройки"
 
 #. 5.8->settings-schema.json->customCPUPath->description
 msgid "Path to CPU temperature directory (device path)"
-msgstr ""
+msgstr "Път към директорията с температурата на процесора (device path)"
 
 #. 5.8->settings-schema.json->customCPUPath->tooltip
 msgid ""
@@ -216,18 +226,23 @@ msgid ""
 "Default:\n"
 "/sys/class/thermal/thermal_zone0"
 msgstr ""
+"Изберете ваш обект термален обект за процесора, т.е. изберете друг сензор "
+"за мониторинг/.\n"
+"\n"
+"Стандартен:\n"
+"/sys/class/thermal/thermal_zone0"
 
 #. 5.8->settings-schema.json->display_gpu->description
 msgid "Display GPU temperature"
-msgstr ""
+msgstr "Покажи температурата на видеото"
 
 #. 5.8->settings-schema.json->display_gpu->tooltip
 msgid "Toggle to control whether the GPU temperature is displayed"
-msgstr ""
+msgstr "Превключете за да контролирате да се показва температурата на видеото"
 
 #. 5.8->settings-schema.json->customGPUPath->description
 msgid "Path to GPU temperature directory (device path)"
-msgstr ""
+msgstr "Път към директорията с температурата на видеото (device path)"
 
 #. 5.8->settings-schema.json->customGPUPath->tooltip
 msgid ""
@@ -236,3 +251,8 @@ msgid ""
 "Default:\n"
 "/sys/class/thermal/thermal_zone0"
 msgstr ""
+"Изберете ваш обект термален обект за видеото, т.е. изберете друг сензор за "
+"мониторинг/.\n"
+"\n"
+"Стандартен:\n"
+"/sys/class/thermal/thermal_zone0"

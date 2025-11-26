@@ -1,19 +1,10 @@
 # Cinnamon Desklet for Yahoo Finance quotes
 
-## Description
+## About
 
-This repository contains a [desklet for the Cinnamon desktop environment](https://cinnamon-spices.linuxmint.com/desklets) that displays financial market information provided by [Yahoo Finance](https://finance.yahoo.com/).
+This [desklet](https://cinnamon-spices.linuxmint.com/desklets) for the Cinnamon desktop environment displays financial market information provided by [Yahoo Finance](https://finance.yahoo.com/).
 
 ![Screenshot](screenshot.png)
-
-This desklet is based on the [desklet from fthuin](https://github.com/fthuin/yahoofinance-cinnamon-desklet). The data retrieval part is adopted to an alternative service url, after the Yahoo Finance community table got retired in May 2017.
-
-Tested with
-
-- Linux Mint Cinnamon 17 up to 22
-- Debian 9 with Cinnamon 3.2
-- Manjaro with Cinnamon 3.8
-- Fedora 38 Cinnamon Spin with Cinnamon 5.6 and libsoup3
 
 ## Installation
 
@@ -64,9 +55,10 @@ Solution:
 - Enable option *Send custom User-Agent header*
 - Enable and configure external program *curl*
 
-Both options are found on the tab "Network" in the configuration settings.
+These options are found on the tab "Network" in the configuration settings.  
+You need to press the button "Apply network settings" to apply any changed options.
 
-### Debug Logging
+### Debug Log
 
 **Only enable debug logging in case of problems, and when you know why you need it!**
 

@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: systemUptime@KopfDesDaemons 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-11-26 19:00+0100\n"
-"PO-Revision-Date: 2024-11-28 15:34+0100\n"
+"POT-Creation-Date: 2025-07-31 22:57+0200\n"
+"PO-Revision-Date: 2025-08-25 16:26+0200\n"
 "Last-Translator: qadzek\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -17,27 +17,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. metadata.json->name
-#. desklet.js:34
+#. desklet.js:61
 msgid "System Uptime"
 msgstr "Systeemwerktijd"
 
-#. desklet.js:42
+#. desklet.js:69
 msgid "Uptime:"
 msgstr "Werktijd:"
 
-#. desklet.js:43 desklet.js:49
+#. desklet.js:70 desklet.js:79
 msgid "Loading..."
 msgstr "Laden..."
 
-#. desklet.js:48
-msgid "System start time:"
-msgstr "Systeem opstarttijd:"
+#. desklet.js:76
+msgid "Start time:"
+msgstr "Opstarttijd:"
 
-#. desklet.js:91
+#. desklet.js:139
+msgid "days"
+msgstr "dagen"
+
+#. desklet.js:139
+msgid "hrs"
+msgstr "uren"
+
+#. desklet.js:139
+msgid "min"
+msgstr "minuten"
+
+#. desklet.js:146
 msgid "hours"
 msgstr "uren"
 
-#. desklet.js:91
+#. desklet.js:146
 msgid "minutes"
 msgstr "minuten"
 
@@ -56,3 +68,11 @@ msgstr "Lettergrootte"
 #. settings-schema.json->colorLabel->description
 msgid "Label color"
 msgstr "Labelkleur"
+
+#. settings-schema.json->showStartDate->description
+msgid "Show start date"
+msgstr "Toon startdatum"
+
+#. settings-schema.json->showUptimeInDays->description
+msgid "Show uptime in days"
+msgstr "Toon uptime in dagen"
