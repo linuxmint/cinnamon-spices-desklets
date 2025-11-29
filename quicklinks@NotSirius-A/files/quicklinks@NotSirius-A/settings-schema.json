@@ -10,8 +10,7 @@
             "type": "page",
             "title": "Links",
             "sections": [
-                "links-section",
-                "iconselect-section"
+                "links-section"
             ]
         },
         "preferences-page": {
@@ -40,14 +39,6 @@
                 "links-bottom-label"
             ]
         },
-        "iconselect-section": {
-            "type": "section",
-            "title": "Find icon names here",
-            "keys": [
-                "icon-picker-label",
-                "icon-picker"
-            ]
-        },
         "general-section": {
             "type": "section",
             "title": "General",
@@ -67,8 +58,8 @@
                 "row-spacing",
                 "column-spacing",
                 "text-align",
-                "bg-color",
                 "transparent-bg",
+                "bg-color",
                 "link-border-width",
                 "link-border-color",
                 "icon-size"
@@ -80,8 +71,6 @@
             "keys": [
                 "font-enabled",
                 "font",
-                "font-bold",
-                "font-italic",
                 "text-color",
                 "text-shadow",
                 "text-shadow-color"
@@ -99,7 +88,7 @@
     },
     "links-top-label": {
         "type": "label",
-        "description": "Each link has 5 attributes you can change:\n - Display: determines whether your link will be shown or not \n - Name that will be displayed\n - Icon name: you can choose any system icon or leave blank\n - Command to be executed when clicked\n - Shell: select if you want the terminal to show up after clicking"
+        "description": "Each link has 5 attributes you can change:\n - Display: determines whether your link will be shown or not \n - Name that will be displayed\n - Icon: you can choose any system icon\n - Command to be executed when clicked\n - Shell: select if you want the terminal to show up after clicking"
     },
     "links-bottom-label": {
         "type": "label",
@@ -110,7 +99,7 @@
         "columns" : [
             {"id": "is-visible", "title": "Display", "type": "boolean", "default": true},
             {"id": "name", "title": "Name", "type": "string", "default": "Name"},
-            {"id": "icon-name", "title": "Icon name", "type": "string", "default": "folder"},
+            {"id": "icon-name", "title": "Icon", "type": "icon", "default": "folder"},
             {"id": "command", "title": "Command", "type": "string", "default": "nemo /"},
             {"id": "shell", "title": "Shell", "type": "boolean", "default": false, "align": 0}
         ],
@@ -194,16 +183,6 @@
         "description": "Update",
         "callback": "on_reset_links_callback"
     },
-    "icon-picker-label": {
-        "type": "label",
-        "description": "The setting below does not impact the desklet. It's here for convenience.\nYou can browse through icons here and find their names easily."
-    },
-    "icon-picker": {
-        "type": "iconfilechooser",
-        "default": "folder",
-        "description": "Click the icon to browse",
-        "tooltip": "Click the icon on the right to browse. This setting is not used anywhere. "
-    },
     "click-type": {
         "type": "combobox",
         "description": "Click type",
@@ -255,7 +234,7 @@
     },
     "row-spacing": {
         "type": "spinbutton",
-        "default": 5,
+        "default": 4,
         "min": 0,
         "max": 25,
         "step": 1,
@@ -264,7 +243,7 @@
     },
     "column-spacing": {
         "type": "spinbutton",
-        "default": 5,
+        "default": 4,
         "min": 0,
         "max": 25,
         "step": 1,
@@ -319,21 +298,9 @@
     },
     "font": {
         "type": "fontchooser",
-        "description": "Font name (choose regular versions)",
+        "description": "Link font",
         "default": "Noto Sans Regular 13",
-        "tooltip": "Change font family",
-        "dependency": "font-enabled"
-    },
-    "font-bold": {
-        "type": "switch",
-        "description": "Bold",
-        "default": false,
-        "dependency": "font-enabled"
-    },
-    "font-italic": {
-        "type": "switch",
-        "description": "Italic",
-        "default": false,
+        "tooltip": "Change font family (some fonts may be broken",
         "dependency": "font-enabled"
     },
     "text-color": {
@@ -345,7 +312,7 @@
     },
     "link-border-width": {
         "type": "spinbutton",
-        "default": 1,
+        "default": 2,
         "min": 0,
         "max": 20,
         "step": 1,
@@ -354,7 +321,7 @@
     },
     "link-border-color": {
         "type": "colorchooser",
-        "default": "rgba(0,0,0,0.0)",
+        "default": "rgba(0,0,0,0.45)",
         "description": "Border color",
         "tooltip": "Set the link border color (Transparent border will add more padding to links).",
         "dependency": "link-border-width>0"
