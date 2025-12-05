@@ -28,12 +28,14 @@ class MyDesklet extends Desklet.Desklet {
     this.settings.bindProperty(Settings.BindingDirection.IN, "colorLabel", "colorLabel", this.onSettingsChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "showStartDate", "showStartDate", this.onSettingsChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "showUptimeInDays", "showUptimeInDays", this.onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "hideDecorations", "hideDecorations", this.updateDecoration.bind(this));
 
     this.fontSize = this.settings.getValue("fontSize") || 20;
     this.colorLabel = this.settings.getValue("colorLabel") || "rgb(51, 209, 122)";
     this._timeout = null;
 
     this.setHeader(_("System Uptime"));
+    this.updateDecoration();
     this.setupLayout();
     this.updateValues();
   }
@@ -84,7 +86,7 @@ class MyDesklet extends Desklet.Desklet {
 
   createRow(children) {
     const row = new St.BoxLayout();
-    children.forEach((child) => row.add_child(child));
+    children.forEach(child => row.add_child(child));
     return row;
   }
 
@@ -112,15 +114,15 @@ class MyDesklet extends Desklet.Desklet {
       global.logError(`${UUID}: ${error.message}`);
     }
   }
-  
+
   getStartupTime() {
     try {
       const [result, out] = GLib.spawn_command_line_sync("uptime -s");
       if (!result || !out) throw new Error("Could not get system startup time.");
-      
+
       const dateTime = out.toString().split(" ");
       const date = dateTime[0].split("-");
-      
+
       if (this.showStartDate) {
         this.startupValue.set_text(date[2] + "." + date[1] + "." + date[0] + ", " + dateTime[1].trim());
       } else {
@@ -142,6 +144,11 @@ class MyDesklet extends Desklet.Desklet {
   onSettingsChanged() {
     this.setupLayout();
     this.updateValues();
+  }
+
+  updateDecoration() {
+    this.metadata["prevent-decorations"] = this.hideDecorations;
+    this._updateDecoration();
   }
 
   on_desklet_removed() {
