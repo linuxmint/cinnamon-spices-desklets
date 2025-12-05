@@ -69,6 +69,7 @@ Timelet.prototype = {
         this.settings.setOptions("themeName", themeNames);
 
         this._setTheme();
+        this._toggleDecoration();
         this._updateDateTime();
     },
 
