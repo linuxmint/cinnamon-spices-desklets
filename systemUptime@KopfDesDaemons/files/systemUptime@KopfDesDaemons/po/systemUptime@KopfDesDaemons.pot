@@ -1,14 +1,14 @@
 # SYSTEM UPTIME
 # This file is put in the public domain.
-# KopfDesDaemons, 2024
+# KopfdesDaemons, 2024
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: systemUptime@KopfDesDaemons 1.0\n"
+"Project-Id-Version: systemUptime@KopfDesDaemons 1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-07-31 22:57+0200\n"
+"POT-Creation-Date: 2025-12-05 18:11+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,39 +18,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. metadata.json->name
-#. desklet.js:61
+#. desklet.js:37
 msgid "System Uptime"
 msgstr ""
 
-#. desklet.js:69
+#. desklet.js:44
 msgid "Uptime:"
 msgstr ""
 
-#. desklet.js:70 desklet.js:79
+#. desklet.js:45 desklet.js:51
 msgid "Loading..."
 msgstr ""
 
-#. desklet.js:76
+#. desklet.js:50
 msgid "Start time:"
 msgstr ""
 
-#. desklet.js:139
+#. desklet.js:104
 msgid "days"
 msgstr ""
 
-#. desklet.js:139
+#. desklet.js:104
 msgid "hrs"
 msgstr ""
 
-#. desklet.js:139
+#. desklet.js:104
 msgid "min"
 msgstr ""
 
-#. desklet.js:146
+#. desklet.js:109
 msgid "hours"
 msgstr ""
 
-#. desklet.js:146
+#. desklet.js:109
 msgid "minutes"
 msgstr ""
 
@@ -76,4 +76,8 @@ msgstr ""
 
 #. settings-schema.json->showUptimeInDays->description
 msgid "Show uptime in days"
+msgstr ""
+
+#. settings-schema.json->hideDecorations->description
+msgid "Hide decorations"
 msgstr ""

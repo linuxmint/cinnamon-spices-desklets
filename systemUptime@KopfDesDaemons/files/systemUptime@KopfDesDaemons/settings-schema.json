@@ -25,5 +25,10 @@
     "type": "checkbox",
     "default": false,
     "description": "Show uptime in days"
+  },
+  "hideDecorations": {
+    "type": "checkbox",
+    "description": "Hide decorations",
+    "default": false
   }
 }

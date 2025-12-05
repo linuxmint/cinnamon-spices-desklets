@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: systemUptime@KopfDesDaemons 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-07-31 22:57+0200\n"
+"POT-Creation-Date: 2025-12-05 18:11+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,39 +19,39 @@ msgstr ""
 "X-Generator: Poedit 3.6\n"
 
 #. metadata.json->name
-#. desklet.js:61
+#. desklet.js:37
 msgid "System Uptime"
 msgstr "Rendszer üzemidő"
 
-#. desklet.js:69
+#. desklet.js:44
 msgid "Uptime:"
 msgstr "Üzemidő:"
 
-#. desklet.js:70 desklet.js:79
+#. desklet.js:45 desklet.js:51
 msgid "Loading..."
 msgstr "Betöltés..."
 
-#. desklet.js:76
+#. desklet.js:50
 msgid "Start time:"
 msgstr "Indítási idő:"
 
-#. desklet.js:139
+#. desklet.js:104
 msgid "days"
 msgstr "napok"
 
-#. desklet.js:139
+#. desklet.js:104
 msgid "hrs"
 msgstr "óra"
 
-#. desklet.js:139
+#. desklet.js:104
 msgid "min"
 msgstr "perc"
 
-#. desklet.js:146
+#. desklet.js:109
 msgid "hours"
 msgstr "óra"
 
-#. desklet.js:146
+#. desklet.js:109
 msgid "minutes"
 msgstr "perc"
 
@@ -78,3 +78,7 @@ msgstr "Indítási idő megjelenítése"
 #. settings-schema.json->showUptimeInDays->description
 msgid "Show uptime in days"
 msgstr "Üzemidő megjelenítése napokban"
+
+#. settings-schema.json->hideDecorations->description
+msgid "Hide decorations"
+msgstr ""
