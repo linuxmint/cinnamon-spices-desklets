@@ -1,0 +1,93 @@
+/**
+ * Yahoo Finance Quotes: Constants
+ */
+
+const UUID = "yfquotes@thegli";
+
+const ABSENT = "N/A";
+const BASE_FONT_SIZE = 10;
+
+const YF_QUOTE_PAGE_URL = "https://finance.yahoo.com/quote/";
+const YF_COOKIE_URL = "https://finance.yahoo.com/quote/%5EGSPC/options";
+const YF_CONSENT_URL = "https://consent.yahoo.com/v2/collectConsent";
+const YF_CRUMB_URL = "https://query2.finance.yahoo.com/v1/test/getcrumb";
+
+const MAX_AUTH_ATTEMPTS = 3;
+const AUTH_COOKIE = "A1";
+const CONSENT_COOKIE = "GUCS";
+const CACHED_AUTH_PARAMS_VERSION = 1;
+const DEFAULT_CACHED_AUTH_PARAMS = "{\"version\": " + CACHED_AUTH_PARAMS_VERSION + "}";
+const ACCEPT_HEADER = "Accept";
+const ACCEPT_VALUE_COOKIE = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+const ACCEPT_VALUE_CRUMB = "*/*";
+const ACCEPT_ENCODING_HEADER = "Accept-Encoding";
+const ACCEPT_ENCODING_VALUE = "gzip, deflate";
+const USER_AGENT_HEADER = "User-Agent";
+const FORM_URLENCODED_VALUE = "application/x-www-form-urlencoded";
+
+const CURL_RESPONSE_CODE_PREFIX = "HTTP_CODE=";
+const CURL_SILENT_LOCATION_OPTIONS = "-sSL";
+const CURL_WRITE_OUT_OPTION = "-w";
+const CURL_WRITE_OUT_VALUE = CURL_RESPONSE_CODE_PREFIX + "%{http_code}";
+const CURL_HEADER_OPTION = "-H";
+const CURL_COOKIE_HEADER_NAME = "Cookie: ";
+const CURL_USER_AGENT_HEADER_NAME = "User-Agent: ";
+const CURL_CIPHERS_OPTION = "--ciphers";
+const CURL_CIPHERS_VALUE =
+    "TLS_AES_128_GCM_SHA256," +
+    "TLS_AES_256_GCM_SHA384," +
+    "TLS_CHACHA20_POLY1305_SHA256," +
+    "TLS_AES_128_CCM_SHA256," +
+    "TLS_AES_128_CCM_8_SHA256," +
+    "ECDHE-ECDSA-AES128-GCM-SHA256," +
+    "ECDHE-RSA-AES128-GCM-SHA256," +
+    "ECDHE-ECDSA-AES256-GCM-SHA384," +
+    "ECDHE-RSA-AES256-GCM-SHA384," +
+    "ECDHE-ECDSA-CHACHA20-POLY1305," +
+    "ECDHE-RSA-CHACHA20-POLY1305," +
+    "ECDHE-ECDSA-AES128-SHA256," +
+    "ECDHE-RSA-AES128-SHA256," +
+    "ECDHE-ECDSA-AES128-SHA," +
+    "ECDHE-RSA-AES128-SHA," +
+    "ECDHE-ECDSA-AES256-SHA384," +
+    "ECDHE-RSA-AES256-SHA384," +
+    "ECDHE-ECDSA-AES256-SHA," +
+    "ECDHE-RSA-AES256-SHA," +
+    "AES128-GCM-SHA256," +
+    "AES256-GCM-SHA384";
+
+const ERROR_RESPONSE_BEGIN = "{\"quoteResponse\":{\"result\":[],\"error\":\"";
+const ERROR_RESPONSE_END = "\"}}";
+
+module.exports = {
+    UUID,
+    ABSENT,
+    BASE_FONT_SIZE,
+    YF_QUOTE_PAGE_URL,
+    YF_COOKIE_URL,
+    YF_CONSENT_URL,
+    YF_CRUMB_URL,
+    MAX_AUTH_ATTEMPTS,
+    AUTH_COOKIE,
+    CONSENT_COOKIE,
+    CACHED_AUTH_PARAMS_VERSION,
+    DEFAULT_CACHED_AUTH_PARAMS,
+    ACCEPT_HEADER,
+    ACCEPT_VALUE_COOKIE,
+    ACCEPT_VALUE_CRUMB,
+    ACCEPT_ENCODING_HEADER,
+    ACCEPT_ENCODING_VALUE,
+    USER_AGENT_HEADER,
+    FORM_URLENCODED_VALUE,
+    CURL_RESPONSE_CODE_PREFIX,
+    CURL_SILENT_LOCATION_OPTIONS,
+    CURL_WRITE_OUT_OPTION,
+    CURL_WRITE_OUT_VALUE,
+    CURL_HEADER_OPTION,
+    CURL_COOKIE_HEADER_NAME,
+    CURL_USER_AGENT_HEADER_NAME,
+    CURL_CIPHERS_OPTION,
+    CURL_CIPHERS_VALUE,
+    ERROR_RESPONSE_BEGIN,
+    ERROR_RESPONSE_END
+}
