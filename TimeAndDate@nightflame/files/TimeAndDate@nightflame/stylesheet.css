@@ -1,13 +1,21 @@
-.clock-container{
-	color:#fff;
-	text-shadow: 1px 1px 2px #000;
-	padding: 4px 10px 4px 10px; 
+.time-container {
+	padding: 0em;
+	margin: 0em;
 }
 
-.time-container{
+.date-container {
+	padding: 0em;
+	margin: 0em;
 }
 
-.date-container{
+.time-label {
+	padding: 0em;
+	margin: 0em;
+	text-align: center;
 }
 
-.clock-date-label{}
+.date-label {
+	padding: 0em;
+	margin: 0em;
+	text-align: center;
+}
