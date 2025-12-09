@@ -1,0 +1,169 @@
+{
+  "layout": {
+    "type": "layout",
+    "pages": [
+      "page_servers",
+      "page_style"
+    ],
+    "page_servers": {
+      "type": "page",
+      "title": "Servers for checks",
+      "sections": [
+        "section_servers"
+      ]
+    },
+    "page_style": {
+      "type": "page",
+      "title": "Desklet Style",
+      "sections": [
+        "section_text_color",
+        "section_background",
+        "section_icons"
+      ]
+    },
+    "section_servers": {
+      "type": "section",
+      "title": "",
+      "keys": [
+        "ServerNames",
+        "TimeRepeat"
+      ]
+    },
+    "section_text_color": {
+      "type": "section",
+      "title": "",
+      "keys": [
+        "TextColorBasic",
+        "TextColorOK",
+        "TextColorWARN",
+        "TextColorERR"
+      ]
+    },
+    "section_background": {
+      "type": "section",
+      "title": "",
+      "keys": [
+        "ContainerBgColor",
+        "BoxBgColor"
+      ]
+    },
+    "section_icons": {
+      "type": "section",
+      "title": "",
+      "keys": [
+        "icon_OK",
+        "icon_ERR",
+        "icon_WARN"
+      ]
+    }
+  },
+
+  "ServerNames": {
+    "type": "list",
+    "description": "Status for this Servers:",
+    "tooltip": "You can set only types: ping, http or https",
+    "columns": [
+      {
+        "id": "name",
+        "title": "Name",
+        "type": "string"
+      },
+      {
+        "id": "ip",
+        "title": "IP or Domen",
+        "type": "string"
+      },
+      {
+        "id": "type",
+        "title": "Type for check",
+        "align": 0.5,
+        "type": "string",
+        "default": "ping"
+      },
+      {
+        "id": "display",
+        "title": "Display it?",
+        "align": 0.5,
+        "type": "boolean",
+        "default": true
+      }
+    ],
+    "default": []
+  },
+
+  "TimeRepeat": {
+    "default": 10,
+    "type": "scale",
+    "min": 1,
+    "max": 180,
+    "description": "Update every:",
+    "units": "seconds",
+    "step": 1
+  },
+
+  "TextColorBasic": {
+    "type": "colorchooser",
+    "indent": true,
+    "default": "rgb(255,255,255)",
+    "description": "Basic text color",
+    "tooltip": "Click the button to select a new text color for Basic text"
+  },
+
+  "TextColorOK": {
+    "type": "colorchooser",
+    "indent": true,
+    "default": "rgb(0,255,0)",
+    "description": "Text color for OK",
+    "tooltip": "Click the button to select a new text color for successful connect"
+  },
+
+  "TextColorWARN": {
+    "type": "colorchooser",
+    "indent": true,
+    "default": "rgb(255,255,0)",
+    "description": "Text color for WARNING",
+    "tooltip": "Click the button to select a new text color for warning in connect status"
+  },
+
+  "TextColorERR": {
+    "type": "colorchooser",
+    "indent": true,
+    "default": "rgb(255,0,0)",
+    "description": "Text color for ERROR",
+    "tooltip": "Click the button to select a new text color for error in connect"
+  },
+
+  "ContainerBgColor": {
+    "type": "colorchooser",
+    "indent": true,
+    "default": "rgba(0,0,0,0.2)",
+    "description": "Color for container background",
+    "tooltip": "Click the button to select a new background color for basic container"
+  },
+
+  "BoxBgColor": {
+    "type": "colorchooser",
+    "indent": true,
+    "default": "rgba(0,0,0,0.2)",
+    "description": "Color for element background",
+    "tooltip": "Click the button to select a new background color for each elements"
+  },
+
+  "icon_OK": {
+    "type": "iconfilechooser",
+    "description": "Icon for a successful connection",
+    "default": "gtk-ok"
+  },
+
+  "icon_ERR": {
+    "type": "iconfilechooser",
+    "description": "Icon for a failed connection",
+    "default": "gtk-no"
+  },
+
+  "icon_WARN": {
+    "type": "iconfilechooser",
+    "description": "Icon for the warning",
+    "default": "gtk-dialog-warning"
+  }
+}
