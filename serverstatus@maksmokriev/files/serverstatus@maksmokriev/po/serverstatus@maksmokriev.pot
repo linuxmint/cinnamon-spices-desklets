@@ -1,60 +1,62 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SERVER STATUS
+# This file is put in the public domain.
+# maksmokriev, 2025
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-15 12:04+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Project-Id-Version: serverstatus@maksmokriev 1.1.1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-12-08 23:17-0500\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:23
+#. desklet.js:23
 msgid "Server Status"
 msgstr ""
 
-#: desklet.js:70
+#. desklet.js:70
 msgid "Need to setup"
 msgstr ""
 
-#: desklet.js:104
-msgid "Checking ..."
+#. desklet.js:104
+msgid " - Checking ..."
 msgstr ""
 
-#: desklet.js:153
+#. desklet.js:153
 msgid "Error ping command on "
 msgstr ""
 
-#: desklet.js:154 desklet.js:161 desklet.js:194 desklet.js:201
+#. desklet.js:154 desklet.js:161 desklet.js:194 desklet.js:201
 msgid "Error"
 msgstr ""
 
-#: desklet.js:160
+#. desklet.js:160
 msgid "Error creating ping process "
 msgstr ""
 
-#: desklet.js:193
+#. desklet.js:193
 msgid "Error curl command on "
 msgstr ""
 
-#: desklet.js:200
+#. desklet.js:200
 msgid "Error creating curl process "
-msgstr ""
-
-#. metadata.json->description
-msgid "A desklet that checks a host via ping or HTTP(S) and displays if it is available."
 msgstr ""
 
 #. metadata.json->name
 msgid "Server status"
+msgstr ""
+
+#. metadata.json->description
+msgid ""
+"A desklet that checks a host via ping or HTTP(S) and displays if it is "
+"available."
 msgstr ""
 
 #. settings-schema.json->page_servers->title
@@ -93,6 +95,10 @@ msgstr ""
 msgid "Update every:"
 msgstr ""
 
+#. settings-schema.json->TimeRepeat->units
+msgid "seconds"
+msgstr ""
+
 #. settings-schema.json->TextColorBasic->description
 msgid "Basic text color"
 msgstr ""
@@ -114,7 +120,8 @@ msgid "Text color for WARNING"
 msgstr ""
 
 #. settings-schema.json->TextColorWARN->tooltip
-msgid "Click the button to select a new text color for warning in connect status"
+msgid ""
+"Click the button to select a new text color for warning in connect status"
 msgstr ""
 
 #. settings-schema.json->TextColorERR->description

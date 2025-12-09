@@ -1,4 +1,4 @@
-# SOME DESCRIPTIVE TITLE.
+# SERVER STATUS
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Maksym Mokriev <maksmokriev@gmail.com>, 2025.
@@ -7,8 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.1\n"
-"Report-Msgid-Bugs-To: Maksym Mokriev <maksmokriev@gmail.com>\n"
-"POT-Creation-Date: 2025-04-15 13:49+0300\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-12-08 23:22-0500\n"
 "PO-Revision-Date: 2025-04-07 22:49+0300\n"
 "Last-Translator: Maksym Mokriev <maksmokriev@gmail.com>\n"
 "Language-Team: \n"
@@ -17,45 +18,49 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:23
+#. desklet.js:23
 msgid "Server Status"
 msgstr "Статус сервера"
 
-#: desklet.js:75
+#. desklet.js:70
 msgid "Need to setup"
 msgstr "Потрібне налаштування"
 
-#: desklet.js:98
-msgid "Checking ..."
-msgstr "Перевірка ..."
+#. desklet.js:104
+msgid " - Checking ..."
+msgstr " - Перевірка ..."
 
-#: desklet.js:146
+#. desklet.js:153
 msgid "Error ping command on "
 msgstr "Помилка роботи команди ping "
 
-#: desklet.js:147 desklet.js:154 desklet.js:187 desklet.js:194
+#. desklet.js:154 desklet.js:161 desklet.js:194 desklet.js:201
 msgid "Error"
 msgstr "Помилка"
 
-#: desklet.js:153
+#. desklet.js:160
 msgid "Error creating ping process "
 msgstr "Помилка створення ping процесу "
 
-#: desklet.js:186
+#. desklet.js:193
 msgid "Error curl command on "
 msgstr "Помилка роботи команди curl "
 
-#: desklet.js:193
+#. desklet.js:200
 msgid "Error creating curl process "
 msgstr "Помилка створення curl процесу "
-
-#. metadata.json->description
-msgid "A desklet that checks a host via ping or HTTP(S) and displays if it is available."
-msgstr "Десклет, який перевіряє хост через ping або HTTP(S) і показує', чи він доступний."
 
 #. metadata.json->name
 msgid "Server status"
 msgstr "Статус сервера"
+
+#. metadata.json->description
+msgid ""
+"A desklet that checks a host via ping or HTTP(S) and displays if it is "
+"available."
+msgstr ""
+"Десклет, який перевіряє хост через ping або HTTP(S) і показує', чи він "
+"доступний."
 
 #. settings-schema.json->page_servers->title
 msgid "Servers for checks"
@@ -93,6 +98,10 @@ msgstr "Показувати?"
 msgid "Update every:"
 msgstr "Оновлювати кожні:"
 
+#. settings-schema.json->TimeRepeat->units
+msgid "seconds"
+msgstr ""
+
 #. settings-schema.json->TextColorBasic->description
 msgid "Basic text color"
 msgstr "Основний колір тексту"
@@ -107,15 +116,19 @@ msgstr "Колір тексту для успіху"
 
 #. settings-schema.json->TextColorOK->tooltip
 msgid "Click the button to select a new text color for successful connect"
-msgstr "Натисніть кнопку, щоб вибрати новий колір тексту для успішного підключення"
+msgstr ""
+"Натисніть кнопку, щоб вибрати новий колір тексту для успішного підключення"
 
 #. settings-schema.json->TextColorWARN->description
 msgid "Text color for WARNING"
 msgstr "Колір тексту для попередження"
 
 #. settings-schema.json->TextColorWARN->tooltip
-msgid "Click the button to select a new text color for warning in connect status"
-msgstr "Натисніть кнопку, щоб вибрати новий колір тексту для попередження в статусі підключення"
+msgid ""
+"Click the button to select a new text color for warning in connect status"
+msgstr ""
+"Натисніть кнопку, щоб вибрати новий колір тексту для попередження в статусі "
+"підключення"
 
 #. settings-schema.json->TextColorERR->description
 msgid "Text color for ERROR"
@@ -123,7 +136,8 @@ msgstr "Текст кольору для помилки"
 
 #. settings-schema.json->TextColorERR->tooltip
 msgid "Click the button to select a new text color for error in connect"
-msgstr "Натисніть кнопку, щоб вибрати новий колір тексту для помилки підключення"
+msgstr ""
+"Натисніть кнопку, щоб вибрати новий колір тексту для помилки підключення"
 
 #. settings-schema.json->ContainerBgColor->description
 msgid "Color for container background"
