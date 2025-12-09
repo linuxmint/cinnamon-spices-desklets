@@ -194,7 +194,7 @@ MyDesklet.prototype = {
         this._update();
     },
 
-    onDeskletRemoved() {
+    on_desklet_removed() {
         if (this.updateId > 0) {
             Mainloop.source_remove(this.updateId);
         }
