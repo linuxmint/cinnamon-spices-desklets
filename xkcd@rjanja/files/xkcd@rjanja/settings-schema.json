@@ -1,0 +1,93 @@
+{
+    "layout": {
+        "type": "layout",
+        "pages": ["page_configuration"],
+        "page_configuration": {
+            "type": "page",
+            "title": "Configuration",
+            "sections": ["section_background", "section_text"]
+        },
+        "section_background": {
+            "type": "section",
+            "title": "Background",
+            "keys": ["bgColor", "transparency", "cornerRadius"]
+        },
+        "section_text": {
+            "type": "section",
+            "title": "Text",
+            "keys": [
+                "textColor",
+                "altTextFontSize",
+                "altTextPadding",
+                "labelScale",
+                "altTextAlign"
+            ]
+        }
+    },
+    "bgColor": {
+        "type": "colorchooser",
+        "description": "Background color",
+        "default": "rgb(0,0,0)",
+        "indent": true
+    },
+    "transparency": {
+        "type": "scale",
+        "description": "Transparency",
+        "indent": true,
+        "default": 0.5,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.01
+    },
+    "cornerRadius": {
+        "type": "spinbutton",
+        "description": "Corner radius",
+        "units": "px",
+        "default": 4,
+        "min": 0,
+        "max": 15,
+        "step": 1
+    },
+    "textColor": {
+        "type": "colorchooser",
+        "description": "Text color",
+        "default": "rgb(255,255,255)",
+        "indent": true
+    },
+    "altTextFontSize": {
+        "type": "spinbutton",
+        "description": "Alt text font size",
+        "units": "px",
+        "default": 16,
+        "min": 1,
+        "max": 30,
+        "step": 1
+    },
+    "altTextPadding": {
+        "type": "spinbutton",
+        "description": "Alt text padding",
+        "units": "px",
+        "default": 4,
+        "min": 1,
+        "max": 15,
+        "step": 1
+    },
+    "labelScale": {
+        "type": "spinbutton",
+        "description": "Label scale",
+        "default": 0.75,
+        "min": 0.5,
+        "max": 1.0,
+        "step": 0.01
+    },
+    "altTextAlign": {
+        "type": "combobox",
+        "description": "Alt text alignment",
+        "default": "left",
+        "options": {
+            "left": "left",
+            "center": "center",
+            "right": "right"
+        }
+    }
+}

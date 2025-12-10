@@ -1,0 +1,7 @@
+{
+  "uuid": "github-contribution-grid@KopfdesDaemons",
+  "name": "GitHub Contribution Grid",
+  "description": "Displays the daily contributions heatmap for a specified GitHub user profile.",
+  "version": "1.0",
+  "max-instances": "50"
+}

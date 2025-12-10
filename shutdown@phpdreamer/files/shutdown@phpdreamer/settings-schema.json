@@ -1,0 +1,193 @@
+{
+    "layout": {
+        "type": "layout",
+        "pages": [
+            "preferences-page",
+            "theme-page"
+        ],
+        "preferences-page": {
+            "type": "page",
+            "title": "Preferences",
+            "sections": [
+                "general-preferences-section",
+                "desklet-decorations-section"
+            ]
+        },
+        "theme-page": {
+            "type": "page",
+            "title": "Theme",
+            "sections": [
+                "theme-section"
+            ]
+        },
+        "general-preferences-section": {
+            "type": "section",
+            "title": "General",
+            "keys": [
+                "shutdown-command",
+                "label-text",
+                "click-type",
+                "click-timeout"
+            ]            
+        },
+        "theme-section": {
+            "type": "section",
+            "title": "Theme",
+            "keys": [
+                "is-desklet-bg-transparent",
+                "desklet-background",
+                "desklet-border-width",
+                "desklet-border-color",
+                "button-icon-type",
+                "button-icon-size",
+                "button-icon-name",
+                "button-icon-color",
+                "font",
+                "text-color",
+                "text-shadow",
+                "text-shadow-color"
+            ]
+        }, 
+        "desklet-decorations-section": {
+            "type": "section",
+            "title": "Desklet decorations",
+            "keys": [
+                "desklet-decorations-note",
+                "show-decorations",
+                "desklet-header"
+            ]
+        }
+    },
+    "text-shadow": {
+        "type": "switch",
+        "description": "Text shadow",
+        "default": true
+    },
+    "text-shadow-color": {
+        "type": "colorchooser",
+        "default": "rgba(0,0,0,0.4)",
+        "description": "Text shadow color",
+        "dependency": "text-shadow"
+    },
+    "font": {
+        "type": "fontchooser",
+        "description": "Font name (choose regular versions)",
+        "default": "Ubuntu Regular 16",
+        "tooltip": "Change font family"
+    },
+    "text-color": {
+        "type": "colorchooser",
+        "default": "rgb(255,255,255)",
+        "description": "Text color",
+        "tooltip": "Set the text color."
+    },
+    "is-desklet-bg-transparent": {
+        "type": "switch",
+        "default": true,
+        "description": "Transparent background",
+        "tooltip": "Select if you want a transparent background."
+    },
+    "desklet-background": {
+        "type": "colorchooser",
+        "default": "rgb(40,105,198)",
+        "description": "Background color",
+        "tooltip": "Set the desklet background.",
+        "dependency": "!is-desklet-bg-transparent"
+    },
+    "desklet-border-width": {
+        "type": "spinbutton",
+        "default": 3,
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "description": "Border width (set to 0 to disable border)",
+        "tooltip": "Increase or decrease the desklet border width."
+    },
+    "desklet-border-color": {
+        "type": "colorchooser",
+        "default": "rgba(0,0,0,0.2)",
+        "description": "Border color",
+        "tooltip": "Set the desklet border color.",
+        "dependency": "desklet-border-width>0"
+    },
+    "button-icon-type": {
+        "type": "combobox",
+        "description": "Icon type",
+        "default": "original-icon",
+        "options" : {
+            "Original" : "original-icon",
+            "Custom" : "custom-icon"
+        },
+        "tooltip": "Choose the icon type."
+    },
+    "button-icon-size": {
+        "type": "spinbutton",
+        "default": 60,
+        "min": 15,
+        "max": 200,
+        "step": 1,
+        "description": "Button icon size",
+        "tooltip": "Increase or decrease the icon size."
+    },
+    "button-icon-name": {
+        "type": "iconfilechooser",
+        "default": "system-shutdown-symbolic",
+        "description": "Icon",
+        "dependency": "button-icon-type=custom-icon"
+    },
+    "button-icon-color": {
+        "type": "colorchooser",
+        "default": "rgb(255,255,255)",
+        "description": "Icon color",
+        "tooltip": "Set the icon color.",
+        "dependency": "button-icon-type=custom-icon"
+    },
+    "label-text": {
+        "type": "entry",
+        "default": "Shutdown",
+        "description": "Label text",
+        "tooltip": "Set the text of the label (leave empty to disable)."
+    },
+    "shutdown-command": {
+        "type": "entry",
+        "default": "shutdown -h now",
+        "description": "Shutdown command",
+        "tooltip": "Set the command to execute when clicked."
+    },
+    "click-type": {
+        "type": "combobox",
+        "description": "Click type",
+        "default": "double",
+        "options" : {
+            "Single click" : "single",
+            "Double click" : "double"
+        },
+        "tooltip": "Choose how you want to activate the button."
+    },
+    "click-timeout": {
+        "type": "spinbutton",
+        "default": 300,
+        "min": 10,
+        "max": 2000,
+        "step": 10,
+        "dependency": "click-type=double",
+        "description": "Double-click timeout",
+        "tooltip": "Set the maximum time between clicks in double-click."  
+    },
+    "show-decorations": {
+        "type": "switch",
+        "description": "Show desklet decorations",
+        "default": false
+    },
+    "desklet-decorations-note": {
+        "type": "label",
+        "description": "Following settings require desklet decorations to be enabled on your system.\nDesklet preferences are located in System Settings > Desklets > General Settings tab; there you will be able to enable border/header decorations."
+    },
+    "desklet-header": {
+        "type": "entry",
+        "default": "Shutdown",
+        "description": "Desklet header",
+        "tooltip": "Set your desklet header. Make sure desklet headers are enabled in system settings.",
+        "dependency": "show-decorations"
+    }
+}
