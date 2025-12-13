@@ -1,0 +1,5 @@
+{
+    "uuid": "devtest-lenovo-vantage@thewraith420",
+    "name": "(devtest) Lenovo Vantage Battery Widget",
+    "description": "A battery desklet that mimics the Lenovo Vantage widget, with toggles for conservation and rapid charge modes."
+}

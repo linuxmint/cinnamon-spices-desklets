@@ -1,0 +1,102 @@
+{
+    "header": {
+        "type": "header",
+        "description": "Lenovo Vantage Desklet Settings"
+    },
+    "layout-header": {
+        "type": "header",
+        "description": "Layout Settings"
+    },
+    "horizontal-layout": {
+        "type": "switch",
+        "default": false,
+        "description": "Horizontal Layout",
+        "tooltip": "Display battery info and buttons side-by-side instead of stacked vertically."
+    },
+    "show-quick-toggles": {
+        "type": "switch",
+        "default": true,
+        "description": "Show Quick Toggle Buttons",
+        "tooltip": "Show or hide the grid of quick action buttons."
+    },
+    "appearance-header": {
+        "type": "header",
+        "description": "Appearance Settings"
+    },
+    "background-opacity": {
+        "type": "scale",
+        "default": 1.0,
+        "min": 0.1,
+        "max": 1.0,
+        "step": 0.05,
+        "description": "Background Opacity",
+        "tooltip": "Adjust the transparency of the desklet background (0.1 = very transparent, 1.0 = fully opaque)."
+    },
+    "background-color": {
+        "type": "colorchooser",
+        "default": "rgb(40, 70, 130)",
+        "description": "Background Color",
+        "tooltip": "Main desklet background color."
+    },
+    "accent-color": {
+        "type": "colorchooser",
+        "default": "rgb(255, 255, 255)",
+        "description": "Text Color",
+        "tooltip": "Color for all text and icons."
+    },
+    "battery-bar-color": {
+        "type": "colorchooser",
+        "default": "rgb(76, 175, 80)",
+        "description": "Battery Bar Color",
+        "tooltip": "Color for the battery charge bar fill."
+    },
+    "size-header": {
+        "type": "header",
+        "description": "Size Settings"
+    },
+    "desklet-width": {
+        "type": "spinbutton",
+        "default": 280,
+        "description": "Desklet Width (px)",
+        "min": 150,
+        "max": 500,
+        "step": 10,
+        "tooltip": "Width of the desklet in pixels (150-500). Only applies to vertical layout."
+    },
+    "font-size": {
+        "type": "spinbutton",
+        "default": 48,
+        "description": "Percentage Font Size (pt)",
+        "min": 20,
+        "max": 96,
+        "step": 2,
+        "tooltip": "Font size for the battery percentage display (20-96 points)."
+    },
+    "button-size": {
+        "type": "spinbutton",
+        "default": 50,
+        "description": "Button Size (px)",
+        "min": 30,
+        "max": 80,
+        "step": 5,
+        "tooltip": "Size of the circular quick action buttons (30-80 pixels)."
+    },
+    "border-radius": {
+        "type": "spinbutton",
+        "default": 16,
+        "description": "Border Radius (px)",
+        "min": 0,
+        "max": 30,
+        "step": 2,
+        "tooltip": "Radius of the desklet's corners (0-30)."
+    },
+    "update-interval": {
+        "type": "spinbutton",
+        "default": 5,
+        "description": "Update Interval (seconds)",
+        "min": 1,
+        "max": 30,
+        "step": 1,
+        "tooltip": "How often to refresh battery status and sync settings (1-30 seconds)."
+    }
+}

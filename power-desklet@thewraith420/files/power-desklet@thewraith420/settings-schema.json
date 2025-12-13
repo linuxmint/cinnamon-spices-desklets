@@ -1,0 +1,179 @@
+{
+    "conservation-mode-enabled": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Conservation Mode"
+    },
+    "rapid-charge-enabled": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Rapid Charge"
+    },
+    "update-interval": {
+        "type": "spinbutton",
+        "default": 5,
+        "min": 1,
+        "max": 60,
+        "step": 1,
+        "units": "seconds",
+        "description": "Update Interval"
+    },
+    "background-opacity": {
+        "type": "spinbutton",
+        "default": 1.0,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.1,
+        "description": "Background Opacity"
+    },
+    "background-color": {
+        "type": "colorchooser",
+        "default": "rgb(40, 70, 130)",
+        "description": "Background Color"
+    },
+    "accent-color": {
+        "type": "colorchooser",
+        "default": "rgb(255, 255, 255)",
+        "description": "Accent Color"
+    },
+    "desklet-width": {
+        "type": "spinbutton",
+        "default": 280,
+        "min": 100,
+        "max": 1000,
+        "step": 10,
+        "units": "px",
+        "description": "Desklet Width"
+    },
+    "font-size": {
+        "type": "spinbutton",
+        "default": 48,
+        "min": 8,
+        "max": 128,
+        "step": 1,
+        "units": "pt",
+        "description": "Font Size"
+    },
+    "border-radius": {
+        "type": "spinbutton",
+        "default": 16,
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "units": "px",
+        "description": "Border Radius"
+    },
+    "show-quick-toggles": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show Quick Toggles"
+    },
+    "button-size": {
+        "type": "spinbutton",
+        "default": 50,
+        "min": 20,
+        "max": 100,
+        "step": 1,
+        "units": "px",
+        "description": "Button Size"
+    },
+    "horizontal-layout": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Horizontal Layout"
+    },
+    "layout": {
+        "type": "combobox",
+        "default": "vertical",
+        "options": {
+            "Vertical": "vertical",
+            "Horizontal": "horizontal"
+        },
+        "description": "Nvidia Switcher Layout"
+    },
+    "rebootDelay": {
+        "type": "spinbutton",
+        "default": 10,
+        "min": 5,
+        "max": 300,
+        "step": 1,
+        "units": "seconds",
+        "description": "Reboot Countdown"
+    },
+    "showDescriptions": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show Profile Descriptions"
+    },
+    "showProfileNames": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show Profile Names"
+    },
+    "showModeIndicator": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show Current Mode Indicator"
+    },
+    "skipConfirmDialog": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Skip Reboot Confirmation Dialog"
+    },
+    "rebootMethod": {
+        "type": "combobox",
+        "default": "systemctl",
+        "options": {
+            "systemctl reboot": "systemctl",
+            "shutdown -r now": "shutdown"
+        },
+        "description": "Reboot Command"
+    },
+    "useSystemIcons": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Use System Icons"
+    },
+    "iconSize": {
+        "type": "spinbutton",
+        "default": 24,
+        "min": 12,
+        "max": 64,
+        "step": 1,
+        "units": "px",
+        "description": "Profile Icon Size"
+    },
+    "intelIcon": {
+        "type": "iconfilechooser",
+        "default": "intel-mode",
+        "description": "Intel Mode Icon"
+    },
+    "onDemandIcon": {
+        "type": "iconfilechooser",
+        "default": "hybrid-mode",
+        "description": "On-Demand Mode Icon"
+    },
+    "nvidiaIcon": {
+        "type": "iconfilechooser",
+        "default": "nvidia-settings",
+        "description": "Nvidia Mode Icon"
+    },
+    "modeIndicatorIconSize": {
+        "type": "spinbutton",
+        "default": 24,
+        "min": 12,
+        "max": 64,
+        "step": 1,
+        "units": "px",
+        "description": "Mode Indicator Icon Size"
+    },
+    "modeIndicatorTextSize": {
+        "type": "spinbutton",
+        "default": 7,
+        "min": 5,
+        "max": 14,
+        "step": 1,
+        "units": "pt",
+        "description": "Mode Indicator Text Size"
+    }
+}
