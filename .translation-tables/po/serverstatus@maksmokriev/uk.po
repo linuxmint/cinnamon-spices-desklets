@@ -1,0 +1,168 @@
+# SERVER STATUS
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Maksym Mokriev <maksmokriev@gmail.com>, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-12-08 23:22-0500\n"
+"PO-Revision-Date: 2025-04-07 22:49+0300\n"
+"Last-Translator: Maksym Mokriev <maksmokriev@gmail.com>\n"
+"Language-Team: \n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. desklet.js:23
+msgid "Server Status"
+msgstr "Статус сервера"
+
+#. desklet.js:70
+msgid "Need to setup"
+msgstr "Потрібне налаштування"
+
+#. desklet.js:104
+msgid " - Checking ..."
+msgstr " - Перевірка ..."
+
+#. desklet.js:153
+msgid "Error ping command on "
+msgstr "Помилка роботи команди ping "
+
+#. desklet.js:154 desklet.js:161 desklet.js:194 desklet.js:201
+msgid "Error"
+msgstr "Помилка"
+
+#. desklet.js:160
+msgid "Error creating ping process "
+msgstr "Помилка створення ping процесу "
+
+#. desklet.js:193
+msgid "Error curl command on "
+msgstr "Помилка роботи команди curl "
+
+#. desklet.js:200
+msgid "Error creating curl process "
+msgstr "Помилка створення curl процесу "
+
+#. metadata.json->name
+msgid "Server status"
+msgstr "Статус сервера"
+
+#. metadata.json->description
+msgid ""
+"A desklet that checks a host via ping or HTTP(S) and displays if it is "
+"available."
+msgstr ""
+"Десклет, який перевіряє хост через ping або HTTP(S) і показує', чи він "
+"доступний."
+
+#. settings-schema.json->page_servers->title
+msgid "Servers for checks"
+msgstr "Сервери для перевірки"
+
+#. settings-schema.json->page_style->title
+msgid "Desklet Style"
+msgstr "Стиль десклета"
+
+#. settings-schema.json->ServerNames->description
+msgid "Status for this Servers:"
+msgstr "Статус для таких серверів"
+
+#. settings-schema.json->ServerNames->tooltip
+msgid "You can set only types: ping, http or https"
+msgstr "Ви можете вказувати лише типи: ping, http or https"
+
+#. settings-schema.json->ServerNames->columns->title
+msgid "Name"
+msgstr "Назва"
+
+#. settings-schema.json->ServerNames->columns->title
+msgid "IP or Domen"
+msgstr "ІР або Домен"
+
+#. settings-schema.json->ServerNames->columns->title
+msgid "Type for check"
+msgstr "Тип перевірки"
+
+#. settings-schema.json->ServerNames->columns->title
+msgid "Display it?"
+msgstr "Показувати?"
+
+#. settings-schema.json->TimeRepeat->description
+msgid "Update every:"
+msgstr "Оновлювати кожні:"
+
+#. settings-schema.json->TimeRepeat->units
+msgid "seconds"
+msgstr ""
+
+#. settings-schema.json->TextColorBasic->description
+msgid "Basic text color"
+msgstr "Основний колір тексту"
+
+#. settings-schema.json->TextColorBasic->tooltip
+msgid "Click the button to select a new text color for Basic text"
+msgstr "Натисніть кнопку, щоб вибрати новий колір для основного тексту"
+
+#. settings-schema.json->TextColorOK->description
+msgid "Text color for OK"
+msgstr "Колір тексту для успіху"
+
+#. settings-schema.json->TextColorOK->tooltip
+msgid "Click the button to select a new text color for successful connect"
+msgstr ""
+"Натисніть кнопку, щоб вибрати новий колір тексту для успішного підключення"
+
+#. settings-schema.json->TextColorWARN->description
+msgid "Text color for WARNING"
+msgstr "Колір тексту для попередження"
+
+#. settings-schema.json->TextColorWARN->tooltip
+msgid ""
+"Click the button to select a new text color for warning in connect status"
+msgstr ""
+"Натисніть кнопку, щоб вибрати новий колір тексту для попередження в статусі "
+"підключення"
+
+#. settings-schema.json->TextColorERR->description
+msgid "Text color for ERROR"
+msgstr "Текст кольору для помилки"
+
+#. settings-schema.json->TextColorERR->tooltip
+msgid "Click the button to select a new text color for error in connect"
+msgstr ""
+"Натисніть кнопку, щоб вибрати новий колір тексту для помилки підключення"
+
+#. settings-schema.json->ContainerBgColor->description
+msgid "Color for container background"
+msgstr "Колір для тла контейнера"
+
+#. settings-schema.json->ContainerBgColor->tooltip
+msgid "Click the button to select a new background color for basic container"
+msgstr "Натисніть кнопку, щоб вибрати новий колір тла для основного контейнера"
+
+#. settings-schema.json->BoxBgColor->description
+msgid "Color for element background"
+msgstr "Колір для тла елемента"
+
+#. settings-schema.json->BoxBgColor->tooltip
+msgid "Click the button to select a new background color for each elements"
+msgstr "Натисніть кнопку, щоб вибрати новий колір тла для кожного елемнту"
+
+#. settings-schema.json->icon_OK->description
+msgid "Icon for a successful connection"
+msgstr "Значок успішного підключення"
+
+#. settings-schema.json->icon_ERR->description
+msgid "Icon for a failed connection"
+msgstr "Значок невдалого підключення"
+
+#. settings-schema.json->icon_WARN->description
+msgid "Icon for the warning"
+msgstr "Значок для попередження"

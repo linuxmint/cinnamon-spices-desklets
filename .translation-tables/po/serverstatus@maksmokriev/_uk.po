@@ -1,0 +1,19 @@
+# SERVER STATUS
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Maksym Mokriev <maksmokriev@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+
+#. desklet.js:154 desklet.js:161 desklet.js:194 desklet.js:201
+msgid "Error"
+msgstr ""
+
+#. settings-schema.json->ServerNames->columns->title
+msgid "Name"
+msgstr ""
+
+#. settings-schema.json->TimeRepeat->units
+msgid "seconds"
+msgstr ""
