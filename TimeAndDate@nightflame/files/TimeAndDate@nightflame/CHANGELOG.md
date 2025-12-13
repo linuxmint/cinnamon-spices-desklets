@@ -1,3 +1,14 @@
+## [2.0.1] - 13.12.2025
+
+Small CSS update/fix
+
+### Changed
+
+- `stylesheet.css`
+
+### Fixed
+
+- CSS classes `time-container` and `date-container` were reversed and assigned to wrong elements
 
 ## [2.0] - 05.11.2025
 
