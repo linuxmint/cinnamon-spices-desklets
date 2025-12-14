@@ -2,7 +2,7 @@ const GLib = imports.gi.GLib;
 
 class BootTimeHelper {
   static async getBootTime() {
-    const out = await new Promise((resolve, reject) => {
+    const [out, err] = await new Promise((resolve, reject) => {
       try {
         const [success, pid, stdin, stdout, stderr] = GLib.spawn_async_with_pipes(
           null,
@@ -12,20 +12,45 @@ class BootTimeHelper {
           null
         );
         GLib.close(stdin);
-        GLib.close(stderr);
+
+        let outOutput = "";
+        let errOutput = "";
+        let outClosed = false;
+        let errClosed = false;
+
+        const checkFinished = () => {
+          if (outClosed && errClosed) resolve([outOutput, errOutput]);
+        };
+
         GLib.child_watch_add(GLib.PRIORITY_DEFAULT, pid, (pid, status) => {
           GLib.spawn_close_pid(pid);
         });
-        let channel = GLib.IOChannel.unix_new(stdout);
-        let output = "";
-        GLib.io_add_watch(channel, GLib.PRIORITY_DEFAULT, GLib.IOCondition.IN | GLib.IOCondition.HUP, (channel, condition) => {
+
+        let outChannel = GLib.IOChannel.unix_new(stdout);
+        GLib.io_add_watch(outChannel, GLib.PRIORITY_DEFAULT, GLib.IOCondition.IN | GLib.IOCondition.HUP, (channel, condition) => {
           if (condition & GLib.IOCondition.IN) {
             let [status, data] = channel.read_to_end();
-            if (data) output += data.toString();
+            if (data) outOutput += data.toString();
           }
           if (condition & GLib.IOCondition.HUP) {
             channel.shutdown(true);
-            resolve(output);
+            outClosed = true;
+            checkFinished();
+            return false;
+          }
+          return true;
+        });
+
+        let errChannel = GLib.IOChannel.unix_new(stderr);
+        GLib.io_add_watch(errChannel, GLib.PRIORITY_DEFAULT, GLib.IOCondition.IN | GLib.IOCondition.HUP, (channel, condition) => {
+          if (condition & GLib.IOCondition.IN) {
+            let [status, data] = channel.read_to_end();
+            if (data) errOutput += data.toString();
+          }
+          if (condition & GLib.IOCondition.HUP) {
+            channel.shutdown(true);
+            errClosed = true;
+            checkFinished();
             return false;
           }
           return true;
@@ -35,6 +60,8 @@ class BootTimeHelper {
       }
     });
     if (out) {
+      if (out.includes("Bootup is not yet finished")) throw new Error("Bootup is not yet finished");
+
       const timeRegex = /((?:\d+min\s+)?[\d.]+s)/;
 
       const firmware = out.match(new RegExp(`${timeRegex.source}\\s+\\(firmware\\)`));
@@ -53,6 +80,9 @@ class BootTimeHelper {
         { name: "Graphical", label: _("Graphical:"), value: graphical ? graphical[1] : null },
       ];
     }
+    if (String(err).includes("Bootup is not yet finished")) throw new Error("Bootup is not yet finished");
+    if (err) throw new Error(err);
+
     throw new Error("Bootup is not yet finished");
   }
 }
