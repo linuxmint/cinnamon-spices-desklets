@@ -1,0 +1,19 @@
+.boot-time-main-container {
+  spacing: 0.5em;
+}
+
+.boot-time-row,
+.boot-time-row-total {
+  background-color: rgba(0, 0, 0, 0.253);
+  border-radius: 5px;
+  padding: 0.3em;
+  spacing: 1em;
+}
+
+.boot-time-label {
+  font-weight: bold;
+}
+
+.boot-time-row-total {
+  border: solid 1px rgb(47, 255, 82);
+}
