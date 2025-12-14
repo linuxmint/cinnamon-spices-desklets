@@ -27,15 +27,21 @@ class MyDesklet extends Desklet.Desklet {
   async _setupUI() {
     let bootTimes;
     try {
+      this._showLoadingUI();
       bootTimes = await BootTimeHelper.getBootTime();
     } catch (e) {
-      if (!this.loadingUIisLoaded) {
-        this.loadingUIisLoaded = true;
-        this._getLoadingUI();
+      if (e.message === "Bootup is not yet finished") {
+        if (!this.loadingUIisLoaded) {
+          this.loadingUIisLoaded = true;
+          this._getLoadingUI();
+          return;
+        }
+        this._timeout = Mainloop.timeout_add_seconds(1, () => this._setupUI());
+        return;
+      } else {
+        this._showErrorUI(String(e));
+        return;
       }
-      if (this._timeout) Mainloop.source_remove(this._timeout);
-      this._timeout = Mainloop.timeout_add_seconds(1, () => this._setupUI());
-      return;
     }
     if (bootTimes) this._getBootTimeUI(bootTimes);
     if (this._timeout) Mainloop.source_remove(this._timeout);
@@ -103,6 +109,29 @@ class MyDesklet extends Desklet.Desklet {
     this._startAnimation();
   }
 
+  _showErrorUI(errorText) {
+    const errorContainer = new St.BoxLayout({ vertical: true });
+    const errorLabel = new Clutter.Text({
+      text: errorText,
+      line_wrap: true,
+      line_alignment: Pango.Alignment.CENTER,
+      color: new Clutter.Color({ red: 255, green: 0, blue: 0, alpha: 255 }),
+    });
+    const bin = new St.Bin({
+      style_class: "boot-time-error-bin",
+      child: errorLabel,
+    });
+    const icon = new St.Icon({
+      icon_name: "emblem-important-symbolic",
+      icon_type: St.IconType.SYMBOLIC,
+      icon_size: 32,
+    });
+    errorContainer.add_child(icon);
+    errorContainer.add_child(bin);
+    this.setContent(errorContainer);
+    if (this._timeout) Mainloop.source_remove(this._timeout);
+  }
+
   _startAnimation() {
     this.animationState = 0;
     if (this._animationTimeout) Mainloop.source_remove(this._animationTimeout);
@@ -148,6 +177,11 @@ class MyDesklet extends Desklet.Desklet {
     this.circleActor.set_content(canvas);
     this.circleActor.set_pivot_point(0.5, 0.5);
     return this.circleActor;
+  }
+
+  _showLoadingUI() {
+    if (this._errorTimeout) Mainloop.source_remove(this._errorTimeout);
+    if (this._animationTimeout) Mainloop.source_remove(this._animationTimeout);
   }
 
   on_desklet_removed() {
