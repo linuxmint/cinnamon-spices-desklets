@@ -421,13 +421,39 @@ MyDesklet.prototype = {
                 flags: Gio.SubprocessFlags.NONE
             });
             proc.init(null);
+            proc.wait_async(null, (proc, res) => {
+                try {
+                    proc.wait_finish(res);
+                } catch (waitError) {
+                    global.logError(`prime-select command failed: ${waitError.message}`);
+                    Main.notifyError(_('NVIDIA Profile Switch Failed'), _(`Could not switch to ${profile.name} mode. Please check logs for details.`));
+                }
+            });
         } catch (e) {
-            Util.spawn(['gnome-terminal', '--', 'bash', '-c', `sudo prime-select ${profile.command}; read`]);
+            global.logError(`Failed to spawn pkexec prime-select: ${e.message}`);
+            Main.notifyError(_('NVIDIA Profile Switch Failed'), _(`Failed to request privileges for ${profile.name} mode.`));
         }
         
         if (rebootNow) {
             Mainloop.timeout_add_seconds(this.rebootDelay || 10, function() {
-                Util.spawn(['systemctl', 'reboot']);
+                try {
+                    let rebootProc = new Gio.Subprocess({
+                        argv: ['pkexec', 'systemctl', 'reboot'],
+                        flags: Gio.SubprocessFlags.NONE
+                    });
+                    rebootProc.init(null);
+                    rebootProc.wait_async(null, (proc, res) => {
+                        try {
+                            proc.wait_finish(res);
+                        } catch (waitError) {
+                            global.logError(`Reboot command failed: ${waitError.message}`);
+                            Main.notifyError(_('Reboot Failed'), _('Could not initiate system reboot.'));
+                        }
+                    });
+                } catch (e) {
+                    global.logError(`Failed to spawn pkexec systemctl reboot: ${e.message}`);
+                    Main.notifyError(_('Reboot Failed'), _('Failed to request privileges for system reboot.'));
+                }
                 return false;
             });
         }
@@ -615,8 +641,23 @@ MyDesklet.prototype = {
             let targetState = enabled ? '1' : '0';
             let currentState = this._readFromFile(filePath).trim();
             if (currentState !== targetState) {
-                let cmd = `echo ${targetState} | pkexec tee ${filePath} > /dev/null`;
-                Util.spawn(['gnome-terminal', '--', 'bash', '-c', cmd]);
+                let proc = new Gio.Subprocess({
+                    argv: ['pkexec', 'tee', filePath],
+                    flags: Gio.SubprocessFlags.NONE
+                });
+                proc.init(null);
+                proc.communicate_utf8_async(targetState + '\n', null, (proc, res) => {
+                    try {
+                        proc.communicate_utf8_finish(res);
+                        let [, stderr] = proc.get_successful_finish_data();
+                        if (stderr && stderr.length > 0) {
+                            global.logWarning(`pkexec tee stderr for ${featureName}: ${stderr}`);
+                        }
+                    } catch (e) {
+                        global.logError(`Failed to apply ${featureName}: ${e.message}`);
+                        Main.notifyError(_('Power Desklet'), _(`Failed to apply ${featureName}. Make sure PolicyKit rules are set up correctly.`));
+                    }
+                });
             }
         } catch (e) {
             global.logError(`Failed to apply ${featureName}: ${e}`);
