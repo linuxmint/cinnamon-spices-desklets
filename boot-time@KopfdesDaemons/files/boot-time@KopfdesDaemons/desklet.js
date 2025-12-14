@@ -3,6 +3,9 @@ const GLib = imports.gi.GLib;
 const St = imports.gi.St;
 const Gettext = imports.gettext;
 const Mainloop = imports.mainloop;
+const Clutter = imports.gi.Clutter;
+const Cairo = imports.cairo;
+const Pango = imports.gi.Pango;
 
 const UUID = "boot-time@KopfdesDaemons";
 
@@ -25,10 +28,7 @@ class MyDesklet extends Desklet.Desklet {
     let bootTimes;
     try {
       bootTimes = await BootTimeHelper.getBootTime();
-      global.log("bootTimes: ", bootTimes);
     } catch (e) {
-      global.log("ERROR: ", e);
-      global.log("LoadingUI: ", this.loadingUIisLoaded);
       if (!this.loadingUIisLoaded) {
         this.loadingUIisLoaded = true;
         this._getLoadingUI();
@@ -42,6 +42,10 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _getBootTimeUI(bootTimes) {
+    if (this._animationTimeout) {
+      Mainloop.source_remove(this._animationTimeout);
+      this._animationTimeout = null;
+    }
     const mainContainer = new St.BoxLayout({ vertical: true, style_class: "boot-time-main-container" });
     const headline = new St.Label({ text: _("Boot Time"), style_class: "boot-time-headline" });
     mainContainer.add_child(headline);
@@ -77,14 +81,78 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _getLoadingUI() {
-    const loadingContainer = new St.BoxLayout({ vertical: true, style_class: "boot-time-loading-container" });
-    const loadingLabel = new St.Label({ text: _("Boot process not yet complete..."), style_class: "boot-time-loading-label" });
-    loadingContainer.add_child(loadingLabel);
+    const loadingContainer = new St.Widget({
+      layout_manager: new Clutter.BinLayout(),
+      style_class: "boot-time-loading-container",
+    });
+    loadingContainer.add_child(this._drawCircle());
+    const loadingLabel = new Clutter.Text({
+      text: _("Boot process not yet complete..."),
+      line_wrap: true,
+      line_alignment: Pango.Alignment.CENTER,
+      color: new Clutter.Color({ red: 255, green: 255, blue: 255, alpha: 255 }),
+    });
+    const bin = new St.Bin({
+      style_class: "boot-time-loading-bin",
+      child: loadingLabel,
+      x_align: St.Align.MIDDLE,
+      y_align: St.Align.MIDDLE,
+    });
+    loadingContainer.add_child(bin);
     this.setContent(loadingContainer);
+    this._startAnimation();
+  }
+
+  _startAnimation() {
+    this.animationState = 0;
+    if (this._animationTimeout) Mainloop.source_remove(this._animationTimeout);
+    this._animationTimeout = Mainloop.timeout_add(16, this._updateAnimation.bind(this));
+  }
+
+  _updateAnimation() {
+    this.animationState += 0.01;
+    if (this.animationState > 1) this.animationState = 0;
+
+    this.circleActor.set_scale(this.animationState, this.animationState);
+    this.circleActor.set_opacity(Math.floor(255 * (1 - this.animationState)));
+
+    return true;
+  }
+
+  _drawCircle() {
+    this.circleActor = new Clutter.Actor({
+      width: 200,
+      height: 200,
+    });
+    const canvas = new Clutter.Canvas();
+    canvas.set_size(200 * global.ui_scale, 200 * global.ui_scale);
+
+    canvas.connect("draw", (canvas, cr, width, height) => {
+      cr.save();
+      cr.setOperator(Cairo.Operator.CLEAR);
+      cr.paint();
+      cr.restore();
+      cr.setOperator(Cairo.Operator.OVER);
+      cr.scale(width, height);
+      cr.translate(0.5, 0.5);
+
+      cr.setSourceRGBA(1, 1, 1, 1);
+      cr.setLineWidth(0.05);
+      cr.arc(0, 0, 0.4, 0, Math.PI * 2);
+      cr.stroke();
+
+      return true;
+    });
+
+    canvas.invalidate();
+    this.circleActor.set_content(canvas);
+    this.circleActor.set_pivot_point(0.5, 0.5);
+    return this.circleActor;
   }
 
   on_desklet_removed() {
     if (this._timeout) Mainloop.source_remove(this._timeout);
+    if (this._animationTimeout) Mainloop.source_remove(this._animationTimeout);
   }
 }
 

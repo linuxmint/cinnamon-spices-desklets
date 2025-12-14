@@ -17,3 +17,11 @@
 .boot-time-row-total {
   border: solid 1px rgb(47, 255, 82);
 }
+
+.boot-time-loading-bin {
+  max-width: 10em;
+}
+
+.boot-time-loading-label {
+  max-width: 10em;
+}
