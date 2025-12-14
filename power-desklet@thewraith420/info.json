@@ -1,10 +1,6 @@
 {
-    "uuid": "power-desklet@thewraith420",
-    "name": "Power Desklet",
-    "description": "A desklet that combines Lenovo Vantage battery features with Nvidia Prime profile switching.",
-    "version": "1.0.0",
-    "author": "thewraith420",
-    "max-instances": 1,
-    "multiversion": true,
-    "cinnamon-version": ["5.0", "5.2", "5.4", "5.6", "6.0", "6.2"]
+  "author": "thewraith420",
+  "name": "Power Desklet",
+  "description": "A desklet for managing power settings.",
+  "uuid": "power-desklet@thewraith420"
 }

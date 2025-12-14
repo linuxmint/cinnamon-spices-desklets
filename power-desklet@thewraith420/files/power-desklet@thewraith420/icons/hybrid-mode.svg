@@ -1,0 +1,47 @@
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle for better visibility -->
+  <circle cx="24" cy="24" r="22" fill="#2a2a2a" opacity="0.8"/>
+  
+  <!-- Balance scale base -->
+  <rect x="21" y="36" width="6" height="8" fill="#ffffff" rx="1"/>
+  <rect x="16" y="42" width="16" height="3" fill="#ffffff" rx="1.5"/>
+  
+  <!-- Central pole -->
+  <rect x="21.5" y="16" width="5" height="20" fill="#ffffff" rx="1"/>
+  
+  <!-- Balance beam with highlight -->
+  <rect x="6" y="16" width="36" height="3" fill="#76b900" rx="1.5"/>
+  <rect x="6" y="16" width="36" height="1.5" fill="#90d010" rx="0.75" opacity="0.6"/>
+  
+  <!-- Left scale pan (Intel) -->
+  <path d="M 8 19 L 20 19 L 18 30 L 10 30 Z" fill="#0071c5" stroke="#00aeef" stroke-width="1.5"/>
+  <line x1="14" y1="16" x2="14" y2="19" stroke="#ffffff" stroke-width="2"/>
+  
+  <!-- Intel "i" logo style -->
+  <rect x="12.5" y="23" width="3" height="5" fill="#ffffff" rx="0.5"/>
+  <circle cx="14" cy="21" r="1.2" fill="#ffffff"/>
+  
+  <!-- Right scale pan (Nvidia) -->
+  <path d="M 28 19 L 40 19 L 38 30 L 30 30 Z" fill="#1a1a1a" stroke="#76b900" stroke-width="1.5"/>
+  <line x1="34" y1="16" x2="34" y2="19" stroke="#ffffff" stroke-width="2"/>
+  
+  <!-- Nvidia eye logo style -->
+  <ellipse cx="34" cy="24.5" rx="3.5" ry="2.5" fill="#76b900"/>
+  <ellipse cx="34" cy="24.5" rx="1.5" ry="1.2" fill="#1a1a1a"/>
+  
+  <!-- Balance indicator circles -->
+  <circle cx="14" cy="13" r="2.5" fill="#0071c5" stroke="#00aeef" stroke-width="1"/>
+  <circle cx="34" cy="13" r="2.5" fill="#76b900" stroke="#90d010" stroke-width="1"/>
+  
+  <!-- Center fulcrum triangle with glow -->
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <path d="M 24 19 L 20 24 L 28 24 Z" fill="#76b900" filter="url(#glow)"/>
+</svg>

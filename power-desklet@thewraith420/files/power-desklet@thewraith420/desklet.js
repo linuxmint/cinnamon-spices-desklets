@@ -10,12 +10,10 @@ const ByteArray = imports.byteArray;
 const Gettext = imports.gettext;
 const Settings = imports.ui.settings;
 const Clutter = imports.gi.Clutter;
-const Cairo = imports.cairo;
 const ModalDialog = imports.ui.modalDialog;
 
 const UUID = "power-desklet@thewraith420";
 
-// l10n/translation support
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
 function _(str) {
@@ -38,61 +36,52 @@ MyDesklet.prototype = {
 
         this.metadata = metadata;
         this.desklet_id = desklet_id;
-
         this.settings = new Settings.DeskletSettings(this, UUID, desklet_id);
         
-        // Lenovo Vantage Settings
+        // Battery Settings
         this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "conservation-mode-enabled", "conservation_mode_enabled", this._onSettingChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "rapid-charge-enabled", "rapid_charge_enabled", this._onSettingChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "update-interval", "update_interval", this._onSettingChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "background-opacity", "background_opacity", this._onAppearanceChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "background-color", "background_color", this._onAppearanceChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "accent-color", "accent_color", this._onAppearanceChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "desklet-width", "desklet_width", this._onAppearanceChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "font-size", "font_size", this._onAppearanceChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "border-radius", "border_radius", this._onAppearanceChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "show-quick-toggles", "show_quick_toggles", this._onLayoutChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "button-size", "button_size", this._onAppearanceChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "horizontal-layout", "horizontal_layout", this._onLayoutChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "battery-display-mode", "battery_display_mode", this._onLayoutChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "show-charge-status", "show_charge_status", this._onLayoutChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "show-time-remaining", "show_time_remaining", this._onLayoutChanged, null);
 
-        // Nvidia Switcher Settings
-        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "layout", "nvidia_layout", this.on_settings_changed, null);
-        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "rebootDelay", "rebootDelay", null, null);
-        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "showDescriptions", "showDescriptions", this.on_settings_changed, null);
-        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "showProfileNames", "showProfileNames", this.on_settings_changed, null);
-        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "accentColor", "nvidia_accentColor", this.on_settings_changed, null);
-        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "fontSize", "nvidia_fontSize", this.on_settings_changed, null);
-        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "modeIndicatorIconSize", "modeIndicatorIconSize", this.on_settings_changed, null);
-        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "modeIndicatorTextSize", "modeIndicatorTextSize", this.on_settings_changed, null);
-        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "showModeIndicator", "showModeIndicator", this.on_settings_changed, null);
-        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "skipConfirmDialog", "skipConfirmDialog", null, null);
-        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "intelIcon", "intelIcon", this.on_settings_changed, null);
-        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "onDemandIcon", "onDemandIcon", this.on_settings_changed, null);
-        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "nvidiaIcon", "nvidiaIcon", this.on_settings_changed, null);
-        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "useSystemIcons", "useSystemIcons", this.on_settings_changed, null);
-        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "iconSize", "nvidia_iconSize", this.on_settings_changed, null);
-        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "rebootMethod", "rebootMethod", null, null);
+        // Nvidia Settings
+        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "show-nvidia-profiles", "show_nvidia_profiles", this._onLayoutChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "nvidia-button-size", "nvidia_button_size", this._onAppearanceChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "nvidia-accent-color", "nvidia_accent_color", this._onAppearanceChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "reboot-delay", "rebootDelay", null, null);
+        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "skip-confirm-dialog", "skipConfirmDialog", null, null);
 
         try {
-            // Initialize default settings
+            // Initialize defaults
             if (!this.update_interval) this.update_interval = 5;
-            if (this.background_opacity === undefined) this.background_opacity = 1.0;
-            if (!this.background_color) this.background_color = 'rgb(40, 70, 130)';
+            if (this.background_opacity === undefined) this.background_opacity = 0.95;
+            if (!this.background_color) this.background_color = 'rgb(30, 30, 35)';
             if (!this.accent_color) this.accent_color = 'rgb(255, 255, 255)';
-            if (!this.desklet_width) this.desklet_width = 280;
-            if (!this.font_size) this.font_size = 48;
-            if (!this.border_radius) this.border_radius = 16;
+            if (!this.nvidia_accent_color) this.nvidia_accent_color = 'rgb(118, 185, 0)';
+            if (!this.font_size) this.font_size = 42;
+            if (!this.border_radius) this.border_radius = 12;
             if (!this.button_size) this.button_size = 50;
+            if (!this.battery_display_mode) this.battery_display_mode = 'horizontal';
             if (this.show_quick_toggles === undefined) this.show_quick_toggles = true;
-            if (this.horizontal_layout === undefined) this.horizontal_layout = false;
-
-            this.currentPercentage = 0;
-            this.nvidiaSettingsFile = GLib.get_home_dir() + '/.config/nvidia-profile-switcher-settings.json';
-            this.nvidia_settings = this.loadNvidiaSettings();
+            if (this.show_charge_status === undefined) this.show_charge_status = true;
+            if (this.show_time_remaining === undefined) this.show_time_remaining = true;
+            if (this.show_nvidia_profiles === undefined) this.show_nvidia_profiles = true;
+            if (!this.nvidia_button_size) this.nvidia_button_size = 50;
+            if (!this.rebootDelay) this.rebootDelay = 10;
+            if (this.skipConfirmDialog === undefined) this.skipConfirmDialog = false;
 
             this._buildUI();
             this._update();
-            this.updateProfiles();
+            this.updateNvidiaProfiles();
 
         } catch (e) {
             global.logError("Power Desklet Init Error: " + e);
@@ -111,179 +100,350 @@ MyDesklet.prototype = {
             style: this._getWindowStyle()
         });
 
-        this.lenovoBox = new St.BoxLayout({ vertical: true });
-        this.nvidiaBox = new St.BoxLayout({ vertical: true, style: 'padding: 10px;' });
+        // Battery section with compact padding
+        let batterySection = new St.BoxLayout({
+            vertical: this.battery_display_mode === 'vertical',
+            style: 'padding: 10px; spacing: 12px;'
+        });
+        this.window.add_child(batterySection);
 
-        this._buildLenovoUI(this.lenovoBox);
-        this.setupNvidiaUI(this.nvidiaBox);
+        let batteryBox = this._createBatteryBar();
+        batterySection.add_child(batteryBox);
 
-        this.window.add(this.lenovoBox);
-        this.window.add(this.nvidiaBox);
-        this.nvidiaBox.hide(); 
+        if (this.show_quick_toggles) {
+            let buttonGrid = this._createButtonGrid();
+            batterySection.add_child(buttonGrid);
+        }
+
+        // Separator line if nvidia profiles shown
+        if (this.show_nvidia_profiles) {
+            let separator = new St.Widget({
+                style: 'height: 1px; background-color: rgba(255, 255, 255, 0.1); margin: 0px 10px;'
+            });
+            this.window.add_child(separator);
+            this._createNvidiaProfiles();
+        }
 
         this.setContent(this.window);
     },
 
-    toggleNvidiaView: function() {
-        if (this.nvidiaBox.visible) {
-            this.nvidiaBox.hide();
-            this.lenovoBox.show();
-        } else {
-            this.lenovoBox.hide();
-            this.nvidiaBox.show();
-        }
-    },
-
-    _buildLenovoUI: function(container) {
-        if (this.horizontal_layout) {
-            this._buildHorizontalLayout(container);
-        } else {
-            this._buildVerticalLayout(container);
-        }
-    },
-    
-    _buildVerticalLayout: function(container) {
-        let batteryBox = new St.BoxLayout({
+    _createBatteryBar: function() {
+        let batteryContainer = new St.BoxLayout({
             vertical: true,
-            style: 'padding: 20px;',
-            x_align: Clutter.ActorAlign.CENTER
+            style: 'spacing: 8px; min-width: 200px;'
         });
-        container.add(batteryBox, { expand: true });
 
-        this._createBatteryBar(batteryBox);
-
-        this.statusLabel = new St.Label({
-            text: "Full in 3h 30m",
-            style: this._getStatusStyle(),
-            x_align: Clutter.ActorAlign.CENTER
-        });
-        batteryBox.add(this.statusLabel, { x_align: Clutter.ActorAlign.CENTER });
-
-        if (this.show_quick_toggles) {
-            this._createButtonGrid(container);
-        }
-    },
-
-    _buildHorizontalLayout: function(container) {
-        let mainBox = new St.BoxLayout({ vertical: false });
-        container.add(mainBox);
-
-        let batteryBox = new St.BoxLayout({
-            vertical: true,
-            style: 'padding: 20px;',
-            x_align: Clutter.ActorAlign.CENTER
-        });
-        mainBox.add(batteryBox, { expand: true });
-
-        this._createBatteryBar(batteryBox);
-
-        this.statusLabel = new St.Label({
-            text: "Full in 3h 30m",
-            style: this._getStatusStyle(),
-            x_align: Clutter.ActorAlign.CENTER
-        });
-        batteryBox.add(this.statusLabel, { x_align: Clutter.ActorAlign.CENTER });
-
-        if (this.show_quick_toggles) {
-            this._createButtonGrid(mainBox);
-        }
-    },
-
-    _createBatteryBar: function(container) {
-        let barWidth = this.horizontal_layout ? 200 : Math.min(240, this.desklet_width - 40);
-        let barHeight = 80;
-
-        this.batteryBarBox = new St.BoxLayout({
-            vertical: false,
-            style: `width: ${barWidth}px; height: ${barHeight}px; margin-bottom: 15px;`,
-            x_align: Clutter.ActorAlign.CENTER
-        });
-        container.add(this.batteryBarBox, { x_align: Clutter.ActorAlign.CENTER });
-
-        this.batteryBarBg = new St.Widget({
-            style: `background-color: rgba(255, 255, 255, 0.15); border-radius: 12px; width: ${barWidth}px; height: ${barHeight}px;`
-        });
-        this.batteryBarBox.add_child(this.batteryBarBg);
-
-        this.batteryBarFill = new St.Widget({
-            style: `background-color: rgba(255, 255, 255, 0.4); border-radius: 12px; width: ${barWidth}px; height: ${barHeight}px;`,
-            x: 0,
-            y: 0
-        });
-        this.batteryBarBg.add_child(this.batteryBarFill);
-
+        // Battery percentage display
         this.percentageLabel = new St.Label({
-            text: "95%",
-            style: this._getPercentageStyle(),
-            x_align: Clutter.ActorAlign.CENTER,
-            y_align: Clutter.ActorAlign.CENTER
+            style_class: 'battery-percentage-label',
+            style: this._getPercentageStyle()
         });
-        this.batteryBarBg.add_child(this.percentageLabel);
+        batteryContainer.add_child(this.percentageLabel);
+
+        // Battery bar (show based on mode)
+        if (this.battery_display_mode !== 'percentage-only') {
+            let barContainer = new St.BoxLayout({
+                vertical: true,
+                style: 'spacing: 4px;'
+            });
+            batteryContainer.add_child(barContainer);
+
+            this.batteryBar = new St.Bin({
+                style: 'background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 18px; min-width: 180px;'
+            });
+            
+            this.batteryBarFill = new St.Bin({
+                style: 'background: linear-gradient(90deg, rgb(76, 175, 80) 0%, rgb(139, 195, 74) 100%); border-radius: 8px; height: 14px; margin: 2px;'
+            });
+            
+            this.batteryBar.set_child(this.batteryBarFill);
+            barContainer.add_child(this.batteryBar);
+
+            // Status labels on same line
+            if (this.show_charge_status || this.show_time_remaining) {
+                let statusRow = new St.BoxLayout({
+                    vertical: false,
+                    style: 'spacing: 8px;'
+                });
+                barContainer.add_child(statusRow);
+
+                if (this.show_charge_status) {
+                    this.chargeLabel = new St.Label({
+                        style: this._getStatusStyle(),
+                        x_expand: true,
+                        x_align: Clutter.ActorAlign.START
+                    });
+                    statusRow.add_child(this.chargeLabel);
+                }
+
+                if (this.show_time_remaining) {
+                    this.timeLabel = new St.Label({
+                        style: this._getStatusStyle(),
+                        x_expand: true,
+                        x_align: Clutter.ActorAlign.END
+                    });
+                    statusRow.add_child(this.timeLabel);
+                }
+            }
+        }
+
+        return batteryContainer;
     },
 
-    _updateBatteryBar: function(percentage) {
-        if (!this.batteryBarFill) return;
-        let barWidth = this.horizontal_layout ? 200 : Math.min(240, this.desklet_width - 40);
-        let fillWidth = Math.round((percentage / 100) * barWidth);
-        this.batteryBarFill.set_style(`background-color: rgba(255, 255, 255, 0.4); border-radius: 12px; width: ${fillWidth}px; height: 80px;`);
-        let labelWidth = this.percentageLabel.width;
-        let labelX = (barWidth - labelWidth) / 2;
-        this.percentageLabel.set_position(labelX, 20);
-    },
-
-    _createButtonGrid: function(container) {
-        let buttonGridBox = new St.Widget({
-            layout_manager: new Clutter.GridLayout({ orientation: Clutter.Orientation.VERTICAL }),
-            style: 'padding: 0px 15px 15px 15px;'
+    _createButtonGrid: function() {
+        let gridContainer = new St.BoxLayout({
+            vertical: true,
+            style: 'spacing: 6px;'
         });
-        container.add(buttonGridBox);
 
-        let gridLayout = buttonGridBox.layout_manager;
+        let grid = new Clutter.Actor({
+            layout_manager: new Clutter.GridLayout({
+                orientation: Clutter.Orientation.VERTICAL,
+                column_spacing: 6,
+                row_spacing: 6
+            })
+        });
+        let gridLayout = grid.get_layout_manager();
+        gridContainer.add_child(grid);
+
         this.actionButtons = [];
 
-        this.createActionButton(gridLayout, 0, 0, "🔋", "Battery Saver");
-        this.createActionButton(gridLayout, 1, 0, "⚡", "Rapid");
-        this.createActionButton(gridLayout, 0, 1, "🔒", "Lock");
-        this.createActionButton(gridLayout, 1, 1, "👁️", "Nvidia");
-        this.createActionButton(gridLayout, 0, 2, "⚙", "Settings");
+        // 2x2 grid layout with improved icons
+        this.conservationButton = this.createActionButton(
+            gridLayout, 0, 0, 
+            "battery-level-80-symbolic", 
+            "Battery Saver",
+            "rgba(255, 193, 7, 0.25)",
+            "rgba(255, 193, 7, 0.6)"
+        );
+        this.conservationButton.connect('clicked', Lang.bind(this, function() {
+            this.conservation_mode_enabled = !this.conservation_mode_enabled;
+            this._applyConservationMode();
+        }));
+
+        this.rapidButton = this.createActionButton(
+            gridLayout, 1, 0, 
+            "battery-full-charging-symbolic", 
+            "Rapid",
+            "rgba(33, 150, 243, 0.25)",
+            "rgba(33, 150, 243, 0.6)"
+        );
+        this.rapidButton.connect('clicked', Lang.bind(this, function() {
+            this.rapid_charge_enabled = !this.rapid_charge_enabled;
+            this._applyRapidCharge();
+        }));
+
+        let lockButton = this.createActionButton(
+            gridLayout, 0, 1, 
+            "changes-prevent-symbolic", 
+            "Lock",
+            "rgba(156, 39, 176, 0.25)",
+            "rgba(156, 39, 176, 0.6)"
+        );
+        lockButton.connect('clicked', Lang.bind(this, function() {
+            try {
+                Util.spawnCommandLine("cinnamon-screensaver-command -l");
+            } catch (e) {
+                Main.notify(_('Power Desklet'), _('Failed to lock screen'));
+            }
+        }));
+
+        let settingsButton = this.createActionButton(
+            gridLayout, 1, 1, 
+            "emblem-system-symbolic", 
+            "Settings",
+            "rgba(96, 125, 139, 0.25)",
+            "rgba(96, 125, 139, 0.6)"
+        );
+        settingsButton.connect('clicked', Lang.bind(this, function() {
+            try {
+                Util.spawnCommandLine("cinnamon-settings desklets " + this.metadata.uuid + " " + this.desklet_id);
+            } catch (e) {
+                global.logError('Failed to open settings: ' + e);
+            }
+        }));
+
+        return gridContainer;
     },
 
-    createActionButton: function(gridLayout, col, row, icon, label) {
+    createActionButton: function(gridLayout, col, row, icon, label, activeColor, activeBorder) {
         let buttonSize = this.button_size || 50;
-        let buttonBox = new St.BoxLayout({ vertical: true, style: 'spacing: 6px;', x_align: Clutter.ActorAlign.CENTER });
-        let button = new St.Button({ reactive: true, track_hover: true, can_focus: true, style: this._getButtonBaseStyle(), width: buttonSize, height: buttonSize });
-        let iconSize = Math.round(buttonSize * 0.36);
-        let iconLabel = new St.Label({ text: icon, style: `font-size: ${iconSize}pt;`, x_align: Clutter.ActorAlign.CENTER, y_align: Clutter.ActorAlign.CENTER });
-        button.set_child(iconLabel);
-        let textLabel = new St.Label({ text: label, style: this._getButtonLabelStyle(), x_align: Clutter.ActorAlign.CENTER });
-        buttonBox.add(button);
-        buttonBox.add(textLabel);
-        gridLayout.attach(buttonBox, col, row, 1, 1);
+        
+        let button = new St.Button({
+            reactive: true,
+            track_hover: true,
+            can_focus: true,
+            style: this._getButtonBaseStyle(),
+            width: buttonSize,
+            height: buttonSize
+        });
 
-        if (label === "Battery Saver") {
-            this.conservationButton = button;
-            button.connect('clicked', () => { this.conservation_mode_enabled = !this.conservation_mode_enabled; this._applyConservationMode(); });
-        } else if (label === "Rapid") {
-            this.rapidButton = button;
-            button.connect('clicked', () => { this.rapid_charge_enabled = !this.rapid_charge_enabled; this._applyRapidCharge(); });
-        } else if (label === "Lock") {
-            button.connect('clicked', () => { try { Util.spawnCommandLine("cinnamon-screensaver-command -l"); } catch (e) { Main.notify(_('Power Desklet'), _('Failed to lock screen')); } });
-        } else if (label === "Nvidia") {
-            button.connect('clicked', () => { this.toggleNvidiaView(); });
-        } else if (label === "Settings") {
-            button.connect('clicked', () => { try { Util.spawnCommandLine("cinnamon-settings desklets " + this.metadata.uuid + " " + this.desklet_id); } catch (e) { global.logError('Failed to open settings: ' + e); } });
+        // Store colors for this button
+        button._activeColor = activeColor;
+        button._activeBorder = activeBorder;
+
+        let iconSize = Math.round(buttonSize * 0.55);
+        let iconWidget = new St.Icon({
+            icon_name: icon,
+            icon_size: iconSize,
+            style: 'color: ' + (this.accent_color || 'rgb(255, 255, 255)') + ';'
+        });
+
+        button.set_child(iconWidget);
+        gridLayout.attach(button, col, row, 1, 1);
+        
+        button.connect('enter-event', Lang.bind(this, function() {
+            button.set_style(this._getButtonHoverStyle());
+        }));
+        button.connect('leave-event', Lang.bind(this, function() {
+            this._updateButtonStyle(button, label);
+        }));
+
+        this.actionButtons.push({ button: button, label: label });
+        return button;
+    },
+
+    _createNvidiaProfiles: function() {
+        let nvidiaContainer = new St.BoxLayout({
+            vertical: false,
+            style: 'padding: 8px 10px; spacing: 6px;',
+            x_expand: true
+        });
+        this.window.add_child(nvidiaContainer);
+
+        this.nvidiaProfileBox = nvidiaContainer;
+        this.updateNvidiaProfiles();
+    },
+
+    getCurrentProfile: function() {
+        try {
+            let [res, out] = GLib.spawn_command_line_sync('prime-select query');
+            if (res) return out.toString().trim();
+        } catch (e) {}
+        return 'unknown';
+    },
+
+    updateNvidiaProfiles: function() {
+        if (!this.nvidiaProfileBox) return;
+        this.nvidiaProfileBox.destroy_all_children();
+        
+        let currentProfile = this.getCurrentProfile();
+        
+        let profiles = [
+            { name: 'Intel', command: 'intel', icon: 'intel-mode.svg' },
+            { name: 'Hybrid', command: 'on-demand', icon: 'hybrid-mode.svg' },
+            { name: 'Nvidia', command: 'nvidia', icon: 'nvidia-settings' }
+        ];
+        
+        profiles.forEach(p => this.addNvidiaProfileButton(p, p.command === currentProfile));
+    },
+
+    addNvidiaProfileButton: function(profile, isCurrent) {
+        let buttonSize = this.nvidia_button_size || 50;
+        
+        let button = new St.Button({
+            reactive: !isCurrent,
+            track_hover: true,
+            can_focus: true,
+            style: isCurrent ? this._getNvidiaButtonActiveStyle() : this._getNvidiaButtonBaseStyle(),
+            x_expand: true
+        });
+        
+        let buttonBox = new St.BoxLayout({
+            vertical: true,
+            style: 'spacing: 6px;',
+            x_align: Clutter.ActorAlign.CENTER
+        });
+        button.set_child(buttonBox);
+
+        let icon;
+        if (profile.icon.endsWith('.svg')) {
+            let file = Gio.file_new_for_path(this.metadata.path + "/icons/" + profile.icon);
+            let gicon = new Gio.FileIcon({ file: file });
+            icon = new St.Icon({
+                gicon: gicon,
+                icon_size: Math.round(buttonSize * 0.65)
+            });
+        } else {
+            icon = new St.Icon({
+                icon_name: profile.icon,
+                icon_size: Math.round(buttonSize * 0.65)
+            });
         }
+        buttonBox.add_child(icon);
 
-        button.connect('enter-event', () => button.set_style(this._getButtonHoverStyle()));
-        button.connect('leave-event', () => this._updateButtonStyle(button, label));
+        let textLabel = new St.Label({
+            text: profile.name,
+            style: this._getButtonLabelStyle()
+        });
+        buttonBox.add_child(textLabel);
 
-        if (!this.actionButtons) this.actionButtons = [];
-        this.actionButtons.push({ button: button, label: label, icon: iconLabel });
+        this.nvidiaProfileBox.add_child(button, { expand: true });
+
+        if (!isCurrent) {
+            button.connect('clicked', Lang.bind(this, function() {
+                if (this.skipConfirmDialog) {
+                    this.switchProfile(profile, false);
+                } else {
+                    this.showConfirmDialog(profile);
+                }
+            }));
+
+            button.connect('enter-event', Lang.bind(this, function() {
+                button.set_style(this._getNvidiaButtonHoverStyle());
+            }));
+            button.connect('leave-event', Lang.bind(this, function() {
+                button.set_style(this._getNvidiaButtonBaseStyle());
+            }));
+        }
+    },
+
+    showConfirmDialog: function(profile) {
+        let dialog = new ModalDialog.ModalDialog();
+        dialog.contentLayout.add(new St.Label({
+            text: `Switch to ${profile.name} mode?\n\nReboot required to apply changes.`,
+            style: 'font-size: 12pt; padding: 20px; color: #fff;'
+        }));
+        
+        dialog.setButtons([
+            { label: 'Cancel', action: Lang.bind(this, function() { dialog.close(); }), key: Clutter.Escape },
+            { label: 'Reboot Later', action: Lang.bind(this, function() { dialog.close(); this.switchProfile(profile, false); }) },
+            { label: 'Reboot Now', action: Lang.bind(this, function() { dialog.close(); this.switchProfile(profile, true); }) }
+        ]);
+        
+        dialog.open();
+    },
+
+    switchProfile: function(profile, rebootNow) {
+        try {
+            let proc = new Gio.Subprocess({
+                argv: ['pkexec', 'prime-select', profile.command],
+                flags: Gio.SubprocessFlags.NONE
+            });
+            proc.init(null);
+        } catch (e) {
+            Util.spawn(['gnome-terminal', '--', 'bash', '-c', `sudo prime-select ${profile.command}; read`]);
+        }
+        
+        if (rebootNow) {
+            Mainloop.timeout_add_seconds(this.rebootDelay || 10, function() {
+                Util.spawn(['systemctl', 'reboot']);
+                return false;
+            });
+        }
+        
+        Mainloop.timeout_add_seconds(2, Lang.bind(this, this.updateNvidiaProfiles));
     },
 
     _updateButtonStyle: function(button, label) {
-        let isActive = (label === "Battery Saver" && this.conservation_mode_enabled) || (label === "Rapid" && this.rapid_charge_enabled);
-        button.set_style(isActive ? this._getButtonActiveStyle() : this._getButtonBaseStyle());
+        let isActive = (label === "Battery Saver" && this.conservation_mode_enabled) || 
+                       (label === "Rapid" && this.rapid_charge_enabled);
+        
+        if (isActive && button._activeColor) {
+            button.set_style(this._getButtonCustomActiveStyle(button._activeColor, button._activeBorder));
+        } else {
+            button.set_style(this._getButtonBaseStyle());
+        }
     },
     
     _onSettingChanged: function() {
@@ -292,34 +452,170 @@ MyDesklet.prototype = {
         this._update();
     },
 
-    _onAppearanceChanged: function() { this._buildUI(); this._update(); },
-    _onLayoutChanged: function() { this._buildUI(); this._update(); },
+    _onAppearanceChanged: function() {
+        this._buildUI();
+        this._update();
+        this.updateNvidiaProfiles();
+    },
+
+    _onLayoutChanged: function() {
+        this._buildUI();
+        this._update();
+        this.updateNvidiaProfiles();
+    },
 
     _getWindowStyle: function() {
-        let opacity = this.background_opacity || 1.0;
-        let bgColor = this.background_color || 'rgb(40, 70, 130)';
-        let width = this.horizontal_layout ? 'auto' : (this.desklet_width || 280);
-        let radius = this.border_radius || 16;
-        let widthStyle = this.horizontal_layout ? '' : `min-width: ${width}px; max-width: ${width}px;`;
+        let opacity = this.background_opacity || 0.95;
+        let bgColor = this.background_color || 'rgb(30, 30, 35)';
+        let radius = this.border_radius || 12;
+        
         let rgbMatch = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
-        if (rgbMatch) return `background-color: rgba(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]}, ${opacity}); border-radius: ${radius}px; padding: 0px; ${widthStyle}`;
-        return `background-color: ${bgColor}; border-radius: ${radius}px; padding: 0px; ${widthStyle}`;
+        if (rgbMatch) {
+            return `background-color: rgba(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]}, ${opacity}); 
+                    border-radius: ${radius}px; 
+                    padding: 0px;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);`;
+        }
+        return `background-color: ${bgColor}; 
+                border-radius: ${radius}px; 
+                padding: 0px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);`;
     },
-    _getPercentageStyle: function() { return `color: ${this.accent_color || 'rgb(255, 255, 255)'}; font-size: ${this.font_size || 48}pt; font-weight: bold;`; },
-    _getStatusStyle: function() { return `color: ${this.accent_color || 'rgb(255, 255, 255)'}; font-size: 11pt; margin-top: 8px; opacity: 0.8;`; },
-    _getButtonBaseStyle: function() { let s = this.button_size || 50; return `background-color: rgba(255, 255, 255, 0.1); border-radius: ${s/2}px; min-width: ${s}px; min-height: ${s}px; width: ${s}px; height: ${s}px;`; },
-    _getButtonActiveStyle: function() { let s = this.button_size || 50; return `background-color: rgba(255, 255, 255, 0.25); border-radius: ${s/2}px; border: 2px solid rgba(255, 255, 255, 0.4); min-width: ${s}px; min-height: ${s}px; width: ${s}px; height: ${s}px;`; },
-    _getButtonHoverStyle: function() { let s = this.button_size || 50; return `background-color: rgba(255, 255, 255, 0.2); border-radius: ${s/2}px; min-width: ${s}px; min-height: ${s}px; width: ${s}px; height: ${s}px;`; },
-    _getButtonLabelStyle: function() { return `color: ${this.accent_color || 'rgb(255, 255, 255)'}; font-size: 8pt; text-align: center; opacity: 0.8;`; },
 
-    _applyConservationMode: function() { this._writeToSysFile("/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode", this.conservation_mode_enabled, "Conservation Mode"); },
-    _applyRapidCharge: function() { this._writeToSysFile("/sys/bus/platform/drivers/legion/PNP0C09:00/rapidcharge", this.rapid_charge_enabled, "Rapid Charge"); },
+    _getPercentageStyle: function() {
+        let color = this.accent_color || 'rgb(255, 255, 255)';
+        let size = this.font_size || 42;
+        return `color: ${color}; 
+                font-size: ${size}pt; 
+                font-weight: bold; 
+                text-align: center;`;
+    },
+
+    _getStatusStyle: function() {
+        let color = this.accent_color || 'rgb(255, 255, 255)';
+        return `color: ${color}; 
+                font-size: 9pt; 
+                opacity: 0.7; 
+                text-align: left;`;
+    },
+
+    _getButtonBaseStyle: function() {
+        let buttonSize = this.button_size || 50;
+        let buttonRadius = Math.round(buttonSize / 2);
+        return `background-color: rgba(255, 255, 255, 0.08); 
+                border-radius: ${buttonRadius}px; 
+                border: 1px solid rgba(255, 255, 255, 0.12);
+                padding: 0px;
+                transition-duration: 150ms;`;
+    },
+
+    _getButtonCustomActiveStyle: function(bgColor, borderColor) {
+        let buttonSize = this.button_size || 50;
+        let buttonRadius = Math.round(buttonSize / 2);
+        return `background-color: ${bgColor}; 
+                border: 2px solid ${borderColor}; 
+                border-radius: ${buttonRadius}px;
+                padding: 0px;`;
+    },
+
+    _getButtonActiveStyle: function() {
+        let buttonSize = this.button_size || 50;
+        let buttonRadius = Math.round(buttonSize / 2);
+        return `background-color: rgba(76, 175, 80, 0.25); 
+                border: 2px solid rgba(76, 175, 80, 0.6); 
+                border-radius: ${buttonRadius}px;
+                padding: 0px;`;
+    },
+
+    _getButtonHoverStyle: function() {
+        let buttonSize = this.button_size || 50;
+        let buttonRadius = Math.round(buttonSize / 2);
+        return `background-color: rgba(255, 255, 255, 0.15);
+                border: 1px solid rgba(255, 255, 255, 0.25);
+                border-radius: ${buttonRadius}px;
+                padding: 0px;`;
+    },
+
+    _getNvidiaButtonBaseStyle: function() {
+        let nvidiaColor = this.nvidia_accent_color || 'rgb(118, 185, 0)';
+        let rgbMatch = nvidiaColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+        if (rgbMatch) {
+            return `background-color: rgba(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]}, 0.15); 
+                    border: 1px solid rgba(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]}, 0.3);
+                    border-radius: 8px;
+                    padding: 8px;
+                    transition-duration: 150ms;`;
+        }
+        return `background-color: rgba(118, 185, 0, 0.15); 
+                border: 1px solid rgba(118, 185, 0, 0.3);
+                border-radius: 8px;
+                padding: 8px;
+                transition-duration: 150ms;`;
+    },
+
+    _getNvidiaButtonActiveStyle: function() {
+        let nvidiaColor = this.nvidia_accent_color || 'rgb(118, 185, 0)';
+        let rgbMatch = nvidiaColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+        if (rgbMatch) {
+            return `background-color: rgba(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]}, 0.35); 
+                    border: 2px solid rgb(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]});
+                    border-radius: 8px;
+                    padding: 8px;`;
+        }
+        return `background-color: rgba(118, 185, 0, 0.35); 
+                border: 2px solid rgb(118, 185, 0);
+                border-radius: 8px;
+                padding: 8px;`;
+    },
+
+    _getNvidiaButtonHoverStyle: function() {
+        let nvidiaColor = this.nvidia_accent_color || 'rgb(118, 185, 0)';
+        let rgbMatch = nvidiaColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+        if (rgbMatch) {
+            return `background-color: rgba(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]}, 0.25);
+                    border: 1px solid rgba(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]}, 0.5);
+                    border-radius: 8px;
+                    padding: 8px;`;
+        }
+        return `background-color: rgba(118, 185, 0, 0.25);
+                border: 1px solid rgba(118, 185, 0, 0.5);
+                border-radius: 8px;
+                padding: 8px;`;
+    },
+
+    _getButtonLabelStyle: function() {
+        let color = this.accent_color || 'rgb(255, 255, 255)';
+        return `color: ${color}; 
+                font-size: 8.5pt; 
+                font-weight: 500;
+                text-align: center; 
+                opacity: 0.85;`;
+    },
+
+    _applyConservationMode: function() {
+        this._writeToSysFile(
+            "/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode",
+            this.conservation_mode_enabled,
+            "Conservation Mode"
+        );
+        if (this.conservationButton) this._updateButtonStyle(this.conservationButton, "Battery Saver");
+    },
+
+    _applyRapidCharge: function() {
+        this._writeToSysFile(
+            "/sys/bus/platform/drivers/legion/PNP0C09:00/rapidcharge",
+            this.rapid_charge_enabled,
+            "Rapid Charge"
+        );
+        if (this.rapidButton) this._updateButtonStyle(this.rapidButton, "Rapid");
+    },
 
     _writeToSysFile: function(filePath, enabled, featureName) {
         try {
             let targetState = enabled ? '1' : '0';
-            if (this._readFromFile(filePath).trim() !== targetState) {
-                let cmd = `echo ${targetState} | pkexec tee ${filePath}`;
+            let currentState = this._readFromFile(filePath).trim();
+            if (currentState !== targetState) {
+                let cmd = `echo ${targetState} | pkexec tee ${filePath} > /dev/null`;
                 Util.spawn(['gnome-terminal', '--', 'bash', '-c', cmd]);
             }
         } catch (e) {
@@ -327,11 +623,32 @@ MyDesklet.prototype = {
         }
     },
 
+    _updateBatteryBar: function(percentage) {
+        if (!this.batteryBarFill) return;
+        
+        let width = Math.round((percentage / 100) * 176);
+        this.batteryBarFill.set_width(width);
+        
+        // Color gradient based on battery level
+        let gradient;
+        if (percentage > 60) {
+            gradient = 'background: linear-gradient(90deg, rgb(76, 175, 80) 0%, rgb(139, 195, 74) 100%);';
+        } else if (percentage > 20) {
+            gradient = 'background: linear-gradient(90deg, rgb(255, 193, 7) 0%, rgb(255, 235, 59) 100%);';
+        } else {
+            gradient = 'background: linear-gradient(90deg, rgb(244, 67, 54) 0%, rgb(239, 83, 80) 100%);';
+        }
+        
+        this.batteryBarFill.set_style(gradient + ' border-radius: 8px; height: 14px; margin: 2px;');
+    },
+
     _update: function() {
         const ENERGY_NOW = "/sys/class/power_supply/BAT1/energy_now";
         const ENERGY_FULL = "/sys/class/power_supply/BAT1/energy_full";
         const POWER_NOW = "/sys/class/power_supply/BAT1/power_now";
         const STATUS = "/sys/class/power_supply/BAT1/status";
+        const CONSERVATION_FILE = "/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode";
+        const RAPID_CHARGE_FILE = "/sys/bus/platform/drivers/legion/PNP0C09:00/rapidcharge";
 
         try {
             let energyNow = parseInt(this._readFromFile(ENERGY_NOW));
@@ -342,29 +659,58 @@ MyDesklet.prototype = {
             this.percentageLabel.set_text(percentage + "%");
             this._updateBatteryBar(percentage);
 
-            let statusText = status;
-            if (status === "Charging" || status === "Discharging") {
-                let powerNow = parseInt(this._readFromFile(POWER_NOW));
-                if (powerNow > 0) {
-                    let timeHours = (status === "Charging" ? (energyFull - energyNow) : energyNow) / powerNow;
-                    let hours = Math.floor(timeHours);
-                    let minutes = Math.round((timeHours - hours) * 60);
-                    statusText = (status === "Charging" ? `Full in ${hours}h ${minutes}m` : `${hours}h ${minutes}m remaining`);
+            // Update charge status if enabled
+            if (this.show_charge_status && this.chargeLabel) {
+                let statusIcon = "";
+                if (status === "Charging") {
+                    statusIcon = "⚡ ";
+                } else if (status === "Full") {
+                    statusIcon = "✓ ";
                 }
-            } else if (status === "Full") {
-                statusText = "Fully charged";
+                this.chargeLabel.set_text(statusIcon + status);
             }
-            this.statusLabel.set_text(statusText);
 
-            try { this.conservation_mode_enabled = this._readFromFile("/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode").trim() === '1'; this._updateButtonStyle(this.conservationButton, "Battery Saver"); } catch(e) {}
-            try { this.rapid_charge_enabled = this._readFromFile("/sys/bus/platform/drivers/legion/PNP0C09:00/rapidcharge").trim() === '1'; this._updateButtonStyle(this.rapidButton, "Rapid"); } catch (e) {}
+            // Calculate time remaining if enabled
+            if (this.show_time_remaining && this.timeLabel) {
+                if (status === "Charging" || status === "Discharging") {
+                    let powerNow = parseInt(this._readFromFile(POWER_NOW));
+                    if (powerNow > 0) {
+                        let timeHours = (status === "Charging" ? (energyFull - energyNow) : energyNow) / powerNow;
+                        let hours = Math.floor(timeHours);
+                        let minutes = Math.round((timeHours - hours) * 60);
+                        
+                        if (status === "Charging") {
+                            this.timeLabel.set_text(`Full in ${hours}h ${minutes}m`);
+                        } else {
+                            this.timeLabel.set_text(`${hours}h ${minutes}m remaining`);
+                        }
+                    } else {
+                        this.timeLabel.set_text("");
+                    }
+                } else {
+                    this.timeLabel.set_text("");
+                }
+            }
+
+            // Update button states
+            try {
+                this.conservation_mode_enabled = this._readFromFile(CONSERVATION_FILE).trim() === '1';
+                if (this.conservationButton) this._updateButtonStyle(this.conservationButton, "Battery Saver");
+            } catch(e) {}
+            
+            try {
+                this.rapid_charge_enabled = this._readFromFile(RAPID_CHARGE_FILE).trim() === '1';
+                if (this.rapidButton) this._updateButtonStyle(this.rapidButton, "Rapid");
+            } catch (e) {}
         } catch (e) {
             this.percentageLabel.set_text("--");
-            this.statusLabel.set_text("Error loading battery info");
+            if (this.chargeLabel) this.chargeLabel.set_text("Error");
+            if (this.timeLabel) this.timeLabel.set_text("Battery info unavailable");
+            global.logError("Power Desklet Update Error: " + e);
         }
         
         if (this.timeout) Mainloop.source_remove(this.timeout);
-        this.timeout = Mainloop.timeout_add_seconds(this.update_interval || 5, () => this._update());
+        this.timeout = Mainloop.timeout_add_seconds(this.update_interval || 5, Lang.bind(this, this._update));
         return true;
     },
 
@@ -374,79 +720,7 @@ MyDesklet.prototype = {
         throw new Error("Could not read file: " + path);
     },
 
-    on_desklet_removed: function() { if (this.timeout) Mainloop.source_remove(this.timeout); },
-
-    // Nvidia Switcher Functions
-    on_settings_changed: function() { this._buildUI(); this.updateProfiles(); },
-    loadNvidiaSettings: function() { try { let [ok, contents] = GLib.file_get_contents(this.nvidiaSettingsFile); if (ok) return JSON.parse(contents.toString()); } catch (e) {} return { showLogoutWarning: true }; },
-    saveNvidiaSettings: function() { try { GLib.file_set_contents(this.nvidiaSettingsFile, JSON.stringify(this.nvidia_settings)); } catch (e) {} },
-    setupNvidiaUI: function(container) {
-        let isHorizontal = (this.nvidia_layout === "horizontal");
-        let accentColor = this.nvidia_accentColor || '#76b900';
-        
-        container.style = 'background-color: rgba(0, 0, 0, 0.85); border-radius: 10px; padding: 12px; border: 2px solid ' + accentColor + ';';
-        container.vertical = !isHorizontal;
-
-        if (isHorizontal) {
-            let leftBox = new St.BoxLayout({ vertical: true, style: 'margin-right: 15px;', x_align: Clutter.ActorAlign.CENTER });
-            let title = new St.Label({ text: 'Nvidia\nPrime', style: 'font-size: 14pt; font-weight: bold; color: ' + accentColor + '; line-height: 1.3;', x_align: Clutter.ActorAlign.CENTER });
-            leftBox.add(title);
-            if (this.showModeIndicator) {
-                this.nvidiaCurrentLabel = new St.Label({ text: 'Loading...', style: 'font-size: 11pt; color: #cccccc; margin-top: 8px; max-width: 100px;', x_align: Clutter.ActorAlign.CENTER });
-                leftBox.add(this.nvidiaCurrentLabel);
-            }
-            container.add_child(leftBox);
-            this.nvidiaProfileBox = new St.BoxLayout({ vertical: false, style: 'spacing: 6px;' });
-            container.add_child(this.nvidiaProfileBox);
-        } else {
-            let titleBox = new St.BoxLayout({ vertical: false, style: 'margin-bottom: 10px;' });
-            let title = new St.Label({ text: 'Nvidia Prime', style: 'font-size: 14pt; font-weight: bold; color: ' + accentColor + ';' });
-            titleBox.add(title);
-            container.add_child(titleBox);
-            if (this.showModeIndicator) {
-                this.nvidiaCurrentLabel = new St.Label({ text: 'Loading...', style: 'font-size: 11pt; color: #cccccc; margin-bottom: 10px;' });
-                container.add_child(this.nvidiaCurrentLabel);
-            }
-            this.nvidiaProfileBox = new St.BoxLayout({ vertical: true, style: 'spacing: 6px;' });
-            container.add_child(this.nvidiaProfileBox);
-        }
-    },
-    getCurrentProfile: function() { try { let [res, out] = GLib.spawn_command_line_sync('prime-select query'); if (res) return out.toString().trim(); } catch (e) {} return 'unknown'; },
-    updateProfiles: function() {
-        if (!this.nvidiaProfileBox) return;
-        this.nvidiaProfileBox.destroy_all_children();
-        let currentProfile = this.getCurrentProfile();
-        
-        let profiles = [ { name: 'Intel', command: 'intel', description: 'Power Saving', icon: this.intelIcon || 'intel-mode' }, { name: 'On-Demand', command: 'on-demand', description: 'Hybrid Mode', icon: this.onDemandIcon || 'hybrid-mode' }, { name: 'Nvidia', command: 'nvidia', description: 'Performance', icon: this.nvidiaIcon || 'nvidia-settings' }];
-        profiles.forEach(p => this.addProfileButton(p, p.command === currentProfile));
-    },
-    addProfileButton: function(profile, isCurrent) {
-        let isHorizontal = (this.nvidia_layout === "horizontal");
-        let accentColor = this.nvidia_accentColor || '#76b900';
-        let button = new St.Button({ style: `background-color: ${isCurrent ? accentColor+'66' : '#3c3c3c80'}; border-radius: 6px; padding: ${isHorizontal ? '10px 15px' : '10px'}; width: ${isHorizontal ? 'auto' : '100%'}; border: ${isCurrent ? '1px solid '+accentColor : 'none'};`, reactive: !isCurrent });
-        let box = new St.BoxLayout({ vertical: true, x_align: Clutter.ActorAlign.CENTER });
-        if (this.useSystemIcons) {
-            box.add_child(new St.Icon({ icon_name: profile.icon, icon_size: this.nvidia_iconSize || 24, style: `color: ${isCurrent ? accentColor : '#fff'};` }));
-            if (this.showProfileNames) box.add_child(new St.Label({ text: profile.name + (isCurrent ? ' ✓' : ''), style: `color: ${isCurrent ? accentColor : '#fff'}; font-size: 11pt; font-weight: bold; margin-top: 4px;` }));
-        } else {
-            box.add_child(new St.Label({ text: (profile.icon.length > 2 ? '❓' : profile.icon) + (this.showProfileNames ? ' ' + profile.name : '') + (isCurrent ? ' ✓' : ''), style: `color: ${isCurrent ? accentColor : '#fff'}; font-size: 11pt; font-weight: bold;` }));
-        }
-        if (this.showDescriptions) box.add_child(new St.Label({ text: profile.description, style: 'color: #aaa; font-size: 9pt; margin-top: 2px;' }));
-        button.set_child(box);
-        if (!isCurrent) button.connect('clicked', () => { if (this.skipConfirmDialog) this.switchProfile(profile, false); else this.showConfirmDialog(profile); });
-        this.nvidiaProfileBox.add_child(button);
-    },
-    showConfirmDialog: function(profile) {
-        let dialog = new ModalDialog.ModalDialog();
-        dialog.contentLayout.add(new St.Label({ text: `Switch to ${profile.name} mode?\n\nReboot required to apply changes.`, style: 'font-size: 12pt; padding: 20px; color: #fff;' }));
-        dialog.setButtons([{ label: 'Cancel', action: () => dialog.close(), key: Clutter.Escape }, { label: 'Reboot Later', action: () => { dialog.close(); this.switchProfile(profile, false); } }, { label: 'Reboot Now', action: () => { dialog.close(); this.switchProfile(profile, true); } }]);
-        dialog.open();
-    },
-    switchProfile: function(profile, rebootNow) {
-        try { let proc = new Gio.Subprocess({ argv: ['pkexec', 'prime-select', profile.command], flags: Gio.SubprocessFlags.NONE }); proc.init(null); } catch (e) { Util.spawn(['gnome-terminal', '--', 'bash', '-c', `sudo prime-select ${profile.command}; read`]); }
-        if (rebootNow) {
-            Mainloop.timeout_add_seconds(this.rebootDelay || 10, () => { Util.spawn(['systemctl', 'reboot']); return false; });
-        }
-        Mainloop.timeout_add_seconds(2, () => this.updateProfiles());
+    on_desklet_removed: function() {
+        if (this.timeout) Mainloop.source_remove(this.timeout);
     }
 };

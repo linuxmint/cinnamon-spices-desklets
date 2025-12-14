@@ -1,13 +1,19 @@
 {
+    "battery-header": {
+        "type": "header",
+        "description": "Battery Widget Settings"
+    },
     "conservation-mode-enabled": {
-        "type": "checkbox",
+        "type": "switch",
         "default": false,
-        "description": "Conservation Mode"
+        "description": "Enable Battery Conservation Mode",
+        "tooltip": "Limits battery charge to extend battery lifespan"
     },
     "rapid-charge-enabled": {
-        "type": "checkbox",
+        "type": "switch",
         "default": false,
-        "description": "Rapid Charge"
+        "description": "Enable Rapid Charge Mode",
+        "tooltip": "Charges the battery faster when enabled"
     },
     "update-interval": {
         "type": "spinbutton",
@@ -16,164 +22,142 @@
         "max": 60,
         "step": 1,
         "units": "seconds",
-        "description": "Update Interval"
+        "description": "Update Interval",
+        "tooltip": "How often to refresh battery status"
+    },
+    "battery-display-header": {
+        "type": "header",
+        "description": "Battery Display Options"
+    },
+    "battery-display-mode": {
+        "type": "combobox",
+        "default": "horizontal",
+        "description": "Battery Display Mode",
+        "tooltip": "Choose how to display the battery information",
+        "options": {
+            "Horizontal (Bar + Percentage)": "horizontal",
+            "Vertical (Bar + Percentage)": "vertical",
+            "Percentage Only": "percentage-only",
+            "Compact (Small Bar)": "compact"
+        }
+    },
+    "show-charge-status": {
+        "type": "switch",
+        "default": true,
+        "description": "Show Charge Status",
+        "tooltip": "Display charging/discharging status text"
+    },
+    "show-time-remaining": {
+        "type": "switch",
+        "default": true,
+        "description": "Show Time Remaining",
+        "tooltip": "Display estimated time remaining or time to full charge"
+    },
+    "appearance-header": {
+        "type": "header",
+        "description": "Appearance Settings"
     },
     "background-opacity": {
-        "type": "spinbutton",
-        "default": 1.0,
-        "min": 0.0,
+        "type": "scale",
+        "default": 0.95,
+        "min": 0.1,
         "max": 1.0,
-        "step": 0.1,
-        "description": "Background Opacity"
+        "step": 0.05,
+        "description": "Background Opacity",
+        "tooltip": "Adjust the transparency of the desklet background"
     },
     "background-color": {
         "type": "colorchooser",
-        "default": "rgb(40, 70, 130)",
-        "description": "Background Color"
+        "default": "rgb(30, 30, 35)",
+        "description": "Background Color",
+        "tooltip": "Main desklet background color"
     },
     "accent-color": {
         "type": "colorchooser",
         "default": "rgb(255, 255, 255)",
-        "description": "Accent Color"
-    },
-    "desklet-width": {
-        "type": "spinbutton",
-        "default": 280,
-        "min": 100,
-        "max": 1000,
-        "step": 10,
-        "units": "px",
-        "description": "Desklet Width"
+        "description": "Text & Accent Color",
+        "tooltip": "Color for all text and icons"
     },
     "font-size": {
         "type": "spinbutton",
-        "default": 48,
-        "min": 8,
-        "max": 128,
-        "step": 1,
+        "default": 42,
+        "min": 20,
+        "max": 96,
+        "step": 2,
         "units": "pt",
-        "description": "Font Size"
+        "description": "Percentage Font Size",
+        "tooltip": "Font size for the battery percentage"
     },
     "border-radius": {
         "type": "spinbutton",
-        "default": 16,
+        "default": 12,
         "min": 0,
-        "max": 50,
-        "step": 1,
+        "max": 30,
+        "step": 2,
         "units": "px",
-        "description": "Border Radius"
-    },
-    "show-quick-toggles": {
-        "type": "checkbox",
-        "default": true,
-        "description": "Show Quick Toggles"
+        "description": "Border Radius",
+        "tooltip": "Radius of the desklet's corners"
     },
     "button-size": {
         "type": "spinbutton",
         "default": 50,
-        "min": 20,
-        "max": 100,
-        "step": 1,
+        "min": 30,
+        "max": 80,
+        "step": 5,
         "units": "px",
-        "description": "Button Size"
+        "description": "Button Size",
+        "tooltip": "Size of the circular quick action buttons"
     },
-    "horizontal-layout": {
-        "type": "checkbox",
-        "default": false,
-        "description": "Horizontal Layout"
+    "layout-header": {
+        "type": "header",
+        "description": "Layout Settings"
     },
-    "layout": {
-        "type": "combobox",
-        "default": "vertical",
-        "options": {
-            "Vertical": "vertical",
-            "Horizontal": "horizontal"
-        },
-        "description": "Nvidia Switcher Layout"
+    "show-quick-toggles": {
+        "type": "switch",
+        "default": true,
+        "description": "Show Quick Toggle Buttons",
+        "tooltip": "Show or hide the grid of quick action buttons"
     },
-    "rebootDelay": {
+    "nvidia-header": {
+        "type": "header",
+        "description": "Nvidia Prime Switcher Settings"
+    },
+    "show-nvidia-profiles": {
+        "type": "switch",
+        "default": true,
+        "description": "Show Nvidia Profile Buttons",
+        "tooltip": "Display Nvidia Prime profile switcher buttons at the bottom"
+    },
+    "nvidia-button-size": {
+        "type": "spinbutton",
+        "default": 50,
+        "min": 30,
+        "max": 80,
+        "step": 5,
+        "units": "px",
+        "description": "Nvidia Button Size",
+        "tooltip": "Size of the Nvidia profile buttons"
+    },
+    "nvidia-accent-color": {
+        "type": "colorchooser",
+        "default": "rgb(118, 185, 0)",
+        "description": "Nvidia Accent Color",
+        "tooltip": "Color for Nvidia profile buttons (default: Nvidia green)"
+    },
+    "reboot-delay": {
         "type": "spinbutton",
         "default": 10,
         "min": 5,
         "max": 300,
-        "step": 1,
+        "step": 5,
         "units": "seconds",
-        "description": "Reboot Countdown"
+        "description": "Reboot Delay",
+        "tooltip": "Countdown before automatic reboot"
     },
-    "showDescriptions": {
-        "type": "checkbox",
-        "default": true,
-        "description": "Show Profile Descriptions"
-    },
-    "showProfileNames": {
-        "type": "checkbox",
-        "default": true,
-        "description": "Show Profile Names"
-    },
-    "showModeIndicator": {
-        "type": "checkbox",
-        "default": true,
-        "description": "Show Current Mode Indicator"
-    },
-    "skipConfirmDialog": {
-        "type": "checkbox",
+    "skip-confirm-dialog": {
+        "type": "switch",
         "default": false,
-        "description": "Skip Reboot Confirmation Dialog"
-    },
-    "rebootMethod": {
-        "type": "combobox",
-        "default": "systemctl",
-        "options": {
-            "systemctl reboot": "systemctl",
-            "shutdown -r now": "shutdown"
-        },
-        "description": "Reboot Command"
-    },
-    "useSystemIcons": {
-        "type": "checkbox",
-        "default": true,
-        "description": "Use System Icons"
-    },
-    "iconSize": {
-        "type": "spinbutton",
-        "default": 24,
-        "min": 12,
-        "max": 64,
-        "step": 1,
-        "units": "px",
-        "description": "Profile Icon Size"
-    },
-    "intelIcon": {
-        "type": "iconfilechooser",
-        "default": "intel-mode",
-        "description": "Intel Mode Icon"
-    },
-    "onDemandIcon": {
-        "type": "iconfilechooser",
-        "default": "hybrid-mode",
-        "description": "On-Demand Mode Icon"
-    },
-    "nvidiaIcon": {
-        "type": "iconfilechooser",
-        "default": "nvidia-settings",
-        "description": "Nvidia Mode Icon"
-    },
-    "modeIndicatorIconSize": {
-        "type": "spinbutton",
-        "default": 24,
-        "min": 12,
-        "max": 64,
-        "step": 1,
-        "units": "px",
-        "description": "Mode Indicator Icon Size"
-    },
-    "modeIndicatorTextSize": {
-        "type": "spinbutton",
-        "default": 7,
-        "min": 5,
-        "max": 14,
-        "step": 1,
-        "units": "pt",
-        "description": "Mode Indicator Text Size"
+        "description": "Skip Reboot Confirmation Dialog",
+        "tooltip": "Switch profiles without showing the confirmation dialog"
     }
 }
