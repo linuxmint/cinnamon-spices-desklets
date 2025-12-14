@@ -1,6 +1,6 @@
 {
   "author": "thewraith420",
-  "name": "Power Desklet",
-  "description": "A desklet for managing power settings.",
+  "name": "Lenovo-Power-Pro",
+  "description": "Manage battery settings (conservation mode, rapid charge), monitor battery status, and control Nvidia GPU profiles with a customizable interface. Made and tested on a Lenovo LOQ 15IRH8. Requires ideapad and legion kernel drivers. Should work for most LOQ and Legion Series Laptops with Hybrid Graphics configuration.",
   "uuid": "power-desklet@thewraith420"
 }
