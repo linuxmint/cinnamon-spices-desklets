@@ -130,8 +130,8 @@
     },
     "nvidia-button-size": {
         "type": "spinbutton",
-        "default": 50,
-        "min": 30,
+        "default": 28,
+        "min": 20,
         "max": 80,
         "step": 5,
         "units": "px",

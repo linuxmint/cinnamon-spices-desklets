@@ -148,12 +148,18 @@ MyDesklet.prototype = {
             });
             batteryContainer.add_child(barContainer);
 
+            // Create battery bar with accent color background
+            let accentColor = this.accent_color || 'rgb(255, 255, 255)';
+            let rgbMatch = accentColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+            let barBgColor = rgbMatch ? `rgba(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]}, 0.1)` : 'rgba(255, 255, 255, 0.1)';
+            let barFillColor = rgbMatch ? `rgb(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]})` : 'rgb(255, 255, 255)';
+            
             this.batteryBar = new St.Bin({
-                style: 'background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 18px; min-width: 180px;'
+                style: `background-color: ${barBgColor}; border-radius: 10px; height: 18px; min-width: 180px;`
             });
             
             this.batteryBarFill = new St.Bin({
-                style: 'background: linear-gradient(90deg, rgb(76, 175, 80) 0%, rgb(139, 195, 74) 100%); border-radius: 8px; height: 14px; margin: 2px;'
+                style: `background-color: ${barFillColor}; border-radius: 8px; height: 14px; margin: 2px;`
             });
             
             this.batteryBar.set_child(this.batteryBarFill);
@@ -209,12 +215,17 @@ MyDesklet.prototype = {
         this.actionButtons = [];
 
         // 2x2 grid layout with improved icons
+        let nvidiaColor = this.nvidia_accent_color || 'rgb(118, 185, 0)';
+        let nvRgbMatch = nvidiaColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+        let nvidiaActiveColor = nvRgbMatch ? `rgba(${nvRgbMatch[1]}, ${nvRgbMatch[2]}, ${nvRgbMatch[3]}, 0.25)` : "rgba(118, 185, 0, 0.25)";
+        let nvidiaBorderColor = nvRgbMatch ? `rgba(${nvRgbMatch[1]}, ${nvRgbMatch[2]}, ${nvRgbMatch[3]}, 0.6)` : "rgba(118, 185, 0, 0.6)";
+        
         this.conservationButton = this.createActionButton(
             gridLayout, 0, 0, 
             "battery-level-80-symbolic", 
             "Battery Saver",
-            "rgba(255, 193, 7, 0.25)",
-            "rgba(255, 193, 7, 0.6)"
+            nvidiaActiveColor,
+            nvidiaBorderColor
         );
         this.conservationButton.connect('clicked', Lang.bind(this, function() {
             this.conservation_mode_enabled = !this.conservation_mode_enabled;
@@ -225,8 +236,8 @@ MyDesklet.prototype = {
             gridLayout, 1, 0, 
             "battery-full-charging-symbolic", 
             "Rapid",
-            "rgba(33, 150, 243, 0.25)",
-            "rgba(33, 150, 243, 0.6)"
+            nvidiaActiveColor,
+            nvidiaBorderColor
         );
         this.rapidButton.connect('clicked', Lang.bind(this, function() {
             this.rapid_charge_enabled = !this.rapid_charge_enabled;
@@ -306,7 +317,7 @@ MyDesklet.prototype = {
     _createNvidiaProfiles: function() {
         let nvidiaContainer = new St.BoxLayout({
             vertical: false,
-            style: 'padding: 8px 10px; spacing: 6px;',
+            style: 'padding: 8px 10px; spacing: 4px;',
             x_expand: true
         });
         this.window.add_child(nvidiaContainer);
@@ -351,7 +362,7 @@ MyDesklet.prototype = {
         
         let buttonBox = new St.BoxLayout({
             vertical: true,
-            style: 'spacing: 6px;',
+            style: 'spacing: 3px;',
             x_align: Clutter.ActorAlign.CENTER
         });
         button.set_child(buttonBox);
@@ -461,6 +472,31 @@ MyDesklet.prototype = {
         Mainloop.timeout_add_seconds(2, Lang.bind(this, this.updateNvidiaProfiles));
     },
 
+    _applySettings: function() {
+        let commands = [];
+        if (this.conservation_mode_enabled !== undefined) {
+            commands.push("/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode");
+            commands.push(this.conservation_mode_enabled ? "1" : "0");
+        }
+        if (this.rapid_charge_enabled !== undefined) {
+            commands.push("/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/rapid_charge");
+            commands.push(this.rapid_charge_enabled ? "1" : "0");
+        }
+
+        if (commands.length > 0) {
+            let argv = [GLib.get_home_dir() + "/.local/share/cinnamon/desklets/power-desklet@thewraith420/power-desklet-helper.py", "write-sys-files"];
+            for (let i = 0; i < commands.length; i++) {
+                argv.push(commands[i]);
+            }
+            try {
+                Util.spawnCommandLineAsync(argv);
+            } catch (e) {
+                global.logError("Failed to apply power settings: " + e);
+            }
+        }
+        this._update();
+    },
+
     _updateButtonStyle: function(button, label) {
         let isActive = (label === "Battery Saver" && this.conservation_mode_enabled) || 
                        (label === "Rapid" && this.rapid_charge_enabled);
@@ -473,8 +509,7 @@ MyDesklet.prototype = {
     },
     
     _onSettingChanged: function() {
-        this._applyConservationMode();
-        this._applyRapidCharge();
+        this._applySettings();
         this._update();
     },
 
@@ -569,13 +604,13 @@ MyDesklet.prototype = {
             return `background-color: rgba(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]}, 0.15); 
                     border: 1px solid rgba(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]}, 0.3);
                     border-radius: 8px;
-                    padding: 8px;
+                    padding: 4px;
                     transition-duration: 150ms;`;
         }
         return `background-color: rgba(118, 185, 0, 0.15); 
                 border: 1px solid rgba(118, 185, 0, 0.3);
                 border-radius: 8px;
-                padding: 8px;
+                padding: 4px;
                 transition-duration: 150ms;`;
     },
 
@@ -586,12 +621,12 @@ MyDesklet.prototype = {
             return `background-color: rgba(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]}, 0.35); 
                     border: 2px solid rgb(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]});
                     border-radius: 8px;
-                    padding: 8px;`;
+                    padding: 4px;`;
         }
         return `background-color: rgba(118, 185, 0, 0.35); 
                 border: 2px solid rgb(118, 185, 0);
                 border-radius: 8px;
-                padding: 8px;`;
+                padding: 4px;`;
     },
 
     _getNvidiaButtonHoverStyle: function() {
@@ -601,12 +636,12 @@ MyDesklet.prototype = {
             return `background-color: rgba(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]}, 0.25);
                     border: 1px solid rgba(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]}, 0.5);
                     border-radius: 8px;
-                    padding: 8px;`;
+                    padding: 4px;`;
         }
         return `background-color: rgba(118, 185, 0, 0.25);
                 border: 1px solid rgba(118, 185, 0, 0.5);
                 border-radius: 8px;
-                padding: 8px;`;
+                padding: 4px;`;
     },
 
     _getButtonLabelStyle: function() {
@@ -618,69 +653,18 @@ MyDesklet.prototype = {
                 opacity: 0.85;`;
     },
 
-    _applyConservationMode: function() {
-        this._writeToSysFile(
-            "/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode",
-            this.conservation_mode_enabled,
-            "Conservation Mode"
-        );
-        if (this.conservationButton) this._updateButtonStyle(this.conservationButton, "Battery Saver");
-    },
-
-    _applyRapidCharge: function() {
-        this._writeToSysFile(
-            "/sys/bus/platform/drivers/legion/PNP0C09:00/rapidcharge",
-            this.rapid_charge_enabled,
-            "Rapid Charge"
-        );
-        if (this.rapidButton) this._updateButtonStyle(this.rapidButton, "Rapid");
-    },
-
-    _writeToSysFile: function(filePath, enabled, featureName) {
-        try {
-            let targetState = enabled ? '1' : '0';
-            let currentState = this._readFromFile(filePath).trim();
-            if (currentState !== targetState) {
-                let proc = new Gio.Subprocess({
-                    argv: ['pkexec', 'tee', filePath],
-                    flags: Gio.SubprocessFlags.NONE
-                });
-                proc.init(null);
-                proc.communicate_utf8_async(targetState + '\n', null, (proc, res) => {
-                    try {
-                        proc.communicate_utf8_finish(res);
-                        let [, stderr] = proc.get_successful_finish_data();
-                        if (stderr && stderr.length > 0) {
-                            global.logWarning(`pkexec tee stderr for ${featureName}: ${stderr}`);
-                        }
-                    } catch (e) {
-                        global.logError(`Failed to apply ${featureName}: ${e.message}`);
-                        Main.notifyError(_('Power Desklet'), _(`Failed to apply ${featureName}. Make sure PolicyKit rules are set up correctly.`));
-                    }
-                });
-            }
-        } catch (e) {
-            global.logError(`Failed to apply ${featureName}: ${e}`);
-        }
-    },
-
     _updateBatteryBar: function(percentage) {
         if (!this.batteryBarFill) return;
         
         let width = Math.round((percentage / 100) * 176);
         this.batteryBarFill.set_width(width);
         
-        // Color gradient based on battery level
-        let gradient;
-        if (percentage > 60) {
-            gradient = 'background: linear-gradient(90deg, rgb(76, 175, 80) 0%, rgb(139, 195, 74) 100%);';
-        } else if (percentage > 20) {
-            gradient = 'background: linear-gradient(90deg, rgb(255, 193, 7) 0%, rgb(255, 235, 59) 100%);';
-        } else {
-            gradient = 'background: linear-gradient(90deg, rgb(244, 67, 54) 0%, rgb(239, 83, 80) 100%);';
-        }
+        // Use accent color for the bar
+        let accentColor = this.accent_color || 'rgb(255, 255, 255)';
+        let rgbMatch = accentColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+        let barColor = rgbMatch ? `rgb(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]})` : 'rgb(255, 255, 255)';
         
-        this.batteryBarFill.set_style(gradient + ' border-radius: 8px; height: 14px; margin: 2px;');
+        this.batteryBarFill.set_style(`background-color: ${barColor}; border-radius: 8px; height: 14px; margin: 2px;`);
     },
 
     _update: function() {
