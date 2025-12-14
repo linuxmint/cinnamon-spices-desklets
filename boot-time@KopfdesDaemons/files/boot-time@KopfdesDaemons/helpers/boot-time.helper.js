@@ -4,7 +4,7 @@ class BootTimeHelper {
   static async getBootTime() {
     const out = await new Promise((resolve, reject) => {
       try {
-        let [success, pid, stdin, stdout, stderr] = GLib.spawn_async_with_pipes(
+        const [success, pid, stdin, stdout, stderr] = GLib.spawn_async_with_pipes(
           null,
           ["sh", "-c", "LC_ALL=C systemd-analyze"],
           null,
@@ -35,9 +35,6 @@ class BootTimeHelper {
       }
     });
     if (out) {
-      const bootNotFinishedRegex = /Bootup is not yet finished/;
-      if (out.match(bootNotFinishedRegex)) throw new Error("Bootup is not yet finished");
-
       const timeRegex = /((?:\d+min\s+)?[\d.]+s)/;
 
       const firmware = out.match(new RegExp(`${timeRegex.source}\\s+\\(firmware\\)`));
@@ -56,6 +53,6 @@ class BootTimeHelper {
         { name: "Graphical", label: _("Graphical:"), value: graphical ? graphical[1] : null },
       ];
     }
-    throw new Error("No output");
+    throw new Error("Bootup is not yet finished");
   }
 }

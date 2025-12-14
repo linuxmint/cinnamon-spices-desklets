@@ -26,17 +26,16 @@ class MyDesklet extends Desklet.Desklet {
 
   async _setupUI() {
     let bootTimes;
+    if (this._loadingTimeoutId) Mainloop.source_remove(this._loadingTimeoutId);
     try {
-      this._showLoadingUI();
       bootTimes = await BootTimeHelper.getBootTime();
     } catch (e) {
       if (e.message === "Bootup is not yet finished") {
         if (!this.loadingUIisLoaded) {
           this.loadingUIisLoaded = true;
           this._getLoadingUI();
-          return;
         }
-        this._timeout = Mainloop.timeout_add_seconds(1, () => this._setupUI());
+        this._loadingTimeoutId = Mainloop.timeout_add_seconds(1, () => this._setupUI());
         return;
       } else {
         this._showErrorUI(String(e));
@@ -44,13 +43,12 @@ class MyDesklet extends Desklet.Desklet {
       }
     }
     if (bootTimes) this._getBootTimeUI(bootTimes);
-    if (this._timeout) Mainloop.source_remove(this._timeout);
   }
 
   _getBootTimeUI(bootTimes) {
-    if (this._animationTimeout) {
-      Mainloop.source_remove(this._animationTimeout);
-      this._animationTimeout = null;
+    if (this._animationTimeoutId) {
+      Mainloop.source_remove(this._animationTimeoutId);
+      this._animationTimeoutId = null;
     }
     const mainContainer = new St.BoxLayout({ vertical: true, style_class: "boot-time-main-container" });
     const headline = new St.Label({ text: _("Boot Time"), style_class: "boot-time-headline" });
@@ -69,7 +67,7 @@ class MyDesklet extends Desklet.Desklet {
       row.add_child(label);
 
       // Get label width to support different widths of translations
-      const width = label.get_width();
+      const [width] = label.get_size();
       if (width > widestLabelSize) widestLabelSize = width;
 
       // Value Label
@@ -134,8 +132,8 @@ class MyDesklet extends Desklet.Desklet {
 
   _startAnimation() {
     this.animationState = 0;
-    if (this._animationTimeout) Mainloop.source_remove(this._animationTimeout);
-    this._animationTimeout = Mainloop.timeout_add(16, this._updateAnimation.bind(this));
+    if (this._animationTimeoutId) Mainloop.source_remove(this._animationTimeoutId);
+    this._animationTimeoutId = Mainloop.timeout_add(20, this._updateAnimation.bind(this));
   }
 
   _updateAnimation() {
@@ -179,14 +177,9 @@ class MyDesklet extends Desklet.Desklet {
     return this.circleActor;
   }
 
-  _showLoadingUI() {
-    if (this._errorTimeout) Mainloop.source_remove(this._errorTimeout);
-    if (this._animationTimeout) Mainloop.source_remove(this._animationTimeout);
-  }
-
   on_desklet_removed() {
-    if (this._timeout) Mainloop.source_remove(this._timeout);
-    if (this._animationTimeout) Mainloop.source_remove(this._animationTimeout);
+    if (this._loadingTimeoutId) Mainloop.source_remove(this._loadingTimeoutId);
+    if (this._animationTimeoutId) Mainloop.source_remove(this._animationTimeoutId);
   }
 }
 
