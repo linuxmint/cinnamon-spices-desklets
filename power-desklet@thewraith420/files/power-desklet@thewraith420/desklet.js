@@ -229,6 +229,7 @@ MyDesklet.prototype = {
         );
         this.conservationButton.connect('clicked', Lang.bind(this, function() {
             this.conservation_mode_enabled = !this.conservation_mode_enabled;
+            Main.notify(_('Power Desklet'), _('Requesting authentication to change battery mode...'));
             this._applyConservationMode();
         }));
 
@@ -241,6 +242,7 @@ MyDesklet.prototype = {
         );
         this.rapidButton.connect('clicked', Lang.bind(this, function() {
             this.rapid_charge_enabled = !this.rapid_charge_enabled;
+            Main.notify(_('Power Desklet'), _('Requesting authentication to change charge mode...'));
             this._applyRapidCharge();
         }));
 
@@ -470,6 +472,62 @@ MyDesklet.prototype = {
         }
         
         Mainloop.timeout_add_seconds(2, Lang.bind(this, this.updateNvidiaProfiles));
+    },
+
+    _applyConservationMode: function() {
+        let value = this.conservation_mode_enabled ? "1" : "0";
+        this._writeSysFile("/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode", value);
+    },
+
+    _applyRapidCharge: function() {
+        let value = this.rapid_charge_enabled ? "1" : "0";
+        this._writeSysFile("/sys/bus/platform/drivers/legion/PNP0C09:00/rapidcharge", value);
+    },
+
+    _writeSysFile: function(filePath, value) {
+        try {
+            let proc = new Gio.Subprocess({
+                argv: ['pkexec', 'tee', filePath],
+                flags: Gio.SubprocessFlags.STDIN_PIPE | Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_PIPE
+            });
+            proc.init(null);
+            
+            let stdin = proc.get_stdin_pipe();
+            stdin.write_all(value + '\n', null);
+            stdin.close(null);
+            
+            proc.wait_async(null, Lang.bind(this, function(proc, res) {
+                try {
+                    proc.wait_finish(res);
+                    Main.notify(_('Power Desklet'), _('Power mode changed successfully!'));
+                    this._update();
+                } catch (e) {
+                    if (e.message && e.message.includes('Cancelled')) {
+                        Main.notify(_('Power Desklet'), _('Authentication cancelled'));
+                    } else {
+                        global.logError("Failed to write to sysfs file: " + filePath + " - " + e.message);
+                        Main.notifyError(_('Power Desklet'), _('Failed to change power mode'));
+                    }
+                    // Revert the toggle on failure
+                    if (filePath.includes('conservation_mode')) {
+                        this.conservation_mode_enabled = !this.conservation_mode_enabled;
+                    } else if (filePath.includes('rapidcharge')) {
+                        this.rapid_charge_enabled = !this.rapid_charge_enabled;
+                    }
+                    this._update();
+                }
+            }));
+        } catch (e) {
+            global.logError("Failed to spawn pkexec for writing sysfs: " + e.message);
+            Main.notifyError(_('Power Desklet'), _('Failed to request administrator privileges'));
+            // Revert the toggle on failure
+            if (filePath.includes('conservation_mode')) {
+                this.conservation_mode_enabled = !this.conservation_mode_enabled;
+            } else if (filePath.includes('rapidcharge')) {
+                this.rapid_charge_enabled = !this.rapid_charge_enabled;
+            }
+            this._update();
+        }
     },
 
     _applySettings: function() {
