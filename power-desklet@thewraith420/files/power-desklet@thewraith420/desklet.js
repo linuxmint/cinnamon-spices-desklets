@@ -428,50 +428,130 @@ MyDesklet.prototype = {
     },
 
     switchProfile: function(profile, rebootNow) {
+        // Try multiple methods to get GUI password prompt
+        // Method 1: Try pkexec with explicit display and X authority
+        // Method 2: Fallback to gnome-terminal with sudo
+        
+        let display = GLib.getenv('DISPLAY');
+        let xauthority = GLib.getenv('XAUTHORITY');
+        
+        // Use pkexec with environment variables set for better GUI interaction
         try {
-            let proc = new Gio.Subprocess({
-                argv: ['pkexec', 'prime-select', profile.command],
+            let subprocess = new Gio.Subprocess({
+                argv: ['pkexec', 'env', 'DISPLAY=' + display, 'XAUTHORITY=' + xauthority, 'prime-select', profile.command],
                 flags: Gio.SubprocessFlags.NONE
             });
-            proc.init(null);
-            proc.wait_async(null, (proc, res) => {
-                try {
-                    proc.wait_finish(res);
-                } catch (waitError) {
-                    global.logError(`prime-select command failed: ${waitError.message}`);
-                    Main.notifyError(_('NVIDIA Profile Switch Failed'), _(`Could not switch to ${profile.name} mode. Please check logs for details.`));
-                }
-            });
+            subprocess.init(null);
         } catch (e) {
-            global.logError(`Failed to spawn pkexec prime-select: ${e.message}`);
-            Main.notifyError(_('NVIDIA Profile Switch Failed'), _(`Failed to request privileges for ${profile.name} mode.`));
+            global.log('Error executing pkexec: ' + e);
+            // Fallback: open a terminal window for user to enter password
+            Util.spawn(['gnome-terminal', '--', 'bash', '-c', 
+                'sudo prime-select ' + profile.command + '; echo "Profile switched. Press Enter to close."; read']);
         }
         
         if (rebootNow) {
-            Mainloop.timeout_add_seconds(this.rebootDelay || 10, function() {
-                try {
-                    let rebootProc = new Gio.Subprocess({
-                        argv: ['pkexec', 'systemctl', 'reboot'],
-                        flags: Gio.SubprocessFlags.NONE
-                    });
-                    rebootProc.init(null);
-                    rebootProc.wait_async(null, (proc, res) => {
-                        try {
-                            proc.wait_finish(res);
-                        } catch (waitError) {
-                            global.logError(`Reboot command failed: ${waitError.message}`);
-                            Main.notifyError(_('Reboot Failed'), _('Could not initiate system reboot.'));
-                        }
-                    });
-                } catch (e) {
-                    global.logError(`Failed to spawn pkexec systemctl reboot: ${e.message}`);
-                    Main.notifyError(_('Reboot Failed'), _('Failed to request privileges for system reboot.'));
-                }
-                return false;
+            // Show notification with countdown
+            Util.spawn(['notify-send', 
+                'NVIDIA Prime', 
+                'Switching to ' + profile.name + ' mode. Rebooting in ' + this.rebootDelay + ' seconds...',
+                '-i', 'nvidia-settings',
+                '-u', 'critical',
+                '-t', (this.rebootDelay * 1000).toString()]);
+            
+            // Create a dialog with reboot countdown and options - matching desklet styling
+            let rebootDialog = new ModalDialog.ModalDialog();
+            let bgColor = this.background_color || 'rgb(30, 30, 35)';
+            let bgOpacity = this.background_opacity || 0.95;
+            let accentColor = this.accent_color || 'rgb(255, 255, 255)';
+            let nvidiaColor = this.nvidia_accent_color || 'rgb(118, 185, 0)';
+            let radius = this.border_radius || 12;
+            
+            // Parse RGB colors
+            let bgRgbMatch = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+            let bgStyle = bgRgbMatch ? 
+                `rgba(${bgRgbMatch[1]}, ${bgRgbMatch[2]}, ${bgRgbMatch[3]}, ${bgOpacity})` : bgColor;
+            
+            rebootDialog.contentLayout.set_style(`background-color: ${bgStyle}; border-radius: ${radius}px; border: 2px solid ${nvidiaColor}; padding: 20px; min-width: 400px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);`);
+            
+            this.secondsRemaining = this.rebootDelay;
+            let rebootLabel = new St.Label({
+                text: 'Profile switch in progress...\n\nSystem will reboot in ' + this.secondsRemaining + ' seconds.',
+                style: `font-size: 12pt; padding: 20px; color: ${accentColor}; text-align: center;`
             });
+            rebootDialog.contentLayout.add(rebootLabel);
+            
+            // Update countdown every second
+            this.countdownInterval = Mainloop.timeout_add_seconds(1, Lang.bind(this, function() {
+                this.secondsRemaining--;
+                rebootLabel.set_text('Profile switch in progress...\n\nSystem will reboot in ' + this.secondsRemaining + ' seconds.');
+                
+                if (this.secondsRemaining <= 0) {
+                    return false; // Stop the interval
+                }
+                return true; // Continue the interval
+            }));
+            
+            rebootDialog.setButtons([
+                {
+                    label: 'Cancel Reboot',
+                    action: Lang.bind(this, function() {
+                        if (this.rebootTimeout) {
+                            Mainloop.source_remove(this.rebootTimeout);
+                            this.rebootTimeout = null;
+                        }
+                        if (this.countdownInterval) {
+                            Mainloop.source_remove(this.countdownInterval);
+                            this.countdownInterval = null;
+                        }
+                        rebootDialog.close();
+                        Util.spawn(['notify-send', 
+                            'NVIDIA Prime', 
+                            'Reboot cancelled. Please reboot manually for changes to take effect.',
+                            '-i', 'nvidia-settings']);
+                    }),
+                    style: `background-color: rgba(255, 255, 255, 0.08); color: ${accentColor}; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 8px; padding: 10px 20px; font-size: 11pt; transition-duration: 150ms;`
+                },
+                {
+                    label: 'Reboot Now',
+                    action: Lang.bind(this, function() {
+                        if (this.rebootTimeout) {
+                            Mainloop.source_remove(this.rebootTimeout);
+                            this.rebootTimeout = null;
+                        }
+                        if (this.countdownInterval) {
+                            Mainloop.source_remove(this.countdownInterval);
+                            this.countdownInterval = null;
+                        }
+                        rebootDialog.close();
+                        Util.spawn(['systemctl', 'reboot']);
+                    }),
+                    style: `background-color: ${nvidiaColor}; color: #ffffff; border: 2px solid ${nvidiaColor}; border-radius: 8px; padding: 10px 20px; font-size: 11pt; font-weight: bold;`
+                }
+            ]);
+            
+            rebootDialog.open();
+            
+            // Wait for configured delay then reboot automatically
+            this.rebootTimeout = Mainloop.timeout_add_seconds(this.rebootDelay, Lang.bind(this, function() {
+                if (this.countdownInterval) {
+                    Mainloop.source_remove(this.countdownInterval);
+                    this.countdownInterval = null;
+                }
+                rebootDialog.close();
+                Util.spawn(['systemctl', 'reboot']);
+                this.rebootTimeout = null;
+                return false;
+            }));
+        } else {
+            // Show notification for deferred reboot scenario
+            Util.spawn(['notify-send', 
+                'NVIDIA Prime', 
+                'Switching to ' + profile.name + ' mode. Please reboot for changes to take effect.',
+                '-i', 'nvidia-settings']);
+            
+            // Update after a short delay
+            Mainloop.timeout_add_seconds(2, Lang.bind(this, this.updateNvidiaProfiles));
         }
-        
-        Mainloop.timeout_add_seconds(2, Lang.bind(this, this.updateNvidiaProfiles));
     },
 
     _applyConservationMode: function() {
