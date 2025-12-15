@@ -2,6 +2,6 @@
     "max-instances": "5",
     "description": "Themeable desklet that displays the time and date. New overhauled version.", 
     "uuid": "TimeAndDate@nightflame", 
-    "version": "2.0",
+    "version": "2.0.1",
     "name": "Time and Date Desklet"
 }

@@ -1,21 +1,24 @@
-.time-container {
-	padding: 0em;
-	margin: 0em;
-}
+/* Please note that your custom CSS configuration (for version 2.0+) may break with future updates. Also, keep in mind that many CSS styles will NOT work here, because they're overridden by the desklet's code (with styles generated based on desklet's configuration). It's not an intended way of customizing your desklets anymore. If possible I'd recommend using the builtin desklet configuration (right click on desklet -> configure), it has many available options and is much easier to use than CSS. */
 
-.date-container {
-	padding: 0em;
-	margin: 0em;
-}
 
-.time-label {
-	padding: 0em;
-	margin: 0em;
-	text-align: center;
+/* .clock-container {
+	background: green; WILL NOT WORK, BECAUSE THE BACKGROUND IS SET BY THE CODE USING DESKLET'S CONFIG 
+} */
+
+/* .time-container {
+	background: red;
+} */
+
+/* .date-container {
+	background: red;
+} */
+
+/* .time-label {
+	background: blue;
+	border: yellow solid 2px;
 }
 
 .date-label {
-	padding: 0em;
-	margin: 0em;
-	text-align: center;
-}
+	background: purple;
+	border: red solid 2px;
+} */

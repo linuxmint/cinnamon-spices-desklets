@@ -69,6 +69,11 @@ MyDesklet.prototype = {
 			this.random_circle_color_generated = true;
 		}
 
+		// fallback to "/" if filesystem is not defined in the settings
+		if (this.filesystem === undefined || this.filesystem === null) { 
+			this.filesystem = "/"
+		}
+
 		// initialize desklet gui
 		this.setupUI();
 	},

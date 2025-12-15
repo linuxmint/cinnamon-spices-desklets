@@ -164,8 +164,8 @@ MyDesklet.prototype = {
 
 
 
-		let timeLabelContainer =  new St.BoxLayout({vertical:!this.isTwoColumns, style_class: 'date-container'});
-		let dateLabelContainer =  new St.BoxLayout({vertical:!this.isTwoColumns, style_class: 'time-container'});
+		let timeLabelContainer =  new St.BoxLayout({vertical:!this.isTwoColumns, style_class: 'time-container'});
+		let dateLabelContainer =  new St.BoxLayout({vertical:!this.isTwoColumns, style_class: 'date-container'});
 		timeLabelContainer.add(this.timeLabel, {x_fill: false, y_fill: false, x_align: St.Align.MIDDLE, y_align: St.Align.MIDDLE});
 		dateLabelContainer.add(this.dateLabel, {x_fill: false, y_fill: false, x_align: St.Align.MIDDLE, y_align: St.Align.MIDDLE});
 
