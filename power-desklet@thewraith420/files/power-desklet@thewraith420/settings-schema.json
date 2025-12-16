@@ -159,5 +159,62 @@
         "default": false,
         "description": "Skip Reboot Confirmation Dialog",
         "tooltip": "Switch profiles without showing the confirmation dialog"
+    },
+    "power-info-header": {
+        "type": "header",
+        "description": "Power Information Panel Settings"
+    },
+    "show-power-info-panel": {
+        "type": "switch",
+        "default": true,
+        "description": "Show Power Info Panel",
+        "tooltip": "Display real-time power consumption, battery cycles, and health"
+    },
+    "show-power-draw": {
+        "type": "switch",
+        "default": true,
+        "description": "Show Power Draw (Watts)",
+        "tooltip": "Display current power consumption in watts"
+    },
+    "show-charge-cycles": {
+        "type": "switch",
+        "default": true,
+        "description": "Show Charge Cycles",
+        "tooltip": "Display total battery charge cycles"
+    },
+    "show-battery-health": {
+        "type": "switch",
+        "default": true,
+        "description": "Show Battery Health",
+        "tooltip": "Display battery degradation percentage"
+    },
+    "graph-header": {
+        "type": "header",
+        "description": "Power History Graph Settings"
+    },
+    "graph-zoom-days": {
+        "type": "scale",
+        "default": 1,
+        "min": 0.0003,
+        "max": 90,
+        "step": 0.1,
+        "description": "Graph Time Window (Days)",
+        "tooltip": "How many days of history to display in the graphs. Smaller values zoom in to recent data, larger values show more history."
+    },
+    "use-24hour-time": {
+        "type": "switch",
+        "default": false,
+        "description": "Use 24-Hour Time Format",
+        "tooltip": "Show time in 24-hour format (14:30) instead of 12-hour with AM/PM (2:30 PM)"
+    },
+    "data-retention-days": {
+        "type": "spinbutton",
+        "default": 30,
+        "min": 1,
+        "max": 90,
+        "step": 1,
+        "units": "days",
+        "description": "Data Retention Period",
+        "tooltip": "How many days of power history to keep (longer periods use more memory)"
     }
 }

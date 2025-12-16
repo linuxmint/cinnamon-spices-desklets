@@ -11,6 +11,16 @@ const Gettext = imports.gettext;
 const Settings = imports.ui.settings;
 const Clutter = imports.gi.Clutter;
 const ModalDialog = imports.ui.modalDialog;
+const Tweener = imports.ui.tweener;
+const Cinnamon = imports.gi.Cinnamon;
+let UISlider = null;
+
+const HISTORY_DATA_FILE = GLib.get_home_dir() + '/.local/share/cinnamon/desklets/power-desklet@thewraith420/battery-history.json';
+try {
+    UISlider = imports.ui.slider;
+} catch (e) {
+    UISlider = null; // Older Cinnamon: slider not available
+}
 
 const UUID = "power-desklet@thewraith420";
 
@@ -60,6 +70,15 @@ MyDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "reboot-delay", "rebootDelay", null, null);
         this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "skip-confirm-dialog", "skipConfirmDialog", null, null);
 
+        // Power Info Panel Settings
+        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "show-power-info-panel", "show_power_info_panel", this._onLayoutChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "show-power-draw", "show_power_draw", this._onLayoutChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "show-charge-cycles", "show_charge_cycles", this._onLayoutChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "show-battery-health", "show_battery_health", this._onLayoutChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "data-retention-days", "data_retention_days", this._onDataRetentionChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "graph-zoom-days", "graphZoomDays", this._onGraphZoomChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "use-24hour-time", "use24HourTime", this._onGraphZoomChanged, null);
+
         try {
             // Initialize defaults
             if (!this.update_interval) this.update_interval = 5;
@@ -78,6 +97,29 @@ MyDesklet.prototype = {
             if (!this.nvidia_button_size) this.nvidia_button_size = 50;
             if (!this.rebootDelay) this.rebootDelay = 10;
             if (this.skipConfirmDialog === undefined) this.skipConfirmDialog = false;
+            if (this.show_power_info_panel === undefined) this.show_power_info_panel = true;
+            if (this.show_power_draw === undefined) this.show_power_draw = true;
+            if (this.show_charge_cycles === undefined) this.show_charge_cycles = true;
+            if (this.show_battery_health === undefined) this.show_battery_health = true;
+            if (!this.data_retention_days) this.data_retention_days = 30;
+
+            // Initialize power info values
+            this.powerNow = 0;
+            this.chargeCycles = 0;
+            this.batteryHealth = 100;
+
+            // Initialize power history for graph
+            this.powerHistory = []; // Array of {power: watts, timestamp: unix_ms}
+            this.batteryHistory = []; // Array of {percentage: 0-100, timestamp: unix_ms}
+            // Calculate max data points based on retention days
+            // updateInterval = 5 seconds, so 17280 points per day
+            this.maxDataPoints = Math.max(100, (this.data_retention_days || 30) * 24 * 60 * 12); // 12 = 3600/300
+            if (!this.graphZoomDays) this.graphZoomDays = 0.5; // Default to 12 hours
+            this._updateGraphZoomLevel(); // Convert days to data points
+            this.updateInterval = 5; // seconds between updates
+            
+            // Load persisted history from file
+            this._loadHistoryFromFile();
 
             this._buildUI();
             this._update();
@@ -125,6 +167,12 @@ MyDesklet.prototype = {
         }
 
         this.setContent(this.window);
+
+        // Build floating info panel
+        this.infoPanelSide = 'right';
+        this.infoPanelWidth = 400;
+        this._buildInfoPanel();
+        this._hideInfoPanelImmediate();
     },
 
     _createBatteryBar: function() {
@@ -261,22 +309,761 @@ MyDesklet.prototype = {
             }
         }));
 
-        let settingsButton = this.createActionButton(
+        let batteryInfoButton = this.createActionButton(
             gridLayout, 1, 1, 
-            "emblem-system-symbolic", 
-            "Settings",
-            "rgba(96, 125, 139, 0.25)",
-            "rgba(96, 125, 139, 0.6)"
+            "dialog-information-symbolic", 
+            "Battery Info",
+            "rgba(33, 150, 243, 0.25)",
+            "rgba(33, 150, 243, 0.6)"
         );
-        settingsButton.connect('clicked', Lang.bind(this, function() {
-            try {
-                Util.spawnCommandLine("cinnamon-settings desklets " + this.metadata.uuid + " " + this.desklet_id);
-            } catch (e) {
-                global.logError('Failed to open settings: ' + e);
-            }
+        batteryInfoButton.connect('clicked', Lang.bind(this, function() {
+            this._openBatteryInfoWindow();
         }));
 
         return gridContainer;
+    },
+
+    _openBatteryInfoWindow: function() {
+        this._toggleInfoPanel();
+    },
+
+    _determinePanelSide: function() {
+        try {
+            let stageWidth = global.stage ? global.stage.width : 0;
+            let [wx, wy] = this.window ? this.window.get_transformed_position() : [0, 0];
+            let [ww, wh] = this.window ? this.window.get_transformed_size() : [0, 0];
+            if (stageWidth > 0 && wx + ww + this.infoPanelWidth + 30 > stageWidth) {
+                return 'left';
+            }
+        } catch (e) {}
+        return 'right';
+    },
+
+    _buildInfoPanel: function() {
+        if (this.infoPanel) return;
+
+        let panelWidth = this.infoPanelWidth || 400;
+        let graphWidth = panelWidth - 40;
+
+        this.infoPanel = new St.BoxLayout({
+            vertical: true,
+            style: `spacing: 10px; 
+                    padding: 14px;
+                    width: ${panelWidth}px;
+                    background-color: rgba(0, 0, 0, 0.4);
+                    border-radius: 8px; 
+                    border: 1px solid rgba(255, 255, 255, 0.12);
+                    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);`,
+            clip_to_allocation: true,
+            reactive: true
+        });
+        
+        global.stage.add_actor(this.infoPanel);
+        this.infoPanel.hide();
+        this.infoPanel.set_opacity(0);
+
+        // Create title bar with close button
+        let titleBox = new St.BoxLayout({
+            vertical: false,
+            style: 'margin-bottom: 6px;'
+        });
+        
+        let titleLabel = new St.Label({
+            text: 'Battery Information & History',
+            style: `font-size: 14pt; 
+                    font-weight: bold; 
+                    color: ${this.accent_color || 'rgb(255, 255, 255)'};`,
+            x_expand: true
+        });
+        titleBox.add_child(titleLabel);
+        
+        let accentColor = this.accent_color || 'rgb(255, 255, 255)';
+        let rgbMatch = accentColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+        let buttonBg = rgbMatch ? `rgba(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]}, 0.15)` : 'rgba(255, 255, 255, 0.15)';
+        let buttonBorder = rgbMatch ? `rgba(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]}, 0.4)` : 'rgba(255, 255, 255, 0.4)';
+        
+        let closeButton = new St.Button({
+            style: `padding: 2px 8px;
+                    background-color: ${buttonBg};
+                    border: 1px solid ${buttonBorder};
+                    border-radius: 4px;
+                    color: ${accentColor};
+                    font-size: 16pt;
+                    font-weight: bold;`,
+            reactive: true,
+            can_focus: true,
+            label: '×'
+        });
+        
+        closeButton.connect('clicked', Lang.bind(this, function() {
+            this._toggleInfoPanel(false);
+        }));
+        
+        titleBox.add_child(closeButton);
+        this.infoPanel.add_child(titleBox);
+
+        let infoBox = new St.BoxLayout({
+            vertical: true,
+            style: `background-color: rgba(255, 255, 255, 0.07); 
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    border-radius: 6px; 
+                    padding: 10px; 
+                    spacing: 6px;`
+        });
+
+        if (this.show_power_draw) {
+            this.infoPowerLabel = new St.Label({
+                text: `Power Draw: ${this.powerNow} W`,
+                style: `font-size: 10.5pt; 
+                        color: ${this.accent_color};
+                        opacity: 0.9;`
+            });
+            infoBox.add_child(this.infoPowerLabel);
+        }
+
+        if (this.show_charge_cycles) {
+            this.infoCyclesLabel = new St.Label({
+                text: `Charge Cycles: ${this.chargeCycles}`,
+                style: `font-size: 10.5pt; 
+                        color: ${this.accent_color};
+                        opacity: 0.9;`
+            });
+            infoBox.add_child(this.infoCyclesLabel);
+        }
+
+        if (this.show_battery_health) {
+            this.infoHealthLabel = new St.Label({
+                text: `Battery Health: ${this.batteryHealth}%`,
+                style: `font-size: 10.5pt; 
+                        color: ${this.accent_color};
+                        opacity: 0.9;`
+            });
+            infoBox.add_child(this.infoHealthLabel);
+        }
+
+        this.infoPanel.add_child(infoBox);
+
+        let powerGraphLabel = new St.Label({
+            text: 'Power Draw (Watts)',
+            style: `font-size: 11.5pt; 
+                    font-weight: bold; 
+                    color: rgba(237, 76, 76, 0.9); 
+                    margin-top: 6px;`
+        });
+        this.infoPanel.add_child(powerGraphLabel);
+
+        this.modalPowerCanvas = new St.DrawingArea({
+            style: 'border: 1px solid rgba(255,255,255,0.2);',
+            width: graphWidth,
+            height: 130
+        });
+        this.modalPowerCanvas.set_size(graphWidth, 130);
+        this.modalPowerCanvas.connect("repaint", Lang.bind(this, this._drawPowerOnly));
+        this.infoPanel.add_child(this.modalPowerCanvas);
+
+        let batteryGraphLabel = new St.Label({
+            text: 'Battery Level (%)',
+            style: `font-size: 11.5pt; 
+                    font-weight: bold; 
+                    color: ${this.nvidia_accent_color ? this.nvidia_accent_color : 'rgb(118, 185, 0)'}; 
+                    margin-top: 8px;`
+        });
+        this.infoPanel.add_child(batteryGraphLabel);
+
+        this.modalBatteryCanvas = new St.DrawingArea({
+            style: 'border: 1px solid rgba(255,255,255,0.2);',
+            width: graphWidth,
+            height: 130
+        });
+        this.modalBatteryCanvas.set_size(graphWidth, 130);
+        this.modalBatteryCanvas.connect("repaint", Lang.bind(this, this._drawBatteryOnly));
+        this.infoPanel.add_child(this.modalBatteryCanvas);
+        
+        this.debugLabel = new St.Label({
+            text: `Power: ${this.powerHistory.length} points | Battery: ${this.batteryHistory.length} points`,
+            style: 'font-size: 9pt; color: rgba(255,255,255,0.4); margin-top: 6px;'
+        });
+        this.infoPanel.add_child(this.debugLabel);
+    },
+
+    _refreshInfoPanel: function() {
+        if (!this.infoPanel) return;
+        if (this.infoPowerLabel) this.infoPowerLabel.set_text(`Power Draw: ${this.powerNow} W`);
+        if (this.infoCyclesLabel) this.infoCyclesLabel.set_text(`Charge Cycles: ${this.chargeCycles}`);
+        if (this.infoHealthLabel) this.infoHealthLabel.set_text(`Battery Health: ${this.batteryHealth}%`);
+        if (this.debugLabel) this.debugLabel.set_text(`Power: ${this.powerHistory.length} points | Battery: ${this.batteryHistory.length} points`);
+        if (this.zoomSlider && this.zoomSlider.setValue) {
+            this.zoomSlider.setValue(this.graphZoomLevel / this.maxDataPoints);
+        }
+        this._updateZoomLabel();
+        if (this.modalPowerCanvas) this.modalPowerCanvas.queue_repaint();
+        if (this.modalBatteryCanvas) this.modalBatteryCanvas.queue_repaint();
+    },
+
+    _hideInfoPanelImmediate: function() {
+        if (!this.infoPanel) return;
+        this.infoPanel.hide();
+        this.infoPanel.set_opacity(0);
+        this.infoPanelVisible = false;
+    },
+
+    _toggleInfoPanel: function(forceShow) {
+        if (!this.infoPanel) this._buildInfoPanel();
+        if (!this.infoPanel || !this.window) return;
+
+        let shouldShow = (typeof forceShow === 'boolean') ? forceShow : !this.infoPanelVisible;
+        Tweener.removeTweens(this.infoPanel);
+
+        if (shouldShow) {
+            // Show panel first to get its actual size
+            this.infoPanel.show();
+            this._refreshInfoPanel();
+            
+            // Decide which side to open based on available space
+            this.infoPanelSide = this._determinePanelSide();
+            
+            // Position panel next to desklet
+            let [wx, wy] = this.window.get_transformed_position();
+            let [ww, wh] = this.window.get_transformed_size();
+            let [pw, ph] = this.infoPanel.get_size();
+            
+            let panelX, panelY;
+            if (this.infoPanelSide === 'left') {
+                panelX = wx - pw - 10;
+            } else {
+                panelX = wx + ww + 10;
+            }
+            panelY = wy;
+            
+            this.infoPanel.set_position(panelX, panelY);
+            
+            // Fade in animation
+            this.infoPanel.set_opacity(0);
+            Tweener.addTween(this.infoPanel, {
+                opacity: 255,
+                time: 0.25,
+                transition: 'easeOutQuad',
+                onComplete: Lang.bind(this, function() {
+                    this.infoPanelVisible = true;
+                })
+            });
+        } else {
+            // Fade out animation
+            Tweener.addTween(this.infoPanel, {
+                opacity: 0,
+                time: 0.2,
+                transition: 'easeOutQuad',
+                onComplete: Lang.bind(this, function() {
+                    this.infoPanel.hide();
+                    this.infoPanelVisible = false;
+                })
+            });
+        }
+    },
+
+    _createPowerInfoPanel: function() {
+        let powerInfoContainer = new St.BoxLayout({
+            vertical: true,
+            style: 'padding: 10px; spacing: 8px;'
+        });
+
+        let hasContent = false;
+
+        // Power Draw
+        if (this.show_power_draw) {
+            this.powerDrawLabel = new St.Label({
+                text: 'Power Draw: 0.0 W',
+                style: this._getStatusStyle()
+            });
+            powerInfoContainer.add_child(this.powerDrawLabel);
+            hasContent = true;
+        }
+
+        // Charge Cycles
+        if (this.show_charge_cycles) {
+            this.chargeCyclesLabel = new St.Label({
+                text: 'Cycles: 0',
+                style: this._getStatusStyle()
+            });
+            powerInfoContainer.add_child(this.chargeCyclesLabel);
+            hasContent = true;
+        }
+
+        // Battery Health
+        if (this.show_battery_health) {
+            this.batteryHealthLabel = new St.Label({
+                text: 'Health: 100.0%',
+                style: this._getStatusStyle()
+            });
+            powerInfoContainer.add_child(this.batteryHealthLabel);
+            hasContent = true;
+        }
+
+        return hasContent ? powerInfoContainer : null;
+    },
+
+    _getZoomText: function() {
+        const totalSeconds = this.graphZoomLevel * this.updateInterval;
+        if (totalSeconds < 60) {
+            return totalSeconds + "s";
+        } else if (totalSeconds < 3600) {
+            const minutes = Math.floor(totalSeconds / 60);
+            return minutes + "m";
+        } else {
+            const hours = Math.floor(totalSeconds / 3600);
+            return hours + "h";
+        }
+    },
+    
+    _updateZoomLabel: function() {
+        if (this.zoomStatusLabel) {
+            this.zoomStatusLabel.set_text(this._getZoomText());
+        }
+    },
+    
+    _getTimeLabels: function(numPoints, interval) {
+        // Get time labels for X-axis
+        if (numPoints < 2) return [];
+        
+        const totalSeconds = numPoints * interval;
+        let labels = [];
+        
+        if (totalSeconds <= 60) {
+            // For under 1 minute, show every 10-15 seconds
+            for (let i = 0; i < numPoints; i += Math.ceil(numPoints / 3)) {
+                if (i < numPoints) {
+                    const secondsAgo = (numPoints - 1 - i) * interval;
+                    labels.push({x: i, label: secondsAgo + "s"});
+                }
+            }
+        } else if (totalSeconds <= 600) {
+            // For under 10 minutes, show every few minutes
+            for (let i = 0; i < numPoints; i += Math.ceil(numPoints / 3)) {
+                if (i < numPoints) {
+                    const secondsAgo = (numPoints - 1 - i) * interval;
+                    const minutes = Math.floor(secondsAgo / 60);
+                    labels.push({x: i, label: minutes + "m"});
+                }
+            }
+        } else {
+            // For longer periods, show approximate times
+            for (let i = 0; i < numPoints; i += Math.ceil(numPoints / 3)) {
+                if (i < numPoints) {
+                    const secondsAgo = (numPoints - 1 - i) * interval;
+                    const minutes = Math.floor(secondsAgo / 60);
+                    const hours = Math.floor(secondsAgo / 3600);
+                    if (hours > 0) {
+                        labels.push({x: i, label: hours + "h"});
+                    } else {
+                        labels.push({x: i, label: minutes + "m"});
+                    }
+                }
+            }
+        }
+        
+        // Ensure last point is "now"
+        if (labels.length === 0 || labels[labels.length - 1].x !== numPoints - 1) {
+            labels.push({x: numPoints - 1, label: "now"});
+        }
+        
+        return labels;
+    },
+
+    _drawPowerOnly: function(canvas) {
+        try {
+            const [width, height] = canvas.get_surface_size();
+            const cr = canvas.get_context();
+            
+            // Dark background
+            cr.setSourceRGBA(0.1, 0.1, 0.1, 0.5);
+            cr.rectangle(0, 0, width, height);
+            cr.fill();
+            
+            let data = this.powerHistory;
+            
+            // Apply zoom - show last N points
+            let startIdx = Math.max(0, data.length - this.graphZoomLevel);
+            data = data.slice(startIdx);
+            
+            if (data.length < 1) {
+                // Not enough data yet
+                cr.setSourceRGBA(1, 1, 1, 0.7);
+                cr.selectFontFace("Sans", Cairo.FontSlant.NORMAL, Cairo.FontWeight.NORMAL);
+                cr.setFontSize(12);
+                cr.moveTo(width / 2 - 80, height / 2);
+                cr.showText("Collecting data... (" + this.powerHistory.length + " points)");
+                return;
+            }
+
+            const leftMargin = 40;
+            const rightMargin = 15;
+            const topMargin = 20;
+            const bottomMargin = 40;
+            const plotWidth = width - leftMargin - rightMargin;
+            const plotHeight = height - topMargin - bottomMargin;
+
+            // Extract power values from data objects
+            let powerValues = data.map(d => d.power || 0);
+            const maxValue = Math.max(...powerValues);
+            const minValue = Math.min(...powerValues);
+            const range = maxValue - minValue;
+            const actualMax = maxValue + (range * 0.2);
+            const actualMin = Math.max(0, minValue - (range * 0.1));
+
+            // Draw grid and Y-axis labels
+            const gridLevels = this._getGridLevels(actualMax);
+            for (let level of gridLevels) {
+                const y = topMargin + plotHeight - ((level - actualMin) / (actualMax - actualMin)) * plotHeight;
+                
+                cr.setSourceRGBA(1, 1, 1, 0.1);
+                cr.setLineWidth(1);
+                cr.moveTo(leftMargin, y);
+                cr.lineTo(leftMargin + plotWidth, y);
+                cr.stroke();
+                
+                cr.setSourceRGBA(1, 1, 1, 0.6);
+                cr.setFontSize(9);
+                cr.moveTo(5, y + 2);
+                cr.showText(level + "W");
+            }
+
+            // Draw X-axis time labels using timestamps
+            const timeLabels = this._getTimeLabelsFromData(data);
+            for (let label of timeLabels) {
+                const x = leftMargin + (plotWidth * label.x) / (data.length - 1);
+                cr.setSourceRGBA(1, 1, 1, 0.6);
+                cr.setFontSize(8);
+                cr.moveTo(x - 10, topMargin + plotHeight + 15);
+                cr.showText(label.label);
+            }
+
+            // Draw power line (red/orange)
+            cr.setSourceRGBA(0.93, 0.33, 0.33, 0.9);
+            cr.setLineWidth(2.5);
+            
+            for (let i = 0; i < data.length; i++) {
+                const x = leftMargin + (plotWidth * i) / (data.length - 1);
+                const value = data[i].power || 0;
+                const y = topMargin + plotHeight - ((value - actualMin) / (actualMax - actualMin)) * plotHeight;
+                
+                if (i === 0) {
+                    cr.moveTo(x, y);
+                } else {
+                    cr.lineTo(x, y);
+                }
+            }
+            cr.stroke();
+        } catch (e) {
+            global.logError("Power graph rendering error: " + e);
+        }
+    },
+
+    _drawBatteryOnly: function(canvas) {
+        try {
+            const [width, height] = canvas.get_surface_size();
+            const cr = canvas.get_context();
+            
+            // Dark background
+            cr.setSourceRGBA(0.1, 0.1, 0.1, 0.5);
+            cr.rectangle(0, 0, width, height);
+            cr.fill();
+            
+            let data = this.batteryHistory;
+            
+            // Apply zoom - show last N points
+            let startIdx = Math.max(0, data.length - this.graphZoomLevel);
+            data = data.slice(startIdx);
+            
+            if (data.length < 1) {
+                // Not enough data yet
+                cr.setSourceRGBA(1, 1, 1, 0.7);
+                cr.selectFontFace("Sans", Cairo.FontSlant.NORMAL, Cairo.FontWeight.NORMAL);
+                cr.setFontSize(12);
+                cr.moveTo(width / 2 - 80, height / 2);
+                cr.showText("Collecting data... (" + this.batteryHistory.length + " points)");
+                return;
+            }
+
+            const leftMargin = 40;
+            const rightMargin = 15;
+            const topMargin = 20;
+            const bottomMargin = 40;
+            const plotWidth = width - leftMargin - rightMargin;
+            const plotHeight = height - topMargin - bottomMargin;
+
+            // Battery is always 0-100%
+            const gridLevels = [0, 25, 50, 75, 100];
+            
+            // Draw grid and Y-axis labels
+            for (let level of gridLevels) {
+                const y = topMargin + plotHeight - (level / 100) * plotHeight;
+                
+                cr.setSourceRGBA(1, 1, 1, 0.1);
+                cr.setLineWidth(1);
+                cr.moveTo(leftMargin, y);
+                cr.lineTo(leftMargin + plotWidth, y);
+                cr.stroke();
+                
+                cr.setSourceRGBA(1, 1, 1, 0.6);
+                cr.setFontSize(9);
+                cr.moveTo(5, y + 2);
+                cr.showText(level + "%");
+            }
+
+            // Draw X-axis time labels using timestamps
+            const timeLabels = this._getTimeLabelsFromData(data);
+            for (let label of timeLabels) {
+                const x = leftMargin + (plotWidth * label.x) / (data.length - 1);
+                cr.setSourceRGBA(1, 1, 1, 0.6);
+                cr.setFontSize(8);
+                cr.moveTo(x - 10, topMargin + plotHeight + 15);
+                cr.showText(label.label);
+            }
+
+            // Draw battery line (green)
+            let nvidiaColor = this.nvidia_accent_color || 'rgb(118, 185, 0)';
+            let nvidiaRgb = this._parseColor(nvidiaColor);
+            cr.setSourceRGBA(nvidiaRgb.r, nvidiaRgb.g, nvidiaRgb.b, 0.9);
+            cr.setLineWidth(2.5);
+            
+            for (let i = 0; i < data.length; i++) {
+                const x = leftMargin + (plotWidth * i) / (data.length - 1);
+                const value = data[i].percentage || 0;
+                const y = topMargin + plotHeight - (value / 100) * plotHeight;
+                
+                if (i === 0) {
+                    cr.moveTo(x, y);
+                } else {
+                    cr.lineTo(x, y);
+                }
+            }
+            cr.stroke();
+        } catch (e) {
+            global.logError("Battery graph rendering error: " + e);
+        }
+    },
+
+    _drawPowerGraph: function(canvas) {
+        try {
+            const [width, height] = canvas.get_surface_size();
+            const cr = canvas.get_context();
+            
+            // Dark background
+            cr.setSourceRGBA(0.1, 0.1, 0.1, 0.5);
+            cr.rectangle(0, 0, width, height);
+            cr.fill();
+            
+            if (this.powerHistory.length < 2) {
+                // Not enough data yet
+                cr.setSourceRGBA(1, 1, 1, 0.7);
+                cr.selectFontFace("Sans", Cairo.FontSlant.NORMAL, Cairo.FontWeight.NORMAL);
+                cr.setFontSize(14);
+                cr.moveTo(width / 2 - 100, height / 2);
+                cr.showText("Collecting data... (" + this.powerHistory.length + " points)");
+                return;
+            }
+
+            const data = this.powerHistory;
+            const leftMargin = 40;
+            const rightMargin = 15;
+            const topMargin = 35;
+            const bottomMargin = 35;
+            const plotWidth = width - leftMargin - rightMargin;
+            const plotHeight = height - topMargin - bottomMargin;
+
+            const maxValue = Math.max(...data);
+            const minValue = Math.min(...data);
+            const range = maxValue - minValue;
+            const actualMax = maxValue + (range * 0.2); // 20% padding
+            const actualMin = Math.max(0, minValue - (range * 0.1)); // 10% padding, but not below 0
+            
+            global.log("Drawing graph: " + data.length + " points, range: " + actualMin + "-" + actualMax + "W");
+
+            // Draw grid
+            const gridLevels = this._getGridLevels(actualMax);
+            for (let level of gridLevels) {
+                const y = topMargin + plotHeight - ((level - actualMin) / (actualMax - actualMin)) * plotHeight;
+                
+                cr.setSourceRGBA(1, 1, 1, 0.1);
+                cr.setLineWidth(1);
+                cr.moveTo(leftMargin, y);
+                cr.lineTo(leftMargin + plotWidth, y);
+                cr.stroke();
+                
+                cr.setSourceRGBA(1, 1, 1, 0.6);
+                cr.setFontSize(10);
+                cr.moveTo(5, y + 3);
+                cr.showText(level + "W");
+            }
+
+            // Draw power data line (red/orange)
+            cr.setSourceRGBA(0.93, 0.33, 0.33, 0.9); // Red/orange for power
+            cr.setLineWidth(2);
+            
+            for (let i = 0; i < data.length; i++) {
+                const x = leftMargin + (plotWidth * i) / (data.length - 1);
+                const y = topMargin + plotHeight - ((data[i] - actualMin) / (actualMax - actualMin)) * plotHeight;
+                
+                if (i === 0) {
+                    cr.moveTo(x, y);
+                } else {
+                    cr.lineTo(x, y);
+                }
+            }
+            cr.stroke();
+            
+            // Draw battery percentage line (green) - uses right scale (0-100%)
+            if (this.batteryHistory.length > 1) {
+                let nvidiaColor = this.nvidia_accent_color || 'rgb(118, 185, 0)';
+                let nvidiaRgb = this._parseColor(nvidiaColor);
+                cr.setSourceRGBA(nvidiaRgb.r, nvidiaRgb.g, nvidiaRgb.b, 0.9);
+                cr.setLineWidth(2);
+                
+                for (let i = 0; i < this.batteryHistory.length; i++) {
+                    const x = leftMargin + (plotWidth * i) / (this.batteryHistory.length - 1);
+                    // Scale battery (0-100%) to graph height
+                    const y = topMargin + plotHeight - (this.batteryHistory[i] / 100) * plotHeight;
+                    
+                    if (i === 0) {
+                        cr.moveTo(x, y);
+                    } else {
+                        cr.lineTo(x, y);
+                    }
+                }
+                cr.stroke();
+            }
+            
+            // Draw legend
+            cr.setFontSize(11);
+            cr.setSourceRGBA(0.93, 0.33, 0.33, 0.9);
+            cr.moveTo(leftMargin, topMargin - 15);
+            cr.showText("Power (W)");
+            
+            let nvidiaRgb2 = this._parseColor(this.nvidia_accent_color || 'rgb(118, 185, 0)');
+            cr.setSourceRGBA(nvidiaRgb2.r, nvidiaRgb2.g, nvidiaRgb2.b, 0.9);
+            cr.moveTo(leftMargin + 100, topMargin - 15);
+            cr.showText("Battery (%)")
+                
+        } catch (e) {
+            global.logError("Graph rendering error: " + e);
+        }
+    },
+
+    _drawGraphGrid: function(cr, gridLevels, margin, plotWidth, plotHeight, actualMax) {
+        // Draw horizontal grid lines and y-axis labels
+        for (let level of gridLevels) {
+            const y = margin + plotHeight - (level / actualMax) * plotHeight;
+
+            // Draw grid line
+            cr.setSourceRGBA(1, 1, 1, 0.1);
+            cr.setLineWidth(1);
+            cr.moveTo(margin, y);
+            cr.lineTo(margin + plotWidth, y);
+            cr.stroke();
+
+            // Draw label
+            cr.setSourceRGBA(1, 1, 1, 0.6);
+            cr.setFontSize(10);
+            const labelText = level + "W";
+            const extents = cr.textExtents(labelText);
+            cr.moveTo(margin - extents.width - 5, y + 4);
+            cr.showText(labelText);
+        }
+    },
+
+    _getGridLevels: function(maxValue) {
+        if (maxValue <= 20) {
+            return [0, 5, 10, 15];
+        } else if (maxValue <= 40) {
+            return [0, 10, 20, 30];
+        } else if (maxValue <= 60) {
+            return [0, 15, 30, 45, 60];
+        } else if (maxValue <= 80) {
+            return [0, 20, 40, 60, 80];
+        } else if (maxValue <= 100) {
+            return [0, 25, 50, 75, 100];
+        } else {
+            const gridMax = Math.ceil(maxValue / 20) * 20;
+            const step = gridMax / 4;
+            return [0, step, step * 2, step * 3, gridMax];
+        }
+    },
+
+    _drawGraphData: function(cr, data, margin, plotHeight, plotWidth, actualMax) {
+        // Get NVIDIA color
+        let nvidiaColor = this.nvidia_accent_color || 'rgb(118, 185, 0)';
+        let nvidiaRgb = this._parseColor(nvidiaColor);
+        
+        // Draw gradient fill under curve
+        cr.moveTo(margin, margin + plotHeight - (data[0] / actualMax) * plotHeight);
+
+        for (let i = 1; i < data.length; i++) {
+            const x = margin + (plotWidth * i) / (data.length - 1);
+            const y = margin + plotHeight - (data[i] / actualMax) * plotHeight;
+            cr.lineTo(x, y);
+        }
+
+        // Close path for fill
+        const lastX = margin + plotWidth;
+        const bottomY = margin + plotHeight;
+        cr.lineTo(lastX, bottomY);
+        cr.lineTo(margin, bottomY);
+        cr.closePath();
+
+        // Create gradient and fill
+        const gradient = new Cairo.LinearGradient(0, margin, 0, margin + plotHeight);
+        gradient.addColorStopRGBA(0, nvidiaRgb.r, nvidiaRgb.g, nvidiaRgb.b, 0.5);
+        gradient.addColorStopRGBA(1, nvidiaRgb.r, nvidiaRgb.g, nvidiaRgb.b, 0.05);
+
+        cr.setSource(gradient);
+        cr.fill();
+
+        // Draw line on top
+        cr.newPath();
+        cr.moveTo(margin, margin + plotHeight - (data[0] / actualMax) * plotHeight);
+
+        for (let i = 1; i < data.length; i++) {
+            const x = margin + (plotWidth * i) / (data.length - 1);
+            const y = margin + plotHeight - (data[i] / actualMax) * plotHeight;
+            cr.lineTo(x, y);
+        }
+
+        cr.setSourceRGBA(nvidiaRgb.r, nvidiaRgb.g, nvidiaRgb.b, 0.9);
+        cr.setLineWidth(2);
+        cr.stroke();
+    },
+
+    _parseColor: function(colorStr) {
+        if (!colorStr) {
+            return { r: 0.5, g: 0.5, b: 0.5 };
+        }
+
+        if (colorStr.startsWith("rgb")) {
+            const match = colorStr.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+            if (match) {
+                return {
+                    r: parseInt(match[1]) / 255,
+                    g: parseInt(match[2]) / 255,
+                    b: parseInt(match[3]) / 255,
+                };
+            }
+            return { r: 0.5, g: 0.5, b: 0.5 };
+        }
+
+        let hex = colorStr.toString().replace("#", "");
+        if (hex.length === 3) {
+            hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+        }
+
+        if (hex.length === 6) {
+            return {
+                r: parseInt(hex.substr(0, 2), 16) / 255,
+                g: parseInt(hex.substr(2, 2), 16) / 255,
+                b: parseInt(hex.substr(4, 2), 16) / 255,
+            };
+        }
+
+        return { r: 0.5, g: 0.5, b: 0.5 };
     },
 
     createActionButton: function(gridLayout, col, row, icon, label, activeColor, activeBorder) {
@@ -663,6 +1450,34 @@ MyDesklet.prototype = {
         this.updateNvidiaProfiles();
     },
 
+    _onDataRetentionChanged: function() {
+        // Recalculate max data points when retention setting changes
+        this.maxDataPoints = Math.max(100, (this.data_retention_days || 30) * 24 * 60 * 12);
+        if (!this.graphZoomDays) this.graphZoomDays = 1;
+        this._updateGraphZoomLevel();
+        global.log("Data retention changed to " + this.data_retention_days + " days, max points: " + this.maxDataPoints);
+    },
+
+    _onGraphZoomChanged: function() {
+        // Convert days to data points
+        this._updateGraphZoomLevel();
+        // Repaint graphs if visible
+        if (this.infoPanel && this.infoPanel.visible) {
+            if (this.modalPowerCanvas) this.modalPowerCanvas.queue_repaint();
+            if (this.modalBatteryCanvas) this.modalBatteryCanvas.queue_repaint();
+        }
+    },
+
+    _updateGraphZoomLevel: function() {
+        // Convert graphZoomDays to graphZoomLevel (data points)
+        // 5 second intervals = 17280 points per day
+        let pointsPerDay = 24 * 60 * 12;
+        this.graphZoomLevel = Math.min(
+            Math.max(10, Math.floor((this.graphZoomDays || 1) * pointsPerDay)),
+            this.maxDataPoints
+        );
+    },
+
     _getWindowStyle: function() {
         let opacity = this.background_opacity || 0.95;
         let bgColor = this.background_color || 'rgb(30, 30, 35)';
@@ -805,6 +1620,102 @@ MyDesklet.prototype = {
         this.batteryBarFill.set_style(`background-color: ${barColor}; border-radius: 8px; height: 14px; margin: 2px;`);
     },
 
+    _loadHistoryFromFile: function() {
+        try {
+            let file = Gio.file_new_for_path(HISTORY_DATA_FILE);
+            if (!file.query_exists(null)) {
+                return; // No saved history yet
+            }
+            
+            let [ok, contents] = file.load_contents(null);
+            if (!ok) return;
+            
+            let data = JSON.parse(ByteArray.toString(contents));
+            
+            // Load power history
+            if (data.powerHistory && Array.isArray(data.powerHistory)) {
+                this.powerHistory = data.powerHistory;
+            }
+            
+            // Load battery history  
+            if (data.batteryHistory && Array.isArray(data.batteryHistory)) {
+                this.batteryHistory = data.batteryHistory;
+            }
+            
+            global.log("Loaded " + this.powerHistory.length + " power readings and " + this.batteryHistory.length + " battery readings from file");
+        } catch (e) {
+            global.logError("Failed to load history: " + e);
+        }
+    },
+
+    _saveHistoryToFile: function() {
+        try {
+            let dir = Gio.file_new_for_path(GLib.get_home_dir() + '/.local/share/cinnamon/desklets/power-desklet@thewraith420');
+            if (!dir.query_exists(null)) {
+                dir.make_directory_with_parents(null);
+            }
+            
+            let data = {
+                powerHistory: this.powerHistory,
+                batteryHistory: this.batteryHistory,
+                savedAt: new Date().getTime()
+            };
+            
+            let file = Gio.file_new_for_path(HISTORY_DATA_FILE);
+            file.replace_contents(JSON.stringify(data), null, false, Gio.FileCreateFlags.NONE, null);
+        } catch (e) {
+            global.logError("Failed to save history: " + e);
+        }
+    },
+
+    _getTimeLabelFromTimestamp: function(timestamp) {
+        let date = new Date(timestamp);
+        let hours = date.getHours();
+        let minutes = String(date.getMinutes()).padStart(2, '0');
+        
+        if (this.use24HourTime) {
+            // 24-hour format
+            return String(hours).padStart(2, '0') + ':' + minutes;
+        } else {
+            // 12-hour format with AM/PM
+            let period = hours >= 12 ? 'PM' : 'AM';
+            let displayHours = hours % 12;
+            if (displayHours === 0) displayHours = 12;
+            return displayHours + ':' + minutes + ' ' + period;
+        }
+    },
+
+    _getTimeLabelsFromData: function(dataArray) {
+        // Generate time labels from actual timestamps in data
+        if (dataArray.length < 2) return [];
+        
+        let labels = [];
+        const now = new Date().getTime();
+        const timeSpanMs = this.graphZoomDays * 24 * 60 * 60 * 1000; // milliseconds
+        const oldestTime = now - timeSpanMs;
+        
+        // Show 3-4 evenly spaced time labels
+        const stepSize = Math.ceil(dataArray.length / 3);
+        for (let i = 0; i < dataArray.length; i += stepSize) {
+            if (dataArray[i] && dataArray[i].timestamp) {
+                labels.push({
+                    x: i,
+                    label: this._getTimeLabelFromTimestamp(dataArray[i].timestamp)
+                });
+            }
+        }
+        
+        // Always show current time at the end
+        if (dataArray[dataArray.length - 1] && dataArray[dataArray.length - 1].timestamp) {
+            labels.push({
+                x: dataArray.length - 1,
+                label: this._getTimeLabelFromTimestamp(dataArray[dataArray.length - 1].timestamp)
+            });
+        }
+        
+        return labels;
+    },
+
     _update: function() {
         const ENERGY_NOW = "/sys/class/power_supply/BAT1/energy_now";
         const ENERGY_FULL = "/sys/class/power_supply/BAT1/energy_full";
@@ -813,6 +1724,11 @@ MyDesklet.prototype = {
         const CONSERVATION_FILE = "/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode";
         const RAPID_CHARGE_FILE = "/sys/bus/platform/drivers/legion/PNP0C09:00/rapidcharge";
 
+        // Save history periodically
+        if (!this._lastHistorySaveTime || new Date().getTime() - this._lastHistorySaveTime > 60000) {
+            this._saveHistoryToFile();
+            this._lastHistorySaveTime = new Date().getTime();
+        }
         try {
             let energyNow = parseInt(this._readFromFile(ENERGY_NOW));
             let energyFull = parseInt(this._readFromFile(ENERGY_FULL));
@@ -821,6 +1737,15 @@ MyDesklet.prototype = {
             
             this.percentageLabel.set_text(percentage + "%");
             this._updateBatteryBar(percentage);
+            
+            // Add to battery history for graph with timestamp
+            this.batteryHistory.push({
+                percentage: percentage,
+                timestamp: new Date().getTime()
+            });
+            if (this.batteryHistory.length > this.maxDataPoints) {
+                this.batteryHistory.shift();
+            }
 
             // Update charge status if enabled
             if (this.show_charge_status && this.chargeLabel) {
@@ -865,6 +1790,13 @@ MyDesklet.prototype = {
                 this.rapid_charge_enabled = this._readFromFile(RAPID_CHARGE_FILE).trim() === '1';
                 if (this.rapidButton) this._updateButtonStyle(this.rapidButton, "Rapid");
             } catch (e) {}
+
+            // Always read power draw for graph
+            this._readPowerNow();
+            
+            // Read other battery info if settings enabled
+            if (this.show_charge_cycles) this._readChargeCycles();
+            if (this.show_battery_health) this._readBatteryHealth();
         } catch (e) {
             this.percentageLabel.set_text("--");
             if (this.chargeLabel) this.chargeLabel.set_text("Error");
@@ -883,7 +1815,93 @@ MyDesklet.prototype = {
         throw new Error("Could not read file: " + path);
     },
 
+    _readPowerNow: function() {
+        try {
+            const POWER_NOW = "/sys/class/power_supply/BAT1/power_now";
+            let powerValue = parseInt(this._readFromFile(POWER_NOW));
+            this.powerNow = (powerValue / 1000 / 1000).toFixed(1); // Convert μW to W
+            if (this.powerDrawLabel) {
+                this.powerDrawLabel.set_text('Power Draw: ' + this.powerNow + ' W');
+            }
+
+            // Add to power history for graph with timestamp
+            const powerNum = parseFloat(this.powerNow);
+            this.powerHistory.push({
+                power: powerNum,
+                timestamp: new Date().getTime()
+            });
+            
+            if (this.powerHistory.length > this.maxDataPoints) {
+                this.powerHistory.shift();
+            }
+
+            // Repaint modal graphs if they're open
+            if (this.modalPowerCanvas) {
+                this.modalPowerCanvas.queue_repaint();
+            }
+            if (this.modalBatteryCanvas) {
+                this.modalBatteryCanvas.queue_repaint();
+            }
+            if (this.infoPanelVisible) {
+                this._refreshInfoPanel();
+            }
+        } catch (e) {
+            global.logError("Failed to read power now: " + e);
+        }
+    },
+
+    _readChargeCycles: function() {
+        try {
+            const CYCLE_COUNT = "/sys/class/power_supply/BAT1/cycle_count";
+            this.chargeCycles = parseInt(this._readFromFile(CYCLE_COUNT));
+            if (this.chargeCyclesLabel) {
+                this.chargeCyclesLabel.set_text('Cycles: ' + this.chargeCycles);
+            }
+            if (this.infoPanelVisible) {
+                this._refreshInfoPanel();
+            }
+        } catch (e) {
+            // Not all batteries report cycle count
+            if (this.chargeCyclesLabel) {
+                this.chargeCyclesLabel.set_text('Cycles: N/A');
+            }
+        }
+    },
+
+    _readBatteryHealth: function() {
+        try {
+            const ENERGY_FULL = "/sys/class/power_supply/BAT1/energy_full";
+            const ENERGY_FULL_DESIGN = "/sys/class/power_supply/BAT1/energy_full_design";
+            
+            let energyFull = parseInt(this._readFromFile(ENERGY_FULL));
+            let energyFullDesign = parseInt(this._readFromFile(ENERGY_FULL_DESIGN));
+            
+            if (energyFullDesign > 0) {
+                this.batteryHealth = ((energyFull / energyFullDesign) * 100).toFixed(1);
+            } else {
+                this.batteryHealth = 100;
+            }
+            
+            if (this.batteryHealthLabel) {
+                this.batteryHealthLabel.set_text('Health: ' + this.batteryHealth + '%');
+            }
+            if (this.infoPanelVisible) {
+                this._refreshInfoPanel();
+            }
+        } catch (e) {
+            // Fallback if files not available
+            this.batteryHealth = 100;
+            if (this.batteryHealthLabel) {
+                this.batteryHealthLabel.set_text('Health: N/A');
+            }
+        }
+    },
+
     on_desklet_removed: function() {
         if (this.timeout) Mainloop.source_remove(this.timeout);
+        if (this.infoPanel && global.stage) {
+            global.stage.remove_actor(this.infoPanel);
+            this.infoPanel.destroy();
+        }
     }
 };

@@ -1,0 +1,10 @@
+{
+    "max-instances": "-1",
+    "uuid": "watt-watcher@drstevendev",
+    "settings-schema": "settings-schema.json",
+    "name": "Watt Watcher",
+    "author": "drstevendev",
+    "description": "Watt-Watcher monitors your laptop battery's charge and discharge rate and displays the values as a time series.",
+    "version": "0.1",
+    "prevent-decorations": false
+}
