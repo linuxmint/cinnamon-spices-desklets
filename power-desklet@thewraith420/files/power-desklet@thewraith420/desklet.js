@@ -75,6 +75,8 @@ MyDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "show-power-draw", "show_power_draw", this._onLayoutChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "show-charge-cycles", "show_charge_cycles", this._onLayoutChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "show-battery-health", "show_battery_health", this._onLayoutChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "info-panel-color", "info_panel_color", this._onAppearanceChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "info-panel-opacity", "info_panel_opacity", this._onAppearanceChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "data-retention-days", "data_retention_days", this._onDataRetentionChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "graph-zoom-days", "graphZoomDays", this._onGraphZoomChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "use-24hour-time", "use24HourTime", this._onGraphZoomChanged, null);
@@ -101,6 +103,8 @@ MyDesklet.prototype = {
             if (this.show_power_draw === undefined) this.show_power_draw = true;
             if (this.show_charge_cycles === undefined) this.show_charge_cycles = true;
             if (this.show_battery_health === undefined) this.show_battery_health = true;
+            if (!this.info_panel_color) this.info_panel_color = 'rgb(0, 0, 0)';
+            if (this.info_panel_opacity === undefined) this.info_panel_opacity = 0.4;
             if (!this.data_retention_days) this.data_retention_days = 30;
 
             // Initialize power info values
@@ -143,9 +147,10 @@ MyDesklet.prototype = {
         });
 
         // Battery section with compact padding
+        let isCompact = this.battery_display_mode === 'compact';
         let batterySection = new St.BoxLayout({
             vertical: this.battery_display_mode === 'vertical',
-            style: 'padding: 10px; spacing: 12px;'
+            style: `padding: ${isCompact ? 8 : 10}px; spacing: ${isCompact ? 8 : 12}px;`
         });
         this.window.add_child(batterySection);
 
@@ -176,9 +181,10 @@ MyDesklet.prototype = {
     },
 
     _createBatteryBar: function() {
+        let isCompact = this.battery_display_mode === 'compact';
         let batteryContainer = new St.BoxLayout({
             vertical: true,
-            style: 'spacing: 8px; min-width: 200px;'
+            style: `spacing: ${isCompact ? 6 : 8}px; min-width: ${isCompact ? 160 : 200}px;`
         });
 
         // Battery percentage display
@@ -202,12 +208,16 @@ MyDesklet.prototype = {
             let barBgColor = rgbMatch ? `rgba(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]}, 0.1)` : 'rgba(255, 255, 255, 0.1)';
             let barFillColor = rgbMatch ? `rgb(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]})` : 'rgb(255, 255, 255)';
             
+            let barHeight = isCompact ? 12 : 18;
+            let fillHeight = isCompact ? 8 : 14;
+            let barWidth = isCompact ? 140 : 180;
+
             this.batteryBar = new St.Bin({
-                style: `background-color: ${barBgColor}; border-radius: 10px; height: 18px; min-width: 180px;`
+                style: `background-color: ${barBgColor}; border-radius: 10px; height: ${barHeight}px; min-width: ${barWidth}px;`
             });
             
             this.batteryBarFill = new St.Bin({
-                style: `background-color: ${barFillColor}; border-radius: 8px; height: 14px; margin: 2px;`
+                style: `background-color: ${barFillColor}; border-radius: 8px; height: ${fillHeight}px; margin: 2px;`
             });
             
             this.batteryBar.set_child(this.batteryBarFill);
@@ -268,8 +278,9 @@ MyDesklet.prototype = {
         let nvidiaActiveColor = nvRgbMatch ? `rgba(${nvRgbMatch[1]}, ${nvRgbMatch[2]}, ${nvRgbMatch[3]}, 0.25)` : "rgba(118, 185, 0, 0.25)";
         let nvidiaBorderColor = nvRgbMatch ? `rgba(${nvRgbMatch[1]}, ${nvRgbMatch[2]}, ${nvRgbMatch[3]}, 0.6)` : "rgba(118, 185, 0, 0.6)";
         
+        let singleRow = this.battery_display_mode === 'vertical';
         this.conservationButton = this.createActionButton(
-            gridLayout, 0, 0, 
+            gridLayout, 0, singleRow ? 0 : 0, 
             "battery-level-80-symbolic", 
             "Battery Saver",
             nvidiaActiveColor,
@@ -282,7 +293,7 @@ MyDesklet.prototype = {
         }));
 
         this.rapidButton = this.createActionButton(
-            gridLayout, 1, 0, 
+            gridLayout, 1, singleRow ? 0 : 0, 
             "battery-full-charging-symbolic", 
             "Rapid",
             nvidiaActiveColor,
@@ -295,7 +306,7 @@ MyDesklet.prototype = {
         }));
 
         let lockButton = this.createActionButton(
-            gridLayout, 0, 1, 
+            gridLayout, singleRow ? 2 : 0, singleRow ? 0 : 1, 
             "changes-prevent-symbolic", 
             "Lock",
             "rgba(156, 39, 176, 0.25)",
@@ -309,13 +320,19 @@ MyDesklet.prototype = {
             }
         }));
 
+        let infoAccent = this.nvidia_accent_color || this.accent_color || 'rgb(33, 150, 243)';
+        let infoMatch = infoAccent.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+        let infoBg = infoMatch ? `rgba(${infoMatch[1]}, ${infoMatch[2]}, ${infoMatch[3]}, 0.25)` : infoAccent;
+        let infoBorder = infoMatch ? `rgba(${infoMatch[1]}, ${infoMatch[2]}, ${infoMatch[3]}, 0.6)` : infoAccent;
+
         let batteryInfoButton = this.createActionButton(
-            gridLayout, 1, 1, 
+            gridLayout, singleRow ? 3 : 1, singleRow ? 0 : 1, 
             "dialog-information-symbolic", 
             "Battery Info",
-            "rgba(33, 150, 243, 0.25)",
-            "rgba(33, 150, 243, 0.6)"
+            infoBg,
+            infoBorder
         );
+        this.batteryInfoButton = batteryInfoButton;
         batteryInfoButton.connect('clicked', Lang.bind(this, function() {
             this._openBatteryInfoWindow();
         }));
@@ -347,22 +364,22 @@ MyDesklet.prototype = {
 
         this.infoPanel = new St.BoxLayout({
             vertical: true,
-            style: `spacing: 10px; 
-                    padding: 14px;
-                    width: ${panelWidth}px;
-                    background-color: rgba(0, 0, 0, 0.4);
-                    border-radius: 8px; 
-                    border: 1px solid rgba(255, 255, 255, 0.12);
-                    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);`,
+            style: this._getInfoPanelStyle(),
             clip_to_allocation: true,
-            reactive: true
+            reactive: true,
+            can_focus: true
         });
         
         global.stage.add_actor(this.infoPanel);
         this.infoPanel.hide();
         this.infoPanel.set_opacity(0);
+        
+        // Capture all events on the panel to ensure they reach child elements
+        this.infoPanel.connect('captured-event', Lang.bind(this, function(actor, event) {
+            return Clutter.EVENT_PROPAGATE;
+        }));
 
-        // Create title bar with close button
+        // Create title bar
         let titleBox = new St.BoxLayout({
             vertical: false,
             style: 'margin-bottom: 6px;'
@@ -377,29 +394,6 @@ MyDesklet.prototype = {
         });
         titleBox.add_child(titleLabel);
         
-        let accentColor = this.accent_color || 'rgb(255, 255, 255)';
-        let rgbMatch = accentColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
-        let buttonBg = rgbMatch ? `rgba(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]}, 0.15)` : 'rgba(255, 255, 255, 0.15)';
-        let buttonBorder = rgbMatch ? `rgba(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]}, 0.4)` : 'rgba(255, 255, 255, 0.4)';
-        
-        let closeButton = new St.Button({
-            style: `padding: 2px 8px;
-                    background-color: ${buttonBg};
-                    border: 1px solid ${buttonBorder};
-                    border-radius: 4px;
-                    color: ${accentColor};
-                    font-size: 16pt;
-                    font-weight: bold;`,
-            reactive: true,
-            can_focus: true,
-            label: '×'
-        });
-        
-        closeButton.connect('clicked', Lang.bind(this, function() {
-            this._toggleInfoPanel(false);
-        }));
-        
-        titleBox.add_child(closeButton);
         this.infoPanel.add_child(titleBox);
 
         let infoBox = new St.BoxLayout({
@@ -516,7 +510,10 @@ MyDesklet.prototype = {
 
         if (shouldShow) {
             // Show panel first to get its actual size
+            this.infoPanel.set_style(this._getInfoPanelStyle());
             this.infoPanel.show();
+            this.infoPanel.raise_top();
+            this.infoPanel.grab_key_focus();
             this._refreshInfoPanel();
             
             // Decide which side to open based on available space
@@ -545,6 +542,7 @@ MyDesklet.prototype = {
                 transition: 'easeOutQuad',
                 onComplete: Lang.bind(this, function() {
                     this.infoPanelVisible = true;
+                    this._updateBatteryInfoButtonStyle();
                 })
             });
         } else {
@@ -556,9 +554,15 @@ MyDesklet.prototype = {
                 onComplete: Lang.bind(this, function() {
                     this.infoPanel.hide();
                     this.infoPanelVisible = false;
+                    this._updateBatteryInfoButtonStyle();
                 })
             });
         }
+    },
+
+    _updateBatteryInfoButtonStyle: function() {
+        if (!this.batteryInfoButton) return;
+        this._updateButtonStyle(this.batteryInfoButton, "Battery Info");
     },
 
     _createPowerInfoPanel: function() {
@@ -1424,7 +1428,8 @@ MyDesklet.prototype = {
 
     _updateButtonStyle: function(button, label) {
         let isActive = (label === "Battery Saver" && this.conservation_mode_enabled) || 
-                       (label === "Rapid" && this.rapid_charge_enabled);
+                       (label === "Rapid" && this.rapid_charge_enabled) ||
+                       (label === "Battery Info" && this.infoPanelVisible);
         
         if (isActive && button._activeColor) {
             button.set_style(this._getButtonCustomActiveStyle(button._activeColor, button._activeBorder));
@@ -1496,9 +1501,30 @@ MyDesklet.prototype = {
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);`;
     },
 
+    _getInfoPanelStyle: function() {
+        let opacity = this.info_panel_opacity || 0.4;
+        let bgColor = this.info_panel_color || 'rgb(0, 0, 0)';
+        let rgbMatch = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+        let rgba = bgColor;
+        if (rgbMatch) {
+            rgba = `rgba(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]}, ${opacity})`;
+        }
+
+        return `spacing: 10px; 
+                padding: 14px;
+                width: ${this.infoPanelWidth || 400}px;
+                background-color: ${rgba};
+                border-radius: 8px; 
+                border: 1px solid rgba(255, 255, 255, 0.12);
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);`;
+    },
+
     _getPercentageStyle: function() {
         let color = this.accent_color || 'rgb(255, 255, 255)';
         let size = this.font_size || 42;
+        if (this.battery_display_mode === 'compact') {
+            size = Math.round(size * 0.75);
+        }
         return `color: ${color}; 
                 font-size: ${size}pt; 
                 font-weight: bold; 
