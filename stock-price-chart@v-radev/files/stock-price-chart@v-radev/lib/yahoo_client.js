@@ -3,11 +3,12 @@ const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 
 imports.searchPath.unshift(`${DESKLET_DIR}/lib`);
 const HttpClientModule = imports['http_client'];
+const LoggerModule = imports['logger'];
 const httpClient = new HttpClientModule.HttpClient();
+const logger = new LoggerModule.LoggerClass();
 
 class YahooClientDeclaration {
 
-  _authCookie = null;
   _authCrumb = null;
 
   constructor() {}
@@ -19,30 +20,44 @@ class YahooClientDeclaration {
   // FILTER_HISTORICAL = 'history';
   // FILTER_SPLITS = 'split';
 
-  async getTickerData(ticker, interval, startDate, endDate) {
-    global.log('--- Getting cookie...');
+  async getAuthCookieInHttpJar() {
+    logger.log('--- Getting Yahoo auth cookie in HTTP jar.');
 
     try {
-      // This was https://finance.yahoo.com/quote/AAPL/options previously
       await httpClient.request('GET', 'https://fc.yahoo.com');
     } catch (e) {
-      global.log(e);
+      logger.log(e);
 
       throw e;
     }
+  }
 
-    global.log('--- Getting crumb...');
+  async getAuthCrumbValueInClient() {
+    logger.log('--- Getting Yahoo auth crumb value.');
 
-    const crumbResponse = await httpClient.request('GET', 'https://query2.finance.yahoo.com/v1/test/getcrumb');
+    try {
+      const crumbResponse = await httpClient.request('GET', 'https://query2.finance.yahoo.com/v1/test/getcrumb');
 
-    global.log('---- crumb is OK');
-    if ('string' === typeof crumbResponse.data && '' !== crumbResponse.data.trim() && !/\s/.test(crumbResponse.data)) {
-      this._authCrumb = crumbResponse.data;
-    } else if ( 'string' === typeof crumbResponse && '' !== crumbResponse.trim() && !/\s/.test(crumbResponse)) {
-      this._authCrumb = crumbResponse;
+      if ('string' === typeof crumbResponse.data && '' !== crumbResponse.data.trim() && !/\s/.test(crumbResponse.data)) {
+        this._authCrumb = crumbResponse.data;
+      } else if ('string' === typeof crumbResponse && '' !== crumbResponse.trim() && !/\s/.test(crumbResponse)) {
+        this._authCrumb = crumbResponse;
+      }
+    } catch (e) {
+      logger.log(e);
+
+      throw e;
+    }
+  }
+
+  async getTickerData(ticker, interval, startDate, endDate) {
+    await this.getAuthCookieInHttpJar();
+
+    if (!this._authCrumb) {
+      await this.getAuthCrumbValueInClient();
     }
 
-    global.log('---- crumb is 2 : ' + this._authCrumb);
+    logger.log(`--- Getting ticker data for ${ticker} from ${startDate.toISOString()} to ${endDate.toISOString()} with interval ${interval}.`);
 
     const periodOne = Math.floor(startDate.getTime() / 1000);
     const periodTwo = Math.floor(endDate.getTime() / 1000);
@@ -52,87 +67,83 @@ class YahooClientDeclaration {
       + `&events=history&lang=en-US&region=US&crumb=${this._authCrumb}`;
 
     try {
-      //TODO JSON.parse() the response with a new method getJson() in the httpClient that calls .request('GET', url);
-      // {"chart":{"result":[{"meta":{"longName":"Apple Inc.","shortName":"Apple Inc.","chartPreviousClose":277.18,"dataGranularity":"1d","range":"","validRanges":["1d","5d","1mo","3mo","6mo","1y","2y","5y","10y","ytd","max"]},"timestamp":[1765377000,1765463400,1765549800,1765809000,1765895400],"indicators":{"quote":[{"high":[279.75,279.5899963378906,279.2200012207031,280.1499938964844,275.5],"volume":[33038300,33248000,39532900,50409100,37589700],"open":[277.75,279.1000061035156,277.8999938964844,280.1499938964844,272.82000732421875],"close":[278.7799987792969,278.0299987792969,278.2799987792969,274.1099853515625,274.6099853515625],"low":[276.44000244140625,273.80999755859375,276.82000732421875,272.8399963378906,271.7900085449219]}],"adjclose":[{"adjclose":[278.7799987792969,278.0299987792969,278.2799987792969,274.1099853515625,274.6099853515625]}]}}],"error":null}}
-      return httpClient.request('GET', url);
+      return httpClient.getJSON(url);
     } catch (e) {
-      global.log('-- Error on getting ticker data request.');
-      global.log(e);
+      logger.log('-- Error on getting ticker data request.');
+      logger.log(e);
 
       throw e;
     }
-
-    //TODO
-    // return this.getHistoricalDataResponse(ticker, interval, startDate, endDate);
   }
 
-  // private function getHistoricalDataResponse(
-  //  string $symbol,
-  //  string $interval,
-  //  \DateTimeInterface $startDate,
-  //  \DateTimeInterface $endDate,
-  // ): string {
-  //   $url = 'https://query{queryServer}.finance.yahoo.com/v8/finance/chart/'.urlencode($symbol).'?period1='.$startDate->getTimestamp().'&period2='.$endDate->getTimestamp().'&interval='.$interval.'&events=history';
-  //   $response = $this->contextManager->request('GET', $url);
-  //
-  //   response gets sent to transformHistoricalDataResult();
-  // }
+  async getHistoricalTickerData(ticker, interval, startDate, endDate) {
+    const response = await this.getTickerData(ticker, interval, startDate, endDate);
 
-  // public function transformHistoricalDataResult(string $responseBody): array
-  // {
-  //   $decoded = json_decode($responseBody, true);
-  //
-  //   if ((!\is_array($decoded)) || (isset($decoded['chart']['error']))) {
-  //     throw new ApiException('Response is not a valid JSON', ApiException::INVALID_RESPONSE);
-  //   }
-  //
-  //   $result = $decoded['chart']['result'][0];
-  //
-  //   if (0 === \count($result['indicators']['quote'][0])) {
-  //     return [];
-  //   }
-  //
-  //   $entryCount = \count($result['indicators']['quote'][0]['open']);
-  //
-  //   $returnArray = [];
-  //   for ($i = 0; $i < $entryCount; ++$i) {
-  //     $returnArray[] = $this->createHistoricalData($result, $i);
-  //   }
-  //
-  //   return $returnArray;
-  // }
+    if (response.hasOwnProperty('error') && null !== response.error) {
+      logger.log('-- API Error on getting historical ticker data.');
 
-  // private function createHistoricalData(array $json, int $index): HistoricalData
-  // {
-  //     $dateStr = date('Y-m-d', $json['timestamp'][$index]);
-  //
-  //     if ('0' !== $dateStr) {
-  //       $date = $this->validateDate($dateStr);
-  //     } else {
-  //       throw new ApiException(\sprintf('Not a date in column "Date":%s', $json['timestamp'][$index]), ApiException::INVALID_VALUE);
-  //     }
-  //
-  //     foreach (['open', 'high', 'low', 'close', 'volume'] as $column) {
-  //       $columnValue = $json['indicators']['quote'][0][$column][$index];
-  //       if (!is_numeric($columnValue) && 'null' !== $columnValue && !\is_null($columnValue)) {
-  //         throw new ApiException(\sprintf('Not a number in column "%s": %s', $column, $column), ApiException::INVALID_VALUE);
-  //       }
-  //     }
-  //
-  //     $columnValue = $json['indicators']['adjclose'][0]['adjclose'][$index];
-  //     if (!is_numeric($columnValue) && 'null' !== $columnValue && !\is_null($columnValue)) {
-  //       throw new ApiException(\sprintf('Not a number in column "%s": %s', 'adjclose', 'adjclose'), ApiException::INVALID_VALUE);
-  //     }
-  //
-  //     $open = (float) $json['indicators']['quote'][0]['open'][$index];
-  //     $high = (float) $json['indicators']['quote'][0]['high'][$index];
-  //     $low = (float) $json['indicators']['quote'][0]['low'][$index];
-  //     $close = (float) $json['indicators']['quote'][0]['close'][$index];
-  //     $volume = (int) $json['indicators']['quote'][0]['volume'][$index];
-  //     $adjClose = (float) $json['indicators']['adjclose'][0]['adjclose'][$index];
-  //
-  //     return new HistoricalData($date, $open, $high, $low, $close, $adjClose, $volume);
-  // }
+      throw new Error(`API Error: ${response.error}.`);
+    }
+
+    if (
+      !response.hasOwnProperty('chart') ||
+      !response.chart.hasOwnProperty('result') ||
+      0 === response.chart.result.length
+    ) {
+      logger.log('-- No chart result on getting historical ticker data.');
+
+      return [];
+    }
+
+    const result = response.chart.result[0];
+
+    if (
+        !result.hasOwnProperty('timestamp') ||
+        !result.hasOwnProperty('indicators') ||
+        !result.indicators.hasOwnProperty('quote') ||
+        0 === result.indicators.quote.length ||
+        !result.indicators.quote[0].hasOwnProperty('open') ||
+        0 === result.indicators.quote[0].open.length
+    ) {
+      logger.log('-- No historical data found in the ticker data response.');
+
+      return [];
+    }
+
+    const itemsCount = result.indicators.quote[0].open.length;
+    const historicalDataArray = [];
+
+    for (let i = 0; i < itemsCount; i++) {
+      const timestamp = result.timestamp[i];
+      const date = new Date(timestamp * 1000);
+
+      const open = result.indicators.quote[0].open[i];
+      const close = result.indicators.quote[0].close[i];
+
+      historicalDataArray.push({
+        shortName: result.meta.shortName,
+        date: date,
+        open: this.roundAmount(open, 2, false),
+        close: this.roundAmount(close, 2, false),
+      });
+    }
+
+    return historicalDataArray;
+  }
+
+  roundAmount(amount, maxDecimals, strictRounding) {
+    if (strictRounding) {
+      return amount.toFixed(maxDecimals);
+    }
+
+    const parts = amount.toString().split('.');
+
+    if (1 < parts.length && parts[1].length > maxDecimals) {
+      return Number(amount.toFixed(maxDecimals));
+    }
+
+    return amount;
+  }
 }
 
 // Export

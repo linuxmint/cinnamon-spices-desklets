@@ -1,6 +1,7 @@
 class LoggerClassDeclaration {
   constructor() {
     this._logger = () => {};
+    this._logger = global.log; // Uncomment to enable debugging
   }
 
   setLogger(logger) {

@@ -21,8 +21,6 @@ const YahooModule = imports['yahoo_client'];
 const logger = new LoggerModule.LoggerClass();
 const yahooClient = new YahooModule.YahooClient();
 
-logger.setLogger(global.log); // Uncomment to enabled debugging
-
 function StockPriceChartDesklet(metadata, instanceId) {
   this._init(metadata, instanceId);
 }
@@ -312,39 +310,39 @@ StockPriceChartDesklet.prototype = {
     const desklet_w = graph_w + (2 * unitSize);
     const desklet_h = graph_h + (4 * unitSize);
 
-    //TODO dynamic values from API
-    const labels = ['20 Aug', '21 Aug', '22 Aug', '23 Aug', '24 Aug', '25 Aug', '26 Aug'];
-    const values = [149, 108, 115, 122, 135, 148, 142];
+    logger.log('-- About to fetch data from Yahoo Finance.');
 
-    const chartObject = new ChartModule.ChartClass(labels, values);
-    const canvas = chartObject.drawCanvas(desklet_w, desklet_h, unitSize);
+    yahooClient.getHistoricalTickerData(
+      'AAPL',
+      '1d',
+      new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+      new Date()
+    )
+      .then((tickerData) => {
+        const chartLabels = [];
+        const chartValues = [];
 
-    logger.log('About to fetch data from Yahoo Finance...');
+        for (let i = 0; i < tickerData.length; i++) {
+          chartLabels.push(`${tickerData[i].date.getDate()} ${tickerData[i].date.toLocaleString('en-US', { month: 'short' })}`);
+          chartValues.push(tickerData[i].close);
+        }
 
-    try {
-      yahooClient.getTickerData(
-        'AAPL',
-        '1d',
-        new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
-        new Date()
-      )
-        .then((appleData) => {
-          logger.log('Apple data fetched successfully.');
-          logger.log('Apple data: ' + appleData);
-        })
-        .catch(e => {
-          logger.log('Error in fetching ticker data: ' + e.message);
-        });
-    } catch (e) {
-      logger.log('Error fetching data from Yahoo Finance: ' + e.message);
-    }
+        logger.log('-- Fetched ticker data values: ' + chartValues.toString());
+        logger.log('-- Fetched ticker data labels: ' + chartLabels.toString());
 
-    logger.log('Finished fetching data from Yahoo Finance.');
+        const chartObject = new ChartModule.ChartClass(chartLabels, chartValues);
+        const canvas = chartObject.drawCanvas(desklet_w, desklet_h, unitSize);
 
-    canvas.invalidate();
+        canvas.invalidate();
 
-    this.mainBox.set_content(canvas);
-    this.mainBox.set_size(desklet_w, desklet_h);
+        this.mainBox.set_content(canvas);
+        this.mainBox.set_size(desklet_w, desklet_h);
+      })
+      .catch((e) => {
+        logger.log('-- Error in fetching ticker data: ' + e.message);
+      });
+
+    logger.log('-- Finished fetching data from Yahoo Finance.');
   },
 
   parseRgbaValues: function(colorString) {

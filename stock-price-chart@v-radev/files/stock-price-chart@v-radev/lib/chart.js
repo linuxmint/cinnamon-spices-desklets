@@ -71,10 +71,11 @@ class ChartClassDeclaration {
     const YScaleStep = 10;
     const midlineColor = this._parseRgbaValues('rgba(150,150,150,0.1)'); //TODO is configurable
 
-    // Y scale (money) - fixed from 100 to 150
-    //TODO dynamic scaling
-    const yMin = 100;
-    const yMax = 150;
+    // Y scale (money)
+    const minValue = Math.min.apply(null, this._values);
+    const maxValue = Math.max.apply(null, this._values);
+    const yMin = Math.floor(minValue - minValue * 0.1);
+    const yMax = Math.ceil(maxValue + maxValue * 0.1);
 
     // Draw chart X and Y lines
     canvasContext.setLineWidth(2);
@@ -133,10 +134,11 @@ class ChartClassDeclaration {
     const originX = this._MARGIN.left;
     const originY = this._MARGIN.top + chartHeight;
 
-    // Y scale (money) - fixed from 100 to 150
-    //TODO dynamic scaling
-    const yMin = 100;
-    const yMax = 150;
+    // Y scale (money)
+    const minValue = Math.min.apply(null, this._values);
+    const maxValue = Math.max.apply(null, this._values);
+    const yMin = Math.floor(minValue - minValue * 0.1);
+    const yMax = Math.ceil(maxValue + maxValue * 0.1);
     const numberOfLabels = this._labels.length;
 
     canvasContext.setLineWidth(1.5);
@@ -161,10 +163,11 @@ class ChartClassDeclaration {
     const originX = this._MARGIN.left;
     const originY = this._MARGIN.top + chartHeight;
 
-    // Y scale (money) - fixed from 100 to 150
-    //TODO dynamic scaling
-    const yMin = 100;
-    const yMax = 150;
+    // Y scale (money)
+    const minValue = Math.min.apply(null, this._values);
+    const maxValue = Math.max.apply(null, this._values);
+    const yMin = Math.floor(minValue - minValue * 0.1);
+    const yMax = Math.ceil(maxValue + maxValue * 0.1);
 
     const numberOfLabels = this._labels.length;
     const pointRadius = 2;
@@ -183,7 +186,7 @@ class ChartClassDeclaration {
   }
 
   _drawChartTitle(canvasContext, chartWidth, chartHeight) {
-    const titleText = 'INTC Stock Price'; // TODO dynamic
+    const titleText = 'INTC Stock Price'; // TODO dynamic from the response meta shortName
     const titleExtents = cr.textExtents(titleText);
     const centerX = chartWidth / 2 - titleExtents.width / 2 + this._MARGIN.left / 2;
 
