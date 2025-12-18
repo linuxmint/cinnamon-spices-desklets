@@ -2,8 +2,17 @@ const GLib = imports.gi.GLib;
 const Soup = imports.gi.Soup;
 const ByteArray = imports.byteArray;
 
-const _cookieJar = new Soup.CookieJar();
 const _httpSession = 2 === Soup.MAJOR_VERSION ? new Soup.SessionAsync() : new Soup.Session();
+const _cookieJar = new Soup.CookieJar();
+
+if (undefined === Soup.MAJOR_VERSION || 2 === Soup.MAJOR_VERSION) {
+  Soup.Session.prototype.add_feature.call(_httpSession, new Soup.ProxyResolverDefault());
+  Soup.Session.prototype.add_feature.call(_httpSession, new Soup.ContentDecoder());
+}
+
+_httpSession.timeout = 60;
+_httpSession.idle_timeout = 60;
+_httpSession.user_agent = 'Mozilla/5.0 YarrDesklet/1.0';
 
 Soup.Session.prototype.add_feature.call(_httpSession, _cookieJar);
 
@@ -22,7 +31,7 @@ class HttpClientDeclaration {
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/131.0.2903.86",
   ];
 
-  httpRequest(method, url, body = null) {
+  request(method, url, body = null) {
     return new Promise((resolve, reject) => {
       try {
         const message = Soup.Message.new(method, url);
@@ -31,59 +40,46 @@ class HttpClientDeclaration {
           throw new Error(`Failed to create message for URL: ${url}`);
         }
 
-        // User agent
-        message.request_headers.append(
-          'User-Agent',
-          'Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0'
-        );
-
-        // Add body for POST requests
-        if ('POST' === method && body) {
-          if (2 === Soup.MAJOR_VERSION) {
-            message.set_request('application/json', 2, body);
-          } else {
-            message.set_request_body_from_bytes(
-              'application/json',
-              new GLib.Bytes(body)
-            );
-          }
+        if (2 === Soup.MAJOR_VERSION) {
+          message.request_headers.append(
+            'User-Agent',
+            this._USER_AGENTS[Math.floor(Math.random() * this._USER_AGENTS.length)]
+          );
+          message.request_headers.append("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+          message.request_headers.append("Accept-Encoding", "gzip, deflate");
+        } else {
+          message.get_request_headers().append(
+            'User-Agent',
+            this._USER_AGENTS[Math.floor(Math.random() * this._USER_AGENTS.length)]
+          );
+          message.get_request_headers().append("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+          message.get_request_headers().append("Accept-Encoding", "gzip, deflate");
         }
-
-        // Timeout after 30 seconds
-        let timeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 30000, () => {
-          reject(new Error('HTTP request timed out'));
-
-          return;
-        });
-
-        const clearTimeout = () => {
-          if (timeoutId) {
-            try { GLib.source_remove(timeoutId); } catch (e) { }
-
-            timeoutId = 0;
-          }
-        };
 
         // Handle Soup v2 vs v3
         if (2 === Soup.MAJOR_VERSION) {
-          this.httpSession.queue_message(message, (session, response) => {
-            clearTimeout();
-
+          global.log('--- About to send v2 to ' + url);
+          _httpSession.queue_message(message, (session, response) => {
             if (response.status_code !== 200) {
+              global.log('-- Error in v2 queue_message.');
+              global.log('Error in v2 queue_message: ' + response.reason_phrase);
               reject(new Error(`HTTP ${response.status_code}: ${response.reason_phrase}`));
 
               return;
             }
 
+            global.log('--- v2 response status: ' + response.status_code);
+
             resolve(message.response_body.data);
           });
         } else {
-          this.httpSession.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null,
+          global.log('--- About to send v3 to ' + url);
+          _httpSession.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null,
             (session, result) => {
               try {
                 const bytes = session.send_and_read_finish(result);
 
-                clearTimeout();
+                global.log('--- v3 response status: ' + message.get_status());
 
                 if (!bytes) {
                   reject(new Error('No response data'));
@@ -91,9 +87,15 @@ class HttpClientDeclaration {
                   return;
                 }
 
-                resolve(ByteArray.toString(bytes.get_data()));
+                global.log('--- will resolve!');
+                const responseData = ByteArray.toString(bytes.get_data());
+
+                global.log('--- will resolve: ' + responseData.length + ' bytes');
+                global.log('--- v3 resolving data!');
+                resolve(responseData);
               } catch (error) {
-                clearTimeout();
+                global.log('-- Error in v3 send_and_read_async.');
+                global.log('Error in v3 send_and_read_async: ' + error.message);
                 reject(error);
               }
             });
@@ -143,14 +145,17 @@ class HttpClientDeclaration {
   get(url) {
     const message = Soup.Message.new('GET', url);
 
-    // User agent
-    message.request_headers.append(
-      'User-Agent',
-      this._USER_AGENTS[Math.floor(Math.random() * this._USER_AGENTS.length)]
-    );
-
     if (2 === Soup.MAJOR_VERSION) {
       _httpSession.send_message(message);
+
+      message.request_headers.append('Accept', '*/*');
+      message.request_headers.append('Accept-Encoding', 'gzip, deflate');
+
+      // User agent
+      message.request_headers.append(
+        'User-Agent',
+        this._USER_AGENTS[Math.floor(Math.random() * this._USER_AGENTS.length)]
+      );
 
       if (message.status_code === Soup.KnownStatusCode.OK) {
         return message.response_body.data.toString();
@@ -162,6 +167,15 @@ class HttpClientDeclaration {
 
       throw new Error(`Failed with code ${message.status_code} for URL: ${url}`);
     }
+
+    message.get_request_headers().append('Accept', '*/*');
+    message.get_request_headers().append('Accept-Encoding', 'gzip, deflate');
+
+    // User agent
+    message.get_request_headers().append(
+      'User-Agent',
+      this._USER_AGENTS[Math.floor(Math.random() * this._USER_AGENTS.length)]
+    );
 
     const bytes = _httpSession.send_and_read(message, null);
 

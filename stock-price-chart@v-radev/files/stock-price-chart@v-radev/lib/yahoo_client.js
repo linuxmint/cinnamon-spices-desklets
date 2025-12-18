@@ -19,49 +19,48 @@ class YahooClientDeclaration {
   // FILTER_HISTORICAL = 'history';
   // FILTER_SPLITS = 'split';
 
-  getTickerData(ticker, interval, startDate, endDate) {
-
-    // This is the URL the website uses when I switch to 1 month data
-    // https://query1.finance.yahoo.com/v8/finance/chart/KR?period1=1754600400&period2=1757602800&interval=1d&includePrePost=true&events=div|split|earn&lang=en-US&region=US&source=cosaic
-
-
-
-    //TODO
-    // 1. curl -X GET "https://fc.yahoo.com"
-    // 2. using the cookie jar do https://query2.finance.yahoo.com/v1/test/getcrumb
-    // so I need to enable the cookie jar in the http client
+  async getTickerData(ticker, interval, startDate, endDate) {
+    global.log('--- Getting cookie...');
 
     try {
-      //TODO this is not json
-      httpClient.get('https://fc.yahoo.com');
-    } catch (e) {}
-
-    try {
-      //TODO this is not json
-      const crumbResponse = httpClient.get('https://query2.finance.yahoo.com/v1/test/getcrumb');
+      // This was https://finance.yahoo.com/quote/AAPL/options previously
+      await httpClient.request('GET', 'https://fc.yahoo.com');
     } catch (e) {
-      console.log(e);
+      global.log(e);
 
       throw e;
     }
 
-    return crumbResponse;
+    global.log('--- Getting crumb...');
 
-    const crumb = 'hzRtijhAgd3';
+    const crumbResponse = await httpClient.request('GET', 'https://query2.finance.yahoo.com/v1/test/getcrumb');
+
+    global.log('---- crumb is OK');
+    if ('string' === typeof crumbResponse.data && '' !== crumbResponse.data.trim() && !/\s/.test(crumbResponse.data)) {
+      this._authCrumb = crumbResponse.data;
+    } else if ( 'string' === typeof crumbResponse && '' !== crumbResponse.trim() && !/\s/.test(crumbResponse)) {
+      this._authCrumb = crumbResponse;
+    }
+
+    global.log('---- crumb is 2 : ' + this._authCrumb);
+
+    const periodOne = Math.floor(startDate.getTime() / 1000);
+    const periodTwo = Math.floor(endDate.getTime() / 1000);
     const url = `https://query1.finance.yahoo.com/v8/finance/chart/`
-      + `${encodeURIComponent(ticker)}?period1=${startDate.getTime() / 1000}&`
-      + `period2=${endDate.getTime() / 1000}&interval=${interval}`
-      + `&events=history&lang=en-US&region=US&crumb=${crumb}`;
+      + `${encodeURIComponent(ticker)}?period1=${periodOne}&`
+      + `period2=${periodTwo}&interval=${interval}`
+      + `&events=history&lang=en-US&region=US&crumb=${this._authCrumb}`;
 
     try {
-      const json = httpClient.getJSON(url);
+      //TODO JSON.parse() the response with a new method getJson() in the httpClient that calls .request('GET', url);
+      // {"chart":{"result":[{"meta":{"longName":"Apple Inc.","shortName":"Apple Inc.","chartPreviousClose":277.18,"dataGranularity":"1d","range":"","validRanges":["1d","5d","1mo","3mo","6mo","1y","2y","5y","10y","ytd","max"]},"timestamp":[1765377000,1765463400,1765549800,1765809000,1765895400],"indicators":{"quote":[{"high":[279.75,279.5899963378906,279.2200012207031,280.1499938964844,275.5],"volume":[33038300,33248000,39532900,50409100,37589700],"open":[277.75,279.1000061035156,277.8999938964844,280.1499938964844,272.82000732421875],"close":[278.7799987792969,278.0299987792969,278.2799987792969,274.1099853515625,274.6099853515625],"low":[276.44000244140625,273.80999755859375,276.82000732421875,272.8399963378906,271.7900085449219]}],"adjclose":[{"adjclose":[278.7799987792969,278.0299987792969,278.2799987792969,274.1099853515625,274.6099853515625]}]}}],"error":null}}
+      return httpClient.request('GET', url);
     } catch (e) {
-      console.log(e);
+      global.log('-- Error on getting ticker data request.');
+      global.log(e);
 
       throw e;
     }
-
-    return json;
 
     //TODO
     // return this.getHistoricalDataResponse(ticker, interval, startDate, endDate);

@@ -31,7 +31,6 @@ StockPriceChartDesklet.prototype = {
   __proto__: Desklet.Desklet.prototype,
 
   _init: function(metadata, instanceId) {
-    global.log('-- Initializing desklet: ' + metadata.name + ' (Instance: ' + instanceId + ')');
     logger.log('Initializing desklet: ' + metadata.name + ' (Instance: ' + instanceId + ')');
     Desklet.Desklet.prototype._init.call(this, metadata, instanceId);
 
@@ -320,18 +319,27 @@ StockPriceChartDesklet.prototype = {
     const chartObject = new ChartModule.ChartClass(labels, values);
     const canvas = chartObject.drawCanvas(desklet_w, desklet_h, unitSize);
 
+    logger.log('About to fetch data from Yahoo Finance...');
+
     try {
-      const appleData = yahooClient.getTickerData(
+      yahooClient.getTickerData(
         'AAPL',
         '1d',
         new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
         new Date()
-      );
-
-      logger.log('Apple data: ' + JSON.stringify(appleData));
+      )
+        .then((appleData) => {
+          logger.log('Apple data fetched successfully.');
+          logger.log('Apple data: ' + appleData);
+        })
+        .catch(e => {
+          logger.log('Error in fetching ticker data: ' + e.message);
+        });
     } catch (e) {
       logger.log('Error fetching data from Yahoo Finance: ' + e.message);
     }
+
+    logger.log('Finished fetching data from Yahoo Finance.');
 
     canvas.invalidate();
 
