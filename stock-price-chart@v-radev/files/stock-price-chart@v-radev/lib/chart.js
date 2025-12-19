@@ -1,23 +1,34 @@
 const Clutter = imports.gi.Clutter;
 const Cairo = imports.cairo;
 
+const UUID = 'stock-price-chart@v-radev';
+const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
+
+imports.searchPath.unshift(`${DESKLET_DIR}/lib`);
+const LoggerModule = imports['logger'];
+const logger = new LoggerModule.LoggerClass();
+
 class ChartClassDeclaration {
   _canvas = null;
 
   _labels = null;
   _values = null;
+  _tickerCompanyName = 'Ticker Symbol Name';
 
   _MARGIN = { left: 50, right: 25, top: 30, bottom: 50 };
 
-  constructor(labels, values) {
+  constructor(labels, values, tickerCompanyName) {
     Clutter.init(null);
 
     this._labels = labels;
     this._values = values;
+    this._tickerCompanyName = tickerCompanyName;
   }
 
   drawCanvas(canvasWidth, canvasHeight, unitSize) {
     const that = this;
+
+    logger.log('--- Start drawing chart canvas.');
 
     this._canvas = new Clutter.Canvas();
     this._canvas.set_size(canvasWidth, canvasHeight);
@@ -49,7 +60,9 @@ class ChartClassDeclaration {
   }
 
   _drawChartBackground(canvasContext, canvasWidth, canvasHeight, unitSize) {
-    const backgroundColor = this._parseRgbaValues('rgba(90,90,90,0.95)'); //TODO is configurable
+    logger.log('--- Start drawing chart background.');
+
+    const backgroundColor = this._parseRgbaValues('rgba(50,50,50,0.75)'); //TODO is configurable
     const radius = 2 * unitSize / 3;
     const degrees = Math.PI / 180.0;
 
@@ -65,17 +78,20 @@ class ChartClassDeclaration {
   }
 
   _drawAxes(canvasContext, chartWidth, chartHeight) {
+    logger.log('--- Start drawing chart axes.');
+
     const originX = this._MARGIN.left;
     const originY = this._MARGIN.top + chartHeight;
     const numberOfLabels = this._labels.length;
-    const YScaleStep = 10;
-    const midlineColor = this._parseRgbaValues('rgba(150,150,150,0.1)'); //TODO is configurable
+    const midlineColor = this._parseRgbaValues('rgba(150,150,150,0.5)'); //TODO is configurable
 
     // Y scale (money)
     const minValue = Math.min.apply(null, this._values);
     const maxValue = Math.max.apply(null, this._values);
-    const yMin = Math.floor(minValue - minValue * 0.1);
     const yMax = Math.ceil(maxValue + maxValue * 0.1);
+    const yMin = Math.floor(minValue - minValue * 0.1);
+    const YScaleStepCalculation = (yMax - yMin) / 6;
+    const YScaleStep = 1 > YScaleStepCalculation ? YScaleStepCalculation.toFixed(2) : Math.floor(YScaleStepCalculation);
 
     // Draw chart X and Y lines
     canvasContext.setLineWidth(2);
@@ -131,6 +147,8 @@ class ChartClassDeclaration {
   }
 
   _drawChartLine(canvasContext, chartWidth, chartHeight) {
+    logger.log('--- Start drawing chart lines.');
+
     const originX = this._MARGIN.left;
     const originY = this._MARGIN.top + chartHeight;
 
@@ -160,6 +178,8 @@ class ChartClassDeclaration {
   }
 
   _drawDataPoints(canvasContext, chartWidth, chartHeight) {
+    logger.log('--- Start drawing chart data points.');
+
     const originX = this._MARGIN.left;
     const originY = this._MARGIN.top + chartHeight;
 
@@ -186,13 +206,15 @@ class ChartClassDeclaration {
   }
 
   _drawChartTitle(canvasContext, chartWidth, chartHeight) {
-    const titleText = 'INTC Stock Price'; // TODO dynamic from the response meta shortName
-    const titleExtents = cr.textExtents(titleText);
+    logger.log('--- Start drawing chart title.');
+
+    const titleText = this._tickerCompanyName;
+    const titleExtents = canvasContext.textExtents(titleText);
     const centerX = chartWidth / 2 - titleExtents.width / 2 + this._MARGIN.left / 2;
 
     canvasContext.setFontSize(12);
     canvasContext.selectFontFace('Sans', Cairo.FONT_SLANT_NORMAL, Cairo.FONT_WEIGHT_BOLD);
-    canvasContext.setSourceRGBA(255, 255, 255, 1);
+    canvasContext.setSourceRGBA(0, 0, 0, 1);
     canvasContext.moveTo(centerX, 16);
     canvasContext.showText(titleText);
   }

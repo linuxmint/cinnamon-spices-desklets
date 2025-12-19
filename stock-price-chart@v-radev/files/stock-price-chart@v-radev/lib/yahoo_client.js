@@ -13,13 +13,6 @@ class YahooClientDeclaration {
 
   constructor() {}
 
-  // public const INTERVAL_1_DAY = '1d';
-  // public const INTERVAL_1_WEEK = '1wk';
-  // public const INTERVAL_1_MONTH = '1mo';
-
-  // FILTER_HISTORICAL = 'history';
-  // FILTER_SPLITS = 'split';
-
   async getAuthCookieInHttpJar() {
     logger.log('--- Getting Yahoo auth cookie in HTTP jar.');
 
