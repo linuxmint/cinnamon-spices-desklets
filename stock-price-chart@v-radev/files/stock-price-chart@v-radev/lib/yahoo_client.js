@@ -125,6 +125,10 @@ class YahooClientDeclaration {
   }
 
   roundAmount(amount, maxDecimals, strictRounding) {
+    if (!amount) {
+      return 0;
+    }
+
     if (strictRounding) {
       return amount.toFixed(maxDecimals);
     }

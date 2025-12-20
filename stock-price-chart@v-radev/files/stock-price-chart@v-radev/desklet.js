@@ -44,43 +44,31 @@ StockPriceChartDesklet.prototype = {
   _bindSettings: function() {
     this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, this.instanceId);
 
+    // [ General Settings ]
+    this.settings.bind('tickerSymbol', 'tickerSymbol', this.onDataFetchSettingsChanged);
+    this.settings.bind('delayMinutes', 'delayMinutes', this.onDataFetchSettingsChanged);
+    this.settings.bind('showLastUpdateTimestamp', 'showLastUpdateTimestamp', this.onRenderSettingsChanged);
+
     // [ Display Settings ]
     this.settings.bind('height', 'height', this.onDisplaySettingChanged);
     this.settings.bind('width', 'width', this.onDisplaySettingChanged);
     this.settings.bind('transparency', 'transparency', this.onDisplaySettingChanged);
     this.settings.bind('backgroundColor', 'backgroundColor', this.onDisplaySettingChanged);
     this.settings.bind('cornerRadius', 'cornerRadius', this.onDisplaySettingChanged);
-    this.settings.bind('borderWidth', 'borderWidth', this.onDisplaySettingChanged);
-    this.settings.bind('borderColor', 'borderColor', this.onDisplaySettingChanged);
 
-    // [ Data Fetch Settings ]
-    this.settings.bind('delayMinutes', 'delayMinutes', this.onDataFetchSettingsChanged);
+    // [ Details Settings ]
+    this.settings.bind('showCompanyNameOrTicker', 'showCompanyNameOrTicker', this.onRenderSettingsChanged);
 
     // [ Render Settings ]
-    this.settings.bind('showLastUpdateTimestamp', 'showLastUpdateTimestamp', this.onRenderSettingsChanged);
-    this.settings.bind('showVerticalScrollbar', 'showVerticalScrollbar', this.onRenderSettingsChanged);
-    this.settings.bind('manualDataUpdate', 'manualDataUpdate', this.onRenderSettingsChanged);
-    this.settings.bind('roundNumbers', 'roundNumbers', this.onRenderSettingsChanged);
-    this.settings.bind('decimalPlaces', 'decimalPlaces', this.onRenderSettingsChanged);
-    this.settings.bind('strictRounding', 'strictRounding', this.onRenderSettingsChanged);
     this.settings.bind('use24HourTime', 'use24HourTime', this.onRenderSettingsChanged);
     this.settings.bind('customTimeFormat', 'customTimeFormat', this.onRenderSettingsChanged);
     this.settings.bind('customDateFormat', 'customDateFormat', this.onRenderSettingsChanged);
-    this.settings.bind('showQuoteName', 'showQuoteName', this.onRenderSettingsChanged);
-    this.settings.bind('useLongQuoteName', 'useLongQuoteName', this.onRenderSettingsChanged);
-    this.settings.bind('linkQuoteName', 'linkQuoteName', this.onRenderSettingsChanged);
     this.settings.bind('fontColor', 'fontColor', this.onRenderSettingsChanged);
     this.settings.bind('scaleFontSize', 'scaleFontSize', this.onRenderSettingsChanged);
     this.settings.bind('fontScale', 'fontScale', this.onRenderSettingsChanged);
     this.settings.bind('uptrendChangeColor', 'uptrendChangeColor', this.onRenderSettingsChanged);
     this.settings.bind('downtrendChangeColor', 'downtrendChangeColor', this.onRenderSettingsChanged);
     this.settings.bind('unchangedTrendColor', 'unchangedTrendColor', this.onRenderSettingsChanged);
-
-    // [ Network Settings ]
-    this.settings.bind('sendCustomUserAgent', 'sendCustomUserAgent'); // no callback, manual refresh required
-    this.settings.bind('customUserAgent', 'customUserAgent');  // no callback, manual refresh required
-    this.settings.bind('enableCurl', 'enableCurl'); // no callback, manual refresh required
-    this.settings.bind('curlCommand', 'curlCommand'); // no callback, manual refresh required
   },
 
   on_desklet_removed: function() {
@@ -110,12 +98,6 @@ StockPriceChartDesklet.prototype = {
       style_class: 'stock-price-chart_mainBox',
     });
 
-    this.text1 = new St.Label();
-    this.text2 = new St.Label();
-    this.text3 = new St.Label();
-    this.mainBox.add_actor(this.text1);
-    this.mainBox.add_actor(this.text2);
-    this.mainBox.add_actor(this.text3);
     this.setContent(this.mainBox);
 
     this.firstRun = true;
@@ -178,7 +160,6 @@ StockPriceChartDesklet.prototype = {
     const desklet_w = graph_w + (2 * unitSize);
     const desklet_h = graph_h + (4 * unitSize);
     const daysToFetch = 14; // TODO days are configurable
-    const tickerSymbol = 'INTC'; // TODO days are configurable
     // This can be 1d, 1wk, 1mo configurable in a future release
     // And is there a way to fetch data by hours for the given day?
     const dataInterval = '1d';
@@ -186,7 +167,7 @@ StockPriceChartDesklet.prototype = {
     logger.log('-- Starting to fetch data from Yahoo Finance.');
 
     yahooClient.getHistoricalTickerData(
-      tickerSymbol,
+      this.tickerSymbol,
       dataInterval,
       new Date(Date.now() - daysToFetch * 24 * 60 * 60 * 1000),
       new Date()
@@ -194,6 +175,7 @@ StockPriceChartDesklet.prototype = {
       .then((tickerData) => {
         const chartLabels = [];
         const chartValues = [];
+        const titleDisplay = this.showCompanyNameOrTicker ? tickerData[0].shortName : this.tickerSymbol;
 
         for (let i = 0; i < tickerData.length; i++) {
           chartLabels.push(`${tickerData[i].date.getDate()} ${tickerData[i].date.toLocaleString('en-US', { month: 'short' })}`);
@@ -203,7 +185,7 @@ StockPriceChartDesklet.prototype = {
         logger.log('-- Fetched ticker data values: ' + chartValues.toString());
         logger.log('-- Fetched ticker data labels: ' + chartLabels.toString());
 
-        const chartObject = new ChartModule.ChartClass(chartLabels, chartValues, 'Intel Corporation');
+        const chartObject = new ChartModule.ChartClass(chartLabels, chartValues, titleDisplay);
         const canvas = chartObject.drawCanvas(desklet_w, desklet_h, unitSize);
 
         canvas.invalidate();

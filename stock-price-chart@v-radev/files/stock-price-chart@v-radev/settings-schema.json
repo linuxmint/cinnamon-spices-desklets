@@ -2,31 +2,30 @@
     "settingsLayout": {
         "type": "layout",
         "pages": [
-            "dataPage",
-            "detailsPage",
+            "generalSettingsPage",
+            "detailsSettingsPage",
             "presentationPage",
-            "layoutPage",
-            "networkPage"
+            "layoutPage"
         ],
-        "dataPage": {
+        "generalSettingsPage": {
             "type": "page",
-            "title": "Quotes",
+            "title": "General",
             "sections": [
-                "dataUpdateSection"
+                "generalSettingsTickerSection",
+                "generalSettingsDataSection"
             ]
         },
-        "detailsPage": {
+        "detailsSettingsPage": {
             "type": "page",
             "title": "Details",
             "sections": [
-                "detailsNameSection"
+                "detailsSettingsSection"
             ]
         },
         "presentationPage": {
             "type": "page",
             "title": "Presentation",
             "sections": [
-                "presentationFormattingSection",
                 "presentationDateTimeFormattingSection",
                 "presentationFontSection",
                 "presentationColorsSection"
@@ -40,39 +39,27 @@
                 "layoutEffectsSection"
             ]
         },
-        "networkPage": {
-            "type": "page",
-            "title": "Network",
-            "sections": [
-                "networkSessionSection"
+        "generalSettingsTickerSection": {
+            "type": "section",
+            "title": "Ticker",
+            "keys": [
+                "tickerSymbol"
             ]
         },
-        "dataUpdateSection": {
+        "generalSettingsDataSection": {
             "type": "section",
             "title": "Data Updates",
             "keys": [
                 "delayMinutes",
                 "showLastUpdateTimestamp",
-                "manualDataUpdate",
                 "updateDataButton"
             ]
         },
-        "detailsNameSection": {
+        "detailsSettingsSection": {
             "type": "section",
             "title": "Name",
             "keys": [
-                "showQuoteName",
-                "useLongQuoteName",
-                "linkQuoteName"
-            ]
-        },
-        "presentationFormattingSection": {
-            "type": "section",
-            "title": "Number Format",
-            "keys": [
-                "roundNumbers",
-                "decimalPlaces",
-                "strictRounding"
+                "showCompanyNameOrTicker"
             ]
         },
         "presentationDateTimeFormattingSection": {
@@ -116,21 +103,7 @@
             "keys": [
                 "transparency",
                 "backgroundColor",
-                "showVerticalScrollbar",
-                "cornerRadius",
-                "borderWidth",
-                "borderColor"
-            ]
-        },
-        "networkSessionSection": {
-            "type": "section",
-            "title": "HTTP Session",
-            "keys": [
-                "sendCustomUserAgent",
-                "customUserAgent",
-                "enableCurl",
-                "curlCommand",
-                "applyNetworkSettingsButton"
+                "cornerRadius"
             ]
         }
     },
@@ -179,28 +152,6 @@
         "description": "Corner radius",
         "tooltip": "The higher the value, the rounder the desklet's corners"
     },
-    "showVerticalScrollbar": {
-        "type": "checkbox",
-        "default": false,
-        "description": "Show vertical scrollbar",
-        "tooltip": "Display a vertical scrollbar when the quote list is longer than the desklet's height"
-    },
-    "borderWidth": {
-        "type": "spinbutton",
-        "default": 2,
-        "min": 0,
-        "max": 20,
-        "step": 1,
-        "units": "pixels",
-        "description": "Border width",
-        "tooltip": "The higher the value, the thicker the desklet's border. A value of 0 hides the border."
-    },
-    "borderColor": {
-        "type": "colorchooser",
-        "default": "white",
-        "description": "Border color",
-        "tooltip": "Desklet border color"
-    },
     "delayMinutes": {
         "type": "spinbutton",
         "default": 10,
@@ -217,37 +168,14 @@
         "description": "Show last update timestamp",
         "tooltip": "Display timestamp when quotes were updated last"
     },
-    "manualDataUpdate": {
-        "type": "checkbox",
-        "default": false,
-        "description": "Manual and automatic update",
-        "tooltip": "Click last update timestamp to instantly refresh quotes data. Automatic update is still performed periodically.",
-        "dependency": "showLastUpdateTimestamp"
+
+    "tickerSymbol": {
+      "type": "entry",
+      "default": "LULU",
+      "description": "Ticker symbol",
+      "tooltip": "The stock ticker symbol to display data for (e.g., AAPL, GOOGL, MSFT)"
     },
-    "roundNumbers": {
-        "type": "checkbox",
-        "default": true,
-        "description": "Round numbers",
-        "tooltip": "Perform rounding of floating-point numbers"
-    },
-    "decimalPlaces": {
-        "type": "spinbutton",
-        "default": 2,
-        "min": 0,
-        "max": 12,
-        "step": 1,
-        "units": "positions",
-        "description": "Decimal places to round",
-        "tooltip": "Number of positions to round to after decimal point",
-        "dependency": "roundNumbers"
-    },
-    "strictRounding": {
-        "type": "checkbox",
-        "default": false,
-        "description": "Strict rounding",
-        "tooltip": "Strict rounding to the specified decimal places (eg. 0 will be presented as 0.00)",
-        "dependency": "roundNumbers"
-    },
+
     "use24HourTime": {
         "type": "checkbox",
         "default": false,
@@ -269,28 +197,14 @@
     "updateDataButton": {
         "type": "button",
         "callback": "onManualRefreshRequested",
-        "description": "Refresh quotes data",
-        "tooltip": "Apply and refresh quotes"
+        "description": "Refresh data",
+        "tooltip": "Fetch the latest stock data immediately"
     },
-    "showQuoteName": {
+    "showCompanyNameOrTicker": {
         "type": "checkbox",
         "default": true,
-        "description": "Show verbose name",
-        "tooltip": "Display the quote name (eg. International Business Machines)"
-    },
-    "useLongQuoteName": {
-        "type": "checkbox",
-        "default": true,
-        "description": "Use long version for verbose name",
-        "tooltip": "Use the long version for quote name, if available (eg. International Business Machines Corporation)",
-        "dependency": "showQuoteName"
-    },
-    "linkQuoteName": {
-        "type": "checkbox",
-        "default": true,
-        "description": "Add web link to name",
-        "tooltip": "Click name to open quote in browser",
-        "dependency": "showQuoteName"
+        "description": "Display full company name instead of ticker symbol",
+        "tooltip": "Show the company name if available; otherwise, show the ticker symbol."
     },
     "fontColor": {
         "type": "colorchooser",
@@ -332,37 +246,5 @@
         "description": "Unchanged trend color",
         "tooltip": "Color of the unchanged trend",
         "default": "grey"
-    },
-    "sendCustomUserAgent": {
-        "type": "checkbox",
-        "default": true,
-        "description": "Send custom User-Agent header",
-        "tooltip": "Include a custom User-Agent header in Yahoo Finance Quotes API requests"
-    },
-    "customUserAgent": {
-        "type": "entry",
-        "default": "Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0",
-        "description": "Custom User-Agent header",
-        "tooltip": "Value for User-Agent header to send with all API requests",
-        "dependency": "sendCustomUserAgent"
-    },
-    "enableCurl": {
-        "type": "checkbox",
-        "default": true,
-        "description": "Use external tool curl",
-        "tooltip": "Requires separate installation of curl."
-    },
-    "curlCommand": {
-        "type": "entry",
-        "default": "/usr/bin/curl",
-        "description": "Path of curl executable",
-        "tooltip": "Provide absolute path of curl program file",
-        "dependency": "enableCurl"
-    },
-    "applyNetworkSettingsButton": {
-        "type": "button",
-        "callback": "onNetworkSettingsChanged",
-        "description": "Apply network settings",
-        "tooltip": "Fetches new authorization parameters and refreshes quotes data"
     }
 }
