@@ -1,0 +1,95 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Cinnaclock\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-20 12:00+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: AI\n"
+"Language: ro\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. settings-schema.json->pages
+msgid "General"
+msgstr "General"
+
+msgid "Time"
+msgstr "Oră"
+
+msgid "Day"
+msgstr "Zi"
+
+msgid "Date"
+msgstr "Dată"
+
+msgid "Visibility"
+msgstr "Vizibilitate"
+
+msgid "String Formats"
+msgstr "Formate șir"
+
+msgid "Vertical Positioning (Offset)"
+msgstr "Poziționare verticală"
+
+msgid "Text Style"
+msgstr "Stil text"
+
+msgid "Shadow"
+msgstr "Umbră"
+
+msgid "Show Time box"
+msgstr "Afișează caseta orei"
+
+msgid "Show Day box"
+msgstr "Afișează caseta zilei"
+
+msgid "Show Date box"
+msgstr "Afișează caseta datei"
+
+msgid "Time Format"
+msgstr "Format oră"
+
+msgid "Day Format"
+msgstr "Format zi"
+
+msgid "Date Format"
+msgstr "Format dată"
+
+msgid "Example: %A for full weekday name"
+msgstr "Exemplu: %A pentru numele complet al zilei"
+
+msgid "Example: %e %B %Y"
+msgstr "Exemplu: %e %B %Y"
+
+msgid "Day Vertical Offset"
+msgstr "Decalaj vertical zi"
+
+msgid "Date Vertical Offset"
+msgstr "Decalaj vertical dată"
+
+msgid "Negative values move the element up"
+msgstr "Valorile negative mută elementul în sus"
+
+msgid "Horizontal offset"
+msgstr "Decalaj orizontal"
+
+msgid "Vertical offset"
+msgstr "Decalaj vertical"
+
+msgid "Uppercase"
+msgstr "Majuscule"
+
+msgid "Font"
+msgstr "Font"
+
+msgid "Color"
+msgstr "Culoare"
+
+msgid "Blur"
+msgstr "Blur"
+
+msgid "Edit Config"
+msgstr "Editare configurare"

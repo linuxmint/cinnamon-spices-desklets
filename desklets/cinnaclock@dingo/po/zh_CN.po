@@ -1,0 +1,94 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Cinnaclock\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-20 12:00+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: AI\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. settings-schema.json->pages
+msgid "General"
+msgstr "常规"
+
+msgid "Time"
+msgstr "时间"
+
+msgid "Day"
+msgstr "星期"
+
+msgid "Date"
+msgstr "日期"
+
+msgid "Visibility"
+msgstr "可见性"
+
+msgid "String Formats"
+msgstr "字符串格式"
+
+msgid "Vertical Positioning (Offset)"
+msgstr "垂直定位"
+
+msgid "Text Style"
+msgstr "文本样式"
+
+msgid "Shadow"
+msgstr "阴影"
+
+msgid "Show Time box"
+msgstr "显示时间框"
+
+msgid "Show Day box"
+msgstr "显示星期框"
+
+msgid "Show Date box"
+msgstr "显示日期框"
+
+msgid "Time Format"
+msgstr "时间格式"
+
+msgid "Day Format"
+msgstr "星期格式"
+
+msgid "Date Format"
+msgstr "日期格式"
+
+msgid "Example: %A for full weekday name"
+msgstr "示例：%A 显示完整星期名称"
+
+msgid "Example: %e %B %Y"
+msgstr "示例：%e %B %Y"
+
+msgid "Day Vertical Offset"
+msgstr "星期垂直偏移"
+
+msgid "Date Vertical Offset"
+msgstr "日期垂直偏移"
+
+msgid "Negative values move the element up"
+msgstr "负值将元素向上移动"
+
+msgid "Horizontal offset"
+msgstr "水平偏移"
+
+msgid "Vertical offset"
+msgstr "垂直偏移"
+
+msgid "Uppercase"
+msgstr "大写"
+
+msgid "Font"
+msgstr "字体"
+
+msgid "Color"
+msgstr "颜色"
+
+msgid "Blur"
+msgstr "模糊"
+
+msgid "Edit Config"
+msgstr "编辑配置"

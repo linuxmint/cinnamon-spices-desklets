@@ -1,0 +1,95 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Cinnaclock\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-20 12:00+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: AI\n"
+"Language: nl\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. settings-schema.json->pages
+msgid "General"
+msgstr "Algemeen"
+
+msgid "Time"
+msgstr "Tijd"
+
+msgid "Day"
+msgstr "Dag"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Visibility"
+msgstr "Zichtbaarheid"
+
+msgid "String Formats"
+msgstr "Reeksformaten"
+
+msgid "Vertical Positioning (Offset)"
+msgstr "Verticale positionering"
+
+msgid "Text Style"
+msgstr "Tekststijl"
+
+msgid "Shadow"
+msgstr "Schaduw"
+
+msgid "Show Time box"
+msgstr "Tijdvak tonen"
+
+msgid "Show Day box"
+msgstr "Dagvak tonen"
+
+msgid "Show Date box"
+msgstr "Datumvak tonen"
+
+msgid "Time Format"
+msgstr "Tijdformaat"
+
+msgid "Day Format"
+msgstr "Dagformat"
+
+msgid "Date Format"
+msgstr "Datumformaat"
+
+msgid "Example: %A for full weekday name"
+msgstr "Voorbeeld: %A voor volledige dagnaam"
+
+msgid "Example: %e %B %Y"
+msgstr "Voorbeeld: %e %B %Y"
+
+msgid "Day Vertical Offset"
+msgstr "Verticale verschuiving dag"
+
+msgid "Date Vertical Offset"
+msgstr "Verticale verschuiving datum"
+
+msgid "Negative values move the element up"
+msgstr "Negatieve waarden verplaatsen het element omhoog"
+
+msgid "Horizontal offset"
+msgstr "Horizontale verschuiving"
+
+msgid "Vertical offset"
+msgstr "Verticale verschuiving"
+
+msgid "Uppercase"
+msgstr "Hoofdletters"
+
+msgid "Font"
+msgstr "Lettertype"
+
+msgid "Color"
+msgstr "Kleur"
+
+msgid "Blur"
+msgstr "Vervaging"
+
+msgid "Edit Config"
+msgstr "Configuratie bewerken"

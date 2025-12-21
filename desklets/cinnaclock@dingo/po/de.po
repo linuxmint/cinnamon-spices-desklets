@@ -1,0 +1,97 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Cinnaclock\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-20 12:00+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: AI\n"
+"Language: de\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. settings-schema.json->pages
+msgid "General"
+msgstr "Allgemein"
+
+msgid "Time"
+msgstr "Uhrzeit"
+
+msgid "Day"
+msgstr "Tag"
+
+msgid "Date"
+msgstr "Datum"
+
+#. settings-schema.json->sections
+msgid "Visibility"
+msgstr "Sichtbarkeit"
+
+msgid "String Formats"
+msgstr "Zeichenfolgenformate"
+
+msgid "Vertical Positioning (Offset)"
+msgstr "Vertikale Positionierung"
+
+msgid "Text Style"
+msgstr "Textstil"
+
+msgid "Shadow"
+msgstr "Schatten"
+
+#. settings-schema.json->keys
+msgid "Show Time box"
+msgstr "Zeitanzeige einblenden"
+
+msgid "Show Day box"
+msgstr "Tagesanzeige einblenden"
+
+msgid "Show Date box"
+msgstr "Datumsanzeige einblenden"
+
+msgid "Time Format"
+msgstr "Zeitformat"
+
+msgid "Day Format"
+msgstr "Tagformat"
+
+msgid "Date Format"
+msgstr "Datumformat"
+
+msgid "Example: %A for full weekday name"
+msgstr "Beispiel: %A für den vollen Wochentagsnamen"
+
+msgid "Example: %e %B %Y"
+msgstr "Beispiel: %e %B %Y"
+
+msgid "Day Vertical Offset"
+msgstr "Vertikaler Versatz (Tag)"
+
+msgid "Date Vertical Offset"
+msgstr "Vertikaler Versatz (Datum)"
+
+msgid "Negative values move the element up"
+msgstr "Negative Werte verschieben das Element nach oben"
+
+msgid "Horizontal offset"
+msgstr "Horizontaler Versatz"
+
+msgid "Vertical offset"
+msgstr "Vertikaler Versatz"
+
+msgid "Uppercase"
+msgstr "Großbuchstaben"
+
+msgid "Font"
+msgstr "Schriftart"
+
+msgid "Color"
+msgstr "Farbe"
+
+msgid "Blur"
+msgstr "Unschärfe"
+
+msgid "Edit Config"
+msgstr "Konfiguration bearbeiten"
