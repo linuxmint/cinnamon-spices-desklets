@@ -1,0 +1,44 @@
+{
+  "show-centibeats": {
+    "type": "switch",
+    "default": false,
+    "description": "Show centibeats",
+    "tooltip": "Show centibeats (e.g. @123.45 instead of @123)"
+  },
+  "show-logo": {
+    "type": "switch",
+    "default": true,
+    "description": "Show logo",
+    "tooltip": "Show logo"
+  },
+  "bg-color": {
+    "type": "colorchooser",
+    "default": "rgb(0,0,0)",
+    "description": "Background color",
+    "tooltip": "Background color"
+  },
+  "font-color": {
+    "type": "colorchooser",
+    "default": "rgb(255,255,255)",
+    "description": "Font color",
+    "tooltip": "Font color"
+  },
+  "bg-opacity": {
+    "type": "scale",
+    "default": 0.5,
+    "min": 0.0,
+    "max": 1.0,
+    "step": 0.01,
+    "description": "Background opacity",
+    "tooltip": "Background opacity"
+  },
+  "font-size": {
+    "type": "scale",
+    "default": 28,
+    "min": 12,
+    "max": 256,
+    "step": 1,
+    "description": "Font size (px)",
+    "tooltip": "Font size (px)"
+  }
+}

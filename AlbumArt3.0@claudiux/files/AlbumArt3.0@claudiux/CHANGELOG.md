@@ -1,3 +1,10 @@
+### v2.4.0~20251122
+  * Correctly resizes the album cover.
+  * Fixes [#1674](https://github.com/linuxmint/cinnamon-spices-desklets/issues/1674)
+
+### v2.3.6~20251122
+  * Updates the to_string() function.
+
 ### v2.3.4~20251107
   * Fixes error loading image.
 

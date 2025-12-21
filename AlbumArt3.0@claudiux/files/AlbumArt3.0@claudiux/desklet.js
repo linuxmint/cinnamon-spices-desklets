@@ -25,9 +25,9 @@ const { timeout_add_seconds,
 const { to_string } = require("./lib/to-string");
 
 
-const DESKLET_UUID = "AlbumArt3.0@claudiux";
+const UUID = "AlbumArt3.0@claudiux";
 const HOME_DIR = GLib.get_home_dir();
-const DESKLET_DIR = HOME_DIR + "/.local/share/cinnamon/desklets/" + DESKLET_UUID;
+const DESKLET_DIR = HOME_DIR + "/.local/share/cinnamon/desklets/" + UUID;
 const ENABLED_DESKLETS_KEY = 'enabled-desklets';
 const XDG_RUNTIME_DIR = GLib.getenv("XDG_RUNTIME_DIR");
 const TMP_ALBUMART_DIR = XDG_RUNTIME_DIR + "/AlbumArt";
@@ -40,22 +40,23 @@ const DEL_SONG_ARTS_SCRIPT = DESKLET_DIR + "/scripts/del_song_arts.sh";
 const GET_IMAGE_SIZE_SCRIPT = DESKLET_DIR + "/scripts/get-image-size.sh";
 const INSTALL_TRANSLATIONS_SCRIPT = DESKLET_DIR + "/scripts/install-translations.sh";
 
-
-Gettext.bindtextdomain(DESKLET_UUID, HOME_DIR + "/.local/share/locale");
-//~ Gettext.bindtextdomain("cinnamon", "/usr/share/locale");
-
+/**
+ * _:
+ * @str: string to try to translate.
+ * Try firstly with UUID domain, secondly with "cinnamon" domain, then with general domain.
+ */
+Gettext.bindtextdomain(UUID, HOME_DIR + "/.local/share/locale");
+Gettext.bindtextdomain("cinnamon", "/usr/share/locale");
 function _(str) {
-    let customTrans = Gettext.dgettext(DESKLET_UUID, str);
-    if (customTrans != str && customTrans.length > 0)
+    let customTrans = Gettext.dgettext(UUID, str);
+    if (customTrans.length > 0 && customTrans !== str)
         return customTrans;
-
-    return str;
-    //~ customTrans = Gettext.dgettext("cinnamon", str);
-    //~ if (customTrans !== str && customTrans.length > 0)
-        //~ return customTrans;
-
-    //~ return Gettext.gettext(str);
+    customTrans = Gettext.dgettext("cinnamon", str);
+    if (customTrans.length > 0 && customTrans !== str)
+        return customTrans;
+    return Gettext.gettext(str);
 }
+
 
 
 class AlbumArtRadio30 extends Desklet.Desklet {
@@ -77,6 +78,8 @@ class AlbumArtRadio30 extends Desklet.Desklet {
         GLib.mkdir_with_parents(ALBUMART_PICS_DIR, 0o755);
         this.realWidth = 1280;
         this.realHeight = 720;
+        this.oldRealWidth = 1280;
+        this.oldRealHeight = 720;
 
         this.MSG_DISPLAY_AT_FULL_SIZE = _("Display Album Art at full size");
         this.MSG_DONT_DISPLAY_THIS_IMAGE = _("Do not display this image");
@@ -89,7 +92,7 @@ class AlbumArtRadio30 extends Desklet.Desklet {
 
         this._updateDecoration();
 
-        this.settings = new Settings.DeskletSettings(this, DESKLET_UUID, this.instance_id);
+        this.settings = new Settings.DeskletSettings(this, UUID, this.instance_id);
         this.settings.bind('height', 'height', this.on_setting_changed);
         this.settings.bind('width', 'width', this.on_setting_changed);
         this.settings.bind('fade-delay', 'fade_delay', this.on_setting_changed);
@@ -116,7 +119,7 @@ class AlbumArtRadio30 extends Desklet.Desklet {
         var modify_ENABLED_DESKLETS_KEY = false;
         for (let i = 0; i < enabledDesklets.length; i++) {
             let [name, dId, x, y] = enabledDesklets[i].split(":");
-            if (name == DESKLET_UUID) {
+            if (name == UUID) {
                 if (Math.ceil(x) != Math.ceil(this.desklet_x)) {
                     modify_ENABLED_DESKLETS_KEY = true;
                     x = "" + this.desklet_x;
@@ -149,10 +152,10 @@ class AlbumArtRadio30 extends Desklet.Desklet {
 
         this._setup_dir_monitor();
         if (this.currentPicture) {
-            this.currentPicture.destroy();
+            try { this.currentPicture.destroy() } catch(e) {};
         }
         if (this._photoFrame) {
-            this._photoFrame.destroy();
+            try { this._photoFrame.destroy() } catch(e) {};
         }
         this.isLooping = true;
         this.setup_display();
@@ -197,15 +200,15 @@ class AlbumArtRadio30 extends Desklet.Desklet {
         if (this._bin != null) {
             if (Tweener.getTweenCount(this._bin) > 0)
                 Tweener.removeTweens(this._bin);
-            this._bin.destroy_all_children();
-            this._bin.destroy();
+            try { this._bin.destroy_all_children() } catch(e) {};
+            try { this._bin.destroy() } catch(e) {};
             this._bin = null;
         }
 
         var enabledDesklets = global.settings.get_strv(ENABLED_DESKLETS_KEY);
         for (let i = 0; i < enabledDesklets.length; i++) {
             let [name, dId, x, y] = enabledDesklets[i].split(":");
-            if (name == DESKLET_UUID) {
+            if (name == UUID) {
                 this.desklet_x = Math.ceil(x);
                 this.desklet_y = Math.ceil(y);
                 break
@@ -279,7 +282,7 @@ class AlbumArtRadio30 extends Desklet.Desklet {
         var enabledDesklets = global.settings.get_strv(ENABLED_DESKLETS_KEY);
         for (let i = 0; i < enabledDesklets.length; i++) {
             let [name, dId, x, y] = enabledDesklets[i].split(":");
-            if (name == DESKLET_UUID) {
+            if (name == UUID) {
                 if (Math.ceil(x) != Math.ceil(this.desklet_x) || Math.ceil(y) != Math.ceil(this.desklet_y)) {
                     this.desklet_x = Math.ceil(x);
                     this.desklet_y = Math.ceil(y);
@@ -292,10 +295,18 @@ class AlbumArtRadio30 extends Desklet.Desklet {
 
         if (!this.isLooping) return false;
         this._update();
-        if (this.isLooping)
+        
+        if (this.isLooping) {
+            if (this.oldRealWidth != this.realWidth || this.oldRealHeight != this.realHeight) {
+                this.oldRealWidth = this.realWidth;
+                this.oldRealHeight = this.realHeight;
+                this.on_setting_changed();
+            }
+            
             this.update_id = timeout_add_seconds(this.delay, () => { this._update_loop() });
-        else
+        } else {
             return false;
+        }
     }
 
     _size_pic(image) {
@@ -421,6 +432,7 @@ class AlbumArtRadio30 extends Desklet.Desklet {
         } else {
             if (this._bin != null) this._bin.set_child(this.currentPicture);
         }
+        
         this.updateInProgress = false;
     }
 

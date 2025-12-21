@@ -5,6 +5,7 @@ AlbumArt3.0@claudiux/*                             @claudiux
 InternetTimeDesklet@stefan/*                       @stefan12O
 NumericBinaryClock@ozymandiaslone/*                @ozymandiaslone
 SevenSegmentClock@lxs242/*                         @lxs242
+TimeAndDate@nightflame/*                           @NotSirius-A
 ViennaTextBasedWeather@f-istvan/*                  @f-istvan
 adventCandles@KopfdesDaemons/*                     @KopfdesDaemons
 analog-clock@cobinja.de/*                          @cobinja
@@ -28,6 +29,7 @@ diskspace@schorschii/*                             @schorschii
 dual-datetime@rcalixte/*                           @rcalixte
 eKreta@thegergo02/*                                @thegergo02
 ganjine@mohammad-sn/*                              @mohammad-sn
+github-contribution-grid@KopfdesDaemons/*          @KopfdesDaemons
 googleCalendar@javahelps.com/*                     @slgobinath
 growattmonitor@jtoberling/*                        @jtoberling
 hostcheck@schorschii/*                             @schorschii
@@ -38,21 +40,28 @@ moonlight-clock@torchipeppo/*                      @torchipeppo
 nepalipatro@deeppradhan/*                          @kanchudeep
 netusage@30yavash.com/*                            @pdcurtis
 notes@schorschii/*                                 @schorschii
+nvidia-gpu-monitor@hierakonpolis/*                 @Hierakonpolis
 panchang@india/*                                   @OnlineLearningTutorials
+picture-frames@KopfdesDaemons/*                    @KopfdesDaemons
 prayertimes@linworx.org/*                          @mkessas
 quicklinks@NotSirius-A/*                           @NotSirius-A
 quoteOfTheDay@tinnu/*                              @JessW
+serverstatus@maksmokriev/*                         @maksmokriev
 show-remote-ip-desklet@nejdetckenobi/*             @nejdetckenobi
+shutdown@phpdreamer/*                              @NotSirius-A
 simple-system-monitor@ariel/*                      @arielandrade
 soundBox@scollins/*                                @kawashiro
+steamGamesStarter@KopfdesDaemons/*                 @KopfdesDaemons
+stopwatch@KopfdesDaemons/*                         @KopfdesDaemons
+swatchtime@kdawson/*                               @kendawson-online
 system-monitor-graph@rcassani/*                    @rcassani
 systemTemperature@KopfDesDaemons/*                 @KopfDesDaemons
-systemUptime@KopfDesDaemons/*                      @KopfDesDaemons
+systemUptime@KopfDesDaemons/*                      @KopfdesDaemons
 temperature@india/*                                @OnlineLearningTutorials
-temperature@swalladge/*                            @swalladge
 timelet@linuxedo.com/*                             @slgobinath
 todo@NotSirius-A/*                                 @NotSirius-A
 top@ryannerd/*                                     @ryannerd
+ttv-status@francisco-saez/*                        @francisco-saez
 vaktija-desklet@MuxBH28/*                          @MuxBH28
 wifi@SarangShelke2304/*                            @SarangShelke2304
 xkcd@rjanja/*                                      @rjanja
@@ -60,10 +69,8 @@ yarr@jtoberling/*                                  @jtoberling
 yfquotes@thegli/*                                  @thegli
 
 # The following xlets have no author assigned to them.
-# TimeAndDate@nightflame
 # binaryclock2@euxneks
 # clockTow@armandobs14
 # commandOfTheDay@logg
 # jalalidesklet@30yavash.com
 # reddit-reader@orangeshark
-# shutdown@phpdreamer

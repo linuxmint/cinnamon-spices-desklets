@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: systemUptime@KopfDesDaemons 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-07-31 22:57+0200\n"
+"POT-Creation-Date: 2025-12-05 18:11+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
@@ -19,39 +19,39 @@ msgstr ""
 "X-Generator: Poedit 3.4.2\n"
 
 #. metadata.json->name
-#. desklet.js:61
+#. desklet.js:37
 msgid "System Uptime"
 msgstr "System-oppetid"
 
-#. desklet.js:69
+#. desklet.js:44
 msgid "Uptime:"
 msgstr "Oppetid:"
 
-#. desklet.js:70 desklet.js:79
+#. desklet.js:45 desklet.js:51
 msgid "Loading..."
 msgstr "Indlæser …"
 
-#. desklet.js:76
+#. desklet.js:50
 msgid "Start time:"
 msgstr "Starttid:"
 
-#. desklet.js:139
+#. desklet.js:104
 msgid "days"
 msgstr "dage"
 
-#. desklet.js:139
+#. desklet.js:104
 msgid "hrs"
 msgstr "tim"
 
-#. desklet.js:139
+#. desklet.js:104
 msgid "min"
 msgstr "min"
 
-#. desklet.js:146
+#. desklet.js:109
 msgid "hours"
 msgstr "timer"
 
-#. desklet.js:146
+#. desklet.js:109
 msgid "minutes"
 msgstr "minutter"
 
@@ -78,3 +78,7 @@ msgstr "Vis startdato"
 #. settings-schema.json->showUptimeInDays->description
 msgid "Show uptime in days"
 msgstr "Vis oppetid i dage"
+
+#. settings-schema.json->hideDecorations->description
+msgid "Hide decorations"
+msgstr ""
