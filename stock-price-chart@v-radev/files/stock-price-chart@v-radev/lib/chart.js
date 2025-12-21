@@ -13,16 +13,16 @@ class ChartClassDeclaration {
 
   _labels = null;
   _values = null;
-  _tickerCompanyName = 'Ticker Symbol Name';
+  _chartSettings = null;
 
   _MARGIN = { left: 50, right: 25, top: 30, bottom: 50 };
 
-  constructor(labels, values, tickerCompanyName) {
+  constructor(labels, values, chartSettings) {
     Clutter.init(null);
 
     this._labels = labels;
     this._values = values;
-    this._tickerCompanyName = tickerCompanyName;
+    this._chartSettings = chartSettings;
   }
 
   drawCanvas(canvasWidth, canvasHeight, unitSize) {
@@ -66,6 +66,7 @@ class ChartClassDeclaration {
     const radius = 2 * unitSize / 3;
     const degrees = Math.PI / 180.0;
 
+    logger.log('--- Start drawing chart background: ' . backgroundColor[3]);
     // Chart background with rounded corners
     canvasContext.setSourceRGBA(backgroundColor[0], backgroundColor[1], backgroundColor[2], backgroundColor[3]);
     canvasContext.newSubPath();
@@ -208,7 +209,7 @@ class ChartClassDeclaration {
   _drawChartTitle(canvasContext, chartWidth, chartHeight) {
     logger.log('--- Start drawing chart title.');
 
-    const titleText = this._tickerCompanyName;
+    const titleText = this._chartSettings.titleDisplay || 'Ticker Symbol Name';
     const titleExtents = canvasContext.textExtents(titleText);
     const centerX = chartWidth / 2 - titleExtents.width / 2 + this._MARGIN.left / 2;
 

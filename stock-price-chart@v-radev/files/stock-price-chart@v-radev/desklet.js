@@ -36,39 +36,39 @@ StockPriceChartDesklet.prototype = {
     this.instanceId = instanceId;
     this.metadata = metadata;
 
-    this.refreshIntervalSeconds = 5; //TODO is configurable
-
     this._bindSettings();
+
+    this.refreshIntervalSeconds = 60 * 60; //TODO is configurable
   },
 
   _bindSettings: function() {
     this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, this.instanceId);
 
     // [ General Settings ]
-    this.settings.bind('tickerSymbol', 'tickerSymbol', this.onDataFetchSettingsChanged);
-    this.settings.bind('delayMinutes', 'delayMinutes', this.onDataFetchSettingsChanged);
-    this.settings.bind('showLastUpdateTimestamp', 'showLastUpdateTimestamp', this.onRenderSettingsChanged);
+    this.settings.bind('tickerSymbol', 'tickerSymbol', this.on_setting_changed);
+    this.settings.bind('daysPeriodToShow', 'daysPeriodToShow', this.on_setting_changed);
+    this.settings.bind('delayMinutes', 'delayMinutes', this.on_setting_changed);
+    this.settings.bind('showLastUpdateTimestamp', 'showLastUpdateTimestamp', this.on_setting_changed);
 
     // [ Display Settings ]
-    this.settings.bind('height', 'height', this.onDisplaySettingChanged);
-    this.settings.bind('width', 'width', this.onDisplaySettingChanged);
-    this.settings.bind('transparency', 'transparency', this.onDisplaySettingChanged);
-    this.settings.bind('backgroundColor', 'backgroundColor', this.onDisplaySettingChanged);
-    this.settings.bind('cornerRadius', 'cornerRadius', this.onDisplaySettingChanged);
+    this.settings.bind('transparency', 'transparency', this.on_setting_changed);
+    this.settings.bind('backgroundColor', 'backgroundColor', this.on_setting_changed);
+    this.settings.bind('cornerRadius', 'cornerRadius', this.on_setting_changed);
 
     // [ Details Settings ]
-    this.settings.bind('showCompanyNameOrTicker', 'showCompanyNameOrTicker', this.onRenderSettingsChanged);
+    this.settings.bind('showCompanyNameOrTicker', 'showCompanyNameOrTicker', this.on_setting_changed);
 
     // [ Render Settings ]
-    this.settings.bind('use24HourTime', 'use24HourTime', this.onRenderSettingsChanged);
-    this.settings.bind('customTimeFormat', 'customTimeFormat', this.onRenderSettingsChanged);
-    this.settings.bind('customDateFormat', 'customDateFormat', this.onRenderSettingsChanged);
-    this.settings.bind('fontColor', 'fontColor', this.onRenderSettingsChanged);
-    this.settings.bind('scaleFontSize', 'scaleFontSize', this.onRenderSettingsChanged);
-    this.settings.bind('fontScale', 'fontScale', this.onRenderSettingsChanged);
-    this.settings.bind('uptrendChangeColor', 'uptrendChangeColor', this.onRenderSettingsChanged);
-    this.settings.bind('downtrendChangeColor', 'downtrendChangeColor', this.onRenderSettingsChanged);
-    this.settings.bind('unchangedTrendColor', 'unchangedTrendColor', this.onRenderSettingsChanged);
+    this.settings.bind('use24HourTime', 'use24HourTime', this.on_setting_changed);
+    this.settings.bind('customDateFormat', 'customDateFormat', this.on_setting_changed);
+
+    this.settings.bind('fontColor', 'fontColor', this.on_setting_changed);
+    this.settings.bind('scaleFontSize', 'scaleFontSize', this.on_setting_changed);
+    this.settings.bind('fontScale', 'fontScale', this.on_setting_changed);
+
+    this.settings.bind('uptrendChangeColor', 'uptrendChangeColor', this.on_setting_changed);
+    this.settings.bind('downtrendChangeColor', 'downtrendChangeColor', this.on_setting_changed);
+    this.settings.bind('unchangedTrendColor', 'unchangedTrendColor', this.on_setting_changed);
   },
 
   on_desklet_removed: function() {
@@ -79,7 +79,6 @@ StockPriceChartDesklet.prototype = {
     }
   },
 
-  //TODO this should get called when some of the settings are changed
   on_setting_changed: function() {
     logger.log('- Desklet settings changed, reinitializing update loop.');
 
@@ -87,7 +86,6 @@ StockPriceChartDesklet.prototype = {
       Mainloop.source_remove(this.timeout);
     }
 
-    this.firstRun = true;
     this.updateCanvasLoop();
   },
 
@@ -100,18 +98,15 @@ StockPriceChartDesklet.prototype = {
 
     this.setContent(this.mainBox);
 
-    this.firstRun = true;
-
     this.mainBox.style = "border: 1px solid rgba(50,50,50,1); border-radius: 12px;";
 
-    // this.updateCanvasLoop();
-    this.newChartDraw();
+    this.updateCanvasLoop();
   },
 
   updateCanvasLoop: function() {
     logger.log('-- Desklet updateCanvasLoop() called.');
 
-    this.updateCanvasUI();
+    this.newChartDraw();
 
     this.timeout = Mainloop.timeout_add_seconds(
       this.refreshIntervalSeconds,
@@ -119,38 +114,9 @@ StockPriceChartDesklet.prototype = {
     );
   },
 
-  updateCanvasUI: function() {
-    //TODO make this looping to refresh data?
-    // - if the period is 1d, then how often does this need to refresh?
-
-    logger.log('-- Desklet updateCanvasUI() called.');
-
-    if (this.firstRun){
-      const durationMinutes = 5;
-      const durationSeconds = durationMinutes * 60;
-
-      this.numberOfXAxisValues = Math.floor(durationSeconds / this.refreshIntervalSeconds)  + 1;
-      this.values = new Array(this.numberOfXAxisValues).fill(0.0);
-      this.line_color = 'rgba(23,147,208,1.0)';
-      this.firstRun = false;
-    }
-
-    const scaleSize = 1;
-    let unit_size = 15 * scaleSize * global.ui_scale;
-
-    //....
-    //....
-    //....
-    //....
-
-    // Update canvas
-    canvas.invalidate();
-
-    this.mainBox.set_content(canvas);
-    this.mainBox.set_size(desklet_w, desklet_h);
-  },
-
   newChartDraw: function() {
+    logger.log('-- Desklet newChartDraw() called.');
+
     //TODO need .po files, follow the scripts in the readme
 
     const scaleSize = 1.5; //TODO scale_size is configurable
@@ -159,7 +125,7 @@ StockPriceChartDesklet.prototype = {
     const graph_h =  4 * unitSize;
     const desklet_w = graph_w + (2 * unitSize);
     const desklet_h = graph_h + (4 * unitSize);
-    const daysToFetch = 14; // TODO days are configurable
+    const daysToFetch = this.daysPeriodToShow;
     // This can be 1d, 1wk, 1mo configurable in a future release
     // And is there a way to fetch data by hours for the given day?
     const dataInterval = '1d';
@@ -175,7 +141,10 @@ StockPriceChartDesklet.prototype = {
       .then((tickerData) => {
         const chartLabels = [];
         const chartValues = [];
-        const titleDisplay = this.showCompanyNameOrTicker ? tickerData[0].shortName : this.tickerSymbol;
+        const chartSettings = {
+          titleDisplay: this.showCompanyNameOrTicker ? tickerData[0].shortName : this.tickerSymbol,
+          backgroundTransparency: 0.45, //TODO make configurable
+        };
 
         for (let i = 0; i < tickerData.length; i++) {
           chartLabels.push(`${tickerData[i].date.getDate()} ${tickerData[i].date.toLocaleString('en-US', { month: 'short' })}`);
@@ -185,7 +154,9 @@ StockPriceChartDesklet.prototype = {
         logger.log('-- Fetched ticker data values: ' + chartValues.toString());
         logger.log('-- Fetched ticker data labels: ' + chartLabels.toString());
 
-        const chartObject = new ChartModule.ChartClass(chartLabels, chartValues, titleDisplay);
+        this.unrender();
+
+        const chartObject = new ChartModule.ChartClass(chartLabels, chartValues, chartSettings);
         const canvas = chartObject.drawCanvas(desklet_w, desklet_h, unitSize);
 
         canvas.invalidate();
@@ -198,6 +169,22 @@ StockPriceChartDesklet.prototype = {
       });
 
     logger.log('-- Finished fetching data from Yahoo Finance.');
+  },
+
+  // Callback when user clicks refresh button in settings
+  onClickUpdateDataButton: function() {
+    logger.log('-- onClickUpdateDataButton called.');
+
+    this.newChartDraw();
+  },
+
+  unrender: function() {
+    logger.log('-- Desklet unrender() called.');
+
+    if (this.mainBox) {
+      this.mainBox.destroy_all_children();
+      this.mainBox.destroy();
+    }
   },
 };
 

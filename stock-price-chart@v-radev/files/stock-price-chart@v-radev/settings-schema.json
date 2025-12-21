@@ -4,7 +4,7 @@
         "pages": [
             "generalSettingsPage",
             "detailsSettingsPage",
-            "presentationPage",
+            "renderSettingsPage",
             "layoutPage"
         ],
         "generalSettingsPage": {
@@ -22,20 +22,19 @@
                 "detailsSettingsSection"
             ]
         },
-        "presentationPage": {
+        "renderSettingsPage": {
             "type": "page",
-            "title": "Presentation",
+            "title": "Render settings",
             "sections": [
-                "presentationDateTimeFormattingSection",
-                "presentationFontSection",
-                "presentationColorsSection"
+                "renderSettingsDateTimeFormattingSection",
+                "renderSettingsFontSection",
+                "renderSettingsColorsSection"
             ]
         },
         "layoutPage": {
             "type": "page",
             "title": "Layout",
             "sections": [
-                "layoutDimensionSection",
                 "layoutEffectsSection"
             ]
         },
@@ -43,7 +42,8 @@
             "type": "section",
             "title": "Ticker",
             "keys": [
-                "tickerSymbol"
+                "tickerSymbol",
+                "daysPeriodToShow"
             ]
         },
         "generalSettingsDataSection": {
@@ -62,16 +62,15 @@
                 "showCompanyNameOrTicker"
             ]
         },
-        "presentationDateTimeFormattingSection": {
+        "renderSettingsDateTimeFormattingSection": {
             "type": "section",
             "title": "Date and Time Format",
             "keys": [
                 "use24HourTime",
-                "customTimeFormat",
                 "customDateFormat"
             ]
         },
-        "presentationFontSection": {
+        "renderSettingsFontSection": {
             "type": "section",
             "title": "Font",
             "keys": [
@@ -80,21 +79,13 @@
                 "fontScale"
             ]
         },
-        "presentationColorsSection": {
+        "renderSettingsColorsSection": {
             "type": "section",
             "title": "Trend Colors",
             "keys": [
                 "uptrendChangeColor",
                 "downtrendChangeColor",
                 "unchangedTrendColor"
-            ]
-        },
-        "layoutDimensionSection": {
-            "type": "section",
-            "title": "Dimension",
-            "keys": [
-                "width",
-                "height"
             ]
         },
         "layoutEffectsSection": {
@@ -107,26 +98,7 @@
             ]
         }
     },
-    "width": {
-        "type": "spinbutton",
-        "default": 600,
-        "min": 40,
-        "max": 4000,
-        "step": 20,
-        "description": "Width",
-        "units": "pixels",
-        "tooltip": "Desklet width in pixels"
-    },
-    "height": {
-        "type": "spinbutton",
-        "default": 640,
-        "min": 40,
-        "max": 4000,
-        "step": 20,
-        "units": "pixels",
-        "description": "Height",
-        "tooltip": "Desklet height in pixels"
-    },
+
     "transparency": {
         "type": "scale",
         "default": 0.7,
@@ -152,6 +124,7 @@
         "description": "Corner radius",
         "tooltip": "The higher the value, the rounder the desklet's corners"
     },
+
     "delayMinutes": {
         "type": "spinbutton",
         "default": 10,
@@ -171,9 +144,18 @@
 
     "tickerSymbol": {
       "type": "entry",
-      "default": "LULU",
+      "default": "TSLA",
       "description": "Ticker symbol",
       "tooltip": "The stock ticker symbol to display data for (e.g., AAPL, GOOGL, MSFT)"
+    },
+    "daysPeriodToShow": {
+      "type": "scale",
+      "default": 7,
+      "min": 1,
+      "max": 31,
+      "step": 1,
+      "description": "Days period to show",
+      "tooltip": "Number of past days to display in the stock price chart"
     },
 
     "use24HourTime": {
@@ -182,23 +164,18 @@
         "description": "Force 24-hour clock",
         "tooltip": "Always display time in 24-hour notation, overriding system settings.\nThis setting is ignored, when a custom time format is defined."
     },
-    "customTimeFormat": {
-        "type": "entry",
-        "default": "",
-        "description": "Custom time format",
-        "tooltip": "Format time with custom format instead of system settings.\nExamples:\n%H:%M:%S    23:47:51\n%I:%M %p    11:47 PM"
-    },
     "customDateFormat": {
         "type": "entry",
         "default": "",
         "description": "Custom date format",
         "tooltip": "Format date with custom format instead of system settings.\nExamples:\n%m/%d          03/15\n%Y-%m-%d   2024-03-15\n%A, %b %d   Friday, Mar 15"
     },
+
     "updateDataButton": {
         "type": "button",
-        "callback": "onManualRefreshRequested",
+        "callback": "onClickUpdateDataButton",
         "description": "Refresh data",
-        "tooltip": "Fetch the latest stock data immediately"
+        "tooltip": "Fetch the latest stock data immediately."
     },
     "showCompanyNameOrTicker": {
         "type": "checkbox",
