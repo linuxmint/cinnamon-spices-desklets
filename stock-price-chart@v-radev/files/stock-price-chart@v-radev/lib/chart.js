@@ -62,11 +62,11 @@ class ChartClassDeclaration {
   _drawChartBackground(canvasContext, canvasWidth, canvasHeight, unitSize) {
     logger.log('--- Start drawing chart background.');
 
-    const backgroundColor = this._parseRgbaValues('rgba(50,50,50,0.75)'); //TODO is configurable
+    const transparency = String(this._chartSettings.backgroundTransparency);
+    const backgroundColor = this._parseRgbaValues('rgba(50,50,50,' + transparency + ')');
     const radius = 2 * unitSize / 3;
     const degrees = Math.PI / 180.0;
 
-    logger.log('--- Start drawing chart background: ' . backgroundColor[3]);
     // Chart background with rounded corners
     canvasContext.setSourceRGBA(backgroundColor[0], backgroundColor[1], backgroundColor[2], backgroundColor[3]);
     canvasContext.newSubPath();

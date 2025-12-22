@@ -3,9 +3,8 @@
         "type": "layout",
         "pages": [
             "generalSettingsPage",
-            "detailsSettingsPage",
             "renderSettingsPage",
-            "layoutPage"
+            "layoutSettingsPage"
         ],
         "generalSettingsPage": {
             "type": "page",
@@ -13,13 +12,6 @@
             "sections": [
                 "generalSettingsTickerSection",
                 "generalSettingsDataSection"
-            ]
-        },
-        "detailsSettingsPage": {
-            "type": "page",
-            "title": "Details",
-            "sections": [
-                "detailsSettingsSection"
             ]
         },
         "renderSettingsPage": {
@@ -31,19 +23,21 @@
                 "renderSettingsColorsSection"
             ]
         },
-        "layoutPage": {
+        "layoutSettingsPage": {
             "type": "page",
             "title": "Layout",
             "sections": [
-                "layoutEffectsSection"
+                "layoutSizeSettingsSection",
+                "layoutEffectsSettingsSection"
             ]
         },
         "generalSettingsTickerSection": {
             "type": "section",
-            "title": "Ticker",
+            "title": "Financial Data",
             "keys": [
                 "tickerSymbol",
-                "daysPeriodToShow"
+                "daysPeriodToShow",
+                "showCompanyNameOrTicker"
             ]
         },
         "generalSettingsDataSection": {
@@ -53,13 +47,6 @@
                 "delayMinutes",
                 "showLastUpdateTimestamp",
                 "updateDataButton"
-            ]
-        },
-        "detailsSettingsSection": {
-            "type": "section",
-            "title": "Name",
-            "keys": [
-                "showCompanyNameOrTicker"
             ]
         },
         "renderSettingsDateTimeFormattingSection": {
@@ -88,7 +75,14 @@
                 "unchangedTrendColor"
             ]
         },
-        "layoutEffectsSection": {
+        "layoutSizeSettingsSection": {
+            "type": "section",
+            "title": "Desklet",
+            "keys": [
+                "deskletScaleSize"
+            ]
+        },
+        "layoutEffectsSettingsSection": {
             "type": "section",
             "title": "Effects",
             "keys": [
@@ -99,6 +93,15 @@
         }
     },
 
+    "deskletScaleSize": {
+        "type": "scale",
+        "default": 1.5,
+        "min": 0.1,
+        "max": 5.0,
+        "step": 0.1,
+        "description": "Desklet scale size",
+        "tooltip": "Adjust scale size of the desklet"
+    },
     "transparency": {
         "type": "scale",
         "default": 0.7,

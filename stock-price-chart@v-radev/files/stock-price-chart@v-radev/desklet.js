@@ -47,28 +47,40 @@ StockPriceChartDesklet.prototype = {
     // [ General Settings ]
     this.settings.bind('tickerSymbol', 'tickerSymbol', this.on_setting_changed);
     this.settings.bind('daysPeriodToShow', 'daysPeriodToShow', this.on_setting_changed);
-    this.settings.bind('delayMinutes', 'delayMinutes', this.on_setting_changed);
-    this.settings.bind('showLastUpdateTimestamp', 'showLastUpdateTimestamp', this.on_setting_changed);
-
-    // [ Display Settings ]
-    this.settings.bind('transparency', 'transparency', this.on_setting_changed);
-    this.settings.bind('backgroundColor', 'backgroundColor', this.on_setting_changed);
-    this.settings.bind('cornerRadius', 'cornerRadius', this.on_setting_changed);
-
-    // [ Details Settings ]
     this.settings.bind('showCompanyNameOrTicker', 'showCompanyNameOrTicker', this.on_setting_changed);
 
+    //TODO not using this yet
+    this.settings.bind('delayMinutes', 'delayMinutes', this.on_setting_changed);
+    //TODO not using this yet
+    this.settings.bind('showLastUpdateTimestamp', 'showLastUpdateTimestamp', this.on_setting_changed);
+
     // [ Render Settings ]
+    //TODO not using this yet
     this.settings.bind('use24HourTime', 'use24HourTime', this.on_setting_changed);
+    //TODO not using this yet
     this.settings.bind('customDateFormat', 'customDateFormat', this.on_setting_changed);
 
+    //TODO not using this yet
     this.settings.bind('fontColor', 'fontColor', this.on_setting_changed);
+    //TODO not using this yet
     this.settings.bind('scaleFontSize', 'scaleFontSize', this.on_setting_changed);
+    //TODO not using this yet
     this.settings.bind('fontScale', 'fontScale', this.on_setting_changed);
 
+    //TODO not using this yet
     this.settings.bind('uptrendChangeColor', 'uptrendChangeColor', this.on_setting_changed);
+    //TODO not using this yet
     this.settings.bind('downtrendChangeColor', 'downtrendChangeColor', this.on_setting_changed);
+    //TODO not using this yet
     this.settings.bind('unchangedTrendColor', 'unchangedTrendColor', this.on_setting_changed);
+
+    // [ Layout Settings ]
+    this.settings.bind('deskletScaleSize', 'deskletScaleSize', this.on_setting_changed);
+    this.settings.bind('transparency', 'transparency', this.on_setting_changed);
+    //TODO not using this yet
+    this.settings.bind('backgroundColor', 'backgroundColor', this.on_setting_changed);
+    //TODO not using this yet
+    this.settings.bind('cornerRadius', 'cornerRadius', this.on_setting_changed);
   },
 
   on_desklet_removed: function() {
@@ -119,7 +131,7 @@ StockPriceChartDesklet.prototype = {
 
     //TODO need .po files, follow the scripts in the readme
 
-    const scaleSize = 1.5; //TODO scale_size is configurable
+    const scaleSize = this.deskletScaleSize;
     const unitSize = 15 * scaleSize * global.ui_scale;
     const graph_w = 20 * unitSize;
     const graph_h =  4 * unitSize;
@@ -143,7 +155,7 @@ StockPriceChartDesklet.prototype = {
         const chartValues = [];
         const chartSettings = {
           titleDisplay: this.showCompanyNameOrTicker ? tickerData[0].shortName : this.tickerSymbol,
-          backgroundTransparency: 0.45, //TODO make configurable
+          backgroundTransparency: this.transparency,
         };
 
         for (let i = 0; i < tickerData.length; i++) {
@@ -154,7 +166,13 @@ StockPriceChartDesklet.prototype = {
         logger.log('-- Fetched ticker data values: ' + chartValues.toString());
         logger.log('-- Fetched ticker data labels: ' + chartLabels.toString());
 
-        this.unrender();
+        this.mainBox = new St.BoxLayout({
+          style_class: 'stock-price-chart_mainBox',
+        });
+
+        this.setContent(this.mainBox);
+
+        this.mainBox.style = 'border: 1px solid rgba(50,50,50,1); border-radius: 12px;';
 
         const chartObject = new ChartModule.ChartClass(chartLabels, chartValues, chartSettings);
         const canvas = chartObject.drawCanvas(desklet_w, desklet_h, unitSize);
@@ -176,15 +194,6 @@ StockPriceChartDesklet.prototype = {
     logger.log('-- onClickUpdateDataButton called.');
 
     this.newChartDraw();
-  },
-
-  unrender: function() {
-    logger.log('-- Desklet unrender() called.');
-
-    if (this.mainBox) {
-      this.mainBox.destroy_all_children();
-      this.mainBox.destroy();
-    }
   },
 };
 
