@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-10-15 00:30+0200\n"
+"POT-Creation-Date: 2025-12-22 13:42+0100\n"
 "PO-Revision-Date: 2025-10-15 00:34+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,26 +18,38 @@ msgstr ""
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:304 desklet.js:390
+#. desklet.js:317 desklet.js:487
 msgid "RAM"
 msgstr "Arbeitsspeicher"
 
 #. settings-schema.json->type->options
-#. desklet.js:306 desklet.js:392
+#. desklet.js:319 desklet.js:489
 msgid "Swap"
 msgstr "Swap-Speicher"
 
 #. settings-schema.json->type->options
-#. desklet.js:308
+#. desklet.js:321
 msgid "Filesystem"
 msgstr "Dateisystem"
 
-#. desklet.js:335
+#. desklet.js:348
 msgid "Not Found"
 msgstr "Nicht gef."
 
+#. desklet.js:434
+msgid "Sorry, this font is not supported, please select a different one."
+msgstr ""
+
+#. desklet.js:435
+msgid " Font: `"
+msgstr ""
+
+#. desklet.js:435
+msgid "` Error: "
+msgstr ""
+
 #. metadata.json->name
-#. desklet.js:394
+#. desklet.js:491
 msgid "Disk Space"
 msgstr "Speicherplatzanzeige"
 
@@ -106,6 +118,17 @@ msgstr "Dezimal"
 #. settings-schema.json->size-prefix->options
 msgid "Binary"
 msgstr "Binär"
+
+#. settings-schema.json->size-fraction-digits->description
+msgid "Number of fractional digits"
+msgstr ""
+
+#. settings-schema.json->size-fraction-digits->tooltip
+#, fuzzy
+msgid "Increase or decrease the number digits after the decimal point."
+msgstr ""
+"Vergrößern oder verkleinern Sie dieses Desklet, indem Sie diesen "
+"Skalierungsfaktor verändern."
 
 #. settings-schema.json->reserved-blocks-as-used-space->description
 msgid "Show reserved blocks as used space"
@@ -202,6 +225,23 @@ msgstr "Kreisfarbe"
 #. settings-schema.json->circle-color-free-space->description
 msgid "Circle color for free space"
 msgstr "Kreisfarbe für freien Bereich"
+
+#. settings-schema.json->font->description
+#, fuzzy
+msgid "Text font"
+msgstr "Textfarbe"
+
+#. settings-schema.json->font->tooltip
+msgid "Change text font family"
+msgstr ""
+
+#. settings-schema.json->font-sub->description
+msgid "Sub text font"
+msgstr ""
+
+#. settings-schema.json->font-sub->tooltip
+msgid "Change font family of the text below the percentage"
+msgstr ""
 
 #. settings-schema.json->text-color->description
 msgid "Text color"
