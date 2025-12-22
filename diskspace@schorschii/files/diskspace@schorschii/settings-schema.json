@@ -141,7 +141,7 @@
     "font-sub": {
         "type": "fontchooser",
         "description": "Sub text font",
-        "default": "Ubuntu Regular 15",
+        "default": "DejaVu Sans Mono Book 15",
         "tooltip": "Change font family of the text below the percentage"
     },
     "text-color": {

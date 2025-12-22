@@ -354,6 +354,7 @@ MyDesklet.prototype = {
 		this.textpercent.set_position(null, textpercent_y);
 		this.textpercent.set_text(percentString);
 		this.textpercent.style = "font-size: " + fontSize + "px;"
+								+ "font-family: '" + this.font["font-family"] + "';"
 								+ "font-style:" + this.font["font-style"] + ";"
 								+ "font-weight:" + this.font["font-weight"] + ";"
 								+ "font-stretch:" + this.font["font-stretch"] + ";"
@@ -364,6 +365,7 @@ MyDesklet.prototype = {
 		this.textsub.set_position(null, textsub_y);
 		this.textsub.set_text(textSub1);
 		this.textsub.style = "font-size: " + fontSizeSub + "px;"
+							+ "font-family: '" + this.fontSub["font-family"] + "';"
 							+ "font-style:" + this.fontSub["font-style"] + ";"
 							+ "font-weight:" + this.fontSub["font-weight"] + ";"
 							+ "font-stretch:" + this.fontSub["font-stretch"] + ";"
@@ -374,6 +376,7 @@ MyDesklet.prototype = {
 		this.textsub2.set_position(null, textsub2_y);
 		this.textsub2.set_text(textSub2);
 		this.textsub2.style = "font-size: " + fontSizeSub + "px;"
+							+ "font-family: '" + this.fontSub["font-family"] + "';"
 							+ "font-style:" + this.fontSub["font-style"] + ";"
 							+ "font-weight:" + this.fontSub["font-weight"] + ";"
 							+ "font-stretch:" + this.fontSub["font-stretch"] + ";"
