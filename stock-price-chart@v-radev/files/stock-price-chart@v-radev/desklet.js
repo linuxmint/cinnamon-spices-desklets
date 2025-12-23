@@ -55,17 +55,19 @@ StockPriceChartDesklet.prototype = {
     this.settings.bind('showCompanyNameOrTicker', 'showCompanyNameOrTicker', this.onDataSettingsChange);
 
     // [ Render Settings ]
-    //TODO not using this yet
     this.settings.bind('fontColor', 'fontColor', this.onVisualSettingsChange);
     //TODO not using this yet
     this.settings.bind('shouldScaleFontSize', 'shouldScaleFontSize', this.onVisualSettingsChange);
     //TODO not using this yet
     this.settings.bind('fontScale', 'fontScale', this.onVisualSettingsChange);
 
+    this.settings.bind('chartAxesColor', 'chartAxesColor', this.onVisualSettingsChange);
+    this.settings.bind('chartMidlinesColor', 'chartMidlinesColor', this.onVisualSettingsChange);
+    this.settings.bind('chartLineColor', 'chartLineColor', this.onVisualSettingsChange);
+
     // [ Layout Settings ]
     this.settings.bind('deskletScaleSize', 'deskletScaleSize', this.onVisualSettingsChange);
     this.settings.bind('transparency', 'transparency', this.onVisualSettingsChange);
-    //TODO not using this yet
     this.settings.bind('backgroundColor', 'backgroundColor', this.onVisualSettingsChange);
     //TODO not using this yet
     this.settings.bind('cornerRadius', 'cornerRadius', this.onVisualSettingsChange);
@@ -175,6 +177,11 @@ StockPriceChartDesklet.prototype = {
     const chartSettings = {
       titleDisplay: this.showCompanyNameOrTicker ? this.chartData.companyName : this.tickerSymbol,
       backgroundTransparency: this.transparency,
+      backgroundColor: this.backgroundColor,
+      fontColor: this.fontColor,
+      chartAxesColor: this.chartAxesColor,
+      chartMidlinesColor: this.chartMidlinesColor,
+      chartLineColor: this.chartLineColor,
     };
 
     this.mainBox = new St.BoxLayout({

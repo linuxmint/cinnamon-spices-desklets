@@ -17,7 +17,8 @@
             "type": "page",
             "title": "Render settings",
             "sections": [
-                "renderSettingsFontSection"
+                "renderSettingsFontSection",
+                "renderSettingsChartSection"
             ]
         },
         "layoutSettingsPage": {
@@ -45,6 +46,15 @@
                 "fontColor",
                 "shouldScaleFontSize",
                 "fontScale"
+            ]
+        },
+        "renderSettingsChartSection": {
+            "type": "section",
+            "title": "Chart",
+            "keys": [
+                "chartAxesColor",
+                "chartMidlinesColor",
+                "chartLineColor"
             ]
         },
         "layoutSizeSettingsSection": {
@@ -85,7 +95,7 @@
     },
     "backgroundColor": {
         "type": "colorchooser",
-        "default": "rgb(0,0,0)",
+        "default": "rgb(50,50,50)",
         "description": "Background color",
         "tooltip": "Desklet background color"
     },
@@ -131,8 +141,8 @@
     "fontColor": {
         "type": "colorchooser",
         "description": "Font color",
-        "tooltip": "Default text color",
-        "default": "white"
+        "tooltip": "Color for text labels",
+        "default": "rgb(0,0,0)"
     },
     "shouldScaleFontSize": {
         "type": "checkbox",
@@ -150,5 +160,24 @@
         "description": "Font size scale factor",
         "tooltip": "Enlarge/reduce the font size",
         "dependency": "shouldScaleFontSize"
+    },
+
+    "chartAxesColor": {
+      "type": "colorchooser",
+      "description": "Chart axes color",
+      "tooltip": "Color for the chart axes",
+      "default": "rgb(0,0,0)"
+    },
+    "chartMidlinesColor": {
+      "type": "colorchooser",
+      "description": "Chart midlines color",
+      "tooltip": "Chart midlines color",
+      "default": "rgba(150,150,150,0.5)"
+    },
+    "chartLineColor": {
+      "type": "colorchooser",
+      "description": "Chart line color",
+      "tooltip": "Chart line color",
+      "default": "rgb(142, 202, 230)"
     }
 }

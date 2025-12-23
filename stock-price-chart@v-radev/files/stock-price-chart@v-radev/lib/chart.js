@@ -63,7 +63,7 @@ class ChartClassDeclaration {
     logger.log('--- Start drawing chart background.');
 
     const transparency = String(this._chartSettings.backgroundTransparency);
-    const backgroundColor = this._parseRgbaValues('rgba(50,50,50,' + transparency + ')');
+    const backgroundColor = this._parseRgbaValues(this._chartSettings.backgroundColor, transparency);
     const radius = 2 * unitSize / 3;
     const degrees = Math.PI / 180.0;
 
@@ -84,8 +84,9 @@ class ChartClassDeclaration {
     const originX = this._MARGIN.left;
     const originY = this._MARGIN.top + chartHeight;
     const numberOfLabels = this._labels.length;
-    //TODO is configurable color + transparency
-    const midlineColor = this._parseRgbaValues('rgba(150,150,150,0.5)');
+    const fontColor = this._parseRgbaValues(this._chartSettings.fontColor, 1);
+    const midlineColor = this._parseRgbaValues(this._chartSettings.chartMidlinesColor, 1);
+    const axesColor = this._parseRgbaValues(this._chartSettings.chartAxesColor, 1);
 
     // Y scale (money)
     const minValue = Math.min.apply(null, this._values);
@@ -97,7 +98,7 @@ class ChartClassDeclaration {
 
     // Draw chart X and Y lines
     canvasContext.setLineWidth(2);
-    canvasContext.setSourceRGB(0, 0, 0);
+    canvasContext.setSourceRGBA(axesColor[0], axesColor[1], axesColor[2], axesColor[3]);
     canvasContext.moveTo(originX, originY);
     canvasContext.lineTo(originX + chartWidth, originY); // X axis
     canvasContext.moveTo(originX, originY);
@@ -121,12 +122,13 @@ class ChartClassDeclaration {
       canvasContext.stroke();
 
       // Y tick
-      canvasContext.setSourceRGBA(0, 0, 0, 1);
+      canvasContext.setSourceRGBA(axesColor[0], axesColor[1], axesColor[2], axesColor[3]);
       canvasContext.moveTo(originX - 6, py);
       canvasContext.lineTo(originX, py);
       canvasContext.stroke();
 
       // Y label
+      canvasContext.setSourceRGBA(fontColor[0], fontColor[1], fontColor[2], fontColor[3]);
       canvasContext.moveTo(originX - 35, py + 4);
       canvasContext.showText(`$${y}`);
     }
@@ -136,12 +138,13 @@ class ChartClassDeclaration {
       let px = originX + (i / (numberOfLabels - 1)) * chartWidth;
 
       // X tick
-      canvasContext.setSourceRGBA(0, 0, 0, 1);
+      canvasContext.setSourceRGBA(axesColor[0], axesColor[1], axesColor[2], axesColor[3]);
       canvasContext.moveTo(px, originY);
       canvasContext.lineTo(px, originY + 6);
       canvasContext.stroke();
 
       // X label (centered)
+      canvasContext.setSourceRGBA(fontColor[0], fontColor[1], fontColor[2], fontColor[3]);
       const ext = canvasContext.textExtents(this._labels[i]);
       canvasContext.moveTo(px - ext.width / 2, originY + 11 + ext.height);
       canvasContext.showText(this._labels[i]);
@@ -153,6 +156,7 @@ class ChartClassDeclaration {
 
     const originX = this._MARGIN.left;
     const originY = this._MARGIN.top + chartHeight;
+    const lineColor = this._parseRgbaValues(this._chartSettings.chartLineColor, 1);
 
     // Y scale (money)
     const minValue = Math.min.apply(null, this._values);
@@ -162,7 +166,7 @@ class ChartClassDeclaration {
     const numberOfLabels = this._labels.length;
 
     canvasContext.setLineWidth(1.5);
-    canvasContext.setSourceRGBA(0.2, 0.6, 0.9, 1.0); // Blue-ish
+    canvasContext.setSourceRGBA(lineColor[0], lineColor[1], lineColor[2], lineColor[3]);
 
     for (let i = 0; i < numberOfLabels; i++) {
       let t = (this._values[i] - yMin) / (yMax - yMin);
@@ -184,6 +188,7 @@ class ChartClassDeclaration {
 
     const originX = this._MARGIN.left;
     const originY = this._MARGIN.top + chartHeight;
+    const lineColor = this._parseRgbaValues(this._chartSettings.chartLineColor, 1);
 
     // Y scale (money)
     const minValue = Math.min.apply(null, this._values);
@@ -196,7 +201,7 @@ class ChartClassDeclaration {
 
     // In a future version add option to show price number near the point
     canvasContext.setLineWidth(2.5);
-    canvasContext.setSourceRGBA(0.2, 0.6, 0.9, 1.0); // Blue-ish
+    canvasContext.setSourceRGBA(lineColor[0], lineColor[1], lineColor[2], lineColor[3]);
 
     for (let i = 0; i < numberOfLabels; i++) {
       let t = (this._values[i] - yMin) / (yMax - yMin);
@@ -214,20 +219,21 @@ class ChartClassDeclaration {
     const titleText = this._chartSettings.titleDisplay || 'Ticker Symbol Name';
     const titleExtents = canvasContext.textExtents(titleText);
     const centerX = chartWidth / 2 - titleExtents.width / 2 + this._MARGIN.left / 2;
+    const fontColor = this._parseRgbaValues(this._chartSettings.fontColor, 1);
 
     canvasContext.setFontSize(12);
     canvasContext.selectFontFace('Sans', Cairo.FONT_SLANT_NORMAL, Cairo.FONT_WEIGHT_BOLD);
-    canvasContext.setSourceRGBA(0, 0, 0, 1);
+    canvasContext.setSourceRGBA(fontColor[0], fontColor[1], fontColor[2], fontColor[3]);
     canvasContext.moveTo(centerX, 16);
     canvasContext.showText(titleText);
   }
 
-  _parseRgbaValues(colorString) {
+  _parseRgbaValues(colorString, fallbackAlpha) {
     const colors = colorString.match(/\((.*?)\)/)[1].split(",");
     const r = parseInt(colors[0])/255;
     const g = parseInt(colors[1])/255;
     const b = parseInt(colors[2])/255;
-    let a = 1;
+    let a = fallbackAlpha;
 
     if (colors.length > 3) {
       a = colors[3]
