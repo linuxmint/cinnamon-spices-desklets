@@ -119,7 +119,7 @@ MyDesklet.prototype = {
         this.settings.bind("dayFont", "dayFont", this._onSettingsChanged);
         this.settings.bind("dateFont", "dateFont", this._onSettingsChanged);
 
-        // Binding Ombre
+        // Binding Shadow
         this.settings.bind("horizontal-dayshadow", "horDayShadow", this._onSettingsChanged);
         this.settings.bind("vertical-dayshadow", "vertDayShadow", this._onSettingsChanged);
         this.settings.bind("dayshadow-blur", "dayShadowBlur", this._onSettingsChanged);
@@ -133,36 +133,33 @@ MyDesklet.prototype = {
         this.settings.bind("dateshadow-blur", "dateShadowBlur", this._onSettingsChanged);
         this.settings.bind("dateshadow-color", "dateShadowColor", this._onSettingsChanged);
 
-        // Binding maiuscolo
-this.settings.bind("time-uppercase", "timeUppercase", this._onSettingsChanged);
-this.settings.bind("day-uppercase", "dayUppercase", this._onSettingsChanged);
-this.settings.bind("date-uppercase", "dateUppercase", this._onSettingsChanged);
-        
-        // Binding interruttori
+        // Binding uppercase and other
+        this.settings.bind("time-uppercase", "timeUppercase", this._onSettingsChanged);
+        this.settings.bind("day-uppercase", "dayUppercase", this._onSettingsChanged);
+        this.settings.bind("date-uppercase", "dateUppercase", this._onSettingsChanged);
+
         this.settings.bind("show-time", "showTime", this._onSettingsChanged);
         this.settings.bind("show-day", "showDay", this._onSettingsChanged);
         this.settings.bind("show-date", "showDate", this._onSettingsChanged);
 
-        // Binding Offset Verticali
         this.settings.bind("day-vertical-offset", "dayVerticalOffset", this._onSettingsChanged);
         this.settings.bind("date-vertical-offset", "dateVerticalOffset", this._onSettingsChanged);
     },
-
     
     _onSettingsChanged: function() {
-        // GESTIONE VISIBILITÀ
+        // Visibility
         this._timeBox.visible = this.showTime;
         this._dayBox.visible = this.showDay;
         this._dateBox.visible = this.showDate;
 
-        // GESTIONE STILI (Font, Colori, Ombre)
+        // Style
         let s = (h, v, b, c) => (b > 0 || h != 0 || v != 0) ? `text-shadow: ${h}px ${v}px ${b}px ${c};` : "";
         
         this._time.set_style(this._parseFontString(this.timeFont, this.timeColor) + s(this.horTimeShadow, this.vertTimeShadow, this.timeShadowBlur, this.timeShadowColor));
         this._day.set_style(this._parseFontString(this.dayFont, this.dayColor) + s(this.horDayShadow, this.vertDayShadow, this.dayShadowBlur, this.dayShadowColor));
         this._date.set_style(this._parseFontString(this.dateFont, this.dateColor) + s(this.horDateShadow, this.vertDateShadow, this.dateShadowBlur, this.dateShadowColor));
 
-        // GESTIONE POSIZIONAMENTO (Translation/Offset)
+        // Offset
         this._dayBox.set_translation(0, this.dayVerticalOffset, 0);
         this._dateBox.set_translation(0, this.dateVerticalOffset, 0);
 
@@ -176,22 +173,19 @@ _updateDate: function() {
             let dayText = displayDate.toLocaleFormat(this.dayFormat);
             let dateText = displayDate.toLocaleFormat(this.dateFormat);
 
-            // GESTIONE ORA
+
             if (this.timeUppercase) {
                 timeText = timeText.toUpperCase();
             }
 
-            // GESTIONE GIORNO
             if (this.dayUppercase) {
                 dayText = dayText.toUpperCase();
             } else {
-                // Se non è tutto maiuscolo, mettiamo solo la prima lettera maiuscola (es: Sabato)
                 if (dayText) {
                     dayText = dayText.charAt(0).toUpperCase() + dayText.slice(1);
                 }
             }
             
-            // GESTIONE DATA
             if (this.dateUppercase) {
                 dateText = dateText.toUpperCase();
             }
