@@ -1,0 +1,101 @@
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-20 12:00+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Christian Giordano\n"
+"Language: it\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. settings-schema.json->pages
+msgid "General"
+msgstr "Generale"
+
+msgid "Time"
+msgstr "Ora"
+
+msgid "Day"
+msgstr "Giorno"
+
+msgid "Date"
+msgstr "Data"
+
+#. settings-schema.json->sections
+msgid "Visibility"
+msgstr "Visibilità"
+
+msgid "String Formats"
+msgstr "Formato delle stringhe"
+
+msgid "Vertical Positioning (Offset)"
+msgstr "Posizionamento verticale"
+
+msgid "Text Style"
+msgstr "Stile del testo"
+
+msgid "Shadow"
+msgstr "Ombra"
+
+#. settings-schema.json->keys
+msgid "Show Time box"
+msgstr "Mostra il box 'ora'"
+
+msgid "Show Day box"
+msgstr "Mostra il box 'giorno'"
+
+msgid "Show Date box"
+msgstr "Mostra il box 'data'"
+
+#. settings-schema.json -> Formats
+msgid "Time Format"
+msgstr "Formato dell'ora"
+
+msgid "Day Format"
+msgstr "Formato del giorno"
+
+msgid "Date Format"
+msgstr "Formato della data"
+
+msgid "Example: %A for full weekday name"
+msgstr "Esempio: %A mostra il nome della settimana per intero"
+
+msgid "Example: %e %B %Y"
+msgstr "Esempio: %e %B %Y"
+
+#. settings-schema.json -> Offsets
+msgid "Day Vertical Offset"
+msgstr "Spostamento verticale del giorno"
+
+msgid "Date Vertical Offset"
+msgstr "Spostamento verticale della data"
+
+msgid "Negative values move the element up"
+msgstr "Valori negativi muovono in alto l'elemento"
+
+#. settings-schema.json -> Shadow details
+msgid "Horizontal offset"
+msgstr "Spostamento orizzontale"
+
+msgid "Vertical offset"
+msgstr "Spostamento verticale"
+
+msgid "Uppercase"
+msgstr "Maiuscolo"
+
+msgid "Font"
+msgstr "Carattere"
+
+msgid "Color"
+msgstr "Colore"
+
+msgid "Blur"
+msgstr "Sfocatura"
+
+#. desklet.js
+msgid "Edit Config"
+msgstr "Modifica la configurazione"

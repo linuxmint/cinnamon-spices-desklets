@@ -1,0 +1,95 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Cinnaclock\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-20 12:00+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: AI\n"
+"Language: bg\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. settings-schema.json->pages
+msgid "General"
+msgstr "Общи"
+
+msgid "Time"
+msgstr "Час"
+
+msgid "Day"
+msgstr "Ден"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "Visibility"
+msgstr "Видимост"
+
+msgid "String Formats"
+msgstr "Формати на низовете"
+
+msgid "Vertical Positioning (Offset)"
+msgstr "Вертикално позициониране"
+
+msgid "Text Style"
+msgstr "Стил на текста"
+
+msgid "Shadow"
+msgstr "Сянка"
+
+msgid "Show Time box"
+msgstr "Показване на полето за час"
+
+msgid "Show Day box"
+msgstr "Показване на полето за ден"
+
+msgid "Show Date box"
+msgstr "Показване на полето за дата"
+
+msgid "Time Format"
+msgstr "Формат на часа"
+
+msgid "Day Format"
+msgstr "Формат на деня"
+
+msgid "Date Format"
+msgstr "Формат на датата"
+
+msgid "Example: %A for full weekday name"
+msgstr "Пример: %A за пълното име на деня"
+
+msgid "Example: %e %B %Y"
+msgstr "Пример: %e %B %Y"
+
+msgid "Day Vertical Offset"
+msgstr "Вертикално изместване на деня"
+
+msgid "Date Vertical Offset"
+msgstr "Вертикално изместване на датата"
+
+msgid "Negative values move the element up"
+msgstr "Отрицателните стойности преместват елемента нагоре"
+
+msgid "Horizontal offset"
+msgstr "Хоризонтално изместване"
+
+msgid "Vertical offset"
+msgstr "Вертикално изместване"
+
+msgid "Uppercase"
+msgstr "Главни букви"
+
+msgid "Font"
+msgstr "Шрифт"
+
+msgid "Color"
+msgstr "Цвят"
+
+msgid "Blur"
+msgstr "Размазване"
+
+msgid "Edit Config"
+msgstr "Редактиране на конфигурацията"
