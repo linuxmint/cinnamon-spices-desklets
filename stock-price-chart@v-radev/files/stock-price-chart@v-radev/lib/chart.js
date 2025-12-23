@@ -84,7 +84,8 @@ class ChartClassDeclaration {
     const originX = this._MARGIN.left;
     const originY = this._MARGIN.top + chartHeight;
     const numberOfLabels = this._labels.length;
-    const midlineColor = this._parseRgbaValues('rgba(150,150,150,0.5)'); //TODO is configurable
+    //TODO is configurable color + transparency
+    const midlineColor = this._parseRgbaValues('rgba(150,150,150,0.5)');
 
     // Y scale (money)
     const minValue = Math.min.apply(null, this._values);
@@ -161,7 +162,7 @@ class ChartClassDeclaration {
     const numberOfLabels = this._labels.length;
 
     canvasContext.setLineWidth(1.5);
-    canvasContext.setSourceRGBA(0.2, 0.6, 0.9, 0.7); // Blue-ish
+    canvasContext.setSourceRGBA(0.2, 0.6, 0.9, 1.0); // Blue-ish
 
     for (let i = 0; i < numberOfLabels; i++) {
       let t = (this._values[i] - yMin) / (yMax - yMin);
@@ -193,8 +194,9 @@ class ChartClassDeclaration {
     const numberOfLabels = this._labels.length;
     const pointRadius = 2;
 
+    // In a future version add option to show price number near the point
     canvasContext.setLineWidth(2.5);
-    canvasContext.setSourceRGBA(0.2, 0.6, 0.9, 0.7); // Blue-ish
+    canvasContext.setSourceRGBA(0.2, 0.6, 0.9, 1.0); // Blue-ish
 
     for (let i = 0; i < numberOfLabels; i++) {
       let t = (this._values[i] - yMin) / (yMax - yMin);

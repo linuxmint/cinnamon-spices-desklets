@@ -10,17 +10,14 @@
             "type": "page",
             "title": "General",
             "sections": [
-                "generalSettingsTickerSection",
-                "generalSettingsDataSection"
+                "generalSettingsTickerSection"
             ]
         },
         "renderSettingsPage": {
             "type": "page",
             "title": "Render settings",
             "sections": [
-                "renderSettingsDateTimeFormattingSection",
-                "renderSettingsFontSection",
-                "renderSettingsColorsSection"
+                "renderSettingsFontSection"
             ]
         },
         "layoutSettingsPage": {
@@ -37,24 +34,8 @@
             "keys": [
                 "tickerSymbol",
                 "daysPeriodToShow",
-                "showCompanyNameOrTicker"
-            ]
-        },
-        "generalSettingsDataSection": {
-            "type": "section",
-            "title": "Data Updates",
-            "keys": [
-                "delayMinutes",
-                "showLastUpdateTimestamp",
+                "showCompanyNameOrTicker",
                 "updateDataButton"
-            ]
-        },
-        "renderSettingsDateTimeFormattingSection": {
-            "type": "section",
-            "title": "Date and Time Format",
-            "keys": [
-                "use24HourTime",
-                "customDateFormat"
             ]
         },
         "renderSettingsFontSection": {
@@ -62,17 +43,8 @@
             "title": "Font",
             "keys": [
                 "fontColor",
-                "scaleFontSize",
+                "shouldScaleFontSize",
                 "fontScale"
-            ]
-        },
-        "renderSettingsColorsSection": {
-            "type": "section",
-            "title": "Trend Colors",
-            "keys": [
-                "uptrendChangeColor",
-                "downtrendChangeColor",
-                "unchangedTrendColor"
             ]
         },
         "layoutSizeSettingsSection": {
@@ -128,23 +100,6 @@
         "tooltip": "The higher the value, the rounder the desklet's corners"
     },
 
-    "delayMinutes": {
-        "type": "spinbutton",
-        "default": 10,
-        "min": 1,
-        "max": 1440,
-        "step": 1,
-        "units": "minutes",
-        "description": "Update frequency",
-        "tooltip": "Data refresh frequency, in minutes"
-    },
-    "showLastUpdateTimestamp": {
-        "type": "checkbox",
-        "default": true,
-        "description": "Show last update timestamp",
-        "tooltip": "Display timestamp when quotes were updated last"
-    },
-
     "tickerSymbol": {
       "type": "entry",
       "default": "TSLA",
@@ -160,39 +115,26 @@
       "description": "Days period to show",
       "tooltip": "Number of past days to display in the stock price chart"
     },
-
-    "use24HourTime": {
-        "type": "checkbox",
-        "default": false,
-        "description": "Force 24-hour clock",
-        "tooltip": "Always display time in 24-hour notation, overriding system settings.\nThis setting is ignored, when a custom time format is defined."
-    },
-    "customDateFormat": {
-        "type": "entry",
-        "default": "",
-        "description": "Custom date format",
-        "tooltip": "Format date with custom format instead of system settings.\nExamples:\n%m/%d          03/15\n%Y-%m-%d   2024-03-15\n%A, %b %d   Friday, Mar 15"
-    },
-
-    "updateDataButton": {
-        "type": "button",
-        "callback": "onClickUpdateDataButton",
-        "description": "Refresh data",
-        "tooltip": "Fetch the latest stock data immediately."
-    },
     "showCompanyNameOrTicker": {
-        "type": "checkbox",
-        "default": true,
-        "description": "Display full company name instead of ticker symbol",
-        "tooltip": "Show the company name if available; otherwise, show the ticker symbol."
+      "type": "checkbox",
+      "default": true,
+      "description": "Display full company name instead of ticker symbol",
+      "tooltip": "Show the company name if available; otherwise, show the ticker symbol."
     },
+    "updateDataButton": {
+      "type": "button",
+      "callback": "onClickUpdateDataButton",
+      "description": "Refresh data",
+      "tooltip": "Fetch the latest stock data immediately."
+    },
+
     "fontColor": {
         "type": "colorchooser",
         "description": "Font color",
         "tooltip": "Default text color",
         "default": "white"
     },
-    "scaleFontSize": {
+    "shouldScaleFontSize": {
         "type": "checkbox",
         "default": false,
         "description": "Enable font size scaling",
@@ -207,24 +149,6 @@
         "units": "times",
         "description": "Font size scale factor",
         "tooltip": "Enlarge/reduce the font size",
-        "dependency": "scaleFontSize"
-    },
-    "uptrendChangeColor": {
-        "type": "colorchooser",
-        "description": "Uptrend change color",
-        "tooltip": "Color of the uptrend change",
-        "default": "green"
-    },
-    "downtrendChangeColor": {
-        "type": "colorchooser",
-        "description": "Downtrend change color",
-        "tooltip": "Color of the downtrend change",
-        "default": "red"
-    },
-    "unchangedTrendColor": {
-        "type": "colorchooser",
-        "description": "Unchanged trend color",
-        "tooltip": "Color of the unchanged trend",
-        "default": "grey"
+        "dependency": "shouldScaleFontSize"
     }
 }

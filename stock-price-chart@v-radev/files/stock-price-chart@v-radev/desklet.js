@@ -38,49 +38,37 @@ StockPriceChartDesklet.prototype = {
 
     this._bindSettings();
 
-    this.refreshIntervalSeconds = 60 * 60; //TODO is configurable
+    this.refreshIntervalSeconds = 60 * 60;
+    this.chartData = {
+      companyName: '',
+      labels: [],
+      values: [],
+    };
   },
 
   _bindSettings: function() {
     this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, this.instanceId);
 
     // [ General Settings ]
-    this.settings.bind('tickerSymbol', 'tickerSymbol', this.on_setting_changed);
-    this.settings.bind('daysPeriodToShow', 'daysPeriodToShow', this.on_setting_changed);
-    this.settings.bind('showCompanyNameOrTicker', 'showCompanyNameOrTicker', this.on_setting_changed);
-
-    //TODO not using this yet
-    this.settings.bind('delayMinutes', 'delayMinutes', this.on_setting_changed);
-    //TODO not using this yet
-    this.settings.bind('showLastUpdateTimestamp', 'showLastUpdateTimestamp', this.on_setting_changed);
+    this.settings.bind('tickerSymbol', 'tickerSymbol', this.onDataSettingsChange);
+    this.settings.bind('daysPeriodToShow', 'daysPeriodToShow', this.onDataSettingsChange);
+    this.settings.bind('showCompanyNameOrTicker', 'showCompanyNameOrTicker', this.onDataSettingsChange);
 
     // [ Render Settings ]
     //TODO not using this yet
-    this.settings.bind('use24HourTime', 'use24HourTime', this.on_setting_changed);
+    this.settings.bind('fontColor', 'fontColor', this.onVisualSettingsChange);
     //TODO not using this yet
-    this.settings.bind('customDateFormat', 'customDateFormat', this.on_setting_changed);
-
+    this.settings.bind('shouldScaleFontSize', 'shouldScaleFontSize', this.onVisualSettingsChange);
     //TODO not using this yet
-    this.settings.bind('fontColor', 'fontColor', this.on_setting_changed);
-    //TODO not using this yet
-    this.settings.bind('scaleFontSize', 'scaleFontSize', this.on_setting_changed);
-    //TODO not using this yet
-    this.settings.bind('fontScale', 'fontScale', this.on_setting_changed);
-
-    //TODO not using this yet
-    this.settings.bind('uptrendChangeColor', 'uptrendChangeColor', this.on_setting_changed);
-    //TODO not using this yet
-    this.settings.bind('downtrendChangeColor', 'downtrendChangeColor', this.on_setting_changed);
-    //TODO not using this yet
-    this.settings.bind('unchangedTrendColor', 'unchangedTrendColor', this.on_setting_changed);
+    this.settings.bind('fontScale', 'fontScale', this.onVisualSettingsChange);
 
     // [ Layout Settings ]
-    this.settings.bind('deskletScaleSize', 'deskletScaleSize', this.on_setting_changed);
-    this.settings.bind('transparency', 'transparency', this.on_setting_changed);
+    this.settings.bind('deskletScaleSize', 'deskletScaleSize', this.onVisualSettingsChange);
+    this.settings.bind('transparency', 'transparency', this.onVisualSettingsChange);
     //TODO not using this yet
-    this.settings.bind('backgroundColor', 'backgroundColor', this.on_setting_changed);
+    this.settings.bind('backgroundColor', 'backgroundColor', this.onVisualSettingsChange);
     //TODO not using this yet
-    this.settings.bind('cornerRadius', 'cornerRadius', this.on_setting_changed);
+    this.settings.bind('cornerRadius', 'cornerRadius', this.onVisualSettingsChange);
   },
 
   on_desklet_removed: function() {
@@ -91,7 +79,7 @@ StockPriceChartDesklet.prototype = {
     }
   },
 
-  on_setting_changed: function() {
+  onDataSettingsChange: function() {
     logger.log('- Desklet settings changed, reinitializing update loop.');
 
     if (this.timeout) {
@@ -99,6 +87,12 @@ StockPriceChartDesklet.prototype = {
     }
 
     this.updateCanvasLoop();
+  },
+
+  onVisualSettingsChange: function() {
+    logger.log('- Desklet visual settings changed, rerender chart.');
+
+    this.renderChartWithData();
   },
 
   on_desklet_added_to_desktop() {
@@ -110,7 +104,7 @@ StockPriceChartDesklet.prototype = {
 
     this.setContent(this.mainBox);
 
-    this.mainBox.style = "border: 1px solid rgba(50,50,50,1); border-radius: 12px;";
+    this.mainBox.style = "border-radius: 12px;";
 
     this.updateCanvasLoop();
   },
@@ -118,7 +112,7 @@ StockPriceChartDesklet.prototype = {
   updateCanvasLoop: function() {
     logger.log('-- Desklet updateCanvasLoop() called.');
 
-    this.newChartDraw();
+    this.fetchDataAndRender();
 
     this.timeout = Mainloop.timeout_add_seconds(
       this.refreshIntervalSeconds,
@@ -126,17 +120,11 @@ StockPriceChartDesklet.prototype = {
     );
   },
 
-  newChartDraw: function() {
-    logger.log('-- Desklet newChartDraw() called.');
+  fetchDataAndRender: function() {
+    logger.log('-- Desklet fetchDataAndRender() called.');
 
     //TODO need .po files, follow the scripts in the readme
 
-    const scaleSize = this.deskletScaleSize;
-    const unitSize = 15 * scaleSize * global.ui_scale;
-    const graph_w = 20 * unitSize;
-    const graph_h =  4 * unitSize;
-    const desklet_w = graph_w + (2 * unitSize);
-    const desklet_h = graph_h + (4 * unitSize);
     const daysToFetch = this.daysPeriodToShow;
     // This can be 1d, 1wk, 1mo configurable in a future release
     // And is there a way to fetch data by hours for the given day?
@@ -153,10 +141,6 @@ StockPriceChartDesklet.prototype = {
       .then((tickerData) => {
         const chartLabels = [];
         const chartValues = [];
-        const chartSettings = {
-          titleDisplay: this.showCompanyNameOrTicker ? tickerData[0].shortName : this.tickerSymbol,
-          backgroundTransparency: this.transparency,
-        };
 
         for (let i = 0; i < tickerData.length; i++) {
           chartLabels.push(`${tickerData[i].date.getDate()} ${tickerData[i].date.toLocaleString('en-US', { month: 'short' })}`);
@@ -166,21 +150,13 @@ StockPriceChartDesklet.prototype = {
         logger.log('-- Fetched ticker data values: ' + chartValues.toString());
         logger.log('-- Fetched ticker data labels: ' + chartLabels.toString());
 
-        this.mainBox = new St.BoxLayout({
-          style_class: 'stock-price-chart_mainBox',
-        });
+        this.chartData = {
+          companyName: tickerData[0].shortName,
+          labels: chartLabels,
+          values: chartValues,
+        }
 
-        this.setContent(this.mainBox);
-
-        this.mainBox.style = 'border: 1px solid rgba(50,50,50,1); border-radius: 12px;';
-
-        const chartObject = new ChartModule.ChartClass(chartLabels, chartValues, chartSettings);
-        const canvas = chartObject.drawCanvas(desklet_w, desklet_h, unitSize);
-
-        canvas.invalidate();
-
-        this.mainBox.set_content(canvas);
-        this.mainBox.set_size(desklet_w, desklet_h);
+        this.renderChartWithData();
       })
       .catch((e) => {
         logger.log('-- Error in fetching ticker data: ' + e.message);
@@ -189,11 +165,40 @@ StockPriceChartDesklet.prototype = {
     logger.log('-- Finished fetching data from Yahoo Finance.');
   },
 
+  renderChartWithData: function() {
+    const scaleSize = this.deskletScaleSize;
+    const unitSize = 15 * scaleSize * global.ui_scale;
+    const graph_w = 20 * unitSize;
+    const graph_h =  4 * unitSize;
+    const desklet_w = graph_w + (2 * unitSize);
+    const desklet_h = graph_h + (4 * unitSize);
+    const chartSettings = {
+      titleDisplay: this.showCompanyNameOrTicker ? this.chartData.companyName : this.tickerSymbol,
+      backgroundTransparency: this.transparency,
+    };
+
+    this.mainBox = new St.BoxLayout({
+      style_class: 'stock-price-chart_mainBox',
+    });
+
+    this.setContent(this.mainBox);
+
+    this.mainBox.style = 'border-radius: 12px;';
+
+    const chartObject = new ChartModule.ChartClass(this.chartData.labels, this.chartData.values, chartSettings);
+    const canvas = chartObject.drawCanvas(desklet_w, desklet_h, unitSize);
+
+    canvas.invalidate();
+
+    this.mainBox.set_content(canvas);
+    this.mainBox.set_size(desklet_w, desklet_h);
+  },
+
   // Callback when user clicks refresh button in settings
   onClickUpdateDataButton: function() {
     logger.log('-- onClickUpdateDataButton called.');
 
-    this.newChartDraw();
+    this.fetchDataAndRender();
   },
 };
 
