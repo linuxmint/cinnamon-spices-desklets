@@ -1,0 +1,106 @@
+# Cinnaclock Desklet
+# Copyright (C) 2024
+# This file is distributed under the same license as the Cinnaclock package.
+# DINGO <c.giordano@etik.com>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Cinnaclock\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-20 12:00+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: LANGUAGE\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. settings-schema.json->pages
+msgid "General"
+msgstr ""
+
+msgid "Time"
+msgstr ""
+
+msgid "Day"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+#. settings-schema.json->sections
+msgid "Visibility"
+msgstr ""
+
+msgid "String Formats"
+msgstr ""
+
+msgid "Vertical Positioning (Offset)"
+msgstr ""
+
+msgid "Text Style"
+msgstr ""
+
+msgid "Shadow"
+msgstr ""
+
+#. settings-schema.json->keys
+msgid "Show Time box"
+msgstr ""
+
+msgid "Show Day box"
+msgstr ""
+
+msgid "Show Date box"
+msgstr ""
+
+#. settings-schema.json -> Formats
+msgid "Time Format"
+msgstr ""
+
+msgid "Day Format"
+msgstr ""
+
+msgid "Date Format"
+msgstr ""
+
+msgid "Example: %A for full weekday name"
+msgstr ""
+
+msgid "Example: %e %B %Y"
+msgstr ""
+
+#. settings-schema.json -> Offsets
+msgid "Day Vertical Offset"
+msgstr ""
+
+msgid "Date Vertical Offset"
+msgstr ""
+
+msgid "Negative values move the element up"
+msgstr ""
+
+#. settings-schema.json -> Shadow details
+msgid "Horizontal offset"
+msgstr ""
+
+msgid "Vertical offset"
+msgstr ""
+
+msgid "Uppercase"
+msgstr ""
+
+msgid "Font"
+msgstr ""
+
+msgid "Color"
+msgstr ""
+
+msgid "Blur"
+msgstr ""
+
+#. desklet.js
+msgid "Edit Config"
+msgstr ""
