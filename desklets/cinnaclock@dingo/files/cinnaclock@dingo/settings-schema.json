@@ -1,0 +1,314 @@
+{
+    "layout": {
+        "type": "layout",
+        "pages": [
+            "general-page",
+            "time-page",
+            "day-page",
+            "date-page"
+        ],
+        "general-page": {
+            "type": "page",
+            "title": "General",
+            "sections": [
+                "visibility-section",
+                "format-section",
+                "offset-section"
+            ]
+        },
+        "time-page": {
+            "type": "page",
+            "title": "Time",
+            "sections": [
+                "time-format-section",
+                "time-shadow-section"
+            ]
+        },
+        "day-page": {
+            "type": "page",
+            "title": "Day",
+            "sections": [
+                "day-format-section",
+                "day-shadow-section"
+            ]
+        },
+        "date-page": {
+            "type": "page",
+            "title": "Date",
+            "sections": [
+                "date-format-section",
+                "date-shadow-section"
+            ]
+        },
+
+        "visibility-section": {
+            "type": "section",
+            "title": "Visibility",
+            "keys": [
+                "show-time",
+                "show-day",
+                "show-date"
+            ]
+        },
+        "format-section": {
+            "type": "section",
+            "title": "String Formats",
+            "keys": [
+                "timeFormat",
+                "dayFormat",
+                "dateFormat"
+            ]
+        },
+        "offset-section": {
+            "type": "section",
+            "title": "Vertical Positioning (Offset)",
+            "keys": [
+                "day-vertical-offset",
+                "date-vertical-offset"
+            ]
+        },
+        "time-format-section": {
+            "type": "section",
+            "title": "Text Style",
+            "keys": [
+                "timeFont",
+                "timeColor",
+                "time-uppercase"
+            ]
+        },
+        "time-shadow-section": {
+            "type": "section",
+            "title": "Shadow",
+            "keys": [
+                "horizontal-timeshadow",
+                "vertical-timeshadow",
+                "timeshadow-blur",
+                "timeshadow-color"
+            ]
+        },
+        "day-format-section": {
+            "type": "section",
+            "title": "Text Style",
+            "keys": [
+                "dayFont",
+                "dayColor",
+                "day-uppercase"
+            ]
+        },
+        "day-shadow-section": {
+            "type": "section",
+            "title": "Shadow",
+            "keys": [
+                "horizontal-dayshadow",
+                "vertical-dayshadow",
+                "dayshadow-blur",
+                "dayshadow-color"
+            ]
+        },
+        "date-format-section": {
+            "type": "section",
+            "title": "Text Style",
+            "keys": [
+                "dateFont",
+                "dateColor",
+                "date-uppercase"
+            ]
+        },
+        "date-shadow-section": {
+            "type": "section",
+            "title": "Shadow",
+            "keys": [
+                "horizontal-dateshadow",
+                "vertical-dateshadow",
+                "dateshadow-blur",
+                "dateshadow-color"
+            ]
+        }
+    },
+
+    "show-time": {
+        "type": "switch",
+        "default": true,
+        "description": "Show Time box"
+    },
+    "show-day": {
+        "type": "switch",
+        "default": true,
+        "description": "Show Day box"
+    },
+    "show-date": {
+        "type": "switch",
+        "default": true,
+        "description": "Show Date box"
+    },
+    "timeFormat": {
+        "type": "entry",
+        "default": "%H:%M",
+        "description": "Time Format",
+        "tooltip": "Example: %H:%M for 24h"
+    },
+    "dayFormat": {
+        "type": "entry",
+        "default": "%A",
+        "description": "Day Format",
+        "tooltip": "Example: %A for full weekday name"
+    },
+    "dateFormat": {
+        "type": "entry",
+        "default": "%e %B %Y",
+        "description": "Date Format",
+        "tooltip": "Example: %e %B %Y"
+    },
+    "day-vertical-offset": {
+        "type": "spinbutton",
+        "default": 0,
+        "min": -500,
+        "max": 500,
+        "step": 1,
+        "units": "px",
+        "description": "Day Vertical Offset",
+        "tooltip": "Negative values move the element up"
+    },
+    "date-vertical-offset": {
+        "type": "spinbutton",
+        "default": 0,
+        "min": -500,
+        "max": 500,
+        "step": 1,
+        "units": "px",
+        "description": "Date Vertical Offset",
+        "tooltip": "Negative values move the element up"
+    },
+    "timeFont": {
+        "type": "fontchooser",
+        "default": "Outfit Bold 78",
+        "description": "Font"
+    },
+    "timeColor": {
+        "type": "colorchooser",
+        "default": "#F2F2F2",
+        "description": "Color"
+    },
+    "time-uppercase": {
+        "type": "switch",
+        "default": true,
+        "description": "Uppercase"
+    },
+    "horizontal-timeshadow": {
+        "type": "spinbutton",
+        "default": 1,
+        "min": -50,
+        "max": 50,
+        "step": 1,
+        "description": "Horizontal offset"
+    },
+    "vertical-timeshadow": {
+        "type": "spinbutton",
+        "default": 1,
+        "min": -50,
+        "max": 50,
+        "step": 1,
+        "description": "Vertical offset"
+    },
+    "timeshadow-blur": {
+        "type": "spinbutton",
+        "default": 2,
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "description": "Blur"
+    },
+    "timeshadow-color": {
+        "type": "colorchooser",
+        "default": "rgba(0,0,0,0.8)",
+        "description": "Color"
+    },
+    "dayFont": {
+        "type": "fontchooser",
+        "default": "Smooch Regular 50",
+        "description": "Font"
+    },
+    "dayColor": {
+        "type": "colorchooser",
+        "default": "#00396F",
+        "description": "Color"
+    },
+    "day-uppercase": {
+        "type": "switch",
+        "default": false,
+        "description": "Uppercase"
+    },
+    "horizontal-dayshadow": {
+        "type": "spinbutton",
+        "default": 1,
+        "min": -50,
+        "max": 50,
+        "step": 1,
+        "description": "Horizontal offset"
+    },
+    "vertical-dayshadow": {
+        "type": "spinbutton",
+        "default": 1,
+        "min": -50,
+        "max": 50,
+        "step": 1,
+        "description": "Vertical offset"
+    },
+    "dayshadow-blur": {
+        "type": "spinbutton",
+        "default": 2,
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "description": "Blur"
+    },
+    "dayshadow-color": {
+        "type": "colorchooser",
+        "default": "rgba(0,0,0,0.8)",
+        "description": "Color"
+    },
+    "dateFont": {
+        "type": "fontchooser",
+        "default": "Noto Sans Regular 16",
+        "description": "Font"
+    },
+    "dateColor": {
+        "type": "colorchooser",
+        "default": "#F2F2F2",
+        "description": "Color"
+    },
+    "date-uppercase": {
+        "type": "switch",
+        "default": true,
+        "description": "Uppercase"
+    },
+    "horizontal-dateshadow": {
+        "type": "spinbutton",
+        "default": 1,
+        "min": -50,
+        "max": 50,
+        "step": 1,
+        "description": "Horizontal offset"
+    },
+    "vertical-dateshadow": {
+        "type": "spinbutton",
+        "default": 1,
+        "min": -50,
+        "max": 50,
+        "step": 1,
+        "description": "Vertical offset"
+    },
+    "dateshadow-blur": {
+        "type": "spinbutton",
+        "default": 2,
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "description": "Blur"
+    },
+    "dateshadow-color": {
+        "type": "colorchooser",
+        "default": "rgba(0,0,0,0.8)",
+        "description": "Color"
+    }
+}
