@@ -16,6 +16,7 @@ class ChartClassDeclaration {
   _chartSettings = null;
 
   _MARGIN = { left: 50, right: 25, top: 30, bottom: 50 };
+  _BASE_FONT_SIZE = 8;
 
   constructor(labels, values, chartSettings) {
     Clutter.init(null);
@@ -38,6 +39,7 @@ class ChartClassDeclaration {
       const chartW = width - that._MARGIN.left - that._MARGIN.right;
       const chartH = height - that._MARGIN.top - that._MARGIN.bottom;
 
+      //TODO ty all these within a single function or with awaits in separate functions
       // Draw background
       that._drawChartBackground(cr, canvasWidth, canvasHeight, unitSize);
 
@@ -53,7 +55,7 @@ class ChartClassDeclaration {
       // Draw chart title
       that._drawChartTitle(cr, chartW, chartH);
 
-      return false; // Signal handled
+      return true;
     });
 
     return this._canvas;
@@ -64,7 +66,7 @@ class ChartClassDeclaration {
 
     const transparency = String(this._chartSettings.backgroundTransparency);
     const backgroundColor = this._parseRgbaValues(this._chartSettings.backgroundColor, transparency);
-    const radius = 2 * unitSize / 3;
+    const radius = this._chartSettings.cornerRadius;
     const degrees = Math.PI / 180.0;
 
     // Chart background with rounded corners
@@ -87,12 +89,15 @@ class ChartClassDeclaration {
     const fontColor = this._parseRgbaValues(this._chartSettings.fontColor, 1);
     const midlineColor = this._parseRgbaValues(this._chartSettings.chartMidlinesColor, 1);
     const axesColor = this._parseRgbaValues(this._chartSettings.chartAxesColor, 1);
+    const fontSize = this._chartSettings.shouldScaleFontSize
+      ? this._BASE_FONT_SIZE + this._chartSettings.fontScale
+      : this._BASE_FONT_SIZE;
 
     // Y scale (money)
     const minValue = Math.min.apply(null, this._values);
     const maxValue = Math.max.apply(null, this._values);
-    const yMax = Math.ceil(maxValue + maxValue * 0.1);
-    const yMin = Math.floor(minValue - minValue * 0.1);
+    const yMax = Math.ceil(maxValue + 1.14 * Math.pow(maxValue, 0.35));
+    const yMin = Math.floor(minValue - 1.14 * Math.pow(minValue, 0.35));
     const YScaleStepCalculation = (yMax - yMin) / 6;
     const YScaleStep = 1 > YScaleStepCalculation ? YScaleStepCalculation.toFixed(2) : Math.floor(YScaleStepCalculation);
 
@@ -108,7 +113,7 @@ class ChartClassDeclaration {
     // Set grid size and font settings
     canvasContext.setLineWidth(1);
     canvasContext.selectFontFace('Sans', Cairo.FONT_SLANT_NORMAL, Cairo.FONT_WEIGHT_NORMAL);
-    canvasContext.setFontSize(8);
+    canvasContext.setFontSize(fontSize);
 
     // Y ticks and Y labels
     for (let y = yMin; y <= yMax; y += YScaleStep) {
@@ -220,8 +225,11 @@ class ChartClassDeclaration {
     const titleExtents = canvasContext.textExtents(titleText);
     const centerX = chartWidth / 2 - titleExtents.width / 2 + this._MARGIN.left / 2;
     const fontColor = this._parseRgbaValues(this._chartSettings.fontColor, 1);
+    const fontSize = this._chartSettings.shouldScaleFontSize
+      ? this._BASE_FONT_SIZE + this._chartSettings.fontScale
+      : this._BASE_FONT_SIZE;
 
-    canvasContext.setFontSize(12);
+    canvasContext.setFontSize(fontSize);
     canvasContext.selectFontFace('Sans', Cairo.FONT_SLANT_NORMAL, Cairo.FONT_WEIGHT_BOLD);
     canvasContext.setSourceRGBA(fontColor[0], fontColor[1], fontColor[2], fontColor[3]);
     canvasContext.moveTo(centerX, 16);

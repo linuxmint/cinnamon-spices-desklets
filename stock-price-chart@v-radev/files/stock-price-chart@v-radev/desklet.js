@@ -56,9 +56,7 @@ StockPriceChartDesklet.prototype = {
 
     // [ Render Settings ]
     this.settings.bind('fontColor', 'fontColor', this.onVisualSettingsChange);
-    //TODO not using this yet
     this.settings.bind('shouldScaleFontSize', 'shouldScaleFontSize', this.onVisualSettingsChange);
-    //TODO not using this yet
     this.settings.bind('fontScale', 'fontScale', this.onVisualSettingsChange);
 
     this.settings.bind('chartAxesColor', 'chartAxesColor', this.onVisualSettingsChange);
@@ -69,7 +67,6 @@ StockPriceChartDesklet.prototype = {
     this.settings.bind('deskletScaleSize', 'deskletScaleSize', this.onVisualSettingsChange);
     this.settings.bind('transparency', 'transparency', this.onVisualSettingsChange);
     this.settings.bind('backgroundColor', 'backgroundColor', this.onVisualSettingsChange);
-    //TODO not using this yet
     this.settings.bind('cornerRadius', 'cornerRadius', this.onVisualSettingsChange);
   },
 
@@ -182,23 +179,52 @@ StockPriceChartDesklet.prototype = {
       chartAxesColor: this.chartAxesColor,
       chartMidlinesColor: this.chartMidlinesColor,
       chartLineColor: this.chartLineColor,
+      cornerRadius: this.cornerRadius,
+      shouldScaleFontSize: this.shouldScaleFontSize,
+      fontScale: this.fontScale,
     };
+
+    if (this.mainBox) {
+      this.mainBox.remove_all_children();
+    }
 
     this.mainBox = new St.BoxLayout({
       style_class: 'stock-price-chart_mainBox',
     });
 
-    this.setContent(this.mainBox);
-
-    this.mainBox.style = 'border-radius: 12px;';
-
     const chartObject = new ChartModule.ChartClass(this.chartData.labels, this.chartData.values, chartSettings);
     const canvas = chartObject.drawCanvas(desklet_w, desklet_h, unitSize);
+
+
+  //TODO
+  //   Clutter.init(None)
+  //   stage = Clutter.Stage()
+  //   stage.set_size(WIDTH, HEIGHT)
+  //   stage.set_title("Clutter Line Chart Example")
+  //   stage.connect("destroy", Clutter.main_quit)
+  //
+  // # Create canvas and actor
+  //   canvas = Clutter.Canvas()
+  //   canvas.set_size(WIDTH, HEIGHT)
+  //   canvas.connect("draw", draw_chart)
+  //
+  //   actor = Clutter.Actor()
+  //   actor.set_size(WIDTH, HEIGHT)
+  //   actor.set_content(canvas)     # assign the canvas as actor content
+  // # position at 0,0 inside stage
+  //   actor.set_position(0, 0)
+  //
+  //   stage.add_child(actor)
+  //   stage.show_all()
+  //
+  //   Clutter.main()
 
     canvas.invalidate();
 
     this.mainBox.set_content(canvas);
     this.mainBox.set_size(desklet_w, desklet_h);
+
+    this.setContent(this.mainBox);
   },
 
   // Callback when user clicks refresh button in settings
