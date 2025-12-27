@@ -48,6 +48,15 @@
             "Binary": "binary"
         }
     },
+    "size-fraction-digits": {
+        "type": "spinbutton",
+        "default": 1,
+        "min": 0,
+        "max": 3,
+        "step": 1,
+        "description": "Number of fractional digits",
+        "tooltip": "Increase or decrease the number digits after the decimal point."
+    },
     "reserved-blocks-as-used-space": {
         "type": "checkbox",
         "description": "Show reserved blocks as used space",
@@ -122,6 +131,18 @@
         "default": "rgba(255,255,255,0.2)",
         "description": "Circle color for free space",
         "dependency": "use-own-circle-color"
+    },
+    "font": {
+        "type": "fontchooser",
+        "description": "Text font",
+        "default": "Ubuntu Light 31",
+        "tooltip": "Change text font family"
+    },
+    "font-sub": {
+        "type": "fontchooser",
+        "description": "Sub text font",
+        "default": "DejaVu Sans Mono Book 15",
+        "tooltip": "Change font family of the text below the percentage"
     },
     "text-color": {
         "type": "colorchooser",
