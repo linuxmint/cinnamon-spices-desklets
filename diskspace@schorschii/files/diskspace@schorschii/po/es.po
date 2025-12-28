@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2025-12-22 13:42+0100\n"
-"PO-Revision-Date: 2025-10-15 14:20-0300\n"
+"PO-Revision-Date: 2025-12-28 09:59-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: desklet.js\n"
 "X-Poedit-SearchPath-1: settings-schema.json\n"
@@ -38,15 +38,15 @@ msgstr "No encontrado"
 
 #. desklet.js:434
 msgid "Sorry, this font is not supported, please select a different one."
-msgstr ""
+msgstr "Lo sentimos, esta fuente no es compatible. Seleccione otra."
 
 #. desklet.js:435
 msgid " Font: `"
-msgstr ""
+msgstr " Fuente: `"
 
 #. desklet.js:435
 msgid "` Error: "
-msgstr ""
+msgstr "` Error: "
 
 #. metadata.json->name
 #. desklet.js:491
@@ -120,13 +120,11 @@ msgstr "Binario"
 
 #. settings-schema.json->size-fraction-digits->description
 msgid "Number of fractional digits"
-msgstr ""
+msgstr "Número de decimales"
 
 #. settings-schema.json->size-fraction-digits->tooltip
-#, fuzzy
 msgid "Increase or decrease the number digits after the decimal point."
-msgstr ""
-"Aumente o disminuya el tamaño de este desklet usando este factor de escala."
+msgstr "Aumentar o disminuir el número de dígitos después del punto decimal."
 
 #. settings-schema.json->reserved-blocks-as-used-space->description
 msgid "Show reserved blocks as used space"
@@ -225,21 +223,21 @@ msgid "Circle color for free space"
 msgstr "Color del círculo para el espacio libre"
 
 #. settings-schema.json->font->description
-#, fuzzy
 msgid "Text font"
-msgstr "Color del texto"
+msgstr "Fuente del texto"
 
 #. settings-schema.json->font->tooltip
 msgid "Change text font family"
-msgstr ""
+msgstr "Cambiar la familia de fuentes del texto"
 
 #. settings-schema.json->font-sub->description
 msgid "Sub text font"
-msgstr ""
+msgstr "Fuente del texto secundario"
 
 #. settings-schema.json->font-sub->tooltip
 msgid "Change font family of the text below the percentage"
 msgstr ""
+"Cambiar la familia tipográfica del texto que aparece debajo del porcentaje"
 
 #. settings-schema.json->text-color->description
 msgid "Text color"
