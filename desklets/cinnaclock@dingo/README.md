@@ -5,14 +5,14 @@ An elegant, modern, and highly customizable clock desklet for the Cinnamon deskt
 ![Cinnaclock Screenshot](https://github.com/Dingo-linux/cinnamon-spices-desklets/blob/master/desklets/cinnaclock%40dingo/screenshot.png).
 
 ## Features
-
 * Layered Design
-* Typography Control and Advanced Positioning
+* Typography Control and Advanced Positioning (positioning, font, size, color and shadow).
 * Format Flexibility: Supports standard strftime formats (e.g., `%H:%M`, `%A`, `%e %B %Y`).
 
 ## Customization
-* The Time, Day, and Date layers are interchangeable and can be toggled on or off independently.
-* You can create **different clock styles** by changing the positioning, font, size, color and shadow (horizontal/vertical offset, blur, and color).
+* You can customize, activate or deactivate layers independently.
+* When selecting a preset, to update the values ​​in the configuration window, **close the window and reopen it**.
+* For best viewing of presets, we recommend installing the following fonts: **Ubuntu** and **DSEG** (from the Application manager) **Maven Pro**, **Outfit**, **Poiret One**, **Roboto**, **Smooch** (from Google Fonts), and Anurati.
 
 ## Configuration
 Right-click the desklet and select *Configure*. You'll find four tabs:
