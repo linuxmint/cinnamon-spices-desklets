@@ -4,3 +4,12 @@
 node_modules/
 /.idea/
 .vscode/
+*.bak
+*.tmp
+*.log
+*~
+*.swp
+.DS_Store
+Thumbs.db
+__pycache__/
+devtest-*/

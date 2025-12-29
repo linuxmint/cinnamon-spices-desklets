@@ -45,6 +45,7 @@ def copy_xlet(uuid):
             data['uuid'] = f"{DEV_PREFIX}{data['uuid']}"
             data['name'] = f"({DEV_PREFIX.replace('-', '')}) {data['name']}"
             json.dump(data, metadata, indent=4)
+            metadata.truncate()
 
         desklet_js_file = f'{dev_dest}/desklet.js'
         with open(desklet_js_file, 'r+') as file:
@@ -52,6 +53,7 @@ def copy_xlet(uuid):
             file.seek(0)
             js_code = js_code.replace(uuid, f"{DEV_PREFIX}{uuid}")
             file.write(js_code)
+            file.truncate()
 
         reload_xlet(f'{DEV_PREFIX}{uuid}')
     except (FileNotFoundError, KeyError):
