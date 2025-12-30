@@ -39,7 +39,6 @@ class ChartClassDeclaration {
       const chartW = width - that._MARGIN.left - that._MARGIN.right;
       const chartH = height - that._MARGIN.top - that._MARGIN.bottom;
 
-      //TODO ty all these within a single function or with awaits in separate functions
       // Draw background
       that._drawChartBackground(cr, canvasWidth, canvasHeight, unitSize);
 

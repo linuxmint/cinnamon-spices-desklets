@@ -122,8 +122,6 @@ StockPriceChartDesklet.prototype = {
   fetchDataAndRender: function() {
     logger.log('-- Desklet fetchDataAndRender() called.');
 
-    //TODO need .po files, follow the scripts in the readme
-
     const daysToFetch = this.daysPeriodToShow;
     // This can be 1d, 1wk, 1mo configurable in a future release
     // And is there a way to fetch data by hours for the given day?
@@ -194,30 +192,6 @@ StockPriceChartDesklet.prototype = {
 
     const chartObject = new ChartModule.ChartClass(this.chartData.labels, this.chartData.values, chartSettings);
     const canvas = chartObject.drawCanvas(desklet_w, desklet_h, unitSize);
-
-
-  //TODO
-  //   Clutter.init(None)
-  //   stage = Clutter.Stage()
-  //   stage.set_size(WIDTH, HEIGHT)
-  //   stage.set_title("Clutter Line Chart Example")
-  //   stage.connect("destroy", Clutter.main_quit)
-  //
-  // # Create canvas and actor
-  //   canvas = Clutter.Canvas()
-  //   canvas.set_size(WIDTH, HEIGHT)
-  //   canvas.connect("draw", draw_chart)
-  //
-  //   actor = Clutter.Actor()
-  //   actor.set_size(WIDTH, HEIGHT)
-  //   actor.set_content(canvas)     # assign the canvas as actor content
-  // # position at 0,0 inside stage
-  //   actor.set_position(0, 0)
-  //
-  //   stage.add_child(actor)
-  //   stage.show_all()
-  //
-  //   Clutter.main()
 
     canvas.invalidate();
 

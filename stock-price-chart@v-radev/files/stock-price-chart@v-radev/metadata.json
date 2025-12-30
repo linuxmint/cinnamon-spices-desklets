@@ -4,5 +4,6 @@
     "description": "Displays a chart for a financial market stock price of specific ticker.",
     "max-instances": "15",
     "version": "0.1.0",
-    "prevent-decorations": true
+    "prevent-decorations": true,
+    "author": "v-radev"
 }
