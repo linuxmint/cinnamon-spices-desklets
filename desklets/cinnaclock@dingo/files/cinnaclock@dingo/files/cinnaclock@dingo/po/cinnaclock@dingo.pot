@@ -21,23 +21,20 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-msgid "Time"
+msgid "Layer 1"
 msgstr ""
 
-msgid "Day"
+msgid "Layer 2"
 msgstr ""
 
-msgid "Date"
+msgid "Layer 3"
 msgstr ""
 
 #. settings-schema.json->sections
-msgid "Visibility"
+msgid "Format Style"
 msgstr ""
 
-msgid "String Formats"
-msgstr ""
-
-msgid "Vertical Positioning (Offset)"
+msgid "Background Style"
 msgstr ""
 
 msgid "Text Style"
@@ -46,50 +43,50 @@ msgstr ""
 msgid "Shadow"
 msgstr ""
 
-#. settings-schema.json->keys
-msgid "Show Time box"
+#. settings-schema.json->descriptions
+msgid "Show background"
 msgstr ""
 
-msgid "Show Day box"
+msgid "Background Color"
 msgstr ""
 
-msgid "Show Date box"
+msgid "Corner Radius"
 msgstr ""
 
-#. settings-schema.json -> Formats
-msgid "Time Format"
+msgid "Show Layer 1"
 msgstr ""
 
-msgid "Day Format"
+msgid "Show Layer 2"
 msgstr ""
 
-msgid "Date Format"
+msgid "Show Layer 3"
 msgstr ""
 
-msgid "Example: %A for full weekday name"
+msgid "Layer 1 Format"
 msgstr ""
 
-msgid "Example: %e %B %Y"
+msgid "Layer 2 Format"
 msgstr ""
 
-#. settings-schema.json -> Offsets
-msgid "Day Vertical Offset"
+msgid "Layer 3 Format"
 msgstr ""
 
-msgid "Date Vertical Offset"
+msgid "Layer 1 Vertical Offset"
 msgstr ""
 
-msgid "Negative values move the element up"
+msgid "Layer 2 Vertical Offset"
 msgstr ""
 
-#. settings-schema.json -> Shadow details
-msgid "Horizontal offset"
+msgid "Layer 3 Vertical Offset"
 msgstr ""
 
-msgid "Vertical offset"
+msgid "Layer 1 Horizontal Offset"
 msgstr ""
 
-msgid "Uppercase"
+msgid "Layer 2 Horizontal Offset"
+msgstr ""
+
+msgid "Layer 3 Horizontal Offset"
 msgstr ""
 
 msgid "Font"
@@ -98,7 +95,60 @@ msgstr ""
 msgid "Color"
 msgstr ""
 
+msgid "Uppercase"
+msgstr ""
+
+msgid "Horizontal offset"
+msgstr ""
+
+msgid "Vertical offset"
+msgstr ""
+
 msgid "Blur"
+msgstr ""
+
+msgid "Select a Preset"
+msgstr ""
+
+#. settings-schema.json->options (Select a Preset)
+msgid "Manual"
+msgstr ""
+
+msgid "Modern Blue"
+msgstr ""
+
+msgid "Clear Orange"
+msgstr ""
+
+msgid "Digital Neon"
+msgstr ""
+
+msgid "MX"
+msgstr ""
+
+msgid "Minimal Dark"
+msgstr ""
+
+msgid "Minimal White"
+msgstr ""
+
+msgid "Phantom"
+msgstr ""
+
+msgid "Cyberpunk"
+msgstr ""
+
+#. settings-schema.json->tooltips
+msgid "Set the background color and transparency of the desklet"
+msgstr ""
+
+msgid "Example: %H:%M for 24h"
+msgstr ""
+
+msgid "Example: %A for full weekday name"
+msgstr ""
+
+msgid "Example: %e %B %Y"
 msgstr ""
 
 #. desklet.js
