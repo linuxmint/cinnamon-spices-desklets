@@ -5,10 +5,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: TimeAndDate@nightflame 2.0\n"
+"Project-Id-Version: TimeAndDate@nightflame 2.1\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-11-05 19:28+0100\n"
+"POT-Creation-Date: 2026-01-01 14:08+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,6 +16,22 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#. desklet.js:241
+msgid "Sorry, this font is not supported, please select a different one."
+msgstr ""
+
+#. desklet.js:242
+msgid " Font: `"
+msgstr ""
+
+#. desklet.js:242
+msgid "` Error: "
+msgstr ""
+
+#. desklet.js:295 desklet.js:301
+msgid "Invalid format"
+msgstr ""
 
 #. metadata.json->description
 msgid ""
@@ -40,10 +56,12 @@ msgid "General"
 msgstr ""
 
 #. settings-schema.json->time-theme-section->title
+#. settings-schema.json->time-font->description
 msgid "Time label font"
 msgstr ""
 
 #. settings-schema.json->date-theme-section->title
+#. settings-schema.json->date-font->description
 msgid "Date label font"
 msgstr ""
 
@@ -56,7 +74,7 @@ msgid "Time format"
 msgstr ""
 
 #. settings-schema.json->time-format->tooltip
-msgid "Set your time format."
+msgid "Set your time format. Leave empty to remove"
 msgstr ""
 
 #. settings-schema.json->date-format->description
@@ -64,7 +82,7 @@ msgid "Date format"
 msgstr ""
 
 #. settings-schema.json->date-format->tooltip
-msgid "Set the date format."
+msgid "Set the date format. Leave empty to remove"
 msgstr ""
 
 #. settings-schema.json->datetime-format-label->description
@@ -108,24 +126,9 @@ msgstr ""
 msgid "Force desklet width."
 msgstr ""
 
-#. settings-schema.json->time-font->description
-#. settings-schema.json->date-font->description
-msgid "Font name (choose regular versions)"
-msgstr ""
-
 #. settings-schema.json->time-font->tooltip
 #. settings-schema.json->date-font->tooltip
-msgid "Change font family"
-msgstr ""
-
-#. settings-schema.json->time-font-bold->description
-#. settings-schema.json->date-font-bold->description
-msgid "Bold"
-msgstr ""
-
-#. settings-schema.json->time-font-italic->description
-#. settings-schema.json->date-font-italic->description
-msgid "Italic"
+msgid "Change the font and its size"
 msgstr ""
 
 #. settings-schema.json->time-text-color->description
