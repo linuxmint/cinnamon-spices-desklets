@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: diskspace@schorschii 1.18\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-10-15 00:30+0200\n"
+"POT-Creation-Date: 2025-12-22 13:42+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
 "Language-Team: \n"
@@ -19,26 +19,38 @@ msgstr ""
 "X-Generator: Poedit 3.4.2\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:304 desklet.js:390
+#. desklet.js:317 desklet.js:487
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#. desklet.js:306 desklet.js:392
+#. desklet.js:319 desklet.js:489
 msgid "Swap"
 msgstr "Swap"
 
 #. settings-schema.json->type->options
-#. desklet.js:308
+#. desklet.js:321
 msgid "Filesystem"
 msgstr "Hệ thống tập tin"
 
-#. desklet.js:335
+#. desklet.js:348
 msgid "Not Found"
 msgstr "Không tìm thấy"
 
+#. desklet.js:434
+msgid "Sorry, this font is not supported, please select a different one."
+msgstr ""
+
+#. desklet.js:435
+msgid " Font: `"
+msgstr ""
+
+#. desklet.js:435
+msgid "` Error: "
+msgstr ""
+
 #. metadata.json->name
-#. desklet.js:394
+#. desklet.js:491
 msgid "Disk Space"
 msgstr "Không gian đĩa"
 
@@ -60,7 +72,8 @@ msgstr "Giám sát hệ thống tập tin hoặc mức sử dụng RAM"
 
 #. settings-schema.json->type->tooltip
 msgid "Choose, if this desklet should show file system or RAM usage."
-msgstr "Chọn xem desklet này nên hiển thị hệ thống tập tin hay mức sử dụng RAM."
+msgstr ""
+"Chọn xem desklet này nên hiển thị hệ thống tập tin hay mức sử dụng RAM."
 
 #. settings-schema.json->filesystem->description
 msgid "Filesystem to monitor"
@@ -106,6 +119,15 @@ msgstr "Thập phân"
 msgid "Binary"
 msgstr "Nhị phân"
 
+#. settings-schema.json->size-fraction-digits->description
+msgid "Number of fractional digits"
+msgstr ""
+
+#. settings-schema.json->size-fraction-digits->tooltip
+#, fuzzy
+msgid "Increase or decrease the number digits after the decimal point."
+msgstr "Tăng hoặc giảm kích thước của desklet này bằng hệ số tỷ lệ này."
+
 #. settings-schema.json->reserved-blocks-as-used-space->description
 msgid "Show reserved blocks as used space"
 msgstr "Hiển thị khối dành riêng như không gian đã sử dụng"
@@ -114,7 +136,9 @@ msgstr "Hiển thị khối dành riêng như không gian đã sử dụng"
 msgid ""
 "Reserved blocks are useable for the root user only and that's why displayed "
 "as used space by default."
-msgstr "Các khối dành riêng chỉ có thể sử dụng bởi người dùng root và đó là lý do tại sao chúng được hiển thị như không gian đã sử dụng theo mặc định."
+msgstr ""
+"Các khối dành riêng chỉ có thể sử dụng bởi người dùng root và đó là lý do "
+"tại sao chúng được hiển thị như không gian đã sử dụng theo mặc định."
 
 #. settings-schema.json->head2->description
 msgid "Visual"
@@ -200,6 +224,23 @@ msgstr "Màu hình tròn"
 msgid "Circle color for free space"
 msgstr "Màu hình tròn cho không gian trống"
 
+#. settings-schema.json->font->description
+#, fuzzy
+msgid "Text font"
+msgstr "Màu chữ"
+
+#. settings-schema.json->font->tooltip
+msgid "Change text font family"
+msgstr ""
+
+#. settings-schema.json->font-sub->description
+msgid "Sub text font"
+msgstr ""
+
+#. settings-schema.json->font-sub->tooltip
+msgid "Change font family of the text below the percentage"
+msgstr ""
+
 #. settings-schema.json->text-color->description
 msgid "Text color"
 msgstr "Màu chữ"
@@ -236,4 +277,6 @@ msgstr "Nhãn desklet tùy chỉnh"
 msgid ""
 "Set your custom label here. This field is unavailable unless the checkbox "
 "above is enabled."
-msgstr "Đặt nhãn tùy chỉnh của bạn tại đây. Trường này không khả dụng trừ khi hộp kiểm trên được bật."
+msgstr ""
+"Đặt nhãn tùy chỉnh của bạn tại đây. Trường này không khả dụng trừ khi hộp "
+"kiểm trên được bật."
