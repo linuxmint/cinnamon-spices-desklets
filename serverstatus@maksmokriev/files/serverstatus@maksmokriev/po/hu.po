@@ -1,0 +1,171 @@
+# SERVER STATUS
+# This file is put in the public domain.
+# maksmokriev, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: serverstatus@maksmokriev 1.1.1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-12-08 23:17-0500\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+
+#. desklet.js:23
+msgid "Server Status"
+msgstr "Szerver Állapot"
+
+#. desklet.js:70
+msgid "Need to setup"
+msgstr "Beállítás szükséges"
+
+#. desklet.js:104
+msgid " - Checking ..."
+msgstr " - Ellenőrzés ..."
+
+#. desklet.js:153
+msgid "Error ping command on "
+msgstr "Ping parancs hiba ezen: "
+
+#. desklet.js:154 desklet.js:161 desklet.js:194 desklet.js:201
+msgid "Error"
+msgstr "Hiba"
+
+#. desklet.js:160
+msgid "Error creating ping process "
+msgstr "Hiba a ping folyamat létrehozásakor "
+
+#. desklet.js:193
+msgid "Error curl command on "
+msgstr "Curl parancs hiba ezen: "
+
+#. desklet.js:200
+msgid "Error creating curl process "
+msgstr "Hiba a curl folyamat létrehozásakor "
+
+#. metadata.json->name
+msgid "Server status"
+msgstr "Szerver állapot"
+
+#. metadata.json->description
+msgid ""
+"A desklet that checks a host via ping or HTTP(S) and displays if it is "
+"available."
+msgstr ""
+"Egy desklet, ami ping vagy HTTP(S) paranccsal ellenőrzi a hosztot, és "
+"megjeleníti, ha elérhető."
+
+#. settings-schema.json->page_servers->title
+msgid "Servers for checks"
+msgstr "Szerverek az ellenőrzésekhez"
+
+#. settings-schema.json->page_style->title
+msgid "Desklet Style"
+msgstr "Asztalkalmazás stílusa"
+
+#. settings-schema.json->ServerNames->description
+msgid "Status for this Servers:"
+msgstr "Ezen szerverek állapota:"
+
+#. settings-schema.json->ServerNames->tooltip
+msgid "You can set only types: ping, http or https"
+msgstr "Csak a következő típusokat állíthatod be: ping, http vagy https"
+
+#. settings-schema.json->ServerNames->columns->title
+msgid "Name"
+msgstr "Név"
+
+#. settings-schema.json->ServerNames->columns->title
+msgid "IP or Domen"
+msgstr "IP vagy Domain"
+
+#. settings-schema.json->ServerNames->columns->title
+msgid "Type for check"
+msgstr "Írja be az ellenőrzéshez"
+
+#. settings-schema.json->ServerNames->columns->title
+msgid "Display it?"
+msgstr "Mutasd meg?"
+
+#. settings-schema.json->TimeRepeat->description
+msgid "Update every:"
+msgstr "Frissítés minden:"
+
+#. settings-schema.json->TimeRepeat->units
+msgid "seconds"
+msgstr "másodperc"
+
+#. settings-schema.json->TextColorBasic->description
+msgid "Basic text color"
+msgstr "Alap szövegszín"
+
+#. settings-schema.json->TextColorBasic->tooltip
+msgid "Click the button to select a new text color for Basic text"
+msgstr ""
+"Kattintson a gombra egy új szövegszín kiválasztásához az Alapszöveghez"
+
+#. settings-schema.json->TextColorOK->description
+msgid "Text color for OK"
+msgstr "OK felirat szövegszíne"
+
+#. settings-schema.json->TextColorOK->tooltip
+msgid "Click the button to select a new text color for successful connect"
+msgstr ""
+"Kattintson a gombra egy új szövegszín kiválasztásához a sikeres "
+"csatlakozáshoz"
+
+#. settings-schema.json->TextColorWARN->description
+msgid "Text color for WARNING"
+msgstr "FIGYELMEZTETÉS szövegszíne"
+
+#. settings-schema.json->TextColorWARN->tooltip
+msgid ""
+"Click the button to select a new text color for warning in connect status"
+msgstr ""
+"Kattintson a gombra egy új szövegszín kiválasztásához a csatlakozási "
+"állapot figyelmeztetéséhez"
+
+#. settings-schema.json->TextColorERR->description
+msgid "Text color for ERROR"
+msgstr "HIBA szövegszíne"
+
+#. settings-schema.json->TextColorERR->tooltip
+msgid "Click the button to select a new text color for error in connect"
+msgstr ""
+"Kattintson a gombra egy új szövegszín kiválasztásához a csatlakozási hibához"
+
+#. settings-schema.json->ContainerBgColor->description
+msgid "Color for container background"
+msgstr "A konténer hátterének színe"
+
+#. settings-schema.json->ContainerBgColor->tooltip
+msgid "Click the button to select a new background color for basic container"
+msgstr ""
+"Kattintson a gombra egy új háttérszín kiválasztásához az alaptárolóhoz"
+
+#. settings-schema.json->BoxBgColor->description
+msgid "Color for element background"
+msgstr "Az elem hátterének színe"
+
+#. settings-schema.json->BoxBgColor->tooltip
+msgid "Click the button to select a new background color for each elements"
+msgstr "Kattintson a gombra az egyes elemek új háttérszínének kiválasztásához"
+
+#. settings-schema.json->icon_OK->description
+msgid "Icon for a successful connection"
+msgstr "Sikeres csatlakozás ikonja"
+
+#. settings-schema.json->icon_ERR->description
+msgid "Icon for a failed connection"
+msgstr "Sikertelen kapcsolat ikonja"
+
+#. settings-schema.json->icon_WARN->description
+msgid "Icon for the warning"
+msgstr "A figyelmeztetés ikonja"
