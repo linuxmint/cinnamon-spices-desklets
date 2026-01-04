@@ -18,7 +18,8 @@
       "sections": [
         "section_text_color",
         "section_background",
-        "section_icons"
+        "section_icons",
+        "section_width"
       ]
     },
     "section_servers": {
@@ -26,7 +27,8 @@
       "title": "",
       "keys": [
         "ServerNames",
-        "TimeRepeat"
+        "TimeRepeat",
+        "ResponseTime"
       ]
     },
     "section_text_color": {
@@ -51,9 +53,19 @@
       "type": "section",
       "title": "",
       "keys": [
+        "CustomIcons",
         "icon_OK",
         "icon_ERR",
         "icon_WARN"
+      ]
+    },
+    "section_width": {
+      "type": "section",
+      "title": "",
+      "keys": [
+        "FontSize",
+        "ContainerFixedWidth",
+        "ContainerWidth"
       ]
     }
   },
@@ -78,7 +90,12 @@
         "title": "Type for check",
         "align": 0.5,
         "type": "string",
-        "default": "ping"
+        "default": "ping",
+        "options": {
+          "ping": "ping",
+          "http": "http",
+          "https": "https"
+        }
       },
       {
         "id": "display",
@@ -88,7 +105,12 @@
         "default": true
       }
     ],
-    "default": []
+    "default": [{
+      "name": "Cloudflare",
+      "ip": "1.1.1.1",
+      "type": "ping",
+      "display": true
+    }]
   },
 
   "TimeRepeat": {
@@ -96,8 +118,16 @@
     "type": "scale",
     "min": 1,
     "max": 180,
-    "description": "Update every:",
-    "units": "seconds",
+    "description": "Update every (seconds):",
+    "step": 1
+  },
+
+  "ResponseTime": {
+    "default": 10,
+    "type": "scale",
+    "min": 1,
+    "max": 30,
+    "description": "Response time (seconds):",
     "step": 1
   },
 
@@ -149,21 +179,59 @@
     "tooltip": "Click the button to select a new background color for each elements"
   },
 
+  "CustomIcons": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Set custom icons",
+    "tooltip": "Enable the checkbox to set your own status icons"
+  },
+
   "icon_OK": {
+    "dependency": "CustomIcons",
     "type": "iconfilechooser",
     "description": "Icon for a successful connection",
-    "default": "gtk-ok"
+    "default": "emblem-ok-symbolic"
   },
 
   "icon_ERR": {
+    "dependency": "CustomIcons",
     "type": "iconfilechooser",
     "description": "Icon for a failed connection",
-    "default": "gtk-no"
+    "default": "dialog-error-symbolic"
   },
 
   "icon_WARN": {
+    "dependency": "CustomIcons",
     "type": "iconfilechooser",
     "description": "Icon for the warning",
-    "default": "gtk-dialog-warning"
+    "default": "dialog-warning-symbolic"
+  },
+
+  "FontSize": {
+    "type": "spinbutton",
+    "default": 16,
+    "min": 4,
+    "max": 200,
+    "step": 1,
+    "description": "Font size",
+    "units": "pixels"
+  },
+
+  "ContainerFixedWidth": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Set a fixed width for the container",
+    "tooltip": "Enable checkbox to set the fixed width of the container"
+  },
+
+  "ContainerWidth": {
+    "dependency": "ContainerFixedWidth",
+    "type": "spinbutton",
+    "default": 200,
+    "min": 40,
+    "max": 4000,
+    "step": 10,
+    "description": "Container width",
+    "units": "pixels"
   }
 }
