@@ -1,10 +1,12 @@
 ## 1.2.2
 * added response timeout setting
 * fixed an error where status update cycles overlapped when changing settings
+* updated translation files
 
 ## 1.2.1
 * returned configurable icons
 * added toggle between icons and symbolic icons
+* updated translation files
 
 ## 1.2.0 (thanks for sulonetskyy)
 * fixed max-instances
