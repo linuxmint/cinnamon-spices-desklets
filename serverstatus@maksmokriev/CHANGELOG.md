@@ -4,6 +4,7 @@
 
 ## 1.2.1
 * returned configurable icons
+* added toggle between icons and symbolic icons
 
 ## 1.2.0 (thanks for sulonetskyy)
 * fixed max-instances
