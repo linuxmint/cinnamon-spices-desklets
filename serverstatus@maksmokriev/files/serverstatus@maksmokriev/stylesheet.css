@@ -19,13 +19,3 @@
     border-radius: 10px;
     vertical-align: middle;
 }
-
-.rotating-icon {
-    animation: rotate 2s linear infinite;
-}
-
-@keyframes rotate {
-    100% {
-        transform: rotate(360deg);
-    }
-}
