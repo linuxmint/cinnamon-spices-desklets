@@ -37,3 +37,4 @@ The Server Status Monitor is ideal for developers, system administrators, or any
 ## Privacy Policy
 
 **None of your data is collected, stored, processed or shared with the developer or any third-parties.**
+
