@@ -17,7 +17,7 @@
             "type": "page",
             "title": "Preferences",
             "sections": [
-                "toolbar-preferences-section",
+                "general-preferences-section",
                 "todo-preferences-section",
                 "desklet-decorations-section"
             ]
@@ -40,11 +40,15 @@
                 "todo-bottom-label"
             ]
         },
-        "toolbar-preferences-section": {
+        "general-preferences-section": {
             "type": "section",
-            "title": "Toolbar",
+            "title": "General",
             "keys": [
-                "is-toolbar-enabled"
+                "is-toolbar-enabled",
+                "are-toolbar-tooltips-enabled",
+                "are-task-tooltips-enabled",
+                "are-delete-task-dialogs-enabled",
+                "are-delete-toolbar-dialogs-enabled"
             ]
         },
         "todo-preferences-section": {
@@ -69,15 +73,17 @@
             "keys": [
                 "is-task-bg-transparent",
                 "task-background",
+                "task-border-width",
+                "task-border-color",
                 "task-icon-size",
                 "task-not-marked-icon",
                 "task-marked-icon",
                 "font",
-                "font-bold",
-                "font-italic",
                 "text-color",
                 "text-shadow",
-                "text-shadow-color"
+                "text-shadow-color",
+                "task-background-important",
+                "task-border-color-important"
             ]
         },  
         "toolbar-theme-section": {
@@ -86,7 +92,9 @@
             "keys": [
                 "toolbar-background",
                 "toolbar-font-color",
-                "toolbar-icon-size"
+                "toolbar-icon-size",
+                "toolbar-border-width",
+                "toolbar-border-color"
             ],
             "dependency": "is-toolbar-enabled"
         },  
@@ -102,42 +110,60 @@
     },
     "todo-bottom-label": {
         "type": "label",
-        "description": "How to use this desklet:\nYou can add/edit tasks here or by interacting with the desklet itself:\n - Left-click on task name to edit it\n - Left-click on the task icon to mark it done/not done\n - Right-click to select multiple tasks (only relevant if using toolbar)\n - Middle-click to remove\n - If you want to add more tasks, right-click anywhere on the desklet and select the `Add new task` option inside the popup menu \nYou can find more information about this desklet on its webpage."
+        "description": "How to use this desklet:\nYou can add/edit tasks here or by interacting with the desklet itself:\n - Left-click on task name to edit it\n - Left-click on the task icon to mark it done/not done\n - Right-click to select multiple tasks (only relevant if using toolbar)\n - Middle-click to remove\n - If you want to add more tasks, right-click anywhere on the desklet and select the `Add new task` option inside the popup menu \n - Shift+Enter while editing task to place a new line\n - Ibus/Fcitx input is possible only through the edit button or settings\nYou can find more information about this desklet on its webpage."
     },
     "todo-list" : {
         "type" : "list",
         "columns" : [
-            {"id": "is-marked-done", "title": "Marked done", "type": "boolean", "default": false},
+            {"id": "is-marked-done", "title": "Done", "type": "boolean", "default": false},
+            {"id": "is-marked-important", "title": "Important", "type": "boolean", "default": false},
             {"id": "name", "title": "Name", "type": "string", "default": "Name"}
         ],
 		"height": 350,
         "default" : [
             {
                 "is-marked-done": false,
+                "is-marked-important": false,
                 "name": "Left click on task name to edit"
             },
             {
                 "is-marked-done": false,
+                "is-marked-important": false,
                 "name": "Left click the icon to mark as done"
             },
             {
                 "is-marked-done": false,
+                "is-marked-important": false,
                 "name": "Right click to select"
             },
             {
                 "is-marked-done": false,
+                "is-marked-important": false,
                 "name": "Toolbar works on selected tasks"
             },
             {
                 "is-marked-done": false,
+                "is-marked-important": false,
                 "name": "Middle click to delete"
             },
             {
+                "is-marked-done": false,
+                "is-marked-important": true,
+                "name": "This is important"
+            },
+            {
+                "is-marked-done": false,
+                "is-marked-important": false,
+                "name": "You can write tasks in multiple lines \nusing Shift+Enter keys"
+            },
+            {
                 "is-marked-done": true,
+                "is-marked-important": false,
                 "name": "Im a completed task"
             },
             {
                 "is-marked-done": true,
+                "is-marked-important": false,
                 "name": "Thanks for downloading"
             }
         ],
@@ -194,19 +220,9 @@
     },
     "font": {
         "type": "fontchooser",
-        "description": "Font name (choose regular versions)",
-        "default": "Ubuntu Regular 15",
-        "tooltip": "Change font family"
-    },
-    "font-bold": {
-        "type": "switch",
-        "description": "Bold",
-        "default": false
-    },
-    "font-italic": {
-        "type": "switch",
-        "description": "Italic",
-        "default": false
+        "description": "Font",
+        "default": "Ubuntu Regular 13",
+        "tooltip": "Change the font (some fonts may not work)"
     },
     "text-color": {
         "type": "colorchooser",
@@ -220,7 +236,6 @@
         "min": 0.5,
         "max": 15,
         "step": 0.2,
-        "units": "scale factor",
         "description": "Desklet size, mostly impacts width",
         "tooltip": "Increase or decrease the size of this desklet using this scale factor."
     },
@@ -233,17 +248,46 @@
     "task-background": {
         "type": "colorchooser",
         "default": "rgb(40,105,198)",
-        "description": "Task background",
+        "description": "Background color",
         "tooltip": "Set the task background.",
         "dependency": "!is-task-bg-transparent"
     },
+    "task-border-width": {
+        "type": "spinbutton",
+        "default": 2,
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "description": "Border width (set to 0 to disable border)",
+        "tooltip": "Increase or decrease the task border width."
+    },
+    "task-border-color": {
+        "type": "colorchooser",
+        "default": "rgba(0,0,0,0.45)",
+        "description": "Border color",
+        "tooltip": "Set the task border color (Transparent border will add more padding to tasks).",
+        "dependency": "task-border-width>0"
+    },
+    "task-background-important": {
+        "type": "colorchooser",
+        "default": "rgb(200,40,40)",
+        "description": "Background when marked as important",
+        "tooltip": "Set the task background when marked as important.",
+        "dependency": "!is-task-bg-transparent"
+    },
+    "task-border-color-important": {
+        "type": "colorchooser",
+        "default": "rgba(255,255,255,0.2)",
+        "description": "Border color when marked as important",
+        "tooltip": "Set the task border color when marked as important (Transparent border will add more padding to tasks).",
+        "dependency": "task-border-width>0"
+    },
     "task-icon-size": {
         "type": "spinbutton",
-        "default": 13,
+        "default": 10,
         "min": 0,
         "max": 100,
         "step": 1,
-        "units": "pixels",
         "description": "Task icon size (set to 0 to disable icons)",
         "tooltip": "Increase or decrease the icon size (set to 0 to disable icons)."
     },
@@ -261,25 +305,40 @@
     },
     "toolbar-icon-size": {
         "type": "spinbutton",
-        "default": 23,
+        "default": 18,
         "min": 0,
         "max": 100,
         "step": 1,
-        "units": "pixels",
-        "description": "Toolbar icon size",
+        "description": "Icon size",
         "tooltip": "Increase or decrease the icon size."
     },
     "toolbar-background": {
         "type": "colorchooser",
         "default": "rgb(40,105,198)",
-        "description": "Toolbar background",
+        "description": "Background color",
         "tooltip": "Set the toolbar background."
     },
     "toolbar-font-color": {
         "type": "colorchooser",
         "default": "rgb(255,255,255)",
-        "description": "Toolbar icon color",
+        "description": "Icon color",
         "tooltip": "Set the color of toolbar icons."
+    },
+    "toolbar-border-width": {
+        "type": "spinbutton",
+        "default": 2,
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "description": "Border width",
+        "tooltip": "Increase or decrease the toolbar border width (set to 0 to disable border)."
+    },
+    "toolbar-border-color": {
+        "type": "colorchooser",
+        "default": "rgba(0,0,0, 0.45)",
+        "description": "Border color",
+        "tooltip": "Set the toolbar border color (Transparent border will add more padding to toolbar).",
+        "dependency": "toolbar-border-width>0"
     },
     "desklet-decorations-note": {
         "type": "label",
@@ -291,5 +350,29 @@
         "description": "Desklet header",
         "tooltip": "Set your desklet header. Make sure desklet headers are enabled in system settings.",
         "dependency": "show-decorations"
+    },
+    "are-toolbar-tooltips-enabled": {
+        "type": "switch",
+        "default": true,
+        "description": "Enable toolbar tooltips",
+        "tooltip": "Select if you want tooltips to show up when hovering over toolbar buttons."
+    },
+    "are-task-tooltips-enabled": {
+        "type": "switch",
+        "default": false,
+        "description": "Enable task tooltips",
+        "tooltip": "Select if you want tooltips to show up when hovering over tasks."
+    },
+    "are-delete-task-dialogs-enabled": {
+        "type": "switch",
+        "default": true,
+        "description": "Enable task delete confirmation popup",
+        "tooltip": "Select if you want a delete confirmation dialog to show up when deleting individual tasks."
+    },
+    "are-delete-toolbar-dialogs-enabled": {
+        "type": "switch",
+        "default": true,
+        "description": "Enable toolbar delete confirmation popup",
+        "tooltip": "Select if you want a delete confirmation dialog to show up when deleting tasks using toolbar."
     }
 }

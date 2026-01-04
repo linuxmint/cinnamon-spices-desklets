@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-07-31 12:29-0400\n"
-"PO-Revision-Date: 2023-12-08 07:38+0100\n"
+"POT-Creation-Date: 2025-12-22 13:42+0100\n"
+"PO-Revision-Date: 2025-11-04 19:08+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -12,32 +12,44 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: desklet.js\n"
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:275 desklet.js:361
+#. desklet.js:317 desklet.js:487
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#. desklet.js:277 desklet.js:363
+#. desklet.js:319 desklet.js:489
 msgid "Swap"
 msgstr "Swap"
 
 #. settings-schema.json->type->options
-#. desklet.js:279
+#. desklet.js:321
 msgid "Filesystem"
 msgstr "Filsystem"
 
-#. desklet.js:306
+#. desklet.js:348
 msgid "Not Found"
 msgstr "Ikke fundet"
 
+#. desklet.js:434
+msgid "Sorry, this font is not supported, please select a different one."
+msgstr ""
+
+#. desklet.js:435
+msgid " Font: `"
+msgstr ""
+
+#. desklet.js:435
+msgid "` Error: "
+msgstr ""
+
 #. metadata.json->name
-#. desklet.js:365
+#. desklet.js:491
 msgid "Disk Space"
 msgstr "Diskplads"
 
@@ -105,6 +117,17 @@ msgstr "Titalssystem"
 msgid "Binary"
 msgstr "Binær"
 
+#. settings-schema.json->size-fraction-digits->description
+msgid "Number of fractional digits"
+msgstr ""
+
+#. settings-schema.json->size-fraction-digits->tooltip
+#, fuzzy
+msgid "Increase or decrease the number digits after the decimal point."
+msgstr ""
+"Forøg eller formindsk skrivebordsprogrammets størrelse med denne "
+"skaleringsfaktor."
+
 #. settings-schema.json->reserved-blocks-as-used-space->description
 msgid "Show reserved blocks as used space"
 msgstr "Vis reserverede blokke som brugt plads"
@@ -146,9 +169,8 @@ msgid "Name and total space"
 msgstr "Navn og total plads"
 
 #. settings-schema.json->text-view->options
-#, fuzzy
 msgid "Name and free space"
-msgstr "Total og ledig plads"
+msgstr "Navn og ledig plads"
 
 #. settings-schema.json->text-view->options
 msgid "Used and total space"
@@ -178,6 +200,18 @@ msgstr "Skjul dekorering"
 msgid "Draw free/unused space (gray)"
 msgstr "Vis ledig/ubrugt plads (grå)"
 
+#. settings-schema.json->fill-circle-background->description
+msgid "Fill circle background"
+msgstr "Udfyld cirkelbaggrund"
+
+#. settings-schema.json->fill-circle-background->tooltip
+msgid "Fill the inside of the circle with color."
+msgstr "Udfyld det indre af cirklen med farve."
+
+#. settings-schema.json->fill-circle-background-color->description
+msgid "Background fill color"
+msgstr "Farve for baggrundsudfyldning"
+
 #. settings-schema.json->use-own-circle-color->description
 msgid "Use a custom circle color"
 msgstr "Brug en tilpasset farve til cirklen"
@@ -185,6 +219,27 @@ msgstr "Brug en tilpasset farve til cirklen"
 #. settings-schema.json->circle-color->description
 msgid "Circle color"
 msgstr "Cirkelfarve"
+
+#. settings-schema.json->circle-color-free-space->description
+msgid "Circle color for free space"
+msgstr "Cirkelfarve for ledig plads"
+
+#. settings-schema.json->font->description
+#, fuzzy
+msgid "Text font"
+msgstr "Tekstfarve"
+
+#. settings-schema.json->font->tooltip
+msgid "Change text font family"
+msgstr ""
+
+#. settings-schema.json->font-sub->description
+msgid "Sub text font"
+msgstr ""
+
+#. settings-schema.json->font-sub->tooltip
+msgid "Change font family of the text below the percentage"
+msgstr ""
 
 #. settings-schema.json->text-color->description
 msgid "Text color"

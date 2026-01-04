@@ -10,6 +10,7 @@ const Clutter = imports.gi.Clutter;
 const Cairo = imports.cairo;
 const Gio = imports.gi.Gio;
 const Gettext = imports.gettext;
+const Pango = imports.gi.Pango;
 
 const UUID = "diskspace@schorschii";
 const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
@@ -41,15 +42,21 @@ MyDesklet.prototype = {
 		// initialize settings
 		this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "size-prefix", "size_prefix", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "size-fraction-digits", "size_fraction_digits", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "reserved-blocks-as-used-space", "reserved_blocks_as_used_space", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hide_decorations", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "use-custom-label", "use_custom_label", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "custom-label", "custom_label", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scale_size", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "font", "font_raw", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "font-sub", "font_sub_raw", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "text_color", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "design", "design", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "draw-free-space", "draw_free_space", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "fill-circle-background", "fill_circle_background", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "fill-circle-background-color", "fill_circle_background_color", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "circle-color", "circle_color", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "circle-color-free-space", "circle_color_free_space", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "use-own-circle-color", "use_own_circle_color", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "filesystem", "filesystem", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "type", "type", this.on_setting_changed);
@@ -66,6 +73,11 @@ MyDesklet.prototype = {
 			this.random_circle_color_generated = true;
 		}
 
+		// fallback to "/" if filesystem is not defined in the settings
+		if (this.filesystem === undefined || this.filesystem === null) { 
+			this.filesystem = "/"
+		}
+
 		// initialize desklet gui
 		this.setupUI();
 	},
@@ -73,8 +85,6 @@ MyDesklet.prototype = {
 	setupUI: function() {
 		// defaults and initial values
 		this.default_size = 150;
-		this.default_size_font = 31;
-		this.default_size_font_sub = 15;
 
 		// create and set root element
 		this.canvas = new Clutter.Actor();
@@ -98,6 +108,12 @@ MyDesklet.prototype = {
 		// set object sizes without recalc
 		this.refreshDesklet();
 		//global.log("update "+ this.filesystem); // debug
+
+		this.font = this.parseFontStringToCSS(this.font_raw);
+		this.fontSub = this.parseFontStringToCSS(this.font_sub_raw);
+		this.default_size_font = this.font["font-size"];
+		this.default_size_font_sub = this.fontSub["font-size"];
+
 
 		// refresh again in two seconds
 		this.timeout = Mainloop.timeout_add_seconds(5, Lang.bind(this, this.update));
@@ -200,7 +216,7 @@ MyDesklet.prototype = {
 		// canvas setup
 		let canvas = new Clutter.Canvas();
 		canvas.set_size(absoluteSize * global.ui_scale, absoluteSize * global.ui_scale);
-		canvas.connect("draw", function (canvas, cr, width, height) {
+		canvas.connect("draw", (canvas, cr, width, height) => {
 			cr.save();
 			cr.setOperator(Cairo.Operator.CLEAR);
 			cr.paint();
@@ -213,9 +229,25 @@ MyDesklet.prototype = {
 			let start = 0 - offset;
 			let end = ((use*(Math.PI*2))/size) - offset;
 
+			const free_space_colors = this.circle_color_free_space.match(/\((.*?)\)/)[1].split(","); // get contents inside brackets: "rgb(...)"
+			const free_space_color_r = this.use_own_circle_color ? parseInt(free_space_colors[0])/255 : 1;
+			const free_space_color_g  = this.use_own_circle_color ? parseInt(free_space_colors[1])/255 : 1;
+			const free_space_color_b  = this.use_own_circle_color ? parseInt(free_space_colors[2])/255 : 1;
+			const free_space_color_a =  this.use_own_circle_color ? (free_space_colors.length >= 4 ? parseFloat(free_space_colors[3]) : 1.0) : 0.2;
+
 			if(design == "thin") {
+				if(this.fill_circle_background) {
+					const bg_fill_colors = this.fill_circle_background_color.match(/\((.*?)\)/)[1].split(",");
+					const bg_fill_r = parseInt(bg_fill_colors[0])/255;
+					const bg_fill_g = parseInt(bg_fill_colors[1])/255;
+					const bg_fill_b = parseInt(bg_fill_colors[2])/255;
+					const bg_fill_a = bg_fill_colors.length >= 4 ? parseFloat(bg_fill_colors[3]) : 1.0;
+					cr.setSourceRGBA(bg_fill_r, bg_fill_g, bg_fill_b, bg_fill_a);
+					cr.arc(0, 0, 0.45 - (0.045 / 2), 0, Math.PI*2);
+					cr.fill();
+				}
 				if(drawFreeSpace) {
-					cr.setSourceRGBA(1, 1, 1, 0.2);
+					cr.setSourceRGBA(free_space_color_r, free_space_color_g, free_space_color_b, free_space_color_a);
 					cr.setLineWidth(0.045);
 					cr.arc(0, 0, 0.45, 0, Math.PI*2);
 					cr.stroke();
@@ -229,7 +261,7 @@ MyDesklet.prototype = {
 				}
 			} else if(design == "compact") {
 				if(drawFreeSpace) {
-					cr.setSourceRGBA(1, 1, 1, 0.2);
+					cr.setSourceRGBA(free_space_color_r, free_space_color_g, free_space_color_b, free_space_color_a);
 					cr.setLineWidth(0.4);
 					cr.arc(0, 0, 0.2, 0, Math.PI*2);
 					cr.stroke();
@@ -241,8 +273,18 @@ MyDesklet.prototype = {
 					cr.stroke();
 				}
 			} else { // classic design
+				if(this.fill_circle_background) {
+					const bg_fill_colors = this.fill_circle_background_color.match(/\((.*?)\)/)[1].split(",");
+					const bg_fill_r = parseInt(bg_fill_colors[0])/255;
+					const bg_fill_g = parseInt(bg_fill_colors[1])/255;
+					const bg_fill_b = parseInt(bg_fill_colors[2])/255;
+					const bg_fill_a = bg_fill_colors.length >= 4 ? parseFloat(bg_fill_colors[3]) : 1.0;
+					cr.setSourceRGBA(bg_fill_r, bg_fill_g, bg_fill_b, bg_fill_a);
+					cr.arc(0, 0, 0.4 - (0.19 / 2), 0, Math.PI*2);
+					cr.fill();
+				}
 				if(drawFreeSpace) {
-					cr.setSourceRGBA(1, 1, 1, 0.2);
+					cr.setSourceRGBA(free_space_color_r, free_space_color_g, free_space_color_b, free_space_color_a);
 					cr.setLineWidth(0.19);
 					cr.arc(0, 0, 0.4, 0, Math.PI*2);
 					cr.stroke();
@@ -312,45 +354,132 @@ MyDesklet.prototype = {
 		this.textpercent.set_position(null, textpercent_y);
 		this.textpercent.set_text(percentString);
 		this.textpercent.style = "font-size: " + fontSize + "px;"
-						  + "width: " + absoluteSize + "px;"
-						  + "color: " + this.text_color + ";";
+								+ "font-family: '" + this.font["font-family"] + "';"
+								+ "font-style:" + this.font["font-style"] + ";"
+								+ "font-weight:" + this.font["font-weight"] + ";"
+								+ "font-stretch:" + this.font["font-stretch"] + ";"
+								+ "width: " + absoluteSize + "px;"
+								+ "color: " + this.text_color + ";";
 
 		let textsub_y = Math.round(textpercent_y + fontSize * (1.25 * global.ui_scale));
 		this.textsub.set_position(null, textsub_y);
 		this.textsub.set_text(textSub1);
 		this.textsub.style = "font-size: " + fontSizeSub + "px;"
-					  + "width: " + absoluteSize + "px;"
-					  + "color: " + this.text_color + ";";
+							+ "font-family: '" + this.fontSub["font-family"] + "';"
+							+ "font-style:" + this.fontSub["font-style"] + ";"
+							+ "font-weight:" + this.fontSub["font-weight"] + ";"
+							+ "font-stretch:" + this.fontSub["font-stretch"] + ";"
+							+ "width: " + absoluteSize + "px;"
+							+ "color: " + this.text_color + ";";
 
 		let textsub2_y = Math.round(textsub_y + fontSizeSub * (1.25 * global.ui_scale));
 		this.textsub2.set_position(null, textsub2_y);
 		this.textsub2.set_text(textSub2);
 		this.textsub2.style = "font-size: " + fontSizeSub + "px;"
-					   + "width: " + absoluteSize + "px;"
-					   + "color: " + this.text_color + ";";
+							+ "font-family: '" + this.fontSub["font-family"] + "';"
+							+ "font-style:" + this.fontSub["font-style"] + ";"
+							+ "font-weight:" + this.fontSub["font-weight"] + ";"
+							+ "font-stretch:" + this.fontSub["font-stretch"] + ";"
+							+ "width: " + absoluteSize + "px;"
+							+ "color: " + this.text_color + ";";
 
 		//global.log("Redraw Done"); // debug
 	},
 
 	niceSize: function(value) {
-		if(this.size_prefix == "binary") {
-			if(value < 1024) return value + " B";
-			else if(value < 1024*1024) return Math.round(value / 1024 * 10) / 10 + " Ki";
-			else if(value < 1024*1024*1024) return Math.round(value / 1024 / 1024 * 10) / 10 + " Mi";
-			else if(value < 1024*1024*1024*1024) return Math.round(value / 1024 / 1024 /1024 * 10) / 10 + " Gi";
-			else return Math.round(value / 1024 / 1024 / 1024 / 1024 * 10) / 10 + " Ti";
-		} else {
-			if(value < 1000) return value + " B";
-			else if(value < 1000*1000) return Math.round(value / 1000 * 10) / 10 + " K";
-			else if(value < 1000*1000*1000) return Math.round(value / 1000 / 1000 * 10) / 10 + " M";
-			else if(value < 1000*1000*1000*1000) return Math.round(value / 1000 / 1000 / 1000 * 10) / 10 + " G";
-			else return Math.round(value / 1000 / 1000 / 1000 / 1000 * 10) / 10 + " T";
-		}
+		const prefixes = [" B", " K", " M", " G", " T"];
+		
+		let numerBase = 1000;
+		if(this.size_prefix == "binary") numerBase = 1024;
+
+		// First calculate how big the value to select a proper unit prefix. 
+		let factor;
+		if(value < numerBase) factor = 0;
+		else if(value < numerBase ** 2) factor = 1;
+		else if(value < numerBase ** 3) factor = 2;
+		else if(value < numerBase ** 4) factor = 3;
+		else factor = 4;
+
+		let prefix = prefixes[factor];
+		if(this.size_prefix == "binary") prefix += "i";
+
+		// Scale value so that it matches a unit ex. 2000 -> 2K
+		let scaledValue = value / (numerBase ** factor);
+
+		return scaledValue.toFixed(this.size_fraction_digits) + prefix;
+
 	},
 
 	shortText: function(value, max = 9) {
 		return (value.length > max) ? value.substr(0, max-1) + "…" : value;
 	},
+
+
+    /**
+    * Parse raw font string.
+    * @param {string} font_string - Font descriptor string
+    * @returns {{"font-family": string, "font-size": Number, "font-weight": Number, "font-style": string, "font-stretch": string}} Font descriptor object
+    */
+    parseFontStringToCSS: function(font_string) {
+        // Some fonts don't work, so a fallback font is a good idea
+        const fallback_font_str = "Ubuntu Regular 16";
+    
+        // String are passed by reference here
+        // make sure to copy the string to avoid triggering settings callback on change
+        const font_string_copy = font_string.slice().trim();
+        
+        let css_font;
+        try {
+            const my_font_description = Pango.font_description_from_string(font_string_copy);
+            css_font = this._PangoFontDescriptionToCSS(my_font_description);
+        } catch (e) {
+            Main.notifyError(
+                _("Sorry, this font is not supported, please select a different one.") 
+                + _(" Font: `") + font_string_copy + _("` Error: ") 
+                + e.toString()
+            );
+
+            const fallback_font_description = Pango.font_description_from_string(fallback_font_str);
+            css_font = this._PangoFontDescriptionToCSS(fallback_font_description);
+        } finally {
+            return css_font;
+        }
+        
+    },
+
+
+    /**
+    * Process Pango.FontDescription and return valid CSS values
+    * @param {Pango.FontDescription} font_description - Font descriptor
+    * @returns {{"font-family": string, "font-size": Number, "font-weight": Number, "font-style": string, "font-stretch": string}} Font descriptor object
+    */
+    _PangoFontDescriptionToCSS: function(font_description) {
+        const PangoStyle_to_CSS_map = {
+            [Pango.Style.NORMAL]: "normal", 
+            [Pango.Style.OBLIQUE]: "oblique", 
+            [Pango.Style.ITALIC]: "italic", 
+        };
+
+        // font-stretch CSS property seems to be ignored by the CSS renderer
+        const PangoStretch_to_CSS_map = {
+            [Pango.Stretch.ULTRA_CONDENSED]: "ultra-condensed", 
+            [Pango.Stretch.EXTRA_CONDENSED]: "extra-condensed", 
+            [Pango.Stretch.CONDENSED]: "condensed", 
+            [Pango.Stretch.NORMAL]: "normal", 
+            [Pango.Stretch.SEMI_EXPANDED]: "semi-expanded", 
+            [Pango.Stretch.EXPANDED]: "expanded", 
+            [Pango.Stretch.EXTRA_EXPANDED]: "extra-expanded", 
+            [Pango.Stretch.ULTRA_EXPANDED]: "ultra-expanded", 
+        };
+        
+        return {
+            "font-family": font_description.get_family(),
+            "font-size": Math.floor(font_description.get_size() / Pango.SCALE),
+            "font-weight": font_description.get_weight(),
+            "font-style": PangoStyle_to_CSS_map[font_description.get_style()],
+            "font-stretch": PangoStretch_to_CSS_map[font_description.get_stretch()]
+        };
+    },
 
 	refreshDecoration: function() {
 		// desklet label (header)

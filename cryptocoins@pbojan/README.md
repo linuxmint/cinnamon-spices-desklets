@@ -2,8 +2,6 @@
 
 Cryptocurrency Ticker (Desklet) for Cinnamon Desktop that displays the current price for **thousands of cryptocurrencies**, and their daily percent changes.
 
-The official website for news and updates about this Cryptocurrency Ticker: https://cryptocurrencyticker.xyz/
-
 ![Desklet screenshot](screenshot.png)
 
 ## Usage Help
@@ -66,9 +64,7 @@ This command will return all cryptocurrencies that are using the same SYMBOL fro
 
 ## Bugs/Feedback
 
-If you find any bugs or stability issues please create an issue [here](https://github.com/pbojan/cryptocoins-desklet-cinnamon/issues) or email [p.bojan@live.com](mailto:p.bojan@live.com).
-
-If you have ideas for new features or improvements please email [p.bojan@live.com](mailto:p.bojan@live.com).
+If you find any bugs or stability issues please create an issue [here](https://github.com/pbojan/cryptocoins-desklet-cinnamon/issues).
 
 ## Contribute/Donate
 
@@ -82,8 +78,8 @@ ETH: 0x1125207ae7d169eb623fa228e5b2c48a6b6482d9
 ```
 
 **Can't donate, but you still want to help? Here are a few ways how to support this project:**
-* Give feedback, report any bug or issue you find
-* Improve the Desklet by creating a pull request to add new features. If you want to add new features please first email [p.bojan@live.com](mailto:p.bojan@live.com) and describe your idea.
+* Give feedback, report any bug or issue you find.
+* Improve the Desklet by creating a pull request to add new features.
 * Star/Watch the project on GitHub
 * Spread the word and share this desklet with your friends, colleagues, social networks, etc. 
 

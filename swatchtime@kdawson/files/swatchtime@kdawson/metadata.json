@@ -1,0 +1,13 @@
+{
+    "uuid": "swatchtime@kdawson",
+    "name": "Swatch Internet Time",
+    "description": "A desklet which displays the Swatch Internet Time on your desktop",
+    "website": "https://github.com/swatchtime/cinnamon-desklet",
+    "version": "1.0",
+    "max-instances": "10",
+    "settings-schema": "settings-schema.json",
+    "prevent-decorations": true,
+    "author": "Ken Dawson (kendawson-online)",
+    "cinnamon-version": "5.0",
+    "license": "MIT"
+}

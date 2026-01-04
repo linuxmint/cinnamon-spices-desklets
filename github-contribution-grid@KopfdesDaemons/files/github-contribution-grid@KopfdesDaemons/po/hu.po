@@ -1,0 +1,91 @@
+# GITHUB CONTRIBUTION GRID
+# This file is put in the public domain.
+# KopfdesDaemons, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: github-contribution-grid@KopfdesDaemons 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-10-13 22:42+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+
+#. metadata.json->name
+#. desklet.js:36
+msgid "GitHub Contribution Grid"
+msgstr "GitHub közreműködői hálózat"
+
+#. desklet.js:85 desklet.js:141
+msgid "Please configure username and token in settings."
+msgstr "Kérjük, konfigurálja a felhasználónevet és a tokent a beállításokban."
+
+#. desklet.js:110 desklet.js:154
+msgid "Reload"
+msgstr "Újratöltés"
+
+#. desklet.js:118
+msgid "Open GitHub profile"
+msgstr "GitHub profil megnyitása"
+
+#. desklet.js:143
+msgid "Create a GitHub token"
+msgstr "GitHub token létrehozása"
+
+#. desklet.js:152
+msgid "Error:"
+msgstr "Hiba:"
+
+#. desklet.js:173
+msgid "contributions"
+msgstr "hozzájárulások"
+
+#. metadata.json->description
+msgid ""
+"Displays the daily contributions heatmap for a specified GitHub user profile."
+msgstr ""
+"Megjeleníti egy adott GitHub felhasználói profil napi hozzájárulásainak "
+"hőtérképét."
+
+#. settings-schema.json->head0->description
+msgid "API Settings"
+msgstr "API beállítások"
+
+#. settings-schema.json->github-username->description
+msgid "GitHub Username"
+msgstr "GitHub felhasználónév"
+
+#. settings-schema.json->github-token->description
+msgid "GitHub Token"
+msgstr "GitHub Token"
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval in minutes"
+msgstr "Frissítési intervallum percben"
+
+#. settings-schema.json->head1->description
+msgid "Style"
+msgstr "Stílus"
+
+#. settings-schema.json->block-size->description
+msgid "Block size in pixels"
+msgstr "Blokkméret pixelben"
+
+#. settings-schema.json->background-color->description
+msgid "Background color"
+msgstr "Háttérszín"
+
+#. settings-schema.json->show-contribution-count->description
+msgid "Show contribution count"
+msgstr "Hozzájárulások számának megjelenítése"
+
+#. settings-schema.json->show-username->description
+msgid "Show username"
+msgstr "Felhasználónév megjelenítése"

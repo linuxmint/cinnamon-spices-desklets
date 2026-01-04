@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-05-12 00:33+0200\n"
+"POT-Creation-Date: 2025-08-22 22:21+0200\n"
 "PO-Revision-Date: 2021-09-30 13:34-0300\n"
 "Last-Translator: Marcelo Aof\n"
 "Language-Team: \n"
@@ -18,49 +18,47 @@ msgstr ""
 "X-Generator: Poedit 3.0\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#. desklet.js:119
-msgid "No quotes data to display"
-msgstr ""
-
-#. desklet.js:516
+#. desklet.js:687
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 
-#. desklet.js:561 desklet.js:585
+#. desklet.js:721 desklet.js:747 desklet.js:770
 msgid "Authorization parameters have expired"
 msgstr ""
 
-#. desklet.js:564 desklet.js:588
-msgid "Yahoo Finance service not available!\\nStatus: "
+#. desklet.js:724 desklet.js:750 desklet.js:773
+msgid "Yahoo Finance service not available! Status: "
 msgstr "O serviço de finanças do Yahoo não está disponível!"
 
-#. desklet.js:988
+#. desklet.js:1084
+msgid "No quotes data to display"
+msgstr ""
+
+#. desklet.js:1194
 msgid "Updated at "
 msgstr "Atualizado em "
 
-#. desklet.js:1020
+#. desklet.js:1226
 msgid "Error: "
 msgstr "Erro: "
 
-#. desklet.js:1146
+#. desklet.js:1376
 msgid ""
-"Failed to retrieve authorization parameter! Unable to fetch quotes data."
-"\\nStatus: "
+"Failed to retrieve authorization parameter! Unable to fetch quotes data. "
+"Status: "
 msgstr ""
 
-#. desklet.js:1173
-msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
+#. desklet.js:1403
+msgid "Consent processing failed! Unable to fetch quotes data. Status: "
 msgstr ""
 
-#. desklet.js:1179
-msgid ""
-"Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
+#. desklet.js:1409
+msgid "Consent processing not completed! Unable to fetch quotes data. Status: "
 msgstr ""
 
-#. desklet.js:1207
+#. desklet.js:1445
 msgid ""
-"Failed to retrieve authorization crumb! Unable to fetch quotes data."
-"\\nStatus: "
+"Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: "
 msgstr ""
 
 #. metadata.json->description
@@ -531,6 +529,14 @@ msgstr "Cor da tendência lateral"
 #. settings-schema.json->unchangedTrendColor->tooltip
 msgid "Color of the unchanged trend"
 msgstr "Cor da tendência lateral."
+
+#. settings-schema.json->cacheAuthorizationParameters->description
+msgid "Cache authorization parameters"
+msgstr ""
+
+#. settings-schema.json->cacheAuthorizationParameters->tooltip
+msgid "Remember fetched authorization parameters for desklet instance"
+msgstr ""
 
 #. settings-schema.json->sendCustomUserAgent->description
 msgid "Send custom User-Agent header"

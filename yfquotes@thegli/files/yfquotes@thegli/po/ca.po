@@ -7,70 +7,68 @@ msgstr ""
 "Project-Id-Version: yfquotes@thegli 0.13.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-05-12 00:33+0200\n"
-"PO-Revision-Date: 2024-12-18 21:52+0100\n"
+"POT-Creation-Date: 2025-08-22 22:21+0200\n"
+"PO-Revision-Date: 2025-09-29 04:46+0200\n"
 "Last-Translator: Dan <d3vf4n-linux (at) tutanota (dot) com>\n"
 "Language-Team: \n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.6\n"
 
-#. desklet.js:119
-msgid "No quotes data to display"
-msgstr "No hi ha dades de cotitzacions per mostrar"
-
-#. desklet.js:516
+#. desklet.js:687
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 "Llista de cotitzacions buida. Obriu la configuració i afegiu-hi alguns "
 "símbols."
 
-#. desklet.js:561 desklet.js:585
+#. desklet.js:721 desklet.js:747 desklet.js:770
 msgid "Authorization parameters have expired"
 msgstr "Els paràmetres d'autorització han expirat"
 
-#. desklet.js:564 desklet.js:588
-msgid "Yahoo Finance service not available!\\nStatus: "
-msgstr "El servei de Yahoo finances no està disponible!\\nEstat: "
+#. desklet.js:724 desklet.js:750 desklet.js:773
+msgid "Yahoo Finance service not available! Status: "
+msgstr "El servei de Yahoo finances no està disponible! Estat: "
 
-#. desklet.js:988
+#. desklet.js:1084
+msgid "No quotes data to display"
+msgstr "No hi ha dades de cotitzacions per mostrar"
+
+#. desklet.js:1194
 msgid "Updated at "
 msgstr "Actualitzat a les "
 
-#. desklet.js:1020
+#. desklet.js:1226
 msgid "Error: "
 msgstr "Error: "
 
-#. desklet.js:1146
+#. desklet.js:1376
 msgid ""
-"Failed to retrieve authorization parameter! Unable to fetch quotes data."
-"\\nStatus: "
+"Failed to retrieve authorization parameter! Unable to fetch quotes data. "
+"Status: "
 msgstr ""
 "Error en recuperar el paràmetre d'autorització. No s'han pogut obtenir les "
-"dades de les cotitzacions.\\nEstat: "
+"dades de les cotitzacions. Estat: "
 
-#. desklet.js:1173
-msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
+#. desklet.js:1403
+msgid "Consent processing failed! Unable to fetch quotes data. Status: "
 msgstr ""
 "No s'ha pogut processar el consentiment! No s'han pogut obtenir les dades de "
-"les cotitzacions.\\nEstat: "
+"les cotitzacions. Estat: "
 
-#. desklet.js:1179
-msgid ""
-"Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
+#. desklet.js:1409
+msgid "Consent processing not completed! Unable to fetch quotes data. Status: "
 msgstr ""
 "No s'ha completat el processament del consentiment. No s'han pogut obtenir "
-"les dades de les cotitzacions.\\nEstat: "
+"les dades de les cotitzacions. Estat: "
 
-#. desklet.js:1207
+#. desklet.js:1445
 msgid ""
-"Failed to retrieve authorization crumb! Unable to fetch quotes data."
-"\\nStatus: "
+"Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: "
 msgstr ""
 "No s'ha pogut recuperar la ruta d'autorització! No s'han pogut obtenir les "
-"dades de les cotitzacions.\\nEstat: "
+"dades de les cotitzacions. Estat: "
 
 #. metadata.json->description
 msgid ""
@@ -103,7 +101,7 @@ msgstr "Disposició"
 
 #. settings-schema.json->networkPage->title
 msgid "Network"
-msgstr ""
+msgstr "Xarxa"
 
 #. settings-schema.json->dataUpdateSection->title
 msgid "Data Updates"
@@ -159,7 +157,7 @@ msgstr "Efectes"
 
 #. settings-schema.json->networkSessionSection->title
 msgid "HTTP Session"
-msgstr ""
+msgstr "Sessió HTTP"
 
 #. settings-schema.json->width->description
 msgid "Width"
@@ -556,12 +554,21 @@ msgstr "Color de la tendència a la baixa"
 msgid "Color of the unchanged trend"
 msgstr "Color de la tendència sense canvis"
 
+#. settings-schema.json->cacheAuthorizationParameters->description
+msgid "Cache authorization parameters"
+msgstr "Guarda els paràmetres d'autorització a la cau"
+
+#. settings-schema.json->cacheAuthorizationParameters->tooltip
+msgid "Remember fetched authorization parameters for desklet instance"
+msgstr ""
+"Recorda els paràmetres d'autorització obtinguts per a aquesta instància de "
+"la miniaplicació d'escriptori"
+
 #. settings-schema.json->sendCustomUserAgent->description
 msgid "Send custom User-Agent header"
 msgstr "Enviar capçalera User-Agent personalitzada"
 
 #. settings-schema.json->sendCustomUserAgent->tooltip
-#, fuzzy
 msgid "Include a custom User-Agent header in Yahoo Finance Quotes API requests"
 msgstr ""
 "Inclou una capçalera User-Agent personalitzada a les sol·licituds de l'API "
@@ -580,27 +587,26 @@ msgstr ""
 
 #. settings-schema.json->enableCurl->description
 msgid "Use external tool curl"
-msgstr ""
+msgstr "Utilitza l'eina externa curl"
 
 #. settings-schema.json->enableCurl->tooltip
 msgid "Requires separate installation of curl."
-msgstr ""
+msgstr "Requereix tenir curl instal·lat externament."
 
 #. settings-schema.json->curlCommand->description
 msgid "Path of curl executable"
-msgstr ""
+msgstr "Ruta del fitxer executable de curl"
 
 #. settings-schema.json->curlCommand->tooltip
 msgid "Provide absolute path of curl program file"
-msgstr ""
+msgstr "Proveïu la ruta absoluta al fitxer binari de curl"
 
 #. settings-schema.json->applyNetworkSettingsButton->description
 msgid "Apply network settings"
-msgstr ""
+msgstr "Aplica la configuració de xarxa"
 
 #. settings-schema.json->applyNetworkSettingsButton->tooltip
-#, fuzzy
 msgid "Fetches new authorization parameters and refreshes quotes data"
 msgstr ""
-"Error en recuperar el paràmetre d'autorització. No s'han pogut obtenir les "
-"dades de les cotitzacions.\\nEstat: "
+"Busca nous paràmetres d'autorització i actualitza les dades de les "
+"cotitzacions"

@@ -1,14 +1,14 @@
-# SOME DESCRIPTIVE TITLE.
+# MINTOO - THE MINT ASSISTANT
 # This file is put in the public domain.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# sujitagarwal, 2020
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: mintoo@sujitagarwal 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-05-18 09:20+0200\n"
-"PO-Revision-Date: 2024-06-29 08:06+0200\n"
+"POT-Creation-Date: 2025-08-15 14:52-0400\n"
+"PO-Revision-Date: 2025-11-17 09:54+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: hu\n"
@@ -16,12 +16,125 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. metadata.json->name
 msgid "Mintoo - The Mint Assistant"
 msgstr "Mintoo - A Mint asszisztens"
 
 #. metadata.json->description
-msgid "A friendly assistant for your Linux Mint."
-msgstr "Egy barátságos asszisztens a Linux Mint számára."
+msgid ""
+"A friendly assistant for your Linux Mint. Now with more features to "
+"customize the look and feel!"
+msgstr ""
+"Barátságos asszisztens a Linux Mintedhez. Most még több funkcióval a "
+"megjelenés és a felhasználói élmény testreszabásához!"
+
+#. settings-schema.json->head0->description
+msgid "Settings for Mintoo"
+msgstr "Mintoo beállításai"
+
+#. settings-schema.json->desklet-size->units
+msgid "pixels"
+msgstr "képpont"
+
+#. settings-schema.json->desklet-size->description
+msgid "Desklet size"
+msgstr "Asztalkalmazás mérete"
+
+#. settings-schema.json->desklet-size->tooltip
+msgid "Increase or decrease the size of the Mintoo Desklet."
+msgstr "Növeld vagy csökkentsd a Mintoo Asztalkalmazás méretét."
+
+#. settings-schema.json->button-color->description
+msgid "Button Color"
+msgstr "Gomb színe"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Linux Mint Green"
+msgstr "Linux Mint Zöld"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Black"
+msgstr "Fekete"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Blue (Light)"
+msgstr "Kék (Világos)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Blue (Dark)"
+msgstr "Kék (Sötét)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Green (Light)"
+msgstr "Zöld (Világos)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Green (Dark)"
+msgstr "Zöld (Sötét)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Red (Light)"
+msgstr "Piros (Világos)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Red (Dark)"
+msgstr "Piros (Sötét)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Purple (Light)"
+msgstr "Lila (Világos)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Purple (Dark)"
+msgstr "Lila (Sötét)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Orange (Light)"
+msgstr "Narancssárga (Világos)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Orange (Dark)"
+msgstr "Narancssárga (Sötét)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Pink (Light)"
+msgstr "Rózsaszín (Világos)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Pink (Dark)"
+msgstr "Rózsaszín (Sötét)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Gray (Light)"
+msgstr "Szürke (Világos)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Gray (Dark)"
+msgstr "Szürke (Sötét)"
+
+#. settings-schema.json->button-color->tooltip
+#. settings-schema.json->button-hover-color->tooltip
+msgid "Select the button hover style."
+msgstr "Válassza ki a gomb kiemelési stílusát."
+
+#. settings-schema.json->button-hover-color->description
+msgid "Button Hover Color"
+msgstr "Gomb lebegési színe"

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Yahoo Finance Quotes Desklet\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-05-12 00:33+0200\n"
+"POT-Creation-Date: 2025-08-22 22:21+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,49 +17,47 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
 
-#. desklet.js:119
-msgid "No quotes data to display"
-msgstr ""
-
-#. desklet.js:516
+#. desklet.js:687
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 
-#. desklet.js:561 desklet.js:585
+#. desklet.js:721 desklet.js:747 desklet.js:770
 msgid "Authorization parameters have expired"
 msgstr ""
 
-#. desklet.js:564 desklet.js:588
-msgid "Yahoo Finance service not available!\\nStatus: "
+#. desklet.js:724 desklet.js:750 desklet.js:773
+msgid "Yahoo Finance service not available! Status: "
 msgstr "Yahoo Finance 서비스를 사용할 수 없습니다!"
 
-#. desklet.js:988
+#. desklet.js:1084
+msgid "No quotes data to display"
+msgstr ""
+
+#. desklet.js:1194
 msgid "Updated at "
 msgstr "업데이트 날짜 "
 
-#. desklet.js:1020
+#. desklet.js:1226
 msgid "Error: "
 msgstr "오류: "
 
-#. desklet.js:1146
+#. desklet.js:1376
 msgid ""
-"Failed to retrieve authorization parameter! Unable to fetch quotes data."
-"\\nStatus: "
+"Failed to retrieve authorization parameter! Unable to fetch quotes data. "
+"Status: "
 msgstr ""
 
-#. desklet.js:1173
-msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
+#. desklet.js:1403
+msgid "Consent processing failed! Unable to fetch quotes data. Status: "
 msgstr ""
 
-#. desklet.js:1179
-msgid ""
-"Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
+#. desklet.js:1409
+msgid "Consent processing not completed! Unable to fetch quotes data. Status: "
 msgstr ""
 
-#. desklet.js:1207
+#. desklet.js:1445
 msgid ""
-"Failed to retrieve authorization crumb! Unable to fetch quotes data."
-"\\nStatus: "
+"Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: "
 msgstr ""
 
 #. metadata.json->description
@@ -520,6 +518,14 @@ msgstr ""
 msgid "Color of the unchanged trend"
 msgstr ""
 "퍼센트 변화에 색상을 지정하여 추세를 표시합니다 (녹색은 상승, 빨간색은 하락)."
+
+#. settings-schema.json->cacheAuthorizationParameters->description
+msgid "Cache authorization parameters"
+msgstr ""
+
+#. settings-schema.json->cacheAuthorizationParameters->tooltip
+msgid "Remember fetched authorization parameters for desklet instance"
+msgstr ""
 
 #. settings-schema.json->sendCustomUserAgent->description
 msgid "Send custom User-Agent header"

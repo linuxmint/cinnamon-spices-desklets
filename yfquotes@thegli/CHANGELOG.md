@@ -1,3 +1,19 @@
+### 0.17.1 - August 22, 2025
+
+Bugfixes:
+
+- fix libsoup2 support for cache authorization parameters
+- enable line-wrapping in displayed error messages
+
+### 0.17.0 - August 21, 2025
+
+Features:
+
+- new setting to cache authorization parameters (enabled by default)
+- manage separate authorization parameters for each desklet instance
+- evaluate curl response for errors
+- improve debug logs
+
 ### 0.16.1 - July 3, 2025
 
 Features:

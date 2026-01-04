@@ -7,20 +7,22 @@ const St = imports.gi.St;
 * Represent a task item in a TODO list
 */
 class TODOItem {
-    constructor(name, is_marked_done=false, is_selection_enabled = true) {
+    constructor(name, is_marked_done=false, is_marked_important=false, is_selection_enabled=true) {
         this.is_selected = false;
         this.name = name;
         this.is_marked_done = is_marked_done;
         this.actor = null;
         this.StEntry = null;
         this.is_selection_enabled = is_selection_enabled;
+        this.is_marked_important = is_marked_important;
     }
 
 
     getSettingsAttrs () {
         return {
             "name": this.name,
-            "is-marked-done": this.is_marked_done
+            "is-marked-done": this.is_marked_done,
+            "is-marked-important": this.is_marked_important
         };
     }
 

@@ -293,8 +293,8 @@ SystemMonitorGraph.prototype = {
               let down_speed_formatted = this.format_network_speed(this.net_down_speed);
               let up_speed_formatted = this.format_network_speed(this.net_up_speed);
               
-              text2 = "↓ " + down_speed_formatted;
-              text3 = "↑ " + up_speed_formatted;
+              text2 = "";
+              text3 = "↓ " + down_speed_formatted + "  ↑ " + up_speed_formatted;
               break;
         }
 
@@ -389,19 +389,11 @@ SystemMonitorGraph.prototype = {
             Math.round((2.5 * unit_size) - this.text2.get_height())
         );
         this.text3.set_text(text3);
-        if (this.type !== "network") {
-            this.text3.style = "font-size: " + text3_size + "px;"
-                             + "color: " + this.text_color + ";";
-            this.text3.set_position(
-                Math.round((21 * unit_size) - this.text3.get_width()),
-                Math.round((2.5 * unit_size) - this.text3.get_height()));
-        } else {
-            this.text3.style = "font-size: " + text2_size + "px;"
-                             + "color: " + this.text_color + ";";
-            this.text3.set_position(
-                Math.round(this.text1.get_width() + (9 * unit_size)),
-                Math.round((2.5 * unit_size) - this.text3.get_height()));
-        }
+        this.text3.style = "font-size: " + text3_size + "px;"
+                         + "color: " + this.text_color + ";";
+        this.text3.set_position(
+            Math.round((21 * unit_size) - this.text3.get_width()),
+            Math.round((2.5 * unit_size) - this.text3.get_height()));
 
 
         // update canvas
@@ -522,15 +514,34 @@ SystemMonitorGraph.prototype = {
     format_network_speed: function(speed_bytes_per_sec) {
         // Enhanced error handling for speed formatting
         if (!speed_bytes_per_sec || isNaN(speed_bytes_per_sec) || !isFinite(speed_bytes_per_sec) || speed_bytes_per_sec < 0) {
-            return "0 " + _("B") + "/s";
+            if (this.data_prefix_network == 2) {
+                return "0 " + _("b") + "/s";
+            } else {
+                return "0 " + _("B") + "/s";
+            }
         }
         
         // Convert bytes per second to appropriate units
         let speed = speed_bytes_per_sec;
         let unit = "";
         
-        if (this.data_prefix_network == 1) {
-            // Decimal prefix (1000-based)
+        if (this.data_prefix_network == 2) {
+            // Decimal prefix (1000-based) bit
+            speed = speed * 8;
+            if (speed >= 1000000000) {
+                speed = speed / 1000000000;
+                unit = _("Gb") + "/s";
+            } else if (speed >= 1000000) {
+                speed = speed / 1000000;
+                unit = _("Mb") + "/s";
+            } else if (speed >= 1000) {
+                speed = speed / 1000;
+                unit = _("Kb") + "/s";
+            } else {
+                unit = _("b") + "/s";
+            }
+        } else if (this.data_prefix_network == 1) {
+            // Decimal prefix (1000-based) bytes
             if (speed >= 1000000000) {
                 speed = speed / 1000000000;
                 unit = _("GB") + "/s";
@@ -544,7 +555,7 @@ SystemMonitorGraph.prototype = {
                 unit = _("B") + "/s";
             }
         } else {
-            // Binary prefix (1024-based)
+            // Binary prefix (1024-based) bytes
             if (speed >= 1073741824) { // 1024^3
                 speed = speed / 1073741824;
                 unit = _("GiB") + "/s";
@@ -816,49 +827,94 @@ SystemMonitorGraph.prototype = {
     },
 
     get_nvidia_gpu_use: function() {
-        let subprocess
         try {
-            subprocess = Gio.Subprocess.new(
+            let [success, child_pid, std_in, std_out, std_err] = GLib.spawn_async_with_pipes(
+                null,
                 ['/usr/bin/nvidia-smi', '--query-gpu=utilization.gpu', '--format=csv', '--id='+ this.gpu_id],
-                Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE
+                null,
+                GLib.SpawnFlags.DO_NOT_REAP_CHILD | GLib.SpawnFlags.LEAVE_DESCRIPTORS_OPEN,
+                null
             );
-        } catch (err) {
+            GLib.close(std_in);
+            GLib.close(std_err);
+            GLib.child_watch_add(GLib.PRIORITY_DEFAULT, child_pid, function(pid, wait_status, user_data) {
+                GLib.spawn_close_pid(child_pid);
+            });
+            if(!success) {
+                throw new Error(_('Error executing nvidia-smi command.'));
+            }
+            let deskletInstance = this;
+            let ioChannelStdOut = GLib.IOChannel.unix_new(std_out);
+            let tagWatchStdOut = GLib.io_add_watch(
+                ioChannelStdOut, GLib.PRIORITY_DEFAULT,
+                GLib.IOCondition.IN | GLib.IOCondition.HUP,
+                function(channel, condition, data) {
+                    if(condition != GLib.IOCondition.HUP) {
+                        let [status, out] = channel.read_to_end();
+                        let out_string = out.toString();
+                        deskletInstance.gpu_use =  parseInt(out_string.match(/[^\r\n]+/g)[1]); // parse integer in second line
+                    }
+                    GLib.source_remove(tagWatchStdOut);
+                    channel.shutdown(true);
+                }
+            );
+        } catch(error) {
+            this.gpu_use = 0;
             return;
         }
-        subprocess.communicate_utf8_async(null, null, (subprocess, result) => {
-            let [, stdout, stderr] = subprocess.communicate_utf8_finish(result);
-            this.gpu_use =  parseInt(stdout.match(/[^\r\n]+/g)[1]); // parse integer in second line
-        });
     },
 
     get_nvidia_gpu_mem: function() {
-        let subprocess
         try {
-            subprocess = Gio.Subprocess.new(
+            let [success, child_pid, std_in, std_out, std_err] = GLib.spawn_async_with_pipes(
+                null,
                 ['/usr/bin/nvidia-smi', '--query-gpu=memory.total,memory.used', '--format=csv', '--id='+ this.gpu_id],
-                Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE
+                null,
+                GLib.SpawnFlags.DO_NOT_REAP_CHILD | GLib.SpawnFlags.LEAVE_DESCRIPTORS_OPEN,
+                null
             );
-        } catch {
+            GLib.close(std_in);
+            GLib.close(std_err);
+            GLib.child_watch_add(GLib.PRIORITY_DEFAULT, child_pid, function(pid, wait_status, user_data) {
+                GLib.spawn_close_pid(child_pid);
+            });
+            if(!success) {
+                throw new Error(_('Error executing nvidia-smi command.'));
+            }
+            let deskletInstance = this;
+            let ioChannelStdOut = GLib.IOChannel.unix_new(std_out);
+            let tagWatchStdOut = GLib.io_add_watch(
+                ioChannelStdOut, GLib.PRIORITY_DEFAULT,
+                GLib.IOCondition.IN | GLib.IOCondition.HUP,
+                function(channel, condition, data) {
+                    if(condition != GLib.IOCondition.HUP) {
+                        let [status, out] = channel.read_to_end();
+                        let out_string = out.toString();
+                        let fslines = out_string.split(/\r?\n/); // Line0:Headers Line1:Values
+                        let items = fslines[1].split(',');   // Values are comma-separated
+                        let mem_tot
+                        let mem_usd
+                        if (deskletInstance.data_prefix_gpumem == 1) {
+                            // decimal prefix
+                            mem_tot =  parseInt(items[0]) * 1024 * 1024 / GB_TO_B;
+                            mem_usd =  parseInt(items[1]) * 1024 * 1024 / GB_TO_B;
+                        } else {
+                            // binary prefix
+                            mem_tot =  parseInt(items[0]) / GIB_TO_MIB;
+                            mem_usd =  parseInt(items[1]) / GIB_TO_MIB;
+                        }
+                        deskletInstance.gpu_mem[0] = mem_tot;
+                        deskletInstance.gpu_mem[1] = mem_usd;
+                    }
+                    GLib.source_remove(tagWatchStdOut);
+                    channel.shutdown(true);
+                }
+            );
+        } catch(error) {
+            this.gpu_mem[0] = 0;
+            this.gpu_mem[1] = 0;
             return;
         }
-        subprocess.communicate_utf8_async(null, null, (subprocess, result) => {
-            let [, stdout, stderr] = subprocess.communicate_utf8_finish(result);
-            let fslines = stdout.split(/\r?\n/); // Line0:Headers Line1:Values
-            let items = fslines[1].split(',');   // Values are comma-separated
-            let mem_tot
-            let mem_usd
-            if (this.data_prefix_gpumem == 1) {
-                // decimal prefix
-                mem_tot =  parseInt(items[0]) * 1024 * 1024 / GB_TO_B;
-                mem_usd =  parseInt(items[1]) * 1024 * 1024 / GB_TO_B;
-            } else {
-                // binary prefix
-                mem_tot =  parseInt(items[0]) / GIB_TO_MIB;
-                mem_usd =  parseInt(items[1]) / GIB_TO_MIB;
-            }
-            this.gpu_mem[0] = mem_tot;
-            this.gpu_mem[1] = mem_usd;
-        });
     },
 
     get_amdgpu_gpu_use: function() {

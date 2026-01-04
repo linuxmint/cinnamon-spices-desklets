@@ -1,21 +1,22 @@
-# Timelet
-# Copyright (C) 2022 Gobinath
-# This file is distributed under the same license as the Timelet package.
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-10 21:39-0400\n"
-"PO-Revision-Date: 2023-12-08 11:59+0100\n"
+"Project-Id-Version: timelet@linuxedo.com 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-18 00:10+0200\n"
+"PO-Revision-Date: 2025-11-13 19:15+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. metadata.json->name
 #: desklet.js:50
@@ -51,8 +52,8 @@ msgid "Use 24H"
 msgstr "Anvend 24 timers ur"
 
 #. settings-schema.json->use24H->tooltip
-msgid "Display time in 24H if the theme supports it"
-msgstr "Vis tiden i 24-timersformat hvis temaet understøtter det"
+msgid "Display time in 24H"
+msgstr "Vis tiden i 24-timersformat"
 
 #. settings-schema.json->textColor->description
 msgid "Text color"

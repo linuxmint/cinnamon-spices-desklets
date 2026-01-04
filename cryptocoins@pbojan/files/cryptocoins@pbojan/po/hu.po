@@ -1,14 +1,14 @@
-# SOME DESCRIPTIVE TITLE.
+# CRYPTOCURRENCY TICKER
 # This file is put in the public domain.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# pbojan, 2018
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cryptocoins@pbojan 1.6\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-05-19 18:58+0200\n"
-"PO-Revision-Date: 2024-06-29 07:24+0200\n"
+"POT-Creation-Date: 2025-11-09 15:34+0100\n"
+"PO-Revision-Date: 2025-11-11 10:12+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: hu\n"
@@ -16,19 +16,16 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. metadata.json->description
 msgid ""
 "Cryptocurrency Ticker (Desklet) for Cinnamon Desktop that displays the "
 "current price for thousands of cryptocurrencies, and their daily percent "
-"changes. The official website for news and updates about this Cryptocurrency "
-"Ticker: https://cryptocurrencyticker.xyz"
+"changes."
 msgstr ""
-"Kriptovaluta Ketyegő (Asztalkalmazás) a Cinnamon asztali környezethez, amely "
-"több ezer kriptovaluta aktuális árfolyamát és napi százalékos változását "
-"jeleníti meg. A hivatalos weboldal a kriptopénz-ketyegővel kapcsolatos hírek "
-"és frissítések számára: https://cryptocurrencyticker.xyz"
+"Kriptovaluta-Ketyegő (Asztalkalmazás) a Cinnamon Desktophoz, amely több ezer "
+"kriptovaluta aktuális árát és azok napi százalékos változását jeleníti meg."
 
 #. metadata.json->name
 msgid "Cryptocurrency Ticker"
@@ -48,8 +45,8 @@ msgstr "Az ön CoinMarketCap API kulcsa"
 
 #. settings-schema.json->apiKey->tooltip
 msgid ""
-"If you dont have one you can get it for free at https://pro.coinmarketcap."
-"com."
+"If you dont have one you can get it for free at https://"
+"pro.coinmarketcap.com."
 msgstr ""
 "Ha nincs ilyenje, ingyenesen megkaphatja a https://pro.coinmarketcap.com "
 "oldalon."
@@ -537,6 +534,58 @@ msgstr ""
 "eszközök mezővel együtt használható."
 
 #. settings-schema.json->head3->description
+msgid "Price Change % Options"
+msgstr "Árváltozási %-os opciók"
+
+#. settings-schema.json->percent-change-1h->description
+msgid "Change 1h"
+msgstr "Változás 1 óra"
+
+#. settings-schema.json->percent-change-1h->tooltip
+msgid "Disable to not see the 1h change in the ticker."
+msgstr "Tiltsa le, ha nem szeretné látni az 1 órás változást a ketyegőben."
+
+#. settings-schema.json->percent-change-24h->description
+msgid "Change 24h"
+msgstr "Változás 24 óra"
+
+#. settings-schema.json->percent-change-24h->tooltip
+msgid "Disable to not see the 24h change in the ticker."
+msgstr "Tiltsa le, ha nem szeretné látni az 24 órás változást a ketyegőben."
+
+#. settings-schema.json->percent-change-7d->description
+msgid "Change 7d"
+msgstr "Változás 7 nap"
+
+#. settings-schema.json->percent-change-7d->tooltip
+msgid "Disable to not see the 7d change in the ticker."
+msgstr "Tiltsa le, ha nem szeretné látni a 7 napos változást a ketyegőben."
+
+#. settings-schema.json->percent-change-30d->description
+msgid "Change 30d"
+msgstr "Változás 30 nap"
+
+#. settings-schema.json->percent-change-30d->tooltip
+msgid "Disable to not see the 30d change in the ticker."
+msgstr "Tiltsa le, ha nem szeretné látni a 30 napos változást a ketyegőben."
+
+#. settings-schema.json->percent-change-60d->description
+msgid "Change 60d"
+msgstr "Változás 60 nap"
+
+#. settings-schema.json->percent-change-60d->tooltip
+msgid "Disable to not see the 60d change in the ticker."
+msgstr "Tiltsa le, ha nem szeretné látni a 60 napos változást a ketyegőben."
+
+#. settings-schema.json->percent-change-90d->description
+msgid "Change 90d"
+msgstr "Változás 90 nap"
+
+#. settings-schema.json->percent-change-90d->tooltip
+msgid "Disable to not see the 90d change in the ticker."
+msgstr "Tiltsa le, ha nem szeretné látni a 90 napos változást a ketyegőben."
+
+#. settings-schema.json->head4->description
 msgid "Desklet UI"
 msgstr "Asztalkalmazás felhasználói felület"
 
@@ -562,10 +611,9 @@ msgstr ""
 "Háttérhatár sugara képpontban, válassza a 0 értéket, ha nem akar "
 "határsugarat beállítani."
 
-#. settings-schema.json->head4->description
+#. settings-schema.json->head5->description
 msgid ""
-"This is an OPEN SOURCE project, if you like it please consider donating! "
-"https://cryptocurrencyticker.xyz"
+"This is an OPEN SOURCE project, if you like it please consider donating!"
 msgstr ""
-"Ez egy NYÍLT FORRÁSKÓDÚ projekt, ha tetszik, kérjük, fontolja meg az "
-"adományozást! https://cryptocurrencyticker.xyz"
+"Ez egy NYÍLT FORRÁSKÓDÚ projekt, ha tetszik, kérlek fontold meg az "
+"adományozást!"
