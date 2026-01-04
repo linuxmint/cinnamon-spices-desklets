@@ -5,10 +5,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: serverstatus@maksmokriev 1.1.1\n"
+"Project-Id-Version: serverstatus@maksmokriev 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-12-08 23:17-0500\n"
+"POT-Creation-Date: 2026-01-04 08:44+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,35 +17,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. desklet.js:23
+#: desklet.js:23
 msgid "Server Status"
 msgstr ""
 
-#. desklet.js:70
+#: desklet.js:84
 msgid "Need to setup"
 msgstr ""
 
-#. desklet.js:104
-msgid " - Checking ..."
-msgstr ""
-
-#. desklet.js:153
+#: desklet.js:173
 msgid "Error ping command on "
 msgstr ""
 
-#. desklet.js:154 desklet.js:161 desklet.js:194 desklet.js:201
-msgid "Error"
-msgstr ""
-
-#. desklet.js:160
+#: desklet.js:179
 msgid "Error creating ping process "
 msgstr ""
 
-#. desklet.js:193
+#: desklet.js:205
 msgid "Error curl command on "
 msgstr ""
 
-#. desklet.js:200
+#: desklet.js:211
 msgid "Error creating curl process "
 msgstr ""
 
@@ -92,11 +84,7 @@ msgid "Display it?"
 msgstr ""
 
 #. settings-schema.json->TimeRepeat->description
-msgid "Update every:"
-msgstr ""
-
-#. settings-schema.json->TimeRepeat->units
-msgid "seconds"
+msgid "Update every (seconds):"
 msgstr ""
 
 #. settings-schema.json->TextColorBasic->description
@@ -148,14 +136,23 @@ msgstr ""
 msgid "Click the button to select a new background color for each elements"
 msgstr ""
 
-#. settings-schema.json->icon_OK->description
-msgid "Icon for a successful connection"
+#. settings-schema.json->FontSize->description
+msgid "Font size"
 msgstr ""
 
-#. settings-schema.json->icon_ERR->description
-msgid "Icon for a failed connection"
+#. settings-schema.json->FontSize->units
+#. settings-schema.json->ContainerWidth->units
+msgid "pixels"
 msgstr ""
 
-#. settings-schema.json->icon_WARN->description
-msgid "Icon for the warning"
+#. settings-schema.json->ContainerFixedWidth->description
+msgid "Set a fixed width for the container"
+msgstr ""
+
+#. settings-schema.json->ContainerFixedWidth->tooltip
+msgid "Enable checkbox to set the fixed width of the container"
+msgstr ""
+
+#. settings-schema.json->ContainerWidth->description
+msgid "Container width"
 msgstr ""
