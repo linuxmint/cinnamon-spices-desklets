@@ -153,21 +153,23 @@ msgstr ""
 
 #. settings-schema.json->FontSize->description
 msgid "Font size"
-msgstr ""
+msgstr "Tamaño de la fuente"
 
 #. settings-schema.json->FontSize->units
 #. settings-schema.json->ContainerWidth->units
 msgid "pixels"
-msgstr ""
+msgstr "pixeles"
 
 #. settings-schema.json->ContainerFixedWidth->description
 msgid "Set a fixed width for the container"
-msgstr ""
+msgstr "Establecer un ancho fijo para el contenedor"
 
 #. settings-schema.json->ContainerFixedWidth->tooltip
 msgid "Enable checkbox to set the fixed width of the container"
 msgstr ""
+"Active la casilla de verificación para establecer el ancho fijo del "
+"contenedor"
 
 #. settings-schema.json->ContainerWidth->description
 msgid "Container width"
-msgstr ""
+msgstr "Ancho del contenedor"
