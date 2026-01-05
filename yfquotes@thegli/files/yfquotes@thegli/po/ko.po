@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Yahoo Finance Quotes Desklet\n"
+"Project-Id-Version: yfquotes@thegli 0.18.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-08-22 22:21+0200\n"
+"POT-Creation-Date: 2026-01-05 17:15+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,48 +17,48 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
 
-#. desklet.js:687
-msgid "Empty quotes list. Open settings and add some symbols."
-msgstr ""
-
-#. desklet.js:721 desklet.js:747 desklet.js:770
-msgid "Authorization parameters have expired"
-msgstr ""
-
-#. desklet.js:724 desklet.js:750 desklet.js:773
-msgid "Yahoo Finance service not available! Status: "
-msgstr "Yahoo Finance 서비스를 사용할 수 없습니다!"
-
-#. desklet.js:1084
+#: desklet.js:337
 msgid "No quotes data to display"
 msgstr ""
 
-#. desklet.js:1194
+#: desklet.js:447
 msgid "Updated at "
 msgstr "업데이트 날짜 "
 
-#. desklet.js:1226
+#: desklet.js:479
 msgid "Error: "
 msgstr "오류: "
 
-#. desklet.js:1376
+#: desklet.js:629
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data. "
 "Status: "
 msgstr ""
 
-#. desklet.js:1403
+#: desklet.js:656
 msgid "Consent processing failed! Unable to fetch quotes data. Status: "
 msgstr ""
 
-#. desklet.js:1409
+#: desklet.js:662
 msgid "Consent processing not completed! Unable to fetch quotes data. Status: "
 msgstr ""
 
-#. desklet.js:1445
+#: desklet.js:698
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: "
 msgstr ""
+
+#: quote-reader.js:289
+msgid "Empty quotes list. Open settings and add some symbols."
+msgstr ""
+
+#: quote-reader.js:323 soup-resolver.js:248 soup-resolver.js:267
+msgid "Authorization parameters have expired"
+msgstr ""
+
+#: quote-reader.js:326 soup-resolver.js:251 soup-resolver.js:270
+msgid "Yahoo Finance service not available! Status: "
+msgstr "Yahoo Finance 서비스를 사용할 수 없습니다!"
 
 #. metadata.json->description
 msgid ""
@@ -509,6 +509,12 @@ msgstr ""
 #. settings-schema.json->downtrendChangeColor->description
 msgid "Downtrend change color"
 msgstr ""
+
+#. settings-schema.json->downtrendChangeColor->tooltip
+#, fuzzy
+msgid "Color of the downtrend change"
+msgstr ""
+"퍼센트 변화에 색상을 지정하여 추세를 표시합니다 (녹색은 상승, 빨간색은 하락)."
 
 #. settings-schema.json->unchangedTrendColor->description
 msgid "Unchanged trend color"
