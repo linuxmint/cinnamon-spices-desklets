@@ -1,0 +1,125 @@
+{
+    "head0": {
+        "type": "header",
+        "description": "Settings for Memory Load desklet"
+    },
+    "head1": {
+        "type": "header",
+        "description": "General"
+    },
+    "type": {
+        "type": "combobox",
+        "default": "ram",
+        "description": "Display type",
+        "options": {
+            "RAM": "ram",
+            "Swap": "swap"
+        },
+        "tooltip": "Choose whether to display RAM or Swap usage"
+    },
+    "refresh-interval": {
+        "type": "spinbutton",
+        "default": 2,
+        "step": 1,
+        "min": 1,
+        "max": 30,
+        "units": "seconds",
+        "description": "Refresh interval",
+        "tooltip": "How often to refresh the memory reading"
+    },
+    "onclick-action": {
+        "type": "combobox",
+        "default": "sysmonitor",
+        "description": "Action on click",
+        "options": {
+            "Open System Monitor": "sysmonitor",
+            "Nothing": "nothing"
+        },
+        "tooltip": "What to do when the desklet is clicked"
+    },
+    "head2": {
+        "type": "header",
+        "description": "Layout"
+    },
+    "design": {
+        "type": "combobox",
+        "default": "thick",
+        "description": "Design",
+        "options": {
+            "Thin": "thin",
+            "Compact": "compact",
+            "Thick": "thick"
+        }
+    },
+    "scale-size": {
+        "type": "spinbutton",
+        "default": 1,
+        "min": 0.4,
+        "max": 5,
+        "step": 0.05,
+        "units": "scale factor",
+        "description": "Desklet size",
+        "tooltip": "Increase or decrease the size of the desklet"
+    },
+    "text-view": {
+        "type": "combobox",
+        "default": "used-total",
+        "description": "Text display",
+        "options": {
+            "Used / Total": "used-total",
+            "Free / Total": "free-total",
+            "Name / Used": "name-used",
+            "Name / Free": "name-free"
+        }
+    },
+    "head3": {
+        "type": "header",
+        "description": "Colors"
+    },
+    "font-color": {
+        "type": "colorchooser",
+        "default": "rgba(255,255,255,1.0)",
+        "description": "Font color"
+    },
+    "use-custom-color": {
+        "type": "checkbox",
+        "description": "Use custom circle color",
+        "default": false
+    },
+    "circle-color": {
+        "type": "colorchooser",
+        "default": "rgba(83,199,160,1.0)",
+        "description": "Circle color",
+        "dependency": "use-custom-color"
+    },
+    "head4": {
+        "type": "header",
+        "description": "Background"
+    },
+    "show-background": {
+        "type": "checkbox",
+        "description": "Show background circle",
+        "default": true
+    },
+    "hide-decorations": {
+        "type": "checkbox",
+        "description": "Hide decorations",
+        "default": false
+    },
+    "random-color-generated": {
+        "type": "generic",
+        "default": false
+    },
+    "random-color-r": {
+        "type": "generic",
+        "default": 1
+    },
+    "random-color-g": {
+        "type": "generic",
+        "default": 1
+    },
+    "random-color-b": {
+        "type": "generic",
+        "default": 1
+    }
+}
