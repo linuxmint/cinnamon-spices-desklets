@@ -60,6 +60,12 @@
         "type": "header",
         "description" : "Style"
     },
+    "render-ansi": {
+	    "type": "checkbox",
+	    "default": false,
+	    "description": "Render ANSI escape sequences",
+	    "tooltip": "Enable to interpret ANSI escape sequences (e.g., colors) in command output."
+    },
 
     "font": {
         "type": "fontchooser",
