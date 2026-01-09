@@ -1,0 +1,27 @@
+# SERVER STATUS
+# This file is put in the public domain.
+# maksmokriev, 2025
+#
+msgid ""
+msgstr ""
+
+#. settings-schema.json->FontSize->description
+msgid "Font size"
+msgstr ""
+
+#. settings-schema.json->FontSize->units
+#. settings-schema.json->ContainerWidth->units
+msgid "pixels"
+msgstr ""
+
+#. settings-schema.json->ContainerFixedWidth->description
+msgid "Set a fixed width for the container"
+msgstr ""
+
+#. settings-schema.json->ContainerFixedWidth->tooltip
+msgid "Enable checkbox to set the fixed width of the container"
+msgstr ""
+
+#. settings-schema.json->ContainerWidth->description
+msgid "Container width"
+msgstr ""

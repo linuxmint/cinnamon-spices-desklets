@@ -1,0 +1,562 @@
+# Yahoo Finance Quotes Desklet
+# Copyright (C) 2018 Thomas Egli
+# This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: yfquotes@thegli 0.17.1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-08-22 22:21+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
+"Language-Team: \n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. desklet.js:687
+msgid "Empty quotes list. Open settings and add some symbols."
+msgstr "Danh sách báo giá trống. Mở cài đặt và thêm một số ký hiệu."
+
+#. desklet.js:721 desklet.js:747 desklet.js:770
+msgid "Authorization parameters have expired"
+msgstr "Tham số ủy quyền đã hết hạn"
+
+#. desklet.js:724 desklet.js:750 desklet.js:773
+msgid "Yahoo Finance service not available! Status: "
+msgstr "Dịch vụ Yahoo Finance không khả dụng! Trạng thái: "
+
+#. desklet.js:1084
+msgid "No quotes data to display"
+msgstr "Không có dữ liệu báo giá để hiển thị"
+
+#. desklet.js:1194
+msgid "Updated at "
+msgstr "Cập nhật lúc "
+
+#. desklet.js:1226
+msgid "Error: "
+msgstr "Lỗi: "
+
+#. desklet.js:1376
+msgid ""
+"Failed to retrieve authorization parameter! Unable to fetch quotes data. "
+"Status: "
+msgstr "Không thể truy xuất tham số ủy quyền! Không thể tải dữ liệu báo giá. Trạng thái: "
+
+#. desklet.js:1403
+msgid "Consent processing failed! Unable to fetch quotes data. Status: "
+msgstr "Xử lý đồng ý thất bại! Không thể tải dữ liệu báo giá. Trạng thái: "
+
+#. desklet.js:1409
+msgid "Consent processing not completed! Unable to fetch quotes data. Status: "
+msgstr "Xử lý đồng ý chưa hoàn tất! Không thể tải dữ liệu báo giá. Trạng thái: "
+
+#. desklet.js:1445
+msgid ""
+"Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: "
+msgstr "Không thể truy xuất mảnh ủy quyền! Không thể tải dữ liệu báo giá. Trạng thái: "
+
+#. metadata.json->description
+msgid ""
+"Displays financial market information such as stock quotes and commodity "
+"prices from Yahoo Finance"
+msgstr "Hiển thị thông tin thị trường tài chính như báo giá cổ phiếu và giá hàng hóa từ Yahoo Finance"
+
+#. metadata.json->name
+msgid "Yahoo Finance Quotes"
+msgstr "Báo giá Yahoo Finance"
+
+#. settings-schema.json->dataPage->title
+#. settings-schema.json->dataSymbolsSection->title
+msgid "Quotes"
+msgstr "Báo giá"
+
+#. settings-schema.json->detailsPage->title
+msgid "Details"
+msgstr "Chi tiết"
+
+#. settings-schema.json->presentationPage->title
+msgid "Presentation"
+msgstr "Trình bày"
+
+#. settings-schema.json->layoutPage->title
+msgid "Layout"
+msgstr "Bố cục"
+
+#. settings-schema.json->networkPage->title
+msgid "Network"
+msgstr "Mạng"
+
+#. settings-schema.json->dataUpdateSection->title
+msgid "Data Updates"
+msgstr "Cập nhật Dữ liệu"
+
+#. settings-schema.json->detailsNameSection->title
+msgid "Name"
+msgstr "Tên"
+
+#. settings-schema.json->detailsSymbolSection->title
+msgid "Symbol"
+msgstr "Ký hiệu"
+
+#. settings-schema.json->detailsPriceSection->title
+msgid "Price"
+msgstr "Giá"
+
+#. settings-schema.json->detailsChangeSection->title
+msgid "Change"
+msgstr "Thay đổi"
+
+#. settings-schema.json->detailsDateTimeSection->title
+msgid "Date and Time"
+msgstr "Ngày và Giờ"
+
+#. settings-schema.json->presentationFormattingSection->title
+msgid "Number Format"
+msgstr "Định dạng Số"
+
+#. settings-schema.json->presentationDateTimeFormattingSection->title
+msgid "Date and Time Format"
+msgstr "Định dạng Ngày và Giờ"
+
+#. settings-schema.json->presentationSortingSection->title
+msgid "Sorting"
+msgstr "Sắp xếp"
+
+#. settings-schema.json->presentationFontSection->title
+msgid "Font"
+msgstr "Phông chữ"
+
+#. settings-schema.json->presentationColorsSection->title
+msgid "Trend Colors"
+msgstr "Màu Xu hướng"
+
+#. settings-schema.json->layoutDimensionSection->title
+msgid "Dimension"
+msgstr "Kích thước"
+
+#. settings-schema.json->layoutEffectsSection->title
+msgid "Effects"
+msgstr "Hiệu ứng"
+
+#. settings-schema.json->networkSessionSection->title
+msgid "HTTP Session"
+msgstr "Phiên HTTP"
+
+#. settings-schema.json->width->description
+msgid "Width"
+msgstr "Chiều rộng"
+
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+#. settings-schema.json->cornerRadius->units
+#. settings-schema.json->borderWidth->units
+msgid "pixels"
+msgstr "pixel"
+
+#. settings-schema.json->width->tooltip
+msgid "Desklet width in pixels"
+msgstr "Chiều rộng desklet tính bằng pixel"
+
+#. settings-schema.json->height->description
+msgid "Height"
+msgstr "Chiều cao"
+
+#. settings-schema.json->height->tooltip
+msgid "Desklet height in pixels"
+msgstr "Chiều cao desklet tính bằng pixel"
+
+#. settings-schema.json->transparency->description
+msgid "Background transparency"
+msgstr "Độ trong suốt nền"
+
+#. settings-schema.json->transparency->tooltip
+msgid "The higher the value, the more solid the desklet's background"
+msgstr "Giá trị càng cao, nền desklet càng đặc"
+
+#. settings-schema.json->backgroundColor->description
+msgid "Background color"
+msgstr "Màu nền"
+
+#. settings-schema.json->backgroundColor->tooltip
+msgid "Desklet background color"
+msgstr "Màu nền desklet"
+
+#. settings-schema.json->cornerRadius->description
+msgid "Corner radius"
+msgstr "Bán kính góc"
+
+#. settings-schema.json->cornerRadius->tooltip
+msgid "The higher the value, the rounder the desklet's corners"
+msgstr "Giá trị càng cao, các góc desklet càng tròn"
+
+#. settings-schema.json->showVerticalScrollbar->description
+msgid "Show vertical scrollbar"
+msgstr "Hiển thị thanh cuộn dọc"
+
+#. settings-schema.json->showVerticalScrollbar->tooltip
+msgid ""
+"Display a vertical scrollbar when the quote list is longer than the "
+"desklet's height"
+msgstr "Hiển thị thanh cuộn dọc khi danh sách báo giá dài hơn chiều cao của desklet"
+
+#. settings-schema.json->borderWidth->description
+msgid "Border width"
+msgstr "Độ rộng viền"
+
+#. settings-schema.json->borderWidth->tooltip
+msgid ""
+"The higher the value, the thicker the desklet's border. A value of 0 hides "
+"the border."
+msgstr "Giá trị càng cao, viền desklet càng dày. Giá trị 0 sẽ ẩn viền."
+
+#. settings-schema.json->borderColor->description
+msgid "Border color"
+msgstr "Màu viền"
+
+#. settings-schema.json->borderColor->tooltip
+msgid "Desklet border color"
+msgstr "Màu viền desklet"
+
+#. settings-schema.json->delayMinutes->units
+msgid "minutes"
+msgstr "phút"
+
+#. settings-schema.json->delayMinutes->description
+msgid "Update frequency"
+msgstr "Tần suất cập nhật"
+
+#. settings-schema.json->delayMinutes->tooltip
+msgid "Data refresh frequency, in minutes"
+msgstr "Tần suất làm mới dữ liệu, tính bằng phút"
+
+#. settings-schema.json->showLastUpdateTimestamp->description
+msgid "Show last update timestamp"
+msgstr "Hiển thị dấu thời gian cập nhật cuối"
+
+#. settings-schema.json->showLastUpdateTimestamp->tooltip
+msgid "Display timestamp when quotes were updated last"
+msgstr "Hiển thị dấu thời gian khi báo giá được cập nhật lần cuối"
+
+#. settings-schema.json->manualDataUpdate->description
+msgid "Manual and automatic update"
+msgstr "Cập nhật thủ công và tự động"
+
+#. settings-schema.json->manualDataUpdate->tooltip
+msgid ""
+"Click last update timestamp to instantly refresh quotes data. Automatic "
+"update is still performed periodically."
+msgstr "Nhấp vào dấu thời gian cập nhật cuối để ngay lập tức làm mới dữ liệu báo giá. Cập nhật tự động vẫn được thực hiện định kỳ."
+
+#. settings-schema.json->roundNumbers->description
+msgid "Round numbers"
+msgstr "Làm tròn số"
+
+#. settings-schema.json->roundNumbers->tooltip
+msgid "Perform rounding of floating-point numbers"
+msgstr "Thực hiện làm tròn số thập phân"
+
+#. settings-schema.json->decimalPlaces->units
+msgid "positions"
+msgstr "vị trí"
+
+#. settings-schema.json->decimalPlaces->description
+msgid "Decimal places to round"
+msgstr "Số chữ số thập phân để làm tròn"
+
+#. settings-schema.json->decimalPlaces->tooltip
+msgid "Number of positions to round to after decimal point"
+msgstr "Số vị trí để làm tròn sau dấu thập phân"
+
+#. settings-schema.json->strictRounding->description
+msgid "Strict rounding"
+msgstr "Làm tròn nghiêm ngặt"
+
+#. settings-schema.json->strictRounding->tooltip
+msgid ""
+"Strict rounding to the specified decimal places (eg. 0 will be presented as "
+"0.00)"
+msgstr "Làm tròn nghiêm ngặt đến số chữ số thập phân được chỉ định (ví dụ: 0 sẽ được trình bày là 0.00)"
+
+#. settings-schema.json->use24HourTime->description
+msgid "Force 24-hour clock"
+msgstr "Bắt buộc đồng hồ 24 giờ"
+
+#. settings-schema.json->use24HourTime->tooltip
+msgid ""
+"Always display time in 24-hour notation, overriding system settings.\n"
+"This setting is ignored, when a custom time format is defined."
+msgstr "Luôn hiển thị thời gian theo ký hiệu 24 giờ, ghi đè cài đặt hệ thống.\nCài đặt này bị bỏ qua khi định dạng thời gian tùy chỉnh được xác định."
+
+#. settings-schema.json->customTimeFormat->description
+msgid "Custom time format"
+msgstr "Định dạng thời gian tùy chỉnh"
+
+#. settings-schema.json->customTimeFormat->tooltip
+msgid ""
+"Format time with custom format instead of system settings.\n"
+"Examples:\n"
+"%H:%M:%S    23:47:51\n"
+"%I:%M %p    11:47 PM"
+msgstr "Định dạng thời gian với định dạng tùy chỉnh thay vì cài đặt hệ thống.\nVí dụ:\n%H:%M:%S    23:47:51\n%I:%M %p    11:47 PM"
+
+#. settings-schema.json->customDateFormat->description
+msgid "Custom date format"
+msgstr "Định dạng ngày tùy chỉnh"
+
+#. settings-schema.json->customDateFormat->tooltip
+msgid ""
+"Format date with custom format instead of system settings.\n"
+"Examples:\n"
+"%m/%d          03/15\n"
+"%Y-%m-%d   2024-03-15\n"
+"%A, %b %d   Friday, Mar 15"
+msgstr "Định dạng ngày với định dạng tùy chỉnh thay vì cài đặt hệ thống.\nVí dụ:\n%m/%d          03/15\n%Y-%m-%d   2024-03-15\n%A, %b %d   Thứ Sáu, 15 Tháng 3"
+
+#. settings-schema.json->quoteSymbols->description
+msgid "Quote symbols"
+msgstr "Ký hiệu báo giá"
+
+#. settings-schema.json->quoteSymbols->tooltip
+msgid "List of quote symbols, separated with line-breaks"
+msgstr "Danh sách các ký hiệu báo giá, phân cách bằng dấu ngắt dòng"
+
+#. settings-schema.json->updateDataButton->description
+msgid "Refresh quotes data"
+msgstr "Làm mới dữ liệu báo giá"
+
+#. settings-schema.json->updateDataButton->tooltip
+msgid "Apply and refresh quotes"
+msgstr "Áp dụng và làm mới báo giá"
+
+#. settings-schema.json->sortCriteria->options
+msgid "given order"
+msgstr "thứ tự đã cho"
+
+#. settings-schema.json->sortCriteria->options
+msgid "percent change"
+msgstr "phần trăm thay đổi"
+
+#. settings-schema.json->sortCriteria->options
+msgid "name"
+msgstr "tên"
+
+#. settings-schema.json->sortCriteria->options
+msgid "symbol"
+msgstr "ký hiệu"
+
+#. settings-schema.json->sortCriteria->description
+msgid "Sort list by"
+msgstr "Sắp xếp danh sách theo"
+
+#. settings-schema.json->sortCriteria->tooltip
+msgid "Sort the quote list"
+msgstr "Sắp xếp danh sách báo giá"
+
+#. settings-schema.json->sortDirection->description
+msgid "Sort in ascending order"
+msgstr "Sắp xếp theo thứ tự tăng dần"
+
+#. settings-schema.json->sortDirection->tooltip
+msgid ""
+"Check to sort quotes in ascending order, uncheck to sort in descending order"
+msgstr "Chọn để sắp xếp báo giá theo thứ tự tăng dần, bỏ chọn để sắp xếp theo thứ tự giảm dần"
+
+#. settings-schema.json->showChangeIcon->description
+msgid "Show change/trend icon"
+msgstr "Hiển thị biểu tượng thay đổi/xu hướng"
+
+#. settings-schema.json->showChangeIcon->tooltip
+msgid "Indicates whether the market price moved up, down, or is unchanged"
+msgstr "Cho biết liệu giá thị trường đã tăng, giảm hay không thay đổi"
+
+#. settings-schema.json->showQuoteName->description
+msgid "Show verbose name"
+msgstr "Hiển thị tên đầy đủ"
+
+#. settings-schema.json->showQuoteName->tooltip
+msgid "Display the quote name (eg. International Business Machines)"
+msgstr "Hiển thị tên báo giá (ví dụ: International Business Machines)"
+
+#. settings-schema.json->useLongQuoteName->description
+msgid "Use long version for verbose name"
+msgstr "Sử dụng phiên bản dài cho tên đầy đủ"
+
+#. settings-schema.json->useLongQuoteName->tooltip
+msgid ""
+"Use the long version for quote name, if available (eg. International "
+"Business Machines Corporation)"
+msgstr "Sử dụng phiên bản dài cho tên báo giá, nếu có sẵn (ví dụ: International Business Machines Corporation)"
+
+#. settings-schema.json->linkQuoteName->description
+msgid "Add web link to name"
+msgstr "Thêm liên kết web vào tên"
+
+#. settings-schema.json->linkQuoteName->tooltip
+msgid "Click name to open quote in browser"
+msgstr "Nhấp vào tên để mở báo giá trong trình duyệt"
+
+#. settings-schema.json->showQuoteSymbol->description
+msgid "Show ticker/symbol"
+msgstr "Hiển thị mã chứng khoán/ký hiệu"
+
+#. settings-schema.json->showQuoteSymbol->tooltip
+msgid "Display the quote symbol (eg. IBM)"
+msgstr "Hiển thị ký hiệu báo giá (ví dụ: IBM)"
+
+#. settings-schema.json->linkQuoteSymbol->description
+msgid "Add web link to ticker/symbol"
+msgstr "Thêm liên kết web vào mã chứng khoán/ký hiệu"
+
+#. settings-schema.json->linkQuoteSymbol->tooltip
+msgid "Click symbol to open quote in browser"
+msgstr "Nhấp vào ký hiệu để mở báo giá trong trình duyệt"
+
+#. settings-schema.json->showMarketPrice->description
+msgid "Show price"
+msgstr "Hiển thị giá"
+
+#. settings-schema.json->showMarketPrice->tooltip
+msgid "Display the current market price (eg. 146.79)"
+msgstr "Hiển thị giá thị trường hiện tại (ví dụ: 146.79)"
+
+#. settings-schema.json->showCurrencyCode->description
+msgid "Show currency symbol"
+msgstr "Hiển thị ký hiệu tiền tệ"
+
+#. settings-schema.json->showCurrencyCode->tooltip
+msgid "Display the currency symbol of the price (eg. $)"
+msgstr "Hiển thị ký hiệu tiền tệ của giá (ví dụ: $)"
+
+#. settings-schema.json->showAbsoluteChange->description
+msgid "Show absolute change"
+msgstr "Hiển thị thay đổi tuyệt đối"
+
+#. settings-schema.json->showAbsoluteChange->tooltip
+msgid "Display the absolute change of the market price (eg. +0.739)"
+msgstr "Hiển thị thay đổi tuyệt đối của giá thị trường (ví dụ: +0.739)"
+
+#. settings-schema.json->showPercentChange->description
+msgid "Show percent change"
+msgstr "Hiển thị phần trăm thay đổi"
+
+#. settings-schema.json->showPercentChange->tooltip
+msgid "Display the percent change of the market price (eg. -0.53%)"
+msgstr "Hiển thị phần trăm thay đổi của giá thị trường (ví dụ: -0.53%)"
+
+#. settings-schema.json->colorPercentChange->description
+msgid "Use trend colors for percent change"
+msgstr "Sử dụng màu xu hướng cho phần trăm thay đổi"
+
+#. settings-schema.json->colorPercentChange->tooltip
+msgid "Color the percent change to show the trend"
+msgstr "Tô màu phần trăm thay đổi để hiển thị xu hướng"
+
+#. settings-schema.json->showTradeTime->description
+msgid "Show trading time"
+msgstr "Hiển thị thời gian giao dịch"
+
+#. settings-schema.json->showTradeTime->tooltip
+msgid "Display the last trading time (if current day) or date"
+msgstr "Hiển thị thời gian giao dịch cuối cùng (nếu là ngày hiện tại) hoặc ngày"
+
+#. settings-schema.json->fontColor->description
+msgid "Font color"
+msgstr "Màu chữ"
+
+#. settings-schema.json->fontColor->tooltip
+msgid "Default text color"
+msgstr "Màu chữ mặc định"
+
+#. settings-schema.json->scaleFontSize->description
+msgid "Enable font size scaling"
+msgstr "Bật tỷ lệ cỡ chữ"
+
+#. settings-schema.json->scaleFontSize->tooltip
+msgid "Apply custom font size instead of the system default size"
+msgstr "Áp dụng cỡ chữ tùy chỉnh thay vì cỡ mặc định của hệ thống"
+
+#. settings-schema.json->fontScale->units
+msgid "times"
+msgstr "lần"
+
+#. settings-schema.json->fontScale->description
+msgid "Font size scale factor"
+msgstr "Hệ số tỷ lệ cỡ chữ"
+
+#. settings-schema.json->fontScale->tooltip
+msgid "Enlarge/reduce the font size"
+msgstr "Phóng to/thu nhỏ cỡ chữ"
+
+#. settings-schema.json->uptrendChangeColor->description
+msgid "Uptrend change color"
+msgstr "Màu thay đổi xu hướng tăng"
+
+#. settings-schema.json->uptrendChangeColor->tooltip
+msgid "Color of the uptrend change"
+msgstr "Màu của thay đổi xu hướng tăng"
+
+#. settings-schema.json->downtrendChangeColor->description
+msgid "Downtrend change color"
+msgstr "Màu thay đổi xu hướng giảm"
+
+#. settings-schema.json->unchangedTrendColor->description
+msgid "Unchanged trend color"
+msgstr "Màu xu hướng không thay đổi"
+
+#. settings-schema.json->unchangedTrendColor->tooltip
+msgid "Color of the unchanged trend"
+msgstr "Màu của xu hướng không thay đổi"
+
+#. settings-schema.json->cacheAuthorizationParameters->description
+msgid "Cache authorization parameters"
+msgstr "Bộ nhớ đệm tham số ủy quyền"
+
+#. settings-schema.json->cacheAuthorizationParameters->tooltip
+msgid "Remember fetched authorization parameters for desklet instance"
+msgstr "Ghi nhớ các tham số ủy quyền đã tải cho phiên bản desklet"
+
+#. settings-schema.json->sendCustomUserAgent->description
+msgid "Send custom User-Agent header"
+msgstr "Gửi tiêu đề User-Agent tùy chỉnh"
+
+#. settings-schema.json->sendCustomUserAgent->tooltip
+msgid "Include a custom User-Agent header in Yahoo Finance Quotes API requests"
+msgstr "Bao gồm tiêu đề User-Agent tùy chỉnh trong các yêu cầu API Yahoo Finance Quotes"
+
+#. settings-schema.json->customUserAgent->description
+msgid "Custom User-Agent header"
+msgstr "Tiêu đề User-Agent tùy chỉnh"
+
+#. settings-schema.json->customUserAgent->tooltip
+msgid "Value for User-Agent header to send with all API requests"
+msgstr "Giá trị cho tiêu đề User-Agent để gửi với tất cả các yêu cầu API"
+
+#. settings-schema.json->enableCurl->description
+msgid "Use external tool curl"
+msgstr "Sử dụng công cụ bên ngoài curl"
+
+#. settings-schema.json->enableCurl->tooltip
+msgid "Requires separate installation of curl."
+msgstr "Yêu cầu cài đặt riêng curl."
+
+#. settings-schema.json->curlCommand->description
+msgid "Path of curl executable"
+msgstr "Đường dẫn của tệp thực thi curl"
+
+#. settings-schema.json->curlCommand->tooltip
+msgid "Provide absolute path of curl program file"
+msgstr "Cung cấp đường dẫn tuyệt đối của tệp chương trình curl"
+
+#. settings-schema.json->applyNetworkSettingsButton->description
+msgid "Apply network settings"
+msgstr "Áp dụng cài đặt mạng"
+
+#. settings-schema.json->applyNetworkSettingsButton->tooltip
+msgid "Fetches new authorization parameters and refreshes quotes data"
+msgstr "Tải các tham số ủy quyền mới và làm mới dữ liệu báo giá"

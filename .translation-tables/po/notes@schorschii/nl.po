@@ -1,0 +1,356 @@
+# NOTE
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# schorschii, 2018
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-05-03 11:37-0400\n"
+"PO-Revision-Date: 2025-05-16 18:33+0200\n"
+"Last-Translator: qadzek\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. desklet.js:138
+msgid "Refresh"
+msgstr "Vernieuwen"
+
+#. desklet.js:151
+msgid ""
+"Can't read text file.\n"
+"Select a file in settings.\n"
+"\n"
+"Click here to edit."
+msgstr ""
+"Kan tekstbestand niet lezen.\n"
+"Selecteer een bestand in de instellingen.\n"
+" \n"
+"Klik hier om te bewerken."
+
+#. desklet.js:289
+msgid "Notepad"
+msgstr "Kladblok"
+
+#. metadata.json->description
+msgid "A desklet to display notes including various themes."
+msgstr "Een desklet om notities weer te geven inclusief verschillende thema's."
+
+#. metadata.json->name
+#. settings-schema.json->note-section->title
+msgid "Note"
+msgstr "Notitie"
+
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
+msgid "General"
+msgstr "Algemeen"
+
+#. settings-schema.json->visual-page->title
+#. settings-schema.json->visual-section->title
+msgid "Visual"
+msgstr "Visueel"
+
+#. settings-schema.json->label-section->title
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Aangepast deskletlabel (alleen zichtbaar als decoraties zijn ingeschakeld)"
+
+#. settings-schema.json->note-taking-method->description
+msgid "Note Taking Method"
+msgstr "Methode om notities te nemen"
+
+#. settings-schema.json->note-taking-method->options
+msgid "Text File"
+msgstr "Tekstbestand"
+
+#. settings-schema.json->note-taking-method->options
+msgid "Desklet Settings"
+msgstr "Desklet-instellingen"
+
+#. settings-schema.json->file->description
+msgid "Path to note text file"
+msgstr "Pad naar tekstbestand met notities"
+
+#. settings-schema.json->file->tooltip
+msgid "Select your text file, where to read from and save to."
+msgstr ""
+"Selecteer uw tekstbestand, waaruit gelezen moet worden en waarin opgeslagen "
+"moet worden."
+
+#. settings-schema.json->edit-cmd->description
+msgid "Command for editing this note (on mouse click)"
+msgstr "Commando voor het bewerken van deze notitie (bij muisklik)"
+
+#. settings-schema.json->edit-cmd->tooltip
+msgid "%f will replaced by the text file path."
+msgstr "%f wordt vervangen door het pad naar het tekstbestand."
+
+#. settings-schema.json->note-text->description
+msgid "Write Your Note"
+msgstr "Schrijf je notitie"
+
+#. settings-schema.json->style->description
+msgid "Notes style"
+msgstr "Stijl van notities"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Black"
+msgstr "Lege notitie - zwart"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Blue"
+msgstr "Lege notitie - blauw"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Green"
+msgstr "Lege notitie - groen"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Orange"
+msgstr "Lege notitie - oranje"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Purple"
+msgstr "Lege notitie - paars"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - White"
+msgstr "Lege notitie - wit"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Yellow"
+msgstr "Lege notitie - geel"
+
+#. settings-schema.json->style->options
+msgid "White Note - Black Button"
+msgstr "Witte notitie - zwarte knop"
+
+#. settings-schema.json->style->options
+msgid "White Note - Blue Button"
+msgstr "Witte notitie - blauwe knop"
+
+#. settings-schema.json->style->options
+msgid "White Note - Green Button"
+msgstr "Witte notitie - groene knop"
+
+#. settings-schema.json->style->options
+msgid "White Note - Red Button"
+msgstr "Witte notitie - rode knop"
+
+#. settings-schema.json->style->options
+msgid "White Note - Yellow Button"
+msgstr "Witte notitie - gele knop"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Black Clip"
+msgstr "Gele notitie - zwarte clip"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Blue Clip"
+msgstr "Gele notitie - blauwe clip"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Green Clip"
+msgstr "Gele notitie - groene clip"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Jingle Clip"
+msgstr "Gele notitie - belletjes clip"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Red Clip"
+msgstr "Gele notitie - rode clip"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Yellow Clip"
+msgstr "Gele notitie - gele clip"
+
+#. settings-schema.json->style->options
+msgid "White Note - Black Magnet"
+msgstr "Witte notitie - zwarte magneet"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Blue Magnet"
+msgstr "Gele notitie - blauwe magneet"
+
+#. settings-schema.json->style->options
+msgid "White Note - Lines and Red Magnet"
+msgstr "Witte notitie - lijnen en rode magneet"
+
+#. settings-schema.json->style->options
+msgid "Black Note - White Magnet"
+msgstr "Zwarte notitie - witte magneet"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Yellow Magnet"
+msgstr "Gele notitie - gele magneet"
+
+#. settings-schema.json->style->options
+msgid "Blue Paint Strokes"
+msgstr "Blauwe verfstreken"
+
+#. settings-schema.json->style->options
+msgid "Green Paint Strokes"
+msgstr "Groene verfstreken"
+
+#. settings-schema.json->style->options
+msgid "Purple Paint Strokes"
+msgstr "Paarse verfstreken"
+
+#. settings-schema.json->style->options
+msgid "Red Paint Strokes"
+msgstr "Rode verfstreken"
+
+#. settings-schema.json->style->options
+msgid "Yellow Paint Strokes"
+msgstr "Gele verfstreken"
+
+#. settings-schema.json->style->options
+msgid "White Note - Silver Spiral"
+msgstr "Witte notitie - zilveren spiraal"
+
+#. settings-schema.json->style->options
+msgid "White Note - Silver Spiral 2"
+msgstr "Witte notitie - zilveren spiraal 2"
+
+#. settings-schema.json->style->options
+msgid "White Note - Black Spiral"
+msgstr "Witte notitie - zwarte spiraal"
+
+#. settings-schema.json->style->options
+msgid "White Note Large - Silver Spiral"
+msgstr "Grote witte notitie - zilveren spiraal"
+
+#. settings-schema.json->style->options
+msgid "Yellow Sticker"
+msgstr "Gele sticker"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note (iOS Style)"
+msgstr "Gele notitie (iOS-stijl)"
+
+#. settings-schema.json->style->options
+msgid "Birch Bark"
+msgstr "Berkenbast"
+
+#. settings-schema.json->style->options
+msgid "Burned Paper"
+msgstr "Verbrand papier"
+
+#. settings-schema.json->style->options
+msgid "Clay Tablet"
+msgstr "Klei tablet"
+
+#. settings-schema.json->style->options
+msgid "Coffee Stained"
+msgstr "Koffievlekken"
+
+#. settings-schema.json->style->options
+msgid "Clipboard"
+msgstr "Klembord"
+
+#. settings-schema.json->style->options
+msgid "None"
+msgstr "Geen"
+
+#. settings-schema.json->style->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Selecteer de achtergrondafbeelding die u wilt gebruiken."
+
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr "Tekstschaduw"
+
+#. settings-schema.json->text-shadow-color->description
+msgid "Text shadow color"
+msgstr "Kleur van tekstschaduw"
+
+#. settings-schema.json->bg-color->description
+msgid "Background color"
+msgstr "Achtergrondkleur"
+
+#. settings-schema.json->bg-color->tooltip
+msgid "Set the background color of this desklet."
+msgstr "Stel de achtergrondkleur van deze desklet in."
+
+#. settings-schema.json->enable-word-wrap->description
+msgid "Enable word wrap"
+msgstr "Woordafbreking inschakelen"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Verberg decoraties"
+
+#. settings-schema.json->font->description
+msgid "Font"
+msgstr "Lettertype"
+
+#. settings-schema.json->size-font->units
+msgid "pixels"
+msgstr "pixels"
+
+#. settings-schema.json->size-font->description
+msgid "Font size"
+msgstr "Lettergrootte"
+
+#. settings-schema.json->size-font->tooltip
+msgid "Increase or decrease the note font size."
+msgstr "Vergroot of verklein de lettergrootte van de notitie."
+
+#. settings-schema.json->font-bold->description
+msgid "Bold"
+msgstr "Vet"
+
+#. settings-schema.json->font-italic->description
+msgid "Italic"
+msgstr "Cursief"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Tekstkleur"
+
+#. settings-schema.json->text-color->tooltip
+msgid "Set the text color of this desklet."
+msgstr "Stel de tekstkleur van deze desklet in."
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "schaalfactor"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Grootte van de desklet"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Vergroot of verklein de grootte van deze desklet met behulp van deze "
+"schaalfactor."
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Gebruik een aangepast deskletlabel"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Door dit vakje aan te vinken, kunt u een aangepast label instellen in het "
+"veld hieronder."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Aangepast deskletlabel"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr ""
+"Stel hier uw aangepaste label in. Dit veld is niet beschikbaar tenzij het "
+"selectievakje hierboven is ingeschakeld."
