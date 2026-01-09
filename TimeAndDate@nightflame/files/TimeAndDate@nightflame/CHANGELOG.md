@@ -1,3 +1,9 @@
+## [2.1.1] - 09.01.2026
+
+### Changed
+
+- `README.md`: added a warning that `%W` and `%U` formats won't work
+
 ## [2.1] - 01.01.2026
 
 ### Changed
