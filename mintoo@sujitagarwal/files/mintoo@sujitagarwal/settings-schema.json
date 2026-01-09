@@ -1,0 +1,64 @@
+{
+    "head0": {
+        "type": "header",
+        "description": "Settings for Mintoo"
+    },
+    "desklet-size": {
+        "type": "spinbutton",
+        "default": 72,
+        "min": 72,
+        "max": 200,
+        "step": 2,
+        "units": "pixels",
+        "description": "Desklet size",
+        "tooltip": "Increase or decrease the size of the Mintoo Desklet."
+    },
+    "button-color" : {
+        "type": "combobox",
+        "default" : "#333333",
+        "description" : "Button Color",
+        "options" : {
+            "Linux Mint Green": "#87c540",
+            "Black": "#000000",
+            "Blue (Light)": "#42a5f5",
+            "Blue (Dark)": "#1565c0",
+            "Green (Light)": "#66bb6a",
+            "Green (Dark)": "#388e3c",
+            "Red (Light)": "#ef5350",
+            "Red (Dark)": "#b71c1c",
+            "Purple (Light)": "#ab47bc",
+            "Purple (Dark)": "#6a1b9a",
+            "Orange (Light)": "#ffa726",
+            "Orange (Dark)": "#f57c00",
+            "Pink (Light)": "#ec407a",
+            "Pink (Dark)": "#ad1457",
+            "Gray (Light)": "#bdbdbd",
+            "Gray (Dark)": "#333333"
+        },
+        "tooltip" : "Select the button hover style."
+    },
+    "button-hover-color" : {
+        "type": "combobox",
+        "default" : "#87c540",
+        "description" : "Button Hover Color",
+        "options" : {
+            "Linux Mint Green": "#87c540",
+            "Black": "#000000",
+            "Blue (Light)": "#42a5f5",
+            "Blue (Dark)": "#1565c0",
+            "Green (Light)": "#66bb6a",
+            "Green (Dark)": "#388e3c",
+            "Red (Light)": "#ef5350",
+            "Red (Dark)": "#b71c1c",
+            "Purple (Light)": "#ab47bc",
+            "Purple (Dark)": "#6a1b9a",
+            "Orange (Light)": "#ffa726",
+            "Orange (Dark)": "#f57c00",
+            "Pink (Light)": "#ec407a",
+            "Pink (Dark)": "#ad1457",
+            "Gray (Light)": "#bdbdbd",
+            "Gray (Dark)": "#333333"
+        },
+        "tooltip" : "Select the button hover style."
+    }
+}

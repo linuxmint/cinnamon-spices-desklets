@@ -28,15 +28,16 @@ class MyDesklet extends Desklet.Desklet {
     this.settings.bindProperty(Settings.BindingDirection.IN, "colorLabel", "colorLabel", this.onSettingsChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "showStartDate", "showStartDate", this.onSettingsChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "showUptimeInDays", "showUptimeInDays", this.onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "hideDecorations", "hideDecorations", this.updateDecoration.bind(this));
 
     this.fontSize = this.settings.getValue("fontSize") || 20;
     this.colorLabel = this.settings.getValue("colorLabel") || "rgb(51, 209, 122)";
     this._timeout = null;
 
     this.setHeader(_("System Uptime"));
+    this.updateDecoration();
     this.setupLayout();
-    this.getStartupTime();
-    this.updateUptime();
+    this.updateValues();
   }
 
   setupLayout() {
@@ -62,7 +63,7 @@ class MyDesklet extends Desklet.Desklet {
     this.container.add_child(contentBox);
 
     Mainloop.idle_add(() => {
-      let computedHeight = contentBox.get_height();
+      const computedHeight = contentBox.get_height();
 
       const clockIcon = this.getImageAtScale(`${this.metadata.path}/clock.svg`, computedHeight, computedHeight);
 
@@ -85,7 +86,7 @@ class MyDesklet extends Desklet.Desklet {
 
   createRow(children) {
     const row = new St.BoxLayout();
-    children.forEach((child) => row.add_child(child));
+    children.forEach(child => row.add_child(child));
     return row;
   }
 
@@ -112,9 +113,6 @@ class MyDesklet extends Desklet.Desklet {
       this.uptimeValue.set_text("Error");
       global.logError(`${UUID}: ${error.message}`);
     }
-
-    if (this._timeout) Mainloop.source_remove(this._timeout);
-    this._timeout = Mainloop.timeout_add_seconds(60, () => this.updateUptime());
   }
 
   getStartupTime() {
@@ -136,10 +134,21 @@ class MyDesklet extends Desklet.Desklet {
     }
   }
 
-  onSettingsChanged() {
-    this.setupLayout();
+  updateValues() {
     this.updateUptime();
     this.getStartupTime();
+    if (this._timeout) Mainloop.source_remove(this._timeout);
+    this._timeout = Mainloop.timeout_add_seconds(60, () => this.updateValues());
+  }
+
+  onSettingsChanged() {
+    this.setupLayout();
+    this.updateValues();
+  }
+
+  updateDecoration() {
+    this.metadata["prevent-decorations"] = this.hideDecorations;
+    this._updateDecoration();
   }
 
   on_desklet_removed() {

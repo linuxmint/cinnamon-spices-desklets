@@ -12,7 +12,7 @@ const Util = imports.misc.util;
 const UUID = 'cryptocoins@pbojan';
 const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
 const HELP_URL = 'https://github.com/pbojan/cryptocoins-desklet-cinnamon#usage-help';
-const DONATE_URL = 'https://cryptocurrencyticker.xyz/#contribute';
+const DONATE_URL = 'https://github.com/pbojan/cryptocoins-desklet-cinnamon?tab=readme-ov-file#contributedonate';
 const API_URL = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest';
 const WIDTH = 220;
 const WIDTH_ICON = 50 / global.ui_scale;
@@ -22,6 +22,38 @@ const FONT_SIZE_HEADER = parseInt(16 / global.ui_scale);
 const FONT_SIZE_PRICE = parseInt(22 / global.ui_scale);
 const FONT_SIZE_ASSETS = parseInt(12 / global.ui_scale);
 const FONT_SIZE_LAST_UPDATED = parseInt(10 / global.ui_scale);
+const CHANGE_OPTIONS = [
+  {
+    cfg: 'cfgChange1h',
+    field: 'percent_change_1h',
+    label: 'Change 1h:',
+  },
+  {
+    cfg: 'cfgChange24h',
+    field: 'percent_change_24h',
+    label: 'Change 24h:',
+  },
+  {
+    cfg: 'cfgChange7d',
+    field: 'percent_change_7d',
+    label: 'Change 7d:',
+  },
+  {
+    cfg: 'cfgChange30d',
+    field: 'percent_change_30d',
+    label: 'Change 30d:',
+  },
+  {
+    cfg: 'cfgChange60d',
+    field: 'percent_change_60d',
+    label: 'Change 60d:',
+  },
+  {
+    cfg: 'cfgChange90d',
+    field: 'percent_change_90d',
+    label: 'Change 90d:',
+  },
+];
 
 let httpSession;
 if (Soup.MAJOR_VERSION == 2) {
@@ -41,11 +73,8 @@ CryptocurrencyTicker.prototype = {
   container: null,
   mainloop: null,
 
-  // Labels
   priceLabel: null,
-  change1H: null,
-  change1D: null,
-  change7D: null,
+  changeLabels: {},
   assetsOwning: null,
   assetsValue: null,
 
@@ -63,6 +92,12 @@ CryptocurrencyTicker.prototype = {
       this.settings.bind('refreshInterval', 'cfgRefreshInterval', this.onRefreshIntervalChanged);
       this.settings.bind('bgColor', 'cfgBgColor', this.onUISettingsChanged);
       this.settings.bind('bgBorderRadius', 'cfgBgBorderRadius', this.onUISettingsChanged);
+      this.settings.bind('percent-change-1h', 'cfgChange1h', this.onSettingsChanged);
+      this.settings.bind('percent-change-24h', 'cfgChange24h', this.onSettingsChanged);
+      this.settings.bind('percent-change-7d', 'cfgChange7d', this.onSettingsChanged);
+      this.settings.bind('percent-change-30d', 'cfgChange30d', this.onSettingsChanged);
+      this.settings.bind('percent-change-60d', 'cfgChange60d', this.onSettingsChanged);
+      this.settings.bind('percent-change-90d', 'cfgChange90d', this.onSettingsChanged);
 
       this.setHeader('Crypto Coins Ticker');
 
@@ -230,9 +265,14 @@ CryptocurrencyTicker.prototype = {
     var quote = data['quote'][this.cfgCurrency];
 
     this.priceLabel.set_text(this.getFormattedPrice(quote['price']));
-    this.setChangeData(this.change1H, quote['percent_change_1h']);
-    this.setChangeData(this.change1D, quote['percent_change_24h']);
-    this.setChangeData(this.change7D, quote['percent_change_7d']);
+
+    for (let obj of CHANGE_OPTIONS) {
+      if (!this[obj.cfg]) {
+        continue;
+      }
+
+      this.setChangeData(this.changeLabels[obj.field], quote[obj.field]);
+    }
 
     if (this.cfgAssetsOwned > 0 && this.assetsOwning) {
       this.assetsOwning.set_text(
@@ -258,15 +298,17 @@ CryptocurrencyTicker.prototype = {
 
     var quote = data['quote'][this.cfgCurrency];
 
-    this.change1H = new St.Label();
-    this.change1D = new St.Label();
-    this.change7D = new St.Label();
-
     this.container.add(this.addHeaderAndTitle(data));
     this.container.add(this.addPrice(quote['price']));
-    this.container.add(this.addChange('Change 1H:', this.change1H, quote['percent_change_1h']));
-    this.container.add(this.addChange('Change 1D:', this.change1D, quote['percent_change_24h']));
-    this.container.add(this.addChange('Change 7D:', this.change7D, quote['percent_change_7d']));
+
+    for (let obj of CHANGE_OPTIONS) {
+      if (!this[obj.cfg]) {
+        continue;
+      }
+
+      this.changeLabels[obj.field] = new St.Label();
+      this.container.add(this.addChange(obj.label, this.changeLabels[obj.field], quote[obj.field]));
+    }
 
     if (this.cfgAssetsOwned > 0.0) {
       this.container.add(this.addAssetsOwned(this.cfgAssetsOwned, quote['price'], data['symbol']));

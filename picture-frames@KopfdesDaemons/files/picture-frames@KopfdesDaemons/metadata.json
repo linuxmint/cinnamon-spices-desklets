@@ -1,0 +1,8 @@
+{
+  "uuid": "picture-frames@KopfdesDaemons",
+  "name": "Picture frames",
+  "description": "Displays photos in different picture frames.",
+  "version": "1.0",
+  "prevent-decorations": true,
+  "max-instances": "50"
+}

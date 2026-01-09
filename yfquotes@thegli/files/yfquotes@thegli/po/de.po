@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-05-12 00:33+0200\n"
+"POT-Creation-Date: 2025-08-22 22:21+0200\n"
 "PO-Revision-Date: 2023-08-28 16:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,59 +17,57 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
 
-#. desklet.js:119
-msgid "No quotes data to display"
-msgstr "Keine Finanzdaten vorhanden"
-
-#. desklet.js:516
+#. desklet.js:687
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 "Liste der Symbole ist leer. Öffne die Einstellungen und füge Symbole hinzu."
 
-#. desklet.js:561 desklet.js:585
+#. desklet.js:721 desklet.js:747 desklet.js:770
 msgid "Authorization parameters have expired"
 msgstr "Autorisierungsparameter sind abgelaufen"
 
-#. desklet.js:564 desklet.js:588
-msgid "Yahoo Finance service not available!\\nStatus: "
-msgstr "Yahoo Finance Service nicht verfügbar!\\nStatus: "
+#. desklet.js:724 desklet.js:750 desklet.js:773
+msgid "Yahoo Finance service not available! Status: "
+msgstr "Yahoo Finance Service nicht verfügbar! Status: "
 
-#. desklet.js:988
+#. desklet.js:1084
+msgid "No quotes data to display"
+msgstr "Keine Finanzdaten vorhanden"
+
+#. desklet.js:1194
 msgid "Updated at "
 msgstr "Aktualisiert um "
 
-#. desklet.js:1020
+#. desklet.js:1226
 msgid "Error: "
 msgstr "Fehler: "
 
-#. desklet.js:1146
+#. desklet.js:1376
 msgid ""
-"Failed to retrieve authorization parameter! Unable to fetch quotes data."
-"\\nStatus: "
+"Failed to retrieve authorization parameter! Unable to fetch quotes data. "
+"Status: "
 msgstr ""
 "Empfang von Autorisierungsparameter ist fehlgeschlagen! Finanzdaten-Abfrage "
-"nicht möglich.\\nStatus: "
+"nicht möglich. Status: "
 
-#. desklet.js:1173
-msgid "Consent processing failed! Unable to fetch quotes data.\\nStatus: "
+#. desklet.js:1403
+msgid "Consent processing failed! Unable to fetch quotes data. Status: "
 msgstr ""
-"Consent-Erteilung ist fehlgeschlagen! Finanzdaten-Abfrage nicht möglich."
-"\\nStatus: "
+"Consent-Erteilung ist fehlgeschlagen! Finanzdaten-Abfrage nicht möglich. "
+"Status: "
 
-#. desklet.js:1179
-msgid ""
-"Consent processing not completed! Unable to fetch quotes data.\\nStatus: "
+#. desklet.js:1409
+msgid "Consent processing not completed! Unable to fetch quotes data. Status: "
 msgstr ""
-"Consent-Erteilung nicht abgeschlossen! Finanzdaten-Abfrage nicht möglich."
-"\\nStatus: "
+"Consent-Erteilung nicht abgeschlossen! Finanzdaten-Abfrage nicht möglich. "
+"Status: "
 
-#. desklet.js:1207
+#. desklet.js:1445
 msgid ""
-"Failed to retrieve authorization crumb! Unable to fetch quotes data."
-"\\nStatus: "
+"Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: "
 msgstr ""
 "Emfang von Autorisierungs-Crumb ist fehlgeschlagen! Finanzdaten-Abfrage "
-"nicht möglich.\\nStatus: "
+"nicht möglich. Status: "
 
 #. metadata.json->description
 msgid ""
@@ -313,8 +311,9 @@ msgid ""
 "This setting is ignored, when a custom time format is defined."
 msgstr ""
 "Zeigt Zeitangaben unabhängig von der Systemeinstellung immer im 24-Stunden "
-"Format an.\\nDies Einstellung wird ignoriert, wenn ein individuelles Zeit-"
-"Format definiert ist."
+"Format an.\n"
+"Diese Einstellung wird ignoriert, wenn ein individuelles Zeit-Format "
+"definiert ist."
 
 #. settings-schema.json->customTimeFormat->description
 msgid "Custom time format"
@@ -556,6 +555,14 @@ msgstr "Seitwärtstrend-Farbe"
 msgid "Color of the unchanged trend"
 msgstr "Farbe für unveränderte prozentuale Veränderung"
 
+#. settings-schema.json->cacheAuthorizationParameters->description
+msgid "Cache authorization parameters"
+msgstr "Autorisierungsparameter zwischenspeichern"
+
+#. settings-schema.json->cacheAuthorizationParameters->tooltip
+msgid "Remember fetched authorization parameters for desklet instance"
+msgstr "Geholte Autorisierungsparameter merken für Desklet Instanz"
+
 #. settings-schema.json->sendCustomUserAgent->description
 msgid "Send custom User-Agent header"
 msgstr "Individuellen User-Agent Header senden"
@@ -584,7 +591,7 @@ msgstr "Benötigt eine separate Installation von curl"
 
 #. settings-schema.json->curlCommand->description
 msgid "Path of curl executable"
-msgstr "Dateipfad von Programm url"
+msgstr "Dateipfad von Programm curl"
 
 #. settings-schema.json->curlCommand->tooltip
 msgid "Provide absolute path of curl program file"

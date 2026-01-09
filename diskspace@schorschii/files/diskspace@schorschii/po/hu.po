@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-07-31 12:29-0400\n"
-"PO-Revision-Date: 2023-12-13 09:45+0100\n"
+"POT-Creation-Date: 2025-12-22 13:42+0100\n"
+"PO-Revision-Date: 2026-01-02 18:57+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: hu\n"
@@ -17,29 +17,42 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:275 desklet.js:361
+#. desklet.js:317 desklet.js:487
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#. desklet.js:277 desklet.js:363
+#. desklet.js:319 desklet.js:489
 msgid "Swap"
 msgstr "Cserehely"
 
 #. settings-schema.json->type->options
-#. desklet.js:279
+#. desklet.js:321
 msgid "Filesystem"
 msgstr "Fájlrendszer"
 
-#. desklet.js:306
+#. desklet.js:348
 msgid "Not Found"
 msgstr "Nem található"
 
+#. desklet.js:434
+msgid "Sorry, this font is not supported, please select a different one."
+msgstr ""
+"Sajnáljuk, ez a betűtípus nem támogatott, kérjük, válasszon egy másikat."
+
+#. desklet.js:435
+msgid " Font: `"
+msgstr "Betűtípus: `"
+
+#. desklet.js:435
+msgid "` Error: "
+msgstr "` Hiba: "
+
 #. metadata.json->name
-#. desklet.js:365
+#. desklet.js:491
 msgid "Disk Space"
 msgstr "Lemez terület"
 
@@ -109,6 +122,14 @@ msgstr "Tizedes"
 msgid "Binary"
 msgstr "Bináris"
 
+#. settings-schema.json->size-fraction-digits->description
+msgid "Number of fractional digits"
+msgstr "Tört számjegyek száma"
+
+#. settings-schema.json->size-fraction-digits->tooltip
+msgid "Increase or decrease the number digits after the decimal point."
+msgstr "Növelje vagy csökkentse a tizedesvessző utáni számjegyek számát."
+
 #. settings-schema.json->reserved-blocks-as-used-space->description
 msgid "Show reserved blocks as used space"
 msgstr "A lefoglalt blokkok megjelenítése használt területként"
@@ -150,9 +171,8 @@ msgid "Name and total space"
 msgstr "Név és összes terület"
 
 #. settings-schema.json->text-view->options
-#, fuzzy
 msgid "Name and free space"
-msgstr "Összes és szabad terület"
+msgstr "Név és szabad terület"
 
 #. settings-schema.json->text-view->options
 msgid "Used and total space"
@@ -182,13 +202,45 @@ msgstr "Díszítések elrejtése"
 msgid "Draw free/unused space (gray)"
 msgstr "Szabad/fel nem használt terület rajzolása (szürke)"
 
+#. settings-schema.json->fill-circle-background->description
+msgid "Fill circle background"
+msgstr "Kör háttér kitöltése"
+
+#. settings-schema.json->fill-circle-background->tooltip
+msgid "Fill the inside of the circle with color."
+msgstr "Töltse ki a kör belsejét színnel."
+
+#. settings-schema.json->fill-circle-background-color->description
+msgid "Background fill color"
+msgstr "Háttér kitöltés színe"
+
 #. settings-schema.json->use-own-circle-color->description
 msgid "Use a custom circle color"
 msgstr "Használjon egyéni körszínt"
 
 #. settings-schema.json->circle-color->description
 msgid "Circle color"
-msgstr "Körszínt"
+msgstr "Kör szín"
+
+#. settings-schema.json->circle-color-free-space->description
+msgid "Circle color for free space"
+msgstr "Kör színe a szabad helyhez"
+
+#. settings-schema.json->font->description
+msgid "Text font"
+msgstr "Szöveg betűtípusa"
+
+#. settings-schema.json->font->tooltip
+msgid "Change text font family"
+msgstr "Szöveg betűtípuscsaládjának módosítása"
+
+#. settings-schema.json->font-sub->description
+msgid "Sub text font"
+msgstr "Alszöveg betűtípusa"
+
+#. settings-schema.json->font-sub->tooltip
+msgid "Change font family of the text below the percentage"
+msgstr "A százalékérték alatti szöveg betűtípuscsaládjának módosítása"
 
 #. settings-schema.json->text-color->description
 msgid "Text color"

@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: moonlight-clock@torchipeppo 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-03-08 19:15+0100\n"
+"POT-Creation-Date: 2025-10-22 18:32+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,92 +19,92 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.8\n"
 
-#. 3.4/constants.js:43 5.4/constants.js:43
+#. 3.4/constants.js:45 5.4/constants.js:45
 msgid "Next"
 msgstr "Siguiente"
 
-#. 3.4/constants.js:100 5.4/constants.js:100
+#. 3.4/constants.js:90 5.4/constants.js:90
 msgid "New Moon"
 msgstr "Luna nueva"
 
-#. 3.4/constants.js:101 5.4/constants.js:101
+#. 3.4/constants.js:91 5.4/constants.js:91
 msgid "Waxing Crescent"
 msgstr "Luna nueva visible"
 
-#. 3.4/constants.js:102 5.4/constants.js:102
+#. 3.4/constants.js:92 5.4/constants.js:92
 msgid "First Quarter"
 msgstr "Cuarto creciente"
 
-#. 3.4/constants.js:103 5.4/constants.js:103
+#. 3.4/constants.js:93 5.4/constants.js:93
 msgid "Waxing Gibbous"
 msgstr "Gibosa creciente"
 
-#. 3.4/constants.js:104 5.4/constants.js:104
+#. 3.4/constants.js:94 5.4/constants.js:94
 msgid "Full Moon"
 msgstr "Luna llena"
 
-#. 3.4/constants.js:105 5.4/constants.js:105
+#. 3.4/constants.js:95 5.4/constants.js:95
 msgid "Waning Gibbous"
 msgstr "Gibosa menguante"
 
-#. 3.4/constants.js:106 5.4/constants.js:106
+#. 3.4/constants.js:96 5.4/constants.js:96
 msgid "Last Quarter"
 msgstr "Cuarto menguante"
 
-#. 3.4/constants.js:107 5.4/constants.js:107
+#. 3.4/constants.js:97 5.4/constants.js:97
 msgid "Waning Crescent"
 msgstr "Luna menguante"
 
-#. 3.4/constants.js:111 5.4/constants.js:111
+#. 3.4/constants.js:101 5.4/constants.js:101
 msgid "New"
 msgstr "Nueva"
 
-#. 3.4/constants.js:112 3.4/constants.js:114 5.4/constants.js:112
-#. 5.4/constants.js:114
+#. 3.4/constants.js:102 3.4/constants.js:104 5.4/constants.js:102
+#. 5.4/constants.js:104
 msgid "Half"
 msgstr "Media"
 
-#. 3.4/constants.js:113 5.4/constants.js:113
+#. 3.4/constants.js:103 5.4/constants.js:103
 msgid "Full"
 msgstr "Llena"
 
-#. 3.4/constants.js:170 5.4/constants.js:170
+#. 3.4/constants.js:160 5.4/constants.js:160
 msgid "Clear"
 msgstr "Despejado"
 
-#. 3.4/constants.js:171 3.4/constants.js:172 5.4/constants.js:171
-#. 5.4/constants.js:172
+#. 3.4/constants.js:161 3.4/constants.js:162 5.4/constants.js:161
+#. 5.4/constants.js:162
 msgid "Cloudy"
 msgstr "Nuvoso"
 
-#. 3.4/constants.js:173 5.4/constants.js:173
+#. 3.4/constants.js:163 5.4/constants.js:163
 msgid "Fog"
 msgstr "Niebla"
 
-#. 3.4/constants.js:174 3.4/constants.js:175 3.4/weatherapi_source.js:154
-#. 5.4/constants.js:174 5.4/constants.js:175 5.4/weatherapi_source.js:154
+#. 3.4/constants.js:164 3.4/constants.js:165 3.4/weatherapi_source.js:154
+#. 5.4/constants.js:164 5.4/constants.js:165 5.4/weatherapi_source.js:154
 msgid "Rain"
 msgstr "Lluvia"
 
-#. 3.4/constants.js:176 5.4/constants.js:176
+#. 3.4/constants.js:166 5.4/constants.js:166
 msgid "Storm"
 msgstr "Tormenta"
 
-#. 3.4/constants.js:177 5.4/constants.js:177
+#. 3.4/constants.js:167 5.4/constants.js:167
 msgid ""
 "Cold\n"
 "precip."
 msgstr ""
-"Precip.\n"
-"frío"
+"Precipitación\n"
+"fría."
 
-#. 3.4/desklet.js:149 5.4/desklet.js:149
+#. 3.4/desklet.js:143 5.4/desklet.js:143
 msgid "Date and Time Settings"
 msgstr "Configuración de fecha y hora"
 
-#. 3.4/desklet.js:408 3.4/desklet.js:439 5.4/desklet.js:408 5.4/desklet.js:439
+#. 3.4/desklet.js:400 3.4/desklet.js:431 5.4/desklet.js:400 5.4/desklet.js:431
 msgid "Limit"
 msgstr "Límite"
 
@@ -112,11 +112,11 @@ msgstr "Límite"
 #. 3.4->settings-schema.json->bottom-caption-type->options
 #. 5.4->settings-schema.json->bottom-emoji-type->options
 #. 5.4->settings-schema.json->bottom-caption-type->options
-#. 3.4/desklet.js:412 5.4/desklet.js:412
+#. 3.4/desklet.js:404 5.4/desklet.js:404
 msgid "None"
 msgstr "Ninguno"
 
-#. 3.4/desklet.js:454 5.4/desklet.js:454
+#. 3.4/desklet.js:446 5.4/desklet.js:446
 msgid ""
 "Right-click\n"
 "to configure!"
@@ -125,35 +125,35 @@ msgstr ""
 "para configurar!"
 
 #. metadata.json->name
-#. 3.4/desklet.js:507 5.4/desklet.js:507
+#. 3.4/desklet.js:499 5.4/desklet.js:499
 msgid "Moonlight Clock"
 msgstr "Reloj de luz de luna"
 
-#. 3.4/wallclock_source.js:13 5.4/wallclock_source.js:13
+#. 3.4/wallclock_source.js:14 5.4/wallclock_source.js:14
 msgid "Late Night"
 msgstr "Tarde noche"
 
-#. 3.4/wallclock_source.js:16 5.4/wallclock_source.js:16
+#. 3.4/wallclock_source.js:17 5.4/wallclock_source.js:17
 msgid "Early Morning"
 msgstr "Madrugada"
 
-#. 3.4/wallclock_source.js:19 5.4/wallclock_source.js:19
+#. 3.4/wallclock_source.js:20 5.4/wallclock_source.js:20
 msgid "Morning"
 msgstr "Por la mañana"
 
-#. 3.4/wallclock_source.js:22 5.4/wallclock_source.js:22
+#. 3.4/wallclock_source.js:23 5.4/wallclock_source.js:23
 msgid "Daytime"
 msgstr "De día"
 
-#. 3.4/wallclock_source.js:25 5.4/wallclock_source.js:25
+#. 3.4/wallclock_source.js:26 5.4/wallclock_source.js:26
 msgid "Afternoon"
 msgstr "Por la tarde"
 
-#. 3.4/wallclock_source.js:28 5.4/wallclock_source.js:28
+#. 3.4/wallclock_source.js:29 5.4/wallclock_source.js:29
 msgid "Evening"
 msgstr "Por la noche"
 
-#. 3.4/wallclock_source.js:125 5.4/wallclock_source.js:125
+#. 3.4/wallclock_source.js:126 5.4/wallclock_source.js:126
 msgid "Today"
 msgstr "Hoy"
 
@@ -190,44 +190,44 @@ msgstr "Cargar"
 msgid "Save"
 msgstr "Guardar"
 
-#. 3.4/settingsWidgets.py:129 5.4/settingsWidgets.py:129
+#. 3.4/settingsWidgets.py:128 5.4/settingsWidgets.py:128
 msgid "Enabled"
 msgstr "Habilitada"
 
-#. 3.4/settingsWidgets.py:130 5.4/settingsWidgets.py:130
+#. 3.4/settingsWidgets.py:129 5.4/settingsWidgets.py:129
 msgid "Persistent"
 msgstr "Persistente"
 
-#. 3.4/settingsWidgets.py:131 5.4/settingsWidgets.py:131
+#. 3.4/settingsWidgets.py:130 5.4/settingsWidgets.py:130
 msgid "Date"
 msgstr "Fecha"
 
-#. 3.4/settingsWidgets.py:132 5.4/settingsWidgets.py:132
+#. 3.4/settingsWidgets.py:131 5.4/settingsWidgets.py:131
 msgid "Name"
 msgstr "Nombre"
 
-#. 3.4/settingsWidgets.py:233 3.4/settingsWidgets.py:329
-#. 5.4/settingsWidgets.py:233 5.4/settingsWidgets.py:329
+#. 3.4/settingsWidgets.py:232 3.4/settingsWidgets.py:328
+#. 5.4/settingsWidgets.py:232 5.4/settingsWidgets.py:328
 msgid "Add new entry"
 msgstr "Añadir nueva entrada"
 
-#. 3.4/settingsWidgets.py:237 5.4/settingsWidgets.py:237
+#. 3.4/settingsWidgets.py:236 5.4/settingsWidgets.py:236
 msgid "Remove selected entry"
 msgstr "Eliminar la entrada seleccionada"
 
-#. 3.4/settingsWidgets.py:242 5.4/settingsWidgets.py:242
+#. 3.4/settingsWidgets.py:241 5.4/settingsWidgets.py:241
 msgid "Edit selected entry"
 msgstr "Editar la entrada seleccionada"
 
-#. 3.4/settingsWidgets.py:247 5.4/settingsWidgets.py:247
+#. 3.4/settingsWidgets.py:246 5.4/settingsWidgets.py:246
 msgid "Move selected entry up"
 msgstr "Mover la entrada seleccionada hacia arriba"
 
-#. 3.4/settingsWidgets.py:252 5.4/settingsWidgets.py:252
+#. 3.4/settingsWidgets.py:251 5.4/settingsWidgets.py:251
 msgid "Move selected entry down"
 msgstr "Mover la entrada seleccionada hacia abajo"
 
-#. 3.4/settingsWidgets.py:331 5.4/settingsWidgets.py:331
+#. 3.4/settingsWidgets.py:330 5.4/settingsWidgets.py:330
 msgid "Edit entry"
 msgstr "Editar entrada"
 
@@ -673,8 +673,8 @@ msgstr "Temperatura °F (O)"
 
 #. 3.4->settings-schema.json->bottom-caption-type->options
 #. 5.4->settings-schema.json->bottom-caption-type->options
-msgid "Full moon countdown (C?)"
-msgstr "Cuenta regresiva de luna llena (C?)"
+msgid "Moon countdown (C?)"
+msgstr "Cuenta regresiva lunar (C?)"
 
 #. 3.4->settings-schema.json->bottom-caption-type->options
 #. 5.4->settings-schema.json->bottom-caption-type->options
@@ -690,6 +690,31 @@ msgstr "Mostrar subtítulos"
 #. 5.4->settings-schema.json->bottom-show-secondary-countdowns->description
 msgid "Show more countdowns in secondary text (D)"
 msgstr "Mostrar más cuentas regresivas en el texto secundario (D)"
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "Select moon phases"
+msgstr "Seleccionar fases lunares"
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌑"
+msgstr "🌑"
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌓"
+msgstr "🌓"
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌕"
+msgstr "🌕"
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌗"
+msgstr "🌗"
 
 #. 3.4->settings-schema.json->custom-countdown-list-label->description
 #. 5.4->settings-schema.json->custom-countdown-list-label->description

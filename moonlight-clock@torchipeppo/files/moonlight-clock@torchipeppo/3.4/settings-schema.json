@@ -113,6 +113,7 @@
             "title": "Caption settings",
             "keys": [
                 "bottom-caption-type",
+                "bottom-moon-countdown-selection",
                 "bottom-caption-font",
                 "bottom-caption-v-offset",
                 "bottom-caption-shadow",
@@ -407,7 +408,7 @@
             "Temperature °C (W)": "temp-c",
             "Temperature °F (W)": "temp-f",
             "Moon phase (C?)": "moon",
-            "Full moon countdown (C?)": "cntdn-full",
+            "Moon countdown (C?)": "cntdn-full",
             "Custom countdown (D)": "cntdn-cstm"
         },
         "description": "Caption display"
@@ -447,6 +448,28 @@
         "default": true,
         "description": "Show more countdowns in secondary text (D)",
         "dependency": "bottom-caption-type!="
+    },
+    "bottom-moon-countdown-selection": {
+        "type": "list",
+        "columns": [
+            {"id": "prompt", "title": "Select moon phases", "type": "string", "default": "-->"},
+            {"id": "new",  "title": "🌑", "type": "boolean", "default": false},
+            {"id": "fq",   "title": "🌓", "type": "boolean", "default": false},
+            {"id": "full", "title": "🌕", "type": "boolean", "default": true},
+            {"id": "lq",   "title": "🌗", "type": "boolean", "default": false},
+            {"id": "filler", "title": "", "type": "string", "default": "<--"}
+        ],
+        "default": [{
+            "prompt": "-->",
+            "new": false,
+            "fq": false,
+            "full": true,
+            "lq": false,
+            "filler": "<--"
+        }],
+        "height": 20,
+        "show-buttons": false,
+        "dependency": "bottom-caption-type=cntdn-full"
     },
 
 

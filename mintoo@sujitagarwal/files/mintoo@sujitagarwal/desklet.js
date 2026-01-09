@@ -3,6 +3,8 @@ const Desklet = imports.ui.desklet;
 const GLib = imports.gi.GLib;
 const Util = imports.misc.util;
 const Gettext = imports.gettext;
+const Settings = imports.ui.settings;
+const Tooltips = imports.ui.tooltips;
 
 const uuid = "mintoo@sujitagarwal";
 
@@ -18,6 +20,13 @@ class MintooDesklet extends Desklet.Desklet {
         this.metadata = metadata;
         this.uuid = this.metadata["uuid"];
 
+        // Add this line to load settings
+        this.settings = new Settings.DeskletSettings(this, this.uuid, this.metadata["instanceId"]);
+        this.settings.bind("desklet-size", "deskletSize", this._onSettingsChanged.bind(this));
+        this.settings.bind("button-color", "buttonColor", this._onSettingsChanged.bind(this));
+        this.settings.bind("button-hover-color", "buttonHoverColor", this._onSettingsChanged.bind(this));
+        this.settings.bind("button-radius", "borderRadius", this._onSettingsChanged.bind(this));
+
         this._createUI();
     }
 
@@ -30,15 +39,30 @@ class MintooDesklet extends Desklet.Desklet {
         this._mintoolabel = new St.Label({ style_class: "mintoo-button-move" });
 
         const buttonSettings = [
-            { className: "mintoo-button mintoo-button-one", action: this._lockClickAction },
-            { className: "mintoo-button mintoo-button-two", action: this._logoutClickAction },
-            { className: "mintoo-button mintoo-button-three", action: this._shutdownClickAction },
-            { className: "mintoo-button mintoo-button-four", action: this._rebootClickAction }
+            { className: "mintoo-button mintoo-button-one", action: this._lockClickAction, tooltip: _("Lock the Screen") },
+            { className: "mintoo-button mintoo-button-two", action: this._logoutClickAction, tooltip: _("Logout") },
+            { className: "mintoo-button mintoo-button-three", action: this._shutdownClickAction, tooltip: _("Shutdown") },
+            { className: "mintoo-button mintoo-button-four", action: this._rebootClickAction, tooltip: _("Restart") },
         ];
 
+        let defaultColor = this.buttonColor; // Default color if not set
+
         buttonSettings.forEach((btn, index) => {
-            const button = new St.Button({ style_class: btn.className });
+            const button = new St.Button({
+                style_class: btn.className,
+                width: this.deskletSize,
+                height: this.deskletSize,
+            });
+            button.set_style(`background-color: ${this.buttonColor || defaultColor};`);
             button.connect("clicked", btn.action.bind(this));
+            button.connect("enter-event", () => {
+                button.set_style(`background-color: ${this.buttonHoverColor};`);
+            });
+            button.connect("leave-event", () => {
+                button.set_style(`background-color: ${this.buttonColor};`);
+            });
+            new Tooltips.Tooltip(button, btn.tooltip);
+            
             if (index < 2) {
                 this._row1.add(button);
             } else {
@@ -48,8 +72,11 @@ class MintooDesklet extends Desklet.Desklet {
 
         this._container.add(this._row1);
         this._container.add(this._row2);
-
         this.setContent(this._container);
+    }
+
+    _onSettingsChanged() {    
+        this._createUI();
     }
 
     _lockClickAction() {

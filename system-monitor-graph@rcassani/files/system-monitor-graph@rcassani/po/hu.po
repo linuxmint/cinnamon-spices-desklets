@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-08-01 22:18-0400\n"
-"PO-Revision-Date: 2023-12-13 12:42+0100\n"
+"POT-Creation-Date: 2025-08-27 21:38-0400\n"
+"PO-Revision-Date: 2025-11-11 10:23+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: hu\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. settings-schema.json->type->options
 #. desklet.js:183
@@ -57,46 +57,47 @@ msgstr "GPU memória"
 #. settings-schema.json->type->options
 #. desklet.js:290
 msgid "Network"
-msgstr ""
+msgstr "Hálózat"
 
 #. desklet.js:518 desklet.js:541
 msgid "b"
-msgstr ""
+msgstr "b"
 
 #. desklet.js:520 desklet.js:555 desklet.js:569
-#, fuzzy
 msgid "B"
-msgstr "GB"
+msgstr "B"
 
 #. desklet.js:533
 msgid "Gb"
-msgstr ""
+msgstr "Gb"
 
 #. desklet.js:536
 msgid "Mb"
-msgstr ""
+msgstr "Mb"
 
 #. desklet.js:539
 msgid "Kb"
-msgstr ""
+msgstr "Kb"
 
 #. desklet.js:550
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 #. desklet.js:553
 msgid "KB"
-msgstr ""
+msgstr "KB"
 
 #. desklet.js:564
-#, fuzzy
 msgid "MiB"
-msgstr "GiB"
+msgstr "MiB"
 
 #. desklet.js:567
-#, fuzzy
 msgid "KiB"
-msgstr "GiB"
+msgstr "KiB"
+
+#. desklet.js:844 desklet.js:882
+msgid "Error executing nvidia-smi command."
+msgstr "Hiba az nvidia-smi parancs végrehajtásakor."
 
 #. metadata.json->name
 msgid "System monitor graph"
@@ -165,34 +166,31 @@ msgid "Unit prefix for Filesystem size."
 msgstr "A fájlrendszer méretének egység előtagja."
 
 #. settings-schema.json->data-prefix-network->options
-#, fuzzy
 msgid "Bytes - Binary prefix or IEC (1 KiB = 1024 bytes)"
-msgstr "Bináris előtag vagy IEC (1 GiB = 1024³ bájt)"
+msgstr "Bájtok - Bináris előtag vagy IEC (1 KiB = 1024 bájt)"
 
 #. settings-schema.json->data-prefix-network->options
-#, fuzzy
 msgid "Bytes - Decimal prefix (1 KB = 1000 bytes)"
-msgstr "Tizedes előtag (1 GB = 1000³ bájt)"
+msgstr "Bájtok - Decimális előtag (1 KB = 1000 bájt)"
 
 #. settings-schema.json->data-prefix-network->options
-#, fuzzy
 msgid "Bits - Decimal prefix (1 Kb = 1000 bits)"
-msgstr "Tizedes előtag (1 GB = 1000³ bájt)"
+msgstr "Bitek - Decimális előtag (1 Kb = 1000 bit)"
 
 #. settings-schema.json->data-prefix-network->tooltip
-#, fuzzy
 msgid "Unit prefix for network speed."
-msgstr "A cserehely méretének egység előtagja."
+msgstr "Hálózati sebesség egység előtagja."
 
 #. settings-schema.json->network-interface->description
-#, fuzzy
 msgid "Network interface to monitor"
-msgstr "Válassza ki a megfigyelendő GPU jellemzőket."
+msgstr "Hálózati interfész a monitorozáshoz"
 
 #. settings-schema.json->network-interface->tooltip
 msgid ""
 "Leave empty to monitor all interfaces combined. Examples: eth0, wlan0, enp0s3"
 msgstr ""
+"Hagyja üresen, ha az összes interfészt együttesen szeretné figyelni. Példák: "
+"eth0, wlan0, enp0s3"
 
 #. settings-schema.json->filesystem->description
 msgid "Filesystem to monitor"
@@ -226,7 +224,7 @@ msgstr "NVIDIA"
 
 #. settings-schema.json->gpu-manufacturer->options
 msgid "AMDGPU"
-msgstr ""
+msgstr "AMDGPU"
 
 #. settings-schema.json->gpu-id->description
 msgid "Id of GPU to monitor"
@@ -370,14 +368,12 @@ msgid "Line color GPU"
 msgstr "GPU vonalszín"
 
 #. settings-schema.json->line-color-network-down->description
-#, fuzzy
 msgid "Line color Network Download"
-msgstr "Cserehely vonalszín"
+msgstr "Vonalszín Hálózati letöltés"
 
 #. settings-schema.json->line-color-network-up->description
-#, fuzzy
 msgid "Line color Network Upload"
-msgstr "Cserehely vonalszín"
+msgstr "Vonalszín Hálózati feltöltés"
 
 #. settings-schema.json->midline-color->description
 msgid "Grid color"

@@ -21,6 +21,22 @@ class LunarCalendarSource {
 
         this.settings.bind("bottom-emoji-type", "emoji_type");
         this.settings.bind("bottom-caption-type", "caption_type");
+        this.settings.bind("bottom-moon-countdown-selection", "moon_countdown_selection_table", this._onMoonChanged);
+
+        this._onMoonChanged();
+    }
+
+    _onMoonChanged() {
+        this.moon_countdown_selection = this.moon_countdown_selection_table[0];
+        if (
+            !this.moon_countdown_selection["full"] &&
+            !this.moon_countdown_selection["new"] &&
+            !this.moon_countdown_selection["fq"] &&
+            !this.moon_countdown_selection["lq"]
+        ) {
+            // default
+            this.moon_countdown_selection["full"] = true;
+        }
     }
 
     _get_fpath() {
@@ -41,8 +57,8 @@ class LunarCalendarSource {
     get_emoji_text() {
         switch (this.emoji_type) {
             case "moon":
-                let moon_phase_name = this._find_moon_phase_name();
-                return CONSTANTS.MOON_PHASES_BY_WEATHERAPI_NAME[moon_phase_name];
+                let moon_phase_code = this._find_moon_phase_code();
+                return CONSTANTS.MOON_PHASE_EMOJIS[moon_phase_code];
             default:
                 return "";
         }
@@ -50,17 +66,17 @@ class LunarCalendarSource {
     get_label_text() {
         switch (this.caption_type) {
             case "moon":
-                let moon_phase_name = this._find_moon_phase_name();
-                moon_phase_name = CONSTANTS.TRANSLATED_MOON_PHASE_NAMES[moon_phase_name];
+                let moon_phase_code = this._find_moon_phase_code();
+                let moon_phase_name = CONSTANTS.MOON_PHASE_NAMES[moon_phase_code];
                 return moon_phase_name.replace(" ", "\n");
             case "cntdn-full":
-                return this._get_full_moon_countdown_str();
+                return this._get_moon_quarter_countdown_str();
             default:
                 return "";
         }
     }
 
-    _find_moon_phase_name() {
+    _find_moon_phase_code() {
         let today = new_midnight_date();
         let lunar_calendar = JSON.parse(this.file_handler.get_file_text(this._get_fpath()));
         // find today's date or the two dates today falls in between
@@ -70,18 +86,14 @@ class LunarCalendarSource {
         }
 
         if (today.getTime() == new_midnight_date(lunar_calendar.calendar[i][0]).getTime()) {
-            return CONSTANTS.MOON_PHASE_NAMES_BY_LUNCAL_RESULT[
-                lunar_calendar.calendar[i][1]
-            ];
+            return lunar_calendar.calendar[i][1];
         }
         else {
-            return CONSTANTS.MOON_PHASE_NAMES_BY_LUNCAL_RESULT[
-                lunar_calendar.calendar[i-1][1] + "-" + lunar_calendar.calendar[i][1]
-            ];
+            return lunar_calendar.calendar[i-1][1] + "-" + lunar_calendar.calendar[i][1];
         }
     }
 
-    _get_full_moon_countdown_str() {
+    _get_moon_quarter_countdown_str() {
         let today = new_midnight_date();
         let lunar_calendar = JSON.parse(this.file_handler.get_file_text(this._get_fpath()));
         // find the first full moon that is today or later,
@@ -90,11 +102,12 @@ class LunarCalendarSource {
         let i = lunar_calendar.month_index[today.getMonth()];
         while (true) {
             let i_date = new_midnight_date(lunar_calendar.calendar[i][0]);
+            let pc = lunar_calendar.calendar[i][1];
             if (today.getTime() == i_date.getTime()) {
-                return CONSTANTS.MOON_PHASE_SHORTNAMES[lunar_calendar.calendar[i][1]];
+                return CONSTANTS.MOON_PHASE_SHORTNAMES[pc];
             }
-            if (today < i_date && lunar_calendar.calendar[i][1] == "full") {
-                let days_left = Math.round((i_date - today) / (1000 * 60 * 60 * 24));
+            if (today < i_date && this.moon_countdown_selection[pc]) {
+                let days_left = Math.round((i_date - today) / (CONSTANTS.ONE_DAY_MSEC));
                 return SU.countdown_formatting(days_left);
             }
             i += 1;

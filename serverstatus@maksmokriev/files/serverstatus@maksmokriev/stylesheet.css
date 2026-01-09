@@ -1,0 +1,20 @@
+.init {
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+.error {
+    color: orange;
+}
+
+.container {
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.box {
+    margin: 0.2em;
+    padding: 0.2em;
+    border-radius: 10px;
+    vertical-align: middle;
+}

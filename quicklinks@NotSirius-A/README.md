@@ -18,16 +18,12 @@ This desklet was designed to help clean up desktops with lots of icons and impro
 
 You can customize this desklet to your taste. Choose from two layouts a list or tiles; change fonts, and icons or remove them entirely. You can use transparency or have solid colors, perhaps make the buttons large or compact. Check out the different options.
 
-### What can be improved?
+### Tips
 
-* This desklet could use more translations. I might add a Polish translation myself in the future.
-
-* Improve font parsing.
-
-* More visual customizations could be added.
-
-* Unfortunately, the xlet settings API at this moment doesn't support `iconfilechooser` within `list` setting, so icons have to be typed in by name, which is somewhat annoying.
-
+- You can add multiple desklets by clicking the "+" icons in your desklet manager.
+- You can backup your desklets by going to the settings. There you should find an icon in the top right corner. Select the `Export to a file` option or import to load your backup.
+- You can add a transparent border to your link to make them look bigger.
+- When you disable desklet decorations you can still grab the desklet by the invisible border around it.
 
 
 ### Remarks

@@ -1,0 +1,12 @@
+{
+    "uuid": "nvidia-gpu-monitor@hierakonpolis",
+    "name": "NVIDIA GPU Monitor",
+    "description": "Real-time GPU monitoring desklet showing compute usage, memory usage, and optional temperature with customizable colors and update intervals. Features multi-GPU support, error handling, and smooth animations.",
+    "version": "1.0.0",
+    "author": "Hierakonpolis",
+    "website": "https://github.com/Hierakonpolis/nvidia-gpu-monitor-desklet",
+    "contributors": "Hierakonpolis",
+    "comments": "A GPU monitoring desklet that uses nvidia-smi to display real-time usage charts with historical data, percentage labels, and customizable appearance. Requires nvidia-smi to be installed.",
+    "prevent-decorations": false,
+    "size-decorations": false
+}

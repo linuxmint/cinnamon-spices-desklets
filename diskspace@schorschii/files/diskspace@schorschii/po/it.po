@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-07-31 12:29-0400\n"
-"PO-Revision-Date: 2023-12-12 18:38+0100\n"
+"POT-Creation-Date: 2025-12-22 13:42+0100\n"
+"PO-Revision-Date: 2025-08-26 19:32+0200\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -12,32 +12,44 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: desklet.js\n"
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:275 desklet.js:361
+#. desklet.js:317 desklet.js:487
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#. desklet.js:277 desklet.js:363
+#. desklet.js:319 desklet.js:489
 msgid "Swap"
 msgstr "Swap"
 
 #. settings-schema.json->type->options
-#. desklet.js:279
+#. desklet.js:321
 msgid "Filesystem"
 msgstr "Filesystem"
 
-#. desklet.js:306
+#. desklet.js:348
 msgid "Not Found"
 msgstr "Non Trovato"
 
+#. desklet.js:434
+msgid "Sorry, this font is not supported, please select a different one."
+msgstr ""
+
+#. desklet.js:435
+msgid " Font: `"
+msgstr ""
+
+#. desklet.js:435
+msgid "` Error: "
+msgstr ""
+
 #. metadata.json->name
-#. desklet.js:365
+#. desklet.js:491
 msgid "Disk Space"
 msgstr "Spazio su Disco"
 
@@ -107,6 +119,17 @@ msgstr "Decimale"
 msgid "Binary"
 msgstr "Binario"
 
+#. settings-schema.json->size-fraction-digits->description
+msgid "Number of fractional digits"
+msgstr ""
+
+#. settings-schema.json->size-fraction-digits->tooltip
+#, fuzzy
+msgid "Increase or decrease the number digits after the decimal point."
+msgstr ""
+"Aumenta o riduci le dimensioni di questo desklet utilizzando questo fattore "
+"di scala."
+
 #. settings-schema.json->reserved-blocks-as-used-space->description
 msgid "Show reserved blocks as used space"
 msgstr "Mostra i blocchi riservati come spazio utilizzato"
@@ -149,9 +172,8 @@ msgid "Name and total space"
 msgstr "Nome e dimensione totale"
 
 #. settings-schema.json->text-view->options
-#, fuzzy
 msgid "Name and free space"
-msgstr "Spazio totale e libero"
+msgstr "Nome e spazio libero"
 
 #. settings-schema.json->text-view->options
 msgid "Used and total space"
@@ -181,6 +203,18 @@ msgstr "Nascondi decorazioni"
 msgid "Draw free/unused space (gray)"
 msgstr "Disegna spazio libero/inutilizzato (grigio)"
 
+#. settings-schema.json->fill-circle-background->description
+msgid "Fill circle background"
+msgstr ""
+
+#. settings-schema.json->fill-circle-background->tooltip
+msgid "Fill the inside of the circle with color."
+msgstr ""
+
+#. settings-schema.json->fill-circle-background-color->description
+msgid "Background fill color"
+msgstr ""
+
 #. settings-schema.json->use-own-circle-color->description
 msgid "Use a custom circle color"
 msgstr "Usa un colore personalizzato per il cerchio"
@@ -188,6 +222,28 @@ msgstr "Usa un colore personalizzato per il cerchio"
 #. settings-schema.json->circle-color->description
 msgid "Circle color"
 msgstr "Colore cerchio"
+
+#. settings-schema.json->circle-color-free-space->description
+#, fuzzy
+msgid "Circle color for free space"
+msgstr "Colore cerchio"
+
+#. settings-schema.json->font->description
+#, fuzzy
+msgid "Text font"
+msgstr "Colore testo"
+
+#. settings-schema.json->font->tooltip
+msgid "Change text font family"
+msgstr ""
+
+#. settings-schema.json->font-sub->description
+msgid "Sub text font"
+msgstr ""
+
+#. settings-schema.json->font-sub->tooltip
+msgid "Change font family of the text below the percentage"
+msgstr ""
 
 #. settings-schema.json->text-color->description
 msgid "Text color"

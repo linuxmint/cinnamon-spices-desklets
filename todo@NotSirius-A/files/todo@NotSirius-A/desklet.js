@@ -11,6 +11,7 @@ const Gio = imports.gi.Gio;
 const Gettext = imports.gettext;
 const Tooltips = imports.ui.tooltips;
 const PopupMenu = imports.ui.popupMenu;
+const Pango = imports.gi.Pango;
 
 
 const UUID = "todo@NotSirius-A";
@@ -54,6 +55,7 @@ MyDesklet.prototype = {
         Desklet.Desklet.prototype._init.call(this, metadata);
 
         this.desklet_id = desklet_id;
+        this.DESKLET_ROOT = DESKLET_ROOT;
 
         // Import settings to app
         this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
@@ -63,23 +65,34 @@ MyDesklet.prototype = {
         
         this.settings.bindProperty(Settings.BindingDirection.IN, "is-task-bg-transparent", "isTaskTransparentBg", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "task-background", "taskBackground", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "task-border-width", "taskBorderWidth", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "task-border-color", "taskBorderColor", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "task-icon-size", "taskIconSize", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "task-not-marked-icon", "taskNotMarkedDoneIcon", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "task-marked-icon", "taskMarkedDoneIcon", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "font", "fontRaw", this.on_setting_changed);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "font-bold", "fontBold", this.on_setting_changed);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "font-italic", "fontItalic", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "customTextColor", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "text-shadow", "textShadow", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "text-shadow-color", "textShadowColor", this.on_setting_changed);
 
+        this.settings.bindProperty(Settings.BindingDirection.IN, "task-background-important", "taskBackgroundImportant", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "task-border-color-important", "taskBorderColorImportant", this.on_setting_changed);
+
         this.settings.bindProperty(Settings.BindingDirection.IN, "is-toolbar-enabled", "isToolbarEnabled", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "are-toolbar-tooltips-enabled", "areToolbarTooltipsEnabled", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "are-task-tooltips-enabled", "areTaskTooltipsEnabled", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "are-delete-task-dialogs-enabled", "areDeleteTaskDialogsEnabled", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "are-delete-toolbar-dialogs-enabled", "areDeleteToolbarDialogsEnabled", this.on_setting_changed);
+        
+        
         this.settings.bindProperty(Settings.BindingDirection.IN, "is-sort-enabled", "isSortEnabled", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "is-sort-reversed", "isSortReversed", this.on_setting_changed);
 
         this.settings.bindProperty(Settings.BindingDirection.IN, "toolbar-background", "toolbarBackground", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "toolbar-icon-size", "toolbarIconSize", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "toolbar-font-color", "toolbarFontColor", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "toolbar-border-width", "toolbarBorderWidth", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "toolbar-border-color", "toolbarBorderColor", this.on_setting_changed);
 
         this.settings.bindProperty(Settings.BindingDirection.IN, "show-decorations", "showDecorations", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "desklet-header", "deskletHeader", this.on_setting_changed);
@@ -109,36 +122,47 @@ MyDesklet.prototype = {
     * Load visual theme from settings
     */
     loadTheme: function() {
-        this.font = this.parseFont(this.fontRaw);
+        this.font = this.parseFontStringToCSS(this.fontRaw);
 
         const default_item_width = 150;
         this.scale = this.scaleSize * global.ui_scale;
 
+        const desktop_settings = new Gio.Settings({ schema_id: "org.cinnamon.desktop.interface" });
+        this.text_scale = desktop_settings.get_double("text-scaling-factor");
+
         this.theme = {
             "scale": this.scale,
+            "text_scale": this.text_scale,
             "toolbar" : {
                 "background_color": this.toolbarBackground,
                 "font_color": this.toolbarFontColor,
-                "icon_size": this.toolbarIconSize,
+                "icon_size": this.toolbarIconSize * this.text_scale,
+                "border_color": this.toolbarBorderColor,
+                "border_width": this.toolbarBorderWidth,
             },
             "TODOlist": {
                 "num_of_columns": this.numOfColumns,
-                "item_width": default_item_width * this.scale,
-                "font_family": this.font["family"],
-                "font_size": this.font["size"],
+                "item_width": default_item_width * this.scale * this.text_scale,
+                "font_family": this.font["font-family"],
+                "font_size": this.font["font-size"] * this.text_scale,
                 "font_color": this.customTextColor,
-                "font_bold": this.fontBold,
-                "font_italic": this.fontItalic,
+                "font_weight": this.font["font-weight"],
+                "font_style": this.font["font-style"],
+                "font_stretch": this.font["font-stretch"],
                 "text_align": this.textAlign,
                 "text_shadow_enabled": this.textShadow,
                 "text_shadow_color": this.textShadowColor,
                 "is_transparent_bg": this.isTaskTransparentBg,
                 "background_color": this.taskBackground,
-                "icon_size": this.taskIconSize,
+                "border_color": this.taskBorderColor,
+                "border_width": this.taskBorderWidth,
+                "icon_size": this.taskIconSize * this.text_scale,
                 "unmarked_opacity": 255,
                 "marked_opacity": 160,
                 "not_marked_icon_name": this.taskNotMarkedDoneIcon,
                 "marked_icon_name": this.taskMarkedDoneIcon,
+                "background_color_important": this.taskBackgroundImportant,
+                "border_color_important": this.taskBorderColorImportant,
             }
         };
 
@@ -171,6 +195,8 @@ MyDesklet.prototype = {
         let container = new St.Group({style_class: "container"}); 
         this.root_el.add_child(container);
 
+        container.style = (this.showDecorations ? "padding: 0.2em;" : "padding: 1em;");
+
         let root_grid = new Clutter.GridLayout(); 
         root_grid.set_row_spacing(4 * this.scale);
         container.set_layout_manager(root_grid);
@@ -194,28 +220,73 @@ MyDesklet.prototype = {
     },
 
 
+
+
     /**
-    * Parse raw font string, TODO improve parsing, detect bold/italic etc.
-    * @param {string} font_string - Font descriptor
-    * @returns {{"family": string, "size": Number}} Font descriptor object
+    * Parse raw font string.
+    * @param {string} font_string - Font descriptor string
+    * @returns {{"font-family": string, "font-size": Number, "font-weight": Number, "font-style": string, "font-stretch": string}} Font descriptor object
     */
-    parseFont: function(font_string) {
-        // String are passed by reference here so
+    parseFontStringToCSS: function(font_string) {
+        // Some fonts don't work, so a fallback font is a good idea
+        const fallback_font_str = "Ubuntu Regular 16";
+    
+        // String are passed by reference here
         // make sure to copy the string to avoid triggering settings callback on change
         const font_string_copy = font_string.slice().trim();
+        
+        let css_font;
+        try {
+            const my_font_description = Pango.font_description_from_string(font_string_copy);
+            css_font = this._PangoFontDescriptionToCSS(my_font_description);
+        } catch (e) {
+            Main.notifyError(
+                _("Sorry, this font is not supported, please select a different one.") 
+                + _(" Font: `") + font_string_copy + _("` Error: ") 
+                + e.toString()
+            );
 
-        const font_split = font_string_copy.split(" ");
-
-        const font_size = parseInt(font_split.pop());
-        let font_family = font_split.join(" ");
-
-        return {
-            "family": font_family,
-            "size": font_size
-        };
+            const fallback_font_description = Pango.font_description_from_string(fallback_font_str);
+            css_font = this._PangoFontDescriptionToCSS(fallback_font_description);
+        } finally {
+            return css_font;
+        }
+        
     },
 
 
+    /**
+    * Process Pango.FontDescription and return valid CSS values
+    * @param {Pango.FontDescription} font_description - Font descriptor
+    * @returns {{"font-family": string, "font-size": Number, "font-weight": Number, "font-style": string, "font-stretch": string}} Font descriptor object
+    */
+    _PangoFontDescriptionToCSS: function(font_description) {
+        const PangoStyle_to_CSS_map = {
+            [Pango.Style.NORMAL]: "normal", 
+            [Pango.Style.OBLIQUE]: "oblique", 
+            [Pango.Style.ITALIC]: "italic", 
+        };
+
+        // font-stretch CSS property seems to be ignored by the CSS renderer
+        const PangoStretch_to_CSS_map = {
+            [Pango.Stretch.ULTRA_CONDENSED]: "ultra-condensed", 
+            [Pango.Stretch.EXTRA_CONDENSED]: "extra-condensed", 
+            [Pango.Stretch.CONDENSED]: "condensed", 
+            [Pango.Stretch.NORMAL]: "normal", 
+            [Pango.Stretch.SEMI_EXPANDED]: "semi-expanded", 
+            [Pango.Stretch.EXPANDED]: "expanded", 
+            [Pango.Stretch.EXTRA_EXPANDED]: "extra-expanded", 
+            [Pango.Stretch.ULTRA_EXPANDED]: "ultra-expanded", 
+        };
+        
+        return {
+            "font-family": font_description.get_family(),
+            "font-size": Math.floor(font_description.get_size() / Pango.SCALE),
+            "font-weight": font_description.get_weight(),
+            "font-style": PangoStyle_to_CSS_map[font_description.get_style()],
+            "font-stretch": PangoStretch_to_CSS_map[font_description.get_stretch()]
+        };
+    },
 
     /**
     * Render desklet decorations

@@ -184,6 +184,8 @@
                 "customUserAgent",
                 "enableCurl",
                 "curlCommand",
+                "cacheAuthorizationParameters",
+                "authorizationParameters",
                 "applyNetworkSettingsButton"
             ]
         }
@@ -468,6 +470,16 @@
         "description": "Unchanged trend color",
         "tooltip": "Color of the unchanged trend",
         "default": "grey"
+    },
+    "cacheAuthorizationParameters": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Cache authorization parameters",
+        "tooltip": "Remember fetched authorization parameters for desklet instance"
+    },
+    "authorizationParameters": {
+        "type": "generic",
+        "default": "{\"version\": 1}"
     },
     "sendCustomUserAgent": {
         "type": "checkbox",
