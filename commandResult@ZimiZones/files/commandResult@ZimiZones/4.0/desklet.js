@@ -39,7 +39,7 @@ MyDesklet.prototype = {
             this.settings.bind("delay", "delay", this.onSettingChanged);
             this.settings.bind("timeout", "timeout", this.onSettingChanged);
             this.settings.bind("commands", "commands", this.onSettingChanged);
-            this.settings.bind("render-ansi", "renderAnsi", this.onSettingChanged); // New setting
+            this.settings.bind("render-ansi", "renderAnsi", this.onSettingChanged);
 
             this.settings.bind("font", "font", this.onStyleSettingChanged);
             this.settings.bind("font-color", "fontColor", this.onStyleSettingChanged);
@@ -205,10 +205,8 @@ MyDesklet.prototype = {
      * Parse ANSI escape sequences and convert to CSS styles
      */
     _parseAnsi(result) {
-    global.log("Parsing ANSI input: " + result);
     if (!this.renderAnsi) {
         let stripped = result.replace(/\x1B\[[\d;]*?m/g, '');
-        global.log("Stripped output: " + stripped);
         return stripped;
     }
 
@@ -258,7 +256,6 @@ MyDesklet.prototype = {
     });
 
     styledResult += '</span>'.repeat(openSpans);
-    global.log("Parsed ANSI output: " + styledResult);
     return styledResult;
 },
 

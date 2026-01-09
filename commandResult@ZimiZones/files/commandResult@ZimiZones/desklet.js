@@ -205,10 +205,8 @@ MyDesklet.prototype = {
      * Parse ANSI escape sequences and convert to CSS styles
      */
     _parseAnsi(result) {
-    global.log("Parsing ANSI input: " + result);
     if (!this.renderAnsi) {
         let stripped = result.replace(/\x1B\[[\d;]*?m/g, '');
-        global.log("Stripped output: " + stripped);
         return stripped;
     }
 
@@ -258,7 +256,6 @@ MyDesklet.prototype = {
     });
 
     styledResult += '</span>'.repeat(openSpans);
-    global.log("Parsed ANSI output: " + styledResult);
     return styledResult;
 },
 
