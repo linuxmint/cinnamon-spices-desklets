@@ -1,0 +1,87 @@
+# BOOT TIME
+# This file is put in the public domain.
+# KopfdesDaemons, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: boot-time@KopfdesDaemons 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-12-15 18:20+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. metadata.json->name
+#. desklet.js:35 desklet.js:73
+msgid "Boot Time"
+msgstr ""
+
+#. desklet.js:128
+msgid "Boot process not yet complete..."
+msgstr ""
+
+#. helpers/boot-time.helper.js:75
+msgid "Firmware:"
+msgstr ""
+
+#. helpers/boot-time.helper.js:76
+msgid "Loader:"
+msgstr ""
+
+#. helpers/boot-time.helper.js:77
+msgid "Kernel:"
+msgstr ""
+
+#. helpers/boot-time.helper.js:78
+msgid "Userspace:"
+msgstr ""
+
+#. helpers/boot-time.helper.js:79
+msgid "Total:"
+msgstr ""
+
+#. helpers/boot-time.helper.js:80
+msgid "Graphical:"
+msgstr ""
+
+#. metadata.json->description
+msgid "Displays the boot time"
+msgstr ""
+
+#. settings-schema.json->headline->description
+msgid "Headline"
+msgstr ""
+
+#. settings-schema.json->loading-animation->description
+msgid "Loading animation"
+msgstr ""
+
+#. settings-schema.json->show-accent-color->description
+msgid "Show accent color"
+msgstr ""
+
+#. settings-schema.json->accent-color->description
+msgid "Accent color"
+msgstr ""
+
+#. settings-schema.json->label-color->description
+msgid "Label color"
+msgstr ""
+
+#. settings-schema.json->values-color->description
+msgid "Values color"
+msgstr ""
+
+#. settings-schema.json->row-background-color->description
+msgid "Row background color"
+msgstr ""
+
+#. settings-schema.json->hideDecorations->description
+msgid "Hide decorations"
+msgstr ""
