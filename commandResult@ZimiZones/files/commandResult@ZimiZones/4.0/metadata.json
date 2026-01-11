@@ -2,7 +2,7 @@
  "uuid": "commandResult@ZimiZones",
  "name": "Command result desklet",
  "description": "A desklet that displays command result.",
- "contributors": "Zimi Zones",
+ "contributors": ["Zimi Zones","Vijayvithal Jahagirdar"],
  "prevent-decorations": true,
  "multiversion": true
 }
