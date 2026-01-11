@@ -30,7 +30,7 @@ The Server Status Monitor is ideal for developers, system administrators, or any
 
 ## Requirements
 
-- Cinnamon 6.4
+- Cinnamon 6.4+
 - ping
 - curl
 
