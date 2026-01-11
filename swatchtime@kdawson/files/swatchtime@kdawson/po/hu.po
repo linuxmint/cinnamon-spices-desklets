@@ -1,0 +1,62 @@
+# SWATCH INTERNET TIME
+# This file is put in the public domain.
+# kendawson-online, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: swatchtime@kdawson 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-11-24 19:22-0500\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. metadata.json->name
+msgid "Swatch Internet Time"
+msgstr "Swatch internetes idő"
+
+#. metadata.json->description
+msgid "A desklet which displays the Swatch Internet Time on your desktop"
+msgstr ""
+"Egy asztalkalmazás, amely a Swatch internetes idejét jeleníti meg az "
+"asztalon"
+
+#. settings-schema.json->show-centibeats->description
+msgid "Show centibeats"
+msgstr "Centiütemek megjelenítése"
+
+#. settings-schema.json->show-centibeats->tooltip
+msgid "Show centibeats (e.g. @123.45 instead of @123)"
+msgstr "Centiütemek megjelenítése (@123 helyett például @123.45)"
+
+#. settings-schema.json->show-logo->description
+#. settings-schema.json->show-logo->tooltip
+msgid "Show logo"
+msgstr "Logó megjelenítése"
+
+#. settings-schema.json->bg-color->description
+#. settings-schema.json->bg-color->tooltip
+msgid "Background color"
+msgstr "Háttérszín"
+
+#. settings-schema.json->font-color->description
+#. settings-schema.json->font-color->tooltip
+msgid "Font color"
+msgstr "Betűszín"
+
+#. settings-schema.json->bg-opacity->description
+#. settings-schema.json->bg-opacity->tooltip
+msgid "Background opacity"
+msgstr "Háttér átlátszósága"
+
+#. settings-schema.json->font-size->description
+#. settings-schema.json->font-size->tooltip
+msgid "Font size (px)"
+msgstr "Betűméret (px)"
