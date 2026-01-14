@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-04 17:19+0200\n"
-"PO-Revision-Date: 2023-08-04 17:41+0200\n"
+"PO-Revision-Date: 2026-01-14 09:46-0300\n"
 "Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #: desklet.js:32 4.0/desklet.js:32
 msgid "Command result"
@@ -88,6 +88,16 @@ msgstr "Resultado alineado derecha"
 #. 4.0->settings-schema.json->style-options-header->description
 msgid "Style"
 msgstr "Estilo"
+
+#. settings-schema.json->render-ansi->description
+#. 4.0->settings-schema.json->render-ansi->description
+msgid "Render ANSI escape sequences"
+msgstr "Renderizar secuencias de escape ANSI"
+
+#. settings-schema.json->render-ansi->tooltip
+#. 4.0->settings-schema.json->render-ansi->tooltip
+msgid "Enable to interpret ANSI escape sequences (e.g., colors) in command output."
+msgstr "Habilita la interpretación de secuencias de escape ANSI (por ejemplo, colores) en la salida de comandos."
 
 #. settings-schema.json->font->description
 #. 4.0->settings-schema.json->font->description
