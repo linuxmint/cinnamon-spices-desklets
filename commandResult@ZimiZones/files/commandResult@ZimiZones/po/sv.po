@@ -1,151 +1,152 @@
-# SOME DESCRIPTIVE TITLE.
+# Swedish translation for commandResult Desklet.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Åke Engelbrektson <eson@svenskasprakfiler.se, 2026.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-04 17:19+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2026-01-13 18:55+0100\n"
+"Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
+"Language-Team: \n"
+"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
 
 #: desklet.js:32 4.0/desklet.js:32
 msgid "Command result"
-msgstr ""
+msgstr "Kommandoresultat"
 
 #. metadata.json->name
 #. 4.0->metadata.json->name
 msgid "Command result desklet"
-msgstr ""
+msgstr "Skrivbordsprogram för kommandoutdata"
 
 #. metadata.json->description
 #. 4.0->metadata.json->description
 msgid "A desklet that displays command result."
-msgstr ""
+msgstr "Ett skrivbordsprogram som visar kommandoutdata."
 
 #. metadata.json->contributors
 #. 4.0->metadata.json->contributors
 msgid "Zimi Zones"
-msgstr ""
+msgstr "Zimi-zoner"
 
 #. settings-schema.json->top->description
 #. 4.0->settings-schema.json->top->description
 msgid "Commands configuration"
-msgstr ""
+msgstr "Kommandoinställning"
 
 #. settings-schema.json->delay->description
 #. 4.0->settings-schema.json->delay->description
 msgid "Update every"
-msgstr ""
+msgstr "Uppdatera varje"
 
 #. settings-schema.json->delay->units
 #. settings-schema.json->timeout->units
 #. 4.0->settings-schema.json->delay->units
 #. 4.0->settings-schema.json->timeout->units
 msgid "seconds"
-msgstr ""
+msgstr "sekund(er)"
 
 #. settings-schema.json->timeout->description
 #. 4.0->settings-schema.json->timeout->description
 msgid "Cancel command after"
-msgstr ""
+msgstr "Avbryt kommando efter"
 
 #. settings-schema.json->commands->description
 #. 4.0->settings-schema.json->commands->description
 msgid "Commands"
-msgstr ""
+msgstr "Kommandon"
 
 #. settings-schema.json->commands->columns->title
 #. 4.0->settings-schema.json->commands->columns->title
 msgid "Label"
-msgstr ""
+msgstr "Etikett"
 
 #. settings-schema.json->commands->columns->title
 #. 4.0->settings-schema.json->commands->columns->title
 msgid "Align label right"
-msgstr ""
+msgstr "Justera etikett åt vänster"
 
 #. settings-schema.json->commands->columns->title
 #. 4.0->settings-schema.json->commands->columns->title
 msgid "Command"
-msgstr ""
+msgstr "Kommando"
 
 #. settings-schema.json->commands->columns->title
 #. 4.0->settings-schema.json->commands->columns->title
 msgid "Align command result right"
-msgstr ""
+msgstr "Justera kommandoutdata åt höger"
 
 #. settings-schema.json->style-options-header->description
 #. 4.0->settings-schema.json->style-options-header->description
 msgid "Style"
-msgstr ""
+msgstr "Stil"
 
 #. settings-schema.json->render-ansi->description
 #. 4.0->settings-schema.json->render-ansi->description
 msgid "Render ANSI escape sequences"
-msgstr ""
+msgstr "Rendera ANSI escape-sekvenser"
 
 #. settings-schema.json->render-ansi->tooltip
 #. 4.0->settings-schema.json->render-ansi->tooltip
 msgid "Enable to interpret ANSI escape sequences (e.g., colors) in command output."
-msgstr ""
+msgstr "Aktivera tolkning av ANSI escape-sekvenser (t.ex. färger) i kommandoutdata."
 
 #. settings-schema.json->font->description
 #. 4.0->settings-schema.json->font->description
 msgid "Font"
-msgstr ""
+msgstr "Teckensnitt"
 
 #. settings-schema.json->font-color->description
 #. settings-schema.json->font-color->tooltip
 #. 4.0->settings-schema.json->font-color->description
 #. 4.0->settings-schema.json->font-color->tooltip
 msgid "Font color"
-msgstr ""
+msgstr "Teckenfärg"
 
 #. settings-schema.json->background-color->description
 #. 4.0->settings-schema.json->background-color->description
 msgid "Background color"
-msgstr ""
+msgstr "Bakgrundsfärg"
 
 #. settings-schema.json->background-color->tooltip
 #. 4.0->settings-schema.json->background-color->tooltip
 msgid "Click to select the background color"
-msgstr ""
+msgstr "Klicka för att välja bakgrundsfärg"
 
 #. settings-schema.json->background-transparency->description
 #. 4.0->settings-schema.json->background-transparency->description
 msgid "Transparency"
-msgstr ""
+msgstr "Transparens"
 
 #. settings-schema.json->background-transparency->tooltip
 #. 4.0->settings-schema.json->background-transparency->tooltip
 msgid "Transparency of the desklet"
-msgstr ""
+msgstr "Skrivbordsprogrammets transparens"
 
 #. settings-schema.json->border-color->description
 #. 4.0->settings-schema.json->border-color->description
 msgid "Border color"
-msgstr ""
+msgstr "Kantfärg"
 
 #. settings-schema.json->border-color->tooltip
 #. 4.0->settings-schema.json->border-color->tooltip
 msgid "Click to select the border color"
-msgstr ""
+msgstr "Klicka för att välja kantfärg"
 
 #. settings-schema.json->border-width->units
 #. 4.0->settings-schema.json->border-width->units
 msgid "px"
-msgstr ""
+msgstr "px"
 
 #. settings-schema.json->border-width->description
 #. 4.0->settings-schema.json->border-width->description
 msgid "Border width"
-msgstr ""
+msgstr "Kantbredd"
