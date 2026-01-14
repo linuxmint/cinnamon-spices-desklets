@@ -1,0 +1,361 @@
+# Swedish translation for notes@schorschii
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR: Åke Engelbrektson <eson@svenskasprakfiler.se>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: notes@schorschii\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-05-03 11:37-0400\n"
+"PO-Revision-Date: 2019-02-27 06:19+0100\n"
+"Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
+"Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+#. desklet.js:138
+msgid "Refresh"
+msgstr ""
+
+#. desklet.js:151
+msgid ""
+"Can't read text file.\n"
+"Select a file in settings.\n"
+"\n"
+"Click here to edit."
+msgstr ""
+"Kan inte läsa textfilen.\n"
+"Välj en fil i inställningarna.\n"
+"\n"
+"Klicka här för att redigera."
+
+#. desklet.js:289
+msgid "Notepad"
+msgstr "Notepad"
+
+#. metadata.json->description
+msgid "A desklet to display notes including various themes."
+msgstr "Ett skrivbordsprogram för att visa anteckningar, med varierande teman."
+
+#. metadata.json->name
+#. settings-schema.json->note-section->title
+msgid "Note"
+msgstr "Note"
+
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
+msgid "General"
+msgstr "Allmänt"
+
+#. settings-schema.json->visual-page->title
+#. settings-schema.json->visual-section->title
+msgid "Visual"
+msgstr "Visuellt"
+
+#. settings-schema.json->label-section->title
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr "Anpassad programetikett (synlig endast om dekorationer är aktiverade)."
+
+#. settings-schema.json->note-taking-method->description
+msgid "Note Taking Method"
+msgstr ""
+
+#. settings-schema.json->note-taking-method->options
+msgid "Text File"
+msgstr "Textfil"
+
+#. settings-schema.json->note-taking-method->options
+msgid "Desklet Settings"
+msgstr "Programinställningar"
+
+#. settings-schema.json->file->description
+msgid "Path to note text file"
+msgstr "Sökväg till anteckningsfil"
+
+#. settings-schema.json->file->tooltip
+msgid "Select your text file, where to read from and save to."
+msgstr "Välj den textfil, som skall läsas från och sparas till."
+
+#. settings-schema.json->edit-cmd->description
+msgid "Command for editing this note (on mouse click)"
+msgstr "Kommando för att redigera denna anteckning (vid musklick)"
+
+#. settings-schema.json->edit-cmd->tooltip
+msgid "%f will replaced by the text file path."
+msgstr "%f ersätts av sökvägen till din textfil."
+
+#. settings-schema.json->note-text->description
+msgid "Write Your Note"
+msgstr ""
+
+#. settings-schema.json->style->description
+msgid "Notes style"
+msgstr "Anteckningsstil"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Black"
+msgstr "Slätt ark - Svart"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Blue"
+msgstr "Slätt ark - Blå"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Green"
+msgstr "Slätt ark - Grön"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Orange"
+msgstr "Slätt ark - Orange"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Purple"
+msgstr "Slätt ark - Lila"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - White"
+msgstr "Slätt ark - Vit"
+
+#. settings-schema.json->style->options
+msgid "Blank Note - Yellow"
+msgstr "Slätt ark - Gul"
+
+#. settings-schema.json->style->options
+msgid "White Note - Black Button"
+msgstr "Vitt ark - Svart nål"
+
+#. settings-schema.json->style->options
+msgid "White Note - Blue Button"
+msgstr "Vitt ark - Blå nål"
+
+#. settings-schema.json->style->options
+msgid "White Note - Green Button"
+msgstr "Vitt ark - Grön nål"
+
+#. settings-schema.json->style->options
+msgid "White Note - Red Button"
+msgstr "Vitt ark - Röd nål"
+
+#. settings-schema.json->style->options
+msgid "White Note - Yellow Button"
+msgstr "Vitt ark - Gul nål"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Black Clip"
+msgstr "Gult ark - Svart gem"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Blue Clip"
+msgstr "Gult ark - Blått gem"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Green Clip"
+msgstr "Gult ark - Grönt gem"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Jingle Clip"
+msgstr "Gult ark - Randigt gem"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Red Clip"
+msgstr "Gult ark - Rött gem"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Yellow Clip"
+msgstr "Gult ark - Gult gem"
+
+#. settings-schema.json->style->options
+msgid "White Note - Black Magnet"
+msgstr "Vitt ark - Svart magnet"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Blue Magnet"
+msgstr "Gult ark - Blå magnet"
+
+#. settings-schema.json->style->options
+msgid "White Note - Lines and Red Magnet"
+msgstr "Vitt ark - Linjer och röd magnet"
+
+#. settings-schema.json->style->options
+msgid "Black Note - White Magnet"
+msgstr "Svart ark - Vit magnet"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note - Yellow Magnet"
+msgstr "Gult ark - Gul magnet"
+
+#. settings-schema.json->style->options
+msgid "Blue Paint Strokes"
+msgstr "Blåa penseldrag"
+
+#. settings-schema.json->style->options
+msgid "Green Paint Strokes"
+msgstr "Gröna penseldrag"
+
+#. settings-schema.json->style->options
+msgid "Purple Paint Strokes"
+msgstr "Lila penseldrag"
+
+#. settings-schema.json->style->options
+msgid "Red Paint Strokes"
+msgstr "Röda penseldrag"
+
+#. settings-schema.json->style->options
+msgid "Yellow Paint Strokes"
+msgstr "Gula penseldrag"
+
+#. settings-schema.json->style->options
+msgid "White Note - Silver Spiral"
+msgstr "Vitt ark - Silverspiral"
+
+#. settings-schema.json->style->options
+msgid "White Note - Silver Spiral 2"
+msgstr "Vitt ark - Silverspiral 2"
+
+#. settings-schema.json->style->options
+msgid "White Note - Black Spiral"
+msgstr "Vitt ark - Svart spiral"
+
+#. settings-schema.json->style->options
+msgid "White Note Large - Silver Spiral"
+msgstr "Vitt ark stor - Silverspiral"
+
+#. settings-schema.json->style->options
+msgid "Yellow Sticker"
+msgstr "Gul PostIt"
+
+#. settings-schema.json->style->options
+msgid "Yellow Note (iOS Style)"
+msgstr "Gult ark (iOS-stil)"
+
+#. settings-schema.json->style->options
+msgid "Birch Bark"
+msgstr "Björknäver"
+
+#. settings-schema.json->style->options
+msgid "Burned Paper"
+msgstr "Bränt papper"
+
+#. settings-schema.json->style->options
+msgid "Clay Tablet"
+msgstr "Lertavla"
+
+#. settings-schema.json->style->options
+msgid "Coffee Stained"
+msgstr "Kaffefläckat"
+
+#. settings-schema.json->style->options
+msgid "Clipboard"
+msgstr "Skrivplatta"
+
+#. settings-schema.json->style->options
+msgid "None"
+msgstr ""
+
+#. settings-schema.json->style->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Välj den bakgrundsgrafik du vill använda."
+
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr ""
+
+#. settings-schema.json->text-shadow-color->description
+#, fuzzy
+msgid "Text shadow color"
+msgstr "Textfärg"
+
+#. settings-schema.json->bg-color->description
+msgid "Background color"
+msgstr ""
+
+#. settings-schema.json->bg-color->tooltip
+#, fuzzy
+msgid "Set the background color of this desklet."
+msgstr "Ange textfärg för anteckningar."
+
+#. settings-schema.json->enable-word-wrap->description
+msgid "Enable word wrap"
+msgstr ""
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Dölj dekorationer"
+
+#. settings-schema.json->font->description
+msgid "Font"
+msgstr "Teckensnitt"
+
+#. settings-schema.json->size-font->units
+msgid "pixels"
+msgstr "pixlar"
+
+#. settings-schema.json->size-font->description
+msgid "Font size"
+msgstr "Teckenstorlek"
+
+#. settings-schema.json->size-font->tooltip
+#, fuzzy
+msgid "Increase or decrease the note font size."
+msgstr ""
+"Öka eller minska storleken på det här skrivbordsprogrammet, med denna "
+"skalfaktor."
+
+#. settings-schema.json->font-bold->description
+msgid "Bold"
+msgstr "Fet"
+
+#. settings-schema.json->font-italic->description
+msgid "Italic"
+msgstr "Kursiv"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Textfärg"
+
+#. settings-schema.json->text-color->tooltip
+msgid "Set the text color of this desklet."
+msgstr "Ange textfärg för anteckningar."
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "skalfaktor"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Programstorlek"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Öka eller minska storleken på det här skrivbordsprogrammet, med denna "
+"skalfaktor."
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Använd anpassad programetikett"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr "Aktivering låter dig ange en anpassad etikett i fältet nedan."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Anpassad programetikett"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr ""
+"Ange din anpassade etikett här. Detta fält är otillgängligt om inte "
+"ovanstående inställning är på."
