@@ -462,7 +462,7 @@
     "downtrendChangeColor": {
         "type": "colorchooser",
         "description": "Downtrend change color",
-        "v": "Color of the downtrend change",
+        "tooltip": "Color of the downtrend change",
         "default": "red"
     },
     "unchangedTrendColor": {

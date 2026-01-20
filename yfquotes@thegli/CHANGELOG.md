@@ -1,3 +1,21 @@
+### 0.17.2 - January 20, 2026
+
+Features:
+
+- improve curl integration
+- update Catalan translation (courtesy of [trikaphundo](https://github.com/trikaphundo))
+- update Danish translation (courtesy of [Alan01](https://github.com/Alan01))
+- update Dutch translation (courtesy of [qadzek](https://github.com/qadzek))
+- update Italian translation (courtesy of [Dragone2](https://github.com/Dragone2))
+- update Hungarian translation (courtesy of [bossbob88](https://github.com/bossbob88))
+- update Spanish translation (courtesy of [haggen88](https://github.com/haggen88))
+- add Vietnamese translation (courtesy of [hthienloc](https://github.com/hthienloc))
+
+Bugfixes:
+
+- escape message text on building JSON error response
+- restore tooltip of downtrend change color setting
+
 ### 0.17.1 - August 22, 2025
 
 Bugfixes:
