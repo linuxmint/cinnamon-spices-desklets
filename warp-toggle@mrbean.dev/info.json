@@ -1,0 +1,7 @@
+{
+  "uuid": "warp-toggle@mrbean.dev",
+  "name": "WARP Toggle",
+  "author": "mrbeandev",
+  "website": "https://github.com/mrbeandev",
+  "description": "A simple desklet to toggle Cloudflare WARP CLI status."
+}
