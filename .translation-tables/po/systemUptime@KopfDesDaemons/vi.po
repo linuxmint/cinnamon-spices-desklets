@@ -1,0 +1,84 @@
+# SYSTEM UPTIME
+# This file is put in the public domain.
+# KopfDesDaemons, 2024
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: systemUptime@KopfDesDaemons 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-12-05 18:11+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
+"Language-Team: \n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. metadata.json->name
+#. desklet.js:37
+msgid "System Uptime"
+msgstr "Thời gian Hoạt động Hệ thống"
+
+#. desklet.js:44
+msgid "Uptime:"
+msgstr "Thời gian hoạt động:"
+
+#. desklet.js:45 desklet.js:51
+msgid "Loading..."
+msgstr "Đang tải..."
+
+#. desklet.js:50
+msgid "Start time:"
+msgstr "Thời gian bắt đầu:"
+
+#. desklet.js:104
+msgid "days"
+msgstr "ngày"
+
+#. desklet.js:104
+msgid "hrs"
+msgstr "giờ"
+
+#. desklet.js:104
+msgid "min"
+msgstr "phút"
+
+#. desklet.js:109
+msgid "hours"
+msgstr "giờ"
+
+#. desklet.js:109
+msgid "minutes"
+msgstr "phút"
+
+#. metadata.json->description
+msgid "Displays the current system uptime."
+msgstr "Hiển thị thời gian hoạt động hiện tại của hệ thống."
+
+#. settings-schema.json->head0->description
+msgid "Style"
+msgstr "Kiểu dáng"
+
+#. settings-schema.json->fontSize->description
+msgid "Font size"
+msgstr "Cỡ chữ"
+
+#. settings-schema.json->colorLabel->description
+msgid "Label color"
+msgstr "Màu nhãn"
+
+#. settings-schema.json->showStartDate->description
+msgid "Show start date"
+msgstr "Hiển thị ngày bắt đầu"
+
+#. settings-schema.json->showUptimeInDays->description
+msgid "Show uptime in days"
+msgstr "Hiển thị thời gian hoạt động theo ngày"
+
+#. settings-schema.json->hideDecorations->description
+msgid "Hide decorations"
+msgstr ""

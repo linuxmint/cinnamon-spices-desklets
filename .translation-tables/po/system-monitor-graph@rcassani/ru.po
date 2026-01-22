@@ -1,0 +1,385 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-08-27 21:38-0400\n"
+"PO-Revision-Date: \n"
+"Last-Translator: blogdron\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. settings-schema.json->type->options
+#. desklet.js:183
+msgid "CPU"
+msgstr "Процессор"
+
+#. desklet.js:194 desklet.js:212 desklet.js:232 desklet.js:273 desklet.js:547
+msgid "GB"
+msgstr "ГБ"
+
+#. desklet.js:197 desklet.js:215 desklet.js:235 desklet.js:276 desklet.js:561
+msgid "GiB"
+msgstr "ГиБ"
+
+#. settings-schema.json->type->options
+#. desklet.js:199
+msgid "RAM"
+msgstr "Память"
+
+#. settings-schema.json->type->options
+#. desklet.js:217
+msgid "Swap"
+msgstr "Подкачка"
+
+#. desklet.js:240
+msgid "free of"
+msgstr "свободно из"
+
+#. desklet.js:256
+msgid "GPU Usage"
+msgstr "Видеокарта"
+
+#. desklet.js:278
+msgid "GPU Memory"
+msgstr "Память видеокарты"
+
+#. settings-schema.json->type->options
+#. desklet.js:290
+msgid "Network"
+msgstr "Сеть"
+
+#. desklet.js:518 desklet.js:541
+msgid "b"
+msgstr "б"
+
+#. desklet.js:520 desklet.js:555 desklet.js:569
+msgid "B"
+msgstr "Б"
+
+#. desklet.js:533
+msgid "Gb"
+msgstr "Гб"
+
+#. desklet.js:536
+msgid "Mb"
+msgstr "Мб"
+
+#. desklet.js:539
+msgid "Kb"
+msgstr "Кб"
+
+#. desklet.js:550
+msgid "MB"
+msgstr "МБ"
+
+#. desklet.js:553
+msgid "KB"
+msgstr "КБ"
+
+#. desklet.js:564
+msgid "MiB"
+msgstr "МиБ"
+
+#. desklet.js:567
+msgid "KiB"
+msgstr "КиБ"
+
+#. desklet.js:844 desklet.js:882
+msgid "Error executing nvidia-smi command."
+msgstr "Ошибка при запуске команды nvidia-smi."
+
+#. metadata.json->name
+msgid "System monitor graph"
+msgstr "Системный монитор с графиками (System monitor graph)"
+
+#. metadata.json->description
+msgid "Creates graphs for system variables."
+msgstr "Отображает графики системных параметров."
+
+#. settings-schema.json->head0->description
+msgid "Settings for system-monitor-graph@rcassani"
+msgstr "Настройки для system-monitor-graph@rcassani"
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr "Общие настройки"
+
+#. settings-schema.json->type->description
+msgid "System variable for graph"
+msgstr "Системный компонент для графика"
+
+#. settings-schema.json->type->tooltip
+msgid "Select the system variable to monitor."
+msgstr "Выберите что нужно отслеживать."
+
+#. settings-schema.json->type->options
+msgid "HDD"
+msgstr "Накопитель"
+
+#. settings-schema.json->type->options
+msgid "GPU"
+msgstr "Видеокарта"
+
+#. settings-schema.json->data-prefix-ram->options
+#. settings-schema.json->data-prefix-swap->options
+#. settings-schema.json->data-prefix-hdd->options
+#. settings-schema.json->data-prefix-gpumem->options
+msgid "Binary prefix or IEC (1 GiB = 1024³ bytes)"
+msgstr "Бинарный префикс, или IEC (1 ГиБ = 1024³ Б)"
+
+#. settings-schema.json->data-prefix-ram->options
+#. settings-schema.json->data-prefix-swap->options
+#. settings-schema.json->data-prefix-hdd->options
+#. settings-schema.json->data-prefix-gpumem->options
+msgid "Decimal prefix (1 GB = 1000³ bytes)"
+msgstr "Десятичный префикс (1 ГБ = 1000³ Б)"
+
+#. settings-schema.json->data-prefix-ram->description
+#. settings-schema.json->data-prefix-swap->description
+#. settings-schema.json->data-prefix-hdd->description
+#. settings-schema.json->data-prefix-network->description
+#. settings-schema.json->data-prefix-gpumem->description
+msgid "Prefix for data units"
+msgstr "Система счисления"
+
+#. settings-schema.json->data-prefix-ram->tooltip
+msgid "Unit prefix for RAM size."
+msgstr "Система счисления для оперативной памяти."
+
+#. settings-schema.json->data-prefix-swap->tooltip
+msgid "Unit prefix for Swap size."
+msgstr "Система счисления для подкачки."
+
+#. settings-schema.json->data-prefix-hdd->tooltip
+msgid "Unit prefix for Filesystem size."
+msgstr "Система счисления для файловых систем."
+
+#. settings-schema.json->data-prefix-network->options
+msgid "Bytes - Binary prefix or IEC (1 KiB = 1024 bytes)"
+msgstr "Байты - Бинарный префикс, или IEC (1 ГиБ = 1024³ байт)"
+
+#. settings-schema.json->data-prefix-network->options
+msgid "Bytes - Decimal prefix (1 KB = 1000 bytes)"
+msgstr "Байты - Десятичный префикс (1 ГБ = 1000³ байт)"
+
+#. settings-schema.json->data-prefix-network->options
+msgid "Bits - Decimal prefix (1 Kb = 1000 bits)"
+msgstr "Биты - Десятичный префикс (1 Гб = 1000³ бит)"
+
+#. settings-schema.json->data-prefix-network->tooltip
+msgid "Unit prefix for network speed."
+msgstr "Система счисления для загрузки и отдачи."
+
+#. settings-schema.json->network-interface->description
+msgid "Network interface to monitor"
+msgstr "Сетевой интерфейс"
+
+#. settings-schema.json->network-interface->tooltip
+msgid ""
+"Leave empty to monitor all interfaces combined. Examples: eth0, wlan0, enp0s3"
+msgstr ""
+"Например, eth0, wlan0, enp0s3. Оставьте пустым, чтобы взять суммарные "
+"значения по всем интерфейсам"
+
+#. settings-schema.json->filesystem->description
+msgid "Filesystem to monitor"
+msgstr "Файловая система для мониторинга"
+
+#. settings-schema.json->filesystem->tooltip
+msgid "Select a directory in the filesystem to monitor."
+msgstr "Выберите каталог в файловой системе для мониторинга."
+
+#. settings-schema.json->filesystem-label->description
+msgid "Filesystem label"
+msgstr "Имя диска"
+
+#. settings-schema.json->filesystem-label->tooltip
+msgid "Empty uses the filesystem name from df."
+msgstr "Пустое значение задействует название из df."
+
+#. settings-schema.json->gpu-manufacturer->description
+msgid "GPU manufacturer"
+msgstr "Производитель GPU"
+
+#. settings-schema.json->gpu-manufacturer->tooltip
+msgid "Select the GPU manufacturer."
+msgstr "Выберите производителя GPU."
+
+#. settings-schema.json->gpu-manufacturer->options
+msgid "NVIDIA"
+msgstr ""
+
+#. settings-schema.json->gpu-manufacturer->options
+msgid "AMDGPU"
+msgstr ""
+
+#. settings-schema.json->gpu-id->description
+msgid "Id of GPU to monitor"
+msgstr "Идентификатор GPU для мониторинга"
+
+#. settings-schema.json->gpu-id->tooltip
+msgid "Check GPU id with nvidia-smi -L"
+msgstr "Узнайте идентификатор с помощью команды nvidia-smi -L"
+
+#. settings-schema.json->gpu-variable->description
+msgid "GPU variable to monitor"
+msgstr "Информация для графика"
+
+#. settings-schema.json->gpu-variable->tooltip
+msgid "Select the GPU variable to monitor."
+msgstr "Выберите, что нужно отслеживать."
+
+#. settings-schema.json->gpu-variable->options
+msgid "Usage"
+msgstr "Загрузка"
+
+#. settings-schema.json->gpu-variable->options
+msgid "Memory"
+msgstr "Память"
+
+#. settings-schema.json->data-prefix-gpumem->tooltip
+msgid "Unit prefix for GPU memory size."
+msgstr "Система счисления для отображения памяти видеокарты."
+
+#. settings-schema.json->duration->description
+msgid "Duration of the graph"
+msgstr "Продолжительность графика"
+
+#. settings-schema.json->duration->tooltip
+msgid "Maximum among of time to show in the graph."
+msgstr "Максимальное время, отображаемое на графике."
+
+#. settings-schema.json->duration->options
+#. settings-schema.json->refresh-interval->options
+msgid "30 s"
+msgstr "30 секунд"
+
+#. settings-schema.json->duration->options
+msgid " 1 min"
+msgstr " 1 минута"
+
+#. settings-schema.json->duration->options
+msgid " 2 min"
+msgstr " 2 минуты"
+
+#. settings-schema.json->duration->options
+msgid " 5 min"
+msgstr " 5 минут"
+
+#. settings-schema.json->duration->options
+msgid "10 min"
+msgstr "10 минут"
+
+#. settings-schema.json->duration->options
+msgid "30 min"
+msgstr "30 минут"
+
+#. settings-schema.json->duration->options
+msgid "60 min"
+msgstr "60 минут"
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval"
+msgstr "Период обновления"
+
+#. settings-schema.json->refresh-interval->tooltip
+msgid "How often a new value of the variable will be calculated."
+msgstr "Как часто будет дополняться график."
+
+#. settings-schema.json->refresh-interval->options
+msgid " 1 s"
+msgstr " 1 секунда"
+
+#. settings-schema.json->refresh-interval->options
+msgid " 2 s"
+msgstr " 2 секунды"
+
+#. settings-schema.json->refresh-interval->options
+msgid " 5 s"
+msgstr " 5 секунд"
+
+#. settings-schema.json->refresh-interval->options
+msgid "10 s"
+msgstr "10 секунд"
+
+#. settings-schema.json->refresh-interval->options
+msgid "60 s"
+msgstr "60 секунд"
+
+#. settings-schema.json->head2->description
+msgid "Visual"
+msgstr "Внешний вид"
+
+#. settings-schema.json->background-color->description
+msgid "Background color"
+msgstr "Цвет фона"
+
+#. settings-schema.json->background-color->tooltip
+#. settings-schema.json->text-color->tooltip
+#. settings-schema.json->midline-color->tooltip
+msgid "RGB or RGBA."
+msgstr "RGB или RGBA."
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Цвет текста"
+
+#. settings-schema.json->line-color-cpu->description
+msgid "Line color CPU"
+msgstr "Цвет линии для загрузки процессора"
+
+#. settings-schema.json->line-color-cpu->tooltip
+#. settings-schema.json->line-color-ram->tooltip
+#. settings-schema.json->line-color-swap->tooltip
+#. settings-schema.json->line-color-hdd->tooltip
+#. settings-schema.json->line-color-gpu->tooltip
+#. settings-schema.json->line-color-network-down->tooltip
+#. settings-schema.json->line-color-network-up->tooltip
+msgid "RGB or RGBA. Alpha is ignored"
+msgstr "RGB или RGBA. Альфа канал игнорируется"
+
+#. settings-schema.json->line-color-ram->description
+msgid "Line color RAM"
+msgstr "Цвет линии для оперативной памяти"
+
+#. settings-schema.json->line-color-swap->description
+msgid "Line color Swap"
+msgstr "Цвет линии для подкачки"
+
+#. settings-schema.json->line-color-hdd->description
+msgid "Line color HDD"
+msgstr "Цвет линии для накопителя"
+
+#. settings-schema.json->line-color-gpu->description
+msgid "Line color GPU"
+msgstr "Цвет линии для видеокарты"
+
+#. settings-schema.json->line-color-network-down->description
+msgid "Line color Network Download"
+msgstr "Цвет линии для загрузки"
+
+#. settings-schema.json->line-color-network-up->description
+msgid "Line color Network Upload"
+msgstr "Цвет линии для отдачи"
+
+#. settings-schema.json->midline-color->description
+msgid "Grid color"
+msgstr "Цвет сетки"
+
+#. settings-schema.json->h-midlines->description
+msgid "Number of horizontal lines in the grid"
+msgstr "Число горизонтальный линий сетки"
+
+#. settings-schema.json->v-midlines->description
+msgid "Number of vertical lines in the grid"
+msgstr "Число вертикальных линий сетки"
+
+#. settings-schema.json->scale-size->description
+msgid "Scale factor for desklet size (scale factor of 1 = 330 x 120 px)"
+msgstr "Масштабирование десклета (1 = 330 x 120 px)"
