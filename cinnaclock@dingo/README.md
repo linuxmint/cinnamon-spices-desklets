@@ -2,7 +2,7 @@
 
 An elegant, modern, and highly customizable clock desklet for the Cinnamon desktop environment.
 
-![Cinnaclock Screenshot](https://github.com/Dingo-linux/cinnamon-spices-desklets/blob/master/desklets/cinnaclock%40dingo/screenshot.png).
+<img src="screenshot.png" alt ="">
 
 ## Features
 * Layered Design
@@ -20,7 +20,7 @@ Right-click the desklet and select *Configure*. You'll find four tabs:
 * **Time**, **Day** and **Date:** change font, color, uppercase mode, and shadow.
 
 ## Credits
-This desklet is inspired by the *Modern Clock* (Prayag2) and *ClearClock* (qewer33) widgets for Plasma. Created with support from Gemini Ai.
+This desklet is inspired by the *Modern Clock* (Prayag2) and *ClearClock* (qewer33) widgets for Plasma.
 
 ---
 **Author:** Dingo 
