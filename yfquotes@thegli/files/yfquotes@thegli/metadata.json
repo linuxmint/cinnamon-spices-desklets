@@ -3,6 +3,6 @@
     "name": "Yahoo Finance Quotes",
     "prevent-decorations": true,
     "max-instances": "10",
-    "version": "0.17.2",
+    "version": "0.17.3",
     "uuid": "yfquotes@thegli"
 }

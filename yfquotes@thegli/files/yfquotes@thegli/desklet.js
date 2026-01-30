@@ -26,8 +26,8 @@ const Lang = imports.lang;
 const Settings = imports.ui.settings;
 // translation support
 const Gettext = imports.gettext;
-// external proccess execution
-const Util = imports.misc.util;
+// external process execution
+const { spawnCommandLineAsyncIO } = require("./lib/util-extract");
 
 const UUID = "yfquotes@thegli";
 const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
@@ -607,7 +607,7 @@ YahooFinanceQuoteReader.prototype = {
                     + "\"" + YF_CRUMB_URL + "\"";
                 this.quoteUtils.logDebug("Curl retrieveCrumb command: " + curlCommand);
 
-                let subProcess = Util.spawnCommandLineAsyncIO(curlCommand, Lang.bind(this, function(stdout, stderr, exitCode) {
+                let subProcess = spawnCommandLineAsyncIO(curlCommand, Lang.bind(this, function(stdout, stderr, exitCode) {
                     _that.quoteUtils.logDebug("Curl retrieveCrumb result: exitCode: " + exitCode + ". stdout: " + stdout + ". stderr: " + stderr);
                     if (exitCode === 0) {
                         const curlMessage = new CurlMessage(stdout);
@@ -707,7 +707,7 @@ YahooFinanceQuoteReader.prototype = {
                 + "\"" + requestUrl + "\"";
             this.quoteUtils.logDebug("Curl retrieveFinanceData command: " + curlCommand);
 
-            let subProcess = Util.spawnCommandLineAsyncIO(curlCommand, Lang.bind(this, function(stdout, stderr, exitCode) {
+            let subProcess = spawnCommandLineAsyncIO(curlCommand, Lang.bind(this, function(stdout, stderr, exitCode) {
                 _that.quoteUtils.logDebug("Curl retrieveFinanceData result: exitCode: " + exitCode + ". stdout: " + stdout + ". stderr: " + stderr);
                 if (exitCode === 0) {
                     const curlMessage = new CurlMessage(stdout);
