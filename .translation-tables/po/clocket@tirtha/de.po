@@ -1,0 +1,195 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: clocket@tirtha 2.4\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 11:37+0200\n"
+"PO-Revision-Date: 2024-12-01 01:27+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: desklet.js:49
+msgid "Clock"
+msgstr "Uhr"
+
+#: desklet.js:72
+msgid "Date and Time Settings"
+msgstr "Datums- und Uhrzeiteinstellungen"
+
+#. metadata.json->name
+msgid "clocket"
+msgstr "Clocket"
+
+#. metadata.json->description
+msgid ""
+"A desklet that displays the time, date, currenty and forecast weather report"
+msgstr ""
+"Ein Desklet, das Uhrzeit, Datum, aktuelle und prognostizierte "
+"Wetterberichte anzeigt"
+
+#. metadata.json->comments
+msgid ""
+"Please consider custom Weather Desklet into your language. See the website "
+"for more information"
+msgstr ""
+"Bitte denken Sie darüber nach, das Weather Desklet in Ihrer Sprache "
+"anzupassen. Weitere Informationen finden Sie auf der Website"
+
+#. settings-schema.json->top->description
+msgid "Clock configuration"
+msgstr "Uhrkonfiguration"
+
+#. settings-schema.json->font-size->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->font-size->description
+msgid "Font size"
+msgstr "Schriftgröße"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Textfarbe"
+
+#. settings-schema.json->text-color->tooltip
+#. settings-schema.json->weather-color->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Auf den Button klicken, um eine neue Textfarbe auszuwählen"
+
+#. settings-schema.json->background-color->description
+msgid "background color"
+msgstr "Hintergrundfarbe"
+
+#. settings-schema.json->background-color->tooltip
+msgid "Click the button to select a new background color"
+msgstr "Auf den Button klicken, um eine neue Hintergrundfarbe auszuwählen"
+
+#. settings-schema.json->weatherconf->description
+msgid "weather data service settings"
+msgstr "Einstellungen für den Wetterdatendienst"
+
+#. settings-schema.json->compact->description
+#. settings-schema.json->compact->tooltip
+msgid "Want weather display ?"
+msgstr "Wetteranzeige gewollt?"
+
+#. settings-schema.json->webservice->description
+msgid "Data service"
+msgstr "Datendienst"
+
+#. settings-schema.json->webservice->options
+msgid "BBC"
+msgstr "BBC"
+
+#. settings-schema.json->webservice->options
+msgid "Open Weather Map Free (requires API key)"
+msgstr "Open Weather Map Free (erfordert API key)"
+
+#. settings-schema.json->webservice->tooltip
+msgid "select the data service"
+msgstr "Datendienst auswählen"
+
+#. settings-schema.json->api-key->description
+msgid "put api key"
+msgstr "API-Schlüssel eingeben"
+
+#. settings-schema.json->api-key->tooltip
+msgid "put your api key generated from open-weather-map here"
+msgstr "Von Open-Weather-Map generierten API-Schlüssel eingeben"
+
+#. settings-schema.json->loctype->description
+msgid "Type of location data"
+msgstr "Art der Standortdaten"
+
+#. settings-schema.json->loctype->options
+msgid "city name"
+msgstr "Städtename"
+
+#. settings-schema.json->loctype->options
+msgid "lat-lon"
+msgstr "Breiten- und Längengrad"
+
+#. settings-schema.json->loctype->tooltip
+msgid "select your location type"
+msgstr "Standortart auswählen"
+
+#. settings-schema.json->loc->description
+msgid "put your location"
+msgstr "Standort angeben"
+
+#. settings-schema.json->loc->tooltip
+msgid "put your lat-long generated from lat-long.html page"
+msgstr ""
+"Breiten- und Längengrad eingeben, der von der Seite lat-long.html generiert "
+"wurde"
+
+#. settings-schema.json->auto-update->description
+msgid "auto-update report"
+msgstr "automatisch aktualisierter Bericht"
+
+#. settings-schema.json->auto-update->tooltip
+msgid "enable or disable auto-update"
+msgstr "Automatisches Update aktivieren oder deaktivieren"
+
+#. settings-schema.json->update-duration->description
+msgid "set auto update duration(20 min/30 min/60 min)"
+msgstr ""
+"Dauer der automatischen Aktualisierung einstellen (20 Min./30 Min./60 Min.)"
+
+#. settings-schema.json->update-duration->tooltip
+msgid "set auto update duration"
+msgstr "Dauer der automatischen Aktualisierung festlegen"
+
+#. settings-schema.json->data-custom->description
+msgid "customize your data"
+msgstr "Daten anpassen"
+
+#. settings-schema.json->unit->description
+msgid "unit"
+msgstr "Einheit"
+
+#. settings-schema.json->unit->options
+msgid "metric"
+msgstr "metrisch"
+
+#. settings-schema.json->unit->tooltip
+msgid "select your unit preferance"
+msgstr "Bevorzugte Einheit auswählen"
+
+#. settings-schema.json->design->description
+msgid "customize font and bg color"
+msgstr "Schrift- und Hintergrundfarbe anpassen"
+
+#. settings-schema.json->weather-color->description
+msgid "weather block text color"
+msgstr "Wetter-Block-Textfarbe"
+
+#. settings-schema.json->weather-bg-color->description
+msgid "weather-block bg-color"
+msgstr "Wetter-Block-Hintergrundfarbe"
+
+#. settings-schema.json->weather-bg-color->tooltip
+msgid "Click the button to select a new bg color"
+msgstr "Auf den Button klicken, um eine neue Hintergrundfarbe auszuwählen"
+
+#. settings-schema.json->icon-pack->description
+msgid "Icon pack"
+msgstr "Icon-Pack"
+
+#. settings-schema.json->icon-pack->options
+msgid "default"
+msgstr "standard"
+
+#. settings-schema.json->icon-pack->tooltip
+msgid "select your fav icon-pack"
+msgstr "Favorisiertes Icon-Pack auswählen"
