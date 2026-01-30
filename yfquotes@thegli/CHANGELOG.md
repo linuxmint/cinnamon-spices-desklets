@@ -1,3 +1,13 @@
+### 0.17.3 - January 30, 2026
+
+Features:
+
+- update Spanish translation (courtesy of [haggen88](https://github.com/haggen88))
+
+Bugfixes:
+
+- restore compatibility for Cinnamon versions < 4.2
+
 ### 0.17.2 - January 20, 2026
 
 Features:
