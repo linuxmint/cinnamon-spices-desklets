@@ -6,6 +6,7 @@ class MyDesklet extends Desklet.Desklet {
     super(metadata, deskletId);
 
     this.setHeader("Timer");
+    this._inputDigits = "";
     this._setupInputLayout();
   }
 
@@ -13,8 +14,8 @@ class MyDesklet extends Desklet.Desklet {
     const box = new St.BoxLayout({ vertical: true });
 
     const labelRow = new St.BoxLayout();
-    const timeLabel = new St.Label({ text: "00h 00m 00s", style_class: "timer-time-label", x_expand: true });
-    labelRow.add_child(timeLabel);
+    this._inputLabel = new St.Label({ text: "00h 00m 00s", style_class: "timer-input-label", x_expand: true });
+    labelRow.add_child(this._inputLabel);
     box.add_child(labelRow);
 
     // Input buttons 1-9
@@ -23,13 +24,16 @@ class MyDesklet extends Desklet.Desklet {
       for (let j = 1; j <= 3; j++) {
         const num = i * 3 + j;
         const button = new St.Button({ label: num.toString(), style_class: "timer-input-button" });
+        button.connect("clicked", () => this._onDigitPressed(num));
         row.add_child(button);
       }
       box.add_child(row);
     }
 
     const lastRow = new St.BoxLayout();
-    lastRow.add_child(new St.Button({ label: "0", style_class: "timer-input-button" }));
+    const zeroBtn = new St.Button({ label: "0", style_class: "timer-input-button" });
+    zeroBtn.connect("clicked", () => this._onDigitPressed(0));
+    lastRow.add_child(zeroBtn);
 
     const playIcon = new St.Icon({
       icon_name: "media-playback-start-symbolic",
@@ -45,11 +49,29 @@ class MyDesklet extends Desklet.Desklet {
       icon_size: 16,
     });
     const editBtn = new St.Button({ child: editIcon, style_class: "timer-input-button" });
+    editBtn.connect("clicked", () => this._onEditPressed());
     lastRow.add_child(editBtn);
 
     box.add_child(lastRow);
 
     this.setContent(box);
+  }
+
+  _onDigitPressed(num) {
+    if (this._inputDigits.length < 6) {
+      this._inputDigits += num.toString();
+      this._updateInputLabel();
+    }
+  }
+
+  _onEditPressed() {
+    this._inputDigits = this._inputDigits.slice(0, -1);
+    this._updateInputLabel();
+  }
+
+  _updateInputLabel() {
+    const padded = this._inputDigits.padStart(6, "0");
+    this._inputLabel.set_text(`${padded.slice(0, 2)}h ${padded.slice(2, 4)}m ${padded.slice(4, 6)}s`);
   }
 }
 
