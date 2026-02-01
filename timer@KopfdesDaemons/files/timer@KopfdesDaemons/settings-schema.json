@@ -27,8 +27,19 @@
   },
   "circle-color": {
     "type": "colorchooser",
-    "default": "rgb(255, 255, 255)",
+    "default": "rgba(255, 255, 255, 0.2)",
     "description": "Circle color"
+  },
+  "fill-inner-circle": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Fill inner circle"
+  },
+  "inner-circle-color": {
+    "type": "colorchooser",
+    "default": "rgba(255, 255, 255, 0.3)",
+    "description": "Inner circle color",
+    "dependency": "fill-inner-circle"
   },
   "circle-width": {
     "type": "scale",

@@ -7,11 +7,19 @@
 }
 
 .timer-input-button-action:hover,
-.timer-input-button:hover {
+.timer-input-button:hover,
+.timer-add-time-button:hover {
   background-color: rgba(65, 61, 61, 0.527);
 }
 
 .timer-input-label {
   width: 100%;
   text-align: center;
+}
+
+.timer-add-time-button {
+  border-radius: 0.5em;
+  width: 1.5em;
+  height: 1.5em;
+  padding: 0.2em;
 }

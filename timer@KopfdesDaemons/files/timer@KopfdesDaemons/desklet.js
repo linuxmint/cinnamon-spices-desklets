@@ -10,7 +10,7 @@ class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
 
-    this.default_size = 180;
+    this.default_size = 200;
     this.isRunning = false;
     this._timeout = null;
     this._totalSeconds = 0;
@@ -22,6 +22,8 @@ class MyDesklet extends Desklet.Desklet {
     this.indicatorColor = "rgb(51, 209, 122)";
     this.circleWidth = 0.03;
     this.circleColor = "rgb(255, 255, 255)";
+    this.fillInnerCircle = false;
+    this.innerCircleColor = "rgba(255, 255, 255, 0.3)";
 
     const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
     settings.bindProperty(Settings.BindingDirection.IN, "label-color", "labelColor", this._onSettingsChanged.bind(this));
@@ -29,6 +31,8 @@ class MyDesklet extends Desklet.Desklet {
     settings.bindProperty(Settings.BindingDirection.IN, "indicator-color", "indicatorColor", this._onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "circle-width", "circleWidth", this._onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "circle-color", "circleColor", this._onSettingsChanged.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "inner-circle-color", "innerCircleColor", this._onSettingsChanged.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "fill-inner-circle", "fillInnerCircle", this._onSettingsChanged.bind(this));
 
     this.setHeader("Timer");
     this._inputDigits = "";
@@ -49,6 +53,7 @@ class MyDesklet extends Desklet.Desklet {
 
   _setButtonStyles() {
     this.buttonStyle = `font-size: ${1.8 * this.scaleSize}em;`;
+    this.addTimeButtonStyle = `font-size: ${1.2 * this.scaleSize}em;`;
   }
 
   _setupInputLayout() {
@@ -167,7 +172,7 @@ class MyDesklet extends Desklet.Desklet {
 
     this.timeLabel = new St.Label({
       text: "00h 00m 00s",
-      style: `font-size: ${20 * this.scaleSize}px; color: ${this.labelColor};`,
+      style: `font-size: ${1.5 * this.scaleSize}em; color: ${this.labelColor}; margin-top: ${0.5 * this.scaleSize}em;`,
     });
     centerContent.add_child(new St.Bin({ child: this.timeLabel, x_align: St.Align.MIDDLE }));
 
@@ -179,7 +184,7 @@ class MyDesklet extends Desklet.Desklet {
       icon_size: 16 * this.scaleSize,
     });
     this.playBtn = new St.Button({ child: playIcon, style_class: "timer-input-button", style: this.buttonStyle });
-    this.playBtn.hide();
+    if (this.isRunning || this._remainingMs <= 0) this.playBtn.hide();
     this.playBtn.connect("clicked", () => this._onPlayPressed());
     buttonRow.add_child(this.playBtn);
 
@@ -189,7 +194,7 @@ class MyDesklet extends Desklet.Desklet {
       icon_size: 16 * this.scaleSize,
     });
     this.restartBtn = new St.Button({ child: refreshIcon, style_class: "timer-input-button", style: this.buttonStyle });
-    if (this.isRunning) this.restartBtn.hide();
+    if (this.isRunning || this._remainingMs > 0) this.restartBtn.hide();
     this.restartBtn.connect("clicked", () => this._onRestartPressed());
     buttonRow.add_child(this.restartBtn);
 
@@ -213,6 +218,22 @@ class MyDesklet extends Desklet.Desklet {
     buttonRow.add_child(this.stopBtn);
 
     centerContent.add_child(new St.Bin({ child: buttonRow, x_align: St.Align.MIDDLE }));
+
+    const addTimeBtn = new St.Button({
+      label: "+1",
+      style_class: "timer-add-time-button",
+      style: this.addTimeButtonStyle,
+    });
+    addTimeBtn.connect("clicked", () => {
+      this._remainingMs += 60 * 1000;
+      this._totalSeconds += 60;
+      if (this.isRunning) {
+        this._endTime += 60 * 1000;
+      }
+      this._updateTimerVisuals();
+    });
+    centerContent.add_child(new St.Bin({ child: addTimeBtn, x_align: St.Align.MIDDLE }));
+
     this._updateTimerVisuals();
   }
 
@@ -314,16 +335,24 @@ class MyDesklet extends Desklet.Desklet {
       cr.scale(width, height);
       cr.translate(0.5, 0.5);
 
+      // Draw the inner circle
+      if (this.fillInnerCircle) {
+        const rgbaInner = this._rgbToRgba(this.innerCircleColor);
+        cr.setSourceRGBA(rgbaInner[0], rgbaInner[1], rgbaInner[2], rgbaInner[3]);
+        cr.arc(0, 0, 0.4 - this.circleWidth / 2, 0, Math.PI * 2);
+        cr.fill();
+      }
+
       // Draw the background circle
       const rgbaCircle = this._rgbToRgba(this.circleColor);
-      cr.setSourceRGBA(rgbaCircle[0], rgbaCircle[1], rgbaCircle[2], 0.2);
+      cr.setSourceRGBA(rgbaCircle[0], rgbaCircle[1], rgbaCircle[2], rgbaCircle[3]);
       cr.setLineWidth(this.circleWidth);
       cr.arc(0, 0, 0.4, 0, Math.PI * 2);
       cr.stroke();
 
       // Draw the indicator arc
       const rgbaIndicator = this._rgbToRgba(this.indicatorColor);
-      cr.setSourceRGBA(rgbaIndicator[0], rgbaIndicator[1], rgbaIndicator[2], 1);
+      cr.setSourceRGBA(rgbaIndicator[0], rgbaIndicator[1], rgbaIndicator[2], rgbaIndicator[3]);
       cr.setLineWidth(this.circleWidth);
       const arcEnd = (this.indicatorLength * (Math.PI * 2)) / 100 - Math.PI * 0.5;
       cr.arc(0, 0, 0.4, 0 - Math.PI * 0.5, arcEnd);
@@ -339,11 +368,15 @@ class MyDesklet extends Desklet.Desklet {
 
   // Parses an RGB string to a RGBA array for Cairo
   _rgbToRgba(colorString) {
-    const match = colorString.match(/\d+/g);
-    if (match && match.length === 3) {
-      return match.map(Number).map(c => c / 255);
+    const match = colorString.match(/\((.*?)\)/);
+    if (match && match[1]) {
+      const c = match[1].split(",");
+      if (c.length >= 3) {
+        const a = c.length >= 4 ? parseFloat(c[3]) : 1;
+        return [parseInt(c[0]) / 255, parseInt(c[1]) / 255, parseInt(c[2]) / 255, a];
+      }
     }
-    return [0.3, 0.8, 0.5]; // Default color if parsing fails
+    return [0.3, 0.8, 0.5, 1]; // Default color if parsing fails
   }
 
   on_desklet_removed() {
