@@ -1,0 +1,8 @@
+{
+  "uuid": "timer@KopfdesDaemons",
+  "name": "Timer",
+  "description": "Set a timer for a user-defined time.",
+  "version": "1.0.0",
+  "max-instances": "50",
+  "author": "KopfdesDaemons"
+}
