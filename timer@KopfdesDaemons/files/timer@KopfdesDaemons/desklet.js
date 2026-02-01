@@ -3,6 +3,7 @@ const St = imports.gi.St;
 const Cogl = imports.gi.Cogl;
 const Cairo = imports.cairo;
 const Clutter = imports.gi.Clutter;
+const Mainloop = imports.mainloop;
 
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
@@ -10,6 +11,9 @@ class MyDesklet extends Desklet.Desklet {
 
     this.default_size = 180;
     this.isRunning = false;
+    this._timeout = null;
+    this._totalSeconds = 0;
+    this._remainingMs = 0;
 
     // Use default values if settings are not yet set
     this.labelColor = "rgb(51, 209, 122)";
@@ -98,7 +102,18 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _onStartPressed() {
-    this._setupTimerUI();
+    const padded = this._inputDigits.padStart(6, "0");
+    const h = parseInt(padded.slice(0, 2));
+    const m = parseInt(padded.slice(2, 4));
+    const s = parseInt(padded.slice(4, 6));
+    this._totalSeconds = h * 3600 + m * 60 + s;
+
+    if (this._totalSeconds > 0) {
+      this._remainingMs = this._totalSeconds * 1000;
+      this.indicatorLength = 100;
+      this._setupTimerUI();
+      this._startTimer();
+    }
   }
 
   _setupTimerUI() {
@@ -138,6 +153,16 @@ class MyDesklet extends Desklet.Desklet {
     this.playBtn.connect("clicked", () => this._onPlayPressed());
     buttonRow.add_child(this.playBtn);
 
+    const refreshIcon = new St.Icon({
+      icon_name: "view-refresh-symbolic",
+      icon_type: St.IconType.SYMBOLIC,
+      icon_size: 16,
+    });
+    this.restartBtn = new St.Button({ child: refreshIcon, style_class: "timer-input-button" });
+    this.restartBtn.hide();
+    this.restartBtn.connect("clicked", () => this._onRestartPressed());
+    buttonRow.add_child(this.restartBtn);
+
     const pauseIcon = new St.Icon({
       icon_name: "media-playback-pause-symbolic",
       icon_type: St.IconType.SYMBOLIC,
@@ -160,20 +185,86 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _onPausePressed() {
+    if (this._timeout) {
+      Mainloop.source_remove(this._timeout);
+      this._timeout = null;
+    }
     this.isRunning = false;
     this.pauseBtn.hide();
     this.playBtn.show();
   }
 
   _onStopPressed() {
+    if (this._timeout) {
+      Mainloop.source_remove(this._timeout);
+      this._timeout = null;
+    }
+    this.isRunning = false;
     this._inputDigits = "";
     this._setupInputLayout();
   }
 
   _onPlayPressed() {
-    this.isRunning = true;
-    this.playBtn.hide();
+    if (this._remainingMs > 0) {
+      this._startTimer();
+      this.playBtn.hide();
+      this.pauseBtn.show();
+    }
+  }
+
+  _onRestartPressed() {
+    this._remainingMs = this._totalSeconds * 1000;
+    this.restartBtn.hide();
     this.pauseBtn.show();
+    this._startTimer();
+  }
+
+  _startTimer() {
+    this.isRunning = true;
+    this._endTime = Date.now() + this._remainingMs;
+    this._updateTimerVisuals();
+
+    if (this._timeout) Mainloop.source_remove(this._timeout);
+    this._timeout = Mainloop.timeout_add(10, this._updateTimer.bind(this));
+  }
+
+  _updateTimer() {
+    const now = Date.now();
+    this._remainingMs = this._endTime - now;
+
+    if (this._remainingMs <= 0) {
+      this._remainingMs = 0;
+      this._updateTimerVisuals();
+      this.isRunning = false;
+      this._timeout = null;
+      this.playBtn.hide();
+      this.pauseBtn.hide();
+      this.restartBtn.show();
+      return false;
+    }
+
+    this._updateTimerVisuals();
+    return true;
+  }
+
+  _updateTimerVisuals() {
+    const totalSecondsLeft = Math.ceil(this._remainingMs / 1000);
+    const h = Math.floor(totalSecondsLeft / 3600);
+    const m = Math.floor((totalSecondsLeft % 3600) / 60);
+    const s = totalSecondsLeft % 60;
+
+    const text = `${h.toString().padStart(2, "0")}h ${m.toString().padStart(2, "0")}m ${s.toString().padStart(2, "0")}s`;
+    if (this.timeLabel) this.timeLabel.set_text(text);
+
+    if (this._totalSeconds > 0) {
+      this.indicatorLength = (this._remainingMs / (this._totalSeconds * 1000)) * 100;
+    } else {
+      this.indicatorLength = 0;
+    }
+
+    if (this.circleActor && this.circleActor.get_content()) {
+      this.circleActor.get_content().invalidate();
+    }
   }
 
   _drawCircle() {
@@ -220,6 +311,13 @@ class MyDesklet extends Desklet.Desklet {
       return match.map(Number).map(c => c / 255);
     }
     return [0.3, 0.8, 0.5]; // Default color if parsing fails
+  }
+
+  on_desklet_removed() {
+    if (this._timeout) {
+      Mainloop.source_remove(this._timeout);
+      this._timeout = null;
+    }
   }
 }
 
