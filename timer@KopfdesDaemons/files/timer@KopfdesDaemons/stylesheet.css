@@ -1,10 +1,9 @@
 .timer-input-button {
-  font-size: 1.8em;
   margin: 0.1em;
   background-color: rgba(24, 23, 23, 0.527);
-  border-radius: 1em;
-  height: 2em;
   width: 2em;
+  height: 2em;
+  border-radius: 0.5em;
 }
 
 .timer-input-button-action:hover,
@@ -15,5 +14,4 @@
 .timer-input-label {
   width: 100%;
   text-align: center;
-  font-size: 1.5em;
 }

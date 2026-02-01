@@ -4,6 +4,7 @@ const Cogl = imports.gi.Cogl;
 const Cairo = imports.cairo;
 const Clutter = imports.gi.Clutter;
 const Mainloop = imports.mainloop;
+const Settings = imports.ui.settings;
 
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
@@ -19,10 +20,15 @@ class MyDesklet extends Desklet.Desklet {
     this.labelColor = "rgb(51, 209, 122)";
     this.scaleSize = 1;
     this.indicatorColor = "rgb(51, 209, 122)";
-    this.rotationSpeed = 2;
     this.circleWidth = 0.03;
-    this.indicatorLength = 10;
     this.circleColor = "rgb(255, 255, 255)";
+
+    const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
+    settings.bindProperty(Settings.BindingDirection.IN, "label-color", "labelColor", this._onSettingsChanged.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._onSettingsChanged.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "indicator-color", "indicatorColor", this._onSettingsChanged.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "circle-width", "circleWidth", this._onSettingsChanged.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "circle-color", "circleColor", this._onSettingsChanged.bind(this));
 
     this.setHeader("Timer");
     this._inputDigits = "";
@@ -31,7 +37,18 @@ class MyDesklet extends Desklet.Desklet {
       layout_manager: new Clutter.BinLayout(),
     });
     this.setContent(this.mainContainer);
+    this._setButtonStyles();
     this._setupInputLayout();
+  }
+
+  _onSettingsChanged() {
+    this._setButtonStyles();
+    if (this._totalSeconds > 0) this._setupTimerUI();
+    else this._setupInputLayout();
+  }
+
+  _setButtonStyles() {
+    this.buttonStyle = `font-size: ${1.8 * this.scaleSize}em;`;
   }
 
   _setupInputLayout() {
@@ -40,7 +57,8 @@ class MyDesklet extends Desklet.Desklet {
     const box = new St.BoxLayout({ vertical: true });
 
     const labelRow = new St.BoxLayout();
-    this._inputLabel = new St.Label({ text: "00h 00m 00s", style_class: "timer-input-label", x_expand: true });
+    const labelStyle = `font-size: ${1.5 * this.scaleSize}em; color: ${this.labelColor};`;
+    this._inputLabel = new St.Label({ text: "00h 00m 00s", style_class: "timer-input-label", x_expand: true, style: labelStyle });
     labelRow.add_child(this._inputLabel);
     box.add_child(labelRow);
 
@@ -49,7 +67,11 @@ class MyDesklet extends Desklet.Desklet {
       const row = new St.BoxLayout();
       for (let j = 1; j <= 3; j++) {
         const num = i * 3 + j;
-        const button = new St.Button({ label: num.toString(), style_class: "timer-input-button" });
+        const button = new St.Button({
+          label: num.toString(),
+          style_class: "timer-input-button",
+          style: this.buttonStyle,
+        });
         button.connect("clicked", () => this._onDigitPressed(num));
         row.add_child(button);
       }
@@ -57,25 +79,37 @@ class MyDesklet extends Desklet.Desklet {
     }
 
     const lastRow = new St.BoxLayout();
-    const zeroBtn = new St.Button({ label: "0", style_class: "timer-input-button" });
+    const zeroBtn = new St.Button({
+      label: "0",
+      style_class: "timer-input-button",
+      style: this.buttonStyle,
+    });
     zeroBtn.connect("clicked", () => this._onDigitPressed(0));
     lastRow.add_child(zeroBtn);
 
     const playIcon = new St.Icon({
       icon_name: "media-playback-start-symbolic",
       icon_type: St.IconType.SYMBOLIC,
-      icon_size: 16,
+      icon_size: 16 * this.scaleSize,
     });
-    const startBtn = new St.Button({ child: playIcon, style_class: "timer-input-button" });
+    const startBtn = new St.Button({
+      child: playIcon,
+      style_class: "timer-input-button",
+      style: this.buttonStyle,
+    });
     lastRow.add_child(startBtn);
     startBtn.connect("clicked", () => this._onStartPressed());
 
     const editIcon = new St.Icon({
       icon_name: "edit-clear-symbolic",
       icon_type: St.IconType.SYMBOLIC,
-      icon_size: 16,
+      icon_size: 16 * this.scaleSize,
     });
-    const editBtn = new St.Button({ child: editIcon, style_class: "timer-input-button" });
+    const editBtn = new St.Button({
+      child: editIcon,
+      style_class: "timer-input-button",
+      style: this.buttonStyle,
+    });
     editBtn.connect("clicked", () => this._onEditPressed());
     lastRow.add_child(editBtn);
 
@@ -111,8 +145,8 @@ class MyDesklet extends Desklet.Desklet {
     if (this._totalSeconds > 0) {
       this._remainingMs = this._totalSeconds * 1000;
       this.indicatorLength = 100;
-      this._setupTimerUI();
       this._startTimer();
+      this._setupTimerUI();
     }
   }
 
@@ -121,7 +155,6 @@ class MyDesklet extends Desklet.Desklet {
 
     const absoluteSize = this.default_size * this.scaleSize;
 
-    // Create the circle actor for the canvas
     this.circleActor = new Clutter.Actor({
       width: absoluteSize,
       height: absoluteSize,
@@ -129,26 +162,23 @@ class MyDesklet extends Desklet.Desklet {
     this.mainContainer.add_child(this.circleActor);
     this._drawCircle();
 
-    // Create a vertical box layout for the time and buttons
     const centerContent = new St.BoxLayout({ vertical: true });
     this.mainContainer.add_child(centerContent);
 
-    // Create and style the time label
     this.timeLabel = new St.Label({
       text: "00h 00m 00s",
       style: `font-size: ${20 * this.scaleSize}px; color: ${this.labelColor};`,
     });
     centerContent.add_child(new St.Bin({ child: this.timeLabel, x_align: St.Align.MIDDLE }));
 
-    // Create a horizontal box for the buttons
     const buttonRow = new St.BoxLayout({ style: "spacing: 10px;" });
 
     const playIcon = new St.Icon({
       icon_name: "media-playback-start-symbolic",
       icon_type: St.IconType.SYMBOLIC,
-      icon_size: 16,
+      icon_size: 16 * this.scaleSize,
     });
-    this.playBtn = new St.Button({ child: playIcon, style_class: "timer-input-button" });
+    this.playBtn = new St.Button({ child: playIcon, style_class: "timer-input-button", style: this.buttonStyle });
     this.playBtn.hide();
     this.playBtn.connect("clicked", () => this._onPlayPressed());
     buttonRow.add_child(this.playBtn);
@@ -156,32 +186,34 @@ class MyDesklet extends Desklet.Desklet {
     const refreshIcon = new St.Icon({
       icon_name: "view-refresh-symbolic",
       icon_type: St.IconType.SYMBOLIC,
-      icon_size: 16,
+      icon_size: 16 * this.scaleSize,
     });
-    this.restartBtn = new St.Button({ child: refreshIcon, style_class: "timer-input-button" });
-    this.restartBtn.hide();
+    this.restartBtn = new St.Button({ child: refreshIcon, style_class: "timer-input-button", style: this.buttonStyle });
+    if (this.isRunning) this.restartBtn.hide();
     this.restartBtn.connect("clicked", () => this._onRestartPressed());
     buttonRow.add_child(this.restartBtn);
 
     const pauseIcon = new St.Icon({
       icon_name: "media-playback-pause-symbolic",
       icon_type: St.IconType.SYMBOLIC,
-      icon_size: 16,
+      icon_size: 16 * this.scaleSize,
     });
-    this.pauseBtn = new St.Button({ child: pauseIcon, style_class: "timer-input-button" });
+    this.pauseBtn = new St.Button({ child: pauseIcon, style_class: "timer-input-button", style: this.buttonStyle });
     this.pauseBtn.connect("clicked", () => this._onPausePressed());
+    if (!this.isRunning) this.pauseBtn.hide();
     buttonRow.add_child(this.pauseBtn);
 
     const stopIcon = new St.Icon({
       icon_name: "media-playback-stop-symbolic",
       icon_type: St.IconType.SYMBOLIC,
-      icon_size: 16,
+      icon_size: 16 * this.scaleSize,
     });
-    this.stopBtn = new St.Button({ child: stopIcon, style_class: "timer-input-button" });
+    this.stopBtn = new St.Button({ child: stopIcon, style_class: "timer-input-button", style: this.buttonStyle });
     this.stopBtn.connect("clicked", () => this._onStopPressed());
     buttonRow.add_child(this.stopBtn);
 
     centerContent.add_child(new St.Bin({ child: buttonRow, x_align: St.Align.MIDDLE }));
+    this._updateTimerVisuals();
   }
 
   _onPausePressed() {
@@ -200,6 +232,7 @@ class MyDesklet extends Desklet.Desklet {
       this._timeout = null;
     }
     this.isRunning = false;
+    this._totalSeconds = 0;
     this._inputDigits = "";
     this._setupInputLayout();
   }
