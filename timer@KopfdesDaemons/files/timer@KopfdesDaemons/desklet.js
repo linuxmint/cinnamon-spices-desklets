@@ -1,16 +1,38 @@
 const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
+const Cogl = imports.gi.Cogl;
+const Cairo = imports.cairo;
+const Clutter = imports.gi.Clutter;
 
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
 
+    this.default_size = 180;
+    this.isRunning = false;
+
+    // Use default values if settings are not yet set
+    this.labelColor = "rgb(51, 209, 122)";
+    this.scaleSize = 1;
+    this.indicatorColor = "rgb(51, 209, 122)";
+    this.rotationSpeed = 2;
+    this.circleWidth = 0.03;
+    this.indicatorLength = 10;
+    this.circleColor = "rgb(255, 255, 255)";
+
     this.setHeader("Timer");
     this._inputDigits = "";
+
+    this.mainContainer = new St.Widget({
+      layout_manager: new Clutter.BinLayout(),
+    });
+    this.setContent(this.mainContainer);
     this._setupInputLayout();
   }
 
   _setupInputLayout() {
+    this.mainContainer.destroy_all_children();
+
     const box = new St.BoxLayout({ vertical: true });
 
     const labelRow = new St.BoxLayout();
@@ -40,8 +62,9 @@ class MyDesklet extends Desklet.Desklet {
       icon_type: St.IconType.SYMBOLIC,
       icon_size: 16,
     });
-    const playBtn = new St.Button({ child: playIcon, style_class: "timer-input-button" });
-    lastRow.add_child(playBtn);
+    const startBtn = new St.Button({ child: playIcon, style_class: "timer-input-button" });
+    lastRow.add_child(startBtn);
+    startBtn.connect("clicked", () => this._onStartPressed());
 
     const editIcon = new St.Icon({
       icon_name: "edit-clear-symbolic",
@@ -54,7 +77,7 @@ class MyDesklet extends Desklet.Desklet {
 
     box.add_child(lastRow);
 
-    this.setContent(box);
+    this.mainContainer.add_child(box);
   }
 
   _onDigitPressed(num) {
@@ -72,6 +95,131 @@ class MyDesklet extends Desklet.Desklet {
   _updateInputLabel() {
     const padded = this._inputDigits.padStart(6, "0");
     this._inputLabel.set_text(`${padded.slice(0, 2)}h ${padded.slice(2, 4)}m ${padded.slice(4, 6)}s`);
+  }
+
+  _onStartPressed() {
+    this._setupTimerUI();
+  }
+
+  _setupTimerUI() {
+    this.mainContainer.destroy_all_children();
+
+    const absoluteSize = this.default_size * this.scaleSize;
+
+    // Create the circle actor for the canvas
+    this.circleActor = new Clutter.Actor({
+      width: absoluteSize,
+      height: absoluteSize,
+    });
+    this.mainContainer.add_child(this.circleActor);
+    this._drawCircle();
+
+    // Create a vertical box layout for the time and buttons
+    const centerContent = new St.BoxLayout({ vertical: true });
+    this.mainContainer.add_child(centerContent);
+
+    // Create and style the time label
+    this.timeLabel = new St.Label({
+      text: "00h 00m 00s",
+      style: `font-size: ${20 * this.scaleSize}px; color: ${this.labelColor};`,
+    });
+    centerContent.add_child(new St.Bin({ child: this.timeLabel, x_align: St.Align.MIDDLE }));
+
+    // Create a horizontal box for the buttons
+    const buttonRow = new St.BoxLayout({ style: "spacing: 10px;" });
+
+    const playIcon = new St.Icon({
+      icon_name: "media-playback-start-symbolic",
+      icon_type: St.IconType.SYMBOLIC,
+      icon_size: 16,
+    });
+    this.playBtn = new St.Button({ child: playIcon, style_class: "timer-input-button" });
+    this.playBtn.hide();
+    this.playBtn.connect("clicked", () => this._onPlayPressed());
+    buttonRow.add_child(this.playBtn);
+
+    const pauseIcon = new St.Icon({
+      icon_name: "media-playback-pause-symbolic",
+      icon_type: St.IconType.SYMBOLIC,
+      icon_size: 16,
+    });
+    this.pauseBtn = new St.Button({ child: pauseIcon, style_class: "timer-input-button" });
+    this.pauseBtn.connect("clicked", () => this._onPausePressed());
+    buttonRow.add_child(this.pauseBtn);
+
+    const stopIcon = new St.Icon({
+      icon_name: "media-playback-stop-symbolic",
+      icon_type: St.IconType.SYMBOLIC,
+      icon_size: 16,
+    });
+    this.stopBtn = new St.Button({ child: stopIcon, style_class: "timer-input-button" });
+    this.stopBtn.connect("clicked", () => this._onStopPressed());
+    buttonRow.add_child(this.stopBtn);
+
+    centerContent.add_child(new St.Bin({ child: buttonRow, x_align: St.Align.MIDDLE }));
+  }
+
+  _onPausePressed() {
+    this.isRunning = false;
+    this.pauseBtn.hide();
+    this.playBtn.show();
+  }
+
+  _onStopPressed() {
+    this._inputDigits = "";
+    this._setupInputLayout();
+  }
+
+  _onPlayPressed() {
+    this.isRunning = true;
+    this.playBtn.hide();
+    this.pauseBtn.show();
+  }
+
+  _drawCircle() {
+    const canvas = new Clutter.Canvas();
+    const absoluteSize = this.default_size * this.scaleSize;
+    canvas.set_size(absoluteSize * global.ui_scale, absoluteSize * global.ui_scale);
+
+    canvas.connect("draw", (canvas, cr, width, height) => {
+      cr.save();
+      cr.setOperator(Cairo.Operator.CLEAR);
+      cr.paint();
+      cr.restore();
+      cr.setOperator(Cairo.Operator.OVER);
+      cr.scale(width, height);
+      cr.translate(0.5, 0.5);
+
+      // Draw the background circle
+      const rgbaCircle = this._rgbToRgba(this.circleColor);
+      cr.setSourceRGBA(rgbaCircle[0], rgbaCircle[1], rgbaCircle[2], 0.2);
+      cr.setLineWidth(this.circleWidth);
+      cr.arc(0, 0, 0.4, 0, Math.PI * 2);
+      cr.stroke();
+
+      // Draw the indicator arc
+      const rgbaIndicator = this._rgbToRgba(this.indicatorColor);
+      cr.setSourceRGBA(rgbaIndicator[0], rgbaIndicator[1], rgbaIndicator[2], 1);
+      cr.setLineWidth(this.circleWidth);
+      const arcEnd = (this.indicatorLength * (Math.PI * 2)) / 100 - Math.PI * 0.5;
+      cr.arc(0, 0, 0.4, 0 - Math.PI * 0.5, arcEnd);
+      cr.stroke();
+
+      return true;
+    });
+
+    canvas.invalidate();
+    this.circleActor.set_content(canvas);
+    this.circleActor.set_pivot_point(0.5, 0.5);
+  }
+
+  // Parses an RGB string to a RGBA array for Cairo
+  _rgbToRgba(colorString) {
+    const match = colorString.match(/\d+/g);
+    if (match && match.length === 3) {
+      return match.map(Number).map(c => c / 255);
+    }
+    return [0.3, 0.8, 0.5]; // Default color if parsing fails
   }
 }
 
