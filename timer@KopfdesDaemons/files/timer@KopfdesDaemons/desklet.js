@@ -24,6 +24,7 @@ class MyDesklet extends Desklet.Desklet {
     this.circleColor = "rgb(255, 255, 255)";
     this.fillInnerCircle = true;
     this.innerCircleColor = "rgba(255, 255, 255, 0.3)";
+    this.hideDecorations = false;
 
     const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
     settings.bindProperty(Settings.BindingDirection.IN, "label-color", "labelColor", this._onSettingsChanged.bind(this));
@@ -33,6 +34,7 @@ class MyDesklet extends Desklet.Desklet {
     settings.bindProperty(Settings.BindingDirection.IN, "circle-color", "circleColor", this._onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "inner-circle-color", "innerCircleColor", this._onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "fill-inner-circle", "fillInnerCircle", this._onSettingsChanged.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "hideDecorations", "hideDecorations", this.updateDecoration.bind(this));
 
     this.setHeader("Timer");
     this._inputDigits = "";
@@ -42,6 +44,7 @@ class MyDesklet extends Desklet.Desklet {
     });
     this.setContent(this.mainContainer);
     this._setButtonStyles();
+    this.updateDecoration();
     this._setupInputLayout();
   }
 
@@ -49,6 +52,11 @@ class MyDesklet extends Desklet.Desklet {
     this._setButtonStyles();
     if (this._totalSeconds > 0) this._setupTimerUI();
     else this._setupInputLayout();
+  }
+
+  updateDecoration() {
+    this.metadata["prevent-decorations"] = this.hideDecorations;
+    this._updateDecoration();
   }
 
   _setButtonStyles() {
