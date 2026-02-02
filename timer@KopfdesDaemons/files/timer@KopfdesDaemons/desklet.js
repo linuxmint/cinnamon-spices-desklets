@@ -6,6 +6,8 @@ const Clutter = imports.gi.Clutter;
 const Mainloop = imports.mainloop;
 const Settings = imports.ui.settings;
 const Util = imports.misc.util;
+const Gio = imports.gi.Gio;
+const GLib = imports.gi.GLib;
 
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
@@ -17,6 +19,7 @@ class MyDesklet extends Desklet.Desklet {
     this._timeout = null;
     this._totalSeconds = 0;
     this._remainingMs = 0;
+    this._lastTimeText = "";
 
     // Use default values if settings are not yet set
     this.labelColor = "rgb(51, 209, 122)";
@@ -194,6 +197,7 @@ class MyDesklet extends Desklet.Desklet {
       text: "00h 00m 00s",
       style: `font-size: ${1.5 * this.scaleSize}em; color: ${this.labelColor}; margin-top: ${0.5 * this.scaleSize}em;`,
     });
+    this._lastTimeText = "";
     centerContent.add_child(new St.Bin({ child: this.timeLabel, x_align: St.Align.MIDDLE }));
 
     const buttonRow = new St.BoxLayout({ style: "spacing: 10px;" });
@@ -326,7 +330,7 @@ class MyDesklet extends Desklet.Desklet {
     this._updateTimerVisuals();
 
     if (this._timeout) Mainloop.source_remove(this._timeout);
-    this._timeout = Mainloop.timeout_add(10, this._updateTimer.bind(this));
+    this._timeout = Mainloop.timeout_add(20, this._updateTimer.bind(this));
   }
 
   _updateTimer() {
@@ -356,7 +360,10 @@ class MyDesklet extends Desklet.Desklet {
     const s = totalSecondsLeft % 60;
 
     const text = `${h.toString().padStart(2, "0")}h ${m.toString().padStart(2, "0")}m ${s.toString().padStart(2, "0")}s`;
-    if (this.timeLabel) this.timeLabel.set_text(text);
+    if (this.timeLabel && text !== this._lastTimeText) {
+      this.timeLabel.set_text(text);
+      this._lastTimeText = text;
+    }
 
     if (this._totalSeconds > 0) {
       this.indicatorLength = (this._remainingMs / (this._totalSeconds * 1000)) * 100;
@@ -417,7 +424,15 @@ class MyDesklet extends Desklet.Desklet {
   _playSound() {
     if (this.soundFile && this.soundFile !== "none") {
       const path = "/usr/share/sounds/freedesktop/stereo/" + this.soundFile;
-      Util.spawnCommandLine("paplay " + path);
+      try {
+        let proc = new Gio.Subprocess({
+          argv: ["paplay", path],
+          flags: Gio.SubprocessFlags.NONE,
+        });
+        proc.init(null);
+      } catch (e) {
+        global.logError("timer@KopfdesDaemons: Error playing sound: " + e.message);
+      }
     }
   }
 
