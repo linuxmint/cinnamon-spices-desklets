@@ -73,6 +73,7 @@ class MyDesklet extends Desklet.Desklet {
     this.mainContainer.destroy_all_children();
 
     const box = new St.BoxLayout({ vertical: true });
+    box.style = "width: " + this.default_size * this.scaleSize + "px;";
 
     const labelRow = new St.BoxLayout();
     const labelStyle = `font-size: ${1.5 * this.scaleSize}em; color: ${this.labelColor};`;
@@ -83,6 +84,8 @@ class MyDesklet extends Desklet.Desklet {
     // Input buttons 1-9
     for (let i = 0; i < 3; i++) {
       const row = new St.BoxLayout();
+      row.add_child(new St.Bin({ x_expand: true }));
+
       for (let j = 1; j <= 3; j++) {
         const num = i * 3 + j;
         const button = new St.Button({
@@ -93,10 +96,12 @@ class MyDesklet extends Desklet.Desklet {
         button.connect("clicked", () => this._onDigitPressed(num));
         row.add_child(button);
       }
+      row.add_child(new St.Bin({ x_expand: true }));
       box.add_child(row);
     }
 
     const lastRow = new St.BoxLayout();
+    lastRow.add_child(new St.Bin({ x_expand: true }));
     const zeroBtn = new St.Button({
       label: "0",
       style_class: "timer-input-button",
@@ -130,6 +135,7 @@ class MyDesklet extends Desklet.Desklet {
     });
     editBtn.connect("clicked", () => this._onEditPressed());
     lastRow.add_child(editBtn);
+    lastRow.add_child(new St.Bin({ x_expand: true }));
 
     box.add_child(lastRow);
 
