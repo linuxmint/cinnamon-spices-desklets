@@ -1,6 +1,22 @@
 {
   "head0": {
     "type": "header",
+    "description": "Sound"
+  },
+  "sound-file": {
+    "type": "combobox",
+    "default": "service-login.oga",
+    "description": "Sound when the timer expires",
+    "options": {
+      "No Sound": "none",
+      "Alarm Clock": "alarm-clock-elapsed.oga",
+      "Complete": "complete.oga",
+      "Service login": "service-login.oga",
+      "Service logout": "service-logout.oga"
+    }
+  },
+  "head1": {
+    "type": "header",
     "description": "Style"
   },
   "label-color": {
@@ -21,7 +37,7 @@
     "description": "Hide decorations",
     "default": false
   },
-  "head1": {
+  "head2": {
     "type": "header",
     "description": "Circle"
   },

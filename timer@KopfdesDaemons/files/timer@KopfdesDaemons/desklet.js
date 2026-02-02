@@ -5,6 +5,7 @@ const Cairo = imports.cairo;
 const Clutter = imports.gi.Clutter;
 const Mainloop = imports.mainloop;
 const Settings = imports.ui.settings;
+const Util = imports.misc.util;
 
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
@@ -25,6 +26,7 @@ class MyDesklet extends Desklet.Desklet {
     this.fillInnerCircle = true;
     this.innerCircleColor = "rgba(255, 255, 255, 0.3)";
     this.hideDecorations = false;
+    this.soundFile = "complete.oga";
 
     const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
     settings.bindProperty(Settings.BindingDirection.IN, "label-color", "labelColor", this._onSettingsChanged.bind(this));
@@ -35,6 +37,7 @@ class MyDesklet extends Desklet.Desklet {
     settings.bindProperty(Settings.BindingDirection.IN, "inner-circle-color", "innerCircleColor", this._onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "fill-inner-circle", "fillInnerCircle", this._onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "hideDecorations", "hideDecorations", this.updateDecoration.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "sound-file", "soundFile", null);
 
     this.setHeader("Timer");
     this._inputDigits = "";
@@ -302,6 +305,7 @@ class MyDesklet extends Desklet.Desklet {
       this.playBtn.hide();
       this.pauseBtn.hide();
       this.restartBtn.show();
+      this._playSound();
       return false;
     }
 
@@ -372,6 +376,13 @@ class MyDesklet extends Desklet.Desklet {
     canvas.invalidate();
     this.circleActor.set_content(canvas);
     this.circleActor.set_pivot_point(0.5, 0.5);
+  }
+
+  _playSound() {
+    if (this.soundFile && this.soundFile !== "none") {
+      const path = "/usr/share/sounds/freedesktop/stereo/" + this.soundFile;
+      Util.spawnCommandLine("paplay " + path);
+    }
   }
 
   // Parses an RGB string to a RGBA array for Cairo
