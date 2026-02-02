@@ -1,0 +1,10 @@
+{
+    "uuid": "nvidia-profile-switcher@thewraith420",
+    "name": "Nvidia Profile Switcher",
+    "description": "Easily switch between Nvidia Prime profiles (Intel/Hybrid/Nvidia) with a convenient desktop widget. Features customizable layout, icons, colors, and automatic reboot countdown.",
+    "version": "1.0.0",
+    "author": "thewraith420",
+    "url": "https://github.com/thewraith420/nvidia-profile-switcher",
+    "cinnamon-version": ["5.0", "5.2", "5.4", "5.6", "6.0", "6.2"],
+    "max-instances": 1
+}

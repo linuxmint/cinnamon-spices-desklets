@@ -1,0 +1,84 @@
+{
+    "header": {
+        "type": "header",
+        "description": "Lenovo Vantage Desklet Settings"
+    },
+    "conservation-mode-enabled": {
+        "type": "switch",
+        "default": false,
+        "description": "Enable Battery Conservation Mode",
+        "tooltip": "Limits battery charge to extend battery lifespan (e.g., to 60%)."
+    },
+    "rapid-charge-enabled": {
+        "type": "switch",
+        "default": false,
+        "description": "Enable Rapid Charge Mode",
+        "tooltip": "Charges the battery faster when enabled."
+    },
+    "accent-color": {
+        "type": "colorchooser",
+        "default": "rgb(66, 133, 244)",
+        "description": "Accent Color",
+        "tooltip": "Color for active toggles and highlights. Use RGB format (e.g., rgb(66, 133, 244)) or hex (#4285F4)."
+    },
+    "background-color": {
+        "type": "colorchooser",
+        "default": "rgba(0, 0, 0, 0.85)",
+        "description": "Background Color",
+        "tooltip": "Main desklet background color. Use RGBA format for transparency."
+    },
+    "font-color": {
+        "type": "colorchooser",
+        "default": "rgb(255, 255, 255)",
+        "description": "Font Color",
+        "tooltip": "Color for all text. Use RGB format (e.g., rgb(255, 255, 255)) or hex (#FFFFFF)."
+    },
+    "border-color": {
+        "type": "colorchooser",
+        "default": "rgb(66, 133, 244)",
+        "description": "Border Color",
+        "tooltip": "Color for the desklet's border. Use RGB format (e.g., rgb(66, 133, 244)) or hex (#4285F4)."
+    },
+    "button-size": {
+        "type": "spinbutton",
+        "default": 11,
+        "description": "Font Size (pt)",
+        "min": 8,
+        "max": 18,
+        "step": 1,
+        "tooltip": "Font size for toggle buttons (8-18 points)."
+    },
+    "desklet-width": {
+        "type": "spinbutton",
+        "default": 200,
+        "description": "Desklet Width (px)",
+        "min": 150,
+        "max": 400,
+        "step": 10,
+        "tooltip": "Minimum width of the desklet in pixels (150-400)."
+    },
+    "border-radius": {
+        "type": "spinbutton",
+        "default": 10,
+        "description": "Border Radius (px)",
+        "min": 0,
+        "max": 25,
+        "step": 1,
+        "tooltip": "Radius of the desklet's corners (0-25)."
+    },
+    "show-battery-percentage": {
+        "type": "switch",
+        "default": true,
+        "description": "Show Battery Percentage",
+        "tooltip": "Display battery percentage and time remaining at the top."
+    },
+    "update-interval": {
+        "type": "spinbutton",
+        "default": 5,
+        "description": "Update Interval (seconds)",
+        "min": 1,
+        "max": 30,
+        "step": 1,
+        "tooltip": "How often to refresh battery status and sync settings (1-30 seconds)."
+    }
+}
