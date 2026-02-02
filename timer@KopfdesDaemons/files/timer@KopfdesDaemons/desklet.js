@@ -22,7 +22,7 @@ class MyDesklet extends Desklet.Desklet {
     this.indicatorColor = "rgb(51, 209, 122)";
     this.circleWidth = 0.03;
     this.circleColor = "rgb(255, 255, 255)";
-    this.fillInnerCircle = false;
+    this.fillInnerCircle = true;
     this.innerCircleColor = "rgba(255, 255, 255, 0.3)";
 
     const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
