@@ -290,6 +290,7 @@ class MyDesklet extends Desklet.Desklet {
       style: this.addTimeButtonStyle,
     });
     addTimeBtn.connect("clicked", () => {
+      this._stopSound();
       const wasZero = this._totalSeconds === 0;
       if (!this.isRunning && this._remainingMs === 0) {
         this._totalSeconds = 0;
@@ -329,7 +330,7 @@ class MyDesklet extends Desklet.Desklet {
       Mainloop.source_remove(this._timeout);
       this._timeout = null;
     }
-    this._stopRunningSound();
+    this._stopSound();
 
     this.isRunning = false;
     this._totalSeconds = 0;
@@ -347,7 +348,7 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _onRestartPressed() {
-    this._stopRunningSound();
+    this._stopSound();
     this._remainingMs = this._totalSeconds * 1000;
     this.restartBtn.hide();
     this.pauseBtn.show();
@@ -386,7 +387,7 @@ class MyDesklet extends Desklet.Desklet {
     return true;
   }
 
-  _stopRunningSound() {
+  _stopSound() {
     if (this._soundProc) {
       this._soundProc.force_exit();
       this._soundProc = null;
@@ -406,7 +407,7 @@ class MyDesklet extends Desklet.Desklet {
     });
     const notification = new MessageTray.Notification(this._notificationSource, title, message, { icon: icon });
     notification.setTransient(false);
-    notification.connect("destroy", () => this._stopRunningSound());
+    notification.connect("destroy", () => this._stopSound());
     this._notificationSource.notify(notification);
   }
 
@@ -493,7 +494,7 @@ class MyDesklet extends Desklet.Desklet {
 
     if (path) {
       try {
-        this._stopRunningSound();
+        this._stopSound();
 
         this._soundProc = new Gio.Subprocess({
           argv: ["paplay", path],
@@ -524,7 +525,7 @@ class MyDesklet extends Desklet.Desklet {
       Mainloop.source_remove(this._timeout);
       this._timeout = null;
     }
-    this._stopRunningSound();
+    this._stopSound();
     if (this._notificationSource) {
       this._notificationSource.destroy();
     }
