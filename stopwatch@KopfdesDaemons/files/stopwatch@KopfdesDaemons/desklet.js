@@ -1,14 +1,12 @@
 const Desklet = imports.ui.desklet;
-const Lang = imports.lang;
 const St = imports.gi.St;
 const Mainloop = imports.mainloop;
 const GLib = imports.gi.GLib;
 const Settings = imports.ui.settings;
 const Gettext = imports.gettext;
-const Clutter = imports.gi.Clutter;
-const GdkPixbuf = imports.gi.GdkPixbuf;
-const Cogl = imports.gi.Cogl;
 const Cairo = imports.cairo;
+const Clutter = imports.gi.Clutter;
+const Gio = imports.gi.Gio;
 
 const UUID = "stopwatch@KopfdesDaemons";
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
@@ -22,23 +20,15 @@ class StopwatchDesklet extends Desklet.Desklet {
     super(metadata, deskletId);
 
     // Initialize default properties
-    this._timeout = null;
-    this._animationTimeout = null;
-    this._startTime = 0;
     this._elapsedTime = 0;
-    this._isRunning = false;
     this.default_size = 180;
-    this.buttonRow = null;
-    this.playButton = null;
-    this.pauseButton = null;
-    this.stopButton = null;
 
     // Use default values if settings are not yet set
     this.labelColor = "rgb(51, 209, 122)";
     this.scaleSize = 1;
     this.indicatorColor = "rgb(51, 209, 122)";
     this.rotationSpeed = 2;
-    this.cricleWidth = 0.1;
+    this.circleWidth = 0.1;
     this.indicatorLength = 10;
     this.circleColor = "rgb(255, 255, 255)";
 
@@ -48,7 +38,7 @@ class StopwatchDesklet extends Desklet.Desklet {
     settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "indicator-color", "indicatorColor", this._onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "animation-speed", "rotationSpeed", this._onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "circle-width", "cricleWidth", this._onSettingsChanged.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "circle-width", "circleWidth", this._onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "indicator-length", "indicatorLength", this._onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "circle-color", "circleColor", this._onSettingsChanged.bind(this));
 
@@ -67,10 +57,12 @@ class StopwatchDesklet extends Desklet.Desklet {
     const absoluteSize = this.default_size * this.scaleSize;
 
     // Create the circle actor for the canvas
-    this.circleActor = new Clutter.Actor({
+    this.circleActor = new St.DrawingArea({
       width: absoluteSize,
       height: absoluteSize,
     });
+    this.circleActor.set_pivot_point(0.5, 0.5);
+    this.circleActor.connect("repaint", this._drawCircle.bind(this));
     this.mainContainer.add_child(this.circleActor);
 
     // Create a vertical box layout for the time and buttons
@@ -97,7 +89,7 @@ class StopwatchDesklet extends Desklet.Desklet {
     const absoluteSize = this.default_size * this.scaleSize;
     this.circleActor.set_size(absoluteSize, absoluteSize);
     this.timeLabel.style = `font-size: ${20 * this.scaleSize}px; color: ${this.labelColor};`;
-    this._drawCircle();
+    this.circleActor.queue_repaint();
     this._updateButtons();
   }
 
@@ -109,7 +101,9 @@ class StopwatchDesklet extends Desklet.Desklet {
     const buttonHeight = 40 * this.scaleSize;
 
     const createButton = (iconName, callback) => {
-      const icon = this._getImageAtScale(`${this.metadata.path}/${iconName}.svg`, buttonHeight, buttonHeight);
+      const file = Gio.File.new_for_path(`${this.metadata.path}/${iconName}.svg`);
+      const fileIcon = new Gio.FileIcon({ file });
+      const icon = new St.Icon({ gicon: fileIcon, icon_size: buttonHeight });
       const button = new St.Button({ child: icon, style_class: "stopwatch-button" });
       button.connect("clicked", callback.bind(this));
       return button;
@@ -132,34 +126,6 @@ class StopwatchDesklet extends Desklet.Desklet {
     }
   }
 
-  // Parses an RGB string to a RGBA array for Cairo
-  _rgbToRgba(colorString) {
-    const match = colorString.match(/\d+/g);
-    if (match && match.length === 3) {
-      return match.map(Number).map(c => c / 255);
-    }
-    return [0.3, 0.8, 0.5]; // Default color if parsing fails
-  }
-
-  // Helper to load and scale an SVG image
-  _getImageAtScale(imageFileName, requestedWidth, requestedHeight) {
-    try {
-      const pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(imageFileName, requestedWidth, requestedHeight);
-      const image = new Clutter.Image();
-      image.set_data(
-        pixBuf.get_pixels(),
-        pixBuf.get_has_alpha() ? Cogl.PixelFormat.RGBA_8888 : Cogl.PixelFormat.RGBA_888,
-        pixBuf.get_width(),
-        pixBuf.get_height(),
-        pixBuf.get_rowstride()
-      );
-      return new Clutter.Actor({ content: image, width: pixBuf.get_width(), height: pixBuf.get_height() });
-    } catch (e) {
-      global.logError(`Error loading image ${imageFileName}: ${e}`);
-      return new St.Label({ text: "Error" });
-    }
-  }
-
   // Updates the time label every 10ms
   _updateTime() {
     const currentTime = new Date().getTime();
@@ -174,7 +140,7 @@ class StopwatchDesklet extends Desklet.Desklet {
     if (hours > 0) {
       this.timeLabel.style = `font-size: ${16 * this.scaleSize}px; color: ${this.labelColor};`;
       formattedTime = `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}.${String(
-        milliseconds
+        milliseconds,
       ).padStart(3, "0")}`;
     } else if (minutes > 0) {
       formattedTime = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}.${String(milliseconds).padStart(3, "0")}`;
@@ -268,41 +234,41 @@ class StopwatchDesklet extends Desklet.Desklet {
   }
 
   // Draws the static circle and arc on the canvas
-  _drawCircle() {
-    const canvas = new Clutter.Canvas();
-    const absoluteSize = this.default_size * this.scaleSize;
-    canvas.set_size(absoluteSize * global.ui_scale, absoluteSize * global.ui_scale);
+  _drawCircle(area) {
+    const [width, height] = area.get_surface_size();
+    const cr = area.get_context();
 
-    canvas.connect("draw", (canvas, cr, width, height) => {
-      cr.save();
-      cr.setOperator(Cairo.Operator.CLEAR);
-      cr.paint();
-      cr.restore();
-      cr.setOperator(Cairo.Operator.OVER);
-      cr.scale(width, height);
-      cr.translate(0.5, 0.5);
+    cr.save();
+    cr.setOperator(Cairo.Operator.CLEAR);
+    cr.paint();
+    cr.restore();
+    cr.setOperator(Cairo.Operator.OVER);
+    cr.scale(width, height);
+    cr.translate(0.5, 0.5);
 
-      // Draw the background circle
-      const rgbaCircle = this._rgbToRgba(this.circleColor);
-      cr.setSourceRGBA(rgbaCircle[0], rgbaCircle[1], rgbaCircle[2], 0.2);
-      cr.setLineWidth(this.cricleWidth);
-      cr.arc(0, 0, 0.4, 0, Math.PI * 2);
-      cr.stroke();
+    // Draw the background circle
+    const rgbaCircle = this._rgbToRgba(this.circleColor);
+    cr.setSourceRGBA(rgbaCircle[0], rgbaCircle[1], rgbaCircle[2], 0.2);
+    cr.setLineWidth(this.circleWidth);
+    cr.arc(0, 0, 0.4, 0, Math.PI * 2);
+    cr.stroke();
 
-      // Draw the indicator arc
-      const rgbaIndicator = this._rgbToRgba(this.indicatorColor);
-      cr.setSourceRGBA(rgbaIndicator[0], rgbaIndicator[1], rgbaIndicator[2], 1);
-      cr.setLineWidth(this.cricleWidth);
-      const arcEnd = (this.indicatorLength * (Math.PI * 2)) / 100 - Math.PI * 0.5;
-      cr.arc(0, 0, 0.4, 0 - Math.PI * 0.5, arcEnd);
-      cr.stroke();
+    // Draw the indicator arc
+    const rgbaIndicator = this._rgbToRgba(this.indicatorColor);
+    cr.setSourceRGBA(rgbaIndicator[0], rgbaIndicator[1], rgbaIndicator[2], 1);
+    cr.setLineWidth(this.circleWidth);
+    const arcEnd = (this.indicatorLength * (Math.PI * 2)) / 100 - Math.PI * 0.5;
+    cr.arc(0, 0, 0.4, 0 - Math.PI * 0.5, arcEnd);
+    cr.stroke();
+  }
 
-      return true;
-    });
-
-    canvas.invalidate();
-    this.circleActor.set_content(canvas);
-    this.circleActor.set_pivot_point(0.5, 0.5);
+  // Parses an RGB string to a RGBA array for Cairo
+  _rgbToRgba(colorString) {
+    const match = colorString.match(/\d+/g);
+    if (match && match.length === 3) {
+      return match.map(Number).map(c => c / 255);
+    }
+    return [0.3, 0.8, 0.5]; // Default color if parsing fails
   }
 }
 
