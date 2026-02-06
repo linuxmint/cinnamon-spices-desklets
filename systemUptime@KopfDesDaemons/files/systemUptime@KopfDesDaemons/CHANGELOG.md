@@ -12,3 +12,5 @@
 ## [1.1.0] - 06.02.2026
 
 - use local date and time format
+- use St.Icon for the clock icon
+- refactor
