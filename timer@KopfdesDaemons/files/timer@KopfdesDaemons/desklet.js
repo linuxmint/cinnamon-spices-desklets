@@ -8,6 +8,16 @@ const Settings = imports.ui.settings;
 const Util = imports.misc.util;
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
+const Main = imports.ui.main;
+const MessageTray = imports.ui.messageTray;
+const Gettext = imports.gettext;
+
+const UUID = "timer@KopfdesDaemons";
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+
+function _(str) {
+  return Gettext.dgettext(UUID, str);
+}
 
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
@@ -34,6 +44,8 @@ class MyDesklet extends Desklet.Desklet {
     this.soundFile = "complete.oga";
     this.useCustomSound = false;
     this.customSoundFile = "";
+    this.timerName = "";
+    this.showNotification = false;
 
     const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
     settings.bindProperty(Settings.BindingDirection.IN, "label-color", "labelColor", this._onSettingsChanged.bind(this));
@@ -47,6 +59,8 @@ class MyDesklet extends Desklet.Desklet {
     settings.bindProperty(Settings.BindingDirection.IN, "sound-file", "soundFile", null);
     settings.bindProperty(Settings.BindingDirection.IN, "use-custom-sound", "useCustomSound", null);
     settings.bindProperty(Settings.BindingDirection.IN, "custom-sound-file", "customSoundFile", null);
+    settings.bindProperty(Settings.BindingDirection.IN, "timer-name", "timerName", this._onSettingsChanged.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "show-notification", "showNotification", null);
 
     this.setHeader("Timer");
     this._inputDigits = "";
@@ -198,9 +212,17 @@ class MyDesklet extends Desklet.Desklet {
     const centerContent = new St.BoxLayout({ vertical: true });
     this.mainContainer.add_child(centerContent);
 
+    if (this.timerName) {
+      const titleLabel = new St.Label({
+        text: this.timerName,
+        style: `font-size: ${0.9 * this.scaleSize}em; background-color: rgba(0,0,0,0.5); padding: 2px 6px; border-radius: 4px;`,
+      });
+      centerContent.add_child(new St.Bin({ child: titleLabel, x_align: St.Align.MIDDLE }));
+    }
+
     this.timeLabel = new St.Label({
       text: "00h 00m 00s",
-      style: `font-size: ${1.5 * this.scaleSize}em; color: ${this.labelColor}; margin-top: ${0.5 * this.scaleSize}em;`,
+      style: `font-size: ${1.5 * this.scaleSize}em; color: ${this.labelColor}; margin-top: ${!this.timerName ? 0.5 * this.scaleSize : 0}em;`,
     });
     this._lastTimeText = "";
     centerContent.add_child(new St.Bin({ child: this.timeLabel, x_align: St.Align.MIDDLE }));
@@ -354,6 +376,9 @@ class MyDesklet extends Desklet.Desklet {
       this.pauseBtn.hide();
       this.restartBtn.show();
       this._playSound();
+      if (this.showNotification) {
+        this._sendNotification();
+      }
       return false;
     }
 
@@ -366,6 +391,23 @@ class MyDesklet extends Desklet.Desklet {
       this._soundProc.force_exit();
       this._soundProc = null;
     }
+  }
+
+  _sendNotification() {
+    const title = this.timerName || "Timer";
+    const message = _("Timer expired!");
+    if (!this._notificationSource) {
+      this._notificationSource = new MessageTray.SystemNotificationSource();
+    }
+    Main.messageTray.add(this._notificationSource);
+    const icon = new St.Icon({
+      icon_name: "alarm-symbolic",
+      icon_type: St.IconType.SYMBOLIC,
+    });
+    const notification = new MessageTray.Notification(this._notificationSource, title, message, { icon: icon });
+    notification.setTransient(false);
+    notification.connect("destroy", () => this._stopRunningSound());
+    this._notificationSource.notify(notification);
   }
 
   _updateTimerVisuals() {
@@ -483,6 +525,9 @@ class MyDesklet extends Desklet.Desklet {
       this._timeout = null;
     }
     this._stopRunningSound();
+    if (this._notificationSource) {
+      this._notificationSource.destroy();
+    }
   }
 }
 

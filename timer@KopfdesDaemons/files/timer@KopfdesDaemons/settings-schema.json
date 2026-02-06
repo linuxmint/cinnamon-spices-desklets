@@ -30,6 +30,20 @@
   },
   "head1": {
     "type": "header",
+    "description": "General"
+  },
+  "timer-name": {
+    "type": "entry",
+    "default": "",
+    "description": "Timer name"
+  },
+  "show-notification": {
+    "type": "checkbox",
+    "description": "Show notification when timer expires",
+    "default": true
+  },
+  "head2": {
+    "type": "header",
     "description": "Style"
   },
   "label-color": {
@@ -50,7 +64,7 @@
     "description": "Hide decorations",
     "default": false
   },
-  "head2": {
+  "head3": {
     "type": "header",
     "description": "Circle"
   },
