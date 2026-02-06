@@ -27,7 +27,7 @@
   },
   "circle-color": {
     "type": "colorchooser",
-    "default": "rgb(255, 255, 255)",
+    "default": "rgba(255, 255, 255, 0.2)",
     "description": "Circle color"
   },
   "animation-speed": {

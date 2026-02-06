@@ -5,7 +5,6 @@ const GLib = imports.gi.GLib;
 const Settings = imports.ui.settings;
 const Gettext = imports.gettext;
 const Cairo = imports.cairo;
-const Clutter = imports.gi.Clutter;
 const Gio = imports.gi.Gio;
 
 const UUID = "stopwatch@KopfdesDaemons";
@@ -49,25 +48,27 @@ class StopwatchDesklet extends Desklet.Desklet {
 
   // Setup the entire visual layout of the desklet
   _setupLayout() {
-    this.mainContainer = new St.Widget({
-      layout_manager: new Clutter.BinLayout(),
-    });
+    this.mainContainer = new St.Widget();
     this.setContent(this.mainContainer);
 
     const absoluteSize = this.default_size * this.scaleSize;
 
     // Create the circle actor for the canvas
-    this.circleActor = new St.DrawingArea({
-      width: absoluteSize,
-      height: absoluteSize,
-    });
-    this.circleActor.set_pivot_point(0.5, 0.5);
-    this.circleActor.connect("repaint", this._drawCircle.bind(this));
-    this.mainContainer.add_child(this.circleActor);
+    this.circleDrawingArea = new St.DrawingArea({ width: absoluteSize, height: absoluteSize });
+    this.circleDrawingArea.set_pivot_point(0.5, 0.5);
+    this.circleDrawingArea.connect("repaint", this._drawCircle.bind(this));
+    this.mainContainer.add_child(this.circleDrawingArea);
 
     // Create a vertical box layout for the time and buttons
     this.centerContent = new St.BoxLayout({ vertical: true });
-    this.mainContainer.add_child(this.centerContent);
+    this.contentBin = new St.Bin({
+      width: absoluteSize,
+      height: absoluteSize,
+      x_align: St.Align.MIDDLE,
+      y_align: St.Align.MIDDLE,
+    });
+    this.contentBin.set_child(this.centerContent);
+    this.mainContainer.add_child(this.contentBin);
 
     // Create and style the time label
     this.timeLabel = new St.Label({
@@ -87,9 +88,10 @@ class StopwatchDesklet extends Desklet.Desklet {
   // Updates the visual properties based on current settings
   _updateVisuals() {
     const absoluteSize = this.default_size * this.scaleSize;
-    this.circleActor.set_size(absoluteSize, absoluteSize);
+    this.circleDrawingArea.set_size(absoluteSize, absoluteSize);
+    if (this.contentBin) this.contentBin.set_size(absoluteSize, absoluteSize);
     this.timeLabel.style = `font-size: ${20 * this.scaleSize}px; color: ${this.labelColor};`;
-    this.circleActor.queue_repaint();
+    this.circleDrawingArea.queue_repaint();
     this._updateButtons();
   }
 
@@ -131,31 +133,32 @@ class StopwatchDesklet extends Desklet.Desklet {
     const currentTime = new Date().getTime();
     const elapsedTime = this._elapsedTime + (this._isRunning ? currentTime - this._startTime : 0);
     const totalSeconds = Math.floor(elapsedTime / 1000);
-    const hours = Math.floor(totalSeconds / 3600);
-    const minutes = Math.floor(totalSeconds / 60) % 60;
-    const seconds = totalSeconds % 60;
-    const milliseconds = elapsedTime % 1000;
+    const h = Math.floor(totalSeconds / 3600);
+    const m = Math.floor(totalSeconds / 60) % 60;
+    const s = totalSeconds % 60;
+    const ms = elapsedTime % 1000;
 
-    let formattedTime;
-    if (hours > 0) {
+    let timeString;
+    if (h > 0) {
+      // Display hours, minutes, seconds, and milliseconds
       this.timeLabel.style = `font-size: ${16 * this.scaleSize}px; color: ${this.labelColor};`;
-      formattedTime = `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}.${String(
-        milliseconds,
-      ).padStart(3, "0")}`;
-    } else if (minutes > 0) {
-      formattedTime = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}.${String(milliseconds).padStart(3, "0")}`;
+      timeString = `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}.${String(ms).padStart(3, "0")}`;
+    } else if (m > 0) {
+      // Display minutes, seconds, and milliseconds
+      timeString = `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}.${String(ms).padStart(3, "0")}`;
     } else {
+      // Display seconds and milliseconds
       this.timeLabel.style = `font-size: ${20 * this.scaleSize}px; color: ${this.labelColor};`;
-      formattedTime = `${String(seconds).padStart(2, "0")}.${String(milliseconds).padStart(3, "0")}`;
+      timeString = `${String(s).padStart(2, "0")}.${String(ms).padStart(3, "0")}`;
     }
 
-    this.timeLabel.set_text(formattedTime);
+    this.timeLabel.set_text(timeString);
     return true;
   }
 
   // Rotates the indicator actor for animation
   _animateIndicator() {
-    this.circleActor.rotation_angle_z = (this.circleActor.rotation_angle_z + this.rotationSpeed) % 360;
+    this.circleDrawingArea.rotation_angle_z = (this.circleDrawingArea.rotation_angle_z + this.rotationSpeed) % 360;
     return true;
   }
 
@@ -196,7 +199,7 @@ class StopwatchDesklet extends Desklet.Desklet {
     if (this._animationTimeout) Mainloop.source_remove(this._animationTimeout);
     this._animationTimeout = null;
 
-    this.circleActor.rotation_angle_z = 0;
+    this.circleDrawingArea.rotation_angle_z = 0;
     this._startTime = 0;
     this._elapsedTime = 0;
     this._isRunning = false;
@@ -248,14 +251,14 @@ class StopwatchDesklet extends Desklet.Desklet {
 
     // Draw the background circle
     const rgbaCircle = this._rgbToRgba(this.circleColor);
-    cr.setSourceRGBA(rgbaCircle[0], rgbaCircle[1], rgbaCircle[2], 0.2);
+    cr.setSourceRGBA(rgbaCircle[0], rgbaCircle[1], rgbaCircle[2], rgbaCircle[3]);
     cr.setLineWidth(this.circleWidth);
     cr.arc(0, 0, 0.4, 0, Math.PI * 2);
     cr.stroke();
 
     // Draw the indicator arc
     const rgbaIndicator = this._rgbToRgba(this.indicatorColor);
-    cr.setSourceRGBA(rgbaIndicator[0], rgbaIndicator[1], rgbaIndicator[2], 1);
+    cr.setSourceRGBA(rgbaIndicator[0], rgbaIndicator[1], rgbaIndicator[2], rgbaIndicator[3]);
     cr.setLineWidth(this.circleWidth);
     const arcEnd = (this.indicatorLength * (Math.PI * 2)) / 100 - Math.PI * 0.5;
     cr.arc(0, 0, 0.4, 0 - Math.PI * 0.5, arcEnd);
@@ -264,11 +267,15 @@ class StopwatchDesklet extends Desklet.Desklet {
 
   // Parses an RGB string to a RGBA array for Cairo
   _rgbToRgba(colorString) {
-    const match = colorString.match(/\d+/g);
-    if (match && match.length === 3) {
-      return match.map(Number).map(c => c / 255);
+    const match = colorString.match(/\((.*?)\)/);
+    if (match && match[1]) {
+      const c = match[1].split(",");
+      if (c.length >= 3) {
+        const a = c.length >= 4 ? parseFloat(c[3]) : 1;
+        return [parseInt(c[0]) / 255, parseInt(c[1]) / 255, parseInt(c[2]) / 255, a];
+      }
     }
-    return [0.3, 0.8, 0.5]; // Default color if parsing fails
+    return [0.3, 0.8, 0.5, 1]; // Default color if parsing fails
   }
 }
 
