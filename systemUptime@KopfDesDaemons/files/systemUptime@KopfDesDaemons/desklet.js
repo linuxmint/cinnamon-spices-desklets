@@ -120,13 +120,17 @@ class MyDesklet extends Desklet.Desklet {
       const [result, out] = GLib.spawn_command_line_sync("uptime -s");
       if (!result || !out) throw new Error("Could not get system startup time.");
 
-      const dateTime = out.toString().split(" ");
-      const date = dateTime[0].split("-");
+      const dateTimeStr = out.toString().trim();
+      const [dateStr, timeStr] = dateTimeStr.split(" ");
+      const [year, month, day] = dateStr.split("-");
+      const [hour, minute, second] = timeStr.split(":");
+
+      const dt = GLib.DateTime.new_local(parseInt(year), parseInt(month), parseInt(day), parseInt(hour), parseInt(minute), parseInt(second));
 
       if (this.showStartDate) {
-        this.startupValue.set_text(date[2] + "." + date[1] + "." + date[0] + ", " + dateTime[1].trim());
+        this.startupValue.set_text(dt.format("%x") + ", " + dt.format("%X"));
       } else {
-        this.startupValue.set_text(dateTime[1].trim());
+        this.startupValue.set_text(dt.format("%X"));
       }
     } catch (error) {
       this.startupValue.set_text("Error");
@@ -163,7 +167,7 @@ class MyDesklet extends Desklet.Desklet {
       pixBuf.get_has_alpha() ? Cogl.PixelFormat.RGBA_8888 : Cogl.PixelFormat.RGBA_888,
       width,
       height,
-      pixBuf.get_rowstride()
+      pixBuf.get_rowstride(),
     );
 
     const actor = new Clutter.Actor({ width, height });
