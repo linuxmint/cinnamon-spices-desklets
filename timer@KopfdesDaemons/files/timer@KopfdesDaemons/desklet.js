@@ -20,6 +20,7 @@ class MyDesklet extends Desklet.Desklet {
     this._totalSeconds = 0;
     this._remainingMs = 0;
     this._lastTimeText = "";
+    this._soundProc = null;
 
     // Use default values if settings are not yet set
     this.labelColor = "rgb(51, 209, 122)";
@@ -31,6 +32,8 @@ class MyDesklet extends Desklet.Desklet {
     this.innerCircleColor = "rgba(255, 255, 255, 0.3)";
     this.hideDecorations = false;
     this.soundFile = "complete.oga";
+    this.useCustomSound = false;
+    this.customSoundFile = "";
 
     const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
     settings.bindProperty(Settings.BindingDirection.IN, "label-color", "labelColor", this._onSettingsChanged.bind(this));
@@ -42,6 +45,8 @@ class MyDesklet extends Desklet.Desklet {
     settings.bindProperty(Settings.BindingDirection.IN, "fill-inner-circle", "fillInnerCircle", this._onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "hideDecorations", "hideDecorations", this.updateDecoration.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "sound-file", "soundFile", null);
+    settings.bindProperty(Settings.BindingDirection.IN, "use-custom-sound", "useCustomSound", null);
+    settings.bindProperty(Settings.BindingDirection.IN, "custom-sound-file", "customSoundFile", null);
 
     this.setHeader("Timer");
     this._inputDigits = "";
@@ -302,6 +307,8 @@ class MyDesklet extends Desklet.Desklet {
       Mainloop.source_remove(this._timeout);
       this._timeout = null;
     }
+    this._stopRunningSound();
+
     this.isRunning = false;
     this._totalSeconds = 0;
     this._remainingMs = 0;
@@ -318,6 +325,7 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _onRestartPressed() {
+    this._stopRunningSound();
     this._remainingMs = this._totalSeconds * 1000;
     this.restartBtn.hide();
     this.pauseBtn.show();
@@ -351,6 +359,13 @@ class MyDesklet extends Desklet.Desklet {
 
     this._updateTimerVisuals();
     return true;
+  }
+
+  _stopRunningSound() {
+    if (this._soundProc) {
+      this._soundProc.force_exit();
+      this._soundProc = null;
+    }
   }
 
   _updateTimerVisuals() {
@@ -422,14 +437,27 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _playSound() {
-    if (this.soundFile && this.soundFile !== "none") {
-      const path = "/usr/share/sounds/freedesktop/stereo/" + this.soundFile;
+    let path = null;
+    if (this.useCustomSound) {
+      if (this.customSoundFile) {
+        path = this.customSoundFile;
+        if (path.startsWith("file://")) {
+          path = decodeURIComponent(path.replace("file://", ""));
+        }
+      }
+    } else if (this.soundFile && this.soundFile !== "none") {
+      path = "/usr/share/sounds/freedesktop/stereo/" + this.soundFile;
+    }
+
+    if (path) {
       try {
-        let proc = new Gio.Subprocess({
+        this._stopRunningSound();
+
+        this._soundProc = new Gio.Subprocess({
           argv: ["paplay", path],
           flags: Gio.SubprocessFlags.NONE,
         });
-        proc.init(null);
+        this._soundProc.init(null);
       } catch (e) {
         global.logError("timer@KopfdesDaemons: Error playing sound: " + e.message);
       }
@@ -454,6 +482,7 @@ class MyDesklet extends Desklet.Desklet {
       Mainloop.source_remove(this._timeout);
       this._timeout = null;
     }
+    this._stopRunningSound();
   }
 }
 

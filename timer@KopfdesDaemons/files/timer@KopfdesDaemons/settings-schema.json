@@ -13,7 +13,20 @@
       "Complete": "complete.oga",
       "Service login": "service-login.oga",
       "Service logout": "service-logout.oga"
-    }
+    },
+    "dependency": "!use-custom-sound"
+  },
+  "use-custom-sound": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Use custom sound"
+  },
+  "custom-sound-file": {
+    "type": "filechooser",
+    "default": "",
+    "description": "Custom sound file",
+    "filters": ["*.ogg", "*.oga", "*.wav", "*.mp3"],
+    "dependency": "use-custom-sound"
   },
   "head1": {
     "type": "header",
