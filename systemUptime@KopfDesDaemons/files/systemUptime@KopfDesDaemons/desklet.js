@@ -31,6 +31,9 @@ class MyDesklet extends Desklet.Desklet {
     settings.bindProperty(Settings.BindingDirection.IN, "showUptimeInDays", "showUptimeInDays", this.onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "hideDecorations", "hideDecorations", this.updateDecoration.bind(this));
 
+    this.desktop_settings = new Gio.Settings({ schema_id: "org.cinnamon.desktop.interface" });
+    this._clockSettingsId = this.desktop_settings.connect("changed::clock-use-24h", () => this.updateValues());
+
     this.setHeader(_("System Uptime"));
     this.updateDecoration();
     this.setupLayout();
@@ -97,7 +100,7 @@ class MyDesklet extends Desklet.Desklet {
 
         this.uptimeValue.set_text(`${days} ${_("days")} ${hours} ${_("hrs")} ${minutes} ${_("min")}`);
       } else {
-        // Hours can be more than 24, so we don't convert to days
+        // Hours can be more than 24
         const hours = Math.floor(uptimeInSeconds / 3600);
         const minutes = Math.floor((uptimeInSeconds % 3600) / 60);
 
@@ -127,13 +130,15 @@ class MyDesklet extends Desklet.Desklet {
       if (!btime) throw new Error("Could not get system startup time.");
 
       const dt = GLib.DateTime.new_from_unix_local(btime);
+      const use24h = this.desktop_settings.get_boolean("clock-use-24h");
+      const timeFormat = use24h ? "%H:%M" : "%-l:%M %p";
 
       if (this.showStartDate) {
         // Show date and time
-        this.startupValue.set_text(dt.format("%x") + ", " + dt.format("%X"));
+        this.startupValue.set_text(dt.format("%x") + ", " + dt.format(timeFormat));
       } else {
         // Show only time
-        this.startupValue.set_text(dt.format("%X"));
+        this.startupValue.set_text(dt.format(timeFormat));
       }
     } catch (error) {
       this.startupValue.set_text("Error");
@@ -161,6 +166,10 @@ class MyDesklet extends Desklet.Desklet {
 
   on_desklet_removed() {
     if (this._timeout) Mainloop.source_remove(this._timeout);
+    if (this._clockSettingsId) {
+      this.desktop_settings.disconnect(this._clockSettingsId);
+      this._clockSettingsId = 0;
+    }
   }
 }
 
