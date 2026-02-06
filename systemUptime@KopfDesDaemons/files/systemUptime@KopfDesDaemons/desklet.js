@@ -5,6 +5,7 @@ const GLib = imports.gi.GLib;
 const Settings = imports.ui.settings;
 const Gio = imports.gi.Gio;
 const Gettext = imports.gettext;
+const ByteArray = imports.byteArray;
 
 const UUID = "systemUptime@KopfDesDaemons";
 
@@ -22,16 +23,13 @@ class MyDesklet extends Desklet.Desklet {
     this.fontSize = 20;
     this.colorLabel = "rgb(51, 209, 122)";
 
-    const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
-
     // Bind settings properties
+    const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
     settings.bindProperty(Settings.BindingDirection.IN, "fontSize", "fontSize", this.onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "colorLabel", "colorLabel", this.onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "showStartDate", "showStartDate", this.onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "showUptimeInDays", "showUptimeInDays", this.onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "hideDecorations", "hideDecorations", this.updateDecoration.bind(this));
-
-    this._timeout = null;
 
     this.setHeader(_("System Uptime"));
     this.updateDecoration();
@@ -65,6 +63,7 @@ class MyDesklet extends Desklet.Desklet {
     this.container = new St.BoxLayout();
     this.container.add_child(contentBox);
 
+    //  Use idle, because the size of the clock icon depends on the rest of the content.
     Mainloop.idle_add(() => {
       const computedHeight = contentBox.get_height();
 
@@ -75,6 +74,7 @@ class MyDesklet extends Desklet.Desklet {
 
       this.container.insert_child_below(clockIcon, contentBox);
 
+      // Don't run this again
       return false;
     });
 
@@ -84,17 +84,20 @@ class MyDesklet extends Desklet.Desklet {
   updateUptime() {
     let uptimeInSeconds = 0;
     try {
-      const [result, out] = GLib.spawn_command_line_sync("awk '{print $1}' /proc/uptime");
-      if (!result || !out) throw new Error("Could not get system uptime.");
-      uptimeInSeconds = parseFloat(out.toString().trim());
+      // Read uptime in seconds from /proc/uptime
+      const [success, contents] = GLib.file_get_contents("/proc/uptime");
+      if (!success) throw new Error("Could not get system uptime.");
+      uptimeInSeconds = parseFloat(ByteArray.toString(contents).split(" ")[0]);
 
       if (this.showUptimeInDays) {
+        // Convert uptime to days, hours, and minutes
         const days = Math.floor(uptimeInSeconds / 86400);
         const hours = Math.floor((uptimeInSeconds % 86400) / 3600);
         const minutes = Math.floor(((uptimeInSeconds % 86400) % 3600) / 60);
 
         this.uptimeValue.set_text(`${days} ${_("days")} ${hours} ${_("hrs")} ${minutes} ${_("min")}`);
       } else {
+        // Hours can be more than 24, so we don't convert to days
         const hours = Math.floor(uptimeInSeconds / 3600);
         const minutes = Math.floor((uptimeInSeconds % 3600) / 60);
 
@@ -108,19 +111,28 @@ class MyDesklet extends Desklet.Desklet {
 
   updateStartupTime() {
     try {
-      const [result, out] = GLib.spawn_command_line_sync("uptime -s");
-      if (!result || !out) throw new Error("Could not get system startup time.");
+      // Read startup time from /proc/stat (btime)
+      const [success, contents] = GLib.file_get_contents("/proc/stat");
+      if (!success) throw new Error("Could not get system startup time.");
 
-      const dateTimeStr = out.toString().trim();
-      const [dateStr, timeStr] = dateTimeStr.split(" ");
-      const [year, month, day] = dateStr.split("-");
-      const [hour, minute, second] = timeStr.split(":");
+      // Search for the line starting with "btime " and parse the timestamp
+      const lines = ByteArray.toString(contents).split("\n");
+      let btime = 0;
+      for (const line of lines) {
+        if (line.startsWith("btime ")) {
+          btime = parseInt(line.split(/\s+/)[1]);
+          break;
+        }
+      }
+      if (!btime) throw new Error("Could not get system startup time.");
 
-      const dt = GLib.DateTime.new_local(parseInt(year), parseInt(month), parseInt(day), parseInt(hour), parseInt(minute), parseInt(second));
+      const dt = GLib.DateTime.new_from_unix_local(btime);
 
       if (this.showStartDate) {
+        // Show date and time
         this.startupValue.set_text(dt.format("%x") + ", " + dt.format("%X"));
       } else {
+        // Show only time
         this.startupValue.set_text(dt.format("%X"));
       }
     } catch (error) {
@@ -132,6 +144,7 @@ class MyDesklet extends Desklet.Desklet {
   updateValues() {
     this.updateUptime();
     this.updateStartupTime();
+
     if (this._timeout) Mainloop.source_remove(this._timeout);
     this._timeout = Mainloop.timeout_add_seconds(60, () => this.updateValues());
   }

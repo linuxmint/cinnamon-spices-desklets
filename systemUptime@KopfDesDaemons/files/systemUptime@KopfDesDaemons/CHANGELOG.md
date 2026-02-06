@@ -13,4 +13,5 @@
 
 - use local date and time format
 - use St.Icon for the clock icon
-- refactor
+- use file_get_contents() to get starttime and uptime
+- add more comments
