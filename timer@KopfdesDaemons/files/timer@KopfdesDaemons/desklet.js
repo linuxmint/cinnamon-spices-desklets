@@ -29,6 +29,7 @@ class MyDesklet extends Desklet.Desklet {
     this._remainingMs = 0;
     this._lastTimeText = "";
     this._soundProc = null;
+    this._currentNotification = null;
 
     // Use default values if settings are not yet set
     this.labelColor = "rgb(51, 209, 122)";
@@ -117,11 +118,7 @@ class MyDesklet extends Desklet.Desklet {
 
     const lastRow = new St.BoxLayout();
     lastRow.add_child(new St.Bin({ x_expand: true }));
-    const zeroBtn = new St.Button({
-      label: "0",
-      style_class: "timer-input-button",
-      style: this.buttonStyle,
-    });
+    const zeroBtn = new St.Button({ label: "0", style_class: "timer-input-button", style: this.buttonStyle });
     zeroBtn.connect("clicked", () => this._onDigitPressed(0));
     lastRow.add_child(zeroBtn);
 
@@ -130,24 +127,12 @@ class MyDesklet extends Desklet.Desklet {
       icon_type: St.IconType.SYMBOLIC,
       icon_size: 16 * this.scaleSize,
     });
-    const startBtn = new St.Button({
-      child: playIcon,
-      style_class: "timer-input-button",
-      style: this.buttonStyle,
-    });
+    const startBtn = new St.Button({ child: playIcon, style_class: "timer-input-button", style: this.buttonStyle });
     lastRow.add_child(startBtn);
     startBtn.connect("clicked", () => this._onStartPressed());
 
-    const editIcon = new St.Icon({
-      icon_name: "edit-clear-symbolic",
-      icon_type: St.IconType.SYMBOLIC,
-      icon_size: 16 * this.scaleSize,
-    });
-    const editBtn = new St.Button({
-      child: editIcon,
-      style_class: "timer-input-button",
-      style: this.buttonStyle,
-    });
+    const editIcon = new St.Icon({ icon_name: "edit-clear-symbolic", icon_type: St.IconType.SYMBOLIC, icon_size: 16 * this.scaleSize });
+    const editBtn = new St.Button({ child: editIcon, style_class: "timer-input-button", style: this.buttonStyle });
     editBtn.connect("clicked", () => this._onEditPressed());
     lastRow.add_child(editBtn);
     lastRow.add_child(new St.Bin({ x_expand: true }));
@@ -229,19 +214,17 @@ class MyDesklet extends Desklet.Desklet {
 
     const buttonRow = new St.BoxLayout({ style: "spacing: 10px;" });
 
-    const newTimerIcon = new St.Icon({
-      icon_name: "list-add-symbolic",
-      icon_type: St.IconType.SYMBOLIC,
-      icon_size: 16 * this.scaleSize,
-    });
+    const newTimerIcon = new St.Icon({ icon_name: "list-add-symbolic", icon_type: St.IconType.SYMBOLIC, icon_size: 16 * this.scaleSize });
     this.newTimerBtn = new St.Button({ child: newTimerIcon, style_class: "timer-input-button", style: this.buttonStyle });
     this.newTimerBtn.connect("clicked", () => {
+      this._removeNotification();
       this._inputDigits = "";
       this._setupInputLayout();
     });
     if (this._totalSeconds > 0) this.newTimerBtn.hide();
     buttonRow.add_child(this.newTimerBtn);
 
+    // Play button
     const playIcon = new St.Icon({
       icon_name: "media-playback-start-symbolic",
       icon_type: St.IconType.SYMBOLIC,
@@ -252,11 +235,8 @@ class MyDesklet extends Desklet.Desklet {
     this.playBtn.connect("clicked", () => this._onPlayPressed());
     buttonRow.add_child(this.playBtn);
 
-    const refreshIcon = new St.Icon({
-      icon_name: "view-refresh-symbolic",
-      icon_type: St.IconType.SYMBOLIC,
-      icon_size: 16 * this.scaleSize,
-    });
+    // Restart button
+    const refreshIcon = new St.Icon({ icon_name: "view-refresh-symbolic", icon_type: St.IconType.SYMBOLIC, icon_size: 16 * this.scaleSize });
     this.restartBtn = new St.Button({ child: refreshIcon, style_class: "timer-input-button", style: this.buttonStyle });
     if (this._totalSeconds === 0 || this.isRunning || this._remainingMs > 0) this.restartBtn.hide();
     this.restartBtn.connect("clicked", () => this._onRestartPressed());
@@ -272,11 +252,8 @@ class MyDesklet extends Desklet.Desklet {
     if (!this.isRunning) this.pauseBtn.hide();
     buttonRow.add_child(this.pauseBtn);
 
-    const stopIcon = new St.Icon({
-      icon_name: "media-playback-stop-symbolic",
-      icon_type: St.IconType.SYMBOLIC,
-      icon_size: 16 * this.scaleSize,
-    });
+    // Stop button
+    const stopIcon = new St.Icon({ icon_name: "media-playback-stop-symbolic", icon_type: St.IconType.SYMBOLIC, icon_size: 16 * this.scaleSize });
     this.stopBtn = new St.Button({ child: stopIcon, style_class: "timer-input-button", style: this.buttonStyle });
     this.stopBtn.connect("clicked", () => this._onStopPressed());
     if (this._totalSeconds === 0) this.stopBtn.hide();
@@ -284,37 +261,37 @@ class MyDesklet extends Desklet.Desklet {
 
     centerContent.add_child(new St.Bin({ child: buttonRow, x_align: St.Align.MIDDLE }));
 
-    const addTimeBtn = new St.Button({
-      label: "+1",
-      style_class: "timer-add-time-button",
-      style: this.addTimeButtonStyle,
-    });
-    addTimeBtn.connect("clicked", () => {
-      this._stopSound();
-      const wasZero = this._totalSeconds === 0;
-      if (!this.isRunning && this._remainingMs === 0) {
-        this._totalSeconds = 0;
-      }
-      this._remainingMs += 60 * 1000;
-      this._totalSeconds += 60;
-      if (this.isRunning) {
-        this._endTime += 60 * 1000;
-      }
-      this._updateTimerVisuals();
-      if (wasZero) {
-        this.newTimerBtn.hide();
-        this.playBtn.show();
-        this.stopBtn.show();
-      } else if (!this.isRunning && this._remainingMs > 0) {
-        this.playBtn.show();
-        this.restartBtn.hide();
-      }
-    });
+    // Add +1 minute button
+    const addTimeBtn = new St.Button({ label: "+1", style_class: "timer-add-time-button", style: this.addTimeButtonStyle });
+    addTimeBtn.connect("clicked", () => this._onAddTimePressed());
     centerContent.add_child(new St.Bin({ child: addTimeBtn, x_align: St.Align.MIDDLE }));
 
     this._updateTimerVisuals();
 
     this.setContent(container);
+  }
+
+  _onAddTimePressed() {
+    this._stopSound();
+    this._removeNotification();
+    const wasZero = this._totalSeconds === 0;
+    if (!this.isRunning && this._remainingMs === 0) {
+      this._totalSeconds = 0;
+    }
+    this._remainingMs += 60 * 1000;
+    this._totalSeconds += 60;
+    if (this.isRunning) {
+      this._endTime += 60 * 1000;
+    }
+    this._updateTimerVisuals();
+    if (wasZero) {
+      this.newTimerBtn.hide();
+      this.playBtn.show();
+      this.stopBtn.show();
+    } else if (!this.isRunning && this._remainingMs > 0) {
+      this.playBtn.show();
+      this.restartBtn.hide();
+    }
   }
 
   _onPausePressed() {
@@ -333,6 +310,7 @@ class MyDesklet extends Desklet.Desklet {
       this._timeout = null;
     }
     this._stopSound();
+    this._removeNotification();
 
     this.isRunning = false;
     this._totalSeconds = 0;
@@ -343,6 +321,7 @@ class MyDesklet extends Desklet.Desklet {
 
   _onPlayPressed() {
     if (this._remainingMs > 0) {
+      this._removeNotification();
       this._startTimer();
       this.playBtn.hide();
       this.pauseBtn.show();
@@ -351,6 +330,7 @@ class MyDesklet extends Desklet.Desklet {
 
   _onRestartPressed() {
     this._stopSound();
+    this._removeNotification();
     this._remainingMs = this._totalSeconds * 1000;
     this.restartBtn.hide();
     this.pauseBtn.show();
@@ -407,10 +387,20 @@ class MyDesklet extends Desklet.Desklet {
       icon_name: "alarm-symbolic",
       icon_type: St.IconType.SYMBOLIC,
     });
-    const notification = new MessageTray.Notification(this._notificationSource, title, message, { icon: icon });
-    notification.setTransient(false);
-    notification.connect("destroy", () => this._stopSound());
-    this._notificationSource.notify(notification);
+    this._currentNotification = new MessageTray.Notification(this._notificationSource, title, message, { icon: icon });
+    this._currentNotification.setTransient(false);
+    this._currentNotification.connect("destroy", () => {
+      this._stopSound();
+      this._currentNotification = null;
+    });
+    this._notificationSource.notify(this._currentNotification);
+  }
+
+  _removeNotification() {
+    if (this._currentNotification) {
+      this._currentNotification.destroy();
+      this._currentNotification = null;
+    }
   }
 
   _updateTimerVisuals() {
