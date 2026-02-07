@@ -2,12 +2,9 @@ const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
 const Settings = imports.ui.settings;
 const Mainloop = imports.mainloop;
-const Lang = imports.lang;
 const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
-const GdkPixbuf = imports.gi.GdkPixbuf;
-const Clutter = imports.gi.Clutter;
-const Cogl = imports.gi.Cogl;
+const Gio = imports.gi.Gio;
 
 const UUID = "daypercentagebot@FlyingSaturn";
 
@@ -35,7 +32,7 @@ class MyDesklet extends Desklet.Desklet {
 
   _initUI() {
     this.window = new St.Bin();
-    this.container = new Clutter.Actor();
+    this.container = new St.Group();
     this.text = new St.Label();
     this.text.set_text("... %");
     this.text.style = `font-size: ${this.fontSizeLabel}px; text-align: center;`;
@@ -53,14 +50,12 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _update() {
-    if (this.timeout) {
-      Mainloop.source_remove(this.timeout);
-    }
+    if (this.timeout) Mainloop.source_remove(this.timeout);
 
     this._updateContent();
 
     // update every second
-    this.timeout = Mainloop.timeout_add_seconds(1, Lang.bind(this, this._update));
+    this.timeout = Mainloop.timeout_add_seconds(1, this._update.bind(this));
   }
 
   _onSettingsChanged() {
@@ -83,14 +78,8 @@ class MyDesklet extends Desklet.Desklet {
     const iconSize = this.iconSize;
     const deskletPath = this.metadata.path;
 
-    try {
-      this.sunIcon = this._getImageAtScale(`${deskletPath}/images/sun.svg`, iconSize, iconSize);
-      this.moonIcon = this._getImageAtScale(`${deskletPath}/images/moon.svg`, iconSize, iconSize);
-    } catch (e) {
-      global.logError(`[${UUID}] Error loading icons: ${e}`);
-      this.sunIcon = new St.Label({ text: "S" });
-      this.moonIcon = new St.Label({ text: "M" });
-    }
+    this.sunIcon = new St.Icon({ gicon: Gio.icon_new_for_string(`${deskletPath}/images/sun.svg`), icon_size: iconSize });
+    this.moonIcon = new St.Icon({ gicon: Gio.icon_new_for_string(`${deskletPath}/images/moon.svg`), icon_size: iconSize });
 
     this.sunIcon.set_pivot_point(0.5, 0.5);
     this.moonIcon.set_pivot_point(0.5, 0.5);
@@ -149,27 +138,8 @@ class MyDesklet extends Desklet.Desklet {
     return (secondsPassed / totalSecondsInDay) * 100;
   }
 
-  _createActorFromPixbuf(pixBuf) {
-    const pixelFormat = pixBuf.get_has_alpha() ? Cogl.PixelFormat.RGBA_8888 : Cogl.PixelFormat.RGB_888;
-    const image = new Clutter.Image();
-    image.set_data(pixBuf.get_pixels(), pixelFormat, pixBuf.get_width(), pixBuf.get_height(), pixBuf.get_rowstride());
-
-    return new Clutter.Actor({
-      content: image,
-      width: pixBuf.get_width(),
-      height: pixBuf.get_height(),
-    });
-  }
-
-  _getImageAtScale(imageFilePath, requestedWidth, requestedHeight) {
-    const pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(imageFilePath, requestedWidth, requestedHeight);
-    return this._createActorFromPixbuf(pixBuf);
-  }
-
   on_desklet_removed() {
-    if (this.timeout) {
-      Mainloop.source_remove(this.timeout);
-    }
+    if (this.timeout) Mainloop.source_remove(this.timeout);
     this.container.destroy();
   }
 }
