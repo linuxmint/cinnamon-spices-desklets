@@ -1,13 +1,11 @@
 const Desklet = imports.ui.desklet;
-const Lang = imports.lang;
 const St = imports.gi.St;
 const Mainloop = imports.mainloop;
 const GLib = imports.gi.GLib;
 const Settings = imports.ui.settings;
+const Gio = imports.gi.Gio;
 const Gettext = imports.gettext;
-const Clutter = imports.gi.Clutter;
-const GdkPixbuf = imports.gi.GdkPixbuf;
-const Cogl = imports.gi.Cogl;
+const ByteArray = imports.byteArray;
 
 const UUID = "systemUptime@KopfDesDaemons";
 
@@ -21,18 +19,20 @@ class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
 
-    this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
+    // Default settings values
+    this.fontSize = 20;
+    this.colorLabel = "rgb(51, 209, 122)";
 
     // Bind settings properties
-    this.settings.bindProperty(Settings.BindingDirection.IN, "fontSize", "fontSize", this.onSettingsChanged.bind(this));
-    this.settings.bindProperty(Settings.BindingDirection.IN, "colorLabel", "colorLabel", this.onSettingsChanged.bind(this));
-    this.settings.bindProperty(Settings.BindingDirection.IN, "showStartDate", "showStartDate", this.onSettingsChanged.bind(this));
-    this.settings.bindProperty(Settings.BindingDirection.IN, "showUptimeInDays", "showUptimeInDays", this.onSettingsChanged.bind(this));
-    this.settings.bindProperty(Settings.BindingDirection.IN, "hideDecorations", "hideDecorations", this.updateDecoration.bind(this));
+    const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
+    settings.bindProperty(Settings.BindingDirection.IN, "fontSize", "fontSize", this.onSettingsChanged.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "colorLabel", "colorLabel", this.onSettingsChanged.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "showStartDate", "showStartDate", this.onSettingsChanged.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "showUptimeInDays", "showUptimeInDays", this.onSettingsChanged.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "hideDecorations", "hideDecorations", this.updateDecoration.bind(this));
 
-    this.fontSize = this.settings.getValue("fontSize") || 20;
-    this.colorLabel = this.settings.getValue("colorLabel") || "rgb(51, 209, 122)";
-    this._timeout = null;
+    this.desktop_settings = new Gio.Settings({ schema_id: "org.cinnamon.desktop.interface" });
+    this._clockSettingsId = this.desktop_settings.connect("changed::clock-use-24h", () => this.updateValues());
 
     this.setHeader(_("System Uptime"));
     this.updateDecoration();
@@ -42,16 +42,20 @@ class MyDesklet extends Desklet.Desklet {
 
   setupLayout() {
     // Create labels for uptime
-    this.uptimeLabel = this.createLabel(_("Uptime:") + " ", this.colorLabel);
-    this.uptimeValue = this.createLabel(_("Loading..."));
+    this.uptimeLabel = new St.Label({ text: _("Uptime:") + " ", style: `font-size: ${this.fontSize}px; color: ${this.colorLabel};` });
+    this.uptimeValue = new St.Label({ text: _("Loading..."), style: `font-size: ${this.fontSize}px;` });
 
-    const uptimeRow = this.createRow([this.uptimeLabel, this.uptimeValue]);
+    const uptimeRow = new St.BoxLayout();
+    uptimeRow.add_child(this.uptimeLabel);
+    uptimeRow.add_child(this.uptimeValue);
 
     // Create labels for startup time
-    this.startTimeLabel = this.createLabel(_("Start time:") + " ", this.colorLabel);
-    this.startupValue = this.createLabel(_("Loading..."));
+    this.startTimeLabel = new St.Label({ text: _("Start time:") + " ", style: `font-size: ${this.fontSize}px; color: ${this.colorLabel};` });
+    this.startupValue = new St.Label({ text: _("Loading..."), style: `font-size: ${this.fontSize}px;` });
 
-    const startupRow = this.createRow([this.startTimeLabel, this.startupValue]);
+    const startupRow = new St.BoxLayout();
+    startupRow.add_child(this.startTimeLabel);
+    startupRow.add_child(this.startupValue);
 
     // Combine all into the main container
     const contentBox = new St.BoxLayout({ vertical: true });
@@ -62,48 +66,42 @@ class MyDesklet extends Desklet.Desklet {
     this.container = new St.BoxLayout();
     this.container.add_child(contentBox);
 
+    //  Use idle, because the size of the clock icon depends on the rest of the content.
     Mainloop.idle_add(() => {
       const computedHeight = contentBox.get_height();
 
-      const clockIcon = this.getImageAtScale(`${this.metadata.path}/clock.svg`, computedHeight, computedHeight);
+      // Create clock icon
+      const clockIcon = new St.Icon({
+        gicon: Gio.icon_new_for_string(`${this.metadata.path}/clock.svg`),
+        icon_size: computedHeight,
+      });
 
       this.container.insert_child_below(clockIcon, contentBox);
-      clockIcon.queue_relayout();
 
+      // Don't run this again
       return false;
     });
 
     this.setContent(this.container);
   }
 
-  createLabel(text, color = "inherit") {
-    return new St.Label({
-      text,
-      y_align: St.Align.START,
-      style: `font-size: ${this.fontSize}px; color: ${color};`,
-    });
-  }
-
-  createRow(children) {
-    const row = new St.BoxLayout();
-    children.forEach(child => row.add_child(child));
-    return row;
-  }
-
   updateUptime() {
     let uptimeInSeconds = 0;
     try {
-      const [result, out] = GLib.spawn_command_line_sync("awk '{print $1}' /proc/uptime");
-      if (!result || !out) throw new Error("Could not get system uptime.");
-      uptimeInSeconds = parseFloat(out.toString().trim());
+      // Read uptime in seconds from /proc/uptime
+      const [success, contents] = GLib.file_get_contents("/proc/uptime");
+      if (!success) throw new Error("Could not get system uptime.");
+      uptimeInSeconds = parseFloat(ByteArray.toString(contents).split(" ")[0]);
 
       if (this.showUptimeInDays) {
+        // Convert uptime to days, hours, and minutes
         const days = Math.floor(uptimeInSeconds / 86400);
         const hours = Math.floor((uptimeInSeconds % 86400) / 3600);
         const minutes = Math.floor(((uptimeInSeconds % 86400) % 3600) / 60);
 
         this.uptimeValue.set_text(`${days} ${_("days")} ${hours} ${_("hrs")} ${minutes} ${_("min")}`);
       } else {
+        // Hours can be more than 24
         const hours = Math.floor(uptimeInSeconds / 3600);
         const minutes = Math.floor((uptimeInSeconds % 3600) / 60);
 
@@ -115,18 +113,33 @@ class MyDesklet extends Desklet.Desklet {
     }
   }
 
-  getStartupTime() {
+  updateStartupTime() {
     try {
-      const [result, out] = GLib.spawn_command_line_sync("uptime -s");
-      if (!result || !out) throw new Error("Could not get system startup time.");
+      // Read startup time from /proc/stat (btime)
+      const [success, contents] = GLib.file_get_contents("/proc/stat");
+      if (!success) throw new Error("Could not get system startup time.");
 
-      const dateTime = out.toString().split(" ");
-      const date = dateTime[0].split("-");
+      // Search for the line starting with "btime " and parse the timestamp
+      const lines = ByteArray.toString(contents).split("\n");
+      let btime = 0;
+      for (const line of lines) {
+        if (line.startsWith("btime ")) {
+          btime = parseInt(line.split(/\s+/)[1]);
+          break;
+        }
+      }
+      if (!btime) throw new Error("Could not get system startup time.");
+
+      const dt = GLib.DateTime.new_from_unix_local(btime);
+      const use24h = this.desktop_settings.get_boolean("clock-use-24h");
+      const timeFormat = use24h ? "%H:%M" : "%-l:%M %p";
 
       if (this.showStartDate) {
-        this.startupValue.set_text(date[2] + "." + date[1] + "." + date[0] + ", " + dateTime[1].trim());
+        // Show date and time
+        this.startupValue.set_text(dt.format("%x") + ", " + dt.format(timeFormat));
       } else {
-        this.startupValue.set_text(dateTime[1].trim());
+        // Show only time
+        this.startupValue.set_text(dt.format(timeFormat));
       }
     } catch (error) {
       this.startupValue.set_text("Error");
@@ -136,7 +149,8 @@ class MyDesklet extends Desklet.Desklet {
 
   updateValues() {
     this.updateUptime();
-    this.getStartupTime();
+    this.updateStartupTime();
+
     if (this._timeout) Mainloop.source_remove(this._timeout);
     this._timeout = Mainloop.timeout_add_seconds(60, () => this.updateValues());
   }
@@ -153,22 +167,10 @@ class MyDesklet extends Desklet.Desklet {
 
   on_desklet_removed() {
     if (this._timeout) Mainloop.source_remove(this._timeout);
-  }
-
-  getImageAtScale(imageFileName, width, height) {
-    const pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(imageFileName, width, height);
-    const image = new Clutter.Image();
-    image.set_data(
-      pixBuf.get_pixels(),
-      pixBuf.get_has_alpha() ? Cogl.PixelFormat.RGBA_8888 : Cogl.PixelFormat.RGBA_888,
-      width,
-      height,
-      pixBuf.get_rowstride()
-    );
-
-    const actor = new Clutter.Actor({ width, height });
-    actor.set_content(image);
-    return actor;
+    if (this._clockSettingsId) {
+      this.desktop_settings.disconnect(this._clockSettingsId);
+      this._clockSettingsId = 0;
+    }
   }
 }
 
