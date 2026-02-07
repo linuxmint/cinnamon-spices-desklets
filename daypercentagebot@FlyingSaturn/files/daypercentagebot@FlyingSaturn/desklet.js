@@ -19,11 +19,15 @@ class MyDesklet extends Desklet.Desklet {
     super(metadata, deskletId);
     this.metadata = metadata;
 
+    this.deskletHight = 100;
+    this.deskletWidth = 300;
+    this.scaleSize = 1;
+    this.iconSize = 45;
+
     const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
-    settings.bindProperty(Settings.BindingDirection.IN, "icon-size", "iconSize", this._onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "decoration", "decoration", this._onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "font-size-label", "fontSizeLabel", this._onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "show-sun-and-moon", "showSunAndMoon", this._onSettingsChanged.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._onSettingsChanged.bind(this));
 
     this.setHeader(_("Day Percentage"));
     this._initUI();
@@ -31,103 +35,91 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _initUI() {
-    this.window = new St.Bin();
-    this.container = new St.Group();
+    this.container = new St.BoxLayout({ vertical: true });
+    this.iconContainer = new St.Widget({ x_expand: true, y_expand: true });
     this.text = new St.Label();
-    this.text.set_text("... %");
-    this.text.style = `font-size: ${this.fontSizeLabel}px; text-align: center;`;
+    this.text.style = `font-size: ${16 * this.scaleSize}px; text-align: center;`;
 
     this.metadata["prevent-decorations"] = !this.decoration;
     this._updateDecoration();
 
     this._createIcons();
 
+    this.container.add_actor(this.iconContainer);
     this.container.add_actor(this.text);
-    this.container.add_actor(this.sunIcon);
-    this.container.add_actor(this.moonIcon);
-    this.window.add_actor(this.container);
-    this.setContent(this.window);
+    this._updateWindowSize();
+    this._updateContent();
+    this.setContent(this.container);
   }
 
+  _updateWindowSize() {
+    if (this.showSunAndMoon) {
+      this.iconContainer.show();
+      this.container.set_size(this.deskletWidth * this.scaleSize, this.deskletHight * this.scaleSize);
+    } else {
+      this.iconContainer.hide();
+      // Set the container size to auto when sun and moon icons are hidden
+      this.container.set_width(-1);
+      this.container.set_height(-1);
+    }
+  }
+
+  // update every second
   _update() {
     if (this.timeout) Mainloop.source_remove(this.timeout);
-
     this._updateContent();
-
-    // update every second
     this.timeout = Mainloop.timeout_add_seconds(1, this._update.bind(this));
   }
 
   _onSettingsChanged() {
-    this.sunIcon.destroy();
-    this.moonIcon.destroy();
+    this.iconContainer.destroy_all_children();
 
     this.metadata["prevent-decorations"] = !this.decoration;
     this._updateDecoration();
-    this.text.set_style(`font-size: ${this.fontSizeLabel}px; text-align: center;`);
+    this.text.set_style(`font-size: ${16 * this.scaleSize}px; text-align: center;`);
 
     this._createIcons();
-
-    this.container.add_actor(this.sunIcon);
-    this.container.add_actor(this.moonIcon);
-
+    this._updateWindowSize();
     this._updateContent();
   }
 
   _createIcons() {
-    const iconSize = this.iconSize;
+    const iconSize = this.iconSize * this.scaleSize;
     const deskletPath = this.metadata.path;
 
     this.sunIcon = new St.Icon({ gicon: Gio.icon_new_for_string(`${deskletPath}/images/sun.svg`), icon_size: iconSize });
     this.moonIcon = new St.Icon({ gicon: Gio.icon_new_for_string(`${deskletPath}/images/moon.svg`), icon_size: iconSize });
-
-    this.sunIcon.set_pivot_point(0.5, 0.5);
-    this.moonIcon.set_pivot_point(0.5, 0.5);
+    this.iconContainer.add_child(this.sunIcon);
+    this.iconContainer.add_child(this.moonIcon);
   }
 
   _updateContent() {
     const dayPercent = this._calcPercent();
     this.text.set_text(dayPercent.toFixed(1) + " %");
 
-    if (!this.showSunAndMoon) {
-      this.sunIcon.visible = false;
-      this.moonIcon.visible = false;
-      const containerHeight = this.text.get_height();
-      const containerWidth = this.text.get_width();
-      this.window.set_size(containerWidth, containerHeight);
-      this.container.set_size(containerWidth, containerHeight);
-      this.text.set_position(0, 0);
-      return;
-    }
+    if (!this.showSunAndMoon) return;
 
-    const now = new Date();
-    const hour = now.getHours();
+    const iconSize = this.iconSize * this.scaleSize;
+    const textHeight = this.text.get_height();
 
-    const iconSize = this.iconSize;
-    const radius = this.iconSize * 1.5;
-    const containerWidth = radius * 2 + iconSize;
-    const containerHeight = radius + iconSize * 1.5;
+    const radiusY = this.deskletHight * this.scaleSize - iconSize - textHeight;
+    const radiusX = (this.deskletWidth * this.scaleSize) / 2 - iconSize / 2;
 
-    this.window.set_size(containerWidth, containerHeight);
-    this.container.set_size(containerWidth, containerHeight);
+    const centerX = (this.deskletWidth * this.scaleSize) / 2;
+    const centerY = this.deskletHight * this.scaleSize - textHeight - iconSize / 2;
 
-    const centerX = this.window.get_width() / 2;
-    const centerY = this.window.get_height() - this.text.get_height() - iconSize / 2;
+    const angle = Math.PI + (dayPercent / 100.0) * Math.PI;
+    const iconX = centerX - iconSize / 2 + radiusX * Math.cos(angle);
+    const iconY = centerY - iconSize / 2 + radiusY * Math.sin(angle);
 
-    const angle = Math.PI * (dayPercent / 100.0);
-    const iconX = centerX - radius * Math.cos(angle);
-    const iconY = centerY - radius * Math.sin(angle);
-
+    // Set sun or moon icon based on the time of day
+    const hour = new Date().getHours();
     const isDay = hour >= 6 && hour < 18;
     this.sunIcon.visible = isDay;
     this.moonIcon.visible = !isDay;
     const currentIcon = isDay ? this.sunIcon : this.moonIcon;
 
-    const iconWidth = currentIcon.get_width();
-    const iconHeight = currentIcon.get_height();
-    const textWidth = this.text.get_width();
-    currentIcon.set_position(iconX - iconWidth / 2, iconY - iconHeight / 2);
-    this.text.set_position(centerX - textWidth / 2, this.window.get_height() - this.text.get_height() - iconSize / 2);
+    currentIcon.set_position(iconX, iconY);
   }
 
   _calcPercent() {

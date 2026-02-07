@@ -3,18 +3,18 @@
     "type": "header",
     "description": "General"
   },
+  "scale-size": {
+    "type": "scale",
+    "default": 1,
+    "min": 0.4,
+    "max": 3,
+    "step": 0.05,
+    "description": "Desklet size"
+  },
   "decoration": {
     "type": "checkbox",
     "default": true,
     "description": "Show decoration"
-  },
-  "font-size-label": {
-    "type": "scale",
-    "default": 24,
-    "min": 8,
-    "max": 100,
-    "step": 1,
-    "description": "Font size for the percent label."
   },
   "head1": {
     "type": "header",
@@ -24,14 +24,5 @@
     "type": "checkbox",
     "default": true,
     "description": "Show the rising and setting sun and the moon."
-  },
-  "icon-size": {
-    "type": "scale",
-    "default": 32,
-    "min": 30,
-    "max": 150,
-    "step": 1,
-    "description": "Icon size of the sun and moon.",
-    "dependency": "show-sun-and-moon"
   }
 }
