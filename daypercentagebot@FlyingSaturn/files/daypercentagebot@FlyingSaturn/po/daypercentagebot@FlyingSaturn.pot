@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: daypercentagebot@FlyingSaturn 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-10-31 19:30+0100\n"
+"POT-Creation-Date: 2026-02-07 11:42+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -30,12 +30,12 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#. settings-schema.json->decoration->description
-msgid "Show decoration"
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
 msgstr ""
 
-#. settings-schema.json->font-size-label->description
-msgid "Font size for the percent label."
+#. settings-schema.json->decoration->description
+msgid "Show decoration"
 msgstr ""
 
 #. settings-schema.json->head1->description
@@ -44,8 +44,4 @@ msgstr ""
 
 #. settings-schema.json->show-sun-and-moon->description
 msgid "Show the rising and setting sun and the moon."
-msgstr ""
-
-#. settings-schema.json->icon-size->description
-msgid "Icon size of the sun and moon."
 msgstr ""

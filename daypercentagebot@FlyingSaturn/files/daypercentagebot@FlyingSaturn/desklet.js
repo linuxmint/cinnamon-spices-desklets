@@ -17,9 +17,8 @@ function _(str) {
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
-    this.metadata = metadata;
 
-    this.deskletHight = 100;
+    this.deskletHeight = 100;
     this.deskletWidth = 300;
     this.scaleSize = 1;
     this.iconSize = 45;
@@ -31,7 +30,7 @@ class MyDesklet extends Desklet.Desklet {
 
     this.setHeader(_("Day Percentage"));
     this._initUI();
-    this._update();
+    this.timeout = Mainloop.timeout_add_seconds(1, this._update.bind(this));
   }
 
   _initUI() {
@@ -45,8 +44,8 @@ class MyDesklet extends Desklet.Desklet {
 
     this._createIcons();
 
-    this.container.add_actor(this.iconContainer);
-    this.container.add_actor(this.text);
+    this.container.add_child(this.iconContainer);
+    this.container.add_child(this.text);
     this._updateWindowSize();
     this._updateContent();
     this.setContent(this.container);
@@ -55,7 +54,7 @@ class MyDesklet extends Desklet.Desklet {
   _updateWindowSize() {
     if (this.showSunAndMoon) {
       this.iconContainer.show();
-      this.container.set_size(this.deskletWidth * this.scaleSize, this.deskletHight * this.scaleSize);
+      this.container.set_size(this.deskletWidth * this.scaleSize, this.deskletHeight * this.scaleSize);
     } else {
       this.iconContainer.hide();
       // Set the container size to auto when sun and moon icons are hidden
@@ -66,9 +65,8 @@ class MyDesklet extends Desklet.Desklet {
 
   // update every second
   _update() {
-    if (this.timeout) Mainloop.source_remove(this.timeout);
     this._updateContent();
-    this.timeout = Mainloop.timeout_add_seconds(1, this._update.bind(this));
+    return true;
   }
 
   _onSettingsChanged() {
@@ -102,11 +100,11 @@ class MyDesklet extends Desklet.Desklet {
     const iconSize = this.iconSize * this.scaleSize;
     const textHeight = this.text.get_height();
 
-    const radiusY = this.deskletHight * this.scaleSize - iconSize - textHeight;
+    const radiusY = this.deskletHeight * this.scaleSize - iconSize - textHeight;
     const radiusX = (this.deskletWidth * this.scaleSize) / 2 - iconSize / 2;
 
     const centerX = (this.deskletWidth * this.scaleSize) / 2;
-    const centerY = this.deskletHight * this.scaleSize - textHeight - iconSize / 2;
+    const centerY = this.deskletHeight * this.scaleSize - textHeight - iconSize / 2;
 
     const angle = Math.PI + (dayPercent / 100.0) * Math.PI;
     const iconX = centerX - iconSize / 2 + radiusX * Math.cos(angle);
