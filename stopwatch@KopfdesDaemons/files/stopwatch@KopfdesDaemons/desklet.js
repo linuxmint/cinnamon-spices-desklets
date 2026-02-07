@@ -20,7 +20,7 @@ class StopwatchDesklet extends Desklet.Desklet {
 
     // Initialize default properties
     this._elapsedTime = 0;
-    this.default_size = 180;
+    this._default_size = 180;
 
     // Use default values if settings are not yet set
     this.labelColor = "rgb(51, 209, 122)";
@@ -40,9 +40,11 @@ class StopwatchDesklet extends Desklet.Desklet {
     settings.bindProperty(Settings.BindingDirection.IN, "circle-width", "circleWidth", this._onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "indicator-length", "indicatorLength", this._onSettingsChanged.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "circle-color", "circleColor", this._onSettingsChanged.bind(this));
+    settings.bindProperty(Settings.BindingDirection.IN, "hideDecorations", "hideDecorations", this.updateDecoration.bind(this));
 
     // Set the desklet header and build the layout
     this.setHeader(_("Stopwatch"));
+    this.updateDecoration();
     this._setupLayout();
   }
 
@@ -51,7 +53,7 @@ class StopwatchDesklet extends Desklet.Desklet {
     this.mainContainer = new St.Widget();
     this.setContent(this.mainContainer);
 
-    const absoluteSize = this.default_size * this.scaleSize;
+    const absoluteSize = this._default_size * this.scaleSize;
 
     // Create the circle actor for the canvas
     this.circleDrawingArea = new St.DrawingArea({ width: absoluteSize, height: absoluteSize });
@@ -71,10 +73,7 @@ class StopwatchDesklet extends Desklet.Desklet {
     this.mainContainer.add_child(this.contentBin);
 
     // Create and style the time label
-    this.timeLabel = new St.Label({
-      text: "00.000",
-      style: `font-size: ${20 * this.scaleSize}px; color: ${this.labelColor};`,
-    });
+    this.timeLabel = new St.Label({ text: "00.000", style: `font-size: ${20 * this.scaleSize}px; color: ${this.labelColor};` });
     this.centerContent.add_child(new St.Bin({ child: this.timeLabel, x_align: St.Align.MIDDLE }));
 
     // Create a horizontal box for the buttons
@@ -87,7 +86,7 @@ class StopwatchDesklet extends Desklet.Desklet {
 
   // Updates the visual properties based on current settings
   _updateVisuals() {
-    const absoluteSize = this.default_size * this.scaleSize;
+    const absoluteSize = this._default_size * this.scaleSize;
     this.circleDrawingArea.set_size(absoluteSize, absoluteSize);
     if (this.contentBin) this.contentBin.set_size(absoluteSize, absoluteSize);
     this.timeLabel.style = `font-size: ${20 * this.scaleSize}px; color: ${this.labelColor};`;
@@ -99,60 +98,58 @@ class StopwatchDesklet extends Desklet.Desklet {
   _updateButtons() {
     // Clear existing buttons
     this.buttonRow.destroy_all_children();
+    const size = 40 * this.scaleSize;
 
-    const buttonHeight = 40 * this.scaleSize;
-
-    const createButton = (iconName, callback) => {
-      const file = Gio.File.new_for_path(`${this.metadata.path}/${iconName}.svg`);
-      const fileIcon = new Gio.FileIcon({ file });
-      const icon = new St.Icon({ gicon: fileIcon, icon_size: buttonHeight });
-      const button = new St.Button({ child: icon, style_class: "stopwatch-button" });
-      button.connect("clicked", callback.bind(this));
-      return button;
+    const addBtn = (icon, cb) => {
+      const btn = new St.Button({
+        child: new St.Icon({
+          gicon: new Gio.FileIcon({ file: Gio.File.new_for_path(`${this.metadata.path}/${icon}.svg`) }),
+          icon_size: size,
+        }),
+        style_class: "stopwatch-button",
+      });
+      btn.connect("clicked", cb.bind(this));
+      this.buttonRow.add_child(btn);
+      return btn;
     };
 
-    this.playButton = createButton("play", this._startStopwatch);
-    this.pauseButton = createButton("pause", this._pauseStopwatch);
-    this.stopButton = createButton("stop", this._resetStopwatch);
+    this.playButton = addBtn("play", this._startStopwatch);
+    this.pauseButton = addBtn("pause", this._pauseStopwatch);
+    this.stopButton = addBtn("stop", this._resetStopwatch);
 
-    this.buttonRow.add_child(this.playButton);
-    this.buttonRow.add_child(this.pauseButton);
-    this.buttonRow.add_child(this.stopButton);
+    this._updateButtonState();
+  }
 
-    if (this._isRunning) {
-      this.playButton.hide();
-      this.pauseButton.show();
-    } else {
-      this.playButton.show();
-      this.pauseButton.hide();
-    }
+  _updateButtonState() {
+    this.playButton.visible = !this._isRunning;
+    this.pauseButton.visible = this._isRunning;
   }
 
   // Updates the time label every 10ms
   _updateTime() {
-    const currentTime = new Date().getTime();
-    const elapsedTime = this._elapsedTime + (this._isRunning ? currentTime - this._startTime : 0);
-    const totalSeconds = Math.floor(elapsedTime / 1000);
-    const h = Math.floor(totalSeconds / 3600);
-    const m = Math.floor(totalSeconds / 60) % 60;
-    const s = totalSeconds % 60;
-    const ms = elapsedTime % 1000;
+    const now = Date.now();
+    const elapsed = this._elapsedTime + (this._isRunning ? now - this._startTime : 0);
 
-    let timeString;
+    const pad = (n, w = 2) => n.toString().padStart(w, "0");
+    const totalSec = Math.floor(elapsed / 1000);
+    const h = Math.floor(totalSec / 3600);
+    const m = Math.floor(totalSec / 60) % 60;
+    const s = totalSec % 60;
+    const ms = elapsed % 1000;
+
+    let timeString,
+      size = 20;
     if (h > 0) {
-      // Display hours, minutes, seconds, and milliseconds
-      this.timeLabel.style = `font-size: ${16 * this.scaleSize}px; color: ${this.labelColor};`;
-      timeString = `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}.${String(ms).padStart(3, "0")}`;
+      timeString = `${pad(h)}:${pad(m)}:${pad(s)}.${pad(ms, 3)}`;
+      size = 16;
     } else if (m > 0) {
-      // Display minutes, seconds, and milliseconds
-      timeString = `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}.${String(ms).padStart(3, "0")}`;
+      timeString = `${pad(m)}:${pad(s)}.${pad(ms, 3)}`;
     } else {
-      // Display seconds and milliseconds
-      this.timeLabel.style = `font-size: ${20 * this.scaleSize}px; color: ${this.labelColor};`;
-      timeString = `${String(s).padStart(2, "0")}.${String(ms).padStart(3, "0")}`;
+      timeString = `${pad(s)}.${pad(ms, 3)}`;
     }
 
     this.timeLabel.set_text(timeString);
+    this.timeLabel.style = `font-size: ${size * this.scaleSize}px; color: ${this.labelColor};`;
     return true;
   }
 
@@ -165,67 +162,15 @@ class StopwatchDesklet extends Desklet.Desklet {
   // Starts the stopwatch
   _startStopwatch() {
     if (!this._isRunning) {
-      this._startTime = new Date().getTime();
+      this._startTime = Date.now();
       this._timeout = Mainloop.timeout_add(10, this._updateTime.bind(this));
       this._isRunning = true;
-      this.playButton.hide();
-      this.pauseButton.show();
       this._animationTimeout = Mainloop.timeout_add(16, this._animateIndicator.bind(this));
+      this._updateButtonState();
     }
   }
 
-  // Pauses the stopwatch
-  _pauseStopwatch() {
-    if (this._isRunning) {
-      if (this._timeout) {
-        Mainloop.source_remove(this._timeout);
-        this._timeout = null;
-      }
-      if (this._animationTimeout) {
-        Mainloop.source_remove(this._animationTimeout);
-        this._animationTimeout = null;
-      }
-      this._elapsedTime += new Date().getTime() - this._startTime;
-      this._isRunning = false;
-      this.playButton.show();
-      this.pauseButton.hide();
-    }
-  }
-
-  // Resets the stopwatch to zero
-  _resetStopwatch() {
-    if (this._timeout) Mainloop.source_remove(this._timeout);
-    this._timeout = null;
-    if (this._animationTimeout) Mainloop.source_remove(this._animationTimeout);
-    this._animationTimeout = null;
-
-    this.circleDrawingArea.rotation_angle_z = 0;
-    this._startTime = 0;
-    this._elapsedTime = 0;
-    this._isRunning = false;
-    this.timeLabel.style = `font-size: ${20 * this.scaleSize}px; color: ${this.labelColor};`;
-    this.timeLabel.set_text("00.000");
-    this.playButton.show();
-    this.pauseButton.hide();
-  }
-
-  // Callback for when settings are changed
-  _onSettingsChanged() {
-    const wasRunning = this._isRunning;
-    if (wasRunning) {
-      this._pauseStopwatch();
-    }
-
-    // Update only the visual properties without destroying the layout
-    this._updateVisuals();
-
-    if (wasRunning) {
-      this._startStopwatch();
-    }
-  }
-
-  // Clean up timeouts when the desklet is removed
-  on_desklet_removed() {
+  _clearTimeouts() {
     if (this._timeout) {
       Mainloop.source_remove(this._timeout);
       this._timeout = null;
@@ -234,6 +179,49 @@ class StopwatchDesklet extends Desklet.Desklet {
       Mainloop.source_remove(this._animationTimeout);
       this._animationTimeout = null;
     }
+  }
+
+  // Pauses the stopwatch
+  _pauseStopwatch() {
+    if (this._isRunning) {
+      this._clearTimeouts();
+      this._elapsedTime += Date.now() - this._startTime;
+      this._isRunning = false;
+      this._updateButtonState();
+    }
+  }
+
+  // Resets the stopwatch to zero
+  _resetStopwatch() {
+    this._clearTimeouts();
+    this.circleDrawingArea.rotation_angle_z = 0;
+    this._startTime = 0;
+    this._elapsedTime = 0;
+    this._isRunning = false;
+    this.timeLabel.style = `font-size: ${20 * this.scaleSize}px; color: ${this.labelColor};`;
+    this.timeLabel.set_text("00.000");
+    this._updateButtonState();
+  }
+
+  // Callback for when settings are changed
+  _onSettingsChanged() {
+    const wasRunning = this._isRunning;
+    if (wasRunning) this._pauseStopwatch();
+
+    // Update only the visual properties without destroying the layout
+    this._updateVisuals();
+
+    if (wasRunning) this._startStopwatch();
+  }
+
+  updateDecoration() {
+    this.metadata["prevent-decorations"] = this.hideDecorations;
+    this._updateDecoration();
+  }
+
+  // Clean up timeouts when the desklet is removed
+  on_desklet_removed() {
+    this._clearTimeouts();
   }
 
   // Draws the static circle and arc on the canvas
@@ -269,11 +257,8 @@ class StopwatchDesklet extends Desklet.Desklet {
   _rgbToRgba(colorString) {
     const match = colorString.match(/\((.*?)\)/);
     if (match && match[1]) {
-      const c = match[1].split(",");
-      if (c.length >= 3) {
-        const a = c.length >= 4 ? parseFloat(c[3]) : 1;
-        return [parseInt(c[0]) / 255, parseInt(c[1]) / 255, parseInt(c[2]) / 255, a];
-      }
+      const [r, g, b, a = 1] = match[1].split(",").map(parseFloat);
+      return [r / 255, g / 255, b / 255, a];
     }
     return [0.3, 0.8, 0.5, 1]; // Default color if parsing fails
   }

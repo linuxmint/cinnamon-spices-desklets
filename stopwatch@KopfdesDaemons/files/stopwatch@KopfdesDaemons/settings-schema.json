@@ -16,6 +16,11 @@
     "step": 0.05,
     "description": "Desklet size"
   },
+  "hideDecorations": {
+    "type": "checkbox",
+    "description": "Hide decorations",
+    "default": false
+  },
   "head1": {
     "type": "header",
     "description": "Indicator"
