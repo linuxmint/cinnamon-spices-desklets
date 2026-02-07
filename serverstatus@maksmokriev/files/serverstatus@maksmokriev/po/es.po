@@ -5,10 +5,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: serverstatus@maksmokriev 1.1.1\n"
+"Project-Id-Version: serverstatus@maksmokriev 1.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-12-08 23:17-0500\n"
+"POT-Creation-Date: 2026-01-04 08:44+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,35 +18,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.8\n"
 
-#. desklet.js:23
+#: desklet.js:23
 msgid "Server Status"
 msgstr "Estado del servidor"
 
-#. desklet.js:70
+#: desklet.js:84
 msgid "Need to setup"
 msgstr "Necesita configuración"
 
-#. desklet.js:104
-msgid " - Checking ..."
-msgstr " - Comprobando..."
-
-#. desklet.js:153
+#: desklet.js:173
 msgid "Error ping command on "
 msgstr "Error en el comando ping en "
 
-#. desklet.js:154 desklet.js:161 desklet.js:194 desklet.js:201
-msgid "Error"
-msgstr "Error"
-
-#. desklet.js:160
+#: desklet.js:179
 msgid "Error creating ping process "
 msgstr "Error al crear el proceso ping "
 
-#. desklet.js:193
+#: desklet.js:205
 msgid "Error curl command on "
 msgstr "Error en el comando curl en "
 
-#. desklet.js:200
+#: desklet.js:211
 msgid "Error creating curl process "
 msgstr "Error al crear el proceso curl "
 
@@ -95,12 +87,8 @@ msgid "Display it?"
 msgstr "¿Mostrarlo?"
 
 #. settings-schema.json->TimeRepeat->description
-msgid "Update every:"
-msgstr "Actualizar cada:"
-
-#. settings-schema.json->TimeRepeat->units
-msgid "seconds"
-msgstr "segundos"
+msgid "Update every (seconds):"
+msgstr "Actualizar cada (segundos):"
 
 #. settings-schema.json->TextColorBasic->description
 msgid "Basic text color"
@@ -109,8 +97,8 @@ msgstr "Color básico del texto"
 #. settings-schema.json->TextColorBasic->tooltip
 msgid "Click the button to select a new text color for Basic text"
 msgstr ""
-"Haga clic en el botón para seleccionar un nuevo color de texto para el "
-"texto básico"
+"Haga clic en el botón para seleccionar un nuevo color de texto para el texto "
+"básico"
 
 #. settings-schema.json->TextColorOK->description
 msgid "Text color for OK"
@@ -163,14 +151,25 @@ msgstr ""
 "Haga clic en el botón para seleccionar un nuevo color de fondo para cada "
 "elemento"
 
-#. settings-schema.json->icon_OK->description
-msgid "Icon for a successful connection"
-msgstr "Icono para una conexión exitosa"
+#. settings-schema.json->FontSize->description
+msgid "Font size"
+msgstr "Tamaño de la fuente"
 
-#. settings-schema.json->icon_ERR->description
-msgid "Icon for a failed connection"
-msgstr "Icono para una conexión fallida"
+#. settings-schema.json->FontSize->units
+#. settings-schema.json->ContainerWidth->units
+msgid "pixels"
+msgstr "pixeles"
 
-#. settings-schema.json->icon_WARN->description
-msgid "Icon for the warning"
-msgstr "Icono de advertencia"
+#. settings-schema.json->ContainerFixedWidth->description
+msgid "Set a fixed width for the container"
+msgstr "Establecer un ancho fijo para el contenedor"
+
+#. settings-schema.json->ContainerFixedWidth->tooltip
+msgid "Enable checkbox to set the fixed width of the container"
+msgstr ""
+"Active la casilla de verificación para establecer el ancho fijo del "
+"contenedor"
+
+#. settings-schema.json->ContainerWidth->description
+msgid "Container width"
+msgstr "Ancho del contenedor"

@@ -137,13 +137,22 @@ msgstr "Колір для тла елемента"
 msgid "Click the button to select a new background color for each elements"
 msgstr "Натисніть кнопку, щоб вибрати новий колір тла для кожного елементу"
 
-#. settings-schema.json->icon_OK->description
-msgid "Icon for a successful connection"
-msgstr "Значок успішного підключення"
+#. settings-schema.json->FontSize->description
+msgid "Font size"
+msgstr "Розмір шрифту"
 
-#. settings-schema.json->icon_ERR->description
-msgid "Icon for a failed connection"
-msgstr "Значок невдалого підключення"
+#. settings-schema.json->FontSize->units
+#. settings-schema.json->ContainerWidth->units
+msgid "pixels"
+msgstr "пікселі"
+
+#. settings-schema.json->ContainerFixedWidth->description
+msgid "Set a fixed width for the container"
+msgstr "Встановити фіксовану ширину контейнера"
+
+#. settings-schema.json->ContainerFixedWidth->tooltip
+msgid "Enable checkbox to set the fixed width of the container"
+msgstr "Увімкніть прапорець, щоб встановити фіксовану ширину контейнера"
 
 #. settings-schema.json->icon_WARN->description
 msgid "Icon for the warning"
