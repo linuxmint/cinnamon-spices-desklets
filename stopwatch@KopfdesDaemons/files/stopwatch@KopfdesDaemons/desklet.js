@@ -103,7 +103,7 @@ class StopwatchDesklet extends Desklet.Desklet {
     const addBtn = (icon, cb) => {
       const btn = new St.Button({
         child: new St.Icon({
-          gicon: new Gio.FileIcon({ file: Gio.File.new_for_path(`${this.metadata.path}/${icon}.svg`) }),
+          gicon: Gio.icon_new_for_string(`${this.metadata.path}/${icon}.svg`),
           icon_size: size,
         }),
         style_class: "stopwatch-button",
