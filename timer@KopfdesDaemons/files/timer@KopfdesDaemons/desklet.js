@@ -1,8 +1,6 @@
 const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
-const Cogl = imports.gi.Cogl;
 const Cairo = imports.cairo;
-const Clutter = imports.gi.Clutter;
 const Mainloop = imports.mainloop;
 const Settings = imports.ui.settings;
 const Util = imports.misc.util;
@@ -65,10 +63,6 @@ class MyDesklet extends Desklet.Desklet {
     this.setHeader("Timer");
     this._inputDigits = "";
 
-    this.mainContainer = new St.Widget({
-      layout_manager: new Clutter.BinLayout(),
-    });
-    this.setContent(this.mainContainer);
     this._setButtonStyles();
     this.updateDecoration();
     this._setupTimerUI();
@@ -92,7 +86,6 @@ class MyDesklet extends Desklet.Desklet {
 
   _setupInputLayout() {
     this._isInputView = true;
-    this.mainContainer.destroy_all_children();
 
     const box = new St.BoxLayout({ vertical: true });
     box.style = "width: " + this.default_size * this.scaleSize + "px;";
@@ -161,7 +154,7 @@ class MyDesklet extends Desklet.Desklet {
 
     box.add_child(lastRow);
 
-    this.mainContainer.add_child(box);
+    this.setContent(box);
   }
 
   _onDigitPressed(num) {
@@ -198,19 +191,26 @@ class MyDesklet extends Desklet.Desklet {
 
   _setupTimerUI() {
     this._isInputView = false;
-    this.mainContainer.destroy_all_children();
 
     const absoluteSize = this.default_size * this.scaleSize;
 
-    this.circleActor = new Clutter.Actor({
-      width: absoluteSize,
-      height: absoluteSize,
-    });
-    this.mainContainer.add_child(this.circleActor);
-    this._drawCircle();
+    const container = new St.Widget({ width: absoluteSize, height: absoluteSize });
+
+    this.circleDrawingArea = new St.DrawingArea({ width: absoluteSize, height: absoluteSize });
+    this.circleDrawingArea.set_pivot_point(0.5, 0.5);
+    this.circleDrawingArea.connect("repaint", this._onRepaint.bind(this));
+    container.add_child(this.circleDrawingArea);
+    this.circleDrawingArea.queue_repaint();
 
     const centerContent = new St.BoxLayout({ vertical: true });
-    this.mainContainer.add_child(centerContent);
+    const bin = new St.Bin({
+      width: absoluteSize,
+      height: absoluteSize,
+      child: centerContent,
+      x_align: St.Align.MIDDLE,
+      y_align: St.Align.MIDDLE,
+    });
+    container.add_child(bin);
 
     if (this.timerName) {
       const titleLabel = new St.Label({
@@ -313,6 +313,8 @@ class MyDesklet extends Desklet.Desklet {
     centerContent.add_child(new St.Bin({ child: addTimeBtn, x_align: St.Align.MIDDLE }));
 
     this._updateTimerVisuals();
+
+    this.setContent(container);
   }
 
   _onPausePressed() {
@@ -429,54 +431,45 @@ class MyDesklet extends Desklet.Desklet {
       this.indicatorLength = 0;
     }
 
-    if (this.circleActor && this.circleActor.get_content()) {
-      this.circleActor.get_content().invalidate();
+    if (this.circleDrawingArea) {
+      this.circleDrawingArea.queue_repaint();
     }
   }
 
-  _drawCircle() {
-    const canvas = new Clutter.Canvas();
-    const absoluteSize = this.default_size * this.scaleSize;
-    canvas.set_size(absoluteSize * global.ui_scale, absoluteSize * global.ui_scale);
+  _onRepaint(area) {
+    const cr = area.get_context();
+    const [width, height] = area.get_surface_size();
 
-    canvas.connect("draw", (canvas, cr, width, height) => {
-      cr.save();
-      cr.setOperator(Cairo.Operator.CLEAR);
-      cr.paint();
-      cr.restore();
-      cr.setOperator(Cairo.Operator.OVER);
-      cr.scale(width, height);
-      cr.translate(0.5, 0.5);
+    cr.save();
+    cr.setOperator(Cairo.Operator.CLEAR);
+    cr.paint();
+    cr.restore();
+    cr.setOperator(Cairo.Operator.OVER);
+    cr.scale(width, height);
+    cr.translate(0.5, 0.5);
 
-      // Draw the inner circle
-      if (this.fillInnerCircle) {
-        const rgbaInner = this._rgbToRgba(this.innerCircleColor);
-        cr.setSourceRGBA(rgbaInner[0], rgbaInner[1], rgbaInner[2], rgbaInner[3]);
-        cr.arc(0, 0, 0.4 - this.circleWidth / 2, 0, Math.PI * 2);
-        cr.fill();
-      }
+    // Draw the inner circle
+    if (this.fillInnerCircle) {
+      const rgbaInner = this._rgbToRgba(this.innerCircleColor);
+      cr.setSourceRGBA(rgbaInner[0], rgbaInner[1], rgbaInner[2], rgbaInner[3]);
+      cr.arc(0, 0, 0.4 - this.circleWidth / 2, 0, Math.PI * 2);
+      cr.fill();
+    }
 
-      // Draw the background circle
-      const rgbaCircle = this._rgbToRgba(this.circleColor);
-      cr.setSourceRGBA(rgbaCircle[0], rgbaCircle[1], rgbaCircle[2], rgbaCircle[3]);
-      cr.setLineWidth(this.circleWidth);
-      cr.arc(0, 0, 0.4, 0, Math.PI * 2);
-      cr.stroke();
+    // Draw the background circle
+    const rgbaCircle = this._rgbToRgba(this.circleColor);
+    cr.setSourceRGBA(rgbaCircle[0], rgbaCircle[1], rgbaCircle[2], rgbaCircle[3]);
+    cr.setLineWidth(this.circleWidth);
+    cr.arc(0, 0, 0.4, 0, Math.PI * 2);
+    cr.stroke();
 
-      // Draw the indicator arc
-      const rgbaIndicator = this._rgbToRgba(this.indicatorColor);
-      cr.setSourceRGBA(rgbaIndicator[0], rgbaIndicator[1], rgbaIndicator[2], rgbaIndicator[3]);
-      cr.setLineWidth(this.circleWidth);
-      const arcEnd = (this.indicatorLength * (Math.PI * 2)) / 100 - Math.PI * 0.5;
-      cr.arc(0, 0, 0.4, 0 - Math.PI * 0.5, arcEnd);
-      cr.stroke();
-
-      return true;
-    });
-
-    canvas.invalidate();
-    this.circleActor.set_content(canvas);
-    this.circleActor.set_pivot_point(0.5, 0.5);
+    // Draw the indicator arc
+    const rgbaIndicator = this._rgbToRgba(this.indicatorColor);
+    cr.setSourceRGBA(rgbaIndicator[0], rgbaIndicator[1], rgbaIndicator[2], rgbaIndicator[3]);
+    cr.setLineWidth(this.circleWidth);
+    const arcEnd = (this.indicatorLength * (Math.PI * 2)) / 100 - Math.PI * 0.5;
+    cr.arc(0, 0, 0.4, 0 - Math.PI * 0.5, arcEnd);
+    cr.stroke();
   }
 
   _playSound() {
@@ -511,11 +504,8 @@ class MyDesklet extends Desklet.Desklet {
   _rgbToRgba(colorString) {
     const match = colorString.match(/\((.*?)\)/);
     if (match && match[1]) {
-      const c = match[1].split(",");
-      if (c.length >= 3) {
-        const a = c.length >= 4 ? parseFloat(c[3]) : 1;
-        return [parseInt(c[0]) / 255, parseInt(c[1]) / 255, parseInt(c[2]) / 255, a];
-      }
+      const [r, g, b, a = 1] = match[1].split(",").map(parseFloat);
+      return [r / 255, g / 255, b / 255, a];
     }
     return [0.3, 0.8, 0.5, 1]; // Default color if parsing fails
   }
