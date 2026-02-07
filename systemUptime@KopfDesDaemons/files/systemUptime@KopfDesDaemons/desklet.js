@@ -71,9 +71,10 @@ class MyDesklet extends Desklet.Desklet {
       const computedHeight = contentBox.get_height();
 
       // Create clock icon
-      const file = Gio.File.new_for_path(`${this.metadata.path}/clock.svg`);
-      const fileIcon = new Gio.FileIcon({ file: file });
-      const clockIcon = new St.Icon({ gicon: fileIcon, icon_size: computedHeight, icon_type: St.IconType.FULLCOLOR });
+      const clockIcon = new St.Icon({
+        gicon: Gio.icon_new_for_string(`${this.metadata.path}/clock.svg`),
+        icon_size: computedHeight,
+      });
 
       this.container.insert_child_below(clockIcon, contentBox);
 
