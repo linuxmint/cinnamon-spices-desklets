@@ -9,7 +9,7 @@ const Global = global; // This is done so that Auto-completion for Gnome project
 const Gettext = imports.gettext;
 const Gio = imports.gi.Gio;
 
-const UUID = "top@ryannerd";
+const UUID = "devtest-top@ryannerd";
 const DESKLET_DIR = DeskletManager.deskletMeta[UUID].path; // path to this desklet (unused)
 
 const PID_MAX_LIMIT          = 20;
@@ -85,6 +85,7 @@ const topToJsonParser = {
                 value = "0.0";
             }
             let name=item.replace(value, "").replace(".0", "");
+            if (name === "sleep") name = "sleeping";
             _result[_name][name]=parseFloat(value);
         }
     },
