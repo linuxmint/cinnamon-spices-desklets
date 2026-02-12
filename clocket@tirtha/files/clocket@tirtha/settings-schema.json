@@ -15,120 +15,73 @@
   "text-color": {
     "type": "colorchooser",
     "default": "rgb(255,255,255)",
-    "description": "Text color",
-    "tooltip": "Click the button to select a new text color"
+    "description": "Text color"
   },
   "background-color": {
     "type": "colorchooser",
     "default": "rgba(0, 0, 0, 0.363)",
-    "description": "background color",
-    "tooltip": "Click the button to select a new background color"
-  },
-  "sep1": {
-    "type": "separator"
+    "description": "background color"
   },
   "weatherconf": {
     "type": "header",
     "description": "weather data service settings"
   },
-  "compact": {
+  "show-weather-data": {
     "type": "switch",
     "default": true,
-    "description": "Want weather display ?",
-    "tooltip": "Want weather display ?"
+    "description": "Show weather"
   },
   "webservice": {
     "type": "combobox",
     "default": "owm",
-    "dependency": "compact",
+    "dependency": "show-weather-data",
     "description": "Data service",
     "options": {
       "BBC": "bbc",
       "Open Weather Map Free (requires API key)": "owm"
-    },
-    "tooltip": "select the data service"
+    }
   },
   "api-key": {
     "type": "entry",
     "default": "",
-    "dependency": "compact",
-    "description": "put api key",
+    "dependency": "show-weather-data",
+    "description": "API key",
     "indent": true,
-    "tooltip": "put your api key generated from open-weather-map here"
+    "tooltip": "put your API key generated from open-weather-map here"
   },
-  "loctype": {
+  "location-type": {
     "type": "combobox",
     "default": "city",
-    "dependency": "compact",
+    "dependency": "show-weather-data",
     "description": "Type of location data",
     "options": {
       "city name": "city",
       "lat-lon": "lat-lon"
-    },
-    "tooltip": "select your location type"
+    }
   },
-  "loc": {
+  "location": {
     "type": "entry",
     "default": "kolkata",
-    "dependency": "compact",
+    "dependency": "show-weather-data",
     "description": "put your location",
     "indent": true,
     "tooltip": "put your lat-long generated from lat-long.html page"
   },
-
-  "auto-update": {
-    "type": "switch",
-    "default": false,
-    "dependency": "compact",
-    "description": "auto-update report",
-    "tooltip": "enable or disable auto-update"
-  },
-  "update-duration": {
-    "type": "entry",
-    "dependency": "auto-update",
-    "default": "20",
-    "description": "set auto update duration(20 min/30 min/60 min)",
-    "indent": true,
-    "tooltip": "set auto update duration"
-  },
-  "sep2": {
-    "type": "separator"
-  },
-  "data-custom": {
-    "type": "header",
-    "description": "customize your data",
-    "dependency": "compact"
-  },
-  "unit": {
-    "type": "combobox",
-    "default": "metric",
-    "dependency": "compact",
-    "description": "unit",
-    "options": {
-      "metric": "metric"
-    },
-    "tooltip": "select your unit preferance"
-  },
-  "sep3": {
-    "type": "separator"
-  },
   "design": {
     "type": "header",
     "description": "customize font and bg color",
-    "dependency": "compact"
+    "dependency": "show-weather-data"
   },
-  "weather-color": {
+  "weather-text-color": {
     "type": "colorchooser",
-    "dependency": "compact",
+    "dependency": "show-weather-data",
     "default": "rgb(255,255,255)",
-    "description": "weather block text color",
-    "tooltip": "Click the button to select a new text color"
+    "description": "weather block text color"
   },
-  "weather-bg-color": {
+  "weather-background-color": {
     "type": "colorchooser",
-    "dependency": "compact",
+    "dependency": "show-weather-data",
     "default": "rgba(0, 0, 0, 0.363)",
-    "description": "weather-block bg-color",
-    "tooltip": "Click the button to select a new bg color"
+    "description": "weather-block bg-color"
   }
 }

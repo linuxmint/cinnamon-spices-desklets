@@ -23,58 +23,70 @@ const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 class CinnamonClockDesklet extends Desklet.Desklet {
   constructor(metadata, desklet_id) {
     super(metadata, desklet_id);
-    this._Container = new St.BoxLayout({ vertical: true });
+    this._container = new St.BoxLayout({ vertical: true });
     this._clockContainer = new St.BoxLayout();
     this._dateContainer = new St.BoxLayout({ vertical: true, style_class: "clock_container_style" });
     this._dayContainer = new St.BoxLayout();
 
-    this._time = new St.Label({ style_class: "clock_container_style" });
-    this._date = new St.Label({ style_class: "date_label_style" });
-    this._month = new St.Label({ style_class: "month_label_style" });
-    this._week = new St.Label({ style_class: "weekday_label_style" });
+    this._timeLabel = new St.Label({ style_class: "clock_container_style" });
+    this._dateLabel = new St.Label({ style_class: "date_label_style" });
+    this._monthLabel = new St.Label({ style_class: "month_label_style" });
+    this._weekLabel = new St.Label({ style_class: "weekday_label_style" });
 
-    this._clockContainer.add(this._time);
-    this._dayContainer.add(this._date);
-    this._dayContainer.add(this._month);
+    this._clockContainer.add(this._timeLabel);
+    this._dayContainer.add(this._dateLabel);
+    this._dayContainer.add(this._monthLabel);
     this._dateContainer.add(this._dayContainer);
-    this._dateContainer.add(this._week);
+    this._dateContainer.add(this._weekLabel);
     this._clockContainer.add(this._dateContainer);
-    this._Container.add(this._clockContainer);
+    this._container.add(this._clockContainer);
 
-    this.setContent(this._Container);
+    this.setContent(this._container);
     this.setHeader(_("Clock"));
-
     this.clock = new CinnamonDesktop.WallClock();
     this.clock_notify_id = 0;
 
+    this.unit = "metric";
+
+    // default settings
+    this.fontSize = 40;
+    this.textColor = "rgb(255,255,255)";
+    this.backgroundColor = "rgba(0, 0, 0, 0.363)";
+    this.showWeatherData = true;
+    this.webservice = "owm";
+    this.weatherTextColor = "rgb(255,255,255)";
+    this.weatherBackgroundColor = "rgba(0, 0, 0, 0.363)";
+    this.apiKey = "";
+    this.locationType = "city";
+    this.location = "kolkata";
+
     const settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
-    settings.bind("font-size", "size", this._onSettingsChanged);
-    settings.bind("text-color", "color", this._onSettingsChanged);
-    settings.bind("background-color", "bgcolor", this._onSettingsChanged);
-    settings.bind("compact", "compactperm", this._onCompactPermChange);
+    settings.bind("font-size", "fontSize", this._onSettingsChanged);
+    settings.bind("text-color", "textColor", this._onSettingsChanged);
+    settings.bind("background-color", "backgroundColor", this._onSettingsChanged);
+    settings.bind("show-weather-data", "showWeatherData", this._onCompactPermChange);
     settings.bind("webservice", "webservice", this._get_compact_update);
-    settings.bind("unit", "unit", this._get_compact_update);
-    settings.bind("api-key", "api");
-    settings.bind("loctype", "loctype");
-    settings.bind("loc", "loc");
-    settings.bind("weather-color", "wcolor", this._onchange_weather_style);
-    settings.bind("weather-bg-color", "wbgcolor", this._onSettingsChanged);
+    settings.bind("weather-text-color", "weatherTextColor", this._onchange_weather_style);
+    settings.bind("weather-background-color", "weatherBackgroundColor", this._onSettingsChanged);
+    settings.bind("api-key", "apiKey");
+    settings.bind("location-type", "locationType");
+    settings.bind("location", "location");
 
     this._menu.addSettingsAction(_("Date and Time Settings"), "calendar");
 
-    if (this.compactperm) {
+    if (this.showWeatherData) {
       this._create_compact_label();
     }
   }
 
   _onSettingsChanged() {
-    this._time.style = "font-size: " + this.size + "pt;\ncolor: " + this.color + ";\nbackground-color:" + this.bgcolor;
-    this._date.style = "font-size: " + (this.size - 10) + "pt;";
-    this._dateContainer.style = "background-color:" + this.bgcolor;
-    this._month.style = "font-size: " + (this.size - 20) + "pt;\ncolor: " + this.color;
-    this._week.style = "font-size: " + (this.size - 16) + "pt;\ncolor: " + this.color;
-    if (this.compactperm) {
-      this._compactContainer.style = "background-color:" + this.wbgcolor;
+    this._timeLabel.style = "font-size: " + this.fontSize + "pt;\ncolor: " + this.textColor + ";\nbackground-color:" + this.backgroundColor;
+    this._dateLabel.style = "font-size: " + (this.fontSize - 10) + "pt;";
+    this._dateContainer.style = "background-color:" + this.backgroundColor;
+    this._monthLabel.style = "font-size: " + (this.fontSize - 20) + "pt;\ncolor: " + this.textColor;
+    this._weekLabel.style = "font-size: " + (this.fontSize - 16) + "pt;\ncolor: " + this.textColor;
+    if (this.showWeatherData) {
+      this._compactContainer.style = "background-color:" + this.weatherBackgroundColor;
     }
 
     this._updateClock();
@@ -95,16 +107,16 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     }
   }
   _onchange_weather_style() {
-    if (this.compactperm) {
-      this.comloc.style = "color: " + this.wcolor;
-      this.comtemp.style = "color: " + this.wcolor;
-      this.comdes.style = "color: " + this.wcolor;
-      this._fcomhead.style = "color: " + this.wcolor;
-      this._fcomtemp.style = "color: " + this.wcolor;
-      this._scomhead.style = "color: " + this.wcolor;
-      this._scomtemp.style = "color: " + this.wcolor;
-      this._tcomhead.style = "color: " + this.wcolor;
-      this._tcomtemp.style = "color: " + this.wcolor;
+    if (this.showWeatherData) {
+      this.comloc.style = "color: " + this.weatherTextColor;
+      this.comtemp.style = "color: " + this.weatherTextColor;
+      this.comdes.style = "color: " + this.weatherTextColor;
+      this._fcomhead.style = "color: " + this.weatherTextColor;
+      this._fcomtemp.style = "color: " + this.weatherTextColor;
+      this._scomhead.style = "color: " + this.weatherTextColor;
+      this._scomtemp.style = "color: " + this.weatherTextColor;
+      this._tcomhead.style = "color: " + this.weatherTextColor;
+      this._tcomtemp.style = "color: " + this.weatherTextColor;
     }
   }
   _getIconImage(iconpath, dim) {
@@ -117,7 +129,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   }
 
   _onCompactPermChange() {
-    if (this.compactperm) {
+    if (this.showWeatherData) {
       this._create_compact_label();
     } else {
       this._compactContainer.destroy();
@@ -157,10 +169,10 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   }
 
   id() {
-    if (this.loctype == "city") {
-      return "q=" + this.loc;
-    } else if (this.loctype == "lat-lon") {
-      const cor = String(this.loc).split("-");
+    if (this.locationType == "city") {
+      return "q=" + this.location;
+    } else if (this.locationType == "lat-lon") {
+      const cor = String(this.location).split("-");
       return "lat=" + cor[0] + "&lon=" + cor[1];
     } else {
       return "q=kolkata";
@@ -179,7 +191,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
   _return_owm_data() {
     let baseurl = "http://api.openweathermap.org/data/2.5/weather?";
-    const weatherapi = this.api;
+    const weatherapi = this.apiKey;
 
     let url = baseurl + this.id() + "&appid=" + String(weatherapi) + "&units=" + this.unit;
     let curdata = this.getJSON(url);
@@ -261,7 +273,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   }
 
   _get_compact_update() {
-    if (this.api !== "" && this.loc !== "") {
+    if (this.apiKey !== "" && this.location !== "") {
       this._get_data_service();
     }
   }
@@ -272,7 +284,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this._compactfor = new St.BoxLayout({ vertical: false, style_class: "compact_for_container_style" });
 
     this.comloc = new St.Label({ style_class: "comloc_label_style" });
-    this.comloc.set_text(this.loc);
+    this.comloc.set_text(this.location);
     const comicon = this._getIconImage("/icons/icon.png", 45);
     this.comiconbtn = new St.Button();
     this.comiconbtn.set_child(comicon);
@@ -335,24 +347,24 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this._compactcur.add(this.comdes);
     this._compactContainer.add(this._compactcur);
     this._compactContainer.add(this._compactfor);
-    this._Container.add(this._compactContainer);
+    this._container.add(this._compactContainer);
 
     this._get_compact_update();
   }
 
   _updateClock() {
     const a = new Date();
-    this._time.set_text(this.clock.get_clock_for_format("%0l:%0M"));
+    this._timeLabel.set_text(this.clock.get_clock_for_format("%0l:%0M"));
     const date = String(a.getDate()).padStart(2, "0");
-    this._date.set_text(date);
+    this._dateLabel.set_text(date);
 
     const mm = a.getMonth();
     const month = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
-    this._month.set_text("  " + month[mm] + ", " + a.getFullYear());
+    this._monthLabel.set_text("  " + month[mm] + ", " + a.getFullYear());
 
     const dd = a.getDay();
     const weekday = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
-    this._week.set_text("   " + weekday[dd]);
+    this._weekLabel.set_text("   " + weekday[dd]);
   }
 }
 

@@ -42,3 +42,4 @@ Changelog
   - code formatted
   - prefer `const` over `let`
   - prefer `let` over `var`
+  - more readable names for properties, variables, functions, etc.
