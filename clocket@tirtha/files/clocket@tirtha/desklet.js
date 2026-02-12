@@ -64,9 +64,9 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     settings.bind("font-size", "fontSize", this._onSettingsChanged);
     settings.bind("text-color", "textColor", this._onSettingsChanged);
     settings.bind("background-color", "backgroundColor", this._onSettingsChanged);
-    settings.bind("show-weather-data", "showWeatherData", this._onCompactPermChange);
-    settings.bind("webservice", "webservice", this._get_compact_update);
-    settings.bind("weather-text-color", "weatherTextColor", this._onchange_weather_style);
+    settings.bind("show-weather-data", "showWeatherData", this._onShowWeatherChange);
+    settings.bind("webservice", "webservice", this._updateWeather);
+    settings.bind("weather-text-color", "weatherTextColor", this._updateWeatherStyle);
     settings.bind("weather-background-color", "weatherBackgroundColor", this._onSettingsChanged);
     settings.bind("api-key", "apiKey");
     settings.bind("location-type", "locationType");
@@ -75,7 +75,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this._menu.addSettingsAction(_("Date and Time Settings"), "calendar");
 
     if (this.showWeatherData) {
-      this._create_compact_label();
+      this._loadWeatherLayout();
     }
   }
 
@@ -86,7 +86,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this._monthLabel.style = "font-size: " + (this.fontSize - 20) + "pt;\ncolor: " + this.textColor;
     this._weekLabel.style = "font-size: " + (this.fontSize - 16) + "pt;\ncolor: " + this.textColor;
     if (this.showWeatherData) {
-      this._compactContainer.style = "background-color:" + this.weatherBackgroundColor;
+      this._weatherContainer.style = "background-color:" + this.weatherBackgroundColor;
     }
 
     this._updateClock();
@@ -106,7 +106,8 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       this.clock_notify_id = 0;
     }
   }
-  _onchange_weather_style() {
+
+  _updateWeatherStyle() {
     if (this.showWeatherData) {
       this._locationLabel.style = "color: " + this.weatherTextColor;
       this._currentTemperature.style = "color: " + this.weatherTextColor;
@@ -120,24 +121,24 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     }
   }
 
-  _getIconImage(iconpath, dim) {
-    const icon_file = DESKLET_DIR + iconpath;
+  _getIcon(path, size) {
+    const icon_file = DESKLET_DIR + path;
     const file = Gio.file_new_for_path(icon_file);
     const icon_uri = file.get_uri();
-    const iconimage = St.TextureCache.get_default().load_uri_async(icon_uri, 65, 65);
-    iconimage.set_size(dim, dim);
-    return iconimage;
+    const icon = St.TextureCache.get_default().load_uri_async(icon_uri, 65, 65);
+    icon.set_size(size, size);
+    return icon;
   }
 
-  _onCompactPermChange() {
+  _onShowWeatherChange() {
     if (this.showWeatherData) {
-      this._create_compact_label();
+      this._loadWeatherLayout();
     } else {
-      this._compactContainer.destroy();
+      this._weatherContainer.destroy();
     }
   }
 
-  getJSON(url) {
+  _getJSON(url) {
     let jsonData = "EMPTY";
     const message = Soup.Message.new("GET", url);
 
@@ -169,7 +170,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     }
   }
 
-  id() {
+  _getLocation() {
     if (this.locationType == "city") {
       return "q=" + this.location;
     } else if (this.locationType == "lat-lon") {
@@ -180,21 +181,21 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     }
   }
 
-  _get_data_service() {
+  _loadWeather() {
     if (this.webservice == "bbc") {
-      this._return_bbc_data();
+      this._loadWeatherBBC();
     } else if (this.webservice == "openweathermap") {
-      return this._return_openweathermap_data();
+      this._loadWeatherOpenWeatherMap();
     }
   }
 
-  _return_bbc_data() {}
+  _loadWeatherBBC() {}
 
-  _return_openweathermap_data() {
+  _loadWeatherOpenWeatherMap() {
     const weatherBaseURL = "http://api.openweathermap.org/data/2.5/weather?";
 
-    const weatherURL = weatherBaseURL + this.id() + "&appid=" + this.apiKey + "&units=" + this.unit;
-    let currentData = this.getJSON(weatherURL);
+    const weatherURL = weatherBaseURL + this._getLocation() + "&appid=" + this.apiKey + "&units=" + this.unit;
+    let currentData = this._getJSON(weatherURL);
     if (currentData == "401") {
       currentData = 401;
     } else if (currentData == "unreachable") {
@@ -212,7 +213,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     const forecastBaseURL = "http://api.openweathermap.org/data/2.5/forecast?";
 
     const forecastURL = forecastBaseURL + "q=katwa" + "&appid=" + this.apiKey + "&units=" + this.unit;
-    const json = this.getJSON(forecastURL);
+    const json = this._getJSON(forecastURL);
     let forecastData = [];
     if (json == "401") {
       forecastData = 404;
@@ -246,17 +247,17 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       this._forecastDay3Label.set_text("no data");
     } else {
       this._forecastDay1Label.set_text(forecastData[0][0]);
-      let weatherIcon = this._getIconImage("/icons/owm_icons/" + forecastData[0][1] + "@2x.png", 35);
+      let weatherIcon = this._getIcon("/icons/owm_icons/" + forecastData[0][1] + "@2x.png", 35);
       this._forecastDay1Button.set_child(weatherIcon);
       this._forecastDay1TemperatureLabel.set_text(forecastData[0][2] + "℃");
 
       this._forecastDay2Label.set_text(forecastData[1][0]);
-      weatherIcon = this._getIconImage("/icons/owm_icons/" + forecastData[1][1] + "@2x.png", 35);
+      weatherIcon = this._getIcon("/icons/owm_icons/" + forecastData[1][1] + "@2x.png", 35);
       this._forecastDay2Button.set_child(weatherIcon);
       this._forecastDay2TemperatureLabel.set_text(forecastData[1][2] + "℃");
 
       this._forecastDay3Label.set_text(forecastData[2][0]);
-      weatherIcon = this._getIconImage("/icons/owm_icons/" + forecastData[2][1] + "@2x.png", 35);
+      weatherIcon = this._getIcon("/icons/owm_icons/" + forecastData[2][1] + "@2x.png", 35);
       this._forecastDay3Button.set_child(weatherIcon);
       this._forecastDay3TemperatureLabel.set_text(forecastData[2][2] + "℃");
     }
@@ -265,32 +266,32 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       this._locationLabel.set_text("no data");
     } else {
       this._locationLabel.set_text(currentData[0]);
-      let comicon = this._getIconImage("/icons/owm_icons/" + currentData[3] + "@2x.png", 45);
+      let comicon = this._getIcon("/icons/owm_icons/" + currentData[3] + "@2x.png", 45);
       this._currentWeatherButton.set_child(comicon);
       this._currentTemperature.set_text(currentData[1]);
       this._currentDescription.set_text(currentData[2]);
     }
   }
 
-  _get_compact_update() {
+  _updateWeather() {
     if (this.apiKey !== "" && this.location !== "") {
-      this._get_data_service();
+      this._loadWeather();
     }
   }
 
-  _create_compact_label() {
-    this._compactContainer = new St.BoxLayout({ vertical: false, style_class: "compact_container_style" });
+  _loadWeatherLayout() {
+    this._weatherContainer = new St.BoxLayout({ vertical: false, style_class: "compact_container_style" });
     this._currentWeatherContainer = new St.BoxLayout({ vertical: true, style_class: "compact_cur_container_style" });
     this._forecastWeatherContainer = new St.BoxLayout({ vertical: false, style_class: "compact_for_container_style" });
 
     // Current weather
     this._locationLabel = new St.Label({ style_class: "comloc_label_style" });
     this._locationLabel.set_text(this.location);
-    const currentWeatherIcon = this._getIconImage("/icons/icon.png", 45);
+    const currentWeatherIcon = this._getIcon("/icons/icon.png", 45);
     this._currentWeatherButton = new St.Button();
     this._currentWeatherButton.set_child(currentWeatherIcon);
     this._currentWeatherButton.connect("clicked", () => {
-      this._get_compact_update();
+      this._updateWeather();
     });
     this._currentTemperature = new St.Label({ style_class: "comtemp_label_style" });
     this._currentTemperature.set_text("30℃");
@@ -301,7 +302,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this._forecastDay1Container = new St.BoxLayout({ vertical: true, style_class: "compact_day_container_style" });
     this._forecastDay1Label = new St.Label({ style_class: "fday_label_style" });
     this._forecastDay1Label.set_text("MON");
-    const forecastDay1Icon = this._getIconImage("/icons/icon.png", 35);
+    const forecastDay1Icon = this._getIcon("/icons/icon.png", 35);
     this._forecastDay1Button = new St.Button();
     this._forecastDay1Button.set_child(forecastDay1Icon);
     this._forecastDay1Button.style = "margin-top:10px;margin-bottom:10px;";
@@ -316,7 +317,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this._forecastDay2Container = new St.BoxLayout({ vertical: true, style_class: "compact_day_container_style" });
     this._forecastDay2Label = new St.Label({ style_class: "fday_label_style" });
     this._forecastDay2Label.set_text("MON");
-    const forecastDay2Icon = this._getIconImage("/icons/icon.png", 35);
+    const forecastDay2Icon = this._getIcon("/icons/icon.png", 35);
     this._forecastDay2Button = new St.Button();
     this._forecastDay2Button.set_child(forecastDay2Icon);
     this._forecastDay2Button.style = "margin-top:10px;margin-bottom:10px;";
@@ -331,7 +332,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this._forecastDay3Container = new St.BoxLayout({ vertical: true, style_class: "compact_day_container_style" });
     this._forecastDay3Label = new St.Label({ style_class: "fday_label_style" });
     this._forecastDay3Label.set_text("MON");
-    const forecastDay3Icon = this._getIconImage("/icons/icon.png", 35);
+    const forecastDay3Icon = this._getIcon("/icons/icon.png", 35);
     this._forecastDay3Button = new St.Button();
     this._forecastDay3Button.set_child(forecastDay3Icon);
     this._forecastDay3Button.style = "margin-top:10px;margin-bottom:10px;";
@@ -346,11 +347,11 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this._currentWeatherContainer.add(this._currentWeatherButton);
     this._currentWeatherContainer.add(this._currentTemperature);
     this._currentWeatherContainer.add(this._currentDescription);
-    this._compactContainer.add(this._currentWeatherContainer);
-    this._compactContainer.add(this._forecastWeatherContainer);
-    this._container.add(this._compactContainer);
+    this._weatherContainer.add(this._currentWeatherContainer);
+    this._weatherContainer.add(this._forecastWeatherContainer);
+    this._container.add(this._weatherContainer);
 
-    this._get_compact_update();
+    this._updateWeather();
   }
 
   _updateClock() {
