@@ -16,7 +16,8 @@ if (Soup.MAJOR_VERSION == 2) {
   //version 3
   _httpSession = new Soup.Session();
 }
-const UUID = "test-clocket@tirtha";
+
+const UUID = "devtest-clocket@tirtha";
 const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 
 class CinnamonClockDesklet extends Desklet.Desklet {
@@ -46,30 +47,24 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this.clock = new CinnamonDesktop.WallClock();
     this.clock_notify_id = 0;
 
-    this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
-
-    this.settings.bind("font-size", "size", this._onSettingsChanged);
-    this.settings.bind("text-color", "color", this._onSettingsChanged);
-    this.settings.bind("background-color", "bgcolor", this._onSettingsChanged);
-    this.settings.bind("compact", "compactperm", this._onCompactPermChange);
-    this.settings.bind("webservice", "webservice", this._get_compact_update);
-    this.settings.bind("unit", "unit", this._get_compact_update);
-    this.settings.bind("icon-pack", "icon_pack", this._get_compact_update);
-    this.settings.bind("api-key", "api");
-    this.settings.bind("loctype", "loctype");
-    this.settings.bind("loc", "loc");
-    this.settings.bind("weather-color", "wcolor", this._onchange_weather_style);
-    this.settings.bind("weather-bg-color", "wbgcolor", this._onSettingsChanged);
+    const settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
+    settings.bind("font-size", "size", this._onSettingsChanged);
+    settings.bind("text-color", "color", this._onSettingsChanged);
+    settings.bind("background-color", "bgcolor", this._onSettingsChanged);
+    settings.bind("compact", "compactperm", this._onCompactPermChange);
+    settings.bind("webservice", "webservice", this._get_compact_update);
+    settings.bind("unit", "unit", this._get_compact_update);
+    settings.bind("api-key", "api");
+    settings.bind("loctype", "loctype");
+    settings.bind("loc", "loc");
+    settings.bind("weather-color", "wcolor", this._onchange_weather_style);
+    settings.bind("weather-bg-color", "wbgcolor", this._onSettingsChanged);
 
     this._menu.addSettingsAction(_("Date and Time Settings"), "calendar");
 
     if (this.compactperm) {
       this._create_compact_label();
     }
-  }
-
-  _clockNotify(obj, pspec, data) {
-    this._updateClock();
   }
 
   _onSettingsChanged() {
@@ -89,7 +84,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this._onSettingsChanged();
 
     if (this.clock_notify_id == 0) {
-      this.clock_notify_id = this.clock.connect("notify::clock", () => this._clockNotify());
+      this.clock_notify_id = this.clock.connect("notify::clock", () => this._updateClock());
     }
   }
 
@@ -113,10 +108,10 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     }
   }
   _getIconImage(iconpath, dim) {
-    let icon_file = DESKLET_DIR + iconpath;
-    let file = Gio.file_new_for_path(icon_file);
-    let icon_uri = file.get_uri();
-    let iconimage = St.TextureCache.get_default().load_uri_async(icon_uri, 65, 65);
+    const icon_file = DESKLET_DIR + iconpath;
+    const file = Gio.file_new_for_path(icon_file);
+    const icon_uri = file.get_uri();
+    const iconimage = St.TextureCache.get_default().load_uri_async(icon_uri, 65, 65);
     iconimage.set_size(dim, dim);
     return iconimage;
   }
@@ -130,8 +125,8 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   }
 
   getJSON(url) {
-    var jsonData = "EMPTY";
-    let message = Soup.Message.new("GET", url);
+    let jsonData = "EMPTY";
+    const message = Soup.Message.new("GET", url);
 
     if (Soup.MAJOR_VERSION === 2) {
       _httpSession.send_message(message);
@@ -165,7 +160,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     if (this.loctype == "city") {
       return "q=" + this.loc;
     } else if (this.loctype == "lat-lon") {
-      var cor = String(this.loc).split("-");
+      const cor = String(this.loc).split("-");
       return "lat=" + cor[0] + "&lon=" + cor[1];
     } else {
       return "q=kolkata";
@@ -180,21 +175,14 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     }
   }
 
-  _get_icon_pack() {
-    if (this.icon_pack == "default") {
-      return "owm_icons";
-    }
-  }
-
   _return_bbc_data() {}
 
   _return_owm_data() {
-    var baseurl = "http://api.openweathermap.org/data/2.5/weather?";
-    // var weatherapi for api key
-    var weatherapi = this.api;
+    let baseurl = "http://api.openweathermap.org/data/2.5/weather?";
+    const weatherapi = this.api;
 
-    var url = baseurl + this.id() + "&appid=" + String(weatherapi) + "&units=" + this.unit;
-    var curdata = this.getJSON(url);
+    let url = baseurl + this.id() + "&appid=" + String(weatherapi) + "&units=" + this.unit;
+    let curdata = this.getJSON(url);
     if (curdata == "401") {
       curdata = 401;
     } else if (curdata == "unreachable") {
@@ -202,19 +190,17 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     } else if (curdata == "404") {
       curdata = 404;
     } else {
-      var loc = curdata.name + ", " + curdata.sys.country;
-      var ovarall = curdata.weather[0].description;
-      var temp = curdata.main.temp + " ℃";
-      var icon = curdata.weather[0].icon;
+      const loc = curdata.name + ", " + curdata.sys.country;
+      const ovarall = curdata.weather[0].description;
+      const temp = curdata.main.temp + " ℃";
+      const icon = curdata.weather[0].icon;
       curdata = [loc, temp, ovarall, icon];
     }
-
-    // forecast data loading
 
     baseurl = "http://api.openweathermap.org/data/2.5/forecast?";
 
     url = baseurl + "q=katwa" + "&appid=" + String(weatherapi) + "&units=" + this.unit;
-    var jsondata = this.getJSON(url);
+    const jsondata = this.getJSON(url);
     let foredata = [];
     if (jsondata == "401") {
       foredata = 404;
@@ -223,50 +209,51 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     } else if (jsondata == "404") {
       foredata = 404;
     } else {
-      let newdate = new Date();
-      var d = newdate.getDay() + 1;
-      let newdata = jsondata;
-      var weekday = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-      let forcustdata = newdata.list;
+      const newdate = new Date();
+      let d = newdate.getDay() + 1;
+      const newdata = jsondata;
+      const weekday = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+      const forcustdata = newdata.list;
 
       let day = "";
 
       for (var i = 7; i < 24; i += 8) {
         day = forcustdata[i];
-        let temp = day["main"]["temp"];
-        let icon = day["weather"][0]["icon"];
+        const temp = day["main"]["temp"];
+        const icon = day["weather"][0]["icon"];
         d = d % 7;
-        let wd = weekday[d];
+        const wd = weekday[d];
         d++;
         foredata.push([wd, icon, temp]);
       }
     }
 
-    // var foredata=this._return_forecast_data();
-    if (foredata == 401 && foredata == 404 && foredata == "unreachable") {
-      this.comloc = foredata;
+    if (foredata == 401 || foredata == 404 || foredata == "unreachable" || !foredata || foredata.length === 0) {
+      this._fcomhead.set_text("no data");
+      this._scomhead.set_text("no data");
+      this._tcomhead.set_text("no data");
     } else {
       this._fcomhead.set_text(foredata[0][0]);
-      let wiconimage = this._getIconImage("/icons/" + this._get_icon_pack() + "/" + foredata[0][1] + "@2x.png", 35);
+      let wiconimage = this._getIconImage("/icons/owm_icons/" + foredata[0][1] + "@2x.png", 35);
       this.firstcomiconbtn.set_child(wiconimage);
       this._fcomtemp.set_text(foredata[0][2] + "℃");
 
       this._scomhead.set_text(foredata[1][0]);
-      wiconimage = this._getIconImage("/icons/" + this._get_icon_pack() + "/" + foredata[1][1] + "@2x.png", 35);
+      wiconimage = this._getIconImage("/icons/owm_icons/" + foredata[1][1] + "@2x.png", 35);
       this.secondcomiconbtn.set_child(wiconimage);
       this._scomtemp.set_text(foredata[1][2] + "℃");
 
       this._tcomhead.set_text(foredata[2][0]);
-      wiconimage = this._getIconImage("/icons/" + this._get_icon_pack() + "/" + foredata[2][1] + "@2x.png", 35);
+      wiconimage = this._getIconImage("/icons/owm_icons/" + foredata[2][1] + "@2x.png", 35);
       this.thirdcomiconbtn.set_child(wiconimage);
       this._tcomtemp.set_text(foredata[2][2] + "℃");
     }
 
-    if (curdata == 401 && curdata == 404 && curdata == "unreachable") {
-      this.comloc = "no data";
+    if (curdata == 401 || curdata == 404 || curdata == "unreachable") {
+      this.comloc.set_text("no data");
     } else {
       this.comloc.set_text(curdata[0]);
-      let comicon = this._getIconImage("/icons/" + this._get_icon_pack() + "/" + curdata[3] + "@2x.png", 45);
+      let comicon = this._getIconImage("/icons/owm_icons/" + curdata[3] + "@2x.png", 45);
       this.comiconbtn.set_child(comicon);
       this.comtemp.set_text(curdata[1]);
       this.comdes.set_text(curdata[2]);
@@ -286,7 +273,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
     this.comloc = new St.Label({ style_class: "comloc_label_style" });
     this.comloc.set_text(this.loc);
-    let comicon = this._getIconImage("/icons/icon.png", 45);
+    const comicon = this._getIconImage("/icons/icon.png", 45);
     this.comiconbtn = new St.Button();
     this.comiconbtn.set_child(comicon);
     this.comiconbtn.connect("clicked", () => {
@@ -300,7 +287,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this.fcomview = new St.BoxLayout({ vertical: true, style_class: "compact_day_container_style" });
     this._fcomhead = new St.Label({ style_class: "fday_label_style" });
     this._fcomhead.set_text("MON");
-    let fcomicon = this._getIconImage("/icons/icon.png", 35);
+    const fcomicon = this._getIconImage("/icons/icon.png", 35);
     this.firstcomiconbtn = new St.Button();
     this.firstcomiconbtn.set_child(fcomicon);
     this.firstcomiconbtn.style = "margin-top:10px;margin-bottom:10px;";
@@ -315,7 +302,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this.scomview = new St.BoxLayout({ vertical: true, style_class: "compact_day_container_style" });
     this._scomhead = new St.Label({ style_class: "fday_label_style" });
     this._scomhead.set_text("MON");
-    let scomicon = this._getIconImage("/icons/icon.png", 35);
+    const scomicon = this._getIconImage("/icons/icon.png", 35);
     this.secondcomiconbtn = new St.Button();
     this.secondcomiconbtn.set_child(scomicon);
     this.secondcomiconbtn.style = "margin-top:10px;margin-bottom:10px;";
@@ -330,7 +317,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this.tcomview = new St.BoxLayout({ vertical: true, style_class: "compact_day_container_style" });
     this._tcomhead = new St.Label({ style_class: "fday_label_style" });
     this._tcomhead.set_text("MON");
-    let tcomicon = this._getIconImage("/icons/icon.png", 35);
+    const tcomicon = this._getIconImage("/icons/icon.png", 35);
     this.thirdcomiconbtn = new St.Button();
     this.thirdcomiconbtn.set_child(tcomicon);
     this.thirdcomiconbtn.style = "margin-top:10px;margin-bottom:10px;";
@@ -354,17 +341,17 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   }
 
   _updateClock() {
-    let a = new Date();
+    const a = new Date();
     this._time.set_text(this.clock.get_clock_for_format("%0l:%0M"));
-    var date = String(a.getDate()).padStart(2, "0");
+    const date = String(a.getDate()).padStart(2, "0");
     this._date.set_text(date);
 
-    var mm = a.getMonth();
-    var month = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+    const mm = a.getMonth();
+    const month = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
     this._month.set_text("  " + month[mm] + ", " + a.getFullYear());
 
-    var dd = a.getDay();
-    var weekday = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
+    const dd = a.getDay();
+    const weekday = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
     this._week.set_text("   " + weekday[dd]);
   }
 }

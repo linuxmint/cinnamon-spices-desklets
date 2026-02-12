@@ -37,5 +37,8 @@ Changelog
   - dead code removed
     - unused variables
     - unused functions
+    - unused settings
   - commented-out code removed
   - code formatted
+  - prefer `const` over `let`
+  - prefer `let` over `var`
