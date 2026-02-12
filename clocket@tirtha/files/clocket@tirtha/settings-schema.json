@@ -33,12 +33,12 @@
   },
   "webservice": {
     "type": "combobox",
-    "default": "owm",
+    "default": "openweathermap",
     "dependency": "show-weather-data",
     "description": "Data service",
     "options": {
       "BBC": "bbc",
-      "Open Weather Map Free (requires API key)": "owm"
+      "Open Weather Map Free (requires API key)": "openweathermap"
     }
   },
   "api-key": {
