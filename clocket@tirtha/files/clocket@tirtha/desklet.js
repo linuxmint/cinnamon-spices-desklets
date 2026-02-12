@@ -53,7 +53,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this.textColor = "rgb(255,255,255)";
     this.backgroundColor = "rgba(0, 0, 0, 0.363)";
     this.showWeatherData = true;
-    this.webservice = "openweathermap";
+    this.webservice = "Open-Metro";
     this.weatherTextColor = "rgb(255,255,255)";
     this.weatherBackgroundColor = "rgba(0, 0, 0, 0.363)";
     this.apiKey = "";
@@ -182,14 +182,172 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   }
 
   _loadWeather() {
-    if (this.webservice == "bbc") {
-      this._loadWeatherBBC();
+    if (this.webservice == "Open Metro") {
+      this._loadWeatherOpenMetro();
     } else if (this.webservice == "openweathermap") {
       this._loadWeatherOpenWeatherMap();
     }
   }
 
-  _loadWeatherBBC() {}
+  _loadWeatherOpenMetro() {
+    let lat = "";
+    let lon = "";
+    let locationName = this.location;
+
+    if (this.locationType === "lat-lon") {
+      const cor = String(this.location).split("-");
+      if (cor.length === 2) {
+        lat = cor[0].trim();
+        lon = cor[1].trim();
+      }
+    } else {
+      // Geocoding
+      const geoUrl =
+        "https://geocoding-api.open-meteo.com/v1/search?name=" + encodeURIComponent(this.location) + "&count=1&language=en&format=json";
+      const geoData = this._getJSON(geoUrl);
+      if (geoData && geoData.results && geoData.results.length > 0) {
+        lat = geoData.results[0].latitude;
+        lon = geoData.results[0].longitude;
+        locationName = geoData.results[0].name + ", " + geoData.results[0].country_code.toUpperCase();
+      } else {
+        this._locationLabel.set_text("Loc not found");
+        return;
+      }
+    }
+
+    if (!lat || !lon) {
+      this._locationLabel.set_text("Invalid Loc");
+      return;
+    }
+
+    const weatherUrl =
+      "https://api.open-meteo.com/v1/forecast?latitude=" +
+      lat +
+      "&longitude=" +
+      lon +
+      "&current=temperature_2m,is_day,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto";
+
+    let weatherData = this._getJSON(weatherUrl);
+
+    if (weatherData === "401" || weatherData === "404" || weatherData === "unreachable" || !weatherData.current || !weatherData.daily) {
+      this._locationLabel.set_text("Weather Error");
+      return;
+    }
+
+    // Update Current Weather
+    this._locationLabel.set_text(locationName);
+    const currentCode = weatherData.current.weather_code;
+    const isDay = weatherData.current.is_day;
+    const currentTemp = weatherData.current.temperature_2m;
+
+    const iconName = this._getOWMIconName(currentCode, isDay);
+    let comicon = this._getIcon("/icons/owm_icons/" + iconName + "@2x.png", 45);
+    this._currentWeatherButton.set_child(comicon);
+    this._currentTemperature.set_text(currentTemp + "℃");
+    this._currentDescription.set_text(this._getWeatherDescription(currentCode));
+
+    // Update Forecast
+    const daily = weatherData.daily;
+    const weekdaysShorthands = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+    const today = new Date();
+    let dayIndex = today.getDay();
+
+    // Day 1 (Tomorrow)
+    if (daily.time.length > 1) {
+      this._updateForecastDay(1, daily, dayIndex + 1, weekdaysShorthands);
+    }
+    // Day 2
+    if (daily.time.length > 2) {
+      this._updateForecastDay(2, daily, dayIndex + 2, weekdaysShorthands);
+    }
+    // Day 3
+    if (daily.time.length > 3) {
+      this._updateForecastDay(3, daily, dayIndex + 3, weekdaysShorthands);
+    }
+  }
+
+  _updateForecastDay(uiIndex, dailyData, weekDayIndex, weekDays) {
+    const dataIndex = uiIndex;
+    const tempMax = Math.round(dailyData.temperature_2m_max[dataIndex]);
+    const code = dailyData.weather_code[dataIndex];
+    const iconName = this._getOWMIconName(code, 1);
+
+    const dayName = weekDays[weekDayIndex % 7];
+
+    this["_forecastDay" + uiIndex + "Label"].set_text(dayName);
+    const weatherIcon = this._getIcon("/icons/owm_icons/" + iconName + "@2x.png", 35);
+    this["_forecastDay" + uiIndex + "Button"].set_child(weatherIcon);
+    this["_forecastDay" + uiIndex + "TemperatureLabel"].set_text(tempMax + "℃");
+  }
+
+  _getOWMIconName(wmoCode, isDay) {
+    const suffix = isDay ? "d" : "n";
+    const map = {
+      0: "01",
+      1: "01",
+      2: "02",
+      3: "03",
+      45: "50",
+      48: "50",
+      51: "09",
+      53: "09",
+      55: "09",
+      56: "13",
+      57: "13",
+      61: "10",
+      63: "10",
+      65: "10",
+      66: "13",
+      67: "13",
+      71: "13",
+      73: "13",
+      75: "13",
+      77: "13",
+      80: "09",
+      81: "09",
+      82: "09",
+      85: "13",
+      86: "13",
+      95: "11",
+      96: "11",
+      99: "11",
+    };
+    return (map[wmoCode] || "01") + suffix;
+  }
+
+  _getWeatherDescription(code) {
+    const codes = {
+      0: "Clear sky",
+      1: "Mainly clear",
+      2: "Partly cloudy",
+      3: "Overcast",
+      45: "Fog",
+      48: "Depositing rime fog",
+      51: "Light drizzle",
+      53: "Moderate drizzle",
+      55: "Dense drizzle",
+      56: "Light freezing drizzle",
+      57: "Dense freezing drizzle",
+      61: "Slight rain",
+      63: "Moderate rain",
+      65: "Heavy rain",
+      66: "Light freezing rain",
+      67: "Heavy freezing rain",
+      71: "Slight snow fall",
+      73: "Moderate snow fall",
+      75: "Heavy snow fall",
+      77: "Snow grains",
+      80: "Slight rain showers",
+      81: "Moderate rain showers",
+      82: "Violent rain showers",
+      85: "Slight snow showers",
+      86: "Heavy snow showers",
+      95: "Thunderstorm",
+      96: "Thunderstorm with slight hail",
+      99: "Thunderstorm with heavy hail",
+    };
+    return codes[code] || "Unknown";
+  }
 
   _loadWeatherOpenWeatherMap() {
     const weatherBaseURL = "http://api.openweathermap.org/data/2.5/weather?";
@@ -212,7 +370,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
     const forecastBaseURL = "http://api.openweathermap.org/data/2.5/forecast?";
 
-    const forecastURL = forecastBaseURL + "q=katwa" + "&appid=" + this.apiKey + "&units=" + this.unit;
+    const forecastURL = forecastBaseURL + this._getLocation() + "&appid=" + this.apiKey + "&units=" + this.unit;
     const json = this._getJSON(forecastURL);
     let forecastData = [];
     if (json == "401") {
@@ -232,7 +390,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
       for (var i = 7; i < 24; i += 8) {
         day = forcustdata[i];
-        const temp = day["main"]["temp"];
+        const temp = Math.round(day["main"]["temp"]);
         const icon = day["weather"][0]["icon"];
         d = d % 7;
         const weekday = weekdaysShorthands[d];
@@ -273,12 +431,6 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     }
   }
 
-  _updateWeather() {
-    if (this.apiKey !== "" && this.location !== "") {
-      this._loadWeather();
-    }
-  }
-
   _loadWeatherLayout() {
     this._weatherContainer = new St.BoxLayout({ vertical: false, style_class: "compact_container_style" });
     this._currentWeatherContainer = new St.BoxLayout({ vertical: true, style_class: "compact_cur_container_style" });
@@ -291,7 +443,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this._currentWeatherButton = new St.Button();
     this._currentWeatherButton.set_child(currentWeatherIcon);
     this._currentWeatherButton.connect("clicked", () => {
-      this._updateWeather();
+      this._loadWeather();
     });
     this._currentTemperature = new St.Label({ style_class: "comtemp_label_style" });
     this._currentTemperature.set_text("30℃");
@@ -351,7 +503,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this._weatherContainer.add(this._forecastWeatherContainer);
     this._container.add(this._weatherContainer);
 
-    this._updateWeather();
+    this._loadWeather();
   }
 
   _updateClock() {

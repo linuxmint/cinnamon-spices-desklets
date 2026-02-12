@@ -43,3 +43,4 @@ Changelog
   - prefer `const` over `let`
   - prefer `let` over `var`
   - more readable names for properties, variables, functions, etc.
+- added Open-Metro data service (no API key required)

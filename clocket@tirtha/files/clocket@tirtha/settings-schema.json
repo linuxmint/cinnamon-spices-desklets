@@ -33,20 +33,20 @@
   },
   "webservice": {
     "type": "combobox",
-    "default": "openweathermap",
+    "default": "Open Metro",
     "dependency": "show-weather-data",
     "description": "Data service",
     "options": {
-      "BBC": "bbc",
+      "Open-Metro": "Open Metro",
       "Open Weather Map Free (requires API key)": "openweathermap"
     }
   },
   "api-key": {
     "type": "entry",
     "default": "",
-    "dependency": "show-weather-data",
     "description": "API key",
     "indent": true,
+    "dependency": "show-weather-data",
     "tooltip": "put your API key generated from open-weather-map here"
   },
   "location-type": {
