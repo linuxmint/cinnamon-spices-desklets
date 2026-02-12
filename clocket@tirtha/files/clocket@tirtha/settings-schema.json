@@ -31,6 +31,16 @@
     "default": true,
     "description": "Show weather"
   },
+  "temperature-unit": {
+    "type": "combobox",
+    "default": "celsius",
+    "dependency": "show-weather-data",
+    "description": "Units for weather data",
+    "options": {
+      "°C": "celsius",
+      "°F": "fahrenheit"
+    }
+  },
   "webservice": {
     "type": "combobox",
     "default": "Open Metro",
