@@ -38,12 +38,19 @@ function main(metadata, desklet_id) {
 }
 
 function getImageAtScale(imageFileName, width, height, width2 = 0, height2 = 0) {
+	width = Math.round(width);
+	height = Math.round(height);
 	if (width2 == 0 || height2 == 0) {
 		width2 = width;
 		height2 = height;
 	}
 
-	let pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(imageFileName, width, height);
+	let pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(imageFileName, width, height, true);
+
+	if (pixBuf.get_width() != width || pixBuf.get_height() != height) {
+		pixBuf = pixBuf.scale_simple(width, height, GdkPixbuf.InterpType.HYPER);
+	}
+
 	let image = new Clutter.Image();
 	image.set_data(
 		pixBuf.get_pixels(),
@@ -74,6 +81,9 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "font-bold", "fontBold", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "font-italic", "fontItalic", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "note-width", "noteWidth", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "note-height", "noteHeight", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "stretch-note-size", "stretchNoteSize", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "size-font", "sizeFont", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "style", "style", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "customTextColor", this.on_setting_changed);
@@ -212,6 +222,22 @@ MyDesklet.prototype = {
 					this.default_notepad_label_left = this.imageIndex[i]['marginLeft'];
 					this.size_width = this.imageIndex[i]['sizeWidth'];
 					this.size_height = this.imageIndex[i]['sizeHeight'];
+
+					if (this.stretchNoteSize) {
+						const heightScaleFactor = this.noteHeight / this.size_height;
+						const widthScaleFactor = this.noteWidth / this.size_width;
+
+						// scale the margins according to the new height
+						this.default_notepad_label_top = this.default_notepad_label_top * heightScaleFactor;
+						this.default_notepad_label_bottom = this.default_notepad_label_bottom * heightScaleFactor;
+						this.default_notepad_label_left = this.default_notepad_label_left * widthScaleFactor;
+						this.default_notepad_label_right = this.default_notepad_label_right * widthScaleFactor;
+
+						// set the new height and width to the user defined values
+						this.size_height = this.noteHeight;
+						this.size_width = this.noteWidth;
+					}
+
 					this.bgImg = this.imageIndex[i]['imagePath'];
 					this.textColor =
 						this.customTextColor === "rgba(0,0,0,0)"
