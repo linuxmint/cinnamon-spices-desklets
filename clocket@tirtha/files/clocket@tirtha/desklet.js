@@ -449,67 +449,31 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
     // Current weather
     this._locationLabel = new St.Label({ style_class: "comloc_label_style" });
-    this._locationLabel.set_text(this.location);
-    const currentWeatherIcon = this._getIcon("/icons/icon.png", 45);
     this._currentWeatherButton = new St.Button();
-    this._currentWeatherButton.set_child(currentWeatherIcon);
     this._currentWeatherButton.connect("clicked", () => {
       this._loadWeather();
     });
     this._currentTemperature = new St.Label({ style_class: "comtemp_label_style" });
-    this._currentTemperature.set_text("30℃");
     this._currentDescription = new St.Label({ style_class: "comloc_label_style" });
-    this._currentDescription.set_text("light rain");
-
-    // Day 1 forecast
-    this._forecastDay1Container = new St.BoxLayout({ vertical: true, style_class: "compact_day_container_style" });
-    this._forecastDay1Label = new St.Label({ style_class: "fday_label_style" });
-    this._forecastDay1Label.set_text("MON");
-    const forecastDay1Icon = this._getIcon("/icons/icon.png", 35);
-    this._forecastDay1Button = new St.Button();
-    this._forecastDay1Button.set_child(forecastDay1Icon);
-    this._forecastDay1Button.style = "margin-top:10px;margin-bottom:10px;";
-    this._forecastDay1TemperatureLabel = new St.Label({ style_class: "fday_label_style" });
-    this._forecastDay1TemperatureLabel.set_text("30℃");
-    this._forecastDay1Container.add(this._forecastDay1Label);
-    this._forecastDay1Container.add(this._forecastDay1Button);
-    this._forecastDay1Container.add(this._forecastDay1TemperatureLabel);
-    this._forecastWeatherContainer.add(this._forecastDay1Container);
-
-    // Day 2 forecast
-    this._forecastDay2Container = new St.BoxLayout({ vertical: true, style_class: "compact_day_container_style" });
-    this._forecastDay2Label = new St.Label({ style_class: "fday_label_style" });
-    this._forecastDay2Label.set_text("MON");
-    const forecastDay2Icon = this._getIcon("/icons/icon.png", 35);
-    this._forecastDay2Button = new St.Button();
-    this._forecastDay2Button.set_child(forecastDay2Icon);
-    this._forecastDay2Button.style = "margin-top:10px;margin-bottom:10px;";
-    this._forecastDay2TemperatureLabel = new St.Label({ style_class: "fday_label_style" });
-    this._forecastDay2TemperatureLabel.set_text("30℃");
-    this._forecastDay2Container.add(this._forecastDay2Label);
-    this._forecastDay2Container.add(this._forecastDay2Button);
-    this._forecastDay2Container.add(this._forecastDay2TemperatureLabel);
-    this._forecastWeatherContainer.add(this._forecastDay2Container);
-
-    // Day 3 forecast
-    this._forecastDay3Container = new St.BoxLayout({ vertical: true, style_class: "compact_day_container_style" });
-    this._forecastDay3Label = new St.Label({ style_class: "fday_label_style" });
-    this._forecastDay3Label.set_text("MON");
-    const forecastDay3Icon = this._getIcon("/icons/icon.png", 35);
-    this._forecastDay3Button = new St.Button();
-    this._forecastDay3Button.set_child(forecastDay3Icon);
-    this._forecastDay3Button.style = "margin-top:10px;margin-bottom:10px;";
-    this._forecastDay3TemperatureLabel = new St.Label({ style_class: "fday_label_style" });
-    this._forecastDay3TemperatureLabel.set_text("30℃");
-    this._forecastDay3Container.add(this._forecastDay3Label);
-    this._forecastDay3Container.add(this._forecastDay3Button);
-    this._forecastDay3Container.add(this._forecastDay3TemperatureLabel);
-    this._forecastWeatherContainer.add(this._forecastDay3Container);
 
     this._currentWeatherContainer.add(this._locationLabel);
     this._currentWeatherContainer.add(this._currentWeatherButton);
     this._currentWeatherContainer.add(this._currentTemperature);
     this._currentWeatherContainer.add(this._currentDescription);
+
+    // Forecast days
+    for (let i = 1; i <= 3; i++) {
+      const dayContainer = new St.BoxLayout({ vertical: true, style_class: "compact_day_container_style" });
+      this["_forecastDay" + i + "Label"] = new St.Label({ style_class: "fday_label_style" });
+      this["_forecastDay" + i + "Button"] = new St.Button({ style: "margin-top:10px;margin-bottom:10px;" });
+      this["_forecastDay" + i + "TemperatureLabel"] = new St.Label({ style_class: "fday_label_style" });
+
+      dayContainer.add(this["_forecastDay" + i + "Label"]);
+      dayContainer.add(this["_forecastDay" + i + "Button"]);
+      dayContainer.add(this["_forecastDay" + i + "TemperatureLabel"]);
+      this._forecastWeatherContainer.add(dayContainer);
+    }
+
     this._weatherContainer.add(this._currentWeatherContainer);
     this._weatherContainer.add(this._forecastWeatherContainer);
     this._container.add(this._weatherContainer);
