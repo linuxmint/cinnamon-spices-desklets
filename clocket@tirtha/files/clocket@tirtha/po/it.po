@@ -1,13 +1,14 @@
-# SOME DESCRIPTIVE TITLE.
+# CLOCKET
 # This file is put in the public domain.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# tirtharajsinha, 2021
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: clocket@tirtha 2.4\n"
-"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/issues\n"
-"POT-Creation-Date: 2024-05-15 11:37+0200\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-02-13 16:07+0100\n"
 "PO-Revision-Date: 2025-08-26 19:25+0200\n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
@@ -17,29 +18,175 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#: desklet.js:49
+#. desklet.js:54
 msgid "Clock"
 msgstr "Orologio"
 
-#: desklet.js:72
+#. desklet.js:88
 msgid "Date and Time Settings"
 msgstr "Impostazioni Data e Ora"
+
+#. desklet.js:381
+msgid "Clear sky"
+msgstr ""
+
+#. desklet.js:382
+msgid "Mainly clear"
+msgstr ""
+
+#. desklet.js:383
+msgid "Partly cloudy"
+msgstr ""
+
+#. desklet.js:384
+msgid "Overcast"
+msgstr ""
+
+#. desklet.js:385
+msgid "Fog"
+msgstr ""
+
+#. desklet.js:386
+msgid "Depositing rime fog"
+msgstr ""
+
+#. desklet.js:387
+msgid "Light drizzle"
+msgstr ""
+
+#. desklet.js:388
+msgid "Moderate drizzle"
+msgstr ""
+
+#. desklet.js:389
+msgid "Dense drizzle"
+msgstr ""
+
+#. desklet.js:390
+msgid "Light freezing drizzle"
+msgstr ""
+
+#. desklet.js:391
+msgid "Dense freezing drizzle"
+msgstr ""
+
+#. desklet.js:392
+msgid "Slight rain"
+msgstr ""
+
+#. desklet.js:393
+msgid "Moderate rain"
+msgstr ""
+
+#. desklet.js:394
+msgid "Heavy rain"
+msgstr ""
+
+#. desklet.js:395
+msgid "Light freezing rain"
+msgstr ""
+
+#. desklet.js:396
+msgid "Heavy freezing rain"
+msgstr ""
+
+#. desklet.js:397
+msgid "Slight snow fall"
+msgstr ""
+
+#. desklet.js:398
+msgid "Moderate snow fall"
+msgstr ""
+
+#. desklet.js:399
+msgid "Heavy snow fall"
+msgstr ""
+
+#. desklet.js:400
+msgid "Snow grains"
+msgstr ""
+
+#. desklet.js:401
+msgid "Slight rain showers"
+msgstr ""
+
+#. desklet.js:402
+msgid "Moderate rain showers"
+msgstr ""
+
+#. desklet.js:403
+msgid "Violent rain showers"
+msgstr ""
+
+#. desklet.js:404
+msgid "Slight snow showers"
+msgstr ""
+
+#. desklet.js:405
+msgid "Heavy snow showers"
+msgstr ""
+
+#. desklet.js:406
+msgid "Thunderstorm"
+msgstr ""
+
+#. desklet.js:407
+msgid "Thunderstorm with slight hail"
+msgstr ""
+
+#. desklet.js:408
+msgid "Thunderstorm with heavy hail"
+msgstr ""
+
+#. desklet.js:449
+msgid "SUN"
+msgstr ""
+
+#. desklet.js:449
+msgid "MON"
+msgstr ""
+
+#. desklet.js:449
+msgid "TUE"
+msgstr ""
+
+#. desklet.js:449
+msgid "WED"
+msgstr ""
+
+#. desklet.js:449
+msgid "THU"
+msgstr ""
+
+#. desklet.js:449
+msgid "FRI"
+msgstr ""
+
+#. desklet.js:449
+msgid "SAT"
+msgstr ""
 
 #. metadata.json->name
 msgid "clocket"
 msgstr "clocket"
 
 #. metadata.json->description
-msgid "A desklet that displays the time, date, currenty and forecast weather report"
+msgid ""
+"A desklet that displays the time, date, currenty and forecast weather report"
 msgstr "Un desklet che mostra ora, data, meteo attuale e previsioni meteo"
 
 #. metadata.json->comments
-msgid "Please consider custom Weather Desklet into your language. See the website for more information"
-msgstr "Considera di tradurre il Custom Weather Desklet nella tua lingua. Consulta il sito web per maggiori informazioni"
+msgid ""
+"Please consider custom Weather Desklet into your language. See the website "
+"for more information"
+msgstr ""
+"Considera di tradurre il Custom Weather Desklet nella tua lingua. Consulta "
+"il sito web per maggiori informazioni"
 
 #. settings-schema.json->top->description
-msgid "Clock configuration"
-msgstr "Configurazione orologio"
+#, fuzzy
+msgid "Clock style"
+msgstr "Orologio"
 
 #. settings-schema.json->font-size->units
 msgid "px"
@@ -53,132 +200,81 @@ msgstr "Dimensione carattere"
 msgid "Text color"
 msgstr "Colore del testo"
 
-#. settings-schema.json->text-color->tooltip
-#. settings-schema.json->weather-color->tooltip
-msgid "Click the button to select a new text color"
-msgstr "Clicca per selezionare un nuovo colore del testo"
-
 #. settings-schema.json->background-color->description
 msgid "background color"
 msgstr "Colore di sfondo"
 
-#. settings-schema.json->background-color->tooltip
-msgid "Click the button to select a new background color"
-msgstr "Clicca per selezionare un nuovo colore di sfondo"
-
 #. settings-schema.json->weatherconf->description
-msgid "weather data service settings"
-msgstr "Impostazioni servizio dati meteo"
+#, fuzzy
+msgid "Weather data service"
+msgstr "Seleziona il servizio dati"
 
-#. settings-schema.json->compact->description
-#. settings-schema.json->compact->tooltip
-msgid "Want weather display ?"
-msgstr "Vuoi mostrare il meteo?"
+#. settings-schema.json->show-weather-data->description
+msgid "Show weather"
+msgstr ""
+
+#. settings-schema.json->temperature-unit->description
+msgid "Units for weather data"
+msgstr ""
+
+#. settings-schema.json->temperature-unit->options
+msgid "°C"
+msgstr ""
+
+#. settings-schema.json->temperature-unit->options
+msgid "°F"
+msgstr ""
 
 #. settings-schema.json->webservice->description
 msgid "Data service"
 msgstr "Servizio dati"
 
 #. settings-schema.json->webservice->options
-msgid "BBC"
-msgstr "BBC"
+msgid "Open-Metro"
+msgstr ""
 
 #. settings-schema.json->webservice->options
 msgid "Open Weather Map Free (requires API key)"
 msgstr "Open Weather Map Free (richiede Chiave API)"
 
-#. settings-schema.json->webservice->tooltip
-msgid "select the data service"
-msgstr "Seleziona il servizio dati"
-
 #. settings-schema.json->api-key->description
-msgid "put api key"
-msgstr "Inserisci la chiave API"
+msgid "API key"
+msgstr ""
 
-#. settings-schema.json->api-key->tooltip
-msgid "put your api key generated from open-weather-map here"
-msgstr "Inserisci qui la tua chiave API generata da Open Weather Map"
-
-#. settings-schema.json->loctype->description
+#. settings-schema.json->location-type->description
 msgid "Type of location data"
 msgstr "Tipo di dati posizione"
 
-#. settings-schema.json->loctype->options
+#. settings-schema.json->location-type->options
 msgid "city name"
 msgstr "nome città"
 
-#. settings-schema.json->loctype->options
+#. settings-schema.json->location-type->options
 msgid "lat-lon"
 msgstr "latitudine-longitudine"
 
-#. settings-schema.json->loctype->tooltip
-msgid "select your location type"
-msgstr "Seleziona il tipo di posizione"
+#. settings-schema.json->location-type->options
+msgid "Automatic"
+msgstr ""
 
-#. settings-schema.json->loc->description
-msgid "put your location"
-msgstr "Inserisci la tua posizione"
+#. settings-schema.json->location->description
+msgid "Location"
+msgstr ""
 
-#. settings-schema.json->loc->tooltip
+#. settings-schema.json->location->tooltip
 msgid "put your lat-long generated from lat-long.html page"
 msgstr "Inserisci la tua latitudine e longitudine generate da lat-long.html"
 
-#. settings-schema.json->auto-update->description
-msgid "auto-update report"
-msgstr "Aggiornamento automatico"
-
-#. settings-schema.json->auto-update->tooltip
-msgid "enable or disable auto-update"
-msgstr "Attiva o disattiva aggiornamento automatico"
-
-#. settings-schema.json->update-duration->description
-msgid "set auto update duration(20 min/30 min/60 min)"
-msgstr "Imposta la durata aggiornamento automatico (20 min/30 min/60 min)"
-
-#. settings-schema.json->update-duration->tooltip
-msgid "set auto update duration"
-msgstr "Imposta la durata dell'aggiornamento automatico"
-
-#. settings-schema.json->data-custom->description
-msgid "customize your data"
-msgstr "Personalizza i tuoi dati"
-
-#. settings-schema.json->unit->description
-msgid "unit"
-msgstr "Unità di misura"
-
-#. settings-schema.json->unit->options
-msgid "metric"
-msgstr "Metrico"
-
-#. settings-schema.json->unit->tooltip
-msgid "select your unit preferance"
-msgstr "Seleziona la tua unità di misura preferita"
-
 #. settings-schema.json->design->description
-msgid "customize font and bg color"
-msgstr "Personalizza colore carattere e sfondo"
+msgid "Weather style"
+msgstr ""
 
-#. settings-schema.json->weather-color->description
-msgid "weather block text color"
+#. settings-schema.json->weather-text-color->description
+#, fuzzy
+msgid "Weather text color"
 msgstr "Colore testo blocco meteo"
 
-#. settings-schema.json->weather-bg-color->description
-msgid "weather-block bg-color"
-msgstr "Colore sfondo blocco meteo"
-
-#. settings-schema.json->weather-bg-color->tooltip
-msgid "Click the button to select a new bg color"
-msgstr "Clicca per selezionare un nuovo colore di sfondo"
-
-#. settings-schema.json->icon-pack->description
-msgid "Icon pack"
-msgstr "Pacchetto icone"
-
-#. settings-schema.json->icon-pack->options
-msgid "default"
-msgstr "Predefinito"
-
-#. settings-schema.json->icon-pack->tooltip
-msgid "select your fav icon-pack"
-msgstr "Seleziona il pacchetto icone preferito"
+#. settings-schema.json->weather-background-color->description
+#, fuzzy
+msgid "Weather background color"
+msgstr "Colore di sfondo"

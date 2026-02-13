@@ -9,6 +9,8 @@ const Cairo = imports.cairo;
 const Clutter = imports.gi.Clutter;
 const Gio = imports.gi.Gio;
 const Mainloop = imports.mainloop;
+const GLib = imports.gi.GLib;
+const Gettext = imports.gettext;
 
 let _httpSession;
 if (Soup.MAJOR_VERSION == 2) {
@@ -19,6 +21,12 @@ if (Soup.MAJOR_VERSION == 2) {
 }
 
 const UUID = "clocket@tirtha";
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+
+function _(str) {
+  return Gettext.dgettext(UUID, str);
+}
+
 const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 
 class CinnamonClockDesklet extends Desklet.Desklet {
@@ -195,7 +203,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   }
 
   _fetchAutoLocation() {
-    const url = "https://geoip.fedoraproject.org/city";
+    const url = "https://ip-check-perf.radar.cloudflare.com/api/info";
     const data = this._getJSON(url);
     if (data && data !== "401" && data !== "404" && data !== "unreachable") {
       return {
@@ -370,34 +378,34 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
   _getWeatherDescription(code) {
     const codes = {
-      0: "Clear sky",
-      1: "Mainly clear",
-      2: "Partly cloudy",
-      3: "Overcast",
-      45: "Fog",
-      48: "Depositing rime fog",
-      51: "Light drizzle",
-      53: "Moderate drizzle",
-      55: "Dense drizzle",
-      56: "Light freezing drizzle",
-      57: "Dense freezing drizzle",
-      61: "Slight rain",
-      63: "Moderate rain",
-      65: "Heavy rain",
-      66: "Light freezing rain",
-      67: "Heavy freezing rain",
-      71: "Slight snow fall",
-      73: "Moderate snow fall",
-      75: "Heavy snow fall",
-      77: "Snow grains",
-      80: "Slight rain showers",
-      81: "Moderate rain showers",
-      82: "Violent rain showers",
-      85: "Slight snow showers",
-      86: "Heavy snow showers",
-      95: "Thunderstorm",
-      96: "Thunderstorm with slight hail",
-      99: "Thunderstorm with heavy hail",
+      0: _("Clear sky"),
+      1: _("Mainly clear"),
+      2: _("Partly cloudy"),
+      3: _("Overcast"),
+      45: _("Fog"),
+      48: _("Depositing rime fog"),
+      51: _("Light drizzle"),
+      53: _("Moderate drizzle"),
+      55: _("Dense drizzle"),
+      56: _("Light freezing drizzle"),
+      57: _("Dense freezing drizzle"),
+      61: _("Slight rain"),
+      63: _("Moderate rain"),
+      65: _("Heavy rain"),
+      66: _("Light freezing rain"),
+      67: _("Heavy freezing rain"),
+      71: _("Slight snow fall"),
+      73: _("Moderate snow fall"),
+      75: _("Heavy snow fall"),
+      77: _("Snow grains"),
+      80: _("Slight rain showers"),
+      81: _("Moderate rain showers"),
+      82: _("Violent rain showers"),
+      85: _("Slight snow showers"),
+      86: _("Heavy snow showers"),
+      95: _("Thunderstorm"),
+      96: _("Thunderstorm with slight hail"),
+      99: _("Thunderstorm with heavy hail"),
     };
     return codes[code] || "Unknown";
   }
@@ -438,7 +446,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       const today = new Date();
       let d = today.getDay() + 1;
       const newdata = json;
-      const weekdaysShorthands = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+      const weekdaysShorthands = [_("SUN"), _("MON"), _("TUE"), _("WED"), _("THU"), _("FRI"), _("SAT")];
       const forcustdata = newdata.list;
 
       let day = "";

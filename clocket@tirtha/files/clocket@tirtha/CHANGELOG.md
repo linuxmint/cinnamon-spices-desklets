@@ -36,6 +36,7 @@ Changelog
 - automatic location detection added and set as default.
 - show weather on default
 - added setting to switch between celcius and fahrenheit
+- added translation for desklet GUI
 - refactoring
   - dead code removed
     - unused variables

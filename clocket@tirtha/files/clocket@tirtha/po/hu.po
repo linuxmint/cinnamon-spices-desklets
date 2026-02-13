@@ -1,13 +1,13 @@
-# SOME DESCRIPTIVE TITLE.
+# CLOCKET
 # This file is put in the public domain.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# tirtharajsinha, 2021
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: clocket@tirtha 2.4\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-05-15 11:37+0200\n"
+"POT-Creation-Date: 2026-02-13 16:07+0100\n"
 "PO-Revision-Date: 2024-06-26 19:43+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,13 +18,153 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: desklet.js:49
+#. desklet.js:54
 msgid "Clock"
 msgstr "Óra"
 
-#: desklet.js:72
+#. desklet.js:88
 msgid "Date and Time Settings"
 msgstr "Dátum és idő beállítások"
+
+#. desklet.js:381
+msgid "Clear sky"
+msgstr ""
+
+#. desklet.js:382
+msgid "Mainly clear"
+msgstr ""
+
+#. desklet.js:383
+msgid "Partly cloudy"
+msgstr ""
+
+#. desklet.js:384
+msgid "Overcast"
+msgstr ""
+
+#. desklet.js:385
+msgid "Fog"
+msgstr ""
+
+#. desklet.js:386
+msgid "Depositing rime fog"
+msgstr ""
+
+#. desklet.js:387
+msgid "Light drizzle"
+msgstr ""
+
+#. desklet.js:388
+msgid "Moderate drizzle"
+msgstr ""
+
+#. desklet.js:389
+msgid "Dense drizzle"
+msgstr ""
+
+#. desklet.js:390
+msgid "Light freezing drizzle"
+msgstr ""
+
+#. desklet.js:391
+msgid "Dense freezing drizzle"
+msgstr ""
+
+#. desklet.js:392
+msgid "Slight rain"
+msgstr ""
+
+#. desklet.js:393
+msgid "Moderate rain"
+msgstr ""
+
+#. desklet.js:394
+msgid "Heavy rain"
+msgstr ""
+
+#. desklet.js:395
+msgid "Light freezing rain"
+msgstr ""
+
+#. desklet.js:396
+msgid "Heavy freezing rain"
+msgstr ""
+
+#. desklet.js:397
+msgid "Slight snow fall"
+msgstr ""
+
+#. desklet.js:398
+msgid "Moderate snow fall"
+msgstr ""
+
+#. desklet.js:399
+msgid "Heavy snow fall"
+msgstr ""
+
+#. desklet.js:400
+msgid "Snow grains"
+msgstr ""
+
+#. desklet.js:401
+msgid "Slight rain showers"
+msgstr ""
+
+#. desklet.js:402
+msgid "Moderate rain showers"
+msgstr ""
+
+#. desklet.js:403
+msgid "Violent rain showers"
+msgstr ""
+
+#. desklet.js:404
+msgid "Slight snow showers"
+msgstr ""
+
+#. desklet.js:405
+msgid "Heavy snow showers"
+msgstr ""
+
+#. desklet.js:406
+msgid "Thunderstorm"
+msgstr ""
+
+#. desklet.js:407
+msgid "Thunderstorm with slight hail"
+msgstr ""
+
+#. desklet.js:408
+msgid "Thunderstorm with heavy hail"
+msgstr ""
+
+#. desklet.js:449
+msgid "SUN"
+msgstr ""
+
+#. desklet.js:449
+msgid "MON"
+msgstr ""
+
+#. desklet.js:449
+msgid "TUE"
+msgstr ""
+
+#. desklet.js:449
+msgid "WED"
+msgstr ""
+
+#. desklet.js:449
+msgid "THU"
+msgstr ""
+
+#. desklet.js:449
+msgid "FRI"
+msgstr ""
+
+#. desklet.js:449
+msgid "SAT"
+msgstr ""
 
 #. metadata.json->name
 msgid "clocket"
@@ -46,8 +186,9 @@ msgstr ""
 "További információért lásd a weboldalt"
 
 #. settings-schema.json->top->description
-msgid "Clock configuration"
-msgstr "Óra konfiguráció"
+#, fuzzy
+msgid "Clock style"
+msgstr "Óra"
 
 #. settings-schema.json->font-size->units
 msgid "px"
@@ -61,134 +202,82 @@ msgstr "Betűméret"
 msgid "Text color"
 msgstr "Szövegszín"
 
-#. settings-schema.json->text-color->tooltip
-#. settings-schema.json->weather-color->tooltip
-msgid "Click the button to select a new text color"
-msgstr "Új szöveg szín választáshoz kattintson a gombra"
-
 #. settings-schema.json->background-color->description
 msgid "background color"
 msgstr "háttérszín"
 
-#. settings-schema.json->background-color->tooltip
-msgid "Click the button to select a new background color"
-msgstr "Az új háttérszín kiválasztásához kattintson a gombra"
-
 #. settings-schema.json->weatherconf->description
-msgid "weather data service settings"
-msgstr "időjárási adatszolgáltatás beállításai"
+#, fuzzy
+msgid "Weather data service"
+msgstr "válassza ki a használni kívánt szolgáltatót"
 
-#. settings-schema.json->compact->description
-#. settings-schema.json->compact->tooltip
-msgid "Want weather display ?"
-msgstr "Időjárás kijelzőt szeretne ?"
+#. settings-schema.json->show-weather-data->description
+msgid "Show weather"
+msgstr ""
+
+#. settings-schema.json->temperature-unit->description
+msgid "Units for weather data"
+msgstr ""
+
+#. settings-schema.json->temperature-unit->options
+msgid "°C"
+msgstr ""
+
+#. settings-schema.json->temperature-unit->options
+msgid "°F"
+msgstr ""
 
 #. settings-schema.json->webservice->description
 msgid "Data service"
 msgstr "Adatszolgáltatás"
 
 #. settings-schema.json->webservice->options
-msgid "BBC"
-msgstr "BBC"
+msgid "Open-Metro"
+msgstr ""
 
 #. settings-schema.json->webservice->options
 msgid "Open Weather Map Free (requires API key)"
 msgstr "Open Weather Map Free (API-kulcs szükséges)"
 
-#. settings-schema.json->webservice->tooltip
-msgid "select the data service"
-msgstr "válassza ki a használni kívánt szolgáltatót"
-
 #. settings-schema.json->api-key->description
-msgid "put api key"
-msgstr "api kulcs beillesztése"
+msgid "API key"
+msgstr ""
 
-#. settings-schema.json->api-key->tooltip
-msgid "put your api key generated from open-weather-map here"
-msgstr "másolja ide az open-weather-mapból generált api-kulcsát"
-
-#. settings-schema.json->loctype->description
+#. settings-schema.json->location-type->description
 msgid "Type of location data"
 msgstr "A helymeghatározási adatok típusa"
 
-#. settings-schema.json->loctype->options
+#. settings-schema.json->location-type->options
 msgid "city name"
 msgstr "város neve"
 
-#. settings-schema.json->loctype->options
+#. settings-schema.json->location-type->options
 msgid "lat-lon"
 msgstr "szélességi és hosszúsági fok"
 
-#. settings-schema.json->loctype->tooltip
-msgid "select your location type"
-msgstr "válassza ki a helyszín típusát"
+#. settings-schema.json->location-type->options
+msgid "Automatic"
+msgstr ""
 
-#. settings-schema.json->loc->description
-msgid "put your location"
-msgstr "másolja ide a helyszínt"
+#. settings-schema.json->location->description
+msgid "Location"
+msgstr ""
 
-#. settings-schema.json->loc->tooltip
+#. settings-schema.json->location->tooltip
 msgid "put your lat-long generated from lat-long.html page"
 msgstr ""
 "másolja ide a szélességi és hosszúsági fokot a lat-long.html weboldalról"
 
-#. settings-schema.json->auto-update->description
-msgid "auto-update report"
-msgstr "automatikus frissítés összefoglaló"
-
-#. settings-schema.json->auto-update->tooltip
-msgid "enable or disable auto-update"
-msgstr "automatikus frissítés engedélyezése vagy letiltása"
-
-#. settings-schema.json->update-duration->description
-msgid "set auto update duration(20 min/30 min/60 min)"
-msgstr ""
-"automatikus frissítés időtartamának beállítása (20 perc/30 perc/60 perc)"
-
-#. settings-schema.json->update-duration->tooltip
-msgid "set auto update duration"
-msgstr "automatikus frissítés időtartamának beállítása"
-
-#. settings-schema.json->data-custom->description
-msgid "customize your data"
-msgstr "az adatok testreszabása"
-
-#. settings-schema.json->unit->description
-msgid "unit"
-msgstr "egység"
-
-#. settings-schema.json->unit->options
-msgid "metric"
-msgstr "metrikus"
-
-#. settings-schema.json->unit->tooltip
-msgid "select your unit preferance"
-msgstr "válassza ki a kívánt egységet"
-
 #. settings-schema.json->design->description
-msgid "customize font and bg color"
-msgstr "betűtípus és háttérszín testreszabása"
+msgid "Weather style"
+msgstr ""
 
-#. settings-schema.json->weather-color->description
-msgid "weather block text color"
+#. settings-schema.json->weather-text-color->description
+#, fuzzy
+msgid "Weather text color"
 msgstr "időjárási blokk szöveg színe"
 
-#. settings-schema.json->weather-bg-color->description
-msgid "weather-block bg-color"
-msgstr "időjárási blokk háttérszíne"
-
-#. settings-schema.json->weather-bg-color->tooltip
-msgid "Click the button to select a new bg color"
-msgstr "Kattintson a gombra háttérszín kiválasztásához"
-
-#. settings-schema.json->icon-pack->description
-msgid "Icon pack"
-msgstr "Ikon csomag"
-
-#. settings-schema.json->icon-pack->options
-msgid "default"
-msgstr "alapértelmezett"
-
-#. settings-schema.json->icon-pack->tooltip
-msgid "select your fav icon-pack"
-msgstr "válassza ki a kedvenc ikon csomagját"
+#. settings-schema.json->weather-background-color->description
+#, fuzzy
+msgid "Weather background color"
+msgstr "háttérszín"
