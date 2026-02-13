@@ -56,5 +56,6 @@ Changelog
   - removed hardcoded heights in styles
   - renamed stylesheet class names
   - removed unused style classes
+  - error handling and logging
 - retain weather style when toggling the `show-weather-data` setting
 - added changelog.md

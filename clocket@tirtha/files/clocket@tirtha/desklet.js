@@ -175,65 +175,59 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   }
 
   _getJSON(url) {
-    let jsonData = "EMPTY";
     const message = Soup.Message.new("GET", url);
+    if (!message) return "Invalid URL";
 
-    if (Soup.MAJOR_VERSION === 2) {
-      _httpSession.send_message(message);
-      if (message.status_code === Soup.KnownStatusCode.OK) {
-        jsonData = JSON.parse(message.response_body.data.toString());
-        return jsonData;
-      } else if (message.status_code === 401) {
-        return "401";
-      } else if (message.status_code === 404) {
-        return "404";
+    let responseBody;
+    try {
+      if (Soup.MAJOR_VERSION === 2) {
+        _httpSession.send_message(message);
+        if (message.status_code !== Soup.KnownStatusCode.OK) {
+          let body = message.response_body.data ? message.response_body.data.toString() : "";
+          return `HTTP ${message.status_code} ${message.reason_phrase} BODY: ${body}`;
+        }
+        responseBody = message.response_body.data.toString();
       } else {
-        return "unreachable";
+        const bytes = _httpSession.send_and_read(message, null);
+        if (message.get_status() !== Soup.Status.OK) {
+          let body = bytes ? ByteArray.toString(bytes.get_data()) : "";
+          return `HTTP ${message.get_status()} ${message.reason_phrase} BODY: ${body}`;
+        }
+        responseBody = ByteArray.toString(bytes.get_data());
       }
-    } else {
-      //version 3
-      const bytes = _httpSession.send_and_read(message, null);
-      if (message.get_status() === Soup.Status.OK) {
-        jsonData = JSON.parse(ByteArray.toString(bytes.get_data()));
-        return jsonData;
-      } else if (message.get_status() === 401) {
-        return "401";
-      } else if (message.get_status() === 404) {
-        return "404";
-      } else {
-        return "unreachable";
-      }
+      return JSON.parse(responseBody);
+    } catch (e) {
+      return `Error fetching ${url}: ${e} Body: ${responseBody}`;
     }
   }
 
   _fetchAutoLocation() {
     const url = "https://ip-check-perf.radar.cloudflare.com/api/info";
     const data = this._getJSON(url);
-    if (data && data !== "401" && data !== "404" && data !== "unreachable") {
+    if (data && typeof data === "object") {
       return {
         lat: data.latitude,
         lon: data.longitude,
         city: data.city,
       };
     }
+    let errorMsg = typeof data === "string" ? data : "Invalid data";
+    global.logError(`${UUID}: Failed to fetch automatic location. Error: ${errorMsg}`);
     return null;
   }
 
-  _getLocation() {
-    if (this.locationType == "city") {
-      return "q=" + this.location;
-    } else if (this.locationType == "lat-lon") {
-      const cor = String(this.location).split("-");
-      return "lat=" + cor[0] + "&lon=" + cor[1];
-    } else if (this.locationType == "automatic") {
-      const loc = this._fetchAutoLocation();
-      if (loc) {
-        return "lat=" + loc.lat + "&lon=" + loc.lon;
+  _parseCoordinates(location) {
+    const separators = [",", "-", ":"];
+    for (const sep of separators) {
+      const parts = String(location).split(sep);
+      if (parts.length === 2) {
+        return {
+          lat: parts[0].trim(),
+          lon: parts[1].trim(),
+        };
       }
-      return "q=kolkata";
-    } else {
-      return "q=kolkata";
     }
+    return null;
   }
 
   _loadWeather() {
@@ -248,9 +242,9 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     let lat = "";
     let lon = "";
     let locationName = this.location;
-    const unitSymbol = this.temperatureUnit === "fahrenheit" ? "℉" : "℃";
 
     if (this.locationType === "automatic") {
+      // Use latitude and longitude from auto-location service
       const location = this._fetchAutoLocation();
       if (location) {
         lat = location.lat;
@@ -258,13 +252,18 @@ class CinnamonClockDesklet extends Desklet.Desklet {
         locationName = location.city;
       }
     } else if (this.locationType === "lat-lon") {
-      const cor = String(this.location).split("-");
-      if (cor.length === 2) {
-        lat = cor[0].trim();
-        lon = cor[1].trim();
+      // Use latitude and longitude desklet settings
+      const coords = this._parseCoordinates(this.location);
+      if (coords) {
+        lat = coords.lat;
+        lon = coords.lon;
+      } else {
+        this._locationLabel.set_text("Invalid Loc");
+        global.logError(`${UUID}: Invalid lat-lon format: ${this.location}`);
+        return;
       }
     } else {
-      // Geocoding
+      // Request latitude and longitude for the specified city name
       const geoUrl =
         "https://geocoding-api.open-meteo.com/v1/search?name=" + encodeURIComponent(this.location) + "&count=1&language=en&format=json";
       const geoData = this._getJSON(geoUrl);
@@ -274,13 +273,10 @@ class CinnamonClockDesklet extends Desklet.Desklet {
         locationName = geoData.results[0].name + ", " + geoData.results[0].country_code.toUpperCase();
       } else {
         this._locationLabel.set_text("Loc not found");
+        let errorMsg = typeof geoData === "string" ? geoData : "No results found";
+        global.logError(`${UUID}: Failed to fetch location for city: ${errorMsg}`);
         return;
       }
-    }
-
-    if (!lat || !lon) {
-      this._locationLabel.set_text("Invalid Loc");
-      return;
     }
 
     const weatherUrl =
@@ -292,10 +288,12 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       "&temperature_unit=" +
       this.temperatureUnit;
 
-    let weatherData = this._getJSON(weatherUrl);
+    const weatherData = this._getJSON(weatherUrl);
 
-    if (weatherData === "401" || weatherData === "404" || weatherData === "unreachable" || !weatherData.current || !weatherData.daily) {
+    if (!weatherData || typeof weatherData !== "object" || !weatherData.current || !weatherData.daily) {
       this._locationLabel.set_text("Weather Error");
+      let errorMsg = typeof weatherData === "string" ? weatherData : "Invalid data structure";
+      global.logError(`${UUID}: Failed to fetch weather data. Error: ${errorMsg}`);
       return;
     }
 
@@ -307,16 +305,16 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
     const iconName = this._getOWMIconName(currentCode, isDay);
     const currentWeatherIcon = this._getIcon("/icons/owm_icons/" + iconName + "@2x.png", 45);
+    const unitSymbol = this.temperatureUnit === "fahrenheit" ? "℉" : "℃";
     this._currentWeatherButton.set_child(currentWeatherIcon);
     this._currentTemperatureLabel.set_text(currentTemp + unitSymbol);
     this._currentDescriptionLabel.set_text(this._getWeatherDescription(currentCode));
 
     // Update Forecast
     const daily = weatherData.daily;
-    const today = new Date();
-    const dayIndex = today.getDay();
+    const dayIndex = new Date().getDay();
 
-    // Day 1 (Tomorrow)
+    // Day 1
     if (daily.time.length > 1) {
       this._updateForecastDay(1, daily, dayIndex + 1, this.weekdaysShorthands, unitSymbol);
     }
@@ -410,7 +408,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       96: _("Thunderstorm with slight hail"),
       99: _("Thunderstorm with heavy hail"),
     };
-    return codes[code] || "Unknown";
+    return codes[code] || _("Unknown description");
   }
 
   _loadWeatherOpenWeatherMap() {
@@ -418,47 +416,65 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     const unitSymbol = this.temperatureUnit === "fahrenheit" ? "℉" : "℃";
     const unit = this.temperatureUnit === "fahrenheit" ? "imperial" : "metric";
 
-    const weatherURL = weatherBaseURL + this._getLocation() + "&appid=" + this.apiKey + "&units=" + unit;
-    let currentData = this._getJSON(weatherURL);
-    if (currentData == "401") {
-      currentData = 401;
-    } else if (currentData == "unreachable") {
-      currentData = "unreachable";
-    } else if (currentData == "404") {
-      currentData = 404;
-    } else {
-      const loc = currentData.name + ", " + currentData.sys.country;
-      const ovarall = currentData.weather[0].description;
-      const temp = currentData.main.temp + " " + unitSymbol;
-      const icon = currentData.weather[0].icon;
-      currentData = [loc, temp, ovarall, icon];
+    let locationString = "";
+    if (this.locationType == "city") {
+      locationString = "q=" + this.location;
+    } else if (this.locationType == "lat-lon") {
+      const coords = this._parseCoordinates(this.location);
+      if (coords) {
+        locationString = "lat=" + coords.lat + "&lon=" + coords.lon;
+      } else {
+        this._locationLabel.set_text("Invalid Loc");
+        global.logError(`${UUID}: Invalid lat-lon format: ${this.location}`);
+        return;
+      }
+    } else if (this.locationType == "automatic") {
+      const loc = this._fetchAutoLocation();
+      if (loc) {
+        locationString = "lat=" + loc.lat + "&lon=" + loc.lon;
+      }
     }
-
-    const forecastBaseURL = "http://api.openweathermap.org/data/2.5/forecast?";
-    const forecastURL = forecastBaseURL + this._getLocation() + "&appid=" + this.apiKey + "&units=" + unit;
-    const json = this._getJSON(forecastURL);
-    let forecastData = [];
-    if (json == "401") {
-      forecastData = 404;
-    } else if (json == "unreachable") {
-      forecastData = "unreachable";
-    } else if (json == "404") {
-      forecastData = 404;
-    } else {
-      let forecastDay = Date.now().getDay() + 1;
-
-      for (let i = 7; i < 24; i += 8) {
-        const forecastDaysData = json.list[i];
-        const temp = Math.round(forecastDaysData["main"]["temp"]);
-        const icon = forecastDaysData["weather"][0]["icon"];
-        forecastDay = forecastDay % 7;
-        const weekday = this.weekdaysShorthands[forecastDay];
-        forecastDay++;
-        forecastData.push([weekday, icon, temp]);
+    const weatherURL = weatherBaseURL + locationString + "&appid=" + this.apiKey + "&units=" + unit;
+    let currentData = this._getJSON(weatherURL);
+    if (currentData && typeof currentData === "object") {
+      try {
+        const loc = currentData.name + ", " + currentData.sys.country;
+        const ovarall = currentData.weather[0].description;
+        const temp = currentData.main.temp + " " + unitSymbol;
+        const icon = currentData.weather[0].icon;
+        currentData = [loc, temp, ovarall, icon];
+      } catch (e) {
+        global.logError(`${UUID}: Error parsing OpenWeatherMap current data: ${e}`);
+        currentData = "Data parsing error";
       }
     }
 
-    if (forecastData == 401 || forecastData == 404 || forecastData == "unreachable" || !forecastData || forecastData.length === 0) {
+    const forecastBaseURL = "http://api.openweathermap.org/data/2.5/forecast?";
+    const forecastURL = forecastBaseURL + locationString + "&appid=" + this.apiKey + "&units=" + unit;
+    const json = this._getJSON(forecastURL);
+    let forecastData = [];
+    if (!json || typeof json !== "object") {
+      forecastData = json;
+    } else {
+      try {
+        let forecastDay = new Date().getDay() + 1;
+
+        for (let i = 7; i < 24; i += 8) {
+          const forecastDaysData = json.list[i];
+          const temp = Math.round(forecastDaysData["main"]["temp"]);
+          const icon = forecastDaysData["weather"][0]["icon"];
+          forecastDay = forecastDay % 7;
+          const weekday = this.weekdaysShorthands[forecastDay];
+          forecastDay++;
+          forecastData.push([weekday, icon, temp]);
+        }
+      } catch (e) {
+        global.logError(`${UUID}: Error parsing OpenWeatherMap forecast data: ${e}`);
+        forecastData = "Data parsing error";
+      }
+    }
+
+    if (typeof forecastData !== "object" || !forecastData || forecastData.length === 0) {
       this._forecastDay1Label.set_text("no data");
       this._forecastDay2Label.set_text("no data");
       this._forecastDay3Label.set_text("no data");
@@ -479,8 +495,10 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       this._forecastDay3TemperatureLabel.set_text(forecastData[2][2] + unitSymbol);
     }
 
-    if (currentData == 401 || currentData == 404 || currentData == "unreachable") {
+    if (!currentData || typeof currentData !== "object") {
       this._locationLabel.set_text("no data");
+      let errorMsg = typeof currentData === "string" ? currentData : "Invalid data structure";
+      global.logError(`${UUID}: Failed to fetch current weather data. Error: ${errorMsg}`);
     } else {
       this._locationLabel.set_text(currentData[0]);
       const currentWeatherIcon = this._getIcon("/icons/owm_icons/" + currentData[3] + "@2x.png", 45);
