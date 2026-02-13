@@ -86,7 +86,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     settings.bind("show-weather-data", "showWeatherData", this._onShowWeatherChange);
     settings.bind("webservice", "webservice", this._updateWeather);
     settings.bind("weather-text-color", "weatherTextColor", this._updateWeatherStyle);
-    settings.bind("weather-background-color", "weatherBackgroundColor", this._onSettingsChanged);
+    settings.bind("weather-background-color", "weatherBackgroundColor", this._updateWeatherStyle);
     settings.bind("api-key", "apiKey", this._updateWeather);
     settings.bind("location-type", "locationType", this._updateWeather);
     settings.bind("location", "location", this._onLocationChange);
@@ -120,10 +120,6 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this._dateContainer.style = "background-color:" + this.backgroundColor;
     this._monthLabel.style = "font-size: " + (this.fontSize - 20) + "pt;\ncolor: " + this.textColor;
     this._weekLabel.style = "font-size: " + (this.fontSize - 16) + "pt;\ncolor: " + this.textColor;
-    if (this.showWeatherData) {
-      this._weatherContainer.style = "background-color:" + this.weatherBackgroundColor;
-    }
-
     this._updateClock();
   }
 
@@ -148,6 +144,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
   _updateWeatherStyle() {
     if (this.showWeatherData) {
+      this._weatherContainer.style = "background-color:" + this.weatherBackgroundColor;
       this._locationLabel.style = "color: " + this.weatherTextColor;
       this._currentTemperatureLabel.style = "color: " + this.weatherTextColor;
       this._currentDescriptionLabel.style = "color: " + this.weatherTextColor;

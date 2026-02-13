@@ -37,7 +37,7 @@ Changelog
 - show weather on default
 - added setting to switch between celcius and fahrenheit
 - added translation for desklet GUI
-- uses the "clock-use-24h" Cinnamon setting
+- uses the `clock-use-24h` Cinnamon setting
 - added line wrapping for weather description
 - refactoring
   - dead code removed
@@ -56,4 +56,5 @@ Changelog
   - removed hardcoded heights in styles
   - renamed stylesheet class names
   - removed unused style classes
+- retain weather style when toggling the `show-weather-data` setting
 - added changelog.md
