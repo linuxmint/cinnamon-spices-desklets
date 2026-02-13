@@ -34,13 +34,13 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     super(metadata, desklet_id);
     this._container = new St.BoxLayout({ vertical: true });
     this._clockContainer = new St.BoxLayout();
-    this._dateContainer = new St.BoxLayout({ vertical: true, style_class: "clock_container_style" });
+    this._dateContainer = new St.BoxLayout({ vertical: true, style_class: "clocket-clock-container" });
     this._dayContainer = new St.BoxLayout();
 
-    this._timeLabel = new St.Label({ style_class: "clock_container_style" });
-    this._dateLabel = new St.Label({ style_class: "date_label_style" });
-    this._monthLabel = new St.Label({ style_class: "month_label_style" });
-    this._weekLabel = new St.Label({ style_class: "weekday_label_style" });
+    this._timeLabel = new St.Label({ style_class: "clocket-clock-container" });
+    this._dateLabel = new St.Label({ style_class: "clocket-day-label" });
+    this._monthLabel = new St.Label({ style_class: "clocket-month-label" });
+    this._weekLabel = new St.Label({ style_class: "clocket-weekday-label" });
 
     this._clockContainer.add(this._timeLabel);
     this._dayContainer.add(this._dateLabel);
@@ -494,18 +494,18 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   }
 
   _loadWeatherLayout() {
-    this._weatherContainer = new St.BoxLayout({ vertical: false, style_class: "compact_container_style" });
-    this._currentWeatherContainer = new St.BoxLayout({ vertical: true, style_class: "compact_cur_container_style" });
-    this._forecastWeatherContainer = new St.BoxLayout({ vertical: false, style_class: "compact_for_container_style" });
+    this._weatherContainer = new St.BoxLayout({ vertical: false, style_class: "clocket-weather-container" });
+    this._currentWeatherContainer = new St.BoxLayout({ vertical: true, style_class: "clocket-current-weather-container" });
+    this._forecastWeatherContainer = new St.BoxLayout({ vertical: false, style_class: "clocket-forecast-weather-container" });
 
     // Current weather
-    this._locationLabel = new St.Label({ style_class: "comloc_label_style" });
+    this._locationLabel = new St.Label({ style_class: "clocket-current-location-label" });
     this._currentWeatherButton = new St.Button();
     this._currentWeatherButton.connect("clicked", () => {
       this._loadWeather();
     });
-    this._currentTemperatureLabel = new St.Label({ style_class: "comtemp_label_style" });
-    this._currentDescriptionLabel = new St.Label({ style_class: "comloc_label_style" });
+    this._currentTemperatureLabel = new St.Label({ style_class: "clocket-current-temperature-label" });
+    this._currentDescriptionLabel = new St.Label({ style_class: "clocket-current-description-label" });
     this._currentDescriptionLabel.clutter_text.line_wrap = true;
     this._currentDescriptionLabel.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
 
@@ -516,15 +516,15 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
     // Forecast days
     for (let i = 1; i <= 3; i++) {
-      const dayContainer = new St.BoxLayout({ vertical: true, style_class: "compact_day_container_style" });
-      this["_forecastDay" + i + "Label"] = new St.Label({ style_class: "fday_label_style" });
+      const forecastDayContainer = new St.BoxLayout({ vertical: true, style_class: "clocket-forecast-day-container" });
+      this["_forecastDay" + i + "Label"] = new St.Label({ style_class: "clocket-forecast-day-label" });
       this["_forecastDay" + i + "Button"] = new St.Button({ style: "margin-top:10px;margin-bottom:10px;" });
-      this["_forecastDay" + i + "TemperatureLabel"] = new St.Label({ style_class: "fday_label_style" });
+      this["_forecastDay" + i + "TemperatureLabel"] = new St.Label({ style_class: "clocket-forecast-day-label" });
 
-      dayContainer.add(this["_forecastDay" + i + "Label"]);
-      dayContainer.add(this["_forecastDay" + i + "Button"]);
-      dayContainer.add(this["_forecastDay" + i + "TemperatureLabel"]);
-      this._forecastWeatherContainer.add(dayContainer);
+      forecastDayContainer.add(this["_forecastDay" + i + "Label"]);
+      forecastDayContainer.add(this["_forecastDay" + i + "Button"]);
+      forecastDayContainer.add(this["_forecastDay" + i + "TemperatureLabel"]);
+      this._forecastWeatherContainer.add(forecastDayContainer);
     }
 
     this._weatherContainer.add(this._currentWeatherContainer);

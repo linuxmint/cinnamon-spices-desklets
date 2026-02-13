@@ -54,4 +54,6 @@ Changelog
   - removed hardcoded weekday and month shorthands
   - updated desklet metadata and fix typo in description
   - removed hardcoded heights in styles
+  - renamed stylesheet class names
+  - removed unused style classes
 - added changelog.md
