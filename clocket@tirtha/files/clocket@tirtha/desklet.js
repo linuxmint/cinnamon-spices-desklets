@@ -6,11 +6,11 @@ const Json = imports.gi.Json;
 const Soup = imports.gi.Soup;
 const ByteArray = imports.byteArray;
 const Cairo = imports.cairo;
-const Clutter = imports.gi.Clutter;
 const Gio = imports.gi.Gio;
 const Mainloop = imports.mainloop;
 const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
+const Pango = imports.gi.Pango;
 
 let _httpSession;
 if (Soup.MAJOR_VERSION == 2) {
@@ -149,8 +149,8 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   _updateWeatherStyle() {
     if (this.showWeatherData) {
       this._locationLabel.style = "color: " + this.weatherTextColor;
-      this._currentTemperature.style = "color: " + this.weatherTextColor;
-      this._currentDescription.style = "color: " + this.weatherTextColor;
+      this._currentTemperatureLabel.style = "color: " + this.weatherTextColor;
+      this._currentDescriptionLabel.style = "color: " + this.weatherTextColor;
       this._forecastDay1Label.style = "color: " + this.weatherTextColor;
       this._forecastDay1TemperatureLabel.style = "color: " + this.weatherTextColor;
       this._forecastDay2Label.style = "color: " + this.weatherTextColor;
@@ -311,8 +311,8 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     const iconName = this._getOWMIconName(currentCode, isDay);
     const currentWeatherIcon = this._getIcon("/icons/owm_icons/" + iconName + "@2x.png", 45);
     this._currentWeatherButton.set_child(currentWeatherIcon);
-    this._currentTemperature.set_text(currentTemp + unitSymbol);
-    this._currentDescription.set_text(this._getWeatherDescription(currentCode));
+    this._currentTemperatureLabel.set_text(currentTemp + unitSymbol);
+    this._currentDescriptionLabel.set_text(this._getWeatherDescription(currentCode));
 
     // Update Forecast
     const daily = weatherData.daily;
@@ -438,7 +438,6 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     }
 
     const forecastBaseURL = "http://api.openweathermap.org/data/2.5/forecast?";
-
     const forecastURL = forecastBaseURL + this._getLocation() + "&appid=" + this.apiKey + "&units=" + unit;
     const json = this._getJSON(forecastURL);
     let forecastData = [];
@@ -449,20 +448,15 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     } else if (json == "404") {
       forecastData = 404;
     } else {
-      const today = new Date();
-      let d = today.getDay() + 1;
-      const newdata = json;
-      const forcustdata = newdata.list;
+      let forecastDay = Date.now().getDay() + 1;
 
-      let day = "";
-
-      for (var i = 7; i < 24; i += 8) {
-        day = forcustdata[i];
-        const temp = Math.round(day["main"]["temp"]);
-        const icon = day["weather"][0]["icon"];
-        d = d % 7;
-        const weekday = this.weekdaysShorthands[d];
-        d++;
+      for (let i = 7; i < 24; i += 8) {
+        const forecastDaysData = json.list[i];
+        const temp = Math.round(forecastDaysData["main"]["temp"]);
+        const icon = forecastDaysData["weather"][0]["icon"];
+        forecastDay = forecastDay % 7;
+        const weekday = this.weekdaysShorthands[forecastDay];
+        forecastDay++;
         forecastData.push([weekday, icon, temp]);
       }
     }
@@ -492,10 +486,10 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       this._locationLabel.set_text("no data");
     } else {
       this._locationLabel.set_text(currentData[0]);
-      let comicon = this._getIcon("/icons/owm_icons/" + currentData[3] + "@2x.png", 45);
-      this._currentWeatherButton.set_child(comicon);
-      this._currentTemperature.set_text(currentData[1]);
-      this._currentDescription.set_text(currentData[2]);
+      const currentWeatherIcon = this._getIcon("/icons/owm_icons/" + currentData[3] + "@2x.png", 45);
+      this._currentWeatherButton.set_child(currentWeatherIcon);
+      this._currentTemperatureLabel.set_text(currentData[1]);
+      this._currentDescriptionLabel.set_text(currentData[2]);
     }
   }
 
@@ -510,13 +504,15 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this._currentWeatherButton.connect("clicked", () => {
       this._loadWeather();
     });
-    this._currentTemperature = new St.Label({ style_class: "comtemp_label_style" });
-    this._currentDescription = new St.Label({ style_class: "comloc_label_style" });
+    this._currentTemperatureLabel = new St.Label({ style_class: "comtemp_label_style" });
+    this._currentDescriptionLabel = new St.Label({ style_class: "comloc_label_style" });
+    this._currentDescriptionLabel.clutter_text.line_wrap = true;
+    this._currentDescriptionLabel.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
 
     this._currentWeatherContainer.add(this._locationLabel);
     this._currentWeatherContainer.add(this._currentWeatherButton);
-    this._currentWeatherContainer.add(this._currentTemperature);
-    this._currentWeatherContainer.add(this._currentDescription);
+    this._currentWeatherContainer.add(this._currentTemperatureLabel);
+    this._currentWeatherContainer.add(this._currentDescriptionLabel);
 
     // Forecast days
     for (let i = 1; i <= 3; i++) {
@@ -535,6 +531,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this._weatherContainer.add(this._forecastWeatherContainer);
     this._container.add(this._weatherContainer);
 
+    this._updateWeatherStyle();
     this._loadWeather();
   }
 

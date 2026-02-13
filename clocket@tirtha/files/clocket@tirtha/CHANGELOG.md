@@ -38,6 +38,7 @@ Changelog
 - added setting to switch between celcius and fahrenheit
 - added translation for desklet GUI
 - uses the "clock-use-24h" Cinnamon setting
+- added line wrapping for weather description
 - refactoring
   - dead code removed
     - unused variables
@@ -52,4 +53,5 @@ Changelog
   - renamed settings
   - removed hardcoded weekday and month shorthands
   - updated desklet metadata and fix typo in description
+  - removed hardcoded heights in styles
 - added changelog.md
