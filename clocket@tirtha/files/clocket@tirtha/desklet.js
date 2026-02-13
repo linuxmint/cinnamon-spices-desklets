@@ -55,7 +55,9 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this.clock = new CinnamonDesktop.WallClock();
     this.clock_notify_id = 0;
 
-    this.locationChangeDelay = null;
+    this.locationChangeTimeout = null;
+    this.weatherRefreshTimeout = null;
+
     this.desktop_settings = new Gio.Settings({ schema_id: "org.cinnamon.desktop.interface" });
     this._clockSettingsId = this.desktop_settings.connect("changed::clock-use-24h", () => this._updateClock());
 
@@ -71,6 +73,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this.locationType = "automatic";
     this.location = "";
     this.temperatureUnit = "celsius";
+    this.weatherRefreshInterval = 10;
 
     // Generate weekday shorthands based on an arbitrary week starting point (2023-01-01 is a Sunday)
     this.weekdaysShorthands = [];
@@ -91,6 +94,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     settings.bind("location-type", "locationType", this._loadWeather);
     settings.bind("location", "location", this._onLocationChange);
     settings.bind("temperature-unit", "temperatureUnit", this._loadWeather);
+    settings.bind("weather-refresh-interval", "weatherRefreshInterval", this._loadWeather);
 
     this._menu.addSettingsAction(_("Date and Time Settings"), "calendar");
 
@@ -100,11 +104,11 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   }
 
   _onLocationChange() {
-    if (this.locationChangeDelay) {
-      Mainloop.source_remove(this.locationChangeDelay);
+    if (this.locationChangeTimeout) {
+      Mainloop.source_remove(this.locationChangeTimeout);
     }
-    this.locationChangeDelay = Mainloop.timeout_add(1500, () => {
-      this.locationChangeDelay = null;
+    this.locationChangeTimeout = Mainloop.timeout_add(1500, () => {
+      this.locationChangeTimeout = null;
       this._loadWeather();
       return false;
     });
@@ -132,9 +136,13 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       this.clock.disconnect(this.clock_notify_id);
       this.clock_notify_id = 0;
     }
-    if (this.locationChangeDelay) {
-      Mainloop.source_remove(this.locationChangeDelay);
-      this.locationChangeDelay = null;
+    if (this.locationChangeTimeout) {
+      Mainloop.source_remove(this.locationChangeTimeout);
+      this.locationChangeTimeout = null;
+    }
+    if (this.weatherRefreshTimeout) {
+      Mainloop.source_remove(this.weatherRefreshTimeout);
+      this.weatherRefreshTimeout = null;
     }
   }
 
@@ -166,6 +174,10 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     if (this.showWeatherData) {
       this._loadWeatherLayout();
     } else {
+      if (this.weatherRefreshTimeout) {
+        Mainloop.source_remove(this.weatherRefreshTimeout);
+        this.weatherRefreshTimeout = null;
+      }
       this._weatherContainer.destroy();
     }
   }
@@ -227,10 +239,21 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   }
 
   _loadWeather() {
+    if (this.weatherRefreshTimeout) {
+      Mainloop.source_remove(this.weatherRefreshTimeout);
+      this.weatherRefreshTimeout = null;
+    }
     if (this.webservice == "Open Metro") {
       this._loadWeatherOpenMetro();
     } else if (this.webservice == "openweathermap") {
       this._loadWeatherOpenWeatherMap();
+    }
+
+    if (this.weatherRefreshInterval > 0) {
+      this.weatherRefreshTimeout = Mainloop.timeout_add_seconds(this.weatherRefreshInterval * 60, () => {
+        this._loadWeather();
+        return false;
+      });
     }
   }
 

@@ -39,6 +39,7 @@ Changelog
 - added translation for desklet GUI
 - uses the `clock-use-24h` Cinnamon setting
 - added line wrapping for weather description
+- added weather refresh interval setting
 - refactoring
   - dead code removed
     - unused variables

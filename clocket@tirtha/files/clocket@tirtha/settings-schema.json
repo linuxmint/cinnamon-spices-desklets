@@ -73,9 +73,19 @@
     "type": "entry",
     "default": "",
     "dependency": "show-weather-data",
-    "description": "Location",
+    "description": "Location (city name or lat-lon)",
     "indent": true,
-    "tooltip": "put your lat-long generated from lat-long.html page"
+    "tooltip": "city name (e.g. London) or lat-lon (e.g. 51.5074456,-0.1277653)"
+  },
+  "weather-refresh-interval": {
+    "type": "spinbutton",
+    "default": 10,
+    "min": 1,
+    "max": 1440,
+    "units": "minutes",
+    "description": "Weather data refresh interval",
+    "dependency": "show-weather-data",
+    "step": 1
   },
   "design": {
     "type": "header",
