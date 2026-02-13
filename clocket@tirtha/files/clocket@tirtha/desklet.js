@@ -56,8 +56,8 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this.clock_notify_id = 0;
 
     this.locationChangeDelay = null;
-
-    this.unit = "metric";
+    this.desktop_settings = new Gio.Settings({ schema_id: "org.cinnamon.desktop.interface" });
+    this._clockSettingsId = this.desktop_settings.connect("changed::clock-use-24h", () => this._updateClock());
 
     // default settings
     this.fontSize = 40;
@@ -413,9 +413,9 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   _loadWeatherOpenWeatherMap() {
     const weatherBaseURL = "http://api.openweathermap.org/data/2.5/weather?";
     const unitSymbol = this.temperatureUnit === "fahrenheit" ? "℉" : "℃";
-    this.unit = this.temperatureUnit === "fahrenheit" ? "imperial" : "metric";
+    const unit = this.temperatureUnit === "fahrenheit" ? "imperial" : "metric";
 
-    const weatherURL = weatherBaseURL + this._getLocation() + "&appid=" + this.apiKey + "&units=" + this.unit;
+    const weatherURL = weatherBaseURL + this._getLocation() + "&appid=" + this.apiKey + "&units=" + unit;
     let currentData = this._getJSON(weatherURL);
     if (currentData == "401") {
       currentData = 401;
@@ -433,7 +433,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
     const forecastBaseURL = "http://api.openweathermap.org/data/2.5/forecast?";
 
-    const forecastURL = forecastBaseURL + this._getLocation() + "&appid=" + this.apiKey + "&units=" + this.unit;
+    const forecastURL = forecastBaseURL + this._getLocation() + "&appid=" + this.apiKey + "&units=" + unit;
     const json = this._getJSON(forecastURL);
     let forecastData = [];
     if (json == "401") {
@@ -534,18 +534,18 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   }
 
   _updateClock() {
-    const today = new Date();
-    this._timeLabel.set_text(this.clock.get_clock_for_format("%0l:%0M"));
-    const date = String(today.getDate()).padStart(2, "0");
-    this._dateLabel.set_text(date);
+    const use24h = this.desktop_settings.get_boolean("clock-use-24h");
+    const timeFormat = use24h ? "%H:%M" : "%I:%M";
+    this._timeLabel.set_text(this.clock.get_clock_for_format(timeFormat));
 
-    const month = today.getMonth();
-    const monthShorthand = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
-    this._monthLabel.set_text("  " + monthShorthand[month] + ", " + today.getFullYear());
+    this._dateLabel.set_text(this.clock.get_clock_for_format("%d"));
 
-    const day = today.getDay();
-    const weekday = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
-    this._weekLabel.set_text("   " + weekday[day]);
+    const month = this.clock.get_clock_for_format("%b").toLowerCase();
+    const year = this.clock.get_clock_for_format("%Y");
+    this._monthLabel.set_text("  " + month + ", " + year);
+
+    const weekday = this.clock.get_clock_for_format("%A").toUpperCase();
+    this._weekLabel.set_text("   " + weekday);
   }
 }
 

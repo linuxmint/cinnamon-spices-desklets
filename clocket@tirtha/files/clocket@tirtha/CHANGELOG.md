@@ -37,6 +37,7 @@ Changelog
 - show weather on default
 - added setting to switch between celcius and fahrenheit
 - added translation for desklet GUI
+- uses the "clock-use-24h" Cinnamon setting
 - refactoring
   - dead code removed
     - unused variables
