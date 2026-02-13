@@ -40,6 +40,7 @@ Changelog
 - uses the `clock-use-24h` Cinnamon setting
 - added line wrapping for weather description
 - added weather refresh interval setting
+- added async data fetching
 - refactoring
   - dead code removed
     - unused variables

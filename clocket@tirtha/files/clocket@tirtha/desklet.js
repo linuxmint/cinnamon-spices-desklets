@@ -182,36 +182,50 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     }
   }
 
-  _getJSON(url) {
-    const message = Soup.Message.new("GET", url);
-    if (!message) return "Invalid URL";
-
-    let responseBody;
-    try {
-      if (Soup.MAJOR_VERSION === 2) {
-        _httpSession.send_message(message);
-        if (message.status_code !== Soup.KnownStatusCode.OK) {
-          let body = message.response_body.data ? message.response_body.data.toString() : "";
-          return `HTTP ${message.status_code} ${message.reason_phrase} BODY: ${body}`;
-        }
-        responseBody = message.response_body.data.toString();
-      } else {
-        const bytes = _httpSession.send_and_read(message, null);
-        if (message.get_status() !== Soup.Status.OK) {
-          let body = bytes ? ByteArray.toString(bytes.get_data()) : "";
-          return `HTTP ${message.get_status()} ${message.reason_phrase} BODY: ${body}`;
-        }
-        responseBody = ByteArray.toString(bytes.get_data());
+  _fetchJSON(url) {
+    return new Promise((resolve, reject) => {
+      const message = Soup.Message.new("GET", url);
+      if (!message) {
+        resolve("Invalid URL");
+        return;
       }
-      return JSON.parse(responseBody);
-    } catch (e) {
-      return `Error fetching ${url}: ${e} Body: ${responseBody}`;
-    }
+
+      if (Soup.MAJOR_VERSION === 2) {
+        _httpSession.queue_message(message, (session, msg) => {
+          if (msg.status_code !== Soup.KnownStatusCode.OK) {
+            const body = msg.response_body.data ? msg.response_body.data.toString() : "";
+            resolve(`HTTP ${msg.status_code} ${msg.reason_phrase} BODY: ${body}`);
+            return;
+          }
+          try {
+            const body = msg.response_body.data.toString();
+            resolve(JSON.parse(body));
+          } catch (e) {
+            resolve(`Error fetching ${url}: ${e}`);
+          }
+        });
+      } else {
+        _httpSession.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null, (session, result) => {
+          try {
+            const bytes = _httpSession.send_and_read_finish(result);
+            if (message.get_status() !== Soup.Status.OK) {
+              const body = bytes ? ByteArray.toString(bytes.get_data()) : "";
+              resolve(`HTTP ${message.get_status()} ${message.reason_phrase} BODY: ${body}`);
+              return;
+            }
+            const body = ByteArray.toString(bytes.get_data());
+            resolve(JSON.parse(body));
+          } catch (e) {
+            resolve(`Error fetching ${url}: ${e}`);
+          }
+        });
+      }
+    });
   }
 
-  _fetchAutoLocation() {
+  async _fetchAutoLocation() {
     const url = "https://ip-check-perf.radar.cloudflare.com/api/info";
-    const data = this._getJSON(url);
+    const data = await this._fetchJSON(url);
     if (data && typeof data === "object") {
       return {
         lat: data.latitude,
@@ -269,14 +283,14 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this._forecastDay3TemperatureLabel.set_text(_("Error"));
   }
 
-  _loadWeatherOpenMetro() {
+  async _loadWeatherOpenMetro() {
     let lat = "";
     let lon = "";
     let locationName = this.location;
 
     if (this.locationType === "automatic") {
       // Use latitude and longitude from auto-location service
-      const location = this._fetchAutoLocation();
+      const location = await this._fetchAutoLocation();
       if (location) {
         lat = location.lat;
         lon = location.lon;
@@ -298,7 +312,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       // Request latitude and longitude for the specified city name
       const geoUrl =
         "https://geocoding-api.open-meteo.com/v1/search?name=" + encodeURIComponent(this.location) + "&count=1&language=en&format=json";
-      const geoData = this._getJSON(geoUrl);
+      const geoData = await this._fetchJSON(geoUrl);
       if (geoData && geoData.results && geoData.results.length > 0) {
         lat = geoData.results[0].latitude;
         lon = geoData.results[0].longitude;
@@ -320,7 +334,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       "&temperature_unit=" +
       this.temperatureUnit;
 
-    const weatherData = this._getJSON(weatherUrl);
+    const weatherData = await this._fetchJSON(weatherUrl);
 
     if (!weatherData || typeof weatherData !== "object" || !weatherData.current || !weatherData.daily) {
       let errorMsg = typeof weatherData === "string" ? weatherData : "Invalid data structure";
@@ -443,7 +457,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     return codes[code] || _("Unknown description");
   }
 
-  _loadWeatherOpenWeatherMap() {
+  async _loadWeatherOpenWeatherMap() {
     const weatherBaseURL = "http://api.openweathermap.org/data/2.5/weather?";
     const unitSymbol = this.temperatureUnit === "fahrenheit" ? "℉" : "℃";
     const unit = this.temperatureUnit === "fahrenheit" ? "imperial" : "metric";
@@ -461,13 +475,13 @@ class CinnamonClockDesklet extends Desklet.Desklet {
         return;
       }
     } else if (this.locationType == "automatic") {
-      const loc = this._fetchAutoLocation();
+      const loc = await this._fetchAutoLocation();
       if (loc) {
         locationString = "lat=" + loc.lat + "&lon=" + loc.lon;
       }
     }
     const weatherURL = weatherBaseURL + locationString + "&appid=" + this.apiKey + "&units=" + unit;
-    let currentData = this._getJSON(weatherURL);
+    let currentData = await this._fetchJSON(weatherURL);
     if (currentData && typeof currentData === "object") {
       try {
         const loc = currentData.name + ", " + currentData.sys.country;
@@ -484,7 +498,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
     const forecastBaseURL = "http://api.openweathermap.org/data/2.5/forecast?";
     const forecastURL = forecastBaseURL + locationString + "&appid=" + this.apiKey + "&units=" + unit;
-    const json = this._getJSON(forecastURL);
+    const json = await this._fetchJSON(forecastURL);
     let forecastData = [];
     if (!json || typeof json !== "object") {
       forecastData = json;
