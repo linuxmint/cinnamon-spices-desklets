@@ -72,6 +72,13 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this.location = "";
     this.temperatureUnit = "celsius";
 
+    // Generate weekday shorthands based on an arbitrary week starting point (2023-01-01 is a Sunday)
+    this.weekdaysShorthands = [];
+    for (let i = 0; i < 7; i++) {
+      const weekday = GLib.DateTime.new_local(2023, 1, 1 + i, 12, 0, 0);
+      this.weekdaysShorthands.push(weekday.format("%a").toUpperCase());
+    }
+
     const settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
     settings.bind("font-size", "fontSize", this._onSettingsChanged);
     settings.bind("text-color", "textColor", this._onSettingsChanged);
@@ -302,28 +309,27 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     const currentTemp = weatherData.current.temperature_2m;
 
     const iconName = this._getOWMIconName(currentCode, isDay);
-    let comicon = this._getIcon("/icons/owm_icons/" + iconName + "@2x.png", 45);
-    this._currentWeatherButton.set_child(comicon);
+    const currentWeatherIcon = this._getIcon("/icons/owm_icons/" + iconName + "@2x.png", 45);
+    this._currentWeatherButton.set_child(currentWeatherIcon);
     this._currentTemperature.set_text(currentTemp + unitSymbol);
     this._currentDescription.set_text(this._getWeatherDescription(currentCode));
 
     // Update Forecast
     const daily = weatherData.daily;
-    const weekdaysShorthands = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
     const today = new Date();
-    let dayIndex = today.getDay();
+    const dayIndex = today.getDay();
 
     // Day 1 (Tomorrow)
     if (daily.time.length > 1) {
-      this._updateForecastDay(1, daily, dayIndex + 1, weekdaysShorthands, unitSymbol);
+      this._updateForecastDay(1, daily, dayIndex + 1, this.weekdaysShorthands, unitSymbol);
     }
     // Day 2
     if (daily.time.length > 2) {
-      this._updateForecastDay(2, daily, dayIndex + 2, weekdaysShorthands, unitSymbol);
+      this._updateForecastDay(2, daily, dayIndex + 2, this.weekdaysShorthands, unitSymbol);
     }
     // Day 3
     if (daily.time.length > 3) {
-      this._updateForecastDay(3, daily, dayIndex + 3, weekdaysShorthands, unitSymbol);
+      this._updateForecastDay(3, daily, dayIndex + 3, this.weekdaysShorthands, unitSymbol);
     }
   }
 
@@ -446,7 +452,6 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       const today = new Date();
       let d = today.getDay() + 1;
       const newdata = json;
-      const weekdaysShorthands = [_("SUN"), _("MON"), _("TUE"), _("WED"), _("THU"), _("FRI"), _("SAT")];
       const forcustdata = newdata.list;
 
       let day = "";
@@ -456,7 +461,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
         const temp = Math.round(day["main"]["temp"]);
         const icon = day["weather"][0]["icon"];
         d = d % 7;
-        const weekday = weekdaysShorthands[d];
+        const weekday = this.weekdaysShorthands[d];
         d++;
         forecastData.push([weekday, icon, temp]);
       }

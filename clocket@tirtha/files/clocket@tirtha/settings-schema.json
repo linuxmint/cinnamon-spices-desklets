@@ -56,7 +56,7 @@
     "default": "",
     "description": "API key",
     "indent": true,
-    "dependency": "webservice!=Open Metro"
+    "dependency": "show-weather-data"
   },
   "location-type": {
     "type": "combobox",

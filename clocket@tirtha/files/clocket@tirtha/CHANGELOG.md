@@ -33,7 +33,7 @@ Changelog
 ## [3.0.0] 12.02.2026
 
 - added Open-Metro data service (no API key required)
-- automatic location detection added and set as default.
+- automatic location detection added and set as default
 - show weather on default
 - added setting to switch between celcius and fahrenheit
 - added translation for desklet GUI
@@ -50,4 +50,6 @@ Changelog
   - more readable names for properties, variables, functions, etc.
   - removed tooltips without additional information
   - renamed settings
+  - removed hardcoded weekday and month shorthands
+  - updated desklet metadata and fix typo in description
 - added changelog.md
