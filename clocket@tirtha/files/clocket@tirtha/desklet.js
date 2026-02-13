@@ -80,27 +80,23 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     }
 
     const settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
-    settings.bind("font-size", "fontSize", this._onSettingsChanged);
-    settings.bind("text-color", "textColor", this._onSettingsChanged);
-    settings.bind("background-color", "backgroundColor", this._onSettingsChanged);
-    settings.bind("show-weather-data", "showWeatherData", this._onShowWeatherChange);
-    settings.bind("webservice", "webservice", this._updateWeather);
+    settings.bind("font-size", "fontSize", this._updateClockStyle);
+    settings.bind("text-color", "textColor", this._updateClockStyle);
+    settings.bind("background-color", "backgroundColor", this._updateClockStyle);
+    settings.bind("show-weather-data", "showWeatherData", this._onShowWeatherChanged);
+    settings.bind("webservice", "webservice", this._loadWeather);
     settings.bind("weather-text-color", "weatherTextColor", this._updateWeatherStyle);
     settings.bind("weather-background-color", "weatherBackgroundColor", this._updateWeatherStyle);
-    settings.bind("api-key", "apiKey", this._updateWeather);
-    settings.bind("location-type", "locationType", this._updateWeather);
+    settings.bind("api-key", "apiKey", this._loadWeather);
+    settings.bind("location-type", "locationType", this._loadWeather);
     settings.bind("location", "location", this._onLocationChange);
-    settings.bind("temperature-unit", "temperatureUnit", this._updateWeather);
+    settings.bind("temperature-unit", "temperatureUnit", this._loadWeather);
 
     this._menu.addSettingsAction(_("Date and Time Settings"), "calendar");
 
     if (this.showWeatherData) {
       this._loadWeatherLayout();
     }
-  }
-
-  _updateWeather() {
-    this._loadWeather();
   }
 
   _onLocationChange() {
@@ -114,7 +110,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     });
   }
 
-  _onSettingsChanged() {
+  _updateClockStyle() {
     this._timeLabel.style = "font-size: " + this.fontSize + "pt;\ncolor: " + this.textColor + ";\nbackground-color:" + this.backgroundColor;
     this._dateLabel.style = "font-size: " + (this.fontSize - 10) + "pt;";
     this._dateContainer.style = "background-color:" + this.backgroundColor;
@@ -124,7 +120,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   }
 
   on_desklet_added_to_desktop() {
-    this._onSettingsChanged();
+    this._updateClockStyle();
 
     if (this.clock_notify_id == 0) {
       this.clock_notify_id = this.clock.connect("notify::clock", () => this._updateClock());
@@ -166,7 +162,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     return icon;
   }
 
-  _onShowWeatherChange() {
+  _onShowWeatherChanged() {
     if (this.showWeatherData) {
       this._loadWeatherLayout();
     } else {
@@ -238,6 +234,18 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     }
   }
 
+  _setWeatherError() {
+    this._locationLabel.set_text(_("Error"));
+    this._currentTemperatureLabel.set_text(_("Error"));
+    this._currentDescriptionLabel.set_text(_("Error"));
+    this._forecastDay1Label.set_text(_("Error"));
+    this._forecastDay1TemperatureLabel.set_text(_("Error"));
+    this._forecastDay2Label.set_text(_("Error"));
+    this._forecastDay2TemperatureLabel.set_text(_("Error"));
+    this._forecastDay3Label.set_text(_("Error"));
+    this._forecastDay3TemperatureLabel.set_text(_("Error"));
+  }
+
   _loadWeatherOpenMetro() {
     let lat = "";
     let lon = "";
@@ -260,6 +268,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       } else {
         this._locationLabel.set_text("Invalid Loc");
         global.logError(`${UUID}: Invalid lat-lon format: ${this.location}`);
+        this._setWeatherError();
         return;
       }
     } else {
@@ -272,9 +281,9 @@ class CinnamonClockDesklet extends Desklet.Desklet {
         lon = geoData.results[0].longitude;
         locationName = geoData.results[0].name + ", " + geoData.results[0].country_code.toUpperCase();
       } else {
-        this._locationLabel.set_text("Loc not found");
         let errorMsg = typeof geoData === "string" ? geoData : "No results found";
         global.logError(`${UUID}: Failed to fetch location for city: ${errorMsg}`);
+        this._setWeatherError();
         return;
       }
     }
@@ -291,9 +300,9 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     const weatherData = this._getJSON(weatherUrl);
 
     if (!weatherData || typeof weatherData !== "object" || !weatherData.current || !weatherData.daily) {
-      this._locationLabel.set_text("Weather Error");
       let errorMsg = typeof weatherData === "string" ? weatherData : "Invalid data structure";
       global.logError(`${UUID}: Failed to fetch weather data. Error: ${errorMsg}`);
+      this._setWeatherError();
       return;
     }
 
@@ -424,8 +433,8 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       if (coords) {
         locationString = "lat=" + coords.lat + "&lon=" + coords.lon;
       } else {
-        this._locationLabel.set_text("Invalid Loc");
         global.logError(`${UUID}: Invalid lat-lon format: ${this.location}`);
+        this._setWeatherError();
         return;
       }
     } else if (this.locationType == "automatic") {
@@ -445,7 +454,8 @@ class CinnamonClockDesklet extends Desklet.Desklet {
         currentData = [loc, temp, ovarall, icon];
       } catch (e) {
         global.logError(`${UUID}: Error parsing OpenWeatherMap current data: ${e}`);
-        currentData = "Data parsing error";
+        this._setWeatherError();
+        return;
       }
     }
 
@@ -470,14 +480,16 @@ class CinnamonClockDesklet extends Desklet.Desklet {
         }
       } catch (e) {
         global.logError(`${UUID}: Error parsing OpenWeatherMap forecast data: ${e}`);
-        forecastData = "Data parsing error";
+        this._setWeatherError();
+        return;
       }
     }
 
     if (typeof forecastData !== "object" || !forecastData || forecastData.length === 0) {
-      this._forecastDay1Label.set_text("no data");
-      this._forecastDay2Label.set_text("no data");
-      this._forecastDay3Label.set_text("no data");
+      let errorMsg = typeof forecastData === "string" ? forecastData : "Invalid data structure";
+      global.logError(`${UUID}: Failed to fetch forecast data. Error: ${errorMsg}`);
+      this._setWeatherError();
+      return;
     } else {
       this._forecastDay1Label.set_text(forecastData[0][0]);
       let weatherIcon = this._getIcon("/icons/owm_icons/" + forecastData[0][1] + "@2x.png", 35);
@@ -496,9 +508,10 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     }
 
     if (!currentData || typeof currentData !== "object") {
-      this._locationLabel.set_text("no data");
       let errorMsg = typeof currentData === "string" ? currentData : "Invalid data structure";
       global.logError(`${UUID}: Failed to fetch current weather data. Error: ${errorMsg}`);
+      this._setWeatherError();
+      return;
     } else {
       this._locationLabel.set_text(currentData[0]);
       const currentWeatherIcon = this._getIcon("/icons/owm_icons/" + currentData[3] + "@2x.png", 45);
