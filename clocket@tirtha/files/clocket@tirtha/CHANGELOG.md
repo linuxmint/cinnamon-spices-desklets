@@ -33,6 +33,8 @@ Changelog
 ## [3.0.0] 12.02.2026
 
 - added Open-Metro data service (no API key required)
+- automatic location detection added and set as default.
+- show weather on default
 - added setting to switch between celcius and fahrenheit
 - refactoring
   - dead code removed
@@ -44,4 +46,6 @@ Changelog
   - prefer `const` over `let`
   - prefer `let` over `var`
   - more readable names for properties, variables, functions, etc.
+  - removed tooltips without additional information
+  - renamed settings
 - added changelog.md

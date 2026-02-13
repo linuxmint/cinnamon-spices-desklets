@@ -8,6 +8,7 @@ const ByteArray = imports.byteArray;
 const Cairo = imports.cairo;
 const Clutter = imports.gi.Clutter;
 const Gio = imports.gi.Gio;
+const Mainloop = imports.mainloop;
 
 let _httpSession;
 if (Soup.MAJOR_VERSION == 2) {
@@ -17,7 +18,7 @@ if (Soup.MAJOR_VERSION == 2) {
   _httpSession = new Soup.Session();
 }
 
-const UUID = "devtest-clocket@tirtha";
+const UUID = "clocket@tirtha";
 const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 
 class CinnamonClockDesklet extends Desklet.Desklet {
@@ -46,6 +47,8 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this.clock = new CinnamonDesktop.WallClock();
     this.clock_notify_id = 0;
 
+    this.locationChangeDelay = null;
+
     this.unit = "metric";
 
     // default settings
@@ -57,8 +60,8 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this.weatherTextColor = "rgb(255,255,255)";
     this.weatherBackgroundColor = "rgba(0, 0, 0, 0.363)";
     this.apiKey = "";
-    this.locationType = "city";
-    this.location = "kolkata";
+    this.locationType = "automatic";
+    this.location = "";
     this.temperatureUnit = "celsius";
 
     const settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
@@ -69,9 +72,9 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     settings.bind("webservice", "webservice", this._updateWeather);
     settings.bind("weather-text-color", "weatherTextColor", this._updateWeatherStyle);
     settings.bind("weather-background-color", "weatherBackgroundColor", this._onSettingsChanged);
-    settings.bind("api-key", "apiKey");
-    settings.bind("location-type", "locationType");
-    settings.bind("location", "location");
+    settings.bind("api-key", "apiKey", this._updateWeather);
+    settings.bind("location-type", "locationType", this._updateWeather);
+    settings.bind("location", "location", this._onLocationChange);
     settings.bind("temperature-unit", "temperatureUnit", this._updateWeather);
 
     this._menu.addSettingsAction(_("Date and Time Settings"), "calendar");
@@ -83,6 +86,17 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
   _updateWeather() {
     this._loadWeather();
+  }
+
+  _onLocationChange() {
+    if (this.locationChangeDelay) {
+      Mainloop.source_remove(this.locationChangeDelay);
+    }
+    this.locationChangeDelay = Mainloop.timeout_add(1500, () => {
+      this.locationChangeDelay = null;
+      this._loadWeather();
+      return false;
+    });
   }
 
   _onSettingsChanged() {
@@ -110,6 +124,10 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     if (this.clock_notify_id > 0) {
       this.clock.disconnect(this.clock_notify_id);
       this.clock_notify_id = 0;
+    }
+    if (this.locationChangeDelay) {
+      Mainloop.source_remove(this.locationChangeDelay);
+      this.locationChangeDelay = null;
     }
   }
 
@@ -176,12 +194,31 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     }
   }
 
+  _fetchAutoLocation() {
+    const url = "https://geoip.fedoraproject.org/city";
+    const data = this._getJSON(url);
+    if (data && data !== "401" && data !== "404" && data !== "unreachable") {
+      return {
+        lat: data.latitude,
+        lon: data.longitude,
+        city: data.city,
+      };
+    }
+    return null;
+  }
+
   _getLocation() {
     if (this.locationType == "city") {
       return "q=" + this.location;
     } else if (this.locationType == "lat-lon") {
       const cor = String(this.location).split("-");
       return "lat=" + cor[0] + "&lon=" + cor[1];
+    } else if (this.locationType == "automatic") {
+      const loc = this._fetchAutoLocation();
+      if (loc) {
+        return "lat=" + loc.lat + "&lon=" + loc.lon;
+      }
+      return "q=kolkata";
     } else {
       return "q=kolkata";
     }
@@ -201,7 +238,14 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     let locationName = this.location;
     const unitSymbol = this.temperatureUnit === "fahrenheit" ? "℉" : "℃";
 
-    if (this.locationType === "lat-lon") {
+    if (this.locationType === "automatic") {
+      const location = this._fetchAutoLocation();
+      if (location) {
+        lat = location.lat;
+        lon = location.lon;
+        locationName = location.city;
+      }
+    } else if (this.locationType === "lat-lon") {
       const cor = String(this.location).split("-");
       if (cor.length === 2) {
         lat = cor[0].trim();

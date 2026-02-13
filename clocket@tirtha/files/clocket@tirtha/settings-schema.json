@@ -1,7 +1,7 @@
 {
   "top": {
     "type": "header",
-    "description": "Clock configuration"
+    "description": "Clock style"
   },
   "font-size": {
     "type": "spinbutton",
@@ -24,7 +24,7 @@
   },
   "weatherconf": {
     "type": "header",
-    "description": "weather data service settings"
+    "description": "Weather data service"
   },
   "show-weather-data": {
     "type": "switch",
@@ -56,42 +56,42 @@
     "default": "",
     "description": "API key",
     "indent": true,
-    "dependency": "show-weather-data",
-    "tooltip": "put your API key generated from open-weather-map here"
+    "dependency": "webservice!=Open Metro"
   },
   "location-type": {
     "type": "combobox",
-    "default": "city",
+    "default": "automatic",
     "dependency": "show-weather-data",
     "description": "Type of location data",
     "options": {
       "city name": "city",
-      "lat-lon": "lat-lon"
+      "lat-lon": "lat-lon",
+      "Automatic": "automatic"
     }
   },
   "location": {
     "type": "entry",
-    "default": "kolkata",
+    "default": "",
     "dependency": "show-weather-data",
-    "description": "put your location",
+    "description": "Location",
     "indent": true,
     "tooltip": "put your lat-long generated from lat-long.html page"
   },
   "design": {
     "type": "header",
-    "description": "customize font and bg color",
+    "description": "Weather style",
     "dependency": "show-weather-data"
   },
   "weather-text-color": {
     "type": "colorchooser",
     "dependency": "show-weather-data",
     "default": "rgb(255,255,255)",
-    "description": "weather block text color"
+    "description": "Weather text color"
   },
   "weather-background-color": {
     "type": "colorchooser",
     "dependency": "show-weather-data",
     "default": "rgba(0, 0, 0, 0.363)",
-    "description": "weather-block bg-color"
+    "description": "Weather background color"
   }
 }
