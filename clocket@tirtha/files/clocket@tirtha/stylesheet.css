@@ -1,16 +1,6 @@
-.clocket-day-label {
-  color: red;
-}
-
-.clocket-forecast-day-label {
-  text-align: center;
-}
-
+.clocket-forecast-day-label,
 .clocket-current-location-label,
-.clocket-current-description-label {
-  text-align: center;
-}
-
+.clocket-current-description-label,
 .clocket-current-temperature-label {
   text-align: center;
 }

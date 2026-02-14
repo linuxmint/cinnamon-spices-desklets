@@ -40,7 +40,7 @@
     "date-style-section": {
       "type": "section",
       "title": "Date style",
-      "keys": ["date-font-size", "date-text-color", "date-background-color", "date-border-radius"]
+      "keys": ["date-font-size", "date-text-color", "date-accent-color", "date-background-color", "date-border-radius"]
     },
     "weather-style-section": {
       "type": "section",
@@ -169,9 +169,13 @@
   },
   "date-text-color": {
     "type": "colorchooser",
-    "dependency": "show-weather-data",
     "default": "rgb(255,255,255)",
     "description": "Date text color"
+  },
+  "date-accent-color": {
+    "type": "colorchooser",
+    "default": "red",
+    "description": "Date accent color"
   },
   "date-background-color": {
     "type": "colorchooser",
@@ -204,12 +208,14 @@
   },
   "weather-background-color": {
     "type": "colorchooser",
+    "dependency": "show-weather-data",
     "default": "rgba(0, 0, 0, 0.363)",
     "description": "Weather background color"
   },
   "weather-forecast-background-color": {
     "type": "colorchooser",
     "default": "rgba(0, 0, 0, 0.4)",
+    "dependency": "show-weather-data",
     "description": "Weather forecast background color"
   },
   "weather-border-radius": {
@@ -218,6 +224,7 @@
     "min": 0,
     "max": 100,
     "units": "px",
+    "dependency": "show-weather-data",
     "description": "Weather border radius",
     "step": 1
   },
@@ -227,6 +234,7 @@
     "min": 0,
     "max": 100,
     "units": "px",
+    "dependency": "show-weather-data",
     "description": "Weather forecast border radius",
     "step": 1
   }

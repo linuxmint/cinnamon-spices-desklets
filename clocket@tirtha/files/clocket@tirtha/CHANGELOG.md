@@ -38,6 +38,7 @@ Changelog
 - added setting to switch between celcius and fahrenheit
 - added translation for desklet GUI
 - uses the `clock-use-24h` Cinnamon setting
+- usee the `clock-show-seconds`Cinnamon setting
 - added line wrapping for weather description
 - added weather refresh interval setting
 - added desklet scale size setting based on system font size
@@ -71,6 +72,7 @@ Changelog
 - added new settings
   - date font size
   - date text color
+  - date accent color
   - date background color
   - weather font size
   - weather forecast background color

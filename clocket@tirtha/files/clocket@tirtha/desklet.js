@@ -53,7 +53,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
     // Create time and date labels
     this._timeLabel = new St.Label();
-    this._dayLabel = new St.Label({ style_class: "clocket-day-label" });
+    this._dayLabel = new St.Label();
     this._monthAndYearLabel = new St.Label();
     this._weekLabel = new St.Label();
 
@@ -78,7 +78,8 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
     // Initialize and connect settings to automatically update the desklet when cinnamon settings change
     this.desktop_settings = new Gio.Settings({ schema_id: "org.cinnamon.desktop.interface" });
-    this._clockSettingsId = this.desktop_settings.connect("changed::clock-use-24h", () => this._updateClock());
+    this._clockUse24hId = this.desktop_settings.connect("changed::clock-use-24h", () => this._updateClock());
+    this._clockShowSecondsId = this.desktop_settings.connect("changed::clock-show-seconds", () => this._updateClock());
 
     // Default settings used as fallback
     this.scaleSize = 1;
@@ -96,6 +97,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this.clockBorderRadius = 20;
     this.dateTextSize = 40;
     this.dateTextColor = "rgb(255,255,255)";
+    this.dateAccentColor = "red";
     this.dateBackgroundColor = "rgba(0, 0, 0, 0.363)";
     this.dateBorderRadius = 20;
     this.weatherFontSize = 14;
@@ -133,6 +135,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     settings.bind("clock-border-radius", "clockBorderRadius", this._updateClockStyle);
     settings.bind("date-font-size", "dateTextSize", this._updateDateStyle);
     settings.bind("date-text-color", "dateTextColor", this._updateDateStyle);
+    settings.bind("date-accent-color", "dateAccentColor", this._updateDateStyle);
     settings.bind("date-background-color", "dateBackgroundColor", this._updateDateStyle);
     settings.bind("date-border-radius", "dateBorderRadius", this._updateDateStyle);
     settings.bind("weather-font-size", "weatherFontSize", this._updateWeatherStyle);
@@ -209,7 +212,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   _updateDateStyle() {
     const fontSize = size => (size * this.scaleSize) / 10 + "em";
     const s = this.scaleSize;
-    this._dayLabel.style = "font-size: " + fontSize(this.dateTextSize - 10) + ";";
+    this._dayLabel.style = "font-size: " + fontSize(this.dateTextSize - 10) + "; color: " + this.dateAccentColor + ";";
     this._dateAndWeekdayContainer.style =
       "background-color:" +
       this.dateBackgroundColor +
@@ -755,7 +758,9 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
   _updateClock() {
     const use24h = this.desktop_settings.get_boolean("clock-use-24h");
-    const timeFormat = use24h ? "%H:%M" : "%I:%M";
+    const showSeconds = this.desktop_settings.get_boolean("clock-show-seconds");
+    const timeFormat = (use24h ? "%H:%M" : "%I:%M") + (showSeconds ? ":%S" : "");
+
     this._setText(this._timeLabel, this.clock.get_clock_for_format(timeFormat));
 
     const dateString = this.clock.get_clock_for_format("%d");
