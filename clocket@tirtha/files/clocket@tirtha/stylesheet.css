@@ -1,70 +1,16 @@
-.clocket-date-and-weekday-container,
-.clocket-clock-container,
-.clocket-time-label {
-  background-color: rgba(0, 0, 0, 0.363);
-  padding: 10px;
-  border-radius: 20px;
-  margin: 3px;
-  margin-bottom: 3px;
-}
-
 .clocket-day-label {
   color: red;
 }
 
-.clocket-month-label {
-  color: white;
-}
-
-.clocket-weekday-label {
-  color: white;
-}
-
 .clocket-forecast-day-label {
   text-align: center;
-  color: white;
-}
-
-.clocket-weather-container {
-  background-color: rgba(0, 0, 0, 0.363);
-  padding: 10px;
-  border-radius: 20px;
-  margin: 3px;
-  margin-bottom: 3px;
-}
-
-.clocket-current-weather-container {
-  padding: 5px;
-  color: white;
-  width: 110px;
-}
-
-.clocket-forecast-weather-container {
-  color: white;
 }
 
 .clocket-current-location-label,
 .clocket-current-description-label {
   text-align: center;
-  font-size: 16px;
-  color: white;
-  margin-bottom: 5px;
 }
 
 .clocket-current-temperature-label {
   text-align: center;
-  font-size: 20px;
-  color: white;
-  margin-bottom: 10px;
-}
-
-.clocket-forecast-day-container {
-  padding: 5px;
-  width: 50px;
-  padding-top: 10px;
-  border-radius: 15px;
-  margin-bottom: 0px;
-  margin-left: 5px;
-  margin-right: 5px;
-  background-color: rgba(0, 0, 0, 0.4);
 }

@@ -24,7 +24,7 @@
     "description": "Font size",
     "step": 1
   },
-  "text-color": {
+  "clock-text-color": {
     "type": "colorchooser",
     "default": "rgb(255,255,255)",
     "description": "Text color"
@@ -115,5 +115,11 @@
     "dependency": "show-weather-data",
     "default": "rgba(0, 0, 0, 0.363)",
     "description": "Weather background color"
+  },
+  "weather-forecast-background-color": {
+    "type": "colorchooser",
+    "dependency": "show-weather-data",
+    "default": "rgba(0, 0, 0, 0.4)",
+    "description": "Weather forecast background color"
   }
 }
