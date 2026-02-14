@@ -10,7 +10,7 @@
     "style-page": {
       "type": "page",
       "title": "Style",
-      "sections": ["clock-style-section", "weather-style-section"]
+      "sections": ["clock-style-section", "date-style-section", "weather-style-section"]
     },
     "general-section": {
       "type": "section",
@@ -25,12 +25,18 @@
     "clock-style-section": {
       "type": "section",
       "title": "Clock style",
-      "keys": ["font-size-clock", "clock-text-color", "background-color"]
+      "keys": ["clock-font-size", "clock-text-color", "clock-background-color"]
+    },
+    "date-style-section": {
+      "type": "section",
+      "title": "Date style",
+      "keys": ["date-font-size", "date-text-color", "date-background-color"]
     },
     "weather-style-section": {
       "type": "section",
       "title": "Weather style",
-      "keys": ["weather-text-color", "weather-background-color", "weather-forecast-background-color"]
+      "dependency": "show-weather-data",
+      "keys": ["weather-font-size", "weather-text-color", "weather-background-color", "weather-forecast-background-color"]
     }
   },
   "scale-size": {
@@ -40,25 +46,6 @@
     "min": 0.3,
     "max": 3.0,
     "description": "Desklet scale size"
-  },
-  "font-size-clock": {
-    "type": "spinbutton",
-    "default": 40,
-    "min": 10,
-    "max": 200,
-    "units": "px",
-    "description": "Font size",
-    "step": 1
-  },
-  "clock-text-color": {
-    "type": "colorchooser",
-    "default": "rgb(255,255,255)",
-    "description": "Text color"
-  },
-  "background-color": {
-    "type": "colorchooser",
-    "default": "rgba(0, 0, 0, 0.363)",
-    "description": "background color"
   },
   "show-weather-data": {
     "type": "switch",
@@ -113,12 +100,60 @@
   },
   "weather-refresh-interval": {
     "type": "spinbutton",
-    "default": 10,
+    "default": 5,
     "min": 1,
     "max": 1440,
     "units": "minutes",
     "description": "Weather data refresh interval",
     "dependency": "show-weather-data",
+    "step": 1
+  },
+  "clock-font-size": {
+    "type": "spinbutton",
+    "default": 40,
+    "min": 6,
+    "max": 200,
+    "units": "px",
+    "description": "Clock font size",
+    "step": 1
+  },
+  "clock-text-color": {
+    "type": "colorchooser",
+    "default": "rgb(255,255,255)",
+    "description": "Text color"
+  },
+  "clock-background-color": {
+    "type": "colorchooser",
+    "default": "rgba(0, 0, 0, 0.363)",
+    "description": "Clock background color"
+  },
+  "date-font-size": {
+    "type": "spinbutton",
+    "default": 40,
+    "min": 6,
+    "max": 200,
+    "units": "px",
+    "description": "Date font size",
+    "step": 1
+  },
+  "date-text-color": {
+    "type": "colorchooser",
+    "dependency": "show-weather-data",
+    "default": "rgb(255,255,255)",
+    "description": "Date text color"
+  },
+  "date-background-color": {
+    "type": "colorchooser",
+    "default": "rgba(0, 0, 0, 0.363)",
+    "description": "Date background color"
+  },
+  "weather-font-size": {
+    "type": "spinbutton",
+    "default": 14,
+    "min": 6,
+    "max": 200,
+    "units": "px",
+    "description": "Weather font size",
     "step": 1
   },
   "weather-text-color": {
@@ -129,13 +164,11 @@
   },
   "weather-background-color": {
     "type": "colorchooser",
-    "dependency": "show-weather-data",
     "default": "rgba(0, 0, 0, 0.363)",
     "description": "Weather background color"
   },
   "weather-forecast-background-color": {
     "type": "colorchooser",
-    "dependency": "show-weather-data",
     "default": "rgba(0, 0, 0, 0.4)",
     "description": "Weather forecast background color"
   }

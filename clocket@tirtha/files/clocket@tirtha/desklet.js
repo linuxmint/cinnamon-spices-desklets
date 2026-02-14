@@ -81,20 +81,24 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this._clockSettingsId = this.desktop_settings.connect("changed::clock-use-24h", () => this._updateClock());
 
     // Default settings used as fallback
-    this.fontSizeClock = 40;
-    this.clockTextColor = "rgb(255,255,255)";
-    this.backgroundColor = "rgba(0, 0, 0, 0.363)";
+    this.scaleSize = 1;
     this.showWeatherData = true;
+    this.temperatureUnit = "celsius";
     this.webservice = "Open-Metro";
-    this.weatherTextColor = "rgb(255,255,255)";
-    this.weatherBackgroundColor = "rgba(0, 0, 0, 0.363)";
-    this.weatherForecastBackgroundColor = "rgba(0, 0, 0, 0.4)";
     this.apiKey = "";
     this.locationType = "automatic";
     this.location = "";
-    this.temperatureUnit = "celsius";
-    this.weatherRefreshInterval = 10;
-    this.scaleSize = 1;
+    this.weatherRefreshInterval = 5;
+    this.clockFontSize = 40;
+    this.clockTextColor = "rgb(255,255,255)";
+    this.clockBackgroundColor = "rgba(0, 0, 0, 0.363)";
+    this.dateTextSize = 40;
+    this.dateTextColor = "rgb(255,255,255)";
+    this.dateBackgroundColor = "rgba(0, 0, 0, 0.363)";
+    this.weatherFontSize = 14;
+    this.weatherTextColor = "rgb(255,255,255)";
+    this.weatherBackgroundColor = "rgba(0, 0, 0, 0.363)";
+    this.weatherForecastBackgroundColor = "rgba(0, 0, 0, 0.4)";
 
     // Generate weekday shorthands based on an arbitrary week starting point (2023-01-01 is a Sunday)
     this.weekdaysShorthands = [];
@@ -110,19 +114,23 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     // Initialize settings and bind them to the desklet properties
     const settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
     settings.bind("scale-size", "scaleSize", this._onScaleSizeChange);
-    settings.bind("font-size-clock", "fontSizeClock", this._updateClockStyle);
-    settings.bind("clock-text-color", "clockTextColor", this._updateClockStyle);
-    settings.bind("background-color", "backgroundColor", this._updateClockStyle);
     settings.bind("show-weather-data", "showWeatherData", this._onShowWeatherSettingChanged);
+    settings.bind("temperature-unit", "temperatureUnit", this._loadWeather);
     settings.bind("webservice", "webservice", this._loadWeather);
-    settings.bind("weather-text-color", "weatherTextColor", this._updateWeatherStyle);
-    settings.bind("weather-background-color", "weatherBackgroundColor", this._updateWeatherStyle);
-    settings.bind("weather-forecast-background-color", "weatherForecastBackgroundColor", this._updateWeatherStyle);
     settings.bind("api-key", "apiKey", this._loadWeather);
     settings.bind("location-type", "locationType", this._loadWeather);
     settings.bind("location", "location", this._onLocationChange);
-    settings.bind("temperature-unit", "temperatureUnit", this._loadWeather);
     settings.bind("weather-refresh-interval", "weatherRefreshInterval", this._loadWeather);
+    settings.bind("clock-font-size", "clockFontSize", this._updateClockStyle);
+    settings.bind("clock-text-color", "clockTextColor", this._updateClockStyle);
+    settings.bind("clock-background-color", "clockBackgroundColor", this._updateClockStyle);
+    settings.bind("date-font-size", "dateTextSize", this._updateDateStyle);
+    settings.bind("date-text-color", "dateTextColor", this._updateDateStyle);
+    settings.bind("date-background-color", "dateBackgroundColor", this._updateDateStyle);
+    settings.bind("weather-font-size", "weatherFontSize", this._updateWeatherStyle);
+    settings.bind("weather-text-color", "weatherTextColor", this._updateWeatherStyle);
+    settings.bind("weather-background-color", "weatherBackgroundColor", this._updateWeatherStyle);
+    settings.bind("weather-forecast-background-color", "weatherForecastBackgroundColor", this._updateWeatherStyle);
 
     // Add action to desklet right-click menu
     this._menu.addSettingsAction(_("Date and Time Settings"), "calendar");
@@ -148,6 +156,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   on_desklet_added_to_desktop() {
     this._updateClockStyle();
     this._updateClock();
+    this._updateDateStyle();
 
     if (this.clock_notify_id == 0) {
       this.clock_notify_id = this.clock.connect("notify::clock", () => this._updateClock());
@@ -175,23 +184,25 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     const fontSize = size => (size * this.scaleSize) / 10 + "em";
     const s = this.scaleSize;
 
-    // Apply styles to time
     this._timeLabel.style =
       "font-size: " +
-      fontSize(this.fontSizeClock) +
+      fontSize(this.clockFontSize) +
       "; color: " +
       this.clockTextColor +
       "; background-color:" +
-      this.backgroundColor +
+      this.clockBackgroundColor +
       `; padding: ${10 * s}px; border-radius: ${20 * s}px; vertical-align: center;`;
+  }
 
-    // Apply styles to date and weekday
-    this._dayLabel.style = "font-size: " + fontSize(this.fontSizeClock - 10) + ";";
+  _updateDateStyle() {
+    const fontSize = size => (size * this.scaleSize) / 10 + "em";
+    const s = this.scaleSize;
+    this._dayLabel.style = "font-size: " + fontSize(this.dateTextSize - 10) + ";";
     this._dateAndWeekdayContainer.style =
-      "background-color:" + this.backgroundColor + `; padding: ${1 * s}em; border-radius: ${20 * s}px; margin-left: ${0.3 * s}em;`;
+      "background-color:" + this.dateBackgroundColor + `; padding: ${1 * s}em; border-radius: ${20 * s}px; margin-left: ${0.3 * s}em;`;
     this._clockAndDateContainer.style = `margin-bottom: ${0.3 * s}em;`;
-    this._monthAndYearLabel.style = "font-size: " + fontSize(this.fontSizeClock - 20) + ";\ncolor: " + this.clockTextColor;
-    this._weekLabel.style = "font-size: " + fontSize(this.fontSizeClock - 16) + ";\ncolor: " + this.clockTextColor;
+    this._monthAndYearLabel.style = "font-size: " + fontSize(this.dateTextSize - 20) + ";\ncolor: " + this.dateTextColor;
+    this._weekLabel.style = "font-size: " + fontSize(this.dateTextSize - 16) + ";\ncolor: " + this.dateTextColor;
   }
 
   _updateWeatherStyle() {
@@ -200,7 +211,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
       // Define styles
       const currentWeather = `color: ${this.weatherTextColor};`;
-      const forecastStyle = `${currentWeather}font-size: ${fontSize(14)};`;
+      const forecastStyle = `${currentWeather}font-size: ${fontSize(this.weatherFontSize)};`;
       const forecastDayContainerStyle = `background-color:${this.weatherForecastBackgroundColor}; padding:${0.5 * this.scaleSize}em ${0.3 * this.scaleSize}em; margin: 0${0.2 * this.scaleSize}em; border-radius: ${this.scaleSize * 15}px;`;
 
       // Set weather container styles
@@ -208,9 +219,9 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       this._currentWeatherContainer.style = `padding:${1 * this.scaleSize}em;`;
 
       // Set current weather label styles
-      this._locationLabel.style = `${currentWeather}font-size: ${fontSize(16)};`;
-      this._currentTemperatureLabel.style = `${currentWeather}font-size: ${fontSize(18)}; text-align: center; margin-bottom:${0.1 * this.scaleSize}em;`;
-      this._currentDescriptionLabel.style = `${currentWeather}font-size: ${fontSize(14)};`;
+      this._locationLabel.style = `${currentWeather}font-size: ${fontSize(this.weatherFontSize + 2)};`;
+      this._currentTemperatureLabel.style = `${currentWeather}font-size: ${fontSize(this.weatherFontSize + 4)}; text-align: center; margin-bottom:${0.1 * this.scaleSize}em;`;
+      this._currentDescriptionLabel.style = `${currentWeather}font-size: ${fontSize(this.weatherFontSize)};`;
 
       // Set forecast label styles
       this._forecastDay1Label.style = forecastStyle;
@@ -227,6 +238,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
   _onScaleSizeChange() {
     this._updateClockStyle();
+    this._updateDateStyle();
     if (this.showWeatherData) {
       this._updateWeatherStyle();
       // Resize icons

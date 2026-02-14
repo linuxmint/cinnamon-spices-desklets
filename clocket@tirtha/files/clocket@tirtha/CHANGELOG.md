@@ -66,4 +66,10 @@ Changelog
 - fix stretched icons
 - added loading text
 - reorganize settings layout
+- added new settings
+  - date font size
+  - date text color
+  - date background color
+  - weather font size
+  - weather forecast background color
 - added changelog.md
