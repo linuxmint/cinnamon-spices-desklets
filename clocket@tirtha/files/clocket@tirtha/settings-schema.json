@@ -1,16 +1,26 @@
 {
   "layout": {
     "type": "layout",
-    "pages": ["general-page", "style-page"],
+    "pages": ["general-page", "weather-page", "clock-page", "date-page"],
     "general-page": {
       "type": "page",
       "title": "General",
-      "sections": ["general-section", "weather-data-section"]
+      "sections": ["general-section"]
     },
-    "style-page": {
+    "weather-page": {
       "type": "page",
-      "title": "Style",
-      "sections": ["clock-style-section", "date-style-section", "weather-style-section"]
+      "title": "Weather",
+      "sections": ["weather-data-section", "weather-style-section"]
+    },
+    "clock-page": {
+      "type": "page",
+      "title": "Clock",
+      "sections": ["clock-style-section"]
+    },
+    "date-page": {
+      "type": "page",
+      "title": "Date",
+      "sections": ["date-style-section"]
     },
     "general-section": {
       "type": "section",
