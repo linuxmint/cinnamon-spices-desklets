@@ -1,4 +1,6 @@
-.clocket-clock-container {
+.clocket-date-and-weekday-container,
+.clocket-clock-container,
+.clocket-time-label {
   background-color: rgba(0, 0, 0, 0.363);
   padding: 10px;
   border-radius: 20px;

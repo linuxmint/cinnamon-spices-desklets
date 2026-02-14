@@ -59,6 +59,7 @@ Changelog
   - renamed stylesheet class names
   - removed unused style classes
   - error handling and logging
+  - added more code comments
 - retain weather style when toggling the `show-weather-data` setting
 - caching of Open Metro geodata retrieved via city name
 - added changelog.md
