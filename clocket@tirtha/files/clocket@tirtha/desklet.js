@@ -38,7 +38,6 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this.setHeader(_("Clock"));
 
     // Caching data for performance optimization
-    this._autoLocationCache = null;
     this._geocodingCache = null;
     this._lastDateString = null;
     this._isRemoved = false;
@@ -301,16 +300,15 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
   // Fetches automatic location data based on the user's IP address and caches the result
   async _fetchAutoLocation() {
-    if (this._autoLocationCache) return this._autoLocationCache;
     const url = "https://ip-check-perf.radar.cloudflare.com/api/info";
     const data = await this._fetchJSON(url);
     if (data && typeof data === "object") {
-      this._autoLocationCache = {
+      global.log(`Fetched automatic location: ${data.city}, lat: ${data.latitude}, lon: ${data.longitude}`);
+      return {
         lat: data.latitude,
         lon: data.longitude,
         city: data.city,
       };
-      return this._autoLocationCache;
     }
     let errorMsg = typeof data === "string" ? data : "Invalid data";
     global.logError(`${UUID}: Failed to fetch automatic location. Error: ${errorMsg}`);
@@ -668,14 +666,17 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
     // Current weather
     this._locationLabel = new St.Label({ style_class: "clocket-current-location-label" });
+    this._locationLabel.set_text(_("Loading..."));
     this._currentWeatherButton = new St.Button();
     this._currentWeatherButton.connect("clicked", () => {
       this._loadWeather();
     });
     this._currentTemperatureLabel = new St.Label();
+    this._currentTemperatureLabel.set_text(_("Loading..."));
     this._currentDescriptionLabel = new St.Label({ style_class: "clocket-current-description-label" });
     this._currentDescriptionLabel.clutter_text.line_wrap = true;
     this._currentDescriptionLabel.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
+    this._currentDescriptionLabel.set_text(_("Loading..."));
 
     this._currentWeatherContainer.add(this._locationLabel);
     this._currentWeatherContainer.add(this._currentWeatherButton);
@@ -689,6 +690,8 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       this["_forecastDay" + i + "Label"] = new St.Label({ style_class: "clocket-forecast-day-label" });
       this["_forecastDay" + i + "Button"] = new St.Button({ style: "margin-top:10px;margin-bottom:10px;" });
       this["_forecastDay" + i + "TemperatureLabel"] = new St.Label({ style_class: "clocket-forecast-day-label" });
+      this["_forecastDay" + i + "Label"].set_text("    ...    ");
+      this["_forecastDay" + i + "TemperatureLabel"].set_text("    ...    ");
 
       forecastDayContainer.add(this["_forecastDay" + i + "Label"]);
       forecastDayContainer.add(this["_forecastDay" + i + "Button"]);

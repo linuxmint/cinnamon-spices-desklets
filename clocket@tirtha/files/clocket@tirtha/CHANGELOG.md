@@ -57,11 +57,12 @@ Changelog
   - renamed settings
   - removed hardcoded weekday and month shorthands
   - updated desklet metadata and fix typo in description
-  - removed hardcoded heights in styles
+  - removed hardcoded heights and widths in styles
   - renamed stylesheet class names
   - error handling and logging
   - added more code comments
 - retain weather style when toggling the `show-weather-data` setting
 - caching of Open Metro geodata retrieved via city name
 - fix stretched icons
+- added loading text
 - added changelog.md
