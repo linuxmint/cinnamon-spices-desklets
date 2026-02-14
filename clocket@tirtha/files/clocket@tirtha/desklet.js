@@ -104,6 +104,9 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       this.weekdaysShorthands.push(weekday.format("%a").toUpperCase());
     }
 
+    this.forecastWeatherIconSize = 100;
+    this.currentWeatherIconSize = 125;
+
     // Initialize settings and bind them to the desklet properties
     const settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
     settings.bind("scale-size", "scaleSize", this._onScaleSizeChange);
@@ -226,16 +229,20 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this._updateClockStyle();
     if (this.showWeatherData) {
       this._updateWeatherStyle();
+      // Resize icons
+      const iconSize = Math.round(this.forecastWeatherIconSize * this.scaleSize);
+      const currentWeatherIconSize = Math.round(this.currentWeatherIconSize * this.scaleSize);
+      if (this._currentWeatherButton.get_child()) this._currentWeatherButton.get_child().set_icon_size(currentWeatherIconSize);
+      for (let i = 1; i <= 3; i++) {
+        if (this["_forecastDay" + i + "Button"].get_child()) this["_forecastDay" + i + "Button"].get_child().set_icon_size(iconSize);
+      }
     }
   }
 
   _getIcon(path, size) {
     const icon_file = DESKLET_DIR + path;
-    const file = Gio.file_new_for_path(icon_file);
-    const icon_uri = file.get_uri();
-    const icon = St.TextureCache.get_default().load_uri_async(icon_uri, 65, 65);
-    icon.set_size(size, size);
-    return icon;
+    const scaledSize = Math.round(size * this.scaleSize);
+    return new St.Icon({ gicon: Gio.icon_new_for_string(icon_file), icon_size: scaledSize });
   }
 
   _onShowWeatherSettingChanged() {
@@ -435,7 +442,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     const isDay = weatherData.current.is_day;
     const currentTemp = weatherData.current.temperature_2m;
     const iconName = this._getOWMIconName(currentCode, isDay);
-    const currentWeatherIcon = this._getIcon("/icons/owm_icons/" + iconName + "@2x.png", 45);
+    const currentWeatherIcon = this._getIcon("/icons/owm_icons/" + iconName + "@2x.png", this.currentWeatherIconSize);
     const unitSymbol = this.temperatureUnit === "fahrenheit" ? "℉" : "℃";
     this._currentWeatherButton.set_child(currentWeatherIcon);
     this._currentTemperatureLabel.set_text(currentTemp + unitSymbol);
@@ -468,7 +475,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     const dayName = weekDays[weekDayIndex % 7];
 
     this["_forecastDay" + uiIndex + "Label"].set_text(dayName);
-    const weatherIcon = this._getIcon("/icons/owm_icons/" + iconName + "@2x.png", 35);
+    const weatherIcon = this._getIcon("/icons/owm_icons/" + iconName + "@2x.png", this.forecastWeatherIconSize);
     this["_forecastDay" + uiIndex + "Button"].set_child(weatherIcon);
     this["_forecastDay" + uiIndex + "TemperatureLabel"].set_text(tempMax + unitSymbol);
   }
@@ -629,24 +636,24 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     // Update forecast UI
     if (forecastData.length >= 3) {
       this._forecastDay1Label.set_text(forecastData[0][0]);
-      let weatherIcon = this._getIcon("/icons/owm_icons/" + forecastData[0][1] + "@2x.png", 35);
+      let weatherIcon = this._getIcon("/icons/owm_icons/" + forecastData[0][1] + "@2x.png", this.forecastWeatherIconSize);
       this._forecastDay1Button.set_child(weatherIcon);
       this._forecastDay1TemperatureLabel.set_text(forecastData[0][2] + unitSymbol);
 
       this._forecastDay2Label.set_text(forecastData[1][0]);
-      weatherIcon = this._getIcon("/icons/owm_icons/" + forecastData[1][1] + "@2x.png", 35);
+      weatherIcon = this._getIcon("/icons/owm_icons/" + forecastData[1][1] + "@2x.png", this.forecastWeatherIconSize);
       this._forecastDay2Button.set_child(weatherIcon);
       this._forecastDay2TemperatureLabel.set_text(forecastData[1][2] + unitSymbol);
 
       this._forecastDay3Label.set_text(forecastData[2][0]);
-      weatherIcon = this._getIcon("/icons/owm_icons/" + forecastData[2][1] + "@2x.png", 35);
+      weatherIcon = this._getIcon("/icons/owm_icons/" + forecastData[2][1] + "@2x.png", this.forecastWeatherIconSize);
       this._forecastDay3Button.set_child(weatherIcon);
       this._forecastDay3TemperatureLabel.set_text(forecastData[2][2] + unitSymbol);
     }
 
     // Update current weather UI
     this._locationLabel.set_text(currentData[0]);
-    const currentWeatherIcon = this._getIcon("/icons/owm_icons/" + currentData[3] + "@2x.png", 45);
+    const currentWeatherIcon = this._getIcon("/icons/owm_icons/" + currentData[3] + "@2x.png", this.currentWeatherIconSize);
     this._currentWeatherButton.set_child(currentWeatherIcon);
     this._currentTemperatureLabel.set_text(currentData[1]);
     this._currentDescriptionLabel.set_text(currentData[2]);

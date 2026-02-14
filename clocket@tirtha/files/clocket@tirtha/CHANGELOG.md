@@ -63,4 +63,5 @@ Changelog
   - added more code comments
 - retain weather style when toggling the `show-weather-data` setting
 - caching of Open Metro geodata retrieved via city name
+- fix stretched icons
 - added changelog.md
