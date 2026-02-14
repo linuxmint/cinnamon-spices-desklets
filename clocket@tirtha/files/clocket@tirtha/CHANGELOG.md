@@ -60,4 +60,5 @@ Changelog
   - removed unused style classes
   - error handling and logging
 - retain weather style when toggling the `show-weather-data` setting
+- caching of Open Metro geodata retrieved via city name
 - added changelog.md

@@ -32,6 +32,9 @@ const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 class CinnamonClockDesklet extends Desklet.Desklet {
   constructor(metadata, desklet_id) {
     super(metadata, desklet_id);
+    this._isRemoved = false;
+    this._autoLocationCache = null;
+    this._geocodingCache = null;
     this._container = new St.BoxLayout({ vertical: true });
     this._clockContainer = new St.BoxLayout();
     this._dateContainer = new St.BoxLayout({ vertical: true, style_class: "clocket-clock-container" });
@@ -91,7 +94,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     settings.bind("weather-text-color", "weatherTextColor", this._updateWeatherStyle);
     settings.bind("weather-background-color", "weatherBackgroundColor", this._updateWeatherStyle);
     settings.bind("api-key", "apiKey", this._loadWeather);
-    settings.bind("location-type", "locationType", this._loadWeather);
+    settings.bind("location-type", "locationType", this._onLocationTypeChanged);
     settings.bind("location", "location", this._onLocationChange);
     settings.bind("temperature-unit", "temperatureUnit", this._loadWeather);
     settings.bind("weather-refresh-interval", "weatherRefreshInterval", this._loadWeather);
@@ -103,7 +106,12 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     }
   }
 
+  _onLocationTypeChanged() {
+    this._loadWeather();
+  }
+
   _onLocationChange() {
+    this._geocodingCache = null;
     if (this.locationChangeTimeout) {
       Mainloop.source_remove(this.locationChangeTimeout);
     }
@@ -132,6 +140,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   }
 
   on_desklet_removed() {
+    this._isRemoved = true;
     if (this.clock_notify_id > 0) {
       this.clock.disconnect(this.clock_notify_id);
       this.clock_notify_id = 0;
@@ -224,14 +233,16 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   }
 
   async _fetchAutoLocation() {
+    if (this._autoLocationCache) return this._autoLocationCache;
     const url = "https://ip-check-perf.radar.cloudflare.com/api/info";
     const data = await this._fetchJSON(url);
     if (data && typeof data === "object") {
-      return {
+      this._autoLocationCache = {
         lat: data.latitude,
         lon: data.longitude,
         city: data.city,
       };
+      return this._autoLocationCache;
     }
     let errorMsg = typeof data === "string" ? data : "Invalid data";
     global.logError(`${UUID}: Failed to fetch automatic location. Error: ${errorMsg}`);
@@ -284,6 +295,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   }
 
   async _loadWeatherOpenMetro() {
+    if (this._isRemoved) return;
     let lat = "";
     let lon = "";
     let locationName = this.location;
@@ -309,19 +321,27 @@ class CinnamonClockDesklet extends Desklet.Desklet {
         return;
       }
     } else {
-      // Request latitude and longitude for the specified city name
-      const geoUrl =
-        "https://geocoding-api.open-meteo.com/v1/search?name=" + encodeURIComponent(this.location) + "&count=1&language=en&format=json";
-      const geoData = await this._fetchJSON(geoUrl);
-      if (geoData && geoData.results && geoData.results.length > 0) {
-        lat = geoData.results[0].latitude;
-        lon = geoData.results[0].longitude;
-        locationName = geoData.results[0].name + ", " + geoData.results[0].country_code.toUpperCase();
+      if (this._geocodingCache && this._geocodingCache.query === this.location) {
+        lat = this._geocodingCache.lat;
+        lon = this._geocodingCache.lon;
+        locationName = this._geocodingCache.name;
       } else {
-        let errorMsg = typeof geoData === "string" ? geoData : "No results found";
-        global.logError(`${UUID}: Failed to fetch location for city: ${errorMsg}`);
-        this._setWeatherError();
-        return;
+        // Request latitude and longitude for the specified city name
+        const geoUrl =
+          "https://geocoding-api.open-meteo.com/v1/search?name=" + encodeURIComponent(this.location) + "&count=1&language=en&format=json";
+        const geoData = await this._fetchJSON(geoUrl);
+        if (this._isRemoved) return;
+        if (geoData && geoData.results && geoData.results.length > 0) {
+          lat = geoData.results[0].latitude;
+          lon = geoData.results[0].longitude;
+          locationName = geoData.results[0].name + ", " + geoData.results[0].country_code.toUpperCase();
+          this._geocodingCache = { query: this.location, lat: lat, lon: lon, name: locationName };
+        } else {
+          let errorMsg = typeof geoData === "string" ? geoData : "No results found";
+          global.logError(`${UUID}: Failed to fetch location for city: ${errorMsg}`);
+          this._setWeatherError();
+          return;
+        }
       }
     }
 
@@ -335,6 +355,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       this.temperatureUnit;
 
     const weatherData = await this._fetchJSON(weatherUrl);
+    if (this._isRemoved) return;
 
     if (!weatherData || typeof weatherData !== "object" || !weatherData.current || !weatherData.daily) {
       let errorMsg = typeof weatherData === "string" ? weatherData : "Invalid data structure";
@@ -458,6 +479,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   }
 
   async _loadWeatherOpenWeatherMap() {
+    if (this._isRemoved) return;
     const weatherBaseURL = "http://api.openweathermap.org/data/2.5/weather?";
     const unitSymbol = this.temperatureUnit === "fahrenheit" ? "℉" : "℃";
     const unit = this.temperatureUnit === "fahrenheit" ? "imperial" : "metric";
@@ -476,12 +498,14 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       }
     } else if (this.locationType == "automatic") {
       const loc = await this._fetchAutoLocation();
+      if (this._isRemoved) return;
       if (loc) {
         locationString = "lat=" + loc.lat + "&lon=" + loc.lon;
       }
     }
     const weatherURL = weatherBaseURL + locationString + "&appid=" + this.apiKey + "&units=" + unit;
     let currentData = await this._fetchJSON(weatherURL);
+    if (this._isRemoved) return;
     if (currentData && typeof currentData === "object") {
       try {
         const loc = currentData.name + ", " + currentData.sys.country;
@@ -499,6 +523,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     const forecastBaseURL = "http://api.openweathermap.org/data/2.5/forecast?";
     const forecastURL = forecastBaseURL + locationString + "&appid=" + this.apiKey + "&units=" + unit;
     const json = await this._fetchJSON(forecastURL);
+    if (this._isRemoved) return;
     let forecastData = [];
     if (!json || typeof json !== "object") {
       forecastData = json;
@@ -600,19 +625,25 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this._loadWeather();
   }
 
+  _setText(label, text) {
+    if (label.get_text() !== text) {
+      label.set_text(text);
+    }
+  }
+
   _updateClock() {
     const use24h = this.desktop_settings.get_boolean("clock-use-24h");
     const timeFormat = use24h ? "%H:%M" : "%I:%M";
-    this._timeLabel.set_text(this.clock.get_clock_for_format(timeFormat));
+    this._setText(this._timeLabel, this.clock.get_clock_for_format(timeFormat));
 
-    this._dateLabel.set_text(this.clock.get_clock_for_format("%d"));
+    this._setText(this._dateLabel, this.clock.get_clock_for_format("%d"));
 
     const month = this.clock.get_clock_for_format("%b").toLowerCase();
     const year = this.clock.get_clock_for_format("%Y");
-    this._monthLabel.set_text("  " + month + ", " + year);
+    this._setText(this._monthLabel, "  " + month + ", " + year);
 
     const weekday = this.clock.get_clock_for_format("%A").toUpperCase();
-    this._weekLabel.set_text("   " + weekday);
+    this._setText(this._weekLabel, "   " + weekday);
   }
 }
 
