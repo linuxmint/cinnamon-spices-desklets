@@ -104,8 +104,9 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       this.weekdaysShorthands.push(weekday.format("%a").toUpperCase());
     }
 
-    this.forecastWeatherIconSize = 100;
-    this.currentWeatherIconSize = 125;
+    // Icon sizes
+    this.forecastWeatherIconSize = 60;
+    this.currentWeatherIconSize = 50;
 
     // Initialize settings and bind them to the desklet properties
     const settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
@@ -201,10 +202,10 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       // Define styles
       const currentWeather = `color: ${this.weatherTextColor};`;
       const forecastStyle = `${currentWeather}font-size: ${fontSize(14)};`;
-      const forecastDayContainerStyle = `background-color:${this.weatherForecastBackgroundColor}; padding:${1 * this.scaleSize}em ${2 * this.scaleSize}em; margin: 0${0.2 * this.scaleSize}em; border-radius: ${this.scaleSize * 15}px;`;
+      const forecastDayContainerStyle = `background-color:${this.weatherForecastBackgroundColor}; padding:${0.5 * this.scaleSize}em ${0.3 * this.scaleSize}em; margin: 0${0.2 * this.scaleSize}em; border-radius: ${this.scaleSize * 15}px;`;
 
       // Set weather container styles
-      this._weatherContainer.style = `background-color:${this.weatherBackgroundColor}; padding:${0.65 * this.scaleSize}em; border-radius:${20 * this.scaleSize}px; margin:${0.2 * this.scaleSize}em; margin-bottom:${0.2 * this.scaleSize}em;`;
+      this._weatherContainer.style = `background-color:${this.weatherBackgroundColor}; padding:${0.65 * this.scaleSize}em; border-radius:${20 * this.scaleSize}px; margin-top:${0.2 * this.scaleSize}em; margin-bottom:${0.2 * this.scaleSize}em;`;
       this._currentWeatherContainer.style = `padding:${1 * this.scaleSize}em;`;
 
       // Set current weather label styles
