@@ -65,4 +65,5 @@ Changelog
 - caching of Open Metro geodata retrieved via city name
 - fix stretched icons
 - added loading text
+- reorganize settings layout
 - added changelog.md

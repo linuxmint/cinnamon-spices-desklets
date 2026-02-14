@@ -1,7 +1,37 @@
 {
-  "general": {
-    "type": "header",
-    "description": "General settings"
+  "layout": {
+    "type": "layout",
+    "pages": ["general-page", "style-page"],
+    "general-page": {
+      "type": "page",
+      "title": "General",
+      "sections": ["general-section", "weather-data-section"]
+    },
+    "style-page": {
+      "type": "page",
+      "title": "Style",
+      "sections": ["clock-style-section", "weather-style-section"]
+    },
+    "general-section": {
+      "type": "section",
+      "title": "General",
+      "keys": ["scale-size"]
+    },
+    "weather-data-section": {
+      "type": "section",
+      "title": "Weather data",
+      "keys": ["show-weather-data", "temperature-unit", "webservice", "api-key", "location-type", "location", "weather-refresh-interval"]
+    },
+    "clock-style-section": {
+      "type": "section",
+      "title": "Clock style",
+      "keys": ["font-size-clock", "clock-text-color", "background-color"]
+    },
+    "weather-style-section": {
+      "type": "section",
+      "title": "Weather style",
+      "keys": ["weather-text-color", "weather-background-color", "weather-forecast-background-color"]
+    }
   },
   "scale-size": {
     "type": "scale",
@@ -10,10 +40,6 @@
     "min": 0.3,
     "max": 3.0,
     "description": "Desklet scale size"
-  },
-  "clock-settings": {
-    "type": "header",
-    "description": "Clock style"
   },
   "font-size-clock": {
     "type": "spinbutton",
@@ -33,10 +59,6 @@
     "type": "colorchooser",
     "default": "rgba(0, 0, 0, 0.363)",
     "description": "background color"
-  },
-  "weather-settings": {
-    "type": "header",
-    "description": "Weather data service"
   },
   "show-weather-data": {
     "type": "switch",
@@ -98,11 +120,6 @@
     "description": "Weather data refresh interval",
     "dependency": "show-weather-data",
     "step": 1
-  },
-  "design": {
-    "type": "header",
-    "description": "Weather style",
-    "dependency": "show-weather-data"
   },
   "weather-text-color": {
     "type": "colorchooser",

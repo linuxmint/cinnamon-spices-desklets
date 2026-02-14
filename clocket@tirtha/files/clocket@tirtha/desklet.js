@@ -303,7 +303,6 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     const url = "https://ip-check-perf.radar.cloudflare.com/api/info";
     const data = await this._fetchJSON(url);
     if (data && typeof data === "object") {
-      global.log(`Fetched automatic location: ${data.city}, lat: ${data.latitude}, lon: ${data.longitude}`);
       return {
         lat: data.latitude,
         lon: data.longitude,
@@ -705,6 +704,15 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
     this._updateWeatherStyle();
     this._loadWeather();
+
+    // Reload after a delay after starting, as the first request may fail if the network is not yet ready
+    if (this.weatherRefreshTimeout) {
+      Mainloop.source_remove(this.weatherRefreshTimeout);
+    }
+    this.weatherRefreshTimeout = Mainloop.timeout_add_seconds(this.weatherRefreshInterval * 3, () => {
+      this._loadWeather();
+      return false;
+    });
   }
 
   // Helper function to set text of a label only if it's different from the current text
