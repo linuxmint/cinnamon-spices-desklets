@@ -81,3 +81,5 @@ Changelog
   - weather border radius
   - weather forecast border radius
   - hide decorations (set to true by default)
+  - show clock setting
+  - show date setting

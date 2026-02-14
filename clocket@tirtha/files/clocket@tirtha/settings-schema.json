@@ -35,12 +35,12 @@
     "clock-style-section": {
       "type": "section",
       "title": "Clock style",
-      "keys": ["clock-font-size", "clock-text-color", "clock-background-color", "clock-border-radius"]
+      "keys": ["show-clock", "clock-font-size", "clock-text-color", "clock-background-color", "clock-border-radius"]
     },
     "date-style-section": {
       "type": "section",
       "title": "Date style",
-      "keys": ["date-font-size", "date-text-color", "date-accent-color", "date-background-color", "date-border-radius"]
+      "keys": ["show-date", "date-font-size", "date-text-color", "date-accent-color", "date-background-color", "date-border-radius"]
     },
     "weather-style-section": {
       "type": "section",
@@ -130,23 +130,31 @@
     "dependency": "show-weather-data",
     "step": 1
   },
+  "show-clock": {
+    "type": "switch",
+    "default": true,
+    "description": "Show clock"
+  },
   "clock-font-size": {
     "type": "spinbutton",
     "default": 40,
     "min": 6,
     "max": 200,
     "units": "px",
+    "dependency": "show-clock",
     "description": "Clock font size",
     "step": 1
   },
   "clock-text-color": {
     "type": "colorchooser",
     "default": "rgb(255,255,255)",
+    "dependency": "show-clock",
     "description": "Text color"
   },
   "clock-background-color": {
     "type": "colorchooser",
     "default": "rgba(0, 0, 0, 0.363)",
+    "dependency": "show-clock",
     "description": "Clock background color"
   },
   "clock-border-radius": {
@@ -156,7 +164,13 @@
     "max": 100,
     "units": "px",
     "description": "Clock border radius",
+    "dependency": "show-clock",
     "step": 1
+  },
+  "show-date": {
+    "type": "switch",
+    "default": true,
+    "description": "Show date"
   },
   "date-font-size": {
     "type": "spinbutton",
@@ -164,22 +178,26 @@
     "min": 6,
     "max": 200,
     "units": "px",
+    "dependency": "show-date",
     "description": "Date font size",
     "step": 1
   },
   "date-text-color": {
     "type": "colorchooser",
     "default": "rgb(255,255,255)",
+    "dependency": "show-date",
     "description": "Date text color"
   },
   "date-accent-color": {
     "type": "colorchooser",
     "default": "red",
+    "dependency": "show-date",
     "description": "Date accent color"
   },
   "date-background-color": {
     "type": "colorchooser",
     "default": "rgba(0, 0, 0, 0.363)",
+    "dependency": "show-date",
     "description": "Date background color"
   },
   "date-border-radius": {
@@ -188,6 +206,7 @@
     "min": 0,
     "max": 100,
     "units": "px",
+    "dependency": "show-date",
     "description": "Date border radius",
     "step": 1
   },

@@ -84,6 +84,8 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     // Default settings used as fallback
     this.scaleSize = 1;
     this.hideDecorations = true;
+    this.showClock = true;
+    this.showDate = true;
     this.showWeatherData = true;
     this.temperatureUnit = "celsius";
     this.webservice = "Open-Metro";
@@ -122,6 +124,8 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     const settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
     settings.bind("scale-size", "scaleSize", this._onScaleSizeChange);
     settings.bind("hide-decorations", "hideDecorations", this._onDecorationChanged);
+    settings.bind("show-clock", "showClock", this._onShowClockSettingChanged);
+    settings.bind("show-date", "showDate", this._onShowDateSettingChanged);
     settings.bind("show-weather-data", "showWeatherData", this._onShowWeatherSettingChanged);
     settings.bind("temperature-unit", "temperatureUnit", this._loadWeather);
     settings.bind("webservice", "webservice", this._loadWeather);
@@ -147,9 +151,16 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
     // Add action to desklet right-click menu
     this._menu.addSettingsAction(_("Date and Time Settings"), "calendar");
+  }
 
+  on_desklet_added_to_desktop() {
+    this._updateClockStyle();
     this._onDecorationChanged();
-
+    this._onShowClockSettingChanged();
+    this._onShowDateSettingChanged();
+    this._updateDateStyle();
+    this._updateClock();
+    this._updateDate();
     if (this.showWeatherData) {
       this._loadWeatherLayout();
     }
@@ -168,22 +179,20 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     });
   }
 
-  on_desklet_added_to_desktop() {
-    this._updateClockStyle();
-    this._updateClock();
-    this._updateDateStyle();
-
-    if (this.clock_notify_id == 0) {
-      this.clock_notify_id = this.clock.connect("notify::clock", () => this._updateClock());
-    }
-  }
-
   // Clean up
   on_desklet_removed() {
     this._isRemoved = true;
     if (this.clock_notify_id > 0) {
       this.clock.disconnect(this.clock_notify_id);
       this.clock_notify_id = 0;
+    }
+    if (this._clockUse24hId) {
+      this.desktop_settings.disconnect(this._clockUse24hId);
+      this._clockUse24hId = 0;
+    }
+    if (this._clockShowSecondsId) {
+      this.desktop_settings.disconnect(this._clockShowSecondsId);
+      this._clockShowSecondsId = 0;
     }
     if (this.locationChangeTimeout) {
       Mainloop.source_remove(this.locationChangeTimeout);
@@ -289,6 +298,40 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       }
       this._weatherContainer.destroy();
     }
+  }
+
+  _updateSignalConnection() {
+    if (this.showClock || this.showDate) {
+      if (this.clock_notify_id == 0) {
+        this.clock_notify_id = this.clock.connect("notify::clock", () => {
+          this._updateClock();
+          this._updateDate();
+        });
+      }
+    } else if (this.clock_notify_id > 0) {
+      this.clock.disconnect(this.clock_notify_id);
+      this.clock_notify_id = 0;
+    }
+  }
+
+  _onShowClockSettingChanged() {
+    if (this.showClock) {
+      this._updateClock();
+      this._timeLabel.show();
+    } else {
+      this._timeLabel.hide();
+    }
+    this._updateSignalConnection();
+  }
+
+  _onShowDateSettingChanged() {
+    if (this.showDate) {
+      this._updateDate();
+      this._dateAndWeekdayContainer.show();
+    } else {
+      this._dateAndWeekdayContainer.hide();
+    }
+    this._updateSignalConnection();
   }
 
   _fetchJSON(url) {
@@ -757,11 +800,17 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   }
 
   _updateClock() {
+    if (!this.showClock) return;
+
     const use24h = this.desktop_settings.get_boolean("clock-use-24h");
     const showSeconds = this.desktop_settings.get_boolean("clock-show-seconds");
     const timeFormat = (use24h ? "%H:%M" : "%I:%M") + (showSeconds ? ":%S" : "");
 
     this._setText(this._timeLabel, this.clock.get_clock_for_format(timeFormat));
+  }
+
+  _updateDate() {
+    if (!this.showDate) return;
 
     const dateString = this.clock.get_clock_for_format("%d");
     if (this._lastDateString !== dateString) {
