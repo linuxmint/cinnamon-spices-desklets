@@ -46,6 +46,7 @@ Changelog
     - unused variables
     - unused functions
     - unused settings
+    - removed unused style classes
   - commented-out code removed
   - code formatted
   - prefer `const` over `let`
@@ -57,7 +58,6 @@ Changelog
   - updated desklet metadata and fix typo in description
   - removed hardcoded heights in styles
   - renamed stylesheet class names
-  - removed unused style classes
   - error handling and logging
   - added more code comments
 - retain weather style when toggling the `show-weather-data` setting

@@ -9,23 +9,19 @@
 }
 
 .clocket-day-label {
-  font-size: 30px;
   color: red;
 }
 
 .clocket-month-label {
-  font-size: 20px;
   color: white;
 }
 
 .clocket-weekday-label {
-  font-size: 24px;
   color: white;
 }
 
 .clocket-forecast-day-label {
   text-align: center;
-  font-size: 14px;
   color: white;
 }
 
@@ -64,6 +60,7 @@
 
 .clocket-forecast-day-container {
   padding: 5px;
+  width: 50px;
   padding-top: 10px;
   border-radius: 15px;
   margin-bottom: 0px;

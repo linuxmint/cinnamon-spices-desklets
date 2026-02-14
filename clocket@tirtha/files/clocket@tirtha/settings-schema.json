@@ -1,9 +1,21 @@
 {
-  "top": {
+  "general": {
+    "type": "header",
+    "description": "General settings"
+  },
+  "scale-size": {
+    "type": "scale",
+    "default": 1.0,
+    "step": 0.1,
+    "min": 0.3,
+    "max": 3.0,
+    "description": "Desklet scale size"
+  },
+  "clock-settings": {
     "type": "header",
     "description": "Clock style"
   },
-  "font-size": {
+  "font-size-clock": {
     "type": "spinbutton",
     "default": 40,
     "min": 10,
@@ -22,7 +34,7 @@
     "default": "rgba(0, 0, 0, 0.363)",
     "description": "background color"
   },
-  "weatherconf": {
+  "weather-settings": {
     "type": "header",
     "description": "Weather data service"
   },

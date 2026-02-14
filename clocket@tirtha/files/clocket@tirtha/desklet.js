@@ -22,7 +22,7 @@ if (Soup.MAJOR_VERSION == 2) {
 }
 
 // Setup for translations
-const UUID = "clocket@tirtha";
+const UUID = "devtest-clocket@tirtha";
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
 // Helper function for translations
@@ -79,7 +79,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this._clockSettingsId = this.desktop_settings.connect("changed::clock-use-24h", () => this._updateClock());
 
     // Default settings used as fallback
-    this.fontSize = 40;
+    this.fontSizeClock = 40;
     this.textColor = "rgb(255,255,255)";
     this.backgroundColor = "rgba(0, 0, 0, 0.363)";
     this.showWeatherData = true;
@@ -91,6 +91,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this.location = "";
     this.temperatureUnit = "celsius";
     this.weatherRefreshInterval = 10;
+    this.scaleSize = 1;
 
     // Generate weekday shorthands based on an arbitrary week starting point (2023-01-01 is a Sunday)
     this.weekdaysShorthands = [];
@@ -101,7 +102,8 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
     // Initialize settings and bind them to the desklet properties
     const settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
-    settings.bind("font-size", "fontSize", this._updateClockStyle);
+    settings.bind("scale-size", "scaleSize", this._onScaleSizeChange);
+    settings.bind("font-size-clock", "fontSizeClock", this._updateClockStyle);
     settings.bind("text-color", "textColor", this._updateClockStyle);
     settings.bind("background-color", "backgroundColor", this._updateClockStyle);
     settings.bind("show-weather-data", "showWeatherData", this._onShowWeatherSettingChanged);
@@ -136,16 +138,18 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   }
 
   _updateClockStyle() {
-    this._timeLabel.style = "font-size: " + this.fontSize + "pt;\ncolor: " + this.textColor + ";\nbackground-color:" + this.backgroundColor;
-    this._dayLabel.style = "font-size: " + (this.fontSize - 10) + "pt;";
+    const fontSize = size => (size * this.scaleSize) / 10 + "em";
+    this._timeLabel.style =
+      "font-size: " + fontSize(this.fontSizeClock) + ";\ncolor: " + this.textColor + ";\nbackground-color:" + this.backgroundColor;
+    this._dayLabel.style = "font-size: " + fontSize(this.fontSizeClock - 10) + ";";
     this._dateAndWeekdayContainer.style = "background-color:" + this.backgroundColor;
-    this._monthAndYearLabel.style = "font-size: " + (this.fontSize - 20) + "pt;\ncolor: " + this.textColor;
-    this._weekLabel.style = "font-size: " + (this.fontSize - 16) + "pt;\ncolor: " + this.textColor;
-    this._updateClock();
+    this._monthAndYearLabel.style = "font-size: " + fontSize(this.fontSizeClock - 20) + ";\ncolor: " + this.textColor;
+    this._weekLabel.style = "font-size: " + fontSize(this.fontSizeClock - 16) + ";\ncolor: " + this.textColor;
   }
 
   on_desklet_added_to_desktop() {
     this._updateClockStyle();
+    this._updateClock();
 
     if (this.clock_notify_id == 0) {
       this.clock_notify_id = this.clock.connect("notify::clock", () => this._updateClock());
@@ -171,16 +175,27 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
   _updateWeatherStyle() {
     if (this.showWeatherData) {
+      const fontSize = size => (size * this.scaleSize) / 10 + "em";
+      const style = "color: " + this.weatherTextColor + ";";
+      const forecastStyle = style + "font-size: " + fontSize(14) + ";";
+
       this._weatherContainer.style = "background-color:" + this.weatherBackgroundColor;
-      this._locationLabel.style = "color: " + this.weatherTextColor;
-      this._currentTemperatureLabel.style = "color: " + this.weatherTextColor;
-      this._currentDescriptionLabel.style = "color: " + this.weatherTextColor;
-      this._forecastDay1Label.style = "color: " + this.weatherTextColor;
-      this._forecastDay1TemperatureLabel.style = "color: " + this.weatherTextColor;
-      this._forecastDay2Label.style = "color: " + this.weatherTextColor;
-      this._forecastDay2TemperatureLabel.style = "color: " + this.weatherTextColor;
-      this._forecastDay3Label.style = "color: " + this.weatherTextColor;
-      this._forecastDay3TemperatureLabel.style = "color: " + this.weatherTextColor;
+      this._locationLabel.style = style + "font-size: " + fontSize(16) + ";";
+      this._currentTemperatureLabel.style = style + "font-size: " + fontSize(24) + ";";
+      this._currentDescriptionLabel.style = style + "font-size: " + fontSize(14) + ";";
+      this._forecastDay1Label.style = forecastStyle;
+      this._forecastDay1TemperatureLabel.style = forecastStyle;
+      this._forecastDay2Label.style = forecastStyle;
+      this._forecastDay2TemperatureLabel.style = forecastStyle;
+      this._forecastDay3Label.style = forecastStyle;
+      this._forecastDay3TemperatureLabel.style = forecastStyle;
+    }
+  }
+
+  _onScaleSizeChange() {
+    this._updateClockStyle();
+    if (this.showWeatherData) {
+      this._updateWeatherStyle();
     }
   }
 
