@@ -25,18 +25,25 @@
     "clock-style-section": {
       "type": "section",
       "title": "Clock style",
-      "keys": ["clock-font-size", "clock-text-color", "clock-background-color"]
+      "keys": ["clock-font-size", "clock-text-color", "clock-background-color", "clock-border-radius"]
     },
     "date-style-section": {
       "type": "section",
       "title": "Date style",
-      "keys": ["date-font-size", "date-text-color", "date-background-color"]
+      "keys": ["date-font-size", "date-text-color", "date-background-color", "date-border-radius"]
     },
     "weather-style-section": {
       "type": "section",
       "title": "Weather style",
       "dependency": "show-weather-data",
-      "keys": ["weather-font-size", "weather-text-color", "weather-background-color", "weather-forecast-background-color"]
+      "keys": [
+        "weather-font-size",
+        "weather-text-color",
+        "weather-background-color",
+        "weather-forecast-background-color",
+        "weather-border-radius",
+        "weather-forecast-border-radius"
+      ]
     }
   },
   "scale-size": {
@@ -127,6 +134,15 @@
     "default": "rgba(0, 0, 0, 0.363)",
     "description": "Clock background color"
   },
+  "clock-border-radius": {
+    "type": "spinbutton",
+    "default": 20,
+    "min": 0,
+    "max": 100,
+    "units": "px",
+    "description": "Clock border radius",
+    "step": 1
+  },
   "date-font-size": {
     "type": "spinbutton",
     "default": 40,
@@ -146,6 +162,15 @@
     "type": "colorchooser",
     "default": "rgba(0, 0, 0, 0.363)",
     "description": "Date background color"
+  },
+  "date-border-radius": {
+    "type": "spinbutton",
+    "default": 20,
+    "min": 0,
+    "max": 100,
+    "units": "px",
+    "description": "Date border radius",
+    "step": 1
   },
   "weather-font-size": {
     "type": "spinbutton",
@@ -171,5 +196,23 @@
     "type": "colorchooser",
     "default": "rgba(0, 0, 0, 0.4)",
     "description": "Weather forecast background color"
+  },
+  "weather-border-radius": {
+    "type": "spinbutton",
+    "default": 20,
+    "min": 0,
+    "max": 100,
+    "units": "px",
+    "description": "Weather border radius",
+    "step": 1
+  },
+  "weather-forecast-border-radius": {
+    "type": "spinbutton",
+    "default": 15,
+    "min": 0,
+    "max": 100,
+    "units": "px",
+    "description": "Weather forecast border radius",
+    "step": 1
   }
 }

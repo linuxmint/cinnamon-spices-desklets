@@ -72,4 +72,8 @@ Changelog
   - date background color
   - weather font size
   - weather forecast background color
+  - clock border radius
+  - date border radius
+  - weather border radius
+  - weather forecast border radius
 - added changelog.md

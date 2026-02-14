@@ -92,13 +92,17 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this.clockFontSize = 40;
     this.clockTextColor = "rgb(255,255,255)";
     this.clockBackgroundColor = "rgba(0, 0, 0, 0.363)";
+    this.clockBorderRadius = 20;
     this.dateTextSize = 40;
     this.dateTextColor = "rgb(255,255,255)";
     this.dateBackgroundColor = "rgba(0, 0, 0, 0.363)";
+    this.dateBorderRadius = 20;
     this.weatherFontSize = 14;
     this.weatherTextColor = "rgb(255,255,255)";
     this.weatherBackgroundColor = "rgba(0, 0, 0, 0.363)";
     this.weatherForecastBackgroundColor = "rgba(0, 0, 0, 0.4)";
+    this.weatherBorderRadius = 20;
+    this.weatherForecastBorderRadius = 15;
 
     // Generate weekday shorthands based on an arbitrary week starting point (2023-01-01 is a Sunday)
     this.weekdaysShorthands = [];
@@ -124,13 +128,17 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     settings.bind("clock-font-size", "clockFontSize", this._updateClockStyle);
     settings.bind("clock-text-color", "clockTextColor", this._updateClockStyle);
     settings.bind("clock-background-color", "clockBackgroundColor", this._updateClockStyle);
+    settings.bind("clock-border-radius", "clockBorderRadius", this._updateClockStyle);
     settings.bind("date-font-size", "dateTextSize", this._updateDateStyle);
     settings.bind("date-text-color", "dateTextColor", this._updateDateStyle);
     settings.bind("date-background-color", "dateBackgroundColor", this._updateDateStyle);
+    settings.bind("date-border-radius", "dateBorderRadius", this._updateDateStyle);
     settings.bind("weather-font-size", "weatherFontSize", this._updateWeatherStyle);
     settings.bind("weather-text-color", "weatherTextColor", this._updateWeatherStyle);
     settings.bind("weather-background-color", "weatherBackgroundColor", this._updateWeatherStyle);
     settings.bind("weather-forecast-background-color", "weatherForecastBackgroundColor", this._updateWeatherStyle);
+    settings.bind("weather-border-radius", "weatherBorderRadius", this._updateWeatherStyle);
+    settings.bind("weather-forecast-border-radius", "weatherForecastBorderRadius", this._updateWeatherStyle);
 
     // Add action to desklet right-click menu
     this._menu.addSettingsAction(_("Date and Time Settings"), "calendar");
@@ -191,7 +199,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       this.clockTextColor +
       "; background-color:" +
       this.clockBackgroundColor +
-      `; padding: ${10 * s}px; border-radius: ${20 * s}px; vertical-align: center;`;
+      `; padding: ${10 * s}px; border-radius: ${this.clockBorderRadius * s}px; vertical-align: center;`;
   }
 
   _updateDateStyle() {
@@ -199,7 +207,9 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     const s = this.scaleSize;
     this._dayLabel.style = "font-size: " + fontSize(this.dateTextSize - 10) + ";";
     this._dateAndWeekdayContainer.style =
-      "background-color:" + this.dateBackgroundColor + `; padding: ${1 * s}em; border-radius: ${20 * s}px; margin-left: ${0.3 * s}em;`;
+      "background-color:" +
+      this.dateBackgroundColor +
+      `; padding: ${1 * s}em; border-radius: ${this.dateBorderRadius * s}px; margin-left: ${0.3 * s}em;`;
     this._clockAndDateContainer.style = `margin-bottom: ${0.3 * s}em;`;
     this._monthAndYearLabel.style = "font-size: " + fontSize(this.dateTextSize - 20) + ";\ncolor: " + this.dateTextColor;
     this._weekLabel.style = "font-size: " + fontSize(this.dateTextSize - 16) + ";\ncolor: " + this.dateTextColor;
@@ -212,10 +222,10 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       // Define styles
       const currentWeather = `color: ${this.weatherTextColor};`;
       const forecastStyle = `${currentWeather}font-size: ${fontSize(this.weatherFontSize)};`;
-      const forecastDayContainerStyle = `background-color:${this.weatherForecastBackgroundColor}; padding:${0.5 * this.scaleSize}em ${0.3 * this.scaleSize}em; margin: 0${0.2 * this.scaleSize}em; border-radius: ${this.scaleSize * 15}px;`;
+      const forecastDayContainerStyle = `background-color:${this.weatherForecastBackgroundColor}; padding:${0.5 * this.scaleSize}em ${0.3 * this.scaleSize}em; margin: 0${0.2 * this.scaleSize}em; border-radius: ${this.scaleSize * this.weatherForecastBorderRadius}px;`;
 
       // Set weather container styles
-      this._weatherContainer.style = `background-color:${this.weatherBackgroundColor}; padding:${0.65 * this.scaleSize}em; border-radius:${20 * this.scaleSize}px; margin-top:${0.2 * this.scaleSize}em; margin-bottom:${0.2 * this.scaleSize}em;`;
+      this._weatherContainer.style = `background-color:${this.weatherBackgroundColor}; padding:${0.65 * this.scaleSize}em; border-radius:${this.weatherBorderRadius * this.scaleSize}px; margin-top:${0.2 * this.scaleSize}em; margin-bottom:${0.2 * this.scaleSize}em;`;
       this._currentWeatherContainer.style = `padding:${1 * this.scaleSize}em;`;
 
       // Set current weather label styles
