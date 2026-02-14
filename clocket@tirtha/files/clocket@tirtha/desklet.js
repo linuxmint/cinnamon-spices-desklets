@@ -82,6 +82,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
     // Default settings used as fallback
     this.scaleSize = 1;
+    this.hideDecorations = true;
     this.showWeatherData = true;
     this.temperatureUnit = "celsius";
     this.webservice = "Open-Metro";
@@ -118,6 +119,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     // Initialize settings and bind them to the desklet properties
     const settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
     settings.bind("scale-size", "scaleSize", this._onScaleSizeChange);
+    settings.bind("hide-decorations", "hideDecorations", this._onDecorationChanged);
     settings.bind("show-weather-data", "showWeatherData", this._onShowWeatherSettingChanged);
     settings.bind("temperature-unit", "temperatureUnit", this._loadWeather);
     settings.bind("webservice", "webservice", this._loadWeather);
@@ -142,6 +144,8 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
     // Add action to desklet right-click menu
     this._menu.addSettingsAction(_("Date and Time Settings"), "calendar");
+
+    this._onDecorationChanged();
 
     if (this.showWeatherData) {
       this._loadWeatherLayout();
@@ -259,6 +263,11 @@ class CinnamonClockDesklet extends Desklet.Desklet {
         if (this["_forecastDay" + i + "Button"].get_child()) this["_forecastDay" + i + "Button"].get_child().set_icon_size(iconSize);
       }
     }
+  }
+
+  _onDecorationChanged() {
+    this.metadata["prevent-decorations"] = this.hideDecorations;
+    this._updateDecoration();
   }
 
   _getIcon(path, size) {

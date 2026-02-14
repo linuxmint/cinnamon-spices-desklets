@@ -25,7 +25,7 @@
     "general-section": {
       "type": "section",
       "title": "General",
-      "keys": ["scale-size"]
+      "keys": ["scale-size", "hide-decorations"]
     },
     "weather-data-section": {
       "type": "section",
@@ -63,6 +63,11 @@
     "min": 0.3,
     "max": 3.0,
     "description": "Desklet scale size"
+  },
+  "hide-decorations": {
+    "type": "checkbox",
+    "description": "Hide decorations",
+    "default": true
   },
   "show-weather-data": {
     "type": "switch",

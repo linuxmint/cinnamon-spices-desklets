@@ -61,6 +61,8 @@ Changelog
   - renamed stylesheet class names
   - error handling and logging
   - added more code comments
+- added changelog.md
+  - previous changes and version numbers extracted from Git history
 - retain weather style when toggling the `show-weather-data` setting
 - caching of Open Metro geodata retrieved via city name
 - fix stretched icons
@@ -76,4 +78,4 @@ Changelog
   - date border radius
   - weather border radius
   - weather forecast border radius
-- added changelog.md
+  - hide decorations (set to true by default)
