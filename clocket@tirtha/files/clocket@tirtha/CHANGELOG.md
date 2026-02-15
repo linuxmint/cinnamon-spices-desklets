@@ -69,6 +69,7 @@ Changelog
 - fix stretched icons
 - added loading text
 - reorganize settings layout
+- added hover effect and tooltips for reload buttons
 - added new settings
   - date font size
   - date text color

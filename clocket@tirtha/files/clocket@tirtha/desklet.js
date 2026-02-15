@@ -11,6 +11,7 @@ const Mainloop = imports.mainloop;
 const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
 const Pango = imports.gi.Pango;
+const Tooltips = imports.ui.tooltips;
 
 // Initialize HTTP session for API requests
 let _httpSession;
@@ -736,6 +737,9 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
   // Initializes the weather section layout and loads the weather data
   _loadWeatherLayout() {
+    if (this._weatherContainer) {
+      this._weatherContainer.destroy();
+    }
     this._weatherContainer = new St.BoxLayout();
     this._currentWeatherContainer = new St.BoxLayout({ vertical: true });
     this._forecastWeatherContainer = new St.BoxLayout();
@@ -743,10 +747,11 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     // Current weather
     this._locationLabel = new St.Label({ style_class: "clocket-current-location-label" });
     this._locationLabel.set_text(_("Loading..."));
-    this._currentWeatherButton = new St.Button();
+    this._currentWeatherButton = new St.Button({ style_class: "clocket-reload-weather-button" });
     this._currentWeatherButton.connect("clicked", () => {
       this._loadWeather();
     });
+    new Tooltips.Tooltip(this._currentWeatherButton, _("Reload weather data"));
     this._currentTemperatureLabel = new St.Label();
     this._currentTemperatureLabel.set_text(_("Loading..."));
     this._currentDescriptionLabel = new St.Label({ style_class: "clocket-current-description-label" });
@@ -764,7 +769,14 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       let forecastDayContainer = new St.BoxLayout({ vertical: true });
       this["_forecastDay" + i + "Container"] = forecastDayContainer;
       this["_forecastDay" + i + "Label"] = new St.Label({ style_class: "clocket-forecast-day-label" });
-      this["_forecastDay" + i + "Button"] = new St.Button({ style: "margin-top:10px;margin-bottom:10px;" });
+      this["_forecastDay" + i + "Button"] = new St.Button({
+        style_class: "clocket-reload-weather-button",
+        style: "margin-top:10px;margin-bottom:10px;",
+      });
+      this["_forecastDay" + i + "Button"].connect("clicked", () => {
+        this._loadWeather();
+      });
+      new Tooltips.Tooltip(this["_forecastDay" + i + "Button"], _("Reload weather data"));
       this["_forecastDay" + i + "TemperatureLabel"] = new St.Label({ style_class: "clocket-forecast-day-label" });
       this["_forecastDay" + i + "Label"].set_text("    ...    ");
       this["_forecastDay" + i + "TemperatureLabel"].set_text("    ...    ");
