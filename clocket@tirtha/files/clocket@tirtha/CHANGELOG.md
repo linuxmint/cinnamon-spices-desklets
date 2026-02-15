@@ -32,13 +32,13 @@ Changelog
 
 ## [3.0.0] 12.02.2026
 
-- added Open-Metro data service (no API key required)
+- added Open-Meteo data service (no API key required)
 - automatic location detection added and set as default
 - show weather on default
-- added setting to switch between celcius and fahrenheit
+- added setting to switch between Celsius and Fahrenheit
 - added translation for desklet GUI
 - uses the `clock-use-24h` Cinnamon setting
-- usee the `clock-show-seconds`Cinnamon setting
+- uses the `clock-show-seconds` Cinnamon setting
 - added line wrapping for weather description
 - added weather refresh interval setting
 - added desklet scale size setting based on system font size
@@ -64,8 +64,9 @@ Changelog
   - added more code comments
 - added changelog.md
   - previous changes and version numbers extracted from Git history
+- updated README.md
 - retain weather style when toggling the `show-weather-data` setting
-- caching of Open Metro geodata retrieved via city name
+- caching of Open-Meteo geodata retrieved via city name
 - fix stretched icons
 - added loading text
 - reorganize settings layout

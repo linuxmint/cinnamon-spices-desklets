@@ -105,11 +105,11 @@
   },
   "webservice": {
     "type": "combobox",
-    "default": "Open Metro",
+    "default": "Open Meteo",
     "dependency": "show-weather-data",
     "description": "Data service",
     "options": {
-      "Open-Metro": "Open Metro",
+      "Open-Meteo": "Open Meteo",
       "Open Weather Map Free (requires API key)": "openweathermap"
     }
   },

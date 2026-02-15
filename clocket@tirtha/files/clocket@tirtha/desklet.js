@@ -87,7 +87,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this.scaleSize = 1;
     this.hideDecorations = true;
     this.temperatureUnit = "celsius";
-    this.webservice = "Open-Metro";
+    this.webservice = "Open-Meteo";
     this.apiKey = "";
     this.locationType = "automatic";
     this.location = "";
@@ -407,7 +407,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
   // Splits the location string into latitude and longitude
   _parseCoordinates(location) {
-    const separators = [",", "-", ":"];
+    const separators = [",", ":"];
     for (const sep of separators) {
       const parts = String(location).split(sep);
       if (parts.length === 2) {
@@ -426,7 +426,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       Mainloop.source_remove(this.weatherRefreshTimeout);
       this.weatherRefreshTimeout = null;
     }
-    if (this.webservice == "Open Metro") {
+    if (this.webservice == "Open Meteo") {
       this._loadWeatherOpenMetro();
     } else if (this.webservice == "openweathermap") {
       this._loadWeatherOpenWeatherMap();
