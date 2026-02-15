@@ -35,7 +35,16 @@
     "clock-style-section": {
       "type": "section",
       "title": "Clock style",
-      "keys": ["show-clock", "clock-font-size", "clock-text-color", "clock-background-color", "clock-border-radius"]
+      "keys": [
+        "show-clock",
+        "use-custom-time-string",
+        "custom-time-string",
+        "format-button",
+        "clock-font-size",
+        "clock-text-color",
+        "clock-background-color",
+        "clock-border-radius"
+      ]
     },
     "date-style-section": {
       "type": "section",
@@ -134,6 +143,25 @@
     "type": "switch",
     "default": true,
     "description": "Show clock"
+  },
+  "use-custom-time-string": {
+    "type": "switch",
+    "default": false,
+    "dependency": "show-clock",
+    "description": "Use custom time string"
+  },
+  "custom-time-string": {
+    "type": "entry",
+    "default": "%H:%M:%S",
+    "dependency": "use-custom-time-string",
+    "description": "Custom time string (strftime format)",
+    "tooltip": "Use strftime format (e.g. %H:%M:%S for 24-hour time with seconds)"
+  },
+  "format-button": {
+    "type": "button",
+    "description": "Show information on date format syntax",
+    "dependency": "use-custom-time-string",
+    "callback": "on_custom_format_button_pressed"
   },
   "clock-font-size": {
     "type": "spinbutton",

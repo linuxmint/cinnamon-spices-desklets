@@ -84,3 +84,4 @@ Changelog
   - hide decorations (set to true by default)
   - show clock setting
   - show date setting
+  - clock custom time string

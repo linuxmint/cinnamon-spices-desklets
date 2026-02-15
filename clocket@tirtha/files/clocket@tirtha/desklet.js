@@ -12,6 +12,7 @@ const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
 const Pango = imports.gi.Pango;
 const Tooltips = imports.ui.tooltips;
+const Util = imports.misc.util;
 
 // Initialize HTTP session for API requests
 let _httpSession;
@@ -85,24 +86,26 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     // Default settings used as fallback
     this.scaleSize = 1;
     this.hideDecorations = true;
-    this.showClock = true;
-    this.showDate = true;
-    this.showWeatherData = true;
     this.temperatureUnit = "celsius";
     this.webservice = "Open-Metro";
     this.apiKey = "";
     this.locationType = "automatic";
     this.location = "";
     this.weatherRefreshInterval = 5;
+    this.showClock = true;
+    this.useCustomTimeString = false;
+    this.customTimeString = "%H:%M:%S";
     this.clockFontSize = 40;
     this.clockTextColor = "rgb(255,255,255)";
     this.clockBackgroundColor = "rgba(0, 0, 0, 0.363)";
     this.clockBorderRadius = 20;
+    this.showDate = true;
     this.dateTextSize = 40;
     this.dateTextColor = "rgb(255,255,255)";
     this.dateAccentColor = "red";
     this.dateBackgroundColor = "rgba(0, 0, 0, 0.363)";
     this.dateBorderRadius = 20;
+    this.showWeatherData = true;
     this.weatherFontSize = 14;
     this.weatherTextColor = "rgb(255,255,255)";
     this.weatherBackgroundColor = "rgba(0, 0, 0, 0.363)";
@@ -125,24 +128,26 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     const settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
     settings.bind("scale-size", "scaleSize", this._onScaleSizeChange);
     settings.bind("hide-decorations", "hideDecorations", this._onDecorationChanged);
-    settings.bind("show-clock", "showClock", this._onShowClockSettingChanged);
-    settings.bind("show-date", "showDate", this._onShowDateSettingChanged);
-    settings.bind("show-weather-data", "showWeatherData", this._onShowWeatherSettingChanged);
     settings.bind("temperature-unit", "temperatureUnit", this._loadWeather);
     settings.bind("webservice", "webservice", this._loadWeather);
     settings.bind("api-key", "apiKey", this._loadWeather);
     settings.bind("location-type", "locationType", this._loadWeather);
     settings.bind("location", "location", this._onLocationChange);
     settings.bind("weather-refresh-interval", "weatherRefreshInterval", this._loadWeather);
+    settings.bind("show-clock", "showClock", this._onShowClockSettingChanged);
+    settings.bind("use-custom-time-string", "useCustomTimeString", this._updateClock);
+    settings.bind("custom-time-string", "customTimeString", this._updateClock);
     settings.bind("clock-font-size", "clockFontSize", this._updateClockStyle);
     settings.bind("clock-text-color", "clockTextColor", this._updateClockStyle);
     settings.bind("clock-background-color", "clockBackgroundColor", this._updateClockStyle);
     settings.bind("clock-border-radius", "clockBorderRadius", this._updateClockStyle);
+    settings.bind("show-date", "showDate", this._onShowDateSettingChanged);
     settings.bind("date-font-size", "dateTextSize", this._updateDateStyle);
     settings.bind("date-text-color", "dateTextColor", this._updateDateStyle);
     settings.bind("date-accent-color", "dateAccentColor", this._updateDateStyle);
     settings.bind("date-background-color", "dateBackgroundColor", this._updateDateStyle);
     settings.bind("date-border-radius", "dateBorderRadius", this._updateDateStyle);
+    settings.bind("show-weather-data", "showWeatherData", this._onShowWeatherSettingChanged);
     settings.bind("weather-font-size", "weatherFontSize", this._updateWeatherStyle);
     settings.bind("weather-text-color", "weatherTextColor", this._updateWeatherStyle);
     settings.bind("weather-background-color", "weatherBackgroundColor", this._updateWeatherStyle);
@@ -165,6 +170,10 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     if (this.showWeatherData) {
       this._loadWeatherLayout();
     }
+  }
+
+  on_custom_format_button_pressed() {
+    Util.spawnCommandLine("xdg-open https://cinnamon-spices.linuxmint.com/strftime.php");
   }
 
   // Weather data is loaded with a delay when changing location to avoid multiple requests while typing
@@ -814,9 +823,15 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   _updateClock() {
     if (!this.showClock) return;
 
-    const use24h = this.desktop_settings.get_boolean("clock-use-24h");
-    const showSeconds = this.desktop_settings.get_boolean("clock-show-seconds");
-    const timeFormat = (use24h ? "%H:%M" : "%I:%M") + (showSeconds ? ":%S" : "");
+    let timeFormat;
+
+    if (this.useCustomTimeString && this.customTimeString) {
+      timeFormat = this.customTimeString;
+    } else {
+      const use24h = this.desktop_settings.get_boolean("clock-use-24h");
+      const showSeconds = this.desktop_settings.get_boolean("clock-show-seconds");
+      timeFormat = (use24h ? "%H:%M" : "%I:%M") + (showSeconds ? ":%S" : "");
+    }
 
     this._setText(this._timeLabel, this.clock.get_clock_for_format(timeFormat));
   }
