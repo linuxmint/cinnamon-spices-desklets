@@ -25,7 +25,7 @@
     "general-section": {
       "type": "section",
       "title": "General",
-      "keys": ["scale-size", "hide-decorations"]
+      "keys": ["scale-size", "hide-decorations", "style-preset"]
     },
     "weather-data-section": {
       "type": "section",
@@ -87,6 +87,18 @@
     "type": "checkbox",
     "description": "Hide decorations",
     "default": true
+  },
+  "style-preset": {
+    "type": "combobox",
+    "default": "translucent",
+    "description": "Style Preset",
+    "options": {
+      "Translucent": "translucent",
+      "Transparent": "transparent",
+      "Material Design": "material",
+      "Metro": "metro",
+      "Mint": "mint"
+    }
   },
   "show-weather-data": {
     "type": "switch",
@@ -217,7 +229,7 @@
   },
   "custom-date-string": {
     "type": "entry",
-    "default": "%A, %B %d, %Y",
+    "default": "%A,%n%B %d, %Y",
     "dependency": "use-date-time-string",
     "description": "Custom date string (strftime format)"
   },

@@ -95,25 +95,11 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this.showClock = true;
     this.useCustomTimeString = false;
     this.customTimeString = "%H:%M:%S";
-    this.clockFontSize = 40;
-    this.clockTextColor = "rgb(255,255,255)";
-    this.clockBackgroundColor = "rgba(0, 0, 0, 0.363)";
-    this.clockBorderRadius = 20;
     this.showDate = true;
     this.useCustomDateString = false;
-    this.customDateString = "%A, %B %d, %Y";
-    this.dateTextSize = 40;
-    this.dateTextColor = "rgb(255,255,255)";
-    this.dateAccentColor = "red";
-    this.dateBackgroundColor = "rgba(0, 0, 0, 0.363)";
-    this.dateBorderRadius = 20;
+    this.customDateString = "%A,%n%B %d, %Y";
     this.showWeatherData = true;
-    this.weatherFontSize = 14;
-    this.weatherTextColor = "rgb(255,255,255)";
-    this.weatherBackgroundColor = "rgba(0, 0, 0, 0.363)";
-    this.weatherForecastBackgroundColor = "rgba(0, 0, 0, 0.4)";
-    this.weatherBorderRadius = 20;
-    this.weatherForecastBorderRadius = 15;
+    this._loadDefaultStyleSettings();
 
     // Generate weekday shorthands based on an arbitrary week starting point (2023-01-01 is a Sunday)
     this.weekdaysShorthands = [];
@@ -128,8 +114,10 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
     // Initialize settings and bind them to the desklet properties
     const settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
+    this.settings = settings;
     settings.bind("scale-size", "scaleSize", this._onScaleSizeChange);
     settings.bind("hide-decorations", "hideDecorations", this._onDecorationChanged);
+    settings.bind("style-preset", "stylePreset", this._onStylePresetChange);
     settings.bind("temperature-unit", "temperatureUnit", this._loadWeather);
     settings.bind("webservice", "webservice", this._loadWeather);
     settings.bind("api-key", "apiKey", this._loadWeather);
@@ -240,7 +228,6 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       "background-color:" +
       this.dateBackgroundColor +
       `; padding: ${1 * s}em; border-radius: ${this.dateBorderRadius * s}px; margin-left: ${0.3 * s}em;`;
-    this._clockAndDateContainer.style = `margin-bottom: ${0.3 * s}em;`;
     this._monthAndYearLabel.style = "font-size: " + fontSize(this.dateTextSize - 20) + ";\ncolor: " + this.dateTextColor;
     this._weekLabel.style = "font-size: " + fontSize(this.dateTextSize - 16) + ";\ncolor: " + this.dateTextColor;
   }
@@ -255,7 +242,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       const forecastDayContainerStyle = `background-color:${this.weatherForecastBackgroundColor}; padding:${0.5 * this.scaleSize}em ${0.3 * this.scaleSize}em; margin: 0${0.2 * this.scaleSize}em; border-radius: ${this.scaleSize * this.weatherForecastBorderRadius}px;`;
 
       // Set weather container styles
-      this._weatherContainer.style = `background-color:${this.weatherBackgroundColor}; padding:${0.65 * this.scaleSize}em; border-radius:${this.weatherBorderRadius * this.scaleSize}px; margin-top:${0.2 * this.scaleSize}em; margin-bottom:${0.2 * this.scaleSize}em;`;
+      this._weatherContainer.style = `background-color:${this.weatherBackgroundColor}; padding:${0.65 * this.scaleSize}em; border-radius:${this.weatherBorderRadius * this.scaleSize}px; margin-top:${0.3 * this.scaleSize}em;`;
       this._currentWeatherContainer.style = `padding:${1 * this.scaleSize}em;`;
 
       // Set current weather label styles
@@ -294,6 +281,71 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   _onDecorationChanged() {
     this.metadata["prevent-decorations"] = this.hideDecorations;
     this._updateDecoration();
+  }
+
+  _loadDefaultStyleSettings() {
+    this.clockFontSize = 40;
+    this.clockTextColor = "rgb(255,255,255)";
+    this.clockBackgroundColor = "rgba(0, 0, 0, 0.363)";
+    this.clockBorderRadius = 20;
+    this.dateTextSize = 40;
+    this.dateTextColor = "rgb(255,255,255)";
+    this.dateAccentColor = "red";
+    this.dateBackgroundColor = "rgba(0, 0, 0, 0.363)";
+    this.dateBorderRadius = 20;
+    this.weatherFontSize = 14;
+    this.weatherTextColor = "rgb(255,255,255)";
+    this.weatherBackgroundColor = "rgba(0, 0, 0, 0.363)";
+    this.weatherForecastBackgroundColor = "rgba(0, 0, 0, 0.4)";
+    this.weatherBorderRadius = 20;
+    this.weatherForecastBorderRadius = 15;
+  }
+
+  _onStylePresetChange() {
+    this._loadDefaultStyleSettings();
+    if (this.stylePreset === "transparent") {
+      this.clockBackgroundColor = "rgba(0, 0, 0, 0)";
+      this.dateBackgroundColor = "rgba(0, 0, 0, 0)";
+      this.weatherBackgroundColor = "rgba(0, 0, 0, 0)";
+      this.weatherForecastBackgroundColor = "rgba(0, 0, 0, 0.4)";
+    } else if (this.stylePreset === "material") {
+      this.clockFontSize = 30;
+      this.dateTextSize = 30;
+      this.clockBackgroundColor = "#B9D5F7";
+      this.dateBackgroundColor = "#B9D5F7";
+      this.weatherBackgroundColor = "#B9D5F7";
+      this.clockTextColor = "#1B70D7";
+      this.dateTextColor = "#1B70D7";
+      this.weatherTextColor = "#1B70D7";
+      this.weatherForecastBackgroundColor = "#F7F7F7";
+      this.clockBorderRadius = 30;
+      this.dateBorderRadius = 30;
+      this.weatherBorderRadius = 30;
+      this.weatherForecastBorderRadius = 28;
+    } else if (this.stylePreset === "metro") {
+      this.clockBorderRadius = 0;
+      this.dateBorderRadius = 0;
+      this.weatherBorderRadius = 0;
+      this.weatherForecastBorderRadius = 0;
+      this.clockBackgroundColor = "#363B45";
+      this.dateBackgroundColor = "#363B45";
+      this.weatherBackgroundColor = "#363B45";
+    } else if (this.stylePreset === "mint") {
+      this.clockBorderRadius = 8;
+      this.dateBorderRadius = 8;
+      this.weatherBorderRadius = 8;
+      this.weatherForecastBorderRadius = 6;
+      this.clockFontSize = 30;
+      this.dateTextSize = 35;
+      this.clockTextColor = "#64615c";
+      this.dateTextColor = "#64615c";
+      this.weatherTextColor = "#64615c";
+      this.weatherForecastBackgroundColor = "#ccf7df";
+      this.weatherBackgroundColor = "#E9FFF4";
+      this.clockBackgroundColor = "#E9FFF4";
+      this.dateBackgroundColor = "#E9FFF4";
+      this.dateAccentColor = "#44FF8B";
+    }
   }
 
   _getIcon(path, size) {
@@ -853,6 +905,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       }
       this._dayLabel.hide();
       this._weekLabel.hide();
+      this._lastDateString = null;
       return;
     }
     const dateString = this.clock.get_clock_for_format("%d");

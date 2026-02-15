@@ -87,3 +87,9 @@ Changelog
   - show date setting
   - custom clock time string
   - custom date time string
+  - style presets
+    - Translucent
+    - Transparent
+    - Material Design
+    - Metro
+    - Mint
