@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: clocket@tirtha 2.4\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-02-13 16:07+0100\n"
-"PO-Revision-Date: 2024-12-01 01:27+0100\n"
+"POT-Creation-Date: 2026-02-15 14:25+0100\n"
+"PO-Revision-Date: 2026-02-15 14:46+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,155 +16,145 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
-#. desklet.js:54
+#. settings-schema.json->clock-page->title
+#. desklet.js:40
 msgid "Clock"
 msgstr "Uhr"
 
-#. desklet.js:88
+#. desklet.js:151
 msgid "Date and Time Settings"
 msgstr "Datums- und Uhrzeiteinstellungen"
 
-#. desklet.js:381
+#. desklet.js:497 desklet.js:498 desklet.js:499 desklet.js:500 desklet.js:501
+#. desklet.js:502 desklet.js:503 desklet.js:504 desklet.js:505
+msgid "Error"
+msgstr "Fehler"
+
+#. desklet.js:661
 msgid "Clear sky"
-msgstr ""
+msgstr "Klarer Himmel"
 
-#. desklet.js:382
+#. desklet.js:662
 msgid "Mainly clear"
-msgstr ""
+msgstr "Überwiegend klar"
 
-#. desklet.js:383
+#. desklet.js:663
 msgid "Partly cloudy"
-msgstr ""
+msgstr "Teils bewölkt"
 
-#. desklet.js:384
+#. desklet.js:664
 msgid "Overcast"
-msgstr ""
+msgstr "Bedeckt"
 
-#. desklet.js:385
+#. desklet.js:665
 msgid "Fog"
-msgstr ""
+msgstr "Nebel"
 
-#. desklet.js:386
+#. desklet.js:666
 msgid "Depositing rime fog"
-msgstr ""
+msgstr "Ablagerung von Reifnebel"
 
-#. desklet.js:387
+#. desklet.js:667
 msgid "Light drizzle"
-msgstr ""
+msgstr "Leichter Nieselregen"
 
-#. desklet.js:388
+#. desklet.js:668
 msgid "Moderate drizzle"
-msgstr ""
+msgstr "Mäßiger Nieselregen"
 
-#. desklet.js:389
+#. desklet.js:669
 msgid "Dense drizzle"
-msgstr ""
+msgstr "Dichter Nieselregen"
 
-#. desklet.js:390
+#. desklet.js:670
 msgid "Light freezing drizzle"
-msgstr ""
+msgstr "Leichter gefrierender Nieselregen"
 
-#. desklet.js:391
+#. desklet.js:671
 msgid "Dense freezing drizzle"
-msgstr ""
+msgstr "Dichter gefrierender Nieselregen"
 
-#. desklet.js:392
+#. desklet.js:672
 msgid "Slight rain"
-msgstr ""
+msgstr "Leichter Regen"
 
-#. desklet.js:393
+#. desklet.js:673
 msgid "Moderate rain"
-msgstr ""
+msgstr "Mäßiger Regen"
 
-#. desklet.js:394
+#. desklet.js:674
 msgid "Heavy rain"
-msgstr ""
+msgstr "Starkregen"
 
-#. desklet.js:395
+#. desklet.js:675
 msgid "Light freezing rain"
-msgstr ""
+msgstr "Leichter gefrierender Regen"
 
-#. desklet.js:396
+#. desklet.js:676
 msgid "Heavy freezing rain"
-msgstr ""
+msgstr "Starker gefrierender Regen"
 
-#. desklet.js:397
+#. desklet.js:677
 msgid "Slight snow fall"
-msgstr ""
+msgstr "Leichter Schneefall"
 
-#. desklet.js:398
+#. desklet.js:678
 msgid "Moderate snow fall"
-msgstr ""
+msgstr "Mäßiger Schneefall"
 
-#. desklet.js:399
+#. desklet.js:679
 msgid "Heavy snow fall"
-msgstr ""
+msgstr "Starker Schneefall"
 
-#. desklet.js:400
+#. desklet.js:680
 msgid "Snow grains"
-msgstr ""
+msgstr "Schneekörner"
 
-#. desklet.js:401
+#. desklet.js:681
 msgid "Slight rain showers"
-msgstr ""
+msgstr "Leichte Regenschauer"
 
-#. desklet.js:402
+#. desklet.js:682
 msgid "Moderate rain showers"
-msgstr ""
+msgstr "Mäßige Regenschauer"
 
-#. desklet.js:403
+#. desklet.js:683
 msgid "Violent rain showers"
-msgstr ""
+msgstr "Heftige Regenschauer"
 
-#. desklet.js:404
+#. desklet.js:684
 msgid "Slight snow showers"
-msgstr ""
+msgstr "Leichte Schneeschauer"
 
-#. desklet.js:405
+#. desklet.js:685
 msgid "Heavy snow showers"
-msgstr ""
+msgstr "Heftige Schneeschauer"
 
-#. desklet.js:406
+#. desklet.js:686
 msgid "Thunderstorm"
-msgstr ""
+msgstr "Gewitter"
 
-#. desklet.js:407
+#. desklet.js:687
 msgid "Thunderstorm with slight hail"
-msgstr ""
+msgstr "Gewitter mit leichtem Hagel"
 
-#. desklet.js:408
+#. desklet.js:688
 msgid "Thunderstorm with heavy hail"
-msgstr ""
+msgstr "Gewitter mit starkem Hagel"
 
-#. desklet.js:449
-msgid "SUN"
-msgstr ""
+#. desklet.js:690
+msgid "Unknown description"
+msgstr "Unbekannte Beschreibung"
 
-#. desklet.js:449
-msgid "MON"
-msgstr ""
+#. desklet.js:814 desklet.js:821 desklet.js:825
+msgid "Loading..."
+msgstr "Lädt..."
 
-#. desklet.js:449
-msgid "TUE"
-msgstr ""
-
-#. desklet.js:449
-msgid "WED"
-msgstr ""
-
-#. desklet.js:449
-msgid "THU"
-msgstr ""
-
-#. desklet.js:449
-msgid "FRI"
-msgstr ""
-
-#. desklet.js:449
-msgid "SAT"
-msgstr ""
+#. desklet.js:819 desklet.js:844
+msgid "Reload weather data"
+msgstr "Wetterdaten neu laden"
 
 #. metadata.json->name
 msgid "clocket"
@@ -172,68 +162,95 @@ msgstr "Clocket"
 
 #. metadata.json->description
 msgid ""
-"A desklet that displays the time, date, currenty and forecast weather report"
+"A desklet that displays the time, date, currently and forecast weather report"
 msgstr ""
-"Ein Desklet, das Uhrzeit, Datum, aktuelle und prognostizierte Wetterberichte "
-"anzeigt"
+"Ein Desklet, das Uhrzeit, Datum, aktuellen Wetterbericht und "
+"Wettervorhersage anzeigt"
 
-#. metadata.json->comments
-msgid ""
-"Please consider custom Weather Desklet into your language. See the website "
-"for more information"
-msgstr ""
-"Bitte denken Sie darüber nach, das Weather Desklet in Ihrer Sprache "
-"anzupassen. Weitere Informationen finden Sie auf der Website"
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
+msgid "General"
+msgstr "Allgemein"
 
-#. settings-schema.json->top->description
-#, fuzzy
+#. settings-schema.json->weather-page->title
+msgid "Weather"
+msgstr "Wetter"
+
+#. settings-schema.json->date-page->title
+msgid "Date"
+msgstr "Datum"
+
+#. settings-schema.json->weather-data-section->title
+msgid "Weather data"
+msgstr "Wetterdaten"
+
+#. settings-schema.json->clock-style-section->title
 msgid "Clock style"
-msgstr "Uhr"
+msgstr "Uhrenstil"
 
-#. settings-schema.json->font-size->units
-msgid "px"
-msgstr "px"
+#. settings-schema.json->date-style-section->title
+msgid "Date style"
+msgstr "Datumsstil"
 
-#. settings-schema.json->font-size->description
-msgid "Font size"
-msgstr "Schriftgröße"
+#. settings-schema.json->weather-style-section->title
+msgid "Weather style"
+msgstr "Wetterstil"
 
-#. settings-schema.json->text-color->description
-msgid "Text color"
-msgstr "Textfarbe"
+#. settings-schema.json->scale-size->description
+msgid "Desklet scale size"
+msgstr "Deskletskalierungsgröße"
 
-#. settings-schema.json->background-color->description
-msgid "background color"
-msgstr "Hintergrundfarbe"
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Dekorationen verstecken"
 
-#. settings-schema.json->weatherconf->description
-#, fuzzy
-msgid "Weather data service"
-msgstr "Datendienst auswählen"
+#. settings-schema.json->style-preset->description
+msgid "Style Preset"
+msgstr "Stilvoreinstellung"
+
+#. settings-schema.json->style-preset->options
+msgid "Translucent"
+msgstr "Durchscheinend"
+
+#. settings-schema.json->style-preset->options
+msgid "Transparent"
+msgstr "Transparent"
+
+#. settings-schema.json->style-preset->options
+msgid "Material Design"
+msgstr "Material Design"
+
+#. settings-schema.json->style-preset->options
+msgid "Metro"
+msgstr "Metro"
+
+#. settings-schema.json->style-preset->options
+msgid "Mint"
+msgstr "Mint"
 
 #. settings-schema.json->show-weather-data->description
 msgid "Show weather"
-msgstr ""
+msgstr "Wetter anzeigen"
 
 #. settings-schema.json->temperature-unit->description
 msgid "Units for weather data"
-msgstr ""
+msgstr "Einheiten für Wetterdaten"
 
 #. settings-schema.json->temperature-unit->options
 msgid "°C"
-msgstr ""
+msgstr "°C"
 
 #. settings-schema.json->temperature-unit->options
 msgid "°F"
-msgstr ""
+msgstr "°F"
 
 #. settings-schema.json->webservice->description
 msgid "Data service"
 msgstr "Datendienst"
 
 #. settings-schema.json->webservice->options
-msgid "Open-Metro"
-msgstr ""
+msgid "Open-Meteo"
+msgstr "Open-Meteo"
 
 #. settings-schema.json->webservice->options
 msgid "Open Weather Map Free (requires API key)"
@@ -241,7 +258,7 @@ msgstr "Open Weather Map Free (erfordert API key)"
 
 #. settings-schema.json->api-key->description
 msgid "API key"
-msgstr ""
+msgstr "API-Schlüssel"
 
 #. settings-schema.json->location-type->description
 msgid "Type of location data"
@@ -257,28 +274,124 @@ msgstr "Breiten- und Längengrad"
 
 #. settings-schema.json->location-type->options
 msgid "Automatic"
-msgstr ""
+msgstr "Automatisch"
 
 #. settings-schema.json->location->description
-msgid "Location"
-msgstr ""
+msgid "Location (city name or lat-lon)"
+msgstr "Ort (Stadtname oder Längen- und Breitengrad)"
 
 #. settings-schema.json->location->tooltip
-msgid "put your lat-long generated from lat-long.html page"
+msgid "city name (e.g. London) or lat-lon (e.g. 51.5074456,-0.1277653)"
 msgstr ""
-"Breiten- und Längengrad eingeben, der von der Seite lat-long.html generiert "
-"wurde"
+"Stadtname (z. B. London) oder Längen- und Breitengrad (z. B. "
+"51.5074456,-0.1277653)"
 
-#. settings-schema.json->design->description
-msgid "Weather style"
-msgstr ""
+#. settings-schema.json->weather-refresh-interval->units
+msgid "minutes"
+msgstr "Minuten"
+
+#. settings-schema.json->weather-refresh-interval->description
+msgid "Weather data refresh interval"
+msgstr "Aktualisierungsintervall der Wetterdaten"
+
+#. settings-schema.json->show-clock->description
+msgid "Show clock"
+msgstr "Uhr anzeigen"
+
+#. settings-schema.json->use-custom-time-string->description
+msgid "Use custom time string"
+msgstr "Benutzerdefinierten time string verwenden"
+
+#. settings-schema.json->custom-time-string->description
+msgid "Custom time string (strftime format)"
+msgstr "Benutzerdefinierter time string (strftime Format)"
+
+#. settings-schema.json->time-format-button->description
+msgid "Show information on time format syntax"
+msgstr "Informationen zur Syntax des Zeitformats anzeigen"
+
+#. settings-schema.json->clock-font-size->units
+#. settings-schema.json->clock-border-radius->units
+#. settings-schema.json->date-font-size->units
+#. settings-schema.json->date-border-radius->units
+#. settings-schema.json->weather-font-size->units
+#. settings-schema.json->weather-border-radius->units
+#. settings-schema.json->weather-forecast-border-radius->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->clock-font-size->description
+msgid "Clock font size"
+msgstr "Schriftgröße der Uhr"
+
+#. settings-schema.json->clock-text-color->description
+msgid "Text color"
+msgstr "Textfarbe"
+
+#. settings-schema.json->clock-background-color->description
+msgid "Clock background color"
+msgstr "Hintergrundfarbe der Uhr"
+
+#. settings-schema.json->clock-border-radius->description
+msgid "Clock border radius"
+msgstr "Radius des Uhrenrahmens"
+
+#. settings-schema.json->show-date->description
+msgid "Show date"
+msgstr "Datum anzeigen"
+
+#. settings-schema.json->use-date-time-string->description
+msgid "Use custom date string"
+msgstr "Benutzerdefinierten date string verwenden"
+
+#. settings-schema.json->custom-date-string->description
+msgid "Custom date string (strftime format)"
+msgstr "Benutzerdefinierter date string (strftime Format)"
+
+#. settings-schema.json->date-format-button->description
+msgid "Show information on date format syntax"
+msgstr "Informationen zur Syntax des Datumsformats anzeigen"
+
+#. settings-schema.json->date-font-size->description
+msgid "Date font size"
+msgstr "Datumsschriftgröße"
+
+#. settings-schema.json->date-text-color->description
+msgid "Date text color"
+msgstr "Datumstextfarbe"
+
+#. settings-schema.json->date-accent-color->description
+msgid "Date accent color"
+msgstr "Datumsakzentfarbe"
+
+#. settings-schema.json->date-background-color->description
+msgid "Date background color"
+msgstr "Hintergrundfarbe des Datums"
+
+#. settings-schema.json->date-border-radius->description
+msgid "Date border radius"
+msgstr "Datumsrahmenradius"
+
+#. settings-schema.json->weather-font-size->description
+msgid "Weather font size"
+msgstr "Schriftgröße für Wetterdaten"
 
 #. settings-schema.json->weather-text-color->description
-#, fuzzy
 msgid "Weather text color"
-msgstr "Wetter-Block-Textfarbe"
+msgstr "Wettertextfarbe"
 
 #. settings-schema.json->weather-background-color->description
-#, fuzzy
 msgid "Weather background color"
-msgstr "Hintergrundfarbe"
+msgstr "Wetterhintergrundfarbe"
+
+#. settings-schema.json->weather-forecast-background-color->description
+msgid "Weather forecast background color"
+msgstr "Wettervorhersagehintergrundfarbe"
+
+#. settings-schema.json->weather-border-radius->description
+msgid "Weather border radius"
+msgstr "Wetterrahmenradius"
+
+#. settings-schema.json->weather-forecast-border-radius->description
+msgid "Weather forecast border radius"
+msgstr "Wettervorhersagerahmenradius"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: clocket@tirtha 2.4\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-02-13 16:07+0100\n"
+"POT-Creation-Date: 2026-02-15 14:25+0100\n"
 "PO-Revision-Date: 2025-10-19 04:21+0700\n"
 "Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
 "Language-Team: \n"
@@ -18,152 +18,142 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#. desklet.js:54
+#. settings-schema.json->clock-page->title
+#. desklet.js:40
 msgid "Clock"
 msgstr "Đồng hồ"
 
-#. desklet.js:88
+#. desklet.js:151
 msgid "Date and Time Settings"
 msgstr "Cài đặt Ngày và Giờ"
 
-#. desklet.js:381
+#. desklet.js:497 desklet.js:498 desklet.js:499 desklet.js:500 desklet.js:501
+#. desklet.js:502 desklet.js:503 desklet.js:504 desklet.js:505
+msgid "Error"
+msgstr ""
+
+#. desklet.js:661
 msgid "Clear sky"
 msgstr ""
 
-#. desklet.js:382
+#. desklet.js:662
 msgid "Mainly clear"
 msgstr ""
 
-#. desklet.js:383
+#. desklet.js:663
 msgid "Partly cloudy"
 msgstr ""
 
-#. desklet.js:384
+#. desklet.js:664
 msgid "Overcast"
 msgstr ""
 
-#. desklet.js:385
+#. desklet.js:665
 msgid "Fog"
 msgstr ""
 
-#. desklet.js:386
+#. desklet.js:666
 msgid "Depositing rime fog"
 msgstr ""
 
-#. desklet.js:387
+#. desklet.js:667
 msgid "Light drizzle"
 msgstr ""
 
-#. desklet.js:388
+#. desklet.js:668
 msgid "Moderate drizzle"
 msgstr ""
 
-#. desklet.js:389
+#. desklet.js:669
 msgid "Dense drizzle"
 msgstr ""
 
-#. desklet.js:390
+#. desklet.js:670
 msgid "Light freezing drizzle"
 msgstr ""
 
-#. desklet.js:391
+#. desklet.js:671
 msgid "Dense freezing drizzle"
 msgstr ""
 
-#. desklet.js:392
+#. desklet.js:672
 msgid "Slight rain"
 msgstr ""
 
-#. desklet.js:393
+#. desklet.js:673
 msgid "Moderate rain"
 msgstr ""
 
-#. desklet.js:394
+#. desklet.js:674
 msgid "Heavy rain"
 msgstr ""
 
-#. desklet.js:395
+#. desklet.js:675
 msgid "Light freezing rain"
 msgstr ""
 
-#. desklet.js:396
+#. desklet.js:676
 msgid "Heavy freezing rain"
 msgstr ""
 
-#. desklet.js:397
+#. desklet.js:677
 msgid "Slight snow fall"
 msgstr ""
 
-#. desklet.js:398
+#. desklet.js:678
 msgid "Moderate snow fall"
 msgstr ""
 
-#. desklet.js:399
+#. desklet.js:679
 msgid "Heavy snow fall"
 msgstr ""
 
-#. desklet.js:400
+#. desklet.js:680
 msgid "Snow grains"
 msgstr ""
 
-#. desklet.js:401
+#. desklet.js:681
 msgid "Slight rain showers"
 msgstr ""
 
-#. desklet.js:402
+#. desklet.js:682
 msgid "Moderate rain showers"
 msgstr ""
 
-#. desklet.js:403
+#. desklet.js:683
 msgid "Violent rain showers"
 msgstr ""
 
-#. desklet.js:404
+#. desklet.js:684
 msgid "Slight snow showers"
 msgstr ""
 
-#. desklet.js:405
+#. desklet.js:685
 msgid "Heavy snow showers"
 msgstr ""
 
-#. desklet.js:406
+#. desklet.js:686
 msgid "Thunderstorm"
 msgstr ""
 
-#. desklet.js:407
+#. desklet.js:687
 msgid "Thunderstorm with slight hail"
 msgstr ""
 
-#. desklet.js:408
+#. desklet.js:688
 msgid "Thunderstorm with heavy hail"
 msgstr ""
 
-#. desklet.js:449
-msgid "SUN"
+#. desklet.js:690
+msgid "Unknown description"
 msgstr ""
 
-#. desklet.js:449
-msgid "MON"
+#. desklet.js:814 desklet.js:821 desklet.js:825
+msgid "Loading..."
 msgstr ""
 
-#. desklet.js:449
-msgid "TUE"
-msgstr ""
-
-#. desklet.js:449
-msgid "WED"
-msgstr ""
-
-#. desklet.js:449
-msgid "THU"
-msgstr ""
-
-#. desklet.js:449
-msgid "FRI"
-msgstr ""
-
-#. desklet.js:449
-msgid "SAT"
+#. desklet.js:819 desklet.js:844
+msgid "Reload weather data"
 msgstr ""
 
 #. metadata.json->name
@@ -171,45 +161,75 @@ msgid "clocket"
 msgstr "clocket"
 
 #. metadata.json->description
+#, fuzzy
 msgid ""
-"A desklet that displays the time, date, currenty and forecast weather report"
+"A desklet that displays the time, date, currently and forecast weather report"
 msgstr ""
 "Một desklet hiển thị thời gian, ngày tháng, thời tiết hiện tại và dự báo "
 "thời tiết"
 
-#. metadata.json->comments
-msgid ""
-"Please consider custom Weather Desklet into your language. See the website "
-"for more information"
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
+msgid "General"
 msgstr ""
-"Hãy cân nhắc tùy chỉnh Desklet Thời tiết sang ngôn ngữ của bạn. Xem trang "
-"web để biết thêm thông tin"
 
-#. settings-schema.json->top->description
+#. settings-schema.json->weather-page->title
+msgid "Weather"
+msgstr ""
+
+#. settings-schema.json->date-page->title
+msgid "Date"
+msgstr ""
+
+#. settings-schema.json->weather-data-section->title
+#, fuzzy
+msgid "Weather data"
+msgstr "chọn dịch vụ dữ liệu"
+
+#. settings-schema.json->clock-style-section->title
 #, fuzzy
 msgid "Clock style"
 msgstr "Đồng hồ"
 
-#. settings-schema.json->font-size->units
-msgid "px"
-msgstr "px"
+#. settings-schema.json->date-style-section->title
+msgid "Date style"
+msgstr ""
 
-#. settings-schema.json->font-size->description
-msgid "Font size"
-msgstr "Cỡ chữ"
+#. settings-schema.json->weather-style-section->title
+msgid "Weather style"
+msgstr ""
 
-#. settings-schema.json->text-color->description
-msgid "Text color"
-msgstr "Màu chữ"
+#. settings-schema.json->scale-size->description
+msgid "Desklet scale size"
+msgstr ""
 
-#. settings-schema.json->background-color->description
-msgid "background color"
-msgstr "màu nền"
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr ""
 
-#. settings-schema.json->weatherconf->description
-#, fuzzy
-msgid "Weather data service"
-msgstr "chọn dịch vụ dữ liệu"
+#. settings-schema.json->style-preset->description
+msgid "Style Preset"
+msgstr ""
+
+#. settings-schema.json->style-preset->options
+msgid "Translucent"
+msgstr ""
+
+#. settings-schema.json->style-preset->options
+msgid "Transparent"
+msgstr ""
+
+#. settings-schema.json->style-preset->options
+msgid "Material Design"
+msgstr ""
+
+#. settings-schema.json->style-preset->options
+msgid "Metro"
+msgstr ""
+
+#. settings-schema.json->style-preset->options
+msgid "Mint"
+msgstr ""
 
 #. settings-schema.json->show-weather-data->description
 msgid "Show weather"
@@ -232,7 +252,7 @@ msgid "Data service"
 msgstr "Dịch vụ dữ liệu"
 
 #. settings-schema.json->webservice->options
-msgid "Open-Metro"
+msgid "Open-Meteo"
 msgstr ""
 
 #. settings-schema.json->webservice->options
@@ -260,16 +280,110 @@ msgid "Automatic"
 msgstr ""
 
 #. settings-schema.json->location->description
-msgid "Location"
+msgid "Location (city name or lat-lon)"
 msgstr ""
 
 #. settings-schema.json->location->tooltip
-msgid "put your lat-long generated from lat-long.html page"
-msgstr "nhập tọa độ vĩ độ-kinh độ của bạn được tạo từ trang lat-long.html"
-
-#. settings-schema.json->design->description
-msgid "Weather style"
+msgid "city name (e.g. London) or lat-lon (e.g. 51.5074456,-0.1277653)"
 msgstr ""
+
+#. settings-schema.json->weather-refresh-interval->units
+msgid "minutes"
+msgstr ""
+
+#. settings-schema.json->weather-refresh-interval->description
+#, fuzzy
+msgid "Weather data refresh interval"
+msgstr "chọn dịch vụ dữ liệu"
+
+#. settings-schema.json->show-clock->description
+msgid "Show clock"
+msgstr ""
+
+#. settings-schema.json->use-custom-time-string->description
+msgid "Use custom time string"
+msgstr ""
+
+#. settings-schema.json->custom-time-string->description
+msgid "Custom time string (strftime format)"
+msgstr ""
+
+#. settings-schema.json->time-format-button->description
+msgid "Show information on time format syntax"
+msgstr ""
+
+#. settings-schema.json->clock-font-size->units
+#. settings-schema.json->clock-border-radius->units
+#. settings-schema.json->date-font-size->units
+#. settings-schema.json->date-border-radius->units
+#. settings-schema.json->weather-font-size->units
+#. settings-schema.json->weather-border-radius->units
+#. settings-schema.json->weather-forecast-border-radius->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->clock-font-size->description
+#, fuzzy
+msgid "Clock font size"
+msgstr "Cỡ chữ"
+
+#. settings-schema.json->clock-text-color->description
+msgid "Text color"
+msgstr "Màu chữ"
+
+#. settings-schema.json->clock-background-color->description
+#, fuzzy
+msgid "Clock background color"
+msgstr "màu nền"
+
+#. settings-schema.json->clock-border-radius->description
+msgid "Clock border radius"
+msgstr ""
+
+#. settings-schema.json->show-date->description
+msgid "Show date"
+msgstr ""
+
+#. settings-schema.json->use-date-time-string->description
+msgid "Use custom date string"
+msgstr ""
+
+#. settings-schema.json->custom-date-string->description
+msgid "Custom date string (strftime format)"
+msgstr ""
+
+#. settings-schema.json->date-format-button->description
+msgid "Show information on date format syntax"
+msgstr ""
+
+#. settings-schema.json->date-font-size->description
+#, fuzzy
+msgid "Date font size"
+msgstr "Cỡ chữ"
+
+#. settings-schema.json->date-text-color->description
+#, fuzzy
+msgid "Date text color"
+msgstr "màu chữ khối thời tiết"
+
+#. settings-schema.json->date-accent-color->description
+#, fuzzy
+msgid "Date accent color"
+msgstr "màu chữ khối thời tiết"
+
+#. settings-schema.json->date-background-color->description
+#, fuzzy
+msgid "Date background color"
+msgstr "màu nền"
+
+#. settings-schema.json->date-border-radius->description
+msgid "Date border radius"
+msgstr ""
+
+#. settings-schema.json->weather-font-size->description
+#, fuzzy
+msgid "Weather font size"
+msgstr "chọn dịch vụ dữ liệu"
 
 #. settings-schema.json->weather-text-color->description
 #, fuzzy
@@ -280,3 +394,16 @@ msgstr "màu chữ khối thời tiết"
 #, fuzzy
 msgid "Weather background color"
 msgstr "màu nền"
+
+#. settings-schema.json->weather-forecast-background-color->description
+#, fuzzy
+msgid "Weather forecast background color"
+msgstr "màu nền"
+
+#. settings-schema.json->weather-border-radius->description
+msgid "Weather border radius"
+msgstr ""
+
+#. settings-schema.json->weather-forecast-border-radius->description
+msgid "Weather forecast border radius"
+msgstr ""

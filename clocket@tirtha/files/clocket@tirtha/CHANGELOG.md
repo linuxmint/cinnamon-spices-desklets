@@ -65,6 +65,7 @@ Changelog
 - added changelog.md
   - previous changes and version numbers extracted from Git history
 - updated README.md
+- updated screenshot
 - retain weather style when toggling the `show-weather-data` setting
 - caching of Open-Meteo geodata retrieved via city name
 - fix stretched icons
@@ -93,3 +94,5 @@ Changelog
     - Material Design
     - Metro
     - Mint
+- prepared, updated translation files
+- updated german translation
