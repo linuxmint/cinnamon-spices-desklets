@@ -100,6 +100,8 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this.clockBackgroundColor = "rgba(0, 0, 0, 0.363)";
     this.clockBorderRadius = 20;
     this.showDate = true;
+    this.useCustomDateString = false;
+    this.customDateString = "%A, %B %d, %Y";
     this.dateTextSize = 40;
     this.dateTextColor = "rgb(255,255,255)";
     this.dateAccentColor = "red";
@@ -142,6 +144,8 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     settings.bind("clock-background-color", "clockBackgroundColor", this._updateClockStyle);
     settings.bind("clock-border-radius", "clockBorderRadius", this._updateClockStyle);
     settings.bind("show-date", "showDate", this._onShowDateSettingChanged);
+    settings.bind("use-date-time-string", "useCustomDateString", this._updateDate);
+    settings.bind("custom-date-string", "customDateString", this._updateDate);
     settings.bind("date-font-size", "dateTextSize", this._updateDateStyle);
     settings.bind("date-text-color", "dateTextColor", this._updateDateStyle);
     settings.bind("date-accent-color", "dateAccentColor", this._updateDateStyle);
@@ -839,6 +843,12 @@ class CinnamonClockDesklet extends Desklet.Desklet {
   _updateDate() {
     if (!this.showDate) return;
 
+    if (this.useCustomDateString && this.customDateString) {
+      this._setText(this._monthAndYearLabel, this.clock.get_clock_for_format(this.customDateString));
+      this._dayLabel.hide();
+      this._weekLabel.hide();
+      return;
+    }
     const dateString = this.clock.get_clock_for_format("%d");
     if (this._lastDateString !== dateString) {
       this._lastDateString = dateString;
@@ -850,6 +860,8 @@ class CinnamonClockDesklet extends Desklet.Desklet {
 
       const weekday = this.clock.get_clock_for_format("%A").toUpperCase();
       this._setText(this._weekLabel, "   " + weekday);
+      this._dayLabel.show();
+      this._weekLabel.show();
     }
   }
 }

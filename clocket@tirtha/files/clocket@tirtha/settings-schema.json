@@ -39,7 +39,7 @@
         "show-clock",
         "use-custom-time-string",
         "custom-time-string",
-        "format-button",
+        "time-format-button",
         "clock-font-size",
         "clock-text-color",
         "clock-background-color",
@@ -49,7 +49,17 @@
     "date-style-section": {
       "type": "section",
       "title": "Date style",
-      "keys": ["show-date", "date-font-size", "date-text-color", "date-accent-color", "date-background-color", "date-border-radius"]
+      "keys": [
+        "show-date",
+        "use-date-time-string",
+        "custom-date-string",
+        "date-format-button",
+        "date-font-size",
+        "date-text-color",
+        "date-accent-color",
+        "date-background-color",
+        "date-border-radius"
+      ]
     },
     "weather-style-section": {
       "type": "section",
@@ -154,12 +164,11 @@
     "type": "entry",
     "default": "%H:%M:%S",
     "dependency": "use-custom-time-string",
-    "description": "Custom time string (strftime format)",
-    "tooltip": "Use strftime format (e.g. %H:%M:%S for 24-hour time with seconds)"
+    "description": "Custom time string (strftime format)"
   },
-  "format-button": {
+  "time-format-button": {
     "type": "button",
-    "description": "Show information on date format syntax",
+    "description": "Show information on time format syntax",
     "dependency": "use-custom-time-string",
     "callback": "on_custom_format_button_pressed"
   },
@@ -199,6 +208,24 @@
     "type": "switch",
     "default": true,
     "description": "Show date"
+  },
+  "use-date-time-string": {
+    "type": "switch",
+    "default": false,
+    "dependency": "show-date",
+    "description": "Use custom date string"
+  },
+  "custom-date-string": {
+    "type": "entry",
+    "default": "%A, %B %d, %Y",
+    "dependency": "use-date-time-string",
+    "description": "Custom date string (strftime format)"
+  },
+  "date-format-button": {
+    "type": "button",
+    "description": "Show information on date format syntax",
+    "dependency": "use-date-time-string",
+    "callback": "on_custom_format_button_pressed"
   },
   "date-font-size": {
     "type": "spinbutton",
