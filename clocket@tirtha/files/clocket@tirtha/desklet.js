@@ -837,14 +837,20 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       timeFormat = (use24h ? "%H:%M" : "%I:%M") + (showSeconds ? ":%S" : "");
     }
 
-    this._setText(this._timeLabel, this.clock.get_clock_for_format(timeFormat));
+    let formattedTime = this.clock.get_clock_for_format(timeFormat);
+    if (formattedTime !== null) {
+      this._setText(this._timeLabel, formattedTime);
+    }
   }
 
   _updateDate() {
     if (!this.showDate) return;
 
     if (this.useCustomDateString && this.customDateString) {
-      this._setText(this._monthAndYearLabel, this.clock.get_clock_for_format(this.customDateString));
+      let formattedDate = this.clock.get_clock_for_format(this.customDateString);
+      if (formattedDate !== null) {
+        this._setText(this._monthAndYearLabel, formattedDate);
+      }
       this._dayLabel.hide();
       this._weekLabel.hide();
       return;
