@@ -1,15 +1,7 @@
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
-const GdkPixbuf = imports.gi.GdkPixbuf;
 const St = imports.gi.St;
 const Util = imports.misc.util;
-
-const UUID = "devtest-steamGamesStarter@KopfdesDaemons";
-const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
-
-imports.searchPath.push(DESKLET_DIR);
-
-const ImageHelper = imports.helpers.image.ImageHelper;
 
 // AppIDs for games/tools to be filtered out from the list
 const FILTERED_APP_IDS = [
@@ -18,7 +10,7 @@ const FILTERED_APP_IDS = [
   "1391110", // Steam Linux Runtime 2.0 (soldier)
 ];
 
-const SteamHelper = class SteamHelper {
+var SteamHelper = class SteamHelper {
   // Helper to read the paths of the Steam library folders
   static extractLibraryPaths(vdfString) {
     const paths = [];
@@ -116,25 +108,16 @@ const SteamHelper = class SteamHelper {
       }
     }
 
-    let pixBuf = null;
     if (imagePath) {
-      try {
-        pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(imagePath, requestedWidth, requestedHeight);
-      } catch (e) {
-        global.logError(`Error loading image ${imagePath}: ${e}`);
-      }
-    }
-
-    if (pixBuf) {
-      const imageActor = ImageHelper.createActorFromPixbuf(pixBuf);
-
-      const clickableBin = new St.Bin({
+      const gicon = new Gio.FileIcon({ file: Gio.File.new_for_path(imagePath) });
+      const imageActor = new St.Icon({
+        gicon: gicon,
+        icon_size: requestedWidth,
+        icon_type: St.IconType.FULLCOLOR,
         reactive: true,
-        width: pixBuf.get_width(),
-        height: pixBuf.get_height(),
+        style: `width: ${requestedWidth}px; height: ${requestedHeight}px;`,
       });
-      clickableBin.set_child(imageActor);
-      return clickableBin;
+      return imageActor;
     }
 
     global.logError(`Could not load an image for appid ${appid}`);

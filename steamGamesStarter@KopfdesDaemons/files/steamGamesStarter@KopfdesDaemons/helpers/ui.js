@@ -1,5 +1,6 @@
 const St = imports.gi.St;
 const GLib = imports.gi.GLib;
+const Gio = imports.gi.Gio;
 const Clutter = imports.gi.Clutter;
 const Gettext = imports.gettext;
 
@@ -8,8 +9,12 @@ const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 
 imports.searchPath.push(DESKLET_DIR);
 
-const SteamHelper = imports.helpers.steam.SteamHelper;
-const ImageHelper = imports.helpers.image.ImageHelper;
+let SteamHelper;
+if (typeof require !== "undefined") {
+  SteamHelper = require("./helpers/steam.js").SteamHelper;
+} else {
+  SteamHelper = imports.helpers.steam.SteamHelper;
+}
 
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
@@ -17,14 +22,19 @@ function _(str) {
   return Gettext.dgettext(UUID, str);
 }
 
-const UiHelper = class UiHelper {
+var UiHelper = class UiHelper {
   static createHeader(metadataPath, onReload) {
+    global.logError("HEY888");
     const headerContainer = new St.BoxLayout({ style_class: "header-container", reactive: true, track_hover: true });
     headerContainer.add_child(new St.Label({ text: _("Steam Games Starter"), style_class: "header-label" }));
     headerContainer.add_child(new St.BoxLayout({ x_expand: true }));
 
     const reloadButton = new St.Button({
-      child: ImageHelper.getImageAtScale(`${metadataPath}/reload.svg`, 24, 24),
+      child: new St.Icon({
+        gicon: new Gio.FileIcon({ file: Gio.File.new_for_path(`${metadataPath}/reload.svg`) }),
+        icon_size: 24,
+        icon_type: St.IconType.FULLCOLOR,
+      }),
       style_class: "reload-button",
     });
     reloadButton.connect("clicked", onReload);
@@ -57,12 +67,20 @@ const UiHelper = class UiHelper {
 
     const buttonRow = new St.BoxLayout({ style: "spacing: 10px;" });
 
-    const playIcon = ImageHelper.getImageAtScale(`${metadataPath}/play.svg`, 22, 22);
+    const playIcon = new St.Icon({
+      gicon: new Gio.FileIcon({ file: Gio.File.new_for_path(`${metadataPath}/play.svg`) }),
+      icon_size: 22,
+      icon_type: St.IconType.FULLCOLOR,
+    });
     const playButton = new St.Button({ child: playIcon, style_class: "play-button" });
     playButton.connect("clicked", () => SteamHelper.runGame(game.appid, steamInstallType));
     buttonRow.add_child(playButton);
 
-    const shopIcon = ImageHelper.getImageAtScale(`${metadataPath}/shop.svg`, 22, 22);
+    const shopIcon = new St.Icon({
+      gicon: new Gio.FileIcon({ file: Gio.File.new_for_path(`${metadataPath}/shop.svg`) }),
+      icon_size: 22,
+      icon_type: St.IconType.FULLCOLOR,
+    });
     const shopButton = new St.Button({ child: shopIcon, style_class: "shop-button" });
     shopButton.connect("clicked", () => SteamHelper.openStorePage(game.appid, steamInstallType));
     buttonRow.add_child(shopButton);
@@ -83,9 +101,14 @@ const UiHelper = class UiHelper {
   static createErrorView(error, gamesFound, metadataPath) {
     const errorLayout = new St.BoxLayout({ style_class: "error-layout", vertical: true });
 
-    const errorIcon = ImageHelper.getImageAtScale(`${metadataPath}/error.svg`, 48, 48);
+    const errorIcon = new St.Icon({
+      gicon: new Gio.FileIcon({ file: Gio.File.new_for_path(`${metadataPath}/error.svg`) }),
+      icon_size: 48,
+      icon_type: St.IconType.FULLCOLOR,
+    });
     const iconBin = new St.Bin({ child: errorIcon, style_class: "error-icon" });
     errorLayout.add_child(iconBin);
+    global.logError("Error View3");
 
     if (!gamesFound) {
       const noGamesLabel = new St.Label({ text: _("No installed games found"), style_class: "no-games-label" });
@@ -93,13 +116,10 @@ const UiHelper = class UiHelper {
     }
 
     if (error) {
-      const clutterText = new Clutter.Text({
-        text: "Error: " + error.message,
-        line_wrap: true,
-        color: new Clutter.Color({ red: 255, green: 0, blue: 0, alpha: 255 }),
-      });
-
-      const errorLabel = new St.Bin({ child: clutterText, style_class: "error-label" });
+      const label = new St.Label();
+      label.set_text("Error: " + error.message);
+      label.clutter_text.line_wrap = true;
+      const errorLabel = new St.Bin({ child: label, style_class: "error-label" });
       errorLayout.add_child(errorLabel);
     }
 

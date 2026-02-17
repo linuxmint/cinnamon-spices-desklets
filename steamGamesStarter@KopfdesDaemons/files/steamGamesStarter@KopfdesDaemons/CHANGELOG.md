@@ -6,4 +6,4 @@ changelog
 
 ## [1.0.1] 17.02.2026
 
-- changed imports from `require` to `deskletManager`
+- fallback to `deskletManager` for imports
