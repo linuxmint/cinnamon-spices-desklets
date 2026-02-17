@@ -3,7 +3,7 @@ const St = imports.gi.St;
 const Clutter = imports.gi.Clutter;
 const Cogl = imports.gi.Cogl;
 
-class ImageHelper {
+const ImageHelper = class ImageHelper {
   // Helper to create an actor from a Pixbuf
   static createActorFromPixbuf(pixBuf) {
     const pixelFormat = pixBuf.get_has_alpha() ? Cogl.PixelFormat.RGBA_8888 : Cogl.PixelFormat.RGB_888;
@@ -26,4 +26,4 @@ class ImageHelper {
       return new St.Label({ text: "Error" }); // Return a label on error
     }
   }
-}
+};

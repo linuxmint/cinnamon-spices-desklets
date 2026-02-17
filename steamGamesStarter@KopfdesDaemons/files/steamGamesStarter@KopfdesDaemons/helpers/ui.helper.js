@@ -3,17 +3,21 @@ const GLib = imports.gi.GLib;
 const Clutter = imports.gi.Clutter;
 const Gettext = imports.gettext;
 
-const { ImageHelper } = require("./helpers/image.helper");
-const { SteamHelper } = require("./helpers/steam.helper");
+const UUID = "devtest-steamGamesStarter@KopfdesDaemons";
+const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 
-const UUID = "steamGamesStarter@KopfdesDaemons";
+imports.searchPath.push(DESKLET_DIR);
+
+const SteamHelper = imports.helpers.steam.SteamHelper;
+const ImageHelper = imports.helpers.image.ImageHelper;
+
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
 function _(str) {
   return Gettext.dgettext(UUID, str);
 }
 
-class UiHelper {
+const UiHelper = class UiHelper {
   static createHeader(metadataPath, onReload) {
     const headerContainer = new St.BoxLayout({ style_class: "header-container", reactive: true, track_hover: true });
     headerContainer.add_child(new St.Label({ text: _("Steam Games Starter"), style_class: "header-label" }));
@@ -101,4 +105,4 @@ class UiHelper {
 
     return errorLayout;
   }
-}
+};

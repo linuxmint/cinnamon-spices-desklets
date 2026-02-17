@@ -4,10 +4,14 @@ const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
 const Settings = imports.ui.settings;
 
-const { SteamHelper } = require("./helpers/steam.helper");
-const { UiHelper } = require("./helpers/ui.helper");
+const UUID = "devtest-steamGamesStarter@KopfdesDaemons";
+const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 
-const UUID = "steamGamesStarter@KopfdesDaemons";
+imports.searchPath.push(DESKLET_DIR);
+
+const SteamHelper = imports.helpers.steam.SteamHelper;
+const UiHelper = imports.helpers.ui.UiHelper;
+
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
 function _(str) {

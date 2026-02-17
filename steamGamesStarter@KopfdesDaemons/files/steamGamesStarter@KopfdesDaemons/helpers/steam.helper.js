@@ -3,7 +3,13 @@ const GLib = imports.gi.GLib;
 const GdkPixbuf = imports.gi.GdkPixbuf;
 const St = imports.gi.St;
 const Util = imports.misc.util;
-const { ImageHelper } = require("./helpers/image.helper");
+
+const UUID = "devtest-steamGamesStarter@KopfdesDaemons";
+const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
+
+imports.searchPath.push(DESKLET_DIR);
+
+const ImageHelper = imports.helpers.image.ImageHelper;
 
 // AppIDs for games/tools to be filtered out from the list
 const FILTERED_APP_IDS = [
@@ -12,7 +18,7 @@ const FILTERED_APP_IDS = [
   "1391110", // Steam Linux Runtime 2.0 (soldier)
 ];
 
-class SteamHelper {
+const SteamHelper = class SteamHelper {
   // Helper to read the paths of the Steam library folders
   static extractLibraryPaths(vdfString) {
     const paths = [];
@@ -29,9 +35,7 @@ class SteamHelper {
   // Helper to extract game info from an appmanifest file
   static async extractGameInfo(filePath) {
     const file = Gio.file_new_for_path(filePath);
-    const [, contentBytes] = await new Promise(resolve =>
-      file.load_contents_async(null, (obj, res) => resolve(obj.load_contents_finish(res)))
-    );
+    const [, contentBytes] = await new Promise(resolve => file.load_contents_async(null, (obj, res) => resolve(obj.load_contents_finish(res))));
     const content = new TextDecoder("utf-8").decode(contentBytes);
 
     const nameMatch = /"name"\s*"(.*?)"/.exec(content);
@@ -62,7 +66,7 @@ class SteamHelper {
     }
 
     const [success, libraryfoldersFileContentBytes] = await new Promise(resolve =>
-      libraryfoldersFile.load_contents_async(null, (obj, res) => resolve(obj.load_contents_finish(res)))
+      libraryfoldersFile.load_contents_async(null, (obj, res) => resolve(obj.load_contents_finish(res))),
     );
     const libraryfoldersFileContent = new TextDecoder("utf-8").decode(libraryfoldersFileContentBytes);
     const libraryPaths = this.extractLibraryPaths(libraryfoldersFileContent);
@@ -150,4 +154,4 @@ class SteamHelper {
     const cmd = this.getSteamCommand(steamInstallType);
     GLib.spawn_command_line_async(`${cmd} steam://store/${appid}`);
   }
-}
+};
