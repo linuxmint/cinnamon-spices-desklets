@@ -1,137 +1,59 @@
-# ProcMon Table Desklet (`procmon@ksmith`)
+# ProcMon Table
 
-A Cinnamon desklet for Linux Mint 22.3 / Cinnamon 6.6.7 that shows a sortable process table powered by `top` batch output.
+ProcMon Table is a Cinnamon desklet that shows active processes in a clean, sortable table on your desktop. It is useful when you want a quick live view of which apps are using the most CPU or memory without opening a full system monitor window.
+
+## What It Shows
+
+- `PID`
+- `USER`
+- `CPU%`
+- `MEM`
+- `COMMAND`
+
+By default, rows are sorted by `CPU%` (highest first).
 
 ## Features
 
-- Columns: `PID`, `USER`, `CPU%`, `MEM`, `COMMAND`
-- Default view: top 10 processes
-- Click header to sort by column
-- Click same header again to toggle ascending/descending
-- Default sort: `CPU%` descending
-- Stable, in-desklet JavaScript sorting
-- Uses `top -b` (not `ps`) so CPU is interval-based
-- Optional "only my processes" mode (`top -u <user>`)
-- Async refresh using `Gio.Subprocess.communicate_utf8_async` (no UI blocking)
-- Defensive handling for null/empty stdout/stderr and command failures
+- Click any column header to sort by that column.
+- Click the same header again to reverse sort direction.
+- Choose how many rows to display.
+- Adjustable column widths.
+- Optional "only my processes" filter.
+- Two `CPU%` scaling modes: `per_core` (top-style, `100%` = one full core) and `total_scaled` (`100%` = full system capacity).
+- Adjustable refresh interval.
+- Custom header/content colors and background transparency.
+- Localized strings (`en`, `es`, `fr`).
 
-## Settings
+## Installation
 
-- **Refresh interval** (seconds)
-- **Number of rows**
-- **PID/USER/CPU%/MEM/COMMAND column widths** (px)
-- **Disable desklet decorations**
-- **Header text color**
-- **Content text color**
-- **Background color**
-- **Background transparency** (%)
-- **Only my processes**
-- **CPU scaling mode**
-  - `per_core`: top default (100% = one core)
-  - `total_scaled`: divide by CPU core count so 100% = full system
-- **COMMAND max length** (truncate with `...`)
+1. Open **System Settings -> Desklets**.
+2. Find **ProcMon Table** in the available desklets list.
+3. Add it to the desktop.
+4. Open desklet settings to customize layout, colors, and refresh behavior.
 
-Desklet width is computed automatically as the sum of all column widths.
+## Configuration
 
-## Screenshots
+You can configure:
 
-Main process table:
-![Main process table](assets/screenshot-main.png)
+- Refresh interval
+- Row count
+- Column widths
+- Color and transparency
+- "Only my processes" filtering
+- CPU scaling mode (`per_core` or `total_scaled`)
 
-Custom theming example:
-![Custom theming](assets/screenshot-theme.png)
+## Notes
 
-Settings view:
-![Desklet settings](assets/screenshot-settings.png)
+- Process data is read from `top` in batch mode.
+- Very long command names are truncated to keep the table readable.
 
-## Data parsing
+## Support and Bug Reports
 
-The desklet runs:
+- Use the **Issues** button on the Cinnamon Spices desklet page.
+- You can also report issues directly at:
+- `https://github.com/linuxmint/cinnamon-spices-desklets/issues`
+- Include your Linux Mint and Cinnamon versions, steps to reproduce, and screenshots if possible.
 
-```bash
-top -b -n 1 -d 0.1 -o %CPU -w 512
-```
+## AI Assistance Note
 
-When "Only my processes" is enabled, it adds:
-
-```bash
--u <current_username>
-```
-
-Parser behavior:
-
-- Detects the process header row (`PID USER ... %CPU ... RES ... COMMAND`)
-- Parses process rows whose first token is numeric PID
-- Extracts `PID`, `USER`, `%CPU`, `RES`, `COMMAND`
-- Converts RES to internal `memKb` for correct numeric sorting
-- Formats memory display consistently as `K`, `M`, or `G`
-
-## How to install locally
-
-1. Copy folder to your local desklets directory:
-
-```bash
-mkdir -p ~/.local/share/cinnamon/desklets
-cp -r procmon@ksmith ~/.local/share/cinnamon/desklets/
-```
-
-2. Open **System Settings -> Desklets**.
-3. Add **ProcMon Table** to desktop.
-4. Configure options via the desklet settings dialog.
-
-## Reload Cinnamon / desklets for testing
-
-- X11 session: press `Alt+F2`, type `r`, press Enter.
-- Wayland session: log out and log back in.
-- You can also remove/re-add the desklet from Desklets settings after edits.
-
-## Localization
-
-- Translation template: `po/procmon@ksmith.pot`
-- Add/update language files in `po/<lang>.po` and list languages in `po/LINGUAS`.
-- Build a local `.mo` for testing:
-
-```bash
-mkdir -p ~/.local/share/locale/<lang>/LC_MESSAGES
-msgfmt po/<lang>.po -o ~/.local/share/locale/<lang>/LC_MESSAGES/procmon@ksmith.mo
-```
-
-## Packaging and release
-
-- Follow `RELEASE_CHECKLIST.md` for preflight checks, archive creation, and post-release verification.
-
-## Versioning and changelog workflow
-
-- Changelog lives in `CHANGELOG.md` with an `[Unreleased]` section.
-- Use the helper script to bump `metadata.json` and scaffold a dated changelog section:
-
-```bash
-scripts/bump-version.sh patch
-```
-
-- Supported bump targets:
-  - `major`
-  - `minor`
-  - `patch`
-  - explicit version like `1.2.0`
-- Preview without writing changes:
-
-```bash
-scripts/bump-version.sh minor --dry-run
-```
-
-## Files
-
-- `metadata.json`
-- `desklet.js`
-- `settings-schema.json`
-- `stylesheet.css`
-- `po/procmon@ksmith.pot`
-- `po/en.po`
-- `po/es.po`
-- `po/fr.po`
-- `po/LINGUAS`
-- `CHANGELOG.md`
-- `RELEASE_CHECKLIST.md`
-- `scripts/bump-version.sh`
-- `README.md`
+This desklet was developed with AI assistance. I am the maintainer and will continue maintaining it and responding to bug reports.
