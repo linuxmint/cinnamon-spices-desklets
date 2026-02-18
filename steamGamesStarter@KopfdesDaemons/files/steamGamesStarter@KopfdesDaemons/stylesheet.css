@@ -1,30 +1,5 @@
-.main-container {
-  width: 400px;
-}
-
-.game-container {
-  margin: 0.5em;
-}
-
 .game-container:hover {
   background-color: rgba(58, 64, 74, 0.5);
-  margin: 0.5em;
-  cursor: pointer;
-}
-
-.game-label {
-  font-weight: bold;
-  max-width: 250px;
-}
-
-.label-container {
-  margin-left: 0.5em;
-}
-
-.play-button,
-.shop-button,
-.reload-button {
-  border-radius: 5px;
 }
 
 .reload-button:hover,
@@ -35,24 +10,10 @@
 
 .header-label {
   font-weight: bold;
-  font-size: 2em;
-}
-
-.error-layout,
-.loading-layout {
-  height: 400px;
 }
 
 .error-label {
   color: red;
-}
-
-.error-icon {
-  margin: 1em;
-}
-
-.loading-label {
-  font-size: 1.5em;
 }
 
 .no-games-label {

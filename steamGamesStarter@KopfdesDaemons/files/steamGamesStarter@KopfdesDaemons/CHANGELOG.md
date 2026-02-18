@@ -6,10 +6,12 @@ changelog
 
 ## [1.0.1] 17.02.2026
 
-- added fallback to `deskletManager` for imports
-- removed clutter
-- moved icons to icon folder
-- changed desklet entry point to `on_desklet_added_to_desktop`
-- centered no installed games label
-- updated UI loading (games or error UI)
-- added settings cleanup on desklet remove
+- Added scaling setting based on system font size
+- Added fallback to `deskletManager` for imports
+- Removed clutter
+- Moved icons to the icons folder
+- Changed desklet entry point to on_desklet_added_to_desktop
+- centered "No installed games found" label
+- Updated UI loading (games or error UI)
+- Added settings cleanup on desklet removal
+- Added UUID to logs

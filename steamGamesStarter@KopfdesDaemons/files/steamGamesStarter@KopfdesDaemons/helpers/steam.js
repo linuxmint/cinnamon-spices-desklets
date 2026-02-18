@@ -123,7 +123,7 @@ var SteamHelper = class SteamHelper {
       return image;
     }
 
-    global.logError(`Could not load an image for appid ${appid}`);
+    global.logError(`${UUID}: Could not load an image for appid ${appid}`);
     return new St.Label({ text: "Error" });
   }
 

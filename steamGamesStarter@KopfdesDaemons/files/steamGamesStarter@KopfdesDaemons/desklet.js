@@ -33,7 +33,8 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     this.error = null;
     this.steamInstallationType = "system package";
     this.numberOfGames = 10;
-    this.maxDeskletHeight = 400;
+    this.scaleSize = 1;
+    this.maxDeskletHeight = 32;
     this.scrollView = null;
     this.mainContainer = null;
     this.contentBox = null;
@@ -44,6 +45,7 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
     this.settings.bindProperty(Settings.BindingDirection.IN, "steam-install-type", "steamInstallType", this._refresh.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "number-of-games", "numberOfGames", this._refresh.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._onScaleSizeChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "max-desklet-height", "maxDeskletHeight", this._updateScrollViewStyle.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "backgroundColor", this._updateScrollViewStyle.bind(this));
   }
@@ -58,8 +60,9 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
   }
 
   _initUI() {
-    this.mainContainer = new St.BoxLayout({ vertical: true, style_class: "main-container" });
-    this.mainContainer.add_child(UiHelper.createHeader(this.metadata.path, this._refresh.bind(this)));
+    this.mainContainer = new St.BoxLayout({ vertical: true });
+    this.mainContainer.set_style("width:" + 32 * this.scaleSize + "em;");
+    this.mainContainer.add_child(UiHelper.createHeader(this.metadata.path, this._refresh.bind(this), this.scaleSize));
 
     this.scrollView = new St.ScrollView({ overlay_scrollbars: true, clip_to_allocation: true });
     this.scrollView.set_policy(St.PolicyType.NEVER, St.PolicyType.AUTOMATIC);
@@ -80,7 +83,7 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
       games = await SteamHelper.getGames(this.steamInstallType);
     } catch (e) {
       error = e;
-      global.logError(`Error getting Steam games: ${e}`);
+      global.logError(`${UUID}: Error getting Steam games: ${e}`);
     }
 
     if (this.loadId !== currentLoadId) return;
@@ -92,7 +95,7 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
 
   _showLoading() {
     this._clearContent();
-    this.contentBox = UiHelper.createLoadingView();
+    this.contentBox = UiHelper.createLoadingView(this.scaleSize);
     this.scrollView.add_actor(this.contentBox);
   }
 
@@ -102,11 +105,11 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     const gamesToDisplay = this.games.slice(0, this.numberOfGames);
 
     if (this.error || gamesToDisplay.length === 0) {
-      this.contentBox = UiHelper.createErrorView(this.error, gamesToDisplay.length > 0, this.metadata.path);
+      this.contentBox = UiHelper.createErrorView(this.error, gamesToDisplay.length > 0, this.metadata.path, this.scaleSize);
     } else {
       this.contentBox = new St.BoxLayout({ vertical: true, style_class: "games-container" });
       gamesToDisplay.forEach(game => {
-        const gameItem = UiHelper.createGameItem(game, this.steamInstallType, this.metadata.path);
+        const gameItem = UiHelper.createGameItem(game, this.steamInstallType, this.metadata.path, this.scaleSize);
         this.contentBox.add_child(gameItem);
       });
     }
@@ -122,7 +125,12 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
 
   _updateScrollViewStyle() {
     if (!this.scrollView) return;
-    this.scrollView.set_style("max-height:" + this.maxDeskletHeight + "px; background-color: " + this.backgroundColor + ";");
+    this.scrollView.set_style("max-height:" + this.maxDeskletHeight * this.scaleSize + "em; background-color: " + this.backgroundColor + ";");
+  }
+
+  _onScaleSizeChanged() {
+    this._initUI();
+    this._updateContent();
   }
 }
 
