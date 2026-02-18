@@ -11,3 +11,5 @@ changelog
 - moved icons to icon folder
 - changed desklet entry point to `on_desklet_added_to_desktop`
 - centered no installed games label
+- updated UI loading (games or error UI)
+- added settings cleanup on desklet remove
