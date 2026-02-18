@@ -36,7 +36,7 @@ var UiHelper = class UiHelper {
     const reloadButton = new St.Button({
       child: new St.Icon({
         gicon: new Gio.FileIcon({ file: Gio.File.new_for_path(`${metadataPath}/icons/reload.svg`) }),
-        icon_size: 24 * scaleSize,
+        style: "width: " + 1.5 * scaleSize + "em; height: " + 1.5 * scaleSize + "em;",
         icon_type: St.IconType.FULLCOLOR,
       }),
       style_class: "reload-button",
@@ -56,7 +56,7 @@ var UiHelper = class UiHelper {
       style: "margin: " + 0.5 * scaleSize + "em;",
     });
 
-    const image = SteamHelper.getGameHeaderImage(game.appid, 139 * scaleSize, 72 * scaleSize);
+    const image = SteamHelper.getGameHeaderImage(game.appid, scaleSize);
     const button = new St.Button({ child: image });
     button.connect("clicked", () => SteamHelper.runGame(game.appid, steamInstallType));
     gameContainer.add_child(button);
@@ -82,7 +82,7 @@ var UiHelper = class UiHelper {
 
     const playIcon = new St.Icon({
       gicon: new Gio.FileIcon({ file: Gio.File.new_for_path(`${metadataPath}/icons/play.svg`) }),
-      icon_size: 22 * scaleSize,
+      style: "width: " + 1.7 * scaleSize + "em; height: " + 1.7 * scaleSize + "em;",
       icon_type: St.IconType.FULLCOLOR,
     });
     const playButton = new St.Button({
@@ -95,7 +95,7 @@ var UiHelper = class UiHelper {
 
     const shopIcon = new St.Icon({
       gicon: new Gio.FileIcon({ file: Gio.File.new_for_path(`${metadataPath}/icons/shop.svg`) }),
-      icon_size: 22 * scaleSize,
+      style: "width: " + 1.7 * scaleSize + "em; height: " + 1.7 * scaleSize + "em;",
       icon_type: St.IconType.FULLCOLOR,
     });
     const shopButton = new St.Button({
@@ -133,7 +133,7 @@ var UiHelper = class UiHelper {
 
     const errorIcon = new St.Icon({
       gicon: new Gio.FileIcon({ file: Gio.File.new_for_path(`${metadataPath}/icons/error.svg`) }),
-      icon_size: 48 * scaleSize,
+      style: "width: " + 3 * scaleSize + "em; height: " + 3 * scaleSize + "em;",
       icon_type: St.IconType.FULLCOLOR,
     });
     const iconBin = new St.Bin({

@@ -34,7 +34,7 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     this.steamInstallationType = "system package";
     this.numberOfGames = 10;
     this.scaleSize = 1;
-    this.maxDeskletHeight = 32;
+    this.maxDeskletHeight = 30;
     this.scrollView = null;
     this.mainContainer = null;
     this.contentBox = null;

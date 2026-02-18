@@ -3,6 +3,8 @@ const GLib = imports.gi.GLib;
 const St = imports.gi.St;
 const Util = imports.misc.util;
 
+const UUID = "devtest-steamGamesStarter@KopfdesDaemons";
+
 // AppIDs for games/tools to be filtered out from the list
 const FILTERED_APP_IDS = [
   "1628350", // Proton Experimental
@@ -98,7 +100,7 @@ var SteamHelper = class SteamHelper {
   }
 
   // Helper to load a game's header image from the Steam appcache
-  static getGameHeaderImage(appid, requestedWidth, requestedHeight) {
+  static getGameHeaderImage(appid, scaleSize) {
     const appCachePath = GLib.get_home_dir() + "/.steam/steam/appcache/librarycache/";
     const commonImageNames = ["header.jpg", "library_header.jpg", "library_hero.jpg"];
 
@@ -112,14 +114,23 @@ var SteamHelper = class SteamHelper {
     }
 
     if (imagePath) {
-      const gicon = new Gio.FileIcon({ file: Gio.File.new_for_path(imagePath) });
-      const image = new St.Icon({
-        gicon: gicon,
-        icon_size: requestedWidth,
-        icon_type: St.IconType.FULLCOLOR,
-        reactive: true,
-        style: `width: ${requestedWidth}px; height: ${requestedHeight}px;`,
+      const BASE_FONT_SIZE = 16;
+
+      // Target dimensions in pixels
+      const targetWidth = 460 * 0.4;
+      const targetHeight = 215 * 0.4;
+
+      // Convert pixels to em
+      const widthInEm = (targetWidth * scaleSize) / BASE_FONT_SIZE;
+      const heightInEm = (targetHeight * scaleSize) / BASE_FONT_SIZE;
+
+      const file = Gio.File.new_for_path(imagePath);
+      const imageUri = file.get_uri();
+
+      const image = new St.Bin({
+        style: `width: ${widthInEm}em; height: ${heightInEm}em; background-image: url("${imageUri}"); background-size: contain; background-position: center; background-repeat: no-repeat;`,
       });
+
       return image;
     }
 
