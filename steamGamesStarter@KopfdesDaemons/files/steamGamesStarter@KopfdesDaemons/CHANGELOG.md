@@ -11,7 +11,7 @@ changelog
 - Removed clutter
 - Moved icons to the icons folder
 - Changed desklet entry point to on_desklet_added_to_desktop
-- centered "No installed games found" label
+- Centered "No installed games found" label
 - Updated UI loading (games or error UI)
 - Added settings cleanup on desklet removal
 - Added UUID to logs

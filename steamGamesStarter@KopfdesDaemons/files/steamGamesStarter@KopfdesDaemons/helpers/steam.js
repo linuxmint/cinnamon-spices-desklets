@@ -116,7 +116,7 @@ var SteamHelper = class SteamHelper {
     if (imagePath) {
       const BASE_FONT_SIZE = 16;
 
-      // Target dimensions in pixels
+      // Shrink default steam game header size
       const targetWidth = 460 * 0.4;
       const targetHeight = 215 * 0.4;
 
@@ -125,8 +125,15 @@ var SteamHelper = class SteamHelper {
       const heightInEm = (targetHeight * scaleSize) / BASE_FONT_SIZE;
 
       const file = Gio.File.new_for_path(imagePath);
-      const imageUri = file.get_uri();
 
+      // const image = new St.Icon({
+      //   gicon: new Gio.FileIcon({ file }),
+      //   style: `width: ${widthInEm}em; height: ${heightInEm}em`,
+      //   icon_size: targetWidth * scaleSize,
+      //   icon_type: St.IconType.FULLCOLOR,
+      // });
+
+      const imageUri = file.get_uri();
       const image = new St.Bin({
         style: `width: ${widthInEm}em; height: ${heightInEm}em; background-image: url("${imageUri}"); background-size: contain; background-position: center; background-repeat: no-repeat;`,
       });

@@ -34,7 +34,7 @@
   },
   "max-desklet-height": {
     "type": "scale",
-    "default": 30,
+    "default": 32,
     "min": 10,
     "max": 100,
     "step": 1,

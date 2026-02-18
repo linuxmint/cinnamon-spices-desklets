@@ -63,12 +63,13 @@ var UiHelper = class UiHelper {
 
     const labelContainer = new St.BoxLayout({
       vertical: true,
+      x_expand: true,
       style: "margin-left: " + 0.5 * scaleSize + "em;",
     });
     const gameLabel = new St.Label({
       text: game.name,
       style_class: "game-label",
-      style: "font-width: bold; font-size: " + 1.1 * scaleSize + "em;",
+      style: "font-weight: bold; font-size: " + 1.1 * scaleSize + "em;",
     });
     labelContainer.add_child(gameLabel);
 

@@ -34,10 +34,9 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     this.steamInstallationType = "system package";
     this.numberOfGames = 10;
     this.scaleSize = 1;
-    this.maxDeskletHeight = 30;
+    this.maxDeskletHeight = 32;
     this.scrollView = null;
     this.mainContainer = null;
-    this.contentBox = null;
     this.loadId = 0;
     this.backgroundColor = "rgba(58, 64, 74, 0.5)";
 
@@ -55,20 +54,16 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     this._refresh();
   }
 
-  on_desklet_removed() {
-    this.settings.finalize();
-  }
-
   _initUI() {
+    if (this.mainContainer) {
+      this.mainContainer.destroy();
+    }
+
     this.mainContainer = new St.BoxLayout({ vertical: true });
     this.mainContainer.set_style("width:" + 32 * this.scaleSize + "em;");
     this.mainContainer.add_child(UiHelper.createHeader(this.metadata.path, this._refresh.bind(this), this.scaleSize));
 
-    this.scrollView = new St.ScrollView({ overlay_scrollbars: true, clip_to_allocation: true });
-    this.scrollView.set_policy(St.PolicyType.NEVER, St.PolicyType.AUTOMATIC);
-    this._updateScrollViewStyle();
-
-    this.mainContainer.add_child(this.scrollView);
+    this.scrollView = null;
     this.setContent(this.mainContainer);
   }
 
@@ -94,33 +89,36 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
   }
 
   _showLoading() {
-    this._clearContent();
-    this.contentBox = UiHelper.createLoadingView(this.scaleSize);
-    this.scrollView.add_actor(this.contentBox);
+    this._updateScrollViewContent(UiHelper.createLoadingView(this.scaleSize));
   }
 
   _updateContent() {
-    this._clearContent();
-
     const gamesToDisplay = this.games.slice(0, this.numberOfGames);
+    let contentBox;
 
     if (this.error || gamesToDisplay.length === 0) {
-      this.contentBox = UiHelper.createErrorView(this.error, gamesToDisplay.length > 0, this.metadata.path, this.scaleSize);
+      contentBox = UiHelper.createErrorView(this.error, gamesToDisplay.length > 0, this.metadata.path, this.scaleSize);
     } else {
-      this.contentBox = new St.BoxLayout({ vertical: true, style_class: "games-container" });
+      contentBox = new St.BoxLayout({ vertical: true, style_class: "games-container" });
       gamesToDisplay.forEach(game => {
         const gameItem = UiHelper.createGameItem(game, this.steamInstallType, this.metadata.path, this.scaleSize);
-        this.contentBox.add_child(gameItem);
+        contentBox.add_child(gameItem);
       });
     }
-    this.scrollView.add_actor(this.contentBox);
+    this._updateScrollViewContent(contentBox);
   }
 
-  _clearContent() {
-    if (this.contentBox) {
-      this.contentBox.destroy();
-      this.contentBox = null;
+  _updateScrollViewContent(content) {
+    if (this.scrollView) {
+      this.scrollView.destroy();
     }
+
+    this.scrollView = new St.ScrollView({ overlay_scrollbars: true, clip_to_allocation: true });
+    this.scrollView.set_policy(St.PolicyType.NEVER, St.PolicyType.AUTOMATIC);
+    this._updateScrollViewStyle();
+
+    this.scrollView.add_actor(content);
+    this.mainContainer.add_child(this.scrollView);
   }
 
   _updateScrollViewStyle() {
