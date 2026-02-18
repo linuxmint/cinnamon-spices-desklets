@@ -43,6 +43,10 @@
   height: 400px;
 }
 
+.error-label {
+  color: red;
+}
+
 .error-icon {
   margin: 1em;
 }

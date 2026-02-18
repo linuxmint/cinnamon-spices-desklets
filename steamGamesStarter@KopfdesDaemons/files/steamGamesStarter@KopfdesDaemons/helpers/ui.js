@@ -1,7 +1,6 @@
 const St = imports.gi.St;
 const GLib = imports.gi.GLib;
 const Gio = imports.gi.Gio;
-const Clutter = imports.gi.Clutter;
 const Gettext = imports.gettext;
 
 const UUID = "devtest-steamGamesStarter@KopfdesDaemons";
@@ -24,14 +23,13 @@ function _(str) {
 
 var UiHelper = class UiHelper {
   static createHeader(metadataPath, onReload) {
-    global.logError("HEY888");
     const headerContainer = new St.BoxLayout({ style_class: "header-container", reactive: true, track_hover: true });
     headerContainer.add_child(new St.Label({ text: _("Steam Games Starter"), style_class: "header-label" }));
     headerContainer.add_child(new St.BoxLayout({ x_expand: true }));
 
     const reloadButton = new St.Button({
       child: new St.Icon({
-        gicon: new Gio.FileIcon({ file: Gio.File.new_for_path(`${metadataPath}/reload.svg`) }),
+        gicon: new Gio.FileIcon({ file: Gio.File.new_for_path(`${metadataPath}/icons/reload.svg`) }),
         icon_size: 24,
         icon_type: St.IconType.FULLCOLOR,
       }),
@@ -46,14 +44,10 @@ var UiHelper = class UiHelper {
   static createGameItem(game, steamInstallType, metadataPath) {
     const gameContainer = new St.BoxLayout({ style_class: "game-container", reactive: true, track_hover: true });
 
-    const imageActor = SteamHelper.getGameHeaderImage(game.appid, 139, 72);
-    if (imageActor) {
-      imageActor.connect("button-press-event", () => {
-        SteamHelper.openStorePage(game.appid, steamInstallType);
-        return Clutter.EVENT_PROPAGATE;
-      });
-      gameContainer.add_child(imageActor);
-    }
+    const image = SteamHelper.getGameHeaderImage(game.appid, 139, 72);
+    const button = new St.Button({ child: image });
+    button.connect("clicked", () => SteamHelper.runGame(game.appid, steamInstallType));
+    gameContainer.add_child(button);
 
     const labelContainer = new St.BoxLayout({ vertical: true, style_class: "label-container" });
     const gameLabel = new St.Label({ text: game.name, style_class: "game-label" });
@@ -68,7 +62,7 @@ var UiHelper = class UiHelper {
     const buttonRow = new St.BoxLayout({ style: "spacing: 10px;" });
 
     const playIcon = new St.Icon({
-      gicon: new Gio.FileIcon({ file: Gio.File.new_for_path(`${metadataPath}/play.svg`) }),
+      gicon: new Gio.FileIcon({ file: Gio.File.new_for_path(`${metadataPath}/icons/play.svg`) }),
       icon_size: 22,
       icon_type: St.IconType.FULLCOLOR,
     });
@@ -77,7 +71,7 @@ var UiHelper = class UiHelper {
     buttonRow.add_child(playButton);
 
     const shopIcon = new St.Icon({
-      gicon: new Gio.FileIcon({ file: Gio.File.new_for_path(`${metadataPath}/shop.svg`) }),
+      gicon: new Gio.FileIcon({ file: Gio.File.new_for_path(`${metadataPath}/icons/shop.svg`) }),
       icon_size: 22,
       icon_type: St.IconType.FULLCOLOR,
     });
@@ -102,13 +96,12 @@ var UiHelper = class UiHelper {
     const errorLayout = new St.BoxLayout({ style_class: "error-layout", vertical: true });
 
     const errorIcon = new St.Icon({
-      gicon: new Gio.FileIcon({ file: Gio.File.new_for_path(`${metadataPath}/error.svg`) }),
+      gicon: new Gio.FileIcon({ file: Gio.File.new_for_path(`${metadataPath}/icons/error.svg`) }),
       icon_size: 48,
       icon_type: St.IconType.FULLCOLOR,
     });
     const iconBin = new St.Bin({ child: errorIcon, style_class: "error-icon" });
     errorLayout.add_child(iconBin);
-    global.logError("Error View3");
 
     if (!gamesFound) {
       const noGamesLabel = new St.Label({ text: _("No installed games found"), style_class: "no-games-label" });

@@ -6,4 +6,6 @@ changelog
 
 ## [1.0.1] 17.02.2026
 
-- fallback to `deskletManager` for imports
+- added fallback to `deskletManager` for imports
+- removed clutter
+- moved icons to icon folder

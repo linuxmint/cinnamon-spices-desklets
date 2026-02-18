@@ -57,7 +57,7 @@ var SteamHelper = class SteamHelper {
       throw new Error(`Steam library file not found at: ${libraryfoldersFilePath}`);
     }
 
-    const [success, libraryfoldersFileContentBytes] = await new Promise(resolve =>
+    const [, libraryfoldersFileContentBytes] = await new Promise(resolve =>
       libraryfoldersFile.load_contents_async(null, (obj, res) => resolve(obj.load_contents_finish(res))),
     );
     const libraryfoldersFileContent = new TextDecoder("utf-8").decode(libraryfoldersFileContentBytes);
@@ -110,14 +110,14 @@ var SteamHelper = class SteamHelper {
 
     if (imagePath) {
       const gicon = new Gio.FileIcon({ file: Gio.File.new_for_path(imagePath) });
-      const imageActor = new St.Icon({
+      const image = new St.Icon({
         gicon: gicon,
         icon_size: requestedWidth,
         icon_type: St.IconType.FULLCOLOR,
         reactive: true,
         style: `width: ${requestedWidth}px; height: ${requestedHeight}px;`,
       });
-      return imageActor;
+      return image;
     }
 
     global.logError(`Could not load an image for appid ${appid}`);
