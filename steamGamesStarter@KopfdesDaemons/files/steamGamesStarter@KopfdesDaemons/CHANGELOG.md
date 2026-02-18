@@ -9,3 +9,5 @@ changelog
 - added fallback to `deskletManager` for imports
 - removed clutter
 - moved icons to icon folder
+- changed desklet entry point to `on_desklet_added_to_desktop`
+- centered no installed games label

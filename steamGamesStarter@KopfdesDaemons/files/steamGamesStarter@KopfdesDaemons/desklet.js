@@ -27,6 +27,8 @@ function _(str) {
 class SteamGamesStarterDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
+    this.setHeader(_("Steam Games Starter"));
+
     this.games = [];
     this.error = null;
     this.steamInstallationType = "system package";
@@ -42,8 +44,9 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     settings.bindProperty(Settings.BindingDirection.IN, "number-of-games", "numberOfGames", this._loadGamesAndSetupUI.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "max-desklet-height", "maxDeskletHeight", this._updateScrollViewStyle.bind(this));
     settings.bindProperty(Settings.BindingDirection.IN, "background-color", "backgroundColor", this._updateScrollViewStyle.bind(this));
+  }
 
-    this.setHeader(_("Steam Games Starter"));
+  on_desklet_added_to_desktop() {
     this._initUI();
     this._loadGamesAndSetupUI();
   }

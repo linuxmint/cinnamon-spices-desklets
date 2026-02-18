@@ -23,7 +23,7 @@ function _(str) {
 
 var UiHelper = class UiHelper {
   static createHeader(metadataPath, onReload) {
-    const headerContainer = new St.BoxLayout({ style_class: "header-container", reactive: true, track_hover: true });
+    const headerContainer = new St.BoxLayout();
     headerContainer.add_child(new St.Label({ text: _("Steam Games Starter"), style_class: "header-label" }));
     headerContainer.add_child(new St.BoxLayout({ x_expand: true }));
 
