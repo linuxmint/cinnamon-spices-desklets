@@ -1,0 +1,171 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: procmon@ksmith 1.1.0\n"
+"POT-Creation-Date: 2026-02-17 00:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: desklet.js
+msgid "Process Monitor"
+msgstr ""
+
+#: desklet.js
+msgid "PID"
+msgstr ""
+
+#: desklet.js
+msgid "USER"
+msgstr ""
+
+#: desklet.js
+msgid "CPU%"
+msgstr ""
+
+#: desklet.js
+msgid "MEM"
+msgstr ""
+
+#: desklet.js
+msgid "COMMAND"
+msgstr ""
+
+#: metadata.json
+msgid "ProcMon Table"
+msgstr ""
+
+#: metadata.json
+msgid "Sortable process table powered by top."
+msgstr ""
+
+#: settings-schema.json
+msgid "Refresh interval"
+msgstr ""
+
+#: settings-schema.json
+msgid "How often to refresh the process list."
+msgstr ""
+
+#: settings-schema.json
+msgid "Number of rows"
+msgstr ""
+
+#: settings-schema.json
+msgid "Maximum process rows to display."
+msgstr ""
+
+#: settings-schema.json
+msgid "PID column width"
+msgstr ""
+
+#: settings-schema.json
+msgid "Width of the PID column."
+msgstr ""
+
+#: settings-schema.json
+msgid "USER column width"
+msgstr ""
+
+#: settings-schema.json
+msgid "Width of the USER column."
+msgstr ""
+
+#: settings-schema.json
+msgid "CPU% column width"
+msgstr ""
+
+#: settings-schema.json
+msgid "Width of the CPU% column."
+msgstr ""
+
+#: settings-schema.json
+msgid "MEM column width"
+msgstr ""
+
+#: settings-schema.json
+msgid "Width of the MEM column."
+msgstr ""
+
+#: settings-schema.json
+msgid "COMMAND column width"
+msgstr ""
+
+#: settings-schema.json
+msgid "Width of the COMMAND column. Desklet width is the sum of all column widths."
+msgstr ""
+
+#: settings-schema.json
+msgid "Disable desklet decorations"
+msgstr ""
+
+#: settings-schema.json
+msgid "Hide Cinnamon desklet frame and header decorations."
+msgstr ""
+
+#: settings-schema.json
+msgid "Header text color"
+msgstr ""
+
+#: settings-schema.json
+msgid "Color used for the header row text."
+msgstr ""
+
+#: settings-schema.json
+msgid "Content text color"
+msgstr ""
+
+#: settings-schema.json
+msgid "Color used for process row text."
+msgstr ""
+
+#: settings-schema.json
+msgid "Background color"
+msgstr ""
+
+#: settings-schema.json
+msgid "Base background color of the desklet."
+msgstr ""
+
+#: settings-schema.json
+msgid "Background transparency"
+msgstr ""
+
+#: settings-schema.json
+msgid "0% is opaque, 100% is fully transparent."
+msgstr ""
+
+#: settings-schema.json
+msgid "Only my processes"
+msgstr ""
+
+#: settings-schema.json
+msgid "Use top -u <current user> to show only your processes."
+msgstr ""
+
+#: settings-schema.json
+msgid "CPU scaling mode"
+msgstr ""
+
+#: settings-schema.json
+msgid "Choose how CPU percentages are shown."
+msgstr ""
+
+#: settings-schema.json
+msgid "Per-core style (100% = one core)"
+msgstr ""
+
+#: settings-schema.json
+msgid "Total-system-scaled (100% = all cores)"
+msgstr ""
+
+#: settings-schema.json
+msgid "COMMAND max length"
+msgstr ""
+
+#: settings-schema.json
+msgid "Long command names are truncated with ellipsis."
+msgstr ""
