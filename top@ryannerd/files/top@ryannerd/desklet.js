@@ -9,7 +9,7 @@ const Global = global; // This is done so that Auto-completion for Gnome project
 const Gettext = imports.gettext;
 const Gio = imports.gi.Gio;
 
-const UUID = "devtest-top@ryannerd";
+const UUID = "top@ryannerd";
 const DESKLET_DIR = DeskletManager.deskletMeta[UUID].path; // path to this desklet (unused)
 
 const PID_MAX_LIMIT          = 20;
