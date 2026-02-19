@@ -291,11 +291,15 @@ MyDesklet.prototype = {
         
         // Update only if format is specified
         if (this.timeFormat.length > 0) {
-		    this.timeLabel.set_text(displayDate.toLocaleFormat(this.timeFormat));
+            const timeFormatted = displayDate.toLocaleFormat(this.timeFormat);
+            const timeText = timeFormatted ? timeFormatted : _("Invalid format");
+		    this.timeLabel.set_text(timeText);
         }
 
         if (this.dateFormat.length > 0) {
-		    this.dateLabel.set_text(displayDate.toLocaleFormat(this.dateFormat));
+            const dateFormatted = displayDate.toLocaleFormat(this.dateFormat);
+            const dateText = dateFormatted ? dateFormatted : _("Invalid format");
+		    this.dateLabel.set_text(dateText);
         }
 
 		this.timeout = GLib.timeout_add(GLib.PRIORITY_DEFAULT, this.refreshPeriod, () => { this._updateDate() });
