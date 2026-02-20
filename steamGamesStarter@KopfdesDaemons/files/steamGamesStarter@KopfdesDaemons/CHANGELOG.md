@@ -13,6 +13,8 @@ changelog
   - Added settings to hide game start and shop button
   - Added font size settings
   - Added desklet width setting
+  - Added hide game header image setting
+  - Added game header image scale setting
 - Refactoring:
   - Added fallback to `deskletManager` for imports
   - Removed clutter

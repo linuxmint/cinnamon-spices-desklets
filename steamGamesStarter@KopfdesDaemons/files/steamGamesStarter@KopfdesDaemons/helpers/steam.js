@@ -106,7 +106,7 @@ var SteamHelper = class SteamHelper {
   }
 
   // Helper to load a game's header image from the Steam appcache
-  static getGameHeaderImage(appid, scaleSize) {
+  static getGameHeaderImage(appid, size, scaleSize) {
     const appCachePath = GLib.get_home_dir() + "/.steam/steam/appcache/librarycache/";
     const commonImageNames = ["header.jpg", "library_header.jpg", "library_hero.jpg"];
 
@@ -119,27 +119,20 @@ var SteamHelper = class SteamHelper {
       }
     }
 
+    const BASE_FONT_SIZE = 16;
+
+    // Shrink default steam game header size
+    const targetWidth = 460 * size;
+    const targetHeight = 215 * size;
+
+    // Convert pixels to em
+    const widthInEm = (targetWidth * scaleSize) / BASE_FONT_SIZE;
+    const heightInEm = (targetHeight * scaleSize) / BASE_FONT_SIZE;
+
     if (imagePath) {
-      const BASE_FONT_SIZE = 16;
-
-      // Shrink default steam game header size
-      const targetWidth = 460 * 0.4;
-      const targetHeight = 215 * 0.4;
-
-      // Convert pixels to em
-      const widthInEm = (targetWidth * scaleSize) / BASE_FONT_SIZE;
-      const heightInEm = (targetHeight * scaleSize) / BASE_FONT_SIZE;
-
       const file = Gio.File.new_for_path(imagePath);
-
-      // const image = new St.Icon({
-      //   gicon: new Gio.FileIcon({ file }),
-      //   style: `width: ${widthInEm}em; height: ${heightInEm}em`,
-      //   icon_size: targetWidth * scaleSize,
-      //   icon_type: St.IconType.FULLCOLOR,
-      // });
-
       const imageUri = file.get_uri();
+
       const image = new St.Bin({
         style: `width: ${widthInEm}em; height: ${heightInEm}em; background-image: url("${imageUri}"); background-size: contain; background-position: center; background-repeat: no-repeat;`,
       });
@@ -148,7 +141,13 @@ var SteamHelper = class SteamHelper {
     }
 
     global.logError(`${UUID}: Could not load an image for appid ${appid}`);
-    return new St.Label({ text: "Error" });
+
+    const errorLabel = new St.Label({
+      text: _("Could not load image"),
+      style: "font-size: " + scaleSize + "em; width:" + widthInEm + "em; height: " + heightInEm + "em; text-align: center; color: red;",
+    });
+    errorLabel.clutter_text.line_wrap = true;
+    return errorLabel;
   }
 
   static getSteamCommand(steamInstallType, customCMD) {

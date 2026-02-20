@@ -55,6 +55,8 @@ var UiHelper = class UiHelper {
       customCMD,
       metadataPath,
       scaleSize,
+      showGameHeaderImage,
+      gameHeaderImageSize,
       gameLabelFontSize,
       lastPlayedLabelFontSize,
       showGameStartButton,
@@ -67,10 +69,12 @@ var UiHelper = class UiHelper {
       style: "margin: " + 0.5 * scaleSize + "em;",
     });
 
-    const image = SteamHelper.getGameHeaderImage(game.appid, scaleSize);
-    const button = new St.Button({ child: image });
-    button.connect("clicked", () => SteamHelper.runGame(game.appid, steamInstallType, customCMD));
-    gameContainer.add_child(button);
+    if (showGameHeaderImage) {
+      const image = SteamHelper.getGameHeaderImage(game.appid, gameHeaderImageSize, scaleSize);
+      const button = new St.Button({ child: image });
+      button.connect("clicked", () => SteamHelper.runGame(game.appid, steamInstallType, customCMD));
+      gameContainer.add_child(button);
+    }
 
     const labelContainer = new St.BoxLayout({
       vertical: true,

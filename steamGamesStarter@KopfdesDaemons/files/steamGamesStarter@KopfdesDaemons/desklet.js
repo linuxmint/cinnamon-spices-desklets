@@ -43,6 +43,8 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     this.loadId = 0;
     this.backgroundColor = "rgba(58, 64, 74, 0.5)";
     this.hideDecorations = true;
+    this.showGameHeaderImage = true;
+    this.gameHeaderImageSize = 0.4;
     this.gameLabelFontSize = 18;
     this.lastPlayedLabelFontSize = 16;
     this.showGameStartButton = true;
@@ -59,6 +61,8 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     this.settings.bindProperty(Settings.BindingDirection.IN, "desklet-width", "deskletWidth", this._onScaleSizeChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "backgroundColor", this._updateScrollViewStyle.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this._onDecorationChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-game-header-image", "showGameHeaderImage", this._refresh.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "game-header-image-size", "gameHeaderImageSize", this._refresh.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "show-game-start-button", "showGameStartButton", this._refresh.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "show-game-shop-button", "showGameShopButton", this._refresh.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "game-label-font-size", "gameLabelFontSize", this._refresh.bind(this));
@@ -133,6 +137,8 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
           customCMD: this.customCMD,
           metadataPath: this.metadata.path,
           scaleSize: this.scaleSize,
+          showGameHeaderImage: this.showGameHeaderImage,
+          gameHeaderImageSize: this.gameHeaderImageSize,
           gameLabelFontSize: this.gameLabelFontSize,
           lastPlayedLabelFontSize: this.lastPlayedLabelFontSize,
           showGameStartButton: this.showGameStartButton,
