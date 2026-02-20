@@ -25,7 +25,7 @@
     "labels-section": {
       "type": "section",
       "title": "Labels",
-      "keys": ["game-label-font-size", "last-played-label-font-size"]
+      "keys": ["game-label-font-size", "show-last-played-label", "last-played-label-font-size"]
     },
     "buttons-section": {
       "type": "section",
@@ -126,12 +126,18 @@
     "step": 1,
     "description": "Game label font size"
   },
+  "show-last-played-label": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show last played label"
+  },
   "last-played-label-font-size": {
     "type": "spinbutton",
     "default": 16,
     "min": 5,
     "max": 50,
     "step": 1,
+    "dependency": "show-last-played-label",
     "description": "Last played label font size"
   },
   "show-game-start-button": {

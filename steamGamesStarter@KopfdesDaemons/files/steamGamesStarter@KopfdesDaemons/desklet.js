@@ -46,6 +46,7 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     this.showGameHeaderImage = true;
     this.gameHeaderImageSize = 0.4;
     this.gameLabelFontSize = 18;
+    this.showLastPlayedLabel = true;
     this.lastPlayedLabelFontSize = 16;
     this.showGameStartButton = true;
     this.showGameShopButton = true;
@@ -66,6 +67,7 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     this.settings.bindProperty(Settings.BindingDirection.IN, "show-game-start-button", "showGameStartButton", this._refresh.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "show-game-shop-button", "showGameShopButton", this._refresh.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "game-label-font-size", "gameLabelFontSize", this._refresh.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-last-played-label", "showLastPlayedLabel", this._refresh.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "last-played-label-font-size", "lastPlayedLabelFontSize", this._refresh.bind(this));
   }
 
@@ -140,6 +142,7 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
           showGameHeaderImage: this.showGameHeaderImage,
           gameHeaderImageSize: this.gameHeaderImageSize,
           gameLabelFontSize: this.gameLabelFontSize,
+          showLastPlayedLabel: this.showLastPlayedLabel,
           lastPlayedLabelFontSize: this.lastPlayedLabelFontSize,
           showGameStartButton: this.showGameStartButton,
           showGameShopButton: this.showGameShopButton,

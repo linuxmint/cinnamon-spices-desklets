@@ -58,6 +58,7 @@ var UiHelper = class UiHelper {
       showGameHeaderImage,
       gameHeaderImageSize,
       gameLabelFontSize,
+      showLastPlayedLabel,
       lastPlayedLabelFontSize,
       showGameStartButton,
       showGameShopButton,
@@ -81,6 +82,7 @@ var UiHelper = class UiHelper {
       x_expand: true,
       style: "margin-left: " + 0.5 * scaleSize + "em;",
     });
+
     const fontSizeGameLabelEm = (gameLabelFontSize / 16) * scaleSize;
     const gameLabel = new St.Label({
       text: game.name,
@@ -89,12 +91,16 @@ var UiHelper = class UiHelper {
     });
     labelContainer.add_child(gameLabel);
 
-    // Format the last played date and add a label
-    const fontSizeLastPlayedLabelEm = (lastPlayedLabelFontSize / 16) * scaleSize;
-    const lastPlayedDate = new Date(parseInt(game.lastPlayed, 10) * 1000);
-    const formattedDate = game.lastPlayed !== "0" ? lastPlayedDate.toLocaleDateString() : _("Unknown");
-    const dateLabel = new St.Label({ text: _("Last played:") + ` ${formattedDate}`, style: "font-size: " + fontSizeLastPlayedLabelEm + "em;" });
-    labelContainer.add_child(dateLabel);
+    if (showLastPlayedLabel) {
+      const fontSizeLastPlayedLabelEm = (lastPlayedLabelFontSize / 16) * scaleSize;
+      const lastPlayedDate = new Date(parseInt(game.lastPlayed, 10) * 1000);
+      const formattedDate = game.lastPlayed !== "0" ? lastPlayedDate.toLocaleDateString() : _("Unknown");
+      const dateLabel = new St.Label({
+        text: _("Last played:") + ` ${formattedDate}`,
+        style: "font-size: " + fontSizeLastPlayedLabelEm + "em;",
+      });
+      labelContainer.add_child(dateLabel);
+    }
 
     const buttonRow = new St.BoxLayout({ style: "spacing: " + 0.5 * scaleSize + "em;" });
 
