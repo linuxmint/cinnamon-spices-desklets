@@ -4,17 +4,21 @@ changelog
 
 - Initial release
 
-## [1.0.1] 17.02.2026
+## [1.1.0] 17.02.2026
 
-- Added scaling setting based on system font size
-- Added fallback to `deskletManager` for imports
-- Removed clutter
-- Moved icons to icons folder
-- Changed desklet entry point to on_desklet_added_to_desktop
-- Centered "No installed games found" label
-- Reload button size fixed
-- Updated UI loading (games or error UI)
-- Added settings cleanup on desklet removal
-- Added UUID to logs
-- Organized settings in tabs
-- Added decoration toggle to settings (no decorations on default)
+- New features:
+  - Added custom steam installation setting
+  - Added desklet scaling setting based on system font size
+  - Added decoration toggle to settings (no decorations on default)
+  - Added settings to hide game start and shop button
+- Refactoring:
+  - Added fallback to `deskletManager` for imports
+  - Removed clutter
+  - Moved icons to icons folder
+  - Changed desklet entry point to on_desklet_added_to_desktop
+  - Updated UI loading (games or error UI)
+  - Added settings cleanup on desklet removal
+  - Added UUID to logs
+  - Organized settings in tabs
+- Fixes:
+  - Reload button size fixed

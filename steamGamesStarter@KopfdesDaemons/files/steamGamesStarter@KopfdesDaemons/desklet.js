@@ -42,6 +42,8 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     this.loadId = 0;
     this.backgroundColor = "rgba(58, 64, 74, 0.5)";
     this.hideDecorations = true;
+    this.showGameStartButton = true;
+    this.showGameShopButton = true;
 
     // Setup settings and bind them to properties
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
@@ -53,6 +55,8 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     this.settings.bindProperty(Settings.BindingDirection.IN, "max-desklet-height", "maxDeskletHeight", this._updateScrollViewStyle.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "backgroundColor", this._updateScrollViewStyle.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this._onDecorationChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-game-start-button", "showGameStartButton", this._refresh.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-game-shop-button", "showGameShopButton", this._refresh.bind(this));
   }
 
   on_desklet_added_to_desktop() {
@@ -117,7 +121,16 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     } else {
       contentBox = new St.BoxLayout({ vertical: true, style_class: "games-container" });
       gamesToDisplay.forEach(game => {
-        const gameItem = UiHelper.createGameItem(game, this.steamInstallType, this.customCMD, this.metadata.path, this.scaleSize);
+        const gameItemData = {
+          game: game,
+          steamInstallType: this.steamInstallType,
+          customCMD: this.customCMD,
+          metadataPath: this.metadata.path,
+          scaleSize: this.scaleSize,
+          showGameStartButton: this.showGameStartButton,
+          showGameShopButton: this.showGameShopButton,
+        };
+        const gameItem = UiHelper.createGameItem(gameItemData);
         contentBox.add_child(gameItem);
       });
     }
