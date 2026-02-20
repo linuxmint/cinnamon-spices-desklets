@@ -39,6 +39,7 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     this.mainContainer = null;
     this.loadId = 0;
     this.backgroundColor = "rgba(58, 64, 74, 0.5)";
+    this.hideDecorations = true;
 
     // Setup settings and bind them to properties
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
@@ -47,11 +48,22 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._onScaleSizeChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "max-desklet-height", "maxDeskletHeight", this._updateScrollViewStyle.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "backgroundColor", this._updateScrollViewStyle.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this._onDecorationChanged.bind(this));
   }
 
   on_desklet_added_to_desktop() {
     this._initUI();
+    this._onDecorationChanged();
     this._refresh();
+  }
+
+  on_desklet_removed() {
+    this.settings.finalize();
+  }
+
+  _onDecorationChanged() {
+    this.metadata["prevent-decorations"] = this.hideDecorations;
+    this._updateDecoration();
   }
 
   _initUI() {

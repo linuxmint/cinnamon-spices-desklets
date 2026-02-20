@@ -1,7 +1,27 @@
 {
-  "head0": {
-    "type": "header",
-    "description": "General"
+  "layout": {
+    "type": "layout",
+    "pages": ["general-page", "style-page"],
+    "general-page": {
+      "type": "page",
+      "title": "General",
+      "sections": ["general-section"]
+    },
+    "style-page": {
+      "type": "page",
+      "title": "Style",
+      "sections": ["style-section"]
+    },
+    "general-section": {
+      "type": "section",
+      "title": "General",
+      "keys": ["scale-size", "steam-install-type", "number-of-games"]
+    },
+    "style-section": {
+      "type": "section",
+      "title": "Style",
+      "keys": ["background-color", "max-desklet-height", "hide-decorations"]
+    }
   },
   "steam-install-type": {
     "type": "combobox",
@@ -19,10 +39,6 @@
     "max": 100,
     "step": 1,
     "description": "Maximum number of games"
-  },
-  "head1": {
-    "type": "header",
-    "description": "Style"
   },
   "scale-size": {
     "type": "scale",
@@ -44,5 +60,10 @@
     "type": "colorchooser",
     "default": "rgba(58, 64, 74, 0.5)",
     "description": "Background color"
+  },
+  "hide-decorations": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Hide decorations"
   }
 }
