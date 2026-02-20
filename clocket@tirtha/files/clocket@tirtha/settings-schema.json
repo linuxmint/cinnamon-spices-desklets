@@ -1,145 +1,327 @@
 {
-    "top": {
-        "type": "header",
-        "description": "Clock configuration"
+  "layout": {
+    "type": "layout",
+    "pages": ["general-page", "weather-page", "clock-page", "date-page"],
+    "general-page": {
+      "type": "page",
+      "title": "General",
+      "sections": ["general-section"]
     },
-    "font-size": {
-        "type": "spinbutton",
-        "default": 40,
-        "min": 10,
-        "max": 200,
-        "units": "px",
-        "description": "Font size",
-        "step": 1
+    "weather-page": {
+      "type": "page",
+      "title": "Weather",
+      "sections": ["weather-data-section", "weather-style-section"]
     },
-    "text-color": {
-        "type": "colorchooser",
-        "default": "rgb(255,255,255)",
-        "description": "Text color",
-        "tooltip": "Click the button to select a new text color"
+    "clock-page": {
+      "type": "page",
+      "title": "Clock",
+      "sections": ["clock-style-section"]
     },
-    "background-color": {
-        "type": "colorchooser",
-        "default": "rgba(0, 0, 0, 0.363)",
-        "description": "background color",
-        "tooltip": "Click the button to select a new background color"
+    "date-page": {
+      "type": "page",
+      "title": "Date",
+      "sections": ["date-style-section"]
     },
-    "sep1" : {
-        "type" : "separator"
+    "general-section": {
+      "type": "section",
+      "title": "General",
+      "keys": ["scale-size", "hide-decorations", "style-preset"]
     },
-    "weatherconf":{
-        "type":"header",
-        "description":"weather data service settings"
+    "weather-data-section": {
+      "type": "section",
+      "title": "Weather data",
+      "keys": ["show-weather-data", "temperature-unit", "webservice", "api-key", "location-type", "location", "weather-refresh-interval"]
     },
-    "compact": {
-        "type": "switch",
-        "default": true,
-        "description": "Want weather display ?",
-        "tooltip": "Want weather display ?"
+    "clock-style-section": {
+      "type": "section",
+      "title": "Clock style",
+      "keys": [
+        "show-clock",
+        "use-custom-time-string",
+        "custom-time-string",
+        "time-format-button",
+        "clock-font-size",
+        "clock-text-color",
+        "clock-background-color",
+        "clock-border-radius"
+      ]
     },
-    "webservice" : {
-        "type": "combobox",
-        "default" : "owm",
-        "dependency":"compact",
-        "description" : "Data service",
-        "options" : {
-            "BBC" : "bbc",
-            "Open Weather Map Free (requires API key)": "owm"
-        },
-        "tooltip" : "select the data service"
+    "date-style-section": {
+      "type": "section",
+      "title": "Date style",
+      "keys": [
+        "show-date",
+        "use-date-time-string",
+        "custom-date-string",
+        "date-format-button",
+        "date-font-size",
+        "date-text-color",
+        "date-accent-color",
+        "date-background-color",
+        "date-border-radius"
+      ]
     },
-    "api-key": {
-        "type": "entry",
-        "default": "",
-        "dependency":"compact",
-        "description": "put api key",
-        "indent": true,
-        "tooltip": "put your api key generated from open-weather-map here"
-    },
-    "loctype" : {
-        "type": "combobox",
-        "default" : "city",
-        "dependency":"compact",
-        "description" : "Type of location data",
-        "options" : {
-            "city name" : "city",
-            "lat-lon": "lat-lon"
-        },
-        "tooltip" : "select your location type"
-    },
-    "loc": {
-        "type": "entry",
-        "default": "kolkata",
-        "dependency":"compact",
-        "description": "put your location",
-        "indent": true,
-        "tooltip": "put your lat-long generated from lat-long.html page"
-    },
-    
-    "auto-update": {
-        "type": "switch",
-        "default": false,
-        "dependency":"compact",
-        "description": "auto-update report",
-        "tooltip": "enable or disable auto-update"
-    },
-    "update-duration": {
-        "type": "entry",
-        "dependency": "auto-update",
-        "default": "20",
-        "description": "set auto update duration(20 min/30 min/60 min)",
-        "indent": true,
-        "tooltip": "set auto update duration"
-    },
-    "sep2":{
-        "type":"separator"
-    },
-    "data-custom":{
-        "type":"header",
-        "description":"customize your data",
-        "dependency":"compact"
-    },
-    "unit":{
-        "type": "combobox",
-        "default" : "metric",
-        "dependency":"compact",
-        "description" : "unit",
-        "options" : {
-            "metric" : "metric"
-        },
-        "tooltip" : "select your unit preferance"
-    },
-    "sep3":{
-        "type":"separator"
-    },
-    "design":{
-        "type":"header",
-        "description":"customize font and bg color",
-        "dependency":"compact"
-    },
-    "weather-color" : {
-	    "type": "colorchooser",
-        "dependency":"compact",
-	    "default" : "rgb(255,255,255)",
-	    "description" : "weather block text color",
-	    "tooltip" : "Click the button to select a new text color"
-    },
-    "weather-bg-color" : {
-	    "type": "colorchooser",
-        "dependency":"compact",
-	    "default" : "rgba(0, 0, 0, 0.363)",
-	    "description" : "weather-block bg-color",
-	    "tooltip" : "Click the button to select a new bg color"
-    },
-    "icon-pack":{
-        "type": "combobox",
-        "default" : "default",
-        "dependency":"compact",
-        "description" : "Icon pack",
-        "options" : {
-            "default" : "default"
-        },
-        "tooltip" : "select your fav icon-pack"
+    "weather-style-section": {
+      "type": "section",
+      "title": "Weather style",
+      "dependency": "show-weather-data",
+      "keys": [
+        "weather-font-size",
+        "weather-text-color",
+        "weather-background-color",
+        "weather-forecast-background-color",
+        "weather-border-radius",
+        "weather-forecast-border-radius"
+      ]
     }
-    
+  },
+  "scale-size": {
+    "type": "scale",
+    "default": 1.0,
+    "step": 0.1,
+    "min": 0.3,
+    "max": 3.0,
+    "description": "Desklet scale size"
+  },
+  "hide-decorations": {
+    "type": "checkbox",
+    "description": "Hide decorations",
+    "default": true
+  },
+  "style-preset": {
+    "type": "combobox",
+    "default": "translucent",
+    "description": "Style Preset",
+    "options": {
+      "Translucent": "translucent",
+      "Transparent": "transparent",
+      "Material Design": "material",
+      "Metro": "metro",
+      "Mint": "mint"
+    }
+  },
+  "show-weather-data": {
+    "type": "switch",
+    "default": true,
+    "description": "Show weather"
+  },
+  "temperature-unit": {
+    "type": "combobox",
+    "default": "celsius",
+    "dependency": "show-weather-data",
+    "description": "Units for weather data",
+    "options": {
+      "°C": "celsius",
+      "°F": "fahrenheit"
+    }
+  },
+  "webservice": {
+    "type": "combobox",
+    "default": "Open Meteo",
+    "dependency": "show-weather-data",
+    "description": "Data service",
+    "options": {
+      "Open-Meteo": "Open Meteo",
+      "Open Weather Map Free (requires API key)": "openweathermap"
+    }
+  },
+  "api-key": {
+    "type": "entry",
+    "default": "",
+    "description": "API key",
+    "indent": true,
+    "dependency": "show-weather-data"
+  },
+  "location-type": {
+    "type": "combobox",
+    "default": "automatic",
+    "dependency": "show-weather-data",
+    "description": "Type of location data",
+    "options": {
+      "city name": "city",
+      "lat-lon": "lat-lon",
+      "Automatic": "automatic"
+    }
+  },
+  "location": {
+    "type": "entry",
+    "default": "",
+    "dependency": "show-weather-data",
+    "description": "Location (city name or lat-lon)",
+    "indent": true,
+    "tooltip": "city name (e.g. London) or lat-lon (e.g. 51.5074456,-0.1277653)"
+  },
+  "weather-refresh-interval": {
+    "type": "spinbutton",
+    "default": 5,
+    "min": 1,
+    "max": 1440,
+    "units": "minutes",
+    "description": "Weather data refresh interval",
+    "dependency": "show-weather-data",
+    "step": 1
+  },
+  "show-clock": {
+    "type": "switch",
+    "default": true,
+    "description": "Show clock"
+  },
+  "use-custom-time-string": {
+    "type": "switch",
+    "default": false,
+    "dependency": "show-clock",
+    "description": "Use custom time string"
+  },
+  "custom-time-string": {
+    "type": "entry",
+    "default": "%H:%M:%S",
+    "dependency": "use-custom-time-string",
+    "description": "Custom time string (strftime format)"
+  },
+  "time-format-button": {
+    "type": "button",
+    "description": "Show information on time format syntax",
+    "dependency": "use-custom-time-string",
+    "callback": "on_custom_format_button_pressed"
+  },
+  "clock-font-size": {
+    "type": "spinbutton",
+    "default": 40,
+    "min": 6,
+    "max": 200,
+    "units": "px",
+    "dependency": "show-clock",
+    "description": "Clock font size",
+    "step": 1
+  },
+  "clock-text-color": {
+    "type": "colorchooser",
+    "default": "rgb(255,255,255)",
+    "dependency": "show-clock",
+    "description": "Text color"
+  },
+  "clock-background-color": {
+    "type": "colorchooser",
+    "default": "rgba(0, 0, 0, 0.363)",
+    "dependency": "show-clock",
+    "description": "Clock background color"
+  },
+  "clock-border-radius": {
+    "type": "spinbutton",
+    "default": 20,
+    "min": 0,
+    "max": 100,
+    "units": "px",
+    "description": "Clock border radius",
+    "dependency": "show-clock",
+    "step": 1
+  },
+  "show-date": {
+    "type": "switch",
+    "default": true,
+    "description": "Show date"
+  },
+  "use-date-time-string": {
+    "type": "switch",
+    "default": false,
+    "dependency": "show-date",
+    "description": "Use custom date string"
+  },
+  "custom-date-string": {
+    "type": "entry",
+    "default": "%A,%n%B %d, %Y",
+    "dependency": "use-date-time-string",
+    "description": "Custom date string (strftime format)"
+  },
+  "date-format-button": {
+    "type": "button",
+    "description": "Show information on date format syntax",
+    "dependency": "use-date-time-string",
+    "callback": "on_custom_format_button_pressed"
+  },
+  "date-font-size": {
+    "type": "spinbutton",
+    "default": 40,
+    "min": 6,
+    "max": 200,
+    "units": "px",
+    "dependency": "show-date",
+    "description": "Date font size",
+    "step": 1
+  },
+  "date-text-color": {
+    "type": "colorchooser",
+    "default": "rgb(255,255,255)",
+    "dependency": "show-date",
+    "description": "Date text color"
+  },
+  "date-accent-color": {
+    "type": "colorchooser",
+    "default": "red",
+    "dependency": "show-date",
+    "description": "Date accent color"
+  },
+  "date-background-color": {
+    "type": "colorchooser",
+    "default": "rgba(0, 0, 0, 0.363)",
+    "dependency": "show-date",
+    "description": "Date background color"
+  },
+  "date-border-radius": {
+    "type": "spinbutton",
+    "default": 20,
+    "min": 0,
+    "max": 100,
+    "units": "px",
+    "dependency": "show-date",
+    "description": "Date border radius",
+    "step": 1
+  },
+  "weather-font-size": {
+    "type": "spinbutton",
+    "default": 14,
+    "min": 6,
+    "max": 200,
+    "units": "px",
+    "description": "Weather font size",
+    "step": 1
+  },
+  "weather-text-color": {
+    "type": "colorchooser",
+    "dependency": "show-weather-data",
+    "default": "rgb(255,255,255)",
+    "description": "Weather text color"
+  },
+  "weather-background-color": {
+    "type": "colorchooser",
+    "dependency": "show-weather-data",
+    "default": "rgba(0, 0, 0, 0.363)",
+    "description": "Weather background color"
+  },
+  "weather-forecast-background-color": {
+    "type": "colorchooser",
+    "default": "rgba(0, 0, 0, 0.4)",
+    "dependency": "show-weather-data",
+    "description": "Weather forecast background color"
+  },
+  "weather-border-radius": {
+    "type": "spinbutton",
+    "default": 20,
+    "min": 0,
+    "max": 100,
+    "units": "px",
+    "dependency": "show-weather-data",
+    "description": "Weather border radius",
+    "step": 1
+  },
+  "weather-forecast-border-radius": {
+    "type": "spinbutton",
+    "default": 15,
+    "min": 0,
+    "max": 100,
+    "units": "px",
+    "dependency": "show-weather-data",
+    "description": "Weather forecast border radius",
+    "step": 1
+  }
 }
