@@ -15,7 +15,7 @@
     "size-section": {
       "type": "section",
       "title": "Size",
-      "keys": ["scale-size", "max-desklet-height", "number-of-games"]
+      "keys": ["scale-size", "max-desklet-height", "desklet-width", "number-of-games"]
     },
     "style-section": {
       "type": "section",
@@ -85,6 +85,14 @@
     "max": 100,
     "step": 1,
     "description": "Maximum height of the desklet"
+  },
+  "desklet-width": {
+    "type": "scale",
+    "default": 32,
+    "min": 25,
+    "max": 100,
+    "step": 1,
+    "description": "Width of the desklet"
   },
   "background-color": {
     "type": "colorchooser",

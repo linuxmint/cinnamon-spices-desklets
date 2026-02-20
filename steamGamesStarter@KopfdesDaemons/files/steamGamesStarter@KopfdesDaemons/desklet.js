@@ -37,6 +37,7 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     this.numberOfGames = 10;
     this.scaleSize = 1;
     this.maxDeskletHeight = 32;
+    this.deskletWidth = 32;
     this.scrollView = null;
     this.mainContainer = null;
     this.loadId = 0;
@@ -55,6 +56,7 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     this.settings.bindProperty(Settings.BindingDirection.IN, "number-of-games", "numberOfGames", this._refresh.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._onScaleSizeChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "max-desklet-height", "maxDeskletHeight", this._updateScrollViewStyle.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "desklet-width", "deskletWidth", this._onScaleSizeChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "backgroundColor", this._updateScrollViewStyle.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this._onDecorationChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "show-game-start-button", "showGameStartButton", this._refresh.bind(this));
@@ -84,7 +86,7 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     }
 
     this.mainContainer = new St.BoxLayout({ vertical: true });
-    this.mainContainer.set_style("width:" + 32 * this.scaleSize + "em;");
+    this.mainContainer.set_style("width:" + this.deskletWidth * this.scaleSize + "em;");
     this.mainContainer.add_child(UiHelper.createHeader(this.metadata.path, this._refresh.bind(this), this.scaleSize));
 
     this.scrollView = null;
