@@ -102,7 +102,7 @@ msgstr "Maximalanzahl der Spiele"
 
 #. settings-schema.json->scale-size->description
 msgid "Desklet scale size"
-msgstr "Deskletskalierungsgrgöße"
+msgstr "Deskletskalierungsgröße"
 
 #. settings-schema.json->max-desklet-height->description
 msgid "Maximum height of the desklet"
@@ -134,7 +134,7 @@ msgstr "Schriftgröße des Spiellabels"
 
 #. settings-schema.json->show-last-played-label->description
 msgid "Show \"last played\" label"
-msgstr "Zuletzt gespielt\"-Label anzeigen"
+msgstr "\"Zuletzt gespielt\"-Label anzeigen"
 
 #. settings-schema.json->last-played-label-font-size->description
 msgid "\"Last played\" label font size"
@@ -146,4 +146,4 @@ msgstr "Spielstart-Button anzeigen"
 
 #. settings-schema.json->show-game-shop-button->description
 msgid "Show game shop button"
-msgstr "Spielstart-Shop anzeigen"
+msgstr "Spielshop anzeigen"
