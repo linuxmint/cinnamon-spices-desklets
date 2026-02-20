@@ -11,6 +11,7 @@ changelog
   - Added desklet scaling setting based on system font size
   - Added decoration toggle to settings (no decorations on default)
   - Added settings to hide game start and shop button
+  - Added font size settings
 - Refactoring:
   - Added fallback to `deskletManager` for imports
   - Removed clutter

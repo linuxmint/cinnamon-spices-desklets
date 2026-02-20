@@ -5,22 +5,27 @@
     "general-page": {
       "type": "page",
       "title": "General",
-      "sections": ["general-section", "steam-install-section"]
+      "sections": ["steam-install-section", "size-section"]
     },
     "style-page": {
       "type": "page",
       "title": "Style",
-      "sections": ["style-section", "buttons-section"]
+      "sections": ["style-section", "labels-section", "buttons-section"]
     },
-    "general-section": {
+    "size-section": {
       "type": "section",
-      "title": "General",
-      "keys": ["scale-size", "number-of-games"]
+      "title": "Size",
+      "keys": ["scale-size", "max-desklet-height", "number-of-games"]
     },
     "style-section": {
       "type": "section",
       "title": "Style",
-      "keys": ["background-color", "max-desklet-height", "hide-decorations"]
+      "keys": ["background-color", "hide-decorations"]
+    },
+    "labels-section": {
+      "type": "section",
+      "title": "Labels",
+      "keys": ["game-label-font-size", "last-played-label-font-size"]
     },
     "buttons-section": {
       "type": "section",
@@ -90,6 +95,22 @@
     "type": "checkbox",
     "default": true,
     "description": "Hide decorations"
+  },
+  "game-label-font-size": {
+    "type": "spinbutton",
+    "default": 18,
+    "min": 5,
+    "max": 50,
+    "step": 1,
+    "description": "Game label font size"
+  },
+  "last-played-label-font-size": {
+    "type": "spinbutton",
+    "default": 16,
+    "min": 5,
+    "max": 50,
+    "step": 1,
+    "description": "Last played label font size"
   },
   "show-game-start-button": {
     "type": "checkbox",

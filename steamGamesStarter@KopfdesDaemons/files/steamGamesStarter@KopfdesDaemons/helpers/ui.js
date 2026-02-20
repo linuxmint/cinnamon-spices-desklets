@@ -49,7 +49,17 @@ var UiHelper = class UiHelper {
   }
 
   static createGameItem(gameData) {
-    const { game, steamInstallType, customCMD, metadataPath, scaleSize, showGameStartButton, showGameShopButton } = gameData;
+    const {
+      game,
+      steamInstallType,
+      customCMD,
+      metadataPath,
+      scaleSize,
+      gameLabelFontSize,
+      lastPlayedLabelFontSize,
+      showGameStartButton,
+      showGameShopButton,
+    } = gameData;
     const gameContainer = new St.BoxLayout({
       reactive: true,
       track_hover: true,
@@ -67,17 +77,19 @@ var UiHelper = class UiHelper {
       x_expand: true,
       style: "margin-left: " + 0.5 * scaleSize + "em;",
     });
+    const fontSizeGameLabelEm = (gameLabelFontSize / 16) * scaleSize;
     const gameLabel = new St.Label({
       text: game.name,
       style_class: "game-label",
-      style: "font-weight: bold; font-size: " + 1.1 * scaleSize + "em;",
+      style: "font-weight: bold; font-size: " + fontSizeGameLabelEm + "em;",
     });
     labelContainer.add_child(gameLabel);
 
     // Format the last played date and add a label
+    const fontSizeLastPlayedLabelEm = (lastPlayedLabelFontSize / 16) * scaleSize;
     const lastPlayedDate = new Date(parseInt(game.lastPlayed, 10) * 1000);
     const formattedDate = game.lastPlayed !== "0" ? lastPlayedDate.toLocaleDateString() : _("Unknown");
-    const dateLabel = new St.Label({ text: _("Last played:") + ` ${formattedDate}`, style: "font-size: " + 1 * scaleSize + "em;" });
+    const dateLabel = new St.Label({ text: _("Last played:") + ` ${formattedDate}`, style: "font-size: " + fontSizeLastPlayedLabelEm + "em;" });
     labelContainer.add_child(dateLabel);
 
     const buttonRow = new St.BoxLayout({ style: "spacing: " + 0.5 * scaleSize + "em;" });
