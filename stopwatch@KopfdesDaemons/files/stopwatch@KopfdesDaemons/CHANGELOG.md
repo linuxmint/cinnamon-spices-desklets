@@ -1,4 +1,4 @@
-#changelog
+# Changelog
 
 ## [1.0.0] - 03.08.2025
 
@@ -11,3 +11,4 @@
 - use St.DrawingArea instead of Clutter.Canvas
 - use St.Icon instead of Clutter.Image
 - refactor button update function, timeout clearing and update time function
+- change desklet entry to `on_desklet_added_to_desktop`

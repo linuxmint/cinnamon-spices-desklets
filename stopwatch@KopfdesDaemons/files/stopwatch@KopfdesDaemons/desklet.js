@@ -17,10 +17,15 @@ function _(str) {
 class StopwatchDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
+    this.setHeader(_("Stopwatch"));
 
     // Initialize default properties
     this._elapsedTime = 0;
     this._default_size = 180;
+    this._startTime = 0;
+    this._isRunning = false;
+    this._timeout = null;
+    this._animationTimeout = null;
 
     // Use default values if settings are not yet set
     this.labelColor = "rgb(51, 209, 122)";
@@ -30,20 +35,21 @@ class StopwatchDesklet extends Desklet.Desklet {
     this.circleWidth = 0.1;
     this.indicatorLength = 10;
     this.circleColor = "rgb(255, 255, 255)";
+    this.hideDecorations = false;
 
     // Setup settings and bind them to properties
-    const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
-    settings.bindProperty(Settings.BindingDirection.IN, "label-color", "labelColor", this._onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "indicator-color", "indicatorColor", this._onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "animation-speed", "rotationSpeed", this._onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "circle-width", "circleWidth", this._onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "indicator-length", "indicatorLength", this._onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "circle-color", "circleColor", this._onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "hideDecorations", "hideDecorations", this.updateDecoration.bind(this));
+    this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "label-color", "labelColor", this._onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "indicator-color", "indicatorColor", this._onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "animation-speed", "rotationSpeed", this._onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "circle-width", "circleWidth", this._onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "indicator-length", "indicatorLength", this._onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "circle-color", "circleColor", this._onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this.updateDecoration.bind(this));
+  }
 
-    // Set the desklet header and build the layout
-    this.setHeader(_("Stopwatch"));
+  on_desklet_added_to_desktop() {
     this.updateDecoration();
     this._setupLayout();
   }
@@ -222,6 +228,7 @@ class StopwatchDesklet extends Desklet.Desklet {
   // Clean up timeouts when the desklet is removed
   on_desklet_removed() {
     this._clearTimeouts();
+    this.settings.finalize();
   }
 
   // Draws the static circle and arc on the canvas
