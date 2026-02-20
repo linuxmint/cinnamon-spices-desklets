@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: steamGamesStarter@KopfdesDaemons 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-10-11 14:57+0200\n"
+"POT-Creation-Date: 2026-02-20 23:29+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,29 +19,58 @@ msgstr ""
 "X-Generator: Poedit 3.4.2\n"
 
 #. metadata.json->name
-#. desklet.js:40 desklet.js:211
+#. desklet.js:30 helpers/ui.js:29
 msgid "Steam Games Starter"
 msgstr "Steam-Spiele-Starter"
 
-#. desklet.js:148
+#. helpers/steam.js:146
+msgid "Could not load image"
+msgstr "Bild konnte nicht geladen werden"
+
+#. helpers/ui.js:97
+msgid "Unknown"
+msgstr "Unbekannt"
+
+#. helpers/ui.js:99
 msgid "Last played:"
 msgstr "Zuletzt gespielt:"
 
-#. desklet.js:175
-msgid "No installed games found"
-msgstr "Keine installierten Spiele gefunden"
-
-#. desklet.js:223
+#. helpers/ui.js:145
 msgid "Loading..."
 msgstr "Lade..."
+
+#. helpers/ui.js:176
+msgid "No installed games found"
+msgstr "Keine installierten Spiele gefunden"
 
 #. metadata.json->description
 msgid "Start Steam games from your desktop."
 msgstr "Starte Steam Spiele von deinem Desktop."
 
-#. settings-schema.json->head0->description
+#. settings-schema.json->general-page->title
 msgid "General"
 msgstr "Allgemein"
+
+#. settings-schema.json->style-page->title
+#. settings-schema.json->style-section->title
+msgid "Style"
+msgstr "Stil"
+
+#. settings-schema.json->size-section->title
+msgid "Size"
+msgstr "Größe"
+
+#. settings-schema.json->labels-section->title
+msgid "Labels"
+msgstr "Label"
+
+#. settings-schema.json->buttons-section->title
+msgid "Buttons"
+msgstr "Button"
+
+#. settings-schema.json->steam-install-section->title
+msgid "Steam installation"
+msgstr "Steaminstallation"
 
 #. settings-schema.json->steam-install-type->description
 msgid "Steam installation type"
@@ -55,18 +84,66 @@ msgstr "Systempaket"
 msgid "Flatpak"
 msgstr "Flatpak"
 
+#. settings-schema.json->steam-install-type->options
+msgid "Custom"
+msgstr "Benutzerdefiniert"
+
+#. settings-schema.json->custom-install-path->description
+msgid "Select libraryfolders.vdf"
+msgstr "libraryfolders.vdf auswählen"
+
+#. settings-schema.json->custom-cmd->description
+msgid "CMD to launch Steam"
+msgstr "CMD um Steam zu starten"
+
 #. settings-schema.json->number-of-games->description
 msgid "Maximum number of games"
 msgstr "Maximalanzahl der Spiele"
 
-#. settings-schema.json->head1->description
-msgid "Style"
-msgstr "Stil"
+#. settings-schema.json->scale-size->description
+msgid "Desklet scale size"
+msgstr "Deskletskalierungsgrgöße"
 
 #. settings-schema.json->max-desklet-height->description
 msgid "Maximum height of the desklet"
 msgstr "Maximalhöhe des Desklets"
 
+#. settings-schema.json->desklet-width->description
+msgid "Width of the desklet"
+msgstr "Breite des Desklets"
+
 #. settings-schema.json->background-color->description
 msgid "Background color"
 msgstr "Hintergrundfarbe"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Dekoration verstecken"
+
+#. settings-schema.json->show-game-header-image->description
+msgid "Show game header image"
+msgstr "Spiel-Header-Bild anzeigen"
+
+#. settings-schema.json->game-header-image-size->description
+msgid "Game header image size"
+msgstr "Spiel-Header-Bildgröße"
+
+#. settings-schema.json->game-label-font-size->description
+msgid "Game label font size"
+msgstr "Schriftgröße des Spiellabels"
+
+#. settings-schema.json->show-last-played-label->description
+msgid "Show \"last played\" label"
+msgstr "Zuletzt gespielt\"-Label anzeigen"
+
+#. settings-schema.json->last-played-label-font-size->description
+msgid "\"Last played\" label font size"
+msgstr "\"Zuletzt gespielt\"-Label-Schriftgröße"
+
+#. settings-schema.json->show-game-start-button->description
+msgid "Show game start button"
+msgstr "Spielstart-Button anzeigen"
+
+#. settings-schema.json->show-game-shop-button->description
+msgid "Show game shop button"
+msgstr "Spielstart-Shop anzeigen"

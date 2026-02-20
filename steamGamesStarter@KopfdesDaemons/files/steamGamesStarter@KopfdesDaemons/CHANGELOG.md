@@ -14,7 +14,7 @@ changelog
   - Added font size settings
   - Added desklet width setting
   - Added hide game header image setting
-  - Added hide last played label setting
+  - Added hide "last played" label setting
   - Added game header image scale setting
 - Refactoring:
   - Added fallback to `deskletManager` for imports
