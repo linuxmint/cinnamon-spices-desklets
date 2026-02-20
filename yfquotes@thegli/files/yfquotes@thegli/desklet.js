@@ -900,7 +900,7 @@ QuotesTable.prototype = {
             cellContents.push(this.createTradeTimeLabel(quote, settings, marketState));
         }
 
-        // render extra columns for pre/psot
+        // render extra columns for pre/post
         if (includePrePostMarketData && settings.prePostMarketDataOption === "separate") {
             marketState = currentMarketState;
 
@@ -986,7 +986,7 @@ QuotesTable.prototype = {
     },
 
     createAbsoluteChangeLabel(quote, settings, marketState) {
-        const marketChangeProperty = this.buildPrePostMarketProperty(marketState, "MarketChange")
+        const marketChangeProperty = this.buildPrePostMarketProperty(marketState, "MarketChange");
         let absoluteChangeText = "";
         if (this.quoteUtils.existsProperty(quote, marketChangeProperty)) {
             let absoluteChange = this.roundAmount(quote[marketChangeProperty], settings.decimalPlaces, settings.strictRounding);
@@ -1006,7 +1006,7 @@ QuotesTable.prototype = {
     },
 
     createPercentChangeIcon(quote, settings, marketState) {
-        const marketChangePercentProperty = this.buildPrePostMarketProperty(marketState, "MarketChangePercent")
+        const marketChangePercentProperty = this.buildPrePostMarketProperty(marketState, "MarketChangePercent");
         const percentChange = this.quoteUtils.existsProperty(quote, marketChangePercentProperty)
             ? parseFloat(quote[marketChangePercentProperty])
             : 0.0;
@@ -1028,7 +1028,7 @@ QuotesTable.prototype = {
     },
 
     createPercentChangeLabel(quote, settings, marketState) {
-        const marketChangePercentProperty = this.buildPrePostMarketProperty(marketState, "MarketChangePercent")
+        const marketChangePercentProperty = this.buildPrePostMarketProperty(marketState, "MarketChangePercent");
         let labelColor = settings.fontColor;
         if (settings.colorPercentChange && this.quoteUtils.existsProperty(quote, marketChangePercentProperty)) {
             const percentageChange = parseFloat(quote[marketChangePercentProperty]);
@@ -1097,7 +1097,7 @@ QuotesTable.prototype = {
     },
 
     createTradeTimeLabel(quote, settings, marketState) {
-        const tradeTimeProperty = this.buildPrePostMarketProperty(marketState, "MarketTime")
+        const tradeTimeProperty = this.buildPrePostMarketProperty(marketState, "MarketTime");
 
         return new St.Label({
             text: this.quoteUtils.existsProperty(quote, tradeTimeProperty)
@@ -1114,11 +1114,11 @@ QuotesTable.prototype = {
             + this.buildFontSizeAttribute(settings.fontSize);
 
         if (marketState !== DEFAULT_MARKET_STATE) {
-            const prePostMarkeDataStyle = settings.fontStylePrePostMarketData;
-            if (prePostMarkeDataStyle.includes("italic")) {
-                style += this.buildFontStyleAttribute("italic")
+            const prePostMarketDataStyle = settings.fontStylePrePostMarketData;
+            if (prePostMarketDataStyle.includes("italic")) {
+                style += this.buildFontStyleAttribute("italic");
             }
-            if (prePostMarkeDataStyle.includes("bold")) {
+            if (prePostMarketDataStyle.includes("bold")) {
                 style += this.buildFontWeightAttribute("bold");
             }
         }
