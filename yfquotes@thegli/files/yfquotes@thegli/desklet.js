@@ -92,10 +92,11 @@ const CURL_CIPHERS_VALUE =
     "AES128-GCM-SHA256," +
     "AES256-GCM-SHA384";
 
-const ABSENT = "N/A";
+const ABSENT = _("N/A");
 const MAX_AUTH_ATTEMPTS = 3;
 
 const BASE_FONT_SIZE = 10;
+const DEFAULT_MARKET_STATE = "regular";
 
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
@@ -786,7 +787,7 @@ YahooFinanceQuoteReader.prototype = {
     },
 
     createYahooQueryUrl(quoteSymbolsArg, crumb) {
-        const queryUrl = "https://query1.finance.yahoo.com/v7/finance/quote?fields=currency,longName,regularMarketPrice,regularMarketChange,regularMarketChangePercent,regularMarketTime,shortName,symbol&lang=en-US&region=US&formatted=false&symbols=" + quoteSymbolsArg + "&crumb=" + crumb;
+        const queryUrl = "https://query1.finance.yahoo.com/v7/finance/quote?lang=en-US&region=US&formatted=false&symbols=" + quoteSymbolsArg + "&crumb=" + crumb;
         this.quoteUtils.logDebug("YF query URL: " + queryUrl);
         return queryUrl;
     },
@@ -860,26 +861,61 @@ QuotesTable.prototype = {
         const symbol = quote.symbol;
         const symbolCustomization = symbolCustomizationMap.get(symbol);
 
-        if (settings.changeIcon) {
-            cellContents.push(this.createPercentChangeIcon(quote, settings));
+        const currentMarketState = this.determineCurrentMarketState(quote);
+        const includePrePostMarketData = this.includePrePostMarketData(settings, currentMarketState);
+
+        let marketState;
+        if (includePrePostMarketData) {
+            marketState = currentMarketState;
+        } else {
+            marketState = DEFAULT_MARKET_STATE;
         }
+
+        if (settings.changeIcon) {
+            cellContents.push(this.createPercentChangeIcon(quote, settings, marketState));
+        }
+
         if (settings.quoteName) {
             cellContents.push(this.createQuoteLabel(quote.displayName, symbolCustomization, settings.quoteLabelWidth, settings));
         }
         if (settings.quoteSymbol) {
             cellContents.push(this.createQuoteLabel(symbol, symbolCustomization, settings.quoteSymbolWidth, settings));
         }
+
+        // keep regular unless values should be replaced with pre-/post market values
+        if (includePrePostMarketData && settings.prePostMarketDataOption !== "replace") {
+            marketState = DEFAULT_MARKET_STATE;
+        }
+
         if (settings.marketPrice) {
-            cellContents.push(this.createMarketPriceLabel(quote, settings));
+            cellContents.push(this.createMarketPriceLabel(quote, settings, marketState));
         }
         if (settings.absoluteChange) {
-            cellContents.push(this.createAbsoluteChangeLabel(quote, settings));
+            cellContents.push(this.createAbsoluteChangeLabel(quote, settings, marketState));
         }
         if (settings.percentChange) {
-            cellContents.push(this.createPercentChangeLabel(quote, settings));
+            cellContents.push(this.createPercentChangeLabel(quote, settings, marketState));
         }
         if (settings.tradeTime) {
-            cellContents.push(this.createTradeTimeLabel(quote, settings));
+            cellContents.push(this.createTradeTimeLabel(quote, settings, marketState));
+        }
+
+        // render extra columns for pre/psot
+        if (includePrePostMarketData && settings.prePostMarketDataOption === "separate") {
+            marketState = currentMarketState;
+
+            if (settings.marketPrice) {
+                cellContents.push(this.createMarketPriceLabel(quote, settings, marketState));
+            }
+            if (settings.absoluteChange) {
+                cellContents.push(this.createAbsoluteChangeLabel(quote, settings, marketState));
+            }
+            if (settings.percentChange) {
+                cellContents.push(this.createPercentChangeLabel(quote, settings, marketState));
+            }
+            if (settings.tradeTime) {
+                cellContents.push(this.createTradeTimeLabel(quote, settings, marketState));
+            }
         }
 
         for (let columnIndex = 0; columnIndex < cellContents.length; ++columnIndex) {
@@ -888,6 +924,30 @@ QuotesTable.prototype = {
                 col: columnIndex
             });
         }
+    },
+
+    determineCurrentMarketState(quote) {
+        if (this.quoteUtils.existsProperty(quote, "hasPrePostMarketData") && quote.hasPrePostMarketData) {
+            // market is soon to be opened and there are pre-market data present
+            if (this.quoteUtils.existsProperty(quote, "preMarketTime")) {
+                return "pre";
+            }
+
+            // market recently closed, and there are post-market data present
+            if (this.quoteUtils.existsProperty(quote, "postMarketTime")) {
+                return "post";
+            }
+        }
+
+        return DEFAULT_MARKET_STATE;
+    },
+
+    includePrePostMarketData(settings, currentMarketState) {
+        return settings.prePostMarketDataOption !== "never" && currentMarketState !== DEFAULT_MARKET_STATE;
+    },
+
+    buildPrePostMarketProperty(marketState, suffix) {
+        return marketState + suffix;
     },
 
     createQuoteLabel(labelText, symbolCustomization, width, settings) {
@@ -910,24 +970,26 @@ QuotesTable.prototype = {
         }
     },
 
-    createMarketPriceLabel(quote, settings) {
+    createMarketPriceLabel(quote, settings, marketState) {
         let currencySymbol = "";
         if (settings.currencySymbol && this.quoteUtils.existsProperty(quote, "currency")) {
             currencySymbol = this.currencyCodeToSymbolMap[quote.currency] || quote.currency;
         }
+        const marketPriceProperty = this.buildPrePostMarketProperty(marketState, "MarketPrice");
         return new St.Label({
-            text: currencySymbol + (this.quoteUtils.existsProperty(quote, "regularMarketPrice")
-                ? this.roundAmount(quote.regularMarketPrice, settings.decimalPlaces, settings.strictRounding)
+            text: currencySymbol + (this.quoteUtils.existsProperty(quote, marketPriceProperty)
+                ? this.roundAmount(quote[marketPriceProperty], settings.decimalPlaces, settings.strictRounding)
                 : ABSENT),
             style_class: "quotes-number",
-            style: this.buildFontStyle(settings)
+            style: this.buildFontStyle(settings, marketState)
         });
     },
 
-    createAbsoluteChangeLabel(quote, settings) {
+    createAbsoluteChangeLabel(quote, settings, marketState) {
+        const marketChangeProperty = this.buildPrePostMarketProperty(marketState, "MarketChange")
         let absoluteChangeText = "";
-        if (this.quoteUtils.existsProperty(quote, "regularMarketChange")) {
-            let absoluteChange = this.roundAmount(quote.regularMarketChange, settings.decimalPlaces, settings.strictRounding);
+        if (this.quoteUtils.existsProperty(quote, marketChangeProperty)) {
+            let absoluteChange = this.roundAmount(quote[marketChangeProperty], settings.decimalPlaces, settings.strictRounding);
             if (absoluteChange > 0.0) {
                 absoluteChangeText = "+";
             }
@@ -939,13 +1001,14 @@ QuotesTable.prototype = {
         return new St.Label({
             text: absoluteChangeText,
             style_class: "quotes-number",
-            style: this.buildFontStyle(settings)
+            style: this.buildFontStyle(settings, marketState)
         });
     },
 
-    createPercentChangeIcon(quote, settings) {
-        const percentChange = this.quoteUtils.existsProperty(quote, "regularMarketChangePercent")
-            ? parseFloat(quote.regularMarketChangePercent)
+    createPercentChangeIcon(quote, settings, marketState) {
+        const marketChangePercentProperty = this.buildPrePostMarketProperty(marketState, "MarketChangePercent")
+        const percentChange = this.quoteUtils.existsProperty(quote, marketChangePercentProperty)
+            ? parseFloat(quote[marketChangePercentProperty])
             : 0.0;
         let iconText = this.quoteChangeSymbolMap["EQUALS"];
         let iconColor = settings.unchangedTrendColor;
@@ -960,14 +1023,15 @@ QuotesTable.prototype = {
 
         return new St.Label({
             text: iconText,
-            style: this.buildColorAttribute(iconColor, null) + this.buildFontSizeAttribute(settings.fontSize)
+            style: this.buildFontStyle(settings, marketState, iconColor)
         });
     },
 
-    createPercentChangeLabel(quote, settings) {
+    createPercentChangeLabel(quote, settings, marketState) {
+        const marketChangePercentProperty = this.buildPrePostMarketProperty(marketState, "MarketChangePercent")
         let labelColor = settings.fontColor;
-        if (settings.colorPercentChange && this.quoteUtils.existsProperty(quote, "regularMarketChangePercent")) {
-            const percentageChange = parseFloat(quote.regularMarketChangePercent);
+        if (settings.colorPercentChange && this.quoteUtils.existsProperty(quote, marketChangePercentProperty)) {
+            const percentageChange = parseFloat(quote[marketChangePercentProperty]);
             if (percentageChange > 0) {
                 labelColor = settings.uptrendChangeColor;
             } else if (percentageChange < 0) {
@@ -978,11 +1042,11 @@ QuotesTable.prototype = {
         }
 
         return new St.Label({
-            text: this.quoteUtils.existsProperty(quote, "regularMarketChangePercent")
-                ? (this.roundAmount(quote.regularMarketChangePercent, 2, settings.strictRounding) + "%")
+            text: this.quoteUtils.existsProperty(quote, marketChangePercentProperty)
+                ? (this.roundAmount(quote[marketChangePercentProperty], 2, settings.strictRounding) + "%")
                 : ABSENT,
             style_class: "quotes-number",
-            style: this.buildColorAttribute(labelColor, null) + this.buildFontSizeAttribute(settings.fontSize)
+            style: this.buildFontStyle(settings, marketState, labelColor)
         });
     },
 
@@ -1032,18 +1096,34 @@ QuotesTable.prototype = {
         return tsFormat;
     },
 
-    createTradeTimeLabel(quote, settings) {
+    createTradeTimeLabel(quote, settings, marketState) {
+        const tradeTimeProperty = this.buildPrePostMarketProperty(marketState, "MarketTime")
+
         return new St.Label({
-            text: this.quoteUtils.existsProperty(quote, "regularMarketTime")
-                ? this.formatTime(quote.regularMarketTime, settings)
+            text: this.quoteUtils.existsProperty(quote, tradeTimeProperty)
+                ? this.formatTime(quote[tradeTimeProperty], settings)
                 : ABSENT,
             style_class: "quotes-number",
-            style: this.buildFontStyle(settings)
+            style: this.buildFontStyle(settings, marketState)
         });
     },
 
-    buildFontStyle(settings) {
-        return this.buildColorAttribute(settings.fontColor, null) + this.buildFontSizeAttribute(settings.fontSize);
+
+    buildFontStyle(settings, marketState, color = settings.fontColor) {
+        let style = this.buildColorAttribute(color, null)
+            + this.buildFontSizeAttribute(settings.fontSize);
+
+        if (marketState !== DEFAULT_MARKET_STATE) {
+            const prePostMarkeDataStyle = settings.fontStylePrePostMarketData;
+            if (prePostMarkeDataStyle.includes("italic")) {
+                style += this.buildFontStyleAttribute("italic")
+            }
+            if (prePostMarkeDataStyle.includes("bold")) {
+                style += this.buildFontWeightAttribute("bold");
+            }
+        }
+
+        return style;
     },
 
     buildCustomStyle(settings, symbolCustomization) {
@@ -1139,9 +1219,11 @@ StockQuoteDesklet.prototype = {
         this.settings.bind("showPercentChange", "showPercentChange", this.onRenderSettingsChanged);
         this.settings.bind("colorPercentChange", "colorPercentChange", this.onRenderSettingsChanged);
         this.settings.bind("showTradeTime", "showTradeTime", this.onRenderSettingsChanged);
+        this.settings.bind("includePrePostMarketDataOption", "includePrePostMarketDataOption", this.onRenderSettingsChanged);
         this.settings.bind("fontColor", "fontColor", this.onRenderSettingsChanged);
         this.settings.bind("scaleFontSize", "scaleFontSize", this.onRenderSettingsChanged);
         this.settings.bind("fontScale", "fontScale", this.onRenderSettingsChanged);
+        this.settings.bind("fontStylePrePostMarketData", "fontStylePrePostMarketData", this.onRenderSettingsChanged);
         this.settings.bind("uptrendChangeColor", "uptrendChangeColor", this.onRenderSettingsChanged);
         this.settings.bind("downtrendChangeColor", "downtrendChangeColor", this.onRenderSettingsChanged);
         this.settings.bind("unchangedTrendColor", "unchangedTrendColor", this.onRenderSettingsChanged);
@@ -1167,6 +1249,7 @@ StockQuoteDesklet.prototype = {
             "percentChange": this.showPercentChange,
             "colorPercentChange": this.colorPercentChange,
             "tradeTime": this.showTradeTime,
+            "prePostMarketDataOption": this.includePrePostMarketDataOption,
             "decimalPlaces": this.roundNumbers ? this.decimalPlaces : -1,
             "strictRounding": this.roundNumbers && this.strictRounding,
             "use24HourTime": this.use24HourTime,
@@ -1174,6 +1257,7 @@ StockQuoteDesklet.prototype = {
             "customDateFormat": this.customDateFormat,
             "fontColor": this.fontColor,
             "fontSize": this.scaleFontSize ? Math.round(BASE_FONT_SIZE * this.fontScale * global.ui_scale) : -1,
+            "fontStylePrePostMarketData": this.fontStylePrePostMarketData,
             "uptrendChangeColor": this.uptrendChangeColor,
             "downtrendChangeColor": this.downtrendChangeColor,
             "unchangedTrendColor": this.unchangedTrendColor,

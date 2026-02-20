@@ -5,10 +5,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: yfquotes@thegli 0.17.3\n"
+"Project-Id-Version: yfquotes@thegli 0.18.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-01-31 00:19+0100\n"
+"POT-Creation-Date: 2026-02-20 17:10+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,49 +17,53 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. desklet.js:689
+#. desklet.js:95
+msgid "N/A"
+msgstr ""
+
+#. desklet.js:690
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 
-#. desklet.js:723 desklet.js:755 desklet.js:778
+#. desklet.js:724 desklet.js:756 desklet.js:779
 msgid "Authorization parameters have expired"
 msgstr ""
 
-#. desklet.js:726 desklet.js:758 desklet.js:781
+#. desklet.js:727 desklet.js:759 desklet.js:782
 msgid "Yahoo Finance service not available! Status: "
 msgstr ""
 
-#. desklet.js:730
+#. desklet.js:731
 msgid "Something went wrong retrieving Yahoo Finance data"
 msgstr ""
 
-#. desklet.js:1096
+#. desklet.js:1176
 msgid "No quotes data to display"
 msgstr ""
 
-#. desklet.js:1206
+#. desklet.js:1290
 msgid "Updated at "
 msgstr ""
 
-#. desklet.js:1238
+#. desklet.js:1322
 msgid "Error: "
 msgstr ""
 
-#. desklet.js:1388
+#. desklet.js:1472
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data. "
 "Status: "
 msgstr ""
 
-#. desklet.js:1415
+#. desklet.js:1499
 msgid "Consent processing failed! Unable to fetch quotes data. Status: "
 msgstr ""
 
-#. desklet.js:1421
+#. desklet.js:1505
 msgid "Consent processing not completed! Unable to fetch quotes data. Status: "
 msgstr ""
 
-#. desklet.js:1457
+#. desklet.js:1541
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: "
 msgstr ""
@@ -117,6 +121,10 @@ msgstr ""
 
 #. settings-schema.json->detailsDateTimeSection->title
 msgid "Date and Time"
+msgstr ""
+
+#. settings-schema.json->detailsPrePostMarketSection->title
+msgid "Pre-/Post-Market Data"
 msgstr ""
 
 #. settings-schema.json->presentationFormattingSection->title
@@ -460,6 +468,26 @@ msgstr ""
 msgid "Color the percent change to show the trend"
 msgstr ""
 
+#. settings-schema.json->includePrePostMarketDataOption->options
+msgid "Never"
+msgstr ""
+
+#. settings-schema.json->includePrePostMarketDataOption->options
+msgid "Prefer to regular data"
+msgstr ""
+
+#. settings-schema.json->includePrePostMarketDataOption->options
+msgid "Show in extra columns"
+msgstr ""
+
+#. settings-schema.json->includePrePostMarketDataOption->description
+msgid "Include pre-/post-market data"
+msgstr ""
+
+#. settings-schema.json->includePrePostMarketDataOption->tooltip
+msgid "If and how extended-hours trading data is displayed"
+msgstr ""
+
 #. settings-schema.json->showTradeTime->description
 msgid "Show trading time"
 msgstr ""
@@ -494,6 +522,30 @@ msgstr ""
 
 #. settings-schema.json->fontScale->tooltip
 msgid "Enlarge/reduce the font size"
+msgstr ""
+
+#. settings-schema.json->fontStylePrePostMarketData->options
+msgid "Normal"
+msgstr ""
+
+#. settings-schema.json->fontStylePrePostMarketData->options
+msgid "Italic"
+msgstr ""
+
+#. settings-schema.json->fontStylePrePostMarketData->options
+msgid "Bold"
+msgstr ""
+
+#. settings-schema.json->fontStylePrePostMarketData->options
+msgid "Bold italic"
+msgstr ""
+
+#. settings-schema.json->fontStylePrePostMarketData->description
+msgid "Font style of pre-/post-market data"
+msgstr ""
+
+#. settings-schema.json->fontStylePrePostMarketData->tooltip
+msgid "Accentuate extended-hours trading data (price, change, time)"
 msgstr ""
 
 #. settings-schema.json->uptrendChangeColor->description
