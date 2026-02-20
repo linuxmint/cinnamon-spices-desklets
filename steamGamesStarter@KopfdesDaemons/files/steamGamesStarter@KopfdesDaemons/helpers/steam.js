@@ -3,7 +3,7 @@ const GLib = imports.gi.GLib;
 const St = imports.gi.St;
 const Util = imports.misc.util;
 
-const UUID = "devtest-steamGamesStarter@KopfdesDaemons";
+const UUID = "steamGamesStarter@KopfdesDaemons";
 
 // AppIDs for games/tools to be filtered out from the list
 const FILTERED_APP_IDS = [

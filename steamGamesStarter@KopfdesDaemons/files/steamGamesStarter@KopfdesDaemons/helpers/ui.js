@@ -3,7 +3,7 @@ const GLib = imports.gi.GLib;
 const Gio = imports.gi.Gio;
 const Gettext = imports.gettext;
 
-const UUID = "devtest-steamGamesStarter@KopfdesDaemons";
+const UUID = "steamGamesStarter@KopfdesDaemons";
 const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 
 imports.searchPath.push(DESKLET_DIR);

@@ -4,7 +4,7 @@ const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
 const Settings = imports.ui.settings;
 
-const UUID = "devtest-steamGamesStarter@KopfdesDaemons";
+const UUID = "steamGamesStarter@KopfdesDaemons";
 const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 
 imports.searchPath.push(DESKLET_DIR);
@@ -78,7 +78,7 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
   }
 
   on_desklet_removed() {
-    // this.settings.finalize();
+    this.settings.finalize();
   }
 
   _onDecorationChanged() {

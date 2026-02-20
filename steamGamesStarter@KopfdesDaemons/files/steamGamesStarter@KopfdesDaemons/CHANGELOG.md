@@ -4,16 +4,17 @@ changelog
 
 - Initial release
 
-## [1.1.0] 17.02.2026
+## [2.0.0] 17.02.2026
 
 - New features:
-  - Added custom steam installation setting
+  - Added custom Steam installation setting
   - Added desklet scaling setting based on system font size
-  - Added decoration toggle to settings (no decorations on default)
-  - Added settings to hide game start and shop button
+  - Added decoration toggle to settings (no decorations by default)
+  - Added settings to hide game start and shop buttons
   - Added font size settings
   - Added desklet width setting
   - Added hide game header image setting
+  - Added hide last played label setting
   - Added game header image scale setting
 - Refactoring:
   - Added fallback to `deskletManager` for imports
@@ -25,4 +26,4 @@ changelog
   - Added UUID to logs
   - Organized settings in tabs
 - Fixes:
-  - Reload button size fixed
+  - Fixed reload button size
