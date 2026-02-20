@@ -18,7 +18,7 @@ Other desklets are great, but I wanted a desklet having a clock and weather view
 
 ### Manually installation
 
-1. Download the desklet from [here](https://cinnamon-spices.linuxmint.com/files/desklets/clocket@tirtha.zip")
+1. Download the desklet from [here](https://cinnamon-spices.linuxmint.com/files/desklets/clocket@tirtha.zip)
 2. Extract the archive
 3. Copy the `clocket@tirtha` folder into your `~/.local/share/cinnamon/desklets` folder
 4. You can now add the desklet in the desklet manager.
