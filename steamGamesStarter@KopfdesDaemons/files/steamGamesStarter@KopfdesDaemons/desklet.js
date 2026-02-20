@@ -32,6 +32,8 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     this.games = [];
     this.error = null;
     this.steamInstallationType = "system package";
+    this.customInstallPath = null;
+    this.customCMD = "/usr/games/steam";
     this.numberOfGames = 10;
     this.scaleSize = 1;
     this.maxDeskletHeight = 32;
@@ -44,6 +46,8 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     // Setup settings and bind them to properties
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
     this.settings.bindProperty(Settings.BindingDirection.IN, "steam-install-type", "steamInstallType", this._refresh.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "custom-install-path", "customInstallPath", this._refresh.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "custom-cmd", "customCMD", this._refresh.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "number-of-games", "numberOfGames", this._refresh.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._onScaleSizeChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "max-desklet-height", "maxDeskletHeight", this._updateScrollViewStyle.bind(this));
@@ -58,7 +62,7 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
   }
 
   on_desklet_removed() {
-    this.settings.finalize();
+    // this.settings.finalize();
   }
 
   _onDecorationChanged() {
@@ -87,7 +91,7 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     let error = null;
 
     try {
-      games = await SteamHelper.getGames(this.steamInstallType);
+      games = await SteamHelper.getGames(this.steamInstallType, this.customInstallPath);
     } catch (e) {
       error = e;
       global.logError(`${UUID}: Error getting Steam games: ${e}`);
@@ -113,7 +117,7 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     } else {
       contentBox = new St.BoxLayout({ vertical: true, style_class: "games-container" });
       gamesToDisplay.forEach(game => {
-        const gameItem = UiHelper.createGameItem(game, this.steamInstallType, this.metadata.path, this.scaleSize);
+        const gameItem = UiHelper.createGameItem(game, this.steamInstallType, this.customCMD, this.metadata.path, this.scaleSize);
         contentBox.add_child(gameItem);
       });
     }

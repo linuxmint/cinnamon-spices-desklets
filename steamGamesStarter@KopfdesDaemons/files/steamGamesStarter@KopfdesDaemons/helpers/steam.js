@@ -50,11 +50,17 @@ var SteamHelper = class SteamHelper {
   }
 
   // Helper to get all installed games
-  static async getGames(steamInstallType) {
-    // Get Steam library paths
-    let libraryfoldersFilePath = GLib.get_home_dir() + "/.steam/steam/steamapps/libraryfolders.vdf";
-    if (steamInstallType === "flatpak") {
+  static async getGames(steamInstallType, customInstallPath) {
+    // Get Steam library path
+    let libraryfoldersFilePath;
+    if (steamInstallType === "system package") {
+      libraryfoldersFilePath = GLib.get_home_dir() + "/.steam/steam/steamapps/libraryfolders.vdf";
+    } else if (steamInstallType === "flatpak") {
       libraryfoldersFilePath = GLib.get_home_dir() + "/.var/app/com.valvesoftware.Steam/data/Steam/steamapps/libraryfolders.vdf";
+    } else if (steamInstallType === "custom install") {
+      global.log(`Custom install path: ${customInstallPath}`);
+      libraryfoldersFilePath = customInstallPath.replace(/^~/, GLib.get_home_dir());
+      libraryfoldersFilePath = libraryfoldersFilePath.replace("file://", "");
     }
 
     const libraryfoldersFile = Gio.file_new_for_path(libraryfoldersFilePath);
@@ -145,17 +151,20 @@ var SteamHelper = class SteamHelper {
     return new St.Label({ text: "Error" });
   }
 
-  static getSteamCommand(steamInstallType) {
-    return steamInstallType === "flatpak" ? "flatpak run com.valvesoftware.Steam" : "/usr/games/steam";
+  static getSteamCommand(steamInstallType, customCMD) {
+    if (steamInstallType === "custom install") return customCMD;
+    if (steamInstallType === "system package") return "/usr/games/steam";
+    if (steamInstallType === "flatpak") return "flatpak run com.valvesoftware.Steam";
+    return "";
   }
 
-  static runGame(appid, steamInstallType) {
-    const cmd = this.getSteamCommand(steamInstallType);
+  static runGame(appid, steamInstallType, customCMD) {
+    const cmd = this.getSteamCommand(steamInstallType, customCMD);
     GLib.spawn_command_line_async(`${cmd} steam://rungameid/${appid}`);
   }
 
-  static openStorePage(appid, steamInstallType) {
-    const cmd = this.getSteamCommand(steamInstallType);
+  static openStorePage(appid, steamInstallType, customCMD) {
+    const cmd = this.getSteamCommand(steamInstallType, customCMD);
     GLib.spawn_command_line_async(`${cmd} steam://store/${appid}`);
   }
 };

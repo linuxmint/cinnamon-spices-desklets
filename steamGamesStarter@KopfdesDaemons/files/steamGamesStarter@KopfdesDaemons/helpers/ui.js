@@ -48,7 +48,7 @@ var UiHelper = class UiHelper {
     return headerContainer;
   }
 
-  static createGameItem(game, steamInstallType, metadataPath, scaleSize) {
+  static createGameItem(game, steamInstallType, customCMD, metadataPath, scaleSize) {
     const gameContainer = new St.BoxLayout({
       reactive: true,
       track_hover: true,
@@ -75,7 +75,7 @@ var UiHelper = class UiHelper {
 
     // Format the last played date and add a label
     const lastPlayedDate = new Date(parseInt(game.lastPlayed, 10) * 1000);
-    const formattedDate = lastPlayedDate.toLocaleDateString();
+    const formattedDate = game.lastPlayed !== "0" ? lastPlayedDate.toLocaleDateString() : _("Unknown");
     const dateLabel = new St.Label({ text: _("Last played:") + ` ${formattedDate}`, style: "font-size: " + 1 * scaleSize + "em;" });
     labelContainer.add_child(dateLabel);
 
@@ -91,7 +91,7 @@ var UiHelper = class UiHelper {
       style_class: "play-button",
       style: "border-radius: " + 0.5 * scaleSize + "em;",
     });
-    playButton.connect("clicked", () => SteamHelper.runGame(game.appid, steamInstallType));
+    playButton.connect("clicked", () => SteamHelper.runGame(game.appid, steamInstallType, customCMD));
     buttonRow.add_child(playButton);
 
     const shopIcon = new St.Icon({
@@ -104,7 +104,7 @@ var UiHelper = class UiHelper {
       style_class: "shop-button",
       style: "border-radius: " + 0.5 * scaleSize + "em",
     });
-    shopButton.connect("clicked", () => SteamHelper.openStorePage(game.appid, steamInstallType));
+    shopButton.connect("clicked", () => SteamHelper.openStorePage(game.appid, steamInstallType, customCMD));
     buttonRow.add_child(shopButton);
 
     labelContainer.add_child(buttonRow);
@@ -134,17 +134,21 @@ var UiHelper = class UiHelper {
 
     const errorIcon = new St.Icon({
       gicon: new Gio.FileIcon({ file: Gio.File.new_for_path(`${metadataPath}/icons/error.svg`) }),
-      style: "width: " + 3 * scaleSize + "em; height: " + 3 * scaleSize + "em;",
+      style: "width: " + 5 * scaleSize + "em; height: " + 5 * scaleSize + "em;",
+      icon_size: 80 * scaleSize,
       icon_type: St.IconType.FULLCOLOR,
     });
     const iconBin = new St.Bin({
       child: errorIcon,
-      style: "margin: " + 1 * scaleSize + "em;",
+      style: "margin: " + 1 * scaleSize + "em; width: " + 5 * scaleSize + "em; height: " + 5 * scaleSize + "em;",
     });
     errorLayout.add_child(iconBin);
 
     if (!gamesFound) {
-      const noGamesLabel = new St.Label({ text: _("No installed games found"), style_class: "no-games-label" });
+      const noGamesLabel = new St.Label({
+        text: _("No installed games found"),
+        style: "font-size: " + 1.5 * scaleSize + "em; text-align: center;",
+      });
       errorLayout.add_child(noGamesLabel);
     }
 
@@ -152,7 +156,10 @@ var UiHelper = class UiHelper {
       const label = new St.Label();
       label.set_text("Error: " + error.message);
       label.clutter_text.line_wrap = true;
-      const errorLabel = new St.Bin({ child: label, style_class: "error-label" });
+      const errorLabel = new St.Bin({
+        child: label,
+        style: "margin: " + 1 * scaleSize + "em; color: red; font-size: " + 1.5 * scaleSize + "em;",
+      });
       errorLayout.add_child(errorLabel);
     }
 

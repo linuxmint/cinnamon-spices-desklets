@@ -5,7 +5,7 @@
     "general-page": {
       "type": "page",
       "title": "General",
-      "sections": ["general-section"]
+      "sections": ["general-section", "steam-install-section"]
     },
     "style-page": {
       "type": "page",
@@ -15,12 +15,17 @@
     "general-section": {
       "type": "section",
       "title": "General",
-      "keys": ["scale-size", "steam-install-type", "number-of-games"]
+      "keys": ["scale-size", "number-of-games"]
     },
     "style-section": {
       "type": "section",
       "title": "Style",
       "keys": ["background-color", "max-desklet-height", "hide-decorations"]
+    },
+    "steam-install-section": {
+      "type": "section",
+      "title": "Steam installation",
+      "keys": ["steam-install-type", "custom-install-path", "custom-cmd"]
     }
   },
   "steam-install-type": {
@@ -29,8 +34,23 @@
     "description": "Steam installation type",
     "options": {
       "System package": "system package",
-      "Flatpak": "flatpak"
+      "Flatpak": "flatpak",
+      "Custom": "custom install"
     }
+  },
+  "custom-install-path": {
+    "type": "filechooser",
+    "default": "~/.steam/steam/steamapps/libraryfolders.vdf",
+    "dependency": "steam-install-type=custom install",
+    "description": "Select libraryfolders.vdf",
+    "allow-none": false,
+    "select-dir": false
+  },
+  "custom-cmd": {
+    "type": "entry",
+    "default": "/usr/games/steam",
+    "dependency": "steam-install-type=custom install",
+    "description": "CMD to launch Steam"
   },
   "number-of-games": {
     "type": "spinbutton",
