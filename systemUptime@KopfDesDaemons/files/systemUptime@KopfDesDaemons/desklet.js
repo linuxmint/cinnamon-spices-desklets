@@ -58,7 +58,7 @@ class MyDesklet extends Desklet.Desklet {
   setupLayout() {
     const valueStyle = `font-size: ${1.5 * this.scaleSize}em;`;
     const labelStyle = `${valueStyle} color: ${this.labelColor};`;
-    const iconStyle = `width: ${2.5 * this.scaleSize}em; height: ${2.5 * this.scaleSize}em;`;
+    const iconStyle = `width: ${3 * this.scaleSize}em; height: ${3 * this.scaleSize}em;`;
 
     // Create labels for uptime
     const uptimeLabel = new St.Label({ text: _("Uptime:") + " ", style: labelStyle });
