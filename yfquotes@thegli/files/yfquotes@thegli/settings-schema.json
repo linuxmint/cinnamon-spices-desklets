@@ -24,7 +24,8 @@
                 "detailsSymbolSection",
                 "detailsPriceSection",
                 "detailsChangeSection",
-                "detailsDateTimeSection"
+                "detailsDateTimeSection",
+                "detailsPrePostMarketSection"
             ]
         },
         "presentationPage": {
@@ -112,6 +113,13 @@
                 "showTradeTime"
             ]
         },
+        "detailsPrePostMarketSection": {
+            "type": "section",
+            "title": "Pre-/Post-Market Data",
+            "keys": [
+                "includePrePostMarketDataOption"
+            ]
+        },
         "presentationFormattingSection": {
             "type": "section",
             "title": "Number Format",
@@ -144,7 +152,8 @@
             "keys": [
                 "fontColor",
                 "scaleFontSize",
-                "fontScale"
+                "fontScale",
+                "fontStylePrePostMarketData"
             ]
         },
         "presentationColorsSection": {
@@ -424,6 +433,17 @@
         "tooltip": "Color the percent change to show the trend",
         "dependency": "showPercentChange"
     },
+    "includePrePostMarketDataOption": {
+        "type": "radiogroup",
+        "default": "never",
+        "options": {
+            "Never": "never",
+            "Prefer to regular data": "replace",
+            "Show in extra columns": "separate"
+        },
+        "description": "Include pre-/post-market data",
+        "tooltip": "If and how extended-hours trading data is displayed"
+    },
     "showTradeTime": {
         "type": "checkbox",
         "default": true,
@@ -452,6 +472,18 @@
         "description": "Font size scale factor",
         "tooltip": "Enlarge/reduce the font size",
         "dependency": "scaleFontSize"
+    },
+    "fontStylePrePostMarketData": {
+        "type": "radiogroup",
+        "default": "normal",
+        "options": {
+            "Normal": "normal",
+            "Italic": "italic",
+            "Bold": "bold",
+            "Bold italic": "bold-italic"
+        },
+        "description": "Font style of pre-/post-market data",
+        "tooltip": "Accentuate extended-hours trading data (price, change, time)"
     },
     "uptrendChangeColor": {
         "type": "colorchooser",

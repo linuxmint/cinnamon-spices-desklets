@@ -1,3 +1,9 @@
+### 0.18.0 - February 20, 2026
+
+Features:
+
+- New setting to show pre- and post-market data (extended-hours trading). See settings sections *Details* and *Presentation* how to include and style it.
+
 ### 0.17.3 - January 30, 2026
 
 Features:
