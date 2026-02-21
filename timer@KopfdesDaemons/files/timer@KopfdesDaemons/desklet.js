@@ -20,6 +20,7 @@ function _(str) {
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
+    this.setHeader(_("Timer"));
 
     this.default_size = 200;
     this.isRunning = false;
@@ -30,6 +31,9 @@ class MyDesklet extends Desklet.Desklet {
     this._lastTimeText = "";
     this._soundProc = null;
     this._currentNotification = null;
+    this._inputDigits = "";
+    this._notificationSource = null;
+    this._endTime = 0;
 
     // Use default values if settings are not yet set
     this.labelColor = "rgb(51, 209, 122)";
@@ -46,27 +50,40 @@ class MyDesklet extends Desklet.Desklet {
     this.timerName = "";
     this.showNotification = false;
 
-    const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
-    settings.bindProperty(Settings.BindingDirection.IN, "label-color", "labelColor", this._onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "indicator-color", "indicatorColor", this._onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "circle-width", "circleWidth", this._onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "circle-color", "circleColor", this._onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "inner-circle-color", "innerCircleColor", this._onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "fill-inner-circle", "fillInnerCircle", this._onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "hideDecorations", "hideDecorations", this.updateDecoration.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "sound-file", "soundFile", null);
-    settings.bindProperty(Settings.BindingDirection.IN, "use-custom-sound", "useCustomSound", null);
-    settings.bindProperty(Settings.BindingDirection.IN, "custom-sound-file", "customSoundFile", null);
-    settings.bindProperty(Settings.BindingDirection.IN, "timer-name", "timerName", this._onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "show-notification", "showNotification", null);
+    this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "label-color", "labelColor", this._onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "indicator-color", "indicatorColor", this._onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "circle-width", "circleWidth", this._onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "circle-color", "circleColor", this._onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "inner-circle-color", "innerCircleColor", this._onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "fill-inner-circle", "fillInnerCircle", this._onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "hideDecorations", "hideDecorations", this.updateDecoration.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "sound-file", "soundFile", null);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "use-custom-sound", "useCustomSound", null);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "custom-sound-file", "customSoundFile", null);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "timer-name", "timerName", this._onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-notification", "showNotification", null);
+  }
 
-    this.setHeader("Timer");
-    this._inputDigits = "";
-
+  on_desklet_added_to_desktop() {
     this._setButtonStyles();
     this.updateDecoration();
     this._setupTimerUI();
+  }
+
+  on_desklet_removed() {
+    this.settings.finalize();
+    this._stopSound();
+    this._removeNotification();
+    if (this._timeout) {
+      Mainloop.source_remove(this._timeout);
+      this._timeout = null;
+    }
+    this._stopSound();
+    if (this._notificationSource) {
+      this._notificationSource.destroy();
+    }
   }
 
   _onSettingsChanged() {
@@ -343,7 +360,8 @@ class MyDesklet extends Desklet.Desklet {
     this._updateTimerVisuals();
 
     if (this._timeout) Mainloop.source_remove(this._timeout);
-    this._timeout = Mainloop.timeout_add(20, this._updateTimer.bind(this));
+    const fps = 60;
+    this._timeout = Mainloop.timeout_add(1000 / fps, this._updateTimer.bind(this));
   }
 
   _updateTimer() {
@@ -377,12 +395,12 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _sendNotification() {
-    const title = this.timerName || "Timer";
+    const title = this.timerName || _("Timer");
     const message = _("Timer expired!");
     if (!this._notificationSource) {
       this._notificationSource = new MessageTray.SystemNotificationSource();
+      Main.messageTray.add(this._notificationSource);
     }
-    Main.messageTray.add(this._notificationSource);
     const icon = new St.Icon({
       icon_name: "alarm-symbolic",
       icon_type: St.IconType.SYMBOLIC,
@@ -498,17 +516,6 @@ class MyDesklet extends Desklet.Desklet {
       return [r / 255, g / 255, b / 255, a];
     }
     return [0.3, 0.8, 0.5, 1]; // Default color if parsing fails
-  }
-
-  on_desklet_removed() {
-    if (this._timeout) {
-      Mainloop.source_remove(this._timeout);
-      this._timeout = null;
-    }
-    this._stopSound();
-    if (this._notificationSource) {
-      this._notificationSource.destroy();
-    }
   }
 }
 
