@@ -22,7 +22,7 @@ class MyDesklet extends Desklet.Desklet {
     super(metadata, deskletId);
     this.setHeader(_("Timer"));
 
-    this.default_size = 200;
+    this.default_size = 14;
     this.isRunning = false;
     this._isInputView = false;
     this._timeout = null;
@@ -106,7 +106,7 @@ class MyDesklet extends Desklet.Desklet {
     this._isInputView = true;
 
     const box = new St.BoxLayout({ vertical: true });
-    box.style = "width: " + this.default_size * this.scaleSize + "px;";
+    box.style = "width: " + this.default_size * this.scaleSize + "em;";
 
     const labelRow = new St.BoxLayout();
     const labelStyle = `font-size: ${1.5 * this.scaleSize}em; color: ${this.labelColor};`;
@@ -196,9 +196,9 @@ class MyDesklet extends Desklet.Desklet {
 
     const absoluteSize = this.default_size * this.scaleSize;
 
-    const container = new St.Widget({ width: absoluteSize, height: absoluteSize });
+    const container = new St.Widget({ style: `width: ${absoluteSize}em; height: ${absoluteSize}em;` });
 
-    this.circleDrawingArea = new St.DrawingArea({ width: absoluteSize, height: absoluteSize });
+    this.circleDrawingArea = new St.DrawingArea({ style: `width: ${absoluteSize}em; height: ${absoluteSize}em;` });
     this.circleDrawingArea.set_pivot_point(0.5, 0.5);
     this.circleDrawingArea.connect("repaint", this._onRepaint.bind(this));
     container.add_child(this.circleDrawingArea);
@@ -206,8 +206,7 @@ class MyDesklet extends Desklet.Desklet {
 
     const centerContent = new St.BoxLayout({ vertical: true });
     const bin = new St.Bin({
-      width: absoluteSize,
-      height: absoluteSize,
+      style: `width: ${absoluteSize}em; height: ${absoluteSize}em;`,
       child: centerContent,
       x_align: St.Align.MIDDLE,
       y_align: St.Align.MIDDLE,
