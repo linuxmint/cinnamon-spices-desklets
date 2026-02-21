@@ -9,7 +9,7 @@
 - Update starttime in mainloop
 - Updated screenshot
 
-## [1.1.0] - 06.02.2026
+## [2.0.0] - 06.02.2026
 
 - New features:
   - Scale desklet with system font size
