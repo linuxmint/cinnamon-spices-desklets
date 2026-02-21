@@ -21,20 +21,28 @@ const { BootTimeHelper } = require("./helpers/boot-time.helper");
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
-
-    const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
-    settings.bindProperty(Settings.BindingDirection.IN, "loading-animation", "loadingAnimation", this._onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "show-accent-color", "showAccentColor", this._onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "accent-color", "accentColor", this._onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "hideDecorations", "hideDecorations", this.updateDecoration.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "label-color", "labelColor", this._onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "row-background-color", "rowBackgroundColor", this._onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "values-color", "valuesColor", this._onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "headline", "headline", this._onSettingsChanged.bind(this));
-
     this.setHeader(_("Boot Time"));
+
+    this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "loading-animation", "loadingAnimation", this._onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-accent-color", "showAccentColor", this._onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "accent-color", "accentColor", this._onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this.updateDecoration.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "label-color", "labelColor", this._onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "row-background-color", "rowBackgroundColor", this._onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "values-color", "valuesColor", this._onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "headline", "headline", this._onSettingsChanged.bind(this));
+  }
+
+  on_desklet_added_to_desktop() {
     this.updateDecoration();
     this._setupUI();
+  }
+
+  on_desklet_removed() {
+    this.settings.finalize();
+    if (this._loadingTimeoutId) Mainloop.source_remove(this._loadingTimeoutId);
+    if (this._animationTimeoutId) Mainloop.source_remove(this._animationTimeoutId);
   }
 
   async _setupUI() {
@@ -216,11 +224,6 @@ class MyDesklet extends Desklet.Desklet {
     this.circleActor.set_content(canvas);
     this.circleActor.set_pivot_point(0.5, 0.5);
     return this.circleActor;
-  }
-
-  on_desklet_removed() {
-    if (this._loadingTimeoutId) Mainloop.source_remove(this._loadingTimeoutId);
-    if (this._animationTimeoutId) Mainloop.source_remove(this._animationTimeoutId);
   }
 }
 

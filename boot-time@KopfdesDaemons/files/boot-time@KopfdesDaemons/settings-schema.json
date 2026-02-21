@@ -35,7 +35,7 @@
     "default": "rgba(0, 0, 0, 0.253)",
     "description": "Row background color"
   },
-  "hideDecorations": {
+  "hide-decorations": {
     "type": "checkbox",
     "description": "Hide decorations",
     "default": false
