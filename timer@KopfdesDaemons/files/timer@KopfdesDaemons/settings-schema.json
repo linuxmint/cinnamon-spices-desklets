@@ -1,4 +1,38 @@
 {
+  "layout": {
+    "type": "layout",
+    "pages": ["general-page", "style-page"],
+    "general-page": {
+      "type": "page",
+      "title": "General",
+      "sections": ["general-section", "sound-section"]
+    },
+    "style-page": {
+      "type": "page",
+      "title": "Style",
+      "sections": ["style-section", "circle-section"]
+    },
+    "general-section": {
+      "type": "section",
+      "title": "General",
+      "keys": ["scale-size", "timer-name", "show-notification", "hide-decorations"]
+    },
+    "sound-section": {
+      "type": "section",
+      "title": "Sound",
+      "keys": ["sound-file", "use-custom-sound", "custom-sound-file"]
+    },
+    "style-section": {
+      "type": "section",
+      "title": "Style",
+      "keys": ["label-color"]
+    },
+    "circle-section": {
+      "type": "section",
+      "title": "Circle",
+      "keys": ["indicator-color", "circle-color", "circle-width", "fill-inner-circle", "inner-circle-color"]
+    }
+  },
   "head0": {
     "type": "header",
     "description": "Sound"
@@ -59,10 +93,10 @@
     "step": 0.05,
     "description": "Desklet size"
   },
-  "hideDecorations": {
+  "hide-decorations": {
     "type": "checkbox",
     "description": "Hide decorations",
-    "default": false
+    "default": true
   },
   "head3": {
     "type": "header",

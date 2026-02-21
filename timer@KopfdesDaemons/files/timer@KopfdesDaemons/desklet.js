@@ -43,7 +43,7 @@ class MyDesklet extends Desklet.Desklet {
     this.circleColor = "rgb(255, 255, 255)";
     this.fillInnerCircle = true;
     this.innerCircleColor = "rgba(255, 255, 255, 0.3)";
-    this.hideDecorations = false;
+    this.hideDecorations = true;
     this.soundFile = "complete.oga";
     this.useCustomSound = false;
     this.customSoundFile = "";
@@ -58,7 +58,7 @@ class MyDesklet extends Desklet.Desklet {
     this.settings.bindProperty(Settings.BindingDirection.IN, "circle-color", "circleColor", this._onSettingsChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "inner-circle-color", "innerCircleColor", this._onSettingsChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "fill-inner-circle", "fillInnerCircle", this._onSettingsChanged.bind(this));
-    this.settings.bindProperty(Settings.BindingDirection.IN, "hideDecorations", "hideDecorations", this.updateDecoration.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this.updateDecoration.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "sound-file", "soundFile", null);
     this.settings.bindProperty(Settings.BindingDirection.IN, "use-custom-sound", "useCustomSound", null);
     this.settings.bindProperty(Settings.BindingDirection.IN, "custom-sound-file", "customSoundFile", null);
@@ -502,7 +502,7 @@ class MyDesklet extends Desklet.Desklet {
         });
         this._soundProc.init(null);
       } catch (e) {
-        global.logError("timer@KopfdesDaemons: Error playing sound: " + e.message);
+        global.logError(UUID + ": Error playing sound: " + e.message);
       }
     }
   }
