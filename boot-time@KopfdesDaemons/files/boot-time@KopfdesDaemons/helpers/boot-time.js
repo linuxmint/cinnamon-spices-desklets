@@ -1,15 +1,15 @@
 const GLib = imports.gi.GLib;
 
-class BootTimeHelper {
+var BootTimeHelper = class BootTimeHelper {
   static async getBootTime() {
     const [out, err] = await new Promise((resolve, reject) => {
       try {
-        const [success, pid, stdin, stdout, stderr] = GLib.spawn_async_with_pipes(
+        const [, pid, stdin, stdout, stderr] = GLib.spawn_async_with_pipes(
           null,
           ["sh", "-c", "LC_ALL=C systemd-analyze"],
           null,
           GLib.SpawnFlags.SEARCH_PATH | GLib.SpawnFlags.DO_NOT_REAP_CHILD,
-          null
+          null,
         );
         GLib.close(stdin);
 
@@ -85,4 +85,4 @@ class BootTimeHelper {
 
     throw new Error("Bootup is not yet finished");
   }
-}
+};
