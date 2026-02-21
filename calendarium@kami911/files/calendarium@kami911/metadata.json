@@ -1,0 +1,9 @@
+{
+    "uuid": "calendarium@kami911",
+    "name": "Calendarium",
+    "description": "A rich calendar desklet with moon phase, sunrise/sunset, zodiac, name days, traditional month names, and optional Wikipedia features.",
+    "version": "1.0",
+    "max-instances": "5",
+    "author": "kami911",
+    "website": "https://github.com/kami911"
+}

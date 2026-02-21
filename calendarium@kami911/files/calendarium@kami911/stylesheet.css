@@ -1,0 +1,120 @@
+/* Calendarium desklet stylesheet */
+
+.calendarium-container {
+    padding: 8px 14px 10px 14px;
+    spacing: 1px;
+}
+
+/* ── Date ─────────────────────────────────────────── */
+.calendarium-date {
+    font-size: 15px;
+    font-weight: bold;
+    color: #eeeeee;
+    font-family: "DejaVu Sans", Sans-serif;
+    padding-bottom: 1px;
+}
+
+/* ── Time ─────────────────────────────────────────── */
+.calendarium-time {
+    font-size: 30px;
+    font-weight: bold;
+    color: #ffffff;
+    font-family: "DejaVu Sans Mono", Monospace;
+}
+
+/* ── Traditional month name ───────────────────────── */
+.calendarium-traditional {
+    font-size: 11px;
+    font-style: italic;
+    color: #aaaaaa;
+    font-family: "DejaVu Sans", Sans-serif;
+    padding-bottom: 4px;
+}
+
+/* ── Moon phase ───────────────────────────────────── */
+.calendarium-moon {
+    font-size: 14px;
+    color: #ccccff;
+    font-family: "DejaVu Sans", Sans-serif;
+    padding-top: 4px;
+}
+
+.calendarium-moon-age {
+    font-size: 11px;
+    color: #9999cc;
+    font-family: "DejaVu Sans", Sans-serif;
+    padding-left: 4px;
+}
+
+/* ── Sun ──────────────────────────────────────────── */
+.calendarium-sun {
+    font-size: 13px;
+    color: #ffdd88;
+    font-family: "DejaVu Sans", Sans-serif;
+    padding-top: 2px;
+}
+
+/* ── Additional cities ────────────────────────────── */
+.calendarium-city {
+    font-size: 12px;
+    color: #ddbb66;
+    font-family: "DejaVu Sans", Sans-serif;
+}
+
+/* ── Zodiac ───────────────────────────────────────── */
+.calendarium-zodiac-western {
+    font-size: 13px;
+    color: #88ffcc;
+    font-family: "DejaVu Sans", Sans-serif;
+    padding-top: 4px;
+}
+
+.calendarium-zodiac-chinese {
+    font-size: 13px;
+    color: #66ddaa;
+    font-family: "DejaVu Sans", Sans-serif;
+}
+
+/* ── Name days ────────────────────────────────────── */
+.calendarium-nameday {
+    font-size: 13px;
+    color: #ffffff;
+    font-family: "DejaVu Sans", Sans-serif;
+    padding-top: 4px;
+}
+
+.calendarium-nameday-sub {
+    font-size: 11px;
+    color: #bbbbbb;
+    font-family: "DejaVu Sans", Sans-serif;
+}
+
+/* ── New Year countdown ───────────────────────────── */
+.calendarium-newyear {
+    font-size: 12px;
+    color: #ffaaaa;
+    font-family: "DejaVu Sans", Sans-serif;
+    padding-top: 4px;
+}
+
+/* ── Wikipedia section ────────────────────────────── */
+.calendarium-wiki-header {
+    font-size: 10px;
+    color: #777777;
+    font-family: "DejaVu Sans", Sans-serif;
+    padding-top: 6px;
+    text-transform: uppercase;
+}
+
+.calendarium-wiki {
+    font-size: 11px;
+    color: #bbbbbb;
+    font-family: "DejaVu Sans", Sans-serif;
+}
+
+.calendarium-wiki-featured {
+    font-size: 11px;
+    color: #dddddd;
+    font-style: italic;
+    font-family: "DejaVu Sans", Sans-serif;
+}

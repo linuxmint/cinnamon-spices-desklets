@@ -1,0 +1,162 @@
+# English translation for calendarium@kami911
+# Copyright (C) 2024 kami911
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: calendarium@kami911 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: kami911 <kami911@gmail.com>\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "New Moon"
+msgstr "New Moon"
+
+msgid "Waxing Crescent"
+msgstr "Waxing Crescent"
+
+msgid "First Quarter"
+msgstr "First Quarter"
+
+msgid "Waxing Gibbous"
+msgstr "Waxing Gibbous"
+
+msgid "Full Moon"
+msgstr "Full Moon"
+
+msgid "Waning Gibbous"
+msgstr "Waning Gibbous"
+
+msgid "Last Quarter"
+msgstr "Last Quarter"
+
+msgid "Waning Crescent"
+msgstr "Waning Crescent"
+
+msgid "Aries"
+msgstr "Aries"
+
+msgid "Taurus"
+msgstr "Taurus"
+
+msgid "Gemini"
+msgstr "Gemini"
+
+msgid "Cancer"
+msgstr "Cancer"
+
+msgid "Leo"
+msgstr "Leo"
+
+msgid "Virgo"
+msgstr "Virgo"
+
+msgid "Libra"
+msgstr "Libra"
+
+msgid "Scorpio"
+msgstr "Scorpio"
+
+msgid "Sagittarius"
+msgstr "Sagittarius"
+
+msgid "Capricorn"
+msgstr "Capricorn"
+
+msgid "Aquarius"
+msgstr "Aquarius"
+
+msgid "Pisces"
+msgstr "Pisces"
+
+msgid "Rat"
+msgstr "Rat"
+
+msgid "Ox"
+msgstr "Ox"
+
+msgid "Tiger"
+msgstr "Tiger"
+
+msgid "Rabbit"
+msgstr "Rabbit"
+
+msgid "Dragon"
+msgstr "Dragon"
+
+msgid "Snake"
+msgstr "Snake"
+
+msgid "Horse"
+msgstr "Horse"
+
+msgid "Goat"
+msgstr "Goat"
+
+msgid "Monkey"
+msgstr "Monkey"
+
+msgid "Rooster"
+msgstr "Rooster"
+
+msgid "Dog"
+msgstr "Dog"
+
+msgid "Pig"
+msgstr "Pig"
+
+msgid "Wood"
+msgstr "Wood"
+
+msgid "Fire"
+msgstr "Fire"
+
+msgid "Earth"
+msgstr "Earth"
+
+msgid "Metal"
+msgstr "Metal"
+
+msgid "Water"
+msgstr "Water"
+
+msgid "Sunrise"
+msgstr "Sunrise"
+
+msgid "Sunset"
+msgstr "Sunset"
+
+msgid "days"
+msgstr "days"
+
+msgid "days until New Year"
+msgstr "days until New Year"
+
+msgid "Name days"
+msgstr "Name days"
+
+msgid "Tomorrow"
+msgstr "Tomorrow"
+
+msgid "No data"
+msgstr "No data"
+
+msgid "Polar day"
+msgstr "Polar day"
+
+msgid "Polar night"
+msgstr "Polar night"
+
+msgid "Births on this day"
+msgstr "Births on this day"
+
+msgid "Deaths on this day"
+msgstr "Deaths on this day"
+
+msgid "Article of the day"
+msgstr "Article of the day"

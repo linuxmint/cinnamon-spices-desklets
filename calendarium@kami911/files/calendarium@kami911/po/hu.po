@@ -1,0 +1,162 @@
+# Hungarian translation for calendarium@kami911
+# Copyright (C) 2024 kami911
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: calendarium@kami911 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: Kálmán „KAMI" Szalai <kami911@gmail.com>\n"
+"Language-Team: Hungarian <hu@li.org>\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "New Moon"
+msgstr "Újhold"
+
+msgid "Waxing Crescent"
+msgstr "Növekvő holdsarló"
+
+msgid "First Quarter"
+msgstr "Első negyed"
+
+msgid "Waxing Gibbous"
+msgstr "Növekvő telihold előtt"
+
+msgid "Full Moon"
+msgstr "Telihold"
+
+msgid "Waning Gibbous"
+msgstr "Fogyó telihold után"
+
+msgid "Last Quarter"
+msgstr "Utolsó negyed"
+
+msgid "Waning Crescent"
+msgstr "Fogyó holdsarló"
+
+msgid "Aries"
+msgstr "Kos"
+
+msgid "Taurus"
+msgstr "Bika"
+
+msgid "Gemini"
+msgstr "Ikrek"
+
+msgid "Cancer"
+msgstr "Rák"
+
+msgid "Leo"
+msgstr "Oroszlán"
+
+msgid "Virgo"
+msgstr "Szűz"
+
+msgid "Libra"
+msgstr "Mérleg"
+
+msgid "Scorpio"
+msgstr "Skorpió"
+
+msgid "Sagittarius"
+msgstr "Nyilas"
+
+msgid "Capricorn"
+msgstr "Bak"
+
+msgid "Aquarius"
+msgstr "Vízöntő"
+
+msgid "Pisces"
+msgstr "Halak"
+
+msgid "Rat"
+msgstr "Patkány"
+
+msgid "Ox"
+msgstr "Ökör"
+
+msgid "Tiger"
+msgstr "Tigris"
+
+msgid "Rabbit"
+msgstr "Nyúl"
+
+msgid "Dragon"
+msgstr "Sárkány"
+
+msgid "Snake"
+msgstr "Kígyó"
+
+msgid "Horse"
+msgstr "Ló"
+
+msgid "Goat"
+msgstr "Kecske"
+
+msgid "Monkey"
+msgstr "Majom"
+
+msgid "Rooster"
+msgstr "Kakas"
+
+msgid "Dog"
+msgstr "Kutya"
+
+msgid "Pig"
+msgstr "Disznó"
+
+msgid "Wood"
+msgstr "Fa"
+
+msgid "Fire"
+msgstr "Tűz"
+
+msgid "Earth"
+msgstr "Föld"
+
+msgid "Metal"
+msgstr "Fém"
+
+msgid "Water"
+msgstr "Víz"
+
+msgid "Sunrise"
+msgstr "Napkelte"
+
+msgid "Sunset"
+msgstr "Napnyugta"
+
+msgid "days"
+msgstr "nap"
+
+msgid "days until New Year"
+msgstr "nap az újévig"
+
+msgid "Name days"
+msgstr "Névnapok"
+
+msgid "Tomorrow"
+msgstr "Holnap"
+
+msgid "No data"
+msgstr "Nincs adat"
+
+msgid "Polar day"
+msgstr "Sarki nap"
+
+msgid "Polar night"
+msgstr "Sarki éj"
+
+msgid "Births on this day"
+msgstr "Ezen a napon születtek"
+
+msgid "Deaths on this day"
+msgstr "Ezen a napon haltak meg"
+
+msgid "Article of the day"
+msgstr "A nap cikke"

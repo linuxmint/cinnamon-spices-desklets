@@ -1,0 +1,401 @@
+{
+    "settingsLayout": {
+        "type": "layout",
+        "pages": ["page-general", "page-online"],
+
+        "page-general": {
+            "type": "page",
+            "title": "General",
+            "sections": [
+                "section-datetime",
+                "section-traditional",
+                "section-moon",
+                "section-sun",
+                "section-location",
+                "section-zodiac",
+                "section-namedays",
+                "section-newyear",
+                "section-appearance"
+            ]
+        },
+
+        "page-online": {
+            "type": "page",
+            "title": "Online (Internet Required)",
+            "sections": ["section-wikipedia"]
+        },
+
+        "section-datetime": {
+            "type": "section",
+            "title": "Date and Time",
+            "keys": [
+                "show-date",
+                "date-format-preset",
+                "date-format-custom",
+                "show-time",
+                "time-format",
+                "show-seconds"
+            ]
+        },
+
+        "section-traditional": {
+            "type": "section",
+            "title": "Traditional Month Names",
+            "keys": ["show-traditional", "traditional-lang"]
+        },
+
+        "section-moon": {
+            "type": "section",
+            "title": "Moon Phase",
+            "keys": ["show-moon", "show-moon-name", "show-moon-age"]
+        },
+
+        "section-sun": {
+            "type": "section",
+            "title": "Sunrise and Sunset",
+            "keys": ["show-sun"]
+        },
+
+        "section-location": {
+            "type": "section",
+            "title": "Location",
+            "keys": [
+                "use-manual-location",
+                "latitude", "longitude",
+                "city1-name", "city1-lat", "city1-lon",
+                "city2-name", "city2-lat", "city2-lon",
+                "city3-name", "city3-lat", "city3-lon"
+            ]
+        },
+
+        "section-zodiac": {
+            "type": "section",
+            "title": "Zodiac",
+            "keys": ["show-western-zodiac", "show-chinese-zodiac"]
+        },
+
+        "section-namedays": {
+            "type": "section",
+            "title": "Name Days",
+            "keys": ["show-namedays", "nameday-locale", "nameday-lookahead"]
+        },
+
+        "section-newyear": {
+            "type": "section",
+            "title": "New Year Countdown",
+            "keys": ["show-new-year-countdown"]
+        },
+
+        "section-appearance": {
+            "type": "section",
+            "title": "Appearance",
+            "keys": ["text-scale", "hide-decorations"]
+        },
+
+        "section-wikipedia": {
+            "type": "section",
+            "title": "Wikipedia",
+            "keys": [
+                "show-wikipedia",
+                "wikipedia-lang",
+                "show-wiki-births",
+                "show-wiki-deaths",
+                "show-wiki-featured"
+            ]
+        }
+    },
+
+    "show-date": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show date"
+    },
+    "date-format-preset": {
+        "type": "combobox",
+        "default": "%A, %d. %B %Y",
+        "description": "Date format",
+        "tooltip": "Select a predefined date format, or choose Custom to enter your own below.",
+        "options": {
+            "Friday, 21. February 2026  (%A, %d. %B %Y)": "%A, %d. %B %Y",
+            "21. February 2026  (%d. %B %Y)":             "%d. %B %Y",
+            "Friday, February 21, 2026  (%A, %B %d, %Y)": "%A, %B %d, %Y",
+            "Feb 21, 2026  (%b %d, %Y)":                  "%b %d, %Y",
+            "21. Feb 2026  (%d. %b %Y)":                  "%d. %b %Y",
+            "2026-02-21  (%Y-%m-%d)":                     "%Y-%m-%d",
+            "21/02/2026  (%d/%m/%Y)":                     "%d/%m/%Y",
+            "02/21/2026  (%m/%d/%Y)":                     "%m/%d/%Y",
+            "Day 52 of 2026  (%j. nap)":                  "%j. nap",
+            "Custom (use field below)":                    "custom"
+        }
+    },
+    "date-format-custom": {
+        "type": "entry",
+        "default": "%A, %d. %B %Y",
+        "description": "Custom date format string (only used when 'Custom' is selected above)",
+        "indent": true,
+        "tooltip": "strftime format codes: %A = full weekday, %a = short weekday, %d = day number, %B = full month name, %b = short month, %Y = 4-digit year, %y = 2-digit year, %j = day of year, %H = hour (24h), %I = hour (12h), %M = minute, %p = AM/PM"
+    },
+
+    "show-time": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show time"
+    },
+    "time-format": {
+        "type": "combobox",
+        "default": "24h",
+        "description": "Time format",
+        "options": {
+            "24-hour": "24h",
+            "12-hour (AM/PM)": "12h"
+        }
+    },
+    "show-seconds": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Show seconds"
+    },
+
+    "show-traditional": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Show traditional month name"
+    },
+    "traditional-lang": {
+        "type": "combobox",
+        "default": "hu",
+        "description": "Traditional month name tradition",
+        "dependency": "show-traditional",
+        "indent": true,
+        "options": {
+            "Old Hungarian": "hu",
+            "Old English (Anglo-Saxon)": "en",
+            "Old German": "de"
+        }
+    },
+
+    "show-moon": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show moon phase"
+    },
+    "show-moon-name": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show moon phase name",
+        "dependency": "show-moon",
+        "indent": true
+    },
+    "show-moon-age": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show moon age (days since new moon)",
+        "dependency": "show-moon",
+        "indent": true
+    },
+
+    "show-sun": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show sunrise and sunset times"
+    },
+
+    "use-manual-location": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Use manual location (default: Budapest, Hungary)"
+    },
+    "latitude": {
+        "type": "spinbutton",
+        "default": 47.4979,
+        "min": -90.0,
+        "max": 90.0,
+        "step": 0.0001,
+        "units": "degrees",
+        "description": "Latitude (positive = North)",
+        "dependency": "use-manual-location",
+        "indent": true
+    },
+    "longitude": {
+        "type": "spinbutton",
+        "default": 19.0402,
+        "min": -180.0,
+        "max": 180.0,
+        "step": 0.0001,
+        "units": "degrees",
+        "description": "Longitude (positive = East)",
+        "dependency": "use-manual-location",
+        "indent": true
+    },
+    "city1-name": {
+        "type": "entry",
+        "default": "",
+        "description": "City 1 name (leave empty to disable)",
+        "tooltip": "Label for an additional city. Leave empty to hide."
+    },
+    "city1-lat": {
+        "type": "spinbutton",
+        "default": 0.0,
+        "min": -90.0,
+        "max": 90.0,
+        "step": 0.0001,
+        "units": "degrees",
+        "description": "City 1 latitude"
+    },
+    "city1-lon": {
+        "type": "spinbutton",
+        "default": 0.0,
+        "min": -180.0,
+        "max": 180.0,
+        "step": 0.0001,
+        "units": "degrees",
+        "description": "City 1 longitude"
+    },
+    "city2-name": {
+        "type": "entry",
+        "default": "",
+        "description": "City 2 name (leave empty to disable)"
+    },
+    "city2-lat": {
+        "type": "spinbutton",
+        "default": 0.0,
+        "min": -90.0,
+        "max": 90.0,
+        "step": 0.0001,
+        "units": "degrees",
+        "description": "City 2 latitude"
+    },
+    "city2-lon": {
+        "type": "spinbutton",
+        "default": 0.0,
+        "min": -180.0,
+        "max": 180.0,
+        "step": 0.0001,
+        "units": "degrees",
+        "description": "City 2 longitude"
+    },
+    "city3-name": {
+        "type": "entry",
+        "default": "",
+        "description": "City 3 name (leave empty to disable)"
+    },
+    "city3-lat": {
+        "type": "spinbutton",
+        "default": 0.0,
+        "min": -90.0,
+        "max": 90.0,
+        "step": 0.0001,
+        "units": "degrees",
+        "description": "City 3 latitude"
+    },
+    "city3-lon": {
+        "type": "spinbutton",
+        "default": 0.0,
+        "min": -180.0,
+        "max": 180.0,
+        "step": 0.0001,
+        "units": "degrees",
+        "description": "City 3 longitude"
+    },
+
+    "show-western-zodiac": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show western zodiac sign"
+    },
+    "show-chinese-zodiac": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show Chinese zodiac (year animal and element)"
+    },
+
+    "show-namedays": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show name days"
+    },
+    "nameday-locale": {
+        "type": "combobox",
+        "default": "hu",
+        "description": "Name day calendar",
+        "dependency": "show-namedays",
+        "indent": true,
+        "options": {
+            "Hungarian": "hu",
+            "German": "de",
+            "English": "en"
+        }
+    },
+    "nameday-lookahead": {
+        "type": "spinbutton",
+        "default": 1,
+        "min": 0,
+        "max": 5,
+        "step": 1,
+        "units": "days",
+        "description": "Show upcoming name days (days ahead)",
+        "dependency": "show-namedays",
+        "indent": true
+    },
+
+    "show-new-year-countdown": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show days until New Year"
+    },
+
+    "show-wikipedia": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Enable Wikipedia features"
+    },
+    "wikipedia-lang": {
+        "type": "combobox",
+        "default": "en",
+        "description": "Wikipedia language",
+        "dependency": "show-wikipedia",
+        "indent": true,
+        "options": {
+            "English": "en",
+            "German": "de",
+            "Hungarian": "hu"
+        }
+    },
+    "show-wiki-births": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show notable births on this day",
+        "dependency": "show-wikipedia",
+        "indent": true
+    },
+    "show-wiki-deaths": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show notable deaths on this day",
+        "dependency": "show-wikipedia",
+        "indent": true
+    },
+    "show-wiki-featured": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Show article of the day",
+        "dependency": "show-wikipedia",
+        "indent": true
+    },
+
+    "text-scale": {
+        "type": "spinbutton",
+        "default": 1.0,
+        "min": 0.5,
+        "max": 3.0,
+        "step": 0.05,
+        "units": "×",
+        "description": "Text scale factor",
+        "tooltip": "Scale all text in the desklet up or down."
+    },
+    "hide-decorations": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Hide desklet decorations (border and header label)"
+    }
+}

@@ -1,0 +1,218 @@
+# Calendarium desklet translation template.
+# Copyright (C) 2024 kami911
+# This file is distributed under the same license as the calendarium@kami911 package.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: calendarium@kami911 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Moon phase names
+#: lib/moon.js
+msgid "New Moon"
+msgstr ""
+
+#: lib/moon.js
+msgid "Waxing Crescent"
+msgstr ""
+
+#: lib/moon.js
+msgid "First Quarter"
+msgstr ""
+
+#: lib/moon.js
+msgid "Waxing Gibbous"
+msgstr ""
+
+#: lib/moon.js
+msgid "Full Moon"
+msgstr ""
+
+#: lib/moon.js
+msgid "Waning Gibbous"
+msgstr ""
+
+#: lib/moon.js
+msgid "Last Quarter"
+msgstr ""
+
+#: lib/moon.js
+msgid "Waning Crescent"
+msgstr ""
+
+#. Western zodiac signs
+#: lib/zodiac.js
+msgid "Aries"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Taurus"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Gemini"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Cancer"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Leo"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Virgo"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Libra"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Scorpio"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Sagittarius"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Capricorn"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Aquarius"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Pisces"
+msgstr ""
+
+#. Chinese zodiac animals
+#: lib/zodiac.js
+msgid "Rat"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Ox"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Tiger"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Rabbit"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Dragon"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Snake"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Horse"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Goat"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Monkey"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Rooster"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Dog"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Pig"
+msgstr ""
+
+#. Chinese zodiac elements
+#: lib/zodiac.js
+msgid "Wood"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Fire"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Earth"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Metal"
+msgstr ""
+
+#: lib/zodiac.js
+msgid "Water"
+msgstr ""
+
+#. UI labels
+#: desklet.js
+msgid "Sunrise"
+msgstr ""
+
+#: desklet.js
+msgid "Sunset"
+msgstr ""
+
+#: desklet.js
+msgid "days"
+msgstr ""
+
+#: desklet.js
+msgid "days until New Year"
+msgstr ""
+
+#: desklet.js
+msgid "Name days"
+msgstr ""
+
+#: desklet.js
+msgid "Tomorrow"
+msgstr ""
+
+#: desklet.js
+msgid "No data"
+msgstr ""
+
+#: desklet.js
+msgid "Polar day"
+msgstr ""
+
+#: desklet.js
+msgid "Polar night"
+msgstr ""
+
+#: desklet.js
+msgid "Births on this day"
+msgstr ""
+
+#: desklet.js
+msgid "Deaths on this day"
+msgstr ""
+
+#: desklet.js
+msgid "Article of the day"
+msgstr ""
