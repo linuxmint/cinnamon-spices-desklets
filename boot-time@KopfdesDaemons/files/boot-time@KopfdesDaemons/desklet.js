@@ -6,7 +6,7 @@ const Mainloop = imports.mainloop;
 const Cairo = imports.cairo;
 const Settings = imports.ui.settings;
 
-const UUID = "devtest-boot-time@KopfdesDaemons";
+const UUID = "boot-time@KopfdesDaemons";
 const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 
 imports.searchPath.push(DESKLET_DIR);
