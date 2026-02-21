@@ -29,6 +29,21 @@ class MyDesklet extends Desklet.Desklet {
     super(metadata, deskletId);
     this.setHeader(_("Boot Time"));
 
+    this._loadingUIisLoaded = false;
+    this._loadingTimeoutId = null;
+    this._animationTimeoutId = null;
+    this.animationState = 0;
+
+    // Default settings
+    this.loadingAnimation = true;
+    this.showAccentColor = false;
+    this.accentColor = "rgb(47, 255, 82)";
+    this.hideDecorations = false;
+    this.labelColor = "rgb(255, 255, 255)";
+    this.rowBackgroundColor = "rgba(0, 0, 0, 0.253)";
+    this.valuesColor = "rgb(255, 255, 255)";
+    this.showHeadline = true;
+
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
     this.settings.bindProperty(Settings.BindingDirection.IN, "loading-animation", "loadingAnimation", this._onSettingsChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "show-accent-color", "showAccentColor", this._onSettingsChanged.bind(this));
@@ -37,7 +52,7 @@ class MyDesklet extends Desklet.Desklet {
     this.settings.bindProperty(Settings.BindingDirection.IN, "label-color", "labelColor", this._onSettingsChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "row-background-color", "rowBackgroundColor", this._onSettingsChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "values-color", "valuesColor", this._onSettingsChanged.bind(this));
-    this.settings.bindProperty(Settings.BindingDirection.IN, "headline", "headline", this._onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-headline", "showHeadline", this._onSettingsChanged.bind(this));
   }
 
   on_desklet_added_to_desktop() {
@@ -52,8 +67,6 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   async _setupUI() {
-    // this._getLoadingUI();
-    // return;
     let bootTimes;
     if (this._loadingTimeoutId) {
       Mainloop.source_remove(this._loadingTimeoutId);
@@ -85,11 +98,11 @@ class MyDesklet extends Desklet.Desklet {
 
   _getBootTimeUI(bootTimes) {
     const mainContainer = new St.BoxLayout({ vertical: true, style: "spacing: 0.5em;" });
-    if (this.headline) {
+    if (this.showHeadline) {
       const headline = new St.Label({ text: _("Boot Time"), style_class: "boot-time-headline" });
       mainContainer.add_child(headline);
     }
-    const rowStyle = `border-radius: 0.1em; padding: 0.3em; spacing: 1em; background-color:${this.rowBackgroundColor};`;
+    const rowStyle = `border-radius: 0.3em; padding: 0.3em; spacing: 1em; background-color:${this.rowBackgroundColor};`;
     const labelStyle = `color: ${this.labelColor}; font-weight: bold;`;
 
     let widestLabelSize = 0;
@@ -135,7 +148,7 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _getLoadingUI() {
-    const loadingContainer = new St.BoxLayout({ vertical: true, style: "min-height: 13em" });
+    const loadingContainer = new St.BoxLayout({ vertical: true, style: "min-height: 13em;" });
     if (this.loadingAnimation) {
       loadingContainer.add_child(
         new St.Bin({
@@ -147,7 +160,14 @@ class MyDesklet extends Desklet.Desklet {
     const loadingLabel = new St.Label({ text: _("Boot process not yet complete..."), style: "text-align: center; max-width: 10em;" });
     loadingLabel.clutter_text.line_wrap = true;
 
-    loadingContainer.add_child(loadingLabel);
+    loadingContainer.add_child(
+      new St.Bin({
+        child: loadingLabel,
+        x_align: St.Align.MIDDLE,
+        y_align: St.Align.MIDDLE,
+        y_expand: true,
+      }),
+    );
     this.setContent(loadingContainer);
     if (this.loadingAnimation) this._startAnimation();
   }
@@ -201,9 +221,7 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _drawCircle() {
-    this.animatedLoadingCircle = new St.DrawingArea({
-      style: `width: 10em; height: 10em;`,
-    });
+    this.animatedLoadingCircle = new St.DrawingArea({ style: `width: 10em; height: 10em;` });
 
     this.animatedLoadingCircle.connect("repaint", area => {
       const cr = area.get_context();

@@ -1,8 +1,8 @@
 {
-  "headline": {
+  "show-headline": {
     "type": "checkbox",
     "default": true,
-    "description": "Headline"
+    "description": "Show headline"
   },
   "loading-animation": {
     "type": "checkbox",
