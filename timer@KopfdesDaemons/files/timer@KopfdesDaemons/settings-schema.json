@@ -33,10 +33,6 @@
       "keys": ["indicator-color", "circle-color", "circle-width", "fill-inner-circle", "inner-circle-color"]
     }
   },
-  "head0": {
-    "type": "header",
-    "description": "Sound"
-  },
   "sound-file": {
     "type": "combobox",
     "default": "service-login.oga",
@@ -62,10 +58,6 @@
     "filters": ["*.ogg", "*.oga", "*.wav", "*.mp3"],
     "dependency": "use-custom-sound"
   },
-  "head1": {
-    "type": "header",
-    "description": "General"
-  },
   "timer-name": {
     "type": "entry",
     "default": "",
@@ -75,10 +67,6 @@
     "type": "checkbox",
     "description": "Show notification when timer expires",
     "default": true
-  },
-  "head2": {
-    "type": "header",
-    "description": "Style"
   },
   "label-color": {
     "type": "colorchooser",
@@ -97,10 +85,6 @@
     "type": "checkbox",
     "description": "Hide decorations",
     "default": true
-  },
-  "head3": {
-    "type": "header",
-    "description": "Circle"
   },
   "indicator-color": {
     "type": "colorchooser",
