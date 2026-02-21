@@ -7,8 +7,9 @@
  * License: GPL-3.0
  *
  * Features (all individually toggleable):
- *   • Date display with customizable strftime format
+ *   • Date display with selectable/custom strftime format
  *   • Time (12h/24h, optional seconds)
+ *   • Calendar progress: day of year, ISO week number, month progress
  *   • Traditional/historical month names (hu/en/de)
  *   • Moon phase (local Julian-date algorithm)
  *   • Sunrise & sunset (NOAA simplified, local calculation)
@@ -16,19 +17,22 @@
  *   • Days until New Year countdown
  *   • Name days with lookahead (local JSON datasets)
  *   • Optional Wikipedia features (births/deaths, article of the day)
+ *   • Accessibility: accessible names + hover tooltips on all icon labels
+ *   • Configurable icon/symbol size (small / medium / large)
  */
 
-const Desklet   = imports.ui.desklet;
-const Settings  = imports.ui.settings;
-const Mainloop  = imports.mainloop;
-const Lang      = imports.lang;
-const St        = imports.gi.St;
-const GLib      = imports.gi.GLib;
-const Gio       = imports.gi.Gio;
-const Gettext   = imports.gettext;
+const Desklet  = imports.ui.desklet;
+const Settings = imports.ui.settings;
+const Tooltips = imports.ui.tooltips;
+const Mainloop = imports.mainloop;
+const Lang     = imports.lang;
+const St       = imports.gi.St;
+const GLib     = imports.gi.GLib;
+const Gio      = imports.gi.Gio;
+const Gettext  = imports.gettext;
 
 // ── UUID and paths ────────────────────────────────────────────────────────
-const UUID       = "calendarium@kami911";
+const UUID        = "calendarium@kami911";
 const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 const DATA_DIR    = DESKLET_DIR + "/data/namedays";
 
@@ -50,7 +54,7 @@ const Localization = imports.localization.Localization;
 const Namedays     = imports.namedays.Namedays;
 const Wikipedia    = imports.wikipedia.Wikipedia;
 
-// ── Default location: Budapest, Hungary ──────────────────────────────────
+// ── Default location: Budapest, Hungary ───────────────────────────────────
 const DEFAULT_LAT = 47.4979;
 const DEFAULT_LON = 19.0402;
 
@@ -75,6 +79,7 @@ CalendariumDesklet.prototype = {
         this._timeout      = null;
         this._clockTimeout = null;
         this._namedayData  = null;
+        this._isDestroyed  = false;
 
         this._bindAllSettings(desklet_id);
         this._loadNamedayData();
@@ -83,7 +88,7 @@ CalendariumDesklet.prototype = {
 
     _bindAllSettings: function(desklet_id) {
         this.settings = new Settings.DeskletSettings(this, UUID, desklet_id);
-        let s = this.settings;
+        let s  = this.settings;
         let IN = Settings.BindingDirection.IN;
         let cb = Lang.bind(this, this._onSettingChanged);
 
@@ -92,12 +97,17 @@ CalendariumDesklet.prototype = {
         s.bindProperty(IN, "date-format-preset", "date_format_preset", cb);
         s.bindProperty(IN, "date-format-custom", "date_format_custom", cb);
         s.bindProperty(IN, "show-time",          "show_time",          cb);
-        s.bindProperty(IN, "time-format",  "time_format",  cb);
-        s.bindProperty(IN, "show-seconds", "show_seconds", cb);
+        s.bindProperty(IN, "time-format",        "time_format",        cb);
+        s.bindProperty(IN, "show-seconds",       "show_seconds",       cb);
+
+        // Calendar progress
+        s.bindProperty(IN, "show-day-of-year",    "show_day_of_year",    cb);
+        s.bindProperty(IN, "show-week-number",    "show_week_number",    cb);
+        s.bindProperty(IN, "show-month-progress", "show_month_progress", cb);
 
         // Traditional month names
-        s.bindProperty(IN, "show-traditional",  "show_traditional",  cb);
-        s.bindProperty(IN, "traditional-lang",  "traditional_lang",  cb);
+        s.bindProperty(IN, "show-traditional", "show_traditional", cb);
+        s.bindProperty(IN, "traditional-lang", "traditional_lang", cb);
 
         // Moon
         s.bindProperty(IN, "show-moon",      "show_moon",      cb);
@@ -126,21 +136,22 @@ CalendariumDesklet.prototype = {
         s.bindProperty(IN, "show-chinese-zodiac", "show_chinese_zodiac", cb);
 
         // Name days
-        s.bindProperty(IN, "show-namedays",      "show_namedays",      cb);
-        s.bindProperty(IN, "nameday-locale",     "nameday_locale",     cb);
-        s.bindProperty(IN, "nameday-lookahead",  "nameday_lookahead",  cb);
+        s.bindProperty(IN, "show-namedays",     "show_namedays",     cb);
+        s.bindProperty(IN, "nameday-locale",    "nameday_locale",    cb);
+        s.bindProperty(IN, "nameday-lookahead", "nameday_lookahead", cb);
 
         // New Year
         s.bindProperty(IN, "show-new-year-countdown", "show_new_year_countdown", cb);
 
         // Wikipedia (online)
-        s.bindProperty(IN, "show-wikipedia",    "show_wikipedia",    cb);
-        s.bindProperty(IN, "wikipedia-lang",    "wikipedia_lang",    cb);
-        s.bindProperty(IN, "show-wiki-births",  "show_wiki_births",  cb);
-        s.bindProperty(IN, "show-wiki-deaths",  "show_wiki_deaths",  cb);
-        s.bindProperty(IN, "show-wiki-featured","show_wiki_featured",cb);
+        s.bindProperty(IN, "show-wikipedia",     "show_wikipedia",     cb);
+        s.bindProperty(IN, "wikipedia-lang",     "wikipedia_lang",     cb);
+        s.bindProperty(IN, "show-wiki-births",   "show_wiki_births",   cb);
+        s.bindProperty(IN, "show-wiki-deaths",   "show_wiki_deaths",   cb);
+        s.bindProperty(IN, "show-wiki-featured", "show_wiki_featured", cb);
 
         // Appearance
+        s.bindProperty(IN, "icon-size",        "icon_size",        cb);
         s.bindProperty(IN, "text-scale",       "text_scale",       cb);
         s.bindProperty(IN, "hide-decorations", "hide_decorations", cb);
     },
@@ -157,66 +168,192 @@ CalendariumDesklet.prototype = {
             style_class: "calendarium-container"
         });
 
-        // Date
-        this._labelDate = new St.Label({ style_class: "calendarium-date",     text: "" });
-        // Time
-        this._labelTime = new St.Label({ style_class: "calendarium-time",     text: "" });
-        // Traditional month name
-        this._labelTraditional = new St.Label({ style_class: "calendarium-traditional", text: "" });
-        // Moon phase (symbol + name)
-        this._labelMoon = new St.Label({ style_class: "calendarium-moon",     text: "" });
-        // Moon age
-        this._labelMoonAge = new St.Label({ style_class: "calendarium-moon-age", text: "" });
-        // Sunrise
-        this._labelSunrise = new St.Label({ style_class: "calendarium-sun",   text: "" });
-        // Sunset
-        this._labelSunset  = new St.Label({ style_class: "calendarium-sun",   text: "" });
+        // ── Date ──────────────────────────────────────────────────────────
+        this._labelDate = new St.Label({
+            style_class: "calendarium-date",
+            text: ""
+        });
+        this._labelDate.accessible_name = _("Current date");
+        this._container.add_actor(this._labelDate);
+
+        // ── Time ──────────────────────────────────────────────────────────
+        this._labelTime = new St.Label({
+            style_class: "calendarium-time",
+            text: ""
+        });
+        this._labelTime.accessible_name = _("Current time");
+        this._container.add_actor(this._labelTime);
+
+        // ── Calendar progress ─────────────────────────────────────────────
+        this._labelDayOfYear = new St.Label({
+            reactive:    true,
+            style_class: "calendarium-progress",
+            text:        ""
+        });
+        this._dayOfYearTooltip = new Tooltips.Tooltip(
+            this._labelDayOfYear, _("Day of year")
+        );
+        this._container.add_actor(this._labelDayOfYear);
+
+        this._labelWeekNumber = new St.Label({
+            reactive:    true,
+            style_class: "calendarium-progress",
+            text:        ""
+        });
+        this._weekNumberTooltip = new Tooltips.Tooltip(
+            this._labelWeekNumber, _("Week number")
+        );
+        this._container.add_actor(this._labelWeekNumber);
+
+        this._labelMonthProgress = new St.Label({
+            reactive:    true,
+            style_class: "calendarium-progress",
+            text:        ""
+        });
+        this._monthProgressTooltip = new Tooltips.Tooltip(
+            this._labelMonthProgress, _("Month progress")
+        );
+        this._container.add_actor(this._labelMonthProgress);
+
+        // ── Traditional month name ─────────────────────────────────────────
+        this._labelTraditional = new St.Label({
+            style_class: "calendarium-traditional",
+            text:        ""
+        });
+        this._container.add_actor(this._labelTraditional);
+
+        // ── Moon phase ────────────────────────────────────────────────────
+        // Symbol and name in a horizontal row so the symbol can be sized
+        // independently from the text.
+        this._moonRow = new St.BoxLayout({ vertical: false });
+
+        this._labelMoonIcon = new St.Label({ reactive: true, text: "" });
+        this._labelMoonIcon.accessible_name = _("Moon phase");
+        this._moonTooltip = new Tooltips.Tooltip(this._labelMoonIcon, "");
+
+        this._labelMoonText = new St.Label({
+            style_class: "calendarium-moon",
+            text:        ""
+        });
+
+        this._moonRow.add_actor(this._labelMoonIcon);
+        this._moonRow.add_actor(this._labelMoonText);
+        this._container.add_actor(this._moonRow);
+
+        this._labelMoonAge = new St.Label({
+            reactive:    true,
+            style_class: "calendarium-moon-age",
+            text:        ""
+        });
+        this._moonAgeTooltip = new Tooltips.Tooltip(this._labelMoonAge, "");
+        this._container.add_actor(this._labelMoonAge);
+
+        // ── Sunrise & sunset ───────────────────────────────────────────────
+        this._labelSunrise = new St.Label({
+            reactive:    true,
+            style_class: "calendarium-sun",
+            text:        ""
+        });
+        this._labelSunrise.accessible_name = _("Sunrise");
+        this._sunriseTooltip = new Tooltips.Tooltip(this._labelSunrise, _("Sunrise"));
+        this._container.add_actor(this._labelSunrise);
+
+        this._labelSunset = new St.Label({
+            reactive:    true,
+            style_class: "calendarium-sun",
+            text:        ""
+        });
+        this._labelSunset.accessible_name = _("Sunset");
+        this._sunsetTooltip = new Tooltips.Tooltip(this._labelSunset, _("Sunset"));
+        this._container.add_actor(this._labelSunset);
+
         // Additional cities (up to 3 × 2 rows: sunrise + sunset)
         this._labelCity = [];
         for (let i = 0; i < 3; i++) {
-            this._labelCity.push({
-                sunrise: new St.Label({ style_class: "calendarium-city", text: "" }),
-                sunset:  new St.Label({ style_class: "calendarium-city", text: "" })
-            });
+            let sr = new St.Label({ style_class: "calendarium-city", text: "" });
+            let ss = new St.Label({ style_class: "calendarium-city", text: "" });
+            sr.accessible_name = _("Sunrise");
+            ss.accessible_name = _("Sunset");
+            this._labelCity.push({ sunrise: sr, sunset: ss });
+            this._container.add_actor(sr);
+            this._container.add_actor(ss);
         }
-        // Western zodiac
-        this._labelZodiacWestern = new St.Label({ style_class: "calendarium-zodiac-western", text: "" });
-        // Chinese zodiac
-        this._labelZodiacChinese = new St.Label({ style_class: "calendarium-zodiac-chinese", text: "" });
-        // Name days (today + up to 5 lookahead days)
+
+        // ── Western zodiac ────────────────────────────────────────────────
+        this._zodiacWesternRow = new St.BoxLayout({ vertical: false });
+
+        this._labelZodiacWesternIcon = new St.Label({ reactive: true, text: "" });
+        this._labelZodiacWesternIcon.accessible_name = _("Western zodiac");
+        this._zodiacWesternTooltip = new Tooltips.Tooltip(
+            this._labelZodiacWesternIcon, ""
+        );
+
+        this._labelZodiacWesternText = new St.Label({
+            style_class: "calendarium-zodiac-western",
+            text:        ""
+        });
+
+        this._zodiacWesternRow.add_actor(this._labelZodiacWesternIcon);
+        this._zodiacWesternRow.add_actor(this._labelZodiacWesternText);
+        this._container.add_actor(this._zodiacWesternRow);
+
+        // ── Chinese zodiac ─────────────────────────────────────────────────
+        this._labelZodiacChinese = new St.Label({
+            reactive:    true,
+            style_class: "calendarium-zodiac-chinese",
+            text:        ""
+        });
+        this._labelZodiacChinese.accessible_name = _("Chinese zodiac");
+        this._zodiacChineseTooltip = new Tooltips.Tooltip(
+            this._labelZodiacChinese, ""
+        );
+        this._container.add_actor(this._labelZodiacChinese);
+
+        // ── Name days (today + up to 5 lookahead days) ────────────────────
         this._labelNameday = [];
         for (let i = 0; i <= 5; i++) {
             let cls = i === 0 ? "calendarium-nameday" : "calendarium-nameday-sub";
-            this._labelNameday.push(new St.Label({ style_class: cls, text: "" }));
+            let lbl = new St.Label({ style_class: cls, text: "" });
+            this._labelNameday.push(lbl);
+            this._container.add_actor(lbl);
         }
-        // New Year countdown
-        this._labelNewYear = new St.Label({ style_class: "calendarium-newyear", text: "" });
-        // Wikipedia
-        this._labelWikiBirthsHeader  = new St.Label({ style_class: "calendarium-wiki-header", text: "" });
-        this._labelWikiBirths        = new St.Label({ style_class: "calendarium-wiki",         text: "" });
-        this._labelWikiDeathsHeader  = new St.Label({ style_class: "calendarium-wiki-header",  text: "" });
-        this._labelWikiDeaths        = new St.Label({ style_class: "calendarium-wiki",         text: "" });
-        this._labelWikiFeaturedHeader= new St.Label({ style_class: "calendarium-wiki-header",  text: "" });
-        this._labelWikiFeatured      = new St.Label({ style_class: "calendarium-wiki-featured",text: "" });
 
-        // Add everything to the container
-        this._container.add_actor(this._labelDate);
-        this._container.add_actor(this._labelTime);
-        this._container.add_actor(this._labelTraditional);
-        this._container.add_actor(this._labelMoon);
-        this._container.add_actor(this._labelMoonAge);
-        this._container.add_actor(this._labelSunrise);
-        this._container.add_actor(this._labelSunset);
-        for (let i = 0; i < 3; i++) {
-            this._container.add_actor(this._labelCity[i].sunrise);
-            this._container.add_actor(this._labelCity[i].sunset);
-        }
-        this._container.add_actor(this._labelZodiacWestern);
-        this._container.add_actor(this._labelZodiacChinese);
-        for (let i = 0; i <= 5; i++) {
-            this._container.add_actor(this._labelNameday[i]);
-        }
+        // ── New Year countdown ─────────────────────────────────────────────
+        this._labelNewYear = new St.Label({
+            reactive:    true,
+            style_class: "calendarium-newyear",
+            text:        ""
+        });
+        this._newYearTooltip = new Tooltips.Tooltip(this._labelNewYear, "");
         this._container.add_actor(this._labelNewYear);
+
+        // ── Wikipedia ─────────────────────────────────────────────────────
+        this._labelWikiBirthsHeader   = new St.Label({
+            style_class: "calendarium-wiki-header", text: ""
+        });
+        this._labelWikiBirths         = new St.Label({
+            style_class: "calendarium-wiki",        text: ""
+        });
+        this._labelWikiDeathsHeader   = new St.Label({
+            style_class: "calendarium-wiki-header", text: ""
+        });
+        this._labelWikiDeaths         = new St.Label({
+            style_class: "calendarium-wiki",        text: ""
+        });
+        this._labelWikiFeaturedHeader = new St.Label({
+            style_class: "calendarium-wiki-header", text: ""
+        });
+        this._labelWikiFeatured       = new St.Label({
+            style_class: "calendarium-wiki-featured", text: ""
+        });
+
+        this._labelWikiBirthsHeader.accessible_name   = _("Births on this day");
+        this._labelWikiBirths.accessible_name         = _("Births on this day");
+        this._labelWikiDeathsHeader.accessible_name   = _("Deaths on this day");
+        this._labelWikiDeaths.accessible_name         = _("Deaths on this day");
+        this._labelWikiFeaturedHeader.accessible_name = _("Article of the day");
+        this._labelWikiFeatured.accessible_name       = _("Article of the day");
+
         this._container.add_actor(this._labelWikiBirthsHeader);
         this._container.add_actor(this._labelWikiBirths);
         this._container.add_actor(this._labelWikiDeathsHeader);
@@ -226,10 +363,6 @@ CalendariumDesklet.prototype = {
 
         this.setContent(this._container);
 
-        if (this.hide_decorations) {
-            this.setHeader("");
-        }
-
         this._refresh();
     },
 
@@ -237,17 +370,19 @@ CalendariumDesklet.prototype = {
 
     /**
      * Master refresh: update all sections, then schedule the next tick.
-     * Runs every 60 seconds (or 1 second when show_seconds is true).
      */
     _refresh: function() {
+        if (this._isDestroyed) return;
         if (this._timeout) {
             Mainloop.source_remove(this._timeout);
             this._timeout = null;
         }
 
         let now = new Date();
+        this._applyAppearance();
         this._updateDate(now);
         this._updateTime(now);
+        this._updateProgress(now);
         this._updateTraditional(now);
         this._updateMoon(now);
         this._updateSun(now);
@@ -275,11 +410,42 @@ CalendariumDesklet.prototype = {
 
     /** Fast-path refresh for the time label only (1-second cadence). */
     _refreshClock: function() {
+        if (this._isDestroyed) return false;
         this._updateTime(new Date());
         this._clockTimeout = Mainloop.timeout_add(
             1000, Lang.bind(this, this._refreshClock)
         );
-        return false;  // Don't repeat via GLib; we reschedule manually
+        return false;
+    },
+
+    // ── Appearance helpers ────────────────────────────────────────────────
+
+    _getIconPx: function() {
+        switch (this.icon_size) {
+            case "small":  return 14;
+            case "large":  return 30;
+            default:       return 20;   // medium
+        }
+    },
+
+    _applyAppearance: function() {
+        // Text scale: visual zoom of the whole container
+        let s = this.text_scale || 1.0;
+        this._container.set_scale(s, s);
+
+        // Icon / symbol size for moon and zodiac symbols
+        let px = this._getIconPx();
+        this._labelMoonIcon.set_style(
+            "font-size: " + px + "px; color: #ccccff; padding-right: 5px;"
+        );
+        this._labelZodiacWesternIcon.set_style(
+            "font-size: " + px + "px; color: #88ffcc; padding-right: 5px;"
+        );
+
+        // Decorations
+        if (this.hide_decorations) {
+            this.setHeader(" ");
+        }
     },
 
     // ── Section updaters ──────────────────────────────────────────────────
@@ -315,6 +481,59 @@ CalendariumDesklet.prototype = {
         }
     },
 
+    _updateProgress: function(now) {
+        let y = now.getFullYear();
+
+        // ── Day of year ──────────────────────────────────────────────────
+        this._labelDayOfYear.visible = this.show_day_of_year;
+        if (this.show_day_of_year) {
+            let startOfYear = new Date(y, 0, 1);
+            let dayOfYear   = Math.floor((now - startOfYear) / 86400000) + 1;
+            let isLeap      = (y % 4 === 0 && (y % 100 !== 0 || y % 400 === 0));
+            let daysInYear  = isLeap ? 366 : 365;
+            let text = _("Day %d of %d").format(dayOfYear, daysInYear);
+            this._labelDayOfYear.set_text(text);
+            this._dayOfYearTooltip.set_text(
+                _("Day of year") + ": " + dayOfYear + " / " + daysInYear
+            );
+        }
+
+        // ── ISO week number ──────────────────────────────────────────────
+        this._labelWeekNumber.visible = this.show_week_number;
+        if (this.show_week_number) {
+            let weekNum = this._getISOWeek(now);
+            let text    = _("Week %d").format(weekNum);
+            this._labelWeekNumber.set_text(text);
+            this._weekNumberTooltip.set_text(
+                _("Week number") + ": " + weekNum
+            );
+        }
+
+        // ── Month progress ───────────────────────────────────────────────
+        this._labelMonthProgress.visible = this.show_month_progress;
+        if (this.show_month_progress) {
+            let dayOfMonth  = now.getDate();
+            let daysInMonth = new Date(y, now.getMonth() + 1, 0).getDate();
+            let monthName   = GLib.DateTime.new_now_local().format("%B");
+            let text = monthName + " \u00b7 " +
+                       dayOfMonth + "/" + daysInMonth + " " + _("days");
+            this._labelMonthProgress.set_text(text);
+            this._monthProgressTooltip.set_text(
+                _("Month progress") + ": " +
+                dayOfMonth + " / " + daysInMonth
+            );
+        }
+    },
+
+    /** ISO 8601 week number (1–53). */
+    _getISOWeek: function(date) {
+        let d      = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+        let dayNum = d.getUTCDay() || 7;
+        d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+        let yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+        return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+    },
+
     _updateTraditional: function(now) {
         this._labelTraditional.visible = this.show_traditional;
         if (!this.show_traditional) return;
@@ -325,22 +544,26 @@ CalendariumDesklet.prototype = {
     },
 
     _updateMoon: function(now) {
-        this._labelMoon.visible    = this.show_moon;
+        this._moonRow.visible      = this.show_moon;
         this._labelMoonAge.visible = this.show_moon && this.show_moon_age;
         if (!this.show_moon) return;
 
-        let moon = Moon.getMoonPhase(now);
+        let moon      = Moon.getMoonPhase(now);
+        let phaseName = _(moon.phaseName);
 
-        // Phase symbol + name
-        let phaseTxt = moon.phaseSymbol + "  " + _(moon.phaseName);
-        if (!this.show_moon_name) phaseTxt = moon.phaseSymbol;
-        this._labelMoon.set_text(phaseTxt);
+        // Icon (size set by _applyAppearance)
+        this._labelMoonIcon.set_text(moon.phaseSymbol);
+        this._moonTooltip.set_text(_("Moon phase") + ": " + phaseName);
+
+        // Name text (visibility depends on show_moon_name)
+        this._labelMoonText.visible = this.show_moon_name;
+        this._labelMoonText.set_text(phaseName);
 
         // Age line
         if (this.show_moon_age) {
-            this._labelMoonAge.set_text(
-                "  " + moon.age.toFixed(1) + " " + _("days")
-            );
+            let ageText = moon.age.toFixed(1) + " " + _("days");
+            this._labelMoonAge.set_text("  " + ageText);
+            this._moonAgeTooltip.set_text(_("Moon age") + ": " + ageText);
         }
     },
 
@@ -353,9 +576,9 @@ CalendariumDesklet.prototype = {
         let cityLons  = [this.city1_lon,  this.city2_lon,  this.city3_lon];
 
         for (let i = 0; i < 3; i++) {
-            let hasCityName = cityNames[i] && cityNames[i].trim() !== "";
-            this._labelCity[i].sunrise.visible = this.show_sun && hasCityName;
-            this._labelCity[i].sunset.visible  = this.show_sun && hasCityName;
+            let has = cityNames[i] && cityNames[i].trim() !== "";
+            this._labelCity[i].sunrise.visible = this.show_sun && has;
+            this._labelCity[i].sunset.visible  = this.show_sun && has;
         }
 
         if (!this.show_sun) return;
@@ -365,12 +588,13 @@ CalendariumDesklet.prototype = {
         let lon = this.use_manual_location ? this.longitude : DEFAULT_LON;
         let sun = Sun.getSunTimes(now, lat, lon);
 
-        this._labelSunrise.set_text(
-            "\u2600 " + _("Sunrise") + ": " + this._sunStr(sun, "sunrise")
-        );
-        this._labelSunset.set_text(
-            "\u263D " + _("Sunset")  + ": " + this._sunStr(sun, "sunset")
-        );
+        let sunriseStr = this._sunStr(sun, "sunrise");
+        let sunsetStr  = this._sunStr(sun, "sunset");
+
+        this._labelSunrise.set_text("\u2600 " + _("Sunrise") + ": " + sunriseStr);
+        this._labelSunset.set_text( "\u263D " + _("Sunset")  + ": " + sunsetStr);
+        this._sunriseTooltip.set_text(_("Sunrise") + ": " + sunriseStr);
+        this._sunsetTooltip.set_text( _("Sunset")  + ": " + sunsetStr);
 
         // Additional cities
         for (let i = 0; i < 3; i++) {
@@ -392,20 +616,27 @@ CalendariumDesklet.prototype = {
     },
 
     _updateZodiac: function(now) {
-        this._labelZodiacWestern.visible = this.show_western_zodiac;
+        this._zodiacWesternRow.visible   = this.show_western_zodiac;
         this._labelZodiacChinese.visible = this.show_chinese_zodiac;
 
         if (this.show_western_zodiac) {
-            let w = Zodiac.getWesternZodiac(now);
-            this._labelZodiacWestern.set_text(w.symbol + "  " + _(w.name));
+            let w    = Zodiac.getWesternZodiac(now);
+            let name = _(w.name);
+            this._labelZodiacWesternIcon.set_text(w.symbol);
+            this._labelZodiacWesternText.set_text(name);
+            this._zodiacWesternTooltip.set_text(
+                _("Western zodiac") + ": " + name
+            );
         }
 
         if (this.show_chinese_zodiac) {
-            let c = Zodiac.getChineseZodiac(
+            let c    = Zodiac.getChineseZodiac(
                 now.getFullYear(), now.getMonth() + 1, now.getDate()
             );
-            this._labelZodiacChinese.set_text(
-                _(c.elementKey) + " " + _(c.animalKey)
+            let text = _(c.elementKey) + " " + _(c.animalKey);
+            this._labelZodiacChinese.set_text(text);
+            this._zodiacChineseTooltip.set_text(
+                _("Chinese zodiac") + ": " + text
             );
         }
     },
@@ -415,9 +646,16 @@ CalendariumDesklet.prototype = {
         if (!this.show_new_year_countdown) return;
 
         let nextNY = new Date(now.getFullYear() + 1, 0, 1);
-        let msLeft = nextNY - now;
-        let days   = Math.ceil(msLeft / 86400000);
+        let days   = Math.ceil((nextNY - now) / 86400000);
         this._labelNewYear.set_text(days + " " + _("days until New Year"));
+
+        // Tooltip: show the exact date of the next New Year
+        try {
+            let nyDt = GLib.DateTime.new_local(now.getFullYear() + 1, 1, 1, 0, 0, 0);
+            this._newYearTooltip.set_text(nyDt.format("%A, %B %d, %Y"));
+        } catch (e) {
+            this._newYearTooltip.set_text("");
+        }
     },
 
     _updateNamedays: function(now) {
@@ -433,8 +671,8 @@ CalendariumDesklet.prototype = {
                 continue;
             }
             lbl.visible = true;
-            let entry = range[i];
-            let names = (entry && entry.names.length > 0)
+            let entry  = range[i];
+            let names  = (entry && entry.names.length > 0)
                 ? entry.names.join(", ")
                 : _("No data");
             let prefix;
@@ -453,19 +691,18 @@ CalendariumDesklet.prototype = {
     // ── Wikipedia (online, optional) ──────────────────────────────────────
 
     _scheduleWikipedia: function(now) {
-        // Hide all Wikipedia labels immediately
-        this._labelWikiBirthsHeader.visible  = false;
-        this._labelWikiBirths.visible        = false;
-        this._labelWikiDeathsHeader.visible  = false;
-        this._labelWikiDeaths.visible        = false;
-        this._labelWikiFeaturedHeader.visible= false;
-        this._labelWikiFeatured.visible      = false;
+        this._labelWikiBirthsHeader.visible   = false;
+        this._labelWikiBirths.visible         = false;
+        this._labelWikiDeathsHeader.visible   = false;
+        this._labelWikiDeaths.visible         = false;
+        this._labelWikiFeaturedHeader.visible = false;
+        this._labelWikiFeatured.visible       = false;
 
         if (!this.show_wikipedia) return;
 
-        let m = now.getMonth() + 1;
-        let d = now.getDate();
-        let y = now.getFullYear();
+        let m    = now.getMonth() + 1;
+        let d    = now.getDate();
+        let y    = now.getFullYear();
         let lang = this.wikipedia_lang || "en";
 
         if (this.show_wiki_births || this.show_wiki_deaths) {
@@ -479,12 +716,14 @@ CalendariumDesklet.prototype = {
     },
 
     _onWikiOnThisDay: function(data) {
-        if (!data) return;
+        if (this._isDestroyed || !data) return;
 
         if (this.show_wiki_births && data.births && data.births.length > 0) {
             let items = data.births.slice(0, 3).map(function(b) {
                 let year  = b.year ? b.year + ": " : "";
-                let title = (b.pages && b.pages[0]) ? b.pages[0].normalizedtitle : (b.text || "");
+                let title = (b.pages && b.pages[0])
+                    ? b.pages[0].normalizedtitle
+                    : (b.text || "");
                 return year + title;
             });
             this._labelWikiBirthsHeader.set_text(_("Births on this day"));
@@ -496,7 +735,9 @@ CalendariumDesklet.prototype = {
         if (this.show_wiki_deaths && data.deaths && data.deaths.length > 0) {
             let items = data.deaths.slice(0, 3).map(function(d) {
                 let year  = d.year ? d.year + ": " : "";
-                let title = (d.pages && d.pages[0]) ? d.pages[0].normalizedtitle : (d.text || "");
+                let title = (d.pages && d.pages[0])
+                    ? d.pages[0].normalizedtitle
+                    : (d.text || "");
                 return year + title;
             });
             this._labelWikiDeathsHeader.set_text(_("Deaths on this day"));
@@ -507,12 +748,11 @@ CalendariumDesklet.prototype = {
     },
 
     _onWikiFeatured: function(data) {
-        if (!data || !data.tfa) return;
-        let tfa = data.tfa;
+        if (this._isDestroyed || !data || !data.tfa) return;
+        let tfa     = data.tfa;
         let title   = tfa.normalizedtitle || tfa.title || "";
         let extract = tfa.extract || "";
-        // Trim extract to first sentence
-        let dot = extract.indexOf(". ");
+        let dot     = extract.indexOf(". ");
         if (dot > 0) extract = extract.substring(0, dot + 1);
         this._labelWikiFeaturedHeader.set_text(_("Article of the day"));
         this._labelWikiFeatured.set_text(title + (extract ? ("\n" + extract) : ""));
@@ -523,15 +763,16 @@ CalendariumDesklet.prototype = {
     // ── Settings change handler ───────────────────────────────────────────
 
     _onSettingChanged: function() {
-        // Reload nameday data if locale may have changed
         this._loadNamedayData();
-        // Full refresh (cancels and reschedules timers)
         this._refresh();
     },
 
     // ── Cleanup ───────────────────────────────────────────────────────────
 
     on_desklet_removed: function() {
+        // Set the flag first so any already-queued timer callbacks bail
+        // out immediately without touching the now-destroyed actor tree.
+        this._isDestroyed = true;
         if (this._timeout) {
             Mainloop.source_remove(this._timeout);
             this._timeout = null;
