@@ -18,71 +18,82 @@ function _(str) {
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
+    this.setHeader(_("System Uptime"));
 
-    // Default settings values
-    this.fontSize = 20;
-    this.colorLabel = "rgb(51, 209, 122)";
-
-    // Bind settings properties
-    const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
-    settings.bindProperty(Settings.BindingDirection.IN, "fontSize", "fontSize", this.onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "colorLabel", "colorLabel", this.onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "showStartDate", "showStartDate", this.onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "showUptimeInDays", "showUptimeInDays", this.onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "hideDecorations", "hideDecorations", this.updateDecoration.bind(this));
-
+    this._timeout = null;
     this.desktop_settings = new Gio.Settings({ schema_id: "org.cinnamon.desktop.interface" });
     this._clockSettingsId = this.desktop_settings.connect("changed::clock-use-24h", () => this.updateValues());
 
-    this.setHeader(_("System Uptime"));
+    // Default settings values
+    this.scaleSize = 1;
+    this.labelColor = "rgb(51, 209, 122)";
+    this.showStartDate = false;
+    this.showUptimeInDays = false;
+    this.hideDecorations = true;
+
+    // Bind settings properties
+    this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this.onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "label-color", "labelColor", this.onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-start-date", "showStartDate", this.onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-uptime-in-days", "showUptimeInDays", this.onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this.updateDecoration.bind(this));
+  }
+
+  on_desklet_added_to_desktop() {
     this.updateDecoration();
     this.setupLayout();
     this.updateValues();
   }
 
+  on_desklet_removed() {
+    this.settings.finalize();
+    if (this._timeout) Mainloop.source_remove(this._timeout);
+    if (this._clockSettingsId) {
+      this.desktop_settings.disconnect(this._clockSettingsId);
+      this._clockSettingsId = 0;
+    }
+  }
+
   setupLayout() {
+    const valueStyle = `font-size: ${1.5 * this.scaleSize}em;`;
+    const labelStyle = `${valueStyle} color: ${this.labelColor};`;
+    const iconStyle = `width: ${2.5 * this.scaleSize}em; height: ${2.5 * this.scaleSize}em;`;
+
     // Create labels for uptime
-    this.uptimeLabel = new St.Label({ text: _("Uptime:") + " ", style: `font-size: ${this.fontSize}px; color: ${this.colorLabel};` });
-    this.uptimeValue = new St.Label({ text: _("Loading..."), style: `font-size: ${this.fontSize}px;` });
+    const uptimeLabel = new St.Label({ text: _("Uptime:") + " ", style: labelStyle });
+    this.uptimeValue = new St.Label({ text: _("Loading..."), style: valueStyle });
 
     const uptimeRow = new St.BoxLayout();
-    uptimeRow.add_child(this.uptimeLabel);
+    uptimeRow.add_child(uptimeLabel);
     uptimeRow.add_child(this.uptimeValue);
 
     // Create labels for startup time
-    this.startTimeLabel = new St.Label({ text: _("Start time:") + " ", style: `font-size: ${this.fontSize}px; color: ${this.colorLabel};` });
-    this.startupValue = new St.Label({ text: _("Loading..."), style: `font-size: ${this.fontSize}px;` });
+    const startTimeLabel = new St.Label({ text: _("Start time:") + " ", style: labelStyle });
+    this.startupValue = new St.Label({ text: _("Loading..."), style: valueStyle });
 
     const startupRow = new St.BoxLayout();
-    startupRow.add_child(this.startTimeLabel);
+    startupRow.add_child(startTimeLabel);
     startupRow.add_child(this.startupValue);
 
     // Combine all into the main container
-    const contentBox = new St.BoxLayout({ vertical: true });
-    contentBox.set_style("margin-left: 0.5em;");
-    contentBox.add_child(startupRow);
-    contentBox.add_child(uptimeRow);
+    const labelBox = new St.BoxLayout({ vertical: true, y_align: St.Align.MIDDLE });
+    labelBox.set_style("margin-left: 0.5em;");
+    labelBox.add_child(startupRow);
+    labelBox.add_child(uptimeRow);
 
-    this.container = new St.BoxLayout();
-    this.container.add_child(contentBox);
-
-    //  Use idle, because the size of the clock icon depends on the rest of the content.
-    Mainloop.idle_add(() => {
-      const computedHeight = contentBox.get_height();
-
-      // Create clock icon
-      const clockIcon = new St.Icon({
-        gicon: Gio.icon_new_for_string(`${this.metadata.path}/clock.svg`),
-        icon_size: computedHeight,
-      });
-
-      this.container.insert_child_below(clockIcon, contentBox);
-
-      // Don't run this again
-      return false;
+    const clockIcon = new St.Icon({
+      gicon: Gio.icon_new_for_string(`${this.metadata.path}/icons/clock.svg`),
+      icon_size: 5 * 16 * this.scaleSize,
+      style: iconStyle,
     });
+    const iconBox = new St.Bin({ child: clockIcon, style: iconStyle });
 
-    this.setContent(this.container);
+    const container = new St.BoxLayout({ y_align: St.Align.MIDDLE });
+    container.add_child(iconBox);
+    container.add_child(labelBox);
+
+    this.setContent(container);
   }
 
   updateUptime() {
@@ -108,8 +119,8 @@ class MyDesklet extends Desklet.Desklet {
         this.uptimeValue.set_text(`${hours} ${_("hours")} ${minutes} ${_("minutes")}`);
       }
     } catch (error) {
-      this.uptimeValue.set_text("Error");
-      global.logError(`${UUID}: ${error.message}`);
+      this.uptimeValue.set_text(_("Error"));
+      global.logError(`${UUID} Error: ${error.message}`);
     }
   }
 
@@ -142,7 +153,7 @@ class MyDesklet extends Desklet.Desklet {
         this.startupValue.set_text(dt.format(timeFormat));
       }
     } catch (error) {
-      this.startupValue.set_text("Error");
+      this.startupValue.set_text(_("Error"));
       global.logError(`${UUID}: ${error.message}`);
     }
   }
@@ -163,14 +174,6 @@ class MyDesklet extends Desklet.Desklet {
   updateDecoration() {
     this.metadata["prevent-decorations"] = this.hideDecorations;
     this._updateDecoration();
-  }
-
-  on_desklet_removed() {
-    if (this._timeout) Mainloop.source_remove(this._timeout);
-    if (this._clockSettingsId) {
-      this.desktop_settings.disconnect(this._clockSettingsId);
-      this._clockSettingsId = 0;
-    }
   }
 }
 

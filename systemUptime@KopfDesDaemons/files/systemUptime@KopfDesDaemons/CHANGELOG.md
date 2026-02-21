@@ -6,14 +6,21 @@
 
 ## [1.0.1] - 31.07.2025
 
-- update starttime in mainloop
-- update screenshot
+- Update starttime in mainloop
+- Updated screenshot
 
 ## [1.1.0] - 06.02.2026
 
-- use local date and time format
-- use the "Use 24H clock" cinnamon setting
-- use St.Icon for the clock icon
-- use file_get_contents() to get starttime and uptime
-- update screenshot
-- add more comments
+- New features:
+  - Scale desklet with system font size
+  - Use the "Use 24H clock" cinnamon setting
+  - Use local date and time format
+  - Updated screenshot
+- Refactoring:
+  - Use St.Icon for the clock icon
+  - Use file_get_contents() to get starttime and uptime
+  - Added more comments
+  - Updated icon initialization
+  - Added settings cleanup
+  - Changed desklet entry point to `on_desklet_added_to_desktop`
+  - Renamed settings names

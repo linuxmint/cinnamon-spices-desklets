@@ -3,30 +3,30 @@
     "type": "header",
     "description": "Style"
   },
-  "fontSize": {
+  "scale-size": {
     "type": "scale",
-    "default": 20,
-    "min": 12,
-    "max": 60,
-    "step": 1,
-    "description": "Font size"
+    "default": 1,
+    "min": 0.3,
+    "max": 3,
+    "step": 0.05,
+    "description": "Desklet scale size"
   },
-  "colorLabel": {
+  "label-color": {
     "type": "colorchooser",
     "default": "rgb(51, 209, 122)",
     "description": "Label color"
   },
-  "showStartDate": {
+  "show-start-date": {
     "type": "checkbox",
     "default": false,
     "description": "Show start date"
   },
-  "showUptimeInDays": {
+  "show-uptime-in-days": {
     "type": "checkbox",
     "default": false,
     "description": "Show uptime in days"
   },
-  "hideDecorations": {
+  "hide-decorations": {
     "type": "checkbox",
     "description": "Hide decorations",
     "default": false
