@@ -22,6 +22,14 @@
     font-family: "DejaVu Sans Mono", Monospace;
 }
 
+/* ── Calendar progress (day of year / week / month) ── */
+.calendarium-progress {
+    font-size: 12px;
+    color: #aaddff;
+    font-family: "DejaVu Sans", Sans-serif;
+    padding-top: 1px;
+}
+
 /* ── Traditional month name ───────────────────────── */
 .calendarium-traditional {
     font-size: 11px;

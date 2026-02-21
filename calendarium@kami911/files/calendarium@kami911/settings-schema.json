@@ -8,6 +8,7 @@
             "title": "General",
             "sections": [
                 "section-datetime",
+                "section-progress",
                 "section-traditional",
                 "section-moon",
                 "section-sun",
@@ -36,6 +37,12 @@
                 "time-format",
                 "show-seconds"
             ]
+        },
+
+        "section-progress": {
+            "type": "section",
+            "title": "Calendar Progress",
+            "keys": ["show-day-of-year", "show-week-number", "show-month-progress"]
         },
 
         "section-traditional": {
@@ -89,7 +96,7 @@
         "section-appearance": {
             "type": "section",
             "title": "Appearance",
-            "keys": ["text-scale", "hide-decorations"]
+            "keys": ["icon-size", "text-scale", "hide-decorations"]
         },
 
         "section-wikipedia": {
@@ -154,6 +161,22 @@
         "type": "checkbox",
         "default": false,
         "description": "Show seconds"
+    },
+
+    "show-day-of-year": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show day of year (e.g. Day 52 of 365)"
+    },
+    "show-week-number": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show ISO week number"
+    },
+    "show-month-progress": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show month progress (day / days in month)"
     },
 
     "show-traditional": {
@@ -383,6 +406,17 @@
         "indent": true
     },
 
+    "icon-size": {
+        "type": "combobox",
+        "default": "medium",
+        "description": "Icon and symbol size",
+        "tooltip": "Controls the display size of moon phase and zodiac symbols.",
+        "options": {
+            "Small":  "small",
+            "Medium": "medium",
+            "Large":  "large"
+        }
+    },
     "text-scale": {
         "type": "spinbutton",
         "default": 1.0,

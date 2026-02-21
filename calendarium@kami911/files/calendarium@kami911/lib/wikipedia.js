@@ -97,6 +97,7 @@ var Wikipedia = {
     /**
      * Perform an async GET request, parse JSON, call callback(data|null).
      * Compatible with both Soup 2 (queue_message) and Soup 3 (send_and_read_async).
+     * Validates HTTP status (200 only) and non-empty body before JSON.parse.
      */
     _fetch: function(url, callback) {
         let session = this._getSession();
@@ -104,16 +105,27 @@ var Wikipedia = {
         try {
             msg = Soup.Message.new("GET", url);
         } catch (e) {
+            global.logWarning("Calendarium: Wikipedia bad URL (" + url + "): " + e);
             callback(null);
             return;
         }
 
         if (Soup.MAJOR_VERSION === 2) {
             session.queue_message(msg, function(sess, message) {
+                if (message.status_code !== 200) {
+                    global.logWarning(
+                        "Calendarium: Wikipedia HTTP " + message.status_code +
+                        " for " + url
+                    );
+                    callback(null);
+                    return;
+                }
                 try {
-                    callback(JSON.parse(message.response_body.data));
+                    let text = message.response_body.data;
+                    if (!text) { callback(null); return; }
+                    callback(JSON.parse(text));
                 } catch (e) {
-                    global.logWarning("Calendarium: Wikipedia fetch error: " + e);
+                    global.logWarning("Calendarium: Wikipedia parse error: " + e);
                     callback(null);
                 }
             });
@@ -122,8 +134,22 @@ var Wikipedia = {
                 msg, GLib.PRIORITY_DEFAULT, null,
                 function(sess, result) {
                     try {
-                        let bytes = sess.send_and_read_finish(result);
-                        let text  = new TextDecoder().decode(bytes.get_data());
+                        let bytes  = sess.send_and_read_finish(result);
+                        let status = msg.status_code;
+                        if (status !== 200) {
+                            global.logWarning(
+                                "Calendarium: Wikipedia HTTP " + status +
+                                " for " + url
+                            );
+                            callback(null);
+                            return;
+                        }
+                        let data = bytes ? bytes.get_data() : null;
+                        if (!data || data.length === 0) {
+                            callback(null);
+                            return;
+                        }
+                        let text = new TextDecoder().decode(data);
                         callback(JSON.parse(text));
                     } catch (e) {
                         global.logWarning("Calendarium: Wikipedia fetch error: " + e);

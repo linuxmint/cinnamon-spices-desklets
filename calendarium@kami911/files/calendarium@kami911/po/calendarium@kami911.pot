@@ -168,6 +168,60 @@ msgstr ""
 msgid "Water"
 msgstr ""
 
+#. Calendar progress labels (first %d = current value, second %d = total)
+#: desklet.js
+msgid "Day %d of %d"
+msgstr ""
+
+#: desklet.js
+msgid "Week %d"
+msgstr ""
+
+#. Tooltip / accessible name for moon phase icon
+#: desklet.js
+msgid "Moon phase"
+msgstr ""
+
+#. Tooltip for moon age label
+#: desklet.js
+msgid "Moon age"
+msgstr ""
+
+#. Tooltip / accessible name for western zodiac symbol
+#: desklet.js
+msgid "Western zodiac"
+msgstr ""
+
+#. Tooltip / accessible name for chinese zodiac label
+#: desklet.js
+msgid "Chinese zodiac"
+msgstr ""
+
+#. Tooltip for day-of-year label
+#: desklet.js
+msgid "Day of year"
+msgstr ""
+
+#. Tooltip for week-number label
+#: desklet.js
+msgid "Week number"
+msgstr ""
+
+#. Tooltip for month-progress label
+#: desklet.js
+msgid "Month progress"
+msgstr ""
+
+#. Accessible name for date label
+#: desklet.js
+msgid "Current date"
+msgstr ""
+
+#. Accessible name for time label
+#: desklet.js
+msgid "Current time"
+msgstr ""
+
 #. UI labels
 #: desklet.js
 msgid "Sunrise"

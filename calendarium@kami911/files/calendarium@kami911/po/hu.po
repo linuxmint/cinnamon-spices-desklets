@@ -125,6 +125,39 @@ msgstr "Fém"
 msgid "Water"
 msgstr "Víz"
 
+msgid "Day %d of %d"
+msgstr "Az év %d. napja (összesen: %d)"
+
+msgid "Week %d"
+msgstr "%d. hét"
+
+msgid "Moon phase"
+msgstr "Holdfázis"
+
+msgid "Moon age"
+msgstr "Hold kora"
+
+msgid "Western zodiac"
+msgstr "Nyugati horoszkóp"
+
+msgid "Chinese zodiac"
+msgstr "Kínai horoszkóp"
+
+msgid "Day of year"
+msgstr "Év napja"
+
+msgid "Week number"
+msgstr "Hét száma"
+
+msgid "Month progress"
+msgstr "Havi előrehaladás"
+
+msgid "Current date"
+msgstr "Mai dátum"
+
+msgid "Current time"
+msgstr "Jelenlegi idő"
+
 msgid "Sunrise"
 msgstr "Napkelte"
 

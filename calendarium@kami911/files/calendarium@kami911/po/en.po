@@ -125,6 +125,39 @@ msgstr "Metal"
 msgid "Water"
 msgstr "Water"
 
+msgid "Day %d of %d"
+msgstr "Day %d of %d"
+
+msgid "Week %d"
+msgstr "Week %d"
+
+msgid "Moon phase"
+msgstr "Moon phase"
+
+msgid "Moon age"
+msgstr "Moon age"
+
+msgid "Western zodiac"
+msgstr "Western zodiac"
+
+msgid "Chinese zodiac"
+msgstr "Chinese zodiac"
+
+msgid "Day of year"
+msgstr "Day of year"
+
+msgid "Week number"
+msgstr "Week number"
+
+msgid "Month progress"
+msgstr "Month progress"
+
+msgid "Current date"
+msgstr "Current date"
+
+msgid "Current time"
+msgstr "Current time"
+
 msgid "Sunrise"
 msgstr "Sunrise"
 
