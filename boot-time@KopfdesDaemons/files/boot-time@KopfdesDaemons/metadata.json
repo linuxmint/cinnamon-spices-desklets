@@ -2,6 +2,6 @@
   "uuid": "boot-time@KopfdesDaemons",
   "name": "Boot Time",
   "description": "Displays the boot time",
-  "version": "1.0",
+  "version": "1.0.0",
   "max-instances": "50"
 }

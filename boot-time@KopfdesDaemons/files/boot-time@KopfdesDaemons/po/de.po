@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: boot-time@KopfdesDaemons 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-12-15 18:20+0100\n"
+"POT-Creation-Date: 2026-02-21 16:38+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,35 +19,35 @@ msgstr ""
 "X-Generator: Poedit 3.4.2\n"
 
 #. metadata.json->name
-#. desklet.js:35 desklet.js:73
+#. desklet.js:30 desklet.js:102
 msgid "Boot Time"
 msgstr "Bootzeit"
 
-#. desklet.js:128
+#. desklet.js:160
 msgid "Boot process not yet complete..."
 msgstr "Bootvorgang noch nicht abgeschlossen..."
 
-#. helpers/boot-time.helper.js:75
+#. helpers/boot-time.js:75
 msgid "Firmware:"
 msgstr "Firmware:"
 
-#. helpers/boot-time.helper.js:76
+#. helpers/boot-time.js:76
 msgid "Loader:"
 msgstr "Loader:"
 
-#. helpers/boot-time.helper.js:77
+#. helpers/boot-time.js:77
 msgid "Kernel:"
 msgstr "Kernel:"
 
-#. helpers/boot-time.helper.js:78
+#. helpers/boot-time.js:78
 msgid "Userspace:"
 msgstr "Userspace:"
 
-#. helpers/boot-time.helper.js:79
+#. helpers/boot-time.js:79
 msgid "Total:"
 msgstr "Gesamt:"
 
-#. helpers/boot-time.helper.js:80
+#. helpers/boot-time.js:80
 msgid "Graphical:"
 msgstr "Grafisch:"
 
@@ -55,9 +55,30 @@ msgstr "Grafisch:"
 msgid "Displays the boot time"
 msgstr "Zeigt die Bootzeit an"
 
-#. settings-schema.json->headline->description
-msgid "Headline"
-msgstr "Überschrift"
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
+msgid "General"
+msgstr "Allgemein"
+
+#. settings-schema.json->colors-page->title
+msgid "Colors"
+msgstr "Farben"
+
+#. settings-schema.json->accent-section->title
+msgid "Accent"
+msgstr "Akzentfarbe"
+
+#. settings-schema.json->text-section->title
+msgid "Text"
+msgstr "Text"
+
+#. settings-schema.json->background-section->title
+msgid "Background"
+msgstr "Hintergrund"
+
+#. settings-schema.json->show-headline->description
+msgid "Show headline"
+msgstr "Überschrift anzeigen"
 
 #. settings-schema.json->loading-animation->description
 msgid "Loading animation"
@@ -83,6 +104,6 @@ msgstr "Werte Farbe"
 msgid "Row background color"
 msgstr "Zeilenhintergrundfarbe"
 
-#. settings-schema.json->hideDecorations->description
+#. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
 msgstr "Dekorationen verstecken"
