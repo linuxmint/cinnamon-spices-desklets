@@ -22,8 +22,8 @@ class MyDesklet extends Desklet.Desklet {
     super(metadata, deskletId);
     this.setHeader(_("Timer"));
 
-    this.default_size = 14;
-    this.isRunning = false;
+    this._default_size = 14;
+    this._isRunning = false;
     this._isInputView = false;
     this._timeout = null;
     this._totalSeconds = 0;
@@ -34,6 +34,7 @@ class MyDesklet extends Desklet.Desklet {
     this._inputDigits = "";
     this._notificationSource = null;
     this._endTime = 0;
+    this._isReloading = false;
 
     // Use default values if settings are not yet set
     this.labelColor = "rgb(51, 209, 122)";
@@ -73,7 +74,6 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   on_desklet_removed() {
-    this.settings.finalize();
     this._stopSound();
     this._removeNotification();
     if (this._timeout) {
@@ -84,6 +84,13 @@ class MyDesklet extends Desklet.Desklet {
     if (this._notificationSource) {
       this._notificationSource.destroy();
     }
+    if (this.settings && !this._isReloading) {
+      this.settings.finalize();
+    }
+  }
+
+  on_desklet_reloaded() {
+    this._isReloading = true;
   }
 
   _onSettingsChanged() {
@@ -106,7 +113,7 @@ class MyDesklet extends Desklet.Desklet {
     this._isInputView = true;
 
     const box = new St.BoxLayout({ vertical: true });
-    box.style = "width: " + this.default_size * this.scaleSize + "em;";
+    box.style = "width: " + this._default_size * this.scaleSize + "em;";
 
     const labelRow = new St.BoxLayout();
     const labelStyle = `font-size: ${1.5 * this.scaleSize}em; color: ${this.labelColor};`;
@@ -194,7 +201,7 @@ class MyDesklet extends Desklet.Desklet {
   _setupTimerUI() {
     this._isInputView = false;
 
-    const absoluteSize = this.default_size * this.scaleSize;
+    const absoluteSize = this._default_size * this.scaleSize;
 
     const container = new St.Widget({ style: `width: ${absoluteSize}em; height: ${absoluteSize}em;` });
 
@@ -247,14 +254,14 @@ class MyDesklet extends Desklet.Desklet {
       icon_size: 16 * this.scaleSize,
     });
     this.playBtn = new St.Button({ child: playIcon, style_class: "timer-input-button", style: this.buttonStyle });
-    if (this._totalSeconds === 0 || this.isRunning || this._remainingMs <= 0) this.playBtn.hide();
+    if (this._totalSeconds === 0 || this._isRunning || this._remainingMs <= 0) this.playBtn.hide();
     this.playBtn.connect("clicked", () => this._onPlayPressed());
     buttonRow.add_child(this.playBtn);
 
     // Restart button
     const refreshIcon = new St.Icon({ icon_name: "view-refresh-symbolic", icon_type: St.IconType.SYMBOLIC, icon_size: 16 * this.scaleSize });
     this.restartBtn = new St.Button({ child: refreshIcon, style_class: "timer-input-button", style: this.buttonStyle });
-    if (this._totalSeconds === 0 || this.isRunning || this._remainingMs > 0) this.restartBtn.hide();
+    if (this._totalSeconds === 0 || this._isRunning || this._remainingMs > 0) this.restartBtn.hide();
     this.restartBtn.connect("clicked", () => this._onRestartPressed());
     buttonRow.add_child(this.restartBtn);
 
@@ -265,7 +272,7 @@ class MyDesklet extends Desklet.Desklet {
     });
     this.pauseBtn = new St.Button({ child: pauseIcon, style_class: "timer-input-button", style: this.buttonStyle });
     this.pauseBtn.connect("clicked", () => this._onPausePressed());
-    if (!this.isRunning) this.pauseBtn.hide();
+    if (!this._isRunning) this.pauseBtn.hide();
     buttonRow.add_child(this.pauseBtn);
 
     // Stop button
@@ -291,12 +298,12 @@ class MyDesklet extends Desklet.Desklet {
     this._stopSound();
     this._removeNotification();
     const wasZero = this._totalSeconds === 0;
-    if (!this.isRunning && this._remainingMs === 0) {
+    if (!this._isRunning && this._remainingMs === 0) {
       this._totalSeconds = 0;
     }
     this._remainingMs += 60 * 1000;
     this._totalSeconds += 60;
-    if (this.isRunning) {
+    if (this._isRunning) {
       this._endTime += 60 * 1000;
     }
     this._updateTimerVisuals();
@@ -304,7 +311,7 @@ class MyDesklet extends Desklet.Desklet {
       this.newTimerBtn.hide();
       this.playBtn.show();
       this.stopBtn.show();
-    } else if (!this.isRunning && this._remainingMs > 0) {
+    } else if (!this._isRunning && this._remainingMs > 0) {
       this.playBtn.show();
       this.restartBtn.hide();
     }
@@ -315,7 +322,7 @@ class MyDesklet extends Desklet.Desklet {
       Mainloop.source_remove(this._timeout);
       this._timeout = null;
     }
-    this.isRunning = false;
+    this._isRunning = false;
     this.pauseBtn.hide();
     this.playBtn.show();
   }
@@ -328,7 +335,7 @@ class MyDesklet extends Desklet.Desklet {
     this._stopSound();
     this._removeNotification();
 
-    this.isRunning = false;
+    this._isRunning = false;
     this._totalSeconds = 0;
     this._remainingMs = 0;
     this._inputDigits = "";
@@ -354,7 +361,7 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _startTimer() {
-    this.isRunning = true;
+    this._isRunning = true;
     this._endTime = Date.now() + this._remainingMs;
     this._updateTimerVisuals();
 
@@ -370,7 +377,7 @@ class MyDesklet extends Desklet.Desklet {
     if (this._remainingMs <= 0) {
       this._remainingMs = 0;
       this._updateTimerVisuals();
-      this.isRunning = false;
+      this._isRunning = false;
       this._timeout = null;
       this.playBtn.hide();
       this.pauseBtn.hide();
