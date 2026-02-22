@@ -17,20 +17,40 @@ function _(str) {
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
-
-    this.deskletHeight = 100;
-    this.deskletWidth = 300;
-    this.scaleSize = 1;
-    this.iconSize = 45;
-
-    const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
-    settings.bindProperty(Settings.BindingDirection.IN, "decoration", "decoration", this._onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "show-sun-and-moon", "showSunAndMoon", this._onSettingsChanged.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._onSettingsChanged.bind(this));
-
     this.setHeader(_("Day Percentage"));
+
+    this._deskletHeight = 100;
+    this._deskletWidth = 300;
+    this._isReloading = true;
+    this._iconSize = 45;
+
+    // Default settings
+    this.scaleSize = 1;
+    this.decoration = true;
+    this.showSunAndMoon = true;
+
+    this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "decoration", "decoration", this._onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._onSettingsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-sun-and-moon", "showSunAndMoon", this._onSettingsChanged.bind(this));
+  }
+
+  on_desklet_added_to_desktop() {
     this._initUI();
     this.timeout = Mainloop.timeout_add_seconds(1, this._update.bind(this));
+  }
+
+  on_desklet_removed() {
+    if (this.timeout) Mainloop.source_remove(this.timeout);
+    this.container.destroy();
+
+    if (this.settings && !this._isReloading) {
+      this.settings.finalize();
+    }
+  }
+
+  on_desklet_reloaded() {
+    this._isReloading = true;
   }
 
   _initUI() {
@@ -54,7 +74,7 @@ class MyDesklet extends Desklet.Desklet {
   _updateWindowSize() {
     if (this.showSunAndMoon) {
       this.iconContainer.show();
-      this.container.set_size(this.deskletWidth * this.scaleSize, this.deskletHeight * this.scaleSize);
+      this.container.set_size(this._deskletWidth * this.scaleSize, this._deskletHeight * this.scaleSize);
     } else {
       this.iconContainer.hide();
       // Set the container size to auto when sun and moon icons are hidden
@@ -82,7 +102,7 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _createIcons() {
-    const iconSize = this.iconSize * this.scaleSize;
+    const iconSize = this._iconSize * this.scaleSize;
     const deskletPath = this.metadata.path;
 
     this.sunIcon = new St.Icon({ gicon: Gio.icon_new_for_string(`${deskletPath}/images/sun.svg`), icon_size: iconSize });
@@ -97,14 +117,14 @@ class MyDesklet extends Desklet.Desklet {
 
     if (!this.showSunAndMoon) return;
 
-    const iconSize = this.iconSize * this.scaleSize;
+    const iconSize = this._iconSize * this.scaleSize;
     const textHeight = this.text.get_height();
 
-    const radiusY = this.deskletHeight * this.scaleSize - iconSize - textHeight;
-    const radiusX = (this.deskletWidth * this.scaleSize) / 2 - iconSize / 2;
+    const radiusY = this._deskletHeight * this.scaleSize - iconSize - textHeight;
+    const radiusX = (this._deskletWidth * this.scaleSize) / 2 - iconSize / 2;
 
-    const centerX = (this.deskletWidth * this.scaleSize) / 2;
-    const centerY = this.deskletHeight * this.scaleSize - textHeight - iconSize / 2;
+    const centerX = (this._deskletWidth * this.scaleSize) / 2;
+    const centerY = this._deskletHeight * this.scaleSize - textHeight - iconSize / 2;
 
     const angle = Math.PI + (dayPercent / 100.0) * Math.PI;
     const iconX = centerX - iconSize / 2 + radiusX * Math.cos(angle);
@@ -126,11 +146,6 @@ class MyDesklet extends Desklet.Desklet {
     const secondsPassed = (now.getTime() - startOfDay.getTime()) / 1000;
     const totalSecondsInDay = 24 * 60 * 60;
     return (secondsPassed / totalSecondsInDay) * 100;
-  }
-
-  on_desklet_removed() {
-    if (this.timeout) Mainloop.source_remove(this.timeout);
-    this.container.destroy();
   }
 }
 
