@@ -23,11 +23,15 @@
 }
 
 /* ── Calendar progress (day of year / week / month) ── */
+.calendarium-progress-row {
+    spacing: 10px;
+    padding-top: 3px;
+}
+
 .calendarium-progress {
     font-size: 12px;
     color: #aaddff;
     font-family: "DejaVu Sans", Sans-serif;
-    padding-top: 1px;
 }
 
 /* ── Traditional month name ───────────────────────── */
@@ -40,29 +44,47 @@
 }
 
 /* ── Moon phase ───────────────────────────────────── */
+.calendarium-moon-row {
+    spacing: 4px;
+    padding-top: 4px;
+}
+
 .calendarium-moon {
     font-size: 14px;
     color: #ccccff;
     font-family: "DejaVu Sans", Sans-serif;
-    padding-top: 4px;
 }
 
 .calendarium-moon-age {
     font-size: 11px;
     color: #9999cc;
     font-family: "DejaVu Sans", Sans-serif;
-    padding-left: 4px;
 }
 
 /* ── Sun ──────────────────────────────────────────── */
+.calendarium-sun-row {
+    spacing: 18px;
+    padding-top: 2px;
+}
+
 .calendarium-sun {
     font-size: 13px;
     color: #ffdd88;
     font-family: "DejaVu Sans", Sans-serif;
-    padding-top: 2px;
 }
 
 /* ── Additional cities ────────────────────────────── */
+.calendarium-city-row {
+    spacing: 8px;
+}
+
+.calendarium-city-name {
+    font-size: 12px;
+    color: #ddbb66;
+    font-weight: bold;
+    font-family: "DejaVu Sans", Sans-serif;
+}
+
 .calendarium-city {
     font-size: 12px;
     color: #ddbb66;
@@ -70,11 +92,15 @@
 }
 
 /* ── Zodiac ───────────────────────────────────────── */
+.calendarium-zodiac-row {
+    spacing: 14px;
+    padding-top: 4px;
+}
+
 .calendarium-zodiac-western {
     font-size: 13px;
     color: #88ffcc;
     font-family: "DejaVu Sans", Sans-serif;
-    padding-top: 4px;
 }
 
 .calendarium-zodiac-chinese {
