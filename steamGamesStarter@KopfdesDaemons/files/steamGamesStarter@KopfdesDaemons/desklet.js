@@ -29,8 +29,14 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     super(metadata, deskletId);
     this.setHeader(_("Steam Games Starter"));
 
+    this.reloading = false;
     this.games = [];
     this.error = null;
+    this.scrollView = null;
+    this.mainContainer = null;
+    this.loadId = 0;
+
+    // Default settings
     this.steamInstallationType = "system package";
     this.customInstallPath = null;
     this.customCMD = "/usr/games/steam";
@@ -38,9 +44,6 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
     this.scaleSize = 1;
     this.maxDeskletHeight = 32;
     this.deskletWidth = 32;
-    this.scrollView = null;
-    this.mainContainer = null;
-    this.loadId = 0;
     this.backgroundColor = "rgba(58, 64, 74, 0.5)";
     this.hideDecorations = true;
     this.showGameHeaderImage = true;
@@ -78,7 +81,13 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
   }
 
   on_desklet_removed() {
-    this.settings.finalize();
+    if (this.settings && !this.reloading) {
+      this.settings.finalize();
+    }
+  }
+
+  on_desklet_reloaded() {
+    this.reloading = true;
   }
 
   _onDecorationChanged() {
