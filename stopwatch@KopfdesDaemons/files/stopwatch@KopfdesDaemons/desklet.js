@@ -26,6 +26,7 @@ class StopwatchDesklet extends Desklet.Desklet {
     this._isRunning = false;
     this._timeout = null;
     this._animationTimeout = null;
+    this._isReloading = false;
 
     // Use default values if settings are not yet set
     this.labelColor = "rgb(51, 209, 122)";
@@ -52,6 +53,18 @@ class StopwatchDesklet extends Desklet.Desklet {
   on_desklet_added_to_desktop() {
     this.updateDecoration();
     this._setupLayout();
+  }
+
+  // Clean up timeouts when the desklet is removed
+  on_desklet_removed() {
+    this._clearTimeouts();
+    if (this.settings && !this._isReloading) {
+      this.settings.finalize();
+    }
+  }
+
+  on_desklet_reloaded() {
+    this._isReloading = true;
   }
 
   // Setup the entire visual layout of the desklet
@@ -223,12 +236,6 @@ class StopwatchDesklet extends Desklet.Desklet {
   updateDecoration() {
     this.metadata["prevent-decorations"] = this.hideDecorations;
     this._updateDecoration();
-  }
-
-  // Clean up timeouts when the desklet is removed
-  on_desklet_removed() {
-    this._clearTimeouts();
-    this.settings.finalize();
   }
 
   // Draws the static circle and arc on the canvas
