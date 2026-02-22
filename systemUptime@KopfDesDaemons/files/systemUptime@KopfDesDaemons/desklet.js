@@ -23,6 +23,7 @@ class MyDesklet extends Desklet.Desklet {
     this._timeout = null;
     this.desktop_settings = new Gio.Settings({ schema_id: "org.cinnamon.desktop.interface" });
     this._clockSettingsId = this.desktop_settings.connect("changed::clock-use-24h", () => this.updateValues());
+    this._isReloading = false;
 
     // Default settings values
     this.scaleSize = 1;
@@ -47,12 +48,18 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   on_desklet_removed() {
-    this.settings.finalize();
     if (this._timeout) Mainloop.source_remove(this._timeout);
     if (this._clockSettingsId) {
       this.desktop_settings.disconnect(this._clockSettingsId);
       this._clockSettingsId = 0;
     }
+    if (this.settings && !this._isReloading) {
+      this.settings.finalize();
+    }
+  }
+
+  on_desklet_reloaded() {
+    this._isReloading = true;
   }
 
   setupLayout() {
