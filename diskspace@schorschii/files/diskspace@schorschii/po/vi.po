@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: diskspace@schorschii 1.18\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-12-22 13:42+0100\n"
+"POT-Creation-Date: 2026-02-22 20:33+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
 "Language-Team: \n"
@@ -19,12 +19,12 @@ msgstr ""
 "X-Generator: Poedit 3.4.2\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:317 desklet.js:487
+#. desklet.js:317 desklet.js:490
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#. desklet.js:319 desklet.js:489
+#. desklet.js:319 desklet.js:492
 msgid "Swap"
 msgstr "Swap"
 
@@ -37,20 +37,20 @@ msgstr "Hệ thống tập tin"
 msgid "Not Found"
 msgstr "Không tìm thấy"
 
-#. desklet.js:434
+#. desklet.js:437
 msgid "Sorry, this font is not supported, please select a different one."
 msgstr ""
 
-#. desklet.js:435
+#. desklet.js:438
 msgid " Font: `"
 msgstr ""
 
-#. desklet.js:435
+#. desklet.js:438
 msgid "` Error: "
 msgstr ""
 
 #. metadata.json->name
-#. desklet.js:491
+#. desklet.js:494
 msgid "Disk Space"
 msgstr "Không gian đĩa"
 
@@ -58,13 +58,32 @@ msgstr "Không gian đĩa"
 msgid "Displays the usage of a filesystem or RAM."
 msgstr "Hiển thị mức sử dụng của hệ thống tập tin hoặc RAM."
 
-#. settings-schema.json->head0->description
-msgid "Settings for diskspace@schorschii"
-msgstr "Cài đặt cho diskspace@schorschii"
-
-#. settings-schema.json->head1->description
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
 msgid "General"
 msgstr "Chung"
+
+#. settings-schema.json->visual-page->title
+msgid "Visual"
+msgstr "Hiển thị"
+
+#. settings-schema.json->design-section->title
+#. settings-schema.json->design->description
+msgid "Design"
+msgstr "Thiết kế"
+
+#. settings-schema.json->colors-section->title
+msgid "Colors"
+msgstr ""
+
+#. settings-schema.json->fonts-section->title
+msgid "Fonts"
+msgstr ""
+
+#. settings-schema.json->label-section->title
+#, fuzzy
+msgid "Custom Label"
+msgstr "Nhãn desklet tùy chỉnh"
 
 #. settings-schema.json->type->description
 msgid "Monitor a file system or RAM usage"
@@ -139,14 +158,6 @@ msgid ""
 msgstr ""
 "Các khối dành riêng chỉ có thể sử dụng bởi người dùng root và đó là lý do "
 "tại sao chúng được hiển thị như không gian đã sử dụng theo mặc định."
-
-#. settings-schema.json->head2->description
-msgid "Visual"
-msgstr "Hiển thị"
-
-#. settings-schema.json->design->description
-msgid "Design"
-msgstr "Thiết kế"
 
 #. settings-schema.json->design->options
 msgid "Thin"
@@ -256,10 +267,6 @@ msgstr "Kích thước desklet"
 #. settings-schema.json->scale-size->tooltip
 msgid "Increase or decrease the size of this desklet using this scale factor."
 msgstr "Tăng hoặc giảm kích thước của desklet này bằng hệ số tỷ lệ này."
-
-#. settings-schema.json->head3->description
-msgid "Custom desklet label (only visible if decorations are enabled)"
-msgstr "Nhãn desklet tùy chỉnh (chỉ hiển thị nếu trang trí được bật)"
 
 #. settings-schema.json->use-custom-label->description
 msgid "Use a custom desklet label"

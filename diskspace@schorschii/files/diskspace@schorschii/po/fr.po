@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-12-22 13:42+0100\n"
+"POT-Creation-Date: 2026-02-22 20:33+0100\n"
 "PO-Revision-Date: 2023-10-30 12:02+0100\n"
 "Last-Translator: Claudiux <claude.clerc@gmail.com>\n"
 "Language-Team: \n"
@@ -18,12 +18,12 @@ msgstr ""
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:317 desklet.js:487
+#. desklet.js:317 desklet.js:490
 msgid "RAM"
 msgstr "Mémoire vive"
 
 #. settings-schema.json->type->options
-#. desklet.js:319 desklet.js:489
+#. desklet.js:319 desklet.js:492
 msgid "Swap"
 msgstr "Swap"
 
@@ -36,20 +36,20 @@ msgstr "Système de fichiers"
 msgid "Not Found"
 msgstr "Non trouvé"
 
-#. desklet.js:434
+#. desklet.js:437
 msgid "Sorry, this font is not supported, please select a different one."
 msgstr ""
 
-#. desklet.js:435
+#. desklet.js:438
 msgid " Font: `"
 msgstr ""
 
-#. desklet.js:435
+#. desklet.js:438
 msgid "` Error: "
 msgstr ""
 
 #. metadata.json->name
-#. desklet.js:491
+#. desklet.js:494
 msgid "Disk Space"
 msgstr "Espace disque"
 
@@ -57,13 +57,32 @@ msgstr "Espace disque"
 msgid "Displays the usage of a filesystem or RAM."
 msgstr "Affiche l'utilisation d'un système de fichiers ou de la mémoire vive."
 
-#. settings-schema.json->head0->description
-msgid "Settings for diskspace@schorschii"
-msgstr "Paramètres pour diskspace@schorschii"
-
-#. settings-schema.json->head1->description
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
 msgid "General"
 msgstr "Général"
+
+#. settings-schema.json->visual-page->title
+msgid "Visual"
+msgstr "Visuel"
+
+#. settings-schema.json->design-section->title
+#. settings-schema.json->design->description
+msgid "Design"
+msgstr "Aspect"
+
+#. settings-schema.json->colors-section->title
+msgid "Colors"
+msgstr ""
+
+#. settings-schema.json->fonts-section->title
+msgid "Fonts"
+msgstr ""
+
+#. settings-schema.json->label-section->title
+#, fuzzy
+msgid "Custom Label"
+msgstr "Étiquette personnalisée pour ce desklet"
 
 #. settings-schema.json->type->description
 msgid "Monitor a file system or RAM usage"
@@ -141,14 +160,6 @@ msgid ""
 msgstr ""
 "Les blocs réservés ne sont utilisables que par l'utilisateur root et c'est "
 "pourquoi ils sont affichés par défaut en tant qu'espace utilisé."
-
-#. settings-schema.json->head2->description
-msgid "Visual"
-msgstr "Visuel"
-
-#. settings-schema.json->design->description
-msgid "Design"
-msgstr "Aspect"
 
 #. settings-schema.json->design->options
 msgid "Thin"
@@ -262,12 +273,6 @@ msgid "Increase or decrease the size of this desklet using this scale factor."
 msgstr ""
 "Augmentez ou réduisez la taille de ce desklet en utilisant ce facteur "
 "d'échelle."
-
-#. settings-schema.json->head3->description
-msgid "Custom desklet label (only visible if decorations are enabled)"
-msgstr ""
-"Étiquette personnalisée pour ce desklet (visible uniquement si les "
-"décorations sont activées)"
 
 #. settings-schema.json->use-custom-label->description
 msgid "Use a custom desklet label"
