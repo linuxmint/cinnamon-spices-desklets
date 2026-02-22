@@ -43,6 +43,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this._geocodingCache = null;
     this._lastDateString = null;
     this._isRemoved = false;
+    this._isReloading = false;
 
     // Setup container
     this._deskletContainer = new St.BoxLayout({ vertical: true });
@@ -113,39 +114,38 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     this.currentWeatherIconSize = 50;
 
     // Initialize settings and bind them to the desklet properties
-    const settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
-    this.settings = settings;
-    settings.bind("scale-size", "scaleSize", this._onScaleSizeChange);
-    settings.bind("hide-decorations", "hideDecorations", this._onDecorationChanged);
-    settings.bind("style-preset", "stylePreset", this._onStylePresetChange);
-    settings.bind("temperature-unit", "temperatureUnit", this._loadWeather);
-    settings.bind("webservice", "webservice", this._loadWeather);
-    settings.bind("api-key", "apiKey", this._loadWeather);
-    settings.bind("location-type", "locationType", this._loadWeather);
-    settings.bind("location", "location", this._onLocationChange);
-    settings.bind("weather-refresh-interval", "weatherRefreshInterval", this._loadWeather);
-    settings.bind("show-clock", "showClock", this._onShowClockSettingChanged);
-    settings.bind("use-custom-time-string", "useCustomTimeString", this._updateClock);
-    settings.bind("custom-time-string", "customTimeString", this._updateClock);
-    settings.bind("clock-font-size", "clockFontSize", this._updateClockStyle);
-    settings.bind("clock-text-color", "clockTextColor", this._updateClockStyle);
-    settings.bind("clock-background-color", "clockBackgroundColor", this._updateClockStyle);
-    settings.bind("clock-border-radius", "clockBorderRadius", this._updateClockStyle);
-    settings.bind("show-date", "showDate", this._onShowDateSettingChanged);
-    settings.bind("use-date-time-string", "useCustomDateString", this._updateDate);
-    settings.bind("custom-date-string", "customDateString", this._updateDate);
-    settings.bind("date-font-size", "dateTextSize", this._updateDateStyle);
-    settings.bind("date-text-color", "dateTextColor", this._updateDateStyle);
-    settings.bind("date-accent-color", "dateAccentColor", this._updateDateStyle);
-    settings.bind("date-background-color", "dateBackgroundColor", this._updateDateStyle);
-    settings.bind("date-border-radius", "dateBorderRadius", this._updateDateStyle);
-    settings.bind("show-weather-data", "showWeatherData", this._onShowWeatherSettingChanged);
-    settings.bind("weather-font-size", "weatherFontSize", this._updateWeatherStyle);
-    settings.bind("weather-text-color", "weatherTextColor", this._updateWeatherStyle);
-    settings.bind("weather-background-color", "weatherBackgroundColor", this._updateWeatherStyle);
-    settings.bind("weather-forecast-background-color", "weatherForecastBackgroundColor", this._updateWeatherStyle);
-    settings.bind("weather-border-radius", "weatherBorderRadius", this._updateWeatherStyle);
-    settings.bind("weather-forecast-border-radius", "weatherForecastBorderRadius", this._updateWeatherStyle);
+    this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
+    this.settings.bind("scale-size", "scaleSize", this._onScaleSizeChange);
+    this.settings.bind("hide-decorations", "hideDecorations", this._onDecorationChanged);
+    this.settings.bind("style-preset", "stylePreset", this._onStylePresetChange);
+    this.settings.bind("temperature-unit", "temperatureUnit", this._loadWeather);
+    this.settings.bind("webservice", "webservice", this._loadWeather);
+    this.settings.bind("api-key", "apiKey", this._loadWeather);
+    this.settings.bind("location-type", "locationType", this._loadWeather);
+    this.settings.bind("location", "location", this._onLocationChange);
+    this.settings.bind("weather-refresh-interval", "weatherRefreshInterval", this._loadWeather);
+    this.settings.bind("show-clock", "showClock", this._onShowClockSettingChanged);
+    this.settings.bind("use-custom-time-string", "useCustomTimeString", this._updateClock);
+    this.settings.bind("custom-time-string", "customTimeString", this._updateClock);
+    this.settings.bind("clock-font-size", "clockFontSize", this._updateClockStyle);
+    this.settings.bind("clock-text-color", "clockTextColor", this._updateClockStyle);
+    this.settings.bind("clock-background-color", "clockBackgroundColor", this._updateClockStyle);
+    this.settings.bind("clock-border-radius", "clockBorderRadius", this._updateClockStyle);
+    this.settings.bind("show-date", "showDate", this._onShowDateSettingChanged);
+    this.settings.bind("use-date-time-string", "useCustomDateString", this._updateDate);
+    this.settings.bind("custom-date-string", "customDateString", this._updateDate);
+    this.settings.bind("date-font-size", "dateTextSize", this._updateDateStyle);
+    this.settings.bind("date-text-color", "dateTextColor", this._updateDateStyle);
+    this.settings.bind("date-accent-color", "dateAccentColor", this._updateDateStyle);
+    this.settings.bind("date-background-color", "dateBackgroundColor", this._updateDateStyle);
+    this.settings.bind("date-border-radius", "dateBorderRadius", this._updateDateStyle);
+    this.settings.bind("show-weather-data", "showWeatherData", this._onShowWeatherSettingChanged);
+    this.settings.bind("weather-font-size", "weatherFontSize", this._updateWeatherStyle);
+    this.settings.bind("weather-text-color", "weatherTextColor", this._updateWeatherStyle);
+    this.settings.bind("weather-background-color", "weatherBackgroundColor", this._updateWeatherStyle);
+    this.settings.bind("weather-forecast-background-color", "weatherForecastBackgroundColor", this._updateWeatherStyle);
+    this.settings.bind("weather-border-radius", "weatherBorderRadius", this._updateWeatherStyle);
+    this.settings.bind("weather-forecast-border-radius", "weatherForecastBorderRadius", this._updateWeatherStyle);
 
     // Add action to desklet right-click menu
     this._menu.addSettingsAction(_("Date and Time Settings"), "calendar");
@@ -162,23 +162,6 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     if (this.showWeatherData) {
       this._loadWeatherLayout();
     }
-  }
-
-  on_custom_format_button_pressed() {
-    Util.spawnCommandLine("xdg-open https://cinnamon-spices.linuxmint.com/strftime.php");
-  }
-
-  // Weather data is loaded with a delay when changing location to avoid multiple requests while typing
-  _onLocationChange() {
-    this._geocodingCache = null;
-    if (this.locationChangeTimeout) {
-      Mainloop.source_remove(this.locationChangeTimeout);
-    }
-    this.locationChangeTimeout = Mainloop.timeout_add(1500, () => {
-      this.locationChangeTimeout = null;
-      this._loadWeather();
-      return false;
-    });
   }
 
   // Clean up
@@ -204,6 +187,30 @@ class CinnamonClockDesklet extends Desklet.Desklet {
       Mainloop.source_remove(this.weatherRefreshTimeout);
       this.weatherRefreshTimeout = null;
     }
+    if (this.settings && !this._isReloading) {
+      this.settings.finalize();
+    }
+  }
+
+  on_desklet_reloaded() {
+    this._isReloading = true;
+  }
+
+  on_custom_format_button_pressed() {
+    Util.spawnCommandLine("xdg-open https://cinnamon-spices.linuxmint.com/strftime.php");
+  }
+
+  // Weather data is loaded with a delay when changing location to avoid multiple requests while typing
+  _onLocationChange() {
+    this._geocodingCache = null;
+    if (this.locationChangeTimeout) {
+      Mainloop.source_remove(this.locationChangeTimeout);
+    }
+    this.locationChangeTimeout = Mainloop.timeout_add(1500, () => {
+      this.locationChangeTimeout = null;
+      this._loadWeather();
+      return false;
+    });
   }
 
   _updateClockStyle() {
