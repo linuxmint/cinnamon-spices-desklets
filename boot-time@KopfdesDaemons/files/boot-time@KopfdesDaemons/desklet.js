@@ -32,7 +32,8 @@ class MyDesklet extends Desklet.Desklet {
     this._loadingUIisLoaded = false;
     this._loadingTimeoutId = null;
     this._animationTimeoutId = null;
-    this.animationState = 0;
+    this._animationState = 0;
+    this._isReloading = true;
 
     // Default settings
     this.loadingAnimation = true;
@@ -61,9 +62,16 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   on_desklet_removed() {
-    this.settings.finalize();
     if (this._loadingTimeoutId) Mainloop.source_remove(this._loadingTimeoutId);
     if (this._animationTimeoutId) Mainloop.source_remove(this._animationTimeoutId);
+
+    if (this.settings && !this._isReloading) {
+      this.settings.finalize();
+    }
+  }
+
+  on_desklet_reloaded() {
+    this._isReloading = true;
   }
 
   async _setupUI() {
@@ -196,7 +204,7 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _startAnimation() {
-    this.animationState = 0;
+    this._animationState = 0;
     if (this._animationTimeoutId) {
       Mainloop.source_remove(this._animationTimeoutId);
       this._animationTimeoutId = null;
@@ -211,11 +219,11 @@ class MyDesklet extends Desklet.Desklet {
       this._animationTimeoutId = null;
       return false;
     }
-    this.animationState += 0.01;
-    if (this.animationState > 1) this.animationState = 0;
+    this._animationState += 0.01;
+    if (this._animationState > 1) this._animationState = 0;
 
-    this.animatedLoadingCircle.set_scale(this.animationState, this.animationState);
-    this.animatedLoadingCircle.set_opacity(Math.floor(255 * (1 - this.animationState)));
+    this.animatedLoadingCircle.set_scale(this._animationState, this._animationState);
+    this.animatedLoadingCircle.set_opacity(Math.floor(255 * (1 - this._animationState)));
 
     return true;
   }
