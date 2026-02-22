@@ -1,3 +1,15 @@
+### 0.18.1 - February 22, 2026
+
+Features:
+
+- update Spanish translation (courtesy of [haggen88](https://github.com/haggen88))
+
+Bugfixes:
+
+- re-add fields filter to reduce amount of received data
+- improve debug and error logging
+- overall refactoring and code cleanup
+
 ### 0.18.0 - February 20, 2026
 
 Features:

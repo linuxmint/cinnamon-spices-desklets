@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-02-20 17:10+0100\n"
+"POT-Creation-Date: 2026-02-22 18:38+0100\n"
 "PO-Revision-Date: 2026-02-21 12:03-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,40 +17,40 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.8\n"
 
-#. desklet.js:95
+#. desklet.js:99
 msgid "N/A"
 msgstr "N/D"
 
-#. desklet.js:690
+#. desklet.js:754
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 "Lista de cotizaciones vacía. Abra la configuración y añada algunos símbolos."
 
-#. desklet.js:724 desklet.js:756 desklet.js:779
+#. desklet.js:803 desklet.js:842 desklet.js:872
 msgid "Authorization parameters have expired"
 msgstr "Los parámetros de autorización han expirado"
 
-#. desklet.js:727 desklet.js:759 desklet.js:782
+#. desklet.js:806 desklet.js:845 desklet.js:875
 msgid "Yahoo Finance service not available! Status: "
 msgstr "El servicio de Yahoo Finanzas no está disponible: "
 
-#. desklet.js:731
+#. desklet.js:810
 msgid "Something went wrong retrieving Yahoo Finance data"
 msgstr "Se ha producido un error al recuperar los datos de Yahoo Finance"
 
-#. desklet.js:1176
+#. desklet.js:1270
 msgid "No quotes data to display"
 msgstr "No hay datos de cotizaciones para mostrar"
 
-#. desklet.js:1290
+#. desklet.js:1384
 msgid "Updated at "
 msgstr "Actualizado en "
 
-#. desklet.js:1322
+#. desklet.js:1416
 msgid "Error: "
 msgstr "Error: "
 
-#. desklet.js:1472
+#. desklet.js:1575
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data. "
 "Status: "
@@ -58,19 +58,19 @@ msgstr ""
 "Error al recuperar el parámetro de autorización. No se han podido recuperar "
 "los datos de las cotizaciones: "
 
-#. desklet.js:1499
+#. desklet.js:1606
 msgid "Consent processing failed! Unable to fetch quotes data. Status: "
 msgstr ""
 "No se ha podido procesar el consentimiento. No se han podido recuperar los "
 "datos de las cotizaciones: "
 
-#. desklet.js:1505
+#. desklet.js:1612
 msgid "Consent processing not completed! Unable to fetch quotes data. Status: "
 msgstr ""
 "No se ha completado el procesamiento del consentimiento. No se han podido "
 "recuperar los datos de las cotizaciones: "
 
-#. desklet.js:1541
+#. desklet.js:1648
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: "
 msgstr ""
