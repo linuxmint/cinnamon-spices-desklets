@@ -1019,17 +1019,28 @@ QuotesTable.prototype = {
 
     determineCurrentMarketState(quote) {
         if (this.quoteUtils.existsProperty(quote, "hasPrePostMarketData") && quote.hasPrePostMarketData) {
+            // since "regularMarket" fields are always expected, this is the default 
+            let marketState = "REGULAR";
+            if (this.quoteUtils.existsProperty(quote, "marketState")) {
+                marketState = quote.marketState;
+            }
+            
+            // check first if market is currently open
+            if (marketState === "REGULAR") {
+                return DEFAULT_MARKET_STATE;
+            }
 
-            // if there are pre-market data present, then assume that market is to be opened soon
-            if (this.quoteUtils.existsProperty(quote, "preMarketTime")) {
+            // if market is in a "pre"ish state and there are pre-market data present, then assume that market will open (soon)
+            if (marketState.includes("PRE") && this.quoteUtils.existsProperty(quote, "preMarketTime")) {
                 return "pre";
             }
 
-            // if there are post-market data present, then assume that market (recently) closed
-            // even when market is closed (e.g. on weekends), the "postMarked" fields are still returned
-            if (this.quoteUtils.existsProperty(quote, "postMarketTime")) {
+            // if market is in a "post"ish state and there are post-market data present, then assume that market has (recently) closed
+            if (marketState.includes("POST") && this.quoteUtils.existsProperty(quote, "postMarketTime")) {
                 return "post";
             }
+            
+            // other market states such as CLOSED (e.g. on weekends) are ignored and treated as regular
         }
 
         return DEFAULT_MARKET_STATE;

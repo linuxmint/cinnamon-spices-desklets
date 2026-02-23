@@ -1,3 +1,9 @@
+### 0.18.2 - February 23, 2026
+
+Bugfixes:
+
+- pre-market data no longer override regular data when market is open
+
 ### 0.18.1 - February 22, 2026
 
 Features:

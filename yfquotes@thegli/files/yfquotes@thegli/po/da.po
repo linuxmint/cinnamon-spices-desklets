@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-02-22 18:38+0100\n"
+"POT-Creation-Date: 2026-02-23 22:40+0100\n"
 "PO-Revision-Date: 2025-11-17 17:19+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
@@ -38,35 +38,35 @@ msgstr "Yahoo Finance er ikke tilgængelig! Status: "
 msgid "Something went wrong retrieving Yahoo Finance data"
 msgstr ""
 
-#. desklet.js:1270
+#. desklet.js:1281
 msgid "No quotes data to display"
 msgstr "Der er ingen kursdata at vise"
 
-#. desklet.js:1384
+#. desklet.js:1395
 msgid "Updated at "
 msgstr "Opdateret "
 
-#. desklet.js:1416
+#. desklet.js:1427
 msgid "Error: "
 msgstr "Fejl: "
 
-#. desklet.js:1575
+#. desklet.js:1586
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data. "
 "Status: "
 msgstr ""
 "Kunne ikke hente godkendelsesparameter! Kunne ikke hente kursdata. Status: "
 
-#. desklet.js:1606
+#. desklet.js:1617
 msgid "Consent processing failed! Unable to fetch quotes data. Status: "
 msgstr "Samtykkebehandling mislykkedes! Kunne ikke hente kursdata. Status: "
 
-#. desklet.js:1612
+#. desklet.js:1623
 msgid "Consent processing not completed! Unable to fetch quotes data. Status: "
 msgstr ""
 "Samtykkebehandling ikke gennemført! Kunne ikke hente kursdata. Status: "
 
-#. desklet.js:1648
+#. desklet.js:1659
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: "
 msgstr ""
