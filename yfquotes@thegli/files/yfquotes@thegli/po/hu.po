@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: yfquotes@thegli 0.13.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-02-20 17:10+0100\n"
+"POT-Creation-Date: 2026-02-22 18:38+0100\n"
 "PO-Revision-Date: 2025-11-11 10:28+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,41 +18,41 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.8\n"
 
-#. desklet.js:95
+#. desklet.js:99
 msgid "N/A"
 msgstr ""
 
-#. desklet.js:690
+#. desklet.js:754
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 "Üres idézetek listája. Nyissa meg a beállításokat, és adjon hozzá néhány "
 "szimbólumot."
 
-#. desklet.js:724 desklet.js:756 desklet.js:779
+#. desklet.js:803 desklet.js:842 desklet.js:872
 msgid "Authorization parameters have expired"
 msgstr "Az engedélyezési paraméterek lejártak"
 
-#. desklet.js:727 desklet.js:759 desklet.js:782
+#. desklet.js:806 desklet.js:845 desklet.js:875
 msgid "Yahoo Finance service not available! Status: "
 msgstr "A Yahoo Finance szolgáltatás pillanatnyilag nem érhető el. Állapot: "
 
-#. desklet.js:731
+#. desklet.js:810
 msgid "Something went wrong retrieving Yahoo Finance data"
 msgstr ""
 
-#. desklet.js:1176
+#. desklet.js:1270
 msgid "No quotes data to display"
 msgstr "Nincs megjeleníthető idézet adat"
 
-#. desklet.js:1290
+#. desklet.js:1384
 msgid "Updated at "
 msgstr "Frissítve: "
 
-#. desklet.js:1322
+#. desklet.js:1416
 msgid "Error: "
 msgstr "Hiba: "
 
-#. desklet.js:1472
+#. desklet.js:1575
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data. "
 "Status: "
@@ -60,19 +60,19 @@ msgstr ""
 "Nem sikerült lekérni az engedélyezési paramétert. Nem sikerült letölteni a "
 "pénzügyi adatokat. Állapot: "
 
-#. desklet.js:1499
+#. desklet.js:1606
 msgid "Consent processing failed! Unable to fetch quotes data. Status: "
 msgstr ""
 "Az engedélykezelés nem sikerült. Nem sikerült letölteni a pénzügyi adatokat. "
 "Állapot: "
 
-#. desklet.js:1505
+#. desklet.js:1612
 msgid "Consent processing not completed! Unable to fetch quotes data. Status: "
 msgstr ""
 "Az engedélykezelés nem fejeződött be. Nem sikerült letölteni a pénzügyi "
 "adatokat. Állapot: "
 
-#. desklet.js:1541
+#. desklet.js:1648
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: "
 msgstr ""
