@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-12-22 13:42+0100\n"
+"POT-Creation-Date: 2026-02-22 20:33+0100\n"
 "PO-Revision-Date: 2025-09-29 03:41+0200\n"
 "Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
 "Language-Team: \n"
@@ -22,12 +22,12 @@ msgstr ""
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:317 desklet.js:487
+#. desklet.js:317 desklet.js:490
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#. desklet.js:319 desklet.js:489
+#. desklet.js:319 desklet.js:492
 msgid "Swap"
 msgstr "Memòria d'intercanvi"
 
@@ -40,20 +40,20 @@ msgstr "Sistema de fitxers"
 msgid "Not Found"
 msgstr "No s'ha trobat"
 
-#. desklet.js:434
+#. desklet.js:437
 msgid "Sorry, this font is not supported, please select a different one."
 msgstr ""
 
-#. desklet.js:435
+#. desklet.js:438
 msgid " Font: `"
 msgstr ""
 
-#. desklet.js:435
+#. desklet.js:438
 msgid "` Error: "
 msgstr ""
 
 #. metadata.json->name
-#. desklet.js:491
+#. desklet.js:494
 msgid "Disk Space"
 msgstr "Espai de disc"
 
@@ -61,13 +61,32 @@ msgstr "Espai de disc"
 msgid "Displays the usage of a filesystem or RAM."
 msgstr "Mostra l'ús d'un sistema de fitxers o de la RAM."
 
-#. settings-schema.json->head0->description
-msgid "Settings for diskspace@schorschii"
-msgstr "Ajusts per diskspace@schorschii"
-
-#. settings-schema.json->head1->description
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
 msgid "General"
 msgstr "General"
+
+#. settings-schema.json->visual-page->title
+msgid "Visual"
+msgstr "Visual"
+
+#. settings-schema.json->design-section->title
+#. settings-schema.json->design->description
+msgid "Design"
+msgstr "Disseny"
+
+#. settings-schema.json->colors-section->title
+msgid "Colors"
+msgstr ""
+
+#. settings-schema.json->fonts-section->title
+msgid "Fonts"
+msgstr ""
+
+#. settings-schema.json->label-section->title
+#, fuzzy
+msgid "Custom Label"
+msgstr "Etiqueta de miniaplicació d'escriptori personalitzada"
 
 #. settings-schema.json->type->description
 msgid "Monitor a file system or RAM usage"
@@ -145,14 +164,6 @@ msgid ""
 msgstr ""
 "Els blocs reservats son exclusius del superusuari (root), per això es mostra "
 "com espai utilitzat per omissió."
-
-#. settings-schema.json->head2->description
-msgid "Visual"
-msgstr "Visual"
-
-#. settings-schema.json->design->description
-msgid "Design"
-msgstr "Disseny"
 
 #. settings-schema.json->design->options
 msgid "Thin"
@@ -265,12 +276,6 @@ msgid "Increase or decrease the size of this desklet using this scale factor."
 msgstr ""
 "Augmenta o disminueix la mida d'aquesta miniaplicació\n"
 "d'escriptori amb aquest factor de canvi d'escala."
-
-#. settings-schema.json->head3->description
-msgid "Custom desklet label (only visible if decorations are enabled)"
-msgstr ""
-"Etiqueta de miniaplicació d'escriptori personalitzada (només és visible si "
-"les decoracions estan habilitades)"
 
 #. settings-schema.json->use-custom-label->description
 msgid "Use a custom desklet label"

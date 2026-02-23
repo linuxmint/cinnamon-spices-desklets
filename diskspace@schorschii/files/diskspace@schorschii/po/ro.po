@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-12-22 13:42+0100\n"
+"POT-Creation-Date: 2026-02-22 20:33+0100\n"
 "PO-Revision-Date: 2018-01-12 18:07+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -19,12 +19,12 @@ msgstr ""
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:317 desklet.js:487
+#. desklet.js:317 desklet.js:490
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#. desklet.js:319 desklet.js:489
+#. desklet.js:319 desklet.js:492
 msgid "Swap"
 msgstr "Schimbă"
 
@@ -37,20 +37,20 @@ msgstr "Sistem de fișiere"
 msgid "Not Found"
 msgstr "Nu a fost găsit"
 
-#. desklet.js:434
+#. desklet.js:437
 msgid "Sorry, this font is not supported, please select a different one."
 msgstr ""
 
-#. desklet.js:435
+#. desklet.js:438
 msgid " Font: `"
 msgstr ""
 
-#. desklet.js:435
+#. desklet.js:438
 msgid "` Error: "
 msgstr ""
 
 #. metadata.json->name
-#. desklet.js:491
+#. desklet.js:494
 msgid "Disk Space"
 msgstr "Spațiu pe disc"
 
@@ -59,13 +59,32 @@ msgid "Displays the usage of a filesystem or RAM."
 msgstr ""
 "Afișează gradul de utilizare a unui sistem de fișiere sau a memoriei RAM."
 
-#. settings-schema.json->head0->description
-msgid "Settings for diskspace@schorschii"
-msgstr "Setări pentru diskspace@schorschii"
-
-#. settings-schema.json->head1->description
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
 msgid "General"
 msgstr "General"
+
+#. settings-schema.json->visual-page->title
+msgid "Visual"
+msgstr "Vizual"
+
+#. settings-schema.json->design-section->title
+#. settings-schema.json->design->description
+msgid "Design"
+msgstr "Design"
+
+#. settings-schema.json->colors-section->title
+msgid "Colors"
+msgstr ""
+
+#. settings-schema.json->fonts-section->title
+msgid "Fonts"
+msgstr ""
+
+#. settings-schema.json->label-section->title
+#, fuzzy
+msgid "Custom Label"
+msgstr "Etichetă personalizată de birou"
 
 #. settings-schema.json->type->description
 msgid "Monitor a file system or RAM usage"
@@ -141,14 +160,6 @@ msgid ""
 "Reserved blocks are useable for the root user only and that's why displayed "
 "as used space by default."
 msgstr ""
-
-#. settings-schema.json->head2->description
-msgid "Visual"
-msgstr "Vizual"
-
-#. settings-schema.json->design->description
-msgid "Design"
-msgstr "Design"
 
 #. settings-schema.json->design->options
 msgid "Thin"
@@ -262,12 +273,6 @@ msgid "Increase or decrease the size of this desklet using this scale factor."
 msgstr ""
 "Mărește sau micșorează dimensiunea acestui desklet folosind acest factor de "
 "scalare."
-
-#. settings-schema.json->head3->description
-msgid "Custom desklet label (only visible if decorations are enabled)"
-msgstr ""
-"Etichetă personalizată pentru desklet (vizibilă numai dacă sunt activate "
-"decorațiile)"
 
 #. settings-schema.json->use-custom-label->description
 msgid "Use a custom desklet label"
