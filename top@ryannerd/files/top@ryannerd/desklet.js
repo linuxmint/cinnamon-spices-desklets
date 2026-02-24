@@ -2,7 +2,6 @@ const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
 const GLib = imports.gi.GLib;
 const Mainloop = imports.mainloop;
-const Lang = imports.lang;
 const DeskletManager = imports.ui.deskletManager;
 const Settings = imports.ui.settings;
 const Global = global; // This is done so that Auto-completion for Gnome project can be used. see: https://github.com/RyanNerd/gnome-autocomplete
@@ -474,7 +473,7 @@ TopDesklet.prototype = {
      * @private
      */
     _updateTop() {
-        this.getTopOutput(Lang.bind(this, (topOutput) => {
+        this.getTopOutput((topOutput) => {
             if (this.removed) return;
 
             // Is topOutput not null then we have a valid string to parse.
@@ -550,7 +549,7 @@ TopDesklet.prototype = {
                     Global.logError("Top Desklet: Error updating UI: " + e);
                 }
             }
-        }));
+        });
     },
 
     /**
@@ -559,7 +558,7 @@ TopDesklet.prototype = {
      */
     _refresh() {
         this._updateTop();
-        this.timeout = Mainloop.timeout_add_seconds(this.cfgRefreshRate, Lang.bind(this, this._refresh));
+        this.timeout = Mainloop.timeout_add_seconds(this.cfgRefreshRate, this._refresh.bind(this));
     },
 
     /**
