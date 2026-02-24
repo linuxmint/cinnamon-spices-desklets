@@ -1,3 +1,55 @@
+### 0.18.2 - February 23, 2026
+
+Bugfixes:
+
+- pre-market data no longer override regular data when market is open
+
+### 0.18.1 - February 22, 2026
+
+Features:
+
+- update Spanish translation (courtesy of [haggen88](https://github.com/haggen88))
+
+Bugfixes:
+
+- re-add fields filter to reduce amount of received data
+- improve debug and error logging
+- overall refactoring and code cleanup
+
+### 0.18.0 - February 20, 2026
+
+Features:
+
+- New setting to show pre- and post-market data (extended-hours trading). See settings sections *Details* and *Presentation* how to include and style it.
+
+### 0.17.3 - January 30, 2026
+
+Features:
+
+- update Spanish translation (courtesy of [haggen88](https://github.com/haggen88))
+
+Bugfixes:
+
+- restore compatibility for Cinnamon versions < 4.2
+
+### 0.17.2 - January 20, 2026
+
+Features:
+
+- improve curl integration
+- update Catalan translation (courtesy of [trikaphundo](https://github.com/trikaphundo))
+- update Danish translation (courtesy of [Alan01](https://github.com/Alan01))
+- update Dutch translation (courtesy of [qadzek](https://github.com/qadzek))
+- update Italian translation (courtesy of [Dragone2](https://github.com/Dragone2))
+- update Hungarian translation (courtesy of [bossbob88](https://github.com/bossbob88))
+- update Spanish translation (courtesy of [haggen88](https://github.com/haggen88))
+- add Vietnamese translation (courtesy of [hthienloc](https://github.com/hthienloc))
+
+Bugfixes:
+
+- escape message text on building JSON error response
+- restore tooltip of downtrend change color setting
+
 ### 0.17.1 - August 22, 2025
 
 Bugfixes:

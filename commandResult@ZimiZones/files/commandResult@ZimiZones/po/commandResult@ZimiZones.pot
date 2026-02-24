@@ -88,6 +88,16 @@ msgstr ""
 msgid "Style"
 msgstr ""
 
+#. settings-schema.json->render-ansi->description
+#. 4.0->settings-schema.json->render-ansi->description
+msgid "Render ANSI escape sequences"
+msgstr ""
+
+#. settings-schema.json->render-ansi->tooltip
+#. 4.0->settings-schema.json->render-ansi->tooltip
+msgid "Enable to interpret ANSI escape sequences (e.g., colors) in command output."
+msgstr ""
+
 #. settings-schema.json->font->description
 #. 4.0->settings-schema.json->font->description
 msgid "Font"

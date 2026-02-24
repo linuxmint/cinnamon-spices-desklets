@@ -1,12 +1,42 @@
 {
-    "head0": {
-        "type": "header",
-        "description": "Settings for diskspace@schorschii"
-    },
-
-    "head1": {
-        "type": "header",
-        "description": "General"
+    "layout": {
+        "type": "layout",
+        "pages": ["general-page", "visual-page"],
+        "general-page": {
+            "type": "page",
+            "title": "General",
+            "sections": ["general-section"]
+        },
+        "visual-page": {
+            "type": "page",
+            "title": "Visual",
+            "sections": ["design-section", "colors-section", "fonts-section", "label-section"]
+        },
+        "general-section": {
+            "type": "section",
+            "title": "General",
+            "keys": ["type", "filesystem", "onclick-action", "size-prefix", "size-fraction-digits", "reserved-blocks-as-used-space"]
+        },
+        "design-section": {
+            "type": "section",
+            "title": "Design",
+            "keys": ["design", "text-view", "hide-decorations", "draw-free-space", "scale-size"]
+        },
+        "colors-section": {
+            "type": "section",
+            "title": "Colors",
+            "keys": ["fill-circle-background", "fill-circle-background-color", "use-own-circle-color", "circle-color", "circle-color-free-space", "text-color"]
+        },
+        "fonts-section": {
+            "type": "section",
+            "title": "Fonts",
+            "keys": ["font", "font-sub"]
+        },
+        "label-section": {
+            "type": "section",
+            "title": "Custom Label",
+            "keys": ["use-custom-label", "custom-label"]
+        }
     },
     "type": {
         "type": "combobox",
@@ -62,11 +92,6 @@
         "description": "Show reserved blocks as used space",
         "tooltip": "Reserved blocks are useable for the root user only and that's why displayed as used space by default.",
         "default": true
-    },
-
-    "head2": {
-        "type": "header",
-        "description": "Visual"
     },
     "design": {
         "type": "combobox",
@@ -158,11 +183,6 @@
         "units": "scale factor",
         "description": "Desklet size",
         "tooltip": "Increase or decrease the size of this desklet using this scale factor."
-    },
-
-    "head3": {
-        "type": "header",
-        "description": "Custom desklet label (only visible if decorations are enabled)"
     },
     "use-custom-label": {
         "type": "checkbox",

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-08-22 22:21+0200\n"
+"POT-Creation-Date: 2026-02-23 22:40+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,45 +17,53 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
 
-#. desklet.js:687
+#. desklet.js:99
+msgid "N/A"
+msgstr ""
+
+#. desklet.js:754
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 
-#. desklet.js:721 desklet.js:747 desklet.js:770
+#. desklet.js:803 desklet.js:842 desklet.js:872
 msgid "Authorization parameters have expired"
 msgstr ""
 
-#. desklet.js:724 desklet.js:750 desklet.js:773
+#. desklet.js:806 desklet.js:845 desklet.js:875
 msgid "Yahoo Finance service not available! Status: "
 msgstr "Сервис Yahoo Finance не доступен!"
 
-#. desklet.js:1084
+#. desklet.js:810
+msgid "Something went wrong retrieving Yahoo Finance data"
+msgstr ""
+
+#. desklet.js:1281
 msgid "No quotes data to display"
 msgstr ""
 
-#. desklet.js:1194
+#. desklet.js:1395
 msgid "Updated at "
 msgstr "Обновлено в "
 
-#. desklet.js:1226
+#. desklet.js:1427
 msgid "Error: "
 msgstr "Ошибка: "
 
-#. desklet.js:1376
+#. desklet.js:1586
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data. "
 "Status: "
 msgstr ""
 
-#. desklet.js:1403
+#. desklet.js:1617
 msgid "Consent processing failed! Unable to fetch quotes data. Status: "
 msgstr ""
 
-#. desklet.js:1409
+#. desklet.js:1623
 msgid "Consent processing not completed! Unable to fetch quotes data. Status: "
 msgstr ""
 
-#. desklet.js:1445
+#. desklet.js:1659
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: "
 msgstr ""
@@ -116,6 +124,10 @@ msgstr "Изменения"
 #. settings-schema.json->detailsDateTimeSection->title
 msgid "Date and Time"
 msgstr "Дата и время"
+
+#. settings-schema.json->detailsPrePostMarketSection->title
+msgid "Pre-/Post-Market Data"
+msgstr ""
 
 #. settings-schema.json->presentationFormattingSection->title
 msgid "Number Format"
@@ -472,6 +484,26 @@ msgstr ""
 "Отображение цветных процентов (зеленый цвет при росте, красный цвет при "
 "падении)."
 
+#. settings-schema.json->includePrePostMarketDataOption->options
+msgid "Never"
+msgstr ""
+
+#. settings-schema.json->includePrePostMarketDataOption->options
+msgid "Prefer to regular data"
+msgstr ""
+
+#. settings-schema.json->includePrePostMarketDataOption->options
+msgid "Show in extra columns"
+msgstr ""
+
+#. settings-schema.json->includePrePostMarketDataOption->description
+msgid "Include pre-/post-market data"
+msgstr ""
+
+#. settings-schema.json->includePrePostMarketDataOption->tooltip
+msgid "If and how extended-hours trading data is displayed"
+msgstr ""
+
 #. settings-schema.json->showTradeTime->description
 msgid "Show trading time"
 msgstr "Показывать время торгов"
@@ -508,6 +540,30 @@ msgstr ""
 msgid "Enlarge/reduce the font size"
 msgstr ""
 
+#. settings-schema.json->fontStylePrePostMarketData->options
+msgid "Normal"
+msgstr ""
+
+#. settings-schema.json->fontStylePrePostMarketData->options
+msgid "Italic"
+msgstr ""
+
+#. settings-schema.json->fontStylePrePostMarketData->options
+msgid "Bold"
+msgstr ""
+
+#. settings-schema.json->fontStylePrePostMarketData->options
+msgid "Bold italic"
+msgstr ""
+
+#. settings-schema.json->fontStylePrePostMarketData->description
+msgid "Font style of pre-/post-market data"
+msgstr ""
+
+#. settings-schema.json->fontStylePrePostMarketData->tooltip
+msgid "Accentuate extended-hours trading data (price, change, time)"
+msgstr ""
+
 #. settings-schema.json->uptrendChangeColor->description
 msgid "Uptrend change color"
 msgstr "Цвет восходящего тренда"
@@ -519,6 +575,10 @@ msgstr "Цвет отображения восходящего тренда."
 #. settings-schema.json->downtrendChangeColor->description
 msgid "Downtrend change color"
 msgstr "Цвет нисходящего тренда"
+
+#. settings-schema.json->downtrendChangeColor->tooltip
+msgid "Color of the downtrend change"
+msgstr "Цвет отображения нисходящего тренда."
 
 #. settings-schema.json->unchangedTrendColor->description
 msgid "Unchanged trend color"

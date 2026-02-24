@@ -2,7 +2,7 @@
     "max-instances": "10",
     "description": "Displays the usage of a filesystem or RAM.",
     "name": "Disk Space",
-    "version": "1.19",
+    "version": "1.20",
     "uuid": "diskspace@schorschii",
     "author": "schorschii"
 }

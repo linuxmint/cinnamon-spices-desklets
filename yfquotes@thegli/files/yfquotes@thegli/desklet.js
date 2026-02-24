@@ -10,7 +10,7 @@
 const Desklet = imports.ui.desklet;
 // Shell toolkit library from GNOME
 const St = imports.gi.St;
-// URL-IO-Operations
+// I/O operations
 const Gio = imports.gi.Gio;
 // Files operations
 const GLib = imports.gi.GLib;
@@ -18,30 +18,34 @@ const GLib = imports.gi.GLib;
 const Gtk = imports.gi.Gtk;
 // text layouting and rendering
 const Pango = imports.gi.Pango;
+// HTTP client
 const Soup = imports.gi.Soup;
 const ByteArray = imports.byteArray;
-// Binding desklet to mainloop function
-const Lang = imports.lang;
 // Settings loader based on settings-schema.json file
 const Settings = imports.ui.settings;
 // translation support
 const Gettext = imports.gettext;
-// external proccess execution
-const Util = imports.misc.util;
+// external process execution
+const { spawnCommandLineAsyncIO } = require("./lib/util-extract");
 
 const UUID = "yfquotes@thegli";
 const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 const LOG_DEBUG = Gio.file_new_for_path(DESKLET_DIR + "/DEBUG").query_exists(null);
 const IS_SOUP_2 = Soup.MAJOR_VERSION === 2;
 if (LOG_DEBUG) {
-    global.log(UUID + " " + "Debug log is enabled");
-    global.log(UUID + " libsoup version " + Soup.MAJOR_VERSION + "." + Soup.MINOR_VERSION + "." + Soup.MICRO_VERSION);
+    global.log(`${UUID} Debug logging is enabled`);
+    global.log(`${UUID} libsoup version ${Soup.MAJOR_VERSION}.${Soup.MINOR_VERSION}.${Soup.MICRO_VERSION}`);
 }
 
 const YF_COOKIE_URL = "https://finance.yahoo.com/quote/%5EGSPC/options";
 const YF_CONSENT_URL = "https://consent.yahoo.com/v2/collectConsent";
 const YF_CRUMB_URL = "https://query2.finance.yahoo.com/v1/test/getcrumb";
-const YF_QUOTE_PAGE_URL = "https://finance.yahoo.com/quote/";
+const YF_QUOTE_URL = "https://query1.finance.yahoo.com/v7/finance/quote";
+const YF_QUOTE_WEBPAGE_URL = "https://finance.yahoo.com/quote/";
+const YF_QUOTE_FIELDS = "symbol,shortName,longName,currency,marketState,hasPrePostMarketData,"
+    + "regularMarketTime,regularMarketPrice,regularMarketChange,regularMarketChangePercent,"
+    + "preMarketTime,preMarketPrice,preMarketChange,preMarketChangePercent,"
+    + "postMarketTime,postMarketPrice,postMarketChange,postMarketChangePercent";
 
 const ACCEPT_HEADER = "Accept";
 const ACCEPT_VALUE_COOKIE = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
@@ -57,9 +61,13 @@ const CONSENT_COOKIE = "GUCS";
 const CACHED_AUTH_PARAMS_VERSION = 1;
 const DEFAULT_CACHED_AUTH_PARAMS = "{\"version\": " + CACHED_AUTH_PARAMS_VERSION + "}";
 
-const CURL_RESPONSE_CODE_PREFIX = "HTTP_CODE=";
 const CURL_SILENT_LOCATION_OPTIONS = "-sSL";
+const CURL_CONNECT_TIMEOUT_OPTION = "--connect-timeout";
+const CURL_CONNECT_TIMEOUT_VALUE = "5";
+const CURL_MAX_TIME_OPTION = "-m";
+const CURL_MAX_TIME_VALUE = "15";
 const CURL_WRITE_OUT_OPTION = "-w";
+const CURL_RESPONSE_CODE_PREFIX = "HTTP_CODE=";
 const CURL_WRITE_OUT_VALUE = CURL_RESPONSE_CODE_PREFIX + "%{http_code}";
 const CURL_HEADER_OPTION = "-H";
 const CURL_COOKIE_HEADER_NAME = "Cookie: ";
@@ -88,12 +96,11 @@ const CURL_CIPHERS_VALUE =
     "AES128-GCM-SHA256," +
     "AES256-GCM-SHA384";
 
-const ABSENT = "N/A";
-const ERROR_RESPONSE_BEGIN = "{\"quoteResponse\":{\"result\":[],\"error\":\"";
-const ERROR_RESPONSE_END = "\"}}";
+const ABSENT = _("N/A");
 const MAX_AUTH_ATTEMPTS = 3;
 
 const BASE_FONT_SIZE = 10;
+const DEFAULT_MARKET_STATE = "regular";
 
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
@@ -108,14 +115,14 @@ function CurlMessage(response) {
 // mimics libsoup's SoupMessage
 CurlMessage.prototype = {
 
-    init: function(response) {
+    init(response) {
         const responseParts = response.split(CURL_RESPONSE_CODE_PREFIX);
         this.response_body = responseParts[0];
         this.status_code = Number(responseParts[1]);
         this.reason_phrase = this.determineReasonPhrase(this.status_code);
     },
 
-    determineReasonPhrase: function(statusCode) {
+    determineReasonPhrase(statusCode) {
         switch (statusCode) {
             case 200: return "OK";
             case 400: return "Bad Request";
@@ -132,11 +139,11 @@ CurlMessage.prototype = {
         }
     },
 
-    get_reason_phrase: function() {
+    get_reason_phrase() {
         return this.reason_phrase;
     },
 
-    get_status: function() {
+    get_status() {
         return this.status_code;
     }
 }
@@ -147,36 +154,41 @@ function YahooFinanceQuoteUtils(deskletId) {
 
 YahooFinanceQuoteUtils.prototype = {
 
-    init: function(deskletId) {
+    init(deskletId) {
         this.id = deskletId;
     },
 
-    logDebug: function(msg) {
+    logDebug(msg) {
         if (LOG_DEBUG) {
-            global.log(UUID + "[" + this.id + "] DEBUG " + msg);
+            global.log(`${UUID}[${this.id}] DEBUG ${msg}`);
         }
     },
 
-    logInfo: function(msg) {
-        global.log(UUID + "[" + this.id + "] " + msg);
+    logInfo(msg) {
+        global.log(`${UUID}[${this.id}] ${msg}`);
     },
 
-    logWarning: function(msg) {
-        global.logWarning(UUID + "[" + this.id + "] " + msg);
+    logWarning(msg) {
+        global.logWarning(`${UUID}[${this.id}] ${msg}`);
     },
 
-    logError: function(msg) {
-        global.logError(UUID + "[" + this.id + "] " + msg);
+    logError(msg) {
+        global.logError(`${UUID}[${this.id}] ${msg}`);
     },
 
-    existsProperty: function(object, property) {
+    logException(context, err) {
+        const exceptionDetails = err instanceof Error ? `${err.name}: ${err.message}\n${err.stack}` : err;
+        global.logError(`${UUID}[${this.id}] ${context}\n${exceptionDetails}`);
+    },
+
+    existsProperty(object, property) {
         return object.hasOwnProperty(property)
             && typeof object[property] !== "undefined"
             && object[property] !== null;
     },
 
     // convert the quotes list to a comma-separated one-liner, to be used as argument for the YFQ "symbols" parameter
-    buildSymbolsArgument: function(quoteSymbolsText) {
+    buildSymbolsArgument(quoteSymbolsText) {
         return quoteSymbolsText
             .split("\n")
             .map((line) => line.trim())
@@ -186,18 +198,18 @@ YahooFinanceQuoteUtils.prototype = {
     },
 
     // extract any customization parameters from each entry in the quotes list, and return them in a map
-    buildSymbolCustomizationMap: function(quoteSymbolsText) {
+    buildSymbolCustomizationMap(quoteSymbolsText) {
         const symbolCustomizations = new Map();
         for (const line of quoteSymbolsText.trim().split("\n")) {
             const customization = this.parseSymbolLine(line);
             symbolCustomizations.set(customization.symbol, customization);
         }
-        this.logDebug("symbol customization map size: " + symbolCustomizations.size);
+        this.logDebug(`buildSymbolCustomizationMap - symbol customization map size: ${symbolCustomizations.size}`);
 
         return symbolCustomizations;
     },
 
-    parseSymbolLine: function(symbolLine) {
+    parseSymbolLine(symbolLine) {
         const lineParts = symbolLine.trim().split(";");
 
         const customAttributes = new Map();
@@ -212,7 +224,7 @@ YahooFinanceQuoteUtils.prototype = {
     },
 
     // data structure for quote customization parameters
-    buildSymbolCustomization: function(symbol, customAttributes) {
+    buildSymbolCustomization(symbol, customAttributes) {
         return {
             symbol: symbol.toUpperCase(),
             name: customAttributes.has("name") ? customAttributes.get("name") : null,
@@ -222,13 +234,13 @@ YahooFinanceQuoteUtils.prototype = {
         }
     },
 
-    compareSymbolsArgument: function(symbolsArgument, quoteSymbolsText) {
+    compareSymbolsArgument(symbolsArgument, quoteSymbolsText) {
         const argumentFromText = this.buildSymbolsArgument(quoteSymbolsText);
-        this.logDebug("compare symbolsArgument(" + symbolsArgument + ") with argumentFromText(" + argumentFromText + ")");
+        this.logDebug(`compareSymbolsArgument - compare symbolsArgument(${symbolsArgument}) with argumentFromText(${argumentFromText})`);
         return symbolsArgument === argumentFromText;
     },
 
-    isOkStatus: function(soupMessage) {
+    isOkStatus(soupMessage) {
         if (soupMessage) {
             if (IS_SOUP_2) {
                 return soupMessage.status_code === Soup.KnownStatusCode.OK;
@@ -240,7 +252,7 @@ YahooFinanceQuoteUtils.prototype = {
         return false;
     },
 
-    isUnauthorizedStatus: function(soupMessage) {
+    isUnauthorizedStatus(soupMessage) {
         if (soupMessage) {
             if (IS_SOUP_2) {
                 return soupMessage.status_code === Soup.KnownStatusCode.UNAUTHORIZED;
@@ -252,7 +264,7 @@ YahooFinanceQuoteUtils.prototype = {
         return false;
     },
 
-    getMessageStatusInfo: function(soupMessage) {
+    getMessageStatusInfo(soupMessage) {
         if (soupMessage) {
             if (IS_SOUP_2) {
                 return soupMessage.status_code + " " + soupMessage.reason_phrase;
@@ -261,11 +273,11 @@ YahooFinanceQuoteUtils.prototype = {
                 let status = "unknown status";
                 try {
                     status = soupMessage.get_status();
-                } catch (e) {
+                } catch (err) {
                     // get_status() throws exception on any value missing in enum SoupStatus
-                    this.logDebug("get_status() exception: " + e);
+                    this.logDebug(`getMessageStatusInfo - get_status() exception: ${err}`);
                     // YF is known to return "429 Too Many Requests", which is unfortunately missing in SoupStatus
-                    if (e.message.indexOf("429") > -1) {
+                    if (err.message.indexOf("429") > -1) {
                         status = "429";
                         reason = "Too Many Requests";
                     }
@@ -278,10 +290,10 @@ YahooFinanceQuoteUtils.prototype = {
     },
 
     // determine and store the quote name to display within the quote as new property "displayName"
-    populateQuoteDisplayName: function(quote, symbolCustomization, useLongName) {
+    populateQuoteDisplayName(quote, symbolCustomization, useLongName) {
         let displayName = ABSENT;
 
-        if (symbolCustomization.name !== null) {
+        if (symbolCustomization.name != null) {
             displayName = symbolCustomization.name;
         } else if (useLongName && this.existsProperty(quote, "longName")) {
             displayName = quote.longName;
@@ -292,9 +304,9 @@ YahooFinanceQuoteUtils.prototype = {
         quote.displayName = displayName;
     },
 
-    sortQuotesByProperty: function(quotes, prop, direction) {
+    sortQuotesByProperty(quotes, prop, direction) {
         // don't sort if no criteria was given, or the criteria says "natural order", or there is only one quote
-        if (prop === undefined || prop === "none" || quotes.length < 2) {
+        if (typeof prop === "undefined" || prop === "none" || quotes.length < 2) {
             return quotes;
         }
 
@@ -306,7 +318,7 @@ YahooFinanceQuoteUtils.prototype = {
         const _that = this;
         const clone = quotes.slice(0);
         const numberPattern = /^-?\d+(\.\d+)?$/;
-        clone.sort(function(q1, q2) {
+        clone.sort((q1, q2) => {
             let p1 = "";
             if (_that.existsProperty(q1, prop)) {
                 p1 = q1[prop].toString().match(numberPattern) ? + q1[prop] : q1[prop].toLowerCase();
@@ -316,7 +328,13 @@ YahooFinanceQuoteUtils.prototype = {
                 p2 = q2[prop].toString().match(numberPattern) ? + q2[prop] : q2[prop].toLowerCase();
             }
 
-            return ((p1 < p2) ? -1 : ((p1 > p2) ? 1 : 0)) * direction;
+            if (p1 < p2) {
+                return -1 * direction;
+            } else if (p1 > p2) {
+                return 1 * direction;
+            } else {
+                return 0;
+            }
         });
         return clone;
     }
@@ -328,7 +346,7 @@ function YahooFinanceQuoteReader(deskletId) {
 
 YahooFinanceQuoteReader.prototype = {
 
-    init: function(deskletId) {
+    init(deskletId) {
         this.id = deskletId;
         this.quoteUtils = new YahooFinanceQuoteUtils(deskletId);
 
@@ -354,7 +372,7 @@ YahooFinanceQuoteReader.prototype = {
         }
     },
 
-    getAuthorizationParametersToCache: function() {
+    prepareCacheableAuthorizationParameters() {
         let authParamsToCache = DEFAULT_CACHED_AUTH_PARAMS;
         if (this.existsCookieInJar(AUTH_COOKIE) && this.hasCrumb()) {
             const authCookie = this.getCookieFromJar(AUTH_COOKIE);
@@ -375,21 +393,21 @@ YahooFinanceQuoteReader.prototype = {
                         }
                     }
                 );
-            } catch (e) {
-                this.quoteUtils.logError("Failed to stringify authorization parameters to cache: " + e);
+            } catch (err) {
+                this.quoteUtils.logException("Failed to stringify authorization parameters to cache", err);
             }
         }
 
         return authParamsToCache;
     },
 
-    restoreCachedAuthorizationParameters: function(authParamsJson) {
+    restoreCachedAuthorizationParameters(authParamsJson) {
         let cachedAuthParams;
         try {
-            this.quoteUtils.logDebug("Loading cached authorization parameters: " + authParamsJson);
+            this.quoteUtils.logDebug(`getMessageStatusInfo - loading cached authorization parameters: ${authParamsJson}`);
             cachedAuthParams = JSON.parse(authParamsJson);
-        } catch (e) {
-            this.quoteUtils.logError("Cached authorization parameters [" + authParamsJson + "] is not valid JSON: " + e);
+        } catch (err) {
+            this.quoteUtils.logException(`Cached authorization parameters [${authParamsJson}] is not valid JSON`, err);
             cachedAuthParams = JSON.parse(DEFAULT_CACHED_AUTH_PARAMS);
         }
 
@@ -398,14 +416,14 @@ YahooFinanceQuoteReader.prototype = {
             this.addCookieToJar(cachedAuthParams.cookie);
             this.setCrumb(cachedAuthParams.crumb.value);
 
-            this.quoteUtils.logDebug("Restored cached authorization parameters");
+            this.quoteUtils.logDebug("getMessageStatusInfo - restored cached authorization parameters");
         } else {
             // either no params cached, or version mismatch
-            this.quoteUtils.logDebug("No cached authorization parameters restored");
+            this.quoteUtils.logDebug("getMessageStatusInfo - no cached authorization parameters restored");
         }
     },
 
-    hasCachedAuthorizationParameters: function(cachedAuthParams) {
+    hasCachedAuthorizationParameters(cachedAuthParams) {
         return cachedAuthParams != null
             && this.quoteUtils.existsProperty(cachedAuthParams, "version")
             && cachedAuthParams.version === CACHED_AUTH_PARAMS_VERSION
@@ -419,268 +437,317 @@ YahooFinanceQuoteReader.prototype = {
             && this.quoteUtils.existsProperty(cachedAuthParams.crumb, "value");
     },
 
-    setCrumb: function(crumb) {
+    setCrumb(crumb) {
         this.authParams.crumb = crumb;
     },
 
-    hasCrumb: function() {
-        return this.authParams.crumb !== null;
+    hasCrumb() {
+        return this.authParams.crumb != null;
     },
 
-    getCrumb: function() {
+    getCrumb() {
         return this.authParams.crumb;
     },
 
-    setCookie: function(authCookieValue) {
+    setCookie(authCookieValue) {
         this.authParams.cookie = AUTH_COOKIE + "=" + authCookieValue;
     },
 
-    getCookieFromJar: function(name) {
+    getCookieFromJar(name) {
         for (let cookie of this.cookieJar.all_cookies()) {
             let cookieName = IS_SOUP_2 ? cookie.name : cookie.get_name();
             if (cookieName === name) {
                 const cookieValue = IS_SOUP_2 ? cookie.value : cookie.get_value();
-                this.quoteUtils.logDebug("Cookie " + name + " found in jar, value: " + cookieValue);
+                this.quoteUtils.logDebug(`getCookieFromJar - cookie ${name} found in jar, value: ${cookieValue}`);
                 return cookie;
             }
         }
 
-        this.quoteUtils.logDebug("No cookie found with name " + name);
+        this.quoteUtils.logDebug(`getCookieFromJar - no cookie found with name ${name}`);
         return null;
     },
 
-    existsCookieInJar: function(name) {
-        return (this.getCookieFromJar(name) !== null);
+    existsCookieInJar(name) {
+        return (this.getCookieFromJar(name) != null);
     },
 
-    addCookieToJar: function(cookieParams) {
+    addCookieToJar(cookieParams) {
         const cookie = new Soup.Cookie(cookieParams.name, cookieParams.value, cookieParams.domain, cookieParams.path, -1);
         if (cookieParams.expires > 0) {
             cookie.set_expires(IS_SOUP_2 ? Soup.Date.new_from_time_t(cookieParams.expires) : GLib.DateTime.new_from_unix_utc(cookieParams.expires));
         }
         this.cookieJar.add_cookie(cookie);
-        this.quoteUtils.logDebug("Added cookie to jar: " + Object.entries(cookieParams));
+        this.quoteUtils.logDebug(`addCookieToJar - added cookie to jar: ${Object.entries(cookieParams)}`);
     },
 
-    deleteAllCookies: function() {
-        this.quoteUtils.logDebug("deleteAllCookies")
+    deleteAllCookies() {
+        this.quoteUtils.logDebug("deleteAllCookies");
         for (let cookie of this.cookieJar.all_cookies()) {
             const cookieName = IS_SOUP_2 ? cookie.name : cookie.get_name();
             this.cookieJar.delete_cookie(cookie);
-            this.quoteUtils.logDebug("Cookie deleted from jar: " + cookieName);
+            this.quoteUtils.logDebug(`deleteAllCookies - cookie deleted from jar: ${cookieName}`);
         }
-        this.quoteUtils.logDebug("All cookies deleted from jar");
+        this.quoteUtils.logDebug("deleteAllCookies - all cookies deleted from jar");
     },
 
-    dropAuthParams: function() {
+    dropAuthParams() {
         this.deleteAllCookies();
         this.authParams.cookie = null;
         this.authParams.crumb = null;
     },
 
-    retrieveCookie: function(networkSettings, callback) {
+    retrieveCookie(customUserAgent, callback) {
         this.quoteUtils.logDebug("retrieveCookie");
+
+        if (IS_SOUP_2) {
+            this.retrieveCookieWithSoup2(customUserAgent, callback);
+        } else {
+            this.retrieveCookieWithSoup3(customUserAgent, callback);
+        }
+    },
+
+    retrieveCookieWithSoup2(customUserAgent, callback) {
+        const _that = this;
+        const requestMessage = Soup.Message.new("GET", YF_COOKIE_URL);
+        requestMessage.request_headers.append(ACCEPT_HEADER, ACCEPT_VALUE_COOKIE);
+        requestMessage.request_headers.append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
+        if (customUserAgent != null) {
+            requestMessage.request_headers.append(USER_AGENT_HEADER, customUserAgent);
+        }
+
+        this.httpSession.queue_message(requestMessage, (session, message) => {
+            _that.quoteUtils.logDebug(`retrieveCookieWithSoup2 - cookie response status: ${_that.quoteUtils.getMessageStatusInfo(message)}`);
+            if (_that.quoteUtils.isOkStatus(message)) {
+                try {
+                    callback.call(_that, message, message.response_body.data);
+                } catch (err) {
+                    _that.quoteUtils.logException("Soup2 Error processing auth page response", err);
+                }
+            } else {
+                _that.quoteUtils.logWarning(`Soup2 Error retrieving auth page! Status: ${_that.quoteUtils.getMessageStatusInfo(message)}`);
+                callback.call(_that, message, null);
+            }
+        });
+    },
+
+    retrieveCookieWithSoup3(customUserAgent, callback) {
         const _that = this;
         const message = Soup.Message.new("GET", YF_COOKIE_URL);
-        const customUserAgent = networkSettings.customUserAgent;
+        message.get_request_headers().append(ACCEPT_HEADER, ACCEPT_VALUE_COOKIE);
+        message.get_request_headers().append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
+        if (customUserAgent != null) {
+            message.get_request_headers().append(USER_AGENT_HEADER, customUserAgent);
+        }
+
+        this.httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, (session, result) => {
+            _that.quoteUtils.logDebug(`retrieveCookieWithSoup3 - cookie response status: ${_that.quoteUtils.getMessageStatusInfo(message)}`);
+            if (_that.quoteUtils.isOkStatus(message)) {
+                try {
+                    const bytes = session.send_and_read_finish(result);
+                    callback.call(_that, message, ByteArray.toString(bytes.get_data()));
+                } catch (err) {
+                    _that.quoteUtils.logException("Soup3 Error processing auth page response", err);
+                }
+            } else {
+                _that.quoteUtils.logWarning(`Soup3 Error retrieving auth page! Status: ${_that.quoteUtils.getMessageStatusInfo(message)}`);
+                callback.call(_that, message, null);
+            }
+        });
+    },
+
+    postConsent(customUserAgent, formData, callback) {
+        this.quoteUtils.logDebug("postConsent");
 
         if (IS_SOUP_2) {
-            message.request_headers.append(ACCEPT_HEADER, ACCEPT_VALUE_COOKIE);
-            message.request_headers.append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
-            if (customUserAgent != null) {
-                message.request_headers.append(USER_AGENT_HEADER, customUserAgent);
-            }
-
-            this.httpSession.queue_message(message, function(session, message) {
-                _that.quoteUtils.logDebug("Soup2 Cookie response status: " + _that.quoteUtils.getMessageStatusInfo(message));
-                if (_that.quoteUtils.isOkStatus(message)) {
-                    try {
-                        callback.call(_that, message, message.response_body.data);
-                    } catch (e) {
-                        _that.quoteUtils.logError(e);
-                    }
-                } else {
-                    _that.quoteUtils.logWarning("Error retrieving auth page! Status: " + _that.quoteUtils.getMessageStatusInfo(message));
-                    callback.call(_that, message, null);
-                }
-            });
+            this.postConsentWithSoup2(customUserAgent, formData, callback);
         } else {
-            message.get_request_headers().append(ACCEPT_HEADER, ACCEPT_VALUE_COOKIE);
-            message.get_request_headers().append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
-            if (customUserAgent != null) {
-                message.get_request_headers().append(USER_AGENT_HEADER, customUserAgent);
-            }
-
-            this.httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, function(session, result) {
-                _that.quoteUtils.logDebug("Soup3 Cookie response status: " + _that.quoteUtils.getMessageStatusInfo(message));
-                if (_that.quoteUtils.isOkStatus(message)) {
-                    try {
-                        const bytes = session.send_and_read_finish(result);
-                        callback.call(_that, message, ByteArray.toString(bytes.get_data()));
-                    } catch (e) {
-                        _that.quoteUtils.logError(e);
-                    }
-                } else {
-                    _that.quoteUtils.logWarning("Error retrieving auth page! Status: " + _that.quoteUtils.getMessageStatusInfo(message));
-                    callback.call(_that, message, null);
-                }
-            });
+            this.postConsentWithSoup3(customUserAgent, formData, callback);
         }
     },
 
-    postConsent: function(networkSettings, formData, callback) {
-        this.quoteUtils.logDebug("postConsent");
+    postConsentWithSoup2(customUserAgent, formData, callback) {
+        const _that = this;
+        const requestMessage = Soup.Message.new("POST", YF_CONSENT_URL);
+        requestMessage.request_headers.append(ACCEPT_HEADER, ACCEPT_VALUE_COOKIE);
+        requestMessage.request_headers.append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
+        if (customUserAgent != null) {
+            requestMessage.request_headers.append(USER_AGENT_HEADER, customUserAgent);
+        }
+        requestMessage.set_request(FORM_URLENCODED_VALUE, Soup.MemoryUse.COPY, formData);
+
+        this.httpSession.queue_message(requestMessage, (session, message) => {
+            _that.quoteUtils.logDebug(`postConsentWithSoup2 - consent response status: ${_that.quoteUtils.getMessageStatusInfo(message)}`);
+            if (_that.quoteUtils.isOkStatus(message)) {
+                try {
+                    callback.call(_that, message);
+                } catch (err) {
+                    _that.quoteUtils.logException("Soup2 Error processing consent response", err);
+                }
+            } else {
+                _that.quoteUtils.logWarning(`Soup2 Error sending consent. Status: ${_that.quoteUtils.getMessageStatusInfo(message)}`);
+                callback.call(_that, message);
+            }
+        });
+    },
+
+    postConsentWithSoup3(customUserAgent, formData, callback) {
         const _that = this;
         const message = Soup.Message.new("POST", YF_CONSENT_URL);
+        message.get_request_headers().append(ACCEPT_HEADER, ACCEPT_VALUE_COOKIE);
+        message.get_request_headers().append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
+        if (customUserAgent != null) {
+            message.get_request_headers().append(USER_AGENT_HEADER, customUserAgent);
+        }
+        message.set_request_body_from_bytes(FORM_URLENCODED_VALUE, GLib.Bytes.new(formData));
+
+        this.httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, (session, result) => {
+            _that.quoteUtils.logDebug(`postConsentWithSoup3 - consent response status: ${_that.quoteUtils.getMessageStatusInfo(message)}`);
+            if (_that.quoteUtils.isOkStatus(message)) {
+                try {
+                    callback.call(_that, message);
+                } catch (err) {
+                    _that.quoteUtils.logException("Soup3 Error processing consent response", err);
+                }
+            } else {
+                _that.quoteUtils.logWarning(`Soup3 Error sending consent. Status: ${_that.quoteUtils.getMessageStatusInfo(message)}`);
+                callback.call(_that, message);
+            }
+        });
+    },
+
+    retrieveCrumb(networkSettings, callback) {
+        this.quoteUtils.logDebug("retrieveCrumb");
+
+        if (networkSettings.enableCurl) {
+            this.retrieveCrumbWithCurl(networkSettings, callback);
+        } else {
+            this.retrieveCrumbWithSoup(networkSettings, callback);
+        }
+    },
+
+    retrieveCrumbWithCurl(networkSettings, callback) {
+        this.quoteUtils.logDebug("retrieveCrumbWithCurl");
+
+        const _that = this;
+        const customUserAgent = networkSettings.customUserAgent;
+        const authCookie = this.getCookieFromJar(AUTH_COOKIE);
+
+        if (authCookie) {
+            // keep authorization cookie
+            const authCookieValue = IS_SOUP_2 ? authCookie.value : authCookie.get_value();
+            this.setCookie(authCookieValue);
+
+            // build argv array to invoke curl directly (avoid shell parsing and bash dependency)
+            const curlArgs = [
+                networkSettings.curlCommand,
+                CURL_SILENT_LOCATION_OPTIONS,
+                CURL_CONNECT_TIMEOUT_OPTION, CURL_CONNECT_TIMEOUT_VALUE,
+                CURL_MAX_TIME_OPTION, CURL_MAX_TIME_VALUE,
+                CURL_WRITE_OUT_OPTION, CURL_WRITE_OUT_VALUE,
+                CURL_CIPHERS_OPTION, CURL_CIPHERS_VALUE,
+                CURL_HEADER_OPTION, CURL_COOKIE_HEADER_NAME + this.authParams.cookie
+            ];
+            if (customUserAgent) {
+                curlArgs.push(CURL_HEADER_OPTION, CURL_USER_AGENT_HEADER_NAME + customUserAgent);
+            }
+            curlArgs.push(YF_CRUMB_URL);
+            this.quoteUtils.logDebug(`retrieveCrumbWithCurl - arguments: ${JSON.stringify(curlArgs)}`);
+
+            let subProcess = spawnCommandLineAsyncIO("", (stdout, stderr, exitCode) => {
+                _that.quoteUtils.logDebug(`retrieveCrumbWithCurl - result: exitCode: ${exitCode}. stdout: ${stdout}. stderr: ${stderr}`);
+                if (exitCode === 0) {
+                    const curlMessage = new CurlMessage(stdout);
+                    if (_that.quoteUtils.isOkStatus(curlMessage)) {
+                        try {
+                            callback.call(_that, curlMessage, curlMessage.response_body);
+                        } catch (err) {
+                            _that.quoteUtils.logException("Curl Error processing crumb response", err);
+                        }
+                    } else {
+                        _that.quoteUtils.logWarning(`Curl Error retrieving crumb! Status: ${_that.quoteUtils.getMessageStatusInfo(curlMessage)}`);
+                        callback.call(_that, curlMessage, null);
+                    }
+                } else {
+                    _that.quoteUtils.logError(`Curl retrieveCrumb error: Exit code: ${exitCode}. Out: ${stdout ? stdout.trim() : ""}. Err: ${stderr ? stderr.trim() : ""}`);
+                    callback.call(_that, null, null);
+                }
+
+                try {
+                    subProcess.send_signal(9);
+                } catch (err) {
+                    _that.quoteUtils.logDebug(`retrieveCrumbWithCurl - failed to send signal to subprocess: ${err}`);
+                }
+            }, { argv: curlArgs });
+        } else {
+            this.quoteUtils.logWarning("No auth cookie in Jar! Unable to retrieve crumb.");
+            callback.call(_that, null, null);
+        }
+    },
+
+    retrieveCrumbWithSoup(networkSettings, callback) {
+        this.quoteUtils.logDebug("retrieveCrumbWithSoup");
+
         const customUserAgent = networkSettings.customUserAgent;
 
         if (IS_SOUP_2) {
-            message.request_headers.append(ACCEPT_HEADER, ACCEPT_VALUE_COOKIE);
-            message.request_headers.append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
-            if (customUserAgent != null) {
-                message.request_headers.append(USER_AGENT_HEADER, customUserAgent);
-            }
-            message.set_request(FORM_URLENCODED_VALUE, Soup.MemoryUse.COPY, formData);
-
-            this.httpSession.queue_message(message, function(session, message) {
-                _that.quoteUtils.logDebug("Soup2 Consent response status: " + _that.quoteUtils.getMessageStatusInfo(message));
-                if (_that.quoteUtils.isOkStatus(message)) {
-                    try {
-                        callback.call(_that, message);
-                    } catch (e) {
-                        _that.quoteUtils.logError(e);
-                    }
-                } else {
-                    _that.quoteUtils.logWarning("Error sending consent! Status: " + _that.quoteUtils.getMessageStatusInfo(message));
-                    callback.call(_that, message);
-                }
-            });
+            this.retrieveCrumbWithSoup2(customUserAgent, callback);
         } else {
-            message.get_request_headers().append(ACCEPT_HEADER, ACCEPT_VALUE_COOKIE);
-            message.get_request_headers().append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
-            if (customUserAgent != null) {
-                message.get_request_headers().append(USER_AGENT_HEADER, customUserAgent);
-            }
-            message.set_request_body_from_bytes(FORM_URLENCODED_VALUE, GLib.Bytes.new(formData));
-
-            this.httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, function(session, result) {
-                _that.quoteUtils.logDebug("Soup3 Consent response status: " + _that.quoteUtils.getMessageStatusInfo(message));
-                if (_that.quoteUtils.isOkStatus(message)) {
-                    try {
-                        callback.call(_that, message);
-                    } catch (e) {
-                        _that.quoteUtils.logError(e);
-                    }
-                } else {
-                    _that.quoteUtils.logWarning("Error sending consent! Status: " + _that.quoteUtils.getMessageStatusInfo(message));
-                    callback.call(_that, message);
-                }
-            });
+            this.retrieveCrumbWithSoup3(customUserAgent, callback);
         }
     },
 
-    retrieveCrumb: function(networkSettings, callback) {
-        this.quoteUtils.logDebug("retrieveCrumb");
+    retrieveCrumbWithSoup2(customUserAgent, callback) {
         const _that = this;
-        const customUserAgent = networkSettings.customUserAgent;
-
-        if (networkSettings.enableCurl) {
-            this.quoteUtils.logDebug("Use curl for retrieveCrumb");
-
-            const authCookie = this.getCookieFromJar(AUTH_COOKIE);
-
-            if (authCookie) {
-                // keep authorization cookie
-                const authCookieValue = IS_SOUP_2 ? authCookie.value : authCookie.get_value();
-                this.setCookie(authCookieValue);
-
-                const curlArgs = [
-                    networkSettings.curlCommand,
-                    CURL_SILENT_LOCATION_OPTIONS,
-                    CURL_WRITE_OUT_OPTION, CURL_WRITE_OUT_VALUE,
-                    CURL_CIPHERS_OPTION, CURL_CIPHERS_VALUE,
-                    CURL_HEADER_OPTION, CURL_COOKIE_HEADER_NAME + this.authParams.cookie
-                ];
-                if (customUserAgent) {
-                    curlArgs.push(CURL_HEADER_OPTION, CURL_USER_AGENT_HEADER_NAME + customUserAgent);
-                }
-                curlArgs.push(YF_CRUMB_URL);
-
-                this.quoteUtils.logDebug("Curl retrieveCrumb arguments: " + curlArgs);
-                try {
-                    Util.spawn_async(curlArgs, function(response) {
-                        _that.quoteUtils.logDebug("Curl retrieveCrumb response: " + response);
-                        const curlMessage = new CurlMessage(response);
-                        if (_that.quoteUtils.isOkStatus(curlMessage)) {
-                            try {
-                                callback.call(_that, curlMessage, curlMessage.response_body);
-                            } catch (e) {
-                                _that.quoteUtils.logError(e);
-                            }
-                        } else {
-                            _that.quoteUtils.logWarning("Curl Error retrieving crumb! Status: " + _that.quoteUtils.getMessageStatusInfo(curlMessage));
-                            callback.call(_that, curlMessage, null);
-                        }
-                    });
-                } catch (e) {
-                    this.quoteUtils.logWarning("caught exception on curl execution! " + e);
-                    callback.call(_that, null, null);
-                }
-            } else {
-                this.quoteUtils.logWarning("No auth cookie in Jar! Unable to retrieve crumb.");
-                callback.call(_that, null, null);
-            }
-        } else {
-            this.quoteUtils.logDebug("Use libsoup for retrieveCrumb");
-            const message = Soup.Message.new("GET", YF_CRUMB_URL);
-
-            if (IS_SOUP_2) {
-                message.request_headers.append(ACCEPT_HEADER, ACCEPT_VALUE_CRUMB);
-                message.request_headers.append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
-                if (customUserAgent != null) {
-                    message.request_headers.append(USER_AGENT_HEADER, customUserAgent);
-                }
-
-                this.httpSession.queue_message(message, function(session, message) {
-                    _that.quoteUtils.logDebug("Soup2 Crumb response status: " + _that.quoteUtils.getMessageStatusInfo(message));
-                    if (_that.quoteUtils.isOkStatus(message)) {
-                        try {
-                            callback.call(_that, message, message.response_body);
-                        } catch (e) {
-                            _that.quoteUtils.logError(e);
-                        }
-                    } else {
-                        _that.quoteUtils.logWarning("Soup2 Error retrieving crumb! Status: " + _that.quoteUtils.getMessageStatusInfo(message));
-                        callback.call(_that, message, null);
-                    }
-                });
-            } else {
-                message.get_request_headers().append(ACCEPT_HEADER, ACCEPT_VALUE_CRUMB);
-                message.get_request_headers().append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
-                if (customUserAgent != null) {
-                    message.get_request_headers().append(USER_AGENT_HEADER, customUserAgent);
-                }
-
-                this.httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, function(session, result) {
-                    _that.quoteUtils.logDebug("Soup3 Crumb response status: " + _that.quoteUtils.getMessageStatusInfo(message));
-                    if (_that.quoteUtils.isOkStatus(message)) {
-                        try {
-                            const bytes = session.send_and_read_finish(result);
-                            callback.call(_that, message, ByteArray.toString(bytes.get_data()));
-                        } catch (e) {
-                            _that.quoteUtils.logError(e);
-                        }
-                    } else {
-                        _that.quoteUtils.logWarning("Soup3 Error retrieving crumb! Status: " + _that.quoteUtils.getMessageStatusInfo(message));
-                        callback.call(_that, message, null);
-                    }
-                });
-            }
+        const requestMessage = Soup.Message.new("GET", YF_CRUMB_URL);
+        requestMessage.request_headers.append(ACCEPT_HEADER, ACCEPT_VALUE_CRUMB);
+        requestMessage.request_headers.append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
+        if (customUserAgent != null) {
+            requestMessage.request_headers.append(USER_AGENT_HEADER, customUserAgent);
         }
+
+        this.httpSession.queue_message(requestMessage, (session, message) => {
+            _that.quoteUtils.logDebug(`retrieveCrumbWithSoup2 - response status: ${_that.quoteUtils.getMessageStatusInfo(message)}`);
+            if (_that.quoteUtils.isOkStatus(message)) {
+                try {
+                    callback.call(_that, message, message.response_body);
+                } catch (err) {
+                    _that.quoteUtils.logException("Soup2 Error processing crumb response", err);
+                }
+            } else {
+                _that.quoteUtils.logWarning(`Soup2 Error retrieving crumb! Status: ${_that.quoteUtils.getMessageStatusInfo(message)}`);
+                callback.call(_that, message, null);
+            }
+        });
     },
 
-    retrieveFinanceData: function(quoteSymbolsArg, networkSettings, callback) {
+    retrieveCrumbWithSoup3(customUserAgent, callback) {
+        const _that = this;
+        const message = Soup.Message.new("GET", YF_CRUMB_URL);
+        message.get_request_headers().append(ACCEPT_HEADER, ACCEPT_VALUE_CRUMB);
+        message.get_request_headers().append(ACCEPT_ENCODING_HEADER, ACCEPT_ENCODING_VALUE);
+        if (customUserAgent != null) {
+            message.get_request_headers().append(USER_AGENT_HEADER, customUserAgent);
+        }
+
+        this.httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, (session, result) => {
+            _that.quoteUtils.logDebug(`retrieveCrumbWithSoup3 - response status: ${_that.quoteUtils.getMessageStatusInfo(message)}`);
+            if (_that.quoteUtils.isOkStatus(message)) {
+                try {
+                    const bytes = session.send_and_read_finish(result);
+                    callback.call(_that, message, ByteArray.toString(bytes.get_data()));
+                } catch (err) {
+                    _that.quoteUtils.logException("Soup3 Error processing crumb response", err);
+                }
+            } else {
+                _that.quoteUtils.logWarning(`Soup3 Error retrieving crumb! Status: ${_that.quoteUtils.getMessageStatusInfo(message)}`);
+                callback.call(_that, message, null);
+            }
+        });
+    },
+
+    retrieveFinanceData(quoteSymbolsArg, networkSettings, callback) {
         this.quoteUtils.logDebug("retrieveFinanceData");
+
         const _that = this;
 
         if (quoteSymbolsArg.length === 0) {
@@ -689,102 +756,141 @@ YahooFinanceQuoteReader.prototype = {
         }
 
         const requestUrl = this.createYahooQueryUrl(quoteSymbolsArg, this.authParams.crumb);
-        const customUserAgent = networkSettings.customUserAgent;
 
         if (networkSettings.enableCurl) {
-            this.quoteUtils.logDebug("Use curl for retrieveFinanceData");
-
-            const curlArgs = [networkSettings.curlCommand,
-                CURL_SILENT_LOCATION_OPTIONS,
-                CURL_WRITE_OUT_OPTION, CURL_WRITE_OUT_VALUE,
-                CURL_CIPHERS_OPTION, CURL_CIPHERS_VALUE,
-                CURL_HEADER_OPTION, CURL_COOKIE_HEADER_NAME + this.authParams.cookie,
-            ]
-            if (customUserAgent) {
-                curlArgs.push(CURL_HEADER_OPTION, CURL_USER_AGENT_HEADER_NAME + customUserAgent);
-            }
-            curlArgs.push(requestUrl);
-
-            this.quoteUtils.logDebug("Curl retrieveFinanceData arguments: " + curlArgs);
-            Util.spawn_async(curlArgs, function(response) {
-                _that.quoteUtils.logDebug("Curl retrieveFinanceData response: " + response);
-                const curlMessage = new CurlMessage(response);
-                if (_that.quoteUtils.isOkStatus(curlMessage)) {
-                    try {
-                        callback.call(_that, curlMessage.response_body);
-                    } catch (e) {
-                        _that.quoteUtils.logError(e);
-                    }
-                } else if (_that.quoteUtils.isUnauthorizedStatus(curlMessage)) {
-                    _that.quoteUtils.logDebug("Curl Current authorization parameters have expired. Discarding them.");
-                    _that.dropAuthParams();
-                    callback.call(_that, _that.buildErrorResponse(_("Authorization parameters have expired")), true, true);
-                } else {
-                    _that.quoteUtils.logWarning("Curl Error retrieving url " + requestUrl + ". Status: " + _that.quoteUtils.getMessageStatusInfo(curlMessage));
-                    callback.call(_that, _that.buildErrorResponse(_("Yahoo Finance service not available! Status: ") + _that.quoteUtils.getMessageStatusInfo(curlMessage)));
-                }
-            });
+            this.retrieveFinanceDataWithCurl(requestUrl, networkSettings, callback);
+        } else if (IS_SOUP_2) {
+            this.retrieveFinanceDataWithSoup2(requestUrl, networkSettings, callback);
         } else {
-            this.quoteUtils.logDebug("Use libsoup for retrieveFinanceData");
-            const message = Soup.Message.new("GET", requestUrl);
-
-            if (IS_SOUP_2) {
-                if (customUserAgent != null) {
-                    message.request_headers.append(USER_AGENT_HEADER, customUserAgent);
-                }
-
-                this.httpSession.queue_message(message, function(session, message) {
-                    _that.quoteUtils.logDebug("Soup2 Quotes response status: " + _that.quoteUtils.getMessageStatusInfo(message));
-                    if (_that.quoteUtils.isOkStatus(message)) {
-                        try {
-                            callback.call(_that, message.response_body.data.toString());
-                        } catch (e) {
-                            _that.quoteUtils.logError(e);
-                        }
-                    } else if (_that.quoteUtils.isUnauthorizedStatus(message)) {
-                        _that.quoteUtils.logDebug("Current authorization parameters have expired. Discarding them.");
-                        _that.dropAuthParams();
-                        callback.call(_that, _that.buildErrorResponse(_("Authorization parameters have expired")), true, true);
-                    } else {
-                        _that.quoteUtils.logWarning("Error retrieving url " + requestUrl + ". Status: " + _that.quoteUtils.getMessageStatusInfo(message));
-                        callback.call(_that, _that.buildErrorResponse(_("Yahoo Finance service not available! Status: ") + _that.quoteUtils.getMessageStatusInfo(message)));
-                    }
-                });
-            } else {
-                if (customUserAgent != null) {
-                    message.get_request_headers().append(USER_AGENT_HEADER, customUserAgent);
-                }
-
-                this.httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, function(session, result) {
-                    _that.quoteUtils.logDebug("Soup3 Quotes response status: " + _that.quoteUtils.getMessageStatusInfo(message));
-                    if (_that.quoteUtils.isOkStatus(message)) {
-                        try {
-                            const bytes = session.send_and_read_finish(result);
-                            callback.call(_that, ByteArray.toString(bytes.get_data()));
-                        } catch (e) {
-                            _that.quoteUtils.logError(e);
-                        }
-                    } else if (_that.quoteUtils.isUnauthorizedStatus(message)) {
-                        _that.quoteUtils.logDebug("Current authorization parameters have expired. Discarding them.");
-                        _that.dropAuthParams();
-                        callback.call(_that, _that.buildErrorResponse(_("Authorization parameters have expired")), true, true);
-                    } else {
-                        _that.quoteUtils.logWarning("Error retrieving url " + requestUrl + ". Status: " + _that.quoteUtils.getMessageStatusInfo(message));
-                        callback.call(_that, _that.buildErrorResponse(_("Yahoo Finance service not available! Status: ") + _that.quoteUtils.getMessageStatusInfo(message)));
-                    }
-                });
-            }
+            this.retrieveFinanceDataWithSoup3(requestUrl, networkSettings, callback);
         }
     },
 
-    createYahooQueryUrl: function(quoteSymbolsArg, crumb) {
-        const queryUrl = "https://query1.finance.yahoo.com/v7/finance/quote?fields=currency,longName,regularMarketPrice,regularMarketChange,regularMarketChangePercent,regularMarketTime,shortName,symbol&lang=en-US&region=US&formatted=false&symbols=" + quoteSymbolsArg + "&crumb=" + crumb;
-        this.quoteUtils.logDebug("YF query URL: " + queryUrl);
+    retrieveFinanceDataWithCurl(requestUrl, networkSettings, callback) {
+        this.quoteUtils.logDebug("retrieveFinanceDataWithCurl");
+        const _that = this;
+        const customUserAgent = networkSettings.customUserAgent;
+
+        // build argv array to invoke curl directly (avoid shell parsing and bash dependency)
+        const curlArgs = [
+            networkSettings.curlCommand,
+            CURL_SILENT_LOCATION_OPTIONS,
+            CURL_CONNECT_TIMEOUT_OPTION, CURL_CONNECT_TIMEOUT_VALUE,
+            CURL_MAX_TIME_OPTION, CURL_MAX_TIME_VALUE,
+            CURL_WRITE_OUT_OPTION, CURL_WRITE_OUT_VALUE,
+            CURL_CIPHERS_OPTION, CURL_CIPHERS_VALUE,
+            CURL_HEADER_OPTION, CURL_COOKIE_HEADER_NAME + this.authParams.cookie
+        ];
+        if (customUserAgent) {
+            curlArgs.push(CURL_HEADER_OPTION, CURL_USER_AGENT_HEADER_NAME + customUserAgent);
+        }
+        curlArgs.push(requestUrl);
+        this.quoteUtils.logDebug(`retrieveFinanceDataWithCurl - arguments: ${JSON.stringify(curlArgs)}`);
+
+        let subProcess = spawnCommandLineAsyncIO("", (stdout, stderr, exitCode) => {
+            _that.quoteUtils.logDebug(`retrieveFinanceDataWithCurl - exitCode: ${exitCode}. stdout: ${stdout}. stderr: ${stderr}`);
+            if (exitCode === 0) {
+                const curlMessage = new CurlMessage(stdout);
+                if (_that.quoteUtils.isOkStatus(curlMessage)) {
+                    try {
+                        callback.call(_that, curlMessage.response_body);
+                    } catch (err) {
+                        _that.quoteUtils.logException("Curl Error processing finance data", err);
+                    }
+                } else if (_that.quoteUtils.isUnauthorizedStatus(curlMessage)) {
+                    _that.quoteUtils.logDebug("retrieveFinanceDataWithCurl - current authorization parameters have expired. Discarding them.");
+                    _that.dropAuthParams();
+                    callback.call(_that, _that.buildErrorResponse(_("Authorization parameters have expired")), true, true);
+                } else {
+                    _that.quoteUtils.logWarning(`Curl Error retrieving url ${requestUrl}. Status: ${_that.quoteUtils.getMessageStatusInfo(curlMessage)}`);
+                    callback.call(_that, _that.buildErrorResponse(_("Yahoo Finance service not available! Status: ") + _that.quoteUtils.getMessageStatusInfo(curlMessage)));
+                }
+            } else {
+                _that.quoteUtils.logError(`Curl retrieveFinanceData error: Exit code: ${exitCode}. Out: ${stdout ? stdout.trim() : ""}. Err: ${stderr ? stderr.trim() : ""}`);
+                callback.call(_that, _that.buildErrorResponse(_("Something went wrong retrieving Yahoo Finance data") + ". " + stderr));
+            }
+
+            try {
+                subProcess.send_signal(9);
+            } catch (err) {
+                _that.quoteUtils.logDebug(`retrieveFinanceDataWithCurl - failed to send signal to subprocess: ${err}`);
+            }
+        }, { argv: curlArgs });
+    },
+
+    retrieveFinanceDataWithSoup2(requestUrl, networkSettings, callback) {
+        this.quoteUtils.logDebug("retrieveFinanceDataWithSoup2");
+        const _that = this;
+        const customUserAgent = networkSettings.customUserAgent;
+        const requestMessage = Soup.Message.new("GET", requestUrl);
+
+        if (customUserAgent != null) {
+            requestMessage.request_headers.append(USER_AGENT_HEADER, customUserAgent);
+        }
+
+        this.httpSession.queue_message(requestMessage, (session, message) => {
+            _that.quoteUtils.logDebug(`retrieveFinanceDataWithSoup2 - response status: ${_that.quoteUtils.getMessageStatusInfo(message)}`);
+            if (_that.quoteUtils.isOkStatus(message)) {
+                try {
+                    callback.call(_that, message.response_body.data.toString());
+                } catch (err) {
+                    _that.quoteUtils.logException("Soup2 Error processing finance data", err);
+                }
+            } else if (_that.quoteUtils.isUnauthorizedStatus(message)) {
+                _that.quoteUtils.logDebug("retrieveFinanceDataWithSoup2 - current authorization parameters have expired. Discarding them.");
+                _that.dropAuthParams();
+                callback.call(_that, _that.buildErrorResponse(_("Authorization parameters have expired")), true, true);
+            } else {
+                _that.quoteUtils.logWarning(`Soup2 Error retrieving url ${requestUrl}. Status: ${_that.quoteUtils.getMessageStatusInfo(message)}`);
+                callback.call(_that, _that.buildErrorResponse(_("Yahoo Finance service not available! Status: ") + _that.quoteUtils.getMessageStatusInfo(message)));
+            }
+        });
+    },
+
+    retrieveFinanceDataWithSoup3(requestUrl, networkSettings, callback) {
+        this.quoteUtils.logDebug("retrieveFinanceDataWithSoup3");
+        const _that = this;
+        const customUserAgent = networkSettings.customUserAgent;
+        const message = Soup.Message.new("GET", requestUrl);
+
+        if (customUserAgent != null) {
+            message.get_request_headers().append(USER_AGENT_HEADER, customUserAgent);
+        }
+
+        this.httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, null, (session, result) => {
+            _that.quoteUtils.logDebug(`retrieveFinanceDataWithSoup3 - response status: ${_that.quoteUtils.getMessageStatusInfo(message)}`);
+            if (_that.quoteUtils.isOkStatus(message)) {
+                try {
+                    const bytes = session.send_and_read_finish(result);
+                    callback.call(_that, ByteArray.toString(bytes.get_data()));
+                } catch (err) {
+                    _that.quoteUtils.logException("Soup3 Error processing finance data", err);
+                }
+            } else if (_that.quoteUtils.isUnauthorizedStatus(message)) {
+                _that.quoteUtils.logDebug("retrieveFinanceDataWithSoup3 - current authorization parameters have expired. Discarding them.");
+                _that.dropAuthParams();
+                callback.call(_that, _that.buildErrorResponse(_("Authorization parameters have expired")), true, true);
+            } else {
+                _that.quoteUtils.logWarning(`Soup3 Error retrieving url ${requestUrl}. Status: ${_that.quoteUtils.getMessageStatusInfo(message)}`);
+                callback.call(_that, _that.buildErrorResponse(_("Yahoo Finance service not available! Status: ") + _that.quoteUtils.getMessageStatusInfo(message)));
+            }
+        });
+    },
+
+    createYahooQueryUrl(quoteSymbolsArg, crumb) {
+        const queryUrl = `${YF_QUOTE_URL}?lang=en-US&region=US&formatted=false&fields=${YF_QUOTE_FIELDS}&symbols=${encodeURIComponent(quoteSymbolsArg)}&crumb=${crumb}`;
+        this.quoteUtils.logDebug(`createYahooQueryUrl - constructed URL: ${queryUrl}`);
         return queryUrl;
     },
 
-    buildErrorResponse: function(errorMsg) {
-        return ERROR_RESPONSE_BEGIN + errorMsg + ERROR_RESPONSE_END;
+    buildErrorResponse(errorMsg) {
+        return JSON.stringify(
+            {
+                quoteResponse: {
+                    result: [],
+                    error: (errorMsg ? errorMsg.trim() : ABSENT)
+                }
+            });
     }
 }
 
@@ -794,7 +900,7 @@ function QuotesTable(deskletId) {
 
 QuotesTable.prototype = {
 
-    init: function(deskletId) {
+    init(deskletId) {
         this.quoteUtils = new YahooFinanceQuoteUtils(deskletId);
         this.el = new St.Table({
             homogeneous: false
@@ -835,40 +941,75 @@ QuotesTable.prototype = {
         EQUALS: "\u25B6"
     },
 
-    renderTable: function(quotes, symbolCustomizationMap, settings) {
-        for (let rowIndex = 0, l = quotes.length; rowIndex < l; rowIndex++) {
+    renderTable(quotes, symbolCustomizationMap, settings) {
+        for (let rowIndex = 0, l = quotes.length;rowIndex < l;rowIndex++) {
             this.renderTableRow(quotes[rowIndex], symbolCustomizationMap, settings, rowIndex);
         }
     },
 
-    renderTableRow: function(quote, symbolCustomizationMap, settings, rowIndex) {
+    renderTableRow(quote, symbolCustomizationMap, settings, rowIndex) {
         let cellContents = [];
         const symbol = quote.symbol;
         const symbolCustomization = symbolCustomizationMap.get(symbol);
 
-        if (settings.changeIcon) {
-            cellContents.push(this.createPercentChangeIcon(quote, settings));
+        const currentMarketState = this.determineCurrentMarketState(quote);
+        const includePrePostMarketData = this.includePrePostMarketData(settings, currentMarketState);
+
+        let marketState;
+        if (includePrePostMarketData) {
+            marketState = currentMarketState;
+        } else {
+            marketState = DEFAULT_MARKET_STATE;
         }
+
+        if (settings.changeIcon) {
+            cellContents.push(this.createPercentChangeIcon(quote, settings, marketState));
+        }
+
         if (settings.quoteName) {
             cellContents.push(this.createQuoteLabel(quote.displayName, symbolCustomization, settings.quoteLabelWidth, settings));
         }
         if (settings.quoteSymbol) {
             cellContents.push(this.createQuoteLabel(symbol, symbolCustomization, settings.quoteSymbolWidth, settings));
         }
-        if (settings.marketPrice) {
-            cellContents.push(this.createMarketPriceLabel(quote, settings));
-        }
-        if (settings.absoluteChange) {
-            cellContents.push(this.createAbsoluteChangeLabel(quote, settings));
-        }
-        if (settings.percentChange) {
-            cellContents.push(this.createPercentChangeLabel(quote, settings));
-        }
-        if (settings.tradeTime) {
-            cellContents.push(this.createTradeTimeLabel(quote, settings));
+
+        // keep regular unless values should be replaced with pre-/post market values
+        if (includePrePostMarketData && settings.prePostMarketDataOption !== "replace") {
+            marketState = DEFAULT_MARKET_STATE;
         }
 
-        for (let columnIndex = 0; columnIndex < cellContents.length; ++columnIndex) {
+        if (settings.marketPrice) {
+            cellContents.push(this.createMarketPriceLabel(quote, settings, marketState));
+        }
+        if (settings.absoluteChange) {
+            cellContents.push(this.createAbsoluteChangeLabel(quote, settings, marketState));
+        }
+        if (settings.percentChange) {
+            cellContents.push(this.createPercentChangeLabel(quote, settings, marketState));
+        }
+        if (settings.tradeTime) {
+            cellContents.push(this.createTradeTimeLabel(quote, settings, marketState));
+        }
+
+        // render extra columns for pre/post
+        if (includePrePostMarketData && settings.prePostMarketDataOption === "separate") {
+            marketState = currentMarketState;
+
+            if (settings.marketPrice) {
+                cellContents.push(this.createMarketPriceLabel(quote, settings, marketState));
+            }
+            if (settings.absoluteChange) {
+                cellContents.push(this.createAbsoluteChangeLabel(quote, settings, marketState));
+            }
+            if (settings.percentChange) {
+                cellContents.push(this.createPercentChangeLabel(quote, settings, marketState));
+            }
+            if (settings.tradeTime) {
+                cellContents.push(this.createTradeTimeLabel(quote, settings, marketState));
+            }
+        }
+
+        for (let columnIndex = 0;columnIndex < cellContents.length;++columnIndex) {
             this.el.add(cellContents[columnIndex], {
                 row: rowIndex,
                 col: columnIndex
@@ -876,7 +1017,44 @@ QuotesTable.prototype = {
         }
     },
 
-    createQuoteLabel: function(labelText, symbolCustomization, width, settings) {
+    determineCurrentMarketState(quote) {
+        if (this.quoteUtils.existsProperty(quote, "hasPrePostMarketData") && quote.hasPrePostMarketData) {
+            // since "regularMarket" fields are always expected, this is the default 
+            let marketState = "REGULAR";
+            if (this.quoteUtils.existsProperty(quote, "marketState")) {
+                marketState = quote.marketState;
+            }
+            
+            // check first if market is currently open
+            if (marketState === "REGULAR") {
+                return DEFAULT_MARKET_STATE;
+            }
+
+            // if market is in a "pre"ish state and there are pre-market data present, then assume that market will open (soon)
+            if (marketState.includes("PRE") && this.quoteUtils.existsProperty(quote, "preMarketTime")) {
+                return "pre";
+            }
+
+            // if market is in a "post"ish state and there are post-market data present, then assume that market has (recently) closed
+            if (marketState.includes("POST") && this.quoteUtils.existsProperty(quote, "postMarketTime")) {
+                return "post";
+            }
+            
+            // other market states such as CLOSED (e.g. on weekends) are ignored and treated as regular
+        }
+
+        return DEFAULT_MARKET_STATE;
+    },
+
+    includePrePostMarketData(settings, currentMarketState) {
+        return settings.prePostMarketDataOption !== "never" && currentMarketState !== DEFAULT_MARKET_STATE;
+    },
+
+    buildPrePostMarketProperty(marketState, suffix) {
+        return marketState + suffix;
+    },
+
+    createQuoteLabel(labelText, symbolCustomization, width, settings) {
         const label = new St.Label({
             text: labelText,
             style_class: "quotes-label",
@@ -887,33 +1065,35 @@ QuotesTable.prototype = {
         if (settings.linkQuote) {
             const symbolButton = new St.Button();
             symbolButton.add_actor(label);
-            symbolButton.connect("clicked", Lang.bind(this, function() {
-                Gio.app_info_launch_default_for_uri(YF_QUOTE_PAGE_URL + symbolCustomization.symbol, global.create_app_launch_context());
-            }));
+            symbolButton.connect("clicked", () => {
+                Gio.app_info_launch_default_for_uri(YF_QUOTE_WEBPAGE_URL + encodeURIComponent(symbolCustomization.symbol), global.create_app_launch_context());
+            });
             return symbolButton;
         } else {
             return label;
         }
     },
 
-    createMarketPriceLabel: function(quote, settings) {
+    createMarketPriceLabel(quote, settings, marketState) {
         let currencySymbol = "";
         if (settings.currencySymbol && this.quoteUtils.existsProperty(quote, "currency")) {
             currencySymbol = this.currencyCodeToSymbolMap[quote.currency] || quote.currency;
         }
+        const marketPriceProperty = this.buildPrePostMarketProperty(marketState, "MarketPrice");
         return new St.Label({
-            text: currencySymbol + (this.quoteUtils.existsProperty(quote, "regularMarketPrice")
-                ? this.roundAmount(quote.regularMarketPrice, settings.decimalPlaces, settings.strictRounding)
+            text: currencySymbol + (this.quoteUtils.existsProperty(quote, marketPriceProperty)
+                ? this.roundAmount(quote[marketPriceProperty], settings.decimalPlaces, settings.strictRounding)
                 : ABSENT),
             style_class: "quotes-number",
-            style: this.buildFontStyle(settings)
+            style: this.buildFontStyle(settings, marketState)
         });
     },
 
-    createAbsoluteChangeLabel: function(quote, settings) {
+    createAbsoluteChangeLabel(quote, settings, marketState) {
+        const marketChangeProperty = this.buildPrePostMarketProperty(marketState, "MarketChange");
         let absoluteChangeText = "";
-        if (this.quoteUtils.existsProperty(quote, "regularMarketChange")) {
-            let absoluteChange = this.roundAmount(quote.regularMarketChange, settings.decimalPlaces, settings.strictRounding);
+        if (this.quoteUtils.existsProperty(quote, marketChangeProperty)) {
+            let absoluteChange = this.roundAmount(quote[marketChangeProperty], settings.decimalPlaces, settings.strictRounding);
             if (absoluteChange > 0.0) {
                 absoluteChangeText = "+";
             }
@@ -925,14 +1105,15 @@ QuotesTable.prototype = {
         return new St.Label({
             text: absoluteChangeText,
             style_class: "quotes-number",
-            style: this.buildFontStyle(settings)
+            style: this.buildFontStyle(settings, marketState)
         });
     },
 
-    createPercentChangeIcon: function(quote, settings) {
-        const percentChange = this.quoteUtils.existsProperty(quote, "regularMarketChangePercent")
-            ? parseFloat(quote.regularMarketChangePercent)
-            : 0.00;
+    createPercentChangeIcon(quote, settings, marketState) {
+        const marketChangePercentProperty = this.buildPrePostMarketProperty(marketState, "MarketChangePercent");
+        const percentChange = this.quoteUtils.existsProperty(quote, marketChangePercentProperty)
+            ? parseFloat(quote[marketChangePercentProperty])
+            : 0.0;
         let iconText = this.quoteChangeSymbolMap["EQUALS"];
         let iconColor = settings.unchangedTrendColor;
 
@@ -946,14 +1127,15 @@ QuotesTable.prototype = {
 
         return new St.Label({
             text: iconText,
-            style: this.buildColorAttribute(iconColor, null) + this.buildFontSizeAttribute(settings.fontSize)
+            style: this.buildFontStyle(settings, marketState, iconColor)
         });
     },
 
-    createPercentChangeLabel: function(quote, settings) {
+    createPercentChangeLabel(quote, settings, marketState) {
+        const marketChangePercentProperty = this.buildPrePostMarketProperty(marketState, "MarketChangePercent");
         let labelColor = settings.fontColor;
-        if (settings.colorPercentChange && this.quoteUtils.existsProperty(quote, "regularMarketChangePercent")) {
-            const percentageChange = parseFloat(quote.regularMarketChangePercent);
+        if (settings.colorPercentChange && this.quoteUtils.existsProperty(quote, marketChangePercentProperty)) {
+            const percentageChange = parseFloat(quote[marketChangePercentProperty]);
             if (percentageChange > 0) {
                 labelColor = settings.uptrendChangeColor;
             } else if (percentageChange < 0) {
@@ -964,15 +1146,15 @@ QuotesTable.prototype = {
         }
 
         return new St.Label({
-            text: this.quoteUtils.existsProperty(quote, "regularMarketChangePercent")
-                ? (this.roundAmount(quote.regularMarketChangePercent, 2, settings.strictRounding) + "%")
+            text: this.quoteUtils.existsProperty(quote, marketChangePercentProperty)
+                ? (this.roundAmount(quote[marketChangePercentProperty], 2, settings.strictRounding) + "%")
                 : ABSENT,
             style_class: "quotes-number",
-            style: this.buildColorAttribute(labelColor, null) + this.buildFontSizeAttribute(settings.fontSize)
+            style: this.buildFontStyle(settings, marketState, labelColor)
         });
     },
 
-    roundAmount: function(amount, maxDecimals, strictRounding) {
+    roundAmount(amount, maxDecimals, strictRounding) {
         if (maxDecimals > -1) {
             if (strictRounding) {
                 return amount.toFixed(maxDecimals);
@@ -985,14 +1167,14 @@ QuotesTable.prototype = {
         return amount;
     },
 
-    isToday: function(date) {
+    isToday(date) {
         const today = new Date();
         return date.getFullYear() === today.getFullYear()
             && date.getMonth() === today.getMonth()
             && date.getDate() === today.getDate();
     },
 
-    formatTime: function(unixTimestamp, settings) {
+    formatTime(unixTimestamp, settings) {
         const ts = new Date(unixTimestamp * 1000);
         let tsFormat = "";
 
@@ -1006,43 +1188,57 @@ QuotesTable.prototype = {
                     minute: "numeric"
                 });
             }
+        } else if (settings.customDateFormat) {
+            tsFormat = ts.toLocaleFormat(settings.customDateFormat);
         } else {
-            if (settings.customDateFormat) {
-                tsFormat = ts.toLocaleFormat(settings.customDateFormat);
-            } else {
-                tsFormat = ts.toLocaleDateString(undefined, {
-                    month: "numeric",
-                    day: "numeric"
-                });
-            }
+            tsFormat = ts.toLocaleDateString(undefined, {
+                month: "numeric",
+                day: "numeric"
+            });
         }
 
         return tsFormat;
     },
 
-    createTradeTimeLabel: function(quote, settings) {
+    createTradeTimeLabel(quote, settings, marketState) {
+        const tradeTimeProperty = this.buildPrePostMarketProperty(marketState, "MarketTime");
+
         return new St.Label({
-            text: this.quoteUtils.existsProperty(quote, "regularMarketTime")
-                ? this.formatTime(quote.regularMarketTime, settings)
+            text: this.quoteUtils.existsProperty(quote, tradeTimeProperty)
+                ? this.formatTime(quote[tradeTimeProperty], settings)
                 : ABSENT,
             style_class: "quotes-number",
-            style: this.buildFontStyle(settings)
+            style: this.buildFontStyle(settings, marketState)
         });
     },
 
-    buildFontStyle(settings) {
-        return this.buildColorAttribute(settings.fontColor, null) + this.buildFontSizeAttribute(settings.fontSize);
+
+    buildFontStyle(settings, marketState, color = settings.fontColor) {
+        let style = this.buildColorAttribute(color, null)
+            + this.buildFontSizeAttribute(settings.fontSize);
+
+        if (marketState !== DEFAULT_MARKET_STATE) {
+            const prePostMarketDataStyle = settings.fontStylePrePostMarketData;
+            if (prePostMarketDataStyle.includes("italic")) {
+                style += this.buildFontStyleAttribute("italic");
+            }
+            if (prePostMarketDataStyle.includes("bold")) {
+                style += this.buildFontWeightAttribute("bold");
+            }
+        }
+
+        return style;
     },
 
     buildCustomStyle(settings, symbolCustomization) {
         return this.buildColorAttribute(settings.fontColor, symbolCustomization.color)
             + this.buildFontSizeAttribute(settings.fontSize)
             + this.buildFontStyleAttribute(symbolCustomization.style)
-            + this.buildFontWeightAttribute(symbolCustomization.weight)
+            + this.buildFontWeightAttribute(symbolCustomization.weight);
     },
 
     buildColorAttribute(globalColor, symbolColor) {
-        return "color: " + (symbolColor !== null ? symbolColor : globalColor) + "; ";
+        return "color: " + (symbolColor != null ? symbolColor : globalColor) + "; ";
     },
 
     buildFontSizeAttribute(fontSize) {
@@ -1065,15 +1261,16 @@ function StockQuoteDesklet(metadata, deskletId) {
 StockQuoteDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
 
-    init: function(metadata, deskletId) {
+    init(metadata, deskletId) {
         Desklet.Desklet.prototype._init.call(this, metadata, deskletId);
 
         this.quoteUtils = new YahooFinanceQuoteUtils(deskletId);
-        this.quoteUtils.logDebug("init desklet, id: " + deskletId);
+        this.quoteUtils.logDebug(`init - id: ${deskletId}`);
         this.metadata = metadata;
         this.id = deskletId;
         this.updateId = 0;
-        this.updateInProgress = false;
+        // no timer needed yet
+        this.allowNewTimer = false;
         this.authAttempts = 0;
         this.quoteReader = new YahooFinanceQuoteReader(deskletId);
         // cache the last quotes response
@@ -1093,7 +1290,7 @@ StockQuoteDesklet.prototype = {
         this.onQuotesListChanged();
     },
 
-    loadSettings: function() {
+    loadSettings() {
         this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, this.id);
         this.settings.bind("height", "height", this.onDisplaySettingChanged);
         this.settings.bind("width", "width", this.onDisplaySettingChanged);
@@ -1127,9 +1324,11 @@ StockQuoteDesklet.prototype = {
         this.settings.bind("showPercentChange", "showPercentChange", this.onRenderSettingsChanged);
         this.settings.bind("colorPercentChange", "colorPercentChange", this.onRenderSettingsChanged);
         this.settings.bind("showTradeTime", "showTradeTime", this.onRenderSettingsChanged);
+        this.settings.bind("includePrePostMarketDataOption", "includePrePostMarketDataOption", this.onRenderSettingsChanged);
         this.settings.bind("fontColor", "fontColor", this.onRenderSettingsChanged);
         this.settings.bind("scaleFontSize", "scaleFontSize", this.onRenderSettingsChanged);
         this.settings.bind("fontScale", "fontScale", this.onRenderSettingsChanged);
+        this.settings.bind("fontStylePrePostMarketData", "fontStylePrePostMarketData", this.onRenderSettingsChanged);
         this.settings.bind("uptrendChangeColor", "uptrendChangeColor", this.onRenderSettingsChanged);
         this.settings.bind("downtrendChangeColor", "downtrendChangeColor", this.onRenderSettingsChanged);
         this.settings.bind("unchangedTrendColor", "unchangedTrendColor", this.onRenderSettingsChanged);
@@ -1141,7 +1340,7 @@ StockQuoteDesklet.prototype = {
         this.settings.bind("curlCommand", "curlCommand"); // no callback, manual refresh required
     },
 
-    getQuoteDisplaySettings: function(quotes) {
+    getQuoteDisplaySettings(quotes) {
         return {
             "changeIcon": this.showChangeIcon,
             "quoteName": this.showQuoteName,
@@ -1155,6 +1354,7 @@ StockQuoteDesklet.prototype = {
             "percentChange": this.showPercentChange,
             "colorPercentChange": this.colorPercentChange,
             "tradeTime": this.showTradeTime,
+            "prePostMarketDataOption": this.includePrePostMarketDataOption,
             "decimalPlaces": this.roundNumbers ? this.decimalPlaces : -1,
             "strictRounding": this.roundNumbers && this.strictRounding,
             "use24HourTime": this.use24HourTime,
@@ -1162,21 +1362,22 @@ StockQuoteDesklet.prototype = {
             "customDateFormat": this.customDateFormat,
             "fontColor": this.fontColor,
             "fontSize": this.scaleFontSize ? Math.round(BASE_FONT_SIZE * this.fontScale * global.ui_scale) : -1,
+            "fontStylePrePostMarketData": this.fontStylePrePostMarketData,
             "uptrendChangeColor": this.uptrendChangeColor,
             "downtrendChangeColor": this.downtrendChangeColor,
             "unchangedTrendColor": this.unchangedTrendColor,
-            "quoteSymbolWidth": Math.max.apply(Math, quotes.map((quote) => quote.symbol.length)),
-            "quoteLabelWidth": Math.max.apply(Math, quotes.map((quote) => quote.displayName.length)) / 2 + 2
+            "quoteSymbolWidth": Math.max(...quotes.map((quote) => quote.symbol.length)),
+            "quoteLabelWidth": Math.max(...quotes.map((quote) => quote.displayName.length)) / 2 + 2
         }
     },
 
-    getNetworkSettings: function() {
+    getNetworkSettings() {
         let curlCommandEnabledAndExists = false;
         if (this.enableCurl) {
             if (this.curlCommand && Gio.file_new_for_path(this.curlCommand).query_exists(null)) {
                 curlCommandEnabledAndExists = true;
             } else {
-                this.quoteUtils.logWarning("Invalid path [" + this.curlCommand + "] configured for curl executable. Curl will not be used.");
+                this.quoteUtils.logWarning(`Invalid path [${this.curlCommand}] configured for curl executable. Curl will not be used.`);
             }
         }
 
@@ -1189,7 +1390,7 @@ StockQuoteDesklet.prototype = {
         }
     },
 
-    createLastUpdateLabel: function(lastUpdated, settings) {
+    createLastUpdateLabel(lastUpdated, settings) {
         const label = new St.Label({
             text: _("Updated at ") + this.formatCurrentTimestamp(lastUpdated, settings),
             style_class: "quotes-last-update",
@@ -1200,16 +1401,16 @@ StockQuoteDesklet.prototype = {
         if (this.manualDataUpdate) {
             const updateButton = new St.Button();
             updateButton.add_actor(label);
-            updateButton.connect("clicked", Lang.bind(this, function() {
+            updateButton.connect("clicked", () => {
                 this.onManualRefreshRequested();
-            }));
+            });
             return updateButton;
         } else {
             return label;
         }
     },
 
-    formatCurrentTimestamp: function(lastUpdated, settings) {
+    formatCurrentTimestamp(lastUpdated, settings) {
         if (settings.customTimeFormat) {
             return lastUpdated.toLocaleFormat(settings.customTimeFormat);
         } else {
@@ -1222,7 +1423,7 @@ StockQuoteDesklet.prototype = {
         }
     },
 
-    createErrorLabel: function(responseError) {
+    createErrorLabel(responseError) {
         const errorMsg = _("Error: ") + JSON.stringify(responseError);
         this.quoteUtils.logWarning(errorMsg);
 
@@ -1234,18 +1435,18 @@ StockQuoteDesklet.prototype = {
         clutterText.line_wrap = true;
         clutterText.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
         clutterText.ellipsize = Pango.EllipsizeMode.NONE;
-        
+
         return errorLabel;
     },
 
     // called on events that change the desklet window
-    onDisplaySettingChanged: function() {
+    onDisplaySettingChanged() {
         this.quoteUtils.logDebug("onDisplaySettingChanged");
         this.mainBox.set_size(this.width, this.height);
         this.setDeskletStyle();
     },
 
-    setDeskletStyle: function() {
+    setDeskletStyle() {
         let style = "background-color: " + this.buildBackgroundColor(this.backgroundColor, this.transparency) + "; ";
 
         let effectiveBorderRadius = this.cornerRadius;
@@ -1261,55 +1462,64 @@ StockQuoteDesklet.prototype = {
         this.mainBox.style = style;
     },
 
-    buildBackgroundColor: function(rgbColorString, transparencyFactor) {
+    buildBackgroundColor(rgbColorString, transparencyFactor) {
         // parse RGB values between "rgb(...)"
-        const rgb = rgbColorString.match(/\((.*?)\)/)[1].split(",");
-        return "rgba(" + parseInt(rgb[0]) + "," + parseInt(rgb[1]) + "," + parseInt(rgb[2]) + "," + transparencyFactor + ")";
+        const matcher = rgbColorString && rgbColorString.match(/\((.*?)\)/);
+        if (matcher) {
+            const components = matcher[1].split(",").map((s) => parseInt(s, 10));
+            // expect 3 int numbers
+            if (components.length === 3 && !components.some(isNaN)) {
+                return `rgba(${components[0]},${components[1]},${components[2]},${transparencyFactor})`;
+            }
+        }
+
+        // fallback to default background color
+        return `rgba(0,0,0,${transparencyFactor})`;
     },
 
     // called on events that change the quotes data layout (sorting, show/hide fields, text color, etc)
-    onRenderSettingsChanged: function() {
+    onRenderSettingsChanged() {
         this.quoteUtils.logDebug("onRenderSettingsChanged");
         this.render();
     },
 
     // called on events that change the way YFQ data are fetched (data refresh interval)
-    onDataFetchSettingsChanged: function() {
+    onDataFetchSettingsChanged() {
         this.quoteUtils.logDebug("onDataFetchSettingsChanged");
-        this.removeUpdateTimer();
-        this.setUpdateTimer();
+        this.replaceUpdateTimer();
     },
 
     // called when user requests a data refresh (by button from settings, or by link on last-update-timestamp)
-    onManualRefreshRequested: function() {
+    onManualRefreshRequested() {
         this.quoteUtils.logDebug("onManualRefreshRequested");
         this.onQuotesListChanged();
     },
 
     // called when user applies network settings
-    onNetworkSettingsChanged: function() {
+    onNetworkSettingsChanged() {
         this.quoteUtils.logDebug("onNetworkSettingsChanged");
 
         // reset auth state
         this.authAttempts = 0;
         this.quoteReader.dropAuthParams();
         this.saveAuthorizationParameters(true);
-        this.quoteUtils.logInfo("Dropped all autborization parameters");
+        this.quoteUtils.logInfo("Dropped all authorization parameters");
 
-        this.removeUpdateTimer();
-        this.setUpdateTimer(true);
+        this.replaceUpdateTimer(true);
     },
 
     // called on events that change the quotes data (quotes list)
     // BEWARE: DO NOT use this function as callback in settings.bind() - otherwise multiple YFQ requests are fired, and multiple timers are created!
-    onQuotesListChanged: function() {
+    onQuotesListChanged() {
         this.quoteUtils.logDebug("onQuotesListChanged");
 
-        // if a YFQ query is currently running, do short-circuit here
-        if (this.updateInProgress) {
-            this.quoteUtils.logDebug("Data refresh in progress");
+        // if no timer is active, then another data refresh might already be in progress
+        if (this.allowNewTimer) {
+            this.quoteUtils.logDebug(`onQuotesListChanged - data refresh in progress, updateId (expect 0): ${this.updateId}`);
             return;
         }
+
+        // stop timer, a new one will be created in fetchFinanceDataAndRender()
         this.removeUpdateTimer();
 
         const quoteSymbolsArg = this.quoteUtils.buildSymbolsArgument(this.quoteSymbolsText);
@@ -1322,22 +1532,22 @@ StockQuoteDesklet.prototype = {
                 this.fetchCookieAndRender(quoteSymbolsArg, networkSettings);
             } else {
                 // else give up on authorization and clear all
-                this.quoteUtils.logDebug("No more auth attempts left, dropping all auth params");
+                this.quoteUtils.logDebug("onQuotesListChanged - no more auth attempts left, dropping all auth params");
                 this.quoteReader.dropAuthParams();
                 this.saveAuthorizationParameters(true);
             }
         } catch (err) {
-            this.quoteUtils.logError("Cannot fetch quotes information for symbol %s due to error: %s".format(quoteSymbolsArg, err));
+            this.quoteUtils.logException("Cannot fetch quotes information for symbol " + quoteSymbolsArg, err);
             this.processFailedFetch(err);
         }
     },
 
-    fetchFinanceDataAndRender: function(quoteSymbolsArg, networkSettings) {
-        this.quoteUtils.logDebug("fetchFinanceDataAndRender. quotes: " + quoteSymbolsArg + ", network settings: " + Object.entries(networkSettings));
+    fetchFinanceDataAndRender(quoteSymbolsArg, networkSettings) {
+        this.quoteUtils.logDebug(`fetchFinanceDataAndRender - quotes: ${quoteSymbolsArg}, network settings: ${Object.entries(networkSettings)}`);
         const _that = this;
 
-        this.quoteReader.retrieveFinanceData(quoteSymbolsArg, networkSettings, function(response, instantTimer = false, dropCachedAuthParams = false) {
-            _that.quoteUtils.logDebug("YF query response: " + response);
+        this.quoteReader.retrieveFinanceData(quoteSymbolsArg, networkSettings, (response, instantTimer = false, dropCachedAuthParams = false) => {
+            _that.quoteUtils.logDebug(`fetchFinanceDataAndRender - response: ${response}`);
             if (dropCachedAuthParams) {
                 _that.saveAuthorizationParameters(true);
             }
@@ -1350,22 +1560,22 @@ StockQuoteDesklet.prototype = {
                     lastUpdated: new Date()
                 }
 
-                _that.setUpdateTimer(instantTimer);
+                _that.replaceUpdateTimer(instantTimer);
                 _that.render();
-            } catch (e) {
-                _that.quoteUtils.logError("Query response is not valid JSON: " + e);
+            } catch (err) {
+                _that.quoteUtils.logException("Query response is not valid JSON", err);
                 // set current quotes list to pass check that quotes list has not changed in render()
-                _that.processFailedFetch(e, quoteSymbolsArg);
+                _that.processFailedFetch(err, quoteSymbolsArg);
             }
         });
     },
 
-    fetchCookieAndRender: function(quoteSymbolsArg, networkSettings) {
-        this.quoteUtils.logDebug("fetchCookieAndRender. quotes: " + quoteSymbolsArg + ", network settings: " + Object.entries(networkSettings));
+    fetchCookieAndRender(quoteSymbolsArg, networkSettings) {
+        this.quoteUtils.logDebug(`fetchCookieAndRender - quotes: ${quoteSymbolsArg}, network settings: ${Object.entries(networkSettings)}`);
         const _that = this;
 
-        this.quoteReader.retrieveCookie(networkSettings, function(authResponseMessage, responseBody) {
-            _that.quoteUtils.logDebug("Cookie response body: " + responseBody);
+        this.quoteReader.retrieveCookie(networkSettings.customUserAgent, (authResponseMessage, responseBody) => {
+            _that.quoteUtils.logDebug(`fetchCookieAndRender - cookie response body: ${responseBody}`);
             if (_that.quoteReader.existsCookieInJar(AUTH_COOKIE)) {
                 _that.fetchCrumbAndRender(quoteSymbolsArg, networkSettings);
             } else if (_that.quoteReader.existsCookieInJar(CONSENT_COOKIE)) {
@@ -1378,23 +1588,27 @@ StockQuoteDesklet.prototype = {
         });
     },
 
-    processConsentAndRender: function(authResponseMessage, consentPage, quoteSymbolsArg, networkSettings) {
+    processConsentAndRender(authResponseMessage, consentPage, quoteSymbolsArg, networkSettings) {
         this.quoteUtils.logDebug("processConsentAndRender");
         const _that = this;
-        const formElementRegex = /(<form method="post")(.*)(action="">)/;
-        const formInputRegex = /(<input type="hidden" name=")(.*?)(" value=")(.*?)(">)/g;
+        const CONSENT_FORM_PATTERN = /(<form method="post")(.*)(action="">)/;
+        const HIDDEN_FORM_FIELDS_PATTERN = /(<input type="hidden" name=")(.*?)(" value=")(.*?)(">)/g;
+        const MAX_FORM_FIELDS = 20;  // limit form field evaluation to prevent infinite loop
 
         let consentFormFields = "";
-        if (formElementRegex.test(consentPage)) {
+        if (CONSENT_FORM_PATTERN.test(consentPage)) {
             let maxFields = 0;
             let hiddenField;
-            while (maxFields < 20 && (hiddenField = formInputRegex.exec(consentPage)) !== null) {
+            // find all hidden form fields and concatenate them as parameters
+            while (maxFields < MAX_FORM_FIELDS && (hiddenField = HIDDEN_FORM_FIELDS_PATTERN.exec(consentPage)) != null) {
                 consentFormFields = consentFormFields + hiddenField[2] + "=" + hiddenField[4] + "&";
                 maxFields++;
             }
+            // append parameter to reject consent
             consentFormFields += "reject=reject";
 
-            this.quoteReader.postConsent(networkSettings, consentFormFields, function(consentResponseMessage) {
+            // submit consent form, expect to receive authorization cookie in response
+            this.quoteReader.postConsent(networkSettings.customUserAgent, consentFormFields, (consentResponseMessage) => {
                 if (_that.quoteReader.existsCookieInJar(AUTH_COOKIE)) {
                     _that.fetchCrumbAndRender(quoteSymbolsArg, networkSettings);
                 } else {
@@ -1406,11 +1620,11 @@ StockQuoteDesklet.prototype = {
         } else {
             this.quoteUtils.logWarning("Consent form not detected");
             this.authAttempts++;
-            this.processFailedFetch(_("Consent processing not completed! Unable to fetch quotes data. Status: ") + this.quoteUtils.getMessageStatusInfo(authResponseMessage));;
+            this.processFailedFetch(_("Consent processing not completed! Unable to fetch quotes data. Status: ") + this.quoteUtils.getMessageStatusInfo(authResponseMessage));
         }
     },
 
-    fetchCrumbAndRender: function(quoteSymbolsArg, networkSettings) {
+    fetchCrumbAndRender(quoteSymbolsArg, networkSettings) {
         this.quoteUtils.logDebug("fetchCrumbAndRender");
         const _that = this;
 
@@ -1418,8 +1632,8 @@ StockQuoteDesklet.prototype = {
             return;
         }
 
-        this.quoteReader.retrieveCrumb(networkSettings, function(crumbResponseMessage, responseBody) {
-            _that.quoteUtils.logDebug("Crumb response body: " + responseBody);
+        this.quoteReader.retrieveCrumb(networkSettings, (crumbResponseMessage, responseBody) => {
+            _that.quoteUtils.logDebug(`fetchCrumbAndRender - response body: ${responseBody}`);
             if (responseBody) {
                 if (typeof responseBody.data === "string" && responseBody.data.trim() !== "" && !/\s/.test(responseBody.data)) {
                     // libsoup2
@@ -1428,7 +1642,7 @@ StockQuoteDesklet.prototype = {
                     // libsoup3, curl
                     _that.quoteReader.setCrumb(responseBody);
                 } else {
-                    _that.quoteUtils.logWarning("Unhandled crumb response body: " + responseBody);
+                    _that.quoteUtils.logWarning(`Unhandled crumb response body: ${responseBody}`);
                 }
             }
 
@@ -1442,24 +1656,24 @@ StockQuoteDesklet.prototype = {
                 _that.quoteUtils.logWarning("Failed to retrieve crumb!");
                 _that.authAttempts++;
                 _that.saveAuthorizationParameters(true);
-                _that.processFailedFetch(_('Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: ') + _that.quoteUtils.getMessageStatusInfo(crumbResponseMessage));
+                _that.processFailedFetch(_("Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: ") + _that.quoteUtils.getMessageStatusInfo(crumbResponseMessage));
             }
         });
     },
 
-    saveAuthorizationParameters: function(dropCachedAuthParams = false) {
-        const authParamsJson = dropCachedAuthParams ? DEFAULT_CACHED_AUTH_PARAMS : this.quoteReader.getAuthorizationParametersToCache();
+    saveAuthorizationParameters(dropCachedAuthParams = false) {
+        const authParamsJson = dropCachedAuthParams ? DEFAULT_CACHED_AUTH_PARAMS : this.quoteReader.prepareCacheableAuthorizationParameters();
         this.settings.setValue("authorizationParameters", authParamsJson);
-        this.quoteUtils.logDebug("Saved authorization parameters to desklet settings: " + authParamsJson);
+        this.quoteUtils.logDebug(`saveAuthorizationParameters - saved authorization parameters to desklet settings: ${authParamsJson}`);
     },
 
 
-    hasRemainingAuthAttempts: function() {
+    hasRemainingAuthAttempts() {
         return this.authAttempts < MAX_AUTH_ATTEMPTS;
     },
 
-    processFailedFetch: function(errorMessage, symbolsArg = "") {
-        this.quoteUtils.logDebug("processFailedFetch, errorMessage: " + errorMessage);
+    processFailedFetch(errorMessage, symbolsArg = "") {
+        this.quoteUtils.logDebug(`processFailedFetch - errorMessage: ${errorMessage}`);
         const errorResponse = JSON.parse(this.quoteReader.buildErrorResponse(errorMessage));
         this.lastResponse = {
             symbolsArgument: symbolsArg,
@@ -1468,32 +1682,55 @@ StockQuoteDesklet.prototype = {
             lastUpdated: new Date()
         }
 
-        this.setUpdateTimer();
+        this.replaceUpdateTimer();
         this.render();
     },
 
-    setUpdateTimer: function(instantTimer = false) {
-        this.quoteUtils.logDebug("setUpdateTimer, instantTimer: " + instantTimer);
-        if (this.updateInProgress) {
-            let delaySeconds = this.delayMinutes * 60;
+    replaceUpdateTimer(instantTimer = false) {
+        this.quoteUtils.logDebug(`replaceUpdateTimer - instantTimer: ${instantTimer}`);
+        // stop current timer, if any
+        this.removeUpdateTimer();
+
+        if (this.allowNewTimer) {
+            let delaySeconds;
             if (instantTimer) {
-                this.quoteUtils.logDebug("add instant timer");
+                this.quoteUtils.logDebug("replaceUpdateTimer - add instant timer");
                 delaySeconds = 1;
+            } else {
+                delaySeconds = this.delayMinutes * 60;
             }
-            this.updateId = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, delaySeconds, () => { this.onQuotesListChanged() });
-            this.quoteUtils.logDebug("Started new timer, updateId: " + this.updateId);
-            this.updateInProgress = false;
+
+            this.updateId = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, delaySeconds, () => {
+                this.onQuotesListChanged();
+                return GLib.SOURCE_CONTINUE;
+            });
+            this.quoteUtils.logDebug(`replaceUpdateTimer - started new timer, new updateId: ${this.updateId}`);
+            this.allowNewTimer = false;
         }
     },
 
+    removeUpdateTimer(shutdownInProgress = false) {
+        this.quoteUtils.logDebug(`removeUpdateTimer - updateId: ${this.updateId}`);
+        if (this.updateId > 0) {
+            GLib.source_remove(this.updateId);
+            this.quoteUtils.logDebug(`removeUpdateTimer - timer removed for updateId ${this.updateId}`);
+        } else {
+            this.quoteUtils.logDebug("removeUpdateTimer - no timer exists");
+        }
+        this.updateId = 0;
+        // prevent new timer when desklet is in process to be removed
+        // this is the only place where allowNewTimer can be set to 'true'
+        this.allowNewTimer = !shutdownInProgress;
+    },
+
     // main method to render the desklet
-    render: function() {
+    render() {
         this.quoteUtils.logDebug("render");
 
         // check if quotes list was changed but no call of onQuotesListChanged() occurred, e.g. on layout changes
         if (this.hasRemainingAuthAttempts() &&
             !this.quoteUtils.compareSymbolsArgument(this.lastResponse.symbolsArgument, this.quoteSymbolsText)) {
-            this.quoteUtils.logDebug("Detected changed quotes list, refreshing data");
+            this.quoteUtils.logDebug("render - detected changed quotes list, initiate data refresh");
             this.onQuotesListChanged();
             return;
         }
@@ -1507,12 +1744,12 @@ StockQuoteDesklet.prototype = {
 
         // in case of errors, show details
         const responseError = this.lastResponse.responseError;
-        if (responseError !== null) {
+        if (responseError != null) {
             tableContainer.add_actor(this.createErrorLabel(responseError));
         }
 
         const responseResult = this.lastResponse.responseResult;
-        if (responseResult !== null) {
+        if (responseResult != null) {
             const symbolCustomizationMap = this.quoteUtils.buildSymbolCustomizationMap(this.quoteSymbolsText);
 
             // some preparations before the rendering starts
@@ -1521,7 +1758,7 @@ StockQuoteDesklet.prototype = {
                 // add such "new" symbols to the customization map for easier processing in the various render.. functions
                 const returnedSymbol = quote.symbol;
                 if (!symbolCustomizationMap.has(returnedSymbol)) {
-                    this.quoteUtils.logDebug("Adding unknown symbol to customization map: " + returnedSymbol);
+                    this.quoteUtils.logDebug(`render - adding unknown symbol to customization map: ${returnedSymbol}`);
                     symbolCustomizationMap.set(returnedSymbol, this.quoteUtils.buildSymbolCustomization(returnedSymbol, new Map()));
                 }
 
@@ -1564,34 +1801,24 @@ StockQuoteDesklet.prototype = {
         this.setContent(this.mainBox);
     },
 
-    on_desklet_removed: function() {
-        this.quoteUtils.logDebug("on_desklet_removed");
-        this.removeUpdateTimer();
+    on_desklet_removed() {
+        this.quoteUtils.logDebug(`on_desklet_removed - updateId: ${this.updateId}`);
+        this.removeUpdateTimer(true);
         this.unrender();
     },
 
-    unrender: function() {
+    unrender() {
         this.quoteUtils.logDebug("unrender");
         if (this.mainBox) {
             this.mainBox.destroy_all_children();
             this.mainBox.destroy();
         }
-    },
-
-    removeUpdateTimer: function() {
-        this.quoteUtils.logDebug("removeUpdateTimer, updateId: " + this.updateId);
-        if (this.updateId > 0) {
-            GLib.source_remove(this.updateId);
-            this.quoteUtils.logDebug("removeUpdateTimer, timer removed for updateId: " + this.updateId);
-        }
-        this.updateId = 0;
-        this.updateInProgress = true;
     }
 }
 
 function main(metadata, deskletId) {
     if (LOG_DEBUG) {
-        global.log(UUID + "[" + deskletId + "] DEBUG main()");
+        global.log(`${UUID}[${deskletId}] DEBUG main()`);
     }
     return new StockQuoteDesklet(metadata, deskletId);
 }

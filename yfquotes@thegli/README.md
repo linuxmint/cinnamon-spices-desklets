@@ -14,7 +14,7 @@ Either follow the installation instructions on [Cinnamon spices](https://cinnamo
 
 Check out the desklet configuration settings, and choose the data refresh period, the list of quotes to show, and quote details to display. The default list contains the Dow 30 companies.
 
-> Note that **manual changes in the quotes list are not immediately applied** (anymore).  
+> Note that **manual changes in the quotes list are not immediately applied**.  
 Press the "Refresh quotes data" button to execute an immediate data update, or wait until the next automatic refresh is triggered (depending on the configured interval).
 
 ### Individual Quote Design
@@ -22,8 +22,8 @@ Press the "Refresh quotes data" button to execute an immediate data update, or w
 By default, all quotes in the list are rendered in the same style and color, following whatever settings are active and selected.  
 Optionally, the *name* and the *symbol* of each quote can have a custom design. These individual design settings override the global settings. They are configured with a set of text properties within the quotes list.
 
-The design properties are appended to the quote symbol in the format `property=value`. Each property/value pair is separated by a semicolon. Also insert a semicolon between the quote symbol and the first property. The order of the properties is irrelevant.  
-The full syntax: `SYMBOL;property1=value1;property2=value2`
+The design properties are appended to the quote symbol in the format `property=value`. Each property/value pair is separated by a semicolon. Also insert a semicolon between the quote symbol and the first property. The order of the properties is irrelevant. Insert a semicolon at the beginning of the line to hide the quote from display.  
+The full syntax: `[;]SYMBOL;property1=value1;property2=value2;...`
 
 The following table explains all supported properties:
 
@@ -43,6 +43,7 @@ HD;color=#f96300
 MMM;name=Post-It Makers;color=#ff0000
 IBM;name=Big Blue;color=blue;weight=bolder
 KO;name=Bubbly Brown Water;style=oblique;weight=lighter;color=#e61a27
+;V;name=Invisible card
 ```
 
 ## Troubleshooting

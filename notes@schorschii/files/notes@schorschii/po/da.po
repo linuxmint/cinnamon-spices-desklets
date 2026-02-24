@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-05-03 11:37-0400\n"
+"POT-Creation-Date: 2026-02-11 20:21+0100\n"
 "PO-Revision-Date: 2025-11-12 17:29+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "X-Poedit-SearchPath-0: desklet.js\n"
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
-#. desklet.js:138
+#. desklet.js:148
 msgid "Refresh"
 msgstr "Opdatér"
 
-#. desklet.js:151
+#. desklet.js:161
 msgid ""
 "Can't read text file.\n"
 "Select a file in settings.\n"
@@ -33,7 +33,7 @@ msgstr ""
 "\n"
 "Klik her for at redigere."
 
-#. desklet.js:289
+#. desklet.js:315
 msgid "Notepad"
 msgstr "Notesblok"
 
@@ -290,6 +290,8 @@ msgid "Font"
 msgstr "Skrifttype"
 
 #. settings-schema.json->size-font->units
+#. settings-schema.json->note-height->units
+#. settings-schema.json->note-width->units
 msgid "pixels"
 msgstr "pixels"
 
@@ -330,6 +332,18 @@ msgid "Increase or decrease the size of this desklet using this scale factor."
 msgstr ""
 "Forøg eller formindsk skrivebordsprogrammets størrelse med denne "
 "skaleringsfaktor."
+
+#. settings-schema.json->stretch-note-size->description
+msgid "Stretch note to increase size"
+msgstr ""
+
+#. settings-schema.json->note-height->description
+msgid "Note height"
+msgstr ""
+
+#. settings-schema.json->note-width->description
+msgid "Note width"
+msgstr ""
 
 #. settings-schema.json->use-custom-label->description
 msgid "Use a custom desklet label"
