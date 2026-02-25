@@ -14,3 +14,5 @@
   - Removed unused styles in `stylesheet,css`
   - UI logic extracted into UI Helper
   - Added Soup 2 compatibility
+- Fixes
+  - Fixed blocking on grid rendering

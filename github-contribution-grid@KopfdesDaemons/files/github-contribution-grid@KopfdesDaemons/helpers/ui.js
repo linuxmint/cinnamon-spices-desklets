@@ -1,5 +1,6 @@
 const St = imports.gi.St;
 const GLib = imports.gi.GLib;
+const Mainloop = imports.mainloop;
 const Gettext = imports.gettext;
 const Util = imports.misc.util;
 const Tooltips = imports.ui.tooltips;
@@ -72,27 +73,50 @@ var UiHelper = class UiHelper {
   static getContributionGrid(weeks, blockSize, showContributionCount) {
     const gridBox = new St.BoxLayout({ style_class: "github-contribution-grid-grid-box" });
 
-    for (const week of weeks) {
-      const weekBox = new St.BoxLayout({ vertical: true, style_class: "week-container" });
+    let weekIndex = 0;
+    let loopId = 0;
 
-      for (const day of week.contributionDays) {
-        const dayBin = new St.Bin({
-          style_class: "day-bin",
-          reactive: true,
-          track_hover: true,
-          style: `font-size: ${blockSize}px; background-color: ${this.getContributionColor(day.contributionCount)};`,
-        });
-
-        new Tooltips.Tooltip(dayBin, `${day.date} ${day.contributionCount} ` + _("contributions"));
-
-        if (showContributionCount) {
-          const countLabel = new St.Label({ text: day.contributionCount.toString() });
-          dayBin.set_child(countLabel);
+    const processWeeks = () => {
+      for (let i = 0; i < 4; i++) {
+        if (weekIndex >= weeks.length) {
+          loopId = 0;
+          return false;
         }
-        weekBox.add_child(dayBin);
+
+        const week = weeks[weekIndex];
+        const weekBox = new St.BoxLayout({ vertical: true, style_class: "week-container" });
+
+        for (const day of week.contributionDays) {
+          const dayBin = new St.Bin({
+            style_class: "day-bin",
+            reactive: true,
+            track_hover: true,
+            style: `font-size: ${blockSize}px; background-color: ${this.getContributionColor(day.contributionCount)};`,
+          });
+
+          new Tooltips.Tooltip(dayBin, `${day.date} ${day.contributionCount} ` + _("contributions"));
+
+          if (showContributionCount) {
+            const countLabel = new St.Label({ text: day.contributionCount.toString() });
+            dayBin.set_child(countLabel);
+          }
+          weekBox.add_child(dayBin);
+        }
+        gridBox.add_child(weekBox);
+        weekIndex++;
       }
-      gridBox.add_child(weekBox);
-    }
+      return true;
+    };
+
+    loopId = Mainloop.idle_add(processWeeks);
+
+    gridBox.connect("destroy", () => {
+      if (loopId) {
+        Mainloop.source_remove(loopId);
+        loopId = 0;
+      }
+    });
+
     return gridBox;
   }
 
