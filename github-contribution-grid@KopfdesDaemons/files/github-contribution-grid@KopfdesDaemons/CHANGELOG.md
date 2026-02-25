@@ -12,3 +12,5 @@
   - Added settings cleanup on Desklet removal
   - Added `CHANGELOG.md`
   - Removed unused styles in `stylesheet,css`
+  - UI logic extracted into UI Helper
+  - Added Soup 2 compatibility

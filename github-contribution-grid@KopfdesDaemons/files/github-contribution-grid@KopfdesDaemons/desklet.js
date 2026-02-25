@@ -3,19 +3,19 @@ const GLib = imports.gi.GLib;
 const Mainloop = imports.mainloop;
 const St = imports.gi.St;
 const Gettext = imports.gettext;
-const Util = imports.misc.util;
 const Settings = imports.ui.settings;
-const Tooltips = imports.ui.tooltips;
 
 const UUID = "github-contribution-grid@KopfdesDaemons";
 
-let GitHubHelper;
+let GitHubHelper, UiHelper;
 if (typeof require !== "undefined") {
   GitHubHelper = require("./helpers/github").GitHubHelper;
+  UiHelper = require("./helpers/ui").UiHelper;
 } else {
   const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
   imports.searchPath.push(DESKLET_DIR);
   GitHubHelper = imports.helpers.github.GitHubHelper;
+  UiHelper = imports.helpers.ui.UiHelper;
 }
 
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
@@ -59,14 +59,18 @@ class MyDesklet extends Desklet.Desklet {
 
   on_desklet_added_to_desktop() {
     this._mainContainer = new St.BoxLayout({ vertical: true, style_class: "github-contribution-grid-main-container" });
-    this._mainContainer.add_child(this._createHeader());
+    this._mainContainer.add_child(UiHelper.getHeader(this.githubUsername, this.showUsername, () => this._setupContributionData()));
     this.setContent(this._mainContainer);
 
-    this._updateLoop();
+    this._setupContributionData();
 
     // The first request after system start will fail
     // Delay to ensure network services are ready and try again
-    Mainloop.timeout_add_seconds(5, this._setupContributionData.bind(this));
+    if (this._timeoutId) Mainloop.source_remove(this._timeoutId);
+    this._timeoutId = Mainloop.timeout_add_seconds(3, () => {
+      this._setupContributionData();
+      return false;
+    });
   }
 
   on_desklet_removed() {
@@ -85,13 +89,13 @@ class MyDesklet extends Desklet.Desklet {
 
   onDataSettingChanged() {
     this._mainContainer.remove_all_children();
-    this._mainContainer.add_child(this._createHeader());
+    this._mainContainer.add_child(UiHelper.getHeader(this.githubUsername, this.showUsername, () => this._setupContributionData()));
     this._setupContributionData();
   }
 
   onStyleSettingChanged() {
     this._mainContainer.remove_all_children();
-    this._mainContainer.add_child(this._createHeader());
+    this._mainContainer.add_child(UiHelper.getHeader(this.githubUsername, this.showUsername, () => this._setupContributionData()));
     this._renderContent(this._contributionData);
   }
 
@@ -100,6 +104,8 @@ class MyDesklet extends Desklet.Desklet {
 
     if (!this.githubUsername || !this.githubToken) {
       this._renderContent(null, _("Please configure username and token in settings."));
+      if (this._timeoutId) Mainloop.source_remove(this._timeoutId);
+      this._timeoutId = null;
       return;
     }
 
@@ -107,36 +113,17 @@ class MyDesklet extends Desklet.Desklet {
       const response = await GitHubHelper.getContributionData(this.githubUsername, this.githubToken);
       this._contributionData = response;
       this._renderContent(this._contributionData);
+
+      // Set up auto-refresh
+      if (this._timeoutId) Mainloop.source_remove(this._timeoutId);
+      this._timeoutId = Mainloop.timeout_add_seconds(this.refreshInterval * 60, () => {
+        this._setupContributionData();
+        return false;
+      });
     } catch (e) {
       global.logError(`[${UUID}] Error fetching contribution data: ${e}`);
       this._renderContent(null, e.message);
     }
-  }
-
-  _createHeader() {
-    const headerContainer = new St.BoxLayout({ style_class: "github-contribution-grid-header-container" });
-
-    // Reload button
-    const reloadButton = new St.Button({ style_class: "github-contribution-grid-reload-bin" });
-    reloadButton.connect("button-press-event", () => this._setupContributionData());
-    const reloadIcon = new St.Icon({
-      icon_name: "view-refresh-symbolic",
-      icon_type: St.IconType.SYMBOLIC,
-      icon_size: 16,
-    });
-    new Tooltips.Tooltip(reloadButton, _("Reload"));
-    reloadButton.set_child(reloadIcon);
-    headerContainer.add_child(reloadButton);
-
-    // Username
-    if (this.showUsername) {
-      const usernameButton = new St.Button({ label: this.githubUsername, style_class: "github-contribution-grid-label-bin" });
-      usernameButton.connect("button-press-event", () => Util.spawnCommandLine(`xdg-open "https://github.com/${this.githubUsername}"`));
-      new Tooltips.Tooltip(usernameButton, _("Open GitHub profile"));
-      headerContainer.add_child(usernameButton);
-    }
-
-    return headerContainer;
   }
 
   _renderContent(weeks, error = null) {
@@ -145,70 +132,20 @@ class MyDesklet extends Desklet.Desklet {
       this.contentContainer.destroy();
     }
 
-    this.contentContainer = new St.BoxLayout({
-      style_class: "github-contribution-grid-container",
-      x_expand: true,
-      style: `background-color: ${this.backgroundColor};`,
-    });
+    this.contentContainer = new St.BoxLayout({ style: `background-color: ${this.backgroundColor}; border-radius: 0.2em;` });
 
     if (!this.githubUsername || !this.githubToken) {
-      // UI for Desklet Setup
-      const setupBox = new St.BoxLayout({ vertical: true, style_class: "github-contribution-grid-setup-container" });
-      setupBox.add_child(new St.Label({ text: "GitHub Contribution Grid", style_class: "github-contribution-grid-setup-headline" }));
-      setupBox.add_child(new St.Label({ text: _("Please configure username and token in settings.") }));
-
-      const createTokenButton = new St.Button({ style_class: "github-contribution-grid-link", label: _("Create a GitHub token") });
-      createTokenButton.connect("clicked", () => Util.spawnCommandLine(`xdg-open "${GitHubHelper.gitHubTokenCreationURL}"`));
-      setupBox.add_child(createTokenButton);
-
-      this.contentContainer.add_child(setupBox);
+      // Load UI for Desklet Setup
+      this.contentContainer.add_child(UiHelper.getSetupUI(GitHubHelper.gitHubTokenCreationURL));
     } else if (error) {
       // Error UI
-      const errorBox = new St.BoxLayout({ vertical: true, style_class: "github-contribution-grid-error-container" });
-      errorBox.add_child(new St.Label({ text: "GitHub Contribution Grid", style_class: "github-contribution-grid-error-headline" }));
-      errorBox.add_child(new St.Label({ text: _("Error:") }));
-      errorBox.add_child(new St.Label({ text: error, style_class: "github-contribution-grid-error-message" }));
-      const reloadButton = new St.Button({ style_class: "github-contribution-grid-error-reload-button", label: _("Reload") });
-      reloadButton.connect("clicked", () => this._setupContributionData());
-      errorBox.add_child(reloadButton);
-      this.contentContainer.add_child(errorBox);
+      this.contentContainer.add_child(UiHelper.getErrorUI(error, () => this._setupContributionData()));
     } else if (weeks) {
       // Render GitHub Grid
-      const gridBox = new St.BoxLayout({ style_class: "github-contribution-grid-grid-box" });
-
-      for (const week of weeks) {
-        const weekBox = new St.BoxLayout({ vertical: true, style_class: "week-container" });
-
-        for (const day of week.contributionDays) {
-          const dayBin = new St.Bin({
-            style_class: "day-bin",
-            reactive: true,
-            track_hover: true,
-            style: `font-size: ${this.blockSize}px; background-color: ${GitHubHelper.getContributionColor(day.contributionCount)};`,
-          });
-
-          new Tooltips.Tooltip(dayBin, `${day.date} ${day.contributionCount} ` + _("contributions"));
-
-          if (this.showContributionCount) {
-            const countLabel = new St.Label({ text: day.contributionCount.toString() });
-            dayBin.set_child(countLabel);
-          }
-          weekBox.add_child(dayBin);
-        }
-        gridBox.add_child(weekBox);
-      }
-      this.contentContainer.add_child(gridBox);
+      this.contentContainer.add_child(UiHelper.getContributionGrid(weeks, this.blockSize, this.showContributionCount));
     }
 
     this._mainContainer.add_child(this.contentContainer);
-  }
-
-  _updateLoop() {
-    this._setupContributionData().finally(() => {
-      this._timeoutId = Mainloop.timeout_add_seconds(this.refreshInterval * 60, () => {
-        this._updateLoop();
-      });
-    });
   }
 }
 

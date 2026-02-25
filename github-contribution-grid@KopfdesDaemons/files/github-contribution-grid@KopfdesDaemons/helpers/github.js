@@ -2,7 +2,13 @@ const Soup = imports.gi.Soup;
 const ByteArray = imports.byteArray;
 const GLib = imports.gi.GLib;
 
-const _httpSession = new Soup.Session();
+let _httpSession;
+if (Soup.MAJOR_VERSION == 2) {
+  _httpSession = new Soup.SessionAsync();
+} else {
+  //version 3
+  _httpSession = new Soup.Session();
+}
 
 var GitHubHelper = class GitHubHelper {
   static gitHubTokenCreationURL = "https://github.com/settings/tokens/new?description=Cinnamon%20Desklet";
@@ -58,14 +64,5 @@ var GitHubHelper = class GitHubHelper {
         }
       });
     });
-  }
-
-  static getContributionColor(count) {
-    if (count >= 10) return "#56d364";
-    if (count >= 9) return "#2ea043";
-    if (count >= 6) return "#196c2e";
-    if (count >= 4) return "#196c2e";
-    if (count > 0) return "#033a16";
-    if (count === 0) return "#151b23";
   }
 };
