@@ -1,0 +1,14 @@
+# Changelog
+
+## [1.0.0] 09.12.2025
+
+- Initial Release
+
+## [2.0.0] 25.02.026
+
+- Refactoring:
+  - Added `deskletManager` as Fallback for `require` imports
+  - Changed Desklet entry point to `on_desklet_removed`
+  - Added settings cleanup on Desklet removal
+  - Added `CHANGELOG.md`
+  - Removed unused styles in `stylesheet,css`

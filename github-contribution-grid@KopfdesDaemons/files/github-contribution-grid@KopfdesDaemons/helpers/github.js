@@ -4,8 +4,8 @@ const GLib = imports.gi.GLib;
 
 const _httpSession = new Soup.Session();
 
-class GitHubHelper {
-  static gitHubTokenCrationURL = "https://github.com/settings/tokens/new?description=Cinnamon%20Desklet";
+var GitHubHelper = class GitHubHelper {
+  static gitHubTokenCreationURL = "https://github.com/settings/tokens/new?description=Cinnamon%20Desklet";
 
   static async getContributionData(username, token) {
     const query = `
@@ -68,4 +68,4 @@ class GitHubHelper {
     if (count > 0) return "#033a16";
     if (count === 0) return "#151b23";
   }
-}
+};

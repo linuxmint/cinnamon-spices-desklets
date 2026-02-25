@@ -9,7 +9,14 @@ const Tooltips = imports.ui.tooltips;
 
 const UUID = "github-contribution-grid@KopfdesDaemons";
 
-const { GitHubHelper } = require("./helpers/github.helper");
+let GitHubHelper;
+if (typeof require !== "undefined") {
+  GitHubHelper = require("./helpers/github").GitHubHelper;
+} else {
+  const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
+  imports.searchPath.push(DESKLET_DIR);
+  GitHubHelper = imports.helpers.github.GitHubHelper;
+}
 
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
@@ -20,6 +27,14 @@ function _(str) {
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
+    this.setHeader(_("GitHub Contribution Grid"));
+
+    this._timeoutId = null;
+    this._contributionData = null;
+    this._mainContainer = null;
+    this._isReloading = false;
+
+    // Default settings
     this.githubUsername = "";
     this.githubToken = "";
     this.blockSize = 11;
@@ -27,59 +42,61 @@ class MyDesklet extends Desklet.Desklet {
     this.backgroundColor = "rgba(255, 255, 255, 0)";
     this.showContributionCount = false;
     this.showUsername = true;
-    this.timeoutId = null;
-    this.contributionData = null;
-    this.mainContainer = null;
 
-    this.bindSettings(metadata, deskletId);
+    this._bindSettings(metadata, deskletId);
+  }
 
-    this.setHeader(_("GitHub Contribution Grid"));
+  _bindSettings(metadata, deskletId) {
+    this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "github-username", "githubUsername", this.onDataSettingChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "github-token", "githubToken", this.onDataSettingChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refreshInterval", this.onDataSettingChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "block-size", "blockSize", this.onStyleSettingChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "backgroundColor", this.onStyleSettingChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-username", "showUsername", this.onStyleSettingChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-contribution-count", "showContributionCount", this.onStyleSettingChanged.bind(this));
+  }
 
-    this.mainContainer = new St.BoxLayout({ vertical: true, style_class: "github-contribution-grid-main-container" });
-    this.mainContainer.add_child(this._createHeader());
-    this.setContent(this.mainContainer);
+  on_desklet_added_to_desktop() {
+    this._mainContainer = new St.BoxLayout({ vertical: true, style_class: "github-contribution-grid-main-container" });
+    this._mainContainer.add_child(this._createHeader());
+    this.setContent(this._mainContainer);
 
     this._updateLoop();
 
     // The first request after system start will fail
     // Delay to ensure network services are ready and try again
-    Mainloop.timeout_add_seconds(10, () => {
-      this._setupContributionData();
-    });
-  }
-
-  bindSettings(metadata, deskletId) {
-    this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "github-username", "githubUsername", this.onDataSettingChanged);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "github-token", "githubToken", this.onDataSettingChanged);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refreshInterval", this.onDataSettingChanged);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "block-size", "blockSize", this.onStyleSettingChanged);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "backgroundColor", this.onStyleSettingChanged);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "show-username", "showUsername", this.onStyleSettingChanged);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "show-contribution-count", "showContributionCount", this.onStyleSettingChanged);
+    Mainloop.timeout_add_seconds(5, this._setupContributionData.bind(this));
   }
 
   on_desklet_removed() {
-    if (this.timeoutId) {
-      Mainloop.source_remove(this.timeoutId);
-      this.timeoutId = null;
+    if (this._timeoutId) {
+      Mainloop.source_remove(this._timeoutId);
+      this._timeoutId = null;
+    }
+    if (this.settings && !this._isReloading) {
+      this.settings.finally();
     }
   }
 
-  onDataSettingChanged = () => {
-    this.mainContainer.remove_all_children();
-    this.mainContainer.add_child(this._createHeader());
-    this._setupContributionData();
-  };
+  on_desklet_reloaded() {
+    this._isReloading = true;
+  }
 
-  onStyleSettingChanged = () => {
-    this.mainContainer.remove_all_children();
-    this.mainContainer.add_child(this._createHeader());
-    this._renderContent(this.contributionData);
-  };
+  onDataSettingChanged() {
+    this._mainContainer.remove_all_children();
+    this._mainContainer.add_child(this._createHeader());
+    this._setupContributionData();
+  }
+
+  onStyleSettingChanged() {
+    this._mainContainer.remove_all_children();
+    this._mainContainer.add_child(this._createHeader());
+    this._renderContent(this._contributionData);
+  }
 
   async _setupContributionData() {
-    this.contributionData = null;
+    this._contributionData = null;
 
     if (!this.githubUsername || !this.githubToken) {
       this._renderContent(null, _("Please configure username and token in settings."));
@@ -88,8 +105,8 @@ class MyDesklet extends Desklet.Desklet {
 
     try {
       const response = await GitHubHelper.getContributionData(this.githubUsername, this.githubToken);
-      this.contributionData = response;
-      this._renderContent(this.contributionData);
+      this._contributionData = response;
+      this._renderContent(this._contributionData);
     } catch (e) {
       global.logError(`[${UUID}] Error fetching contribution data: ${e}`);
       this._renderContent(null, e.message);
@@ -124,7 +141,7 @@ class MyDesklet extends Desklet.Desklet {
 
   _renderContent(weeks, error = null) {
     if (this.contentContainer) {
-      this.mainContainer.remove_child(this.contentContainer);
+      this._mainContainer.remove_child(this.contentContainer);
       this.contentContainer.destroy();
     }
 
@@ -141,7 +158,7 @@ class MyDesklet extends Desklet.Desklet {
       setupBox.add_child(new St.Label({ text: _("Please configure username and token in settings.") }));
 
       const createTokenButton = new St.Button({ style_class: "github-contribution-grid-link", label: _("Create a GitHub token") });
-      createTokenButton.connect("clicked", () => Util.spawnCommandLine(`xdg-open "${GitHubHelper.gitHubTokenCrationURL}"`));
+      createTokenButton.connect("clicked", () => Util.spawnCommandLine(`xdg-open "${GitHubHelper.gitHubTokenCreationURL}"`));
       setupBox.add_child(createTokenButton);
 
       this.contentContainer.add_child(setupBox);
@@ -183,12 +200,12 @@ class MyDesklet extends Desklet.Desklet {
       this.contentContainer.add_child(gridBox);
     }
 
-    this.mainContainer.add_child(this.contentContainer);
+    this._mainContainer.add_child(this.contentContainer);
   }
 
   _updateLoop() {
     this._setupContributionData().finally(() => {
-      this.timeoutId = Mainloop.timeout_add_seconds(this.refreshInterval * 60, () => {
+      this._timeoutId = Mainloop.timeout_add_seconds(this.refreshInterval * 60, () => {
         this._updateLoop();
       });
     });
