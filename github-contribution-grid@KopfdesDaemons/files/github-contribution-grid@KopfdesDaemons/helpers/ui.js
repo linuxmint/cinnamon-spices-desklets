@@ -39,7 +39,10 @@ var UiHelper = class UiHelper {
     return headerContainer;
   }
 
-  static getSetupUI(gitHubTokenCreationURL) {
+  static getSetupUI(gitHubTokenCreationURL, blockSize) {
+    const container = new St.Table();
+    container.add(this._getSkeletonGrid(blockSize), { row: 0, col: 0 });
+
     const setupBox = new St.BoxLayout({ vertical: true, style_class: "github-contribution-grid-setup-container" });
 
     // Labels
@@ -51,10 +54,23 @@ var UiHelper = class UiHelper {
     createTokenButton.connect("clicked", () => Util.spawnCommandLine(`xdg-open "${gitHubTokenCreationURL}"`));
     setupBox.add_child(createTokenButton);
 
-    return setupBox;
+    container.add(setupBox, {
+      row: 0,
+      col: 0,
+      x_expand: true,
+      y_expand: true,
+      x_fill: false,
+      y_fill: false,
+      x_align: St.Align.MIDDLE,
+      y_align: St.Align.MIDDLE,
+    });
+    return container;
   }
 
-  static getErrorUI(errorMsg, reloadCallback) {
+  static getErrorUI(errorMsg, reloadCallback, blockSize) {
+    const container = new St.Table();
+    container.add(this._getSkeletonGrid(blockSize), { row: 0, col: 0 });
+
     const errorBox = new St.BoxLayout({ vertical: true, style_class: "github-contribution-grid-error-container" });
 
     // Labels
@@ -67,7 +83,17 @@ var UiHelper = class UiHelper {
     reloadButton.connect("clicked", reloadCallback);
     errorBox.add_child(reloadButton);
 
-    return errorBox;
+    container.add(errorBox, {
+      row: 0,
+      col: 0,
+      x_expand: true,
+      y_expand: true,
+      x_fill: false,
+      y_fill: false,
+      x_align: St.Align.MIDDLE,
+      y_align: St.Align.MIDDLE,
+    });
+    return container;
   }
 
   static getContributionGrid(weeks, blockSize, showContributionCount) {
@@ -118,6 +144,18 @@ var UiHelper = class UiHelper {
     });
 
     return gridBox;
+  }
+
+  static _getSkeletonGrid(blockSize) {
+    const weeks = [];
+    for (let i = 0; i < 53; i++) {
+      const contributionDays = [];
+      for (let j = 0; j < 7; j++) {
+        contributionDays.push({ contributionCount: 0, date: "" });
+      }
+      weeks.push({ contributionDays });
+    }
+    return this.getContributionGrid(weeks, blockSize, false, false);
   }
 
   static getContributionColor(count) {

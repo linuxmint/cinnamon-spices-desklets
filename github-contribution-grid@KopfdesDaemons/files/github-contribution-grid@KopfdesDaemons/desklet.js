@@ -43,10 +43,7 @@ class MyDesklet extends Desklet.Desklet {
     this.showContributionCount = false;
     this.showUsername = true;
 
-    this._bindSettings(metadata, deskletId);
-  }
-
-  _bindSettings(metadata, deskletId) {
+    // Bind settings
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
     this.settings.bindProperty(Settings.BindingDirection.IN, "github-username", "githubUsername", this.onDataSettingChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "github-token", "githubToken", this.onDataSettingChanged.bind(this));
@@ -64,14 +61,17 @@ class MyDesklet extends Desklet.Desklet {
 
     this._setupContributionData();
 
-    // The first request after system start will fail
-    // Delay to ensure network services are ready and try again
-    if (this._timeoutId) Mainloop.source_remove(this._timeoutId);
-    this._timeoutId = Mainloop.timeout_add_seconds(3, () => {
-      this._timeoutId = null;
-      this._setupContributionData();
-      return false;
-    });
+    if (this.githubToken && this.githubUsername) {
+      // The first request after system start will fail
+      // Delay to ensure network services are ready and try again
+
+      if (this._timeoutId) Mainloop.source_remove(this._timeoutId);
+      this._timeoutId = Mainloop.timeout_add_seconds(3, () => {
+        this._timeoutId = null;
+        this._setupContributionData();
+        return false;
+      });
+    }
   }
 
   on_desklet_removed() {
@@ -154,12 +154,12 @@ class MyDesklet extends Desklet.Desklet {
 
   _renderSetup() {
     this._createContentContainer();
-    this.contentContainer.add_child(UiHelper.getSetupUI(GitHubHelper.gitHubTokenCreationURL));
+    this.contentContainer.add_child(UiHelper.getSetupUI(GitHubHelper.gitHubTokenCreationURL, this.blockSize));
   }
 
   _renderError(errorMsg) {
     this._createContentContainer();
-    this.contentContainer.add_child(UiHelper.getErrorUI(errorMsg, () => this._setupContributionData()));
+    this.contentContainer.add_child(UiHelper.getErrorUI(errorMsg, () => this._setupContributionData(), this.blockSize));
   }
 
   _renderGrid(weeks) {
