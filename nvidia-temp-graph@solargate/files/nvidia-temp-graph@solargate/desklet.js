@@ -1,7 +1,6 @@
 const Desklet = imports.ui.desklet;
 const Settings = imports.ui.settings;
 const Mainloop = imports.mainloop;
-const Lang = imports.lang;
 const Clutter = imports.gi.Clutter;
 const Cairo = imports.cairo;
 const St = imports.gi.St;
@@ -53,7 +52,7 @@ class NvidiaTempGraphDesklet extends Desklet.Desklet {
 
     update() {
         this.update_draw();
-        this.timeout = Mainloop.timeout_add_seconds(this.refresh_interval, Lang.bind(this, this.update));
+        this.timeout = Mainloop.timeout_add_seconds(this.refresh_interval, () => this.update());
     }
 
     update_draw() {
