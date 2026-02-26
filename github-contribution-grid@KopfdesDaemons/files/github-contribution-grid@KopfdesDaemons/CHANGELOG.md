@@ -8,11 +8,12 @@
 
 - New features:
   - Added skeleton grid for setup and error UI
+  - Added decoration toggle setting
 - Fixes
   - Fixed blocking on grid rendering
 - Refactoring:
   - Added `deskletManager` as Fallback for `require` imports
-  - Changed Desklet entry point to `on_desklet_removed`
+  - Changed Desklet entry point to `on_desklet_added_to_desktop`
   - Added settings cleanup on Desklet removal
   - Added `CHANGELOG.md`
   - Removed unused styles in `stylesheet,css`

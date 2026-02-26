@@ -42,16 +42,18 @@ class MyDesklet extends Desklet.Desklet {
     this.backgroundColor = "rgba(255, 255, 255, 0)";
     this.showContributionCount = false;
     this.showUsername = true;
+    this.hideDecorations = true;
 
     // Bind settings
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "github-username", "githubUsername", this.onDataSettingChanged.bind(this));
-    this.settings.bindProperty(Settings.BindingDirection.IN, "github-token", "githubToken", this.onDataSettingChanged.bind(this));
-    this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refreshInterval", this.onDataSettingChanged.bind(this));
-    this.settings.bindProperty(Settings.BindingDirection.IN, "block-size", "blockSize", this.onGridChanged.bind(this));
-    this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "backgroundColor", this.onBackgroundColorChanged.bind(this));
-    this.settings.bindProperty(Settings.BindingDirection.IN, "show-username", "showUsername", this.onShowUsernameChanged.bind(this));
-    this.settings.bindProperty(Settings.BindingDirection.IN, "show-contribution-count", "showContributionCount", this.onGridChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "github-username", "githubUsername", this._onDataSettingChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "github-token", "githubToken", this._onDataSettingChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refreshInterval", this._onDataSettingChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "block-size", "blockSize", this._onGridChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "backgroundColor", this._onBackgroundColorChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-username", "showUsername", this._onShowUsernameChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-contribution-count", "showContributionCount", this._onGridChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this._onDecorationsChanged.bind(this));
   }
 
   on_desklet_added_to_desktop() {
@@ -60,6 +62,7 @@ class MyDesklet extends Desklet.Desklet {
     this.setContent(this._mainContainer);
 
     this._setupContributionData();
+    this._onDecorationsChanged();
 
     if (this.githubToken && this.githubUsername) {
       // The first request after system start will fail
@@ -88,13 +91,13 @@ class MyDesklet extends Desklet.Desklet {
     this._isReloading = true;
   }
 
-  onDataSettingChanged() {
+  _onDataSettingChanged() {
     this._mainContainer.remove_all_children();
     this._mainContainer.add_child(UiHelper.getHeader(this.githubUsername, this.showUsername, () => this._setupContributionData()));
     this._setupContributionData();
   }
 
-  onShowUsernameChanged() {
+  _onShowUsernameChanged() {
     // Destroy the current header
     this._mainContainer.get_children()[0].destroy();
     // Add the new header
@@ -104,13 +107,18 @@ class MyDesklet extends Desklet.Desklet {
     );
   }
 
-  onBackgroundColorChanged() {
+  _onBackgroundColorChanged() {
     if (this.contentContainer) {
       this.contentContainer.style = `background-color: ${this.backgroundColor}; border-radius: 0.2em;`;
     }
   }
 
-  onGridChanged() {
+  _onDecorationsChanged() {
+    this.metadata["prevent-decorations"] = this.hideDecorations;
+    this._updateDecoration();
+  }
+
+  _onGridChanged() {
     if (this._contributionData) this._renderGrid(this._contributionData);
   }
 
