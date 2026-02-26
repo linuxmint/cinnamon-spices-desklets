@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2026-02-23 22:40+0100\n"
-"PO-Revision-Date: 2025-11-11 10:28+0100\n"
+"PO-Revision-Date: 2026-02-26 07:46+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: hu\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #. desklet.js:99
 msgid "N/A"
-msgstr ""
+msgstr "N/A"
 
 #. desklet.js:754
 msgid "Empty quotes list. Open settings and add some symbols."
@@ -38,7 +38,7 @@ msgstr "A Yahoo Finance szolgáltatás pillanatnyilag nem érhető el. Állapot:
 
 #. desklet.js:810
 msgid "Something went wrong retrieving Yahoo Finance data"
-msgstr ""
+msgstr "Hiba történt a Yahoo Finance adatainak lekérésekor"
 
 #. desklet.js:1281
 msgid "No quotes data to display"
@@ -138,7 +138,7 @@ msgstr "Dátum és idő"
 
 #. settings-schema.json->detailsPrePostMarketSection->title
 msgid "Pre-/Post-Market Data"
-msgstr ""
+msgstr "Forgalomba hozatal előtti/utáni adat"
 
 #. settings-schema.json->presentationFormattingSection->title
 msgid "Number Format"
@@ -514,23 +514,24 @@ msgstr ""
 
 #. settings-schema.json->includePrePostMarketDataOption->options
 msgid "Never"
-msgstr ""
+msgstr "Soha"
 
 #. settings-schema.json->includePrePostMarketDataOption->options
 msgid "Prefer to regular data"
-msgstr ""
+msgstr "A szokásos adatokat részesítem előnyben"
 
 #. settings-schema.json->includePrePostMarketDataOption->options
 msgid "Show in extra columns"
-msgstr ""
+msgstr "Mutasd a további oszlopokban"
 
 #. settings-schema.json->includePrePostMarketDataOption->description
 msgid "Include pre-/post-market data"
-msgstr ""
+msgstr "Forgalomba hozatal előtti/utáni adatok feltüntetése"
 
 #. settings-schema.json->includePrePostMarketDataOption->tooltip
 msgid "If and how extended-hours trading data is displayed"
 msgstr ""
+"Megjelennek-e a hosszabbított órás kereskedési adatok, és ha igen, hogyan?"
 
 #. settings-schema.json->showTradeTime->description
 msgid "Show trading time"
@@ -570,27 +571,28 @@ msgstr "A betűméret nagyítása/csökkentése"
 
 #. settings-schema.json->fontStylePrePostMarketData->options
 msgid "Normal"
-msgstr ""
+msgstr "Normál"
 
 #. settings-schema.json->fontStylePrePostMarketData->options
 msgid "Italic"
-msgstr ""
+msgstr "Dőlt"
 
 #. settings-schema.json->fontStylePrePostMarketData->options
 msgid "Bold"
-msgstr ""
+msgstr "Félkövér"
 
 #. settings-schema.json->fontStylePrePostMarketData->options
 msgid "Bold italic"
-msgstr ""
+msgstr "Félkövér dőlt"
 
 #. settings-schema.json->fontStylePrePostMarketData->description
 msgid "Font style of pre-/post-market data"
-msgstr ""
+msgstr "Forgalomba hozatal előtti/utáni adatok betűstílusa"
 
 #. settings-schema.json->fontStylePrePostMarketData->tooltip
 msgid "Accentuate extended-hours trading data (price, change, time)"
 msgstr ""
+"A hosszabbított órás kereskedési adatok kiemelése (ár, változás, időpont)"
 
 #. settings-schema.json->uptrendChangeColor->description
 msgid "Uptrend change color"
