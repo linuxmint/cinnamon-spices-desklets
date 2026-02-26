@@ -1,0 +1,178 @@
+# Slovak translation of simple system monitor desklet.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Dušan Kazik <prescott66@gmail.com>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-07 06:24-0400\n"
+"PO-Revision-Date: 2023-09-03 14:07-0400\n"
+"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
+"Language-Team: \n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+"X-Generator: Poedit 3.3.1\n"
+
+#: 4.0/desklet.js:241 5.8/desklet.js:333 3.0/desklet.js:243
+msgid "GPU:"
+msgstr ""
+
+#: 5.8/desklet.js:112
+msgid "No temp file detected at CPU path. Resetting to default."
+msgstr ""
+
+#: 5.8/desklet.js:116
+msgid "Invalid CPU path detected. Resetting to default."
+msgstr ""
+
+#: 5.8/desklet.js:131 5.8/desklet.js:172
+msgid "error reading:"
+msgstr ""
+
+#: 5.8/desklet.js:153
+msgid "No temp file detected at GPU path. Resetting to default."
+msgstr ""
+
+#: 5.8/desklet.js:157
+msgid "Invalid GPU path detected. Resetting to default."
+msgstr ""
+
+#: 5.8/desklet.js:212 5.8/desklet.js:230
+msgid "Please install missing dependencies."
+msgstr ""
+
+#. 5.8->settings-schema.json->head0->description
+msgid "General Settings"
+msgstr ""
+
+#. 5.8->settings-schema.json->title_align->description
+msgid "Alignment for title strings"
+msgstr ""
+
+#. 5.8->settings-schema.json->title_align->tooltip
+msgid "CPU, Memory, etc."
+msgstr ""
+
+#. 5.8->settings-schema.json->title_align->options
+#. 5.8->settings-schema.json->value_align->options
+msgid "Left"
+msgstr ""
+
+#. 5.8->settings-schema.json->title_align->options
+#. 5.8->settings-schema.json->value_align->options
+msgid "Right"
+msgstr ""
+
+#. 5.8->settings-schema.json->value_align->description
+msgid "Alignment for value strings"
+msgstr ""
+
+#. 5.8->settings-schema.json->value_align->tooltip
+msgid "GB, KB, etc."
+msgstr ""
+
+#. 5.8->settings-schema.json->temp_units->options
+msgid "°C"
+msgstr ""
+
+#. 5.8->settings-schema.json->temp_units->options
+msgid "°F"
+msgstr ""
+
+#. 5.8->settings-schema.json->temp_units->description
+msgid "Temperature units to display"
+msgstr ""
+
+#. 5.8->settings-schema.json->font_scale_size->description
+msgid "Scale factor for font size"
+msgstr ""
+
+#. 5.8->settings-schema.json->font_scale_size->tooltip
+msgid ""
+"Increase or decrease this value to change the font size scale (1.2 = 120%)"
+msgstr ""
+
+#. 5.8->settings-schema.json->font_color->description
+msgid "Font color"
+msgstr ""
+
+#. 5.8->settings-schema.json->font_color->tooltip
+#. 5.8->settings-schema.json->background_color->tooltip
+msgid "RGB or RGBA"
+msgstr ""
+
+#. 5.8->settings-schema.json->font_family->description
+msgid "Font family for text (blank to use default)"
+msgstr ""
+
+#. 5.8->settings-schema.json->font_family->tooltip
+msgid "Set a custom font family for the text (blank to use default font)"
+msgstr ""
+
+#. 5.8->settings-schema.json->width->units
+msgid "px"
+msgstr ""
+
+#. 5.8->settings-schema.json->width->description
+msgid "Fixed width for the desklet"
+msgstr ""
+
+#. 5.8->settings-schema.json->width->tooltip
+msgid ""
+"Increase or decrease this value to set the boundary width of the desklet"
+msgstr ""
+
+#. 5.8->settings-schema.json->show_decorations->description
+msgid "Show background decorations"
+msgstr ""
+
+#. 5.8->settings-schema.json->show_decorations->tooltip
+msgid "Toggle to control whether the background is transparent"
+msgstr ""
+
+#. 5.8->settings-schema.json->background_color->description
+msgid "Background color"
+msgstr ""
+
+#. 5.8->settings-schema.json->head1->description
+msgid "Advanced Settings"
+msgstr ""
+
+#. 5.8->settings-schema.json->customCPUPath->description
+msgid "Path to CPU temperature directory (device path)"
+msgstr ""
+
+#. 5.8->settings-schema.json->customCPUPath->tooltip
+msgid ""
+"Choose your own thermal CPU object e.g. for monitoring another temperature "
+"sensor.\n"
+"\n"
+"Default:\n"
+"/sys/class/thermal/thermal_zone0"
+msgstr ""
+
+#. 5.8->settings-schema.json->display_gpu->description
+msgid "Display GPU temperature"
+msgstr ""
+
+#. 5.8->settings-schema.json->display_gpu->tooltip
+msgid "Toggle to control whether the GPU temperature is displayed"
+msgstr ""
+
+#. 5.8->settings-schema.json->customGPUPath->description
+msgid "Path to GPU temperature directory (device path)"
+msgstr ""
+
+#. 5.8->settings-schema.json->customGPUPath->tooltip
+msgid ""
+"Choose your own thermal GPU object e.g. for monitoring a GPU.\n"
+"\n"
+"Default:\n"
+"/sys/class/thermal/thermal_zone0"
+msgstr ""

@@ -1,0 +1,82 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-06 06:00+0300\n"
+"PO-Revision-Date: 2017-04-27 12:03+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:279
+#, javascript-format
+msgid "%d point"
+msgid_plural "%d points"
+msgstr[0] "%d Punkt"
+msgstr[1] "%d Punkte"
+
+#: desklet.js:288
+msgid "by"
+msgstr "von"
+
+#: desklet.js:298
+msgid "to"
+msgstr "auf"
+
+#: desklet.js:309
+#, javascript-format
+msgid "%d comment"
+msgid_plural "%d comments"
+msgstr[0] "%d Kommentar"
+msgstr[1] "%d Kommentare"
+
+#. metadata.json->name
+msgid "reddit reader desklet"
+msgstr "Reddit Reader Desklet"
+
+#. metadata.json->description
+msgid "A desklet to read subreddits"
+msgstr "Ein Desklet zum Lesen von Subreddits"
+
+#. settings-schema.json->subreddit->description
+msgid "Subreddit:"
+msgstr "Subreddit:"
+
+#. settings-schema.json->subreddit->tooltip
+msgid ""
+"supports multireddits and alterative sorting methods. eg: "
+"TheOnion+NotTheOnion, Linux/new and aww+worldnews/controversial"
+msgstr ""
+"Unterstützt Multireddits und alternative Sortiermethoden, z.B.: "
+"TheOnion+NotTheOnion, Linux/new und aww+worldnews/controversial"
+
+#. settings-schema.json->height->description
+msgid "Height:"
+msgstr "Höhe:"
+
+#. settings-schema.json->height->units
+#. settings-schema.json->width->units
+msgid "pixels"
+msgstr "Pixel"
+
+#. settings-schema.json->width->description
+msgid "Width:"
+msgstr "Breite:"
+
+#. settings-schema.json->refreshRate->description
+msgid "Refresh rate:"
+msgstr "Aktualisierungsintervall:"
+
+#. settings-schema.json->refreshRate->units
+msgid "minutes"
+msgstr "Minuten"

@@ -1,0 +1,614 @@
+# YET ANOTHER RSS READER
+# This file is put in the public domain.
+# jtoberling, 2023
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: yarr@jtoberling 1.2.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-08-21 09:05-0400\n"
+"PO-Revision-Date: 2025-08-25 18:22+0200\n"
+"Last-Translator: qadzek\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. metadata.json->description
+#. metadata.json->name
+msgid "Yet Another RSS Reader"
+msgstr "Nog een RSS-lezer"
+
+#. settings-schema.json->page1->title
+#. settings-schema.json->section0->title
+msgid "Feed settings"
+msgstr "Feed instellingen"
+
+#. settings-schema.json->page2->title
+#. settings-schema.json->section1->title
+msgid "Display settings"
+msgstr "Weergave instellingen"
+
+#. settings-schema.json->page3->title
+#. settings-schema.json->section2->title
+msgid "AI settings"
+msgstr "AI instellingen"
+
+#. settings-schema.json->page4->title
+#. settings-schema.json->section3->title
+msgid "Debug settings"
+msgstr "Debug-instellingen"
+
+#. settings-schema.json->section1ai->title
+msgid "Display settings for AI feature"
+msgstr "Weergave instellingen voor AI functie"
+
+#. settings-schema.json->feeds->description
+msgid "Feed settings (supports RSS and Atom)"
+msgstr "Feed-instellingen (ondersteunt RSS en Atom)"
+
+#. settings-schema.json->feeds->columns->title
+#. settings-schema.json->listfilter->columns->title
+msgid "Name"
+msgstr "Naam"
+
+#. settings-schema.json->feeds->columns->title
+#. settings-schema.json->listfilter->columns->title
+msgid "Active"
+msgstr "Actief"
+
+#. settings-schema.json->feeds->columns->title
+msgid "Feed URL"
+msgstr "Feed URL"
+
+#. settings-schema.json->feeds->columns->title
+msgid "Label Color (#rrggbb)"
+msgstr "Label kleur (#rrggbb)"
+
+#. settings-schema.json->feeds->columns->title
+msgid "ChannelFilter (Regexp eg: '.*')"
+msgstr "Kanaalfilter (regexp bv. '.*')"
+
+#. settings-schema.json->backgroundColor->description
+msgid "Background color"
+msgstr "Achtergrondkleur"
+
+#. settings-schema.json->transparency->description
+msgid "Background transparency"
+msgstr "Achtergrondtransparantie"
+
+#. settings-schema.json->transparency->tooltip
+msgid "The higher the value, the more solid the desklet background."
+msgstr "Hoe hoger de waarde, hoe meer effen de achtergrond van de desklet."
+
+#. settings-schema.json->alternateRowTransparency->description
+msgid "Dim of every second rows"
+msgstr "Dimmen van elke tweede rij"
+
+#. settings-schema.json->alternateRowTransparency->tooltip
+msgid "The higher the value, more dim on alternate row backgrounds."
+msgstr ""
+"Hoe hoger de waarde, hoe meer gedimd de achtergrond van de alternatieve "
+"rijen."
+
+#. settings-schema.json->refreshInterval-spinner->units
+msgid "seconds"
+msgstr "seconden"
+
+#. settings-schema.json->refreshInterval-spinner->description
+msgid "Refresh Interval for Display"
+msgstr "Vernieuwingsinterval voor weergave"
+
+#. settings-schema.json->refreshInterval-spinner->tooltip
+msgid "Increase or decrease this spinner value to change the refresh interval"
+msgstr ""
+"Verhoog of verlaag deze spinnerwaarde om het vernieuwingsinterval te wijzigen"
+
+#. settings-schema.json->width->description
+msgid "Width"
+msgstr "Breedte"
+
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+msgid "pixels"
+msgstr "pixels"
+
+#. settings-schema.json->width->tooltip
+msgid "Desklet width in pixels."
+msgstr "Desklet breedte in pixels."
+
+#. settings-schema.json->height->description
+msgid "Height"
+msgstr "Hoogte"
+
+#. settings-schema.json->height->tooltip
+msgid "Desklet height in pixels."
+msgstr "Desklet hoogte in pixels."
+
+#. settings-schema.json->font->description
+msgid "Font"
+msgstr "Lettertype"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Tekstkleur"
+
+#. settings-schema.json->text-color->tooltip
+#. settings-schema.json->ai_text-color->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Klik op de knop om een nieuwe tekstkleur te selecteren"
+
+#. settings-schema.json->ai_font->description
+msgid "Font for explanation text"
+msgstr "Lettertype voor uitlegtekst"
+
+#. settings-schema.json->ai_text-color->description
+msgid "Text color of explanation"
+msgstr "Tekstkleur van uitleg"
+
+#. settings-schema.json->numberofitems->description
+msgid "Number of displayed articles"
+msgstr "Aantal weergegeven artikelen"
+
+#. settings-schema.json->numberofitems->tooltip
+msgid "Number of displayed articles in the list window."
+msgstr "Aantal weergegeven artikelen in het lijstvenster."
+
+#. settings-schema.json->filterlabel->description
+msgid "Exclude filters for articles"
+msgstr "Uitsluitingsfilters voor artikelen"
+
+#. settings-schema.json->listfilter->description
+msgid "Message RegExp filters"
+msgstr "Bericht regExp-filters"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Unmatch"
+msgstr "Niet overeenkomend"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Filter (Regexp eg: '.*')"
+msgstr "Filter (regexp bv. '.*')"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Match in Title"
+msgstr "Overeenkomst in titel"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Match in Category"
+msgstr "Overeenkomst in categorie"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Match in Description"
+msgstr "Overeenkomst in beschrijving"
+
+#. settings-schema.json->ai_label-info->description
+msgid ""
+"AI-powered article summarization using various language models. Configure "
+"your preferred AI service and summarization behavior."
+msgstr ""
+"AI-aangedreven artikel-samenvatting met behulp van verschillende "
+"taalmodellen. Configureer je voorkeur-AI-service en samenvattingsgedrag."
+
+#. settings-schema.json->ai_enablesummary->description
+msgid "Enable AI article summarization"
+msgstr "AI-artikelsamenvatting inschakelen"
+
+#. settings-schema.json->ai_add_description_to_summary->description
+msgid "Include article description"
+msgstr "Artikelbeschrijving opnemen"
+
+#. settings-schema.json->ai_provider->description
+msgid "AI Service Provider"
+msgstr "AI-serviceprovider"
+
+#. settings-schema.json->ai_provider->options
+msgid "OpenAI (GPT models)"
+msgstr "OpenAI (GPT-modellen)"
+
+#. settings-schema.json->ai_provider->options
+msgid "DeepSeek (coding focus)"
+msgstr "DeepSeek (focus op programmeren)"
+
+#. settings-schema.json->ai_provider->options
+msgid "Anthropic (Claude models)"
+msgstr "Anthropic (Claude-modellen)"
+
+#. settings-schema.json->ai_provider->tooltip
+msgid ""
+"Select your AI service provider. Each provider has different model "
+"capabilities and pricing."
+msgstr ""
+"Selecteer je AI-serviceprovider. Elke provider heeft verschillende "
+"modelmogelijkheden en prijzen."
+
+#. settings-schema.json->ai_use_custom_url->description
+msgid "Override default API endpoint"
+msgstr "Overschrijf standaard API-endpoint"
+
+#. settings-schema.json->ai_use_custom_url->tooltip
+msgid "Enable to use a custom API endpoint instead of the provider's default"
+msgstr ""
+"Inschakelen om een aangepast API-endpoint te gebruiken in plaats van de "
+"standaard van de provider"
+
+#. settings-schema.json->ai_url->description
+msgid "Custom API endpoint"
+msgstr "Aangepast API-endpoint"
+
+#. settings-schema.json->ai_url->tooltip
+msgid ""
+"Enter the API endpoint URL to override the default provider endpoint (useful "
+"for local models, custom deployments, etc.)"
+msgstr ""
+"Voer de API-endpoint-URL in om de standaard van de provider te overschrijven "
+"(nuttig voor lokale modellen, aangepaste implementaties, enz.)"
+
+#. settings-schema.json->ai_dumptool->description
+msgid "Content extractor"
+msgstr "Inhoudsextractor"
+
+#. settings-schema.json->ai_dumptool->options
+msgid "w3m"
+msgstr "w3m"
+
+#. settings-schema.json->ai_dumptool->options
+msgid "lynx"
+msgstr "lynx"
+
+#. settings-schema.json->ai_dumptool->options
+msgid "links"
+msgstr "links"
+
+#. settings-schema.json->ai_dumptool->tooltip
+msgid ""
+"Tool to extract article content from web pages. Install: apt install w3m (or "
+"lynx/links)"
+msgstr ""
+"Hulpmiddel om artikelinhoud uit webpagina’s te halen. Te installeren: apt "
+"install w3m (of lynx/links)"
+
+#. settings-schema.json->ai_use_standard_model->description
+msgid "Model selection"
+msgstr "Modelselectie"
+
+#. settings-schema.json->ai_use_standard_model->tooltip
+msgid "Choose from predefined models or enter a custom model name"
+msgstr ""
+"Kies uit vooraf gedefinieerde modellen of voer een aangepaste modelnaam in"
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Predefined models"
+msgstr "Vooraf gedefinieerde modellen"
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Custom model"
+msgstr "Aangepast model"
+
+#. settings-schema.json->ai_model->description
+msgid "Standard model to use"
+msgstr "Standaard model om te gebruiken"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-5"
+msgstr "gpt-5"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4o"
+msgstr "gpt-4o"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4o-mini"
+msgstr "gpt-4o-mini"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4-turbo"
+msgstr "gpt-4-turbo"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4"
+msgstr "gpt-4"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-3.5-turbo"
+msgstr "gpt-3.5-turbo"
+
+#. settings-schema.json->ai_model->options
+msgid "deepseek-chat"
+msgstr "deepseek-chat"
+
+#. settings-schema.json->ai_model->options
+msgid "deepseek-coder"
+msgstr "deepseek-coder"
+
+#. settings-schema.json->ai_model->options
+msgid "deepseek-coder-v2:latest"
+msgstr "deepseek-coder-v2:latest"
+
+#. settings-schema.json->ai_model->options
+msgid "deepseek-math"
+msgstr "deepseek-math"
+
+#. settings-schema.json->ai_model->options
+msgid "claude-3-5-sonnet"
+msgstr "claude-3-5-sonnet"
+
+#. settings-schema.json->ai_model->options
+msgid "claude-3-5-haiku"
+msgstr "claude-3-5-haiku"
+
+#. settings-schema.json->ai_model->options
+msgid "claude-3-opus"
+msgstr "claude-3-opus"
+
+#. settings-schema.json->ai_model->options
+msgid "claude-3-sonnet"
+msgstr "claude-3-sonnet"
+
+#. settings-schema.json->ai_model->options
+msgid "claude-3-haiku"
+msgstr "claude-3-haiku"
+
+#. settings-schema.json->ai_model->tooltip
+msgid ""
+"GPT-5 is the latest model (requires GPT-5 access).\n"
+"GPT-4o models offer best performance/value.\n"
+"DeepSeek models are great for coding.\n"
+"Claude models via compatible APIs.\n"
+"Select 'Custom' to use your own model name."
+msgstr ""
+"GPT-5 is het nieuwste model (vereist GPT-5-toegang).\n"
+"GPT-4o-modellen bieden de beste prestatie/waarde.\n"
+"DeepSeek-modellen zijn geweldig voor programmeren.\n"
+"Claude-modellen via compatibele API's.\n"
+"Selecteer 'Aangepast' om je eigen modelnaam te gebruiken."
+
+#. settings-schema.json->ai_custom_model->description
+msgid "Custom model name"
+msgstr "Aangepaste modelnaam"
+
+#. settings-schema.json->ai_custom_model->tooltip
+msgid "Enter the exact model name from your AI provider"
+msgstr "Voer de exacte modelnaam in van je AI-provider"
+
+#. settings-schema.json->ai_systemprompt->description
+msgid "AI instructions"
+msgstr "AI-instructies"
+
+#. settings-schema.json->ai_systemprompt->tooltip
+msgid "Instructions sent to the AI model before processing each article"
+msgstr ""
+"Instructies die naar het AI-model worden gestuurd vóór de verwerking van elk "
+"artikel"
+
+#. settings-schema.json->ai_apikey->description
+msgid "Set API key"
+msgstr "Stel API-sleutel in"
+
+#. settings-schema.json->ai_example1->description
+msgid "Concise (4 sentences)"
+msgstr "Bondig (4 zinnen)"
+
+#. settings-schema.json->ai_example2->description
+msgid "Bullet points"
+msgstr "Opsommingstekens"
+
+#. settings-schema.json->ai_example3->description
+msgid "Technical"
+msgstr "Technisch"
+
+#. settings-schema.json->ai_example4->description
+msgid "Creative"
+msgstr "Creatief"
+
+#. settings-schema.json->ai_example5->description
+msgid "Professional"
+msgstr "Professioneel"
+
+#. settings-schema.json->ai_example6->description
+msgid "Minimal"
+msgstr "Minimaal"
+
+#. settings-schema.json->refreshsettingsbutton->description
+msgid "Refresh settings"
+msgstr "Vernieuw instellingen"
+
+#. settings-schema.json->refreshsettingsbutton->tooltip
+msgid "Press this button to reload settings and update display immediately"
+msgstr ""
+"Druk op deze knop om instellingen opnieuw te laden en de weergave "
+"onmiddellijk bij te werken"
+
+#. settings-schema.json->refreshFeedsButton->description
+msgid "Refresh RSS Feeds"
+msgstr "RSS-feeds vernieuwen"
+
+#. settings-schema.json->refreshFeedsButton->tooltip
+msgid ""
+"Press this button to immediately refresh all RSS feeds and download new "
+"articles"
+msgstr ""
+"Druk op deze knop om onmiddellijk alle RSS-feeds te vernieuwen en nieuwe "
+"artikelen te downloaden"
+
+#. settings-schema.json->searchRssButton->description
+msgid "Search for RSS & Atom feeds"
+msgstr "Zoek naar RSS- & Atom-feeds"
+
+#. settings-schema.json->searchRssButton->tooltip
+msgid ""
+"Search for RSS and Atom feeds from a website URL. Automatically detects both "
+"feed formats."
+msgstr ""
+"Zoek naar RSS- en Atom-feeds vanuit een website-URL. Detecteert automatisch "
+"beide feedformaten."
+
+#. settings-schema.json->enablecopy->description
+msgid "Enable Copy to clipboard button"
+msgstr "Schakel knop 'Kopiëren naar klembord' in"
+
+#. settings-schema.json->temperature->description
+msgid "Temperature for AI responses"
+msgstr "Temperatuur voor AI-antwoorden"
+
+#. settings-schema.json->temperature->tooltip
+msgid ""
+"Controls the randomness of the AI's responses. Higher values mean more "
+"randomness."
+msgstr ""
+"Bepaalt de willekeurigheid van de AI-antwoorden. Hogere waarden betekenen "
+"meer willekeur."
+
+#. settings-schema.json->enableFeedButton->description
+msgid "Hide feed button"
+msgstr "Verberg feed-knop"
+
+#. settings-schema.json->enableTimestamp->description
+msgid "Hide timestamp"
+msgstr "Verberg tijdstempel"
+
+#. settings-schema.json->enableFavoriteFeature->description
+msgid "Enable favorite feature"
+msgstr "Schakel favorietenfunctie in"
+
+#. settings-schema.json->loadFavoritesOnStartup->description
+msgid "Load favorites on startup"
+msgstr "Laad favorieten bij opstarten"
+
+#. settings-schema.json->articleSpacing->description
+msgid "Article spacing density"
+msgstr "Dichtheid van afstand tussen artikelen"
+
+#. settings-schema.json->articleSpacing->tooltip
+msgid ""
+"Adjust the spacing between articles. Lower values make the list more "
+"compact, higher values add more space between articles."
+msgstr ""
+"Pas de afstand tussen artikelen aan. Lagere waarden maken de lijst "
+"compacter, hogere waarden voegen meer ruimte toe tussen artikelen."
+
+#. settings-schema.json->showRefreshSeparators->description
+msgid "Show refresh separators between articles"
+msgstr "Toon vernieuwingsscheidingstekens tussen artikelen"
+
+#. settings-schema.json->showRefreshSeparators->tooltip
+msgid ""
+"Shows separator lines with timestamps between articles from different "
+"refresh batches"
+msgstr ""
+"Toont scheidingslijnen met tijdstempels tussen artikelen uit verschillende "
+"vernieuwingsrondes"
+
+#. settings-schema.json->enableDebugLogs->description
+msgid "Enable debug logs"
+msgstr "Debuglogs inschakelen"
+
+#. settings-schema.json->enableDebugLogs->tooltip
+msgid ""
+"When enabled, detailed debug information will be logged to the system logs. "
+"Only enable when troubleshooting issues."
+msgstr ""
+"Indien ingeschakeld, dan wordt gedetailleerde debuginformatie gelogd in de "
+"systeemlogs. Schakel dit alleen in bij het oplossen van problemen."
+
+#. settings-schema.json->debugVerbosity->description
+msgid "Debug verbosity level"
+msgstr "Niveau debug-gedetailleerdheid"
+
+#. settings-schema.json->debugVerbosity->options
+msgid "minimal"
+msgstr "minimaal"
+
+#. settings-schema.json->debugVerbosity->options
+msgid "basic"
+msgstr "basis"
+
+#. settings-schema.json->debugVerbosity->options
+msgid "verbose"
+msgstr "uitgebreid"
+
+#. settings-schema.json->debugVerbosity->tooltip
+msgid "Control how much debug information is logged"
+msgstr "Bepaal hoeveel debuginformatie wordt gelogd"
+
+#. settings-schema.json->databasePath->description
+msgid "Database base directory"
+msgstr "Database-basismap"
+
+#. settings-schema.json->databasePath->tooltip
+msgid ""
+"Base directory where separate Yarr databases are stored (yarr_favorites.db, "
+"yarr_read_status.db, etc.)"
+msgstr ""
+"Basismap waar afzonderlijke Yarr-databases worden opgeslagen (yarr_favorites."
+"db, yarr_read_status.db, enz.)"
+
+#. settings-schema.json->databaseInfo->description
+msgid ""
+"Yarr uses separate databases for different data types. Database names are "
+"fixed and cannot be changed: yarr_favorites.db, yarr_read_status.db, "
+"yarr_article_cache.db, yarr_feed_button_states.db, yarr_refresh.db, "
+"yarr_readstatus.db"
+msgstr ""
+"Yarr gebruikt afzonderlijke databases voor verschillende gegevenstypen. "
+"Databasenamen staan vast en kunnen niet worden gewijzigd: yarr_favorites.db, "
+"yarr_read_status.db, yarr_article_cache.db, yarr_feed_button_states.db, "
+"yarr_refresh.db, yarr_readstatus.db"
+
+#. settings-schema.json->showReadStatusCheckbox->description
+msgid "Show read status checkbox"
+msgstr "Toon gelezen-status selectievakje"
+
+#. settings-schema.json->dimReadTitles->description
+msgid "Dim read article titles"
+msgstr "Verduister gelezen artikelkoppen"
+
+#. settings-schema.json->dimReadTitles->tooltip
+msgid ""
+"When enabled, read titles are slightly dimmed for better visual distinction"
+msgstr ""
+"Indien ingeschakeld, dan worden gelezen titels een beetje verduisterd voor "
+"betere visuele onderscheiding"
+
+#. settings-schema.json->readTitleColor->description
+msgid "Color for read article titles"
+msgstr "Kleur voor gelezen artikelkoppen"
+
+#. settings-schema.json->readTitleColor->tooltip
+msgid "Choose a color applied to read titles"
+msgstr "Kies een kleur die wordt toegepast op gelezen titels"
+
+#. settings-schema.json->enableHeaderFeedButtons->description
+msgid "Enable header feed buttons"
+msgstr "Kop-feedknoppen inschakelen"
+
+#. settings-schema.json->enableHeaderFeedButtons->tooltip
+msgid ""
+"Show toggleable feed buttons below the header to control which feeds are "
+"displayed in the article list"
+msgstr ""
+"Toon schakelbare feedknoppen onder de kop om te bepalen welke feeds in de "
+"artikelijst worden weergegeven"
+
+#. settings-schema.json->openLookingGlass->description
+msgid "Open Looking Glass"
+msgstr "Open Looking Glass"
+
+#. settings-schema.json->openLookingGlass->tooltip
+msgid ""
+"Opens Cinnamon's Looking Glass debugger to inspect the desklet's JavaScript "
+"context"
+msgstr ""
+"Opent de Looking Glass-debugger van Cinnamon om de JavaScript-context van de "
+"desklet te inspecteren"
+
+#. settings-schema.json->restartDesklet->description
+msgid "Restart desklet"
+msgstr "Herstart desklet"
+
+#. settings-schema.json->restartDesklet->tooltip
+msgid "Restarts the desklet to reload all code and settings"
+msgstr "Herstart de desklet om alle code en instellingen opnieuw te laden"

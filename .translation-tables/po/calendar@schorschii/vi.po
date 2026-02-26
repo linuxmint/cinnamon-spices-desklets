@@ -1,0 +1,232 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-30 02:38+0800\n"
+"PO-Revision-Date: 2025-10-19 04:17+0700\n"
+"Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
+"Language-Team: \n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: desklet.js:125
+msgid "Monday"
+msgstr "Thứ 2"
+
+#: desklet.js:126
+msgid "Tuesday"
+msgstr "Thứ 3"
+
+#: desklet.js:127
+msgid "Wednesday"
+msgstr "Thứ 4"
+
+#: desklet.js:128
+msgid "Thursday"
+msgstr "Thứ 5"
+
+#: desklet.js:129
+msgid "Friday"
+msgstr "Thứ 6"
+
+#: desklet.js:130
+msgid "Saturday"
+msgstr "Thứ 7"
+
+#: desklet.js:131
+msgid "Sunday"
+msgstr "Chủ nhật"
+
+#: desklet.js:134
+msgid "January"
+msgstr "Tháng 1"
+
+#: desklet.js:135
+msgid "February"
+msgstr "Tháng 2"
+
+#: desklet.js:136
+msgid "March"
+msgstr "Tháng 3"
+
+#: desklet.js:137
+msgid "April"
+msgstr "Tháng 4"
+
+#: desklet.js:138
+msgid "May"
+msgstr "Tháng 5"
+
+#: desklet.js:139
+msgid "June"
+msgstr "Tháng 6"
+
+#: desklet.js:140
+msgid "July"
+msgstr "Tháng 7"
+
+#: desklet.js:141
+msgid "August"
+msgstr "Tháng 8"
+
+#: desklet.js:142
+msgid "September"
+msgstr "Tháng 9"
+
+#: desklet.js:143
+msgid "October"
+msgstr "Tháng 10"
+
+#: desklet.js:144
+msgid "November"
+msgstr "Tháng 11"
+
+#: desklet.js:145
+msgid "December"
+msgstr "Tháng 12"
+
+#. calendar@schorschii->metadata.json->name
+#: desklet.js:275
+msgid "Calendar"
+msgstr "Lịch"
+
+#. calendar@schorschii->metadata.json->description
+msgid ""
+"A calendar desklet that can display the number of today's appointments from "
+"an ical file."
+msgstr "Một desklet lịch có thể hiển thị số lượng cuộc hẹn hôm nay từ tập tin ical."
+
+#. calendar@schorschii->settings-schema.json->notification-color->description
+msgid "Appointment number background color"
+msgstr "Màu nền số cuộc hẹn"
+
+#. calendar@schorschii->settings-schema.json->notification-color->tooltip
+msgid "Set the appointment number background color of this desklet."
+msgstr "Đặt màu nền số cuộc hẹn cho desklet này."
+
+#. calendar@schorschii->settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Ẩn trang trí"
+
+#. calendar@schorschii->settings-schema.json->head3->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr "Nhãn desklet tùy chỉnh (chỉ hiển thị nếu trang trí được bật)"
+
+#. calendar@schorschii->settings-schema.json->head2->description
+msgid "Number of appointments"
+msgstr "Số lượng cuộc hẹn"
+
+#. calendar@schorschii->settings-schema.json->head1->description
+msgid "Visual"
+msgstr "Hiển thị"
+
+#. calendar@schorschii->settings-schema.json->head0->description
+msgid "Settings for calendar@schorschii"
+msgstr "Cài đặt cho calendar@schorschii"
+
+#. calendar@schorschii->settings-schema.json->bg-img->description
+msgid "Calendar style"
+msgstr "Kiểu lịch"
+
+#. calendar@schorschii->settings-schema.json->bg-img->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Chọn hình nền bạn muốn sử dụng."
+
+#. calendar@schorschii->settings-schema.json->bg-img->options
+msgid "Orange"
+msgstr "Cam"
+
+#. calendar@schorschii->settings-schema.json->bg-img->options
+msgid "White"
+msgstr "Trắng"
+
+#. calendar@schorschii->settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Màu chữ"
+
+#. calendar@schorschii->settings-schema.json->text-color->tooltip
+msgid "Set the text color of this desklet."
+msgstr "Đặt màu chữ cho desklet này."
+
+#. calendar@schorschii->settings-schema.json->read-appointments->description
+msgid "Show the number of today's appointments parsed from an ical file"
+msgstr "Hiển thị số lượng cuộc hẹn hôm nay được phân tích từ tập tin ical"
+
+#. calendar@schorschii->settings-schema.json->read-appointments->tooltip
+msgid ""
+"Checking this box allows you to set an ical file to parse in the field below."
+msgstr "Chọn hộp này cho phép bạn đặt tập tin ical để phân tích trong trường bên dưới."
+
+#. calendar@schorschii->settings-schema.json->ical-file->description
+msgid "Path to ical/ics file"
+msgstr "Đường dẫn đến tập tin ical/ics"
+
+#. calendar@schorschii->settings-schema.json->ical-file->tooltip
+msgid ""
+"Select your ical or ics file for reading the amount of appointments today.\n"
+"\n"
+"You can configure Lightning (the Thunderbird Add-On) to save your calendar "
+"in an ical file."
+msgstr ""
+"Chọn tập tin ical hoặc ics của bạn để đọc số lượng cuộc hẹn hôm nay.\n"
+"\n"
+"Bạn có thể cấu hình Lightning (tiện ích bổ sung của Thunderbird) để lưu lịch của bạn vào tập tin ical."
+
+#. calendar@schorschii->settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Kích thước desklet"
+
+#. calendar@schorschii->settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of the calendar using this scale factor."
+msgstr "Tăng hoặc giảm kích thước của lịch bằng hệ số tỷ lệ này."
+
+#. calendar@schorschii->settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "hệ số tỷ lệ"
+
+#. calendar@schorschii->settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Sử dụng nhãn desklet tùy chỉnh"
+
+#. calendar@schorschii->settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr "Chọn hộp này cho phép bạn đặt nhãn tùy chỉnh trong trường bên dưới."
+
+#. calendar@schorschii->settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Nhãn desklet tùy chỉnh"
+
+#. calendar@schorschii->settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here, e.g. for monitoring multiple ical files. This "
+"field is unavailable unless the checkbox above is enabled."
+msgstr "Đặt nhãn tùy chỉnh của bạn ở đây, ví dụ: để theo dõi nhiều tập tin ical. Trường này không khả dụng trừ khi hộp kiểm trên được bật."
+
+msgid "Appointment number color"
+msgstr "Màu số cuộc hẹn"
+
+msgid "Start program on click of the desklet"
+msgstr "Khởi chạy chương trình khi nhấp vào desklet"
+
+msgid "Start a program (e.g. Thunderbird)"
+msgstr "Khởi chạy một chương trình (ví dụ: Thunderbird)"
+
+msgid ""
+"The command entered below will be executed on mouse click of the desklet. So "
+"you can directly start Thunderbird."
+msgstr "Lệnh được nhập bên dưới sẽ được thực thi khi nhấp chuột vào desklet. Vì vậy bạn có thể trực tiếp khởi chạy Thunderbird."
+
+msgid "Command line"
+msgstr "Dòng lệnh"
+
+msgid "Set your program including parameters to start on click."
+msgstr "Đặt chương trình của bạn bao gồm các tham số để khởi chạy khi nhấp chuột."

@@ -1,0 +1,97 @@
+# Timelet
+# Copyright (C) 2022 Gobinath
+# This file is distributed under the same license as the Timelet package.
+# Daniel <d3vf4n (at) tutanota (dot) com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-18 00:10+0200\n"
+"PO-Revision-Date: 2024-05-18 00:12+0200\n"
+"Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. metadata.json->name
+#: desklet.js:50
+msgid "Timelet"
+msgstr "Timelet"
+
+#: themes/theme.js:143
+msgid "AM"
+msgstr "AM"
+
+#: themes/theme.js:145
+msgid "Noon"
+msgstr "Vespre"
+
+#: themes/theme.js:147
+msgid "PM"
+msgstr "PM"
+
+#. metadata.json->description
+msgid "A themeable desklet that shows the time"
+msgstr "Una miniaplicació d'escriptori"
+
+#. settings-schema.json->head0->description
+msgid "Timelet Settings"
+msgstr "Ajusts del Timelet"
+
+#. settings-schema.json->themeName->description
+msgid "Theme"
+msgstr "Tema"
+
+#. settings-schema.json->use24H->description
+msgid "Use 24H"
+msgstr "Format 24h"
+
+#. settings-schema.json->use24H->tooltip
+msgid "Display time in 24H"
+msgstr "Determina si el rellotge es mostra en format de 24 o 12 hores"
+
+#. settings-schema.json->textColor->description
+msgid "Text color"
+msgstr "Color del text"
+
+#. settings-schema.json->textColor->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Defineix el color del text"
+
+#. settings-schema.json->bgColor->description
+msgid "Background color"
+msgstr "Color del fons"
+
+#. settings-schema.json->bgColor->tooltip
+msgid "Click the button to select a new background color"
+msgstr "Defineix el color del fons"
+
+#. settings-schema.json->scale->description
+msgid "Scale"
+msgstr "Escala"
+
+#. settings-schema.json->scale->tooltip
+msgid "Change the size of the desklet"
+msgstr "Modifica la mida de la miniaplicació"
+
+#. settings-schema.json->transparency->description
+msgid "Background Transparency"
+msgstr "Transparència del fons"
+
+#. settings-schema.json->transparency->tooltip
+msgid "Set the transparency of the desklet"
+msgstr "Defineix la transparència del fons de la miniaplicació"
+
+#. settings-schema.json->cornerRadius->description
+msgid "Background Corner radius"
+msgstr "Radi de les cantonades del fons"
+
+#. settings-schema.json->cornerRadius->tooltip
+msgid "Radius for rounding the desklet's corners"
+msgstr "Defineix el radi d'arrodoniment de les cantonades de la miniaplicació"

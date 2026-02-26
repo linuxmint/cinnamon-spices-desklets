@@ -1,0 +1,328 @@
+# YET ANOTHER RSS READER
+# This file is put in the public domain.
+# jtoberling, 2023
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: yarr@jtoberling 1.2.1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-08-21 09:05-0400\n"
+"PO-Revision-Date: 2025-04-02 15:17+0300\n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
+"Language-Team: \n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. settings-schema.json->page4->title
+#. settings-schema.json->section3->title
+msgid "Debug settings"
+msgstr ""
+
+#. settings-schema.json->feeds->description
+msgid "Feed settings (supports RSS and Atom)"
+msgstr ""
+
+#. settings-schema.json->ai_label-info->description
+msgid ""
+"AI-powered article summarization using various language models. Configure "
+"your preferred AI service and summarization behavior."
+msgstr ""
+
+#. settings-schema.json->ai_enablesummary->description
+msgid "Enable AI article summarization"
+msgstr ""
+
+#. settings-schema.json->ai_add_description_to_summary->description
+msgid "Include article description"
+msgstr ""
+
+#. settings-schema.json->ai_provider->description
+msgid "AI Service Provider"
+msgstr ""
+
+#. settings-schema.json->ai_provider->options
+msgid "OpenAI (GPT models)"
+msgstr ""
+
+#. settings-schema.json->ai_provider->options
+msgid "DeepSeek (coding focus)"
+msgstr ""
+
+#. settings-schema.json->ai_provider->options
+msgid "Anthropic (Claude models)"
+msgstr ""
+
+#. settings-schema.json->ai_provider->tooltip
+msgid ""
+"Select your AI service provider. Each provider has different model "
+"capabilities and pricing."
+msgstr ""
+
+#. settings-schema.json->ai_use_custom_url->description
+msgid "Override default API endpoint"
+msgstr ""
+
+#. settings-schema.json->ai_use_custom_url->tooltip
+msgid "Enable to use a custom API endpoint instead of the provider's default"
+msgstr ""
+
+#. settings-schema.json->ai_url->description
+msgid "Custom API endpoint"
+msgstr ""
+
+#. settings-schema.json->ai_url->tooltip
+msgid ""
+"Enter the API endpoint URL to override the default provider endpoint (useful "
+"for local models, custom deployments, etc.)"
+msgstr ""
+
+#. settings-schema.json->ai_dumptool->description
+msgid "Content extractor"
+msgstr ""
+
+#. settings-schema.json->ai_dumptool->tooltip
+msgid ""
+"Tool to extract article content from web pages. Install: apt install w3m (or "
+"lynx/links)"
+msgstr ""
+
+#. settings-schema.json->ai_use_standard_model->description
+msgid "Model selection"
+msgstr ""
+
+#. settings-schema.json->ai_use_standard_model->tooltip
+msgid "Choose from predefined models or enter a custom model name"
+msgstr ""
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Predefined models"
+msgstr ""
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Custom model"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-5"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4-turbo"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "deepseek-chat"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "deepseek-math"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "claude-3-5-sonnet"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "claude-3-5-haiku"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "claude-3-opus"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "claude-3-sonnet"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "claude-3-haiku"
+msgstr ""
+
+#. settings-schema.json->ai_model->tooltip
+msgid ""
+"GPT-5 is the latest model (requires GPT-5 access).\n"
+"GPT-4o models offer best performance/value.\n"
+"DeepSeek models are great for coding.\n"
+"Claude models via compatible APIs.\n"
+"Select 'Custom' to use your own model name."
+msgstr ""
+
+#. settings-schema.json->ai_custom_model->description
+msgid "Custom model name"
+msgstr ""
+
+#. settings-schema.json->ai_custom_model->tooltip
+msgid "Enter the exact model name from your AI provider"
+msgstr ""
+
+#. settings-schema.json->ai_systemprompt->description
+msgid "AI instructions"
+msgstr ""
+
+#. settings-schema.json->ai_systemprompt->tooltip
+msgid "Instructions sent to the AI model before processing each article"
+msgstr ""
+
+#. settings-schema.json->ai_apikey->description
+msgid "Set API key"
+msgstr ""
+
+#. settings-schema.json->ai_example1->description
+msgid "Concise (4 sentences)"
+msgstr ""
+
+#. settings-schema.json->ai_example2->description
+msgid "Bullet points"
+msgstr ""
+
+#. settings-schema.json->ai_example3->description
+msgid "Technical"
+msgstr ""
+
+#. settings-schema.json->ai_example4->description
+msgid "Creative"
+msgstr ""
+
+#. settings-schema.json->ai_example5->description
+msgid "Professional"
+msgstr ""
+
+#. settings-schema.json->ai_example6->description
+msgid "Minimal"
+msgstr ""
+
+#. settings-schema.json->refreshsettingsbutton->tooltip
+msgid "Press this button to reload settings and update display immediately"
+msgstr ""
+
+#. settings-schema.json->refreshFeedsButton->description
+msgid "Refresh RSS Feeds"
+msgstr ""
+
+#. settings-schema.json->refreshFeedsButton->tooltip
+msgid ""
+"Press this button to immediately refresh all RSS feeds and download new "
+"articles"
+msgstr ""
+
+#. settings-schema.json->searchRssButton->description
+msgid "Search for RSS & Atom feeds"
+msgstr ""
+
+#. settings-schema.json->searchRssButton->tooltip
+msgid ""
+"Search for RSS and Atom feeds from a website URL. Automatically detects both "
+"feed formats."
+msgstr ""
+
+#. settings-schema.json->showRefreshSeparators->description
+msgid "Show refresh separators between articles"
+msgstr ""
+
+#. settings-schema.json->showRefreshSeparators->tooltip
+msgid ""
+"Shows separator lines with timestamps between articles from different "
+"refresh batches"
+msgstr ""
+
+#. settings-schema.json->enableDebugLogs->description
+msgid "Enable debug logs"
+msgstr ""
+
+#. settings-schema.json->enableDebugLogs->tooltip
+msgid ""
+"When enabled, detailed debug information will be logged to the system logs. "
+"Only enable when troubleshooting issues."
+msgstr ""
+
+#. settings-schema.json->debugVerbosity->description
+msgid "Debug verbosity level"
+msgstr ""
+
+#. settings-schema.json->debugVerbosity->options
+msgid "minimal"
+msgstr ""
+
+#. settings-schema.json->debugVerbosity->options
+msgid "basic"
+msgstr ""
+
+#. settings-schema.json->debugVerbosity->options
+msgid "verbose"
+msgstr ""
+
+#. settings-schema.json->debugVerbosity->tooltip
+msgid "Control how much debug information is logged"
+msgstr ""
+
+#. settings-schema.json->databasePath->description
+msgid "Database base directory"
+msgstr ""
+
+#. settings-schema.json->databasePath->tooltip
+msgid ""
+"Base directory where separate Yarr databases are stored (yarr_favorites.db, "
+"yarr_read_status.db, etc.)"
+msgstr ""
+
+#. settings-schema.json->databaseInfo->description
+msgid ""
+"Yarr uses separate databases for different data types. Database names are "
+"fixed and cannot be changed: yarr_favorites.db, yarr_read_status.db, "
+"yarr_article_cache.db, yarr_feed_button_states.db, yarr_refresh.db, "
+"yarr_readstatus.db"
+msgstr ""
+
+#. settings-schema.json->showReadStatusCheckbox->description
+msgid "Show read status checkbox"
+msgstr ""
+
+#. settings-schema.json->dimReadTitles->description
+msgid "Dim read article titles"
+msgstr ""
+
+#. settings-schema.json->dimReadTitles->tooltip
+msgid ""
+"When enabled, read titles are slightly dimmed for better visual distinction"
+msgstr ""
+
+#. settings-schema.json->readTitleColor->description
+msgid "Color for read article titles"
+msgstr ""
+
+#. settings-schema.json->readTitleColor->tooltip
+msgid "Choose a color applied to read titles"
+msgstr ""
+
+#. settings-schema.json->enableHeaderFeedButtons->description
+msgid "Enable header feed buttons"
+msgstr ""
+
+#. settings-schema.json->enableHeaderFeedButtons->tooltip
+msgid ""
+"Show toggleable feed buttons below the header to control which feeds are "
+"displayed in the article list"
+msgstr ""
+
+#. settings-schema.json->openLookingGlass->description
+msgid "Open Looking Glass"
+msgstr ""
+
+#. settings-schema.json->openLookingGlass->tooltip
+msgid ""
+"Opens Cinnamon's Looking Glass debugger to inspect the desklet's JavaScript "
+"context"
+msgstr ""
+
+#. settings-schema.json->restartDesklet->description
+msgid "Restart desklet"
+msgstr ""
+
+#. settings-schema.json->restartDesklet->tooltip
+msgid "Restarts the desklet to reload all code and settings"
+msgstr ""

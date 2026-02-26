@@ -1,0 +1,137 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Marcelo Aof, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-14 23:35+0200\n"
+"PO-Revision-Date: 2021-09-27 19:19-0300\n"
+"Last-Translator: Marcelo Aof\n"
+"Language-Team: \n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: desklet.js:27 desklet.js:50
+msgid "Back"
+msgstr "Desfazer"
+
+#: desklet.js:28 desklet.js:52
+msgid "Reset"
+msgstr "Redefinir"
+
+#: desklet.js:51
+msgid "Clear Entry"
+msgstr "Limpar o visor"
+
+#: desklet.js:53
+msgid "Copy to Clipboard"
+msgstr "Copiar para a área de transferência"
+
+#: desklet.js:54
+msgid "Paste from Clipboard"
+msgstr "Colar da área de transferência"
+
+#: desklet.js:55
+msgid "Inverse"
+msgstr "Funções inversas"
+
+#: desklet.js:58
+msgid "Swap Sign"
+msgstr "Trocar o sinal"
+
+#: desklet.js:82
+msgid "Scientific Notation"
+msgstr "Notação científica"
+
+#: desklet.js:791
+msgid "Swap Entries"
+msgstr "Trocar as entradas"
+
+#: desklet.js:795
+msgid "Reciprocal"
+msgstr "Recíproco"
+
+#. settings-schema.json->angleMode->options
+#: desklet.js:1056
+msgid "Degrees"
+msgstr "Graus"
+
+#. settings-schema.json->angleMode->options
+#: desklet.js:1064
+msgid "Radians"
+msgstr "Radianos"
+
+#: desklet.js:1074
+msgid "RPN"
+msgstr "RPN"
+
+#: desklet.js:1083
+msgid "4-Function"
+msgstr "Básica"
+
+#. settings-schema.json->layout->options
+#: desklet.js:1090
+msgid "Scientific"
+msgstr "Científica"
+
+#: desklet.js:1099
+msgid "Copy"
+msgstr "Copiar"
+
+#: desklet.js:1103
+msgid "Paste"
+msgstr "Colar"
+
+#. metadata.json->name
+#: desklet.js:1109
+msgid "Desktop Calculator"
+msgstr "Calculadora na área de trabalho"
+
+#. metadata.json->description
+msgid "A calculator Desklet"
+msgstr "Um desklet de calculadora"
+
+#. settings-schema.json->style->description
+#. settings-schema.json->layout->description
+msgid "Style"
+msgstr "Tipo de calculadora"
+
+#. settings-schema.json->style->options
+msgid "Light"
+msgstr "Claro"
+
+#. settings-schema.json->style->options
+msgid "Dark"
+msgstr "Escuro"
+
+#. settings-schema.json->angleMode->description
+msgid "Angle Measure"
+msgstr "Medida do ângulo"
+
+#. settings-schema.json->rpn->description
+msgid "Use Reverse-Polish Notation"
+msgstr "Usar a notação polonesa inversa"
+
+#. settings-schema.json->layout->options
+msgid "4-function"
+msgstr "Básica"
+
+#. settings-schema.json->precision->description
+msgid "Precision"
+msgstr "Precisão"
+
+#. settings-schema.json->precision->units
+msgid "digits"
+msgstr "dígitos"
+
+#. settings-schema.json->raiseKey->description
+msgid "Raise to top shorcut key"
+msgstr "Trazer a calculadora para a frente das janelas"

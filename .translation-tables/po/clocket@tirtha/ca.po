@@ -1,0 +1,197 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# Daniel <d3vf4n (at) tutanota (dot) com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: clocket@tirtha 2.4\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-17 23:16+0200\n"
+"PO-Revision-Date: 2024-05-17 23:19+0200\n"
+"Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: desklet.js:49
+msgid "Clock"
+msgstr "Rellotge"
+
+#: desklet.js:72
+msgid "Date and Time Settings"
+msgstr "Ajusts de data i hora"
+
+#. metadata.json->name
+msgid "clocket"
+msgstr "clocket"
+
+#. metadata.json->description
+msgid ""
+"A desklet that displays the time, date, currenty and forecast weather report"
+msgstr ""
+"Una miniaplicació d'escriptori que mostra la data, l'hora i la previsió "
+"meteorològica"
+
+#. metadata.json->comments
+msgid ""
+"Please consider custom Weather Desklet into your language. See the website "
+"for more information"
+msgstr ""
+"Podeu adaptar aquesta miniaplicació d'escriptori al vostre idioma. Trobareu "
+"informació sobre com fer-ho al lloc web"
+
+#. settings-schema.json->top->description
+msgid "Clock configuration"
+msgstr "Ajusts del rellotge"
+
+#. settings-schema.json->font-size->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->font-size->description
+msgid "Font size"
+msgstr "Mida de la lletra"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Color del text"
+
+#. settings-schema.json->text-color->tooltip
+#. settings-schema.json->weather-color->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Feu clic sobre el botó per a canviar el color del text"
+
+#. settings-schema.json->background-color->description
+msgid "background color"
+msgstr "Color del fons"
+
+#. settings-schema.json->background-color->tooltip
+msgid "Click the button to select a new background color"
+msgstr "Feu clic sobre el botó per a canviar el color del fons"
+
+#. settings-schema.json->weatherconf->description
+msgid "weather data service settings"
+msgstr "Ajusts del servei de dades meteorològiques"
+
+#. settings-schema.json->compact->description
+#. settings-schema.json->compact->tooltip
+msgid "Want weather display ?"
+msgstr "Mostra informació meteorològica"
+
+#. settings-schema.json->webservice->description
+msgid "Data service"
+msgstr "Servei de dades"
+
+#. settings-schema.json->webservice->options
+msgid "BBC"
+msgstr "BBC"
+
+#. settings-schema.json->webservice->options
+msgid "Open Weather Map Free (requires API key)"
+msgstr "Open Weather Map Free (requereix clau de l'API)"
+
+#. settings-schema.json->webservice->tooltip
+msgid "select the data service"
+msgstr "Trieu el servei per a consultar les dades"
+
+#. settings-schema.json->api-key->description
+msgid "put api key"
+msgstr "Clau de l'API"
+
+#. settings-schema.json->api-key->tooltip
+msgid "put your api key generated from open-weather-map here"
+msgstr "Introduïu la clau de l'API de Open Weather Map"
+
+#. settings-schema.json->loctype->description
+msgid "Type of location data"
+msgstr "Tipus de dada d'ubicació"
+
+#. settings-schema.json->loctype->options
+msgid "city name"
+msgstr "Nom de la ciutat"
+
+#. settings-schema.json->loctype->options
+msgid "lat-lon"
+msgstr "latitud-longitud"
+
+#. settings-schema.json->loctype->tooltip
+msgid "select your location type"
+msgstr "Trieu el tipus d'ubicació"
+
+#. settings-schema.json->loc->description
+msgid "put your location"
+msgstr "Ubicació"
+
+#. settings-schema.json->loc->tooltip
+msgid "put your lat-long generated from lat-long.html page"
+msgstr ""
+"Inseriu una ubicació: el nom d'una ciutat o unes coordenades de latitud i "
+"longitud"
+
+#. settings-schema.json->auto-update->description
+msgid "auto-update report"
+msgstr "Actualització automàtica de la previsió del temps"
+
+#. settings-schema.json->auto-update->tooltip
+msgid "enable or disable auto-update"
+msgstr ""
+"Permet l'actualització automàtica de la informació de la previsió "
+"meteorològica"
+
+#. settings-schema.json->update-duration->description
+msgid "set auto update duration(20 min/30 min/60 min)"
+msgstr "Actualitza cada (20 min / 30 min / 60 min)"
+
+#. settings-schema.json->update-duration->tooltip
+msgid "set auto update duration"
+msgstr ""
+"Defineix el temps d'actualització automàtica de la previsió meteorològica"
+
+#. settings-schema.json->data-custom->description
+msgid "customize your data"
+msgstr "Personalització de les dades"
+
+#. settings-schema.json->unit->description
+msgid "unit"
+msgstr "Unitats"
+
+#. settings-schema.json->unit->options
+msgid "metric"
+msgstr "Sistema Mètric"
+
+#. settings-schema.json->unit->tooltip
+msgid "select your unit preferance"
+msgstr "Trieu les unitats que voleu fer servir"
+
+#. settings-schema.json->design->description
+msgid "customize font and bg color"
+msgstr "Personalització del text i el fons"
+
+#. settings-schema.json->weather-color->description
+msgid "weather block text color"
+msgstr "Color del text del bloc del temps"
+
+#. settings-schema.json->weather-bg-color->description
+msgid "weather-block bg-color"
+msgstr "Color de fons del bloc del temps"
+
+#. settings-schema.json->weather-bg-color->tooltip
+msgid "Click the button to select a new bg color"
+msgstr "Cliqueu el botó per a triar un nou color del fons"
+
+#. settings-schema.json->icon-pack->description
+msgid "Icon pack"
+msgstr "Joc d'icones"
+
+#. settings-schema.json->icon-pack->options
+msgid "default"
+msgstr "Predeterminat"
+
+#. settings-schema.json->icon-pack->tooltip
+msgid "select your fav icon-pack"
+msgstr "Seleccioneu el joc d'icones que voleu fer servir"

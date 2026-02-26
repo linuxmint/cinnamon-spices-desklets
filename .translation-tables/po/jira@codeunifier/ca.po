@@ -1,0 +1,109 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# Odyssey <odysseyhyd@gmail.com>, 2024
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: jira@codeunifier 0.1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-04-29 14:50-0400\n"
+"PO-Revision-Date: 2024-07-27 02:39+0200\n"
+"Last-Translator: Odyssey <odysseyhyd@gmail.com>\n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. metadata.json->description
+msgid "This is my first desklet"
+msgstr "Aquesta és la meva primera miniaplicació d'escriptori"
+
+#. metadata.json->name
+msgid "Jira Desklet"
+msgstr "Miniaplicació d'escriptori Jira"
+
+#. settings-schema.json->top->description
+msgid "Jira Desklet Settings"
+msgstr "Configuració de la miniaplicació d'escriptori Jira"
+
+#. settings-schema.json->accountId->description
+msgid "Account Id"
+msgstr "Id del compte"
+
+#. settings-schema.json->accountId->tooltip
+msgid ""
+"Enter your Atlassian account id (can be viewed in the URL on your Atlassian "
+"profile page)."
+msgstr ""
+"Introduïu la ID del vostre compte Atlassian (es pot veure al vostre perfil "
+"d'Atlassian)"
+
+#. settings-schema.json->accountEmail->description
+msgid "Account Email"
+msgstr "E-mail del compte"
+
+#. settings-schema.json->accountEmail->tooltip
+msgid "Enter the account email address to be used for Jira authentication."
+msgstr "Introduïu el compte de correu a utilitzar per l'autenticació de Jira."
+
+#. settings-schema.json->apiToken->description
+msgid "API Token"
+msgstr "Clau API"
+
+#. settings-schema.json->apiToken->tooltip
+msgid ""
+"Enter the API Key for your account (managed at https://id.atlassian.com/"
+"manage-profile/security/api-tokens)."
+msgstr ""
+"Introduïu la clau API pel vostre compte (gestionat a https://id.atlassian."
+"com/manage-profile/security/api-tokens)."
+
+#. settings-schema.json->projectBoardUrl->description
+msgid "Project Board URL"
+msgstr "URL del tauler del projecte"
+
+#. settings-schema.json->projectBoardUrl->tooltip
+msgid ""
+"Enter the url for your project board (e.g. https://{atlassian domain}/jira/"
+"software/projects/{project name}/boards/{board number})."
+msgstr ""
+"Introduïu l'url del tauler del projecte (ex: https://{atlassian domain}/jira/"
+"software/projects/{project name}/boards/{board number})."
+
+#. settings-schema.json->projectName->description
+msgid "Project Name"
+msgstr "Nom del projecte"
+
+#. settings-schema.json->projectName->tooltip
+msgid "Enter the name of the Atlassian Jira Project."
+msgstr "Introduïu el nom del projecte Jira a Atlassian."
+
+#. settings-schema.json->atlassianDomain->description
+msgid "Atlassian Domain"
+msgstr "Domini Atlassian"
+
+#. settings-schema.json->atlassianDomain->tooltip
+msgid "Enter the Atlassian domain for the API (e.g. '{company}.atlassian.net')"
+msgstr ""
+"Introduïu el domini d'Atlassian per l'API (ex: '{company}.atlassian.net')"
+
+#. settings-schema.json->transparency->description
+msgid "Transparency"
+msgstr "Transparència"
+
+#. settings-schema.json->backgroundColor->description
+msgid "Background color"
+msgstr "Color de fons"
+
+#. settings-schema.json->backgroundColor->tooltip
+#. settings-schema.json->issueColor->tooltip
+msgid "Click the button to select a new color"
+msgstr "Cliqueu el botó per seleccionar un color nou"
+
+#. settings-schema.json->issueColor->description
+msgid "Issue tag color"
+msgstr "Color de l'etiqueta d'incidències"

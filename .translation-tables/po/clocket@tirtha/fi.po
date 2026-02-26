@@ -1,0 +1,192 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: clocket@tirtha 2.4\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 11:37+0200\n"
+"PO-Revision-Date: 2024-11-07 12:46+0200\n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
+"Language-Team: \n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:49
+msgid "Clock"
+msgstr "Kello"
+
+#: desklet.js:72
+msgid "Date and Time Settings"
+msgstr "Päivä ja aika asetukset"
+
+#. metadata.json->name
+msgid "clocket"
+msgstr "clocket"
+
+#. metadata.json->description
+msgid ""
+"A desklet that displays the time, date, currenty and forecast weather report"
+msgstr "Sovelma, joka näyttää kellonajan, päivämäärän ja sääennusteen"
+
+#. metadata.json->comments
+msgid ""
+"Please consider custom Weather Desklet into your language. See the website "
+"for more information"
+msgstr ""
+"Harkitse Weather sovelman kääntämistä kielellesi. Katso lisätietoja "
+"verkkosivuilta"
+
+#. settings-schema.json->top->description
+msgid "Clock configuration"
+msgstr "Kellon määritykset"
+
+#. settings-schema.json->font-size->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->font-size->description
+msgid "Font size"
+msgstr "Fontin koko"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Tekstin väri"
+
+#. settings-schema.json->text-color->tooltip
+#. settings-schema.json->weather-color->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Valitse tekstin väri painamalla nappia"
+
+#. settings-schema.json->background-color->description
+msgid "background color"
+msgstr "Taustaväri"
+
+#. settings-schema.json->background-color->tooltip
+msgid "Click the button to select a new background color"
+msgstr "Valitse uusi taustaväri painamalla nappia"
+
+#. settings-schema.json->weatherconf->description
+msgid "weather data service settings"
+msgstr "Sääpalvelun asetukset"
+
+#. settings-schema.json->compact->description
+#. settings-schema.json->compact->tooltip
+msgid "Want weather display ?"
+msgstr "Näytetäänkö säätiedot?"
+
+#. settings-schema.json->webservice->description
+msgid "Data service"
+msgstr "Sääpalvelu"
+
+#. settings-schema.json->webservice->options
+msgid "BBC"
+msgstr "BBC"
+
+#. settings-schema.json->webservice->options
+msgid "Open Weather Map Free (requires API key)"
+msgstr "Open Weather Map Free (APIAVAIN vaaditaan)"
+
+#. settings-schema.json->webservice->tooltip
+msgid "select the data service"
+msgstr "Valitse haluamasi sääpalvelu"
+
+#. settings-schema.json->api-key->description
+msgid "put api key"
+msgstr "APIAVAIN"
+
+#. settings-schema.json->api-key->tooltip
+msgid "put your api key generated from open-weather-map here"
+msgstr "Laita sääpalvelussa luotu api-avain tähän"
+
+#. settings-schema.json->loctype->description
+msgid "Type of location data"
+msgstr "Sijaintitietojen hakutapa"
+
+#. settings-schema.json->loctype->options
+msgid "city name"
+msgstr "kaupunki"
+
+#. settings-schema.json->loctype->options
+msgid "lat-lon"
+msgstr "latlong.net"
+
+#. settings-schema.json->loctype->tooltip
+msgid "select your location type"
+msgstr "Valitse miten sijaintisi haetaan"
+
+#. settings-schema.json->loc->description
+msgid "put your location"
+msgstr "Anna saamasi latlong.net sijaintisi tähän"
+
+#. settings-schema.json->loc->tooltip
+msgid "put your lat-long generated from lat-long.html page"
+msgstr ""
+"Voit hakea sinun GPS sijaintisi selaimella menemällä https://www.latlong.net "
+"ja antamalla koodinaatit tähän kenttään."
+
+#. settings-schema.json->auto-update->description
+msgid "auto-update report"
+msgstr "Autom. päivitys"
+
+#. settings-schema.json->auto-update->tooltip
+msgid "enable or disable auto-update"
+msgstr "Automaattinen päivitys päälle/pois"
+
+#. settings-schema.json->update-duration->description
+msgid "set auto update duration(20 min/30 min/60 min)"
+msgstr "Aseta autom. päivitysväli (20min/30min/60min)"
+
+#. settings-schema.json->update-duration->tooltip
+msgid "set auto update duration"
+msgstr "Aseta autom. päivitysväli"
+
+#. settings-schema.json->data-custom->description
+msgid "customize your data"
+msgstr "Mukauta arvoja"
+
+#. settings-schema.json->unit->description
+msgid "unit"
+msgstr "Yksikkö"
+
+#. settings-schema.json->unit->options
+msgid "metric"
+msgstr "metrijärjestelmä"
+
+#. settings-schema.json->unit->tooltip
+msgid "select your unit preferance"
+msgstr "Valitse haluamasi yksikkö"
+
+#. settings-schema.json->design->description
+msgid "customize font and bg color"
+msgstr "Mukauta fontin väriä"
+
+#. settings-schema.json->weather-color->description
+msgid "weather block text color"
+msgstr "Sään tekstin väri"
+
+#. settings-schema.json->weather-bg-color->description
+msgid "weather-block bg-color"
+msgstr "Sään taustan väri"
+
+#. settings-schema.json->weather-bg-color->tooltip
+msgid "Click the button to select a new bg color"
+msgstr "Valitse väri painamalla nappia"
+
+#. settings-schema.json->icon-pack->description
+msgid "Icon pack"
+msgstr "Kuvakkeet"
+
+#. settings-schema.json->icon-pack->options
+msgid "default"
+msgstr "oletus"
+
+#. settings-schema.json->icon-pack->tooltip
+msgid "select your fav icon-pack"
+msgstr "Valitse kuvakepaketti jota haluat käyttää"

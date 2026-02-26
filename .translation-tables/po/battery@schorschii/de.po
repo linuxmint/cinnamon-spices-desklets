@@ -1,0 +1,177 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-03-14 05:12-0400\n"
+"PO-Revision-Date: 2023-07-07 23:51-0400\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.3.1\n"
+
+#: desklet.js:356
+msgid "Battery"
+msgstr "Akku"
+
+#. metadata.json->description
+msgid "A battery desklet in iOS style with multi-battery support."
+msgstr "Ein Akku-Desklet im iOS-Stil mit Unterstützung für mehrere Akkus."
+
+#. metadata.json->name
+msgid "Battery Level Indicator"
+msgstr "Akkuladezustandsanzeige"
+
+#. settings-schema.json->head0->description
+msgid "Settings for battery@schorschii"
+msgstr "Einstellungen für battery@schorschii"
+
+#. settings-schema.json->head1->description
+msgid "Visual"
+msgstr "Optische Einstellungen"
+
+#. settings-schema.json->showpercent->description
+msgid "Show battery capacity in percent"
+msgstr "Akkukapazität in Prozent anzeigen"
+
+#. settings-schema.json->showpercent->tooltip
+msgid "Battery capacity is only shown when plug/flash icon is not visible."
+msgstr ""
+"Akkukapazität wird nur angezeigt, wenn das Stecker-/Ladesymbol nicht "
+"sichtbar ist."
+
+#. settings-schema.json->showremaining->description
+msgid "Show remaining battery time"
+msgstr "Verbleibende Zeit anzeigen"
+
+#. settings-schema.json->showplug->description
+msgid "Show plug/flash icon when power supply is plugged in"
+msgstr ""
+"Stecker-/Ladesymbol anzeigen, wenn die Stromversorgung angeschlossen ist"
+
+#. settings-schema.json->showplug->tooltip
+msgid ""
+"flash icon: power online and battery is charging\n"
+"plug icon: power online but battery is not charging"
+msgstr ""
+"Ladesymbol: Am Ladekabel angeschlossen und Akku wird aufgeladen\n"
+"Steckersymbol: Am Ladekabel angeschlossen, aber Akku wird nicht aufgeladen"
+
+#. settings-schema.json->bg-img->description
+msgid "Battery style"
+msgstr "Akku-Stil"
+
+#. settings-schema.json->bg-img->options
+msgid "Transparent"
+msgstr "Transparent"
+
+#. settings-schema.json->bg-img->options
+msgid "Black"
+msgstr "Schwarz"
+
+#. settings-schema.json->bg-img->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Den Hintergrund auswählen, den Sie verwenden möchten."
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Dekorationen verstecken"
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "Skalierungsfaktor"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Deskletgröße"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of the battery using this scale factor."
+msgstr ""
+"Die Größe des Desklets um diesen Skalierungsfaktor erhöhen oder verringern."
+
+#. settings-schema.json->head2->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Benutzerdefinierte Desklet-Beschriftung (nur sichtbar, wenn Umrandung und "
+"Kopfzeile in der Gestaltung der Desklets aktiviert sind)"
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Eine eigene Desklet-Beschriftung verwenden"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Aktivieren dieses Kontrollkästchens ermöglicht die Eingabe einer eigenen "
+"Beschriftung im unteren Eingabefeld."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Benutzerdefinierte Desklet-Beschriftung"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here, e.g. for monitoring multiple batteries. This "
+"field is unavailable unless the checkbox above is enabled."
+msgstr ""
+"Geben Sie hier Ihre eigene Beschriftung ein, z.B. zur Überwachung mehrere "
+"Akkus. Dieses Feld ist erst verfügbar, wenn das obere Kontrollkästchen "
+"aktiviert ist."
+
+#. settings-schema.json->head3->description
+msgid "Advanced"
+msgstr "Erweiterte Einstellungen"
+
+#. settings-schema.json->devfile_capacity->description
+msgid "Path to battery capacity file (device file)"
+msgstr "Pfad zur Akkukapazitätsdatei (Gerätedatei)"
+
+#. settings-schema.json->devfile_capacity->tooltip
+msgid ""
+"Choose your own capacity file e.g. for monitoring your secondary battery.\n"
+"\n"
+"Default:\n"
+"/sys/class/power_supply/CMBx/capacity\n"
+"/sys/class/power_supply/BATx/capacity\n"
+"\n"
+"Replace x with battery number."
+msgstr ""
+"Eigene Kapazitätsdatei auswählen, z.B. zur Überwachung eines zweiten Akkus.\n"
+"\n"
+"Standardeinstellung：\n"
+"/sys/class/power_supply/CMBx/capacity\n"
+"/sys/class/power_supply/BATx/capacity\n"
+"\n"
+"Ersetzen Sie x mit der Akkunummer."
+
+#. settings-schema.json->devfile_status->description
+msgid "Path to battery status file (device file)"
+msgstr "Pfad zur Akkustatusdatei (Gerätedatei)"
+
+#. settings-schema.json->devfile_status->tooltip
+msgid ""
+"Choose your own status file e.g. for monitoring your secondary battery.\n"
+"\n"
+"Default:\n"
+"/sys/class/power_supply/CMBx/status\n"
+"/sys/class/power_supply/BATx/status\n"
+"\n"
+"Replace x with battery number."
+msgstr ""
+"Eigene Statusdatei auswählen, z.B. zur Überwachung eines zweiten Akkus.\n"
+"\n"
+"Standardeinstellung：\n"
+"/sys/class/power_supply/CMBx/status\n"
+"/sys/class/power_supply/BATx/status\n"
+"\n"
+"Ersetzen Sie x mit der Akkunummer."

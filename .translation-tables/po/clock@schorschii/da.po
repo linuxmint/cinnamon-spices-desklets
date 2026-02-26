@@ -1,0 +1,222 @@
+# ANALOG CHRONOMETER TRANSLATIONS.
+# Copyright (C) 2017 FULL NAME
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Analog Chronometer VERSION\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 09:32+0200\n"
+"PO-Revision-Date: 2023-12-08 07:32+0100\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"Language-Team: \n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: desklet.js:190
+msgid "Clock"
+msgstr "Ur"
+
+#. metadata.json->description
+msgid ""
+"A scaleable analog clock desklet with smooth hands and free choice of images."
+msgstr ""
+"Et skalerbart urskrivebordsprogram med glidende visere og frit valg af "
+"billeder."
+
+#. metadata.json->name
+msgid "Analog Chronometer"
+msgstr "Analogt ur"
+
+#. settings-schema.json->head0->description
+msgid "Settings for clock@schorschii"
+msgstr "Indstillinger for clock@schorschii"
+
+#. settings-schema.json->head1->description
+msgid "Visual"
+msgstr "Visuel"
+
+#. settings-schema.json->style->description
+msgid "Clock style"
+msgstr "Urets stil"
+
+#. settings-schema.json->style->options
+msgid "Light"
+msgstr "Lys"
+
+#. settings-schema.json->style->options
+msgid "Dark"
+msgstr "Mørk"
+
+#. settings-schema.json->style->options
+msgid "Light Transparent"
+msgstr "Lys gennemsigtig"
+
+#. settings-schema.json->style->options
+msgid "Dark Transparent"
+msgstr "Mørk gennemsigtig"
+
+#. settings-schema.json->style->options
+msgid "Semitransparent"
+msgstr "Halvgennemsigtig"
+
+#. settings-schema.json->style->options
+msgid "Custom"
+msgstr "Brugerdefineret"
+
+#. settings-schema.json->style->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Vælg den baggrundsgrafik, du ønsker at bruge."
+
+#. settings-schema.json->show-seconds-hand->description
+msgid "Show seconds hand"
+msgstr "Vis sekundviser"
+
+#. settings-schema.json->show-seconds-hand->tooltip
+msgid "Show or hide the seconds hand."
+msgstr "Vis eller skjul sekundviser."
+
+#. settings-schema.json->smooth-seconds-hand->description
+msgid "Smooth second hand"
+msgstr "Glidende sekundviser"
+
+#. settings-schema.json->smooth-seconds-hand->tooltip
+msgid ""
+"Use smooth animation for seconds hand instead of refreshing it only every "
+"second."
+msgstr ""
+"Anvend glidende animation for sekundviseren i stedet for kun at opdatere den "
+"hvert sekund."
+
+#. settings-schema.json->smooth-minutes-hand->description
+msgid "Smooth minute hand"
+msgstr "Glidende minutviser"
+
+#. settings-schema.json->smooth-minutes-hand->tooltip
+msgid ""
+"Use smooth animation for minute hand instead of moving it only once per "
+"minute."
+msgstr ""
+"Anvend glidende animation for minutviseren i stedet for kun at flytte den "
+"hvert minut."
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Skjul boks rundt om uret"
+
+#. settings-schema.json->desklet-size->units
+msgid "pixels"
+msgstr "pixler"
+
+#. settings-schema.json->desklet-size->description
+msgid "Desklet size"
+msgstr "Skrivebordsprogrammets størrelse"
+
+#. settings-schema.json->desklet-size->tooltip
+msgid "Increase or decrease the size of the clock."
+msgstr "Øg eller formindsk urets størrelse."
+
+#. settings-schema.json->head2->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr "Tilpasset etiket (kun synlig hvis boksen rundt om er aktiveret)"
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Anvend tilpasset etiket"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Afkrydsning af dette felt lader dig angive en tilpasset etiket i feltet "
+"nedenfor."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Tilpasset etiket"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here, e.g. for multiple timezones. This field is "
+"unavailable unless the checkbox above is enabled."
+msgstr ""
+"Angiv en tilpasset etiket her, f.eks. til flere tidszoner. Feltet er "
+"utilgængeligt, med mindre afkrydsningsfeltet ovenfor er markeret."
+
+#. settings-schema.json->head3->description
+msgid "Timezone"
+msgstr "Tidszone"
+
+#. settings-schema.json->use-custom-tz->description
+msgid "Use a custom timezone"
+msgstr "Anvend tilpasset tidszone"
+
+#. settings-schema.json->use-custom-tz->tooltip
+msgid ""
+"Checking this box allows you to set a custom timezone in the field below."
+msgstr ""
+"Afkrydsning af dette felt lader dig angive en tilpasset tidszone i feltet "
+"nedenfor."
+
+#. settings-schema.json->custom-tz->description
+msgid "Custom time zone"
+msgstr "Tilpasset tidszone"
+
+#. settings-schema.json->custom-tz->tooltip
+msgid "Enter your custom timezone here."
+msgstr "Indtast din tilpassede tidszone her."
+
+#. settings-schema.json->head4->description
+msgid "Custom images (available if clock style is set to 'custom')"
+msgstr ""
+"Brugerdefinerede billeder (tilgængelig hvis urets stil er sat til "
+"\"brugerdefineret\")"
+
+#. settings-schema.json->img-bg->description
+msgid "Background"
+msgstr "Baggrund"
+
+#. settings-schema.json->img-bg->tooltip
+msgid "Choose your own background image."
+msgstr "Vælg dit eget baggrundsbillede."
+
+#. settings-schema.json->img-s->description
+msgid "Seconds hand"
+msgstr "Sekundviser"
+
+#. settings-schema.json->img-s->tooltip
+msgid ""
+"Choose your own image for the seconds hand. Should be as big as the "
+"background image."
+msgstr ""
+"Vælg dit eget billede til sekundviseren. Skal være lige så stort som "
+"baggrundsbilledet."
+
+#. settings-schema.json->img-m->description
+msgid "Minute hand"
+msgstr "Minutviser"
+
+#. settings-schema.json->img-m->tooltip
+msgid ""
+"Choose your own image for the minute hand. Should be as big as the "
+"background image."
+msgstr ""
+"Vælg dit eget billede til minutviseren. Skal være lige så stort som "
+"baggrundsbilledet."
+
+#. settings-schema.json->img-h->description
+msgid "Hour hand"
+msgstr "Timeviser"
+
+#. settings-schema.json->img-h->tooltip
+msgid ""
+"Choose your own image for the hour hand. Should be as big as the background "
+"image."
+msgstr ""
+"Vælg dit eget billede til timeviseren. Skal være lige så stort som "
+"baggrundsbilledet."

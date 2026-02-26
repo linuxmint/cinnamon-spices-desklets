@@ -1,0 +1,73 @@
+# Yahoo Finance Quotes Desklet
+# Copyright (C) 2018 Thomas Egli
+# This file is distributed under the same license as the Yahoo Finance Quotes Desklet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: yfquotes@thegli 0.11.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-02-23 22:40+0100\n"
+"PO-Revision-Date: 2025-08-25 18:25+0200\n"
+"Last-Translator: qadzek\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. desklet.js:99
+msgid "N/A"
+msgstr ""
+
+#. desklet.js:810
+msgid "Something went wrong retrieving Yahoo Finance data"
+msgstr ""
+
+#. settings-schema.json->detailsPrePostMarketSection->title
+msgid "Pre-/Post-Market Data"
+msgstr ""
+
+#. settings-schema.json->includePrePostMarketDataOption->options
+msgid "Never"
+msgstr ""
+
+#. settings-schema.json->includePrePostMarketDataOption->options
+msgid "Prefer to regular data"
+msgstr ""
+
+#. settings-schema.json->includePrePostMarketDataOption->options
+msgid "Show in extra columns"
+msgstr ""
+
+#. settings-schema.json->includePrePostMarketDataOption->description
+msgid "Include pre-/post-market data"
+msgstr ""
+
+#. settings-schema.json->includePrePostMarketDataOption->tooltip
+msgid "If and how extended-hours trading data is displayed"
+msgstr ""
+
+#. settings-schema.json->fontStylePrePostMarketData->options
+msgid "Normal"
+msgstr ""
+
+#. settings-schema.json->fontStylePrePostMarketData->options
+msgid "Italic"
+msgstr ""
+
+#. settings-schema.json->fontStylePrePostMarketData->options
+msgid "Bold"
+msgstr ""
+
+#. settings-schema.json->fontStylePrePostMarketData->options
+msgid "Bold italic"
+msgstr ""
+
+#. settings-schema.json->fontStylePrePostMarketData->description
+msgid "Font style of pre-/post-market data"
+msgstr ""
+
+#. settings-schema.json->fontStylePrePostMarketData->tooltip
+msgid "Accentuate extended-hours trading data (price, change, time)"
+msgstr ""
