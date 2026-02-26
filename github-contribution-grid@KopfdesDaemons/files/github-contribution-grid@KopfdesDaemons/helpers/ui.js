@@ -13,16 +13,20 @@ function _(str) {
 }
 
 var UiHelper = class UiHelper {
-  static getHeader(username, showUsername, reloadCallback) {
-    const headerContainer = new St.BoxLayout({ style_class: "github-contribution-grid-header-container" });
+  static getHeader(username, showUsername, reloadCallback, scaleSize) {
+    const headerContainer = new St.BoxLayout();
+    const reloadButtonStyle = `width: ${1.6 * scaleSize}em; height: ${1.6 * scaleSize}em; padding: ${0.2 * scaleSize}em;`;
 
     // Reload button
-    const reloadButton = new St.Button({ style_class: "github-contribution-grid-reload-bin" });
+    const reloadButton = new St.Button({
+      style_class: "github-contribution-grid-reload-button",
+      style: reloadButtonStyle,
+    });
     reloadButton.connect("clicked", reloadCallback);
     const reloadIcon = new St.Icon({
       icon_name: "view-refresh-symbolic",
       icon_type: St.IconType.SYMBOLIC,
-      icon_size: 16,
+      style: reloadButtonStyle,
     });
     new Tooltips.Tooltip(reloadButton, _("Reload"));
     reloadButton.set_child(reloadIcon);
@@ -30,7 +34,8 @@ var UiHelper = class UiHelper {
 
     // Username
     if (showUsername) {
-      const usernameButton = new St.Button({ label: username, style_class: "github-contribution-grid-label-bin" });
+      const userButtonStyle = `font-size: ${1 * scaleSize}em; padding: 0 ${0.5 * scaleSize}em;`;
+      const usernameButton = new St.Button({ label: username, style_class: "github-contribution-grid-user-button", style: userButtonStyle });
       usernameButton.connect("clicked", () => Util.spawnCommandLine(`xdg-open "https://github.com/${username}"`));
       new Tooltips.Tooltip(usernameButton, _("Open GitHub profile"));
       headerContainer.add_child(usernameButton);
@@ -39,18 +44,28 @@ var UiHelper = class UiHelper {
     return headerContainer;
   }
 
-  static getSetupUI(gitHubTokenCreationURL, blockSize) {
+  static getSetupUI(gitHubTokenCreationURL, scaleSize, blockSize) {
     const container = new St.Table();
-    container.add(this._getSkeletonGrid(blockSize), { row: 0, col: 0 });
+    container.add(this._getSkeletonGrid(scaleSize, blockSize), { row: 0, col: 0 });
 
-    const setupBox = new St.BoxLayout({ vertical: true, style_class: "github-contribution-grid-setup-container" });
+    const dialogBoxStyle = `background-color: rgba(0, 0, 0, 0.575); padding: ${1 * scaleSize}em; border-radius: ${0.3 * scaleSize}em;`;
+    const setupBox = new St.BoxLayout({ vertical: true, style: dialogBoxStyle });
 
     // Labels
-    setupBox.add_child(new St.Label({ text: "GitHub Contribution Grid", style_class: "github-contribution-grid-setup-headline" }));
-    setupBox.add_child(new St.Label({ text: _("Please configure username and token in settings.") }));
+    setupBox.add_child(
+      new St.Label({
+        text: _("GitHub Contribution Grid"),
+        style: `font-weight: bold; font-size: ${1.5 * scaleSize}em; margin-bottom: ${1 * scaleSize}em;`,
+      }),
+    );
+    setupBox.add_child(new St.Label({ text: _("Please configure username and token in settings."), style: `font-size: ${1 * scaleSize}em;` }));
 
     // Create token button
-    const createTokenButton = new St.Button({ style_class: "github-contribution-grid-link", label: _("Create a GitHub token") });
+    const createTokenButton = new St.Button({
+      style_class: "github-contribution-grid-link",
+      label: _("Create a GitHub token"),
+      style: `padding: ${0.5 * scaleSize}em; border: ${0.07 * scaleSize}em solid gray; margin-top: ${1 * scaleSize}em; font-size: ${1 * scaleSize}em;`,
+    });
     createTokenButton.connect("clicked", () => Util.spawnCommandLine(`xdg-open "${gitHubTokenCreationURL}"`));
     setupBox.add_child(createTokenButton);
 
@@ -67,19 +82,31 @@ var UiHelper = class UiHelper {
     return container;
   }
 
-  static getErrorUI(errorMsg, reloadCallback, blockSize) {
+  static getErrorUI(errorMsg, reloadCallback, scaleSize, blockSize) {
     const container = new St.Table();
-    container.add(this._getSkeletonGrid(blockSize), { row: 0, col: 0 });
+    container.add(this._getSkeletonGrid(scaleSize, blockSize), { row: 0, col: 0 });
 
-    const errorBox = new St.BoxLayout({ vertical: true, style_class: "github-contribution-grid-error-container" });
+    const errorBox = new St.BoxLayout({
+      vertical: true,
+      style: `background-color: rgba(0, 0, 0, 0.575); padding: ${1 * scaleSize}em; border-radius: ${0.3 * scaleSize}em;`,
+    });
 
     // Labels
-    errorBox.add_child(new St.Label({ text: "GitHub Contribution Grid", style_class: "github-contribution-grid-error-headline" }));
-    errorBox.add_child(new St.Label({ text: _("Error:") }));
-    errorBox.add_child(new St.Label({ text: errorMsg, style: "color: red;" }));
+    errorBox.add_child(
+      new St.Label({
+        text: _("GitHub Contribution Grid"),
+        style: `font-weight: bold; font-size: ${1.5 * scaleSize}em; margin-bottom: ${1 * scaleSize}em;`,
+      }),
+    );
+    errorBox.add_child(new St.Label({ text: _("Error:"), style: `font-size: ${1 * scaleSize}em;` }));
+    errorBox.add_child(new St.Label({ text: errorMsg, style: `color: red; font-size: ${scaleSize}em;` }));
 
     // Reload button
-    const reloadButton = new St.Button({ style_class: "github-contribution-grid-error-reload-button", label: _("Reload") });
+    const reloadButton = new St.Button({
+      style_class: "github-contribution-grid-error-reload-button",
+      label: _("Reload"),
+      style: `padding: ${0.5 * scaleSize}em; border: ${0.07 * scaleSize}em solid gray; margin-top: ${1 * scaleSize}em; font-size: ${1 * scaleSize}em;`,
+    });
     reloadButton.connect("clicked", reloadCallback);
     errorBox.add_child(reloadButton);
 
@@ -96,8 +123,8 @@ var UiHelper = class UiHelper {
     return container;
   }
 
-  static getContributionGrid(weeks, blockSize, showContributionCount) {
-    const gridBox = new St.BoxLayout({ style_class: "github-contribution-grid-grid-box" });
+  static getContributionGrid(weeks, scaleSize, blockSize, showContributionCount) {
+    const gridBox = new St.BoxLayout();
 
     let weekIndex = 0;
     let loopId = 0;
@@ -117,7 +144,9 @@ var UiHelper = class UiHelper {
             style_class: "day-bin",
             reactive: true,
             track_hover: true,
-            style: `font-size: ${blockSize}px; background-color: ${this.getContributionColor(day.contributionCount)};`,
+            style: `font-size: ${(scaleSize * blockSize) / 16}em; background-color: ${this.getContributionColor(
+              day.contributionCount,
+            )}; margin: ${0.2 * scaleSize}em; border-width: ${0.07 * scaleSize}em; border-style: solid;`,
           });
 
           new Tooltips.Tooltip(dayBin, `${day.date} ${day.contributionCount} ` + _("contributions"));
@@ -146,7 +175,7 @@ var UiHelper = class UiHelper {
     return gridBox;
   }
 
-  static _getSkeletonGrid(blockSize) {
+  static _getSkeletonGrid(scaleSize, blockSize) {
     const weeks = [];
     for (let i = 0; i < 53; i++) {
       const contributionDays = [];
@@ -155,7 +184,7 @@ var UiHelper = class UiHelper {
       }
       weeks.push({ contributionDays });
     }
-    return this.getContributionGrid(weeks, blockSize, false, false);
+    return this.getContributionGrid(weeks, scaleSize, blockSize, false);
   }
 
   static getContributionColor(count) {

@@ -25,6 +25,14 @@
     "type": "header",
     "description": "Style"
   },
+  "scale-size": {
+    "type": "scale",
+    "default": 1,
+    "min": 0.5,
+    "max": 3,
+    "step": 0.05,
+    "description": "Desklet scale size"
+  },
   "block-size": {
     "type": "scale",
     "default": 11,

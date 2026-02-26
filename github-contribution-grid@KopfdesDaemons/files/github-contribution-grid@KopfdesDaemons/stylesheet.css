@@ -1,44 +1,14 @@
 .day-bin {
-  margin: 0.2em;
-  border: 1px solid transparent;
+  border-color: transparent;
 }
 
 .day-bin:hover {
-  border: 1px solid white;
-}
-
-.github-contribution-grid-reload-bin {
-  background-color: transparent;
-  margin: 0.2em;
-  width: 1em;
-  height: 1em;
-  padding: 0.5em;
-}
-
-.github-contribution-grid-error-reload-button,
-.github-contribution-grid-link {
-  padding: 0.5em;
-  border: 1px solid gray;
-  margin-top: 1em;
+  border-color: white;
 }
 
 .github-contribution-grid-error-reload-button:hover,
-.github-contribution-grid-reload-bin:hover,
-.github-contribution-grid-label-bin:hover,
+.github-contribution-grid-reload-button:hover,
+.github-contribution-grid-user-button:hover,
 .github-contribution-grid-link:hover {
   background-color: rgba(80, 80, 80, 0.3);
-}
-
-.github-contribution-grid-error-container,
-.github-contribution-grid-setup-container {
-  background-color: rgba(0, 0, 0, 0.575);
-  padding: 1em;
-  border-radius: 0.3em;
-}
-
-.github-contribution-grid-error-headline,
-.github-contribution-grid-setup-headline {
-  font-weight: bold;
-  font-size: 1.5em;
-  margin-bottom: 1em;
 }

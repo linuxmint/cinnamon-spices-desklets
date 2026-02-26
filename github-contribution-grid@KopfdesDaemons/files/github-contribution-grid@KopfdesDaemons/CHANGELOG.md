@@ -9,6 +9,7 @@
 - New features:
   - Added skeleton grid for setup and error UI
   - Added decoration toggle setting
+  - Added desklet scale size setting based on system font size
 - Fixes
   - Fixed blocking on grid rendering
 - Refactoring:
