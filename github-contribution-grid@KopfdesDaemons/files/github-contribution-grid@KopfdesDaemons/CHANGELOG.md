@@ -22,3 +22,4 @@
   - Changed Desklet entry point to `on_desklet_added_to_desktop`
   - Added settings cleanup on Desklet removal
   - Added Soup 2 compatibility
+  - Added `README.md`

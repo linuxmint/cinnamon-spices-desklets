@@ -36,12 +36,12 @@
   "github-username": {
     "type": "entry",
     "default": "",
-    "description": "GitHub Username"
+    "description": "GitHub username"
   },
   "github-token": {
     "type": "entry",
     "default": "",
-    "description": "GitHub Token"
+    "description": "GitHub token"
   },
   "refresh-interval": {
     "type": "spinbutton",
