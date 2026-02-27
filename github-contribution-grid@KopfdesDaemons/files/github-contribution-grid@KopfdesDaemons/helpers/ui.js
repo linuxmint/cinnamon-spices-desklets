@@ -149,7 +149,7 @@ var UiHelper = class UiHelper {
             style: `font-size: ${(scaleSize * blockSize) / 16}em; background-color: ${this.getContributionColor(
               day.contributionCount,
               colors,
-            )}; margin: ${0.2 * scaleSize}em; border-width: ${0.07 * scaleSize}em; border-style: solid;`,
+            )}; margin: ${0.2 * scaleSize}em; border-width: ${0.07 * scaleSize}em; border-style: solid; height: ${(scaleSize * blockSize) / 16}em; width: ${(scaleSize * blockSize) / 16}em;`,
           });
 
           new Tooltips.Tooltip(dayBin, `${day.date} ${day.contributionCount} ` + _("contributions"));

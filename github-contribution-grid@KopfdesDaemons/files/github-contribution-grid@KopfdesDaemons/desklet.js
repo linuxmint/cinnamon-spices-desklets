@@ -43,7 +43,7 @@ class MyDesklet extends Desklet.Desklet {
     this.githubUsername = "";
     this.githubToken = "";
     this.scaleSize = 1;
-    this.blockSize = 11;
+    this.blockSize = 16;
     this.refreshInterval = 15;
     this.backgroundColor = "rgba(255, 255, 255, 0)";
     this.showContributionCount = false;
