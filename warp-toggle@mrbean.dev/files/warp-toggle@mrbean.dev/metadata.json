@@ -1,0 +1,8 @@
+{
+  "uuid": "warp-toggle@mrbean.dev",
+  "name": "WARP Toggle",
+  "description": "Toggle Cloudflare WARP VPN connection with a single click.",
+  "version": "1.0",
+  "author": "mrbeandev",
+  "prevent-decorations": false
+}
