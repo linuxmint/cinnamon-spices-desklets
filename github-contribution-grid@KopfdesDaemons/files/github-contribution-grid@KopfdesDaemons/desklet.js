@@ -13,11 +13,10 @@ if (typeof require !== "undefined") {
   UiHelper = require("./helpers/ui").UiHelper;
   ColorPresetsHelper = require("./helpers/color-presets").ColorPresetsHelper;
 } else {
-  const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
-  imports.searchPath.push(DESKLET_DIR);
-  GitHubHelper = imports.helpers.github.GitHubHelper;
-  UiHelper = imports.helpers.ui.UiHelper;
-  ColorPresetsHelper = imports.helpers["color-presets"].ColorPresetsHelper;
+  const DESKLET_DIR = imports.ui.deskletManager.desklets[UUID];
+  GitHubHelper = DESKLET_DIR.helpers.github.GitHubHelper;
+  UiHelper = DESKLET_DIR.helpers.ui.UiHelper;
+  ColorPresetsHelper = DESKLET_DIR.helpers["color-presets"].ColorPresetsHelper;
 }
 
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
