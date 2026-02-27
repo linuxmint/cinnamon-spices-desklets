@@ -1,7 +1,37 @@
 {
-  "head0": {
-    "type": "header",
-    "description": "API Settings"
+  "layout": {
+    "type": "layout",
+    "pages": ["general-page", "style-page", "block-colors-page"],
+    "general-page": {
+      "type": "page",
+      "title": "General",
+      "sections": ["api-section"]
+    },
+    "style-page": {
+      "type": "page",
+      "title": "Style",
+      "sections": ["style-section"]
+    },
+    "block-colors-page": {
+      "type": "page",
+      "title": "Block colors",
+      "sections": ["colors-section"]
+    },
+    "api-section": {
+      "type": "section",
+      "title": "API Settings",
+      "keys": ["github-username", "github-token", "refresh-interval"]
+    },
+    "style-section": {
+      "type": "section",
+      "title": "Style",
+      "keys": ["scale-size", "block-size", "background-color", "show-contribution-count", "show-username", "hide-decorations"]
+    },
+    "colors-section": {
+      "type": "section",
+      "title": "Colors",
+      "keys": ["color-preset", "color-0", "color-1", "color-4", "color-6", "color-9", "color-10"]
+    }
   },
   "github-username": {
     "type": "entry",
@@ -20,10 +50,6 @@
     "max": 60,
     "step": 1,
     "description": "Refresh interval in minutes"
-  },
-  "head1": {
-    "type": "header",
-    "description": "Style"
   },
   "scale-size": {
     "type": "scale",
@@ -60,10 +86,6 @@
     "type": "checkbox",
     "description": "Hide decorations",
     "default": true
-  },
-  "head2": {
-    "type": "header",
-    "description": "Colors"
   },
   "color-0": {
     "type": "colorchooser",
