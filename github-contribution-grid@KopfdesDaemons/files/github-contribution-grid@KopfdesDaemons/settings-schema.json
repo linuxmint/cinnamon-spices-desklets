@@ -25,7 +25,7 @@
     "style-section": {
       "type": "section",
       "title": "Style",
-      "keys": ["scale-size", "block-size", "background-color", "show-contribution-count", "show-username", "hide-decorations"]
+      "keys": ["scale-size", "block-size", "background-color", "show-contribution-count", "show-reload-button", "show-username", "hide-decorations"]
     },
     "colors-section": {
       "type": "section",
@@ -72,10 +72,16 @@
     "default": "rgba(255, 255, 255, 0)",
     "description": "Background color"
   },
+
   "show-contribution-count": {
     "type": "checkbox",
     "default": false,
     "description": "Show contribution count"
+  },
+  "show-reload-button": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show reload button"
   },
   "show-username": {
     "type": "checkbox",

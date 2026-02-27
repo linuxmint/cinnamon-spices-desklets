@@ -31,6 +31,8 @@ class MyDesklet extends Desklet.Desklet {
     super(metadata, deskletId);
     this.setHeader(_("GitHub Contribution Grid"));
 
+    this._menu.addAction(_("Reload"), () => this._setupContributionData());
+
     this._timeoutId = null;
     this._contributionData = null;
     this._lastError = null;
@@ -45,6 +47,7 @@ class MyDesklet extends Desklet.Desklet {
     this.refreshInterval = 15;
     this.backgroundColor = "rgba(255, 255, 255, 0)";
     this.showContributionCount = false;
+    this.showReloadButton = true;
     this.showUsername = true;
     this.hideDecorations = true;
     this.color0 = "#151b23";
@@ -64,6 +67,7 @@ class MyDesklet extends Desklet.Desklet {
     this.settings.bindProperty(Settings.BindingDirection.IN, "block-size", "blockSize", this._onGridChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "backgroundColor", this._onBackgroundColorChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "show-username", "showUsername", this._rerenderHeader.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-reload-button", "showReloadButton", this._rerenderHeader.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "show-contribution-count", "showContributionCount", this._onGridChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this._onDecorationsChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "color-0", "color0", this._onGridChanged.bind(this));
@@ -77,7 +81,9 @@ class MyDesklet extends Desklet.Desklet {
 
   on_desklet_added_to_desktop() {
     this._mainContainer = new St.BoxLayout({ vertical: true, style_class: "github-contribution-grid-main-container" });
-    this._mainContainer.add_child(UiHelper.getHeader(this.githubUsername, this.showUsername, () => this._setupContributionData(), this.scaleSize));
+    this._mainContainer.add_child(
+      UiHelper.getHeader(this.showReloadButton, this.githubUsername, this.showUsername, () => this._setupContributionData(), this.scaleSize),
+    );
     this.setContent(this._mainContainer);
 
     this._setupContributionData();
@@ -112,7 +118,9 @@ class MyDesklet extends Desklet.Desklet {
 
   _onDataSettingChanged() {
     this._mainContainer.remove_all_children();
-    this._mainContainer.add_child(UiHelper.getHeader(this.githubUsername, this.showUsername, () => this._setupContributionData(), this.scaleSize));
+    this._mainContainer.add_child(
+      UiHelper.getHeader(this.showReloadButton, this.githubUsername, this.showUsername, () => this._setupContributionData(), this.scaleSize),
+    );
     this._setupContributionData();
   }
 
@@ -121,7 +129,7 @@ class MyDesklet extends Desklet.Desklet {
     this._mainContainer.get_children()[0].destroy();
     // Add the new header
     this._mainContainer.insert_child_at_index(
-      UiHelper.getHeader(this.githubUsername, this.showUsername, () => this._setupContributionData(), this.scaleSize),
+      UiHelper.getHeader(this.showReloadButton, this.githubUsername, this.showUsername, () => this._setupContributionData(), this.scaleSize),
       0,
     );
   }

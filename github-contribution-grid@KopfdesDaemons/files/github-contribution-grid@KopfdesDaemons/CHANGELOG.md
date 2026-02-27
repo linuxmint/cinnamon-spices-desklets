@@ -12,6 +12,8 @@
   - Added Desklet scale size setting based on system font size
   - Added block color settings
   - Added color presets
+  - Added reload action to right click menu
+  - Added setting to hide reload button
 - Fixes
   - Fixed blocking on grid rendering
 - Refactoring:

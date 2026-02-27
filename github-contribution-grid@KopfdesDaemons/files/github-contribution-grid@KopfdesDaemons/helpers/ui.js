@@ -13,24 +13,26 @@ function _(str) {
 }
 
 var UiHelper = class UiHelper {
-  static getHeader(username, showUsername, reloadCallback, scaleSize) {
+  static getHeader(showReloadButton, username, showUsername, reloadCallback, scaleSize) {
     const headerContainer = new St.BoxLayout();
     const reloadButtonStyle = `width: ${1.6 * scaleSize}em; height: ${1.6 * scaleSize}em; padding: ${0.2 * scaleSize}em;`;
 
     // Reload button
-    const reloadButton = new St.Button({
-      style_class: "github-contribution-grid-reload-button",
-      style: reloadButtonStyle,
-    });
-    reloadButton.connect("clicked", reloadCallback);
-    const reloadIcon = new St.Icon({
-      icon_name: "view-refresh-symbolic",
-      icon_type: St.IconType.SYMBOLIC,
-      style: reloadButtonStyle,
-    });
-    new Tooltips.Tooltip(reloadButton, _("Reload"));
-    reloadButton.set_child(reloadIcon);
-    headerContainer.add_child(reloadButton);
+    if (showReloadButton) {
+      const reloadButton = new St.Button({
+        style_class: "github-contribution-grid-reload-button",
+        style: reloadButtonStyle,
+      });
+      reloadButton.connect("clicked", reloadCallback);
+      const reloadIcon = new St.Icon({
+        icon_name: "view-refresh-symbolic",
+        icon_type: St.IconType.SYMBOLIC,
+        style: reloadButtonStyle,
+      });
+      new Tooltips.Tooltip(reloadButton, _("Reload"));
+      reloadButton.set_child(reloadIcon);
+      headerContainer.add_child(reloadButton);
+    }
 
     // Username
     if (showUsername) {
