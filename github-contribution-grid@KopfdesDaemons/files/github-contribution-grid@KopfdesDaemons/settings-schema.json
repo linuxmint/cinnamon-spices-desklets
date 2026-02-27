@@ -94,5 +94,30 @@
     "type": "colorchooser",
     "default": "#56d364",
     "description": "10+ Contributions"
+  },
+  "color-preset": {
+    "type": "combobox",
+    "default": "default",
+    "options": {
+      "default": "default",
+      "blue-dark": "blue-dark",
+      "green-dark": "green-dark",
+      "yellow-dark": "yellow-dark",
+      "orange-dark": "orange-dark",
+      "red-dark": "red-dark",
+      "magenta-dark": "magenta-dark",
+      "purple-dark": "purple-dark",
+      "gruvbox-dark": "gruvbox-dark",
+      "default-light": "default-light",
+      "blue-light": "blue-light",
+      "green-light": "green-light",
+      "yellow-light": "yellow-light",
+      "orange-light": "orange-light",
+      "red-light": "red-light",
+      "magenta-light": "magenta-light",
+      "purple-light": "purple-light",
+      "gruvbox-light": "gruvbox-light"
+    },
+    "description": "Color preset"
   }
 }

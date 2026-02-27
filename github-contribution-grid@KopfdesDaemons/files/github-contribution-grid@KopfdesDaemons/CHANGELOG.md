@@ -11,6 +11,7 @@
   - Added decoration toggle setting
   - Added Desklet scale size setting based on system font size
   - Added block color settings
+  - Added color presets
 - Fixes
   - Fixed blocking on grid rendering
 - Refactoring:

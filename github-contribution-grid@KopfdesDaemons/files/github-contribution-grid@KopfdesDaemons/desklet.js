@@ -7,15 +7,17 @@ const Settings = imports.ui.settings;
 
 const UUID = "github-contribution-grid@KopfdesDaemons";
 
-let GitHubHelper, UiHelper;
+let GitHubHelper, UiHelper, ColorPresetsHelper;
 if (typeof require !== "undefined") {
   GitHubHelper = require("./helpers/github").GitHubHelper;
   UiHelper = require("./helpers/ui").UiHelper;
+  ColorPresetsHelper = require("./helpers/color-presets").ColorPresetsHelper;
 } else {
   const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
   imports.searchPath.push(DESKLET_DIR);
   GitHubHelper = imports.helpers.github.GitHubHelper;
   UiHelper = imports.helpers.ui.UiHelper;
+  ColorPresetsHelper = imports.helpers["color-presets"].ColorPresetsHelper;
 }
 
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
@@ -51,6 +53,7 @@ class MyDesklet extends Desklet.Desklet {
     this.color6 = "#196c2e";
     this.color9 = "#2ea043";
     this.color10 = "#56d364";
+    this.colorPreset = "default";
 
     // Bind settings
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
@@ -69,6 +72,7 @@ class MyDesklet extends Desklet.Desklet {
     this.settings.bindProperty(Settings.BindingDirection.IN, "color-6", "color6", this._onGridChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "color-9", "color9", this._onGridChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "color-10", "color10", this._onGridChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "color-preset", "colorPreset", this._onColorsPresetChanged.bind(this));
   }
 
   on_desklet_added_to_desktop() {
@@ -186,6 +190,11 @@ class MyDesklet extends Desklet.Desklet {
 
     this.contentContainer = new St.BoxLayout({ style: `background-color: ${this.backgroundColor}; border-radius: 0.2em;` });
     this._mainContainer.add_child(this.contentContainer);
+  }
+
+  _onColorsPresetChanged() {
+    ColorPresetsHelper.setPreset(this.colorPreset, this.settings);
+    this._onGridChanged();
   }
 
   _getColors() {
