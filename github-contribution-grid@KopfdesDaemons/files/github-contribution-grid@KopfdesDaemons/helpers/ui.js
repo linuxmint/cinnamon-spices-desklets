@@ -44,9 +44,9 @@ var UiHelper = class UiHelper {
     return headerContainer;
   }
 
-  static getSetupUI(gitHubTokenCreationURL, scaleSize, blockSize) {
+  static getSetupUI(gitHubTokenCreationURL, scaleSize, blockSize, colors) {
     const container = new St.Table();
-    container.add(this._getSkeletonGrid(scaleSize, blockSize), { row: 0, col: 0 });
+    container.add(this._getSkeletonGrid(scaleSize, blockSize, colors), { row: 0, col: 0 });
 
     const dialogBoxStyle = `background-color: rgba(0, 0, 0, 0.575); padding: ${1 * scaleSize}em; border-radius: ${0.3 * scaleSize}em;`;
     const setupBox = new St.BoxLayout({ vertical: true, style: dialogBoxStyle });
@@ -82,9 +82,9 @@ var UiHelper = class UiHelper {
     return container;
   }
 
-  static getErrorUI(errorMsg, reloadCallback, scaleSize, blockSize) {
+  static getErrorUI(errorMsg, reloadCallback, scaleSize, blockSize, colors) {
     const container = new St.Table();
-    container.add(this._getSkeletonGrid(scaleSize, blockSize), { row: 0, col: 0 });
+    container.add(this._getSkeletonGrid(scaleSize, blockSize, colors), { row: 0, col: 0 });
 
     const errorBox = new St.BoxLayout({
       vertical: true,
@@ -123,7 +123,7 @@ var UiHelper = class UiHelper {
     return container;
   }
 
-  static getContributionGrid(weeks, scaleSize, blockSize, showContributionCount) {
+  static getContributionGrid(weeks, scaleSize, blockSize, showContributionCount, colors) {
     const gridBox = new St.BoxLayout();
 
     let weekIndex = 0;
@@ -146,6 +146,7 @@ var UiHelper = class UiHelper {
             track_hover: true,
             style: `font-size: ${(scaleSize * blockSize) / 16}em; background-color: ${this.getContributionColor(
               day.contributionCount,
+              colors,
             )}; margin: ${0.2 * scaleSize}em; border-width: ${0.07 * scaleSize}em; border-style: solid;`,
           });
 
@@ -175,7 +176,7 @@ var UiHelper = class UiHelper {
     return gridBox;
   }
 
-  static _getSkeletonGrid(scaleSize, blockSize) {
+  static _getSkeletonGrid(scaleSize, blockSize, colors) {
     const weeks = [];
     for (let i = 0; i < 53; i++) {
       const contributionDays = [];
@@ -184,15 +185,24 @@ var UiHelper = class UiHelper {
       }
       weeks.push({ contributionDays });
     }
-    return this.getContributionGrid(weeks, scaleSize, blockSize, false);
+    return this.getContributionGrid(weeks, scaleSize, blockSize, false, colors);
   }
 
-  static getContributionColor(count) {
-    if (count >= 10) return "#56d364";
-    if (count >= 9) return "#2ea043";
-    if (count >= 6) return "#196c2e";
-    if (count >= 4) return "#196c2e";
-    if (count > 0) return "#033a16";
-    if (count === 0) return "#151b23";
+  static getContributionColor(count, colors) {
+    if (colors) {
+      if (count >= 10) return colors.c10;
+      if (count >= 9) return colors.c9;
+      if (count >= 6) return colors.c6;
+      if (count >= 4) return colors.c4;
+      if (count > 0) return colors.c1;
+      if (count === 0) return colors.c0;
+    } else {
+      if (count >= 10) return "#56d364";
+      if (count >= 9) return "#2ea043";
+      if (count >= 6) return "#196c2e";
+      if (count >= 4) return "#196c2e";
+      if (count > 0) return "#033a16";
+      if (count === 0) return "#151b23";
+    }
   }
 };

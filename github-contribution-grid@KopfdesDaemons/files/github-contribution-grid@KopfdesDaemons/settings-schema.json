@@ -60,5 +60,39 @@
     "type": "checkbox",
     "description": "Hide decorations",
     "default": true
+  },
+  "head2": {
+    "type": "header",
+    "description": "Colors"
+  },
+  "color-0": {
+    "type": "colorchooser",
+    "default": "#151b23",
+    "description": "0 Contributions"
+  },
+  "color-1": {
+    "type": "colorchooser",
+    "default": "#033a16",
+    "description": "1-3 Contributions"
+  },
+  "color-4": {
+    "type": "colorchooser",
+    "default": "#196c2e",
+    "description": "4-5 Contributions"
+  },
+  "color-6": {
+    "type": "colorchooser",
+    "default": "#196c2e",
+    "description": "6-8 Contributions"
+  },
+  "color-9": {
+    "type": "colorchooser",
+    "default": "#2ea043",
+    "description": "9 Contributions"
+  },
+  "color-10": {
+    "type": "colorchooser",
+    "default": "#56d364",
+    "description": "10+ Contributions"
   }
 }

@@ -9,14 +9,13 @@
 - New features:
   - Added skeleton grid for setup and error UI
   - Added decoration toggle setting
-  - Added desklet scale size setting based on system font size
+  - Added Desklet scale size setting based on system font size
+  - Added block color settings
 - Fixes
   - Fixed blocking on grid rendering
 - Refactoring:
+  - UI logic extracted into `UiHelper`
   - Added `deskletManager` as Fallback for `require` imports
   - Changed Desklet entry point to `on_desklet_added_to_desktop`
   - Added settings cleanup on Desklet removal
-  - Added `CHANGELOG.md`
-  - Removed unused styles in `stylesheet,css`
-  - UI logic extracted into UI Helper
   - Added Soup 2 compatibility

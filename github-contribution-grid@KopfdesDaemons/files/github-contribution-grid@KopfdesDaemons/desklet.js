@@ -45,6 +45,12 @@ class MyDesklet extends Desklet.Desklet {
     this.showContributionCount = false;
     this.showUsername = true;
     this.hideDecorations = true;
+    this.color0 = "#151b23";
+    this.color1 = "#033a16";
+    this.color4 = "#196c2e";
+    this.color6 = "#196c2e";
+    this.color9 = "#2ea043";
+    this.color10 = "#56d364";
 
     // Bind settings
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
@@ -57,6 +63,12 @@ class MyDesklet extends Desklet.Desklet {
     this.settings.bindProperty(Settings.BindingDirection.IN, "show-username", "showUsername", this._rerenderHeader.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "show-contribution-count", "showContributionCount", this._onGridChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this._onDecorationsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "color-0", "color0", this._onGridChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "color-1", "color1", this._onGridChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "color-4", "color4", this._onGridChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "color-6", "color6", this._onGridChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "color-9", "color9", this._onGridChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "color-10", "color10", this._onGridChanged.bind(this));
   }
 
   on_desklet_added_to_desktop() {
@@ -72,7 +84,7 @@ class MyDesklet extends Desklet.Desklet {
       // Delay to ensure network services are ready and try again
 
       if (this._timeoutId) Mainloop.source_remove(this._timeoutId);
-      this._timeoutId = Mainloop.timeout_add_seconds(3, () => {
+      this._timeoutId = Mainloop.timeout_add_seconds(6, () => {
         this._timeoutId = null;
         this._setupContributionData();
         return false;
@@ -176,19 +188,30 @@ class MyDesklet extends Desklet.Desklet {
     this._mainContainer.add_child(this.contentContainer);
   }
 
+  _getColors() {
+    return {
+      c0: this.color0,
+      c1: this.color1,
+      c4: this.color4,
+      c6: this.color6,
+      c9: this.color9,
+      c10: this.color10,
+    };
+  }
+
   _renderSetup() {
     this._createContentContainer();
-    this.contentContainer.add_child(UiHelper.getSetupUI(GitHubHelper.gitHubTokenCreationURL, this.scaleSize, this.blockSize));
+    this.contentContainer.add_child(UiHelper.getSetupUI(GitHubHelper.gitHubTokenCreationURL, this.scaleSize, this.blockSize, this._getColors()));
   }
 
   _renderError(errorMsg) {
     this._createContentContainer();
-    this.contentContainer.add_child(UiHelper.getErrorUI(errorMsg, () => this._setupContributionData(), this.scaleSize, this.blockSize));
+    this.contentContainer.add_child(UiHelper.getErrorUI(errorMsg, () => this._setupContributionData(), this.scaleSize, this.blockSize, this._getColors()));
   }
 
   _renderGrid(weeks) {
     this._createContentContainer();
-    this.contentContainer.add_child(UiHelper.getContributionGrid(weeks, this.scaleSize, this.blockSize, this.showContributionCount));
+    this.contentContainer.add_child(UiHelper.getContributionGrid(weeks, this.scaleSize, this.blockSize, this.showContributionCount, this._getColors()));
   }
 }
 
