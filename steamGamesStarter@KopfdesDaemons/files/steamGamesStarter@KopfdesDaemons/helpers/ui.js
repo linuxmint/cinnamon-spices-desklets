@@ -4,15 +4,13 @@ const Gio = imports.gi.Gio;
 const Gettext = imports.gettext;
 
 const UUID = "steamGamesStarter@KopfdesDaemons";
-const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
-
-imports.searchPath.push(DESKLET_DIR);
 
 let SteamHelper;
 if (typeof require !== "undefined") {
   SteamHelper = require("./helpers/steam.js").SteamHelper;
 } else {
-  SteamHelper = imports.helpers.steam.SteamHelper;
+  const DESKLET_DIR = imports.ui.deskletManager.desklets[UUID];
+  SteamHelper = DESKLET_DIR.helpers.steam.SteamHelper;
 }
 
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");

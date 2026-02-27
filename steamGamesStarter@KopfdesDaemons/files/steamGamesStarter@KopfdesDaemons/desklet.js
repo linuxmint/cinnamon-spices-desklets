@@ -5,17 +5,15 @@ const Gettext = imports.gettext;
 const Settings = imports.ui.settings;
 
 const UUID = "steamGamesStarter@KopfdesDaemons";
-const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
-
-imports.searchPath.push(DESKLET_DIR);
 
 let SteamHelper, UiHelper;
 if (typeof require !== "undefined") {
   SteamHelper = require("./helpers/steam.js").SteamHelper;
   UiHelper = require("./helpers/ui.js").UiHelper;
 } else {
-  SteamHelper = imports.helpers.steam.SteamHelper;
-  UiHelper = imports.helpers.ui.UiHelper;
+  const DESKLET_DIR = imports.ui.deskletManager.desklets[UUID];
+  SteamHelper = DESKLET_DIR.helpers.steam.SteamHelper;
+  UiHelper = DESKLET_DIR.helpers.ui.UiHelper;
 }
 
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
