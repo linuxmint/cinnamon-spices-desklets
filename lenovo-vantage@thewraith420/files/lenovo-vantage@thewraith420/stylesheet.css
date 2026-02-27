@@ -1,0 +1,8 @@
+/* Style for the main battery status label */
+.main-label {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    padding-bottom: 10px;
+}

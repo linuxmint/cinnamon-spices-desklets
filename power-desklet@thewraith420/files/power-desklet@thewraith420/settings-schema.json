@@ -1,0 +1,235 @@
+{
+    "battery-header": {
+        "type": "header",
+        "description": "Battery Widget Settings"
+    },
+    "conservation-mode-enabled": {
+        "type": "switch",
+        "default": false,
+        "description": "Enable Battery Conservation Mode",
+        "tooltip": "Limits battery charge to extend battery lifespan"
+    },
+    "rapid-charge-enabled": {
+        "type": "switch",
+        "default": false,
+        "description": "Enable Rapid Charge Mode",
+        "tooltip": "Charges the battery faster when enabled"
+    },
+    "update-interval": {
+        "type": "spinbutton",
+        "default": 5,
+        "min": 1,
+        "max": 60,
+        "step": 1,
+        "units": "seconds",
+        "description": "Update Interval",
+        "tooltip": "How often to refresh battery status"
+    },
+    "battery-display-header": {
+        "type": "header",
+        "description": "Battery Display Options"
+    },
+    "battery-display-mode": {
+        "type": "combobox",
+        "default": "horizontal",
+        "description": "Battery Display Mode",
+        "tooltip": "Choose how to display the battery information",
+        "options": {
+            "Horizontal (Bar + Percentage)": "horizontal",
+            "Vertical (Bar + Percentage)": "vertical",
+            "Percentage Only": "percentage-only",
+            "Compact (Small Bar)": "compact"
+        }
+    },
+    "show-charge-status": {
+        "type": "switch",
+        "default": true,
+        "description": "Show Charge Status",
+        "tooltip": "Display charging/discharging status text"
+    },
+    "show-time-remaining": {
+        "type": "switch",
+        "default": true,
+        "description": "Show Time Remaining",
+        "tooltip": "Display estimated time remaining or time to full charge"
+    },
+    "appearance-header": {
+        "type": "header",
+        "description": "Appearance Settings"
+    },
+    "background-opacity": {
+        "type": "scale",
+        "default": 0.95,
+        "min": 0.1,
+        "max": 1.0,
+        "step": 0.05,
+        "description": "Background Opacity",
+        "tooltip": "Adjust the transparency of the desklet background"
+    },
+    "background-color": {
+        "type": "colorchooser",
+        "default": "rgb(30, 30, 35)",
+        "description": "Background Color",
+        "tooltip": "Main desklet background color"
+    },
+    "accent-color": {
+        "type": "colorchooser",
+        "default": "rgb(255, 255, 255)",
+        "description": "Text & Accent Color",
+        "tooltip": "Color for all text and icons"
+    },
+    "font-size": {
+        "type": "spinbutton",
+        "default": 42,
+        "min": 20,
+        "max": 96,
+        "step": 2,
+        "units": "pt",
+        "description": "Percentage Font Size",
+        "tooltip": "Font size for the battery percentage"
+    },
+    "border-radius": {
+        "type": "spinbutton",
+        "default": 12,
+        "min": 0,
+        "max": 30,
+        "step": 2,
+        "units": "px",
+        "description": "Border Radius",
+        "tooltip": "Radius of the desklet's corners"
+    },
+    "button-size": {
+        "type": "spinbutton",
+        "default": 50,
+        "min": 30,
+        "max": 80,
+        "step": 5,
+        "units": "px",
+        "description": "Button Size",
+        "tooltip": "Size of the circular quick action buttons"
+    },
+    "layout-header": {
+        "type": "header",
+        "description": "Layout Settings"
+    },
+    "show-quick-toggles": {
+        "type": "switch",
+        "default": true,
+        "description": "Show Quick Toggle Buttons",
+        "tooltip": "Show or hide the grid of quick action buttons"
+    },
+    "nvidia-header": {
+        "type": "header",
+        "description": "Nvidia Prime Switcher Settings"
+    },
+    "show-nvidia-profiles": {
+        "type": "switch",
+        "default": true,
+        "description": "Show Nvidia Profile Buttons",
+        "tooltip": "Display Nvidia Prime profile switcher buttons at the bottom"
+    },
+    "nvidia-button-size": {
+        "type": "spinbutton",
+        "default": 28,
+        "min": 20,
+        "max": 80,
+        "step": 5,
+        "units": "px",
+        "description": "Nvidia Button Size",
+        "tooltip": "Size of the Nvidia profile buttons"
+    },
+    "nvidia-accent-color": {
+        "type": "colorchooser",
+        "default": "rgb(118, 185, 0)",
+        "description": "Nvidia Accent Color",
+        "tooltip": "Color for Nvidia profile buttons (default: Nvidia green)"
+    },
+    "reboot-delay": {
+        "type": "spinbutton",
+        "default": 10,
+        "min": 5,
+        "max": 300,
+        "step": 5,
+        "units": "seconds",
+        "description": "Reboot Delay",
+        "tooltip": "Countdown before automatic reboot"
+    },
+    "skip-confirm-dialog": {
+        "type": "switch",
+        "default": false,
+        "description": "Skip Reboot Confirmation Dialog",
+        "tooltip": "Switch profiles without showing the confirmation dialog"
+    },
+    "power-info-header": {
+        "type": "header",
+        "description": "Power Information Panel Settings"
+    },
+    "info-panel-color": {
+        "type": "colorchooser",
+        "default": "rgb(0, 0, 0)",
+        "description": "Info Panel Background Color",
+        "tooltip": "Choose the info panel background color"
+    },
+    "info-panel-opacity": {
+        "type": "scale",
+        "default": 0.4,
+        "min": 0.1,
+        "max": 1.0,
+        "step": 0.05,
+        "description": "Info Panel Opacity",
+        "tooltip": "Set the transparency of the info panel background"
+    },
+    "show-power-info-panel": {
+        "type": "switch",
+        "default": true,
+        "description": "Show Power Info Panel",
+        "tooltip": "Display real-time power consumption, battery cycles, and health"
+    },
+    "show-power-draw": {
+        "type": "switch",
+        "default": true,
+        "description": "Show Power Draw (Watts)",
+        "tooltip": "Display current power consumption in watts"
+    },
+    "show-charge-cycles": {
+        "type": "switch",
+        "default": true,
+        "description": "Show Charge Cycles",
+        "tooltip": "Display total battery charge cycles"
+    },
+    "show-battery-health": {
+        "type": "switch",
+        "default": true,
+        "description": "Show Battery Health",
+        "tooltip": "Display battery degradation percentage"
+    },
+    "graph-header": {
+        "type": "header",
+        "description": "Power History Graph Settings"
+    },
+    "graph-zoom-days": {
+        "type": "scale",
+        "default": 1,
+        "min": 0.0003,
+        "max": 90,
+        "step": 0.1,
+        "description": "Graph Time Window (Days)",
+        "tooltip": "How many days of history to display in the graphs. Smaller values zoom in to recent data, larger values show more history."
+    },
+    "use-24hour-time": {
+        "type": "switch",
+        "default": false,
+        "description": "Use 24-Hour Time Format",
+        "tooltip": "Show time in 24-hour format (14:30) instead of 12-hour with AM/PM (2:30 PM)"
+    },
+    "data-retention-days": {
+        "type": "spinbutton",
+        "default": 30,
+        "min": 1,
+        "max": 90,
+        "step": 1,
+        "units": "days",
+        "description": "Data Retention Period",
+        "tooltip": "How many days of power history to keep (longer periods use more memory)"
+    }
+}
