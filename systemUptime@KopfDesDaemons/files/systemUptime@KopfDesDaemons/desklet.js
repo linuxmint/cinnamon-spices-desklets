@@ -9,10 +9,28 @@ const ByteArray = imports.byteArray;
 
 const UUID = "systemUptime@KopfDesDaemons";
 
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
 
 function _(str) {
   return Gettext.dgettext(UUID, str);
+}
+
+function getFileContents(path) {
+  return new Promise((resolve, reject) => {
+    const file = Gio.File.new_for_path(path);
+    file.load_contents_async(null, (obj, res) => {
+      try {
+        const [success, contents, etag] = obj.load_contents_finish(res);
+        if (success) {
+          resolve(contents);
+        } else {
+          reject(new Error(`Could not read ${path}`));
+        }
+      } catch (e) {
+        reject(e);
+      }
+    });
+  });
 }
 
 class MyDesklet extends Desklet.Desklet {
@@ -48,7 +66,10 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   on_desklet_removed() {
-    if (this._timeout) Mainloop.source_remove(this._timeout);
+    if (this._timeout) {
+      Mainloop.source_remove(this._timeout);
+      this._timeout = null;
+    }
     if (this._clockSettingsId) {
       this.desktop_settings.disconnect(this._clockSettingsId);
       this._clockSettingsId = 0;
@@ -103,12 +124,11 @@ class MyDesklet extends Desklet.Desklet {
     this.setContent(container);
   }
 
-  updateUptime() {
+  async updateUptime() {
     let uptimeInSeconds = 0;
     try {
       // Read uptime in seconds from /proc/uptime
-      const [success, contents] = GLib.file_get_contents("/proc/uptime");
-      if (!success) throw new Error("Could not get system uptime.");
+      const contents = await getFileContents("/proc/uptime");
       uptimeInSeconds = parseFloat(ByteArray.toString(contents).split(" ")[0]);
 
       if (this.showUptimeInDays) {
@@ -131,11 +151,10 @@ class MyDesklet extends Desklet.Desklet {
     }
   }
 
-  updateStartupTime() {
+  async updateStartupTime() {
     try {
       // Read startup time from /proc/stat (btime)
-      const [success, contents] = GLib.file_get_contents("/proc/stat");
-      if (!success) throw new Error("Could not get system startup time.");
+      const contents = await getFileContents("/proc/stat");
 
       // Search for the line starting with "btime " and parse the timestamp
       const lines = ByteArray.toString(contents).split("\n");
@@ -165,12 +184,15 @@ class MyDesklet extends Desklet.Desklet {
     }
   }
 
-  updateValues() {
-    this.updateUptime();
-    this.updateStartupTime();
+  async updateValues() {
+    await this.updateUptime();
+    await this.updateStartupTime();
 
     if (this._timeout) Mainloop.source_remove(this._timeout);
-    this._timeout = Mainloop.timeout_add_seconds(60, () => this.updateValues());
+    this._timeout = Mainloop.timeout_add_seconds(60, () => {
+      this._timeout = null;
+      this.updateValues();
+    });
   }
 
   onSettingsChanged() {
