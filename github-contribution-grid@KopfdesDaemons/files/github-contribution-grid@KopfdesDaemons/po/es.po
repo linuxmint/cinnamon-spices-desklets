@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: github-contribution-grid@KopfdesDaemons 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-10-13 22:42+0200\n"
+"POT-Creation-Date: 2026-02-27 18:12+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,31 +19,31 @@ msgstr ""
 "X-Generator: Poedit 3.8\n"
 
 #. metadata.json->name
-#. desklet.js:36
+#. desklet.js:32 helpers/ui.js:59 helpers/ui.js:99
 msgid "GitHub Contribution Grid"
 msgstr "Cuadrícula de contribuciones de GitHub"
 
-#. desklet.js:85 desklet.js:141
-msgid "Please configure username and token in settings."
-msgstr "Configure el nombre de usuario y el token en la configuración."
-
-#. desklet.js:110 desklet.js:154
+#. desklet.js:34 helpers/ui.js:32 helpers/ui.js:109
 msgid "Reload"
 msgstr "Recargar"
 
-#. desklet.js:118
+#. helpers/ui.js:42
 msgid "Open GitHub profile"
 msgstr "Perfil abierto de GitHub"
 
-#. desklet.js:143
+#. helpers/ui.js:63
+msgid "Please configure username and token in settings."
+msgstr "Configure el nombre de usuario y el token en la configuración."
+
+#. helpers/ui.js:68
 msgid "Create a GitHub token"
 msgstr "Crear un token de GitHub"
 
-#. desklet.js:152
+#. helpers/ui.js:103
 msgid "Error:"
 msgstr "Error:"
 
-#. desklet.js:173
+#. helpers/ui.js:155
 msgid "contributions"
 msgstr "contribuciones"
 
@@ -54,25 +54,45 @@ msgstr ""
 "Muestra el mapa de calor de las contribuciones diarias para un perfil de "
 "usuario de GitHub específico."
 
-#. settings-schema.json->head0->description
+#. settings-schema.json->general-page->title
+msgid "General"
+msgstr ""
+
+#. settings-schema.json->style-page->title
+#. settings-schema.json->style-section->title
+msgid "Style"
+msgstr "Estilo"
+
+#. settings-schema.json->block-colors-page->title
+#, fuzzy
+msgid "Block colors"
+msgstr "Color de fondo"
+
+#. settings-schema.json->api-section->title
 msgid "API Settings"
 msgstr "Configuración de la API"
 
+#. settings-schema.json->colors-section->title
+msgid "Colors"
+msgstr ""
+
 #. settings-schema.json->github-username->description
-msgid "GitHub Username"
+#, fuzzy
+msgid "GitHub username"
 msgstr "Nombre de usuario de GitHub"
 
 #. settings-schema.json->github-token->description
-msgid "GitHub Token"
+#, fuzzy
+msgid "GitHub token"
 msgstr "Token de GitHub"
 
 #. settings-schema.json->refresh-interval->description
 msgid "Refresh interval in minutes"
 msgstr "Intervalo de actualización en minutos"
 
-#. settings-schema.json->head1->description
-msgid "Style"
-msgstr "Estilo"
+#. settings-schema.json->scale-size->description
+msgid "Desklet scale size"
+msgstr ""
 
 #. settings-schema.json->block-size->description
 msgid "Block size in pixels"
@@ -86,6 +106,120 @@ msgstr "Color de fondo"
 msgid "Show contribution count"
 msgstr "Mostrar recuento de contribuciones"
 
+#. settings-schema.json->show-reload-button->description
+msgid "Show reload button"
+msgstr ""
+
 #. settings-schema.json->show-username->description
 msgid "Show username"
 msgstr "Mostrar nombre de usuario"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr ""
+
+#. settings-schema.json->color-0->description
+#, fuzzy
+msgid "0 Contributions"
+msgstr "contribuciones"
+
+#. settings-schema.json->color-1->description
+#, fuzzy
+msgid "1-3 Contributions"
+msgstr "contribuciones"
+
+#. settings-schema.json->color-4->description
+#, fuzzy
+msgid "4-5 Contributions"
+msgstr "contribuciones"
+
+#. settings-schema.json->color-6->description
+#, fuzzy
+msgid "6-8 Contributions"
+msgstr "contribuciones"
+
+#. settings-schema.json->color-9->description
+#, fuzzy
+msgid "9 Contributions"
+msgstr "contribuciones"
+
+#. settings-schema.json->color-10->description
+#, fuzzy
+msgid "10+ Contributions"
+msgstr "contribuciones"
+
+#. settings-schema.json->color-preset->options
+msgid "default"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "blue-dark"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "green-dark"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "yellow-dark"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "orange-dark"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "red-dark"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "magenta-dark"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "purple-dark"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "gruvbox-dark"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "default-light"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "blue-light"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "green-light"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "yellow-light"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "orange-light"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "red-light"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "magenta-light"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "purple-light"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "gruvbox-light"
+msgstr ""
+
+#. settings-schema.json->color-preset->description
+msgid "Color preset"
+msgstr ""
