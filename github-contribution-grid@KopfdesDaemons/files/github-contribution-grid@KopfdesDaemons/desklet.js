@@ -19,7 +19,7 @@ if (typeof require !== "undefined") {
   ColorPresetsHelper = DESKLET_DIR.helpers["color-presets"].ColorPresetsHelper;
 }
 
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
 
 function _(str) {
   return Gettext.dgettext(UUID, str);
@@ -93,7 +93,7 @@ class MyDesklet extends Desklet.Desklet {
       // Delay to ensure network services are ready and try again
 
       if (this._timeoutId) Mainloop.source_remove(this._timeoutId);
-      this._timeoutId = Mainloop.timeout_add_seconds(6, () => {
+      this._timeoutId = Mainloop.timeout_add_seconds(10, () => {
         this._timeoutId = null;
         this._setupContributionData();
         return false;

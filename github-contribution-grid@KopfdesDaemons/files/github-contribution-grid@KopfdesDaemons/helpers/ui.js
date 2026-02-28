@@ -38,7 +38,7 @@ var UiHelper = class UiHelper {
     if (showUsername) {
       const userButtonStyle = `font-size: ${1 * scaleSize}em; padding: 0 ${0.5 * scaleSize}em;`;
       const usernameButton = new St.Button({ label: username, style_class: "github-contribution-grid-user-button", style: userButtonStyle });
-      usernameButton.connect("clicked", () => Util.spawnCommandLine(`xdg-open "https://github.com/${username}"`));
+      usernameButton.connect("clicked", () => Util.spawn(["xdg-open", `https://github.com/${username}`]));
       new Tooltips.Tooltip(usernameButton, _("Open GitHub profile"));
       headerContainer.add_child(usernameButton);
     }
@@ -68,7 +68,7 @@ var UiHelper = class UiHelper {
       label: _("Create a GitHub token"),
       style: `padding: ${0.5 * scaleSize}em; border: ${0.07 * scaleSize}em solid gray; margin-top: ${1 * scaleSize}em; font-size: ${1 * scaleSize}em;`,
     });
-    createTokenButton.connect("clicked", () => Util.spawnCommandLine(`xdg-open "${gitHubTokenCreationURL}"`));
+    createTokenButton.connect("clicked", () => Util.spawn(["xdg-open", gitHubTokenCreationURL]));
     setupBox.add_child(createTokenButton);
 
     container.add(setupBox, {
