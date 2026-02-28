@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: systemUptime@KopfDesDaemons 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-12-05 18:11+0100\n"
+"POT-Creation-Date: 2026-02-21 12:33+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,41 +19,45 @@ msgstr ""
 "X-Generator: Poedit 3.4.2\n"
 
 #. metadata.json->name
-#. desklet.js:37
+#. desklet.js:21
 msgid "System Uptime"
 msgstr "Systembetriebszeit"
 
-#. desklet.js:44
+#. desklet.js:64
 msgid "Uptime:"
 msgstr "Betriebszeit:"
 
-#. desklet.js:45 desklet.js:51
+#. desklet.js:65 desklet.js:73
 msgid "Loading..."
 msgstr "Lade..."
 
-#. desklet.js:50
+#. desklet.js:72
 msgid "Start time:"
 msgstr "Startzeit:"
 
-#. desklet.js:104
+#. desklet.js:113
 msgid "days"
 msgstr "Tage"
 
-#. desklet.js:104
+#. desklet.js:113
 msgid "hrs"
 msgstr "Std."
 
-#. desklet.js:104
+#. desklet.js:113
 msgid "min"
 msgstr "Min."
 
-#. desklet.js:109
+#. desklet.js:119
 msgid "hours"
 msgstr "Stunden"
 
-#. desklet.js:109
+#. desklet.js:119
 msgid "minutes"
 msgstr "Minuten"
+
+#. desklet.js:122 desklet.js:156
+msgid "Error"
+msgstr "Fehler"
 
 #. metadata.json->description
 msgid "Displays the current system uptime."
@@ -63,22 +67,26 @@ msgstr "Zeigt die aktuelle Systembetriebszeit."
 msgid "Style"
 msgstr "Stil"
 
-#. settings-schema.json->fontSize->description
-msgid "Font size"
-msgstr "Schriftgröße"
+#. settings-schema.json->scale-size->description
+msgid "Desklet scale size"
+msgstr "Deskletskalierungsgröße"
 
-#. settings-schema.json->colorLabel->description
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Verstecke Dekorationen"
+
+#. settings-schema.json->label-color->description
 msgid "Label color"
 msgstr "Labelfarbe"
 
-#. settings-schema.json->showStartDate->description
+#. settings-schema.json->head1->description
+msgid "Value format"
+msgstr "Wertformat"
+
+#. settings-schema.json->show-start-date->description
 msgid "Show start date"
 msgstr "Zeige Startdatum"
 
-#. settings-schema.json->showUptimeInDays->description
+#. settings-schema.json->show-uptime-in-days->description
 msgid "Show uptime in days"
 msgstr "Zeige Betriebszeit in Tagen"
-
-#. settings-schema.json->hideDecorations->description
-msgid "Hide decorations"
-msgstr "Verstecke Dekorationen"

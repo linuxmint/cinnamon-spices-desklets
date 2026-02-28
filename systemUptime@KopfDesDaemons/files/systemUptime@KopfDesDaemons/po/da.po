@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: systemUptime@KopfDesDaemons 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-12-05 18:11+0100\n"
+"POT-Creation-Date: 2026-02-21 12:33+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
@@ -19,41 +19,45 @@ msgstr ""
 "X-Generator: Poedit 3.4.2\n"
 
 #. metadata.json->name
-#. desklet.js:37
+#. desklet.js:21
 msgid "System Uptime"
 msgstr "System-oppetid"
 
-#. desklet.js:44
+#. desklet.js:64
 msgid "Uptime:"
 msgstr "Oppetid:"
 
-#. desklet.js:45 desklet.js:51
+#. desklet.js:65 desklet.js:73
 msgid "Loading..."
 msgstr "Indlæser …"
 
-#. desklet.js:50
+#. desklet.js:72
 msgid "Start time:"
 msgstr "Starttid:"
 
-#. desklet.js:104
+#. desklet.js:113
 msgid "days"
 msgstr "dage"
 
-#. desklet.js:104
+#. desklet.js:113
 msgid "hrs"
 msgstr "tim"
 
-#. desklet.js:104
+#. desklet.js:113
 msgid "min"
 msgstr "min"
 
-#. desklet.js:109
+#. desklet.js:119
 msgid "hours"
 msgstr "timer"
 
-#. desklet.js:109
+#. desklet.js:119
 msgid "minutes"
 msgstr "minutter"
+
+#. desklet.js:122 desklet.js:156
+msgid "Error"
+msgstr ""
 
 #. metadata.json->description
 msgid "Displays the current system uptime."
@@ -63,22 +67,26 @@ msgstr "Viser den aktuelle system-oppetid."
 msgid "Style"
 msgstr "Stil"
 
-#. settings-schema.json->fontSize->description
-msgid "Font size"
-msgstr "Skriftstørrelse"
+#. settings-schema.json->scale-size->description
+msgid "Desklet scale size"
+msgstr ""
 
-#. settings-schema.json->colorLabel->description
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr ""
+
+#. settings-schema.json->label-color->description
 msgid "Label color"
 msgstr "Tekstfarve"
 
-#. settings-schema.json->showStartDate->description
+#. settings-schema.json->head1->description
+msgid "Value format"
+msgstr ""
+
+#. settings-schema.json->show-start-date->description
 msgid "Show start date"
 msgstr "Vis startdato"
 
-#. settings-schema.json->showUptimeInDays->description
+#. settings-schema.json->show-uptime-in-days->description
 msgid "Show uptime in days"
 msgstr "Vis oppetid i dage"
-
-#. settings-schema.json->hideDecorations->description
-msgid "Hide decorations"
-msgstr ""
