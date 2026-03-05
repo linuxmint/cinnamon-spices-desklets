@@ -1,7 +1,7 @@
 const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
+const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
-const Util = imports.misc.util;
 const Settings = imports.ui.settings;
 const Mainloop = imports.mainloop;
 const Tooltips = imports.ui.tooltips;
@@ -122,53 +122,63 @@ DockerManagerDesklet.prototype = {
   },
 
   _fetchContainers: function () {
-    let cmd = "timeout 5 docker ps -a --format '{{json .}}' --no-trunc";
-    if (!this.showAllContainers) {
-      cmd = "timeout 5 docker ps --format '{{json .}}' --no-trunc";
+    let args = ["timeout", "5", "docker", "ps", "--format", "{{json .}}", "--no-trunc"];
+    if (this.showAllContainers) {
+      args.splice(4, 0, "-a");
     }
 
     try {
-      let [success, stdout, stderr, exitCode] = GLib.spawn_command_line_sync(
-        '/bin/bash -c "' + cmd + ' 2>&1"',
-      );
+      let proc = new Gio.Subprocess({
+        argv: args,
+        flags: Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_PIPE,
+      });
+      proc.init(null);
 
-      let output = stdout ? imports.byteArray.toString(stdout).trim() : "";
-      let errOutput = stderr ? imports.byteArray.toString(stderr).trim() : "";
-      let combinedOutput = output + " " + errOutput;
+      proc.communicate_utf8_async(null, null, (proc, res) => {
+        try {
+          let [, stdout, stderr] = proc.communicate_utf8_finish(res);
 
-      if (
-        combinedOutput.indexOf("Cannot connect to the Docker daemon") !== -1 ||
-        combinedOutput.indexOf("Is the docker daemon running") !== -1
-      ) {
-        this._showError(
-          "Docker daemon is not running.\nStart it with: sudo systemctl start docker",
-        );
-        return;
-      }
+          let output = stdout ? stdout.trim() : "";
+          let errOutput = stderr ? stderr.trim() : "";
+          let combinedOutput = output + " " + errOutput;
 
-      if (
-        combinedOutput.indexOf("permission denied") !== -1 ||
-        combinedOutput.indexOf("Permission denied") !== -1
-      ) {
-        this._showError(
-          "Permission denied.\nAdd your user to the docker group:\nsudo usermod -aG docker $USER\nThen log out and back in.",
-        );
-        return;
-      }
+          if (
+            combinedOutput.indexOf("Cannot connect to the Docker daemon") !== -1 ||
+            combinedOutput.indexOf("Is the docker daemon running") !== -1
+          ) {
+            this._showError(
+              "Docker daemon is not running.\nStart it with: sudo systemctl start docker",
+            );
+            return;
+          }
 
-      if (
-        combinedOutput.indexOf("docker: not found") !== -1 ||
-        combinedOutput.indexOf("No such file or directory") !== -1
-      ) {
-        this._showError(
-          "Docker is not installed.\nInstall it from https://docs.docker.com/engine/install/",
-        );
-        return;
-      }
+          if (
+            combinedOutput.indexOf("permission denied") !== -1 ||
+            combinedOutput.indexOf("Permission denied") !== -1
+          ) {
+            this._showError(
+              "Permission denied.\nAdd your user to the docker group:\nsudo usermod -aG docker $USER\nThen log out and back in.",
+            );
+            return;
+          }
 
-      let containers = this._parseContainers(output);
-      let groups = this._groupContainers(containers);
-      this._renderContainers(groups, containers);
+          if (
+            combinedOutput.indexOf("docker: not found") !== -1 ||
+            combinedOutput.indexOf("No such file or directory") !== -1
+          ) {
+            this._showError(
+              "Docker is not installed.\nInstall it from https://docs.docker.com/engine/install/",
+            );
+            return;
+          }
+
+          let containers = this._parseContainers(output);
+          let groups = this._groupContainers(containers);
+          this._renderContainers(groups, containers);
+        } catch (e) {
+          this._showError("Failed to run docker command:\n" + e.message);
+        }
+      });
     } catch (e) {
       this._showError("Failed to run docker command:\n" + e.message);
     }
@@ -452,9 +462,15 @@ DockerManagerDesklet.prototype = {
 
   _runDockerAction: function (action, ids) {
     this._actionInProgress = true;
-    let cmd = "timeout 30 docker " + action + " " + ids.join(" ");
+    let args = ["timeout", "30", "docker", action].concat(ids);
     try {
-      Util.spawnCommandLineAsyncIO('/bin/bash -c "' + cmd + '"', () => {
+      let proc = new Gio.Subprocess({
+        argv: args,
+        flags: Gio.SubprocessFlags.NONE,
+      });
+      proc.init(null);
+
+      proc.wait_async(null, () => {
         this._actionInProgress = false;
         this._stopSpinner();
         this._fetchContainers();
