@@ -1,0 +1,34 @@
+{
+    "refresh-interval": {
+        "type": "spinbutton",
+        "default": 10,
+        "min": 3,
+        "max": 120,
+        "step": 1,
+        "units": "seconds",
+        "description": "Refresh interval"
+    },
+    "show-all-containers": {
+        "type": "switch",
+        "default": true,
+        "description": "Show stopped containers"
+    },
+    "widget-width": {
+        "type": "spinbutton",
+        "default": 340,
+        "min": 250,
+        "max": 600,
+        "step": 10,
+        "units": "pixels",
+        "description": "Widget width"
+    },
+    "widget-height": {
+        "type": "spinbutton",
+        "default": 400,
+        "min": 200,
+        "max": 800,
+        "step": 10,
+        "units": "pixels",
+        "description": "Widget height"
+    }
+}
