@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-02-23 22:40+0100\n"
+"POT-Creation-Date: 2026-03-05 21:41+0100\n"
 "PO-Revision-Date: 2025-11-17 17:19+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: \n"
@@ -22,55 +22,65 @@ msgstr ""
 msgid "N/A"
 msgstr ""
 
-#. desklet.js:754
+#. desklet.js:748
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr "Kurslisten er tom. Åbn indstillingerne og tilføj nogle selskabskoder."
 
-#. desklet.js:803 desklet.js:842 desklet.js:872
+#. desklet.js:797 desklet.js:830 desklet.js:860
 msgid "Authorization parameters have expired"
 msgstr "Godkendelsesparametre er udløbet"
 
-#. desklet.js:806 desklet.js:845 desklet.js:875
-msgid "Yahoo Finance service not available! Status: "
-msgstr "Yahoo Finance er ikke tilgængelig! Status: "
+#. desklet.js:800 desklet.js:833 desklet.js:863
+#, javascript-format
+msgid "Yahoo Finance service not available! Status: %s"
+msgstr "Yahoo Finance er ikke tilgængelig! Status: %s"
 
-#. desklet.js:810
-msgid "Something went wrong retrieving Yahoo Finance data"
+#. desklet.js:804
+#, javascript-format
+msgid "Something went wrong retrieving Yahoo Finance data. %s"
 msgstr ""
 
-#. desklet.js:1281
+#. desklet.js:1269
 msgid "No quotes data to display"
 msgstr "Der er ingen kursdata at vise"
 
+#. desklet.js:1363
+#, javascript-format
+msgid "Updated at %s"
+msgstr "Opdateret %s"
+
 #. desklet.js:1395
-msgid "Updated at "
-msgstr "Opdateret "
+#, javascript-format
+msgid "Error: %s"
+msgstr "Fejl: %s"
 
-#. desklet.js:1427
-msgid "Error: "
-msgstr "Fejl: "
-
-#. desklet.js:1586
+#. desklet.js:1554
+#, javascript-format
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data. "
-"Status: "
+"Status: %s"
 msgstr ""
-"Kunne ikke hente godkendelsesparameter! Kunne ikke hente kursdata. Status: "
+"Kunne ikke hente godkendelsesparameter! Kunne ikke hente kursdata. Status: %s"
 
-#. desklet.js:1617
-msgid "Consent processing failed! Unable to fetch quotes data. Status: "
-msgstr "Samtykkebehandling mislykkedes! Kunne ikke hente kursdata. Status: "
+#. desklet.js:1585
+#, javascript-format
+msgid "Consent processing failed! Unable to fetch quotes data. Status: %s"
+msgstr "Samtykkebehandling mislykkedes! Kunne ikke hente kursdata. Status: %s"
 
-#. desklet.js:1623
-msgid "Consent processing not completed! Unable to fetch quotes data. Status: "
+#. desklet.js:1591
+#, javascript-format
+msgid ""
+"Consent processing not completed! Unable to fetch quotes data. Status: %s"
 msgstr ""
-"Samtykkebehandling ikke gennemført! Kunne ikke hente kursdata. Status: "
+"Samtykkebehandling ikke gennemført! Kunne ikke hente kursdata. Status: %s"
 
-#. desklet.js:1659
+#. desklet.js:1627
+#, javascript-format
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: "
+"%s"
 msgstr ""
-"Kunne ikke hente godkendelseskrumme! Kunne ikke hente kursdata. Status: "
+"Kunne ikke hente godkendelseskrumme! Kunne ikke hente kursdata. Status: %s"
 
 #. metadata.json->description
 msgid ""
