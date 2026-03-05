@@ -1,0 +1,421 @@
+# QUICK LINKS
+# This file is put in the public domain.
+# NotSirius-A, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: quicklinks@NotSirius-A 1.2\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-11-10 11:27+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"Language-Team: \n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. desklet.js:127
+msgid "Sorry, this font is not supported, please select a different one."
+msgstr ""
+
+#. desklet.js:128
+#, fuzzy
+msgid " Font: `"
+msgstr "Skrifttype"
+
+#. desklet.js:128
+msgid "` Error: "
+msgstr ""
+
+#. desklet.js:188
+msgid ""
+"No visible\n"
+"links found.\n"
+"Configure links\n"
+"in the settings.\n"
+"Right click\n"
+"on desklet\n"
+"then configure."
+msgstr ""
+"Ingen synlige\n"
+"links fundet.\n"
+"Konfigurér links\n"
+"under indstillinger.\n"
+"Højreklik på\n"
+"skrivebordprogrammet\n"
+"og vælg Konfigurér …"
+
+#. desklet.js:412
+msgid "Quick Links: Command parse error: "
+msgstr "Hurtiglinks: Kommandofortolkningsfejl: "
+
+#. desklet.js:431 open_add_edit_dialog_gtk.py:132
+msgid "Add new link"
+msgstr ""
+
+#. open_add_edit_dialog_gtk.py:134
+msgid "Edit link"
+msgstr ""
+
+#. metadata.json->description
+#, fuzzy
+msgid ""
+"Customizable quick links launcher panel. Allows you to create beautiful "
+"themed desktop shortcuts for your most used folders/commands."
+msgstr ""
+"Panel med hurtige links der kan tilpasses. Giver dig mulighed for at oprette "
+"smukke tematiske genveje på skrivebordet til de mapper/kommandoer, du bruger "
+"mest."
+
+#. metadata.json->name
+#, fuzzy
+msgid "Quick Links - Launcher"
+msgstr "Hurtiglinks"
+
+#. settings-schema.json->links-page->title
+msgid "Links"
+msgstr "Links"
+
+#. settings-schema.json->preferences-page->title
+msgid "Preferences"
+msgstr "Indstillinger"
+
+#. settings-schema.json->theme-page->title
+msgid "Theme"
+msgstr "Tema"
+
+#. settings-schema.json->links-section->title
+msgid "Set up your links here"
+msgstr "Indstil dine links her"
+
+#. settings-schema.json->general-section->title
+msgid "General"
+msgstr "Generelt"
+
+#. settings-schema.json->layout-section->title
+msgid "Layout"
+msgstr "Udseende"
+
+#. settings-schema.json->font-section->title
+msgid "Font"
+msgstr "Skrifttype"
+
+#. settings-schema.json->desklet-decorations-section->title
+msgid "Desklet decorations"
+msgstr "Skrivebordsprogrammets udseende"
+
+#. settings-schema.json->links-top-label->description
+msgid ""
+"Each link has 5 attributes you can change:\n"
+" - Display: determines whether your link will be shown or not \n"
+" - Name that will be displayed\n"
+" - Icon name: you can choose any system icon or leave blank\n"
+" - Command to be executed when clicked\n"
+" - Shell: select if you want the terminal to show up after clicking"
+msgstr ""
+"Hvert link har 5 attributter, som du kan ændre:\n"
+"- Visning: bestemmer, om dit link skal vises eller ej\n"
+"- Navn der skal vises\n"
+"- Ikonnavn: du kan vælge et hvilket som helst systemikon eller lade feltet "
+"være tomt\n"
+"- Kommando der skal udføres, når der klikkes på linket\n"
+"- Shell: vælg, om terminalen skal vises, når der klikkes på linket"
+
+#. settings-schema.json->links-bottom-label->description
+#, fuzzy
+msgid ""
+"Some tips:\n"
+"You can open folders using ex. `nemo <path>` command.\n"
+"You can break your links' names into multiple lines by typing \\n where you "
+"want a break.\n"
+"Set `Shell` to enabled if your command only outputs to the console ex. `ls` "
+"or `htop`.\n"
+"If you want multiple link categories/panels just create new instances of "
+"this desklet\n"
+" (click the `+` sign in system desklet manager)."
+msgstr ""
+"Nogle tip:\n"
+"Du kan åbne mapper ved hjælp af f.eks. kommandoen “nemo <sti>”.\n"
+"Hvis du har brug for at se outputtet fra en kommando, skal du indstille den "
+"sidste attribut til true.\n"
+"Du kan opdele dine links' navne i flere linjer ved at skrive \n"
+", hvor du ønsker et linjeskift.\n"
+"Indstil “Shell” til aktiveret, hvis din kommando kun viser output til "
+"konsollen, f.eks. “ls” eller “htop”.\n"
+"Hvis du ønsker flere linkkategorier/paneler, skal du blot oprette nye "
+"instanser af skrivebordsprogrammet\n"
+"(klik på “+”-tegnet i Skrivebordsprogrammer under Indstillinger i Cinnamon)."
+
+#. settings-schema.json->links-list->columns->title
+msgid "Display"
+msgstr "Visning"
+
+#. settings-schema.json->links-list->columns->title
+msgid "Name"
+msgstr "Navn"
+
+#. settings-schema.json->links-list->columns->title
+#, fuzzy
+msgid "Icon"
+msgstr "Ikonnavn"
+
+#. settings-schema.json->links-list->columns->title
+msgid "Command"
+msgstr "Kommando"
+
+#. settings-schema.json->links-list->columns->title
+msgid "Shell"
+msgstr "Shell"
+
+#. settings-schema.json->link-update-button->description
+msgid "Update"
+msgstr "Opdatér"
+
+#. settings-schema.json->click-type->description
+msgid "Click type"
+msgstr "Kliktype"
+
+#. settings-schema.json->click-type->options
+msgid "Single click"
+msgstr "Enkeltklik"
+
+#. settings-schema.json->click-type->options
+msgid "Double click"
+msgstr "Dobbeltklik"
+
+#. settings-schema.json->click-type->tooltip
+msgid "Choose how you want to active your links."
+msgstr "Vælg, hvordan du vil aktivere dine links."
+
+#. settings-schema.json->click-timeout->description
+msgid "Double-click timeout"
+msgstr "Dobbeltklik-tid"
+
+#. settings-schema.json->click-timeout->tooltip
+msgid "Set the maximum time between clicks in double-click."
+msgstr "Angiv den maksimale tid mellem klik i dobbeltklik."
+
+#. settings-schema.json->desklet-layout->description
+msgid ""
+"Choose how links should be laid out.\n"
+"(You might also want to change text alignment.)"
+msgstr ""
+"Vælg, hvordan links skal placeres.\n"
+"(Du kan også ændre tekstplaceringen.)"
+
+#. settings-schema.json->desklet-layout->options
+msgid "List view"
+msgstr "Listevisning"
+
+#. settings-schema.json->desklet-layout->options
+msgid "Tile view"
+msgstr "Flisevisning"
+
+#. settings-schema.json->desklet-layout->tooltip
+msgid "Pick a layout for this desklet."
+msgstr "Vælg et udseende for skrivebordsprogrammet."
+
+#. settings-schema.json->text-align->description
+msgid "Text alignment"
+msgstr "Tekstplacering"
+
+#. settings-schema.json->text-align->options
+msgid "Left"
+msgstr "Venstre"
+
+#. settings-schema.json->text-align->options
+msgid "Center"
+msgstr "Midten"
+
+#. settings-schema.json->text-align->options
+msgid "Right"
+msgstr "Højre"
+
+#. settings-schema.json->column-number->description
+msgid "Number of columns"
+msgstr "Antal kolonner"
+
+#. settings-schema.json->column-number->tooltip
+msgid "Increase or decrease the number of columns on the layout."
+msgstr "Forøg eller formindsk antallet af kolonner."
+
+#. settings-schema.json->row-spacing->description
+msgid "Row spacing"
+msgstr "Rækkemellemrum"
+
+#. settings-schema.json->row-spacing->tooltip
+msgid "Change how far apart are link rows."
+msgstr "Indstil afstanden mellem rækkerne."
+
+#. settings-schema.json->column-spacing->description
+msgid "Column spacing"
+msgstr "Kolonnemellemrum"
+
+#. settings-schema.json->column-spacing->tooltip
+msgid "Change how far apart are link columns."
+msgstr "Indstil afstanden mellem kolonnerne."
+
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr "Tekstskygge"
+
+#. settings-schema.json->text-shadow-color->description
+msgid "Text shadow color"
+msgstr "Tekstskyggefarve"
+
+#. settings-schema.json->transparent-bg->description
+msgid "Transparent background (works well with no decorations)"
+msgstr ""
+"Gennemsigtig baggrund (virker fint, når der ingen ramme eller titel er) "
+
+#. settings-schema.json->transparent-bg->tooltip
+msgid "Select if you want a transparent background."
+msgstr "Vælg, om du vil have en gennemsigtig baggrund."
+
+#. settings-schema.json->bg-color->description
+msgid "Link background color"
+msgstr "Baggrundsfarve for links"
+
+#. settings-schema.json->bg-color->tooltip
+msgid "Set the color of the links background."
+msgstr "Angiv baggrundsfarven til links."
+
+#. settings-schema.json->show-decorations->description
+msgid "Show desklet decorations"
+msgstr "Vis ramme og/eller titel"
+
+#. settings-schema.json->icon-size->units
+msgid "pixels"
+msgstr "pixels"
+
+#. settings-schema.json->icon-size->description
+msgid "Icon size (set to 0 do disable icons)"
+msgstr "Ikonstørrelse (0 deaktiverer ikoner)"
+
+#. settings-schema.json->icon-size->tooltip
+msgid "Increase or decrease the icon size (set to 0 to disable icons)."
+msgstr "Forøg eller formindsk ikonstørrelsen (0 deaktiverer ikoner)."
+
+#. settings-schema.json->font-enabled->description
+msgid "Display text"
+msgstr "Vis tekst"
+
+#. settings-schema.json->font->description
+msgid "Link font"
+msgstr ""
+
+#. settings-schema.json->font->tooltip
+msgid "Change font family (some fonts may be broken"
+msgstr ""
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Tekstfarve"
+
+#. settings-schema.json->text-color->tooltip
+msgid "Set the text color of this desklet."
+msgstr "Angiv tekstfarven for dette skrivebordsprogram."
+
+#. settings-schema.json->link-border-width->description
+msgid "Border width (set to 0 to disable border)"
+msgstr "Rammebredde (0 deaktiverer rammen)"
+
+#. settings-schema.json->link-border-width->tooltip
+msgid "Increase or decrease the link border width."
+msgstr "Forøg eller formindsk bredden på linkets ramme."
+
+#. settings-schema.json->link-border-color->description
+msgid "Border color"
+msgstr "Rammefarve"
+
+#. settings-schema.json->link-border-color->tooltip
+msgid ""
+"Set the link border color (Transparent border will add more padding to "
+"links)."
+msgstr ""
+"Angiv linkets rammefarve (gennemsigtig ramme tilføjer mere udfyldning)."
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "skaleringsfaktor"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size, mostly impacts width"
+msgstr "Størrelse (påvirker primært bredden)"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Forøg eller formindsk skrivebordsprogrammets størrelse med denne "
+"skaleringsfaktor."
+
+#. settings-schema.json->desklet-decorations-note->description
+msgid ""
+"Following settings require desklet decorations to be enabled on your "
+"system.\n"
+"Desklet preferences are located in System Settings > Desklets > General "
+"Settings tab; there you will be able to enable border/header decorations."
+msgstr ""
+"Følgende indstillinger kræver, at skrivebordsprogrammers udseende er "
+"aktiveret på dit system.\n"
+"Indstillingerne findes under Systemindstillinger > Skrivebordsprogrammer > "
+"fanen Generelle indstillinger. Her kan du aktivere ramme og titel."
+
+#. settings-schema.json->desklet-header->description
+msgid "Desklet header"
+msgstr "Titel"
+
+#. settings-schema.json->desklet-header->tooltip
+msgid ""
+"Set your desklet header. Make sure desklet headers are enabled in system "
+"settings."
+msgstr ""
+"Angiv skrivebordsprogrammets titel. Sørg for, at titler er aktiveret i "
+"systemindstillingerne."
+
+#. settings-schema.json->are-tooltips-enabled->description
+msgid "Enable link tooltips"
+msgstr "Aktivér værktøjstip til links"
+
+#. settings-schema.json->are-tooltips-enabled->tooltip
+msgid "Select if you want tooltips to show up when hovering over links."
+msgstr ""
+"Vælg, om du vil have værktøjstip til at vises, når du holder markøren over "
+"links."
+
+#~ msgid "Find icon names here"
+#~ msgstr "Find ikonnavne her"
+
+#~ msgid ""
+#~ "The setting below does not impact the desklet. It's here for "
+#~ "convenience.\n"
+#~ "You can browse through icons here and find their names easily."
+#~ msgstr ""
+#~ "Indstillingen nedenfor har ingen indflydelse på skrivebordsprogrammet. "
+#~ "Den er her\n"
+#~ "for nemheds skyld. Du kan gennemse ikonerne her og nemt finde deres navne."
+
+#~ msgid "Click the icon to browse"
+#~ msgstr "Klik på ikonet for at gennemse"
+
+#~ msgid ""
+#~ "Click the icon on the right to browse. This setting is not used anywhere. "
+#~ msgstr ""
+#~ "Klik på ikonet til højre for at gennemse. Denne indstilling bruges ikke "
+#~ "nogen steder. "
+
+#~ msgid "Font name (choose regular versions)"
+#~ msgstr "Skrifttypenavn (vælg regulære versioner)"
+
+#~ msgid "Change font family"
+#~ msgstr "Skift skrifttypefamilie"
+
+#~ msgid "Bold"
+#~ msgstr "Fed"
+
+#~ msgid "Italic"
+#~ msgstr "Kursiv"
