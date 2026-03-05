@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-02-23 22:40+0100\n"
+"POT-Creation-Date: 2026-03-05 21:41+0100\n"
 "PO-Revision-Date: 2025-04-02 14:13+0300\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: \n"
@@ -22,52 +22,62 @@ msgstr ""
 msgid "N/A"
 msgstr ""
 
-#. desklet.js:754
+#. desklet.js:748
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr "Tyhjä luettelo. Avaa asetukset ja lisää symboleja."
 
-#. desklet.js:803 desklet.js:842 desklet.js:872
+#. desklet.js:797 desklet.js:830 desklet.js:860
 msgid "Authorization parameters have expired"
 msgstr "Valtuutusarvot ovat vanhentuneet"
 
-#. desklet.js:806 desklet.js:845 desklet.js:875
-msgid "Yahoo Finance service not available! Status: "
-msgstr "Yahoo Finance palvelu ei ole saatavilla! Tila: "
+#. desklet.js:800 desklet.js:833 desklet.js:863
+#, javascript-format
+msgid "Yahoo Finance service not available! Status: %s"
+msgstr "Yahoo Finance palvelu ei ole saatavilla! Tila: %s"
 
-#. desklet.js:810
-msgid "Something went wrong retrieving Yahoo Finance data"
+#. desklet.js:804
+#, javascript-format
+msgid "Something went wrong retrieving Yahoo Finance data. %s"
 msgstr ""
 
-#. desklet.js:1281
+#. desklet.js:1269
 msgid "No quotes data to display"
 msgstr "Ei näytettäviä tietoja"
 
+#. desklet.js:1363
+#, javascript-format
+msgid "Updated at %s"
+msgstr "Päivitetty klo %s"
+
 #. desklet.js:1395
-msgid "Updated at "
-msgstr "Päivitetty klo "
+#, javascript-format
+msgid "Error: %s"
+msgstr "Virhe: %s"
 
-#. desklet.js:1427
-msgid "Error: "
-msgstr "Virhe: "
-
-#. desklet.js:1586
+#. desklet.js:1554
+#, javascript-format
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data. "
-"Status: "
-msgstr "Valtuutuksen haku epäonnistui! Tietoja ei voi noutaa. Tila: "
+"Status: %s"
+msgstr "Valtuutuksen haku epäonnistui! Tietoja ei voi noutaa. Tila: %s"
 
-#. desklet.js:1617
-msgid "Consent processing failed! Unable to fetch quotes data. Status: "
-msgstr "Suostumuksen käsittely epäonnistui! Tietoja ei voi noutaa. Tila: "
+#. desklet.js:1585
+#, javascript-format
+msgid "Consent processing failed! Unable to fetch quotes data. Status: %s"
+msgstr "Suostumuksen käsittely epäonnistui! Tietoja ei voi noutaa. Tila: %s"
 
-#. desklet.js:1623
-msgid "Consent processing not completed! Unable to fetch quotes data. Status: "
-msgstr "Suostumusta ei ole suoritettu loppuun! Tietoja ei voi noutaa. Tila: "
+#. desklet.js:1591
+#, javascript-format
+msgid ""
+"Consent processing not completed! Unable to fetch quotes data. Status: %s"
+msgstr "Suostumusta ei ole suoritettu loppuun! Tietoja ei voi noutaa. Tila: %s"
 
-#. desklet.js:1659
+#. desklet.js:1627
+#, javascript-format
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: "
-msgstr "Valtuutuksen nouto epäonnistui! Tietoja ei voi noutaa. Tila: "
+"%s"
+msgstr "Valtuutuksen nouto epäonnistui! Tietoja ei voi noutaa. Tila: %s"
 
 #. metadata.json->description
 msgid ""

@@ -1,5 +1,6 @@
 /**
  * Extract of https://github.com/linuxmint/cinnamon/blob/6.6.6/js/misc/util.js
+ * Required for backward-compatibility with Cinnamon < 4.2 (LM 19.2)
  */
 
 const Gio = imports.gi.Gio;
