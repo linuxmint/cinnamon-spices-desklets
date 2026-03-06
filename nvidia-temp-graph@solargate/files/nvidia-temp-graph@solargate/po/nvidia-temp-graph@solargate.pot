@@ -1,0 +1,165 @@
+# NVIDIA GPU TEMPERATURE GRAPH
+# This file is put in the public domain.
+# solargate, 2017
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: nvidia-temp-graph@solargate 0.0.1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-02-25 08:48+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. desklet.js:101
+msgid "GPU Temperature"
+msgstr ""
+
+#. desklet.js:214
+msgid "Error executing nvidia-smi command"
+msgstr ""
+
+#. metadata.json->name
+msgid "NVidia GPU temperature graph"
+msgstr ""
+
+#. metadata.json->description
+msgid "Creates graphs for NVidia GPU temperature."
+msgstr ""
+
+#. settings-schema.json->head0->description
+msgid "Settings for nvidia-temp-graph@solargate"
+msgstr ""
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr ""
+
+#. settings-schema.json->gpu-id->description
+msgid "Id of GPU to monitor"
+msgstr ""
+
+#. settings-schema.json->gpu-id->tooltip
+msgid "Check GPU id with nvidia-smi -L"
+msgstr ""
+
+#. settings-schema.json->use-fahrenheit->description
+msgid "Show temperature in Fahrenheit"
+msgstr ""
+
+#. settings-schema.json->use-fahrenheit->tooltip
+msgid "Whether or not show the temperature in Fahrenheit instead of Celsius."
+msgstr ""
+
+#. settings-schema.json->duration->description
+msgid "Duration of the graph"
+msgstr ""
+
+#. settings-schema.json->duration->tooltip
+msgid "Maximum among of time to show in the graph."
+msgstr ""
+
+#. settings-schema.json->duration->options
+#. settings-schema.json->refresh-interval->options
+msgid "30 s"
+msgstr ""
+
+#. settings-schema.json->duration->options
+msgid " 1 min"
+msgstr ""
+
+#. settings-schema.json->duration->options
+msgid " 2 min"
+msgstr ""
+
+#. settings-schema.json->duration->options
+msgid " 5 min"
+msgstr ""
+
+#. settings-schema.json->duration->options
+msgid "10 min"
+msgstr ""
+
+#. settings-schema.json->duration->options
+msgid "30 min"
+msgstr ""
+
+#. settings-schema.json->duration->options
+msgid "60 min"
+msgstr ""
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval"
+msgstr ""
+
+#. settings-schema.json->refresh-interval->tooltip
+msgid "How often a new value of the variable will be calculated."
+msgstr ""
+
+#. settings-schema.json->refresh-interval->options
+msgid " 1 s"
+msgstr ""
+
+#. settings-schema.json->refresh-interval->options
+msgid " 2 s"
+msgstr ""
+
+#. settings-schema.json->refresh-interval->options
+msgid " 5 s"
+msgstr ""
+
+#. settings-schema.json->refresh-interval->options
+msgid "10 s"
+msgstr ""
+
+#. settings-schema.json->refresh-interval->options
+msgid "60 s"
+msgstr ""
+
+#. settings-schema.json->head2->description
+msgid "Visual"
+msgstr ""
+
+#. settings-schema.json->background-color->description
+msgid "Background color"
+msgstr ""
+
+#. settings-schema.json->background-color->tooltip
+#. settings-schema.json->text-color->tooltip
+#. settings-schema.json->line-color->tooltip
+msgid "RGB or RGBA"
+msgstr ""
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr ""
+
+#. settings-schema.json->line-color->description
+msgid "Line color"
+msgstr ""
+
+#. settings-schema.json->midline-color->description
+msgid "Grid color"
+msgstr ""
+
+#. settings-schema.json->midline-color->tooltip
+msgid "RGB or RGBA."
+msgstr ""
+
+#. settings-schema.json->h-midlines->description
+msgid "Number of horizontal lines in the grid"
+msgstr ""
+
+#. settings-schema.json->v-midlines->description
+msgid "Number of vertical lines in the grid"
+msgstr ""
+
+#. settings-schema.json->scale-size->description
+msgid "Scale factor for desklet size (scale factor of 1 = 330 x 120 px)"
+msgstr ""
