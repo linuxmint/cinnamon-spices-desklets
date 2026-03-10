@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: yfquotes@thegli 0.17.1\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-02-23 22:40+0100\n"
+"POT-Creation-Date: 2026-03-05 21:41+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
 "Language-Team: \n"
@@ -21,57 +21,67 @@ msgstr ""
 msgid "N/A"
 msgstr ""
 
-#. desklet.js:754
+#. desklet.js:748
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr "Danh sách báo giá trống. Mở cài đặt và thêm một số ký hiệu."
 
-#. desklet.js:803 desklet.js:842 desklet.js:872
+#. desklet.js:797 desklet.js:830 desklet.js:860
 msgid "Authorization parameters have expired"
 msgstr "Tham số ủy quyền đã hết hạn"
 
-#. desklet.js:806 desklet.js:845 desklet.js:875
-msgid "Yahoo Finance service not available! Status: "
-msgstr "Dịch vụ Yahoo Finance không khả dụng! Trạng thái: "
+#. desklet.js:800 desklet.js:833 desklet.js:863
+#, javascript-format
+msgid "Yahoo Finance service not available! Status: %s"
+msgstr "Dịch vụ Yahoo Finance không khả dụng! Trạng thái: %s"
 
-#. desklet.js:810
-msgid "Something went wrong retrieving Yahoo Finance data"
+#. desklet.js:804
+#, javascript-format
+msgid "Something went wrong retrieving Yahoo Finance data. %s"
 msgstr ""
 
-#. desklet.js:1281
+#. desklet.js:1269
 msgid "No quotes data to display"
 msgstr "Không có dữ liệu báo giá để hiển thị"
 
+#. desklet.js:1363
+#, javascript-format
+msgid "Updated at %s"
+msgstr "Cập nhật lúc %s"
+
 #. desklet.js:1395
-msgid "Updated at "
-msgstr "Cập nhật lúc "
+#, javascript-format
+msgid "Error: %s"
+msgstr "Lỗi: %s"
 
-#. desklet.js:1427
-msgid "Error: "
-msgstr "Lỗi: "
-
-#. desklet.js:1586
+#. desklet.js:1554
+#, javascript-format
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data. "
-"Status: "
+"Status: %s"
 msgstr ""
 "Không thể truy xuất tham số ủy quyền! Không thể tải dữ liệu báo giá. Trạng "
-"thái: "
+"thái: %s"
 
-#. desklet.js:1617
-msgid "Consent processing failed! Unable to fetch quotes data. Status: "
-msgstr "Xử lý đồng ý thất bại! Không thể tải dữ liệu báo giá. Trạng thái: "
+#. desklet.js:1585
+#, javascript-format
+msgid "Consent processing failed! Unable to fetch quotes data. Status: %s"
+msgstr "Xử lý đồng ý thất bại! Không thể tải dữ liệu báo giá. Trạng thái: %s"
 
-#. desklet.js:1623
-msgid "Consent processing not completed! Unable to fetch quotes data. Status: "
+#. desklet.js:1591
+#, javascript-format
+msgid ""
+"Consent processing not completed! Unable to fetch quotes data. Status: %s"
 msgstr ""
-"Xử lý đồng ý chưa hoàn tất! Không thể tải dữ liệu báo giá. Trạng thái: "
+"Xử lý đồng ý chưa hoàn tất! Không thể tải dữ liệu báo giá. Trạng thái: %s"
 
-#. desklet.js:1659
+#. desklet.js:1627
+#, javascript-format
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: "
+"%s"
 msgstr ""
 "Không thể truy xuất mảnh ủy quyền! Không thể tải dữ liệu báo giá. Trạng "
-"thái: "
+"thái: %s"
 
 #. metadata.json->description
 msgid ""

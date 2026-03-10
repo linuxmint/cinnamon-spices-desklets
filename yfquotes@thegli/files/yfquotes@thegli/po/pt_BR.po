@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-02-23 22:40+0100\n"
+"POT-Creation-Date: 2026-03-05 21:41+0100\n"
 "PO-Revision-Date: 2021-09-30 13:34-0300\n"
 "Last-Translator: Marcelo Aof\n"
 "Language-Team: \n"
@@ -22,51 +22,61 @@ msgstr ""
 msgid "N/A"
 msgstr ""
 
-#. desklet.js:754
+#. desklet.js:748
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 
-#. desklet.js:803 desklet.js:842 desklet.js:872
+#. desklet.js:797 desklet.js:830 desklet.js:860
 msgid "Authorization parameters have expired"
 msgstr ""
 
-#. desklet.js:806 desklet.js:845 desklet.js:875
-msgid "Yahoo Finance service not available! Status: "
-msgstr "O serviço de finanças do Yahoo não está disponível!"
+#. desklet.js:800 desklet.js:833 desklet.js:863
+#, javascript-format
+msgid "Yahoo Finance service not available! Status: %s"
+msgstr "O serviço de finanças do Yahoo não está disponível! %s"
 
-#. desklet.js:810
-msgid "Something went wrong retrieving Yahoo Finance data"
+#. desklet.js:804
+#, javascript-format
+msgid "Something went wrong retrieving Yahoo Finance data. %s"
 msgstr ""
 
-#. desklet.js:1281
+#. desklet.js:1269
 msgid "No quotes data to display"
 msgstr ""
 
+#. desklet.js:1363
+#, javascript-format
+msgid "Updated at %s"
+msgstr "Atualizado em %s"
+
 #. desklet.js:1395
-msgid "Updated at "
-msgstr "Atualizado em "
+#, javascript-format
+msgid "Error: %s"
+msgstr "Erro: %s"
 
-#. desklet.js:1427
-msgid "Error: "
-msgstr "Erro: "
-
-#. desklet.js:1586
+#. desklet.js:1554
+#, javascript-format
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data. "
-"Status: "
+"Status: %s"
 msgstr ""
 
-#. desklet.js:1617
-msgid "Consent processing failed! Unable to fetch quotes data. Status: "
+#. desklet.js:1585
+#, javascript-format
+msgid "Consent processing failed! Unable to fetch quotes data. Status: %s"
 msgstr ""
 
-#. desklet.js:1623
-msgid "Consent processing not completed! Unable to fetch quotes data. Status: "
+#. desklet.js:1591
+#, javascript-format
+msgid ""
+"Consent processing not completed! Unable to fetch quotes data. Status: %s"
 msgstr ""
 
-#. desklet.js:1659
+#. desklet.js:1627
+#, javascript-format
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: "
+"%s"
 msgstr ""
 
 #. metadata.json->description

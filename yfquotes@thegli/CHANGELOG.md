@@ -1,3 +1,15 @@
+### 0.18.3 - March 5, 2026
+
+Features:
+
+- integrate placeholders in translatable messages
+- update Hungarian translation (courtesy of [bossbob88](https://github.com/bossbob88))
+
+Bugfixes:
+
+- fix missing hyperlink on symbols
+- simplify code
+
 ### 0.18.2 - February 23, 2026
 
 Bugfixes:
