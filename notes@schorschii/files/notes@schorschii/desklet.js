@@ -290,8 +290,14 @@ MyDesklet.prototype = {
 			//Main.notifyError("Complete Refresh Done", " "); // debug
 		}
 
+		// parse markdown
+		this.notecontent =  this.parseMarkdown(this.notecontent);
+
 		// set the raw text
 		this.notetext.set_text(this.notecontent);
+
+		// enable markup to support markdown
+		this.notetext.clutter_text.set_use_markup(true);
 
 		// grab the Clutter.Text layout
 		let ct = this.notetext.get_clutter_text();
@@ -305,6 +311,27 @@ MyDesklet.prototype = {
 		ct.set_size(wrapWidthPx * Pango.SCALE, -1);
 
 		//Main.notifyError("Text Refresh Done", " "); // debug
+	},
+
+	parseMarkdown: function(text) {
+		// bold by **text**
+		text = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+		// italic by *text*
+		text = text.replace(/\*(.*?)\*/g, '<i>$1</i>');
+		// strikethrough by ~~text~~
+		text = text.replace(/~~(.*?)~~/g, '<s>$1</s>');
+		// monospace by `text`
+		text = text.replace(/`(.*?)`/g, '<tt>$1</tt>');
+
+		// headlines
+		text = text.replace(/^# (.*)$/gm, '<span size="150%"><b>$1</b></span>');
+		text = text.replace(/^## (.*)$/gm, '<span size="130%"><b>$1</b></span>');
+		text = text.replace(/^### (.*)$/gm, '<span size="110%"><b>$1</b></span>');
+		text = text.replace(/^#### (.*)$/gm, '<span size="90%"><b>$1</b></span>');
+		text = text.replace(/^##### (.*)$/gm, '<span size="70%"><b>$1</b></span>');
+		text = text.replace(/^###### (.*)$/gm, '<span size="50%"><b>$1</b></span>');
+
+		return text;
 	},
 
 	refreshDecoration: function() {
