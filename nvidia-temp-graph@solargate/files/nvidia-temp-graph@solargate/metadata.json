@@ -1,0 +1,8 @@
+{
+    "max-instances": "20",
+    "uuid": "nvidia-temp-graph@solargate",
+    "name": "NVidia GPU temperature graph",
+    "description": "Creates graph for NVidia GPU temperature.",
+    "version": "1.0.0",
+    "prevent-decorations": true
+}
