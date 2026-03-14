@@ -1,0 +1,18 @@
+{
+  "fixed": {
+    "01-01": {"name": "Capodanno",                 "public": true},
+    "01-06": {"name": "Epifania",                  "public": true},
+    "04-25": {"name": "Festa della Liberazione",   "public": true},
+    "05-01": {"name": "Festa dei Lavoratori",      "public": true},
+    "06-02": {"name": "Festa della Repubblica",    "public": true},
+    "08-15": {"name": "Ferragosto",                "public": true},
+    "11-01": {"name": "Ognissanti",                "public": true},
+    "12-08": {"name": "Immacolata Concezione",     "public": true},
+    "12-25": {"name": "Natale",                    "public": true},
+    "12-26": {"name": "Santo Stefano",             "public": true}
+  },
+  "easter": [
+    {"offset": 0, "name": "Pasqua",                        "public": true},
+    {"offset": 1, "name": "Lunedì dell'Angelo (Pasquetta)", "public": true}
+  ]
+}
