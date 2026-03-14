@@ -1,0 +1,13 @@
+{
+  "fixed": {
+    "01-01": {"name": "New Year's Day",  "public": true},
+    "12-25": {"name": "Christmas Day",   "public": true},
+    "12-26": {"name": "Boxing Day",      "public": true}
+  },
+  "easter": [
+    {"offset": -2, "name": "Good Friday",    "public": true},
+    {"offset":  0, "name": "Easter Sunday",  "public": true},
+    {"offset":  1, "name": "Easter Monday",  "public": true},
+    {"offset": 50, "name": "Whit Monday",    "public": false}
+  ]
+}
