@@ -44,23 +44,24 @@ var Holidays = {
      * @param {string} locale   Language code ("hu", "de", ...)
      * @returns {Object|null}
      */
-    loadData: function(dataDir, locale) {
-        if (!locale || locale === "auto") return null;
+    loadData: function(dataDir, locale, callback) {
+        if (!locale || locale === "auto") { callback(null); return; }
         var path = dataDir + "/" + locale + ".json";
         var file = Gio.File.new_for_path(path);
-        if (!file.query_exists(null)) return null;
-        try {
-            var [ok, contents] = file.load_contents(null);
-            if (!ok) return null;
-            var text = (contents instanceof Uint8Array)
-                ? new TextDecoder().decode(contents)
-                : imports.byteArray.toString(contents);
-            return JSON.parse(text);
-        } catch(e) {
-            global.logError("Calendarium: failed to load holiday data for '"
-                            + locale + "': " + e);
-            return null;
-        }
+        file.load_contents_async(null, function(obj, result) {
+            try {
+                var [ok, contents] = file.load_contents_finish(result);
+                if (!ok) { callback(null); return; }
+                var text = (contents instanceof Uint8Array)
+                    ? new TextDecoder().decode(contents)
+                    : imports.byteArray.toString(contents);
+                callback(JSON.parse(text));
+            } catch(e) {
+                global.logError("Calendarium: failed to load holiday data for '"
+                                + locale + "': " + e);
+                callback(null);
+            }
+        });
     },
 
     /**

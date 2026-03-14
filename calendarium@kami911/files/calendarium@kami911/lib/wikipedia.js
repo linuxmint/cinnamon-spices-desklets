@@ -34,10 +34,7 @@ var Wikipedia = {
     // ── Internal helpers ─────────────────────────────────────────────────
 
     _ensureCacheDir: function() {
-        let dir = Gio.File.new_for_path(this.CACHE_DIR);
-        if (!dir.query_exists(null)) {
-            try { dir.make_directory_with_parents(null); } catch (e) {}
-        }
+        try { Gio.File.new_for_path(this.CACHE_DIR).make_directory_with_parents(null); } catch (e) {}
     },
 
     _cachePath: function(type, lang, month, day) {
@@ -46,37 +43,50 @@ var Wikipedia = {
         return this.CACHE_DIR + "/" + type + "_" + lang + "_" + mm + dd + ".json";
     },
 
-    _isCacheFresh: function(path) {
+    _isCacheFresh: function(path, callback) {
         let file = Gio.File.new_for_path(path);
-        if (!file.query_exists(null)) return false;
-        try {
-            let info  = file.query_info("time::modified",
-                                        Gio.FileQueryInfoFlags.NONE, null);
-            let mtime = info.get_modification_date_time();
-            let now   = GLib.DateTime.new_now_utc();
-            let diffS = now.difference(mtime) / 1000000;  // µs → s
-            return diffS < this.CACHE_TTL_SECS;
-        } catch (e) { return false; }
+        let ttl  = this.CACHE_TTL_SECS;
+        file.query_info_async(
+            "time::modified", Gio.FileQueryInfoFlags.NONE,
+            GLib.PRIORITY_DEFAULT, null,
+            function(obj, result) {
+                try {
+                    let info  = file.query_info_finish(result);
+                    let mtime = info.get_modification_date_time();
+                    let now   = GLib.DateTime.new_now_utc();
+                    let diffS = now.difference(mtime) / 1000000;  // µs → s
+                    callback(diffS < ttl);
+                } catch (e) { callback(false); }
+            }
+        );
     },
 
-    _readCache: function(path) {
+    _readCache: function(path, callback) {
         let file = Gio.File.new_for_path(path);
-        try {
-            let [ok, contents] = file.load_contents(null);
-            if (!ok) return null;
-            let text = (contents instanceof Uint8Array)
-                ? new TextDecoder().decode(contents)
-                : imports.byteArray.toString(contents);
-            return JSON.parse(text);
-        } catch (e) { return null; }
+        file.load_contents_async(null, function(obj, result) {
+            try {
+                let [ok, contents] = file.load_contents_finish(result);
+                if (!ok) { callback(null); return; }
+                let text = (contents instanceof Uint8Array)
+                    ? new TextDecoder().decode(contents)
+                    : imports.byteArray.toString(contents);
+                callback(JSON.parse(text));
+            } catch (e) { callback(null); }
+        });
     },
 
     _writeCache: function(path, data) {
         try {
-            let bytes = new TextEncoder().encode(JSON.stringify(data));
+            let bytes = GLib.Bytes.new(new TextEncoder().encode(JSON.stringify(data)));
             let file  = Gio.File.new_for_path(path);
-            file.replace_contents(bytes, null, false,
-                                  Gio.FileCreateFlags.REPLACE_DESTINATION, null);
+            file.replace_contents_bytes_async(
+                bytes, null, false,
+                Gio.FileCreateFlags.REPLACE_DESTINATION, null,
+                function(obj, result) {
+                    try { file.replace_contents_finish(result); }
+                    catch (e) { global.logError("Calendarium: Wikipedia cache write failed: " + e); }
+                }
+            );
         } catch (e) {
             global.logError("Calendarium: Wikipedia cache write failed: " + e);
         }
@@ -190,13 +200,15 @@ var Wikipedia = {
      */
     _ensureEnglishOnThisDay: function(month, day) {
         let path = this._cachePath("onthisday", "en", month, day);
-        if (this._isCacheFresh(path)) return;
         let mm  = (month < 10 ? '0' : '') + month;
         let dd  = (day   < 10 ? '0' : '') + day;
         let url = "https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/all/" + mm + "/" + dd;
         let self = this;
-        this._fetch(url, function(data) {
-            if (self._hasOnThisDayContent(data)) self._writeCache(path, data);
+        this._isCacheFresh(path, function(fresh) {
+            if (fresh) return;
+            self._fetch(url, function(data) {
+                if (self._hasOnThisDayContent(data)) self._writeCache(path, data);
+            });
         });
     },
 
@@ -206,14 +218,16 @@ var Wikipedia = {
      */
     _ensureEnglishFeatured: function(year, month, day) {
         let path = this._cachePath("featured_" + year, "en", month, day);
-        if (this._isCacheFresh(path)) return;
         let mm  = (month < 10 ? '0' : '') + month;
         let dd  = (day   < 10 ? '0' : '') + day;
         let url = "https://api.wikimedia.org/feed/v1/wikipedia/en/featured/" +
                   year + "/" + mm + "/" + dd;
         let self = this;
-        this._fetch(url, function(data) {
-            if (self._hasFeaturedContent(data)) self._writeCache(path, data);
+        this._isCacheFresh(path, function(fresh) {
+            if (fresh) return;
+            self._fetch(url, function(data) {
+                if (self._hasFeaturedContent(data)) self._writeCache(path, data);
+            });
         });
     },
 
@@ -236,25 +250,33 @@ var Wikipedia = {
     fetchOnThisDay: function(month, day, lang, callback) {
         this._ensureCacheDir();
         let path = this._cachePath("onthisday", lang, month, day);
+        let self = this;
 
-        if (this._isCacheFresh(path)) {
-            let cached = this._readCache(path);
-            if (this._hasOnThisDayContent(cached)) {
-                // Good cache — serve it and ensure English is also warm
-                if (lang !== "en") this._ensureEnglishOnThisDay(month, day);
-                callback(cached);
-                return;
+        this._isCacheFresh(path, function(fresh) {
+            if (fresh) {
+                self._readCache(path, function(cached) {
+                    if (self._hasOnThisDayContent(cached)) {
+                        // Good cache — serve it and ensure English is also warm
+                        if (lang !== "en") self._ensureEnglishOnThisDay(month, day);
+                        callback(cached);
+                        return;
+                    }
+                    if (lang === "en") {
+                        // English cache is fresh but empty — nothing better to try
+                        callback(cached);
+                        return;
+                    }
+                    // Non-English cache is fresh but empty — delete and re-fetch
+                    self._deleteCache(path);
+                    self._fetchOnThisDayNet(month, day, lang, path, callback);
+                });
+            } else {
+                self._fetchOnThisDayNet(month, day, lang, path, callback);
             }
-            if (lang === "en") {
-                // English cache is fresh but empty — nothing better to try
-                callback(cached);
-                return;
-            }
-            // Non-English cache is fresh but empty — delete it so it gets re-fetched,
-            // then fall through to the network path which will trigger English fallback.
-            this._deleteCache(path);
-        }
+        });
+    },
 
+    _fetchOnThisDayNet: function(month, day, lang, path, callback) {
         let mm  = (month < 10 ? '0' : '') + month;
         let dd  = (day   < 10 ? '0' : '') + day;
         let url = "https://api.wikimedia.org/feed/v1/wikipedia/" + lang +
@@ -301,21 +323,30 @@ var Wikipedia = {
     fetchFeatured: function(year, month, day, lang, callback) {
         this._ensureCacheDir();
         let path = this._cachePath("featured_" + year, lang, month, day);
+        let self = this;
 
-        if (this._isCacheFresh(path)) {
-            let cached = this._readCache(path);
-            if (this._hasFeaturedContent(cached)) {
-                if (lang !== "en") this._ensureEnglishFeatured(year, month, day);
-                callback(cached);
-                return;
+        this._isCacheFresh(path, function(fresh) {
+            if (fresh) {
+                self._readCache(path, function(cached) {
+                    if (self._hasFeaturedContent(cached)) {
+                        if (lang !== "en") self._ensureEnglishFeatured(year, month, day);
+                        callback(cached);
+                        return;
+                    }
+                    if (lang === "en") {
+                        callback(cached);
+                        return;
+                    }
+                    self._deleteCache(path);
+                    self._fetchFeaturedNet(year, month, day, lang, path, callback);
+                });
+            } else {
+                self._fetchFeaturedNet(year, month, day, lang, path, callback);
             }
-            if (lang === "en") {
-                callback(cached);
-                return;
-            }
-            this._deleteCache(path);
-        }
+        });
+    },
 
+    _fetchFeaturedNet: function(year, month, day, lang, path, callback) {
         let mm  = (month < 10 ? '0' : '') + month;
         let dd  = (day   < 10 ? '0' : '') + day;
         let url = "https://api.wikimedia.org/feed/v1/wikipedia/" + lang + "/featured/" +
@@ -347,4 +378,5 @@ var Wikipedia = {
             }
         });
     }
+
 };

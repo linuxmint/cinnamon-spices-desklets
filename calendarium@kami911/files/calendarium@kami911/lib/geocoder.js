@@ -25,35 +25,38 @@ var Geocoder = {
     init: function(deskletDir) {
         if (this._cities !== null) return;
         this._cities = [];
-        try {
-            let file = Gio.File.new_for_path(deskletDir + "/data/cities.json");
-            let [ok, contents] = file.load_contents(null);
-            if (!ok) return;
-            let text = (contents instanceof Uint8Array)
-                ? new TextDecoder().decode(contents)
-                : imports.byteArray.toString(contents);
-            let raw = JSON.parse(text);
-            for (let i = 0; i < raw.length; i++) {
-                let r = raw[i];
-                // Build list of all searchable lowercase strings for this city
-                let terms = [r.n.toLowerCase()];
-                if (r.l) {
-                    for (let j = 0; j < r.l.length; j++) {
-                        terms.push(r.l[j].toLowerCase());
+        let file = Gio.File.new_for_path(deskletDir + "/data/cities.json");
+        let self = this;
+        file.load_contents_async(null, function(obj, result) {
+            try {
+                let [ok, contents] = file.load_contents_finish(result);
+                if (!ok) return;
+                let text = (contents instanceof Uint8Array)
+                    ? new TextDecoder().decode(contents)
+                    : imports.byteArray.toString(contents);
+                let raw = JSON.parse(text);
+                for (let i = 0; i < raw.length; i++) {
+                    let r = raw[i];
+                    // Build list of all searchable lowercase strings for this city
+                    let terms = [r.n.toLowerCase()];
+                    if (r.l) {
+                        for (let j = 0; j < r.l.length; j++) {
+                            terms.push(r.l[j].toLowerCase());
+                        }
                     }
+                    self._cities.push({
+                        name:    r.n,
+                        country: r.c,
+                        lat:     r.a,
+                        lon:     r.o,
+                        tz:      r.z || "",
+                        terms:   terms
+                    });
                 }
-                this._cities.push({
-                    name:    r.n,
-                    country: r.c,
-                    lat:     r.a,
-                    lon:     r.o,
-                    tz:      r.z || "",
-                    terms:   terms
-                });
+            } catch (e) {
+                global.logError("Calendarium: Geocoder failed to load cities: " + e);
             }
-        } catch (e) {
-            global.logError("Calendarium: Geocoder failed to load cities: " + e);
-        }
+        });
     },
 
     /**

@@ -25,7 +25,6 @@ const Desklet  = imports.ui.desklet;
 const Settings = imports.ui.settings;
 const Tooltips = imports.ui.tooltips;
 const Mainloop = imports.mainloop;
-const Lang     = imports.lang;
 const St       = imports.gi.St;
 const Clutter  = imports.gi.Clutter;
 const GLib     = imports.gi.GLib;
@@ -122,20 +121,21 @@ CalendariumDesklet.prototype = {
 
         this.setHeader(metadata.name || "Calendarium");
         this._bindAllSettings(desklet_id);
-        this._loadNamedayData();
         try {
             this._setupUI();
         } catch(e) {
             global.logError("Calendarium: _setupUI crash [" + e.message + "] stack:\n" + (e.stack || "(no stack)"));
             throw e;
         }
+        // Load locale data files asynchronously; refresh again when done.
+        this._loadNamedayData(() => this._refresh());
     },
 
     _bindAllSettings: function(desklet_id) {
         this.settings = new Settings.DeskletSettings(this, UUID, desklet_id);
         let s  = this.settings;
         let IN = Settings.BindingDirection.IN;
-        let cb = Lang.bind(this, this._onSettingChanged);
+        let cb = () => this._onSettingChanged();
 
         // Date & Time
         s.bindProperty(IN, "show-date",          "show_date",          cb);
@@ -166,21 +166,21 @@ CalendariumDesklet.prototype = {
         // Location
         s.bindProperty(IN, "use-manual-location", "use_manual_location", cb);
         s.bindProperty(IN, "location-search",  "location_search",
-            Lang.bind(this, this._onLocationSearchChanged));
+            () => this._onLocationSearchChanged());
         s.bindProperty(IN, "latitude",             "latitude",            cb);
         s.bindProperty(IN, "longitude",            "longitude",           cb);
         s.bindProperty(IN, "city1-name", "city1_name",
-            Lang.bind(this, function() { this._onCityNameChanged(1); }));
+            () => this._onCityNameChanged(1));
         s.bindProperty(IN, "city1-lat",  "city1_lat",  cb);
         s.bindProperty(IN, "city1-lon",  "city1_lon",  cb);
         s.bindProperty(IN, "city1-tz",   "city1_tz",   cb);
         s.bindProperty(IN, "city2-name", "city2_name",
-            Lang.bind(this, function() { this._onCityNameChanged(2); }));
+            () => this._onCityNameChanged(2));
         s.bindProperty(IN, "city2-lat",  "city2_lat",  cb);
         s.bindProperty(IN, "city2-lon",  "city2_lon",  cb);
         s.bindProperty(IN, "city2-tz",   "city2_tz",   cb);
         s.bindProperty(IN, "city3-name", "city3_name",
-            Lang.bind(this, function() { this._onCityNameChanged(3); }));
+            () => this._onCityNameChanged(3));
         s.bindProperty(IN, "city3-lat",  "city3_lat",  cb);
         s.bindProperty(IN, "city3-lon",  "city3_lon",  cb);
         s.bindProperty(IN, "city3-tz",   "city3_tz",   cb);
@@ -318,7 +318,7 @@ CalendariumDesklet.prototype = {
         return str;
     },
 
-    _loadNamedayData: function() {
+    _loadNamedayData: function(callback) {
         let ndLang = this._resolveLocale(this.nameday_locale,  ["hu","de","en","fr","es","it"], "en");
         let fdLang = this._resolveLocale(this.folkday_locale,  ["hu","de","en","fr","es","it"], "hu");
         let hlLang = this._resolveLocale(this.holiday_locale,  ["hu","de","en","fr","es","it"], "hu");
@@ -326,9 +326,11 @@ CalendariumDesklet.prototype = {
         if (!ndLang || ndLang === "auto") ndLang = "en";
         if (!fdLang || fdLang === "auto") fdLang = "hu";
         if (!hlLang || hlLang === "auto") hlLang = "hu";
-        this._namedayData  = Namedays.loadData(DATA_DIR, ndLang);
-        this._folkdayData  = Folkdays.loadData(FOLKDAY_DIR, fdLang);
-        this._holidayData  = Holidays.loadData(HOLIDAY_DIR, hlLang);
+        let pending = 3;
+        let done = () => { if (--pending === 0 && callback) callback(); };
+        Namedays.loadData(DATA_DIR,    ndLang, (data) => { this._namedayData = data; done(); });
+        Folkdays.loadData(FOLKDAY_DIR, fdLang, (data) => { this._folkdayData = data; done(); });
+        Holidays.loadData(HOLIDAY_DIR, hlLang, (data) => { this._holidayData = data; done(); });
     },
 
     // ── UI construction ───────────────────────────────────────────────────
@@ -676,7 +678,7 @@ CalendariumDesklet.prototype = {
 
         // Schedule next full refresh in 60 s
         this._timeout = Mainloop.timeout_add_seconds(
-            60, Lang.bind(this, this._refresh)
+            60, () => this._refresh()
         );
 
         // If seconds are shown, drive the clock from a faster timer
@@ -686,7 +688,7 @@ CalendariumDesklet.prototype = {
         }
         if ((this.show_time && this.show_seconds) || this.show_city_time) {
             this._clockTimeout = Mainloop.timeout_add(
-                1000, Lang.bind(this, this._refreshClock)
+                1000, () => this._refreshClock()
             );
         }
     },
@@ -697,7 +699,7 @@ CalendariumDesklet.prototype = {
         this._updateTime(new Date());
         this._updateCityTimes();
         this._clockTimeout = Mainloop.timeout_add(
-            1000, Lang.bind(this, this._refreshClock)
+            1000, () => this._refreshClock()
         );
         return false;
     },
@@ -1177,12 +1179,12 @@ CalendariumDesklet.prototype = {
         if (this.show_wiki_births || this.show_wiki_deaths || this.show_wiki_events) {
             this._wikiPending++;
             Wikipedia.fetchOnThisDay(m, d, lang,
-                Lang.bind(this, this._onWikiOnThisDay));
+                (data) => this._onWikiOnThisDay(data));
         }
         if (this.show_wiki_featured) {
             this._wikiPending++;
             Wikipedia.fetchFeatured(y, m, d, lang,
-                Lang.bind(this, this._onWikiFeatured));
+                (data) => this._onWikiFeatured(data));
         }
 
         // All sub-options disabled — nothing to show
@@ -1246,7 +1248,7 @@ CalendariumDesklet.prototype = {
             let items = rotateSlice(data.births).map(entryText);
             this._labelWikiBirthsHeader.set_text(_("Births on this day"));
             this._labelWikiBirths.set_text(
-                items.map(Lang.bind(this, function(s) { return this._wrapText(s, 48); })).join("\n")
+                items.map((s) => this._wrapText(s, 48)).join("\n")
             );
             this._labelWikiBirthsHeader.visible = true;
             this._labelWikiBirths.visible       = true;
@@ -1256,7 +1258,7 @@ CalendariumDesklet.prototype = {
             let items = rotateSlice(data.deaths).map(entryText);
             this._labelWikiDeathsHeader.set_text(_("Deaths on this day"));
             this._labelWikiDeaths.set_text(
-                items.map(Lang.bind(this, function(s) { return this._wrapText(s, 48); })).join("\n")
+                items.map((s) => this._wrapText(s, 48)).join("\n")
             );
             this._labelWikiDeathsHeader.visible = true;
             this._labelWikiDeaths.visible       = true;
@@ -1266,7 +1268,7 @@ CalendariumDesklet.prototype = {
             let items = rotateSlice(data.events).map(entryText);
             this._labelWikiEventsHeader.set_text(_("Events on this day"));
             this._labelWikiEvents.set_text(
-                items.map(Lang.bind(this, function(s) { return this._wrapText(s, 48); })).join("\n")
+                items.map((s) => this._wrapText(s, 48)).join("\n")
             );
             this._labelWikiEventsHeader.visible = true;
             this._labelWikiEvents.visible       = true;
@@ -1324,8 +1326,7 @@ CalendariumDesklet.prototype = {
         // Reset Wikipedia rotation so the new settings take effect immediately
         this._wikiRotateStep    = 0;
         this._wikiOnThisDayData = null;
-        this._loadNamedayData();
-        this._refresh();
+        this._loadNamedayData(() => this._refresh());
     },
 
     // ── Cleanup ───────────────────────────────────────────────────────────

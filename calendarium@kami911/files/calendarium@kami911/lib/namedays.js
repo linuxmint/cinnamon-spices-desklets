@@ -24,26 +24,28 @@ var Namedays = {
      * @param {string} locale   Language code ("hu", "de", "en", …)
      * @returns {Object|null}   Parsed { "MM-DD": [name, ...] } or null on error
      */
-    loadData: function(dataDir, locale) {
-        if (!locale || locale === "auto") return null;
+    loadData: function(dataDir, locale, callback) {
+        if (!locale || locale === "auto") { callback(null); return; }
         let path = dataDir + "/" + locale + ".json";
         let file = Gio.File.new_for_path(path);
-        try {
-            let [ok, contents] = file.load_contents(null);
-            if (!ok) return null;
-            let text;
-            if (contents instanceof Uint8Array) {
-                text = new TextDecoder().decode(contents);
-            } else {
-                // Fallback for older Cinnamon / GJS builds
-                text = imports.byteArray.toString(contents);
+        file.load_contents_async(null, function(obj, result) {
+            try {
+                let [ok, contents] = file.load_contents_finish(result);
+                if (!ok) { callback(null); return; }
+                let text;
+                if (contents instanceof Uint8Array) {
+                    text = new TextDecoder().decode(contents);
+                } else {
+                    // Fallback for older Cinnamon / GJS builds
+                    text = imports.byteArray.toString(contents);
+                }
+                callback(JSON.parse(text));
+            } catch (e) {
+                global.logError("Calendarium: failed to load nameday data for '"
+                                + locale + "': " + e);
+                callback(null);
             }
-            return JSON.parse(text);
-        } catch (e) {
-            global.logError("Calendarium: failed to load nameday data for '"
-                            + locale + "': " + e);
-            return null;
-        }
+        });
     },
 
     /**

@@ -23,22 +23,23 @@ var Folkdays = {
      * @param {string} locale   Language code ("hu", "de", "en", …)
      * @returns {Object|null}   Parsed { "MM-DD": "saying" } or null on error
      */
-    loadData: function(dataDir, locale) {
+    loadData: function(dataDir, locale, callback) {
         let path = dataDir + "/" + locale + ".json";
         let file = Gio.File.new_for_path(path);
-        if (!file.query_exists(null)) return null;
-        try {
-            let [ok, contents] = file.load_contents(null);
-            if (!ok) return null;
-            let text = (contents instanceof Uint8Array)
-                ? new TextDecoder().decode(contents)
-                : imports.byteArray.toString(contents);
-            return JSON.parse(text);
-        } catch (e) {
-            global.logError("Calendarium: failed to load folkday data for '"
-                            + locale + "': " + e);
-            return null;
-        }
+        file.load_contents_async(null, function(obj, result) {
+            try {
+                let [ok, contents] = file.load_contents_finish(result);
+                if (!ok) { callback(null); return; }
+                let text = (contents instanceof Uint8Array)
+                    ? new TextDecoder().decode(contents)
+                    : imports.byteArray.toString(contents);
+                callback(JSON.parse(text));
+            } catch (e) {
+                global.logError("Calendarium: failed to load folkday data for '"
+                                + locale + "': " + e);
+                callback(null);
+            }
+        });
     },
 
     /**
