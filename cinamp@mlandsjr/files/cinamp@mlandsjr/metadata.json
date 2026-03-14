@@ -1,0 +1,8 @@
+{
+  "uuid": "cinamp@mlandsjr",
+  "name": "Cinamp",
+  "description": "A Music Player Desklet Similar to Classic MP3 Player Software",
+  "max-instances": 1,
+  "style": "stylesheet.css",
+  "prevent-decorations": false
+}
