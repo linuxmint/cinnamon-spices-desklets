@@ -1,10 +1,7 @@
 Watermark
 ======================
 
-![icon.png](icon.png) Displays a custom text as a watermark on your desktop
-
-## Screenshot
-![screenshot.png](screenshot.png)
+Displays a custom text as a watermark on your desktop
 
 ## Changelog
 
