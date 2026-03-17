@@ -19,6 +19,17 @@ const KIB_TO_B = 1024;      // 1 KiB = 1,024 B
 const UUID = "system-monitor-graph@rcassani";
 const DESKLET_PATH = imports.ui.deskletManager.deskletMeta[UUID].path;
 
+// Borrowed from battery@schorschii
+const UPowerInterface = `<node>
+  <interface name="org.freedesktop.UPower.Device">
+    <property name="TimeToEmpty" type="x" access="read" />
+    <property name="TimeToFull" type="x" access="read" />
+  </interface>
+</node>`;
+
+const UPowerProxy = Gio.DBusProxy.makeProxyWrapper(UPowerInterface);
+const UPowerBusName = "org.freedesktop.UPower";
+
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
 function _(str) {
@@ -68,6 +79,7 @@ SystemMonitorGraph.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-gpu", "line_color_gpu", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-network-down", "line_color_network_down", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-network-up", "line_color_network_up", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-battery", "line_color_battery", this.on_setting_changed);
 
         // initialize desklet GUI
         this.setupUI();
@@ -122,6 +134,11 @@ SystemMonitorGraph.prototype = {
             this.net_down_speed = 0;
             this.net_up_speed = 0;
             this.net_max_scale = 1; // Auto-scaling for network graph
+            // battery values
+            this.battery_percent = 0;
+            this.battery_capacity = 0.0;
+            this.battery_status = "Charging";
+            this.battery_time = "00:00";
 
             // set colors
             switch (this.type) {
@@ -144,6 +161,9 @@ SystemMonitorGraph.prototype = {
                   this.line_color = this.line_color_network_down; // Use download color for border
                   this.line_color_down = this.line_color_network_down;
                   this.line_color_up = this.line_color_network_up;
+                  break;
+              case "battery":
+                  this.line_color = this.line_color_battery;
                   break;
             }
             this.first_run = false;
@@ -295,6 +315,14 @@ SystemMonitorGraph.prototype = {
               
               text2 = "";
               text3 = "↓ " + down_speed_formatted + "  ↑ " + up_speed_formatted;
+              break;
+
+          case "battery":
+              this.get_battery_use();
+              value = this.battery_capacity;
+              text1 = _("Battery");
+              text2 = this.battery_percent + "%";
+              text3 = ((this.battery_status == "Charging") ? "⚡ " : "") + this.battery_time;
               break;
         }
 
@@ -963,6 +991,70 @@ SystemMonitorGraph.prototype = {
         }
         GLib.free(contents);
       });
-    }
+    },
+
+
+    get_battery_use: function() {
+        let battery_name = 'BAT0';
+        let capacity_path = `/sys/class/power_supply/${battery_name}/capacity`;
+        let status_path = `/sys/class/power_supply/${battery_name}/status`;
+        let bus_path = `/org/freedesktop/UPower/devices/battery_${battery_name}`;
+
+        if (GLib.file_test(capacity_path, GLib.FileTest.EXISTS)
+            && (!GLib.file_test(capacity_path, GLib.FileTest.IS_DIR))) {
+            try {
+                Gio.file_new_for_path(capacity_path).load_contents_async(null, (file, response) => {
+                    try {
+                        let [success, contents, tag] = file.load_contents_finish(response);
+                        if(success) {
+                            let percent = parseInt(ByteArray.toString(contents));
+                            this.battery_percent = percent >= 100 ? 100 : percent;
+                            this.battery_capacity = this.battery_percent / 100.0;
+                        }
+                        GLib.free(contents);
+                    } catch(error) {
+                        global.log('Battery capacity file read error: ' + error.toString());
+                    }
+                });
+            } catch(error) {
+                global.log('Battery capacity file open error: ' + error.toString());
+            }
+        }
+
+        if (GLib.file_test(status_path, GLib.FileTest.EXISTS)
+            && (!GLib.file_test(status_path, GLib.FileTest.IS_DIR))) {
+            try {
+                Gio.file_new_for_path(status_path).load_contents_async(null, (file, response) => {
+                    try {
+                        let [success, contents, tag] = file.load_contents_finish(response);
+                        if(success) {
+                            this.battery_status = ByteArray.toString(contents).trim();
+                        }
+                        GLib.free(contents);
+                    } catch(error) {
+                        global.log('Battery capacity file read error: ' + error.toString());
+                    }
+                });
+            } catch(error) {
+                global.log('Battery capacity file open error: ' + error.toString());
+            }
+        }
+
+        try {
+            let upower_proxy = new UPowerProxy(Gio.DBus.system, UPowerBusName, bus_path);
+            let time_sec = (this.battery_status == "Charging") ?
+                upower_proxy.TimeToFull : upower_proxy.TimeToEmpty;
+            this.battery_time = this.formatTime(time_sec);
+        } catch(error) {
+            global.log('Battery time file open error: ' + error.toString());
+        }
+    },
+
+    formatTime: function(timeSec) {
+        let totalMinutes = Math.round(timeSec / 60);
+        let minutes = String(Math.floor(totalMinutes % 60)).padStart(2, '0');
+        let hours = String(Math.floor(totalMinutes / 60)).padStart(2, '0');
+        return `${hours}:${minutes}`;
+	}
 
 };

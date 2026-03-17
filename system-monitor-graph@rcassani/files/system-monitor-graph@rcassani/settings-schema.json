@@ -19,7 +19,8 @@
             "Swap" : "swap",
             "HDD" : "hdd",
             "GPU" : "gpu",
-            "Network" : "network"
+            "Network" : "network",
+            "Battery" : "battery"
         }
     },
     "data-prefix-ram": {
@@ -224,6 +225,13 @@
         "default": "rgba(180,120,100,1.0)",
         "description": "Line color Network Upload",
         "dependency": "type=network",
+        "tooltip": "RGB or RGBA. Alpha is ignored"
+    },
+    "line-color-battery": {
+        "type": "colorchooser",
+        "default": "rgba(255,204,0,1.0)",
+        "description": "Line color Battery",
+        "dependency": "type=battery",
         "tooltip": "RGB or RGBA. Alpha is ignored"
     },
     "midline-color": {
