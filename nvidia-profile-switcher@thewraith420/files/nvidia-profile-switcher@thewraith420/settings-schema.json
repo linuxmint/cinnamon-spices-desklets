@@ -1,0 +1,134 @@
+{
+    "layout": {
+        "type": "combobox",
+        "default": "horizontal",
+        "description": "Layout orientation",
+        "options": {
+            "Horizontal": "horizontal",
+            "Vertical": "vertical"
+        },
+        "tooltip": "Choose how the desklet displays"
+    },
+    "rebootDelay": {
+        "type": "spinbutton",
+        "default": 30,
+        "min": 5,
+        "max": 120,
+        "step": 5,
+        "units": "seconds",
+        "description": "Reboot countdown timer",
+        "tooltip": "How long to wait before automatically rebooting (5-120 seconds)"
+    },
+    "showDescriptions": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show profile descriptions",
+        "tooltip": "Display 'Power Saving', 'Hybrid Mode', etc. under each profile button"
+    },
+    "showProfileNames": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show profile names",
+        "tooltip": "Display 'Intel', 'On-Demand', 'NVIDIA' labels under icons"
+    },
+    "accentColor": {
+        "type": "colorchooser",
+        "default": "rgb(118, 185, 0)",
+        "description": "Accent color",
+        "tooltip": "Color for borders, active profile, and highlights (default: NVIDIA green)"
+    },
+    "fontSize": {
+        "type": "combobox",
+        "default": "medium",
+        "description": "Font size",
+        "options": {
+            "Small": "small",
+            "Medium": "medium",
+            "Large": "large"
+        },
+        "tooltip": "Adjust text size throughout the desklet"
+    },
+    "modeIndicatorIconSize": {
+        "type": "spinbutton",
+        "default": 24,
+        "min": 16,
+        "max": 48,
+        "step": 2,
+        "units": "pt",
+        "description": "Mode indicator icon size",
+        "tooltip": "Size of the mode indicator icon (16-48pt)"
+    },
+    "modeIndicatorTextSize": {
+        "type": "spinbutton",
+        "default": 7,
+        "min": 5,
+        "max": 12,
+        "step": 1,
+        "units": "pt",
+        "description": "Mode indicator text size",
+        "tooltip": "Size of the mode indicator text (5-12pt)"
+    },
+    "showModeIndicator": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show mode indicator",
+        "tooltip": "Display the current mode text (e.g., 'PERFORMANCE MODE')"
+    },
+    "skipConfirmDialog": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Skip confirmation dialog",
+        "tooltip": "Switch profiles immediately without asking for confirmation"
+    },
+    "resetDontShowAgain": {
+        "type": "button",
+        "description": "Reset 'Don't show again' preference",
+        "callback": "resetShowWarning",
+        "tooltip": "Make the confirmation dialog appear again even if you checked 'Don't show this again'"
+    },
+    "useSystemIcons": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Use system icons instead of emoji",
+        "tooltip": "Display proper icons from your icon theme instead of emoji"
+    },
+    "intelIcon": {
+        "type": "entry",
+        "default": "intel-mode",
+        "description": "Intel mode icon",
+        "tooltip": "Icon name for Intel/Power Saving mode"
+    },
+    "onDemandIcon": {
+        "type": "entry",
+        "default": "hybrid-mode",
+        "description": "On-Demand mode icon",
+        "tooltip": "Icon name for Hybrid mode"
+    },
+    "nvidiaIcon": {
+        "type": "entry",
+        "default": "nvidia-settings",
+        "description": "NVIDIA mode icon",
+        "tooltip": "Icon name for Performance mode"
+    },
+    "iconSize": {
+        "type": "spinbutton",
+        "default": 32,
+        "min": 16,
+        "max": 48,
+        "step": 2,
+        "units": "pixels",
+        "description": "System icon size",
+        "tooltip": "Size of system icons when enabled (16-48 pixels)"
+    },
+    "rebootMethod": {
+        "type": "combobox",
+        "default": "systemctl",
+        "description": "Reboot method",
+        "options": {
+            "systemctl reboot": "systemctl",
+            "reboot command": "reboot",
+            "shutdown -r now": "shutdown"
+        },
+        "tooltip": "Command used to reboot the system"
+    }
+}
