@@ -118,8 +118,9 @@ CalendariumDesklet.prototype = {
         this._isDestroyed  = false;
         this._wikiRotateStep  = 0;   // advances each minute to rotate Wikipedia items
         this._wikiOnThisDayData = null;  // cached full onthisday response
+        this._deskletName  = metadata.name || "Calendarium";
 
-        this.setHeader(metadata.name || "Calendarium");
+        this.setHeader(this._deskletName);
         this._bindAllSettings(desklet_id);
         try {
             this._setupUI();
@@ -223,7 +224,7 @@ CalendariumDesklet.prototype = {
         // Appearance
         s.bindProperty(IN, "icon-size",        "icon_size",        cb);
         s.bindProperty(IN, "text-scale",       "text_scale",       cb);
-        s.bindProperty(IN, "hide-decorations", "hide_decorations", cb);
+        s.bindProperty(IN, "bg-opacity",       "bg_opacity",       cb);
     },
 
     /**
@@ -748,10 +749,12 @@ CalendariumDesklet.prototype = {
     },
 
     _applyAppearance: function() {
-        // Text scale: adjust base font-size so the layout naturally expands/shrinks
-        let s = this.text_scale || 1.0;
+        let s     = this.text_scale || 1.0;
         let basePx = Math.round(13 * s);
-        this._container.set_style("font-size: " + basePx + "px;");
+        let op    = Math.max(0, Math.min(1, this.bg_opacity || 0));
+        let containerStyle =
+            "font-size: " + basePx + "px;" +
+            "background-color: rgba(0, 0, 0, " + op.toFixed(2) + ");";
 
         // Icon / symbol size for moon and zodiac symbols
         let px = this._getIconPx();
@@ -765,10 +768,11 @@ CalendariumDesklet.prototype = {
             "font-size: " + px + "px; padding-right: 5px;"
         );
 
-        // Decorations
-        if (this.hide_decorations) {
-            this.setHeader(" ");
-        }
+        // Always hide frame and header — re-apply after _updateDecoration()
+        // which may reset container styles.
+        this.metadata["prevent-decorations"] = true;
+        this._updateDecoration();
+        this._container.set_style(containerStyle);
     },
 
     // ── Section updaters ──────────────────────────────────────────────────

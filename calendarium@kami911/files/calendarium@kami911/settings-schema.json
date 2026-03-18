@@ -127,7 +127,7 @@
         "section-appearance": {
             "type": "section",
             "title": "Appearance",
-            "keys": ["icon-size", "text-scale", "hide-decorations"]
+            "keys": ["icon-size", "text-scale", "bg-opacity"]
         }
     },
 
@@ -621,9 +621,13 @@
         "description": "Text scale factor",
         "tooltip": "Scale all text in the desklet up or down."
     },
-    "hide-decorations": {
-        "type": "checkbox",
-        "default": false,
-        "description": "Hide desklet decorations (border and header label)"
+    "bg-opacity": {
+        "type": "scale",
+        "default": 0.0,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.05,
+        "description": "Background opacity",
+        "tooltip": "0 = fully transparent (wallpaper shows through), 1 = solid black background"
     }
 }
