@@ -1,0 +1,49 @@
+{
+    "layout": {
+        "type": "layout",
+        "pages": ["page1"]
+    },
+    "page1": {
+        "type": "page",
+        "title": "Temperature Settings",
+        "sections": ["section_appearance"]
+    },
+    "section_appearance": {
+        "type": "section",
+        "title": "Appearance & Performance",
+        "keys": ["text-color", "text-size", "scale-size", "update-interval"]
+    },
+    "text-color": {
+    	"type": "colorchooser",
+        "default": "rgba(0,0,0,1)",
+        "description": "Text Color"
+    },
+    "text-size": {
+    	"type": "spinbutton",
+    	"default": 12,
+    	"min": 8,
+    	"max": 30,
+    	"step": 1,
+    	"description": "Text font size",
+    	"tooltip": "Adjust for text size"
+    },
+    "scale-size": {
+        "type": "spinbutton",
+        "default": 1.0,
+        "min": 0.5,
+        "max": 3.0,
+        "step": 0.1,
+        "description": "Scale Size",
+        "tooltip": "Adjust the overall size of the desklet (0.5 to 3.0x)."
+    },
+    "update-interval": {
+        "type": "spinbutton",
+        "default": 2,
+        "min": 1,
+        "max": 60,
+        "step": 1,
+        "units": "seconds",
+        "description": "Update Interval",
+        "tooltip": "How often the sensors are polled. Lower values use more CPU."
+    }
+}
