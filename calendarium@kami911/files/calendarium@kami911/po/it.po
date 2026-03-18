@@ -33,8 +33,8 @@ msgid "Date and Time"
 msgstr "Data e ora"
 
 #: settings-schema.json
-msgid "Calendar Highlights"
-msgstr "Evidenziazioni calendario"
+msgid "Calendar Progress"
+msgstr ""
 
 #: settings-schema.json
 msgid "Traditional Month Names"
@@ -78,8 +78,11 @@ msgid "Date format"
 msgstr "Formato data"
 
 #: settings-schema.json
-msgid "Custom date format (strftime) — only active when 'Custom' is selected above"
-msgstr "Formato data personalizzato (strftime) — attivo solo quando è selezionato 'Personalizzato' sopra"
+msgid ""
+"Custom date format (strftime) — only active when 'Custom' is selected above"
+msgstr ""
+"Formato data personalizzato (strftime) — attivo solo quando è selezionato "
+"'Personalizzato' sopra"
 
 #: settings-schema.json
 msgid "Show time"
@@ -102,16 +105,12 @@ msgid "Show ISO week number"
 msgstr "Mostra numero settimana ISO"
 
 #: settings-schema.json
-msgid "Show month highlights (day / days in month)"
-msgstr "Mostra evidenziazioni del mese (giorno / giorni nel mese)"
+msgid "Show month progress (day / days in month)"
+msgstr ""
 
 #: settings-schema.json
 msgid "Show days until New Year"
 msgstr "Mostra giorni al Capodanno"
-
-#: settings-schema.json
-msgid "Separator character between calendar items"
-msgstr "Carattere separatore tra elementi del calendario"
 
 #: settings-schema.json
 msgid "Show traditional month name"
@@ -194,22 +193,6 @@ msgid "Show article of the day"
 msgstr "Mostra articolo del giorno"
 
 #: settings-schema.json
-msgid "Items shown per section"
-msgstr "Elementi mostrati per sezione"
-
-#: settings-schema.json
-msgid "How many births, deaths, and events to display at a time. The list rotates periodically, cycling through all available entries from the cache."
-msgstr "Quante nascite, morti ed eventi mostrare alla volta. L'elenco ruota periodicamente, scorrendo tutte le voci disponibili nella cache."
-
-#: settings-schema.json
-msgid "Rotate items every N minutes"
-msgstr "Ruota elementi ogni N minuti"
-
-#: settings-schema.json
-msgid "How often to advance to the next set of items. Set to 1 to rotate every minute."
-msgstr "Con quale frequenza avanzare al prossimo gruppo di elementi. Impostare 1 per ruotare ogni minuto."
-
-#: settings-schema.json
 msgid "Cache duration for Wikipedia data"
 msgstr "Durata cache per i dati Wikipedia"
 
@@ -228,12 +211,6 @@ msgstr "Nascondi decorazioni del desklet (bordo e intestazione)"
 #: settings-schema.json
 msgid "Use manual location (default: Budapest, Hungary)"
 msgstr "Usa posizione manuale (predefinito: Budapest, Ungheria)"
-
-msgid "Search city to auto-fill coordinates"
-msgstr "Cerca città per compilare automaticamente le coordinate"
-
-msgid "Type a city name — coordinates are filled in automatically after 1.5 seconds."
-msgstr "Digita il nome di una città — le coordinate vengono compilate automaticamente dopo 1,5 secondi."
 
 #: settings-schema.json
 msgid "Latitude (positive = North)"
@@ -279,46 +256,33 @@ msgstr "Latitudine città 3"
 msgid "City 3 longitude"
 msgstr "Longitudine città 3"
 
-#: settings-schema.json
-msgid "City 1 timezone (IANA, e.g. Europe/Vienna)"
-msgstr "Fuso orario città 1 (IANA, es. Europe/Vienna)"
-
-#: settings-schema.json
-msgid "City 2 timezone (IANA, e.g. America/New_York)"
-msgstr "Fuso orario città 2 (IANA, es. America/New_York)"
-
-#: settings-schema.json
-msgid "City 3 timezone (IANA, e.g. Asia/Tokyo)"
-msgstr "Fuso orario città 3 (IANA, es. Asia/Tokyo)"
-
-#: settings-schema.json
-msgid "Show current local time for each city"
-msgstr "Mostra l'ora locale corrente per ogni città"
-
-#: settings-schema.json
-msgid "Show UTC offset for each city (e.g. UTC+1)"
-msgstr "Mostra differenza UTC per ogni città (es. UTC+1)"
-
-#: desklet.js
-msgid "Local time"
-msgstr "Ora locale"
-
 #. ── settings-schema.json — tooltips ─────────────────────────────────────
 #: settings-schema.json
-msgid "Select a predefined date format, or choose Custom to enter your own strftime string below."
-msgstr "Seleziona un formato data predefinito, o scegli Personalizzato per inserire la tua stringa strftime."
+msgid ""
+"Select a predefined date format, or choose Custom to enter your own strftime "
+"string below."
+msgstr ""
+"Seleziona un formato data predefinito, o scegli Personalizzato per inserire "
+"la tua stringa strftime."
 
 #: settings-schema.json
 msgid "Controls the display size of moon phase and zodiac symbols."
-msgstr "Controlla la dimensione di visualizzazione dei simboli di fase lunare e zodiaco."
+msgstr ""
+"Controlla la dimensione di visualizzazione dei simboli di fase lunare e "
+"zodiaco."
 
 #: settings-schema.json
 msgid "Scale all text in the desklet up or down."
 msgstr "Ingrandire o ridurre tutto il testo nel desklet."
 
 #: settings-schema.json
-msgid "How long to keep Wikipedia data in the local cache before fetching fresh data. Lower values fetch more often; higher values reduce network usage."
-msgstr "Per quanto tempo conservare i dati Wikipedia nella cache locale prima di recuperare dati aggiornati. Valori bassi aggiornano più spesso; valori alti riducono il traffico di rete."
+msgid ""
+"How long to keep Wikipedia data in the local cache before fetching fresh "
+"data. Lower values fetch more often; higher values reduce network usage."
+msgstr ""
+"Per quanto tempo conservare i dati Wikipedia nella cache locale prima di "
+"recuperare dati aggiornati. Valori bassi aggiornano più spesso; valori alti "
+"riducono il traffico di rete."
 
 #: settings-schema.json
 msgid "Choose what to show for the western zodiac sign."
@@ -326,19 +290,12 @@ msgstr "Scegli cosa mostrare per il segno zodiacale occidentale."
 
 #: settings-schema.json
 msgid "Choose what to show for the Chinese zodiac year (animal and element)."
-msgstr "Scegli cosa mostrare per l'anno dello zodiaco cinese (animale ed elemento)."
+msgstr ""
+"Scegli cosa mostrare per l'anno dello zodiaco cinese (animale ed elemento)."
 
 #: settings-schema.json
 msgid "Label for an additional city. Leave empty to hide."
 msgstr "Etichetta per una città aggiuntiva. Lascia vuoto per nascondere."
-
-#: settings-schema.json
-msgid "Filled automatically when using city search. You can also enter an IANA timezone name manually, e.g. America/New_York."
-msgstr "Compilato automaticamente usando la ricerca città. Puoi anche inserire manualmente un nome di fuso orario IANA, es. America/New_York."
-
-#: settings-schema.json
-msgid "Filled automatically when using city search. You can also enter an IANA timezone name manually."
-msgstr "Compilato automaticamente usando la ricerca città. Puoi anche inserire manualmente un nome di fuso orario IANA."
 
 #. ── settings-schema.json — option labels ────────────────────────────────
 #: settings-schema.json
@@ -607,8 +564,8 @@ msgid "Week number"
 msgstr "Numero settimana"
 
 #: desklet.js
-msgid "Month highlights"
-msgstr "Evidenziazioni del mese"
+msgid "Month progress"
+msgstr ""
 
 #: desklet.js
 msgid "Current date"
@@ -678,27 +635,102 @@ msgstr "Abilita nascite, morti o articolo in evidenza"
 msgid "No data available"
 msgstr "Nessun dato disponibile"
 
-#. ── Holidays ─────────────────────────────────────────────────────────────
-#: settings-schema.json
-msgid "National Holidays"
-msgstr "Festività nazionali"
+msgid "Background opacity"
+msgstr ""
 
-#: settings-schema.json
-msgid "Show national holidays and weekends"
-msgstr "Mostra festività nazionali e fine settimana"
+msgid ""
+"0 = fully transparent (wallpaper shows through), 1 = solid black background"
+msgstr ""
 
-#: settings-schema.json
-msgid "Holiday calendar"
-msgstr "Calendario delle festività"
+#~ msgid "Calendar Highlights"
+#~ msgstr "Evidenziazioni calendario"
 
-#: desklet.js
-msgid "public holiday"
-msgstr "giorno festivo"
+#~ msgid "Show month highlights (day / days in month)"
+#~ msgstr "Mostra evidenziazioni del mese (giorno / giorni nel mese)"
 
-#: desklet.js
-msgid "weekend"
-msgstr "fine settimana"
+#~ msgid "Separator character between calendar items"
+#~ msgstr "Carattere separatore tra elementi del calendario"
 
-#: settings-schema.json
-msgid "Show upcoming holidays (days ahead)"
-msgstr "Mostra prossime festività (giorni in anticipo)"
+#~ msgid "Items shown per section"
+#~ msgstr "Elementi mostrati per sezione"
+
+#~ msgid ""
+#~ "How many births, deaths, and events to display at a time. The list "
+#~ "rotates periodically, cycling through all available entries from the "
+#~ "cache."
+#~ msgstr ""
+#~ "Quante nascite, morti ed eventi mostrare alla volta. L'elenco ruota "
+#~ "periodicamente, scorrendo tutte le voci disponibili nella cache."
+
+#~ msgid "Rotate items every N minutes"
+#~ msgstr "Ruota elementi ogni N minuti"
+
+#~ msgid ""
+#~ "How often to advance to the next set of items. Set to 1 to rotate every "
+#~ "minute."
+#~ msgstr ""
+#~ "Con quale frequenza avanzare al prossimo gruppo di elementi. Impostare 1 "
+#~ "per ruotare ogni minuto."
+
+#~ msgid "Search city to auto-fill coordinates"
+#~ msgstr "Cerca città per compilare automaticamente le coordinate"
+
+#~ msgid ""
+#~ "Type a city name — coordinates are filled in automatically after 1.5 "
+#~ "seconds."
+#~ msgstr ""
+#~ "Digita il nome di una città — le coordinate vengono compilate "
+#~ "automaticamente dopo 1,5 secondi."
+
+#~ msgid "City 1 timezone (IANA, e.g. Europe/Vienna)"
+#~ msgstr "Fuso orario città 1 (IANA, es. Europe/Vienna)"
+
+#~ msgid "City 2 timezone (IANA, e.g. America/New_York)"
+#~ msgstr "Fuso orario città 2 (IANA, es. America/New_York)"
+
+#~ msgid "City 3 timezone (IANA, e.g. Asia/Tokyo)"
+#~ msgstr "Fuso orario città 3 (IANA, es. Asia/Tokyo)"
+
+#~ msgid "Show current local time for each city"
+#~ msgstr "Mostra l'ora locale corrente per ogni città"
+
+#~ msgid "Show UTC offset for each city (e.g. UTC+1)"
+#~ msgstr "Mostra differenza UTC per ogni città (es. UTC+1)"
+
+#~ msgid "Local time"
+#~ msgstr "Ora locale"
+
+#~ msgid ""
+#~ "Filled automatically when using city search. You can also enter an IANA "
+#~ "timezone name manually, e.g. America/New_York."
+#~ msgstr ""
+#~ "Compilato automaticamente usando la ricerca città. Puoi anche inserire "
+#~ "manualmente un nome di fuso orario IANA, es. America/New_York."
+
+#~ msgid ""
+#~ "Filled automatically when using city search. You can also enter an IANA "
+#~ "timezone name manually."
+#~ msgstr ""
+#~ "Compilato automaticamente usando la ricerca città. Puoi anche inserire "
+#~ "manualmente un nome di fuso orario IANA."
+
+#~ msgid "Month highlights"
+#~ msgstr "Evidenziazioni del mese"
+
+#~ msgid "National Holidays"
+#~ msgstr "Festività nazionali"
+
+#~ msgid "Show national holidays and weekends"
+#~ msgstr "Mostra festività nazionali e fine settimana"
+
+#~ msgid "Holiday calendar"
+#~ msgstr "Calendario delle festività"
+
+#~ msgid "public holiday"
+#~ msgstr "giorno festivo"
+
+#~ msgid "weekend"
+#~ msgstr "fine settimana"
+
+#~ msgid "Show upcoming holidays (days ahead)"
+#~ msgstr "Mostra prossime festività (giorni in anticipo)"

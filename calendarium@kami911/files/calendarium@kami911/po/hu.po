@@ -34,8 +34,8 @@ msgid "Date and Time"
 msgstr "Dátum és idő"
 
 #: settings-schema.json
-msgid "Calendar Highlights"
-msgstr "Naptár aktualitás"
+msgid "Calendar Progress"
+msgstr ""
 
 #: settings-schema.json
 msgid "Traditional Month Names"
@@ -79,8 +79,11 @@ msgid "Date format"
 msgstr "Dátumformátum"
 
 #: settings-schema.json
-msgid "Custom date format (strftime) — only active when 'Custom' is selected above"
-msgstr "Egyéni dátumformátum (strftime) — csak akkor aktív, ha fent az 'Egyéni' van kiválasztva"
+msgid ""
+"Custom date format (strftime) — only active when 'Custom' is selected above"
+msgstr ""
+"Egyéni dátumformátum (strftime) — csak akkor aktív, ha fent az 'Egyéni' van "
+"kiválasztva"
 
 #: settings-schema.json
 msgid "Show time"
@@ -103,16 +106,12 @@ msgid "Show ISO week number"
 msgstr "ISO hétszám megjelenítése"
 
 #: settings-schema.json
-msgid "Show month highlights (day / days in month)"
-msgstr "Hónap aktualitásának megjelenítése (nap / napok a hónapban)"
+msgid "Show month progress (day / days in month)"
+msgstr ""
 
 #: settings-schema.json
 msgid "Show days until New Year"
 msgstr "Újévig hátralévő napok megjelenítése"
-
-#: settings-schema.json
-msgid "Separator character between calendar items"
-msgstr "Elválasztó karakter a naptár aktualitások között"
 
 #: settings-schema.json
 msgid "Show traditional month name"
@@ -195,22 +194,6 @@ msgid "Show article of the day"
 msgstr "A nap cikkének megjelenítése"
 
 #: settings-schema.json
-msgid "Items shown per section"
-msgstr "Szekciónként megjelenített elemek száma"
-
-#: settings-schema.json
-msgid "How many births, deaths, and events to display at a time. The list rotates periodically, cycling through all available entries from the cache."
-msgstr "Hány születést, halálozást és eseményt mutasson egyszerre. A lista időközönként rotál, végigpörög az összes gyorsítótárban lévő bejegyzésen."
-
-#: settings-schema.json
-msgid "Rotate items every N minutes"
-msgstr "Elemek rotálása minden N percben"
-
-#: settings-schema.json
-msgid "How often to advance to the next set of items. Set to 1 to rotate every minute."
-msgstr "Milyen gyakran lépjen a következő elemekre. 1-re állítva percenként rotál."
-
-#: settings-schema.json
 msgid "Cache duration for Wikipedia data"
 msgstr "Wikipédia adatok gyorsítótár-időtartama"
 
@@ -229,12 +212,6 @@ msgstr "Desklet díszítések elrejtése (keret és fejléc)"
 #: settings-schema.json
 msgid "Use manual location (default: Budapest, Hungary)"
 msgstr "Manuális helyszín megadása (alap: Budapest, Magyarország)"
-
-msgid "Search city to auto-fill coordinates"
-msgstr "Város keresése a koordináták automatikus kitöltéséhez"
-
-msgid "Type a city name — coordinates are filled in automatically after 1.5 seconds."
-msgstr "Írj be egy városnevet — a koordináták 1,5 másodperc után automatikusan kitöltődnek."
 
 #: settings-schema.json
 msgid "Latitude (positive = North)"
@@ -280,46 +257,32 @@ msgstr "3. város szélességi foka"
 msgid "City 3 longitude"
 msgstr "3. város hosszúsági foka"
 
-#: settings-schema.json
-msgid "City 1 timezone (IANA, e.g. Europe/Vienna)"
-msgstr "1. város időzónája (IANA, pl. Europe/Vienna)"
-
-#: settings-schema.json
-msgid "City 2 timezone (IANA, e.g. America/New_York)"
-msgstr "2. város időzónája (IANA, pl. America/New_York)"
-
-#: settings-schema.json
-msgid "City 3 timezone (IANA, e.g. Asia/Tokyo)"
-msgstr "3. város időzónája (IANA, pl. Asia/Tokyo)"
-
-#: settings-schema.json
-msgid "Show current local time for each city"
-msgstr "Az aktuális helyi idő megjelenítése minden városhoz"
-
-#: settings-schema.json
-msgid "Show UTC offset for each city (e.g. UTC+1)"
-msgstr "UTC eltolás megjelenítése minden városhoz (pl. UTC+1)"
-
-#: desklet.js
-msgid "Local time"
-msgstr "Helyi idő"
-
 #. ── settings-schema.json — tooltips ─────────────────────────────────────
 #: settings-schema.json
-msgid "Select a predefined date format, or choose Custom to enter your own strftime string below."
-msgstr "Válassz egy előre beállított dátumformátumot, vagy válaszd az Egyénit, hogy alább megadd a saját strftime-kódodat."
+msgid ""
+"Select a predefined date format, or choose Custom to enter your own strftime "
+"string below."
+msgstr ""
+"Válassz egy előre beállított dátumformátumot, vagy válaszd az Egyénit, hogy "
+"alább megadd a saját strftime-kódodat."
 
 #: settings-schema.json
 msgid "Controls the display size of moon phase and zodiac symbols."
-msgstr "A holdfázis és horoszkóp szimbólumok megjelenítési méretét szabályozza."
+msgstr ""
+"A holdfázis és horoszkóp szimbólumok megjelenítési méretét szabályozza."
 
 #: settings-schema.json
 msgid "Scale all text in the desklet up or down."
 msgstr "Az összes szöveg nagyítása vagy kicsinyítése a deskletben."
 
 #: settings-schema.json
-msgid "How long to keep Wikipedia data in the local cache before fetching fresh data. Lower values fetch more often; higher values reduce network usage."
-msgstr "Mennyi ideig tárolja a Wikipédia adatokat a helyi gyorsítótárban, mielőtt újat tölt le. Alacsonyabb értéknél sűrűbben frissít; magasabb értéknél csökkenti a hálózathasználatot."
+msgid ""
+"How long to keep Wikipedia data in the local cache before fetching fresh "
+"data. Lower values fetch more often; higher values reduce network usage."
+msgstr ""
+"Mennyi ideig tárolja a Wikipédia adatokat a helyi gyorsítótárban, mielőtt "
+"újat tölt le. Alacsonyabb értéknél sűrűbben frissít; magasabb értéknél "
+"csökkenti a hálózathasználatot."
 
 #: settings-schema.json
 msgid "Choose what to show for the western zodiac sign."
@@ -332,14 +295,6 @@ msgstr "Válaszd ki, mit jelenítsen meg a kínai állatövi évnél (állat és
 #: settings-schema.json
 msgid "Label for an additional city. Leave empty to hide."
 msgstr "Egy további város felirata. Üresen hagyva elrejtve."
-
-#: settings-schema.json
-msgid "Filled automatically when using city search. You can also enter an IANA timezone name manually, e.g. America/New_York."
-msgstr "Városkeresés esetén automatikusan kitöltődik. Manuálisan is megadható IANA időzónanév, pl. America/New_York."
-
-#: settings-schema.json
-msgid "Filled automatically when using city search. You can also enter an IANA timezone name manually."
-msgstr "Városkeresés esetén automatikusan kitöltődik. Manuálisan is megadható IANA időzónanév."
 
 #. ── settings-schema.json — option labels ────────────────────────────────
 #: settings-schema.json
@@ -608,8 +563,8 @@ msgid "Week number"
 msgstr "Hét száma"
 
 #: desklet.js
-msgid "Month highlights"
-msgstr "Havi aktualitás"
+msgid "Month progress"
+msgstr ""
 
 #: desklet.js
 msgid "Current date"
@@ -679,27 +634,101 @@ msgstr "Engedélyezd a születéseket, halálozásokat vagy a kiemelt cikket"
 msgid "No data available"
 msgstr "Nincs elérhető adat"
 
-#. ── Holidays ─────────────────────────────────────────────────────────────
-#: settings-schema.json
-msgid "National Holidays"
-msgstr "Nemzeti ünnepek"
+msgid "Background opacity"
+msgstr ""
 
-#: settings-schema.json
-msgid "Show national holidays and weekends"
-msgstr "Nemzeti ünnepek és hétvégék jelzése"
+msgid ""
+"0 = fully transparent (wallpaper shows through), 1 = solid black background"
+msgstr ""
 
-#: settings-schema.json
-msgid "Holiday calendar"
-msgstr "Ünnepi naptár"
+#~ msgid "Calendar Highlights"
+#~ msgstr "Naptár aktualitás"
 
-#: desklet.js
-msgid "public holiday"
-msgstr "munkaszüneti nap"
+#~ msgid "Show month highlights (day / days in month)"
+#~ msgstr "Hónap aktualitásának megjelenítése (nap / napok a hónapban)"
 
-#: desklet.js
-msgid "weekend"
-msgstr "hétvége"
+#~ msgid "Separator character between calendar items"
+#~ msgstr "Elválasztó karakter a naptár aktualitások között"
 
-#: settings-schema.json
-msgid "Show upcoming holidays (days ahead)"
-msgstr "Közelgő ünnepnapok megjelenítése (napok előre)"
+#~ msgid "Items shown per section"
+#~ msgstr "Szekciónként megjelenített elemek száma"
+
+#~ msgid ""
+#~ "How many births, deaths, and events to display at a time. The list "
+#~ "rotates periodically, cycling through all available entries from the "
+#~ "cache."
+#~ msgstr ""
+#~ "Hány születést, halálozást és eseményt mutasson egyszerre. A lista "
+#~ "időközönként rotál, végigpörög az összes gyorsítótárban lévő bejegyzésen."
+
+#~ msgid "Rotate items every N minutes"
+#~ msgstr "Elemek rotálása minden N percben"
+
+#~ msgid ""
+#~ "How often to advance to the next set of items. Set to 1 to rotate every "
+#~ "minute."
+#~ msgstr ""
+#~ "Milyen gyakran lépjen a következő elemekre. 1-re állítva percenként rotál."
+
+#~ msgid "Search city to auto-fill coordinates"
+#~ msgstr "Város keresése a koordináták automatikus kitöltéséhez"
+
+#~ msgid ""
+#~ "Type a city name — coordinates are filled in automatically after 1.5 "
+#~ "seconds."
+#~ msgstr ""
+#~ "Írj be egy városnevet — a koordináták 1,5 másodperc után automatikusan "
+#~ "kitöltődnek."
+
+#~ msgid "City 1 timezone (IANA, e.g. Europe/Vienna)"
+#~ msgstr "1. város időzónája (IANA, pl. Europe/Vienna)"
+
+#~ msgid "City 2 timezone (IANA, e.g. America/New_York)"
+#~ msgstr "2. város időzónája (IANA, pl. America/New_York)"
+
+#~ msgid "City 3 timezone (IANA, e.g. Asia/Tokyo)"
+#~ msgstr "3. város időzónája (IANA, pl. Asia/Tokyo)"
+
+#~ msgid "Show current local time for each city"
+#~ msgstr "Az aktuális helyi idő megjelenítése minden városhoz"
+
+#~ msgid "Show UTC offset for each city (e.g. UTC+1)"
+#~ msgstr "UTC eltolás megjelenítése minden városhoz (pl. UTC+1)"
+
+#~ msgid "Local time"
+#~ msgstr "Helyi idő"
+
+#~ msgid ""
+#~ "Filled automatically when using city search. You can also enter an IANA "
+#~ "timezone name manually, e.g. America/New_York."
+#~ msgstr ""
+#~ "Városkeresés esetén automatikusan kitöltődik. Manuálisan is megadható "
+#~ "IANA időzónanév, pl. America/New_York."
+
+#~ msgid ""
+#~ "Filled automatically when using city search. You can also enter an IANA "
+#~ "timezone name manually."
+#~ msgstr ""
+#~ "Városkeresés esetén automatikusan kitöltődik. Manuálisan is megadható "
+#~ "IANA időzónanév."
+
+#~ msgid "Month highlights"
+#~ msgstr "Havi aktualitás"
+
+#~ msgid "National Holidays"
+#~ msgstr "Nemzeti ünnepek"
+
+#~ msgid "Show national holidays and weekends"
+#~ msgstr "Nemzeti ünnepek és hétvégék jelzése"
+
+#~ msgid "Holiday calendar"
+#~ msgstr "Ünnepi naptár"
+
+#~ msgid "public holiday"
+#~ msgstr "munkaszüneti nap"
+
+#~ msgid "weekend"
+#~ msgstr "hétvége"
+
+#~ msgid "Show upcoming holidays (days ahead)"
+#~ msgstr "Közelgő ünnepnapok megjelenítése (napok előre)"

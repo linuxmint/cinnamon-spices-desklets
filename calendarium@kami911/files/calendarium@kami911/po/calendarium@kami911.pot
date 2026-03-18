@@ -615,13 +615,15 @@ msgid "Article of the day"
 msgstr ""
 
 #: desklet.js
-msgid "Wikipedia"
-msgstr ""
-
-#: desklet.js
 msgid "Enable births, deaths, or featured article"
 msgstr ""
 
 #: desklet.js
 msgid "No data available"
+msgstr ""
+
+msgid "Background opacity"
+msgstr ""
+
+msgid "0 = fully transparent (wallpaper shows through), 1 = solid black background"
 msgstr ""
