@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: system-monitor-graph@rcassani 2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-08-27 21:38-0400\n"
+"POT-Creation-Date: 2026-03-18 01:55+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
 "Language-Team: \n"
@@ -19,82 +19,87 @@ msgstr ""
 "X-Generator: Poedit 3.4.2\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:183
+#. desklet.js:203
 msgid "CPU"
 msgstr "CPU"
 
-#. desklet.js:194 desklet.js:212 desklet.js:232 desklet.js:273 desklet.js:547
+#. desklet.js:214 desklet.js:232 desklet.js:252 desklet.js:293 desklet.js:575
 msgid "GB"
 msgstr "GB"
 
-#. desklet.js:197 desklet.js:215 desklet.js:235 desklet.js:276 desklet.js:561
+#. desklet.js:217 desklet.js:235 desklet.js:255 desklet.js:296 desklet.js:589
 msgid "GiB"
 msgstr "GiB"
 
 #. settings-schema.json->type->options
-#. desklet.js:199
+#. desklet.js:219
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#. desklet.js:217
+#. desklet.js:237
 msgid "Swap"
 msgstr "Swap"
 
-#. desklet.js:240
+#. desklet.js:260
 msgid "free of"
 msgstr "trống trong"
 
-#. desklet.js:256
+#. desklet.js:276
 msgid "GPU Usage"
 msgstr "Sử dụng GPU"
 
-#. desklet.js:278
+#. desklet.js:298
 msgid "GPU Memory"
 msgstr "Bộ nhớ GPU"
 
 #. settings-schema.json->type->options
-#. desklet.js:290
+#. desklet.js:310
 msgid "Network"
 msgstr "Mạng"
 
-#. desklet.js:518 desklet.js:541
+#. settings-schema.json->type->options
+#. desklet.js:323
+msgid "Battery"
+msgstr ""
+
+#. desklet.js:546 desklet.js:569
 msgid "b"
 msgstr "b"
 
-#. desklet.js:520 desklet.js:555 desklet.js:569
+#. desklet.js:548 desklet.js:583 desklet.js:597
 msgid "B"
 msgstr "B"
 
-#. desklet.js:533
+#. desklet.js:561
 msgid "Gb"
 msgstr "Gb"
 
-#. desklet.js:536
+#. desklet.js:564
 msgid "Mb"
 msgstr "Mb"
 
-#. desklet.js:539
+#. desklet.js:567
 msgid "Kb"
 msgstr "Kb"
 
-#. desklet.js:550
+#. desklet.js:578
 msgid "MB"
 msgstr "MB"
 
-#. desklet.js:553
+#. desklet.js:581
 msgid "KB"
 msgstr "KB"
 
-#. desklet.js:564
+#. desklet.js:592
 msgid "MiB"
 msgstr "MiB"
 
-#. desklet.js:567
+#. desklet.js:595
 msgid "KiB"
 msgstr "KiB"
 
-#. desklet.js:844 desklet.js:882
+#. desklet.js:872 desklet.js:910
 msgid "Error executing nvidia-smi command."
 msgstr "Lỗi thực thi lệnh nvidia-smi."
 
@@ -187,7 +192,8 @@ msgstr "Giao diện mạng để giám sát"
 #. settings-schema.json->network-interface->tooltip
 msgid ""
 "Leave empty to monitor all interfaces combined. Examples: eth0, wlan0, enp0s3"
-msgstr "Để trống để giám sát tất cả các giao diện kết hợp. Ví dụ: eth0, wlan0, enp0s3"
+msgstr ""
+"Để trống để giám sát tất cả các giao diện kết hợp. Ví dụ: eth0, wlan0, enp0s3"
 
 #. settings-schema.json->filesystem->description
 msgid "Filesystem to monitor"
@@ -343,6 +349,7 @@ msgstr "Màu đường CPU"
 #. settings-schema.json->line-color-gpu->tooltip
 #. settings-schema.json->line-color-network-down->tooltip
 #. settings-schema.json->line-color-network-up->tooltip
+#. settings-schema.json->line-color-battery->tooltip
 msgid "RGB or RGBA. Alpha is ignored"
 msgstr "RGB hoặc RGBA. Alpha bị bỏ qua"
 
@@ -369,6 +376,11 @@ msgstr "Màu đường Tải xuống Mạng"
 #. settings-schema.json->line-color-network-up->description
 msgid "Line color Network Upload"
 msgstr "Màu đường Tải lên Mạng"
+
+#. settings-schema.json->line-color-battery->description
+#, fuzzy
+msgid "Line color Battery"
+msgstr "Màu đường Swap"
 
 #. settings-schema.json->midline-color->description
 msgid "Grid color"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-08-27 21:38-0400\n"
+"POT-Creation-Date: 2026-03-18 01:55+0200\n"
 "PO-Revision-Date: 2022-04-17 18:13+0100\n"
 "Last-Translator: Georg Sieber\n"
 "Language-Team: \n"
@@ -18,85 +18,90 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:183
+#. desklet.js:203
 msgid "CPU"
 msgstr "CPU"
 
-#. desklet.js:194 desklet.js:212 desklet.js:232 desklet.js:273 desklet.js:547
+#. desklet.js:214 desklet.js:232 desklet.js:252 desklet.js:293 desklet.js:575
 msgid "GB"
 msgstr "GB"
 
-#. desklet.js:197 desklet.js:215 desklet.js:235 desklet.js:276 desklet.js:561
+#. desklet.js:217 desklet.js:235 desklet.js:255 desklet.js:296 desklet.js:589
 msgid "GiB"
 msgstr "GiB"
 
 #. settings-schema.json->type->options
-#. desklet.js:199
+#. desklet.js:219
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#. desklet.js:217
+#. desklet.js:237
 msgid "Swap"
 msgstr "Swap"
 
-#. desklet.js:240
+#. desklet.js:260
 msgid "free of"
 msgstr "frei von"
 
-#. desklet.js:256
+#. desklet.js:276
 msgid "GPU Usage"
 msgstr "GPU-Auslastung"
 
-#. desklet.js:278
+#. desklet.js:298
 msgid "GPU Memory"
 msgstr "GPU-Speicher"
 
 #. settings-schema.json->type->options
-#. desklet.js:290
+#. desklet.js:310
 msgid "Network"
 msgstr ""
 
-#. desklet.js:518 desklet.js:541
+#. settings-schema.json->type->options
+#. desklet.js:323
+msgid "Battery"
+msgstr ""
+
+#. desklet.js:546 desklet.js:569
 msgid "b"
 msgstr ""
 
-#. desklet.js:520 desklet.js:555 desklet.js:569
+#. desklet.js:548 desklet.js:583 desklet.js:597
 #, fuzzy
 msgid "B"
 msgstr "GB"
 
-#. desklet.js:533
+#. desklet.js:561
 msgid "Gb"
 msgstr ""
 
-#. desklet.js:536
+#. desklet.js:564
 msgid "Mb"
 msgstr ""
 
-#. desklet.js:539
+#. desklet.js:567
 msgid "Kb"
 msgstr ""
 
-#. desklet.js:550
+#. desklet.js:578
 msgid "MB"
 msgstr ""
 
-#. desklet.js:553
+#. desklet.js:581
 msgid "KB"
 msgstr ""
 
-#. desklet.js:564
+#. desklet.js:592
 #, fuzzy
 msgid "MiB"
 msgstr "GiB"
 
-#. desklet.js:567
+#. desklet.js:595
 #, fuzzy
 msgid "KiB"
 msgstr "GiB"
 
-#. desklet.js:844 desklet.js:882
+#. desklet.js:872 desklet.js:910
 msgid "Error executing nvidia-smi command."
 msgstr ""
 
@@ -351,6 +356,7 @@ msgstr "CPU-Linienfarbe"
 #. settings-schema.json->line-color-gpu->tooltip
 #. settings-schema.json->line-color-network-down->tooltip
 #. settings-schema.json->line-color-network-up->tooltip
+#. settings-schema.json->line-color-battery->tooltip
 msgid "RGB or RGBA. Alpha is ignored"
 msgstr "RGB oder RGBA. Alpha wird ignoriert"
 
@@ -379,6 +385,11 @@ msgstr "Netzwerk-Download-Linienfarbe"
 #, fuzzy
 msgid "Line color Network Upload"
 msgstr "Netzwerk-Upload-Linienfarbe"
+
+#. settings-schema.json->line-color-battery->description
+#, fuzzy
+msgid "Line color Battery"
+msgstr "Swap-Linienfarbe"
 
 #. settings-schema.json->midline-color->description
 msgid "Grid color"
