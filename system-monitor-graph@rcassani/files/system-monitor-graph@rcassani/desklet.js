@@ -1032,11 +1032,11 @@ SystemMonitorGraph.prototype = {
                         }
                         GLib.free(contents);
                     } catch(error) {
-                        global.log('Battery capacity file read error: ' + error.toString());
+                        global.log('Battery status file read error: ' + error.toString());
                     }
                 });
             } catch(error) {
-                global.log('Battery capacity file open error: ' + error.toString());
+                global.log('Battery status file open error: ' + error.toString());
             }
         }
 
