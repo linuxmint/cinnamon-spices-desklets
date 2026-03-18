@@ -322,7 +322,8 @@ SystemMonitorGraph.prototype = {
               value = this.battery_capacity;
               text1 = _("Battery");
               text2 = this.battery_percent + "%";
-              text3 = ((this.battery_status == "Charging") ? "⚡ " : "") + this.battery_time;
+              let prefix = (this.battery_status == "Charging") ? "⚡ " : (this.battery_percent <= 20 ? "❗" : "");
+              text3 = prefix + this.battery_time;
               break;
         }
 
