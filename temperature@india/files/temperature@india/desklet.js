@@ -29,7 +29,7 @@ MyDesklet.prototype = {
         this.sensorsData = [];
         this.sensorsPath = '/usr/bin/sensors';
 
-        let desklet_path = GLib.get_home_dir() + "/.local/share/cinnamon/desklets/" + UUID;
+        let desklet_path = GLib.get_user_data_dir() + "/cinnamon/desklets/" + this.metadata["uuid"];
         let img_path = desklet_path + "/img/thermometer.svg";
         this.mercury_img_path = desklet_path + "/img/mercury.svg"; 
         
@@ -74,7 +74,10 @@ MyDesklet.prototype = {
         }
         
         if (this.timeoutId) Mainloop.source_remove(this.timeoutId);
-        this.timeoutId = Mainloop.timeout_add_seconds(this.update_interval || 2, Lang.bind(this, this.updateTemperature));
+        this.timeoutId = Mainloop.timeout_add_seconds(
+            this.update_interval || 2, 
+            () => this.updateTemperature()
+        );
     },
 
     _parseAllSensors: function(text) {
