@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-03-19 16:11+0200\n"
+"POT-Creation-Date: 2026-03-20 01:55+0200\n"
 "PO-Revision-Date: 2025-11-11 10:23+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -20,99 +20,104 @@ msgstr ""
 "X-Generator: Poedit 3.8\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:204
+#. desklet.js:217
 msgid "CPU"
 msgstr "CPU"
 
-#. desklet.js:215 desklet.js:233 desklet.js:253 desklet.js:294 desklet.js:580
+#. desklet.js:228 desklet.js:246 desklet.js:266 desklet.js:307 desklet.js:602
 msgid "GB"
 msgstr "GB"
 
-#. desklet.js:218 desklet.js:236 desklet.js:256 desklet.js:297 desklet.js:594
+#. desklet.js:231 desklet.js:249 desklet.js:269 desklet.js:310 desklet.js:616
 msgid "GiB"
 msgstr "GiB"
 
 #. settings-schema.json->type->options
-#. desklet.js:220
+#. desklet.js:233
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#. desklet.js:238
+#. desklet.js:251
 msgid "Swap"
 msgstr "Cserehely"
 
-#. desklet.js:261
+#. desklet.js:274
 msgid "free of"
 msgstr "szabad, összesen:"
 
-#. desklet.js:277
+#. desklet.js:290
 msgid "GPU Usage"
 msgstr "GPU használat"
 
-#. desklet.js:299
+#. desklet.js:312
 msgid "GPU Memory"
 msgstr "GPU memória"
 
 #. settings-schema.json->type->options
-#. desklet.js:311
+#. desklet.js:324
 msgid "Network"
 msgstr "Hálózat"
 
 #. settings-schema.json->type->options
-#. desklet.js:324
+#. desklet.js:337
 msgid "Battery"
 msgstr ""
 
-#. desklet.js:327
+#. desklet.js:340
 msgid "Fully charged"
 msgstr ""
 
-#. desklet.js:328
+#. desklet.js:341
 msgid "Not charging"
 msgstr ""
 
-#. desklet.js:330
+#. desklet.js:343
 msgid " hrs"
 msgstr ""
 
-#. desklet.js:551 desklet.js:574
+#. settings-schema.json->type->options
+#. desklet.js:349
+msgid "Temperature"
+msgstr ""
+
+#. desklet.js:573 desklet.js:596
 msgid "b"
 msgstr "b"
 
-#. desklet.js:553 desklet.js:588 desklet.js:602
+#. desklet.js:575 desklet.js:610 desklet.js:624
 msgid "B"
 msgstr "B"
 
-#. desklet.js:566
+#. desklet.js:588
 msgid "Gb"
 msgstr "Gb"
 
-#. desklet.js:569
+#. desklet.js:591
 msgid "Mb"
 msgstr "Mb"
 
-#. desklet.js:572
+#. desklet.js:594
 msgid "Kb"
 msgstr "Kb"
 
-#. desklet.js:583
+#. desklet.js:605
 msgid "MB"
 msgstr "MB"
 
-#. desklet.js:586
+#. desklet.js:608
 msgid "KB"
 msgstr "KB"
 
-#. desklet.js:597
+#. desklet.js:619
 msgid "MiB"
 msgstr "MiB"
 
-#. desklet.js:600
+#. desklet.js:622
 msgid "KiB"
 msgstr "KiB"
 
-#. desklet.js:877 desklet.js:915
+#. desklet.js:899 desklet.js:937
 msgid "Error executing nvidia-smi command."
 msgstr "Hiba az nvidia-smi parancs végrehajtásakor."
 
@@ -218,6 +223,27 @@ msgstr "Hálózati interfész a monitorozáshoz"
 msgid "Check battery name in /sys/class/power_supply/ Examples: BAT0, BAT1"
 msgstr ""
 
+#. settings-schema.json->temperature-folder->description
+#, fuzzy
+msgid "Name of hwmon* subfolder to monitor"
+msgstr "Hálózati interfész a monitorozáshoz"
+
+#. settings-schema.json->temperature-folder->tooltip
+msgid ""
+"Check hwmon* subfolder name in /sys/class/hwmon/ Examples: hwmon1, hwmon4"
+msgstr ""
+
+#. settings-schema.json->temperature-file->description
+#, fuzzy
+msgid "Name of temp*_input to monitor"
+msgstr "Hálózati interfész a monitorozáshoz"
+
+#. settings-schema.json->temperature-file->tooltip
+msgid ""
+"Check temp*_input name in /sys/class/thermal/hwmon*/ Examples: temp0_input, "
+"temp1_input"
+msgstr ""
+
 #. settings-schema.json->filesystem->description
 msgid "Filesystem to monitor"
 msgstr "Megfigyelendő fájlrendszer"
@@ -279,6 +305,23 @@ msgstr "Memória"
 #. settings-schema.json->data-prefix-gpumem->tooltip
 msgid "Unit prefix for GPU memory size."
 msgstr "A GPU memória méretének egység előtagja."
+
+#. settings-schema.json->temperature-scale->options
+msgid "°C"
+msgstr ""
+
+#. settings-schema.json->temperature-scale->options
+msgid "°F"
+msgstr ""
+
+#. settings-schema.json->temperature-scale->description
+msgid "Temperature scale"
+msgstr ""
+
+#. settings-schema.json->temperature-scale->tooltip
+#, fuzzy
+msgid "Temperature scale for graph"
+msgstr "Rendszerjellemzők a grafikon számára"
 
 #. settings-schema.json->duration->description
 msgid "Duration of the graph"
@@ -375,6 +418,7 @@ msgstr "CPU vonalszín"
 #. settings-schema.json->line-color-network-down->tooltip
 #. settings-schema.json->line-color-network-up->tooltip
 #. settings-schema.json->line-color-battery->tooltip
+#. settings-schema.json->line-color-temperature->tooltip
 msgid "RGB or RGBA. Alpha is ignored"
 msgstr "RGB vagy RGBA. Az Alfa csatorna figyelmen kívül hagyásával"
 
@@ -405,6 +449,11 @@ msgstr "Vonalszín Hálózati feltöltés"
 #. settings-schema.json->line-color-battery->description
 #, fuzzy
 msgid "Line color Battery"
+msgstr "Cserehely vonalszín"
+
+#. settings-schema.json->line-color-temperature->description
+#, fuzzy
+msgid "Line color Temperature"
 msgstr "Cserehely vonalszín"
 
 #. settings-schema.json->midline-color->description
