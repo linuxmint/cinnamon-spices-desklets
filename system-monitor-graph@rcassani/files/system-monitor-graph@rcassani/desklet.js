@@ -1057,7 +1057,8 @@ SystemMonitorGraph.prototype = {
         let totalMinutes = Math.round(timeSec / 60);
         let minutes = String(Math.floor(totalMinutes % 60)).padStart(2, '0');
         let hours = String(Math.floor(totalMinutes / 60)).padStart(2, '0');
-        return `${hours}:${minutes}`;
+        let result = `${hours}:${minutes}`;
+        return (result == "00:00") ? "--:--" : result;
 	}
 
 };
