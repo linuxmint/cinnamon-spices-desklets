@@ -1001,55 +1001,42 @@ SystemMonitorGraph.prototype = {
 
 
     get_battery_use: function() {
-        let battery_name = this.battery_name;
-        let capacity_path = `/sys/class/power_supply/${battery_name}/capacity`;
-        let status_path = `/sys/class/power_supply/${battery_name}/status`;
-        let bus_path = `/org/freedesktop/UPower/devices/battery_${battery_name}`;
+        // Sysfs directory for battery info
+        let battery_dir = "/sys/class/power_supply/" + this.battery_name + "/";
+        // D-Bus object path for the battery device in the UPower daemon
+        let bus_path = "/org/freedesktop/UPower/devices/battery_" + this.battery_name;
 
-        if (GLib.file_test(capacity_path, GLib.FileTest.EXISTS)
-            && (!GLib.file_test(capacity_path, GLib.FileTest.IS_DIR))) {
+        // File capacity contains the battery charge percentage, integer number from 0 to 100
+        Gio.file_new_for_path(battery_dir + "capacity").load_contents_async(null, (file, response) => {
             try {
-                Gio.file_new_for_path(capacity_path).load_contents_async(null, (file, response) => {
-                    try {
-                        let [success, contents, tag] = file.load_contents_finish(response);
-                        if(success) {
-                            let percent = parseInt(ByteArray.toString(contents));
-                            this.battery_percent = percent >= 100 ? 100 : percent;
-                            this.battery_capacity = this.battery_percent / 100.0;
-                        }
-                        GLib.free(contents);
-                    } catch(error) {
-                        global.log('Battery capacity file read error: ' + error.toString());
-                    }
-                });
+                let [success, contents, tag] = file.load_contents_finish(response);
+                if (success) {
+                    let percent = parseInt(ByteArray.toString(contents));
+                    this.battery_percent = percent >= 100 ? 100 : percent;
+                    this.battery_capacity = this.battery_percent / 100.0;
+                }
+                GLib.free(contents);
             } catch(error) {
-                global.log('Battery capacity file open error: ' + error.toString());
+                global.log('Battery capacity file read error: ' + error.toString());
             }
-        }
+        });
 
-        if (GLib.file_test(status_path, GLib.FileTest.EXISTS)
-            && (!GLib.file_test(status_path, GLib.FileTest.IS_DIR))) {
+        // File status contains the battery charge status, string
+        Gio.file_new_for_path(battery_dir + "status").load_contents_async(null, (file, response) => {
             try {
-                Gio.file_new_for_path(status_path).load_contents_async(null, (file, response) => {
-                    try {
-                        let [success, contents, tag] = file.load_contents_finish(response);
-                        if(success) {
-                            this.battery_status = ByteArray.toString(contents).trim();
-                        }
-                        GLib.free(contents);
-                    } catch(error) {
-                        global.log('Battery status file read error: ' + error.toString());
-                    }
-                });
+                let [success, contents, tag] = file.load_contents_finish(response);
+                if (success) {
+                    this.battery_status = ByteArray.toString(contents).trim();
+                }
+                GLib.free(contents);
             } catch(error) {
-                global.log('Battery status file open error: ' + error.toString());
+                global.log('Battery status file read error: ' + error.toString());
             }
-        }
+        });
 
         try {
             let upower_proxy = new UPowerProxy(Gio.DBus.system, UPowerBusName, bus_path);
-            let time_sec = (this.battery_status == "Charging") ?
-                upower_proxy.TimeToFull : upower_proxy.TimeToEmpty;
+            let time_sec = (this.battery_status == "Charging") ? upower_proxy.TimeToFull : upower_proxy.TimeToEmpty;
             this.battery_time = this.formatTime(time_sec);
         } catch(error) {
             global.log('Battery time file open error: ' + error.toString());
