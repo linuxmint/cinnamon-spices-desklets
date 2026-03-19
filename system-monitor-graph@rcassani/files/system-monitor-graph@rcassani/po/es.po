@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-03-18 01:55+0200\n"
+"POT-Creation-Date: 2026-03-18 21:36-0400\n"
 "PO-Revision-Date: 2025-08-04 19:01-0400\n"
 "Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
 "Language-Team: \n"
@@ -20,87 +20,99 @@ msgstr ""
 "X-Generator: Poedit 3.6\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:203
+#. desklet.js:204
 msgid "CPU"
 msgstr "CPU"
 
-#. desklet.js:214 desklet.js:232 desklet.js:252 desklet.js:293 desklet.js:575
+#. desklet.js:215 desklet.js:233 desklet.js:253 desklet.js:294 desklet.js:578
 msgid "GB"
 msgstr "GB"
 
-#. desklet.js:217 desklet.js:235 desklet.js:255 desklet.js:296 desklet.js:589
+#. desklet.js:218 desklet.js:236 desklet.js:256 desklet.js:297 desklet.js:592
 msgid "GiB"
 msgstr "GiB"
 
 #. settings-schema.json->type->options
-#. desklet.js:219
+#. desklet.js:220
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#. desklet.js:237
+#. desklet.js:238
 msgid "Swap"
 msgstr "Swap"
 
-#. desklet.js:260
+#. desklet.js:261
 msgid "free of"
 msgstr "libres de"
 
-#. desklet.js:276
+#. desklet.js:277
 msgid "GPU Usage"
 msgstr "Uso de GPU"
 
-#. desklet.js:298
+#. desklet.js:299
 msgid "GPU Memory"
 msgstr "Memoria de GPU"
 
 #. settings-schema.json->type->options
-#. desklet.js:310
+#. desklet.js:311
 msgid "Network"
 msgstr "Red"
 
 #. settings-schema.json->type->options
-#. desklet.js:323
+#. desklet.js:324
 msgid "Battery"
 msgstr ""
 
-#. desklet.js:546 desklet.js:569
+#. desklet.js:327
+msgid " hrs to 100%"
+msgstr ""
+
+#. desklet.js:327
+msgid " hrs remaining"
+msgstr ""
+
+#. desklet.js:328
+msgid "Fully charged"
+msgstr ""
+
+#. desklet.js:549 desklet.js:572
 msgid "b"
 msgstr "b"
 
-#. desklet.js:548 desklet.js:583 desklet.js:597
+#. desklet.js:551 desklet.js:586 desklet.js:600
 msgid "B"
 msgstr "B"
 
-#. desklet.js:561
+#. desklet.js:564
 msgid "Gb"
 msgstr "Gb"
 
-#. desklet.js:564
+#. desklet.js:567
 msgid "Mb"
 msgstr "Mb"
 
-#. desklet.js:567
+#. desklet.js:570
 msgid "Kb"
 msgstr "Kb"
 
-#. desklet.js:578
+#. desklet.js:581
 msgid "MB"
 msgstr "MB"
 
-#. desklet.js:581
+#. desklet.js:584
 msgid "KB"
 msgstr "KB"
 
-#. desklet.js:592
+#. desklet.js:595
 msgid "MiB"
 msgstr "MiB"
 
-#. desklet.js:595
+#. desklet.js:598
 msgid "KiB"
 msgstr "KiB"
 
-#. desklet.js:872 desklet.js:910
+#. desklet.js:875 desklet.js:913
 msgid "Error executing nvidia-smi command."
 msgstr "Error al ejecutar el comando nvidia-smi."
 
@@ -198,6 +210,15 @@ msgid ""
 msgstr ""
 "Dejar vacío para monitorizar todas las interfaces combinadas. Ejemplos: "
 "eth0, wlan0, enp0s3"
+
+#. settings-schema.json->battery-name->description
+#, fuzzy
+msgid "Name of battery name to monitor"
+msgstr "Interfaz de red a monitorear"
+
+#. settings-schema.json->battery-name->tooltip
+msgid "Check battery name in /sys/class/power_supply/ Examples: BAT0, BAT1"
+msgstr ""
 
 #. settings-schema.json->filesystem->description
 msgid "Filesystem to monitor"
