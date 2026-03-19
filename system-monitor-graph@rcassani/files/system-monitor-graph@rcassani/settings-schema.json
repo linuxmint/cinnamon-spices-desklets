@@ -75,6 +75,13 @@
         "tooltip": "Leave empty to monitor all interfaces combined. Examples: eth0, wlan0, enp0s3",
         "dependency": "type=network"
     },
+    "battery-name": {
+        "type": "entry",
+        "default": "BAT0",
+        "description": "Name of battery name to monitor",
+        "tooltip": "Check battery name in /sys/class/power_supply/ Examples: BAT0, BAT1",
+        "dependency": "type=battery"
+    },
     "filesystem": {
         "type": "filechooser",
         "default": "file:///",

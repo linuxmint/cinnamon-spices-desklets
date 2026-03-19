@@ -59,6 +59,7 @@ SystemMonitorGraph.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "data-prefix-gpumem", "data_prefix_gpumem", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "data-prefix-network", "data_prefix_network", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "network-interface", "network_interface", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "battery-name", "battery_name", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "filesystem", "filesystem", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "filesystem-label", "filesystem_label", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "gpu-manufacturer", "gpu_manufacturer", this.on_setting_changed);
@@ -135,10 +136,10 @@ SystemMonitorGraph.prototype = {
             this.net_up_speed = 0;
             this.net_max_scale = 1; // Auto-scaling for network graph
             // battery values
-            this.battery_percent = 0;
-            this.battery_capacity = 0.0;
-            this.battery_status = "Charging";
-            this.battery_time = "00:00";
+            this.battery_percent  = NaN;
+            this.battery_capacity = NaN;
+            this.battery_status   = "";
+            this.battery_time     = "";
 
             // set colors
             switch (this.type) {
@@ -322,8 +323,9 @@ SystemMonitorGraph.prototype = {
               value = this.battery_capacity;
               text1 = _("Battery");
               text2 = this.battery_percent + "%";
-              let prefix = (this.battery_status == "Charging") ? "⚡ " : (this.battery_percent <= 20 ? "❗" : "");
-              text3 = prefix + this.battery_time;
+              let prefix = (this.battery_status == "Charging") ? "⚡ " : (this.battery_percent <= 20 ? "🪫 " : "🔋 ");
+              let suffix = (this.battery_status == "Charging") ? _(" hrs to 100%") : _(" hrs remaining");
+              text3 = (this.battery_status == "Full") ? "🔋 " + _("Fully charged") : (this.battery_status == "") ? "" : prefix + this.battery_time + suffix;
               break;
         }
 
@@ -996,7 +998,7 @@ SystemMonitorGraph.prototype = {
 
 
     get_battery_use: function() {
-        let battery_name = 'BAT0';
+        let battery_name = this.battery_name;
         let capacity_path = `/sys/class/power_supply/${battery_name}/capacity`;
         let status_path = `/sys/class/power_supply/${battery_name}/status`;
         let bus_path = `/org/freedesktop/UPower/devices/battery_${battery_name}`;
@@ -1055,7 +1057,8 @@ SystemMonitorGraph.prototype = {
         let totalMinutes = Math.round(timeSec / 60);
         let minutes = String(Math.floor(totalMinutes % 60)).padStart(2, '0');
         let hours = String(Math.floor(totalMinutes / 60)).padStart(2, '0');
-        return `${hours}:${minutes}`;
+        let result = `${hours}:${minutes}`;
+        return (result == "00:00") ? "--:--" : result;
 	}
 
 };
