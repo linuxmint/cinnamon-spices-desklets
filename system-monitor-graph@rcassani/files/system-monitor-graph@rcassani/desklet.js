@@ -325,7 +325,10 @@ SystemMonitorGraph.prototype = {
               text2 = this.battery_percent + "%";
               let prefix = (this.battery_status == "Charging") ? "⚡ " : (this.battery_percent <= 20 ? "🪫 " : "🔋 ");
               let suffix = (this.battery_status == "Charging") ? _(" hrs to 100%") : _(" hrs remaining");
-              text3 = (this.battery_status == "Full") ? "🔋 " + _("Fully charged") : (this.battery_status == "") ? "" : prefix + this.battery_time + suffix;
+              text3 = (this.battery_status == "Full") ? "🔋 " + _("Fully charged") :
+                (this.battery_status == "Not charging") ? "🔌 " + _("Not charging") :
+                (this.battery_status == "" || this.battery_status == "Unknown") ? "" :
+                prefix + this.battery_time + suffix;
               break;
         }
 

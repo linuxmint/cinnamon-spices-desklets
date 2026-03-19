@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-03-18 21:36-0400\n"
+"POT-Creation-Date: 2026-03-19 14:49+0200\n"
 "PO-Revision-Date: 2022-04-17 23:21+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -24,11 +24,11 @@ msgstr ""
 msgid "CPU"
 msgstr "CPU"
 
-#. desklet.js:215 desklet.js:233 desklet.js:253 desklet.js:294 desklet.js:578
+#. desklet.js:215 desklet.js:233 desklet.js:253 desklet.js:294 desklet.js:581
 msgid "GB"
 msgstr "GB"
 
-#. desklet.js:218 desklet.js:236 desklet.js:256 desklet.js:297 desklet.js:592
+#. desklet.js:218 desklet.js:236 desklet.js:256 desklet.js:297 desklet.js:595
 msgid "GiB"
 msgstr "GiB"
 
@@ -76,46 +76,50 @@ msgstr ""
 msgid "Fully charged"
 msgstr ""
 
-#. desklet.js:549 desklet.js:572
+#. desklet.js:329
+msgid "Not charging"
+msgstr ""
+
+#. desklet.js:552 desklet.js:575
 msgid "b"
 msgstr ""
 
-#. desklet.js:551 desklet.js:586 desklet.js:600
+#. desklet.js:554 desklet.js:589 desklet.js:603
 #, fuzzy
 msgid "B"
 msgstr "GB"
 
-#. desklet.js:564
+#. desklet.js:567
 msgid "Gb"
 msgstr ""
 
-#. desklet.js:567
+#. desklet.js:570
 msgid "Mb"
 msgstr ""
 
-#. desklet.js:570
+#. desklet.js:573
 msgid "Kb"
 msgstr ""
 
-#. desklet.js:581
+#. desklet.js:584
 msgid "MB"
 msgstr ""
 
-#. desklet.js:584
+#. desklet.js:587
 msgid "KB"
 msgstr ""
 
-#. desklet.js:595
+#. desklet.js:598
 #, fuzzy
 msgid "MiB"
 msgstr "GiB"
 
-#. desklet.js:598
+#. desklet.js:601
 #, fuzzy
 msgid "KiB"
 msgstr "GiB"
 
-#. desklet.js:875 desklet.js:913
+#. desklet.js:878 desklet.js:916
 msgid "Error executing nvidia-smi command."
 msgstr ""
 
