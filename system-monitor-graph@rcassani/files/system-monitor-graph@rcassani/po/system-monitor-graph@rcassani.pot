@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: system-monitor-graph@rcassani 2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-08-27 21:38-0400\n"
+"POT-Creation-Date: 2026-03-19 16:11+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,82 +18,99 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:183
+#. desklet.js:204
 msgid "CPU"
 msgstr ""
 
-#. desklet.js:194 desklet.js:212 desklet.js:232 desklet.js:273 desklet.js:547
+#. desklet.js:215 desklet.js:233 desklet.js:253 desklet.js:294 desklet.js:580
 msgid "GB"
 msgstr ""
 
-#. desklet.js:197 desklet.js:215 desklet.js:235 desklet.js:276 desklet.js:561
+#. desklet.js:218 desklet.js:236 desklet.js:256 desklet.js:297 desklet.js:594
 msgid "GiB"
 msgstr ""
 
 #. settings-schema.json->type->options
-#. desklet.js:199
+#. desklet.js:220
 msgid "RAM"
 msgstr ""
 
 #. settings-schema.json->type->options
-#. desklet.js:217
+#. desklet.js:238
 msgid "Swap"
 msgstr ""
 
-#. desklet.js:240
+#. desklet.js:261
 msgid "free of"
 msgstr ""
 
-#. desklet.js:256
+#. desklet.js:277
 msgid "GPU Usage"
 msgstr ""
 
-#. desklet.js:278
+#. desklet.js:299
 msgid "GPU Memory"
 msgstr ""
 
 #. settings-schema.json->type->options
-#. desklet.js:290
+#. desklet.js:311
 msgid "Network"
 msgstr ""
 
-#. desklet.js:518 desklet.js:541
+#. settings-schema.json->type->options
+#. desklet.js:324
+msgid "Battery"
+msgstr ""
+
+#. desklet.js:327
+msgid "Fully charged"
+msgstr ""
+
+#. desklet.js:328
+msgid "Not charging"
+msgstr ""
+
+#. desklet.js:330
+msgid " hrs"
+msgstr ""
+
+#. desklet.js:551 desklet.js:574
 msgid "b"
 msgstr ""
 
-#. desklet.js:520 desklet.js:555 desklet.js:569
+#. desklet.js:553 desklet.js:588 desklet.js:602
 msgid "B"
 msgstr ""
 
-#. desklet.js:533
+#. desklet.js:566
 msgid "Gb"
 msgstr ""
 
-#. desklet.js:536
+#. desklet.js:569
 msgid "Mb"
 msgstr ""
 
-#. desklet.js:539
+#. desklet.js:572
 msgid "Kb"
 msgstr ""
 
-#. desklet.js:550
+#. desklet.js:583
 msgid "MB"
 msgstr ""
 
-#. desklet.js:553
+#. desklet.js:586
 msgid "KB"
 msgstr ""
 
-#. desklet.js:564
+#. desklet.js:597
 msgid "MiB"
 msgstr ""
 
-#. desklet.js:567
+#. desklet.js:600
 msgid "KiB"
 msgstr ""
 
-#. desklet.js:844 desklet.js:882
+#. desklet.js:877 desklet.js:915
 msgid "Error executing nvidia-smi command."
 msgstr ""
 
@@ -186,6 +203,14 @@ msgstr ""
 #. settings-schema.json->network-interface->tooltip
 msgid ""
 "Leave empty to monitor all interfaces combined. Examples: eth0, wlan0, enp0s3"
+msgstr ""
+
+#. settings-schema.json->battery-name->description
+msgid "Name of battery name to monitor"
+msgstr ""
+
+#. settings-schema.json->battery-name->tooltip
+msgid "Check battery name in /sys/class/power_supply/ Examples: BAT0, BAT1"
 msgstr ""
 
 #. settings-schema.json->filesystem->description
@@ -342,6 +367,7 @@ msgstr ""
 #. settings-schema.json->line-color-gpu->tooltip
 #. settings-schema.json->line-color-network-down->tooltip
 #. settings-schema.json->line-color-network-up->tooltip
+#. settings-schema.json->line-color-battery->tooltip
 msgid "RGB or RGBA. Alpha is ignored"
 msgstr ""
 
@@ -367,6 +393,10 @@ msgstr ""
 
 #. settings-schema.json->line-color-network-up->description
 msgid "Line color Network Upload"
+msgstr ""
+
+#. settings-schema.json->line-color-battery->description
+msgid "Line color Battery"
 msgstr ""
 
 #. settings-schema.json->midline-color->description

@@ -19,6 +19,17 @@ const KIB_TO_B = 1024;      // 1 KiB = 1,024 B
 const UUID = "system-monitor-graph@rcassani";
 const DESKLET_PATH = imports.ui.deskletManager.deskletMeta[UUID].path;
 
+// Borrowed from battery@schorschii
+const UPowerInterface = `<node>
+  <interface name="org.freedesktop.UPower.Device">
+    <property name="TimeToEmpty" type="x" access="read" />
+    <property name="TimeToFull" type="x" access="read" />
+  </interface>
+</node>`;
+
+const UPowerProxy = Gio.DBusProxy.makeProxyWrapper(UPowerInterface);
+const UPowerBusName = "org.freedesktop.UPower";
+
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
 function _(str) {
@@ -48,6 +59,7 @@ SystemMonitorGraph.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "data-prefix-gpumem", "data_prefix_gpumem", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "data-prefix-network", "data_prefix_network", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "network-interface", "network_interface", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "battery-name", "battery_name", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "filesystem", "filesystem", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "filesystem-label", "filesystem_label", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "gpu-manufacturer", "gpu_manufacturer", this.on_setting_changed);
@@ -68,6 +80,7 @@ SystemMonitorGraph.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-gpu", "line_color_gpu", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-network-down", "line_color_network_down", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-network-up", "line_color_network_up", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-battery", "line_color_battery", this.on_setting_changed);
 
         // initialize desklet GUI
         this.setupUI();
@@ -122,6 +135,11 @@ SystemMonitorGraph.prototype = {
             this.net_down_speed = 0;
             this.net_up_speed = 0;
             this.net_max_scale = 1; // Auto-scaling for network graph
+            // battery values
+            this.battery_percent  = NaN;
+            this.battery_capacity = NaN;
+            this.battery_status   = "";
+            this.battery_time     = "";
 
             // set colors
             switch (this.type) {
@@ -144,6 +162,9 @@ SystemMonitorGraph.prototype = {
                   this.line_color = this.line_color_network_down; // Use download color for border
                   this.line_color_down = this.line_color_network_down;
                   this.line_color_up = this.line_color_network_up;
+                  break;
+              case "battery":
+                  this.line_color = this.line_color_battery;
                   break;
             }
             this.first_run = false;
@@ -295,6 +316,18 @@ SystemMonitorGraph.prototype = {
               
               text2 = "";
               text3 = "↓ " + down_speed_formatted + "  ↑ " + up_speed_formatted;
+              break;
+
+          case "battery":
+              this.get_battery_use();
+              value = this.battery_capacity;
+              text1 = _("Battery");
+              text2 = this.battery_percent + "%";
+              let prefix = (this.battery_status == "Charging") ? "⚡ " : (this.battery_percent <= 20 ? "🪫 " : "🔋 ");
+              text3 = (this.battery_status == "Full") ? "🔋 " + _("Fully charged") :
+                (this.battery_status == "Not charging") ? "🔌 " + _("Not charging") :
+                (this.battery_status == "" || this.battery_status == "Unknown") ? "" :
+                prefix + this.battery_time + _(" hrs");
               break;
         }
 
@@ -963,6 +996,58 @@ SystemMonitorGraph.prototype = {
         }
         GLib.free(contents);
       });
-    }
+    },
+
+
+    get_battery_use: function() {
+        // Sysfs directory for battery info
+        let battery_dir = "/sys/class/power_supply/" + this.battery_name + "/";
+        // D-Bus object path for the battery device in the UPower daemon
+        let bus_path = "/org/freedesktop/UPower/devices/battery_" + this.battery_name;
+
+        // File capacity contains the battery charge percentage, integer number from 0 to 100
+        Gio.file_new_for_path(battery_dir + "capacity").load_contents_async(null, (file, response) => {
+            try {
+                let [success, contents, tag] = file.load_contents_finish(response);
+                if (success) {
+                    let percent = parseInt(ByteArray.toString(contents));
+                    this.battery_percent = percent >= 100 ? 100 : percent;
+                    this.battery_capacity = this.battery_percent / 100.0;
+                }
+                GLib.free(contents);
+            } catch(error) {
+                global.log('Battery capacity file read error: ' + error.toString());
+            }
+        });
+
+        // File status contains the battery charge status, string
+        Gio.file_new_for_path(battery_dir + "status").load_contents_async(null, (file, response) => {
+            try {
+                let [success, contents, tag] = file.load_contents_finish(response);
+                if (success) {
+                    this.battery_status = ByteArray.toString(contents).trim();
+                }
+                GLib.free(contents);
+            } catch(error) {
+                global.log('Battery status file read error: ' + error.toString());
+            }
+        });
+
+        try {
+            let upower_proxy = new UPowerProxy(Gio.DBus.system, UPowerBusName, bus_path);
+            let time_sec = (this.battery_status == "Charging") ? upower_proxy.TimeToFull : upower_proxy.TimeToEmpty;
+            this.battery_time = this.formatTime(time_sec);
+        } catch(error) {
+            global.log('Battery time file open error: ' + error.toString());
+        }
+    },
+
+    formatTime: function(timeSec) {
+        let totalMinutes = Math.round(timeSec / 60);
+        let minutes = String(Math.floor(totalMinutes % 60)).padStart(2, '0');
+        let hours = String(Math.floor(totalMinutes / 60)).padStart(2, '0');
+        let result = `${hours}:${minutes}`;
+        return (result == "00:00") ? "--:--" : result;
+	}
 
 };
