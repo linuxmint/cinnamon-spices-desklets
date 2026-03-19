@@ -16,6 +16,9 @@ const GIB_TO_MIB = 1024;    // 1 GiB = 1,042 MiB
 const KB_TO_B = 1000;       // 1 KB  = 1,000 B
 const KIB_TO_B = 1024;      // 1 KiB = 1,024 B
 
+const TEMP_C_MIN = 20;      // Minimum temperature
+const TEMP_C_MAX = 105;     // Maximum temperature
+
 const UUID = "system-monitor-graph@rcassani";
 const DESKLET_PATH = imports.ui.deskletManager.deskletMeta[UUID].path;
 
@@ -60,11 +63,14 @@ SystemMonitorGraph.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "data-prefix-network", "data_prefix_network", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "network-interface", "network_interface", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "battery-name", "battery_name", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "temperature-folder", "temperature_folder", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "temperature-file", "temperature_file", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "filesystem", "filesystem", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "filesystem-label", "filesystem_label", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "gpu-manufacturer", "gpu_manufacturer", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "gpu-variable", "gpu_variable", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "gpu-id", "gpu_id", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "temperature-scale", "temperature_scale", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refresh_interval", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "duration", "duration", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "background_color", this.on_setting_changed);
@@ -81,6 +87,7 @@ SystemMonitorGraph.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-network-down", "line_color_network_down", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-network-up", "line_color_network_up", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-battery", "line_color_battery", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-temperature", "line_color_temperature", this.on_setting_changed);
 
         // initialize desklet GUI
         this.setupUI();
@@ -140,6 +147,9 @@ SystemMonitorGraph.prototype = {
             this.battery_capacity = NaN;
             this.battery_status   = "";
             this.battery_time     = "";
+            // temperature values
+            this.temperature_normalized = 0;
+            this.temperature_celsius = TEMP_C_MIN;
 
             // set colors
             switch (this.type) {
@@ -165,6 +175,9 @@ SystemMonitorGraph.prototype = {
                   break;
               case "battery":
                   this.line_color = this.line_color_battery;
+                  break;
+              case "temperature":
+                  this.line_color = this.line_color_temperature;
                   break;
             }
             this.first_run = false;
@@ -328,6 +341,15 @@ SystemMonitorGraph.prototype = {
                 (this.battery_status == "Not charging") ? "🔌 " + _("Not charging") :
                 (this.battery_status == "" || this.battery_status == "Unknown") ? "" :
                 prefix + this.battery_time + _(" hrs");
+              break;
+
+          case "temperature":
+              this.get_temperature();
+              value = this.temperature_normalized;
+              text1 = _("Temperature");
+              let temperature = this.temperature_scale == 0 ? this.temperature_celsius : Math.round(this.temperature_celsius * 9 / 5 + 32);
+              text2 = temperature + (this.temperature_scale == 0 ? "°C" : "°F");
+              text3 = "";
               break;
         }
 
@@ -1048,6 +1070,28 @@ SystemMonitorGraph.prototype = {
         let hours = String(Math.floor(totalMinutes / 60)).padStart(2, '0');
         let result = `${hours}:${minutes}`;
         return (result == "00:00") ? "--:--" : result;
-	}
+	},
+
+	get_temperature: function() {
+        // Sysfs directory for temperature info
+        let temperature_dir = "/sys/class/hwmon/" + this.temperature_folder + "/";
+
+        // File contains temperature, integer number in celsius * 1000
+        Gio.file_new_for_path(temperature_dir + this.temperature_file).load_contents_async(null, (file, response) => {
+            try {
+                let [success, contents, tag] = file.load_contents_finish(response);
+                if (success) {
+                    let temp = parseInt(ByteArray.toString(contents)) / 1000;
+                    // We will show TEMP_C_MIN .. TEMP_C_MAX range for graph
+                    let temp_boxed = temp < TEMP_C_MIN ? TEMP_C_MIN : temp > TEMP_C_MAX ? TEMP_C_MAX :  temp;
+                    this.temperature_normalized = 1.0 * (temp_boxed - TEMP_C_MIN) / (TEMP_C_MAX - TEMP_C_MIN);
+                    this.temperature_celsius = Math.round(temp);
+                }
+                GLib.free(contents);
+            } catch(error) {
+                global.log('Temperature file read error: ' + error.toString());
+            }
+        });
+    },
 
 };
