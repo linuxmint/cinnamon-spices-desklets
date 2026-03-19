@@ -41,7 +41,7 @@ imports.searchPath.push(DESKLET_DIR + "/lib");
 
 // ── Gettext ───────────────────────────────────────────────────────────────
 // Cinnamon compiles and installs .mo files automatically on desklet install.
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
 
 function _(str) {
     if (!str) return "";
