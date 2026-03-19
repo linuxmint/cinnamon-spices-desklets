@@ -40,34 +40,8 @@ const DATA_DIR    = DESKLET_DIR + "/data/namedays";
 imports.searchPath.push(DESKLET_DIR + "/lib");
 
 // ── Gettext ───────────────────────────────────────────────────────────────
-// Copy bundled .mo files to ~/.local/share/locale/ so both the desklet JS
-// and Cinnamon's Python settings panel can find them (ExtensionCore.py only
-// looks in ~/.local/share/locale/, not in the desklet's own directory).
-(function _installLocale() {
-    let destBase = GLib.get_user_data_dir() + "/locale";
-    let srcBase  = Gio.File.new_for_path(DESKLET_DIR + "/locale");
-    srcBase.enumerate_children_async(
-        "standard::name,standard::type", 0, GLib.PRIORITY_DEFAULT, null,
-        function(src, result) {
-            try {
-                let iter = srcBase.enumerate_children_finish(result);
-                let info;
-                while ((info = iter.next_file(null)) !== null) {
-                    if (info.get_file_type() !== Gio.FileType.DIRECTORY) continue;
-                    let lang    = info.get_name();
-                    let srcFile = Gio.File.new_for_path(DESKLET_DIR + "/locale/" + lang + "/LC_MESSAGES/" + UUID + ".mo");
-                    let dstFile = Gio.File.new_for_path(destBase + "/" + lang + "/LC_MESSAGES/" + UUID + ".mo");
-                    try { dstFile.get_parent().make_directory_with_parents(null); } catch(e) {}
-                    try { srcFile.copy(dstFile, Gio.FileCopyFlags.OVERWRITE, null, null); } catch(e) {}
-                }
-            } catch(e) {
-                global.logError("Calendarium: locale install failed: " + e);
-            }
-        }
-    );
-})();
-
-Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
+// Cinnamon compiles and installs .mo files automatically on desklet install.
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 
 function _(str) {
     if (!str) return "";

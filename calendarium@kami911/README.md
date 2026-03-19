@@ -36,15 +36,23 @@ To add a new UI language:
 1. Create `po/XX.po` based on `po/calendarium@kami911.pot`
 2. Run `cinnamon-spices-makepot calendarium@kami911`
 
-## Extending Name Days
+## Contributing Name Days
 
-1. Create `files/calendarium@kami911/data/namedays/XX.json` with `{ "MM-DD": ["Name1"] }` format
-2. Add `"Language Name": "xx"` to the `nameday-locale` options in `settings-schema.json`
+To add name day data for a new language, open a pull request with:
 
-## Extending Traditional Month Names
+1. `files/calendarium@kami911/data/namedays/XX.json` — map of `"MM-DD": ["Name1", …]` entries
+2. A new option added to the `nameday-locale` key in `settings-schema.json`
 
-1. Add a new `xx: [...]` array to `Localization.TRADITIONAL_MONTHS` in `lib/localization.js`
-2. Add the option to `traditional-lang` in `settings-schema.json`
+> **Note:** Do not edit files inside the installed desklet directory directly — those changes will be overwritten the next time the desklet is updated.
+
+## Contributing Traditional Month Names
+
+To add traditional month names for a new language, open a pull request with:
+
+1. A new `xx: […]` array added to `Localization.TRADITIONAL_MONTHS` in `lib/localization.js`
+2. A new option added to the `traditional-lang` key in `settings-schema.json`
+
+> **Note:** Do not edit files inside the installed desklet directory directly — those changes will be overwritten the next time the desklet is updated.
 
 ## License
 
