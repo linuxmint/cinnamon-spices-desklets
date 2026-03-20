@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: system-monitor-graph@rcassani 2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-03-19 16:11+0200\n"
+"POT-Creation-Date: 2026-03-21 00:00+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,100 +17,103 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. settings-schema.json->type->options
-#. desklet.js:204
-msgid "CPU"
+#. desklet.js:217
+msgid "CPU Usage"
 msgstr ""
 
-#. desklet.js:215 desklet.js:233 desklet.js:253 desklet.js:294 desklet.js:580
+#. desklet.js:224
+msgid "CPU Temperature"
+msgstr ""
+
+#. desklet.js:239 desklet.js:257 desklet.js:277 desklet.js:318 desklet.js:604
 msgid "GB"
 msgstr ""
 
-#. desklet.js:218 desklet.js:236 desklet.js:256 desklet.js:297 desklet.js:594
+#. desklet.js:242 desklet.js:260 desklet.js:280 desklet.js:321 desklet.js:618
 msgid "GiB"
 msgstr ""
 
 #. settings-schema.json->type->options
-#. desklet.js:220
+#. desklet.js:244
 msgid "RAM"
 msgstr ""
 
 #. settings-schema.json->type->options
-#. desklet.js:238
+#. desklet.js:262
 msgid "Swap"
 msgstr ""
 
-#. desklet.js:261
+#. desklet.js:285
 msgid "free of"
 msgstr ""
 
-#. desklet.js:277
+#. desklet.js:301
 msgid "GPU Usage"
 msgstr ""
 
-#. desklet.js:299
+#. desklet.js:323
 msgid "GPU Memory"
 msgstr ""
 
 #. settings-schema.json->type->options
-#. desklet.js:311
+#. desklet.js:335
 msgid "Network"
 msgstr ""
 
 #. settings-schema.json->type->options
-#. desklet.js:324
+#. desklet.js:348
 msgid "Battery"
 msgstr ""
 
-#. desklet.js:327
+#. desklet.js:351
 msgid "Fully charged"
 msgstr ""
 
-#. desklet.js:328
+#. desklet.js:352
 msgid "Not charging"
 msgstr ""
 
-#. desklet.js:330
+#. desklet.js:354
 msgid " hrs"
 msgstr ""
 
-#. desklet.js:551 desklet.js:574
+#. desklet.js:575 desklet.js:598
 msgid "b"
 msgstr ""
 
-#. desklet.js:553 desklet.js:588 desklet.js:602
+#. desklet.js:577 desklet.js:612 desklet.js:626
 msgid "B"
 msgstr ""
 
-#. desklet.js:566
+#. desklet.js:590
 msgid "Gb"
 msgstr ""
 
-#. desklet.js:569
+#. desklet.js:593
 msgid "Mb"
 msgstr ""
 
-#. desklet.js:572
+#. desklet.js:596
 msgid "Kb"
 msgstr ""
 
-#. desklet.js:583
+#. desklet.js:607
 msgid "MB"
 msgstr ""
 
-#. desklet.js:586
+#. desklet.js:610
 msgid "KB"
 msgstr ""
 
-#. desklet.js:597
+#. desklet.js:621
 msgid "MiB"
 msgstr ""
 
-#. desklet.js:600
+#. desklet.js:624
 msgid "KiB"
 msgstr ""
 
-#. desklet.js:877 desklet.js:915
+#. desklet.js:901 desklet.js:939
 msgid "Error executing nvidia-smi command."
 msgstr ""
 
@@ -139,11 +142,48 @@ msgid "Select the system variable to monitor."
 msgstr ""
 
 #. settings-schema.json->type->options
+msgid "CPU"
+msgstr ""
+
+#. settings-schema.json->type->options
 msgid "HDD"
 msgstr ""
 
 #. settings-schema.json->type->options
 msgid "GPU"
+msgstr ""
+
+#. settings-schema.json->cpu-variable->description
+msgid "CPU variable to monitor"
+msgstr ""
+
+#. settings-schema.json->cpu-variable->tooltip
+msgid "Select the CPU variable to monitor."
+msgstr ""
+
+#. settings-schema.json->cpu-variable->options
+#. settings-schema.json->gpu-variable->options
+msgid "Usage"
+msgstr ""
+
+#. settings-schema.json->cpu-variable->options
+msgid "Temperature"
+msgstr ""
+
+#. settings-schema.json->temperature-scale->options
+msgid "°C"
+msgstr ""
+
+#. settings-schema.json->temperature-scale->options
+msgid "°F"
+msgstr ""
+
+#. settings-schema.json->temperature-scale->description
+msgid "Temperature scale"
+msgstr ""
+
+#. settings-schema.json->temperature-scale->tooltip
+msgid "Temperature scale for graph"
 msgstr ""
 
 #. settings-schema.json->data-prefix-ram->options
@@ -259,10 +299,6 @@ msgstr ""
 
 #. settings-schema.json->gpu-variable->tooltip
 msgid "Select the GPU variable to monitor."
-msgstr ""
-
-#. settings-schema.json->gpu-variable->options
-msgid "Usage"
 msgstr ""
 
 #. settings-schema.json->gpu-variable->options

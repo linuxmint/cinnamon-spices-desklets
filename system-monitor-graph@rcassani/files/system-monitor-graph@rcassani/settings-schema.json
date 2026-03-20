@@ -23,6 +23,28 @@
             "Battery" : "battery"
         }
     },
+    "cpu-variable": {
+        "type": "combobox",
+        "default": "usage",
+        "description": "CPU variable to monitor",
+        "tooltip": "Select the CPU variable to monitor.",
+        "options" : {
+            "Usage"  : "usage",
+            "Temperature" : "temperature"
+        },
+        "dependency": "type=cpu"
+    },
+    "temperature-scale": {
+        "type": "combobox",
+        "default": 0,
+        "options": {
+            "°C" : 0,
+            "°F" : 1
+        },
+        "description": "Temperature scale",
+        "tooltip": "Temperature scale for graph",
+        "dependency": "type=cpu"
+    },
     "data-prefix-ram": {
         "type": "combobox",
         "default": 0,

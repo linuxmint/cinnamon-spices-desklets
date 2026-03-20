@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: system-monitor-graph@rcassani 2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-03-19 16:11+0200\n"
+"POT-Creation-Date: 2026-03-21 00:00+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
 "Language-Team: \n"
@@ -18,100 +18,105 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#. settings-schema.json->type->options
-#. desklet.js:204
-msgid "CPU"
-msgstr "CPU"
+#. desklet.js:217
+#, fuzzy
+msgid "CPU Usage"
+msgstr "Sử dụng GPU"
 
-#. desklet.js:215 desklet.js:233 desklet.js:253 desklet.js:294 desklet.js:580
+#. desklet.js:224
+#, fuzzy
+msgid "CPU Temperature"
+msgstr "Màu đường Swap"
+
+#. desklet.js:239 desklet.js:257 desklet.js:277 desklet.js:318 desklet.js:604
 msgid "GB"
 msgstr "GB"
 
-#. desklet.js:218 desklet.js:236 desklet.js:256 desklet.js:297 desklet.js:594
+#. desklet.js:242 desklet.js:260 desklet.js:280 desklet.js:321 desklet.js:618
 msgid "GiB"
 msgstr "GiB"
 
 #. settings-schema.json->type->options
-#. desklet.js:220
+#. desklet.js:244
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#. desklet.js:238
+#. desklet.js:262
 msgid "Swap"
 msgstr "Swap"
 
-#. desklet.js:261
+#. desklet.js:285
 msgid "free of"
 msgstr "trống trong"
 
-#. desklet.js:277
+#. desklet.js:301
 msgid "GPU Usage"
 msgstr "Sử dụng GPU"
 
-#. desklet.js:299
+#. desklet.js:323
 msgid "GPU Memory"
 msgstr "Bộ nhớ GPU"
 
 #. settings-schema.json->type->options
-#. desklet.js:311
+#. desklet.js:335
 msgid "Network"
 msgstr "Mạng"
 
 #. settings-schema.json->type->options
-#. desklet.js:324
+#. desklet.js:348
 msgid "Battery"
 msgstr ""
 
-#. desklet.js:327
+#. desklet.js:351
 msgid "Fully charged"
 msgstr ""
 
-#. desklet.js:328
+#. desklet.js:352
 msgid "Not charging"
 msgstr ""
 
-#. desklet.js:330
+#. desklet.js:354
 msgid " hrs"
 msgstr ""
 
-#. desklet.js:551 desklet.js:574
+#. desklet.js:575 desklet.js:598
 msgid "b"
 msgstr "b"
 
-#. desklet.js:553 desklet.js:588 desklet.js:602
+#. desklet.js:577 desklet.js:612 desklet.js:626
 msgid "B"
 msgstr "B"
 
-#. desklet.js:566
+#. desklet.js:590
 msgid "Gb"
 msgstr "Gb"
 
-#. desklet.js:569
+#. desklet.js:593
 msgid "Mb"
 msgstr "Mb"
 
-#. desklet.js:572
+#. desklet.js:596
 msgid "Kb"
 msgstr "Kb"
 
-#. desklet.js:583
+#. desklet.js:607
 msgid "MB"
 msgstr "MB"
 
-#. desklet.js:586
+#. desklet.js:610
 msgid "KB"
 msgstr "KB"
 
-#. desklet.js:597
+#. desklet.js:621
 msgid "MiB"
 msgstr "MiB"
 
-#. desklet.js:600
+#. desklet.js:624
 msgid "KiB"
 msgstr "KiB"
 
-#. desklet.js:877 desklet.js:915
+#. desklet.js:901 desklet.js:939
 msgid "Error executing nvidia-smi command."
 msgstr "Lỗi thực thi lệnh nvidia-smi."
 
@@ -140,12 +145,52 @@ msgid "Select the system variable to monitor."
 msgstr "Chọn biến hệ thống để giám sát."
 
 #. settings-schema.json->type->options
+msgid "CPU"
+msgstr "CPU"
+
+#. settings-schema.json->type->options
 msgid "HDD"
 msgstr "HDD"
 
 #. settings-schema.json->type->options
 msgid "GPU"
 msgstr "GPU"
+
+#. settings-schema.json->cpu-variable->description
+#, fuzzy
+msgid "CPU variable to monitor"
+msgstr "Biến GPU để giám sát"
+
+#. settings-schema.json->cpu-variable->tooltip
+#, fuzzy
+msgid "Select the CPU variable to monitor."
+msgstr "Chọn biến GPU để giám sát."
+
+#. settings-schema.json->cpu-variable->options
+#. settings-schema.json->gpu-variable->options
+msgid "Usage"
+msgstr "Sử dụng"
+
+#. settings-schema.json->cpu-variable->options
+msgid "Temperature"
+msgstr ""
+
+#. settings-schema.json->temperature-scale->options
+msgid "°C"
+msgstr ""
+
+#. settings-schema.json->temperature-scale->options
+msgid "°F"
+msgstr ""
+
+#. settings-schema.json->temperature-scale->description
+msgid "Temperature scale"
+msgstr ""
+
+#. settings-schema.json->temperature-scale->tooltip
+#, fuzzy
+msgid "Temperature scale for graph"
+msgstr "Biến hệ thống cho biểu đồ"
 
 #. settings-schema.json->data-prefix-ram->options
 #. settings-schema.json->data-prefix-swap->options
@@ -263,10 +308,6 @@ msgstr "Biến GPU để giám sát"
 #. settings-schema.json->gpu-variable->tooltip
 msgid "Select the GPU variable to monitor."
 msgstr "Chọn biến GPU để giám sát."
-
-#. settings-schema.json->gpu-variable->options
-msgid "Usage"
-msgstr "Sử dụng"
 
 #. settings-schema.json->gpu-variable->options
 msgid "Memory"
