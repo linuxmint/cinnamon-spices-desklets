@@ -20,9 +20,30 @@
             "HDD" : "hdd",
             "GPU" : "gpu",
             "Network" : "network",
-            "Battery" : "battery",
-            "Temperature" : "temperature"
+            "Battery" : "battery"
         }
+    },
+    "cpu-variable": {
+        "type": "combobox",
+        "default": "usage",
+        "description": "CPU variable to monitor",
+        "tooltip": "Select the CPU variable to monitor.",
+        "options" : {
+            "Usage"  : "usage",
+            "Temperature" : "temperature"
+        },
+        "dependency": "type=cpu"
+    },
+    "temperature-scale": {
+        "type": "combobox",
+        "default": 0,
+        "options": {
+            "°C" : 0,
+            "°F" : 1
+        },
+        "description": "Temperature scale",
+        "tooltip": "Temperature scale for graph",
+        "dependency": "type=cpu"
     },
     "data-prefix-ram": {
         "type": "combobox",
@@ -83,20 +104,6 @@
         "tooltip": "Check battery name in /sys/class/power_supply/ Examples: BAT0, BAT1",
         "dependency": "type=battery"
     },
-    "temperature-folder": {
-        "type": "entry",
-        "default": "hwmon1",
-        "description": "Name of hwmon* subfolder to monitor",
-        "tooltip": "Check hwmon* subfolder name in /sys/class/hwmon/ Examples: hwmon1, hwmon4",
-        "dependency": "type=temperature"
-    },
-    "temperature-file": {
-        "type": "entry",
-        "default": "temp1_input",
-        "description": "Name of temp*_input to monitor",
-        "tooltip": "Check temp*_input name in /sys/class/thermal/hwmon*/ Examples: temp0_input, temp1_input",
-        "dependency": "type=temperature"
-    },
     "filesystem": {
         "type": "filechooser",
         "default": "file:///",
@@ -152,17 +159,6 @@
         "description": "Prefix for data units",
         "tooltip": "Unit prefix for GPU memory size.",
         "dependency": "type=gpu"
-    },
-    "temperature-scale": {
-        "type": "combobox",
-        "default": 0,
-        "options": {
-            "°C" : 0,
-            "°F" : 1
-        },
-        "description": "Temperature scale",
-        "tooltip": "Temperature scale for graph",
-        "dependency": "type=temperature"
     },
     "duration": {
         "type": "combobox",
@@ -265,13 +261,6 @@
         "default": "rgba(255,204,0,1.0)",
         "description": "Line color Battery",
         "dependency": "type=battery",
-        "tooltip": "RGB or RGBA. Alpha is ignored"
-    },
-    "line-color-temperature": {
-        "type": "colorchooser",
-        "default": "rgba(255,51,51,1.0)",
-        "description": "Line color Temperature",
-        "dependency": "type=temperature",
         "tooltip": "RGB or RGBA. Alpha is ignored"
     },
     "midline-color": {

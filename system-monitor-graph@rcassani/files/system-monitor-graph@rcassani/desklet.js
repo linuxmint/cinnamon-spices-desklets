@@ -56,6 +56,8 @@ SystemMonitorGraph.prototype = {
         // initialize settings
         this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
         this.settings.bindProperty(Settings.BindingDirection.IN, "type", "type", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "cpu-variable", "cpu_variable", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "temperature-scale", "temperature_scale", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "data-prefix-ram", "data_prefix_ram", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "data-prefix-swap", "data_prefix_swap", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "data-prefix-hdd", "data_prefix_hdd", this.on_setting_changed);
@@ -63,14 +65,11 @@ SystemMonitorGraph.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "data-prefix-network", "data_prefix_network", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "network-interface", "network_interface", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "battery-name", "battery_name", this.on_setting_changed);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "temperature-folder", "temperature_folder", this.on_setting_changed);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "temperature-file", "temperature_file", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "filesystem", "filesystem", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "filesystem-label", "filesystem_label", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "gpu-manufacturer", "gpu_manufacturer", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "gpu-variable", "gpu_variable", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "gpu-id", "gpu_id", this.on_setting_changed);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "temperature-scale", "temperature_scale", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refresh_interval", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "duration", "duration", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "background_color", this.on_setting_changed);
@@ -87,7 +86,9 @@ SystemMonitorGraph.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-network-down", "line_color_network_down", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-network-up", "line_color_network_up", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-battery", "line_color_battery", this.on_setting_changed);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-temperature", "line_color_temperature", this.on_setting_changed);
+
+        // initialize files path
+        this.cpu_temperature_file = this.get_cpu_temperature_file();
 
         // initialize desklet GUI
         this.setupUI();
@@ -176,9 +177,6 @@ SystemMonitorGraph.prototype = {
               case "battery":
                   this.line_color = this.line_color_battery;
                   break;
-              case "temperature":
-                  this.line_color = this.line_color_temperature;
-                  break;
             }
             this.first_run = false;
         }
@@ -212,10 +210,23 @@ SystemMonitorGraph.prototype = {
         // current values
         switch (this.type) {
           case "cpu":
-              this.get_cpu_use();
-              value = this.cpu_use / 100;
-              text1 = _("CPU");
-              text2 = Math.round(this.cpu_use).toString() + "%";
+              switch (this.cpu_variable) {
+                  case "usage":
+                      this.get_cpu_use();
+                      value = this.cpu_use / 100;
+                      text1 = _("CPU Usage");
+                      text2 = Math.round(this.cpu_use).toString() + "%";
+                      break;
+
+                  case "temperature":
+                      this.get_temperature(this.cpu_temperature_file);
+                      value = this.temperature_normalized;
+                      text1 = _("CPU Temperature");
+                      let temperature = this.temperature_scale == 0 ? this.temperature_celsius : Math.round(this.temperature_celsius * 9 / 5 + 32);
+                      text2 = temperature + (this.temperature_scale == 0 ? "°C" : "°F");
+                      break;
+              }
+
               break;
 
           case "ram":
@@ -341,15 +352,6 @@ SystemMonitorGraph.prototype = {
                 (this.battery_status == "Not charging") ? "🔌 " + _("Not charging") :
                 (this.battery_status == "" || this.battery_status == "Unknown") ? "" :
                 prefix + this.battery_time + _(" hrs");
-              break;
-
-          case "temperature":
-              this.get_temperature();
-              value = this.temperature_normalized;
-              text1 = _("Temperature");
-              let temperature = this.temperature_scale == 0 ? this.temperature_celsius : Math.round(this.temperature_celsius * 9 / 5 + 32);
-              text2 = temperature + (this.temperature_scale == 0 ? "°C" : "°F");
-              text3 = "";
               break;
         }
 
@@ -1072,12 +1074,9 @@ SystemMonitorGraph.prototype = {
         return (result == "00:00") ? "--:--" : result;
 	},
 
-	get_temperature: function() {
-        // Sysfs directory for temperature info
-        let temperature_dir = "/sys/class/hwmon/" + this.temperature_folder + "/";
-
+    get_temperature: function(temperature_file) {
         // File contains temperature, integer number in celsius * 1000
-        Gio.file_new_for_path(temperature_dir + this.temperature_file).load_contents_async(null, (file, response) => {
+        Gio.file_new_for_path(temperature_file).load_contents_async(null, (file, response) => {
             try {
                 let [success, contents, tag] = file.load_contents_finish(response);
                 if (success) {
@@ -1094,4 +1093,24 @@ SystemMonitorGraph.prototype = {
         });
     },
 
+    get_temperature_file_by_label: function(label) {
+        // Sysfs directory for temperature info
+        let temp_file = "sh -c \"grep -s -l -d skip '" + label +"' /sys/class/hwmon/*/temp*_label | sed 's/_label/_input/' | head -n 1\"";
+
+        try {
+            let [success, stdout, stderr, exit_status] = GLib.spawn_command_line_sync(temp_file);
+            if ((success && exit_status === 0) && stdout.length > 0) return ByteArray.toString(stdout).trim();
+        } catch (error) {
+            global.log('Temperature file search error: ' + error.toString());
+        }
+        return ""
+    },
+
+    get_cpu_temperature_file: function() {
+        // Try Intel first
+        let cpu_temp_file = this.get_temperature_file_by_label('Package id 0');
+        // Try AMD next
+        if (cpu_temp_file === "") cpu_temp_file = this.get_temperature_file_by_label('Tctl');
+        return cpu_temp_file;
+    },
 };
