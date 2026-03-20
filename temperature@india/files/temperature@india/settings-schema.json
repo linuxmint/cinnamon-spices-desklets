@@ -1,18 +1,8 @@
 {
-    "layout": {
-        "type": "layout",
-        "pages": ["page1"]
-    },
-    "page1": {
-        "type": "page",
-        "title": "Temperature Settings",
-        "sections": ["section_appearance"]
-    },
-    "section_appearance": {
-        "type": "section",
-        "title": "Appearance & Performance",
-        "keys": ["text-color", "text-size", "scale-size", "update-interval"]
-    },
+    "head0": {
+    "type": "header",
+    "description": "Style"
+  },
     "text-color": {
     	"type": "colorchooser",
         "default": "rgba(0,0,0,1)",
@@ -22,7 +12,7 @@
     	"type": "spinbutton",
     	"default": 12,
     	"min": 8,
-    	"max": 30,
+    	"max": 20,
     	"step": 1,
     	"description": "Text font size",
     	"tooltip": "Adjust for text size"

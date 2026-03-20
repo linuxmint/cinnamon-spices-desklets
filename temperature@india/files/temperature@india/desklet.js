@@ -30,11 +30,11 @@ MyDesklet.prototype = {
         this.sensorsPath = '/usr/bin/sensors';
 
         let desklet_path = GLib.get_user_data_dir() + "/cinnamon/desklets/" + this.metadata["uuid"];
-        let img_path = desklet_path + "/img/thermometer.svg";
+        this.img_path = desklet_path + "/img/thermometer.svg";
         this.mercury_img_path = desklet_path + "/img/mercury.svg"; 
         
         this.mainContainer = new St.Widget({ 
-            style: `background-image: url('${img_path}'); 
+            style: `background-image: url('${this.img_path}'); 
                     background-size: 50px 500px; 
                     background-repeat: no-repeat; 
                     background-position: 0px 0px; 
@@ -107,7 +107,7 @@ MyDesklet.prototype = {
         let maxHeight = 400 * scale; 
         let width = 250 * scale;
         let fontSize = this.text_size || 14;
-        let fontColor = this.text_color || white;
+        let fontColor = this.text_color || 'white';
         let upperOffset = 30;
         let startY = 30; 
         let scaleX = 50 * scale; 
@@ -160,7 +160,17 @@ MyDesklet.prototype = {
         //let mercuryX = 32 * scale; // Tweak this to move left/right into the tube
         let mercuryFillHeight = mercuryPercentage * maxHeight;
         let mercuryY = upperOffset + maxHeight - mercuryFillHeight;
-
+	
+	let thermo_height = 500 * scale;
+        let thermo_width = 50 * scale;
+        this.mainContainer.set_size(thermo_width, thermo_height);
+       	this.mainContainer.set_style(`
+        	background-image: url('${this.img_path}'); 
+                background-size: ${thermo_width}px ${thermo_height}px; 
+                background-repeat: no-repeat; 
+                background-position: bottom; 
+                `);
+        
         // Setup Mercury Widget
         this.mercuryWidget.set_size(mercuryWidth, mercuryFillHeight);
         this.mercuryWidget.set_position(23*scale, mercuryY);
