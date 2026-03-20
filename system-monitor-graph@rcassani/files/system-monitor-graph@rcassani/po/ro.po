@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-03-20 01:55+0200\n"
+"POT-Creation-Date: 2026-03-21 00:00+0200\n"
 "PO-Revision-Date: 2022-04-17 23:21+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -19,108 +19,108 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
 
-#. settings-schema.json->type->options
 #. desklet.js:217
-msgid "CPU"
-msgstr "CPU"
+#, fuzzy
+msgid "CPU Usage"
+msgstr "Utilizare GPU"
 
-#. desklet.js:228 desklet.js:246 desklet.js:266 desklet.js:307 desklet.js:602
+#. desklet.js:224
+#, fuzzy
+msgid "CPU Temperature"
+msgstr "Culoarea liniei Swap"
+
+#. desklet.js:239 desklet.js:257 desklet.js:277 desklet.js:318 desklet.js:604
 msgid "GB"
 msgstr "GB"
 
-#. desklet.js:231 desklet.js:249 desklet.js:269 desklet.js:310 desklet.js:616
+#. desklet.js:242 desklet.js:260 desklet.js:280 desklet.js:321 desklet.js:618
 msgid "GiB"
 msgstr "GiB"
 
 #. settings-schema.json->type->options
-#. desklet.js:233
+#. desklet.js:244
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#. desklet.js:251
+#. desklet.js:262
 msgid "Swap"
 msgstr "Schimbă"
 
-#. desklet.js:274
+#. desklet.js:285
 msgid "free of"
 msgstr "liber din"
 
-#. desklet.js:290
+#. desklet.js:301
 msgid "GPU Usage"
 msgstr "Utilizare GPU"
 
-#. desklet.js:312
+#. desklet.js:323
 msgid "GPU Memory"
 msgstr "Memorie GPU"
 
 #. settings-schema.json->type->options
-#. desklet.js:324
+#. desklet.js:335
 msgid "Network"
 msgstr ""
 
 #. settings-schema.json->type->options
-#. desklet.js:337
+#. desklet.js:348
 msgid "Battery"
 msgstr ""
 
-#. desklet.js:340
+#. desklet.js:351
 msgid "Fully charged"
 msgstr ""
 
-#. desklet.js:341
+#. desklet.js:352
 msgid "Not charging"
 msgstr ""
 
-#. desklet.js:343
+#. desklet.js:354
 msgid " hrs"
 msgstr ""
 
-#. settings-schema.json->type->options
-#. desklet.js:349
-msgid "Temperature"
-msgstr ""
-
-#. desklet.js:573 desklet.js:596
+#. desklet.js:575 desklet.js:598
 msgid "b"
 msgstr ""
 
-#. desklet.js:575 desklet.js:610 desklet.js:624
+#. desklet.js:577 desklet.js:612 desklet.js:626
 #, fuzzy
 msgid "B"
 msgstr "GB"
 
-#. desklet.js:588
+#. desklet.js:590
 msgid "Gb"
 msgstr ""
 
-#. desklet.js:591
+#. desklet.js:593
 msgid "Mb"
 msgstr ""
 
-#. desklet.js:594
+#. desklet.js:596
 msgid "Kb"
 msgstr ""
 
-#. desklet.js:605
+#. desklet.js:607
 msgid "MB"
 msgstr ""
 
-#. desklet.js:608
+#. desklet.js:610
 msgid "KB"
 msgstr ""
 
-#. desklet.js:619
+#. desklet.js:621
 #, fuzzy
 msgid "MiB"
 msgstr "GiB"
 
-#. desklet.js:622
+#. desklet.js:624
 #, fuzzy
 msgid "KiB"
 msgstr "GiB"
 
-#. desklet.js:899 desklet.js:937
+#. desklet.js:901 desklet.js:939
 msgid "Error executing nvidia-smi command."
 msgstr ""
 
@@ -149,12 +149,52 @@ msgid "Select the system variable to monitor."
 msgstr "Selectează variabila de sistem care urmează să fie monitorizată."
 
 #. settings-schema.json->type->options
+msgid "CPU"
+msgstr "CPU"
+
+#. settings-schema.json->type->options
 msgid "HDD"
 msgstr "HDD"
 
 #. settings-schema.json->type->options
 msgid "GPU"
 msgstr "GPU"
+
+#. settings-schema.json->cpu-variable->description
+#, fuzzy
+msgid "CPU variable to monitor"
+msgstr "Variabila GPU de monitorizat"
+
+#. settings-schema.json->cpu-variable->tooltip
+#, fuzzy
+msgid "Select the CPU variable to monitor."
+msgstr "Selectează variabila GPU care urmează să fie monitorizată."
+
+#. settings-schema.json->cpu-variable->options
+#. settings-schema.json->gpu-variable->options
+msgid "Usage"
+msgstr "Utilizare"
+
+#. settings-schema.json->cpu-variable->options
+msgid "Temperature"
+msgstr ""
+
+#. settings-schema.json->temperature-scale->options
+msgid "°C"
+msgstr ""
+
+#. settings-schema.json->temperature-scale->options
+msgid "°F"
+msgstr ""
+
+#. settings-schema.json->temperature-scale->description
+msgid "Temperature scale"
+msgstr ""
+
+#. settings-schema.json->temperature-scale->tooltip
+#, fuzzy
+msgid "Temperature scale for graph"
+msgstr "Variabilă de sistem pentru grafic"
 
 #. settings-schema.json->data-prefix-ram->options
 #. settings-schema.json->data-prefix-swap->options
@@ -225,27 +265,6 @@ msgstr "Selectează variabila GPU care urmează să fie monitorizată."
 msgid "Check battery name in /sys/class/power_supply/ Examples: BAT0, BAT1"
 msgstr ""
 
-#. settings-schema.json->temperature-folder->description
-#, fuzzy
-msgid "Name of hwmon* subfolder to monitor"
-msgstr "Selectează variabila GPU care urmează să fie monitorizată."
-
-#. settings-schema.json->temperature-folder->tooltip
-msgid ""
-"Check hwmon* subfolder name in /sys/class/hwmon/ Examples: hwmon1, hwmon4"
-msgstr ""
-
-#. settings-schema.json->temperature-file->description
-#, fuzzy
-msgid "Name of temp*_input to monitor"
-msgstr "Selectează variabila GPU care urmează să fie monitorizată."
-
-#. settings-schema.json->temperature-file->tooltip
-msgid ""
-"Check temp*_input name in /sys/class/thermal/hwmon*/ Examples: temp0_input, "
-"temp1_input"
-msgstr ""
-
 #. settings-schema.json->filesystem->description
 msgid "Filesystem to monitor"
 msgstr "Sistemul de fișiere de monitorizat"
@@ -297,33 +316,12 @@ msgid "Select the GPU variable to monitor."
 msgstr "Selectează variabila GPU care urmează să fie monitorizată."
 
 #. settings-schema.json->gpu-variable->options
-msgid "Usage"
-msgstr "Utilizare"
-
-#. settings-schema.json->gpu-variable->options
 msgid "Memory"
 msgstr "Memorie"
 
 #. settings-schema.json->data-prefix-gpumem->tooltip
 msgid "Unit prefix for GPU memory size."
 msgstr ""
-
-#. settings-schema.json->temperature-scale->options
-msgid "°C"
-msgstr ""
-
-#. settings-schema.json->temperature-scale->options
-msgid "°F"
-msgstr ""
-
-#. settings-schema.json->temperature-scale->description
-msgid "Temperature scale"
-msgstr ""
-
-#. settings-schema.json->temperature-scale->tooltip
-#, fuzzy
-msgid "Temperature scale for graph"
-msgstr "Variabilă de sistem pentru grafic"
 
 #. settings-schema.json->duration->description
 msgid "Duration of the graph"
@@ -420,7 +418,6 @@ msgstr "Culoarea liniei CPU"
 #. settings-schema.json->line-color-network-down->tooltip
 #. settings-schema.json->line-color-network-up->tooltip
 #. settings-schema.json->line-color-battery->tooltip
-#. settings-schema.json->line-color-temperature->tooltip
 msgid "RGB or RGBA. Alpha is ignored"
 msgstr "RGB sau RGBA. Alpha este ignorat."
 
@@ -453,11 +450,6 @@ msgstr "Culoarea liniei Swap"
 #. settings-schema.json->line-color-battery->description
 #, fuzzy
 msgid "Line color Battery"
-msgstr "Culoarea liniei Swap"
-
-#. settings-schema.json->line-color-temperature->description
-#, fuzzy
-msgid "Line color Temperature"
 msgstr "Culoarea liniei Swap"
 
 #. settings-schema.json->midline-color->description
