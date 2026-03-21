@@ -1,0 +1,156 @@
+# Cinnaclock Desklet
+# Copyright (C) 2024
+# This file is distributed under the same license as the Cinnaclock package.
+# DINGO <c.giordano@etik.com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Cinnaclock\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-20 12:00+0100\n"
+"PO-Revision-Date: 2024-05-20 13:00+0100\n"
+"Last-Translator: DINGO <c.giordano@etik.com>\n"
+"Language: it\n"
+"Language-Team: Italian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.x\n"
+
+#. settings-schema.json->pages
+msgid "General"
+msgstr "Generale"
+
+msgid "Layer 1"
+msgstr "Livello 1"
+
+msgid "Layer 2"
+msgstr "Livello 2"
+
+msgid "Layer 3"
+msgstr "Livello 3"
+
+#. settings-schema.json->sections
+msgid "Format Style"
+msgstr "Stile del Formato"
+
+msgid "Background Style"
+msgstr "Stile dello Sfondo"
+
+msgid "Text Style"
+msgstr "Stile del Testo"
+
+msgid "Shadow"
+msgstr "Ombra"
+
+#. settings-schema.json->descriptions
+msgid "Show background"
+msgstr "Mostra sfondo"
+
+msgid "Background Color"
+msgstr "Colore sfondo"
+
+msgid "Corner Radius"
+msgstr "Raggio degli angoli"
+
+msgid "Show Layer 1"
+msgstr "Mostra il Livello 1"
+
+msgid "Show Layer 2"
+msgstr "Mostra il Livello 2"
+
+msgid "Show Layer 3"
+msgstr "Mostra il Livello 3"
+
+msgid "Layer 1 Format"
+msgstr "Formato Livello 1"
+
+msgid "Layer 2 Format"
+msgstr "Formato Livello 2"
+
+msgid "Layer 3 Format"
+msgstr "Formato Livello 3"
+
+msgid "Layer 1 Vertical Offset"
+msgstr "Offset verticale Livello 1"
+
+msgid "Layer 2 Vertical Offset"
+msgstr "Offset verticale Livello 2"
+
+msgid "Layer 3 Vertical Offset"
+msgstr "Offset verticale Livello 3"
+
+msgid "Layer 1 Horizontal Offset"
+msgstr "Offset orizzontale Livello 1"
+
+msgid "Layer 2 Horizontal Offset"
+msgstr "Offset orizzontale Livello 2"
+
+msgid "Layer 3 Horizontal Offset"
+msgstr "Offset orizzontale Livello 3"
+
+msgid "Font"
+msgstr "Carattere"
+
+msgid "Color"
+msgstr "Colore"
+
+msgid "Uppercase"
+msgstr "Tutto maiuscolo"
+
+msgid "Horizontal offset"
+msgstr "Spostamento orizzontale"
+
+msgid "Vertical offset"
+msgstr "Spostamento verticale"
+
+msgid "Blur"
+msgstr "Sfocatura"
+
+msgid "Select a Preset"
+msgstr "Seleziona un preset"
+
+#. settings-schema.json->options (Select a Preset)
+msgid "Manual"
+msgstr "Manuale"
+
+msgid "Modern Blue"
+msgstr "Modern Blue"
+
+msgid "Clear Orange"
+msgstr "Clear Orange"
+
+msgid "Digital Neon"
+msgstr "Digital Neon"
+
+msgid "MX"
+msgstr "MX"
+
+msgid "Minimal Dark"
+msgstr "Minimal Scuro"
+
+msgid "Minimal White"
+msgstr "Minimal Bianco"
+
+msgid "Phantom"
+msgstr "Phantom"
+
+msgid "Cyberpunk"
+msgstr "Cyberpunk"
+
+#. settings-schema.json->tooltips
+msgid "Set the background color and transparency of the desklet"
+msgstr "Imposta il colore di sfondo e la trasparenza della desklet"
+
+msgid "Example: %H:%M for 24h"
+msgstr "Esempio: %H:%M per il formato 24h"
+
+msgid "Example: %A for full weekday name"
+msgstr "Esempio: %A per il nome completo del giorno"
+
+msgid "Example: %e %B %Y"
+msgstr "Esempio: %e %B %Y"
+
+#. desklet.js
+msgid "Edit Config"
+msgstr "Modifica la Configurazione"
