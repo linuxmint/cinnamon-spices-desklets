@@ -109,96 +109,95 @@ CalendariumDesklet.prototype = {
     _bindAllSettings: function(desklet_id) {
         this.settings = new Settings.DeskletSettings(this, UUID, desklet_id);
         let s  = this.settings;
-        let IN = Settings.BindingDirection.IN;
         let cb = () => this._onSettingChanged();
 
         // Date & Time
-        s.bindProperty(IN, "show-date",          "show_date",          cb);
-        s.bindProperty(IN, "date-format-preset", "date_format_preset", cb);
-        s.bindProperty(IN, "date-format-custom", "date_format_custom", cb);
-        s.bindProperty(IN, "show-time",          "show_time",          cb);
-        s.bindProperty(IN, "time-format",        "time_format",        cb);
-        s.bindProperty(IN, "show-seconds",       "show_seconds",       cb);
+        s.bind("show-date",          "show_date",          cb);
+        s.bind("date-format-preset", "date_format_preset", cb);
+        s.bind("date-format-custom", "date_format_custom", cb);
+        s.bind("show-time",          "show_time",          cb);
+        s.bind("time-format",        "time_format",        cb);
+        s.bind("show-seconds",       "show_seconds",       cb);
 
         // Calendar progress
-        s.bindProperty(IN, "show-day-of-year",    "show_day_of_year",    cb);
-        s.bindProperty(IN, "show-week-number",    "show_week_number",    cb);
-        s.bindProperty(IN, "show-month-progress", "show_month_progress", cb);
-        s.bindProperty(IN, "progress-separator",  "progress_separator",  cb);
+        s.bind("show-day-of-year",    "show_day_of_year",    cb);
+        s.bind("show-week-number",    "show_week_number",    cb);
+        s.bind("show-month-progress", "show_month_progress", cb);
+        s.bind("progress-separator",  "progress_separator",  cb);
 
         // Traditional month names
-        s.bindProperty(IN, "show-traditional", "show_traditional", cb);
-        s.bindProperty(IN, "traditional-lang", "traditional_lang", cb);
+        s.bind("show-traditional", "show_traditional", cb);
+        s.bind("traditional-lang", "traditional_lang", cb);
 
         // Moon
-        s.bindProperty(IN, "show-moon",      "show_moon",      cb);
-        s.bindProperty(IN, "show-moon-name", "show_moon_name", cb);
-        s.bindProperty(IN, "show-moon-age",  "show_moon_age",  cb);
+        s.bind("show-moon",      "show_moon",      cb);
+        s.bind("show-moon-name", "show_moon_name", cb);
+        s.bind("show-moon-age",  "show_moon_age",  cb);
 
         // Sun
-        s.bindProperty(IN, "show-sun", "show_sun", cb);
+        s.bind("show-sun", "show_sun", cb);
 
         // Location
-        s.bindProperty(IN, "use-manual-location", "use_manual_location", cb);
-        s.bindProperty(IN, "location-search",  "location_search",
+        s.bind("use-manual-location", "use_manual_location", cb);
+        s.bind("location-search",  "location_search",
             () => this._onLocationSearchChanged());
-        s.bindProperty(IN, "latitude",             "latitude",            cb);
-        s.bindProperty(IN, "longitude",            "longitude",           cb);
-        s.bindProperty(IN, "city1-name", "city1_name",
+        s.bind("latitude",             "latitude",            cb);
+        s.bind("longitude",            "longitude",           cb);
+        s.bind("city1-name", "city1_name",
             () => this._onCityNameChanged(1));
-        s.bindProperty(IN, "city1-lat",  "city1_lat",  cb);
-        s.bindProperty(IN, "city1-lon",  "city1_lon",  cb);
-        s.bindProperty(IN, "city1-tz",   "city1_tz",   cb);
-        s.bindProperty(IN, "city2-name", "city2_name",
+        s.bind("city1-lat",  "city1_lat",  cb);
+        s.bind("city1-lon",  "city1_lon",  cb);
+        s.bind("city1-tz",   "city1_tz",   cb);
+        s.bind("city2-name", "city2_name",
             () => this._onCityNameChanged(2));
-        s.bindProperty(IN, "city2-lat",  "city2_lat",  cb);
-        s.bindProperty(IN, "city2-lon",  "city2_lon",  cb);
-        s.bindProperty(IN, "city2-tz",   "city2_tz",   cb);
-        s.bindProperty(IN, "city3-name", "city3_name",
+        s.bind("city2-lat",  "city2_lat",  cb);
+        s.bind("city2-lon",  "city2_lon",  cb);
+        s.bind("city2-tz",   "city2_tz",   cb);
+        s.bind("city3-name", "city3_name",
             () => this._onCityNameChanged(3));
-        s.bindProperty(IN, "city3-lat",  "city3_lat",  cb);
-        s.bindProperty(IN, "city3-lon",  "city3_lon",  cb);
-        s.bindProperty(IN, "city3-tz",   "city3_tz",   cb);
-        s.bindProperty(IN, "show-city-time",      "show_city_time",      cb);
-        s.bindProperty(IN, "show-city-tz-offset", "show_city_tz_offset", cb);
+        s.bind("city3-lat",  "city3_lat",  cb);
+        s.bind("city3-lon",  "city3_lon",  cb);
+        s.bind("city3-tz",   "city3_tz",   cb);
+        s.bind("show-city-time",      "show_city_time",      cb);
+        s.bind("show-city-tz-offset", "show_city_tz_offset", cb);
 
         // Zodiac display modes
-        s.bindProperty(IN, "zodiac-western-display", "zodiac_western_display", cb);
-        s.bindProperty(IN, "zodiac-chinese-display", "zodiac_chinese_display", cb);
+        s.bind("zodiac-western-display", "zodiac_western_display", cb);
+        s.bind("zodiac-chinese-display", "zodiac_chinese_display", cb);
 
         // Name days
-        s.bindProperty(IN, "show-namedays",       "show_namedays",       cb);
-        s.bindProperty(IN, "nameday-locale",      "nameday_locale",      cb);
-        s.bindProperty(IN, "nameday-lookahead",   "nameday_lookahead",   cb);
-        s.bindProperty(IN, "nameday-two-columns", "nameday_two_columns", cb);
+        s.bind("show-namedays",       "show_namedays",       cb);
+        s.bind("nameday-locale",      "nameday_locale",      cb);
+        s.bind("nameday-lookahead",   "nameday_lookahead",   cb);
+        s.bind("nameday-two-columns", "nameday_two_columns", cb);
 
         // Folk sayings
-        s.bindProperty(IN, "show-folkdays",  "show_folkdays",  cb);
-        s.bindProperty(IN, "folkday-locale", "folkday_locale", cb);
+        s.bind("show-folkdays",  "show_folkdays",  cb);
+        s.bind("folkday-locale", "folkday_locale", cb);
 
         // Holidays
-        s.bindProperty(IN, "show-holidays",      "show_holidays",      cb);
-        s.bindProperty(IN, "holiday-locale",     "holiday_locale",     cb);
-        s.bindProperty(IN, "holiday-lookahead",  "holiday_lookahead",  cb);
+        s.bind("show-holidays",      "show_holidays",      cb);
+        s.bind("holiday-locale",     "holiday_locale",     cb);
+        s.bind("holiday-lookahead",  "holiday_lookahead",  cb);
 
         // New Year
-        s.bindProperty(IN, "show-new-year-countdown", "show_new_year_countdown", cb);
+        s.bind("show-new-year-countdown", "show_new_year_countdown", cb);
 
         // Wikipedia (online)
-        s.bindProperty(IN, "show-wikipedia",       "show_wikipedia",       cb);
-        s.bindProperty(IN, "wikipedia-lang",       "wikipedia_lang",       cb);
-        s.bindProperty(IN, "show-wiki-events",     "show_wiki_events",     cb);
-        s.bindProperty(IN, "show-wiki-births",     "show_wiki_births",     cb);
-        s.bindProperty(IN, "show-wiki-deaths",     "show_wiki_deaths",     cb);
-        s.bindProperty(IN, "show-wiki-featured",   "show_wiki_featured",   cb);
-        s.bindProperty(IN, "wikipedia-items-count",   "wikipedia_items_count",    cb);
-        s.bindProperty(IN, "wikipedia-rotate-minutes","wikipedia_rotate_minutes", cb);
-        s.bindProperty(IN, "wikipedia-cache-hours",   "wikipedia_cache_hours",    cb);
+        s.bind("show-wikipedia",       "show_wikipedia",       cb);
+        s.bind("wikipedia-lang",       "wikipedia_lang",       cb);
+        s.bind("show-wiki-events",     "show_wiki_events",     cb);
+        s.bind("show-wiki-births",     "show_wiki_births",     cb);
+        s.bind("show-wiki-deaths",     "show_wiki_deaths",     cb);
+        s.bind("show-wiki-featured",   "show_wiki_featured",   cb);
+        s.bind("wikipedia-items-count",   "wikipedia_items_count",    cb);
+        s.bind("wikipedia-rotate-minutes","wikipedia_rotate_minutes", cb);
+        s.bind("wikipedia-cache-hours",   "wikipedia_cache_hours",    cb);
 
         // Appearance
-        s.bindProperty(IN, "icon-size",        "icon_size",        cb);
-        s.bindProperty(IN, "text-scale",       "text_scale",       cb);
-        s.bindProperty(IN, "bg-opacity",       "bg_opacity",       cb);
+        s.bind("icon-size",        "icon_size",        cb);
+        s.bind("text-scale",       "text_scale",       cb);
+        s.bind("bg-opacity",       "bg_opacity",       cb);
     },
 
     /**

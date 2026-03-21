@@ -35,6 +35,28 @@ var Wikipedia = {
 
     _ensureCacheDir: function() {
         try { Gio.File.new_for_path(this.CACHE_DIR).make_directory_with_parents(null); } catch (e) {}
+        this._pruneOldCache();
+    },
+
+    _pruneOldCache: function() {
+        let now = GLib.DateTime.new_now_local();
+        let mm = (now.get_month()       < 10 ? '0' : '') + now.get_month();
+        let dd = (now.get_day_of_month() < 10 ? '0' : '') + now.get_day_of_month();
+        let todaySuffix = "_" + mm + dd + ".json";
+        let dir = Gio.File.new_for_path(this.CACHE_DIR);
+        try {
+            let enumerator = dir.enumerate_children(
+                "standard::name", Gio.FileQueryInfoFlags.NONE, null
+            );
+            let info;
+            while ((info = enumerator.next_file(null)) !== null) {
+                let name = info.get_name();
+                if (name.endsWith(".json") && !name.endsWith(todaySuffix)) {
+                    try { dir.get_child(name).delete(null); } catch (e) {}
+                }
+            }
+            enumerator.close(null);
+        } catch (e) {}
     },
 
     _cachePath: function(type, lang, month, day) {
