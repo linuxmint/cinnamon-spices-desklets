@@ -1,0 +1,344 @@
+# TODO DESKLET
+# This file is put in the public domain.
+# NotSirius-A, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: todo@NotSirius-A 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/issues\n"
+"POT-Creation-Date: 2025-10-13 15:24+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+
+#. settings-schema.json->todo-page->title
+#. MyToolBar.js:93 desklet.js:261
+msgid "TODO"
+msgstr "Lista de tareas pendientes"
+
+#. TODOList.js:306 TODOList.js:375 TODOList.js:435
+msgid "Are you sure you want to remove this task?"
+msgstr "¿Está seguro de que desea eliminar esta tarea?"
+
+#. desklet.js:258
+msgid "Add new task"
+msgstr "Añadir nueva tarea"
+
+#. metadata.json->description
+msgid "Themeable, customizable, and easy-to-use TODO desklet."
+msgstr "Desklet de lista de tareas pendientes tematizable, personalizable y fácil de usar."
+
+#. metadata.json->name
+msgid "TODO Desklet"
+msgstr "Desklet de lista de tareas pendientes"
+
+#. settings-schema.json->preferences-page->title
+msgid "Preferences"
+msgstr "Preferencias"
+
+#. settings-schema.json->theme-page->title
+msgid "Theme"
+msgstr "Tema"
+
+#. settings-schema.json->todo-section->title
+msgid "Add or modify your tasks here"
+msgstr "Añada o modifique sus tareas aquí"
+
+#. settings-schema.json->general-preferences-section->title
+msgid "General"
+msgstr "General"
+
+#. settings-schema.json->todo-preferences-section->title
+msgid "TODO list"
+msgstr "Lista de tareas pendientes"
+
+#. settings-schema.json->layout-section->title
+msgid "Layout"
+msgstr "Disposición"
+
+#. settings-schema.json->TODO-task-theme-section->title
+msgid "TODO tasks"
+msgstr "Tareas pendientes"
+
+#. settings-schema.json->toolbar-theme-section->title
+msgid "Toolbar"
+msgstr "Barra de herramientas"
+
+#. settings-schema.json->desklet-decorations-section->title
+msgid "Desklet decorations"
+msgstr "Decoraciones del desklet"
+
+#. settings-schema.json->todo-bottom-label->description
+msgid ""
+"How to use this desklet:\n"
+"You can add/edit tasks here or by interacting with the desklet itself:\n"
+" - Left-click on task name to edit it\n"
+" - Left-click on the task icon to mark it done/not done\n"
+" - Right-click to select multiple tasks (only relevant if using toolbar)\n"
+" - Middle-click to remove\n"
+" - If you want to add more tasks, right-click anywhere on the desklet and select the `Add new task` option inside the popup menu \n"
+" - Shift+Enter while editing task to place a new line\n"
+" - Ibus/Fcitx input is possible only through the edit button or settings\n"
+"You can find more information about this desklet on its webpage."
+msgstr ""
+"Cómo utilizar este desklet:\n"
+"Puede añadir/editar tareas aquí o interactuando con el propio desklet:\n"
+" - Haga clic con el botón izquierdo del ratón sobre el nombre de la tarea para editarla.\n"
+" - Haga clic con el botón izquierdo del ratón sobre el icono de la tarea para marcarla como completada/no completada.\n"
+" - Haga clic con el botón derecho del ratón para seleccionar varias tareas (solo es relevante si se utiliza la barra de herramientas).\n"
+" - Haga clic con el botón central para eliminar.\n"
+" - Si desea añadir más tareas, haga clic con el botón derecho en cualquier lugar del desklet y seleccione la opción `Añadir nueva tarea` en el menú emergente. \n"
+" - Pulse Mayús+Intro mientras edita la tarea para insertar una nueva línea.\n"
+" - La entrada Ibus/Fcitx solo es posible a través del botón de edición o la configuración.\n"
+"Puede encontrar más información sobre este desklet en su página web."
+
+#. settings-schema.json->todo-list->columns->title
+msgid "Done"
+msgstr "Completada"
+
+#. settings-schema.json->todo-list->columns->title
+msgid "Important"
+msgstr "Importante"
+
+#. settings-schema.json->todo-list->columns->title
+msgid "Name"
+msgstr "Nombre"
+
+#. settings-schema.json->update-button->description
+msgid "Update"
+msgstr "Actualizar"
+
+#. settings-schema.json->is-toolbar-enabled->description
+msgid "Enable toolbar"
+msgstr "Habilitar barra de herramientas"
+
+#. settings-schema.json->is-toolbar-enabled->tooltip
+msgid "Select if you want the toolbar to show up (tasks can be selected only when toolbar is enabled)."
+msgstr "Seleccione si desea que aparezca la barra de herramientas (las tareas sólo pueden seleccionarse cuando la barra de herramientas está activada)."
+
+#. settings-schema.json->is-sort-enabled->description
+msgid "Sort marked/not marked tasks"
+msgstr "Ordenar tareas marcadas/no marcadas"
+
+#. settings-schema.json->is-sort-enabled->tooltip
+msgid "Select if you tasks to be sorted based on whether they're marked done or not."
+msgstr "Seleccione si desea que las tareas se ordenen en función de si están marcadas como realizadas o no."
+
+#. settings-schema.json->is-sort-reversed->description
+msgid "Reverse order"
+msgstr "Orden inverso"
+
+#. settings-schema.json->is-sort-reversed->tooltip
+msgid "Select if you unmarked tasks to be at the top."
+msgstr "Seleccione si desea que las tareas no marcadas aparezcan en la parte superior."
+
+#. settings-schema.json->column-number->description
+msgid "Number of columns"
+msgstr "Número de columnas"
+
+#. settings-schema.json->column-number->tooltip
+msgid "Increase or decrease the number of columns on the layout."
+msgstr "Aumentar o reducir el número de columnas de la disposición."
+
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr "Sombra de texto"
+
+#. settings-schema.json->text-shadow-color->description
+msgid "Text shadow color"
+msgstr "Color de la sombra del texto"
+
+#. settings-schema.json->show-decorations->description
+msgid "Show desklet decorations"
+msgstr "Mostrar decoraciones del desklet"
+
+#. settings-schema.json->font->description
+msgid "Font name (choose regular versions)"
+msgstr "Nombre de la fuente (elija versiones normales)"
+
+#. settings-schema.json->font->tooltip
+msgid "Change font family"
+msgstr "Cambiar la familia de fuentes"
+
+#. settings-schema.json->font-bold->description
+msgid "Bold"
+msgstr "Negrita"
+
+#. settings-schema.json->font-italic->description
+msgid "Italic"
+msgstr "Cursiva"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Color del texto"
+
+#. settings-schema.json->text-color->tooltip
+msgid "Set the task text color."
+msgstr "Establezca el color del texto de la tarea."
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size, mostly impacts width"
+msgstr "El tamaño del desklet afecta principalmente el ancho"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr "Aumentar o disminuir el tamaño de este desklet utilizando este factor de escala."
+
+#. settings-schema.json->is-task-bg-transparent->description
+msgid "Transparent background"
+msgstr "Fondo transparente"
+
+#. settings-schema.json->is-task-bg-transparent->tooltip
+msgid "Select if you want a transparent background."
+msgstr "Seleccione si desea un fondo transparente."
+
+#. settings-schema.json->task-background->description
+#. settings-schema.json->toolbar-background->description
+msgid "Background color"
+msgstr "Color de fondo"
+
+#. settings-schema.json->task-background->tooltip
+msgid "Set the task background."
+msgstr "Establezca el fondo de las tareas."
+
+#. settings-schema.json->task-border-width->description
+msgid "Border width (set to 0 to disable border)"
+msgstr "Ancho del borde (establecer en 0 para desactivar el borde)"
+
+#. settings-schema.json->task-border-width->tooltip
+msgid "Increase or decrease the task border width."
+msgstr "Aumenta o disminuye el ancho del borde de la tarea."
+
+#. settings-schema.json->task-border-color->description
+#. settings-schema.json->toolbar-border-color->description
+msgid "Border color"
+msgstr "Color del borde"
+
+#. settings-schema.json->task-border-color->tooltip
+msgid "Set the task border color (Transparent border will add more padding to tasks)."
+msgstr "Establecer el color del borde de la tarea (el borde transparente añadirá más relleno a las tareas)."
+
+#. settings-schema.json->task-background-important->description
+msgid "Background when marked as important"
+msgstr "Antecedentes cuando se marca como importante"
+
+#. settings-schema.json->task-background-important->tooltip
+msgid "Set the task background when marked as important."
+msgstr "Establecer el fondo de la tarea cuando se marque como importante."
+
+#. settings-schema.json->task-border-color-important->description
+msgid "Border color when marked as important"
+msgstr "Color del borde cuando se marca como importante"
+
+#. settings-schema.json->task-border-color-important->tooltip
+msgid "Set the task border color when marked as important (Transparent border will add more padding to tasks)."
+msgstr "Establece el color del borde de la tarea cuando se marque como importante (el borde transparente añadirá más relleno a las tareas)."
+
+#. settings-schema.json->task-icon-size->description
+msgid "Task icon size (set to 0 to disable icons)"
+msgstr "Tamaño del íconos de la tarea (0 para desactivar los íconos)"
+
+#. settings-schema.json->task-icon-size->tooltip
+msgid "Increase or decrease the icon size (set to 0 to disable icons)."
+msgstr "Aumentar o disminuir el tamaño de los íconos (poner a 0 para desactivar los íconos)."
+
+#. settings-schema.json->task-marked-icon->description
+msgid "Icon marked"
+msgstr "Ícono marcado"
+
+#. settings-schema.json->task-not-marked-icon->description
+msgid "Icon not marked"
+msgstr "Ícono no marcado"
+
+#. settings-schema.json->toolbar-icon-size->description
+msgid "Icon size"
+msgstr "Tamaño del icono"
+
+#. settings-schema.json->toolbar-icon-size->tooltip
+msgid "Increase or decrease the icon size."
+msgstr "Aumentar o disminuir el tamaño de los íconos."
+
+#. settings-schema.json->toolbar-background->tooltip
+msgid "Set the toolbar background."
+msgstr "Establecer el fondo de la barra de herramientas."
+
+#. settings-schema.json->toolbar-font-color->description
+msgid "Icon color"
+msgstr "Color del icono"
+
+#. settings-schema.json->toolbar-font-color->tooltip
+msgid "Set the color of toolbar icons."
+msgstr "Establecer el color del ícono de la barra de herramientas."
+
+#. settings-schema.json->toolbar-border-width->description
+msgid "Border width"
+msgstr "Ancho del borde"
+
+#. settings-schema.json->toolbar-border-width->tooltip
+msgid "Increase or decrease the toolbar border width (set to 0 to disable border)."
+msgstr "Aumentar o disminuir el ancho del borde de la barra de herramientas (fijar el valor en 0 para desactivar el borde)."
+
+#. settings-schema.json->toolbar-border-color->tooltip
+msgid "Set the toolbar border color (Transparent border will add more padding to toolbar)."
+msgstr "Establecer el color del borde de la barra de herramientas (el borde transparente añadirá más relleno a la barra de herramientas)."
+
+#. settings-schema.json->desklet-decorations-note->description
+msgid ""
+"Following settings require desklet decorations to be enabled on your system.\n"
+"Desklet preferences are located in System Settings > Desklets > General Settings tab; there you will be able to enable border/header decorations."
+msgstr ""
+"Los siguientes ajustes requieren que las decoraciones de los Desklets estén habilitadas en su sistema.\n"
+"Las preferencias de Desklet se encuentran en Configuración del sistema > Desklets > pestaña Configuración general; allí podrá habilitar las decoraciones de borde/cabecera."
+
+#. settings-schema.json->desklet-header->description
+msgid "Desklet header"
+msgstr "Cabecera de Desklet"
+
+#. settings-schema.json->desklet-header->tooltip
+msgid "Set your desklet header. Make sure desklet headers are enabled in system settings."
+msgstr "Configure la cabecera de su desklet. Asegúrate de que los encabezados de desklet están activados en la configuración del sistema."
+
+#. settings-schema.json->are-toolbar-tooltips-enabled->description
+msgid "Enable toolbar tooltips"
+msgstr "Habilitar información sobre herramientas de la barra de herramientas"
+
+#. settings-schema.json->are-toolbar-tooltips-enabled->tooltip
+msgid "Select if you want tooltips to show up when hovering over toolbar buttons."
+msgstr "Seleccione esta opción si desea que aparezcan sugerencias al pasar el cursor sobre los botones de la barra de herramientas."
+
+#. settings-schema.json->are-task-tooltips-enabled->description
+msgid "Enable task tooltips"
+msgstr "Habilitar información sobre herramientas de tareas"
+
+#. settings-schema.json->are-task-tooltips-enabled->tooltip
+msgid "Select if you want tooltips to show up when hovering over tasks."
+msgstr "Selecciona si desea que aparezcan sugerencias al pasar el cursor sobre las tareas."
+
+#. edit_dialog_gtk.ui:7
+msgid "Edit task name"
+msgstr "Editar nombre de la tarea"
+
+#. edit_dialog_gtk.ui:74
+msgid "Name:"
+msgstr "Nombre:"
+
+#~ msgid "Marked done"
+#~ msgstr "Marcado como hecho"
+
+#~ msgid "scale factor"
+#~ msgstr "factor de escala"
+
+#~ msgid "Task background"
+#~ msgstr "Fondo de las tareas"
+
+#~ msgid "pixels"
+#~ msgstr "píxeles"
+
+#~ msgid "Toolbar background"
+#~ msgstr "Fondo de la barra de herramientas"
