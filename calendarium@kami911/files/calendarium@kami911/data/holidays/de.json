@@ -1,0 +1,21 @@
+{
+  "fixed": {
+    "01-01": {"name": "Neujahr",                    "public": true},
+    "01-06": {"name": "Heilige Drei Könige",         "public": false},
+    "05-01": {"name": "Tag der Arbeit",              "public": true},
+    "10-03": {"name": "Tag der Deutschen Einheit",   "public": true},
+    "10-31": {"name": "Reformationstag",             "public": false},
+    "11-01": {"name": "Allerheiligen",               "public": false},
+    "12-25": {"name": "1. Weihnachtstag",            "public": true},
+    "12-26": {"name": "2. Weihnachtstag",            "public": true}
+  },
+  "easter": [
+    {"offset": -2, "name": "Karfreitag",        "public": true},
+    {"offset":  0, "name": "Ostersonntag",      "public": true},
+    {"offset":  1, "name": "Ostermontag",       "public": true},
+    {"offset": 39, "name": "Christi Himmelfahrt","public": true},
+    {"offset": 49, "name": "Pfingstsonntag",    "public": true},
+    {"offset": 50, "name": "Pfingstmontag",     "public": true},
+    {"offset": 60, "name": "Fronleichnam",      "public": false}
+  ]
+}
