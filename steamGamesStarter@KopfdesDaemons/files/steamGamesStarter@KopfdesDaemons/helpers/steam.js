@@ -1,18 +1,21 @@
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
-const GdkPixbuf = imports.gi.GdkPixbuf;
 const St = imports.gi.St;
 const Util = imports.misc.util;
-const { ImageHelper } = require("./helpers/image.helper");
+
+const UUID = "steamGamesStarter@KopfdesDaemons";
 
 // AppIDs for games/tools to be filtered out from the list
 const FILTERED_APP_IDS = [
   "1628350", // Proton Experimental
   "1493710", // Steam Linux Runtime 3.0 (sniper)
   "1391110", // Steam Linux Runtime 2.0 (soldier)
+  "1826330", // Proton EasyAntiCheat Runtime
+  "2348590", // Proton 8.0
+  "2805730", // Proton 9.0
 ];
 
-class SteamHelper {
+var SteamHelper = class SteamHelper {
   // Helper to read the paths of the Steam library folders
   static extractLibraryPaths(vdfString) {
     const paths = [];
@@ -29,9 +32,7 @@ class SteamHelper {
   // Helper to extract game info from an appmanifest file
   static async extractGameInfo(filePath) {
     const file = Gio.file_new_for_path(filePath);
-    const [, contentBytes] = await new Promise(resolve =>
-      file.load_contents_async(null, (obj, res) => resolve(obj.load_contents_finish(res)))
-    );
+    const [, contentBytes] = await new Promise(resolve => file.load_contents_async(null, (obj, res) => resolve(obj.load_contents_finish(res))));
     const content = new TextDecoder("utf-8").decode(contentBytes);
 
     const nameMatch = /"name"\s*"(.*?)"/.exec(content);
@@ -49,11 +50,17 @@ class SteamHelper {
   }
 
   // Helper to get all installed games
-  static async getGames(steamInstallType) {
-    // Get Steam library paths
-    let libraryfoldersFilePath = GLib.get_home_dir() + "/.steam/steam/steamapps/libraryfolders.vdf";
-    if (steamInstallType === "flatpak") {
+  static async getGames(steamInstallType, customInstallPath) {
+    // Get Steam library path
+    let libraryfoldersFilePath;
+    if (steamInstallType === "system package") {
+      libraryfoldersFilePath = GLib.get_home_dir() + "/.steam/steam/steamapps/libraryfolders.vdf";
+    } else if (steamInstallType === "flatpak") {
       libraryfoldersFilePath = GLib.get_home_dir() + "/.var/app/com.valvesoftware.Steam/data/Steam/steamapps/libraryfolders.vdf";
+    } else if (steamInstallType === "custom install") {
+      global.log(`Custom install path: ${customInstallPath}`);
+      libraryfoldersFilePath = customInstallPath.replace(/^~/, GLib.get_home_dir());
+      libraryfoldersFilePath = libraryfoldersFilePath.replace("file://", "");
     }
 
     const libraryfoldersFile = Gio.file_new_for_path(libraryfoldersFilePath);
@@ -61,8 +68,8 @@ class SteamHelper {
       throw new Error(`Steam library file not found at: ${libraryfoldersFilePath}`);
     }
 
-    const [success, libraryfoldersFileContentBytes] = await new Promise(resolve =>
-      libraryfoldersFile.load_contents_async(null, (obj, res) => resolve(obj.load_contents_finish(res)))
+    const [, libraryfoldersFileContentBytes] = await new Promise(resolve =>
+      libraryfoldersFile.load_contents_async(null, (obj, res) => resolve(obj.load_contents_finish(res))),
     );
     const libraryfoldersFileContent = new TextDecoder("utf-8").decode(libraryfoldersFileContentBytes);
     const libraryPaths = this.extractLibraryPaths(libraryfoldersFileContent);
@@ -90,7 +97,7 @@ class SteamHelper {
     }
 
     const games = await Promise.all(gamePromises);
-    const filteredGames = games.filter(game => game !== null && game.lastPlayed && !FILTERED_APP_IDS.includes(game.appid));
+    const filteredGames = games.filter(game => game !== null && !FILTERED_APP_IDS.includes(game.appid));
 
     // Filter and sort the games by last played date (newest first)
     const sortedGames = filteredGames.sort((a, b) => parseInt(b.lastPlayed, 10) - parseInt(a.lastPlayed, 10));
@@ -99,7 +106,7 @@ class SteamHelper {
   }
 
   // Helper to load a game's header image from the Steam appcache
-  static getGameHeaderImage(appid, requestedWidth, requestedHeight) {
+  static getGameHeaderImage(appid, size, scaleSize) {
     const appCachePath = GLib.get_home_dir() + "/.steam/steam/appcache/librarycache/";
     const commonImageNames = ["header.jpg", "library_header.jpg", "library_hero.jpg"];
 
@@ -112,42 +119,51 @@ class SteamHelper {
       }
     }
 
-    let pixBuf = null;
+    const BASE_FONT_SIZE = 16;
+
+    // Shrink default steam game header size
+    const targetWidth = 460 * size;
+    const targetHeight = 215 * size;
+
+    // Convert pixels to em
+    const widthInEm = (targetWidth * scaleSize) / BASE_FONT_SIZE;
+    const heightInEm = (targetHeight * scaleSize) / BASE_FONT_SIZE;
+
     if (imagePath) {
-      try {
-        pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(imagePath, requestedWidth, requestedHeight);
-      } catch (e) {
-        global.logError(`Error loading image ${imagePath}: ${e}`);
-      }
-    }
+      const file = Gio.File.new_for_path(imagePath);
+      const imageUri = file.get_uri();
 
-    if (pixBuf) {
-      const imageActor = ImageHelper.createActorFromPixbuf(pixBuf);
-
-      const clickableBin = new St.Bin({
-        reactive: true,
-        width: pixBuf.get_width(),
-        height: pixBuf.get_height(),
+      const image = new St.Bin({
+        style: `width: ${widthInEm}em; height: ${heightInEm}em; background-image: url("${imageUri}"); background-size: contain; background-position: center; background-repeat: no-repeat;`,
       });
-      clickableBin.set_child(imageActor);
-      return clickableBin;
+
+      return image;
     }
 
-    global.logError(`Could not load an image for appid ${appid}`);
-    return new St.Label({ text: "Error" });
+    global.logError(`${UUID}: Could not load an image for appid ${appid}`);
+
+    const errorLabel = new St.Label({
+      text: _("Could not load image"),
+      style: "font-size: " + scaleSize + "em; width:" + widthInEm + "em; height: " + heightInEm + "em; text-align: center; color: red;",
+    });
+    errorLabel.clutter_text.line_wrap = true;
+    return errorLabel;
   }
 
-  static getSteamCommand(steamInstallType) {
-    return steamInstallType === "flatpak" ? "flatpak run com.valvesoftware.Steam" : "/usr/games/steam";
+  static getSteamCommand(steamInstallType, customCMD) {
+    if (steamInstallType === "custom install") return customCMD;
+    if (steamInstallType === "system package") return "/usr/games/steam";
+    if (steamInstallType === "flatpak") return "flatpak run com.valvesoftware.Steam";
+    return "";
   }
 
-  static runGame(appid, steamInstallType) {
-    const cmd = this.getSteamCommand(steamInstallType);
+  static runGame(appid, steamInstallType, customCMD) {
+    const cmd = this.getSteamCommand(steamInstallType, customCMD);
     GLib.spawn_command_line_async(`${cmd} steam://rungameid/${appid}`);
   }
 
-  static openStorePage(appid, steamInstallType) {
-    const cmd = this.getSteamCommand(steamInstallType);
+  static openStorePage(appid, steamInstallType, customCMD) {
+    const cmd = this.getSteamCommand(steamInstallType, customCMD);
     GLib.spawn_command_line_async(`${cmd} steam://store/${appid}`);
   }
-}
+};
