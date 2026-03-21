@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2026-03-19 16:11+0200\n"
-"PO-Revision-Date: 2025-08-04 19:01-0400\n"
+"PO-Revision-Date: 2026-03-20 21:19-0300\n"
 "Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.9\n"
 
 #. settings-schema.json->type->options
 #. desklet.js:204
@@ -62,19 +62,19 @@ msgstr "Red"
 #. settings-schema.json->type->options
 #. desklet.js:324
 msgid "Battery"
-msgstr ""
+msgstr "Batería"
 
 #. desklet.js:327
 msgid "Fully charged"
-msgstr ""
+msgstr "Completamente cargada"
 
 #. desklet.js:328
 msgid "Not charging"
-msgstr ""
+msgstr "No se está cargando"
 
 #. desklet.js:330
 msgid " hrs"
-msgstr ""
+msgstr " hrs"
 
 #. desklet.js:551 desklet.js:574
 msgid "b"
@@ -212,13 +212,14 @@ msgstr ""
 "eth0, wlan0, enp0s3"
 
 #. settings-schema.json->battery-name->description
-#, fuzzy
 msgid "Name of battery name to monitor"
-msgstr "Interfaz de red a monitorear"
+msgstr "Nombre de la batería que se va a monitorear"
 
 #. settings-schema.json->battery-name->tooltip
 msgid "Check battery name in /sys/class/power_supply/ Examples: BAT0, BAT1"
 msgstr ""
+"Comprueba el nombre de la batería en /sys/class/power_supply/. Ejemplos: "
+"BAT0, BAT1"
 
 #. settings-schema.json->filesystem->description
 msgid "Filesystem to monitor"
@@ -406,9 +407,8 @@ msgid "Line color Network Upload"
 msgstr "Color de la línea de la carga de la red"
 
 #. settings-schema.json->line-color-battery->description
-#, fuzzy
 msgid "Line color Battery"
-msgstr "Color de la línea de Swap"
+msgstr "Color de la línea de la batería"
 
 #. settings-schema.json->midline-color->description
 msgid "Grid color"
