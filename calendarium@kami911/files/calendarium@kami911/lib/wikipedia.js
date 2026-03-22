@@ -44,19 +44,37 @@ var Wikipedia = {
         let dd = (now.get_day_of_month() < 10 ? '0' : '') + now.get_day_of_month();
         let todaySuffix = "_" + mm + dd + ".json";
         let dir = Gio.File.new_for_path(this.CACHE_DIR);
-        try {
-            let enumerator = dir.enumerate_children(
-                "standard::name", Gio.FileQueryInfoFlags.NONE, null
-            );
-            let info;
-            while ((info = enumerator.next_file(null)) !== null) {
-                let name = info.get_name();
-                if (name.endsWith(".json") && !name.endsWith(todaySuffix)) {
-                    try { dir.get_child(name).delete(null); } catch (e) {}
-                }
+        dir.enumerate_children_async(
+            "standard::name", Gio.FileQueryInfoFlags.NONE,
+            GLib.PRIORITY_DEFAULT, null,
+            function(obj, result) {
+                try {
+                    let enumerator = dir.enumerate_children_finish(result);
+                    let processNext = function() {
+                        enumerator.next_files_async(
+                            10, GLib.PRIORITY_DEFAULT, null,
+                            function(obj2, result2) {
+                                try {
+                                    let infos = enumerator.next_files_finish(result2);
+                                    if (infos.length === 0) {
+                                        enumerator.close_async(GLib.PRIORITY_DEFAULT, null, null);
+                                        return;
+                                    }
+                                    for (let i = 0; i < infos.length; i++) {
+                                        let name = infos[i].get_name();
+                                        if (name.endsWith(".json") && !name.endsWith(todaySuffix)) {
+                                            try { dir.get_child(name).delete(null); } catch (e) {}
+                                        }
+                                    }
+                                    processNext();
+                                } catch (e) {}
+                            }
+                        );
+                    };
+                    processNext();
+                } catch (e) {}
             }
-            enumerator.close(null);
-        } catch (e) {}
+        );
     },
 
     _cachePath: function(type, lang, month, day) {
