@@ -143,7 +143,6 @@ SystemMonitorGraph.prototype = {
             this.net_max_scale = 1; // Auto-scaling for network graph
             // battery values
             this.battery_percent  = NaN;
-            this.battery_capacity = NaN;
             this.battery_status   = "";
             this.battery_time     = "";
             // temperature values
@@ -346,7 +345,7 @@ SystemMonitorGraph.prototype = {
 
           case "battery":
               this.get_battery_use();
-              value = this.battery_capacity;
+              value = this.battery_percent / 100.0;
               text1 = _("Battery");
               text2 = this.battery_percent + "%";
               let prefix = (this.battery_status == "Charging") ? "⚡ " : (this.battery_percent <= 20 ? "🪫 " : "🔋 ");
@@ -1038,7 +1037,6 @@ SystemMonitorGraph.prototype = {
                 if (success) {
                     let percent = parseInt(ByteArray.toString(contents));
                     this.battery_percent = percent >= 100 ? 100 : percent;
-                    this.battery_capacity = this.battery_percent / 100.0;
                 }
                 GLib.free(contents);
             } catch(error) {
