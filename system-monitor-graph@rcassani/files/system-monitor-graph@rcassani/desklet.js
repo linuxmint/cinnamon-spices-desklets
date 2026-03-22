@@ -16,8 +16,8 @@ const GIB_TO_MIB = 1024;    // 1 GiB = 1,042 MiB
 const KB_TO_B = 1000;       // 1 KB  = 1,000 B
 const KIB_TO_B = 1024;      // 1 KiB = 1,024 B
 
-const TEMP_C_MIN = 20;      // Minimum temperature
-const TEMP_C_MAX = 105;     // Maximum temperature
+const CPU_TEMP_MIN =  20;    // Minimum CPU temperature
+const CPU_TEMP_MAX = 100;    // Maximum CPU temperature
 
 const UUID = "system-monitor-graph@rcassani";
 const DESKLET_PATH = imports.ui.deskletManager.deskletMeta[UUID].path;
@@ -146,8 +146,7 @@ SystemMonitorGraph.prototype = {
             this.battery_status   = "";
             this.battery_time     = "";
             // temperature values
-            this.temperature_normalized = 0;
-            this.temperature_celsius = TEMP_C_MIN;
+            this.cpu_temperature = NaN;
 
             // set colors
             switch (this.type) {
@@ -221,11 +220,16 @@ SystemMonitorGraph.prototype = {
                       break;
 
                   case "temperature":
-                      this.get_temperature(this.cpu_temperature_file);
-                      value = this.temperature_normalized;
+                      this.get_cpu_temperature(this.cpu_temperature_file);
+                      // scale CPU temperature based on [CPU_TEMP_MIN, CPU_TEMP_MAX]
+                      value = 1.0 * (this.cpu_temperature - CPU_TEMP_MIN) / (CPU_TEMP_MAX - CPU_TEMP_MIN);
+                      value = value < 0 ? 0 : value > 1 ? 1 : value;
                       text1 = _("CPU Temperature");
-                      let temperature = this.temperature_units_cpu == "C" ? this.temperature_celsius : Math.round(this.temperature_celsius * 9 / 5 + 32);
-                      text2 = temperature + (this.temperature_units_cpu == "C" ? "°C" : "°F");
+                      if (this.temperature_units_cpu == "C") {
+                          text2 = this.cpu_temperature.toString() + "°C";
+                      } else if (this.temperature_units_cpu == "F") {
+                          text2 = Math.round(this.cpu_temperature * 9 / 5 + 32).toString() + "°F";
+                      }
                       break;
               }
               break;
@@ -1074,21 +1078,17 @@ SystemMonitorGraph.prototype = {
         return (result == "00:00") ? "--:--" : result;
 	},
 
-    get_temperature: function(temperature_file) {
+    get_cpu_temperature: function(temperature_file) {
         // File contains temperature, integer number in celsius * 1000
         Gio.file_new_for_path(temperature_file).load_contents_async(null, (file, response) => {
             try {
                 let [success, contents, tag] = file.load_contents_finish(response);
                 if (success) {
-                    let temp = parseInt(ByteArray.toString(contents)) / 1000;
-                    // We will show TEMP_C_MIN .. TEMP_C_MAX range for graph
-                    let temp_boxed = temp < TEMP_C_MIN ? TEMP_C_MIN : temp > TEMP_C_MAX ? TEMP_C_MAX :  temp;
-                    this.temperature_normalized = 1.0 * (temp_boxed - TEMP_C_MIN) / (TEMP_C_MAX - TEMP_C_MIN);
-                    this.temperature_celsius = Math.round(temp);
+                    this.cpu_temperature = Math.round(parseInt(ByteArray.toString(contents)) / 1000);
                 }
                 GLib.free(contents);
             } catch(error) {
-                global.log('Temperature file read error: ' + error.toString());
+                global.log('CPU temperature file read error: ' + error.toString());
             }
         });
     },
