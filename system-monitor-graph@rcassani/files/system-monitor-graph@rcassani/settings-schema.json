@@ -158,7 +158,7 @@
         },
         "description": "Prefix for data units",
         "tooltip": "Unit prefix for GPU memory size.",
-        "dependency": "type=gpu"
+        "dependency": "gpu-variable=memory"
     },
     "duration": {
         "type": "combobox",
