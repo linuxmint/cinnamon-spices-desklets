@@ -1093,24 +1093,20 @@ SystemMonitorGraph.prototype = {
         });
     },
 
-    get_temperature_file_by_label: function(label) {
-        // Sysfs directory for temperature info
-        let temp_file = "sh -c \"grep -s -l -d skip '" + label +"' /sys/class/hwmon/*/temp*_label | sed 's/_label/_input/' | head -n 1\"";
-
-        try {
-            let [success, stdout, stderr, exit_status] = GLib.spawn_command_line_sync(temp_file);
-            if ((success && exit_status === 0) && stdout.length > 0) return ByteArray.toString(stdout).trim();
-        } catch (error) {
-            global.log('Temperature file search error: ' + error.toString());
-        }
-        return ""
-    },
-
     get_cpu_temperature_file: function() {
-        // Try Intel first
-        let cpu_temp_file = this.get_temperature_file_by_label('Package id 0');
-        // Try AMD next
-        if (cpu_temp_file === "") cpu_temp_file = this.get_temperature_file_by_label('Tctl');
-        return cpu_temp_file;
+        // Try each known CPU temperature label, return the first one found
+        // Intel == "Package id 0"
+        // AMD   == "Tctl"
+        let cpu_labels = ["Package id 0", "Tctl"];
+        for (let cpu_label of cpu_labels) {
+            try {
+                let cmd = "sh -c \"grep -s -l -d skip '" + cpu_label + "' /sys/class/hwmon/*/temp*_label | sed 's/_label/_input/' | head -n 1\"";
+                let [success, stdout, stderr, exit_status] = GLib.spawn_command_line_sync(cmd);
+                if ((success && exit_status === 0) && stdout.length > 0) return ByteArray.toString(stdout).trim();
+            } catch (error) {
+                global.log('CPU temperature file search error: ' + error.toString());
+            }
+        }
+        return "";
     },
 };
