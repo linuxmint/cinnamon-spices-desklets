@@ -214,7 +214,7 @@ SystemMonitorGraph.prototype = {
                   case "usage":
                       this.get_cpu_use();
                       value = this.cpu_use / 100;
-                      text1 = _("CPU Usage");
+                      text1 = _("CPU");
                       text2 = Math.round(this.cpu_use).toString() + "%";
                       break;
 
@@ -226,7 +226,6 @@ SystemMonitorGraph.prototype = {
                       text2 = temperature + (this.temperature_scale == 0 ? "°C" : "°F");
                       break;
               }
-
               break;
 
           case "ram":
