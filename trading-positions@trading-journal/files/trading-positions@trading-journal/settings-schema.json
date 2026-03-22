@@ -1,0 +1,82 @@
+{
+  "info-header": {
+    "type": "label",
+    "description": "This desklet requires a running Crypto Trading Journal.\ngithub.com/Mouses007/Crypto-Trading-Journal"
+  },
+  "server-host": {
+    "type": "entry",
+    "default": "localhost",
+    "description": "Server host",
+    "tooltip": "IP or hostname, e.g. 192.168.178.100 or localhost"
+  },
+  "server-port": {
+    "type": "spinbutton",
+    "default": 8080,
+    "min": 1024,
+    "max": 65535,
+    "step": 1,
+    "units": "",
+    "description": "Server port",
+    "tooltip": "Default: 8080"
+  },
+  "refresh-interval": {
+    "type": "spinbutton",
+    "default": 30,
+    "min": 5,
+    "max": 300,
+    "step": 5,
+    "units": "seconds",
+    "description": "Refresh interval"
+  },
+  "show-leverage": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show leverage"
+  },
+  "show-mark-price": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show mark price"
+  },
+  "show-github-link": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show GitHub link in footer"
+  },
+  "font-size": {
+    "type": "spinbutton",
+    "default": 12,
+    "min": 9,
+    "max": 18,
+    "step": 1,
+    "units": "px",
+    "description": "Font size (positions)"
+  },
+  "font-size-ui": {
+    "type": "spinbutton",
+    "default": 11,
+    "min": 8,
+    "max": 16,
+    "step": 1,
+    "units": "px",
+    "description": "Font size (title, footer, total)"
+  },
+  "bg-opacity": {
+    "type": "spinbutton",
+    "default": 88,
+    "min": 0,
+    "max": 100,
+    "step": 5,
+    "units": "%",
+    "description": "Background opacity (0 = invisible, 100 = solid)"
+  },
+  "min-width": {
+    "type": "spinbutton",
+    "default": 400,
+    "min": 300,
+    "max": 800,
+    "step": 20,
+    "units": "px",
+    "description": "Width"
+  }
+}
