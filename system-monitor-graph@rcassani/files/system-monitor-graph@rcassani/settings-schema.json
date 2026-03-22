@@ -43,7 +43,7 @@
         },
         "description": "Temperature scale",
         "tooltip": "Temperature scale for graph",
-        "dependency": "type=cpu"
+        "dependency": "cpu-variable=temperature"
     },
     "data-prefix-ram": {
         "type": "combobox",
