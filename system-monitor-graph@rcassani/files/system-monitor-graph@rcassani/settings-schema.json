@@ -34,12 +34,12 @@
         },
         "dependency": "type=cpu"
     },
-    "temperature-scale": {
+    "temperature-units-cpu": {
         "type": "combobox",
-        "default": 0,
+        "default": "C",
         "options": {
-            "°C" : 0,
-            "°F" : 1
+            "°C" : "C",
+            "°F" : "F"
         },
         "description": "Temperature scale",
         "tooltip": "Temperature scale for graph",

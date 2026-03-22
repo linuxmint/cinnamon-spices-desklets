@@ -57,7 +57,7 @@ SystemMonitorGraph.prototype = {
         this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
         this.settings.bindProperty(Settings.BindingDirection.IN, "type", "type", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "cpu-variable", "cpu_variable", this.on_setting_changed);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "temperature-scale", "temperature_scale", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "temperature-units-cpu", "temperature_units_cpu", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "data-prefix-ram", "data_prefix_ram", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "data-prefix-swap", "data_prefix_swap", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "data-prefix-hdd", "data_prefix_hdd", this.on_setting_changed);
@@ -87,8 +87,6 @@ SystemMonitorGraph.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-network-up", "line_color_network_up", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-battery", "line_color_battery", this.on_setting_changed);
 
-        // initialize files path
-        this.cpu_temperature_file = this.get_cpu_temperature_file();
 
         // initialize desklet GUI
         this.setupUI();
@@ -178,6 +176,11 @@ SystemMonitorGraph.prototype = {
                   this.line_color = this.line_color_battery;
                   break;
             }
+
+            // set files
+            // find file for overall CPU temperature
+            this.cpu_temperature_file = this.get_cpu_temperature_file();
+
             this.first_run = false;
         }
 
@@ -222,8 +225,8 @@ SystemMonitorGraph.prototype = {
                       this.get_temperature(this.cpu_temperature_file);
                       value = this.temperature_normalized;
                       text1 = _("CPU Temperature");
-                      let temperature = this.temperature_scale == 0 ? this.temperature_celsius : Math.round(this.temperature_celsius * 9 / 5 + 32);
-                      text2 = temperature + (this.temperature_scale == 0 ? "°C" : "°F");
+                      let temperature = this.temperature_units_cpu == "C" ? this.temperature_celsius : Math.round(this.temperature_celsius * 9 / 5 + 32);
+                      text2 = temperature + (this.temperature_units_cpu == "C" ? "°C" : "°F");
                       break;
               }
               break;
