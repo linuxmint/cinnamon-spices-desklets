@@ -110,6 +110,7 @@ SystemMonitorGraph.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "filesystem-label", "filesystem_label", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "gpu-manufacturer", "gpu_manufacturer", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "gpu-variable", "gpu_variable", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "temperature-units-gpu", "temperature_units_gpu", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "gpu-id", "gpu_id", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refresh_interval", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "duration", "duration", this.on_setting_changed);
@@ -188,6 +189,7 @@ SystemMonitorGraph.prototype = {
             this.battery_time     = "";
             // temperature values
             this.cpu_temperature = NaN;
+            this.gpu_temperature = NaN;
 
             // set colors
             switch (this.type) {
@@ -370,6 +372,24 @@ SystemMonitorGraph.prototype = {
                       text2 = Math.round(gpu_mem_use).toString() + "%"
                       text3 = this.gpu_mem[1].toFixed(1) + " / "
                             + this.gpu_mem[0].toFixed(1) + " " + gpumem_prefix;
+                      break;
+                  case "temperature":
+                      switch (this.gpu_manufacturer) {
+                          case "nvidia":
+                              this.get_nvidia_gpu_temperature();
+                              break;
+                          case "amdgpu":
+                              //this.get_amdgpu_gpu_temperature();
+                              break;
+                      }
+                      value = 1.0 * (this.gpu_temperature - CPU_TEMP_MIN) / (CPU_TEMP_MAX - CPU_TEMP_MIN);
+                      value = value < 0 ? 0 : value > 1 ? 1 : value;
+                      text1 = _("GPU Temperature");
+                      if (this.temperature_units_gpu == "C") {
+                          text2 = this.gpu_temperature.toString() + "°C";
+                      } else if (this.temperature_units_gpu == "F") {
+                          text2 = Math.round(this.gpu_temperature * 9 / 5 + 32).toString() + "°F";
+                      }
                       break;
               }
               break;
@@ -959,6 +979,19 @@ SystemMonitorGraph.prototype = {
                     this.gpu_mem[0] = parseInt(items[0]) / GIB_TO_MIB;
                     this.gpu_mem[1] = parseInt(items[1]) / GIB_TO_MIB;
                 }
+            }
+        );
+    },
+
+    get_nvidia_gpu_temperature: function() {
+        spawnAsyncWithOutput(
+            ['/usr/bin/nvidia-smi', '--query-gpu=temperature.gpu', '--format=csv', '--id='+ this.gpu_id],
+            (success, out_string) => {
+                if (!success || !out_string) {
+                    this.gpu_temperature = 0;
+                    return;
+                }
+                this.gpu_temperature = parseInt(out_string.match(/[^\r\n]+/g)[1]);
             }
         );
     },

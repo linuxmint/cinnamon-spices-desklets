@@ -145,7 +145,8 @@
         "tooltip": "Select the GPU variable to monitor.",
         "options" : {
             "Usage"  : "usage",
-            "Memory" : "memory"
+            "Memory" : "memory",
+            "Temperature": "temperature"
         },
         "dependency": "type=gpu"
     },
@@ -158,6 +159,17 @@
         },
         "description": "Prefix for data units",
         "tooltip": "Unit prefix for GPU memory size.",
+        "dependency": "type=gpu"
+    },
+    "temperature-units-gpu": {
+        "type": "combobox",
+        "default": "C",
+        "options": {
+            "°C" : "C",
+            "°F" : "F"
+        },
+        "description": "Temperature scale",
+        "tooltip": "Temperature scale for graph",
         "dependency": "type=gpu"
     },
     "duration": {
