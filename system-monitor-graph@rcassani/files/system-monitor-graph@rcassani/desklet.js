@@ -1077,10 +1077,10 @@ SystemMonitorGraph.prototype = {
         });
     },
 
-    get_temperature_file_by_label: function(label) {
-        // Sysfs directory for temperature info
-        let temp_file = "sh -c \"grep -s -l -d skip '" + label +"' /sys/class/hwmon/*/temp*_label | sed 's/_label/_input/' | head -n 1\"";
-
+    get_temperature_file_by_label: function(path, label) {
+        // search for temperture file: 'path'/*/temp*_input associated to file path/*/temp*_label with content 'label'
+        let temp_file = "sh -c \"grep -s -l -d skip '" + label + "' " + path + "*/temp*_label | sed 's/_label/_input/' | head -n 1\"";
+        global.log(temp_file);
         try {
             let [success, stdout, stderr, exit_status] = GLib.spawn_command_line_sync(temp_file);
             if ((success && exit_status === 0) && stdout.length > 0) return ByteArray.toString(stdout).trim();
@@ -1091,10 +1091,12 @@ SystemMonitorGraph.prototype = {
     },
 
     get_cpu_temperature_file: function() {
+        // Sysfs directory for temperature info
+        let path = "/sys/class/hwmon/"
         // Try Intel first
-        let cpu_temp_file = this.get_temperature_file_by_label('Package id 0');
+        let cpu_temp_file = this.get_temperature_file_by_label(path, 'Package id 0');
         // Try AMD next
-        if (cpu_temp_file === "") cpu_temp_file = this.get_temperature_file_by_label('Tctl');
+        if (cpu_temp_file === "") cpu_temp_file = this.get_temperature_file_by_label(path, 'Tctl');
         return cpu_temp_file;
     },
 };
