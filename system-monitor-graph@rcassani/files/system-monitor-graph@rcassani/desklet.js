@@ -221,6 +221,8 @@ SystemMonitorGraph.prototype = {
             // set files
             // find file for overall CPU temperature
             this.cpu_temperature_file = this.get_cpu_temperature_file();
+            // find file for overall AMD GPU temperature
+            this.gpu_amd_temperature_file = this.get_gpu_amd_temperature_file();
 
             this.first_run = false;
         }
@@ -379,7 +381,7 @@ SystemMonitorGraph.prototype = {
                               this.get_nvidia_gpu_temperature();
                               break;
                           case "amdgpu":
-                              //this.get_amdgpu_gpu_temperature();
+                              this.get_amdgpu_gpu_temperature(this.gpu_amd_temperature_file);
                               break;
                       }
                       value = 1.0 * (this.gpu_temperature - CPU_TEMP_MIN) / (CPU_TEMP_MAX - CPU_TEMP_MIN);
@@ -1044,6 +1046,20 @@ SystemMonitorGraph.prototype = {
       });
     },
 
+    get_amdgpu_gpu_temperature: function(temperature_file) {
+        // File contains temperature, integer number in celsius * 1000
+        Gio.file_new_for_path(temperature_file).load_contents_async(null, (file, response) => {
+            try {
+                let [success, contents, tag] = file.load_contents_finish(response);
+                if (success) {
+                    this.cpu_temperature = Math.round(parseInt(ByteArray.toString(contents)) / 1000);
+                }
+                GLib.free(contents);
+            } catch(error) {
+                global.log('GPU AMD temperature file read error: ' + error.toString());
+            }
+        });
+    },
 
     get_battery_use: function() {
         // Sysfs directory for battery info
@@ -1130,6 +1146,13 @@ SystemMonitorGraph.prototype = {
         let cpu_temp_file = this.get_temperature_file_by_label(path, 'Package id 0');
         // Try AMD next
         if (cpu_temp_file === "") cpu_temp_file = this.get_temperature_file_by_label(path, 'Tctl');
+        return cpu_temp_file;
+    },
+
+    get_gpu_amd_temperature_file: function() {
+        // Sysfs directory for temperature info
+        let path = "/sys/class/drm/card" + this.gpu_id + "/device/hwmon/";
+        let cpu_temp_file = this.get_temperature_file_by_label(path, 'edge');
         return cpu_temp_file;
     },
 };
