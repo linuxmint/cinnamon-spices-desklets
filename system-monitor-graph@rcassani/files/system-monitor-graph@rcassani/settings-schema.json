@@ -34,16 +34,16 @@
         },
         "dependency": "type=cpu"
     },
-    "temperature-scale": {
+    "temperature-units-cpu": {
         "type": "combobox",
-        "default": 0,
+        "default": "C",
         "options": {
-            "°C" : 0,
-            "°F" : 1
+            "°C" : "C",
+            "°F" : "F"
         },
         "description": "Temperature scale",
         "tooltip": "Temperature scale for graph",
-        "dependency": "type=cpu"
+        "dependency": "cpu-variable=temperature"
     },
     "data-prefix-ram": {
         "type": "combobox",
@@ -158,7 +158,7 @@
         },
         "description": "Prefix for data units",
         "tooltip": "Unit prefix for GPU memory size.",
-        "dependency": "type=gpu"
+        "dependency": "gpu-variable=memory"
     },
     "duration": {
         "type": "combobox",

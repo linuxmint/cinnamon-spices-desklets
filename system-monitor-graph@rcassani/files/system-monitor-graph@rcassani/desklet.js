@@ -16,8 +16,8 @@ const GIB_TO_MIB = 1024;    // 1 GiB = 1,042 MiB
 const KB_TO_B = 1000;       // 1 KB  = 1,000 B
 const KIB_TO_B = 1024;      // 1 KiB = 1,024 B
 
-const TEMP_C_MIN = 20;      // Minimum temperature
-const TEMP_C_MAX = 105;     // Maximum temperature
+const CPU_TEMP_MIN =  20;    // Minimum CPU temperature
+const CPU_TEMP_MAX = 100;    // Maximum CPU temperature
 
 const UUID = "system-monitor-graph@rcassani";
 const DESKLET_PATH = imports.ui.deskletManager.deskletMeta[UUID].path;
@@ -57,7 +57,7 @@ SystemMonitorGraph.prototype = {
         this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
         this.settings.bindProperty(Settings.BindingDirection.IN, "type", "type", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "cpu-variable", "cpu_variable", this.on_setting_changed);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "temperature-scale", "temperature_scale", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "temperature-units-cpu", "temperature_units_cpu", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "data-prefix-ram", "data_prefix_ram", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "data-prefix-swap", "data_prefix_swap", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "data-prefix-hdd", "data_prefix_hdd", this.on_setting_changed);
@@ -87,8 +87,6 @@ SystemMonitorGraph.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-network-up", "line_color_network_up", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-battery", "line_color_battery", this.on_setting_changed);
 
-        // initialize files path
-        this.cpu_temperature_file = this.get_cpu_temperature_file();
 
         // initialize desklet GUI
         this.setupUI();
@@ -145,12 +143,10 @@ SystemMonitorGraph.prototype = {
             this.net_max_scale = 1; // Auto-scaling for network graph
             // battery values
             this.battery_percent  = NaN;
-            this.battery_capacity = NaN;
             this.battery_status   = "";
             this.battery_time     = "";
             // temperature values
-            this.temperature_normalized = 0;
-            this.temperature_celsius = TEMP_C_MIN;
+            this.cpu_temperature = NaN;
 
             // set colors
             switch (this.type) {
@@ -178,6 +174,11 @@ SystemMonitorGraph.prototype = {
                   this.line_color = this.line_color_battery;
                   break;
             }
+
+            // set files
+            // find file for overall CPU temperature
+            this.cpu_temperature_file = this.get_cpu_temperature_file();
+
             this.first_run = false;
         }
 
@@ -214,19 +215,23 @@ SystemMonitorGraph.prototype = {
                   case "usage":
                       this.get_cpu_use();
                       value = this.cpu_use / 100;
-                      text1 = _("CPU Usage");
+                      text1 = _("CPU");
                       text2 = Math.round(this.cpu_use).toString() + "%";
                       break;
 
                   case "temperature":
-                      this.get_temperature(this.cpu_temperature_file);
-                      value = this.temperature_normalized;
+                      this.get_cpu_temperature(this.cpu_temperature_file);
+                      // scale CPU temperature based on [CPU_TEMP_MIN, CPU_TEMP_MAX]
+                      value = 1.0 * (this.cpu_temperature - CPU_TEMP_MIN) / (CPU_TEMP_MAX - CPU_TEMP_MIN);
+                      value = value < 0 ? 0 : value > 1 ? 1 : value;
                       text1 = _("CPU Temperature");
-                      let temperature = this.temperature_scale == 0 ? this.temperature_celsius : Math.round(this.temperature_celsius * 9 / 5 + 32);
-                      text2 = temperature + (this.temperature_scale == 0 ? "°C" : "°F");
+                      if (this.temperature_units_cpu == "C") {
+                          text2 = this.cpu_temperature.toString() + "°C";
+                      } else if (this.temperature_units_cpu == "F") {
+                          text2 = Math.round(this.cpu_temperature * 9 / 5 + 32).toString() + "°F";
+                      }
                       break;
               }
-
               break;
 
           case "ram":
@@ -344,7 +349,7 @@ SystemMonitorGraph.prototype = {
 
           case "battery":
               this.get_battery_use();
-              value = this.battery_capacity;
+              value = this.battery_percent / 100.0;
               text1 = _("Battery");
               text2 = this.battery_percent + "%";
               let prefix = (this.battery_status == "Charging") ? "⚡ " : (this.battery_percent <= 20 ? "🪫 " : "🔋 ");
@@ -1036,7 +1041,6 @@ SystemMonitorGraph.prototype = {
                 if (success) {
                     let percent = parseInt(ByteArray.toString(contents));
                     this.battery_percent = percent >= 100 ? 100 : percent;
-                    this.battery_capacity = this.battery_percent / 100.0;
                 }
                 GLib.free(contents);
             } catch(error) {
@@ -1074,43 +1078,35 @@ SystemMonitorGraph.prototype = {
         return (result == "00:00") ? "--:--" : result;
 	},
 
-    get_temperature: function(temperature_file) {
+    get_cpu_temperature: function(temperature_file) {
         // File contains temperature, integer number in celsius * 1000
         Gio.file_new_for_path(temperature_file).load_contents_async(null, (file, response) => {
             try {
                 let [success, contents, tag] = file.load_contents_finish(response);
                 if (success) {
-                    let temp = parseInt(ByteArray.toString(contents)) / 1000;
-                    // We will show TEMP_C_MIN .. TEMP_C_MAX range for graph
-                    let temp_boxed = temp < TEMP_C_MIN ? TEMP_C_MIN : temp > TEMP_C_MAX ? TEMP_C_MAX :  temp;
-                    this.temperature_normalized = 1.0 * (temp_boxed - TEMP_C_MIN) / (TEMP_C_MAX - TEMP_C_MIN);
-                    this.temperature_celsius = Math.round(temp);
+                    this.cpu_temperature = Math.round(parseInt(ByteArray.toString(contents)) / 1000);
                 }
                 GLib.free(contents);
             } catch(error) {
-                global.log('Temperature file read error: ' + error.toString());
+                global.log('CPU temperature file read error: ' + error.toString());
             }
         });
     },
 
-    get_temperature_file_by_label: function(label) {
-        // Sysfs directory for temperature info
-        let temp_file = "sh -c \"grep -s -l -d skip '" + label +"' /sys/class/hwmon/*/temp*_label | sed 's/_label/_input/' | head -n 1\"";
-
-        try {
-            let [success, stdout, stderr, exit_status] = GLib.spawn_command_line_sync(temp_file);
-            if ((success && exit_status === 0) && stdout.length > 0) return ByteArray.toString(stdout).trim();
-        } catch (error) {
-            global.log('Temperature file search error: ' + error.toString());
-        }
-        return ""
-    },
-
     get_cpu_temperature_file: function() {
-        // Try Intel first
-        let cpu_temp_file = this.get_temperature_file_by_label('Package id 0');
-        // Try AMD next
-        if (cpu_temp_file === "") cpu_temp_file = this.get_temperature_file_by_label('Tctl');
-        return cpu_temp_file;
+        // Try each known CPU temperature label, return the first one found
+        // Intel == "Package id 0"
+        // AMD   == "Tctl"
+        let cpu_labels = ["Package id 0", "Tctl"];
+        for (let cpu_label of cpu_labels) {
+            try {
+                let cmd = "sh -c \"grep -s -l -d skip '" + cpu_label + "' /sys/class/hwmon/*/temp*_label | sed 's/_label/_input/' | head -n 1\"";
+                let [success, stdout, stderr, exit_status] = GLib.spawn_command_line_sync(cmd);
+                if ((success && exit_status === 0) && stdout.length > 0) return ByteArray.toString(stdout).trim();
+            } catch (error) {
+                global.log('CPU temperature file search error: ' + error.toString());
+            }
+        }
+        return "";
     },
 };
