@@ -1,0 +1,734 @@
+# Hungarian translation for calendarium@kami911
+# Copyright (C) 2024 kami911
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: calendarium@kami911 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-14 00:00+0000\n"
+"PO-Revision-Date: 2026-03-14 00:00+0100\n"
+"Last-Translator: Kalman „KAMI” Szalai <kami911@gmail.com>\n"
+"Language-Team: Hungarian <hu@li.org>\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. ── settings-schema.json — page titles ──────────────────────────────────
+#: settings-schema.json
+msgid "General"
+msgstr "Általános"
+
+#: settings-schema.json
+msgid "Location"
+msgstr "Helyszín"
+
+#: settings-schema.json
+msgid "Wikipedia"
+msgstr "Wikipédia"
+
+#. ── settings-schema.json — section titles ───────────────────────────────
+#: settings-schema.json
+msgid "Date and Time"
+msgstr "Dátum és idő"
+
+#: settings-schema.json
+msgid "Calendar Progress"
+msgstr ""
+
+#: settings-schema.json
+msgid "Traditional Month Names"
+msgstr "Hagyományos hónapnevek"
+
+#: settings-schema.json
+msgid "Folk Calendar Sayings"
+msgstr "Népi naptárregulák"
+
+#: settings-schema.json
+msgid "Moon Phase"
+msgstr "Holdfázis"
+
+#: settings-schema.json
+msgid "Sunrise and Sunset"
+msgstr "Napkelte és napnyugta"
+
+#: settings-schema.json
+msgid "Zodiac"
+msgstr "Horoszkóp"
+
+#: settings-schema.json
+msgid "Name Days"
+msgstr "Névnapok"
+
+#: settings-schema.json
+msgid "Appearance"
+msgstr "Megjelenés"
+
+#: settings-schema.json
+msgid "Wikipedia (Internet Required)"
+msgstr "Wikipédia (Internet szükséges)"
+
+#. ── settings-schema.json — setting descriptions ─────────────────────────
+#: settings-schema.json
+msgid "Show date"
+msgstr "Dátum megjelenítése"
+
+#: settings-schema.json
+msgid "Date format"
+msgstr "Dátumformátum"
+
+#: settings-schema.json
+msgid ""
+"Custom date format (strftime) — only active when 'Custom' is selected above"
+msgstr ""
+"Egyéni dátumformátum (strftime) — csak akkor aktív, ha fent az 'Egyéni' van "
+"kiválasztva"
+
+#: settings-schema.json
+msgid "Show time"
+msgstr "Idő megjelenítése"
+
+#: settings-schema.json
+msgid "Time format"
+msgstr "Időformátum"
+
+#: settings-schema.json
+msgid "Show seconds"
+msgstr "Másodpercek megjelenítése"
+
+#: settings-schema.json
+msgid "Show day of year (e.g. Day 52 of 365)"
+msgstr "Az év napjának megjelenítése (pl. 52. nap, 365-ből)"
+
+#: settings-schema.json
+msgid "Show ISO week number"
+msgstr "ISO hétszám megjelenítése"
+
+#: settings-schema.json
+msgid "Show month progress (day / days in month)"
+msgstr ""
+
+#: settings-schema.json
+msgid "Show days until New Year"
+msgstr "Újévig hátralévő napok megjelenítése"
+
+#: settings-schema.json
+msgid "Show traditional month name"
+msgstr "Hagyományos hónapnév megjelenítése"
+
+#: settings-schema.json
+msgid "Traditional month name tradition"
+msgstr "Hagyományos hónapnév hagyomány"
+
+#: settings-schema.json
+msgid "Show folk calendar saying for today"
+msgstr "Mai népi naptárregula megjelenítése"
+
+#: settings-schema.json
+msgid "Folk saying language"
+msgstr "Népi regula nyelve"
+
+#: settings-schema.json
+msgid "Show moon phase"
+msgstr "Holdfázis megjelenítése"
+
+#: settings-schema.json
+msgid "Show moon phase name"
+msgstr "Holdfázis nevének megjelenítése"
+
+#: settings-schema.json
+msgid "Show moon age (days since new moon)"
+msgstr "Hold korának megjelenítése (napok az újhold óta)"
+
+#: settings-schema.json
+msgid "Show sunrise and sunset times"
+msgstr "Napkelte és napnyugta időpontjának megjelenítése"
+
+#: settings-schema.json
+msgid "Western zodiac display"
+msgstr "Nyugati horoszkóp megjelenítése"
+
+#: settings-schema.json
+msgid "Chinese zodiac display"
+msgstr "Kínai horoszkóp megjelenítése"
+
+#: settings-schema.json
+msgid "Show name days"
+msgstr "Névnapok megjelenítése"
+
+#: settings-schema.json
+msgid "Name day calendar"
+msgstr "Névnap-naptár"
+
+#: settings-schema.json
+msgid "Show upcoming name days (days ahead)"
+msgstr "Közelgő névnapok megjelenítése (előre napokban)"
+
+#: settings-schema.json
+msgid "Show future name days in two columns"
+msgstr "Jövőbeli névnapok megjelenítése két oszlopban"
+
+#: settings-schema.json
+msgid "Enable Wikipedia features (requires Internet)"
+msgstr "Wikipédia-funkciók engedélyezése (Internet szükséges)"
+
+#: settings-schema.json
+msgid "Wikipedia language"
+msgstr "Wikipédia nyelve"
+
+#: settings-schema.json
+msgid "Show notable events on this day"
+msgstr "Ezen a napon történt esemény megjelenítése"
+
+#: settings-schema.json
+msgid "Show notable births on this day"
+msgstr "Ezen a napon született személyek megjelenítése"
+
+#: settings-schema.json
+msgid "Show notable deaths on this day"
+msgstr "Ezen a napon elhunyt személyek megjelenítése"
+
+#: settings-schema.json
+msgid "Show article of the day"
+msgstr "A nap cikkének megjelenítése"
+
+#: settings-schema.json
+msgid "Cache duration for Wikipedia data"
+msgstr "Wikipédia adatok gyorsítótár-időtartama"
+
+#: settings-schema.json
+msgid "Icon and symbol size"
+msgstr "Ikon- és szimbólumméret"
+
+#: settings-schema.json
+msgid "Text scale factor"
+msgstr "Szöveg nagyítási aránya"
+
+#: settings-schema.json
+msgid "Hide desklet decorations (border and header label)"
+msgstr "Desklet díszítések elrejtése (keret és fejléc)"
+
+#: settings-schema.json
+msgid "Use manual location (default: Budapest, Hungary)"
+msgstr "Manuális helyszín megadása (alap: Budapest, Magyarország)"
+
+#: settings-schema.json
+msgid "Latitude (positive = North)"
+msgstr "Szélességi fok (pozitív = Észak)"
+
+#: settings-schema.json
+msgid "Longitude (positive = East)"
+msgstr "Hosszúsági fok (pozitív = Kelet)"
+
+#: settings-schema.json
+msgid "City 1 name (leave empty to disable)"
+msgstr "1. város neve (üresen hagyva kikapcsolt)"
+
+#: settings-schema.json
+msgid "City 1 latitude"
+msgstr "1. város szélességi foka"
+
+#: settings-schema.json
+msgid "City 1 longitude"
+msgstr "1. város hosszúsági foka"
+
+#: settings-schema.json
+msgid "City 2 name (leave empty to disable)"
+msgstr "2. város neve (üresen hagyva kikapcsolt)"
+
+#: settings-schema.json
+msgid "City 2 latitude"
+msgstr "2. város szélességi foka"
+
+#: settings-schema.json
+msgid "City 2 longitude"
+msgstr "2. város hosszúsági foka"
+
+#: settings-schema.json
+msgid "City 3 name (leave empty to disable)"
+msgstr "3. város neve (üresen hagyva kikapcsolt)"
+
+#: settings-schema.json
+msgid "City 3 latitude"
+msgstr "3. város szélességi foka"
+
+#: settings-schema.json
+msgid "City 3 longitude"
+msgstr "3. város hosszúsági foka"
+
+#. ── settings-schema.json — tooltips ─────────────────────────────────────
+#: settings-schema.json
+msgid ""
+"Select a predefined date format, or choose Custom to enter your own strftime "
+"string below."
+msgstr ""
+"Válassz egy előre beállított dátumformátumot, vagy válaszd az Egyénit, hogy "
+"alább megadd a saját strftime-kódodat."
+
+#: settings-schema.json
+msgid "Controls the display size of moon phase and zodiac symbols."
+msgstr ""
+"A holdfázis és horoszkóp szimbólumok megjelenítési méretét szabályozza."
+
+#: settings-schema.json
+msgid "Scale all text in the desklet up or down."
+msgstr "Az összes szöveg nagyítása vagy kicsinyítése a deskletben."
+
+#: settings-schema.json
+msgid ""
+"How long to keep Wikipedia data in the local cache before fetching fresh "
+"data. Lower values fetch more often; higher values reduce network usage."
+msgstr ""
+"Mennyi ideig tárolja a Wikipédia adatokat a helyi gyorsítótárban, mielőtt "
+"újat tölt le. Alacsonyabb értéknél sűrűbben frissít; magasabb értéknél "
+"csökkenti a hálózathasználatot."
+
+#: settings-schema.json
+msgid "Choose what to show for the western zodiac sign."
+msgstr "Válaszd ki, mit jelenítsen meg a nyugati állatövi jelnél."
+
+#: settings-schema.json
+msgid "Choose what to show for the Chinese zodiac year (animal and element)."
+msgstr "Válaszd ki, mit jelenítsen meg a kínai állatövi évnél (állat és elem)."
+
+#: settings-schema.json
+msgid "Label for an additional city. Leave empty to hide."
+msgstr "Egy további város felirata. Üresen hagyva elrejtve."
+
+#. ── settings-schema.json — option labels ────────────────────────────────
+#: settings-schema.json
+msgid "System language"
+msgstr "Rendszer nyelve"
+
+#: settings-schema.json
+msgid "24-hour"
+msgstr "24 órás"
+
+#: settings-schema.json
+msgid "12-hour (AM/PM)"
+msgstr "12 órás (AM/PM)"
+
+#: settings-schema.json
+msgid "Old Hungarian"
+msgstr "Régi magyar"
+
+#: settings-schema.json
+msgid "Old English (Anglo-Saxon)"
+msgstr "Régi angol (angolszász)"
+
+#: settings-schema.json
+msgid "Old German"
+msgstr "Régi német"
+
+#: settings-schema.json
+msgid "Hungarian"
+msgstr "Magyar"
+
+#: settings-schema.json
+msgid "German"
+msgstr "Német"
+
+#: settings-schema.json
+msgid "English"
+msgstr "Angol"
+
+#: settings-schema.json
+msgid "French"
+msgstr "Francia"
+
+#: settings-schema.json
+msgid "Spanish"
+msgstr "Spanyol"
+
+#: settings-schema.json
+msgid "Italian"
+msgstr "Olasz"
+
+#: settings-schema.json
+msgid "Icon and text"
+msgstr "Ikon és szöveg"
+
+#: settings-schema.json
+msgid "Icon only"
+msgstr "Csak ikon"
+
+#: settings-schema.json
+msgid "Text only"
+msgstr "Csak szöveg"
+
+#: settings-schema.json
+msgid "None (hidden)"
+msgstr "Nincs (rejtett)"
+
+#: settings-schema.json
+msgid "Small"
+msgstr "Kicsi"
+
+#: settings-schema.json
+msgid "Medium"
+msgstr "Közepes"
+
+#: settings-schema.json
+msgid "Large"
+msgstr "Nagy"
+
+#: settings-schema.json
+msgid "Custom (enter strftime string below)"
+msgstr "Egyéni (add meg alább a strftime-kódot)"
+
+#. ── Moon phase names ──────────────────────────────────────────────────────
+#: lib/moon.js
+msgid "New Moon"
+msgstr "Újhold"
+
+#: lib/moon.js
+msgid "Waxing Crescent"
+msgstr "Növekvő holdsarló"
+
+#: lib/moon.js
+msgid "First Quarter"
+msgstr "Első negyed"
+
+#: lib/moon.js
+msgid "Waxing Gibbous"
+msgstr "Növekvő telihold előtt"
+
+#: lib/moon.js
+msgid "Full Moon"
+msgstr "Telihold"
+
+#: lib/moon.js
+msgid "Waning Gibbous"
+msgstr "Fogyó telihold után"
+
+#: lib/moon.js
+msgid "Last Quarter"
+msgstr "Utolsó negyed"
+
+#: lib/moon.js
+msgid "Waning Crescent"
+msgstr "Fogyó holdsarló"
+
+#. ── Western zodiac signs ──────────────────────────────────────────────────
+#: lib/zodiac.js
+msgid "Aries"
+msgstr "Kos"
+
+#: lib/zodiac.js
+msgid "Taurus"
+msgstr "Bika"
+
+#: lib/zodiac.js
+msgid "Gemini"
+msgstr "Ikrek"
+
+#: lib/zodiac.js
+msgid "Cancer"
+msgstr "Rák"
+
+#: lib/zodiac.js
+msgid "Leo"
+msgstr "Oroszlán"
+
+#: lib/zodiac.js
+msgid "Virgo"
+msgstr "Szűz"
+
+#: lib/zodiac.js
+msgid "Libra"
+msgstr "Mérleg"
+
+#: lib/zodiac.js
+msgid "Scorpio"
+msgstr "Skorpió"
+
+#: lib/zodiac.js
+msgid "Sagittarius"
+msgstr "Nyilas"
+
+#: lib/zodiac.js
+msgid "Capricorn"
+msgstr "Bak"
+
+#: lib/zodiac.js
+msgid "Aquarius"
+msgstr "Vízöntő"
+
+#: lib/zodiac.js
+msgid "Pisces"
+msgstr "Halak"
+
+#. ── Chinese zodiac animals ────────────────────────────────────────────────
+#: lib/zodiac.js
+msgid "Rat"
+msgstr "Patkány"
+
+#: lib/zodiac.js
+msgid "Ox"
+msgstr "Ökör"
+
+#: lib/zodiac.js
+msgid "Tiger"
+msgstr "Tigris"
+
+#: lib/zodiac.js
+msgid "Rabbit"
+msgstr "Nyúl"
+
+#: lib/zodiac.js
+msgid "Dragon"
+msgstr "Sárkány"
+
+#: lib/zodiac.js
+msgid "Snake"
+msgstr "Kígyó"
+
+#: lib/zodiac.js
+msgid "Horse"
+msgstr "Ló"
+
+#: lib/zodiac.js
+msgid "Goat"
+msgstr "Kecske"
+
+#: lib/zodiac.js
+msgid "Monkey"
+msgstr "Majom"
+
+#: lib/zodiac.js
+msgid "Rooster"
+msgstr "Kakas"
+
+#: lib/zodiac.js
+msgid "Dog"
+msgstr "Kutya"
+
+#: lib/zodiac.js
+msgid "Pig"
+msgstr "Disznó"
+
+#. ── Chinese zodiac elements ───────────────────────────────────────────────
+#: lib/zodiac.js
+msgid "Wood"
+msgstr "Fa"
+
+#: lib/zodiac.js
+msgid "Fire"
+msgstr "Tűz"
+
+#: lib/zodiac.js
+msgid "Earth"
+msgstr "Föld"
+
+#: lib/zodiac.js
+msgid "Metal"
+msgstr "Fém"
+
+#: lib/zodiac.js
+msgid "Water"
+msgstr "Víz"
+
+#. ── desklet.js runtime strings ───────────────────────────────────────────
+#: desklet.js
+msgid "Day %d of %d"
+msgstr "Az év %d. napja (összesen: %d)"
+
+#: desklet.js
+msgid "Week %d"
+msgstr "%d. hét"
+
+#: desklet.js
+msgid "Moon phase"
+msgstr "Holdfázis"
+
+#: desklet.js
+msgid "Moon age"
+msgstr "Hold kora"
+
+#: desklet.js
+msgid "Western zodiac"
+msgstr "Nyugati horoszkóp"
+
+#: desklet.js
+msgid "Chinese zodiac"
+msgstr "Kínai horoszkóp"
+
+#: desklet.js
+msgid "Day of year"
+msgstr "Év napja"
+
+#: desklet.js
+msgid "Week number"
+msgstr "Hét száma"
+
+#: desklet.js
+msgid "Month progress"
+msgstr ""
+
+#: desklet.js
+msgid "Current date"
+msgstr "Mai dátum"
+
+#: desklet.js
+msgid "Current time"
+msgstr "Jelenlegi idő"
+
+#: desklet.js
+msgid "Sunrise"
+msgstr "Napkelte"
+
+#: desklet.js
+msgid "Sunset"
+msgstr "Napnyugta"
+
+#: desklet.js
+msgid "days"
+msgstr "nap"
+
+#: desklet.js
+msgid "days until New Year"
+msgstr "nap az újévig"
+
+#: desklet.js
+msgid "Name days"
+msgstr "Névnapok"
+
+#: desklet.js
+msgid "Tomorrow"
+msgstr "Holnap"
+
+#: desklet.js
+msgid "No data"
+msgstr "Nincs adat"
+
+#: desklet.js
+msgid "Polar day"
+msgstr "Sarki nap"
+
+#: desklet.js
+msgid "Polar night"
+msgstr "Sarki éj"
+
+#: desklet.js
+msgid "Events on this day"
+msgstr "Ezen a napon történt"
+
+#: desklet.js
+msgid "Births on this day"
+msgstr "Ezen a napon születtek"
+
+#: desklet.js
+msgid "Deaths on this day"
+msgstr "Ezen a napon haltak meg"
+
+#: desklet.js
+msgid "Article of the day"
+msgstr "A nap cikke"
+
+#: desklet.js
+msgid "Enable births, deaths, or featured article"
+msgstr "Engedélyezd a születéseket, halálozásokat vagy a kiemelt cikket"
+
+#: desklet.js
+msgid "No data available"
+msgstr "Nincs elérhető adat"
+
+msgid "Background opacity"
+msgstr ""
+
+msgid ""
+"0 = fully transparent (wallpaper shows through), 1 = solid black background"
+msgstr ""
+
+#~ msgid "Calendar Highlights"
+#~ msgstr "Naptár aktualitás"
+
+#~ msgid "Show month highlights (day / days in month)"
+#~ msgstr "Hónap aktualitásának megjelenítése (nap / napok a hónapban)"
+
+#~ msgid "Separator character between calendar items"
+#~ msgstr "Elválasztó karakter a naptár aktualitások között"
+
+#~ msgid "Items shown per section"
+#~ msgstr "Szekciónként megjelenített elemek száma"
+
+#~ msgid ""
+#~ "How many births, deaths, and events to display at a time. The list "
+#~ "rotates periodically, cycling through all available entries from the "
+#~ "cache."
+#~ msgstr ""
+#~ "Hány születést, halálozást és eseményt mutasson egyszerre. A lista "
+#~ "időközönként rotál, végigpörög az összes gyorsítótárban lévő bejegyzésen."
+
+#~ msgid "Rotate items every N minutes"
+#~ msgstr "Elemek rotálása minden N percben"
+
+#~ msgid ""
+#~ "How often to advance to the next set of items. Set to 1 to rotate every "
+#~ "minute."
+#~ msgstr ""
+#~ "Milyen gyakran lépjen a következő elemekre. 1-re állítva percenként rotál."
+
+#~ msgid "Search city to auto-fill coordinates"
+#~ msgstr "Város keresése a koordináták automatikus kitöltéséhez"
+
+#~ msgid ""
+#~ "Type a city name — coordinates are filled in automatically after 1.5 "
+#~ "seconds."
+#~ msgstr ""
+#~ "Írj be egy városnevet — a koordináták 1,5 másodperc után automatikusan "
+#~ "kitöltődnek."
+
+#~ msgid "City 1 timezone (IANA, e.g. Europe/Vienna)"
+#~ msgstr "1. város időzónája (IANA, pl. Europe/Vienna)"
+
+#~ msgid "City 2 timezone (IANA, e.g. America/New_York)"
+#~ msgstr "2. város időzónája (IANA, pl. America/New_York)"
+
+#~ msgid "City 3 timezone (IANA, e.g. Asia/Tokyo)"
+#~ msgstr "3. város időzónája (IANA, pl. Asia/Tokyo)"
+
+#~ msgid "Show current local time for each city"
+#~ msgstr "Az aktuális helyi idő megjelenítése minden városhoz"
+
+#~ msgid "Show UTC offset for each city (e.g. UTC+1)"
+#~ msgstr "UTC eltolás megjelenítése minden városhoz (pl. UTC+1)"
+
+#~ msgid "Local time"
+#~ msgstr "Helyi idő"
+
+#~ msgid ""
+#~ "Filled automatically when using city search. You can also enter an IANA "
+#~ "timezone name manually, e.g. America/New_York."
+#~ msgstr ""
+#~ "Városkeresés esetén automatikusan kitöltődik. Manuálisan is megadható "
+#~ "IANA időzónanév, pl. America/New_York."
+
+#~ msgid ""
+#~ "Filled automatically when using city search. You can also enter an IANA "
+#~ "timezone name manually."
+#~ msgstr ""
+#~ "Városkeresés esetén automatikusan kitöltődik. Manuálisan is megadható "
+#~ "IANA időzónanév."
+
+#~ msgid "Month highlights"
+#~ msgstr "Havi aktualitás"
+
+#~ msgid "National Holidays"
+#~ msgstr "Nemzeti ünnepek"
+
+#~ msgid "Show national holidays and weekends"
+#~ msgstr "Nemzeti ünnepek és hétvégék jelzése"
+
+#~ msgid "Holiday calendar"
+#~ msgstr "Ünnepi naptár"
+
+#~ msgid "public holiday"
+#~ msgstr "munkaszüneti nap"
+
+#~ msgid "weekend"
+#~ msgstr "hétvége"
+
+#~ msgid "Show upcoming holidays (days ahead)"
+#~ msgstr "Közelgő ünnepnapok megjelenítése (napok előre)"

@@ -1,0 +1,736 @@
+# Italian translation for calendarium@kami911
+# Copyright (C) 2024 kami911
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: calendarium@kami911 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-14 00:00+0000\n"
+"PO-Revision-Date: 2026-03-14 00:00+0100\n"
+"Last-Translator: Kalman „KAMI” Szalai <kami911@gmail.com>\n"
+"Language-Team: Italian <it@li.org>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. ── settings-schema.json — page titles ──────────────────────────────────
+#: settings-schema.json
+msgid "General"
+msgstr "Generale"
+
+#: settings-schema.json
+msgid "Location"
+msgstr "Posizione"
+
+#: settings-schema.json
+msgid "Wikipedia"
+msgstr "Wikipedia"
+
+#. ── settings-schema.json — section titles ───────────────────────────────
+#: settings-schema.json
+msgid "Date and Time"
+msgstr "Data e ora"
+
+#: settings-schema.json
+msgid "Calendar Progress"
+msgstr ""
+
+#: settings-schema.json
+msgid "Traditional Month Names"
+msgstr "Nomi dei mesi tradizionali"
+
+#: settings-schema.json
+msgid "Folk Calendar Sayings"
+msgstr "Detti del calendario popolare"
+
+#: settings-schema.json
+msgid "Moon Phase"
+msgstr "Fase lunare"
+
+#: settings-schema.json
+msgid "Sunrise and Sunset"
+msgstr "Alba e tramonto"
+
+#: settings-schema.json
+msgid "Zodiac"
+msgstr "Zodiaco"
+
+#: settings-schema.json
+msgid "Name Days"
+msgstr "Onomastici"
+
+#: settings-schema.json
+msgid "Appearance"
+msgstr "Aspetto"
+
+#: settings-schema.json
+msgid "Wikipedia (Internet Required)"
+msgstr "Wikipedia (richiede Internet)"
+
+#. ── settings-schema.json — setting descriptions ─────────────────────────
+#: settings-schema.json
+msgid "Show date"
+msgstr "Mostra data"
+
+#: settings-schema.json
+msgid "Date format"
+msgstr "Formato data"
+
+#: settings-schema.json
+msgid ""
+"Custom date format (strftime) — only active when 'Custom' is selected above"
+msgstr ""
+"Formato data personalizzato (strftime) — attivo solo quando è selezionato "
+"'Personalizzato' sopra"
+
+#: settings-schema.json
+msgid "Show time"
+msgstr "Mostra ora"
+
+#: settings-schema.json
+msgid "Time format"
+msgstr "Formato ora"
+
+#: settings-schema.json
+msgid "Show seconds"
+msgstr "Mostra secondi"
+
+#: settings-schema.json
+msgid "Show day of year (e.g. Day 52 of 365)"
+msgstr "Mostra giorno dell'anno (es. Giorno 52 di 365)"
+
+#: settings-schema.json
+msgid "Show ISO week number"
+msgstr "Mostra numero settimana ISO"
+
+#: settings-schema.json
+msgid "Show month progress (day / days in month)"
+msgstr ""
+
+#: settings-schema.json
+msgid "Show days until New Year"
+msgstr "Mostra giorni al Capodanno"
+
+#: settings-schema.json
+msgid "Show traditional month name"
+msgstr "Mostra nome del mese tradizionale"
+
+#: settings-schema.json
+msgid "Traditional month name tradition"
+msgstr "Tradizione del nome del mese"
+
+#: settings-schema.json
+msgid "Show folk calendar saying for today"
+msgstr "Mostra detto del calendario popolare di oggi"
+
+#: settings-schema.json
+msgid "Folk saying language"
+msgstr "Lingua del detto popolare"
+
+#: settings-schema.json
+msgid "Show moon phase"
+msgstr "Mostra fase lunare"
+
+#: settings-schema.json
+msgid "Show moon phase name"
+msgstr "Mostra nome della fase lunare"
+
+#: settings-schema.json
+msgid "Show moon age (days since new moon)"
+msgstr "Mostra età lunare (giorni dalla luna nuova)"
+
+#: settings-schema.json
+msgid "Show sunrise and sunset times"
+msgstr "Mostra orari di alba e tramonto"
+
+#: settings-schema.json
+msgid "Western zodiac display"
+msgstr "Visualizzazione zodiaco occidentale"
+
+#: settings-schema.json
+msgid "Chinese zodiac display"
+msgstr "Visualizzazione zodiaco cinese"
+
+#: settings-schema.json
+msgid "Show name days"
+msgstr "Mostra onomastici"
+
+#: settings-schema.json
+msgid "Name day calendar"
+msgstr "Calendario degli onomastici"
+
+#: settings-schema.json
+msgid "Show upcoming name days (days ahead)"
+msgstr "Mostra prossimi onomastici (giorni in anticipo)"
+
+#: settings-schema.json
+msgid "Show future name days in two columns"
+msgstr "Mostra prossimi onomastici in due colonne"
+
+#: settings-schema.json
+msgid "Enable Wikipedia features (requires Internet)"
+msgstr "Abilita funzioni Wikipedia (richiede Internet)"
+
+#: settings-schema.json
+msgid "Wikipedia language"
+msgstr "Lingua Wikipedia"
+
+#: settings-schema.json
+msgid "Show notable events on this day"
+msgstr "Mostra eventi notevoli di questo giorno"
+
+#: settings-schema.json
+msgid "Show notable births on this day"
+msgstr "Mostra nascite notevoli di questo giorno"
+
+#: settings-schema.json
+msgid "Show notable deaths on this day"
+msgstr "Mostra morti notevoli di questo giorno"
+
+#: settings-schema.json
+msgid "Show article of the day"
+msgstr "Mostra articolo del giorno"
+
+#: settings-schema.json
+msgid "Cache duration for Wikipedia data"
+msgstr "Durata cache per i dati Wikipedia"
+
+#: settings-schema.json
+msgid "Icon and symbol size"
+msgstr "Dimensione icone e simboli"
+
+#: settings-schema.json
+msgid "Text scale factor"
+msgstr "Fattore di scala del testo"
+
+#: settings-schema.json
+msgid "Hide desklet decorations (border and header label)"
+msgstr "Nascondi decorazioni del desklet (bordo e intestazione)"
+
+#: settings-schema.json
+msgid "Use manual location (default: Budapest, Hungary)"
+msgstr "Usa posizione manuale (predefinito: Budapest, Ungheria)"
+
+#: settings-schema.json
+msgid "Latitude (positive = North)"
+msgstr "Latitudine (positivo = Nord)"
+
+#: settings-schema.json
+msgid "Longitude (positive = East)"
+msgstr "Longitudine (positivo = Est)"
+
+#: settings-schema.json
+msgid "City 1 name (leave empty to disable)"
+msgstr "Nome città 1 (lascia vuoto per disabilitare)"
+
+#: settings-schema.json
+msgid "City 1 latitude"
+msgstr "Latitudine città 1"
+
+#: settings-schema.json
+msgid "City 1 longitude"
+msgstr "Longitudine città 1"
+
+#: settings-schema.json
+msgid "City 2 name (leave empty to disable)"
+msgstr "Nome città 2 (lascia vuoto per disabilitare)"
+
+#: settings-schema.json
+msgid "City 2 latitude"
+msgstr "Latitudine città 2"
+
+#: settings-schema.json
+msgid "City 2 longitude"
+msgstr "Longitudine città 2"
+
+#: settings-schema.json
+msgid "City 3 name (leave empty to disable)"
+msgstr "Nome città 3 (lascia vuoto per disabilitare)"
+
+#: settings-schema.json
+msgid "City 3 latitude"
+msgstr "Latitudine città 3"
+
+#: settings-schema.json
+msgid "City 3 longitude"
+msgstr "Longitudine città 3"
+
+#. ── settings-schema.json — tooltips ─────────────────────────────────────
+#: settings-schema.json
+msgid ""
+"Select a predefined date format, or choose Custom to enter your own strftime "
+"string below."
+msgstr ""
+"Seleziona un formato data predefinito, o scegli Personalizzato per inserire "
+"la tua stringa strftime."
+
+#: settings-schema.json
+msgid "Controls the display size of moon phase and zodiac symbols."
+msgstr ""
+"Controlla la dimensione di visualizzazione dei simboli di fase lunare e "
+"zodiaco."
+
+#: settings-schema.json
+msgid "Scale all text in the desklet up or down."
+msgstr "Ingrandire o ridurre tutto il testo nel desklet."
+
+#: settings-schema.json
+msgid ""
+"How long to keep Wikipedia data in the local cache before fetching fresh "
+"data. Lower values fetch more often; higher values reduce network usage."
+msgstr ""
+"Per quanto tempo conservare i dati Wikipedia nella cache locale prima di "
+"recuperare dati aggiornati. Valori bassi aggiornano più spesso; valori alti "
+"riducono il traffico di rete."
+
+#: settings-schema.json
+msgid "Choose what to show for the western zodiac sign."
+msgstr "Scegli cosa mostrare per il segno zodiacale occidentale."
+
+#: settings-schema.json
+msgid "Choose what to show for the Chinese zodiac year (animal and element)."
+msgstr ""
+"Scegli cosa mostrare per l'anno dello zodiaco cinese (animale ed elemento)."
+
+#: settings-schema.json
+msgid "Label for an additional city. Leave empty to hide."
+msgstr "Etichetta per una città aggiuntiva. Lascia vuoto per nascondere."
+
+#. ── settings-schema.json — option labels ────────────────────────────────
+#: settings-schema.json
+msgid "System language"
+msgstr "Lingua di sistema"
+
+#: settings-schema.json
+msgid "24-hour"
+msgstr "24 ore"
+
+#: settings-schema.json
+msgid "12-hour (AM/PM)"
+msgstr "12 ore (AM/PM)"
+
+#: settings-schema.json
+msgid "Old Hungarian"
+msgstr "Ungherese antico"
+
+#: settings-schema.json
+msgid "Old English (Anglo-Saxon)"
+msgstr "Inglese antico (anglosassone)"
+
+#: settings-schema.json
+msgid "Old German"
+msgstr "Tedesco antico"
+
+#: settings-schema.json
+msgid "Hungarian"
+msgstr "Ungherese"
+
+#: settings-schema.json
+msgid "German"
+msgstr "Tedesco"
+
+#: settings-schema.json
+msgid "English"
+msgstr "Inglese"
+
+#: settings-schema.json
+msgid "French"
+msgstr "Francese"
+
+#: settings-schema.json
+msgid "Spanish"
+msgstr "Spagnolo"
+
+#: settings-schema.json
+msgid "Italian"
+msgstr "Italiano"
+
+#: settings-schema.json
+msgid "Icon and text"
+msgstr "Icona e testo"
+
+#: settings-schema.json
+msgid "Icon only"
+msgstr "Solo icona"
+
+#: settings-schema.json
+msgid "Text only"
+msgstr "Solo testo"
+
+#: settings-schema.json
+msgid "None (hidden)"
+msgstr "Nessuno (nascosto)"
+
+#: settings-schema.json
+msgid "Small"
+msgstr "Piccolo"
+
+#: settings-schema.json
+msgid "Medium"
+msgstr "Medio"
+
+#: settings-schema.json
+msgid "Large"
+msgstr "Grande"
+
+#: settings-schema.json
+msgid "Custom (enter strftime string below)"
+msgstr "Personalizzato (inserisci la stringa strftime sotto)"
+
+#. ── Moon phase names ──────────────────────────────────────────────────────
+#: lib/moon.js
+msgid "New Moon"
+msgstr "Luna nuova"
+
+#: lib/moon.js
+msgid "Waxing Crescent"
+msgstr "Luna crescente"
+
+#: lib/moon.js
+msgid "First Quarter"
+msgstr "Primo quarto"
+
+#: lib/moon.js
+msgid "Waxing Gibbous"
+msgstr "Gibbosa crescente"
+
+#: lib/moon.js
+msgid "Full Moon"
+msgstr "Luna piena"
+
+#: lib/moon.js
+msgid "Waning Gibbous"
+msgstr "Gibbosa calante"
+
+#: lib/moon.js
+msgid "Last Quarter"
+msgstr "Ultimo quarto"
+
+#: lib/moon.js
+msgid "Waning Crescent"
+msgstr "Luna calante"
+
+#. ── Western zodiac signs ──────────────────────────────────────────────────
+#: lib/zodiac.js
+msgid "Aries"
+msgstr "Ariete"
+
+#: lib/zodiac.js
+msgid "Taurus"
+msgstr "Toro"
+
+#: lib/zodiac.js
+msgid "Gemini"
+msgstr "Gemelli"
+
+#: lib/zodiac.js
+msgid "Cancer"
+msgstr "Cancro"
+
+#: lib/zodiac.js
+msgid "Leo"
+msgstr "Leone"
+
+#: lib/zodiac.js
+msgid "Virgo"
+msgstr "Vergine"
+
+#: lib/zodiac.js
+msgid "Libra"
+msgstr "Bilancia"
+
+#: lib/zodiac.js
+msgid "Scorpio"
+msgstr "Scorpione"
+
+#: lib/zodiac.js
+msgid "Sagittarius"
+msgstr "Sagittario"
+
+#: lib/zodiac.js
+msgid "Capricorn"
+msgstr "Capricorno"
+
+#: lib/zodiac.js
+msgid "Aquarius"
+msgstr "Acquario"
+
+#: lib/zodiac.js
+msgid "Pisces"
+msgstr "Pesci"
+
+#. ── Chinese zodiac animals ────────────────────────────────────────────────
+#: lib/zodiac.js
+msgid "Rat"
+msgstr "Ratto"
+
+#: lib/zodiac.js
+msgid "Ox"
+msgstr "Bue"
+
+#: lib/zodiac.js
+msgid "Tiger"
+msgstr "Tigre"
+
+#: lib/zodiac.js
+msgid "Rabbit"
+msgstr "Coniglio"
+
+#: lib/zodiac.js
+msgid "Dragon"
+msgstr "Drago"
+
+#: lib/zodiac.js
+msgid "Snake"
+msgstr "Serpente"
+
+#: lib/zodiac.js
+msgid "Horse"
+msgstr "Cavallo"
+
+#: lib/zodiac.js
+msgid "Goat"
+msgstr "Capra"
+
+#: lib/zodiac.js
+msgid "Monkey"
+msgstr "Scimmia"
+
+#: lib/zodiac.js
+msgid "Rooster"
+msgstr "Gallo"
+
+#: lib/zodiac.js
+msgid "Dog"
+msgstr "Cane"
+
+#: lib/zodiac.js
+msgid "Pig"
+msgstr "Maiale"
+
+#. ── Chinese zodiac elements ───────────────────────────────────────────────
+#: lib/zodiac.js
+msgid "Wood"
+msgstr "Legno"
+
+#: lib/zodiac.js
+msgid "Fire"
+msgstr "Fuoco"
+
+#: lib/zodiac.js
+msgid "Earth"
+msgstr "Terra"
+
+#: lib/zodiac.js
+msgid "Metal"
+msgstr "Metallo"
+
+#: lib/zodiac.js
+msgid "Water"
+msgstr "Acqua"
+
+#. ── desklet.js runtime strings ───────────────────────────────────────────
+#: desklet.js
+msgid "Day %d of %d"
+msgstr "Giorno %d di %d"
+
+#: desklet.js
+msgid "Week %d"
+msgstr "Settimana %d"
+
+#: desklet.js
+msgid "Moon phase"
+msgstr "Fase lunare"
+
+#: desklet.js
+msgid "Moon age"
+msgstr "Età lunare"
+
+#: desklet.js
+msgid "Western zodiac"
+msgstr "Zodiaco occidentale"
+
+#: desklet.js
+msgid "Chinese zodiac"
+msgstr "Zodiaco cinese"
+
+#: desklet.js
+msgid "Day of year"
+msgstr "Giorno dell'anno"
+
+#: desklet.js
+msgid "Week number"
+msgstr "Numero settimana"
+
+#: desklet.js
+msgid "Month progress"
+msgstr ""
+
+#: desklet.js
+msgid "Current date"
+msgstr "Data corrente"
+
+#: desklet.js
+msgid "Current time"
+msgstr "Ora corrente"
+
+#: desklet.js
+msgid "Sunrise"
+msgstr "Alba"
+
+#: desklet.js
+msgid "Sunset"
+msgstr "Tramonto"
+
+#: desklet.js
+msgid "days"
+msgstr "giorni"
+
+#: desklet.js
+msgid "days until New Year"
+msgstr "giorni al Capodanno"
+
+#: desklet.js
+msgid "Name days"
+msgstr "Onomastici"
+
+#: desklet.js
+msgid "Tomorrow"
+msgstr "Domani"
+
+#: desklet.js
+msgid "No data"
+msgstr "Nessun dato"
+
+#: desklet.js
+msgid "Polar day"
+msgstr "Giorno polare"
+
+#: desklet.js
+msgid "Polar night"
+msgstr "Notte polare"
+
+#: desklet.js
+msgid "Events on this day"
+msgstr "Eventi di questo giorno"
+
+#: desklet.js
+msgid "Births on this day"
+msgstr "Nascite di questo giorno"
+
+#: desklet.js
+msgid "Deaths on this day"
+msgstr "Morti di questo giorno"
+
+#: desklet.js
+msgid "Article of the day"
+msgstr "Articolo del giorno"
+
+#: desklet.js
+msgid "Enable births, deaths, or featured article"
+msgstr "Abilita nascite, morti o articolo in evidenza"
+
+#: desklet.js
+msgid "No data available"
+msgstr "Nessun dato disponibile"
+
+msgid "Background opacity"
+msgstr ""
+
+msgid ""
+"0 = fully transparent (wallpaper shows through), 1 = solid black background"
+msgstr ""
+
+#~ msgid "Calendar Highlights"
+#~ msgstr "Evidenziazioni calendario"
+
+#~ msgid "Show month highlights (day / days in month)"
+#~ msgstr "Mostra evidenziazioni del mese (giorno / giorni nel mese)"
+
+#~ msgid "Separator character between calendar items"
+#~ msgstr "Carattere separatore tra elementi del calendario"
+
+#~ msgid "Items shown per section"
+#~ msgstr "Elementi mostrati per sezione"
+
+#~ msgid ""
+#~ "How many births, deaths, and events to display at a time. The list "
+#~ "rotates periodically, cycling through all available entries from the "
+#~ "cache."
+#~ msgstr ""
+#~ "Quante nascite, morti ed eventi mostrare alla volta. L'elenco ruota "
+#~ "periodicamente, scorrendo tutte le voci disponibili nella cache."
+
+#~ msgid "Rotate items every N minutes"
+#~ msgstr "Ruota elementi ogni N minuti"
+
+#~ msgid ""
+#~ "How often to advance to the next set of items. Set to 1 to rotate every "
+#~ "minute."
+#~ msgstr ""
+#~ "Con quale frequenza avanzare al prossimo gruppo di elementi. Impostare 1 "
+#~ "per ruotare ogni minuto."
+
+#~ msgid "Search city to auto-fill coordinates"
+#~ msgstr "Cerca città per compilare automaticamente le coordinate"
+
+#~ msgid ""
+#~ "Type a city name — coordinates are filled in automatically after 1.5 "
+#~ "seconds."
+#~ msgstr ""
+#~ "Digita il nome di una città — le coordinate vengono compilate "
+#~ "automaticamente dopo 1,5 secondi."
+
+#~ msgid "City 1 timezone (IANA, e.g. Europe/Vienna)"
+#~ msgstr "Fuso orario città 1 (IANA, es. Europe/Vienna)"
+
+#~ msgid "City 2 timezone (IANA, e.g. America/New_York)"
+#~ msgstr "Fuso orario città 2 (IANA, es. America/New_York)"
+
+#~ msgid "City 3 timezone (IANA, e.g. Asia/Tokyo)"
+#~ msgstr "Fuso orario città 3 (IANA, es. Asia/Tokyo)"
+
+#~ msgid "Show current local time for each city"
+#~ msgstr "Mostra l'ora locale corrente per ogni città"
+
+#~ msgid "Show UTC offset for each city (e.g. UTC+1)"
+#~ msgstr "Mostra differenza UTC per ogni città (es. UTC+1)"
+
+#~ msgid "Local time"
+#~ msgstr "Ora locale"
+
+#~ msgid ""
+#~ "Filled automatically when using city search. You can also enter an IANA "
+#~ "timezone name manually, e.g. America/New_York."
+#~ msgstr ""
+#~ "Compilato automaticamente usando la ricerca città. Puoi anche inserire "
+#~ "manualmente un nome di fuso orario IANA, es. America/New_York."
+
+#~ msgid ""
+#~ "Filled automatically when using city search. You can also enter an IANA "
+#~ "timezone name manually."
+#~ msgstr ""
+#~ "Compilato automaticamente usando la ricerca città. Puoi anche inserire "
+#~ "manualmente un nome di fuso orario IANA."
+
+#~ msgid "Month highlights"
+#~ msgstr "Evidenziazioni del mese"
+
+#~ msgid "National Holidays"
+#~ msgstr "Festività nazionali"
+
+#~ msgid "Show national holidays and weekends"
+#~ msgstr "Mostra festività nazionali e fine settimana"
+
+#~ msgid "Holiday calendar"
+#~ msgstr "Calendario delle festività"
+
+#~ msgid "public holiday"
+#~ msgstr "giorno festivo"
+
+#~ msgid "weekend"
+#~ msgstr "fine settimana"
+
+#~ msgid "Show upcoming holidays (days ahead)"
+#~ msgstr "Mostra prossime festività (giorni in anticipo)"
