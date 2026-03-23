@@ -6,13 +6,14 @@ msgstr ""
 "Project-Id-Version: calendarium@kami911 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-14 00:00+0000\n"
-"PO-Revision-Date: 2026-03-14 00:00+0100\n"
+"PO-Revision-Date: 2026-03-23 11:20-0300\n"
 "Last-Translator: Kalman „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.9\n"
 
 #. ── settings-schema.json — page titles ──────────────────────────────────
 #: settings-schema.json
@@ -34,7 +35,7 @@ msgstr "Fecha y hora"
 
 #: settings-schema.json
 msgid "Calendar Progress"
-msgstr ""
+msgstr "Progreso del calendario"
 
 #: settings-schema.json
 msgid "Traditional Month Names"
@@ -106,7 +107,7 @@ msgstr "Mostrar número de semana ISO"
 
 #: settings-schema.json
 msgid "Show month progress (day / days in month)"
-msgstr ""
+msgstr "Mostrar el progreso del mes (día / días del mes)"
 
 #: settings-schema.json
 msgid "Show days until New Year"
@@ -562,7 +563,7 @@ msgstr "Número de semana"
 
 #: desklet.js
 msgid "Month progress"
-msgstr ""
+msgstr "Progreso mensual"
 
 #: desklet.js
 msgid "Current date"
@@ -633,11 +634,13 @@ msgid "No data available"
 msgstr "No hay datos disponibles"
 
 msgid "Background opacity"
-msgstr ""
+msgstr "Opacidad del fondo"
 
 msgid ""
 "0 = fully transparent (wallpaper shows through), 1 = solid black background"
 msgstr ""
+"0 = totalmente transparente (se ve el fondo de pantalla), 1 = fondo negro "
+"liso"
 
 #~ msgid "Calendar Highlights"
 #~ msgstr "Actualidad del calendario"
