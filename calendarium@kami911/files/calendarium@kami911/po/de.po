@@ -1,0 +1,645 @@
+# German translation for calendarium@kami911
+# Copyright (C) 2024 kami911
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: calendarium@kami911 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-14 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: Kalman „KAMI” Szalai <kami911@gmail.com>\n"
+"Language-Team: German\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. ── settings-schema.json — page titles ──────────────────────────────────
+#: settings-schema.json
+msgid "General"
+msgstr ""
+
+#: settings-schema.json
+msgid "Location"
+msgstr ""
+
+#: settings-schema.json
+msgid "Wikipedia"
+msgstr ""
+
+#. ── settings-schema.json — section titles ───────────────────────────────
+#: settings-schema.json
+msgid "Date and Time"
+msgstr ""
+
+#: settings-schema.json
+msgid "Calendar Progress"
+msgstr ""
+
+#: settings-schema.json
+msgid "Traditional Month Names"
+msgstr ""
+
+#: settings-schema.json
+msgid "Folk Calendar Sayings"
+msgstr ""
+
+#: settings-schema.json
+msgid "Moon Phase"
+msgstr ""
+
+#: settings-schema.json
+msgid "Sunrise and Sunset"
+msgstr ""
+
+#: settings-schema.json
+msgid "Zodiac"
+msgstr ""
+
+#: settings-schema.json
+msgid "Name Days"
+msgstr ""
+
+#: settings-schema.json
+msgid "Appearance"
+msgstr ""
+
+#: settings-schema.json
+msgid "Wikipedia (Internet Required)"
+msgstr ""
+
+#. ── settings-schema.json — setting descriptions ─────────────────────────
+#: settings-schema.json
+msgid "Show date"
+msgstr ""
+
+#: settings-schema.json
+msgid "Date format"
+msgstr ""
+
+#: settings-schema.json
+msgid ""
+"Custom date format (strftime) — only active when 'Custom' is selected above"
+msgstr ""
+
+#: settings-schema.json
+msgid "Show time"
+msgstr ""
+
+#: settings-schema.json
+msgid "Time format"
+msgstr ""
+
+#: settings-schema.json
+msgid "Show seconds"
+msgstr ""
+
+#: settings-schema.json
+msgid "Show day of year (e.g. Day 52 of 365)"
+msgstr ""
+
+#: settings-schema.json
+msgid "Show ISO week number"
+msgstr ""
+
+#: settings-schema.json
+msgid "Show month progress (day / days in month)"
+msgstr ""
+
+#: settings-schema.json
+msgid "Show days until New Year"
+msgstr ""
+
+#: settings-schema.json
+msgid "Show traditional month name"
+msgstr ""
+
+#: settings-schema.json
+msgid "Traditional month name tradition"
+msgstr ""
+
+#: settings-schema.json
+msgid "Show folk calendar saying for today"
+msgstr ""
+
+#: settings-schema.json
+msgid "Folk saying language"
+msgstr ""
+
+#: settings-schema.json
+msgid "Show moon phase"
+msgstr ""
+
+#: settings-schema.json
+msgid "Show moon phase name"
+msgstr ""
+
+#: settings-schema.json
+msgid "Show moon age (days since new moon)"
+msgstr ""
+
+#: settings-schema.json
+msgid "Show sunrise and sunset times"
+msgstr ""
+
+#: settings-schema.json
+msgid "Western zodiac display"
+msgstr ""
+
+#: settings-schema.json
+msgid "Chinese zodiac display"
+msgstr ""
+
+#: settings-schema.json
+msgid "Show name days"
+msgstr ""
+
+#: settings-schema.json
+msgid "Name day calendar"
+msgstr ""
+
+#: settings-schema.json
+msgid "Show upcoming name days (days ahead)"
+msgstr ""
+
+#: settings-schema.json
+msgid "Show future name days in two columns"
+msgstr ""
+
+#: settings-schema.json
+msgid "Enable Wikipedia features (requires Internet)"
+msgstr ""
+
+#: settings-schema.json
+msgid "Wikipedia language"
+msgstr ""
+
+#: settings-schema.json
+msgid "Show notable events on this day"
+msgstr ""
+
+#: settings-schema.json
+msgid "Show notable births on this day"
+msgstr ""
+
+#: settings-schema.json
+msgid "Show notable deaths on this day"
+msgstr ""
+
+#: settings-schema.json
+msgid "Show article of the day"
+msgstr ""
+
+#: settings-schema.json
+msgid "Cache duration for Wikipedia data"
+msgstr ""
+
+#: settings-schema.json
+msgid "Icon and symbol size"
+msgstr ""
+
+#: settings-schema.json
+msgid "Text scale factor"
+msgstr ""
+
+#: settings-schema.json
+msgid "Hide desklet decorations (border and header label)"
+msgstr ""
+
+#: settings-schema.json
+msgid "Use manual location (default: Budapest, Hungary)"
+msgstr ""
+
+#: settings-schema.json
+msgid "Latitude (positive = North)"
+msgstr ""
+
+#: settings-schema.json
+msgid "Longitude (positive = East)"
+msgstr ""
+
+#: settings-schema.json
+msgid "City 1 name (leave empty to disable)"
+msgstr ""
+
+#: settings-schema.json
+msgid "City 1 latitude"
+msgstr ""
+
+#: settings-schema.json
+msgid "City 1 longitude"
+msgstr ""
+
+#: settings-schema.json
+msgid "City 2 name (leave empty to disable)"
+msgstr ""
+
+#: settings-schema.json
+msgid "City 2 latitude"
+msgstr ""
+
+#: settings-schema.json
+msgid "City 2 longitude"
+msgstr ""
+
+#: settings-schema.json
+msgid "City 3 name (leave empty to disable)"
+msgstr ""
+
+#: settings-schema.json
+msgid "City 3 latitude"
+msgstr ""
+
+#: settings-schema.json
+msgid "City 3 longitude"
+msgstr ""
+
+#. ── settings-schema.json — tooltips ─────────────────────────────────────
+#: settings-schema.json
+msgid ""
+"Select a predefined date format, or choose Custom to enter your own strftime "
+"string below."
+msgstr ""
+
+#: settings-schema.json
+msgid "Controls the display size of moon phase and zodiac symbols."
+msgstr ""
+
+#: settings-schema.json
+msgid "Scale all text in the desklet up or down."
+msgstr ""
+
+#: settings-schema.json
+msgid ""
+"How long to keep Wikipedia data in the local cache before fetching fresh "
+"data. Lower values fetch more often; higher values reduce network usage."
+msgstr ""
+
+#: settings-schema.json
+msgid "Choose what to show for the western zodiac sign."
+msgstr ""
+
+#: settings-schema.json
+msgid "Choose what to show for the Chinese zodiac year (animal and element)."
+msgstr ""
+
+#: settings-schema.json
+msgid "Label for an additional city. Leave empty to hide."
+msgstr ""
+
+#. ── settings-schema.json — option labels ────────────────────────────────
+#: settings-schema.json
+msgid "System language"
+msgstr ""
+
+#: settings-schema.json
+msgid "24-hour"
+msgstr ""
+
+#: settings-schema.json
+msgid "12-hour (AM/PM)"
+msgstr ""
+
+#: settings-schema.json
+msgid "Old Hungarian"
+msgstr ""
+
+#: settings-schema.json
+msgid "Old English (Anglo-Saxon)"
+msgstr ""
+
+#: settings-schema.json
+msgid "Old German"
+msgstr ""
+
+#: settings-schema.json
+msgid "Hungarian"
+msgstr ""
+
+#: settings-schema.json
+msgid "German"
+msgstr ""
+
+#: settings-schema.json
+msgid "English"
+msgstr ""
+
+#: settings-schema.json
+msgid "French"
+msgstr ""
+
+#: settings-schema.json
+msgid "Spanish"
+msgstr ""
+
+#: settings-schema.json
+msgid "Italian"
+msgstr ""
+
+#: settings-schema.json
+msgid "Icon and text"
+msgstr ""
+
+#: settings-schema.json
+msgid "Icon only"
+msgstr ""
+
+#: settings-schema.json
+msgid "Text only"
+msgstr ""
+
+#: settings-schema.json
+msgid "None (hidden)"
+msgstr ""
+
+#: settings-schema.json
+msgid "Small"
+msgstr ""
+
+#: settings-schema.json
+msgid "Medium"
+msgstr ""
+
+#: settings-schema.json
+msgid "Large"
+msgstr ""
+
+#: settings-schema.json
+msgid "Custom (enter strftime string below)"
+msgstr ""
+
+#. ── Moon phase names ──────────────────────────────────────────────────────
+#: lib/moon.js
+msgid "New Moon"
+msgstr "Neumond"
+
+#: lib/moon.js
+msgid "Waxing Crescent"
+msgstr "Zunehmende Sichel"
+
+#: lib/moon.js
+msgid "First Quarter"
+msgstr "Erstes Viertel"
+
+#: lib/moon.js
+msgid "Waxing Gibbous"
+msgstr "Zunehmender Mond"
+
+#: lib/moon.js
+msgid "Full Moon"
+msgstr "Vollmond"
+
+#: lib/moon.js
+msgid "Waning Gibbous"
+msgstr "Abnehmender Mond"
+
+#: lib/moon.js
+msgid "Last Quarter"
+msgstr "Letztes Viertel"
+
+#: lib/moon.js
+msgid "Waning Crescent"
+msgstr "Abnehmende Sichel"
+
+#. ── Western zodiac signs ──────────────────────────────────────────────────
+#: lib/zodiac.js
+msgid "Aries"
+msgstr "Widder"
+
+#: lib/zodiac.js
+msgid "Taurus"
+msgstr "Stier"
+
+#: lib/zodiac.js
+msgid "Gemini"
+msgstr "Zwillinge"
+
+#: lib/zodiac.js
+msgid "Cancer"
+msgstr "Krebs"
+
+#: lib/zodiac.js
+msgid "Leo"
+msgstr "Löwe"
+
+#: lib/zodiac.js
+msgid "Virgo"
+msgstr "Jungfrau"
+
+#: lib/zodiac.js
+msgid "Libra"
+msgstr "Waage"
+
+#: lib/zodiac.js
+msgid "Scorpio"
+msgstr "Skorpion"
+
+#: lib/zodiac.js
+msgid "Sagittarius"
+msgstr "Schütze"
+
+#: lib/zodiac.js
+msgid "Capricorn"
+msgstr "Steinbock"
+
+#: lib/zodiac.js
+msgid "Aquarius"
+msgstr "Wassermann"
+
+#: lib/zodiac.js
+msgid "Pisces"
+msgstr "Fische"
+
+#. ── Chinese zodiac animals ────────────────────────────────────────────────
+#: lib/zodiac.js
+msgid "Rat"
+msgstr "Ratte"
+
+#: lib/zodiac.js
+msgid "Ox"
+msgstr "Ochse"
+
+#: lib/zodiac.js
+msgid "Tiger"
+msgstr "Tiger"
+
+#: lib/zodiac.js
+msgid "Rabbit"
+msgstr "Hase"
+
+#: lib/zodiac.js
+msgid "Dragon"
+msgstr "Drache"
+
+#: lib/zodiac.js
+msgid "Snake"
+msgstr "Schlange"
+
+#: lib/zodiac.js
+msgid "Horse"
+msgstr "Pferd"
+
+#: lib/zodiac.js
+msgid "Goat"
+msgstr "Ziege"
+
+#: lib/zodiac.js
+msgid "Monkey"
+msgstr "Affe"
+
+#: lib/zodiac.js
+msgid "Rooster"
+msgstr "Hahn"
+
+#: lib/zodiac.js
+msgid "Dog"
+msgstr "Hund"
+
+#: lib/zodiac.js
+msgid "Pig"
+msgstr "Schwein"
+
+#. ── Chinese zodiac elements ───────────────────────────────────────────────
+#: lib/zodiac.js
+msgid "Wood"
+msgstr "Holz"
+
+#: lib/zodiac.js
+msgid "Fire"
+msgstr "Feuer"
+
+#: lib/zodiac.js
+msgid "Earth"
+msgstr "Erde"
+
+#: lib/zodiac.js
+msgid "Metal"
+msgstr "Metall"
+
+#: lib/zodiac.js
+msgid "Water"
+msgstr "Wasser"
+
+#. ── desklet.js runtime strings ───────────────────────────────────────────
+#: desklet.js
+msgid "Day %d of %d"
+msgstr "Tag %d von %d"
+
+#: desklet.js
+msgid "Week %d"
+msgstr "Woche %d"
+
+#: desklet.js
+msgid "Moon phase"
+msgstr "Mondphase"
+
+#: desklet.js
+msgid "Moon age"
+msgstr "Mondalter"
+
+#: desklet.js
+msgid "Western zodiac"
+msgstr "Westliches Tierkreiszeichen"
+
+#: desklet.js
+msgid "Chinese zodiac"
+msgstr "Chinesischer Tierkreis"
+
+#: desklet.js
+msgid "Day of year"
+msgstr "Tag des Jahres"
+
+#: desklet.js
+msgid "Week number"
+msgstr "Wochennummer"
+
+#: desklet.js
+msgid "Month progress"
+msgstr ""
+
+#: desklet.js
+msgid "Current date"
+msgstr "Aktuelles Datum"
+
+#: desklet.js
+msgid "Current time"
+msgstr "Aktuelle Uhrzeit"
+
+#: desklet.js
+msgid "Sunrise"
+msgstr "Sonnenaufgang"
+
+#: desklet.js
+msgid "Sunset"
+msgstr "Sonnenuntergang"
+
+#: desklet.js
+msgid "days"
+msgstr "Tage"
+
+#: desklet.js
+msgid "days until New Year"
+msgstr "Tage bis Neujahr"
+
+#: desklet.js
+msgid "Name days"
+msgstr "Namenstage"
+
+#: desklet.js
+msgid "Tomorrow"
+msgstr "Morgen"
+
+#: desklet.js
+msgid "No data"
+msgstr "Keine Daten"
+
+#: desklet.js
+msgid "Polar day"
+msgstr "Polartag"
+
+#: desklet.js
+msgid "Polar night"
+msgstr "Polarnacht"
+
+#: desklet.js
+msgid "Events on this day"
+msgstr ""
+
+#: desklet.js
+msgid "Births on this day"
+msgstr "Geburten an diesem Tag"
+
+#: desklet.js
+msgid "Deaths on this day"
+msgstr "Todesfälle an diesem Tag"
+
+#: desklet.js
+msgid "Article of the day"
+msgstr "Artikel des Tages"
+
+#: desklet.js
+msgid "Enable births, deaths, or featured article"
+msgstr ""
+
+#: desklet.js
+msgid "No data available"
+msgstr ""
+
+msgid "Background opacity"
+msgstr ""
+
+msgid ""
+"0 = fully transparent (wallpaper shows through), 1 = solid black background"
+msgstr ""
+
+#~ msgid "Calendar Highlights"
+#~ msgstr "Kalender-Aktuelles"
+
+#~ msgid "Show month highlights (day / days in month)"
+#~ msgstr "Monatsübersicht anzeigen (Tag / Tage im Monat)"
+
+#~ msgid "Separator character between calendar items"
+#~ msgstr "Trennzeichen zwischen Kalendereinträgen"
+
+#~ msgid "Month highlights"
+#~ msgstr "Monatsübersicht"

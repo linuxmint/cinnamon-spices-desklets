@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-03-23 09:34-0400\n"
+"POT-Creation-Date: 2026-03-23 19:26+0200\n"
 "PO-Revision-Date: 2021-11-29 15:20-0300\n"
 "Last-Translator: Marcelo Aof\n"
 "Language-Team: \n"
@@ -20,109 +20,104 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:218
+#. desklet.js:259
 msgid "CPU"
 msgstr "CPU"
 
-#. desklet.js:227
-#, fuzzy
+#. desklet.js:268
 msgid "CPU Temperature"
-msgstr "Cor da linha da CPU"
+msgstr ""
 
-#. desklet.js:244 desklet.js:262 desklet.js:282 desklet.js:323 desklet.js:609
+#. desklet.js:285 desklet.js:303 desklet.js:323 desklet.js:364 desklet.js:650
 msgid "GB"
 msgstr "GB"
 
-#. desklet.js:247 desklet.js:265 desklet.js:285 desklet.js:326 desklet.js:623
+#. desklet.js:288 desklet.js:306 desklet.js:326 desklet.js:367 desklet.js:664
 msgid "GiB"
 msgstr "GiB"
 
 #. settings-schema.json->type->options
-#. desklet.js:249
+#. desklet.js:290
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#. desklet.js:267
+#. desklet.js:308
 msgid "Swap"
 msgstr ""
 
-#. desklet.js:290
+#. desklet.js:331
 msgid "free of"
 msgstr "livres de"
 
-#. desklet.js:306
+#. desklet.js:347
 msgid "GPU Usage"
 msgstr "Uso da GPU"
 
-#. desklet.js:328
+#. desklet.js:369
 msgid "GPU Memory"
 msgstr "Memória da GPU"
 
 #. settings-schema.json->type->options
-#. desklet.js:340
+#. desklet.js:381
 msgid "Network"
 msgstr ""
 
 #. settings-schema.json->type->options
-#. desklet.js:353
+#. desklet.js:394
 msgid "Battery"
 msgstr ""
 
-#. desklet.js:356
+#. desklet.js:397
 msgid "Fully charged"
 msgstr ""
 
-#. desklet.js:357
+#. desklet.js:398
 msgid "Not charging"
 msgstr ""
 
-#. desklet.js:359
+#. desklet.js:400
 msgid " hrs"
 msgstr ""
 
-#. desklet.js:580 desklet.js:603
+#. desklet.js:621 desklet.js:644
 msgid "b"
 msgstr ""
 
-#. desklet.js:582 desklet.js:617 desklet.js:631
+#. desklet.js:623 desklet.js:658 desklet.js:672
 #, fuzzy
 msgid "B"
 msgstr "GB"
 
-#. desklet.js:595
+#. desklet.js:636
 msgid "Gb"
 msgstr ""
 
-#. desklet.js:598
+#. desklet.js:639
 msgid "Mb"
 msgstr ""
 
-#. desklet.js:601
+#. desklet.js:642
 msgid "Kb"
 msgstr ""
 
-#. desklet.js:612
+#. desklet.js:653
 msgid "MB"
 msgstr ""
 
-#. desklet.js:615
+#. desklet.js:656
 msgid "KB"
 msgstr ""
 
-#. desklet.js:626
+#. desklet.js:667
 #, fuzzy
 msgid "MiB"
 msgstr "GiB"
 
-#. desklet.js:629
+#. desklet.js:670
 #, fuzzy
 msgid "KiB"
 msgstr "GiB"
-
-#. desklet.js:906 desklet.js:944
-msgid "Error executing nvidia-smi command."
-msgstr ""
 
 #. metadata.json->name
 msgid "System monitor graph"

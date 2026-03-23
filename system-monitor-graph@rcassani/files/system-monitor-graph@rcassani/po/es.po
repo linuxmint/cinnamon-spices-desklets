@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-03-23 09:34-0400\n"
-"PO-Revision-Date: 2025-08-04 19:01-0400\n"
+"POT-Creation-Date: 2026-03-23 19:26+0200\n"
+"PO-Revision-Date: 2026-03-20 21:19-0300\n"
 "Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -17,109 +17,104 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.9\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:218
+#. desklet.js:259
 msgid "CPU"
 msgstr "CPU"
 
-#. desklet.js:227
-#, fuzzy
+#. desklet.js:268
 msgid "CPU Temperature"
-msgstr "Color de la línea de Swap"
+msgstr ""
 
-#. desklet.js:244 desklet.js:262 desklet.js:282 desklet.js:323 desklet.js:609
+#. desklet.js:285 desklet.js:303 desklet.js:323 desklet.js:364 desklet.js:650
 msgid "GB"
 msgstr "GB"
 
-#. desklet.js:247 desklet.js:265 desklet.js:285 desklet.js:326 desklet.js:623
+#. desklet.js:288 desklet.js:306 desklet.js:326 desklet.js:367 desklet.js:664
 msgid "GiB"
 msgstr "GiB"
 
 #. settings-schema.json->type->options
-#. desklet.js:249
+#. desklet.js:290
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#. desklet.js:267
+#. desklet.js:308
 msgid "Swap"
 msgstr "Swap"
 
-#. desklet.js:290
+#. desklet.js:331
 msgid "free of"
 msgstr "libres de"
 
-#. desklet.js:306
+#. desklet.js:347
 msgid "GPU Usage"
 msgstr "Uso de GPU"
 
-#. desklet.js:328
+#. desklet.js:369
 msgid "GPU Memory"
 msgstr "Memoria de GPU"
 
 #. settings-schema.json->type->options
-#. desklet.js:340
+#. desklet.js:381
 msgid "Network"
 msgstr "Red"
 
 #. settings-schema.json->type->options
-#. desklet.js:353
+#. desklet.js:394
 msgid "Battery"
-msgstr ""
+msgstr "Batería"
 
-#. desklet.js:356
+#. desklet.js:397
 msgid "Fully charged"
-msgstr ""
+msgstr "Completamente cargada"
 
-#. desklet.js:357
+#. desklet.js:398
 msgid "Not charging"
-msgstr ""
+msgstr "No se está cargando"
 
-#. desklet.js:359
+#. desklet.js:400
 msgid " hrs"
-msgstr ""
+msgstr " hrs"
 
-#. desklet.js:580 desklet.js:603
+#. desklet.js:621 desklet.js:644
 msgid "b"
 msgstr "b"
 
-#. desklet.js:582 desklet.js:617 desklet.js:631
+#. desklet.js:623 desklet.js:658 desklet.js:672
 msgid "B"
 msgstr "B"
 
-#. desklet.js:595
+#. desklet.js:636
 msgid "Gb"
 msgstr "Gb"
 
-#. desklet.js:598
+#. desklet.js:639
 msgid "Mb"
 msgstr "Mb"
 
-#. desklet.js:601
+#. desklet.js:642
 msgid "Kb"
 msgstr "Kb"
 
-#. desklet.js:612
+#. desklet.js:653
 msgid "MB"
 msgstr "MB"
 
-#. desklet.js:615
+#. desklet.js:656
 msgid "KB"
 msgstr "KB"
 
-#. desklet.js:626
+#. desklet.js:667
 msgid "MiB"
 msgstr "MiB"
 
-#. desklet.js:629
+#. desklet.js:670
 msgid "KiB"
 msgstr "KiB"
-
-#. desklet.js:906 desklet.js:944
-msgid "Error executing nvidia-smi command."
-msgstr "Error al ejecutar el comando nvidia-smi."
 
 #. metadata.json->name
 msgid "System monitor graph"
@@ -253,13 +248,14 @@ msgstr ""
 "eth0, wlan0, enp0s3"
 
 #. settings-schema.json->battery-name->description
-#, fuzzy
 msgid "Name of battery name to monitor"
-msgstr "Interfaz de red a monitorear"
+msgstr "Nombre de la batería que se va a monitorear"
 
 #. settings-schema.json->battery-name->tooltip
 msgid "Check battery name in /sys/class/power_supply/ Examples: BAT0, BAT1"
 msgstr ""
+"Comprueba el nombre de la batería en /sys/class/power_supply/. Ejemplos: "
+"BAT0, BAT1"
 
 #. settings-schema.json->filesystem->description
 msgid "Filesystem to monitor"
@@ -443,9 +439,8 @@ msgid "Line color Network Upload"
 msgstr "Color de la línea de la carga de la red"
 
 #. settings-schema.json->line-color-battery->description
-#, fuzzy
 msgid "Line color Battery"
-msgstr "Color de la línea de Swap"
+msgstr "Color de la línea de la batería"
 
 #. settings-schema.json->midline-color->description
 msgid "Grid color"
