@@ -220,21 +220,21 @@ SystemMonitorGraph.prototype = {
 
             // set files
             // find file for overall CPU temperature
-            let path_temp = "/sys/class/hwmon/";
+            let cpu_path_temp = "/sys/class/hwmon/";
             // test for Intel ("Package id 0")
-            this.get_temperature_file_by_label(path_temp, 'Package id 0', (result) => {
+            this.get_temperature_file_by_label(cpu_path_temp, 'Package id 0', (result) => {
                 if (result !== "") {
                     this.cpu_temperature_file = result;
                 } else {
                     // test for AMD ("Tct1")
-                    this.get_temperature_file_by_label(path_temp, 'Tctl', (result) => {
+                    this.get_temperature_file_by_label(cpu_path_temp, 'Tctl', (result) => {
                         this.cpu_temperature_file = result;
                     });
                 }
             });
             // find file for overall AMD GPU temperature
-            path_temp = "/sys/class/drm/card" + this.gpu_id + "/device/hwmon/";
-            this.get_temperature_file_by_label(path_temp, 'edge', (result) => {
+            let gpu_path_temp = "/sys/class/drm/card" + this.gpu_id + "/device/hwmon/";
+            this.get_temperature_file_by_label(gpu_path_temp, 'edge', (result) => {
                 this.gpu_temperature_file = result;
             });
 
@@ -1126,6 +1126,7 @@ SystemMonitorGraph.prototype = {
 	},
 
     get_cpu_temperature: function(temperature_file) {
+        if(temperature_file == null || temperature_file == "") return;
         // File contains temperature, integer number in celsius * 1000
         Gio.file_new_for_path(temperature_file).load_contents_async(null, (file, response) => {
             try {
