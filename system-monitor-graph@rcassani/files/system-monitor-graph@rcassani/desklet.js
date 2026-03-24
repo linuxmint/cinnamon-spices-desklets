@@ -220,9 +220,21 @@ SystemMonitorGraph.prototype = {
 
             // set files
             // find file for overall CPU temperature
-            this.cpu_temperature_file = this.get_cpu_temperature_file();
+            let path_temp = "/sys/class/hwmon/";
+            this.get_temperature_file_by_label(path_temp, 'Package id 0', (result) => {
+                if (result !== "") {
+                    this.cpu_temperature_file = result;
+                } else {
+                    this.get_temperature_file_by_label(path_temp, 'Tctl', (result) => {
+                        this.cpu_temperature_file = result;
+                    });
+                }
+            });
             // find file for overall AMD GPU temperature
-            this.gpu_amd_temperature_file = this.get_gpu_amd_temperature_file();
+            path_temp = "/sys/class/drm/card" + this.gpu_id + "/device/hwmon/";
+            this.get_temperature_file_by_label(path_temp, 'edge', (result) => {
+                this.gpu_temperature_file = result;
+            });
 
             this.first_run = false;
         }
@@ -1126,33 +1138,16 @@ SystemMonitorGraph.prototype = {
         });
     },
 
-    get_temperature_file_by_label: function(path, label) {
+    get_temperature_file_by_label: function(path, label, callback) {
         // search for temperture file: 'path'/*/temp*_input associated to file path/*/temp*_label with content 'label'
-        let temp_file = "sh -c \"grep -s -l -d skip '" + label + "' " + path + "*/temp*_label | sed 's/_label/_input/' | head -n 1\"";
-        global.log(temp_file);
-        try {
-            let [success, stdout, stderr, exit_status] = GLib.spawn_command_line_sync(temp_file);
-            if ((success && exit_status === 0) && stdout.length > 0) return ByteArray.toString(stdout).trim();
-        } catch (error) {
-            global.log('Temperature file search error: ' + error.toString());
-        }
-        return ""
-    },
-
-    get_cpu_temperature_file: function() {
-        // Sysfs directory for temperature info
-        let path = "/sys/class/hwmon/"
-        // Try Intel first
-        let cpu_temp_file = this.get_temperature_file_by_label(path, 'Package id 0');
-        // Try AMD next
-        if (cpu_temp_file === "") cpu_temp_file = this.get_temperature_file_by_label(path, 'Tctl');
-        return cpu_temp_file;
-    },
-
-    get_gpu_amd_temperature_file: function() {
-        // Sysfs directory for temperature info
-        let path = "/sys/class/drm/card" + this.gpu_id + "/device/hwmon/";
-        let cpu_temp_file = this.get_temperature_file_by_label(path, 'edge');
-        return cpu_temp_file;
+        let argv = ['/bin/sh', '-c', "grep -s -l -d skip '" + label + "' " + path + "*/temp*_label | sed 's/_label/_input/' | head -n 1"];
+        spawnAsyncWithOutput(argv, (success, output) => {
+            if (success && output && output.trim() !== "") {
+                callback(output.trim());
+            } else {
+                global.log('Temperature file search error for label: ' + label);
+                callback("");
+            }
+        });
     },
 };
