@@ -1067,7 +1067,7 @@ SystemMonitorGraph.prototype = {
             try {
                 let [success, contents, tag] = file.load_contents_finish(response);
                 if (success) {
-                    this.cpu_temperature = Math.round(parseInt(ByteArray.toString(contents)) / 1000);
+                    this.gpu_temperature = Math.round(parseInt(ByteArray.toString(contents)) / 1000);
                 }
                 GLib.free(contents);
             } catch(error) {
