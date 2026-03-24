@@ -221,10 +221,12 @@ SystemMonitorGraph.prototype = {
             // set files
             // find file for overall CPU temperature
             let path_temp = "/sys/class/hwmon/";
+            // test for Intel ("Package id 0")
             this.get_temperature_file_by_label(path_temp, 'Package id 0', (result) => {
                 if (result !== "") {
                     this.cpu_temperature_file = result;
                 } else {
+                    // test for AMD ("Tct1")
                     this.get_temperature_file_by_label(path_temp, 'Tctl', (result) => {
                         this.cpu_temperature_file = result;
                     });
