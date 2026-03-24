@@ -110,6 +110,7 @@ SystemMonitorGraph.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "filesystem-label", "filesystem_label", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "gpu-manufacturer", "gpu_manufacturer", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "gpu-variable", "gpu_variable", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "temperature-units-gpu", "temperature_units_gpu", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "gpu-id", "gpu_id", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refresh_interval", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "duration", "duration", this.on_setting_changed);
@@ -188,6 +189,7 @@ SystemMonitorGraph.prototype = {
             this.battery_time     = "";
             // temperature values
             this.cpu_temperature = NaN;
+            this.gpu_temperature = NaN;
 
             // set colors
             switch (this.type) {
@@ -218,7 +220,23 @@ SystemMonitorGraph.prototype = {
 
             // set files
             // find file for overall CPU temperature
-            this.cpu_temperature_file = this.get_cpu_temperature_file();
+            let path_temp = "/sys/class/hwmon/";
+            // test for Intel ("Package id 0")
+            this.get_temperature_file_by_label(path_temp, 'Package id 0', (result) => {
+                if (result !== "") {
+                    this.cpu_temperature_file = result;
+                } else {
+                    // test for AMD ("Tct1")
+                    this.get_temperature_file_by_label(path_temp, 'Tctl', (result) => {
+                        this.cpu_temperature_file = result;
+                    });
+                }
+            });
+            // find file for overall AMD GPU temperature
+            path_temp = "/sys/class/drm/card" + this.gpu_id + "/device/hwmon/";
+            this.get_temperature_file_by_label(path_temp, 'edge', (result) => {
+                this.gpu_temperature_file = result;
+            });
 
             this.first_run = false;
         }
@@ -370,6 +388,24 @@ SystemMonitorGraph.prototype = {
                       text2 = Math.round(gpu_mem_use).toString() + "%"
                       text3 = this.gpu_mem[1].toFixed(1) + " / "
                             + this.gpu_mem[0].toFixed(1) + " " + gpumem_prefix;
+                      break;
+                  case "temperature":
+                      switch (this.gpu_manufacturer) {
+                          case "nvidia":
+                              this.get_nvidia_gpu_temperature();
+                              break;
+                          case "amdgpu":
+                              this.get_amdgpu_gpu_temperature(this.gpu_amd_temperature_file);
+                              break;
+                      }
+                      value = 1.0 * (this.gpu_temperature - CPU_TEMP_MIN) / (CPU_TEMP_MAX - CPU_TEMP_MIN);
+                      value = value < 0 ? 0 : value > 1 ? 1 : value;
+                      text1 = _("GPU Temperature");
+                      if (this.temperature_units_gpu == "C") {
+                          text2 = this.gpu_temperature.toString() + "°C";
+                      } else if (this.temperature_units_gpu == "F") {
+                          text2 = Math.round(this.gpu_temperature * 9 / 5 + 32).toString() + "°F";
+                      }
                       break;
               }
               break;
@@ -963,6 +999,19 @@ SystemMonitorGraph.prototype = {
         );
     },
 
+    get_nvidia_gpu_temperature: function() {
+        spawnAsyncWithOutput(
+            ['/usr/bin/nvidia-smi', '--query-gpu=temperature.gpu', '--format=csv', '--id='+ this.gpu_id],
+            (success, out_string) => {
+                if (!success || !out_string) {
+                    this.gpu_temperature = 0;
+                    return;
+                }
+                this.gpu_temperature = parseInt(out_string.match(/[^\r\n]+/g)[1]);
+            }
+        );
+    },
+
     get_amdgpu_gpu_use: function() {
       // Sysfs directory with files related to the chosen gpu
       let gpu_dir = "/sys/class/drm/card" + this.gpu_id + "/device/";
@@ -1011,6 +1060,20 @@ SystemMonitorGraph.prototype = {
       });
     },
 
+    get_amdgpu_gpu_temperature: function(temperature_file) {
+        // File contains temperature, integer number in celsius * 1000
+        Gio.file_new_for_path(temperature_file).load_contents_async(null, (file, response) => {
+            try {
+                let [success, contents, tag] = file.load_contents_finish(response);
+                if (success) {
+                    this.cpu_temperature = Math.round(parseInt(ByteArray.toString(contents)) / 1000);
+                }
+                GLib.free(contents);
+            } catch(error) {
+                global.log('GPU AMD temperature file read error: ' + error.toString());
+            }
+        });
+    },
 
     get_battery_use: function() {
         // Sysfs directory for battery info
@@ -1077,20 +1140,16 @@ SystemMonitorGraph.prototype = {
         });
     },
 
-    get_cpu_temperature_file: function() {
-        // Try each known CPU temperature label, return the first one found
-        // Intel == "Package id 0"
-        // AMD   == "Tctl"
-        let cpu_labels = ["Package id 0", "Tctl"];
-        for (let cpu_label of cpu_labels) {
-            try {
-                let cmd = "sh -c \"grep -s -l -d skip '" + cpu_label + "' /sys/class/hwmon/*/temp*_label | sed 's/_label/_input/' | head -n 1\"";
-                let [success, stdout, stderr, exit_status] = GLib.spawn_command_line_sync(cmd);
-                if ((success && exit_status === 0) && stdout.length > 0) return ByteArray.toString(stdout).trim();
-            } catch (error) {
-                global.log('CPU temperature file search error: ' + error.toString());
+    get_temperature_file_by_label: function(path, label, callback) {
+        // search for temperture file: 'path'/*/temp*_input associated to file path/*/temp*_label with content 'label'
+        let argv = ['/bin/sh', '-c', "grep -s -l -d skip '" + label + "' " + path + "*/temp*_label | sed 's/_label/_input/' | head -n 1"];
+        spawnAsyncWithOutput(argv, (success, output) => {
+            if (success && output && output.trim() !== "") {
+                callback(output.trim());
+            } else {
+                global.log('Temperature file search error for label: ' + label);
+                callback("");
             }
-        }
-        return "";
+        });
     },
 };

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-03-23 19:26+0200\n"
+"POT-Creation-Date: 2026-03-23 21:24-0400\n"
 "PO-Revision-Date: 2025-09-29 04:41+0200\n"
 "Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
 "Language-Team: \n"
@@ -20,99 +20,104 @@ msgstr ""
 "X-Generator: Poedit 3.6\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:259
+#. desklet.js:275
 msgid "CPU"
 msgstr "CPU"
 
-#. desklet.js:268
+#. desklet.js:284
 msgid "CPU Temperature"
 msgstr ""
 
-#. desklet.js:285 desklet.js:303 desklet.js:323 desklet.js:364 desklet.js:650
+#. desklet.js:301 desklet.js:319 desklet.js:339 desklet.js:380 desklet.js:684
 msgid "GB"
 msgstr "GB"
 
-#. desklet.js:288 desklet.js:306 desklet.js:326 desklet.js:367 desklet.js:664
+#. desklet.js:304 desklet.js:322 desklet.js:342 desklet.js:383 desklet.js:698
 msgid "GiB"
 msgstr "GiB"
 
 #. settings-schema.json->type->options
-#. desklet.js:290
+#. desklet.js:306
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#. desklet.js:308
+#. desklet.js:324
 msgid "Swap"
 msgstr "Swap"
 
-#. desklet.js:331
+#. desklet.js:347
 msgid "free of"
 msgstr "lliure de"
 
-#. desklet.js:347
+#. desklet.js:363
 msgid "GPU Usage"
 msgstr "Ús de GPU"
 
-#. desklet.js:369
+#. desklet.js:385
 msgid "GPU Memory"
 msgstr "Memòria de la GPU"
 
+#. desklet.js:401
+#, fuzzy
+msgid "GPU Temperature"
+msgstr "Fabricant de la GPU"
+
 #. settings-schema.json->type->options
-#. desklet.js:381
+#. desklet.js:415
 msgid "Network"
 msgstr "Xarxa"
 
 #. settings-schema.json->type->options
-#. desklet.js:394
+#. desklet.js:428
 msgid "Battery"
 msgstr ""
 
-#. desklet.js:397
+#. desklet.js:431
 msgid "Fully charged"
 msgstr ""
 
-#. desklet.js:398
+#. desklet.js:432
 msgid "Not charging"
 msgstr ""
 
-#. desklet.js:400
+#. desklet.js:434
 msgid " hrs"
 msgstr ""
 
-#. desklet.js:621 desklet.js:644
+#. desklet.js:655 desklet.js:678
 msgid "b"
 msgstr "b"
 
-#. desklet.js:623 desklet.js:658 desklet.js:672
+#. desklet.js:657 desklet.js:692 desklet.js:706
 msgid "B"
 msgstr "B"
 
-#. desklet.js:636
+#. desklet.js:670
 msgid "Gb"
 msgstr "Gb"
 
-#. desklet.js:639
+#. desklet.js:673
 msgid "Mb"
 msgstr "Mb"
 
-#. desklet.js:642
+#. desklet.js:676
 msgid "Kb"
 msgstr "Kb"
 
-#. desklet.js:653
+#. desklet.js:687
 msgid "MB"
 msgstr "MB"
 
-#. desklet.js:656
+#. desklet.js:690
 msgid "KB"
 msgstr "KB"
 
-#. desklet.js:667
+#. desklet.js:701
 msgid "MiB"
 msgstr "MiB"
 
-#. desklet.js:670
+#. desklet.js:704
 msgid "KiB"
 msgstr "KiB"
 
@@ -164,22 +169,27 @@ msgid "Usage"
 msgstr "Ús"
 
 #. settings-schema.json->cpu-variable->options
+#. settings-schema.json->gpu-variable->options
 msgid "Temperature"
 msgstr ""
 
 #. settings-schema.json->temperature-units-cpu->options
+#. settings-schema.json->temperature-units-gpu->options
 msgid "°C"
 msgstr ""
 
 #. settings-schema.json->temperature-units-cpu->options
+#. settings-schema.json->temperature-units-gpu->options
 msgid "°F"
 msgstr ""
 
 #. settings-schema.json->temperature-units-cpu->description
+#. settings-schema.json->temperature-units-gpu->description
 msgid "Temperature scale"
 msgstr ""
 
 #. settings-schema.json->temperature-units-cpu->tooltip
+#. settings-schema.json->temperature-units-gpu->tooltip
 #, fuzzy
 msgid "Temperature scale for graph"
 msgstr "Variable del sistema a monitorar"
