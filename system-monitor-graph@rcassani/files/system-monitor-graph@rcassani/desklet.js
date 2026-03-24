@@ -235,7 +235,7 @@ SystemMonitorGraph.prototype = {
             // find file for overall AMD GPU temperature
             let gpu_path_temp = "/sys/class/drm/card" + this.gpu_id + "/device/hwmon/";
             this.get_temperature_file_by_label(gpu_path_temp, 'edge', (result) => {
-                this.gpu_temperature_file = result;
+                this.gpu_amd_temperature_file = result;
             });
 
             this.first_run = false;
@@ -1061,6 +1061,7 @@ SystemMonitorGraph.prototype = {
     },
 
     get_amdgpu_gpu_temperature: function(temperature_file) {
+        if(temperature_file == null || temperature_file == "") return;
         // File contains temperature, integer number in celsius * 1000
         Gio.file_new_for_path(temperature_file).load_contents_async(null, (file, response) => {
             try {
