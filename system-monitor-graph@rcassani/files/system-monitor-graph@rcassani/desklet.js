@@ -84,7 +84,6 @@ function spawnAsyncWithOutput(argv, callback) {
             }
         );
     } catch(error) {
-        global.log('spawnAsyncWithOutput error: ' + error.toString());
         callback(false, null);
     }
 }
@@ -219,7 +218,7 @@ SystemMonitorGraph.prototype = {
 
             // set files
             // find file for overall CPU temperature
-            this.get_cpu_temperature_file();
+            this.cpu_temperature_file = this.get_cpu_temperature_file();
 
             this.first_run = false;
         }
@@ -1064,7 +1063,6 @@ SystemMonitorGraph.prototype = {
 	},
 
     get_cpu_temperature: function(temperature_file) {
-        if (temperature_file == null || temperature_file == "") return;
         // File contains temperature, integer number in celsius * 1000
         Gio.file_new_for_path(temperature_file).load_contents_async(null, (file, response) => {
             try {
@@ -1085,12 +1083,14 @@ SystemMonitorGraph.prototype = {
         // AMD   == "Tctl"
         let cpu_labels = ["Package id 0", "Tctl"];
         for (let cpu_label of cpu_labels) {
-            spawnAsyncWithOutput(
-                ['/bin/sh', '-c', "grep -s -l -d skip '" + cpu_label + "' /sys/class/hwmon/*/temp*_label | sed 's/_label/_input/' | head -n 1"],
-                (success, out_string) => {
-                    if (success && out_string) this.cpu_temperature_file = out_string.trim();
-                }
-            );
+            try {
+                let cmd = "sh -c \"grep -s -l -d skip '" + cpu_label + "' /sys/class/hwmon/*/temp*_label | sed 's/_label/_input/' | head -n 1\"";
+                let [success, stdout, stderr, exit_status] = GLib.spawn_command_line_sync(cmd);
+                if ((success && exit_status === 0) && stdout.length > 0) return ByteArray.toString(stdout).trim();
+            } catch (error) {
+                global.log('CPU temperature file search error: ' + error.toString());
+            }
         }
+        return "";
     },
 };
