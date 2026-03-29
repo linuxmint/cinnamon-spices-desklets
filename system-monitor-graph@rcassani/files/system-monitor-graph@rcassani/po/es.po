@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2026-03-23 21:24-0400\n"
-"PO-Revision-Date: 2026-03-20 21:19-0300\n"
+"PO-Revision-Date: 2026-03-29 10:45-0300\n"
 "Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -26,7 +26,7 @@ msgstr "CPU"
 
 #. desklet.js:284
 msgid "CPU Temperature"
-msgstr ""
+msgstr "Temperatura de la CPU"
 
 #. desklet.js:301 desklet.js:319 desklet.js:339 desklet.js:380 desklet.js:684
 msgid "GB"
@@ -59,9 +59,8 @@ msgid "GPU Memory"
 msgstr "Memoria de GPU"
 
 #. desklet.js:401
-#, fuzzy
 msgid "GPU Temperature"
-msgstr "Fabricante de la GPU"
+msgstr "Temperatura de la GPU"
 
 #. settings-schema.json->type->options
 #. desklet.js:415
@@ -154,14 +153,12 @@ msgid "GPU"
 msgstr "GPU"
 
 #. settings-schema.json->cpu-variable->description
-#, fuzzy
 msgid "CPU variable to monitor"
-msgstr "Variable de la GPU a monitorear"
+msgstr "Variable de la CPU a monitorear"
 
 #. settings-schema.json->cpu-variable->tooltip
-#, fuzzy
 msgid "Select the CPU variable to monitor."
-msgstr "Seleccione la variable de la GPU que desea monitorear."
+msgstr "Seleccione la variable de la CPU que desea monitorear."
 
 #. settings-schema.json->cpu-variable->options
 #. settings-schema.json->gpu-variable->options
@@ -171,28 +168,27 @@ msgstr "Uso"
 #. settings-schema.json->cpu-variable->options
 #. settings-schema.json->gpu-variable->options
 msgid "Temperature"
-msgstr ""
+msgstr "TemperaturA"
 
 #. settings-schema.json->temperature-units-cpu->options
 #. settings-schema.json->temperature-units-gpu->options
 msgid "°C"
-msgstr ""
+msgstr "°C"
 
 #. settings-schema.json->temperature-units-cpu->options
 #. settings-schema.json->temperature-units-gpu->options
 msgid "°F"
-msgstr ""
+msgstr "°F"
 
 #. settings-schema.json->temperature-units-cpu->description
 #. settings-schema.json->temperature-units-gpu->description
 msgid "Temperature scale"
-msgstr ""
+msgstr "Escala de temperatura"
 
 #. settings-schema.json->temperature-units-cpu->tooltip
 #. settings-schema.json->temperature-units-gpu->tooltip
-#, fuzzy
 msgid "Temperature scale for graph"
-msgstr "Variable del sistema para el gráfico"
+msgstr "Escala de temperatura para el gráfico"
 
 #. settings-schema.json->data-prefix-ram->options
 #. settings-schema.json->data-prefix-swap->options
