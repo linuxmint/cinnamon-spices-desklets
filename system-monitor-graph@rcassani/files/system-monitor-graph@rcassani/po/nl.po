@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-03-23 10:17-0400\n"
+"POT-Creation-Date: 2026-03-23 21:24-0400\n"
 "PO-Revision-Date: 2025-08-25 16:25+0200\n"
 "Last-Translator: qadzek\n"
 "Language-Team: \n"
@@ -18,95 +18,104 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:245
+#. desklet.js:275
 msgid "CPU"
 msgstr "CPU"
 
-#. desklet.js:256 desklet.js:274 desklet.js:294 desklet.js:335 desklet.js:621
+#. desklet.js:284
+msgid "CPU Temperature"
+msgstr ""
+
+#. desklet.js:301 desklet.js:319 desklet.js:339 desklet.js:380 desklet.js:684
 msgid "GB"
 msgstr "GB"
 
-#. desklet.js:259 desklet.js:277 desklet.js:297 desklet.js:338 desklet.js:635
+#. desklet.js:304 desklet.js:322 desklet.js:342 desklet.js:383 desklet.js:698
 msgid "GiB"
 msgstr "GiB"
 
 #. settings-schema.json->type->options
-#. desklet.js:261
+#. desklet.js:306
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#. desklet.js:279
+#. desklet.js:324
 msgid "Swap"
 msgstr "Swap"
 
-#. desklet.js:302
+#. desklet.js:347
 msgid "free of"
 msgstr "vrij van"
 
-#. desklet.js:318
+#. desklet.js:363
 msgid "GPU Usage"
 msgstr "GPU Gebruik"
 
-#. desklet.js:340
+#. desklet.js:385
 msgid "GPU Memory"
 msgstr "GPU Geheugen"
 
+#. desklet.js:401
+#, fuzzy
+msgid "GPU Temperature"
+msgstr "GPU fabrikant"
+
 #. settings-schema.json->type->options
-#. desklet.js:352
+#. desklet.js:415
 msgid "Network"
 msgstr "Netwerk"
 
 #. settings-schema.json->type->options
-#. desklet.js:365
+#. desklet.js:428
 msgid "Battery"
 msgstr ""
 
-#. desklet.js:368
+#. desklet.js:431
 msgid "Fully charged"
 msgstr ""
 
-#. desklet.js:369
+#. desklet.js:432
 msgid "Not charging"
 msgstr ""
 
-#. desklet.js:371
+#. desklet.js:434
 msgid " hrs"
 msgstr ""
 
-#. desklet.js:592 desklet.js:615
+#. desklet.js:655 desklet.js:678
 msgid "b"
 msgstr "b"
 
-#. desklet.js:594 desklet.js:629 desklet.js:643
+#. desklet.js:657 desklet.js:692 desklet.js:706
 msgid "B"
 msgstr "B"
 
-#. desklet.js:607
+#. desklet.js:670
 msgid "Gb"
 msgstr "Gb"
 
-#. desklet.js:610
+#. desklet.js:673
 msgid "Mb"
 msgstr "Mb"
 
-#. desklet.js:613
+#. desklet.js:676
 msgid "Kb"
 msgstr "Kb"
 
-#. desklet.js:624
+#. desklet.js:687
 msgid "MB"
 msgstr "MB"
 
-#. desklet.js:627
+#. desklet.js:690
 msgid "KB"
 msgstr "KB"
 
-#. desklet.js:638
+#. desklet.js:701
 msgid "MiB"
 msgstr "MiB"
 
-#. desklet.js:641
+#. desklet.js:704
 msgid "KiB"
 msgstr "KiB"
 
@@ -141,6 +150,47 @@ msgstr "HDD"
 #. settings-schema.json->type->options
 msgid "GPU"
 msgstr "GPU"
+
+#. settings-schema.json->cpu-variable->description
+#, fuzzy
+msgid "CPU variable to monitor"
+msgstr "GPU-variabele om te monitoren"
+
+#. settings-schema.json->cpu-variable->tooltip
+#, fuzzy
+msgid "Select the CPU variable to monitor."
+msgstr "Selecteer de GPU-variabele om te monitoren."
+
+#. settings-schema.json->cpu-variable->options
+#. settings-schema.json->gpu-variable->options
+msgid "Usage"
+msgstr "Gebruik"
+
+#. settings-schema.json->cpu-variable->options
+#. settings-schema.json->gpu-variable->options
+msgid "Temperature"
+msgstr ""
+
+#. settings-schema.json->temperature-units-cpu->options
+#. settings-schema.json->temperature-units-gpu->options
+msgid "°C"
+msgstr ""
+
+#. settings-schema.json->temperature-units-cpu->options
+#. settings-schema.json->temperature-units-gpu->options
+msgid "°F"
+msgstr ""
+
+#. settings-schema.json->temperature-units-cpu->description
+#. settings-schema.json->temperature-units-gpu->description
+msgid "Temperature scale"
+msgstr ""
+
+#. settings-schema.json->temperature-units-cpu->tooltip
+#. settings-schema.json->temperature-units-gpu->tooltip
+#, fuzzy
+msgid "Temperature scale for graph"
+msgstr "Systeemvariabele voor grafiek"
 
 #. settings-schema.json->data-prefix-ram->options
 #. settings-schema.json->data-prefix-swap->options
@@ -259,10 +309,6 @@ msgstr "GPU-variabele om te monitoren"
 #. settings-schema.json->gpu-variable->tooltip
 msgid "Select the GPU variable to monitor."
 msgstr "Selecteer de GPU-variabele om te monitoren."
-
-#. settings-schema.json->gpu-variable->options
-msgid "Usage"
-msgstr "Gebruik"
 
 #. settings-schema.json->gpu-variable->options
 msgid "Memory"
