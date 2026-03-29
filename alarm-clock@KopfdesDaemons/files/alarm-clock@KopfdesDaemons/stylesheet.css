@@ -1,0 +1,8 @@
+.alarm-clock-input:hover,
+.alarm-clock-day-button:hover {
+  background-color: gray;
+}
+
+.alarm-clock-input {
+  background-color: #3d3f4b;
+}
