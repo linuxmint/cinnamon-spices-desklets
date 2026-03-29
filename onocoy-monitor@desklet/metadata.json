@@ -1,0 +1,9 @@
+{
+    "uuid": "onocoy-monitor@desklet",
+    "name": "Onocoy Monitor",
+    "description": "Monitor your onocoy GNSS stations and ONO token price",
+    "version": "1.0.0",
+    "author": "@AlexMultiMining",
+    "website": "https://github.com/airtkey",
+    "cinnamon-version": ["6.0", "6.2", "6.4", "6.6"]
+}
