@@ -19,8 +19,31 @@
             "Swap" : "swap",
             "HDD" : "hdd",
             "GPU" : "gpu",
-            "Network" : "network"
+            "Network" : "network",
+            "Battery" : "battery"
         }
+    },
+    "cpu-variable": {
+        "type": "combobox",
+        "default": "usage",
+        "description": "CPU variable to monitor",
+        "tooltip": "Select the CPU variable to monitor.",
+        "options" : {
+            "Usage"  : "usage",
+            "Temperature" : "temperature"
+        },
+        "dependency": "type=cpu"
+    },
+    "temperature-units-cpu": {
+        "type": "combobox",
+        "default": "C",
+        "options": {
+            "°C" : "C",
+            "°F" : "F"
+        },
+        "description": "Temperature scale",
+        "tooltip": "Temperature scale for graph",
+        "dependency": "type=cpu"
     },
     "data-prefix-ram": {
         "type": "combobox",
@@ -74,6 +97,13 @@
         "tooltip": "Leave empty to monitor all interfaces combined. Examples: eth0, wlan0, enp0s3",
         "dependency": "type=network"
     },
+    "battery-name": {
+        "type": "entry",
+        "default": "BAT0",
+        "description": "Name of battery name to monitor",
+        "tooltip": "Check battery name in /sys/class/power_supply/ Examples: BAT0, BAT1",
+        "dependency": "type=battery"
+    },
     "filesystem": {
         "type": "filechooser",
         "default": "file:///",
@@ -115,7 +145,8 @@
         "tooltip": "Select the GPU variable to monitor.",
         "options" : {
             "Usage"  : "usage",
-            "Memory" : "memory"
+            "Memory" : "memory",
+            "Temperature": "temperature"
         },
         "dependency": "type=gpu"
     },
@@ -128,6 +159,17 @@
         },
         "description": "Prefix for data units",
         "tooltip": "Unit prefix for GPU memory size.",
+        "dependency": "type=gpu"
+    },
+    "temperature-units-gpu": {
+        "type": "combobox",
+        "default": "C",
+        "options": {
+            "°C" : "C",
+            "°F" : "F"
+        },
+        "description": "Temperature scale",
+        "tooltip": "Temperature scale for graph",
         "dependency": "type=gpu"
     },
     "duration": {
@@ -224,6 +266,13 @@
         "default": "rgba(180,120,100,1.0)",
         "description": "Line color Network Upload",
         "dependency": "type=network",
+        "tooltip": "RGB or RGBA. Alpha is ignored"
+    },
+    "line-color-battery": {
+        "type": "colorchooser",
+        "default": "rgba(255,204,0,1.0)",
+        "description": "Line color Battery",
+        "dependency": "type=battery",
         "tooltip": "RGB or RGBA. Alpha is ignored"
     },
     "midline-color": {

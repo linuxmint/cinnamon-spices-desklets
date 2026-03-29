@@ -15,14 +15,18 @@ This project has been inspired from other Desklets such as [Disk Space](https://
 | System variable | Description |
 | -----------     | ----------- |
 | CPU             | CPU usage in % |
+| CPU Temperature | CPU temperature C or F |
 | RAM             | Used RAM as % of total, and in GB |
 | Swap            | Used Swap space as % of total, and in GB |
 | HDD             | % of I/O activity, and free and total space in the filesystem (partition)  indicated by the user |
 | GPU Usage       | GPU usage in % |
 | GPU Memory      | GPU memory usage in % |
+| GPU Temperature | GPU temperature C or F |
 | Network         | Real-time upload and download speeds with dual-line graph, configurable interface monitoring |
+| Battery         | Current capacity %, and Status |
 
 Each variable is calculated every `Refresh interval` seconds (Min. 1 s, Max. 60 s.), and the graph shows the last `Duration of the graph` period (Min. 30 s, Max. 60 min).
+GPU graphs work for NVIDIA, discrete AMD and built-in AMD.
 
 ### Customizable visual elements
 <p align="center">
@@ -48,9 +52,16 @@ A simple screenshot.
 Another screenshot.
 </p>
 
+<p align="center">
+<img src="https://cinnamon-spices.linuxmint.com/git/desklets/system-monitor-graph@rcassani/screenshot4.png" width="900" align="middle"><br>
+Screenshot with temperature and battery graphs.
+</p>
 
 ## TODO
-- [ ] Add other variables such as ~~network~~, CPU and GPU temperatures, battery levels for PC and peripherals.
+- [x] Add network
+- [x] Battery levels for main battery (laptop)
+- [x] CPU and GPU temperatures
+- [ ] Battery levels for main battery (laptop)
 
 ### Resources
 This is my first Desklet and the first time using JavaScript. Below, some resources that I used for the development of this Desklet.

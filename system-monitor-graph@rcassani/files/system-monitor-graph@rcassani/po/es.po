@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-08-27 21:38-0400\n"
-"PO-Revision-Date: 2025-08-04 19:01-0400\n"
+"POT-Creation-Date: 2026-03-23 21:24-0400\n"
+"PO-Revision-Date: 2026-03-20 21:19-0300\n"
 "Last-Translator: Daniel <d3vf4n@tutanota.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -17,87 +17,109 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.9\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:183
+#. desklet.js:275
 msgid "CPU"
 msgstr "CPU"
 
-#. desklet.js:194 desklet.js:212 desklet.js:232 desklet.js:273 desklet.js:547
+#. desklet.js:284
+msgid "CPU Temperature"
+msgstr ""
+
+#. desklet.js:301 desklet.js:319 desklet.js:339 desklet.js:380 desklet.js:684
 msgid "GB"
 msgstr "GB"
 
-#. desklet.js:197 desklet.js:215 desklet.js:235 desklet.js:276 desklet.js:561
+#. desklet.js:304 desklet.js:322 desklet.js:342 desklet.js:383 desklet.js:698
 msgid "GiB"
 msgstr "GiB"
 
 #. settings-schema.json->type->options
-#. desklet.js:199
+#. desklet.js:306
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#. desklet.js:217
+#. desklet.js:324
 msgid "Swap"
 msgstr "Swap"
 
-#. desklet.js:240
+#. desklet.js:347
 msgid "free of"
 msgstr "libres de"
 
-#. desklet.js:256
+#. desklet.js:363
 msgid "GPU Usage"
 msgstr "Uso de GPU"
 
-#. desklet.js:278
+#. desklet.js:385
 msgid "GPU Memory"
 msgstr "Memoria de GPU"
 
+#. desklet.js:401
+#, fuzzy
+msgid "GPU Temperature"
+msgstr "Fabricante de la GPU"
+
 #. settings-schema.json->type->options
-#. desklet.js:290
+#. desklet.js:415
 msgid "Network"
 msgstr "Red"
 
-#. desklet.js:518 desklet.js:541
+#. settings-schema.json->type->options
+#. desklet.js:428
+msgid "Battery"
+msgstr "Batería"
+
+#. desklet.js:431
+msgid "Fully charged"
+msgstr "Completamente cargada"
+
+#. desklet.js:432
+msgid "Not charging"
+msgstr "No se está cargando"
+
+#. desklet.js:434
+msgid " hrs"
+msgstr " hrs"
+
+#. desklet.js:655 desklet.js:678
 msgid "b"
 msgstr "b"
 
-#. desklet.js:520 desklet.js:555 desklet.js:569
+#. desklet.js:657 desklet.js:692 desklet.js:706
 msgid "B"
 msgstr "B"
 
-#. desklet.js:533
+#. desklet.js:670
 msgid "Gb"
 msgstr "Gb"
 
-#. desklet.js:536
+#. desklet.js:673
 msgid "Mb"
 msgstr "Mb"
 
-#. desklet.js:539
+#. desklet.js:676
 msgid "Kb"
 msgstr "Kb"
 
-#. desklet.js:550
+#. desklet.js:687
 msgid "MB"
 msgstr "MB"
 
-#. desklet.js:553
+#. desklet.js:690
 msgid "KB"
 msgstr "KB"
 
-#. desklet.js:564
+#. desklet.js:701
 msgid "MiB"
 msgstr "MiB"
 
-#. desklet.js:567
+#. desklet.js:704
 msgid "KiB"
 msgstr "KiB"
-
-#. desklet.js:844 desklet.js:882
-msgid "Error executing nvidia-smi command."
-msgstr "Error al ejecutar el comando nvidia-smi."
 
 #. metadata.json->name
 msgid "System monitor graph"
@@ -130,6 +152,47 @@ msgstr "Disco duro"
 #. settings-schema.json->type->options
 msgid "GPU"
 msgstr "GPU"
+
+#. settings-schema.json->cpu-variable->description
+#, fuzzy
+msgid "CPU variable to monitor"
+msgstr "Variable de la GPU a monitorear"
+
+#. settings-schema.json->cpu-variable->tooltip
+#, fuzzy
+msgid "Select the CPU variable to monitor."
+msgstr "Seleccione la variable de la GPU que desea monitorear."
+
+#. settings-schema.json->cpu-variable->options
+#. settings-schema.json->gpu-variable->options
+msgid "Usage"
+msgstr "Uso"
+
+#. settings-schema.json->cpu-variable->options
+#. settings-schema.json->gpu-variable->options
+msgid "Temperature"
+msgstr ""
+
+#. settings-schema.json->temperature-units-cpu->options
+#. settings-schema.json->temperature-units-gpu->options
+msgid "°C"
+msgstr ""
+
+#. settings-schema.json->temperature-units-cpu->options
+#. settings-schema.json->temperature-units-gpu->options
+msgid "°F"
+msgstr ""
+
+#. settings-schema.json->temperature-units-cpu->description
+#. settings-schema.json->temperature-units-gpu->description
+msgid "Temperature scale"
+msgstr ""
+
+#. settings-schema.json->temperature-units-cpu->tooltip
+#. settings-schema.json->temperature-units-gpu->tooltip
+#, fuzzy
+msgid "Temperature scale for graph"
+msgstr "Variable del sistema para el gráfico"
 
 #. settings-schema.json->data-prefix-ram->options
 #. settings-schema.json->data-prefix-swap->options
@@ -194,6 +257,16 @@ msgstr ""
 "Dejar vacío para monitorizar todas las interfaces combinadas. Ejemplos: "
 "eth0, wlan0, enp0s3"
 
+#. settings-schema.json->battery-name->description
+msgid "Name of battery name to monitor"
+msgstr "Nombre de la batería que se va a monitorear"
+
+#. settings-schema.json->battery-name->tooltip
+msgid "Check battery name in /sys/class/power_supply/ Examples: BAT0, BAT1"
+msgstr ""
+"Comprueba el nombre de la batería en /sys/class/power_supply/. Ejemplos: "
+"BAT0, BAT1"
+
 #. settings-schema.json->filesystem->description
 msgid "Filesystem to monitor"
 msgstr "Sistema de archivos a monitorear"
@@ -243,10 +316,6 @@ msgstr "Variable de la GPU a monitorear"
 #. settings-schema.json->gpu-variable->tooltip
 msgid "Select the GPU variable to monitor."
 msgstr "Seleccione la variable de la GPU que desea monitorear."
-
-#. settings-schema.json->gpu-variable->options
-msgid "Usage"
-msgstr "Uso"
 
 #. settings-schema.json->gpu-variable->options
 msgid "Memory"
@@ -350,6 +419,7 @@ msgstr "Color de la línea de la CPU"
 #. settings-schema.json->line-color-gpu->tooltip
 #. settings-schema.json->line-color-network-down->tooltip
 #. settings-schema.json->line-color-network-up->tooltip
+#. settings-schema.json->line-color-battery->tooltip
 msgid "RGB or RGBA. Alpha is ignored"
 msgstr ""
 "El color se puede guardar en formato RGB o RGBA, pero se ignorará la opacidad"
@@ -377,6 +447,10 @@ msgstr "Color de la línea de descarga de la red"
 #. settings-schema.json->line-color-network-up->description
 msgid "Line color Network Upload"
 msgstr "Color de la línea de la carga de la red"
+
+#. settings-schema.json->line-color-battery->description
+msgid "Line color Battery"
+msgstr "Color de la línea de la batería"
 
 #. settings-schema.json->midline-color->description
 msgid "Grid color"
