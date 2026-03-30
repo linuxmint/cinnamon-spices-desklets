@@ -1,20 +1,25 @@
 const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
-const Mainloop = imports.mainloop;
 const Cinnamon = imports.gi.Cinnamon;
+const Settings = imports.ui.settings;
 
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
     this.setHeader("Alarm Clock");
 
-    this.alarmTime = null;
-    this.timeout = null;
-    this.alarmIsEnabled = false;
+    this._isReloading = false;
 
-    //  Default settings
+    // Default settings
     this.scaleSize = 1;
     this.alarmName = "Alarm";
+    this.alarmDays = [];
+    this.alarmIsEnabled = false;
+
+    // Bind settings
+    this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "alarm-days", "alarmDays", this._setupLayout);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "alarm-is-enabled", "alarmIsEnabled", this._setupLayout);
   }
 
   on_desklet_added_to_desktop() {
@@ -22,8 +27,8 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   on_desklet_removed_from_desktop() {
-    if (this.timeout) {
-      Mainloop.source_remove(this.timeout);
+    if (this.settings && !this._isReloading) {
+      this.settings.finalize();
     }
   }
 
@@ -38,7 +43,8 @@ class MyDesklet extends Desklet.Desklet {
       const weekdays = [];
 
       for (let i = 0; i < 7; i++) {
-        weekdays.push(baseDate.toLocaleString(locale, { weekday: "short" }));
+        const weekday = { number: i, shortName: baseDate.toLocaleString(locale, { weekday: "short" }) };
+        weekdays.push(weekday);
         baseDate.setDate(baseDate.getDate() + 1);
       }
 
@@ -46,14 +52,19 @@ class MyDesklet extends Desklet.Desklet {
     };
 
     const dayButtonsRow = new St.BoxLayout({ style: `spacing: ${this.scaleSize * 0.2}em;` });
+    const dayButtonStyle = `font-size: ${this.scaleSize * 1}em; padding: ${this.scaleSize * 0.2}em; border-radius: ${this.scaleSize * 0.5}em;`;
     const weekdays = getShortWeekdays();
     for (const day of weekdays) {
       const dayButton = new St.Button({
-        child: new St.Label({ text: day }),
-        style: `font-size: ${this.scaleSize * 1}em; padding: ${this.scaleSize * 0.2}em; border-radius: ${this.scaleSize * 0.5}em;`,
+        child: new St.Label({ text: day.shortName }),
+        style: dayButtonStyle,
         style_class: "alarm-clock-day-button",
       });
+      dayButton.connect("clicked", () => this._on_day_button_clicked(day.number));
       dayButtonsRow.add(dayButton);
+      if (this.alarmDays.includes(day.number)) {
+        dayButton.set_style(dayButtonStyle + `background-color: #363A58;`);
+      }
     }
 
     mainContainer.add(dayButtonsRow);
@@ -95,15 +106,17 @@ class MyDesklet extends Desklet.Desklet {
     const baseToggleCircleStyle = `border-radius: ${this.scaleSize * 0.8}em; width: ${this.scaleSize * 1.5}em; height: ${this.scaleSize * 1.5}em;`;
     const toggleCircleStyleInactive = `margin-left: auto; margin-right: ${this.scaleSize * 1.5}em; ${baseToggleCircleStyle} background-color: #353535;`;
     const toggleCircleStyleActive = `margin-right: auto; margin-left: ${this.scaleSize * 1.5}em; ${baseToggleCircleStyle} background-color: #202020;`;
-    const toggleButtonCircle = new St.Bin({ style: toggleCircleStyleInactive });
+    const currentToggleCircleStyle = this.alarmIsEnabled ? toggleCircleStyleActive : toggleCircleStyleInactive;
+    const toggleButtonCircle = new St.Bin({ style: currentToggleCircleStyle });
 
     // Toggle button
     const baseToggleStyle = `padding: ${this.scaleSize * 0.2}em; border-radius: ${this.scaleSize * 3}em;`;
     const aktiveToggleStyle = `background-color: #35a854; ${baseToggleStyle}`;
     const inaktiveToggleStyle = `background-color: #5b5b5b; ${baseToggleStyle}`;
+    const currentToggleStyle = this.alarmIsEnabled ? aktiveToggleStyle : inaktiveToggleStyle;
     const toggleButton = new St.Button({
       child: toggleButtonCircle,
-      style: inaktiveToggleStyle,
+      style: currentToggleStyle,
     });
 
     // Connect toggle button click event
@@ -127,6 +140,16 @@ class MyDesklet extends Desklet.Desklet {
     mainContainer.add(inputsRow);
 
     this.setContent(mainContainer);
+  }
+
+  _on_day_button_clicked(dayNumber) {
+    if (!this.alarmDays.includes(dayNumber)) {
+      this.alarmDays.push(dayNumber);
+    } else {
+      this.alarmDays = this.alarmDays.filter(day => day !== dayNumber);
+    }
+    this.settings.setValue("alarm-days", this.alarmDays);
+    this._setupLayout();
   }
 
   _setAlarm() {

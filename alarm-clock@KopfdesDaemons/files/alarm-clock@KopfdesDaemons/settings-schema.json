@@ -1,0 +1,10 @@
+{
+  "alarm-days": {
+    "type": "generic",
+    "default": []
+  },
+  "alarm-is-enabled": {
+    "type": "generic",
+    "default": false
+  }
+}
