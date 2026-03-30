@@ -10,5 +10,26 @@
   "am-pm": {
     "type": "generic",
     "default": "am"
+  },
+  "alarm-hours": {
+    "type": "generic",
+    "default": "00"
+  },
+  "alarm-minutes": {
+    "type": "generic",
+    "default": "00"
+  },
+  "alarm-name": {
+    "type": "entry",
+    "default": "Alarm",
+    "description": "Alarm name"
+  },
+  "scale-size": {
+    "type": "scale",
+    "default": 1.0,
+    "step": 0.1,
+    "min": 0.3,
+    "max": 3.0,
+    "description": "Desklet scale size"
   }
 }

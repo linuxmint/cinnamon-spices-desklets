@@ -3,6 +3,7 @@ const St = imports.gi.St;
 const Cinnamon = imports.gi.Cinnamon;
 const Settings = imports.ui.settings;
 const Gio = imports.gi.Gio;
+const Clutter = imports.gi.Clutter;
 
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
@@ -19,12 +20,18 @@ class MyDesklet extends Desklet.Desklet {
     this.alarmDays = [];
     this.alarmIsEnabled = false;
     this.amPm = "am";
+    this.alarmHours = "";
+    this.alarmMinutes = "";
 
     // Bind settings
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "alarm-days", "alarmDays", this._setupLayout);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "alarm-is-enabled", "alarmIsEnabled", this._setupLayout);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "am-pm", "amPm", this._setupLayout);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "alarm-days", "alarmDays");
+    this.settings.bindProperty(Settings.BindingDirection.IN, "alarm-is-enabled", "alarmIsEnabled");
+    this.settings.bindProperty(Settings.BindingDirection.IN, "am-pm", "amPm");
+    this.settings.bindProperty(Settings.BindingDirection.IN, "alarm-name", "alarmName", this._setupLayout);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._setupLayout);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "alarm-hours", "alarmHours");
+    this.settings.bindProperty(Settings.BindingDirection.IN, "alarm-minutes", "alarmMinutes");
   }
 
   on_desklet_added_to_desktop() {
@@ -35,6 +42,14 @@ class MyDesklet extends Desklet.Desklet {
     if (this.settings && !this._isReloading) {
       this.settings.finalize();
     }
+    if (this._clockUse24hId) {
+      this._desktop_settings.disconnect(this._clockUse24hId);
+      this._clockUse24hId = 0;
+    }
+  }
+
+  on_desklet_reloaded() {
+    this._isReloading = true;
   }
 
   _setupLayout() {
@@ -76,23 +91,25 @@ class MyDesklet extends Desklet.Desklet {
 
     const inputsRow = new St.BoxLayout({ vertical: false, y_align: St.Align.MIDDLE });
 
-    const getInput = () => {
-      return new St.Entry({
+    const getInput = initialText => {
+      const entry = new St.Entry({
         hint_text: "00",
         style: `font-size: ${this.scaleSize * 2}em; padding: ${this.scaleSize * 0.3}em; border-radius: ${this.scaleSize * 0.5}em;`,
         reactive: true,
         track_hover: true,
         style_class: "alarm-clock-input",
       });
+      if (initialText) entry.set_text(initialText);
+      return entry;
     };
 
-    this.inputHours = getInput();
+    this.inputHours = getInput(this.alarmHours);
     inputsRow.add(this.inputHours);
 
     const separator = new St.Bin({ child: new St.Label({ text: ":" }), style: `font-size: ${this.scaleSize * 2}em; padding: 0 ${this.scaleSize * 0.05}em;` });
     inputsRow.add(separator);
 
-    this.inputMinutes = getInput();
+    this.inputMinutes = getInput(this.alarmMinutes);
     inputsRow.add(this.inputMinutes);
 
     // Function for input events
@@ -120,10 +137,12 @@ class MyDesklet extends Desklet.Desklet {
           if (num > maxHours) {
             filteredText = maxHours.toString();
           }
+          this.alarmHours = filteredText;
         } else if (minutesOrHours === "minutes") {
           if (num > 59) {
             filteredText = "59";
           }
+          this.alarmMinutes = filteredText;
         }
       }
 
@@ -142,6 +161,25 @@ class MyDesklet extends Desklet.Desklet {
     this.inputMinutes.clutter_text.connect("text-changed", () => validateInput(this.inputMinutes, "minutes"));
     this.inputMinutes.clutter_text.connect("activate", () => submit());
     this.inputHours.clutter_text.connect("activate", () => submit());
+
+    this.inputHours.clutter_text.connect("key-press-event", (actor, event) => {
+      const symbol = event.get_key_symbol();
+      if (symbol === Clutter.KEY_Tab) {
+        grabFocus(this.inputMinutes);
+        return true;
+      }
+      return false;
+    });
+
+    this.inputMinutes.clutter_text.connect("key-press-event", (actor, event) => {
+      const symbol = event.get_key_symbol();
+      if (symbol === Clutter.KEY_ISO_Left_Tab) {
+        // Shift+Tab
+        grabFocus(this.inputHours);
+        return true;
+      }
+      return false;
+    });
 
     if (!this._desktop_settings.get_boolean("clock-use-24h")) {
       const amPmButton = new St.Button({
