@@ -6,5 +6,9 @@
   "alarm-is-enabled": {
     "type": "generic",
     "default": false
+  },
+  "am-pm": {
+    "type": "generic",
+    "default": "am"
   }
 }

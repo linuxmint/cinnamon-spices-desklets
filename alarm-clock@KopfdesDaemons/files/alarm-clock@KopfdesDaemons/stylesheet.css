@@ -1,5 +1,6 @@
 .alarm-clock-input:hover,
-.alarm-clock-day-button:hover {
+.alarm-clock-day-button:hover,
+.alarm-clock-am-pm-button:hover {
   background-color: gray;
 }
 
