@@ -137,7 +137,7 @@ class MyDesklet extends Desklet.Desklet {
     const getInput = initialText => {
       const entry = new St.Entry({
         hint_text: "00",
-        style: `font-size: ${this.scaleSize * 2}em; padding: ${this.scaleSize * 0.3}em; border-radius: ${this.scaleSize * 0.5}em;`,
+        style: `font-size: ${this.scaleSize * 2}em; padding: ${this.scaleSize * 0.3}em; border-radius: 0.5em;`,
         reactive: true,
         track_hover: true,
         style_class: "alarm-clock-input",
@@ -335,12 +335,72 @@ class MyDesklet extends Desklet.Desklet {
     this.alarmIsEnabled = !this.alarmIsEnabled;
     if (this.alarmIsEnabled) {
       this._setAlarm();
+      this._sendRemainingTimeNotification();
     } else {
       this._clearAlarmTimeOut();
       if (this._currentNotification) {
         this._currentNotification.destroy();
       }
       this._stopSound();
+    }
+  }
+
+  _sendRemainingTimeNotification() {
+    const now = new Date();
+
+    // Get alarm time
+    let alarmHours = parseInt(this.alarmHours, 10);
+    const alarmMinutes = parseInt(this.alarmMinutes, 10);
+
+    if (isNaN(alarmHours) || isNaN(alarmMinutes)) return;
+
+    const use24h = this._desktop_settings.get_boolean("clock-use-24h");
+
+    // Convert alarm hours to 24h format for calculation
+    if (!use24h) {
+      if (this.amPm === "pm" && alarmHours < 12) {
+        alarmHours += 12;
+      } else if (this.amPm === "am" && alarmHours === 12) {
+        alarmHours = 0;
+      }
+    }
+
+    let nextAlarmDate = null;
+
+    // Check the next 7 days for the next active alarm day and time
+    for (let i = 0; i <= 7; i++) {
+      const testDate = new Date(now.getTime());
+      testDate.setDate(testDate.getDate() + i);
+      testDate.setHours(alarmHours, alarmMinutes, 0, 0);
+
+      const jsDay = testDate.getDay();
+      const isDayActive = this.alarmDays.includes(jsDay) || (jsDay === 0 && this.alarmDays.includes(7));
+
+      if (isDayActive && testDate > now) {
+        nextAlarmDate = testDate;
+        break;
+      }
+    }
+
+    if (nextAlarmDate) {
+      // Calculate the difference between now and the next alarm time
+      const diffMs = nextAlarmDate - now;
+      const diffMinutes = Math.floor(diffMs / 60000);
+
+      // Convert the difference into days, hours, and minutes
+      const days = Math.floor(diffMinutes / (24 * 60));
+      const hours = Math.floor((diffMinutes % (24 * 60)) / 60);
+      const minutes = diffMinutes % 60;
+
+      let timeParts = [];
+      if (days > 0) timeParts.push(`${days} ` + _("day(s)"));
+      if (hours > 0) timeParts.push(`${hours} ` + _("hour(s)"));
+      if (minutes > 0 || timeParts.length === 0) timeParts.push(`${minutes} ` + _("minute(s)"));
+
+      const message = _("Alarm is set for in") + ` ${timeParts.join(", ")}.`;
+      this._sendNotification(this.alarmName || _("Alarm Clock"), message);
+    } else {
+      this._sendNotification(this.alarmName || _("Alarm Clock"), _("No active alarm days selected."));
     }
   }
 
@@ -359,7 +419,8 @@ class MyDesklet extends Desklet.Desklet {
 
     // Check if today is one of the alarm days
     const todayWeekdayNumber = now.getDay();
-    if (!this.alarmDays.includes(todayWeekdayNumber)) return;
+
+    if (!this.alarmDays.includes(todayWeekdayNumber) && !(todayWeekdayNumber === 0 && this.alarmDays.includes(7))) return;
 
     // Get current hours and minutes and alarm hours and minutes as numbers
     const hours = now.getHours();
