@@ -27,6 +27,7 @@ class MyDesklet extends Desklet.Desklet {
     this._notificationSource = null;
     this._currentNotification = null;
     this._soundProc = null;
+    this._lastClockUse24h = undefined;
 
     this.clock = new CinnamonDesktop.WallClock();
     this.clock_notify_id = 0;
@@ -76,7 +77,7 @@ class MyDesklet extends Desklet.Desklet {
       this._desktop_settings.disconnect(this._clockUse24hId);
       this._clockUse24hId = 0;
     }
-    this._clearAlarm();
+    this._clearAlarmTimeOut();
     if (this._notificationSource) {
       this._notificationSource.destroy();
     }
@@ -88,6 +89,8 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _setupLayout() {
+    this._convertTimeFormat();
+
     const mainContainerStyle = `background-color: #282828; spacing: ${this.scaleSize * 0.2}em; border-radius: ${this.scaleSize * 1.5}em; padding: ${this.scaleSize * 0.5}em;`;
     const mainContainer = new St.BoxLayout({ vertical: true, style: mainContainerStyle });
 
@@ -109,14 +112,19 @@ class MyDesklet extends Desklet.Desklet {
     const dayButtonsRow = new St.BoxLayout({ style: `spacing: ${this.scaleSize * 0.2}em;` });
     const dayButtonStyle = `font-size: ${this.scaleSize * 1}em; padding: ${this.scaleSize * 0.2}em; border-radius: ${this.scaleSize * 0.5}em;`;
     const weekdays = getShortWeekdays();
+
+    // Create a button for each weekday
     for (const day of weekdays) {
       const dayButton = new St.Button({
         child: new St.Label({ text: day.shortName }),
         style: dayButtonStyle,
         style_class: "alarm-clock-day-button",
       });
-      dayButton.connect("clicked", () => this._on_day_button_clicked(day.number));
+
+      dayButton.connect("clicked", () => this._onDayButtonClicked(day.number));
       dayButtonsRow.add(dayButton);
+
+      // Highlight the button if it's one of the selected alarm days
       if (this.alarmDays.includes(day.number)) {
         dayButton.set_style(dayButtonStyle + `background-color: #363A58;`);
       }
@@ -154,36 +162,6 @@ class MyDesklet extends Desklet.Desklet {
       global.set_stage_input_mode(Cinnamon.StageInputMode.NORMAL);
     };
 
-    const validateInput = (input, minutesOrHours) => {
-      const use24h = this._desktop_settings.get_boolean("clock-use-24h");
-      const originalText = input.get_text();
-
-      let filteredText = originalText.replace(/[^0-9]/g, "");
-
-      if (filteredText.length > 2) {
-        filteredText = filteredText.slice(0, 2);
-      }
-
-      if (filteredText) {
-        let num = parseInt(filteredText, 10);
-
-        if (minutesOrHours === "hours") {
-          const maxHours = use24h ? 23 : 12;
-          if (num > maxHours) {
-            filteredText = maxHours.toString();
-          }
-          this.alarmHours = filteredText;
-        } else if (minutesOrHours === "minutes") {
-          if (num > 59) {
-            filteredText = "59";
-          }
-          this.alarmMinutes = filteredText;
-        }
-      }
-
-      if (originalText !== filteredText) input.set_text(filteredText);
-    };
-
     const submit = () => {
       this._setAlarm();
       global.stage.set_key_focus(null);
@@ -192,8 +170,8 @@ class MyDesklet extends Desklet.Desklet {
     // Connect input events
     this.inputHours.clutter_text.connect("button-press-event", () => grabFocus(this.inputHours));
     this.inputMinutes.clutter_text.connect("button-press-event", () => grabFocus(this.inputMinutes));
-    this.inputHours.clutter_text.connect("text-changed", () => validateInput(this.inputHours, "hours"));
-    this.inputMinutes.clutter_text.connect("text-changed", () => validateInput(this.inputMinutes, "minutes"));
+    this.inputHours.clutter_text.connect("text-changed", () => this._validateInput(this.inputHours, "hours"));
+    this.inputMinutes.clutter_text.connect("text-changed", () => this._validateInput(this.inputMinutes, "minutes"));
     this.inputMinutes.clutter_text.connect("activate", () => submit());
     this.inputHours.clutter_text.connect("activate", () => submit());
 
@@ -265,7 +243,85 @@ class MyDesklet extends Desklet.Desklet {
     this.setContent(mainContainer);
   }
 
-  _on_day_button_clicked(dayNumber) {
+  _validateInput = (input, minutesOrHours) => {
+    const use24h = this._desktop_settings.get_boolean("clock-use-24h");
+    const originalText = input.get_text();
+
+    let filteredText = originalText.replace(/[^0-9]/g, "");
+
+    if (filteredText.length > 2) {
+      filteredText = filteredText.slice(0, 2);
+    }
+
+    if (filteredText) {
+      let num = parseInt(filteredText, 10);
+
+      if (minutesOrHours === "hours") {
+        const maxHours = use24h ? 23 : 12;
+        if (num > maxHours) {
+          filteredText = maxHours.toString();
+        }
+        this.alarmHours = filteredText;
+        this.settings.setValue("alarm-hours", this.alarmHours);
+      } else if (minutesOrHours === "minutes") {
+        if (num > 59) {
+          filteredText = "59";
+        }
+        this.alarmMinutes = filteredText;
+        this.settings.setValue("alarm-minutes", this.alarmMinutes);
+      }
+    }
+
+    if (originalText !== filteredText) input.set_text(filteredText);
+  };
+
+  _convertTimeFormat() {
+    const use24h = this._desktop_settings.get_boolean("clock-use-24h");
+    let currentHours = parseInt(this.alarmHours, 10);
+
+    if (!isNaN(currentHours)) {
+      // If the clock format has changed since the last setup, convert the alarm hours accordingly
+      if (this._lastClockUse24h !== undefined && this._lastClockUse24h !== use24h) {
+        if (!use24h) {
+          // Convert to 12h format
+          if (currentHours >= 24) currentHours = 0;
+          if (currentHours > 12) {
+            this.alarmHours = (currentHours - 12).toString().padStart(2, "0");
+            this.amPm = "pm";
+          } else if (currentHours === 0) {
+            this.alarmHours = "12";
+            this.amPm = "am";
+          } else if (currentHours === 12) {
+            this.amPm = "pm";
+          } else {
+            this.amPm = "am";
+          }
+        } else {
+          // Convert to 24h format
+          if (this.amPm === "pm" && currentHours < 12) {
+            this.alarmHours = (currentHours + 12).toString().padStart(2, "0");
+          } else if (this.amPm === "am" && currentHours === 12) {
+            this.alarmHours = "00";
+          } else {
+            this.alarmHours = currentHours.toString().padStart(2, "0");
+          }
+        }
+      } else if (!use24h && (currentHours > 12 || currentHours === 0)) {
+        // Convert to 12h format
+        if (currentHours >= 24) currentHours = 0;
+        if (currentHours > 12) {
+          this.alarmHours = (currentHours - 12).toString().padStart(2, "0");
+          this.amPm = "pm";
+        } else if (currentHours === 0) {
+          this.alarmHours = "12";
+          this.amPm = "am";
+        }
+      }
+    }
+    this._lastClockUse24h = use24h;
+  }
+
+  _onDayButtonClicked(dayNumber) {
     if (!this.alarmDays.includes(dayNumber)) {
       this.alarmDays.push(dayNumber);
     } else {
@@ -280,12 +336,16 @@ class MyDesklet extends Desklet.Desklet {
     if (this.alarmIsEnabled) {
       this._setAlarm();
     } else {
-      this._clearAlarm();
+      this._clearAlarmTimeOut();
+      if (this._currentNotification) {
+        this._currentNotification.destroy();
+      }
+      this._stopSound();
     }
   }
 
   _setAlarm() {
-    this._clearAlarm();
+    this._clearAlarmTimeOut();
 
     if (this.clock_notify_id === 0) {
       this.clock_notify_id = this.clock.connect("notify::clock", () => this._checkAlarm());
@@ -304,8 +364,21 @@ class MyDesklet extends Desklet.Desklet {
     // Get current hours and minutes and alarm hours and minutes as numbers
     const hours = now.getHours();
     const minutes = now.getMinutes();
-    const alarmHours = parseInt(this.alarmHours, 10);
+    let alarmHours = parseInt(this.alarmHours, 10);
     const alarmMinutes = parseInt(this.alarmMinutes, 10);
+
+    if (isNaN(alarmHours) || isNaN(alarmMinutes)) return;
+
+    const use24h = this._desktop_settings.get_boolean("clock-use-24h");
+
+    if (!use24h) {
+      // Convert alarm hours to 24h format for comparison
+      if (this.amPm === "pm" && alarmHours < 12) {
+        alarmHours += 12;
+      } else if (this.amPm === "am" && alarmHours === 12) {
+        alarmHours = 0;
+      }
+    }
 
     // Call the alarm if the current time is past the alarm time
     if (hours > alarmHours || (hours === alarmHours && minutes >= alarmMinutes)) {
@@ -314,16 +387,16 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _callAlarm() {
-    this._clearAlarm();
+    this._clearAlarmTimeOut();
     this._playSound();
+
     const title = this.timerName || _("Alarm Clock");
     const message = _("Alarm ringing!");
+
     this._sendNotification(title, message, () => {
       this._stopSound();
     });
   }
-
-  _playSound() {}
 
   _sendNotification(title, message, callback = null) {
     if (!this._notificationSource) {
@@ -343,7 +416,7 @@ class MyDesklet extends Desklet.Desklet {
     this._notificationSource.notify(this._currentNotification);
   }
 
-  _clearAlarm() {
+  _clearAlarmTimeOut() {
     if (this.clock_notify_id > 0) {
       this.clock.disconnect(this.clock_notify_id);
       this.clock_notify_id = 0;
