@@ -31,5 +31,30 @@
     "min": 0.3,
     "max": 3.0,
     "description": "Desklet scale size"
+  },
+  "sound-file": {
+    "type": "combobox",
+    "default": "service-login.oga",
+    "description": "Sound when the timer expires",
+    "options": {
+      "No Sound": "none",
+      "Alarm Clock": "alarm-clock-elapsed.oga",
+      "Complete": "complete.oga",
+      "Service login": "service-login.oga",
+      "Service logout": "service-logout.oga"
+    },
+    "dependency": "!use-custom-sound"
+  },
+  "use-custom-sound": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Use custom sound"
+  },
+  "custom-sound-file": {
+    "type": "filechooser",
+    "default": "",
+    "description": "Custom sound file",
+    "filters": ["*.ogg", "*.oga", "*.wav", "*.mp3"],
+    "dependency": "use-custom-sound"
   }
 }

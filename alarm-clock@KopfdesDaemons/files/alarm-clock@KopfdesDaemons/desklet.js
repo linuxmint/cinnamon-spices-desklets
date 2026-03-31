@@ -1,16 +1,37 @@
 const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
 const Cinnamon = imports.gi.Cinnamon;
+const CinnamonDesktop = imports.gi.CinnamonDesktop;
 const Settings = imports.ui.settings;
 const Gio = imports.gi.Gio;
 const Clutter = imports.gi.Clutter;
+const Mainloop = imports.mainloop;
+const GLib = imports.gi.GLib;
+const Gettext = imports.gettext;
+const Main = imports.ui.main;
+const MessageTray = imports.ui.messageTray;
+
+const UUID = "alarm-clock@KopfdesDaemons";
+Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
+
+function _(str) {
+  return Gettext.dgettext(UUID, str);
+}
 
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
-    this.setHeader("Alarm Clock");
+    this.setHeader(_("Alarm Clock"));
 
     this._isReloading = false;
+    this._notificationSource = null;
+    this._currentNotification = null;
+    this._soundProc = null;
+
+    this.clock = new CinnamonDesktop.WallClock();
+    this.clock_notify_id = 0;
+
+    // Listen for changes in the system clock format (12h/24h) to update the layout accordingly
     this._desktop_settings = new Gio.Settings({ schema_id: "org.cinnamon.desktop.interface" });
     this._clockUse24hId = this._desktop_settings.connect("changed::clock-use-24h", () => this._setupLayout());
 
@@ -22,6 +43,9 @@ class MyDesklet extends Desklet.Desklet {
     this.amPm = "am";
     this.alarmHours = "";
     this.alarmMinutes = "";
+    this.soundFile = "complete.oga";
+    this.useCustomSound = false;
+    this.customSoundFile = "";
 
     // Bind settings
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
@@ -32,10 +56,16 @@ class MyDesklet extends Desklet.Desklet {
     this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._setupLayout);
     this.settings.bindProperty(Settings.BindingDirection.IN, "alarm-hours", "alarmHours");
     this.settings.bindProperty(Settings.BindingDirection.IN, "alarm-minutes", "alarmMinutes");
+    this.settings.bindProperty(Settings.BindingDirection.IN, "sound-file", "soundFile", null);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "use-custom-sound", "useCustomSound", null);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "custom-sound-file", "customSoundFile", null);
   }
 
   on_desklet_added_to_desktop() {
     this._setupLayout();
+    if (this.alarmIsEnabled) {
+      this._setAlarm();
+    }
   }
 
   on_desklet_removed() {
@@ -46,6 +76,11 @@ class MyDesklet extends Desklet.Desklet {
       this._desktop_settings.disconnect(this._clockUse24hId);
       this._clockUse24hId = 0;
     }
+    this._clearAlarm();
+    if (this._notificationSource) {
+      this._notificationSource.destroy();
+    }
+    this._stopSound();
   }
 
   on_desklet_reloaded() {
@@ -59,11 +94,11 @@ class MyDesklet extends Desklet.Desklet {
     mainContainer.add(new St.Label({ text: this.alarmName, style: `font-size: ${this.scaleSize * 1.5}em; font-weight: bold; text-align: center` }));
 
     const getShortWeekdays = (locale = undefined) => {
-      const baseDate = new Date(2024, 0, 1);
+      const baseDate = new Date(2024, 0, 1); // Start on a Monday
       const weekdays = [];
 
       for (let i = 0; i < 7; i++) {
-        const weekday = { number: i, shortName: baseDate.toLocaleString(locale, { weekday: "short" }) };
+        const weekday = { number: i + 1, shortName: baseDate.toLocaleString(locale, { weekday: "short" }) };
         weekdays.push(weekday);
         baseDate.setDate(baseDate.getDate() + 1);
       }
@@ -216,7 +251,7 @@ class MyDesklet extends Desklet.Desklet {
 
     // Connect toggle button click event
     toggleButton.connect("clicked", () => {
-      this.alarmIsEnabled = !this.alarmIsEnabled;
+      this._toggleAlarm();
       toggleButtonCircle.set_style(this.alarmIsEnabled ? toggleCircleStyleActive : toggleCircleStyleInactive);
       toggleButton.set_style(this.alarmIsEnabled ? aktiveToggleStyle : inaktiveToggleStyle);
     });
@@ -240,11 +275,114 @@ class MyDesklet extends Desklet.Desklet {
     this._setupLayout();
   }
 
-  _setAlarm() {
-    const hours = this.inputHours.get_text();
-    const minutes = this.inputMinutes.get_text();
+  _toggleAlarm() {
+    this.alarmIsEnabled = !this.alarmIsEnabled;
+    if (this.alarmIsEnabled) {
+      this._setAlarm();
+    } else {
+      this._clearAlarm();
+    }
+  }
 
-    global.log(`Alarm set to: ${hours}:${minutes}`);
+  _setAlarm() {
+    this._clearAlarm();
+
+    if (this.clock_notify_id === 0) {
+      this.clock_notify_id = this.clock.connect("notify::clock", () => this._checkAlarm());
+    }
+
+    this._checkAlarm();
+  }
+
+  _checkAlarm() {
+    const now = new Date();
+
+    // Check if today is one of the alarm days
+    const todayWeekdayNumber = now.getDay();
+    if (!this.alarmDays.includes(todayWeekdayNumber)) return;
+
+    // Get current hours and minutes and alarm hours and minutes as numbers
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const alarmHours = parseInt(this.alarmHours, 10);
+    const alarmMinutes = parseInt(this.alarmMinutes, 10);
+
+    // Call the alarm if the current time is past the alarm time
+    if (hours > alarmHours || (hours === alarmHours && minutes >= alarmMinutes)) {
+      this._callAlarm();
+    }
+  }
+
+  _callAlarm() {
+    this._clearAlarm();
+    this._playSound();
+    const title = this.timerName || _("Alarm Clock");
+    const message = _("Alarm ringing!");
+    this._sendNotification(title, message, () => {
+      this._stopSound();
+    });
+  }
+
+  _playSound() {}
+
+  _sendNotification(title, message, callback = null) {
+    if (!this._notificationSource) {
+      this._notificationSource = new MessageTray.SystemNotificationSource();
+      Main.messageTray.add(this._notificationSource);
+    }
+    const icon = new St.Icon({
+      icon_name: "alarm-symbolic",
+      icon_type: St.IconType.SYMBOLIC,
+    });
+    this._currentNotification = new MessageTray.Notification(this._notificationSource, title, message, { icon: icon });
+    this._currentNotification.setTransient(false);
+    this._currentNotification.connect("destroy", () => {
+      if (callback) callback();
+      this._currentNotification = null;
+    });
+    this._notificationSource.notify(this._currentNotification);
+  }
+
+  _clearAlarm() {
+    if (this.clock_notify_id > 0) {
+      this.clock.disconnect(this.clock_notify_id);
+      this.clock_notify_id = 0;
+    }
+  }
+
+  _playSound() {
+    let path = null;
+    if (this.useCustomSound) {
+      if (this.customSoundFile) {
+        path = this.customSoundFile;
+        if (path.startsWith("file://")) {
+          path = decodeURIComponent(path.replace("file://", ""));
+        }
+      }
+    } else if (this.soundFile && this.soundFile !== "none") {
+      path = "/usr/share/sounds/freedesktop/stereo/" + this.soundFile;
+    }
+
+    if (path) {
+      try {
+        this._stopSound();
+
+        this._soundProc = new Gio.Subprocess({
+          argv: ["paplay", path],
+          flags: Gio.SubprocessFlags.NONE,
+        });
+        this._soundProc.init(null);
+      } catch (e) {
+        global.logError(UUID + ": Error playing sound: " + e.message);
+      }
+    }
+  }
+
+  _stopSound() {
+    if (this._soundProc) {
+      this._soundProc.force_exit();
+      this._soundProc = null;
+    }
   }
 }
 
