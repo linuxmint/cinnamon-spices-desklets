@@ -1,0 +1,116 @@
+{
+    "header-api": {
+        "type": "header",
+        "description": "OpenRouter API"
+    },
+    "apiKey": {
+        "type": "entry",
+        "description": "OpenRouter API Key",
+        "default": "",
+        "tooltip": "Your OpenRouter API key from openrouter.ai/settings/keys"
+    },
+
+    "header-model": {
+        "type": "header",
+        "description": "LLM Model Settings"
+    },
+    "modelType": {
+        "type": "combobox",
+        "description": "Model",
+        "default": "qwen/qwen3.6-plus-preview:free",
+        "options": {
+            "Qwen3.6 (free)": "qwen/qwen3.6-plus-preview:free",
+            "DeepSeek R1": "deepseek/deepseek-r1",
+            "Claude Sonnet 4": "anthropic/claude-sonnet-4",
+            "GPT-4o": "openai/gpt-4o",
+            "Gemini 2.5 Pro": "google/gemini-2.5-pro-preview"
+        }
+    },
+    "maxTokens": {
+        "type": "spinbutton",
+        "description": "Max Response Tokens",
+        "default": 2000,
+        "min": 100,
+        "max": 16000,
+        "step": 100,
+        "units": "tokens"
+    },
+    "temperature": {
+        "type": "scale",
+        "description": "Prompt Temperature",
+        "tooltip": "Higher = more creative, lower = more focused",
+        "default": 0.6,
+        "min": 0.0,
+        "max": 2.0,
+        "step": 0.1
+    },
+    "systemPrompt": {
+        "type": "entry",
+        "description": "Optional System Prompt",
+        "default": "",
+        "tooltip": "Instructions prepended to every conversation"
+    },
+
+    "header-window": {
+        "type": "header",
+        "description": "Window Size"
+    },
+    "windowWidth": {
+        "type": "spinbutton",
+        "description": "Width",
+        "default": 460,
+        "min": 320,
+        "max": 900,
+        "step": 10,
+        "units": "px"
+    },
+    "windowHeight": {
+        "type": "spinbutton",
+        "description": "Height",
+        "default": 540,
+        "min": 300,
+        "max": 1000,
+        "step": 10,
+        "units": "px"
+    },
+
+    "header-style": {
+        "type": "header",
+        "description": "Desklet Style Options"
+    },
+    "backgroundOpacity": {
+        "type": "scale",
+        "description": "Overlaid Prompt Background Opacity",
+        "tooltip": "100 = fully opaque, 10 = nearly transparent",
+        "default": 97,
+        "min": 10,
+        "max": 100,
+        "step": 1
+    },
+    "fontSize": {
+        "type": "spinbutton",
+        "description": "Overlaid Prompt Font Size",
+        "default": 12,
+        "min": 9,
+        "max": 20,
+        "step": 1,
+        "units": "px"
+    },
+    "accentColor": {
+        "type": "colorchooser",
+        "description": "Overlaid Prompt Accent Colour",
+        "tooltip": "Used for the Send button and user message bubbles",
+        "default": "rgb(91,124,250)"
+    },
+
+    "header-advanced": {
+        "type": "header",
+        "description": "Advanced"
+    },
+    "keybinding": {
+        "type": "keybinding",
+        "description": "The key used to toggle the LLM Prompt window",
+        "default": "<Super>h",
+        "tooltip": "Keyboard shortcut to open/close the LLM prompt panel"
+    }
+}

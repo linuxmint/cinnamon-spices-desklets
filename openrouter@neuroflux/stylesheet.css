@@ -1,0 +1,298 @@
+#desklet, #desklet-hf-chat-assistant {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+.janai-launcher {
+    border: none !important;
+    background-color: transparent !important;
+    outline: none !important;
+}
+
+.janai-launcher {
+    font-size:        22px;
+    width:            44px;
+    height:           44px;
+    border-radius:    22px;
+    background-color: transparent;
+    border:           0px;
+    color:            #ffffff;
+    transition-duration: 120ms;
+    padding: 0px;
+}
+
+.janai-launcher:hover {
+    background-color: rgba(91, 124, 250, 0.30);
+    border-color:     rgba(91, 124, 250, 0.60);
+}
+
+.janai-launcher:active {
+    background-color: rgba(91, 124, 250, 0.50);
+}
+
+.janai-root {
+    padding:  0;
+    spacing:  0;
+    border:   1px solid rgba(255, 255, 255, 0.10);
+}
+
+.janai-titlebar {
+    padding:          10px 14px 8px;
+    spacing:          6px;
+    border-bottom:    1px solid rgba(255, 255, 255, 0.07);
+}
+
+.janai-title {
+    font-size:   13px;
+    font-weight: bold;
+    color:       rgba(255, 255, 255, 0.85);
+}
+
+.janai-close-btn {
+    font-size:        13px;
+    color:            rgba(255, 255, 255, 0.40);
+    background:       transparent;
+    border-radius:    12px;
+    padding:          2px 7px;
+}
+
+.janai-close-btn:hover {
+    color:            rgba(255, 255, 255, 0.90);
+    background-color: rgba(255, 80, 80, 0.20);
+}
+
+.janai-scroll {
+    border-radius: 0;
+}
+
+.janai-messages {
+    spacing: 10px;
+    padding: 10px 8px;
+}
+
+.janai-row {
+    spacing: 7px;
+    padding: 2px 0;
+}
+
+.janai-avatar {
+    font-size: 17px;
+    width:     26px;
+    padding:   3px 0;
+}
+
+.janai-bubble {
+    border-radius: 14px;
+    padding:       8px 12px;
+    font-size:     12px;
+}
+
+.janai-bubble.user {
+    background: linear-gradient(135deg, #5b7cfa 0%, #7c4dff 100%);
+    color:      #ffffff;
+    border-bottom-right-radius: 4px;
+}
+
+.janai-bubble.bot {
+    background-color:      rgba(255, 255, 255, 0.08);
+    color:                 #dde1f0;
+    border-bottom-left-radius: 4px;
+}
+
+.janai-input-row {
+    spacing:       6px;
+    padding:       8px 10px 6px;
+    border-top:    1px solid rgba(255, 255, 255, 0.07);
+}
+
+.janai-entry {
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius:    20px;
+    padding:          7px 14px;
+    color:            #ffffff;
+    font-size:        12px;
+    border:           1px solid rgba(255, 255, 255, 0.11);
+}
+
+.janai-entry:focus {
+    border-color:     rgba(91, 124, 250, 0.70);
+    background-color: rgba(255, 255, 255, 0.11);
+}
+
+.janai-send-btn {
+    background:    linear-gradient(135deg, #5b7cfa 0%, #7c4dff 100%);
+    border-radius: 20px;
+    padding:       7px 14px;
+    color:         #ffffff;
+    font-weight:   bold;
+    font-size:     11px;
+}
+
+.janai-send-btn:hover {
+    background: linear-gradient(135deg, #7c9bff 0%, #9b6dff 100%);
+}
+
+.janai-send-btn:insensitive {
+    background: rgba(91, 124, 250, 0.28);
+    color:      rgba(255, 255, 255, 0.35);
+}
+
+.janai-clear-btn {
+    background:    rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding:       7px 12px;
+    color:         rgba(255, 255, 255, 0.50);
+    font-size:     11px;
+}
+
+.janai-clear-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color:      rgba(255, 255, 255, 0.85);
+}
+
+.janai-copy-btn {
+    background:    transparent;
+    border-radius: 10px;
+    padding:       2px 8px;
+    color:         rgba(255, 255, 255, 0.28);
+    font-size:     10px;
+    margin-top:    2px;
+}
+
+.janai-copy-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color:      rgba(255, 255, 255, 0.70);
+}
+
+.janai-status {
+    font-size:  10px;
+    color:      rgba(255, 255, 255, 0.35);
+    text-align: center;
+    padding:    4px 0 6px;
+}
+
+.hf-chat-window {
+    background: rgba(30, 30, 35, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chat-container {
+    padding: 20px;
+}
+
+.chat-messages {
+    background: rgba(45, 45, 50, 0.8);
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 15px;
+    overflow-y: auto;
+    max-height: 500px;
+}
+
+.message {
+    margin-bottom: 15px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.message.user {
+    background: #3498db;
+    margin-left: 20%;
+    text-align: right;
+}
+
+.message.assistant {
+    background: #2ecc71;
+    margin-right: 20%;
+}
+
+.message-content {
+    color: white;
+    word-wrap: break-word;
+}
+
+.message-timestamp {
+    font-size: 0.7em;
+    opacity: 0.7;
+    margin-top: 4px;
+}
+
+.chat-input-area {
+    display: flex;
+    gap: 10px;
+}
+
+.chat-input {
+    flex: 1;
+    background: rgba(60, 60, 65, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: white;
+    font-size: 14px;
+}
+
+.chat-input:focus {
+    outline: none;
+    border-color: #2ecc71;
+}
+
+.send-button {
+    background: #2ecc71;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.send-button:hover {
+    background: #27ae60;
+}
+
+.close-button {
+    background: #e74c3c;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.close-button:hover {
+    background: #c0392b;
+}
+
+.typing-indicator {
+    color: #95a5a6;
+    font-style: italic;
+    padding: 8px 12px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.desklet-icon {
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.desklet-icon:hover {
+    transform: scale(1.05);
+}
