@@ -27,6 +27,7 @@ class MyDesklet extends Desklet.Desklet {
     this._notificationSource = null;
     this._currentNotification = null;
     this._soundProc = null;
+    this._nextAlarmDate = null;
     this._lastClockUse24h = undefined;
 
     this.clock = new CinnamonDesktop.WallClock();
@@ -204,6 +205,9 @@ class MyDesklet extends Desklet.Desklet {
       amPmButton.connect("clicked", () => {
         this.amPm = this.amPm === "am" ? "pm" : "am";
         amPmButton.get_child().set_text(this.amPm.toUpperCase());
+        if (this.alarmIsEnabled) {
+          this._setAlarm();
+        }
       });
 
       const box = new St.Bin({ child: amPmButton, y_align: St.Align.START });
@@ -329,6 +333,9 @@ class MyDesklet extends Desklet.Desklet {
     }
     this.settings.setValue("alarm-days", this.alarmDays);
     this._setupLayout();
+    if (this.alarmIsEnabled) {
+      this._setAlarm();
+    }
   }
 
   _toggleAlarm() {
@@ -338,6 +345,7 @@ class MyDesklet extends Desklet.Desklet {
       this._sendRemainingTimeNotification();
     } else {
       this._clearAlarmTimeOut();
+      this._nextAlarmDate = null;
       if (this._currentNotification) {
         this._currentNotification.destroy();
       }
@@ -345,18 +353,18 @@ class MyDesklet extends Desklet.Desklet {
     }
   }
 
-  _sendRemainingTimeNotification() {
+  _calculateNextAlarmDate() {
     const now = new Date();
 
-    // Get alarm time
+    // Get the alarm hours and minutes
     let alarmHours = parseInt(this.alarmHours, 10);
     const alarmMinutes = parseInt(this.alarmMinutes, 10);
 
-    if (isNaN(alarmHours) || isNaN(alarmMinutes)) return;
+    if (isNaN(alarmHours) || isNaN(alarmMinutes)) return null;
 
     const use24h = this._desktop_settings.get_boolean("clock-use-24h");
 
-    // Convert alarm hours to 24h format for calculation
+    // Convert to 24h format if necessary for the calculation
     if (!use24h) {
       if (this.amPm === "pm" && alarmHours < 12) {
         alarmHours += 12;
@@ -382,6 +390,13 @@ class MyDesklet extends Desklet.Desklet {
       }
     }
 
+    return nextAlarmDate;
+  }
+
+  _sendRemainingTimeNotification() {
+    const now = new Date();
+    const nextAlarmDate = this._calculateNextAlarmDate();
+
     if (nextAlarmDate) {
       // Calculate the difference between now and the next alarm time
       const diffMs = nextAlarmDate - now;
@@ -406,6 +421,7 @@ class MyDesklet extends Desklet.Desklet {
 
   _setAlarm() {
     this._clearAlarmTimeOut();
+    this._nextAlarmDate = this._calculateNextAlarmDate();
 
     if (this.clock_notify_id === 0) {
       this.clock_notify_id = this.clock.connect("notify::clock", () => this._checkAlarm());
@@ -415,34 +431,10 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _checkAlarm() {
+    if (!this._nextAlarmDate) return;
+
     const now = new Date();
-
-    // Check if today is one of the alarm days
-    const todayWeekdayNumber = now.getDay();
-
-    if (!this.alarmDays.includes(todayWeekdayNumber) && !(todayWeekdayNumber === 0 && this.alarmDays.includes(7))) return;
-
-    // Get current hours and minutes and alarm hours and minutes as numbers
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    let alarmHours = parseInt(this.alarmHours, 10);
-    const alarmMinutes = parseInt(this.alarmMinutes, 10);
-
-    if (isNaN(alarmHours) || isNaN(alarmMinutes)) return;
-
-    const use24h = this._desktop_settings.get_boolean("clock-use-24h");
-
-    if (!use24h) {
-      // Convert alarm hours to 24h format for comparison
-      if (this.amPm === "pm" && alarmHours < 12) {
-        alarmHours += 12;
-      } else if (this.amPm === "am" && alarmHours === 12) {
-        alarmHours = 0;
-      }
-    }
-
-    // Call the alarm if the current time is past the alarm time
-    if (hours > alarmHours || (hours === alarmHours && minutes >= alarmMinutes)) {
+    if (now >= this._nextAlarmDate) {
       this._callAlarm();
     }
   }
@@ -451,7 +443,7 @@ class MyDesklet extends Desklet.Desklet {
     this._clearAlarmTimeOut();
     this._playSound();
 
-    const title = this.timerName || _("Alarm Clock");
+    const title = this.alarmName || _("Alarm Clock");
     const message = _("Alarm ringing!");
 
     this._sendNotification(title, message, () => {
@@ -464,16 +456,20 @@ class MyDesklet extends Desklet.Desklet {
       this._notificationSource = new MessageTray.SystemNotificationSource();
       Main.messageTray.add(this._notificationSource);
     }
+
     const icon = new St.Icon({
       icon_name: "alarm-symbolic",
       icon_type: St.IconType.SYMBOLIC,
     });
+
     this._currentNotification = new MessageTray.Notification(this._notificationSource, title, message, { icon: icon });
     this._currentNotification.setTransient(false);
+
     this._currentNotification.connect("destroy", () => {
       if (callback) callback();
       this._currentNotification = null;
     });
+
     this._notificationSource.notify(this._currentNotification);
   }
 
