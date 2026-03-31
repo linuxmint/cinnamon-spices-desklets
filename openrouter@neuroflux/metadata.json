@@ -1,0 +1,10 @@
+{
+    "uuid": "openrouter@neuroflux",
+    "name": "OpenRouter.ai LLM Prompt",
+    "description": "OpenRouter.ai powered API Desklet client as an AI chat assistant",
+    "icon": "LLM Prompt",
+    "max-instances": 1,
+    "minimum-decoration": 1,
+    "version": "1.0.0",
+    "author": "Neurofluxation"
+}
