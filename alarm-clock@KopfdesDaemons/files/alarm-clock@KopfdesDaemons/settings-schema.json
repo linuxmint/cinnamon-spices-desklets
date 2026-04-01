@@ -74,7 +74,7 @@
     "description": "Style preset",
     "options": {
       "Default": "default",
-      "Transparent": "transparent",
+      "Translucent": "translucent",
       "Material": "material",
       "Metro": "metro",
       "Pink": "pink"

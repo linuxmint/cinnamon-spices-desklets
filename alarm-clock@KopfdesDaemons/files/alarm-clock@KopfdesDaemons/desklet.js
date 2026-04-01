@@ -10,7 +10,7 @@ const Gettext = imports.gettext;
 const Main = imports.ui.main;
 const MessageTray = imports.ui.messageTray;
 
-const UUID = "alarm-clock@KopfdesDaemons";
+const UUID = "devtest-alarm-clock@KopfdesDaemons";
 const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 
 Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
@@ -128,7 +128,7 @@ class MyDesklet extends Desklet.Desklet {
 
   _onStylePresetChange() {
     this._loadDefaultStyleSettings();
-    if (this.stylePreset === "transparent") {
+    if (this.stylePreset === "translucent") {
       this.backgroundColor = "rgba(80, 80, 80, 0.34)";
     } else if (this.stylePreset === "material") {
       this.borderRadius = 25;
@@ -200,6 +200,7 @@ class MyDesklet extends Desklet.Desklet {
     mainContainer.add(dayButtonsRow);
 
     const inputsRow = new St.BoxLayout({ vertical: false, y_align: St.Align.MIDDLE });
+    inputsRow.add(new St.Bin({ x_expand: true }));
 
     const getInput = initialText => {
       const entry = new St.Entry({
