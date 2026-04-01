@@ -10,7 +10,7 @@ const Gettext = imports.gettext;
 const Main = imports.ui.main;
 const MessageTray = imports.ui.messageTray;
 
-const UUID = "devtest-alarm-clock@KopfdesDaemons";
+const UUID = "alarm-clock@KopfdesDaemons";
 const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 
 Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
@@ -49,17 +49,9 @@ class MyDesklet extends Desklet.Desklet {
     this.soundFile = "complete.oga";
     this.useCustomSound = false;
     this.customSoundFile = "";
-    this.backgroundColor = "#282828";
-    this.labelColor = "#FFFFFF";
-    this.dayButtonsColor = "#FFFFFF";
-    this.selectedDayButtonsColor = "rgba(116, 115, 134, 0.58)";
-    this.enabledToggleButtonBackgroundColor = "#35a854";
-    this.disabledToggleButtonBackgroundColor = "#5b5b5b";
-    this.enabledToggleButtonCircleColor = "#202020";
-    this.disabledToggleButtonCircleColor = "#383838";
-    this.inputBackgroundColor = "##3d3f4b";
     this.hideDecorations = true;
-    this.borderRadius = 4;
+    this.stylePreset = "default";
+    this._loadDefaultStyleSettings();
 
     // Bind settings
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
@@ -84,6 +76,8 @@ class MyDesklet extends Desklet.Desklet {
     this.settings.bindProperty(Settings.BindingDirection.IN, "input-background-color", "inputBackgroundColor", this._setupLayout);
     this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this.onDecorationChanged.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "border-radius", "borderRadius", this._setupLayout);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "style-preset", "stylePreset", this._onStylePresetChange);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "input-font-color", "inputFontColor", this._setupLayout);
   }
 
   on_desklet_added_to_desktop() {
@@ -116,6 +110,48 @@ class MyDesklet extends Desklet.Desklet {
   onDecorationChanged() {
     this.metadata["prevent-decorations"] = this.hideDecorations;
     this._updateDecoration();
+  }
+
+  _loadDefaultStyleSettings() {
+    this.backgroundColor = "#282828";
+    this.labelColor = "#FFFFFF";
+    this.dayButtonsColor = "#FFFFFF";
+    this.selectedDayButtonsColor = "rgba(116, 115, 134, 0.58)";
+    this.enabledToggleButtonBackgroundColor = "#35a854";
+    this.inputFontColor = "#FFFFFF";
+    this.disabledToggleButtonBackgroundColor = "#5b5b5b";
+    this.enabledToggleButtonCircleColor = "#202020";
+    this.disabledToggleButtonCircleColor = "#383838";
+    this.inputBackgroundColor = "#3d3f4b";
+    this.borderRadius = 4;
+  }
+
+  _onStylePresetChange() {
+    this._loadDefaultStyleSettings();
+    if (this.stylePreset === "transparent") {
+      this.backgroundColor = "rgba(80, 80, 80, 0.34)";
+    } else if (this.stylePreset === "material") {
+      this.borderRadius = 25;
+      this.backgroundColor = "#4F4E6D";
+      this.labelColor = "#7670D1";
+      this.inputFontColor = "#000000";
+      this.inputBackgroundColor = "#FFFFFF";
+      this.enabledToggleButtonBackgroundColor = "#26a269";
+      this.enabledToggleButtonCircleColor = "#515257";
+    } else if (this.stylePreset === "metro") {
+      this.borderRadius = 0;
+      this.backgroundColor = "#363b45";
+      this.inputBackgroundColor = " #202329";
+    } else if (this.stylePreset === "pink") {
+      this.backgroundColor = "#F7A0CC";
+      this.inputBackgroundColor = "#fff0f5";
+      this.inputFontColor = "#ff69b4";
+      this.enabledToggleButtonBackgroundColor = "#ff69b4";
+      this.enabledToggleButtonCircleColor = "#561d3a";
+      this.disabledToggleButtonBackgroundColor = "#462e3a";
+      this.disabledToggleButtonCircleColor = "#5b384a";
+    }
+    this._setupLayout();
   }
 
   _setupLayout() {
@@ -168,7 +204,7 @@ class MyDesklet extends Desklet.Desklet {
     const getInput = initialText => {
       const entry = new St.Entry({
         hint_text: "00",
-        style: ` background-color: ${this.inputBackgroundColor}; font-size: ${this.scaleSize * 2}em; padding: ${this.scaleSize * 0.3}em; border-radius: ${this.borderRadius * this.scaleSize}px;`,
+        style: ` color: ${this.inputFontColor}; background-color: ${this.inputBackgroundColor}; font-size: ${this.scaleSize * 2}em; padding: ${this.scaleSize * 0.3}em; border-radius: ${this.borderRadius * this.scaleSize}px;`,
         reactive: true,
         track_hover: true,
       });

@@ -15,12 +15,12 @@
     "style-sections": {
       "type": "section",
       "title": "Style",
-      "keys": ["scale-size", "border-radius", "hide-decorations"]
+      "keys": ["style-preset", "scale-size", "border-radius", "hide-decorations"]
     },
     "font-colors-section": {
       "type": "section",
       "title": "Font Colors",
-      "keys": ["label-color", "day-buttons-color"]
+      "keys": ["label-color", "day-buttons-color", "input-font-color"]
     },
     "background-color-section": {
       "type": "section",
@@ -67,6 +67,18 @@
     "type": "entry",
     "default": "Alarm",
     "description": "Alarm name"
+  },
+  "style-preset": {
+    "type": "combobox",
+    "default": "default",
+    "description": "Style preset",
+    "options": {
+      "Default": "default",
+      "Transparent": "transparent",
+      "Material": "material",
+      "Metro": "metro",
+      "Pink": "pink"
+    }
   },
   "scale-size": {
     "type": "scale",
@@ -158,5 +170,10 @@
     "type": "colorchooser",
     "default": "#3d3f4b",
     "description": "Input background color"
+  },
+  "input-font-color": {
+    "type": "colorchooser",
+    "default": "#FFFFFF",
+    "description": "Input font color"
   }
 }
