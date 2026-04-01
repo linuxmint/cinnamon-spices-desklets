@@ -5,7 +5,7 @@
     "general-page": {
       "type": "page",
       "title": "General",
-      "sections": ["style-sections", "sound-section"]
+      "sections": ["alarm-section", "style-sections", "sound-section"]
     },
     "colors-page": {
       "type": "page",
@@ -15,7 +15,7 @@
     "style-sections": {
       "type": "section",
       "title": "Style",
-      "keys": ["scale-size"]
+      "keys": ["scale-size", "border-radius", "hide-decorations"]
     },
     "font-colors-section": {
       "type": "section",
@@ -35,12 +35,12 @@
     "toggle-button-section": {
       "type": "section",
       "title": "Toggle Button",
-      "keys": [
-        "enabled-toggle-button-background-color",
-        "disabled-toggle-button-background-color",
-        "enabled-toggle-button-circle-color",
-        "disabled-toggle-button-circle-color"
-      ]
+      "keys": ["enabled-toggle-button-background-color", "disabled-toggle-button-background-color", "enabled-toggle-button-circle-color", "disabled-toggle-button-circle-color"]
+    },
+    "alarm-section": {
+      "type": "section",
+      "title": "Alarm",
+      "keys": ["alarm-name"]
     }
   },
   "alarm-days": {
@@ -75,6 +75,20 @@
     "min": 0.3,
     "max": 3.0,
     "description": "Desklet scale size"
+  },
+  "border-radius": {
+    "type": "spinbutton",
+    "default": 4,
+    "min": 0,
+    "max": 60,
+    "step": 1,
+    "units": "px",
+    "description": "Border radius"
+  },
+  "hide-decorations": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Hide decorations"
   },
   "sound-file": {
     "type": "combobox",

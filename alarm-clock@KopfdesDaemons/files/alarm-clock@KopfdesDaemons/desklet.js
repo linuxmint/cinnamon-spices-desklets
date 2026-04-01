@@ -5,13 +5,12 @@ const CinnamonDesktop = imports.gi.CinnamonDesktop;
 const Settings = imports.ui.settings;
 const Gio = imports.gi.Gio;
 const Clutter = imports.gi.Clutter;
-const Mainloop = imports.mainloop;
 const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
 const Main = imports.ui.main;
 const MessageTray = imports.ui.messageTray;
 
-const UUID = "alarm-clock@KopfdesDaemons";
+const UUID = "devtest-alarm-clock@KopfdesDaemons";
 const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 
 Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
@@ -59,6 +58,8 @@ class MyDesklet extends Desklet.Desklet {
     this.enabledToggleButtonCircleColor = "#202020";
     this.disabledToggleButtonCircleColor = "#383838";
     this.inputBackgroundColor = "##3d3f4b";
+    this.hideDecorations = true;
+    this.borderRadius = 4;
 
     // Bind settings
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
@@ -81,9 +82,12 @@ class MyDesklet extends Desklet.Desklet {
     this.settings.bindProperty(Settings.BindingDirection.IN, "enabled-toggle-button-circle-color", "enabledToggleButtonCircleColor", this._setupLayout);
     this.settings.bindProperty(Settings.BindingDirection.IN, "disabled-toggle-button-circle-color", "disabledToggleButtonCircleColor", this._setupLayout);
     this.settings.bindProperty(Settings.BindingDirection.IN, "input-background-color", "inputBackgroundColor", this._setupLayout);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this.onDecorationChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "border-radius", "borderRadius", this._setupLayout);
   }
 
   on_desklet_added_to_desktop() {
+    this.onDecorationChanged();
     this._setupLayout();
     if (this.alarmIsEnabled) {
       this._setAlarm();
@@ -109,10 +113,15 @@ class MyDesklet extends Desklet.Desklet {
     this._isReloading = true;
   }
 
+  onDecorationChanged() {
+    this.metadata["prevent-decorations"] = this.hideDecorations;
+    this._updateDecoration();
+  }
+
   _setupLayout() {
     this._convertTimeFormat();
 
-    const mainContainerStyle = `background-color: ${this.backgroundColor}; spacing: ${this.scaleSize * 0.2}em; border-radius: ${this.scaleSize * 1.5}em; padding: ${this.scaleSize * 0.5}em;`;
+    const mainContainerStyle = `background-color: ${this.backgroundColor}; spacing: ${this.scaleSize * 0.2}em; border-radius: ${this.borderRadius * this.scaleSize}px; padding: ${this.scaleSize * 0.5}em;`;
     const mainContainer = new St.BoxLayout({ vertical: true, style: mainContainerStyle });
 
     mainContainer.add(new St.Label({ text: this.alarmName, style: `color: ${this.labelColor};font-size: ${this.scaleSize * 1.5}em; font-weight: bold; text-align: center` }));
@@ -131,7 +140,7 @@ class MyDesklet extends Desklet.Desklet {
     };
 
     const dayButtonsRow = new St.BoxLayout({ style: `spacing: ${this.scaleSize * 0.2}em;` });
-    const dayButtonStyle = `color: ${this.dayButtonsColor}; font-size: ${this.scaleSize * 1}em; padding: ${this.scaleSize * 0.2}em; border-radius: ${this.scaleSize * 0.5}em;`;
+    const dayButtonStyle = `color: ${this.dayButtonsColor}; font-size: ${this.scaleSize * 1}em; padding: ${this.scaleSize * 0.2}em; border-radius: ${this.borderRadius * this.scaleSize}px;`;
     const weekdays = getShortWeekdays();
 
     // Create a button for each weekday
@@ -159,7 +168,7 @@ class MyDesklet extends Desklet.Desklet {
     const getInput = initialText => {
       const entry = new St.Entry({
         hint_text: "00",
-        style: ` background-color: ${this.inputBackgroundColor}; font-size: ${this.scaleSize * 2}em; padding: ${this.scaleSize * 0.3}em; border-radius: 0.5em;`,
+        style: ` background-color: ${this.inputBackgroundColor}; font-size: ${this.scaleSize * 2}em; padding: ${this.scaleSize * 0.3}em; border-radius: ${this.borderRadius * this.scaleSize}px;`,
         reactive: true,
         track_hover: true,
       });
@@ -225,7 +234,7 @@ class MyDesklet extends Desklet.Desklet {
     if (!this._desktop_settings.get_boolean("clock-use-24h")) {
       const amPmButton = new St.Button({
         child: new St.Label({ text: this.amPm.toUpperCase(), style: `font-size: ${this.scaleSize * 1.5}em;` }),
-        style: `color: ${this.labelColor}; padding: ${this.scaleSize * 0.2}em; margin: 0 ${this.scaleSize * 0.2}em; border-radius: ${this.scaleSize * 0.5}em;`,
+        style: `color: ${this.labelColor}; padding: ${this.scaleSize * 0.2}em; margin: 0 ${this.scaleSize * 0.2}em; border-radius: ${this.borderRadius * this.scaleSize}px;`,
       });
 
       amPmButton.connect("enter-event", () => amPmButton.set_opacity(200));
