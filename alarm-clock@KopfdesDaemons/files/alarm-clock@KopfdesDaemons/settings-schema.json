@@ -34,14 +34,13 @@
   },
   "sound-file": {
     "type": "combobox",
-    "default": "service-login.oga",
+    "default": "simple-ringtone.mp3",
     "description": "Sound when the timer expires",
     "options": {
       "No Sound": "none",
-      "Alarm Clock": "alarm-clock-elapsed.oga",
-      "Complete": "complete.oga",
-      "Service login": "service-login.oga",
-      "Service logout": "service-logout.oga"
+      "Simple Ringtone": "simple-ringtone.mp3",
+      "Honk": "honk.mp3",
+      "Waiting": "waiting.mp3"
     },
     "dependency": "!use-custom-sound"
   },

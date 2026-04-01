@@ -12,6 +12,8 @@ const Main = imports.ui.main;
 const MessageTray = imports.ui.messageTray;
 
 const UUID = "alarm-clock@KopfdesDaemons";
+const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
+
 Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
 
 function _(str) {
@@ -490,21 +492,34 @@ class MyDesklet extends Desklet.Desklet {
         }
       }
     } else if (this.soundFile && this.soundFile !== "none") {
-      path = "/usr/share/sounds/freedesktop/stereo/" + this.soundFile;
+      path = DESKLET_DIR + "/sounds/" + this.soundFile;
     }
 
     if (path) {
-      try {
-        this._stopSound();
+      const playLoop = () => {
+        try {
+          this._stopSound();
 
-        this._soundProc = new Gio.Subprocess({
-          argv: ["paplay", path],
-          flags: Gio.SubprocessFlags.NONE,
-        });
-        this._soundProc.init(null);
-      } catch (e) {
-        global.logError(UUID + ": Error playing sound: " + e.message);
-      }
+          this._soundProc = new Gio.Subprocess({
+            argv: ["paplay", path],
+            flags: Gio.SubprocessFlags.NONE,
+          });
+          this._soundProc.init(null);
+
+          this._soundProc.wait_async(null, (proc, result) => {
+            try {
+              proc.wait_finish(result);
+              if (this._soundProc === proc) {
+                playLoop();
+              }
+            } catch (e) {}
+          });
+        } catch (e) {
+          global.logError(UUID + ": Error playing sound: " + e.message);
+        }
+      };
+
+      playLoop();
     }
   }
 
