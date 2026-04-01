@@ -50,6 +50,15 @@ class MyDesklet extends Desklet.Desklet {
     this.soundFile = "complete.oga";
     this.useCustomSound = false;
     this.customSoundFile = "";
+    this.backgroundColor = "#282828";
+    this.labelColor = "#FFFFFF";
+    this.dayButtonsColor = "#FFFFFF";
+    this.selectedDayButtonsColor = "rgba(116, 115, 134, 0.58)";
+    this.enabledToggleButtonBackgroundColor = "#35a854";
+    this.disabledToggleButtonBackgroundColor = "#5b5b5b";
+    this.enabledToggleButtonCircleColor = "#202020";
+    this.disabledToggleButtonCircleColor = "#383838";
+    this.inputBackgroundColor = "##3d3f4b";
 
     // Bind settings
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
@@ -63,6 +72,15 @@ class MyDesklet extends Desklet.Desklet {
     this.settings.bindProperty(Settings.BindingDirection.IN, "sound-file", "soundFile", null);
     this.settings.bindProperty(Settings.BindingDirection.IN, "use-custom-sound", "useCustomSound", null);
     this.settings.bindProperty(Settings.BindingDirection.IN, "custom-sound-file", "customSoundFile", null);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "backgroundColor", this._setupLayout);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "label-color", "labelColor", this._setupLayout);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "day-buttons-color", "dayButtonsColor", this._setupLayout);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "selected-day-buttons-color", "selectedDayButtonsColor", this._setupLayout);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "enabled-toggle-button-background-color", "enabledToggleButtonBackgroundColor", this._setupLayout);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "disabled-toggle-button-background-color", "disabledToggleButtonBackgroundColor", this._setupLayout);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "enabled-toggle-button-circle-color", "enabledToggleButtonCircleColor", this._setupLayout);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "disabled-toggle-button-circle-color", "disabledToggleButtonCircleColor", this._setupLayout);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "input-background-color", "inputBackgroundColor", this._setupLayout);
   }
 
   on_desklet_added_to_desktop() {
@@ -94,10 +112,10 @@ class MyDesklet extends Desklet.Desklet {
   _setupLayout() {
     this._convertTimeFormat();
 
-    const mainContainerStyle = `background-color: #282828; spacing: ${this.scaleSize * 0.2}em; border-radius: ${this.scaleSize * 1.5}em; padding: ${this.scaleSize * 0.5}em;`;
+    const mainContainerStyle = `background-color: ${this.backgroundColor}; spacing: ${this.scaleSize * 0.2}em; border-radius: ${this.scaleSize * 1.5}em; padding: ${this.scaleSize * 0.5}em;`;
     const mainContainer = new St.BoxLayout({ vertical: true, style: mainContainerStyle });
 
-    mainContainer.add(new St.Label({ text: this.alarmName, style: `font-size: ${this.scaleSize * 1.5}em; font-weight: bold; text-align: center` }));
+    mainContainer.add(new St.Label({ text: this.alarmName, style: `color: ${this.labelColor};font-size: ${this.scaleSize * 1.5}em; font-weight: bold; text-align: center` }));
 
     const getShortWeekdays = (locale = undefined) => {
       const baseDate = new Date(2024, 0, 1); // Start on a Monday
@@ -113,7 +131,7 @@ class MyDesklet extends Desklet.Desklet {
     };
 
     const dayButtonsRow = new St.BoxLayout({ style: `spacing: ${this.scaleSize * 0.2}em;` });
-    const dayButtonStyle = `font-size: ${this.scaleSize * 1}em; padding: ${this.scaleSize * 0.2}em; border-radius: ${this.scaleSize * 0.5}em;`;
+    const dayButtonStyle = `color: ${this.dayButtonsColor}; font-size: ${this.scaleSize * 1}em; padding: ${this.scaleSize * 0.2}em; border-radius: ${this.scaleSize * 0.5}em;`;
     const weekdays = getShortWeekdays();
 
     // Create a button for each weekday
@@ -121,15 +139,16 @@ class MyDesklet extends Desklet.Desklet {
       const dayButton = new St.Button({
         child: new St.Label({ text: day.shortName }),
         style: dayButtonStyle,
-        style_class: "alarm-clock-day-button",
       });
 
       dayButton.connect("clicked", () => this._onDayButtonClicked(day.number));
+      dayButton.connect("enter-event", () => dayButton.set_opacity(200));
+      dayButton.connect("leave-event", () => dayButton.set_opacity(255));
       dayButtonsRow.add(dayButton);
 
       // Highlight the button if it's one of the selected alarm days
       if (this.alarmDays.includes(day.number)) {
-        dayButton.set_style(dayButtonStyle + `background-color: #363A58;`);
+        dayButton.set_style(dayButtonStyle + `background-color: ${this.selectedDayButtonsColor};`);
       }
     }
 
@@ -140,10 +159,9 @@ class MyDesklet extends Desklet.Desklet {
     const getInput = initialText => {
       const entry = new St.Entry({
         hint_text: "00",
-        style: `font-size: ${this.scaleSize * 2}em; padding: ${this.scaleSize * 0.3}em; border-radius: 0.5em;`,
+        style: ` background-color: ${this.inputBackgroundColor}; font-size: ${this.scaleSize * 2}em; padding: ${this.scaleSize * 0.3}em; border-radius: 0.5em;`,
         reactive: true,
         track_hover: true,
-        style_class: "alarm-clock-input",
       });
       if (initialText) entry.set_text(initialText);
       return entry;
@@ -152,7 +170,10 @@ class MyDesklet extends Desklet.Desklet {
     this.inputHours = getInput(this.alarmHours);
     inputsRow.add(this.inputHours);
 
-    const separator = new St.Bin({ child: new St.Label({ text: ":" }), style: `font-size: ${this.scaleSize * 2}em; padding: 0 ${this.scaleSize * 0.05}em;` });
+    const separator = new St.Bin({
+      child: new St.Label({ text: ":" }),
+      style: `color: ${this.labelColor}; font-size: ${this.scaleSize * 2}em; padding: 0 ${this.scaleSize * 0.05}em;`,
+    });
     inputsRow.add(separator);
 
     this.inputMinutes = getInput(this.alarmMinutes);
@@ -177,6 +198,10 @@ class MyDesklet extends Desklet.Desklet {
     this.inputMinutes.clutter_text.connect("text-changed", () => this._validateInput(this.inputMinutes, "minutes"));
     this.inputMinutes.clutter_text.connect("activate", () => submit());
     this.inputHours.clutter_text.connect("activate", () => submit());
+    this.inputHours.connect("enter-event", () => this.inputHours.set_opacity(200));
+    this.inputHours.connect("leave-event", () => this.inputHours.set_opacity(255));
+    this.inputMinutes.connect("enter-event", () => this.inputMinutes.set_opacity(200));
+    this.inputMinutes.connect("leave-event", () => this.inputMinutes.set_opacity(255));
 
     this.inputHours.clutter_text.connect("key-press-event", (actor, event) => {
       const symbol = event.get_key_symbol();
@@ -200,9 +225,11 @@ class MyDesklet extends Desklet.Desklet {
     if (!this._desktop_settings.get_boolean("clock-use-24h")) {
       const amPmButton = new St.Button({
         child: new St.Label({ text: this.amPm.toUpperCase(), style: `font-size: ${this.scaleSize * 1.5}em;` }),
-        style: `padding: ${this.scaleSize * 0.2}em; margin: 0 ${this.scaleSize * 0.2}em; border-radius: ${this.scaleSize * 0.5}em;`,
-        style_class: "alarm-clock-am-pm-button",
+        style: `color: ${this.labelColor}; padding: ${this.scaleSize * 0.2}em; margin: 0 ${this.scaleSize * 0.2}em; border-radius: ${this.scaleSize * 0.5}em;`,
       });
+
+      amPmButton.connect("enter-event", () => amPmButton.set_opacity(200));
+      amPmButton.connect("leave-event", () => amPmButton.set_opacity(255));
 
       amPmButton.connect("clicked", () => {
         this.amPm = this.amPm === "am" ? "pm" : "am";
@@ -218,15 +245,15 @@ class MyDesklet extends Desklet.Desklet {
 
     // Inner circle of the toggle button
     const baseToggleCircleStyle = `border-radius: ${this.scaleSize * 0.8}em; width: ${this.scaleSize * 1.5}em; height: ${this.scaleSize * 1.5}em;`;
-    const toggleCircleStyleInactive = `margin-left: auto; margin-right: ${this.scaleSize * 1.5}em; ${baseToggleCircleStyle} background-color: #353535;`;
-    const toggleCircleStyleActive = `margin-right: auto; margin-left: ${this.scaleSize * 1.5}em; ${baseToggleCircleStyle} background-color: #202020;`;
+    const toggleCircleStyleInactive = `margin-left: auto; margin-right: ${this.scaleSize * 1.5}em; ${baseToggleCircleStyle} background-color: ${this.disabledToggleButtonCircleColor};`;
+    const toggleCircleStyleActive = `margin-right: auto; margin-left: ${this.scaleSize * 1.5}em; ${baseToggleCircleStyle} background-color: ${this.enabledToggleButtonCircleColor};`;
     const currentToggleCircleStyle = this.alarmIsEnabled ? toggleCircleStyleActive : toggleCircleStyleInactive;
     const toggleButtonCircle = new St.Bin({ style: currentToggleCircleStyle });
 
     // Toggle button
     const baseToggleStyle = `padding: ${this.scaleSize * 0.2}em; border-radius: ${this.scaleSize * 3}em;`;
-    const aktiveToggleStyle = `background-color: #35a854; ${baseToggleStyle}`;
-    const inaktiveToggleStyle = `background-color: #5b5b5b; ${baseToggleStyle}`;
+    const aktiveToggleStyle = `background-color: ${this.enabledToggleButtonBackgroundColor}; ${baseToggleStyle}`;
+    const inaktiveToggleStyle = `background-color: ${this.disabledToggleButtonBackgroundColor}; ${baseToggleStyle}`;
     const currentToggleStyle = this.alarmIsEnabled ? aktiveToggleStyle : inaktiveToggleStyle;
     const toggleButton = new St.Button({
       child: toggleButtonCircle,

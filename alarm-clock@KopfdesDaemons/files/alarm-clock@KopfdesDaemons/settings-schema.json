@@ -1,4 +1,48 @@
 {
+  "layout": {
+    "type": "layout",
+    "pages": ["general-page", "colors-page"],
+    "general-page": {
+      "type": "page",
+      "title": "General",
+      "sections": ["style-sections", "sound-section"]
+    },
+    "colors-page": {
+      "type": "page",
+      "title": "Colors",
+      "sections": ["background-color-section", "font-colors-section", "toggle-button-section"]
+    },
+    "style-sections": {
+      "type": "section",
+      "title": "Style",
+      "keys": ["scale-size"]
+    },
+    "font-colors-section": {
+      "type": "section",
+      "title": "Font Colors",
+      "keys": ["label-color", "day-buttons-color"]
+    },
+    "background-color-section": {
+      "type": "section",
+      "title": "Background Color",
+      "keys": ["background-color", "selected-day-buttons-color", "input-background-color"]
+    },
+    "sound-section": {
+      "type": "section",
+      "title": "Sound",
+      "keys": ["sound-file", "use-custom-sound", "custom-sound-file"]
+    },
+    "toggle-button-section": {
+      "type": "section",
+      "title": "Toggle Button",
+      "keys": [
+        "enabled-toggle-button-background-color",
+        "disabled-toggle-button-background-color",
+        "enabled-toggle-button-circle-color",
+        "disabled-toggle-button-circle-color"
+      ]
+    }
+  },
   "alarm-days": {
     "type": "generic",
     "default": []
@@ -55,5 +99,50 @@
     "description": "Custom sound file",
     "filters": ["*.ogg", "*.oga", "*.wav", "*.mp3"],
     "dependency": "use-custom-sound"
+  },
+  "background-color": {
+    "type": "colorchooser",
+    "default": "#282828",
+    "description": "Background color"
+  },
+  "label-color": {
+    "type": "colorchooser",
+    "default": "#FFFFFF",
+    "description": "Label color"
+  },
+  "day-buttons-color": {
+    "type": "colorchooser",
+    "default": "#FFFFFF",
+    "description": "Day buttons color"
+  },
+  "selected-day-buttons-color": {
+    "type": "colorchooser",
+    "default": "rgba(116, 115, 134, 0.58)",
+    "description": "Selected day buttons color"
+  },
+  "enabled-toggle-button-background-color": {
+    "type": "colorchooser",
+    "default": "#35a854",
+    "description": "Enabled toggle button background color"
+  },
+  "disabled-toggle-button-background-color": {
+    "type": "colorchooser",
+    "default": "#5b5b5b",
+    "description": "Disabled toggle button background color"
+  },
+  "enabled-toggle-button-circle-color": {
+    "type": "colorchooser",
+    "default": "#202020",
+    "description": "Enabled toggle button circle color"
+  },
+  "disabled-toggle-button-circle-color": {
+    "type": "colorchooser",
+    "default": "#383838",
+    "description": "Disabled toggle button circle color"
+  },
+  "input-background-color": {
+    "type": "colorchooser",
+    "default": "#3d3f4b",
+    "description": "Input background color"
   }
 }
