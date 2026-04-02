@@ -10,7 +10,7 @@ const Gettext = imports.gettext;
 const Main = imports.ui.main;
 const MessageTray = imports.ui.messageTray;
 
-const UUID = "devtest-alarm-clock@KopfdesDaemons";
+const UUID = "alarm-clock@KopfdesDaemons";
 const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 
 Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
@@ -150,6 +150,15 @@ class MyDesklet extends Desklet.Desklet {
       this.enabledToggleButtonCircleColor = "#561d3a";
       this.disabledToggleButtonBackgroundColor = "#462e3a";
       this.disabledToggleButtonCircleColor = "#5b384a";
+    } else if (this.stylePreset === "green") {
+      this.backgroundColor = "#8ff0a4";
+      this.inputBackgroundColor = "#baf2ca";
+      this.inputFontColor = "#26a269";
+      this.disabledToggleButtonBackgroundColor = "#259e67";
+      this.disabledToggleButtonCircleColor = "#22301d";
+      this.selectedDayButtonsColor = "#22301d";
+      this.labelColor = "#26a269";
+      this.dayButtonsColor = "#26a269";
     }
     this._setupLayout();
   }

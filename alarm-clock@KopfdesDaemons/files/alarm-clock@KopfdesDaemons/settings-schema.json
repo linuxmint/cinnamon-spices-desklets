@@ -77,7 +77,8 @@
       "Translucent": "translucent",
       "Material": "material",
       "Metro": "metro",
-      "Pink": "pink"
+      "Pink": "pink",
+      "Green": "green"
     }
   },
   "scale-size": {
@@ -105,7 +106,7 @@
   "sound-file": {
     "type": "combobox",
     "default": "simple-ringtone.mp3",
-    "description": "Sound when the timer expires",
+    "description": "Sound when the alarm rings",
     "options": {
       "No Sound": "none",
       "Simple Ringtone": "simple-ringtone.mp3",
