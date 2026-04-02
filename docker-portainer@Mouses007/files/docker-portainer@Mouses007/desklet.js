@@ -10,7 +10,7 @@ const Mainloop = imports.mainloop;
 const Settings = imports.ui.settings;
 
 
-const UUID        = "docker-portainer@maro";
+const UUID        = "docker-portainer@Mouses007";
 const APP_VERSION = "1.0.0";
 
 class DockerPortainerDesklet extends Desklet.Desklet {
