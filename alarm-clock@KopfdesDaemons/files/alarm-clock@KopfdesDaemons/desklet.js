@@ -46,7 +46,7 @@ class MyDesklet extends Desklet.Desklet {
     this.amPm = "am";
     this.alarmHours = "";
     this.alarmMinutes = "";
-    this.soundFile = "complete.oga";
+    this.soundFile = "simple-ringtone.mp3";
     this.useCustomSound = false;
     this.customSoundFile = "";
     this.hideDecorations = true;
