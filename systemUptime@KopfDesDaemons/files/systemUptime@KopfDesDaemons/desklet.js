@@ -46,6 +46,8 @@ class MyDesklet extends Desklet.Desklet {
     this._uptimeValue = null;
     this._clockIcon = null;
     this._iconBox = null;
+    this._currentUptimeText = "";
+    this._currentStartupText = "";
 
     // Listen for changes in the system clock format (12h/24h)
     this._desktop_settings = new Gio.Settings({ schema_id: "org.cinnamon.desktop.interface" });
@@ -67,11 +69,11 @@ class MyDesklet extends Desklet.Desklet {
     this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this._onDecorationChanged);
   }
 
-  on_desklet_added_to_desktop() {
+  async on_desklet_added_to_desktop() {
     this._onDecorationChanged();
+    await this._updateValues();
     this._setupLayout();
     this._setStyles();
-    this._updateValues();
     this._setRefreshTimeout();
   }
 
@@ -96,7 +98,7 @@ class MyDesklet extends Desklet.Desklet {
   _setupLayout() {
     // Create labels for uptime
     this._uptimeLabel = new St.Label({ text: _("Uptime:") + " " });
-    this._uptimeValue = new St.Label({ text: _("Loading...") });
+    this._uptimeValue = new St.Label({ text: this._currentUptimeText });
 
     const uptimeRow = new St.BoxLayout();
     uptimeRow.add_child(this._uptimeLabel);
@@ -104,7 +106,7 @@ class MyDesklet extends Desklet.Desklet {
 
     // Create labels for startup time
     this._startTimeLabel = new St.Label({ text: _("Start time:") + " " });
-    this._startupValue = new St.Label({ text: _("Loading...") });
+    this._startupValue = new St.Label({ text: this._currentStartupText });
 
     const startupRow = new St.BoxLayout();
     startupRow.add_child(this._startTimeLabel);
@@ -160,16 +162,23 @@ class MyDesklet extends Desklet.Desklet {
         const hours = Math.floor((uptimeInSeconds % 86400) / 3600);
         const minutes = Math.floor(((uptimeInSeconds % 86400) % 3600) / 60);
 
-        this._uptimeValue.set_text(`${days} ${_("days")} ${hours} ${_("hrs")} ${minutes} ${_("min")}`);
+        this._currentUptimeText = `${days} ${_("days")} ${hours} ${_("hrs")} ${minutes} ${_("min")}`;
       } else {
         // Hours can be more than 24
         const hours = Math.floor(uptimeInSeconds / 3600);
         const minutes = Math.floor((uptimeInSeconds % 3600) / 60);
 
-        this._uptimeValue.set_text(`${hours} ${_("hours")} ${minutes} ${_("minutes")}`);
+        this._currentUptimeText = `${hours} ${_("hours")} ${minutes} ${_("minutes")}`;
+      }
+
+      if (this._uptimeValue) {
+        this._uptimeValue.set_text(this._currentUptimeText);
       }
     } catch (error) {
-      this._uptimeValue.set_text(_("Error"));
+      this._currentUptimeText = _("Error");
+      if (this._uptimeValue) {
+        this._uptimeValue.set_text(_("Error"));
+      }
       global.logError(`${UUID} Error: ${error.message}`);
     }
   }
@@ -196,13 +205,20 @@ class MyDesklet extends Desklet.Desklet {
 
       if (this.showStartDate) {
         // Show date and time
-        this._startupValue.set_text(dateTime.format("%x") + ", " + dateTime.format(timeFormat));
+        this._currentStartupText = dateTime.format("%x") + ", " + dateTime.format(timeFormat);
       } else {
         // Show only time
-        this._startupValue.set_text(dateTime.format(timeFormat));
+        this._currentStartupText = dateTime.format(timeFormat);
+      }
+
+      if (this._startupValue) {
+        this._startupValue.set_text(this._currentStartupText);
       }
     } catch (error) {
-      this._startupValue.set_text(_("Error"));
+      this._currentStartupText = _("Error");
+      if (this._startupValue) {
+        this._startupValue.set_text(_("Error"));
+      }
       global.logError(`${UUID}: ${error.message}`);
     }
   }
