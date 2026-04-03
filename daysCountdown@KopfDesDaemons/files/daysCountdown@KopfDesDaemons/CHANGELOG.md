@@ -6,14 +6,19 @@
 
 ## [1.1.0] 03.04.2026
 
+- Features
+  - Added scaling setting based on system font size
+  - Added decoration toggle setting
 - Refactoring
-  - switched desklet to `class` syntax
-  - removed `getValue`function in constructor (use binding)
-  - switched desklet entry to `on_desklet_added_to_desktop`
+  - Switched desklet to `class` syntax
+  - Removed `getValue`function in constructor (use binding)
+  - Switched desklet entry to `on_desklet_added_to_desktop`
   - Default countdown to current New Year
-  - defined empty properties in constructor
-  - renamed functions and properties
-  - removed logs
-  - simplified cleanup
-  - removed hard coded local path
-  - removed unused imports
+  - Defined empty properties in constructor
+  - Renamed functions and properties
+  - Removed logs
+  - Simplified cleanup
+  - Removed hard coded local path
+  - Removed unused imports
+  - Cleanup settings on desklet remove (`settings.finalize()`)
+  - Kebab-case for setting names

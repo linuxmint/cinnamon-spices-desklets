@@ -3,12 +3,20 @@
     "type": "header",
     "description": "General"
   },
-  "labelText": {
+  "label-text": {
     "type": "entry",
     "default": "",
     "description": "Text for the label"
   },
-  "countdownDate": {
+  "scale-size": {
+    "type": "scale",
+    "default": 1.0,
+    "step": 0.1,
+    "min": 0.3,
+    "max": 3.0,
+    "description": "Desklet scale size"
+  },
+  "countdown-date": {
     "type": "datechooser",
     "description": "Date to which the countdown counts down",
     "default": {
@@ -17,7 +25,7 @@
       "y": 1
     }
   },
-  "refreshInterval": {
+  "refresh-interval": {
     "type": "combobox",
     "default": "only-after-starting",
     "options": {
@@ -35,7 +43,7 @@
     "type": "header",
     "description": "Style"
   },
-  "fontSizeLabel": {
+  "font-size-label": {
     "type": "scale",
     "default": 12,
     "min": 8,
@@ -43,12 +51,12 @@
     "step": 1,
     "description": "Font size for the label text"
   },
-  "colorLabel": {
+  "color-label": {
     "type": "colorchooser",
     "default": "rgb(98, 160, 234)",
     "description": "Label color"
   },
-  "fontSizeCountdown": {
+  "font-size-countdown": {
     "type": "scale",
     "default": 35,
     "min": 12,
@@ -56,9 +64,14 @@
     "step": 1,
     "description": "Font size for the countdown text"
   },
-  "colorCountdown": {
+  "color-countdown": {
     "type": "colorchooser",
     "default": "rgb(255,255,255)",
     "description": "Countdown color"
+  },
+  "hide-decorations": {
+    "type": "checkbox",
+    "description": "Hide decorations",
+    "default": false
   }
 }
