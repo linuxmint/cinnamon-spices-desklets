@@ -62,6 +62,7 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "type", "type", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "text-view", "text_view", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "onclick-action", "onclick_action", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "show-raid-status", "show_raid_status", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "random-circle-color-generated", "random_circle_color_generated", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "random-circle-color-r", "random_circle_color_r", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "random-circle-color-g", "random_circle_color_g", this.on_setting_changed);
@@ -181,14 +182,47 @@ MyDesklet.prototype = {
 						// e.g. file not found (= not mounted)
 						//global.log("error getting filesystem info: "+fs);
 					}
-					this.redraw(type, fs, avail, use, size, percentString);
+
+					// Check RAID/ZFS status if enabled
+					if(this.show_raid_status) {
+						this.checkRaidStatus(fs, avail, use, size, percentString);
+					} else {
+						this.redraw(type, fs, avail, use, size, percentString, null);
+					}
 				}
 			);
 
 		}
 	},
 
-	redraw: function(type, fs, avail, use, size, percentString) {
+	checkRaidStatus: function(fs, avail, use, size, percentString) {
+		// Automatically detect if the filesystem is on MD RAID or ZFS
+		let scriptPath = this.metadata["path"] + "/raid-detector.py";
+		let self = this;
+		let subprocess = new Gio.Subprocess({
+			argv: ["/usr/bin/python3", scriptPath, fs],
+			flags: Gio.SubprocessFlags.STDOUT_PIPE|Gio.SubprocessFlags.STDERR_PIPE,
+		});
+		subprocess.init(null);
+		subprocess.wait_async(null, (sourceObject, res) => {
+			let [, stdOut, stdErr] = sourceObject.communicate_utf8(null, null);
+			let raidInfo = null;
+			if(stdErr == "" && stdOut != "") {
+				try {
+					raidInfo = JSON.parse(stdOut);
+					// Only use if something was detected
+					if(raidInfo.detected == "none") {
+						raidInfo = null;
+					}
+				} catch(e) {
+					//global.log("RAID detector parse error: " + e);
+				}
+			}
+			self.redraw(self.type, fs, avail, use, size, percentString, raidInfo);
+		});
+	},
+
+	redraw: function(type, fs, avail, use, size, percentString, raidInfo) {
 		// calc new sizes based on scale factor
 		let absoluteSize = this.default_size * this.scale_size;
 		let fontSize = Math.round(this.default_size_font * this.scale_size);
@@ -313,6 +347,65 @@ MyDesklet.prototype = {
 		let textSub1 = "";
 		let textSub2 = "";
 		let name = "";
+
+		// RAID/ZFS/Btrfs status overlay
+		let raidStatusIndicator = "";
+		let raidDetailLine1 = "";
+		let raidDetailLine2 = "";
+		if(raidInfo && raidInfo.status) {
+			if(raidInfo.status == "ok") {
+				raidStatusIndicator = "✓";
+			} else if(raidInfo.status == "warning") {
+				raidStatusIndicator = "⚠";
+				// Show detailed progress info
+				if(raidInfo.mdraid && raidInfo.mdraid.state) {
+					let md = raidInfo.mdraid;
+					if(md.degraded > 0) {
+						raidDetailLine1 = md.degraded + "x degraded";
+					} else if(md.progress > 0) {
+						let stateLabel = md.state.charAt(0).toUpperCase() + md.state.slice(1);
+						raidDetailLine1 = stateLabel + " " + Math.round(md.progress) + "%";
+					} else {
+						let stateLabel = md.state.charAt(0).toUpperCase() + md.state.slice(1);
+						raidDetailLine1 = stateLabel;
+					}
+					if(md.speed != "") {
+						raidDetailLine2 = md.speed;
+					}
+				} else if(raidInfo.zfs && raidInfo.zfs.scan) {
+					let scan = raidInfo.zfs.scan;
+					if(scan.state == "in_progress") {
+						let scanLabel = scan.type.charAt(0).toUpperCase() + scan.type.slice(1);
+						raidDetailLine1 = scanLabel + " " + Math.round(scan.progress) + "%";
+						if(scan.eta != "") {
+							raidDetailLine2 = "ETA " + scan.eta;
+						}
+					} else if(raidInfo.zfs.state == "DEGRADED") {
+						raidDetailLine1 = "ZFS degraded";
+					}
+				} else if(raidInfo.btrfs) {
+					let bt = raidInfo.btrfs;
+					if(bt.errors > 0) {
+						raidDetailLine1 = bt.errors + " errors";
+					} else {
+						raidDetailLine1 = bt.data_profile;
+					}
+					if(bt.devices > 0) {
+						raidDetailLine2 = bt.devices + " devices";
+					}
+				}
+			} else if(raidInfo.status == "error") {
+				raidStatusIndicator = "✗";
+				if(raidInfo.mdraid) {
+					raidDetailLine1 = raidInfo.mdraid.state;
+				} else if(raidInfo.zfs) {
+					raidDetailLine1 = "ZFS " + raidInfo.zfs.state;
+				} else if(raidInfo.btrfs) {
+					raidDetailLine1 = "Btrfs error";
+				}
+			}
+		}
+
 		if(type == "ram") {
 			name = this.shortText(_("RAM"));
 		} else if(type == "swap") {
@@ -349,6 +442,22 @@ MyDesklet.prototype = {
 			textSub2 = "";
 		}
 
+		// Append RAID/ZFS status indicator if detected
+		if(raidStatusIndicator != "") {
+			if(raidDetailLine1 != "") {
+				// Show detailed RAID status for warning/error
+				textSub1 = raidStatusIndicator + " " + raidDetailLine1;
+				textSub2 = raidDetailLine2;
+			} else {
+				// Just show indicator for OK status
+				if(textSub2 != "") {
+					textSub2 = textSub2 + "  " + raidStatusIndicator;
+				} else {
+					textSub2 = raidStatusIndicator + " " + (raidInfo.message || "");
+				}
+			}
+		}
+
 		// set label contents
 		let textpercent_y = Math.round((absoluteSize * global.ui_scale) / 2 - fontSize * (1.26 * global.ui_scale));
 		this.textpercent.set_position(null, textpercent_y);
@@ -370,7 +479,10 @@ MyDesklet.prototype = {
 							+ "font-weight:" + this.fontSub["font-weight"] + ";"
 							+ "font-stretch:" + this.fontSub["font-stretch"] + ";"
 							+ "width: " + absoluteSize + "px;"
-							+ "color: " + this.text_color + ";";
+							+ "color: " + this.text_color + ";"
+							+ "text-align: center;"
+							+ "text-overflow: ellipsis;"
+							+ "overflow: hidden;";
 
 		let textsub2_y = Math.round(textsub_y + fontSizeSub * (1.25 * global.ui_scale));
 		this.textsub2.set_position(null, textsub2_y);
@@ -381,7 +493,10 @@ MyDesklet.prototype = {
 							+ "font-weight:" + this.fontSub["font-weight"] + ";"
 							+ "font-stretch:" + this.fontSub["font-stretch"] + ";"
 							+ "width: " + absoluteSize + "px;"
-							+ "color: " + this.text_color + ";";
+							+ "color: " + this.text_color + ";"
+							+ "text-align: center;"
+							+ "text-overflow: ellipsis;"
+							+ "overflow: hidden;";
 
 		//global.log("Redraw Done"); // debug
 	},
