@@ -32,7 +32,7 @@ class MyDesklet extends Desklet.Desklet {
 
     this.fontSize = this.settings.getValue("fontSize") || 20;
     this.colorLabel = this.settings.getValue("colorLabel") || "rgb(51, 209, 122)";
-    this._refreshTimeout = null;
+    this._refreshTimeoutId = null;
 
     this.setHeader(_("System Uptime"));
     this.updateDecoration();
@@ -137,8 +137,8 @@ class MyDesklet extends Desklet.Desklet {
   updateValues() {
     this.updateUptime();
     this.getStartupTime();
-    if (this._refreshTimeout) Mainloop.source_remove(this._refreshTimeout);
-    this._refreshTimeout = Mainloop.timeout_add_seconds(60, () => this.updateValues());
+    if (this._refreshTimeoutId) Mainloop.source_remove(this._refreshTimeoutId);
+    this._refreshTimeoutId = Mainloop.timeout_add_seconds(60, () => this.updateValues());
   }
 
   onSettingsChanged() {
@@ -152,7 +152,7 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   on_desklet_removed() {
-    if (this._refreshTimeout) Mainloop.source_remove(this._refreshTimeout);
+    if (this._refreshTimeoutId) Mainloop.source_remove(this._refreshTimeoutId);
   }
 
   getImageAtScale(imageFileName, width, height) {

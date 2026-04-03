@@ -1,10 +1,10 @@
 const Desklet = imports.ui.desklet;
-const Lang = imports.lang;
 const St = imports.gi.St;
 const Mainloop = imports.mainloop;
 const GLib = imports.gi.GLib;
 const Settings = imports.ui.settings;
 const Gettext = imports.gettext;
+const Gio = imports.gi.Gio;
 
 const UUID = "systemTemperature@KopfDesDaemons";
 
@@ -21,7 +21,7 @@ class MyDesklet extends Desklet.Desklet {
 
     this._mainContainer = null;
     this._textLabel = null;
-    this._refreshTimeout = null;
+    this._refreshTimeoutId = null;
     this._temperatureLabel = null;
 
     // Default settings
@@ -38,7 +38,7 @@ class MyDesklet extends Desklet.Desklet {
     this.settings.bindProperty(Settings.BindingDirection.IN, "tempFilePath", "tempFilePath", this._on_settings_changed);
     this.settings.bindProperty(Settings.BindingDirection.IN, "labelText", "labelText", this._on_settings_changed);
     this.settings.bindProperty(Settings.BindingDirection.IN, "temperatureUnit", "temperatureUnit", this._on_settings_changed);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "updateInterval", "updateInterval", this._on_settings_changed);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "updateInterval", "updateInterval", this._setRefreshTimeout);
     this.settings.bindProperty(Settings.BindingDirection.IN, "fontSizeLabel", "textLabelFontSize", this._on_settings_changed);
     this.settings.bindProperty(Settings.BindingDirection.IN, "fontSizeTemperature", "temperatureLabelFontSize", this._on_settings_changed);
     this.settings.bindProperty(Settings.BindingDirection.IN, "dynamicColorEnabled", "dynamicColorEnabled", this._on_settings_changed);
@@ -51,9 +51,9 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   on_desklet_removed() {
-    if (this._refreshTimeout) {
-      Mainloop.source_remove(this._refreshTimeout);
-      this._refreshTimeout = null;
+    if (this._refreshTimeoutId) {
+      Mainloop.source_remove(this._refreshTimeoutId);
+      this._refreshTimeoutId = null;
     }
   }
 
@@ -75,23 +75,42 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _setRefreshTimeout() {
-    this._refreshTimeout = Mainloop.timeout_add_seconds(this.updateInterval, () => {
+    if (this._refreshTimeoutId) {
+      Mainloop.source_remove(this._refreshTimeoutId);
+      this._refreshTimeoutId = null;
+    }
+
+    this._refreshTimeoutId = Mainloop.timeout_add_seconds(this.updateInterval, () => {
       this._updateTemperature();
       return true;
     });
   }
 
-  _updateTemperature() {
+  getFileContent(path) {
+    return new Promise((resolve, reject) => {
+      const file = Gio.File.new_for_path(path);
+      file.load_contents_async(null, (obj, res) => {
+        try {
+          const [success, content] = obj.load_contents_finish(res);
+          if (success) {
+            resolve(content);
+          } else {
+            reject(new Error(`Could not read ${path}`));
+          }
+        } catch (e) {
+          reject(e);
+        }
+      });
+    });
+  }
+
+  async _updateTemperature() {
     try {
       // Get CPU temperature
-      const [result, out] = GLib.spawn_command_line_sync(`cat ${this.tempFilePath}`);
-
-      if (!result || out === null) {
-        throw new Error("Could not retrieve CPU temperature.");
-      }
+      const fileContent = await this.getFileContent(this.tempFilePath);
 
       // Convert temperature from millidegree Celsius to degree Celsius
-      let temperature = parseFloat(out.toString().trim()) / 1000.0;
+      let temperature = parseFloat(fileContent.toString().trim()) / 1000.0;
 
       // Convert to Fahrenheit when the user has selected that unit
       if (this.temperatureUnit === "F") {

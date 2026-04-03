@@ -12,3 +12,5 @@
   - Renamed properties and functions
   - Switched desklet entry to `on_desklet_added_to_desktop`
   - Removed `stylesheet.css`
+  - Removed unused imports
+  - Async file loading by `load_contents_async`
