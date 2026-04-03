@@ -10,6 +10,7 @@
   - switched desklet to `class` syntax
   - removed `getValue`function in constructor (use binding)
   - switched desklet entry to `on_desklet_added_to_desktop`
+  - Default countdown to current New Year
   - defined empty properties in constructor
   - renamed functions and properties
   - removed logs

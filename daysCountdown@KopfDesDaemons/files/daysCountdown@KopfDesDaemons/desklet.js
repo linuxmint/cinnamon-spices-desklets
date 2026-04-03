@@ -24,12 +24,12 @@ class MyDesklet extends Desklet.Desklet {
     this.refreshTimeoutId = null;
 
     // Default settings
-    this.labelText = "New Year 2025 Countdown";
+    this.labelText = "";
     this.fontSizeLabel = 12;
     this.fontSizeCountdown = 36;
     this.colorCountdown = "rgb(255, 255, 255)";
     this.colorLabel = "rgb(98, 160, 234)";
-    this.countdownDate = { d: 31, m: 12, y: 2025 };
+    this.countdownDate = { d: 1, m: 1, y: 1 };
     this.refreshInterval = "only-after-starting";
 
     // Bind settings properties
@@ -53,6 +53,13 @@ class MyDesklet extends Desklet.Desklet {
     this._removeRefreshTimeout();
   }
 
+  _setDefaultCountdown() {
+    if (this.countdownDate.d === 1 && this.countdownDate.m === 1 && this.countdownDate.y === 1) {
+      this.countdownDate = { d: 1, m: 1, y: new Date().getFullYear() + 1 };
+      this.labelText = _("New Year %f Countdown").format(this.countdownDate.y.toString());
+    }
+  }
+
   _setupLayout() {
     this.mainContainer = new St.BoxLayout({ vertical: true });
     this.textLabel = new St.Label();
@@ -74,6 +81,7 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _updateUI() {
+    this._setDefaultCountdown();
     this.textLabel.set_text(this.labelText);
     this.textLabel.set_style(`font-size: ${this.fontSizeLabel}px; color: ${this.colorLabel};`);
     this.daysLabel.set_text(this._getDaysString());
