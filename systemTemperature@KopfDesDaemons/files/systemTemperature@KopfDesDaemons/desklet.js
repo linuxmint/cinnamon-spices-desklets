@@ -24,6 +24,7 @@ class MyDesklet extends Desklet.Desklet {
     this._refreshTimeoutId = null;
     this._temperatureLabel = null;
     this._colorString = null;
+    this._isReloading = false;
 
     // Default settings
     this.labelText = "CPU temperature:";
@@ -56,6 +57,13 @@ class MyDesklet extends Desklet.Desklet {
       Mainloop.source_remove(this._refreshTimeoutId);
       this._refreshTimeoutId = null;
     }
+    if (this.settings && !this._isReloading) {
+      this.settings.finalize();
+    }
+  }
+
+  on_desklet_reloaded() {
+    this._isReloading = true;
   }
 
   _updateStyles() {

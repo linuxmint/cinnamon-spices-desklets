@@ -4,7 +4,7 @@
 
 - Initial release
 
-## [1.1.0] 03.04.2026
+## [1.1.0] 04.04.2026
 
 - Refactoring
   - Removed hard-coded locale path
@@ -14,3 +14,4 @@
   - Removed `stylesheet.css`
   - Removed unused imports
   - Async file loading by `load_contents_async`
+  - Added settings cleanup
