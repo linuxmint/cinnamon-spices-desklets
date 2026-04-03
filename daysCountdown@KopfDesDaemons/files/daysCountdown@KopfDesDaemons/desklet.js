@@ -1,5 +1,4 @@
 const Desklet = imports.ui.desklet;
-const Lang = imports.lang;
 const St = imports.gi.St;
 const Mainloop = imports.mainloop;
 const GLib = imports.gi.GLib;
@@ -8,105 +7,97 @@ const Gettext = imports.gettext;
 
 const UUID = "daysCountdown@KopfDesDaemons";
 
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
 
 function _(str) {
-    return Gettext.dgettext(UUID, str);
+  return Gettext.dgettext(UUID, str);
 }
 
-function MyDesklet(metadata, deskletId) {
-    this._init(metadata, deskletId);
-}
+class MyDesklet extends Desklet.Desklet {
+  constructor(metadata, deskletId) {
+    super(metadata, deskletId);
+    this.setHeader(_("Days Countdown"));
 
-MyDesklet.prototype = {
-    __proto__: Desklet.Desklet.prototype,
+    this.mainContainer = null;
+    this.textLabel = null;
+    this.daysLabel = null;
+    this.refreshTimeoutId = null;
 
-    _init: function (metadata, deskletId) {
-        Desklet.Desklet.prototype._init.call(this, metadata, deskletId);
+    // Default settings
+    this.labelText = "New Year 2025 Countdown";
+    this.fontSizeLabel = 12;
+    this.fontSizeCountdown = 36;
+    this.colorCountdown = "rgb(255, 255, 255)";
+    this.colorLabel = "rgb(98, 160, 234)";
+    this.countdownDate = { d: 31, m: 12, y: 2025 };
+    this.refreshInterval = "only-after-starting";
 
-        this.setHeader(_("Days Countdown"));
+    // Bind settings properties
+    this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], deskletId);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "labelText", "labelText", this._updateUI);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "countdownDate", "countdownDate", this._updateUI);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "fontSizeLabel", "fontSizeLabel", this._updateUI);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "fontSizeCountdown", "fontSizeCountdown", this._updateUI);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "colorLabel", "colorLabel", this._updateUI);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "colorCountdown", "colorCountdown", this._updateUI);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "refreshInterval", "refreshInterval", this._setRefreshCountdown);
+  }
 
-        // Initialize settings
-        this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], deskletId);
+  on_desklet_added_to_desktop() {
+    this._setupLayout();
+    this._updateUI();
+    this._setRefreshCountdown();
+  }
 
-        // Get settings
-        this.labelText = this.settings.getValue("labelText") || "New Year 2025 Countdown";
-        this.fontSizeLabel = this.settings.getValue("fontSizeLabel") || 12;
-        this.fontSizeCountdown = this.settings.getValue("fontSizeCountdown") || 36;
-        this.colorCountdown = this.settings.getValue("colorCountdown") || "rgb(255, 255, 255)";
-        this.colorLabel = this.settings.getValue("colorLabel") || "rgb(98, 160, 234)";
-        this.countdownDate = this.settings.getValue("countdownDate") || { d: 31, m: 12, y: 2025 };
-        this.refreshInterval = this.settings.getValue("refreshInterval") || "only-after-starting";
+  on_desklet_removed() {
+    this._removeRefreshTimeout();
+  }
 
-        // Bind settings properties
-        this.settings.bindProperty(Settings.BindingDirection.IN, "labelText", "labelText", this.updateUI, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "countdownDate", "countdownDate", this.updateUI, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "fontSizeLabel", "fontSizeLabel", this.updateUI, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "fontSizeCountdown", "fontSizeCountdown", this.updateUI, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "colorLabel", "colorLabel", this.updateUI, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "colorCountdown", "colorCountdown", this.updateUI, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "refreshInterval", "refreshInterval", this.refreshCountdown, null);
+  _setupLayout() {
+    this.mainContainer = new St.BoxLayout({ vertical: true });
+    this.textLabel = new St.Label();
+    this.daysLabel = new St.Label();
 
-        this._setupLayout();
+    this.mainContainer.add_child(this.textLabel);
+    this.mainContainer.add_child(this.daysLabel);
+    this.setContent(this.mainContainer);
+  }
 
-        this.timeout = null;
+  _calcDays() {
+    if (!this.countdownDate) return 0;
+    const then = new Date(this.countdownDate.y, this.countdownDate.m - 1, this.countdownDate.d);
+    return Math.ceil((then - new Date()) / (1000 * 60 * 60 * 24));
+  }
 
-        this.updateUI();
-        this.refreshCountdown();
-    },
+  _getDaysString() {
+    return _("%f days").format(this._calcDays().toString());
+  }
 
-    _setupLayout() {
-        this.box = new St.BoxLayout({ vertical: true });
-        this.textLabel = new St.Label();
-        this.daysLabel = new St.Label();
+  _updateUI() {
+    this.textLabel.set_text(this.labelText);
+    this.textLabel.set_style(`font-size: ${this.fontSizeLabel}px; color: ${this.colorLabel};`);
+    this.daysLabel.set_text(this._getDaysString());
+    this.daysLabel.set_style(`font-size: ${this.fontSizeCountdown}px; color: ${this.colorCountdown};`);
+  }
 
-        this.box.add_child(this.textLabel);
-        this.box.add_child(this.daysLabel);
-        this.setContent(this.box);
-    },
+  _setRefreshCountdown() {
+    this._removeRefreshTimeout();
+    if (this.refreshInterval === "only-after-starting") return;
 
-    calcDays() {
-        if (!this.countdownDate) return 0;
-        const now = new Date();
-        const then = new Date(this.countdownDate.y, this.countdownDate.m - 1, this.countdownDate.d);
-        return Math.ceil((then - now) / (1000 * 60 * 60 * 24));
-    },
+    this.refreshTimeoutId = Mainloop.timeout_add_seconds(this.refreshInterval, () => {
+      this.daysLabel.set_text(this._getDaysString());
+      return true;
+    });
+  }
 
-    getDaysString() {
-        return _("%f days").format(this.calcDays().toString());
-    },
-
-    updateUI: function () {
-        if (this.textLabel) {
-            this.textLabel.set_text(this.labelText);
-            this.textLabel.set_style(`font-size: ${this.fontSizeLabel}px; color: ${this.colorLabel};`);
-        }
-
-        if (this.daysLabel) {
-            this.daysLabel.set_text(this.getDaysString());
-            this.daysLabel.set_style(`font-size: ${this.fontSizeCountdown}px; color: ${this.colorCountdown};`);
-        }
-    },
-
-    refreshCountdown: function () {
-        this.daysLabel.set_text(this.getDaysString());
-
-        if (this.timeout) Mainloop.source_remove(this.timeout);
-        if (this.refreshInterval === "only-after-starting") return;
-
-        global.log(`${UUID}: ${this.labelText} refreshed. Next refresh in ${this.refreshInterval} seconds.`);
-        this.timeout = Mainloop.timeout_add_seconds(this.refreshInterval, () => this.refreshCountdown());
-    },
-
-    on_desklet_removed: function () {
-        if (this.timeout) Mainloop.source_remove(this.timeout);
-        if (this.textLabel) this.box.remove_child(this.textLabel);
-        if (this.daysLabel) this.box.remove_child(this.daysLabel);
-
-        this.timeout = this.textLabel = this.daysLabel = null;
+  _removeRefreshTimeout() {
+    if (this.refreshTimeoutId) {
+      Mainloop.source_remove(this.refreshTimeoutId);
+      this.refreshTimeoutId = null;
     }
-};
+  }
+}
 
 function main(metadata, deskletId) {
-    return new MyDesklet(metadata, deskletId);
+  return new MyDesklet(metadata, deskletId);
 }
