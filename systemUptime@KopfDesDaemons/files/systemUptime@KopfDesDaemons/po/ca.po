@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: systemUptime@KopfDesDaemons 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-02-21 12:33+0100\n"
+"POT-Creation-Date: 2026-04-03 18:54+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Dan <d3vf4n-linux (at) tutanota (dot) com>\n"
 "Language-Team: \n"
@@ -19,43 +19,39 @@ msgstr ""
 "X-Generator: Poedit 3.6\n"
 
 #. metadata.json->name
-#. desklet.js:21
+#. desklet.js:39
 msgid "System Uptime"
 msgstr "Temps d'ús del sistema"
 
-#. desklet.js:64
+#. desklet.js:102
 msgid "Uptime:"
 msgstr "Temps d'ús:"
 
-#. desklet.js:65 desklet.js:73
-msgid "Loading..."
-msgstr "S'està carregant..."
-
-#. desklet.js:72
+#. desklet.js:110
 msgid "Start time:"
 msgstr "Hora d'inici:"
 
-#. desklet.js:113
+#. desklet.js:169
 msgid "days"
 msgstr "dies"
 
-#. desklet.js:113
+#. desklet.js:169
 msgid "hrs"
 msgstr "hrs"
 
-#. desklet.js:113
+#. desklet.js:169
 msgid "min"
 msgstr "min"
 
-#. desklet.js:119
+#. desklet.js:175
 msgid "hours"
 msgstr "hores"
 
-#. desklet.js:119
+#. desklet.js:175
 msgid "minutes"
 msgstr "minuts"
 
-#. desklet.js:122 desklet.js:156
+#. desklet.js:179 desklet.js:212
 msgid "Error"
 msgstr ""
 
@@ -78,6 +74,10 @@ msgstr ""
 #. settings-schema.json->label-color->description
 msgid "Label color"
 msgstr "Color de les etiquetes"
+
+#. settings-schema.json->show-icon->description
+msgid "Show icon"
+msgstr ""
 
 #. settings-schema.json->head1->description
 msgid "Value format"
