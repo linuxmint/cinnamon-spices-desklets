@@ -149,12 +149,11 @@ class MyDesklet extends Desklet.Desklet {
     this._iconBox.set_style(iconStyle);
   }
 
-  async _updateUptime() {
-    let uptimeInSeconds = 0;
+  async _fetchUptimeText() {
     try {
       // Read uptime in seconds from /proc/uptime
       const contents = await getFileContents("/proc/uptime");
-      uptimeInSeconds = parseFloat(ByteArray.toString(contents).split(" ")[0]);
+      const uptimeInSeconds = parseFloat(ByteArray.toString(contents).split(" ")[0]);
 
       if (this.showUptimeInDays) {
         // Convert uptime to days, hours, and minutes
@@ -162,28 +161,21 @@ class MyDesklet extends Desklet.Desklet {
         const hours = Math.floor((uptimeInSeconds % 86400) / 3600);
         const minutes = Math.floor(((uptimeInSeconds % 86400) % 3600) / 60);
 
-        this._currentUptimeText = `${days} ${_("days")} ${hours} ${_("hrs")} ${minutes} ${_("min")}`;
+        return `${days} ${_("days")} ${hours} ${_("hrs")} ${minutes} ${_("min")}`;
       } else {
         // Hours can be more than 24
         const hours = Math.floor(uptimeInSeconds / 3600);
         const minutes = Math.floor((uptimeInSeconds % 3600) / 60);
 
-        this._currentUptimeText = `${hours} ${_("hours")} ${minutes} ${_("minutes")}`;
-      }
-
-      if (this._uptimeValue) {
-        this._uptimeValue.set_text(this._currentUptimeText);
+        return `${hours} ${_("hours")} ${minutes} ${_("minutes")}`;
       }
     } catch (error) {
-      this._currentUptimeText = _("Error");
-      if (this._uptimeValue) {
-        this._uptimeValue.set_text(_("Error"));
-      }
       global.logError(`${UUID} Error: ${error.message}`);
+      return _("Error");
     }
   }
 
-  async _updateStartupTime() {
+  async _fetchStartupTimeText() {
     try {
       // Read startup time from /proc/stat (btime)
       const contents = await getFileContents("/proc/stat");
@@ -205,21 +197,28 @@ class MyDesklet extends Desklet.Desklet {
 
       if (this.showStartDate) {
         // Show date and time
-        this._currentStartupText = dateTime.format("%x") + ", " + dateTime.format(timeFormat);
+        return dateTime.format("%x") + ", " + dateTime.format(timeFormat);
       } else {
         // Show only time
-        this._currentStartupText = dateTime.format(timeFormat);
-      }
-
-      if (this._startupValue) {
-        this._startupValue.set_text(this._currentStartupText);
+        return dateTime.format(timeFormat);
       }
     } catch (error) {
-      this._currentStartupText = _("Error");
-      if (this._startupValue) {
-        this._startupValue.set_text(_("Error"));
-      }
       global.logError(`${UUID}: ${error.message}`);
+      return _("Error");
+    }
+  }
+
+  async _updateUptime() {
+    this._currentUptimeText = await this._fetchUptimeText();
+    if (this._uptimeValue) {
+      this._uptimeValue.set_text(this._currentUptimeText);
+    }
+  }
+
+  async _updateStartupTime() {
+    this._currentStartupText = await this._fetchStartupTimeText();
+    if (this._startupValue) {
+      this._startupValue.set_text(this._currentStartupText);
     }
   }
 
