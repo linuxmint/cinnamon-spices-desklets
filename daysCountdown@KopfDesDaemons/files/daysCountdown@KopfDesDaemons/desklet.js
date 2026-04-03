@@ -80,18 +80,22 @@ class MyDesklet extends Desklet.Desklet {
 
   _setupLayout() {
     this._mainContainer = new St.BoxLayout({ vertical: true });
+
     this._textLabel = new St.Label();
     this._daysLabel = new St.Label();
 
     this._mainContainer.add_child(this._textLabel);
     this._mainContainer.add_child(this._daysLabel);
+
     this.setContent(this._mainContainer);
   }
 
   _calcDays() {
     if (!this.countdownDate) return 0;
-    const then = new Date(this.countdownDate.y, this.countdownDate.m - 1, this.countdownDate.d);
-    return Math.ceil((then - new Date()) / (1000 * 60 * 60 * 24));
+
+    const countDownDate = new Date(this.countdownDate.y, this.countdownDate.m - 1, this.countdownDate.d);
+    const millisecondsPerDay = 1000 * 60 * 60 * 24;
+    return Math.ceil((countDownDate - new Date()) / millisecondsPerDay);
   }
 
   _getDaysString() {
@@ -100,15 +104,20 @@ class MyDesklet extends Desklet.Desklet {
 
   _updateUI() {
     this._setDefaultCountdown();
+
+    // Update labels
     this._textLabel.set_text(this.labelText);
+    this._daysLabel.set_text(this._getDaysString());
+
+    // Update styles
     const fontSize = size => (size * this.scaleSize) / 10 + "em";
     this._textLabel.set_style(`font-size: ${fontSize(this.fontSizeLabel)}; color: ${this.colorLabel};`);
-    this._daysLabel.set_text(this._getDaysString());
     this._daysLabel.set_style(`font-size: ${fontSize(this.fontSizeCountdown)}; color: ${this.colorCountdown};`);
   }
 
   _setRefreshCountdown() {
     this._removeRefreshTimeout();
+
     if (this.refreshInterval === "only-after-starting") return;
 
     this._refreshTimeoutId = Mainloop.timeout_add_seconds(this.refreshInterval, () => {
