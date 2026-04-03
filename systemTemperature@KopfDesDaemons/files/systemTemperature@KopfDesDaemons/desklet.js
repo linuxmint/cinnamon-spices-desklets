@@ -23,6 +23,7 @@ class MyDesklet extends Desklet.Desklet {
     this._textLabel = null;
     this._refreshTimeoutId = null;
     this._temperatureLabel = null;
+    this._colorString = null;
 
     // Default settings
     this.labelText = "CPU temperature:";
@@ -57,14 +58,22 @@ class MyDesklet extends Desklet.Desklet {
     }
   }
 
+  _updateStyles() {
+    this._textLabel.set_style(`font-size: ${this.textLabelFontSize}px;`);
+
+    let tempLabelStyle = `font-size: ${this.temperatureLabelFontSize}px; font-weight: bold;`;
+    if (this._colorString) tempLabelStyle += ` color: ${this._colorString};`;
+    this._temperatureLabel.set_style(tempLabelStyle);
+  }
+
   _setupLayout() {
     // Text label
     this._textLabel = new St.Label({ text: this.labelText });
-    this._textLabel.set_style(`font-size: ${this.textLabelFontSize}px;`);
 
     // Temperature label
     this._temperatureLabel = new St.Label({ text: "Loading..." });
-    this._temperatureLabel.set_style(`font-size: ${this.temperatureLabelFontSize}px; font-weight: bold;`);
+
+    this._updateStyles();
 
     // Set up the layout
     this._mainContainer = new St.BoxLayout({ vertical: true });
@@ -125,7 +134,8 @@ class MyDesklet extends Desklet.Desklet {
       if (this.dynamicColorEnabled) {
         this._updateLabelColor(temperature);
       } else {
-        this._temperatureLabel.set_style(`color: #ffffff; font-size: ${this.temperatureLabelFontSize}px; font-weight: bold;`);
+        this._colorString = "#ffffff";
+        this._updateStyles();
       }
     } catch (e) {
       this._temperatureLabel.set_text("Error");
@@ -147,16 +157,17 @@ class MyDesklet extends Desklet.Desklet {
     // Calculate color based on temperature
     temperature = Math.min(maxTemp, Math.max(minTemp, temperature));
     const ratio = (temperature - minTemp) / (maxTemp - minTemp);
-    const colorString = `rgb(${Math.floor(ratio * 255)}, ${Math.floor((1 - ratio) * 255)}, 0)`;
+    this._colorString = `rgb(${Math.floor(ratio * 255)}, ${Math.floor((1 - ratio) * 255)}, 0)`;
 
     // Set the color
-    this._temperatureLabel.set_style(`color: ${colorString}; font-size: ${this.temperatureLabelFontSize}px; font-weight: bold;`);
+    this._updateStyles();
   }
 
   _on_settings_changed() {
     this._textLabel.set_text(this.labelText);
-    this._textLabel.set_style(`font-size: ${this.textLabelFontSize}px;`);
-    this._temperatureLabel.set_style(`font-size: ${this.temperatureLabelFontSize}px;`);
+    if (!this.dynamicColorEnabled) this._colorString = "#ffffff";
+    this._updateStyles();
+    this._updateTemperature();
   }
 }
 
