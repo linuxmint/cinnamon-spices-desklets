@@ -32,7 +32,7 @@ class MyDesklet extends Desklet.Desklet {
 
     this.fontSize = this.settings.getValue("fontSize") || 20;
     this.colorLabel = this.settings.getValue("colorLabel") || "rgb(51, 209, 122)";
-    this._timeout = null;
+    this._refreshTimeout = null;
 
     this.setHeader(_("System Uptime"));
     this.updateDecoration();
@@ -137,8 +137,8 @@ class MyDesklet extends Desklet.Desklet {
   updateValues() {
     this.updateUptime();
     this.getStartupTime();
-    if (this._timeout) Mainloop.source_remove(this._timeout);
-    this._timeout = Mainloop.timeout_add_seconds(60, () => this.updateValues());
+    if (this._refreshTimeout) Mainloop.source_remove(this._refreshTimeout);
+    this._refreshTimeout = Mainloop.timeout_add_seconds(60, () => this.updateValues());
   }
 
   onSettingsChanged() {
@@ -152,19 +152,13 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   on_desklet_removed() {
-    if (this._timeout) Mainloop.source_remove(this._timeout);
+    if (this._refreshTimeout) Mainloop.source_remove(this._refreshTimeout);
   }
 
   getImageAtScale(imageFileName, width, height) {
     const pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(imageFileName, width, height);
     const image = new Clutter.Image();
-    image.set_data(
-      pixBuf.get_pixels(),
-      pixBuf.get_has_alpha() ? Cogl.PixelFormat.RGBA_8888 : Cogl.PixelFormat.RGBA_888,
-      width,
-      height,
-      pixBuf.get_rowstride()
-    );
+    image.set_data(pixBuf.get_pixels(), pixBuf.get_has_alpha() ? Cogl.PixelFormat.RGBA_8888 : Cogl.PixelFormat.RGBA_888, width, height, pixBuf.get_rowstride());
 
     const actor = new Clutter.Actor({ width, height });
     actor.set_content(image);
