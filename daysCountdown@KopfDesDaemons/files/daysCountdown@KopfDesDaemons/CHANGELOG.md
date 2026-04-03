@@ -13,12 +13,13 @@
   - Switched desklet to `class` syntax
   - Removed `getValue`function in constructor (use binding)
   - Switched desklet entry to `on_desklet_added_to_desktop`
-  - Default countdown to current New Year
+  - Set default countdown to current New Year
   - Defined empty properties in constructor
   - Renamed functions and properties
   - Removed logs
   - Simplified cleanup
-  - Removed hard coded local path
+  - Removed hard-coded local path
   - Removed unused imports
   - Cleanup settings on desklet remove (`settings.finalize()`)
   - Kebab-case for setting names
+  - Organized settings by tabs and sections

@@ -1,7 +1,37 @@
 {
-  "head0": {
-    "type": "header",
-    "description": "General"
+  "layout": {
+    "type": "layout",
+    "pages": ["general-page", "style-page"],
+    "general-page": {
+      "type": "page",
+      "title": "General",
+      "sections": ["general-section", "countdown-section"]
+    },
+    "style-page": {
+      "type": "page",
+      "title": "Style",
+      "sections": ["font-size-section", "colors-section"]
+    },
+    "general-section": {
+      "type": "section",
+      "title": "General",
+      "keys": ["label-text", "scale-size", "hide-decorations"]
+    },
+    "font-size-section": {
+      "type": "section",
+      "title": "Font Sizes",
+      "keys": ["font-size-label", "font-size-countdown"]
+    },
+    "countdown-section": {
+      "type": "section",
+      "title": "Countdown",
+      "keys": ["countdown-date", "refresh-interval"]
+    },
+    "colors-section": {
+      "type": "section",
+      "title": "Colors",
+      "keys": ["color-label", "color-countdown"]
+    }
   },
   "label-text": {
     "type": "entry",
@@ -38,10 +68,6 @@
       "every 60 minutes": "3600"
     },
     "description": "Refresh interval"
-  },
-  "head1": {
-    "type": "header",
-    "description": "Style"
   },
   "font-size-label": {
     "type": "scale",
