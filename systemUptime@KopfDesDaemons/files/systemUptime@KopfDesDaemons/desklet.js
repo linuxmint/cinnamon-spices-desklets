@@ -59,6 +59,7 @@ class MyDesklet extends Desklet.Desklet {
     this.showStartDate = false;
     this.showUptimeInDays = false;
     this.hideDecorations = true;
+    this.showIcon = true;
 
     // Bind settings properties
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
@@ -67,6 +68,7 @@ class MyDesklet extends Desklet.Desklet {
     this.settings.bindProperty(Settings.BindingDirection.IN, "show-start-date", "showStartDate", this._updateValues);
     this.settings.bindProperty(Settings.BindingDirection.IN, "show-uptime-in-days", "showUptimeInDays", this._updateValues);
     this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this._onDecorationChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-icon", "showIcon", this._onShowIconChanged);
   }
 
   async on_desklet_added_to_desktop() {
@@ -118,14 +120,17 @@ class MyDesklet extends Desklet.Desklet {
     labelBox.add_child(startupRow);
     labelBox.add_child(uptimeRow);
 
-    this._clockIcon = new St.Icon({
-      gicon: Gio.icon_new_for_string(`${this.metadata.path}/icons/clock.svg`),
-      icon_size: 5 * 16 * this.scaleSize,
-    });
-    this._iconBox = new St.Bin({ child: this._clockIcon });
-
     const container = new St.BoxLayout({ y_align: St.Align.MIDDLE });
-    container.add_child(this._iconBox);
+
+    if (this.showIcon) {
+      this._clockIcon = new St.Icon({
+        gicon: Gio.icon_new_for_string(`${this.metadata.path}/icons/clock.svg`),
+        icon_size: 5 * 16 * this.scaleSize,
+      });
+      this._iconBox = new St.Bin({ child: this._clockIcon });
+      container.add_child(this._iconBox);
+    }
+
     container.add_child(labelBox);
 
     this.setContent(container);
@@ -237,6 +242,11 @@ class MyDesklet extends Desklet.Desklet {
   _onDecorationChanged() {
     this.metadata["prevent-decorations"] = this.hideDecorations;
     this._updateDecoration();
+  }
+
+  _onShowIconChanged() {
+    this._setupLayout();
+    this._setStyles();
   }
 }
 
