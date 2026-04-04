@@ -23,6 +23,28 @@
             "Battery" : "battery"
         }
     },
+    "cpu-variable": {
+        "type": "combobox",
+        "default": "usage",
+        "description": "CPU variable to monitor",
+        "tooltip": "Select the CPU variable to monitor.",
+        "options" : {
+            "Usage"  : "usage",
+            "Temperature" : "temperature"
+        },
+        "dependency": "type=cpu"
+    },
+    "temperature-units-cpu": {
+        "type": "combobox",
+        "default": "C",
+        "options": {
+            "°C" : "C",
+            "°F" : "F"
+        },
+        "description": "Temperature scale",
+        "tooltip": "Temperature scale for graph",
+        "dependency": "type=cpu"
+    },
     "data-prefix-ram": {
         "type": "combobox",
         "default": 0,
@@ -123,7 +145,8 @@
         "tooltip": "Select the GPU variable to monitor.",
         "options" : {
             "Usage"  : "usage",
-            "Memory" : "memory"
+            "Memory" : "memory",
+            "Temperature": "temperature"
         },
         "dependency": "type=gpu"
     },
@@ -136,6 +159,17 @@
         },
         "description": "Prefix for data units",
         "tooltip": "Unit prefix for GPU memory size.",
+        "dependency": "type=gpu"
+    },
+    "temperature-units-gpu": {
+        "type": "combobox",
+        "default": "C",
+        "options": {
+            "°C" : "C",
+            "°F" : "F"
+        },
+        "description": "Temperature scale",
+        "tooltip": "Temperature scale for graph",
         "dependency": "type=gpu"
     },
     "duration": {
