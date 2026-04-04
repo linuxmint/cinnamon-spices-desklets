@@ -1,9 +1,5 @@
 # Changelog
 
-## [1.0.0] 24.11.2024
-
-- Initial release
-
 ## [1.1.0] 03.04.2026
 
 - Features
@@ -23,3 +19,7 @@
   - Cleanup settings on desklet remove (`settings.finalize()`)
   - Kebab-case for setting names
   - Organized settings by tabs and sections
+
+## [1.0.0] 24.11.2024
+
+- Initial release
