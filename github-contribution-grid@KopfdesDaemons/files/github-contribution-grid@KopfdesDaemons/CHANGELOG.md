@@ -1,9 +1,5 @@
 # Changelog
 
-## [1.0.0] 09.12.2025
-
-- Initial Release
-
 ## [2.0.0] 25.02.026
 
 - New features:
@@ -23,3 +19,7 @@
   - Added settings cleanup on Desklet removal
   - Added Soup 2 compatibility
   - Added `README.md`
+
+## [1.0.0] 09.12.2025
+
+- Initial Release
