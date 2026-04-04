@@ -1,7 +1,32 @@
 {
-  "head0": {
-    "type": "header",
-    "description": "General"
+  "layout": {
+    "type": "layout",
+    "pages": ["general-page", "style-page"],
+    "general-page": {
+      "type": "page",
+      "title": "General",
+      "sections": ["general-section", "temperature-section"]
+    },
+    "style-page": {
+      "type": "page",
+      "title": "Style",
+      "sections": ["font-section"]
+    },
+    "temperature-section": {
+      "type": "section",
+      "title": "Temperature",
+      "keys": ["temp-file-path", "temperature-unit", "update-interval"]
+    },
+    "general-section": {
+      "type": "section",
+      "title": "General",
+      "keys": ["label-text", "scale-size", "hide-decorations"]
+    },
+    "font-section": {
+      "type": "section",
+      "title": "Schrift",
+      "keys": ["font-size-label", "font-size-temperature", "dynamic-color-enabled"]
+    }
   },
   "scale-size": {
     "type": "scale",
@@ -43,12 +68,8 @@
     "step": 1,
     "description": "Update interval in seconds"
   },
-  "head1": {
-    "type": "header",
-    "description": "Style"
-  },
   "font-size-label": {
-    "type": "scale",
+    "type": "spinbutton",
     "default": 12,
     "min": 8,
     "max": 100,
@@ -56,7 +77,7 @@
     "description": "Font size for the label text"
   },
   "font-size-temperature": {
-    "type": "scale",
+    "type": "spinbutton",
     "default": 35,
     "min": 12,
     "max": 100,

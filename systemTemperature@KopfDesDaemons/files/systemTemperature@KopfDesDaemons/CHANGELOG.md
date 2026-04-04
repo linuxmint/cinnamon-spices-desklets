@@ -19,3 +19,4 @@
   - Removed unused imports
   - Added settings cleanup
   - Kebab-case for setting names
+  - Organize setting in tabs and sections
