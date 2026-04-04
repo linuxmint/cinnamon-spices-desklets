@@ -1,64 +1,103 @@
 {
-    "head0": {
-        "type": "header",
-        "description": "General"
+  "layout": {
+    "type": "layout",
+    "pages": ["general-page", "style-page"],
+    "general-page": {
+      "type": "page",
+      "title": "General",
+      "sections": ["general-section", "countdown-section"]
     },
-    "labelText": {
-        "type": "entry",
-        "default": "New Year 2025 Countdown",
-        "description": "Text for the label"
+    "style-page": {
+      "type": "page",
+      "title": "Style",
+      "sections": ["font-size-section", "colors-section"]
     },
-    "countdownDate": {
-        "type": "datechooser",
-        "description": "Date to which the countdown counts down",
-        "default": {
-            "d": 1,
-            "m": 1,
-            "y": 2025
-        }
+    "general-section": {
+      "type": "section",
+      "title": "General",
+      "keys": ["label-text", "scale-size", "hide-decorations"]
     },
-    "refreshInterval": {
-        "type": "combobox",
-        "default": "only-after-starting",
-        "options": {
-            "only after starting": "only-after-starting",
-            "every 5 minutes": "300",
-            "every 10 minutes": "600",
-            "every 15 minutes": "900",
-            "every 20 minutes": "1200",
-            "every 30 minutes": "1800",
-            "every 60 minutes": "3600"
-        },
-        "description": "Refresh interval"
+    "font-size-section": {
+      "type": "section",
+      "title": "Font Sizes",
+      "keys": ["font-size-label", "font-size-countdown"]
     },
-    "head1": {
-        "type": "header",
-        "description": "Style"
+    "countdown-section": {
+      "type": "section",
+      "title": "Countdown",
+      "keys": ["countdown-date", "refresh-interval"]
     },
-    "fontSizeLabel": {
-        "type": "scale",
-        "default": 12,
-        "min": 8,
-        "max": 100,
-        "step": 1,
-        "description": "Font size for the label text"
-    },
-    "colorLabel": {
-        "type": "colorchooser",
-        "default": "rgb(98, 160, 234)",
-        "description": "Label color"
-    },
-    "fontSizeCountdown": {
-        "type": "scale",
-        "default": 35,
-        "min": 12,
-        "max": 100,
-        "step": 1,
-        "description": "Font size for the countdown text"
-    },
-    "colorCountdown": {
-        "type": "colorchooser",
-        "default": "rgb(255,255,255)",
-        "description": "Countdown color"
+    "colors-section": {
+      "type": "section",
+      "title": "Colors",
+      "keys": ["color-label", "color-countdown"]
     }
+  },
+  "label-text": {
+    "type": "entry",
+    "default": "",
+    "description": "Text for the label"
+  },
+  "scale-size": {
+    "type": "scale",
+    "default": 1.0,
+    "step": 0.1,
+    "min": 0.3,
+    "max": 3.0,
+    "description": "Desklet scale size"
+  },
+  "countdown-date": {
+    "type": "datechooser",
+    "description": "Date to which the countdown counts down",
+    "default": {
+      "d": 1,
+      "m": 1,
+      "y": 1
+    }
+  },
+  "refresh-interval": {
+    "type": "combobox",
+    "default": "only-after-starting",
+    "options": {
+      "only after starting": "only-after-starting",
+      "every 5 minutes": "5",
+      "every 10 minutes": "600",
+      "every 15 minutes": "900",
+      "every 20 minutes": "1200",
+      "every 30 minutes": "1800",
+      "every 60 minutes": "3600"
+    },
+    "description": "Refresh interval"
+  },
+  "font-size-label": {
+    "type": "scale",
+    "default": 12,
+    "min": 8,
+    "max": 100,
+    "step": 1,
+    "description": "Font size for the label text"
+  },
+  "color-label": {
+    "type": "colorchooser",
+    "default": "rgb(98, 160, 234)",
+    "description": "Label color"
+  },
+  "font-size-countdown": {
+    "type": "scale",
+    "default": 35,
+    "min": 12,
+    "max": 100,
+    "step": 1,
+    "description": "Font size for the countdown text"
+  },
+  "color-countdown": {
+    "type": "colorchooser",
+    "default": "rgb(255,255,255)",
+    "description": "Countdown color"
+  },
+  "hide-decorations": {
+    "type": "checkbox",
+    "description": "Hide decorations",
+    "default": false
+  }
 }
