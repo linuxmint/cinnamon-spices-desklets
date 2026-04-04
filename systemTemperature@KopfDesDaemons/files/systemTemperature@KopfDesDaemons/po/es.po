@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.9\n"
 
 #. metadata.json->name
 #. desklet.js:20
@@ -36,21 +36,20 @@ msgid "Style"
 msgstr "Estilo"
 
 #. settings-schema.json->temperature-section->title
-#, fuzzy
 msgid "Temperature"
-msgstr "Temperatura del sistema"
+msgstr "Temperatura"
 
 #. settings-schema.json->font-section->title
 msgid "Font"
-msgstr ""
+msgstr "Fuente"
 
 #. settings-schema.json->scale-size->description
 msgid "Desklet scale size"
-msgstr ""
+msgstr "Tamaño de escala del desklet"
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
-msgstr ""
+msgstr "Ocultar decoraciones"
 
 #. settings-schema.json->temp-file-path->description
 msgid "Path to file with temperature value (thermal zone)"
