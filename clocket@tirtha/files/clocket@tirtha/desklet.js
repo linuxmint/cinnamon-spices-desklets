@@ -25,7 +25,7 @@ if (Soup.MAJOR_VERSION == 2) {
 
 // Setup for translations
 const UUID = "clocket@tirtha";
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
 
 // Helper function for translations
 function _(str) {
@@ -232,9 +232,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
     const s = this.scaleSize;
     this._dayLabel.style = "font-size: " + fontSize(this.dateTextSize - 10) + "; color: " + this.dateAccentColor + ";";
     this._dateAndWeekdayContainer.style =
-      "background-color:" +
-      this.dateBackgroundColor +
-      `; padding: ${1 * s}em; border-radius: ${this.dateBorderRadius * s}px; margin-left: ${0.3 * s}em;`;
+      "background-color:" + this.dateBackgroundColor + `; padding: ${1 * s}em; border-radius: ${this.dateBorderRadius * s}px; margin-left: ${0.3 * s}em;`;
     this._monthAndYearLabel.style = "font-size: " + fontSize(this.dateTextSize - 20) + ";\ncolor: " + this.dateTextColor;
     this._weekLabel.style = "font-size: " + fontSize(this.dateTextSize - 16) + ";\ncolor: " + this.dateTextColor;
   }
@@ -547,8 +545,7 @@ class CinnamonClockDesklet extends Desklet.Desklet {
         locationName = this._geocodingCache.name;
       } else {
         // Request latitude and longitude for the specified city name
-        const geoUrl =
-          "https://geocoding-api.open-meteo.com/v1/search?name=" + encodeURIComponent(this.location) + "&count=1&language=en&format=json";
+        const geoUrl = "https://geocoding-api.open-meteo.com/v1/search?name=" + encodeURIComponent(this.location) + "&count=1&language=en&format=json";
         const geoData = await this._fetchJSON(geoUrl);
         if (this._isRemoved) return;
         if (geoData && geoData.results && geoData.results.length > 0) {
