@@ -1,9 +1,5 @@
 # Changelog
 
-## [1.0.0] 09.11.2024
-
-- Initial release
-
 ## [1.1.0] 04.04.2026
 
 - Features
@@ -20,3 +16,7 @@
   - Added settings cleanup
   - Kebab-case for setting names
   - Organize setting in tabs and sections
+
+## [1.0.0] 09.11.2024
+
+- Initial release
