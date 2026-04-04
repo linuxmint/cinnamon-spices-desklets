@@ -1,0 +1,138 @@
+# GITHUB CONTRIBUTION GRID
+# This file is put in the public domain.
+# KopfdesDaemons, 2025
+#
+msgid ""
+msgstr ""
+
+#. settings-schema.json->general-page->title
+msgid "General"
+msgstr ""
+
+#. settings-schema.json->block-colors-page->title
+msgid "Block colors"
+msgstr ""
+
+#. settings-schema.json->colors-section->title
+msgid "Colors"
+msgstr ""
+
+#. settings-schema.json->github-username->description
+msgid "GitHub username"
+msgstr ""
+
+#. settings-schema.json->github-token->description
+msgid "GitHub token"
+msgstr ""
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet scale size"
+msgstr ""
+
+#. settings-schema.json->show-reload-button->description
+msgid "Show reload button"
+msgstr ""
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr ""
+
+#. settings-schema.json->color-0->description
+msgid "0 Contributions"
+msgstr ""
+
+#. settings-schema.json->color-1->description
+msgid "1-3 Contributions"
+msgstr ""
+
+#. settings-schema.json->color-4->description
+msgid "4-5 Contributions"
+msgstr ""
+
+#. settings-schema.json->color-6->description
+msgid "6-8 Contributions"
+msgstr ""
+
+#. settings-schema.json->color-9->description
+msgid "9 Contributions"
+msgstr ""
+
+#. settings-schema.json->color-10->description
+msgid "10+ Contributions"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "default"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "blue-dark"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "green-dark"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "yellow-dark"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "orange-dark"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "red-dark"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "magenta-dark"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "purple-dark"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "gruvbox-dark"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "default-light"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "blue-light"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "green-light"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "yellow-light"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "orange-light"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "red-light"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "magenta-light"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "purple-light"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "gruvbox-light"
+msgstr ""
+
+#. settings-schema.json->color-preset->description
+msgid "Color preset"
+msgstr ""

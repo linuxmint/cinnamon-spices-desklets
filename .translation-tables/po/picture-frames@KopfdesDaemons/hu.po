@@ -1,0 +1,115 @@
+# PICTURE FRAMES
+# This file is put in the public domain.
+# KopfdesDaemons, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: picture-frames@KopfdesDaemons 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-10-19 11:16+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+
+#. desklet.js:40
+msgid "Picture Frame"
+msgstr "Képkeret"
+
+#. desklet.js:152
+msgid "Loading..."
+msgstr "Betöltés..."
+
+#. metadata.json->name
+msgid "Picture frames"
+msgstr "Képkeretek"
+
+#. metadata.json->description
+msgid "Displays photos in different picture frames."
+msgstr "Különböző képkeretekben jeleníti meg a fényképeket."
+
+#. settings-schema.json->head1->description
+msgid "Image Settings"
+msgstr "Képbeállítások"
+
+#. settings-schema.json->image-path->description
+msgid "Image path"
+msgstr "Kép elérési útvonala"
+
+#. settings-schema.json->image-path->tooltip
+msgid "The path of the image."
+msgstr "A kép elérési útvonala."
+
+#. settings-schema.json->size->description
+msgid "Size"
+msgstr "Méret"
+
+#. settings-schema.json->align-x->description
+msgid "Horizontal alignment"
+msgstr "Vízszintes igazítás"
+
+#. settings-schema.json->align-y->description
+msgid "Vertical alignment"
+msgstr "Függőleges igazítás"
+
+#. settings-schema.json->head2->description
+msgid "Frame Settings"
+msgstr "Keretbeállítások"
+
+#. settings-schema.json->shape->description
+msgid "Shape"
+msgstr "Alak"
+
+#. settings-schema.json->shape->options
+msgid "Circle"
+msgstr "Kör"
+
+#. settings-schema.json->shape->options
+msgid "Square"
+msgstr "Négyzet"
+
+#. settings-schema.json->shape->options
+msgid "Star"
+msgstr "Csillag"
+
+#. settings-schema.json->shape->options
+msgid "Wave"
+msgstr "Hullám"
+
+#. settings-schema.json->shape->options
+msgid "Heart"
+msgstr "Szív"
+
+#. settings-schema.json->waves-number->description
+msgid "Number of waves"
+msgstr "Hullámok száma"
+
+#. settings-schema.json->wave-depth->description
+msgid "Depth of the waves"
+msgstr "Hullámok mélysége"
+
+#. settings-schema.json->spikes-number->description
+msgid "Number of spikes"
+msgstr "Csúcsok száma"
+
+#. settings-schema.json->spikes-depth->description
+msgid "Depth of the spikes"
+msgstr "Csúcsok mélysége"
+
+#. settings-schema.json->show-border->description
+msgid "Show border"
+msgstr "Szegély megjelenítése"
+
+#. settings-schema.json->border-color->description
+msgid "Border color"
+msgstr "Szegély színe"
+
+#. settings-schema.json->border-width->description
+msgid "Border width"
+msgstr "Szegély szélessége"

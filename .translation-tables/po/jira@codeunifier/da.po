@@ -1,0 +1,109 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: jira@codeunifier 0.1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-04-29 14:50-0400\n"
+"PO-Revision-Date: 2025-11-10 17:10+0100\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"Language-Team: \n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. metadata.json->description
+msgid "This is my first desklet"
+msgstr "Dette er mit første skrivebordsprogram"
+
+#. metadata.json->name
+msgid "Jira Desklet"
+msgstr "Jira-skrivebordsprogram"
+
+#. settings-schema.json->top->description
+msgid "Jira Desklet Settings"
+msgstr "Indstillinger for Jira-skrivebordsprogram"
+
+#. settings-schema.json->accountId->description
+msgid "Account Id"
+msgstr "Konto-ID"
+
+#. settings-schema.json->accountId->tooltip
+msgid ""
+"Enter your Atlassian account id (can be viewed in the URL on your Atlassian "
+"profile page)."
+msgstr ""
+"Indtast dit konto-ID til Atlassian (kan ses i URL'en på din Atlassian-"
+"profilside)."
+
+#. settings-schema.json->accountEmail->description
+msgid "Account Email"
+msgstr "E-mailadresse"
+
+#. settings-schema.json->accountEmail->tooltip
+msgid "Enter the account email address to be used for Jira authentication."
+msgstr "Indtast den e-mailadresse, der skal bruges til Jira-godkendelse."
+
+#. settings-schema.json->apiToken->description
+msgid "API Token"
+msgstr "API-token"
+
+#. settings-schema.json->apiToken->tooltip
+msgid ""
+"Enter the API Key for your account (managed at https://id.atlassian.com/"
+"manage-profile/security/api-tokens)."
+msgstr ""
+"Indtast API-nøglen til din konto (administreres på https://id.atlassian.com/"
+"manage-profile/security/api-tokens)."
+
+#. settings-schema.json->projectBoardUrl->description
+msgid "Project Board URL"
+msgstr "Projekttavle-URL"
+
+#. settings-schema.json->projectBoardUrl->tooltip
+msgid ""
+"Enter the url for your project board (e.g. https://{atlassian domain}/jira/"
+"software/projects/{project name}/boards/{board number})."
+msgstr ""
+"Indtast URL-adressen til dit projekttavle (f.eks. https://{atlassian-domæne}/"
+"jira/software/projects/{projektnavn}/boards/{tavlenummer})."
+
+#. settings-schema.json->projectName->description
+msgid "Project Name"
+msgstr "Projektnavn"
+
+#. settings-schema.json->projectName->tooltip
+msgid "Enter the name of the Atlassian Jira Project."
+msgstr "Indtast navnet på Atlassian Jira-projektet."
+
+#. settings-schema.json->atlassianDomain->description
+msgid "Atlassian Domain"
+msgstr "Atlassian-domæne"
+
+#. settings-schema.json->atlassianDomain->tooltip
+msgid "Enter the Atlassian domain for the API (e.g. '{company}.atlassian.net')"
+msgstr ""
+"Indtast Atlassian-domænet for API'en (f.eks. “{virksomhed}.atlassian.net”)"
+
+#. settings-schema.json->transparency->description
+msgid "Transparency"
+msgstr "Gennemsigtighed"
+
+#. settings-schema.json->backgroundColor->description
+msgid "Background color"
+msgstr "Baggrundsfarve"
+
+#. settings-schema.json->backgroundColor->tooltip
+#. settings-schema.json->issueColor->tooltip
+msgid "Click the button to select a new color"
+msgstr "Klik knappen for at vælge en ny farve"
+
+#. settings-schema.json->issueColor->description
+msgid "Issue tag color"
+msgstr "Farve til problemmærkat"
