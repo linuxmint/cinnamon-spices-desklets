@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
 #. metadata.json->name
 #. desklet.js:39
@@ -52,7 +52,7 @@ msgstr "minutos"
 
 #. desklet.js:179 desklet.js:212
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 #. metadata.json->description
 msgid "Displays the current system uptime."
@@ -64,7 +64,7 @@ msgstr "Estilo"
 
 #. settings-schema.json->scale-size->description
 msgid "Desklet scale size"
-msgstr ""
+msgstr "Tamaño de escala del desklet"
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
@@ -76,11 +76,11 @@ msgstr "Color de la etiqueta"
 
 #. settings-schema.json->show-icon->description
 msgid "Show icon"
-msgstr ""
+msgstr "Mostrar icono"
 
 #. settings-schema.json->head1->description
 msgid "Value format"
-msgstr ""
+msgstr "Formato del valores"
 
 #. settings-schema.json->show-start-date->description
 msgid "Show start date"
