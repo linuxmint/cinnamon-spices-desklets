@@ -27,6 +27,8 @@ class MyDesklet extends Desklet.Desklet {
     this._isReloading = false;
 
     // Default settings
+    this.scaleSize = 1;
+    this.hideDecorations = false;
     this.labelText = "CPU temperature:";
     this.tempFilePath = "/sys/class/thermal/thermal_zone2/temp";
     this.textLabelFontSize = 12;
@@ -37,17 +39,20 @@ class MyDesklet extends Desklet.Desklet {
 
     // Bind settings properties
     this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], deskletId);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "tempFilePath", "tempFilePath", this._on_settings_changed);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "labelText", "labelText", this._on_settings_changed);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "temperatureUnit", "temperatureUnit", this._on_settings_changed);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "updateInterval", "updateInterval", this._setRefreshTimeout);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "fontSizeLabel", "textLabelFontSize", this._on_settings_changed);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "fontSizeTemperature", "temperatureLabelFontSize", this._on_settings_changed);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "dynamicColorEnabled", "dynamicColorEnabled", this._on_settings_changed);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._on_settings_changed);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this._onDecorationChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "temp-file-path", "tempFilePath", this._on_settings_changed);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "label-text", "labelText", this._on_settings_changed);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "temperature-unit", "temperatureUnit", this._on_settings_changed);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "update-interval", "updateInterval", this._setRefreshTimeout);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "font-size-label", "textLabelFontSize", this._on_settings_changed);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "font-size-temperature", "temperatureLabelFontSize", this._on_settings_changed);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "dynamic-color-enabled", "dynamicColorEnabled", this._on_settings_changed);
   }
 
   on_desklet_added_to_desktop() {
     this._setupLayout();
+    this._onDecorationChanged();
     this._updateTemperature();
     this._setRefreshTimeout();
   }
@@ -67,11 +72,17 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _updateStyles() {
-    this._textLabel.set_style(`font-size: ${this.textLabelFontSize}px;`);
+    const fontSize = size => `${(size * this.scaleSize) / 10}em`;
+    this._textLabel.set_style(`font-size: ${fontSize(this.textLabelFontSize)};`);
 
-    let tempLabelStyle = `font-size: ${this.temperatureLabelFontSize}px; font-weight: bold;`;
+    let tempLabelStyle = `font-size: ${fontSize(this.temperatureLabelFontSize)}; font-weight: bold;`;
     if (this._colorString) tempLabelStyle += ` color: ${this._colorString};`;
     this._temperatureLabel.set_style(tempLabelStyle);
+  }
+
+  _onDecorationChanged() {
+    this.metadata["prevent-decorations"] = this.hideDecorations;
+    this._updateDecoration();
   }
 
   _setupLayout() {
