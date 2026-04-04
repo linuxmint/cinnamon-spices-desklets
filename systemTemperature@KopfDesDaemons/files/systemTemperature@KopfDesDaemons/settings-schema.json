@@ -24,7 +24,7 @@
     },
     "font-section": {
       "type": "section",
-      "title": "Schrift",
+      "title": "Font",
       "keys": ["font-size-label", "font-size-temperature", "dynamic-color-enabled"]
     }
   },
