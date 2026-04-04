@@ -1,7 +1,7 @@
 # DAYS COUNTDOWN
 # This file is put in the public domain.
 # KopfDesDaemons, 2024
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: daysCountdown@KopfDesDaemons 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.9\n"
 
 #. metadata.json->name
 #. desklet.js:19
@@ -23,9 +23,9 @@ msgid "Days Countdown"
 msgstr "Cuenta regresiva de días"
 
 #. desklet.js:77
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "New Year %f Countdown"
-msgstr "Cuenta regresiva de días"
+msgstr "Cuenta regresiva para el Año Nuevo %f"
 
 #. desklet.js:98
 #, javascript-format
@@ -47,16 +47,15 @@ msgstr "Estilo"
 
 #. settings-schema.json->font-size-section->title
 msgid "Font Sizes"
-msgstr ""
+msgstr "Tamaño de la fuente"
 
 #. settings-schema.json->countdown-section->title
-#, fuzzy
 msgid "Countdown"
-msgstr "Cuenta regresiva de días"
+msgstr "Cuenta regresiva"
 
 #. settings-schema.json->colors-section->title
 msgid "Colors"
-msgstr ""
+msgstr "Colores"
 
 #. settings-schema.json->label-text->description
 msgid "Text for the label"
@@ -64,7 +63,7 @@ msgstr "Texto para la etiqueta"
 
 #. settings-schema.json->scale-size->description
 msgid "Desklet scale size"
-msgstr ""
+msgstr "Tamaño de escala del desklet"
 
 #. settings-schema.json->countdown-date->description
 msgid "Date to which the countdown counts down"
@@ -120,4 +119,4 @@ msgstr "Color de la cuenta regresiva"
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
-msgstr ""
+msgstr "Ocultar decoraciones"
