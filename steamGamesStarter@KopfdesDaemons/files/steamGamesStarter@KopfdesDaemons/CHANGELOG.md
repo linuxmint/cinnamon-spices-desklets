@@ -1,8 +1,4 @@
-changelog
-
-## [1.0.0] 11.10.2025
-
-- Initial release
+# Changelog
 
 ## [2.0.0] 17.02.2026
 
@@ -20,10 +16,14 @@ changelog
   - Added fallback to `deskletManager` for imports
   - Removed clutter
   - Moved icons to icons folder
-  - Changed desklet entry point to on_desklet_added_to_desktop
+  - Changed desklet entry point to `on_desklet_added_to_desktop`
   - Updated UI loading (games or error UI)
   - Added settings cleanup on desklet removal
   - Added UUID to logs
   - Organized settings in tabs
 - Fixes:
   - Fixed reload button size
+
+## [1.0.0] 11.10.2025
+
+- Initial release
