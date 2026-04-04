@@ -1,14 +1,5 @@
 # Changelog
 
-## [1.0.0] - 26.11.2024
-
-- Initial release
-
-## [1.0.1] - 31.07.2025
-
-- Update starttime in mainloop
-- Updated screenshot
-
 ## [2.0.0] - 06.02.2026
 
 - New features:
@@ -27,3 +18,12 @@
   - Renamed settings names
   - Split value fetching and label update logic
   - No unnecessary layout rerendering on style setting change
+
+## [1.0.1] - 31.07.2025
+
+- Update starttime in mainloop
+- Updated screenshot
+
+## [1.0.0] - 26.11.2024
+
+- Initial release
