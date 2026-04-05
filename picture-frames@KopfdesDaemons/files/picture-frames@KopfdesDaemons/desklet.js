@@ -11,7 +11,7 @@ const Cogl = imports.gi.Cogl;
 const Gio = imports.gi.Gio;
 
 const UUID = "picture-frames@KopfdesDaemons";
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
 
 function _(str) {
   return Gettext.dgettext(UUID, str);
@@ -20,30 +20,68 @@ function _(str) {
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
-    this.defaultImagePath = this.metadata.path + "/images/default.jpg";
+    this.setHeader(_("Picture Frame"));
+
+    this._defaultImagePath = this.metadata.path + "/images/default.jpg";
+    this._animationTimeoutId = null;
+    this._isReloading = false;
+
+    // Default settings
+    this.imagePath = "";
+    this.shape = "wave";
+    this.size = 250;
+    this.showBorder = true;
+    this.borderColor = "rgba(33, 170, 70, 0.5)";
+    this.borderWidth = 15;
+    this.wavesNumber = 10;
+    this.waveDepth = 5;
+    this.spikesNumber = 10;
+    this.spikesDepth = 10;
+    this.alignY = 50;
+    this.alignX = 50;
 
     // Setup settings and bind them to properties
-    const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
-    settings.bindProperty(Settings.BindingDirection.IN, "image-path", "imagePath", this._initUI.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "shape", "shape", this._initUI.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "size", "size", this._initUI.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "show-border", "showBorder", this._initUI.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "border-color", "borderColor", this._initUI.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "border-width", "borderWidth", this._initUI.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "waves-number", "wavesNumber", this._initUI.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "spikes-number", "spikesNumber", this._initUI.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "wave-depth", "waveDepth", this._initUI.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "spikes-depth", "spikesDepth", this._initUI.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "align-x", "alignX", this._initUI.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "align-y", "alignY", this._initUI.bind(this));
+    this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "image-path", "imagePath", this._initUI.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "shape", "shape", this._initUI.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "size", "size", this._initUI.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-border", "showBorder", this._initUI.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "border-color", "borderColor", this._initUI.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "border-width", "borderWidth", this._initUI.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "waves-number", "wavesNumber", this._initUI.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "spikes-number", "spikesNumber", this._initUI.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "wave-depth", "waveDepth", this._initUI.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "spikes-depth", "spikesDepth", this._initUI.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "align-x", "alignX", this._initUI.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "align-y", "alignY", this._initUI.bind(this));
+  }
 
-    this.setHeader(_("Picture Frame"));
+  on_desklet_added_to_desktop() {
     this._initUI();
   }
 
+  on_desklet_removed() {
+    if (this._animationTimeoutId) {
+      GLib.source_remove(this._animationTimeoutId);
+      this._animationTimeoutId = null;
+    }
+    if (this.settings && !this._isReloading) {
+      this.settings.finalize();
+    }
+  }
+
+  on_desklet_reloaded() {
+    this._isReloading = true;
+  }
+
   _initUI() {
+    if (this._animationTimeoutId) {
+      GLib.source_remove(this._animationTimeoutId);
+      this._animationTimeoutId = null;
+    }
+
     const mainContainer = new St.BoxLayout({ vertical: true });
-    if (!this.imagePath) this.imagePath = this.defaultImagePath;
+    if (!this.imagePath) this.imagePath = this._defaultImagePath;
 
     const size = this.size;
     const finalImagePath = decodeURIComponent(this.imagePath.replace("file://", ""));
@@ -134,7 +172,7 @@ class MyDesklet extends Desklet.Desklet {
     canvas.set_size(size, size);
     const actor = new Clutter.Actor({ width: size, height: size, content: canvas });
     const file = Gio.file_new_for_path(imagePath);
-    let pixbuf = null;
+    let iter = null;
 
     canvas.connect("draw", (canvas, cr, width, height) => {
       // Clear the canvas
@@ -144,7 +182,7 @@ class MyDesklet extends Desklet.Desklet {
       cr.restore();
       cr.setOperator(Cairo.Operator.OVER);
 
-      if (pixbuf === null) {
+      if (iter === null) {
         // Draw loading text
         cr.setSourceRGBA(1.0, 1.0, 1.0, 0.7); // Semi-transparent white
         cr.selectFontFace("sans-serif", Cairo.FontSlant.NORMAL, Cairo.FontWeight.NORMAL);
@@ -155,7 +193,8 @@ class MyDesklet extends Desklet.Desklet {
         cr.showText(text);
       } else {
         // Draw the shaped image once pixbuf is loaded
-        this._drawFinalImage(cr, pixbuf, width, height);
+        const currentPixbuf = iter.get_pixbuf();
+        this._drawFinalImage(cr, currentPixbuf, width, height);
       }
       return true;
     });
@@ -164,16 +203,36 @@ class MyDesklet extends Desklet.Desklet {
     file.read_async(GLib.PRIORITY_DEFAULT, null, (source, res) => {
       try {
         const stream = source.read_finish(res);
-        GdkPixbuf.Pixbuf.new_from_stream_async(stream, null, (source, res) => {
+        GdkPixbuf.PixbufAnimation.new_from_stream_async(stream, null, (source, res) => {
           try {
-            pixbuf = GdkPixbuf.Pixbuf.new_from_stream_finish(res);
-            canvas.invalidate(); // Force a redraw now that the pixbuf is loaded
+            const anim = GdkPixbuf.PixbufAnimation.new_from_stream_finish(res);
+            iter = anim.get_iter(null);
+
+            const updateAnimation = () => {
+              if (this._animationTimeoutId) {
+                GLib.source_remove(this._animationTimeoutId);
+                this._animationTimeoutId = null;
+              }
+              const delay = iter.get_delay_time();
+              if (delay >= 0) {
+                // -1 means static image, no animation
+                this._animationTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, delay > 0 ? delay : 100, () => {
+                  iter.advance(null);
+                  canvas.invalidate();
+                  updateAnimation(); // Loop für den nächsten Frame anstoßen
+                  return GLib.SOURCE_REMOVE;
+                });
+              }
+            };
+
+            canvas.invalidate();
+            updateAnimation();
           } catch (e) {
-            global.logError(`Error creating pixbuf from stream: ${e}`);
+            global.logError(`${UUID}: Error creating pixbuf animation from stream: ${e}`);
           }
         });
       } catch (e) {
-        global.logError(`Error reading file async: ${e}`);
+        global.logError(`${UUID}: Error reading file async: ${e}`);
       }
     });
     return actor;
@@ -225,7 +284,7 @@ class MyDesklet extends Desklet.Desklet {
         cr.stroke();
       }
     } catch (e) {
-      global.logError(`Error drawing shaped image: ${e}`);
+      global.logError(`${UUID}: Error drawing shaped image: ${e}`);
     }
   }
 
@@ -247,7 +306,7 @@ class MyDesklet extends Desklet.Desklet {
       const pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(imageFileName, requestedWidth, requestedHeight);
       return this._createActorFromPixbuf(pixBuf);
     } catch (e) {
-      global.logError(`Error loading image ${imageFileName}: ${e}`);
+      global.logError(`${UUID}: Error loading image ${imageFileName}: ${e}`);
       return new St.Label({ text: "Error" + e.message, style_class: "picture-frame-error-label" });
     }
   }
