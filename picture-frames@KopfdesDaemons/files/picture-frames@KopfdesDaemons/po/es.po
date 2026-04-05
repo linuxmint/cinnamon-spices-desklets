@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: picture-frames@KopfdesDaemons 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-10-19 11:16+0200\n"
+"POT-Creation-Date: 2026-04-05 23:38+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.8\n"
 
-#. desklet.js:40
+#. desklet.js:23
 msgid "Picture Frame"
 msgstr "Marco de fotos"
 
-#. desklet.js:152
+#. desklet.js:190
 msgid "Loading..."
 msgstr "Cargando..."
 
@@ -34,9 +34,32 @@ msgstr "Marco de fotos"
 msgid "Displays photos in different picture frames."
 msgstr "Muestra fotos en diferentes marcos de fotos."
 
-#. settings-schema.json->head1->description
-msgid "Image Settings"
-msgstr "Ajustes de imagen"
+#. settings-schema.json->image-page->title
+#, fuzzy
+msgid "Image"
+msgstr "Ruta de la imagen"
+
+#. settings-schema.json->frame-page->title
+msgid "Frame"
+msgstr ""
+
+#. settings-schema.json->image-general-section->title
+msgid "General"
+msgstr ""
+
+#. settings-schema.json->image-alignment-section->title
+msgid "Alignment"
+msgstr ""
+
+#. settings-schema.json->frame-shape-section->title
+#. settings-schema.json->shape->description
+msgid "Shape"
+msgstr "Forma"
+
+#. settings-schema.json->frame-border-section->title
+#, fuzzy
+msgid "Border"
+msgstr "Color del borde"
 
 #. settings-schema.json->image-path->description
 msgid "Image path"
@@ -57,14 +80,6 @@ msgstr "Alineación horizontal"
 #. settings-schema.json->align-y->description
 msgid "Vertical alignment"
 msgstr "Alineación vertical"
-
-#. settings-schema.json->head2->description
-msgid "Frame Settings"
-msgstr "Configuración del marco"
-
-#. settings-schema.json->shape->description
-msgid "Shape"
-msgstr "Forma"
 
 #. settings-schema.json->shape->options
 msgid "Circle"
