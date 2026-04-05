@@ -75,6 +75,9 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _initUI() {
+    this._loadId = (this._loadId || 0) + 1;
+    const currentLoadId = this._loadId;
+
     if (this._animationTimeoutId) {
       GLib.source_remove(this._animationTimeoutId);
       this._animationTimeoutId = null;
@@ -85,7 +88,7 @@ class MyDesklet extends Desklet.Desklet {
 
     const size = this.size;
     const finalImagePath = decodeURIComponent(this.imagePath.replace("file://", ""));
-    const imageActor = this._createShapedImageActor(finalImagePath, size);
+    const imageActor = this._createShapedImageActor(finalImagePath, size, currentLoadId);
 
     mainContainer.add_child(imageActor);
     this.setContent(mainContainer);
@@ -167,7 +170,7 @@ class MyDesklet extends Desklet.Desklet {
     cr.closePath();
   }
 
-  _createShapedImageActor(imagePath, size) {
+  _createShapedImageActor(imagePath, size, loadId) {
     const canvas = new Clutter.Canvas();
     canvas.set_size(size, size);
     const actor = new Clutter.Actor({ width: size, height: size, content: canvas });
@@ -201,14 +204,18 @@ class MyDesklet extends Desklet.Desklet {
     canvas.invalidate(); // Initial draw with "Loading..."
 
     file.read_async(GLib.PRIORITY_DEFAULT, null, (source, res) => {
+      // Check if this load operation is still relevant
+      if (this._loadId !== loadId) return;
       try {
         const stream = source.read_finish(res);
         GdkPixbuf.PixbufAnimation.new_from_stream_async(stream, null, (source, res) => {
+          if (this._loadId !== loadId) return;
           try {
             const anim = GdkPixbuf.PixbufAnimation.new_from_stream_finish(res);
             iter = anim.get_iter(null);
 
             const updateAnimation = () => {
+              if (this._loadId !== loadId) return;
               if (this._animationTimeoutId) {
                 GLib.source_remove(this._animationTimeoutId);
                 this._animationTimeoutId = null;
@@ -217,9 +224,10 @@ class MyDesklet extends Desklet.Desklet {
               if (delay >= 0) {
                 // -1 means static image, no animation
                 this._animationTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, delay > 0 ? delay : 100, () => {
+                  if (this._loadId !== loadId) return GLib.SOURCE_REMOVE;
                   iter.advance(null);
                   canvas.invalidate();
-                  updateAnimation(); // Loop für den nächsten Frame anstoßen
+                  updateAnimation();
                   return GLib.SOURCE_REMOVE;
                 });
               }
@@ -256,16 +264,17 @@ class MyDesklet extends Desklet.Desklet {
         newHeight = width / aspect;
       }
 
-      const scaledPixbuf = pixbuf.scale_simple(newWidth, newHeight, GdkPixbuf.InterpType.BILINEAR);
-      const pixbufWithAlpha = scaledPixbuf.add_alpha(false, 0, 0, 0);
-
       cr.save();
       this._drawShapePath(cr, this.shape, width / 2, height / 2, width / 2);
       cr.clip();
 
       const drawX = (width - newWidth) * (this.alignX / 100);
       const drawY = (height - newHeight) * (this.alignY / 100);
-      Gdk.cairo_set_source_pixbuf(cr, pixbufWithAlpha, drawX, drawY);
+
+      cr.translate(drawX, drawY);
+      cr.scale(newWidth / originalWidth, newHeight / originalHeight);
+
+      Gdk.cairo_set_source_pixbuf(cr, pixbuf, 0, 0);
       cr.paint();
       cr.restore();
 
