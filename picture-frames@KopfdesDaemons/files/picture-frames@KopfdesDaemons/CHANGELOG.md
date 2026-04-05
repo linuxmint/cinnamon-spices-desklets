@@ -10,6 +10,7 @@
   - Added UUID to error logs
   - cleanup settings in `on_desklet_removed` function
   - Added default settings to constructor
+  - organize settings in tabs and sections
 
 ## [1.0.0] 09.12.2025
 
