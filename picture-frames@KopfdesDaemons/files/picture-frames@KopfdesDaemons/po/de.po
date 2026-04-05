@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: picture-frames@KopfdesDaemons 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-10-19 11:16+0200\n"
+"POT-Creation-Date: 2026-04-05 23:38+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#. desklet.js:40
+#. desklet.js:23
 msgid "Picture Frame"
 msgstr "Bilderrahmen"
 
-#. desklet.js:152
+#. desklet.js:190
 msgid "Loading..."
 msgstr "Lade..."
 
@@ -34,9 +34,30 @@ msgstr "Bilderrahmen"
 msgid "Displays photos in different picture frames."
 msgstr "Zeigt Bilder in verschiedenen Bilderrahmen an."
 
-#. settings-schema.json->head1->description
-msgid "Image Settings"
-msgstr "Bildeinstellungen"
+#. settings-schema.json->image-page->title
+msgid "Image"
+msgstr "Bild"
+
+#. settings-schema.json->frame-page->title
+msgid "Frame"
+msgstr "Rahmen"
+
+#. settings-schema.json->image-general-section->title
+msgid "General"
+msgstr "Allgemein"
+
+#. settings-schema.json->image-alignment-section->title
+msgid "Alignment"
+msgstr "Ausrichtung"
+
+#. settings-schema.json->frame-shape-section->title
+#. settings-schema.json->shape->description
+msgid "Shape"
+msgstr "Form"
+
+#. settings-schema.json->frame-border-section->title
+msgid "Border"
+msgstr "Rand"
 
 #. settings-schema.json->image-path->description
 msgid "Image path"
@@ -57,14 +78,6 @@ msgstr "Horizontale Ausrichtung"
 #. settings-schema.json->align-y->description
 msgid "Vertical alignment"
 msgstr "Vertikale Ausrichtung"
-
-#. settings-schema.json->head2->description
-msgid "Frame Settings"
-msgstr "Rahmeneinstellungen"
-
-#. settings-schema.json->shape->description
-msgid "Shape"
-msgstr "Form"
 
 #. settings-schema.json->shape->options
 msgid "Circle"
