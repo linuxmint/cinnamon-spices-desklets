@@ -1,0 +1,111 @@
+/* Trading Positions Desklet Stylesheet */
+
+.trading-desklet {
+    padding: 10px 12px 8px 12px;
+    spacing: 3px;
+    min-width: 400px;
+    background-color: rgba(15, 20, 28, 0.88);
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+/* ---- Header ---- */
+.desklet-header-row {
+    spacing: 10px;
+    padding-bottom: 4px;
+}
+.desklet-logo {
+    icon-size: 32px;
+}
+.desklet-title-box {
+    spacing: 0px;
+}
+.desklet-title {
+    color: #ffffff;
+    font-weight: bold;
+}
+.desklet-subtitle {
+    color: #8aaac0;
+}
+
+/* ---- Separatoren ---- */
+.separator {
+    color: #2a3a4a;
+    font-size: 9px;
+    padding: 1px 0;
+}
+.separator-thin {
+    color: #243040;
+    font-size: 9px;
+}
+
+/* ---- Content-Bereich ---- */
+.desklet-content {
+    spacing: 2px;
+    padding: 4px 0;
+}
+
+/* ---- Status / Empty ---- */
+.status-label,
+.no-positions-label {
+    color: #aabccc;
+    font-size: 12px;
+    padding: 6px 0;
+}
+
+/* ---- Gesamt-PnL ---- */
+.total-row {
+    padding: 2px 0;
+}
+.total-label {
+    font-weight: bold;
+}
+
+/* ---- Positions-Header ---- */
+.header-row {
+    spacing: 0px;
+    padding: 2px 0 1px 0;
+}
+.header-cell {
+    color: #7a9ab8;
+    font-weight: bold;
+}
+
+/* ---- Positions-Zeilen ---- */
+.position-row {
+    spacing: 0px;
+    padding: 2px 0;
+}
+
+.symbol-cell {
+    color: #ffffff;
+    font-weight: bold;
+}
+.side-cell {
+    font-weight: bold;
+}
+.side-long  { color: #2ecc71; }
+.side-short { color: #e74c3c; }
+
+.leverage-cell {
+    color: #c0d0e0;
+}
+.price-cell {
+    color: #d0e0f0;
+}
+.pnl-cell {
+    font-weight: bold;
+}
+.pnl-profit { color: #2ecc71; }
+.pnl-loss   { color: #e74c3c; }
+
+/* ---- Fußzeile ---- */
+.desklet-footer {
+    padding-top: 3px;
+}
+.footer-time {
+    color: #7a9ab8;
+}
+.footer-right {
+    color: #6a8aaa;
+}
