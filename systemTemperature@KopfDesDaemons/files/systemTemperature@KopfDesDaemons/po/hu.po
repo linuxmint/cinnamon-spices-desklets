@@ -37,21 +37,20 @@ msgid "Style"
 msgstr "Stílus"
 
 #. settings-schema.json->temperature-section->title
-#, fuzzy
 msgid "Temperature"
-msgstr "Rendszerhőmérséklet"
+msgstr "Hőmérséklet"
 
 #. settings-schema.json->font-section->title
 msgid "Font"
-msgstr ""
+msgstr "Betűtípus"
 
 #. settings-schema.json->scale-size->description
 msgid "Desklet scale size"
-msgstr ""
+msgstr "Asztalkalmazás mérete"
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
-msgstr ""
+msgstr "Dekorációk elrejtése"
 
 #. settings-schema.json->temp-file-path->description
 msgid "Path to file with temperature value (thermal zone)"

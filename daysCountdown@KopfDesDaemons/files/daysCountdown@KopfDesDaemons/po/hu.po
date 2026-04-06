@@ -1,7 +1,7 @@
 # DAYS COUNTDOWN
 # This file is put in the public domain.
 # KopfDesDaemons, 2024
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
@@ -24,9 +24,9 @@ msgid "Days Countdown"
 msgstr "Napok visszaszámlálása"
 
 #. desklet.js:77
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "New Year %f Countdown"
-msgstr "Napok visszaszámlálása"
+msgstr "Újévi %f visszaszámlálás"
 
 #. desklet.js:98
 #, javascript-format
@@ -48,16 +48,15 @@ msgstr "Stílus"
 
 #. settings-schema.json->font-size-section->title
 msgid "Font Sizes"
-msgstr ""
+msgstr "Betűméretek"
 
 #. settings-schema.json->countdown-section->title
-#, fuzzy
 msgid "Countdown"
-msgstr "Napok visszaszámlálása"
+msgstr "Visszaszámlálás"
 
 #. settings-schema.json->colors-section->title
 msgid "Colors"
-msgstr ""
+msgstr "Színek"
 
 #. settings-schema.json->label-text->description
 msgid "Text for the label"
@@ -65,7 +64,7 @@ msgstr "Szöveg a címkéhez"
 
 #. settings-schema.json->scale-size->description
 msgid "Desklet scale size"
-msgstr ""
+msgstr "Asztalkalmazás mérete"
 
 #. settings-schema.json->countdown-date->description
 msgid "Date to which the countdown counts down"
@@ -121,4 +120,4 @@ msgstr "Visszaszámláló színe"
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
-msgstr ""
+msgstr "Dekorációk elrejtése"
