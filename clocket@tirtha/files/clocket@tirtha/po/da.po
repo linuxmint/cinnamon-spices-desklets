@@ -9,8 +9,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2026-02-15 14:25+0100\n"
-"PO-Revision-Date: 2025-10-30 19:57+0100\n"
-"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"PO-Revision-Date: 2026-04-06 15:03+0200\n"
+"Last-Translator: Alan Mortensen <over.tackiness223@passinbox.com>\n"
 "Language-Team: \n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -30,138 +30,137 @@ msgstr "Indstillinger for dato og tid"
 #. desklet.js:497 desklet.js:498 desklet.js:499 desklet.js:500 desklet.js:501
 #. desklet.js:502 desklet.js:503 desklet.js:504 desklet.js:505
 msgid "Error"
-msgstr ""
+msgstr "Fejl"
 
 #. desklet.js:661
 msgid "Clear sky"
-msgstr ""
+msgstr "Skyfrit"
 
 #. desklet.js:662
 msgid "Mainly clear"
-msgstr ""
+msgstr "Overvejende klart"
 
 #. desklet.js:663
 msgid "Partly cloudy"
-msgstr ""
+msgstr "Delvist skyet"
 
 #. desklet.js:664
 msgid "Overcast"
-msgstr ""
+msgstr "Overskyet"
 
 #. desklet.js:665
 msgid "Fog"
-msgstr ""
+msgstr "Tåget"
 
 #. desklet.js:666
 msgid "Depositing rime fog"
-msgstr ""
+msgstr "Aflejring af rimtåge"
 
 #. desklet.js:667
 msgid "Light drizzle"
-msgstr ""
+msgstr "Let støvregn"
 
 #. desklet.js:668
 msgid "Moderate drizzle"
-msgstr ""
+msgstr "Moderat støvregn"
 
 #. desklet.js:669
 msgid "Dense drizzle"
-msgstr ""
+msgstr "Tung støvregn"
 
 #. desklet.js:670
 msgid "Light freezing drizzle"
-msgstr ""
+msgstr "Let isslag"
 
 #. desklet.js:671
 msgid "Dense freezing drizzle"
-msgstr ""
+msgstr "Kraftigt isslag"
 
 #. desklet.js:672
 msgid "Slight rain"
-msgstr ""
+msgstr "Let regn"
 
 #. desklet.js:673
 msgid "Moderate rain"
-msgstr ""
+msgstr "Moderat regn"
 
 #. desklet.js:674
 msgid "Heavy rain"
-msgstr ""
+msgstr "Kraftig regn"
 
 #. desklet.js:675
 msgid "Light freezing rain"
-msgstr ""
+msgstr "Let isslag"
 
 #. desklet.js:676
 msgid "Heavy freezing rain"
-msgstr ""
+msgstr "Kraftigt isslag"
 
 #. desklet.js:677
 msgid "Slight snow fall"
-msgstr ""
+msgstr "Let snefald"
 
 #. desklet.js:678
 msgid "Moderate snow fall"
-msgstr ""
+msgstr "Moderat snefald"
 
 #. desklet.js:679
 msgid "Heavy snow fall"
-msgstr ""
+msgstr "Kraftigt snefald"
 
 #. desklet.js:680
 msgid "Snow grains"
-msgstr ""
+msgstr "Snekorn"
 
 #. desklet.js:681
 msgid "Slight rain showers"
-msgstr ""
+msgstr "Lette regnbyger"
 
 #. desklet.js:682
 msgid "Moderate rain showers"
-msgstr ""
+msgstr "Moderate regnbyger"
 
 #. desklet.js:683
 msgid "Violent rain showers"
-msgstr ""
+msgstr "Voldsomme regnbyger"
 
 #. desklet.js:684
 msgid "Slight snow showers"
-msgstr ""
+msgstr "Lette snebyger"
 
 #. desklet.js:685
 msgid "Heavy snow showers"
-msgstr ""
+msgstr "Kraftige snebyger"
 
 #. desklet.js:686
 msgid "Thunderstorm"
-msgstr ""
+msgstr "Tordenvejr"
 
 #. desklet.js:687
 msgid "Thunderstorm with slight hail"
-msgstr ""
+msgstr "Tordenvejr med let hagl"
 
 #. desklet.js:688
 msgid "Thunderstorm with heavy hail"
-msgstr ""
+msgstr "Tordenvejr med kraftig hagl"
 
 #. desklet.js:690
 msgid "Unknown description"
-msgstr ""
+msgstr "Ukendt beskrivelse"
 
 #. desklet.js:814 desklet.js:821 desklet.js:825
 msgid "Loading..."
-msgstr ""
+msgstr "Indlæser …"
 
 #. desklet.js:819 desklet.js:844
 msgid "Reload weather data"
-msgstr ""
+msgstr "Genindlæs vejrdata"
 
 #. metadata.json->name
 msgid "clocket"
 msgstr "clocket"
 
 #. metadata.json->description
-#, fuzzy
 msgid ""
 "A desklet that displays the time, date, currently and forecast weather report"
 msgstr ""
@@ -170,81 +169,79 @@ msgstr ""
 #. settings-schema.json->general-page->title
 #. settings-schema.json->general-section->title
 msgid "General"
-msgstr ""
+msgstr "Generelt"
 
 #. settings-schema.json->weather-page->title
 msgid "Weather"
-msgstr ""
+msgstr "Vejr"
 
 #. settings-schema.json->date-page->title
 msgid "Date"
-msgstr ""
+msgstr "Dato"
 
 #. settings-schema.json->weather-data-section->title
-#, fuzzy
 msgid "Weather data"
-msgstr "Vælg datatjenesten"
+msgstr "Vejrdata"
 
 #. settings-schema.json->clock-style-section->title
-#, fuzzy
 msgid "Clock style"
-msgstr "Ur"
+msgstr "Urstil"
 
 #. settings-schema.json->date-style-section->title
 msgid "Date style"
-msgstr ""
+msgstr "Datostil"
 
 #. settings-schema.json->weather-style-section->title
 msgid "Weather style"
-msgstr ""
+msgstr "Vejrstil"
 
 #. settings-schema.json->scale-size->description
 msgid "Desklet scale size"
-msgstr ""
+msgstr "Skalering"
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
-msgstr ""
+msgstr "Skjul boks rundt om skrivebordsprogrammet"
 
 #. settings-schema.json->style-preset->description
 msgid "Style Preset"
-msgstr ""
+msgstr "Stilforudindstilling"
 
 #. settings-schema.json->style-preset->options
 msgid "Translucent"
-msgstr ""
+msgstr "Gennemskinnelig"
 
 #. settings-schema.json->style-preset->options
 msgid "Transparent"
-msgstr ""
+msgstr "Gennemsigtig"
 
 #. settings-schema.json->style-preset->options
 msgid "Material Design"
-msgstr ""
+msgstr "Materialedesign"
 
 #. settings-schema.json->style-preset->options
 msgid "Metro"
-msgstr ""
+msgstr "Metro"
 
 #. settings-schema.json->style-preset->options
 msgid "Mint"
-msgstr ""
+msgstr "Mint"
 
 #. settings-schema.json->show-weather-data->description
 msgid "Show weather"
-msgstr ""
+msgstr "Vis vejret"
 
 #. settings-schema.json->temperature-unit->description
 msgid "Units for weather data"
-msgstr ""
+msgstr "Enheder for vejrdata"
 
 #. settings-schema.json->temperature-unit->options
 msgid "°C"
-msgstr ""
+msgstr "°C"
 
 #. settings-schema.json->temperature-unit->options
 msgid "°F"
-msgstr ""
+msgstr "°F"
 
 #. settings-schema.json->webservice->description
 msgid "Data service"
@@ -252,7 +249,7 @@ msgstr "Datatjeneste"
 
 #. settings-schema.json->webservice->options
 msgid "Open-Meteo"
-msgstr ""
+msgstr "Open-Meteo"
 
 #. settings-schema.json->webservice->options
 msgid "Open Weather Map Free (requires API key)"
@@ -260,7 +257,7 @@ msgstr "Open Weather Map Free (requires API key)"
 
 #. settings-schema.json->api-key->description
 msgid "API key"
-msgstr ""
+msgstr "API-nøgle"
 
 #. settings-schema.json->location-type->description
 msgid "Type of location data"
@@ -276,40 +273,39 @@ msgstr "Læng-bred"
 
 #. settings-schema.json->location-type->options
 msgid "Automatic"
-msgstr ""
+msgstr "Automatisk"
 
 #. settings-schema.json->location->description
 msgid "Location (city name or lat-lon)"
-msgstr ""
+msgstr "Lokation (bynavn eller læng-bred)"
 
 #. settings-schema.json->location->tooltip
 msgid "city name (e.g. London) or lat-lon (e.g. 51.5074456,-0.1277653)"
-msgstr ""
+msgstr "bynavn (f.eks. London) eller læng-bred (f.eks. 51.5074456,-0.1277653)"
 
 #. settings-schema.json->weather-refresh-interval->units
 msgid "minutes"
-msgstr ""
+msgstr "minutter"
 
 #. settings-schema.json->weather-refresh-interval->description
-#, fuzzy
 msgid "Weather data refresh interval"
-msgstr "Vælg datatjenesten"
+msgstr "Opdateringsinterval for vejrdata"
 
 #. settings-schema.json->show-clock->description
 msgid "Show clock"
-msgstr ""
+msgstr "Vis ur"
 
 #. settings-schema.json->use-custom-time-string->description
 msgid "Use custom time string"
-msgstr ""
+msgstr "Anvend brugerdefineret tidsstreng"
 
 #. settings-schema.json->custom-time-string->description
 msgid "Custom time string (strftime format)"
-msgstr ""
+msgstr "Brugerdefineret tidsstreng (strftime-format)"
 
 #. settings-schema.json->time-format-button->description
 msgid "Show information on time format syntax"
-msgstr ""
+msgstr "Vis information om tidsformatsyntaks"
 
 #. settings-schema.json->clock-font-size->units
 #. settings-schema.json->clock-border-radius->units
@@ -322,87 +318,77 @@ msgid "px"
 msgstr "px"
 
 #. settings-schema.json->clock-font-size->description
-#, fuzzy
 msgid "Clock font size"
-msgstr "Skrifttypestørrelse"
+msgstr "Skriftstørrelse for ur"
 
 #. settings-schema.json->clock-text-color->description
 msgid "Text color"
 msgstr "Tekstfarve"
 
 #. settings-schema.json->clock-background-color->description
-#, fuzzy
 msgid "Clock background color"
-msgstr "baggrundsfarve"
+msgstr "Urets baggrundsfarve"
 
 #. settings-schema.json->clock-border-radius->description
 msgid "Clock border radius"
-msgstr ""
+msgstr "Urets kantradius"
 
 #. settings-schema.json->show-date->description
 msgid "Show date"
-msgstr ""
+msgstr "Vis dato"
 
 #. settings-schema.json->use-date-time-string->description
 msgid "Use custom date string"
-msgstr ""
+msgstr "Anvend brugerdefineret datostreng"
 
 #. settings-schema.json->custom-date-string->description
 msgid "Custom date string (strftime format)"
-msgstr ""
+msgstr "Brugerdefineret datostreng (strftime-format)"
 
 #. settings-schema.json->date-format-button->description
 msgid "Show information on date format syntax"
-msgstr ""
+msgstr "Vis information om datoformatsyntaks"
 
 #. settings-schema.json->date-font-size->description
-#, fuzzy
 msgid "Date font size"
-msgstr "Skrifttypestørrelse"
+msgstr "Skriftstørrelse for dato"
 
 #. settings-schema.json->date-text-color->description
-#, fuzzy
 msgid "Date text color"
-msgstr "Tekstfarve for vejret"
+msgstr "Tekstfarve for dato"
 
 #. settings-schema.json->date-accent-color->description
-#, fuzzy
 msgid "Date accent color"
-msgstr "Tekstfarve for vejret"
+msgstr "Fremhævningsfarve for dato"
 
 #. settings-schema.json->date-background-color->description
-#, fuzzy
 msgid "Date background color"
-msgstr "baggrundsfarve"
+msgstr "Datoens baggrundsfarve"
 
 #. settings-schema.json->date-border-radius->description
 msgid "Date border radius"
-msgstr ""
+msgstr "Datoens kantradius"
 
 #. settings-schema.json->weather-font-size->description
-#, fuzzy
 msgid "Weather font size"
-msgstr "Vælg datatjenesten"
+msgstr "Skriftstørrelse for vejr"
 
 #. settings-schema.json->weather-text-color->description
-#, fuzzy
 msgid "Weather text color"
-msgstr "Tekstfarve for vejret"
+msgstr "Tekstfarve for vejr"
 
 #. settings-schema.json->weather-background-color->description
-#, fuzzy
 msgid "Weather background color"
-msgstr "baggrundsfarve"
+msgstr "Vejrets baggrundsfarve"
 
 #. settings-schema.json->weather-forecast-background-color->description
-#, fuzzy
 msgid "Weather forecast background color"
-msgstr "baggrundsfarve"
+msgstr "Vejrudsigtens baggrundsfarve"
 
 #. settings-schema.json->weather-border-radius->description
 msgid "Weather border radius"
-msgstr ""
+msgstr "Vejrets kantradius"
 
 #. settings-schema.json->weather-forecast-border-radius->description
 msgid "Weather forecast border radius"
-msgstr ""
+msgstr "Vejrudsigtens kantradius"
