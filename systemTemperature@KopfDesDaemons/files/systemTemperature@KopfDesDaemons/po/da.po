@@ -10,7 +10,7 @@ msgstr ""
 "issues\n"
 "POT-Creation-Date: 2026-04-04 11:26+0200\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"Last-Translator: Alan Mortensen <over.tackiness223@passinbox.com>\n"
 "Language-Team: \n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -37,21 +37,20 @@ msgid "Style"
 msgstr "Stil"
 
 #. settings-schema.json->temperature-section->title
-#, fuzzy
 msgid "Temperature"
-msgstr "Systemtemperatur"
+msgstr "Temperatur"
 
 #. settings-schema.json->font-section->title
 msgid "Font"
-msgstr ""
+msgstr "Skrifttype"
 
 #. settings-schema.json->scale-size->description
 msgid "Desklet scale size"
-msgstr ""
+msgstr "Skalering"
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
-msgstr ""
+msgstr "Skjul boks rundt om skrivebordsprogrammet"
 
 #. settings-schema.json->temp-file-path->description
 msgid "Path to file with temperature value (thermal zone)"
