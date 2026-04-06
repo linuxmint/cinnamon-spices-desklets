@@ -1,174 +1,252 @@
 const Desklet = imports.ui.desklet;
-const Lang = imports.lang;
 const St = imports.gi.St;
 const Mainloop = imports.mainloop;
 const GLib = imports.gi.GLib;
 const Settings = imports.ui.settings;
+const Gio = imports.gi.Gio;
 const Gettext = imports.gettext;
-const Clutter = imports.gi.Clutter;
-const GdkPixbuf = imports.gi.GdkPixbuf;
-const Cogl = imports.gi.Cogl;
+const ByteArray = imports.byteArray;
 
 const UUID = "systemUptime@KopfDesDaemons";
 
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
 
 function _(str) {
   return Gettext.dgettext(UUID, str);
 }
 
+function getFileContents(path) {
+  return new Promise((resolve, reject) => {
+    const file = Gio.File.new_for_path(path);
+    file.load_contents_async(null, (obj, res) => {
+      try {
+        const [success, contents] = obj.load_contents_finish(res);
+        if (success) {
+          resolve(contents);
+        } else {
+          reject(new Error(`Could not read ${path}`));
+        }
+      } catch (e) {
+        reject(e);
+      }
+    });
+  });
+}
+
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
+    this.setHeader(_("System Uptime"));
 
-    this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
+    this._refreshTimeoutId = null;
+    this._isReloading = false;
+    this._startTimeLabel = null;
+    this._startupValue = null;
+    this._uptimeLabel = null;
+    this._uptimeValue = null;
+    this._clockIcon = null;
+    this._iconBox = null;
+    this._currentUptimeText = "";
+    this._currentStartupText = "";
+
+    // Listen for changes in the system clock format (12h/24h)
+    this._desktop_settings = new Gio.Settings({ schema_id: "org.cinnamon.desktop.interface" });
+    this._clockSettingsId = this._desktop_settings.connect("changed::clock-use-24h", () => this._updateValues());
+
+    // Default settings values
+    this.scaleSize = 1;
+    this.labelColor = "rgb(51, 209, 122)";
+    this.showStartDate = false;
+    this.showUptimeInDays = false;
+    this.hideDecorations = true;
+    this.showIcon = true;
 
     // Bind settings properties
-    this.settings.bindProperty(Settings.BindingDirection.IN, "fontSize", "fontSize", this.onSettingsChanged.bind(this));
-    this.settings.bindProperty(Settings.BindingDirection.IN, "colorLabel", "colorLabel", this.onSettingsChanged.bind(this));
-    this.settings.bindProperty(Settings.BindingDirection.IN, "showStartDate", "showStartDate", this.onSettingsChanged.bind(this));
-    this.settings.bindProperty(Settings.BindingDirection.IN, "showUptimeInDays", "showUptimeInDays", this.onSettingsChanged.bind(this));
-    this.settings.bindProperty(Settings.BindingDirection.IN, "hideDecorations", "hideDecorations", this.updateDecoration.bind(this));
-
-    this.fontSize = this.settings.getValue("fontSize") || 20;
-    this.colorLabel = this.settings.getValue("colorLabel") || "rgb(51, 209, 122)";
-    this._timeout = null;
-
-    this.setHeader(_("System Uptime"));
-    this.updateDecoration();
-    this.setupLayout();
-    this.updateValues();
+    this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._setStyles);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "label-color", "labelColor", this._setStyles);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-start-date", "showStartDate", this._updateValues);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-uptime-in-days", "showUptimeInDays", this._updateValues);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this._onDecorationChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-icon", "showIcon", this._onShowIconChanged);
   }
 
-  setupLayout() {
-    // Create labels for uptime
-    this.uptimeLabel = this.createLabel(_("Uptime:") + " ", this.colorLabel);
-    this.uptimeValue = this.createLabel(_("Loading..."));
+  async on_desklet_added_to_desktop() {
+    this._onDecorationChanged();
+    await this._updateValues();
+    this._setupLayout();
+    this._setStyles();
+    this._setRefreshTimeout();
+  }
 
-    const uptimeRow = this.createRow([this.uptimeLabel, this.uptimeValue]);
+  on_desklet_removed() {
+    if (this._refreshTimeoutId) {
+      Mainloop.source_remove(this._refreshTimeoutId);
+      this._refreshTimeoutId = null;
+    }
+    if (this._clockSettingsId) {
+      this._desktop_settings.disconnect(this._clockSettingsId);
+      this._clockSettingsId = 0;
+    }
+    if (this.settings && !this._isReloading) {
+      this.settings.finalize();
+    }
+  }
+
+  on_desklet_reloaded() {
+    this._isReloading = true;
+  }
+
+  _setupLayout() {
+    // Create labels for uptime
+    this._uptimeLabel = new St.Label({ text: _("Uptime:") + " " });
+    this._uptimeValue = new St.Label({ text: this._currentUptimeText });
+
+    const uptimeRow = new St.BoxLayout();
+    uptimeRow.add_child(this._uptimeLabel);
+    uptimeRow.add_child(this._uptimeValue);
 
     // Create labels for startup time
-    this.startTimeLabel = this.createLabel(_("Start time:") + " ", this.colorLabel);
-    this.startupValue = this.createLabel(_("Loading..."));
+    this._startTimeLabel = new St.Label({ text: _("Start time:") + " " });
+    this._startupValue = new St.Label({ text: this._currentStartupText });
 
-    const startupRow = this.createRow([this.startTimeLabel, this.startupValue]);
+    const startupRow = new St.BoxLayout();
+    startupRow.add_child(this._startTimeLabel);
+    startupRow.add_child(this._startupValue);
 
     // Combine all into the main container
-    const contentBox = new St.BoxLayout({ vertical: true });
-    contentBox.set_style("margin-left: 0.5em;");
-    contentBox.add_child(startupRow);
-    contentBox.add_child(uptimeRow);
+    const labelBox = new St.BoxLayout({ vertical: true, y_align: St.Align.MIDDLE });
+    labelBox.set_style("margin-left: 0.5em;");
+    labelBox.add_child(startupRow);
+    labelBox.add_child(uptimeRow);
 
-    this.container = new St.BoxLayout();
-    this.container.add_child(contentBox);
+    const container = new St.BoxLayout({ y_align: St.Align.MIDDLE });
 
-    Mainloop.idle_add(() => {
-      const computedHeight = contentBox.get_height();
+    if (this.showIcon) {
+      this._clockIcon = new St.Icon({
+        gicon: Gio.icon_new_for_string(`${this.metadata.path}/icons/clock.svg`),
+        icon_size: 5 * 16 * this.scaleSize,
+      });
+      this._iconBox = new St.Bin({ child: this._clockIcon });
+      container.add_child(this._iconBox);
+    }
 
-      const clockIcon = this.getImageAtScale(`${this.metadata.path}/clock.svg`, computedHeight, computedHeight);
+    container.add_child(labelBox);
 
-      this.container.insert_child_below(clockIcon, contentBox);
-      clockIcon.queue_relayout();
-
-      return false;
-    });
-
-    this.setContent(this.container);
+    this.setContent(container);
   }
 
-  createLabel(text, color = "inherit") {
-    return new St.Label({
-      text,
-      y_align: St.Align.START,
-      style: `font-size: ${this.fontSize}px; color: ${color};`,
-    });
+  _setStyles() {
+    const valueStyle = `font-size: ${1.5 * this.scaleSize}em;`;
+    const labelStyle = `${valueStyle} color: ${this.labelColor};`;
+    const iconStyle = `width: ${3 * this.scaleSize}em; height: ${3 * this.scaleSize}em;`;
+
+    // Uptime
+    this._uptimeLabel.set_style(labelStyle);
+    this._startTimeLabel.set_style(labelStyle);
+
+    // Values
+    this._uptimeValue.set_style(valueStyle);
+    this._startupValue.set_style(valueStyle);
+
+    // Icon
+    this._clockIcon.set_style(iconStyle);
+    this._iconBox.set_style(iconStyle);
   }
 
-  createRow(children) {
-    const row = new St.BoxLayout();
-    children.forEach(child => row.add_child(child));
-    return row;
-  }
-
-  updateUptime() {
-    let uptimeInSeconds = 0;
+  async _fetchUptimeText() {
     try {
-      const [result, out] = GLib.spawn_command_line_sync("awk '{print $1}' /proc/uptime");
-      if (!result || !out) throw new Error("Could not get system uptime.");
-      uptimeInSeconds = parseFloat(out.toString().trim());
+      // Read uptime in seconds from /proc/uptime
+      const contents = await getFileContents("/proc/uptime");
+      const uptimeInSeconds = parseFloat(ByteArray.toString(contents).split(" ")[0]);
 
       if (this.showUptimeInDays) {
+        // Convert uptime to days, hours, and minutes
         const days = Math.floor(uptimeInSeconds / 86400);
         const hours = Math.floor((uptimeInSeconds % 86400) / 3600);
         const minutes = Math.floor(((uptimeInSeconds % 86400) % 3600) / 60);
 
-        this.uptimeValue.set_text(`${days} ${_("days")} ${hours} ${_("hrs")} ${minutes} ${_("min")}`);
+        return `${days} ${_("days")} ${hours} ${_("hrs")} ${minutes} ${_("min")}`;
       } else {
+        // Hours can be more than 24
         const hours = Math.floor(uptimeInSeconds / 3600);
         const minutes = Math.floor((uptimeInSeconds % 3600) / 60);
 
-        this.uptimeValue.set_text(`${hours} ${_("hours")} ${minutes} ${_("minutes")}`);
+        return `${hours} ${_("hours")} ${minutes} ${_("minutes")}`;
       }
     } catch (error) {
-      this.uptimeValue.set_text("Error");
-      global.logError(`${UUID}: ${error.message}`);
+      global.logError(`${UUID} Error: ${error.message}`);
+      return _("Error");
     }
   }
 
-  getStartupTime() {
+  async _fetchStartupTimeText() {
     try {
-      const [result, out] = GLib.spawn_command_line_sync("uptime -s");
-      if (!result || !out) throw new Error("Could not get system startup time.");
+      // Read startup time from /proc/stat (btime)
+      const contents = await getFileContents("/proc/stat");
 
-      const dateTime = out.toString().split(" ");
-      const date = dateTime[0].split("-");
+      // Search for the line starting with "btime " and parse the timestamp
+      const lines = ByteArray.toString(contents).split("\n");
+      let btime = 0;
+      for (const line of lines) {
+        if (line.startsWith("btime ")) {
+          btime = parseInt(line.split(/\s+/)[1]);
+          break;
+        }
+      }
+      if (!btime) throw new Error("Could not get system startup time.");
+
+      const dateTime = GLib.DateTime.new_from_unix_local(btime);
+      const use24h = this._desktop_settings.get_boolean("clock-use-24h");
+      const timeFormat = use24h ? "%H:%M" : "%-l:%M %p";
 
       if (this.showStartDate) {
-        this.startupValue.set_text(date[2] + "." + date[1] + "." + date[0] + ", " + dateTime[1].trim());
+        // Show date and time
+        return dateTime.format("%x") + ", " + dateTime.format(timeFormat);
       } else {
-        this.startupValue.set_text(dateTime[1].trim());
+        // Show only time
+        return dateTime.format(timeFormat);
       }
     } catch (error) {
-      this.startupValue.set_text("Error");
       global.logError(`${UUID}: ${error.message}`);
+      return _("Error");
     }
   }
 
-  updateValues() {
-    this.updateUptime();
-    this.getStartupTime();
-    if (this._timeout) Mainloop.source_remove(this._timeout);
-    this._timeout = Mainloop.timeout_add_seconds(60, () => this.updateValues());
+  async _updateUptime() {
+    this._currentUptimeText = await this._fetchUptimeText();
+    if (this._uptimeValue) {
+      this._uptimeValue.set_text(this._currentUptimeText);
+    }
   }
 
-  onSettingsChanged() {
-    this.setupLayout();
-    this.updateValues();
+  async _updateStartupTime() {
+    this._currentStartupText = await this._fetchStartupTimeText();
+    if (this._startupValue) {
+      this._startupValue.set_text(this._currentStartupText);
+    }
   }
 
-  updateDecoration() {
+  async _updateValues() {
+    await this._updateStartupTime();
+    await this._updateUptime();
+  }
+
+  _setRefreshTimeout() {
+    this._refreshTimeoutId = Mainloop.timeout_add_seconds(60, () => {
+      this._updateValues();
+      return true;
+    });
+  }
+
+  _onDecorationChanged() {
     this.metadata["prevent-decorations"] = this.hideDecorations;
     this._updateDecoration();
   }
 
-  on_desklet_removed() {
-    if (this._timeout) Mainloop.source_remove(this._timeout);
-  }
-
-  getImageAtScale(imageFileName, width, height) {
-    const pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(imageFileName, width, height);
-    const image = new Clutter.Image();
-    image.set_data(
-      pixBuf.get_pixels(),
-      pixBuf.get_has_alpha() ? Cogl.PixelFormat.RGBA_8888 : Cogl.PixelFormat.RGBA_888,
-      width,
-      height,
-      pixBuf.get_rowstride()
-    );
-
-    const actor = new Clutter.Actor({ width, height });
-    actor.set_content(image);
-    return actor;
+  _onShowIconChanged() {
+    this._setupLayout();
+    this._setStyles();
   }
 }
 

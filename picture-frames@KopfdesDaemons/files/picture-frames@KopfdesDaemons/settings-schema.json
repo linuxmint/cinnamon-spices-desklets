@@ -1,7 +1,37 @@
 {
-  "head1": {
-    "type": "header",
-    "description": "Image Settings"
+  "layout": {
+    "type": "layout",
+    "pages": ["image-page", "frame-page"],
+    "image-page": {
+      "type": "page",
+      "title": "Image",
+      "sections": ["image-general-section", "image-alignment-section"]
+    },
+    "frame-page": {
+      "type": "page",
+      "title": "Frame",
+      "sections": ["frame-shape-section", "frame-border-section"]
+    },
+    "image-general-section": {
+      "type": "section",
+      "title": "General",
+      "keys": ["image-path", "size"]
+    },
+    "image-alignment-section": {
+      "type": "section",
+      "title": "Alignment",
+      "keys": ["align-x", "align-y"]
+    },
+    "frame-shape-section": {
+      "type": "section",
+      "title": "Shape",
+      "keys": ["shape", "waves-number", "wave-depth", "spikes-number", "spikes-depth"]
+    },
+    "frame-border-section": {
+      "type": "section",
+      "title": "Border",
+      "keys": ["show-border", "border-color", "border-width"]
+    }
   },
   "image-path": {
     "type": "filechooser",
@@ -34,10 +64,6 @@
     "min": 0,
     "max": 100,
     "step": 1
-  },
-  "head2": {
-    "type": "header",
-    "description": "Frame Settings"
   },
   "shape": {
     "type": "combobox",
