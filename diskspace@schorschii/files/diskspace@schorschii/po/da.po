@@ -4,8 +4,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2026-02-22 20:33+0100\n"
-"PO-Revision-Date: 2025-11-04 19:08+0100\n"
-"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"PO-Revision-Date: 2026-04-06 09:41+0200\n"
+"Last-Translator: Alan Mortensen <over.tackiness223@passinbox.com>\n"
 "Language-Team: Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -38,15 +38,15 @@ msgstr "Ikke fundet"
 
 #. desklet.js:437
 msgid "Sorry, this font is not supported, please select a different one."
-msgstr ""
+msgstr "Denne skrifttype understøttes ikke; vælg en anden."
 
 #. desklet.js:438
 msgid " Font: `"
-msgstr ""
+msgstr " Skrifttype: `"
 
 #. desklet.js:438
 msgid "` Error: "
-msgstr ""
+msgstr "` Fejl: "
 
 #. metadata.json->name
 #. desklet.js:494
@@ -73,14 +73,13 @@ msgstr "Design"
 
 #. settings-schema.json->colors-section->title
 msgid "Colors"
-msgstr ""
+msgstr "Farver"
 
 #. settings-schema.json->fonts-section->title
 msgid "Fonts"
-msgstr ""
+msgstr "Skrifttyper"
 
 #. settings-schema.json->label-section->title
-#, fuzzy
 msgid "Custom Label"
 msgstr "Tilpasset etiket"
 
@@ -138,14 +137,11 @@ msgstr "Binær"
 
 #. settings-schema.json->size-fraction-digits->description
 msgid "Number of fractional digits"
-msgstr ""
+msgstr "Antal decimaler"
 
 #. settings-schema.json->size-fraction-digits->tooltip
-#, fuzzy
 msgid "Increase or decrease the number digits after the decimal point."
-msgstr ""
-"Forøg eller formindsk skrivebordsprogrammets størrelse med denne "
-"skaleringsfaktor."
+msgstr "Forøg eller formindsk antallet af cifre efter kommaet."
 
 #. settings-schema.json->reserved-blocks-as-used-space->description
 msgid "Show reserved blocks as used space"
@@ -236,21 +232,20 @@ msgid "Circle color for free space"
 msgstr "Cirkelfarve for ledig plads"
 
 #. settings-schema.json->font->description
-#, fuzzy
 msgid "Text font"
-msgstr "Tekstfarve"
+msgstr "Skrifttype til tekst"
 
 #. settings-schema.json->font->tooltip
 msgid "Change text font family"
-msgstr ""
+msgstr "Ændr skrifttypefamilien til tekst"
 
 #. settings-schema.json->font-sub->description
 msgid "Sub text font"
-msgstr ""
+msgstr "Skrifttype til undertekst"
 
 #. settings-schema.json->font-sub->tooltip
 msgid "Change font family of the text below the percentage"
-msgstr ""
+msgstr "Ændr skrifttypefamilien til teksten under procentdelen"
 
 #. settings-schema.json->text-color->description
 msgid "Text color"
