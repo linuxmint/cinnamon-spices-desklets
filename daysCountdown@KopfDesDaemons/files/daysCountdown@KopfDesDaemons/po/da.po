@@ -10,7 +10,7 @@ msgstr ""
 "issues\n"
 "POT-Creation-Date: 2026-04-03 13:08+0200\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"Last-Translator: Alan Mortensen <over.tackiness223@passinbox.com>\n"
 "Language-Team: \n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -21,12 +21,12 @@ msgstr ""
 #. metadata.json->name
 #. desklet.js:19
 msgid "Days Countdown"
-msgstr "Antal dage til …"
+msgstr "Antal dage til"
 
 #. desklet.js:77
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "New Year %f Countdown"
-msgstr "Antal dage til …"
+msgstr "Antal dage til nytår %f"
 
 #. desklet.js:98
 #, javascript-format
@@ -48,16 +48,15 @@ msgstr "Stil"
 
 #. settings-schema.json->font-size-section->title
 msgid "Font Sizes"
-msgstr ""
+msgstr "Skrifttypestørrelser"
 
 #. settings-schema.json->countdown-section->title
-#, fuzzy
 msgid "Countdown"
-msgstr "Antal dage til …"
+msgstr "Antal dage til"
 
 #. settings-schema.json->colors-section->title
 msgid "Colors"
-msgstr ""
+msgstr "Farver"
 
 #. settings-schema.json->label-text->description
 msgid "Text for the label"
@@ -65,7 +64,7 @@ msgstr "Overskrift til nedtællingen"
 
 #. settings-schema.json->scale-size->description
 msgid "Desklet scale size"
-msgstr ""
+msgstr "Skalering"
 
 #. settings-schema.json->countdown-date->description
 msgid "Date to which the countdown counts down"
@@ -121,4 +120,4 @@ msgstr "Tekstfarve"
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
-msgstr ""
+msgstr "Skjul boks rundt om skrivebordsprogrammet"
