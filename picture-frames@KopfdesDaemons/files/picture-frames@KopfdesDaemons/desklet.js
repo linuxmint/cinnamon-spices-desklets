@@ -171,9 +171,11 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _createShapedImageActor(imagePath, size, loadId) {
+    const container = new St.Bin({ width: size, height: size });
     const canvas = new Clutter.Canvas();
     canvas.set_size(size, size);
     const actor = new Clutter.Actor({ width: size, height: size, content: canvas });
+    container.set_child(actor);
     const file = Gio.file_new_for_path(imagePath);
     let iter = null;
 
@@ -237,13 +239,15 @@ class MyDesklet extends Desklet.Desklet {
             updateAnimation();
           } catch (e) {
             global.logError(`${UUID}: Error creating pixbuf animation from stream: ${e}`);
+            container.set_child(this._getErrorLayout(`Error creating pixbuf animation from stream: ${e}`));
           }
         });
       } catch (e) {
         global.logError(`${UUID}: Error reading file async: ${e}`);
+        container.set_child(this._getErrorLayout(`Error reading file: ${e}`));
       }
     });
-    return actor;
+    return container;
   }
 
   _drawFinalImage(cr, pixbuf, width, height) {
@@ -316,8 +320,18 @@ class MyDesklet extends Desklet.Desklet {
       return this._createActorFromPixbuf(pixBuf);
     } catch (e) {
       global.logError(`${UUID}: Error loading image ${imageFileName}: ${e}`);
-      return new St.Label({ text: "Error" + e.message, style_class: "picture-frame-error-label" });
+      return this._getErrorLayout(`Error loading image ${imageFileName}: ${e}`);
     }
+  }
+
+  _getErrorLayout(message) {
+    const headline = new St.Label({ text: _("Picture Frame"), style: `font-weight: bold; color: red; font-size: 1.2em;` });
+    const label = new St.Label({ text: "Error: " + message, style: `color: red;` });
+    label.clutter_text.set_line_wrap(true);
+    const errorLayout = new St.BoxLayout({ vertical: true, width: this.size, height: this.size, style: `background-color: #d3b0ae; padding: 1em; spacing: 1em;` });
+    errorLayout.add_child(headline);
+    errorLayout.add_child(label);
+    return errorLayout;
   }
 }
 

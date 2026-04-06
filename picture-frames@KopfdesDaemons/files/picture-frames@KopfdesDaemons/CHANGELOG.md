@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.1] 06.04.2026
+
+- New Features
+  - New Error Layout
+- Fixes
+  - Fixed a bug where the error layout was not loaded when an error occurred,
+    and the loading text was permanently displayed.
+
 ## [1.1.0] 06.04.2026
 
 - New Features
