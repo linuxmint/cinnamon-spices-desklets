@@ -1,0 +1,93 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-03-23 21:24-0400\n"
+"PO-Revision-Date: \n"
+"Last-Translator: blogdron\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. desklet.js:284
+msgid "CPU Temperature"
+msgstr ""
+
+#. desklet.js:401
+msgid "GPU Temperature"
+msgstr ""
+
+#. settings-schema.json->type->options
+#. desklet.js:428
+msgid "Battery"
+msgstr ""
+
+#. desklet.js:431
+msgid "Fully charged"
+msgstr ""
+
+#. desklet.js:432
+msgid "Not charging"
+msgstr ""
+
+#. desklet.js:434
+msgid " hrs"
+msgstr ""
+
+#. settings-schema.json->cpu-variable->description
+msgid "CPU variable to monitor"
+msgstr ""
+
+#. settings-schema.json->cpu-variable->tooltip
+msgid "Select the CPU variable to monitor."
+msgstr ""
+
+#. settings-schema.json->cpu-variable->options
+#. settings-schema.json->gpu-variable->options
+msgid "Temperature"
+msgstr ""
+
+#. settings-schema.json->temperature-units-cpu->options
+#. settings-schema.json->temperature-units-gpu->options
+msgid "°C"
+msgstr ""
+
+#. settings-schema.json->temperature-units-cpu->options
+#. settings-schema.json->temperature-units-gpu->options
+msgid "°F"
+msgstr ""
+
+#. settings-schema.json->temperature-units-cpu->description
+#. settings-schema.json->temperature-units-gpu->description
+msgid "Temperature scale"
+msgstr ""
+
+#. settings-schema.json->temperature-units-cpu->tooltip
+#. settings-schema.json->temperature-units-gpu->tooltip
+msgid "Temperature scale for graph"
+msgstr ""
+
+#. settings-schema.json->battery-name->description
+msgid "Name of battery name to monitor"
+msgstr ""
+
+#. settings-schema.json->battery-name->tooltip
+msgid "Check battery name in /sys/class/power_supply/ Examples: BAT0, BAT1"
+msgstr ""
+
+#. settings-schema.json->gpu-manufacturer->options
+msgid "NVIDIA"
+msgstr ""
+
+#. settings-schema.json->gpu-manufacturer->options
+msgid "AMDGPU"
+msgstr ""
+
+#. settings-schema.json->line-color-battery->description
+msgid "Line color Battery"
+msgstr ""

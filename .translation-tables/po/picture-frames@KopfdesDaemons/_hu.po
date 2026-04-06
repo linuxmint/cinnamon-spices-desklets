@@ -1,0 +1,26 @@
+# PICTURE FRAMES
+# This file is put in the public domain.
+# KopfdesDaemons, 2025
+#
+msgid ""
+msgstr ""
+
+#. settings-schema.json->image-page->title
+msgid "Image"
+msgstr ""
+
+#. settings-schema.json->frame-page->title
+msgid "Frame"
+msgstr ""
+
+#. settings-schema.json->image-general-section->title
+msgid "General"
+msgstr ""
+
+#. settings-schema.json->image-alignment-section->title
+msgid "Alignment"
+msgstr ""
+
+#. settings-schema.json->frame-border-section->title
+msgid "Border"
+msgstr ""

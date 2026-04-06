@@ -1,0 +1,26 @@
+# SYSTEM UPTIME
+# This file is put in the public domain.
+# KopfDesDaemons, 2024
+#
+msgid ""
+msgstr ""
+
+#. desklet.js:179 desklet.js:212
+msgid "Error"
+msgstr ""
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet scale size"
+msgstr ""
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr ""
+
+#. settings-schema.json->show-icon->description
+msgid "Show icon"
+msgstr ""
+
+#. settings-schema.json->head1->description
+msgid "Value format"
+msgstr ""
