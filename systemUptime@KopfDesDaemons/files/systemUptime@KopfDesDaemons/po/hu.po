@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. metadata.json->name
 #. desklet.js:39
@@ -53,7 +53,7 @@ msgstr "perc"
 
 #. desklet.js:179 desklet.js:212
 msgid "Error"
-msgstr ""
+msgstr "Hiba"
 
 #. metadata.json->description
 msgid "Displays the current system uptime."
@@ -65,7 +65,7 @@ msgstr "Stílus"
 
 #. settings-schema.json->scale-size->description
 msgid "Desklet scale size"
-msgstr ""
+msgstr "Asztalkalmazás mérete"
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
@@ -77,11 +77,11 @@ msgstr "Címke színe"
 
 #. settings-schema.json->show-icon->description
 msgid "Show icon"
-msgstr ""
+msgstr "Ikon megjelenítése"
 
 #. settings-schema.json->head1->description
 msgid "Value format"
-msgstr ""
+msgstr "Érték formátum"
 
 #. settings-schema.json->show-start-date->description
 msgid "Show start date"

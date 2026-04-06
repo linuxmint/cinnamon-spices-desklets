@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. desklet.js:23
 msgid "Picture Frame"
@@ -35,21 +35,20 @@ msgid "Displays photos in different picture frames."
 msgstr "Különböző képkeretekben jeleníti meg a fényképeket."
 
 #. settings-schema.json->image-page->title
-#, fuzzy
 msgid "Image"
-msgstr "Kép elérési útvonala"
+msgstr "Kép"
 
 #. settings-schema.json->frame-page->title
 msgid "Frame"
-msgstr ""
+msgstr "Keret"
 
 #. settings-schema.json->image-general-section->title
 msgid "General"
-msgstr ""
+msgstr "Általános"
 
 #. settings-schema.json->image-alignment-section->title
 msgid "Alignment"
-msgstr ""
+msgstr "Elrendezés"
 
 #. settings-schema.json->frame-shape-section->title
 #. settings-schema.json->shape->description
@@ -57,9 +56,8 @@ msgid "Shape"
 msgstr "Alak"
 
 #. settings-schema.json->frame-border-section->title
-#, fuzzy
 msgid "Border"
-msgstr "Szegély színe"
+msgstr "Szegély"
 
 #. settings-schema.json->image-path->description
 msgid "Image path"

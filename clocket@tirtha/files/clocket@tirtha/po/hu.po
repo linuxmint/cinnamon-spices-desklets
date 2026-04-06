@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2026-02-15 14:25+0100\n"
-"PO-Revision-Date: 2024-06-26 19:43+0200\n"
+"PO-Revision-Date: 2026-04-06 21:14+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: hu\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. settings-schema.json->clock-page->title
 #. desklet.js:40
@@ -30,222 +30,219 @@ msgstr "Dátum és idő beállítások"
 #. desklet.js:497 desklet.js:498 desklet.js:499 desklet.js:500 desklet.js:501
 #. desklet.js:502 desklet.js:503 desklet.js:504 desklet.js:505
 msgid "Error"
-msgstr ""
+msgstr "Hiba"
 
 #. desklet.js:661
 msgid "Clear sky"
-msgstr ""
+msgstr "Tiszta égbolt"
 
 #. desklet.js:662
 msgid "Mainly clear"
-msgstr ""
+msgstr "Főként derült"
 
 #. desklet.js:663
 msgid "Partly cloudy"
-msgstr ""
+msgstr "Részben felhős"
 
 #. desklet.js:664
 msgid "Overcast"
-msgstr ""
+msgstr "Felhős"
 
 #. desklet.js:665
 msgid "Fog"
-msgstr ""
+msgstr "Köd"
 
 #. desklet.js:666
 msgid "Depositing rime fog"
-msgstr ""
+msgstr "Zúzmaraköd lerakódása"
 
 #. desklet.js:667
 msgid "Light drizzle"
-msgstr ""
+msgstr "Enyhe szitálás"
 
 #. desklet.js:668
 msgid "Moderate drizzle"
-msgstr ""
+msgstr "Mérsékelt szitálás"
 
 #. desklet.js:669
 msgid "Dense drizzle"
-msgstr ""
+msgstr "Sűrű szitálás"
 
 #. desklet.js:670
 msgid "Light freezing drizzle"
-msgstr ""
+msgstr "Enyhe ónos szitálás"
 
 #. desklet.js:671
 msgid "Dense freezing drizzle"
-msgstr ""
+msgstr "Sűrű ónos szitálás"
 
 #. desklet.js:672
 msgid "Slight rain"
-msgstr ""
+msgstr "Enyhe eső"
 
 #. desklet.js:673
 msgid "Moderate rain"
-msgstr ""
+msgstr "Mérsékelt eső"
 
 #. desklet.js:674
 msgid "Heavy rain"
-msgstr ""
+msgstr "Heves esőzés"
 
 #. desklet.js:675
 msgid "Light freezing rain"
-msgstr ""
+msgstr "Könnyű ónos eső"
 
 #. desklet.js:676
 msgid "Heavy freezing rain"
-msgstr ""
+msgstr "Heves ónos eső"
 
 #. desklet.js:677
 msgid "Slight snow fall"
-msgstr ""
+msgstr "Enyhe havazás"
 
 #. desklet.js:678
 msgid "Moderate snow fall"
-msgstr ""
+msgstr "Mérsékelt havazás"
 
 #. desklet.js:679
 msgid "Heavy snow fall"
-msgstr ""
+msgstr "Sűrű havazás"
 
 #. desklet.js:680
 msgid "Snow grains"
-msgstr ""
+msgstr "Hódara"
 
 #. desklet.js:681
 msgid "Slight rain showers"
-msgstr ""
+msgstr "Enyhe zápor"
 
 #. desklet.js:682
 msgid "Moderate rain showers"
-msgstr ""
+msgstr "Mérsékelt zápor"
 
 #. desklet.js:683
 msgid "Violent rain showers"
-msgstr ""
+msgstr "Heves esőzések"
 
 #. desklet.js:684
 msgid "Slight snow showers"
-msgstr ""
+msgstr "Enyhe hózápor"
 
 #. desklet.js:685
 msgid "Heavy snow showers"
-msgstr ""
+msgstr "Heves hózápor"
 
 #. desklet.js:686
 msgid "Thunderstorm"
-msgstr ""
+msgstr "Zivatar"
 
 #. desklet.js:687
 msgid "Thunderstorm with slight hail"
-msgstr ""
+msgstr "Zivatar enyhe jégesővel"
 
 #. desklet.js:688
 msgid "Thunderstorm with heavy hail"
-msgstr ""
+msgstr "Zivatar heves jégesővel"
 
 #. desklet.js:690
 msgid "Unknown description"
-msgstr ""
+msgstr "Ismeretlen leírás"
 
 #. desklet.js:814 desklet.js:821 desklet.js:825
 msgid "Loading..."
-msgstr ""
+msgstr "Betöltés..."
 
 #. desklet.js:819 desklet.js:844
 msgid "Reload weather data"
-msgstr ""
+msgstr "Időjárási adatok újratöltése"
 
 #. metadata.json->name
 msgid "clocket"
-msgstr "clocket"
+msgstr "óra"
 
 #. metadata.json->description
-#, fuzzy
 msgid ""
 "A desklet that displays the time, date, currently and forecast weather report"
 msgstr ""
-"Egy asztalkalmazás, amely megjeleníti az időt, a dátumot és az aktuális és "
-"az előrejelzett időjárást"
+"Egy asztalkalmazás, amely megjeleníti az időt, a dátumot, az aktuális és az "
+"előrejelzett időjárás-jelentést"
 
 #. settings-schema.json->general-page->title
 #. settings-schema.json->general-section->title
 msgid "General"
-msgstr ""
+msgstr "Általános"
 
 #. settings-schema.json->weather-page->title
 msgid "Weather"
-msgstr ""
+msgstr "Időjárás"
 
 #. settings-schema.json->date-page->title
 msgid "Date"
-msgstr ""
+msgstr "Dátum"
 
 #. settings-schema.json->weather-data-section->title
-#, fuzzy
 msgid "Weather data"
-msgstr "válassza ki a használni kívánt szolgáltatót"
+msgstr "Időjárási adatok"
 
 #. settings-schema.json->clock-style-section->title
-#, fuzzy
 msgid "Clock style"
-msgstr "Óra"
+msgstr "Óra stílusa"
 
 #. settings-schema.json->date-style-section->title
 msgid "Date style"
-msgstr ""
+msgstr "Dátum stílusa"
 
 #. settings-schema.json->weather-style-section->title
 msgid "Weather style"
-msgstr ""
+msgstr "Időjárás stílusa"
 
 #. settings-schema.json->scale-size->description
 msgid "Desklet scale size"
-msgstr ""
+msgstr "Asztalkalmazás mérete"
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"
-msgstr ""
+msgstr "Dekorációk elrejtése"
 
 #. settings-schema.json->style-preset->description
 msgid "Style Preset"
-msgstr ""
+msgstr "Stílus előbeállítás"
 
 #. settings-schema.json->style-preset->options
 msgid "Translucent"
-msgstr ""
+msgstr "Áttetsző"
 
 #. settings-schema.json->style-preset->options
 msgid "Transparent"
-msgstr ""
+msgstr "Átlátszó"
 
 #. settings-schema.json->style-preset->options
 msgid "Material Design"
-msgstr ""
+msgstr "Material dizájn"
 
 #. settings-schema.json->style-preset->options
 msgid "Metro"
-msgstr ""
+msgstr "Metro"
 
 #. settings-schema.json->style-preset->options
 msgid "Mint"
-msgstr ""
+msgstr "Mint"
 
 #. settings-schema.json->show-weather-data->description
 msgid "Show weather"
-msgstr ""
+msgstr "Időjárás megjelenítése"
 
 #. settings-schema.json->temperature-unit->description
 msgid "Units for weather data"
-msgstr ""
+msgstr "Időjárási adatok mértékegységei"
 
 #. settings-schema.json->temperature-unit->options
 msgid "°C"
-msgstr ""
+msgstr "°C"
 
 #. settings-schema.json->temperature-unit->options
 msgid "°F"
-msgstr ""
+msgstr "°F"
 
 #. settings-schema.json->webservice->description
 msgid "Data service"
@@ -253,7 +250,7 @@ msgstr "Adatszolgáltatás"
 
 #. settings-schema.json->webservice->options
 msgid "Open-Meteo"
-msgstr ""
+msgstr "Open-Meteo"
 
 #. settings-schema.json->webservice->options
 msgid "Open Weather Map Free (requires API key)"
@@ -261,7 +258,7 @@ msgstr "Open Weather Map Free (API-kulcs szükséges)"
 
 #. settings-schema.json->api-key->description
 msgid "API key"
-msgstr ""
+msgstr "API kulcs"
 
 #. settings-schema.json->location-type->description
 msgid "Type of location data"
@@ -277,40 +274,40 @@ msgstr "szélességi és hosszúsági fok"
 
 #. settings-schema.json->location-type->options
 msgid "Automatic"
-msgstr ""
+msgstr "Automatikus"
 
 #. settings-schema.json->location->description
 msgid "Location (city name or lat-lon)"
-msgstr ""
+msgstr "Helyszín (város neve vagy szélességi fok)"
 
 #. settings-schema.json->location->tooltip
 msgid "city name (e.g. London) or lat-lon (e.g. 51.5074456,-0.1277653)"
 msgstr ""
+"város neve (pl. London) vagy szélességi fok (pl. 51.5074456,-0.1277653)"
 
 #. settings-schema.json->weather-refresh-interval->units
 msgid "minutes"
-msgstr ""
+msgstr "perc"
 
 #. settings-schema.json->weather-refresh-interval->description
-#, fuzzy
 msgid "Weather data refresh interval"
-msgstr "válassza ki a használni kívánt szolgáltatót"
+msgstr "Időjárási adatok frissítési intervallum"
 
 #. settings-schema.json->show-clock->description
 msgid "Show clock"
-msgstr ""
+msgstr "Óra megjelenítése"
 
 #. settings-schema.json->use-custom-time-string->description
 msgid "Use custom time string"
-msgstr ""
+msgstr "Egyéni időkarakterlánc használata"
 
 #. settings-schema.json->custom-time-string->description
 msgid "Custom time string (strftime format)"
-msgstr ""
+msgstr "Egyéni idő karakterlánc (strftime formátum)"
 
 #. settings-schema.json->time-format-button->description
 msgid "Show information on time format syntax"
-msgstr ""
+msgstr "Információk megjelenítése az időformátum szintaxisáról"
 
 #. settings-schema.json->clock-font-size->units
 #. settings-schema.json->clock-border-radius->units
@@ -323,87 +320,77 @@ msgid "px"
 msgstr "képpont"
 
 #. settings-schema.json->clock-font-size->description
-#, fuzzy
 msgid "Clock font size"
-msgstr "Betűméret"
+msgstr "Óra betűméret"
 
 #. settings-schema.json->clock-text-color->description
 msgid "Text color"
 msgstr "Szövegszín"
 
 #. settings-schema.json->clock-background-color->description
-#, fuzzy
 msgid "Clock background color"
-msgstr "háttérszín"
+msgstr "Óra háttérszíne"
 
 #. settings-schema.json->clock-border-radius->description
 msgid "Clock border radius"
-msgstr ""
+msgstr "Óra szegélyének sugara"
 
 #. settings-schema.json->show-date->description
 msgid "Show date"
-msgstr ""
+msgstr "Dátum megjelenítése"
 
 #. settings-schema.json->use-date-time-string->description
 msgid "Use custom date string"
-msgstr ""
+msgstr "Egyéni dátumkarakterlánc használata"
 
 #. settings-schema.json->custom-date-string->description
 msgid "Custom date string (strftime format)"
-msgstr ""
+msgstr "Egyéni dátum karakterlánc (strftime formátum)"
 
 #. settings-schema.json->date-format-button->description
 msgid "Show information on date format syntax"
-msgstr ""
+msgstr "Információk megjelenítése a dátumformátum szintaxisáról"
 
 #. settings-schema.json->date-font-size->description
-#, fuzzy
 msgid "Date font size"
-msgstr "Betűméret"
+msgstr "Dátum betűmérete"
 
 #. settings-schema.json->date-text-color->description
-#, fuzzy
 msgid "Date text color"
-msgstr "időjárási blokk szöveg színe"
+msgstr "Dátum szövegszíne"
 
 #. settings-schema.json->date-accent-color->description
-#, fuzzy
 msgid "Date accent color"
-msgstr "időjárási blokk szöveg színe"
+msgstr "Dátumkiemelési szín"
 
 #. settings-schema.json->date-background-color->description
-#, fuzzy
 msgid "Date background color"
-msgstr "háttérszín"
+msgstr "Dátum háttérszíne"
 
 #. settings-schema.json->date-border-radius->description
 msgid "Date border radius"
-msgstr ""
+msgstr "Dátumszegély sugara"
 
 #. settings-schema.json->weather-font-size->description
-#, fuzzy
 msgid "Weather font size"
-msgstr "válassza ki a használni kívánt szolgáltatót"
+msgstr "Időjárás betűméret"
 
 #. settings-schema.json->weather-text-color->description
-#, fuzzy
 msgid "Weather text color"
-msgstr "időjárási blokk szöveg színe"
+msgstr "Időjárás szöveg színe"
 
 #. settings-schema.json->weather-background-color->description
-#, fuzzy
 msgid "Weather background color"
-msgstr "háttérszín"
+msgstr "Időjárás háttérszíne"
 
 #. settings-schema.json->weather-forecast-background-color->description
-#, fuzzy
 msgid "Weather forecast background color"
-msgstr "háttérszín"
+msgstr "Időjárás-előrejelzés háttérszíne"
 
 #. settings-schema.json->weather-border-radius->description
 msgid "Weather border radius"
-msgstr ""
+msgstr "Időjárási határ sugara"
 
 #. settings-schema.json->weather-forecast-border-radius->description
 msgid "Weather forecast border radius"
-msgstr ""
+msgstr "Időjárás-előrejelzés határának sugara"
