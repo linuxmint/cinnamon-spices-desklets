@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
 #. desklet.js:23
 msgid "Picture Frame"
@@ -35,21 +35,20 @@ msgid "Displays photos in different picture frames."
 msgstr "Muestra fotos en diferentes marcos de fotos."
 
 #. settings-schema.json->image-page->title
-#, fuzzy
 msgid "Image"
-msgstr "Ruta de la imagen"
+msgstr "Imagen"
 
 #. settings-schema.json->frame-page->title
 msgid "Frame"
-msgstr ""
+msgstr "Marco"
 
 #. settings-schema.json->image-general-section->title
 msgid "General"
-msgstr ""
+msgstr "General"
 
 #. settings-schema.json->image-alignment-section->title
 msgid "Alignment"
-msgstr ""
+msgstr "Alineamiento"
 
 #. settings-schema.json->frame-shape-section->title
 #. settings-schema.json->shape->description
@@ -57,9 +56,8 @@ msgid "Shape"
 msgstr "Forma"
 
 #. settings-schema.json->frame-border-section->title
-#, fuzzy
 msgid "Border"
-msgstr "Color del borde"
+msgstr "Borde"
 
 #. settings-schema.json->image-path->description
 msgid "Image path"
