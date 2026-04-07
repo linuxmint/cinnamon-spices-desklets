@@ -1,0 +1,294 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: calendar@deeppradhan 1.2\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-14 23:55+0200\n"
+"PO-Revision-Date: 2024-11-07 11:14+0200\n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
+"Language-Team: \n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:29
+msgid "January"
+msgstr "Tammikuu"
+
+#: desklet.js:29
+msgid "February"
+msgstr "Helmikuu"
+
+#: desklet.js:29
+msgid "March"
+msgstr "Maaliskuu"
+
+#: desklet.js:29
+msgid "April"
+msgstr "Huhtikuu"
+
+#: desklet.js:29
+msgid "May"
+msgstr "Toukokuu"
+
+#: desklet.js:30
+msgid "June"
+msgstr "Kesäkuu"
+
+#: desklet.js:30
+msgid "July"
+msgstr "Heinäkuu"
+
+#: desklet.js:30
+msgid "August"
+msgstr "Elokuu"
+
+#: desklet.js:30
+msgid "September"
+msgstr "Syyskuu"
+
+#: desklet.js:30
+msgid "October"
+msgstr "Lokakuu"
+
+#: desklet.js:30
+msgid "November"
+msgstr "Marraskuu"
+
+#: desklet.js:31
+msgid "December"
+msgstr "Joulukuu"
+
+#. settings-schema.json->first-day->options
+#: desklet.js:34
+msgid "Sunday"
+msgstr "Sunnuntai"
+
+#. settings-schema.json->first-day->options
+#: desklet.js:34
+msgid "Monday"
+msgstr "Maanantai"
+
+#: desklet.js:34
+msgid "Tuesday"
+msgstr "Tiistai"
+
+#: desklet.js:34
+msgid "Wednesday"
+msgstr "Keskiviikko"
+
+#: desklet.js:35
+msgid "Thursday"
+msgstr "Torstai"
+
+#: desklet.js:35
+msgid "Friday"
+msgstr "Perjantai"
+
+#: desklet.js:35
+msgid "Saturday"
+msgstr "Launtai"
+
+#: desklet.js:135
+msgid "Previous month..."
+msgstr "Edellinen kuukausi..."
+
+#: desklet.js:137
+msgid "Next month..."
+msgstr "Seuraava kuukausi..."
+
+#: desklet.js:152
+msgid "Calendar"
+msgstr "Kalenteri"
+
+#. metadata.json->comments
+msgid ""
+"Calendar Desklet provides a highly configurable desklet to display current "
+"date and browsable months. It has a number of possible customisations."
+msgstr ""
+"Kalenteri sovelma näyttää tämän päivän ja selattavat kuukaudet. Useita "
+"mahdollisuuksia mukauttaa eri asetuksilla."
+
+#. metadata.json->contributors
+msgid "Deep Pradhan"
+msgstr "Deep Pradhan"
+
+#. metadata.json->description
+msgid "Configurable Calendar desklet"
+msgstr "Muokattava kalenteri työpöydälle"
+
+#. metadata.json->name
+msgid "Calendar desklet"
+msgstr "Kalenteri"
+
+#. settings-schema.json->top->description
+msgid "Calendar configuration"
+msgstr "Kalenterin määritykset"
+
+#. settings-schema.json->panels->description
+msgid "Panels to show"
+msgstr "Paneelissa näytetään"
+
+#. settings-schema.json->panels->options
+msgid "Both Today & Month"
+msgstr "Päivä ja kuukausi"
+
+#. settings-schema.json->panels->options
+msgid "Today only"
+msgstr "Vain päivämäärä"
+
+#. settings-schema.json->panels->options
+msgid "Month only"
+msgstr "Vain kuukausi"
+
+#. settings-schema.json->panels->tooltip
+msgid "Select the panels to display in desklet"
+msgstr "Valitse työpöydällä näytettävät asiat"
+
+#. settings-schema.json->show-weekday->description
+msgid "Show day of week"
+msgstr "Näytetäänkö viikonpäivä"
+
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "No"
+msgstr "Ei"
+
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "Full"
+msgstr "Kokonaan"
+
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "Short"
+msgstr "Lyhyt"
+
+#. settings-schema.json->show-weekday->tooltip
+msgid "For day of week; show full name, short name or disable showing"
+msgstr "Viikonpäivälle; näytä koko nimi, lyhyt nimi tai poista näkymästä"
+
+#. settings-schema.json->short-month-name->description
+msgid "Short month name"
+msgstr "Lyhennetty kuukauden nimi"
+
+#. settings-schema.json->short-month-name->tooltip
+msgid "Show short month name"
+msgstr "Näytä kuukauden nimi lyhyessä muodossa"
+
+#. settings-schema.json->show-year->description
+msgid "Show year"
+msgstr "Näytä vuosiluku"
+
+#. settings-schema.json->show-year->tooltip
+msgid "For year; show all digits, show last two digits or disable showing"
+msgstr "Vuosi; näytä kokonaan, kaksi viimeistä numeroa tai poista näkymästä"
+
+#. settings-schema.json->show-time->description
+msgid "Show time"
+msgstr "Näytä kellonaika"
+
+#. settings-schema.json->show-time->tooltip
+msgid "Show or hide time (hours and minutes)"
+msgstr "Näytä tai piilota kellonaika (tunnit ja minuutit)"
+
+#. settings-schema.json->use-24h->description
+msgid "Use 24h clock"
+msgstr "Käytä 24h kelloa"
+
+#. settings-schema.json->auto-advance->description
+msgid "Auto-advance"
+msgstr "Automaattinen siirto"
+
+#. settings-schema.json->auto-advance->tooltip
+msgid "When the month changes, update the desklet"
+msgstr "Kun kuukausi vaihtuu, kalenterin tiedot päivitetään automaattisesti"
+
+#. settings-schema.json->first-day->description
+msgid "First day of week"
+msgstr "Viikon ensimmäinen päivä"
+
+#. settings-schema.json->display->description
+msgid "Desklet style configuration"
+msgstr "Sovelman ulkoasun määritykset"
+
+#. settings-schema.json->layout->description
+msgid "Layout of desklet"
+msgstr "Valitse sovelman asento"
+
+#. settings-schema.json->layout->options
+msgid "Horizontal"
+msgstr "Vaakasuora"
+
+#. settings-schema.json->layout->options
+msgid "Vertical"
+msgstr "Pystysuora"
+
+#. settings-schema.json->layout->tooltip
+msgid "Set the overall layout to horizontal/vertical of desklet"
+msgstr "Valitse sovelman asento joko pystyyn tai vaakaan"
+
+#. settings-schema.json->custom-font-family->description
+msgid "Custom font family for text (blank to use default)"
+msgstr "Anna fontin nimi tekstille (tyhjä käyttää oletusta)"
+
+#. settings-schema.json->custom-font-family->tooltip
+msgid "Set a custom font family for the text (blank to use default font)"
+msgstr ""
+"Aseta tekstille mukautettu fontti kirjoittamalla sen nimen (jätämällä "
+"tyhjäksi käytetään oletusfonttia)"
+
+#. settings-schema.json->font-size->description
+msgid "Font size (pt)"
+msgstr "Koko (pistettä)"
+
+#. settings-schema.json->font-size->tooltip
+msgid "Set the text font size in points"
+msgstr "Aseta tekstin koko pisteinä"
+
+#. settings-schema.json->colour-text->description
+msgid "Text colour"
+msgstr "Tekstin väri"
+
+#. settings-schema.json->colour-text->tooltip
+msgid "Set text colour of desklet"
+msgstr "Aseta tekstin väri"
+
+#. settings-schema.json->colour-sundays->description
+msgid "Text colour for Sundays"
+msgstr "Tekstin väri sunnuntaille"
+
+#. settings-schema.json->colour-sundays->tooltip
+msgid "Set text colour for Sundays"
+msgstr "Aseta tekstin väri sunnuntaille"
+
+#. settings-schema.json->colour-saturdays->description
+msgid "Text colour for Saturdays"
+msgstr "Tekstin väri lauantaille"
+
+#. settings-schema.json->colour-saturdays->tooltip
+msgid "Set text colour for Saturdays"
+msgstr "Aseta tekstin väri lauantaille"
+
+#. settings-schema.json->colour-background->description
+msgid "Background colour"
+msgstr "Taustan väri"
+
+#. settings-schema.json->colour-background->tooltip
+msgid "Set background colour of desklet"
+msgstr "Aseta sovelman taustaväri"
+
+#. settings-schema.json->transparency->description
+msgid "Transparency (%)"
+msgstr "Läpinäkyvyys (%)"
+
+#. settings-schema.json->transparency->tooltip
+msgid "Set the transparency of desklet in percentage"
+msgstr "Aseta sovelman läpinäkyvyys prosentteina"
