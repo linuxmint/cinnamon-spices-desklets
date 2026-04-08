@@ -5,124 +5,124 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: picture-frames@KopfdesDaemons 1.0\n"
+"Project-Id-Version: picture-frames@KopfdesDaemons 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2026-04-05 23:38+0200\n"
 "PO-Revision-Date: \n"
-"Last-Translator: \n"
+"Last-Translator: Alan Mortensen <over.tackiness223@passinbox.com>\n"
 "Language-Team: \n"
-"Language: es\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.9\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. desklet.js:23
 msgid "Picture Frame"
-msgstr "Marco de fotos"
+msgstr "Billedramme"
 
 #. desklet.js:190
 msgid "Loading..."
-msgstr "Cargando..."
+msgstr "Indlæser …"
 
 #. metadata.json->name
 msgid "Picture frames"
-msgstr "Marco de fotos"
+msgstr "Billedrammer"
 
 #. metadata.json->description
 msgid "Displays photos in different picture frames."
-msgstr "Muestra fotos en diferentes marcos de fotos."
+msgstr "Viser billeder i forskellige billedrammer."
 
 #. settings-schema.json->image-page->title
 msgid "Image"
-msgstr "Imagen"
+msgstr "Billede"
 
 #. settings-schema.json->frame-page->title
 msgid "Frame"
-msgstr "Marco"
+msgstr "Ramme"
 
 #. settings-schema.json->image-general-section->title
 msgid "General"
-msgstr "General"
+msgstr "Generelt"
 
 #. settings-schema.json->image-alignment-section->title
 msgid "Alignment"
-msgstr "Alineamiento"
+msgstr "Justering"
 
 #. settings-schema.json->frame-shape-section->title
 #. settings-schema.json->shape->description
 msgid "Shape"
-msgstr "Forma"
+msgstr "Form"
 
 #. settings-schema.json->frame-border-section->title
 msgid "Border"
-msgstr "Borde"
+msgstr "Ramme"
 
 #. settings-schema.json->image-path->description
 msgid "Image path"
-msgstr "Ruta de la imagen"
+msgstr "Billedsti"
 
 #. settings-schema.json->image-path->tooltip
 msgid "The path of the image."
-msgstr "La ruta de la imagen."
+msgstr "Stien til billedet."
 
 #. settings-schema.json->size->description
 msgid "Size"
-msgstr "Tamaño"
+msgstr "Størrelse"
 
 #. settings-schema.json->align-x->description
 msgid "Horizontal alignment"
-msgstr "Alineación horizontal"
+msgstr "Vandret justering"
 
 #. settings-schema.json->align-y->description
 msgid "Vertical alignment"
-msgstr "Alineación vertical"
+msgstr "Lodret justering"
 
 #. settings-schema.json->shape->options
 msgid "Circle"
-msgstr "Círculo"
+msgstr "Cirkel"
 
 #. settings-schema.json->shape->options
 msgid "Square"
-msgstr "Cuadrado"
+msgstr "Kvadrat"
 
 #. settings-schema.json->shape->options
 msgid "Star"
-msgstr "Estrella"
+msgstr "Stjerne"
 
 #. settings-schema.json->shape->options
 msgid "Wave"
-msgstr "Onda"
+msgstr "Bølge"
 
 #. settings-schema.json->shape->options
 msgid "Heart"
-msgstr "Corazón"
+msgstr "Hjerte"
 
 #. settings-schema.json->waves-number->description
 msgid "Number of waves"
-msgstr "Número de ondas"
+msgstr "Antal bølger"
 
 #. settings-schema.json->wave-depth->description
 msgid "Depth of the waves"
-msgstr "Profundidad de las ondas"
+msgstr "Bølgedybde"
 
 #. settings-schema.json->spikes-number->description
 msgid "Number of spikes"
-msgstr "Número de picos"
+msgstr "Antal stråler"
 
 #. settings-schema.json->spikes-depth->description
 msgid "Depth of the spikes"
-msgstr "Profundidad de los picos"
+msgstr "Strålernes dybde"
 
 #. settings-schema.json->show-border->description
 msgid "Show border"
-msgstr "Mostrar borde"
+msgstr "Vis ramme"
 
 #. settings-schema.json->border-color->description
 msgid "Border color"
-msgstr "Color del borde"
+msgstr "Rammefarve"
 
 #. settings-schema.json->border-width->description
 msgid "Border width"
-msgstr "Ancho del borde"
+msgstr "Rammebredde"
