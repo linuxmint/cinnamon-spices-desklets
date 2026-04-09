@@ -150,8 +150,10 @@ class MyDesklet extends Desklet.Desklet {
     this._startupValue.set_style(valueStyle);
 
     // Icon
-    this._clockIcon.set_style(iconStyle);
-    this._iconBox.set_style(iconStyle);
+    if (this.showIcon && this._clockIcon && this._iconBox) {
+      this._clockIcon.set_style(iconStyle);
+      this._iconBox.set_style(iconStyle);
+    }
   }
 
   async _fetchUptimeText() {
