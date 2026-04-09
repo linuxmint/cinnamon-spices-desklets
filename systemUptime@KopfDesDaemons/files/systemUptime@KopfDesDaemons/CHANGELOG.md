@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.0.1] - 09.04.2026
+
+- Fix frozen uptime in the layout with disabled icon
+
 ## [2.0.0] - 06.02.2026
 
 - New features:
