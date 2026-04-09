@@ -1,0 +1,38 @@
+{
+  "fixed": {
+    "01-01": {"name": "Jour de l'An",       "public": true},
+    "05-01": {"name": "Fête du Travail",    "public": true},
+    "05-08": {"name": "Victoire 1945",      "public": true},
+    "07-14": {"name": "Fête Nationale",     "public": true},
+    "08-15": {"name": "Assomption",         "public": true},
+    "11-01": {"name": "Toussaint",          "public": true},
+    "11-11": {"name": "Armistice",          "public": true},
+    "12-25": {"name": "Noël",              "public": true}
+  },
+  "easter": [
+    {"offset":  0, "name": "Dimanche de Pâques", "public": true},
+    {"offset":  1, "name": "Lundi de Pâques",    "public": true},
+    {"offset": 39, "name": "Ascension",           "public": true},
+    {"offset": 50, "name": "Lundi de Pentecôte", "public": true}
+  ],
+  "periods": [
+    {
+      "name": "Carnaval",
+      "public": false,
+      "start": {"type": "fixed",  "month": 1, "day": 6},
+      "end":   {"type": "easter", "offset": -47}
+    },
+    {
+      "name": "Carême",
+      "public": false,
+      "start": {"type": "easter", "offset": -46},
+      "end":   {"type": "easter", "offset": -1}
+    },
+    {
+      "name": "Avent",
+      "public": false,
+      "start": {"type": "advent", "offset": 0},
+      "end":   {"type": "fixed",  "month": 12, "day": 24}
+    }
+  ]
+}
