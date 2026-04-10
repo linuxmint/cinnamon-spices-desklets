@@ -101,7 +101,6 @@ class MyDesklet extends Desklet.Desklet {
         candles++;
       }
     }
-    // return 1;
     return candles;
   }
 

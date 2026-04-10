@@ -358,7 +358,7 @@
    gradientTransform="matrix(2.830532e-02 0 0 -2.830532e-02 -233.2067 -116.0534)">
 			<stop
    offset="0"
-   style="stop-color%CANDLE_4_COLOR_A%;stop-opacity:1;"
+   style="stop-color:%CANDLE_4_COLOR_A%;stop-opacity:1;"
    id="stop84" />
 			<stop
    offset="0.1804"
