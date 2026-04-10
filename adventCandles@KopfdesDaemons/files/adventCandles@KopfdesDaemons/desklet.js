@@ -184,31 +184,32 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _generateColorVariants(colorString) {
-    // Nutze Clutter, um den Farb-String (egal ob Hex, rgb() oder Farbname) in RGB-Werte zu zerlegen
-    let [res, color] = Clutter.Color.from_string(colorString);
+    const [res, color] = Clutter.Color.from_string(colorString);
     if (!res) {
-      // Falls das Parsen fehlschlägt, gib den Text unverändert zurück
-      return { a: colorString, b: colorString, c: colorString };
+      // Return the string on error
+      return { a: colorString, b: colorString, c: colorString, d: colorString, e: colorString };
     }
 
     const toHex = (r, g, b) => {
       return "#" + ((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1);
     };
 
-    // Variante A: Basis-Farbe
-    let a = toHex(color.red, color.green, color.blue);
+    // Base color
+    const a = toHex(color.red, color.green, color.blue);
 
-    // Variante B: Hellere Farbe (mischt ca. 30% Weiß dazu)
-    let b = toHex(
+    // Lighter variant
+    const b = toHex(
       Math.min(255, Math.round(color.red + (255 - color.red) * 0.3)),
       Math.min(255, Math.round(color.green + (255 - color.green) * 0.3)),
       Math.min(255, Math.round(color.blue + (255 - color.blue) * 0.3)),
     );
 
-    // Variante C: Dunklere Farbe (mischt ca. 30% Schwarz dazu)
-    let c = toHex(Math.max(0, Math.round(color.red * 0.7)), Math.max(0, Math.round(color.green * 0.7)), Math.max(0, Math.round(color.blue * 0.7)));
+    // Darker variants
+    const c = toHex(Math.max(0, Math.round(color.red * 0.9)), Math.max(0, Math.round(color.green * 0.9)), Math.max(0, Math.round(color.blue * 0.9)));
+    const d = toHex(Math.max(0, Math.round(color.red * 0.8)), Math.max(0, Math.round(color.green * 0.8)), Math.max(0, Math.round(color.blue * 0.8)));
+    const e = toHex(Math.max(0, Math.round(color.red * 0.7)), Math.max(0, Math.round(color.green * 0.7)), Math.max(0, Math.round(color.blue * 0.7)));
 
-    return { a, b, c };
+    return { a, b, c, d, e };
   }
 
   _getImageAtScale(imageFileName, width, height) {
@@ -240,26 +241,30 @@ class MyDesklet extends Desklet.Desklet {
             .replace(/%CANDLE_1_COLOR_A%/g, c1.a)
             .replace(/%CANDLE_1_COLOR_B%/g, c1.b)
             .replace(/%CANDLE_1_COLOR_C%/g, c1.c)
+            .replace(/%CANDLE_1_COLOR_D%/g, c1.d)
+            .replace(/%CANDLE_1_COLOR_E%/g, c1.e)
             .replace(/%CANDLE_2_COLOR_A%/g, c2.a)
             .replace(/%CANDLE_2_COLOR_B%/g, c2.b)
             .replace(/%CANDLE_2_COLOR_C%/g, c2.c)
+            .replace(/%CANDLE_2_COLOR_D%/g, c2.d)
+            .replace(/%CANDLE_2_COLOR_E%/g, c2.e)
             .replace(/%CANDLE_3_COLOR_A%/g, c3.a)
             .replace(/%CANDLE_3_COLOR_B%/g, c3.b)
             .replace(/%CANDLE_3_COLOR_C%/g, c3.c)
+            .replace(/%CANDLE_3_COLOR_D%/g, c3.d)
+            .replace(/%CANDLE_3_COLOR_E%/g, c3.e)
             .replace(/%CANDLE_4_COLOR_A%/g, c4.a)
             .replace(/%CANDLE_4_COLOR_B%/g, c4.b)
             .replace(/%CANDLE_4_COLOR_C%/g, c4.c)
-            .replace(/%CANDLE_1_COLOR%/g, c1.a)
-            .replace(/%CANDLE_2_COLOR%/g, c2.a)
-            .replace(/%CANDLE_3_COLOR%/g, c3.a)
-            .replace(/%CANDLE_4_COLOR%/g, c4.a);
+            .replace(/%CANDLE_4_COLOR_D%/g, c4.d)
+            .replace(/%CANDLE_4_COLOR_E%/g, c4.e);
 
           const bytes = ByteArray.fromString(coloredSvgString);
           const stream = Gio.MemoryInputStream.new_from_bytes(GLib.Bytes.new(bytes));
           pixBuf = GdkPixbuf.Pixbuf.new_from_stream_at_scale(stream, width, height, true, null);
         }
       } catch (e) {
-        global.logError("Error dynamically coloring SVG: " + e);
+        global.logError(`${UUID}: Error dynamically coloring SVG: ${e}`);
       }
     }
 
