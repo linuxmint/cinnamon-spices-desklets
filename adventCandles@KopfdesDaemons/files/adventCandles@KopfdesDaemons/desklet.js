@@ -31,15 +31,17 @@ class MyDesklet extends Desklet.Desklet {
     // Default settings values
     this.deskletScale = 1;
     this.animationSpeed = 300;
-    this.candle1Color = "red";
-    this.candle2Color = "green";
-    this.candle3Color = "blue";
-    this.candle4Color = "yellow";
+    this.colorPreset = "red";
+    this.candle1Color = "#c01c28";
+    this.candle2Color = "#c01c28";
+    this.candle3Color = "#c01c28";
+    this.candle4Color = "#c01c28";
 
     // Bind settings properties
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
     this.settings.bindProperty(Settings.BindingDirection.IN, "desklet-scale", "deskletScale", this._onSettingsChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "animation-speed", "animationSpeed", this._onSettingsChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "color-preset", "colorPreset", this._onColorPresetChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "candle-1-color", "candle1Color", this._onSettingsChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "candle-2-color", "candle2Color", this._onSettingsChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "candle-3-color", "candle3Color", this._onSettingsChanged);
@@ -162,6 +164,23 @@ class MyDesklet extends Desklet.Desklet {
     this._loadImage();
     if (this._candles > 0) {
       this._startAnimation();
+    }
+  }
+
+  _onColorPresetChanged() {
+    switch (this.colorPreset) {
+      case "red":
+        this.candle1Color = "#c01c28";
+        this.candle2Color = "#c01c28";
+        this.candle3Color = "#c01c28";
+        this.candle4Color = "#c01c28";
+        break;
+      case "traditional":
+        this.candle1Color = "#a351c2";
+        this.candle2Color = "#a351c2";
+        this.candle3Color = "#f58cad";
+        this.candle4Color = "#a351c2";
+        break;
     }
   }
 

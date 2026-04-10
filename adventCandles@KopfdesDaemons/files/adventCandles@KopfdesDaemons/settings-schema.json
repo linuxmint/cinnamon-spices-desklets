@@ -15,24 +15,37 @@
     "step": 10,
     "description": "Speed of candle animation in milliseconds"
   },
+  "header0": {
+    "type": "header",
+    "description": "Colors"
+  },
+  "color-preset": {
+    "type": "combobox",
+    "default": "red",
+    "options": {
+      "traditional": "traditional",
+      "red": "red"
+    },
+    "description": "Color preset"
+  },
   "candle-1-color": {
     "type": "colorchooser",
-    "default": "#ff0000",
+    "default": "#c01c28",
     "description": "Color of candle 1"
   },
   "candle-2-color": {
     "type": "colorchooser",
-    "default": "#ff0000",
+    "default": "#c01c28",
     "description": "Color of candle 2"
   },
   "candle-3-color": {
     "type": "colorchooser",
-    "default": "#ff0000",
+    "default": "#c01c28",
     "description": "Color of candle 3"
   },
   "candle-4-color": {
     "type": "colorchooser",
-    "default": "#ff0000",
+    "default": "#c01c28",
     "description": "Color of candle 4"
   }
 }
