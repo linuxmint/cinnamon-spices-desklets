@@ -31,6 +31,7 @@ class MyDesklet extends Desklet.Desklet {
     // Default settings values
     this.deskletScale = 1;
     this.animationSpeed = 300;
+    this.numberOfLitCandles = "automatic";
     this.colorPreset = "red";
     this.candle1Color = "#c01c28";
     this.candle2Color = "#c01c28";
@@ -41,6 +42,7 @@ class MyDesklet extends Desklet.Desklet {
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
     this.settings.bindProperty(Settings.BindingDirection.IN, "desklet-scale", "deskletScale", this._onSettingsChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "animation-speed", "animationSpeed", this._onSettingsChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "number-of-lit-candles", "numberOfLitCandles", this._onSettingsChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "color-preset", "colorPreset", this._onColorPresetChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "candle-1-color", "candle1Color", this._onSettingsChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "candle-2-color", "candle2Color", this._onSettingsChanged);
@@ -70,6 +72,10 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _getAdventCandlesNumber() {
+    if (this.numberOfLitCandles != "automatic") {
+      return parseInt(this.numberOfLitCandles);
+    }
+
     const today = new Date();
     const year = today.getFullYear();
     const christmas = new Date(year, 11, 25);
@@ -161,6 +167,7 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _onSettingsChanged() {
+    this._updateCandlesState();
     this._loadImage();
     if (this._candles > 0) {
       this._startAnimation();

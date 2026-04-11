@@ -4,13 +4,14 @@
 
 - New Features
   - Custom candle colors
-  - Color presets
+  - Color presets (traditional or red)
+  - Setting for number of lit candles (1-4 or automatic)
 - Refactoring
   - Removed hard-coded local folder path
   - Removed `settings.getValue()` (use binding)
   - Moved `prevent-decorations`to `metadata.json`
   - Removed `imports.lang`
-  - Changed desklet entry point tp `on_desklet_added_to_desktop()`
+  - Changed desklet entry point to `on_desklet_added_to_desktop()`
   - kebab case for setting names
   - cleanup settings in `on_desklet_removed()` function
   - Made `getAdventCandlesNumber()` more readable
