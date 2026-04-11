@@ -23,10 +23,13 @@ class MyDesklet extends Desklet.Desklet {
     super(metadata, deskletId);
     this.setHeader(_("Advent Candles"));
 
-    this._candles = 0;
+    this._candles = -1;
     this._animationTimeoutId = null;
     this._refreshTimeoutId = null;
+    this._lastRandomNumber = null;
     this._isReloading = false;
+    this._pixbufCache = {};
+    this._svgCache = {};
 
     // Default settings values
     this.deskletScale = 1;
@@ -53,6 +56,7 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   on_desklet_added_to_desktop() {
+    this._updateColorVariants();
     this._updateCandleNumber();
     this._setAnimationState();
     this._startUpdateCandleNumberLoop();
@@ -61,6 +65,8 @@ class MyDesklet extends Desklet.Desklet {
   on_desklet_removed() {
     this._stopAnimation();
     this._stopUpdateCandleNumberLoop();
+    this._pixbufCache = null;
+    this._svgCache = null;
     if (this.settings && !this._isReloading) {
       this.settings.finalize();
     }
@@ -169,6 +175,8 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _onSettingsChanged() {
+    this._pixbufCache = {};
+    this._updateColorVariants();
     this._updateCandleNumber();
     this._loadImage();
     this._setAnimationState();
@@ -208,6 +216,15 @@ class MyDesklet extends Desklet.Desklet {
     }
   }
 
+  _updateColorVariants() {
+    this._colorVariants = {
+      c1: this._generateColorVariants(this.candle1Color || "#c01c28"),
+      c2: this._generateColorVariants(this.candle2Color || "#c01c28"),
+      c3: this._generateColorVariants(this.candle3Color || "#c01c28"),
+      c4: this._generateColorVariants(this.candle4Color || "#c01c28"),
+    };
+  }
+
   _generateColorVariants(colorString) {
     const [res, color] = Clutter.Color.from_string(colorString);
     if (!res) {
@@ -238,63 +255,61 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _getImageAtScale(imageFileName, width, height) {
-    let pixBuf = null;
-
-    if (imageFileName.endsWith(".svg")) {
-      try {
-        if (!this._svgCache) this._svgCache = {};
-
-        let svgString;
-        if (this._svgCache[imageFileName]) {
-          svgString = this._svgCache[imageFileName];
-        } else {
-          const file = Gio.File.new_for_path(imageFileName);
-          const [success, contents] = file.load_contents(null);
-          if (success) {
-            svgString = ByteArray.toString(contents);
-            this._svgCache[imageFileName] = svgString;
-          }
-        }
-
-        if (svgString) {
-          const c1 = this._generateColorVariants(this.candle1Color);
-          const c2 = this._generateColorVariants(this.candle2Color);
-          const c3 = this._generateColorVariants(this.candle3Color);
-          const c4 = this._generateColorVariants(this.candle4Color);
-
-          let coloredSvgString = svgString
-            .replace(/%CANDLE_1_COLOR_A%/g, c1.a)
-            .replace(/%CANDLE_1_COLOR_B%/g, c1.b)
-            .replace(/%CANDLE_1_COLOR_C%/g, c1.c)
-            .replace(/%CANDLE_1_COLOR_D%/g, c1.d)
-            .replace(/%CANDLE_1_COLOR_E%/g, c1.e)
-            .replace(/%CANDLE_2_COLOR_A%/g, c2.a)
-            .replace(/%CANDLE_2_COLOR_B%/g, c2.b)
-            .replace(/%CANDLE_2_COLOR_C%/g, c2.c)
-            .replace(/%CANDLE_2_COLOR_D%/g, c2.d)
-            .replace(/%CANDLE_2_COLOR_E%/g, c2.e)
-            .replace(/%CANDLE_3_COLOR_A%/g, c3.a)
-            .replace(/%CANDLE_3_COLOR_B%/g, c3.b)
-            .replace(/%CANDLE_3_COLOR_C%/g, c3.c)
-            .replace(/%CANDLE_3_COLOR_D%/g, c3.d)
-            .replace(/%CANDLE_3_COLOR_E%/g, c3.e)
-            .replace(/%CANDLE_4_COLOR_A%/g, c4.a)
-            .replace(/%CANDLE_4_COLOR_B%/g, c4.b)
-            .replace(/%CANDLE_4_COLOR_C%/g, c4.c)
-            .replace(/%CANDLE_4_COLOR_D%/g, c4.d)
-            .replace(/%CANDLE_4_COLOR_E%/g, c4.e);
-
-          const bytes = ByteArray.fromString(coloredSvgString);
-          const stream = Gio.MemoryInputStream.new_from_bytes(GLib.Bytes.new(bytes));
-          pixBuf = GdkPixbuf.Pixbuf.new_from_stream_at_scale(stream, width, height, true, null);
-        }
-      } catch (e) {
-        global.logError(`${UUID}: Error dynamically coloring SVG: ${e}`);
-      }
-    }
+    const cacheKey = `${imageFileName}_${width}x${height}`;
+    let pixBuf = this._pixbufCache ? this._pixbufCache[cacheKey] : null;
 
     if (!pixBuf) {
-      pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(imageFileName, width, height);
+      if (imageFileName.endsWith(".svg")) {
+        try {
+          let svgString = this._svgCache[imageFileName];
+          if (!svgString) {
+            const file = Gio.File.new_for_path(imageFileName);
+            const [success, contents] = file.load_contents(null);
+            if (success) {
+              svgString = ByteArray.toString(contents);
+              this._svgCache[imageFileName] = svgString;
+            }
+          }
+
+          if (svgString) {
+            const { c1, c2, c3, c4 } = this._colorVariants;
+
+            let coloredSvgString = svgString
+              .replace(/%CANDLE_1_COLOR_A%/g, c1.a)
+              .replace(/%CANDLE_1_COLOR_B%/g, c1.b)
+              .replace(/%CANDLE_1_COLOR_C%/g, c1.c)
+              .replace(/%CANDLE_1_COLOR_D%/g, c1.d)
+              .replace(/%CANDLE_1_COLOR_E%/g, c1.e)
+              .replace(/%CANDLE_2_COLOR_A%/g, c2.a)
+              .replace(/%CANDLE_2_COLOR_B%/g, c2.b)
+              .replace(/%CANDLE_2_COLOR_C%/g, c2.c)
+              .replace(/%CANDLE_2_COLOR_D%/g, c2.d)
+              .replace(/%CANDLE_2_COLOR_E%/g, c2.e)
+              .replace(/%CANDLE_3_COLOR_A%/g, c3.a)
+              .replace(/%CANDLE_3_COLOR_B%/g, c3.b)
+              .replace(/%CANDLE_3_COLOR_C%/g, c3.c)
+              .replace(/%CANDLE_3_COLOR_D%/g, c3.d)
+              .replace(/%CANDLE_3_COLOR_E%/g, c3.e)
+              .replace(/%CANDLE_4_COLOR_A%/g, c4.a)
+              .replace(/%CANDLE_4_COLOR_B%/g, c4.b)
+              .replace(/%CANDLE_4_COLOR_C%/g, c4.c)
+              .replace(/%CANDLE_4_COLOR_D%/g, c4.d)
+              .replace(/%CANDLE_4_COLOR_E%/g, c4.e);
+
+            const bytes = ByteArray.fromString(coloredSvgString);
+            const stream = Gio.MemoryInputStream.new_from_bytes(GLib.Bytes.new(bytes));
+            pixBuf = GdkPixbuf.Pixbuf.new_from_stream_at_scale(stream, width, height, true, null);
+          }
+        } catch (e) {
+          global.logError(`${UUID}: Error dynamically coloring SVG: ${e}`);
+        }
+      }
+
+      if (!pixBuf) {
+        pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(imageFileName, width, height);
+      }
+
+      if (this._pixbufCache) this._pixbufCache[cacheKey] = pixBuf;
     }
 
     const image = new Clutter.Image();

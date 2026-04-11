@@ -6,18 +6,18 @@
   - Custom candle colors
   - Color presets (traditional or red)
   - Setting for number of lit candles (1-4 or automatic)
-  - Setting for enable/disable animation
+  - Setting to enable/disable animation
 - Refactoring
+  - Improved performance by image caching
+  - Improved animation and candle update loop logic
+  - Made `getAdventCandlesNumber()` more readable
   - Removed hard-coded local folder path
   - Removed `settings.getValue()` (use binding)
-  - Moved `prevent-decorations`to `metadata.json`
+  - Moved `prevent-decorations` to `metadata.json`
   - Removed `imports.lang`
   - Changed desklet entry point to `on_desklet_added_to_desktop()`
-  - kebab case for setting names
-  - cleanup settings in `on_desklet_removed()` function
-  - Made `getAdventCandlesNumber()` more readable
-  - Improve animation and candle update loop logic
-  - Image caching
+  - Kebab case for setting names
+  - Cleaned up settings in `on_desklet_removed()` function
 
 ## [1.0.0] 03.12.2024
 
