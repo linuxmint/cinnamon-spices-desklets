@@ -53,21 +53,21 @@
   "candle-1-color": {
     "type": "colorchooser",
     "default": "#c01c28",
-    "description": "Color of candle 1"
+    "description": "Color of the 1st candle"
   },
   "candle-2-color": {
     "type": "colorchooser",
     "default": "#c01c28",
-    "description": "Color of candle 2"
+    "description": "Color of the 2nd candle"
   },
   "candle-3-color": {
     "type": "colorchooser",
     "default": "#c01c28",
-    "description": "Color of candle 3"
+    "description": "Color of the 3rd candle"
   },
   "candle-4-color": {
     "type": "colorchooser",
     "default": "#c01c28",
-    "description": "Color of candle 4"
+    "description": "Color of the 4th candle"
   }
 }

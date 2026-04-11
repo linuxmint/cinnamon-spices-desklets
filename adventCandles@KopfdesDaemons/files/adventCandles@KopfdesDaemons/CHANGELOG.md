@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.1.0] 11.04.2026
+## [2.0.0] 11.04.2026
 
 - New Features
   - Custom candle colors

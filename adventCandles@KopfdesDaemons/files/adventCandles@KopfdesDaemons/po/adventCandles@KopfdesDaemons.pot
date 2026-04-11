@@ -1,14 +1,14 @@
 # ADVENT CANDLES
 # This file is put in the public domain.
-# KopfdesDaemons, 2017
+# KopfdesDaemons, 2024
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: adventCandles@KopfdesDaemons 1.0\n"
+"Project-Id-Version: adventCandles@KopfdesDaemons 2.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-12-03 01:54+0100\n"
+"POT-Creation-Date: 2026-04-11 10:33+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. metadata.json->name
-#. desklet.js:23
+#. desklet.js:24
 msgid "Advent Candles"
 msgstr ""
 
@@ -26,10 +26,74 @@ msgstr ""
 msgid "Advent candles with animations on your desktop."
 msgstr ""
 
-#. settings-schema.json->deskletScale->description
+#. settings-schema.json->header0->description
+msgid "General"
+msgstr ""
+
+#. settings-schema.json->desklet-scale->description
 msgid "Scale factor for desklet size"
 msgstr ""
 
-#. settings-schema.json->animationSpeed->description
+#. settings-schema.json->animation-enabled->description
+msgid "Animate the candle flames"
+msgstr ""
+
+#. settings-schema.json->animation-speed->description
 msgid "Speed of candle animation in milliseconds"
+msgstr ""
+
+#. settings-schema.json->number-of-lit-candles->options
+msgid "automatic"
+msgstr ""
+
+#. settings-schema.json->number-of-lit-candles->options
+msgid "1"
+msgstr ""
+
+#. settings-schema.json->number-of-lit-candles->options
+msgid "2"
+msgstr ""
+
+#. settings-schema.json->number-of-lit-candles->options
+msgid "3"
+msgstr ""
+
+#. settings-schema.json->number-of-lit-candles->options
+msgid "4"
+msgstr ""
+
+#. settings-schema.json->number-of-lit-candles->description
+msgid "Number of lit candles"
+msgstr ""
+
+#. settings-schema.json->header1->description
+msgid "Colors"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "traditional"
+msgstr ""
+
+#. settings-schema.json->color-preset->options
+msgid "red"
+msgstr ""
+
+#. settings-schema.json->color-preset->description
+msgid "Color preset"
+msgstr ""
+
+#. settings-schema.json->candle-1-color->description
+msgid "Color of the 1st candle"
+msgstr ""
+
+#. settings-schema.json->candle-2-color->description
+msgid "Color of the 2nd candle"
+msgstr ""
+
+#. settings-schema.json->candle-3-color->description
+msgid "Color of the 3rd candle"
+msgstr ""
+
+#. settings-schema.json->candle-4-color->description
+msgid "Color of the 4th candle"
 msgstr ""
