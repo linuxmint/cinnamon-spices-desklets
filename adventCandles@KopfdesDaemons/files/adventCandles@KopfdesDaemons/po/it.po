@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: adventCandles@KopfdesDaemons 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-04-11 10:33+0200\n"
+"POT-Creation-Date: 2025-12-14 00:04+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
 "Language-Team: \n"
@@ -45,6 +45,10 @@ msgstr "Velocità dell'animazione delle candele in millisecondi"
 
 #. settings-schema.json->number-of-lit-candles->options
 msgid "automatic"
+msgstr ""
+
+#. settings-schema.json->number-of-lit-candles->options
+msgid "0"
 msgstr ""
 
 #. settings-schema.json->number-of-lit-candles->options

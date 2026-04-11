@@ -18,6 +18,8 @@
   - Changed desklet entry point to `on_desklet_added_to_desktop()`
   - Kebab case for setting names
   - Cleaned up settings in `on_desklet_removed()` function
+- Fixes
+  - fixed broken desklet scale setting on image without a lit candle
 
 ## [1.0.0] 03.12.2024
 
