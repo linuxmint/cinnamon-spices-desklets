@@ -30,6 +30,7 @@ class MyDesklet extends Desklet.Desklet {
 
     // Default settings values
     this.deskletScale = 1;
+    this.animationEnabled = true;
     this.animationSpeed = 300;
     this.numberOfLitCandles = "automatic";
     this.colorPreset = "red";
@@ -41,6 +42,7 @@ class MyDesklet extends Desklet.Desklet {
     // Bind settings properties
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
     this.settings.bindProperty(Settings.BindingDirection.IN, "desklet-scale", "deskletScale", this._onSettingsChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "animation-enabled", "animationEnabled", this._onSettingsChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "animation-speed", "animationSpeed", this._onSettingsChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "number-of-lit-candles", "numberOfLitCandles", this._onSettingsChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "color-preset", "colorPreset", this._onColorPresetChanged);
@@ -51,11 +53,8 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   on_desklet_added_to_desktop() {
-    this._candles = this._getAdventCandlesNumber();
-    this._loadImage();
-    if (this._candles > 0) {
-      this._startAnimation();
-    }
+    this._updateCandleNumber();
+    this._setAnimationState();
     this._startUpdateCandleNumberLoop();
   }
 
@@ -115,7 +114,7 @@ class MyDesklet extends Desklet.Desklet {
   _startUpdateCandleNumberLoop() {
     this._stopUpdateCandleNumberLoop();
     this._refreshTimeoutId = Mainloop.timeout_add_seconds(60, () => {
-      this._updateCandlesState();
+      this._updateCandleNumber();
       return true;
     });
   }
@@ -127,17 +126,20 @@ class MyDesklet extends Desklet.Desklet {
     }
   }
 
-  _updateCandlesState() {
+  _updateCandleNumber() {
     const newCandles = this._getAdventCandlesNumber();
     if (this._candles !== newCandles) {
       this._candles = newCandles;
       this._loadImage();
+      this._setAnimationState();
+    }
+  }
 
-      if (this._candles === 0) {
-        this._stopAnimation();
-      } else if (!this._animationTimeoutId) {
-        this._startAnimation();
-      }
+  _setAnimationState() {
+    if (this._candles > 0 && this.animationEnabled) {
+      this._startAnimation();
+    } else {
+      this._stopAnimation();
     }
   }
 
@@ -167,11 +169,9 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   _onSettingsChanged() {
-    this._updateCandlesState();
+    this._updateCandleNumber();
     this._loadImage();
-    if (this._candles > 0) {
-      this._startAnimation();
-    }
+    this._setAnimationState();
   }
 
   _onColorPresetChanged() {

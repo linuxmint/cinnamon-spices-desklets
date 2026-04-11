@@ -6,6 +6,7 @@
   - Custom candle colors
   - Color presets (traditional or red)
   - Setting for number of lit candles (1-4 or automatic)
+  - Setting for enable/disable animation
 - Refactoring
   - Removed hard-coded local folder path
   - Removed `settings.getValue()` (use binding)
