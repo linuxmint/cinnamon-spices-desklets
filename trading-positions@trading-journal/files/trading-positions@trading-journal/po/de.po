@@ -1,0 +1,120 @@
+# German translation for trading-positions@trading-journal
+# Copyright (C) 2026 Mouses007
+# This file is distributed under the GPL-3.0 license.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: trading-positions@trading-journal\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/issues\n"
+"POT-Creation-Date: 2026-03-23 12:00+0100\n"
+"PO-Revision-Date: 2026-03-23 12:00+0100\n"
+"Last-Translator: Mouses007\n"
+"Language-Team: German\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: desklet.js
+msgid "Open Bitunix Futures"
+msgstr "Offene Bitunix Futures"
+
+#: desklet.js
+msgid "Connecting..."
+msgstr "Verbinde..."
+
+#: desklet.js
+msgid "Connecting to"
+msgstr "Verbinde mit"
+
+#: desklet.js
+msgid "Server unreachable"
+msgstr "Server nicht erreichbar"
+
+#: desklet.js
+msgid "Parse error:"
+msgstr "Fehler beim Parsen:"
+
+#: desklet.js
+msgid "Updated:"
+msgstr "Aktualisiert:"
+
+#: desklet.js
+msgid "No open positions"
+msgstr "Keine offenen Positionen"
+
+#: desklet.js
+msgid "Total:"
+msgstr "Gesamt:"
+
+#: desklet.js
+msgid "position"
+msgstr "Position"
+
+#: desklet.js
+msgid "positions"
+msgstr "Positionen"
+
+#: desklet.js
+msgid "Symbol"
+msgstr "Symbol"
+
+#: desklet.js
+msgid "Side"
+msgstr "Seite"
+
+#: desklet.js
+msgid "Lvg"
+msgstr "Hebel"
+
+#: desklet.js
+msgid "Entry"
+msgstr "Einstieg"
+
+#: desklet.js
+msgid "Mark"
+msgstr "Mark"
+
+#: desklet.js
+msgid "unr. PnL"
+msgstr "unr. PnL"
+
+#. settings-schema.json
+msgid "This desklet requires a running Crypto Trading Journal.\ngithub.com/Mouses007/Crypto-Trading-Journal"
+msgstr "Dieses Desklet benötigt ein laufendes Crypto Trading Journal.\ngithub.com/Mouses007/Crypto-Trading-Journal"
+
+msgid "Server host"
+msgstr "Server-Host"
+
+msgid "IP or hostname, e.g. 192.168.178.100 or localhost"
+msgstr "IP oder Hostname, z.B. 192.168.178.100 oder localhost"
+
+msgid "Server port"
+msgstr "Server-Port"
+
+msgid "Default: 8080"
+msgstr "Standard: 8080"
+
+msgid "Refresh interval"
+msgstr "Aktualisierungsintervall"
+
+msgid "Show leverage"
+msgstr "Hebel anzeigen"
+
+msgid "Show mark price"
+msgstr "Mark-Preis anzeigen"
+
+msgid "Show GitHub link in footer"
+msgstr "GitHub-Link in Fußzeile anzeigen"
+
+msgid "Font size (positions)"
+msgstr "Schriftgröße (Positionen)"
+
+msgid "Font size (title, footer, total)"
+msgstr "Schriftgröße (Titel, Fußzeile, Gesamt)"
+
+msgid "Background opacity (0 = invisible, 100 = solid)"
+msgstr "Hintergrund-Transparenz (0 = unsichtbar, 100 = voll)"
+
+msgid "Width"
+msgstr "Breite"

@@ -1,0 +1,8 @@
+{
+  "author": "Mouses007",
+  "name": "Trading Positions",
+  "description": "Desktop widget for Crypto Trading Journal. Shows open Bitunix futures positions with real-time PnL updates. Requires a running Crypto Trading Journal instance (github.com/Mouses007/Crypto-Trading-Journal).",
+  "version": "1.0.0",
+  "website": "https://github.com/Mouses007/Crypto-Trading-Journal",
+  "comments": "Displays open trading positions fetched from the Crypto Trading Journal API. Configurable refresh interval, font sizes, and appearance."
+}
