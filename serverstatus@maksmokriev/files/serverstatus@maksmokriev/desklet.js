@@ -39,8 +39,8 @@ MyDesklet.prototype = {
         this.settings.bind("TextColorWARN", "TextColorWARN", this.onSettingsChanged.bind(this));
         this.settings.bind("TextColorERR", "TextColorERR", this.onSettingsChanged.bind(this));
         this.settings.bind("ContainerBgColor", "ContainerBgColor", this.onSettingsBgChanged.bind(this));
-        this.settings.bind("BoxBgColor", "BoxBgColor", this.onSettingsBgChanged.bind(this));
-        this.settings.bind("FontSize", "FontSize", this.onSettingsBgChanged.bind(this));
+        this.settings.bind("BoxBgColor", "BoxBgColor", this.onSettingsChanged.bind(this));
+        this.settings.bind("FontSize", "FontSize", this.onSettingsChanged.bind(this));
         this.settings.bind("ContainerFixedWidth", "ContainerFixedWidth", this.onSettingsBgChanged.bind(this));
         this.settings.bind("ContainerWidth", "ContainerWidth", this.onSettingsBgChanged.bind(this));
 
@@ -86,16 +86,23 @@ MyDesklet.prototype = {
 
         } else {
             this.updateServersDisplay();
-            //Delay the first updateStatus call by 10 seconds
-            Mainloop.timeout_add_seconds(5, () => {
-                this.updateStatus();
-                //After the first call, we start a periodic update
-                this.mainloop = Mainloop.timeout_add_seconds(this.TimeRepeat, () => {
+
+            if (!this.mainloop || this.oldTimeRepeat != this.TimeRepeat) {
+                this.oldTimeRepeat = this.TimeRepeat;
+                //Delay the first updateStatus call by 5 seconds
+                Mainloop.timeout_add_seconds(5, () => {
                     this.updateStatus();
-                    return true;
+                    if (this.mainloop) {
+                        Mainloop.source_remove(this.mainloop);
+                    }
+                    //After the first call, we start a periodic update
+                    this.mainloop = Mainloop.timeout_add_seconds(this.TimeRepeat, () => {
+                        this.updateStatus();
+                        return true;
+                    });
+                    return false; //Return false so that this timer only runs once
                 });
-                return false; //Return false so that this timer only runs once
-            });
+            }
         }
     },
 
