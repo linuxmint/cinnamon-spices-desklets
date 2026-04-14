@@ -1,0 +1,172 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: procmon@ksmith 1.1.0\n"
+"POT-Creation-Date: 2026-02-17 00:00+0000\n"
+"PO-Revision-Date: 2026-04-06 17:05+0200\n"
+"Last-Translator: Alan Mortensen <over.tackiness223@passinbox.com>\n"
+"Language-Team: \n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: desklet.js
+msgid "Process Monitor"
+msgstr "Procesovervågning"
+
+#: desklet.js
+msgid "PID"
+msgstr "PID"
+
+#: desklet.js
+msgid "USER"
+msgstr "BRUGER"
+
+#: desklet.js
+msgid "CPU%"
+msgstr "CPU%"
+
+#: desklet.js
+msgid "MEM"
+msgstr "HUK"
+
+#: desklet.js
+msgid "COMMAND"
+msgstr "KOMMANDO"
+
+#: metadata.json
+msgid "ProcMon Table"
+msgstr "Procestabel"
+
+#: metadata.json
+msgid "Sortable process table powered by top."
+msgstr "Sorterbar procesoversigt drevet af top."
+
+#: settings-schema.json
+msgid "Refresh interval"
+msgstr "Opdateringsinterval"
+
+#: settings-schema.json
+msgid "How often to refresh the process list."
+msgstr "Hvor ofte proceslisten opdateres."
+
+#: settings-schema.json
+msgid "Number of rows"
+msgstr "Antal rækker"
+
+#: settings-schema.json
+msgid "Maximum process rows to display."
+msgstr "Største antal procesrækker der vises."
+
+#: settings-schema.json
+msgid "PID column width"
+msgstr "PID-kolonnebredde"
+
+#: settings-schema.json
+msgid "Width of the PID column."
+msgstr "Bredden af PID-kolonnen."
+
+#: settings-schema.json
+msgid "USER column width"
+msgstr "Bruger-kolonnebredde"
+
+#: settings-schema.json
+msgid "Width of the USER column."
+msgstr "Bredden af BRUGER-kolonnen."
+
+#: settings-schema.json
+msgid "CPU% column width"
+msgstr "CPU%-kolonnebredde"
+
+#: settings-schema.json
+msgid "Width of the CPU% column."
+msgstr "Bredden af CPU%-kolonnen."
+
+#: settings-schema.json
+msgid "MEM column width"
+msgstr "HUK-kolonnebredde"
+
+#: settings-schema.json
+msgid "Width of the MEM column."
+msgstr "Bredden af HUK-kolonnen."
+
+#: settings-schema.json
+msgid "COMMAND column width"
+msgstr "KOMMANDO-kolonnebredde"
+
+#: settings-schema.json
+msgid "Width of the COMMAND column. Desklet width is the sum of all column widths."
+msgstr "Bredden af KOMMANDO-kolonnen. Skrivebordsprogrammets bredde er summen af alle kolonnebredder."
+
+#: settings-schema.json
+msgid "Disable desklet decorations"
+msgstr "Deaktivér ramme og/eller titel"
+
+#: settings-schema.json
+msgid "Hide Cinnamon desklet frame and header decorations."
+msgstr "Skjul Cinnamon-skrivebordsprograms ramme og titel."
+
+#: settings-schema.json
+msgid "Header text color"
+msgstr "Overskriftens farve"
+
+#: settings-schema.json
+msgid "Color used for the header row text."
+msgstr "Farve anvendt til teksten i overskriftsrækken."
+
+#: settings-schema.json
+msgid "Content text color"
+msgstr "Indholdets farve"
+
+#: settings-schema.json
+msgid "Color used for process row text."
+msgstr "Farve anvendt til teksten i procesrækkerne."
+
+#: settings-schema.json
+msgid "Background color"
+msgstr "Baggrundsfarve"
+
+#: settings-schema.json
+msgid "Base background color of the desklet."
+msgstr "Skrivebordsprogrammets baggrundsfarve."
+
+#: settings-schema.json
+msgid "Background transparency"
+msgstr "Baggrundens gennemsigtighed"
+
+#: settings-schema.json
+msgid "0% is opaque, 100% is fully transparent."
+msgstr "0 er uigennemsigtig og 100 er helt gennemsigtig."
+
+#: settings-schema.json
+msgid "Only my processes"
+msgstr "Kun mine processer"
+
+#: settings-schema.json
+msgid "Use top -u <current user> to show only your processes."
+msgstr "Brug top -u <aktuelle bruger> for kun at få vist dine processer."
+
+#: settings-schema.json
+msgid "CPU scaling mode"
+msgstr "CPU-skaleringstilstand"
+
+#: settings-schema.json
+msgid "Choose how CPU percentages are shown."
+msgstr "Vælg, hvordan CPU-procenter vises."
+
+#: settings-schema.json
+msgid "Per-core style (100% = one core)"
+msgstr "Per kerne (100 % = en kerne)"
+
+#: settings-schema.json
+msgid "Total-system-scaled (100% = all cores)"
+msgstr "Skaleret til hele systemet (100 % = alle kerner)"
+
+#: settings-schema.json
+msgid "COMMAND max length"
+msgstr "Maksimal KOMMANDO-længde"
+
+#: settings-schema.json
+msgid "Long command names are truncated with ellipsis."
+msgstr "Lange kommandonavne trunkeres med …"
