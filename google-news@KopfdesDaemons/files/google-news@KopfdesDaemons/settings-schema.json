@@ -5,7 +5,12 @@
     "general-page": {
       "type": "page",
       "title": "General",
-      "sections": ["size-section"]
+      "sections": ["size-section", "api-section"]
+    },
+    "api-section": {
+      "type": "section",
+      "title": "API Settings",
+      "keys": ["ceid"]
     },
     "size-section": {
       "type": "section",
@@ -17,24 +22,32 @@
     "type": "scale",
     "default": 1,
     "min": 0.5,
-    "max": 3,
+    "max": 2,
     "step": 0.1,
-    "description": "Desklet scale size"
+    "description": "Scale size"
   },
   "width": {
-    "type": "scale",
+    "type": "spinbutton",
     "default": 35,
-    "min": 5,
+    "min": 10,
     "max": 100,
     "step": 1,
-    "description": "Desklet width"
+    "units": "em",
+    "description": "Width"
   },
   "height": {
-    "type": "scale",
+    "type": "spinbutton",
     "default": 40,
-    "min": 5,
+    "min": 10,
     "max": 100,
     "step": 1,
-    "description": "Desklet height"
+    "units": "em",
+    "description": "Height"
+  },
+  "ceid": {
+    "type": "entry",
+    "default": "",
+    "description": "Country and language",
+    "tooltip": "e.g. US:en, DE:de"
   }
 }

@@ -21,9 +21,30 @@ var GoogleNewsHelper = class {
   httpHelper;
   cachedNews;
   cacheTimestamp;
+  ceid = "";
 
   constructor() {
     this.HttpHelper = new HttpHelper();
+  }
+
+  setConfig(ceid) {
+    this.ceid = ceid;
+  }
+
+  _buildUrl() {
+    let url = this.URL;
+    const params = [];
+
+    if (this.ceid) {
+      params.push(`ceid=${encodeURIComponent(this.ceid)}`);
+    }
+
+    if (params.length > 0) {
+      url += "?" + params.join("&");
+    }
+
+    global.log(`[${UUID}] Google News URL: ${url}`);
+    return url;
   }
 
   async getNews(forceReload = false) {
@@ -32,7 +53,8 @@ var GoogleNewsHelper = class {
       return this.cachedNews;
     }
 
-    const news = await this.HttpHelper.fetchText(this.URL);
+    const url = this._buildUrl();
+    const news = await this.HttpHelper.fetchText(url);
     const parsedNews = this._parseNews(news);
 
     const cacheDir = GLib.get_user_cache_dir() + "/" + UUID;

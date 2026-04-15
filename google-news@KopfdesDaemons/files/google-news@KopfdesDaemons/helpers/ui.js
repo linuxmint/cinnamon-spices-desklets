@@ -65,7 +65,7 @@ var UiHelper = class UiHelper {
       footer.add_child(spacer2);
 
       // Read more button
-      const readMoreButton = new St.Button({ label: _("Read more"), style_class: "google-news-read-more-button" });
+      const readMoreButton = new St.Button({ label: _("read more"), style_class: "google-news-read-more-button" });
       readMoreButton.set_style(`padding: ${scaleSize * 0.5}em; border-radius: ${scaleSize * 0.5}em;`);
       readMoreButton.connect("clicked", () => {
         Util.spawn(["xdg-open", item.link]);

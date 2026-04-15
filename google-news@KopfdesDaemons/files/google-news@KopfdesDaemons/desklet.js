@@ -25,7 +25,7 @@ function _(str) {
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
-    this.setHeader(_("Tutorial Desklet"));
+    this.setHeader(_("Google News"));
 
     // Helpers
     this._googleNewsHelper = new GoogleNewsHelper();
@@ -39,15 +39,37 @@ class MyDesklet extends Desklet.Desklet {
     this.scaleSize = 1;
     this.width = 35;
     this.height = 40;
+    this.ceid = "US:en";
 
+    // Bind settings
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
     this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._onSizeChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "width", "width", this._onSizeChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "height", "height", this._onSizeChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "ceid", "ceid", this._onNewsSettingChanged);
   }
 
   on_desklet_added_to_desktop() {
+    this._setDefaultCeid();
+    this._googleNewsHelper.setConfig(this.ceid);
     this._setupLayout();
+  }
+
+  _setDefaultCeid() {
+    if (!this.ceid || this.ceid.trim() === "") {
+      let newCeid = "US:en"; // Fallback
+      const locales = GLib.get_language_names();
+      for (const locale of locales) {
+        const match = locale.match(/^([a-z]{2})_([A-Z]{2})/);
+        if (match) {
+          newCeid = `${match[2]}:${match[1]}`;
+          break;
+        }
+      }
+      this.settings.setValue("ceid", newCeid);
+      global.log(`[${UUID}] Using default CEID: ${newCeid}`);
+      this.ceid = newCeid;
+    }
   }
 
   on_desklet_removed() {
@@ -58,6 +80,12 @@ class MyDesklet extends Desklet.Desklet {
 
   on_desklet_reloaded() {
     this._isReloading = true;
+  }
+
+  _onNewsSettingChanged() {
+    this._setDefaultCeid();
+    this._googleNewsHelper.setConfig(this.ceid);
+    this.reload();
   }
 
   _onSizeChanged() {
