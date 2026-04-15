@@ -44,6 +44,7 @@ class MyDesklet extends Desklet.Desklet {
     this.height = 40;
     this.ceid = "US:en";
     this.refreshInterval = 10;
+    this.hideDecoration = true;
 
     // Bind settings
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
@@ -52,12 +53,15 @@ class MyDesklet extends Desklet.Desklet {
     this.settings.bindProperty(Settings.BindingDirection.IN, "height", "height", this._onSizeChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "ceid", "ceid", this._onNewsSettingChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refreshInterval", this._onRefreshIntervalChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this._onDecorationsChanged);
   }
 
   on_desklet_added_to_desktop() {
     this._setDefaultCeid();
+    this._onDecorationsChanged();
     this._googleNewsHelper.setConfig(this.ceid);
     this._setupLayout();
+    this._loadNews();
   }
 
   _setDefaultCeid() {
@@ -105,6 +109,11 @@ class MyDesklet extends Desklet.Desklet {
     this._setRefreshInterval();
   }
 
+  _onDecorationsChanged() {
+    this.metadata["prevent-decorations"] = this.hideDecorations;
+    this._updateDecoration();
+  }
+
   _setRefreshInterval() {
     if (this._timeoutId) {
       Mainloop.source_remove(this._timeoutId);
@@ -128,8 +137,6 @@ class MyDesklet extends Desklet.Desklet {
     // Header
     const header = this._uiHelper.getHeader(this.scaleSize, this.reload.bind(this));
     this._mainContainer.add_child(header);
-
-    await this._loadNews();
   }
 
   async _loadNews(forceReload = false) {

@@ -1,11 +1,21 @@
 {
   "layout": {
     "type": "layout",
-    "pages": ["general-page"],
+    "pages": ["general-page", "style-page"],
     "general-page": {
       "type": "page",
       "title": "General",
       "sections": ["size-section", "api-section"]
+    },
+    "style-page": {
+      "type": "page",
+      "title": "Style",
+      "sections": ["style-section"]
+    },
+    "style-section": {
+      "type": "section",
+      "title": "Style",
+      "keys": ["hide-decorations"]
     },
     "api-section": {
       "type": "section",
@@ -57,5 +67,10 @@
     "max": 60,
     "step": 1,
     "description": "Refresh interval in minutes"
+  },
+  "hide-decorations": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Hide decorations"
   }
 }
