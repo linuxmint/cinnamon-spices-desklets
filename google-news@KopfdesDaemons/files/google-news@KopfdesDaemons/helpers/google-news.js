@@ -43,7 +43,6 @@ var GoogleNewsHelper = class {
       url += "?" + params.join("&");
     }
 
-    global.log(`[${UUID}] Google News URL: ${url}`);
     return url;
   }
 

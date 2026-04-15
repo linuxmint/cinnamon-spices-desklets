@@ -3,6 +3,7 @@ const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
 const St = imports.gi.St;
 const Settings = imports.ui.settings;
+const Mainloop = imports.mainloop;
 
 const UUID = "google-news@KopfdesDaemons";
 
@@ -31,15 +32,18 @@ class MyDesklet extends Desklet.Desklet {
     this._googleNewsHelper = new GoogleNewsHelper();
     this._uiHelper = new UiHelper();
 
+    // Properties
     this._mainContainer = null;
     this._scrollView = null;
     this._isReloading = false;
+    this._timeoutId = null;
 
     // Default settings
     this.scaleSize = 1;
     this.width = 35;
     this.height = 40;
     this.ceid = "US:en";
+    this.refreshInterval = 10;
 
     // Bind settings
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
@@ -47,6 +51,7 @@ class MyDesklet extends Desklet.Desklet {
     this.settings.bindProperty(Settings.BindingDirection.IN, "width", "width", this._onSizeChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "height", "height", this._onSizeChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "ceid", "ceid", this._onNewsSettingChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refreshInterval", this._onRefreshIntervalChanged);
   }
 
   on_desklet_added_to_desktop() {
@@ -73,6 +78,10 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   on_desklet_removed() {
+    if (this._timeoutId) {
+      Mainloop.source_remove(this._timeoutId);
+      this._timeoutId = null;
+    }
     if (this.settings && !this._isReloading) {
       this.settings.finalize();
     }
@@ -90,6 +99,24 @@ class MyDesklet extends Desklet.Desklet {
 
   _onSizeChanged() {
     this._setupLayout();
+  }
+
+  _onRefreshIntervalChanged() {
+    this._setRefreshInterval();
+  }
+
+  _setRefreshInterval() {
+    if (this._timeoutId) {
+      Mainloop.source_remove(this._timeoutId);
+      this._timeoutId = null;
+    }
+    if (this.refreshInterval > 0) {
+      this._timeoutId = Mainloop.timeout_add_seconds(this.refreshInterval * 60, () => {
+        this._timeoutId = null;
+        this.reload();
+        return false;
+      });
+    }
   }
 
   async _setupLayout() {
@@ -124,9 +151,12 @@ class MyDesklet extends Desklet.Desklet {
     this._scrollView = this._uiHelper.getNewsScrollView(this.scaleSize, this.width, this.height, news);
     loadingView.destroy();
     this._mainContainer.add_child(this._scrollView);
+
+    this._setRefreshInterval();
   }
 
   async reload() {
+    global.log(`[${UUID}] Reloading...`);
     await this._loadNews(true);
   }
 }

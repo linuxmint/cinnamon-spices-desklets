@@ -4,7 +4,7 @@ const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
 const Util = imports.misc.util;
 
-const UUID = "google-news@KopfdesDaemons";
+const UUID = "devtest-google-news@KopfdesDaemons";
 const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 
 Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");

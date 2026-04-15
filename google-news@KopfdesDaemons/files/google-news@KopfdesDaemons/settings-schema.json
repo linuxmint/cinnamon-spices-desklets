@@ -10,7 +10,7 @@
     "api-section": {
       "type": "section",
       "title": "API Settings",
-      "keys": ["ceid"]
+      "keys": ["ceid", "refresh-interval"]
     },
     "size-section": {
       "type": "section",
@@ -49,5 +49,13 @@
     "default": "",
     "description": "Country and language",
     "tooltip": "e.g. US:en, DE:de"
+  },
+  "refresh-interval": {
+    "type": "spinbutton",
+    "default": 10,
+    "min": 1,
+    "max": 60,
+    "step": 1,
+    "description": "Refresh interval in minutes"
   }
 }
