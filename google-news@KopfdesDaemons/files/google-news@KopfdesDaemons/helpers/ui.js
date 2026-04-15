@@ -26,7 +26,7 @@ var UiHelper = class UiHelper {
 
     for (const item of news) {
       const newsItemContainer = new St.BoxLayout({ vertical: true, y_expand: true });
-      newsItemContainer.set_style(`min-height: 7em; padding: ${scaleSize * 1}em; background-color: rgba(98, 100, 110, 0.36); border-radius: ${scaleSize * 0.8}em;`);
+      newsItemContainer.set_style(`min-height: ${scaleSize * 7}em; padding: ${scaleSize * 1}em; background-color: rgba(98, 100, 110, 0.36); border-radius: ${scaleSize * 0.8}em;`);
 
       // Title
       const title = new St.Label({ text: item.title });

@@ -1,0 +1,40 @@
+{
+  "layout": {
+    "type": "layout",
+    "pages": ["general-page"],
+    "general-page": {
+      "type": "page",
+      "title": "General",
+      "sections": ["size-section"]
+    },
+    "size-section": {
+      "type": "section",
+      "title": "Size",
+      "keys": ["scale-size", "width", "height"]
+    }
+  },
+  "scale-size": {
+    "type": "scale",
+    "default": 1,
+    "min": 0.5,
+    "max": 3,
+    "step": 0.1,
+    "description": "Desklet scale size"
+  },
+  "width": {
+    "type": "scale",
+    "default": 35,
+    "min": 5,
+    "max": 100,
+    "step": 1,
+    "description": "Desklet width"
+  },
+  "height": {
+    "type": "scale",
+    "default": 40,
+    "min": 5,
+    "max": 100,
+    "step": 1,
+    "description": "Desklet height"
+  }
+}

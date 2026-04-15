@@ -2,6 +2,7 @@ const Desklet = imports.ui.desklet;
 const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
 const St = imports.gi.St;
+const Settings = imports.ui.settings;
 
 const UUID = "google-news@KopfdesDaemons";
 
@@ -27,49 +28,74 @@ class MyDesklet extends Desklet.Desklet {
     this.setHeader(_("Tutorial Desklet"));
 
     // Helpers
-    this.googleNewsHelper = new GoogleNewsHelper();
-    this.uiHelper = new UiHelper();
+    this._googleNewsHelper = new GoogleNewsHelper();
+    this._uiHelper = new UiHelper();
 
-    this.mainContainer = null;
-    this.scrollView = null;
+    this._mainContainer = null;
+    this._scrollView = null;
+    this._isReloading = false;
 
+    // Default settings
     this.scaleSize = 1;
     this.width = 35;
     this.height = 40;
+
+    this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._onSizeChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "width", "width", this._onSizeChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "height", "height", this._onSizeChanged);
   }
 
   on_desklet_added_to_desktop() {
     this._setupLayout();
   }
 
+  on_desklet_removed() {
+    if (this.settings && !this._isReloading) {
+      this.settings.finalize();
+    }
+  }
+
+  on_desklet_reloaded() {
+    this._isReloading = true;
+  }
+
+  _onSizeChanged() {
+    this._setupLayout();
+  }
+
   async _setupLayout() {
     // Container
-    this.mainContainer = new St.BoxLayout({ vertical: true, x_expand: true });
-    this.mainContainer.set_style(`spacing: ${this.scaleSize * 0.5}em;`);
-    this.setContent(this.mainContainer);
+    this._mainContainer = new St.BoxLayout({ vertical: true, x_expand: true });
+    this._mainContainer.set_style(`spacing: ${this.scaleSize * 0.5}em;`);
+    this.setContent(this._mainContainer);
 
     // Header
-    const header = this.uiHelper.getHeader(this.scaleSize, this.reload.bind(this));
-    this.mainContainer.add_child(header);
+    const header = this._uiHelper.getHeader(this.scaleSize, this.reload.bind(this));
+    this._mainContainer.add_child(header);
 
     await this._loadNews();
   }
 
   async _loadNews(forceReload = false) {
-    if (this.scrollView) {
-      this.scrollView.destroy();
-      this.scrollView = null;
+    if (this._scrollView) {
+      this._scrollView.destroy();
+      this._scrollView = null;
     }
 
     // Loading view
-    const loadingView = this.uiHelper.getLoadingView(this.scaleSize, this.width, this.height);
-    this.mainContainer.add_child(loadingView);
+    const loadingView = this._uiHelper.getLoadingView(this.scaleSize, this.width, this.height);
+    this._mainContainer.add_child(loadingView);
 
     // News
-    const news = await this.googleNewsHelper.getNews(forceReload);
-    this.scrollView = this.uiHelper.getNewsScrollView(this.scaleSize, this.width, this.height, news);
+    const news = await this._googleNewsHelper.getNews(forceReload);
+    if (this._scrollView) {
+      this._scrollView.destroy();
+      this._scrollView = null;
+    }
+    this._scrollView = this._uiHelper.getNewsScrollView(this.scaleSize, this.width, this.height, news);
     loadingView.destroy();
-    this.mainContainer.add_child(this.scrollView);
+    this._mainContainer.add_child(this._scrollView);
   }
 
   async reload() {
