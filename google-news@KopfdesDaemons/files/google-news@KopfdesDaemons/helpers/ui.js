@@ -16,9 +16,8 @@ function _(str) {
 var UiHelper = class UiHelper {
   constructor() {}
 
-  getNewsScrollView(scaleSize, width, height, news) {
+  getNewsScrollView(scaleSize, news) {
     const scrollView = new St.ScrollView({ overlay_scrollbars: true, clip_to_allocation: true });
-    scrollView.set_style(`max-height: ${scaleSize * height}em; width: ${scaleSize * width}em;`);
 
     const scrollViewContent = new St.BoxLayout({ vertical: true });
     scrollViewContent.set_style(`spacing: ${scaleSize * 1}em;`);
@@ -80,17 +79,48 @@ var UiHelper = class UiHelper {
     return scrollView;
   }
 
-  getLoadingView(scaleSize, width, height) {
+  getLoadingView(scaleSize) {
     // Container
-    const box = new St.BoxLayout({ vertical: true });
-    box.set_style(`width: ${scaleSize * width}em; height: ${scaleSize * height}em;`);
+    const loadingView = new St.BoxLayout({ vertical: true, x_expand: true, y_expand: true });
 
     // Label
     const loadingLabel = new St.Label({ text: _("Loading...") });
     loadingLabel.set_style(`font-size: ${scaleSize * 1.5}em;`);
 
-    box.add_child(new St.Bin({ child: loadingLabel, x_align: St.Align.MIDDLE, y_expand: true }));
-    return box;
+    loadingView.add_child(new St.Bin({ child: loadingLabel, x_align: St.Align.MIDDLE, y_expand: true }));
+    return loadingView;
+  }
+
+  getErrorView(scaleSize, errorMessage) {
+    // Container
+    const errorView = new St.BoxLayout({ vertical: true, x_expand: true, y_expand: true });
+    errorView.set_style(`padding: ${scaleSize * 0.5}em; spacing: ${scaleSize * 1}em; background-color: rgba(98, 100, 110, 0.36); border-radius: ${scaleSize * 0.8}em;`);
+
+    const errorBin = new St.Bin();
+
+    const errorIcon = new St.Icon({
+      icon_name: "dialog-warning-symbolic",
+      icon_type: St.IconType.SYMBOLIC,
+      style: `width: ${scaleSize * 2.5}em; height: ${scaleSize * 2.5}em; padding: ${scaleSize * 0.5}em; border-radius: ${scaleSize * 0.5}em;`,
+    });
+
+    errorBin.add_actor(errorIcon);
+    errorView.add_child(errorBin);
+
+    // Label
+    const errorLabel = new St.Label({ text: _("Error loading news") });
+    errorLabel.set_style(`font-size: ${scaleSize * 1.5}em; color: red;`);
+    errorView.add_child(errorLabel);
+
+    // ErrorMessage
+    if (errorMessage) {
+      const errorMessageLabel = new St.Label({ text: errorMessage.toString() });
+      errorMessageLabel.set_style(`font-size: ${scaleSize * 1}em;`);
+      errorMessageLabel.clutter_text.set_line_wrap(true);
+      errorView.add_child(errorMessageLabel);
+    }
+
+    return errorView;
   }
 
   getHeader(scaleSize, reloadCallback) {

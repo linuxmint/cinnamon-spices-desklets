@@ -35,13 +35,14 @@ class MyDesklet extends Desklet.Desklet {
     // Properties
     this._mainContainer = null;
     this._scrollView = null;
+    this._errorView = null;
     this._isReloading = false;
     this._timeoutId = null;
 
     // Default settings
     this.scaleSize = 1;
     this.width = 35;
-    this.height = 40;
+    this.height = 39;
     this.ceid = "US:en";
     this.refreshInterval = 10;
     this.hideDecoration = true;
@@ -103,6 +104,7 @@ class MyDesklet extends Desklet.Desklet {
 
   _onSizeChanged() {
     this._setupLayout();
+    this.reload();
   }
 
   _onRefreshIntervalChanged() {
@@ -131,7 +133,7 @@ class MyDesklet extends Desklet.Desklet {
   async _setupLayout() {
     // Container
     this._mainContainer = new St.BoxLayout({ vertical: true, x_expand: true });
-    this._mainContainer.set_style(`spacing: ${this.scaleSize * 0.5}em;`);
+    this._mainContainer.set_style(`spacing: ${this.scaleSize * 0.5}em; width: ${this.scaleSize * this.width}em; height: ${this.scaleSize * this.height}em;`);
     this.setContent(this._mainContainer);
 
     // Header
@@ -144,26 +146,35 @@ class MyDesklet extends Desklet.Desklet {
       this._scrollView.destroy();
       this._scrollView = null;
     }
+    if (this._errorView) {
+      this._errorView.destroy();
+      this._errorView = null;
+    }
 
     // Loading view
-    const loadingView = this._uiHelper.getLoadingView(this.scaleSize, this.width, this.height);
+    const loadingView = this._uiHelper.getLoadingView(this.scaleSize);
     this._mainContainer.add_child(loadingView);
 
     // News
-    const news = await this._googleNewsHelper.getNews(forceReload);
-    if (this._scrollView) {
-      this._scrollView.destroy();
-      this._scrollView = null;
+    try {
+      const news = await this._googleNewsHelper.getNews(forceReload);
+      if (this._scrollView) {
+        this._scrollView.destroy();
+        this._scrollView = null;
+      }
+      this._scrollView = this._uiHelper.getNewsScrollView(this.scaleSize, news);
+      loadingView.destroy();
+      this._mainContainer.add_child(this._scrollView);
+    } catch (e) {
+      global.log(`[${UUID}] Error loading news: ${e}`);
+      loadingView.destroy();
+      this._errorView = this._uiHelper.getErrorView(this.scaleSize, e);
+      this._mainContainer.add_child(this._errorView);
     }
-    this._scrollView = this._uiHelper.getNewsScrollView(this.scaleSize, this.width, this.height, news);
-    loadingView.destroy();
-    this._mainContainer.add_child(this._scrollView);
-
     this._setRefreshInterval();
   }
 
   async reload() {
-    global.log(`[${UUID}] Reloading...`);
     await this._loadNews(true);
   }
 }

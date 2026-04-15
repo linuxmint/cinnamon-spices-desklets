@@ -19,14 +19,14 @@ var HttpHelper = class {
     return new Promise((resolve, reject) => {
       const message = Soup.Message.new("GET", url);
       if (!message) {
-        resolve(false);
+        reject(new Error("Invalid URL"));
         return;
       }
 
       if (Soup.MAJOR_VERSION === 2) {
         this._httpSession.queue_message(message, (session, msg) => {
           if (msg.status_code !== Soup.KnownStatusCode.OK) {
-            resolve(false);
+            reject(new Error(`Error fetching ${url}: ${e}`));
             return;
           }
           try {
@@ -37,7 +37,7 @@ var HttpHelper = class {
             stream.close(null);
             resolve(true);
           } catch (e) {
-            resolve(false);
+            reject(new Error(`Error fetching ${url}: ${e}`));
           }
         });
       } else {
@@ -45,7 +45,7 @@ var HttpHelper = class {
           try {
             const bytes = this._httpSession.send_and_read_finish(result);
             if (message.get_status() !== Soup.Status.OK) {
-              resolve(false);
+              reject(new Error(`Error fetching ${url}: ${e}`));
               return;
             }
             const file = Gio.File.new_for_path(destPath);
@@ -54,7 +54,7 @@ var HttpHelper = class {
             stream.close(null);
             resolve(true);
           } catch (e) {
-            resolve(false);
+            reject(new Error(`Error fetching ${url}: ${e}`));
           }
         });
       }
@@ -65,7 +65,7 @@ var HttpHelper = class {
     return new Promise((resolve, reject) => {
       const message = Soup.Message.new("GET", url);
       if (!message) {
-        resolve("Invalid URL");
+        reject(new Error("Invalid URL"));
         return;
       }
 
@@ -73,14 +73,14 @@ var HttpHelper = class {
         this._httpSession.queue_message(message, (session, msg) => {
           if (msg.status_code !== Soup.KnownStatusCode.OK) {
             const body = msg.response_body.data ? msg.response_body.data.toString() : "";
-            resolve(`HTTP ${msg.status_code} ${msg.reason_phrase} BODY: ${body}`);
+            reject(new Error(`HTTP ${msg.status_code} ${msg.reason_phrase} BODY: ${body}`));
             return;
           }
           try {
             const body = msg.response_body.data.toString();
             resolve(body);
           } catch (e) {
-            resolve(`Error fetching ${url}: ${e}`);
+            reject(new Error(`Error fetching ${url}: ${e}`));
           }
         });
       } else {
@@ -89,13 +89,13 @@ var HttpHelper = class {
             const bytes = this._httpSession.send_and_read_finish(result);
             if (message.get_status() !== Soup.Status.OK) {
               const body = bytes ? ByteArray.toString(bytes.get_data()) : "";
-              resolve(`HTTP ${message.get_status()} ${message.reason_phrase} BODY: ${body}`);
+              reject(new Error(`HTTP ${message.get_status()} ${message.reason_phrase} BODY: ${body}`));
               return;
             }
             const body = ByteArray.toString(bytes.get_data());
             resolve(body);
           } catch (e) {
-            resolve(`Error fetching ${url}: ${e}`);
+            reject(new Error(`Error fetching ${url}: ${e}`));
           }
         });
       }
