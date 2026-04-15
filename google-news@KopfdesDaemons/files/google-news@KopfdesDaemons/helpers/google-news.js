@@ -12,12 +12,19 @@ if (typeof require !== "undefined") {
 var GoogleNewsHelper = class {
   URL = "https://news.google.com/rss";
   httpHelper;
+  cachedNews;
+  cacheTimestamp;
 
   constructor() {
     this.HttpHelper = new HttpHelper();
   }
 
-  async getNews() {
+  async getNews(forceReload = false) {
+    const cacheLifeSpan = 1000 * 60 * 60;
+    if (!forceReload && this.cachedNews && Date.now() - this.cacheTimestamp < cacheLifeSpan) {
+      return this.cachedNews;
+    }
+
     const news = await this.HttpHelper.fetchText(this.URL);
     const parsedNews = this._parseNews(news);
 
@@ -35,7 +42,8 @@ var GoogleNewsHelper = class {
     });
 
     await Promise.all(promises);
-
+    this.cachedNews = parsedNews;
+    this.cacheTimestamp = Date.now();
     return parsedNews;
   }
 
