@@ -2,6 +2,7 @@ const St = imports.gi.St;
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
+const Util = imports.misc.util;
 
 const UUID = "google-news@KopfdesDaemons";
 const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
@@ -20,40 +21,60 @@ var UiHelper = class UiHelper {
     scrollView.set_style(`max-height: ${scaleSize * height}em; width: ${scaleSize * width}em;`);
 
     const scrollViewContent = new St.BoxLayout({ vertical: true });
-    scrollViewContent.set_style(`spacing: ${scaleSize * 0.5}em;`);
+    scrollViewContent.set_style(`spacing: ${scaleSize * 1}em;`);
     scrollView.add_actor(scrollViewContent);
 
     for (const item of news) {
-      const newsItem = new St.BoxLayout({ vertical: true });
-      newsItem.set_style(`spacing: ${scaleSize * 0.5}em; padding: ${scaleSize * 1}em; background-color: rgba(77, 83, 112, 0.7); border-radius: ${scaleSize * 0.5}em;`);
+      const newsItemContainer = new St.BoxLayout({ vertical: true, y_expand: true });
+      newsItemContainer.set_style(`min-height: 7em; padding: ${scaleSize * 1}em; background-color: rgba(98, 100, 110, 0.36); border-radius: ${scaleSize * 0.8}em;`);
 
+      // Title
       const title = new St.Label({ text: item.title });
-      title.set_style(`font-size: ${scaleSize * 1.5}em; font-weight: bold;`);
+      title.set_style(`font-size: ${scaleSize * 1.5}em;`);
+      title.clutter_text.set_line_wrap(true);
+      newsItemContainer.add_child(title);
 
-      const pubDate = new St.Label({ text: item.pubDate });
+      // Spacer
+      const spacer = new St.Bin({ y_expand: true });
+      spacer.set_style(`height: ${scaleSize * 0.5}em;`);
+      newsItemContainer.add_child(spacer);
+
+      const footer = new St.BoxLayout({ y_align: St.Align.MIDDLE });
+      footer.set_style(`spacing: ${scaleSize * 0.5}em;`);
+
+      // Favicon
+      const iconSize = Math.round(scaleSize * 15);
+      const gicon = Gio.FileIcon.new(Gio.File.new_for_path(item.thumbnailPath));
+      const icon = new St.Icon({ gicon: gicon, icon_size: iconSize });
+      footer.add_child(icon);
+
+      // Source
+      const sourceBox = new St.Bin();
       const source = new St.Label({ text: item.source });
+      sourceBox.add_actor(source);
+      footer.add_child(sourceBox);
 
-      const textContainer = new St.BoxLayout({ vertical: true });
-      textContainer.add_child(title);
-      textContainer.add_child(pubDate);
-      textContainer.add_child(source);
+      // Date
+      const dateBox = new St.Bin();
+      const date = new St.Label({ text: item.pubDate });
+      dateBox.add_actor(date);
+      footer.add_child(dateBox);
 
-      if (item.thumbnailPath) {
-        const imageContainer = new St.BoxLayout({ vertical: false });
+      // Spacer
+      const spacer2 = new St.Bin({ x_expand: true });
+      footer.add_child(spacer2);
 
-        const iconSize = Math.round(scaleSize * 64);
-        const gicon = Gio.FileIcon.new(Gio.File.new_for_path(item.thumbnailPath));
-        const icon = new St.Icon({ gicon: gicon, icon_size: iconSize });
-        icon.set_style(`margin-right: ${scaleSize * 1}em;`);
+      // Read more button
+      const readMoreButton = new St.Button({ label: _("Read more"), style_class: "google-news-read-more-button" });
+      readMoreButton.set_style(`padding: ${scaleSize * 0.5}em; border-radius: ${scaleSize * 0.5}em;`);
+      readMoreButton.connect("clicked", () => {
+        Util.spawn(["xdg-open", item.link]);
+      });
+      footer.add_child(readMoreButton);
 
-        imageContainer.add_child(icon);
-        imageContainer.add_child(textContainer);
-        newsItem.add_child(imageContainer);
-      } else {
-        newsItem.add_child(textContainer);
-      }
+      newsItemContainer.add_child(footer);
 
-      scrollViewContent.add_actor(newsItem);
+      scrollViewContent.add_actor(newsItemContainer);
     }
 
     return scrollView;
@@ -94,7 +115,7 @@ var UiHelper = class UiHelper {
 
     // Reload button
     const buttonBox = new St.Bin();
-    const reloadButtonStyle = `width: ${scaleSize * 2}em; height: ${scaleSize * 2}em; padding: ${scaleSize * 0.3}em; border-radius: ${scaleSize * 0.5}em;`;
+    const reloadButtonStyle = `width: ${scaleSize * 2.5}em; height: ${scaleSize * 2.5}em; padding: ${scaleSize * 0.5}em; border-radius: ${scaleSize * 0.5}em;`;
     const reloadButton = new St.Button({
       style: reloadButtonStyle,
       style_class: "google-news-reload-button",

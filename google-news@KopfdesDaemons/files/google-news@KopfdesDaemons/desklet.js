@@ -45,6 +45,7 @@ class MyDesklet extends Desklet.Desklet {
   async _setupLayout() {
     // Container
     this.mainContainer = new St.BoxLayout({ vertical: true, x_expand: true });
+    this.mainContainer.set_style(`spacing: ${this.scaleSize * 0.5}em;`);
     this.setContent(this.mainContainer);
 
     // Header

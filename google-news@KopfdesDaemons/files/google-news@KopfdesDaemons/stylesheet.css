@@ -1,3 +1,8 @@
 .google-news-reload-button:hover {
   background-color: #67707b;
 }
+
+.google-news-read-more-button:hover {
+  background-color: rgba(0, 255, 255, 0.5);
+  color: black;
+}
