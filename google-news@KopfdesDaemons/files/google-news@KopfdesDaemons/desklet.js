@@ -36,6 +36,7 @@ class MyDesklet extends Desklet.Desklet {
     this._mainContainer = null;
     this._scrollView = null;
     this._errorView = null;
+    this._loadingView = null;
     this._isReloading = false;
     this._timeoutId = null;
 
@@ -142,6 +143,28 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   async _loadNews(forceReload = false) {
+    this._destroyViews();
+
+    // Loading view
+    this._loadingView = this._uiHelper.getLoadingView(this.scaleSize);
+    this._mainContainer.add_child(this._loadingView);
+
+    // News
+    try {
+      const news = await this._googleNewsHelper.getNews(forceReload);
+      this._destroyViews();
+      this._scrollView = this._uiHelper.getNewsScrollView(this.scaleSize, news);
+      this._mainContainer.add_child(this._scrollView);
+    } catch (e) {
+      global.log(`[${UUID}] Error loading news: ${e}`);
+      this._destroyViews();
+      this._errorView = this._uiHelper.getErrorView(this.scaleSize, e);
+      this._mainContainer.add_child(this._errorView);
+    }
+    this._setRefreshInterval();
+  }
+
+  _destroyViews() {
     if (this._scrollView) {
       this._scrollView.destroy();
       this._scrollView = null;
@@ -150,28 +173,10 @@ class MyDesklet extends Desklet.Desklet {
       this._errorView.destroy();
       this._errorView = null;
     }
-
-    // Loading view
-    const loadingView = this._uiHelper.getLoadingView(this.scaleSize);
-    this._mainContainer.add_child(loadingView);
-
-    // News
-    try {
-      const news = await this._googleNewsHelper.getNews(forceReload);
-      if (this._scrollView) {
-        this._scrollView.destroy();
-        this._scrollView = null;
-      }
-      this._scrollView = this._uiHelper.getNewsScrollView(this.scaleSize, news);
-      loadingView.destroy();
-      this._mainContainer.add_child(this._scrollView);
-    } catch (e) {
-      global.log(`[${UUID}] Error loading news: ${e}`);
-      loadingView.destroy();
-      this._errorView = this._uiHelper.getErrorView(this.scaleSize, e);
-      this._mainContainer.add_child(this._errorView);
+    if (this._loadingView) {
+      this._loadingView.destroy();
+      this._loadingView = null;
     }
-    this._setRefreshInterval();
   }
 
   async reload() {
