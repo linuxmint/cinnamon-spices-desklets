@@ -123,44 +123,53 @@ var UiHelper = class UiHelper {
     return errorView;
   }
 
-  getHeader(scaleSize, reloadCallback) {
+  getHeader(headerSettings) {
+    const { scaleSize, showHeaderText, headerText, reloadCallback, showHeaderIcon, showReloadButton } = headerSettings;
+
+    // Container
     const header = new St.BoxLayout({ y_align: St.Align.MIDDLE, style: `spacing: ${scaleSize * 0.5}em;` });
 
     // Google News icon
-    const iconBox = new St.Bin();
-    iconBox.set_style(`padding: ${scaleSize * 0.5}em; height: ${scaleSize * 2.5}em; width: ${scaleSize * 2.5}em;`);
-    iconBox.add_actor(this._getIcon("/icons/google-news.svg", scaleSize * 50));
-    header.add_child(iconBox);
+    if (showHeaderIcon) {
+      const iconBox = new St.Bin();
+      iconBox.set_style(`padding: ${scaleSize * 0.5}em; height: ${scaleSize * 2.5}em; width: ${scaleSize * 2.5}em;`);
+      iconBox.add_actor(this._getIcon("/icons/google-news.svg", scaleSize * 50));
+      header.add_child(iconBox);
+    }
 
     // Label
-    const labelBin = new St.Bin();
-    const label = new St.Label({ text: _("Google News") });
-    label.set_style(`font-size: ${scaleSize * 1.5}em;`);
-    labelBin.add_actor(label);
-    header.add_child(labelBin);
+    if (showHeaderText) {
+      const labelBin = new St.Bin();
+      const label = new St.Label({ text: headerText });
+      label.set_style(`font-size: ${scaleSize * 1.5}em;`);
+      labelBin.add_actor(label);
+      header.add_child(labelBin);
+    }
 
     // Spacer
     const spacer = new St.Bin({ x_expand: true });
     header.add_child(spacer);
 
-    // Reload button
-    const buttonBox = new St.Bin();
-    const reloadButtonStyle = `width: ${scaleSize * 2.5}em; height: ${scaleSize * 2.5}em; padding: ${scaleSize * 0.5}em; border-radius: ${scaleSize * 0.5}em;`;
-    const reloadButton = new St.Button({
-      style: reloadButtonStyle,
-      style_class: "google-news-reload-button",
-    });
-    reloadButton.connect("clicked", reloadCallback);
-    const reloadIcon = new St.Icon({
-      icon_name: "view-refresh-symbolic",
-      icon_type: St.IconType.SYMBOLIC,
-      style: reloadButtonStyle,
-      style_class: "google-news-reload-button",
-    });
+    if (showReloadButton) {
+      // Reload button
+      const buttonBox = new St.Bin();
+      const reloadButtonStyle = `width: ${scaleSize * 2.5}em; height: ${scaleSize * 2.5}em; padding: ${scaleSize * 0.5}em; border-radius: ${scaleSize * 0.5}em;`;
+      const reloadButton = new St.Button({
+        style: reloadButtonStyle,
+        style_class: "google-news-reload-button",
+      });
+      reloadButton.connect("clicked", reloadCallback);
+      const reloadIcon = new St.Icon({
+        icon_name: "view-refresh-symbolic",
+        icon_type: St.IconType.SYMBOLIC,
+        style: reloadButtonStyle,
+        style_class: "google-news-reload-button",
+      });
 
-    reloadButton.set_child(reloadIcon);
-    buttonBox.add_actor(reloadButton);
-    header.add_child(buttonBox);
+      reloadButton.set_child(reloadIcon);
+      buttonBox.add_actor(reloadButton);
+      header.add_child(buttonBox);
+    }
 
     return header;
   }

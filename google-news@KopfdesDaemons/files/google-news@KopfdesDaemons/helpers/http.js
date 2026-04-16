@@ -26,7 +26,7 @@ var HttpHelper = class {
       if (Soup.MAJOR_VERSION === 2) {
         this._httpSession.queue_message(message, (session, msg) => {
           if (msg.status_code !== Soup.KnownStatusCode.OK) {
-            reject(new Error(`Error fetching ${url}: ${e}`));
+            reject(new Error(`Error fetching ${url}`));
             return;
           }
           try {
@@ -45,7 +45,7 @@ var HttpHelper = class {
           try {
             const bytes = this._httpSession.send_and_read_finish(result);
             if (message.get_status() !== Soup.Status.OK) {
-              reject(new Error(`Error fetching ${url}: ${e}`));
+              reject(new Error(`Error fetching ${url}`));
               return;
             }
             const file = Gio.File.new_for_path(destPath);

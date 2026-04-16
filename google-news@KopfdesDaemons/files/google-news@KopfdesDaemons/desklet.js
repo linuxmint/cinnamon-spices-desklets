@@ -34,6 +34,7 @@ class MyDesklet extends Desklet.Desklet {
 
     // Properties
     this._mainContainer = null;
+    this._headerLayout = null;
     this._scrollView = null;
     this._errorView = null;
     this._loadingView = null;
@@ -48,16 +49,26 @@ class MyDesklet extends Desklet.Desklet {
     this.refreshInterval = 10;
     this.newsKeywords = [];
     this.hideDecoration = true;
+    this.showHeader = true;
+    this.showHeaderText = true;
+    this.headerText = _("Google News");
+    this.showHeaderIcon = true;
+    this.showReloadButton = true;
 
     // Bind settings
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._onSizeChanged);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "width", "width", this._onSizeChanged);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "height", "height", this._onSizeChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._onScaleChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "width", "width", this._setMainContainerStyle);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "height", "height", this._setMainContainerStyle);
     this.settings.bindProperty(Settings.BindingDirection.IN, "ceid", "ceid", this._onNewsSettingChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refreshInterval", this._onRefreshIntervalChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "news-keywords", "newsKeywords", this._onNewsSettingChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this._onDecorationsChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-header", "showHeader", this._onHeaderSettingChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-header-text", "showHeaderText", this._onHeaderSettingChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "header-text", "headerText", this._onHeaderSettingChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-header-icon", "showHeaderIcon", this._onHeaderSettingChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-reload-button", "showReloadButton", this._onHeaderSettingChanged);
   }
 
   on_desklet_added_to_desktop() {
@@ -106,7 +117,7 @@ class MyDesklet extends Desklet.Desklet {
     this.reload();
   }
 
-  _onSizeChanged() {
+  _onScaleChanged() {
     this._setupLayout();
     this.reload();
   }
@@ -118,6 +129,23 @@ class MyDesklet extends Desklet.Desklet {
   _onDecorationsChanged() {
     this.metadata["prevent-decorations"] = this.hideDecorations;
     this._updateDecoration();
+  }
+
+  _onHeaderSettingChanged() {
+    if (this.showHeader) {
+      if (this._headerLayout) {
+        this._headerLayout.destroy();
+        this._headerLayout = null;
+        this._setupHeader();
+      } else {
+        this._setupHeader();
+      }
+    } else {
+      if (this._headerLayout) {
+        this._headerLayout.destroy();
+        this._headerLayout = null;
+      }
+    }
   }
 
   _setRefreshInterval() {
@@ -134,15 +162,32 @@ class MyDesklet extends Desklet.Desklet {
     }
   }
 
+  _setMainContainerStyle() {
+    if (this._mainContainer) {
+      this._mainContainer.set_style(`spacing: ${this.scaleSize * 0.5}em; width: ${this.scaleSize * this.width}em; height: ${this.scaleSize * this.height}em;`);
+    }
+  }
+
   async _setupLayout() {
     // Container
     this._mainContainer = new St.BoxLayout({ vertical: true, x_expand: true });
-    this._mainContainer.set_style(`spacing: ${this.scaleSize * 0.5}em; width: ${this.scaleSize * this.width}em; height: ${this.scaleSize * this.height}em;`);
+    this._setMainContainerStyle();
     this.setContent(this._mainContainer);
 
-    // Header
-    const header = this._uiHelper.getHeader(this.scaleSize, this.reload.bind(this));
-    this._mainContainer.add_child(header);
+    if (this.showHeader) this._setupHeader();
+  }
+
+  _setupHeader() {
+    const headerSettings = {
+      scaleSize: this.scaleSize,
+      showHeaderText: this.showHeaderText,
+      headerText: this.headerText,
+      reloadCallback: this.reload.bind(this),
+      showHeaderIcon: this.showHeaderIcon,
+      showReloadButton: this.showReloadButton,
+    };
+    this._headerLayout = this._uiHelper.getHeader(headerSettings);
+    this._mainContainer.insert_child_at_index(this._headerLayout, 0);
   }
 
   async _loadNews(forceReload = false) {
