@@ -27,6 +27,7 @@ class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
     this.setHeader(_("Google News"));
+    this._menu.addAction(_("Reload"), () => this._reload());
 
     // Helpers
     this._googleNewsHelper = new GoogleNewsHelper();
@@ -40,6 +41,7 @@ class MyDesklet extends Desklet.Desklet {
     this._loadingView = null;
     this._isReloading = false;
     this._timeoutId = null;
+    this._startupTimeoutID = null;
 
     // Default settings
     this.scaleSize = 1;
@@ -85,6 +87,17 @@ class MyDesklet extends Desklet.Desklet {
     this._googleNewsHelper.setConfig(this.ceid);
     this._setupLayout();
     this._loadNews();
+
+    // The first request after system start will fail
+    // Delay to ensure network services are ready and try again
+    if (this._startupTimeoutID) Mainloop.source_remove(this._startupTimeoutID);
+    this._startupTimeoutID = Mainloop.timeout_add_seconds(10, () => {
+      this._startupTimeoutID = null;
+      if (!this._googleNewsHelper.cachedNews) {
+        this._reload();
+      }
+      return false;
+    });
   }
 
   _setDefaultCeid() {
@@ -112,6 +125,10 @@ class MyDesklet extends Desklet.Desklet {
     if (this.settings && !this._isReloading) {
       this.settings.finalize();
     }
+    if (this._startupTimeoutID) {
+      Mainloop.source_remove(this._startupTimeoutID);
+      this._startupTimeoutID = null;
+    }
   }
 
   on_desklet_reloaded() {
@@ -122,12 +139,12 @@ class MyDesklet extends Desklet.Desklet {
   _onNewsSettingChanged() {
     this._setDefaultCeid();
     this._googleNewsHelper.setConfig(this.ceid, this.newsKeywords);
-    this.reload();
+    this._reload();
   }
 
   _onScaleChanged() {
     this._setupLayout();
-    this.reload();
+    this._reload();
   }
 
   _onRefreshIntervalChanged() {
@@ -164,7 +181,7 @@ class MyDesklet extends Desklet.Desklet {
     if (this.refreshInterval > 0) {
       this._timeoutId = Mainloop.timeout_add_seconds(this.refreshInterval * 60, () => {
         this._timeoutId = null;
-        this.reload();
+        this._reload();
         return false;
       });
     }
@@ -193,7 +210,7 @@ class MyDesklet extends Desklet.Desklet {
       showHeaderText: this.showHeaderText,
       headerText: this.headerText,
       headerTextColor: this.headerTextColor,
-      reloadCallback: this.reload.bind(this),
+      reloadCallback: this._reload.bind(this),
       showHeaderIcon: this.showHeaderIcon,
       showReloadButton: this.showReloadButton,
     };
@@ -244,7 +261,7 @@ class MyDesklet extends Desklet.Desklet {
     }
   }
 
-  async reload() {
+  async _reload() {
     await this._loadNews(true);
   }
 }
