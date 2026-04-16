@@ -46,6 +46,7 @@ class MyDesklet extends Desklet.Desklet {
     this.height = 43;
     this.ceid = "US:en";
     this.refreshInterval = 10;
+    this.newsKeywords = [];
     this.hideDecoration = true;
 
     // Bind settings
@@ -55,6 +56,7 @@ class MyDesklet extends Desklet.Desklet {
     this.settings.bindProperty(Settings.BindingDirection.IN, "height", "height", this._onSizeChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "ceid", "ceid", this._onNewsSettingChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refreshInterval", this._onRefreshIntervalChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "news-keywords", "newsKeywords", this._onNewsSettingChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this._onDecorationsChanged);
   }
 
@@ -100,7 +102,7 @@ class MyDesklet extends Desklet.Desklet {
 
   _onNewsSettingChanged() {
     this._setDefaultCeid();
-    this._googleNewsHelper.setConfig(this.ceid);
+    this._googleNewsHelper.setConfig(this.ceid, this.newsKeywords);
     this.reload();
   }
 

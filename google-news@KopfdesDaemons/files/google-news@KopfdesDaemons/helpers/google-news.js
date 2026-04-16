@@ -24,13 +24,20 @@ var GoogleNewsHelper = class {
   cachedNews;
   cacheTimestamp;
   ceid = "";
+  newsKeywords = [];
 
   constructor() {
     this.HttpHelper = new HttpHelper();
   }
 
-  setConfig(ceid) {
+  setConfig(ceid, newsKeywords) {
     this.ceid = ceid;
+    if (newsKeywords && newsKeywords.length > 0) {
+      this.newsKeywords = newsKeywords.map(object => object.keyword);
+    } else {
+      this.newsKeywords = [];
+    }
+    this._removeCache();
   }
 
   _buildUrl() {
@@ -41,10 +48,15 @@ var GoogleNewsHelper = class {
       params.push(`ceid=${encodeURIComponent(this.ceid)}`);
     }
 
+    if (this.newsKeywords && this.newsKeywords.length > 0) {
+      params.push(`q=${encodeURIComponent(this.newsKeywords.join(" OR "))}`);
+    }
+
     if (params.length > 0) {
       url += "?" + params.join("&");
     }
 
+    global.log(`[${UUID}] Using URL: ${url}`);
     return url;
   }
 

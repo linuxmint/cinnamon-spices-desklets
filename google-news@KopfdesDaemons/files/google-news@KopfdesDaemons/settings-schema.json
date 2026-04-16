@@ -20,7 +20,7 @@
     "api-section": {
       "type": "section",
       "title": "API Settings",
-      "keys": ["ceid", "refresh-interval"]
+      "keys": ["ceid", "refresh-interval", "news-keywords"]
     },
     "size-section": {
       "type": "section",
@@ -67,6 +67,17 @@
     "max": 60,
     "step": 1,
     "description": "Refresh interval in minutes"
+  },
+  "news-keywords": {
+    "type": "list",
+    "columns": [
+      {
+        "id": "keyword",
+        "title": "Search Keywords for news",
+        "type": "string"
+      }
+    ],
+    "default": []
   },
   "hide-decorations": {
     "type": "checkbox",
