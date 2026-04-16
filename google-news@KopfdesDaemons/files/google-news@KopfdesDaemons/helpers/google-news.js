@@ -1,6 +1,7 @@
 const UUID = "google-news@KopfdesDaemons";
 const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
+const Gio = imports.gi.Gio;
 
 Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
 
@@ -17,8 +18,9 @@ if (typeof require !== "undefined") {
 }
 
 var GoogleNewsHelper = class {
-  URL = "https://news.google.com/rss";
   httpHelper;
+  URL = "https://news.google.com/rss";
+  cacheDir = GLib.get_user_cache_dir() + "/" + UUID;
   cachedNews;
   cacheTimestamp;
   ceid = "";
@@ -56,12 +58,11 @@ var GoogleNewsHelper = class {
     const news = await this.HttpHelper.fetchText(url);
     const parsedNews = this._parseNews(news);
 
-    const cacheDir = GLib.get_user_cache_dir() + "/" + UUID;
-    GLib.mkdir_with_parents(cacheDir, 0o755);
+    GLib.mkdir_with_parents(this.cacheDir, 0o755);
 
     const promises = parsedNews.map(async (item, i) => {
       if (item.thumbnail) {
-        const filename = cacheDir + "/favicon_" + i + ".png";
+        const filename = this.cacheDir + "/favicon_" + i + ".png";
         const success = await this.HttpHelper.downloadFile(item.thumbnail, filename);
         if (success) {
           item.thumbnailPath = filename;
@@ -141,6 +142,22 @@ var GoogleNewsHelper = class {
       return _("%s m").replace("%s", diffMins);
     } else {
       return _("Just now");
+    }
+  }
+
+  _removeCache() {
+    try {
+      const cacheDirFile = Gio.File.new_for_path(this.cacheDir);
+      if (cacheDirFile.query_exists(null)) {
+        const enumerator = cacheDirFile.enumerate_children("standard::name", Gio.FileQueryInfoFlags.NONE, null);
+        let info;
+        while ((info = enumerator.next_file(null)) !== null) {
+          cacheDirFile.get_child(info.get_name()).delete(null);
+        }
+        cacheDirFile.delete(null);
+      }
+    } catch (e) {
+      global.log(`[${UUID}] Error removing cache: ${e}`);
     }
   }
 };

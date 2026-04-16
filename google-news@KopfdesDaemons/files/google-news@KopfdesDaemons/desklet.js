@@ -43,7 +43,7 @@ class MyDesklet extends Desklet.Desklet {
     // Default settings
     this.scaleSize = 1;
     this.width = 35;
-    this.height = 39;
+    this.height = 43;
     this.ceid = "US:en";
     this.refreshInterval = 10;
     this.hideDecoration = true;
@@ -91,6 +91,7 @@ class MyDesklet extends Desklet.Desklet {
     if (this.settings && !this._isReloading) {
       this.settings.finalize();
     }
+    this._googleNewsHelper._removeCache();
   }
 
   on_desklet_reloaded() {

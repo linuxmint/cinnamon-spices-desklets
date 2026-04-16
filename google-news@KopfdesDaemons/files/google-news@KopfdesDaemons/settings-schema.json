@@ -47,7 +47,7 @@
   },
   "height": {
     "type": "spinbutton",
-    "default": 39,
+    "default": 43,
     "min": 10,
     "max": 100,
     "step": 1,
