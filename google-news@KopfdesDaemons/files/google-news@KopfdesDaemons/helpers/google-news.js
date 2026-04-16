@@ -168,6 +168,8 @@ var GoogleNewsHelper = class {
         }
         cacheDirFile.delete(null);
       }
+      this.cachedNews = null;
+      this.cacheTimestamp = null;
     } catch (e) {
       global.log(`[${UUID}] Error removing cache: ${e}`);
     }

@@ -49,11 +49,15 @@ class MyDesklet extends Desklet.Desklet {
     this.refreshInterval = 10;
     this.newsKeywords = [];
     this.hideDecoration = true;
+    this.backgroundColor = "transparent";
     this.showHeader = true;
     this.showHeaderText = true;
     this.headerText = _("Google News");
+    this.headerTextColor = "inherit";
     this.showHeaderIcon = true;
     this.showReloadButton = true;
+    this.newsItemBackgroundColor = "rgba(98, 100, 110, 0.36)";
+    this.newsItemTextColor = "inherit";
 
     // Bind settings
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
@@ -64,11 +68,15 @@ class MyDesklet extends Desklet.Desklet {
     this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refreshInterval", this._onRefreshIntervalChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "news-keywords", "newsKeywords", this._onNewsSettingChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this._onDecorationsChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "backgroundColor", this._setMainContainerStyle);
     this.settings.bindProperty(Settings.BindingDirection.IN, "show-header", "showHeader", this._onHeaderSettingChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "show-header-text", "showHeaderText", this._onHeaderSettingChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "header-text", "headerText", this._onHeaderSettingChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "header-text-color", "headerTextColor", this._onHeaderSettingChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "show-header-icon", "showHeaderIcon", this._onHeaderSettingChanged);
     this.settings.bindProperty(Settings.BindingDirection.IN, "show-reload-button", "showReloadButton", this._onHeaderSettingChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "news-item-background-color", "newsItemBackgroundColor", this._onNewsSettingChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "news-item-text-color", "newsItemTextColor", this._onNewsSettingChanged);
   }
 
   on_desklet_added_to_desktop() {
@@ -104,10 +112,10 @@ class MyDesklet extends Desklet.Desklet {
     if (this.settings && !this._isReloading) {
       this.settings.finalize();
     }
-    this._googleNewsHelper._removeCache();
   }
 
   on_desklet_reloaded() {
+    this._googleNewsHelper._removeCache();
     this._isReloading = true;
   }
 
@@ -164,7 +172,9 @@ class MyDesklet extends Desklet.Desklet {
 
   _setMainContainerStyle() {
     if (this._mainContainer) {
-      this._mainContainer.set_style(`spacing: ${this.scaleSize * 0.5}em; width: ${this.scaleSize * this.width}em; height: ${this.scaleSize * this.height}em;`);
+      this._mainContainer.set_style(
+        `spacing: ${this.scaleSize * 0.5}em; width: ${this.scaleSize * this.width}em; height: ${this.scaleSize * this.height}em; background-color: ${this.backgroundColor}; border-radius: ${this.scaleSize * 0.8}em;`,
+      );
     }
   }
 
@@ -182,6 +192,7 @@ class MyDesklet extends Desklet.Desklet {
       scaleSize: this.scaleSize,
       showHeaderText: this.showHeaderText,
       headerText: this.headerText,
+      headerTextColor: this.headerTextColor,
       reloadCallback: this.reload.bind(this),
       showHeaderIcon: this.showHeaderIcon,
       showReloadButton: this.showReloadButton,
@@ -201,7 +212,13 @@ class MyDesklet extends Desklet.Desklet {
     try {
       const news = await this._googleNewsHelper.getNews(forceReload);
       this._destroyViews();
-      this._scrollView = this._uiHelper.getNewsScrollView(this.scaleSize, news);
+      const newsScrollViewSettings = {
+        news: news,
+        scaleSize: this.scaleSize,
+        newsItemBackgroundColor: this.newsItemBackgroundColor,
+        newsItemTextColor: this.newsItemTextColor,
+      };
+      this._scrollView = this._uiHelper.getNewsScrollView(newsScrollViewSettings);
       this._mainContainer.add_child(this._scrollView);
     } catch (e) {
       global.log(`[${UUID}] Error loading news: ${e}`);

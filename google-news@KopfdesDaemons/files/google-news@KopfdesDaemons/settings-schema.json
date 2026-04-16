@@ -10,12 +10,12 @@
     "style-page": {
       "type": "page",
       "title": "Style",
-      "sections": ["style-section", "header-style-section"]
+      "sections": ["style-section", "header-style-section", "news-feed-style-section"]
     },
     "style-section": {
       "type": "section",
-      "title": "Style",
-      "keys": ["hide-decorations"]
+      "title": "General",
+      "keys": ["hide-decorations", "background-color"]
     },
     "api-section": {
       "type": "section",
@@ -29,8 +29,13 @@
     },
     "header-style-section": {
       "type": "section",
-      "title": "Header Style",
-      "keys": ["show-header", "show-header-text", "header-text", "show-header-icon", "show-reload-button"]
+      "title": "Header",
+      "keys": ["show-header", "show-header-text", "header-text", "header-text-color", "show-header-icon", "show-reload-button"]
+    },
+    "news-feed-style-section": {
+      "type": "section",
+      "title": "News Feed",
+      "keys": ["news-item-background-color", "news-item-text-color"]
     }
   },
   "scale-size": {
@@ -112,10 +117,32 @@
     "description": "Show header text",
     "dependency": "show-header"
   },
+  "header-text-color": {
+    "type": "colorchooser",
+    "default": "inherit",
+    "description": "Header text color",
+    "dependency": "show-header"
+  },
   "show-reload-button": {
     "type": "checkbox",
     "default": true,
     "description": "Show reload button",
     "dependency": "show-header"
+  },
+  "news-item-background-color": {
+    "type": "colorchooser",
+    "default": "rgba(98, 100, 110, 0.36)",
+    "description": "News item background color"
+  },
+  "news-item-text-color": {
+    "type": "colorchooser",
+    "default": "inherit",
+    "description": "Text color",
+    "dependency": "show-header"
+  },
+  "background-color": {
+    "type": "colorchooser",
+    "default": "transparent",
+    "description": "Background color"
   }
 }

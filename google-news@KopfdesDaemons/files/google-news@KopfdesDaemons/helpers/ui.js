@@ -16,7 +16,10 @@ function _(str) {
 var UiHelper = class UiHelper {
   constructor() {}
 
-  getNewsScrollView(scaleSize, news) {
+  getNewsScrollView(settings) {
+    const { news, scaleSize, newsItemBackgroundColor, newsItemTextColor } = settings;
+
+    // Container
     const scrollView = new St.ScrollView({ overlay_scrollbars: true, clip_to_allocation: true });
 
     const scrollViewContent = new St.BoxLayout({ vertical: true });
@@ -25,7 +28,9 @@ var UiHelper = class UiHelper {
 
     for (const item of news) {
       const newsItemContainer = new St.BoxLayout({ vertical: true, y_expand: true });
-      newsItemContainer.set_style(`min-height: ${scaleSize * 7}em; padding: ${scaleSize * 1}em; background-color: rgba(98, 100, 110, 0.36); border-radius: ${scaleSize * 0.8}em;`);
+      newsItemContainer.set_style(
+        `min-height: ${scaleSize * 7}em; color: ${newsItemTextColor}; padding: ${scaleSize * 1}em; background-color: ${newsItemBackgroundColor}; border-radius: ${scaleSize * 0.8}em;`,
+      );
 
       // Title
       const title = new St.Label({ text: item.title });
@@ -123,8 +128,8 @@ var UiHelper = class UiHelper {
     return errorView;
   }
 
-  getHeader(headerSettings) {
-    const { scaleSize, showHeaderText, headerText, reloadCallback, showHeaderIcon, showReloadButton } = headerSettings;
+  getHeader(settings) {
+    const { scaleSize, showHeaderText, headerText, headerTextColor, reloadCallback, showHeaderIcon, showReloadButton } = settings;
 
     // Container
     const header = new St.BoxLayout({ y_align: St.Align.MIDDLE, style: `spacing: ${scaleSize * 0.5}em;` });
@@ -141,7 +146,7 @@ var UiHelper = class UiHelper {
     if (showHeaderText) {
       const labelBin = new St.Bin();
       const label = new St.Label({ text: headerText });
-      label.set_style(`font-size: ${scaleSize * 1.5}em;`);
+      label.set_style(`font-size: ${scaleSize * 1.5}em; color: ${headerTextColor};`);
       labelBin.add_actor(label);
       header.add_child(labelBin);
     }
