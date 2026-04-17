@@ -72,15 +72,15 @@ var GoogleNewsHelper = class {
     GLib.mkdir_with_parents(this.cacheDir, 0o755);
 
     const promises = parsedNews.map(async (item, i) => {
-      if (item.thumbnail) {
+      if (item.faviconURL) {
         try {
           const filename = this.cacheDir + "/favicon_" + i + ".png";
-          const success = await this.HttpHelper.downloadFile(item.thumbnail, filename);
+          const success = await this.HttpHelper.downloadFile(item.faviconURL, filename);
           if (success) {
-            item.thumbnailPath = filename;
+            item.faviconPath = filename;
           }
         } catch (e) {
-          global.log(`[${UUID}] Error downloading thumbnail: ${e}`);
+          global.logError(`[${UUID}] Error downloading favicon: ${e}`);
         }
       }
     });
@@ -118,7 +118,7 @@ var GoogleNewsHelper = class {
       const pubDate = this._formatRelativeTime(rawPubDate);
       const source = getTagContent("source", itemXml);
 
-      let thumbnail = "";
+      let faviconURL = "";
       const sourceUrlMatch = itemXml.match(/<source[^>]+url=["']([^"']+)["']/i);
 
       if (sourceUrlMatch) {
@@ -126,12 +126,12 @@ var GoogleNewsHelper = class {
         try {
           const domainMatch = sourceUrl.match(/^https?:\/\/([^/?#]+)(?:[/?#]|$)/i);
           if (domainMatch && domainMatch[1]) {
-            thumbnail = `https://www.google.com/s2/favicons?domain=${domainMatch[1]}&sz=64`;
+            faviconURL = `https://www.google.com/s2/favicons?domain=${domainMatch[1]}&sz=64`;
           }
         } catch (e) {}
       }
 
-      newsItems.push({ title, link, pubDate, source, thumbnail });
+      newsItems.push({ title, link, pubDate, source, faviconURL });
     }
     return newsItems;
   }
@@ -174,7 +174,7 @@ var GoogleNewsHelper = class {
       this.cachedNews = null;
       this.cacheTimestamp = null;
     } catch (e) {
-      global.log(`[${UUID}] Error removing cache: ${e}`);
+      global.logError(`[${UUID}] Error removing cache: ${e}`);
     }
   }
 };

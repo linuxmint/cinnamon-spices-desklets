@@ -47,9 +47,9 @@ var UiHelper = class UiHelper {
       footer.set_style(`spacing: ${scaleSize * 0.5}em;`);
 
       // Favicon
-      if (item.thumbnailPath) {
+      if (item.faviconPath) {
         const iconSize = Math.round(scaleSize * 50);
-        const gicon = Gio.FileIcon.new(Gio.File.new_for_path(item.thumbnailPath));
+        const gicon = Gio.FileIcon.new(Gio.File.new_for_path(item.faviconPath));
         const icon = new St.Icon({ gicon: gicon, icon_size: iconSize, style: `height: ${scaleSize * 1.5}em; width: ${scaleSize * 1.5}em;` });
         const iconBox = new St.Bin({ child: icon });
 

@@ -51,7 +51,7 @@ class MyDesklet extends Desklet.Desklet {
     this.refreshInterval = 10;
     this.newsKeywords = [];
     this.hideDecoration = true;
-    this.backgroundColor = "transparent";
+    this.backgroundColor = "rgba(255, 255, 255, 0)";
     this.showHeader = true;
     this.showHeaderText = true;
     this.headerText = _("Google News");
@@ -112,7 +112,6 @@ class MyDesklet extends Desklet.Desklet {
         }
       }
       this.settings.setValue("ceid", newCeid);
-      global.log(`[${UUID}] Using default CEID: ${newCeid}`);
       this.ceid = newCeid;
     }
   }
@@ -238,7 +237,7 @@ class MyDesklet extends Desklet.Desklet {
       this._scrollView = this._uiHelper.getNewsScrollView(newsScrollViewSettings);
       this._mainContainer.add_child(this._scrollView);
     } catch (e) {
-      global.log(`[${UUID}] Error loading news: ${e}`);
+      global.logError(`[${UUID}] Error loading news: ${e}`);
       this._destroyViews();
       this._errorView = this._uiHelper.getErrorView(this.scaleSize, e);
       this._mainContainer.add_child(this._errorView);

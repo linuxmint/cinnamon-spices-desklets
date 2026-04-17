@@ -142,7 +142,7 @@
   },
   "background-color": {
     "type": "colorchooser",
-    "default": "transparent",
+    "default": "rgba(255, 255, 255, 0)",
     "description": "Background color"
   }
 }

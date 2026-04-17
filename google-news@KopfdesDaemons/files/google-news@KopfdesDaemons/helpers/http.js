@@ -25,8 +25,8 @@ var HttpHelper = class {
 
       if (Soup.MAJOR_VERSION === 2) {
         this._httpSession.queue_message(message, (session, msg) => {
-          if (msg.status_code !== Soup.KnownStatusCode.OK) {
-            reject(new Error(`Error fetching ${url}`));
+          if (msg.status_code !== 200) {
+            reject(new Error(`Error fetching ${url} - Status: ${msg.status_code}`));
             return;
           }
           try {
@@ -44,8 +44,8 @@ var HttpHelper = class {
         this._httpSession.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null, (session, result) => {
           try {
             const bytes = this._httpSession.send_and_read_finish(result);
-            if (message.get_status() !== Soup.Status.OK) {
-              reject(new Error(`Error fetching ${url}`));
+            if (message.get_status() !== 200) {
+              reject(new Error(`Error fetching ${url} - Status: ${message.get_status()}`));
               return;
             }
             const file = Gio.File.new_for_path(destPath);
@@ -71,7 +71,7 @@ var HttpHelper = class {
 
       if (Soup.MAJOR_VERSION === 2) {
         this._httpSession.queue_message(message, (session, msg) => {
-          if (msg.status_code !== Soup.KnownStatusCode.OK) {
+          if (msg.status_code !== 200) {
             const body = msg.response_body.data ? msg.response_body.data.toString() : "";
             reject(new Error(`HTTP ${msg.status_code} ${msg.reason_phrase} BODY: ${body}`));
             return;
@@ -87,7 +87,7 @@ var HttpHelper = class {
         this._httpSession.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null, (session, result) => {
           try {
             const bytes = this._httpSession.send_and_read_finish(result);
-            if (message.get_status() !== Soup.Status.OK) {
+            if (message.get_status() !== 200) {
               const body = bytes ? ByteArray.toString(bytes.get_data()) : "";
               reject(new Error(`HTTP ${message.get_status()} ${message.reason_phrase} BODY: ${body}`));
               return;
