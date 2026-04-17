@@ -21,14 +21,15 @@ if (typeof require !== "undefined") {
 var GoogleNewsHelper = class {
   httpHelper;
   URL = "https://news.google.com/rss";
-  cacheDir = GLib.get_user_cache_dir() + "/" + UUID;
+  cacheDir;
   cachedNews;
   cacheTimestamp;
   ceid = "";
   newsKeywords = [];
 
-  constructor() {
+  constructor(deskletId) {
     this.HttpHelper = new HttpHelper();
+    this.cacheDir = GLib.get_user_cache_dir() + "/" + UUID + "/" + deskletId;
   }
 
   setConfig(ceid, newsKeywords) {
@@ -72,10 +73,11 @@ var GoogleNewsHelper = class {
 
     GLib.mkdir_with_parents(this.cacheDir, 0o755);
 
+    const fetchTimestamp = Date.now();
     const promises = parsedNews.map(async (item, i) => {
       if (item.faviconURL) {
         try {
-          const filename = this.cacheDir + "/favicon_" + i + ".png";
+          const filename = this.cacheDir + "/favicon_" + i + "_" + fetchTimestamp + ".png";
           const success = await this.HttpHelper.downloadFile(item.faviconURL, filename);
           if (success) {
             item.faviconPath = filename;
@@ -162,20 +164,32 @@ var GoogleNewsHelper = class {
   }
 
   _removeCache() {
+    this.cachedNews = null;
+    this.cacheTimestamp = null;
+
     try {
       const cacheDirFile = Gio.File.new_for_path(this.cacheDir);
-      if (cacheDirFile.query_exists(null)) {
-        const enumerator = cacheDirFile.enumerate_children("standard::name", Gio.FileQueryInfoFlags.NONE, null);
-        let info;
-        while ((info = enumerator.next_file(null)) !== null) {
-          cacheDirFile.get_child(info.get_name()).delete(null);
+      cacheDirFile.enumerate_children_async("standard::name", Gio.FileQueryInfoFlags.NONE, GLib.PRIORITY_DEFAULT, null, (file, res) => {
+        try {
+          const enumerator = file.enumerate_children_finish(res);
+          let info;
+          while ((info = enumerator.next_file(null)) !== null) {
+            try {
+              file.get_child(info.get_name()).delete(null);
+            } catch (e) {}
+          }
+          enumerator.close(null);
+          try {
+            file.delete(null);
+          } catch (e) {}
+        } catch (e) {
+          if (e.code !== Gio.IOErrorEnum.NOT_FOUND) {
+            global.logError(`[${UUID}] Error removing cache: ${e}`);
+          }
         }
-        cacheDirFile.delete(null);
-      }
-      this.cachedNews = null;
-      this.cacheTimestamp = null;
+      });
     } catch (e) {
-      global.logError(`[${UUID}] Error removing cache: ${e}`);
+      global.logError(`[${UUID}] Error initiating cache removal: ${e}`);
     }
   }
 };

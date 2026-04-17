@@ -30,7 +30,7 @@ class MyDesklet extends Desklet.Desklet {
     this._menu.addAction(_("Reload"), () => this._reload());
 
     // Helpers
-    this._googleNewsHelper = new GoogleNewsHelper();
+    this._googleNewsHelper = new GoogleNewsHelper(deskletId);
     this._uiHelper = new UiHelper();
 
     // Properties
@@ -117,6 +117,7 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   on_desklet_removed() {
+    this._googleNewsHelper._removeCache();
     if (this._timeoutId) {
       Mainloop.source_remove(this._timeoutId);
       this._timeoutId = null;
@@ -131,7 +132,6 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   on_desklet_reloaded() {
-    this._googleNewsHelper._removeCache();
     this._isReloading = true;
   }
 
