@@ -4,7 +4,7 @@ const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
 const Util = imports.misc.util;
 
-const UUID = "devtest-google-news@KopfdesDaemons";
+const UUID = "google-news@KopfdesDaemons";
 const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 
 Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
@@ -161,8 +161,8 @@ var UiHelper = class UiHelper {
     const spacer = new St.Bin({ x_expand: true });
     header.add_child(spacer);
 
+    // Reload button
     if (showReloadButton) {
-      // Reload button
       const buttonBox = new St.Bin();
       const reloadButtonStyle = `width: ${scaleSize * 2.5}em; height: ${scaleSize * 2.5}em; padding: ${scaleSize * 0.5}em; border-radius: ${scaleSize * 0.5}em;`;
       const reloadButton = new St.Button({

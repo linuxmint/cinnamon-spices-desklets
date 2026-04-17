@@ -1,7 +1,8 @@
-const UUID = "google-news@KopfdesDaemons";
 const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
 const Gio = imports.gi.Gio;
+
+const UUID = "google-news@KopfdesDaemons";
 
 Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
 

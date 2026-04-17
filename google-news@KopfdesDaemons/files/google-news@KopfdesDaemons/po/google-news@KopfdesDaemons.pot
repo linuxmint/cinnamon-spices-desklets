@@ -1,0 +1,160 @@
+# GOOGLE NEWS
+# This file is put in the public domain.
+# KopfdesDaemons, 2026
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: google-news@KopfdesDaemons 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-04-17 21:27+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. metadata.json->name
+#. desklet.js:29 desklet.js:57
+msgid "Google News"
+msgstr ""
+
+#. desklet.js:30
+msgid "Reload"
+msgstr ""
+
+#. helpers/google-news.js:146 helpers/google-news.js:159
+msgid "Just now"
+msgstr ""
+
+#. helpers/google-news.js:153
+#, javascript-format
+msgid "%s d"
+msgstr ""
+
+#. helpers/google-news.js:155
+#, javascript-format
+msgid "%s h"
+msgstr ""
+
+#. helpers/google-news.js:157
+#, javascript-format
+msgid "%s m"
+msgstr ""
+
+#. helpers/ui.js:78
+msgid "read more"
+msgstr ""
+
+#. helpers/ui.js:98
+msgid "Loading..."
+msgstr ""
+
+#. helpers/ui.js:122
+msgid "Error loading news"
+msgstr ""
+
+#. metadata.json->description
+msgid "Google News feed for your desktop."
+msgstr ""
+
+#. settings-schema.json->general-page->title
+#. settings-schema.json->style-section->title
+msgid "General"
+msgstr ""
+
+#. settings-schema.json->style-page->title
+msgid "Style"
+msgstr ""
+
+#. settings-schema.json->api-section->title
+msgid "API Settings"
+msgstr ""
+
+#. settings-schema.json->size-section->title
+msgid "Size"
+msgstr ""
+
+#. settings-schema.json->header-style-section->title
+msgid "Header"
+msgstr ""
+
+#. settings-schema.json->news-feed-style-section->title
+msgid "News Feed"
+msgstr ""
+
+#. settings-schema.json->scale-size->description
+msgid "Scale size"
+msgstr ""
+
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+msgid "em"
+msgstr ""
+
+#. settings-schema.json->width->description
+msgid "Width"
+msgstr ""
+
+#. settings-schema.json->height->description
+msgid "Height"
+msgstr ""
+
+#. settings-schema.json->ceid->description
+msgid "Country and language"
+msgstr ""
+
+#. settings-schema.json->ceid->tooltip
+msgid "e.g. US:en, DE:de"
+msgstr ""
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval in minutes"
+msgstr ""
+
+#. settings-schema.json->news-keywords->columns->title
+msgid "Search Keywords for news"
+msgstr ""
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr ""
+
+#. settings-schema.json->show-header->description
+msgid "Show header"
+msgstr ""
+
+#. settings-schema.json->header-text->description
+msgid "Custom header text"
+msgstr ""
+
+#. settings-schema.json->show-header-icon->description
+msgid "Show icon"
+msgstr ""
+
+#. settings-schema.json->show-header-text->description
+msgid "Show header text"
+msgstr ""
+
+#. settings-schema.json->header-text-color->description
+msgid "Header text color"
+msgstr ""
+
+#. settings-schema.json->show-reload-button->description
+msgid "Show reload button"
+msgstr ""
+
+#. settings-schema.json->news-item-background-color->description
+msgid "News item background color"
+msgstr ""
+
+#. settings-schema.json->news-item-text-color->description
+msgid "Text color"
+msgstr ""
+
+#. settings-schema.json->background-color->description
+msgid "Background color"
+msgstr ""
