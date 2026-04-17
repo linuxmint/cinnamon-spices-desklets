@@ -51,7 +51,9 @@ var GoogleNewsHelper = class {
     }
 
     if (this.newsKeywords && this.newsKeywords.length > 0) {
-      params.push(`q=${encodeURIComponent(this.newsKeywords.join(" OR "))}`);
+      url += "/search";
+      const formattedKeywords = this.newsKeywords.map(keyword => `"${keyword.trim().replace(/^"|"$/g, "")}"`);
+      params.push(`q=${encodeURIComponent(formattedKeywords.join(" OR "))}`);
     }
 
     if (params.length > 0) {
