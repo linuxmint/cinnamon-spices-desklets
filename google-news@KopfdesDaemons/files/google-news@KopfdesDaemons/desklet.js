@@ -84,7 +84,7 @@ class MyDesklet extends Desklet.Desklet {
   on_desklet_added_to_desktop() {
     this._setDefaultCeid();
     this._onDecorationsChanged();
-    this._googleNewsHelper.setConfig(this.ceid);
+    this._googleNewsHelper.setConfig(this.ceid, this.newsKeywords);
     this._setupLayout();
     this._loadNews();
 

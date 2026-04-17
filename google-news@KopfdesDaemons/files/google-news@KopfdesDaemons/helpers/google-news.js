@@ -56,7 +56,6 @@ var GoogleNewsHelper = class {
       url += "?" + params.join("&");
     }
 
-    global.log(`[${UUID}] Using URL: ${url}`);
     return url;
   }
 
@@ -74,10 +73,14 @@ var GoogleNewsHelper = class {
 
     const promises = parsedNews.map(async (item, i) => {
       if (item.thumbnail) {
-        const filename = this.cacheDir + "/favicon_" + i + ".png";
-        const success = await this.HttpHelper.downloadFile(item.thumbnail, filename);
-        if (success) {
-          item.thumbnailPath = filename;
+        try {
+          const filename = this.cacheDir + "/favicon_" + i + ".png";
+          const success = await this.HttpHelper.downloadFile(item.thumbnail, filename);
+          if (success) {
+            item.thumbnailPath = filename;
+          }
+        } catch (e) {
+          global.log(`[${UUID}] Error downloading thumbnail: ${e}`);
         }
       }
     });

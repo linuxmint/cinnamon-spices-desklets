@@ -47,20 +47,26 @@ var UiHelper = class UiHelper {
       footer.set_style(`spacing: ${scaleSize * 0.5}em;`);
 
       // Favicon
-      const iconSize = Math.round(scaleSize * 15);
-      const gicon = Gio.FileIcon.new(Gio.File.new_for_path(item.thumbnailPath));
-      const icon = new St.Icon({ gicon: gicon, icon_size: iconSize });
-      footer.add_child(icon);
+      if (item.thumbnailPath) {
+        const iconSize = Math.round(scaleSize * 50);
+        const gicon = Gio.FileIcon.new(Gio.File.new_for_path(item.thumbnailPath));
+        const icon = new St.Icon({ gicon: gicon, icon_size: iconSize, style: `height: ${scaleSize * 1.5}em; width: ${scaleSize * 1.5}em;` });
+        const iconBox = new St.Bin({ child: icon });
+
+        footer.add_child(iconBox);
+      }
 
       // Source
       const sourceBox = new St.Bin();
       const source = new St.Label({ text: item.source });
+      source.set_style(`font-size: ${scaleSize * 1}em;`);
       sourceBox.add_actor(source);
       footer.add_child(sourceBox);
 
       // Date
       const dateBox = new St.Bin();
       const date = new St.Label({ text: item.pubDate });
+      date.set_style(`font-size: ${scaleSize * 1}em;`);
       dateBox.add_actor(date);
       footer.add_child(dateBox);
 
@@ -70,7 +76,7 @@ var UiHelper = class UiHelper {
 
       // Read more button
       const readMoreButton = new St.Button({ label: _("read more"), style_class: "google-news-read-more-button" });
-      readMoreButton.set_style(`padding: ${scaleSize * 0.5}em; border-radius: ${scaleSize * 0.5}em;`);
+      readMoreButton.set_style(`padding: ${scaleSize * 0.5}em; border-radius: ${scaleSize * 0.5}em; font-size: ${scaleSize * 1}em;`);
       readMoreButton.connect("clicked", () => {
         Util.spawn(["xdg-open", item.link]);
       });
