@@ -6,7 +6,7 @@ const Settings = imports.ui.settings;
 const Gettext = imports.gettext;
 
 const UUID = "syncthing-status@geo-sudo";
-Gettext.bindtextdomain(UUID, imports.gi.GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(UUID, imports.gi.GLib.get_home_dir() + imports.gi.GLib.get_user_data_dir());
 
 function _(str) {
   let translation = Gettext.dgettext(UUID, str);
