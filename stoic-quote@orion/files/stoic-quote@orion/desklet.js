@@ -1,6 +1,4 @@
 // Stoic Quote Desklet — stoic-quote@orion
-// Pattern: function constructor + __proto__ + Desklet.Desklet.prototype._init.call()
-// This matches other working Cinnamon 6.x desklets on this system.
 
 const Desklet  = imports.ui.desklet;
 const St       = imports.gi.St;
@@ -9,7 +7,6 @@ const GLib     = imports.gi.GLib;
 const Pango    = imports.gi.Pango;
 const Mainloop = imports.mainloop;
 const Settings = imports.ui.settings;
-const Lang     = imports.lang;
 
 const UUID = "stoic-quote@orion";
 
@@ -55,14 +52,12 @@ StoicQuoteDesklet.prototype = {
     __proto__: Desklet.Desklet.prototype,
 
     _init: function(metadata, desklet_id) {
-        // Call the parent _init directly on the prototype — avoids the ES6
-        // "class constructors must be invoked with 'new'" error.
         Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
 
         this._deskletPath  = metadata.path;
         this._quotes       = [];
         this._refreshTimer = null;
-        this._manualOffset = 0;   // incremented by the refresh button; resets at midnight
+        this._manualOffset = 0;
         this._lastDate     = null;
 
         // Defaults — overwritten immediately by bindProperty
@@ -73,8 +68,7 @@ StoicQuoteDesklet.prototype = {
 
         this._loadSettings(desklet_id);
         this._buildUI();
-        this._loadQuotes();
-        this._showQuote();
+        this._loadQuotesAsync(); // async; calls _showQuote when complete
         this._scheduleNextRefresh();
     },
 
@@ -82,11 +76,10 @@ StoicQuoteDesklet.prototype = {
 
     _loadSettings: function(desklet_id) {
         this._settings = new Settings.DeskletSettings(this, UUID, desklet_id);
-        let cb = Lang.bind(this, this._onSettingChanged);
-        this._settings.bindProperty(Settings.BindingDirection.IN, "show-source",        "showSource",        cb, null);
-        this._settings.bindProperty(Settings.BindingDirection.IN, "desklet-width",       "deskletWidth",      cb, null);
-        this._settings.bindProperty(Settings.BindingDirection.IN, "show-refresh-button", "showRefreshButton", cb, null);
-        this._settings.bindProperty(Settings.BindingDirection.IN, "refresh-frequency",   "refreshFrequency",  cb, null);
+        this._settings.bindProperty(Settings.BindingDirection.IN, "show-source",        "showSource",        () => this._onSettingChanged(), null);
+        this._settings.bindProperty(Settings.BindingDirection.IN, "desklet-width",       "deskletWidth",      () => this._onSettingChanged(), null);
+        this._settings.bindProperty(Settings.BindingDirection.IN, "show-refresh-button", "showRefreshButton", () => this._onSettingChanged(), null);
+        this._settings.bindProperty(Settings.BindingDirection.IN, "refresh-frequency",   "refreshFrequency",  () => this._onSettingChanged(), null);
     },
 
     _onSettingChanged: function() {
@@ -122,11 +115,11 @@ StoicQuoteDesklet.prototype = {
             style_class: "stoic-refresh-button",
             label: "↺"
         });
-        this._refreshButton.connect("clicked", Lang.bind(this, function() {
+        this._refreshButton.connect("clicked", () => {
             this._manualOffset++;
             global.log("[stoic-quote] Manual advance → offset " + this._manualOffset);
             this._showQuote();
-        }));
+        });
 
         let footer = new St.BoxLayout({ vertical: false, style_class: "stoic-footer" });
         footer.add_child(authorBox);
@@ -141,30 +134,33 @@ StoicQuoteDesklet.prototype = {
 
     // ── Quote loading & display ───────────────────────────────────────────────
 
-    _loadQuotes: function() {
-        try {
-            let file = Gio.File.new_for_path(this._deskletPath + "/quotes.json");
-            let [ok, raw] = file.load_contents(null);
-            if (!ok) throw new Error("load_contents returned false");
+    _loadQuotesAsync: function() {
+        let file = Gio.File.new_for_path(this._deskletPath + "/quotes.json");
+        file.load_contents_async(null, (source, result) => {
+            try {
+                let [ok, raw] = source.load_contents_finish(result);
+                if (!ok) throw new Error("load_contents_finish returned false");
 
-            let data = JSON.parse(_decodeContents(raw));
-            if (!Array.isArray(data) || data.length === 0)
-                throw new Error("quotes.json must be a non-empty array");
+                let data = JSON.parse(_decodeContents(raw));
+                if (!Array.isArray(data) || data.length === 0)
+                    throw new Error("quotes.json must be a non-empty array");
 
-            this._quotes = data;
-            global.log("[stoic-quote] Loaded " + data.length + " quotes");
-        } catch (e) {
-            global.log("[stoic-quote] Quote load error — " + e.message + " — using fallback");
-            this._quotes = [FALLBACK_QUOTE];
-        }
+                this._quotes = data;
+                global.log("[stoic-quote] Loaded " + data.length + " quotes");
+            } catch (e) {
+                global.log("[stoic-quote] Quote load error — " + e.message + " — using fallback");
+                this._quotes = [FALLBACK_QUOTE];
+            }
+            this._showQuote();
+        });
     },
 
     _showQuote: function() {
-        if (!this._quotes.length) this._quotes = [FALLBACK_QUOTE];
+        if (!this._quotes.length) return; // still loading; async callback will call us
 
         let dateStr = _getDateString();
         if (dateStr !== this._lastDate) {
-            this._manualOffset = 0;   // new day — reset to the day's deterministic quote
+            this._manualOffset = 0;
             this._lastDate = dateStr;
         }
 
@@ -172,8 +168,8 @@ StoicQuoteDesklet.prototype = {
         let idx  = (base + this._manualOffset) % this._quotes.length;
         let q    = this._quotes[idx] || FALLBACK_QUOTE;
 
-        this._quoteLabel.set_text("“" + (q.text || "") + "”");
-        this._authorLabel.set_text("— " + (q.author || "Unknown"));
+        this._quoteLabel.set_text("\u201C" + (q.text || "") + "\u201D");
+        this._authorLabel.set_text("\u2014 " + (q.author || "Unknown"));
         this._sourceLabel.set_text(q.source || "");
 
         this._sourceLabel.visible   = this.showSource && !!q.source;
@@ -204,12 +200,12 @@ StoicQuoteDesklet.prototype = {
         }
 
         global.log("[stoic-quote] Next refresh in " + delaySec + "s (mode=" + this.refreshFrequency + ")");
-        this._refreshTimer = Mainloop.timeout_add_seconds(delaySec, Lang.bind(this, function() {
+        this._refreshTimer = Mainloop.timeout_add_seconds(delaySec, () => {
             global.log("[stoic-quote] Scheduled refresh fired");
             this._showQuote();
             this._scheduleNextRefresh();
             return false;
-        }));
+        });
     },
 
     on_desklet_removed: function() {
