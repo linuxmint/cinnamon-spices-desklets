@@ -7,8 +7,15 @@ const GLib     = imports.gi.GLib;
 const Pango    = imports.gi.Pango;
 const Mainloop = imports.mainloop;
 const Settings = imports.ui.settings;
+const Gettext  = imports.gettext;
 
 const UUID = "stoic-quote@orion";
+
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+
+function _(str) {
+    return Gettext.dgettext(UUID, str);
+}
 
 const FALLBACK_QUOTE = {
     text:   "The impediment to action advances action. What stands in the way becomes the way.",
@@ -169,7 +176,7 @@ StoicQuoteDesklet.prototype = {
         let q    = this._quotes[idx] || FALLBACK_QUOTE;
 
         this._quoteLabel.set_text("\u201C" + (q.text || "") + "\u201D");
-        this._authorLabel.set_text("\u2014 " + (q.author || "Unknown"));
+        this._authorLabel.set_text("\u2014 " + (q.author || _("Unknown")));
         this._sourceLabel.set_text(q.source || "");
 
         this._sourceLabel.visible   = this.showSource && !!q.source;

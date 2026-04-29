@@ -1,0 +1,76 @@
+# STOIC QUOTE
+# This file is put in the public domain.
+# WanderingBread0, 2026
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: stoic-quote@orion 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-04-29 18:05-0500\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. desklet.js:179
+msgid "Unknown"
+msgstr ""
+
+#. metadata.json->name
+msgid "Stoic Quote"
+msgstr ""
+
+#. metadata.json->description
+msgid ""
+"Display a daily Stoic quote from Marcus Aurelius, Epictetus, and Seneca. "
+"Quote rotates at midnight and is deterministic by date."
+msgstr ""
+
+#. settings-schema.json->page-display->title
+msgid "Settings"
+msgstr ""
+
+#. settings-schema.json->section-display->title
+msgid "Display"
+msgstr ""
+
+#. settings-schema.json->section-refresh->title
+msgid "Refresh"
+msgstr ""
+
+#. settings-schema.json->desklet-width->units
+msgid "px"
+msgstr ""
+
+#. settings-schema.json->desklet-width->description
+msgid "Width"
+msgstr ""
+
+#. settings-schema.json->show-source->description
+msgid "Show source / book name"
+msgstr ""
+
+#. settings-schema.json->show-refresh-button->description
+msgid "Show refresh button"
+msgstr ""
+
+#. settings-schema.json->refresh-frequency->description
+msgid "Auto-refresh frequency"
+msgstr ""
+
+#. settings-schema.json->refresh-frequency->options
+msgid "Daily (at midnight)"
+msgstr ""
+
+#. settings-schema.json->refresh-frequency->options
+msgid "Hourly"
+msgstr ""
+
+#. settings-schema.json->refresh-frequency->options
+msgid "Manual only"
+msgstr ""
