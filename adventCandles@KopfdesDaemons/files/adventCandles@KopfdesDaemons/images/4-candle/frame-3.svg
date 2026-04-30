@@ -332,15 +332,15 @@
    gradientTransform="matrix(0.0283052,0,0,-0.0283052,-233.2067,-118.1111)">
 			<stop
    offset="0"
-   style="stop-color:#E73A3F"
+   style="stop-color:%CANDLE_1_COLOR_A%"
    id="stop86" />
 			<stop
    offset="0.5216"
-   style="stop-color:#B32322"
+   style="stop-color:%CANDLE_1_COLOR_B%"
    id="stop88" />
 			<stop
    offset="1"
-   style="stop-color:#8E241F"
+   style="stop-color:%CANDLE_1_COLOR_C%"
    id="stop90" />
 		</linearGradient>
 		<path
@@ -403,15 +403,15 @@
    gradientTransform="matrix(0.0283052,0,0,-0.0283052,-233.2067,-118.1111)">
 			<stop
    offset="0"
-   style="stop-color:#E73A3F"
+   style="stop-color:%CANDLE_1_COLOR_A%"
    id="stop112" />
 			<stop
    offset="0.5216"
-   style="stop-color:#B32322"
+   style="stop-color:%CANDLE_1_COLOR_B%"
    id="stop114" />
 			<stop
    offset="1"
-   style="stop-color:#8E241F"
+   style="stop-color:%CANDLE_1_COLOR_C%"
    id="stop116" />
 		</linearGradient>
 		<path
@@ -429,15 +429,15 @@
    gradientTransform="matrix(0.0283052,0,0,-0.0283052,-233.2067,-118.1111)">
 			<stop
    offset="0"
-   style="stop-color:#E73A3F"
+   style="stop-color:%CANDLE_2_COLOR_A%"
    id="stop121" />
 			<stop
    offset="0.5216"
-   style="stop-color:#B32322"
+   style="stop-color:%CANDLE_2_COLOR_B%"
    id="stop123" />
 			<stop
    offset="1"
-   style="stop-color:#8E241F"
+   style="stop-color:%CANDLE_2_COLOR_C%"
    id="stop125" />
 		</linearGradient>
 		<path
@@ -500,15 +500,15 @@
    gradientTransform="matrix(0.0283052,0,0,-0.0283052,-233.2067,-118.1111)">
 			<stop
    offset="0"
-   style="stop-color:#E73A3F"
+   style="stop-color:%CANDLE_2_COLOR_A%"
    id="stop147" />
 			<stop
    offset="0.5216"
-   style="stop-color:#B32322"
+   style="stop-color:%CANDLE_2_COLOR_B%"
    id="stop149" />
 			<stop
    offset="1"
-   style="stop-color:#8E241F"
+   style="stop-color:%CANDLE_2_COLOR_C%"
    id="stop151" />
 		</linearGradient>
 		<path
@@ -526,15 +526,15 @@
    gradientTransform="matrix(0.0283052,0,0,-0.0283052,-233.2067,-118.1111)">
 			<stop
    offset="0"
-   style="stop-color:#E73A3F"
+   style="stop-color:%CANDLE_3_COLOR_A%"
    id="stop156" />
 			<stop
    offset="0.5216"
-   style="stop-color:#B32322"
+   style="stop-color:%CANDLE_3_COLOR_B%"
    id="stop158" />
 			<stop
    offset="1"
-   style="stop-color:#8E241F"
+   style="stop-color:%CANDLE_3_COLOR_C%"
    id="stop160" />
 		</linearGradient>
 		<path
@@ -597,15 +597,15 @@
    gradientTransform="matrix(0.0283052,0,0,-0.0283052,-233.2067,-118.1111)">
 			<stop
    offset="0"
-   style="stop-color:#E73A3F"
+   style="stop-color:%CANDLE_3_COLOR_A%"
    id="stop182" />
 			<stop
    offset="0.5216"
-   style="stop-color:#B32322"
+   style="stop-color:%CANDLE_3_COLOR_B%"
    id="stop184" />
 			<stop
    offset="1"
-   style="stop-color:#8E241F"
+   style="stop-color:%CANDLE_3_COLOR_C%"
    id="stop186" />
 		</linearGradient>
 		<path
@@ -623,15 +623,15 @@
    gradientTransform="matrix(0.0283052,0,0,-0.0283052,-233.2067,-118.1111)">
 			<stop
    offset="0"
-   style="stop-color:#E73A3F"
+   style="stop-color:%CANDLE_4_COLOR_A%"
    id="stop191" />
 			<stop
    offset="0.5216"
-   style="stop-color:#B32322"
+   style="stop-color:%CANDLE_4_COLOR_B%"
    id="stop193" />
 			<stop
    offset="1"
-   style="stop-color:#8E241F"
+   style="stop-color:%CANDLE_4_COLOR_C%"
    id="stop195" />
 		</linearGradient>
 		<path
@@ -694,15 +694,15 @@
    gradientTransform="matrix(0.0283052,0,0,-0.0283052,-233.2067,-118.1111)">
 			<stop
    offset="0"
-   style="stop-color:#E73A3F"
+   style="stop-color:%CANDLE_4_COLOR_A%"
    id="stop217" />
 			<stop
    offset="0.5216"
-   style="stop-color:#B32322"
+   style="stop-color:%CANDLE_4_COLOR_B%"
    id="stop219" />
 			<stop
    offset="1"
-   style="stop-color:#8E241F"
+   style="stop-color:%CANDLE_4_COLOR_C%"
    id="stop221" />
 		</linearGradient>
 		<path

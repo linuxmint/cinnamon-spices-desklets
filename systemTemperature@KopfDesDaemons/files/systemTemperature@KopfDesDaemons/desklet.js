@@ -1,153 +1,195 @@
 const Desklet = imports.ui.desklet;
-const Lang = imports.lang;
 const St = imports.gi.St;
 const Mainloop = imports.mainloop;
 const GLib = imports.gi.GLib;
 const Settings = imports.ui.settings;
 const Gettext = imports.gettext;
+const Gio = imports.gi.Gio;
 
 const UUID = "systemTemperature@KopfDesDaemons";
 
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
 
 function _(str) {
-    return Gettext.dgettext(UUID, str);
+  return Gettext.dgettext(UUID, str);
 }
 
-function MyDesklet(metadata, deskletId) {
-    this._init(metadata, deskletId);
-}
+class MyDesklet extends Desklet.Desklet {
+  constructor(metadata, deskletId) {
+    super(metadata, deskletId);
+    this.setHeader(_("System Temperature"));
 
-MyDesklet.prototype = {
-    __proto__: Desklet.Desklet.prototype,
+    this._mainContainer = null;
+    this._textLabel = null;
+    this._refreshTimeoutId = null;
+    this._temperatureLabel = null;
+    this._colorString = null;
+    this._isReloading = false;
 
-    _init: function (metadata, deskletId) {
-        Desklet.Desklet.prototype._init.call(this, metadata, deskletId);
+    // Default settings
+    this.scaleSize = 1;
+    this.hideDecorations = false;
+    this.labelText = "CPU temperature:";
+    this.tempFilePath = "/sys/class/thermal/thermal_zone2/temp";
+    this.textLabelFontSize = 12;
+    this.temperatureLabelFontSize = 20;
+    this.dynamicColorEnabled = true;
+    this.temperatureUnit = "C";
+    this.updateInterval = 1;
 
-        this.setHeader(_("System Temperature"));
+    // Bind settings properties
+    this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], deskletId);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._on_settings_changed);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this._onDecorationChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "temp-file-path", "tempFilePath", this._on_settings_changed);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "label-text", "labelText", this._on_settings_changed);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "temperature-unit", "temperatureUnit", this._on_settings_changed);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "update-interval", "updateInterval", this._setRefreshTimeout);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "font-size-label", "textLabelFontSize", this._on_settings_changed);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "font-size-temperature", "temperatureLabelFontSize", this._on_settings_changed);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "dynamic-color-enabled", "dynamicColorEnabled", this._on_settings_changed);
+  }
 
-        // Initialize settings
-        this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], deskletId);
+  on_desklet_added_to_desktop() {
+    this._setupLayout();
+    this._onDecorationChanged();
+    this._updateTemperature();
+    this._setRefreshTimeout();
+  }
 
-        // Get settings
-        this.initialLabelText = this.settings.getValue("labelText") || "CPU temperature:";
-        this.tempFilePath = this.settings.getValue("tempFilePath") || "/sys/class/thermal/thermal_zone2/temp";
-        this.fontSizeLabel = this.settings.getValue("fontSizeLabel") || 12;
-        this.fontSizeTemperature = this.settings.getValue("fontSizeTemperature") || 20;
-        this.dynamicColorEnabled = this.settings.getValue("dynamicColorEnabled") || true;
-        this.temperatureUnit = this.settings.getValue("temperatureUnit") || "C";
-        this.updateInterval = this.settings.getValue("updateInterval") || 1;
-
-        // Bind settings properties
-        const boundSettings = [
-            "tempFilePath",
-            "labelText",
-            "temperatureUnit",
-            "updateInterval",
-            "fontSizeLabel",
-            "fontSizeTemperature",
-            "dynamicColorEnabled"
-        ];
-        boundSettings.forEach(setting => {
-            this.settings.bindProperty(Settings.BindingDirection.IN, setting, setting, this.on_settings_changed, null);
-        });
-
-        // Create label for the static text
-        this.label = new St.Label({ text: this.initialLabelText, y_align: St.Align.START, style_class: "label-text" });
-        this.label.set_style(`font-size: ${this.fontSizeLabel}px;`);
-
-        // Create label for the temperature value
-        this.temperatureLabel = new St.Label({ text: "Loading...", style_class: "temperature-label" });
-        this.temperatureLabel.set_style(`font-size: ${this.fontSizeTemperature}px;`);
-
-        // Set up the layout
-        this.box = new St.BoxLayout({ vertical: true });
-        this.box.add_child(this.label);
-        this.box.add_child(this.temperatureLabel);
-        this.setContent(this.box);
-
-        this._timeout = null;
-
-        // Start the temperature update loop
-        this.updateTemperature();
-    },
-
-    updateTemperature: function () {
-        try {
-            // Get CPU temperature
-            const [result, out] = GLib.spawn_command_line_sync(`cat ${this.tempFilePath}`);
-
-            if (!result || out === null) {
-                throw new Error("Could not retrieve CPU temperature.");
-            }
-
-            // Convert temperature from millidegree Celsius to degree Celsius
-            let temperature = parseFloat(out.toString().trim()) / 1000.0;
-            if (this.temperatureUnit === "F") {
-                temperature = (temperature * 9 / 5) + 32;
-            }
-
-            // Update temperature text with the chosen unit
-            const temperatureText = `${temperature.toFixed(1)}°${this.temperatureUnit}`;
-            this.temperatureLabel.set_text(temperatureText);
-
-            // Set color based on temperature if dynamic color is enabled, else set default color
-            if (this.dynamicColorEnabled) {
-                this.updateLabelColor(temperature);
-            } else {
-                this.temperatureLabel.set_style(`color: #ffffff; font-size: ${this.fontSizeTemperature}px;`);
-            }
-
-        } catch (e) {
-            this.temperatureLabel.set_text("Error");
-            global.logError(`Error in updateTemperature: ${e.message}`);
-        }
-
-        // Reset and set up the interval timeout
-        if (this._timeout) Mainloop.source_remove(this._timeout);
-        this._timeout = Mainloop.timeout_add_seconds(this.updateInterval, () => this.updateTemperature());
-    },
-
-    updateLabelColor: function (temperature) {
-        // Define min and max temperature thresholds based on the unit
-        let minTemp = 20, maxTemp = 90;
-
-        // Convert min and max temperature from degree Celsius to degree Fahrenheit
-        if (this.temperatureUnit === "F") {
-            minTemp = (minTemp * 9 / 5) + 32;
-            maxTemp = (maxTemp * 9 / 5) + 32;
-        }
-
-        // Calculate color based on temperature
-        temperature = Math.min(maxTemp, Math.max(minTemp, temperature));
-        const ratio = (temperature - minTemp) / (maxTemp - minTemp);
-        let color = `rgb(${Math.floor(ratio * 255)}, ${Math.floor((1 - ratio) * 255)}, 0)`;
-
-        // Set the color
-        this.temperatureLabel.set_style(`color: ${color}; font-size: ${this.fontSizeTemperature}px;`);
-    },
-
-    on_settings_changed: function () {
-        // Update the label text and styles when the settings change
-        if (this.label && this.labelText) {
-            this.label.set_text(this.labelText);
-            this.label.set_style(`font-size: ${this.fontSizeLabel}px;`);
-        }
-
-        if (this.temperatureLabel) {
-            this.temperatureLabel.set_style(`font-size: ${this.fontSizeTemperature}px;`);
-        }
-    },
-
-    on_desklet_removed: function () {
-        if (this._timeout) Mainloop.source_remove(this._timeout);
-        if (this.label) this.box.remove_child(this.label);
-        if (this.temperatureLabel) this.box.remove_child(this.temperatureLabel);
-
-        this.label = this.temperatureLabel = this._timeout = null;
+  on_desklet_removed() {
+    if (this._refreshTimeoutId) {
+      Mainloop.source_remove(this._refreshTimeoutId);
+      this._refreshTimeoutId = null;
     }
-};
+    if (this.settings && !this._isReloading) {
+      this.settings.finalize();
+    }
+  }
+
+  on_desklet_reloaded() {
+    this._isReloading = true;
+  }
+
+  _updateStyles() {
+    const fontSize = size => `${(size * this.scaleSize) / 10}em`;
+    this._textLabel.set_style(`font-size: ${fontSize(this.textLabelFontSize)};`);
+
+    let tempLabelStyle = `font-size: ${fontSize(this.temperatureLabelFontSize)}; font-weight: bold;`;
+    if (this._colorString) tempLabelStyle += ` color: ${this._colorString};`;
+    this._temperatureLabel.set_style(tempLabelStyle);
+  }
+
+  _onDecorationChanged() {
+    this.metadata["prevent-decorations"] = this.hideDecorations;
+    this._updateDecoration();
+  }
+
+  _setupLayout() {
+    // Text label
+    this._textLabel = new St.Label({ text: this.labelText });
+
+    // Temperature label
+    this._temperatureLabel = new St.Label({ text: "Loading..." });
+
+    this._updateStyles();
+
+    // Set up the layout
+    this._mainContainer = new St.BoxLayout({ vertical: true });
+    this._mainContainer.add_child(this._textLabel);
+    this._mainContainer.add_child(this._temperatureLabel);
+
+    this.setContent(this._mainContainer);
+  }
+
+  _setRefreshTimeout() {
+    if (this._refreshTimeoutId) {
+      Mainloop.source_remove(this._refreshTimeoutId);
+      this._refreshTimeoutId = null;
+    }
+
+    this._refreshTimeoutId = Mainloop.timeout_add_seconds(this.updateInterval, () => {
+      this._updateTemperature();
+      return true;
+    });
+  }
+
+  getFileContent(path) {
+    return new Promise((resolve, reject) => {
+      const file = Gio.File.new_for_path(path);
+      file.load_contents_async(null, (obj, res) => {
+        try {
+          const [success, content] = obj.load_contents_finish(res);
+          if (success) {
+            resolve(content);
+          } else {
+            reject(new Error(`Could not read ${path}`));
+          }
+        } catch (e) {
+          reject(e);
+        }
+      });
+    });
+  }
+
+  async _updateTemperature() {
+    try {
+      // Get CPU temperature
+      const fileContent = await this.getFileContent(this.tempFilePath);
+
+      // Convert temperature from millidegree Celsius to degree Celsius
+      let temperature = parseFloat(fileContent.toString().trim()) / 1000.0;
+
+      // Convert to Fahrenheit when the user has selected that unit
+      if (this.temperatureUnit === "F") {
+        temperature = (temperature * 9) / 5 + 32;
+      }
+
+      // Update temperature text with the chosen unit
+      const temperatureText = `${temperature.toFixed(1)}°${this.temperatureUnit}`;
+      this._temperatureLabel.set_text(temperatureText);
+
+      // Set color based on temperature if dynamic color is enabled, else set default color
+      if (this.dynamicColorEnabled) {
+        this._updateLabelColor(temperature);
+      } else {
+        this._colorString = "#ffffff";
+        this._updateStyles();
+      }
+    } catch (e) {
+      this._temperatureLabel.set_text("Error");
+      global.logError(`${UUID}: Error while reading temperature: ${e.message}`);
+    }
+  }
+
+  _updateLabelColor(temperature) {
+    // Define min and max temperature thresholds based on the unit
+    let minTemp = 20;
+    let maxTemp = 90;
+
+    // Convert min and max temperature from degree Celsius to degree Fahrenheit
+    if (this.temperatureUnit === "F") {
+      minTemp = (minTemp * 9) / 5 + 32;
+      maxTemp = (maxTemp * 9) / 5 + 32;
+    }
+
+    // Calculate color based on temperature
+    temperature = Math.min(maxTemp, Math.max(minTemp, temperature));
+    const ratio = (temperature - minTemp) / (maxTemp - minTemp);
+    this._colorString = `rgb(${Math.floor(ratio * 255)}, ${Math.floor((1 - ratio) * 255)}, 0)`;
+
+    // Set the color
+    this._updateStyles();
+  }
+
+  _on_settings_changed() {
+    this._textLabel.set_text(this.labelText);
+    if (!this.dynamicColorEnabled) this._colorString = "#ffffff";
+    this._updateStyles();
+    this._updateTemperature();
+  }
+}
 
 function main(metadata, deskletId) {
-    return new MyDesklet(metadata, deskletId);
+  return new MyDesklet(metadata, deskletId);
 }

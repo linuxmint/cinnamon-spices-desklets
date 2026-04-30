@@ -9,8 +9,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2026-03-23 21:24-0400\n"
-"PO-Revision-Date: 2025-11-13 18:58+0100\n"
-"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"PO-Revision-Date: 2026-04-06 14:06+0200\n"
+"Last-Translator: Alan Mortensen <over.tackiness223@passinbox.com>\n"
 "Language-Team: \n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr "CPU"
 
 #. desklet.js:284
 msgid "CPU Temperature"
-msgstr ""
+msgstr "CPU-temperatur"
 
 #. desklet.js:301 desklet.js:319 desklet.js:339 desklet.js:380 desklet.js:684
 msgid "GB"
@@ -59,9 +59,8 @@ msgid "GPU Memory"
 msgstr "GPU-hukommelse"
 
 #. desklet.js:401
-#, fuzzy
 msgid "GPU Temperature"
-msgstr "GPU-producent"
+msgstr "GPU-temperatur"
 
 #. settings-schema.json->type->options
 #. desklet.js:415
@@ -71,19 +70,19 @@ msgstr "Netværk"
 #. settings-schema.json->type->options
 #. desklet.js:428
 msgid "Battery"
-msgstr ""
+msgstr "Batteri"
 
 #. desklet.js:431
 msgid "Fully charged"
-msgstr ""
+msgstr "Fuldt opladet"
 
 #. desklet.js:432
 msgid "Not charging"
-msgstr ""
+msgstr "Oplader ikke"
 
 #. desklet.js:434
 msgid " hrs"
-msgstr ""
+msgstr "timer"
 
 #. desklet.js:655 desklet.js:678
 msgid "b"
@@ -154,14 +153,12 @@ msgid "GPU"
 msgstr "GPU"
 
 #. settings-schema.json->cpu-variable->description
-#, fuzzy
 msgid "CPU variable to monitor"
-msgstr "GPU-variabel der skal overvåges"
+msgstr "CPU-variabel der skal overvåges"
 
 #. settings-schema.json->cpu-variable->tooltip
-#, fuzzy
 msgid "Select the CPU variable to monitor."
-msgstr "Vælg den GPU-variabel, der skal overvåges."
+msgstr "Vælg den CPU-variabel, der skal overvåges."
 
 #. settings-schema.json->cpu-variable->options
 #. settings-schema.json->gpu-variable->options
@@ -171,28 +168,27 @@ msgstr "Forbrug"
 #. settings-schema.json->cpu-variable->options
 #. settings-schema.json->gpu-variable->options
 msgid "Temperature"
-msgstr ""
+msgstr "Temperatur"
 
 #. settings-schema.json->temperature-units-cpu->options
 #. settings-schema.json->temperature-units-gpu->options
 msgid "°C"
-msgstr ""
+msgstr "°C"
 
 #. settings-schema.json->temperature-units-cpu->options
 #. settings-schema.json->temperature-units-gpu->options
 msgid "°F"
-msgstr ""
+msgstr "°F"
 
 #. settings-schema.json->temperature-units-cpu->description
 #. settings-schema.json->temperature-units-gpu->description
 msgid "Temperature scale"
-msgstr ""
+msgstr "Temperaturskala"
 
 #. settings-schema.json->temperature-units-cpu->tooltip
 #. settings-schema.json->temperature-units-gpu->tooltip
-#, fuzzy
 msgid "Temperature scale for graph"
-msgstr "Systemvariabel for graf"
+msgstr "Temperaturskala for graf"
 
 #. settings-schema.json->data-prefix-ram->options
 #. settings-schema.json->data-prefix-swap->options
@@ -256,13 +252,12 @@ msgstr ""
 "eth0, wlan0, enp0s3"
 
 #. settings-schema.json->battery-name->description
-#, fuzzy
 msgid "Name of battery name to monitor"
-msgstr "Netværksgrænseflade der skal overvåges"
+msgstr "Navn på batterinavn der skal overvåges"
 
 #. settings-schema.json->battery-name->tooltip
 msgid "Check battery name in /sys/class/power_supply/ Examples: BAT0, BAT1"
-msgstr ""
+msgstr "Tjek batterinavn i /sys/class/power_supply/. Eksempler: BAT0, BAT1"
 
 #. settings-schema.json->filesystem->description
 msgid "Filesystem to monitor"
@@ -443,9 +438,8 @@ msgid "Line color Network Upload"
 msgstr "Linjefarve for netværksupload"
 
 #. settings-schema.json->line-color-battery->description
-#, fuzzy
 msgid "Line color Battery"
-msgstr "Linjefarve for Swap"
+msgstr "Linjefarve for batteri"
 
 #. settings-schema.json->midline-color->description
 msgid "Grid color"
