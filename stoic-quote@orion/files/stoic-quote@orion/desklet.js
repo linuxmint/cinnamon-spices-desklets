@@ -2,7 +2,6 @@
 
 const Desklet  = imports.ui.desklet;
 const St       = imports.gi.St;
-const Gio      = imports.gi.Gio;
 const GLib     = imports.gi.GLib;
 const Pango    = imports.gi.Pango;
 const Mainloop = imports.mainloop;
@@ -17,10 +16,23 @@ function _(str) {
     return Gettext.dgettext(UUID, str);
 }
 
+// Import the quotes module from the desklet directory. Each field in
+// quotes.js is wrapped in _() so xgettext extracts every quote and
+// translators can localize the entire data set via po/<lang>.po.
+let DESKLET_DIR = ".";
+for (let key in imports.ui.deskletManager.deskletMeta) {
+    if (key === UUID) {
+        DESKLET_DIR = imports.ui.deskletManager.deskletMeta[key].path;
+        break;
+    }
+}
+imports.searchPath.unshift(DESKLET_DIR);
+const QuotesModule = imports.quotes;
+
 const FALLBACK_QUOTE = {
-    text:   "The impediment to action advances action. What stands in the way becomes the way.",
-    author: "Marcus Aurelius",
-    source: "Meditations, Book 5"
+    text:   _("The impediment to action advances action. What stands in the way becomes the way."),
+    author: _("Marcus Aurelius"),
+    source: _("Meditations, Book 5")
 };
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -41,14 +53,6 @@ function _dateHash(str) {
     return h;
 }
 
-function _decodeContents(raw) {
-    if (typeof raw === "string") return raw;
-    if (typeof TextDecoder !== "undefined") return new TextDecoder("utf-8").decode(raw);
-    let s = "";
-    for (let i = 0; i < raw.length; i++) s += String.fromCharCode(raw[i]);
-    return s;
-}
-
 // ── Desklet ───────────────────────────────────────────────────────────────────
 
 function StoicQuoteDesklet(metadata, desklet_id) {
@@ -61,8 +65,9 @@ StoicQuoteDesklet.prototype = {
     _init: function(metadata, desklet_id) {
         Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
 
-        this._deskletPath  = metadata.path;
-        this._quotes       = [];
+        this._quotes = (Array.isArray(QuotesModule.QUOTES) && QuotesModule.QUOTES.length)
+            ? QuotesModule.QUOTES
+            : [FALLBACK_QUOTE];
         this._refreshTimer = null;
         this._manualOffset = 0;
         this._lastDate     = null;
@@ -75,7 +80,7 @@ StoicQuoteDesklet.prototype = {
 
         this._loadSettings(desklet_id);
         this._buildUI();
-        this._loadQuotesAsync(); // async; calls _showQuote when complete
+        this._showQuote();
         this._scheduleNextRefresh();
     },
 
@@ -139,32 +144,9 @@ StoicQuoteDesklet.prototype = {
         this._applyWidth();
     },
 
-    // ── Quote loading & display ───────────────────────────────────────────────
-
-    _loadQuotesAsync: function() {
-        let file = Gio.File.new_for_path(this._deskletPath + "/quotes.json");
-        file.load_contents_async(null, (source, result) => {
-            try {
-                let [ok, raw] = source.load_contents_finish(result);
-                if (!ok) throw new Error("load_contents_finish returned false");
-
-                let data = JSON.parse(_decodeContents(raw));
-                if (!Array.isArray(data) || data.length === 0)
-                    throw new Error("quotes.json must be a non-empty array");
-
-                this._quotes = data;
-                global.log("[stoic-quote] Loaded " + data.length + " quotes");
-            } catch (e) {
-                global.log("[stoic-quote] Quote load error — " + e.message + " — using fallback");
-                this._quotes = [FALLBACK_QUOTE];
-            }
-            this._showQuote();
-        });
-    },
+    // ── Quote display ─────────────────────────────────────────────────────────
 
     _showQuote: function() {
-        if (!this._quotes.length) return; // still loading; async callback will call us
-
         let dateStr = _getDateString();
         if (dateStr !== this._lastDate) {
             this._manualOffset = 0;
