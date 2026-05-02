@@ -1,8 +1,7 @@
-{
+
     "uuid": "sys-monitor@Paul163-ai",
     "name": "Quick System Monitor",
     "description": "A minimalist monitor for CPU, RAM, GPU, and multiple Disks.",
-    "icon": "icon.png",
     "version": "1.0.0",
     "prevent-decorations": true,
     "author": "Paul Lintott"
