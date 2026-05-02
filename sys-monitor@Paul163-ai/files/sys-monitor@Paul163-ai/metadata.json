@@ -1,4 +1,4 @@
-
+{
     "uuid": "sys-monitor@Paul163-ai",
     "name": "Quick System Monitor",
     "description": "A minimalist monitor for CPU, RAM, GPU, and multiple Disks.",
