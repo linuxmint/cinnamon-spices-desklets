@@ -36,6 +36,6 @@
     "disk-paths": {
         "type": "entry",
         "default": "/",
-        "description": "Disk Paths (comma separated)"
+        "description": "Disk Paths (comma separated) (cinnamon restart required)"
     }
 }
