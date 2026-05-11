@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <!-- Dark stone background -->
+  <rect width="48" height="48" rx="7" fill="#1c1c1e"/>
+  <!-- Gold accent bars -->
+  <rect x="8" y="9"  width="32" height="2.5" rx="1" fill="#c9a14a" opacity="0.75"/>
+  <rect x="8" y="36.5" width="32" height="2.5" rx="1" fill="#c9a14a" opacity="0.75"/>
+  <!-- Sigma / column motif -->
+  <text x="24" y="33" font-family="Georgia,DejaVu Serif,serif" font-size="26"
+        font-weight="bold" fill="#c9a14a" text-anchor="middle">Σ</text>
+</svg>

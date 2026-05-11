@@ -1,0 +1,39 @@
+{
+    "header1": {
+        "type": "header",
+        "description": "Active News Sources"
+    },
+    "source-google": { "type": "checkbox", "default": true, "description": "Google News" },
+    "source-bbc": { "type": "checkbox", "default": true, "description": "BBC World" },
+    "source-mint": { "type": "checkbox", "default": false, "description": "Linux Mint Blog" },
+    "header2": {
+        "type": "header",
+        "description": "Display Settings"
+    },
+    "desklet-width": {
+        "type": "scale",
+        "default": 350,
+        "min": 250,
+        "max": 800,
+        "step": 10,
+        "description": "Desklet Width (px)"
+    },
+    "story-count": {
+        "type": "spinbutton",
+        "default": 3,
+        "units": "stories",
+        "step": 1,
+        "min": 1,
+        "max": 10,
+        "description": "Stories per source"
+    },
+    "update-interval": {
+        "type": "spinbutton",
+        "default": 15,
+        "units": "minutes",
+        "step": 1,
+        "min": 1,
+        "max": 60,
+        "description": "Refresh Interval"
+    }
+}

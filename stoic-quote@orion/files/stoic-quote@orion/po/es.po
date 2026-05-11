@@ -1,0 +1,722 @@
+# STOIC QUOTE
+# This file is put in the public domain.
+# WanderingBread0, 2026
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: stoic-quote@orion 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-05-01 14:47-0500\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.9\n"
+
+#. desklet.js:33 quotes.js:13
+msgid ""
+"The impediment to action advances action. What stands in the way becomes the "
+"way."
+msgstr ""
+"El obstáculo que impide actuar impulsa la acción. Lo que se interpone en el "
+"camino se convierte en el camino."
+
+#. desklet.js:34 quotes.js:14 quotes.js:17 quotes.js:20 quotes.js:23
+#. quotes.js:26 quotes.js:29 quotes.js:32 quotes.js:35 quotes.js:38
+#. quotes.js:41 quotes.js:44 quotes.js:47 quotes.js:50 quotes.js:53
+#. quotes.js:56 quotes.js:59 quotes.js:62
+msgid "Marcus Aurelius"
+msgstr "Marco Aurelio"
+
+#. desklet.js:35 quotes.js:15
+msgid "Meditations, Book 5"
+msgstr "Meditaciones, Libro 5"
+
+#. desklet.js:161
+msgid "Unknown"
+msgstr "Desconocido"
+
+#. quotes.js:16
+msgid "Waste no more time arguing about what a good man should be. Be one."
+msgstr ""
+"No pierdas más tiempo discutiendo sobre cómo debe ser un buen hombre. Sé uno."
+
+#. quotes.js:18
+msgid "Meditations, Book 10"
+msgstr "Meditaciones, Libro 10"
+
+#. quotes.js:19
+msgid "If it is not right, do not do it; if it is not true, do not say it."
+msgstr "Si no está bien, no lo hagas; si no es verdad, no lo digas."
+
+#. quotes.js:21 quotes.js:51
+msgid "Meditations, Book 12"
+msgstr "Meditaciones, Libro XII"
+
+#. quotes.js:22
+msgid "The best revenge is not to be like your enemy."
+msgstr "La mejor venganza es no ser como tu enemigo."
+
+#. quotes.js:24 quotes.js:45 quotes.js:48
+msgid "Meditations, Book 6"
+msgstr "Meditaciones, Libro 6"
+
+#. quotes.js:25
+msgid "Loss is nothing else but change, and change is Nature's delight."
+msgstr ""
+"La pérdida no es más que un cambio, y el cambio es el deleite de la "
+"naturaleza."
+
+#. quotes.js:27
+msgid "Meditations, Book 9"
+msgstr "Meditaciones, Libro 9"
+
+#. quotes.js:28
+msgid ""
+"How much more grievous are the consequences of anger than the causes of it."
+msgstr "Las consecuencias de la ira son mucho más graves que sus causas."
+
+#. quotes.js:30
+msgid "Meditations, Book 11"
+msgstr "Meditaciones, Libro 11"
+
+#. quotes.js:31
+msgid ""
+"Never esteem anything as of advantage to you that will make you break your "
+"word or lose your self-respect."
+msgstr ""
+"Nunca consideres una ventaja para ti aquello que te haga incumplir tu "
+"palabra o perder tu dignidad."
+
+#. quotes.js:33
+msgid "Meditations, Book 3"
+msgstr "Meditaciones, Libro 3"
+
+#. quotes.js:34
+msgid ""
+"Do every act of your life as though it were the very last act of your life."
+msgstr "Haz cada cosa en tu vida como si fuera la última que fueras a hacer."
+
+#. quotes.js:36 quotes.js:57
+msgid "Meditations, Book 2"
+msgstr "Meditaciones, Libro 2"
+
+#. quotes.js:37
+msgid ""
+"You have power over your mind, not outside events. Realize this, and you "
+"will find strength."
+msgstr ""
+"Tienes control sobre tu mente, no sobre los acontecimientos externos. Date "
+"cuenta de ello y encontrarás la fuerza."
+
+#. quotes.js:39 quotes.js:54
+msgid "Meditations, Book 4"
+msgstr "Meditaciones, Libro 4"
+
+#. quotes.js:40
+msgid ""
+"Very little is needed to make a happy life; it is all within yourself, in "
+"your way of thinking."
+msgstr ""
+"Se necesita muy poco para ser feliz; todo está en ti mismo, en tu forma de "
+"pensar."
+
+#. quotes.js:42 quotes.js:60 quotes.js:63
+msgid "Meditations, Book 7"
+msgstr "Meditaciones, Libro 7"
+
+#. quotes.js:43
+msgid ""
+"Accept the things to which fate binds you, and love the people with whom "
+"fate brings you together."
+msgstr ""
+"Acepta lo que el destino te depara y ama a las personas con las que el "
+"destino te une."
+
+#. quotes.js:46
+msgid ""
+"The object of life is not to be on the side of the majority, but to escape "
+"finding oneself in the ranks of the insane."
+msgstr ""
+"El objetivo de la vida no es estar del lado de la mayoría, sino evitar "
+"acabar entre las filas de los locos."
+
+#. quotes.js:49
+msgid ""
+"It is not death that a man should fear, but he should fear never beginning "
+"to live."
+msgstr ""
+"No es la muerte lo que el hombre debe temer, sino no llegar a empezar a "
+"vivir."
+
+#. quotes.js:52
+msgid "The happiness of your life depends upon the quality of your thoughts."
+msgstr "La felicidad de tu vida depende de la calidad de tus pensamientos."
+
+#. quotes.js:55
+msgid ""
+"When you wake up in the morning, tell yourself: the people I deal with today "
+"will be meddling, ungrateful, arrogant, dishonest, jealous and surly. They "
+"are like this because they cannot tell good from evil. But I have seen the "
+"beauty of good, and the ugliness of evil, and have recognized that the "
+"wrongdoer has a nature related to my own."
+msgstr ""
+"Cuando te levantes por la mañana, repítete a ti mismo: Las personas con las "
+"que trataré hoy serán entrometidas, desagradecidas, arrogantes, deshonestas, "
+"envidiosas y hoscas. Son así porque no saben distinguir el bien del mal. "
+"Pero yo he visto la belleza del bien y la fealdad del mal, y he comprendido "
+"que quien hace el mal tiene una naturaleza parecida a la mía."
+
+#. quotes.js:58
+msgid ""
+"Look back over the past, with its changing empires that rose and fell, and "
+"you can foresee the future too. Its pattern will be the same, deviating only "
+"in minor details. And to watch the mortal life of one man is to see them all."
+msgstr ""
+"Si echamos la vista atrás al pasado, con sus imperios cambiantes que "
+"surgieron y cayeron, también podemos vislumbrar el futuro. Su patrón será el "
+"mismo, con solo algunas pequeñas diferencias. Y observar la vida mortal de "
+"un solo hombre es como verlas a todas."
+
+#. quotes.js:61
+msgid ""
+"Almost nothing material is needed for a happy life, for he who has "
+"understood existence."
+msgstr ""
+"Quien ha comprendido el sentido de la vida no necesita casi nada material "
+"para ser feliz."
+
+#. quotes.js:64
+msgid ""
+"Make the best use of what is in your power, and take the rest as it happens."
+msgstr ""
+"Aprovecha al máximo lo que está en tus manos y deja que el resto siga su "
+"curso."
+
+#. quotes.js:65 quotes.js:68 quotes.js:71 quotes.js:74 quotes.js:77
+#. quotes.js:80 quotes.js:83 quotes.js:86 quotes.js:89 quotes.js:92
+#. quotes.js:95 quotes.js:98 quotes.js:101 quotes.js:104 quotes.js:107
+#. quotes.js:110
+msgid "Epictetus"
+msgstr "Epicteto"
+
+#. quotes.js:66
+msgid "Enchiridion, I"
+msgstr "Enquiridion, I"
+
+#. quotes.js:67
+msgid "No man is free who is not master of himself."
+msgstr "Nadie es libre si no es dueño de sí mismo."
+
+#. quotes.js:69
+msgid "Discourses, 2.1"
+msgstr "Discursos, 2.1"
+
+#. quotes.js:70
+msgid ""
+"First say to yourself what you would be; and then do what you have to do."
+msgstr ""
+"Primero, pregúntate a ti mismo qué quieres ser; y luego haz lo que tengas "
+"que hacer."
+
+#. quotes.js:72
+msgid "Discourses, 3.23"
+msgstr "Discursos, 3.23"
+
+#. quotes.js:73
+msgid ""
+"If you want to improve, be content to be thought foolish and stupid with "
+"regard to external things."
+msgstr ""
+"Si quieres mejorar, no te importe que te tomen por tonto o estúpido en lo "
+"que respecta a las cosas externas."
+
+#. quotes.js:75
+msgid "Enchiridion, XIII"
+msgstr "Enquiridion, XIII"
+
+#. quotes.js:76
+msgid ""
+"Freedom is not procured by a full enjoyment of what is desired, but by "
+"controlling the desire."
+msgstr ""
+"La libertad no se consigue disfrutando plenamente de lo que se desea, sino "
+"controlando el deseo."
+
+#. quotes.js:78
+msgid "Discourses, 4.1"
+msgstr "Discursos, 4.1"
+
+#. quotes.js:79
+msgid ""
+"People are disturbed not by things, but by the views which they take of "
+"things."
+msgstr ""
+"Lo que perturba a las personas no son las cosas en sí, sino la visión que "
+"tienen de ellas."
+
+#. quotes.js:81
+msgid "Enchiridion, V"
+msgstr "Enquiridion, V"
+
+#. quotes.js:82
+msgid "Seek not the good in external things; seek it in yourself."
+msgstr "No busques lo bueno en las cosas externas; búscalo en ti mismo."
+
+#. quotes.js:84
+msgid "Discourses, 3.24"
+msgstr "Discursos, 3.24"
+
+#. quotes.js:85
+msgid ""
+"Never say about anything that I have lost it; but only that I have given it "
+"back."
+msgstr "Nunca digas de nada que lo he perdido, sino solo que lo he devuelto."
+
+#. quotes.js:87
+msgid "Enchiridion, XI"
+msgstr "Enquiridion, XI"
+
+#. quotes.js:88
+msgid ""
+"Seek not for the things which happen as you wish; but wish the things which "
+"happen to be as they are, and you will have a tranquil life."
+msgstr ""
+"No busques que las cosas sucedan como tú deseas; más bien, desea que las "
+"cosas sucedan tal y como son, y tendrás una vida tranquila."
+
+#. quotes.js:90
+msgid "Enchiridion, VIII"
+msgstr "Enquiridion, VIII"
+
+#. quotes.js:91
+msgid ""
+"Wealth consists not in having great possessions, but in having few wants."
+msgstr ""
+"La riqueza no consiste en tener muchas posesiones, sino en tener pocas "
+"necesidades."
+
+#. quotes.js:93 quotes.js:96 quotes.js:99 quotes.js:108 quotes.js:111
+msgid "Discourses"
+msgstr "Discursos"
+
+#. quotes.js:94
+msgid ""
+"He is a wise man who does not grieve for the things which he has not, but "
+"rejoices for those which he has."
+msgstr ""
+"Es sabio aquel que no se lamenta por lo que no tiene, sino que se alegra por "
+"lo que sí tiene."
+
+#. quotes.js:97
+msgid "Don't explain your philosophy. Embody it."
+msgstr "No expliques tu filosofía. Vívela."
+
+#. quotes.js:100
+msgid ""
+"We cannot choose our external circumstances, but we can always choose how we "
+"respond to them."
+msgstr ""
+"No podemos elegir las circunstancias externas, pero siempre podemos elegir "
+"cómo reaccionar ante ellas."
+
+#. quotes.js:102
+msgid "Enchiridion"
+msgstr "Enquiridion"
+
+#. quotes.js:103
+msgid "First learn the meaning of what you say, and then speak."
+msgstr "Primero, piensa bien lo que vas a decir y luego habla."
+
+#. quotes.js:105
+msgid "Discourses, 1.17"
+msgstr "Discursos, 1.17"
+
+#. quotes.js:106
+msgid ""
+"You become what you give your attention to. If you yourself don't choose "
+"what thoughts and images you expose yourself to, someone else will."
+msgstr ""
+"Te conviertes en aquello a lo que prestas atención. Si tú mismo no eliges a "
+"qué pensamientos e imágenes te expones, lo hará otra persona."
+
+#. quotes.js:109
+msgid ""
+"There is only one way to happiness and that is to cease worrying about "
+"things which are beyond the power of our will."
+msgstr ""
+"Solo hay un camino hacia la felicidad, y es dejar de preocuparse por cosas "
+"que escapan a nuestro control."
+
+#. quotes.js:112
+msgid "All things are foreign to us; time alone is ours."
+msgstr "Todo nos resulta ajeno; solo el tiempo nos pertenece."
+
+#. quotes.js:113 quotes.js:116 quotes.js:119 quotes.js:122 quotes.js:125
+#. quotes.js:128 quotes.js:131 quotes.js:134 quotes.js:137 quotes.js:140
+#. quotes.js:143 quotes.js:146 quotes.js:149 quotes.js:152
+msgid "Seneca"
+msgstr "Seneca"
+
+#. quotes.js:114 quotes.js:117
+msgid "Letters from a Stoic, I"
+msgstr "Cartas de un estoico, I"
+
+#. quotes.js:115
+msgid "While we are postponing, life speeds by."
+msgstr "Mientras lo posponemos, la vida pasa volando."
+
+#. quotes.js:118
+msgid ""
+"It is not the man who has too little, but the man who craves more, that is "
+"poor."
+msgstr "No es pobre quien tiene muy poco, sino quien ansía tener más."
+
+#. quotes.js:120 quotes.js:144
+msgid "Letters from a Stoic, II"
+msgstr "Cartas de un estoico, II"
+
+#. quotes.js:121
+msgid "Begin at once to live, and count each separate day as a separate life."
+msgstr ""
+"Empieza a vivir desde ahora mismo y considera cada día como una vida en sí "
+"misma."
+
+#. quotes.js:123
+msgid "Letters from a Stoic, CI"
+msgstr "Cartas de un estoico, CI"
+
+#. quotes.js:124
+msgid ""
+"The greatest obstacle to living is expectancy, which hangs upon tomorrow and "
+"loses today."
+msgstr ""
+"El mayor obstáculo para vivir es la expectación, que se aferra al mañana y "
+"pierde el hoy."
+
+#. quotes.js:126
+msgid "On the Shortness of Life, IX"
+msgstr "Sobre la brevedad de la vida, IX"
+
+#. quotes.js:127
+msgid "No man was ever wise by chance."
+msgstr "Ningún hombre ha llegado a ser sabio por casualidad."
+
+#. quotes.js:129
+msgid "Letters from a Stoic, LXXVI"
+msgstr "Cartas de un estoico, LXXVI"
+
+#. quotes.js:130
+msgid ""
+"Retire into yourself as much as you can; associate with those who are likely "
+"to improve you."
+msgstr ""
+"Retírate a tu interior tanto como puedas; rodéate de personas que puedan "
+"ayudarte a mejorar."
+
+#. quotes.js:132
+msgid "Letters from a Stoic, VII"
+msgstr "Cartas de un estoico, VII"
+
+#. quotes.js:133
+msgid "A happy life is one which is in accordance with its own nature."
+msgstr ""
+"Una vida feliz es aquella que está en armonía con su propia naturaleza."
+
+#. quotes.js:135
+msgid "On the Happy Life, III"
+msgstr "Sobre la vida feliz, III"
+
+#. quotes.js:136
+msgid "If you wish to be loved, love."
+msgstr "Si deseas ser amado, ama."
+
+#. quotes.js:138
+msgid "Letters from a Stoic, IX"
+msgstr "Cartas de un estoico, IX"
+
+#. quotes.js:139
+msgid "We suffer more often in imagination than in reality."
+msgstr "Sufrimos más a menudo en la imaginación que en la realidad."
+
+#. quotes.js:141
+msgid "Letters from a Stoic, XIII"
+msgstr "Cartas de un estoico, XIII"
+
+#. quotes.js:142
+msgid "One who is everywhere is nowhere."
+msgstr "Quien está en todas partes no está en ninguna."
+
+#. quotes.js:145
+msgid "To live is to fight."
+msgstr "Vivir es luchar."
+
+#. quotes.js:147
+msgid "Letters from a Stoic, XCVI"
+msgstr "Cartas de un estoico, XCVI"
+
+#. quotes.js:148
+msgid "Luck is what happens when preparation meets opportunity."
+msgstr ""
+"La suerte es lo que sucede cuando la preparación se encuentra con la "
+"oportunidad."
+
+#. quotes.js:150
+msgid "Epistulae Morales"
+msgstr "Epístolas morales"
+
+#. quotes.js:151
+msgid ""
+"True happiness is to enjoy the present, without anxious dependence upon the "
+"future, not to amuse ourselves with either hopes or fears but to rest "
+"satisfied with what we have, which is sufficient."
+msgstr ""
+"La verdadera felicidad consiste en disfrutar del presente, sin depender con "
+"ansiedad del futuro, sin dejarnos llevar ni por las esperanzas ni por los "
+"temores, sino sintiéndonos satisfechos con lo que tenemos, que es suficiente."
+
+#. quotes.js:153
+msgid "Letters from a Stoic"
+msgstr "Cartas de un estoico"
+
+#. quotes.js:154
+msgid "Better to trip with the feet than with the tongue."
+msgstr "Más vale tropezar con los pies que con la lengua."
+
+#. quotes.js:155 quotes.js:158 quotes.js:161 quotes.js:164 quotes.js:167
+msgid "Zeno of Citium"
+msgstr "Zenón de Citio"
+
+#. quotes.js:156
+msgid "Lives of the Eminent Philosophers, 7.26"
+msgstr "Vidas de los filósofos ilustres, 7.26"
+
+#. quotes.js:157
+msgid "The goal of life is to live in agreement with Nature."
+msgstr "El objetivo de la vida es vivir en armonía con la naturaleza."
+
+#. quotes.js:159
+msgid "Lives of the Eminent Philosophers, 7.87"
+msgstr "Vidas de los filósofos ilustres, 7.87"
+
+#. quotes.js:160
+msgid ""
+"We have two ears and one mouth, so that we should listen more than we say."
+msgstr ""
+"Tenemos dos oídos y una boca, para que escuchemos más de lo que hablamos."
+
+#. quotes.js:162 quotes.js:165
+msgid "Lives of the Eminent Philosophers"
+msgstr "Vidas de los filósofos ilustres"
+
+#. quotes.js:163
+msgid "Man conquers the world by conquering himself."
+msgstr "El hombre conquista el mundo al conquistarse a sí mismo."
+
+#. quotes.js:166
+msgid "All the good are friends of one another."
+msgstr "Todos los buenos son amigos entre sí."
+
+#. quotes.js:168
+msgid "Lives of the Eminent Philosophers, 7.32"
+msgstr "Vidas de los filósofos ilustres, 7.32"
+
+#. quotes.js:169
+msgid ""
+"Lead me, Zeus, lead me, Destiny, wherever I have been assigned by you. I "
+"will follow without hesitation; and if I am unwilling, because I am wicked, "
+"I will follow nonetheless."
+msgstr ""
+"Guíame, Zeus, guíame, Destino, allá donde me hayáis destinado. Te seguiré "
+"sin dudarlo; y si no estoy dispuesto a hacerlo, por ser malvado, te seguiré "
+"de todos modos."
+
+#. quotes.js:170 quotes.js:173 quotes.js:176
+msgid "Cleanthes"
+msgstr "Cleantes"
+
+#. quotes.js:171 quotes.js:174
+msgid "Hymn to Zeus"
+msgstr "Himno a Zeus"
+
+#. quotes.js:172
+msgid ""
+"All things are parts of one single system, which is called Nature; the "
+"individual life is good when it is in harmony with Nature."
+msgstr ""
+"Todas las cosas forman parte de un único sistema, que se denomina "
+"Naturaleza; la vida individual es buena cuando está en armonía con la "
+"Naturaleza."
+
+#. quotes.js:175
+msgid "Practice yourself in little things, and thence proceed to greater."
+msgstr ""
+"Practica primero con cosas pequeñas y, a partir de ahí, pasa a las más "
+"grandes."
+
+#. quotes.js:177
+msgid "Lives of the Eminent Philosophers, 7.168"
+msgstr "Vidas de los filósofos ilustres, 7.168"
+
+#. quotes.js:178
+msgid ""
+"If you accomplish something good with hard work, the labor passes quickly, "
+"but the good endures; if you do something shameful in pursuit of pleasure, "
+"the pleasure passes quickly, but the shame endures."
+msgstr ""
+"Si consigues algo bueno gracias al esfuerzo, el esfuerzo pasa rápido, pero "
+"lo bueno perdura; si haces algo vergonzoso en busca del placer, el placer "
+"pasa rápido, pero la vergüenza perdura."
+
+#. quotes.js:179 quotes.js:182 quotes.js:185 quotes.js:188 quotes.js:191
+msgid "Musonius Rufus"
+msgstr "Musonio Rufo"
+
+#. quotes.js:180
+msgid "Lectures, VI"
+msgstr "Conferencias, VI"
+
+#. quotes.js:181
+msgid ""
+"We must not say that it befits only the philosopher to inquire how one ought "
+"to live rightly; for philosophy is nothing else than this — the inquiry into "
+"what is fitting and appropriate for a human being."
+msgstr ""
+"No debemos decir que solo corresponde al filósofo indagar cómo se debe vivir "
+"correctamente; pues la filosofía no es otra cosa que esto: la indagación "
+"sobre lo que es adecuado y apropiado para el ser humano."
+
+#. quotes.js:183
+msgid "Lectures, I"
+msgstr "Conferencias, I"
+
+#. quotes.js:184
+msgid ""
+"Choose to die well while you can; wait too long, and it might become "
+"impossible to do so."
+msgstr ""
+"Elige morir bien mientras puedas; si esperas demasiado, puede que ya no sea "
+"posible hacerlo."
+
+#. quotes.js:186
+msgid "Lectures, VIII"
+msgstr "Conferencias, VIII"
+
+#. quotes.js:187
+msgid ""
+"The man who is truly good and wise neither struggles with adversity nor "
+"complains of his lot; rather, he takes heart from even the harshest of "
+"conditions."
+msgstr ""
+"El hombre verdaderamente bueno y sabio no se deja abatir por la adversidad "
+"ni se queja de su suerte; al contrario, saca fuerzas incluso de las "
+"circunstancias más difíciles."
+
+#. quotes.js:189
+msgid "Lectures, X"
+msgstr "Conferencias, X"
+
+#. quotes.js:190
+msgid ""
+"The philosopher's aim is not to hear many lectures and then fall silent, but "
+"to live by those already heard."
+msgstr ""
+"El objetivo del filósofo no es escuchar muchas conferencias para luego "
+"quedarse callado, sino vivir según lo que ya ha escuchado."
+
+#. quotes.js:192
+msgid "Lectures"
+msgstr "Conferencias"
+
+#. quotes.js:193
+msgid "If I had followed the multitude, I would not have studied philosophy."
+msgstr "Si hubiera seguido a la mayoría, no habría estudiado filosofía."
+
+#. quotes.js:194 quotes.js:197 quotes.js:200
+msgid "Chrysippus"
+msgstr "Crisippo"
+
+#. quotes.js:195
+msgid "Lives of the Eminent Philosophers, 7.183"
+msgstr "Vidas de los filósofos ilustres, 7.183"
+
+#. quotes.js:196
+msgid ""
+"The virtues are interconnected; whoever truly possesses one virtue possesses "
+"them all."
+msgstr ""
+"Las virtudes están interrelacionadas; quien posee verdaderamente una virtud, "
+"las posee todas."
+
+#. quotes.js:198
+msgid "Lives of the Eminent Philosophers, 7.125"
+msgstr "Vidas de los filósofos ilustres, 7.125"
+
+#. quotes.js:199
+msgid "No one is born a sage; goodness is an art which must be learned."
+msgstr "Nadie nace sabio; la bondad es un arte que hay que aprender."
+
+#. quotes.js:201
+msgid "Fragments"
+msgstr "Fragmentos"
+
+#. metadata.json->name
+msgid "Stoic Quote"
+msgstr "Cita estoica"
+
+#. metadata.json->description
+msgid ""
+"Display a daily Stoic quote from Marcus Aurelius, Epictetus, and Seneca. "
+"Quote rotates at midnight and is deterministic by date."
+msgstr ""
+"Muestra una cita estoica diaria de Marco Aurelio, Epicteto y Séneca. La cita "
+"cambia cada medianoche y se determina en función de la fecha."
+
+#. settings-schema.json->page-display->title
+msgid "Settings"
+msgstr "Configuración"
+
+#. settings-schema.json->section-display->title
+msgid "Display"
+msgstr "Visualización"
+
+#. settings-schema.json->section-refresh->title
+msgid "Refresh"
+msgstr "Actualizar"
+
+#. settings-schema.json->desklet-width->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->desklet-width->description
+msgid "Width"
+msgstr "Ancho"
+
+#. settings-schema.json->show-source->description
+msgid "Show source / book name"
+msgstr "Mostrar fuente / título del libro"
+
+#. settings-schema.json->show-refresh-button->description
+msgid "Show refresh button"
+msgstr "Mostrar el botón de actualizar"
+
+#. settings-schema.json->refresh-frequency->description
+msgid "Auto-refresh frequency"
+msgstr "Frecuencia de actualización automática"
+
+#. settings-schema.json->refresh-frequency->options
+msgid "Daily (at midnight)"
+msgstr "Diariamente (a medianoche)"
+
+#. settings-schema.json->refresh-frequency->options
+msgid "Hourly"
+msgstr "Por horas"
+
+#. settings-schema.json->refresh-frequency->options
+msgid "Manual only"
+msgstr "Solo manual"
