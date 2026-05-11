@@ -1,0 +1,55 @@
+.monitor-container {
+    padding: 18px;
+    border-radius: 15px; /* Matches the code above */
+    color: white;
+    min-width: 230px;
+}
+
+.monitor-title-row {
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 5px;
+}
+
+.monitor-title {
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+.shrink-button {
+    font-size: 14pt;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.6);
+    border-radius: 4px;
+    padding: 0 6px;
+}
+
+.shrink-button:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.stat-label {
+    font-size: 10pt;
+    font-weight: bold;
+    color: #ffffff;
+    padding-bottom: 2px;
+    margin-bottom: 4px;
+}
+
+.stat-box {
+    margin-bottom: 12px;
+}
+
+.bar-outline {
+    background-color: rgba(255, 255, 255, 0.1);
+    height: 10px;
+    width: 200px;
+    border-radius: 5px;
+}
+
+.bar-fill {
+    /* Color and height are now controlled by JS */
+    height: 10px;
+    border-radius: 5px;
+}
