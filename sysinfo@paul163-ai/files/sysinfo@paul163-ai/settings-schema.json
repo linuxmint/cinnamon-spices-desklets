@@ -1,0 +1,87 @@
+{
+    "header_timing": {
+        "type": "header",
+        "description": "Update"
+    },
+    "refresh-interval": {
+        "type": "spinbutton",
+        "default": 2,
+        "min": 1,
+        "max": 60,
+        "step": 1,
+        "units": "seconds",
+        "description": "Refresh interval"
+    },
+    "header_storage": {
+        "type": "header",
+        "description": "Storage"
+    },
+    "disk-paths": {
+        "type": "entry",
+        "default": "/",
+        "description": "Disk paths to monitor (comma-separated)"
+    },
+    "header_sections": {
+        "type": "header",
+        "description": "Sections"
+    },
+    "show-gpu": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show GPU section"
+    },
+    "show-network": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show Network section"
+    },
+    "show-battery": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show Battery section"
+    },
+    "header_appearance": {
+        "type": "header",
+        "description": "Appearance"
+    },
+    "bg-color": {
+        "type": "colorchooser",
+        "default": "rgb(0, 0, 0)",
+        "description": "Background color"
+    },
+    "bg-opacity": {
+        "type": "scale",
+        "default": 0.0,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.05,
+        "description": "Background opacity (0 = fully transparent)"
+    },
+    "text-color": {
+        "type": "colorchooser",
+        "default": "rgba(255, 255, 255, 0.95)",
+        "description": "Text color"
+    },
+    "accent-color": {
+        "type": "colorchooser",
+        "default": "rgba(52, 152, 219, 1)",
+        "description": "Bar / accent color"
+    },
+    "font-size": {
+        "type": "spinbutton",
+        "default": 9,
+        "min": 7,
+        "max": 16,
+        "step": 1,
+        "units": "pt",
+        "description": "Font size"
+    },
+    "desklet-scale": {
+        "type": "scale",
+        "default": 1.0,
+        "min": 0.5,
+        "max": 2.0,
+        "step": 0.05,
+        "description": "Desklet scale"
+    }
+}

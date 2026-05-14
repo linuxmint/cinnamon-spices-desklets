@@ -1,0 +1,8 @@
+{
+    "uuid": "sysinfo@paul163-ai",
+    "name": "Full System Info",
+    "description": "Comprehensive system monitor: CPU, RAM, Swap, GPU, Disk, Network, Battery, Uptime, Load — transparent background.",
+    "version": "1.0.1",
+    "prevent-decorations": true,
+    "author": "Paul Lintott"
+}
