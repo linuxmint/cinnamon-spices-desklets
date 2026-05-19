@@ -2,7 +2,6 @@ const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
 const GLib = imports.gi.GLib;
 const Mainloop = imports.mainloop;
-const Lang = imports.lang;
 const Settings = imports.ui.settings;
 const Gio = imports.gi.Gio;
 const ByteArray = imports.byteArray;
@@ -17,6 +16,23 @@ function MyDesklet(metadata, desklet_id) {
 
 function main(metadata, desklet_id) {
     return new MyDesklet(metadata, desklet_id);
+}
+
+/**
+ * Run a command with argv and return stdout as string, or null on failure.
+ * Uses Gio.Subprocess instead of GLib.spawn_command_line_sync.
+ */
+function spawnSync(argv) {
+    try {
+        let proc = new Gio.Subprocess({
+            argv: argv,
+            flags: Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_SILENCE
+        });
+        proc.init(null);
+        let [ok, stdout] = proc.communicate_utf8(null, null);
+        if (ok && stdout) return stdout.trim();
+    } catch(e) {}
+    return null;
 }
 
 MyDesklet.prototype = {
@@ -60,10 +76,9 @@ MyDesklet.prototype = {
 
     loadPinned: function() {
         try {
-            if (GLib.file_test(PINNED_FILE, GLib.FileTest.EXISTS)) {
-                let [ok, contents] = GLib.file_get_contents(PINNED_FILE);
-                if (ok) return JSON.parse(ByteArray.toString(contents));
-            }
+            let file = Gio.File.new_for_path(PINNED_FILE);
+            let [ok, contents] = file.load_contents(null);
+            if (ok) return JSON.parse(ByteArray.toString(contents));
         } catch(e) {}
         return [];
     },
@@ -92,16 +107,15 @@ MyDesklet.prototype = {
 
     findRecentProjects: function() {
         let results = [];
-        let home = GLib.get_home_dir();
+        let configDir = GLib.get_user_config_dir();
 
-        // Editor sources: [settingFlag, configDir]
         let sources = [];
         if (this.sourceVscode !== false)
-            sources.push(home + "/.config/Code/User/workspaceStorage");
+            sources.push(configDir + "/Code/User/workspaceStorage");
         if (this.sourceVscodium !== false)
-            sources.push(home + "/.config/VSCodium/User/workspaceStorage");
+            sources.push(configDir + "/VSCodium/User/workspaceStorage");
         if (this.sourceCursor !== false)
-            sources.push(home + "/.config/Cursor/User/workspaceStorage");
+            sources.push(configDir + "/Cursor/User/workspaceStorage");
 
         for (let s = 0; s < sources.length; s++) {
             this.scanWorkspaceStorage(sources[s], results);
@@ -124,8 +138,6 @@ MyDesklet.prototype = {
     },
 
     scanWorkspaceStorage: function(wsDir, results) {
-        if (!GLib.file_test(wsDir, GLib.FileTest.IS_DIR)) return;
-
         try {
             let dir = Gio.File.new_for_path(wsDir);
             let enumerator = dir.enumerate_children(
@@ -137,10 +149,10 @@ MyDesklet.prototype = {
                 if (info.get_file_type() !== Gio.FileType.DIRECTORY) continue;
 
                 let wsJsonPath = wsDir + "/" + info.get_name() + "/workspace.json";
-                if (!GLib.file_test(wsJsonPath, GLib.FileTest.EXISTS)) continue;
 
                 try {
-                    let [ok, contents] = GLib.file_get_contents(wsJsonPath);
+                    let wsFile = Gio.File.new_for_path(wsJsonPath);
+                    let [ok, contents] = wsFile.load_contents(null);
                     if (!ok) continue;
 
                     let data = JSON.parse(ByteArray.toString(contents));
@@ -150,11 +162,21 @@ MyDesklet.prototype = {
                     let path = folderUri.replace("file://", "");
                     try { path = decodeURIComponent(path); } catch(e) {}
 
-                    if (!GLib.file_test(path, GLib.FileTest.IS_DIR)) continue;
+                    let projDir = Gio.File.new_for_path(path);
+                    let projInfo;
+                    try {
+                        projInfo = projDir.query_info("standard::type", Gio.FileQueryInfoFlags.NONE, null);
+                    } catch(e) { continue; }
+                    if (projInfo.get_file_type() !== Gio.FileType.DIRECTORY) continue;
 
-                    if (this.gitOnly && !GLib.file_test(path + "/.git", GLib.FileTest.IS_DIR)) continue;
+                    if (this.gitOnly) {
+                        let gitDir = Gio.File.new_for_path(path + "/.git");
+                        try {
+                            let gitInfo = gitDir.query_info("standard::type", Gio.FileQueryInfoFlags.NONE, null);
+                            if (gitInfo.get_file_type() !== Gio.FileType.DIRECTORY) continue;
+                        } catch(e) { continue; }
+                    }
 
-                    let wsFile = Gio.File.new_for_path(wsJsonPath);
                     let wsInfo = wsFile.query_info("time::modified", Gio.FileQueryInfoFlags.NONE, null);
                     let mtime = wsInfo.get_modification_time().tv_sec;
 
@@ -176,18 +198,15 @@ MyDesklet.prototype = {
     },
 
     getLastEditedTime: function(projectPath) {
-        // Use bash -c to handle piped commands
         try {
-            let [ok, stdout] = GLib.spawn_command_line_sync(
-                "bash -c " + GLib.shell_quote(
-                    "find " + GLib.shell_quote(projectPath) +
-                    " -maxdepth 3 -not -path '*/\\.*' -not -path '*/node_modules/*'" +
-                    " -not -path '*/__pycache__/*' -type f -printf '%T@\\n' 2>/dev/null" +
-                    " | sort -rn | head -1"
-                )
-            );
-            if (ok && stdout) {
-                let ts = parseFloat(ByteArray.toString(stdout).trim());
+            let out = spawnSync(["bash", "-c",
+                "find " + GLib.shell_quote(projectPath) +
+                " -maxdepth 3 -not -path '*/\\.*' -not -path '*/node_modules/*'" +
+                " -not -path '*/__pycache__/*' -type f -printf '%T@\\n' 2>/dev/null" +
+                " | sort -rn | head -1"
+            ]);
+            if (out) {
+                let ts = parseFloat(out);
                 if (ts > 0) return Math.floor(ts);
             }
         } catch(e) {}
@@ -215,54 +234,42 @@ MyDesklet.prototype = {
             info.lastEditedTime = this.timeAgo(editTs);
         }
 
-        if (!GLib.file_test(projectPath + "/.git", GLib.FileTest.IS_DIR))
+        let gitDir = Gio.File.new_for_path(projectPath + "/.git");
+        try {
+            let gitInfo = gitDir.query_info("standard::type", Gio.FileQueryInfoFlags.NONE, null);
+            if (gitInfo.get_file_type() !== Gio.FileType.DIRECTORY) return info;
+        } catch(e) {
             return info;
+        }
 
         info.hasGit = true;
 
-        try {
-            let [ok1, stdout1] = GLib.spawn_command_line_sync(
-                "git -C " + GLib.shell_quote(projectPath) + " log -1 --format=%s"
-            );
-            if (ok1 && stdout1) {
-                let msg = ByteArray.toString(stdout1).trim();
-                if (msg.length > 50) msg = msg.substring(0, 47) + "...";
-                if (msg) info.lastCommitMsg = msg;
-            }
-        } catch(e) {}
+        let msg = spawnSync(["git", "-C", projectPath, "log", "-1", "--format=%s"]);
+        if (msg) {
+            if (msg.length > 50) msg = msg.substring(0, 47) + "...";
+            info.lastCommitMsg = msg;
+        }
 
-        try {
-            let [ok2, stdout2] = GLib.spawn_command_line_sync(
-                "git -C " + GLib.shell_quote(projectPath) + " log -1 --format=%ct"
-            );
-            if (ok2 && stdout2) {
-                let ts = parseInt(ByteArray.toString(stdout2).trim());
-                if (ts > 0) {
-                    info.lastCommitTimestamp = ts;
-                    info.lastCommitTime = this.timeAgo(ts);
-                }
+        let ctStr = spawnSync(["git", "-C", projectPath, "log", "-1", "--format=%ct"]);
+        if (ctStr) {
+            let ts = parseInt(ctStr);
+            if (ts > 0) {
+                info.lastCommitTimestamp = ts;
+                info.lastCommitTime = this.timeAgo(ts);
             }
-        } catch(e) {}
+        }
 
-        try {
-            let [ok3, stdout3] = GLib.spawn_command_line_sync(
-                "git -C " + GLib.shell_quote(projectPath) + " rev-list --count HEAD"
-            );
-            if (ok3 && stdout3) {
-                let count = parseInt(ByteArray.toString(stdout3).trim());
-                if (!isNaN(count)) info.totalCommits = count;
-            }
-        } catch(e) {}
+        let countStr = spawnSync(["git", "-C", projectPath, "rev-list", "--count", "HEAD"]);
+        if (countStr) {
+            let count = parseInt(countStr);
+            if (!isNaN(count)) info.totalCommits = count;
+        }
 
-        try {
-            let [ok4, stdout4] = GLib.spawn_command_line_sync(
-                "du -sh " + GLib.shell_quote(projectPath + "/.git")
-            );
-            if (ok4 && stdout4) {
-                let size = ByteArray.toString(stdout4).trim().split("\t")[0];
-                if (size) info.repoSize = size;
-            }
-        } catch(e) {}
+        let sizeStr = spawnSync(["du", "-sh", projectPath + "/.git"]);
+        if (sizeStr) {
+            let size = sizeStr.split("\t")[0];
+            if (size) info.repoSize = size;
+        }
 
         return info;
     },
@@ -360,7 +367,7 @@ MyDesklet.prototype = {
 
         this.timeout = Mainloop.timeout_add_seconds(
             120,
-            Lang.bind(this, this.refreshData)
+            this.refreshData.bind(this)
         );
     },
 
@@ -380,8 +387,8 @@ MyDesklet.prototype = {
         let self = this;
 
         // Left-click opens in VS Code
-        row.connect("button-press-event", function(actor, event) {
-            GLib.spawn_command_line_async("code " + GLib.shell_quote(projectPath));
+        row.connect("button-press-event", function() {
+            Gio.Subprocess.new(["code", projectPath], Gio.SubprocessFlags.NONE);
             return true;
         });
 
