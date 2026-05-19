@@ -280,12 +280,16 @@ MyDesklet.prototype = {
         if (this.settings) this.settings.finalize();
         // Kill the daemon via its pidfile
         try {
-            let pidFile = Gio.File.new_for_path("/tmp/sysinfo-paul163.pid");
-            let [ok, c] = pidFile.load_contents(null);
-            if (ok) {
-                let pid = parseInt(new TextDecoder().decode(c).trim());
-                if (pid) GLib.spawn_command_line_async("kill " + pid);
-            }
+            Gio.File.new_for_path("/tmp/sysinfo-paul163.pid").load_contents_async(null, (f, res) => {
+                try {
+                    let [ok, c] = f.load_contents_finish(res);
+                    if (ok) {
+                        let pid = parseInt(new TextDecoder().decode(c).trim());
+                        if (pid) GLib.spawn_async(null, ["kill", String(pid)], null,
+                            GLib.SpawnFlags.SEARCH_PATH, null);
+                    }
+                } catch(e) {}
+            });
         } catch(e) {}
     }
 };
