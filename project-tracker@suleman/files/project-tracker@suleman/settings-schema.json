@@ -1,0 +1,48 @@
+{
+    "max-projects": {
+        "type": "spinbutton",
+        "default": 10,
+        "min": 4,
+        "max": 30,
+        "step": 1,
+        "description": "Total projects (scroll for more)"
+    },
+    "git-only": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Only show projects with git"
+    },
+    "hide-decorations": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Hide decorations"
+    },
+    "font-scale": {
+        "type": "scale",
+        "default": 1.0,
+        "min": 0.6,
+        "max": 2.0,
+        "step": 0.1,
+        "description": "Font scale"
+    },
+    "bg-color": {
+        "type": "colorchooser",
+        "default": "rgba(28,28,32,0.92)",
+        "description": "Background color"
+    },
+    "row-color": {
+        "type": "colorchooser",
+        "default": "rgba(42,42,48,0.8)",
+        "description": "Row background color"
+    },
+    "font-color": {
+        "type": "colorchooser",
+        "default": "rgba(230,230,235,0.95)",
+        "description": "Font color"
+    },
+    "accent-color": {
+        "type": "colorchooser",
+        "default": "rgba(160,180,210,0.85)",
+        "description": "Accent color (time, stats)"
+    }
+}
