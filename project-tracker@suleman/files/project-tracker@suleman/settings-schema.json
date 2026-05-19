@@ -12,6 +12,21 @@
         "default": false,
         "description": "Only show projects with git"
     },
+    "source-vscode": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Scan VS Code projects"
+    },
+    "source-vscodium": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Scan VSCodium projects"
+    },
+    "source-cursor": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Scan Cursor projects"
+    },
     "hide-decorations": {
         "type": "checkbox",
         "default": true,

@@ -29,6 +29,9 @@ MyDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "max-projects", "maxProjects", this.onSettingChanged);
         this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this.onSettingChanged);
         this.settings.bindProperty(Settings.BindingDirection.IN, "git-only", "gitOnly", this.onSettingChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "source-vscode", "sourceVscode", this.onSettingChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "source-vscodium", "sourceVscodium", this.onSettingChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "source-cursor", "sourceCursor", this.onSettingChanged);
         this.settings.bindProperty(Settings.BindingDirection.IN, "font-scale", "fontScale", this.onSettingChanged);
         this.settings.bindProperty(Settings.BindingDirection.IN, "bg-color", "bgColor", this.onSettingChanged);
         this.settings.bindProperty(Settings.BindingDirection.IN, "row-color", "rowColor", this.onSettingChanged);
@@ -88,8 +91,40 @@ MyDesklet.prototype = {
     },
 
     findRecentProjects: function() {
-        let wsDir = GLib.get_home_dir() + "/.config/Code/User/workspaceStorage";
         let results = [];
+        let home = GLib.get_home_dir();
+
+        // Editor sources: [settingFlag, configDir]
+        let sources = [];
+        if (this.sourceVscode !== false)
+            sources.push(home + "/.config/Code/User/workspaceStorage");
+        if (this.sourceVscodium !== false)
+            sources.push(home + "/.config/VSCodium/User/workspaceStorage");
+        if (this.sourceCursor !== false)
+            sources.push(home + "/.config/Cursor/User/workspaceStorage");
+
+        for (let s = 0; s < sources.length; s++) {
+            this.scanWorkspaceStorage(sources[s], results);
+        }
+
+        let pinnedPaths = this.pinnedPaths;
+        results.sort(function(a, b) {
+            let aPinned = pinnedPaths.indexOf(a.path) !== -1;
+            let bPinned = pinnedPaths.indexOf(b.path) !== -1;
+            if (aPinned && !bPinned) return -1;
+            if (!aPinned && bPinned) return 1;
+            return b.mtime - a.mtime;
+        });
+
+        let paths = [];
+        for (let i = 0; i < results.length; i++) {
+            paths.push(results[i].path);
+        }
+        return paths;
+    },
+
+    scanWorkspaceStorage: function(wsDir, results) {
+        if (!GLib.file_test(wsDir, GLib.FileTest.IS_DIR)) return;
 
         try {
             let dir = Gio.File.new_for_path(wsDir);
@@ -123,6 +158,7 @@ MyDesklet.prototype = {
                     let wsInfo = wsFile.query_info("time::modified", Gio.FileQueryInfoFlags.NONE, null);
                     let mtime = wsInfo.get_modification_time().tv_sec;
 
+                    // Deduplicate across editors — keep most recent
                     let isDupe = false;
                     for (let r = 0; r < results.length; r++) {
                         if (results[r].path === path) {
@@ -137,21 +173,6 @@ MyDesklet.prototype = {
                 } catch(e) {}
             }
         } catch(e) {}
-
-        let pinnedPaths = this.pinnedPaths;
-        results.sort(function(a, b) {
-            let aPinned = pinnedPaths.indexOf(a.path) !== -1;
-            let bPinned = pinnedPaths.indexOf(b.path) !== -1;
-            if (aPinned && !bPinned) return -1;
-            if (!aPinned && bPinned) return 1;
-            return b.mtime - a.mtime;
-        });
-
-        let paths = [];
-        for (let i = 0; i < results.length; i++) {
-            paths.push(results[i].path);
-        }
-        return paths;
     },
 
     getLastEditedTime: function(projectPath) {
