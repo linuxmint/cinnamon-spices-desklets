@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 """
 sysinfo-daemon.py — background stats collector for sysinfo@paul163-ai desklet.
-Writes /tmp/sysinfo-paul163.json every INTERVAL seconds.
+Writes sysinfo-paul163.json to the system temp dir every INTERVAL seconds.
 Launched automatically by the desklet. Uses a pidfile to prevent duplicates.
 """
 
-import json, os, sys, time, glob, socket, signal, atexit
+import json, os, sys, time, glob, socket, signal, atexit, tempfile
 
 INTERVAL   = 2
-OUT_FILE   = "/tmp/sysinfo-paul163.json"
+_TMP       = tempfile.gettempdir()
+OUT_FILE   = os.path.join(_TMP, "sysinfo-paul163.json")
 ATOMIC_TMP = OUT_FILE + ".tmp"
-PID_FILE   = "/tmp/sysinfo-paul163.pid"
+PID_FILE   = os.path.join(_TMP, "sysinfo-paul163.pid")
 
 # ── pidfile: prevent duplicate instances ──────────────────────────────────
 

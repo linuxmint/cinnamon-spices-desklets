@@ -5,7 +5,8 @@ const Gio      = imports.gi.Gio;
 const Mainloop = imports.mainloop;
 const Settings = imports.ui.settings;
 
-const DATA_FILE = "/tmp/sysinfo-paul163.json";
+const TMP_DIR   = GLib.get_tmp_dir();
+const DATA_FILE = TMP_DIR + "/sysinfo-paul163.json";
 
 function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
 
@@ -280,7 +281,7 @@ MyDesklet.prototype = {
         if (this.settings) this.settings.finalize();
         // Kill the daemon via its pidfile
         try {
-            Gio.File.new_for_path("/tmp/sysinfo-paul163.pid").load_contents_async(null, (f, res) => {
+            Gio.File.new_for_path(TMP_DIR + "/sysinfo-paul163.pid").load_contents_async(null, (f, res) => {
                 try {
                     let [ok, c] = f.load_contents_finish(res);
                     if (ok) {
