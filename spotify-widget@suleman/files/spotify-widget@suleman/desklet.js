@@ -558,14 +558,14 @@ SpotifyWidget.prototype = {
             let size = isCompact ? 56 : 100;
 
             if (artUrl.startsWith("file://")) {
-                let filePath = artUrl.substring(7);
-                let file = Gio.File.new_for_path(filePath);
-                if (file.query_exists(null)) {
+                try {
                     let texture = St.TextureCache.get_default().load_uri_async(
                         artUrl, size, size
                     );
                     this._albumArt.set_child(texture);
                     return;
+                } catch (e) {
+                    // File not found or unreadable — fall through to fallback icon
                 }
             } else if (artUrl.startsWith("http")) {
                 let texture = St.TextureCache.get_default().load_uri_async(
@@ -725,10 +725,10 @@ SpotifyWidget.prototype = {
             }
         }
         // Fallback: dbus-send always creates a fresh connection
-        Util.spawnCommandLine(
-            "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify " +
-            "/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player." + method
-        );
+        Util.spawn([
+            "dbus-send", "--print-reply", "--dest=org.mpris.MediaPlayer2.spotify",
+            "/org/mpris/MediaPlayer2", "org.mpris.MediaPlayer2.Player." + method
+        ]);
     },
 
     _onPlayPause: function() {
@@ -759,10 +759,10 @@ SpotifyWidget.prototype = {
         let offset = targetPosition - this._currentPosition;
 
         // Always use dbus-send — proxy seek is unreliable
-        Util.spawnCommandLine(
-            "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify " +
-            "/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Seek int64:" + offset
-        );
+        Util.spawn([
+            "dbus-send", "--print-reply", "--dest=org.mpris.MediaPlayer2.spotify",
+            "/org/mpris/MediaPlayer2", "org.mpris.MediaPlayer2.Player.Seek", "int64:" + offset
+        ]);
 
         this._currentPosition = targetPosition;
         this._updateProgressBar();
@@ -860,7 +860,7 @@ SpotifyWidget.prototype = {
         this._killed = false;
         let launcherPath = this._getLauncherPath();
         if (launcherPath) {
-            Util.spawnCommandLine(launcherPath + " show");
+            Util.spawn([launcherPath, "show"]);
         } else {
             Util.spawnCommandLine(
                 "bash -c 'WID=$(xdotool search --class spotify 2>/dev/null | head -1); " +
@@ -893,7 +893,7 @@ SpotifyWidget.prototype = {
     _onLaunchSpotify: function() {
         let launcherPath = this._getLauncherPath();
         if (launcherPath) {
-            Util.spawnCommandLine(launcherPath + " launch");
+            Util.spawn([launcherPath, "launch"]);
         } else {
             // Fallback: try flatpak first, then native
             Util.spawnCommandLine("bash -c 'flatpak run com.spotify.Client 2>/dev/null || spotify'");
@@ -914,16 +914,17 @@ SpotifyWidget.prototype = {
         let deskletDir = this._metadata.path;
         let candidates = [
             deskletDir + "/../../launcher/spotify-launcher.sh",
-            // Also check if symlink resolves differently
-            GLib.get_home_dir() + "/Documents/Projects/Desktop_Projects/SpotifyWidget/launcher/spotify-launcher.sh",
-            GLib.get_home_dir() + "/.local/share/spotify-widget/spotify-launcher.sh",
+            GLib.get_user_data_dir() + "/spotify-widget/spotify-launcher.sh",
             "/usr/local/bin/spotify-launcher.sh"
         ];
 
         for (let i = 0; i < candidates.length; i++) {
-            let file = Gio.File.new_for_path(candidates[i]);
-            if (file.query_exists(null)) {
+            try {
+                let file = Gio.File.new_for_path(candidates[i]);
+                file.query_info("standard::type", Gio.FileQueryInfoFlags.NONE, null);
                 return candidates[i];
+            } catch (e) {
+                // File not found — try next candidate
             }
         }
 
