@@ -5,10 +5,11 @@ Writes sysinfo-paul163.json to the system temp dir every INTERVAL seconds.
 Launched automatically by the desklet. Uses a pidfile to prevent duplicates.
 """
 
-import json, os, sys, time, glob, socket, signal, atexit, tempfile
+import json, os, sys, time, glob, socket, signal, atexit
+from gi.repository import GLib
 
 INTERVAL   = 2
-_TMP       = tempfile.gettempdir()
+_TMP       = GLib.get_tmp_dir()
 OUT_FILE   = os.path.join(_TMP, "sysinfo-paul163.json")
 ATOMIC_TMP = OUT_FILE + ".tmp"
 PID_FILE   = os.path.join(_TMP, "sysinfo-paul163.pid")
