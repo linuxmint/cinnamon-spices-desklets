@@ -94,8 +94,6 @@ SpotifyWidget.prototype = {
         this._currentVolume = 1.0;
         this._currentTrackId = "";
         this._isSeeking = false;
-        this._isRelaunching = false;
-        this._killed = false;
 
         this._bindSettings();
         this._buildUI();
@@ -190,8 +188,8 @@ SpotifyWidget.prototype = {
             return Clutter.EVENT_STOP;
         });
 
-        // Open Spotify icon button
-        this._openButton = this._createControlButton("spotify-client", 24, this._onOpenSpotify.bind(this));
+        // Spotify icon — toggles: launch/show/hide
+        this._openButton = this._createControlButton("spotify-client", 24, this._onToggleSpotify.bind(this));
         this._openButton.add_style_class_name("utility-button");
 
         // Kill Spotify button (X)
@@ -441,16 +439,10 @@ SpotifyWidget.prototype = {
     },
 
     _setSpotifyRunning: function(running) {
-        if (!running && !this._killed && !this._isRelaunching) {
-            // Auto-relaunch Spotify hidden (only if not manually killed)
-            this._isRelaunching = true;
-            this._trackTitle.set_text("Launching Spotify...");
-            this._trackArtist.set_text("");
-            this._onLaunchSpotify();
-            Mainloop.timeout_add(8000, () => {
-                this._isRelaunching = false;
-                return GLib.SOURCE_REMOVE;
-            });
+        // No auto-relaunch — user controls launch via play or spotify icon
+        if (!running) {
+            this._trackTitle.set_text("Not Playing");
+            this._trackArtist.set_text("Click play to start");
         }
     },
 
@@ -732,7 +724,11 @@ SpotifyWidget.prototype = {
     },
 
     _onPlayPause: function() {
-        this._killed = false;
+        // If Spotify not running, launch it first
+        if (!this._playerProxy) {
+            this._onLaunchSpotify();
+            return;
+        }
         this._mprisCommand("PlayPause");
     },
 
@@ -856,38 +852,32 @@ SpotifyWidget.prototype = {
 
     // --- Window Management ---
 
-    _onOpenSpotify: function() {
-        this._killed = false;
+    _onToggleSpotify: function() {
         let launcherPath = this._getLauncherPath();
         if (launcherPath) {
-            Util.spawn([launcherPath, "show"]);
+            Util.spawn(["bash", launcherPath, "toggle"]);
         } else {
             Util.spawnCommandLine(
-                "bash -c 'WID=$(xdotool search --class spotify 2>/dev/null | head -1); " +
-                "if [ -n \"$WID\" ]; then xdotool windowactivate $WID && xdotool windowfocus $WID && xdotool windowraise $WID; " +
+                "bash -c 'if [ -f /tmp/.spotify-widget-wids ]; then " +
+                "for w in $(cat /tmp/.spotify-widget-wids); do xdotool windowmap $w 2>/dev/null; done; " +
+                "xdotool windowactivate $(tail -1 /tmp/.spotify-widget-wids) 2>/dev/null; " +
+                "rm -f /tmp/.spotify-widget-wids; " +
+                "elif xdotool search --class spotify >/dev/null 2>&1; then " +
+                "for w in $(xdotool search --class spotify); do xdotool windowunmap $w; done; " +
+                "xdotool search --class spotify > /tmp/.spotify-widget-wids 2>/dev/null; " +
                 "else flatpak run com.spotify.Client 2>/dev/null || spotify & fi'"
             );
         }
     },
 
     _onKillSpotify: function() {
-        // Permanently stop auto-relaunch until user clicks play or open
-        this._killed = true;
-        Util.spawnCommandLine("bash -c 'flatpak kill com.spotify.Client 2>/dev/null; pkill -x spotify 2>/dev/null'");
+        Util.spawnCommandLine("bash -c 'flatpak kill com.spotify.Client 2>/dev/null; pkill -x spotify 2>/dev/null; rm -f /tmp/.spotify-widget-wids'");
         this._disconnectDBus();
         this._trackTitle.set_text("Not Playing");
         this._trackArtist.set_text("");
         this._currentPosition = 0;
         this._currentTrackLength = 0;
         this._updateProgressBar();
-    },
-
-    _hideSpotify: function() {
-        Util.spawnCommandLine(
-            "bash -c 'WID=$(xdotool search --class spotify 2>/dev/null | head -1 || " +
-            "xdotool search --name \"^Spotify\" 2>/dev/null | head -1); " +
-            "if [ -n \"$WID\" ]; then xdotool windowminimize $WID; fi'"
-        );
     },
 
     _onLaunchSpotify: function() {
