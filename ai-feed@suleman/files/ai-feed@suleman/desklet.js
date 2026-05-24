@@ -72,7 +72,8 @@ AIFeedDesklet.prototype = {
         this._feedData = {};
 
         this._buildUI();
-        this._refresh();
+        // Prime cache async, then refresh (offline path needs it)
+        this._cache.ensureLoaded(() => this._refresh());
     },
 
     _bindSettings: function() {

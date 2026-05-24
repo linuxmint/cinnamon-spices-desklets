@@ -1,5 +1,6 @@
 // Bookmark Storage -- persists bookmarked feed items to disk
 // Stores in XDG data dir: ~/.local/share/ai-feed-bookmarks.json
+// Uses async Gio file IO to avoid blocking the main loop.
 
 const GLib = imports.gi.GLib;
 const Gio = imports.gi.Gio;
@@ -10,37 +11,46 @@ var BookmarkStore = class BookmarkStore {
         this._dir = dataDir || GLib.get_user_data_dir();
         this._path = this._dir + '/ai-feed-bookmarks.json';
         this._bookmarks = [];
+        this._loaded = false;
     }
 
-    load() {
-        try {
-            let file = Gio.File.new_for_path(this._path);
-            if (!file.query_exists(null)) {
+    // Async load. Callback (optional) fires when load completes.
+    load(callback) {
+        let file = Gio.File.new_for_path(this._path);
+        file.load_contents_async(null, (src, res) => {
+            try {
+                let [ok, contents] = src.load_contents_finish(res);
+                if (ok) {
+                    let text = ByteArray.toString(contents);
+                    let parsed = JSON.parse(text);
+                    this._bookmarks = Array.isArray(parsed) ? parsed : [];
+                }
+            } catch (e) {
+                // NOT_FOUND on first run is expected; other errors get logged
+                if (!(e.matches && e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_FOUND))) {
+                    global.logError('[AIFeed] Bookmark load error: ' + e.message);
+                }
                 this._bookmarks = [];
-                return;
             }
-            let [ok, contents] = file.load_contents(null);
-            if (!ok) {
-                this._bookmarks = [];
-                return;
-            }
-            let text = ByteArray.toString(contents);
-            let parsed = JSON.parse(text);
-            this._bookmarks = Array.isArray(parsed) ? parsed : [];
-        } catch (e) {
-            global.logError('[AIFeed] Bookmark load error: ' + e.message);
-            this._bookmarks = [];
-        }
+            this._loaded = true;
+            if (callback) callback();
+        });
     }
 
+    // Async fire-and-forget save.
     save() {
         try {
             GLib.mkdir_with_parents(this._dir, 0o755);
             let json = JSON.stringify(this._bookmarks, null, 2);
             let file = Gio.File.new_for_path(this._path);
-            file.replace_contents(json, null, false, Gio.FileCreateFlags.REPLACE_DESTINATION, null);
+            file.replace_contents_async(json, null, false,
+                Gio.FileCreateFlags.REPLACE_DESTINATION, null,
+                (src, res) => {
+                    try { src.replace_contents_finish(res); }
+                    catch (e) { global.logError('[AIFeed] Bookmark save error: ' + e.message); }
+                });
         } catch (e) {
-            global.logError('[AIFeed] Bookmark save error: ' + e.message);
+            global.logError('[AIFeed] Bookmark save dispatch error: ' + e.message);
         }
     }
 
