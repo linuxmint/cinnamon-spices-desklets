@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: stoic-quote@orion 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-05-01 14:47-0500\n"
+"POT-Creation-Date: 2026-05-24 13:21-0500\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -29,11 +29,14 @@ msgstr ""
 #. desklet.js:34 quotes.js:14 quotes.js:17 quotes.js:20 quotes.js:23
 #. quotes.js:26 quotes.js:29 quotes.js:32 quotes.js:35 quotes.js:38
 #. quotes.js:41 quotes.js:44 quotes.js:47 quotes.js:50 quotes.js:53
-#. quotes.js:56 quotes.js:59 quotes.js:62
+#. quotes.js:56 quotes.js:59 quotes.js:62 quotes.js:203 quotes.js:206
+#. quotes.js:209 quotes.js:212 quotes.js:215 quotes.js:218 quotes.js:221
+#. quotes.js:224 quotes.js:326 quotes.js:329 quotes.js:332 quotes.js:335
+#. quotes.js:338 quotes.js:341 quotes.js:344
 msgid "Marcus Aurelius"
 msgstr "Marco Aurelio"
 
-#. desklet.js:35 quotes.js:15
+#. desklet.js:35 quotes.js:15 quotes.js:225
 msgid "Meditations, Book 5"
 msgstr "Meditaciones, Libro 5"
 
@@ -46,7 +49,7 @@ msgid "Waste no more time arguing about what a good man should be. Be one."
 msgstr ""
 "No pierdas más tiempo discutiendo sobre cómo debe ser un buen hombre. Sé uno."
 
-#. quotes.js:18
+#. quotes.js:18 quotes.js:333
 msgid "Meditations, Book 10"
 msgstr "Meditaciones, Libro 10"
 
@@ -54,7 +57,7 @@ msgstr "Meditaciones, Libro 10"
 msgid "If it is not right, do not do it; if it is not true, do not say it."
 msgstr "Si no está bien, no lo hagas; si no es verdad, no lo digas."
 
-#. quotes.js:21 quotes.js:51
+#. quotes.js:21 quotes.js:51 quotes.js:213 quotes.js:345
 msgid "Meditations, Book 12"
 msgstr "Meditaciones, Libro XII"
 
@@ -62,7 +65,7 @@ msgstr "Meditaciones, Libro XII"
 msgid "The best revenge is not to be like your enemy."
 msgstr "La mejor venganza es no ser como tu enemigo."
 
-#. quotes.js:24 quotes.js:45 quotes.js:48
+#. quotes.js:24 quotes.js:45 quotes.js:48 quotes.js:216
 msgid "Meditations, Book 6"
 msgstr "Meditaciones, Libro 6"
 
@@ -114,7 +117,8 @@ msgstr ""
 "Tienes control sobre tu mente, no sobre los acontecimientos externos. Date "
 "cuenta de ello y encontrarás la fuerza."
 
-#. quotes.js:39 quotes.js:54
+#. quotes.js:39 quotes.js:54 quotes.js:204 quotes.js:327 quotes.js:330
+#. quotes.js:336 quotes.js:339 quotes.js:342
 msgid "Meditations, Book 4"
 msgstr "Meditaciones, Libro 4"
 
@@ -126,7 +130,8 @@ msgstr ""
 "Se necesita muy poco para ser feliz; todo está en ti mismo, en tu forma de "
 "pensar."
 
-#. quotes.js:42 quotes.js:60 quotes.js:63
+#. quotes.js:42 quotes.js:60 quotes.js:63 quotes.js:207 quotes.js:210
+#. quotes.js:219 quotes.js:222
 msgid "Meditations, Book 7"
 msgstr "Meditaciones, Libro 7"
 
@@ -201,7 +206,9 @@ msgstr ""
 #. quotes.js:65 quotes.js:68 quotes.js:71 quotes.js:74 quotes.js:77
 #. quotes.js:80 quotes.js:83 quotes.js:86 quotes.js:89 quotes.js:92
 #. quotes.js:95 quotes.js:98 quotes.js:101 quotes.js:104 quotes.js:107
-#. quotes.js:110
+#. quotes.js:110 quotes.js:227 quotes.js:230 quotes.js:233 quotes.js:236
+#. quotes.js:239 quotes.js:242 quotes.js:245 quotes.js:347 quotes.js:350
+#. quotes.js:353 quotes.js:356
 msgid "Epictetus"
 msgstr "Epicteto"
 
@@ -213,7 +220,7 @@ msgstr "Enquiridion, I"
 msgid "No man is free who is not master of himself."
 msgstr "Nadie es libre si no es dueño de sí mismo."
 
-#. quotes.js:69
+#. quotes.js:69 quotes.js:231
 msgid "Discourses, 2.1"
 msgstr "Discursos, 2.1"
 
@@ -260,7 +267,7 @@ msgstr ""
 "Lo que perturba a las personas no son las cosas en sí, sino la visión que "
 "tienen de ellas."
 
-#. quotes.js:81
+#. quotes.js:81 quotes.js:348
 msgid "Enchiridion, V"
 msgstr "Enquiridion, V"
 
@@ -359,7 +366,10 @@ msgstr "Todo nos resulta ajeno; solo el tiempo nos pertenece."
 
 #. quotes.js:113 quotes.js:116 quotes.js:119 quotes.js:122 quotes.js:125
 #. quotes.js:128 quotes.js:131 quotes.js:134 quotes.js:137 quotes.js:140
-#. quotes.js:143 quotes.js:146 quotes.js:149 quotes.js:152
+#. quotes.js:143 quotes.js:146 quotes.js:149 quotes.js:152 quotes.js:248
+#. quotes.js:251 quotes.js:254 quotes.js:257 quotes.js:260 quotes.js:263
+#. quotes.js:266 quotes.js:269 quotes.js:359 quotes.js:362 quotes.js:365
+#. quotes.js:368 quotes.js:371 quotes.js:374
 msgid "Seneca"
 msgstr "Seneca"
 
@@ -387,7 +397,7 @@ msgstr ""
 "Empieza a vivir desde ahora mismo y considera cada día como una vida en sí "
 "misma."
 
-#. quotes.js:123
+#. quotes.js:123 quotes.js:372
 msgid "Letters from a Stoic, CI"
 msgstr "Cartas de un estoico, CI"
 
@@ -407,7 +417,7 @@ msgstr "Sobre la brevedad de la vida, IX"
 msgid "No man was ever wise by chance."
 msgstr "Ningún hombre ha llegado a ser sabio por casualidad."
 
-#. quotes.js:129
+#. quotes.js:129 quotes.js:363
 msgid "Letters from a Stoic, LXXVI"
 msgstr "Cartas de un estoico, LXXVI"
 
@@ -489,6 +499,7 @@ msgid "Better to trip with the feet than with the tongue."
 msgstr "Más vale tropezar con los pies que con la lengua."
 
 #. quotes.js:155 quotes.js:158 quotes.js:161 quotes.js:164 quotes.js:167
+#. quotes.js:287 quotes.js:290
 msgid "Zeno of Citium"
 msgstr "Zenón de Citio"
 
@@ -536,7 +547,7 @@ msgstr ""
 "sin dudarlo; y si no estoy dispuesto a hacerlo, por ser malvado, te seguiré "
 "de todos modos."
 
-#. quotes.js:170 quotes.js:173 quotes.js:176
+#. quotes.js:170 quotes.js:173 quotes.js:176 quotes.js:284
 msgid "Cleanthes"
 msgstr "Cleantes"
 
@@ -574,10 +585,11 @@ msgstr ""
 "pasa rápido, pero la vergüenza perdura."
 
 #. quotes.js:179 quotes.js:182 quotes.js:185 quotes.js:188 quotes.js:191
+#. quotes.js:272 quotes.js:275 quotes.js:278 quotes.js:281
 msgid "Musonius Rufus"
 msgstr "Musonio Rufo"
 
-#. quotes.js:180
+#. quotes.js:180 quotes.js:279
 msgid "Lectures, VI"
 msgstr "Conferencias, VI"
 
@@ -629,7 +641,7 @@ msgstr ""
 "El objetivo del filósofo no es escuchar muchas conferencias para luego "
 "quedarse callado, sino vivir según lo que ya ha escuchado."
 
-#. quotes.js:192
+#. quotes.js:192 quotes.js:273
 msgid "Lectures"
 msgstr "Conferencias"
 
@@ -637,7 +649,7 @@ msgstr "Conferencias"
 msgid "If I had followed the multitude, I would not have studied philosophy."
 msgstr "Si hubiera seguido a la mayoría, no habría estudiado filosofía."
 
-#. quotes.js:194 quotes.js:197 quotes.js:200
+#. quotes.js:194 quotes.js:197 quotes.js:200 quotes.js:377
 msgid "Chrysippus"
 msgstr "Crisippo"
 
@@ -665,14 +677,517 @@ msgstr "Nadie nace sabio; la bondad es un arte que hay que aprender."
 msgid "Fragments"
 msgstr "Fragmentos"
 
+#. quotes.js:202
+msgid "The universe is change; our life is what our thoughts make it."
+msgstr ""
+
+#. quotes.js:205
+msgid ""
+"Dwell on the beauty of life. Watch the stars, and see yourself running with "
+"them."
+msgstr ""
+
+#. quotes.js:208
+msgid "The art of living is more like wrestling than dancing."
+msgstr ""
+
+#. quotes.js:211
+msgid ""
+"Everything is but what your opinion makes it; and that opinion lies with "
+"yourself."
+msgstr ""
+
+#. quotes.js:214
+msgid "Adapt yourself to the things with which your lot has been cast."
+msgstr ""
+
+#. quotes.js:217
+msgid "Confine yourself to the present."
+msgstr ""
+
+#. quotes.js:220
+msgid ""
+"Dig within. There lies the well-spring of good: ever dig, and it will ever "
+"flow."
+msgstr ""
+
+#. quotes.js:223
+msgid ""
+"Such as are thy habitual thoughts, such also will be the character of thy "
+"mind."
+msgstr ""
+
+#. quotes.js:226
+msgid "Difficulties are things that show a person what they are."
+msgstr ""
+
+#. quotes.js:228
+#, fuzzy
+#| msgid "Discourses, 3.24"
+msgid "Discourses, 1.24"
+msgstr "Discursos, 3.24"
+
+#. quotes.js:229
+msgid "Only the educated are free."
+msgstr ""
+
+#. quotes.js:232
+msgid "Know first who you are, and then adorn yourself accordingly."
+msgstr ""
+
+#. quotes.js:234
+#, fuzzy
+#| msgid "Discourses, 2.1"
+msgid "Discourses, 3.1"
+msgstr "Discursos, 2.1"
+
+#. quotes.js:235
+msgid "If you wish to be a writer, write; if you wish to be a reader, read."
+msgstr ""
+
+#. quotes.js:237 quotes.js:354
+#, fuzzy
+#| msgid "Discourses, 2.1"
+msgid "Discourses, 2.18"
+msgstr "Discursos, 2.1"
+
+#. quotes.js:238
+msgid ""
+"When you close your doors and make darkness within, remember never to say "
+"that you are alone, for you are not alone."
+msgstr ""
+
+#. quotes.js:240
+#, fuzzy
+#| msgid "Discourses, 1.17"
+msgid "Discourses, 1.14"
+msgstr "Discursos, 1.17"
+
+#. quotes.js:241
+msgid "Lameness is an impediment to the leg, but not to the will."
+msgstr ""
+
+#. quotes.js:243
+#, fuzzy
+#| msgid "Enchiridion, I"
+msgid "Enchiridion, IX"
+msgstr "Enquiridion, I"
+
+#. quotes.js:244
+msgid "It is impossible for a man to learn what he thinks he already knows."
+msgstr ""
+
+#. quotes.js:246
+#, fuzzy
+#| msgid "Discourses, 2.1"
+msgid "Discourses, 2.17"
+msgstr "Discursos, 2.1"
+
+#. quotes.js:247
+msgid ""
+"It is not because things are difficult that we do not dare; it is because we "
+"do not dare that they are difficult."
+msgstr ""
+
+#. quotes.js:249
+#, fuzzy
+#| msgid "Letters from a Stoic, CI"
+msgid "Letters from a Stoic, CIV"
+msgstr "Cartas de un estoico, CI"
+
+#. quotes.js:250
+msgid "Difficulties strengthen the mind, as labor does the body."
+msgstr ""
+
+#. quotes.js:252
+msgid "On Providence, II"
+msgstr ""
+
+#. quotes.js:253
+msgid "Sometimes even to live is an act of courage."
+msgstr ""
+
+#. quotes.js:255
+#, fuzzy
+#| msgid "Letters from a Stoic, LXXVI"
+msgid "Letters from a Stoic, LXXVIII"
+msgstr "Cartas de un estoico, LXXVI"
+
+#. quotes.js:256
+msgid "There is no easy way from the earth to the stars."
+msgstr ""
+
+#. quotes.js:258
+msgid "Hercules Furens"
+msgstr ""
+
+#. quotes.js:259
+msgid "He suffers more than necessary, who suffers before it is necessary."
+msgstr ""
+
+#. quotes.js:261
+#, fuzzy
+#| msgid "Letters from a Stoic, XCVI"
+msgid "Letters from a Stoic, XCVIII"
+msgstr "Cartas de un estoico, XCVI"
+
+#. quotes.js:262
+msgid "Wherever there is a human being, there is an opportunity for kindness."
+msgstr ""
+
+#. quotes.js:264
+#, fuzzy
+#| msgid "On the Happy Life, III"
+msgid "On the Happy Life"
+msgstr "Sobre la vida feliz, III"
+
+#. quotes.js:265
+msgid ""
+"If one does not know to which port one is sailing, no wind is favorable."
+msgstr ""
+
+#. quotes.js:267
+#, fuzzy
+#| msgid "Letters from a Stoic, LXXVI"
+msgid "Letters from a Stoic, LXXI"
+msgstr "Cartas de un estoico, LXXVI"
+
+#. quotes.js:268
+msgid "The day which we fear as our last is but the birthday of eternity."
+msgstr ""
+
+#. quotes.js:270
+#, fuzzy
+#| msgid "Letters from a Stoic, CI"
+msgid "Letters from a Stoic, CII"
+msgstr "Cartas de un estoico, CI"
+
+#. quotes.js:271
+msgid ""
+"The most necessary part of philosophy is that which is put into practice."
+msgstr ""
+
+#. quotes.js:274
+msgid ""
+"Will not the educated woman be sensible? Yes; will not she be just? Of "
+"course."
+msgstr ""
+
+#. quotes.js:276 quotes.js:282
+#, fuzzy
+#| msgid "Lectures, VIII"
+msgid "Lectures, III"
+msgstr "Conferencias, VIII"
+
+#. quotes.js:277
+msgid ""
+"The one who is to live well ought to learn beforehand the things that are "
+"most necessary."
+msgstr ""
+
+#. quotes.js:280
+msgid "Philosophical doctrine is of no use unless it leads the soul to virtue."
+msgstr ""
+
+#. quotes.js:283
+msgid "Fate guides the willing, and drags the unwilling."
+msgstr ""
+
+#. quotes.js:285
+#, fuzzy
+#| msgid "Letters from a Stoic, VII"
+msgid "Seneca, Letters from a Stoic, CVII"
+msgstr "Cartas de un estoico, VII"
+
+#. quotes.js:286
+msgid "Happiness is a good flow of life."
+msgstr ""
+
+#. quotes.js:288
+#, fuzzy
+#| msgid "Lives of the Eminent Philosophers, 7.87"
+msgid "Lives of the Eminent Philosophers, 7.88"
+msgstr "Vidas de los filósofos ilustres, 7.87"
+
+#. quotes.js:289
+msgid "The way to attain virtue is to make a habit of self-mastery."
+msgstr ""
+
+#. quotes.js:291
+#, fuzzy
+#| msgid "Lives of the Eminent Philosophers, 7.26"
+msgid "Lives of the Eminent Philosophers, 7.24"
+msgstr "Vidas de los filósofos ilustres, 7.26"
+
+#. quotes.js:292
+msgid "No man steps in the same river twice."
+msgstr ""
+
+#. quotes.js:293 quotes.js:296 quotes.js:299 quotes.js:302
+msgid "Heraclitus"
+msgstr ""
+
+#. quotes.js:294
+#, fuzzy
+#| msgid "Fragments"
+msgid "Fragments, 49a"
+msgstr "Fragmentos"
+
+#. quotes.js:295
+msgid "Character is destiny."
+msgstr ""
+
+#. quotes.js:297
+#, fuzzy
+#| msgid "Fragments"
+msgid "Fragments, 119"
+msgstr "Fragmentos"
+
+#. quotes.js:298
+msgid "Much learning does not teach understanding."
+msgstr ""
+
+#. quotes.js:300
+#, fuzzy
+#| msgid "Fragments"
+msgid "Fragments, 40"
+msgstr "Fragmentos"
+
+#. quotes.js:301
+msgid "The sun is new each day."
+msgstr ""
+
+#. quotes.js:303
+#, fuzzy
+#| msgid "Fragments"
+msgid "Fragments, 6"
+msgstr "Fragmentos"
+
+#. quotes.js:304
+msgid "I am a citizen of the world."
+msgstr ""
+
+#. quotes.js:305 quotes.js:308 quotes.js:311 quotes.js:314
+msgid "Diogenes the Cynic"
+msgstr ""
+
+#. quotes.js:306
+#, fuzzy
+#| msgid "Lives of the Eminent Philosophers, 7.26"
+msgid "Lives of the Eminent Philosophers, 6.63"
+msgstr "Vidas de los filósofos ilustres, 7.26"
+
+#. quotes.js:307
+msgid ""
+"It is the privilege of the gods to want nothing, and of godlike men to want "
+"little."
+msgstr ""
+
+#. quotes.js:309
+#, fuzzy
+#| msgid "Lives of the Eminent Philosophers, 7.125"
+msgid "Lives of the Eminent Philosophers, 6.105"
+msgstr "Vidas de los filósofos ilustres, 7.125"
+
+#. quotes.js:310
+msgid "The most beautiful thing in the world is freedom of speech."
+msgstr ""
+
+#. quotes.js:312
+#, fuzzy
+#| msgid "Lives of the Eminent Philosophers, 7.26"
+msgid "Lives of the Eminent Philosophers, 6.69"
+msgstr "Vidas de los filósofos ilustres, 7.26"
+
+#. quotes.js:313
+msgid "The mob is the mother of tyrants."
+msgstr ""
+
+#. quotes.js:315
+#, fuzzy
+#| msgid "Lives of the Eminent Philosophers, 7.32"
+msgid "Lives of the Eminent Philosophers, 6.39"
+msgstr "Vidas de los filósofos ilustres, 7.32"
+
+#. quotes.js:316
+msgid "It is a royal thing to do good and be reviled."
+msgstr ""
+
+#. quotes.js:317
+msgid "Antisthenes"
+msgstr ""
+
+#. quotes.js:318
+#, fuzzy
+#| msgid "Lives of the Eminent Philosophers, 7.32"
+msgid "Lives of the Eminent Philosophers, 6.3"
+msgstr "Vidas de los filósofos ilustres, 7.32"
+
+#. quotes.js:319
+msgid "I would rather have men ask why I have no statue than why I have one."
+msgstr ""
+
+#. quotes.js:320
+msgid "Cato the Younger"
+msgstr ""
+
+#. quotes.js:321
+msgid "Plutarch, Life of Cato the Younger"
+msgstr ""
+
+#. quotes.js:322
+msgid ""
+"We are each the center of a series of concentric circles — self, family, "
+"neighbors, fellow citizens, humanity. The work is to draw the outer circles "
+"toward the center."
+msgstr ""
+
+#. quotes.js:323
+msgid "Hierocles"
+msgstr ""
+
+#. quotes.js:324
+msgid "Elements of Ethics"
+msgstr ""
+
+#. quotes.js:325
+msgid "Reject your sense of injury, and the injury itself disappears."
+msgstr ""
+
+#. quotes.js:328
+msgid ""
+"Be like the rocky promontory against which the restless surf continually "
+"pounds."
+msgstr ""
+
+#. quotes.js:331
+msgid ""
+"Whatever happens to you has been waiting to happen since the beginning of "
+"time."
+msgstr ""
+
+#. quotes.js:334
+msgid "Time is a river of passing events; strong is its current."
+msgstr ""
+
+#. quotes.js:337
+msgid "Do not act as if you had ten thousand years to live."
+msgstr ""
+
+#. quotes.js:340
+msgid ""
+"How much trouble he avoids who does not look to see what his neighbor says "
+"or does."
+msgstr ""
+
+#. quotes.js:343
+msgid ""
+"Begin — to begin is half the work; let half still remain. Begin again, and "
+"thou wilt have finished."
+msgstr ""
+
+#. quotes.js:346
+msgid ""
+"It is the act of an ill-instructed man to blame others; of one whose "
+"instruction is beginning, to blame himself; of one whose instruction is "
+"complete, to blame neither."
+msgstr ""
+
+#. quotes.js:349
+msgid "All philosophy lies in two words: sustain and abstain."
+msgstr ""
+
+#. quotes.js:351
+msgid "Fragment, via Aulus Gellius"
+msgstr ""
+
+#. quotes.js:352
+msgid ""
+"Don't let the force of an impression when it first hits you knock you off "
+"your feet."
+msgstr ""
+
+#. quotes.js:355
+msgid "There is nothing good or evil save in the will."
+msgstr ""
+
+#. quotes.js:357
+#, fuzzy
+#| msgid "Discourses, 2.1"
+msgid "Discourses, 3.10"
+msgstr "Discursos, 2.1"
+
+#. quotes.js:358
+msgid ""
+"Every night ask yourself: what weakness did I overcome today? What virtue "
+"did I acquire?"
+msgstr ""
+
+#. quotes.js:360
+msgid "On Anger, III"
+msgstr ""
+
+#. quotes.js:361
+msgid "As long as you live, keep learning how to live."
+msgstr ""
+
+#. quotes.js:364
+msgid "It is a rough road that leads to the heights of greatness."
+msgstr ""
+
+#. quotes.js:366
+#, fuzzy
+#| msgid "Letters from a Stoic, LXXVI"
+msgid "Letters from a Stoic, LXXXIV"
+msgstr "Cartas de un estoico, LXXVI"
+
+#. quotes.js:367
+msgid ""
+"Anger, if not restrained, is more hurtful to us than the injury that "
+"provokes it."
+msgstr ""
+
+#. quotes.js:369
+msgid "On Anger"
+msgstr ""
+
+#. quotes.js:370
+msgid "Let us prepare our minds as if we had come to the very end of life."
+msgstr ""
+
+#. quotes.js:373
+msgid ""
+"Throw aside all hindrances and devote your time to the cultivation of a "
+"sound mind."
+msgstr ""
+
+#. quotes.js:375
+#, fuzzy
+#| msgid "Letters from a Stoic, XCVI"
+msgid "Letters from a Stoic, XVI"
+msgstr "Cartas de un estoico, XCVI"
+
+#. quotes.js:376
+msgid "All disturbances arise from false judgments."
+msgstr ""
+
+#. quotes.js:378
+msgid "Plutarch, On Stoic Self-Contradictions"
+msgstr ""
+
 #. metadata.json->name
 msgid "Stoic Quote"
 msgstr "Cita estoica"
 
 #. metadata.json->description
+#, fuzzy
+#| msgid ""
+#| "Display a daily Stoic quote from Marcus Aurelius, Epictetus, and Seneca. "
+#| "Quote rotates at midnight and is deterministic by date."
 msgid ""
-"Display a daily Stoic quote from Marcus Aurelius, Epictetus, and Seneca. "
-"Quote rotates at midnight and is deterministic by date."
+"Display a daily Stoic quote from Marcus Aurelius, Epictetus, Seneca, and "
+"other Stoic and proto-Stoic thinkers. Quote rotates at midnight and is "
+"deterministic by date."
 msgstr ""
 "Muestra una cita estoica diaria de Marco Aurelio, Epicteto y Séneca. La cita "
 "cambia cada medianoche y se determina en función de la fecha."
