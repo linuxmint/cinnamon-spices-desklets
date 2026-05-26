@@ -2,6 +2,7 @@ const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
 const GLib = imports.gi.GLib;
 const Mainloop = imports.mainloop;
+const Lang = imports.lang;
 const Settings = imports.ui.settings;
 const Gio = imports.gi.Gio;
 const ByteArray = imports.byteArray;
@@ -16,23 +17,6 @@ function MyDesklet(metadata, desklet_id) {
 
 function main(metadata, desklet_id) {
     return new MyDesklet(metadata, desklet_id);
-}
-
-/**
- * Run a command with argv and return stdout as string, or null on failure.
- * Uses Gio.Subprocess instead of GLib.spawn_command_line_sync.
- */
-function spawnSync(argv) {
-    try {
-        let proc = new Gio.Subprocess({
-            argv: argv,
-            flags: Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_SILENCE
-        });
-        proc.init(null);
-        let [ok, stdout] = proc.communicate_utf8(null, null);
-        if (ok && stdout) return stdout.trim();
-    } catch(e) {}
-    return null;
 }
 
 MyDesklet.prototype = {
@@ -76,9 +60,10 @@ MyDesklet.prototype = {
 
     loadPinned: function() {
         try {
-            let file = Gio.File.new_for_path(PINNED_FILE);
-            let [ok, contents] = file.load_contents(null);
-            if (ok) return JSON.parse(ByteArray.toString(contents));
+            if (GLib.file_test(PINNED_FILE, GLib.FileTest.EXISTS)) {
+                let [ok, contents] = GLib.file_get_contents(PINNED_FILE);
+                if (ok) return JSON.parse(ByteArray.toString(contents));
+            }
         } catch(e) {}
         return [];
     },
@@ -105,39 +90,51 @@ MyDesklet.prototype = {
         this.refreshData();
     },
 
-    findRecentProjects: function() {
+    // Async scan of all editor workspaceStorage dirs. Yields between every entry so
+    // the compositor can paint frames during the scan.
+    findRecentProjectsAsync: function(callback) {
+        let self = this;
         let results = [];
-        let configDir = GLib.get_user_config_dir();
+        let home = GLib.get_home_dir();
 
         let sources = [];
         if (this.sourceVscode !== false)
-            sources.push(configDir + "/Code/User/workspaceStorage");
+            sources.push(home + "/.config/Code/User/workspaceStorage");
         if (this.sourceVscodium !== false)
-            sources.push(configDir + "/VSCodium/User/workspaceStorage");
+            sources.push(home + "/.config/VSCodium/User/workspaceStorage");
         if (this.sourceCursor !== false)
-            sources.push(configDir + "/Cursor/User/workspaceStorage");
+            sources.push(home + "/.config/Cursor/User/workspaceStorage");
+
+        let pendingSources = sources.length;
+        if (pendingSources === 0) { callback([]); return; }
+
+        let finish = function() {
+            let pinnedPaths = self.pinnedPaths;
+            results.sort(function(a, b) {
+                let aPinned = pinnedPaths.indexOf(a.path) !== -1;
+                let bPinned = pinnedPaths.indexOf(b.path) !== -1;
+                if (aPinned && !bPinned) return -1;
+                if (!aPinned && bPinned) return 1;
+                return b.mtime - a.mtime;
+            });
+            // Return objects so callers can use mtime for cache keys
+            callback(results);
+        };
 
         for (let s = 0; s < sources.length; s++) {
-            this.scanWorkspaceStorage(sources[s], results);
+            self.scanWorkspaceStorageAsync(sources[s], results, function() {
+                if (--pendingSources === 0) finish();
+            });
         }
-
-        let pinnedPaths = this.pinnedPaths;
-        results.sort(function(a, b) {
-            let aPinned = pinnedPaths.indexOf(a.path) !== -1;
-            let bPinned = pinnedPaths.indexOf(b.path) !== -1;
-            if (aPinned && !bPinned) return -1;
-            if (!aPinned && bPinned) return 1;
-            return b.mtime - a.mtime;
-        });
-
-        let paths = [];
-        for (let i = 0; i < results.length; i++) {
-            paths.push(results[i].path);
-        }
-        return paths;
     },
 
-    scanWorkspaceStorage: function(wsDir, results) {
+    // Enumerate entries in wsDir, then process them one at a time on idle ticks so the
+    // compositor can paint a frame between each workspace.json load+parse.
+    scanWorkspaceStorageAsync: function(wsDir, results, done) {
+        let self = this;
+        if (!GLib.file_test(wsDir, GLib.FileTest.IS_DIR)) { done(); return; }
+
+        let entries = [];
         try {
             let dir = Gio.File.new_for_path(wsDir);
             let enumerator = dir.enumerate_children(
@@ -147,73 +144,128 @@ MyDesklet.prototype = {
             let info;
             while ((info = enumerator.next_file(null)) !== null) {
                 if (info.get_file_type() !== Gio.FileType.DIRECTORY) continue;
+                entries.push(wsDir + "/" + info.get_name() + "/workspace.json");
+            }
+        } catch(e) { done(); return; }
 
-                let wsJsonPath = wsDir + "/" + info.get_name() + "/workspace.json";
+        let i = 0;
+        let processNext = function() {
+            if (i >= entries.length) { done(); return false; }
+            let wsJsonPath = entries[i++];
+            self.processWorkspaceJson(wsJsonPath, results, function() {
+                Mainloop.idle_add(processNext);
+            });
+            return false;
+        };
+        Mainloop.idle_add(processNext);
+    },
 
-                try {
-                    let wsFile = Gio.File.new_for_path(wsJsonPath);
-                    let [ok, contents] = wsFile.load_contents(null);
-                    if (!ok) continue;
+    // Async per-entry: load workspace.json, parse, append to results.
+    processWorkspaceJson: function(wsJsonPath, results, done) {
+        let self = this;
+        let file = Gio.File.new_for_path(wsJsonPath);
+        file.load_contents_async(null, function(src, res) {
+            try {
+                let [ok, contents] = src.load_contents_finish(res);
+                if (!ok) { done(); return; }
 
-                    let data = JSON.parse(ByteArray.toString(contents));
-                    let folderUri = data.folder || "";
-                    if (!folderUri) continue;
+                let data = JSON.parse(ByteArray.toString(contents));
+                let folderUri = data.folder || "";
+                if (!folderUri) { done(); return; }
 
-                    let path = folderUri.replace("file://", "");
-                    try { path = decodeURIComponent(path); } catch(e) {}
+                let path = folderUri.replace("file://", "");
+                try { path = decodeURIComponent(path); } catch(e) {}
 
-                    let projDir = Gio.File.new_for_path(path);
-                    let projInfo;
-                    try {
-                        projInfo = projDir.query_info("standard::type", Gio.FileQueryInfoFlags.NONE, null);
-                    } catch(e) { continue; }
-                    if (projInfo.get_file_type() !== Gio.FileType.DIRECTORY) continue;
+                if (!GLib.file_test(path, GLib.FileTest.IS_DIR)) { done(); return; }
+                if (self.gitOnly && !GLib.file_test(path + "/.git", GLib.FileTest.IS_DIR)) { done(); return; }
 
-                    if (this.gitOnly) {
-                        let gitDir = Gio.File.new_for_path(path + "/.git");
+                file.query_info_async("time::modified", Gio.FileQueryInfoFlags.NONE,
+                    GLib.PRIORITY_DEFAULT, null, function(f, r2) {
                         try {
-                            let gitInfo = gitDir.query_info("standard::type", Gio.FileQueryInfoFlags.NONE, null);
-                            if (gitInfo.get_file_type() !== Gio.FileType.DIRECTORY) continue;
-                        } catch(e) { continue; }
-                    }
+                            let wsInfo = f.query_info_finish(r2);
+                            let mtime = wsInfo.get_modification_time().tv_sec;
 
-                    let wsInfo = wsFile.query_info("time::modified", Gio.FileQueryInfoFlags.NONE, null);
-                    let mtime = wsInfo.get_modification_time().tv_sec;
-
-                    // Deduplicate across editors — keep most recent
-                    let isDupe = false;
-                    for (let r = 0; r < results.length; r++) {
-                        if (results[r].path === path) {
-                            if (mtime > results[r].mtime) results[r].mtime = mtime;
-                            isDupe = true;
-                            break;
-                        }
-                    }
-                    if (!isDupe) {
-                        results.push({ path: path, mtime: mtime });
-                    }
-                } catch(e) {}
-            }
-        } catch(e) {}
+                            let isDupe = false;
+                            for (let r = 0; r < results.length; r++) {
+                                if (results[r].path === path) {
+                                    if (mtime > results[r].mtime) results[r].mtime = mtime;
+                                    isDupe = true;
+                                    break;
+                                }
+                            }
+                            if (!isDupe) results.push({ path: path, mtime: mtime });
+                        } catch(e) {}
+                        done();
+                    });
+            } catch(e) { done(); }
+        });
     },
 
-    getLastEditedTime: function(projectPath) {
+    // Async subprocess helper — does not block the compositor thread.
+    // argv is an array of strings; callback receives stdout (string) or null on failure.
+    runAsync: function(argv, callback) {
         try {
-            let out = spawnSync(["bash", "-c",
-                "find " + GLib.shell_quote(projectPath) +
-                " -maxdepth 3 -not -path '*/\\.*' -not -path '*/node_modules/*'" +
-                " -not -path '*/__pycache__/*' -type f -printf '%T@\\n' 2>/dev/null" +
-                " | sort -rn | head -1"
-            ]);
-            if (out) {
-                let ts = parseFloat(out);
-                if (ts > 0) return Math.floor(ts);
-            }
-        } catch(e) {}
-        return 0;
+            let proc = new Gio.Subprocess({
+                argv: argv,
+                flags: Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_SILENCE
+            });
+            proc.init(null);
+            proc.communicate_utf8_async(null, null, function(p, res) {
+                try {
+                    let [ok, stdout] = p.communicate_utf8_finish(res);
+                    callback(ok ? stdout : null);
+                } catch(e) {
+                    callback(null);
+                }
+            });
+        } catch(e) {
+            callback(null);
+        }
     },
 
-    getProjectInfo: function(projectPath) {
+    getLastEditedTimeAsync: function(projectPath, callback) {
+        this.runAsync(["bash", "-c",
+            "find " + GLib.shell_quote(projectPath) +
+            " -maxdepth 3 -not -path '*/\\.*' -not -path '*/node_modules/*'" +
+            " -not -path '*/__pycache__/*' -type f -printf '%T@\\n' 2>/dev/null" +
+            " | sort -rn | head -1"
+        ], function(stdout) {
+            if (!stdout) { callback(0); return; }
+            let ts = parseFloat(stdout.trim());
+            callback(ts > 0 ? Math.floor(ts) : 0);
+        });
+    },
+
+    // Cache for getProjectInfoAsync results, keyed by project path. Skips the
+    // 4 git/du subprocess calls when nothing has changed since last fetch.
+    _infoCache: {},
+
+    // Collects project info via parallel async subprocesses, then calls callback(info).
+    // Cache key: project path + .git HEAD mtime (if git) or workspace.json mtime.
+    // pathMtime is the workspace.json mtime collected during findRecentProjectsAsync.
+    getProjectInfoAsync: function(projectPath, callback, pathMtime) {
+        let self = this;
+
+        // Cache check: compare against last-known mtime. If nothing changed, reuse.
+        let cached = this._infoCache[projectPath];
+        let gitHead = projectPath + "/.git/HEAD";
+        let gitHeadMtime = 0;
+        if (GLib.file_test(gitHead, GLib.FileTest.EXISTS)) {
+            try {
+                let f = Gio.File.new_for_path(gitHead);
+                gitHeadMtime = f.query_info("time::modified", Gio.FileQueryInfoFlags.NONE, null)
+                    .get_modification_time().tv_sec;
+            } catch(e) {}
+        }
+        let cacheKey = (pathMtime || 0) + ":" + gitHeadMtime;
+
+        if (cached && cached._key === cacheKey) {
+            // Pinned state can change without a refresh — update it from current state
+            cached.pinned = this.isPinned(projectPath);
+            callback(cached);
+            return;
+        }
+
         let info = {
             name: projectPath.split("/").pop(),
             path: projectPath,
@@ -225,53 +277,67 @@ MyDesklet.prototype = {
             lastEditedTime: "—",
             lastEditedTimestamp: 0,
             totalCommits: 0,
-            repoSize: "—"
+            repoSize: "—",
+            _key: cacheKey
         };
 
-        let editTs = this.getLastEditedTime(projectPath);
-        if (editTs > 0) {
-            info.lastEditedTimestamp = editTs;
-            info.lastEditedTime = this.timeAgo(editTs);
-        }
+        let hasGit = GLib.file_test(projectPath + "/.git", GLib.FileTest.IS_DIR);
+        info.hasGit = hasGit;
 
-        let gitDir = Gio.File.new_for_path(projectPath + "/.git");
-        try {
-            let gitInfo = gitDir.query_info("standard::type", Gio.FileQueryInfoFlags.NONE, null);
-            if (gitInfo.get_file_type() !== Gio.FileType.DIRECTORY) return info;
-        } catch(e) {
-            return info;
-        }
-
-        info.hasGit = true;
-
-        let msg = spawnSync(["git", "-C", projectPath, "log", "-1", "--format=%s"]);
-        if (msg) {
-            if (msg.length > 50) msg = msg.substring(0, 47) + "...";
-            info.lastCommitMsg = msg;
-        }
-
-        let ctStr = spawnSync(["git", "-C", projectPath, "log", "-1", "--format=%ct"]);
-        if (ctStr) {
-            let ts = parseInt(ctStr);
-            if (ts > 0) {
-                info.lastCommitTimestamp = ts;
-                info.lastCommitTime = this.timeAgo(ts);
+        // Number of async tasks to wait for before invoking callback
+        let pending = 1 + (hasGit ? 4 : 0);
+        let done = function() {
+            if (--pending === 0) {
+                self._infoCache[projectPath] = info;
+                callback(info);
             }
-        }
+        };
 
-        let countStr = spawnSync(["git", "-C", projectPath, "rev-list", "--count", "HEAD"]);
-        if (countStr) {
-            let count = parseInt(countStr);
-            if (!isNaN(count)) info.totalCommits = count;
-        }
+        self.getLastEditedTimeAsync(projectPath, function(ts) {
+            if (ts > 0) {
+                info.lastEditedTimestamp = ts;
+                info.lastEditedTime = self.timeAgo(ts);
+            }
+            done();
+        });
 
-        let sizeStr = spawnSync(["du", "-sh", projectPath + "/.git"]);
-        if (sizeStr) {
-            let size = sizeStr.split("\t")[0];
-            if (size) info.repoSize = size;
-        }
+        if (!hasGit) return;
 
-        return info;
+        self.runAsync(["git", "-C", projectPath, "log", "-1", "--format=%s"], function(stdout) {
+            if (stdout) {
+                let msg = stdout.trim();
+                if (msg.length > 50) msg = msg.substring(0, 47) + "...";
+                if (msg) info.lastCommitMsg = msg;
+            }
+            done();
+        });
+
+        self.runAsync(["git", "-C", projectPath, "log", "-1", "--format=%ct"], function(stdout) {
+            if (stdout) {
+                let ts = parseInt(stdout.trim());
+                if (ts > 0) {
+                    info.lastCommitTimestamp = ts;
+                    info.lastCommitTime = self.timeAgo(ts);
+                }
+            }
+            done();
+        });
+
+        self.runAsync(["git", "-C", projectPath, "rev-list", "--count", "HEAD"], function(stdout) {
+            if (stdout) {
+                let count = parseInt(stdout.trim());
+                if (!isNaN(count)) info.totalCommits = count;
+            }
+            done();
+        });
+
+        self.runAsync(["du", "-sh", projectPath + "/.git"], function(stdout) {
+            if (stdout) {
+                let size = stdout.trim().split("\t")[0];
+                if (size) info.repoSize = size;
+            }
+            done();
+        });
     },
 
     timeAgo: function(timestamp) {
@@ -287,14 +353,47 @@ MyDesklet.prototype = {
     },
 
     refreshData: function() {
-        this.mainBox.destroy_all_children();
+        let self = this;
+        let max = this.maxProjects || 10;
+
+        this.findRecentProjectsAsync(function(projectEntries) {
+            if (projectEntries.length > max) projectEntries = projectEntries.slice(0, max);
+
+            if (projectEntries.length === 0) {
+                self.renderUI([]);
+                self.timeout = Mainloop.timeout_add_seconds(600, Lang.bind(self, self.refreshData));
+                return;
+            }
+
+            let collected = new Array(projectEntries.length);
+            let pending = projectEntries.length;
+
+            for (let i = 0; i < projectEntries.length; i++) {
+                (function(idx, entry) {
+                    self.getProjectInfoAsync(entry.path, function(info) {
+                        collected[idx] = info;
+                        if (--pending === 0) {
+                            self.renderUI(collected);
+                            self.timeout = Mainloop.timeout_add_seconds(600, Lang.bind(self, self.refreshData));
+                        }
+                    }, entry.mtime);
+                })(i, projectEntries[i]);
+            }
+        });
+    },
+
+    // Build the static UI shell once. After this, refreshes only mutate label text
+    // and add/remove row containers — no widget churn during steady state.
+    ensureShell: function() {
+        if (this.shellBuilt) return;
+        this.shellBuilt = true;
 
         let bg = this.bgColor || "rgba(28,28,32,0.92)";
-        let rowBg = this.rowColor || "rgba(42,42,48,0.8)";
         let fc = this.fontColor || "rgba(230,230,235,0.95)";
         let ac = this.accentColor || "rgba(160,180,210,0.85)";
 
-        // Container with dynamic bg color
+        this.mainBox.destroy_all_children();
+
         let container = new St.BoxLayout({
             vertical: true,
             style: "background-color: " + bg + ";"
@@ -304,20 +403,17 @@ MyDesklet.prototype = {
                 + " min-width: 400px;"
         });
 
-        // Header
         let headerBox = new St.BoxLayout({ vertical: false });
-        let headerIcon = new St.Label({
+        headerBox.add(new St.Label({
             text: "⬡ ",
             style: "font-size: " + this.fs(16) + "px; font-weight: 700; color: " + ac + ";"
                 + " padding-bottom: 8px;"
-        });
-        let headerLabel = new St.Label({
+        }));
+        headerBox.add(new St.Label({
             text: "PROJECT TRACKER",
             style: "font-size: " + this.fs(16) + "px; font-weight: 700; color: " + fc + ";"
                 + " padding-bottom: 8px;"
-        });
-        headerBox.add(headerIcon);
-        headerBox.add(headerLabel);
+        }));
         container.add(headerBox);
 
         let sep = new St.Widget({
@@ -326,52 +422,65 @@ MyDesklet.prototype = {
         sep.set_height(1);
         container.add(sep);
 
-        let projectPaths = this.findRecentProjects();
-        let max = this.maxProjects || 10;
-        if (projectPaths.length > max) projectPaths = projectPaths.slice(0, max);
+        this.emptyLabel = new St.Label({
+            text: "No projects found",
+            style: "font-size: " + this.fs(14) + "px; color: " + ac + ";"
+                + " text-align: center; padding: 20px;"
+        });
+        container.add(this.emptyLabel);
+        this.emptyLabel.hide();
 
-        let projects = [];
-        for (let i = 0; i < projectPaths.length; i++) {
-            projects.push(this.getProjectInfo(projectPaths[i]));
-        }
-
-        if (projects.length === 0) {
-            let noProjects = new St.Label({
-                text: "No projects found",
-                style: "font-size: " + this.fs(14) + "px; color: " + ac + ";"
-                    + " text-align: center; padding: 20px;"
-            });
-            container.add(noProjects);
-        }
-
-        // Scrollable container
-        let rowHeight = Math.round(115 * (this.fontScale || 1.0));
-        let visible = 4;
-        let scrollHeight = rowHeight * visible;
-
-        let scrollView = new St.ScrollView({
-            vscrollbar_policy: projects.length > visible ? St.PolicyType.AUTOMATIC : St.PolicyType.NEVER,
+        this.scrollView = new St.ScrollView({
+            vscrollbar_policy: St.PolicyType.AUTOMATIC,
             hscrollbar_policy: St.PolicyType.NEVER
         });
-        scrollView.set_height(Math.min(scrollHeight, rowHeight * projects.length));
+        this.scrollBox = new St.BoxLayout({ vertical: true });
+        this.scrollView.add_actor(this.scrollBox);
+        container.add(this.scrollView);
 
-        let scrollBox = new St.BoxLayout({ vertical: true });
-        scrollView.add_actor(scrollBox);
-
-        for (let i = 0; i < projects.length; i++) {
-            this.addProjectRow(projects[i], scrollBox, rowBg, fc, ac);
-        }
-
-        container.add(scrollView);
         this.mainBox.add(container);
 
-        this.timeout = Mainloop.timeout_add_seconds(
-            120,
-            this.refreshData.bind(this)
-        );
+        this.rowWidgets = [];   // refs for in-place text updates, keyed by index
     },
 
-    addProjectRow: function(project, scrollBox, rowBg, fc, ac) {
+    renderUI: function(projects) {
+        this.ensureShell();
+
+        let fc = this.fontColor || "rgba(230,230,235,0.95)";
+        let ac = this.accentColor || "rgba(160,180,210,0.85)";
+        let rowBg = this.rowColor || "rgba(42,42,48,0.8)";
+
+        let rowHeight = Math.round(115 * (this.fontScale || 1.0));
+        let visible = 4;
+        this.scrollView.set_height(Math.min(rowHeight * visible, Math.max(rowHeight, rowHeight * projects.length)));
+
+        if (projects.length === 0) {
+            this.emptyLabel.show();
+        } else {
+            this.emptyLabel.hide();
+        }
+
+        // Grow rows array if needed (only first time or when project count increases)
+        while (this.rowWidgets.length < projects.length) {
+            let refs = this.buildRow(rowBg, fc, ac);
+            this.scrollBox.add(refs.row);
+            this.rowWidgets.push(refs);
+        }
+        // Hide extra rows if project count shrunk
+        for (let i = projects.length; i < this.rowWidgets.length; i++) {
+            this.rowWidgets[i].row.hide();
+        }
+        // Update visible rows in place
+        for (let i = 0; i < projects.length; i++) {
+            this.rowWidgets[i].row.show();
+            this.updateRow(this.rowWidgets[i], projects[i], fc, ac);
+        }
+    },
+
+    // Create a row's widget skeleton once; returns refs for later text mutation.
+    buildRow: function(rowBg, fc, ac) {
+        let self = this;
+
         let row = new St.BoxLayout({
             vertical: true,
             reactive: true,
@@ -383,98 +492,113 @@ MyDesklet.prototype = {
                 + " margin-bottom: 8px;"
         });
 
-        let projectPath = project.path;
-        let self = this;
+        let refs = { row: row, projectPath: null };
 
-        // Left-click opens in VS Code
+        // Click handler — closure reads refs.projectPath at click time
         row.connect("button-press-event", function() {
-            Gio.Subprocess.new(["code", projectPath], Gio.SubprocessFlags.NONE);
+            if (refs.projectPath) {
+                GLib.spawn_command_line_async("code " + GLib.shell_quote(refs.projectPath));
+            }
             return true;
         });
 
-        // Top line: pin button + name + edited time
         let topLine = new St.BoxLayout({ vertical: false });
 
-        // Pin button
-        let pinBtn = new St.Button({
-            label: project.pinned ? "📌" : "○",
+        refs.pinBtn = new St.Button({
+            label: "○",
             reactive: true,
             style: "font-size: " + self.fs(13) + "px; padding: 0 6px 0 0; color: " + ac + ";"
                 + " background: transparent; border: none;"
         });
-        pinBtn.connect("clicked", function() {
-            self.togglePin(projectPath);
+        refs.pinBtn.connect("clicked", function() {
+            if (refs.projectPath) self.togglePin(refs.projectPath);
             return true;
         });
-        topLine.add(pinBtn, { expand: false });
+        topLine.add(refs.pinBtn, { expand: false });
 
-        let nameLabel = new St.Label({
-            text: project.name,
-            style: "font-size: " + this.fs(15) + "px; font-weight: 600; color: " + fc + ";"
+        refs.nameLabel = new St.Label({
+            text: "",
+            style: "font-size: " + self.fs(15) + "px; font-weight: 600; color: " + fc + ";"
                 + " font-family: 'JetBrains Mono', 'Fira Code', monospace;"
         });
-        topLine.add(nameLabel, { expand: false });
+        topLine.add(refs.nameLabel, { expand: false });
         topLine.add(new St.Widget(), { expand: true });
 
-        let timeLabel = new St.Label({
-            text: "edited " + project.lastEditedTime,
-            style: "font-size: " + this.fs(12) + "px; color: " + ac + ";"
+        refs.timeLabel = new St.Label({
+            text: "",
+            style: "font-size: " + self.fs(12) + "px; color: " + ac + ";"
         });
-        topLine.add(timeLabel, { expand: false });
+        topLine.add(refs.timeLabel, { expand: false });
         row.add(topLine);
 
-        // Path
-        let shortPath = project.path.replace(GLib.get_home_dir(), "~");
-        let pathLabel = new St.Label({
-            text: shortPath,
-            style: "font-size: " + this.fs(12) + "px; color: " + fc + ";"
+        refs.pathLabel = new St.Label({
+            text: "",
+            style: "font-size: " + self.fs(12) + "px; color: " + fc + ";"
                 + " opacity: 0.6; padding-top: 2px;"
         });
-        row.add(pathLabel);
+        row.add(refs.pathLabel);
+
+        refs.commitLabel = new St.Label({
+            text: "",
+            style: "font-size: " + self.fs(12) + "px; color: " + fc + ";"
+                + " opacity: 0.7; font-style: italic; padding-top: 3px; padding-bottom: 4px;"
+        });
+        row.add(refs.commitLabel);
+
+        let statsLine = new St.BoxLayout({ vertical: false });
+        refs.statsLine = statsLine;
+        let statStyle = "font-size: " + self.fs(12) + "px; color: " + ac + "; opacity: 0.75;";
+        let valStyle = "font-size: " + self.fs(13) + "px; font-weight: 600;"
+            + " font-family: 'JetBrains Mono', 'Fira Code', monospace;";
+
+        statsLine.add(new St.Label({ text: "⊙ ", style: statStyle }));
+        refs.commitsValLabel = new St.Label({ text: "0", style: valStyle + " color: rgba(190,170,240,0.95);" });
+        statsLine.add(refs.commitsValLabel);
+        statsLine.add(new St.Label({ text: " commits", style: statStyle }));
+        statsLine.add(new St.Label({ text: "   ◆ ", style: statStyle }));
+        refs.sizeValLabel = new St.Label({ text: "—", style: valStyle + " color: rgba(240,190,120,0.95);" });
+        statsLine.add(refs.sizeValLabel);
+        statsLine.add(new St.Label({ text: " .git", style: statStyle }));
+        statsLine.add(new St.Label({ text: "   ◆ ", style: statStyle }));
+        refs.commitTimeLabel = new St.Label({ text: "", style: valStyle + " color: rgba(140,210,170,0.95);" });
+        statsLine.add(refs.commitTimeLabel);
+        row.add(statsLine);
+
+        refs.noGitLabel = new St.Label({
+            text: "No git repository",
+            style: "font-size: " + self.fs(12) + "px; color: " + ac + "; opacity: 0.6;"
+        });
+        row.add(refs.noGitLabel);
+
+        return refs;
+    },
+
+    // Mutate text/visibility only — no widget allocation, no CSS reparse.
+    updateRow: function(refs, project, fc, ac) {
+        refs.projectPath = project.path;
+        refs.pinBtn.set_label(project.pinned ? "📌" : "○");
+        refs.nameLabel.set_text(project.name);
+        refs.timeLabel.set_text("edited " + project.lastEditedTime);
+        refs.pathLabel.set_text(project.path.replace(GLib.get_home_dir(), "~"));
 
         if (project.hasGit) {
+            refs.noGitLabel.hide();
             if (project.lastCommitMsg) {
-                let commitLabel = new St.Label({
-                    text: "\"" + project.lastCommitMsg + "\"",
-                    style: "font-size: " + this.fs(12) + "px; color: " + fc + ";"
-                        + " opacity: 0.7; font-style: italic; padding-top: 3px; padding-bottom: 4px;"
-                });
-                row.add(commitLabel);
+                let msg = "\"" + project.lastCommitMsg + "\"";
+                refs.commitLabel.set_text(msg);
+                refs.commitLabel.show();
+            } else {
+                refs.commitLabel.hide();
             }
-
-            let statsLine = new St.BoxLayout({ vertical: false });
-            let statStyle = "font-size: " + this.fs(12) + "px; color: " + ac + "; opacity: 0.75;";
-            let valStyle = "font-size: " + this.fs(13) + "px; font-weight: 600;"
-                + " font-family: 'JetBrains Mono', 'Fira Code', monospace;";
-
-            statsLine.add(new St.Label({ text: "⊙ ", style: statStyle }));
-            statsLine.add(new St.Label({
-                text: project.totalCommits.toString(),
-                style: valStyle + " color: rgba(190,170,240,0.95);"
-            }));
-            statsLine.add(new St.Label({ text: " commits", style: statStyle }));
-            statsLine.add(new St.Label({ text: "   ◆ ", style: statStyle }));
-            statsLine.add(new St.Label({
-                text: project.repoSize,
-                style: valStyle + " color: rgba(240,190,120,0.95);"
-            }));
-            statsLine.add(new St.Label({ text: " .git", style: statStyle }));
-            statsLine.add(new St.Label({ text: "   ◆ ", style: statStyle }));
-            statsLine.add(new St.Label({
-                text: "commit " + project.lastCommitTime,
-                style: valStyle + " color: rgba(140,210,170,0.95);"
-            }));
-
-            row.add(statsLine);
+            refs.commitsValLabel.set_text(project.totalCommits.toString());
+            refs.sizeValLabel.set_text(project.repoSize);
+            refs.commitTimeLabel.set_text("commit " + project.lastCommitTime);
+            refs.statsLine.show();
         } else {
-            let noGitLabel = new St.Label({
-                text: "No git repository",
-                style: "font-size: " + this.fs(12) + "px; color: " + ac + "; opacity: 0.6;"
-            });
-            row.add(noGitLabel);
+            refs.commitLabel.hide();
+            refs.statsLine.hide();
+            refs.noGitLabel.show();
         }
-
-        scrollBox.add(row);
     },
 
     onSettingChanged: function() {
@@ -483,6 +607,9 @@ MyDesklet.prototype = {
         if (this.timeout) {
             Mainloop.source_remove(this.timeout);
         }
+        // Theme colors changed — force rebuild on next refresh
+        this.shellBuilt = false;
+        if (this.rowWidgets) this.rowWidgets = [];
         this.refreshData();
     },
 
