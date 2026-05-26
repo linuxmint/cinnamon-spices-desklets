@@ -29,6 +29,7 @@ var FeedCache = class FeedCache {
             } catch (e) {
                 if (!(e.matches && e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_FOUND))) {
                     global.logError('[AIFeed] Cache read error: ' + e.message);
+                    try { GLib.unlink(this._path); } catch (_) {}
                 }
                 this._data = null;
             }
