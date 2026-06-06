@@ -38,17 +38,17 @@ var GpuRow = class GpuRow {
         this._vramBox.add(this._vramLabel);
 
         this._vramTrackWidth = 180;
-        this._vramTrack = new St.Bin({
+        this._vramTrack = new St.BoxLayout({
             style_class: "ngm-bar-track",
             width: this._vramTrackWidth,
             height: 10,
         });
-        this._vramFill = new St.Bin({
+        this._vramFill = new St.Widget({
             style_class: "ngm-bar-fill",
             height: 10,
             width: 0,
         });
-        this._vramTrack.set_child(this._vramFill);
+        this._vramTrack.add(this._vramFill);
         this._vramBox.add(this._vramTrack);
 
         this._vramText = new St.Label({ text: "-- / -- GB", style_class: "ngm-vram-text" });
