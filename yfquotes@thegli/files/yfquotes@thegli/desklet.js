@@ -41,6 +41,7 @@ const YF_COOKIE_URL = "https://finance.yahoo.com/quote/%5EGSPC/options";
 const YF_CONSENT_URL = "https://consent.yahoo.com/v2/collectConsent";
 const YF_CRUMB_URL = "https://query2.finance.yahoo.com/v1/test/getcrumb";
 const YF_QUOTE_URL = "https://query1.finance.yahoo.com/v7/finance/quote";
+const YF_HISTORY_URL = "https://query1.finance.yahoo.com/v7/finance/spark";
 const YF_QUOTE_WEBPAGE_URL = "https://finance.yahoo.com/quote/";
 const YF_QUOTE_FIELDS = "symbol,shortName,longName,currency,marketState,hasPrePostMarketData,"
     + "regularMarketTime,regularMarketPrice,regularMarketChange,regularMarketChangePercent,"
@@ -749,14 +750,61 @@ YahooFinanceQuoteReader.prototype = {
             return;
         }
 
+        //TODO needs to be chunked if there are more than 20 symbols
+        // - quoteSymbolsArg.length
+
+        //TODO need to check if this works with the after hours feature
+
+        //TODO another way to show this might be instead of percent to be the actual price value at days ago
+
+        //TODO add separate config settings to show week change and/or month change
+
+        //TODO have to update the translations
+        // - there is a command or instructions in the repo
+
+        //TODO only request history data if settings enabled
+        const quotesResponseCallback = (quoteResponse) => {
+            try {
+                const parsed = JSON.parse(quoteResponse);
+
+                if (parsed.quoteResponse && parsed.quoteResponse.error) {
+                    callback.call(_that, quoteResponse);
+                    return;
+                }
+            } catch (e) {
+                callback.call(_that, quoteResponse);
+                return;
+            }
+
+            const historyResponseMergeCallback = (historyResponse) => {
+                let finalResponse = quoteResponse;
+
+                if (historyResponse) {
+                    finalResponse = _that.mergeHistoryDataWithResults(quoteResponse, historyResponse);
+                }
+
+                callback.call(_that, finalResponse);
+            };
+
+            const historyUrl = `${YF_HISTORY_URL}?symbols=${encodeURIComponent(quoteSymbolsArg)}&range=1mo&interval=1d&crumb=${_that.authParams.crumb}`;
+
+            if (networkSettings.enableCurl) {
+                _that.retrieveFinanceDataWithCurl(historyUrl, networkSettings, historyResponseMergeCallback);
+            } else if (IS_SOUP_2) {
+                _that.retrieveFinanceDataWithSoup2(historyUrl, networkSettings, historyResponseMergeCallback);
+            } else {
+                _that.retrieveFinanceDataWithSoup3(historyUrl, networkSettings, historyResponseMergeCallback);
+            }
+        };
+
         const requestUrl = this.createYahooQueryUrl(quoteSymbolsArg, this.authParams.crumb);
 
         if (networkSettings.enableCurl) {
-            this.retrieveFinanceDataWithCurl(requestUrl, networkSettings, callback);
+            this.retrieveFinanceDataWithCurl(requestUrl, networkSettings, quotesResponseCallback);
         } else if (IS_SOUP_2) {
-            this.retrieveFinanceDataWithSoup2(requestUrl, networkSettings, callback);
+            this.retrieveFinanceDataWithSoup2(requestUrl, networkSettings, quotesResponseCallback);
         } else {
-            this.retrieveFinanceDataWithSoup3(requestUrl, networkSettings, callback);
+            this.retrieveFinanceDataWithSoup3(requestUrl, networkSettings, quotesResponseCallback);
         }
     },
 
@@ -871,6 +919,67 @@ YahooFinanceQuoteReader.prototype = {
         return queryUrl;
     },
 
+    mergeHistoryDataWithResults(quoteResponse, historyResponse) {
+        try {
+            const parsedQuotes = JSON.parse(quoteResponse);
+            const parsedHistoryData = JSON.parse(historyResponse);
+            const symbolKeyedHistoryData = {};
+
+            if (!parsedQuotes.quoteResponse || !parsedQuotes.quoteResponse.result) {
+                return quoteResponse;
+            }
+
+            parsedHistoryData.spark.result.forEach((historyDataItem) => {
+                const symbol = historyDataItem.symbol;
+
+                symbolKeyedHistoryData[symbol] = historyDataItem.response[0];
+            })
+
+            for (let quoteData of parsedQuotes.quoteResponse.result) {
+                let symbol = quoteData.symbol;
+
+                if (symbolKeyedHistoryData[symbol]) {
+                    let historyData = symbolKeyedHistoryData[symbol];
+                    quoteData.price7DaysAgo = this.pullHistoricalPriceFromData(historyData, 7);
+                    quoteData.price1MonthAgo = this.pullHistoricalPriceFromData(historyData, 30);
+                }
+            }
+
+            return JSON.stringify(parsedQuotes);
+        } catch (err) {
+            this.quoteUtils.logException("Error merging responses", err);
+            return quoteResponse;
+        }
+    },
+
+    pullHistoricalPriceFromData(historyData, daysAgo) {
+        if (
+            !historyData.timestamp ||
+            !historyData.indicators ||
+            !historyData.indicators.quote ||
+            0 === historyData.timestamp.length ||
+            0 === historyData.indicators.quote.length
+        ) {
+            return null;
+        }
+
+        const targetTimestamp = (Date.now() / 1000) - (daysAgo * 24 * 60 * 60);
+
+        let closestIndex = 0;
+        let minDiff = Math.abs(historyData.timestamp[0] - targetTimestamp);
+
+        for (let i = 1; i < historyData.timestamp.length; i++) {
+            let currentDiff = Math.abs(historyData.timestamp[i] - targetTimestamp);
+
+            if (currentDiff < minDiff) {
+                minDiff = currentDiff;
+                closestIndex = i;
+            }
+        }
+
+        return historyData.indicators.quote[0].close[closestIndex];
+    },
+
     buildErrorResponse(errorMsg) {
         return JSON.stringify(
             {
@@ -975,6 +1084,12 @@ QuotesTable.prototype = {
         if (settings.percentChange) {
             cellContents.push(this.createPercentChangeLabel(quote, settings, marketState));
         }
+
+        //TODO only if enabled
+        cellContents.push(this.createHistoricalPercentChangeLabel(quote, settings, quote.price7DaysAgo, marketState, 'W'));
+        //TODO only if enabled
+        cellContents.push(this.createHistoricalPercentChangeLabel(quote, settings, quote.price1MonthAgo, marketState, 'M'));
+
         if (settings.tradeTime) {
             cellContents.push(this.createTradeTimeLabel(quote, settings, marketState));
         }
@@ -1137,6 +1252,34 @@ QuotesTable.prototype = {
             text: this.quoteUtils.existsProperty(quote, marketChangePercentProperty)
                 ? (this.roundAmount(quote[marketChangePercentProperty], 2, settings.strictRounding) + "%")
                 : ABSENT,
+            style_class: "quotes-number",
+            style: this.buildFontStyle(settings, marketState, labelColor)
+        });
+    },
+
+    createHistoricalPercentChangeLabel(quote, settings, historicalPrice, marketState, prefix) {
+        const currentPrice = quote.regularMarketPrice;
+
+        if (!historicalPrice || !currentPrice) {
+            return new St.Label({ text: ABSENT });
+        }
+
+        const percentChange = ((currentPrice - historicalPrice) / historicalPrice) * 100;
+
+        let labelColor = settings.fontColor;
+
+        if (settings.colorPercentChange) {
+            if (percentChange > 0) {
+                labelColor = settings.uptrendChangeColor;
+            } else if (percentChange < 0) {
+                labelColor = settings.downtrendChangeColor;
+            } else {
+                labelColor = settings.unchangedTrendColor;
+            }
+        }
+
+        return new St.Label({
+            text: (prefix + this.roundAmount(percentChange, 2, settings.strictRounding) + "%"),
             style_class: "quotes-number",
             style: this.buildFontStyle(settings, marketState, labelColor)
         });
