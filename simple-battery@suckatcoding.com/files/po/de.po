@@ -1,0 +1,38 @@
+msgid "remaining"
+msgstr "verbleibend"
+
+msgid "until full"
+msgstr "bis voll"
+
+msgid "Fully charged"
+msgstr "Vollständig geladen"
+
+msgid "AC Power"
+msgstr "Netzbetrieb"
+
+msgid "Error reading data"
+msgstr "Fehler beim Auslesen"
+
+msgid "Usage:"
+msgstr "Verbrauch:"
+
+msgid "Charged:"
+msgstr "Geladen:"
+
+msgid "since start"
+msgstr "seit Start"
+
+msgid "Uptime:"
+msgstr "Laufzeit:"
+
+msgid "h"
+msgstr "Std"
+
+msgid "min"
+msgstr "Min"
+
+msgid "Show background"
+msgstr "Hintergrund anzeigen"
+
+msgid "Background opacity (%)"
+msgstr "Hintergrund-Deckkraft (%)"
