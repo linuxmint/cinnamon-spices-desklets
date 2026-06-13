@@ -122,41 +122,60 @@ SimpleBatteryDesklet.prototype = {
         }
 
         let tmpPath = "/tmp/desklet_start_bat_" + UUID + ".txt";
-        let startPct = pctNum;
-        
-        if (GLib.file_test(tmpPath, GLib.FileTest.EXISTS)) {
-            let [res, contents] = GLib.file_get_contents(tmpPath);
-            if (res) {
-                let contentStr = ByteArray.toString(contents).trim();
-                if (contentStr !== "") {
-                    startPct = parseInt(contentStr);
-                }
-            }
-        } else {
-            GLib.file_set_contents(tmpPath, pctNum.toString());
-        }
+        let tmpFile = Gio.File.new_for_path(tmpPath);
 
-        let diff = startPct - pctNum;
+        tmpFile.load_contents_async(null, (file, res) => {
+            try {
+                let [success, contents] = file.load_contents_finish(res);
+                if (success) {
+                    let contentStr = ByteArray.toString(contents).trim();
+                    let startPct = contentStr !== "" ? parseInt(contentStr) : pctNum;
+                    this.updateUsageUI(startPct, pctNum);
+                }
+            } catch (e) {
+                file.replace_contents_async(
+                    pctNum.toString(),
+                    null,
+                    false,
+                    Gio.FileCreateFlags.NONE,
+                    null,
+                    (f, r) => {
+                        try { f.replace_contents_finish(r); } catch (err) {}
+                    }
+                );
+                this.updateUsageUI(pctNum, pctNum);
+            }
+        });
+
+        let uptimeFile = Gio.File.new_for_path("/proc/uptime");
+        uptimeFile.load_contents_async(null, (file, res) => {
+            try {
+                let [success, contents] = file.load_contents_finish(res);
+                if (success) {
+                    let outUptime = ByteArray.toString(contents);
+                    let uptimeSeconds = parseFloat(outUptime.split(" ")[0]);
+                    let hours = Math.floor(uptimeSeconds / 3600);
+                    let minutes = Math.floor((uptimeSeconds % 3600) / 60);
+                    
+                    if (hours > 0) {
+                        this.uptimeLabel.set_text(_("Uptime:") + " " + hours + _("h") + " " + minutes + _("min"));
+                    } else {
+                        this.uptimeLabel.set_text(_("Uptime:") + " " + minutes + _("min"));
+                    }
+                }
+            } catch (e) {
+            }
+        });
+    },
+
+    updateUsageUI: function(startPct, currentPct) {
+        let diff = startPct - currentPct;
         if (diff > 0) {
             this.usageLabel.set_text(_("Usage:") + " " + diff + "% " + _("since start"));
         } else if (diff < 0) {
             this.usageLabel.set_text(_("Charged:") + " " + Math.abs(diff) + "% " + _("since start"));
         } else {
             this.usageLabel.set_text(_("Usage:") + " 0% " + _("since start"));
-        }
-
-        let [resUptime, contentsUptime] = GLib.file_get_contents("/proc/uptime");
-        if (resUptime) {
-            let outUptime = ByteArray.toString(contentsUptime);
-            let uptimeSeconds = parseFloat(outUptime.split(" ")[0]);
-            let hours = Math.floor(uptimeSeconds / 3600);
-            let minutes = Math.floor((uptimeSeconds % 3600) / 60);
-            
-            if (hours > 0) {
-                this.uptimeLabel.set_text(_("Uptime:") + " " + hours + _("h") + " " + minutes + _("min"));
-            } else {
-                this.uptimeLabel.set_text(_("Uptime:") + " " + minutes + _("min"));
-            }
         }
     },
 
