@@ -40,15 +40,15 @@ SimpleBatteryDesklet.prototype = {
         this.track = new St.BoxLayout({style_class: "battery-track"});
         this.fill = new St.BoxLayout({style_class: "battery-fill"});
         this.track.add_actor(this.fill);
-        this.pctLabel = new St.Label({style_class: "battery-pct-small"});
+        this.pctLabel = new St.Label({style_class: "battery-pct-small", text: "--%"});
         this.barContainer.add_actor(this.track);
         this.barContainer.add_actor(this.pctLabel);
         
-        this.timeLabel = new St.Label({style_class: "battery-time"});
+        this.timeLabel = new St.Label({style_class: "battery-time", text: "..."});
         
         this.divider = new St.BoxLayout({style_class: "battery-divider"});
-        this.uptimeLabel = new St.Label({style_class: "battery-stats"});
-        this.usageLabel = new St.Label({style_class: "battery-stats"});
+        this.uptimeLabel = new St.Label({style_class: "battery-stats", text: "..."});
+        this.usageLabel = new St.Label({style_class: "battery-stats", text: "..."});
         
         this.container.add_actor(this.barContainer);
         this.container.add_actor(this.timeLabel);
@@ -70,6 +70,7 @@ SimpleBatteryDesklet.prototype = {
     },
 
     update: function() {
+        let hasBatteryData = false;
         try {
             let procBat = Gio.Subprocess.new(
                 ['bash', '-c', 'upower -i $(upower -e | grep -i bat | head -n 1)'],
@@ -79,20 +80,25 @@ SimpleBatteryDesklet.prototype = {
             procBat.communicate_utf8_async(null, null, (proc, res) => {
                 try {
                     let [ok, outBat, stderr] = proc.communicate_utf8_finish(res);
-                    if (ok && outBat) {
-                        this.parseAndUpdate(outBat);
+                    if (ok) {
+                        hasBatteryData = this.parseAndUpdate(outBat || "");
                     }
                 } catch (e) {
                     this.timeLabel.set_text(_("Error reading data"));
                 }
+                this.scheduleNextUpdate(hasBatteryData);
             });
 
         } catch (e) {
             this.timeLabel.set_text(_("Error reading data"));
+            this.scheduleNextUpdate(false);
         }
+    },
 
+    scheduleNextUpdate: function(hasBatteryData) {
         if (this.timeout) Mainloop.source_remove(this.timeout);
-        this.timeout = Mainloop.timeout_add_seconds(60, () => {
+        let nextUpdate = hasBatteryData ? 60 : 5;
+        this.timeout = Mainloop.timeout_add_seconds(nextUpdate, () => {
             this.update();
             return false; 
         });
@@ -104,48 +110,54 @@ SimpleBatteryDesklet.prototype = {
         let matchFull = output.match(/time to full:\s+(.*)/);
         let matchState = output.match(/state:\s+(.*)/);
         
-        let pctNum = matchPct ? parseInt(matchPct[1]) : 0;
-        
-        this.pctLabel.set_text(matchPct ? matchPct[1] + "%" : "--%");
-        let fillWidth = Math.round(150 * (pctNum / 100));
-        this.fill.set_style("width: " + fillWidth + "px;");
-        
-        let state = matchState ? matchState[1] : "";
-        if (state === "discharging" && matchEmpty) {
-            this.timeLabel.set_text(matchEmpty[1] + " " + _("remaining"));
-        } else if (state === "charging" && matchFull) {
-            this.timeLabel.set_text(matchFull[1] + " " + _("until full"));
-        } else if (state === "fully-charged") {
-            this.timeLabel.set_text(_("Fully charged"));
+        let pctNum = 0;
+        let hasBatteryData = false;
+
+        if (matchPct) {
+            pctNum = parseInt(matchPct[1]);
+            hasBatteryData = true;
+            this.pctLabel.set_text(matchPct[1] + "%");
+            let fillWidth = Math.round(150 * (pctNum / 100));
+            this.fill.set_style("width: " + fillWidth + "px;");
+            
+            let state = matchState ? matchState[1] : "";
+            if (state === "discharging" && matchEmpty) {
+                this.timeLabel.set_text(matchEmpty[1] + " " + _("remaining"));
+            } else if (state === "charging" && matchFull) {
+                this.timeLabel.set_text(matchFull[1] + " " + _("until full"));
+            } else if (state === "fully-charged") {
+                this.timeLabel.set_text(_("Fully charged"));
+            } else {
+                this.timeLabel.set_text(_("AC Power"));
+            }
         } else {
-            this.timeLabel.set_text(_("AC Power"));
+            this.pctLabel.set_text("--%");
+            this.fill.set_style("width: 0px;");
+            this.timeLabel.set_text(_("Connecting..."));
         }
 
-        let tmpPath = "/tmp/desklet_start_bat_" + UUID + ".txt";
-        let tmpFile = Gio.File.new_for_path(tmpPath);
+        if (hasBatteryData) {
+            let tmpPath = "/tmp/desklet_start_bat_" + UUID + ".txt";
+            let tmpFile = Gio.File.new_for_path(tmpPath);
 
-        tmpFile.load_contents_async(null, (file, res) => {
-            try {
-                let [success, contents] = file.load_contents_finish(res);
-                if (success) {
-                    let contentStr = ByteArray.toString(contents).trim();
-                    let startPct = contentStr !== "" ? parseInt(contentStr) : pctNum;
-                    this.updateUsageUI(startPct, pctNum);
-                }
-            } catch (e) {
-                file.replace_contents_async(
-                    pctNum.toString(),
-                    null,
-                    false,
-                    Gio.FileCreateFlags.NONE,
-                    null,
-                    (f, r) => {
-                        try { f.replace_contents_finish(r); } catch (err) {}
+            tmpFile.load_contents_async(null, (file, res) => {
+                try {
+                    let [success, contents] = file.load_contents_finish(res);
+                    if (success) {
+                        let contentStr = ByteArray.toString(contents).trim();
+                        let startPct = contentStr !== "" ? parseInt(contentStr) : pctNum;
+                        this.updateUsageUI(startPct, pctNum);
                     }
-                );
-                this.updateUsageUI(pctNum, pctNum);
-            }
-        });
+                } catch (e) {
+                    try {
+                        GLib.file_set_contents(tmpPath, pctNum.toString());
+                    } catch (err) {}
+                    this.updateUsageUI(pctNum, pctNum);
+                }
+            });
+        } else {
+            this.usageLabel.set_text(_("Usage:") + " --");
+        }
 
         let uptimeFile = Gio.File.new_for_path("/proc/uptime");
         uptimeFile.load_contents_async(null, (file, res) => {
@@ -165,6 +177,8 @@ SimpleBatteryDesklet.prototype = {
                 }
             } catch (e) {}
         });
+
+        return hasBatteryData;
     },
 
     updateUsageUI: function(startPct, currentPct) {
