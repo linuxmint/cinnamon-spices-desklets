@@ -4,6 +4,7 @@ const GLib = imports.gi.GLib;
 const Gio = imports.gi.Gio;
 const Settings = imports.ui.settings;
 const Main = imports.ui.main;
+const Util = imports.misc.util;
 
 const UUID = "worktimer@imanilchaudhari";
 
@@ -168,11 +169,22 @@ class WorkTimerDesklet extends Desklet.Desklet {
 
     _playSound() {
         if (!this.soundEnabled || !this.reminderSound) return;
-        try {
-            let f = Gio.File.new_for_path(this.reminderSound);
-            if (f.query_exists(null))
-                GLib.spawn_command_line_async('paplay ' + this.reminderSound);
-        } catch(e) {}
+        let f = Gio.File.new_for_path(this.reminderSound);
+        f.query_info_async(
+            Gio.FILE_ATTRIBUTE_STANDARD_TYPE,
+            Gio.FileQueryInfoFlags.NONE,
+            GLib.PRIORITY_DEFAULT,
+            null,
+            (file, res) => {
+                try {
+                    file.query_info_finish(res);
+                    Util.trySpawn(['paplay', this.reminderSound]);
+                } catch (e) {
+                    if (!e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_FOUND))
+                        logError(e, 'Error playing reminder sound');
+                }
+            }
+        );
     }
 
     _onFinish() {
