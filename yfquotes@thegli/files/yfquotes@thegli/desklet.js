@@ -740,7 +740,7 @@ YahooFinanceQuoteReader.prototype = {
         });
     },
 
-    retrieveFinanceData(quoteSymbolsArg, networkSettings, callback) {
+    retrieveFinanceData(quoteSymbolsArg, networkSettings, quoteDisplaySettings, callback) {
         this.quoteUtils.logDebug("retrieveFinanceData");
 
         const _that = this;
@@ -755,15 +755,15 @@ YahooFinanceQuoteReader.prototype = {
 
         //TODO need to check if this works with the after hours feature
 
-        //TODO another way to show this might be instead of percent to be the actual price value at days ago
-
-        //TODO add separate config settings to show week change and/or month change
-
         //TODO have to update the translations
         // - there is a command or instructions in the repo
 
-        //TODO only request history data if settings enabled
         const quotesResponseCallback = (quoteResponse) => {
+            if (!quoteDisplaySettings.showWeeklyChange && !quoteDisplaySettings.showMonthlyChange) {
+                callback.call(_that, quoteResponse);
+                return;
+            }
+
             try {
                 const parsed = JSON.parse(quoteResponse);
 
@@ -1085,10 +1085,13 @@ QuotesTable.prototype = {
             cellContents.push(this.createPercentChangeLabel(quote, settings, marketState));
         }
 
-        //TODO only if enabled
-        cellContents.push(this.createHistoricalPercentChangeLabel(quote, settings, quote.price7DaysAgo, marketState, 'W'));
-        //TODO only if enabled
-        cellContents.push(this.createHistoricalPercentChangeLabel(quote, settings, quote.price1MonthAgo, marketState, 'M'));
+        if (settings.showWeeklyChange) {
+            cellContents.push(this.createHistoricalChangeLabel(quote, settings, quote.price7DaysAgo, marketState, 'weekly'));
+        }
+
+        if (settings.showMonthlyChange) {
+            cellContents.push(this.createHistoricalChangeLabel(quote, settings, quote.price1MonthAgo, marketState, 'monthly'));
+        }
 
         if (settings.tradeTime) {
             cellContents.push(this.createTradeTimeLabel(quote, settings, marketState));
@@ -1257,7 +1260,7 @@ QuotesTable.prototype = {
         });
     },
 
-    createHistoricalPercentChangeLabel(quote, settings, historicalPrice, marketState, prefix) {
+    createHistoricalChangeLabel(quote, settings, historicalPrice, marketState, labelType) {
         const currentPrice = quote.regularMarketPrice;
 
         if (!historicalPrice || !currentPrice) {
@@ -1265,21 +1268,44 @@ QuotesTable.prototype = {
         }
 
         const percentChange = ((currentPrice - historicalPrice) / historicalPrice) * 100;
+        const prefix = 'weekly' === labelType ? 'W' : 'M';
+        const historyChangeType = 'weekly' === labelType ? settings.weeklyChangeType : settings.monthlyChangeType;
+
+        //TODO maybe check createMarketPriceLabel() to add a currency
+        let valueToDisplay = historicalPrice;
+        let valueForTrendCompare = currentPrice;
+        let suffix = '';
+        let uptrendColor = settings.uptrendChangeColor;
+        let downtrendColor = settings.downtrendChangeColor;
+
+        if ('percent' === historyChangeType) {
+            valueToDisplay = percentChange;
+            valueForTrendCompare = 0;
+            suffix = '%';
+        } else if ('absolute' === historyChangeType) {
+            valueToDisplay = currentPrice - historicalPrice;
+            valueForTrendCompare = 0;
+        }
+
+        if ('market_price' === historyChangeType) {
+            uptrendColor = settings.downtrendChangeColor;
+            downtrendColor = settings.uptrendChangeColor;
+        }
 
         let labelColor = settings.fontColor;
 
         if (settings.colorPercentChange) {
-            if (percentChange > 0) {
-                labelColor = settings.uptrendChangeColor;
-            } else if (percentChange < 0) {
-                labelColor = settings.downtrendChangeColor;
+            if (valueToDisplay > valueForTrendCompare) {
+                labelColor = uptrendColor;
+            } else if (valueToDisplay < valueForTrendCompare) {
+                labelColor = downtrendColor;
             } else {
                 labelColor = settings.unchangedTrendColor;
             }
         }
 
         return new St.Label({
-            text: (prefix + this.roundAmount(percentChange, 2, settings.strictRounding) + "%"),
+            text: (prefix + this.roundAmount(valueToDisplay, 2, settings.strictRounding) + suffix),
             style_class: "quotes-number",
             style: this.buildFontStyle(settings, marketState, labelColor)
         });
@@ -1429,6 +1455,7 @@ StockQuoteDesklet.prototype = {
             "customDateFormat", "sortCriteria", "sortDirection", "showChangeIcon", "showQuoteName",
             "useLongQuoteName", "linkQuoteName", "showQuoteSymbol", "linkQuoteSymbol", "showMarketPrice",
             "showCurrencyCode", "showAbsoluteChange", "showPercentChange", "colorPercentChange",
+            "showWeeklyChange", "weeklyChangeType", "showMonthlyChange", "monthlyChangeType",
             "showTradeTime", "includePrePostMarketDataOption", "fontColor", "scaleFontSize", "fontScale",
             "fontStylePrePostMarketData", "uptrendChangeColor", "downtrendChangeColor", "unchangedTrendColor"];
         const dataFetchSettings = ["delayMinutes"];
@@ -1449,6 +1476,9 @@ StockQuoteDesklet.prototype = {
             // no callback, manual refresh required
             this.settings.bind(setting, setting);
         });
+
+        this.settings.bind("showWeeklyChange", "showWeeklyChange", this.onHistoricalChangeDataRequested);
+        this.settings.bind("showMonthlyChange", "showMonthlyChange", this.onHistoricalChangeDataRequested);
     },
 
     getQuoteDisplaySettings(quotes) {
@@ -1463,6 +1493,10 @@ StockQuoteDesklet.prototype = {
             "currencySymbol": this.showCurrencyCode,
             "absoluteChange": this.showAbsoluteChange,
             "percentChange": this.showPercentChange,
+            "showWeeklyChange": this.showWeeklyChange,
+            "weeklyChangeType": this.weeklyChangeType,
+            "showMonthlyChange": this.showMonthlyChange,
+            "monthlyChangeType": this.monthlyChangeType,
             "colorPercentChange": this.colorPercentChange,
             "tradeTime": this.showTradeTime,
             "prePostMarketDataOption": this.includePrePostMarketDataOption,
@@ -1606,6 +1640,15 @@ StockQuoteDesklet.prototype = {
         this.onQuotesListChanged();
     },
 
+    // called when there is a change in the settings to either show or hide historical change
+    onHistoricalChangeDataRequested() {
+        this.quoteUtils.logDebug("onHistoricalChangeDataRequested");
+
+        if (this.showWeeklyChange || this.showMonthlyChange) {
+            this.onQuotesListChanged();
+        }
+    },
+
     // called when user applies network settings
     onNetworkSettingsChanged() {
         this.quoteUtils.logDebug("onNetworkSettingsChanged");
@@ -1657,28 +1700,32 @@ StockQuoteDesklet.prototype = {
         this.quoteUtils.logDebug(`fetchFinanceDataAndRender - quotes: ${quoteSymbolsArg}, network settings: ${Object.entries(networkSettings)}`);
         const _that = this;
 
-        this.quoteReader.retrieveFinanceData(quoteSymbolsArg, networkSettings, (response, instantTimer = false, dropCachedAuthParams = false) => {
-            _that.quoteUtils.logDebug(`fetchFinanceDataAndRender - response: ${response}`);
-            if (dropCachedAuthParams) {
-                _that.saveAuthorizationParameters(true);
-            }
-            try {
-                let parsedResponse = JSON.parse(response);
-                _that.lastResponse = {
-                    symbolsArgument: quoteSymbolsArg,
-                    responseResult: parsedResponse.quoteResponse.result,
-                    responseError: parsedResponse.quoteResponse.error,
-                    lastUpdated: new Date()
+        this.quoteReader.retrieveFinanceData(
+            quoteSymbolsArg,
+            networkSettings,
+            _that.getQuoteDisplaySettings([]),
+            (response, instantTimer = false, dropCachedAuthParams = false) => {
+                _that.quoteUtils.logDebug(`fetchFinanceDataAndRender - response: ${response}`);
+                if (dropCachedAuthParams) {
+                    _that.saveAuthorizationParameters(true);
                 }
+                try {
+                    let parsedResponse = JSON.parse(response);
+                    _that.lastResponse = {
+                        symbolsArgument: quoteSymbolsArg,
+                        responseResult: parsedResponse.quoteResponse.result,
+                        responseError: parsedResponse.quoteResponse.error,
+                        lastUpdated: new Date()
+                    }
 
-                _that.replaceUpdateTimer(instantTimer);
-                _that.render();
-            } catch (err) {
-                _that.quoteUtils.logException("Query response is not valid JSON", err);
-                // set current quotes list to pass check that quotes list has not changed in render()
-                _that.processFailedFetch(err, quoteSymbolsArg);
-            }
-        });
+                    _that.replaceUpdateTimer(instantTimer);
+                    _that.render();
+                } catch (err) {
+                    _that.quoteUtils.logException("Query response is not valid JSON", err);
+                    // set current quotes list to pass check that quotes list has not changed in render()
+                    _that.processFailedFetch(err, quoteSymbolsArg);
+                }
+            });
     },
 
     fetchCookieAndRender(quoteSymbolsArg, networkSettings) {
