@@ -740,6 +740,52 @@ YahooFinanceQuoteReader.prototype = {
         });
     },
 
+    retrieveAndMergeHistoryData(quoteSymbolsArg, quoteResponse, networkSettings, finalCallback) {
+        this.quoteUtils.logDebug("retrieveAndMergeHistoryData");
+
+        const _that = this;
+        const maxSymbolsPerRequest = 20;
+        const allSymbols = quoteSymbolsArg.split(",");
+
+        if (maxSymbolsPerRequest >= allSymbols.length) {
+            const historyUrl = `${YF_HISTORY_URL}?symbols=${encodeURIComponent(quoteSymbolsArg)}&range=1mo&interval=1d&crumb=${_that.authParams.crumb}`;
+
+            this.sendFinanceRequestByNetworkSettings(historyUrl, networkSettings, (historyResponse) => {
+                finalCallback.call(_that, _that.mergeHistoryDataWithResults(quoteResponse, historyResponse));
+            });
+
+            return;
+        }
+
+        let finalResponse = quoteResponse;
+        const chunks = [];
+        const chunkResponses = [];
+
+        for (let i = 0; i < allSymbols.length; i += maxSymbolsPerRequest) {
+            chunks.push(allSymbols.slice(i, i + maxSymbolsPerRequest).join(","));
+        }
+
+        //TODO this is called async and the script continues with 0 items in chunkResponses
+        // - there is way with the Promise to avoid this
+        // - or in the callback check when the last loop of chunks.forEach() cycles and do the merge there
+        chunks.forEach((chunkSymbols) => {
+            let historyUrl = `${YF_HISTORY_URL}?symbols=${encodeURIComponent(chunkSymbols)}&range=1mo&interval=1d&crumb=${_that.authParams.crumb}`;
+            this.sendFinanceRequestByNetworkSettings(historyUrl, networkSettings, (historyResponse) => {
+                this.quoteUtils.logDebug("====== retrieveAndMergeHistoryData - pushing chunk responses"); //TODO
+                chunkResponses.push(historyResponse);
+            });
+        });
+
+        this.quoteUtils.logDebug("====== retrieveAndMergeHistoryData - chunkResponses ::: " + chunkResponses.length); //TODO
+
+        chunkResponses.forEach((chunkResponse) => {
+            this.quoteUtils.logDebug("====== retrieveAndMergeHistoryData - doing a merge"); //TODO
+            finalResponse = _that.mergeHistoryDataWithResults(finalResponse, chunkResponse);
+        })
+
+        finalCallback.call(_that, finalResponse);
+    },
+
     retrieveFinanceData(quoteSymbolsArg, networkSettings, quoteDisplaySettings, callback) {
         this.quoteUtils.logDebug("retrieveFinanceData");
 
@@ -749,9 +795,6 @@ YahooFinanceQuoteReader.prototype = {
             callback.call(_that, _that.buildErrorResponse(_("Empty quotes list. Open settings and add some symbols.")));
             return;
         }
-
-        //TODO needs to be chunked if there are more than 20 symbols
-        // - quoteSymbolsArg.length
 
         //TODO need to check if this works with the after hours feature
 
@@ -776,31 +819,17 @@ YahooFinanceQuoteReader.prototype = {
                 return;
             }
 
-            const historyResponseMergeCallback = (historyResponse) => {
-                let finalResponse = quoteResponse;
-
-                if (historyResponse) {
-                    finalResponse = _that.mergeHistoryDataWithResults(quoteResponse, historyResponse);
-                }
-
-                callback.call(_that, finalResponse);
-            };
-
-            const historyUrl = `${YF_HISTORY_URL}?symbols=${encodeURIComponent(quoteSymbolsArg)}&range=1mo&interval=1d&crumb=${_that.authParams.crumb}`;
-
-            if (networkSettings.enableCurl) {
-                _that.retrieveFinanceDataWithCurl(historyUrl, networkSettings, historyResponseMergeCallback);
-            } else if (IS_SOUP_2) {
-                _that.retrieveFinanceDataWithSoup2(historyUrl, networkSettings, historyResponseMergeCallback);
-            } else {
-                _that.retrieveFinanceDataWithSoup3(historyUrl, networkSettings, historyResponseMergeCallback);
-            }
+            _that.retrieveAndMergeHistoryData(quoteSymbolsArg, quoteResponse, networkSettings, callback);
         };
 
         const requestUrl = this.createYahooQueryUrl(quoteSymbolsArg, this.authParams.crumb);
 
+        this.sendFinanceRequestByNetworkSettings(requestUrl, networkSettings, quotesResponseCallback);
+    },
+
+    sendFinanceRequestByNetworkSettings(requestUrl, networkSettings, callback) {
         if (networkSettings.enableCurl) {
-            this.retrieveFinanceDataWithCurl(requestUrl, networkSettings, quotesResponseCallback);
+            this.retrieveFinanceDataWithCurl(requestUrl, networkSettings, callback);
         } else if (IS_SOUP_2) {
             this.retrieveFinanceDataWithSoup2(requestUrl, networkSettings, quotesResponseCallback);
         } else {
@@ -920,12 +949,15 @@ YahooFinanceQuoteReader.prototype = {
     },
 
     mergeHistoryDataWithResults(quoteResponse, historyResponse) {
+        this.quoteUtils.logDebug("====== mergeHistoryDataWithResults - start to merge"); //TODO
         try {
             const parsedQuotes = JSON.parse(quoteResponse);
             const parsedHistoryData = JSON.parse(historyResponse);
             const symbolKeyedHistoryData = {};
 
             if (!parsedQuotes.quoteResponse || !parsedQuotes.quoteResponse.result) {
+                this.quoteUtils.logDebug("====== mergeHistoryDataWithResults - return no data"); //TODO
+
                 return quoteResponse;
             }
 
@@ -935,10 +967,14 @@ YahooFinanceQuoteReader.prototype = {
                 symbolKeyedHistoryData[symbol] = historyDataItem.response[0];
             })
 
+            this.quoteUtils.logDebug("====== mergeHistoryDataWithResults - lets loop"); //TODO
             for (let quoteData of parsedQuotes.quoteResponse.result) {
                 let symbol = quoteData.symbol;
 
+                this.quoteUtils.logDebug("====== mergeHistoryDataWithResults - symbol ::: " + symbol); //TODO
+
                 if (symbolKeyedHistoryData[symbol]) {
+                    this.quoteUtils.logDebug("====== mergeHistoryDataWithResults - symbolKeyedHistoryData ::: " + symbol); //TODO
                     let historyData = symbolKeyedHistoryData[symbol];
                     quoteData.price7DaysAgo = this.pullHistoricalPriceFromData(historyData, 7);
                     quoteData.price1MonthAgo = this.pullHistoricalPriceFromData(historyData, 30);
@@ -1271,7 +1307,6 @@ QuotesTable.prototype = {
         const prefix = 'weekly' === labelType ? 'W' : 'M';
         const historyChangeType = 'weekly' === labelType ? settings.weeklyChangeType : settings.monthlyChangeType;
 
-        //TODO maybe check createMarketPriceLabel() to add a currency
         let valueToDisplay = historicalPrice;
         let valueForTrendCompare = currentPrice;
         let suffix = '';
