@@ -5,10 +5,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: yfquotes@thegli 0.18.3\n"
+"Project-Id-Version: yfquotes@thegli 0.18.4\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-03-05 21:41+0100\n"
+"POT-Creation-Date: 2026-06-17 20:35+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,61 +17,61 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. desklet.js:99
+#. desklet.js:100
 msgid "N/A"
 msgstr ""
 
-#. desklet.js:748
+#. desklet.js:797
 msgid "Empty quotes list. Open settings and add some symbols."
 msgstr ""
 
-#. desklet.js:797 desklet.js:830 desklet.js:860
+#. desklet.js:873 desklet.js:906 desklet.js:936
 msgid "Authorization parameters have expired"
 msgstr ""
 
-#. desklet.js:800 desklet.js:833 desklet.js:863
+#. desklet.js:876 desklet.js:909 desklet.js:939
 #, javascript-format
 msgid "Yahoo Finance service not available! Status: %s"
 msgstr ""
 
-#. desklet.js:804
+#. desklet.js:880
 #, javascript-format
 msgid "Something went wrong retrieving Yahoo Finance data. %s"
 msgstr ""
 
-#. desklet.js:1269
+#. desklet.js:1467
 msgid "No quotes data to display"
 msgstr ""
 
-#. desklet.js:1363
+#. desklet.js:1569
 #, javascript-format
 msgid "Updated at %s"
 msgstr ""
 
-#. desklet.js:1395
+#. desklet.js:1601
 #, javascript-format
 msgid "Error: %s"
 msgstr ""
 
-#. desklet.js:1554
+#. desklet.js:1773
 #, javascript-format
 msgid ""
 "Failed to retrieve authorization parameter! Unable to fetch quotes data. "
 "Status: %s"
 msgstr ""
 
-#. desklet.js:1585
+#. desklet.js:1804
 #, javascript-format
 msgid "Consent processing failed! Unable to fetch quotes data. Status: %s"
 msgstr ""
 
-#. desklet.js:1591
+#. desklet.js:1810
 #, javascript-format
 msgid ""
 "Consent processing not completed! Unable to fetch quotes data. Status: %s"
 msgstr ""
 
-#. desklet.js:1627
+#. desklet.js:1846
 #, javascript-format
 msgid ""
 "Failed to retrieve authorization crumb! Unable to fetch quotes data. Status: "
@@ -468,6 +468,53 @@ msgstr ""
 
 #. settings-schema.json->showPercentChange->tooltip
 msgid "Display the percent change of the market price (eg. -0.53%)"
+msgstr ""
+
+#. settings-schema.json->showWeeklyChange->description
+msgid "Show weekly change"
+msgstr ""
+
+#. settings-schema.json->showWeeklyChange->tooltip
+msgid "Display the change of the market price from 7 days ago"
+msgstr ""
+
+#. settings-schema.json->weeklyChangeType->options
+#. settings-schema.json->monthlyChangeType->options
+msgid "Percent change"
+msgstr ""
+
+#. settings-schema.json->weeklyChangeType->options
+#. settings-schema.json->monthlyChangeType->options
+msgid "Absolute change"
+msgstr ""
+
+#. settings-schema.json->weeklyChangeType->options
+#. settings-schema.json->monthlyChangeType->options
+msgid "Market price"
+msgstr ""
+
+#. settings-schema.json->weeklyChangeType->description
+msgid "Type of weekly change"
+msgstr ""
+
+#. settings-schema.json->weeklyChangeType->tooltip
+msgid "What type should be the value for the weekly change"
+msgstr ""
+
+#. settings-schema.json->showMonthlyChange->description
+msgid "Show monthly change"
+msgstr ""
+
+#. settings-schema.json->showMonthlyChange->tooltip
+msgid "Display the change of the market price from 1 month ago"
+msgstr ""
+
+#. settings-schema.json->monthlyChangeType->description
+msgid "Type of monthly change"
+msgstr ""
+
+#. settings-schema.json->monthlyChangeType->tooltip
+msgid "What type should be the value for the monthly change"
 msgstr ""
 
 #. settings-schema.json->colorPercentChange->description

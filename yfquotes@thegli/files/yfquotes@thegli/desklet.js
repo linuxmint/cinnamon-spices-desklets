@@ -759,31 +759,33 @@ YahooFinanceQuoteReader.prototype = {
 
         let finalResponse = quoteResponse;
         const chunks = [];
-        const chunkResponses = [];
 
         for (let i = 0; i < allSymbols.length; i += maxSymbolsPerRequest) {
             chunks.push(allSymbols.slice(i, i + maxSymbolsPerRequest).join(","));
         }
 
-        //TODO this is called async and the script continues with 0 items in chunkResponses
-        // - there is way with the Promise to avoid this
-        // - or in the callback check when the last loop of chunks.forEach() cycles and do the merge there
-        chunks.forEach((chunkSymbols) => {
-            let historyUrl = `${YF_HISTORY_URL}?symbols=${encodeURIComponent(chunkSymbols)}&range=1mo&interval=1d&crumb=${_that.authParams.crumb}`;
-            this.sendFinanceRequestByNetworkSettings(historyUrl, networkSettings, (historyResponse) => {
-                this.quoteUtils.logDebug("====== retrieveAndMergeHistoryData - pushing chunk responses"); //TODO
-                chunkResponses.push(historyResponse);
+        const chunksPromise = new Promise((resolve) => {
+            const chunkResponses = [];
+
+            chunks.forEach((chunkSymbols) => {
+                let historyUrl = `${YF_HISTORY_URL}?symbols=${encodeURIComponent(chunkSymbols)}&range=1mo&interval=1d&crumb=${_that.authParams.crumb}`;
+                this.sendFinanceRequestByNetworkSettings(historyUrl, networkSettings, (historyResponse) => {
+                    chunkResponses.push(historyResponse);
+
+                    if (chunkResponses.length === chunks.length) {
+                        resolve(chunkResponses);
+                    }
+                });
             });
-        });
-
-        this.quoteUtils.logDebug("====== retrieveAndMergeHistoryData - chunkResponses ::: " + chunkResponses.length); //TODO
-
-        chunkResponses.forEach((chunkResponse) => {
-            this.quoteUtils.logDebug("====== retrieveAndMergeHistoryData - doing a merge"); //TODO
-            finalResponse = _that.mergeHistoryDataWithResults(finalResponse, chunkResponse);
         })
 
-        finalCallback.call(_that, finalResponse);
+        chunksPromise.then((chunkResponses) => {
+            chunkResponses.forEach((chunkResponse) => {
+                finalResponse = _that.mergeHistoryDataWithResults(finalResponse, chunkResponse);
+            })
+
+            finalCallback.call(_that, finalResponse);
+        })
     },
 
     retrieveFinanceData(quoteSymbolsArg, networkSettings, quoteDisplaySettings, callback) {
@@ -796,17 +798,14 @@ YahooFinanceQuoteReader.prototype = {
             return;
         }
 
-        //TODO need to check if this works with the after hours feature
-
-        //TODO have to update the translations
-        // - there is a command or instructions in the repo
-
         const quotesResponseCallback = (quoteResponse) => {
+            // If no historical change enabled, continue
             if (!quoteDisplaySettings.showWeeklyChange && !quoteDisplaySettings.showMonthlyChange) {
                 callback.call(_that, quoteResponse);
                 return;
             }
 
+            // Check for errors
             try {
                 const parsed = JSON.parse(quoteResponse);
 
@@ -949,15 +948,12 @@ YahooFinanceQuoteReader.prototype = {
     },
 
     mergeHistoryDataWithResults(quoteResponse, historyResponse) {
-        this.quoteUtils.logDebug("====== mergeHistoryDataWithResults - start to merge"); //TODO
         try {
             const parsedQuotes = JSON.parse(quoteResponse);
             const parsedHistoryData = JSON.parse(historyResponse);
             const symbolKeyedHistoryData = {};
 
             if (!parsedQuotes.quoteResponse || !parsedQuotes.quoteResponse.result) {
-                this.quoteUtils.logDebug("====== mergeHistoryDataWithResults - return no data"); //TODO
-
                 return quoteResponse;
             }
 
@@ -967,14 +963,10 @@ YahooFinanceQuoteReader.prototype = {
                 symbolKeyedHistoryData[symbol] = historyDataItem.response[0];
             })
 
-            this.quoteUtils.logDebug("====== mergeHistoryDataWithResults - lets loop"); //TODO
             for (let quoteData of parsedQuotes.quoteResponse.result) {
                 let symbol = quoteData.symbol;
 
-                this.quoteUtils.logDebug("====== mergeHistoryDataWithResults - symbol ::: " + symbol); //TODO
-
                 if (symbolKeyedHistoryData[symbol]) {
-                    this.quoteUtils.logDebug("====== mergeHistoryDataWithResults - symbolKeyedHistoryData ::: " + symbol); //TODO
                     let historyData = symbolKeyedHistoryData[symbol];
                     quoteData.price7DaysAgo = this.pullHistoricalPriceFromData(historyData, 7);
                     quoteData.price1MonthAgo = this.pullHistoricalPriceFromData(historyData, 30);
@@ -1303,8 +1295,7 @@ QuotesTable.prototype = {
             return new St.Label({ text: ABSENT });
         }
 
-        const percentChange = ((currentPrice - historicalPrice) / historicalPrice) * 100;
-        const prefix = 'weekly' === labelType ? 'W' : 'M';
+        let prefix = 'weekly' === labelType ? 'W' : 'M';
         const historyChangeType = 'weekly' === labelType ? settings.weeklyChangeType : settings.monthlyChangeType;
 
         let valueToDisplay = historicalPrice;
@@ -1314,15 +1305,18 @@ QuotesTable.prototype = {
         let downtrendColor = settings.downtrendChangeColor;
 
         if ('percent' === historyChangeType) {
-            valueToDisplay = percentChange;
+            valueToDisplay = ((currentPrice - historicalPrice) / historicalPrice) * 100;
             valueForTrendCompare = 0;
+            prefix += 0 < valueToDisplay ? '+' : '';
             suffix = '%';
         } else if ('absolute' === historyChangeType) {
             valueToDisplay = currentPrice - historicalPrice;
             valueForTrendCompare = 0;
+            prefix += 0 < valueToDisplay ? '+' : '';
         }
 
         if ('market_price' === historyChangeType) {
+            // If the history price is higher, it needs to be red, because its downtrend and vice versa
             uptrendColor = settings.downtrendChangeColor;
             downtrendColor = settings.uptrendChangeColor;
         }
