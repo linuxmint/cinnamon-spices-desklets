@@ -830,9 +830,9 @@ YahooFinanceQuoteReader.prototype = {
         if (networkSettings.enableCurl) {
             this.retrieveFinanceDataWithCurl(requestUrl, networkSettings, callback);
         } else if (IS_SOUP_2) {
-            this.retrieveFinanceDataWithSoup2(requestUrl, networkSettings, quotesResponseCallback);
+            this.retrieveFinanceDataWithSoup2(requestUrl, networkSettings, callback);
         } else {
-            this.retrieveFinanceDataWithSoup3(requestUrl, networkSettings, quotesResponseCallback);
+            this.retrieveFinanceDataWithSoup3(requestUrl, networkSettings, callback);
         }
     },
 
