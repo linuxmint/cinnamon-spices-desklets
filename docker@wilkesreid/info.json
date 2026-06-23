@@ -1,0 +1,8 @@
+{
+  "uuid": "docker@wilkesreid",
+  "name": "Docker",
+  "description": "A desktop widget that monitors Docker containers with start/stop controls and docker-compose group management.",
+  "author": "wilkesreid",
+  "website": "",
+  "comments": ""
+}

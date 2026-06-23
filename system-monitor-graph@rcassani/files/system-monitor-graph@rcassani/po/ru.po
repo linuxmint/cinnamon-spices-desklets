@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-08-27 21:38-0400\n"
+"POT-Creation-Date: 2026-03-23 21:24-0400\n"
 "PO-Revision-Date: \n"
 "Last-Translator: blogdron\n"
 "Language-Team: \n"
@@ -15,84 +15,106 @@ msgstr ""
 "X-Generator: Poedit 3.4.2\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:183
+#. desklet.js:275
 msgid "CPU"
 msgstr "Процессор"
 
-#. desklet.js:194 desklet.js:212 desklet.js:232 desklet.js:273 desklet.js:547
+#. desklet.js:284
+msgid "CPU Temperature"
+msgstr ""
+
+#. desklet.js:301 desklet.js:319 desklet.js:339 desklet.js:380 desklet.js:684
 msgid "GB"
 msgstr "ГБ"
 
-#. desklet.js:197 desklet.js:215 desklet.js:235 desklet.js:276 desklet.js:561
+#. desklet.js:304 desklet.js:322 desklet.js:342 desklet.js:383 desklet.js:698
 msgid "GiB"
 msgstr "ГиБ"
 
 #. settings-schema.json->type->options
-#. desklet.js:199
+#. desklet.js:306
 msgid "RAM"
 msgstr "Память"
 
 #. settings-schema.json->type->options
-#. desklet.js:217
+#. desklet.js:324
 msgid "Swap"
 msgstr "Подкачка"
 
-#. desklet.js:240
+#. desklet.js:347
 msgid "free of"
 msgstr "свободно из"
 
-#. desklet.js:256
+#. desklet.js:363
 msgid "GPU Usage"
 msgstr "Видеокарта"
 
-#. desklet.js:278
+#. desklet.js:385
 msgid "GPU Memory"
 msgstr "Память видеокарты"
 
+#. desklet.js:401
+#, fuzzy
+msgid "GPU Temperature"
+msgstr "Производитель GPU"
+
 #. settings-schema.json->type->options
-#. desklet.js:290
+#. desklet.js:415
 msgid "Network"
 msgstr "Сеть"
 
-#. desklet.js:518 desklet.js:541
+#. settings-schema.json->type->options
+#. desklet.js:428
+msgid "Battery"
+msgstr ""
+
+#. desklet.js:431
+msgid "Fully charged"
+msgstr ""
+
+#. desklet.js:432
+msgid "Not charging"
+msgstr ""
+
+#. desklet.js:434
+msgid " hrs"
+msgstr ""
+
+#. desklet.js:655 desklet.js:678
 msgid "b"
 msgstr "б"
 
-#. desklet.js:520 desklet.js:555 desklet.js:569
+#. desklet.js:657 desklet.js:692 desklet.js:706
 msgid "B"
 msgstr "Б"
 
-#. desklet.js:533
+#. desklet.js:670
 msgid "Gb"
 msgstr "Гб"
 
-#. desklet.js:536
+#. desklet.js:673
 msgid "Mb"
 msgstr "Мб"
 
-#. desklet.js:539
+#. desklet.js:676
 msgid "Kb"
 msgstr "Кб"
 
-#. desklet.js:550
+#. desklet.js:687
 msgid "MB"
 msgstr "МБ"
 
-#. desklet.js:553
+#. desklet.js:690
 msgid "KB"
 msgstr "КБ"
 
-#. desklet.js:564
+#. desklet.js:701
 msgid "MiB"
 msgstr "МиБ"
 
-#. desklet.js:567
+#. desklet.js:704
 msgid "KiB"
 msgstr "КиБ"
-
-#. desklet.js:844 desklet.js:882
-msgid "Error executing nvidia-smi command."
-msgstr "Ошибка при запуске команды nvidia-smi."
 
 #. metadata.json->name
 msgid "System monitor graph"
@@ -125,6 +147,47 @@ msgstr "Накопитель"
 #. settings-schema.json->type->options
 msgid "GPU"
 msgstr "Видеокарта"
+
+#. settings-schema.json->cpu-variable->description
+#, fuzzy
+msgid "CPU variable to monitor"
+msgstr "Информация для графика"
+
+#. settings-schema.json->cpu-variable->tooltip
+#, fuzzy
+msgid "Select the CPU variable to monitor."
+msgstr "Выберите, что нужно отслеживать."
+
+#. settings-schema.json->cpu-variable->options
+#. settings-schema.json->gpu-variable->options
+msgid "Usage"
+msgstr "Загрузка"
+
+#. settings-schema.json->cpu-variable->options
+#. settings-schema.json->gpu-variable->options
+msgid "Temperature"
+msgstr ""
+
+#. settings-schema.json->temperature-units-cpu->options
+#. settings-schema.json->temperature-units-gpu->options
+msgid "°C"
+msgstr ""
+
+#. settings-schema.json->temperature-units-cpu->options
+#. settings-schema.json->temperature-units-gpu->options
+msgid "°F"
+msgstr ""
+
+#. settings-schema.json->temperature-units-cpu->description
+#. settings-schema.json->temperature-units-gpu->description
+msgid "Temperature scale"
+msgstr ""
+
+#. settings-schema.json->temperature-units-cpu->tooltip
+#. settings-schema.json->temperature-units-gpu->tooltip
+#, fuzzy
+msgid "Temperature scale for graph"
+msgstr "Системный компонент для графика"
 
 #. settings-schema.json->data-prefix-ram->options
 #. settings-schema.json->data-prefix-swap->options
@@ -187,6 +250,15 @@ msgstr ""
 "Например, eth0, wlan0, enp0s3. Оставьте пустым, чтобы взять суммарные "
 "значения по всем интерфейсам"
 
+#. settings-schema.json->battery-name->description
+#, fuzzy
+msgid "Name of battery name to monitor"
+msgstr "Сетевой интерфейс"
+
+#. settings-schema.json->battery-name->tooltip
+msgid "Check battery name in /sys/class/power_supply/ Examples: BAT0, BAT1"
+msgstr ""
+
 #. settings-schema.json->filesystem->description
 msgid "Filesystem to monitor"
 msgstr "Файловая система для мониторинга"
@@ -234,10 +306,6 @@ msgstr "Информация для графика"
 #. settings-schema.json->gpu-variable->tooltip
 msgid "Select the GPU variable to monitor."
 msgstr "Выберите, что нужно отслеживать."
-
-#. settings-schema.json->gpu-variable->options
-msgid "Usage"
-msgstr "Загрузка"
 
 #. settings-schema.json->gpu-variable->options
 msgid "Memory"
@@ -341,6 +409,7 @@ msgstr "Цвет линии для загрузки процессора"
 #. settings-schema.json->line-color-gpu->tooltip
 #. settings-schema.json->line-color-network-down->tooltip
 #. settings-schema.json->line-color-network-up->tooltip
+#. settings-schema.json->line-color-battery->tooltip
 msgid "RGB or RGBA. Alpha is ignored"
 msgstr "RGB или RGBA. Альфа канал игнорируется"
 
@@ -367,6 +436,11 @@ msgstr "Цвет линии для загрузки"
 #. settings-schema.json->line-color-network-up->description
 msgid "Line color Network Upload"
 msgstr "Цвет линии для отдачи"
+
+#. settings-schema.json->line-color-battery->description
+#, fuzzy
+msgid "Line color Battery"
+msgstr "Цвет линии для подкачки"
 
 #. settings-schema.json->midline-color->description
 msgid "Grid color"

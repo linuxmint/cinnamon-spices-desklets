@@ -1,13 +1,13 @@
 # DAYS COUNTDOWN
 # This file is put in the public domain.
 # KopfDesDaemons, 2024
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: daysCountdown@KopfDesDaemons 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-11-24 13:08+0100\n"
+"POT-Creation-Date: 2026-04-03 13:08+0200\n"
 "PO-Revision-Date: 2024-11-28 15:20+0100\n"
 "Last-Translator: qadzek\n"
 "Language-Team: \n"
@@ -17,11 +17,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. metadata.json->name
-#. desklet.js:27
+#. desklet.js:19
 msgid "Days Countdown"
 msgstr "Dagen Aftellen"
 
-#. desklet.js:75
+#. desklet.js:77
+#, fuzzy, javascript-format
+msgid "New Year %f Countdown"
+msgstr "Dagen Aftellen"
+
+#. desklet.js:98
 #, javascript-format
 msgid "%f days"
 msgstr "%f dagen"
@@ -30,66 +35,88 @@ msgstr "%f dagen"
 msgid "Countdown of the remaining days to a date."
 msgstr "Aftellen van de resterende dagen tot een datum."
 
-#. settings-schema.json->head0->description
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
 msgid "General"
 msgstr "Algemeen"
 
-#. settings-schema.json->labelText->description
-msgid "Text for the label"
-msgstr "Tekst voor het label"
-
-#. settings-schema.json->countdownDate->description
-msgid "Date to which the countdown counts down"
-msgstr "Datum waarnaar wordt afgeteld"
-
-#. settings-schema.json->refreshInterval->options
-msgid "only after starting"
-msgstr "alleen na starten"
-
-#. settings-schema.json->refreshInterval->options
-msgid "every 5 minutes"
-msgstr "elke 5 minuten"
-
-#. settings-schema.json->refreshInterval->options
-msgid "every 10 minutes"
-msgstr "elke 10 minuten"
-
-#. settings-schema.json->refreshInterval->options
-msgid "every 15 minutes"
-msgstr "elke 15 minuten"
-
-#. settings-schema.json->refreshInterval->options
-msgid "every 20 minutes"
-msgstr "elke 20 minuten"
-
-#. settings-schema.json->refreshInterval->options
-msgid "every 30 minutes"
-msgstr "elke 30 minuten"
-
-#. settings-schema.json->refreshInterval->options
-msgid "every 60 minutes"
-msgstr "elke 60 minuten"
-
-#. settings-schema.json->refreshInterval->description
-msgid "Refresh interval"
-msgstr "Verversingsinterval"
-
-#. settings-schema.json->head1->description
+#. settings-schema.json->style-page->title
 msgid "Style"
 msgstr "Stijl"
 
-#. settings-schema.json->fontSizeLabel->description
+#. settings-schema.json->font-size-section->title
+msgid "Font Sizes"
+msgstr ""
+
+#. settings-schema.json->countdown-section->title
+#, fuzzy
+msgid "Countdown"
+msgstr "Dagen Aftellen"
+
+#. settings-schema.json->colors-section->title
+msgid "Colors"
+msgstr ""
+
+#. settings-schema.json->label-text->description
+msgid "Text for the label"
+msgstr "Tekst voor het label"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet scale size"
+msgstr ""
+
+#. settings-schema.json->countdown-date->description
+msgid "Date to which the countdown counts down"
+msgstr "Datum waarnaar wordt afgeteld"
+
+#. settings-schema.json->refresh-interval->options
+msgid "only after starting"
+msgstr "alleen na starten"
+
+#. settings-schema.json->refresh-interval->options
+msgid "every 5 minutes"
+msgstr "elke 5 minuten"
+
+#. settings-schema.json->refresh-interval->options
+msgid "every 10 minutes"
+msgstr "elke 10 minuten"
+
+#. settings-schema.json->refresh-interval->options
+msgid "every 15 minutes"
+msgstr "elke 15 minuten"
+
+#. settings-schema.json->refresh-interval->options
+msgid "every 20 minutes"
+msgstr "elke 20 minuten"
+
+#. settings-schema.json->refresh-interval->options
+msgid "every 30 minutes"
+msgstr "elke 30 minuten"
+
+#. settings-schema.json->refresh-interval->options
+msgid "every 60 minutes"
+msgstr "elke 60 minuten"
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval"
+msgstr "Verversingsinterval"
+
+#. settings-schema.json->font-size-label->description
 msgid "Font size for the label text"
 msgstr "Lettergrootte voor de labeltekst"
 
-#. settings-schema.json->colorLabel->description
+#. settings-schema.json->color-label->description
 msgid "Label color"
 msgstr "Labelkleur"
 
-#. settings-schema.json->fontSizeCountdown->description
+#. settings-schema.json->font-size-countdown->description
 msgid "Font size for the countdown text"
 msgstr "Lettergrootte voor de aftel-tekst"
 
-#. settings-schema.json->colorCountdown->description
+#. settings-schema.json->color-countdown->description
 msgid "Countdown color"
 msgstr "Aftel-kleuren"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr ""
