@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: mintoo@sujitagarwal 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-08-15 14:52-0400\n"
+"POT-Creation-Date: 2026-01-08 11:21-0500\n"
 "PO-Revision-Date: 2025-09-29 03:47+0200\n"
 "Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
 "Language-Team: \n"
@@ -17,6 +17,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.6\n"
+
+#. desklet.js:42
+msgid "Lock the Screen"
+msgstr ""
+
+#. desklet.js:43
+msgid "Logout"
+msgstr ""
+
+#. desklet.js:44
+msgid "Shutdown"
+msgstr ""
+
+#. desklet.js:45
+msgid "Restart"
+msgstr ""
 
 #. metadata.json->name
 msgid "Mintoo - The Mint Assistant"

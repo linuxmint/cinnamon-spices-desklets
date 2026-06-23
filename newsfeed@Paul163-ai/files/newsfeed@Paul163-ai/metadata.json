@@ -1,0 +1,8 @@
+{
+    "uuid": "newsfeed@Paul163-ai",
+    "name": "News Feed - Multi-Source",
+    "description": "Stay updated with your favorite RSS feeds.",
+    "prevent-resizing": false,
+    "cinnamon-version": ["5.4", "6.0", "6.4"],
+    "author": "Paul Lintott"
+}

@@ -1,0 +1,7 @@
+{
+    "uuid": "procmon@ksmith",
+    "name": "ProcMon Table",
+    "description": "Sortable process table powered by top.",
+    "version": "1.1.0",
+    "max-instances": 5
+}

@@ -1,0 +1,31 @@
+.procmon-root {
+    padding: 4px 0;
+    spacing: 2px;
+}
+
+.procmon-header-row,
+.procmon-data-row {
+    spacing: 0;
+}
+
+.procmon-header-button {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background-color: transparent;
+}
+
+.procmon-header-label,
+.procmon-row-cell,
+.procmon-error {
+    font-family: "DejaVu Sans Mono", "Noto Sans Mono", monospace;
+    font-size: 10pt;
+}
+
+.procmon-body {
+    spacing: 1px;
+}
+
+.procmon-error {
+    color: #d24;
+}

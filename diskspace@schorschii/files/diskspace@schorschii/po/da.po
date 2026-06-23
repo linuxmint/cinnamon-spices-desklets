@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-10-15 00:30+0200\n"
-"PO-Revision-Date: 2025-11-04 19:08+0100\n"
-"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"POT-Creation-Date: 2026-02-22 20:33+0100\n"
+"PO-Revision-Date: 2026-04-06 09:41+0200\n"
+"Last-Translator: Alan Mortensen <over.tackiness223@passinbox.com>\n"
 "Language-Team: Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -18,26 +18,38 @@ msgstr ""
 "X-Poedit-SearchPath-1: settings-schema.json\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:304 desklet.js:390
+#. desklet.js:317 desklet.js:490
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#. desklet.js:306 desklet.js:392
+#. desklet.js:319 desklet.js:492
 msgid "Swap"
 msgstr "Swap"
 
 #. settings-schema.json->type->options
-#. desklet.js:308
+#. desklet.js:321
 msgid "Filesystem"
 msgstr "Filsystem"
 
-#. desklet.js:335
+#. desklet.js:348
 msgid "Not Found"
 msgstr "Ikke fundet"
 
+#. desklet.js:437
+msgid "Sorry, this font is not supported, please select a different one."
+msgstr "Denne skrifttype understøttes ikke; vælg en anden."
+
+#. desklet.js:438
+msgid " Font: `"
+msgstr " Skrifttype: `"
+
+#. desklet.js:438
+msgid "` Error: "
+msgstr "` Fejl: "
+
 #. metadata.json->name
-#. desklet.js:394
+#. desklet.js:494
 msgid "Disk Space"
 msgstr "Diskplads"
 
@@ -45,13 +57,31 @@ msgstr "Diskplads"
 msgid "Displays the usage of a filesystem or RAM."
 msgstr "Viser brugen af et filsystem eller RAM."
 
-#. settings-schema.json->head0->description
-msgid "Settings for diskspace@schorschii"
-msgstr "Indstillinger"
-
-#. settings-schema.json->head1->description
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
 msgid "General"
 msgstr "Generel"
+
+#. settings-schema.json->visual-page->title
+msgid "Visual"
+msgstr "Visuel"
+
+#. settings-schema.json->design-section->title
+#. settings-schema.json->design->description
+msgid "Design"
+msgstr "Design"
+
+#. settings-schema.json->colors-section->title
+msgid "Colors"
+msgstr "Farver"
+
+#. settings-schema.json->fonts-section->title
+msgid "Fonts"
+msgstr "Skrifttyper"
+
+#. settings-schema.json->label-section->title
+msgid "Custom Label"
+msgstr "Tilpasset etiket"
 
 #. settings-schema.json->type->description
 msgid "Monitor a file system or RAM usage"
@@ -105,6 +135,14 @@ msgstr "Titalssystem"
 msgid "Binary"
 msgstr "Binær"
 
+#. settings-schema.json->size-fraction-digits->description
+msgid "Number of fractional digits"
+msgstr "Antal decimaler"
+
+#. settings-schema.json->size-fraction-digits->tooltip
+msgid "Increase or decrease the number digits after the decimal point."
+msgstr "Forøg eller formindsk antallet af cifre efter kommaet."
+
 #. settings-schema.json->reserved-blocks-as-used-space->description
 msgid "Show reserved blocks as used space"
 msgstr "Vis reserverede blokke som brugt plads"
@@ -116,14 +154,6 @@ msgid ""
 msgstr ""
 "Reserverede blokke er kun brugbare for administratoren og vises derfor som "
 "standard som brugt plads."
-
-#. settings-schema.json->head2->description
-msgid "Visual"
-msgstr "Visuel"
-
-#. settings-schema.json->design->description
-msgid "Design"
-msgstr "Design"
 
 #. settings-schema.json->design->options
 msgid "Thin"
@@ -201,6 +231,22 @@ msgstr "Cirkelfarve"
 msgid "Circle color for free space"
 msgstr "Cirkelfarve for ledig plads"
 
+#. settings-schema.json->font->description
+msgid "Text font"
+msgstr "Skrifttype til tekst"
+
+#. settings-schema.json->font->tooltip
+msgid "Change text font family"
+msgstr "Ændr skrifttypefamilien til tekst"
+
+#. settings-schema.json->font-sub->description
+msgid "Sub text font"
+msgstr "Skrifttype til undertekst"
+
+#. settings-schema.json->font-sub->tooltip
+msgid "Change font family of the text below the percentage"
+msgstr "Ændr skrifttypefamilien til teksten under procentdelen"
+
 #. settings-schema.json->text-color->description
 msgid "Text color"
 msgstr "Tekstfarve"
@@ -218,12 +264,6 @@ msgid "Increase or decrease the size of this desklet using this scale factor."
 msgstr ""
 "Forøg eller formindsk skrivebordsprogrammets størrelse med denne "
 "skaleringsfaktor."
-
-#. settings-schema.json->head3->description
-msgid "Custom desklet label (only visible if decorations are enabled)"
-msgstr ""
-"Tilpasset etiket til skrivebordsprogrammet (kun synlig hvis boksen rundt om "
-"er aktiveret)"
 
 #. settings-schema.json->use-custom-label->description
 msgid "Use a custom desklet label"

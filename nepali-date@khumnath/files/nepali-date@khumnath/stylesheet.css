@@ -1,0 +1,180 @@
+.desklet {
+    background-color: transparent;
+    border: none;
+}
+
+.nepali-date-container {
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.nepali-date-container:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Daily View */
+.nepali-date-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #ffcc00;
+}
+
+.nepali-date-weekday {
+    font-size: 1.1em;
+    opacity: 0.8;
+    margin-bottom: 2px;
+}
+
+.nepali-date-main {
+    font-size: 3em;
+    font-weight: 800;
+}
+
+.nepali-date-month {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+.nepali-date-gregorian {
+    margin-top: 10px;
+    font-size: 0.85em;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 8px;
+}
+
+.nepali-date-time {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #00ffcc;
+    margin: 5px 0;
+    text-align: center;
+}
+
+.calendar-box {
+    margin-top: 15px;
+}
+
+/* Calendar View */
+.calendar-header {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #ffcc00;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.calendar-nav-button {
+    border-radius: 5px;
+    padding: 2px 8px;
+    transition: all 0.2s ease;
+}
+
+.calendar-nav-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.calendar-day-num:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.calendar-jump-box {
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.calendar-about-box {
+    background-color: rgba(20, 20, 25, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+    color: white;
+    width: 480px;
+}
+
+.calendar-year-entry {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    padding: 2px 5px;
+    width: 80px;
+    font-size: 0.9em;
+}
+
+.calendar-month-selector-btn {
+    padding: 5px;
+    margin: 2px;
+    border-radius: 5px;
+    font-size: 0.7em;
+    background-color: rgba(255, 255, 255, 0.05);
+    text-align: center;
+}
+
+.calendar-month-selector-btn:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.calendar-month-selector-btn:active {
+    background-color: #ffcc00;
+    color: black;
+}
+
+.calendar-month-label {
+    text-align: center;
+    padding: 0 10px;
+}
+
+.calendar-month-label:hover {
+    color: #ffffff;
+}
+
+.calendar-table {
+    spacing: 5px;
+}
+
+.calendar-day-header {
+    font-size: 0.8em;
+    font-weight: bold;
+    opacity: 0.6;
+    padding: 2px;
+    text-align: center;
+}
+
+.calendar-day-num {
+    font-size: 0.9em;
+    padding: 2px;
+    text-align: center;
+}
+
+.calendar-day-today {
+    background-color: #ffcc00;
+    color: black;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Daily View About Button */
+.daily-about-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+    color: white;
+    opacity: 0.4;
+}
+
+.daily-about-btn:hover {
+    opacity: 1.0;
+}
+
+.daily-about-btn:active {
+    color: #ffcc00;
+}

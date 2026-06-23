@@ -1,0 +1,6 @@
+{
+    "name": "ProcMon Table",
+    "uuid": "procmon@ksmith",
+    "description": "Sortable process table powered by top.",
+    "author": "masterdecaf"
+}

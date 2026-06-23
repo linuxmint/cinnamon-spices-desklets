@@ -1,0 +1,130 @@
+{
+    "refresh-interval": {
+        "type": "spinbutton",
+        "default": 2,
+        "min": 1,
+        "max": 300,
+        "step": 1,
+        "units": "seconds",
+        "description": "Refresh interval",
+        "tooltip": "How often to refresh the process list."
+    },
+    "row-count": {
+        "type": "spinbutton",
+        "default": 10,
+        "min": 1,
+        "max": 100,
+        "step": 1,
+        "description": "Number of rows",
+        "tooltip": "Maximum process rows to display."
+    },
+    "pid-column-width": {
+        "type": "spinbutton",
+        "default": 60,
+        "min": 40,
+        "max": 240,
+        "step": 2,
+        "units": "px",
+        "description": "PID column width",
+        "tooltip": "Width of the PID column."
+    },
+    "user-column-width": {
+        "type": "spinbutton",
+        "default": 60,
+        "min": 60,
+        "max": 360,
+        "step": 2,
+        "units": "px",
+        "description": "USER column width",
+        "tooltip": "Width of the USER column."
+    },
+    "cpu-column-width": {
+        "type": "spinbutton",
+        "default": 60,
+        "min": 50,
+        "max": 260,
+        "step": 2,
+        "units": "px",
+        "description": "CPU% column width",
+        "tooltip": "Width of the CPU% column."
+    },
+    "mem-column-width": {
+        "type": "spinbutton",
+        "default": 80,
+        "min": 50,
+        "max": 260,
+        "step": 2,
+        "units": "px",
+        "description": "MEM column width",
+        "tooltip": "Width of the MEM column."
+    },
+    "command-column-width": {
+        "type": "spinbutton",
+        "default": 240,
+        "min": 80,
+        "max": 1600,
+        "step": 4,
+        "units": "px",
+        "description": "COMMAND column width",
+        "tooltip": "Width of the COMMAND column. Desklet width is the sum of all column widths."
+    },
+    "disable-decorations": {
+        "type": "switch",
+        "default": false,
+        "description": "Disable desklet decorations",
+        "tooltip": "Hide Cinnamon desklet frame and header decorations."
+    },
+    "header-text-color": {
+        "type": "colorchooser",
+        "default": "#f7f7f7",
+        "description": "Header text color",
+        "tooltip": "Color used for the header row text."
+    },
+    "content-text-color": {
+        "type": "colorchooser",
+        "default": "#d9d9d9",
+        "description": "Content text color",
+        "tooltip": "Color used for process row text."
+    },
+    "background-color": {
+        "type": "colorchooser",
+        "default": "#1b1f24",
+        "description": "Background color",
+        "tooltip": "Base background color of the desklet."
+    },
+    "background-transparency": {
+        "type": "spinbutton",
+        "default": 20,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "units": "%",
+        "description": "Background transparency",
+        "tooltip": "0% is opaque, 100% is fully transparent."
+    },
+    "only-my-processes": {
+        "type": "switch",
+        "default": false,
+        "description": "Only my processes",
+        "tooltip": "Use top -u <current user> to show only your processes."
+    },
+    "cpu-scaling-mode": {
+        "type": "combobox",
+        "default": "total_scaled",
+        "description": "CPU scaling mode",
+        "tooltip": "Choose how CPU percentages are shown.",
+        "options": {
+            "Per-core style (100% = one core)": "per_core",
+            "Total-system-scaled (100% = all cores)": "total_scaled"
+        }
+    },
+    "command-max-length": {
+        "type": "spinbutton",
+        "default": 64,
+        "min": 8,
+        "max": 300,
+        "step": 1,
+        "description": "COMMAND max length",
+        "tooltip": "Long command names are truncated with ellipsis."
+    }
+}

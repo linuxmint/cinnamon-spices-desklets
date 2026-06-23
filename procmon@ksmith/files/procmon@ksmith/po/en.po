@@ -1,0 +1,171 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: procmon@ksmith 1.1.0\n"
+"POT-Creation-Date: 2026-02-17 00:00+0000\n"
+"PO-Revision-Date: 2026-02-17 00:00+0000\n"
+"Last-Translator: procmon@ksmith maintainers\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: desklet.js
+msgid "Process Monitor"
+msgstr "Process Monitor"
+
+#: desklet.js
+msgid "PID"
+msgstr "PID"
+
+#: desklet.js
+msgid "USER"
+msgstr "USER"
+
+#: desklet.js
+msgid "CPU%"
+msgstr "CPU%"
+
+#: desklet.js
+msgid "MEM"
+msgstr "MEM"
+
+#: desklet.js
+msgid "COMMAND"
+msgstr "COMMAND"
+
+#: metadata.json
+msgid "ProcMon Table"
+msgstr "ProcMon Table"
+
+#: metadata.json
+msgid "Sortable process table powered by top."
+msgstr "Sortable process table powered by top."
+
+#: settings-schema.json
+msgid "Refresh interval"
+msgstr "Refresh interval"
+
+#: settings-schema.json
+msgid "How often to refresh the process list."
+msgstr "How often to refresh the process list."
+
+#: settings-schema.json
+msgid "Number of rows"
+msgstr "Number of rows"
+
+#: settings-schema.json
+msgid "Maximum process rows to display."
+msgstr "Maximum process rows to display."
+
+#: settings-schema.json
+msgid "PID column width"
+msgstr "PID column width"
+
+#: settings-schema.json
+msgid "Width of the PID column."
+msgstr "Width of the PID column."
+
+#: settings-schema.json
+msgid "USER column width"
+msgstr "USER column width"
+
+#: settings-schema.json
+msgid "Width of the USER column."
+msgstr "Width of the USER column."
+
+#: settings-schema.json
+msgid "CPU% column width"
+msgstr "CPU% column width"
+
+#: settings-schema.json
+msgid "Width of the CPU% column."
+msgstr "Width of the CPU% column."
+
+#: settings-schema.json
+msgid "MEM column width"
+msgstr "MEM column width"
+
+#: settings-schema.json
+msgid "Width of the MEM column."
+msgstr "Width of the MEM column."
+
+#: settings-schema.json
+msgid "COMMAND column width"
+msgstr "COMMAND column width"
+
+#: settings-schema.json
+msgid "Width of the COMMAND column. Desklet width is the sum of all column widths."
+msgstr "Width of the COMMAND column. Desklet width is the sum of all column widths."
+
+#: settings-schema.json
+msgid "Disable desklet decorations"
+msgstr "Disable desklet decorations"
+
+#: settings-schema.json
+msgid "Hide Cinnamon desklet frame and header decorations."
+msgstr "Hide Cinnamon desklet frame and header decorations."
+
+#: settings-schema.json
+msgid "Header text color"
+msgstr "Header text color"
+
+#: settings-schema.json
+msgid "Color used for the header row text."
+msgstr "Color used for the header row text."
+
+#: settings-schema.json
+msgid "Content text color"
+msgstr "Content text color"
+
+#: settings-schema.json
+msgid "Color used for process row text."
+msgstr "Color used for process row text."
+
+#: settings-schema.json
+msgid "Background color"
+msgstr "Background color"
+
+#: settings-schema.json
+msgid "Base background color of the desklet."
+msgstr "Base background color of the desklet."
+
+#: settings-schema.json
+msgid "Background transparency"
+msgstr "Background transparency"
+
+#: settings-schema.json
+msgid "0% is opaque, 100% is fully transparent."
+msgstr "0% is opaque, 100% is fully transparent."
+
+#: settings-schema.json
+msgid "Only my processes"
+msgstr "Only my processes"
+
+#: settings-schema.json
+msgid "Use top -u <current user> to show only your processes."
+msgstr "Use top -u <current user> to show only your processes."
+
+#: settings-schema.json
+msgid "CPU scaling mode"
+msgstr "CPU scaling mode"
+
+#: settings-schema.json
+msgid "Choose how CPU percentages are shown."
+msgstr "Choose how CPU percentages are shown."
+
+#: settings-schema.json
+msgid "Per-core style (100% = one core)"
+msgstr "Per-core style (100% = one core)"
+
+#: settings-schema.json
+msgid "Total-system-scaled (100% = all cores)"
+msgstr "Total-system-scaled (100% = all cores)"
+
+#: settings-schema.json
+msgid "COMMAND max length"
+msgstr "COMMAND max length"
+
+#: settings-schema.json
+msgid "Long command names are truncated with ellipsis."
+msgstr "Long command names are truncated with ellipsis."

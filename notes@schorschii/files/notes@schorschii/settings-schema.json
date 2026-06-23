@@ -44,6 +44,9 @@
             "keys": [
                 "style",
                 "scale-size",
+                "stretch-note-size",
+                "note-height",
+                "note-width",
                 "enable-word-wrap",
                 "hide-decorations",
                 "text-shadow",
@@ -214,6 +217,31 @@
         "units": "scale factor",
         "description": "Desklet size",
         "tooltip": "Increase or decrease the size of this desklet using this scale factor."
+    },
+    "stretch-note-size": {
+        "type": "checkbox",
+        "description": "Stretch note to increase size",
+        "default": false
+    },
+    "note-height": {
+        "type": "spinbutton",
+        "default": 130,
+        "min": 50,
+        "max": 1000,
+        "step": 10,
+        "units": "pixels",
+        "description": "Note height",
+        "dependency": "stretch-note-size"
+    },
+    "note-width": {
+        "type": "spinbutton",
+        "default": 130,
+        "min": 50,
+        "max": 1000,
+        "step": 10,
+        "units": "pixels",
+        "description": "Note width",
+        "dependency": "stretch-note-size"
     },
     "use-custom-label": {
         "type": "checkbox",

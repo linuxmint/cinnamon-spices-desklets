@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: mintoo@sujitagarwal 1.2\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-08-15 14:52-0400\n"
+"POT-Creation-Date: 2026-01-08 11:21-0500\n"
 "PO-Revision-Date: \n"
 "Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
 "Language-Team: \n"
@@ -18,6 +18,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.2\n"
 
+#. desklet.js:42
+msgid "Lock the Screen"
+msgstr ""
+
+#. desklet.js:43
+msgid "Logout"
+msgstr ""
+
+#. desklet.js:44
+msgid "Shutdown"
+msgstr ""
+
+#. desklet.js:45
+msgid "Restart"
+msgstr ""
+
 #. metadata.json->name
 msgid "Mintoo - The Mint Assistant"
 msgstr "Mintoo - Trợ lý Mint"
@@ -26,7 +42,9 @@ msgstr "Mintoo - Trợ lý Mint"
 msgid ""
 "A friendly assistant for your Linux Mint. Now with more features to "
 "customize the look and feel!"
-msgstr "Một trợ lý thân thiện cho Linux Mint của bạn. Giờ đây với nhiều tính năng hơn để tùy chỉnh giao diện và cảm nhận!"
+msgstr ""
+"Một trợ lý thân thiện cho Linux Mint của bạn. Giờ đây với nhiều tính năng "
+"hơn để tùy chỉnh giao diện và cảm nhận!"
 
 #. settings-schema.json->head0->description
 msgid "Settings for Mintoo"

@@ -3,7 +3,8 @@ const Desklet = imports.ui.desklet;
 const GLib = imports.gi.GLib;
 const Util = imports.misc.util;
 const Gettext = imports.gettext;
-const Settings = imports.ui.settings; 
+const Settings = imports.ui.settings;
+const Tooltips = imports.ui.tooltips;
 
 const uuid = "mintoo@sujitagarwal";
 
@@ -38,10 +39,10 @@ class MintooDesklet extends Desklet.Desklet {
         this._mintoolabel = new St.Label({ style_class: "mintoo-button-move" });
 
         const buttonSettings = [
-            { className: "mintoo-button mintoo-button-one", action: this._lockClickAction },
-            { className: "mintoo-button mintoo-button-two", action: this._logoutClickAction },
-            { className: "mintoo-button mintoo-button-three", action: this._shutdownClickAction },
-            { className: "mintoo-button mintoo-button-four", action: this._rebootClickAction }
+            { className: "mintoo-button mintoo-button-one", action: this._lockClickAction, tooltip: _("Lock the Screen") },
+            { className: "mintoo-button mintoo-button-two", action: this._logoutClickAction, tooltip: _("Logout") },
+            { className: "mintoo-button mintoo-button-three", action: this._shutdownClickAction, tooltip: _("Shutdown") },
+            { className: "mintoo-button mintoo-button-four", action: this._rebootClickAction, tooltip: _("Restart") },
         ];
 
         let defaultColor = this.buttonColor; // Default color if not set
@@ -60,6 +61,8 @@ class MintooDesklet extends Desklet.Desklet {
             button.connect("leave-event", () => {
                 button.set_style(`background-color: ${this.buttonColor};`);
             });
+            new Tooltips.Tooltip(button, btn.tooltip);
+            
             if (index < 2) {
                 this._row1.add(button);
             } else {

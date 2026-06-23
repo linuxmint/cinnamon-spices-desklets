@@ -1,6 +1,5 @@
 .init {
     font-size: 16px;
-    line-height: 2;
     margin-left: 5px;
 }
 
@@ -14,18 +13,8 @@
 }
 
 .box {
-    margin: 2px;
-    padding: 10px;
+    margin: 0.2em;
+    padding: 0.2em;
     border-radius: 10px;
     vertical-align: middle;
-}
-
-.rotating-icon {
-    animation: rotate 2s linear infinite;
-}
-
-@keyframes rotate {
-    100% {
-        transform: rotate(360deg);
-    }
 }

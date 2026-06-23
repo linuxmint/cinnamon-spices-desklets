@@ -18,7 +18,7 @@
       "sections": [
         "section_text_color",
         "section_background",
-        "section_icons"
+        "section_width"
       ]
     },
     "section_servers": {
@@ -47,13 +47,13 @@
         "BoxBgColor"
       ]
     },
-    "section_icons": {
+    "section_width": {
       "type": "section",
       "title": "",
       "keys": [
-        "icon_OK",
-        "icon_ERR",
-        "icon_WARN"
+        "FontSize",
+        "ContainerFixedWidth",
+        "ContainerWidth"
       ]
     }
   },
@@ -78,7 +78,12 @@
         "title": "Type for check",
         "align": 0.5,
         "type": "string",
-        "default": "ping"
+        "default": "ping",
+        "options": {
+          "ping": "ping",
+          "http": "http",
+          "https": "https"
+        }
       },
       {
         "id": "display",
@@ -88,7 +93,12 @@
         "default": true
       }
     ],
-    "default": []
+    "default": [{
+      "name": "Cloudflare",
+      "ip": "1.1.1.1",
+      "type": "ping",
+      "display": true
+    }]
   },
 
   "TimeRepeat": {
@@ -96,8 +106,7 @@
     "type": "scale",
     "min": 1,
     "max": 180,
-    "description": "Update every:",
-    "units": "seconds",
+    "description": "Update every (seconds):",
     "step": 1
   },
 
@@ -149,21 +158,31 @@
     "tooltip": "Click the button to select a new background color for each elements"
   },
 
-  "icon_OK": {
-    "type": "iconfilechooser",
-    "description": "Icon for a successful connection",
-    "default": "gtk-ok"
+  "FontSize": {
+    "type": "spinbutton",
+    "default": 16,
+    "min": 4,
+    "max": 200,
+    "step": 1,
+    "description": "Font size",
+    "units": "pixels"
   },
 
-  "icon_ERR": {
-    "type": "iconfilechooser",
-    "description": "Icon for a failed connection",
-    "default": "gtk-no"
+  "ContainerFixedWidth": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Set a fixed width for the container",
+    "tooltip": "Enable checkbox to set the fixed width of the container"
   },
 
-  "icon_WARN": {
-    "type": "iconfilechooser",
-    "description": "Icon for the warning",
-    "default": "gtk-dialog-warning"
+  "ContainerWidth": {
+    "dependency": "ContainerFixedWidth",
+    "type": "spinbutton",
+    "default": 200,
+    "min": 40,
+    "max": 4000,
+    "step": 10,
+    "description": "Container width",
+    "units": "pixels"
   }
 }

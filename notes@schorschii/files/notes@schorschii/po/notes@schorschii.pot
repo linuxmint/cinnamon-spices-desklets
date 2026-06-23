@@ -5,10 +5,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: notes@schorschii 2.6\n"
+"Project-Id-Version: notes@schorschii 2.7\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-05-03 11:37-0400\n"
+"POT-Creation-Date: 2026-02-11 20:21+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. desklet.js:138
+#. desklet.js:148
 msgid "Refresh"
 msgstr ""
 
-#. desklet.js:151
+#. desklet.js:161
 msgid ""
 "Can't read text file.\n"
 "Select a file in settings.\n"
@@ -29,7 +29,7 @@ msgid ""
 "Click here to edit."
 msgstr ""
 
-#. desklet.js:289
+#. desklet.js:315
 msgid "Notepad"
 msgstr ""
 
@@ -285,6 +285,8 @@ msgid "Font"
 msgstr ""
 
 #. settings-schema.json->size-font->units
+#. settings-schema.json->note-height->units
+#. settings-schema.json->note-width->units
 msgid "pixels"
 msgstr ""
 
@@ -322,6 +324,18 @@ msgstr ""
 
 #. settings-schema.json->scale-size->tooltip
 msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+
+#. settings-schema.json->stretch-note-size->description
+msgid "Stretch note to increase size"
+msgstr ""
+
+#. settings-schema.json->note-height->description
+msgid "Note height"
+msgstr ""
+
+#. settings-schema.json->note-width->description
+msgid "Note width"
 msgstr ""
 
 #. settings-schema.json->use-custom-label->description
