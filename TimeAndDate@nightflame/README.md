@@ -11,7 +11,7 @@ You can customize this desklet to your taste. Change yours fonts, colors, sizes 
 
 The time and date format are from the JavaScript `toLocaleFormat` function, and the possible values can be found at:
 
-http://pubs.opengroup.org/onlinepubs/007908799/xsh/strftime.html 
+http://pubs.opengroup.org/onlinepubs/007908799/xsh/strftime.html  (`%W` and `%U` don't work currently)
 
 For example to change time format to HOURS:MINUTES:SECONDS use `%H:%M:%S`. Also, you may use any normal characters between special formatting characters like `%H text %M`, which would render as ex. `14 text 50` at 14:50. 
 
