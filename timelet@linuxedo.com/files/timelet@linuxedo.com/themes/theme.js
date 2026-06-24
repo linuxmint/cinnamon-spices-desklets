@@ -136,13 +136,11 @@ var Theme = class Theme {
      * localized period abbreviations if there is no translation.
      * 
      * @param {Number} hourIn24 hour in 24h format (0-23)
-     * @returns the translated AM/Noon/PM abbreviations
+     * @returns the translated AM/PM abbreviations
      */
     toPeriod(hourIn24) {
         if (hourIn24 < 12) {
             return _("AM");
-        } else if (hourIn24 == 12 && date.getMinutes() == 0 && date.getSeconds() == 0) {
-            return _("Noon");
         } else {
             return _("PM");
         }
