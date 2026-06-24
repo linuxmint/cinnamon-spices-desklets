@@ -1,0 +1,118 @@
+# TIMER
+# This file is put in the public domain.
+# KopfdesDaemons, 2026
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: timer@KopfdesDaemons 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-02-06 16:17+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. desklet.js:389
+msgid "Timer expired!"
+msgstr ""
+
+#. metadata.json->name
+msgid "Timer"
+msgstr ""
+
+#. metadata.json->description
+msgid "Set a timer for a user-defined time."
+msgstr ""
+
+#. settings-schema.json->head0->description
+msgid "Sound"
+msgstr ""
+
+#. settings-schema.json->sound-file->description
+msgid "Sound when the timer expires"
+msgstr ""
+
+#. settings-schema.json->sound-file->options
+msgid "No Sound"
+msgstr ""
+
+#. settings-schema.json->sound-file->options
+msgid "Alarm Clock"
+msgstr ""
+
+#. settings-schema.json->sound-file->options
+msgid "Complete"
+msgstr ""
+
+#. settings-schema.json->sound-file->options
+msgid "Service login"
+msgstr ""
+
+#. settings-schema.json->sound-file->options
+msgid "Service logout"
+msgstr ""
+
+#. settings-schema.json->use-custom-sound->description
+msgid "Use custom sound"
+msgstr ""
+
+#. settings-schema.json->custom-sound-file->description
+msgid "Custom sound file"
+msgstr ""
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr ""
+
+#. settings-schema.json->timer-name->description
+msgid "Timer name"
+msgstr ""
+
+#. settings-schema.json->show-notification->description
+msgid "Show notification when timer expires"
+msgstr ""
+
+#. settings-schema.json->head2->description
+msgid "Style"
+msgstr ""
+
+#. settings-schema.json->label-color->description
+msgid "Label color"
+msgstr ""
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr ""
+
+#. settings-schema.json->hideDecorations->description
+msgid "Hide decorations"
+msgstr ""
+
+#. settings-schema.json->head3->description
+msgid "Circle"
+msgstr ""
+
+#. settings-schema.json->indicator-color->description
+msgid "Indicator color"
+msgstr ""
+
+#. settings-schema.json->circle-color->description
+msgid "Circle color"
+msgstr ""
+
+#. settings-schema.json->fill-inner-circle->description
+msgid "Fill inner circle"
+msgstr ""
+
+#. settings-schema.json->inner-circle-color->description
+msgid "Inner circle color"
+msgstr ""
+
+#. settings-schema.json->circle-width->description
+msgid "Circle width"
+msgstr ""
