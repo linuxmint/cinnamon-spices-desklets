@@ -1,16 +1,15 @@
-# SERVER STATUS
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# SERVER STATUS Desklet.
+# Copyright (C) 2025 Maksym Mokriev
 # This file is distributed under the same license as the PACKAGE package.
 # Maksym Mokriev <maksmokriev@gmail.com>, 2025.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: serverstatus@maksmokriev 1.2.0\n"
-"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
-"issues\n"
-"POT-Creation-Date: 2026-01-04 08:44+0100\n"
-"PO-Revision-Date: \n"
+"Project-Id-Version: 1.2.2\n"
+"Report-Msgid-Bugs-To: Maksym Mokriev <maksmokriev@gmail.com>\n"
+"POT-Creation-Date: 2025-04-15 13:49+0300\n"
+"PO-Revision-Date: 2025-04-07 22:49+0300\n"
 "Last-Translator: Maksym Mokriev <maksmokriev@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -22,37 +21,33 @@ msgstr ""
 msgid "Server Status"
 msgstr "Статус сервера"
 
-#: desklet.js:84
+#: desklet.js:75
 msgid "Need to setup"
 msgstr "Потрібне налаштування"
 
-#: desklet.js:173
+#: desklet.js:146
 msgid "Error ping command on "
 msgstr "Помилка роботи команди ping "
 
-#: desklet.js:179
+#: desklet.js:153
 msgid "Error creating ping process "
 msgstr "Помилка створення ping процесу "
 
-#: desklet.js:205
+#: desklet.js:186
 msgid "Error curl command on "
 msgstr "Помилка роботи команди curl "
 
-#: desklet.js:211
+#: desklet.js:193
 msgid "Error creating curl process "
 msgstr "Помилка створення curl процесу "
+
+#. metadata.json->description
+msgid "A desklet that checks a host via ping or HTTP(S) and displays if it is available."
+msgstr "Десклет, який перевіряє хост через ping або HTTP(S) і показує', чи він доступний."
 
 #. metadata.json->name
 msgid "Server status"
 msgstr "Статус сервера"
-
-#. metadata.json->description
-msgid ""
-"A desklet that checks a host via ping or HTTP(S) and displays if it is "
-"available."
-msgstr ""
-"Десклет, який перевіряє хост через ping або HTTP(S) і показує', чи він "
-"доступний."
 
 #. settings-schema.json->page_servers->title
 msgid "Servers for checks"
@@ -88,7 +83,11 @@ msgstr "Показувати?"
 
 #. settings-schema.json->TimeRepeat->description
 msgid "Update every (seconds):"
-msgstr "Оновлювати кожні (секунди):"
+msgstr "Оновлювати кожні (сек.):"
+
+#. settings-schema.json->ResponseTime->description
+msgid "Response time (seconds):"
+msgstr "Час очікування відгуку (сек.)"
 
 #. settings-schema.json->TextColorBasic->description
 msgid "Basic text color"
@@ -104,19 +103,15 @@ msgstr "Колір тексту для успіху"
 
 #. settings-schema.json->TextColorOK->tooltip
 msgid "Click the button to select a new text color for successful connect"
-msgstr ""
-"Натисніть кнопку, щоб вибрати новий колір тексту для успішного підключення"
+msgstr "Натисніть кнопку, щоб вибрати новий колір тексту для успішного підключення"
 
 #. settings-schema.json->TextColorWARN->description
 msgid "Text color for WARNING"
 msgstr "Колір тексту для попередження"
 
 #. settings-schema.json->TextColorWARN->tooltip
-msgid ""
-"Click the button to select a new text color for warning in connect status"
-msgstr ""
-"Натисніть кнопку, щоб вибрати новий колір тексту для попередження в статусі "
-"підключення"
+msgid "Click the button to select a new text color for warning in connect status"
+msgstr "Натисніть кнопку, щоб вибрати новий колір тексту для попередження в статусі підключення"
 
 #. settings-schema.json->TextColorERR->description
 msgid "Text color for ERROR"
@@ -124,8 +119,7 @@ msgstr "Текст кольору для помилки"
 
 #. settings-schema.json->TextColorERR->tooltip
 msgid "Click the button to select a new text color for error in connect"
-msgstr ""
-"Натисніть кнопку, щоб вибрати новий колір тексту для помилки підключення"
+msgstr "Натисніть кнопку, щоб вибрати новий колір тексту для помилки підключення"
 
 #. settings-schema.json->ContainerBgColor->description
 msgid "Color for container background"
@@ -141,7 +135,7 @@ msgstr "Колір для тла елемента"
 
 #. settings-schema.json->BoxBgColor->tooltip
 msgid "Click the button to select a new background color for each elements"
-msgstr "Натисніть кнопку, щоб вибрати новий колір тла для кожного елемнту"
+msgstr "Натисніть кнопку, щоб вибрати новий колір тла для кожного елементу"
 
 #. settings-schema.json->FontSize->description
 msgid "Font size"
@@ -159,6 +153,27 @@ msgstr "Встановити фіксовану ширину контейнер�
 #. settings-schema.json->ContainerFixedWidth->tooltip
 msgid "Enable checkbox to set the fixed width of the container"
 msgstr "Увімкніть прапорець, щоб встановити фіксовану ширину контейнера"
+
+#. settings-schema.json->icon_WARN->description
+msgid "Icon for the warning"
+msgstr "Значок для попередження"
+
+#. settings-schema.json->FontSize->description
+msgid "Font size"
+msgstr "Розмір шрифта"
+
+#. settings-schema.json->FontSize->units
+#. settings-schema.json->ContainerWidth->units
+msgid "pixels"
+msgstr "пікс."
+
+#. settings-schema.json->ContainerFixedWidth->description
+msgid "Set a fixed width for the container"
+msgstr "Встановити фіксовану ширину контейнера"
+
+#. settings-schema.json->ContainerFixedWidth->tooltip
+msgid "Enable checkbox to set the fixed width of the container"
+msgstr "Перемикніть для встановлення фіксованої ширини контейнера"
 
 #. settings-schema.json->ContainerWidth->description
 msgid "Container width"
