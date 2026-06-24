@@ -1,0 +1,144 @@
+# Cinnaclock Desklet
+# Language: ro
+msgid ""
+msgstr ""
+"Project-Id-Version: Cinnaclock\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. settings-schema.json->pages
+msgid "General"
+msgstr "General"
+
+msgid "Layer 1"
+msgstr "Strat 1"
+
+msgid "Layer 2"
+msgstr "Strat 2"
+
+msgid "Layer 3"
+msgstr "Strat 3"
+
+#. settings-schema.json->sections
+msgid "Format Style"
+msgstr "Stil Format"
+
+msgid "Background Style"
+msgstr "Stil Fundal"
+
+msgid "Text Style"
+msgstr "Stil Text"
+
+msgid "Shadow"
+msgstr "Umbră"
+
+#. settings-schema.json->descriptions
+msgid "Show background"
+msgstr "Arată fundalul"
+
+msgid "Background Color"
+msgstr "Culoare fundal"
+
+msgid "Corner Radius"
+msgstr "Rază colțuri"
+
+msgid "Show Layer 1"
+msgstr "Arată Stratul 1"
+
+msgid "Show Layer 2"
+msgstr "Arată Stratul 2"
+
+msgid "Show Layer 3"
+msgstr "Arată Stratul 3"
+
+msgid "Layer 1 Format"
+msgstr "Format Strat 1"
+
+msgid "Layer 2 Format"
+msgstr "Format Strat 2"
+
+msgid "Layer 3 Format"
+msgstr "Format Strat 3"
+
+msgid "Layer 1 Vertical Offset"
+msgstr "Offset vertical Strat 1"
+
+msgid "Layer 2 Vertical Offset"
+msgstr "Offset vertical Strat 2"
+
+msgid "Layer 3 Vertical Offset"
+msgstr "Offset vertical Strat 3"
+
+msgid "Layer 1 Horizontal Offset"
+msgstr "Offset orizontal Strat 1"
+
+msgid "Layer 2 Horizontal Offset"
+msgstr "Offset orizontal Strat 2"
+
+msgid "Layer 3 Horizontal Offset"
+msgstr "Offset orizontal Strat 3"
+
+msgid "Font"
+msgstr "Font"
+
+msgid "Color"
+msgstr "Culoare"
+
+msgid "Uppercase"
+msgstr "Majuscule"
+
+msgid "Horizontal offset"
+msgstr "Offset orizontal"
+
+msgid "Vertical offset"
+msgstr "Offset vertical"
+
+msgid "Blur"
+msgstr "Efect de ceață"
+
+msgid "Select a Preset"
+msgstr "Selectează un Preset"
+
+#. settings-schema.json->options
+msgid "Manual"
+msgstr "Manual"
+
+msgid "Modern Blue"
+msgstr "Albastru Modern"
+
+msgid "Clear Orange"
+msgstr "Portocaliu Clar"
+
+msgid "Digital Neon"
+msgstr "Neon Digital"
+
+msgid "Minimal Dark"
+msgstr "Minimalist Întunecat"
+
+msgid "Minimal White"
+msgstr "Minimalist Alb"
+
+msgid "Phantom"
+msgstr "Fantomă"
+
+msgid "Cyberpunk"
+msgstr "Cyberpunk"
+
+#. settings-schema.json->tooltips
+msgid "Set the background color and transparency of the desklet"
+msgstr "Setați culoarea de fundal și transparența"
+
+msgid "Example: %H:%M for 24h"
+msgstr "Exemplu: %H:%M pentru 24h"
+
+msgid "Example: %A for full weekday name"
+msgstr "Exemplu: %A pentru numele complet al zilei"
+
+msgid "Example: %e %B %Y"
+msgstr "Exemplu: %e %B %Y"
+
+#. desklet.js
+msgid "Edit Config"
+msgstr "Editează Configurația"
