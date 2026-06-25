@@ -1,0 +1,9 @@
+{
+    "max-instances": "10",
+    "description": "Displays a custom text as a watermark",
+    "name": "Watermark",
+    "version": "1.0.0",
+    "uuid": "watermark@mantve",
+    "author": "mantve",
+    "prevent-decorations": true
+}
