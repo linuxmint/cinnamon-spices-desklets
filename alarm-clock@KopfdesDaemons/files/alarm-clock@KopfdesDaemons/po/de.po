@@ -1,0 +1,200 @@
+# ALARM CLOCK
+# This file is put in the public domain.
+# KopfdesDaemons, 2026
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: alarm-clock@KopfdesDaemons 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-04-02 17:15+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. metadata.json->name
+#. desklet.js:25 desklet.js:500 desklet.js:502 desklet.js:530
+msgid "Alarm Clock"
+msgstr "Wecker"
+
+#. desklet.js:495
+msgid "day(s)"
+msgstr "Tag(e)"
+
+#. desklet.js:496
+msgid "hour(s)"
+msgstr "Stunde(n)"
+
+#. desklet.js:497
+msgid "minute(s)"
+msgstr "Minute(n)"
+
+#. desklet.js:499
+msgid "Alarm is set for in"
+msgstr "Wecker eingestellt für in"
+
+#. desklet.js:502
+msgid "No active alarm days selected."
+msgstr "Es sind keine aktiven Wecktage ausgewählt."
+
+#. desklet.js:531
+msgid "Alarm ringing!"
+msgstr "Wecker klingelt!"
+
+#. metadata.json->description
+msgid "A simple alarm clock for your desktop."
+msgstr "Ein einfacher Wecker für deinen Desktop."
+
+#. settings-schema.json->general-page->title
+msgid "General"
+msgstr "Allgemein"
+
+#. settings-schema.json->colors-page->title
+msgid "Colors"
+msgstr "Farben"
+
+#. settings-schema.json->style-sections->title
+msgid "Style"
+msgstr "Stil"
+
+#. settings-schema.json->font-colors-section->title
+msgid "Font Colors"
+msgstr "Schriftfarben"
+
+#. settings-schema.json->background-color-section->title
+msgid "Background Color"
+msgstr "Hintergrundfarbe"
+
+#. settings-schema.json->sound-section->title
+msgid "Sound"
+msgstr "Klang"
+
+#. settings-schema.json->toggle-button-section->title
+msgid "Toggle Button"
+msgstr "Toggle Button"
+
+#. settings-schema.json->alarm-section->title
+msgid "Alarm"
+msgstr "Wecker"
+
+#. settings-schema.json->alarm-name->description
+msgid "Alarm name"
+msgstr "Weckername"
+
+#. settings-schema.json->style-preset->description
+msgid "Style preset"
+msgstr "Stilvoreinstellung"
+
+#. settings-schema.json->style-preset->options
+msgid "Default"
+msgstr "Standard"
+
+#. settings-schema.json->style-preset->options
+msgid "Translucent"
+msgstr "Durchscheinend"
+
+#. settings-schema.json->style-preset->options
+msgid "Material"
+msgstr "Material"
+
+#. settings-schema.json->style-preset->options
+msgid "Metro"
+msgstr "Metro"
+
+#. settings-schema.json->style-preset->options
+msgid "Pink"
+msgstr "Rosa"
+
+#. settings-schema.json->style-preset->options
+msgid "Green"
+msgstr "Grün"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet scale size"
+msgstr "Deskletskalierungsgröße"
+
+#. settings-schema.json->border-radius->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->border-radius->description
+msgid "Border radius"
+msgstr "Rahmenradius"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Dekorationen verstecken"
+
+#. settings-schema.json->sound-file->description
+msgid "Sound when the alarm rings"
+msgstr "Sound, wenn Wecker klingelt"
+
+#. settings-schema.json->sound-file->options
+msgid "No Sound"
+msgstr "Kein Ton"
+
+#. settings-schema.json->sound-file->options
+msgid "Simple Ringtone"
+msgstr "Simple Ringtone"
+
+#. settings-schema.json->sound-file->options
+msgid "Honk"
+msgstr "Honk"
+
+#. settings-schema.json->sound-file->options
+msgid "Waiting"
+msgstr "Waiting"
+
+#. settings-schema.json->use-custom-sound->description
+msgid "Use custom sound"
+msgstr "Benutze benutzerdefinierten Sound"
+
+#. settings-schema.json->custom-sound-file->description
+msgid "Custom sound file"
+msgstr "Benutzerdefinierte Audiodatei"
+
+#. settings-schema.json->background-color->description
+msgid "Background color"
+msgstr "Hintergrundfarbe"
+
+#. settings-schema.json->label-color->description
+msgid "Label color"
+msgstr "Labelfarbe"
+
+#. settings-schema.json->day-buttons-color->description
+msgid "Day buttons color"
+msgstr "Tag Button Farbe"
+
+#. settings-schema.json->selected-day-buttons-color->description
+msgid "Selected day buttons color"
+msgstr "Selektierter Tag Button Farbe"
+
+#. settings-schema.json->enabled-toggle-button-background-color->description
+msgid "Enabled toggle button background color"
+msgstr "Hintergrundfarbe des aktivierten Toggle Buttons"
+
+#. settings-schema.json->disabled-toggle-button-background-color->description
+msgid "Disabled toggle button background color"
+msgstr "Hintergrundfarbe des deaktivierten Toggle Buttons"
+
+#. settings-schema.json->enabled-toggle-button-circle-color->description
+msgid "Enabled toggle button circle color"
+msgstr "Farbe des Kreises des aktivierten Toggle Button"
+
+#. settings-schema.json->disabled-toggle-button-circle-color->description
+msgid "Disabled toggle button circle color"
+msgstr "Farbe des Kreises des deaktivierten Toggle Button"
+
+#. settings-schema.json->input-background-color->description
+msgid "Input background color"
+msgstr "Input Hintergundfarbe"
+
+#. settings-schema.json->input-font-color->description
+msgid "Input font color"
+msgstr "Input Schriftfarbe"
