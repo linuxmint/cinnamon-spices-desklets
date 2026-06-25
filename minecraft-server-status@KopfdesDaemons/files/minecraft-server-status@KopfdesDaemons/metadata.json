@@ -1,0 +1,7 @@
+{
+  "uuid": "minecraft-server-status@KopfdesDaemons",
+  "name": "Minecraft Server Status",
+  "description": "Displays up status and player count of a Minecraft server.",
+  "version": "1.0.0",
+  "max-instances": "50"
+}
