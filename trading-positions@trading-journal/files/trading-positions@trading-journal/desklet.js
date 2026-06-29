@@ -297,25 +297,56 @@ class TradingPositionsDesklet extends Desklet.Desklet {
             return;
         }
 
-        if (positions.length > 0) this._renderFuturesSection(positions);
+        // Futures nach Börse gruppieren — je eine Sektion (alphabetisch sortiert).
+        let renderedAny = false;
+        if (positions.length > 0) {
+            let byBroker = {};
+            for (let p of positions) {
+                let b = p.broker || '?';
+                (byBroker[b] = byBroker[b] || []).push(p);
+            }
+            for (let b of Object.keys(byBroker).sort()) {
+                if (renderedAny) this._content.add_child(new St.Label({ text: '─'.repeat(44), style_class: 'separator-thin' }));
+                this._renderFuturesSection(byBroker[b], this._brokerLabel(b));
+                renderedAny = true;
+            }
+        }
 
         if (bots.length > 0) {
-            if (positions.length > 0) {
+            if (renderedAny) {
                 this._content.add_child(new St.Label({ text: '─'.repeat(44), style_class: 'separator-thin' }));
             }
             this._renderBotSection(bots);
         }
     }
 
-    _renderFuturesSection(positions) {
+    _brokerLabel(b) {
+        switch ((b || '').toLowerCase()) {
+            case 'bitunix': return 'Bitunix';
+            case 'bitget':  return 'Bitget';
+            case 'pionex':  return 'Pionex';
+            default:        return b ? b.charAt(0).toUpperCase() + b.slice(1) : '—';
+        }
+    }
+
+    // Side einheitlich LONG/SHORT/NEUTRAL (nicht BUY/SELL).
+    _displaySide(s) {
+        let u = (s || '').toString().toUpperCase();
+        if (u === 'BUY'  || u === 'LONG')  return 'LONG';
+        if (u === 'SELL' || u === 'SHORT') return 'SHORT';
+        return u || '-';
+    }
+
+    _renderFuturesSection(positions, brokerLabel) {
         // Total PnL
         let totalPnl   = positions.reduce((sum, p) => sum + (parseFloat(p.unrealizedPNL) || 0), 0);
         let totalClass = totalPnl >= 0 ? 'pnl-profit' : 'pnl-loss';
         let totalSign  = totalPnl >= 0 ? '+' : '';
         let totalRow   = new St.BoxLayout({ style_class: 'total-row' });
         let posWord = positions.length === 1 ? _("position") : _("positions");
+        let prefix = brokerLabel ? brokerLabel + '  ' : _("Total:") + '  ';
         let totalLbl = new St.Label({
-            text: _("Total:") + `  ${totalSign}${totalPnl.toFixed(2)} USDT   (${positions.length} ${posWord})`,
+            text: prefix + `${totalSign}${totalPnl.toFixed(2)} USDT   (${positions.length} ${posWord})`,
             style_class: 'total-label ' + totalClass
         });
         if (this._totalStyle) totalLbl.set_style(this._totalStyle);
@@ -402,7 +433,7 @@ class TradingPositionsDesklet extends Desklet.Desklet {
         let cw = this._colWidths;
         let cells = [
             { text: pos.symbol || '-', cls: 'symbol-cell',            width: cw.symbol },
-            { text: pos.side   || '-', cls: 'side-cell ' + sideClass, width: cw.side },
+            { text: this._displaySide(pos.side), cls: 'side-cell ' + sideClass, width: cw.side },
         ];
         if (this.showLeverage) cells.push({ text: (pos.leverage ? pos.leverage + 'x' : '-'), cls: 'leverage-cell', width: cw.leverage });
         cells.push({ text: fmt(pos.entryPrice), cls: 'price-cell', width: cw.price });
@@ -450,7 +481,7 @@ class TradingPositionsDesklet extends Desklet.Desklet {
         let cw = this._colWidths;
         let cells = [
             { text: pos.symbol || '-', cls: 'symbol-cell',            width: cw.symbol },
-            { text: pos.side   || '-', cls: 'side-cell ' + sideClass, width: cw.side },
+            { text: this._displaySide(pos.side), cls: 'side-cell ' + sideClass, width: cw.side },
         ];
         if (this.showLeverage)  cells.push({ text: (pos.leverage ? pos.leverage + 'x' : '-'), cls: 'leverage-cell', width: cw.leverage });
         cells.push({ text: fmt(pos.entryPrice), cls: 'price-cell', width: cw.price });
