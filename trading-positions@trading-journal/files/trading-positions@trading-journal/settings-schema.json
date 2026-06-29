@@ -19,6 +19,12 @@
     "description": "Server port",
     "tooltip": "Default: 8080"
   },
+  "api-key": {
+    "type": "entry",
+    "default": "",
+    "description": "ESP32 API key",
+    "tooltip": "From Journal → Settings → ESP32 Display → Generate key. Works even with the password gate enabled."
+  },
   "refresh-interval": {
     "type": "spinbutton",
     "default": 30,

@@ -84,8 +84,9 @@
 .side-cell {
     font-weight: bold;
 }
-.side-long  { color: #2ecc71; }
-.side-short { color: #e74c3c; }
+.side-long    { color: #2ecc71; }
+.side-short   { color: #e74c3c; }
+.side-neutral { color: #95a5a6; }
 
 .leverage-cell {
     color: #c0d0e0;

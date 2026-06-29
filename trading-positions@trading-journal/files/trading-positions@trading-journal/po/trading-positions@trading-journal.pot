@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-29 07:54+0200\n"
+"POT-Creation-Date: 2026-06-29 12:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,93 +17,98 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:172
+#: desklet.js:180
 msgid "Open positions & bots"
 msgstr ""
 
-#: desklet.js:197
+#: desklet.js:205
 msgid "Connecting…"
 msgstr ""
 
-#: desklet.js:229
-#, javascript-format
-msgid "Connecting to %s…"
+#: desklet.js:235
+msgid ""
+"No API key set.\n"
+"Enter it in the desklet settings."
 msgstr ""
 
-#: desklet.js:236 desklet.js:268
+#: desklet.js:240
+msgid "Invalid API key (401)"
+msgstr ""
+
+#: desklet.js:244
 msgid "Server not reachable"
 msgstr ""
 
-#: desklet.js:275
+#: desklet.js:251
 msgid "Parse error:"
 msgstr ""
 
-#: desklet.js:312
+#: desklet.js:267
 #, javascript-format
 msgid "Updated: %s"
 msgstr ""
 
-#: desklet.js:340
+#: desklet.js:295
 msgid "No open positions"
 msgstr ""
 
-#: desklet.js:361
+#: desklet.js:316
 msgid "position"
 msgstr ""
 
-#: desklet.js:361
+#: desklet.js:316
 msgid "positions"
 msgstr ""
 
-#: desklet.js:363
+#: desklet.js:318
 msgid "Total:"
 msgstr ""
 
-#: desklet.js:373 desklet.js:403
+#: desklet.js:328 desklet.js:358
 msgid "Symbol"
 msgstr ""
 
-#: desklet.js:374 desklet.js:404
+#: desklet.js:329 desklet.js:359
 msgid "Side"
 msgstr ""
 
-#: desklet.js:376 desklet.js:406
+#: desklet.js:331 desklet.js:361
 msgid "Lvg"
 msgstr ""
 
-#: desklet.js:377
+#: desklet.js:332
 msgid "Entry"
 msgstr ""
 
-#: desklet.js:378
+#: desklet.js:333
 msgid "Mark"
 msgstr ""
 
-#: desklet.js:379
+#: desklet.js:334
 msgid "unr. PnL"
 msgstr ""
 
-#: desklet.js:380
+#: desklet.js:335
 msgid "real. PnL"
 msgstr ""
 
-#: desklet.js:394
+#: desklet.js:349
 msgid "Bots:"
 msgstr ""
 
-#: desklet.js:394
+#: desklet.js:349
 msgid "running"
 msgstr ""
 
-#: desklet.js:407
+#: desklet.js:362
 msgid "Ø Entry"
 msgstr ""
 
-#: desklet.js:408
+#: desklet.js:363
 msgid "Liq"
 msgstr ""
 
-#: desklet.js:409
+#: desklet.js:364
 msgid "PnL"
 msgstr ""
 
@@ -135,6 +140,16 @@ msgstr ""
 
 #. settings-schema.json->server-port->tooltip
 msgid "Default: 8080"
+msgstr ""
+
+#. settings-schema.json->api-key->description
+msgid "ESP32 API key"
+msgstr ""
+
+#. settings-schema.json->api-key->tooltip
+msgid ""
+"From Journal → Settings → ESP32 Display → Generate key. Works even with the "
+"password gate enabled."
 msgstr ""
 
 #. settings-schema.json->refresh-interval->units

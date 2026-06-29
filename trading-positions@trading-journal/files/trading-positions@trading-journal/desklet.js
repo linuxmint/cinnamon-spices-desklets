@@ -43,6 +43,7 @@ class TradingPositionsDesklet extends Desklet.Desklet {
         this._settings = new Settings.DeskletSettings(this, UUID, desklet_id);
         this._settings.bind("server-host",      "serverHost",      this._onSettingChanged.bind(this));
         this._settings.bind("server-port",      "serverPort",      this._onSettingChanged.bind(this));
+        this._settings.bind("api-key",          "apiKey",          this._onSettingChanged.bind(this));
         this._settings.bind("refresh-interval", "refreshInterval", this._onSettingChanged.bind(this));
         this._settings.bind("show-leverage",    "showLeverage",    this._onSettingChanged.bind(this));
         this._settings.bind("show-mark-price",  "showMarkPrice",   this._onSettingChanged.bind(this));
@@ -123,9 +124,13 @@ class TradingPositionsDesklet extends Desklet.Desklet {
         }
     }
 
-    _soupGet(url, callback) {
+    _soupGet(url, callback, headers) {
         if (SOUP_VERSION === 3) {
             let msg = Soup.Message.new('GET', url);
+            if (headers) {
+                let h = msg.get_request_headers();
+                for (let name in headers) h.append(name, headers[name]);
+            }
             this._session.send_and_read_async(msg, GLib.PRIORITY_DEFAULT, null, (session, result) => {
                 try {
                     let bytes  = session.send_and_read_finish(result);
@@ -139,6 +144,9 @@ class TradingPositionsDesklet extends Desklet.Desklet {
             });
         } else {
             let msg = Soup.Message.new('GET', url);
+            if (headers) {
+                for (let name in headers) msg.request_headers.append(name, headers[name]);
+            }
             this._session.queue_message(msg, (session, response) => {
                 let status = response.status_code;
                 let body   = response.response_body ? response.response_body.data : '';
@@ -216,91 +224,38 @@ class TradingPositionsDesklet extends Desklet.Desklet {
     }
 
     _refresh() {
-        // Always acquire a cookie first if we don't have one yet
-        // On 401 a new cookie is fetched automatically
-        if (this._cookieAcquired) {
-            this._fetchPositions();
-        } else {
-            this._acquireCookie();
+        this._fetchDisplay();
+    }
+
+    // Single read-only call to the public, key-authenticated endpoint
+    // (X-ESP32-Key header — no session cookie). Works even with the journal's
+    // optional password gate enabled. Returns futures (openPositions) + bots.
+    _fetchDisplay() {
+        if (!this.apiKey) {
+            this._showStatus(_("No API key set.\nEnter it in the desklet settings."));
+            return;
         }
-    }
-
-    _acquireCookie() {
-        this._showStatus(_("Connecting to %s…").format(this.serverHost));
-        this._soupGet(this._baseUrl + '/', (status, _body) => {
-            if (status > 0 && status < 500) {
-                this._cookieAcquired = true;
-                this._fetchVersion();
-                this._fetchPositions();
-            } else {
-                this._showStatus(_("Server not reachable") + "\n" + this.serverHost + ":" + this.serverPort);
-            }
-        });
-    }
-
-    _fetchVersion() {
-        // Fetch only once per session
-        if (this._appVersion) return;
-        this._soupGet(this._baseUrl + '/api/update/check', (status, body) => {
-            if (status !== 200) return;
-            try {
-                let data = JSON.parse(body);
-                if (data && data.localVersion) {
-                    this._appVersion = String(data.localVersion);
-                    this._updateFooterRight();
-                }
-            } catch(e) {
-                global.logError('[' + UUID + '] version parse: ' + e.message);
-            }
-        });
-    }
-
-    _fetchPositions() {
-        // Live data from the Bitunix API via the server proxy
-        this._soupGet(this._baseUrl + '/api/bitunix/open-positions', (status, body) => {
+        this._soupGet(this._baseUrl + '/api/esp32/display', (status, body) => {
             if (status === 401) {
-                // Token invalid (server restarted?) → acquire a new cookie
-                this._cookieAcquired = false;
-                this._acquireCookie();
+                this._showStatus(_("Invalid API key (401)"));
                 return;
             }
             if (status !== 200) {
                 this._showStatus(_("Server not reachable") + `\n${this.serverHost}:${this.serverPort}`);
                 return;
             }
+            let data;
             try {
-                let result = JSON.parse(body);
-                this._futures = result.positions || [];
+                data = JSON.parse(body);
             } catch(e) {
                 this._showStatus(_("Parse error:") + "\n" + e.message);
                 return;
             }
-            // Then optionally fetch the Pionex bots and render both together.
-            if (this.showBots !== false) {
-                this._fetchBots();
-            } else {
-                this._renderAll(this._futures, []);
-                this._updateFooterTime();
-            }
-        });
-    }
-
-    _fetchBots() {
-        // Running Pionex bots via the server proxy. If the Pionex config is
-        // missing or the call fails, only the futures are rendered.
-        this._soupGet(this._baseUrl + '/api/pionex/open-positions', (status, body) => {
-            let bots = [];
-            if (status === 200) {
-                try {
-                    let result = JSON.parse(body);
-                    bots = (result.positions || []).filter(p => p && (p.isBot || p.botType));
-                } catch(e) {
-                    global.logError('[' + UUID + '] pionex parse: ' + e.message);
-                }
-            }
-            this._renderAll(this._futures || [], bots);
+            this._futures = data.openPositions || [];
+            let bots = (this.showBots !== false) ? (data.bots || []) : [];
+            this._renderAll(this._futures, bots);
             this._updateFooterTime();
-        });
+        }, { 'X-ESP32-Key': this.apiKey });
     }
 
     _updateFooterTime() {
@@ -422,7 +377,8 @@ class TradingPositionsDesklet extends Desklet.Desklet {
         let pnlClass = isProfit ? 'pnl-profit' : 'pnl-loss';
         let pnlText  = (isProfit ? '+' : '') + pnl.toFixed(dec) + ' ' + coin;
         let sideLower = (pos.side || '').toLowerCase();
-        let sideClass = (sideLower === 'long' || sideLower === 'buy') ? 'side-long' : 'side-short';
+        let sideClass = (sideLower === 'long' || sideLower === 'buy') ? 'side-long'
+                      : (sideLower === 'neutral') ? 'side-neutral' : 'side-short';
 
         let liq = pos.liqPrice;
         if (!liq && pos.bitunixData) {
@@ -469,7 +425,8 @@ class TradingPositionsDesklet extends Desklet.Desklet {
         let pnlClass  = isProfit ? 'pnl-profit' : 'pnl-loss';
         let pnlText   = (isProfit ? '+' : '') + pnl.toFixed(2) + ' USDT';
         let sideLower = (pos.side || '').toLowerCase();
-        let sideClass = (sideLower === 'long' || sideLower === 'buy') ? 'side-long' : 'side-short';
+        let sideClass = (sideLower === 'long' || sideLower === 'buy') ? 'side-long'
+                      : (sideLower === 'neutral') ? 'side-neutral' : 'side-short';
 
         let markPrice = pos.markPrice;
         if (!markPrice && pos.bitunixData) {
