@@ -1,0 +1,5 @@
+{
+  "author": "Mouses007",
+  "description": "Docker container management desklet via Portainer API",
+  "name": "Docker Manager"
+}
