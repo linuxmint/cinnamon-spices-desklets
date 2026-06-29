@@ -1,6 +1,6 @@
 // Trading Positions Desklet
-// Zeigt offene Positionen aus dem Crypto Trading Journal
-// Erfordert: Cinnamon 5.0+
+// Shows open positions from the Crypto Trading Journal
+// Requires: Cinnamon 5.0+
 
 const Desklet   = imports.ui.desklet;
 const St        = imports.gi.St;
@@ -8,8 +8,9 @@ const GLib      = imports.gi.GLib;
 const Gio       = imports.gi.Gio;
 const Mainloop  = imports.mainloop;
 const Settings  = imports.ui.settings;
+const Gettext   = imports.gettext;
 
-// Soup version detection: Cinnamon < 5.8 verwendet Soup 2, neuere Soup 3
+// Soup version detection: Cinnamon < 5.8 uses Soup 2, newer ones Soup 3
 let Soup;
 try {
     imports.gi.versions.Soup = '3.0';
@@ -22,6 +23,15 @@ try {
 
 const UUID         = "trading-positions@trading-journal";
 const APP_NAME     = "Crypto Trading Journal";
+
+// --- Translation support -------------------------------------------------
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+
+function _(str) {
+    let translation = Gettext.dgettext(UUID, str);
+    if (translation !== str && translation !== "") return translation;
+    return Gettext.gettext(str);
+}
 
 class TradingPositionsDesklet extends Desklet.Desklet {
 
@@ -70,7 +80,7 @@ class TradingPositionsDesklet extends Desklet.Desklet {
             `background-color: rgba(15,20,28,${opacity.toFixed(2)});` +
             `min-width: ${mw}px;`
         );
-        // Skalierungsfaktor für Spaltenbreiten (Basis: fs=12)
+        // Scaling factor for column widths (base: fs=12)
         let scale = fs / 12;
         this._colWidths = {
             symbol:   Math.round(90  * scale),
@@ -80,24 +90,24 @@ class TradingPositionsDesklet extends Desklet.Desklet {
             pnl:      Math.round(95  * scale),
             realized: Math.round(85  * scale),
         };
-        // Positionen
+        // Positions
         this._posFs        = fs;
-        // UI-Elemente (Titel, Fußzeile, Gesamt, Header)
-        this._headerFs     = fs;  // Header gleich wie Positionen
+        // UI elements (title, footer, total, header)
+        this._headerFs     = fs;  // header same size as positions
         this._titleStyle   = `font-size: ${fsUi + 3}px;`;
         this._subtitleStyle = `font-size: ${fsUi}px;`;
-        this._totalStyle   = `font-size: ${fsUi}px;`;  // gleich wie Untertitel
+        this._totalStyle   = `font-size: ${fsUi}px;`;  // same as subtitle
         this._footerStyle  = `font-size: ${Math.max(8, fsUi - 1)}px;`;
     }
 
     _onStyleChanged() {
         this._applyStyle();
-        // Statische UI-Elemente updaten
+        // Update static UI elements
         if (this._titleLabel)    this._titleLabel.set_style(this._titleStyle);
         if (this._subtitleLabel) this._subtitleLabel.set_style(this._subtitleStyle);
         if (this._footerTime)    this._footerTime.set_style(this._footerStyle);
         if (this._footerRight)   this._footerRight.set_style(this._footerStyle);
-        // Neu rendern damit Positions-Schriftgröße sofort wirkt
+        // Re-render so the position font size takes effect immediately
         this._refresh();
     }
 
@@ -140,7 +150,7 @@ class TradingPositionsDesklet extends Desklet.Desklet {
     // ------------------------------------------------------------------ UI
 
     _buildUI() {
-        // Äußerer Rahmen
+        // Outer frame
         let outer = new St.BoxLayout({ vertical: true, style_class: 'trading-desklet' });
         this._outer = outer;
         this.setContent(outer);
@@ -156,23 +166,23 @@ class TradingPositionsDesklet extends Desklet.Desklet {
             headerRow.add_child(logo);
         } catch(_) {}
 
-        // Titel
+        // Title
         let titleBox = new St.BoxLayout({ vertical: true, style_class: 'desklet-title-box' });
         this._titleLabel    = new St.Label({ text: APP_NAME, style_class: 'desklet-title' });
-        this._subtitleLabel = new St.Label({ text: 'Offene Positionen & Bots', style_class: 'desklet-subtitle' });
+        this._subtitleLabel = new St.Label({ text: _('Open positions & bots'), style_class: 'desklet-subtitle' });
         titleBox.add_child(this._titleLabel);
         titleBox.add_child(this._subtitleLabel);
         headerRow.add_child(titleBox);
         outer.add_child(headerRow);
 
-        // Trennlinie nach Header
+        // Separator after header
         outer.add_child(new St.Label({ text: '\u2500'.repeat(44), style_class: 'separator' }));
 
-        // --- Content-Bereich (Positionen / Status) ---
+        // --- Content area (positions / status) ---
         this._content = new St.BoxLayout({ vertical: true, style_class: 'desklet-content' });
         outer.add_child(this._content);
 
-        // --- Fußzeile ---
+        // --- Footer ---
         outer.add_child(new St.Label({ text: '\u2500'.repeat(44), style_class: 'separator' }));
         let footer = new St.BoxLayout({ style_class: 'desklet-footer' });
         this._footerTime  = new St.Label({ text: '', style_class: 'footer-time' });
@@ -184,7 +194,7 @@ class TradingPositionsDesklet extends Desklet.Desklet {
         footer.add_child(this._footerRight);
         outer.add_child(footer);
 
-        this._showStatus("Verbinde...");
+        this._showStatus(_("Connecting…"));
     }
 
     // ------------------------------------------------------------------ Polling
@@ -206,8 +216,8 @@ class TradingPositionsDesklet extends Desklet.Desklet {
     }
 
     _refresh() {
-        // Immer zuerst Cookie holen wenn noch keins da ist
-        // Bei 401 wird automatisch ein neues Cookie geholt
+        // Always acquire a cookie first if we don't have one yet
+        // On 401 a new cookie is fetched automatically
         if (this._cookieAcquired) {
             this._fetchPositions();
         } else {
@@ -216,20 +226,20 @@ class TradingPositionsDesklet extends Desklet.Desklet {
     }
 
     _acquireCookie() {
-        this._showStatus("Verbinde mit " + this.serverHost + "...");
+        this._showStatus(_("Connecting to %s…").format(this.serverHost));
         this._soupGet(this._baseUrl + '/', (status, _body) => {
             if (status > 0 && status < 500) {
                 this._cookieAcquired = true;
                 this._fetchVersion();
                 this._fetchPositions();
             } else {
-                this._showStatus("Server nicht erreichbar\n" + this.serverHost + ":" + this.serverPort);
+                this._showStatus(_("Server not reachable") + "\n" + this.serverHost + ":" + this.serverPort);
             }
         });
     }
 
     _fetchVersion() {
-        // Nur einmal pro Session holen
+        // Fetch only once per session
         if (this._appVersion) return;
         this._soupGet(this._baseUrl + '/api/update/check', (status, body) => {
             if (status !== 200) return;
@@ -246,26 +256,26 @@ class TradingPositionsDesklet extends Desklet.Desklet {
     }
 
     _fetchPositions() {
-        // Live-Daten von Bitunix API via Server-Proxy
+        // Live data from the Bitunix API via the server proxy
         this._soupGet(this._baseUrl + '/api/bitunix/open-positions', (status, body) => {
             if (status === 401) {
-                // Token ungültig (Server neugestartet?) → neues Cookie holen
+                // Token invalid (server restarted?) → acquire a new cookie
                 this._cookieAcquired = false;
                 this._acquireCookie();
                 return;
             }
             if (status !== 200) {
-                this._showStatus(`Server nicht erreichbar\n${this.serverHost}:${this.serverPort}`);
+                this._showStatus(_("Server not reachable") + `\n${this.serverHost}:${this.serverPort}`);
                 return;
             }
             try {
                 let result = JSON.parse(body);
                 this._futures = result.positions || [];
             } catch(e) {
-                this._showStatus("Fehler beim Parsen:\n" + e.message);
+                this._showStatus(_("Parse error:") + "\n" + e.message);
                 return;
             }
-            // Danach optional die Pionex-Bots holen, dann beides zusammen rendern.
+            // Then optionally fetch the Pionex bots and render both together.
             if (this.showBots !== false) {
                 this._fetchBots();
             } else {
@@ -276,8 +286,8 @@ class TradingPositionsDesklet extends Desklet.Desklet {
     }
 
     _fetchBots() {
-        // Laufende Pionex-Bots via Server-Proxy. Fehlt die Pionex-Config oder
-        // schlägt der Call fehl, werden einfach nur die Futures gerendert.
+        // Running Pionex bots via the server proxy. If the Pionex config is
+        // missing or the call fails, only the futures are rendered.
         this._soupGet(this._baseUrl + '/api/pionex/open-positions', (status, body) => {
             let bots = [];
             if (status === 200) {
@@ -299,7 +309,7 @@ class TradingPositionsDesklet extends Desklet.Desklet {
         let mm  = String(now.getMinutes()).padStart(2, '0');
         let ss  = String(now.getSeconds()).padStart(2, '0');
         if (this._footerTime) {
-            this._footerTime.set_text(`Aktualisiert: ${hh}:${mm}:${ss}`);
+            this._footerTime.set_text(_("Updated: %s").format(`${hh}:${mm}:${ss}`));
         }
     }
 
@@ -327,7 +337,7 @@ class TradingPositionsDesklet extends Desklet.Desklet {
 
         if (positions.length === 0 && bots.length === 0) {
             this._content.add_child(
-                new St.Label({ text: "Keine offenen Positionen", style_class: 'no-positions-label' })
+                new St.Label({ text: _("No open positions"), style_class: 'no-positions-label' })
             );
             return;
         }
@@ -343,13 +353,14 @@ class TradingPositionsDesklet extends Desklet.Desklet {
     }
 
     _renderFuturesSection(positions) {
-        // Gesamt-PnL
+        // Total PnL
         let totalPnl   = positions.reduce((sum, p) => sum + (parseFloat(p.unrealizedPNL) || 0), 0);
         let totalClass = totalPnl >= 0 ? 'pnl-profit' : 'pnl-loss';
         let totalSign  = totalPnl >= 0 ? '+' : '';
         let totalRow   = new St.BoxLayout({ style_class: 'total-row' });
+        let posWord = positions.length === 1 ? _("position") : _("positions");
         let totalLbl = new St.Label({
-            text: `Gesamt:  ${totalSign}${totalPnl.toFixed(2)} USDT   (${positions.length} Position${positions.length > 1 ? 'en' : ''})`,
+            text: _("Total:") + `  ${totalSign}${totalPnl.toFixed(2)} USDT   (${positions.length} ${posWord})`,
             style_class: 'total-label ' + totalClass
         });
         if (this._totalStyle) totalLbl.set_style(this._totalStyle);
@@ -357,16 +368,16 @@ class TradingPositionsDesklet extends Desklet.Desklet {
         this._content.add_child(totalRow);
         this._content.add_child(new St.Label({ text: '\u2500'.repeat(44), style_class: 'separator-thin' }));
 
-        // Header-Zeile — gleiche Spaltenbreiten wie Positions-Zeilen
+        // Header row — same column widths as the position rows
         let headerCells = [
-            { text: 'Symbol',   width: this._colWidths.symbol },
-            { text: 'Side',     width: this._colWidths.side },
+            { text: _('Symbol'), width: this._colWidths.symbol },
+            { text: _('Side'),   width: this._colWidths.side },
         ];
-        if (this.showLeverage)  headerCells.push({ text: 'Lvg',  width: this._colWidths.leverage });
-        headerCells.push({ text: 'Entry', width: this._colWidths.price });
-        if (this.showMarkPrice) headerCells.push({ text: 'Mark',  width: this._colWidths.price });
-        headerCells.push({ text: 'unr. PnL', width: this._colWidths.pnl });
-        if (this.showRealizedPnl !== false) headerCells.push({ text: 'real. PnL', width: this._colWidths.realized });
+        if (this.showLeverage)  headerCells.push({ text: _('Lvg'),  width: this._colWidths.leverage });
+        headerCells.push({ text: _('Entry'), width: this._colWidths.price });
+        if (this.showMarkPrice) headerCells.push({ text: _('Mark'), width: this._colWidths.price });
+        headerCells.push({ text: _('unr. PnL'), width: this._colWidths.pnl });
+        if (this.showRealizedPnl !== false) headerCells.push({ text: _('real. PnL'), width: this._colWidths.realized });
         this._content.add_child(this._makeHeaderRow(headerCells));
 
         for (let pos of positions) {
@@ -374,13 +385,13 @@ class TradingPositionsDesklet extends Desklet.Desklet {
         }
     }
 
-    // Eigene Sektion für laufende Pionex-Bots. PnL/Marge in der jeweiligen
-    // Margin-Münze (z.B. SOL bei Coin-M) — daher KEINE USDT-Gesamtsumme (Münzen
-    // wären nicht summierbar), stattdessen nur Anzahl + Liquidation je Bot.
+    // Dedicated section for running Pionex bots. PnL/margin is in the
+    // respective margin coin (e.g. SOL for Coin-M) — therefore NO USDT total
+    // (coins are not summable), just the count + liquidation price per bot.
     _renderBotSection(bots) {
         let titleRow = new St.BoxLayout({ style_class: 'total-row' });
         let titleLbl = new St.Label({
-            text: `Bots:  ${bots.length} laufend${bots.length > 1 ? 'e' : ''}`,
+            text: _("Bots:") + `  ${bots.length} ` + _("running"),
             style_class: 'total-label'
         });
         if (this._totalStyle) titleLbl.set_style(this._totalStyle);
@@ -389,13 +400,13 @@ class TradingPositionsDesklet extends Desklet.Desklet {
         this._content.add_child(new St.Label({ text: '─'.repeat(44), style_class: 'separator-thin' }));
 
         let headerCells = [
-            { text: 'Symbol', width: this._colWidths.symbol },
-            { text: 'Side',   width: this._colWidths.side },
+            { text: _('Symbol'), width: this._colWidths.symbol },
+            { text: _('Side'),   width: this._colWidths.side },
         ];
-        if (this.showLeverage) headerCells.push({ text: 'Lvg', width: this._colWidths.leverage });
-        headerCells.push({ text: 'Ø Entry', width: this._colWidths.price });
-        headerCells.push({ text: 'Liq',     width: this._colWidths.price });
-        headerCells.push({ text: 'PnL',     width: this._colWidths.pnl });
+        if (this.showLeverage) headerCells.push({ text: _('Lvg'), width: this._colWidths.leverage });
+        headerCells.push({ text: _('Ø Entry'), width: this._colWidths.price });
+        headerCells.push({ text: _('Liq'),     width: this._colWidths.price });
+        headerCells.push({ text: _('PnL'),     width: this._colWidths.pnl });
         this._content.add_child(this._makeHeaderRow(headerCells));
 
         for (let bot of bots) {
@@ -528,7 +539,7 @@ class TradingPositionsDesklet extends Desklet.Desklet {
 
     _onSettingChanged() {
         this._cookieAcquired = false;
-        this._appVersion     = null;  // Server-Wechsel → Version neu holen
+        this._appVersion     = null;  // server change → fetch version again
         this._startPolling();
     }
 
