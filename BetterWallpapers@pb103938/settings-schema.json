@@ -1,0 +1,116 @@
+{
+    "layout": {
+        "type": "layout",
+        "pages": [
+            "config-page",
+            "appearance-page"
+        ],
+        "config-page": {
+            "type": "page",
+            "title": "Configuration",
+            "sections": [
+                "dimensions-section"
+            ]
+        },
+        "appearance-page": {
+            "type": "page",
+            "title": "Appearance",
+            "sections": [
+                "wallpaper-section",
+                "appearance-section"
+            ]
+        },
+        "dimensions-section": {
+            "type": "section",
+            "title": "Dimensions",
+            "keys": [
+                "use-default",
+                "width-choice",
+                "height-choice"
+            ]            
+        },
+        "wallpaper-section": {
+            "type": "section",
+            "title": "Wallpaper",
+            "keys": [
+                "wallpaper-choice"
+            ]            
+        },
+        "appearance-section": {
+            "type": "section",
+            "title": "Appearance",
+            "keys": [
+                "mirror-choice",
+                "flip-choice",
+                "alignment",
+                "zoom-level"
+            ]
+        }
+    },
+    "use-default": {
+        "type": "switch",
+        "description": "Use default dimensions",
+        "default": true,
+        "tooltip": "Select if you want to use the default dimensions of the display this desklet is added to."
+    },
+    "width-choice": {
+        "type": "spinbutton",
+        "default": 1280,
+        "min": 1,
+        "max": 100000,
+        "step": 1,
+        "description": "Width",
+        "tooltip": "Set the width of the wallpaper.",
+        "dependency": "!use-default"
+    },
+    "height-choice": {
+        "type": "spinbutton",
+        "default": 720,
+        "min": 1,
+        "max": 100000,
+        "step": 1,
+        "description": "Height",
+        "tooltip": "Set the height of the wallpaper.",
+        "dependency": "!use-default"
+    },
+    "wallpaper-choice": {
+        "type": "filechooser",
+        "default": "",
+        "description": "Wallpaper file",
+        "tooltip": "Set the file which will be your display's background. NOTE: Use a high resolution file for the best results."
+    },
+    "mirror-choice": {
+        "type": "switch",
+        "default": false,
+        "description": "Mirror wallpaper",
+        "tooltip": "reverses your wallpaper along the vertical axis."
+    },
+    "flip-choice": {
+        "type": "switch",
+        "default": false,
+        "description": "Flip wallpaper",
+        "tooltip": "reverses your wallpaper along the horizontal axis."
+    },
+    "alignment": {
+        "type": "combobox",
+        "default": "center",
+        "description": "Wallpaper alignment",
+        "tooltip": " CURRENTLY NOT IMPLEMENTED. Set how the wallpaper is aligned.",
+        "options": {
+            "center": "center",
+            "top": "top",
+            "bottom": "bottom",
+            "left": "left",
+            "right": "right"
+        }
+    },
+    "zoom-level": {
+        "type": "spinbutton",
+        "default": 0,
+        "min": 0,
+        "max": 0,
+        "step": 0,
+        "description": "Zoom level",
+        "tooltip": "CURRENTLY NOT IMPLEMENTED. Set how much to zoom in on the wallpaper if at all. Work best when alignment is centered."
+    }
+}
