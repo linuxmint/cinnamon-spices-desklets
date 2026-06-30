@@ -10,11 +10,15 @@ The desklet will have the following image as its default/fallback image:
 
 This can be changed in the `Appearance` section of the desklet's settings.
 
-Once added, it will be slightly off-center. Simply recenter it by turning off `Lock desklets in their current position` in `General Settings` in the **Desklets** app. Be sure to turn `Lock desklets in their current position` back on after positioning it as desired.
+Once added, it will be slightly off-center. Simply recenter it by turning off `Lock desklets in their current position` in `General Settings` in the **Desklets** app. Be sure to enable `Lock desklets in their current position` after positioning it as desired.
 
-When configuring the desklet specifically, be sure that a portion of the screen is visible to the left of the desklet when right-clicking it to ensure you see the configuration menu.
+When configuring the desklet specifically, be sure that a portion of the screen beneath the desklet is visible when right-clicking it to ensure you see the configuration menu.
+
+### Using Better Wallpapers with other desklets
 
 This desklet is automatically set to the lowest position in the desklet hierarchy as possible. This means all other desklets will be displayed above it. If multiple of this desklet are added to the same monitor, the most recently added one will be displayed at the bottom. Because of this, **if you have multiple displays, you should add the ones you plan to put on other monitors **first**.**
+
+When moving the desklet to the desired monitor, it may end up displaying on top of other desklets. This can be fixed by simply reloading the desklet or by reloading cinnamon. 
 
 ## Using the Settings
 
