@@ -1,0 +1,247 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Gökhan GÖKKAYA <gokhanlnx@gmail.com>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-30 02:38+0800\n"
+"PO-Revision-Date: 2018-11-27 09:35+0300\n"
+"Last-Translator: Gökhan GÖKKAYA <gokhanlnx@gmail.com>\n"
+"Language-Team: Linux Mint Türkiye <gokhanlnx@gmail.com>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:125
+msgid "Monday"
+msgstr "Pazartesi"
+
+#: desklet.js:126
+msgid "Tuesday"
+msgstr "Salı"
+
+#: desklet.js:127
+msgid "Wednesday"
+msgstr "Çarşamba"
+
+#: desklet.js:128
+msgid "Thursday"
+msgstr "Perşembe"
+
+#: desklet.js:129
+msgid "Friday"
+msgstr "Cuma"
+
+#: desklet.js:130
+msgid "Saturday"
+msgstr "Cumartesi"
+
+#: desklet.js:131
+msgid "Sunday"
+msgstr "Pazar"
+
+#: desklet.js:134
+msgid "January"
+msgstr "Ocak"
+
+#: desklet.js:135
+msgid "February"
+msgstr "Şubat"
+
+#: desklet.js:136
+msgid "March"
+msgstr "Mart"
+
+#: desklet.js:137
+msgid "April"
+msgstr "Nisan"
+
+#: desklet.js:138
+msgid "May"
+msgstr "Mayıs"
+
+#: desklet.js:139
+msgid "June"
+msgstr "Haziran"
+
+#: desklet.js:140
+msgid "July"
+msgstr "Temmuz"
+
+#: desklet.js:141
+msgid "August"
+msgstr "Ağustos"
+
+#: desklet.js:142
+msgid "September"
+msgstr "Eylül"
+
+#: desklet.js:143
+msgid "October"
+msgstr "Ekim"
+
+#: desklet.js:144
+msgid "November"
+msgstr "Kasım"
+
+#: desklet.js:145
+msgid "December"
+msgstr "Aralık"
+
+#. calendar@schorschii->metadata.json->name
+#: desklet.js:275
+msgid "Calendar"
+msgstr "Takvim"
+
+#. calendar@schorschii->metadata.json->description
+msgid ""
+"A calendar desklet that can display the number of today's appointments from "
+"an ical file."
+msgstr ""
+"Bugünün randevularını bir ical dosyasından görüntüleyebilen bir masaüstü "
+"takvimi."
+
+#. calendar@schorschii->settings-schema.json->notification-color->description
+msgid "Appointment number background color"
+msgstr "Randevu sayısı arkaplan rengi"
+
+#. calendar@schorschii->settings-schema.json->notification-color->tooltip
+msgid "Set the appointment number background color of this desklet."
+msgstr ""
+"Bu masaüstü uygulamacığının randevu numarası arka plan rengini ayarlayın."
+
+#. calendar@schorschii->settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Süslemeleri gizle"
+
+#. calendar@schorschii->settings-schema.json->head3->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr "Masaüstü uygulamacığı özel etiketi (sadece süslemeler etkinse görünür)"
+
+#. calendar@schorschii->settings-schema.json->head2->description
+msgid "Number of appointments"
+msgstr "Randevu sayısı"
+
+#. calendar@schorschii->settings-schema.json->head1->description
+msgid "Visual"
+msgstr "Görsel"
+
+#. calendar@schorschii->settings-schema.json->head0->description
+msgid "Settings for calendar@schorschii"
+msgstr "calendar@schorschii için Ayarlar"
+
+#. calendar@schorschii->settings-schema.json->bg-img->description
+msgid "Calendar style"
+msgstr "Takvim tarzı"
+
+#. calendar@schorschii->settings-schema.json->bg-img->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Kullanmak istediğiniz arkaplan grafiğini seçin."
+
+#. calendar@schorschii->settings-schema.json->bg-img->options
+msgid "Orange"
+msgstr "Turuncu"
+
+#. calendar@schorschii->settings-schema.json->bg-img->options
+msgid "White"
+msgstr "Beyaz"
+
+#. calendar@schorschii->settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Metin rengi"
+
+#. calendar@schorschii->settings-schema.json->text-color->tooltip
+msgid "Set the text color of this desklet."
+msgstr "Bu masaüstü uygulamacığının metin rengini ayarla"
+
+#. calendar@schorschii->settings-schema.json->read-appointments->description
+msgid "Show the number of today's appointments parsed from an ical file"
+msgstr "Bir ical dosyasından ayrıştırarak bugünün randevu sayısını göster"
+
+#. calendar@schorschii->settings-schema.json->read-appointments->tooltip
+msgid ""
+"Checking this box allows you to set an ical file to parse in the field below."
+msgstr ""
+"Bu kutuyu işaretlemek, bir ical dosyasını ayrıştırmak için aşağıdaki alandan "
+"seçmenize izin verir."
+
+#. calendar@schorschii->settings-schema.json->ical-file->description
+msgid "Path to ical/ics file"
+msgstr "ical/ics dosyasının yolu"
+
+#. calendar@schorschii->settings-schema.json->ical-file->tooltip
+msgid ""
+"Select your ical or ics file for reading the amount of appointments today.\n"
+"\n"
+"You can configure Lightning (the Thunderbird Add-On) to save your calendar "
+"in an ical file."
+msgstr ""
+"Bugünkü randevu miktarını okumak için ical veya ics dosyanızı seçin.\n"
+"\n"
+"Takviminizi bir ical dosyasına kaydetmek için Lightning'i (Thunderbird "
+"eklentisini) yapılandırabilirsiniz."
+
+#. calendar@schorschii->settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Masaüstü uygulamacığının boyutu"
+
+#. calendar@schorschii->settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of the calendar using this scale factor."
+msgstr "Bu ölçü çarpanını kullanarak takvimin boyutunu artırın veya azaltın."
+
+#. calendar@schorschii->settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "ölçü çarpanı"
+
+#. calendar@schorschii->settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Özel bir masaüstü uygulamacığı etiketi kullan"
+
+#. calendar@schorschii->settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Bu kutuyu işaretlemek, aşağıda açılacak alandan özel bir etiket ayarlamanıza "
+"izin verir."
+
+#. calendar@schorschii->settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Özel masaüstü uygulamacığı etiketi"
+
+#. calendar@schorschii->settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here, e.g. for monitoring multiple ical files. This "
+"field is unavailable unless the checkbox above is enabled."
+msgstr ""
+"Özel etiketinizi buraya yerleştirin, örneğin \"çoklu ical dosyalarını "
+"izlemek için\". Yukarıdaki onay kutusu etkinleştirilmemişse bu alan "
+"kullanılamaz."
+
+msgid "Appointment number color"
+msgstr "Randevu sayı rengi"
+
+msgid "Start program on click of the desklet"
+msgstr "Masaüstü uygulamacığına tıklandığında uygulamayı başlat"
+
+msgid "Start a program (e.g. Thunderbird)"
+msgstr "Bir uygulama başlat (örn. Thunderbird)"
+
+msgid ""
+"The command entered below will be executed on mouse click of the desklet. So "
+"you can directly start Thunderbird."
+msgstr ""
+"Aşağıda girilen komut, masaüstü uygulamacığına tıklandığında "
+"çalıştırılacaktır. Böylece Thunderbird'ü doğrudan başlatabilirsiniz."
+
+msgid "Command line"
+msgstr "Komut satırı"
+
+msgid "Set your program including parameters to start on click."
+msgstr ""
+"Tıklayarak başlatmak için değişkenleri de içerecek şekilde uygulamanızı "
+"ayarlayın."

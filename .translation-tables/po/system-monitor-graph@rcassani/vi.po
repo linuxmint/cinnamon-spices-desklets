@@ -1,0 +1,462 @@
+# SYSTEM MONITOR GRAPH
+# This file is put in the public domain.
+# rcassani, 2020
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: system-monitor-graph@rcassani 2.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-03-23 21:24-0400\n"
+"PO-Revision-Date: \n"
+"Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
+"Language-Team: \n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. settings-schema.json->type->options
+#. desklet.js:275
+msgid "CPU"
+msgstr "CPU"
+
+#. desklet.js:284
+msgid "CPU Temperature"
+msgstr ""
+
+#. desklet.js:301 desklet.js:319 desklet.js:339 desklet.js:380 desklet.js:684
+msgid "GB"
+msgstr "GB"
+
+#. desklet.js:304 desklet.js:322 desklet.js:342 desklet.js:383 desklet.js:698
+msgid "GiB"
+msgstr "GiB"
+
+#. settings-schema.json->type->options
+#. desklet.js:306
+msgid "RAM"
+msgstr "RAM"
+
+#. settings-schema.json->type->options
+#. desklet.js:324
+msgid "Swap"
+msgstr "Swap"
+
+#. desklet.js:347
+msgid "free of"
+msgstr "trống trong"
+
+#. desklet.js:363
+msgid "GPU Usage"
+msgstr "Sử dụng GPU"
+
+#. desklet.js:385
+msgid "GPU Memory"
+msgstr "Bộ nhớ GPU"
+
+#. desklet.js:401
+#, fuzzy
+msgid "GPU Temperature"
+msgstr "Nhà sản xuất GPU"
+
+#. settings-schema.json->type->options
+#. desklet.js:415
+msgid "Network"
+msgstr "Mạng"
+
+#. settings-schema.json->type->options
+#. desklet.js:428
+msgid "Battery"
+msgstr ""
+
+#. desklet.js:431
+msgid "Fully charged"
+msgstr ""
+
+#. desklet.js:432
+msgid "Not charging"
+msgstr ""
+
+#. desklet.js:434
+msgid " hrs"
+msgstr ""
+
+#. desklet.js:655 desklet.js:678
+msgid "b"
+msgstr "b"
+
+#. desklet.js:657 desklet.js:692 desklet.js:706
+msgid "B"
+msgstr "B"
+
+#. desklet.js:670
+msgid "Gb"
+msgstr "Gb"
+
+#. desklet.js:673
+msgid "Mb"
+msgstr "Mb"
+
+#. desklet.js:676
+msgid "Kb"
+msgstr "Kb"
+
+#. desklet.js:687
+msgid "MB"
+msgstr "MB"
+
+#. desklet.js:690
+msgid "KB"
+msgstr "KB"
+
+#. desklet.js:701
+msgid "MiB"
+msgstr "MiB"
+
+#. desklet.js:704
+msgid "KiB"
+msgstr "KiB"
+
+#. metadata.json->name
+msgid "System monitor graph"
+msgstr "Biểu đồ giám sát hệ thống"
+
+#. metadata.json->description
+msgid "Creates graphs for system variables."
+msgstr "Tạo biểu đồ cho các biến hệ thống."
+
+#. settings-schema.json->head0->description
+msgid "Settings for system-monitor-graph@rcassani"
+msgstr "Cài đặt cho system-monitor-graph@rcassani"
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr "Chung"
+
+#. settings-schema.json->type->description
+msgid "System variable for graph"
+msgstr "Biến hệ thống cho biểu đồ"
+
+#. settings-schema.json->type->tooltip
+msgid "Select the system variable to monitor."
+msgstr "Chọn biến hệ thống để giám sát."
+
+#. settings-schema.json->type->options
+msgid "HDD"
+msgstr "HDD"
+
+#. settings-schema.json->type->options
+msgid "GPU"
+msgstr "GPU"
+
+#. settings-schema.json->cpu-variable->description
+#, fuzzy
+msgid "CPU variable to monitor"
+msgstr "Biến GPU để giám sát"
+
+#. settings-schema.json->cpu-variable->tooltip
+#, fuzzy
+msgid "Select the CPU variable to monitor."
+msgstr "Chọn biến GPU để giám sát."
+
+#. settings-schema.json->cpu-variable->options
+#. settings-schema.json->gpu-variable->options
+msgid "Usage"
+msgstr "Sử dụng"
+
+#. settings-schema.json->cpu-variable->options
+#. settings-schema.json->gpu-variable->options
+msgid "Temperature"
+msgstr ""
+
+#. settings-schema.json->temperature-units-cpu->options
+#. settings-schema.json->temperature-units-gpu->options
+msgid "°C"
+msgstr ""
+
+#. settings-schema.json->temperature-units-cpu->options
+#. settings-schema.json->temperature-units-gpu->options
+msgid "°F"
+msgstr ""
+
+#. settings-schema.json->temperature-units-cpu->description
+#. settings-schema.json->temperature-units-gpu->description
+msgid "Temperature scale"
+msgstr ""
+
+#. settings-schema.json->temperature-units-cpu->tooltip
+#. settings-schema.json->temperature-units-gpu->tooltip
+#, fuzzy
+msgid "Temperature scale for graph"
+msgstr "Biến hệ thống cho biểu đồ"
+
+#. settings-schema.json->data-prefix-ram->options
+#. settings-schema.json->data-prefix-swap->options
+#. settings-schema.json->data-prefix-hdd->options
+#. settings-schema.json->data-prefix-gpumem->options
+msgid "Binary prefix or IEC (1 GiB = 1024³ bytes)"
+msgstr "Tiền tố nhị phân hoặc IEC (1 GiB = 1024³ byte)"
+
+#. settings-schema.json->data-prefix-ram->options
+#. settings-schema.json->data-prefix-swap->options
+#. settings-schema.json->data-prefix-hdd->options
+#. settings-schema.json->data-prefix-gpumem->options
+msgid "Decimal prefix (1 GB = 1000³ bytes)"
+msgstr "Tiền tố thập phân (1 GB = 1000³ byte)"
+
+#. settings-schema.json->data-prefix-ram->description
+#. settings-schema.json->data-prefix-swap->description
+#. settings-schema.json->data-prefix-hdd->description
+#. settings-schema.json->data-prefix-network->description
+#. settings-schema.json->data-prefix-gpumem->description
+msgid "Prefix for data units"
+msgstr "Tiền tố cho đơn vị dữ liệu"
+
+#. settings-schema.json->data-prefix-ram->tooltip
+msgid "Unit prefix for RAM size."
+msgstr "Tiền tố đơn vị cho kích thước RAM."
+
+#. settings-schema.json->data-prefix-swap->tooltip
+msgid "Unit prefix for Swap size."
+msgstr "Tiền tố đơn vị cho kích thước Swap."
+
+#. settings-schema.json->data-prefix-hdd->tooltip
+msgid "Unit prefix for Filesystem size."
+msgstr "Tiền tố đơn vị cho kích thước Hệ thống tập tin."
+
+#. settings-schema.json->data-prefix-network->options
+msgid "Bytes - Binary prefix or IEC (1 KiB = 1024 bytes)"
+msgstr "Byte - Tiền tố nhị phân hoặc IEC (1 KiB = 1024 byte)"
+
+#. settings-schema.json->data-prefix-network->options
+msgid "Bytes - Decimal prefix (1 KB = 1000 bytes)"
+msgstr "Byte - Tiền tố thập phân (1 KB = 1000 byte)"
+
+#. settings-schema.json->data-prefix-network->options
+msgid "Bits - Decimal prefix (1 Kb = 1000 bits)"
+msgstr "Bit - Tiền tố thập phân (1 Kb = 1000 bit)"
+
+#. settings-schema.json->data-prefix-network->tooltip
+msgid "Unit prefix for network speed."
+msgstr "Tiền tố đơn vị cho tốc độ mạng."
+
+#. settings-schema.json->network-interface->description
+msgid "Network interface to monitor"
+msgstr "Giao diện mạng để giám sát"
+
+#. settings-schema.json->network-interface->tooltip
+msgid ""
+"Leave empty to monitor all interfaces combined. Examples: eth0, wlan0, enp0s3"
+msgstr ""
+"Để trống để giám sát tất cả các giao diện kết hợp. Ví dụ: eth0, wlan0, enp0s3"
+
+#. settings-schema.json->battery-name->description
+#, fuzzy
+msgid "Name of battery name to monitor"
+msgstr "Giao diện mạng để giám sát"
+
+#. settings-schema.json->battery-name->tooltip
+msgid "Check battery name in /sys/class/power_supply/ Examples: BAT0, BAT1"
+msgstr ""
+
+#. settings-schema.json->filesystem->description
+msgid "Filesystem to monitor"
+msgstr "Hệ thống tập tin để giám sát"
+
+#. settings-schema.json->filesystem->tooltip
+msgid "Select a directory in the filesystem to monitor."
+msgstr "Chọn một thư mục trong hệ thống tập tin để giám sát."
+
+#. settings-schema.json->filesystem-label->description
+msgid "Filesystem label"
+msgstr "Nhãn hệ thống tập tin"
+
+#. settings-schema.json->filesystem-label->tooltip
+msgid "Empty uses the filesystem name from df."
+msgstr "Để trống sử dụng tên hệ thống tập tin từ df."
+
+#. settings-schema.json->gpu-manufacturer->description
+msgid "GPU manufacturer"
+msgstr "Nhà sản xuất GPU"
+
+#. settings-schema.json->gpu-manufacturer->tooltip
+msgid "Select the GPU manufacturer."
+msgstr "Chọn nhà sản xuất GPU."
+
+#. settings-schema.json->gpu-manufacturer->options
+msgid "NVIDIA"
+msgstr "NVIDIA"
+
+#. settings-schema.json->gpu-manufacturer->options
+msgid "AMDGPU"
+msgstr "AMDGPU"
+
+#. settings-schema.json->gpu-id->description
+msgid "Id of GPU to monitor"
+msgstr "ID của GPU để giám sát"
+
+#. settings-schema.json->gpu-id->tooltip
+msgid "Check GPU id with nvidia-smi -L"
+msgstr "Kiểm tra ID GPU với nvidia-smi -L"
+
+#. settings-schema.json->gpu-variable->description
+msgid "GPU variable to monitor"
+msgstr "Biến GPU để giám sát"
+
+#. settings-schema.json->gpu-variable->tooltip
+msgid "Select the GPU variable to monitor."
+msgstr "Chọn biến GPU để giám sát."
+
+#. settings-schema.json->gpu-variable->options
+msgid "Memory"
+msgstr "Bộ nhớ"
+
+#. settings-schema.json->data-prefix-gpumem->tooltip
+msgid "Unit prefix for GPU memory size."
+msgstr "Tiền tố đơn vị cho kích thước bộ nhớ GPU."
+
+#. settings-schema.json->duration->description
+msgid "Duration of the graph"
+msgstr "Thời lượng của biểu đồ"
+
+#. settings-schema.json->duration->tooltip
+msgid "Maximum among of time to show in the graph."
+msgstr "Thời gian tối đa để hiển thị trong biểu đồ."
+
+#. settings-schema.json->duration->options
+#. settings-schema.json->refresh-interval->options
+msgid "30 s"
+msgstr "30 giây"
+
+#. settings-schema.json->duration->options
+msgid " 1 min"
+msgstr " 1 phút"
+
+#. settings-schema.json->duration->options
+msgid " 2 min"
+msgstr " 2 phút"
+
+#. settings-schema.json->duration->options
+msgid " 5 min"
+msgstr " 5 phút"
+
+#. settings-schema.json->duration->options
+msgid "10 min"
+msgstr "10 phút"
+
+#. settings-schema.json->duration->options
+msgid "30 min"
+msgstr "30 phút"
+
+#. settings-schema.json->duration->options
+msgid "60 min"
+msgstr "60 phút"
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval"
+msgstr "Khoảng thời gian làm mới"
+
+#. settings-schema.json->refresh-interval->tooltip
+msgid "How often a new value of the variable will be calculated."
+msgstr "Tần suất tính toán giá trị mới của biến."
+
+#. settings-schema.json->refresh-interval->options
+msgid " 1 s"
+msgstr " 1 giây"
+
+#. settings-schema.json->refresh-interval->options
+msgid " 2 s"
+msgstr " 2 giây"
+
+#. settings-schema.json->refresh-interval->options
+msgid " 5 s"
+msgstr " 5 giây"
+
+#. settings-schema.json->refresh-interval->options
+msgid "10 s"
+msgstr "10 giây"
+
+#. settings-schema.json->refresh-interval->options
+msgid "60 s"
+msgstr "60 giây"
+
+#. settings-schema.json->head2->description
+msgid "Visual"
+msgstr "Hiển thị"
+
+#. settings-schema.json->background-color->description
+msgid "Background color"
+msgstr "Màu nền"
+
+#. settings-schema.json->background-color->tooltip
+#. settings-schema.json->text-color->tooltip
+#. settings-schema.json->midline-color->tooltip
+msgid "RGB or RGBA."
+msgstr "RGB hoặc RGBA."
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Màu chữ"
+
+#. settings-schema.json->line-color-cpu->description
+msgid "Line color CPU"
+msgstr "Màu đường CPU"
+
+#. settings-schema.json->line-color-cpu->tooltip
+#. settings-schema.json->line-color-ram->tooltip
+#. settings-schema.json->line-color-swap->tooltip
+#. settings-schema.json->line-color-hdd->tooltip
+#. settings-schema.json->line-color-gpu->tooltip
+#. settings-schema.json->line-color-network-down->tooltip
+#. settings-schema.json->line-color-network-up->tooltip
+#. settings-schema.json->line-color-battery->tooltip
+msgid "RGB or RGBA. Alpha is ignored"
+msgstr "RGB hoặc RGBA. Alpha bị bỏ qua"
+
+#. settings-schema.json->line-color-ram->description
+msgid "Line color RAM"
+msgstr "Màu đường RAM"
+
+#. settings-schema.json->line-color-swap->description
+msgid "Line color Swap"
+msgstr "Màu đường Swap"
+
+#. settings-schema.json->line-color-hdd->description
+msgid "Line color HDD"
+msgstr "Màu đường HDD"
+
+#. settings-schema.json->line-color-gpu->description
+msgid "Line color GPU"
+msgstr "Màu đường GPU"
+
+#. settings-schema.json->line-color-network-down->description
+msgid "Line color Network Download"
+msgstr "Màu đường Tải xuống Mạng"
+
+#. settings-schema.json->line-color-network-up->description
+msgid "Line color Network Upload"
+msgstr "Màu đường Tải lên Mạng"
+
+#. settings-schema.json->line-color-battery->description
+#, fuzzy
+msgid "Line color Battery"
+msgstr "Màu đường Swap"
+
+#. settings-schema.json->midline-color->description
+msgid "Grid color"
+msgstr "Màu lưới"
+
+#. settings-schema.json->h-midlines->description
+msgid "Number of horizontal lines in the grid"
+msgstr "Số đường ngang trong lưới"
+
+#. settings-schema.json->v-midlines->description
+msgid "Number of vertical lines in the grid"
+msgstr "Số đường dọc trong lưới"
+
+#. settings-schema.json->scale-size->description
+msgid "Scale factor for desklet size (scale factor of 1 = 330 x 120 px)"
+msgstr "Hệ số tỷ lệ cho kích thước desklet (hệ số tỷ lệ 1 = 330 x 120 px)"

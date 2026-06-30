@@ -1,0 +1,241 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-30 02:38+0800\n"
+"PO-Revision-Date: 2024-11-07 11:55+0200\n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
+"Language-Team: \n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:125
+msgid "Monday"
+msgstr "Maanantai"
+
+#: desklet.js:126
+msgid "Tuesday"
+msgstr "Tiistai"
+
+#: desklet.js:127
+msgid "Wednesday"
+msgstr "Keskiviikko"
+
+#: desklet.js:128
+msgid "Thursday"
+msgstr "Torstai"
+
+#: desklet.js:129
+msgid "Friday"
+msgstr "Perjantai"
+
+#: desklet.js:130
+msgid "Saturday"
+msgstr "Launtai"
+
+#: desklet.js:131
+msgid "Sunday"
+msgstr "Sunnuntai"
+
+#: desklet.js:134
+msgid "January"
+msgstr "Tammikuu"
+
+#: desklet.js:135
+msgid "February"
+msgstr "Helmikuu"
+
+#: desklet.js:136
+msgid "March"
+msgstr "Maaliskuu"
+
+#: desklet.js:137
+msgid "April"
+msgstr "Huhtikuu"
+
+#: desklet.js:138
+msgid "May"
+msgstr "Toukokuu"
+
+#: desklet.js:139
+msgid "June"
+msgstr "Kesäkuu"
+
+#: desklet.js:140
+msgid "July"
+msgstr "Heinäkuu"
+
+#: desklet.js:141
+msgid "August"
+msgstr "Elokuu"
+
+#: desklet.js:142
+msgid "September"
+msgstr "Syyskuu"
+
+#: desklet.js:143
+msgid "October"
+msgstr "Lokakuu"
+
+#: desklet.js:144
+msgid "November"
+msgstr "Marraskuu"
+
+#: desklet.js:145
+msgid "December"
+msgstr "Joulukuu"
+
+#. calendar@schorschii->metadata.json->name
+#: desklet.js:275
+msgid "Calendar"
+msgstr "Kalenteri"
+
+#. calendar@schorschii->metadata.json->description
+msgid ""
+"A calendar desklet that can display the number of today's appointments from "
+"an ical file."
+msgstr ""
+"Kalenteri, joka voi näyttää myös tämän päivän tapaamisten määrän valitusta "
+"ical-tiedostosta."
+
+#. calendar@schorschii->settings-schema.json->notification-color->description
+msgid "Appointment number background color"
+msgstr "Tapaamiset numeron taustaväri"
+
+#. calendar@schorschii->settings-schema.json->notification-color->tooltip
+msgid "Set the appointment number background color of this desklet."
+msgstr "Aseta tapaamiset numerolle taustaväri."
+
+#. calendar@schorschii->settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Piilota reunukset"
+
+#. calendar@schorschii->settings-schema.json->head3->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr "Mukautettu nimi (näkyy jos ulkoasut ovat käytössä)"
+
+#. calendar@schorschii->settings-schema.json->head2->description
+msgid "Number of appointments"
+msgstr "Tapaamisten määrä"
+
+#. calendar@schorschii->settings-schema.json->head1->description
+msgid "Visual"
+msgstr "Visuaalinen"
+
+#. calendar@schorschii->settings-schema.json->head0->description
+msgid "Settings for calendar@schorschii"
+msgstr "Asetukset calendar@schorschii"
+
+#. calendar@schorschii->settings-schema.json->bg-img->description
+msgid "Calendar style"
+msgstr "Kalenterin ulkoasu"
+
+#. calendar@schorschii->settings-schema.json->bg-img->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Valitse taustagrafiikka, jota haluat käyttää."
+
+#. calendar@schorschii->settings-schema.json->bg-img->options
+msgid "Orange"
+msgstr "Oranssi"
+
+#. calendar@schorschii->settings-schema.json->bg-img->options
+msgid "White"
+msgstr "Valkoinen"
+
+#. calendar@schorschii->settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Tekstin väri"
+
+#. calendar@schorschii->settings-schema.json->text-color->tooltip
+msgid "Set the text color of this desklet."
+msgstr "Aseta tekstin väri."
+
+#. calendar@schorschii->settings-schema.json->read-appointments->description
+msgid "Show the number of today's appointments parsed from an ical file"
+msgstr "Näytä päivän tapaamisten määrä ical-tiedostosta"
+
+#. calendar@schorschii->settings-schema.json->read-appointments->tooltip
+msgid ""
+"Checking this box allows you to set an ical file to parse in the field below."
+msgstr ""
+"Kun valitset tämän, voit määrittää ical-tiedoston alla olevaan kenttään."
+
+#. calendar@schorschii->settings-schema.json->ical-file->description
+msgid "Path to ical/ics file"
+msgstr "Palku ical/ics tiedostoon"
+
+#. calendar@schorschii->settings-schema.json->ical-file->tooltip
+msgid ""
+"Select your ical or ics file for reading the amount of appointments today.\n"
+"\n"
+"You can configure Lightning (the Thunderbird Add-On) to save your calendar "
+"in an ical file."
+msgstr ""
+"Valitse ical- tai ics-tiedosto, josta luetaan tämän päivän kalenterista "
+"tapaamisten määrä.\n"
+"\n"
+"Voit määritellä Lightningin (Thunderbird laajennus) tallentamaan kalenterisi "
+"ical-tiedostoon."
+
+#. calendar@schorschii->settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Sovelman koko"
+
+#. calendar@schorschii->settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of the calendar using this scale factor."
+msgstr "Suurenna tai pienennä kalenterin kokoa kertoimella."
+
+#. calendar@schorschii->settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "skaalauskerroin"
+
+#. calendar@schorschii->settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Näytä sovelmassa nimeä"
+
+#. calendar@schorschii->settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr "Valitsemalla tämän ruudun voit lisätä nimen alla olevaan kenttään."
+
+#. calendar@schorschii->settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Sovelman nimi"
+
+#. calendar@schorschii->settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here, e.g. for monitoring multiple ical files. This "
+"field is unavailable unless the checkbox above is enabled."
+msgstr ""
+"Aseta oma tunniste tähän, esim. useiden ical-tiedostojen valvontaan. Kenttä "
+"ei ole käytettävissä, ellei yllä oleva valintaruutu ole valittuna."
+
+msgid "Appointment number color"
+msgstr "Tapaamiset numeron väri"
+
+msgid "Start program on click of the desklet"
+msgstr "Käynnistä tietty ohjelma kun painat sovelmaa"
+
+msgid "Start a program (e.g. Thunderbird)"
+msgstr "Käynnistä ohjelma (esim. Thunderbird)"
+
+msgid ""
+"The command entered below will be executed on mouse click of the desklet. So "
+"you can directly start Thunderbird."
+msgstr ""
+"Alla kirjoitettu komento suoritetaan kun painat hiirellä sovelmaa. Näin voit "
+"käynnistää Thunderbird:in suoraan tästä."
+
+msgid "Command line"
+msgstr "Komentorivi"
+
+msgid "Set your program including parameters to start on click."
+msgstr "Aseta ohjelma ja tarvittaessa parametrit."

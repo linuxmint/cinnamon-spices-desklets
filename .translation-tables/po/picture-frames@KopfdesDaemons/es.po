@@ -1,0 +1,128 @@
+# PICTURE FRAMES
+# This file is put in the public domain.
+# KopfdesDaemons, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: picture-frames@KopfdesDaemons 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-04-05 23:38+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.9\n"
+
+#. desklet.js:23
+msgid "Picture Frame"
+msgstr "Marco de fotos"
+
+#. desklet.js:190
+msgid "Loading..."
+msgstr "Cargando..."
+
+#. metadata.json->name
+msgid "Picture frames"
+msgstr "Marco de fotos"
+
+#. metadata.json->description
+msgid "Displays photos in different picture frames."
+msgstr "Muestra fotos en diferentes marcos de fotos."
+
+#. settings-schema.json->image-page->title
+msgid "Image"
+msgstr "Imagen"
+
+#. settings-schema.json->frame-page->title
+msgid "Frame"
+msgstr "Marco"
+
+#. settings-schema.json->image-general-section->title
+msgid "General"
+msgstr "General"
+
+#. settings-schema.json->image-alignment-section->title
+msgid "Alignment"
+msgstr "Alineamiento"
+
+#. settings-schema.json->frame-shape-section->title
+#. settings-schema.json->shape->description
+msgid "Shape"
+msgstr "Forma"
+
+#. settings-schema.json->frame-border-section->title
+msgid "Border"
+msgstr "Borde"
+
+#. settings-schema.json->image-path->description
+msgid "Image path"
+msgstr "Ruta de la imagen"
+
+#. settings-schema.json->image-path->tooltip
+msgid "The path of the image."
+msgstr "La ruta de la imagen."
+
+#. settings-schema.json->size->description
+msgid "Size"
+msgstr "Tamaño"
+
+#. settings-schema.json->align-x->description
+msgid "Horizontal alignment"
+msgstr "Alineación horizontal"
+
+#. settings-schema.json->align-y->description
+msgid "Vertical alignment"
+msgstr "Alineación vertical"
+
+#. settings-schema.json->shape->options
+msgid "Circle"
+msgstr "Círculo"
+
+#. settings-schema.json->shape->options
+msgid "Square"
+msgstr "Cuadrado"
+
+#. settings-schema.json->shape->options
+msgid "Star"
+msgstr "Estrella"
+
+#. settings-schema.json->shape->options
+msgid "Wave"
+msgstr "Onda"
+
+#. settings-schema.json->shape->options
+msgid "Heart"
+msgstr "Corazón"
+
+#. settings-schema.json->waves-number->description
+msgid "Number of waves"
+msgstr "Número de ondas"
+
+#. settings-schema.json->wave-depth->description
+msgid "Depth of the waves"
+msgstr "Profundidad de las ondas"
+
+#. settings-schema.json->spikes-number->description
+msgid "Number of spikes"
+msgstr "Número de picos"
+
+#. settings-schema.json->spikes-depth->description
+msgid "Depth of the spikes"
+msgstr "Profundidad de los picos"
+
+#. settings-schema.json->show-border->description
+msgid "Show border"
+msgstr "Mostrar borde"
+
+#. settings-schema.json->border-color->description
+msgid "Border color"
+msgstr "Color del borde"
+
+#. settings-schema.json->border-width->description
+msgid "Border width"
+msgstr "Ancho del borde"

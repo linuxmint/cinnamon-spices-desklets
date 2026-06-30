@@ -1,0 +1,172 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: procmon@ksmith 1.1.0\n"
+"POT-Creation-Date: 2026-02-17 00:00+0000\n"
+"PO-Revision-Date: 2026-02-26 07:43+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+
+#: desklet.js
+msgid "Process Monitor"
+msgstr "Folyamat Monitor"
+
+#: desklet.js
+msgid "PID"
+msgstr "PID"
+
+#: desklet.js
+msgid "USER"
+msgstr "FELHASZNÁLÓ"
+
+#: desklet.js
+msgid "CPU%"
+msgstr "CPU%"
+
+#: desklet.js
+msgid "MEM"
+msgstr "MEM"
+
+#: desklet.js
+msgid "COMMAND"
+msgstr "PARANCS"
+
+#: metadata.json
+msgid "ProcMon Table"
+msgstr "ProcMon Táblázat"
+
+#: metadata.json
+msgid "Sortable process table powered by top."
+msgstr "Rendezhető folyamattábla a top által működtetve."
+
+#: settings-schema.json
+msgid "Refresh interval"
+msgstr "Frissítési gyakoriság"
+
+#: settings-schema.json
+msgid "How often to refresh the process list."
+msgstr "A folyamatlista frissítésének gyakorisága."
+
+#: settings-schema.json
+msgid "Number of rows"
+msgstr "Sorok száma"
+
+#: settings-schema.json
+msgid "Maximum process rows to display."
+msgstr "A megjelenítendő folyamatsorok maximális száma."
+
+#: settings-schema.json
+msgid "PID column width"
+msgstr "PID oszlopszélesség"
+
+#: settings-schema.json
+msgid "Width of the PID column."
+msgstr "A PID oszlop szélessége."
+
+#: settings-schema.json
+msgid "USER column width"
+msgstr "FELHASZNÁLÓ oszlopszélesség"
+
+#: settings-schema.json
+msgid "Width of the USER column."
+msgstr "FELHASZNÁLÓ oszlop szélessége."
+
+#: settings-schema.json
+msgid "CPU% column width"
+msgstr "CPU% oszlopszélesség"
+
+#: settings-schema.json
+msgid "Width of the CPU% column."
+msgstr "CPU% oszlop szélessége."
+
+#: settings-schema.json
+msgid "MEM column width"
+msgstr "MEM oszlopszélesség"
+
+#: settings-schema.json
+msgid "Width of the MEM column."
+msgstr "MEM oszlop szélessége"
+
+#: settings-schema.json
+msgid "COMMAND column width"
+msgstr "PARANCS oszlopszélesség"
+
+#: settings-schema.json
+msgid "Width of the COMMAND column. Desklet width is the sum of all column widths."
+msgstr "PARANCS oszlop szélessége. Az asztalkalmazás széllessége megegyezik az összes oszlop együttes szélességével."
+
+#: settings-schema.json
+msgid "Disable desklet decorations"
+msgstr "Asztalkalmazás dekorációk kikapcsolása"
+
+#: settings-schema.json
+msgid "Hide Cinnamon desklet frame and header decorations."
+msgstr "Cinnamon asztalkalmazás keret és fejléc dekorációk elrejtése."
+
+#: settings-schema.json
+msgid "Header text color"
+msgstr "Fejléc szövegének színe"
+
+#: settings-schema.json
+msgid "Color used for the header row text."
+msgstr "A fejlécsor szövegéhez használt szín."
+
+#: settings-schema.json
+msgid "Content text color"
+msgstr "Tartalom szövegének színe"
+
+#: settings-schema.json
+msgid "Color used for process row text."
+msgstr "A folyamat sorának szövegéhez használt szín."
+
+#: settings-schema.json
+msgid "Background color"
+msgstr "Háttérszín"
+
+#: settings-schema.json
+msgid "Base background color of the desklet."
+msgstr "Asztalkalmazás alap háttérszíne."
+
+#: settings-schema.json
+msgid "Background transparency"
+msgstr "Háttér átlátszósága"
+
+#: settings-schema.json
+msgid "0% is opaque, 100% is fully transparent."
+msgstr "0% átlátszatlan, 100% teljesen átlátszó."
+
+#: settings-schema.json
+msgid "Only my processes"
+msgstr "Csak az én folyamataim"
+
+#: settings-schema.json
+msgid "Use top -u <current user> to show only your processes."
+msgstr "A top -u <current user> paranccsal csak a saját folyamataidat jelenítheted meg."
+
+#: settings-schema.json
+msgid "CPU scaling mode"
+msgstr "CPU-skálázási mód"
+
+#: settings-schema.json
+msgid "Choose how CPU percentages are shown."
+msgstr "Válassza ki, hogyan jelenjenek meg a CPU-százalékok."
+
+#: settings-schema.json
+msgid "Per-core style (100% = one core)"
+msgstr "Magonkénti stílus (100% = egy mag)"
+
+#: settings-schema.json
+msgid "Total-system-scaled (100% = all cores)"
+msgstr "Teljes rendszerre skálázott (100% = minden mag)"
+
+#: settings-schema.json
+msgid "COMMAND max length"
+msgstr "PARANCS max hosszúság"
+
+#: settings-schema.json
+msgid "Long command names are truncated with ellipsis."
+msgstr "A hosszú parancsneveket három ponttal csonkoljuk."

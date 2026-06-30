@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-05 13:42+0300\n"
+"PO-Revision-Date: 2021-12-09 01:07-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:27
+msgid "Desktop Note"
+msgstr "Notas de escritorio"
+
+#. metadata.json->name
+msgid "Desktop Note desklet"
+msgstr "Desklet de Notas de escritorio"
+
+#. metadata.json->description
+msgid "Displays Note on Desktop!"
+msgstr "Mostrar Notas en el escritorio!"
+
+#. settings-schema.json->note-entry->description
+msgid "Note:"
+msgstr "Nota:"
+
+#. settings-schema.json->note-entry->tooltip
+msgid "Set your note here"
+msgstr "Pon tu nota aquí"
+
+#. settings-schema.json->font-options-header->description
+msgid "Font options:"
+msgstr "Opciones de fuentes:"
+
+#. settings-schema.json->font-size->units
+msgid "pt"
+msgstr "pt"
+
+#. settings-schema.json->font-size->description
+msgid "Font size:"
+msgstr "Tamaño de fuente:"
+
+#. settings-schema.json->text-color->description
+msgid "Font color:"
+msgstr "Color de fuente:"
+
+#. settings-schema.json->text-color->tooltip
+msgid "Click to select a new text color"
+msgstr "Haga clic para seleccionar un nuevo color de texto"
