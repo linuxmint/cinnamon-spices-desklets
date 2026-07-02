@@ -18,6 +18,27 @@
             "Light Transparent": "light_transparent",
             "Dark Transparent": "dark_transparent",
             "Semitransparent": "semi_transparent",
+            "Style 01": "style_01",
+            "Style 02": "style_02",
+            "Style 03": "style_03",
+            "Style 04": "style_04",
+            "Style 05": "style_05",
+            "Style 06": "style_06",
+            "Style 07": "style_07",
+            "Style 08": "style_08",
+            "Style 09": "style_09",
+            "myclock_01": "myclock_01",
+            "myclock_02": "myclock_02",
+            "myclock_03": "myclock_03",
+            "myclock_04": "myclock_04",
+            "myclock_05": "myclock_05",
+            "myclock_06": "myclock_06",
+            "myclock_07": "myclock_07",
+            "myclock_08": "myclock_08",
+            "myclock_09": "myclock_09",
+            "myclock_10": "myclock_10",
+            
+            
             "Custom": "custom-images"
         },
         "tooltip" : "Select the background graphic you would like to use."
@@ -47,7 +68,7 @@
     },
     "desklet-size": {
         "type": "spinbutton",
-        "default": 150,
+        "default": 250,
         "min": 10,
         "max": 500,
         "step": 2,
