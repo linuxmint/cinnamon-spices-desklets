@@ -46,7 +46,6 @@ class MuslimPrayerTimesDesklet extends Desklet.Desklet {
 		this.settings.bind("show_date", "show_date", this.setupUI);
 		this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "transparency", "transparency", this.setupUI);
 
-		this.color = 'rgb(255,255,255)';
 		this.city = "Getting location...";
 		this.logger = new Logger.New([metadata.uuid, desklet_id].join('#'));
 		this.today = new Date().getDate();
