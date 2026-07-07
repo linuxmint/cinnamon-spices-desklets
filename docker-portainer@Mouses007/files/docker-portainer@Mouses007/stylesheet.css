@@ -1,0 +1,161 @@
+/* Docker Portainer Desklet Stylesheet */
+
+.docker-desklet {
+    padding: 10px 12px 8px 12px;
+    spacing: 3px;
+    min-width: 480px;
+    background-color: rgba(15, 20, 28, 0.88);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* ---- Header ---- */
+.desklet-header-row {
+    spacing: 10px;
+    padding-bottom: 4px;
+}
+.desklet-logo {
+    icon-size: 32px;
+}
+.desklet-title-box {
+    spacing: 0px;
+}
+.desklet-title {
+    color: #ffffff;
+    font-weight: bold;
+}
+.desklet-subtitle {
+    color: #8aaac0;
+}
+
+/* ---- Separatoren ---- */
+.separator {
+    color: #2a3a4a;
+    font-size: 9px;
+    padding: 1px 0;
+}
+
+/* ---- Content-Bereich ---- */
+.desklet-content {
+    spacing: 3px;
+    padding: 4px 0;
+}
+
+/* ---- Status / Leer ---- */
+.status-label {
+    color: #aabccc;
+    font-size: 12px;
+    padding: 6px 0;
+}
+
+/* ---- Container-Zeilen ---- */
+.container-row {
+    spacing: 6px;
+    padding: 3px 2px;
+}
+
+.status-dot {
+    font-weight: bold;
+}
+.status-running { color: #2ecc71; }
+.status-stopped { color: #7a9ab8; }
+.status-other   { color: #f39c12; }
+
+.container-name {
+    color: #e0eaf4;
+}
+
+/* ---- Buttons ---- */
+.container-btn {
+    padding: 2px 7px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    font-size: 11px;
+    font-weight: bold;
+    color: #ffffff;
+    min-width: 24px;
+}
+.container-btn:hover {
+    border-color: rgba(255, 255, 255, 0.45);
+}
+
+.btn-start {
+    background-color: rgba(46, 204, 113, 0.25);
+    color: #2ecc71;
+}
+.btn-start:hover {
+    background-color: rgba(46, 204, 113, 0.45);
+}
+
+.btn-stop {
+    background-color: rgba(231, 76, 60, 0.25);
+    color: #e74c3c;
+}
+.btn-stop:hover {
+    background-color: rgba(231, 76, 60, 0.45);
+}
+
+.btn-restart {
+    background-color: rgba(243, 156, 18, 0.25);
+    color: #f39c12;
+}
+.btn-restart:hover {
+    background-color: rgba(243, 156, 18, 0.45);
+}
+
+.btn-disabled {
+    opacity: 0.3;
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ---- Env-Umschalter ---- */
+.env-toggle-btn {
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #2ecc71;
+    font-size: 11px;
+    font-weight: bold;
+}
+.env-toggle-btn:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.45);
+}
+
+/* ---- Update-Check-Button ---- */
+.update-check-btn {
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #8aaac0;
+    font-size: 14px;
+}
+.update-check-btn:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.45);
+}
+
+/* ---- Update-Indikator ---- */
+.update-available {
+    color: #f39c12;
+}
+
+/* ---- Schloss (geschützte Container) ---- */
+.lock-icon {
+    font-size: 13px;
+    padding: 2px 6px;
+    color: #5a7a96;
+}
+
+/* ---- Fußzeile ---- */
+.desklet-footer {
+    padding-top: 3px;
+}
+.footer-time {
+    color: #7a9ab8;
+    font-size: 10px;
+}
+.footer-right {
+    color: #6a8aaa;
+    font-size: 10px;
+}

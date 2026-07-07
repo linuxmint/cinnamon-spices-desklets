@@ -1,0 +1,9 @@
+{
+  "uuid": "docker-portainer@Mouses007",
+  "name": "Docker Manager",
+  "description": "Manage Docker containers via Portainer API with start/stop/restart",
+  "version": "1.0.0",
+  "author": "Mouses007",
+  "max-instances": 1,
+  "cinnamon-version": ["5.0", "5.2", "5.4", "5.6", "5.8", "6.0", "6.2", "6.4"]
+}
