@@ -1,7 +1,7 @@
 {
   "uuid": "thelauncher@sin-apps.com",
   "name": "TheLauncher",
-  "description": "Folder-based desktop launcher for .desktop files, documents, and subfolders.",
+  "description": "Folder-based desktop launcher for .desktop files, documents, and subfolders. Inspired by Quick Links - Launcher by NotSirius-A.",
   "author": "MHK924",
   "homepage": "https://sin-apps.com/launchdesklet",
   "license": "MIT"

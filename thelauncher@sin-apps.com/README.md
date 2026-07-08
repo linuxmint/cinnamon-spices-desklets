@@ -19,6 +19,10 @@ A Cinnamon desklet that displays application launchers, documents, and folders f
 
 Default link path: `~/.local/share/thelauncher/<subdirectory>/`
 
+## Acknowledgments
+
+This whole project started when I was using [Quick Links - Launcher](https://cinnamon-spices.linuxmint.com/desklets/view/76) by NotSirius-A, which is a great launcher, but I wanted a few more enhancements.
+
 ## License
 
 MIT — see repository LICENSE file.
