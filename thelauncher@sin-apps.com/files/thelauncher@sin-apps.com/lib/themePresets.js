@@ -113,10 +113,12 @@ function loadPreset(metadata, presetId) {
 }
 
 function isSystemDarkTheme() {
+    // Cinnamon exposes the user color preference via the XApp portal schema
+    // (not org.gnome.desktop.interface).
     try {
-        const gtkSettings = new Gio.Settings({ schema_id: "org.gnome.desktop.interface" });
-        if (gtkSettings.list_keys().indexOf("color-scheme") !== -1) {
-            const scheme = gtkSettings.get_string("color-scheme");
+        const portalSettings = new Gio.Settings({ schema_id: "org.x.apps.portal" });
+        if (portalSettings.list_keys().indexOf("color-scheme") !== -1) {
+            const scheme = portalSettings.get_string("color-scheme");
             if (scheme === "prefer-dark") {
                 return true;
             }
@@ -124,8 +126,13 @@ function isSystemDarkTheme() {
                 return false;
             }
         }
+    } catch (e) {
+        // Fall through to theme-name heuristic.
+    }
 
-        const themeName = gtkSettings.get_string("gtk-theme").toLowerCase();
+    try {
+        const cinnamonSettings = new Gio.Settings({ schema_id: "org.cinnamon.desktop.interface" });
+        const themeName = cinnamonSettings.get_string("gtk-theme").toLowerCase();
         return themeName.indexOf("dark") !== -1;
     } catch (e) {
         return true;

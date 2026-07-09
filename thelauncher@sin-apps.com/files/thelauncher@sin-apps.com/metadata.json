@@ -3,7 +3,7 @@
   "name": "TheLauncher",
   "description": "A folder-based desktop launcher that keeps your apps organized, your desktop clean, and everything one click away.",
   "comments": "TheLauncher turns ordinary folders of .desktop files and documents into a polished launcher panel on your Cinnamon desktop.\n\nOrganize links the way you already think about them - work, utilities, games, or any structure you choose. Each desklet instance can point at its own folder, with subfolders, custom order, and light or dark themes.\n\n- Natural, configurable organization - build a launcher layout from real directories instead of burying shortcuts in menus.\n- A cleaner desktop - keep clutter off the wallpaper and put your apps in one place you control.\n- Everything at your fingertips - launch what you need instantly instead of searching through application lists.\n\nCopy files into your link folder or manage items from the Configure dialog. The filesystem is the source of truth; TheLauncher keeps the display in sync.\n\nAcknowledgments: This whole project started when I was using Quick Links - Launcher by NotSirius-A, which is a great launcher, but I wanted a few more enhancements.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "max-instances": "50",
   "prevent-decorations": false
 }
