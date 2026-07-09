@@ -93,7 +93,23 @@
     padding: 12px;
 }
 
+.thelauncher-list {
+    spacing: 0;
+}
+
 .thelauncher-list-item {
     padding: 4px 8px;
     border-radius: 4px;
+    text-align: left;
+    spacing: 8px;
+}
+
+.thelauncher-list-item .thelauncher-item-icon {
+    margin-right: 8px;
+}
+
+.thelauncher-list-item .thelauncher-item-label {
+    text-align: left;
+    padding-top: 0;
+    padding-left: 0;
 }

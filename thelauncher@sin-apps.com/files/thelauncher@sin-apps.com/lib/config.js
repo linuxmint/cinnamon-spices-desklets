@@ -47,7 +47,8 @@ function getResolvedPath(subdirectory) {
     const config = loadConfig();
     const base = config.baseDirectory || getDefaultBaseDirectory();
     const sub = (subdirectory || "default").replace(/^\/+|\/+$/g, "");
-    return GLib.build_filenamev([base, sub]);
+    const parts = [base].concat(sub.split("/").filter(Boolean));
+    return GLib.build_filenamev(parts);
 }
 
 function ensureLinkDirectory(subdirectory) {

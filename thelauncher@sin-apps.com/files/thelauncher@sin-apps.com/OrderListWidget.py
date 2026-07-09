@@ -6,6 +6,7 @@ from gi.repository import Gtk, Gio, GLib, Gdk
 from TreeListWidgets import List
 import importlib.util
 import os
+import sys
 
 try:
     from gettext import gettext as _
@@ -18,9 +19,13 @@ UUID = "thelauncher@sin-apps.com"
 
 
 def _load_module(name):
+    module_name = "thelauncher_" + name.replace(".py", "")
+    if module_name in sys.modules:
+        return sys.modules[module_name]
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)), name)
-    spec = importlib.util.spec_from_file_location("thelauncher_" + name.replace(".py", ""), path)
+    spec = importlib.util.spec_from_file_location(module_name, path)
     module = importlib.util.module_from_spec(spec)
+    sys.modules[module_name] = module
     spec.loader.exec_module(module)
     return module
 
@@ -53,6 +58,7 @@ def _notify_desklet(settings, callback_name):
 _EDITOR = _load_order_folder_editor()
 _IMPORT = _load_module("linkImport.py")
 _ICON_PICKER = _load_module("iconPicker.py")
+_PENDING = _load_module("orderListPending.py")
 DATA_KEY = _EDITOR.DATA_KEY
 navigate_into_folder = _EDITOR.navigate_into_folder
 
@@ -66,6 +72,8 @@ class OrderListWidget(List):
         self.info = info
         self._saving = False
         self._initializing = True
+        self._save_timeout_id = 0
+        self._dirty = False
         self._column_ids = [column["id"] for column in info["columns"]]
         try:
             self._type_icon_col = self._column_ids.index("type-icon")
@@ -91,8 +99,19 @@ class OrderListWidget(List):
             toolbar = self.edit_button.get_parent()
             toolbar.insert(self.open_folder_button, 3)
 
-        self.content_widget.get_selection().connect("changed", self._update_selected_entry_id)
+        # Do not write settings on every selection change — that lagged Configure.
+        _PENDING.set_order_list_flush_callback(self.flush_pending_now)
+        self.connect("destroy", self._on_destroy)
         self._initializing = False
+
+    def _on_destroy(self, *args):
+        if self._dirty:
+            self.flush_pending_now()
+        _PENDING.set_order_list_flush_callback(None)
+        if self._save_timeout_id:
+            GLib.source_remove(self._save_timeout_id)
+            self._save_timeout_id = 0
+
 
     def _get_settings_window(self):
         widget = self
@@ -130,35 +149,6 @@ class OrderListWidget(List):
             return "document:" + short_id
         return "app:" + short_id
 
-    def _set_selected_entry_id(self, entry_id):
-        if self._initializing:
-            return
-        if not self.settings.has_key("order-selected-entry-id"):
-            return
-
-        current = ""
-        try:
-            current = self.settings.get_value("order-selected-entry-id") or ""
-        except Exception:
-            pass
-
-        entry_id = entry_id or ""
-        if current == entry_id:
-            return
-
-        self.settings.set_value("order-selected-entry-id", entry_id)
-
-    def _update_selected_entry_id(self, *args):
-        model, selected = self.content_widget.get_selection().get_selected()
-        if selected is None:
-            self._set_selected_entry_id("")
-            return
-
-        row = {}
-        for index, column_id in enumerate(self._column_ids):
-            row[column_id] = model[selected][index]
-        self._set_selected_entry_id(self._resolve_entry_id(row))
-
     def get_value(self):
         if not self.settings.has_key(DATA_KEY):
             return []
@@ -186,17 +176,69 @@ class OrderListWidget(List):
             self.model.append(row_info)
 
         self.content_widget.columns_autosize()
+        self.update_button_sensitivity()
+
+    def _reload_items_from_settings(self):
+        """Rebuild the tree from current settings (Add/Refresh must not wait for reopen)."""
+        self._populate_model(self.get_value() or [])
 
     def _on_data_changed(self, key, value):
         if self._saving:
             return
+        # Always rebuild so Add/Refresh updates are visible without reopening Configure.
         self._populate_model(value or [])
-        if not self._initializing:
-            self._update_selected_entry_id()
 
     def update_button_sensitivity(self, *args):
-        List.update_button_sensitivity(self, *args)
+        if not self.show_buttons:
+            return
+
+        # Use path indices — Gtk.TreeModel.iter_previous/next mutate the iter in
+        # place, which broke Up/Down sensitivity after a move in the stock List.
+        model, selected = self.content_widget.get_selection().get_selected()
+        if selected is None:
+            self.remove_button.set_sensitive(False)
+            self.edit_button.set_sensitive(False)
+            self.move_up_button.set_sensitive(False)
+            self.move_down_button.set_sensitive(False)
+            self.update_folder_button_sensitivity()
+            return
+
+        self.remove_button.set_sensitive(True)
+        self.edit_button.set_sensitive(True)
+
+        path = model.get_path(selected)
+        index = path.get_indices()[0] if path is not None else 0
+        count = len(model)
+        self.move_up_button.set_sensitive(index > 0)
+        self.move_down_button.set_sensitive(index < count - 1)
         self.update_folder_button_sensitivity()
+
+    def _move_selected_row(self, delta):
+        model, selected = self.content_widget.get_selection().get_selected()
+        if selected is None:
+            return
+
+        path = model.get_path(selected)
+        if path is None:
+            return
+
+        index = path.get_indices()[0]
+        target_index = index + delta
+        if target_index < 0 or target_index >= len(model):
+            return
+
+        other = model.get_iter(Gtk.TreePath.new_from_indices([target_index]))
+        if other is None:
+            return
+
+        model.swap(selected, other)
+        self.list_changed()
+
+    def move_item_up(self, *args):
+        self._move_selected_row(-1)
+
+    def move_item_down(self, *args):
+        self._move_selected_row(1)
 
     def update_folder_button_sensitivity(self, *args):
         if not self.show_buttons or not hasattr(self, "open_folder_button"):
@@ -324,6 +366,7 @@ class OrderListWidget(List):
             return
 
         _EDITOR.navigate_to_path(self.settings, target_dir)
+        self._reload_items_from_settings()
         _notify_desklet(self.settings, "on_items_changed_callback")
 
     def _edit_app_link(self, row):
@@ -358,6 +401,7 @@ class OrderListWidget(List):
             return
 
         _EDITOR.navigate_to_path(self.settings, browse_path)
+        self._reload_items_from_settings()
         _notify_desklet(self.settings, "on_items_changed_callback")
 
     def _open_folder_style_dialog(self, row):
@@ -543,14 +587,39 @@ class OrderListWidget(List):
             _notify_desklet(self.settings, "on_items_changed_callback")
 
     def list_changed(self, *args):
+        # Keep the tree + buttons snappy. Defer the full settings JSON rewrite —
+        # that delete+rewrite is slow on network shares and blocked every move.
+        self._dirty = True
+        self.update_button_sensitivity()
+        if self._save_timeout_id:
+            GLib.source_remove(self._save_timeout_id)
+            self._save_timeout_id = 0
+        self._save_timeout_id = GLib.timeout_add(750, self._flush_list_to_settings)
+
+    def _collect_model_data(self):
         data = []
         for row in self.model:
             row_info = {}
             for index, column in enumerate(self.columns):
                 row_info[column["id"]] = row[index]
             data.append(row_info)
+        return data
 
+    def flush_pending_now(self):
+        if self._save_timeout_id:
+            GLib.source_remove(self._save_timeout_id)
+            self._save_timeout_id = 0
+        if not self._dirty:
+            return
+        self._flush_list_to_settings()
+
+    def _flush_list_to_settings(self):
+        self._save_timeout_id = 0
+        data = self._collect_model_data()
         self._saving = True
-        self.settings.set_value(DATA_KEY, data)
-        self._saving = False
-        self.update_button_sensitivity()
+        try:
+            self.settings.set_value(DATA_KEY, data)
+            self._dirty = False
+        finally:
+            self._saving = False
+        return GLib.SOURCE_REMOVE

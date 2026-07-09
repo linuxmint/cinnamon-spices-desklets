@@ -82,6 +82,7 @@ TheLauncherDesklet.prototype = {
         this._syncingOrderList = false;
         this._configurePanelOpen = false;
         this._applyingOrderPath = false;
+        this._storageChangeTimeoutId = 0;
         this._deskletMetadata = metadata;
         this._itemTooltips = [];
         this._panelBox = null;
@@ -110,7 +111,6 @@ TheLauncherDesklet.prototype = {
         this.columns = 8;
         this.row_spacing = 5;
         this.col_spacing = 5;
-        this.scale = 1.0;
         this.text_align = "center";
         this.transparent_background = false;
         this.icon_size = 50;
@@ -172,7 +172,6 @@ TheLauncherDesklet.prototype = {
             "columns",
             "row-spacing",
             "col-spacing",
-            "scale",
             "text-align",
             "transparent-background",
             "icon-size",
@@ -262,6 +261,21 @@ TheLauncherDesklet.prototype = {
             function() {}
         );
 
+        // Custom UI widgets cannot be bound (type "custom"). Values live in
+        // generic keys; re-read them here in case a bind was skipped.
+        try {
+            const configuredBase = (this.settings.getValue("base-directory") || "").trim();
+            if (configuredBase) {
+                this.base_directory = configuredBase;
+            }
+            const configuredSub = (this.settings.getValue("subdirectory") || "").trim();
+            if (configuredSub) {
+                this.subdirectory = configuredSub;
+            }
+        } catch (e) {
+            // Keep constructor defaults.
+        }
+
         if (!this.base_directory) {
             this.base_directory = loadConfig().baseDirectory || getDefaultBaseDirectory();
         }
@@ -299,6 +313,10 @@ TheLauncherDesklet.prototype = {
         this._teardownPlacement();
         this._stopFileMonitor();
         this._cancelScheduledRefresh();
+        if (this._storageChangeTimeoutId) {
+            Mainloop.source_remove(this._storageChangeTimeoutId);
+            this._storageChangeTimeoutId = 0;
+        }
         if (this._applyingPositionId) {
             Mainloop.source_remove(this._applyingPositionId);
             this._applyingPositionId = 0;
@@ -944,22 +962,44 @@ TheLauncherDesklet.prototype = {
             return;
         }
 
+        const baseChanged = this._lastBaseDirectory !== this._resolveBaseDirectory();
+        const subChanged = this._lastSubdirectory !== this.subdirectory;
+        if (baseChanged || subChanged) {
+            // Debounce so Configure Browse can finish writing Items / JSON first.
+            this._scheduleStoragePathApply(false);
+            return;
+        }
+
         this._finishSettingsRefresh();
     },
 
-    _finishSettingsRefresh: function() {
+    _scheduleStoragePathApply: function(createIfMissing) {
+        if (this._storageChangeTimeoutId) {
+            Mainloop.source_remove(this._storageChangeTimeoutId);
+            this._storageChangeTimeoutId = 0;
+        }
+
+        this._storageChangeTimeoutId = Mainloop.timeout_add(400, (function() {
+            this._storageChangeTimeoutId = 0;
+            this._finishSettingsRefresh(!!createIfMissing);
+            return GLib.SOURCE_REMOVE;
+        }).bind(this));
+    },
+
+    _finishSettingsRefresh: function(createIfMissing) {
         const baseChanged = this._lastBaseDirectory !== this._resolveBaseDirectory();
         const subChanged = this._lastSubdirectory !== this.subdirectory;
         const folderSortChanged = this._lastFolderSort !== this.folder_sort;
         const storageChanged = baseChanged || subChanged;
+        const shouldCreate = !!createIfMissing;
 
         if (baseChanged) {
             this._syncSharedConfig();
             this._lastBaseDirectory = this._resolveBaseDirectory();
         }
 
-        if (storageChanged) {
-            this._applyStoragePath(false);
+        if (storageChanged || shouldCreate) {
+            this._applyStoragePath(shouldCreate);
         } else if (folderSortChanged) {
             const rootPath = this._getOrderRootPath();
             if (rootPath) {
@@ -975,27 +1015,101 @@ TheLauncherDesklet.prototype = {
         }
 
         this._lastFolderSort = this.folder_sort;
-        if (!storageChanged) {
+        if (!storageChanged && !shouldCreate) {
             this._scheduleRefresh();
         }
         this._applyHeaderStyle();
     },
 
     on_create_link_directory_callback: function() {
+        if (this._storageChangeTimeoutId) {
+            Mainloop.source_remove(this._storageChangeTimeoutId);
+            this._storageChangeTimeoutId = 0;
+        }
         this._applyStoragePath(true);
     },
 
-    _clearOrderListForMissingPath: function() {
-        if (!this.settings || this._syncingOrderList) {
+    on_base_directory_selected_callback: function() {
+        // Configure Browse already wrote the shared base and Items for this instance.
+        if (this._storageChangeTimeoutId) {
+            Mainloop.source_remove(this._storageChangeTimeoutId);
+            this._storageChangeTimeoutId = 0;
+        }
+
+        Mainloop.idle_add((function() {
+            const configuredBase = (this.settings.getValue("base-directory") || "").trim();
+            if (configuredBase) {
+                this.base_directory = configuredBase;
+            }
+            const configuredSub = (this.settings.getValue("subdirectory") || "").trim();
+            if (configuredSub) {
+                this.subdirectory = configuredSub;
+            }
+
+            this._syncSharedConfig();
+            this._adoptConfiguredStoragePath();
+            return GLib.SOURCE_REMOVE;
+        }).bind(this));
+    },
+
+    on_subdirectory_selected_callback: function() {
+        // Configure Browse already created/selected the folder and wrote Items.
+        // Cancel any pending storage debounce and adopt that path for this instance.
+        if (this._storageChangeTimeoutId) {
+            Mainloop.source_remove(this._storageChangeTimeoutId);
+            this._storageChangeTimeoutId = 0;
+        }
+
+        Mainloop.idle_add((function() {
+            const configured = (this.settings.getValue("subdirectory") || "").trim();
+            if (configured) {
+                this.subdirectory = configured;
+            }
+
+            this._syncSharedConfig();
+            this._adoptConfiguredStoragePath();
+            return GLib.SOURCE_REMOVE;
+        }).bind(this));
+    },
+
+    _adoptConfiguredStoragePath: function() {
+        // Prefer the resolved instance root — do not keep a stale
+        // order-folder-path from the previous base/subdirectory.
+        const browsePath = getResolvedPath(this.subdirectory);
+        const configuredBrowse = (this.settings.getValue("order-folder-path") || "").trim();
+        const path = (configuredBrowse
+            && this._isDirectoryPath(configuredBrowse)
+            && (configuredBrowse === browsePath
+                || configuredBrowse.indexOf(browsePath + "/") === 0))
+            ? configuredBrowse
+            : browsePath;
+
+        if (!path || !this._isDirectoryPath(path)) {
+            this._rootPath = null;
+            this._navStack = [];
+            this._stopFileMonitor();
+            this._scheduleRefresh();
             return;
         }
 
-        this._syncingOrderList = true;
-        this.settings.setValue("link-order-list-data", []);
-        this.settings.setValue("order-folder-path", "");
-        this.order_folder_path = "";
-        this._updateOrderBrowseDisplay();
-        this._syncingOrderList = false;
+        this._lastSubdirectory = this.subdirectory;
+        this._lastBaseDirectory = this._resolveBaseDirectory();
+        this._rootPath = browsePath;
+        this._navStack = [{
+            path: path,
+            label: this.subdirectory || "default"
+        }];
+        this.order_folder_path = path;
+        this.order_in_subfolder = path !== browsePath;
+        this._restartFileMonitor();
+        // Do not rewrite link-order-list-data — Configure already loaded JSON.
+        this._scheduleRefresh();
+        this._applyHeaderStyle();
+    },
+
+    _clearOrderListForMissingPath: function() {
+        // Do not wipe Configure's Items list while the panel may be open.
+        this._rootPath = null;
     },
 
     _applyHeaderStyle: function() {
@@ -1359,6 +1473,8 @@ TheLauncherDesklet.prototype = {
     },
 
     on_items_changed_callback: function() {
+        // Python already updated link-order-list-data. Refresh the desklet
+        // surface only — do not rewrite the Items list from here.
         Mainloop.idle_add((function() {
             this._reloadOrderSettingsFromPanel();
             this._refresh();
@@ -1444,7 +1560,7 @@ TheLauncherDesklet.prototype = {
         const currentPath = this._getCurrentPath();
         if (!currentPath) {
             this._buildMessage(
-                _("Link directory not found. Enter a subdirectory name, then click Create link directory.")
+                _("Link directory not found. Use Configure → General → Link subdirectory → Browse to select or create a folder.")
             );
             return;
         }
@@ -1544,7 +1660,7 @@ TheLauncherDesklet.prototype = {
             return iconWidth + padding;
         }
 
-        return Math.max(padding, Math.round(BASE_TILE_WIDTH * this.scale * 0.85));
+        return Math.max(padding, Math.round(BASE_TILE_WIDTH * 0.85));
     },
 
     _configureItemLabel: function(label) {
@@ -1554,6 +1670,12 @@ TheLauncherDesklet.prototype = {
 
         if (this._isListLayout()) {
             label.x_expand = true;
+            label.y_expand = false;
+            label.set_x_align(Clutter.ActorAlign.FILL);
+            label.set_y_align(Clutter.ActorAlign.CENTER);
+            label.clutter_text.set_line_alignment(Pango.Alignment.LEFT);
+            label.clutter_text.set_x_align(Clutter.ActorAlign.START);
+            label.clutter_text.set_y_align(Clutter.ActorAlign.CENTER);
             return;
         }
 
@@ -1561,13 +1683,144 @@ TheLauncherDesklet.prototype = {
         label.x_align = this._getTextAlign();
     },
 
+    _createItemIcon: function(item) {
+        let iconWidget;
+        if (item.type === "folder") {
+            iconWidget = new St.Icon({
+                icon_name: item.icon || "folder-symbolic",
+                icon_type: St.IconType.SYMBOLIC,
+                icon_size: this.icon_size,
+                style_class: "thelauncher-item-icon"
+            });
+            iconWidget.set_style("color: %s;".format(item.iconTint || this.folder_icon_tint));
+        } else if (item.type === "document") {
+            try {
+                iconWidget = new St.Icon({
+                    gicon: getDocumentIcon(item.path),
+                    icon_size: this.icon_size,
+                    style_class: "thelauncher-item-icon"
+                });
+            } catch (e) {
+                iconWidget = new St.Icon({
+                    icon_name: "text-x-generic",
+                    icon_type: St.IconType.FULLCOLOR,
+                    icon_size: this.icon_size,
+                    style_class: "thelauncher-item-icon"
+                });
+            }
+        } else if (item.icon) {
+            try {
+                iconWidget = new St.Icon({
+                    gicon: item.icon,
+                    icon_size: this.icon_size,
+                    style_class: "thelauncher-item-icon"
+                });
+            } catch (e) {
+                iconWidget = new St.Icon({
+                    icon_name: "application-x-executable",
+                    icon_type: St.IconType.FULLCOLOR,
+                    icon_size: this.icon_size,
+                    style_class: "thelauncher-item-icon"
+                });
+            }
+        } else {
+            iconWidget = new St.Icon({
+                icon_name: "application-x-executable",
+                icon_type: St.IconType.FULLCOLOR,
+                icon_size: this.icon_size,
+                style_class: "thelauncher-item-icon"
+            });
+        }
+        return iconWidget;
+    },
+
+    _wireItemInteractions: function(actor, item) {
+        if (!item.enabled) {
+            const desaturate = new Clutter.DesaturateEffect();
+            desaturate.set_factor(1.0);
+            actor.add_effect(desaturate);
+        }
+
+        actor.connect("notify::hover", (function(hovered) {
+            if (!item.enabled) {
+                return;
+            }
+            hovered.set_style(this._itemStyle(item, hovered.hover ? "hover" : null));
+        }).bind(this));
+        actor.connect("button-press-event", (function(pressed, event) {
+            if (!item.enabled || event.get_button() !== Clutter.BUTTON_PRIMARY) {
+                return Clutter.EVENT_PROPAGATE;
+            }
+            pressed.set_style(this._itemStyle(item, "pressed"));
+            this._onItemActivated(item, event.get_click_count());
+            return Clutter.EVENT_STOP;
+        }).bind(this));
+        actor.connect("button-release-event", (function(released) {
+            if (!item.enabled) {
+                return Clutter.EVENT_PROPAGATE;
+            }
+            released.set_style(this._itemStyle(item, released.hover ? "hover" : null));
+            return Clutter.EVENT_PROPAGATE;
+        }).bind(this));
+
+        if (this.show_tooltips) {
+            const tooltip = new Tooltips.Tooltip(actor, this._tooltipText(item));
+            tooltip._tooltip.set_style(
+                "background-color: %s; color: %s; padding: 4px 8px; border-radius: 4px;".format(
+                    this.tooltip_bg_color,
+                    this.tooltip_text_color
+                )
+            );
+            this._itemTooltips.push(tooltip);
+        }
+    },
+
     _createItemButton: function(item) {
         const isDisabled = !item.enabled;
-        let styleClass = this._isListLayout()
+        const isList = this._isListLayout();
+        let styleClass = isList
             ? "thelauncher-list-item thelauncher-item"
             : "thelauncher-item";
         if (isDisabled) {
             styleClass += " thelauncher-item-disabled";
+        }
+
+        // List rows cannot use St.Button — it always centers its child.
+        // Use a horizontal BoxLayout so icon + text pack from the left.
+        if (isList) {
+            const row = new St.BoxLayout({
+                vertical: false,
+                style_class: styleClass,
+                reactive: !isDisabled,
+                track_hover: !isDisabled,
+                can_focus: !isDisabled,
+                x_expand: true,
+                y_expand: false,
+                style: this._itemStyle(item)
+            });
+
+            if (this.icon_size > 0) {
+                const iconWidget = this._createItemIcon(item);
+                iconWidget.x_expand = false;
+                iconWidget.y_expand = false;
+                iconWidget.set_y_align(Clutter.ActorAlign.CENTER);
+                row.add_child(iconWidget);
+            }
+
+            if (this.show_text) {
+                const label = new St.Label({
+                    text: item.name,
+                    style_class: "thelauncher-item-label"
+                });
+                if (this.link_font) {
+                    label.clutter_text.set_font_name(this.link_font);
+                }
+                this._configureItemLabel(label);
+                row.add_child(label);
+            }
+
+            this._wireItemInteractions(row, item);
+            return row;
         }
 
         const button = new St.Button({
@@ -1582,56 +1835,15 @@ TheLauncherDesklet.prototype = {
         });
 
         const inner = new St.BoxLayout({
-            vertical: !this._isListLayout(),
-            x_align: this._isListLayout() ? St.Align.START : this._getTextAlign(),
+            vertical: true,
+            x_align: this._getTextAlign(),
             y_align: St.Align.START,
             x_expand: false,
             y_expand: false
         });
 
         if (this.icon_size > 0) {
-            let iconWidget;
-            if (item.type === "folder") {
-                iconWidget = new St.Icon({
-                    icon_name: item.icon || "folder-symbolic",
-                    icon_type: St.IconType.SYMBOLIC,
-                    icon_size: this.icon_size
-                });
-                iconWidget.set_style("color: %s;".format(item.iconTint || this.folder_icon_tint));
-            } else if (item.type === "document") {
-                try {
-                    iconWidget = new St.Icon({
-                        gicon: getDocumentIcon(item.path),
-                        icon_size: this.icon_size
-                    });
-                } catch (e) {
-                    iconWidget = new St.Icon({
-                        icon_name: "text-x-generic",
-                        icon_type: St.IconType.FULLCOLOR,
-                        icon_size: this.icon_size
-                    });
-                }
-            } else if (item.icon) {
-                try {
-                    iconWidget = new St.Icon({
-                        gicon: item.icon,
-                        icon_size: this.icon_size
-                    });
-                } catch (e) {
-                    iconWidget = new St.Icon({
-                        icon_name: "application-x-executable",
-                        icon_type: St.IconType.FULLCOLOR,
-                        icon_size: this.icon_size
-                    });
-                }
-            } else {
-                iconWidget = new St.Icon({
-                    icon_name: "application-x-executable",
-                    icon_type: St.IconType.FULLCOLOR,
-                    icon_size: this.icon_size
-                });
-            }
-            inner.add_child(iconWidget);
+            inner.add_child(this._createItemIcon(item));
         }
 
         if (this.show_text) {
@@ -1647,51 +1859,12 @@ TheLauncherDesklet.prototype = {
         }
 
         button.set_child(inner);
-
-        if (isDisabled) {
-            const desaturate = new Clutter.DesaturateEffect();
-            desaturate.set_factor(1.0);
-            button.add_effect(desaturate);
-        }
-
-        button.connect("notify::hover", (function(actor) {
-            if (!item.enabled) {
-                return;
-            }
-            actor.set_style(this._itemStyle(item, actor.hover ? "hover" : null));
-        }).bind(this));
-        button.connect("button-press-event", (function(actor, event) {
-            if (!item.enabled || event.get_button() !== Clutter.BUTTON_PRIMARY) {
-                return Clutter.EVENT_PROPAGATE;
-            }
-            actor.set_style(this._itemStyle(item, "pressed"));
-            this._onItemActivated(item, event.get_click_count());
-            return Clutter.EVENT_STOP;
-        }).bind(this));
-        button.connect("button-release-event", (function(actor) {
-            if (!item.enabled) {
-                return Clutter.EVENT_PROPAGATE;
-            }
-            actor.set_style(this._itemStyle(item, actor.hover ? "hover" : null));
-            return Clutter.EVENT_PROPAGATE;
-        }).bind(this));
-
-        if (this.show_tooltips) {
-            const tooltip = new Tooltips.Tooltip(button, this._tooltipText(item));
-            tooltip._tooltip.set_style(
-                "background-color: %s; color: %s; padding: 4px 8px; border-radius: 4px;".format(
-                    this.tooltip_bg_color,
-                    this.tooltip_text_color
-                )
-            );
-            this._itemTooltips.push(tooltip);
-        }
-
+        this._wireItemInteractions(button, item);
         return button;
     },
 
     _getTileWidth: function() {
-        return Math.round(BASE_TILE_WIDTH * this.scale);
+        return BASE_TILE_WIDTH;
     },
 
     _isListLayout: function() {
@@ -1783,7 +1956,22 @@ TheLauncherDesklet.prototype = {
     },
 
     _buildList: function(items) {
-        return this._buildItemGrid(items, 1);
+        const list = new St.BoxLayout({
+            vertical: true,
+            style_class: "thelauncher-list",
+            x_expand: true,
+            y_expand: false
+        });
+        list.set_style("spacing: %spx;".format(Math.round(this.row_spacing)));
+
+        for (let i = 0; i < items.length; i++) {
+            const button = this._createItemButton(items[i]);
+            button.set_x_expand(true);
+            button.set_x_align(Clutter.ActorAlign.FILL);
+            list.add_child(button);
+        }
+
+        return list;
     },
 
     _buildNavBar: function() {

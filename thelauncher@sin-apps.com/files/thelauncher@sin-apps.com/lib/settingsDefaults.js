@@ -10,7 +10,6 @@ var SETTING_DEFAULTS = {
     "columns": 8,
     "row-spacing": 5,
     "col-spacing": 5,
-    "scale": 1.0,
     "text-align": "center",
     "icon-size": 50,
     "text-width-padding": 16,

@@ -39,6 +39,7 @@ def _load_module(name):
 _ITEMS_BAR_BUTTONS = _load_module("itemsBarButtons.py")
 apply_bar_button_width = _ITEMS_BAR_BUTTONS.apply_bar_button_width
 _EDITOR = _load_module("orderFolderEditor.py")
+_PENDING = _load_module("orderListPending.py")
 resort_settings_order_list = _EDITOR.resort_settings_order_list
 
 
@@ -130,14 +131,20 @@ class ItemsActionBar(SettingsWidget):
             None)
 
     def on_refresh_clicked(self, *args):
+        _PENDING.flush_order_list_now()
         browse_path = _EDITOR.get_browse_path(self.settings)
         if not browse_path:
             return
+        # Rescan directory + .thelauncher.json into settings, then notify desklet.
         _EDITOR.navigate_to_path(self.settings, browse_path)
+        self._notify_desklet("on_items_changed_callback")
 
     def on_resort_apply_clicked(self, *args):
+        _PENDING.flush_order_list_now()
         sort_mode = self.sort_combo.get_active_id() or "mixed"
         resort_settings_order_list(self.settings, sort_mode)
 
     def on_apply_clicked(self, *args):
+        # Persist any pending Up/Down / toggle edits before the desklet reads them.
+        _PENDING.flush_order_list_now()
         self._notify_desklet("on_apply_order_callback")

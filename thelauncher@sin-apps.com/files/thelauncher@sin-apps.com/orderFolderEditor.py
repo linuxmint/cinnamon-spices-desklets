@@ -36,14 +36,33 @@ def load_shared_base_directory():
         return default
 
 
-def resolve_root_path(settings):
+def save_shared_base_directory(base_directory):
+    """Persist the shared base for all TheLauncher instances."""
+    base = (base_directory or "").strip() or os.path.join(_xdg_data_home(), "thelauncher")
+    config_dir = os.path.dirname(CONFIG_FILE)
+    os.makedirs(config_dir, mode=0o755, exist_ok=True)
+    payload = {
+        "version": 1,
+        "baseDirectory": base,
+    }
+    with open(CONFIG_FILE, "w", encoding="utf-8") as handle:
+        json.dump(payload, handle, indent=2)
+        handle.write("\n")
+    return base
+
+
+def resolve_shared_base(settings):
     configured = ""
     if settings.has_key("base-directory"):
         try:
             configured = (settings.get_value("base-directory") or "").strip()
         except Exception:
             configured = ""
-    base = configured or load_shared_base_directory()
+    return os.path.realpath(configured or load_shared_base_directory())
+
+
+def resolve_root_path(settings):
+    base = resolve_shared_base(settings)
     sub = "default"
     if settings.has_key("subdirectory"):
         try:
@@ -336,12 +355,17 @@ def items_to_order_list(items):
 
 
 def navigate_to_path(settings, target_path):
-    root = resolve_root_path(settings)
     if not target_path or not os.path.isdir(target_path):
         return False
-    if target_path != root and not target_path.startswith(root + os.sep):
+
+    target_path = os.path.realpath(target_path)
+    # Allow any folder under the shared base (Browse may switch sibling
+    # instance directories). Instance "Home" is still the configured subdirectory.
+    base = resolve_shared_base(settings)
+    if target_path != base and not target_path.startswith(base + os.sep):
         return False
 
+    root = os.path.realpath(resolve_root_path(settings))
     folder_sort = "mixed"
     if settings.has_key("folder-sort"):
         try:
@@ -355,7 +379,10 @@ def navigate_to_path(settings, target_path):
     label = breadcrumb_label(target_path, root)
     in_subfolder = target_path != root
 
-    _set_setting(settings, DATA_KEY, rows)
+    # Always notify Configure listeners — JsonSettingsHandler.set_value skips
+    # callbacks when the value compares equal, which left the Items list stale
+    # after Refresh (and sometimes after Add).
+    force_set_order_list(settings, rows)
     _set_setting(settings, "order-folder-path", target_path)
     _set_setting(settings, "order-breadcrumb-display", label)
     _set_setting(settings, "order-in-subfolder", in_subfolder)
@@ -363,9 +390,57 @@ def navigate_to_path(settings, target_path):
     return True
 
 
-def _set_setting(settings, key, value):
+def set_value_safe(settings, key, value):
+    """Write a setting and always run local listeners.
+
+    JSONSettingsHandler.set_value saves the file, then DBus-notifies Cinnamon
+    via updateSetting. After a desklet reload that notify can throw
+    (settingsManager.uuids[uuid][instance_id] is null) and abort before local
+    Configure listeners run — leaving Items / labels stale even though the
+    JSON on disk was updated. Isolate the remote notify so UI updates finish.
+    """
+    if not settings.has_key(key):
+        return False
+
+    notify = getattr(settings, "notify_callback", None)
+    settings.notify_callback = None
     try:
         settings.set_value(key, value)
+    except Exception:
+        return False
+    finally:
+        settings.notify_callback = notify
+
+    if notify is not None:
+        try:
+            notify(settings, key, value)
+        except Exception:
+            # Desklet still picks up the file change; Configure already updated.
+            pass
+    return True
+
+
+def force_set_order_list(settings, rows):
+    """Write link-order-list-data and always fire settings listeners."""
+    if not settings.has_key(DATA_KEY):
+        return
+    try:
+        current = settings.get_value(DATA_KEY)
+    except Exception:
+        current = None
+
+    try:
+        if current == rows:
+            # Nudge inequality so listeners run, then write the real rows.
+            set_value_safe(settings, DATA_KEY, [])
+        set_value_safe(settings, DATA_KEY, rows)
+    except Exception:
+        pass
+
+
+def _set_setting(settings, key, value):
+    try:
+        set_value_safe(settings, key, value)
     except Exception:
         pass
 

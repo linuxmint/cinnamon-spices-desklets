@@ -34,9 +34,8 @@
       "type": "section",
       "title": "Link storage",
       "keys": [
-        "base-directory",
-        "subdirectory",
-        "create-link-directory-button"
+        "base-directory-chooser",
+        "subdirectory-chooser"
       ]
     },
     "behavior-section": {
@@ -72,7 +71,6 @@
         "columns",
         "row-spacing",
         "col-spacing",
-        "scale",
         "text-align",
         "transparent-background",
         "icon-size",
@@ -170,24 +168,28 @@
     }
   },
   "base-directory": {
-    "type": "entry",
+    "type": "generic",
     "default": "",
+    "description": "Shared base directory"
+  },
+  "base-directory-chooser": {
+    "type": "custom",
+    "file": "BaseDirectoryChooser.py",
+    "widget": "BaseDirectoryChooser",
     "description": "Shared base directory",
-    "tooltip": "Root folder for all launcher content. Saved under the XDG config directory (thelauncher/config.json). Leave empty for the XDG data directory (thelauncher/)."
+    "tooltip": "Root folder for all launcher content. Saved under the XDG config directory (thelauncher/config.json). Use Browse to select or create one."
   },
   "subdirectory": {
-    "type": "entry",
+    "type": "generic",
     "default": "default",
-    "description": "Link subdirectory",
-    "tooltip": "Folder under the shared base directory for this desklet instance (e.g. work, personal)."
+    "description": "Link subdirectory"
   },
-  "create-link-directory-button": {
+  "subdirectory-chooser": {
     "type": "custom",
-    "file": "CreateLinkDirectoryButton.py",
-    "widget": "CreateLinkDirectoryButton",
-    "callback": "on_create_link_directory_callback",
-    "description": "Create link directory",
-    "tooltip": "Create the link subdirectory, load .thelauncher.json, and update this instance's link items."
+    "file": "SubdirectoryChooser.py",
+    "widget": "SubdirectoryChooser",
+    "description": "Link subdirectory",
+    "tooltip": "Folder under the shared base directory for this desklet instance. Use Browse to select or create one."
   },
   "launch-mode": {
     "type": "combobox",
@@ -276,7 +278,8 @@
     "max": 12,
     "step": 1,
     "description": "Number of columns",
-    "tooltip": "Columns used in tile view."
+    "tooltip": "Columns used in tile view.",
+    "dependency": "layout-style=tile"
   },
   "row-spacing": {
     "type": "spinbutton",
@@ -295,16 +298,8 @@
     "step": 1,
     "units": "px",
     "description": "Column spacing",
-    "dependency": "columns>1"
-  },
-  "scale": {
-    "type": "scale",
-    "default": 1.0,
-    "min": 0.5,
-    "max": 3.0,
-    "step": 0.1,
-    "description": "Desklet size (scale factor)",
-    "tooltip": "Mostly impacts width."
+    "tooltip": "Horizontal gap between columns in tile view.",
+    "dependency": "layout-style=tile"
   },
   "text-align": {
     "type": "combobox",
@@ -495,7 +490,7 @@
     "step": 10,
     "units": "px",
     "description": "Max width",
-    "tooltip": "0 = auto from content and scale."
+    "tooltip": "0 = auto from content."
   },
   "max-height": {
     "type": "spinbutton",
@@ -557,12 +552,6 @@
     "default": "",
     "description": "Open folder id",
     "tooltip": "Internal folder id used when opening a subdirectory."
-  },
-  "order-selected-entry-id": {
-    "type": "entry",
-    "default": "",
-    "description": "Selected item id",
-    "tooltip": "Internal id of the selected list row."
   },
   "order-folder-path": {
     "type": "entry",
