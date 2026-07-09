@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: steamGamesStarter@KopfdesDaemons 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-10-11 14:57+0200\n"
+"POT-Creation-Date: 2026-02-20 23:29+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
 "Language-Team: \n"
@@ -19,29 +19,59 @@ msgstr ""
 "X-Generator: Poedit 3.4.2\n"
 
 #. metadata.json->name
-#. desklet.js:40 desklet.js:211
+#. desklet.js:30 helpers/ui.js:29
 msgid "Steam Games Starter"
 msgstr "Trình khởi chạy Game Steam"
 
-#. desklet.js:148
+#. helpers/steam.js:146
+msgid "Could not load image"
+msgstr ""
+
+#. helpers/ui.js:97
+msgid "Unknown"
+msgstr ""
+
+#. helpers/ui.js:99
 msgid "Last played:"
 msgstr "Lần chơi cuối:"
 
-#. desklet.js:175
-msgid "No installed games found"
-msgstr "Không tìm thấy game đã cài đặt"
-
-#. desklet.js:223
+#. helpers/ui.js:145
 msgid "Loading..."
 msgstr "Đang tải..."
+
+#. helpers/ui.js:176
+msgid "No installed games found"
+msgstr "Không tìm thấy game đã cài đặt"
 
 #. metadata.json->description
 msgid "Start Steam games from your desktop."
 msgstr "Khởi chạy game Steam từ màn hình của bạn."
 
-#. settings-schema.json->head0->description
+#. settings-schema.json->general-page->title
 msgid "General"
 msgstr "Chung"
+
+#. settings-schema.json->style-page->title
+#. settings-schema.json->style-section->title
+msgid "Style"
+msgstr "Kiểu dáng"
+
+#. settings-schema.json->size-section->title
+msgid "Size"
+msgstr ""
+
+#. settings-schema.json->labels-section->title
+msgid "Labels"
+msgstr ""
+
+#. settings-schema.json->buttons-section->title
+msgid "Buttons"
+msgstr ""
+
+#. settings-schema.json->steam-install-section->title
+#, fuzzy
+msgid "Steam installation"
+msgstr "Loại cài đặt Steam"
 
 #. settings-schema.json->steam-install-type->description
 msgid "Steam installation type"
@@ -55,18 +85,67 @@ msgstr "Gói hệ thống"
 msgid "Flatpak"
 msgstr "Flatpak"
 
+#. settings-schema.json->steam-install-type->options
+msgid "Custom"
+msgstr ""
+
+#. settings-schema.json->custom-install-path->description
+msgid "Select libraryfolders.vdf"
+msgstr ""
+
+#. settings-schema.json->custom-cmd->description
+msgid "CMD to launch Steam"
+msgstr ""
+
 #. settings-schema.json->number-of-games->description
 msgid "Maximum number of games"
 msgstr "Số lượng game tối đa"
 
-#. settings-schema.json->head1->description
-msgid "Style"
-msgstr "Kiểu dáng"
+#. settings-schema.json->scale-size->description
+msgid "Desklet scale size"
+msgstr ""
 
 #. settings-schema.json->max-desklet-height->description
 msgid "Maximum height of the desklet"
 msgstr "Chiều cao tối đa của desklet"
 
+#. settings-schema.json->desklet-width->description
+#, fuzzy
+msgid "Width of the desklet"
+msgstr "Chiều cao tối đa của desklet"
+
 #. settings-schema.json->background-color->description
 msgid "Background color"
 msgstr "Màu nền"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr ""
+
+#. settings-schema.json->show-game-header-image->description
+msgid "Show game header image"
+msgstr ""
+
+#. settings-schema.json->game-header-image-size->description
+msgid "Game header image size"
+msgstr ""
+
+#. settings-schema.json->game-label-font-size->description
+msgid "Game label font size"
+msgstr ""
+
+#. settings-schema.json->show-last-played-label->description
+msgid "Show \"last played\" label"
+msgstr ""
+
+#. settings-schema.json->last-played-label-font-size->description
+msgid "\"Last played\" label font size"
+msgstr ""
+
+#. settings-schema.json->show-game-start-button->description
+msgid "Show game start button"
+msgstr ""
+
+#. settings-schema.json->show-game-shop-button->description
+msgid "Show game shop button"
+msgstr ""
