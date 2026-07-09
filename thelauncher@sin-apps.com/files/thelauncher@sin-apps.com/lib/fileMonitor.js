@@ -1,7 +1,7 @@
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
 
-const DEFAULT_DEBOUNCE_MS = 300;
+var DEFAULT_DEBOUNCE_MS = 300;
 const POLL_INTERVAL_SEC = 5;
 
 function createDirectoryMonitor(directoryPath, callback, debounceMs) {
@@ -44,7 +44,7 @@ function createDirectoryMonitor(directoryPath, callback, debounceMs) {
         }
     }
 
-    if (!directoryPath || !GLib.file_test(directoryPath, GLib.FileTest.IS_DIR)) {
+    if (!directoryPath) {
         return { stop: stop, path: directoryPath };
     }
 
@@ -70,9 +70,3 @@ function createDirectoryMonitor(directoryPath, callback, debounceMs) {
     return { stop: stop, path: directoryPath };
 }
 
-if (typeof module !== "undefined") {
-    module.exports = {
-        createDirectoryMonitor,
-        DEFAULT_DEBOUNCE_MS
-    };
-}

@@ -1,4 +1,4 @@
-const SETTING_DEFAULTS = {
+var SETTING_DEFAULTS = {
     "subdirectory": "default",
     "launch-mode": "single-click",
     "folder-click-mode": "navigate",
@@ -106,9 +106,3 @@ function ensureSettingsDefaults(settings) {
     });
 }
 
-if (typeof module !== "undefined") {
-    module.exports = {
-        SETTING_DEFAULTS,
-        ensureSettingsDefaults
-    };
-}

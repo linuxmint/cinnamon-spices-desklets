@@ -173,7 +173,7 @@
     "type": "entry",
     "default": "",
     "description": "Shared base directory",
-    "tooltip": "Root folder for all launcher content. Saved to ~/.config/thelauncher/config.json. Leave empty for ~/.local/share/thelauncher/."
+    "tooltip": "Root folder for all launcher content. Saved under the XDG config directory (thelauncher/config.json). Leave empty for the XDG data directory (thelauncher/)."
   },
   "subdirectory": {
     "type": "entry",

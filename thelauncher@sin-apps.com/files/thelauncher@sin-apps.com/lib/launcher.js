@@ -38,21 +38,18 @@ function newDesktopAppInfo(filePath) {
 
 function getDocumentIcon(filePath) {
     try {
-        const file = Gio.File.new_for_path(filePath);
-        const info = file.query_info(
-            "standard::content-type",
-            Gio.FileQueryInfoFlags.NONE,
-            null
-        );
-        const contentType = info.get_content_type();
-        const appInfo = Gio.AppInfo.get_default_for_type(contentType, true);
-        if (appInfo) {
-            const icon = appInfo.get_icon();
-            if (icon) {
-                return icon;
+        const filename = GLib.path_get_basename(filePath || "");
+        const [contentType] = Gio.content_type_guess(filename, null);
+        if (contentType) {
+            const appInfo = Gio.AppInfo.get_default_for_type(contentType, true);
+            if (appInfo) {
+                const icon = appInfo.get_icon();
+                if (icon) {
+                    return icon;
+                }
             }
+            return Gio.content_type_get_icon(contentType);
         }
-        return Gio.content_type_get_icon(contentType);
     } catch (e) {
         global.logError(e, "TheLauncher: failed to get document icon for " + filePath);
     }
@@ -98,11 +95,3 @@ function openFolder(path) {
     return false;
 }
 
-if (typeof module !== "undefined") {
-    module.exports = {
-        launchDesktop,
-        openDocument,
-        getDocumentIcon,
-        openFolder
-    };
-}

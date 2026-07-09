@@ -1,11 +1,11 @@
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
 
-const CONFIG_DIR = GLib.build_filenamev([GLib.get_home_dir(), ".config", "thelauncher"]);
+const CONFIG_DIR = GLib.build_filenamev([GLib.get_user_config_dir(), "thelauncher"]);
 const CONFIG_FILE = GLib.build_filenamev([CONFIG_DIR, "config.json"]);
 
 function getDefaultBaseDirectory() {
-    return GLib.build_filenamev([GLib.get_home_dir(), ".local", "share", "thelauncher"]);
+    return GLib.build_filenamev([GLib.get_user_data_dir(), "thelauncher"]);
 }
 
 function loadConfig() {
@@ -13,10 +13,6 @@ function loadConfig() {
         version: 1,
         baseDirectory: getDefaultBaseDirectory()
     };
-
-    if (!GLib.file_test(CONFIG_FILE, GLib.FileTest.EXISTS)) {
-        return defaults;
-    }
 
     try {
         const [, contents] = GLib.file_get_contents(CONFIG_FILE);
@@ -28,7 +24,7 @@ function loadConfig() {
             defaults.version = parsed.version;
         }
     } catch (e) {
-        global.logError(e, "TheLauncher: failed to read config.json");
+        // Missing or unreadable config — use defaults.
     }
 
     return defaults;
@@ -36,9 +32,7 @@ function loadConfig() {
 
 function saveConfig(config) {
     try {
-        if (!GLib.file_test(CONFIG_DIR, GLib.FileTest.IS_DIR)) {
-            GLib.mkdir_with_parents(CONFIG_DIR, 0o755);
-        }
+        GLib.mkdir_with_parents(CONFIG_DIR, 0o755);
         const payload = JSON.stringify({
             version: config.version || 1,
             baseDirectory: config.baseDirectory || getDefaultBaseDirectory()
@@ -60,8 +54,10 @@ function ensureLinkDirectory(subdirectory) {
     const config = loadConfig();
     const base = config.baseDirectory || getDefaultBaseDirectory();
 
-    if (!GLib.file_test(base, GLib.FileTest.IS_DIR)) {
+    try {
         GLib.mkdir_with_parents(base, 0o755);
+    } catch (e) {
+        global.logError(e, "TheLauncher: failed to create base directory");
     }
 
     if (!config.baseDirectory || config.baseDirectory !== base) {
@@ -69,19 +65,12 @@ function ensureLinkDirectory(subdirectory) {
     }
 
     const resolved = getResolvedPath(subdirectory);
-    if (!GLib.file_test(resolved, GLib.FileTest.IS_DIR)) {
+    try {
         GLib.mkdir_with_parents(resolved, 0o755);
+    } catch (e) {
+        global.logError(e, "TheLauncher: failed to create link directory");
     }
 
     return resolved;
 }
 
-if (typeof module !== "undefined") {
-    module.exports = {
-        loadConfig,
-        saveConfig,
-        getResolvedPath,
-        ensureLinkDirectory,
-        getDefaultBaseDirectory
-    };
-}

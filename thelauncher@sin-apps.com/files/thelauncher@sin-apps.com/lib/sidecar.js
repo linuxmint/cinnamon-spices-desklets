@@ -1,9 +1,28 @@
+const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
 
 const SIDECAR_NAME = ".thelauncher.json";
 
 function getSidecarPath(directoryPath) {
     return GLib.build_filenamev([directoryPath, SIDECAR_NAME]);
+}
+
+// Probe via File.read(): succeeds for regular files; IS_DIRECTORY for dirs;
+// NOT_FOUND (and similar) when missing. Avoids file_test / query_exists.
+function sidecarFilePresent(directoryPath) {
+    try {
+        const stream = Gio.File.new_for_path(getSidecarPath(directoryPath)).read(null);
+        stream.close(null);
+        return true;
+    } catch (e) {
+        const message = String(e);
+        if (message.indexOf("IS_DIRECTORY") !== -1
+            || message.indexOf("Is a directory") !== -1
+            || message.indexOf("is a directory") !== -1) {
+            return true;
+        }
+        return false;
+    }
 }
 
 function readSidecar(directoryPath) {
@@ -16,9 +35,6 @@ function readSidecar(directoryPath) {
     };
 
     const sidecarPath = getSidecarPath(directoryPath);
-    if (!GLib.file_test(sidecarPath, GLib.FileTest.EXISTS)) {
-        return defaults;
-    }
 
     try {
         const [, contents] = GLib.file_get_contents(sidecarPath);
@@ -39,7 +55,7 @@ function readSidecar(directoryPath) {
             defaults.itemStyles = parsed.itemStyles;
         }
     } catch (e) {
-        global.logError(e, "TheLauncher: failed to read .thelauncher.json");
+        // Missing or unreadable sidecar — use defaults.
     }
 
     return defaults;
@@ -124,8 +140,7 @@ function getItemStyle(sidecar, itemId) {
 }
 
 function persistOrderFromItems(directoryPath, items) {
-    const sidecarPath = getSidecarPath(directoryPath);
-    if (!GLib.file_test(sidecarPath, GLib.FileTest.EXISTS)) {
+    if (!sidecarFilePresent(directoryPath)) {
         return ensureSidecarForDirectory(directoryPath, items);
     }
 
@@ -144,10 +159,9 @@ function persistOrderFromItems(directoryPath, items) {
 }
 
 function ensureSidecarForDirectory(directoryPath, items) {
-    const sidecarPath = getSidecarPath(directoryPath);
     const scannedItems = items || [];
 
-    if (!GLib.file_test(sidecarPath, GLib.FileTest.EXISTS)) {
+    if (!sidecarFilePresent(directoryPath)) {
         const itemIds = scannedItems.map(item => item.id);
         const disabledIds = scannedItems
             .filter(item => item.enabled === false)
@@ -266,24 +280,3 @@ function getFolderClickMode(sidecar, instanceMode) {
     return instanceMode;
 }
 
-if (typeof module !== "undefined") {
-    module.exports = {
-        readSidecar,
-        writeSidecar,
-        mergeOrder,
-        saveOrder,
-        saveItemState,
-        persistOrderFromItems,
-        ensureSidecarForDirectory,
-        itemsToOrderList,
-        orderListToIds,
-        orderListToDisabledIds,
-        orderListToItemStyles,
-        resolveOrderEntryId,
-        getEntryType,
-        getItemStyle,
-        isDisabled,
-        getFolderClickMode,
-        getSidecarPath
-    };
-}

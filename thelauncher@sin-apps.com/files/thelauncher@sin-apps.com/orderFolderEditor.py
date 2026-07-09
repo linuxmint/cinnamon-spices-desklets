@@ -10,12 +10,22 @@ except ImportError:
 
 
 SIDECAR_NAME = ".thelauncher.json"
-CONFIG_FILE = os.path.join(os.path.expanduser("~"), ".config", "thelauncher", "config.json")
 DATA_KEY = "link-order-list-data"
 
 
+def _xdg_config_home():
+    return os.environ.get("XDG_CONFIG_HOME") or os.path.join(os.path.expanduser("~"), ".config")
+
+
+def _xdg_data_home():
+    return os.environ.get("XDG_DATA_HOME") or os.path.join(os.path.expanduser("~"), ".local", "share")
+
+
+CONFIG_FILE = os.path.join(_xdg_config_home(), "thelauncher", "config.json")
+
+
 def load_shared_base_directory():
-    default = os.path.join(os.path.expanduser("~"), ".local", "share", "thelauncher")
+    default = os.path.join(_xdg_data_home(), "thelauncher")
     if not os.path.isfile(CONFIG_FILE):
         return default
     try:

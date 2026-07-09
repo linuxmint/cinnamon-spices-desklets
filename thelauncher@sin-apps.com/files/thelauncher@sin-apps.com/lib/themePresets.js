@@ -1,7 +1,7 @@
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
 
-const COLOR_TOKEN_KEYS = [
+var COLOR_TOKEN_KEYS = [
     "link-bg-color",
     "document-bg-color",
     "border-color",
@@ -17,8 +17,8 @@ const COLOR_TOKEN_KEYS = [
     "tooltip-text-color"
 ];
 
-const LIGHT_PRESETS = ["light-default", "light-soft", "light-contrast"];
-const DARK_PRESETS = ["dark-default", "dark-midnight", "dark-graphite"];
+var LIGHT_PRESETS = ["light-default", "light-soft", "light-contrast"];
+var DARK_PRESETS = ["dark-default", "dark-midnight", "dark-graphite"];
 
 const COLOR_MODE_ALIASES = {
     "System": "system",
@@ -103,15 +103,11 @@ function loadPreset(metadata, presetId) {
         presetId + ".json"
     ]);
 
-    if (!GLib.file_test(presetPath, GLib.FileTest.EXISTS)) {
-        return null;
-    }
-
     try {
         const [, contents] = GLib.file_get_contents(presetPath);
         return JSON.parse(contents);
     } catch (e) {
-        global.logError(e, "TheLauncher: failed to load preset " + presetId);
+        // Missing or unreadable preset.
         return null;
     }
 }
@@ -179,18 +175,3 @@ function applyPresetTokens(settings, metadata, presetId) {
     return true;
 }
 
-if (typeof module !== "undefined") {
-    module.exports = {
-        COLOR_TOKEN_KEYS,
-        LIGHT_PRESETS,
-        DARK_PRESETS,
-        hexToColorString,
-        loadPreset,
-        isSystemDarkTheme,
-        normalizeColorMode,
-        normalizePresetId,
-        isCustomColorMode,
-        resolvePresetId,
-        applyPresetTokens
-    };
-}

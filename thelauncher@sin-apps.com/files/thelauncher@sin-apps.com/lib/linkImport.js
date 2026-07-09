@@ -32,18 +32,46 @@ function isLaunchableDesktop(filePath) {
     }
 }
 
+// Probe via File.read(): succeeds for regular files; IS_DIRECTORY for dirs;
+// NOT_FOUND (and similar) when missing. Avoids file_test / query_exists.
+function pathExists(path) {
+    try {
+        const stream = Gio.File.new_for_path(path).read(null);
+        stream.close(null);
+        return true;
+    } catch (e) {
+        const message = String(e);
+        return message.indexOf("IS_DIRECTORY") !== -1
+            || message.indexOf("Is a directory") !== -1
+            || message.indexOf("is a directory") !== -1;
+    }
+}
+
+function isDirectoryPath(path) {
+    try {
+        const stream = Gio.File.new_for_path(path).read(null);
+        stream.close(null);
+        return false;
+    } catch (e) {
+        const message = String(e);
+        return message.indexOf("IS_DIRECTORY") !== -1
+            || message.indexOf("Is a directory") !== -1
+            || message.indexOf("is a directory") !== -1;
+    }
+}
+
 function resolveSourcePath(sourcePath) {
     if (!sourcePath) {
         return null;
     }
 
-    if (GLib.file_test(sourcePath, GLib.FileTest.EXISTS)) {
+    if (pathExists(sourcePath)) {
         return sourcePath;
     }
 
     if (!sourcePath.endsWith(".desktop")) {
         const withDesktop = sourcePath + ".desktop";
-        if (GLib.file_test(withDesktop, GLib.FileTest.EXISTS)) {
+        if (pathExists(withDesktop)) {
             return withDesktop;
         }
     }
@@ -53,7 +81,7 @@ function resolveSourcePath(sourcePath) {
 
 function uniqueDestinationPath(destDir, baseName) {
     let candidate = GLib.build_filenamev([destDir, baseName]);
-    if (!GLib.file_test(candidate, GLib.FileTest.EXISTS)) {
+    if (!pathExists(candidate)) {
         return candidate;
     }
 
@@ -66,7 +94,7 @@ function uniqueDestinationPath(destDir, baseName) {
 
     for (let i = 1; i < 1000; i++) {
         candidate = GLib.build_filenamev([destDir, stem + "-" + i + suffix]);
-        if (!GLib.file_test(candidate, GLib.FileTest.EXISTS)) {
+        if (!pathExists(candidate)) {
             return candidate;
         }
     }
@@ -91,12 +119,12 @@ function importPathIntoDirectory(sourcePath, destDir) {
         return { ok: false, error: "Invalid path." };
     }
 
-    if (!GLib.file_test(destDir, GLib.FileTest.IS_DIR)) {
+    if (!isDirectoryPath(destDir)) {
         return { ok: false, error: "Link directory not found." };
     }
 
     sourcePath = resolveSourcePath(sourcePath);
-    if (!GLib.file_test(sourcePath, GLib.FileTest.EXISTS)) {
+    if (!pathExists(sourcePath)) {
         return { ok: false, error: "File not found." };
     }
 
@@ -112,16 +140,7 @@ function importPathIntoDirectory(sourcePath, destDir) {
         return { ok: false, error: e.message };
     }
 
-    if (GLib.file_test(sourcePath, GLib.FileTest.IS_DIR)) {
-        try {
-            copyDirectoryRecursive(sourcePath, destPath);
-            return { ok: true, path: destPath, type: "folder" };
-        } catch (e) {
-            global.logError(e, "TheLauncher: folder copy failed");
-            return { ok: false, error: "Could not copy folder." };
-        }
-    }
-
+    // Prefer regular-file copy first; directory copy only when source is a dir.
     if (sourcePath.endsWith(".desktop")) {
         if (!isLaunchableDesktop(sourcePath)) {
             return { ok: false, error: "Not a launchable .desktop file." };
@@ -136,6 +155,16 @@ function importPathIntoDirectory(sourcePath, destDir) {
         }
     }
 
+    if (isDirectoryPath(sourcePath)) {
+        try {
+            copyDirectoryRecursive(sourcePath, destPath);
+            return { ok: true, path: destPath, type: "folder" };
+        } catch (e) {
+            global.logError(e, "TheLauncher: folder copy failed");
+            return { ok: false, error: "Could not copy folder." };
+        }
+    }
+
     try {
         copyRegularFile(sourcePath, destPath);
         return { ok: true, path: destPath, type: "document" };
@@ -145,10 +174,3 @@ function importPathIntoDirectory(sourcePath, destDir) {
     }
 }
 
-if (typeof module !== "undefined") {
-    module.exports = {
-        resolveSourcePath,
-        importPathIntoDirectory,
-        isLaunchableDesktop
-    };
-}

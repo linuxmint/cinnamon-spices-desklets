@@ -1,7 +1,6 @@
 const Gtk = imports.gi.Gtk;
 const Desklet = imports.ui.desklet;
 const Settings = imports.ui.settings;
-const Lang = imports.lang;
 const Clutter = imports.gi.Clutter;
 const St = imports.gi.St;
 const Pango = imports.gi.Pango;
@@ -10,19 +9,35 @@ const GLib = imports.gi.GLib;
 const Mainloop = imports.mainloop;
 const Tooltips = imports.ui.tooltips;
 const Util = imports.misc.util;
+const PopupMenu = imports.ui.popupMenu;
 
+const UUID = "thelauncher@sin-apps.com";
+const BASE_TILE_WIDTH = 120;
+const DEFAULT_POSITION = 50;
+
+// Native CJS importer (Cinnamon 6.8+): top-level function/var exports via imports.desklets.
+const MeLib = imports.desklets[UUID].lib;
 const {
     ensureLinkDirectory,
     loadConfig,
     saveConfig,
     getDefaultBaseDirectory,
     getResolvedPath
-} = require("./lib/config");
-const { scanDirectory } = require("./lib/linkScanner");
-const { getFolderClickMode, itemsToOrderList, orderListToIds, orderListToDisabledIds, saveItemState, readSidecar, resolveOrderEntryId, getEntryType, ensureSidecarForDirectory } = require("./lib/sidecar");
-const PopupMenu = imports.ui.popupMenu;
-const { launchDesktop, openDocument, getDocumentIcon, openFolder } = require("./lib/launcher");
-const { createDirectoryMonitor } = require("./lib/fileMonitor");
+} = MeLib.config;
+const { scanDirectory } = MeLib.linkScanner;
+const {
+    getFolderClickMode,
+    itemsToOrderList,
+    orderListToIds,
+    orderListToDisabledIds,
+    saveItemState,
+    readSidecar,
+    resolveOrderEntryId,
+    getEntryType,
+    ensureSidecarForDirectory
+} = MeLib.sidecar;
+const { launchDesktop, openDocument, getDocumentIcon, openFolder } = MeLib.launcher;
+const { createDirectoryMonitor } = MeLib.fileMonitor;
 const {
     COLOR_TOKEN_KEYS,
     resolvePresetId,
@@ -30,18 +45,14 @@ const {
     normalizeColorMode,
     normalizePresetId,
     isCustomColorMode
-} = require("./lib/themePresets");
+} = MeLib.themePresets;
 const {
     readGSettingsPosition,
     writeGSettingsPosition,
     isDragLocked,
     LOCK_DESKLETS_KEY
-} = require("./lib/placement");
-const { ensureSettingsDefaults } = require("./lib/settingsDefaults");
-
-const UUID = "thelauncher@sin-apps.com";
-const BASE_TILE_WIDTH = 120;
-const DEFAULT_POSITION = 50;
+} = MeLib.placement;
+const { ensureSettingsDefaults } = MeLib.settingsDefaults;
 
 function TheLauncherDesklet(metadata, desklet_id) {
     this._init(metadata, desklet_id);
@@ -192,7 +203,7 @@ TheLauncherDesklet.prototype = {
                 Settings.BindingDirection.IN,
                 key,
                 prop,
-                Lang.bind(this, this._onSettingsChanged)
+                this._onSettingsChanged.bind(this)
             );
         });
 
@@ -202,7 +213,7 @@ TheLauncherDesklet.prototype = {
                 Settings.BindingDirection.IN,
                 key,
                 prop,
-                Lang.bind(this, this._onPlacementSettingsChanged)
+                this._onPlacementSettingsChanged.bind(this)
             );
         });
 
@@ -212,7 +223,7 @@ TheLauncherDesklet.prototype = {
                 Settings.BindingDirection.IN,
                 key,
                 prop,
-                Lang.bind(this, this._onColorSettingChanged)
+                this._onColorSettingChanged.bind(this)
             );
         });
 
@@ -220,7 +231,7 @@ TheLauncherDesklet.prototype = {
             Settings.BindingDirection.IN,
             "disabled-opacity",
             "disabled_opacity",
-            Lang.bind(this, this._onColorSettingChanged)
+            this._onColorSettingChanged.bind(this)
         );
 
         this.settings.bindProperty(
@@ -241,7 +252,7 @@ TheLauncherDesklet.prototype = {
             Settings.BindingDirection.IN,
             "order-folder-path",
             "order_folder_path",
-            Lang.bind(this, this._onOrderFolderPathChanged)
+            this._onOrderFolderPathChanged.bind(this)
         );
 
         this.settings.bindProperty(
@@ -273,12 +284,12 @@ TheLauncherDesklet.prototype = {
 
     finalizeContextMenu: function() {
         const openDirItem = new PopupMenu.PopupMenuItem(_("Open link folder"));
-        openDirItem.connect("activate", Lang.bind(this, function() {
+        openDirItem.connect("activate", (function() {
             const path = this._rootPath || this._getCurrentPath();
             if (path) {
                 openFolder(path);
             }
-        }));
+        }).bind(this));
         this._menu.addMenuItem(openDirItem);
         Desklet.Desklet.prototype.finalizeContextMenu.call(this);
     },
@@ -527,12 +538,12 @@ TheLauncherDesklet.prototype = {
         }
 
         this._refreshPending = true;
-        this._refreshIdleId = Mainloop.idle_add(Lang.bind(this, function() {
+        this._refreshIdleId = Mainloop.idle_add((function() {
             this._refreshIdleId = 0;
             this._refreshPending = false;
             this._refresh();
             return GLib.SOURCE_REMOVE;
-        }));
+        }).bind(this));
     },
 
     _syncDeskletActorSize: function() {
@@ -567,7 +578,7 @@ TheLauncherDesklet.prototype = {
         }
 
         let passes = 0;
-        const runSync = Lang.bind(this, function() {
+        const runSync = (function() {
             this._syncDeskletActorSize();
             passes += 1;
             if (passes < 2 && this._isLiveActor(this._panelBox)) {
@@ -577,7 +588,7 @@ TheLauncherDesklet.prototype = {
 
             this._sizeSyncId = 0;
             return GLib.SOURCE_REMOVE;
-        });
+        }).bind(this);
 
         this._sizeSyncId = Mainloop.idle_add(runSync);
     },
@@ -649,7 +660,7 @@ TheLauncherDesklet.prototype = {
         });
         handle.connect(
             "button-press-event",
-            Lang.bind(this, this._onDeskletDragHandlePress)
+            this._onDeskletDragHandlePress.bind(this)
         );
         return handle;
     },
@@ -676,11 +687,11 @@ TheLauncherDesklet.prototype = {
             Mainloop.source_remove(this._applyingPositionId);
         }
 
-        this._applyingPositionId = Mainloop.timeout_add(250, Lang.bind(this, function() {
+        this._applyingPositionId = Mainloop.timeout_add(250, (function() {
             this._applyingPositionId = 0;
             this._applyingPosition = false;
             return GLib.SOURCE_REMOVE;
-        }));
+        }).bind(this));
     },
 
     _initializePlacementSettings: function() {
@@ -707,14 +718,14 @@ TheLauncherDesklet.prototype = {
         if (this._draggable && !this._dragEndHandlerId) {
             this._dragEndHandlerId = this._draggable.connect(
                 "drag-end",
-                Lang.bind(this, this._onDeskletDragEnd)
+                this._onDeskletDragEnd.bind(this)
             );
         }
 
         if (!this._globalLockHandlerId) {
             this._globalLockHandlerId = global.settings.connect(
                 "changed::" + LOCK_DESKLETS_KEY,
-                Lang.bind(this, this._scheduleDragLockRefresh)
+                this._scheduleDragLockRefresh.bind(this)
             );
         }
 
@@ -726,11 +737,11 @@ TheLauncherDesklet.prototype = {
             return;
         }
 
-        this._dragLockRefreshId = Mainloop.idle_add(Lang.bind(this, function() {
+        this._dragLockRefreshId = Mainloop.idle_add((function() {
             this._dragLockRefreshId = 0;
             this._updateDragLock();
             return false;
-        }));
+        }).bind(this));
     },
 
     _teardownPlacement: function() {
@@ -1019,6 +1030,22 @@ TheLauncherDesklet.prototype = {
         return item.comment || item.name;
     },
 
+    _isDirectoryPath: function(path) {
+        if (!path) {
+            return false;
+        }
+        try {
+            const stream = Gio.File.new_for_path(path).read(null);
+            stream.close(null);
+            return false;
+        } catch (e) {
+            const message = String(e);
+            return message.indexOf("IS_DIRECTORY") !== -1
+                || message.indexOf("Is a directory") !== -1
+                || message.indexOf("is a directory") !== -1;
+        }
+    },
+
     _applyStoragePath: function(createIfMissing) {
         this._lastSubdirectory = this.subdirectory;
         this._navStack = [];
@@ -1026,7 +1053,7 @@ TheLauncherDesklet.prototype = {
 
         try {
             this._syncSharedConfig();
-            const exists = GLib.file_test(resolvedPath, GLib.FileTest.IS_DIR);
+            const exists = this._isDirectoryPath(resolvedPath);
 
             if (!exists && !createIfMissing) {
                 this._rootPath = null;
@@ -1087,10 +1114,10 @@ TheLauncherDesklet.prototype = {
             return;
         }
 
-        Mainloop.idle_add(Lang.bind(this, function() {
+        Mainloop.idle_add((function() {
             this._refreshOrderEditorFromPath();
             return GLib.SOURCE_REMOVE;
-        }));
+        }).bind(this));
     },
 
     _refreshOrderEditorFromPath: function() {
@@ -1105,7 +1132,7 @@ TheLauncherDesklet.prototype = {
 
     _reloadOrderSettingsFromPanel: function() {
         const configured = (this.settings.getValue("order-folder-path") || "").trim();
-        if (configured && GLib.file_test(configured, GLib.FileTest.IS_DIR)) {
+        if (configured && this._isDirectoryPath(configured)) {
             this.order_folder_path = configured;
         } else if (this._rootPath) {
             this.order_folder_path = this._rootPath;
@@ -1113,11 +1140,11 @@ TheLauncherDesklet.prototype = {
     },
 
     on_order_path_changed_callback: function() {
-        Mainloop.idle_add(Lang.bind(this, function() {
+        Mainloop.idle_add((function() {
             this._reloadOrderSettingsFromPanel();
             this._refreshOrderEditorFromPath();
             return GLib.SOURCE_REMOVE;
-        }));
+        }).bind(this));
     },
 
     _getOrderBrowseLabel: function() {
@@ -1184,7 +1211,7 @@ TheLauncherDesklet.prototype = {
 
     _enterOrderFolder: function(entry) {
         const path = this._getItemPathForOrderEntry(entry);
-        if (!path || !GLib.file_test(path, GLib.FileTest.IS_DIR)) {
+        if (!path || !this._isDirectoryPath(path)) {
             global.log("TheLauncher: " + _("Folder not found."));
             return;
         }
@@ -1195,7 +1222,7 @@ TheLauncherDesklet.prototype = {
 
     _getOrderDirectoryPath: function() {
         const configured = (this.order_folder_path || "").trim();
-        if (configured && GLib.file_test(configured, GLib.FileTest.IS_DIR)) {
+        if (configured && this._isDirectoryPath(configured)) {
             if (this._rootPath
                 && configured !== this._rootPath
                 && configured.indexOf(this._rootPath + "/") !== 0) {
@@ -1287,17 +1314,18 @@ TheLauncherDesklet.prototype = {
             this.order_in_subfolder = false;
         }
         Desklet.Desklet.prototype.configureDesklet.call(this, tab !== undefined ? tab : 0);
-        Mainloop.timeout_add(500, Lang.bind(this, function() {
+        Mainloop.timeout_add(500, (function() {
             this._configurePanelOpen = false;
             return GLib.SOURCE_REMOVE;
-        }));
+        }).bind(this));
     },
 
     openAbout: function() {
         const candidates = [
             GLib.build_filenamev([
-                GLib.get_home_dir(),
-                ".local/share/cinnamon/desklets",
+                GLib.get_user_data_dir(),
+                "cinnamon",
+                "desklets",
                 UUID,
                 "about-dialog.py"
             ]),
@@ -1309,11 +1337,13 @@ TheLauncherDesklet.prototype = {
         ];
 
         for (let i = 0; i < candidates.length; i++) {
-            if (GLib.file_test(candidates[i], GLib.FileTest.IS_REGULAR)) {
-                Util.spawnCommandLine(
-                    'python3 "%s" desklets %s'.format(candidates[i], UUID)
-                );
+            try {
+                const stream = Gio.File.new_for_path(candidates[i]).read(null);
+                stream.close(null);
+                Util.spawn(["python3", candidates[i], "desklets", UUID]);
                 return;
+            } catch (e) {
+                // Try next candidate, then fall back to default About.
             }
         }
 
@@ -1329,11 +1359,11 @@ TheLauncherDesklet.prototype = {
     },
 
     on_items_changed_callback: function() {
-        Mainloop.idle_add(Lang.bind(this, function() {
+        Mainloop.idle_add((function() {
             this._reloadOrderSettingsFromPanel();
             this._refresh();
             return GLib.SOURCE_REMOVE;
-        }));
+        }).bind(this));
     },
 
     _deleteItemFromDirectory: function(rootPath, entry) {
@@ -1345,16 +1375,19 @@ TheLauncherDesklet.prototype = {
 
         const name = id.substring(separator + 1);
         const targetPath = GLib.build_filenamev([rootPath, name]);
-        if (!GLib.file_test(targetPath, GLib.FileTest.EXISTS)) {
-            global.log("TheLauncher: " + _("Item not found."));
-            return;
-        }
 
         try {
             Gio.File.new_for_path(targetPath).trash(null);
             this._syncOrderListFromDirectory();
             this._refresh();
         } catch (e) {
+            const message = String(e);
+            if (message.indexOf("No such file") !== -1
+                || message.indexOf("NOT_FOUND") !== -1
+                || message.indexOf("does not exist") !== -1) {
+                global.log("TheLauncher: " + _("Item not found."));
+                return;
+            }
             global.logError(e, "TheLauncher: failed to remove item");
             global.log("TheLauncher: " + _("Could not remove item."));
         }
@@ -1369,7 +1402,7 @@ TheLauncherDesklet.prototype = {
 
         this._fileMonitor = createDirectoryMonitor(
             currentPath,
-            Lang.bind(this, this._onDirectoryChanged)
+            this._onDirectoryChanged.bind(this)
         );
     },
 
@@ -1621,27 +1654,27 @@ TheLauncherDesklet.prototype = {
             button.add_effect(desaturate);
         }
 
-        button.connect("notify::hover", Lang.bind(this, function(actor) {
+        button.connect("notify::hover", (function(actor) {
             if (!item.enabled) {
                 return;
             }
             actor.set_style(this._itemStyle(item, actor.hover ? "hover" : null));
-        }));
-        button.connect("button-press-event", Lang.bind(this, function(actor, event) {
+        }).bind(this));
+        button.connect("button-press-event", (function(actor, event) {
             if (!item.enabled || event.get_button() !== Clutter.BUTTON_PRIMARY) {
                 return Clutter.EVENT_PROPAGATE;
             }
             actor.set_style(this._itemStyle(item, "pressed"));
             this._onItemActivated(item, event.get_click_count());
             return Clutter.EVENT_STOP;
-        }));
-        button.connect("button-release-event", Lang.bind(this, function(actor) {
+        }).bind(this));
+        button.connect("button-release-event", (function(actor) {
             if (!item.enabled) {
                 return Clutter.EVENT_PROPAGATE;
             }
             actor.set_style(this._itemStyle(item, actor.hover ? "hover" : null));
             return Clutter.EVENT_PROPAGATE;
-        }));
+        }).bind(this));
 
         if (this.show_tooltips) {
             const tooltip = new Tooltips.Tooltip(button, this._tooltipText(item));
@@ -1784,7 +1817,7 @@ TheLauncherDesklet.prototype = {
                 icon_size: 16
             })
         });
-        backButton.connect("clicked", Lang.bind(this, this._navigateBack));
+        backButton.connect("clicked", this._navigateBack.bind(this));
 
         const crumbs = this._navStack.map(entry => entry.label).join(" / ");
         const breadcrumb = new St.Label({
@@ -1795,7 +1828,7 @@ TheLauncherDesklet.prototype = {
         });
         breadcrumb.connect(
             "button-press-event",
-            Lang.bind(this, this._onDeskletDragHandlePress)
+            this._onDeskletDragHandlePress.bind(this)
         );
 
         const centerBox = new St.BoxLayout({

@@ -1,9 +1,9 @@
 const GLib = imports.gi.GLib;
 
-const ENABLED_DESKLETS_KEY = "enabled-desklets";
+var ENABLED_DESKLETS_KEY = "enabled-desklets";
 const DESKLET_SNAP_KEY = "desklet-snap";
 const DESKLET_SNAP_INTERVAL_KEY = "desklet-snap-interval";
-const LOCK_DESKLETS_KEY = "lock-desklets";
+var LOCK_DESKLETS_KEY = "lock-desklets";
 
 function findEntry(settings, uuid, instanceId) {
     const list = settings.get_strv(ENABLED_DESKLETS_KEY);
@@ -74,13 +74,3 @@ function isDragLocked(instanceLock) {
     return global.settings.get_boolean(LOCK_DESKLETS_KEY);
 }
 
-if (typeof module !== "undefined") {
-    module.exports = {
-        ENABLED_DESKLETS_KEY,
-        LOCK_DESKLETS_KEY,
-        snapCoordinates,
-        readGSettingsPosition,
-        writeGSettingsPosition,
-        isDragLocked
-    };
-}

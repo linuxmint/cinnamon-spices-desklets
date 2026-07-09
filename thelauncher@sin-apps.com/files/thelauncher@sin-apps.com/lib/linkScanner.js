@@ -1,12 +1,13 @@
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
 
+const UUID = "thelauncher@sin-apps.com";
 const {
     readSidecar,
     isDisabled,
     persistOrderFromItems,
     getItemStyle
-} = require("./lib/sidecar");
+} = imports.desklets[UUID].lib.sidecar;
 
 function newDesktopAppInfo(filePath) {
     try {
@@ -123,12 +124,44 @@ function parseDesktopEntry(filePath, fileNameOverride) {
     };
 }
 
+function pathExists(path) {
+    try {
+        const stream = Gio.File.new_for_path(path).read(null);
+        stream.close(null);
+        return true;
+    } catch (e) {
+        const message = String(e);
+        return message.indexOf("IS_DIRECTORY") !== -1
+            || message.indexOf("Is a directory") !== -1
+            || message.indexOf("is a directory") !== -1;
+    }
+}
+
+function isDirectoryPath(path) {
+    try {
+        const stream = Gio.File.new_for_path(path).read(null);
+        stream.close(null);
+        return false;
+    } catch (e) {
+        const message = String(e);
+        return message.indexOf("IS_DIRECTORY") !== -1
+            || message.indexOf("Is a directory") !== -1
+            || message.indexOf("is a directory") !== -1;
+    }
+}
+
+function isRegularFilePath(path) {
+    try {
+        const stream = Gio.File.new_for_path(path).read(null);
+        stream.close(null);
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+
 function resolveChildPath(directoryPath, name) {
     let childPath = GLib.build_filenamev([directoryPath, name]);
-
-    if (!GLib.file_test(childPath, GLib.FileTest.IS_SYMLINK)) {
-        return { path: childPath, fileName: name };
-    }
 
     try {
         let target = GLib.file_read_link(childPath);
@@ -138,11 +171,11 @@ function resolveChildPath(directoryPath, name) {
         if (!GLib.path_is_absolute(target)) {
             target = GLib.build_filenamev([directoryPath, target]);
         }
-        if (GLib.file_test(target, GLib.FileTest.EXISTS)) {
+        if (pathExists(target)) {
             return { path: target, fileName: name };
         }
     } catch (e) {
-        global.logError(e, "TheLauncher: failed to resolve symlink " + childPath);
+        // Not a symlink or unreadable — use the child path as-is.
     }
 
     return { path: childPath, fileName: name };
@@ -243,7 +276,7 @@ function scanDirectory(directoryPath, options) {
     let sidecar = readSidecar(directoryPath);
     const items = [];
 
-    if (!GLib.file_test(directoryPath, GLib.FileTest.IS_DIR)) {
+    if (!isDirectoryPath(directoryPath)) {
         return { items: [], sidecar: sidecar, error: "missing" };
     }
 
@@ -273,7 +306,6 @@ function scanDirectory(directoryPath, options) {
             continue;
         }
 
-        const childPath = GLib.build_filenamev([directoryPath, name]);
         const fileType = info.get_file_type();
         const resolved = resolveChildPath(directoryPath, name);
         const scanPath = resolved.path;
@@ -281,7 +313,7 @@ function scanDirectory(directoryPath, options) {
 
         if (fileType === Gio.FileType.DIRECTORY
             || (fileType === Gio.FileType.SYMBOLIC_LINK
-                && GLib.file_test(scanPath, GLib.FileTest.IS_DIR))) {
+                && isDirectoryPath(scanPath))) {
             const folder = parseFolderEntry(scanPath, entryName, sidecar);
             folder.enabled = !isDisabled(sidecar, folder.id);
             items.push(folder);
@@ -292,14 +324,14 @@ function scanDirectory(directoryPath, options) {
             || fileType === Gio.FileType.SYMBOLIC_LINK) {
             const baseName = entryName;
             if (baseName.endsWith(".desktop")
-                && GLib.file_test(scanPath, GLib.FileTest.IS_REGULAR)) {
+                && isRegularFilePath(scanPath)) {
                 const app = parseDesktopEntry(scanPath, baseName);
                 if (!app) {
                     continue;
                 }
                 app.enabled = !isDisabled(sidecar, app.id);
                 items.push(app);
-            } else if (GLib.file_test(scanPath, GLib.FileTest.IS_REGULAR)) {
+            } else if (isRegularFilePath(scanPath)) {
                 const doc = parseDocumentEntry(scanPath);
                 doc.id = makeItemId("document", baseName);
                 doc.fileName = baseName;
@@ -322,9 +354,3 @@ function scanDirectory(directoryPath, options) {
     };
 }
 
-if (typeof module !== "undefined") {
-    module.exports = {
-        scanDirectory,
-        makeItemId
-    };
-}
