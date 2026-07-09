@@ -1,0 +1,634 @@
+{
+  "layout": {
+    "type": "layout",
+    "pages": [
+      "general-page",
+      "theme-page",
+      "position-page",
+      "items-page"
+    ],
+    "general-page": {
+      "type": "custom",
+      "file": "ScrollableCollapsiblePage.py",
+      "widget": "ScrollableCollapsiblePage",
+      "title": "General",
+      "sections": [
+        "storage-section",
+        "behavior-section",
+        "tooltips-section"
+      ]
+    },
+    "theme-page": {
+      "type": "custom",
+      "file": "ScrollableCollapsiblePage.py",
+      "widget": "ScrollableCollapsiblePage",
+      "title": "Theme",
+      "sections": [
+        "appearance-section",
+        "layout-section",
+        "font-section",
+        "colors-section"
+      ]
+    },
+    "storage-section": {
+      "type": "section",
+      "title": "Link storage",
+      "keys": [
+        "base-directory-chooser",
+        "subdirectory-chooser"
+      ]
+    },
+    "behavior-section": {
+      "type": "section",
+      "title": "Behavior",
+      "keys": [
+        "launch-mode",
+        "folder-click-mode",
+        "folder-sort"
+      ]
+    },
+    "tooltips-section": {
+      "type": "section",
+      "title": "Tooltips",
+      "keys": [
+        "show-tooltips"
+      ]
+    },
+    "appearance-section": {
+      "type": "section",
+      "title": "Appearance",
+      "keys": [
+        "color-mode",
+        "light-preset",
+        "dark-preset"
+      ]
+    },
+    "layout-section": {
+      "type": "section",
+      "title": "Layout",
+      "keys": [
+        "layout-style",
+        "columns",
+        "row-spacing",
+        "col-spacing",
+        "text-align",
+        "transparent-background",
+        "icon-size",
+        "show-text",
+        "text-width-padding",
+        "border-width"
+      ]
+    },
+    "font-section": {
+      "type": "section",
+      "title": "Font",
+      "keys": [
+        "link-font",
+        "text-shadow",
+        "text-shadow-color"
+      ]
+    },
+    "colors-section": {
+      "type": "section",
+      "title": "Colors",
+      "keys": [
+        "desklet-bg-color",
+        "link-bg-color",
+        "document-bg-color",
+        "folder-bg-color",
+        "border-color",
+        "folder-border-color",
+        "text-color",
+        "title-color",
+        "hover-bg-color",
+        "pressed-bg-color",
+        "folder-icon-tint",
+        "tooltip-bg-color",
+        "tooltip-text-color",
+        "disabled-opacity"
+      ]
+    },
+    "position-page": {
+      "type": "custom",
+      "file": "ScrollableCollapsiblePage.py",
+      "widget": "ScrollableCollapsiblePage",
+      "title": "Position",
+      "sections": [
+        "placement-section",
+        "resize-section",
+        "lock-section"
+      ]
+    },
+    "placement-section": {
+      "type": "section",
+      "title": "Placement",
+      "keys": [
+        "position-x",
+        "position-y",
+        "snap-to-grid",
+        "capture-position-button",
+        "reset-position-button"
+      ]
+    },
+    "resize-section": {
+      "type": "section",
+      "title": "Size",
+      "keys": [
+        "max-width",
+        "max-height",
+        "content-fit"
+      ]
+    },
+    "lock-section": {
+      "type": "section",
+      "title": "Lock",
+      "keys": [
+        "lock-position",
+        "show-lock-indicator"
+      ]
+    },
+    "items-page": {
+      "type": "custom",
+      "file": "ScrollableCollapsiblePage.py",
+      "widget": "ScrollableCollapsiblePage",
+      "title": "Items",
+      "sections": [
+        "order-section"
+      ]
+    },
+    "order-section": {
+      "type": "section",
+      "title": "Link order",
+      "keys": [
+        "order-folder-header",
+        "link-order-list",
+        "items-action-bar",
+        "order-help-label"
+      ]
+    }
+  },
+  "base-directory": {
+    "type": "generic",
+    "default": "",
+    "description": "Shared base directory"
+  },
+  "base-directory-chooser": {
+    "type": "custom",
+    "file": "BaseDirectoryChooser.py",
+    "widget": "BaseDirectoryChooser",
+    "description": "Shared base directory",
+    "tooltip": "Root folder for all launcher content. Saved under the XDG config directory (thelauncher/config.json). Use Browse to select or create one."
+  },
+  "subdirectory": {
+    "type": "generic",
+    "default": "default",
+    "description": "Link subdirectory"
+  },
+  "subdirectory-chooser": {
+    "type": "custom",
+    "file": "SubdirectoryChooser.py",
+    "widget": "SubdirectoryChooser",
+    "description": "Link subdirectory",
+    "tooltip": "Folder under the shared base directory for this desklet instance. Use Browse to select or create one."
+  },
+  "launch-mode": {
+    "type": "combobox",
+    "default": "single-click",
+    "description": "Launch mode",
+    "tooltip": "Single-click or double-click to launch applications.",
+    "options": {
+      "Single-click": "single-click",
+      "Double-click": "double-click"
+    }
+  },
+  "folder-click-mode": {
+    "type": "combobox",
+    "default": "navigate",
+    "description": "Folder click action",
+    "tooltip": "Navigate inside the desklet or open the folder in your file manager.",
+    "options": {
+      "Navigate in desklet": "navigate",
+      "Open in file manager": "open-file-manager"
+    }
+  },
+  "folder-sort": {
+    "type": "combobox",
+    "default": "mixed",
+    "description": "Automatic folder sort",
+    "tooltip": "When items are sorted automatically, place folders before or after applications.",
+    "options": {
+      "Alphabetical (mixed)": "mixed",
+      "Folders first": "folders-first",
+      "Folders last": "folders-last"
+    }
+  },
+  "show-tooltips": {
+    "type": "switch",
+    "default": true,
+    "description": "Show tooltips",
+    "tooltip": "Display comments or names when hovering over items."
+  },
+  "color-mode": {
+    "type": "combobox",
+    "default": "system",
+    "description": "Color mode",
+    "options": {
+      "System": "system",
+      "Light": "light",
+      "Dark": "dark",
+      "Custom": "custom"
+    },
+    "tooltip": "Apply a preset palette or keep custom colors."
+  },
+  "light-preset": {
+    "type": "combobox",
+    "default": "light-default",
+    "description": "Light preset",
+    "tooltip": "Used when color mode is Light or System (light theme).",
+    "options": {
+      "Light default": "light-default",
+      "Light soft": "light-soft",
+      "Light contrast": "light-contrast"
+    }
+  },
+  "dark-preset": {
+    "type": "combobox",
+    "default": "dark-default",
+    "description": "Dark preset",
+    "tooltip": "Used when color mode is Dark or System (dark theme).",
+    "options": {
+      "Dark default": "dark-default",
+      "Dark midnight": "dark-midnight",
+      "Dark graphite": "dark-graphite"
+    }
+  },
+  "layout-style": {
+    "type": "combobox",
+    "default": "tile",
+    "description": "Layout style",
+    "options": {
+      "Tile view": "tile",
+      "List view": "list"
+    }
+  },
+  "columns": {
+    "type": "spinbutton",
+    "default": 8,
+    "min": 1,
+    "max": 12,
+    "step": 1,
+    "description": "Number of columns",
+    "tooltip": "Columns used in tile view.",
+    "dependency": "layout-style=tile"
+  },
+  "row-spacing": {
+    "type": "spinbutton",
+    "default": 5,
+    "min": 0,
+    "max": 40,
+    "step": 1,
+    "units": "px",
+    "description": "Row spacing"
+  },
+  "col-spacing": {
+    "type": "spinbutton",
+    "default": 5,
+    "min": 0,
+    "max": 40,
+    "step": 1,
+    "units": "px",
+    "description": "Column spacing",
+    "tooltip": "Horizontal gap between columns in tile view.",
+    "dependency": "layout-style=tile"
+  },
+  "text-align": {
+    "type": "combobox",
+    "default": "center",
+    "description": "Text alignment",
+    "options": {
+      "Left": "left",
+      "Center": "center",
+      "Right": "right"
+    }
+  },
+  "transparent-background": {
+    "type": "switch",
+    "default": false,
+    "description": "Transparent desklet background",
+    "tooltip": "Works well when desklet decorations are disabled."
+  },
+  "icon-size": {
+    "type": "spinbutton",
+    "default": 50,
+    "min": 0,
+    "max": 128,
+    "step": 1,
+    "units": "px",
+    "description": "Icon size (pixels)",
+    "tooltip": "Set to 0 to hide icons."
+  },
+  "show-text": {
+    "type": "switch",
+    "default": true,
+    "description": "Display text"
+  },
+  "text-width-padding": {
+    "type": "spinbutton",
+    "default": 16,
+    "min": 0,
+    "max": 128,
+    "step": 1,
+    "units": "px",
+    "description": "Text width padding",
+    "dependency": "show-text",
+    "tooltip": "Extra width added to icon size for wrapped label text (max label width = icon size + padding)."
+  },
+  "link-font": {
+    "type": "fontchooser",
+    "default": "Noto Sans Regular 13",
+    "description": "Link font",
+    "dependency": "show-text",
+    "tooltip": "Font used for item labels."
+  },
+  "text-shadow": {
+    "type": "switch",
+    "default": true,
+    "description": "Text shadow",
+    "dependency": "show-text"
+  },
+  "text-shadow-color": {
+    "type": "colorchooser",
+    "default": "rgba(0,0,0,0.5)",
+    "description": "Text shadow color",
+    "dependency": "show-text"
+  },
+  "border-width": {
+    "type": "spinbutton",
+    "default": 2,
+    "min": 0,
+    "max": 10,
+    "step": 1,
+    "units": "px",
+    "description": "Border width",
+    "tooltip": "Set to 0 to disable border."
+  },
+  "link-bg-color": {
+    "type": "colorchooser",
+    "default": "rgb(61,123,200)",
+    "description": "Application background color"
+  },
+  "document-bg-color": {
+    "type": "colorchooser",
+    "default": "rgb(45,106,79)",
+    "description": "Document background color"
+  },
+  "folder-bg-color": {
+    "type": "colorchooser",
+    "default": "rgb(74,85,104)",
+    "description": "Folder background color"
+  },
+  "border-color": {
+    "type": "colorchooser",
+    "default": "rgb(42,42,42)",
+    "description": "Border color"
+  },
+  "folder-border-color": {
+    "type": "colorchooser",
+    "default": "rgb(42,42,42)",
+    "description": "Folder border color"
+  },
+  "text-color": {
+    "type": "colorchooser",
+    "default": "rgb(255,255,255)",
+    "description": "Text color"
+  },
+  "desklet-bg-color": {
+    "type": "colorchooser",
+    "default": "rgb(46,46,46)",
+    "description": "Desklet background color",
+    "dependency": "!transparent-background"
+  },
+  "title-color": {
+    "type": "colorchooser",
+    "default": "rgb(255,255,255)",
+    "description": "Title color"
+  },
+  "hover-bg-color": {
+    "type": "colorchooser",
+    "default": "rgb(74,143,212)",
+    "description": "Hover background color"
+  },
+  "pressed-bg-color": {
+    "type": "colorchooser",
+    "default": "rgb(45,95,154)",
+    "description": "Pressed background color"
+  },
+  "folder-icon-tint": {
+    "type": "colorchooser",
+    "default": "rgb(255,255,255)",
+    "description": "Folder icon tint"
+  },
+  "tooltip-bg-color": {
+    "type": "colorchooser",
+    "default": "rgb(26,26,26)",
+    "description": "Tooltip background color"
+  },
+  "tooltip-text-color": {
+    "type": "colorchooser",
+    "default": "rgb(255,255,255)",
+    "description": "Tooltip text color"
+  },
+  "disabled-opacity": {
+    "type": "scale",
+    "default": 0.35,
+    "min": 0.1,
+    "max": 1.0,
+    "step": 0.05,
+    "description": "Disabled item opacity"
+  },
+  "position-x": {
+    "type": "spinbutton",
+    "default": 50,
+    "min": 0,
+    "max": 10000,
+    "step": 1,
+    "units": "px",
+    "description": "Position X"
+  },
+  "position-y": {
+    "type": "spinbutton",
+    "default": 50,
+    "min": 0,
+    "max": 10000,
+    "step": 1,
+    "units": "px",
+    "description": "Position Y"
+  },
+  "snap-to-grid": {
+    "type": "switch",
+    "default": true,
+    "description": "Snap to desklet grid",
+    "tooltip": "Apply Cinnamon desklet grid when moving from settings."
+  },
+  "capture-position-button": {
+    "type": "button",
+    "description": "Capture current position",
+    "callback": "on_capture_position_callback",
+    "tooltip": "Read the desklet's current on-screen position into X/Y."
+  },
+  "reset-position-button": {
+    "type": "button",
+    "description": "Reset position",
+    "callback": "on_reset_position_callback",
+    "tooltip": "Move the desklet back to 50, 50."
+  },
+  "max-width": {
+    "type": "spinbutton",
+    "default": 0,
+    "min": 0,
+    "max": 4000,
+    "step": 10,
+    "units": "px",
+    "description": "Max width",
+    "tooltip": "0 = auto from content."
+  },
+  "max-height": {
+    "type": "spinbutton",
+    "default": 0,
+    "min": 0,
+    "max": 4000,
+    "step": 10,
+    "units": "px",
+    "description": "Max height",
+    "tooltip": "0 = auto. Overflow scrolls when content-fit is fixed."
+  },
+  "content-fit": {
+    "type": "combobox",
+    "default": "auto",
+    "description": "Content fit",
+    "options": {
+      "Auto (grow with content)": "auto",
+      "Fixed (use max dimensions)": "fixed"
+    }
+  },
+  "lock-position": {
+    "type": "switch",
+    "default": false,
+    "description": "Lock position",
+    "tooltip": "Prevent dragging this desklet instance."
+  },
+  "show-lock-indicator": {
+    "type": "switch",
+    "default": true,
+    "description": "Show lock indicator",
+    "dependency": "lock-position",
+    "tooltip": "Display a small lock icon when position is locked."
+  },
+  "order-help-label": {
+    "type": "label",
+    "description": "Select a folder row, then click the folder icon on the list toolbar to edit items inside it. Use the pencil (or double-click) to edit the selected row. Reorder with the toolbar arrows or choose a resort option, then Apply."
+  },
+  "order-folder-header": {
+    "type": "custom",
+    "file": "OrderFolderHeader.py",
+    "widget": "OrderFolderHeader",
+    "description": "Current folder",
+    "tooltip": "Shows the folder being edited and returns to the root link folder."
+  },
+  "order-breadcrumb-display": {
+    "type": "entry",
+    "default": "",
+    "description": "Current folder path",
+    "tooltip": "Internal breadcrumb updated when browsing folders."
+  },
+  "order-in-subfolder": {
+    "type": "switch",
+    "default": false,
+    "description": "In subfolder",
+    "tooltip": "Internal flag for order navigation."
+  },
+  "order-open-folder-id": {
+    "type": "entry",
+    "default": "",
+    "description": "Open folder id",
+    "tooltip": "Internal folder id used when opening a subdirectory."
+  },
+  "order-folder-path": {
+    "type": "entry",
+    "default": "",
+    "description": "Items folder",
+    "tooltip": "Internal path used for item ordering (not shown in UI)."
+  },
+  "link-order-list-data": {
+    "type": "list",
+    "height": 280,
+    "columns": [
+      {
+        "id": "enabled",
+        "title": "Enabled",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "id": "name",
+        "title": "Name",
+        "type": "string",
+        "default": "Item"
+      },
+      {
+        "id": "type-icon",
+        "title": "",
+        "type": "icon",
+        "default": "application-x-executable-symbolic"
+      },
+      {
+        "id": "id-short",
+        "title": "ID",
+        "type": "string",
+        "default": "item"
+      }
+    ],
+    "default": []
+  },
+  "link-order-list": {
+    "type": "custom",
+    "file": "OrderListWidget.py",
+    "widget": "OrderListWidget",
+    "height": 280,
+    "show-buttons": true,
+    "columns": [
+      {
+        "id": "enabled",
+        "title": "Enabled",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "id": "name",
+        "title": "Name",
+        "type": "string",
+        "default": "Item"
+      },
+      {
+        "id": "type-icon",
+        "title": "",
+        "type": "icon",
+        "default": "application-x-executable-symbolic"
+      },
+      {
+        "id": "id-short",
+        "title": "ID",
+        "type": "string",
+        "default": "item"
+      }
+    ],
+    "default": []
+  },
+  "items-action-bar": {
+    "type": "custom",
+    "file": "ItemsActionBar.py",
+    "widget": "ItemsActionBar",
+    "description": "Item actions",
+    "tooltip": "Refresh the list and apply order, enabled state, and folder styles."
+  }
+}
