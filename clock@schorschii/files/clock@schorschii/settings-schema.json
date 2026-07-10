@@ -31,6 +31,11 @@
         },
         "tooltip" : "Select the background graphic you would like to use."
     },
+    "background-color": {
+        "type": "colorchooser",
+        "default": "rgba(255,255,255,0)",
+        "description": "Clock Background color, can be set to transparent"
+    },
     "show-seconds-hand": {
         "type": "checkbox",
         "description": "Show seconds hand",
@@ -103,6 +108,21 @@
         "indent": true,
         "dependency": "use-custom-tz",
         "tooltip": "Enter your custom timezone here."
+    },
+    "show-timezone-name": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Shows the Time Zone name below the clock",
+        "tooltip": "For multiple clock, shows each clock Time Zone name below the clock",
+        "value": false
+    },
+    "timezone-name": {
+        "type": "entry",
+        "default": "",
+        "description": "Name of time zone to display",
+        "indent": true,
+        "dependency": "show-timezone-name",
+        "tooltip": "Enter your timezone name here."
     },
 
     "head4": {
