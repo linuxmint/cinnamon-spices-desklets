@@ -1,0 +1,115 @@
+.thelauncher-desklet {
+    padding: 8px;
+    border-radius: 8px;
+    spacing: 0;
+}
+
+.thelauncher-grid {
+    spacing: 0;
+}
+
+.desklet:highlight .thelauncher-desklet,
+.desklet-with-borders:highlight .thelauncher-desklet,
+.desklet-with-borders-and-header:highlight .thelauncher-desklet {
+    outline: 2px dashed rgba(255, 255, 255, 0.55);
+    outline-offset: 2px;
+}
+
+.thelauncher-lock-indicator {
+    opacity: 0.75;
+    margin-bottom: 2px;
+}
+
+.thelauncher-scroll {
+    padding: 0;
+}
+
+.thelauncher-drag-handle {
+    min-height: 8px;
+    margin: 0 0 4px 0;
+    border-radius: 4px;
+}
+
+.thelauncher-drag-handle:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.thelauncher-nav {
+    margin-bottom: 6px;
+}
+
+.thelauncher-back-button {
+    min-width: 28px;
+    width: 28px;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.thelauncher-nav-spacer {
+    min-width: 28px;
+    width: 28px;
+}
+
+.thelauncher-breadcrumb-box {
+    padding: 0 6px;
+}
+
+.thelauncher-breadcrumb {
+    font-size: 13px;
+    font-weight: bold;
+    opacity: 0.85;
+    padding: 3px 0 0;
+}
+
+.thelauncher-item {
+    padding: 6px 8px;
+    border-radius: 6px;
+}
+
+.thelauncher-item:hover {
+    /* Hover colors are applied in desklet.js */
+}
+
+.thelauncher-item-disabled {
+    opacity: 0.15;
+}
+
+.thelauncher-item-disabled:hover {
+    /* Disabled items keep their base styling */
+}
+
+.thelauncher-item-label {
+    font-size: 12px;
+    text-align: center;
+}
+
+.thelauncher-item .thelauncher-item-label {
+    padding-top: 2px;
+}
+
+.thelauncher-empty {
+    font-size: 12px;
+    opacity: 0.8;
+    padding: 12px;
+}
+
+.thelauncher-list {
+    spacing: 0;
+}
+
+.thelauncher-list-item {
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-align: left;
+    spacing: 8px;
+}
+
+.thelauncher-list-item .thelauncher-item-icon {
+    margin-right: 8px;
+}
+
+.thelauncher-list-item .thelauncher-item-label {
+    text-align: left;
+    padding-top: 0;
+    padding-left: 0;
+}
