@@ -117,6 +117,20 @@
         "dependency": "use-custom-tz",
         "tooltip": "Enter your timezone name here."
     },
+    "text_font_css": {
+        "type": "entry",
+        "default": "margin-top: 5px; font-size: 12px;",
+        "description": "CSS for the text displying in label",
+        "indent": true,
+        "dependency": "use-custom-tz",
+        "tooltip": "Enter CSS for the font"
+    },
+    "label-background-color": {
+        "type": "colorchooser",
+        "default": "rgba(255,255,255,0)",
+        "description": "Text Label Background color, can be set to transparent"
+    },
+    
      "show-timezone-name": {
         "type": "checkbox",
         "default": false,

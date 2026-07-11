@@ -64,6 +64,8 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "background_color", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "show-timezone-name", "show_timezone_name", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "timezone-name", "timezone_name", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "text-font-css", "text_font_css", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "label-background-color", "label_bg_color", this.on_setting_changed);
 
 		// initialize desklet gui
 		this.setupUI();
@@ -191,12 +193,19 @@ MyDesklet.prototype = {
 
 		// Add Timezone Name and UTC Offset Label
 		if(this.show_timezone_name && this.use_custom_tz) {
-		    let tz_label_text = "UTC "+this.custom_tz+" \n "+this.timezone_name || "";
-		    let tz_text = new St.Label({ 
-		        text: tz_label_text, 
-		        style: "text-align: center; margin-top: 5px; font-size: 14px;" 
-		    });
-		    this.main_container.add_actor(tz_text);
+		    this.tz_container = new St.Bin({
+				style: `background-color: ${this.label_bg_color}; padding: 5px; border-radius: 5px; margin-top: 5px;`
+			});
+			// We create the label and apply the custom font CSS
+			let tz_label_text = "UTC "+this.custom_tz+" \n "+this.timezone_name || "";
+			this.tz_label = new St.Label({ 
+				text: tz_label_text, // Text will be set in refresh()
+				style: `text-align: center; ${this.text_font_css}` 
+			});
+
+			this.tz_container.set_child(this.tz_label);
+			this.main_container.add_actor(this.tz_container);
+			
 		}
 
 		this.setContent(this.main_container);
