@@ -109,20 +109,21 @@
         "dependency": "use-custom-tz",
         "tooltip": "Enter your custom timezone here."
     },
-    "show-timezone-name": {
-        "type": "checkbox",
-        "default": false,
-        "description": "Shows the Time Zone name below the clock",
-        "tooltip": "For multiple clock, shows each clock Time Zone name below the clock",
-        "value": false
-    },
     "timezone-name": {
         "type": "entry",
         "default": "",
         "description": "Name of time zone to display",
         "indent": true,
-        "dependency": "show-timezone-name",
+        "dependency": "use-custom-tz",
         "tooltip": "Enter your timezone name here."
+    },
+     "show-timezone-name": {
+        "type": "checkbox",
+        "default": false,
+        "dependency": "use-custom-tz",
+        "description": "Shows the Time Zone name below the clock",
+        "tooltip": "For multiple clock, shows each clock Time Zone name below the clock",
+        "value": false
     },
 
     "head4": {

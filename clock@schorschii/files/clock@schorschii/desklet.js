@@ -61,6 +61,9 @@ MyDesklet.prototype = {
 		this.settings.bindProperty(Settings.BindingDirection.IN, "img-s", "img_s", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "img-m", "img_m", this.on_setting_changed);
 		this.settings.bindProperty(Settings.BindingDirection.IN, "img-h", "img_h", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "background_color", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "show-timezone-name", "show_timezone_name", this.on_setting_changed);
+		this.settings.bindProperty(Settings.BindingDirection.IN, "timezone-name", "timezone_name", this.on_setting_changed);
 
 		// initialize desklet gui
 		this.setupUI();
@@ -123,9 +126,19 @@ MyDesklet.prototype = {
 	},
 
 	refreshSize: function() {
+		let scale = global.ui_scale;
+		let size = this.desklet_size * scale;
+
+		this.main_container = new St.BoxLayout({ vertical: true, x_align: Clutter.ActorAlign.CENTER });
 		// create elements
 		this.clock = new St.Bin({style_class: 'clock'});
+		this.clock.set_size(size, size);
 		this.clock_container = new St.Group({style_class: 'clock_container'}); // container for pointers with background image
+		
+		let bg_circle = new St.Widget({
+		    style: `background-color: ${this.background_color}; border-radius: ${size / 2}px; width: ${size}px; height: ${size}px;`
+		});
+		this.clock_container.add_actor(bg_circle);
 
 		// defaults
 		let default_style = "light";
@@ -154,10 +167,6 @@ MyDesklet.prototype = {
 		if(this.style == "custom-images" && this.img_h != "")
 			img_h_final = decodeURIComponent(this.img_h.replace("file://", ""));
 
-		// set sizes
-		let scale = global.ui_scale;
-		this.clock.set_size(this.desklet_size*scale, this.desklet_size*scale);
-
 		// load images in given size
 		this.clock_bg = getImageAtScale(img_bg_final, this.desklet_size*scale, this.desklet_size*scale); // background
 		this.second_hand = getImageAtScale(img_s_final, this.desklet_size*scale, this.desklet_size*scale); // pointers
@@ -177,9 +186,20 @@ MyDesklet.prototype = {
 		if(this.show_seconds_hand == true)
 			this.clock_container.add_actor(this.second_hand);
 
-		// set root element
 		this.clock.add_actor(this.clock_container);
-		this.setContent(this.clock);
+		this.main_container.add_actor(this.clock);
+
+		// Add Timezone Name and UTC Offset Label
+		if(this.show_timezone_name && this.use_custom_tz) {
+		    let tz_label_text = "UTC "+this.custom_tz+" \n "+this.timezone_name || "";
+		    let tz_text = new St.Label({ 
+		        text: tz_label_text, 
+		        style: "text-align: center; margin-top: 5px; font-size: 14px;" 
+		    });
+		    this.main_container.add_actor(tz_text);
+		}
+
+		this.setContent(this.main_container);
 	},
 
 	refreshDecoration: function() {
