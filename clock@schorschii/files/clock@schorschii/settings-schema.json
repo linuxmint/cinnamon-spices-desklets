@@ -18,15 +18,24 @@
             "Light Transparent": "light_transparent",
             "Dark Transparent": "dark_transparent",
             "Semitransparent": "semi_transparent",
-            "Clock Style 01": "style_01",
-            "Clock Style 02": "style_02",
-            "Clock Style 03": "style_03",
-            "Clock Style 04": "style_04",
-            "Clock Style 05": "style_05",
-            "Clock Style 06": "style_06",
-            "Clock Style 07": "style_07",
-            "Clock Style 08": "style_08",
-            "Clock Style 09": "style_09",
+            "Clock Style 01 Light": "style_01_light",
+            "Clock Style 01 Dark": "style_01_dark",
+            "Clock Style 02 Light": "style_02_light",
+            "Clock Style 02 Dark": "style_02_dark",
+            "Clock Style 03 Light": "style_03_light",
+            "Clock Style 03 Dark": "style_03_dark",
+            "Clock Style 04 Light": "style_04_light",
+            "Clock Style 04 Dark": "style_04_dark",
+            "Clock Style 05 Light": "style_05_light",
+            "Clock Style 05 Dark": "style_05_dark",
+            "Clock Style 06 Light": "style_06_light",
+            "Clock Style 06 Dark": "style_06_dark",
+            "Clock Style 07 Light": "style_07_light",
+            "Clock Style 07 Dark": "style_07_dark",
+            "Clock Style 08 Light": "style_08_light",
+            "Clock Style 08 Dark": "style_08_dark",
+            "Clock Style 09 Light": "style_09_light",
+            "Clock Style 09 Dark": "style_09_dark",
             "Custom": "custom-images"
         },
         "tooltip" : "Select the background graphic you would like to use."
@@ -117,13 +126,10 @@
         "dependency": "use-custom-tz",
         "tooltip": "Enter your timezone name here."
     },
-    "text_font_css": {
-        "type": "entry",
-        "default": "margin-top: 5px; font-size: 12px;",
-        "description": "CSS for the text displying in label",
-        "indent": true,
-        "dependency": "use-custom-tz",
-        "tooltip": "Enter CSS for the font"
+    "label-font-color": {
+        "type": "colorchooser",
+        "default": "rgba(0,0,0,1)",
+        "description": "Text Label font color"
     },
     "label-background-color": {
         "type": "colorchooser",
