@@ -190,6 +190,8 @@ SystemMonitorGraph.prototype = {
             // temperature values
             this.cpu_temperature = NaN;
             this.gpu_temperature = NaN;
+            this.cpu_fan_rpm = NaN;
+            this.cpu_fan_file = "";
 
             // set colors
             switch (this.type) {
@@ -232,6 +234,9 @@ SystemMonitorGraph.prototype = {
                     });
                 }
             });
+            if (this.type == "cpu" && this.cpu_variable == "temperature") {
+                this.rediscover_cpu_fan();
+            }
             // find file for overall AMD GPU temperature
             let gpu_path_temp = "/sys/class/drm/card" + this.gpu_id + "/device/hwmon/";
             this.get_temperature_file_by_label(gpu_path_temp, 'edge', (result) => {
@@ -280,14 +285,21 @@ SystemMonitorGraph.prototype = {
 
                   case "temperature":
                       this.get_cpu_temperature(this.cpu_temperature_file);
+                      this.get_cpu_fan_speed(this.cpu_fan_file);
                       // scale CPU temperature based on [CPU_TEMP_MIN, CPU_TEMP_MAX]
                       value = 1.0 * (this.cpu_temperature - CPU_TEMP_MIN) / (CPU_TEMP_MAX - CPU_TEMP_MIN);
                       value = value < 0 ? 0 : value > 1 ? 1 : value;
-                      text1 = _("CPU Temperature");
+                      text1 = _("CPU Temp");
                       if (this.temperature_units_cpu == "C") {
                           text2 = this.cpu_temperature.toString() + "°C";
                       } else if (this.temperature_units_cpu == "F") {
                           text2 = Math.round(this.cpu_temperature * 9 / 5 + 32).toString() + "°F";
+                      }
+                      if (!isNaN(this.cpu_fan_rpm)) {
+                          let fan_state = this.cpu_fan_rpm > 0 ? _("ON") : _("OFF");
+                          text3 = _("Fan") + " " + fan_state + " · " + this.cpu_fan_rpm + " RPM";
+                      } else if (this.cpu_fan_file != "") {
+                          text3 = _("Fan") + " —";
                       }
                       break;
               }
@@ -1138,6 +1150,66 @@ SystemMonitorGraph.prototype = {
                 GLib.free(contents);
             } catch(error) {
                 global.log('CPU temperature file read error: ' + error.toString());
+            }
+        });
+    },
+
+    get_cpu_fan_file: function(callback) {
+        // Prefer explicitly labelled CPU fans, then known laptop cooling drivers.
+        // Do not guess from an unrelated, unlabelled hwmon fan.
+        let script = `
+            for label_file in /sys/class/hwmon/hwmon*/fan*_label; do
+                [ -r "$label_file" ] || continue
+                label=$(cat "$label_file" 2>/dev/null) || continue
+                case "$label" in
+                    *CPU*|*cpu*|*Processor*|*processor*)
+                        fan_file="\${label_file%_label}_input"
+                        [ -r "$fan_file" ] && { printf '%s' "$fan_file"; exit; }
+                        ;;
+                esac
+            done
+            for name_file in /sys/class/hwmon/hwmon*/name; do
+                [ -r "$name_file" ] || continue
+                driver=$(cat "$name_file" 2>/dev/null) || continue
+                case "$driver" in
+                    dell_smm|thinkpad)
+                        hwmon_dir=\${name_file%/name}
+                        fan_file="$hwmon_dir/fan1_input"
+                        [ -r "$fan_file" ] && { printf '%s' "$fan_file"; exit; }
+                        ;;
+                esac
+            done
+        `;
+        spawnAsyncWithOutput(['/bin/sh', '-c', script], (success, output) => {
+            callback(success && output ? output.trim() : "");
+        });
+    },
+
+    rediscover_cpu_fan: function() {
+        // Clear a stale hwmon path first. If discovery finds nothing, the CPU card
+        // omits fan data instead of repeatedly spawning another lookup.
+        this.cpu_fan_file = "";
+        this.cpu_fan_rpm = NaN;
+        this.get_cpu_fan_file((result) => {
+            this.cpu_fan_file = result;
+        });
+    },
+
+    get_cpu_fan_speed: function(fan_file) {
+        if(fan_file == null || fan_file == "") return;
+        Gio.file_new_for_path(fan_file).load_contents_async(null, (file, response) => {
+            try {
+                let [success, contents, tag] = file.load_contents_finish(response);
+                if (success) {
+                    let rpm = parseInt(ByteArray.toString(contents).trim());
+                    this.cpu_fan_rpm = isNaN(rpm) ? NaN : Math.max(0, rpm);
+                } else {
+                    this.rediscover_cpu_fan();
+                }
+                GLib.free(contents);
+            } catch(error) {
+                this.rediscover_cpu_fan();
+                global.log('CPU fan speed file read error: ' + error.toString());
             }
         });
     },

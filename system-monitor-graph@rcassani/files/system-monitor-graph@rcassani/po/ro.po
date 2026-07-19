@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-03-23 21:24-0400\n"
+"POT-Creation-Date: 2026-07-19 12:45+0530\n"
 "PO-Revision-Date: 2022-04-17 23:21+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -20,106 +20,118 @@ msgstr ""
 "20)) ? 1 : 2;\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:275
+#. desklet.js:284
 msgid "CPU"
 msgstr "CPU"
 
-#. desklet.js:284
-msgid "CPU Temperature"
+#. desklet.js:294
+msgid "CPU Temp"
 msgstr ""
 
-#. desklet.js:301 desklet.js:319 desklet.js:339 desklet.js:380 desklet.js:684
+#. desklet.js:301
+msgid "ON"
+msgstr ""
+
+#. desklet.js:301
+msgid "OFF"
+msgstr ""
+
+#. desklet.js:302 desklet.js:304
+msgid "Fan"
+msgstr ""
+
+#. desklet.js:317 desklet.js:335 desklet.js:355 desklet.js:396 desklet.js:700
 msgid "GB"
 msgstr "GB"
 
-#. desklet.js:304 desklet.js:322 desklet.js:342 desklet.js:383 desklet.js:698
+#. desklet.js:320 desklet.js:338 desklet.js:358 desklet.js:399 desklet.js:714
 msgid "GiB"
 msgstr "GiB"
 
 #. settings-schema.json->type->options
-#. desklet.js:306
+#. desklet.js:322
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#. desklet.js:324
+#. desklet.js:340
 msgid "Swap"
 msgstr "Schimbă"
 
-#. desklet.js:347
+#. desklet.js:363
 msgid "free of"
 msgstr "liber din"
 
-#. desklet.js:363
+#. desklet.js:379
 msgid "GPU Usage"
 msgstr "Utilizare GPU"
 
-#. desklet.js:385
+#. desklet.js:401
 msgid "GPU Memory"
 msgstr "Memorie GPU"
 
-#. desklet.js:401
+#. desklet.js:417
 #, fuzzy
 msgid "GPU Temperature"
 msgstr "Producător GPU"
 
 #. settings-schema.json->type->options
-#. desklet.js:415
+#. desklet.js:431
 msgid "Network"
 msgstr ""
 
 #. settings-schema.json->type->options
-#. desklet.js:428
+#. desklet.js:444
 msgid "Battery"
 msgstr ""
 
-#. desklet.js:431
+#. desklet.js:447
 msgid "Fully charged"
 msgstr ""
 
-#. desklet.js:432
+#. desklet.js:448
 msgid "Not charging"
 msgstr ""
 
-#. desklet.js:434
+#. desklet.js:450
 msgid " hrs"
 msgstr ""
 
-#. desklet.js:655 desklet.js:678
+#. desklet.js:671 desklet.js:694
 msgid "b"
 msgstr ""
 
-#. desklet.js:657 desklet.js:692 desklet.js:706
+#. desklet.js:673 desklet.js:708 desklet.js:722
 #, fuzzy
 msgid "B"
 msgstr "GB"
 
-#. desklet.js:670
+#. desklet.js:686
 msgid "Gb"
 msgstr ""
 
-#. desklet.js:673
+#. desklet.js:689
 msgid "Mb"
 msgstr ""
 
-#. desklet.js:676
+#. desklet.js:692
 msgid "Kb"
 msgstr ""
 
-#. desklet.js:687
+#. desklet.js:703
 msgid "MB"
 msgstr ""
 
-#. desklet.js:690
+#. desklet.js:706
 msgid "KB"
 msgstr ""
 
-#. desklet.js:701
+#. desklet.js:717
 #, fuzzy
 msgid "MiB"
 msgstr "GiB"
 
-#. desklet.js:704
+#. desklet.js:720
 #, fuzzy
 msgid "KiB"
 msgstr "GiB"
