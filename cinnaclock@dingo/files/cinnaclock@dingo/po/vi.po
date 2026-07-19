@@ -1,0 +1,144 @@
+# Cinnaclock Desklet
+# Language: vi
+msgid ""
+msgstr ""
+"Project-Id-Version: Cinnaclock\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. settings-schema.json->pages
+msgid "General"
+msgstr "Tổng quát"
+
+msgid "Layer 1"
+msgstr "Lớp 1"
+
+msgid "Layer 2"
+msgstr "Lớp 2"
+
+msgid "Layer 3"
+msgstr "Lớp 3"
+
+#. settings-schema.json->sections
+msgid "Format Style"
+msgstr "Kiểu định dạng"
+
+msgid "Background Style"
+msgstr "Kiểu nền"
+
+msgid "Text Style"
+msgstr "Kiểu văn bản"
+
+msgid "Shadow"
+msgstr "Đổ bóng"
+
+#. settings-schema.json->descriptions
+msgid "Show background"
+msgstr "Hiển thị nền"
+
+msgid "Background Color"
+msgstr "Màu nền"
+
+msgid "Corner Radius"
+msgstr "Bo góc"
+
+msgid "Show Layer 1"
+msgstr "Hiển thị Lớp 1"
+
+msgid "Show Layer 2"
+msgstr "Hiển thị Lớp 2"
+
+msgid "Show Layer 3"
+msgstr "Hiển thị Lớp 3"
+
+msgid "Layer 1 Format"
+msgstr "Định dạng Lớp 1"
+
+msgid "Layer 2 Format"
+msgstr "Định dạng Lớp 2"
+
+msgid "Layer 3 Format"
+msgstr "Định dạng Lớp 3"
+
+msgid "Layer 1 Vertical Offset"
+msgstr "Bù dọc Lớp 1"
+
+msgid "Layer 2 Vertical Offset"
+msgstr "Bù dọc Lớp 2"
+
+msgid "Layer 3 Vertical Offset"
+msgstr "Bù dọc Lớp 3"
+
+msgid "Layer 1 Horizontal Offset"
+msgstr "Bù ngang Lớp 1"
+
+msgid "Layer 2 Horizontal Offset"
+msgstr "Bù ngang Lớp 2"
+
+msgid "Layer 3 Horizontal Offset"
+msgstr "Bù ngang Lớp 3"
+
+msgid "Font"
+msgstr "Phông chữ"
+
+msgid "Color"
+msgstr "Màu sắc"
+
+msgid "Uppercase"
+msgstr "Viết hoa"
+
+msgid "Horizontal offset"
+msgstr "Bù ngang"
+
+msgid "Vertical offset"
+msgstr "Bù dọc"
+
+msgid "Blur"
+msgstr "Làm mờ"
+
+msgid "Select a Preset"
+msgstr "Chọn mẫu có sẵn"
+
+#. settings-schema.json->options
+msgid "Manual"
+msgstr "Thủ công"
+
+msgid "Modern Blue"
+msgstr "Xanh hiện đại"
+
+msgid "Clear Orange"
+msgstr "Cam trong"
+
+msgid "Digital Neon"
+msgstr "Neon kỹ thuật số"
+
+msgid "Minimal Dark"
+msgstr "Tối giản"
+
+msgid "Minimal White"
+msgstr "Trắng tối giản"
+
+msgid "Phantom"
+msgstr "Bóng ma"
+
+msgid "Cyberpunk"
+msgstr "Cyberpunk"
+
+#. settings-schema.json->tooltips
+msgid "Set the background color and transparency of the desklet"
+msgstr "Thiết lập màu nền và độ trong suốt"
+
+msgid "Example: %H:%M for 24h"
+msgstr "Ví dụ: %H:%M cho 24h"
+
+msgid "Example: %A for full weekday name"
+msgstr "Ví dụ: %A cho tên ngày đầy đủ"
+
+msgid "Example: %e %B %Y"
+msgstr "Ví dụ: %e %B %Y"
+
+#. desklet.js
+msgid "Edit Config"
+msgstr "Sửa cấu hình"
