@@ -1,0 +1,7 @@
+{
+  "uuid": "alarm-clock@KopfdesDaemons",
+  "name": "Alarm Clock",
+  "description": "A simple alarm clock for your desktop.",
+  "version": "1.0.0",
+  "max-instances": "50"
+}
