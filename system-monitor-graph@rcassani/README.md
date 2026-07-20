@@ -16,7 +16,7 @@ This project has been inspired from other Desklets such as [Disk Space](https://
 | -----------     | ----------- |
 | CPU             | CPU usage in % |
 | CPU Temperature | CPU temperature in C or F |
-| CPU Fan speed   | Fan speed in RPM, on/off status, and activity history when exposed by hwmon |
+| CPU Fan Speed   | Fan speed in RPM, on/off status, and activity history when exposed by hwmon |
 | RAM             | Used RAM as % of total, and in GB |
 | Swap            | Used Swap space as % of total, and in GB |
 | HDD             | % of I/O activity, and free and total space in the filesystem (partition)  indicated by the user |

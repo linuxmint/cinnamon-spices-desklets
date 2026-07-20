@@ -300,10 +300,15 @@ SystemMonitorGraph.prototype = {
                   case "fan":
                       this.get_cpu_fan_speed(this.cpu_fan_file);
                       value = isNaN(this.cpu_fan_rpm) ? 0 : this.cpu_fan_rpm;
-                      text1 = _("CPU Fan speed");
+                      text1 = _("CPU Fan Speed");
+                      text2_size = Math.max(1, text2_size - 1);
                       if (!isNaN(this.cpu_fan_rpm)) {
-                          text2 = this.cpu_fan_rpm + " RPM";
-                          text3 = this.cpu_fan_rpm > 0 ? "🟢 " + _("On") : "🔴 " + _("Off");
+                          if (this.cpu_fan_rpm >= 1) {
+                              text2 = this.cpu_fan_rpm + " RPM";
+                              text3 = "🟢 " + _("On");
+                          } else {
+                              text3 = "🔴 " + _("Off");
+                          }
                       } else if (this.cpu_fan_discovery_complete) {
                           text2 = _("Not detected");
                       } else {

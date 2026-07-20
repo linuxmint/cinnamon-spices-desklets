@@ -31,7 +31,7 @@
         "options" : {
             "Usage"  : "usage",
             "Temperature" : "temperature",
-            "Fan speed" : "fan"
+            "Fan Speed" : "fan"
         },
         "dependency": "type=cpu"
     },
