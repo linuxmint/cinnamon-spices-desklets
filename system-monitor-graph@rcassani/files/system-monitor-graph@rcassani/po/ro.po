@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-07-19 12:45+0530\n"
+"POT-Creation-Date: 2026-07-20 18:00+0530\n"
 "PO-Revision-Date: 2022-04-17 23:21+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -20,118 +20,126 @@ msgstr ""
 "20)) ? 1 : 2;\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:284
+#. desklet.js:283
 msgid "CPU"
 msgstr "CPU"
 
-#. desklet.js:294
+#. desklet.js:292
 msgid "CPU Temp"
 msgstr ""
 
-#. desklet.js:301
-msgid "ON"
+#. desklet.js:303
+msgid "CPU Fan speed"
 msgstr ""
 
-#. desklet.js:301
-msgid "OFF"
+#. desklet.js:306
+msgid "On"
 msgstr ""
 
-#. desklet.js:302 desklet.js:304
-msgid "Fan"
+#. desklet.js:306
+msgid "Off"
 msgstr ""
 
-#. desklet.js:317 desklet.js:335 desklet.js:355 desklet.js:396 desklet.js:700
+#. desklet.js:308
+msgid "Not detected"
+msgstr ""
+
+#. desklet.js:310
+msgid "Detecting..."
+msgstr ""
+
+#. desklet.js:323 desklet.js:341 desklet.js:361 desklet.js:402 desklet.js:732
 msgid "GB"
 msgstr "GB"
 
-#. desklet.js:320 desklet.js:338 desklet.js:358 desklet.js:399 desklet.js:714
+#. desklet.js:326 desklet.js:344 desklet.js:364 desklet.js:405 desklet.js:746
 msgid "GiB"
 msgstr "GiB"
 
 #. settings-schema.json->type->options
-#. desklet.js:322
+#. desklet.js:328
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#. desklet.js:340
+#. desklet.js:346
 msgid "Swap"
 msgstr "Schimbă"
 
-#. desklet.js:363
+#. desklet.js:369
 msgid "free of"
 msgstr "liber din"
 
-#. desklet.js:379
+#. desklet.js:385
 msgid "GPU Usage"
 msgstr "Utilizare GPU"
 
-#. desklet.js:401
+#. desklet.js:407
 msgid "GPU Memory"
 msgstr "Memorie GPU"
 
-#. desklet.js:417
+#. desklet.js:423
 #, fuzzy
 msgid "GPU Temperature"
 msgstr "Producător GPU"
 
 #. settings-schema.json->type->options
-#. desklet.js:431
+#. desklet.js:437
 msgid "Network"
 msgstr ""
 
 #. settings-schema.json->type->options
-#. desklet.js:444
+#. desklet.js:450
 msgid "Battery"
 msgstr ""
 
-#. desklet.js:447
+#. desklet.js:453
 msgid "Fully charged"
 msgstr ""
 
-#. desklet.js:448
+#. desklet.js:454
 msgid "Not charging"
 msgstr ""
 
-#. desklet.js:450
+#. desklet.js:456
 msgid " hrs"
 msgstr ""
 
-#. desklet.js:671 desklet.js:694
+#. desklet.js:703 desklet.js:726
 msgid "b"
 msgstr ""
 
-#. desklet.js:673 desklet.js:708 desklet.js:722
+#. desklet.js:705 desklet.js:740 desklet.js:754
 #, fuzzy
 msgid "B"
 msgstr "GB"
 
-#. desklet.js:686
+#. desklet.js:718
 msgid "Gb"
 msgstr ""
 
-#. desklet.js:689
+#. desklet.js:721
 msgid "Mb"
 msgstr ""
 
-#. desklet.js:692
+#. desklet.js:724
 msgid "Kb"
 msgstr ""
 
-#. desklet.js:703
+#. desklet.js:735
 msgid "MB"
 msgstr ""
 
-#. desklet.js:706
+#. desklet.js:738
 msgid "KB"
 msgstr ""
 
-#. desklet.js:717
+#. desklet.js:749
 #, fuzzy
 msgid "MiB"
 msgstr "GiB"
 
-#. desklet.js:720
+#. desklet.js:752
 #, fuzzy
 msgid "KiB"
 msgstr "GiB"
@@ -186,6 +194,10 @@ msgstr "Utilizare"
 #. settings-schema.json->cpu-variable->options
 #. settings-schema.json->gpu-variable->options
 msgid "Temperature"
+msgstr ""
+
+#. settings-schema.json->cpu-variable->options
+msgid "Fan speed"
 msgstr ""
 
 #. settings-schema.json->temperature-units-cpu->options

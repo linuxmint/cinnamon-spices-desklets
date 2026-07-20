@@ -15,7 +15,8 @@ This project has been inspired from other Desklets such as [Disk Space](https://
 | System variable | Description |
 | -----------     | ----------- |
 | CPU             | CPU usage in % |
-| CPU Temperature | CPU temperature C or F, with fan on/off status and RPM when exposed by hwmon |
+| CPU Temperature | CPU temperature in C or F |
+| CPU Fan speed   | Fan speed in RPM, on/off status, and activity history when exposed by hwmon |
 | RAM             | Used RAM as % of total, and in GB |
 | Swap            | Used Swap space as % of total, and in GB |
 | HDD             | % of I/O activity, and free and total space in the filesystem (partition)  indicated by the user |
@@ -27,7 +28,13 @@ This project has been inspired from other Desklets such as [Disk Space](https://
 
 Each variable is calculated every `Refresh interval` seconds (Min. 1 s, Max. 60 s.), and the graph shows the last `Duration of the graph` period (Min. 30 s, Max. 60 min).
 GPU graphs work for NVIDIA, discrete AMD and built-in AMD.
-Fan monitoring uses CPU-labelled sensors and known laptop cooling drivers. It avoids guessing from unrelated unlabelled fans, and systems that do not expose identifiable CPU fan speed continue to show CPU temperature without a fan readout.
+Fan monitoring uses CPU-labelled sensors and known laptop cooling drivers. It avoids guessing from unrelated unlabelled fans, and reports when an identifiable CPU fan is not detected.
+
+<p align="center">
+<img src="fan-speed-on.png" width="350" alt="CPU fan speed graph showing 522 RPM and On">
+<img src="fan-speed-off.png" width="350" alt="CPU fan speed graph showing 0 RPM and Off"><br>
+CPU fan speed history while the fan is running and stopped.
+</p>
 
 ### Customizable visual elements
 <p align="center">

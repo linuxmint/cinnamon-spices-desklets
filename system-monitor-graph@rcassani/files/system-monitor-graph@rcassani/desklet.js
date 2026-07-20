@@ -192,6 +192,7 @@ SystemMonitorGraph.prototype = {
             this.gpu_temperature = NaN;
             this.cpu_fan_rpm = NaN;
             this.cpu_fan_file = "";
+            this.cpu_fan_discovery_complete = false;
 
             // set colors
             switch (this.type) {
@@ -234,7 +235,7 @@ SystemMonitorGraph.prototype = {
                     });
                 }
             });
-            if (this.type == "cpu" && this.cpu_variable == "temperature") {
+            if (this.type == "cpu" && this.cpu_variable == "fan") {
                 this.rediscover_cpu_fan();
             }
             // find file for overall AMD GPU temperature
@@ -285,7 +286,6 @@ SystemMonitorGraph.prototype = {
 
                   case "temperature":
                       this.get_cpu_temperature(this.cpu_temperature_file);
-                      this.get_cpu_fan_speed(this.cpu_fan_file);
                       // scale CPU temperature based on [CPU_TEMP_MIN, CPU_TEMP_MAX]
                       value = 1.0 * (this.cpu_temperature - CPU_TEMP_MIN) / (CPU_TEMP_MAX - CPU_TEMP_MIN);
                       value = value < 0 ? 0 : value > 1 ? 1 : value;
@@ -295,11 +295,19 @@ SystemMonitorGraph.prototype = {
                       } else if (this.temperature_units_cpu == "F") {
                           text2 = Math.round(this.cpu_temperature * 9 / 5 + 32).toString() + "°F";
                       }
+                      break;
+
+                  case "fan":
+                      this.get_cpu_fan_speed(this.cpu_fan_file);
+                      value = isNaN(this.cpu_fan_rpm) ? 0 : this.cpu_fan_rpm;
+                      text1 = _("CPU Fan speed");
                       if (!isNaN(this.cpu_fan_rpm)) {
-                          let fan_state = this.cpu_fan_rpm > 0 ? _("ON") : _("OFF");
-                          text3 = _("Fan") + " " + fan_state + " · " + this.cpu_fan_rpm + " RPM";
-                      } else if (this.cpu_fan_file != "") {
-                          text3 = _("Fan") + " —";
+                          text2 = this.cpu_fan_rpm + " RPM";
+                          text3 = this.cpu_fan_rpm > 0 ? "🟢 " + _("On") : "🔴 " + _("Off");
+                      } else if (this.cpu_fan_discovery_complete) {
+                          text2 = _("Not detected");
+                      } else {
+                          text2 = _("Detecting...");
                       }
                       break;
               }
@@ -499,6 +507,8 @@ SystemMonitorGraph.prototype = {
             if (this.type === "network") {
                 // Draw dual-line network graph
                 this.draw_network_graph(ctx, unit_size, margin_up, graph_w, graph_h, graph_step, n_values, line_width);
+            } else if (this.type === "cpu" && this.cpu_variable === "fan") {
+                this.draw_cpu_fan_graph(ctx, unit_size, margin_up, graph_w, graph_h, graph_step, n_values, line_width);
             } else {
                 // timeseries and area
                 ctx.setLineWidth(2 * line_width);
@@ -551,6 +561,30 @@ SystemMonitorGraph.prototype = {
         canvas.invalidate();
         this.canvas.set_content(canvas);
         this.canvas.set_size(desklet_w, desklet_h);
+    },
+
+    draw_cpu_fan_graph: function(ctx, unit_size, margin_up, graph_w, graph_h, graph_step, n_values, line_width) {
+        let fan_colors = this.parse_rgba_settings(this.line_color_cpu);
+        let valid_values = this.values.filter(v => !isNaN(v) && isFinite(v) && v >= 0);
+        let max_value = valid_values.length > 0 ? Math.max(...valid_values) : 0;
+        let fan_scale = Math.max(1000, Math.ceil((max_value * 1.1) / 500) * 500);
+        let scale_value = function(value) {
+            if (isNaN(value) || !isFinite(value) || value < 0) return 0;
+            return Math.max(0, Math.min(graph_h, (value / fan_scale) * graph_h));
+        };
+
+        ctx.setLineWidth(2 * line_width);
+        ctx.setSourceRGBA(fan_colors[0], fan_colors[1], fan_colors[2], 1);
+        ctx.moveTo(unit_size, margin_up + graph_h - scale_value(this.values[0]));
+        for (let i = 1; i < n_values; i++) {
+            ctx.lineTo(unit_size + (i * graph_step), margin_up + graph_h - scale_value(this.values[i]));
+        }
+        ctx.strokePreserve();
+        ctx.lineTo(unit_size + graph_w, margin_up + graph_h);
+        ctx.lineTo(unit_size, margin_up + graph_h);
+        ctx.closePath();
+        ctx.setSourceRGBA(fan_colors[0], fan_colors[1], fan_colors[2], 0.4);
+        ctx.fill();
     },
 
     draw_network_graph: function(ctx, unit_size, margin_up, graph_w, graph_h, graph_step, n_values, line_width) {
@@ -1186,12 +1220,14 @@ SystemMonitorGraph.prototype = {
     },
 
     rediscover_cpu_fan: function() {
-        // Clear a stale hwmon path first. If discovery finds nothing, the CPU card
-        // omits fan data instead of repeatedly spawning another lookup.
+        // Clear a stale hwmon path first. If discovery finds nothing, the fan
+        // graph reports that no sensor was detected instead of retrying forever.
         this.cpu_fan_file = "";
         this.cpu_fan_rpm = NaN;
+        this.cpu_fan_discovery_complete = false;
         this.get_cpu_fan_file((result) => {
             this.cpu_fan_file = result;
+            this.cpu_fan_discovery_complete = true;
         });
     },
 
