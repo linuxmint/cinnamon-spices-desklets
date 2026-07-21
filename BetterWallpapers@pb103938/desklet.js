@@ -18,7 +18,7 @@ const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
 
 function MyDesklet(metadata, desklet_id) {
     if (!DESKLET_ROOT.startsWith("/usr/share/")) {
-        Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/.local/share/locale");
+        Gettext.bindtextdomain(UUID, GLib.get_user_data_dir());
     }
     this._init(metadata, desklet_id);
 }
