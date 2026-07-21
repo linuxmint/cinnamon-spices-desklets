@@ -10,13 +10,13 @@ Four instances of the Desklet in action.
 This project has been inspired from other Desklets such as [Disk Space](https://cinnamon-spices.linuxmint.com/desklets/view/39), [CPU Load](https://cinnamon-spices.linuxmint.com/desklets/view/44), [Simple system monitor](https://cinnamon-spices.linuxmint.com/desklets/view/29), [Network usage monitor](https://cinnamon-spices.linuxmint.com/desklets/view/15), [Top](https://cinnamon-spices.linuxmint.com/desklets/view/41), and the  [Rainmeter Win10 Widgets](https://win10widgets.com/).
 
 ## Features
-### Variables to monitor (v2.0 - July 2025)
+### Variables to monitor (v2.2 - July 2026)
 
 | System variable | Description |
 | -----------     | ----------- |
 | CPU             | CPU usage in % |
 | CPU Temperature | CPU temperature in C or F |
-| CPU Fan Speed   | Fan speed in RPM, on/off status, and activity history when exposed by hwmon |
+| CPU Fan         | CPU fan speed in RPM and on/off status |
 | RAM             | Used RAM as % of total, and in GB |
 | Swap            | Used Swap space as % of total, and in GB |
 | HDD             | % of I/O activity, and free and total space in the filesystem (partition)  indicated by the user |
@@ -29,12 +29,6 @@ This project has been inspired from other Desklets such as [Disk Space](https://
 Each variable is calculated every `Refresh interval` seconds (Min. 1 s, Max. 60 s.), and the graph shows the last `Duration of the graph` period (Min. 30 s, Max. 60 min).
 GPU graphs work for NVIDIA, discrete AMD and built-in AMD.
 Fan monitoring uses CPU-labelled sensors and known laptop cooling drivers. It avoids guessing from unrelated unlabelled fans, and reports when an identifiable CPU fan is not detected.
-
-<p align="center">
-<img src="fan-speed-on.png" width="350" alt="CPU fan speed graph showing 522 RPM and On">
-<img src="fan-speed-off.png" width="350" alt="CPU fan speed graph showing 0 RPM and Off"><br>
-CPU fan speed history while the fan is running and stopped.
-</p>
 
 ### Customizable visual elements
 <p align="center">
@@ -63,6 +57,11 @@ Another screenshot.
 <p align="center">
 <img src="https://cinnamon-spices.linuxmint.com/git/desklets/system-monitor-graph@rcassani/screenshot4.png" width="900" align="middle"><br>
 Screenshot with temperature and battery graphs.
+</p>
+
+<p align="center">
+<img src="https://cinnamon-spices.linuxmint.com/git/desklets/system-monitor-graph@rcassani/screenshot5.png" width="700" align="middle"><br>
+CPU fan speed history while the fan is running and stopped.
 </p>
 
 ## TODO

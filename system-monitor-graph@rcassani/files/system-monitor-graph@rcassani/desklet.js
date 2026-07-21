@@ -190,6 +190,7 @@ SystemMonitorGraph.prototype = {
             // temperature values
             this.cpu_temperature = NaN;
             this.gpu_temperature = NaN;
+            // cpu fan values
             this.cpu_fan_rpm = NaN;
             this.cpu_fan_file = "";
             this.cpu_fan_discovery_complete = false;
@@ -289,7 +290,7 @@ SystemMonitorGraph.prototype = {
                       // scale CPU temperature based on [CPU_TEMP_MIN, CPU_TEMP_MAX]
                       value = 1.0 * (this.cpu_temperature - CPU_TEMP_MIN) / (CPU_TEMP_MAX - CPU_TEMP_MIN);
                       value = value < 0 ? 0 : value > 1 ? 1 : value;
-                      text1 = _("CPU Temp");
+                      text1 = _("CPU Temperature");
                       if (this.temperature_units_cpu == "C") {
                           text2 = this.cpu_temperature.toString() + "°C";
                       } else if (this.temperature_units_cpu == "F") {
@@ -300,11 +301,11 @@ SystemMonitorGraph.prototype = {
                   case "fan":
                       this.get_cpu_fan_speed(this.cpu_fan_file);
                       value = isNaN(this.cpu_fan_rpm) ? 0 : this.cpu_fan_rpm;
-                      text1 = _("CPU Fan Speed");
+                      text1 = _("CPU Fan");
                       text2_size = Math.max(1, text2_size - 1);
                       if (!isNaN(this.cpu_fan_rpm)) {
                           if (this.cpu_fan_rpm >= 1) {
-                              text2 = this.cpu_fan_rpm + " RPM";
+                              text2 = this.cpu_fan_rpm + " " + _("RPM");
                               text3 = "🟢 " + _("On");
                           } else {
                               text3 = "🔴 " + _("Off");
@@ -1193,51 +1194,48 @@ SystemMonitorGraph.prototype = {
         });
     },
 
-    get_cpu_fan_file: function(callback) {
+    get_cpu_fan_file: function(excluded_file, callback) {
         // Prefer explicitly labelled CPU fans, then known laptop cooling drivers.
         // Do not guess from an unrelated, unlabelled hwmon fan.
-        let script = `
-            for label_file in /sys/class/hwmon/hwmon*/fan*_label; do
-                [ -r "$label_file" ] || continue
-                label=$(cat "$label_file" 2>/dev/null) || continue
-                case "$label" in
-                    *CPU*|*cpu*|*Processor*|*processor*)
-                        fan_file="\${label_file%_label}_input"
-                        [ -r "$fan_file" ] && { printf '%s' "$fan_file"; exit; }
-                        ;;
-                esac
-            done
-            for name_file in /sys/class/hwmon/hwmon*/name; do
-                [ -r "$name_file" ] || continue
-                driver=$(cat "$name_file" 2>/dev/null) || continue
-                case "$driver" in
-                    dell_smm|thinkpad)
-                        hwmon_dir=\${name_file%/name}
-                        fan_file="$hwmon_dir/fan1_input"
-                        [ -r "$fan_file" ] && { printf '%s' "$fan_file"; exit; }
-                        ;;
-                esac
-            done
-        `;
-        spawnAsyncWithOutput(['/bin/sh', '-c', script], (success, output) => {
+        let argv = ['/bin/sh', '-c', "for fan_file in $({ grep -s -i -l -d skip -E 'cpu|processor' /sys/class/hwmon/hwmon*/fan*_label | sed 's/_label/_input/'; grep -s -l -d skip -E '^(dell_smm|thinkpad)$' /sys/class/hwmon/hwmon*/name | sed 's#/name#/fan1_input#'; }); do [ \"$fan_file\" = \"$1\" ] && continue; [ -r \"$fan_file\" ] && { printf '%s' \"$fan_file\"; break; }; done", 'cpu-fan-discovery', excluded_file];
+        spawnAsyncWithOutput(argv, (success, output) => {
             callback(success && output ? output.trim() : "");
         });
     },
 
-    rediscover_cpu_fan: function() {
-        // Clear a stale hwmon path first. If discovery finds nothing, the fan
-        // graph reports that no sensor was detected instead of retrying forever.
+    rediscover_cpu_fan: function(failed_file = "") {
+        // Clear a stale hwmon path first. Initial discovery retries with bounded
+        // backoff; a failed known path is excluded to avoid looping every refresh.
+        if (this.cpu_fan_discovery_in_progress) return;
+        if (this.cpu_fan_retry_delay == null) this.cpu_fan_retry_delay = 5;
+        this.cpu_fan_discovery_in_progress = true;
+        this.cpu_fan_retry_if_missing = failed_file == "";
         this.cpu_fan_file = "";
         this.cpu_fan_rpm = NaN;
         this.cpu_fan_discovery_complete = false;
-        this.get_cpu_fan_file((result) => {
+        this.get_cpu_fan_file(failed_file, (result) => {
             this.cpu_fan_file = result;
             this.cpu_fan_discovery_complete = true;
+            this.cpu_fan_discovery_in_progress = false;
+            if (result == "" && this.cpu_fan_retry_if_missing) {
+                this.cpu_fan_next_discovery_time = GLib.get_monotonic_time()
+                    + (this.cpu_fan_retry_delay * GLib.USEC_PER_SEC);
+                this.cpu_fan_retry_delay = Math.min(this.cpu_fan_retry_delay * 2, 300);
+            } else if (result != "") {
+                this.cpu_fan_retry_delay = 5;
+                this.cpu_fan_next_discovery_time = 0;
+            }
         });
     },
 
     get_cpu_fan_speed: function(fan_file) {
-        if(fan_file == null || fan_file == "") return;
+        if(fan_file == null || fan_file == "") {
+            if (this.cpu_fan_discovery_complete && this.cpu_fan_retry_if_missing
+                && GLib.get_monotonic_time() >= this.cpu_fan_next_discovery_time) {
+                this.rediscover_cpu_fan();
+            }
+            return;
+        }
         Gio.file_new_for_path(fan_file).load_contents_async(null, (file, response) => {
             try {
                 let [success, contents, tag] = file.load_contents_finish(response);
@@ -1245,11 +1243,11 @@ SystemMonitorGraph.prototype = {
                     let rpm = parseInt(ByteArray.toString(contents).trim());
                     this.cpu_fan_rpm = isNaN(rpm) ? NaN : Math.max(0, rpm);
                 } else {
-                    this.rediscover_cpu_fan();
+                    this.rediscover_cpu_fan(fan_file);
                 }
                 GLib.free(contents);
             } catch(error) {
-                this.rediscover_cpu_fan();
+                this.rediscover_cpu_fan(fan_file);
                 global.log('CPU fan speed file read error: ' + error.toString());
             }
         });

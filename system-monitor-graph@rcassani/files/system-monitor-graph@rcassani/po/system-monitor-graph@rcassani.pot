@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: system-monitor-graph@rcassani 2.2\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-07-20 21:19+0530\n"
+"POT-Creation-Date: 2026-07-22 03:33+0530\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,123 +18,127 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:283
+#. desklet.js:284
 msgid "CPU"
 msgstr ""
 
-#. desklet.js:292
-msgid "CPU Temp"
+#. desklet.js:293
+msgid "CPU Temperature"
 msgstr ""
 
-#. desklet.js:303
-msgid "CPU Fan Speed"
+#. desklet.js:304
+msgid "CPU Fan"
 msgstr ""
 
-#. desklet.js:307
-msgid "On"
+#. desklet.js:308
+msgid "RPM"
 msgstr ""
 
 #. desklet.js:309
+msgid "On"
+msgstr ""
+
+#. desklet.js:311
 msgid "Off"
 msgstr ""
 
-#. desklet.js:312
+#. desklet.js:314
 msgid "Not detected"
 msgstr ""
 
-#. desklet.js:314
+#. desklet.js:316
 msgid "Detecting..."
 msgstr ""
 
-#. desklet.js:327 desklet.js:345 desklet.js:365 desklet.js:406 desklet.js:736
+#. desklet.js:329 desklet.js:347 desklet.js:367 desklet.js:408 desklet.js:738
 msgid "GB"
 msgstr ""
 
-#. desklet.js:330 desklet.js:348 desklet.js:368 desklet.js:409 desklet.js:750
+#. desklet.js:332 desklet.js:350 desklet.js:370 desklet.js:411 desklet.js:752
 msgid "GiB"
 msgstr ""
 
 #. settings-schema.json->type->options
-#. desklet.js:332
+#. desklet.js:334
 msgid "RAM"
 msgstr ""
 
 #. settings-schema.json->type->options
-#. desklet.js:350
+#. desklet.js:352
 msgid "Swap"
 msgstr ""
 
-#. desklet.js:373
+#. desklet.js:375
 msgid "free of"
 msgstr ""
 
-#. desklet.js:389
+#. desklet.js:391
 msgid "GPU Usage"
 msgstr ""
 
-#. desklet.js:411
+#. desklet.js:413
 msgid "GPU Memory"
 msgstr ""
 
-#. desklet.js:427
+#. desklet.js:429
 msgid "GPU Temperature"
 msgstr ""
 
 #. settings-schema.json->type->options
-#. desklet.js:441
+#. desklet.js:443
 msgid "Network"
 msgstr ""
 
 #. settings-schema.json->type->options
-#. desklet.js:454
+#. desklet.js:456
 msgid "Battery"
 msgstr ""
 
-#. desklet.js:457
+#. desklet.js:459
 msgid "Fully charged"
 msgstr ""
 
-#. desklet.js:458
+#. desklet.js:460
 msgid "Not charging"
 msgstr ""
 
-#. desklet.js:460
+#. desklet.js:462
 msgid " hrs"
 msgstr ""
 
-#. desklet.js:707 desklet.js:730
+#. desklet.js:709 desklet.js:732
 msgid "b"
 msgstr ""
 
-#. desklet.js:709 desklet.js:744 desklet.js:758
+#. desklet.js:711 desklet.js:746 desklet.js:760
 msgid "B"
 msgstr ""
 
-#. desklet.js:722
+#. desklet.js:724
 msgid "Gb"
 msgstr ""
 
-#. desklet.js:725
+#. desklet.js:727
 msgid "Mb"
 msgstr ""
 
-#. desklet.js:728
+#. desklet.js:730
 msgid "Kb"
 msgstr ""
 
-#. desklet.js:739
+#. desklet.js:741
 msgid "MB"
 msgstr ""
 
-#. desklet.js:742
+#. desklet.js:744
 msgid "KB"
 msgstr ""
 
-#. desklet.js:753
+#. desklet.js:755
 msgid "MiB"
 msgstr ""
 
-#. desklet.js:756
+#. desklet.js:758
 msgid "KiB"
 msgstr ""
 
