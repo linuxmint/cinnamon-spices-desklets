@@ -18,7 +18,7 @@ const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
 
 function MyDesklet(metadata, desklet_id) {
     if (!DESKLET_ROOT.startsWith("/usr/share/")) {
-        Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+        Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/.local/share/locale");
     }
     this._init(metadata, desklet_id);
 }
@@ -53,11 +53,11 @@ MyDesklet.prototype = {
 
         this.runDesklet();
 
-        GLib.idle_add(GLib.PRIORITY_DEFAULT_IDLE, Lang.bind(this, function() {
+        GLib.idle_add(GLib.PRIORITY_DEFAULT_IDLE, Function.prototype.bind(this, function() {
             let parent = this.actor.get_parent();
             if (parent) {
                 parent.set_child_at_index(this.actor, 0);
-                this._stageAddedId = parent.connect("actor-added", Lang.bind(this, function() {
+                this._stageAddedId = parent.connect("actor-added", Function.prototype.bind(this, function() {
                     let p = this.actor.get_parent();
                     if (p) p.set_child_at_index(this.actor, 0);
                 }));
@@ -65,7 +65,7 @@ MyDesklet.prototype = {
             return false;
         }));
 
-        this.connect("destroy", Lang.bind(this, this._cleanup));
+        this.connect("destroy", Function.prototype.bind(this, this._cleanup));
     },
 
     on_setting_changed: function() {
