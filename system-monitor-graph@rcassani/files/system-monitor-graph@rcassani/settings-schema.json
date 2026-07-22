@@ -30,7 +30,8 @@
         "tooltip": "Select the CPU variable to monitor.",
         "options" : {
             "Usage"  : "usage",
-            "Temperature" : "temperature"
+            "Temperature" : "temperature",
+            "Fan" : "fan"
         },
         "dependency": "type=cpu"
     },
