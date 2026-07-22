@@ -14,6 +14,9 @@ var GitHubHelper = class GitHubHelper {
   static gitHubTokenCreationURL = "https://github.com/settings/tokens/new?description=Cinnamon%20Desklet";
 
   static async getContributionData(username, token) {
+    if (!/^[a-zA-Z0-9-]+$/.test(username)) {
+      throw new Error("Invalid username.");
+    }
     const query = `
       query {
         user(login: "${username}") {
