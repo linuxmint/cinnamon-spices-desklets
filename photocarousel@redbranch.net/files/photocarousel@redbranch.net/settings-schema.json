@@ -1,0 +1,192 @@
+{
+    "directory-header": {
+        "type": "header",
+        "description": "Photo Directory"
+    },
+    "directory": {
+        "default": " ",
+        "type": "filechooser",
+        "description": "Photo Folder",
+        "allow-none": false,
+        "select-dir": true
+    },
+    "appearance-header": {
+        "type": "header",
+        "description": "Appearance Settings"
+    },
+    "width": {
+        "default": 400,
+        "type": "spinbutton",
+        "min": 50,
+        "max": 1600,
+        "description": "Width",
+        "units": "pixels",
+        "step": 50
+    },
+    "height": {
+        "default": 300,
+        "type": "spinbutton",
+        "min": 50,
+        "max": 1600,
+        "description": "Height",
+        "units": "pixels",
+        "step": 50
+    },
+    "frame-width": {
+        "default": 5,
+        "type": "spinbutton",
+        "min": 0,
+        "max": 50,
+        "description": "Frame Width",
+        "units": "pixels",
+        "step": 1
+    },
+    "frame-color": {
+        "default": "black",
+        "type": "colorchooser",
+        "description": "Frame Color",
+        "tooltip": "Color for frame border and background overlay tint"
+    },
+    "frame-opacity": {
+        "default": 0.7,
+        "type": "spinbutton",
+        "min": 0.0,
+        "max": 1.0,
+        "description": "Frame Opacity",
+        "step": 0.1
+    },
+    "background-blur": {
+        "default": 3,
+        "type": "spinbutton",
+        "min": 0,
+        "max": 10,
+        "description": "Background Blur Intensity",
+        "tooltip": "Number of blur passes applied to background (0=none, 10=maximum)",
+        "step": 1
+    },
+    "transition-header": {
+        "type": "header",
+        "description": "Transition Settings"
+    },
+    "delay": {
+        "default": 10,
+        "type": "spinbutton",
+        "min": 1,
+        "max": 3600,
+        "description": "Rotation Delay",
+        "units": "seconds",
+        "step": 1
+    },
+    "fade-delay": {
+        "default": 1.0,
+        "type": "spinbutton",
+        "min": 0.0,
+        "max": 10.0,
+        "description": "Fade Duration",
+        "units": "seconds",
+        "step": 0.1,
+        "tooltip": "Duration of fade transition between photos (0 = instant)"
+    },
+    "overlay-header": {
+        "type": "header",
+        "description": "Information Overlays"
+    },
+    "file-path-display": {
+        "default": "on-hover",
+        "type": "combobox",
+        "description": "File Path Display",
+        "options": {
+            "Never": "never",
+            "On Hover": "on-hover",
+            "Always": "always"
+        }
+    },
+    "nav-buttons-display": {
+        "default": "on-hover",
+        "type": "combobox",
+        "description": "Navigation Buttons Display",
+        "options": {
+            "Never": "never",
+            "On Hover": "on-hover",
+            "Always": "always"
+        }
+    },
+    "info-label-position": {
+        "default": "top-right",
+        "type": "combobox",
+        "description": "Info Label Position",
+        "tooltip": "Position of EXIF date, file path, and description label",
+        "options": {
+            "Top Right": "top-right",
+            "Top Left": "top-left"
+        }
+    },
+    "exif-header": {
+        "type": "header",
+        "description": "EXIF Data Display"
+    },
+    "exif-date-display": {
+        "default": "on-hover",
+        "type": "combobox",
+        "description": "EXIF Date Display",
+        "options": {
+            "Never": "never",
+            "On Hover": "on-hover",
+            "Always": "always"
+        }
+    },
+    "exif-description-display": {
+        "default": "never",
+        "type": "combobox",
+        "description": "EXIF Description Display",
+        "options": {
+            "Never": "never",
+            "On Hover": "on-hover",
+            "Always": "always"
+        }
+    },
+    "show-map-button": {
+        "default": true,
+        "type": "switch",
+        "description": "Show map button for GPS-tagged photos"
+    },
+    "exif-help": {
+        "type": "label",
+        "description": "EXIF features require: sudo apt install gir1.2-gexiv2-0.10"
+    },
+    "scanning-header": {
+        "type": "header",
+        "description": "Folder Scanning Limits"
+    },
+    "max-folders": {
+        "default": 100,
+        "type": "spinbutton",
+        "min": 50,
+        "max": 5000,
+        "description": "Max Total Folders",
+        "tooltip": "Maximum total number of folders to scan",
+        "step": 50
+    },
+    "max-depth": {
+        "default": 10,
+        "type": "spinbutton",
+        "min": 1,
+        "max": 50,
+        "description": "Max Folder Depth",
+        "tooltip": "Maximum folder nesting level to scan",
+        "step": 1
+    },
+    "max-subfolders-per-dir": {
+        "default": 20,
+        "type": "spinbutton",
+        "min": 10,
+        "max": 500,
+        "description": "Max Subfolders Per Directory",
+        "tooltip": "Maximum number of subfolders to scan in each directory",
+        "step": 10
+    },
+    "scan-limits-help": {
+        "type": "label",
+        "description": "Lower values = faster scanning but fewer photos available"
+    }
+}
