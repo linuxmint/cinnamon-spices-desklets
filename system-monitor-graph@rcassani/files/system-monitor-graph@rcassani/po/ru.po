@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/issues\n"
-"POT-Creation-Date: 2026-07-22 03:33+0530\n"
+"POT-Creation-Date: 2026-07-22 14:45+0530\n"
 "PO-Revision-Date: \n"
 "Last-Translator: blogdron\n"
 "Language-Team: \n"
@@ -14,128 +14,128 @@ msgstr ""
 "X-Generator: Poedit 3.4.2\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:284
+#. desklet.js:288
 msgid "CPU"
 msgstr "Процессор"
 
-#. desklet.js:293
+#. desklet.js:297
 msgid "CPU Temperature"
 msgstr ""
 
-#. desklet.js:304
+#. desklet.js:309
 msgid "CPU Fan"
 msgstr ""
 
-#. desklet.js:308
+#. desklet.js:313
 msgid "RPM"
 msgstr ""
 
-#. desklet.js:309
+#. desklet.js:314
 msgid "On"
 msgstr ""
 
-#. desklet.js:311
+#. desklet.js:316
 msgid "Off"
 msgstr ""
 
-#. desklet.js:314
+#. desklet.js:319
 msgid "Not detected"
 msgstr ""
 
-#. desklet.js:316
+#. desklet.js:321
 msgid "Detecting..."
 msgstr ""
 
-#. desklet.js:329 desklet.js:347 desklet.js:367 desklet.js:408 desklet.js:738
+#. desklet.js:334 desklet.js:352 desklet.js:372 desklet.js:413 desklet.js:717
 msgid "GB"
 msgstr "ГБ"
 
-#. desklet.js:332 desklet.js:350 desklet.js:370 desklet.js:411 desklet.js:752
+#. desklet.js:337 desklet.js:355 desklet.js:375 desklet.js:416 desklet.js:731
 msgid "GiB"
 msgstr "ГиБ"
 
 #. settings-schema.json->type->options
-#. desklet.js:334
+#. desklet.js:339
 msgid "RAM"
 msgstr "Память"
 
 #. settings-schema.json->type->options
-#. desklet.js:352
+#. desklet.js:357
 msgid "Swap"
 msgstr "Подкачка"
 
-#. desklet.js:375
+#. desklet.js:380
 msgid "free of"
 msgstr "свободно из"
 
-#. desklet.js:391
+#. desklet.js:396
 msgid "GPU Usage"
 msgstr "Видеокарта"
 
-#. desklet.js:413
+#. desklet.js:418
 msgid "GPU Memory"
 msgstr "Память видеокарты"
 
-#. desklet.js:429
+#. desklet.js:434
 #, fuzzy
 msgid "GPU Temperature"
 msgstr "Производитель GPU"
 
 #. settings-schema.json->type->options
-#. desklet.js:443
+#. desklet.js:448
 msgid "Network"
 msgstr "Сеть"
 
 #. settings-schema.json->type->options
-#. desklet.js:456
+#. desklet.js:461
 msgid "Battery"
 msgstr ""
 
-#. desklet.js:459
+#. desklet.js:464
 msgid "Fully charged"
 msgstr ""
 
-#. desklet.js:460
+#. desklet.js:465
 msgid "Not charging"
 msgstr ""
 
-#. desklet.js:462
+#. desklet.js:467
 msgid " hrs"
 msgstr ""
 
-#. desklet.js:709 desklet.js:732
+#. desklet.js:688 desklet.js:711
 msgid "b"
 msgstr "б"
 
-#. desklet.js:711 desklet.js:746 desklet.js:760
+#. desklet.js:690 desklet.js:725 desklet.js:739
 msgid "B"
 msgstr "Б"
 
-#. desklet.js:724
+#. desklet.js:703
 msgid "Gb"
 msgstr "Гб"
 
-#. desklet.js:727
+#. desklet.js:706
 msgid "Mb"
 msgstr "Мб"
 
-#. desklet.js:730
+#. desklet.js:709
 msgid "Kb"
 msgstr "Кб"
 
-#. desklet.js:741
+#. desklet.js:720
 msgid "MB"
 msgstr "МБ"
 
-#. desklet.js:744
+#. desklet.js:723
 msgid "KB"
 msgstr "КБ"
 
-#. desklet.js:755
+#. desklet.js:734
 msgid "MiB"
 msgstr "МиБ"
 
-#. desklet.js:758
+#. desklet.js:737
 msgid "KiB"
 msgstr "КиБ"
 

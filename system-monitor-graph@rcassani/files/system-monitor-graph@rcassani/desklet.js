@@ -18,6 +18,10 @@ const KIB_TO_B = 1024;      // 1 KiB = 1,024 B
 
 const CPU_TEMP_MIN =  20;    // Minimum CPU temperature
 const CPU_TEMP_MAX = 100;    // Maximum CPU temperature
+const CPU_FANSPEED_MAX = 4000; // CPU fan graph full-scale speed
+const CPU_FAN_RETRY_MIN = 5;   // Initial retry delay in seconds
+const CPU_FAN_RETRY_MAX = 300; // Maximum retry delay in seconds
+const CPU_FAN_RETRY_MULTIPLIER = 2;
 
 const UUID = "system-monitor-graph@rcassani";
 const DESKLET_PATH = imports.ui.deskletManager.deskletMeta[UUID].path;
@@ -300,7 +304,8 @@ SystemMonitorGraph.prototype = {
 
                   case "fan":
                       this.get_cpu_fan_speed(this.cpu_fan_file);
-                      value = isNaN(this.cpu_fan_rpm) ? 0 : this.cpu_fan_rpm;
+                      value = isNaN(this.cpu_fan_rpm) ? 0 : this.cpu_fan_rpm / CPU_FANSPEED_MAX;
+                      value = value < 0 ? 0 : value > 1 ? 1 : value;
                       text1 = _("CPU Fan");
                       text2_size = Math.max(1, text2_size - 1);
                       if (!isNaN(this.cpu_fan_rpm)) {
@@ -513,8 +518,6 @@ SystemMonitorGraph.prototype = {
             if (this.type === "network") {
                 // Draw dual-line network graph
                 this.draw_network_graph(ctx, unit_size, margin_up, graph_w, graph_h, graph_step, n_values, line_width);
-            } else if (this.type === "cpu" && this.cpu_variable === "fan") {
-                this.draw_cpu_fan_graph(ctx, unit_size, margin_up, graph_w, graph_h, graph_step, n_values, line_width);
             } else {
                 // timeseries and area
                 ctx.setLineWidth(2 * line_width);
@@ -567,30 +570,6 @@ SystemMonitorGraph.prototype = {
         canvas.invalidate();
         this.canvas.set_content(canvas);
         this.canvas.set_size(desklet_w, desklet_h);
-    },
-
-    draw_cpu_fan_graph: function(ctx, unit_size, margin_up, graph_w, graph_h, graph_step, n_values, line_width) {
-        let fan_colors = this.parse_rgba_settings(this.line_color_cpu);
-        let valid_values = this.values.filter(v => !isNaN(v) && isFinite(v) && v >= 0);
-        let max_value = valid_values.length > 0 ? Math.max(...valid_values) : 0;
-        let fan_scale = Math.max(1000, Math.ceil((max_value * 1.1) / 500) * 500);
-        let scale_value = function(value) {
-            if (isNaN(value) || !isFinite(value) || value < 0) return 0;
-            return Math.max(0, Math.min(graph_h, (value / fan_scale) * graph_h));
-        };
-
-        ctx.setLineWidth(2 * line_width);
-        ctx.setSourceRGBA(fan_colors[0], fan_colors[1], fan_colors[2], 1);
-        ctx.moveTo(unit_size, margin_up + graph_h - scale_value(this.values[0]));
-        for (let i = 1; i < n_values; i++) {
-            ctx.lineTo(unit_size + (i * graph_step), margin_up + graph_h - scale_value(this.values[i]));
-        }
-        ctx.strokePreserve();
-        ctx.lineTo(unit_size + graph_w, margin_up + graph_h);
-        ctx.lineTo(unit_size, margin_up + graph_h);
-        ctx.closePath();
-        ctx.setSourceRGBA(fan_colors[0], fan_colors[1], fan_colors[2], 0.4);
-        ctx.fill();
     },
 
     draw_network_graph: function(ctx, unit_size, margin_up, graph_w, graph_h, graph_step, n_values, line_width) {
@@ -1194,35 +1173,43 @@ SystemMonitorGraph.prototype = {
         });
     },
 
-    get_cpu_fan_file: function(excluded_file, callback) {
+    get_cpu_fan_file: function(callback) {
         // Prefer explicitly labelled CPU fans, then known laptop cooling drivers.
         // Do not guess from an unrelated, unlabelled hwmon fan.
-        let argv = ['/bin/sh', '-c', "for fan_file in $({ grep -s -i -l -d skip -E 'cpu|processor' /sys/class/hwmon/hwmon*/fan*_label | sed 's/_label/_input/'; grep -s -l -d skip -E '^(dell_smm|thinkpad)$' /sys/class/hwmon/hwmon*/name | sed 's#/name#/fan1_input#'; }); do [ \"$fan_file\" = \"$1\" ] && continue; [ -r \"$fan_file\" ] && { printf '%s' \"$fan_file\"; break; }; done", 'cpu-fan-discovery', excluded_file];
+        let argv = ['/bin/sh', '-c', "for fan_file in $({ grep -s -i -l -d skip -E 'cpu|processor' /sys/class/hwmon/hwmon*/fan*_label | sed 's/_label/_input/'; grep -s -l -d skip -E '^(dell_smm|thinkpad)$' /sys/class/hwmon/hwmon*/name | sed 's#/name#/fan1_input#'; }); do [ -r \"$fan_file\" ] && { printf '%s' \"$fan_file\"; break; }; done"];
         spawnAsyncWithOutput(argv, (success, output) => {
             callback(success && output ? output.trim() : "");
         });
     },
 
-    rediscover_cpu_fan: function(failed_file = "") {
-        // Clear a stale hwmon path first. Initial discovery retries with bounded
-        // backoff; a failed known path is excluded to avoid looping every refresh.
+    schedule_cpu_fan_retry: function() {
+        if (this.cpu_fan_retry_delay == null) this.cpu_fan_retry_delay = CPU_FAN_RETRY_MIN;
+        this.cpu_fan_file = "";
+        this.cpu_fan_rpm = NaN;
+        this.cpu_fan_discovery_complete = true;
+        this.cpu_fan_next_discovery_time = GLib.get_monotonic_time()
+            + (this.cpu_fan_retry_delay * GLib.USEC_PER_SEC);
+        this.cpu_fan_retry_delay = Math.min(
+            this.cpu_fan_retry_delay * CPU_FAN_RETRY_MULTIPLIER,
+            CPU_FAN_RETRY_MAX);
+    },
+
+    rediscover_cpu_fan: function() {
+        // Clear a stale hwmon path first. Missing or failed sensors are retried
+        // with bounded backoff instead of spawning another lookup every refresh.
         if (this.cpu_fan_discovery_in_progress) return;
-        if (this.cpu_fan_retry_delay == null) this.cpu_fan_retry_delay = 5;
+        if (this.cpu_fan_retry_delay == null) this.cpu_fan_retry_delay = CPU_FAN_RETRY_MIN;
         this.cpu_fan_discovery_in_progress = true;
-        this.cpu_fan_retry_if_missing = failed_file == "";
         this.cpu_fan_file = "";
         this.cpu_fan_rpm = NaN;
         this.cpu_fan_discovery_complete = false;
-        this.get_cpu_fan_file(failed_file, (result) => {
-            this.cpu_fan_file = result;
-            this.cpu_fan_discovery_complete = true;
+        this.get_cpu_fan_file((result) => {
             this.cpu_fan_discovery_in_progress = false;
-            if (result == "" && this.cpu_fan_retry_if_missing) {
-                this.cpu_fan_next_discovery_time = GLib.get_monotonic_time()
-                    + (this.cpu_fan_retry_delay * GLib.USEC_PER_SEC);
-                this.cpu_fan_retry_delay = Math.min(this.cpu_fan_retry_delay * 2, 300);
-            } else if (result != "") {
-                this.cpu_fan_retry_delay = 5;
+            if (result == "") {
+                this.schedule_cpu_fan_retry();
+            } else {
+                this.cpu_fan_file = result;
+                this.cpu_fan_discovery_complete = true;
                 this.cpu_fan_next_discovery_time = 0;
             }
         });
@@ -1230,7 +1217,7 @@ SystemMonitorGraph.prototype = {
 
     get_cpu_fan_speed: function(fan_file) {
         if(fan_file == null || fan_file == "") {
-            if (this.cpu_fan_discovery_complete && this.cpu_fan_retry_if_missing
+            if (this.cpu_fan_discovery_complete
                 && GLib.get_monotonic_time() >= this.cpu_fan_next_discovery_time) {
                 this.rediscover_cpu_fan();
             }
@@ -1242,12 +1229,14 @@ SystemMonitorGraph.prototype = {
                 if (success) {
                     let rpm = parseInt(ByteArray.toString(contents).trim());
                     this.cpu_fan_rpm = isNaN(rpm) ? NaN : Math.max(0, rpm);
+                    this.cpu_fan_retry_delay = CPU_FAN_RETRY_MIN;
+                    this.cpu_fan_next_discovery_time = 0;
                 } else {
-                    this.rediscover_cpu_fan(fan_file);
+                    this.schedule_cpu_fan_retry();
                 }
                 GLib.free(contents);
             } catch(error) {
-                this.rediscover_cpu_fan(fan_file);
+                this.schedule_cpu_fan_retry();
                 global.log('CPU fan speed file read error: ' + error.toString());
             }
         });
