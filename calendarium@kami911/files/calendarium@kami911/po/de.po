@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: calendarium@kami911 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-03-25 07:46+0100\n"
+"POT-Creation-Date: 2026-07-23 16:36+0200\n"
 "PO-Revision-Date: 2024-01-01 00:00+0000\n"
 "Last-Translator: Kalman „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: German\n"
@@ -15,89 +15,253 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. desklet.js:335
+#. desklet.js:61
+msgid "New Moon"
+msgstr "Neumond"
+
+#. desklet.js:61
+msgid "Waxing Crescent"
+msgstr "Zunehmende Sichel"
+
+#. desklet.js:61
+msgid "First Quarter"
+msgstr "Erstes Viertel"
+
+#. desklet.js:61
+msgid "Waxing Gibbous"
+msgstr "Zunehmender Mond"
+
+#. desklet.js:62
+msgid "Full Moon"
+msgstr "Vollmond"
+
+#. desklet.js:62
+msgid "Waning Gibbous"
+msgstr "Abnehmender Mond"
+
+#. desklet.js:62
+msgid "Last Quarter"
+msgstr "Letztes Viertel"
+
+#. desklet.js:62
+msgid "Waning Crescent"
+msgstr "Abnehmende Sichel"
+
+#. desklet.js:64
+msgid "Aquarius"
+msgstr "Wassermann"
+
+#. desklet.js:64
+msgid "Pisces"
+msgstr "Fische"
+
+#. desklet.js:64
+msgid "Aries"
+msgstr "Widder"
+
+#. desklet.js:64
+msgid "Taurus"
+msgstr "Stier"
+
+#. desklet.js:64
+msgid "Gemini"
+msgstr "Zwillinge"
+
+#. desklet.js:64
+msgid "Cancer"
+msgstr "Krebs"
+
+#. desklet.js:65
+msgid "Leo"
+msgstr "Löwe"
+
+#. desklet.js:65
+msgid "Virgo"
+msgstr "Jungfrau"
+
+#. desklet.js:65
+msgid "Libra"
+msgstr "Waage"
+
+#. desklet.js:65
+msgid "Scorpio"
+msgstr "Skorpion"
+
+#. desklet.js:65
+msgid "Sagittarius"
+msgstr "Schütze"
+
+#. desklet.js:65
+msgid "Capricorn"
+msgstr "Steinbock"
+
+#. desklet.js:67
+msgid "Rat"
+msgstr "Ratte"
+
+#. desklet.js:67
+msgid "Ox"
+msgstr "Ochse"
+
+#. desklet.js:67
+msgid "Tiger"
+msgstr "Tiger"
+
+#. desklet.js:67
+msgid "Rabbit"
+msgstr "Hase"
+
+#. desklet.js:67
+msgid "Dragon"
+msgstr "Drache"
+
+#. desklet.js:67
+msgid "Snake"
+msgstr "Schlange"
+
+#. desklet.js:68
+msgid "Horse"
+msgstr "Pferd"
+
+#. desklet.js:68
+msgid "Goat"
+msgstr "Ziege"
+
+#. desklet.js:68
+msgid "Monkey"
+msgstr "Affe"
+
+#. desklet.js:68
+msgid "Rooster"
+msgstr "Hahn"
+
+#. desklet.js:68
+msgid "Dog"
+msgstr "Hund"
+
+#. desklet.js:68
+msgid "Pig"
+msgstr "Schwein"
+
+#. desklet.js:70
+msgid "Wood"
+msgstr "Holz"
+
+#. desklet.js:70
+msgid "Fire"
+msgstr "Feuer"
+
+#. desklet.js:70
+msgid "Earth"
+msgstr "Erde"
+
+#. desklet.js:70
+msgid "Metal"
+msgstr "Metall"
+
+#. desklet.js:70
+msgid "Water"
+msgstr "Wasser"
+
+#. desklet.js:72
+msgid "Spring equinox"
+msgstr "Frühlings-Tagundnachtgleiche"
+
+#. desklet.js:72
+msgid "Summer solstice"
+msgstr "Sommersonnenwende"
+
+#. desklet.js:72
+msgid "Autumn equinox"
+msgstr "Herbst-Tagundnachtgleiche"
+
+#. desklet.js:72
+msgid "Winter solstice"
+msgstr "Wintersonnenwende"
+
+#. desklet.js:359
 msgid "Current date"
 msgstr "Aktuelles Datum"
 
-#. desklet.js:343
+#. desklet.js:367
 msgid "Current time"
 msgstr "Aktuelle Uhrzeit"
 
-#. desklet.js:359 desklet.js:875
+#. desklet.js:383 desklet.js:895
 msgid "Day of year"
 msgstr "Tag des Jahres"
 
-#. desklet.js:385 desklet.js:886
+#. desklet.js:409 desklet.js:906
 msgid "Week number"
 msgstr "Wochennummer"
 
-#. desklet.js:394 desklet.js:902
+#. desklet.js:418 desklet.js:922
 msgid "Month highlights"
 msgstr "Monatsübersicht"
 
-#. desklet.js:451 desklet.js:1043
+#. desklet.js:475 desklet.js:1062
 msgid "Moon phase"
 msgstr "Mondphase"
 
-#. desklet.js:482 desklet.js:483 desklet.js:1235
+#. desklet.js:506 desklet.js:507 desklet.js:1254
 msgid "Moonrise"
 msgstr "Mondaufgang"
 
-#. desklet.js:490 desklet.js:491 desklet.js:1236
+#. desklet.js:514 desklet.js:515 desklet.js:1255
 msgid "Moonset"
 msgstr "Monduntergang"
 
-#. desklet.js:508 desklet.js:509 desklet.js:537 desklet.js:1090
+#. desklet.js:532 desklet.js:533 desklet.js:561 desklet.js:1109
 msgid "Sunrise"
 msgstr "Sonnenaufgang"
 
-#. desklet.js:516 desklet.js:517 desklet.js:538 desklet.js:1091
+#. desklet.js:540 desklet.js:541 desklet.js:562 desklet.js:1110
 msgid "Sunset"
 msgstr "Sonnenuntergang"
 
-#. desklet.js:539
+#. desklet.js:563
 msgid "Local time"
 msgstr "Ortszeit"
 
-#. desklet.js:559 desklet.js:1133
+#. desklet.js:583 desklet.js:1152
 msgid "Western zodiac"
 msgstr "Westliches Tierkreiszeichen"
 
-#. desklet.js:576 desklet.js:1147
+#. desklet.js:600 desklet.js:1166
 msgid "Chinese zodiac"
 msgstr "Chinesischer Tierkreis"
 
-#. desklet.js:598
+#. desklet.js:622
 msgid "Equinox and Solstice"
 msgstr "Tagundnachtgleiche und Sonnenwende"
 
-#. desklet.js:663 desklet.js:664 desklet.js:1397
+#. desklet.js:680 desklet.js:681 desklet.js:1396
 msgid "Events on this day"
 msgstr "Ereignisse an diesem Tag"
 
-#. desklet.js:665 desklet.js:666 desklet.js:1377
+#. desklet.js:682 desklet.js:683 desklet.js:1376
 msgid "Births on this day"
 msgstr "Geburten an diesem Tag"
 
-#. desklet.js:667 desklet.js:668 desklet.js:1387
+#. desklet.js:684 desklet.js:685 desklet.js:1386
 msgid "Deaths on this day"
 msgstr "Todesfälle an diesem Tag"
 
-#. desklet.js:669 desklet.js:670 desklet.js:1440
+#. desklet.js:686 desklet.js:687 desklet.js:1439
 msgid "Article of the day"
 msgstr "Artikel des Tages"
 
 #. settings-schema.json->section-altcal->title
-#. desklet.js:686
+#. desklet.js:703
 msgid "Alternate Calendars"
 msgstr "Alternative Kalender"
 
-#. desklet.js:871
+#. desklet.js:891
 #, javascript-format
 msgid "Day %d of %d"
 msgstr "Tag %d von %d"
 
-#. desklet.js:883
+#. desklet.js:903
 #, javascript-format
 msgid "Week %d"
 msgstr "Woche %d"
@@ -105,76 +269,75 @@ msgstr "Woche %d"
 #. settings-schema.json->holiday-lookahead->units
 #. settings-schema.json->period-upcoming-lookahead->units
 #. settings-schema.json->nameday-lookahead->units
-#. desklet.js:899 desklet.js:1026 desklet.js:1052 desklet.js:1251
+#. desklet.js:919 desklet.js:1045 desklet.js:1071 desklet.js:1270
 msgid "days"
 msgstr "Tage"
 
-#. desklet.js:914
+#. desklet.js:933
 msgid "days until New Year"
 msgstr "Tage bis Neujahr"
 
-#. desklet.js:967
+#. desklet.js:986
 msgid "public holiday"
 msgstr "Feiertag"
 
-#. desklet.js:969
+#. desklet.js:988
 msgid "weekend"
 msgstr "Wochenende"
 
-#. desklet.js:1010
+#. desklet.js:1029
 msgid "days left"
 msgstr "Tage verbleibend"
 
-#. desklet.js:1054
+#. desklet.js:1073
 msgid "Moon age"
 msgstr "Mondalter"
 
-#. desklet.js:1108
+#. desklet.js:1127
 msgid "Polar day"
 msgstr "Polartag"
 
-#. desklet.js:1109
+#. desklet.js:1128
 msgid "Polar night"
 msgstr "Polarnacht"
 
-#. desklet.js:1110 desklet.js:1230 desklet.js:1231
+#. desklet.js:1129 desklet.js:1249 desklet.js:1250
 msgid "No data"
 msgstr "Keine Daten"
 
-#. desklet.js:1158
+#. desklet.js:1177
 msgid "Name days"
 msgstr "Namenstage"
 
-#. desklet.js:1160
+#. desklet.js:1179
 msgid "Tomorrow"
 msgstr "Morgen"
 
-#. desklet.js:1266
+#. desklet.js:1285
 msgid "Julian date"
 msgstr "Julianisches Datum"
 
-#. desklet.js:1267
+#. desklet.js:1286
 msgid "Hebrew date"
 msgstr "Hebräisches Datum"
 
-#. desklet.js:1268
+#. desklet.js:1287
 msgid "Islamic date"
 msgstr "Islamisches Datum"
 
-#. desklet.js:1269
+#. desklet.js:1288
 msgid "Persian date"
 msgstr "Persisches Datum"
 
 #. metadata.json->name
-#, fuzzy
 msgid "Calendarium"
-msgstr "Kalender-Aktuelles"
+msgstr "Calendarium"
 
 #. metadata.json->description
 msgid ""
 "A rich calendar desklet with moon phase, sunrise/sunset, zodiac, name days, "
 "traditional month names, and optional Wikipedia features."
-msgstr ""
+msgstr "Ein umfangreiches Kalender-Desklet mit Mondphase, Sonnenauf-/-untergang, Tierkreiszeichen, Namenstagen, traditionellen Monatsnamen und optionalen Wikipedia-Funktionen."
 
 #. settings-schema.json->page-general->title
 msgid "General"
@@ -322,7 +485,7 @@ msgid ""
 "%b=short month  %Y=4-digit year  %y=2-digit year  %m=month number  %j=day of "
 "year  %H=hour(24h)  %I=hour(12h)  %M=minute  %p=AM/PM.  Example: %Y. %B %d., "
 "%A"
-msgstr ""
+msgstr "strftime-Codes: %A=Wochentag ausgeschrieben  %a=Wochentag kurz  %d=Tag  %B=Monat ausgeschrieben  %b=Monat kurz  %Y=4-stelliges Jahr  %y=2-stelliges Jahr  %m=Monatsnummer  %j=Tag des Jahres  %H=Stunde(24h)  %I=Stunde(12h)  %M=Minute  %p=AM/PM.  Beispiel: %Y. %B %d., %A"
 
 #. settings-schema.json->show-time->description
 msgid "Show time"
@@ -444,17 +607,15 @@ msgstr "Italienisch"
 
 #. settings-schema.json->show-holidays->description
 msgid "Show national holidays and weekends"
-msgstr ""
+msgstr "Gesetzliche Feiertage und Wochenenden anzeigen"
 
 #. settings-schema.json->holiday-locale->description
-#, fuzzy
 msgid "Holiday calendar"
-msgstr "Namentags-Kalender"
+msgstr "Feiertagskalender"
 
 #. settings-schema.json->holiday-lookahead->description
-#, fuzzy
 msgid "Show upcoming holidays (days ahead)"
-msgstr "Bevorstehende Namenstage anzeigen (Tage voraus)"
+msgstr "Bevorstehende Feiertage anzeigen (Tage im Voraus)"
 
 #. settings-schema.json->show-period-upcoming->description
 msgid "Show upcoming seasonal periods (days ahead)"
@@ -494,12 +655,12 @@ msgstr "Manuellen Standort verwenden (Standard: Budapest, Ungarn)"
 
 #. settings-schema.json->location-search->description
 msgid "Search city to auto-fill coordinates"
-msgstr ""
+msgstr "Stadt suchen, um Koordinaten automatisch auszufüllen"
 
 #. settings-schema.json->location-search->tooltip
 msgid ""
 "Type a city name — coordinates are filled in automatically after 1.5 seconds."
-msgstr ""
+msgstr "Geben Sie einen Städtenamen ein — die Koordinaten werden nach 1,5 Sekunden automatisch ausgefüllt."
 
 #. settings-schema.json->latitude->units
 #. settings-schema.json->longitude->units
@@ -538,13 +699,13 @@ msgstr "Längengrad Stadt 1"
 
 #. settings-schema.json->city1-tz->description
 msgid "City 1 timezone (IANA, e.g. Europe/Vienna)"
-msgstr ""
+msgstr "Stadt 1 Zeitzone (IANA, z. B. Europe/Vienna)"
 
 #. settings-schema.json->city1-tz->tooltip
 msgid ""
 "Filled automatically when using city search. You can also enter an IANA "
 "timezone name manually, e.g. America/New_York."
-msgstr ""
+msgstr "Wird bei Verwendung der Städtesuche automatisch ausgefüllt. Sie können auch manuell einen IANA-Zeitzonennamen eingeben, z. B. America/New_York."
 
 #. settings-schema.json->city2-name->description
 msgid "City 2 name (leave empty to disable)"
@@ -560,14 +721,14 @@ msgstr "Längengrad Stadt 2"
 
 #. settings-schema.json->city2-tz->description
 msgid "City 2 timezone (IANA, e.g. America/New_York)"
-msgstr ""
+msgstr "Stadt 2 Zeitzone (IANA, z. B. America/New_York)"
 
 #. settings-schema.json->city2-tz->tooltip
 #. settings-schema.json->city3-tz->tooltip
 msgid ""
 "Filled automatically when using city search. You can also enter an IANA "
 "timezone name manually."
-msgstr ""
+msgstr "Wird bei Verwendung der Städtesuche automatisch ausgefüllt. Sie können auch manuell einen IANA-Zeitzonennamen eingeben."
 
 #. settings-schema.json->city3-name->description
 msgid "City 3 name (leave empty to disable)"
@@ -583,15 +744,15 @@ msgstr "Längengrad Stadt 3"
 
 #. settings-schema.json->city3-tz->description
 msgid "City 3 timezone (IANA, e.g. Asia/Tokyo)"
-msgstr ""
+msgstr "Stadt 3 Zeitzone (IANA, z. B. Asia/Tokyo)"
 
 #. settings-schema.json->show-city-time->description
 msgid "Show current local time for each city"
-msgstr ""
+msgstr "Aktuelle Ortszeit für jede Stadt anzeigen"
 
 #. settings-schema.json->show-city-tz-offset->description
 msgid "Show UTC offset for each city (e.g. UTC+1)"
-msgstr ""
+msgstr "UTC-Versatz für jede Stadt anzeigen (z. B. UTC+1)"
 
 #. settings-schema.json->zodiac-western-display->description
 msgid "Western zodiac display"
@@ -627,7 +788,7 @@ msgstr "Chinesisches Tierkreiszeichen anzeigen"
 
 #. settings-schema.json->zodiac-chinese-display->tooltip
 msgid "Choose what to show for the Chinese zodiac year (animal and element)."
-msgstr ""
+msgstr "Wählen Sie aus, was für das chinesische Tierkreisjahr angezeigt werden soll (Tier und Element)."
 "Wähle, was beim chinesischen Tierkreisjahr (Tier und Element) angezeigt "
 "werden soll."
 
@@ -677,13 +838,13 @@ msgstr ""
 
 #. settings-schema.json->wikipedia-items-count->description
 msgid "Items shown per section"
-msgstr ""
+msgstr "Angezeigte Einträge pro Abschnitt"
 
 #. settings-schema.json->wikipedia-items-count->tooltip
 msgid ""
 "How many births, deaths, and events to display at a time. The list rotates "
 "periodically, cycling through all available entries from the cache."
-msgstr ""
+msgstr "Wie viele Geburten, Todesfälle und Ereignisse gleichzeitig angezeigt werden. Die Liste wechselt periodisch und durchläuft alle verfügbaren Einträge aus dem Cache."
 
 #. settings-schema.json->wikipedia-rotate-minutes->units
 msgid "minutes"
@@ -691,18 +852,17 @@ msgstr ""
 
 #. settings-schema.json->wikipedia-rotate-minutes->description
 msgid "Rotate items every N minutes"
-msgstr ""
+msgstr "Einträge alle N Minuten wechseln"
 
 #. settings-schema.json->wikipedia-rotate-minutes->tooltip
 msgid ""
 "How often to advance to the next set of items. Set to 1 to rotate every "
 "minute."
-msgstr ""
+msgstr "Wie oft zum nächsten Satz von Einträgen gewechselt wird. Auf 1 setzen, um jede Minute zu wechseln."
 
 #. settings-schema.json->wikipedia-cache-hours->units
-#, fuzzy
 msgid "hours"
-msgstr "24-Stunden"
+msgstr "Stunden"
 
 #. settings-schema.json->wikipedia-cache-hours->description
 msgid "Cache duration for Wikipedia data"
@@ -723,7 +883,7 @@ msgstr "Symbol- und Zeichengröße"
 
 #. settings-schema.json->icon-size->tooltip
 msgid "Controls the display size of moon phase and zodiac symbols."
-msgstr "Steuert die Anzeigegröße von Mondphasen- und Tierkreissymbolen."
+msgstr "Steuert die Anzeigegröße der Mondphasen- und Tierkreissymbole."
 
 #. settings-schema.json->icon-size->options
 msgid "Small"

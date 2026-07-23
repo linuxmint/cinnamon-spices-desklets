@@ -48,6 +48,30 @@ function _(str) {
     return Gettext.dgettext(UUID, str);
 }
 
+// Moon phase names, western zodiac signs, Chinese zodiac animals/elements,
+// and equinox/solstice event names are looked up dynamically (via
+// Moon.PHASE_NAMES, Zodiac._WESTERN, Zodiac.ANIMALS, Zodiac.ELEMENTS,
+// Solstice._EVENT_NAMES) and passed to _() as variables, so the po/pot
+// extractor can never see them as literals at the call site. List them
+// here, in a function that is never called, purely so
+// `cinnamon-xlet-makepot` picks them up as translatable strings. Keep in
+// sync with lib/moon.js, lib/zodiac.js, and lib/solstice.js.
+function _neverCalled_translationExtractionHelper() {
+    // lib/moon.js — Moon.PHASE_NAMES
+    _("New Moon"); _("Waxing Crescent"); _("First Quarter"); _("Waxing Gibbous");
+    _("Full Moon"); _("Waning Gibbous"); _("Last Quarter"); _("Waning Crescent");
+    // lib/zodiac.js — Zodiac._WESTERN name keys
+    _("Aquarius"); _("Pisces"); _("Aries"); _("Taurus"); _("Gemini"); _("Cancer");
+    _("Leo"); _("Virgo"); _("Libra"); _("Scorpio"); _("Sagittarius"); _("Capricorn");
+    // lib/zodiac.js — Zodiac.ANIMALS
+    _("Rat"); _("Ox"); _("Tiger"); _("Rabbit"); _("Dragon"); _("Snake");
+    _("Horse"); _("Goat"); _("Monkey"); _("Rooster"); _("Dog"); _("Pig");
+    // lib/zodiac.js — Zodiac.ELEMENTS
+    _("Wood"); _("Fire"); _("Earth"); _("Metal"); _("Water");
+    // lib/solstice.js — Solstice._EVENT_NAMES
+    _("Spring equinox"); _("Summer solstice"); _("Autumn equinox"); _("Winter solstice");
+}
+
 // ── Local modules ─────────────────────────────────────────────────────────
 const Moon         = imports.moon.Moon;
 const Sun          = imports.sun.Sun;
@@ -628,13 +652,6 @@ CalendariumDesklet.prototype = {
         }
 
         // ── Wikipedia ─────────────────────────────────────────────────────
-        // Status label: shown when Wikipedia is enabled but no data is available yet
-        this._labelWikiStatus = new St.Label({
-            style_class: "calendarium-wiki",
-            text: ""
-        });
-        this._container.add_actor(this._labelWikiStatus);
-
         this._labelWikiEventsHeader   = new St.Label({
             style_class: "calendarium-wiki-header", text: ""
         });
@@ -862,10 +879,13 @@ CalendariumDesklet.prototype = {
         let y = now.getFullYear();
 
         // ── Day of year ──────────────────────────────────────────────────
+        // DST-safe day arithmetic: compare calendar dates at UTC midnight so a
+        // 23/25-hour DST day cannot shift the result by one.
+        let todayUTC = Date.UTC(y, now.getMonth(), now.getDate());
+
         this._labelDayOfYear.visible = this.show_day_of_year;
         if (this.show_day_of_year) {
-            let startOfYear = new Date(y, 0, 1);
-            let dayOfYear   = Math.floor((now - startOfYear) / 86400000) + 1;
+            let dayOfYear = Math.floor((todayUTC - Date.UTC(y, 0, 1)) / 86400000) + 1;
             let isLeap      = (y % 4 === 0 && (y % 100 !== 0 || y % 400 === 0));
             let daysInYear  = isLeap ? 366 : 365;
             let text = (_("Day %d of %d") || "Day %d of %d")
@@ -907,8 +927,7 @@ CalendariumDesklet.prototype = {
         // ── New Year countdown ───────────────────────────────────────────
         this._labelNewYear.visible = this.show_new_year_countdown;
         if (this.show_new_year_countdown) {
-            let nextNY = new Date(y + 1, 0, 1);
-            let days   = Math.ceil((nextNY - now) / 86400000);
+            let days = Math.round((Date.UTC(y + 1, 0, 1) - todayUTC) / 86400000);
             let sep = (this.progress_separator || "\u00b7").charAt(0);
             let nyPrefix = this.show_day_of_year ? " " + sep + " " : "";
             this._labelNewYear.set_text(nyPrefix + days + " " + _("days until New Year"));
@@ -1274,7 +1293,6 @@ CalendariumDesklet.prototype = {
     // ── Wikipedia (online, optional) ──────────────────────────────────────
 
     _scheduleWikipedia: function(now) {
-        this._labelWikiStatus.visible         = false;
         this._labelWikiEventsHeader.visible   = false;
         this._labelWikiEvents.visible         = false;
         this._labelWikiBirthsHeader.visible   = false;
@@ -1302,32 +1320,14 @@ CalendariumDesklet.prototype = {
         // Set cache TTL on the module object
         Wikipedia.CACHE_TTL_SECS = (this.wikipedia_cache_hours || 12) * 3600;
 
-        this._wikiPending = 0;
-
         if (this.show_wiki_births || this.show_wiki_deaths || this.show_wiki_events) {
-            this._wikiPending++;
             Wikipedia.fetchOnThisDay(m, d, lang,
                 (data) => this._onWikiOnThisDay(data));
         }
         if (this.show_wiki_featured) {
-            this._wikiPending++;
             Wikipedia.fetchFeatured(y, m, d, lang,
                 (data) => this._onWikiFeatured(data));
         }
-
-        // All sub-options disabled — nothing to show
-        if (this._wikiPending === 0) {
-            this._labelWikiStatus.visible = false;
-        }
-    },
-
-    /** Called after each Wikipedia async callback to update the status label. */
-    _afterWikiFetch: function() {
-        if (this._isDestroyed) return;
-        this._wikiPending = Math.max(0, (this._wikiPending || 0) - 1);
-        if (this._wikiPending > 0) return;   // more callbacks still pending
-
-        this._labelWikiStatus.visible = false;
     },
 
     _onWikiOnThisDay: function(data) {
@@ -1338,7 +1338,6 @@ CalendariumDesklet.prototype = {
         } else {
             global.logWarning("Calendarium: Wikipedia onthisday returned no data");
         }
-        this._afterWikiFetch();
     },
 
     /**
@@ -1444,8 +1443,6 @@ CalendariumDesklet.prototype = {
         } else {
             global.logWarning("Calendarium: Wikipedia featured returned no data");
         }
-
-        this._afterWikiFetch();
     },
 
     // ── Settings change handler ───────────────────────────────────────────

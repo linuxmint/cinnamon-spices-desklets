@@ -5,14 +5,21 @@ A rich, highly customizable calendar and astronomical information desklet for th
 ## Features
 
 - **Date & Time** — Customizable strftime format, 12/24-hour, optional seconds
+- **Calendar Highlights** — Day of year, ISO week number, month progress, New Year countdown
 - **Traditional Month Names** — Old Hungarian, Old English (Anglo-Saxon), Old German
-- **Moon Phase** — Locally calculated phase, symbol, name, and age in days
-- **Sunrise & Sunset** — Locally calculated from configurable coordinates (default: Budapest)
+- **Folk Calendar Sayings** — Traditional folk weather/calendar lore for today
+- **National Holidays** — Public holidays, weekends, upcoming-holiday lookahead, and active/upcoming seasonal periods (e.g. Advent, Lent)
+- **Moon Phase** — Locally calculated phase, symbol, name, and age in days, plus moonrise/moonset
+- **Sunrise & Sunset** — Locally calculated from configurable coordinates (default: Budapest), plus offline city search and up to 3 additional cities with local time / UTC offset
+- **Equinox & Solstice** — Countdown to the next seasonal event
 - **Western Zodiac** — Sign with Unicode symbol
 - **Chinese Zodiac** — Year animal and element
-- **New Year Countdown** — Days until next January 1st
-- **Name Days** — Today plus up to 5 days lookahead (Hungarian, German, English datasets)
-- **Wikipedia** *(opt-in, internet required)* — On-this-day births & deaths, article of the day
+- **Name Days** — Today plus up to 10 days lookahead, optional two-column layout (Hungarian, German, English, French, Spanish, Italian datasets)
+- **Alternate Calendars** — Julian, Hebrew, Islamic, and Persian date display
+- **Wikipedia** *(opt-in, internet required)* — On-this-day events/births/deaths and article of the day, with rotation, caching, and automatic English fallback
+- **Appearance** — Configurable icon size, text scale, and background opacity
+
+Available in Hungarian, German, English, French, Spanish, and Italian.
 
 ## Note to users and developers
 

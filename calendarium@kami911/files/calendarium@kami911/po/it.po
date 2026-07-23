@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: calendarium@kami911 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-03-25 07:46+0100\n"
+"POT-Creation-Date: 2026-07-23 16:36+0200\n"
 "PO-Revision-Date: 2026-03-14 00:00+0100\n"
 "Last-Translator: Kalman „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -15,89 +15,253 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. desklet.js:335
+#. desklet.js:61
+msgid "New Moon"
+msgstr "Luna nuova"
+
+#. desklet.js:61
+msgid "Waxing Crescent"
+msgstr "Luna crescente"
+
+#. desklet.js:61
+msgid "First Quarter"
+msgstr "Primo quarto"
+
+#. desklet.js:61
+msgid "Waxing Gibbous"
+msgstr "Gibbosa crescente"
+
+#. desklet.js:62
+msgid "Full Moon"
+msgstr "Luna piena"
+
+#. desklet.js:62
+msgid "Waning Gibbous"
+msgstr "Gibbosa calante"
+
+#. desklet.js:62
+msgid "Last Quarter"
+msgstr "Ultimo quarto"
+
+#. desklet.js:62
+msgid "Waning Crescent"
+msgstr "Luna calante"
+
+#. desklet.js:64
+msgid "Aquarius"
+msgstr "Acquario"
+
+#. desklet.js:64
+msgid "Pisces"
+msgstr "Pesci"
+
+#. desklet.js:64
+msgid "Aries"
+msgstr "Ariete"
+
+#. desklet.js:64
+msgid "Taurus"
+msgstr "Toro"
+
+#. desklet.js:64
+msgid "Gemini"
+msgstr "Gemelli"
+
+#. desklet.js:64
+msgid "Cancer"
+msgstr "Cancro"
+
+#. desklet.js:65
+msgid "Leo"
+msgstr "Leone"
+
+#. desklet.js:65
+msgid "Virgo"
+msgstr "Vergine"
+
+#. desklet.js:65
+msgid "Libra"
+msgstr "Bilancia"
+
+#. desklet.js:65
+msgid "Scorpio"
+msgstr "Scorpione"
+
+#. desklet.js:65
+msgid "Sagittarius"
+msgstr "Sagittario"
+
+#. desklet.js:65
+msgid "Capricorn"
+msgstr "Capricorno"
+
+#. desklet.js:67
+msgid "Rat"
+msgstr "Ratto"
+
+#. desklet.js:67
+msgid "Ox"
+msgstr "Bue"
+
+#. desklet.js:67
+msgid "Tiger"
+msgstr "Tigre"
+
+#. desklet.js:67
+msgid "Rabbit"
+msgstr "Coniglio"
+
+#. desklet.js:67
+msgid "Dragon"
+msgstr "Drago"
+
+#. desklet.js:67
+msgid "Snake"
+msgstr "Serpente"
+
+#. desklet.js:68
+msgid "Horse"
+msgstr "Cavallo"
+
+#. desklet.js:68
+msgid "Goat"
+msgstr "Capra"
+
+#. desklet.js:68
+msgid "Monkey"
+msgstr "Scimmia"
+
+#. desklet.js:68
+msgid "Rooster"
+msgstr "Gallo"
+
+#. desklet.js:68
+msgid "Dog"
+msgstr "Cane"
+
+#. desklet.js:68
+msgid "Pig"
+msgstr "Maiale"
+
+#. desklet.js:70
+msgid "Wood"
+msgstr "Legno"
+
+#. desklet.js:70
+msgid "Fire"
+msgstr "Fuoco"
+
+#. desklet.js:70
+msgid "Earth"
+msgstr "Terra"
+
+#. desklet.js:70
+msgid "Metal"
+msgstr "Metallo"
+
+#. desklet.js:70
+msgid "Water"
+msgstr "Acqua"
+
+#. desklet.js:72
+msgid "Spring equinox"
+msgstr "Equinozio di primavera"
+
+#. desklet.js:72
+msgid "Summer solstice"
+msgstr "Solstizio d'estate"
+
+#. desklet.js:72
+msgid "Autumn equinox"
+msgstr "Equinozio d'autunno"
+
+#. desklet.js:72
+msgid "Winter solstice"
+msgstr "Solstizio d'inverno"
+
+#. desklet.js:359
 msgid "Current date"
 msgstr "Data corrente"
 
-#. desklet.js:343
+#. desklet.js:367
 msgid "Current time"
 msgstr "Ora corrente"
 
-#. desklet.js:359 desklet.js:875
+#. desklet.js:383 desklet.js:895
 msgid "Day of year"
 msgstr "Giorno dell'anno"
 
-#. desklet.js:385 desklet.js:886
+#. desklet.js:409 desklet.js:906
 msgid "Week number"
 msgstr "Numero settimana"
 
-#. desklet.js:394 desklet.js:902
+#. desklet.js:418 desklet.js:922
 msgid "Month highlights"
 msgstr "Evidenziazioni del mese"
 
-#. desklet.js:451 desklet.js:1043
+#. desklet.js:475 desklet.js:1062
 msgid "Moon phase"
 msgstr "Fase lunare"
 
-#. desklet.js:482 desklet.js:483 desklet.js:1235
+#. desklet.js:506 desklet.js:507 desklet.js:1254
 msgid "Moonrise"
 msgstr "Alba lunare"
 
-#. desklet.js:490 desklet.js:491 desklet.js:1236
+#. desklet.js:514 desklet.js:515 desklet.js:1255
 msgid "Moonset"
 msgstr "Tramonto lunare"
 
-#. desklet.js:508 desklet.js:509 desklet.js:537 desklet.js:1090
+#. desklet.js:532 desklet.js:533 desklet.js:561 desklet.js:1109
 msgid "Sunrise"
 msgstr "Alba"
 
-#. desklet.js:516 desklet.js:517 desklet.js:538 desklet.js:1091
+#. desklet.js:540 desklet.js:541 desklet.js:562 desklet.js:1110
 msgid "Sunset"
 msgstr "Tramonto"
 
-#. desklet.js:539
+#. desklet.js:563
 msgid "Local time"
 msgstr "Ora locale"
 
-#. desklet.js:559 desklet.js:1133
+#. desklet.js:583 desklet.js:1152
 msgid "Western zodiac"
 msgstr "Zodiaco occidentale"
 
-#. desklet.js:576 desklet.js:1147
+#. desklet.js:600 desklet.js:1166
 msgid "Chinese zodiac"
 msgstr "Zodiaco cinese"
 
-#. desklet.js:598
+#. desklet.js:622
 msgid "Equinox and Solstice"
 msgstr "Equinozio e solstizio"
 
-#. desklet.js:663 desklet.js:664 desklet.js:1397
+#. desklet.js:680 desklet.js:681 desklet.js:1396
 msgid "Events on this day"
 msgstr "Eventi di questo giorno"
 
-#. desklet.js:665 desklet.js:666 desklet.js:1377
+#. desklet.js:682 desklet.js:683 desklet.js:1376
 msgid "Births on this day"
 msgstr "Nascite di questo giorno"
 
-#. desklet.js:667 desklet.js:668 desklet.js:1387
+#. desklet.js:684 desklet.js:685 desklet.js:1386
 msgid "Deaths on this day"
 msgstr "Morti di questo giorno"
 
-#. desklet.js:669 desklet.js:670 desklet.js:1440
+#. desklet.js:686 desklet.js:687 desklet.js:1439
 msgid "Article of the day"
 msgstr "Articolo del giorno"
 
 #. settings-schema.json->section-altcal->title
-#. desklet.js:686
+#. desklet.js:703
 msgid "Alternate Calendars"
 msgstr "Calendari alternativi"
 
-#. desklet.js:871
+#. desklet.js:891
 #, javascript-format
 msgid "Day %d of %d"
 msgstr "Giorno %d di %d"
 
-#. desklet.js:883
+#. desklet.js:903
 #, javascript-format
 msgid "Week %d"
 msgstr "Settimana %d"
@@ -105,76 +269,75 @@ msgstr "Settimana %d"
 #. settings-schema.json->holiday-lookahead->units
 #. settings-schema.json->period-upcoming-lookahead->units
 #. settings-schema.json->nameday-lookahead->units
-#. desklet.js:899 desklet.js:1026 desklet.js:1052 desklet.js:1251
+#. desklet.js:919 desklet.js:1045 desklet.js:1071 desklet.js:1270
 msgid "days"
 msgstr "giorni"
 
-#. desklet.js:914
+#. desklet.js:933
 msgid "days until New Year"
 msgstr "giorni al Capodanno"
 
-#. desklet.js:967
+#. desklet.js:986
 msgid "public holiday"
 msgstr "giorno festivo"
 
-#. desklet.js:969
+#. desklet.js:988
 msgid "weekend"
 msgstr "fine settimana"
 
-#. desklet.js:1010
+#. desklet.js:1029
 msgid "days left"
 msgstr "giorni rimanenti"
 
-#. desklet.js:1054
+#. desklet.js:1073
 msgid "Moon age"
 msgstr "Età lunare"
 
-#. desklet.js:1108
+#. desklet.js:1127
 msgid "Polar day"
 msgstr "Giorno polare"
 
-#. desklet.js:1109
+#. desklet.js:1128
 msgid "Polar night"
 msgstr "Notte polare"
 
-#. desklet.js:1110 desklet.js:1230 desklet.js:1231
+#. desklet.js:1129 desklet.js:1249 desklet.js:1250
 msgid "No data"
 msgstr "Nessun dato"
 
-#. desklet.js:1158
+#. desklet.js:1177
 msgid "Name days"
 msgstr "Onomastici"
 
-#. desklet.js:1160
+#. desklet.js:1179
 msgid "Tomorrow"
 msgstr "Domani"
 
-#. desklet.js:1266
+#. desklet.js:1285
 msgid "Julian date"
 msgstr "Data giuliana"
 
-#. desklet.js:1267
+#. desklet.js:1286
 msgid "Hebrew date"
 msgstr "Data ebraica"
 
-#. desklet.js:1268
+#. desklet.js:1287
 msgid "Islamic date"
 msgstr "Data islamica"
 
-#. desklet.js:1269
+#. desklet.js:1288
 msgid "Persian date"
 msgstr "Data persiana"
 
 #. metadata.json->name
-#, fuzzy
 msgid "Calendarium"
-msgstr "Evidenziazioni calendario"
+msgstr "Calendarium"
 
 #. metadata.json->description
 msgid ""
 "A rich calendar desklet with moon phase, sunrise/sunset, zodiac, name days, "
 "traditional month names, and optional Wikipedia features."
-msgstr ""
+msgstr "Un desklet calendario completo con fase lunare, alba/tramonto, zodiaco, onomastico, nomi tradizionali dei mesi e funzioni Wikipedia opzionali."
 
 #. settings-schema.json->page-general->title
 msgid "General"
@@ -324,7 +487,7 @@ msgid ""
 "%b=short month  %Y=4-digit year  %y=2-digit year  %m=month number  %j=day of "
 "year  %H=hour(24h)  %I=hour(12h)  %M=minute  %p=AM/PM.  Example: %Y. %B %d., "
 "%A"
-msgstr ""
+msgstr "Codici strftime: %A=giorno della settimana completo  %a=giorno della settimana breve  %d=giorno  %B=mese completo  %b=mese breve  %Y=anno a 4 cifre  %y=anno a 2 cifre  %m=numero del mese  %j=giorno dell'anno  %H=ora(24h)  %I=ora(12h)  %M=minuto  %p=AM/PM.  Esempio: %Y. %B %d., %A"
 
 #. settings-schema.json->show-time->description
 msgid "Show time"
@@ -633,7 +796,7 @@ msgstr "Visualizzazione zodiaco cinese"
 
 #. settings-schema.json->zodiac-chinese-display->tooltip
 msgid "Choose what to show for the Chinese zodiac year (animal and element)."
-msgstr ""
+msgstr "Scegli cosa mostrare per l'anno dello zodiaco cinese (animale ed elemento)."
 "Scegli cosa mostrare per l'anno dello zodiaco cinese (animale ed elemento)."
 "Scegli cosa mostrare per l'anno dello zodiaco cinese (animale ed elemento)."
 
@@ -710,9 +873,8 @@ msgstr ""
 "ruotare ogni minuto."
 
 #. settings-schema.json->wikipedia-cache-hours->units
-#, fuzzy
 msgid "hours"
-msgstr "24 ore"
+msgstr "ore"
 
 #. settings-schema.json->wikipedia-cache-hours->description
 msgid "Cache duration for Wikipedia data"
@@ -735,10 +897,7 @@ msgstr "Dimensione icone e simboli"
 
 #. settings-schema.json->icon-size->tooltip
 msgid "Controls the display size of moon phase and zodiac symbols."
-msgstr ""
-"Controlla le dimensioni di visualizzazione dei simboli di fase lunare e "
-"zodiaco.Controlla la dimensione di visualizzazione dei simboli di fase "
-"lunare e zodiaco."
+msgstr "Controlla la dimensione di visualizzazione dei simboli di fase lunare e zodiaco."
 
 #. settings-schema.json->icon-size->options
 msgid "Small"
